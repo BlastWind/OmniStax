@@ -36,7 +36,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     for (const s of [1, -1]) { ctx.beginPath(); for (let i = 0; i <= 40; i++) { const g = i / 40, px = L + (R - L) * g, py = ys - s * AMP * Math.sin(Math.PI * g); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); } ctx.stroke(); }
     ctx.restore();
     const u = x / A;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = F.ref('string'); ctx.lineWidth = 4; ctx.beginPath();
     for (let i = 0; i <= 60; i++) { const g = i / 60, px = L + (R - L) * g, py = ys - u * AMP * Math.sin(Math.PI * g); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
     ctx.stroke(); ctx.restore();
     dot(ctx, cx, ys - u * AMP, C('position'), true, 9);
@@ -82,7 +82,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const cx = 300, y0 = 330, AMP = 70, y = y0 + AMP * Math.sin(phase);
     fixed(ctx, cx - 120, 90, 240, 40);
     spring(ctx, cx, 130, cx, y - 32, 9, 26, PAL.ink, 4);
-    block(ctx, cx, y, 96, 64, PAL.ink);
+    block(ctx, cx, y, 96, 64, F.ref('bob'));
     line(ctx, cx - 140, y0, cx + 140, y0, PAL.muted, 2, [10, 10]);
     text(ctx, 'start of each cycle', cx + 150, y0, PAL.muted, { size: 17 });
     /* the stopwatch: one turn of the hand for the whole run */

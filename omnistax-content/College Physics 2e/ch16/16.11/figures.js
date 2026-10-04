@@ -74,7 +74,7 @@ function bar(ctx, cx, base, w, h, color) {
 (function () {
   const d = sim('sim-intensity-area', 640);
   const P = ctl(d.controls, { label: '\\kP', cls: 'power', min: 50, max: 1000, step: 10, value: 350, unit: 'W', dec: 0, aria: 'power' });
-  const A = ctl(d.controls, { label: 'A', cls: '', min: 0.05, max: 2, step: 0.05, value: 0.5, unit: 'm²', dec: 3, aria: 'area' });
+  const A = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.05, max: 2, step: 0.05, value: 0.5, unit: 'm²', dec: 3, aria: 'area' });
   const t = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 8, step: 0.5, value: 4, unit: 'h', dec: 2, aria: 'time' });
   const mode = choice(d.controls, { label: '\\text{the beam}', options: [{ value: 'spread', label: 'spread' }, { value: 'focused', label: 'focused, 200\u00d7 smaller' }], value: 'spread', aria: 'whether the beam is focused' });
   function draw() {
@@ -94,13 +94,13 @@ function bar(ctx, cx, base, w, h, color) {
       const sx = cx + (i * w) / 7, ex = cx + (i * wide) / 7;
       arrow(ctx, sx, 110, ex, cy - 26, C('power'), 4);
     }
-    if (mode.a('focused') > 0) { ctx.save(); ctx.globalAlpha = mode.a('focused'); ctx.strokeStyle = C('power'); ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(cx, 185, w / 2, 16, 0, 0, TAU); ctx.stroke(); text(ctx, 'the magnifying glass', cx - w / 2 - 16, 185, PAL.muted, { size: 18, align: 'right' }); ctx.restore(); }
-    block(ctx, cx, cy, Math.max(24, wide), 30, PAL.ink);
-    hbracket(ctx, cx - Math.max(24, wide) / 2, cx + Math.max(24, wide) / 2, cy + 74, PAL.ink, 'A = ' + (focused ? sciPlain(Ause, 2) : fmt(Ause, 3)) + ' m²');
+    if (mode.a('focused') > 0) { ctx.save(); ctx.globalAlpha = mode.a('focused'); ctx.strokeStyle = F.ref('lens'); ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(cx, 185, w / 2, 16, 0, 0, TAU); ctx.stroke(); text(ctx, 'the magnifying glass', cx - w / 2 - 16, 185, F.ref('lens'), { size: 18, align: 'right' }); ctx.restore(); }
+    block(ctx, cx, cy, Math.max(24, wide), 30, F.ref('collector'));
+    hbracket(ctx, cx - Math.max(24, wide) / 2, cx + Math.max(24, wide) / 2, cy + 74, C('area'), 'A = ' + (focused ? sciPlain(Ause, 2) : fmt(Ause, 3)) + ' m²');
     text(ctx, 'P = ' + fmt(P.v, 0) + ' W through the beam', cx, 90, C('power'), { size: 20, weight: 600, align: 'center' });
     /* the curve I = P/A, with the state on it */
     const box = { l: 220, r: 1240, t: 350, b: 560 };
-    const { X: gx, Y: gy } = axes(ctx, box, [0, AM], [0, IM], { xl: 'area A (m²)', xc: PAL.ink, yc: C('intensity'), nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
+    const { X: gx, Y: gy } = axes(ctx, box, [0, AM], [0, IM], { xl: 'area A (m²)', xc: C('area'), yc: C('intensity'), nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
     text(ctx, 'I (W/m²)', box.r, box.t - 24, C('intensity'), { size: 20, weight: 600, align: 'right' });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     curve(ctx, (a) => P.v / a, P.v / IM, AM, gx, gy, C('intensity'), 5, 220);
@@ -108,7 +108,7 @@ function bar(ctx, cx, base, w, h, color) {
     text(ctx, 'I = P/A', gx(AM * 0.62), gy(P.v / (AM * 0.62)) - 30, C('intensity'), { size: 20, weight: 600, bg: PAL.panel });
     pinned(ctx, box, gx, gy, Adraw, P.v / Adraw, C('intensity'), (I >= 10000 ? sciPlain(I, 2) : fmt(I, 0)) + ' W/m²');
     topline(ctx, fmt(P.v, 0) + ' W through ' + (focused ? sciPlain(Ause, 2) : fmt(Ause, 3)) + ' m² is an intensity of ' + (I >= 10000 ? sciPlain(I, 2) : fmt(I, 0)) + ' W/m², and in ' + fmt(t.v, 2) + ' h it delivers ' + sciPlain(E, 2) + ' J');
-    readout(d.readout, `\\kIntens = \\frac{\\kP}{A} = \\frac{${fmt(P.v, 0)}\\ \\text{W}}{${focused ? sci(Ause, 2) : fmt(Ause, 3)}\\ \\text{m}^{2}} = ${I >= 10000 ? sci(I, 2) : fmt(I, 0)}\\ \\text{W/m}^{2}`,
+    readout(d.readout, `\\kIntens = \\frac{\\kP}{\\karea} = \\frac{${fmt(P.v, 0)}\\ \\text{W}}{${focused ? sci(Ause, 2) : fmt(Ause, 3)}\\ \\text{m}^{2}} = ${I >= 10000 ? sci(I, 2) : fmt(I, 0)}\\ \\text{W/m}^{2}`,
       focused
         ? 'The same power through an area 200 times smaller is 200 times as intense: I′/I = A/A′ = 200. In ' + fmt(t.v, 2) + ' h the energy that falls on the smaller area is E = IAt = ' + sciPlain(E, 2) + ' J, the same energy as before, gathered into a smaller patch.'
         : 'The energy that falls on the collector is E = IAt = (' + fmt(I, 0) + ' W/m²)(' + fmt(Ause, 3) + ' m²)(' + fmt(t.v, 2) + ' h × 3600 s/h) = ' + sciPlain(E, 2) + ' J. Halving the area doubles the intensity, because the same power crosses it.');
@@ -152,19 +152,19 @@ function bar(ctx, cx, base, w, h, color) {
     ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(L, TOP, R - L, BOT - TOP); ctx.restore();
     /* the two speakers on the near wall */
-    for (const [s, lab] of [[-sx, 'left speaker'], [sx, 'right speaker']]) {
-      block(ctx, px(s), TOP - 4, 52, 44, PAL.ink);
-      text(ctx, lab, px(s) + (s < 0 ? -34 : 34), TOP - 48, PAL.muted, { size: 18, align: s < 0 ? 'right' : 'left' });
+    for (const [s, lab, id] of [[-sx, 'left speaker', 'left-speaker'], [sx, 'right speaker', 'right-speaker']]) {
+      block(ctx, px(s), TOP - 4, 52, 44, F.ref(id));
+      text(ctx, lab, px(s) + (s < 0 ? -34 : 34), TOP - 48, F.ref(id), { size: 18, align: s < 0 ? 'right' : 'left' });
     }
     hbracket(ctx, px(-sx), px(sx), TOP - 78, C('position'), 'd = ' + fmt(sep.v, 1) + ' m');
     /* the listening post on the far wall, with the two paths drawn to it */
     const q = at(post.v, 6), lx = px(post.v), ly = py(6);
     line(ctx, px(-sx), TOP, lx, ly, PAL.ink, 2, [8, 8]);
     line(ctx, px(sx), TOP, lx, ly, PAL.ink, 2, [8, 8]);
-    dot(ctx, lx, ly, C('intensity'), true, 11);
+    dot(ctx, lx, ly, F.ref('listening-post'), true, 11);
     text(ctx, 'the listening post, x = ' + fmt(post.v, 2) + ' m', lx, ly - 36, C('position'), { size: 19, weight: 600, align: lx > R - 260 ? 'right' : lx < L + 260 ? 'left' : 'center', bg: PAL.panel });
-    text(ctx, 'r₁ = ' + fmt(q.r1, 2) + ' m', (px(-sx) + lx) / 2 - 90, (TOP + ly) / 2, PAL.ink, { size: 18, weight: 600, bg: PAL.panel });
-    text(ctx, 'r₂ = ' + fmt(q.r2, 2) + ' m', (px(sx) + lx) / 2 + 90, (TOP + ly) / 2, PAL.ink, { size: 18, weight: 600, bg: PAL.panel });
+    text(ctx, 'r₁ = ' + fmt(q.r1, 2) + ' m', (px(-sx) + lx) / 2 - 90, (TOP + ly) / 2, C('position'), { size: 18, weight: 600, bg: PAL.panel });
+    text(ctx, 'r₂ = ' + fmt(q.r2, 2) + ' m', (px(sx) + lx) / 2 + 90, (TOP + ly) / 2, C('position'), { size: 18, weight: 600, bg: PAL.panel });
     /* a scale along the near wall, and the legend */
     for (let m = -4; m <= 4; m++) { line(ctx, px(m), BOT, px(m), BOT + 8, PAL.muted, 2); text(ctx, fmt(m, 0), px(m), BOT + 28, PAL.muted, { size: 17, align: 'center' }); }
     text(ctx, 'distance along the far wall (m)', R, BOT + 58, C('position'), { size: 20, weight: 600, align: 'right' });

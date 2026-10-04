@@ -22,9 +22,9 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-pendulum-force', 640);
-  const a0 = ctl(d.controls, { label: '\\theta_0', cls: '', min: 2, max: 60, step: 1, value: 15, unit: '°', dec: 0, onInput: reset, aria: 'swing amplitude' });
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 0.5, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length' });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
+  const a0 = ctl(d.controls, { label: '\\ktheta_0', cls: 'angle', min: 2, max: 60, step: 1, value: 15, unit: '°', dec: 0, onInput: reset, aria: 'swing amplitude' });
+  const L = ctl(d.controls, { label: '\\kL', cls: 'position', min: 0.5, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
   /* Seven labels riding the bob would cross one another as it swings, so only the restoring
      force is named on the canvas; every other part is named under the pointer. */
   let hits = [];
@@ -49,8 +49,8 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     line(ctx, px, py, px, py + Ld + 50, PAL.muted, 2, [8, 8]);
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([6, 8]); ctx.beginPath(); ctx.arc(px, py, Ld, Math.PI / 2 - a0.v * DEG, Math.PI / 2 + a0.v * DEG); ctx.stroke(); ctx.restore();
     if (Math.abs(t) > 0.01) { ctx.save(); ctx.strokeStyle = C('position'); ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(px, py, Ld + 14, Math.PI / 2, Math.PI / 2 - t, t > 0); ctx.stroke(); ctx.restore(); }
-    const { bx, by } = pendulum(ctx, px, py, Ld, t, 16, PAL.ink);
-    if (Math.abs(t) > 0.005) { ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, 60, Math.PI / 2, Math.PI / 2 - t, t > 0); ctx.stroke(); ctx.restore(); }
+    const { bx, by } = pendulum(ctx, px, py, Ld, t, 16, F.ref('bob'));
+    if (Math.abs(t) > 0.005) { ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, 60, Math.PI / 2, Math.PI / 2 - t, t > 0); ctx.stroke(); ctx.restore(); }
     /* the forces: weight, its two components, the tension */
     const fs = 180 / mg, ux = Math.sin(t), uy = Math.cos(t), tx = Math.cos(t), ty = -Math.sin(t);   /* u: along the string outward; t: along the arc toward +θ */
     const wl = mg * fs, cl = mg * Math.cos(t) * fs, sl = mg * Math.sin(t) * fs;
@@ -79,7 +79,7 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     const { X, Y } = axes(ctx, box, [-SM, SM], [-FM, FM], { xl: 'arc length s (m)', xc: C('position'), yl: 'restoring force F (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
     const sb = Math.min(SM, L.v * 15 * DEG), sd = Math.min(SM, L.v * Math.PI / 2);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(X(-sb), box.t, X(sb) - X(-sb), box.b - box.t); ctx.restore();
-    text(ctx, 'θ below 15°', X(0), box.b - 18, C('position'), { size: 17, align: 'center' });
+    text(ctx, 'θ below 15°', X(0), box.b - 18, C('angle'), { size: 17, align: 'center' });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     curve(ctx, (v) => -(mg / L.v) * v, -sd, sd, X, Y, C('force'), 3, 2);
     curve(ctx, (v) => -mg * Math.sin(v / L.v), -sd, sd, X, Y, PAL.ink, 4, 120);
@@ -93,7 +93,7 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     const dev = (a0.v * DEG - Math.sin(a0.v * DEG)) / Math.sin(a0.v * DEG) * 100, Tt = truePeriod(L.v, G, a0.v * DEG), T0 = TAU * Math.sqrt(L.v / G);
     headline(ctx, Math.abs(t) < 0.01 ? 'The bob is passing through its lowest point, where the net force along the arc is zero and it is moving fastest'
       : 'At θ = ' + fmt(Math.abs(t) / DEG, 1) + '° the net force along the arc is mg sin θ = ' + fmt(Math.abs(Fs), 2) + ' N, back toward equilibrium');
-    readout(d.readout, `\\kF \\approx -\\frac{m\\kg}{L}\\ks = -\\frac{(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)}{${fmt(L.v, 2)}\\ \\text{m}}(${sgn(s)}${fmt(Math.abs(s), 3)}\\ \\text{m}) = ${sgn(-s)}${fmt(Math.abs(mg / L.v * s), 2)}\\ \\text{N}`,
+    readout(d.readout, `\\kF \\approx -\\frac{\\km\\kg}{\\kL}\\ks = -\\frac{(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)}{${fmt(L.v, 2)}\\ \\text{m}}(${sgn(s)}${fmt(Math.abs(s), 3)}\\ \\text{m}) = ${sgn(-s)}${fmt(Math.abs(mg / L.v * s), 2)}\\ \\text{N}`,
       'At the amplitude of ' + fmt(a0.v, 0) + '°, θ and sin θ differ by ' + fmt(dev, 1) + '%, and the true period of ' + fmt(Tt, 2) + ' s is ' + fmt((Tt / T0 - 1) * 100, 1) + '% longer than 2π√(L/g) = ' + fmt(T0, 2) + ' s.');
   }
   register(d.fig, { update: (dt) => { cy.step(dt, () => 1); if (!REDUCED) integrate(dt); }, draw });
@@ -105,9 +105,9 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-pendulum-period', 760);
-  const L1 = ctl(d.controls, { label: 'L_1', cls: '', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 1' });
-  const L2 = ctl(d.controls, { label: 'L_2', cls: '', min: 0.1, max: 2, step: 0.05, value: 0.25, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 2', specials: [{ at: () => L1.v, label: 'equal lengths' }] });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 10, step: 0.1, value: 5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the second bob' });
+  const L1 = ctl(d.controls, { label: '\\kL_{\\htmlData{ref=pendulum-1}{1}}', cls: 'position', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 1' });
+  const L2 = ctl(d.controls, { label: '\\kL_{\\htmlData{ref=pendulum-2}{2}}', cls: 'position', min: 0.1, max: 2, step: 0.05, value: 0.25, unit: 'm', dec: 2, onInput: reset, aria: 'length of pendulum 2', specials: [{ at: () => L1.v, label: 'equal lengths' }] });
+  const m2 = ctl(d.controls, { label: '\\km_{\\htmlData{ref=pendulum-2}{2}}', cls: 'mass', min: 0.1, max: 10, step: 0.1, value: 5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the second bob' });
   /* the Moon and the Earth, the two values the section's problems name */
   const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.6, max: 25, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, specials: [{ at: 1.63, label: 'Moon' }, { at: 9.8, label: 'Earth' }] });
   const cy = cycle(() => Infinity, 0);
@@ -118,26 +118,26 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     const tau = REDUCED ? 0 : cy.now(), T1 = Tof(L1.v), T2 = Tof(L2.v);
     const Ld = (L) => 40 + 150 * L;
     fixed(ctx, 200, 60, 1000, 40);
-    for (const [px, L, T, mass, lab] of [[450, L1.v, T1, 1, '1'], [950, L2.v, T2, m2.v, '2']]) {
+    for (const [px, L, T, mass, lab, rc] of [[450, L1.v, T1, 1, '1', F.ref('pendulum-1')], [950, L2.v, T2, m2.v, '2', F.ref('pendulum-2')]]) {
       const py = 100, th = A0 * Math.cos(TAU * tau / T);
       line(ctx, px, py, px, py + Ld(2) + 20, PAL.muted, 2, [8, 8]);
-      const { bx, by } = pendulum(ctx, px, py, Ld(L), th, 12 + 4 * Math.sqrt(mass), PAL.ink);
-      text(ctx, 'L_' + lab + ' = ' + fmt(L, 2) + ' m', px + (lab === '1' ? -150 : 150), py + 60, PAL.ink, { size: 20, weight: 600, align: 'center' });
+      const { bx, by } = pendulum(ctx, px, py, Ld(L), th, 12 + 4 * Math.sqrt(mass), rc);
+      text(ctx, 'L_' + lab + ' = ' + fmt(L, 2) + ' m', px + (lab === '1' ? -150 : 150), py + 60, C('position'), { size: 20, weight: 600, align: 'center' });
       text(ctx, 'T_' + lab + ' = ' + fmt(T, 2) + ' s', px + (lab === '1' ? -150 : 150), py + 90, C('time'), { size: 20, weight: 600, align: 'center' });
-      if (lab === '2') text(ctx, 'm_2 = ' + fmt(mass, 1) + ' kg', px + 150, py + 120, PAL.muted, { size: 18, align: 'center' });
+      if (lab === '2') text(ctx, 'm_2 = ' + fmt(mass, 1) + ' kg', px + 150, py + 120, C('mass'), { size: 18, align: 'center' });
     }
     /* the graph: T against L for this g. Both ranges are fixed and never rescaled: the length axis
        is the sliders' own 0 to 2 m, and the period axis runs to 8 s, since the longest pendulum on
        the weakest gravity the sliders allow gives 2π√(2 m / 1.6 m/s²) = 7.02 s. Weakening gravity
        now lifts the whole curve where before it only relabelled the ticks. */
     const TMAX = 8, box = { l: 200, r: 1240, t: 470, b: 660 };
-    const { X, Y } = axes(ctx, box, [0, 2], [0, TMAX], { xl: 'length L (m)', xc: PAL.ink, yl: 'T (s)', yc: C('time'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
+    const { X, Y } = axes(ctx, box, [0, 2], [0, TMAX], { xl: 'length L (m)', xc: C('position'), yl: 'T (s)', yc: C('time'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
     curve(ctx, Tof, 0, 2, X, Y, C('time'), 4, 100);
     /* the curve's name sits in the top left corner, which the curve never reaches: a short pendulum is quick under any gravity the slider allows */
     text(ctx, 'T = 2π√(L/g)', box.l + 16, box.t + 22, C('time'), { weight: 600, size: 20 });
-    for (const [L, T, lab] of [[L1.v, T1, '1'], [L2.v, T2, '2']]) { line(ctx, X(L), box.b, X(L), Y(T), PAL.ink, 2, [4, 8]); dot(ctx, X(L), Y(T), C('time'), true, 9); text(ctx, lab, X(L) + 14, Y(T) - 14, C('time'), { size: 18, weight: 600 }); }
+    for (const [L, T, lab, rc] of [[L1.v, T1, '1', F.ref('pendulum-1')], [L2.v, T2, '2', F.ref('pendulum-2')]]) { line(ctx, X(L), box.b, X(L), Y(T), C('position'), 2, [4, 8]); dot(ctx, X(L), Y(T), rc, true, 9); text(ctx, lab, X(L) + 14, Y(T) - 14, rc, { size: 18, weight: 600 }); }
     headline(ctx, 'A length of ' + fmt(L1.v, 2) + ' m under g = ' + fmt(g.v, 2) + ' m/s² gives T_1 = ' + fmt(T1, 2) + ' s, while the pendulum of ' + fmt(L2.v, 2) + ' m takes T_2 = ' + fmt(T2, 2) + ' s');
-    readout(d.readout, `\\kT = 2\\pi\\sqrt{\\frac{L}{\\kg}} = 2\\pi\\sqrt{\\frac{${fmt(L1.v, 2)}\\ \\text{m}}{${fmt(g.v, 2)}\\ \\text{m/s}^2}} = ${fmt(T1, 2)}\\ \\text{s}`,
+    readout(d.readout, `\\kT = 2\\pi\\sqrt{\\frac{\\kL}{\\kg}} = 2\\pi\\sqrt{\\frac{${fmt(L1.v, 2)}\\ \\text{m}}{${fmt(g.v, 2)}\\ \\text{m/s}^2}} = ${fmt(T1, 2)}\\ \\text{s}`,
       'The second pendulum, ' + fmt(L2.v, 2) + ' m long with a ' + fmt(m2.v, 1) + ' kg bob, has T = ' + fmt(T2, 2) + ' s. Its mass does not enter; only the length and g do.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -149,7 +149,7 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-measure-g', 600);
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 0.25, max: 2, step: 0.005, value: 0.75, unit: 'm', dec: 3, onInput: reset, aria: 'length' });
+  const L = ctl(d.controls, { label: '\\kL', cls: 'position', min: 0.25, max: 2, step: 0.005, value: 0.75, unit: 'm', dec: 3, onInput: reset, aria: 'length' });
   const gl = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.6, max: 12, step: 0.0001, value: 9.8281, unit: 'm/s²', dec: 4, onInput: reset, aria: 'local acceleration due to gravity' });
   const N = 10, T = () => TAU * Math.sqrt(L.v / gl.v), total = () => N * T();
   const cy = cycle(total, 1.8);
@@ -163,8 +163,8 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     const px = 250, py = 100, Ld = 70 + 120 * L.v, th = 6 * DEG * Math.cos(TAU * tau / T());
     fixed(ctx, px - 100, py - 40, 200, 40);
     line(ctx, px, py, px, py + Ld + 30, PAL.muted, 2, [8, 8]);
-    pendulum(ctx, px, py, Ld, th, 14, PAL.ink);
-    text(ctx, 'L = ' + fmt(L.v, 3) + ' m', px + 120, py + Ld / 2, PAL.ink, { size: 20, weight: 600 });
+    pendulum(ctx, px, py, Ld, th, 14, F.ref('timed-pendulum'));
+    text(ctx, 'L = ' + fmt(L.v, 3) + ' m', px + 120, py + Ld / 2, C('position'), { size: 20, weight: 600 });
     /* the stopwatch: one turn of the hand for the whole run */
     const sx = 760, sy = 230, r = 96;
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(sx, sy, r, 0, TAU); ctx.fill(); ctx.stroke();
@@ -191,7 +191,7 @@ function pendulum(ctx, px, py, Ld, th, r, color) {
     text(ctx, 'One mark for each complete swing', tl, ty - 58, PAL.muted, { size: 17 });
     headline(ctx, done ? 'Ten swings took ' + fmt(total(), 3) + ' s, so T = ' + fmt(Tm, 4) + ' s and g = 4π²L/T² = ' + fmt(gm, 4) + ' m/s²'
       : n + (n === 1 ? ' swing has' : ' swings have') + ' been completed so far, in ' + fmt(tau, 3) + ' s');
-    readout(d.readout, `\\kg = 4\\pi^2\\frac{L}{\\kT^2} = 4\\pi^2\\frac{${fmt(L.v, 5)}\\ \\text{m}}{(${fmt(Tm, 4)}\\ \\text{s})^2} = ${fmt(gm, 4)}\\ \\text{m/s}^2`,
+    readout(d.readout, `\\kg = 4\\pi^2\\frac{\\kL}{\\kT^2} = 4\\pi^2\\frac{${fmt(L.v, 5)}\\ \\text{m}}{(${fmt(Tm, 4)}\\ \\text{s})^2} = ${fmt(gm, 4)}\\ \\text{m/s}^2`,
       'Timing ten swings rather than one divides the error of the stopwatch by ten. The swing is kept small so that sin θ ≈ θ holds; the example notes that five-digit precision needs an angle below about 0.5°.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.max(1, total() / 7)), draw });

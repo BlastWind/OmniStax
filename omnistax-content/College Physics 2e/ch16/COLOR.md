@@ -1,75 +1,65 @@
 # Chapter 16 colour plan
 
-Written 2026-09-14 in the prep pass for 16.7 to 16.11, after the
-introduction and 16.1 to 16.6 were built (LOG passes 1 to 26 and the audit);
-the file root rule 22 asks of a chapter. It records what the built pages
-coloured, as their figures tables say, and what the five remaining pages are
-expected to colour. This chapter uses the book's declared physical types and
-the app's selected palette, as root rule 7 requires. No figure hard-codes a
-hue.
+Written 2026-09-14 in the prep pass for 16.7 to 16.11 and restated 2026-10-04
+under root `RULES.md` item 7. It refines the book's `COLOR.md` and invents no
+hue: the chapter uses the book's declared categories and declares none of its
+own. Every category is coloured on every page, in prose where a phrase names a
+particular one, in maths through its symbol's variables row, and in every
+figure that draws it. No figure hard-codes a hue.
 
-| Quantity | Type | Treatment |
+## Categories
+
+| Quantity | Category | Notes |
 |---|---|---|
-| Elapsed time $t$, a period $T$ | `time` | One hue on the clock of a moving figure, the time axis of a graph and the period bracketed between two crests; the chapter's first pages declared it by 16.2's period |
-| Displacement $x$, amplitude $X$, arc length $s$, the distance $d$ a damped block travels, the wavelength $\lambda$ and its harmonics $\lambda_1$, $\lambda_2$, the two disturbances $x_1$ and $x_2$ that add, the primed amplitude $X'$ | `position` | One hue: the block's displacement on its strip, the bracket that measures an amplitude or a wavelength, the position axis of every displacement graph. A wavelength is a length along the direction of travel and wears the position hue exactly as the amplitude does; the two are told apart by where the bracket lies |
-| Velocity $v$, the maximum speed $v_\text{max}$, the wave velocity $v_\text{w}$ | `velocity` | One hue on the block's velocity arrow, the velocity graph, and the arrow that shows the disturbance travelling; the gull's own up-and-down speed and the wave's speed are both velocities and are told apart by direction and label |
-| Acceleration $a$, $g$ | `acceleration` | Coloured where a page draws the acceleration graph (16.3) or the pendulum's $g$ (16.4); the five remaining pages are not expected to colour it |
-| The restoring force $F$, the applied force $F_\text{app}$, the friction $f$ of Example 16.7 | `force` | One hue on every force arrow; the friction that damps the block in 16.7 is a force like any other and wears the hue, told from the spring's force by its label and its direction against the motion |
-| Elastic potential energy, kinetic energy, the total energy $E$, the work $W$ and the nonconservative work $W_\text{nc}$ | `energy` | One hue on the energy bars, the shaded area under the force graph and every readout that writes $W_\text{nc} = \Delta(\text{KE} + \text{PE})$; the energy a damper removes is the same energy and the same hue, drawn as a shrinking bar |
-| The force constant $k$ | `stiffness` | Its own hue on the slider and in the readout; a force constant is not a force |
-| Frequency $f$, the natural frequency $f_0$, the harmonics $f_1$, $f_2$, $f_3$, the average $f_\text{ave}$ and the beat frequency $f_\text{B}$ | `frequency` | One hue on the frequency slider of a driven oscillator, on the harmonic ladder and on every readout that writes $f = 1/T$, $f_1 = v_\text{w}/2L$ or $f_\text{B} = \lvert f_1 - f_2\rvert$; the driving frequency and the natural frequency are one type and are told apart by subscript and label, never by two hues |
-| Angular velocity and angular frequency $\omega$ | `angular-rate` | Coloured by 16.6 alone, on the turntable; not expected on the five |
-| Power $P$ in $I = P/A$ | `power` (Chapter 7) | Coloured only by 16.11 where a figure states the power crossing an area; used by name, never restaged |
-| Intensity $I$, the concentrated intensity $I'$ | `intensity` (Chapter 17) | Coloured only by 16.11: the bar that rises as the area shrinks, the shading of the field between two speakers, and the readout that writes $I = P/A$ or $I'/I = A/A'$; declared by Chapter 17 on 2026-09-14 and used here by name, never restaged |
-| Mass $m$, the coefficient of friction $\mu_\text{k}$, the amount of damping, the string's length $L$, the harmonic number $n$, the area $A$, the angle $\theta$, a count, a ratio | Untyped | Ink, including the sliders that set them and the equation symbols. The book never names a damping constant, so a damping slider is an ink slider that changes the shape of a coloured curve, and its readout names the regime in words |
-
-Two rules of rule 7 bite in the five remaining pages and are written down
-so that no section has to decide them twice.
+| Elapsed time $t$, a period $T$ | `time` | The clock of a moving figure, the time axis of a graph and the period bracketed between two crests |
+| Displacement $x$, amplitude $X$, arc length $s$, the distance $d$ a damped block travels, the pendulum's length $L$ and the string's length $L$, the wavelength $\lambda$ and its harmonics $\lambda_1$, $\lambda_2$, the two disturbances $x_1$ and $x_2$ that add, the primed amplitude $X'$ | `position` | A wavelength is a length along the direction of travel and wears the position hue exactly as the amplitude does; the two are told apart by where the bracket lies |
+| Velocity $v$, the maximum speed $v_\text{max}$, the wave velocity $v_\text{w}$ | `velocity` | The gull's own up-and-down speed and the wave's speed are both velocities, told apart by direction and label |
+| Acceleration $a$, $g$ | `acceleration` | |
+| The restoring force $F$, the applied force $F_\text{app}$, the friction $f$ of Example 16.7, the weight and tension on a pendulum bob | `force` | |
+| Elastic potential energy, kinetic energy, the total energy $E$, the work $W$ and the nonconservative work $W_\text{nc}$ | `energy` | The energy a damper removes is the same energy and the same hue, drawn as a shrinking bar |
+| The force constant $k$ | `stiffness` | A force constant is not a force |
+| Frequency $f$, the natural frequency $f_0$, the harmonics $f_1$, $f_2$, $f_3$, the average $f_\text{ave}$ and the beat frequency $f_\text{B}$ | `frequency` | The driving and the natural frequency are one category, told apart by subscript and label |
+| Angular velocity and angular frequency $\omega$ | `angular-rate` | |
+| Mass $m$ of every oscillating object, bob and car | `mass` | |
+| The pendulum's angle $\theta$ and its amplitude $\theta_\text{max}$, the angle of P on the reference circle, the phase of a second wave | `angle` | |
+| Power $P$, the energy a damper takes out each second | `power` | |
+| Area $A$ | `area` | |
+| Intensity $I$, $I'$ | `intensity` | |
+| The coefficient of friction $\mu_\text{k}$, the amount of damping as a share or a rate, the harmonic number $n$, a count of cycles, a ratio | ink | A rating, a count or a quantity no category holds; a damping slider is an ink slider that changes the shape of a coloured curve, and its readout names the regime in words |
 
 The regimes are words, not hues. Underdamped, critically damped and
-overdamped are three states of one displacement curve, and the curve wears
-the position hue in all three; the book's labels A and B and the readout's
-word tell them apart. Where a figure draws two or three curves at once for
-comparison, and labels cannot do it alone, the categorical palette
-`F.cat(i)` tells the instances apart, as the three resonance curves of
-Figure 16.25 (small, medium, heavy damping) may need, and it is never used
-in a category hue the figure draws.
+overdamped are three states of one displacement curve, and on 16.20 the curve
+wears the position hue. Where 16.21 draws the three at once, each is a
+referent the text names (Curve A, Curve B, the underdamped one).
 
-Two waves that add are instances, their sum is the quantity. In the
-superposition, standing-wave and beat figures the two component waves carry
-no type of their own that would tell them apart, so they are drawn in the
-categorical palette with a legend, and the resultant, the displacement the
-section is teaching, wears the position hue. A node and an antinode are
-places on that resultant and are marked in ink.
+Two waves that add are referents, their sum is the quantity. In the
+superposition, standing-wave and beat figures each component wave is a
+referent of its figure with a legend, and the resultant, the displacement the
+section is teaching, wears the position hue. A node and an antinode are places
+on that resultant and are marked in ink.
 
-The expectation before the sections are built: 16.7 colours position, time,
-and energy where a bar shows what damping removes, and force and stiffness
-if the friction figure of Example 16.7 draws the block on its spring; 16.8
-colours frequency and position, and time if the paddle ball moves on a clock;
-16.9 colours position, velocity, time and frequency; 16.10 colours position,
-time, frequency and velocity where the harmonic readout writes $v_\text{w}$;
-16.11 colours intensity and power, position where a figure brackets the
-amplitude, and energy and time where the readout writes $E = IAt$. The chapter pass
-records what the pages coloured as built.
+## Facts and conventions
 
-What the five coloured, as their figures table says after the build. The
-chapter pass of 2026-09-14 read every figure row and records these.
+Neither the element palette nor a physical colour appears on any page of the
+chapter: a cord's coils, the water under a gull and the air between two
+speakers are media with no named molecule.
 
-| Section | Types its figures draw | Against the expectation |
-|---|---|---|
-| 16.7 | `energy`, `force`, `position`, `stiffness`, `time` | As expected: the friction figure of Example 16.7 does draw the object on its spring, so force and stiffness are coloured |
-| 16.8 | `energy`, `frequency`, `position`, `power`, `stiffness`, `time` | Three more than expected. `sim-driven-energy` draws the store $\tfrac{1}{2}kX^2$ that the marching soldiers fill at a steady number of joules each second, so it states a stiffness, an energy and a power |
-| 16.9 | `position`, `time`, `velocity` | Frequency was expected and is not coloured: both wave figures set the period and read the speed from it, and neither writes a frequency |
-| 16.10 | `frequency`, `position`, `time`, `velocity` | As expected |
-| 16.11 | `energy`, `force`, `intensity`, `position`, `power`, `stiffness`, `time` | Two more than expected. `sim-amplitude-energy` draws the restoring force $F = kx$ and shades the work done under it, so it colours force and stiffness beside the energy |
+## Referents
 
-The four families stand as the file describes them: type hues throughout,
-the categorical palette on the three resonance curves of 16.8 and on
-nothing else, and neither the element palette nor a physical colour on any
-page of the chapter.
+Each section lists its referents in `referents`; the figure draws each with
+`F.ref` and the text marks every reference, pronouns included.
 
-All canvas colours come from `C(type)` and `PAL`. The element palette is
-not expected on any page of the chapter: a cord's coils, the water under a
-gull and the air between two speakers are media with no named molecule and
-are ink. Turning colour off must leave the labels, the brackets and the
-arrow directions sufficient to read every figure.
+- 16.1: the plucked ruler; the spring the weights hang on; the toy gun's spring and its dart.
+- 16.2: the guitar string; the mass on a spring that is counted.
+- 16.3: the object on the spring of 16.9; the upper and lower objects released together; the object writing its trace on the paper; the object on the vertical spring of 16.12.
+- 16.4: the pendulum bob of 16.13; the two pendulums, whose $L_1$, $L_2$ and $m_2$ slider labels split to them, and whose points on the period graph wear their colours; the pendulum of Example 16.5.
+- 16.5: the object on the spring of 16.14; the car of Example 16.6.
+- 16.6: the ball on the turntable and its shadow; the point P and its projection.
+- 16.7: the lightly damped object; the three systems of 16.21, each curve in its referent's colour; the object of Example 16.7.
+- 16.8: the paddle ball, the finger and the rubber band; the bridge and the marching soldiers. The three resonance curves of 16.25 are the same ball with three amounts of damping, which the text never names one by one, and are told apart with `F.cat(i)`.
+- 16.9: the ocean wave, the gull and the marked particle of water; the cord, the hand that shakes it and the marked coil.
+- 16.10: the two waves that add, whose $x_1$ and $x_2$ split their subscripts to them; the two waves running opposite ways; the two waves that beat.
+- 16.11: the solar collector and the magnifying glass; the two speakers and the listening post.
+
+Turning colour off must leave the labels, the brackets and the arrow
+directions sufficient to read every figure.

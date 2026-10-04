@@ -28,7 +28,7 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
   const d = sim('sim-energy-transfer', 740);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.01, value: 0.1, unit: 'm', dec: 2, onInput: reset, aria: 'amplitude' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }
   const w = () => Math.sqrt(k.v / m.v), T = () => TAU / w();
@@ -42,8 +42,8 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
     strip(ctx, 100, 1040, floorY + 12, 24);
     fixed(ctx, 156, floorY - 116, 44, 116);
     const bx = eq + x * SC, by = floorY - 40;
-    spring(ctx, 200, by, bx - 48, by, 12, 22, PAL.ink, 4); block(ctx, bx, by, 96, 80, PAL.ink);
-    text(ctx, 'm = ' + fmt(m.v, 1) + ' kg', bx, by - 104, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    spring(ctx, 200, by, bx - 48, by, 12, 22, PAL.ink, 4); block(ctx, bx, by, 96, 80, F.ref('object'));
+    text(ctx, 'm = ' + fmt(m.v, 1) + ' kg', bx, by - 104, C('mass'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     marks(ctx, eq, SC, X.v, floorY + 24, 16, 38);
     if (Math.abs(v) > 0.02 * X.v * w()) { const al = 40 + 160 * Math.abs(v) / (X.v * w()), s = v < 0 ? -1 : 1; arrow(ctx, bx, by - 70, bx + s * al, by - 70, C('velocity'), 5); text(ctx, 'v', bx + s * (al + 16), by - 70, C('velocity'), { weight: 600, align: s < 0 ? 'right' : 'left' }); }
@@ -81,7 +81,7 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
     headline(ctx, KE < 0.02 * E ? 'At x = ' + sgn(x) + 'X the block is momentarily at rest, and all ' + fmt(E, 3) + ' J of the energy is stored in the spring'
       : PE < 0.02 * E ? 'The block is passing through equilibrium, where the spring is unstretched and all ' + fmt(E, 3) + ' J is kinetic energy'
       : 'At x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m the spring holds ' + fmt(PE, 3) + ' J and the block carries ' + fmt(KE, 3) + ' J, and the total stays ' + fmt(E, 3) + ' J throughout');
-    readout(d.readout, `\\tfrac{1}{2}m\\kv^2 + \\tfrac{1}{2}\\kk\\kx^2 = ${fmt(KE, 3)}\\ \\text{J} + ${fmt(PE, 3)}\\ \\text{J} = ${fmt(E, 3)}\\ \\text{J} = \\tfrac{1}{2}\\kk\\kX^2`,
+    readout(d.readout, `\\tfrac{1}{2}\\km\\kv^2 + \\tfrac{1}{2}\\kk\\kx^2 = ${fmt(KE, 3)}\\ \\text{J} + ${fmt(PE, 3)}\\ \\text{J} = ${fmt(E, 3)}\\ \\text{J} = \\tfrac{1}{2}\\kk\\kX^2`,
       'With k = ' + fmt(k.v, 0) + ' N/m and X = ' + fmt(X.v, 2) + ' m the total is ½kX² = ' + fmt(E, 3) + ' J. The mass sets how fast the energy changes hands, not how much there is.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
@@ -95,7 +95,7 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
   const d = sim('sim-max-speed', 620);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.005, value: 0.1, unit: 'm', dec: 3, onInput: reset, aria: 'amplitude' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10000, max: 200000, step: 100, value: 65300, unit: 'N/m', dec: 0, onInput: reset });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 100, max: 2000, step: 10, value: 900, unit: 'kg', dec: 0, onInput: reset, aria: 'mass' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 100, max: 2000, step: 10, value: 900, unit: 'kg', dec: 0, onInput: reset, aria: 'mass' });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }
   const w = () => Math.sqrt(k.v / m.v), T = () => TAU / w(), vmax = () => X.v * w();
@@ -107,9 +107,9 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
     const cx = 330, road = 540, y0 = 330, SC = 900, by = y0 - x * SC;
     strip(ctx, 80, 600, road + 12, 24);
     for (const wx of [cx - 110, cx + 110]) { dot(ctx, wx, road - 22, PAL.ink, false, 22); dot(ctx, wx, road - 22, PAL.ink, true, 6); spring(ctx, wx, road - 44, wx, by + 36, 7, 18, PAL.ink, 3); }
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('car'); ctx.lineWidth = 4; ctx.beginPath();
     ctx.moveTo(cx - 170, by + 36); ctx.lineTo(cx - 170, by - 6); ctx.lineTo(cx - 120, by - 12); ctx.lineTo(cx - 80, by - 56); ctx.lineTo(cx + 60, by - 56); ctx.lineTo(cx + 120, by - 12); ctx.lineTo(cx + 170, by - 6); ctx.lineTo(cx + 170, by + 36); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, fmt(m.v, 0) + ' kg', cx - 10, by + 14, PAL.ink, { size: 20, weight: 600, align: 'center' });   /* on the car's body, so it never climbs into the headline */
+    text(ctx, fmt(m.v, 0) + ' kg', cx - 10, by + 14, C('mass'), { size: 20, weight: 600, align: 'center' });   /* on the car's body, so it never climbs into the headline */
     line(ctx, 80, y0 + 36, 600, y0 + 36, PAL.muted, 2, [8, 8]); text(ctx, 'x = 0', 84, y0 + 20, C('position'), { size: 18, weight: 600 });
     if (Math.abs(v) > 0.02 * vmax()) { const al = 40 + 140 * Math.abs(v) / vmax(), s = v > 0 ? -1 : 1; arrow(ctx, cx + 200, by + 36, cx + 200, by + 36 + s * al, C('velocity'), 5); text(ctx, 'v = ' + sgn(v) + fmt(Math.abs(v), 2) + ' m/s', cx + 214, by + 36 + s * al * 0.5, C('velocity'), { size: 18, weight: 600 }); }
     /* the graph beside: v against x */
@@ -133,7 +133,7 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
     headline(ctx, Math.abs(x) < 0.03 * X.v ? 'Passing through x = 0 the car moves at its greatest speed, v_max = X√(k/m) = ' + fmt(vmax(), 3) + ' m/s'
       : Math.abs(x) > 0.97 * X.v ? 'At x = ' + sgn(x) + 'X the car is momentarily at rest and turns back'
       : 'At x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m the car moves at ' + fmt(Math.abs(v), 2) + ' m/s, and its greatest speed of ' + fmt(vmax(), 3) + ' m/s comes at x = 0');
-    readout(d.readout, `\\kvmax = \\kX\\sqrt{\\frac{\\kk}{m}} = (${fmt(X.v, 3)}\\ \\text{m})\\sqrt{\\frac{${sci(k.v)}\\ \\text{N/m}}{${fmt(m.v, 0)}\\ \\text{kg}}} = ${fmt(vmax(), 3)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kvmax = \\kX\\sqrt{\\frac{\\kk}{\\km}} = (${fmt(X.v, 3)}\\ \\text{m})\\sqrt{\\frac{${sci(k.v)}\\ \\text{N/m}}{${fmt(m.v, 0)}\\ \\text{kg}}} = ${fmt(vmax(), 3)}\\ \\text{m/s}`,
       'The angular frequency is ω = 2π/T = √(k/m) = ' + fmt(w(), 2) + ' rad/s, and v_max = Xω. Doubling the amplitude to ' + fmt(2 * X.v, 3) + ' m would double v_max to ' + fmt(2 * vmax(), 2) + ' m/s; four times the force constant would double it too; four times the mass would halve it.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });

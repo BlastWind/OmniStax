@@ -58,12 +58,12 @@ function sciTex(v, dec) {
     const PX = 11;                                     /* 1 cm of swing is 11 units of canvas */
     const yb = y0 - Math.min(X, 10) * PX * Math.sin(ph - lag);
     /* the hand: a fist gripping the top of the band, its forearm reaching back up and to the left */
-    F.fist(ctx, cx + 38, yf + 10, -0.85, -0.53, 1);
-    F.label(ctx, 'your finger', cx - 6, yf - 8, { side: 'left', color: PAL.muted, weight: 400, size: 20, gap: 18 });
-    spring(ctx, cx + 38, yf + 10, cx + 38, yb - 34, 7, 16, PAL.ink, 3);
-    text(ctx, 'rubber band', cx + 74, (yf + yb) / 2, PAL.muted, { size: 20 });
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(cx + 38, yb, 34, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-    text(ctx, 'paddle ball', cx + 84, yb + 4, PAL.muted, { size: 20 });
+    F.fist(ctx, cx + 38, yf + 10, -0.85, -0.53, 1, F.ref('finger'));
+    F.label(ctx, 'your finger', cx - 6, yf - 8, { side: 'left', color: F.ref('finger'), weight: 400, size: 20, gap: 18 });
+    spring(ctx, cx + 38, yf + 10, cx + 38, yb - 34, 7, 16, F.ref('band'), 3);
+    text(ctx, 'rubber band', cx + 74, (yf + yb) / 2, F.ref('band'), { size: 20 });
+    ctx.save(); ctx.fillStyle = F.ref('paddle-ball'); ctx.beginPath(); ctx.arc(cx + 38, yb, 34, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    text(ctx, 'paddle ball', cx + 84, yb + 4, F.ref('paddle-ball'), { size: 20 });
     line(ctx, cx - 180, y0, cx - 10, y0, PAL.muted, 2, [10, 10]);
     text(ctx, 'equilibrium', cx - 10, y0 + 22, PAL.muted, { size: 17, align: 'right' });
     const half = Math.min(X, 10) * PX;
@@ -83,8 +83,8 @@ function sciTex(v, dec) {
       line(ctx, lx, ly, lx + 40, ly, cat(i), 3 + 3 * damp.a(r.value));
       text(ctx, r.label + ' damping', lx + 50, ly + 1, PAL.ink, { size: 19, weight: r.value === damp.value ? 600 : 400, base: 'middle' });
     });
-    const p = pinned(ctx, box, Xa, Ya, f.v, Math.min(X, 10), PAL.ink);
-    dot(ctx, p.x, p.y, PAL.ink, true, 9);
+    const p = pinned(ctx, box, Xa, Ya, f.v, Math.min(X, 10), F.ref('paddle-ball'));
+    dot(ctx, p.x, p.y, F.ref('paddle-ball'), true, 9);
     text(ctx, 'X = ' + fmt(X, 1) + ' cm', Math.min(p.x + 16, box.r - 160), Math.min(p.y + 28, box.b - 20), CX, { size: 20, weight: 600 });
     const near = Math.abs(f.v - F0) < 0.06;
     headline(ctx, near
@@ -112,7 +112,7 @@ function sciTex(v, dec) {
   const X0 = 0.100;                      /* the amplitude the bridge starts at, m */
   const kk = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 0.5, max: 2, step: 0.05, value: 1, unit: '× 10⁸ N/m', dec: 2, onInput: reset, aria: 'force constant' });
   const PP = ctl(d.controls, { label: '\\kP', cls: 'power', min: 2000, max: 20000, step: 500, value: 10000, unit: 'J each second', dec: 0, onInput: reset, aria: 'energy imparted each second' });
-  const DD = ctl(d.controls, { label: '\\text{damping}', cls: '', min: 0, max: 12000, step: 250, value: 0, unit: 'J each second', dec: 0, onInput: reset, aria: 'amount of damping', specials: [{ at: 0, label: 'undamped' }] });
+  const DD = ctl(d.controls, { label: '\\text{damping}', cls: 'power', min: 0, max: 12000, step: 250, value: 0, unit: 'J each second', dec: 0, onInput: reset, aria: 'amount of damping', specials: [{ at: 0, label: 'undamped' }] });
   const cy = cycle(() => RUN, 1.6);
   function reset() { cy.reset(); }
   const K = () => kk.v * 1e8;
@@ -143,8 +143,8 @@ function sciTex(v, dec) {
       for (let i = 0; i <= 60; i++) { const g = i / 60, px = l + (r - l) * g, py = yd + dy * Math.sin(Math.PI * g); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
       ctx.stroke(); ctx.restore();
     };
-    deck(-drawn, alpha(PAL.ink, 0.3), 3, [10, 10]);
-    deck(drawn, PAL.ink, 5);
+    deck(-drawn, alpha(F.ref('bridge'), 0.3), 3, [10, 10]);
+    deck(drawn, F.ref('bridge'), 5);
     line(ctx, l, yd, r, yd, PAL.muted, 2, [10, 10]);
     text(ctx, 'the deck at rest', r - 6, yd + 76, PAL.muted, { size: 17, align: 'right' });
     /* the swing is bracketed at midspan, where the deck moves the full amplitude, and named under
@@ -154,7 +154,7 @@ function sciTex(v, dec) {
     const march = (t * 0.6) % 1;
     [0.28, 0.42].forEach((g, i) => {
       const gg = (g + march) % 1, px = l + (r - l) * gg, py = yd + drawn * Math.sin(Math.PI * gg);
-      F.silhouette(ctx, { x: px, y: py, s: 0.5, pose: 'walk', phase: (t * 2 + i * 0.5) % 1, face: 1, color: PAL.ink });
+      F.silhouette(ctx, { x: px, y: py, s: 0.5, pose: 'walk', phase: (t * 2 + i * 0.5) % 1, face: 1, color: F.ref('soldiers') });
     });
     text(ctx, 'soldiers marching in step at the bridge’s natural frequency', l + 60, lines === 2 ? 112 : 86, PAL.muted, { size: 20, bg: PAL.panel });
     /* ---- the store of energy, right of the deck ---- */

@@ -45,12 +45,12 @@ function curl(ctx, cx, cy, r, color) {
     const bx = cx + R * Math.cos(th), byy = cyc - R * Math.sin(th) * sq;
     line(ctx, cx, cyc, bx, byy, PAL.muted, 2);
     line(ctx, bx, 122, bx, byy - 12, alpha(PAL.ink, 0.35), 2); line(ctx, bx, byy + 12, bx, yL - 24, PAL.muted, 2, [6, 6]);
-    dot(ctx, bx, byy, PAL.ink, true, 12);
+    dot(ctx, bx, byy, F.ref('ball'), true, 12);
     /* the shadow line, the block on its spring */
     strip(ctx, cx - 420, cx + 420, yL + 12, 24);
     fixed(ctx, cx - 484, yL - 96, 44, 96);
     spring(ctx, cx - 440, yL - 22, bx - 30, yL - 22, 12, 16, PAL.ink, 3);
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.beginPath(); ctx.ellipse(bx, yL + 4, 40, 8, 0, 0, TAU); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(F.ref('shadow'), 0.35); ctx.beginPath(); ctx.ellipse(bx, yL + 4, 40, 8, 0, 0, TAU); ctx.fill(); ctx.restore();
     block(ctx, bx, yL - 22, 60, 44, PAL.ink);
     /* the marks under the line; at the smallest radius the outer two labels step down a row and lean outward, so none sits on another */
     const close = 2 * R < 150;
@@ -109,14 +109,14 @@ function curl(ctx, cx, cy, r, color) {
     /* the displacement triangle */
     ctx.save(); ctx.fillStyle = alpha(C('position'), 0.14); ctx.beginPath(); ctx.moveTo(cx, cyc); ctx.lineTo(qx, cyc); ctx.lineTo(px, py); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, cx, cyc, px, py, C('position'), 3); line(ctx, qx, cyc, px, py, PAL.muted, 2, [6, 6]); line(ctx, cx, cyc, qx, cyc, C('position'), 6);
-    dot(ctx, qx, cyc, C('position'), true, 8); dot(ctx, px, py, PAL.ink, true, 10);
-    lab.add('P', px, py, Math.cos(th), -Math.sin(th), PAL.ink, 22, 18);
+    dot(ctx, qx, cyc, F.ref('projection'), true, 8); dot(ctx, px, py, F.ref('point-p'), true, 10);
+    lab.add('P', px, py, Math.cos(th), -Math.sin(th), F.ref('point-p'), 22, 18);
     const mx = (cx + px) / 2, my = (cyc + py) / 2, nS = Math.sin(th) >= 0 ? 1 : -1;
     /* the radius is named on the side away from the base, the height on the side away from the velocity triangle */
     lab.add('X', mx, my, -nS * Math.sin(th), -nS * Math.cos(th), C('position'), 22, 16);
     if (Math.abs(x) > 0.1 * X.v) lab.add('x = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm', (cx + qx) / 2, cyc, 0, nS, C('position'), 20, 16);
     if (Math.abs(Math.sin(th)) > 0.15) lab.add('√(X² − x²)', qx, my, nS, 0, PAL.muted, 18, 14);
-    if (Math.abs(Math.sin(th)) > 0.08 && Math.abs(Math.cos(th)) > 0.08) { ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cyc, 34, 0, -th, th > 0); ctx.stroke(); ctx.restore(); lab.add('θ', cx + 34 * Math.cos(th / 2), cyc - 34 * Math.sin(th / 2), Math.cos(th / 2), -Math.sin(th / 2), PAL.muted, 20, 14); }
+    if (Math.abs(Math.sin(th)) > 0.08 && Math.abs(Math.cos(th)) > 0.08) { ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cyc, 34, 0, -th, th > 0); ctx.stroke(); ctx.restore(); lab.add('θ', cx + 34 * Math.cos(th / 2), cyc - 34 * Math.sin(th / 2), Math.cos(th / 2), -Math.sin(th / 2), C('angle'), 20, 14); }
     /* the velocity triangle at P: v_max along the tangent, v its projection along x */
     /* the velocity arrow is drawn on one fixed scale set by the fastest the two sliders allow,
        (0.20 m)(6.0 rad/s) = 1.2 m/s, so its length answers the sliders instead of being capped */

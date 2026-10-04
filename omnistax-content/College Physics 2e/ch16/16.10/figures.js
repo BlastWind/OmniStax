@@ -1,7 +1,7 @@
 /* Figures for section 16.10 Superposition and Interference. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.10'] = function (root, F) {
-const { el, fmt, tex, C, PAL, cat, alpha, REDUCED, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, pinned, curve } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, pinned, curve } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
@@ -22,7 +22,7 @@ function legend(ctx, x, y, color, name, dash) {
 (function () {
   const d = sim('sim-superposition', 720);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.5, unit: 'm', dec: 2, aria: 'amplitude of each wave' });
-  const ph = ctl(d.controls, { label: '\\text{phase of wave 2}', cls: '', min: 0, max: 360, step: 5, value: 0, unit: '°', dec: 0, aria: 'phase of the second wave in degrees', detents: [90, 270], specials: [{ at: 0, label: 'in step' }, { at: 180, label: 'out of step' }, { at: 360 }] });
+  const ph = ctl(d.controls, { label: '\\text{phase of wave 2}', cls: 'angle', min: 0, max: 360, step: 5, value: 0, unit: '°', dec: 0, aria: 'phase of the second wave in degrees', detents: [90, 270], specials: [{ at: 0, label: 'in step' }, { at: 180, label: 'out of step' }, { at: 360 }] });
   const L2 = ctl(d.controls, { label: '\\klamtwo', cls: 'position', min: 0.8, max: 4, step: 0.1, value: 4, unit: 'm', dec: 1, aria: 'wavelength of the second wave', specials: [{ at: 4, label: 'equal wavelengths' }] });
   const L1 = 4;                                   /* the first wave's wavelength is fixed at 4.00 m */
   function draw() {
@@ -36,10 +36,10 @@ function legend(ctx, x, y, color, name, dash) {
     let peak = 0; for (let i = 0; i <= 1600; i++) peak = Math.max(peak, Math.abs(sum((XM * i) / 1600)));
     const boxA = { l: 200, r: 1300, t: 172, b: 352 }, boxB = { l: 200, r: 1300, t: 456, b: 640 };
     const A = axes(ctx, boxA, [0, XM], [-YM, YM], { xl: '', yl: 'the two waves (m)', yc: PAL.ink, nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
-    curve(ctx, w1, 0, XM, A.X, A.Y, cat(0), 4, 600);
-    curve(ctx, w2, 0, XM, A.X, A.Y, cat(1), 4, 800);
-    legend(ctx, 240, 108, cat(0), 'wave 1, wavelength 4.00 m');
-    legend(ctx, 700, 108, cat(1), 'wave 2, wavelength ' + fmt(L2.v, 2) + ' m, shifted ' + fmt(ph.v, 0) + '°');
+    curve(ctx, w1, 0, XM, A.X, A.Y, F.ref('wave-1'), 4, 600);
+    curve(ctx, w2, 0, XM, A.X, A.Y, F.ref('wave-2'), 4, 800);
+    legend(ctx, 240, 108, F.ref('wave-1'), 'wave 1, wavelength 4.00 m');
+    legend(ctx, 700, 108, F.ref('wave-2'), 'wave 2, wavelength ' + fmt(L2.v, 2) + ' m, shifted ' + fmt(ph.v, 0) + '°');
     const B = axes(ctx, boxB, [0, XM], [-YM, YM], { xl: 'distance along the wave (m)', xc: C('position'), yl: 'their sum (m)', yc: C('position'), nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     curve(ctx, sum, 0, XM, B.X, B.Y, C('position'), 5, 1200);
     if (peak > 0.02) {
@@ -82,12 +82,12 @@ function legend(ctx, x, y, color, name, dash) {
     const env = 2 * X.v * Math.abs(Math.cos(TAU * ph));
     const boxA = { l: 200, r: 1300, t: 176, b: 356 }, boxB = { l: 200, r: 1300, t: 456, b: 636 };
     const A = axes(ctx, boxA, [0, XM], [-YM, YM], { xl: '', yl: 'the two travelling waves (m)', yc: PAL.ink, nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
-    curve(ctx, w1, 0, XM, A.X, A.Y, cat(0), 4, 600);
-    curve(ctx, w2, 0, XM, A.X, A.Y, cat(1), 4, 600);
-    arrow(ctx, A.X(0.6), boxA.t - 58, A.X(1.8), boxA.t - 58, cat(0), 4);
-    text(ctx, 'wave 1, travelling right', A.X(2.0), boxA.t - 58, cat(0), { size: 19, weight: 600 });
-    arrow(ctx, A.X(6.6), boxA.t - 58, A.X(5.4), boxA.t - 58, cat(1), 4);
-    text(ctx, 'wave 2, travelling left', A.X(5.2), boxA.t - 58, cat(1), { size: 19, weight: 600, align: 'right' });
+    curve(ctx, w1, 0, XM, A.X, A.Y, F.ref('wave-right'), 4, 600);
+    curve(ctx, w2, 0, XM, A.X, A.Y, F.ref('wave-left'), 4, 600);
+    arrow(ctx, A.X(0.6), boxA.t - 58, A.X(1.8), boxA.t - 58, F.ref('wave-right'), 4);
+    text(ctx, 'wave 1, travelling right', A.X(2.0), boxA.t - 58, F.ref('wave-right'), { size: 19, weight: 600 });
+    arrow(ctx, A.X(6.6), boxA.t - 58, A.X(5.4), boxA.t - 58, F.ref('wave-left'), 4);
+    text(ctx, 'wave 2, travelling left', A.X(5.2), boxA.t - 58, F.ref('wave-left'), { size: 19, weight: 600, align: 'right' });
     const B = axes(ctx, boxB, [0, XM], [-YM, YM], { xl: 'distance along the cord (m)', xc: C('position'), yl: 'their sum (m)', yc: C('position'), nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     curve(ctx, (x) => 2 * X.v * Math.cos(TAU * x / lam.v), 0, XM, B.X, B.Y, alpha(C('position'), 0.35), 2, 600);
     curve(ctx, (x) => -2 * X.v * Math.cos(TAU * x / lam.v), 0, XM, B.X, B.Y, alpha(C('position'), 0.35), 2, 600);
@@ -124,7 +124,7 @@ function legend(ctx, x, y, color, name, dash) {
 (function () {
   const d = sim('sim-string-harmonics', 520);
   const nPick = choice(d.controls, { label: '\\text{harmonic}', value: '1', aria: 'which harmonic the string carries', options: [{ value: '1', label: 'Fundamental' }, { value: '2', label: 'First overtone' }, { value: '3', label: 'Second overtone' }], onInput: reset });
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 0.5, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length of the string' });
+  const L = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 0.5, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'length of the string' });
   const vw = ctl(d.controls, { label: '\\kvw', cls: 'velocity', min: 50, max: 500, step: 10, value: 200, unit: 'm/s', dec: 0, onInput: reset, aria: 'propagation speed on the string' });
   const SHOW = 4;                                  /* the drawn cycle takes four real seconds at every setting */
   const cy = cycle(() => SHOW, 0);
@@ -167,7 +167,7 @@ function legend(ctx, x, y, color, name, dash) {
     const ax = xa + (L.v / (2 * nm)) * SC;
     line(ctx, ax, y0 - amp - 8, ax, y0 + amp + 8, alpha(PAL.ink, 0.35), 2, [4, 8]);
     text(ctx, 'antinode', ax, y0 - amp - 30, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
-    hbracket(ctx, xa, xb, y0 - 176, PAL.ink, 'L = ' + fmt(L.v, 2) + ' m');
+    hbracket(ctx, xa, xb, y0 - 176, C('position'), 'L = ' + fmt(L.v, 2) + ' m');
     hbracket(ctx, xa, Math.min(xa + (2 * L.v / nm) * SC, xEnd), y0 + 128, C('position'), 'wavelength ' + fmt(lamN, 2) + ' m');
     topline(ctx, n === 1 ? 'The fundamental has one loop: the longest wavelength the string can carry is 2L = ' + fmt(lamN, 2) + ' m, and the frequency is ' + fmt(fN, 0) + ' Hz'
       : 'The ' + (n === 2 ? 'first' : 'second') + ' overtone has ' + n + ' loops: the wavelength is 2L/' + n + ' = ' + fmt(lamN, 2) + ' m and the frequency is ' + n + ' times the fundamental, ' + fmt(fN, 0) + ' Hz');
@@ -203,10 +203,10 @@ function legend(ctx, x, y, color, name, dash) {
     const now = REDUCED ? SPAN : cy.now();
     const boxA = { l: 200, r: 1300, t: 132, b: 322 }, boxB = { l: 200, r: 1240, t: 452, b: 672 };
     const A = axes(ctx, boxA, [0, SPAN], [-YM, YM], { xl: '', yl: 'the two waves (m)', yc: PAL.ink, nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
-    curve(ctx, w1, 0, SPAN, A.X, A.Y, cat(0), 3, 1600);
-    curve(ctx, w2, 0, SPAN, A.X, A.Y, cat(1), 3, 1600);
-    legend(ctx, 240, 168, cat(0), 'wave 1, ' + fmt(f1.v, 2) + ' Hz');
-    legend(ctx, 700, 168, cat(1), 'wave 2, ' + fmt(f2.v, 2) + ' Hz');
+    curve(ctx, w1, 0, SPAN, A.X, A.Y, F.ref('beat-wave-1'), 3, 1600);
+    curve(ctx, w2, 0, SPAN, A.X, A.Y, F.ref('beat-wave-2'), 3, 1600);
+    legend(ctx, 240, 168, F.ref('beat-wave-1'), 'wave 1, ' + fmt(f1.v, 2) + ' Hz');
+    legend(ctx, 700, 168, F.ref('beat-wave-2'), 'wave 2, ' + fmt(f2.v, 2) + ' Hz');
     const B = axes(ctx, boxB, [0, SPAN], [-YM, YM], { xl: 'time (s)', xc: C('time'), yl: 'their sum (m)', yc: C('position'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
     curve(ctx, envOf, 0, SPAN, B.X, B.Y, alpha(C('position'), 0.4), 2, 800);
     curve(ctx, (t) => -envOf(t), 0, SPAN, B.X, B.Y, alpha(C('position'), 0.4), 2, 800);

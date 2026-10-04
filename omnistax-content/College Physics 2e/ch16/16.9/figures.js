@@ -29,14 +29,14 @@ const sgn = (v) => (v < 0 ? '−' : '+');
   /* a gull sitting on the water at (x, y), facing right: a boat-shaped body with a folded wing
      laid along its back, a tail raised behind, a neck up to a round head and a beak; about 120
      wide and 60 tall, so it reads as a bird before its label is read */
-  function gull(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  function gull(ctx, x, y, color) {
+    ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(x - 44, y - 6); ctx.quadraticCurveTo(x - 40, y + 14, x - 12, y + 16); ctx.lineTo(x + 24, y + 16);
     ctx.quadraticCurveTo(x + 44, y + 12, x + 40, y - 4); ctx.quadraticCurveTo(x + 6, y - 16, x - 44, y - 6); ctx.closePath(); ctx.fill();   /* the body */
     ctx.beginPath(); ctx.moveTo(x - 40, y - 4); ctx.lineTo(x - 66, y - 20); ctx.lineTo(x - 42, y + 4); ctx.closePath(); ctx.fill();          /* the tail */
     ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.moveTo(x - 30, y - 6); ctx.quadraticCurveTo(x - 4, y - 18, x + 28, y - 6);
     ctx.quadraticCurveTo(x, y + 2, x - 30, y - 6); ctx.closePath(); ctx.fill(); ctx.stroke();                                            /* the folded wing */
-    ctx.fillStyle = PAL.ink; ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(x + 26, y - 6); ctx.quadraticCurveTo(x + 34, y - 18, x + 36, y - 30); ctx.stroke();   /* the neck */
+    ctx.fillStyle = color; ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(x + 26, y - 6); ctx.quadraticCurveTo(x + 34, y - 18, x + 36, y - 30); ctx.stroke();   /* the neck */
     ctx.beginPath(); ctx.arc(x + 38, y - 36, 11, 0, TAU); ctx.fill();                                                                  /* the head */
     ctx.beginPath(); ctx.moveTo(x + 47, y - 40); ctx.lineTo(x + 66, y - 34); ctx.lineTo(x + 47, y - 30); ctx.closePath(); ctx.fill();    /* the beak */
     ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(x + 41, y - 39, 2.5, 0, TAU); ctx.fill();                                       /* the eye */
@@ -54,7 +54,7 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     for (let i = 1; i <= 240; i++) { const m = (WM * i) / 240; ctx.lineTo(Xs(m), Ys(u(m))); }
     ctx.lineTo(Xs(WM), 470); ctx.lineTo(Xs(0), 470); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, Xs(0), y0, Xs(WM), y0, alpha(PAL.ink, 0.35), 2, [10, 10]);
-    curve(ctx, u, 0, WM, Xs, Ys, PAL.ink, 5, 240);
+    curve(ctx, u, 0, WM, Xs, Ys, F.ref('ocean-wave'), 5, 240);
     /* the wavelength, bracketed between adjacent crests, and the total 2X between
        the top of a crest and the bottom of a trough, as the book brackets them */
     const base = lam.v * (t / T.v), crests = [];
@@ -71,18 +71,18 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     }
     /* the gull: it rides the surface and moves up and down only */
     const gy = Ys(u(XG)) - 12, vg = X.v * (TAU / T.v) * Math.sin(TAU * (XG / lam.v - t / T.v)), vmax = TAU * X.v / T.v;
-    gull(ctx, Xs(XG), gy);
+    gull(ctx, Xs(XG), gy, F.ref('gull'));
     if (Math.abs(vg) > 0.04 * vmax) {
       const al = 34 + 70 * Math.abs(vg) / vmax, s = vg > 0 ? -1 : 1;
       arrow(ctx, Xs(XG) - 56, gy, Xs(XG) - 56, gy + s * al, C('velocity'), 5);
       lab.add(sgn(vg) + fmt(Math.abs(vg), 2) + ' m/s', Xs(XG) - 56, gy + s * al, -0.6, s, C('velocity'), 20);
     }
-    lab.add('the gull bobs up and down', Xs(XG) + 50, gy - 40, 0.8, -1, PAL.ink, 20);
+    lab.add('the gull bobs up and down', Xs(XG) + 50, gy - 40, 0.8, -1, F.ref('gull'), 20);
     /* one marked particle of water, circling its own place */
     const r = X.v * SCV, ph = TAU * (XP / lam.v - t / T.v), px = Xs(XP) - r * Math.sin(ph), py = y0 - r * Math.cos(ph);
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([6, 8]); ctx.beginPath(); ctx.arc(Xs(XP), y0, r, 0, TAU); ctx.stroke(); ctx.restore();
-    dot(ctx, px, py, C('position'), true, 9);
-    lab.add('a particle of water stays in place', px, py, 0.9, 1, C('position'), 20);
+    dot(ctx, px, py, F.ref('particle'), true, 9);
+    lab.add('a particle of water stays in place', px, py, 0.9, 1, F.ref('particle'), 20);
     /* the wave velocity */
     arrow(ctx, Xs(17.5), 176, Xs(21), 176, C('velocity'), 5);
     lab.add('v_w = ' + fmt(vw, 2) + ' m/s', Xs(21), 176, 0, -1, C('velocity'), 22);
@@ -128,18 +128,18 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     /* a filled person holds the near end of the cord: the near hand goes to the cord's end in
        the silhouette's own frame, the far arm hangs at the side */
     const PS = 1.8, fx = 165, fy = 540;
-    F.silhouette(ctx, { x: fx, y: fy, s: PS, pose: 'stand', color: PAL.ink, hands: [{ x: (hand.x - fx) / PS, y: (hand.y - fy) / PS }, { x: -6, y: -76 }] });
-    /* the cord: the medium is ink, and the quantities measured on it carry the colours */
+    F.silhouette(ctx, { x: fx, y: fy, s: PS, pose: 'stand', color: F.ref('hand'), hands: [{ x: (hand.x - fx) / PS, y: (hand.y - fy) / PS }, { x: -6, y: -76 }] });
+    /* the cord wears its referent hue, and the quantities measured on it carry their categories' */
     const aT = kind.a('transverse'), aL = kind.a('longitudinal');
     ctx.save(); ctx.globalAlpha = aT;
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.beginPath();
+    ctx.strokeStyle = F.ref('cord'); ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.beginPath();
     for (let i = 0; i <= 300; i++) { const p = at((WM * i) / 300); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); }
     ctx.stroke();
     line(ctx, L0, y0, Xs(WM), y0, alpha(PAL.ink, 0.3), 2, [10, 10]);
     ctx.globalAlpha = aL;
     for (let i = 0; i <= NC; i++) {
       const m = (WM * i) / NC, mark = i === Math.round((NC * MM) / WM), p = at(m);
-      line(ctx, p.x, p.y - 40, p.x, p.y + 40, mark ? C('position') : PAL.ink, mark ? 5 : 2.5);
+      line(ctx, p.x, p.y - 40, p.x, p.y + 40, mark ? F.ref('marked-coil') : F.ref('cord'), mark ? 5 : 2.5);
     }
     line(ctx, Xs(MM), y0 - 58, Xs(MM), y0 + 58, alpha(PAL.ink, 0.35), 2, [6, 8]);
     ctx.restore();
@@ -154,7 +154,7 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     /* the marked place on the cord and how far it has been moved from it */
     const um = u(MM);
     if (tr) {
-      dot(ctx, Xs(MM), y0 - um * SCV, C('position'), true, 9);
+      dot(ctx, Xs(MM), y0 - um * SCV, F.ref('marked-coil'), true, 9);
       if (Math.abs(um) > 0.02) { vbracket(ctx, Xs(MM) + 34, y0, y0 - um * SCV, C('position'), null, 1); lab.add('x = ' + sgn(um) + fmt(Math.abs(um), 2) + ' m', Xs(MM) + 34, y0 - (um * SCV) / 2, 1, 0, C('position'), 20); }
     } else if (Math.abs(um) > 0.02) {
       hbracket(ctx, Xs(MM), Xs(MM) + um * SCV, y0 + 96, C('position'), 'x = ' + sgn(um) + fmt(Math.abs(um), 2) + ' m');
@@ -169,7 +169,7 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     }
     arrow(ctx, Xs(6.2), 176, Xs(7.6), 176, C('velocity'), 5);
     lab.add('v_w = ' + fmt(vw, 2) + ' m/s', Xs(7.6), 176, 0, -1, C('velocity'), 22);
-    if (!tr) lab.add('one marked coil', Xs(MM) + um * SCV, y0 - 40, 0, -1, C('position'), 20);
+    if (!tr) lab.add('one marked coil', Xs(MM) + um * SCV, y0 - 40, 0, -1, F.ref('marked-coil'), 20);
     scale(ctx, Xs, 0, WM, 1, 562, '', 2);
     text(ctx, 'distance along the cord (m)', 700, 620, PAL.ink, { size: 20, weight: 600, align: 'center' });
     lab.flush();

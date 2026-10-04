@@ -6,8 +6,8 @@ const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 /* a toy dart lying along the line y with its point at x: a shaft, a pointed tip and two fins at the tail, about 90 units long */
-function dart(ctx, x, y) {
-  ctx.save(); ctx.fillStyle = PAL.ink; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+function dart(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.moveTo(x - 78, y - 3); ctx.lineTo(x - 14, y - 3); ctx.lineTo(x - 14, y + 3); ctx.lineTo(x - 78, y + 3); ctx.closePath(); ctx.fill();   /* the shaft */
   ctx.beginPath(); ctx.moveTo(x - 16, y - 7); ctx.lineTo(x, y); ctx.lineTo(x - 16, y + 7); ctx.closePath(); ctx.fill();                                     /* the point */
   ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.moveTo(x - 78, y - 3); ctx.lineTo(x - 90, y - 16); ctx.lineTo(x - 60, y - 3); ctx.closePath(); ctx.fill(); ctx.stroke();   /* the fins */
@@ -23,7 +23,7 @@ function dart(ctx, x, y) {
 (function () {
   const d = sim('sim-ruler', 640);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: -6, max: 6, step: 0.5, value: 4, unit: 'cm', dec: 1, onInput: reset, aria: 'initial pull of the tip' });
-  const Lr = ctl(d.controls, { label: '\\text{free length}', cls: '', min: 10, max: 30, step: 1, value: 30, unit: 'cm', dec: 0, onInput: reset, aria: 'free length of the ruler' });
+  const Lr = ctl(d.controls, { label: '\\text{free length}', cls: 'position', min: 10, max: 30, step: 1, value: 30, unit: 'cm', dec: 0, onInput: reset, aria: 'free length of the ruler' });
   const damp = ctl(d.controls, { label: '\\text{damping}', cls: '', min: 0.1, max: 3, step: 0.1, value: 0.6, unit: '/s', dec: 1, onInput: reset });
   /* OmniStax's model of a plastic ruler: about 30 N/m and 1.5 Hz at 30 cm; a shorter length is stiffer as the cube and faster as the square */
   const k = () => 30 * Math.pow(30 / Lr.v, 3), freq = () => 1.5 * Math.pow(30 / Lr.v, 2);
@@ -47,7 +47,8 @@ function dart(ctx, x, y) {
        strip with an ink edge and graduations down its left side, every fifth one longer. */
     const tip = cx + x * U, HW = 9, N = 30;
     const at = (f) => [cx + x * U * f * f, yb - len * f];
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.beginPath();
+    const cr = F.ref('ruler');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cr; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.beginPath();
     for (let i = 0; i <= N; i++) { const [px, py] = at(i / N); if (i) ctx.lineTo(px - HW, py); else ctx.moveTo(px - HW, py); }
     for (let i = N; i >= 0; i--) { const [px, py] = at(i / N); ctx.lineTo(px + HW, py); }
     ctx.closePath(); ctx.fill(); ctx.stroke();
@@ -60,7 +61,7 @@ function dart(ctx, x, y) {
       arrow(ctx, tip, yt + 8, tip + s * al, yt + 8, C('force'), 5);
       label(ctx, 'restoring force F', tip + s * (al + 4), yt + 8, { side: x > 0 ? 'left' : 'right', color: C('force'), size: 22, gap: 10 });
     }
-    dot(ctx, tip, yt, PAL.ink, true, 7);
+    dot(ctx, tip, yt, cr, true, 7);
     const Fn = -k() * x / 100;
     readout(d.readout, `\\kF = -\\kk\\kx = -(${fmt(k(), 0)}\\ \\text{N/m})(${x < 0 ? '-' : '+'}${fmt(Math.abs(x) / 100, 3)}\\ \\text{m}) = ${Fn < 0 ? '-' : '+'}${fmt(Math.abs(Fn), 2)}\\ \\text{N}`,
       'A ' + Lr.v + ' cm length of this ruler has a force constant of about ' + fmt(k(), 0) + ' N/m and swings back and forth ' + fmt(freq(), 1) + ' times each second. A shorter length is stiffer and oscillates faster.');
@@ -75,7 +76,7 @@ function dart(ctx, x, y) {
 ===================================================================== */
 (function () {
   const d = sim('sim-spring-scale', 760);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 0.5, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass hung on the spring' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 0.5, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass hung on the spring' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 100, step: 1, value: 39, unit: 'N/m', dec: 0, onInput: reset });
   const STEP = 1.1, steps = () => Math.round(m.v / 0.1), T = () => steps() * STEP;
   const cy = cycle(T, 1.6);
@@ -96,9 +97,9 @@ function dart(ctx, x, y) {
     /* the scene: beam, spring, block */
     const cx = 330, yBeam = 100, y0 = yBeam + 130, yEnd = y0 + x * SC;
     fixed(ctx, cx - 150, yBeam - 44, 300, 44);
-    spring(ctx, cx, yBeam, cx, yEnd, 9, 26, PAL.ink, 4);
+    spring(ctx, cx, yBeam, cx, yEnd, 9, 26, F.ref('scale-spring'), 4);
     block(ctx, cx, yEnd + 32, 96, 64, PAL.ink);
-    if (mNow > 0.001) text(ctx, fmt(mNow, 1) + ' kg', cx + 62, yEnd + 32, PAL.ink, { size: 20, weight: 600, base: 'middle' });
+    if (mNow > 0.001) text(ctx, fmt(mNow, 1) + ' kg', cx + 62, yEnd + 32, C('mass'), { size: 20, weight: 600, base: 'middle' });
     line(ctx, cx - 150, y0, cx + 190, y0, PAL.muted, 2, [10, 10]); text(ctx, 'x = 0', cx - 160, y0, C('position'), { align: 'right', base: 'middle', weight: 600, size: 22 });
     if (x > 0.004) vbracket(ctx, cx + 150, y0, yEnd, C('position'), 'x = ' + fmt(x, 3) + ' m', 1);
     if (mNow > 0.001) {
@@ -116,7 +117,7 @@ function dart(ctx, x, y) {
     if (mNow > 0.001) { line(ctx, X(x), box.b, X(x), Y(w), C('position'), 2, [4, 8]); line(ctx, box.l, Y(w), X(x), Y(w), C('force'), 2, [4, 8]); dot(ctx, X(x), Y(w), PAL.ink, true, 9); }
     headline(ctx, mNow < 0.001 ? 'With no load the spring hangs at its unstretched length, x = 0'
       : 'A ' + fmt(mNow, 1) + ' kg load weighs ' + fmt(w, 2) + ' N and stretches the spring ' + fmt(x, 3) + ' m');
-    readout(d.readout, `\\kF = \\kk\\kx = (${fmt(k.v, 0)}\\ \\text{N/m})(${fmt(x, 3)}\\ \\text{m}) = ${fmt(w, 2)}\\ \\text{N} = w = mg`,
+    readout(d.readout, `\\kF = \\kk\\kx = (${fmt(k.v, 0)}\\ \\text{N/m})(${fmt(x, 3)}\\ \\text{m}) = ${fmt(w, 2)}\\ \\text{N} = w = \\km g`,
       'Each dot is one weight hung on the spring. The restoring force equals the weight supported while the mass hangs still, and the slope of the line through the dots is the force constant.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -131,7 +132,7 @@ function dart(ctx, x, y) {
   const d = sim('sim-stored-energy', 720);
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
   const x = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0.02, max: 0.3, step: 0.005, value: 0.15, unit: 'm', dec: 3, onInput: reset, aria: 'compression of the spring' });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 10, step: 0.5, value: 2, unit: 'g', dec: 1, onInput: reset, aria: 'mass of the dart' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 1, max: 10, step: 0.5, value: 2, unit: 'g', dec: 1, onInput: reset, aria: 'mass of the dart' });
   const T1 = 2.4, HOLD = 0.8, REL = 0.3, FLY = 1.2, T = () => T1 + HOLD + REL + FLY;
   const cy = cycle(T, 1.6);
   function reset() { cy.reset(); }
@@ -150,11 +151,11 @@ function dart(ctx, x, y) {
     strip(ctx, L, R, y, 56);
     fixed(ctx, wall - 44, y - 76, 44, 152);
     const plate = wall + nat - xc * SC;
-    spring(ctx, wall, y, plate, y, 12, 22, PAL.ink, 4);
+    spring(ctx, wall, y, plate, y, 12, 22, F.ref('gun-spring'), 4);
     line(ctx, plate, y - 36, plate, y + 36, PAL.ink, 8);
     /* the dart flies as far as the strip allows and no farther, so it and its label never leave the canvas */
     const vv = vOut(), dartX = plate + 40 + (phase === 'flight' ? fly * Math.min(R - 60 - plate - 40, 14 * vv) : 0);
-    dart(ctx, dartX, y);
+    dart(ctx, dartX, y, F.ref('dart'));
     line(ctx, wall + nat, y - 44, wall + nat, y + 44, PAL.muted, 2, [6, 6]); text(ctx, 'x = 0', wall + nat, y - 58, C('position'), { size: 18, align: 'center', weight: 600 });
     if (xc > 0.003) hbracket(ctx, plate, wall + nat, y + 80, C('position'), 'x = ' + fmt(xc, 3) + ' m');
     if (phase === 'compress' || phase === 'hold') {

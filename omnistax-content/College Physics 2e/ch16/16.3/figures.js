@@ -20,13 +20,13 @@ function marks(ctx, eq, SC, X, y, tick, dy, labels = ['x = −X', 'x = 0', 'x = 
   });
 }
 /* a horizontal oscillator: wall, spring and block on a floor, the block at x meters from equilibrium */
-function oscillator(ctx, wall, eq, floorY, x, SC, label) {
+function oscillator(ctx, wall, eq, floorY, x, SC, label, color) {
   fixed(ctx, wall - 44, floorY - 116, 44, 116);
   const bx = eq + x * SC, by = floorY - 40;
   spring(ctx, wall, by, bx - 48, by, 12, 22, PAL.ink, 4);
-  block(ctx, bx, by, 96, 80, PAL.ink);
+  block(ctx, bx, by, 96, 80, color);
   /* the block's own label sits beside it, never on it */
-  if (label) text(ctx, label, bx + 60, by, PAL.ink, { size: 20, weight: 600, bg: PAL.panel });
+  if (label) text(ctx, label, bx + 60, by, C('mass'), { size: 20, weight: 600, bg: PAL.panel });
   return { bx, by };
 }
 
@@ -39,7 +39,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
   const d = sim('sim-shm-oscillator', 520);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.01, value: 0.1, unit: 'm', dec: 2, onInput: reset, aria: 'amplitude' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }
   const w = () => Math.sqrt(k.v / m.v), T = () => TAU / w();
@@ -49,7 +49,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
     const x = X.v * Math.cos(w() * tau), v = -X.v * w() * Math.sin(w() * tau), Fn = -k.v * x, vmax = X.v * w();
     const floorY = 330, eq = 760, SC = 1500;
     strip(ctx, 100, 1300, floorY + 12, 24);
-    const { bx, by } = oscillator(ctx, 200, eq, floorY, x, SC, 'm = ' + fmt(m.v, 1) + ' kg');
+    const { bx, by } = oscillator(ctx, 200, eq, floorY, x, SC, 'm = ' + fmt(m.v, 1) + ' kg', F.ref('object'));
     /* the marks x = -X, 0, +X on the floor */
     marks(ctx, eq, SC, X.v, floorY + 24, 20, 44);
     line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
@@ -64,7 +64,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
       arrow(ctx, bx, by - 112, bx + s * al, by - 112, C('velocity'), 5);
       text(ctx, 'v = ' + sgn(v) + fmt(Math.abs(v), 2) + ' m/s', bx + s * (al + 14), by - 112, C('velocity'), { weight: 600, size: 20, align: s < 0 ? 'right' : 'left' });
     }
-    dot(ctx, bx, by, PAL.ink, true, 7);
+    dot(ctx, bx, by, F.ref('object'), true, 7);
     headline(ctx, Math.abs(x) > 0.97 * X.v ? 'At x = ' + sgn(x) + 'X the block is momentarily at rest, and the restoring force is at its greatest, pointing back toward equilibrium'
       : Math.abs(x) < 0.03 * X.v ? 'The block is passing through equilibrium, where the net force is zero and the speed is greatest, v_max = ' + fmt(vmax, 2) + ' m/s'
       : 'At x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m the force of ' + fmt(Math.abs(Fn), 1) + ' N points ' + (Fn < 0 ? 'left' : 'right') + ' and the block moves ' + (v < 0 ? 'left' : 'right') + ' at ' + fmt(Math.abs(v), 2) + ' m/s');
@@ -81,7 +81,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
 ===================================================================== */
 (function () {
   const d = sim('sim-shm-period', 720);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 100, max: 2000, step: 10, value: 900, unit: 'kg', dec: 0, onInput: reset, aria: 'mass' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 100, max: 2000, step: 10, value: 900, unit: 'kg', dec: 0, onInput: reset, aria: 'mass' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10000, max: 200000, step: 100, value: 65300, unit: 'N/m', dec: 0, onInput: reset });
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.1, step: 0.005, value: 0.05, unit: 'm', dec: 3, onInput: reset, aria: 'amplitude' });
   const cy = cycle(() => Infinity, 0);
@@ -94,7 +94,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
     for (const [i, amp, lab] of [[0, X.v, 'X = '], [1, X.v / 2, 'X/2 = ']]) {
       const floorY = 200 + i * 150, x = amp * c;
       strip(ctx, 100, 1300, floorY + 12, 24);
-      oscillator(ctx, 180, eq, floorY, x, SC, null);
+      oscillator(ctx, 180, eq, floorY, x, SC, null, F.ref(i ? 'lower-object' : 'upper-object'));
       text(ctx, 'amplitude ' + lab + fmt(amp, 3) + ' m', 1290, floorY - 40, C('position'), { size: 20, weight: 600, align: 'right' });
     }
     line(ctx, eq, 70, eq, 370, PAL.muted, 2, [8, 8]); text(ctx, 'x = 0', eq, 388, C('position'), { size: 18, weight: 600, align: 'center' });
@@ -103,15 +103,15 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
        the softest suspension the sliders allow gives 2π√(2000 kg / 10 000 N/m) = 2.81 s. A stiffer
        suspension now visibly flattens the curve instead of relabelling the ticks. */
     const TMAX = 3, box = { l: 200, r: 1240, t: 440, b: 640 };
-    const { X: gx, Y: gy } = axes(ctx, box, [0, 2000], [0, TMAX], { xl: 'mass m (kg)', xc: PAL.ink, yl: 'T (s)', yc: C('time'), nx: 4, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
+    const { X: gx, Y: gy } = axes(ctx, box, [0, 2000], [0, TMAX], { xl: 'mass m (kg)', xc: C('mass'), yl: 'T (s)', yc: C('time'), nx: 4, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     curve(ctx, Tof, 0, 2000, gx, gy, C('time'), 4, 100);
     /* the curve's name sits in the top left corner of the box, which the curve never reaches: at
        the left the period is small at every setting of the sliders */
     text(ctx, 'T = 2π√(m/k)', box.l + 16, box.t + 22, C('time'), { weight: 600, size: 20 });
-    line(ctx, gx(m.v), box.b, gx(m.v), gy(T()), PAL.ink, 2, [4, 8]); line(ctx, box.l, gy(T()), gx(m.v), gy(T()), C('time'), 2, [4, 8]);
+    line(ctx, gx(m.v), box.b, gx(m.v), gy(T()), C('mass'), 2, [4, 8]); line(ctx, box.l, gy(T()), gx(m.v), gy(T()), C('time'), 2, [4, 8]);
     dot(ctx, gx(m.v), gy(T()), C('time'), true, 9);
     headline(ctx, 'A mass of ' + fmt(m.v, 0) + ' kg on a suspension of ' + fmt(k.v / 1000, 1) + '×10³ N/m gives T = ' + fmt(T(), 3) + ' s, and both amplitudes share it');
-    readout(d.readout, `\\kT = 2\\pi\\sqrt{\\frac{m}{\\kk}} = 2\\pi\\sqrt{\\frac{${fmt(m.v, 0)}\\ \\text{kg}}{${sci(k.v)}\\ \\text{N/m}}} = ${fmt(T(), 3)}\\ \\text{s}`,
+    readout(d.readout, `\\kT = 2\\pi\\sqrt{\\frac{\\km}{\\kk}} = 2\\pi\\sqrt{\\frac{${fmt(m.v, 0)}\\ \\text{kg}}{${sci(k.v)}\\ \\text{N/m}}} = ${fmt(T(), 3)}\\ \\text{s}`,
       'The frequency is f = 1/T = ' + fmt(1 / T(), 2) + ' Hz. The two blocks were released together and stay in step: the period does not depend on the amplitude.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
@@ -157,7 +157,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
     fixed(ctx, cx - 110, 90, 220, 40);
     const by = yOf(x);
     spring(ctx, cx, 130, cx, by - 28, 10, 24, PAL.ink, 4);
-    block(ctx, cx, by, 80, 56, PAL.ink); text(ctx, 'm', cx, by + 46, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    block(ctx, cx, by, 80, 56, F.ref('trace-object')); text(ctx, 'm', cx, by + 46, C('mass'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, cx + 40, by, pl, by, PAL.ink, 4); dot(ctx, pl, by, C('position'), true, 8);
     if (Math.abs(x) > 0.004) vbracket(ctx, cx - 64, y0, by, C('position'), 'x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m', -1, { size: 20 });
     headline(ctx, 'At ' + fmt(tc, 2) + ' s into a cycle of ' + fmt(T.v, 2) + ' s the mass is at x = X cos(2πt/T) = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m');
@@ -175,7 +175,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
   const d = sim('sim-shm-xva', 790);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.1, step: 0.005, value: 0.05, unit: 'm', dec: 3, onInput: reset, aria: 'amplitude' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 0, onInput: reset });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.1, value: 0.5, unit: 'kg', dec: 1, onInput: reset, aria: 'mass' });
   const cy = cycle(() => Infinity, 0);
   function reset() { cy.reset(); }
   const w = () => Math.sqrt(k.v / m.v), T = () => TAU / w();
@@ -197,7 +197,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label) {
     const cx = 200, y0 = 400, SC = 1600, by = y0 - x * SC;
     fixed(ctx, cx - 100, 90, 200, 40);
     spring(ctx, cx, 130, cx, by - 28, 10, 22, PAL.ink, 4);
-    block(ctx, cx, by, 80, 56, PAL.ink); text(ctx, 'm', cx, by + 46, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    block(ctx, cx, by, 80, 56, F.ref('xva-object')); text(ctx, 'm', cx, by + 46, C('mass'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, 60, y0, 480, y0, PAL.muted, 2, [10, 10]); text(ctx, 'x = 0', 60, y0 - 18, C('position'), { size: 18, weight: 600 });
     if (Math.abs(a) > 0.03 * amax) { const al = 40 + 120 * Math.abs(a) / amax, s = a > 0 ? -1 : 1; arrow(ctx, cx - 70, by, cx - 70, by + s * al, C('acceleration'), 5); text(ctx, 'a', cx - 70, by + s * (al + 20), C('acceleration'), { weight: 600, align: 'center' }); }
     if (Math.abs(v) > 0.03 * vmax) { const al = 40 + 120 * Math.abs(v) / vmax, s = v > 0 ? -1 : 1; arrow(ctx, cx + 70, by, cx + 70, by + s * al, C('velocity'), 5); text(ctx, 'v', cx + 70, by + s * (al + 20), C('velocity'), { weight: 600, align: 'center' }); }

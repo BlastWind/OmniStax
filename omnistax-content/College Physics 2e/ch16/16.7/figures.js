@@ -1,18 +1,18 @@
 /* Figures for section 16.7 Damped Harmonic Motion. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['16.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, cat, REDUCED, ctl, choice, cycle, register, begin, topline, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, curve, spring, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, cycle, register, begin, topline, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, curve, spring, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 const G = 9.80;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const sgn = (v) => (v < 0 ? '−' : '+');
 /* a horizontal oscillator: wall, spring and block on a floor, the block at x meters from equilibrium */
-function oscillator(ctx, wall, eq, floorY, x, SC) {
+function oscillator(ctx, wall, eq, floorY, x, SC, color) {
   fixed(ctx, wall - 44, floorY - 116, 44, 116);
   const bx = eq + x * SC, by = floorY - 40;
   spring(ctx, wall, by, bx - 46, by, 12, 22, PAL.ink, 4);
-  block(ctx, bx, by, 92, 78, PAL.ink);
+  block(ctx, bx, by, 92, 78, color);
   return { bx, by };
 }
 /* The marks x = −X, 0, +X under a floor at y. When the release displacement is small the outer two
@@ -58,8 +58,8 @@ function energyBar(ctx, x, top, bot, frac, label) {
     const amp = ampAt(tau), x = xAt(tau), frac = (amp / X.v) * (amp / X.v);
     const floorY = 300, eq = 700, SC = 2400;
     strip(ctx, 120, 1280, floorY + 12, 24);
-    const { bx, by } = oscillator(ctx, 220, eq, floorY, x, SC);
-    dot(ctx, bx, by, PAL.ink, true, 7);
+    const { bx, by } = oscillator(ctx, 220, eq, floorY, x, SC, F.ref('damped-object'));
+    dot(ctx, bx, by, F.ref('damped-object'), true, 7);
     marks(ctx, eq, SC, X.v, floorY + 24, 20, 44);
     line(ctx, eq, floorY - 150, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     hbracket(ctx, eq - amp * SC, eq + amp * SC, floorY - 168, C('position'), 'amplitude now ' + fmt(amp, 3) + ' m');
@@ -98,9 +98,9 @@ function energyBar(ctx, x, top, bot, frac, label) {
   const ZETA = { under: 0.2, critical: 1, over: 2.5 };
   const FOCUS = 'critical';                       /* the book's A, the one the section is about */
   const CURVES = [
-    { key: 'critical', name: 'critically damped (A)', i: 0 },
-    { key: 'over', name: 'overdamped (B)', i: 1 },
-    { key: 'under', name: 'underdamped', i: 2 },
+    { key: 'critical', name: 'critically damped (A)', ref: 'system-a' },
+    { key: 'over', name: 'overdamped (B)', ref: 'system-b' },
+    { key: 'under', name: 'underdamped', ref: 'system-under' },
   ];
   function xOf(key, t) {
     const w0 = TAU / T.v, z = ZETA[key];
@@ -127,7 +127,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
     line(ctx, box.l, gy(0), box.r, gy(0), alpha(PAL.ink, 0.35), 2, [10, 10]);
     text(ctx, 'equilibrium', box.r - 40, gy(0) + 22, PAL.muted, { size: 17, align: 'right' });   /* under the line at the right, where the three curves have all but met it */
     CURVES.forEach((c) => {
-      const on = FOCUS === c.key, col = cat(c.i);
+      const on = FOCUS === c.key, col = F.ref(c.ref);
       ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
       curve(ctx, (t) => xOf(c.key, t), 0, SPAN, gx, gy, on ? col : alpha(col, 0.45), on ? 5 : 3, 400);
       ctx.restore();
@@ -136,7 +136,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
     /* the legend, one row per system */
     CURVES.forEach((c, j) => {
       const y = 620, x = 200 + j * 340;
-      line(ctx, x, y, x + 40, y, cat(c.i), FOCUS === c.key ? 5 : 3);
+      line(ctx, x, y, x + 40, y, F.ref(c.ref), FOCUS === c.key ? 5 : 3);
       text(ctx, c.name, x + 52, y, PAL.ink, { size: 20, weight: FOCUS === c.key ? 600 : 400 });
     });
     const here = xOf(FOCUS, tau), tc = settleTime('critical'), to = settleTime('over');
@@ -158,7 +158,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
   const d = sim('sim-friction-damped', 820);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.2, step: 0.005, value: 0.1, unit: 'm', dec: 3, onInput: reset, aria: 'release displacement' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 10, max: 200, step: 1, value: 50, unit: 'N/m', dec: 1, onInput: reset });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.05, max: 1, step: 0.005, value: 0.2, unit: 'kg', dec: 3, onInput: reset, aria: 'mass' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.05, max: 1, step: 0.005, value: 0.2, unit: 'kg', dec: 3, onInput: reset, aria: 'mass' });
   const mu = ctl(d.controls, { label: '\\mu_{\\text{k}}', cls: '', min: 0.02, max: 0.2, step: 0.005, value: 0.08, unit: '', dec: 4, onInput: reset, aria: 'coefficient of kinetic friction' });
   const SPAN = 8;                                  /* the eight seconds of the fixed time axis */
   const cy = cycle(() => Math.min(SPAN, stopTime()), 1.5);
@@ -204,8 +204,8 @@ function energyBar(ctx, x, top, bot, frac, label) {
     const E0 = 0.5 * k.v * X.v * X.v, E = 0.5 * k.v * x * x + 0.5 * m.v * v * v;
     const floorY = 300, eq = 700, SC = 2400;
     strip(ctx, 120, 1280, floorY + 12, 24);
-    const { bx, by } = oscillator(ctx, 220, eq, floorY, x, SC);
-    dot(ctx, bx, by, PAL.ink, true, 7);
+    const { bx, by } = oscillator(ctx, 220, eq, floorY, x, SC, F.ref('friction-object'));
+    dot(ctx, bx, by, F.ref('friction-object'), true, 7);
     /* the hatching that says the surface has friction */
     for (let hx = 130; hx < 1280; hx += 24) line(ctx, hx, floorY + 38, hx + 13, floorY + 56, PAL.muted, 2);
     marks(ctx, eq, SC, X.v, floorY + 24, 10, 62);
@@ -234,7 +234,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
     topline(ctx, tau >= stop
       ? 'The object has come to rest ' + fmt(Math.abs(xAt(stop)), 3) + ' m from equilibrium after ' + fmt(stop, 2) + ' s, having covered ' + fmt(path, 2) + ' m of ground'
       : 'At ' + fmt(tau, 2) + ' s the object is ' + fmt(Math.abs(x), 3) + ' m from equilibrium and has covered ' + fmt(path, 2) + ' m of the ' + fmt(dBook(), 2) + ' m it will travel');
-    readout(d.readout, `\\kd = \\frac{\\kk}{2\\mu_{\\text{k}} m\\kg}\\left(\\kX^2 - \\left(\\frac{\\mu_{\\text{k}} m\\kg}{\\kk}\\right)^2\\right) = ${fmt(dBook(), 2)}\\ \\text{m}`,
+    readout(d.readout, `\\kd = \\frac{\\kk}{2\\mu_{\\text{k}} \\km\\kg}\\left(\\kX^2 - \\left(\\frac{\\mu_{\\text{k}} \\km\\kg}{\\kk}\\right)^2\\right) = ${fmt(dBook(), 2)}\\ \\text{m}`,
       'The friction is ' + fmt(fric(), 3) + ' N, and once the object turns within x = ±' + fmt(band(), 4) + ' m of equilibrium the spring can no longer overcome it, so the object comes to rest at the first turning point inside that band, and the distance it travels can differ from the energy estimate in the last digit.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
