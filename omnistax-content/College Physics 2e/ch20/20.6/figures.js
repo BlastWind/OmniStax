@@ -7,17 +7,19 @@
    answers its sliders, none has a clock in it, so none registers a cycle and none
    takes the app's transport (rule 14).
 
-   The page binds current, voltage, resistance, power and frequency, the bindings
-   `ch20/COLOR.md` predicts for 20.6. Wires, schematics, the fuse, the bimetallic
-   strip, the person and every frame are ink; the seven bands of Table 20.3, which
-   must be told apart as instances and carry no type, are `F.cat(i)`. */
+   The figures colour current, voltage, resistance, power and frequency. The
+   toaster, the short and the cord of 20.18, the supply wires, the fuse and the
+   breaker of 20.19 + 20.20, and the person and the live wire of 20.21 are
+   referents and wear F.ref, and the bar of power for the toaster and for the
+   short each takes its referent's colour; the seven bands of Table 20.3 are
+   instances no referents row names and stay `F.cat(i)`; frames are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, register, begin, line, arrow, dot, text, headline, hbracket, strip, fixed, silhouette, fist, axes, curve, scale, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
-/* ---------- pieces of a schematic, drawn in ink ---------- */
+/* ---------- pieces of a schematic, each in the colour it is handed ---------- */
 /* a resistor as the zigzag the book draws, laid along the segment from a to b */
 function resistor(ctx, x1, y1, x2, y2, color) {
   const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, nx = -uy, ny = ux;
@@ -84,15 +86,16 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     const { ctx } = begin(d.c);
     const vc = C('voltage'), rc = C('resistance'), pc = C('power'), ic = C('current');
     const V = Vs.v, r = rs.v, R = Rs.v;
+    const tc = F.ref('toaster'), sc = F.ref('short'), cc = F.ref('cord');
     const Ps = (V * V) / r, Pr = (V * V) / R, Is = V / r, Ir = V / R;
 
     /* ---- the worn cord, at the left ---- */
-    text(ctx, 'the worn cord', 320, 118, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the worn cord', 320, 118, cc, { size: 19, weight: 600, align: 'center' });
     fixed(ctx, 90, 250, 46, 120);                                        /* the wall the cord is plugged into */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.roundRect(136, 282, 54, 56, 8); ctx.fill(); ctx.stroke(); ctx.restore();
     /* the toaster: a rounded body on two feet, two slots in its top with a slice of bread standing in each, the lever at the side */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = tc; ctx.lineWidth = 4; ctx.lineJoin = 'round';
     for (const sx of [436, 512]) { ctx.beginPath(); ctx.moveTo(sx, 232); ctx.lineTo(sx + 4, 176); ctx.quadraticCurveTo(sx + 26, 162, sx + 48, 176); ctx.lineTo(sx + 52, 232); ctx.closePath(); ctx.fill(); ctx.stroke(); }
     ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.roundRect(400, 228, 190, 112, 16); ctx.fill(); ctx.stroke();
@@ -104,14 +107,14 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2;
     for (let k = 0; k < 4; k++) { ctx.beginPath(); ctx.moveTo(420, 268 + k * 16); ctx.lineTo(500, 268 + k * 16); ctx.stroke(); }
     ctx.restore();
-    text(ctx, 'the toaster', 495, 372, PAL.ink, { size: 20, align: 'center', weight: 600 });
+    text(ctx, 'the toaster', 495, 372, tc, { size: 20, align: 'center', weight: 600 });
     /* the cord: a sheath that has worn through in the middle, where the two bare conductors touch */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = cc; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(190, 286, 78, 28, 6); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.roundRect(322, 286, 78, 28, 6); ctx.fill(); ctx.stroke(); ctx.restore();
     for (const dy of [-7, 7]) { line(ctx, 268, 300 + dy, 290, 300 + dy * 0.4, PAL.ink, 3.5); line(ctx, 300, 300 + dy * 0.4, 322, 300 + dy, PAL.ink, 3.5); }
-    line(ctx, 290, 297, 300, 297, PAL.ink, 3.5); line(ctx, 290, 303, 300, 303, PAL.ink, 3.5);
-    spark(ctx, 295, 300, 30, PAL.ink);
+    line(ctx, 290, 297, 300, 297, sc, 3.5); line(ctx, 290, 303, 300, 303, sc, 3.5);
+    spark(ctx, 295, 300, 30, sc);
     label(ctx, 'the insulation has worn through', 295, 248, { side: 'above', gap: 8, size: 19, color: PAL.ink });
 
     /* ---- the schematic, at the right ---- */
@@ -120,12 +123,12 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     acSource(ctx, L, (T + B) / 2, 36, PAL.ink);
     line(ctx, L, T, L, (T + B) / 2 - 36, PAL.ink, 4); line(ctx, L, (T + B) / 2 + 36, L, B, PAL.ink, 4);
     line(ctx, L, T, Rr, T, PAL.ink, 4); line(ctx, L, B, Rr, B, PAL.ink, 4); line(ctx, Rr, T, Rr, B, PAL.ink, 4);
-    resistor(ctx, BR1, T, BR1, B, PAL.ink); resistor(ctx, BR2, T, BR2, B, PAL.ink);
+    resistor(ctx, BR1, T, BR1, B, tc); resistor(ctx, BR2, T, BR2, B, sc);
     text(ctx, 'V = ' + fmt(V, 0) + ' V', L, (T + B) / 2 + 74, vc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'R = ' + fmt(R, 0) + ' Ω', BR1 - 22, (T + B) / 2, rc, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'the toaster', BR1 - 22, (T + B) / 2 + 34, PAL.muted, { size: 18, align: 'right', bg: PAL.panel });
+    text(ctx, 'the toaster', BR1 - 22, (T + B) / 2 + 34, tc, { size: 18, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, 'r = ' + fmt(r, 3) + ' Ω', BR2 + 22, (T + B) / 2, rc, { size: 22, weight: 600, align: 'left', bg: PAL.panel });
-    text(ctx, 'the short', BR2 + 22, (T + B) / 2 + 34, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
+    text(ctx, 'the short', BR2 + 22, (T + B) / 2 + 34, sc, { size: 18, weight: 600, align: 'left', bg: PAL.panel });
     if (V > 0) {
       flowHead(ctx, 830, T, 1, 0, ic); flowHead(ctx, BR1, 244, 0, 1, ic); flowHead(ctx, BR2, 244, 0, 1, ic); flowHead(ctx, 830, B, -1, 0, ic);
       text(ctx, amps(Ir), BR1 + 18, 232, ic, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
@@ -140,11 +143,11 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
       text(ctx, (k < 0 ? fmt(Math.pow(10, k), 1) : fmt(Math.pow(10, k), 0)) + ' kW', x, BAR.b + 28, PAL.muted, { size: 17, align: 'center' });
     }
     line(ctx, BAR.l, BAR.t, BAR.l, BAR.b, PAL.muted, 2); line(ctx, BAR.l, BAR.b, BAR.r, BAR.b, PAL.muted, 2);
-    const rows = [{ P: Pr, y: BAR.t + 34, name: 'the toaster' }, { P: Ps, y: BAR.t + 100, name: 'the short' }];
+    const rows = [{ P: Pr, y: BAR.t + 34, name: 'the toaster', c: tc }, { P: Ps, y: BAR.t + 100, name: 'the short', c: sc }];
     for (const row of rows) {
       const kW = row.P / 1000, x = Math.min(XP(kW), BAR.r), h = 40;
-      if (kW > 0.1) { ctx.save(); ctx.fillStyle = alpha(pc, 0.35); ctx.fillRect(BAR.l, row.y - h / 2, x - BAR.l, h); ctx.restore(); line(ctx, BAR.l, row.y, x, row.y, pc, 5); }
-      text(ctx, row.name, BAR.l - 14, row.y, PAL.ink, { size: 20, align: 'right' });
+      if (kW > 0.1) { ctx.save(); ctx.fillStyle = alpha(row.c, 0.35); ctx.fillRect(BAR.l, row.y - h / 2, x - BAR.l, h); ctx.restore(); line(ctx, BAR.l, row.y, x, row.y, row.c, 5); }
+      text(ctx, row.name, BAR.l - 14, row.y, row.c, { size: 20, weight: 600, align: 'right' });
       text(ctx, watts(row.P), Math.max(x + 14, BAR.l + 14), row.y, pc, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
     }
 
@@ -178,32 +181,33 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     const ic = C('current'), rc = C('resistance'), pc = C('power');
     const I = Is.v, Rww = Rw.v, rate = +rating.value, open = I > rate, P = I * I * Rww;
     const fuse = kind.value === 'fuse';
+    const wc = F.ref('wires'), dc = kind.mixColor((v) => F.ref(v)), fc = F.ref('fuse'), bk = F.ref('breaker');
 
     /* ---- the circuit, at the left ---- */
     const L = 150, R = 620, T = 200, B = 440, DX = 400;
     text(ctx, 'the circuit it protects', (L + R) / 2, 122, PAL.muted, { size: 19, align: 'center' });
     acSource(ctx, L, (T + B) / 2, 34, PAL.ink);
     line(ctx, L, T, L, (T + B) / 2 - 34, PAL.ink, 5); line(ctx, L, (T + B) / 2 + 34, L, B, PAL.ink, 5);
-    line(ctx, L, T, DX - 46, T, PAL.ink, 5); line(ctx, DX + 46, T, R, T, PAL.ink, 5); line(ctx, L, B, R, B, PAL.ink, 5);
+    line(ctx, L, T, DX - 46, T, wc, 5); line(ctx, DX + 46, T, R, T, wc, 5); line(ctx, L, B, R, B, wc, 5);
     resistor(ctx, R, T + 40, R, B - 40, PAL.ink); line(ctx, R, T, R, T + 40, PAL.ink, 5); line(ctx, R, B - 40, R, B, PAL.ink, 5);
     text(ctx, 'R', R + 22, (T + B) / 2, rc, { size: 24, weight: 600, align: 'left', bg: PAL.panel });
     /* the device in the top rail, drawn as the book's box symbol */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = dc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.roundRect(DX - 46, T - 22, 92, 44, 8); ctx.fill(); ctx.stroke(); ctx.restore();
     if (open) { line(ctx, DX - 30, T, DX - 6, T, PAL.ink, 4); line(ctx, DX + 6, T, DX + 30, T, PAL.ink, 4); }
     else line(ctx, DX - 30, T, DX + 30, T, PAL.ink, 4);
-    text(ctx, fuse ? 'the fuse' : 'the breaker', DX, T - 48, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, fuse ? 'the fuse' : 'the breaker', DX, T - 48, dc, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     hbracket(ctx, L, R, B + 74, rc, 'the supply wires, R_w = ' + fmt(Rww, 3) + ' Ω');
     if (!open && I > 0) { flowHead(ctx, 260, T, 1, 0, ic); flowHead(ctx, 540, T, 1, 0, ic); flowHead(ctx, 400, B, -1, 0, ic); text(ctx, fmt(I, 1) + ' A', 262, T + 40, ic, { size: 21, weight: 600, align: 'center', bg: PAL.panel }); }
     else if (open) text(ctx, 'the circuit is open and no current flows', (L + R) / 2, T + 40, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
 
     /* ---- the device, opened up, at the right ---- */
-    text(ctx, fuse ? 'inside the fuse' : 'inside the circuit breaker', 1040, 122, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, fuse ? 'inside the fuse' : 'inside the circuit breaker', 1040, 122, dc, { size: 19, weight: 600, align: 'center' });
     if (fuse) {
       const x1 = 800, x2 = 1300, yc = 290;
       ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.roundRect(x1 + 60, yc - 54, x2 - x1 - 120, 108, 14); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      ctx.fillStyle = PAL.soft; ctx.strokeStyle = fc; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.roundRect(x1, yc - 46, 64, 92, 8); ctx.fill(); ctx.stroke();
       ctx.beginPath(); ctx.roundRect(x2 - 64, yc - 46, 64, 92, 8); ctx.fill(); ctx.stroke(); ctx.restore();
       if (open) {
@@ -218,7 +222,7 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     } else {
       const yS = open ? 372 : 336, xA = 840, xB = 1200, floor = 470;
       /* the housing the mechanism sits in */
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.04); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.04); ctx.strokeStyle = bk; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.roundRect(790, 150, 500, 330, 14); ctx.fill(); ctx.stroke(); ctx.restore();
       /* the movable strip, pivoted at its left end, and the coil spring that pulls it down to the floor */
       const pivot = { x: xA, y: 336 };
@@ -306,13 +310,14 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     const { ctx } = begin(d.c);
     const ic = C('current'), vc = C('voltage'), rc = C('resistance');
     const V = Vs.v, Rk = Rs.v, I = V / (Rk * 1000), mA = I * 1000, held = mA >= 10;
+    const pc = F.ref('person'), wc = F.ref('wire');
 
     /* ---- the person, the wire and the path to earth ---- */
     const GY = 470, PX = 520, S = 2, WX = 637, WY = 187;
     strip(ctx, 140, 1000, GY + 10, 44);
     text(ctx, 'the earth, a natural electron sink', 880, GY + 64, PAL.muted, { size: 19, align: 'center' });
     /* the live wire, on two insulators */
-    line(ctx, WX - 36, WY, 1000, WY, PAL.ink, 6);
+    line(ctx, WX - 36, WY, 1000, WY, wc, 6);
     for (const x of [860, 980]) { line(ctx, x, WY, x, WY - 44, PAL.muted, 4); dot(ctx, x, WY - 50, PAL.muted, true, 8); }
     text(ctx, 'a live wire at V = ' + fmt(V, 0) + ' V', 930, WY - 76, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     /* the path the current takes through the person, laid down before the body so that the
@@ -324,8 +329,8 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     }
     /* the person: standing and reaching while the shock can be let go of, braced and gripping once it cannot */
     silhouette(ctx, held
-      ? { x: PX, y: GY, s: S, face: 1, pose: 'pull', hands: [{ x: (WX - PX) / S, y: (WY - GY) / S }, { x: (WX - PX) / S - 8, y: (WY - GY) / S + 8 }], color: PAL.ink }
-      : { x: PX, y: GY, s: S, face: 1, pose: 'reach', hands: [{ x: (WX - PX) / S, y: (WY - GY) / S }, { x: (WX - PX) / S - 10, y: (WY - GY) / S + 10 }], color: PAL.ink });
+      ? { x: PX, y: GY, s: S, face: 1, pose: 'pull', hands: [{ x: (WX - PX) / S, y: (WY - GY) / S }, { x: (WX - PX) / S - 8, y: (WY - GY) / S + 8 }], color: pc }
+      : { x: PX, y: GY, s: S, face: 1, pose: 'reach', hands: [{ x: (WX - PX) / S, y: (WY - GY) / S }, { x: (WX - PX) / S - 10, y: (WY - GY) / S + 10 }], color: pc });
     text(ctx, 'R = ' + fmt(Rk, 1) + ' kΩ', PX - 130, GY - 190, rc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'from hand to feet', PX - 130, GY - 158, PAL.muted, { size: 18, align: 'center' });
     /* the path the current takes: hand, arm, trunk, feet, earth */
@@ -338,8 +343,8 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     }
     /* the hand, seen close, once the current holds it shut */
     if (held) {
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(1110, 300); ctx.lineTo(1290, 300); ctx.stroke(); ctx.restore();
-      fist(ctx, 1190, 300, -1, 0.35, 1.5, PAL.ink);
+      ctx.save(); ctx.strokeStyle = wc; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(1110, 300); ctx.lineTo(1290, 300); ctx.stroke(); ctx.restore();
+      fist(ctx, 1190, 300, -1, 0.35, 1.5, pc);
       text(ctx, 'the muscles that close the fingers are', 1190, 386, PAL.ink, { size: 19, align: 'center' });
       text(ctx, 'stronger than those that open them', 1190, 412, PAL.ink, { size: 19, align: 'center' });
       text(ctx, 'the hand cannot let go', 1190, 214, PAL.ink, { size: 20, weight: 600, align: 'center' });

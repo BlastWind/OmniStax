@@ -4,7 +4,7 @@
  "chapter": "20",
  "title": "Resistance and Resistivity",
  "short": "Resistance and resistivity",
- "lead": "Two things set the resistance of an object: what it is made of and what shape it has. The resistivity carries the material half of the answer, and a uniform cylinder has resistance $\\kRes = \\rho L/A$. The materials of the table sort into conductors, semiconductors and insulators. Temperature then changes a resistivity, and with it the resistance of the object made from it.",
+ "lead": "Two things set the resistance of an object: what it is made of and what shape it has. The resistivity carries the material half of the answer, and a uniform cylinder has resistance $\\kRes = \\krhomat\\kLlen/\\karea$. The materials of the table sort into conductors, semiconductors and insulators. Temperature then changes a resistivity, and with it the resistance of the object made from it.",
  "objectives": [
   "Explain the concept of resistivity.",
   "Use resistivity to calculate the resistance of specified configurations of material.",
@@ -54,14 +54,18 @@
    ],
    "draws": [
     "resistance",
-    "position"
+    "position",
+    "area",
+    "resistivity"
    ]
   },
   {
    "id": "sim-resistivity-scale",
    "kind": "sim",
    "draws": [
-    "resistance"
+    "resistance",
+    "resistivity",
+    "position"
    ]
   },
   {
@@ -94,7 +98,8 @@
    "kind": "sim",
    "draws": [
     "resistance",
-    "temperature"
+    "temperature",
+    "temperature-coefficient"
    ]
   }
  ],
@@ -697,6 +702,18 @@
    "concept": "resistance-of-cylinder",
    "weight": 3,
    "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "cylinder",
+   "label": "the uniform cylinder of Figure 20.10",
+   "figure": "sim-cylinder"
+  },
+  {
+   "id": "mercury",
+   "label": "the sample of mercury",
+   "figure": "sim-mercury-superconductor"
   }
  ]
 }

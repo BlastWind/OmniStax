@@ -1,4 +1,7 @@
-/* Figures for section 20.5 Alternating Current versus Direct Current. Boots against the section's text article. */
+/* Figures for section 20.5 Alternating Current versus Direct Current. Boots against the section's text article.
+   The figures colour voltage, current, resistance, power, frequency and time. The battery, the alternating
+   source and the resistor of 20.14 + 20.15 and the plant, the line and the city of the transmission sim are
+   referents; the free electrons are drawn from the element palette. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, axes, curve, pinned, labeller } = F;
@@ -12,23 +15,23 @@ const sig3 = (x) => { const s = Math.abs(x).toPrecision(3); const v = s.includes
 /* the same three significant figures for a number that goes inside math, where a comma is a separator and not a grouping mark */
 const sigM = (x) => { const s = Math.abs(x).toPrecision(3); const v = s.includes('e') || Math.abs(x) >= 1000 ? String(Math.round(Number(s))) : s; return (x < 0 ? '-' : '') + v; };
 
-/* ---------- the pieces of a circuit schematic, all of them in ink ---------- */
-/* a resistor lying along the wire from (x1, y) to (x2, y), its zigzag in ink */
-function resistor(ctx, x1, x2, y, h) {
+/* ---------- the pieces of a circuit schematic, each in the colour it is handed ---------- */
+/* a resistor lying along the wire from (x1, y) to (x2, y) */
+function resistor(ctx, x1, x2, y, h, color) {
   const n = 6, w = (x2 - x1) / (n + 1);
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(x1, y);
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(x1, y);
   for (let i = 0; i <= n; i++) ctx.lineTo(x1 + w * (i + 0.5), y + (i % 2 ? h : -h));
   ctx.lineTo(x2, y); ctx.stroke(); ctx.restore();
 }
 /* a battery of two cells standing on the wire at (x, y), the long plate uppermost */
-function battery(ctx, x, y, s) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+function battery(ctx, x, y, s, color) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4;
   [[-14, 26], [-2, 13], [10, 26], [22, 13]].forEach(([dy, half]) => { ctx.beginPath(); ctx.moveTo(x - half * s, y + dy * s); ctx.lineTo(x + half * s, y + dy * s); ctx.stroke(); });
   ctx.restore();
 }
 /* an alternating source: a circle on the wire at (x, y) with one cycle of a sine drawn inside it */
-function acSource(ctx, x, y, r) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.fillStyle = PAL.panel;
+function acSource(ctx, x, y, r, color) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke();
   ctx.beginPath();
   for (let i = 0; i <= 40; i++) { const u = i / 40, px = x - r * 0.62 + r * 1.24 * u, py = y - Math.sin(u * TAU) * r * 0.42; if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); }
@@ -71,10 +74,10 @@ function electrons(ctx, x1, x2, y, off, gap) {
     const lab = labeller(ctx, 800, { headline: 2 });
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(L, my + 36); ctx.lineTo(L, B); ctx.lineTo(R, B); ctx.lineTo(R, T); ctx.lineTo(R - 90, T); ctx.moveTo(L + 90, T); ctx.lineTo(L, T); ctx.lineTo(L, my - 36); ctx.stroke(); ctx.restore();
-    resistor(ctx, L + 90, R - 90, T, 22);
+    resistor(ctx, L + 90, R - 90, T, 22, F.ref('resistor'));
     const w = kind.mix((v) => (v === 'ac' ? 1 : 0)), aAC = kind.a('ac'), aDC = kind.a('dc');
-    if (aAC > 0.01) { ctx.save(); ctx.globalAlpha = aAC; acSource(ctx, L, my, 36); ctx.restore(); }
-    if (aDC > 0.01) { ctx.save(); ctx.globalAlpha = aDC; battery(ctx, L, my, 1.25); ctx.restore(); }
+    if (aAC > 0.01) { ctx.save(); ctx.globalAlpha = aAC; acSource(ctx, L, my, 36, F.ref('ac-source')); ctx.restore(); }
+    if (aDC > 0.01) { ctx.save(); ctx.globalAlpha = aDC; battery(ctx, L, my, 1.25, F.ref('battery')); ctx.restore(); }
     /* the conventional current round the loop, its direction the sign of I */
     const dir = I >= 0 ? 1 : -1;
     if (Math.abs(I) > 0.02 * (i0 || 1)) {
@@ -94,7 +97,7 @@ function electrons(ctx, x1, x2, y, off, gap) {
     /* the graph: 50 ms across, ±200 V on the left axis and ±10 A on the right, both fixed
        from the slider maxima (V0 up to 200 V, and I0 up to 200 V / 20 Ω = 10 A) */
     const box = { l: 190, r: 1240, t: 515, b: 715 }, VMAX = 200, IMAX = 12;
-    const { X, Y } = axes(ctx, box, [0, WIN * 1000], [-VMAX, VMAX], { nx: 5, ny: 4, xl: 'time (ms)', yl: 'voltage (V)', yc: C('voltage'), fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const { X, Y } = axes(ctx, box, [0, WIN * 1000], [-VMAX, VMAX], { nx: 5, ny: 4, xl: 'time (ms)', xc: C('time'), yl: 'voltage (V)', yc: C('voltage'), fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     const Yi = (a) => Y(a * (VMAX / IMAX));
     for (let k = -10; k <= 10; k += 5) text(ctx, fmt(k, 0), box.r + 14, Yi(k), C('current'), { size: 17, align: 'left' });
     text(ctx, 'current (A)', box.r, box.t - 24, C('current'), { size: 20, weight: 600, align: 'right' });
@@ -155,7 +158,7 @@ function electrons(ctx, x1, x2, y, off, gap) {
     /* the lower frame: the same 50 ms across, 0 to 2000 W up, which is the greatest peak
        power the sliders reach (200 V into 20 Ω) */
     const lo = { l: 190, r: 1240, t: 500, b: 750 }, PMAX = 2000;
-    const a2 = axes(ctx, lo, [0, WIN * 1000], [0, PMAX], { nx: 5, ny: 4, xl: 'time (ms)', yl: 'power (W)', yc: C('power'), fx: (v) => fmt(v, 0), fy: (v) => commas(String(Math.round(v))) });
+    const a2 = axes(ctx, lo, [0, WIN * 1000], [0, PMAX], { nx: 5, ny: 4, xl: 'time (ms)', xc: C('time'), yl: 'power (W)', yc: C('power'), fx: (v) => fmt(v, 0), fy: (v) => commas(String(Math.round(v))) });
     const Pf = (ms) => p0 * Math.pow(Math.sin(TAU * fq.v * ms / 1000), 2);
     /* the areas the average line cuts off, which are equal: above it shaded, below it shaded the same way */
     ctx.save(); ctx.fillStyle = alpha(C('power'), 0.16); ctx.beginPath(); ctx.moveTo(a2.X(0), a2.Y(pave));
@@ -203,7 +206,8 @@ function electrons(ctx, x1, x2, y, off, gap) {
     const lab = labeller(ctx, 820, { headline: 2 });
     /* the scene: the plant on the left, the line across, the city on the right */
     const y = 305, x1 = 240, x2 = 1180;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.fillStyle = PAL.soft; ctx.lineJoin = 'round';
+    const plc = F.ref('plant'), lnc = F.ref('line'), ctc = F.ref('city');
+    ctx.save(); ctx.strokeStyle = plc; ctx.lineWidth = 3.5; ctx.fillStyle = PAL.soft; ctx.lineJoin = 'round';
     /* the cooling tower, a waisted shell */
     ctx.beginPath(); ctx.moveTo(40, y + 70); ctx.quadraticCurveTo(64, y - 30, 58, y - 110); ctx.lineTo(102, y - 110); ctx.quadraticCurveTo(96, y - 30, 120, y + 70); ctx.closePath(); ctx.fill(); ctx.stroke();
     /* the boiler house, taller, with two stacks */
@@ -218,10 +222,10 @@ function electrons(ctx, x1, x2, y, off, gap) {
     ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2.5;
     for (const sx of [147, 183]) { ctx.beginPath(); ctx.moveTo(sx, y - 152); ctx.quadraticCurveTo(sx + 10, y - 176, sx + 2, y - 194); ctx.stroke(); }
     ctx.restore();
-    F.house(ctx, 1200, y + 70, 100, 2); F.house(ctx, 1290, y + 70, 76, 1);
+    F.house(ctx, 1200, y + 70, 100, 2, ctc); F.house(ctx, 1290, y + 70, 76, 1, ctc);
     [460, 720, 980].forEach((x) => tower(ctx, x, y - 86, 86));
-    line(ctx, 250, y - 10, 250, y - 72, PAL.ink, 4);
-    line(ctx, x1, y - 72, x2, y - 72, PAL.ink, 4);
+    line(ctx, 250, y - 10, 250, y - 72, lnc, 4);
+    line(ctx, x1, y - 72, x2, y - 72, lnc, 4);
     /* the current the line carries, and the share of the power it turns into heat */
     arrow(ctx, 520, y - 72, 700, y - 72, C('current'), 5);
     arrow(ctx, 880, y - 72, 1060, y - 72, C('current'), 5);
@@ -229,7 +233,7 @@ function electrons(ctx, x1, x2, y, off, gap) {
     ctx.save(); ctx.strokeStyle = alpha(C('power'), 0.3); ctx.lineWidth = band * 2 + 4; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(x1 + 20, y - 72); ctx.lineTo(x2 - 20, y - 72); ctx.stroke(); ctx.restore();
     lab.add('the plant, ' + fmt(Pw.v, 0) + ' MW sent', 160, y + 70, 0, 1, C('power'), 20, 30);
-    lab.add('the city', 1240, y + 76, 0, 1, PAL.ink, 20, 34);
+    lab.add('the city', 1240, y + 76, 0, 1, ctc, 20, 34);
     lab.add(sig3(I) + ' A in the line', 790, y - 72, 0, 1, C('current'), 22, 34 + band);
     lab.add(sig3(lw / 1e6) + ' MW lost as heat', 600, y - 72 - band, 0, -1, C('power'), 22, 28);
     lab.add(fmt(Rl.v, 1) + ' Ω of line', 400, y - 72, 0, 1, C('resistance'), 20, 34 + band);

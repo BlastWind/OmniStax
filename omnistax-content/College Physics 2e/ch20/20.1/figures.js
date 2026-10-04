@@ -4,11 +4,12 @@
    in a time, and a drift velocity is a crawl that has to be told apart from
    a signal running at nearly the speed of light. The other two are still,
    because a closed circuit carrying a steady current and a shaded segment of
-   wire are states rather than motions. The page binds current, charge, time,
-   velocity and electric-field; the free-charge density n, the area A, the
-   wire's diameter D and the factor the drift is drawn at are untyped and
-   stay in ink, and every carrier is drawn from the element palette, its sign
-   told by its label and its direction and never by a hue. */
+   wire are states rather than motions. The figures colour current, charge,
+   time, velocity, electric-field, area and position; the free-charge density
+   n and the factor the drift is drawn at are untyped and stay in ink. The
+   batteries and lamps of 20.3 and the segment and wire of 20.7 are referents,
+   and every carrier is drawn from the element palette, its sign told by its
+   label and its direction and never by a hue. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, headline, hbracket, label } = F;
@@ -29,9 +30,9 @@ function carrier(ctx, x, y, color, r) {
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 /* a length of wire seen a little from the side: a band with a rounded end, drawn in ink on the panel */
-function wireBody(ctx, l, r, t, b) {
+function wireBody(ctx, l, r, t, b, color) {
   const ry = (b - t) / 2, cy = (t + b) / 2;
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color || PAL.ink; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.moveTo(l, t); ctx.lineTo(r, t); ctx.ellipse(r, cy, 16, ry, 0, -Math.PI / 2, Math.PI / 2); ctx.lineTo(l, b);
   ctx.ellipse(l, cy, 16, ry, 0, Math.PI / 2, -Math.PI / 2); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
 }
@@ -72,15 +73,15 @@ function panel(ctx, x, y, w, h) {
   const N = 12;
   function draw() {
     const { ctx } = begin(d.c);
-    const cc = C('current'), qc = C('charge'), tc = C('time'), ec = C('electric-field');
+    const cc = C('current'), qc = C('charge'), tc = C('time'), ec = C('electric-field'), ac = C('area');
     const I = dQ.v / dT.v, u = Math.min(1, cy.now() / dT.v), mode = who.value;
     /* each sign's presence, blended as the carriers change so the one set becomes the other */
     const [aPos, aNeg] = who.mix((v) => [v === 'neg' ? 0 : 1, v === 'pos' ? 0 : 1]);
     const faded = (a, f) => { if (a <= 0.01) return; ctx.save(); ctx.globalAlpha = a; f(); ctx.restore(); };
     /* the wire, the marked cross-section and the field that drives the carriers */
     wireBody(ctx, WL, WR, WT, WB);
-    crossSection(ctx, AX, WT, WB, qc, alpha(qc, 0.28));
-    text(ctx, 'the area A', AX, WT - 16, qc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    crossSection(ctx, AX, WT, WB, ac, alpha(ac, 0.28));
+    text(ctx, 'the area A', AX, WT - 16, ac, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     arrow(ctx, 300, 176, 470, 176, ec, 5);
     text(ctx, 'E, the electric field in the wire', 486, 176, ec, { size: 21, weight: 600, base: 'middle' });
     /* the carriers, crossing the marked area once each loop. The two signs are
@@ -164,16 +165,18 @@ function panel(ctx, x, y, w, h) {
     const cc = C('current'), I = Is.v, big = what.value === 'truck';
     const lamp = big ? 'the headlight' : 'the penlight bulb';
     const cell = big ? 'the truck battery' : 'the small battery';
+    const cellC = what.mixColor((v) => F.ref(v === 'truck' ? 'truck-battery' : 'small-battery'));
+    const lampC = what.mixColor((v) => F.ref(v === 'truck' ? 'headlight' : 'penlight'));
     /* (a) the picture: a source on the left, a lamp on the right, two wires between them;
        the battery and the lamp grow or shrink into the other situation's */
     text(ctx, '(a) ' + cell + ' and ' + lamp, 90, 122, PAL.ink, { size: 22, weight: 600 });
     const [bl, br, bb, R] = what.mix((v) => (v === 'truck' ? [110, 300, 470, 66] : [150, 260, 420, 38])), bt = 330;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = cellC; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(bl, bt, br - bl, bb - bt, 6); ctx.fill(); ctx.stroke();
     ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(bl, bt, br - bl, 22); ctx.strokeRect(bl, bt, br - bl, 22);   /* the lid */
     ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.fillRect(bl + 12, bt + 40, br - bl - 24, (bb - bt) * 0.28);       /* the label band */
     ctx.restore();
-    text(ctx, cell, (bl + br) / 2, bb + 30, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, cell, (bl + br) / 2, bb + 30, cellC, { size: 18, weight: 600, align: 'center' });
     const pA = bl + 34, pB = br - 34;
     [[pA, '+'], [pB, '−']].forEach(([x, s]) => {
       ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
@@ -189,7 +192,7 @@ function panel(ctx, x, y, w, h) {
     });
     /* the lamp: a parabolic reflector open to the right, its lens across the mouth, a bulb at
        the focus on the two leads, and a beam that widens and lengthens with the current */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.fillStyle = PAL.soft;
+    ctx.save(); ctx.strokeStyle = lampC; ctx.lineWidth = 4; ctx.fillStyle = PAL.soft;
     ctx.beginPath(); ctx.moveTo(lx + R, ly - R * 1.5);
     ctx.quadraticCurveTo(lx - R - 40, ly - R * 1.1, lx - R - 40, ly);
     ctx.quadraticCurveTo(lx - R - 40, ly + R * 1.1, lx + R, ly + R * 1.5);
@@ -214,7 +217,7 @@ function panel(ctx, x, y, w, h) {
       const a = -0.26 + (0.52 * i) / 4, y0 = ly + R * 1.2 * Math.sin(a * 2.2);
       line(ctx, x0 + 6, y0, x0 + rl * 0.9, y0 + rl * 0.9 * Math.sin(a), alpha(PAL.ink, 0.35), 2.5);
     }
-    text(ctx, lamp, lx + 10, ly + R * 1.5 + 44, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, lamp, lx + 10, ly + R * 1.5 + 44, lampC, { size: 18, weight: 600, align: 'center' });
     /* (b) the schematic: the same circuit in the standard symbols */
     text(ctx, '(b) the schematic, which is the same for both', 800, 122, PAL.ink, { size: 22, weight: 600 });
     const sl = 830, sr = 1290, st = 200, sb = 470;
@@ -336,7 +339,7 @@ function panel(ctx, x, y, w, h) {
     text(ctx, 'copper atoms of the lattice', WL, 570, PAL.muted, { size: 19 });
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(WL + 260, 564, 13, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     headline(ctx, 'The crowd drifts at ' + sci(vd, 2) + ' m/s, drawn ' + fmt(fac.v, 0) + ' times faster than it is, while the signal crosses the wire at about ' + sci(VSIG, 0) + ' m/s.');
-    readout(d.readout, `\\kvd = \\frac{\\kIcur}{n\\kq A} = \\frac{${fmt(I, 1)}\\ \\text{A}}{(${sciTex(NDEN, 3)}\\ \\text{/m}^3)(${sciTex(QE, 2)}\\ \\text{C})(${sciTex(AREA, 3)}\\ \\text{m}^2)} = ${sciTex(vd, 2)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kvd = \\frac{\\kIcur}{n\\kq\\karea} = \\frac{${fmt(I, 1)}\\ \\text{A}}{(${sciTex(NDEN, 3)}\\ \\text{/m}^3)(${sciTex(QE, 2)}\\ \\text{C})(${sciTex(AREA, 3)}\\ \\text{m}^2)} = ${sciTex(vd, 2)}\\ \\text{m/s}`,
       'The wire is the 12-gauge copper wire of Example 20.3, with one free electron per copper atom. At this drift velocity an electron takes ' + fmt(1 / vd / 3600, 1) + ' hours to travel one meter, while the signal covers that meter in about ' + sci(1 / VSIG, 0) + ' s, which is why the light comes on as soon as the switch is flicked. The drift is drawn ' + fmt(fac.v, 0) + ' times faster than it is, or nothing would appear to move at all.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -358,7 +361,7 @@ function panel(ctx, x, y, w, h) {
 (function () {
   const d = sim('sim-drift-count', 700);
   const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 5, max: 25, step: 0.5, value: 20, unit: 'A', dec: 1, aria: 'the current in the wire' });
-  const Ds = ctl(d.controls, { label: 'D', cls: '', min: 1.2, max: 4, step: 0.001, value: 2.053, unit: 'mm', dec: 3, aria: 'the diameter of the wire' });
+  const Ds = ctl(d.controls, { label: 'D', cls: 'position', min: 1.2, max: 4, step: 0.001, value: 2.053, unit: 'mm', dec: 3, aria: 'the diameter of the wire' });
   const ns = ctl(d.controls, { label: 'n', cls: '', min: 5, max: 12, step: 0.001, value: 8.342, unit: '× 10²⁸ /m³', dec: 3, aria: 'the number of free charges in each cubic meter' });
   const DT = 1.00;                    /* the time the segment empties in, held at one second so the picture keeps its scales */
   const KX = 220, KY = 62;            /* units per millimetre along the wire and across it */
@@ -366,15 +369,16 @@ function panel(ctx, x, y, w, h) {
   const BMAX = CY + (4 * KY) / 2;     /* where the widest wire the slider reaches has its lower edge */
   function draw() {
     const { ctx } = begin(d.c);
-    const cc = C('current'), vc = C('velocity'), qc = C('charge');
+    const cc = C('current'), vc = C('velocity'), ac = C('area'), xc = C('position');
+    const sg = F.ref('segment'), wc = F.ref('copper-wire');
     const I = Is.v, D = Ds.v, n = ns.v * 1e28;
     const A = Math.PI * Math.pow((D * 1e-3) / 2, 2), vd = I / (n * QE * A);
     const xm = vd * DT * 1e3, drawn = Math.min(xm, XMAX);        /* the segment's length in millimetres */
     const t = CY - (D * KY) / 2, b = CY + (D * KY) / 2, sx = XL + drawn * KX;
-    wireBody(ctx, XL, XR, t, b);
+    wireBody(ctx, XL, XR, t, b, wc);
     /* the shaded segment, whose charges all leave it in the time Δt */
-    ctx.save(); ctx.fillStyle = alpha(qc, 0.22); ctx.beginPath(); ctx.rect(XL, t, sx - XL, b - t); ctx.fill();
-    ctx.strokeStyle = qc; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(sg, 0.22); ctx.beginPath(); ctx.rect(XL, t, sx - XL, b - t); ctx.fill();
+    ctx.strokeStyle = sg; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
     crossSection(ctx, sx, t, b, PAL.ink);
     /* the carriers inside the shaded segment, where there is room to draw any */
     const cols = Math.max(1, Math.min(7, Math.round((sx - XL) / 36))), rows = Math.max(1, Math.min(4, Math.round((b - t) / 40)));
@@ -386,16 +390,16 @@ function panel(ctx, x, y, w, h) {
     const ay = CY - (4 * KY) / 2 - 36;
     arrow(ctx, XL, ay, XL + 190, ay, vc, 6);
     text(ctx, 'v_d = ' + sci(vd, 2) + ' m/s, the drift velocity', XL + 206, ay, vc, { size: 21, weight: 600, base: 'middle' });
-    F.vbracket(ctx, XR + 44, t, b, PAL.ink, 'D = ' + fmt(D, 3) + ' mm', 1);
+    F.vbracket(ctx, XR + 44, t, b, xc, 'D = ' + fmt(D, 3) + ' mm', 1);
     /* the segment's length, and the area it crosses, below the wire */
-    hbracket(ctx, XL, sx, BMAX + 46, qc, 'x = v_d Δt = ' + fmt(xm, 3) + ' mm');
-    text(ctx, 'A = ' + sci(A, 3) + ' m², the area of the cross-section', XL, BMAX + 128, PAL.ink, { size: 21, weight: 600 });
+    hbracket(ctx, XL, sx, BMAX + 46, xc, 'x = v_d Δt = ' + fmt(xm, 3) + ' mm');
+    text(ctx, 'A = ' + sci(A, 3) + ' m², the area of the cross-section', XL, BMAX + 128, ac, { size: 21, weight: 600 });
     text(ctx, 'Every free charge in the shaded volume Ax leaves it in Δt = 1.00 s.', XL, BMAX + 166, PAL.muted, { size: 19 });
     text(ctx, 'The length along the wire is drawn at 3.5 times the scale of its diameter, so the segment reads longer than it is.', XL, BMAX + 200, PAL.muted, { size: 19 });
     arrow(ctx, 1000, BMAX + 128, 1200, BMAX + 128, cc, 6);
     text(ctx, 'I = ' + fmt(I, 1) + ' A', 986, BMAX + 128, cc, { size: 21, weight: 600, align: 'right', base: 'middle' });
     headline(ctx, 'A current of ' + fmt(I, 1) + ' A in a wire ' + fmt(D, 3) + ' mm across, with ' + fmt(ns.v, 3) + ' × 10²⁸ free charges in each cubic meter, drifts at ' + sci(vd, 2) + ' m/s.');
-    readout(d.readout, `\\kIcur = n\\kq A\\kvd = (${sciTex(n, 3)}\\ \\text{/m}^3)(${sciTex(QE, 2)}\\ \\text{C})(${sciTex(A, 3)}\\ \\text{m}^2)(${sciTex(vd, 2)}\\ \\text{m/s}) = ${fmt(I, 1)}\\ \\text{A}`,
+    readout(d.readout, `\\kIcur = n\\kq\\karea\\kvd = (${sciTex(n, 3)}\\ \\text{/m}^3)(${sciTex(QE, 2)}\\ \\text{C})(${sciTex(A, 3)}\\ \\text{m}^2)(${sciTex(vd, 2)}\\ \\text{m/s}) = ${fmt(I, 1)}\\ \\text{A}`,
       'The shaded segment holds nAx carriers of charge q each, and if they all leave it in the time Δt then the current is that charge divided by that time. Rearranged, v_d = I/(nqA) = ' + sci(vd, 2) + ' m/s, so in one second the carriers move ' + fmt(xm, 3) + ' mm, which is how long the shaded segment is. On the book\u2019s own numbers, a 20.0 A current in a 2.053 mm copper wire with 8.342 \u00d7 10\u00b2\u2078 free electrons in each cubic meter, the drift velocity is 4.53 \u00d7 10\u207b\u2074 m/s.');
   }
   register(d.fig, { update: () => {}, draw });

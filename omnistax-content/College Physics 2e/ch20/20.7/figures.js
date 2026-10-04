@@ -1,4 +1,7 @@
-/* Figures for section 20.7 Nerve Conduction–Electrocardiograms. Boots against the section's text article. */
+/* Figures for section 20.7 Nerve Conduction–Electrocardiograms. Boots against the section's text article.
+   The figures colour voltage, charge, electric-field, position, velocity, time, pressure and frequency. The
+   axon of 20.24, the membrane of 20.25, the bare membrane and the myelinated axon of 20.27 + 20.28, and the
+   heart and its three electrodes of 20.30 + 20.31 are referents; the ions are drawn from the element palette. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, axes, curve, pinned, labeller, hover } = F;
@@ -61,7 +64,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
   function draw() {
     const { ctx } = begin(d.c);
     const lab = labeller(ctx, 700, { headline: 2 });
-    const on = () => PAL.ink;
+    const on = (part) => (part === 'axon' ? F.ref('axon') : PAL.ink);
     /* the cell is laid out in a frame of its own and drawn at k times that size, so that it
        fills the canvas; M maps a point of the frame to the canvas for the labels and the bracket */
     const k = 1.25, ox = -110, oy = 390 - 330 * k;
@@ -111,10 +114,10 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     /* the axon's length, bracketed under it, which is what the slider sets */
     F.hbracket(ctx, M(ax0, 0)[0], M(ax1, 0)[0], M(0, soma.y + 130)[1], C('position'), fmt(len.v, 0) + ' cm of axon');
     /* six labels (rule 26.7); the synapse, the nucleus and the nodes are named on hover */
-    const add = (s, x, y, ux, uy, sz, start) => { const q = M(x, y); lab.add(s, q[0], q[1], ux, uy, PAL.ink, sz, start); };
+    const add = (s, x, y, ux, uy, sz, start, c) => { const q = M(x, y); lab.add(s, q[0], q[1], ux, uy, c || PAL.ink, sz, start); };
     add('dendrites', soma.x - 170, soma.y + 50, -0.5, 1, 21, 34);
     add('cell body', soma.x, soma.y - soma.r, 0, -1, 21, 34);
-    add('axon', (ax0 + ax1) / 2, soma.y - 24, 0, -1, 21, 40);
+    add('axon', (ax0 + ax1) / 2, soma.y - 24, 0, -1, 21, 40, cAx);
     add('myelin sheath', ax0 + AL * 0.22, soma.y + 22, -0.2, 1, 20, 36);
     add('nerve endings', ax1 + 60, soma.y + 80, 0.2, 1, 20, 30);
     add('a muscle fiber', ax1 + 100, soma.y - 105, 0.3, -1, 20, 26);
@@ -168,7 +171,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     const stim = st.value === 'na', lab = labeller(ctx, 760, { headline: 2 });
     /* the fluids and the membrane between them */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.04); ctx.fillRect(XL, 90, XR - XL, TOP - 90); ctx.fillRect(XL, BOT, XR - XL, 640 - BOT); ctx.restore();
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('membrane'); ctx.lineWidth = 4;
     ctx.fillRect(XL, TOP, XR - XL, BOT - TOP); ctx.strokeRect(XL, TOP, XR - XL, BOT - TOP); ctx.restore();
     for (let x = XL + 14; x < XR; x += 28) { dot(ctx, x, TOP + 9, alpha(PAL.ink, 0.35), true, 6); dot(ctx, x, BOT - 9, alpha(PAL.ink, 0.35), true, 6); }
     /* the ions that stay where they are */
@@ -253,7 +256,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     }
     /* the graph: 8 ms across and −120 to 60 mV up, both fixed from the slider extremes */
     const box = { l: 200, r: 1250, t: 300, b: 700 };
-    const { X, Y } = axes(ctx, box, [0, WIN], [-120, 60], { nx: 4, ny: 6, xl: 'time (ms)', yl: 'membrane voltage (mV)', yc: C('voltage'), fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
+    const { X, Y } = axes(ctx, box, [0, WIN], [-120, 60], { nx: 4, ny: 6, xl: 'time (ms)', xc: C('time'), yl: 'membrane voltage (mV)', yc: C('voltage'), fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
     line(ctx, box.l, Y(0), box.r, Y(0), alpha(PAL.ink, 0.3), 2, [6, 8]);
     line(ctx, box.l, Y(rest.v), box.r, Y(rest.v), alpha(C('voltage'), 0.4), 2, [10, 10]);
     curve(ctx, V, 0, WIN, X, Y, C('voltage'), 5, 240);
@@ -293,13 +296,14 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     const my = kind.value === 'myelin', u = cy.now() / Math.max(1e-9, T());
     const lab = labeller(ctx, 600, { headline: 2 });
     const nSh = Math.max(2, Math.round(STRIP_MM / sh.v)), frac = 1 / nSh;
-    /* the membrane strip, its outside above and its inside below */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    /* the membrane strip, its outside above and its inside below, in the colour of the axon chosen */
+    const mc = F.ref('myelinated-axon');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = kind.mixColor((v) => F.ref(v === 'bare' ? 'bare-membrane' : 'myelinated-axon')); ctx.lineWidth = 4;
     ctx.fillRect(XL, TOP, XR - XL, BOT - TOP); ctx.strokeRect(XL, TOP, XR - XL, BOT - TOP); ctx.restore();
     /* the myelin sheaths, with an unmyelinated node between each pair */
     if (my) for (let i = 0; i < nSh; i++) {
       const a = XL + (XR - XL) * (i * frac) + 6, b = XL + (XR - XL) * ((i + 1) * frac) - 6;
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 3;
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.strokeStyle = mc; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.roundRect(a, TOP - 16, Math.max(6, b - a), BOT - TOP + 32, 12); ctx.fill(); ctx.stroke(); ctx.restore();
     }
     /* the charge layers, reversed inside the depolarized patch that travels with the pulse */
@@ -342,7 +346,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
       dot(ctx, pkx, vy(a), C('voltage'), true, 10);
       lab.add('the pulse, at ' + sig3(a * 100) + ' % of full height', pkx, vy(a), c < 0.5 ? 0.5 : -0.5, -1, C('voltage'), 21, 26);
     }
-    lab.add(my ? 'myelin sheath, ' + fmt(sh.v, 1) + ' mm' : 'bare membrane', XL + (XR - XL) * 0.5, BOT + 58, 0, 1, C('position'), 21, 36);
+    lab.add(my ? 'myelin sheath, ' + fmt(sh.v, 1) + ' mm' : 'bare membrane', XL + (XR - XL) * 0.5, BOT + 58, 0, 1, my ? C('position') : F.ref('bare-membrane'), 21, 36);
     if (my) lab.add('node of Ranvier', XL + (XR - XL) * frac, BOT + 26, 0.2, 1, PAL.ink, 20, 60);
     lab.add('outside', XL, TOP - 24, -1, 0, PAL.ink, 20, 26);
     lab.add('inside', XL, BOT + 24, -1, 0, PAL.ink, 20, 26);
@@ -367,7 +371,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
 (function () {
   const d = sim('sim-ecg', 820);
   const WIN = 1.5;                                  /* the window both graphs show, 1.5 s, fixed */
-  const bpm = ctl(d.controls, { label: '\\text{heart rate}', cls: '', min: 40, max: 160, step: 5, value: 80, unit: 'beats/min', dec: 0, onInput: () => cy.reset(), aria: 'heart rate' });
+  const bpm = ctl(d.controls, { label: '\\text{heart rate}', cls: 'frequency', min: 40, max: 160, step: 5, value: 80, unit: 'beats/min', dec: 0, onInput: () => cy.reset(), aria: 'heart rate' });
   const lead = choice(d.controls, { label: 'Lead', value: 'II', aria: 'which lead is read', options: [{ value: 'I', label: 'I' }, { value: 'II', label: 'II' }, { value: 'III', label: 'III' }], onInput: () => cy.reset() });
   const cy = cycle(() => WIN, 0.8);
   const gain = () => (lead.value === 'II' ? 1 : lead.value === 'I' ? 0.6 : 0.45);
@@ -398,7 +402,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     if (vent) ctx.fillRect(hx - 100 * s, hy - 14 * s, 200 * s, 110 * s);
     if (repol) { ctx.fillStyle = alpha(C('voltage'), 0.2); ctx.fillRect(hx - 100 * s, hy - 14 * s, 200 * s, 110 * s); }
     ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.stroke(heart); ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('heart'); ctx.lineWidth = 4; ctx.stroke(heart); ctx.restore();
     line(ctx, hx - 74 * s, hy - 14 * s, hx + 78 * s, hy - 14 * s, alpha(PAL.ink, 0.4), 3, [8, 8]);
     lab.add('atria', hx - 60 * s, hy - 40 * s, -1, -0.3, PAL.muted, 18, 40);
     lab.add('ventricles', hx - 40 * s, hy + 40 * s, -1, 0.3, PAL.muted, 18, 60);
@@ -414,9 +418,9 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.3); ctx.lineWidth = 3; ctx.setLineDash([9, 9]);
     ctx.beginPath(); ctx.moveTo(elec.RA.x, elec.RA.y); ctx.lineTo(elec.LA.x, elec.LA.y); ctx.lineTo(elec.LL.x, elec.LL.y); ctx.closePath(); ctx.stroke(); ctx.restore();
     line(ctx, elec[pair[0]].x, elec[pair[0]].y, elec[pair[1]].x, elec[pair[1]].y, C('voltage'), 5);
-    Object.keys(elec).forEach((k) => { dot(ctx, elec[k].x, elec[k].y, PAL.panel, true, 15); dot(ctx, elec[k].x, elec[k].y, PAL.ink, false, 15); text(ctx, k, elec[k].x, elec[k].y, PAL.ink, { size: 18, weight: 700, align: 'center' }); });
+    Object.keys(elec).forEach((k) => { const c = F.ref(k.toLowerCase()); dot(ctx, elec[k].x, elec[k].y, PAL.panel, true, 15); dot(ctx, elec[k].x, elec[k].y, c, false, 15); text(ctx, k, elec[k].x, elec[k].y, c, { size: 18, weight: 700, align: 'center' }); });
     lab.add('lead ' + lead.value, (elec[pair[0]].x + elec[pair[1]].x) / 2, (elec[pair[0]].y + elec[pair[1]].y) / 2, -0.8, 0, C('voltage'), 21, 32);
-    /* the trace: 1.5 s across, −0.5 to 1.2 mV up, fixed, and the pressure beneath it in ink */
+    /* the trace: 1.5 s across, −0.5 to 1.2 mV up, fixed, and the pressure beneath it */
     const b1 = { l: 800, r: 1310, t: 120, b: 360 };
     const a1 = axes(ctx, b1, [0, WIN], [-0.5, 1.2], { nx: 3, ny: 4, yl: 'lead potential (mV)', yc: C('voltage'), fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 1) });
     line(ctx, b1.l, a1.Y(0), b1.r, a1.Y(0), alpha(PAL.ink, 0.3), 2, [6, 8]);
@@ -429,12 +433,12 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
       text(ctx, nm, a1.X(q), a1.Y(beat(ff)) + (nm === 'Q' || nm === 'S' ? 24 : -22), PAL.ink, { size: 20, weight: 700, align: 'center', bg: PAL.panel });
     });
     const b2 = { l: 800, r: 1310, t: 470, b: 690 };
-    const a2 = axes(ctx, b2, [0, WIN], [60, 140], { nx: 3, ny: 4, xl: 'time (s)', yl: 'arterial pressure (mm Hg)', fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
+    const a2 = axes(ctx, b2, [0, WIN], [60, 140], { nx: 3, ny: 4, xl: 'time (s)', xc: C('time'), yl: 'arterial pressure (mm Hg)', yc: C('pressure'), fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
     ctx.save(); ctx.setLineDash([10, 8]);
-    curve(ctx, (q) => press(frac(q)), 0, WIN, a2.X, a2.Y, PAL.ink, 4, 420);
+    curve(ctx, (q) => press(frac(q)), 0, WIN, a2.X, a2.Y, C('pressure'), 4, 420);
     ctx.restore();
     line(ctx, a2.X(t), b2.t, a2.X(t), b2.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    pinned(ctx, b2, a2.X, a2.Y, t, press(f), PAL.ink);
+    pinned(ctx, b2, a2.X, a2.Y, t, press(f), C('pressure'));
     lab.flush();
     const what = atria ? 'crossing the atria, which writes the P wave' : vent ? 'crossing the ventricles, which writes the QRS complex' : repol ? 'leaving the ventricles as they repolarize, which writes the T wave' : 'between beats, with the heart at rest';
     topline(ctx, 'At ' + fmt(t, 2) + ' s the wave is ' + what + ', and the lead ' + lead.value + ' potential reads ' + sig3(beat(f)) + ' mV.');

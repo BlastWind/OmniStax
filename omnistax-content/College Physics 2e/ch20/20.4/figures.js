@@ -9,9 +9,10 @@
    bar in kilowatt-hours and the running cost of each carried down the graph
    against the hours. Nothing either figure computes changes with time, so
    both are still and neither takes a transport; the arrows round the loop are
-   notation and not a flow of carriers. The page binds power, current,
-   voltage, resistance, energy and time; the prices, the bulbs' glass and
-   bases, the resistor's zigzag, the wires and the frames are ink. */
+   notation and not a flow of carriers. The figures colour power, current,
+   voltage, resistance, energy and time; the source, the headlight the
+   resistor stands for, the bulb and the CFL are referents, each lamp's cost
+   curve in its colour; the prices, the wires and the frames are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, axes, curve, pinned, labeller } = F;
@@ -38,30 +39,30 @@ const money = (v) => '$' + v.toFixed(2);
   const PMAX = 200;
   const gV = { l: 150, r: 660, t: 600, b: 880 };          /* 0 to 24 V across, 0 to 200 W up */
   const gR = { l: 810, r: 1320, t: 600, b: 880 };         /* 0 to 12 Ω across, 0 to 200 W up */
-  function zigzag(ctx, x, y1, y2, n) {                    /* the resistor's own symbol, in ink */
+  function zigzag(ctx, x, y1, y2, n, color) {             /* the resistor's own symbol */
     const w = 26, h = (y2 - y1) / n;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath();
     ctx.moveTo(x, y1);
     for (let i = 0; i < n; i++) ctx.lineTo(x + (i % 2 ? -w : w), y1 + h * (i + 0.5));
     ctx.lineTo(x, y2); ctx.stroke(); ctx.restore();
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const I = V.v / R.v, P = V.v * I;
+    const I = V.v / R.v, P = V.v * I, sc = F.ref('source'), hc = F.ref('headlight');
     /* the loop: four wires in ink, broken where the source and the resistor sit */
     line(ctx, L, T, Rx, T, PAL.ink, 3);
     line(ctx, L, B, Rx, B, PAL.ink, 3);
     line(ctx, L, T, L, 264, PAL.ink, 3); line(ctx, L, 306, L, B, PAL.ink, 3);
     line(ctx, Rx, T, Rx, 240, PAL.ink, 3); line(ctx, Rx, 360, Rx, B, PAL.ink, 3);
     /* the source: the long plate of a cell over its short one, the voltage in the voltage hue */
-    line(ctx, L - 36, 264, L + 36, 264, PAL.ink, 4);
-    line(ctx, L - 18, 306, L + 18, 306, PAL.ink, 8);
+    line(ctx, L - 36, 264, L + 36, 264, sc, 4);
+    line(ctx, L - 18, 306, L + 18, 306, sc, 8);
     text(ctx, '+', L + 52, 258, PAL.ink, { size: 22, weight: 600, align: 'center' });
     text(ctx, '−', L + 52, 312, PAL.ink, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'V = ' + fmt(V.v, 1) + ' V', L - 56, 285, C('voltage'), { size: 24, weight: 600, align: 'right', base: 'middle', bg: PAL.panel });
-    text(ctx, 'source', L - 56, 320, PAL.muted, { size: 19, align: 'right', base: 'middle' });
+    text(ctx, 'source', L - 56, 320, sc, { size: 19, weight: 600, align: 'right', base: 'middle' });
     /* the resistor: its zigzag in ink, its resistance and the power it dissipates in their hues */
-    zigzag(ctx, Rx, 240, 360, 6);
+    zigzag(ctx, Rx, 240, 360, 6, hc);
     text(ctx, 'R = ' + fmt(R.v, 3) + ' Ω', Rx + 52, 272, C('resistance'), { size: 24, weight: 600, base: 'middle', bg: PAL.panel });
     text(ctx, 'dissipating ' + fmt(P, 1) + ' W', Rx + 52, 328, C('power'), { size: 24, weight: 600, base: 'middle', bg: PAL.panel });
     /* the current round the loop: arrowheads, which are notation and never animated */
@@ -108,16 +109,16 @@ const money = (v) => '$' + v.toFixed(2);
      which leaves the $7.45 of Example 20.8 a sixteenth of the height; a state above $60 is pinned. */
   const CMAX = 60, EMAX = 400;                            /* 400 kW·h is 100 W for 4000 hours, the longest bar */
   const g = { l: 190, r: 1250, t: 640, b: 900 };
-  function base(ctx, x, y, s) {                           /* the screw base both lamps stand on, in ink */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
+  function base(ctx, x, y, s, color) {                    /* the screw base both lamps stand on */
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(x - 20 * s, y - 42 * s); ctx.lineTo(x - 20 * s, y); ctx.lineTo(x + 20 * s, y); ctx.lineTo(x + 20 * s, y - 42 * s);
     ctx.stroke();
-    for (let i = 0; i < 3; i++) line(ctx, x - 20 * s, y - 10 * s - 11 * s * i, x + 20 * s, y - 10 * s - 11 * s * i, PAL.ink, 2);
+    for (let i = 0; i < 3; i++) line(ctx, x - 20 * s, y - 10 * s - 11 * s * i, x + 20 * s, y - 10 * s - 11 * s * i, color, 2);
     ctx.restore();
   }
-  function incandescent(ctx, x, y, s) {                   /* a pear-shaped glass envelope over a filament */
-    base(ctx, x, y, s);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
+  function incandescent(ctx, x, y, s, color) {            /* a pear-shaped glass envelope over a filament */
+    base(ctx, x, y, s, color);
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(x - 20 * s, y - 42 * s);
     ctx.bezierCurveTo(x - 24 * s, y - 62 * s, x - 52 * s, y - 72 * s, x - 52 * s, y - 108 * s);
     ctx.bezierCurveTo(x - 52 * s, y - 152 * s, x + 52 * s, y - 152 * s, x + 52 * s, y - 108 * s);
@@ -131,9 +132,9 @@ const money = (v) => '$' + v.toFixed(2);
     for (let i = 0; i <= 6; i++) ctx.lineTo(x - 13 * s + (26 * s * i) / 6, y - (i % 2 ? 116 : 100) * s);
     ctx.lineTo(x + 13 * s, y - 100 * s); ctx.stroke(); ctx.restore();
   }
-  function compactFluorescent(ctx, x, y, s) {             /* a spiral tube on the same screw base */
-    base(ctx, x, y, s);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 8 * s; ctx.lineCap = 'round'; ctx.beginPath();
+  function compactFluorescent(ctx, x, y, s, color) {      /* a spiral tube on the same screw base */
+    base(ctx, x, y, s, color);
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 8 * s; ctx.lineCap = 'round'; ctx.beginPath();
     const turns = 3.1, top = y - 148 * s, bot = y - 48 * s;
     for (let i = 0; i <= 200; i++) {
       const u = i / 200, th = u * turns * Math.PI * 2;
@@ -142,10 +143,10 @@ const money = (v) => '$' + v.toFixed(2);
     }
     ctx.stroke(); ctx.restore();
   }
-  function lamp(ctx, x, name, p, capital, life, drawIt) {
+  function lamp(ctx, x, name, p, capital, life, drawIt, color) {
     const y = 300, E = kwh(p, H.v), total = cost(p, H.v, capital, life);
-    drawIt(ctx, x, y, 1);
-    text(ctx, name, x, y + 46, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    drawIt(ctx, x, y, 1, color);
+    text(ctx, name, x, y + 46, color, { size: 22, weight: 600, align: 'center' });
     text(ctx, fmt(p, 0) + ' W', x, y + 78, C('power'), { size: 24, weight: 600, align: 'center' });
     /* the energy it has used, as a bar in kilowatt-hours */
     const bw = 300, bx = x - bw / 2, by = y + 104;
@@ -158,26 +159,27 @@ const money = (v) => '$' + v.toFixed(2);
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const ti = lamp(ctx, 430, 'incandescent bulb', Pi.v, BULB, BULB_LIFE, incandescent);
-    const tc = lamp(ctx, 1010, 'compact fluorescent lamp', Pc.v, CFL, CFL_LIFE, compactFluorescent);
-    /* both running totals against the hours: money is not a physical quantity, so both curves are ink */
+    const bc = F.ref('bulb'), fc = F.ref('cfl');
+    const ti = lamp(ctx, 430, 'incandescent bulb', Pi.v, BULB, BULB_LIFE, incandescent, bc);
+    const tc = lamp(ctx, 1010, 'compact fluorescent lamp', Pc.v, CFL, CFL_LIFE, compactFluorescent, fc);
+    /* both running totals against the hours, one curve per lamp in the lamp's own colour; the CFL's dashed as well */
     const a = axes(ctx, g, [0, 4000], [0, CMAX], { nx: 4, ny: 4, xl: 'hours burned t (h)', xc: C('time'), yl: 'total cost ($)', yc: PAL.ink, fy: (v) => '$' + v.toFixed(0) });
     const capI = 4000 * Math.min(1, CMAX / Math.max(CMAX, cost(Pi.v, 4000, BULB, BULB_LIFE)));
-    curve(ctx, (h) => cost(Pi.v, h, BULB, BULB_LIFE), 0, capI, a.X, a.Y, PAL.ink, 5, 120);
+    curve(ctx, (h) => cost(Pi.v, h, BULB, BULB_LIFE), 0, capI, a.X, a.Y, bc, 5, 120);
     ctx.save(); ctx.setLineDash([10, 10]);
     const capC = 4000 * Math.min(1, CMAX / Math.max(CMAX, cost(Pc.v, 4000, CFL, CFL_LIFE)));
-    curve(ctx, (h) => cost(Pc.v, h, CFL, CFL_LIFE), 0, capC, a.X, a.Y, alpha(PAL.ink, 0.7), 5, 120);
+    curve(ctx, (h) => cost(Pc.v, h, CFL, CFL_LIFE), 0, capC, a.X, a.Y, fc, 5, 120);
     ctx.restore();
-    const pI = pinned(ctx, g, a.X, a.Y, H.v, ti, PAL.ink);
-    const pC = pinned(ctx, g, a.X, a.Y, H.v, tc, alpha(PAL.ink, 0.7));
+    const pI = pinned(ctx, g, a.X, a.Y, H.v, ti, bc);
+    const pC = pinned(ctx, g, a.X, a.Y, H.v, tc, fc);
     const lab = labeller(ctx, 1000, { headline: 2 });
     lab.block(0, 0, 1400, g.t - 10);                       /* the scene above the graph is spoken for */
     lab.place({ l: pI.x - 14, r: pI.x + 14, t: pI.y - 14, b: pI.y + 14 }); lab.place({ l: pC.x - 14, r: pC.x + 14, t: pC.y - 14, b: pC.y + 14 });
     const endI = Math.min(capI, 3400), endC = Math.min(capC, 3400);
     /* the bulb's name sits above its line, or below and to the right of it where the line has run off the top of the frame */
-    if (capI < 4000) lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0.7, 1, PAL.ink, 20, 30);
-    else lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0, -1, PAL.ink, 20, 26);
-    lab.add('compact fluorescent lamp', a.X(endC), a.Y(Math.min(CMAX, cost(Pc.v, endC, CFL, CFL_LIFE))), 0, 1, PAL.ink, 20, 26);
+    if (capI < 4000) lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0.7, 1, bc, 20, 30);
+    else lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0, -1, bc, 20, 26);
+    lab.add('compact fluorescent lamp', a.X(endC), a.Y(Math.min(CMAX, cost(Pc.v, endC, CFL, CFL_LIFE))), 0, 1, fc, 20, 26);
     lab.flush();
     topline(ctx, 'Over ' + fmt(H.v, 0) + ' hours the ' + fmt(Pi.v, 0) + '-W bulb uses ' + fmt(kwh(Pi.v, H.v), 1) + ' kW·h and costs ' + money(ti)
       + ', while the ' + fmt(Pc.v, 0) + '-W CFL uses ' + fmt(kwh(Pc.v, H.v), 1) + ' kW·h and costs ' + money(tc) + '.');

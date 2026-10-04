@@ -9,10 +9,10 @@
    4.2 K, and the sim after it is R = R0(1 + a dT) for the fifteen materials
    of Table 20.2. None of the four ideas has a time in it, so every figure
    here is still: no cycle is registered and none takes a transport.
-   The page binds resistance, position and temperature. The resistivity, the
-   temperature coefficient, the cross-sectional area and the length of the
-   book's own untyped row stay in ink; the three groups of Table 20.1 are told
-   apart on the scale by the categorical palette, never by a bound hue. */
+   The figures colour resistance, resistivity, position, area, temperature
+   and the temperature coefficient. The cylinder of 20.10 and the mercury
+   sample of 20.11 are referents; the three groups of Table 20.1 are
+   instances no referents row names, told apart on the scale by F.cat. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, curve, pinned, note, select, hover } = F;
@@ -95,7 +95,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
 (function () {
   const d = sim('sim-cylinder', 600);
   const mat = select(d.controls, { label: '\\text{Material}', options: rhoOptions, value: 'tungsten', aria: 'the material the cylinder is cut from' });
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 0.5, max: 20, step: 0.1, value: 4, unit: 'cm', dec: 2, detents: [{ v: 4, label: '4.00' }], snap: true, aria: 'length of the cylinder' });
+  const L = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 0.5, max: 20, step: 0.1, value: 4, unit: 'cm', dec: 2, detents: [{ v: 4, label: '4.00' }], snap: true, aria: 'length of the cylinder' });
   const D = ctl(d.controls, { label: '\\kD', cls: 'position', min: 0.02, max: 1, step: 0.005, value: 0.09, unit: 'mm', dec: 3, detents: [{ v: 0.09, label: '0.090' }], snap: true, aria: 'diameter of the cylinder' });
   const x0 = 170, yc = 270;
   function draw() {
@@ -107,7 +107,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
     const x1 = x0 + len;
     /* the body of the cylinder, seen a little from above and to the left */
     ctx.save();
-    ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('cylinder'); ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(x0, yc - ry); ctx.lineTo(x1, yc - ry);
     ctx.ellipse(x1, yc, rx, ry, 0, -Math.PI / 2, Math.PI / 2);
@@ -121,10 +121,11 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
     ctx.restore();
     /* the cross-section at the near end, and the diameter across it */
     vbracket(ctx, x1 + rx + 46, yc - ry, yc + ry, C('position'), 'D = ' + fmt(D.v, 3) + ' mm', 1);
-    text(ctx, 'A = ' + sci(A, 2) + ' m²', x1 + rx + 90, 180, PAL.ink, { size: 22, weight: 600, bg: PAL.panel });
+    text(ctx, 'A = ' + sci(A, 2) + ' m²', x1 + rx + 90, 180, C('area'), { size: 22, weight: 600, bg: PAL.panel });
     /* the length along it, bracketed at one fixed height so nothing below it moves */
-    hbracket(ctx, x0, x1, 380, PAL.ink, 'L = ' + fmt(L.v, 2) + ' cm');
-    text(ctx, m.n + ',  ρ = ' + sci(m.r, m.r >= 1000 ? 1 : 2) + ' Ω·m', (x0 + x1) / 2, 180, PAL.ink, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    hbracket(ctx, x0, x1, 380, C('position'), 'L = ' + fmt(L.v, 2) + ' cm');
+    text(ctx, m.n, (x0 + x1) / 2, 144, PAL.ink, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'ρ = ' + sci(m.r, m.r >= 1000 ? 1 : 2) + ' Ω·m', (x0 + x1) / 2, 180, C('resistivity'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     /* the resistor the cylinder stands for */
     const zx = 360, zy = 480, zw = 300;
     text(ctx, 'stands for', zx - 120, zy, PAL.muted, { size: 19, align: 'right' });
@@ -136,7 +137,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
     text(ctx, 'R = ' + ohms(R) + ' Ω', zx + zw / 2, zy - 54, C('resistance'), { size: 24, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'The diameter is drawn much larger than its true scale, so that a thin wire can be seen at all.', 700, 575, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, 'A ' + fmt(L.v, 2) + ' cm cylinder of ' + m.n.toLowerCase() + ' ' + fmt(D.v, 3) + ' mm across has a resistance of ' + ohms(R) + ' Ω.');
-    readout(d.readout, `\\kRes = \\frac{\\rho L}{A} = \\frac{(${sciTex(m.r, m.r >= 1000 ? 1 : 2)}\\ \\Omega\\cdot\\text{m})(${fmt(Lm, 4)}\\ \\text{m})}{${sciTex(A, 2)}\\ \\text{m}^2} = ${ohmsTex(R)}\\ \\Omega`,
+    readout(d.readout, `\\kRes = \\frac{\\krhomat\\kLlen}{\\karea} = \\frac{(${sciTex(m.r, m.r >= 1000 ? 1 : 2)}\\ \\Omega\\cdot\\text{m})(${fmt(Lm, 4)}\\ \\text{m})}{${sciTex(A, 2)}\\ \\text{m}^2} = ${ohmsTex(R)}\\ \\Omega`,
       'Stretching the cylinder to twice its length doubles its resistance, because the charges make twice as many collisions on the way through. Doubling its diameter quarters the resistance, because the area goes as the square of the diameter and a wider cylinder carries more current for the same push. On load the cylinder is the tungsten filament of Example 20.5: 4.00 cm long and 0.090 mm across, which comes to the 0.350 Ω the example started from.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -155,7 +156,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
 (function () {
   const d = sim('sim-resistivity-scale', 660);
   const mat = select(d.controls, { label: '\\text{Material}', options: rhoOptions, value: 'copper', aria: 'the material to find on the scale' });
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 1, max: 100, step: 1, value: 20, unit: 'cm', dec: 0, aria: 'length of the sample' });
+  const L = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 1, max: 100, step: 1, value: 20, unit: 'cm', dec: 0, aria: 'length of the sample' });
   const gx = { l: 120, r: 1320 };                    /* log10 of rho, from -8 to 18, fixed */
   const LO = -8, HI = 18, yAx = 470;
   const X = (lg) => gx.l + ((lg - LO) / (HI - LO)) * (gx.r - gx.l);
@@ -170,7 +171,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
       line(ctx, X(e), yAx - 8, X(e), yAx + 8, PAL.muted, 2);
       text(ctx, '10' + sup(e), X(e), yAx + 30, PAL.muted, { size: 17, align: 'center' });
     }
-    text(ctx, 'resistivity ρ (Ω·m), each step a factor of ten', gx.r, yAx + 66, PAL.ink, { align: 'right', weight: 600, size: 20 });
+    text(ctx, 'resistivity ρ (Ω·m), each step a factor of ten', gx.r, yAx + 66, C('resistivity'), { align: 'right', weight: 600, size: 20 });
     /* the three bands the groups occupy, named once each */
     [[-8, -5.5], [-5.5, 4.5], [8, 18]].forEach((b, g) => {
       const c = F.cat(g);
@@ -194,7 +195,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
     topline(ctx, m.k === 'silver'
       ? 'Silver has a resistivity of ' + sci(m.r, 2) + ' Ω·m, the smallest in the table, which is why every other material on the scale stands to the right of it.'
       : m.n + ' has a resistivity of ' + sci(m.r, 2) + ' Ω·m, which is ' + ratio(m.r / RHO[0].r) + ' times that of silver, the best conductor in the table.');
-    readout(d.readout, `\\kRes = \\frac{\\rho L}{A} = \\frac{(${sciTex(m.r, m.r >= 1000 ? 1 : 2)}\\ \\Omega\\cdot\\text{m})(${fmt(Lm, 2)}\\ \\text{m})}{1.00 \\times 10^{-6}\\ \\text{m}^2} = ${ohmsTex(R)}\\ \\Omega`,
+    readout(d.readout, `\\kRes = \\frac{\\krhomat\\kLlen}{\\karea} = \\frac{(${sciTex(m.r, m.r >= 1000 ? 1 : 2)}\\ \\Omega\\cdot\\text{m})(${fmt(Lm, 2)}\\ \\text{m})}{1.00 \\times 10^{-6}\\ \\text{m}^2} = ${ohmsTex(R)}\\ \\Omega`,
       'The conductors fill the left-hand end of the scale within a factor of a hundred of one another, the insulators sit twenty and more decades away at the right, and the semiconductors lie between them, which is what makes them useful: a small change in the impurities moves a semiconductor a long way along this scale. Hover over any mark to read the material and the resistivity the book gives it.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -234,9 +235,9 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
     line(ctx, X(T.v), Y(R), X(T.v), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
     /* the sample itself, a short bar of mercury under the graph */
     const bx = 480, by = 560;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('mercury'); ctx.lineWidth = 3;
     ctx.fillRect(bx, by - 22, 440, 44); ctx.strokeRect(bx, by - 22, 440, 44); ctx.restore();
-    text(ctx, 'a sample of mercury at ' + fmt(T.v, 2) + ' K', bx + 220, by, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'a sample of mercury at ' + fmt(T.v, 2) + ' K', bx + 220, by, F.ref('mercury'), { size: 20, align: 'center' });
     text(ctx, cold ? 'R = 0: a current set going in it would keep going' : 'R = ' + fmt(R, 3) + ' Ω', bx + 220, by + 52, C('resistance'), { size: 22, weight: 600, align: 'center' });
     topline(ctx, cold
       ? 'At ' + fmt(T.v, 2) + ' K the mercury is below its critical temperature of 4.2 K, and its resistance is not small but zero.'
@@ -295,7 +296,7 @@ const alphaOf = (k) => ALPHA.find((m) => m.k === k) ?? ALPHA[4];
     line(ctx, bx - 100, base, bx + 100, base, PAL.muted, 2);
     text(ctx, 'ΔT = ' + (dT < 0 ? '−' : '') + fmt(Math.abs(dT), 0) + ' °C', bx, base + 70, C('temperature'), { size: 22, weight: 600, align: 'center' });
     topline(ctx, m.n + ', whose coefficient is ' + (m.a === 0 ? '0' : sci(m.a, 2).replace('-', '−')) + '/°C: taken from 20 °C to ' + fmt(T.v, 0) + ' °C, a ' + fmt(R0.v, 3) + ' Ω sample measures ' + ohms(R) + ' Ω.');
-    readout(d.readout, `\\kRes = \\kReso(1 + \\alpha\\kdTemp) = (${fmt(R0.v, 3)}\\ \\Omega)[1 + (${sciTex(m.a, 2)}/^\\circ\\text{C})(${(dT < 0 ? '-' : '') + fmt(Math.abs(dT), 0)}^\\circ\\text{C})] = ${ohmsTex(R)}\\ \\Omega`,
+    readout(d.readout, `\\kRes = \\kReso(1 + \\kalphares\\kdTemp) = (${fmt(R0.v, 3)}\\ \\Omega)[1 + (${sciTex(m.a, 2)}/^\\circ\\text{C})(${(dT < 0 ? '-' : '') + fmt(Math.abs(dT), 0)}^\\circ\\text{C})] = ${ohmsTex(R)}\\ \\Omega`,
       m.a > 0
         ? 'The coefficient is positive, as it is for every metal in Table 20.2: the atoms vibrate more rapidly and over larger distances as the sample is heated, the electrons make more collisions, and the resistance climbs. On load the sample is the tungsten filament of Example 20.6, which goes from 0.350 Ω cold to 4.8 Ω at its operating temperature of 2850 °C.'
         : m.a === 0

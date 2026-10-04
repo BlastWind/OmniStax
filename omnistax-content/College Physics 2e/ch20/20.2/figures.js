@@ -1,11 +1,10 @@
 /* Figures for section 20.2 Ohm's Law: Resistance and Simple Circuits. Boots
    against the section's text article.
-   The page binds three types and no others, as ch20/COLOR.md gives it:
-   current, resistance and voltage. The battery, the wires, the resistor's
-   zigzag, the voltmeter and the whole of the fluid analogy are the frame of a
-   diagram and are drawn in ink; the free electrons are drawn from the element
-   palette with F.el('e-'), and their sign is told by their label and never by
-   a hue. */
+   The figures colour current, resistance and voltage. The battery, the
+   resistor, the voltmeter, the pump and the narrow pipe of 20.8 + 20.9 are
+   referents and wear F.ref; the wires and the frame are ink; the free
+   electrons are drawn from the element palette with F.el('e-'), and their
+   sign is told by their label and never by a hue. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['20.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, cycle, line, arrow, dot, text, headline, axes, curve, pinned } = F;
@@ -22,8 +21,8 @@ function wire(ctx, pts, color, w) {
 }
 /* a battery in a wire, the long plate the positive terminal; `flip` puts the
    long plate at the far end instead of the near one */
-function battery(ctx, x, y, orient) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineCap = 'butt';
+function battery(ctx, x, y, orient, color) {
+  ctx.save(); ctx.strokeStyle = color || PAL.ink; ctx.lineCap = 'butt';
   const pairs = [[-26, 30, 4], [-10, 15, 7], [10, 30, 4], [26, 15, 7]];
   for (const [o, h, w] of pairs) {
     ctx.lineWidth = w; ctx.beginPath();
@@ -34,8 +33,8 @@ function battery(ctx, x, y, orient) {
   ctx.restore();
 }
 /* the zigzag of a resistor standing in a vertical wire, centred on (x, y) */
-function resistor(ctx, x, y, half, amp) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4.5; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
+function resistor(ctx, x, y, half, amp, color) {
+  ctx.save(); ctx.strokeStyle = color || PAL.ink; ctx.lineWidth = 4.5; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(x, y - half);
   const n = 6, step = (2 * half) / n;
   for (let i = 0; i < n; i++) ctx.lineTo(x + (i % 2 ? -amp : amp), y - half + step * (i + 0.5));
@@ -87,6 +86,7 @@ function loop(pts) {
   function draw() {
     const { ctx } = begin(d.c);
     const ic = C('current'), rc = C('resistance'), vc = C('voltage'), ec = F.el('e-');
+    const bc = F.ref('battery'), zc = F.ref('resistor'), mc = F.ref('voltmeter');
     const V = vs.v, Rv = rs.v, I = V / Rv;
     /* p carries the circuit into its analogy: the wire swells into the pipe, the battery
        gives way to the pump that grows where it stood, and the zigzag straightens into
@@ -98,14 +98,14 @@ function loop(pts) {
     /* the loop, broken where the battery and the resistor stand in it */
     wire(ctx, [[L, MY - 30], [L, T], [R, T], [R, MY - 78]], PAL.ink, 4 + 40 * p);
     wire(ctx, [[R, MY + 78], [R, B], [L, B], [L, MY + 30]], PAL.ink, 4 + 40 * p);
-    ctx.save(); ctx.translate(L, MY); ctx.scale(1 - p, 1 - p); battery(ctx, 0, 0, 'v'); ctx.restore();
-    resistor(ctx, R, MY, 78, 26 * (1 - p));
+    ctx.save(); ctx.translate(L, MY); ctx.scale(1 - p, 1 - p); battery(ctx, 0, 0, 'v', bc); ctx.restore();
+    resistor(ctx, R, MY, 78, 26 * (1 - p), zc);
     text(ctx, '+', L + 34, MY - 44, PAL.ink, { size: 24, weight: 600, align: 'center' });
     text(ctx, '−', L + 34, MY + 44, PAL.ink, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'V = ' + fmt(V, 1) + ' V', L - 46, MY, vc, { size: 24, weight: 600, align: 'right' });
-    text(ctx, 'the voltage source', L - 46, MY + 36, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, 'the voltage source', L - 46, MY + 36, bc, { size: 18, weight: 600, align: 'right' });
     text(ctx, 'R = ' + fmt(Rv, 2) + ' Ω', R - 52, MY, rc, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'the resistor', R - 52, MY + 36, PAL.muted, { size: 18, align: 'right', bg: PAL.panel });
+    text(ctx, 'the resistor', R - 52, MY + 36, zc, { size: 18, weight: 600, align: 'right', bg: PAL.panel });
     /* the conventional current, out of the positive terminal and round the loop */
     for (const x of [520, 700, 880]) arrow(ctx, x - 34, T - 26, x + 34, T - 26, ic, 5);
     for (const x of [880, 700, 520]) arrow(ctx, x + 34, B + 26, x - 34, B + 26, ic, 5);
@@ -127,11 +127,11 @@ function loop(pts) {
       ctx.save(); ctx.globalAlpha = am;
       wire(ctx, [[R, MY - 78], [MX, MY - 78], [MX, MY - 50]], PAL.muted, 3);
       wire(ctx, [[R, MY + 78], [MX, MY + 78], [MX, MY + 50]], PAL.muted, 3);
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3.5;
+      ctx.save(); ctx.strokeStyle = mc; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3.5;
       ctx.beginPath(); ctx.arc(MX, MY, 50, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-      text(ctx, 'V', MX, MY, PAL.ink, { size: 26, weight: 600, align: 'center' });
+      text(ctx, 'V', MX, MY, mc, { size: 26, weight: 600, align: 'center' });
       text(ctx, fmt(VR, 1) + ' V', MX, MY + 100, vc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-      text(ctx, 'the voltmeter', MX, MY - 116, PAL.muted, { size: 18, align: 'center' });
+      text(ctx, 'the voltmeter', MX, MY - 116, mc, { size: 18, weight: 600, align: 'center' });
       ctx.restore();
     }
     if (view.value === 'pipe') return;
@@ -141,10 +141,11 @@ function loop(pts) {
     readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(Rv, 2)}\\ \\Omega} = ${fmt(I, 2)}\\ \\text{A}`,
       'Raise the voltage and the current rises in the same proportion, which is Ohm’s law; raise the resistance and the current falls, so that doubling the resistance cuts the current in half. The voltage drop across the resistor is V = IR = ' + fmt(I * Rv, 1) + ' V, equal to the voltage of the source, since there is nothing else in the loop for the energy to go into.');
   }
-  /* the pump and the narrow pipe the text compares the circuit with, drawn
-     wholly in ink: the analogy is the frame, and only the electrical
-     quantities it stands for wear a hue */
+  /* the pump and the narrow pipe the text compares the circuit with: the two
+     referents in their own colours, the rest of the pipe and the water in ink,
+     and only the electrical quantities they stand for in a category hue */
   function pipe(ctx, V, Rv, I, ic, rc, vc, g) {
+    const pc = F.ref('pump'), nc = F.ref('narrow-pipe');
     const wide = 44, narrow = Math.max(7, 40 - 34 * (Rv - 0.5) / 19.5);
     /* the wide pipe everywhere but the right side's middle, where it tapers to the narrow section */
     const pipeRun = (path, w) => { wire(ctx, path, PAL.muted, w + 6); wire(ctx, path, PAL.soft, w); };
@@ -155,20 +156,20 @@ function loop(pts) {
       ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(R - hw2, y0); ctx.lineTo(R + hw2, y0); ctx.lineTo(R + hn2, y1); ctx.lineTo(R - hn2, y1); ctx.closePath(); ctx.fill(); ctx.restore();
     };
     taper(MY - 122, MY - 90); taper(MY + 122, MY + 90);
-    wire(ctx, [[R, MY - 92], [R, MY + 92]], PAL.muted, narrow + 6);
+    wire(ctx, [[R, MY - 92], [R, MY + 92]], nc, narrow + 6);
     wire(ctx, [[R, MY - 94], [R, MY + 94]], PAL.soft, narrow);
     /* the pump: a round casing with a turning impeller inside it */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3.5;
+    ctx.save(); ctx.strokeStyle = pc; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3.5;
     ctx.beginPath(); ctx.arc(L, MY, 54 * g, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     const spin = cy.now() * 3;
     ctx.lineWidth = 3; ctx.strokeStyle = PAL.muted;
     for (let k = 0; k < 6; k++) { const a = spin + (k * Math.PI) / 3; ctx.beginPath(); ctx.moveTo(L, MY); ctx.quadraticCurveTo(L + 26 * g * Math.cos(a + 0.5), MY + 26 * g * Math.sin(a + 0.5), L + 42 * g * Math.cos(a), MY + 42 * g * Math.sin(a)); ctx.stroke(); }
     ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(L, MY, 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
     arrow(ctx, L - 74, MY + 30, L - 74, MY - 30, PAL.ink, 4);
-    text(ctx, 'the pump', 400, B + 62, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'the pump', 400, B + 62, pc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'it raises the pressure, as the source', 400, B + 92, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'raises the voltage to ' + fmt(V, 1) + ' V', 400, B + 118, vc, { size: 18, weight: 600, align: 'center' });
-    text(ctx, 'the narrow section', 1000, B + 62, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'the narrow section', 1000, B + 62, nc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'it limits the flow, as the resistor limits', 1000, B + 92, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'the current with ' + fmt(Rv, 2) + ' Ω', 1000, B + 118, rc, { size: 18, weight: 600, align: 'center' });
     /* the water, going round at the rate the flow is */
