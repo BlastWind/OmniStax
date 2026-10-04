@@ -88,9 +88,9 @@ const energyOf = (Cuf, Vkv) => 0.5 * Cuf * Vkv * Vkv;     /* J  */
   const XR = [0, 12], YR = [0, 200];
   const BOX = { l: 210, t: 530, r: 1240, b: 790 };
   const capOf = (E, Vk) => (2 * E) / (Vk * Vk);           /* µF */
-  /* a paddle: a rounded head on a handle, drawn in ink, facing `face` */
-  function paddle(ctx, x, y, face) {
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+  /* a paddle: a rounded head on a handle, outlined in the paddles' referent hue, facing `face` */
+  function paddle(ctx, x, y, face, color) {
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.roundRect(x - face * 30, y - 58, face * 30, 116, 14); ctx.fill(); ctx.stroke();
     ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.strokeStyle = PAL.muted;
     ctx.beginPath(); ctx.moveTo(x - face * 30, y); ctx.lineTo(x - face * 104, y); ctx.stroke();
@@ -102,14 +102,14 @@ const energyOf = (Cuf, Vkv) => 0.5 * Cuf * Vkv * Vkv;     /* J  */
     const E = es.v, Vk = vs.v, Cu = capOf(E, Vk), Q = chargeOf(Cu, Vk);
     /* the machine: its case, the energy it is set to deliver, the capacitor
        inside it charged to the working voltage, and the two paddles */
-    const CX = 620, CY = 250;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    const CX = 620, CY = 250, cDef = F.ref('defibrillator'), cCap = F.ref('capacitor'), cPad = F.ref('paddles');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = cDef; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.roundRect(CX - 190, CY - 140, 380, 280, 18); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'set to deliver', CX, CY - 100, PAL.muted, { size: 19, align: 'center' });
     text(ctx, fmt(E, 0) + ' J', CX, CY - 58, ec, { size: 30, weight: 600, align: 'center' });
     /* the capacitor inside, drawn as two plates with their separated charge */
     const PY = CY + 40;
-    for (const s of [-1, 1]) line(ctx, CX + s * 26, PY - 46, CX + s * 26, PY + 46, PAL.ink, 6);
+    for (const s of [-1, 1]) line(ctx, CX + s * 26, PY - 46, CX + s * 26, PY + 46, cCap, 6);
     line(ctx, CX - 130, PY, CX - 26, PY, PAL.ink, 3); line(ctx, CX + 26, PY, CX + 130, PY, PAL.ink, 3);
     text(ctx, '+Q', CX - 54, PY - 68, qc, { size: 22, weight: 600, align: 'center' });
     text(ctx, '−Q', CX + 54, PY - 68, qc, { size: 22, weight: 600, align: 'center' });
@@ -117,8 +117,8 @@ const energyOf = (Cuf, Vkv) => 0.5 * Cuf * Vkv * Vkv;     /* J  */
     /* the leads out to the paddles */
     line(ctx, CX - 190, PY, CX - 290, PY, PAL.muted, 4);
     line(ctx, CX + 190, PY, CX + 290, PY, PAL.muted, 4);
-    paddle(ctx, CX - 290, PY, -1); paddle(ctx, CX + 290, PY, 1);
-    text(ctx, 'the paddles, across the chest', CX, CY + 190, PAL.muted, { size: 19, align: 'center' });
+    paddle(ctx, CX - 290, PY, -1, cPad); paddle(ctx, CX + 290, PY, 1, cPad);
+    text(ctx, 'the paddles, across the chest', CX, CY + 190, cPad, { size: 19, align: 'center' });
     /* what the capacitor is charged to, and what it therefore holds, set in a
        column clear of the machine and of both paddles */
     text(ctx, 'charged to ' + fmt(Vk, 2) + ' kV', 1130, CY - 40, vc, { size: 22, weight: 600, align: 'center' });

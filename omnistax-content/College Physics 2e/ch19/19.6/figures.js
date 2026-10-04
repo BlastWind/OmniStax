@@ -1,22 +1,24 @@
 /* Figures for section 19.6 Capacitors in Series and Parallel. Boots against the section's text article.
    A charged combination of capacitors sits at its voltage, so both figures
    here are still pictures: neither registers a cycle, neither carries a
-   transport, and a slider's input alone redraws them. The plates, the wires
-   and the battery are the frame of a circuit diagram and are drawn in ink
-   (ch19/COLOR.md); the capacitances, the voltages, the charges and the
-   equivalent separation wear their type hues. */
+   transport, and a slider's input alone redraws them. The wires and the
+   battery are the frame of a circuit diagram and are drawn in ink; the plates
+   of the three capacitors and of the equivalent capacitor wear their referent
+   hues (ch19/COLOR.md), and the capacitances, the voltages, the charges, the
+   equivalent separation and the equivalent plate area wear their type hues. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['19.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, ctl, choice, register, begin, line, arrow, dot, text, headline, hbracket, vbracket } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
-/* ---------- the pieces of a circuit diagram, all in ink ---------- */
+/* ---------- the pieces of a circuit diagram, in ink but for a capacitor that is a referent ---------- */
 /* a capacitor in a wire: 'h' sits in a horizontal wire and has vertical
-   plates, 'v' sits in a vertical wire and has horizontal plates */
-function capacitor(ctx, x, y, orient, gap, half) {
+   plates, 'v' sits in a vertical wire and has horizontal plates; its plates
+   take its referent's hue where it has one */
+function capacitor(ctx, x, y, orient, gap, half, color = PAL.ink) {
   const g = gap / 2;
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineCap = 'butt';
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'butt';
   ctx.beginPath();
   if (orient === 'h') { ctx.moveTo(x - g, y - half); ctx.lineTo(x - g, y + half); ctx.moveTo(x + g, y - half); ctx.lineTo(x + g, y + half); }
   else { ctx.moveTo(x - half, y - g); ctx.lineTo(x + half, y - g); ctx.moveTo(x - half, y + g); ctx.lineTo(x + half, y + g); }
@@ -75,8 +77,8 @@ function signs(ctx, x, y, orient, gap, half, color) {
   const XS = [280, 450, 620], TOP = 260, BOT = 530, LFT = 160, RGT = 740, DIV = 820, EQ = 1110;
   const LP = 250, XP = [350, 520, 690], YP = 395;
   /* a capacitor of plate half-width `half` and gap `gap` at (x, y), turned by `th`: 0 sits in a horizontal wire, π/2 in a vertical one */
-  function turnedCap(ctx, x, y, th, gap, half) {
-    ctx.save(); ctx.translate(x, y); ctx.rotate(th); capacitor(ctx, 0, 0, 'h', gap, half); ctx.restore();
+  function turnedCap(ctx, x, y, th, gap, half, color) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(th); capacitor(ctx, 0, 0, 'h', gap, half, color); ctx.restore();
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -117,7 +119,7 @@ function signs(ctx, x, y, orient, gap, half, color) {
     const place = conn.mix((v) => (v === 'series' ? [...XS, TOP, 0, TOP - 84] : [...XP, YP, Math.PI / 2, 300]));
     XS.forEach((_, i) => {
       const x = place[i], y = place[3], th = place[4];
-      turnedCap(ctx, x, y, th, 34, 46);
+      turnedCap(ctx, x, y, th, 34, 46, F.ref('capacitor-' + (i + 1)));
       F.faded(ctx, aS, [0, 0], () => signs(ctx, x, y, 'h', 34, 46, qc));
       F.faded(ctx, aP, [0, 0], () => signs(ctx, x, y, 'v', 34, 46, qc));
       text(ctx, 'C_' + (i + 1) + ' = ' + fmt(cs[i], 3) + ' µF', x + 12 * (th / (Math.PI / 2)), place[5], cc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
@@ -127,7 +129,7 @@ function signs(ctx, x, y, orient, gap, half, color) {
     wire(ctx, [[EQ, 260], [EQ - 200, 260], [EQ - 200, 560], [EQ + 200, 560], [EQ + 200, 260], [EQ, 260]]);
     wire(ctx, [[EQ, 260], [EQ, 380 - gap / 2]]);
     wire(ctx, [[EQ, 380 + gap / 2], [EQ, 560]]);
-    capacitor(ctx, EQ, 380, 'v', gap, half);
+    capacitor(ctx, EQ, 380, 'v', gap, half, F.ref('equivalent'));
     signs(ctx, EQ, 380, 'v', gap, half, qc);
     battery(ctx, EQ - 200, 410, 'v');
     text(ctx, 'V = ' + fmt(V, 1) + ' V', EQ - 252, 410, vc, { size: 21, weight: 600, align: 'right' });
@@ -137,8 +139,8 @@ function signs(ctx, x, y, orient, gap, half, color) {
       text(ctx, 'a larger plate separation', EQ + 40, 636, PAL.muted, { size: 19, align: 'center' });
     });
     F.faded(ctx, aP, [0, 0], () => {
-      hbracket(ctx, EQ - half, EQ + half, 522, PAL.ink);
-      text(ctx, 'the plate area A', EQ + 16, 552, PAL.ink, { size: 20, weight: 600 });   /* beside the wire that runs down through the bracket, not on it */
+      hbracket(ctx, EQ - half, EQ + half, 522, C('area'));
+      text(ctx, 'the plate area A', EQ + 16, 552, C('area'), { size: 20, weight: 600 });   /* beside the wire that runs down through the bracket, not on it */
       text(ctx, 'C_p = ' + fmt(Cp, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });
       text(ctx, 'a larger plate area', EQ, 636, PAL.muted, { size: 19, align: 'center' });
     });
@@ -175,6 +177,8 @@ function signs(ctx, x, y, orient, gap, half, color) {
     const { ctx } = begin(d.c);
     const cc = C('capacitance');
     const a = c1.v, b = c2.v, c = c3.v, Cs = (a * b) / (a + b), Ctot = Cs + c;
+    /* C₁, C₂ and C₃ are the three capacitors of Figures 19.20 and 19.21 again; the equivalents C_S and C_tot are ink */
+    const capColor = (nm) => ({ C_1: F.ref('capacitor-1'), C_2: F.ref('capacitor-2'), C_3: F.ref('capacitor-3') })[nm] || PAL.ink;
     /* one panel of the reduction: `top` is the list of capacitors on the
        upper branch and `bot` the one on the lower branch, or null where the
        circuit has come down to a single capacitor */
@@ -185,7 +189,7 @@ function signs(ctx, x, y, orient, gap, half, color) {
       if (!bot) {
         wire(ctx, [[L, MID], [(L + R) / 2 - 24, MID]]);
         wire(ctx, [[(L + R) / 2 + 24, MID], [R, MID]]);
-        capacitor(ctx, (L + R) / 2, MID, 'h', 30, 42);
+        capacitor(ctx, (L + R) / 2, MID, 'h', 30, 42, capColor(top[0][0]));
         text(ctx, top[0][0] + ' = ' + fmt(top[0][1], 3) + ' µF', (L + R) / 2, MID - 96, cc, { size: 21, weight: 600, align: 'center' });
         dot(ctx, L, MID, PAL.ink, true, 6); dot(ctx, R, MID, PAL.ink, true, 6);
         return;
@@ -199,7 +203,7 @@ function signs(ctx, x, y, orient, gap, half, color) {
       top.forEach(([nm, val], i) => {
         const cx = L + step * (i + 1);
         wire(ctx, [[x, TOP], [cx - 24, TOP]]);
-        capacitor(ctx, cx, TOP, 'h', 30, 42);
+        capacitor(ctx, cx, TOP, 'h', 30, 42, capColor(nm));
         /* with two capacitors on one branch the names would collide, so the second is set below the wire */
         text(ctx, nm + ' = ' + fmt(val, 3) + ' µF', cx, n > 1 && i === 1 ? TOP + 78 : TOP - 74, cc, { size: 20, weight: 600, align: 'center' });
         x = cx + 24;
@@ -208,7 +212,7 @@ function signs(ctx, x, y, orient, gap, half, color) {
       /* the lower branch, with the capacitor that stands in parallel with it */
       const bx = (L + R) / 2;
       wire(ctx, [[L, BOT], [bx - 24, BOT]]); wire(ctx, [[bx + 24, BOT], [R, BOT]]);
-      capacitor(ctx, bx, BOT, 'h', 30, 42);
+      capacitor(ctx, bx, BOT, 'h', 30, 42, capColor(bot[0]));
       text(ctx, bot[0] + ' = ' + fmt(bot[1], 3) + ' µF', bx, BOT + 96, cc, { size: 20, weight: 600, align: 'center' });
     }
     panel(PX[0], 'a', [['C_1', a], ['C_2', b]], ['C_3', c], 'the circuit as it stands');

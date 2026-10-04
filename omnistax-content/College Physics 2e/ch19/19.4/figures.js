@@ -6,8 +6,9 @@
    plates, whose equipotentials come out evenly spaced because the field
    between them is uniform. Neither has a time in it: a fixed arrangement of
    charges and a fixed voltage across a fixed gap answer their sliders and
-   register no cycle, so neither figure takes a transport. The page binds
-   voltage, electric-field, charge, position and energy; the frames, the
+   register no cycle, so neither figure takes a transport. The figures colour
+   voltage, electric-field, charge, position and energy, and plates A and B of
+   the second are referents in F.ref; the frames, the
    scales and the count of lines are ink, and the sign of a charge is told
    by its label, never by a hue. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -236,17 +237,18 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     const V = Vab.v, dm = gap.v / 100, E = V / dm, half = (gap.v * PPC) / 2;
     const xa = cx - half, xb = cx + half;
     const dV = step.v, n = Math.floor(V / dV);          /* the interior lines plus the far plate */
-    /* the two plates and their charges: the frame is ink, the charges wear the charge hue */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
-    ctx.fillRect(xa - 16, TOP, 16, BOT - TOP); ctx.strokeRect(xa - 16, TOP, 16, BOT - TOP);
+    /* the two plates and their charges: each plate is outlined in its referent's hue, the charges wear the charge hue */
+    const cA = F.ref('plate-a'), cB = F.ref('plate-b');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.lineWidth = 3; ctx.strokeStyle = cA;
+    ctx.fillRect(xa - 16, TOP, 16, BOT - TOP); ctx.strokeRect(xa - 16, TOP, 16, BOT - TOP); ctx.strokeStyle = cB;
     ctx.fillRect(xb, TOP, 16, BOT - TOP); ctx.strokeRect(xb, TOP, 16, BOT - TOP); ctx.restore();
     for (let i = 0; i < 7; i++) {
       const y = TOP + 30 + i * ((BOT - TOP - 60) / 6);
       text(ctx, '+', xa - 30, y, qc, { size: 22, weight: 600, align: 'center', base: 'middle' });
       text(ctx, '−', xb + 30, y, qc, { size: 22, weight: 600, align: 'center', base: 'middle' });
     }
-    text(ctx, 'plate A', xa - 8, TOP - 30, PAL.ink, { size: 21, weight: 600, align: 'center' });
-    text(ctx, 'plate B', xb + 8, TOP - 30, PAL.ink, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'plate A', xa - 8, TOP - 30, cA, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'plate B', xb + 8, TOP - 30, cB, { size: 21, weight: 600, align: 'center' });
     /* the equipotential lines, evenly spaced because the field between the plates is uniform.
        Every line is labelled while six or fewer of them carry a label; beyond that the labels
        would collide, so one in every few is labelled and the rest are read off the step. */

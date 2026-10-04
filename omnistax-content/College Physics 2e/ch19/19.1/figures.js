@@ -5,9 +5,10 @@
    kinetic energy as it crosses. Two figures run that crossing once per loop
    (the generic charge of Figure 19.2 and the electron gun of Figure 19.4),
    and the battery of Figure 19.3 runs its electrons without end. The page
-   binds voltage, charge, energy and velocity; no field line is drawn, so
+   colours voltage, charge, energy and velocity; no field line is drawn, so
    the electric field stays in ink, and the electron, proton and helium
-   nucleus take the element palette. */
+   nucleus take the element palette. The plates, the battery, its terminals
+   and the headlight are the section's referents and wear F.ref. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['19.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline } = F;
@@ -30,9 +31,9 @@ const signed = (v, d) => (v < 0 ? '-' : '+') + fmt(Math.abs(v), d);
 const pct = (s) => Math.round(s * 100);
 /* the fraction of the gap a charge released from rest in a uniform field has crossed after the fraction u of its flight time */
 const crossed = (u) => Math.min(1, u * u);
-/* a metal plate standing on the canvas, its charge signs in the charge hue: a filled bar in ink with n signs down its middle */
-function plate(ctx, x, y1, y2, w, sign, n) {
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+/* a metal plate standing on the canvas, its charge signs in the charge hue: a filled bar outlined in its referent's hue with n signs down its middle */
+function plate(ctx, x, y1, y2, w, sign, n, color) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 3;
   ctx.fillRect(x - w / 2, y1, w, y2 - y1); ctx.strokeRect(x - w / 2, y1, w, y2 - y1); ctx.restore();
   for (let i = 0; i < n; i++) text(ctx, sign, x, y1 + ((y2 - y1) * (i + 0.5)) / n, C('charge'), { size: 24, weight: 600, align: 'center' });
 }
@@ -83,8 +84,9 @@ function particle(ctx, x, y, color, r) {
     const x = pos ? xs + (xe - xs) * s : xe - (xe - xs) * s;
     const PEi = pos ? q * Va : 0, PE = PEi + dPE * s, KE = -dPE * s;
     /* the plates and the path */
-    plate(ctx, xA, pT, pB, 28, '+', 7); plate(ctx, xB, pT, pB, 28, '−', 7);
-    text(ctx, 'A', xA + 46, pT + 16, PAL.ink, { size: 24, weight: 600, align: 'center' }); text(ctx, 'B', xB - 46, pT + 16, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    const cA = F.ref('plate-a'), cB = F.ref('plate-b');
+    plate(ctx, xA, pT, pB, 28, '+', 7, cA); plate(ctx, xB, pT, pB, 28, '−', 7, cB);
+    text(ctx, 'A', xA + 46, pT + 16, cA, { size: 24, weight: 600, align: 'center' }); text(ctx, 'B', xB - 46, pT + 16, cB, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'V_A = ' + fmt(Va, 1) + ' V', xA - 26, yPath, C('voltage'), { size: 22, weight: 600, align: 'right' });
     text(ctx, 'V_B = 0', xB + 26, yPath, C('voltage'), { size: 22, weight: 600 });
     line(ctx, xs, yPath, xe, yPath, alpha(PAL.ink, 0.35), 2, [6, 10]);
@@ -157,29 +159,30 @@ function particle(ctx, x, y, color, r) {
     const { ctx } = begin(d.c);
     const q = -P.v / dV.v, ne = Math.abs(q) / E_CH, k = Math.abs(q) / 2.5;   /* the stream's density and speed against the book's 2.50 C */
     const tau = isFinite(cy.now()) ? cy.now() : 0;
+    const cBat = F.ref('battery'), cLamp = F.ref('headlight'), cTA = F.ref('terminal-a'), cTB = F.ref('terminal-b');
     /* the battery: a box with a cap band, its voltage on its face */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = cBat; ctx.lineWidth = 3;
     ctx.fillRect(bat.l, bat.t, bat.r - bat.l, bat.b - bat.t); ctx.strokeRect(bat.l, bat.t, bat.r - bat.l, bat.b - bat.t);
     ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.fillRect(bat.l, bat.t, bat.r - bat.l, 26); ctx.restore();
-    line(ctx, bat.l, bat.t + 26, bat.r, bat.t + 26, PAL.ink, 2);
+    line(ctx, bat.l, bat.t + 26, bat.r, bat.t + 26, cBat, 2);
     for (let i = 1; i < 6; i++) line(ctx, bat.l + 30 + i * 40, bat.t + 60, bat.l + 30 + i * 40, bat.b - 30, alpha(PAL.ink, 0.25), 3);
     text(ctx, 'ΔV = ' + fmt(dV.v, 1) + ' V', (bat.l + bat.r) / 2 + 40, (bat.t + bat.b) / 2 + 14, C('voltage'), { size: 26, weight: 600, align: 'center', bg: PAL.soft });
-    text(ctx, 'battery', (bat.l + bat.r) / 2 + 40, bat.b - 24, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'battery', (bat.l + bat.r) / 2 + 40, bat.b - 24, cBat, { size: 17, align: 'center' });
     /* the terminals with their signs and potentials */
-    [[tA, '−', 'A', 'V_A = 0'], [tB, '+', 'B', 'V_B = +' + fmt(dV.v, 1) + ' V']].forEach(([t, sg, nm, v]) => {
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(t.x - 16, t.y - 12, 32, 20); ctx.strokeRect(t.x - 16, t.y - 12, 32, 20); ctx.restore();
+    [[tA, '−', 'A', 'V_A = 0', cTA], [tB, '+', 'B', 'V_B = +' + fmt(dV.v, 1) + ' V', cTB]].forEach(([t, sg, nm, v, ct]) => {
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = ct; ctx.lineWidth = 3; ctx.fillRect(t.x - 16, t.y - 12, 32, 20); ctx.strokeRect(t.x - 16, t.y - 12, 32, 20); ctx.restore();
       text(ctx, sg, t.x, t.y - 1, C('charge'), { size: 22, weight: 600, align: 'center' });
-      text(ctx, nm, t.x + (nm === 'A' ? -34 : 34), t.y - 26, PAL.ink, { size: 24, weight: 600, align: 'center' });
+      text(ctx, nm, t.x + (nm === 'A' ? -34 : 34), t.y - 26, ct, { size: 24, weight: 600, align: 'center' });
       text(ctx, v, t.x + (nm === 'A' ? -34 : 34), t.y - 62, C('voltage'), { size: 19, weight: 600, align: nm === 'A' ? 'right' : 'left', bg: PAL.panel });
     });
     /* the wires, then the headlight: a reflector opening to the right with a filament at the wire's end */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); path.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cLamp; ctx.lineWidth = 4; ctx.beginPath();
     ctx.moveTo(lamp.x + 20, lamp.y - 60); ctx.quadraticCurveTo(lamp.x - 50, lamp.y, lamp.x + 20, lamp.y + 60); ctx.lineTo(lamp.x + 150, lamp.y + 96); ctx.quadraticCurveTo(lamp.x + 190, lamp.y, lamp.x + 150, lamp.y - 96); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(lamp.x + 4, lamp.y - 10); for (let i = 0; i < 4; i++) ctx.lineTo(lamp.x + 12 + (i % 2 ? 0 : 14), lamp.y - 10 + i * 7); ctx.stroke(); ctx.restore();
     const rays = 7, rl = 40 + 110 * (P.v / 60);
     for (let i = 0; i < rays; i++) { const a = -0.55 + (1.1 * i) / (rays - 1), x0 = lamp.x + 172, y0 = lamp.y + 78 * Math.sin(a); line(ctx, x0 + 8 * Math.cos(a), y0, x0 + rl * Math.cos(a), y0 + rl * 0.55 * Math.sin(a), alpha(PAL.ink, 0.4), 3); }
-    text(ctx, 'Headlight', lamp.x + 90, lamp.y + 126, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'Headlight', lamp.x + 90, lamp.y + 126, cLamp, { size: 22, weight: 600, align: 'center' });
     /* the stream of electrons along the wires, spaced by the charge moved each second and moving at the same rate */
     const gap = Math.max(30, Math.min(150, 90 / k)), speed = 40 + 130 * k, shift = (tau * speed) % gap, n = Math.floor((total - shift) / gap) + 1;
     for (let i = 0; i < n; i++) { const p = along(Math.min(total, shift + i * gap)); particle(ctx, p[0], p[1], F.el('e-'), 8); }
@@ -229,8 +232,9 @@ function particle(ctx, x, y, color, r) {
     const KEeV = Math.abs(p.z) * V.v, KEJ = KEeV * E_CH, v = Math.sqrt((2 * KEJ) / p.m), c = 3.00e8;
     const x = neg ? xs + (xe - xs) * s : xe - (xe - xs) * s;   /* the electron leaves A, a positive particle leaves B */
     /* the plates: A negative, B positive, as the book draws them */
-    plate(ctx, xA, pT, pB, 26, '−', 9); plate(ctx, xB, pT, pB, 26, '+', 9);
-    text(ctx, 'A', xA + 46, pT + 16, PAL.ink, { size: 24, weight: 600, align: 'center' }); text(ctx, 'B', xB - 46, pT + 16, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    const cA = F.ref('gun-plate-a'), cB = F.ref('gun-plate-b');
+    plate(ctx, xA, pT, pB, 26, '−', 9, cA); plate(ctx, xB, pT, pB, 26, '+', 9, cB);
+    text(ctx, 'A', xA + 46, pT + 16, cA, { size: 24, weight: 600, align: 'center' }); text(ctx, 'B', xB - 46, pT + 16, cB, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'V_A = −' + fmt(V.v, 0) + ' V', xA - 26, yPath - 70, C('voltage'), { size: 22, weight: 600, align: 'right' });
     text(ctx, 'V_B = 0', xB + 26, yPath - 70, C('voltage'), { size: 22, weight: 600 });
     text(ctx, 'V = ' + fmt(V.v, 0) + ' V between the plates', (xA + xB) / 2, pB + 30, C('voltage'), { size: 19, weight: 600, align: 'center' });

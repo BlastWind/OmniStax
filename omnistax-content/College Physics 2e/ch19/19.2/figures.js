@@ -5,8 +5,9 @@
    graphed across the gap so that the field is the steepness of that graph.
    The sim that follows takes the same reading where the potential does not
    fall evenly, which is what E = −ΔV/Δs says. Neither idea has a clock in
-   it, so both figures are still and neither takes a transport. The page
-   binds voltage, electric-field, position, charge and force; the work and
+   it, so both figures are still and neither takes a transport. The figures
+   colour voltage, electric-field, position, charge and force, and plates A
+   and B are referents in F.ref; the work and
    the potential energy are not drawn, so they stay in ink, and the spark of
    a gap that has broken down is drawn in ink as well. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -24,9 +25,9 @@ function sciParts(x, d) { const e = Math.floor(Math.log10(Math.abs(x))); return 
 const sci = (x, d = 2) => { if (x === 0) return '0'; const { m, e } = sciParts(x, d); return m + ' × 10' + sup(e); };
 const sciTex = (x, d = 2) => { if (x === 0) return '0'; const { m, e } = sciParts(x, d); return m + ' \\times 10^{' + e + '}'; };
 const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
-/* a metal plate standing on the canvas, its charge signs in the charge hue */
-function plate(ctx, x, y1, y2, w, sign, n) {
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+/* a metal plate standing on the canvas, outlined in its referent's hue, its charge signs in the charge hue */
+function plate(ctx, x, y1, y2, w, sign, n, color) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 3;
   ctx.fillRect(x - w / 2, y1, w, y2 - y1); ctx.strokeRect(x - w / 2, y1, w, y2 - y1); ctx.restore();
   for (let i = 0; i < n; i++) text(ctx, sign, x, y1 + ((y2 - y1) * (i + 0.5)) / n, C('charge'), { size: 24, weight: 600, align: 'center' });
 }
@@ -50,9 +51,10 @@ function plate(ctx, x, y1, y2, w, sign, n) {
     const xB = xA + 200 + 62 * D.v;
     const broken = E >= E_BREAKDOWN;
     /* the plates and their potentials */
-    plate(ctx, xA, pT, pB, 26, '+', 7); plate(ctx, xB, pT, pB, 26, '−', 7);
-    text(ctx, 'A', xA, pB + 32, PAL.ink, { size: 24, weight: 600, align: 'center' });
-    text(ctx, 'B', xB, pB + 32, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    const cA = F.ref('plate-a'), cB = F.ref('plate-b');
+    plate(ctx, xA, pT, pB, 26, '+', 7, cA); plate(ctx, xB, pT, pB, 26, '−', 7, cB);
+    text(ctx, 'A', xA, pB + 32, cA, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'B', xB, pB + 32, cB, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'V_A = ' + fmt(V.v, 1) + ' kV', xA - 26, pT - 34, C('voltage'), { size: 22, weight: 600, align: 'right' });
     text(ctx, 'V_B = 0', xB + 26, pT - 34, C('voltage'), { size: 22, weight: 600 });
     /* the field lines, drawn more closely together where the field is stronger */

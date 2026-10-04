@@ -180,7 +180,7 @@ function fieldLine(ctx, x0, x1, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-parallel-plate', 600);
-  const As = ctl(d.controls, { label: 'A', cls: '', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'm²', dec: 2, aria: 'the area of one plate' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'm²', dec: 2, aria: 'the area of one plate' });
   const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.25, max: 5, step: 0.25, value: 1, unit: 'mm', dec: 2, aria: 'the distance between the plates' });
   const Vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 0.5, max: 6, step: 0.25, value: 3, unit: 'kV', dec: 2, aria: 'the voltage applied to the capacitor' });
   /* One fixed scale for the scene, from the greatest extents the sliders reach:
@@ -206,11 +206,11 @@ function fieldLine(ctx, x0, x1, y, color) {
     marks(ctx, xl + 22, CY - h, CY + h, n, '+', qc);
     marks(ctx, xr - 22, CY - h, CY + h, n, '−', qc);
     hbracket(ctx, xl, xr, CY + h + 54, pc, 'd = ' + fmt(mm, 2) + ' mm');
-    vbracket(ctx, xl - 42, CY - h, CY + h, PAL.ink, 'each plate has A = ' + fmt(A, 2) + ' m²', -1);
+    vbracket(ctx, xl - 42, CY - h, CY + h, C('area'), 'each plate has A = ' + fmt(A, 2) + ' m²', -1);
     label(ctx, 'V = ' + fmt(kV, 2) + ' kV', CXC, CY - h - 10, { side: 'above', color: vc, gap: 18, size: 21 });
     label(ctx, 'Q = ' + fmt(Q, 1) + ' µC', xr + 20, CY - h + 10, { side: 'right', color: qc, gap: 14, size: 21 });
     label(ctx, 'C = ' + fmt(Cn, 2) + ' nF', CXC, CY + h + 120, { side: 'below', color: cc, gap: 8, size: 22 });
-    readout(d.readout, '\\kCap = \\varepsilon_0\\frac{A}{\\kd} = ' + sci(EPS0, 2) + '\\ \\frac{\\text{F}}{\\text{m}} \\cdot \\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cn, 2) + '\\ \\text{nF}',
+    readout(d.readout, '\\kCap = \\varepsilon_0\\frac{\\karea}{\\kd} = ' + sci(EPS0, 2) + '\\ \\frac{\\text{F}}{\\text{m}} \\cdot \\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cn, 2) + '\\ \\text{nF}',
       'The bigger the plates, the more charge they hold, because the charges can spread out more; the closer the plates, the greater the attraction between the opposite charges on them. The charge stored is Q = CV = ' + fmt(Q, 1) + ' µC.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -283,10 +283,10 @@ function fieldLine(ctx, x0, x1, y, color) {
     label(ctx, 'V = ' + (V >= 1000 ? fmt(V / 1000, 2) + ' kV' : fmt(V, 0) + ' V'), xr + 60, CY - 70, { side: 'right', color: vc, gap: 10, size: 21 });
     label(ctx, 'C = ' + fmt(Cf * 1e9, 2) + ' nF', xr + 60, CY + 10, { side: 'right', color: cc, gap: 10, size: 21 });
     label(ctx, 'E = E₀/κ', xl - 60, CY + 10, { side: 'left', color: ec, gap: 10, size: 21 });
-    text(ctx, 'each plate has an area A = ' + fmt(A, 2) + ' m²', CXC, 600, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'each plate has an area A = ' + fmt(A, 2) + ' m²', CXC, 600, C('area'), { size: 19, align: 'center' });
     const limit = m.strength === null ? 'The book gives ' + m.label.toLowerCase() + ' no dielectric strength, so no voltage limit is quoted for it.'
       : 'Its dielectric strength of ' + (m.strength / 1e6) + ' × 10⁶ V/m allows at most ' + fmt((m.strength * mm * 1e-3) / 1000, 1) + ' kV across a separation of ' + fmt(mm, 2) + ' mm.';
-    readout(d.readout, '\\kCap = \\kappa\\varepsilon_0\\frac{A}{\\kd} = (' + fmt(k, k < 10 ? 2 : 0) + ')(' + sci(EPS0, 2) + '\\ \\text{F/m})\\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cf * 1e9, 2) + '\\ \\text{nF}',
+    readout(d.readout, '\\kCap = \\kappa\\varepsilon_0\\frac{\\karea}{\\kd} = (' + fmt(k, k < 10 ? 2 : 0) + ')(' + sci(EPS0, 2) + '\\ \\text{F/m})\\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cf * 1e9, 2) + '\\ \\text{nF}',
       'The field between the plates is E = E₀/κ = ' + sciText(E, 2) + ' V/m. ' + limit);
   }
   register(d.fig, { update: () => {}, draw });
@@ -323,10 +323,10 @@ function fieldLine(ctx, x0, x1, y, color) {
     text(ctx, '(a) unpolarized', LX, 470, PAL.ink, { size: 22, weight: 600, align: 'center' });
     atom(ctx, RX, CY, RX0 + 26, RY0, 34);
     text(ctx, '(b) polarized by the external charges', RX, 470, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    dot(ctx, RX - 270, CY, PAL.ink, false, 16);
-    dot(ctx, RX + 270, CY, PAL.ink, false, 16);
-    text(ctx, '−', RX - 270, CY, PAL.ink, { size: 24, weight: 600, align: 'center' });
-    text(ctx, '+', RX + 270, CY, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    dot(ctx, RX - 270, CY, qc, false, 16);
+    dot(ctx, RX + 270, CY, qc, false, 16);
+    text(ctx, '−', RX - 270, CY, qc, { size: 24, weight: 600, align: 'center' });
+    text(ctx, '+', RX + 270, CY, qc, { size: 24, weight: 600, align: 'center' });
     label(ctx, 'an external negative charge', RX - 270, CY - 18, { side: 'above', color: qc, gap: 14, size: 20 });
     label(ctx, 'an external positive charge', RX + 270, CY - 18, { side: 'above', color: qc, gap: 14, size: 20 });
     line(ctx, RX - 240, CY, RX - 160, CY, alpha(PAL.ink, 0.3), 2, [6, 8]);
@@ -358,9 +358,9 @@ function fieldLine(ctx, x0, x1, y, color) {
     /* (a) the shape, with the angle between the bonds */
     const a1 = arms(LX);
     a1.forEach((p) => line(ctx, LX, CY, p.x, p.y, PAL.ink, 6));
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
+    ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.arc(LX, CY, 62, rad(-90 - half), rad(-90 + half)); ctx.stroke(); ctx.restore();
-    text(ctx, '104.5°', LX, CY - 88, PAL.ink, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, '104.5°', LX, CY - 88, C('angle'), { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     a1.forEach((p) => { atom(ctx, p.x, p.y, HC, 26); text(ctx, 'H', p.x, p.y, PAL.ink, { size: 21, weight: 600, align: 'center' }); });
     atom(ctx, LX, CY, OC, 38); text(ctx, 'O', LX, CY, PAL.panel, { size: 26, weight: 600, align: 'center' });
     text(ctx, '(a) the shape of the molecule', LX, 492, PAL.ink, { size: 22, weight: 600, align: 'center' });

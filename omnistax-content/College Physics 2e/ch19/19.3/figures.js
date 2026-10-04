@@ -7,10 +7,12 @@
    two arrows with a resultant. The third is Figure 19.7, the demonstration
    Van de Graaff generator, whose sphere and voltmeter give the excess charge
    of Example 19.7. Nothing in V = kQ/r has a time in it, so all three
-   figures are still and none takes a transport. The page binds voltage,
-   charge, position, electric-field and energy; Coulomb's constant, the
-   frames of the scenes and the generator's belt, pulleys and motor are ink,
-   and the sign of a charge is told by its label, never by a hue. */
+   figures are still and none takes a transport. The figures colour voltage,
+   charge, position, electric-field and energy; the two charges of the second
+   sim and the sphere and voltmeter of the third are referents in F.ref;
+   Coulomb's constant, the frames of the scenes and the generator's belt,
+   pulleys and motor are ink, and the sign of a charge is told by its label,
+   never by a hue. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['19.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, pinned } = F;
@@ -126,8 +128,8 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     /* the line the charges stand on */
     line(ctx, X(-1), y0, X(2.5), y0, alpha(PAL.ink, 0.35), 2);
     const x1 = X(0), x2 = X(D.v);
-    dot(ctx, x1, y0, C('charge'), true, 15); text(ctx, '+', x1, y0, PAL.panel, { size: 21, weight: 600, align: 'center', base: 'middle' });
-    dot(ctx, x2, y0, C('charge'), true, 15); text(ctx, q2 < 0 ? '−' : '+', x2, y0, PAL.panel, { size: 21, weight: 600, align: 'center', base: 'middle' });
+    dot(ctx, x1, y0, F.ref('charge-1'), true, 15); text(ctx, '+', x1, y0, PAL.panel, { size: 21, weight: 600, align: 'center', base: 'middle' });
+    dot(ctx, x2, y0, F.ref('charge-2'), true, 15); text(ctx, q2 < 0 ? '−' : '+', x2, y0, PAL.panel, { size: 21, weight: 600, align: 'center', base: 'middle' });
     text(ctx, 'Q₁ = +2.00 µC', x1, y0 + 42, C('charge'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'Q₂ = ' + signed(q2 * 1e6, 2) + ' µC', x2, y0 + (x2 - x1 < 300 ? 84 : 42), C('charge'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     hbracket(ctx, x1, x2, y0 + 120, C('position'), 'd = ' + fmt(D.v, 2) + ' m');
@@ -198,7 +200,8 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     text(ctx, 'motor', cx, base + 23, PAL.ink, { size: 20, align: 'center', base: 'middle' });
     text(ctx, 'the belt, in its insulating column', cx - 60, (cy + lower) / 2 + 60, PAL.muted, { size: 19, align: 'right' });
     /* the sphere, its excess charge and the field at its surface */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.soft, 0.6);
+    const cSph = F.ref('sphere'), cMeter = F.ref('voltmeter');
+    ctx.save(); ctx.strokeStyle = cSph; ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.soft, 0.6);
     ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
     const n = Math.max(6, Math.min(18, Math.round(6 + Q * 1.2e6)));
     for (let i = 0; i < n; i++) {
@@ -213,13 +216,13 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     const mx = 1070, my = 360;
     line(ctx, cx + rad, cy, mx - 90, cy, PAL.ink, 3);
     line(ctx, mx - 90, cy, mx - 90, my - 60, PAL.ink, 3);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
+    ctx.save(); ctx.strokeStyle = cMeter; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.arc(mx, my, 92, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
     const sweep = -Math.PI * 0.75 + (Math.PI * 1.5 * V.v) / 300;
     line(ctx, mx, my + 34, mx + 64 * Math.cos(sweep - Math.PI / 2), my + 34 + 64 * Math.sin(sweep - Math.PI / 2), C('voltage'), 4);
     dot(ctx, mx, my + 34, PAL.ink, true, 7);
     text(ctx, fmt(V.v, 0) + ' kV', mx, my + 70, C('voltage'), { size: 24, weight: 600, align: 'center' });
-    text(ctx, 'voltmeter', mx, my + 126, PAL.ink, { size: 21, align: 'center' });
+    text(ctx, 'voltmeter', mx, my + 126, cMeter, { size: 21, align: 'center' });
     /* ground, the zero of potential */
     line(ctx, mx, my + 148, mx, base + 10, PAL.ink, 3);
     for (let i = 0; i < 3; i++) line(ctx, mx - 44 + 12 * i, base + 10 + 14 * i, mx + 44 - 12 * i, base + 10 + 14 * i, PAL.ink, 3);
