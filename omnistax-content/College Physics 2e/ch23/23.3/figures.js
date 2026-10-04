@@ -5,9 +5,11 @@
    power the tether takes out of the shuttle's orbit. The field lines drawn in
    space wear the field's hue and the count of them that passes through the
    circuit wears the flux's, since the whole difficulty of the chapter is that
-   the two are not the same quantity; no rail, rod, resistor or satellite is
-   tinted, and the area, the length, the angle and the number of turns stay in
-   ink. The two rail figures stand on one locked view (root rule 28.2): the
+   the two are not the same quantity. The rod, the rails and the resistor, and
+   the tether, the shuttle, the satellite and the ionosphere, are the section's
+   referents and are drawn in their referent colours through F.ref; the rail
+   separation and the tether's length wear the position hue and the tether's
+   angle the angle hue, and the number of turns stays in ink. The two rail figures stand on one locked view (root rule 28.2): the
    rails lie flat like a table top and the field runs straight down through
    them, so that B, ℓ and v are seen to be mutually perpendicular. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -60,17 +62,17 @@ function apparatus(ctx, o) {
     ctx.save(); ctx.beginPath(); q.forEach((c, i) => (i ? ctx.lineTo(c[0], c[1]) : ctx.moveTo(c[0], c[1]))); ctx.closePath();
     ctx.fillStyle = alpha(cPhi, 0.12 + 0.26 * Math.min(1, B / 2)); ctx.fill(); ctx.restore();
   }
-  /* the rails, the resistor and the rod, every one of them in ink */
+  /* the rails, the resistor and the rod, each in its referent colour */
   const railA = o.rails[0], railB = o.rails[1];
-  [0, L].forEach((z) => seg(ctx, p(railA, z, 0), p(railB, z, 0), PAL.ink, 4));
+  [0, L].forEach((z) => seg(ctx, p(railA, z, 0), p(railB, z, 0), F.ref('rails'), 4));
   /* the resistor: four teeth across the rails, the way a circuit diagram draws one */
   const rw = 0.05;
   const zig = [];
   for (let i = 0; i <= 8; i++) { const t = i / 8, side = i === 0 || i === 8 ? 0 : (i % 2 ? 1 : -1); zig.push(p(xa + side * rw, L * t, 0)); }
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
+  ctx.save(); ctx.strokeStyle = F.ref('resistor'); ctx.lineWidth = 4; ctx.beginPath();
   zig.forEach((c, i) => (i ? ctx.lineTo(c[0], c[1]) : ctx.moveTo(c[0], c[1]))); ctx.stroke(); ctx.restore();
   /* the rod, drawn thicker than the rails because it is the source */
-  seg(ctx, p(xr, -0.02, 0), p(xr, L + 0.02, 0), PAL.ink, 8);
+  seg(ctx, p(xr, -0.02, 0), p(xr, L + 0.02, 0), F.ref('rod'), 8);
   /* the field: one line straight down onto the plane at every point of the
      lattice, and a marker in the flux hue where a line pierces the circuit */
   const w = fieldWidth(B), pierced = [];
@@ -111,7 +113,7 @@ function apparatus(ctx, o) {
   const H = 900;
   const d = sim('sim-rod-rails', H);
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 2, step: 0.05, value: 1.5, unit: 'T', dec: 2, onInput: reset, aria: 'the strength of the magnetic field through the rails' });
-  const lS = ctl(d.controls, { label: '\\ell', cls: '', min: 0.1, max: 0.6, step: 0.02, value: 0.3, unit: 'm', dec: 2, onInput: reset, aria: 'the distance between the rails' });
+  const lS = ctl(d.controls, { label: '\\ell', cls: 'position', min: 0.1, max: 0.6, step: 0.02, value: 0.3, unit: 'm', dec: 2, onInput: reset, aria: 'the distance between the rails' });
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.8, max: 3, step: 0.02, value: 2.22, unit: 'm/s', dec: 2, onInput: reset, aria: 'the speed of the rod along the rails' });
 
   const X0 = 0.20, XEND = 1.40;                 /* where the rod starts and where it leaves the rails */
@@ -181,7 +183,7 @@ function apparatus(ctx, o) {
     const fieldAt = P3(1.575, -0.075, FTOP, L);
     labs.push(['B = ' + fmt(B, 2) + ' T', fieldAt[0], fieldAt[1], 'right', cB]);
     const resAt = p(0, L / 2, 0);
-    labs.push(['R', resAt[0], resAt[1] - 10, 'above', PAL.ink]);
+    labs.push(['R', resAt[0], resAt[1] - 10, 'above', F.ref('resistor')]);
     if (v > 0) labs.push(['v = ' + fmt(v, 2) + ' m/s', vHead[0], vHead[1], 'above', cV]);
     if (emf > 1e-6 && dx > 0.17) {
       const iAt = p((X0 * 0.6 + xr) / 2, L, yA), bAt = p(X0 + (xr - X0) * 0.5, L / 2, 118), fAt = p(Math.max(xr - 0.24, 0.06), L / 2, yA);
@@ -194,7 +196,7 @@ function apparatus(ctx, o) {
       hbracket(ctx, a1[0], a2[0], 548, cX, 'Δx = ' + fmt(dx, 2) + ' m' + (dA > 0.004 ? ',  ΔA = ℓΔx = ' + fmt(dA, 2) + ' m²' : ''), { side: 'below', H });
     }
     const lAt1 = p(0.02, 0, 0), lAt2 = p(0.02, L, 0);
-    vbracket(ctx, Math.min(lAt1[0], lAt2[0]) - 34, lAt1[1], lAt2[1], PAL.ink, 'ℓ = ' + fmt(L, 2) + ' m', -1, { side: 'left', H });
+    vbracket(ctx, Math.min(lAt1[0], lAt2[0]) - 34, lAt1[1], lAt2[1], cX, 'ℓ = ' + fmt(L, 2) + ' m', -1, { side: 'left', H });
     labs.forEach(([s, x, y, side, col, gap]) => label(ctx, s, x, y, { side, size: 21, color: col, gap: gap || 20, H }));
 
     /* the graph: the flux against time, whose slope is the emf */
@@ -286,7 +288,7 @@ function apparatus(ctx, o) {
     /* the width of the loop, which is what the flux follows */
     ctx.restore();
     const g1 = p(st.xa, L / 2, 0), g2 = p(st.xr, L / 2, 0);
-    hbracket(ctx, g1[0], g2[0], 512, PAL.ink, fmt(width, 2) + ' m of rail enclosed', { side: 'below', H });
+    hbracket(ctx, g1[0], g2[0], 512, C('position'), fmt(width, 2) + ' m of rail enclosed', { side: 'below', H });
 
     const fieldAt = P3(1.575 + st.ox, -0.075, FTOP, L);
     label(ctx, 'B = ' + fmt(B, 2) + ' T', fieldAt[0], fieldAt[1], { side: 'right', size: 21, color: C('magnetic-field'), H });
@@ -328,9 +330,9 @@ function apparatus(ctx, o) {
 (function () {
   const H = 700;
   const d = sim('sim-tether', H);
-  const lS = ctl(d.controls, { label: '\\ell', cls: '', min: 0.25, max: 20, step: 0.25, value: 20, unit: 'km', dec: 2, aria: 'the length of the tether let out from the shuttle' });
+  const lS = ctl(d.controls, { label: '\\ell', cls: 'position', min: 0.25, max: 20, step: 0.25, value: 20, unit: 'km', dec: 2, aria: 'the length of the tether let out from the shuttle' });
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 8, step: 0.05, value: 7.8, unit: 'km/s', dec: 2, aria: 'the orbital speed of the shuttle' });
-  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the velocity of the shuttle and the Earth’s magnetic field' });
+  const thS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the velocity of the shuttle and the Earth’s magnetic field' });
 
   const BE = 5.0e-5;                 /* the Earth's field, the one number the section fixes */
   const I0 = 10.0;                   /* the current the experiment expected to draw, which the section's last problem uses */
@@ -358,20 +360,21 @@ function apparatus(ctx, o) {
 
     /* the Earth below and the ionosphere over it, which is the return path */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(700, 2300, 1720, -Math.PI / 2 - 0.42, -Math.PI / 2 + 0.42); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([12, 10]); ctx.beginPath(); ctx.arc(700, 2300, 1790, -Math.PI / 2 - 0.40, -Math.PI / 2 + 0.40); ctx.stroke(); ctx.restore();
+    const cIo = F.ref('ionosphere'), cTe = F.ref('tether'), cSh = F.ref('shuttle'), cSa = F.ref('satellite');
+    ctx.save(); ctx.strokeStyle = alpha(cIo, 0.6); ctx.lineWidth = 2; ctx.setLineDash([12, 10]); ctx.beginPath(); ctx.arc(700, 2300, 1790, -Math.PI / 2 - 0.40, -Math.PI / 2 + 0.40); ctx.stroke(); ctx.restore();
     text(ctx, 'the Earth', 700, 654, PAL.muted, { size: 19, align: 'center' });
-    text(ctx, 'the ionosphere, which conducts and carries the current back', 700, 574, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the ionosphere, which conducts and carries the current back', 700, 574, cIo, { size: 17, align: 'center' });
 
     /* the tether, the shuttle at its foot and the satellite at its head */
-    line(ctx, XS, YS - 10, XS, yTop, PAL.ink, 4);
-    shuttle(ctx, XS, YS + 14, 1, PAL.ink);
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    line(ctx, XS, YS - 10, XS, yTop, cTe, 4);
+    shuttle(ctx, XS, YS + 14, 1, cSh);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cSa; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(XS, yTop - 15, 15, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
     [-1, 1].forEach((s) => { ctx.beginPath(); ctx.rect(XS + s * 44 - 14, yTop - 24, 28, 17); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(XS + s * 15, yTop - 15); ctx.lineTo(XS + s * 30, yTop - 15); ctx.stroke(); });
     ctx.restore();
-    label(ctx, 'the satellite', XS, yTop - 38, { side: 'above', size: 20, color: PAL.ink, H });
-    label(ctx, 'the shuttle', XS - 66, YS + 10, { side: 'left', size: 20, color: PAL.ink, H });
-    vbracket(ctx, XS + 66, yTop, YS, PAL.ink, 'ℓ = ' + fmt(lS.v, 2) + ' km', 1, { side: 'right', H });
+    label(ctx, 'the satellite', XS, yTop - 38, { side: 'above', size: 20, color: cSa, H });
+    label(ctx, 'the shuttle', XS - 66, YS + 10, { side: 'left', size: 20, color: cSh, H });
+    vbracket(ctx, XS + 66, yTop, YS, C('position'), 'ℓ = ' + fmt(lS.v, 2) + ' km', 1, { side: 'right', H });
 
     /* the circuit: up the tether, out at the top and back through the ionosphere */
     if (emf > 1e-9) {
@@ -401,9 +404,9 @@ function apparatus(ctx, o) {
     const bl = 162, bxh = cx0 + bl * Math.cos(th * RAD), byh = cy0 - bl * Math.sin(th * RAD);
     arrow(ctx, cx0, cy0, bxh, byh, cB, 5);
     text(ctx, 'B', bxh + (th > 60 ? -14 : 8), byh - (th > 60 ? 8 : 16), cB, { size: 24, weight: 600, align: th > 60 ? 'right' : 'left' });
-    if (th > 3) angleArc(ctx, { x: cx0, y: cy0 }, 66, 0, th * RAD, 'θ = ' + fmt(th, 0) + '°');
-    dot(ctx, cx0, cy0, PAL.ink, false, 9);
-    text(ctx, 'the tether, end on', cx0, cy0 + 56, PAL.muted, { size: 17, align: 'center' });
+    if (th > 3) angleArc(ctx, { x: cx0, y: cy0 }, 66, 0, th * RAD, 'θ = ' + fmt(th, 0) + '°', undefined, C('angle'));
+    dot(ctx, cx0, cy0, cTe, false, 9);
+    text(ctx, 'the tether, end on', cx0, cy0 + 56, cTe, { size: 17, align: 'center' });
 
     hits.push({ x: XS, y: mid, r: 56, name: 'the conducting tether, ' + fmt(lS.v, 2) + ' km of it, moving across the Earth’s field' });
     hits.push({ x: XS, y: YS + 14, r: 52, name: 'the space shuttle, at the lower end of the tether' });
@@ -413,7 +416,7 @@ function apparatus(ctx, o) {
       ? 'The tether is moving along the Earth’s field rather than across it, so no emf appears between its ends however long it is.'
       : 'A ' + fmt(lS.v, 2) + ' km tether moving at ' + fmt(vS.v, 2) + ' km/s across the Earth’s 5.00 × 10⁻⁵ T field develops ' + fmt(emf / 1000, 2) + ' kV between its ends.');
     readout(d.readout,
-      `\\kemf = \\kBmag\\ell\\kv\\sin\\theta = (5.00 \\times 10^{-5}\\ \\text{T})(${fmt(l, 0)}\\ \\text{m})(${fmt(v, 0)}\\ \\text{m/s})\\sin ${fmt(th, 0)}^\\circ = ${fmt(emf, 0)}\\ \\text{V}`,
+      `\\kemf = \\kBmag\\ell\\kv\\sin\\ktheta = (5.00 \\times 10^{-5}\\ \\text{T})(${fmt(l, 0)}\\ \\text{m})(${fmt(v, 0)}\\ \\text{m/s})\\sin ${fmt(th, 0)}^\\circ = ${fmt(emf, 0)}\\ \\text{V}`,
       emf < 1e-9
         ? 'With the velocity along the field there is nothing to drive a current, and the shuttle gives up none of its orbital energy to the tether.'
         : 'With the ' + fmt(I0, 1) + ' A the experiment expected to draw, the magnetic force on the tether is ' + fmt(drag, 1) + ' N against the motion, and the power that force takes out of the shuttle’s orbit is ' + fmt(power / 1000, 1) + ' kW, which is the electrical power the tether delivers.');

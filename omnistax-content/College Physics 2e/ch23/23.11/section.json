@@ -4,7 +4,7 @@
   "chapter": "23",
   "title": "Reactance, Inductive and Capacitive",
   "short": "Reactance",
-  "lead": "An inductor and a capacitor each do something to an alternating current that a resistor does not. Put an inductor alone on an AC source and the current still rises and falls with the voltage, but it lags a quarter of a cycle behind, because the inductor opposes any change in the current. Put a capacitor there instead and the current runs a quarter of a cycle ahead of the voltage, because the current is largest when the plates are empty. Each limits the current as a resistance does, and each has its own ohms: the inductive reactance $\\kXL = 2\\pi \\kf\\kLind$, which grows with the frequency, and the capacitive reactance $\\kXC = 1/2\\pi \\kf\\kCap$, which falls with it. Ohm's law then gives the current in its familiar form, $\\kIcur = \\kV/\\kXL$ or $\\kIcur = \\kV/\\kXC$. Because the two run opposite ways with frequency, an inductor in series keeps high frequencies out of a circuit and a capacitor keeps low ones out. That is how a sound system loses its hum and how a computer's supply stays free of noise. A resistor does neither: its voltage and current are exactly in phase, and its ohms do not depend on the frequency at all.",
+  "lead": "An inductor and a capacitor each do something to an alternating current that a resistor does not. Put <span data-ref=\"inductor\">an inductor</span> alone on <span data-ref=\"source\">an AC source</span> and <span data-type=\"current\">the current</span> still rises and falls with <span data-type=\"voltage\">the voltage</span>, but it lags a quarter of a cycle behind, because <span data-ref=\"inductor\">the inductor</span> opposes any change in <span data-type=\"current\">the current</span>. Put <span data-ref=\"capacitor\">a capacitor</span> there instead and <span data-type=\"current\">the current</span> runs a quarter of a cycle ahead of <span data-type=\"voltage\">the voltage</span>, because <span data-type=\"current\">the current</span> is largest when the plates are empty. Each limits the current as a resistance does, and each has its own ohms: the inductive reactance $\\kXL = 2\\pi \\kf\\kLind$, which grows with the frequency, and the capacitive reactance $\\kXC = 1/2\\pi \\kf\\kCap$, which falls with it. Ohm's law then gives the current in its familiar form, $\\kIcur = \\kV/\\kXL$ or $\\kIcur = \\kV/\\kXC$. Because the two run opposite ways with frequency, an inductor in series keeps high frequencies out of a circuit and a capacitor keeps low ones out. That is how a sound system loses its hum and how a computer's supply stays free of noise. <span data-ref=\"resistor\">A resistor</span> does neither: <span data-type=\"voltage\">its voltage</span> and <span data-type=\"current\">current</span> are exactly in phase, and <span data-type=\"resistance\">its ohms</span> do not depend on the frequency at all.",
   "objectives": [
     "Sketch voltage and current versus time in simple inductive, capacitive, and resistive circuits.",
     "Calculate inductive and capacitive reactance.",
@@ -312,5 +312,27 @@
     {"exercise": "p9", "concept": "filtering-by-frequency", "weight": 5, "weights_by": "ai"},
     {"exercise": "p11", "concept": "capacitive-reactance"},
     {"exercise": "p11", "concept": "filtering-by-frequency", "weight": 5, "weights_by": "ai"}
+  ],
+  "referents": [
+    {
+      "id": "inductor",
+      "label": "the inductor",
+      "figure": "sim-ac-phase"
+    },
+    {
+      "id": "capacitor",
+      "label": "the capacitor",
+      "figure": "sim-ac-phase"
+    },
+    {
+      "id": "resistor",
+      "label": "the resistor",
+      "figure": "sim-ac-phase"
+    },
+    {
+      "id": "source",
+      "label": "the AC voltage source",
+      "figure": "sim-ac-phase"
+    }
   ]
 }

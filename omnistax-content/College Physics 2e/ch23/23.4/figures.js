@@ -6,13 +6,14 @@
    takes to die away. Every field arrow and every cross wears the field hue, every
    eddy current loop the current hue, every drag arrow the force hue, every speed
    the velocity hue, and every displacement, position and distance the position
-   hue. No device is tinted: a magnet, a pole piece, a plate, a beam, a ramp and a
-   can are all ink. The flux is not drawn as a quantity, since the section prints
+   hue. The things the text points at are the section's referents and wear their
+   referent colours through F.ref: the three bobs and their magnet, the plate, the
+   balance and its disc, and the can, the fitting, the bottle, the ramp and the
+   magnet under it. The flux is not drawn as a quantity, since the section prints
    no flux symbol and no equation; the part of a plate that lies in the field is an
    area, bracketed in ink, and whether the flux through it is growing, steady or
-   falling is said in words. The three pendulum bobs carry no type of their own and
-   must be told apart, so they take F.cat(0..2), which ch23/COLOR.md grants this
-   page and which nothing else on it uses.
+   falling is said in words. The three pendulum bobs are three referents, so each
+   bob, its name and its curve on the graph take its referent colour.
 
    Three of the four figures move, because damping is a rate and each of the three
    has a clock in it: a swing dying away, a balance settling, and three pieces of
@@ -24,7 +25,7 @@
    orbit; everything else is flat. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.4'] = function (root, F) {
-const { el, fmt, tex, C, PAL, cat, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, label, labeller, note, hbracket, vbracket, axes, curve, pinned, fixed, hover, view, face } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, label, labeller, note, hbracket, vbracket, axes, curve, pinned, fixed, hover, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const TAU = 2 * Math.PI;
@@ -97,12 +98,19 @@ function cross(ctx, x, y, r, color, w) {
       { n: [-1, 0, 0], pts: [[x0, y0, z0], [x0, y1, z0], [x0, y1, z1], [x0, y0, z1]] },
     ];
   }
-  const solid = (ctx, V, faces) => faces.forEach((f) => { if (facing(f.n) > 0.02) face(ctx, f.pts.map((p) => V.P(p)), V.shade(f.n), 2.5); });
+  const solid = (ctx, V, faces, color) => faces.forEach((f) => {
+    if (facing(f.n) <= 0.02) return;
+    const q = f.pts.map((p) => V.P(p));
+    if (!color) { face(ctx, q, V.shade(f.n), 2.5); return; }
+    face(ctx, q, V.shade(f.n));
+    ctx.save(); ctx.beginPath(); q.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+    ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineJoin = 'round'; ctx.stroke(); ctx.restore();
+  });
   const GAP = 46, PW = 74, PZ = 96, LR = 205, SC = 8;   /* eight canvas units to the centimeter of swing, so the widest swing the slider reaches, 14 cm, is 112 units of a 205-unit rod */
   const COLS = [
-    { k: 'solid', name: 'a solid metal bob', dash: [] },
-    { k: 'slotted', name: 'a slotted metal bob', dash: [15, 9] },
-    { k: 'insulating', name: 'an insulating bob', dash: [5, 8] },
+    { k: 'solid', id: 'solid-bob', name: 'a solid metal bob', dash: [] },
+    { k: 'slotted', id: 'slotted-bob', name: 'a slotted metal bob', dash: [15, 9] },
+    { k: 'insulating', id: 'insulating-bob', name: 'an insulating bob', dash: [5, 8] },
   ];
   const VIEWS = [250, 700, 1150].map((cx) => view({ yaw: YAW, pitch: PITCH, dist: DIST, cx, cy: 385 }));
 
@@ -111,16 +119,16 @@ function cross(ctx, x, y, r, color, w) {
     const t = cy.now(), cB = C('magnetic-field'), cI = C('current'), cF = C('force');
     const vmax = aS.v * (TAU / TP);           /* the greatest speed any bob reaches, at the first pass through the middle */
     COLS.forEach((col, i) => {
-      const V = VIEWS[i], P = (p) => V.P(p), cc = cat(i);
+      const V = VIEWS[i], P = (p) => V.P(p), cc = F.ref(col.id), cMag = F.ref('pendulum-magnet');
       const x = xOf(col.k, t), v = vOf(col.k, t);
       const sn = (x * SC) / LR, th = Math.asin(Math.max(-1, Math.min(1, sn))), cs = Math.cos(th);
       /* what this bob is made of, named once above its own apparatus (rule 26.7) */
       text(ctx, col.name, 250 + i * 450, 106, cc, { size: 21, weight: 600, align: 'center' });
       /* the beam the pendulum hangs from, the magnet's base and its two poles */
       solid(ctx, V, boxOf(-36, 36, LR + 8, LR + 38, -120, 120));
-      solid(ctx, V, boxOf(-(GAP + PW), GAP + PW, -186, -118, -PZ, PZ));
-      solid(ctx, V, boxOf(-(GAP + PW), -GAP, -118, 42, -PZ, PZ));
-      solid(ctx, V, boxOf(GAP, GAP + PW, -118, 42, -PZ, PZ));
+      solid(ctx, V, boxOf(-(GAP + PW), GAP + PW, -186, -118, -PZ, PZ), cMag);
+      solid(ctx, V, boxOf(-(GAP + PW), -GAP, -118, 42, -PZ, PZ), cMag);
+      solid(ctx, V, boxOf(GAP, GAP + PW, -118, 42, -PZ, PZ), cMag);
       /* the field across the gap, from the north face to the south face, thickening with its strength */
       if (bS.v > 0.001) {
         const lw = 2 + 4 * (bS.v / 0.8);
@@ -169,9 +177,9 @@ function cross(ctx, x, y, r, color, w) {
     const { X, Y } = axes(ctx, box, [0, RUN], [-14, 14], { xl: 'time t (s)', xc: C('time'), yl: 'displacement x (cm)', yc: C('position'), nx: 4, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
     COLS.forEach((col, i) => {
       ctx.save(); ctx.setLineDash(col.dash);
-      if (t > 0.001) curve(ctx, (q) => xOf(col.k, q), 0, t, X, Y, cat(i), i ? 3.5 : 4.5, Math.min(2200, Math.ceil((60 * t) / TP) + 20));
+      if (t > 0.001) curve(ctx, (q) => xOf(col.k, q), 0, t, X, Y, F.ref(col.id), i ? 3.5 : 4.5, Math.min(2200, Math.ceil((60 * t) / TP) + 20));
       ctx.restore();
-      dot(ctx, X(t), Y(xOf(col.k, t)), cat(i), true, 8);
+      dot(ctx, X(t), Y(xOf(col.k, t)), F.ref(col.id), true, 8);
     });
     const now = COLS.map((c) => fmt(swing(c.k, t), 1));
     topline(ctx, bS.v < 0.001
@@ -226,14 +234,14 @@ function cross(ctx, x, y, r, color, w) {
     arrow(ctx, cx, 178, cx + vlen, 178, cV, 5);
     label(ctx, 'v = ' + fmt(vS.v, 2) + ' m/s', cx + vlen, 178, { side: 'right', size: 21, color: cV, leader: false });
     /* the plate, over the field, with the field still drawn through the part of it that lies inside */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(pl, pt, pr - pl, pb - pt); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.strokeRect(pl, pt, pr - pl, pb - pt); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(pl, pt, pr - pl, pb - pt); ctx.strokeStyle = F.ref('plate'); ctx.lineWidth = 4; ctx.strokeRect(pl, pt, pr - pl, pb - pt); ctx.restore();
     const ol = Math.max(pl, fl), or = Math.min(pr, fr);
     if (or > ol) {
       ctx.save(); ctx.beginPath(); ctx.rect(ol, pt, or - ol, pb - pt); ctx.clip();
       ctx.fillStyle = alpha(cB, 0.1); ctx.fillRect(ol, pt, or - ol, pb - pt);
       if (bS.v > 0.001) marks.forEach((m) => cross(ctx, m[0], m[1], 10, cB, 2 + 2 * (bS.v / 0.8)));
       ctx.restore();
-      hbracket(ctx, ol, or, 545, PAL.ink, fmt((or - ol) / SC, 1) + ' cm of the plate is in the field', { side: 'below' });
+      hbracket(ctx, ol, or, 545, cP, fmt((or - ol) / SC, 1) + ' cm of the plate is in the field', { side: 'below' });
     } else {
       text(ctx, 'none of the plate is in the field', cx, 552, PAL.muted, { size: 19, align: 'center' });
     }
@@ -323,7 +331,8 @@ function cross(ctx, x, y, r, color, w) {
     if (bS.v > 0.001) [[-72, -52], [72, -52], [-72, 54], [72, 54]].forEach((m) => cross(ctx, PX + m[0], PY + m[1], 12, cB, 2 + 2 * (bS.v / 0.6)));
     text(ctx, 'B = ' + fmt(bS.v, 2) + ' T into the page', PX + 118, PY - 62, cB, { size: 21, weight: 600 });
     /* the disc on the beam's shaft, which turns with it */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(PX, PY, 46, 0, TAU); ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.stroke(); ctx.restore();
+    const cDisc = F.ref('disc'), cBal = F.ref('balance');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(PX, PY, 46, 0, TAU); ctx.fill(); ctx.strokeStyle = cDisc; ctx.lineWidth = 3.5; ctx.stroke(); ctx.restore();
     const drive = Math.min(1, (speed(t) / (aS.v * (TAU / TP) || 1)) * (bS.v / 0.6));
     if (drive > 0.02) {
       swirl(ctx, PX, PY, 29, y <= 0, cI, 3 + 2 * drive);
@@ -334,15 +343,15 @@ function cross(ctx, x, y, r, color, w) {
     /* the beam, its two pans, and the level it settles to */
     line(ctx, PX - 360, PY, PX + 360, PY, alpha(PAL.ink, 0.35), 2, [10, 10]);
     const lx = PX - HALF * cs, ly = PY - HALF * sn, rx = PX + HALF * cs, ry = PY + HALF * sn;
-    line(ctx, lx, ly, rx, ry, PAL.ink, 7);
+    line(ctx, lx, ly, rx, ry, cBal, 7);
     [[lx, ly], [rx, ry]].forEach(([ex, ey]) => {
-      line(ctx, ex, ey, ex, ey + 92, PAL.ink, 2.5);
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.ellipse(ex, ey + 100, 56, 15, 0, 0, Math.PI); ctx.stroke(); ctx.restore();
-      line(ctx, ex - 56, ey + 100, ex + 56, ey + 100, PAL.ink, 3.5);
-      dot(ctx, ex, ey, PAL.ink, true, 7);
+      line(ctx, ex, ey, ex, ey + 92, cBal, 2.5);
+      ctx.save(); ctx.strokeStyle = cBal; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.ellipse(ex, ey + 100, 56, 15, 0, 0, Math.PI); ctx.stroke(); ctx.restore();
+      line(ctx, ex - 56, ey + 100, ex + 56, ey + 100, cBal, 3.5);
+      dot(ctx, ex, ey, cBal, true, 7);
     });
     if (Math.abs(y) > 0.4) vbracket(ctx, lx - 74, PY, ly, cP, fmt(Math.abs(y), 1) + ' mm', -1, { size: 21 });
-    label(ctx, 'the disc turns with the beam', PX, PY + 56, { side: 'below', size: 19, color: PAL.muted, gap: 30 });
+    label(ctx, 'the disc turns with the beam', PX, PY + 56, { side: 'below', size: 19, color: cDisc, gap: 30 });
     /* the graph: how the pan settles. Both ranges are fixed — the whole six seconds the
        figure runs, and the slider's own 20 mm on either side of the level. */
     const box = { l: 170, r: 1250, t: 590, b: 760 };
@@ -379,7 +388,7 @@ function cross(ctx, x, y, r, color, w) {
   const rS = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0.2, max: 0.85, step: 0.05, value: 0.7, unit: 'm', dec: 2, onInput: reset, aria: 'how far up the ramp the pieces are let go' });
   const RUN = 6, DT = 0.01, N = Math.round(RUN / DT) + 1;
   const RAMP = 1.2, AINC = 4.56, MU = 2.16, ZA = 0.25, ZB = 0.75, DRAGK = 10;
-  const ITEMS = [{ mat: 1, name: 'an aluminum can' }, { mat: 1.8, name: 'a copper fitting' }, { mat: 0, name: 'a plastic bottle' }];
+  const ITEMS = [{ mat: 1, id: 'can', name: 'an aluminum can' }, { mat: 1.8, id: 'fitting', name: 'a copper fitting' }, { mat: 0, id: 'bottle', name: 'a plastic bottle' }];
   const cy = cycle(() => RUN, 1.2);
   let track = null;
   function reset() { track = null; cy.reset(); }
@@ -420,10 +429,11 @@ function cross(ctx, x, y, r, color, w) {
     ctx.moveTo(TOPX, TOPY); ctx.lineTo(GX, GY); ctx.lineTo(RX, GY); ctx.lineTo(RX, GY - CH); ctx.lineTo(GX, GY - CH); ctx.lineTo(TOPX, TOPY - CH); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, TOPX, TOPY - CH, GX, GY - CH, alpha(PAL.ink, 0.3), 2, [10, 10]);
     line(ctx, GX, GY - CH, RX, GY - CH, alpha(PAL.ink, 0.3), 2, [10, 10]);
-    line(ctx, TOPX, TOPY, GX, GY, PAL.ink, 5); line(ctx, GX, GY, RX, GY, PAL.ink, 5);
+    const cRamp = F.ref('ramp');
+    line(ctx, TOPX, TOPY, GX, GY, cRamp, 5); line(ctx, GX, GY, RX, GY, cRamp, 5);
     /* the magnet buried under the run-out, and the field it sends up through the chute */
     const ma = GX + ZA * SCM, mb = GX + ZB * SCM;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(ma, GY + 6, mb - ma, 52); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(ma, GY + 6, mb - ma, 52); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(ma, GY + 6, mb - ma, 52); ctx.strokeStyle = F.ref('ramp-magnet'); ctx.lineWidth = 3; ctx.strokeRect(ma, GY + 6, mb - ma, 52); ctx.restore();
     text(ctx, 'N', (ma + mb) / 2, GY + 32, PAL.ink, { size: 24, weight: 700, align: 'center' });
     if (bS.v > 0.001) for (let x = ma + 24; x < mb; x += 40) arrow(ctx, x, GY + 2, x, GY - 30 - 70 * (bS.v / 0.9), cB, 2 + 2.5 * (bS.v / 0.9));
     label(ctx, 'the magnet, B = ' + fmt(bS.v, 2) + ' T', ma - 12, GY + 32, { side: 'left', size: 20, color: cB, leader: false });
@@ -448,13 +458,14 @@ function cross(ctx, x, y, r, color, w) {
       /* three pieces a reader knows at sight, each about 50 units tall: a drink
          can standing up with its rim and tab, a copper elbow fitting with its two
          open sockets, and a bottle with its shoulders, neck and cap */
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel; ctx.lineJoin = 'round';
+      const cIt = F.ref(e.it.id);
+      ctx.save(); ctx.strokeStyle = cIt; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel; ctx.lineJoin = 'round';
       if (j === 0) {
         const w = 30, h = 52, x = e.x - w / 2, y = e.y - h / 2;
         ctx.beginPath(); ctx.moveTo(x + 4, y + 8); ctx.lineTo(x, y + 14); ctx.lineTo(x, y + h - 8); ctx.lineTo(x + 4, y + h);
         ctx.lineTo(x + w - 4, y + h); ctx.lineTo(x + w, y + h - 8); ctx.lineTo(x + w, y + 14); ctx.lineTo(x + w - 4, y + 8); ctx.closePath(); ctx.fill(); ctx.stroke();
         ctx.beginPath(); ctx.ellipse(e.x, y + 8, w / 2 - 4, 4, 0, 0, TAU); ctx.fill(); ctx.stroke();   /* the rim */
-        line(ctx, e.x - 6, y + 8, e.x + 5, y + 8, PAL.ink, 2.5);                                     /* the tab */
+        line(ctx, e.x - 6, y + 8, e.x + 5, y + 8, cIt, 2.5);                                     /* the tab */
         line(ctx, x + 1, y + 24, x + w - 1, y + 24, alpha(PAL.ink, 0.35), 2); line(ctx, x + 1, y + h - 14, x + w - 1, y + h - 14, alpha(PAL.ink, 0.35), 2);
       } else if (j === 1) {
         const r = 12, a = 24;                                                                     /* an elbow: two sockets at right angles */
@@ -463,7 +474,7 @@ function cross(ctx, x, y, r, color, w) {
         ctx.lineTo(e.x - r, e.y + r); ctx.lineTo(e.x - a, e.y + r); ctx.closePath(); ctx.fill(); ctx.stroke();
         ctx.beginPath(); ctx.ellipse(e.x - a, e.y, 4, r, 0, 0, TAU); ctx.fill(); ctx.stroke();       /* the open ends */
         ctx.beginPath(); ctx.ellipse(e.x, e.y + a, r, 4, 0, 0, TAU); ctx.fill(); ctx.stroke();
-        line(ctx, e.x - a + 5, e.y - r, e.x - a + 5, e.y + r, PAL.ink, 2); line(ctx, e.x - r, e.y + a - 5, e.x + r, e.y + a - 5, PAL.ink, 2);   /* the socket shoulders */
+        line(ctx, e.x - a + 5, e.y - r, e.x - a + 5, e.y + r, cIt, 2); line(ctx, e.x - r, e.y + a - 5, e.x + r, e.y + a - 5, cIt, 2);   /* the socket shoulders */
       } else {
         const w = 26, h = 56, y = e.y - h / 2;
         ctx.beginPath(); ctx.moveTo(e.x - w / 2, y + h - 4); ctx.quadraticCurveTo(e.x - w / 2, y + h, e.x - w / 2 + 4, y + h);
@@ -487,7 +498,7 @@ function cross(ctx, x, y, r, color, w) {
         if (j === 0) lab.add('v', vx, e.y, 1, 0, cV, 21, 16);
       }
     });
-    state.forEach((e) => lab.add(e.it.name, e.x, e.y - 30, 0, -1, PAL.ink, 19, 16));
+    state.forEach((e) => lab.add(e.it.name, e.x, e.y - 30, 0, -1, F.ref(e.it.id), 19, 16));
     lab.flush();
     const speeds = state.map((e) => e.v);
     readout(d.readout,

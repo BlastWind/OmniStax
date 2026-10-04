@@ -6,9 +6,10 @@
    count of them that passes through the coil's opening is drawn in the flux hue,
    because the whole difficulty of the section is that a field can be strong while
    the flux through a coil is not changing at all. The number of turns, the coil's
-   radius, the magnet's travel and every axis title are untyped and in ink, and no
-   body is tinted: the magnet is ink with N and S lettered on its ends, and so is
-   the coil.
+   magnet's travel and every axis title are in ink. The single loop of the sim
+   and the bar magnet and coil of Figure 23.7 are the section's referents and are
+   drawn in their referent colours through F.ref, the magnet with N and S
+   lettered on its ends; the angle in the sim's slider wears the angle hue.
    Figure 23.7 moves, because induction is a rate and the dwell in the middle of
    its cycle is the lesson. The sim of Faraday's three factors is still: a before
    and an after is not a process with a clock, and it answers its sliders alone. */
@@ -30,10 +31,10 @@ function sciTex(x, dp) {
   return `${fmt(m, dp)}\\times 10^{${e}}`;
 }
 
-/* a bar magnet: an ink outline with a rule across its middle and a letter in each
-   half. (cx, cy) is the centre and `right` the letter on its right-hand end. */
+/* a bar magnet: an outline in its referent colour with a rule across its middle and
+   a letter in each half. (cx, cy) is the centre and `right` the letter on its right-hand end. */
 function barMagnet(ctx, cx, cy, L, T, right) {
-  ctx.save(); ctx.lineWidth = 4; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
+  ctx.save(); ctx.lineWidth = 4; ctx.strokeStyle = F.ref('lenz-magnet'); ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.rect(cx - L / 2, cy - T / 2, L, T); ctx.fill(); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(cx, cy - T / 2); ctx.lineTo(cx, cy + T / 2); ctx.stroke();
   ctx.restore();
@@ -45,12 +46,12 @@ function barMagnet(ctx, cx, cy, L, T, right) {
    that runs behind the axis is faint and the half that runs in front of it is
    solid, so that which way the current goes round the coil can be read off the
    near wire. Returns where the coil begins and ends, and where each front arc sits. */
-function solenoid(ctx, cx, cy, n, pitch, b) {
+function solenoid(ctx, cx, cy, n, pitch, b, color) {
   const x0 = cx - (n * pitch) / 2 + pitch / 2;
   ctx.save(); ctx.lineJoin = 'round';
-  ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+  ctx.strokeStyle = alpha(color, 0.45); ctx.lineWidth = 3;
   for (let k = 0; k < n; k++) { ctx.beginPath(); ctx.ellipse(x0 + k * pitch, cy, pitch / 2, b, 0, PI / 2, 3 * PI / 2); ctx.stroke(); }
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5;
+  ctx.strokeStyle = color; ctx.lineWidth = 5;
   for (let k = 0; k < n; k++) { ctx.beginPath(); ctx.ellipse(x0 + (k + 0.5) * pitch, cy, pitch / 2, b, 0, -PI / 2, PI / 2); ctx.stroke(); }
   ctx.restore();
   return { l: x0 - pitch / 2, r: x0 + n * pitch, front: (k) => x0 + (k + 0.5) * pitch };
@@ -67,7 +68,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
 (function () {
   const d = sim('sim-faraday', 880);
   const nS = ctl(d.controls, { label: 'N', cls: '', min: 1, max: 10, step: 1, value: 1, unit: 'turns', dec: 0, aria: 'the number of turns in the coil' });
-  const bS = ctl(d.controls, { label: '\\Delta(\\kBmag\\cos\\theta)', cls: 'magnetic-field', min: 0.05, max: 0.4, step: 0.01, value: 0.2, unit: 'T', dec: 2, aria: 'how much the field through the loop changes' });
+  const bS = ctl(d.controls, { label: '\\Delta(\\kBmag\\cos\\ktheta)', cls: 'magnetic-field', min: 0.05, max: 0.4, step: 0.01, value: 0.2, unit: 'T', dec: 2, aria: 'how much the field through the loop changes' });
   const tS = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.02, max: 0.35, step: 0.01, value: 0.1, unit: 's', dec: 2, aria: 'the time the change takes' });
 
   const R = 0.0600, A = PI * R * R;                 /* the example's loop: 6.00 cm of radius, 1.13 × 10⁻² m² */
@@ -81,7 +82,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
 
   /* the loop, drawn as a flat spiral of n turns so that the turns can be counted */
   function spiral(ctx, cx, cy, n) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = F.ref('faraday-loop'); ctx.lineWidth = 2.5; ctx.beginPath();
     const step = 6.5;
     for (let i = 0; i <= n * 72; i++) {
       const a = (i / 72) * 2 * PI, rr = RD - (i / 72) * step;
@@ -243,7 +244,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
       arrow(ctx, MX - dir * 30, CYA + SLOT[i], MX + dir * 30, CYA + SLOT[i], pc, 4);
     }
     /* the coil, and the magnet on its axis */
-    const coil = solenoid(ctx, MX, CYA, N, PITCH, BORE);
+    const coil = solenoid(ctx, MX, CYA, N, PITCH, BORE, F.ref('lenz-coil'));
     poles.forEach((p) => { ctx.save(); ctx.globalAlpha = poles.length > 1 ? poleC.a(p) : 1; barMagnet(ctx, mx, CYA, ML, MT, p); ctx.restore(); });
     /* the field the coil raises against the change, and the current that raises it */
     if (moving) {
@@ -259,7 +260,7 @@ function solenoid(ctx, cx, cy, n, pitch, b) {
       }
       label(ctx, 'I', xf + 12, CYA - BORE * 0.86, { side: 'right', color: ic, gap: 14, size: 22, leader: false });
     }
-    text(ctx, N === 1 ? 'the coil, of one turn' : 'the coil, of ' + N + ' turns', MX, CYA + BORE + 40, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, N === 1 ? 'the coil, of one turn' : 'the coil, of ' + N + ' turns', MX, CYA + BORE + 40, F.ref('lenz-coil'), { size: 19, align: 'center' });
     text(ctx, s > 0.05 ? fmt(s, 1) + ' cm from the coil' : 'held still inside the coil', mx, CYA + BORE + 76, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
 
     /* the flux and the emf against the same time axis */

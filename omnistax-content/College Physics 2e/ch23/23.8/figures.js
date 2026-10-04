@@ -6,14 +6,19 @@
    The page binds voltage, current and resistance, which is what ch23/COLOR.md
    gives 23.8, and `sim-gfi` binds the magnetic field as well, for the field the
    live and neutral wires raise inside the sensing coil's core; the plan says so
-   and the chapter pass is asked to widen the colour plan's line. No device is
-   tinted: every wire, plug, outlet, case, core, coil, breaker and pipe is ink,
-   and so is the person. What wears a hue is the quantity: the voltage a
+   and the chapter pass is asked to widen the colour plan's line. The things the text
+   names throughout the section are its referents, all indexed on the first
+   figure so that no two of them share a colour on any figure that draws both:
+   the live/hot, neutral and earth/ground wires, the circuit breaker, the case,
+   the appliance, the person, the plug, the GFI's sensing coil and the isolation
+   transformer, each drawn in its referent colour through F.ref. The outlet, the
+   cores, the source, the earth connections and the pipe stay ink. What wears a
+   hue as a quantity is the voltage a
    conductor sits at, the current along a wire, the resistance of the appliance,
    of an earth/ground wire, of a person and of the material between a
    transformer's coils. Insulation is never drawn in its colour code, since the
    section's own note is that the codes differ from one region to another; the
-   conductors are told apart by their names. Nothing in any scene moves and no
+   conductors are told apart by their names and their referent colours. Nothing in any scene moves and no
    two names can meet at any setting of any slider, so the labels are on
    (rule 26.7). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -48,7 +53,9 @@ const ohms = (R, d) => (R >= 1e6 ? fmt(R / 1e6, 0) + ' MΩ' : R >= 1000 ? fmt(R 
    may draw a run whole and set the pieces on it, and every name is set on a
    panel beside the thing it names and never on it. */
 const WIRE = 3.5;
-const wires = (ctx, pts) => { for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], PAL.ink, WIRE); };
+const wires = (ctx, pts, color) => { for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], color || PAL.ink, WIRE); };
+/* the three conductors the text names, each in its referent colour */
+const LIVE_C = () => F.ref('live-wire'), NEUT_C = () => F.ref('neutral-wire'), EARTH_C = () => F.ref('earth-wire');
 const node = (ctx, x, y, r) => dot(ctx, x, y, PAL.ink, true, r || 7);
 /* a name on a panel, so that it reads over whatever it is set beside */
 function tag(ctx, s, x, y, color, o) {
@@ -63,7 +70,7 @@ function zig(ctx, x, y, a, len) {
   const L = len || 96, n = 6, s = L / n, A = 13;
   gap(ctx, x, y, a, L, 7);
   ctx.save(); ctx.translate(x, y); ctx.rotate(a);
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter';
+  ctx.strokeStyle = F.ref('appliance'); ctx.lineWidth = WIRE; ctx.lineJoin = 'miter';
   ctx.beginPath(); ctx.moveTo(-L / 2, 0);
   for (let i = 0; i < n; i++) { ctx.lineTo(-L / 2 + (i + 0.25) * s, -A); ctx.lineTo(-L / 2 + (i + 0.75) * s, A); }
   ctx.lineTo(L / 2, 0); ctx.stroke(); ctx.restore();
@@ -85,16 +92,17 @@ function earth(ctx, x, y, k) {
    it is carrying and thrown open when it has tripped */
 function breaker(ctx, x, y, closed) {
   gap(ctx, x, y, 0, 110, 10);
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  const bc = F.ref('breaker');
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = bc; ctx.lineWidth = 3; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.roundRect(x - 52, y - 32, 104, 64, 8); ctx.fill(); ctx.stroke(); ctx.restore();
   node(ctx, x - 30, y, 6); node(ctx, x + 30, y, 6);
-  if (closed) line(ctx, x - 30, y, x + 30, y - 7, PAL.ink, 4);
-  else line(ctx, x - 30, y, x + 16, y - 26, PAL.ink, 4);
+  if (closed) line(ctx, x - 30, y, x + 30, y - 7, bc, 4);
+  else line(ctx, x - 30, y, x + 16, y - 26, bc, 4);
 }
 /* the case round an appliance. A metal case is one stroke; a nonconducting one
    is drawn with a second outline inside it, as a doubly insulated tool has. */
 function caseBox(ctx, l, t, r, b, insulated) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+  ctx.save(); ctx.strokeStyle = F.ref('case'); ctx.lineWidth = 3; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.roundRect(l, t, r - l, b - t, 10); ctx.stroke();
   if (insulated) { ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(l + 9, t + 9, r - l - 18, b - t - 18, 8); ctx.stroke(); }
   ctx.restore();
@@ -123,9 +131,9 @@ function broken(ctx, x, y, horiz) {
 }
 /* a coil wound on a former: n turns along the segment from (x, y1) to (x, y2),
    bulging to the side `side` */
-function coil(ctx, x, y1, y2, n, side) {
+function coil(ctx, x, y1, y2, n, side, color) {
   const h = (y2 - y1) / n, r = 26 * (side || 1);
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.lineCap = 'round';
+  ctx.save(); ctx.strokeStyle = color || PAL.ink; ctx.lineWidth = 3.5; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(x, y1);
   for (let i = 0; i < n; i++) {
     const a = y1 + i * h;
@@ -167,8 +175,8 @@ function coil(ctx, x, y1, y2, n, side) {
 
     /* the loop: the live wire along the top, the appliance at the right, the
        return along the bottom */
-    wires(ctx, [[SX, SY - 44], [SX, LIVE], [RX, LIVE], [RX, CT + 22]]);
-    wires(ctx, [[RX, 368], [RX, NEUT], [SX, NEUT], [SX, SY + 44]]);
+    wires(ctx, [[SX, SY - 44], [SX, LIVE], [RX, LIVE], [RX, CT + 22]], LIVE_C());
+    wires(ctx, [[RX, 368], [RX, NEUT], [SX, NEUT], [SX, SY + 44]], NEUT_C());
     const a3 = mode.a('three'), a2 = mode.a('two');
     F.faded(ctx, a3, [0, 0], () => caseBox(ctx, CL, CT, CR, CB, false));
     zig(ctx, RX, 320, Math.PI / 2);
@@ -187,21 +195,21 @@ function coil(ctx, x, y1, y2, n, side) {
 
     /* the names of the conductors, and the voltages the three-wire system holds
        them at */
-    tag(ctx, three ? 'the live/hot wire' : 'the wire from the source', three ? 640 : 430, LIVE - 38, PAL.ink);
-    tag(ctx, three ? 'the neutral wire' : 'the return wire', 430, NEUT - 38, PAL.ink);
-    tag(ctx, 'the appliance', 1060, 300, PAL.ink, { align: 'right' });
+    tag(ctx, three ? 'the live/hot wire' : 'the wire from the source', three ? 640 : 430, LIVE - 38, LIVE_C());
+    tag(ctx, three ? 'the neutral wire' : 'the return wire', 430, NEUT - 38, NEUT_C());
+    tag(ctx, 'the appliance', 1060, 300, F.ref('appliance'), { align: 'right' });
     tag(ctx, ohms(R, 1), 1060, 340, cR, { align: 'right', weight: 400 });
 
     F.faded(ctx, a3, [0, 0], () => {
-      tag(ctx, 'circuit breaker', 420, LIVE + 62, PAL.muted, { size: 19, weight: 400 });
-      tag(ctx, 'the case of the appliance', 1030, CT - 26, PAL.ink);
+      tag(ctx, 'circuit breaker', 420, LIVE + 62, F.ref('breaker'), { size: 19, weight: 400 });
+      tag(ctx, 'the case of the appliance', 1030, CT - 26, F.ref('case'));
       /* the three connections to earth: two on the neutral wire and one on the case */
       wires(ctx, [[280, NEUT], [280, 580]]); node(ctx, 280, NEUT); earth(ctx, 280, 580);
       wires(ctx, [[700, NEUT], [700, 580]]); node(ctx, 700, NEUT); earth(ctx, 700, 580);
-      wires(ctx, [[CR, 390], [1300, 390], [1300, 580]]); earth(ctx, 1300, 580);
+      wires(ctx, [[CR, 390], [1300, 390], [1300, 580]], EARTH_C()); earth(ctx, 1300, 580);
       tag(ctx, '0 V', 480, NEUT + 40, cV);
       tag(ctx, '0 V', 1190, 410, cV, { align: 'right' });
-      tag(ctx, 'the earth/ground wire', 1390, 648, PAL.ink, { align: 'right', size: 20 });
+      tag(ctx, 'the earth/ground wire', 1390, 648, EARTH_C(), { align: 'right', size: 20 });
       /* the earth itself as the alternative return path the section names */
       line(ctx, 280, 620, 700, 620, alpha(PAL.ink, 0.35), 3, [12, 10]);
       tag(ctx, 'an alternative return path through the earth', 490, 652, PAL.muted, { size: 19, weight: 400 });
@@ -252,13 +260,13 @@ function coil(ctx, x, y1, y2, n, side) {
 
     /* behind the wall: the source, the breaker and the three runs to the outlet */
     acSource(ctx, 150, 270, 40);
-    wires(ctx, [[150, 230], [150, LIVE], [OL, LIVE]]);
-    wires(ctx, [[150, 310], [150, NEUT], [OL, NEUT]]);
+    wires(ctx, [[150, 230], [150, LIVE], [OL, LIVE]], LIVE_C());
+    wires(ctx, [[150, 310], [150, NEUT], [OL, NEUT]], NEUT_C());
     wires(ctx, [[250, NEUT], [250, 404]]); node(ctx, 250, NEUT); earth(ctx, 250, 404);
     breaker(ctx, 330, LIVE, true);
-    F.faded(ctx, aGnd, [0, 0], () => { wires(ctx, [[400, 530], [400, GND], [OL, GND]]); earth(ctx, 400, 530); });
+    F.faded(ctx, aGnd, [0, 0], () => { wires(ctx, [[400, 530], [400, GND], [OL, GND]], EARTH_C()); earth(ctx, 400, 530); });
     tag(ctx, fmt(VS, 0) + ' V', 95, 270, cV, { align: 'right' });
-    tag(ctx, 'circuit breaker', 330, LIVE - 62, PAL.muted, { size: 19, weight: 400 });
+    tag(ctx, 'circuit breaker', 330, LIVE - 62, F.ref('breaker'), { size: 19, weight: 400 });
 
     /* the outlet: a faceplate with two slots and a round hole */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
@@ -269,35 +277,35 @@ function coil(ctx, x, y1, y2, n, side) {
     });
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.arc(574, GND, 17, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    F.faded(ctx, aGnd, [0, 0], () => wires(ctx, [[OL, GND], [557, GND]]));
+    F.faded(ctx, aGnd, [0, 0], () => wires(ctx, [[OL, GND], [557, GND]], EARTH_C()));
 
     /* the plug and its prongs */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('plug'); ctx.lineWidth = 3; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.roundRect(PL, 175, PR - PL, 320, 16); ctx.fill(); ctx.stroke(); ctx.restore();
     [LIVE, NEUT].forEach((y) => line(ctx, PL, y, 574, y, PAL.ink, 8));
     F.faded(ctx, a3, [0, 0], () => line(ctx, PL, GND, 574, GND, PAL.ink, 8));
     F.faded(ctx, aCut, [0, 0], () => { line(ctx, PL, GND, PL - 18, GND, PAL.ink, 8); broken(ctx, PL - 34, GND, true); });
 
     /* the cord and the appliance */
-    wires(ctx, [[PR, LIVE], [RX, LIVE], [RX, CT + 72]]);
-    wires(ctx, [[RX, 318], [RX, NEUT], [PR, NEUT]]);
+    wires(ctx, [[PR, LIVE], [RX, LIVE], [RX, CT + 72]], LIVE_C());
+    wires(ctx, [[RX, 318], [RX, NEUT], [PR, NEUT]], NEUT_C());
     caseBox(ctx, CL, CT, CR, CB, two);
     zig(ctx, RX, 270, Math.PI / 2);
-    F.faded(ctx, aGnd, [0, 0], () => { wires(ctx, [[PR, GND], [RX, GND], [RX, CB]]); node(ctx, RX, CB); });
+    F.faded(ctx, aGnd, [0, 0], () => { wires(ctx, [[PR, GND], [RX, GND], [RX, CB]], EARTH_C()); node(ctx, RX, CB); });
     flow(ctx, 960, LIVE, 1, 0);
     flow(ctx, 960, NEUT, -1, 0);
     tag(ctx, '10.0 A', 960, 265, cI);
 
     /* the names */
     tag(ctx, 'the outlet', 582, 136, PAL.ink, { size: 20 });
-    tag(ctx, 'the plug', 725, 530, PAL.ink, { size: 20 });
-    tag(ctx, 'the live/hot wire', 860, LIVE - 36, PAL.ink, { size: 20 });
-    tag(ctx, 'the neutral wire', 860, NEUT + 38, PAL.ink, { size: 20 });
-    F.faded(ctx, a3, [0, 0], () => tag(ctx, 'the earth/ground wire', 880, GND + 40, PAL.ink, { size: 20 }));
+    tag(ctx, 'the plug', 725, 530, F.ref('plug'), { size: 20 });
+    tag(ctx, 'the live/hot wire', 860, LIVE - 36, LIVE_C(), { size: 20 });
+    tag(ctx, 'the neutral wire', 860, NEUT + 38, NEUT_C(), { size: 20 });
+    F.faded(ctx, a3, [0, 0], () => tag(ctx, 'the earth/ground wire', 880, GND + 40, EARTH_C(), { size: 20 }));
     F.faded(ctx, a2, [0, 0], () => tag(ctx, 'no earth/ground wire, and a case that does not conduct', 780, GND + 46, PAL.muted, { size: 20, weight: 400 }));
     F.faded(ctx, aCut, [0, 0], () => tag(ctx, 'the earth/ground wire, joined to no earth', 900, GND + 40, PAL.muted, { size: 20, weight: 400 }));
-    tag(ctx, two ? 'a nonconducting case' : 'the metal case of the appliance', RX, CT - 26, PAL.ink);
-    tag(ctx, 'the appliance', 1145, 250, PAL.ink, { align: 'right' });
+    tag(ctx, two ? 'a nonconducting case' : 'the metal case of the appliance', RX, CT - 26, F.ref('case'));
+    tag(ctx, 'the appliance', 1145, 250, F.ref('appliance'), { align: 'right' });
 
     topline(ctx, three
       ? 'The three-prong plug carries the live/hot wire, the neutral wire and the earth/ground wire to the appliance, and the third of them holds the metal case at zero volts.'
@@ -356,14 +364,14 @@ function coil(ctx, x, y1, y2, n, side) {
     const cV = C('voltage'), cI = C('current'), cR = C('resistance');
 
     /* the supply, the breaker and the appliance in its case */
-    wires(ctx, [[140, 298], [140, LIVE], [FX, LIVE], [FX, CT]]);
-    wires(ctx, [[FX, 368], [FX, NEUT], [140, NEUT], [140, 382]]);
+    wires(ctx, [[140, 298], [140, LIVE], [FX, LIVE], [FX, CT]], LIVE_C());
+    wires(ctx, [[FX, 368], [FX, NEUT], [140, NEUT], [140, 382]], NEUT_C());
     caseBox(ctx, CL, CT, CR, CB, false);
     zig(ctx, FX, 320, Math.PI / 2);
     acSource(ctx, 140, 340, 42);
     tag(ctx, fmt(VS, 0) + ' V', 140, 424, cV);
     breaker(ctx, 330, LIVE, !trips);
-    tag(ctx, 'circuit breaker, ' + fmt(RATE, 1) + ' A', 330, LIVE - 58, PAL.muted, { size: 19, weight: 400 });
+    tag(ctx, 'circuit breaker, ' + fmt(RATE, 1) + ' A', 330, LIVE - 58, F.ref('breaker'), { size: 19, weight: 400 });
     wires(ctx, [[300, NEUT], [300, 620]]); node(ctx, 300, NEUT); earth(ctx, 300, 620);
 
     /* the worn contact where the live/hot wire meets the case */
@@ -373,9 +381,9 @@ function coil(ctx, x, y1, y2, n, side) {
     tag(ctx, 'worn insulation', 670, CT + 4, PAL.ink, { align: 'right', size: 20 });
 
     /* the earth/ground wire from the case, intact or cut */
-    wires(ctx, [[930, CB], [930, 620]]); node(ctx, 930, CB, 6); earth(ctx, 930, 620);
+    wires(ctx, [[930, CB], [930, 620]], EARTH_C()); node(ctx, 930, CB, 6); earth(ctx, 930, 620);
     F.faded(ctx, earthed.a('broken'), [0, 0], () => broken(ctx, 930, 545, false));
-    tag(ctx, on ? 'the earth/ground wire' : 'the earth/ground wire, broken', 930, 666, on ? PAL.ink : PAL.muted, { size: 20, weight: on ? 600 : 400 });
+    tag(ctx, on ? 'the earth/ground wire' : 'the earth/ground wire, broken', 930, 666, on ? EARTH_C() : alpha(EARTH_C(), 0.6), { size: 20, weight: on ? 600 : 400 });
 
     /* the person, one hand on the case and one on a water pipe */
     const PX = 1115, PY = 660, S = 2.4;
@@ -383,7 +391,7 @@ function coil(ctx, x, y1, y2, n, side) {
     line(ctx, 1268, 180, 1268, 690, PAL.muted, 5);
     tag(ctx, 'a water pipe, at earth', 1259, 152, PAL.muted, { size: 19, weight: 400 });
     groundLine(ctx, 1045, 1400, PY + 2);
-    silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: PAL.ink, hands: [{ x: 52, y: -130 }, { x: -54, y: -120 }] });
+    silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: F.ref('person'), hands: [{ x: 52, y: -130 }, { x: -54, y: -120 }] });
     tag(ctx, 'the person, ' + ohms(Rp), PX, 702, cR, { size: 20 });
 
     /* the fault current: down the earth/ground wire where there is one, and
@@ -394,7 +402,7 @@ function coil(ctx, x, y1, y2, n, side) {
     flow(ctx, 1259, 560, 0, 1, 50);
 
     /* the voltage the case is left at */
-    tag(ctx, 'the metal case', 850, CT - 24, PAL.ink);
+    tag(ctx, 'the metal case', 850, CT - 24, F.ref('case'));
     tag(ctx, fmt(Vcase, Vcase < 10 ? 2 : 1) + ' V', 960, 250, cV, { align: 'right' });
 
     topline(ctx, on
@@ -441,8 +449,8 @@ function coil(ctx, x, y1, y2, n, side) {
     const cV = C('voltage'), cI = C('current'), cR = C('resistance');
 
     /* the appliance on its supply */
-    wires(ctx, [[140, 278], [140, LIVE], [AX, LIVE], [AX, 252]]);
-    wires(ctx, [[AX, 348], [AX, NEUT], [140, NEUT], [140, 362]]);
+    wires(ctx, [[140, 278], [140, LIVE], [AX, LIVE], [AX, 252]], LIVE_C());
+    wires(ctx, [[AX, 348], [AX, NEUT], [140, NEUT], [140, 362]], NEUT_C());
     caseBox(ctx, CL, CT, CR, CB, false);
     zig(ctx, AX, 300, Math.PI / 2);
     acSource(ctx, 140, 320, 42);
@@ -451,8 +459,8 @@ function coil(ctx, x, y1, y2, n, side) {
     flow(ctx, 460, LIVE, 1, 0);
     flow(ctx, 460, NEUT, -1, 0);
     tag(ctx, 'the alternating current in the appliance', 470, LIVE - 40, cI, { size: 20 });
-    tag(ctx, 'the appliance', 740, 300, PAL.ink, { align: 'left' });
-    tag(ctx, 'the case of the appliance', 760, CT - 26, PAL.ink);
+    tag(ctx, 'the appliance', 740, 300, F.ref('appliance'), { align: 'left' });
+    tag(ctx, 'the case of the appliance', 760, CT - 26, F.ref('case'));
 
     /* the emf induced on the case, drawn as a source on its wall */
     wires(ctx, [[CR, 320], [1000, 320]]);
@@ -465,13 +473,13 @@ function coil(ctx, x, y1, y2, n, side) {
     const PX = 1180, PY = 600, S = 2.1;
     groundLine(ctx, 1000, 1400, PY + 2);
     earth(ctx, 1320, PY + 16);
-    silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: PAL.ink, hands: [{ x: 60, y: -120 }, { x: -18, y: -76 }] });
+    silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: F.ref('person'), hands: [{ x: 60, y: -120 }, { x: -18, y: -76 }] });
     tag(ctx, 'the person, ' + ohms(Rp), PX, 660, cR, { size: 20 });
 
     /* the earth/ground wire, where the case has one */
     F.faded(ctx, grounded.a('yes'), [0, 0], () => {
-      wires(ctx, [[900, CB], [900, 560]]); node(ctx, 900, CB, 6); earth(ctx, 900, 560);
-      tag(ctx, 'the earth/ground wire', 890, 620, PAL.ink, { size: 20 });
+      wires(ctx, [[900, CB], [900, 560]], EARTH_C()); node(ctx, 900, CB, 6); earth(ctx, 900, 560);
+      tag(ctx, 'the earth/ground wire', 890, 620, EARTH_C(), { size: 20 });
       flow(ctx, 900, 500, 0, 1, 44);
     });
 
@@ -534,8 +542,8 @@ function coil(ctx, x, y1, y2, n, side) {
 
     /* the two wires, brought together to pass through the core and parted again */
     acSource(ctx, 130, 340, 42);
-    wires(ctx, [[130, 298], [130, LIVE], [300, LIVE], [360, 330], [500, 330], [560, LIVE], [RX, LIVE], [RX, CT + 52]]);
-    wires(ctx, [[RX, 378], [RX, NEUT], [560, NEUT], [500, 380], [360, 380], [300, NEUT], [130, NEUT], [130, 382]]);
+    wires(ctx, [[130, 298], [130, LIVE], [300, LIVE], [360, 330], [500, 330], [560, LIVE], [RX, LIVE], [RX, CT + 52]], LIVE_C());
+    wires(ctx, [[RX, 378], [RX, NEUT], [560, NEUT], [500, 380], [360, 380], [300, NEUT], [130, NEUT], [130, 382]], NEUT_C());
     tag(ctx, fmt(VS, 0) + ' V', 130, 424, cV);
 
     /* the iron core, with its hole and the sensing coil wound on it */
@@ -544,7 +552,8 @@ function coil(ctx, x, y1, y2, n, side) {
     ctx.beginPath(); ctx.arc(KX, KY, 120, 0, TAU); ctx.stroke();
     ctx.beginPath(); ctx.arc(KX, KY, 62, 0, TAU); ctx.stroke(); ctx.restore();
     /* the coil: turns laid across the ring on its upper left */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    const gc = F.ref('gfi-coil');
+    ctx.save(); ctx.strokeStyle = gc; ctx.lineWidth = 3; ctx.lineCap = 'round';
     for (let i = 0; i <= 6; i++) {
       const a = Math.PI * (1.30 + 0.041 * i);
       ctx.beginPath();
@@ -553,13 +562,13 @@ function coil(ctx, x, y1, y2, n, side) {
       ctx.stroke();
     }
     ctx.restore();
-    wires(ctx, [[KX + 132 * Math.cos(Math.PI * 1.546), KY + 132 * Math.sin(Math.PI * 1.546)], [470, 168]]);
-    wires(ctx, [[KX + 132 * Math.cos(Math.PI * 1.30), KY + 132 * Math.sin(Math.PI * 1.30)], [352, 168]]);
+    wires(ctx, [[KX + 132 * Math.cos(Math.PI * 1.546), KY + 132 * Math.sin(Math.PI * 1.546)], [470, 168]], gc);
+    wires(ctx, [[KX + 132 * Math.cos(Math.PI * 1.30), KY + 132 * Math.sin(Math.PI * 1.30)], [352, 168]], gc);
 
     /* the breaker the coil operates */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('breaker'); ctx.lineWidth = 3; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.roundRect(340, 92, 200, 76, 10); ctx.fill(); ctx.stroke(); ctx.restore();
-    tag(ctx, 'circuit breaker', 440, 118, PAL.ink, { size: 20 });
+    tag(ctx, 'circuit breaker', 440, 118, F.ref('breaker'), { size: 20 });
     tag(ctx, trips ? 'tripped' : 'holding', 440, 148, trips ? cI : PAL.muted, { size: 19, weight: 400 });
     wires(ctx, [[470, 168], [470, 190]]);
 
@@ -575,35 +584,35 @@ function coil(ctx, x, y1, y2, n, side) {
     } else {
       tag(ctx, 'no field in the core', KX, KY + 168, PAL.muted, { size: 20, weight: 400 });
     }
-    tag(ctx, 'the sensing coil', 250, 250, PAL.ink, { align: 'right', size: 20 });
+    tag(ctx, 'the sensing coil', 250, 250, gc, { align: 'right', size: 20 });
     tag(ctx, 'the iron core', KX + 150, KY + 96, PAL.ink, { align: 'left', size: 20 });
 
     /* the appliance */
     caseBox(ctx, CL, CT, CR, CB, false);
     zig(ctx, RX, 330, Math.PI / 2);
-    tag(ctx, 'the appliance', RX, CB + 32, PAL.ink);
+    tag(ctx, 'the appliance', RX, CB + 32, F.ref('appliance'));
 
     /* the two currents, and the leakage that makes them differ */
     flow(ctx, 760, LIVE, 1, 0);
     flow(ctx, 760, NEUT, -1, 0);
-    tag(ctx, 'the live/hot wire', 700, LIVE - 38, PAL.ink, { size: 20 });
+    tag(ctx, 'the live/hot wire', 700, LIVE - 38, LIVE_C(), { size: 20 });
     tag(ctx, fmt(I, 3) + ' A', 890, LIVE - 38, cI);
-    tag(ctx, 'the neutral wire', 700, NEUT + 40, PAL.ink, { size: 20 });
+    tag(ctx, 'the neutral wire', 700, NEUT + 40, NEUT_C(), { size: 20 });
     tag(ctx, fmt(back, 3) + ' A', 890, NEUT + 40, cI);
 
     F.faded(ctx, path.a('person'), [0, 0], () => {
       const PX = 1290, PY = 660, S = 2;
       groundLine(ctx, 1150, 1400, PY + 2);
       wires(ctx, [[CR, 392], [1232, 392]]);           /* the lead from the case to the hand that holds it */
-      silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: PAL.ink, hands: [{ x: 56, y: -122 }, { x: -20, y: -76 }] });
+      silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: F.ref('person'), hands: [{ x: 56, y: -122 }, { x: -20, y: -76 }] });
       if (leak > 1e-6) { flow(ctx, 1200, 372, 1, 0, 40); flow(ctx, 1288, 600, 0, 1, 44); }
       tag(ctx, 'the person, a path to earth', 1392, 702, cR, { size: 20, align: 'right' });
       if (leak > 1e-6) tag(ctx, amps(leak), 1230, 480, cI, { align: 'right' });
     });
     F.faded(ctx, path.a('earth'), [0, 0], () => {
-      wires(ctx, [[CR, 400], [1310, 400], [1310, 600]]); earth(ctx, 1310, 600);
+      wires(ctx, [[CR, 400], [1310, 400], [1310, 600]], EARTH_C()); earth(ctx, 1310, 600);
       if (leak > 1e-6) flow(ctx, 1310, 520, 0, 1, 44);
-      tag(ctx, 'the earth/ground wire', 1392, 666, PAL.ink, { size: 20, align: 'right' });
+      tag(ctx, 'the earth/ground wire', 1392, 666, EARTH_C(), { size: 20, align: 'right' });
       if (leak > 1e-6) tag(ctx, amps(leak), 1262, 520, cI, { align: 'right' });
     });
 
@@ -650,22 +659,23 @@ function coil(ctx, x, y1, y2, n, side) {
     acSource(ctx, 130, 330, 42);
     tag(ctx, fmt(VS, 0) + ' V', 78, 330, cV, { align: 'right' });
     breaker(ctx, 280, TOP, true);
-    tag(ctx, 'circuit breaker', 280, TOP - 62, PAL.muted, { size: 19, weight: 400 });
+    tag(ctx, 'circuit breaker', 280, TOP - 62, F.ref('breaker'), { size: 19, weight: 400 });
 
     F.faded(ctx, iso.a('yes'), [0, 0], () => {
       /* the primary, the core and the secondary */
       wires(ctx, [[130, 288], [130, TOP], [440, TOP], [440, 250]]);
-      coil(ctx, 440, 250, 470, 6, -1);
+      const ic = F.ref('isolation-transformer');
+      coil(ctx, 440, 250, 470, 6, -1, ic);
       wires(ctx, [[440, 470], [440, 620], [130, 620], [130, 372]]);
       node(ctx, 300, 620); earth(ctx, 300, 620);
-      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = ic; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.rect(478, 220, 44, 280); ctx.fill(); ctx.stroke(); ctx.restore();
       line(ctx, 500, 220, 500, 500, alpha(PAL.ink, 0.35), 2);
-      coil(ctx, 560, 250, 470, 6, 1);
+      coil(ctx, 560, 250, 470, 6, 1, ic);
       wires(ctx, [[560, 250], [620, 250], [620, TOP], [RX, TOP], [RX, CT + 47]]);
       wires(ctx, [[RX, 368], [RX, BOT], [620, BOT], [620, 470], [560, 470]]);
-      tag(ctx, 'the primary', 386, 360, PAL.ink, { align: 'right', size: 20 });
-      tag(ctx, 'the secondary', 614, 360, PAL.ink, { align: 'left', size: 20 });
+      tag(ctx, 'the primary', 386, 360, ic, { align: 'right', size: 20 });
+      tag(ctx, 'the secondary', 614, 360, ic, { align: 'left', size: 20 });
       line(ctx, 500, 505, 500, 528, alpha(PAL.ink, 0.35), 2);
       tag(ctx, ohms(Rins), 500, 545, cR, { size: 21 });
       tag(ctx, 'the material between the coils', 500, 580, PAL.ink, { size: 20 });
@@ -681,8 +691,8 @@ function coil(ctx, x, y1, y2, n, side) {
     /* the appliance, which runs the same either way */
     caseBox(ctx, CL, CT, CR, CB, false);
     zig(ctx, RX, 320, Math.PI / 2);
-    tag(ctx, 'the case of the appliance', RX, CT - 26, PAL.ink);
-    tag(ctx, 'the appliance', 1040, 320, PAL.ink, { align: 'right' });
+    tag(ctx, 'the case of the appliance', RX, CT - 26, F.ref('case'));
+    tag(ctx, 'the appliance', 1040, 320, F.ref('appliance'), { align: 'right' });
     flow(ctx, 820, TOP, 1, 0);
     flow(ctx, 820, BOT, -1, 0);
     tag(ctx, amps(Iapp), 820, TOP - 38, cI);
@@ -692,7 +702,7 @@ function coil(ctx, x, y1, y2, n, side) {
     groundLine(ctx, 1040, 1400, PY + 2);
     earth(ctx, 1350, PY + 16);
     wires(ctx, [[RX, 464], [1118, 464]]); node(ctx, RX, 464, 6);   /* the output wire the person holds */
-    silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: PAL.ink, hands: [{ x: 53, y: -128 }, { x: -20, y: -76 }] });
+    silhouette(ctx, { x: PX, y: PY, s: S, face: -1, pose: 'stand', color: F.ref('person'), hands: [{ x: 53, y: -128 }, { x: -20, y: -76 }] });
     tag(ctx, 'the person, ' + ohms(Rp), PX, 740, cR, { size: 20 });
     flow(ctx, 1100, 444, 1, 0, 40); flow(ctx, 1178, 650, 0, 1, 44);
     tag(ctx, amps(Iperson), 1290, 470, cI, { align: 'right' });

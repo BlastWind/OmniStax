@@ -5,9 +5,13 @@
    Chapter 20's P = I²R makes of it, and time, which the axis of sim-dc-ac
    carries. The section never names the magnetic field, and this page never
    binds it: what the core carries from one coil to the other is the flux, and
-   the flux hue is what it is drawn in. No device is tinted — the plant, the
-   towers, the house, the core, the coils and every wire are ink — and the
-   number of turns, the turns ratio and the percentages stay in ink as well. */
+   the flux hue is what it is drawn in. The plant, the step-up transformer, the
+   line's towers, the substation, the pole transformer and the house, and the
+   primary, the secondary and the core, are the section's referents and wear
+   their referent colours through F.ref; the variables rows of V, I and P name
+   the primary and the secondary, so their subscripts wear the same colours.
+   Every wire carries the current hue, and the number of turns, the turns ratio
+   and the percentages stay in ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, register, begin, line, arrow, dot, text, topline, label, axes, curve, pinned, note, hover, view, house } = F;
@@ -44,26 +48,27 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   }
   /* the plant: a hall with a row of windows and three chimneys beside it */
   function plant(ctx) {
+    const pc = F.ref('plant');
     ctx.save();
-    ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.fillStyle = PAL.panel; ctx.strokeStyle = pc; ctx.lineWidth = 4;
     ctx.fillRect(118, 348, 128, GY - 348); ctx.strokeRect(118, 348, 128, GY - 348);
     ctx.fillStyle = PAL.ink;
     for (let i = 0; i < 4; i++) for (let j = 0; j < 2; j++) ctx.fillRect(130 + i * 29, 362 + j * 34, 18, 20);
     [[74, 258], [95, 272], [116, 286]].forEach(([x, t]) => {
-      ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+      ctx.fillStyle = PAL.panel; ctx.strokeStyle = pc; ctx.lineWidth = 4;
       ctx.beginPath(); ctx.moveTo(x - 7, GY); ctx.lineTo(x - 5, t); ctx.lineTo(x + 5, t); ctx.lineTo(x + 7, GY); ctx.closePath(); ctx.fill(); ctx.stroke();
     });
     ctx.restore();
   }
   /* a transformer on the ground: a canister with a domed top, as the book draws it */
-  function canister(ctx, x, w, h) {
-    const t = GY - h;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+  function canister(ctx, x, w, h, id) {
+    const t = GY - h, cc = F.ref(id);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = cc; ctx.lineWidth = 4;
     ctx.beginPath();
     ctx.moveTo(x - w / 2, GY); ctx.lineTo(x - w / 2, t + w / 2);
     ctx.arc(x, t + w / 2, w / 2, Math.PI, 0);
     ctx.lineTo(x + w / 2, GY); ctx.closePath(); ctx.fill(); ctx.stroke();
-    line(ctx, x - w / 2 - 6, GY - h * 0.28, x + w / 2 + 6, GY - h * 0.28, PAL.ink, 3);
+    line(ctx, x - w / 2 - 6, GY - h * 0.28, x + w / 2 + 6, GY - h * 0.28, cc, 3);
     ctx.restore();
     return t;
   }
@@ -71,7 +76,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   function tower(ctx, cx) {
     const top = 250, halfB = 40, halfT = 11;
     const legX = (y, s) => cx + s * (halfT + (halfB - halfT) * ((y - top) / (GY - top)));
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
+    ctx.save(); ctx.strokeStyle = F.ref('power-line'); ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
     [-1, 1].forEach((s) => { ctx.beginPath(); ctx.moveTo(legX(top, s), top); ctx.lineTo(legX(GY, s), GY); ctx.stroke(); });
     ctx.lineWidth = 2;
     const ys = [top, 288, 326, 364, 402, GY];
@@ -110,15 +115,15 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 
     ground(ctx);
     plant(ctx);
-    const upTop = canister(ctx, 302, 42, 58);
+    const upTop = canister(ctx, 302, 42, 58, 'step-up');
     [440, 610, 780].forEach((x) => tower(ctx, x));
-    const subTop = canister(ctx, 888, 50, 70);
+    const subTop = canister(ctx, 888, 50, 70, 'substation');
     pole(ctx, 995, 322); pole(ctx, 1088, 322);
     /* the pole transformer: a small cylinder hung on the last pole */
     pole(ctx, 1175, 322);
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('pole-transformer'); ctx.lineWidth = 3.5;
     ctx.fillRect(1163, 340, 26, 44); ctx.strokeRect(1163, 340, 26, 44); ctx.restore();
-    house(ctx, 1282, GY, 104, 1, PAL.ink);
+    house(ctx, 1282, GY, 104, 1, F.ref('house'));
 
     /* the wires: every one of them carries the current, so every one is drawn
        in the current hue, and the line between the towers is drawn heavier
@@ -144,15 +149,16 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     label(ctx, '240 V', 1222, 371, { side: 'above', size: 21, color: cV, gap: 18, H });
 
     /* the names the book gives the stages, set under the ground line */
-    const stage = (x, a, b) => {
-      text(ctx, a, x, 476, PAL.ink, { size: 18, align: 'center' });
-      if (b) text(ctx, b, x, 500, PAL.ink, { size: 18, align: 'center' });
+    const stage = (x, id, a, b) => {
+      const c = F.ref(id);
+      text(ctx, a, x, 476, c, { size: 18, align: 'center' });
+      if (b) text(ctx, b, x, 500, c, { size: 18, align: 'center' });
     };
-    stage(150, 'Power plant');
-    stage(302, 'Step-up', 'transformer');
-    stage(610, 'High-voltage', 'transmission line');
-    stage(888, 'Step-down transformer', '(substation)');
-    stage(1130, 'Step-down', 'transformer');
+    stage(150, 'plant', 'Power plant');
+    stage(302, 'step-up', 'Step-up', 'transformer');
+    stage(610, 'power-line', 'High-voltage', 'transmission line');
+    stage(888, 'substation', 'Step-down transformer', '(substation)');
+    stage(1130, 'pole-transformer', 'Step-down', 'transformer');
 
     hits = [
       { x: 160, y: 390, r: 90, name: 'the power plant, whose generator puts out about 12 kV' },
@@ -209,16 +215,21 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   const V3 = view({ yaw: 0.34, pitch: 0.24, dist: 3000, cx: 620, cy: 352 });
   const P3 = (x, y, z) => V3.P([x, y, z]);
   const A = 250, B = 222, a = 108, b = 94, D = 65;      /* the core: outer, window and half-depth */
-  const quad = (ctx, pts, n, stroke) => F.face(ctx, pts.map((p) => P3(p[0], p[1], p[2])), V3.shade(n), stroke);
+  const quad = (ctx, pts, n, stroke) => {
+    const q = pts.map((p) => P3(p[0], p[1], p[2]));
+    F.face(ctx, q, V3.shade(n));
+    ctx.save(); ctx.beginPath(); q.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+    ctx.strokeStyle = F.ref('core'); ctx.lineWidth = stroke; ctx.lineJoin = 'round'; ctx.stroke(); ctx.restore();
+  };
   const seg = (ctx, p, q, color, w, dash) => line(ctx, p[0], p[1], q[0], q[1], color, w, dash);
 
   /* one coil wound on a leg: n turns of wire round the bar between xa and xb,
      drawn as a flat helix so the winding reads as a winding and not as a row
-     of rings. The wire is ink, as every device in this chapter is. */
-  function coil(ctx, xa, xb, n, y0, y1) {
+     of rings. The wire is drawn in the coil's referent colour. */
+  function coil(ctx, xa, xb, n, y0, y1, color) {
     const cx = (xa + xb) / 2, rx = Math.abs(xb - xa) / 2 + 16, rz = D + 15;
     const dy = (y1 - y0) / n;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
     for (let i = 0; i < n; i++) {
       ctx.beginPath();
       for (let k = 0; k <= 48; k++) {
@@ -295,8 +306,9 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     }
     ctx.restore();
 
-    const pc = coil(ctx, -A, -a, np, -168, 168);
-    const sc = coil(ctx, a, A, ns, -168, 168);
+    const cPr = F.ref('primary'), cSe = F.ref('secondary');
+    const pc = coil(ctx, -A, -a, np, -168, 168, cPr);
+    const sc = coil(ctx, a, A, ns, -168, 168, cSe);
     /* the flux is drawn over the windings, as the book draws it, so that the
        loop reads as a closed loop and not as two arcs either side of a coil */
     const fluxTop = fluxLoop(ctx, cPhi);
@@ -320,11 +332,11 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 
     /* the names: five, each in a slot no slider moves (rule 26.7) */
     const coreFoot = P3(0, -B, 0);
-    label(ctx, 'the laminated iron core', coreFoot[0], coreFoot[1], { side: 'below', size: 20, gap: 44, color: PAL.ink, H });
+    label(ctx, 'the laminated iron core', coreFoot[0], coreFoot[1], { side: 'below', size: 20, gap: 44, color: F.ref('core'), H });
     label(ctx, 'the flux Φ', fluxTop[0] + 150, fluxTop[1], { side: 'above', size: 20, gap: 16, color: cPhi, H });
     const pcLow = lower(pc.top, pc.bot), scLow = lower(scTop, scBot);
-    label(ctx, 'the primary, ' + np + ' turns', pcLow[0], pcLow[1], { side: 'below', size: 20, gap: 92, color: PAL.ink, H });
-    label(ctx, 'the secondary, ' + ns + ' turns', scLow[0], scLow[1], { side: 'below', size: 20, gap: 92, color: PAL.ink, H });
+    label(ctx, 'the primary, ' + np + ' turns', pcLow[0], pcLow[1], { side: 'below', size: 20, gap: 92, color: cPr, H });
+    label(ctx, 'the secondary, ' + ns + ' turns', scLow[0], scLow[1], { side: 'below', size: 20, gap: 92, color: cSe, H });
     label(ctx, 'the transformer’s circuit symbol', symCx, symCy + 74, { side: 'below', size: 20, gap: 18, color: PAL.ink, H });
     /* the readings, which are the figure's frame rather than names of things */
     label(ctx, 'V_p = ' + fmt(vp, 0) + ' V', 215, 355, { side: 'left', size: 22, color: cV, gap: 16, H });

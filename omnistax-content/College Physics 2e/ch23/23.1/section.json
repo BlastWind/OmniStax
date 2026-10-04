@@ -4,7 +4,7 @@
  "chapter": "23",
  "title": "Induced Emf and Magnetic Flux",
  "short": "Induced emf and magnetic flux",
- "lead": "Faraday closed a switch, and a needle on a second coil swung. He opened it, and the needle swung the other way. While the switch stayed closed, with a steady current and a steady magnetic field, the needle sat at zero. The change in the magnetic field, and not the field itself, induces an emf, and the same holds for a bar magnet pushed into a coil and for a coil turned in a field. What all three have in common is the magnetic flux, $\\kPhi = \\kBmag A\\cos\\theta$: the field strength times the area times the cosine of the angle between the field and the perpendicular to that area. Every induced emf in this chapter is a change in that one quantity, so get it exactly right here.",
+ "lead": "Faraday closed <span data-ref=\"switch\">a switch</span>, and a needle on <span data-ref=\"bottom-coil\">a second coil</span> swung. He opened <span data-ref=\"switch\">it</span>, and the needle swung the other way. While <span data-ref=\"switch\">the switch</span> stayed closed, with <span data-type=\"current\">a steady current</span> and <span data-type=\"magnetic-field\">a steady magnetic field</span>, the needle sat at zero. The change in the magnetic field, and not the field itself, induces an emf, and the same holds for <span data-ref=\"bar-magnet\">a bar magnet</span> pushed into <span data-ref=\"coil\">a coil</span> and for <span data-ref=\"rotating-coil\">a coil turned in a field</span>. What all three have in common is the magnetic flux, $\\kPhi = \\kBmag \\karea\\cos\\ktheta$: the field strength times the area times the cosine of the angle between the field and the perpendicular to that area. Every induced emf in this chapter is a change in that one quantity, so get it exactly right here.",
  "objectives": [
   "Calculate the flux of a uniform magnetic field through a loop of arbitrary orientation.",
   "Describe methods to produce an electromotive force (emf) with a magnetic field or magnet and a loop of wire."
@@ -47,7 +47,7 @@
    "originals": ["/media/ch23/Figure_24_01_01.jpg"],
    "original_caption": "Faraday’s apparatus for demonstrating that a magnetic field can produce a current. A change in the field produced by the top coil induces an emf and, hence, a current in the bottom coil. When the switch is opened and closed, the galvanometer registers currents in opposite directions. No current flows through the galvanometer when the switch remains closed or open.",
    "widths": [400],
-   "draws": ["magnetic-field", "magnetic-flux", "voltage"]
+   "draws": ["magnetic-field", "magnetic-flux", "voltage", "area"]
   },
   {
    "id": "sim-magnet-coil",
@@ -56,7 +56,7 @@
    "originals": ["/media/ch23/Figure_24_01_02.jpg"],
    "original_caption": "Movement of a magnet relative to a coil produces emfs as shown. The same emfs are produced if the coil is moved relative to the magnet. The greater the speed, the greater the magnitude of the emf, and the emf is zero when there is no motion.",
    "widths": [550],
-   "draws": ["magnetic-field", "magnetic-flux", "voltage", "velocity"]
+   "draws": ["magnetic-field", "magnetic-flux", "voltage", "velocity", "area"]
   },
   {
    "id": "sim-rotating-coil",
@@ -65,7 +65,7 @@
    "originals": ["/media/ch23/Figure_24_01_03.jpg"],
    "original_caption": "Rotation of a coil in a magnetic field produces an emf. This is the basic construction of a generator, where work done to turn the coil is converted to electric energy. Note the generator is very similar in construction to a motor.",
    "widths": [250],
-   "draws": ["magnetic-field", "magnetic-flux", "voltage", "angular-rate"]
+   "draws": ["magnetic-field", "magnetic-flux", "voltage", "angular-rate", "area", "angle"]
   },
   {
    "id": "sim-flux-angle",
@@ -74,7 +74,7 @@
    "originals": ["/media/ch23/Figure_24_01_04.jpg"],
    "original_caption": "Magnetic flux Φ is related to the magnetic field and the area over which it exists. The flux Φ = BA cos θ is related to induction; any change in Φ induces an emf.",
    "widths": [225],
-   "draws": ["magnetic-field", "magnetic-flux"]
+   "draws": ["magnetic-field", "magnetic-flux", "area", "angle"]
   }
  ],
  "coverage": [
@@ -233,5 +233,72 @@
   {"exercise": "cq4", "concept": "magnetic-flux", "weight": 3, "weights_by": "ai"},
   {"exercise": "p1", "concept": "flux-and-orientation"},
   {"exercise": "p1", "concept": "magnetic-flux", "weight": 3, "weights_by": "ai"}
+ ],
+ "referents": [
+  {
+   "id": "top-coil",
+   "label": "the coil on the top of the ring",
+   "figure": "sim-faraday-ring"
+  },
+  {
+   "id": "bottom-coil",
+   "label": "the coil on the bottom of the ring",
+   "figure": "sim-faraday-ring"
+  },
+  {
+   "id": "iron-ring",
+   "label": "the iron ring",
+   "figure": "sim-faraday-ring"
+  },
+  {
+   "id": "switch",
+   "label": "the switch",
+   "figure": "sim-faraday-ring"
+  },
+  {
+   "id": "ring-galvanometer",
+   "label": "the galvanometer on the ring",
+   "figure": "sim-faraday-ring"
+  },
+  {
+   "id": "bar-magnet",
+   "label": "the bar magnet",
+   "figure": "sim-magnet-coil"
+  },
+  {
+   "id": "coil",
+   "label": "the coil",
+   "figure": "sim-magnet-coil"
+  },
+  {
+   "id": "coil-galvanometer",
+   "label": "the galvanometer on the coil",
+   "figure": "sim-magnet-coil"
+  },
+  {
+   "id": "rotating-coil",
+   "label": "the turning coil",
+   "figure": "sim-rotating-coil"
+  },
+  {
+   "id": "generator-magnet",
+   "label": "the magnet",
+   "figure": "sim-rotating-coil"
+  },
+  {
+   "id": "rings-brushes",
+   "label": "the rings and brushes",
+   "figure": "sim-rotating-coil"
+  },
+  {
+   "id": "generator-galvanometer",
+   "label": "the galvanometer on the brushes",
+   "figure": "sim-rotating-coil"
+  },
+  {
+   "id": "loop",
+   "label": "the square loop",
+   "figure": "sim-flux-angle"
+  }
  ]
 }

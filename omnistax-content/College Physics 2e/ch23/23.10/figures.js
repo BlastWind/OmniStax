@@ -4,8 +4,10 @@
    hue, the resistor and its ohms the resistance hue, the current in the loop and
    both curves the current hue, the battery and the emf the inductor raises against
    the change the voltage hue, and the time axis with its marks at one, two and
-   three time constants the time hue. The battery plates, the switch, the wires and
-   the frame of every graph are ink, since a device is never tinted. The fractions
+   three time constants the time hue. The battery, the switch, the inductor and the
+   resistor are the section's referents and are drawn in their referent colours
+   through F.ref, their names beside them; the wires and the frame of every graph
+   are ink. The fractions
    0.632 and 0.368 and the target percentage are untyped and in ink.
    The first figure has a clock in it, since the current is a function of time and
    the whole result is how long it takes, so it registers a cycle and takes the
@@ -21,15 +23,16 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 /* ---------- the pieces the schematic is drawn from ---------- */
 const wires = (ctx, pts) => { for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], PAL.ink, 3.5); };
 /* A resistance lying along a horizontal wire, drawn as a plain box. The box is the
-   device and stays ink; what is written beside it is a resistance and wears its hue. */
+   device and wears its referent colour; what is written beside it is a resistance
+   and wears its hue. */
 function resistor(ctx, x, y, w, h) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('resistor'); ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 6); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 /* A coil on a horizontal wire: four half turns above the line it sits on. */
 function coil(ctx, x, y, w, turns) {
   const r = w / (2 * turns);
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.lineCap = 'round';
+  ctx.save(); ctx.strokeStyle = F.ref('inductor'); ctx.lineWidth = 3.5; ctx.lineCap = 'round';
   ctx.beginPath();
   for (let i = 0; i < turns; i++) ctx.arc(x - w / 2 + r * (2 * i + 1), y, r, Math.PI, 0, false);
   ctx.stroke(); ctx.restore();
@@ -37,8 +40,9 @@ function coil(ctx, x, y, w, turns) {
 /* One cell across a vertical wire: a long plate for the positive terminal and a
    short one for the negative, the positive plate the upper of the two. */
 function cell(ctx, x, y) {
-  line(ctx, x - 27, y - 11, x + 27, y - 11, PAL.ink, 5);
-  line(ctx, x - 14, y + 11, x + 14, y + 11, PAL.ink, 5);
+  const c = F.ref('battery');
+  line(ctx, x - 27, y - 11, x + 27, y - 11, c, 5);
+  line(ctx, x - 14, y + 11, x + 14, y + 11, c, 5);
   text(ctx, '+', x + 40, y - 20, PAL.muted, { size: 22, align: 'center' });
 }
 /* An arrow set along a wire in the current hue, (dx, dy) the way it runs. */
@@ -96,12 +100,13 @@ function flow(ctx, x, y, dx, dy, L) {
     wires(ctx, [[300, 130], [200, 130], [200, 480]]);
     wires(ctx, [[300, 262], [300, 480]]);
     cell(ctx, 200, 320);
-    text(ctx, 'the battery', 160, 296, PAL.ink, { size: 21, align: 'right', bg: PAL.panel });
+    text(ctx, 'the battery', 160, 296, F.ref('battery'), { size: 21, align: 'right', bg: PAL.panel });
     text(ctx, fmt(V, 1) + ' V', 160, 330, cV, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     /* the two contacts and the blade resting on the one the choice names */
-    dot(ctx, 300, 130, PAL.ink, true, 7); dot(ctx, 300, 262, PAL.ink, true, 7);
-    dot(ctx, 430, 200, PAL.ink, true, 7);
-    line(ctx, 430, 200, on ? 300 : 300, on ? 130 : 262, PAL.ink, 4.5);
+    const cSw = F.ref('switch');
+    dot(ctx, 300, 130, cSw, true, 7); dot(ctx, 300, 262, cSw, true, 7);
+    dot(ctx, 430, 200, cSw, true, 7);
+    line(ctx, 430, 200, on ? 300 : 300, on ? 130 : 262, cSw, 4.5);
     text(ctx, '1', 300, 96, on ? PAL.ink : PAL.muted, { size: 24, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, '2', 340, 296, on ? PAL.muted : PAL.ink, { size: 24, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, on ? 'the battery is in the circuit' : 'the battery is cut out', 480, 396, PAL.muted, { size: 20, align: 'center', bg: PAL.panel });

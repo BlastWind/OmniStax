@@ -6,8 +6,11 @@
    resistance; they are told apart by their subscripts and their labels. The
    voltage across the element and the current through it wear their own hues,
    which is what lets the reader see which of the two leads. The source, the
-   wires, the coil, the plates and the body of the resistor are ink, since a
-   device is never tinted. The first figure has a clock in it, because the
+   inductor, the capacitor and the resistor are the section's referents and are
+   drawn in their referent colours through F.ref, with their names; the two
+   reactance curves are one curve per referent, so each wears its element's
+   colour, and the subscripts of X_L and X_C name the inductor and the
+   capacitor. The wires are ink. The first figure has a clock in it, because the
    lead and the lag are the whole content of the section; the second has none,
    because a reactance is an rms quantity with the time already averaged out
    of it, so it answers its sliders and carries no transport (rule 14). */
@@ -39,7 +42,7 @@ const texHz = (u) => (u >= 1000 ? fmt(u / 1000, u >= 10000 ? 1 : 2) + '\\ \\text
 const wires = (ctx, pts) => { for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], PAL.ink, 3.5); };
 /* An AC source: a circle with one cycle of a sinusoid drawn inside it. */
 function source(ctx, x, y, r) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.fillStyle = PAL.panel;
+  ctx.save(); ctx.strokeStyle = F.ref('source'); ctx.lineWidth = 3.5; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
   ctx.beginPath();
   for (let i = 0; i <= 40; i++) {
@@ -48,17 +51,17 @@ function source(ctx, x, y, r) {
   }
   ctx.stroke(); ctx.restore();
 }
-/* The three elements, each drawn in ink on the wire it sits on, centred at (x, y)
-   and about 190 units long. */
+/* The three elements, each drawn in its referent colour on the wire it sits on,
+   centred at (x, y) and about 190 units long. */
 function inductor(ctx, x, y) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.beginPath();
+  ctx.save(); ctx.strokeStyle = F.ref('inductor'); ctx.lineWidth = 3.5; ctx.beginPath();
   ctx.moveTo(x - 95, y); ctx.lineTo(x - 72, y);
   for (let i = 0; i < 4; i++) ctx.arc(x - 54 + i * 36, y, 18, Math.PI, 0, false);
   ctx.moveTo(x + 72, y); ctx.lineTo(x + 95, y);
   ctx.stroke(); ctx.restore();
 }
 function capacitor(ctx, x, y, q) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
+  ctx.save(); ctx.strokeStyle = F.ref('capacitor'); ctx.lineWidth = 3.5;
   ctx.beginPath(); ctx.moveTo(x - 95, y); ctx.lineTo(x - 15, y); ctx.moveTo(x + 15, y); ctx.lineTo(x + 95, y); ctx.stroke();
   ctx.lineWidth = 6;
   ctx.beginPath(); ctx.moveTo(x - 15, y - 42); ctx.lineTo(x - 15, y + 42); ctx.moveTo(x + 15, y - 42); ctx.lineTo(x + 15, y + 42); ctx.stroke();
@@ -73,7 +76,7 @@ function capacitor(ctx, x, y, q) {
   }
 }
 function resistorBox(ctx, x, y) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.fillStyle = PAL.panel;
+  ctx.save(); ctx.strokeStyle = F.ref('resistor'); ctx.lineWidth = 3.5; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.moveTo(x - 95, y); ctx.lineTo(x - 66, y); ctx.stroke();
   ctx.beginPath(); ctx.roundRect(x - 66, y - 26, 132, 52, 6); ctx.fill(); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(x + 66, y); ctx.lineTo(x + 95, y); ctx.stroke();
@@ -142,7 +145,7 @@ function resistorBox(ctx, x, y) {
     wires(ctx, [[xl, y0], [xr, y0]]);
     wires(ctx, [[xl, y0], [xl, y1], [xr, y1], [xr, y0]]);
     source(ctx, xl, (y0 + y1) / 2, 54);
-    text(ctx, 'the AC source', xl - 76, (y0 + y1) / 2 - 24, PAL.ink, { size: 21, align: 'right', bg: PAL.panel });
+    text(ctx, 'the AC source', xl - 76, (y0 + y1) / 2 - 24, F.ref('source'), { size: 21, align: 'right', bg: PAL.panel });
     text(ctx, fmt(VRMS, 0) + ' V rms', xl - 76, (y0 + y1) / 2 + 12, cV, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, fHz(f), xl - 76, (y0 + y1) / 2 + 48, cF, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     const ex = 760;
@@ -157,7 +160,7 @@ function resistorBox(ctx, x, y) {
       const name = m === 'L' ? 'the inductor' : m === 'C' ? 'the capacitor' : 'the resistor';
       const val = m === 'L' ? fmt(lS.v, 2) + ' mH' : m === 'C' ? fmt(cS.v, 2) + ' µF' : fmt(rS.v, 0) + ' Ω';
       const sym = m === 'L' ? 'X_L = ' : m === 'C' ? 'X_C = ' : 'R = ';
-      text(ctx, name + ', ' + val, ex, y0 - 86, PAL.ink, { size: 21, align: 'center', bg: PAL.panel });
+      text(ctx, name + ', ' + val, ex, y0 - 86, F.ref(m === 'L' ? 'inductor' : m === 'C' ? 'capacitor' : 'resistor'), { size: 21, align: 'center', bg: PAL.panel });
       text(ctx, sym + big(reactance(m, f), 'Ω'), ex, y0 - 50, cR, { size: 23, weight: 600, align: 'center', bg: PAL.panel });
       ctx.restore();
     });
@@ -244,20 +247,20 @@ function resistorBox(ctx, x, y) {
     const cI = C('current'), cR = C('resistance'), cF = C('frequency');
 
     /* ---- the strip: the two elements and the current each passes at 120 V ---- */
-    const bar = (x, y, amps, label) => {
+    const bar = (x, y, amps, label, id) => {
       /* the arrow runs on the same logarithmic scale as the frame below, a
          hundredth of an amp at nothing and a thousand amps at its full length */
       const u = Math.min(1, Math.max(0, (LG(Math.max(amps, 1e-3)) + 3) / 6));
       arrow(ctx, x, y, x + 40 + 300 * u, y, cI, 5);
-      text(ctx, label, x - 16, y - 34, PAL.ink, { size: 21, align: 'right', bg: PAL.panel });
+      text(ctx, label, x - 16, y - 34, id ? F.ref(id) : PAL.ink, { size: 21, align: 'right', bg: PAL.panel });
       text(ctx, big(amps, 'A'), x - 16, y + 6, cI, { size: 23, weight: 600, align: 'right', bg: PAL.panel });
     };
     inductor(ctx, 300, 210);
-    text(ctx, fmt(lS.v, 2) + ' mH', 300, 262, PAL.ink, { size: 20, align: 'center' });
-    bar(430, 210, il, 'the inductor passes');
+    text(ctx, fmt(lS.v, 2) + ' mH', 300, 262, C('inductance'), { size: 20, align: 'center' });
+    bar(430, 210, il, 'the inductor passes', 'inductor');
     capacitor(ctx, 880, 210, 0);
-    text(ctx, fmt(cS.v, 2) + ' µF', 880, 268, PAL.ink, { size: 20, align: 'center' });
-    bar(1010, 210, ic, 'the capacitor passes');
+    text(ctx, fmt(cS.v, 2) + ' µF', 880, 268, C('capacitance'), { size: 20, align: 'center' });
+    bar(1010, 210, ic, 'the capacitor passes', 'capacitor');
     text(ctx, 'each on its own across ' + fmt(VRMS, 0) + ' V rms at ' + fHz(f) + ', on a logarithmic scale of current',
       700, 320, PAL.muted, { size: 19, align: 'center' });
 
@@ -268,20 +271,21 @@ function resistorBox(ctx, x, y) {
       fy: (u) => (u >= 3 ? fmt(Math.pow(10, u - 3), 0) + ' k' : u >= 0 ? fmt(Math.pow(10, u), 0) : fmt(Math.pow(10, u), -u > 1 ? 2 : 1)),
     });
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    curve(ctx, (u) => LG(XL(Math.pow(10, u))), 1, 5, X, Y, cR, 5, 60);
-    curve(ctx, (u) => LG(XC(Math.pow(10, u))), 1, 5, X, Y, cR, 5, 60);
+    const cLi = F.ref('inductor'), cCa = F.ref('capacitor');
+    curve(ctx, (u) => LG(XL(Math.pow(10, u))), 1, 5, X, Y, cLi, 5, 60);
+    curve(ctx, (u) => LG(XC(Math.pow(10, u))), 1, 5, X, Y, cCa, 5, 60);
     ctx.restore();
-    /* the two lines are one type and one hue, so each is named on itself */
-    text(ctx, 'X_L = 2πfL, the inductor', X(4.55), Y(LG(XL(Math.pow(10, 4.55)))) - 26, cR, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'X_C = 1/2πfC, the capacitor', X(1.45), Y(LG(XC(Math.pow(10, 1.45)))) - 26, cR, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
+    /* one curve for each element, so each wears its element's referent colour and is named on itself */
+    text(ctx, 'X_L = 2πfL, the inductor', X(4.55), Y(LG(XL(Math.pow(10, 4.55)))) - 26, cLi, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'X_C = 1/2πfC, the capacitor', X(1.45), Y(LG(XC(Math.pow(10, 1.45)))) - 26, cCa, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
     if (fCross > 10 && fCross < 1e5) {
       dot(ctx, X(LG(fCross)), Y(LG(XL(fCross))), cR, false, 11);
       text(ctx, 'they cross at ' + fHz(fCross),
         X(LG(fCross)), Y(LG(XL(fCross))) + 34, cR, { size: 20, align: 'center', bg: PAL.panel });
     }
     line(ctx, X(LG(f)), BOX.t, X(LG(f)), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    pinned(ctx, BOX, X, Y, LG(f), LG(xl), cR, big(xl, 'Ω'));
-    pinned(ctx, BOX, X, Y, LG(f), LG(xc), cR, big(xc, 'Ω'));
+    pinned(ctx, BOX, X, Y, LG(f), LG(xl), cLi, big(xl, 'Ω'));
+    pinned(ctx, BOX, X, Y, LG(f), LG(xc), cCa, big(xc, 'Ω'));
 
     topline(ctx, 'At ' + fHz(f) + ' the ' + fmt(lS.v, 2) + ' mH inductor offers ' + big(xl, 'Ω') + ' and passes ' + big(il, 'A')
       + ', while the ' + fmt(cS.v, 2) + ' µF capacitor offers ' + big(xc, 'Ω') + ' and passes ' + big(ic, 'A') + '.');

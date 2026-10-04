@@ -206,7 +206,8 @@
    "meaning": "the voltage across the primary coil, the input to the transformer",
    "unit": "V",
    "section": "23.7",
-   "anchor": "23.7-the-transformer-equation"
+   "anchor": "23.7-the-transformer-equation",
+   "ref": "primary"
   },
   {
    "sym": "V_sec",
@@ -214,7 +215,8 @@
    "meaning": "the voltage across the secondary coil, the transformer output",
    "unit": "V",
    "section": "23.7",
-   "anchor": "23.7-the-transformer-equation"
+   "anchor": "23.7-the-transformer-equation",
+   "ref": "secondary"
   },
   {
    "sym": "N_prim",
@@ -236,7 +238,8 @@
    "meaning": "the current drawn by the primary coil",
    "unit": "A",
    "section": "23.7",
-   "anchor": "23.7-currents-and-power"
+   "anchor": "23.7-currents-and-power",
+   "ref": "primary"
   },
   {
    "sym": "I_sec",
@@ -244,7 +247,8 @@
    "meaning": "the current the secondary coil delivers",
    "unit": "A",
    "section": "23.7",
-   "anchor": "23.7-currents-and-power"
+   "anchor": "23.7-currents-and-power",
+   "ref": "secondary"
   },
   {
    "sym": "P_prim",
@@ -252,7 +256,8 @@
    "meaning": "the power into the transformer, which for a good transformer equals the power out",
    "unit": "W",
    "section": "23.7",
-   "anchor": "23.7-currents-and-power"
+   "anchor": "23.7-currents-and-power",
+   "ref": "primary"
   },
   {
    "sym": "P_sec",
@@ -260,7 +265,8 @@
    "meaning": "the power the transformer delivers",
    "unit": "W",
    "section": "23.7",
-   "anchor": "23.7-currents-and-power"
+   "anchor": "23.7-currents-and-power",
+   "ref": "secondary"
   },
   {
    "sym": "M_ind",
@@ -332,7 +338,8 @@
    "meaning": "the inductive reactance, the opposition an inductor offers to an alternating current",
    "unit": "Ω",
    "section": "23.11",
-   "anchor": "23.11-inductors-and-inductive-reactance"
+   "anchor": "23.11-inductors-and-inductive-reactance",
+   "ref": "inductor"
   },
   {
    "sym": "X_C",
@@ -340,7 +347,8 @@
    "meaning": "the capacitive reactance, the opposition a capacitor offers to an alternating current",
    "unit": "Ω",
    "section": "23.11",
-   "anchor": "23.11-capacitors-and-capacitive-reactance"
+   "anchor": "23.11-capacitors-and-capacitive-reactance",
+   "ref": "capacitor"
   },
   {
    "sym": "C_cap",
@@ -406,42 +414,48 @@
    "concept": "potential-difference",
    "meaning": "the voltage across the resistor",
    "unit": "V",
-   "section": "23.12"
+   "section": "23.12",
+   "ref": "resistor"
   },
   {
    "sym": "V_L",
    "concept": "potential-difference",
    "meaning": "the voltage across the inductor",
    "unit": "V",
-   "section": "23.12"
+   "section": "23.12",
+   "ref": "inductor"
   },
   {
    "sym": "V_C",
    "concept": "potential-difference",
    "meaning": "the voltage across the capacitor",
    "unit": "V",
-   "section": "23.12"
+   "section": "23.12",
+   "ref": "capacitor"
   },
   {
    "sym": "V_0R",
    "concept": "potential-difference",
    "meaning": "the peak voltage across the resistor",
    "unit": "V",
-   "section": "23.12"
+   "section": "23.12",
+   "ref": "resistor"
   },
   {
    "sym": "V_0L",
    "concept": "potential-difference",
    "meaning": "the peak voltage across the inductor",
    "unit": "V",
-   "section": "23.12"
+   "section": "23.12",
+   "ref": "inductor"
   },
   {
    "sym": "V_0C",
    "concept": "potential-difference",
    "meaning": "the peak voltage across the capacitor",
    "unit": "V",
-   "section": "23.12"
+   "section": "23.12",
+   "ref": "capacitor"
   },
   {
    "sym": "B_mag",
@@ -507,6 +521,185 @@
    "redefines": true,
    "unit": "A",
    "anchor": "23.6-back-emf-and-speed"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "the area of the loop the flux passes through, πr² for a circular loop",
+   "unit": "m²",
+   "section": "23.2",
+   "anchor": "23.2-ex-induced-emf"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "the angle between the field and the perpendicular to the loop",
+   "unit": "°",
+   "section": "23.2",
+   "anchor": "23.2-ex-induced-emf"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "the radius of the single loop coil",
+   "unit": "m",
+   "section": "23.2",
+   "anchor": "23.2-ex-induced-emf"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "the area the rod, the rails and the resistor enclose, which the field is perpendicular to",
+   "unit": "m²",
+   "section": "23.3",
+   "anchor": "23.3-rod-on-rails"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "the angle between the field and the perpendicular to the area, or between the velocity and the field",
+   "unit": "°",
+   "section": "23.3",
+   "anchor": "23.3-rod-on-rails"
+  },
+  {
+   "sym": "I_curr",
+   "concept": "electric-current",
+   "meaning": "the current induced round the circuit of the rod and rails, or along the tether",
+   "unit": "A",
+   "section": "23.3",
+   "anchor": "23.3-relative-motion",
+   "redefines": true
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "the area of the generator coil, πr² for a circular coil and ℓw for a rectangular one",
+   "unit": "m²",
+   "section": "23.5",
+   "anchor": "23.5-ex-emf-in-a-generator-coil"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "the angle between the magnetic field and the perpendicular to the coil, which is also the angle between a side wire’s velocity and the field",
+   "unit": "°",
+   "section": "23.5",
+   "anchor": "23.5-ex-emf-in-a-generator-coil"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "the radius of the circular coil, or the distance of a side wire from the shaft, half the coil’s width",
+   "unit": "m",
+   "section": "23.5",
+   "anchor": "23.5-ex-emf-in-a-generator-coil"
+  },
+  {
+   "sym": "w_loop",
+   "concept": "length",
+   "meaning": "the width of the rectangular coil, twice the distance from the shaft to each side wire",
+   "unit": "m",
+   "section": "23.5",
+   "anchor": "23.5-the-emf-at-each-instant"
+  },
+  {
+   "sym": "Δθ",
+   "concept": "rotation-angle",
+   "meaning": "the angle the coil turns through in the time Δt",
+   "unit": "rad",
+   "section": "23.5",
+   "anchor": "23.5-ex-maximum-emf-of-a-generator"
+  },
+  {
+   "sym": "θ_1",
+   "concept": "angle",
+   "meaning": "the angle the coil has already turned when the interval begins",
+   "unit": "°",
+   "section": "23.5",
+   "anchor": "23.5-sim-average-emf"
+  },
+  {
+   "sym": "A",
+   "concept": "area",
+   "meaning": "the cross-sectional area of the solenoid, πr²",
+   "unit": "m²",
+   "section": "23.9",
+   "anchor": "23.9-calculating-inductance"
+  },
+  {
+   "sym": "r",
+   "concept": "position",
+   "meaning": "the radius of the solenoid",
+   "unit": "m",
+   "section": "23.9",
+   "anchor": "23.9-ex-self-inductance-of-a-solenoid"
+  },
+  {
+   "sym": "I_onecurr",
+   "concept": "electric-current",
+   "meaning": "the current in coil 1, whose change induces an emf in coil 2",
+   "unit": "A",
+   "section": "23.9",
+   "anchor": "23.9-inductors",
+   "ref": "coil-1",
+   "redefines": true
+  },
+  {
+   "sym": "I_twocurr",
+   "concept": "electric-current",
+   "meaning": "the current in coil 2, whose change induces an emf in coil 1",
+   "unit": "A",
+   "section": "23.9",
+   "anchor": "23.9-inductors",
+   "ref": "coil-2",
+   "redefines": true
+  },
+  {
+   "sym": "emf_one",
+   "concept": "emf",
+   "meaning": "the emf induced in coil 1 by a change in the current in coil 2",
+   "unit": "V",
+   "section": "23.9",
+   "anchor": "23.9-inductors",
+   "ref": "coil-1",
+   "redefines": true
+  },
+  {
+   "sym": "emf_two",
+   "concept": "emf",
+   "meaning": "the emf induced in coil 2 by a change in the current in coil 1",
+   "unit": "V",
+   "section": "23.9",
+   "anchor": "23.9-inductors",
+   "ref": "coil-2",
+   "redefines": true
+  },
+  {
+   "sym": "X_L",
+   "concept": "inductive-reactance",
+   "meaning": "the inductive reactance of the inductor in the series circuit",
+   "unit": "Ω",
+   "section": "23.12",
+   "anchor": "23.12-impedance",
+   "ref": "inductor"
+  },
+  {
+   "sym": "X_C",
+   "concept": "capacitive-reactance",
+   "meaning": "the capacitive reactance of the capacitor in the series circuit",
+   "unit": "Ω",
+   "section": "23.12",
+   "anchor": "23.12-impedance",
+   "ref": "capacitor"
+  },
+  {
+   "sym": "Q_charge",
+   "concept": "electric-charge",
+   "meaning": "the charge on the capacitor, zero when it has fully discharged",
+   "unit": "C",
+   "section": "23.11",
+   "anchor": "23.11-capacitors-and-capacitive-reactance"
   }
  ]
 }

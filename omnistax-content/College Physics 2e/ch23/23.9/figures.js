@@ -4,11 +4,14 @@
    interval a current is taken to fall in, which is the slider that makes the
    section's own arithmetic visible and the axis of two graphs. Mutual and
    self-inductance wear the one inductance hue and are told apart by their
-   symbols and their labels, as the chapter's colour plan requires. Every device
-   is ink: the coils and their turns, the cylinder of a heater element, the
-   battery, the capacitor plates, the switch, the meter case and a solenoid's
-   former, and the number of turns, the area, the length, the diameter and μ0
-   stay in ink with them. A field drawn in space is in the field hue and the
+   symbols and their labels, as the chapter's colour plan requires. The things
+   the text points at are the section's referents and wear their referent
+   colours through F.ref: coil 1 and coil 2 with their galvanometer, the heating
+   element, the switch, the camera flash's switch, battery and capacitor, and
+   the solenoid of Example 23.7. The subscripts of I₁, I₂, emf₁ and emf₂ name
+   the two coils and wear their colours. The area wears the area hue and the
+   solenoid's length and diameter the position hue; the number of turns and μ0
+   stay in ink, and so do the formers, wires and sources. A field drawn in space is in the field hue and the
    flux counted through a turn is in the flux hue, never the same one.
    Three of the six figures move, because an inductance is the constant between
    an emf and a rate; the winding of an element, the geometry of a solenoid and
@@ -48,10 +51,10 @@ function henry(L, dp) {
 /* A galvanometer: a case, a scale with its zero in the middle, a needle at r of
    full scale from −1 to 1. The needle and what it reads are in the voltage hue;
    the case and the scale are ink. */
-function meter(ctx, cx, cy, R, r, title) {
+function meter(ctx, cx, cy, R, r, title, id) {
   const sw = 1.06, a = -Math.PI / 2 + clamp(r, -1, 1) * sw;
   ctx.save();
-  ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+  ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref(id); ctx.lineWidth = 3;
   ctx.beginPath(); ctx.arc(cx, cy, R, Math.PI, 0); ctx.lineTo(cx + R, cy + R * 0.26); ctx.lineTo(cx - R, cy + R * 0.26); ctx.closePath();
   ctx.fill(); ctx.stroke(); ctx.restore();
   for (let i = -4; i <= 4; i++) {
@@ -101,18 +104,18 @@ function inductorSymbol(ctx, x1, x2, y, color) {
   const WIRE = 620, BASE = 659;                      /* the row the leads drop to, and the meter's base */
   const at = (x, r, a) => V.P([x, r * Math.sin(a), r * Math.cos(a)]);
   const R0 = 118;
-  function turns(ctx, x0, n, pitchX) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.lineJoin = 'round'; ctx.beginPath();
+  function turns(ctx, x0, n, pitchX, color) {
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 6; ctx.lineJoin = 'round'; ctx.beginPath();
     for (let i = 0; i <= n * 40; i++) {
       const s = i / 40, a = s * TAU + Math.PI, p = at(x0 + s * pitchX, R0, a);
       if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]);
     }
     ctx.stroke(); ctx.restore();
   }
-  function leads(ctx, x0, n, pitchX, down) {
+  function leads(ctx, x0, n, pitchX, down, color) {
     const a = at(x0, R0, Math.PI), b = at(x0 + n * pitchX, R0, Math.PI);
-    line(ctx, a[0], a[1], a[0], down, PAL.ink, 4);
-    line(ctx, b[0], b[1], b[0], down, PAL.ink, 4);
+    line(ctx, a[0], a[1], a[0], down, color, 4);
+    line(ctx, b[0], b[1], b[0], down, color, 4);
     return [a[0], b[0]];
   }
   /* the field between the coils, in the gap the projection leaves at 735 to 812 */
@@ -129,9 +132,10 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     const t = cy.now(), { ctx } = begin(d.c);
     const I = cur(t), dI = rate(t), emf = (M.v * 1e-3) * dI;
     const one = drive.value === '1';
-    turns(ctx, -240, 5, 46); turns(ctx, 160, 4, 46);
-    const [la, lb] = leads(ctx, -240, 5, 46, BASE);
-    const [ra, rb] = leads(ctx, 160, 4, 46, BASE);
+    const c1 = F.ref('coil-1'), c2 = F.ref('coil-2');
+    turns(ctx, -240, 5, 46, c1); turns(ctx, 160, 4, 46, c2);
+    const [la, lb] = leads(ctx, -240, 5, 46, BASE, c1);
+    const [ra, rb] = leads(ctx, 160, 4, 46, BASE, c2);
     /* the source, on whichever coil is driven, and the meter on the other; driving the other coil
        carries the two across to trade places */
     const { srcX, srcA, srcB, mtrA, mtrB, mtrX } = drive.mix((c) => (c === '1'
@@ -149,10 +153,10 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       arrow(ctx, srcB, WIRE - up * h / 2, srcB, WIRE + up * h / 2, C('current'), 5);
     }
     fieldLines(ctx, I / 10);
-    meter(ctx, mtrX, BASE - 19, 74, soft((2.2 * emf) / FULL), 'the induced emf');
+    meter(ctx, mtrX, BASE - 19, 74, soft((2.2 * emf) / FULL), 'the induced emf', 'galvanometer');
     text(ctx, 'B', 774, 200, C('magnetic-field'), { size: 24, weight: 600, align: 'center' });
-    label(ctx, one ? 'coil 1, five turns, on the source' : 'coil 1, five turns, on the meter', 478, 165, { side: 'above', size: 20, color: PAL.ink });
-    label(ctx, one ? 'coil 2, four turns, on the meter' : 'coil 2, four turns, on the source', 1041, 216, { side: 'above', size: 20, color: PAL.ink });
+    label(ctx, one ? 'coil 1, five turns, on the source' : 'coil 1, five turns, on the meter', 478, 165, { side: 'above', size: 20, color: c1 });
+    label(ctx, one ? 'coil 2, four turns, on the meter' : 'coil 2, four turns, on the source', 1041, 216, { side: 'above', size: 20, color: c2 });
     text(ctx, 'I = ' + fmt(I, 2) + ' A', srcX, BASE + 48, C('current'), { size: 21, weight: 600, align: 'center' });
     text(ctx, 'M = ' + fmt(M.v, 1) + ' mH between them', 700, 748, C('inductance'), { size: 21, weight: 600, align: 'center' });
     const other = one ? '2' : '1', driven = one ? '1' : '2';
@@ -160,7 +164,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       ? `The current in coil ${driven} is at its greatest, ${fmt(Math.abs(I), 2)} A, and for that one instant it is not changing at all, so the needle sits at zero.`
       : `The current in coil ${driven} is ${dI > 0 ? 'rising' : 'falling'} at ${fmt(Math.abs(dI), 1)} A/s, and the ${fmt(M.v, 1)} mH between the coils induces ${fmt(Math.abs(emf) * 1e3, 1)} mV in coil ${other}.`);
     readout(d.readout,
-      `\\kemf_{${other}} = -\\kMind\\frac{\\Delta \\kIcur_{${driven}}}{\\kdt} = -(${fmt(M.v, 1)}\\times 10^{-3}\\ \\text{H})(${fmt(dI, 1)}\\ \\text{A/s}) = ${fmt(-emf * 1e3, 1)}\\ \\text{mV}`,
+      `${one ? '\\kemftwo' : '\\kemfone'} = -\\kMind\\frac{\\Delta ${one ? '\\kIcurone' : '\\kIcurtwo'}}{\\kdt} = -(${fmt(M.v, 1)}\\times 10^{-3}\\ \\text{H})(${fmt(dI, 1)}\\ \\text{A/s}) = ${fmt(-emf * 1e3, 1)}\\ \\text{mV}`,
       `The needle answers the rate at which the current changes and nothing else, so it stands at zero twice in every swing, at the two instants when the current is greatest. Driving the other coil changes nothing about the size of the swing, since the same ${fmt(M.v, 1)} mH works in either direction, which is what the section means by saying that nature is symmetric here.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -224,8 +228,9 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     } else {
       text(ctx, 'the field inside the element cancels: B = 0', 700, 492, C('magnetic-field'), { size: 21, weight: 600, align: 'center' });
     }
-    helix(ctx, X0, X1, nd, R0, 1, PAL.ink);
-    if (a2 > 0) helix(ctx, X1, X0, nd, R0 * 1.22, 1, alpha(PAL.ink, a2));
+    const ce = F.ref('element');
+    helix(ctx, X0, X1, nd, R0, 1, ce);
+    if (a2 > 0) helix(ctx, X1, X0, nd, R0 * 1.22, 1, alpha(ce, a2));
     /* the current, as an arrow on each layer, the two opposed where it is counter-wound */
     const p1 = at(-120, R0, Math.PI), p2 = at(40, R0, Math.PI);
     arrow(ctx, p1[0], p1[1], p2[0], p2[1], C('current'), 5);
@@ -234,7 +239,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       const q1 = at(40, R0 * 1.22, Math.PI), q2 = at(40 - 160 * a2, R0 * 1.22, Math.PI);
       arrow(ctx, q1[0], q1[1], q2[0], q2[1], C('current'), 5);
     }
-    label(ctx, counter ? 'the second layer, wound back the other way' : 'one layer of ' + fmt(N.v, 0) + ' turns', at(X1, R0 * 1.22, Math.PI)[0], at(X1, R0 * 1.22, Math.PI)[1], { side: 'right', size: 20, color: PAL.ink });
+    label(ctx, counter ? 'the second layer, wound back the other way' : 'one layer of ' + fmt(N.v, 0) + ' turns', at(X1, R0 * 1.22, Math.PI)[0], at(X1, R0 * 1.22, Math.PI)[1], { side: 'right', size: 20, color: ce });
     text(ctx, fmt(I.v, 1) + ' A through the element', 700, 452, C('current'), { size: 21, weight: 600, align: 'center' });
     label(ctx, '1.00 m of 0.800 cm tube', at(X0, R0, -Math.PI / 2)[0], at(X0, R0, -Math.PI / 2)[1], { side: 'left', size: 20, color: PAL.ink });
     text(ctx, 'L = ' + (counter ? '0' : henry(L, 2)), 700, 552, C('inductance'), { size: 24, weight: 600, align: 'center' });
@@ -243,7 +248,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       : `Wound all one way, the ${fmt(N.v, 0)} turns raise a field of ${sci(B, 2)} T inside the element, and it has a self-inductance of ${henry(L, 2)}.`);
     F.morph(eqHost, counter
       ? `\\mk{L}{\\kLind} = \\mk{v}{0}`
-      : `\\mk{L}{\\kLind} = \\mk{f}{\\frac{\\mu_0 N^2 A}{\\ell}} = \\frac{(4\\pi\\times 10^{-7})(\\mk{N}{${fmt(N.v, 0)}})^2(${sciTex(AREA, 2)}\\ \\text{m}^2)}{1.00\\ \\text{m}} = \\mk{v}{${henryTex(L, 2)}}`);
+      : `\\mk{L}{\\kLind} = \\mk{f}{\\frac{\\mu_0 N^2 \\karea}{\\ell}} = \\frac{(4\\pi\\times 10^{-7})(\\mk{N}{${fmt(N.v, 0)}})^2(${sciTex(AREA, 2)}\\ \\text{m}^2)}{1.00\\ \\text{m}} = \\mk{v}{${henryTex(L, 2)}}`);
     small.textContent = `${counter ? 'Each layer alone would have L = μ₀N²A/ℓ, but the two carry the current round in opposite senses and their fields cancel. ' : ''}What the counterwinding protects is the case of the dryer. A mutual inductance between the element and the case would let every change in the heating current induce an emf on metal the user touches, and a winding that raises no field outside itself induces nothing. The same trick is what part (c) of the section's problem on the precision laboratory resistor asks for, where halving the length and counter-winding two layers of 250 turns leaves an inductance of zero.`;
   }
   register(d.fig, { update: () => {}, draw });
@@ -283,9 +288,10 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     line(ctx, xl - 26, 332, xl + 26, 332, PAL.ink, 4); line(ctx, xl - 15, 312, xl + 15, 312, PAL.ink, 7);
     line(ctx, xl, yb, xr, yb, PAL.ink, 4);
     line(ctx, xr, yt, xr, 262, PAL.ink, 4); line(ctx, xr, 338, xr, yb, PAL.ink, 4);
-    dot(ctx, xr, 262, PAL.ink, true, 7); dot(ctx, xr, 338, PAL.ink, true, 7);
+    const cs = F.ref('switch');
+    dot(ctx, xr, 262, cs, true, 7); dot(ctx, xr, 338, cs, true, 7);
     const a = open ? -Math.PI / 2 + 0.7 : -Math.PI / 2;
-    line(ctx, xr, 338, xr + 78 * Math.cos(a), 338 + 78 * Math.sin(a), PAL.ink, 5);
+    line(ctx, xr, 338, xr + 78 * Math.cos(a), 338 + 78 * Math.sin(a), cs, 5);
     if (open && falling(t) && emf > 3000) {
       /* an arc across the parting contacts, drawn in the voltage hue since it is the emf that strikes it */
       for (let i = 0; i < 5; i++) {
@@ -298,7 +304,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       arrow(ctx, 640 - h / 2, yb, 640 + h / 2, yb, C('current'), 5);
     }
     text(ctx, 'L = ' + fmt(L.v, 1) + ' H', 700, 146, C('inductance'), { size: 22, weight: 600, align: 'center' });
-    label(ctx, 'the switch', xr + 60, 300, { side: 'right', size: 20, color: PAL.ink });
+    label(ctx, 'the switch', xr + 60, 300, { side: 'right', size: 20, color: cs });
     label(ctx, 'the source that set the current up', xl - 34, 300, { side: 'left', size: 20, gap: 16, color: PAL.ink });
     text(ctx, 'I = ' + fmt(I, 1) + ' A', 640, yb + 44, C('current'), { size: 21, weight: 600, align: 'center' });
     text(ctx, falling(t) ? 'the inductor induces ' + fmt(emf, 0) + ' V' : 'the inductor induces nothing', 640, yb + 76, C('voltage'), { size: 21, weight: 600, align: 'center' });
@@ -355,15 +361,16 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     const xl = 160, xr = 700, yt = 232;
     line(ctx, xl, yt, 300, yt, PAL.ink, 4); inductorSymbol(ctx, 300, 560, yt, C('inductance')); line(ctx, 560, yt, xr, yt, PAL.ink, 4);
     line(ctx, xl, yt, xl, 392, PAL.ink, 4); line(ctx, xr, yt, xr, 392, PAL.ink, 4);
-    dot(ctx, xl, 392, PAL.ink, true, 8); dot(ctx, xr, 392, PAL.ink, true, 8);
+    const cSw = F.ref('flash-switch'), cBa = F.ref('battery'), cCa = F.ref('capacitor');
+    dot(ctx, xl, 392, cSw, true, 8); dot(ctx, xr, 392, cSw, true, 8);
     const yc = toCap ? 462 : 582, yo = toCap ? 582 : 462;
-    line(ctx, xl, 392, xl + 70, yc, PAL.ink, 5); line(ctx, xr, 392, xr - 70, yc, PAL.ink, 5);
+    line(ctx, xl, 392, xl + 70, yc, cSw, 5); line(ctx, xr, 392, xr - 70, yc, cSw, 5);
     line(ctx, xl + 70, yc, 390, yc, PAL.ink, 4); line(ctx, 470, yc, xr - 70, yc, PAL.ink, 4);
     line(ctx, xl + 70, yo, 390, yo, alpha(PAL.ink, 0.3), 3); line(ctx, 470, yo, xr - 70, yo, alpha(PAL.ink, 0.3), 3);
-    /* the capacitor's plates and the battery's, in ink, on their own rows */
-    line(ctx, 410, 432, 410, 492, PAL.ink, 7); line(ctx, 450, 432, 450, 492, PAL.ink, 7);
-    line(ctx, 410, 548, 410, 616, PAL.ink, 7); line(ctx, 450, 562, 450, 602, PAL.ink, 5);
-    text(ctx, 'C', 430, 524, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    /* the capacitor's plates and the battery's, each in its referent colour, on their own rows */
+    line(ctx, 410, 432, 410, 492, cCa, 7); line(ctx, 450, 432, 450, 492, cCa, 7);
+    line(ctx, 410, 548, 410, 616, cBa, 7); line(ctx, 450, 562, 450, 602, cBa, 5);
+    text(ctx, 'C', 430, 524, cCa, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'V = ' + fmt(VB.v, 1) + ' V', 430, 648, C('voltage'), { size: 21, weight: 600, align: 'center' });
     text(ctx, 'L = ' + fmt(L.v, 1) + ' mH', 430, 320, C('inductance'), { size: 22, weight: 600, align: 'center' });
     if (!toCap) {
@@ -373,7 +380,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     } else {
       text(ctx, 'emf = ' + fmt(emf, 0) + ' V as the current breaks', 430, yt - 56, C('voltage'), { size: 20, weight: 600, align: 'center' });
     }
-    label(ctx, toCap ? 'the switch stands on the capacitor' : 'the switch stands on the battery', xl + 70, yc, { side: 'left', size: 20, color: PAL.ink });
+    label(ctx, toCap ? 'the switch stands on the capacitor' : 'the switch stands on the battery', xl + 70, yc, { side: 'left', size: 20, color: cSw });
     /* the staircase, beside the circuit, since the circuit is roughly square */
     const box = { l: 860, r: 1310, t: 210, b: 600 };
     const { X, Y } = axes(ctx, box, [0, NMAX], [0, 1200], { xl: 'switchings', xc: PAL.ink, yl: 'the capacitor’s voltage (V)', yc: C('voltage'), nx: 3, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
@@ -404,8 +411,8 @@ function inductorSymbol(ctx, x1, x2, y, color) {
 (function () {
   const d = sim('sim-solenoid-inductance', 860);
   const N = ctl(d.controls, { label: 'N', cls: '', min: 50, max: 1000, step: 25, value: 200, unit: 'turns', dec: 0, aria: 'the number of turns on the solenoid' });
-  const LEN = ctl(d.controls, { label: '\\ell', cls: '', min: 5, max: 50, step: 1, value: 10, unit: 'cm', dec: 0, aria: 'the length of the solenoid' });
-  const DIA = ctl(d.controls, { label: 'd', cls: '', min: 1, max: 10, step: 0.5, value: 4.0, unit: 'cm', dec: 1, aria: 'the diameter of the solenoid' });
+  const LEN = ctl(d.controls, { label: '\\ell', cls: 'position', min: 5, max: 50, step: 1, value: 10, unit: 'cm', dec: 0, aria: 'the length of the solenoid' });
+  const DIA = ctl(d.controls, { label: 'd', cls: 'position', min: 1, max: 10, step: 0.5, value: 4.0, unit: 'cm', dec: 1, aria: 'the diameter of the solenoid' });
 
   const area = () => Math.PI * Math.pow(DIA.v * 1e-2 / 2, 2);
   const ind = (n) => (MU0 * n * n * area()) / (LEN.v * 1e-2);
@@ -421,7 +428,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     line(ctx, x0, cy - r, x1, cy - r, alpha(PAL.ink, 0.4), 3);
     line(ctx, x0, cy + r, x1, cy + r, alpha(PAL.ink, 0.4), 3);
     const nd = clamp(Math.round(N.v / 25), 5, 30);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.strokeStyle = F.ref('solenoid'); ctx.lineWidth = 4;
     for (let i = 0; i < nd; i++) {
       const x = x0 + (w * (i + 0.5)) / nd;
       ctx.beginPath(); ctx.ellipse(x, cy, Math.max(4, w / nd / 2.4), r, 0, 0, TAU); ctx.stroke();
@@ -432,8 +439,8 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     for (let i = -1; i <= 1; i++) arrow(ctx, x0 + 14, cy + i * r * 0.5, x1 - 14, cy + i * r * 0.5, alpha(C('magnetic-field'), 0.55), 4);
     ctx.save(); ctx.fillStyle = alpha(C('magnetic-flux'), 0.28);
     ctx.beginPath(); ctx.ellipse(cx, cy, Math.max(5, w / nd / 2.4), r, 0, 0, TAU); ctx.fill(); ctx.restore();
-    label(ctx, fmt(N.v, 0) + ' turns on ' + fmt(LEN.v, 1) + ' cm', cx, cy - r, { side: 'above', size: 20, color: PAL.ink });
-    label(ctx, 'A = ' + sci(A, 2) + ' m² through one turn', cx, cy + r, { side: 'below', size: 20, color: C('magnetic-flux') });
+    label(ctx, fmt(N.v, 0) + ' turns on ' + fmt(LEN.v, 1) + ' cm', cx, cy - r, { side: 'above', size: 20, color: F.ref('solenoid') });
+    label(ctx, 'A = ' + sci(A, 2) + ' m² through one turn', cx, cy + r, { side: 'below', size: 20, color: C('area') });
     text(ctx, 'B per ampere = ' + sci(B, 2) + ' T/A', cx, 408, C('magnetic-field'), { size: 19, weight: 600, align: 'center' });
     text(ctx, 'L = ' + henry(L, 3), cx, 452, C('inductance'), { size: 26, weight: 600, align: 'center' });
     /* the square law, below the solenoid, since the scene is a horizontal one */
@@ -444,7 +451,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     pinned(ctx, box, X, Y, N.v, L, C('inductance'));
     topline(ctx, `${fmt(N.v, 0)} turns on a ${fmt(LEN.v, 1)} cm solenoid of ${fmt(DIA.v, 2)} cm diameter give a self-inductance of ${henry(L, 3)}.`);
     readout(d.readout,
-      `\\kLind = \\frac{\\mu_0 N^2 A}{\\ell} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(N.v, 0)})^2(${sciTex(A, 2)}\\ \\text{m}^2)}{${fmt(LEN.v * 1e-2, 3)}\\ \\text{m}} = ${henryTex(L, 3)}`,
+      `\\kLind = \\frac{\\mu_0 N^2 \\karea}{\\ell} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(N.v, 0)})^2(${sciTex(A, 2)}\\ \\text{m}^2)}{${fmt(LEN.v * 1e-2, 3)}\\ \\text{m}} = ${henryTex(L, 3)}`,
       `The inductance goes as the square of the turns: double the turns and the inductance is four times as great, because each of twice as many turns catches twice as much flux. Stretching the solenoid out weakens it, since the same turns then stand further apart and raise a smaller field per ampere. All of this comes from the relation L = N ΔΦ/ΔI, which holds for any device at all and is carried here through the one field the book can write down.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -479,7 +486,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     const cx = 560, cy = 250, w = 620, r = 112, x0 = cx - w / 2, x1 = cx + w / 2;
     line(ctx, x0, cy - r, x1, cy - r, alpha(PAL.ink, 0.4), 3);
     line(ctx, x0, cy + r, x1, cy + r, alpha(PAL.ink, 0.4), 3);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.strokeStyle = DEV.value === 's' ? F.ref('solenoid') : PAL.ink; ctx.lineWidth = 4;
     for (let i = 0; i < 12; i++) { const x = x0 + (w * (i + 0.5)) / 12; ctx.beginPath(); ctx.ellipse(x, cy, 16, r, 0, 0, TAU); ctx.stroke(); }
     ctx.restore();
     const rows = clamp(Math.round((I.v / 100) * 7) + 1, 1, 8);

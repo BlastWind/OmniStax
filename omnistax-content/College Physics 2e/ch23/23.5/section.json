@@ -4,7 +4,7 @@
  "chapter": "23",
  "title": "Electric Generators",
  "short": "Electric Generators",
- "lead": "A motor takes a current and gives back a turning shaft. Turn the shaft yourself and the machine runs the other way: the coil's angle to the field changes, the flux through it changes, and by Faraday's law an emf appears at the brushes. That is an electric generator. Over a quarter revolution, from facing the field to standing edge-on, the flux falls from its greatest value to zero. The average emf over that turn is the number of turns times the area times the field strength, divided by the time taken. The emf at each instant takes a little more work. The two side wires of the coil move at an angle $\\theta$ to the field, each carries the motional emf $\\kBmag\\ell\\kv\\sin\\theta$, and the two run the same way round the loop and add. Writing $\\theta = \\kw\\kt$ for a steadily turning coil gives $\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt$. A generator's voltage is therefore a sinusoid, the source of the alternating voltage at the wall socket, and its peak is $\\kemfo = NA\\kBmag\\kw$: more turns, a larger coil, a stronger field and a faster turn each give more. Two slip rings hand that sinusoid to the outside circuit unchanged, while one split ring turns the connection over twice a revolution and hands over a train of positive pulses instead.",
+ "lead": "A motor takes a current and gives back a turning shaft. Turn the shaft yourself and the machine runs the other way: <span data-ref=\"generator-coil\">the coil's</span> <span data-type=\"angle\">angle</span> to <span data-type=\"magnetic-field\">the field</span> changes, <span data-type=\"magnetic-flux\">the flux</span> through <span data-ref=\"generator-coil\">it</span> changes, and by Faraday's law <span data-type=\"voltage\">an emf</span> appears at the brushes. That is an electric generator. <span data-type=\"angle\">Over a quarter revolution</span>, from facing the field to standing edge-on, <span data-type=\"magnetic-flux\">the flux</span> falls from its greatest value to zero. The average emf over that turn is the number of turns times the area times the field strength, divided by the time taken. The emf at each instant takes a little more work. <span data-ref=\"generator-coil\">The two side wires of the coil</span> move at <span data-type=\"angle\">an angle</span> $\\ktheta$ to <span data-type=\"magnetic-field\">the field</span>, each carries <span data-type=\"voltage\">the motional emf</span> $\\kBmag\\ell\\kv\\sin\\ktheta$, and the two run the same way round the loop and add. Writing $\\ktheta = \\kw\\kt$ for a steadily turning coil gives $\\kemf = N\\karea\\kBmag\\kw\\sin\\kw\\kt$. A generator's voltage is therefore a sinusoid, the source of the alternating voltage at the wall socket, and its peak is $\\kemfo = N\\karea\\kBmag\\kw$: more turns, a larger coil, a stronger field and a faster turn each give more. <span data-ref=\"slip-rings\">Two slip rings</span> hand that sinusoid to the outside circuit unchanged, while <span data-ref=\"split-ring\">one split ring</span> turns the connection over twice a revolution and hands over a train of positive pulses instead.",
  "objectives": [
   "Calculate the emf induced in a generator.",
   "Calculate the peak emf which can be induced in a particular generator system."
@@ -48,12 +48,12 @@
    "originals": ["/media/ch23/Figure_24_05_01.jpg", "/media/ch23/Figure_24_05_02.jpg", "/media/ch23/Figure_24_05_03.jpg", "/media/ch23/Figure_24_05_04.jpg"],
    "original_caption": "(Figure 23.19) When this generator coil is rotated through one-fourth of a revolution, the magnetic flux Φ changes from its maximum to zero, inducing an emf. (Figure 23.20) A generator with a single rectangular coil rotated at constant angular velocity in a uniform magnetic field produces an emf that varies sinusoidally in time. Note the generator is similar to a motor, except the shaft is rotated to produce a current rather than the other way around. (Figure 23.21) The emf of a generator is sent to a light bulb with the system of rings and brushes shown. The graph gives the emf of the generator as a function of time. emf₀ is the peak emf. The period is T = 1/f = 2π/ω, where f is the frequency. Note that the script E stands for emf. (Figure 23.22) Split rings, called commutators, produce a pulsed DC emf output in this configuration.",
    "widths": [250, 225, 350, 225],
-   "draws": ["magnetic-flux", "magnetic-field", "voltage", "velocity", "angular-rate", "time"]
+   "draws": ["magnetic-flux", "magnetic-field", "voltage", "velocity", "angular-rate", "time", "area", "angle"]
   },
   {
    "id": "sim-average-emf",
    "kind": "sim",
-   "draws": ["magnetic-flux", "voltage", "angular-rate", "time"]
+   "draws": ["magnetic-flux", "voltage", "angular-rate", "time", "angle"]
   },
   {
    "id": "fig-steam-turbine",
@@ -276,5 +276,27 @@
   {"exercise": "p9", "concept": "generator-emf-versus-time"},
   {"exercise": "p9", "concept": "peak-emf", "weight": 4, "weights_by": "ai"},
   {"exercise": "p11", "concept": "peak-emf"}
+ ],
+ "referents": [
+  {
+   "id": "generator-coil",
+   "label": "the generator coil",
+   "figure": "sim-generator"
+  },
+  {
+   "id": "generator-magnet",
+   "label": "the poles of the magnet",
+   "figure": "sim-generator"
+  },
+  {
+   "id": "slip-rings",
+   "label": "the slip rings",
+   "figure": "sim-generator"
+  },
+  {
+   "id": "split-ring",
+   "label": "the split ring",
+   "figure": "sim-generator"
+  }
  ]
 }

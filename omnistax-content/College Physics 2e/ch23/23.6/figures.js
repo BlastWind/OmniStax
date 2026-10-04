@@ -7,8 +7,10 @@
    labels; the current in every branch is the current hue; the coil, the feeder
    lines and the lamp's filament are the resistance hue; the power dissipated in
    the coils and the power the lamp puts out are the power hue; the shaft's speed
-   is the angular rate. No device is tinted: the wires, the plates of a source,
-   the switch, the motor's case and the lamp's glass are all ink. The one drawn
+   is the angular rate. The motor, its coils, the lamp, the feeder lines and the
+   vacuum cleaner's motor are the section's referents and are outlined in their
+   referent colours through F.ref; the wires, the plates of a source and the
+   switch stay ink. The one drawn
    thing that is neither a symbol nor an arrow is the glow round the lamp, whose
    radius follows the power the lamp dissipates and which is drawn in the power
    hue at low alpha, since it is the quantity and not the device that wears a
@@ -24,12 +26,12 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 /* ---------- the pieces both schematics are drawn from ---------- */
 const wires = (ctx, pts) => { for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], PAL.ink, 3.5); };
 const BOXW = 132, BOXH = 48;
-/* A resistance on the wire, drawn as a plain box in ink, lying along the wire or
-   standing across it. The box is the device and stays ink; what is written beside
-   it is a resistance and wears that hue. */
-function resistor(ctx, x, y, horiz, name, ohms) {
+/* A resistance on the wire, drawn as a plain box lying along the wire or standing
+   across it. The box is the device and is outlined in its referent colour; what is
+   written beside it is a resistance and wears that hue. */
+function resistor(ctx, x, y, horiz, name, ohms, id) {
   const w = horiz ? BOXW : BOXH, h = horiz ? BOXH : BOXW, rc = C('resistance');
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref(id); ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 6); ctx.fill(); ctx.stroke(); ctx.restore();
   const val = ohms === null ? null : fmt(ohms, 2) + ' Ω';
   if (horiz) {
@@ -59,15 +61,16 @@ function flow(ctx, x, y, dx, dy, L) {
   arrow(ctx, x - dx * L / 2, y - dy * L / 2, x + dx * L / 2, y + dy * L / 2, C('current'), 5);
 }
 /* The dashed panel that picks one device out of the circuit round it. */
-function panel(ctx, l, t, r, b, name) {
-  ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2.5; ctx.setLineDash([9, 8]);
+function panel(ctx, l, t, r, b, name, id) {
+  const c = F.ref(id);
+  ctx.save(); ctx.strokeStyle = alpha(c, 0.6); ctx.lineWidth = 2.5; ctx.setLineDash([9, 8]);
   ctx.beginPath(); ctx.roundRect(l, t, r - l, b - t, 16); ctx.stroke(); ctx.restore();
-  if (name) text(ctx, name, (l + r) / 2, t + 26, PAL.muted, { size: 20, align: 'center', bg: PAL.panel });
+  if (name) text(ctx, name, (l + r) / 2, t + 26, c, { size: 20, align: 'center', bg: PAL.panel });
 }
 /* The turning shaft of a motor: a rim with a shaft through it and an arc round it
    whose sweep and arrowhead grow with the angular velocity. */
-function rotor(ctx, x, y, r, frac) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
+function rotor(ctx, x, y, r, frac, id) {
+  ctx.save(); ctx.strokeStyle = F.ref(id); ctx.lineWidth = 3.5;
   ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(x - r * 0.55, y); ctx.lineTo(x + r * 0.55, y); ctx.stroke();
   ctx.restore();
@@ -119,7 +122,7 @@ function rotor(ctx, x, y, r, frac) {
 
     /* the circuit: the driving source on the left, the motor along the top, the
        switch on the right, and the current running round it */
-    panel(ctx, 420, 130, 990, 420, 'the motor');
+    panel(ctx, 420, 130, 990, 420, 'the motor', 'motor');
     wires(ctx, [[200, 215], [1200, 215]]);
     wires(ctx, [[200, 215], [200, 470], [1200, 470], [1200, 215]]);
     cell(ctx, 200, 342, false, -1, false);
@@ -128,8 +131,8 @@ function rotor(ctx, x, y, r, frac) {
     cell(ctx, 545, 215, true, -1, true);
     text(ctx, 'the back emf', 545, 168, PAL.ink, { size: 21, align: 'center', bg: PAL.panel });
     text(ctx, fmt(back, 1) + ' V', 545, 285, cV, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    resistor(ctx, 860, 215, true, 'R', R);
-    rotor(ctx, 700, 350, 42, w / WMAX);
+    resistor(ctx, 860, 215, true, 'R', R, 'coils');
+    rotor(ctx, 700, 350, 42, w / WMAX, 'motor');
     text(ctx, 'ω = ' + fmt(w, 0) + ' rad/s', 700, 406, cW, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     /* the switch, closed on its two contacts */
     dot(ctx, 1200, 318, PAL.ink, true, 6); dot(ctx, 1200, 366, PAL.ink, true, 6);
@@ -227,7 +230,7 @@ function rotor(ctx, x, y, r, frac) {
     cell(ctx, 230, 345, false, -1, false);
     text(ctx, 'the supply', 230, 556, PAL.ink, { size: 21, align: 'center', bg: PAL.panel });
     text(ctx, fmt(VS, 0) + ' V', 230, 590, cV, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    resistor(ctx, 430, 190, true, 'the feeder lines', Rl);
+    resistor(ctx, 430, 190, true, 'the feeder lines', Rl, 'feeder-lines');
     flow(ctx, 620, 190, 1, 0, 54);
     text(ctx, 'I = ' + fmt(iLine, 2) + ' A', 620, 144, cI, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
 
@@ -238,28 +241,28 @@ function rotor(ctx, x, y, r, frac) {
     const glow = 46 + 46 * Math.min(1.1, bright);
     ctx.save(); ctx.fillStyle = alpha(cP, 0.14 + 0.18 * Math.min(1, bright));
     ctx.beginPath(); ctx.arc(800, 341, glow, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('lamp'); ctx.lineWidth = 3.5;
     ctx.beginPath(); ctx.arc(800, 341, 42, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(770, 311); ctx.lineTo(830, 371); ctx.moveTo(770, 371); ctx.lineTo(830, 311); ctx.stroke();
     ctx.restore();
     flow(ctx, 800, 444, 0, 1, 44);
-    text(ctx, 'the lamp', 800, 242, PAL.ink, { size: 21, align: 'center', bg: PAL.panel });
+    text(ctx, 'the lamp', 800, 242, F.ref('lamp'), { size: 21, align: 'center', bg: PAL.panel });
     text(ctx, fmt(100 * bright, 0) + '% of full brightness', 800, 556, cP, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     vbracket(ctx, 712, 214, 476, cV, 'V = ' + fmt(V, 1) + ' V', -1, { side: 'left', H });
 
     /* the motor on its own branch, drawn as the resistance of its coils with the
        emf it generates in series against the supply */
-    panel(ctx, 900, 200, 1340, 482, 'the motor');
+    panel(ctx, 900, 200, 1340, 482, 'the motor', 'vacuum-motor');
     wires(ctx, [[1060, 190], [1060, 500]]);
-    resistor(ctx, 1060, 392, false, null, RM);
+    resistor(ctx, 1060, 392, false, null, RM, 'vacuum-motor');
     const aOn = on.a('on'), aOff = on.a('off');
     if (aOn > 0) {
       ctx.save(); ctx.globalAlpha = aOn;
       cell(ctx, 1060, 272, false, -1, true);
       text(ctx, 'the back emf', 1042, 240, PAL.ink, { size: 20, align: 'right', bg: PAL.panel });
       text(ctx, fmt(back, 1) + ' V', 1042, 304, cV, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
-      rotor(ctx, 1245, 330, 38, w / 180);
+      rotor(ctx, 1245, 330, 38, w / 180, 'vacuum-motor');
       text(ctx, 'ω = ' + fmt(w, 0) + ' rad/s', 1245, 428, cW, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
       if (iMotor > 0.01) flow(ctx, 1060, 466, 0, 1, 44);
       ctx.restore();
@@ -269,7 +272,7 @@ function rotor(ctx, x, y, r, frac) {
       ctx.save(); ctx.globalAlpha = aOff;
       dot(ctx, 1060, 252, PAL.ink, true, 6); dot(ctx, 1060, 300, PAL.ink, true, 6);
       line(ctx, 1060, 252, 1106, 286, PAL.ink, 3.5);
-      rotor(ctx, 1245, 330, 38, 0);
+      rotor(ctx, 1245, 330, 38, 0, 'vacuum-motor');
       text(ctx, 'switched off', 1245, 428, PAL.muted, { size: 20, align: 'center', bg: PAL.panel });
       ctx.restore();
     }

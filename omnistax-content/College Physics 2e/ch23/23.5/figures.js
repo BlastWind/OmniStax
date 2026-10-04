@@ -12,9 +12,11 @@
    the marks thin out to none while the field itself never changes. The emf the
    coil induces wears the voltage hue on the wires and on the curve, the two
    velocity arrows wear the velocity hue, the rotation wears the angular-rate
-   hue, and the graphs' time and angle axes are ink, an angle being untyped. No
-   body is tinted: the pole pieces are ink lettered N and S, and the coil, the
-   shaft, the crank, the rings, the brushes, the leads and the load are ink.
+   hue, the angle the coil has turned wears the angle hue on its arc and on the
+   graphs' axes, and the area slider the area hue. The coil, the pole pieces, the
+   slip rings and the split ring are the section's referents and wear their
+   referent colours through F.ref; the shaft, the crank, the brushes, the wires
+   and the load stay in ink.
 
    The generator moves and the averaging figure does not (rule 14). A generator
    turns and its result is a function of time, so that figure registers a cycle
@@ -81,7 +83,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   const GH = 340;                                   /* the canvas carries the graph */
   const d = sim('sim-generator', hasGL ? GH : 900); /* with no scene, it carries the top view as well */
   const nS = ctl(d.controls, { label: 'N', cls: '', min: 50, max: 250, step: 5, value: 200, unit: 'turns', dec: 0, aria: 'the number of turns of wire in the coil' });
-  const aS = ctl(d.controls, { label: 'A', cls: '', min: 2, max: 12, step: 0.05, value: 7.85, unit: '× 10⁻³ m²', dec: 2, aria: 'the area of the coil' });
+  const aS = ctl(d.controls, { label: '\\karea', cls: 'area', min: 2, max: 12, step: 0.05, value: 7.85, unit: '× 10⁻³ m²', dec: 2, aria: 'the area of the coil' });
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 1.5, step: 0.05, value: 1.25, unit: 'T', dec: 2, aria: 'the strength of the magnetic field between the poles' });
   const wS = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 20, max: 125, step: 0.1, value: 104.7, unit: 'rad/s', dec: 1, aria: 'the angular velocity at which the coil is turned' });
   const ringC = select(d.controls, { label: '\\text{the contacts}', options: [{ value: 'rings', label: 'slip rings' }, { value: 'split', label: 'a split ring' }], value: 'rings', aria: 'whether the coil meets the outside circuit through two slip rings or through one split ring' });
@@ -156,13 +158,14 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   function build() {
     if (!V || !V.scene || !turn) return;
     V.clear(); paint.length = 0;
-    const inkC = () => PAL.ink, mutedC = () => PAL.muted;
+    const inkC = () => PAL.ink, mutedC = () => PAL.muted, AC = () => C('angle');
+    const coilC = () => F.ref('generator-coil'), magC = () => F.ref('generator-magnet'), slipC = () => F.ref('slip-rings'), splitC = () => F.ref('split-ring');
     const BC = () => C('magnetic-field'), PC = () => C('magnetic-flux'), EC = () => C('voltage'), VC = () => C('velocity'), WC = () => C('angular-rate');
     S = { coil: new THREE.Group() };
     /* the two pole pieces, lettered on their faces, and the field between them */
     [-1, 1].forEach((sx) => {
-      const m = F.mesh.box(turn, [sx * (GAP + PW / 2), 0, 0], [PW, PH, PD], PAL.muted);
-      keep(m, mutedC); V.pickable(m, sx < 0 ? 'the north pole of the magnet' : 'the south pole of the magnet');
+      const m = F.mesh.box(turn, [sx * (GAP + PW / 2), 0, 0], [PW, PH, PD], magC());
+      keep(m, magC); V.pickable(m, sx < 0 ? 'the north pole of the magnet' : 'the south pole of the magnet');
     });
     S.field = LINES.map(([y0, z0]) => {
       const a = vec(turn, BC, 0.02, 'the magnetic field, running from the north pole to the south pole');
@@ -183,7 +186,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
        how many turns the slider asks for */
     S.wind = [];
     for (let j = 0; j < WIND; j++) {
-      const g = [0, 1, 2, 3].map(() => keep(F.mesh.stick(S.coil, [0, 0, 0], [0, 1, 0], 0.022, PAL.ink), inkC));
+      const g = [0, 1, 2, 3].map(() => keep(F.mesh.stick(S.coil, [0, 0, 0], [0, 1, 0], 0.022, coilC()), coilC));
       g.forEach((m) => V.pickable(m, 'the coil of wire, in which the emf is induced'));
       S.wind.push(g);
     }
@@ -191,18 +194,18 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
        area is the flux itself, which is what the view button beside it is for. */
     S.patch = F.mesh.box(S.coil, [0, 0, 0], [0.014, 1, 1], C('magnetic-flux'), { transparent: true, opacity: 0.3, side: 2 });
     keep(S.patch, PC); V.pickable(S.patch, 'the face of the coil, whose apparent area seen along the field is the flux');
-    S.lead = [-1, 1].map(() => keep(F.mesh.stick(S.coil, [0, 0, 0], [0, 1, 0], 0.022, PAL.ink), inkC));
+    S.lead = [-1, 1].map(() => keep(F.mesh.stick(S.coil, [0, 0, 0], [0, 1, 0], 0.022, coilC()), coilC));
     /* the crank, which turns with the coil: this machine is driven from outside */
     S.crank = [keep(F.mesh.stick(S.coil, [0, 1.36, 0], [0.42, 1.36, 0], 0.03, PAL.ink), inkC), keep(F.mesh.stick(S.coil, [0.42, 1.36, 0], [0.42, 1.1, 0], 0.045, PAL.ink), inkC)];
     S.crank.forEach((m) => V.pickable(m, 'the crank, by which the coil is turned from outside'));
     /* the contacts: two slip rings, each carrying one end of the coil out to its own
        brush, or one split ring whose halves change brushes twice a revolution */
     S.slip = [YR1, YR2].map((y) => {
-      const m = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.2, 24), pmat(mutedC));
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.2, 24), pmat(slipC));
       m.position.set(0, y, 0); S.coil.add(m); V.pickable(m, 'a slip ring, which keeps one end of the coil on one brush all the way round'); return m;
     });
     S.split = [0, Math.PI].map((a) => {
-      const m = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.3, 18, 1, false, a + 0.09, Math.PI - 0.18), pmat(mutedC));
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.3, 18, 1, false, a + 0.09, Math.PI - 0.18), pmat(splitC));
       m.position.set(0, YSP, 0); S.coil.add(m); V.pickable(m, 'one half of the split ring, which changes brushes twice a revolution'); return m;
     });
     S.brush = [[-1, YR1], [1, YR2], [-1, YSP], [1, YSP]].map(([sx, y], i) => {
@@ -220,7 +223,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     /* the perpendicular to the coil, and the arc from the field round to it */
     S.norm = keep(F.mesh.stick(S.coil, [0, 0, 0], [0.9, 0, 0], 0.012, PAL.muted), mutedC);
     S.ang = [];
-    for (let i = 0; i < ANGN; i++) S.ang.push(keep(F.mesh.stick(turn, [0, 0, 0], [0, 0.01, 0], 0.012, PAL.muted), mutedC));
+    for (let i = 0; i < ANGN; i++) S.ang.push(keep(F.mesh.stick(turn, [0, 0, 0], [0, 0.01, 0], 0.012, C('angle')), AC));
     /* the rotation, a curved arrow about the top of the shaft */
     S.arc = [];
     for (let i = 0; i < ARCN; i++) S.arc.push(keep(F.mesh.stick(turn, [0, 0, 0], [0, 0.01, 0], 0.028, PAL.ink), WC));
@@ -325,7 +328,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     V.move(S.lab.th, [ANGR * 2.1 * Math.cos(span / 2), -0.26, -ANGR * 2.1 * Math.sin(span / 2)]);
     V.move(S.lab.w, [ARCR * 1.7 * Math.cos(0.5 + tot / 2), 1.06, -ARCR * 1.7 * Math.sin(0.5 + tot / 2)]);
     S.lab.B.style.color = C('magnetic-field'); S.lab.Phi.style.color = C('magnetic-flux');
-    S.lab.v.style.color = C('velocity'); S.lab.emf.style.color = C('voltage'); S.lab.w.style.color = C('angular-rate');
+    S.lab.v.style.color = C('velocity'); S.lab.emf.style.color = C('voltage'); S.lab.w.style.color = C('angular-rate'); S.lab.th.style.color = C('angle');
     S.lab.th.textContent = 'θ = ' + deg(st.th);
     S.lab.Phi.textContent = 'Φ = ' + milli(st.flux, 2) + ' T⋅m²';
     S.lab.emf.textContent = 'emf = ' + fmt(st.emf, 0) + ' V';
@@ -350,14 +353,14 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
        where the coil catches them sit on those lines */
     const ZS = [-0.45, -0.16, 0.16, 0.45];
     if (bS.v > 0) ZS.forEach((z0) => arrow(ctx, cx - 430, cy0 - z0 * K, cx + 430, cy0 - z0 * K, alpha(cB, 0.75), 3.5));
-    text(ctx, 'N', cx - 470, cy0, PAL.ink, { size: 34, weight: 700, align: 'center' });
-    text(ctx, 'S', cx + 470, cy0, PAL.ink, { size: 34, weight: 700, align: 'center' });
+    text(ctx, 'N', cx - 470, cy0, F.ref('generator-magnet'), { size: 34, weight: 700, align: 'center' });
+    text(ctx, 'S', cx + 470, cy0, F.ref('generator-magnet'), { size: 34, weight: 700, align: 'center' });
     if (bS.v > 0) text(ctx, 'B = ' + fmt(bS.v, 2) + ' T', 1350, 104, cB, { size: 21, weight: 600, align: 'right' });
     /* the coil, seen edge on from above: a line through the shaft with a side wire at
        each end, and the marks where the field lines pierce its face */
     const ux = Math.sin(st.th * RAD), uy = -Math.cos(st.th * RAD);
     const pA = [cx + ux * hh, cy0 + uy * hh], pB = [cx - ux * hh, cy0 - uy * hh];
-    line(ctx, pA[0], pA[1], pB[0], pB[1], PAL.ink, 6);
+    line(ctx, pA[0], pA[1], pB[0], pB[1], F.ref('generator-coil'), 6);
     if (bS.v > 0 && Math.abs(st.c) > 0.035) ZS.forEach((z0) => {
       if (Math.abs(z0 / st.c) > (side() / 2) * UPM) return;
       dot(ctx, cx + z0 * Math.tan(st.th * RAD) * K, cy0 - z0 * K, cP, true, 9);
@@ -369,8 +372,8 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     text(ctx, 'v = ' + fmt(st.v, 2) + ' m/s', pA[0] + Math.cos(st.th * RAD) * vl + 16, pA[1] + Math.sin(st.th * RAD) * vl - 24, cV, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
     /* the angle the perpendicular, and so the velocity, makes with the field */
     if (st.th > 3 && st.th < 357) {
-      turnArrow(ctx, cx, cy0, 104, 0, st.th * RAD, alpha(PAL.ink, 0.45), 2.5);
-      text(ctx, 'θ = ' + deg(st.th), cx + 152 * Math.cos(st.th * RAD / 2), cy0 + 152 * Math.sin(st.th * RAD / 2), PAL.ink, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+      turnArrow(ctx, cx, cy0, 104, 0, st.th * RAD, alpha(C('angle'), 0.7), 2.5);
+      text(ctx, 'θ = ' + deg(st.th), cx + 152 * Math.cos(st.th * RAD / 2), cy0 + 152 * Math.sin(st.th * RAD / 2), C('angle'), { size: 20, weight: 600, align: 'left', bg: PAL.panel });
     }
     if (bS.v > 0) text(ctx, 'Φ = ' + fluxStr(st.flux), 50, 104, cP, { size: 21, weight: 600, align: 'left' });
     if (bS.v > 0) text(ctx, 'emf = ' + fmt(st.emf, 0) + ' V', 50, 134, cE, { size: 21, weight: 600, align: 'left' });
@@ -384,7 +387,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   function drawGraph(ctx, st, y0) {
     const BOX = { l: 180, r: 1250, t: y0 + 62, b: y0 + 254 };
     const { X, Y } = axes(ctx, BOX, [0, 720], [-600, 600], {
-      xl: 'the angle the coil has turned from the position where it faces the field (degrees)',
+      xl: 'the angle the coil has turned from the position where it faces the field (degrees)', xc: C('angle'),
       yl: 'the emf the contacts hand to the circuit (V)', yc: C('voltage'),
       nx: 8, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
@@ -409,7 +412,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     drawGraph(ctx, st, hasGL ? 8 : 550);
     const drawnPeriod = T / 2, slow = drawnPeriod / st.period;
     readout(d.readout,
-      `\\kemf = NA\\kBmag\\kw\\sin\\kw\\kt = (${fmt(nS.v, 0)})(${milliTex(area(), 2)}\\ \\text{m}^2)(${fmt(bS.v, 2)}\\ \\text{T})(${fmt(wS.v, 1)}\\ \\text{rad/s})\\sin ${degTex(st.th)} = ${fmt(st.emf, 0)}\\ \\text{V}`,
+      `\\kemf = N\\karea\\kBmag\\kw\\sin\\kw\\kt = (${fmt(nS.v, 0)})(${milliTex(area(), 2)}\\ \\text{m}^2)(${fmt(bS.v, 2)}\\ \\text{T})(${fmt(wS.v, 1)}\\ \\text{rad/s})\\sin ${degTex(st.th)} = ${fmt(st.emf, 0)}\\ \\text{V}`,
       `The angle is measured from the position where the coil faces the field squarely, which is where the flux through it is greatest, ${fluxStr(bS.v * area())}, and where the emf is zero; a quarter revolution on, the coil stands edge-on, the flux is zero and the emf is at its peak of ${fmt(peak(), 0)} V. The coil turns at ${fmt(wS.v, 1)} rad/s, so its period is ${fmt(st.period * 1000, 1)} ms and its frequency ${fmt(1 / st.period, 1)} Hz, but the scene is drawn at one revolution every ${fmt(drawnPeriod, 1)} s, about ${fmt(slow, 0)} times slower than the coil really turns, because a machine turning sixteen times a second shows the reader nothing. At the opening settings it is Example 23.3 and Example 23.4: two hundred turns of 7.85 × 10⁻³ m² in a 1.25 T field at 104.7 rad/s, whose average emf over a quarter revolution is 131 V and whose peak is 205 V, which Example 23.4 rounds to 206 V. From 0° to 90° is that quarter revolution, over which the flux falls from its greatest value to zero in 15.0 ms. ${st.split ? 'The split ring turns the connection over each half revolution, so the coil still induces the same sinusoid but the circuit receives a train of positive pulses.' : 'The slip rings keep each end of the coil on its own brush all the way round, so the circuit receives the sinusoid just as the coil induces it.'}`);
   }
 
@@ -449,9 +452,9 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
 (function () {
   const H = 770;
   const d = sim('sim-average-emf', H);
-  const t1S = ctl(d.controls, { label: '\\theta_1', cls: '', min: 0, max: 180, step: 5, value: 0, unit: '°', dec: 0, aria: 'the angle the coil has already turned when the interval begins',
+  const t1S = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 0, max: 180, step: 5, value: 0, unit: '°', dec: 0, aria: 'the angle the coil has already turned when the interval begins',
     specials: [{ at: 0, label: 'face on' }] });
-  const dtS = ctl(d.controls, { label: '\\Delta\\theta', cls: '', min: 10, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle the coil turns through during the interval',
+  const dtS = ctl(d.controls, { label: '\\kdtheta', cls: 'angle', min: 10, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle the coil turns through during the interval',
     specials: [{ at: 90, label: 'quarter turn' }] });
   const wS = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 20, max: 125, step: 0.1, value: 104.7, unit: 'rad/s', dec: 1, aria: 'the angular velocity at which the coil is turned' });
 
@@ -471,7 +474,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     const BA = { l: 200, r: 1250, t: 142, b: 344 }, BB = { l: 200, r: 1250, t: 480, b: 682 };
     /* the flux through the coil, and the chord Faraday's law takes the slope of */
     const A = axes(ctx, BA, [0, 360], [-0.010, 0.010], {
-      yl: 'Φ, the flux through the coil (T⋅m²)', yc: cP,
+      xc: C('angle'), yl: 'Φ, the flux through the coil (T⋅m²)', yc: cP,
       nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 3),
     });
     ctx.save(); ctx.fillStyle = alpha(cP, 0.12); ctx.fillRect(A.X(st.t1), BA.t, A.X(st.t2) - A.X(st.t1), BA.b - BA.t); ctx.restore();
@@ -488,7 +491,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     ]);
     /* the emf the same turn induces, and the mean of it over the same span */
     const Bx = axes(ctx, BB, [0, 360], [-250, 250], {
-      xl: 'the angle the coil has turned from the position where it faces the field (degrees)',
+      xl: 'the angle the coil has turned from the position where it faces the field (degrees)', xc: C('angle'),
       yl: 'emf (V)', yc: cE, nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
     ctx.save(); ctx.fillStyle = alpha(cE, 0.12); ctx.fillRect(Bx.X(st.t1), BB.t, Bx.X(st.t2) - Bx.X(st.t1), BB.b - BB.t); ctx.restore();

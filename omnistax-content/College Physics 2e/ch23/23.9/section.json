@@ -4,7 +4,7 @@
   "chapter": "23",
   "title": "Inductance",
   "short": "Inductance",
-  "lead": "So far induction has had no number of its own. Two coils standing side by side induce emfs in one another, and the constant between the emf in one and the rate of change of current in the other is their mutual inductance. A single device does the same thing to itself, and the constant is then its self-inductance, measured in henries, where one henry is one ohm-second. The numbers are larger than they look: a one-henry coil carrying ten amperes answers a switch opened in a millisecond with ten thousand volts, enough to strike an arc. For most shapes you can only measure the inductance, but the solenoid has a simple enough field to work out, $\\kLind = \\mu_0 N^2 A/\\ell$. The energy the field holds, $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$, gives a second way to see why an inductor will not let a current change quickly.",
+  "lead": "So far induction has had no number of its own. <span data-ref=\"coil-1 coil-2\">Two coils standing side by side</span> induce <span data-type=\"voltage\">emfs</span> in one another, and the constant between the emf in one and the rate of change of current in the other is their mutual inductance. A single device does the same thing to itself, and the constant is then its self-inductance, measured in henries, where one henry is one ohm-second. The numbers are larger than they look: a one-henry coil carrying <span data-type=\"current\">ten amperes</span> answers <span data-ref=\"switch\">a switch</span> opened in <span data-type=\"time\">a millisecond</span> with <span data-type=\"voltage\">ten thousand volts</span>, enough to strike an arc. For most shapes you can only measure the inductance, but the solenoid has a simple enough field to work out, $\\kLind = \\mu_0 N^2 \\karea/\\ell$. The energy the field holds, $\\kEind = \\frac{1}{2}\\kLind\\kIcur^2$, gives a second way to see why an inductor will not let a current change quickly.",
   "objectives": [
     "Calculate the inductance of an inductor.",
     "Calculate the energy stored in an inductor.",
@@ -57,7 +57,7 @@
       "originals": ["/media/ch23/Figure_24_09_02.jpg"],
       "original_caption": "The heating coils of an electric clothes dryer can be counter-wound so that their magnetic fields cancel one another, greatly reducing the mutual inductance with the case of the dryer.",
       "widths": [325],
-      "draws": ["inductance", "magnetic-field", "current"]
+      "draws": ["inductance", "magnetic-field", "current", "area"]
     },
     {
       "id": "sim-self-inductance",
@@ -80,7 +80,7 @@
     {
       "id": "sim-solenoid-inductance",
       "kind": "sim",
-      "draws": ["inductance", "magnetic-field", "magnetic-flux"]
+      "draws": ["inductance", "magnetic-field", "magnetic-flux", "area", "position"]
     },
     {
       "id": "photo-security-gate",
@@ -287,5 +287,52 @@
     { "exercise": "p5", "concept": "self-inductance" },
     { "exercise": "p6", "concept": "energy-stored-in-an-inductor" },
     { "exercise": "p6", "concept": "self-inductance", "weight": 3, "weights_by": "ai" }
+  ],
+  "referents": [
+    {
+      "id": "coil-1",
+      "label": "coil 1",
+      "figure": "sim-mutual-inductance"
+    },
+    {
+      "id": "coil-2",
+      "label": "coil 2",
+      "figure": "sim-mutual-inductance"
+    },
+    {
+      "id": "galvanometer",
+      "label": "the galvanometer",
+      "figure": "sim-mutual-inductance"
+    },
+    {
+      "id": "element",
+      "label": "the heating element",
+      "figure": "sim-counterwound"
+    },
+    {
+      "id": "switch",
+      "label": "the switch",
+      "figure": "sim-self-inductance"
+    },
+    {
+      "id": "flash-switch",
+      "label": "the switch of the camera flash",
+      "figure": "sim-camera-flash"
+    },
+    {
+      "id": "battery",
+      "label": "the battery",
+      "figure": "sim-camera-flash"
+    },
+    {
+      "id": "capacitor",
+      "label": "the capacitor",
+      "figure": "sim-camera-flash"
+    },
+    {
+      "id": "solenoid",
+      "label": "the solenoid",
+      "figure": "sim-solenoid-inductance"
+    }
   ]
 }
