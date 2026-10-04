@@ -20,9 +20,9 @@ function poly(ctx, pts, fill, stroke, w = 2.5) {
   if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = w; ctx.stroke(); }
   ctx.restore();
 }
-/* a rounded box in the panel colour with an ink outline */
-function rbox(ctx, x, y, w, h, r) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+/* a rounded box in the panel colour with an outline, ink unless a referent's */
+function rbox(ctx, x, y, w, h, r, col = PAL.ink) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = col; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 /* a filled rectangle, and one with a diagonal hatch, for the segments of a stacked bar */
@@ -35,11 +35,11 @@ function hatched(ctx, x, y, w, h, color) {
   for (let s = x - h; s < x + w; s += 12) { ctx.moveTo(s, y + h); ctx.lineTo(s + h, y); }
   ctx.stroke(); ctx.restore();
 }
-/* a pipe: an ink wall with the fluid drawn inside it in the flow-rate hue */
-function pipe(ctx, pts, w, fluid) {
+/* a pipe: a wall, ink unless a referent's, with the fluid drawn inside it in the flow-rate hue */
+function pipe(ctx, pts, w, fluid, wall = PAL.ink) {
   const path = () => { ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); };
   ctx.save(); ctx.lineCap = 'butt'; ctx.lineJoin = 'round';
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = w; path(); ctx.stroke();
+  ctx.strokeStyle = wall; ctx.lineWidth = w; path(); ctx.stroke();
   ctx.strokeStyle = fluid; ctx.lineWidth = Math.max(2, w - 7); path(); ctx.stroke();
   ctx.restore();
 }
@@ -69,29 +69,30 @@ function vscale(ctx, box, top, step, fx, title, color) {
   const d = sim('sim-torricelli', 760);
   const hs = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0.5, max: 20, step: 0.1, value: 5, unit: 'm', dec: 2, aria: 'the depth of the opening below the surface' });
   const v1s = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 0, max: 3, step: 0.05, value: 0, unit: 'm/s', dec: 2, aria: 'the speed of the water at the surface' });
-  const As = ctl(d.controls, { label: 'A', cls: '', min: 2, max: 50, step: 0.5, value: 10, unit: 'cm²', dec: 1, aria: 'the area of the opening' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 2, max: 50, step: 0.5, value: 10, unit: 'cm²', dec: 1, aria: 'the area of the opening' });
   const S = 18, YOUT = 560, YBED = 660, YTW = YOUT + 1.5 * S, XL = 80;
   /* the dam: a tapered wall, its upstream face from (600, 140) down to (470, 660) and its downstream face from (640, 140) down to (700, 660) */
   const upX = (y) => 600 - ((y - 140) / (YBED - 140)) * 130, dnX = (y) => 640 + ((y - 140) / (YBED - 140)) * 60;
   const box = { l: 1000, r: 1340, t: 150, b: 560 };
   function draw() {
     const { ctx } = begin(d.c);
-    const vc = C('velocity'), pc = C('position'), ac = C('acceleration'), prc = C('pressure'), qc = C('flow-rate');
+    const vc = C('velocity'), pc = C('position'), ac = C('acceleration'), prc = C('pressure'), qc = C('flow-rate'), arc = C('area');
+    const cSurf = F.ref('surface'), cOut = F.ref('outlet'), cDam = F.ref('dam');
     const h = hs.v, v1 = v1s.v, A = As.v * 1e-4;
     const v2 = Math.sqrt(v1 * v1 + 2 * G * h), Q = A * v2;
     const ys = YOUT - h * S, half = 6 + 8 * Math.sqrt(As.v / 50);      /* the opening, drawn wider than its true size */
     /* the reservoir, the dam and the tailwater */
     const water = alpha(PAL.muted, 0.22);
     poly(ctx, [[XL, ys], [upX(ys), ys], [upX(YBED), YBED], [XL, YBED]], water, null);
-    line(ctx, XL, ys, upX(ys), ys, PAL.muted, 2.5);
-    poly(ctx, [[600, 140], [640, 140], [dnX(YBED), YBED], [upX(YBED), YBED]], alpha(PAL.ink, 0.3), PAL.ink, 2.5);
+    line(ctx, XL, ys, upX(ys), ys, cSurf, 2.5);
+    poly(ctx, [[600, 140], [640, 140], [dnX(YBED), YBED], [upX(YBED), YBED]], alpha(PAL.ink, 0.3), cDam, 2.5);
     poly(ctx, [[dnX(YTW), YTW], [900, YTW], [900, YBED], [dnX(YBED), YBED]], water, null);
     line(ctx, dnX(YTW), YTW, 900, YTW, PAL.muted, 2.5);
     line(ctx, 60, YBED, 900, YBED, PAL.muted, 4);
     /* the opening through the base of the dam, and the jet that leaves it */
     const x0 = upX(YOUT) - 4, x1 = dnX(YOUT) + 2;
     ctx.save(); ctx.fillStyle = water; ctx.fillRect(x0, YOUT - half, x1 - x0, 2 * half); ctx.restore();
-    line(ctx, x0, YOUT - half, x1, YOUT - half, PAL.ink, 2.5); line(ctx, x0, YOUT + half, x1, YOUT + half, PAL.ink, 2.5);
+    line(ctx, x0, YOUT - half, x1, YOUT - half, cOut, 2.5); line(ctx, x0, YOUT + half, x1, YOUT + half, cOut, 2.5);
     const tl = Math.sqrt(2 * 1.5 / G);
     const jet = (dy) => { ctx.beginPath(); for (let i = 0; i <= 40; i++) { const t = (tl * i) / 40, x = x1 + v2 * t * S, y = YOUT + 0.5 * G * t * t * S + dy; if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); } };
     ctx.save(); ctx.strokeStyle = water; ctx.lineWidth = 2 * half; ctx.lineCap = 'butt'; jet(0); ctx.stroke();
@@ -103,13 +104,13 @@ function vscale(ctx, box, top, step, fx, title, color) {
     text(ctx, 'h_1', 768, ys - 18, pc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'h_2', 878, YOUT + 24, pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* point 1 at the surface and point 2 at the outlet */
-    dot(ctx, 150, ys, PAL.ink, true, 9);
-    text(ctx, '1', 128, ys - 14, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    dot(ctx, 150, ys, cSurf, true, 9);
+    text(ctx, '1', 128, ys - 14, cSurf, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'P_1 = atmospheric', 172, ys - 38, prc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'v_1 = ' + fmt(v1, 2) + ' m/s', 172, ys - 12, vc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    dot(ctx, x1, YOUT, PAL.ink, true, 9);
-    text(ctx, '2', x1 + 4, YOUT - half - 18, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'opening A = ' + fmt(As.v, 1) + ' cm²', (x0 + x1) / 2, 692, PAL.ink, { size: 19, align: 'center' });
+    dot(ctx, x1, YOUT, cOut, true, 9);
+    text(ctx, '2', x1 + 4, YOUT - half - 18, cOut, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'opening A = ' + fmt(As.v, 1) + ' cm²', (x0 + x1) / 2, 692, arc, { size: 19, align: 'center' });
     text(ctx, 'P_2 = atmospheric', 760, 692, prc, { size: 20, weight: 600 });
     text(ctx, 'v_2 = ' + fmt(v2, 2) + ' m/s', 760, 720, vc, { size: 20, weight: 600 });
     text(ctx, 'Q = Av_2 = ' + fmt(Q * 1000, 2) + ' L/s', 60, 720, qc, { size: 20, weight: 600 });
@@ -144,12 +145,13 @@ function vscale(ctx, box, top, step, fx, title, color) {
   const d = sim('sim-fire-hose', 760);
   const Qs = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 10, max: 50, step: 0.5, value: 40, unit: 'L/s', dec: 1, aria: 'the flow rate through the hose' });
   const hs = ctl(d.controls, { label: '\\khtwo', cls: 'position', min: 0, max: 20, step: 0.1, value: 10, unit: 'm', dec: 1, aria: 'the height of the nozzle above the ground' });
-  const ds = ctl(d.controls, { label: '\\text{nozzle bore}', cls: '', min: 2.5, max: 6.4, step: 0.05, value: 3, unit: 'cm', dec: 2, aria: 'the inside diameter of the nozzle' });
+  const ds = ctl(d.controls, { label: '\\text{nozzle bore}', cls: 'position', min: 2.5, max: 6.4, step: 0.05, value: 3, unit: 'cm', dec: 2, aria: 'the inside diameter of the nozzle' });
   const S = 24, YG = 660, D1 = 0.064, A1 = Math.PI * (D1 / 2) ** 2, TOP = 6e6;
   const bx = { l: 880, r: 1340, t: 150, b: 560 }, KB = (bx.b - bx.t) / TOP, COLS = [[900, 'at the base (1)'], [1180, 'in the nozzle (2)']], CW = 120;
   function draw() {
     const { ctx } = begin(d.c);
     const vc = C('velocity'), pc = C('position'), ac = C('acceleration'), prc = C('pressure'), qc = C('flow-rate'), ec = C('energy'), dc = C('density');
+    const cBase = F.ref('base'), cNoz = F.ref('nozzle'), cHose = F.ref('hose');
     const Q = Qs.v / 1000, h2 = hs.v, A2 = Math.PI * (ds.v / 200) ** 2;
     const v1 = Q / A1, v2 = Q / A2;
     const k1 = 0.5 * RHO * v1 * v1, k2 = 0.5 * RHO * v2 * v2, g2 = RHO * G * h2, P1 = k2 - k1 + g2, total = P1 + k1;
@@ -166,17 +168,17 @@ function vscale(ctx, box, top, step, fx, title, color) {
     for (const s of [-9, 9]) { ctx.beginPath(); ctx.moveTo(lx0 + nx * s, YG + ny * s); ctx.lineTo(lx1 + nx * s, ly1 + ny * s); ctx.stroke(); }
     for (let k = 40; k < L; k += 40) { const x = lx0 + ((lx1 - lx0) * k) / L, y = YG + ((ly1 - YG) * k) / L; ctx.beginPath(); ctx.moveTo(x - nx * 9, y - ny * 9); ctx.lineTo(x + nx * 9, y + ny * 9); ctx.stroke(); }
     ctx.restore();
-    pipe(ctx, [[230, 640], [300, 640], [lx0 + 10, YG - 12], [lx1, yn]], 14, alpha(qc, 0.8));
+    pipe(ctx, [[230, 640], [300, 640], [lx0 + 10, YG - 12], [lx1, yn]], 14, alpha(qc, 0.8), cHose);
     const nw = 6 + 8 * (ds.v / 6.4);
-    pipe(ctx, [[lx1, yn], [lx1 + 36, yn]], nw, alpha(qc, 0.8));
+    pipe(ctx, [[lx1, yn], [lx1 + 36, yn]], nw, alpha(qc, 0.8), cNoz);
     for (const s of [-8, 0, 8]) line(ctx, lx1 + 40, yn + s * 0.3, 688, yn + s, alpha(qc, 0.7), 3);
     /* the two points, and what the water has at each */
-    dot(ctx, 265, 640, PAL.ink, true, 9);
-    text(ctx, '1', 265, 616, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    dot(ctx, 265, 640, cBase, true, 9);
+    text(ctx, '1', 265, 616, cBase, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'P_1 = ' + e6(P1, 2) + ' N/m² (gauge)', 60, 696, prc, { size: 20, weight: 600 });
     text(ctx, 'v_1 = ' + fmt(v1, 1) + ' m/s in the 6.40 cm hose', 60, 724, vc, { size: 20, weight: 600 });
-    dot(ctx, lx1, yn, PAL.ink, true, 9);
-    text(ctx, '2', lx1 + 4, yn - 28, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    dot(ctx, lx1, yn, cNoz, true, 9);
+    text(ctx, '2', lx1 + 4, yn - 28, cNoz, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'P_2 = 0 (gauge)', 590, yn - 40, prc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'v_2 = ' + fmt(v2, 1) + ' m/s in the ' + fmt(ds.v, 2) + ' cm bore', 590, yn - 14, vc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     if (h2 > 0.2) vbracket(ctx, 752, YG, yn, pc, 'h_2 = ' + fmt(h2, 1) + ' m', 1);
@@ -195,7 +197,7 @@ function vscale(ctx, box, top, step, fx, title, color) {
       hatched(ctx, x, y - g * KB, CW, g * KB, ec); y -= g * KB;
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.strokeRect(x, y, CW, bx.b - y); ctx.restore();
       const cx = x + CW / 2;
-      text(ctx, name, cx, bx.b + 30, PAL.ink, { size: 19, weight: 600, align: 'center' });
+      text(ctx, name, cx, bx.b + 30, i ? cNoz : cBase, { size: 19, weight: 600, align: 'center' });
       text(ctx, 'ρgh_' + (i + 1) + ' = ' + e6(g, 2), cx, bx.b + 62, ec, { size: 18, weight: 600, align: 'center' });
       text(ctx, '½ρv_' + (i + 1) + '² = ' + e6(k, 2), cx, bx.b + 88, ec, { size: 18, weight: 600, align: 'center' });
       text(ctx, 'P_' + (i + 1) + ' = ' + e6(p, 2), cx, bx.b + 114, prc, { size: 18, weight: 600, align: 'center' });
@@ -235,23 +237,24 @@ function vscale(ctx, box, top, step, fx, title, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const vc = C('velocity'), pc = C('position'), ac = C('acceleration'), prc = C('pressure'), qc = C('flow-rate'), wc = C('power'), dc = C('density');
+    const cPump = F.ref('pump'), cHyd = F.ref('hydrant');
     const P = Ps.v * 1e6, v = vs.v, h = hs.v, Q = Qs.v / 1000;
     const Wp = P * Q, Wk = 0.5 * RHO * v * v * Q, Wg = RHO * G * h * Q, W = Wp + Wk + Wg;
     const yt = YP - h * S;
     /* the ground, the hydrant, the pump and its pipes */
     line(ctx, 40, YG, 800, YG, PAL.muted, 4);
-    rbox(ctx, 78, 556, 30, YG - 556, 6);
-    rbox(ctx, 72, 546, 42, 14, 5);
-    text(ctx, 'hydrant', 93, YG + 24, PAL.muted, { size: 17, align: 'center' });
+    rbox(ctx, 78, 556, 30, YG - 556, 6, cHyd);
+    rbox(ctx, 72, 546, 42, 14, 5, cHyd);
+    text(ctx, 'hydrant', 93, YG + 24, cHyd, { size: 17, align: 'center' });
     pipe(ctx, [[108, YP], [250, YP]], 22, alpha(qc, 0.8));
     const riser = h > 0.05 ? [[340, YP], [460, YP], [460, yt], [620, yt]] : [[340, YP], [620, YP]];
     pipe(ctx, riser, 22, alpha(qc, 0.8));
-    rbox(ctx, 250, 556, 90, YG - 556, 10);
+    rbox(ctx, 250, 556, 90, YG - 556, 10, cPump);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
     for (let k = 0; k < 3; k++) { const a = (k * TAU) / 3; ctx.beginPath(); ctx.arc(295 + 12 * Math.cos(a + 1.2), YP + 12 * Math.sin(a + 1.2), 20, a, a + 1.6); ctx.stroke(); }
     ctx.restore();
     dot(ctx, 295, YP, PAL.ink, true, 5);
-    text(ctx, 'pump', 295, YG + 24, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'pump', 295, YG + 24, cPump, { size: 20, align: 'center' });
     /* the flow, the pressure gauge on the outlet pipe, the jet and its speed, and the lift */
     arrow(ctx, 150, YP - 34, 220, YP - 34, qc, 4);
     text(ctx, 'Q = ' + fmt(Qs.v, 1) + ' L/s', 185, YP - 60, qc, { size: 20, weight: 600, align: 'center' });

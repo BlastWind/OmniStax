@@ -40,7 +40,7 @@ const fluidOf = (v) => FLUIDS.find((f) => f.v === v) || FLUIDS[0];
 const reTxt = (Re) => (Re < 1000 ? num3(Re).txt : sci(Re).txt);
 const reTex = (Re) => (Re < 1000 ? num3(Re).tex : sci(Re).tex);
 /* a filled circle with an ink rim */
-function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx.strokeStyle = PAL.ink; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore(); }
+function ball(ctx, x, y, r, fill, w = 3, edge = PAL.ink) { ctx.save(); ctx.fillStyle = fill; ctx.strokeStyle = edge; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore(); }
 
 /* =====================================================================
    FIGURE 12.24: the flow past a ball. The fluid streams to the left past a
@@ -56,7 +56,7 @@ function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx
   const d = sim('sim-wake', 620);
   const vs = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.1, max: 40, step: 0.1, value: 40, unit: 'm/s', dec: 1, aria: 'the speed of the ball through the fluid',
     specials: [[1, '1'], [10, '10'], [1e6, '10^6']].map(([N, lab]) => ({ at: () => { const f = fluidOf(fl.value); return (N * f.eta) / (f.rho * (Ls.v / 100)); }, label: 'N′_R = ' + lab })) });
-  const Ls = ctl(d.controls, { label: 'L', cls: '', min: 0.1, max: 10, step: 0.1, value: 7.4, unit: 'cm', dec: 1, aria: 'the diameter of the ball' });
+  const Ls = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 0.1, max: 10, step: 0.1, value: 7.4, unit: 'cm', dec: 1, aria: 'the diameter of the ball' });
   const fl = select(d.controls, { label: '\\text{the fluid}', options: FLUID_OPTS, value: 'air', aria: 'the fluid the ball moves through' });
   vs.refresh();
   const cy = cycle(() => Infinity, 0);
@@ -137,8 +137,8 @@ function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx
     ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(FX0, FY0, FX1 - FX0, FY1 - FY0); ctx.restore();
     /* the ball, with its true size written across it */
-    ball(ctx, CX, CY, RB, PAL.panel);
-    hbracket(ctx, CX - RB + 6, CX + RB - 6, CY + 30, PAL.ink, 'L = ' + fmt(Ls.v, 1) + ' cm');
+    ball(ctx, CX, CY, RB, PAL.panel, 3, F.ref('ball'));
+    hbracket(ctx, CX - RB + 6, CX + RB - 6, CY + 30, C('position'), 'L = ' + fmt(Ls.v, 1) + ' cm');
     /* the separation points */
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 96);
     if (sep && reg < 3) {
@@ -174,7 +174,7 @@ function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx
       'Between 10 and 10⁶ the viscous drag is proportional to the speed squared, and with <i>C</i> = 0.45 for a sphere <i>F</i><sub>V</sub> = ½<i>CρAv</i>² = ' + num3(FD).txt + ' N.',
       'Above 10⁶ the drag increases dramatically and behaves with greater complexity, so no simple law gives it.',
     ];
-    readout(d.readout, `{N'}_{\\text{R}} = \\frac{\\krho\\kv L}{\\keta} = \\frac{(${f.rhoTex}\\ \\text{kg/m}^3)(${fmt(v, 1)}\\ \\text{m/s})(${fmt(L, 4)}\\ \\text{m})}{${f.etaTex}\\ \\text{Pa}\\cdot\\text{s}} = ${reTex(Re)}`, smalls[reg]);
+    readout(d.readout, `{N'}_{\\text{R}} = \\frac{\\krho\\kv \\kLlen}{\\keta} = \\frac{(${f.rhoTex}\\ \\text{kg/m}^3)(${fmt(v, 1)}\\ \\text{m/s})(${fmt(L, 4)}\\ \\text{m})}{${f.etaTex}\\ \\text{Pa}\\cdot\\text{s}} = ${reTex(Re)}`, smalls[reg]);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -190,7 +190,7 @@ function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx
 ===================================================================== */
 (function () {
   const d = sim('sim-terminal', 640);
-  const Rs = ctl(d.controls, { label: 'R', cls: '', min: 0.2, max: 10, step: 0.1, value: 0.8, unit: 'mm', dec: 1, aria: 'the radius of the marble' });
+  const Rs = ctl(d.controls, { label: '\\kRsphere', cls: 'position', min: 0.2, max: 10, step: 0.1, value: 0.8, unit: 'mm', dec: 1, aria: 'the radius of the marble' });
   const ro = ctl(d.controls, { label: '\\krhoobj', cls: 'density', min: 500, max: 12000, step: 1, value: 7860, unit: 'kg/m³', dec: 0, detents: [{ v: 917 }, { v: 2600, label: 'glass' }, { v: 2700 }, { v: 7860, label: 'steel' }, { v: 11300, label: 'lead' }], snap: true, aria: 'the density of the marble' });
   const fl = select(d.controls, { label: '\\text{the fluid}', options: FLUID_OPTS, value: 'motor', aria: 'the fluid in the glass' });
   const MATS = [[917, 'ice', 'An'], [2600, 'glass', 'A'], [2700, 'aluminum', 'An'], [7860, 'steel', 'A'], [11300, 'lead', 'A']];
@@ -210,13 +210,13 @@ function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx
     const rising = dr < 0, still = Math.abs(dr) < 0.5, mat = matOf(rho), fc = C('force'), vc = C('velocity');
     /* the glass and its fluid */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(GX0 + 4, SURF); ctx.lineTo(GX0 + 4, GY1 - 18); ctx.quadraticCurveTo(GX0 + 4, GY1 - 4, GX0 + 18, GY1 - 4); ctx.lineTo(GX1 - 18, GY1 - 4); ctx.quadraticCurveTo(GX1 - 4, GY1 - 4, GX1 - 4, GY1 - 18); ctx.lineTo(GX1 - 4, SURF); ctx.closePath(); ctx.fill(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(GX0, GY0); ctx.lineTo(GX0, GY1 - 18); ctx.quadraticCurveTo(GX0, GY1, GX0 + 18, GY1); ctx.lineTo(GX1 - 18, GY1); ctx.quadraticCurveTo(GX1, GY1, GX1, GY1 - 18); ctx.lineTo(GX1, GY0); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('glass'); ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(GX0, GY0); ctx.lineTo(GX0, GY1 - 18); ctx.quadraticCurveTo(GX0, GY1, GX0 + 18, GY1); ctx.lineTo(GX1 - 18, GY1); ctx.quadraticCurveTo(GX1, GY1, GX1, GY1 - 18); ctx.lineTo(GX1, GY0); ctx.stroke(); ctx.restore();
     line(ctx, GX0 + 4, SURF, GX1 - 4, SURF, PAL.muted, 2);
     text(ctx, f.name, MX, GY1 - 24, PAL.muted, { size: 17, align: 'center' });
     /* the marble and its radius */
-    ball(ctx, MX, MY, MR, PAL.panel);
-    line(ctx, MX, MY, MX + MR * Math.cos(40 * RAD), MY + MR * Math.sin(40 * RAD), PAL.ink, 2);
-    text(ctx, 'R = ' + fmt(Rs.v, 2) + ' mm', MX + 44, MY + 58, PAL.ink, { weight: 600, size: 20, bg: alpha(PAL.panel, 0.85) });
+    ball(ctx, MX, MY, MR, PAL.panel, 3, F.ref('marble'));
+    line(ctx, MX, MY, MX + MR * Math.cos(40 * RAD), MY + MR * Math.sin(40 * RAD), C('position'), 2);
+    text(ctx, 'R = ' + fmt(Rs.v, 2) + ' mm', MX + 44, MY + 58, C('position'), { weight: 600, size: 20, bg: alpha(PAL.panel, 0.85) });
     /* the three forces on the marble, to one scale: the longest is 190 units */
     const K = 170 / Math.max(w, FB), Lw = K * w, Lb = K * FB, Ls = K * FS;
     arrow(ctx, MX, MY, MX, MY + Lw, fc, 5); text(ctx, 'w', MX + 18, MY + Math.max(Lw, 24), fc, { weight: 600, size: 24 });
@@ -230,7 +230,7 @@ function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx
     if (!still) { const dir = rising ? -1 : 1; arrow(ctx, GX1 + 26, MY - dir * 40, GX1 + 26, MY + dir * 40, vc, 4); text(ctx, 'v_t', GX1 + 44, MY, vc, { weight: 600, size: 24 }); }
     /* the free-body diagram: the two forces that share a direction stacked to the length of the one that opposes them */
     text(ctx, 'free-body diagram', DX, 118, PAL.muted, { size: 17, align: 'center' });
-    dot(ctx, DX, MY, PAL.ink, true, 7);
+    dot(ctx, DX, MY, F.ref('marble'), true, 7);
     arrow(ctx, DX, MY, DX, MY + Lw, fc, 5); text(ctx, 'w', DX + 18, MY + Lw / 2, fc, { weight: 600, size: 24 });
     if (Lb > 2) arrow(ctx, DX, MY, DX, MY - Lb, fc, 5);
     if (!rising) {
@@ -270,8 +270,8 @@ function ball(ctx, x, y, r, fill, w = 3) { ctx.save(); ctx.fillStyle = fill; ctx
     const main = still
       ? `\\kwgt = \\kFB,\\qquad \\krhoobj = \\krhofl = ${fmt(rho, 0)}\\ \\text{kg/m}^3,\\qquad \\text{so}\\ \\kFs = 0\\ \\text{and}\\ \\kvt = 0`
       : rising
-        ? `\\begin{aligned}\\kFB - \\kwgt &= \\kFs,\\qquad (\\krhofl - \\krhoobj)V\\kg = 6\\pi R\\keta\\kvt\\\\ \\kvt &= \\frac{2R^2\\kg(\\krhofl - \\krhoobj)}{9\\keta}\\\\ &= \\frac{2(${Rtex})^2(9.80\\ \\text{m/s}^2)(${f.rhoTex} - ${fmt(rho, 0)}\\ \\text{kg/m}^3)}{9(${f.etaTex}\\ \\text{Pa}\\cdot\\text{s})} = ${speed(v).tex}\\ \\text{upward}\\end{aligned}`
-        : `\\begin{aligned}\\kwgt - \\kFB &= \\kFs,\\qquad (\\krhoobj - \\krhofl)V\\kg = 6\\pi R\\keta\\kvt\\\\ \\kvt &= \\frac{2R^2\\kg(\\krhoobj - \\krhofl)}{9\\keta}\\\\ &= \\frac{2(${Rtex})^2(9.80\\ \\text{m/s}^2)(${fmt(rho, 0)} - ${f.rhoTex}\\ \\text{kg/m}^3)}{9(${f.etaTex}\\ \\text{Pa}\\cdot\\text{s})} = ${speed(v).tex}\\end{aligned}`;
+        ? `\\begin{aligned}\\kFB - \\kwgt &= \\kFs,\\qquad (\\krhofl - \\krhoobj)\\kvol\\kg = 6\\pi \\kRsphere\\keta\\kvt\\\\ \\kvt &= \\frac{2\\kRsphere^2\\kg(\\krhofl - \\krhoobj)}{9\\keta}\\\\ &= \\frac{2(${Rtex})^2(9.80\\ \\text{m/s}^2)(${f.rhoTex} - ${fmt(rho, 0)}\\ \\text{kg/m}^3)}{9(${f.etaTex}\\ \\text{Pa}\\cdot\\text{s})} = ${speed(v).tex}\\ \\text{upward}\\end{aligned}`
+        : `\\begin{aligned}\\kwgt - \\kFB &= \\kFs,\\qquad (\\krhoobj - \\krhofl)\\kvol\\kg = 6\\pi \\kRsphere\\keta\\kvt\\\\ \\kvt &= \\frac{2\\kRsphere^2\\kg(\\krhoobj - \\krhofl)}{9\\keta}\\\\ &= \\frac{2(${Rtex})^2(9.80\\ \\text{m/s}^2)(${fmt(rho, 0)} - ${f.rhoTex}\\ \\text{kg/m}^3)}{9(${f.etaTex}\\ \\text{Pa}\\cdot\\text{s})} = ${speed(v).tex}\\end{aligned}`;
     const small = still ? 'With no net force but the drag, the marble has no reason to move, and Stokes’ law gives no drag at zero speed.'
       : Re <= 1 ? 'At ' + speed(v).txt + ' the Reynolds number is <i>N′</i><sub>R</sub> = <i>ρv</i><sub>t</sub>(2<i>R</i>)/<i>η</i> = ' + reTxt(Re) + ', so the flow around the marble is laminar and Stokes’ law holds.'
       : 'At ' + speed(v).txt + ' the Reynolds number would be <i>N′</i><sub>R</sub> = <i>ρv</i><sub>t</sub>(2<i>R</i>)/<i>η</i> = ' + reTxt(Re) + ', past the range where Stokes’ law holds, so the real terminal speed is lower than this.';

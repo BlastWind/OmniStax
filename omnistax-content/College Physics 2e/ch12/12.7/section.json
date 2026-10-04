@@ -4,7 +4,7 @@
  "chapter": "12",
  "title": "Molecular Transport Phenomena: Diffusion, Osmosis, and Related Processes",
  "short": "Diffusion and osmosis",
- "lead": "A substance can get from one place to another with no flow at all, carried by the random thermal motion of its own molecules, and the distance it covers grows only as the square root of the time. You meet diffusion and its constant and read the constants of six molecules off a table: a glucose molecule needs twenty-one hours to cross a centimeter of water. Simple chance sets the direction and rate of diffusion. Through membranes, osmosis raises a column of fluid until the back pressure stops it, reverse osmosis desalinates water, and a living membrane spends energy to move substances the other way.",
+ "lead": "A substance can get from one place to another with no flow at all, carried by the random thermal motion of its own molecules, and the distance it covers grows only as the square root of the time. You meet diffusion and its constant and read the constants of six molecules off a table: a glucose molecule needs <span data-type=\"time\">twenty-one hours</span> to cross <span data-type=\"position\">a centimeter</span> of water. Simple chance sets the direction and rate of diffusion. Through membranes, osmosis raises a column of fluid until the back pressure stops it, reverse osmosis desalinates water, and a living membrane spends energy to move substances the other way.",
  "objectives": [
   "Define diffusion, osmosis, dialysis, and active transport.",
   "Calculate diffusion rates."
@@ -53,7 +53,8 @@
    ],
    "draws": [
     "position",
-    "time"
+    "time",
+    "diffusion-constant"
    ]
   },
   {
@@ -67,7 +68,7 @@
    "widths": [
     275
    ],
-   "draws": []
+   "draws": ["position", "area", "diffusion-constant"]
   },
   {
    "id": "sim-membrane",
@@ -381,6 +382,38 @@
    "exercise": "p5",
    "concept": "diffusion-constant",
    "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "region-1",
+   "label": "region 1, of higher concentration",
+   "figure": "sim-concentration"
+  },
+  {
+   "id": "region-2",
+   "label": "region 2",
+   "figure": "sim-concentration"
+  },
+  {
+   "id": "membrane",
+   "label": "the membrane between the two regions",
+   "figure": "sim-membrane"
+  },
+  {
+   "id": "left-solution",
+   "label": "the less concentrated solution on the left",
+   "figure": "sim-osmosis"
+  },
+  {
+   "id": "right-solution",
+   "label": "the more concentrated solution on the right",
+   "figure": "sim-osmosis"
+  },
+  {
+   "id": "osmotic-membrane",
+   "label": "the membrane that passes water but not sugar",
+   "figure": "sim-osmosis"
   }
  ]
 }

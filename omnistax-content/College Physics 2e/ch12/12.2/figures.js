@@ -62,12 +62,12 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
 (function () {
   const d = sim('sim-car-truck', 800);
   const vs = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 5, max: 35, step: 1, value: 25, unit: 'm/s', dec: 0, aria: 'the speed of the air past the outside of the vehicles' });
-  const gs = ctl(d.controls, { label: '\\text{the gap}', cls: '', min: 1.2, max: 3, step: 0.1, value: 1.5, unit: 'm', dec: 1, aria: 'the gap between the car and the truck' });
+  const gs = ctl(d.controls, { label: '\\text{the gap}', cls: 'position', min: 1.2, max: 3, step: 0.1, value: 1.5, unit: 'm', dec: 1, aria: 'the gap between the car and the truck' });
   const S = 70, BAND = 3.0, YG = 470, KV = 3, KP = 0.04;              /* 70 units per metre; the push arrows at 0.04 units per N/m² */
   const TW = 2.5 * S, CW = 1.8 * S, CX0 = 560, CX1 = 875, TX0 = 330, TX1 = 1250;
   function draw() {
     const { ctx } = begin(d.c);
-    const vc = C('velocity'), pc = C('pressure');
+    const vc = C('velocity'), pc = C('pressure'), cTruck = F.ref('truck'), cCar = F.ref('car');
     const v1 = vs.v, gap = gs.v, v2 = (v1 * BAND) / gap, dp = 0.5 * RHO_AIR * (v2 * v2 - v1 * v1);
     const half = (gap * S) / 2, tB = YG - half, tT = tB - TW, cT = YG + half, cB = cT + CW;
     /* how far the band of air between the vehicles is pinched at each x: 1 upstream, gap/BAND alongside the car */
@@ -85,20 +85,20 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       streamline(ctx, samples(60, 1330, 64, (x) => cB + 22 * i + 24 * bump(x, CX0, CX1) * (1 - (i - 1) * 0.25)), mid);
     }
     /* the truck: cab at the left, trailer behind, seen from above */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cTruck; ctx.lineWidth = 3;
     ctx.fillRect(TX0, tT, TX1 - TX0, TW); ctx.strokeRect(TX0, tT, TX1 - TX0, TW);
     ctx.fillStyle = PAL.soft; ctx.fillRect(TX0 + 6, tT + 6, 150, TW - 12); ctx.strokeRect(TX0 + 6, tT + 6, 150, TW - 12);
     ctx.fillRect(TX0 + 60, tT + 6, 40, TW - 12);
     ctx.restore();
-    text(ctx, 'the truck', (TX0 + TX1) / 2 + 60, (tT + tB) / 2, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'the truck', (TX0 + TX1) / 2 + 60, (tT + tB) / 2, cTruck, { size: 20, align: 'center' });
     /* the car, a rounded body with its windows, seen from above */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cCar; ctx.lineWidth = 3;
     const r = 26;
     ctx.beginPath(); ctx.moveTo(CX0 + r, cT); ctx.lineTo(CX1 - r, cT); ctx.quadraticCurveTo(CX1, cT, CX1, cT + r); ctx.lineTo(CX1, cB - r); ctx.quadraticCurveTo(CX1, cB, CX1 - r, cB);
     ctx.lineTo(CX0 + r, cB); ctx.quadraticCurveTo(CX0, cB, CX0, cB - r); ctx.lineTo(CX0, cT + r); ctx.quadraticCurveTo(CX0, cT, CX0 + r, cT); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.fillStyle = PAL.soft; ctx.fillRect(CX0 + 70, cT + 10, 26, CW - 20); ctx.fillRect(CX0 + 96, cT + 10, 120, CW - 20); ctx.fillRect(CX1 - 90, cT + 10, 22, CW - 20);
     ctx.strokeRect(CX0 + 96, cT + 10, 120, CW - 20); ctx.restore();
-    text(ctx, 'the car', CX0 - 16, (cT + cB) / 2, PAL.ink, { size: 20, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the car', CX0 - 16, (cT + cB) / 2, cCar, { size: 20, align: 'right', bg: alpha(PAL.panel, 0.85) });
     /* the two speeds: the air upstream and the air in the gap */
     arrow(ctx, 90, YG, 90 + v1 * KV, YG, vc, 5);
     text(ctx, 'v_1 = ' + fmt(v1, 0) + ' m/s', 90, YG - 34, vc, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
@@ -119,7 +119,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     topline(ctx, dp < 1
       ? 'With the vehicles ' + fmt(gap, 1) + ' m apart the air between them is not squeezed at all, so it moves at ' + fmt(v1, 0) + ' m/s and the pressure is the same inside and out.'
       : 'With the vehicles ' + fmt(gap, 1) + ' m apart the air between them moves at ' + fmt(v2, 0) + ' m/s, and the pressure there is ' + dP(dp) + ' below the pressure outside.');
-    readout(d.readout, `\\kPr_{\\text{o}} - \\kPr_{\\text{i}} = \\tfrac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2) = \\tfrac{1}{2}(1.29\\ \\text{kg/m}^3)[(${fmt(v2, 0)}\\ \\text{m/s})^2 - (${fmt(v1, 0)}\\ \\text{m/s})^2] = ${dPtex(dp)}`,
+    readout(d.readout, `\\kProut - \\kPrin = \\tfrac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2) = \\tfrac{1}{2}(1.29\\ \\text{kg/m}^3)[(${fmt(v2, 0)}\\ \\text{m/s})^2 - (${fmt(v1, 0)}\\ \\text{m/s})^2] = ${dPtex(dp)}`,
       'The air that passes between the vehicles came from a band 3.0 m wide, so the equation of continuity gives v₂ = v₁(3.0 m)/(' + fmt(gap, 1) + ' m) = ' + fmt(v2, 0) + ' m/s, with the density of air taken as 1.29 kg/m³. '
       + (dp < 1 ? 'With no difference in speed there is no difference in pressure, and nothing pushes the vehicles together.'
         : 'The greater pressure outside pushes on every square meter of the car’s side with ' + dP(dp).replace('N/m²', 'N') + ' toward the truck, and on the truck toward the car.'));
@@ -198,9 +198,10 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     text(ctx, 'reference height, h = 0', 1300, YREF, PAL.muted, { size: 17, align: 'right', bg: alpha(PAL.panel, 0.9) });
     shape(ctx, top.concat(bot), PAL.soft, PAL.ink, 3);
     for (const [x, v, h, y, w, P, nm] of [[X1, va, ha, ya, wa, P1, '1'], [X2, vb, hb, yb, wb, P2, '2']]) {
+      const cp = F.ref('point-' + nm);
       if (v > 0) arrow(ctx, x - v * 7, y, x + v * 7, y, vc, 6);
-      dot(ctx, x, y, PAL.ink, true, 8);
-      text(ctx, nm, x, y - w - 24, PAL.ink, { size: 22, weight: 600, align: 'center' });
+      dot(ctx, x, y, cp, true, 8);
+      text(ctx, nm, x, y - w - 24, cp, { size: 22, weight: 600, align: 'center' });
       text(ctx, 'P_' + nm + ' = ' + atPow(P, 5, 2) + ' N/m²', x, y - w - 54, pc, { size: 20, weight: 600, align: 'center' });
       text(ctx, 'v_' + nm + ' = ' + fmt(v, 1) + ' m/s', x, y + w + 26, vc, { size: 20, weight: 600, align: 'center' });
       if (h > 0.01) vbracket(ctx, nm === '1' ? x - 110 : x + 130, y, YREF, hc, 'h_' + nm + ' = ' + fmt(h, 1) + ' m', nm === '1' ? -1 : 1);
@@ -213,8 +214,8 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       if (a < 1) { const w = F.measure(ctx, s, { size: 19, weight: 600 }); line(ctx, x - 4, 530, x - 4 + (w + 8) * (1 - a), 530, col, 3); }
     }
     text(ctx, 'the three terms of Bernoulli’s equation, as energy per unit volume', 1280, 530, PAL.muted, { size: 17, align: 'right' });
-    for (const [nm, y, Pr, ke, pe] of [['at point 1', 572, P1, ke1, pe1], ['at point 2', 650, P2, ke2, pe2]]) {
-      text(ctx, nm, 280, y, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    for (const [nm, y, Pr, ke, pe, cp] of [['at point 1', 572, P1, ke1, pe1, F.ref('point-1')], ['at point 2', 650, P2, ke2, pe2, F.ref('point-2')]]) {
+      text(ctx, nm, 280, y, cp, { size: 20, weight: 600, align: 'right' });
       bars(ctx, y, Pr, ke, pe, total, pc, ec, aK, aG);
       const vy = y + 36;
       text(ctx, '× 10⁵ J/m³:', 280, vy, PAL.muted, { size: 17, align: 'right' });
@@ -262,25 +263,26 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
 (function () {
   const d = sim('sim-entrainment', 640);
   const vs = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 0, max: 40, step: 1, value: 20, unit: 'm/s', dec: 0, aria: 'the speed of the air entering the tube' });
-  const rs = ctl(d.controls, { label: 'A_1/A_2', cls: '', min: 1, max: 2, step: 0.05, value: 1.5, unit: '', dec: 2, aria: 'how much the tube narrows, as the ratio of the wide area to the narrow one' });
+  const rs = ctl(d.controls, { label: '\\kareaone/\\kareatwo', cls: '', min: 1, max: 2, step: 0.05, value: 1.5, unit: '', dec: 2, aria: 'how much the tube narrows, as the ratio of the wide area to the narrow one' });
   const W1 = 70, YWALL = 330, XC0 = 560, XC1 = 840, XS = 700, TUBE = 0.20, SM = 1000, YSURF = YWALL + TUBE * SM, KV = 3;   /* 1000 units per metre in the side tube */
   function draw() {
     const { ctx } = begin(d.c);
-    const vc = C('velocity'), pc = C('pressure'), hc = C('position');
+    const vc = C('velocity'), pc = C('pressure'), hc = C('position'), ac = C('area'), cTube = F.ref('tube'), cSide = F.ref('side-tube');
     const v1 = vs.v, ratio = rs.v, v2 = v1 * ratio, dp = 0.5 * RHO_AIR * v2 * v2, hfull = dp / (RHO_W * G), h = Math.min(hfull, TUBE), lifted = hfull >= TUBE;
     const W2 = W1 / ratio, YC = YWALL - W2;
     const wid = (x) => W1 + (W2 - W1) * (x < XC0 ? ease((x - (XC0 - 110)) / 110) : x > XC1 ? 1 - ease((x - XC1) / 110) : 1);
     /* the tube in section, its lower wall fixed at the constriction so the side tube keeps its height */
     const top = samples(100, 1300, 80, (x) => YC - wid(x)), bot = samples(100, 1300, 80, (x) => YC + wid(x));
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); top.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); bot.slice().reverse().forEach(([x, y]) => ctx.lineTo(x, y)); ctx.closePath(); ctx.fill(); ctx.restore();
-    path(ctx, top, PAL.ink, 3);
-    path(ctx, bot.filter(([x]) => x < XS - 14), PAL.ink, 3); path(ctx, bot.filter(([x]) => x > XS + 14), PAL.ink, 3);
+    path(ctx, top, cTube, 3);
+    path(ctx, bot.filter(([x]) => x < XS - 14), cTube, 3); path(ctx, bot.filter(([x]) => x > XS + 14), cTube, 3);
     /* the streamlines, five of them, following the tube's shape */
     const mid = alpha(PAL.ink, 0.55);
     if (v1 > 0) for (let i = -2; i <= 2; i++) streamline(ctx, samples(120, 1280, 64, (x) => YC + (i / 3) * wid(x)), mid);
     /* the side tube and the beaker of water beneath the constriction */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.strokeStyle = cSide; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(XS - 14, YWALL); ctx.lineTo(XS - 14, YSURF + 40); ctx.moveTo(XS + 14, YWALL); ctx.lineTo(XS + 14, YSURF + 40); ctx.stroke();
+    ctx.strokeStyle = PAL.ink;
     ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.fillRect(XS - 70, YSURF, 140, 70);
     ctx.beginPath(); ctx.moveTo(XS - 70, YSURF - 30); ctx.lineTo(XS - 70, YSURF + 70); ctx.lineTo(XS + 70, YSURF + 70); ctx.lineTo(XS + 70, YSURF - 30); ctx.stroke();
     /* the water in the side tube, standing h above the surface */
@@ -308,8 +310,8 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     }
     text(ctx, 'v_1 = ' + fmt(v1, 0) + ' m/s', 230, YC + W1 + 26, vc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'v_2 = ' + fmt(v2, 0) + ' m/s', XS, YC - W2 - 26, vc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'A_1', 230, YC - W1 - 26, PAL.ink, { size: 21, weight: 600, align: 'center' });
-    text(ctx, 'A_2', XS + 120, YC - W2 - 26, PAL.ink, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'A_1', 230, YC - W1 - 26, ac, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'A_2', XS + 120, YC - W2 - 26, ac, { size: 21, weight: 600, align: 'center' });
     text(ctx, dp < 0.5 ? 'P_2 = P_0' : 'P_2 = P_0 − ' + dP(dp), XS, YC - W2 - 62, pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, v1 === 0 ? 'With no stream through the tube the pressure inside is the pressure outside, and the water stands level in the side tube.'
       : lifted ? 'Air at ' + fmt(v2, 0) + ' m/s in the constriction has a pressure ' + dP(dp) + ' below the air outside, enough to lift the water the whole 20 cm of the tube, and the stream carries it off as a spray.'
@@ -369,7 +371,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
   const SAIL = samples(SX0, SX1, N, sailF).concat(samples(SX0, SX1, N, sailF).reverse());
   function draw() {
     const { ctx } = begin(d.c);
-    const vc = C('velocity'), pc = C('pressure');
+    const vc = C('velocity'), pc = C('pressure'), cWing = F.ref('wing'), cSail = F.ref('sail');
     const wing = pick.value === 'wing', q = pick.mix((s) => (s === 'sail' ? 1 : 0));
     const vFast = fast.v, vSlow = slow.v;
     const dp = 0.5 * RHO_AIR * (vFast * vFast - vSlow * vSlow), vm = (vFast + vSlow) / 2 || 1;
@@ -385,13 +387,13 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
     }
     flowLines(ctx, topF, botF, 60, 1340, F.lerp(WX0, SX0, q), F.lerp(WX1, SX1, q), GAP, kTop, kBot);
-    shape(ctx, F.lerpPts(WING, SAIL, q, true), alpha(PAL.soft, 1 - q), PAL.ink, F.lerp(3, 7, q));
-    faded(ctx, aWing, [0, 0], () => text(ctx, 'the wing, in profile', 450, 342, PAL.ink, { size: 19, align: 'center' }));
+    shape(ctx, F.lerpPts(WING, SAIL, q, true), alpha(PAL.soft, 1 - q), F.mixColor(cWing, cSail, q), F.lerp(3, 7, q));
+    faded(ctx, aWing, [0, 0], () => text(ctx, 'the wing, in profile', 450, 342, cWing, { size: 19, align: 'center' }));
     faded(ctx, aSail, [0, 0], () => {
       text(ctx, 'the hull, seen from above', 640, 500, PAL.ink, { size: 19, align: 'center' });
       dot(ctx, SX0, 380, PAL.ink, true, 8);
       text(ctx, 'the mast', SX0 - 20, 404, PAL.ink, { size: 19, align: 'right' });
-      text(ctx, 'the sail', 840, 250, PAL.ink, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'the sail', 840, 250, cSail, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
       text(ctx, 'front', 700, sailF(700) - 20, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, 'back', 700, sailF(700) + 22, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     });
@@ -453,10 +455,10 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     two: { y1: 300, x1: 420, w1: 14, legL: 300, legR: 210, px: 760, py: 210, x2: 380, s1x: 400, s1y: 334, s2x: 520, s2y: 246, v1x: 404, v1y: 296, vx: 520, vy: 164, p1x: 700, p1y: 334, p2x: 700, p2y: 180, end: 800 },
     prandtl: { y1: 250, x1: 400, w1: 12, legL: 250, legR: 150, px: 760, py: 250, x2: 760, s1x: 400, s1y: 286, s2x: 580, s2y: 300, v1x: 384, v1y: 246, vx: 580, vy: 192, p1x: 840, p1y: 284, p2x: 736, p2y: 196, end: 740 },
   };
-  function tube(ctx, pts, w) { path(ctx, pts, PAL.soft, w); path(ctx, pts, PAL.ink, w + 5); path(ctx, pts, PAL.soft, w); }
+  function tube(ctx, pts, w, col) { path(ctx, pts, PAL.soft, w); path(ctx, pts, col, w + 5); path(ctx, pts, PAL.soft, w); }
   function draw() {
     const { ctx } = begin(d.c);
-    const vc = C('velocity'), pc = C('pressure'), hc = C('position');
+    const vc = C('velocity'), pc = C('pressure'), hc = C('position'), c1 = F.ref('tube-1'), c2 = F.ref('tube-2'), cMan = F.ref('manometer'), cPr = F.ref('prandtl');
     const v = vs.v, fluid = fl.value === 'hg' ? 'mercury' : 'water';
     const dp = 0.5 * RHO_AIR * v * v, h = dp / (RHO_M[fl.value] * G), out = h > HMAX;
     const hd = fl.mix((f) => Math.min(dp / (RHO_M[f] * G), HMAX)), shade = fl.mix((f) => (f === 'hg' ? 0.3 : 0.14));
@@ -468,28 +470,28 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     const U = [[XL, g.legL], [XL, YBOT], [XL + 30, YBOT + 40], [XR - 30, YBOT + 40], [XR, YBOT], [XR, g.legR]];
     /* tube 2 straightens out of the pipe that joins the outer tube to the right leg, and the outer tube fills in around the inner one */
     faded(ctx, aPr, [0, 0], () => {
-      tube(ctx, [[440, 250], [780, 250]], 40);
-      line(ctx, 440, 229, 440, 271, PAL.ink, 3); line(ctx, 780, 229, 780, 271, PAL.ink, 3);
+      tube(ctx, [[440, 250], [780, 250]], 40, cPr);
+      line(ctx, 440, 229, 440, 271, cPr, 3); line(ctx, 780, 229, 780, 271, cPr, 3);
     });
-    tube(ctx, [[g.x2, g.py], [g.px, g.py], [g.px, g.legR], [XR, g.legR]], 14);
+    tube(ctx, [[g.x2, g.py], [g.px, g.py], [g.px, g.legR], [XR, g.legR]], 14, c2);
     faded(ctx, aPr, [0, 0], () => {
       line(ctx, 753, 230, 767, 230, PAL.soft, 6);                                                        /* where the pipe leaves the outer wall */
       line(ctx, 556, 230, 604, 230, PAL.panel, 9); line(ctx, 556, 270, 604, 270, PAL.panel, 9);         /* the side holes */
     });
     faded(ctx, aTwo, [0, 0], () => {
-      dot(ctx, 380, 210, PAL.ink, true, 8);                                                               /* tube 2's closed front */
+      dot(ctx, 380, 210, c2, true, 8);                                                               /* tube 2's closed front */
       line(ctx, 500, 202, 540, 202, PAL.panel, 9);                                                       /* its side opening, a gap in the upper wall */
     });
-    tube(ctx, [[g.x1, g.y1], [XL, g.y1]], g.w1);
-    lab('1', g.s1x, g.s1y, PAL.ink);
-    lab('2', g.s2x, g.s2y, PAL.ink);
+    tube(ctx, [[g.x1, g.y1], [XL, g.y1]], g.w1, c1);
+    lab('1', g.s1x, g.s1y, c1);
+    lab('2', g.s2x, g.s2y, c2);
     lab('v_1 = 0', g.v1x, g.v1y, vc, { size: 21, align: 'right' });
     if (v > 0) arrow(ctx, g.vx - v * KV / 2, g.vy, g.vx + v * KV / 2, g.vy, vc, 5);
     lab('v_2 = ' + fmt(v, 1) + ' m/s', g.vx, g.vy - 32, vc, { size: 21 });
     lab('P_1', g.p1x, g.p1y, pc);
     lab('P_2', g.p2x, g.p2y, pc, { align: aPr > 0.5 ? 'right' : 'center' });
     /* the manometer: a U of two legs drawn over the ends of the tubes; the fluid falls on the side of the higher pressure and rises on the other */
-    path(ctx, U, PAL.ink, TW + 6); path(ctx, U, PAL.soft, TW);
+    path(ctx, U, cMan, TW + 6); path(ctx, U, PAL.soft, TW);
     const yL = YREST + (hd * SM) / 2, yR = YREST - (hd * SM) / 2;
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, shade); ctx.lineWidth = TW; ctx.lineCap = 'butt'; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(XL, yL); ctx.lineTo(XL, YBOT); ctx.lineTo(XL + 30, YBOT + 40); ctx.lineTo(XR - 30, YBOT + 40); ctx.lineTo(XR, YBOT); ctx.lineTo(XR, yR); ctx.stroke(); ctx.restore();

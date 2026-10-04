@@ -141,7 +141,7 @@ const TABLE = [
     topline(ctx, tau < 1e-9 ? 'Three ' + m.plural + ' are about to set off from the start, each on a random walk of its own.'
       : 'After ' + fmt(tau, 2) + ' s ' + m.name + ' has wandered, on average, ' + sig(now * u.k) + ' ' + u.name + ' from where it started' + (done ? '.' : ', and the distance is still growing as the square root of the time.'));
     const ratios = ends.map((e) => (now > 0 ? sig(e.dist / now, 2) : '0'));
-    readout(d.readout, `\\kxrms = \\sqrt{2D\\kt} = \\sqrt{2(${m.tex}\\ \\text{m}^2\\text{/s})(${fmt(tau, 2)}\\ \\text{s})} = ${sciTex(now)}\\ \\text{m} = ${sig(now * u.k)}\\ ${u.tex}`,
+    readout(d.readout, `\\kxrms = \\sqrt{2\\kDdiff\\kt} = \\sqrt{2(${m.tex}\\ \\text{m}^2\\text{/s})(${fmt(tau, 2)}\\ \\text{s})} = ${sciTex(now)}\\ \\text{m} = ${sig(now * u.k)}\\ ${u.tex}`,
       now > 0 ? 'The three molecules drawn are ' + ratios[0] + ', ' + ratios[1] + ' and ' + ratios[2] + ' times x_rms from the start. The root-mean-square distance is the average over very many such walks, so a single molecule may end nearer or farther, and doubling the time makes the average only √2 times larger.'
         : 'The root-mean-square distance is the average over very many such walks, and it grows as the square root of the time: doubling the time makes the average distance only √2 times larger.');
   }
@@ -166,7 +166,7 @@ const TABLE = [
   const REG1 = scatter(11, L + 30, S1 - 30, 60), REG2 = scatter(13, S2 + 30, R - 60, 60), SLAB = scatter(17, S1 + 22, S2 - 22, 60);
   function draw() {
     const { ctx } = begin(d.c);
-    const C1 = c1.v, C2 = c2.v, diff = C1 - C2;
+    const C1 = c1.v, C2 = c2.v, diff = C1 - C2, c1r = F.ref('region-1'), c2r = F.ref('region-2');
     /* the tube in section: two walls, the far end and the near end */
     ctx.save(); ctx.fillStyle = alpha(PAL.soft, 0.6); ctx.fillRect(L, TOP, R - L, BOT - TOP); ctx.restore();
     line(ctx, L, TOP, R, TOP, PAL.ink, 3); line(ctx, L, BOT, R, BOT, PAL.ink, 3);
@@ -181,13 +181,13 @@ const TABLE = [
     REG2.slice(0, C2).forEach((p) => dot(ctx, p.x, p.y, PAL.ink, true, 6));
     SLAB.slice(0, nSlab).forEach((p) => dot(ctx, p.x, p.y, PAL.ink, true, 6));
     /* the names of the parts */
-    text(ctx, 'Region 1', (L + S1) / 2, TOP - 44, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'Region 1', (L + S1) / 2, TOP - 44, c1r, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'C_1 = ' + fmt(C1, 0), (L + S1) / 2, TOP - 16, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'Region 2', (S2 + R) / 2, TOP - 44, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'Region 2', (S2 + R) / 2, TOP - 44, c2r, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'C_2 = ' + fmt(C2, 0), (S2 + R) / 2, TOP - 16, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    hbracket(ctx, S1, S2, BOT + 44, PAL.ink, 'Δx');
+    hbracket(ctx, S1, S2, BOT + 44, C('position'), 'Δx');
     line(ctx, R + 30, CYm + 90, R + 70, CYm + 150, PAL.ink, 2);
-    text(ctx, 'A', R + 80, CYm + 166, PAL.ink, { size: 24, weight: 600 });
+    text(ctx, 'A', R + 80, CYm + 166, C('area'), { size: 24, weight: 600 });
     dot(ctx, 60, 104, PAL.ink, true, 6); text(ctx, 'a molecule of the diffusing substance', 78, 104, PAL.muted, { size: 17 });
     /* the two crossings and their difference, as rates drawn from the slab's middle */
     const M = (S1 + S2) / 2, K = 4, y1 = 584, y2 = 648;
@@ -203,7 +203,7 @@ const TABLE = [
     topline(ctx, C1 === 0 && C2 === 0 ? 'With no molecules in either region nothing crosses the slab at all.'
       : diff === 0 ? 'With ' + fmt(C1, 0) + ' molecules in each region there is no net movement, although molecules still cross the slab both ways.'
       : 'With ' + fmt(C1, 0) + ' molecules in region 1 and ' + fmt(C2, 0) + ' in region 2 the net flow is to the ' + (diff > 0 ? 'right' : 'left') + ', since more molecules leave the crowded region than enter it.');
-    readout(d.readout, `\\text{net rate of diffusion} \\propto D\\,(C_1 - C_2) = D\\,(${fmt(C1, 0)} - ${fmt(C2, 0)})`,
+    readout(d.readout, `\\text{net rate of diffusion} \\propto \\kDdiff\\,(C_1 - C_2) = \\kDdiff\\,(${fmt(C1, 0)} - ${fmt(C2, 0)})`,
       diff === 0 ? 'Every molecule moves at random, so as many cross the slab one way as the other and the net rate is zero. A difference in concentration is what makes a net flow, and the diffusion constant D sets how fast each molecule wanders.'
         : 'For every molecule that wanders from region ' + (diff > 0 ? '2 into region 1' : '1 into region 2') + ', more wander the other way, in the proportion ' + fmt(Math.max(C1, C2), 0) + ' to ' + fmt(Math.min(C1, C2), 0) + '. The net rate is greatest at the start, when the difference is greatest, and falls to nothing as the two concentrations draw level; the diffusion constant D sets how fast each molecule wanders and so how quickly the difference is worked off.');
   }
@@ -252,7 +252,7 @@ const TABLE = [
     let lx = 70;
     KINDS.forEach((k, i) => { molecule(ctx, lx + rOf(KINDS[2]), 104, i); text(ctx, k.name + ' molecules, ' + fmt(k.nm, 1) + ' nm across', lx + 2 * rOf(KINDS[2]) + 14, 104, PAL.muted, { size: 17 }); lx += 400; });
     /* the membrane, pierced or whole */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('membrane'); ctx.lineWidth = 2.5;
     const half = kind.mix((v) => (v === 'pores' ? (pw * NM) / 2 : 0));
     if (half > 0.5) {
       let y = TOP;
@@ -322,13 +322,13 @@ const TABLE = [
   const WL = scatter(31, 160), WR = scatter(33, 160), SL = scatter(35, 12), SR = scatter(37, 60);
   function draw() {
     const { ctx } = begin(d.c);
-    const pc = C('pressure'), xc = C('position');
+    const pc = C('pressure'), xc = C('position'), cL = F.ref('left-solution'), cR = F.ref('right-solution'), cM = F.ref('osmotic-membrane');
     const P = pi.v, h = hs.v, bp = (RHO * G * (h / 100)) / 1000, net = P - bp;
     const hl = LEVEL0 - h / 2, hr = LEVEL0 + h / 2, yl = yOf(hl), yr = yOf(hr);
     const balanced = Math.abs(net) < 0.005;
     /* the fluid, then the glass */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(BL + 3, yl, MX - BL - 3, BB - yl); ctx.fillRect(MX, yr, BR - MX - 3, BB - yr); ctx.restore();
-    line(ctx, BL + 3, yl, MX, yl, PAL.muted, 2); line(ctx, MX, yr, BR - 3, yr, PAL.muted, 2);
+    line(ctx, BL + 3, yl, MX, yl, cL, 2.5); line(ctx, MX, yr, BR - 3, yr, cR, 2.5);
     /* the molecules: water everywhere in proportion to the column, sugar more on the right the larger the osmotic pressure */
     const place = (s, x1, x2, top, pad) => ({ x: x1 + pad + s.u * (x2 - x1 - 2 * pad), y: top + pad + s.v * (BB - top - 2 * pad) });
     const nwl = Math.round(3.2 * hl), nwr = Math.round(3.2 * hr), nsr = 12 + Math.round(14 * P);
@@ -340,14 +340,14 @@ const TABLE = [
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 5; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(BL, BT); ctx.lineTo(BL, BB - 20); ctx.quadraticCurveTo(BL, BB, BL + 20, BB); ctx.lineTo(BR - 20, BB); ctx.quadraticCurveTo(BR, BB, BR, BB - 20); ctx.lineTo(BR, BT); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.rule; ctx.fillRect(MX - 4, BT, 8, BB - BT); ctx.restore();
-    line(ctx, MX, BT, MX, BB, PAL.muted, 2, [8, 8]);
+    line(ctx, MX, BT, MX, BB, cM, 2.5, [8, 8]);
     line(ctx, MX, BB + 4, MX, BB + 24, PAL.muted, 2);
-    text(ctx, 'semipermeable membrane, passing water but not sugar', MX, BB + 42, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'semipermeable membrane, passing water but not sugar', MX, BB + 42, cM, { size: 18, align: 'center' });
     /* the legend and the two solutions */
     water(ctx, 80, 104); text(ctx, 'water', 98, 104, PAL.muted, { size: 18 });
     sugar(ctx, 190, 104); text(ctx, 'sugar', 208, 104, PAL.muted, { size: 18 });
-    text(ctx, P > 0 ? 'less sugar' : 'the same solution', (BL + MX) / 2, yl - 22, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, P > 0 ? 'more sugar' : 'the same solution', (MX + BR) / 2, yr - 22, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, P > 0 ? 'less sugar' : 'the same solution', (BL + MX) / 2, yl - 22, cL, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, P > 0 ? 'more sugar' : 'the same solution', (MX + BR) / 2, yr - 22, cR, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the extra height on the right */
     if (h > 0) {
       line(ctx, MX, yl, BR + 30, yl, alpha(xc, 0.6), 2, [6, 8]);

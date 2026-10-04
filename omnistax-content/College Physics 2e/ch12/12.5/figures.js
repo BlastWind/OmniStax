@@ -38,7 +38,7 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
   const FLUIDS = [{ v: 1.002, name: 'water at 20 °C' }, { v: 1.257, name: 'blood plasma at 37 °C' }, { v: 2.084, name: 'whole blood at 37 °C' }, { v: 3.015, name: 'whole blood at 20 °C' }];
   const Q = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 1.0, max: 16.0, step: 0.1, value: 8.0, unit: 'cm³/s', dec: 1, onInput: reset, aria: 'flow rate',
     specials: [2000, 3000].map((N) => ({ at: () => (N * Math.PI * ETA.v * 1e-3 * R2.v * 1e-3) / (2 * RHO) * 1e6, label: 'N_R = ' + N + ' in the narrow part' })) });
-  const R2 = ctl(d.controls, { label: 'r_2', cls: '', min: 0.50, max: 2.00, step: 0.01, value: 0.75, unit: 'mm', dec: 2, onInput: reset, aria: 'radius of the narrowed part',
+  const R2 = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 0.50, max: 2.00, step: 0.01, value: 0.75, unit: 'mm', dec: 2, onInput: reset, aria: 'radius of the narrowed part',
     specials: [2000, 3000].map((N) => ({ at: () => (2 * RHO * Q.v * 1e-6) / (Math.PI * ETA.v * 1e-3 * N) * 1e3, label: 'N_R = ' + N })) });
   const ETA = ctl(d.controls, {
     label: '\\keta', cls: 'viscosity', min: 0.5, max: 4.0, step: 0.001, value: 2.084, unit: 'mPa·s', dec: 3, onInput: reset, aria: 'viscosity', snap: true,
@@ -149,10 +149,10 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
       }
     }
     /* the walls, the outer wall straight and the inner edge of the plaque following the taper */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
+    ctx.save(); ctx.strokeStyle = F.ref('plaque'); ctx.lineWidth = 3.5;
     for (const sg of [1, -1]) { wallPath(ctx, sg); ctx.stroke(); }
     ctx.restore();
-    line(ctx, X(0), Yv(R1), X(LEN), Yv(R1), PAL.ink, 3.5); line(ctx, X(0), Yv(-R1), X(LEN), Yv(-R1), PAL.ink, 3.5);
+    line(ctx, X(0), Yv(R1), X(LEN), Yv(R1), F.ref('artery'), 3.5); line(ctx, X(0), Yv(-R1), X(LEN), Yv(-R1), F.ref('artery'), 3.5);
 
     /* the dye threads, clipped to the lumen: every parcel draws the last 2.4 mm of its own path, so the parcels
        of one lane overlap into one thread where the flow is laminar and into a tangle of curls where it is
@@ -193,10 +193,10 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
 
     /* the kind labels: the threads once, the plaque once */
     text(ctx, 'lines of flow', X(4.0), Yv(0.65 * R1), C('flow-rate'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    if (!uniform && R1 - r2 > 0.3) text(ctx, 'plaque', X(15), Yv((R1 + radius(15)) / 2), PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.soft });
-    else if (!uniform) text(ctx, 'plaque', X(15), Yv(R1) - 22, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'r_1 = 2.00 mm', X(0.2), Yv(R1) - 22, PAL.ink, { size: 19, weight: 600, align: 'left' });
-    if (!uniform) text(ctx, 'r_2 = ' + fmt(r2, 2) + ' mm', X(LEN) - 2, Yv(R1) - 22, PAL.ink, { size: 19, weight: 600, align: 'right' });
+    if (!uniform && R1 - r2 > 0.3) text(ctx, 'plaque', X(15), Yv((R1 + radius(15)) / 2), F.ref('plaque'), { size: 20, weight: 600, align: 'center', bg: PAL.soft });
+    else if (!uniform) text(ctx, 'plaque', X(15), Yv(R1) - 22, F.ref('plaque'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'r_1 = 2.00 mm', X(0.2), Yv(R1) - 22, C('position'), { size: 19, weight: 600, align: 'left' });
+    if (!uniform) text(ctx, 'r_2 = ' + fmt(r2, 2) + ' mm', X(LEN) - 2, Yv(R1) - 22, C('position'), { size: 19, weight: 600, align: 'right' });
 
     /* the graph: N_R along the vessel, axis fixed 0..8000 */
     const { X: GX, Y: GY } = axes(ctx, box, [0, LEN], [0, 8000], { xl: 'position along the vessel (mm)', yl: 'N_R', nx: 4, ny: 4, fy: (v) => (v ? commas(fmt(v, 0)) : '0') });
@@ -221,7 +221,7 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
     const rr = uniform ? R1 : r2, vv = uniform ? v1 : v2, NN = uniform ? NR1 : NR2;
     const vs = vv < 10 ? fmt(vv, 2) : fmt(vv, 1);
     readout(d.readout,
-      `N_{\\text{R}} = \\frac{2\\krho\\kv r}{\\keta} = \\frac{2(${RHO}\\ \\text{kg/m}^3)(${vs}\\ \\text{m/s})(${fmt(rr, 2)}\\times 10^{-3}\\ \\text{m})}{${fmt(ETA.v, 3)}\\times 10^{-3}\\ \\text{N}\\cdot\\text{s/m}^2} = ${sig3(NN).replace(/,/g, '{,}')}`,
+      `N_{\\text{R}} = \\frac{2\\krho\\kv \\krad}{\\keta} = \\frac{2(${RHO}\\ \\text{kg/m}^3)(${vs}\\ \\text{m/s})(${fmt(rr, 2)}\\times 10^{-3}\\ \\text{m})}{${fmt(ETA.v, 3)}\\times 10^{-3}\\ \\text{N}\\cdot\\text{s/m}^2} = ${sig3(NN).replace(/,/g, '{,}')}`,
       (uniform ? 'The flow rate is ' + fmt(Q.v, 1) + ' cm³/s and the mean speed is ' + fmt(v1, 2) + ' m/s.'
         : 'In the wide part, where <i>r</i> = 2.00 mm and <i>v</i><sub>1</sub> = ' + fmt(v1, 2) + ' m/s, <i>N</i><sub>R</sub> = ' + sig3(NR1) + '.')
       + fluidNamed() + ' The picture runs about ' + commas(String(Number(((20 / S1 / 0.020) * v1).toPrecision(2)))) + ' times slower than the blood.');
