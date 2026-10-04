@@ -11,13 +11,13 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 const inbox = (ctx, box, f) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); f(); ctx.restore(); };
 
 /* a wooden crate, centred on (x, y): a framed box of horizontal planks with a batten down each end */
-function crate(ctx, x, y, w, h) {
+function crate(ctx, x, y, w, h, col) {
   const l = x - w / 2, t = y - h / 2;
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.lineJoin = 'round';
   ctx.fillRect(l, t, w, h); ctx.strokeRect(l, t, w, h);
   ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2;
   ctx.beginPath(); for (let i = 1; i < 4; i++) { ctx.moveTo(l + 4, t + (h * i) / 4); ctx.lineTo(l + w - 4, t + (h * i) / 4); } ctx.stroke();
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+  ctx.strokeStyle = col; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.moveTo(l + 22, t + 2); ctx.lineTo(l + 22, t + h - 2); ctx.moveTo(l + w - 22, t + 2); ctx.lineTo(l + w - 22, t + h - 2); ctx.stroke();
   ctx.restore();
 }
@@ -33,8 +33,8 @@ function joint(a, b, l1, l2, side) {
    about 150 units tall with the feet at the origin and the person facing +x; s scales the drawing
    and face = -1 turns it round. P: hip, shoulder, head, feet[2], hands[2], and optional knee/elbow
    sides. Its limbs are bodies, not lines, so they are drawn wider than the force arrows beside them. */
-function silhouette(ctx, x, y, s, face, P) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s * face, s); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+function silhouette(ctx, x, y, s, face, P, col = PAL.ink) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s * face, s); ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
   const limb = (a, b, l1, l2, side, w) => { const k = joint(a, b, l1, l2, side); ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(k.x, k.y); ctx.lineTo(b.x, b.y); ctx.stroke(); };
   const ks = P.kneeSide ?? -1, es = P.elbowSide ?? 1;
   limb(P.hip, P.feet[1], 38, 38, ks, 9); limb(P.shoulder, P.hands[1], 30, 30, es, 7);
@@ -49,11 +49,12 @@ function silhouette(ctx, x, y, s, face, P) {
 }
 /* a skier at (x, y) on a slope of θ degrees, facing downhill: crouched over her skis with a pole in each hand */
 function skier(ctx, x, y, theta) {
+  const c = F.ref('skier');
   ctx.save(); ctx.translate(x, y); ctx.rotate(theta * RAD);
-  line(ctx, -58, 2, 54, 2, PAL.ink, 5);
+  line(ctx, -58, 2, 54, 2, c, 5);
   const hands = [{ x: 42, y: -68 }, { x: 46, y: -62 }];
   hands.forEach((h) => line(ctx, h.x, h.y, h.x - 44, 0, PAL.muted, 3));
-  silhouette(ctx, 0, 0, 1, 1, { hip: { x: -8, y: -58 }, shoulder: { x: 18, y: -98 }, head: { x: 30, y: -116 }, feet: [{ x: 10, y: -2 }, { x: -10, y: -2 }], hands });
+  silhouette(ctx, 0, 0, 1, 1, { hip: { x: -8, y: -58 }, shoulder: { x: 18, y: -98 }, head: { x: 30, y: -116 }, feet: [{ x: 10, y: -2 }, { x: -10, y: -2 }], hands }, c);
   ctx.restore();
 }
 
@@ -67,7 +68,7 @@ function skier(ctx, x, y, theta) {
 (function () {
   const d = sim('sim-interface', 720);
   const MU_S = 0.45, MU_K = 0.30;
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 200, step: 5, value: 100, unit: 'kg', dec: 0, aria: 'mass of the crate' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 200, step: 5, value: 100, unit: 'kg', dec: 0, aria: 'mass of the crate' });
   const Fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 800, step: 10, value: 300, unit: 'N', dec: 0, aria: 'applied force',
     specials: [{ at: () => MU_S * m.v * G, label: 'breakaway' }] });
   /* the asperities: one fixed profile for each surface, so the picture is the same every frame */
@@ -89,8 +90,9 @@ function skier(ctx, x, y, theta) {
     /* the crate on the floor */
     const floorY = 300, cx = 430, cw = 220, ch = 140;
     strip(ctx, 110, 1290, floorY + 16, 30);
-    crate(ctx, cx, floorY - ch / 2, cw, ch);
-    text(ctx, fmt(m.v, 0) + ' kg', cx, floorY - ch + 30, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    const cc = F.ref('crate'), cfl = F.ref('floor'), car = C('area');
+    crate(ctx, cx, floorY - ch / 2, cw, ch, cc);
+    text(ctx, fmt(m.v, 0) + ' kg', cx, floorY - ch + 30, C('mass'), { size: 20, weight: 600, align: 'center' });
     const pl = 50 + 180 * (Fp.v / 800), fl = 50 + 180 * (fr / 800);
     arrow(ctx, cx - cw / 2 - pl, floorY - 92, cx - cw / 2, floorY - 92, C('force'), 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', cx - cw / 2 - pl, floorY - 120, C('force'), { size: 20, weight: 600 });
@@ -117,16 +119,16 @@ function skier(ctx, x, y, theta) {
     const yLow = (i) => LOWBASE - low[i];
     const yUp = (i) => Math.min(UPBASE + up[i], yLow(i));
     ctx.save();
-    ctx.fillStyle = alpha(PAL.ink, 0.24);
+    ctx.fillStyle = alpha(cfl, 0.24);
     ctx.beginPath(); ctx.moveTo(L, bot); for (let i = 0; i <= NX; i++) ctx.lineTo(xAt(i), yLow(i)); ctx.lineTo(R, bot); ctx.closePath(); ctx.fill();
-    ctx.fillStyle = alpha(PAL.ink, 0.07);
+    ctx.fillStyle = alpha(cc, 0.1);
     ctx.beginPath(); ctx.moveTo(L, top); for (let i = 0; i <= NX; i++) ctx.lineTo(xAt(i), yUp(i)); ctx.lineTo(R, top); ctx.closePath(); ctx.fill();
-    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+    ctx.strokeStyle = cfl; ctx.lineWidth = 3;
     ctx.beginPath(); for (let i = 0; i <= NX; i++) (i ? ctx.lineTo(xAt(i), yLow(i)) : ctx.moveTo(xAt(i), yLow(i))); ctx.stroke();
-    ctx.beginPath(); for (let i = 0; i <= NX; i++) (i ? ctx.lineTo(xAt(i), yUp(i)) : ctx.moveTo(xAt(i), yUp(i))); ctx.stroke(); ctx.restore();
+    ctx.strokeStyle = cc; ctx.beginPath(); for (let i = 0; i <= NX; i++) (i ? ctx.lineTo(xAt(i), yUp(i)) : ctx.moveTo(xAt(i), yUp(i))); ctx.stroke(); ctx.restore();
     /* the high spots that actually touch */
     let touching = 0, run = false;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 10; ctx.lineCap = 'round';
+    ctx.save(); ctx.strokeStyle = car; ctx.lineWidth = 10; ctx.lineCap = 'round';
     for (let i = 0; i <= NX; i++) {
       const hit = UPBASE + up[i] >= yLow(i) - 0.5;
       if (hit && !run) { ctx.beginPath(); ctx.moveTo(xAt(i), yLow(i)); run = true; touching++; }
@@ -135,14 +137,14 @@ function skier(ctx, x, y, theta) {
     }
     if (run) ctx.stroke();
     ctx.restore();
-    text(ctx, 'the crate', L + 16, top + 24, PAL.muted, { size: 17 });
-    text(ctx, 'the floor', L + 16, bot - 22, PAL.muted, { size: 17 });
+    text(ctx, 'the crate', L + 16, top + 24, cc, { size: 17 });
+    text(ctx, 'the floor', L + 16, bot - 22, cfl, { size: 17 });
     text(ctx, touching === 1 ? 'the surfaces touch at one high spot, drawn heavy' : 'the surfaces touch at ' + touching + ' high spots, drawn heavy',
-      R - 16, bot - 22, PAL.ink, { size: 20, weight: 600, align: 'right' });
+      R - 16, bot - 22, car, { size: 20, weight: 600, align: 'right' });
     headline(ctx, sliding
       ? 'Your ' + fmt(Fp.v, 0) + ' N push has passed the ' + fmt(fmax, 0) + ' N these surfaces can hold, so the crate slides against ' + fmt(fk, 0) + ' N'
       : 'A normal force of ' + fmt(N, 0) + ' N presses the surfaces together, and your ' + fmt(Fp.v, 0) + ' N push is answered by ' + fmt(fr, 0) + ' N of friction');
-    readout(d.readout, `\\kfsmax = \\mu_{\\text{s}}\\kN = \\mu_{\\text{s}} m\\kg = (${fmt(MU_S, 2)})(${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(fmax, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kfsmax = \\mu_{\\text{s}}\\kN = \\mu_{\\text{s}} \\km\\kg = (${fmt(MU_S, 2)})(${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(fmax, 0)}\\ \\text{N}`,
       'The coefficients are the ones the passage gives for this crate on this floor, 0.45 while it holds and 0.30 once it slides, so the crate breaks away at ' + fmt(fmax, 0) + ' N and then slides against ' + fmt(fk, 0) + ' N. The friction is parallel to the surface and points against the motion or the attempted motion. Press the two surfaces together harder and the actual area of contact, drawn heavy in the magnified view, grows; the friction grows with it, and the total area of the base never enters.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -155,7 +157,7 @@ function skier(ctx, x, y, theta) {
 ===================================================================== */
 (function () {
   const d = sim('sim-breakaway', 780);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 200, step: 5, value: 100, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the crate' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 200, step: 5, value: 100, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the crate' });
   const us = ctl(d.controls, { label: '\\mu_{\\text{s}}', cls: '', min: 0.05, max: 1, step: 0.05, value: 0.45, unit: '', dec: 2, onInput: reset, aria: 'coefficient of static friction' });
   const uk = ctl(d.controls, { label: '\\mu_{\\text{k}}', cls: '', min: 0.02, max: 0.9, step: 0.02, value: 0.3, unit: '', dec: 2, onInput: reset, aria: 'coefficient of kinetic friction' });
   const T = 6, TB = T * 0.625;                       /* the push reaches f_s(max) five eighths of the way through */
@@ -190,8 +192,8 @@ function skier(ctx, x, y, theta) {
     strip(ctx, 140, 1280, floorY + 16, 30);
     const slid = xAt(t), past = slid > XMAX;
     const cx = SX(Math.min(slid, XMAX));
-    crate(ctx, cx, floorY - ch / 2, cw, ch);
-    text(ctx, fmt(m.v, 0) + ' kg', cx, floorY - ch + 28, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    crate(ctx, cx, floorY - ch / 2, cw, ch, F.ref('crate'));
+    text(ctx, fmt(m.v, 0) + ' kg', cx, floorY - ch + 28, C('mass'), { size: 20, weight: 600, align: 'center' });
     /* the arrows are drawn against the same fixed 800 N the graph is ruled to, so a harder push is a
        longer arrow rather than the same arrow beside a larger number */
     const ACAP = 800, pl = 40 + 180 * Math.min(1, Fn / ACAP), fl = 40 + 180 * Math.min(1, fr / ACAP);
@@ -244,8 +246,8 @@ function skier(ctx, x, y, theta) {
 ===================================================================== */
 (function () {
   const d = sim('sim-skier', 740);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 120, step: 1, value: 62, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the skier' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 45, step: 1, value: 25, unit: '°', dec: 0, onInput: reset, aria: 'angle of the slope' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 1, value: 62, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the skier' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 5, max: 45, step: 1, value: 25, unit: '°', dec: 0, onInput: reset, aria: 'angle of the slope' });
   const fk = ctl(d.controls, { label: '\\kfk', cls: 'force', min: 0, max: 200, step: 0.5, value: 45, unit: 'N', dec: 1, onInput: reset, aria: 'friction on the skier' });
   const T = 4;
   const cy = cycle(() => T, 1.2);
@@ -273,7 +275,7 @@ function skier(ctx, x, y, theta) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(bx, by); ctx.lineTo(bx, by + 70); ctx.lineTo(tx, by + 70); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, tx, ty, bx, by, PAL.muted, 3);
     line(ctx, tx, by, bx, by, PAL.rule, 2, [10, 10]);
-    text(ctx, fmt(th.v, 0) + '°', bx - 86, by - 18, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    text(ctx, fmt(th.v, 0) + '°', bx - 86, by - 18, C('angle'), { size: 20, weight: 600, align: 'right' });
     const sx = tx + (bx - tx) * frac, sy = ty + (by - ty) * frac;
     /* The forces on her ride the skier down the slope, so each is drawn there as an arrow alone and
        named once, on the free-body diagram beside it, where every value is read off; the pointer
@@ -309,7 +311,7 @@ function skier(ctx, x, y, theta) {
     text(ctx, 'free-body diagram', 1225, 158, PAL.muted, { size: 17, align: 'center' });
     line(ctx, fx - 100 * cs, fy - 100 * sn, fx + 100 * cs, fy + 100 * sn, PAL.rule, 2, [8, 8]);
     line(ctx, fx - 74 * sn, fy + 74 * cs, fx + 74 * sn, fy - 74 * cs, PAL.rule, 2, [8, 8]);
-    dot(ctx, fx, fy, PAL.ink, true, 8);
+    dot(ctx, fx, fy, F.ref('skier'), true, 8);
     const fl2 = Math.max(24, fk.v * S2);
     const FBD = [
       { dx: 0, dy: w * S2, s: 'w', val: fmt(w, 0) + ' N', wid: 4 },
@@ -338,7 +340,7 @@ function skier(ctx, x, y, theta) {
         : v > 0.05
           ? 'The ' + fmt(fk.v, 1) + ' N of friction is more than the ' + fmt(wx, 0) + ' N along the slope, so the ' + fmt(V0, 1) + ' m/s she was gliding at is falling away'
           : 'The ' + fmt(fk.v, 1) + ' N of friction is more than the ' + fmt(wx, 0) + ' N along the slope, so she has slid to a stop');
-    readout(d.readout, `\\mu_{\\text{k}} = \\frac{\\kfk}{\\kN} = \\frac{\\kfk}{m\\kg\\cos\\theta} = \\frac{${fmt(fk.v, 1)}\\ \\text{N}}{(${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(cs, 3)})} = ${fmt(mu, 3)}`,
+    readout(d.readout, `\\mu_{\\text{k}} = \\frac{\\kfk}{\\kN} = \\frac{\\kfk}{\\km\\kg\\cos\\ktheta} = \\frac{${fmt(fk.v, 1)}\\ \\text{N}}{(${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(cs, 3)})} = ${fmt(mu, 3)}`,
       'The acceleration down the slope is a = g(sin θ − μ_k cos θ) = ' + fmt(a, 2) + ' m/s², and it is the same for a skier of any mass. She slides at a constant velocity on a slope of tan⁻¹ μ_k = ' + fmt(Math.atan(mu) / RAD, 1) + '°.');
   }
   hover(d.stage, () => hits);
@@ -363,27 +365,27 @@ function skier(ctx, x, y, theta) {
     const t = REDUCED ? T : cy.now();
     const f = uk.v * N.v, lean = 24 * (f / 40);
     const SP = 42, surfaceY = 400, x0 = 130, cols = 28;
-    const tipX = x0 + 260 + (t / T) * 600;
+    const tipX = x0 + 260 + (t / T) * 600, cs = F.ref('substrate'), cp = F.ref('probe');
     /* the substrate: four rows of atoms, the ones the tip has passed over still ringing */
     for (let r = 0; r < 4; r++) for (let c = 0; c < cols; c++) {
       const ax = x0 + c * SP, ay = surfaceY + r * SP;
       const behind = tipX - ax, ring = behind > 0 ? Math.exp(-behind / 280) * Math.exp(-r * 0.55) : 0;
       const jx = ring * 8 * Math.sin(ax * 0.7 + ay * 0.3 + t * 26), jy = ring * 8 * Math.cos(ax * 0.5 - ay * 0.4 + t * 26);
-      dot(ctx, ax + jx, ay + jy, r === 0 ? PAL.ink : PAL.muted, r === 0, 11);
+      dot(ctx, ax + jx, ay + jy, r === 0 ? cs : alpha(cs, 0.55), r === 0, 11);
     }
-    text(ctx, 'the substrate, still ringing where the tip has passed', x0, surfaceY + 3 * SP + 56, PAL.muted, { size: 17 });
+    text(ctx, 'the substrate, still ringing where the tip has passed', x0, surfaceY + 3 * SP + 56, cs, { size: 17 });
     /* the probe: atoms in an inverted pyramid with a flattened peak, leaning back as it is dragged.
        How many of the five atoms along its foot adhere follows the normal force one at a time, so
        every step of the slider changes the count as well as the arrow and the lean. */
     const hold = 1 + Math.round((4 * (N.v - 2)) / 38);
     const ORDER = [0, -1, 1, -2, 2];                 /* they take hold from the middle of the tip outward */
     ctx.save(); ctx.translate(tipX, surfaceY - 26); ctx.transform(1, 0, Math.tan(lean * RAD), 1, 0, 0);
-    for (let r = 0; r < ROWS.length; r++) for (let c = ROWS[r][0]; c <= ROWS[r][1]; c++) dot(ctx, c * SP * 0.82, -SP * 0.88 * (ROWS.length - r), PAL.ink, false, 11);
-    for (let c = -2; c <= 2; c++) dot(ctx, c * SP * 0.82, 0, PAL.ink, ORDER.indexOf(c) < hold, 11);
+    for (let r = 0; r < ROWS.length; r++) for (let c = ROWS[r][0]; c <= ROWS[r][1]; c++) dot(ctx, c * SP * 0.82, -SP * 0.88 * (ROWS.length - r), cp, false, 11);
+    for (let c = -2; c <= 2; c++) dot(ctx, c * SP * 0.82, 0, cp, ORDER.indexOf(c) < hold, 11);
     ctx.restore();
     const topX = tipX + Math.tan(lean * RAD) * -SP * 0.88 * 4;
-    text(ctx, 'the probe', topX - 5 * SP * 0.82 - 30, surfaceY - 26 - SP * 0.88 * 4, PAL.ink, { size: 20, weight: 600, align: 'right' });
-    text(ctx, hold === 1 ? 'one atom of the tip adheres' : hold + ' atoms of the tip adhere', tipX + 120, surfaceY - 34, PAL.ink, { size: 17 });
+    text(ctx, 'the probe', topX - 5 * SP * 0.82 - 30, surfaceY - 26 - SP * 0.88 * 4, cp, { size: 20, weight: 600, align: 'right' });
+    text(ctx, hold === 1 ? 'one atom of the tip adheres' : hold + ' atoms of the tip adhere', tipX + 120, surfaceY - 34, cp, { size: 17 });
     arrow(ctx, topX + 60, 150, topX + 220, 150, PAL.muted, 3);
     text(ctx, 'dragged this way', topX + 232, 150, PAL.muted, { size: 17 });
     const fl = Math.min(40 + 150 * (f / 40), tipX - 200);
@@ -411,8 +413,8 @@ function skier(ctx, x, y, theta) {
     strip(ctx, x0 + 20, x0 + 620, iceY + 16, 32);
     text(ctx, 'frozen lake', x0 + 24, iceY + 60, PAL.muted, { size: 17 });
     const bx = pulling ? x0 + 200 : x0 + 430;
-    block(ctx, bx, iceY - bh / 2, bw, bh, PAL.ink);
-    text(ctx, '45.0 kg', bx, iceY - bh / 2, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    block(ctx, bx, iceY - bh / 2, bw, bh, F.ref('ice-block'));
+    text(ctx, '45.0 kg', bx, iceY - bh / 2, C('mass'), { size: 19, weight: 600, align: 'center' });
     if (pulling) {
       /* the rope is tied round the block and runs up over his shoulder to his hands; he leans
          forward and strides away from the block, so the drawing says he is dragging it */
@@ -426,19 +428,19 @@ function skier(ctx, x, y, theta) {
       arrow(ctx, cxp, cyp, hx, hy, C('force'), 5);
       text(ctx, 'F', (cxp + hx) / 2 - 4, (cyp + hy) / 2 - 28, C('force'), { size: 22, weight: 600, align: 'center' });
       line(ctx, cxp, cyp, cxp + 120, cyp, PAL.rule, 2, [8, 8]);
-      text(ctx, fmt(ANG, 0) + '°', cxp + 74, cyp - 20, PAL.ink, { size: 19, align: 'center' });
-      silhouette(ctx, px, iceY, S, 1, P);
+      text(ctx, fmt(ANG, 0) + '°', cxp + 74, cyp - 20, C('angle'), { size: 19, align: 'center' });
+      silhouette(ctx, px, iceY, S, 1, P, F.ref('contestant'));
     } else {
       /* he leans into the block with both hands high on its face, so the push runs down into it */
       const cxp = bx - bw / 2, cyp = iceY - bh + 16, S = 1.2;
       const hx = cxp - len * Math.cos(A), hy = cyp - len * Math.sin(A);
       const px = hx - 95;
       const P = { hip: { x: 10, y: -66 }, shoulder: { x: 40, y: -112 }, head: { x: 50, y: -130 }, feet: [{ x: 12, y: 0 }, { x: -40, y: 0 }], hands: [{ x: (hx - px) / S, y: (hy - iceY) / S }, { x: (hx - px) / S + 3, y: (hy - iceY) / S + 4 }] };
-      silhouette(ctx, px, iceY, S, 1, P);
+      silhouette(ctx, px, iceY, S, 1, P, F.ref('contestant'));
       arrow(ctx, hx, hy, cxp, cyp, C('force'), 5);
       text(ctx, 'F', (hx + cxp) / 2 + 8, (hy + cyp) / 2 - 24, C('force'), { size: 22, weight: 600, align: 'center' });
       line(ctx, cxp, cyp, cxp - 120, cyp, PAL.rule, 2, [8, 8]);
-      text(ctx, fmt(ANG, 0) + '°', cxp - 76, cyp - 20, PAL.ink, { size: 19, align: 'center' });
+      text(ctx, fmt(ANG, 0) + '°', cxp - 76, cyp - 20, C('angle'), { size: 19, align: 'center' });
     }
     text(ctx, label, x0 + 24, 120, PAL.ink, { size: 24, weight: 700 });
   }
@@ -448,7 +450,7 @@ function skier(ctx, x, y, theta) {
     line(ctx, 700, 100, 700, 500, PAL.rule, 2);
     ice(ctx, 730, '(b) pulling', true);
     headline(ctx, 'The same 45.0 kg block of ice is pushed at 25° below the horizontal and pulled at 25° above it');
-    readout(d.readout, '\\text{the block of ice: } m = 45.0\\ \\text{kg},\\quad \\theta = 25^\\circ');
+    readout(d.readout, '\\text{the block of ice: } \\km = 45.0\\ \\text{kg},\\quad \\ktheta = 25^\\circ');
   }
   register(d.fig, { update: () => {}, draw });
 })();

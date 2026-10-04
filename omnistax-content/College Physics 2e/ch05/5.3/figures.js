@@ -8,6 +8,13 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 
 /* ---------- helpers shared by the figures ---------- */
 /* a rectangle outlined in a dashed line: the shape the object had before the force was applied */
+/* a face of a locked-view solid outlined in the colour given rather than in ink */
+function rface(ctx, pts, k, w, col) {
+  face(ctx, pts, k);
+  if (!w) return;
+  ctx.save(); ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+  ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.stroke(); ctx.restore();
+}
 function ghost(ctx, x, y, w, h) { line(ctx, x, y, x + w, y, PAL.muted, 2, [8, 8]); line(ctx, x + w, y, x + w, y + h, PAL.muted, 2, [8, 8]); line(ctx, x + w, y + h, x, y + h, PAL.muted, 2, [8, 8]); line(ctx, x, y + h, x, y, PAL.muted, 2, [8, 8]); }
 /* a value in units of 10^9, written the way the book writes a modulus */
 const giga = (v) => fmt(v, v < 10 ? 1 : 0) + ' × 10⁹ N/m²';
@@ -59,16 +66,16 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
        past 4 m is held at the end of the strip and the headline gives its true length */
     const y = 175, wall = 170, nat = 250, SC = 130;
     fixed(ctx, wall - 60, y - 80, 60, 160);
-    const end = wall + nat + Math.min(x, 4) * SC;
+    const end = wall + nat + Math.min(x, 4) * SC, csp = F.ref('spring');
     strip(ctx, 120, Math.min(1320, end + 320), y, 50);
     if (reg < 3) {
-      spring(ctx, wall, y, end, y, 11, 24, PAL.ink, 4);
-      line(ctx, end, y - 34, end, y + 34, PAL.ink, 7);
+      spring(ctx, wall, y, end, y, 11, 24, csp, 4);
+      line(ctx, end, y - 34, end, y + 34, csp, 7);
       arrow(ctx, end + 24, y, end + 24 + Math.max(20, f * 0.5), y, C('force'), 5);
       text(ctx, 'F = ' + fmt(f, 0) + ' N', end + 30, y - 34, C('force'), { weight: 600, size: 22 });
     } else {
-      spring(ctx, wall, y, wall + nat * 0.55, y, 5, 24, PAL.ink, 4);
-      spring(ctx, end - nat * 0.55, y, end, y, 5, 24, PAL.ink, 4);
+      spring(ctx, wall, y, wall + nat * 0.55, y, 5, 24, csp, 4);
+      spring(ctx, end - nat * 0.55, y, end, y, 5, 24, csp, 4);
       text(ctx, 'the spring has broken', (wall + nat * 0.55 + end - nat * 0.55) / 2, y - 46, PAL.muted, { size: 20, align: 'center', weight: 600 });
     }
     line(ctx, wall + nat, y - 62, wall + nat, y + 62, PAL.muted, 2, [6, 6]);
@@ -120,9 +127,9 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const w = ctl(d.controls, { label: '\\kwgt', cls: 'force', min: 2, max: 40, step: 1, value: 20, unit: 'N', dec: 0, aria: 'weight hung from each string' });
   const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 0.2, max: 1.2, step: 0.05, value: 0.65, unit: 'm', dec: 2, aria: 'original length of the strings' });
   const STR = [
-    { name: 'thin nylon', Y: 5e9, r: 0.5e-3 },
-    { name: 'thicker nylon', Y: 5e9, r: 1.0e-3 },
-    { name: 'steel', Y: 210e9, r: 0.5e-3 },
+    { name: 'thin nylon', id: 'string-thin', Y: 5e9, r: 0.5e-3 },
+    { name: 'thicker nylon', id: 'string-thick', Y: 5e9, r: 1.0e-3 },
+    { name: 'steel', id: 'string-steel', Y: 210e9, r: 0.5e-3 },
   ];
   const area = (s) => Math.PI * s.r * s.r;
   const dl = (s, force) => (force * L0.v) / (s.Y * area(s));       /* metres */
@@ -136,11 +143,11 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     fixed(ctx, 200, yTop - 44, 560, 44);
     STR.forEach((s, i) => {
       const x = 270 + i * 190, dL = dl(s, w.v), grow = Math.min(90, dL * MAG);
-      line(ctx, x, yTop, x, yTop + len, PAL.ink, i === 1 ? 7 : 4);
+      line(ctx, x, yTop, x, yTop + len, F.ref(s.id), i === 1 ? 7 : 4);
       line(ctx, x, yTop + len, x, yTop + len + grow, C('position'), i === 1 ? 7 : 4);
       block(ctx, x, yTop + len + grow + 30, 74, 46, PAL.ink);
       arrow(ctx, x, yTop + len + grow + 58, x, yTop + len + grow + 58 + 16 + w.v * 1.1, C('force'), 5);
-      text(ctx, s.name, x, yTop - 100, PAL.ink, { size: 19, align: 'center', weight: 600 });
+      text(ctx, s.name, x, yTop - 100, F.ref(s.id), { size: 19, align: 'center', weight: 600 });
       text(ctx, 'Y = ' + giga(s.Y / 1e9), x, yTop - 74, C('elastic-modulus'), { size: 17, align: 'center' });
       text(ctx, fmt(dL * 1000, 2) + ' mm', x + 14, yTop + len + grow / 2 + 2, C('position'), { size: 17, weight: 600 });
     });
@@ -159,10 +166,10 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       line(ctx, X(0), Y(0), X(e), Y(dl(s, e) * 1000), C('position'), i === 1 ? 5 : 3);
       const yv = dl(s, w.v) * 1000;
       if (yv <= YHI) dot(ctx, X(w.v), Y(yv), PAL.ink, true, 9); else pinned(ctx, box, X, Y, w.v, yv, C('position'), fmt(yv, 1) + ' mm');
-      text(ctx, s.name, X(e) - 10, Y(dl(s, e) * 1000) - 18, PAL.muted, { size: 17, align: 'right' });
+      text(ctx, s.name, X(e) - 10, Y(dl(s, e) * 1000) - 18, F.ref(s.id), { size: 17, align: 'right' });
     });
     headline(ctx, 'A ' + fmt(w.v, 0) + ' N weight stretches the thin nylon string ' + fmt(dl(STR[0], w.v) * 1000, 2) + ' mm, the thicker nylon string ' + fmt(dl(STR[1], w.v) * 1000, 2) + ' mm and the steel string ' + fmt(dl(STR[2], w.v) * 1000, 2) + ' mm');
-    readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kwgt}{A}\\kLo = \\frac{(${fmt(w.v, 0)}\\ \\text{N})(${fmt(L0.v, 2)}\\ \\text{m})}{(${sci(STR[0].Y, 0)}\\ \\text{N/m}^2)(${sci(area(STR[0]), 2)}\\ \\text{m}^2)} = ${sci(dl(STR[0], w.v), 2)}\\ \\text{m}`,
+    readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kwgt}{\\karea}\\kLo = \\frac{(${fmt(w.v, 0)}\\ \\text{N})(${fmt(L0.v, 2)}\\ \\text{m})}{(${sci(STR[0].Y, 0)}\\ \\text{N/m}^2)(${sci(area(STR[0]), 2)}\\ \\text{m}^2)} = ${sci(dl(STR[0], w.v), 2)}\\ \\text{m}`,
       'The thicker nylon string has four times the cross-sectional area of the thin one, so the same weight stretches it a quarter as far; the steel string has the same area as the thin nylon one but forty-two times its Young’s modulus, so it stretches forty-two times less. All three lines are straight, which is Hooke’s law.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -177,7 +184,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const d = sim('sim-rod', 740);
   const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 5000, step: 50, value: 1500, unit: 'N', dec: 0, aria: 'force applied to the rod' });
   const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 0.2, max: 3, step: 0.1, value: 1, unit: 'm', dec: 1, aria: 'original length of the rod' });
-  const rr = ctl(d.controls, { label: 'r', cls: '', min: 0.5, max: 5, step: 0.1, value: 1, unit: 'cm', dec: 1, aria: 'radius of the rod' });
+  const rr = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.5, max: 5, step: 0.1, value: 1, unit: 'cm', dec: 1, aria: 'radius of the rod' });
   /* every Young's modulus Table 5.3 prints is a tick on the slider, and the whole number the slider
      steps by lands on each of them exactly; two are named, and naming more would crowd the track */
   const YDET = [1, 3, 5, 6, 9, 10, 15, 16, 20, 45, 60, { v: 70, label: 'aluminum' }, 90, 100, { v: 210, label: 'steel' }];
@@ -197,7 +204,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       const cx = 200 + i * 320, pull = mode === 'tension' ? 1 : -1;
       const bot = yTop + len + pull * grow;
       ghost(ctx, cx - wRod / 2, yTop, wRod, len);
-      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('rod'); ctx.lineWidth = 4;
       ctx.fillRect(cx - wRod / 2, yTop, wRod, bot - yTop); ctx.strokeRect(cx - wRod / 2, yTop, wRod, bot - yTop); ctx.restore();
       if (pull > 0) { arrow(ctx, cx, yTop - 16, cx, yTop - 16 - aL, C('force'), 5); arrow(ctx, cx, bot + 16, cx, bot + 16 + aL, C('force'), 5); }
       else { arrow(ctx, cx, yTop - 16 - aL, cx, yTop - 16, C('force'), 5); arrow(ctx, cx, bot + 16 + aL, cx, bot + 16, C('force'), 5); }
@@ -232,7 +239,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     if (x * 1000 <= YHI) { line(ctx, X(Fa.v), box.b, X(Fa.v), Y(x * 1000), C('force'), 2, [4, 8]); dot(ctx, X(Fa.v), Y(x * 1000), PAL.ink, true, 10); }
     else pinned(ctx, box, X, Y, Fa.v, x * 1000, C('position'), fmt(x * 1000, 2) + ' mm');
     headline(ctx, 'A force of ' + fmt(Fa.v, 0) + ' N stretches the rod ' + fmt(x * 1000, 3) + ' mm in tension and compresses it by the same amount');
-    readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(YY.v * 1e9, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
+    readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(YY.v * 1e9, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
       'For very small deformations and uniform materials the change in length is the same for a tension and for a compression of the same size, which is why the two rods move by equal amounts. Double the length and the change doubles; double the radius and the area is four times as large, so the change falls to a quarter.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -262,9 +269,10 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const y = 160, x0 = 220, base = 260 + 460 * (L0.v / 40), grow = base * e;
     strip(ctx, 120, 1320, y, 56);
     fixed(ctx, x0 - 54, y - 60, 54, 120);
-    /* the tendon is a body, so it is drawn in ink; the stress it carries keeps the hue */
+    /* the tendon is a referent and wears its colour; the stress it carries keeps the type hue */
+    const ctd = F.ref('tendon');
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x0, y - 20, base + grow, 40); ctx.restore();
-    line(ctx, x0, y - 20, x0 + base + grow, y - 20, PAL.ink, 4); line(ctx, x0, y + 20, x0 + base + grow, y + 20, PAL.ink, 4);
+    line(ctx, x0, y - 20, x0 + base + grow, y - 20, ctd, 4); line(ctx, x0, y + 20, x0 + base + grow, y + 20, ctd, 4);
     line(ctx, x0 + base, y - 46, x0 + base, y + 46, PAL.muted, 2, [6, 6]);
     arrow(ctx, x0 + base + grow + 20, y, x0 + base + grow + 20 + 40 + s / 6e5, y, C('stress'), 5);
     text(ctx, 'stress ' + fmt(s / 1e6, 1) + ' MN/m²', x0 + base + grow + 26, y - 34, C('stress'), { weight: 600, size: 20 });
@@ -304,7 +312,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
   const d = sim('sim-shear', 700);
   const Fa = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 2000, step: 20, value: 800, unit: 'N', dec: 0, aria: 'shearing force' });
   const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 0.3, max: 2.5, step: 0.1, value: 1.8, unit: 'm', dec: 1, aria: 'height of the bookcase' });
-  const AA = ctl(d.controls, { label: 'A', cls: '', min: 0.05, max: 1, step: 0.05, value: 0.3, unit: 'm²', dec: 2, aria: 'cross-sectional area' });
+  const AA = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.05, max: 1, step: 0.05, value: 0.3, unit: 'm²', dec: 2, aria: 'cross-sectional area' });
   const MATS = [{ n: 'lead', S: 5, l: 1 }, { n: 'hardwood', S: 10 }, { n: 'glass, granite, marble', S: 20 }, { n: 'aluminum', S: 25, l: 'aluminum' }, { n: 'brass', S: 35 }, { n: 'iron', S: 40 }, { n: 'bone, steel', S: 80, l: 'steel' }];
   /* every shear modulus Table 5.3 prints is a tick on the slider, and the whole number the slider
      steps by lands on each of them exactly; two are named, and naming more would crowd the track */
@@ -322,6 +330,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     /* a point of the box in its own units (each of sx, sy, sz runs from -1 to 1; the origin is the centre of the box), sheared by sh at the top and not at all at the bottom */
     const pt = (sx, sy, sz, sh) => V.P([sx * W / 2 + sh * (sy + 1) / 2, sy * H / 2, sz * D / 2]);
     const quad = (a, b, c, e, sh) => [pt(...a, sh), pt(...b, sh), pt(...c, sh), pt(...e, sh)];
+    const cbk = F.ref('bookcase'), rf = (pts, k, w) => rface(ctx, pts, k, w, cbk);
     const dashed = (pts) => pts.forEach((p, i) => { const q = pts[(i + 1) % pts.length]; line(ctx, p[0], p[1], q[0], q[1], PAL.muted, 2, [8, 8]); });
     const kFront = V.shade([0, 0, 1]), kTop = V.shade([0, 1, 0]), kLeft = V.shade([-1, 0, 0]);
     const t = 0.07, ty = t * W / H;                                    /* the thickness of the case's walls and shelves, in box units */
@@ -329,17 +338,17 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const floorY = Math.max(floor[1], pt(1, -1, 1, 0)[1]);
     fixed(ctx, floor[0] - 60, floorY, W + 120, 34);
     /* the solid case: its front, then the inside seen through the open front (back wall, right wall, shelves), then its left side and top */
-    face(ctx, quad([-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1], lean), kFront, 3);
-    face(ctx, quad([-1 + 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, -1], [1 - 2 * t, 1 - ty, -1], [-1 + 2 * t, 1 - ty, -1], lean), kFront + 0.2);
-    face(ctx, quad([1 - 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, 1], [1 - 2 * t, 1 - ty, 1], [1 - 2 * t, 1 - ty, -1], lean), kLeft + 0.06);
+    rf(quad([-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1], lean), kFront, 3);
+    rf(quad([-1 + 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, -1], [1 - 2 * t, 1 - ty, -1], [-1 + 2 * t, 1 - ty, -1], lean), kFront + 0.2);
+    rf(quad([1 - 2 * t, -1 + ty, -1], [1 - 2 * t, -1 + ty, 1], [1 - 2 * t, 1 - ty, 1], [1 - 2 * t, 1 - ty, -1], lean), kLeft + 0.06);
     for (let i = 0; i <= 3; i++) {
       const yy = -1 + ty + (2 - 2 * ty) * i / 4;
-      face(ctx, quad([-1 + 2 * t, yy, -1], [1 - 2 * t, yy, -1], [1 - 2 * t, yy, 1], [-1 + 2 * t, yy, 1], lean), kTop);
-      if (i) face(ctx, quad([-1 + 2 * t, yy - ty, 1], [1 - 2 * t, yy - ty, 1], [1 - 2 * t, yy, 1], [-1 + 2 * t, yy, 1], lean), kFront, 1.5);
+      rf(quad([-1 + 2 * t, yy, -1], [1 - 2 * t, yy, -1], [1 - 2 * t, yy, 1], [-1 + 2 * t, yy, 1], lean), kTop);
+      if (i) rf(quad([-1 + 2 * t, yy - ty, 1], [1 - 2 * t, yy - ty, 1], [1 - 2 * t, yy, 1], [-1 + 2 * t, yy, 1], lean), kFront, 1.5);
     }
-    face(ctx, quad([-1 + 2 * t, -1 + ty, 1], [1 - 2 * t, -1 + ty, 1], [1 - 2 * t, 1 - ty, 1], [-1 + 2 * t, 1 - ty, 1], lean), null, 1.5);
-    face(ctx, quad([-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1], lean), kLeft, 3);
-    face(ctx, quad([-1, 1, -1], [-1, 1, 1], [1, 1, 1], [1, 1, -1], lean), kTop, 3);
+    rf(quad([-1 + 2 * t, -1 + ty, 1], [1 - 2 * t, -1 + ty, 1], [1 - 2 * t, 1 - ty, 1], [-1 + 2 * t, 1 - ty, 1], lean), null, 1.5);
+    rf(quad([-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1], lean), kLeft, 3);
+    rf(quad([-1, 1, -1], [-1, 1, 1], [1, 1, 1], [1, 1, -1], lean), kTop, 3);
     /* the dashed outline is the case before the forces were applied: the same box with no shear */
     dashed(quad([-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1], 0));
     dashed(quad([-1, 1, -1], [-1, 1, 1], [1, 1, 1], [1, 1, -1], 0));
@@ -350,7 +359,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     text(ctx, 'F = ' + fmt(Fa.v, 0) + ' N', tl[0] - 16 - fl / 2, tl[1] + 2, C('force'), { align: 'center', weight: 600, size: 21, bg: PAL.panel });
     arrow(ctx, br[0] + 24 + fl, br[1] - 14, br[0] + 24, br[1] - 14, C('force'), 5);
     text(ctx, 'F', br[0] + 24 + fl + 12, br[1] - 14, C('force'), { weight: 600, size: 21 });
-    text(ctx, 'A = ' + fmt(AA.v, 2) + ' m²', topC[0] + 20, topC[1] - 30, PAL.ink, { align: 'center', weight: 600, size: 18 });
+    text(ctx, 'A = ' + fmt(AA.v, 2) + ' m²', topC[0] + 20, topC[1] - 30, C('area'), { align: 'center', weight: 600, size: 18 });
     const lx = Math.min(tl0[0], bl[0]) - 50;
     vbracket(ctx, lx, tl0[1], bl[1], C('position'), '', -1);
     text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m', lx - 12, (tl0[1] + bl[1]) / 2, C('position'), { align: 'right', weight: 600, size: 20 });
@@ -377,7 +386,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     if (x * 1e6 <= YHI) { line(ctx, X(SS.v), box.b, X(SS.v), Y(x * 1e6), C('elastic-modulus'), 2, [4, 8]); dot(ctx, X(SS.v), Y(x * 1e6), PAL.ink, true, 10); }
     else pinned(ctx, box, X, Y, SS.v, x * 1e6, C('position'), fmt(x * 1e6, 1) + ' µm');
     headline(ctx, 'A force of ' + fmt(Fa.v, 0) + ' N shears a bookcase ' + fmt(L0.v, 1) + ' m tall with a shear modulus of ' + giga(SS.v) + ' sideways by ' + fmt(x * 1e6, 3) + ' µm');
-    readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(SS.v * 1e9, 1)}\\ \\text{N/m}^2)(${fmt(AA.v, 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
+    readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(SS.v * 1e9, 1)}\\ \\text{N/m}^2)(${fmt(AA.v, 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
       'The deformation falls as one over the shear modulus, so the curve drops steeply at the left and flattens at the right. Bone sits at the far right beside steel, which is why bones are so rigid, and lead sits at the far left.');
   }
   hover(d.stage, () => marks);
@@ -391,8 +400,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
 ===================================================================== */
 (function () {
   const d = sim('sim-nail', 620);
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 0.5, max: 20, step: 0.1, value: 5.2, unit: 'kg', dec: 1, aria: 'mass of the picture' });
-  const rr = ctl(d.controls, { label: 'r', cls: '', min: 0.25, max: 2, step: 0.05, value: 0.75, unit: 'mm', dec: 2, aria: 'radius of the nail' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.5, max: 20, step: 0.1, value: 5.2, unit: 'kg', dec: 1, aria: 'mass of the picture' });
+  const rr = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.25, max: 2, step: 0.05, value: 0.75, unit: 'mm', dec: 2, aria: 'radius of the nail' });
   const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 2, max: 20, step: 0.5, value: 5, unit: 'mm', dec: 2, aria: 'length of nail outside the wall' });
   const S = 80e9;                                                     /* steel, from Table 5.3, as Example 5.5 takes it */
   const area = () => Math.PI * Math.pow(rr.v / 1000, 2);
@@ -402,11 +411,12 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const { ctx } = begin(d.c);
     const x = dx(), w = force();
     const len = 150 + 400 * (L0.v / 20), thick = 12 + 30 * (rr.v / 2);
+    const cn = F.ref('nail'), cw = F.ref('wall'), cpic = F.ref('picture');
     const wallR = 420, y = 220, MAG = x > 0 ? Math.min(110, x * 2.2e7) / x : 0, flex = x * MAG;
     /* the wall: a solid slab whose face is at wallR; the part of the nail driven into it shows through faintly */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(120, y - 140, 300, 360); ctx.restore();
-    line(ctx, wallR, y - 140, wallR, y + 220, PAL.ink, 3);
-    text(ctx, 'the wall', 270, y + 196, PAL.muted, { size: 17, align: 'center' });
+    line(ctx, wallR, y - 140, wallR, y + 220, cw, 3);
+    text(ctx, 'the wall', 270, y + 196, cw, { size: 17, align: 'center' });
     /* the nail: a sharp point buried in the wall, a round shank that is straight inside the wall and
        bends to its flex outside, a band of shading along its underside for its roundness, and a flat
        head at the free end that the picture's wire cannot slip past */
@@ -420,25 +430,25 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       ctx.closePath();
     };
     ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-    ctx.globalAlpha = 0.45; ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; outline(x0, wallR); ctx.fill(); ctx.stroke();
+    ctx.globalAlpha = 0.45; ctx.fillStyle = PAL.panel; ctx.strokeStyle = cn; ctx.lineWidth = 3; outline(x0, wallR); ctx.fill(); ctx.stroke();
     ctx.globalAlpha = 1; outline(wallR, hx0); ctx.fill(); ctx.stroke();
-    ctx.strokeStyle = alpha(PAL.ink, 0.22); ctx.lineWidth = Math.max(3, thick * 0.3);
+    ctx.strokeStyle = alpha(cn, 0.22); ctx.lineWidth = Math.max(3, thick * 0.3);
     ctx.beginPath(); for (let i = 0; i <= 40; i++) { const xx = wallR + 4 + ((hx0 - wallR - 8) * i) / 40; if (i) ctx.lineTo(xx, cen(xx) + half * 0.45); else ctx.moveTo(xx, cen(xx) + half * 0.45); } ctx.stroke();
     const hy0 = cen(hx0), hh = Math.max(20, half * 2.6);
-    ctx.fillStyle = alpha(PAL.ink, 0.3); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.fillStyle = alpha(cn, 0.3); ctx.strokeStyle = cn; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(hx0 - 2, hy0 - hh, 10, 2 * hh, 3); ctx.fill(); ctx.stroke();
     ctx.restore();
-    text(ctx, 'steel nail', wallR + len / 2, y - 62, PAL.ink, { size: 18, align: 'center', weight: 600 });
+    text(ctx, 'steel nail', wallR + len / 2, y - 62, cn, { size: 18, align: 'center', weight: 600 });
     line(ctx, wallR, y - 90, wallR + len, y - 90, PAL.muted, 2, [6, 6]);
     hbracket(ctx, wallR, wallR + len, y - 112, C('position'), 'L₀ = ' + fmt(L0.v, 2) + ' mm');
-    text(ctx, '2r = ' + fmt(2 * rr.v, 2) + ' mm', wallR + 40, y + half + 26, PAL.muted, { size: 18 });
+    text(ctx, '2r = ' + fmt(2 * rr.v, 2) + ' mm', wallR + 40, y + half + 26, C('position'), { size: 18 });
     /* the picture: a frame with its mat, hung from the nail by a wire that hooks over the shank just behind the head */
     const wx = hx0 - 14, wy = cen(wx) + width(wx), ft = wy + 74, fw = 210, fh = 170;
     line(ctx, wx, wy, wx - 80, ft + 12, PAL.muted, 2); line(ctx, wx, wy, wx + 80, ft + 12, PAL.muted, 2);
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cpic; ctx.lineWidth = 4;
     ctx.fillRect(wx - fw / 2, ft, fw, fh); ctx.strokeRect(wx - fw / 2, ft, fw, fh);
     ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(wx - fw / 2 + 22, ft + 22, fw - 44, fh - 44); ctx.restore();
-    text(ctx, fmt(mm.v, 1) + ' kg', wx, ft + fh / 2, PAL.ink, { size: 22, align: 'center', weight: 600 });
+    text(ctx, fmt(mm.v, 1) + ' kg', wx, ft + fh / 2, C('mass'), { size: 22, align: 'center', weight: 600 });
     /* the two equal and opposite forces on the nail: the picture's weight pulling down where the wire
        hangs, and the wall pushing up where the nail leaves it */
     const aL = 40 + w * 0.6;
@@ -450,7 +460,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     text(ctx, 'the flex is drawn about ' + timesLarger(MAG, len / (L0.v / 1000)) + ' times larger than it is', 120, 560, PAL.muted, { size: 18 });
     text(ctx, 'the nail is steel, so its shear modulus is 80 × 10⁹ N/m²', 120, 588, PAL.muted, { size: 18 });
     headline(ctx, 'A ' + fmt(mm.v, 1) + ' kg picture weighs ' + fmt(w, 0) + ' N and bends the nail ' + fmt(x * 1e6, 2) + ' µm, which is far too small to see');
-    readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo = \\frac{(${fmt(w, 1)}\\ \\text{N})(${sci(L0.v / 1000, 2)}\\ \\text{m})}{(${sci(S, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
+    readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(w, 1)}\\ \\text{N})(${sci(L0.v / 1000, 2)}\\ \\text{m})}{(${sci(S, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
       'Example 5.5 runs this the other way: it reads the flex off the figure as 1.80 µm and solves F = SAΔx/L₀ for the 51 N weight, which makes the picture’s mass w/g = 5.2 kg. Set the mass to 5.2 kg, the radius to 0.75 mm and the length to 5.00 mm to see those numbers.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -463,8 +473,8 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
 ===================================================================== */
 (function () {
   const d = sim('sim-cube', 700);
-  const st = ctl(d.controls, { label: '\\frac{\\kF}{A}', cls: 'stress', min: 0, max: 100, step: 1, value: 50, unit: '× 10⁶ N/m²', dec: 0, aria: 'force per unit area applied on every surface' });
-  const V0 = ctl(d.controls, { label: 'V_0', cls: '', min: 0.1, max: 10, step: 0.1, value: 1, unit: 'L', dec: 1, aria: 'original volume' });
+  const st = ctl(d.controls, { label: '\\frac{\\kF}{\\karea}', cls: 'stress', min: 0, max: 100, step: 1, value: 50, unit: '× 10⁶ N/m²', dec: 0, aria: 'force per unit area applied on every surface' });
+  const V0 = ctl(d.controls, { label: '\\kvolo', cls: 'volume', min: 0.1, max: 10, step: 0.1, value: 1, unit: 'L', dec: 1, aria: 'original volume' });
   /* every bulk modulus Table 5.3 prints is a tick on the slider, and the tenth the slider steps by
      lands on each of them exactly; two are named, and naming more would crowd the track */
   const BDET = [0.7, 0.9, { v: 2.2, label: 'water' }, 4.5, 8, 25, 30, 45, 50, 70, 75, 90, { v: 130, label: 'steel' }];
@@ -507,16 +517,17 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     };
     FACES.filter((g) => !seen(g.n)).forEach((g) => push(g.n, 1));     /* the three faces turned away from us press inward too, so they are drawn muted and behind the solid */
     /* the squeezed cube inside the ghost, each face in view lit by the lamp */
-    FACES.filter((g) => seen(g.n)).forEach((g) => face(ctx, g.q.map(pt(h2)), V.shade(g.n), 3));
+    const ccu = F.ref('cube');
+    FACES.filter((g) => seen(g.n)).forEach((g) => rface(ctx, g.q.map(pt(h2)), V.shade(g.n), 3, ccu));
     const tops = FACES.filter((g) => seen(g.n)).map((g) => push(g.n, 0));
     const topTail = tops[0];
     text(ctx, 'F/A on every surface', topTail[0], topTail[1] - 34, C('stress'), { size: 20, align: 'center', weight: 600 });
     const lo = pt(h0)([-1, -1, 1]), ctr = pt(h2)([0, 0, 1]);   /* the ghost's front bottom left corner, whose foot has room for the volume label */
     const aq = pt(h0)([-0.55, 1, -0.55]);
-    text(ctx, 'A', aq[0], aq[1] + 2, PAL.ink, { size: 20, align: 'center', weight: 600 });
-    text(ctx, 'V₀ = ' + fmt(V0.v, 1) + ' L', lo[0] - 6, lo[1] + 30, PAL.muted, { size: 19, align: 'right' });
-    text(ctx, 'V₀ − ΔV', ctr[0], ctr[1], PAL.ink, { size: 21, align: 'center', weight: 600 });
-    text(ctx, 'ΔV = ' + fmt(dV * 1000, 1) + ' mL, which is ' + fmt(f * 100, 2) + '% of the volume', 120, 560, PAL.muted, { size: 18 });
+    text(ctx, 'A', aq[0], aq[1] + 2, C('area'), { size: 20, align: 'center', weight: 600 });
+    text(ctx, 'V₀ = ' + fmt(V0.v, 1) + ' L', lo[0] - 6, lo[1] + 30, C('volume'), { size: 19, align: 'right' });
+    text(ctx, 'V₀ − ΔV', ctr[0], ctr[1], C('volume'), { size: 21, align: 'center', weight: 600 });
+    text(ctx, 'ΔV = ' + fmt(dV * 1000, 1) + ' mL, which is ' + fmt(f * 100, 2) + '% of the volume', 120, 560, C('volume'), { size: 18 });
     text(ctx, 'the shrinking is drawn ' + MAG + ' times larger than it is', 120, 588, PAL.muted, { size: 18 });
     /* the graph beside the scene: the fractional change against the force per unit area, for the five liquids of Table 5.3 */
     const box = { l: 790, r: 1300, t: 160, b: 540 };
@@ -530,7 +541,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     line(ctx, X(0), Y(0), X(ec), Y(Math.min(TOPY, (ec * 1e6 / (BB.v * 1e9)) * 100)), C('elastic-modulus'), 5);
     if (f * 100 <= TOPY) { line(ctx, X(st.v), box.b, X(st.v), Y(f * 100), C('stress'), 2, [4, 8]); dot(ctx, X(st.v), Y(f * 100), PAL.ink, true, 10); }
     headline(ctx, 'A force per unit area of ' + plain(stress(), 1) + ' N/m² on a material of bulk modulus ' + giga(BB.v) + ' compresses it by ' + fmt(f * 100, 2) + '% of its volume');
-    readout(d.readout, `\\frac{\\Delta V}{V_0} = \\frac{1}{\\kBb}\\frac{\\kF}{A} = \\frac{${sci(stress(), 2)}\\ \\text{N/m}^2}{${sci(BB.v * 1e9, 1)}\\ \\text{N/m}^2} = ${fmt(f, 4)} = ${fmt(f * 100, 2)}\\%`,
+    readout(d.readout, `\\frac{\\kdvol}{\\kvolo} = \\frac{1}{\\kBb}\\frac{\\kF}{\\karea} = \\frac{${sci(stress(), 2)}\\ \\text{N/m}^2}{${sci(BB.v * 1e9, 1)}\\ \\text{N/m}^2} = ${fmt(f, 4)} = ${fmt(f * 100, 2)}\\%`,
       'Example 5.6 is the water line at a force per unit area of 5.00 × 10⁷ N/m², the pressure 5.00 km down, which compresses seawater by 2.3 percent. Acetone, whose bulk modulus is the smallest in Table 5.3, gives way about three times as much under the same squeeze, and mercury about eleven times less.');
   }
   register(d.fig, { update: () => {}, draw });

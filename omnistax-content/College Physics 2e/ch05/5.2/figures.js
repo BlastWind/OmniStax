@@ -29,7 +29,7 @@ function sciTex(x, d) { const p = Math.floor(Math.log10(Math.abs(x))); return `$
 /* a ratio smaller than one, said the way the book says it: a hundredth, a thousandth */
 const partOf = (x) => { const n = 1 / x; return '1 part in ' + fmt(n, n >= 20 || Math.abs(n - Math.round(n)) < 0.05 ? 0 : 1); };
 
-/* ---------- sprites, in ink ---------- */
+/* ---------- sprites ---------- */
 /* a skydiver spread-eagled, belly to the earth and seen from below, centred on (x, y): a round head,
    a solid torso, and arms and legs thrown out as thick rounded strokes bent at the elbow and knee */
 function skydiver(ctx, x, y, color, s = 1) {
@@ -42,19 +42,19 @@ function skydiver(ctx, x, y, color, s = 1) {
   ctx.beginPath(); ctx.arc(0, -44, 12, 0, TAU); ctx.fill();
   ctx.restore();
 }
-/* The body the drag coefficient belongs to, drawn at (x, y) in ink; it returns the half-width the
+/* The body the drag coefficient belongs to, drawn at (x, y) in its referent colour; it returns the half-width the
    arrows are set beyond, so a skydiver is never drawn as a car and a plate is never drawn as one. */
-function bluff(ctx, x, y, name) {
-  if (name && name.indexOf('skydiver') >= 0) { skydiver(ctx, x, y, PAL.ink, 1.3); return 72; }
-  if (name === 'a sphere') { dot(ctx, x, y, PAL.ink, true, 44); return 50; }
-  if (name === 'a circular flat plate') { ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(x - 9, y - 56, 18, 112); ctx.restore(); return 22; }
+function bluff(ctx, x, y, name, col) {
+  if (name && name.indexOf('skydiver') >= 0) { skydiver(ctx, x, y, col, 1.3); return 72; }
+  if (name === 'a sphere') { dot(ctx, x, y, col, true, 44); return 50; }
+  if (name === 'a circular flat plate') { ctx.save(); ctx.fillStyle = col; ctx.fillRect(x - 9, y - 56, 18, 112); ctx.restore(); return 22; }
   if (name === 'an airfoil') {
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath();
+    ctx.save(); ctx.fillStyle = col; ctx.beginPath();
     ctx.moveTo(x - 94, y + 4); ctx.quadraticCurveTo(x - 10, y - 36, x + 94, y - 2);
     ctx.quadraticCurveTo(x - 20, y + 18, x - 94, y + 4); ctx.closePath(); ctx.fill(); ctx.restore(); return 100;
   }
   if (name === 'a bicycle') {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 5;
+    ctx.save(); ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 5;
     ctx.beginPath(); ctx.arc(x - 52, y + 26, 30, 0, TAU); ctx.moveTo(x + 82, y + 26); ctx.arc(x + 52, y + 26, 30, 0, TAU); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(x - 52, y + 26); ctx.lineTo(x - 4, y + 26); ctx.lineTo(x + 16, y - 18); ctx.lineTo(x + 52, y + 26);
     ctx.moveTo(x + 16, y - 18); ctx.lineTo(x - 34, y - 14); ctx.stroke();
@@ -62,14 +62,14 @@ function bluff(ctx, x, y, name) {
     ctx.beginPath(); ctx.moveTo(x - 4, y - 49); ctx.lineTo(x + 8, y - 20); ctx.moveTo(x - 4, y - 44); ctx.lineTo(x - 36, y - 16); ctx.stroke();
     ctx.restore(); return 88;
   }
-  if (name) { car(ctx, x, y, PAL.ink, 1.6); return 74; }
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+  if (name) { car(ctx, x, y, col, 1.6); return 74; }
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = col; ctx.lineWidth = 4;
   ctx.fillRect(x - 80, y - 40, 160, 80); ctx.strokeRect(x - 80, y - 40, 160, 80); ctx.restore();
   return 86;
 }
 /* a jar of fluid: the glass from (x1, top) to (x2, bottom), filled from the surface down */
-function jar(ctx, x1, x2, top, bottom, surface) {
-  ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(x1, surface, x2 - x1, bottom - surface); ctx.restore();
+function jar(ctx, x1, x2, top, bottom, surface, col) {
+  ctx.save(); ctx.fillStyle = alpha(col, 0.14); ctx.fillRect(x1, surface, x2 - x1, bottom - surface); ctx.restore();
   line(ctx, x1, surface, x2, surface, PAL.muted, 2);
   line(ctx, x1, top, x1, bottom, PAL.muted, 3);
   line(ctx, x2, top, x2, bottom, PAL.muted, 3);
@@ -92,7 +92,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
   /* every value Table 5.2 prints is a tick on the drag-coefficient slider, and the hundredth the
      slider steps by lands on each of them exactly */
   const Cd = ctl(d.controls, { label: 'C', cls: '', min: 0.05, max: 1.12, step: 0.01, value: 0.28, unit: '', dec: 2, aria: 'drag coefficient', detents: TABLE.map((t) => t[1]) });
-  const Ar = ctl(d.controls, { label: 'A', cls: '', min: 0.2, max: 3, step: 0.05, value: 0.7, unit: 'm²', dec: 2, aria: 'area facing the fluid' });
+  const Ar = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.2, max: 3, step: 0.05, value: 0.7, unit: 'm²', dec: 2, aria: 'area facing the fluid' });
   const VMAX = 150;
   const drag = (kmh) => 0.5 * Cd.v * RHO_AIR * Ar.v * Math.pow(kmh / 3.6, 2);
   const named = () => { const m = TABLE.reduce((a, b) => (Math.abs(b[1] - Cd.v) < Math.abs(a[1] - Cd.v) ? b : a)); return Math.abs(m[1] - Cd.v) <= 0.015 ? m[0] : null; };
@@ -104,14 +104,14 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     const yline = 250, cx = 760, cy = yline - 26;
     strip(ctx, 90, 1340, yline, 50);
     const who = named();
-    const hw = bluff(ctx, cx, cy, who);
+    const cb = F.ref('body'), hw = bluff(ctx, cx, cy, who, cb);
     const Ld = 380 * (Fnow / Ftop), Lv = 380 * (V.v / VMAX);
     arrow(ctx, cx - hw, cy, cx - hw - Ld, cy, cf, 5);
     text(ctx, 'F_D = ' + sig3(Fnow) + ' N', cx - hw - Ld / 2, 164, cf, { weight: 600, align: 'center' });
     arrow(ctx, cx + hw, cy, cx + hw + Lv, cy, cv, 5);
     text(ctx, 'v = ' + fmt(V.v, 0) + ' km/h', cx + hw + Lv / 2, 164, cv, { weight: 600, align: 'center' });
     text(ctx, who === null ? 'a bluff body with C = ' + fmt(Cd.v, 2) + ' and A = ' + fmt(Ar.v, 2) + ' m²'
-      : who + ', for which Table 5.2 gives C = ' + fmt(Cd.v, 2), cx, yline + 58, PAL.muted, { size: 17, align: 'center' });
+      : who + ', for which Table 5.2 gives C = ' + fmt(Cd.v, 2), cx, yline + 58, cb, { size: 17, align: 'center' });
     /* the graph: the drag against the speed, with the current speed and half of it marked */
     /* fixed axes: the speed slider stops at 150 km/h, so the speed axis is always 0 to 150. The
        bluntest, largest body the sliders allow, C = 1.12 and A = 3 m², would meet 3,530 N of drag at
@@ -133,7 +133,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     /* the note keeps clear of the value a pinned marker writes along the top edge */
     text(ctx, 'half the speed, a quarter of the drag', g.X(V.v / 2) + 18, Math.min(box.b - 24, g.Y(Fhalf) + 34), PAL.muted, { size: 17, bg: PAL.panel });
     headline(ctx, 'At ' + fmt(V.v, 0) + ' km/h the drag is ' + sig3(Fnow) + ' N, four times the ' + sig3(Fhalf) + ' N it would be at half that speed');
-    readout(d.readout, `\\kFD = \\tfrac{1}{2}C\\rho A\\kv^2 = \\tfrac{1}{2}(${fmt(Cd.v, 2)})(1.21\\ \\text{kg/m}^3)(${fmt(Ar.v, 2)}\\ \\text{m}^2)(${fmt(V.v / 3.6, 1)}\\ \\text{m/s})^2 = ${sig3(Fnow)}\\ \\text{N}`,
+    readout(d.readout, `\\kFD = \\tfrac{1}{2}C\\krhomat\\karea\\kv^2 = \\tfrac{1}{2}(${fmt(Cd.v, 2)})(1.21\\ \\text{kg/m}^3)(${fmt(Ar.v, 2)}\\ \\text{m}^2)(${fmt(V.v / 3.6, 1)}\\ \\text{m/s})^2 = ${sig3(Fnow)}\\ \\text{N}`,
       'The speed enters as its square, so the drag at ' + fmt(V.v, 0) + ' km/h is four times the drag at ' + fmt(V.v / 2, 0) + ' km/h and nine times the drag at ' + fmt(V.v / 3, 0) + ' km/h.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -147,8 +147,8 @@ function jar(ctx, x1, x2, top, bottom, surface) {
 ===================================================================== */
 (function () {
   const d = sim('sim-terminal', 760);
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 120, step: 1, value: 85, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the skydiver' });
-  const Ar = ctl(d.controls, { label: 'A', cls: '', min: 0.15, max: 1.2, step: 0.01, value: 0.7, unit: 'm²', dec: 2, onInput: reset, aria: 'area facing the fluid' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 1, value: 85, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the skydiver' });
+  const Ar = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.15, max: 1.2, step: 0.01, value: 0.7, unit: 'm²', dec: 2, onInput: reset, aria: 'area facing the fluid' });
   const Cd = ctl(d.controls, { label: 'C', cls: '', min: 0.4, max: 1.2, step: 0.01, value: 1, unit: '', dec: 2, onInput: reset, aria: 'drag coefficient' });
   const vt = () => Math.sqrt((2 * M.v * G) / (RHO_AIR * Cd.v * Ar.v));
   const total = () => (3.5 * vt()) / G;
@@ -174,7 +174,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     }
     const py = Yd(depth);
     if (depth > DEEP) text(ctx, 'fallen ' + fmt(depth, 0) + ' m, past the column', xc, bot + 26, PAL.muted, { size: 17, align: 'center' });
-    skydiver(ctx, xc, py, PAL.ink, 0.8);
+    skydiver(ctx, xc, py, F.ref('skydiver'), 0.8);
     /* the weight leaves her centre and the drag meets her from below, so it leaves her belly */
     arrow(ctx, xc, py + 10, xc, py + 56 + 120, cf, 5);
     text(ctx, 'w = ' + sig3(w) + ' N', xc + 40, py + 120, cf, { size: 20, weight: 600, bg: PAL.panel });
@@ -206,7 +206,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     headline(ctx, t < 0.05 ? 'The skydiver has just been released, so there is no drag yet and the whole weight of ' + sig3(w) + ' N is free to accelerate the fall'
       : a < 0.05 ? 'After ' + fmt(t, 1) + ' s the drag has grown equal to the weight, ' + sig3(w) + ' N, so the net force is zero and the speed stays at ' + fmt(V, 1) + ' m/s'
         : 'After ' + fmt(t, 1) + ' s the fall is ' + fmt(v, 1) + ' m/s, the drag is ' + sig3(FD) + ' N against a weight of ' + sig3(w) + ' N, and the acceleration is down to ' + fmt(a, 2) + ' m/s²');
-    readout(d.readout, `\\kvt = \\sqrt{\\frac{2m\\kg}{\\rho C A}} = \\sqrt{\\frac{2(${fmt(M.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)}{(1.21\\ \\text{kg/m}^3)(${fmt(Cd.v, 2)})(${fmt(Ar.v, 2)}\\ \\text{m}^2)}} = ${fmt(V, 1)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kvt = \\sqrt{\\frac{2\\km\\kg}{\\krhomat C \\karea}} = \\sqrt{\\frac{2(${fmt(M.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)}{(1.21\\ \\text{kg/m}^3)(${fmt(Cd.v, 2)})(${fmt(Ar.v, 2)}\\ \\text{m}^2)}} = ${fmt(V, 1)}\\ \\text{m/s}`,
       'That is ' + fmt(V * 3.6, 0) + ' km/h, and the skydiver falls ' + fmt(deep, 0) + ' m in the ' + fmt(T, 1) + ' s it takes to come within a hundredth of it.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => total() / 5), draw });
@@ -222,7 +222,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
 (function () {
   const d = sim('sim-size', 740);
   const K = ctl(d.controls, { label: 'k', cls: '', min: 0.05, max: 1, step: 0.01, value: 0.1, unit: '', dec: 2, onInput: reset, aria: 'how many times shorter the second body is' });
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 120, step: 1, value: 75, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the full-size body' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 10, max: 120, step: 1, value: 75, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the full-size body' });
   const H = ctl(d.controls, { label: 'h', cls: '', min: 20, max: 900, step: 10, value: 200, unit: 'm', dec: 0, onInput: reset, aria: 'height of the drop' });
   const AREA = 0.7, CD = 1;
   const vtA = () => Math.sqrt((2 * M.v * G) / (RHO_AIR * CD * AREA));
@@ -230,7 +230,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
   const total = () => Math.max(fallTime(vtA(), H.v), fallTime(vtB(), H.v));
   const cy = cycle(total, 1.2);
   function reset() { cy.reset(); }
-  const body = (ctx, x, y, s) => (s < 0.2 ? dot(ctx, x, y, PAL.ink, true, Math.max(4, 46 * s)) : skydiver(ctx, x, y, PAL.ink, s));
+  const body = (ctx, x, y, s, col) => (s < 0.2 ? dot(ctx, x, y, col, true, Math.max(4, 46 * s)) : skydiver(ctx, x, y, col, s));
   function draw() {
     const { ctx } = begin(d.c);
     const cv = C('velocity'), ct = C('time');
@@ -243,11 +243,12 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     line(ctx, 140, top - 26, 610, top - 26, PAL.muted, 3);
     line(ctx, 140, bot, 610, bot, PAL.muted, 3);
     const Y = (s) => top + (s / H.v) * (bot - top);
-    text(ctx, 'full size, ' + fmt(M.v, 0) + ' kg', xA, top - 54, PAL.ink, { size: 19, weight: 600, align: 'center' });
-    text(ctx, fmt(K.v, 2) + ' times the length, ' + massLabel(mB), xB, top - 54, PAL.ink, { size: 19, weight: 600, align: 'center' });
-    for (const [x, s, sc] of [[xA, sA, 0.8], [xB, sB, 0.8 * K.v]]) {
+    const cA = F.ref('body-full'), cB = F.ref('body-small');
+    text(ctx, 'full size, ' + fmt(M.v, 0) + ' kg', xA, top - 54, cA, { size: 19, weight: 600, align: 'center' });
+    text(ctx, fmt(K.v, 2) + ' times the length, ' + massLabel(mB), xB, top - 54, cB, { size: 19, weight: 600, align: 'center' });
+    for (const [x, s, sc, col] of [[xA, sA, 0.8, cA], [xB, sB, 0.8 * K.v, cB]]) {
       line(ctx, x, top - 26, x, bot, PAL.rule, 1.5);
-      body(ctx, x, Y(s), sc);
+      body(ctx, x, Y(s), sc, col);
     }
     text(ctx, 'the ground, ' + fmt(H.v, 0) + ' m down', 375, bot + 32, PAL.muted, { size: 17, align: 'center' });
     /* the graph: the two speeds against time, each levelling on its own terminal velocity */
@@ -294,8 +295,8 @@ function jar(ctx, x1, x2, top, bottom, surface) {
 ===================================================================== */
 (function () {
   const d = sim('sim-stokes', 800);
-  const R = ctl(d.controls, { label: 'r', cls: '', min: 0.5, max: 4, step: 0.1, value: 1.5, unit: 'mm', dec: 1, onInput: reset, aria: 'radius of the bead' });
-  const ETA = ctl(d.controls, { label: '\\eta', cls: '', min: 0.1, max: 2, step: 0.01, value: 0.76, unit: 'kg/(m·s)', dec: 2, onInput: reset, aria: 'viscosity of the fluid' });
+  const R = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.5, max: 4, step: 0.1, value: 1.5, unit: 'mm', dec: 1, onInput: reset, aria: 'radius of the bead' });
+  const ETA = ctl(d.controls, { label: '\\ketav', cls: 'viscosity', min: 0.1, max: 2, step: 0.01, value: 0.76, unit: 'kg/(m·s)', dec: 2, onInput: reset, aria: 'viscosity of the fluid' });
   const DROP = 0.6, RHO_OIL = 900;
   const steady = (rmm) => (2 * RHO_STEEL * Math.pow(rmm / 1000, 2) * G) / (9 * ETA.v);
   /* Stokes' law holds while the flow round the bead stays smooth, which is while the Reynolds number
@@ -313,8 +314,9 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     const T = total(), t = cy.now(), v = steady(R.v), s = Math.min(DROP, v * t), w = mass() * G;
     /* the scene: a jar of oil with the bead sinking through it */
     const top = 110, bot = 740, xl = 200, xr = 460, xc = 330, surf = 150;
-    jar(ctx, xl, xr, top, bot, surf);
-    text(ctx, 'motor oil', xc, surf - 26, PAL.muted, { size: 17, align: 'center' });
+    const co = F.ref('oil');
+    jar(ctx, xl, xr, top, bot, surf, co);
+    text(ctx, 'motor oil', xc, surf - 26, co, { size: 17, align: 'center' });
     const Y = (m) => 230 + (m / DROP) * 410;
     for (let i = 0; i <= 6; i++) {
       const m = (DROP * i) / 6;
@@ -326,7 +328,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
     text(ctx, 'w', xc + 16, py + rad + 40, cf, { size: 20, weight: 600 });
     arrow(ctx, xc, py - rad - 6, xc, py - rad - 66, cf, 5);
     text(ctx, 'F_s', xc + 16, py - rad - 40, cf, { size: 20, weight: 600 });
-    dot(ctx, xc, py, PAL.ink, true, rad);
+    dot(ctx, xc, py, F.ref('bead'), true, rad);
     text(ctx, fmt(v * 1000, 1) + ' mm/s', xr + 20, py, cv, { size: 20, weight: 600 });
     /* the graph: the steady speed against the radius of the bead */
     /* fixed axes: the radius slider stops at 4 mm, so the radius runs 0 to 4 mm. The largest bead in
@@ -337,7 +339,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
        changes as a slider moves. */
     const VR = 400, box = { l: 700, r: 1320, t: 210, b: 620 };
     const g = axes(ctx, box, [0, 4], [0, VR],
-      { xl: 'r (mm)', xc: PAL.ink, yl: 'v (mm/s)', yc: cv, nx: 4, ny: 4, fy: (y) => fmt(y, 0) });
+      { xl: 'r (mm)', xc: C('position'), yl: 'v (mm/s)', yc: cv, nx: 4, ny: 4, fy: (y) => fmt(y, 0) });
     const rMax = rSmooth(), rough = R.v > rMax;
     inbox(ctx, box, () => {
       /* the curve is drawn in the velocity hue while Stokes' law holds and greyed past the radius at
@@ -358,7 +360,7 @@ function jar(ctx, x1, x2, top, bottom, surface) {
       ? 'A bead of ' + fmt(R.v, 1) + ' mm is too large for this oil to carry smoothly, so Stokes\u2019 law no longer holds and the ' + fmt(v * 1000, 1) + ' mm/s drawn here is only what it would predict'
       : s >= DROP - 1e-9 ? 'After ' + fmt(T, 1) + ' s the bead has reached the bottom, ' + fmt(DROP * 100, 0) + ' cm down, at the ' + fmt(v * 1000, 1) + ' mm/s it held the whole way'
         : 'After ' + fmt(t, 1) + ' s the ' + fmt(R.v, 1) + ' mm bead has sunk ' + fmt(s * 100, 1) + ' cm at a steady ' + fmt(v * 1000, 1) + ' mm/s, since the drag matched its weight almost at once');
-    readout(d.readout, `\\kFs = 6\\pi r\\eta\\kv = 6\\pi(${sciTex(R.v / 1000, 2)}\\ \\text{m})(${fmt(ETA.v, 2)}\\ \\text{kg/(m}\\cdot\\text{s)})(${fmt(v, 4)}\\ \\text{m/s}) = ${sciTex(w, 2)}\\ \\text{N}`,
+    readout(d.readout, `\\kFs = 6\\pi\\krad\\ketav\\kv = 6\\pi(${sciTex(R.v / 1000, 2)}\\ \\text{m})(${fmt(ETA.v, 2)}\\ \\text{kg/(m}\\cdot\\text{s)})(${fmt(v, 4)}\\ \\text{m/s}) = ${sciTex(w, 2)}\\ \\text{N}`,
       'That is exactly the weight of the bead, ' + massLabel(mass()) + ' of steel at 7.8 × 10³ kg/m³, which is why the speed never changes, and the ' + fmt(DROP * 100, 0) + ' cm fall takes ' + fmt(T, 1) + ' s.'
       + (rough ? ' Stokes’ law asks that the fluid move smoothly round the bead, which it does while the Reynolds number ρv(2r)/η is about one or less; here it is ' + fmt(reynolds(R.v), 0) + ', so the real bead stirs the oil and falls more slowly than the line says.' : ''));
   }
