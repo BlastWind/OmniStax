@@ -22,7 +22,7 @@ function disc(ctx, x, y, r, color, filled) {
 /* the radius that shows a mass without swamping the scene */
 const rad = (m) => Math.max(11, Math.min(26, 15 * Math.cbrt(m / 0.25)));
 /* the angle from the x-axis round to th degrees, its name queued with the figure's labeller */
-function angleArc(ctx, x, y, r, th, label, lab) { F.angleArc(ctx, { x, y }, r, 0, th * RAD, label, lab); }
+function angleArc(ctx, x, y, r, th, label, lab) { F.angleArc(ctx, { x, y }, r, 0, th * RAD, label, lab, C('angle')); }
 /* one bar of a ledger, growing right from (x, y) */
 function bar(ctx, x, y, w, h, color, a) {
   ctx.save(); ctx.fillStyle = alpha(color, a); ctx.strokeStyle = color; ctx.lineWidth = 2.5;
@@ -42,9 +42,9 @@ function bar(ctx, x, y, w, h, color, a) {
   const d = sim('sim-scatter', 700);
   const M1 = 0.250;                                   /* the incoming mass, as in Example 8.7 */
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 4, step: 0.05, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the incoming object' });
-  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: 'angle of the incoming object after the collision' });
-  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 0.5, value: -48.5, unit: '°', dec: 1, onInput: reset, aria: 'angle of the struck object after the collision' });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the struck object' });
+  const t1 = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: 'angle of the incoming object after the collision' });
+  const t2 = ctl(d.controls, { label: '\\kthetatwo', cls: 'angle', min: -80, max: -10, step: 0.5, value: -48.5, unit: '°', dec: 1, onInput: reset, aria: 'angle of the struck object after the collision' });
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the struck object' });
   /* the momentum labels would ride objects that move, so the kind is named once beside the scene and
      each object gives its name and momentum under the pointer (rule 26.7) */
   let hits = [];
@@ -82,27 +82,27 @@ function bar(ctx, x, y, w, h, color, a) {
     const r1 = rad(M1), r2 = rad(m2.v);
     if (!hit) {
       const x = OX - (TA - tau) * v1.v * S, L = cap(s.p1 * pScale);
-      disc(ctx, x, OY, r1, PAL.ink, true);
+      disc(ctx, x, OY, r1, F.ref('object-1'), true);
       arrow(ctx, x, OY, x + L, OY, cm, 5);
-      disc(ctx, OX, OY, r2, PAL.muted, false);
-      text(ctx, 'at rest', OX + r2 + 12, OY + 34, PAL.muted, { size: 18 });
+      disc(ctx, OX, OY, r2, F.ref('object-2'), false);
+      text(ctx, 'at rest', OX + r2 + 12, OY + 34, F.ref('object-2'), { size: 18 });
       hits = [{ x, y: OY, r: r1 + 8, name: 'the incoming object, m₁' }, { x: OX, y: OY, r: r2 + 8, name: 'the struck object, m₂' }];
     } else {
       const q = tau - TA;
       const x1 = OX + s.v1p * q * S * Math.cos(s.a1), y1 = OY - s.v1p * q * S * Math.sin(s.a1);
       const x2 = OX + s.v2p * q * S * Math.cos(s.a2), y2 = OY - s.v2p * q * S * Math.sin(s.a2);
       const L1 = cap(s.p1p * pScale), L2 = cap(s.p2p * pScale);
-      disc(ctx, x1, y1, r1, PAL.ink, true);
+      disc(ctx, x1, y1, r1, F.ref('object-1'), true);
       arrow(ctx, x1, y1, x1 + L1 * Math.cos(s.a1), y1 - L1 * Math.sin(s.a1), cm, 5);
-      disc(ctx, x2, y2, r2, PAL.ink, false);
+      disc(ctx, x2, y2, r2, F.ref('object-2'), false);
       arrow(ctx, x2, y2, x2 + L2 * Math.cos(s.a2), y2 - L2 * Math.sin(s.a2), cm, 5);
       hits = [{ x: x1, y: y1, r: r1 + 8, name: "the first object afterward, p′₁ = " + fmt(s.p1p, 3) + ' kg·m/s' },
         { x: x2, y: y2, r: r2 + 8, name: "the struck object afterward, p′₂ = " + fmt(s.p2p, 3) + ' kg·m/s' }];
     }
     lab.flush();
     text(ctx, 'each arrow is a momentum', 60, 612, cm, { size: 18, weight: 600 });
-    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 640, PAL.ink, { size: 19 });
-    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg', 60, 668, PAL.ink, { size: 19 });
+    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 640, C('mass'), { size: 19 });
+    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg', 60, 668, C('mass'), { size: 19 });
     /* momentum alone allows pairs of angles that would need energy from somewhere, so the figure says so */
     const gained = s.kep - s.ke;
     text(ctx, gained > 0.002
@@ -144,7 +144,7 @@ function bar(ctx, x, y, w, h, color, a) {
       ? 'The two objects leave at ' + fmt(s.v1p, 2) + ' m/s and ' + fmt(s.v2p, 2) + ' m/s, and their momenta along y still cancel.'
       : 'All of the momentum is along x, ' + fmt(s.p1, 3) + ' kg·m/s, and there is none along y.');
     readout(d.readout,
-      `m_1\\kvone = ${fmt(s.p1, 3)}\\ \\text{kg}\\cdot\\text{m/s} = m_1\\kvoneprime\\cos\\theta_1 + m_2\\kvtwoprime\\cos\\theta_2 = ${fmt(ax1, 3)} + ${fmt(ax2, 3)}`,
+      `\\kmone\\kvone = ${fmt(s.p1, 3)}\\ \\text{kg}\\cdot\\text{m/s} = \\kmone\\kvoneprime\\cos\\kthetaone + \\kmtwo\\kvtwoprime\\cos\\kthetatwo = ${fmt(ax1, 3)} + ${fmt(ax2, 3)}`,
       'Along the y-axis there was no momentum before the collision and there is none after it: 0 = ' + num(ay1, 3) + ' + ' + num(ay2, 3) + ' kg·m/s, so the two objects must leave on opposite sides of the axis.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TTOT / 5), draw });
@@ -162,8 +162,8 @@ function bar(ctx, x, y, w, h, color, a) {
   const M1 = 0.250;
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 4, step: 0.05, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed going in' });
   const v1p = ctl(d.controls, { label: '\\kvoneprime', cls: 'velocity', min: 0.5, max: 3, step: 0.05, value: 1.5, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed coming out' });
-  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: 'angle it comes out at' });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the unseen object' });
+  const t1 = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, onInput: reset, aria: 'angle it comes out at' });
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 0.1, max: 1, step: 0.005, value: 0.4, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the unseen object' });
   /* the ratio of the two conservation equations gives the angle, and either gives the speed */
   function state() {
     const a1 = t1.v * RAD;
@@ -185,9 +185,10 @@ function bar(ctx, x, y, w, h, color, a) {
        room at the same moment whatever its speed */
     const S = R / Math.max(v1.v * TA, v1p.v * TB, s.v2p * TB, 1e-6), K = 32, cap = (L) => Math.min(300, L);
     /* the dark room */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.13); ctx.fillRect(OX - 200, OY - 225, 400, 420); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.strokeRect(OX - 200, OY - 225, 400, 420); ctx.restore();
-    text(ctx, 'a dark room', OX, OY - 243, PAL.muted, { size: 19, align: 'center' });
+    const cr = F.ref('dark-room'), c1 = F.ref('object-1'), c2 = F.ref('object-2');
+    ctx.save(); ctx.fillStyle = alpha(cr, 0.13); ctx.fillRect(OX - 200, OY - 225, 400, 420); ctx.restore();
+    ctx.save(); ctx.strokeStyle = cr; ctx.lineWidth = 2.5; ctx.strokeRect(OX - 200, OY - 225, 400, 420); ctx.restore();
+    text(ctx, 'a dark room', OX, OY - 243, cr, { size: 19, align: 'center' });
     line(ctx, OX - 560, OY, OX + 480, OY, PAL.rule, 2, [10, 10]);
     text(ctx, 'x', OX + 492, OY, PAL.ink, { size: 22, weight: 600 });
     line(ctx, OX, OY + 250, OX, OY - 290, PAL.rule, 2, [10, 10]);
@@ -198,35 +199,35 @@ function bar(ctx, x, y, w, h, color, a) {
     const r1 = rad(M1), r2 = rad(m2.v);
     if (!hit) {
       const x = OX - (TA - tau) * v1.v * S;
-      disc(ctx, x, OY, r1, PAL.ink, true);
+      disc(ctx, x, OY, r1, c1, true);
       arrow(ctx, x, OY, x + cap(v1.v * K), OY, cv, 5);
       lab.add('v₁ = ' + fmt(v1.v, 2) + ' m/s', x + cap(v1.v * K) / 2, OY, 0, -1, cv, 20, 22);
-      disc(ctx, OX, OY, r2, PAL.muted, false);
-      lab.add('something at rest, unseen', OX, OY + r2, 0, 1, PAL.muted, 18, 22);
+      disc(ctx, OX, OY, r2, c2, false);
+      lab.add('something at rest, unseen', OX, OY + r2, 0, 1, c2, 18, 22);
     } else {
       const q = tau - TA;
       const x1 = OX + v1p.v * q * S * Math.cos(s.a1), y1 = OY - v1p.v * q * S * Math.sin(s.a1);
       const x2 = OX + s.v2p * q * S * Math.cos(s.a2), y2 = OY - s.v2p * q * S * Math.sin(s.a2);
-      disc(ctx, x1, y1, r1, PAL.ink, true);
+      disc(ctx, x1, y1, r1, c1, true);
       const A1 = cap(v1p.v * K);
       arrow(ctx, x1, y1, x1 + A1 * Math.cos(s.a1), y1 - A1 * Math.sin(s.a1), cv, 5);
       lab.beside({ x1, y1, x2: x1 + A1 * Math.cos(s.a1), y2: y1 - A1 * Math.sin(s.a1) }, 'left', "v′₁ = " + fmt(v1p.v, 2) + ' m/s', cv, 20);
       ctx.save(); ctx.setLineDash([9, 9]);
-      disc(ctx, x2, y2, r2, PAL.muted, false);
+      disc(ctx, x2, y2, r2, c2, false);
       ctx.restore();
       const A2 = cap(s.v2p * K);
       arrow(ctx, x2, y2, x2 + A2 * Math.cos(s.a2), y2 - A2 * Math.sin(s.a2), alpha(cv, 0.75), 5);
       lab.beside({ x1: x2, y1: y2, x2: x2 + A2 * Math.cos(s.a2), y2: y2 - A2 * Math.sin(s.a2) }, 'right', "v′₂ = " + fmt(s.v2p, 3) + ' m/s', cv, 20);
     }
     lab.flush();
-    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 620, PAL.ink, { size: 19 });
-    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg, the one mass you know', 60, 650, PAL.ink, { size: 19 });
+    text(ctx, 'm₁ = ' + fmt(M1, 3) + ' kg', 60, 620, C('mass'), { size: 19 });
+    text(ctx, 'm₂ = ' + fmt(m2.v, 3) + ' kg, the one mass you know', 60, 650, C('mass'), { size: 19 });
     topline(ctx, hit
       ? 'The unseen object leaves at ' + fmt(s.v2p, 3) + ' m/s and ' + fmt(s.deg, 1) + '°.'
       : 'The ' + fmt(M1, 3) + ' kg object slides in at ' + fmt(v1.v, 2) + ' m/s, carrying all ' + fmt(s.ke, 3) + ' J of the internal kinetic energy.');
     const diff = s.kep - s.ke;
     readout(d.readout,
-      `\\tan\\theta_2 = \\frac{\\kvoneprime\\sin\\theta_1}{\\kvoneprime\\cos\\theta_1 - \\kvone} = ${num(s.tan, 3)}\\ \\Rightarrow\\ \\theta_2 = ${fmt(s.deg, 1)}^\\circ`,
+      `\\tan\\kthetatwo = \\frac{\\kvoneprime\\sin\\kthetaone}{\\kvoneprime\\cos\\kthetaone - \\kvone} = ${num(s.tan, 3)}\\ \\Rightarrow\\ \\kthetatwo = ${fmt(s.deg, 1)}^\\circ`,
       'The unseen object leaves with v′₂ = −(m₁/m₂)v′₁ sin θ₁/sin θ₂ = ' + fmt(s.v2p, 3) + ' m/s. '
       + (Math.abs(diff) < 0.002
         ? 'The internal kinetic energy is ' + fmt(s.ke, 3) + ' J before the collision and the same after it, so this collision is elastic.'
@@ -248,8 +249,8 @@ function bar(ctx, x, y, w, h, color, a) {
 (function () {
   const d = sim('sim-billiards', 900);
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 2, max: 10, step: 0.25, value: 6, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the cue ball' });
-  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 45, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: 'angle of the cue ball after the collision' });
-  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: -80, max: -10, step: 1, value: -60, unit: '°', dec: 0, onInput: reset, aria: 'angle of the struck ball after the collision',
+  const t1 = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 10, max: 45, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: 'angle of the cue ball after the collision' });
+  const t2 = ctl(d.controls, { label: '\\kthetatwo', cls: 'angle', min: -80, max: -10, step: 1, value: -60, unit: '°', dec: 0, onInput: reset, aria: 'angle of the struck ball after the collision',
     specials: [{ at: () => t1.v - 90, label: '90° apart' }] });
   /* with equal masses, momentum alone gives both speeds from the two angles */
   const speeds = (d1, d2, u) => {
@@ -285,30 +286,30 @@ function bar(ctx, x, y, w, h, color, a) {
     angleArc(ctx, OX, OY, 126, t2.v, 'θ₂ = ' + num(t2.v, 0) + '°', lab);
     if (!hit) {
       const x = OX - (TA - tau) * v1.v * S;
-      disc(ctx, x, OY, 26, PAL.ink, true);
+      disc(ctx, x, OY, 26, F.ref('object-1'), true);
       arrow(ctx, x + 26, OY, x + 26 + v1.v * K, OY, cv, 5);
       lab.add('v₁ = ' + fmt(v1.v, 2) + ' m/s', x + 26 + (v1.v * K) / 2, OY, 0, -1, cv, 20, 22);
-      disc(ctx, OX, OY, 26, PAL.ink, false);
-      lab.add('at rest', OX, OY + 26, 0, 1, PAL.muted, 18, 22);
+      disc(ctx, OX, OY, 26, F.ref('object-2'), false);
+      lab.add('at rest', OX, OY + 26, 0, 1, F.ref('object-2'), 18, 22);
     } else {
       const q = tau - TA, a1 = t1.v * RAD, a2 = t2.v * RAD;
       const x1 = OX + s.v1p * q * S * Math.cos(a1), y1 = OY - s.v1p * q * S * Math.sin(a1);
       const x2 = OX + s.v2p * q * S * Math.cos(a2), y2 = OY - s.v2p * q * S * Math.sin(a2);
       /* each arrow leaves from the rim of its ball */
       const e1 = { x: x1 + 26 * Math.cos(a1), y: y1 - 26 * Math.sin(a1) }, e2 = { x: x2 + 26 * Math.cos(a2), y: y2 - 26 * Math.sin(a2) };
-      disc(ctx, x1, y1, 26, PAL.ink, true);
+      disc(ctx, x1, y1, 26, F.ref('object-1'), true);
       arrow(ctx, e1.x, e1.y, e1.x + s.v1p * K * Math.cos(a1), e1.y - s.v1p * K * Math.sin(a1), cv, 5);
       lab.beside({ x1: e1.x, y1: e1.y, x2: e1.x + s.v1p * K * Math.cos(a1), y2: e1.y - s.v1p * K * Math.sin(a1) }, 'left', "v′₁ = " + fmt(s.v1p, 2) + ' m/s', cv, 20);
-      disc(ctx, x2, y2, 26, PAL.ink, false);
+      disc(ctx, x2, y2, 26, F.ref('object-2'), false);
       arrow(ctx, e2.x, e2.y, e2.x + s.v2p * K * Math.cos(a2), e2.y - s.v2p * K * Math.sin(a2), cv, 5);
       lab.beside({ x1: e2.x, y1: e2.y, x2: e2.x + s.v2p * K * Math.cos(a2), y2: e2.y - s.v2p * K * Math.sin(a2) }, 'right', "v′₂ = " + fmt(s.v2p, 2) + ' m/s', cv, 20);
     }
     lab.flush();
     text(ctx, 'the two balls have the same mass m', 110, 592, PAL.ink, { size: 19 });
-    text(ctx, 'angle of separation θ₁ − θ₂ = ' + fmt(sep, 0) + '°', 110, 620, PAL.ink, { size: 19, weight: 600 });
+    text(ctx, 'angle of separation θ₁ − θ₂ = ' + fmt(sep, 0) + '°', 110, 620, C('angle'), { size: 19, weight: 600 });
     /* the graph: the internal kinetic energy after the collision against the angle of separation */
     const box = { l: 300, r: 1120, t: 670, b: 830 };
-    const g = axes(ctx, box, [10, 170], [0.5, 1.5], { xl: 'angle of separation θ₁ − θ₂ (°)', yl: 'KE′int / KEint', yc: ce, nx: 4, ny: 2, fy: (v) => fmt(v, 1) });
+    const g = axes(ctx, box, [10, 170], [0.5, 1.5], { xl: 'angle of separation θ₁ − θ₂ (°)', xc: C('angle'), yl: 'KE′int / KEint', yc: ce, nx: 4, ny: 2, fy: (v) => fmt(v, 1) });
     line(ctx, box.l, g.Y(1), box.r, g.Y(1), ce, 2.5, [10, 10]);
     text(ctx, 'the internal kinetic energy before the collision', box.l + 12, g.Y(1) - 18, ce, { size: 17 });
     line(ctx, g.X(90), box.t, g.X(90), box.b, PAL.muted, 2, [4, 8]);
@@ -321,7 +322,7 @@ function bar(ctx, x, y, w, h, color, a) {
       ? 'The balls separate at 90°, the cue ball leaving at ' + fmt(s.v1p, 2) + ' m/s and the struck ball at ' + fmt(s.v2p, 2) + ' m/s.'
       : 'The balls separate at ' + fmt(sep, 0) + '°, and the internal kinetic energy after the collision is ' + fmt(kep / ke, 2) + ' times what it was before.');
     readout(d.readout,
-      `\\tfrac{1}{2}m{\\kvone}^2 = \\tfrac{1}{2}m{\\kvoneprime}^2 + \\tfrac{1}{2}m{\\kvtwoprime}^2 + m\\kvoneprime\\kvtwoprime\\cos(\\theta_1 - \\theta_2)\\qquad ${fmt(ke, 1)} = ${fmt(0.5 * s.v1p * s.v1p, 1)} + ${fmt(0.5 * s.v2p * s.v2p, 1)} + ${num(extra, 1)}\\ \\text{J per kilogram}`,
+      `\\tfrac{1}{2}\\km{\\kvone}^2 = \\tfrac{1}{2}\\km{\\kvoneprime}^2 + \\tfrac{1}{2}\\km{\\kvtwoprime}^2 + \\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)\\qquad ${fmt(ke, 1)} = ${fmt(0.5 * s.v1p * s.v1p, 1)} + ${fmt(0.5 * s.v2p * s.v2p, 1)} + ${num(extra, 1)}\\ \\text{J per kilogram}`,
       Math.abs(extra) < 0.05
         ? 'The last term is zero here, so the internal kinetic energy after the collision, ' + fmt(kep, 1) + ' J per kilogram of ball, is exactly what it was before, and only at this angle of separation can two equal masses collide elastically and both move afterward.'
         : 'The last term comes to ' + num(extra, 1) + ' J per kilogram of ball here, so the internal kinetic energy after the collision is ' + fmt(kep, 1) + ' J per kilogram against ' + fmt(ke, 1) + ' before it, and the collision is not elastic.');

@@ -55,9 +55,9 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
 ===================================================================== */
 (function () {
   const d = sim('sim-elastic-collision', 700);
-  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.1, max: 5, step: 0.05, value: 0.5, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the first object',
+  const m1 = ctl(d.controls, { label: '\\kmone', cls: 'mass', min: 0.1, max: 5, step: 0.05, value: 0.5, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the first object',
     specials: [{ at: () => m2.v, label: 'equal masses' }] });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 5, step: 0.05, value: 3.5, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the second object',
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 0.1, max: 5, step: 0.05, value: 3.5, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the second object',
     specials: [{ at: () => m1.v, label: 'equal masses' }] });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 6, step: 0.25, value: 4, unit: 'm/s', dec: 2, onInput: reset, aria: 'velocity of the first object before the collision' });
   const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: -6, max: 0.5, step: 0.25, value: 0, unit: 'm/s', dec: 2, onInput: reset, aria: 'velocity of the second object before the collision' });
@@ -102,14 +102,15 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     /* the frictionless surface the two objects slide on */
     strip(ctx, 60, 1340, GY + 24, 46);
     line(ctx, 60, GY, 1340, GY, PAL.muted, 3);
-    text(ctx, 'm₁ = ' + num(M1, 2) + ' kg', 70, 96, PAL.ink, { size: 21, weight: 600 });
-    text(ctx, 'm₂ = ' + num(M2, 2) + ' kg', 1330, 96, PAL.ink, { size: 21, weight: 600, align: 'right' });
+    text(ctx, 'm₁ = ' + num(M1, 2) + ' kg', 70, 96, C('mass'), { size: 21, weight: 600 });
+    text(ctx, 'm₂ = ' + num(M2, 2) + ' kg', 1330, 96, C('mass'), { size: 21, weight: 600, align: 'right' });
 
     /* the two objects, each with its velocity above it and its momentum below that */
-    block(ctx, x1, GY - 34, w1, 68, PAL.ink);
-    block(ctx, x2, GY - 34, w2, 68, PAL.ink);
-    text(ctx, '1', x1, GY + 62, PAL.ink, { align: 'center', size: 24, weight: 600 });
-    text(ctx, '2', x2, GY + 62, PAL.ink, { align: 'center', size: 24, weight: 600 });
+    const c1 = F.ref('object-1'), c2 = F.ref('object-2');
+    block(ctx, x1, GY - 34, w1, 68, c1);
+    block(ctx, x2, GY - 34, w2, 68, c2);
+    text(ctx, '1', x1, GY + 62, c1, { align: 'center', size: 24, weight: 600 });
+    text(ctx, '2', x2, GY + 62, c2, { align: 'center', size: 24, weight: 600 });
     along(ctx, x1, VY, u1, 26, C('velocity'), hit ? 'v′₁' : 'v₁');
     along(ctx, x2, VY, u2, 26, C('velocity'), hit ? 'v′₂' : 'v₂');
     along(ctx, x1, PY, M1 * u1, kp, C('momentum'), hit ? 'p′₁' : 'p₁');
@@ -139,9 +140,9 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
 ===================================================================== */
 (function () {
   const d = sim('sim-two-solutions', 620);
-  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.1, max: 5, step: 0.05, value: 0.5, unit: 'kg', dec: 2, aria: 'mass of the first object',
+  const m1 = ctl(d.controls, { label: '\\kmone', cls: 'mass', min: 0.1, max: 5, step: 0.05, value: 0.5, unit: 'kg', dec: 2, aria: 'mass of the first object',
     specials: [{ at: () => m2.v, label: 'equal masses' }] });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 5, step: 0.05, value: 3.5, unit: 'kg', dec: 2, aria: 'mass of the second object',
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 0.1, max: 5, step: 0.05, value: 3.5, unit: 'kg', dec: 2, aria: 'mass of the second object',
     specials: [{ at: () => m1.v, label: 'equal masses' }] });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 6, step: 0.25, value: 4, unit: 'm/s', dec: 2, aria: 'velocity of the first object before the collision' });
   m1.refresh();
@@ -196,7 +197,7 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     const same = Math.abs(M1 - M2) < 1e-9;
     F.morph(formula, same
       ? `\\mk{v}{\\kvoneprime} = \\mk{n}{0}\\ \\text{m/s}`
-      : `\\mk{v}{\\kvoneprime} = \\mk{f}{\\frac{m_1 - m_2}{m_1 + m_2}}\\mk{u}{\\kvone} = \\mk{n}{${fmt(v1p, 2)}}\\ \\text{m/s}`,
+      : `\\mk{v}{\\kvoneprime} = \\mk{f}{\\frac{\\kmone - \\kmtwo}{\\kmone + \\kmtwo}}\\mk{u}{\\kvone} = \\mk{n}{${fmt(v1p, 2)}}\\ \\text{m/s}`,
       { keyMap: same ? { f: 'n', u: 'n' } : {} });
     note.textContent = (same
       ? 'With equal masses the first object stops dead and the second leaves with v′₂ = v₁ = ' + fmt(V, 2) + ' m/s: the two exchange velocities. '

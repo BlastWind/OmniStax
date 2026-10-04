@@ -25,7 +25,7 @@ const commas = (t) => t.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 /* the decimals a tick label needs for the step nice() chose */
 const decs = (r) => ((r.hi - r.lo) / r.n < 1 ? 1 : 0);
 
-/* ---------- sprites, in ink ---------- */
+/* ---------- sprites, in the colour they are handed ---------- */
 /* a rocket standing on its fins, centered on (x, y), 134 units tall at scale 1 */
 function rocket(ctx, x, y, color, s = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
@@ -59,8 +59,8 @@ function bar(ctx, x1, x2, y, h, f, color) {
 (function () {
   const d = sim('sim-rocket', 800);
   const ve = ctl(d.controls, { label: '\\kve', cls: 'velocity', min: 0.5, max: 2.5, step: 0.05, value: 2.4, unit: '\u00d7 10\u00b3 m/s', dec: 2, onInput: reset, aria: 'exhaust velocity' });
-  const rate = ctl(d.controls, { label: '\\Delta m / \\kdt', cls: '', min: 2, max: 20, step: 0.5, value: 14, unit: '\u00d7 10\u00b3 kg/s', dec: 1, onInput: reset, aria: 'rate at which gas is ejected' });
-  const m0 = ctl(d.controls, { label: 'm_0', cls: '', min: 0.5, max: 4, step: 0.05, value: 2.8, unit: '\u00d7 10\u2076 kg', dec: 2, onInput: reset, aria: 'mass at liftoff' });
+  const rate = ctl(d.controls, { label: '\\kdm / \\kdt', cls: '', min: 2, max: 20, step: 0.5, value: 14, unit: '\u00d7 10\u00b3 kg/s', dec: 1, onInput: reset, aria: 'rate at which gas is ejected' });
+  const m0 = ctl(d.controls, { label: '\\kmo', cls: 'mass', min: 0.5, max: 4, step: 0.05, value: 2.8, unit: '\u00d7 10\u2076 kg', dec: 2, onInput: reset, aria: 'mass at liftoff' });
   const FUEL = 0.75;                                    /* the share of the liftoff mass that is fuel in this scene */
   const V = () => ve.v * 1e3, R = () => rate.v * 1e3, M0 = () => m0.v * 1e6;
   const burn = () => (FUEL * M0()) / R();               /* the time the fuel lasts */
@@ -84,8 +84,9 @@ function bar(ctx, x1, x2, y, h, f, color) {
     /* the scene: the rocket and the gas it throws down */
     const rx = 270, ry = 600 - 340 * prog, S = 1.3;
     const Lv = 40 + 50 * (V() / 2500);
-    plume(ctx, rx, ry + 81, 70 + 40 * (R() / 2e4), PAL.ink);   /* the exhaust is a body, drawn in ink, and the hue stays on the arrow and the slider */
-    rocket(ctx, rx, ry, PAL.ink, S);
+    const cr = F.ref('rocket');
+    plume(ctx, rx, ry + 81, 70 + 40 * (R() / 2e4), F.ref('gas'));
+    rocket(ctx, rx, ry, cr, S);
     arrow(ctx, rx, ry + 100, rx, ry + 100 + Lv, C('velocity'), 5);
     text(ctx, 'v\u2091 = ' + sciT(V()) + ' m/s', rx - 40, Math.min(ry + 100 + Lv / 2, 656), C('velocity'), { size: 20, weight: 600, align: 'right' });   /* held above the ground line so it never lands on its label at liftoff */
     line(ctx, 40, 686, 190, 686, PAL.rule, 2, [10, 10]);
@@ -93,8 +94,8 @@ function bar(ctx, x1, x2, y, h, f, color) {
 
     /* the free-body diagram: the thrust that lifts the rocket and the weight that holds it down */
     const fx = 600, fy = 410, Lt = 40 + 150 * Math.min(1, thrust / Fmax), Lw = 40 + 150 * Math.min(1, weight / Fmax);
-    dot(ctx, fx, fy, PAL.ink, true, 10);
-    text(ctx, 'the rocket', fx + 22, fy, PAL.muted, { size: 17 });
+    dot(ctx, fx, fy, cr, true, 10);
+    text(ctx, 'the rocket', fx + 22, fy, cr, { size: 17 });
     arrow(ctx, fx, fy, fx, fy - Lt, C('force'), 5);
     text(ctx, 'thrust = ' + sciT(thrust) + ' N', fx, fy - Lt - 24, C('force'), { size: 20, weight: 600, align: 'center' });
     arrow(ctx, fx, fy, fx, fy + Lw, C('force'), 5);
@@ -119,9 +120,9 @@ function bar(ctx, x1, x2, y, h, f, color) {
     pinned(ctx, box, X, Y, tau, a, C('acceleration'), fmt(a, 1) + ' m/s²');
 
     /* what is left of the rocket, and the momentum it has gathered */
-    bar(ctx, 860, 1340, 600, 34, m / M0(), alpha(PAL.ink, 0.3));
+    bar(ctx, 860, 1340, 600, 34, m / M0(), alpha(C('mass'), 0.3));
     line(ctx, 860 + (1 - FUEL) * 480, 596, 860 + (1 - FUEL) * 480, 638, PAL.muted, 3);
-    text(ctx, 'mass now m = ' + sciT(m) + ' kg', 860, 578, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, 'mass now m = ' + sciT(m) + ' kg', 860, 578, C('mass'), { size: 20, weight: 600 });
     text(ctx, 'm\u1d63, what is left at burnout', 860 + (1 - FUEL) * 480, 658, PAL.muted, { size: 17, align: 'center' });
     bar(ctx, 860, 1340, 722, 34, p / pMax, alpha(C('momentum'), 0.55));
     text(ctx, 'momentum p = mv = ' + sciT(p) + ' kg\u00b7m/s', 860, 700, C('momentum'), { size: 20, weight: 600 });
@@ -130,7 +131,7 @@ function bar(ctx, x1, x2, y, h, f, color) {
       : tau < 1e-9 ? 'The rocket lifts off at ' + fmt(acc(0), 2) + ' m/s\u00b2, a thrust of ' + sciT(thrust) + ' N against a weight of ' + sciT(weight) + ' N.'
       : done ? 'The fuel is exhausted after ' + fmt(T, 0) + ' s, and the acceleration has reached its greatest value, ' + fmt(a, 1) + ' m/s\u00b2.'
       : 'After ' + fmt(tau, 0) + ' s, ' + sciT(m) + ' kg is left of the rocket, so the same thrust now gives it ' + fmt(a, 1) + ' m/s\u00b2.');
-    readout(d.readout, `\\ka = \\frac{\\kve}{m}\\;\\frac{\\Delta m}{\\kdt} - \\kg = \\frac{${sciX(V())}\\ \\text{m/s}}{${sciX(m)}\\ \\text{kg}}(${sciX(R())}\\ \\text{kg/s}) - 9.80\\ \\text{m/s}^2 = ${fmt(a, 2)}\\ \\text{m/s}^2`,
+    readout(d.readout, `\\ka = \\frac{\\kve}{\\km}\\;\\frac{\\kdm}{\\kdt} - \\kg = \\frac{${sciX(V())}\\ \\text{m/s}}{${sciX(m)}\\ \\text{kg}}(${sciX(R())}\\ \\text{kg/s}) - 9.80\\ \\text{m/s}^2 = ${fmt(a, 2)}\\ \\text{m/s}^2`,
       'The thrust is the exhaust velocity multiplied by the rate at which gas leaves, ' + sciT(thrust) + ' N, and it does not change as the rocket burns. The weight does, because the mass falls, and that is why the acceleration grows.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => burn() / 5), draw });
@@ -154,11 +155,12 @@ function bar(ctx, x1, x2, y, h, f, color) {
     /* the rocket, with its tanks drawn as the share of the liftoff mass that is fuel */
     const rx = 340, top = 160, bot = 540, w = 92;
     const keep = Math.max(7, (bot - top) / Rm);               /* what is left at burnout, never thinner than a drawn line */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    const cr = F.ref('escape-rocket');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cr; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(rx, top - 66); ctx.lineTo(rx + w / 2, top); ctx.lineTo(rx + w / 2, bot); ctx.lineTo(rx - w / 2, bot); ctx.lineTo(rx - w / 2, top); ctx.closePath();
     ctx.fill(); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.22); ctx.fillRect(rx - w / 2 + 2, top + keep, w - 4, bot - top - keep); ctx.restore();
-    line(ctx, rx - w / 2, top + keep, rx + w / 2, top + keep, PAL.ink, 3);
+    ctx.save(); ctx.fillStyle = alpha(cr, 0.22); ctx.fillRect(rx - w / 2 + 2, top + keep, w - 4, bot - top - keep); ctx.restore();
+    line(ctx, rx - w / 2, top + keep, rx + w / 2, top + keep, cr, 3);
     vbracket(ctx, rx + w / 2 + 40, top + keep, bot, PAL.ink, 'fuel, ' + fmt(100 - left, 1) + '% of the mass at liftoff', 1);
     arrow(ctx, rx - w / 2 - 120, top + keep / 2, rx - w / 2 - 10, top + keep / 2, PAL.ink, 4);
     text(ctx, 'm\u1d63, ' + fmt(left, 2) + '%', rx - w / 2 - 128, top + keep / 2, PAL.ink, { size: 20, weight: 600, align: 'right' });
@@ -180,7 +182,7 @@ function bar(ctx, x1, x2, y, h, f, color) {
     pinned(ctx, box, X, Y, Rm, v, C('velocity'), commas(fmt(v, 0)) + ' m/s');
 
     topline(ctx, 'An exhaust velocity of ' + sciT(V) + ' m/s and a mass ratio of ' + fmt(Rm, 0) + ' give a final velocity of ' + sciT(v) + ' m/s.');
-    readout(d.readout, `\\kv = \\kve\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}} = (${sciX(V)}\\ \\text{m/s})\\,\\text{ln}\\;${fmt(Rm, 0)} = ${sciX(v)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kv = \\kve\\;\\text{ln}\\;\\frac{\\kmo}{\\kmr} = (${sciX(V)}\\ \\text{m/s})\\,\\text{ln}\\;${fmt(Rm, 0)} = ${sciX(v)}\\ \\text{m/s}`,
       'Only ' + fmt(left, 2) + ' percent of the rocket is left when the fuel is burnt, so payload, engines and fuel tanks together must weigh no more than that. Doubling the mass ratio does not double the velocity, since it adds the same ' + fmt(V * Math.LN2, 0) + ' m/s however large the ratio already is.');
   }
   register(d.fig, { update: () => {}, draw });

@@ -11,7 +11,7 @@ const commas = (s) => String(s).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 /* three significant figures, never in exponent form, with commas above a thousand */
 const sig3 = (x) => { const a = Math.abs(x); const s = a.toPrecision(3); return (x < 0 ? '−' : '') + (a >= 1000 ? commas(Math.round(Number(s))) : s); };
 
-/* ---------- sprites, drawn in ink ---------- */
+/* ---------- sprites, in the colour they are handed ---------- */
 /* a football lying on its long axis, centered on (x, y) */
 function football(ctx, x, y, color, s = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
@@ -46,12 +46,12 @@ function racquet(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-momentum', 670);
-  const mp = ctl(d.controls, { label: 'm_{\\text{player}}', cls: '', min: 50, max: 150, step: 1, value: 110, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the player' });
+  const mp = ctl(d.controls, { label: '\\km_{\\htmlData{ref=player}{\\text{player}}}', cls: 'mass', min: 50, max: 150, step: 1, value: 110, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the player' });
   /* the player's speed reaches down to a walk, so that the football can be given as much momentum as the player carries */
-  const vp = ctl(d.controls, { label: '\\kv_{\\text{player}}', cls: 'velocity', min: 1, max: 15, step: 0.25, value: 8, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the player',
+  const vp = ctl(d.controls, { label: '\\kv_{\\htmlData{ref=player}{\\text{player}}}', cls: 'velocity', min: 1, max: 15, step: 0.25, value: 8, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the player',
     specials: [{ at: () => (mb.v * vb.v) / mp.v, label: 'equal momenta' }] });
-  const mb = ctl(d.controls, { label: 'm_{\\text{ball}}', cls: '', min: 0.1, max: 2, step: 0.01, value: 0.41, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the football' });
-  const vb = ctl(d.controls, { label: '\\kv_{\\text{ball}}', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the football',
+  const mb = ctl(d.controls, { label: '\\km_{\\htmlData{ref=football}{\\text{ball}}}', cls: 'mass', min: 0.1, max: 2, step: 0.01, value: 0.41, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the football' });
+  const vb = ctl(d.controls, { label: '\\kv_{\\htmlData{ref=football}{\\text{ball}}}', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 25, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the football',
     specials: [{ at: () => (mp.v * vp.v) / mb.v, label: 'equal momenta' }] });
   const RUN = 30;                                   /* the strip is thirty meters of ground */
   /* Both bar scales are fixed from the slider maxima and never move: a velocity bar is 560 units at
@@ -73,17 +73,18 @@ function racquet(ctx, x, y, color) {
     const tau = cy.now(), pp = mp.v * vp.v, pb = mb.v * vb.v;
     const xp = Math.min(RUN, vp.v * tau), xb = Math.min(RUN, vb.v * tau);
     /* the player's lane */
-    text(ctx, 'the football player', L, 70, PAL.ink, { size: 22, weight: 600 });
+    const cp = F.ref('player'), cb = F.ref('football');
+    text(ctx, 'the football player', L, 70, cp, { size: 22, weight: 600 });
     strip(ctx, L, Rt, 175, 48);
     /* a filled body, 84 units tall, running while the ground is still passing under it */
-    F.silhouette(ctx, { x: Math.min(X(xp) + 20, Rt - 40), y: 180, s: 0.56, pose: xp > 0 && xp < RUN ? 'run' : 'stand' });
+    F.silhouette(ctx, { x: Math.min(X(xp) + 20, Rt - 40), y: 180, s: 0.56, pose: xp > 0 && xp < RUN ? 'run' : 'stand', color: cp });
     bar(ctx, 248, (vp.v / VMAX) * BAR, C('velocity'), 'v = ' + fmt(vp.v, 2) + ' m/s');
     bar(ctx, 296, (pp / PMAX) * PBAR, C('momentum'), 'p = ' + sig3(pp) + ' kg·m/s');
     line(ctx, L, 342, Rt, 342, PAL.rule, 2);
     /* the football's lane */
-    text(ctx, 'the hard-thrown football', L, 380, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'the hard-thrown football', L, 380, cb, { size: 22, weight: 600 });
     strip(ctx, L, Rt, 455, 48);
-    football(ctx, X(xb), 455, PAL.ink);
+    football(ctx, X(xb), 455, cb);
     bar(ctx, 528, (vb.v / VMAX) * BAR, C('velocity'), 'v = ' + fmt(vb.v, 1) + ' m/s');
     bar(ctx, 576, (pb / PMAX) * PBAR, C('momentum'), 'p = ' + sig3(pb) + ' kg·m/s');
     /* the ground both of them cover */
@@ -96,7 +97,7 @@ function racquet(ctx, x, y, color) {
       ? 'Both set off from the same line, the player at ' + fmt(vp.v, 2) + ' m/s and the football at ' + fmt(vb.v, 1) + ' m/s.'
       : 'At t = ' + fmt(tau, 2) + ' s ' + who + '.');
     readout(d.readout,
-      `\\kpplayer = m\\kv = (${fmt(mp.v, 0)}\\ \\text{kg})(${fmt(vp.v, 2)}\\ \\text{m/s}) = ${sig3(pp)}\\ \\text{kg}\\cdot\\text{m/s}`,
+      `\\kpplayer = \\km\\kv = (${fmt(mp.v, 0)}\\ \\text{kg})(${fmt(vp.v, 2)}\\ \\text{m/s}) = ${sig3(pp)}\\ \\text{kg}\\cdot\\text{m/s}`,
       'The football has p = (' + fmt(mb.v, 3) + ' kg)(' + fmt(vb.v, 1) + ' m/s) = ' + sig3(pb) + ' kg·m/s, so ' + who + ', even though the football is much the faster of the two.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => (RUN / Math.max(vp.v, vb.v)) / 5), draw });
@@ -111,7 +112,7 @@ function racquet(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-force', 760);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.02, max: 0.2, step: 0.001, value: 0.057, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the ball' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.02, max: 0.2, step: 0.001, value: 0.057, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the ball' });
   const vf = ctl(d.controls, { label: '\\kvf', cls: 'velocity', min: 10, max: 80, step: 1, value: 58, unit: 'm/s', dec: 0, onInput: reset, aria: 'speed just after impact' });
   /* the contact runs to 10 ms, the range of the time axis below, with a detent at the 5.00 ms of the example */
   const dt = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 1, max: 10, step: 0.5, value: 5, unit: 'ms', dec: 1, detents: [{ v: 5, label: '5.0' }], snap: true, onInput: reset, aria: 'contact time' });
@@ -127,9 +128,9 @@ function racquet(ctx, x, y, color) {
     const X0 = 340, SPAN = 680, X = (mm) => X0 + (smax > 0 ? (mm / smax) * SPAN : 0), YB = 210;
     line(ctx, X(0), YB - 120, X(0), YB + 150, PAL.rule, 2, [8, 10]);
     text(ctx, 'where the ball met the strings', X(0) + 18, YB + 168, PAL.muted, { size: 17 });
-    racquet(ctx, X(s) - 42, YB, PAL.ink);
+    racquet(ctx, X(s) - 42, YB, F.ref('racquet'));
     tennisBall(ctx, X(0), YB, PAL.muted, 24, false);
-    tennisBall(ctx, X(s), YB, PAL.ink, 24);
+    tennisBall(ctx, X(s), YB, F.ref('tennis-ball'), 24);
     text(ctx, 'v = ' + fmt(v, 1) + ' m/s', X(s), YB - 104, C('velocity'), { size: 22, weight: 600, align: 'center' });
     arrow(ctx, X(s) + 30, YB + 68, X(s) + 30 + Math.max(8, (p / dp) * 280), YB + 68, C('momentum'), 5);
     text(ctx, 'p = ' + fmt(p, 2) + ' kg·m/s', X(s) + 30, YB + 104, C('momentum'), { size: 22, weight: 600 });
@@ -162,7 +163,7 @@ function racquet(ctx, x, y, color) {
       ? 'The ball is at rest against the strings, about to be given ' + fmt(dp, 2) + ' kg·m/s in ' + fmt(dt.v, 1) + ' ms.'
       : 'At t = ' + fmt(tau * 1000, 1) + ' ms the ball has taken up ' + fmt(p, 2) + ' of the ' + fmt(dp, 2) + ' kg·m/s the racquet will give it.');
     readout(d.readout,
-      `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{m(\\kvf - \\kvi)}{\\kdt} = \\frac{(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(vf.v, 0)}\\ \\text{m/s})}{${fmt(dt.v, 1)}\\times 10^{-3}\\ \\text{s}} = ${sig3(Fn)}\\ \\text{N}`,
+      `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{\\km(\\kvf - \\kvi)}{\\kdt} = \\frac{(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(vf.v, 0)}\\ \\text{m/s})}{${fmt(dt.v, 1)}\\times 10^{-3}\\ \\text{s}} = ${sig3(Fn)}\\ \\text{N}`,
       'The mass of the ball does not change, so ma = (' + fmt(m.v, 3) + ' kg)(' + sig3(a) + ' m/s²) gives the same ' + sig3(Fn) + ' N. Spread the same change in momentum over twice the contact time and the force falls to half of what it was, which is why a follow-through and a soft landing hurt less.');
   }
   register(d.fig, { update: (dt2) => cy.step(dt2, () => T() / 5), draw });

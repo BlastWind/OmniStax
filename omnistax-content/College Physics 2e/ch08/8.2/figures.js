@@ -9,7 +9,7 @@ const RAD = Math.PI / 180, TAU = 2 * Math.PI;
 /* a whole number with thousands separators, which is how this section's forces read */
 const whole = (x) => String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-/* ---------- sprites drawn here, in ink ---------- */
+/* ---------- sprites drawn here ---------- */
 /* a seat facing right, its foot at (x, y): a cushion and a backrest, in the muted ink of the scene's furniture */
 function seat(ctx, x, y) {
   ctx.save(); ctx.fillStyle = PAL.muted; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.lineJoin = 'round';
@@ -32,7 +32,7 @@ function ball(ctx, x, y, color, r = 18) {
 ===================================================================== */
 (function () {
   const d = sim('sim-impulse', 860);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 120, step: 5, value: 75, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the passenger' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 5, value: 75, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the passenger' });
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 5, max: 30, step: 0.5, value: 20, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed before the stop' });
   const dt = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 0.02, max: 0.5, step: 0.01, value: 0.1, unit: 's', dec: 2, onInput: reset, aria: 'contact time' });
   const APPROACH = 1.6, CONTACT = 1.8;            /* seconds of the drawing's own clock */
@@ -49,19 +49,20 @@ function ball(ctx, x, y, color, r = 18) {
     /* the scene: the strip, the padded barrier and the passenger */
     const y = 300, wallX = 1000, depth = 70, startX = 250;
     strip(ctx, 90, wallX, y + 22, 44);
-    ctx.save(); ctx.fillStyle = PAL.soft2; ctx.fillRect(wallX, 190, depth, 260); ctx.restore();
+    const cpad = F.ref('padding');
+    ctx.save(); ctx.fillStyle = alpha(cpad, 0.3); ctx.fillRect(wallX, 190, depth, 260); ctx.restore();
     fixed(ctx, wallX + depth, 190, 110, 260);
-    line(ctx, wallX, 190, wallX, 450, PAL.muted, 3, [10, 10]);
-    text(ctx, 'the padding', wallX + depth / 2, 474, PAL.muted, { size: 17, align: 'center' });
+    line(ctx, wallX, 190, wallX, 450, cpad, 3, [10, 10]);
+    text(ctx, 'the padding', wallX + depth / 2, 474, cpad, { size: 17, align: 'center' });
     const squash = c * c * (3 - 2 * c) * depth * 0.7;
     const px = hit ? wallX - 44 + squash : startX + (wallX - 44 - startX) * (tau / APPROACH);
     /* the passenger sits facing the padding, a filled body 0.85 of the library's height; the
        shoulder, where the momentum is drawn from and where the padding's push is drawn to, is at
        (px − 5, y − 78) in the sit pose at this scale */
     seat(ctx, px, y);
-    F.silhouette(ctx, { x: px, y, s: 0.85, pose: 'sit' });
+    F.silhouette(ctx, { x: px, y, s: 0.85, pose: 'sit', color: F.ref('passenger') });
     const sx = px - 5, sy = y - 78;
-    text(ctx, fmt(m.v, 0) + ' kg', px - 14, y + 66, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, fmt(m.v, 0) + ' kg', px - 14, y + 66, C('mass'), { size: 20, weight: 600, align: 'center' });
     /* the momentum still to be taken away, and the force the padding pushes back with. Both arrows
        are on scales fixed from the slider maxima and never move: 320 units at 3,600 kg·m/s, which is
        120 kg at 30 m/s, and 250 units at 180,000 N, which is that momentum taken away in 0.02 s. */
@@ -114,9 +115,9 @@ function ball(ctx, x, y, color, r = 18) {
 ===================================================================== */
 (function () {
   const d = sim('sim-billiard', 820);
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: 'angle from the perpendicular' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 60, step: 1, value: 30, unit: '°', dec: 0, onInput: reset, aria: 'angle from the perpendicular' });
   const u = ctl(d.controls, { label: '\\ku', cls: 'velocity', min: 1, max: 10, step: 0.5, value: 5, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the ball' });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 0.3, step: 0.01, value: 0.16, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the ball' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 0.3, step: 0.01, value: 0.16, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the ball' });
   const IN = 1.8, OUT = 1.8;
   const cy = cycle(() => IN + OUT, 1.2);
   function reset() { cy.reset(); }
@@ -132,8 +133,10 @@ function ball(ctx, x, y, color, r = 18) {
     const lab = F.labeller(ctx, 820);
     /* the scene: the wall, the perpendicular, and the two legs of the ball's path */
     const cx = 760, cyy = 380, run = Math.min(560, 250 / Math.max(Math.sin(a), 0.02));
+    const cw = F.ref('wall'), ca = C('angle');
     fixed(ctx, cx, 90, 100, 580);
-    text(ctx, 'a rigid wall', cx + 50, 694, PAL.muted, { size: 17, align: 'center' });
+    line(ctx, cx, 90, cx, 670, cw, 4);
+    text(ctx, 'a rigid wall', cx + 50, 694, cw, { size: 17, align: 'center' });
     line(ctx, cx - 560, cyy, cx, cyy, PAL.muted, 2, [10, 10]);
     text(ctx, 'the perpendicular to the wall', cx - 556, cyy - 30, PAL.muted, { size: 17 });
     line(ctx, cx - run * Math.cos(a), cyy - run * Math.sin(a), cx, cyy, PAL.rule, 3, [8, 8]);
@@ -144,11 +147,11 @@ function ball(ctx, x, y, color, r = 18) {
     if (hit) arrow(ctx, cx - 22 * Math.cos(a), cyy + 22 * Math.sin(a), cx - L * Math.cos(a), cyy + L * Math.sin(a), cp, 5);
     /* the angle between each leg and the perpendicular, measured counterclockwise from +x on the page */
     if (th.v > 4) {
-      F.angleArc(ctx, { x: cx, y: cyy }, 118, Math.PI - a, Math.PI, 'θ = ' + fmt(th.v, 0) + '°', lab);
-      if (hit) F.angleArc(ctx, { x: cx, y: cyy }, 118, Math.PI, Math.PI + a, 'θ = ' + fmt(th.v, 0) + '°', lab);
+      F.angleArc(ctx, { x: cx, y: cyy }, 118, Math.PI - a, Math.PI, 'θ = ' + fmt(th.v, 0) + '°', lab, ca);
+      if (hit) F.angleArc(ctx, { x: cx, y: cyy }, 118, Math.PI, Math.PI + a, 'θ = ' + fmt(th.v, 0) + '°', lab, ca);
     }
     /* the ball, drawn last so that it rides over its own path */
-    ball(ctx, cx - (22 + q * (run - 22)) * Math.cos(a), cyy + (hit ? 1 : -1) * (22 + q * (run - 22)) * Math.sin(a), PAL.ink, 22);
+    ball(ctx, cx - (22 + q * (run - 22)) * Math.cos(a), cyy + (hit ? 1 : -1) * (22 + q * (run - 22)) * Math.sin(a), F.ref('ball'), 22);
     if (hit) {
       arrow(ctx, cx + 2, cyy, cx + 92, cyy, cf, 5);
       F.label(ctx, 'the force on the wall', cx + 50, cyy + 12, { side: 'below', color: cf, gap: 30, leader: false, H: 820 });
@@ -176,7 +179,7 @@ function ball(ctx, x, y, color, r = 18) {
     topline(ctx, !hit
       ? 'The ball comes in at ' + fmt(u.v, 1) + ' m/s, ' + fmt(th.v, 0) + '° from the perpendicular.'
       : 'The speed is the same on the way out, and the impulse the wall gives the ball is ' + fmt(dp, 2) + ' kg·m/s.');
-    readout(d.readout, `\\Delta p_x = -2m\\ku\\cos\\theta = -2(${fmt(m.v, 2)}\\ \\text{kg})(${fmt(u.v, 1)}\\ \\text{m/s})\\cos ${fmt(th.v, 0)}^\\circ = -${fmt(dp, 2)}\\ \\text{kg}\\cdot\\text{m/s}`,
+    readout(d.readout, `\\Delta p_x = -2\\km\\ku\\cos\\ktheta = -2(${fmt(m.v, 2)}\\ \\text{kg})(${fmt(u.v, 1)}\\ \\text{m/s})\\cos ${fmt(th.v, 0)}^\\circ = -${fmt(dp, 2)}\\ \\text{kg}\\cdot\\text{m/s}`,
       th.v === 0
         ? 'At the perpendicular the whole of the momentum is reversed, and that is the largest impulse the wall can give a ball of this speed.'
         : 'A ball that strikes head-on gets the larger impulse: the ratio of the two is 1/cos ' + fmt(th.v, 0) + '° = ' + fmt(1 / Math.cos(a), 3) + '.');

@@ -36,11 +36,11 @@ const span = (lo, hi, floor) => { const f = floor || 1e-3; return hi - lo < f ? 
 
 /* ---------- the scene's pieces ---------- */
 /* a square object of mass m sitting on the ground line gy, centered on x, w wide */
-function box(ctx, x, gy, w, label) {
+function box(ctx, x, gy, w, label, color) {
   const y = gy - w / 2;
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 4;
   ctx.fillRect(x - w / 2, y - w / 2, w, w); ctx.strokeRect(x - w / 2, y - w / 2, w, w); ctx.restore();
-  if (label) text(ctx, label, x, y, PAL.ink, { size: 19, weight: 600, align: 'center' });
+  if (label) text(ctx, label, x, y, color, { size: 19, weight: 600, align: 'center' });
 }
 /* an arrow of length L from (x, y) in the direction s, with its label beyond the head and never off the canvas */
 function vec(ctx, x, y, L, s, color, label) {
@@ -76,8 +76,8 @@ function vec(ctx, x, y, L, s, color, label) {
     options: [{ value: '8.7', label: '8.7' }, { value: '8.8', label: '8.8' }, { value: '8.9', label: '8.9' }],
     onInput: (v) => { const q = PRESET[v]; m1.set(q.m1); m2.set(q.m2); v1.set(q.v1); v2.set(q.v2); cc.set(q.c); reset(); },
   });
-  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.05, max: 5, step: 0.05, value: 0.15, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the first object' });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.05, max: 80, step: 0.05, value: 70, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the second object' });
+  const m1 = ctl(d.controls, { label: '\\kmone', cls: 'mass', min: 0.05, max: 5, step: 0.05, value: 0.15, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the first object' });
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 0.05, max: 80, step: 0.05, value: 70, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the second object' });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: -40, max: 40, step: 0.05, value: 35, unit: 'm/s', dec: 2, onInput: reset });
   const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: -40, max: 40, step: 0.05, value: 0, unit: 'm/s', dec: 2, onInput: reset });
   const cc = ctl(d.controls, { label: 'c', cls: '', min: 0, max: 3.5, step: 0.01, value: 0, unit: '', dec: 2, specials: [{ at: 0, label: 'perfectly inelastic' }, { at: 1, label: 'elastic' }], detents: [{ v: 3.08, label: '3.08' }], snap: true, onInput: reset, aria: 'the speed the objects separate at divided by the speed they approached at' });
@@ -113,9 +113,10 @@ function vec(ctx, x, y, L, s, color, label) {
     const x2 = clamp(s.hits ? cx + w2 / 2 + SC * (tau <= TC ? v2.v : s.v2p) * (tau - TC) : cx + 330 + SC * v2.v * tau, 130, 1270);
     /* the scene */
     strip(ctx, 80, 1320, GY + 13, 26);
-    if (cc.v > 1.001) spring(ctx, x1 + w1 / 2, GY - w1 / 2, x1 + w1 / 2 + (after ? 52 : 24), GY - w1 / 2, 5, 11, PAL.muted, 3);
-    box(ctx, x1, GY, w1, 'm₁');
-    box(ctx, x2, GY, w2, 'm₂');
+    const c1 = F.ref('object-1'), c2 = F.ref('object-2');
+    if (cc.v > 1.001) spring(ctx, x1 + w1 / 2, GY - w1 / 2, x1 + w1 / 2 + (after ? 52 : 24), GY - w1 / 2, 5, 11, F.ref('spring'), 3);
+    box(ctx, x1, GY, w1, 'm₁', c1);
+    box(ctx, x2, GY, w2, 'm₂', c2);
     const KV = 180 / P.vmax;
     /* each arrow starts over or under its own object, and a faint leader ties the row to the body,
        since the two velocity rows and the two momentum rows cannot share a line once the objects touch */
@@ -170,7 +171,7 @@ function vec(ctx, x, y, L, s, color, label) {
         : 'They leave at ' + sig(s.v1p) + ' m/s and ' + sig(s.v2p) + ' m/s, and the internal kinetic energy has ' + (lost >= 0 ? 'fallen by ' + sig(lost) : 'risen by ' + sig(-lost)) + ' J.');
     /* at c = 0 the two leave together, and their two terms bend into the one term of the stuck pair */
     const stuck = cc.v === 0;
-    F.morph(formula, `\\mk{p}{m_1\\kvone + m_2\\kvtwo} = ${stuck ? '\\mk{s}{(m_1 + m_2)\\kvprime}' : '\\mk{a}{m_1\\kvoneprime} + \\mk{b}{m_2\\kvtwoprime}'}:\\quad \\mk{l}{${sum(m1.v * v1.v, m2.v * v2.v)}} = \\mk{r}{${stuck ? texnum((m1.v + m2.v) * s.v1p) : sum(m1.v * s.v1p, m2.v * s.v2p)}} = \\mk{t}{${texnum(s.ptot)}}\\ \\text{kg}\\cdot\\text{m/s}`,
+    F.morph(formula, `\\mk{p}{\\kmone\\kvone + \\kmtwo\\kvtwo} = ${stuck ? '\\mk{s}{(\\kmone + \\kmtwo)\\kvprime}' : '\\mk{a}{\\kmone\\kvoneprime} + \\mk{b}{\\kmtwo\\kvtwoprime}'}:\\quad \\mk{l}{${sum(m1.v * v1.v, m2.v * v2.v)}} = \\mk{r}{${stuck ? texnum((m1.v + m2.v) * s.v1p) : sum(m1.v * s.v1p, m2.v * s.v2p)}} = \\mk{t}{${texnum(s.ptot)}}\\ \\text{kg}\\cdot\\text{m/s}`,
       { keyMap: stuck ? { a: 's', b: 's' } : { s: ['a', 'b'] } });
     note.textContent = !s.hits ? 'The two objects never meet, so nothing about the system changes and both graphs run flat.'
         : 'The internal kinetic energy is ' + sig(s.ke) + ' J before the collision and ' + sig(s.kep) + ' J after it, a change of ' + sig(s.kep - s.ke) + ' J. At c = 0 the two stick together and lose as much internal kinetic energy as conservation of momentum allows; at c = 1 they lose none; above c = 1 a compressed spring has given them more than they brought.';
@@ -188,9 +189,9 @@ function vec(ctx, x, y, L, s, color, label) {
 ===================================================================== */
 (function () {
   const d = sim('sim-recoil', 800);
-  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 0.05, max: 5, step: 0.05, value: 0.15, unit: 'kg', dec: 2, aria: 'mass of the object that is caught' });
+  const m1 = ctl(d.controls, { label: '\\kmone', cls: 'mass', min: 0.05, max: 5, step: 0.05, value: 0.15, unit: 'kg', dec: 2, aria: 'mass of the object that is caught' });
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 60, step: 0.5, value: 35, unit: 'm/s', dec: 1 });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 0.1, max: 100, step: 0.1, value: 70, unit: 'kg', dec: 1, aria: 'mass of the catcher' });
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 0.1, max: 100, step: 0.1, value: 70, unit: 'kg', dec: 1, aria: 'mass of the catcher' });
   const GY = 260;
   function draw() {
     const { ctx } = begin(d.c);
@@ -202,15 +203,16 @@ function vec(ctx, x, y, L, s, color, label) {
     text(ctx, 'before the catch', 360, 100, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'after the catch', 1010, 100, PAL.muted, { size: 19, align: 'center' });
     /* before: the object comes in and the catcher is at rest */
-    box(ctx, 170, GY, w1, 'm₁');
-    box(ctx, 600, GY, w2, 'm₂');
+    const c1 = F.ref('object-1'), c2 = F.ref('object-2');
+    box(ctx, 170, GY, w1, 'm₁', c1);
+    box(ctx, 600, GY, w2, 'm₂', c2);
     vec(ctx, 170, GY - w1 - 40, 150, 1, C('velocity'), 'v₁ = ' + fmt(v1.v, 1) + ' m/s');
     text(ctx, 'at rest', 600, GY - w2 - 40, PAL.muted, { size: 19, align: 'center' });
     vec(ctx, 170, GY + 66, 150, 1, C('momentum'), 'p = ' + sig(p) + ' kg·m/s');
     /* after: the two move off together */
     const xa = 880, xb = xa + w1 / 2 + w2 / 2;
-    box(ctx, xa, GY, w1, 'm₁');
-    box(ctx, xb, GY, w2, 'm₂');
+    box(ctx, xa, GY, w1, 'm₁', c1);
+    box(ctx, xb, GY, w2, 'm₂', c2);
     vec(ctx, xa, GY - Math.max(w1, w2) - 40, (v / v1.v) * 150, 1, C('velocity'), 'v′ = ' + sig(v) + ' m/s');
     vec(ctx, xa, GY + 66, 150, 1, C('momentum'), 'p = ' + sig(p) + ' kg·m/s');
     text(ctx, 'The momentum arrow has the same length on both sides, and the velocity arrow does not.', 700, 388, PAL.muted, { size: 19, align: 'center' });
@@ -222,14 +224,14 @@ function vec(ctx, x, y, L, s, color, label) {
        every decade, which holds every state the sliders can reach. Neither range moves. */
     const VLO = -3, VHI = 2, g0 = { l: 200, r: 1280, t: 470, b: 700 };
     const lg = (y) => Math.log10(Math.max(1e-9, y));
-    const g = axes(ctx, g0, [0, 3], [VLO, VHI], { xl: 'mass of the catcher m₂ (kg)', xc: PAL.ink, yl: 'recoil velocity v′ (m/s)', yc: C('velocity'), nx: 3, ny: 5, fx: (L) => sig(Math.pow(10, L - 1), 2), fy: (L) => sig(Math.pow(10, L), 3) });
+    const g = axes(ctx, g0, [0, 3], [VLO, VHI], { xl: 'mass of the catcher m₂ (kg)', xc: C('mass'), yl: 'recoil velocity v′ (m/s)', yc: C('velocity'), nx: 3, ny: 5, fx: (L) => sig(Math.pow(10, L - 1), 2), fy: (L) => sig(Math.pow(10, L), 3) });
     curve(ctx, (L) => Math.max(VLO, lg((m1.v / (m1.v + Math.pow(10, L - 1))) * v1.v)), 0, 3, g.X, g.Y, C('velocity'), 5, 140);
     const L2 = Math.log10(m2.v) + 1, LV = Math.max(VLO, lg(v));
-    line(ctx, g.X(L2), g0.b, g.X(L2), g.Y(LV), PAL.ink, 2, [4, 8]);
+    line(ctx, g.X(L2), g0.b, g.X(L2), g.Y(LV), C('mass'), 2, [4, 8]);
     line(ctx, g0.l, g.Y(LV), g.X(L2), g.Y(LV), C('velocity'), 2, [4, 8]);
     pinned(ctx, g0, g.X, g.Y, L2, lg(v), C('velocity'), sig(v, 3) + ' m/s');
     topline(ctx, 'A ' + fmt(m1.v, 2) + ' kg object at ' + fmt(v1.v, 1) + ' m/s leaves a ' + fmt(m2.v, 1) + ' kg catcher moving at ' + sig(v) + ' m/s.');
-    readout(d.readout, `\\kvprime = \\frac{m_1}{m_1 + m_2}\\kvone = \\left(\\frac{${fmt(m1.v, 2)}\\ \\text{kg}}{${fmt(m1.v, 2)}\\ \\text{kg} + ${fmt(m2.v, 1)}\\ \\text{kg}}\\right)(${fmt(v1.v, 1)}\\ \\text{m/s}) = ${texnum(v)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kvprime = \\frac{\\kmone}{\\kmone + \\kmtwo}\\kvone = \\left(\\frac{${fmt(m1.v, 2)}\\ \\text{kg}}{${fmt(m1.v, 2)}\\ \\text{kg} + ${fmt(m2.v, 1)}\\ \\text{kg}}\\right)(${fmt(v1.v, 1)}\\ \\text{m/s}) = ${texnum(v)}\\ \\text{m/s}`,
       'The pair carries ' + sig(p) + ' kg·m/s away from the catch, exactly what the moving object brought to it. The heavier the catcher, the smaller the share of the speed that is left.');
   }
   register(d.fig, { update: () => {}, draw });
