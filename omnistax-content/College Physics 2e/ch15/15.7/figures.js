@@ -4,9 +4,10 @@
    them. Two figures have a clock in them, the coins tossed over and over and
    the gas released from a corner, and both replay the same run from a seed so
    the scrubber is honest; the figure of the change in entropy between two
-   macrostates is still and answers its sliders. The page binds entropy, on
-   every column, bar and readout that is k ln W, and time, on the axis the gas
-   figure traces its entropy against. Coins, atoms, counts and the number of
+   macrostates is still and answers its sliders. Entropy wears its hue on
+   every column, bar and readout that is k ln W, and time on the axis the gas
+   figure traces its entropy against. The coins, the gas and its container and
+   the initial and final macrostates are referents; counts and the number of
    microstates are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.7'] = function (root, F) {
@@ -41,11 +42,12 @@ const times = (n) => (n === 1 ? 'once' : n === 2 ? 'twice' : n + ' times');
 const cameUp = (n) => (n === 0 ? 'has not come up' : 'has come up ' + times(n));
 /* the tick decimals a nice() range needs */
 const decs = (r) => ((r.hi - r.lo) / r.n < 1 ? 1 : 0);
-/* a coin: heads is a filled face carrying H, tails a hollow one carrying T; both ink */
+/* a coin: heads is a filled face carrying H, tails a hollow one carrying T; both in the coins' referent hue */
 function coin(ctx, x, y, r, isHead) {
-  ctx.save(); ctx.lineWidth = Math.max(2, r * 0.12); ctx.strokeStyle = PAL.ink; ctx.fillStyle = isHead ? PAL.ink : PAL.panel;
+  const c = F.ref('coins');
+  ctx.save(); ctx.lineWidth = Math.max(2, r * 0.12); ctx.strokeStyle = c; ctx.fillStyle = isHead ? c : PAL.panel;
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-  text(ctx, isHead ? 'H' : 'T', x, y + 1, isHead ? PAL.panel : PAL.ink, { size: Math.round(r * 1.1), weight: 700, align: 'center' });
+  text(ctx, isHead ? 'H' : 'T', x, y + 1, isHead ? PAL.panel : c, { size: Math.round(r * 1.1), weight: 700, align: 'center' });
 }
 /* the columns of a bar chart over the macrostates 0..N heads, one bin per count */
 const binX = (X, h) => [X(h), X(h + 1)], cxOf = (X, h) => X(h + 0.5);
@@ -166,13 +168,14 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
     headTicks(ctx, g.X, N, GB.b);
     for (let h = 0; h <= N; h++) if (h !== a && h !== b) column(ctx, g.X, g.Y, h, S23(h), 0, alpha(ec, 0.25), null);
     /* the initial macrostate hollow, the final filled, as an initial and a final value are told apart */
-    column(ctx, g.X, g.Y, a, S23(a), 0, PAL.panel, ec, 3.5, [8, 6]);
-    column(ctx, g.X, g.Y, b, S23(b), 0, alpha(ec, 0.9), ec, 3.5);
+    const ic = F.ref('initial'), fc = F.ref('final');
+    column(ctx, g.X, g.Y, a, S23(a), 0, PAL.panel, ic, 3.5, [8, 6]);
+    column(ctx, g.X, g.Y, b, S23(b), 0, alpha(ec, 0.9), fc, 3.5);
     const lab = labeller(ctx, 640);
     const sameCol = a === b;
     const nameI = sameCol ? 'initial and final, ' + heads(a) : 'initial, ' + heads(a), nameF = 'final, ' + heads(b);
-    lab.add(nameI, cxOf(g.X, a), g.Y(S23(a)) - 6, 0, -1, ec, 19, 22);
-    if (!sameCol) lab.add(nameF, cxOf(g.X, b), g.Y(S23(b)) - 6, 0, -1, ec, 19, 22);
+    lab.add(nameI, cxOf(g.X, a), g.Y(S23(a)) - 6, 0, -1, ic, 19, 22);
+    if (!sameCol) lab.add(nameF, cxOf(g.X, b), g.Y(S23(b)) - 6, 0, -1, fc, 19, 22);
     /* the change as the difference in height, bracketed at the right of the graph */
     const yi = g.Y(S23(a)), yf = g.Y(S23(b)), bx = GB.r + 40;
     if (Math.abs(yi - yf) >= 1) {
@@ -265,15 +268,15 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
     const N = na.v, ec = C('entropy'), tc = C('time'), corner = start.value === 'corner';
     const tau = cy.now(); advanceTo(Math.round(tau / H));
     const { n, lnW, S } = entropy(), lnMax = evenLnW(N), Smax = KB * lnMax;
-    /* the container, its quarters and the atoms in ink */
+    /* the container, its quarters and the atoms, each in its referent's hue */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.restore();
     line(ctx, MX, BOX.t, MX, BOX.b, alpha(PAL.ink, 0.3), 2, [8, 8]); line(ctx, BOX.l, MY, BOX.r, MY, alpha(PAL.ink, 0.3), 2, [8, 8]);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.strokeRect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.restore();
-    ctx.save(); ctx.fillStyle = PAL.ink; for (let i = 0; i < N; i++) { ctx.beginPath(); ctx.arc(st.x[i], st.y[i], RA, 0, TAU); ctx.fill(); } ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('container'); ctx.lineWidth = 4; ctx.strokeRect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.ref('gas'); for (let i = 0; i < N; i++) { ctx.beginPath(); ctx.arc(st.x[i], st.y[i], RA, 0, TAU); ctx.fill(); } ctx.restore();
     /* the count in each quarter, at its outer corner */
     const corners = [[BOX.l + 14, BOX.t + 22, 'left'], [BOX.r - 14, BOX.t + 22, 'right'], [BOX.l + 14, BOX.b - 22, 'left'], [BOX.r - 14, BOX.b - 22, 'right']];
     corners.forEach(([x, y, al], q) => text(ctx, String(n[q]), x, y, PAL.ink, { size: 22, weight: 700, align: al, bg: alpha(PAL.panel, 0.85) }));
-    text(ctx, 'the container, divided into four quarters', (BOX.l + BOX.r) / 2, BOX.b + 30, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the container, divided into four quarters', (BOX.l + BOX.r) / 2, BOX.b + 30, F.ref('container'), { size: 17, align: 'center' });
     /* the entropy of the arrangement as a bar beside the container, with the even split as its ceiling */
     const bx = 650, bw = 40, yOf = (s) => BOX.b - ((BOX.b - BOX.t) * s) / (Smax * 1.08);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(bx, BOX.t, bw, BOX.b - BOX.t); ctx.fillStyle = alpha(ec, 0.75); ctx.fillRect(bx, yOf(S), bw, BOX.b - yOf(S)); ctx.restore();

@@ -145,12 +145,12 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const Fv = P * A, Fp = Pp * A, Wout = Fv * dd, Win = Fp * dd;
     const pNow = phase === 'a' ? Pp + (P - Pp) * (t / TA) : phase === 'b' ? P : Pp;
     /* the cylinder, closed at the left, and the gas inside it */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(160, YC - HALF, px - 160, 2 * HALF); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(F.ref('gas'), 0.16); ctx.fillRect(160, YC - HALF, px - 160, 2 * HALF); ctx.restore();
     fixed(ctx, 140, YC - HALF - 18, 660, 18); fixed(ctx, 140, YC + HALF, 660, 18); fixed(ctx, 140, YC - HALF - 18, 20, 2 * HALF + 36);
-    text(ctx, 'gas', 200, YC - 72, PAL.muted, { size: 19 });
+    text(ctx, 'gas', 200, YC - 72, F.ref('gas'), { size: 19 });
     text(ctx, (phase === 'c' ? "P' = " : 'P = ') + sci(pNow, 5, 1) + ' N/m²', 200, YC + 62, pc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the piston, its rod and the crank */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.fillRect(px, YC - HALF + 2, 46, 2 * HALF - 4); ctx.strokeRect(px, YC - HALF + 2, 46, 2 * HALF - 4); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('piston'); ctx.lineWidth = 4; ctx.fillRect(px, YC - HALF + 2, 46, 2 * HALF - 4); ctx.strokeRect(px, YC - HALF + 2, 46, 2 * HALF - 4); ctx.restore();
     const cpx = xc0 - r * Math.cos(th), cpy = YC - r * Math.sin(th);
     line(ctx, px + 46, YC, cpx, cpy, PAL.ink, 9);
     ctx.save(); ctx.beginPath(); ctx.arc(xc0, YC, r, 0, TAU); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([6, 8]); ctx.stroke(); ctx.restore();
@@ -188,8 +188,8 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
       : 'Heat leaves the gas, and a force of ' + sci(Fp, 3, 2) + ' N pushes the piston back, doing ' + J(Win) + ' J of work on it.');
     const net = Wout - Win;
     readout(d.readout, phase === 'a' ? `\\kdEint = \\kQin \\quad\\text{(the gas is heated at constant volume)}`
-      : phase === 'b' ? `\\kWout = \\kF\\kd = \\kPr A\\kd = (${sciTex(P, 5, 1)}\\ \\text{N/m}^2)(0.0100\\ \\text{m}^2)(${fmt(dd, 2)}\\ \\text{m}) = ${JTex(Wout)}\\ \\text{J}`
-      : `\\kWin = F'\\kd = P'A\\kd = (${sciTex(Pp, 5, 1)}\\ \\text{N/m}^2)(0.0100\\ \\text{m}^2)(${fmt(dd, 2)}\\ \\text{m}) = ${JTex(Win)}\\ \\text{J}`,
+      : phase === 'b' ? `\\kWout = \\kF\\kd = \\kPr\\karea\\kd = (${sciTex(P, 5, 1)}\\ \\text{N/m}^2)(0.0100\\ \\text{m}^2)(${fmt(dd, 2)}\\ \\text{m}) = ${JTex(Wout)}\\ \\text{J}`
+      : `\\kWin = F'\\kd = P'\\karea\\kd = (${sciTex(Pp, 5, 1)}\\ \\text{N/m}^2)(0.0100\\ \\text{m}^2)(${fmt(dd, 2)}\\ \\text{m}) = ${JTex(Win)}\\ \\text{J}`,
       net > 0 ? 'Over the whole stroke the gas does ' + J(Wout) + ' J of work going out and has ' + J(Win) + ' J done on it coming back, so the net work output is ' + J(net) + ' J. Heat transfer out is what lowers the pressure and makes the return cheaper than the outward stroke.'
         : 'The gas is pushed back at a pressure no lower than the one it expanded at, so the return costs as much work as the expansion gave, or more, and there is no net work output. Heat transfer out of the gas is what makes an engine possible.');
   }
@@ -204,7 +204,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
 (function () {
   const d = sim('sim-isobaric', 640);
   const ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 1, max: 5, step: 0.1, value: 2, unit: '× 10⁵ N/m²', dec: 1, aria: 'the constant pressure of the gas' });
-  const as = ctl(d.controls, { label: 'A', cls: '', min: 50, max: 150, step: 5, value: 100, unit: 'cm²', dec: 0, aria: 'the cross-sectional area of the cylinder' });
+  const as = ctl(d.controls, { label: '\\karea', cls: 'area', min: 50, max: 150, step: 5, value: 100, unit: 'cm²', dec: 0, aria: 'the cross-sectional area of the cylinder' });
   const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0, max: 0.3, step: 0.01, value: 0.1, unit: 'm', dec: 3, aria: 'the distance the piston rises' });
   const H0 = 0.1, SY = 1000, YB = 560, CX = 360, KF = 0.04;   /* the gas column at rest, units per metre, the cylinder's floor and axis */
   const box = { l: 780, r: 1320, t: 150, b: 520 };            /* V 0 to 6 × 10⁻³ m³, P 0 to 5 × 10⁵ N/m², fixed */
@@ -215,17 +215,17 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const V0 = A * H0, V1 = V0 + dV;
     const hw = 120 * (as.v / 100), y0 = YB - H0 * SY, yp = YB - (H0 + dd) * SY;
     /* the cylinder and the gas, the piston and its rod */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(CX - hw, yp, 2 * hw, YB - yp); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(F.ref('gas'), 0.16); ctx.fillRect(CX - hw, yp, 2 * hw, YB - yp); ctx.restore();
     fixed(ctx, CX - hw - 18, 120, 18, YB - 120 + 18); fixed(ctx, CX + hw, 120, 18, YB - 120 + 18); fixed(ctx, CX - hw - 18, YB, 2 * hw + 36, 18);
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.fillRect(CX - hw + 2, yp - 26, 2 * hw - 4, 26); ctx.strokeRect(CX - hw + 2, yp - 26, 2 * hw - 4, 26); ctx.restore();
-    line(ctx, CX, yp - 26, CX, 92, PAL.ink, 12);
-    text(ctx, 'A', CX + hw - 12, yp - 13, PAL.ink, { size: 22, weight: 600, align: 'right' });
-    text(ctx, 'V', CX, YB - 40, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('piston'); ctx.lineWidth = 4; ctx.fillRect(CX - hw + 2, yp - 26, 2 * hw - 4, 26); ctx.strokeRect(CX - hw + 2, yp - 26, 2 * hw - 4, 26); ctx.restore();
+    line(ctx, CX, yp - 26, CX, 92, F.ref('piston'), 12);
+    text(ctx, 'A', CX + hw - 12, yp - 13, C('area'), { size: 22, weight: 600, align: 'right' });
+    text(ctx, 'V', CX, YB - 40, C('volume'), { size: 22, weight: 600, align: 'center' });
     /* where the piston started, and the volume swept out */
     line(ctx, CX - hw + 2, y0, CX + hw - 2, y0, alpha(PAL.ink, 0.5), 2, [8, 8]);
     if (dd > 0.004) {
       vbracket(ctx, CX + hw + 54, yp, y0, xc, 'd = ' + fmt(dd, 3) + ' m', 1);
-      if (dd > 0.045) text(ctx, 'ΔV = Ad', CX - hw + 14, (yp + y0) / 2, PAL.ink, { size: 21, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+      if (dd > 0.045) text(ctx, 'ΔV = Ad', CX - hw + 14, (yp + y0) / 2, C('volume'), { size: 21, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
     }
     /* the force of the gas on the piston, and the heat that keeps the pressure up */
     const fy0 = Math.min(YB - 20, yp + 4 + Fv * KF);   /* the force on the piston, drawn up to its face, as long as the gas column allows */
@@ -235,7 +235,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     fatArrow(ctx, 40, 612, CX - hw - 26, YB - 30, 40, ec);
     text(ctx, 'Q_in', 40, 566, ec, { size: 24, weight: 600 });
     /* the PV diagram beside it: the process is the horizontal line from A to B, and the work the rectangle under it */
-    const g = axes(ctx, box, [0, 6], [0, 5], { xl: 'V (10⁻³ m³)', xc: PAL.ink, yl: 'P (10⁵ N/m²)', yc: pc, nx: 6, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const g = axes(ctx, box, [0, 6], [0, 5], { xl: 'V (10⁻³ m³)', xc: C('volume'), yl: 'P (10⁵ N/m²)', yc: pc, nx: 6, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     const xa = g.X(V0 * 1e3), xb = g.X(V1 * 1e3), yl = g.Y(ps.v);
     if (dd > 0) fillPoly(ctx, [[xa, g.Y(0)], [xa, yl], [xb, yl], [xb, g.Y(0)]], ec, 0.35);
     line(ctx, xa, yl, xb, yl, PAL.ink, 5);
@@ -245,7 +245,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     if (dd > 0.02 && g.Y(0) - yl > 56) text(ctx, 'W = PΔV', (xa + xb) / 2, (yl + g.Y(0)) / 2, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, dd === 0 ? 'With the piston at rest the gas holds ' + fmt(V0 * 1e3, 2) + ' × 10⁻³ m³ at ' + sci(P, 5, 1) + ' N/m², and no work is done.'
       : 'At a constant pressure of ' + sci(P, 5, 1) + ' N/m² the piston rises ' + fmt(dd, 3) + ' m, the volume grows by ' + sci(dV, -3, 2) + ' m³ and the gas does ' + J(W) + ' J of work.');
-    readout(d.readout, `\\kW = \\kPr\\Delta V = (${sciTex(P, 5, 2)}\\ \\text{N/m}^2)(${sciTex(dV, -3, 2)}\\ \\text{m}^3) = ${JTex(W)}\\ \\text{J}`,
+    readout(d.readout, `\\kW = \\kPr\\kdvol = (${sciTex(P, 5, 2)}\\ \\text{N/m}^2)(${sciTex(dV, -3, 2)}\\ \\text{m}^3) = ${JTex(W)}\\ \\text{J}`,
       'The force on the piston is F = PA = ' + sci(Fv, 3, 2) + ' N, and Fd = (' + sci(Fv, 3, 2) + ' N)(' + fmt(dd, 3) + ' m) = ' + J(W) + ' J, the same work. On the graph the same number is the area of the rectangle under the line from A to B.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -268,7 +268,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const { ctx } = begin(d.c);
     const ec = C('energy'), pc = C('pressure');
     const n = ns.v, rev = dir.value === 'ba', dv = (VB - VA) / n;
-    const g = axes(ctx, box, [0, 5], [0, 4], { xl: 'V (10⁻³ m³)', xc: PAL.ink, yl: 'P (10⁵ N/m²)', yc: pc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const g = axes(ctx, box, [0, 5], [0, 4], { xl: 'V (10⁻³ m³)', xc: C('volume'), yl: 'P (10⁵ N/m²)', yc: pc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     /* the strips, each of the average pressure at its middle */
     let sum = 0;
     for (let i = 0; i < n; i++) {
@@ -286,8 +286,8 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     /* one strip named, when the strips are wide enough to read */
     if (n <= 12) {
       const v0 = VA, v1 = VA + dv, pm = f(VA + dv / 2);
-      hbracket(ctx, g.X(v0), g.X(v1), g.Y(0) + 74, PAL.ink, '');
-      text(ctx, 'ΔV_1', (g.X(v0) + g.X(v1)) / 2, g.Y(0) + 100, PAL.ink, { size: 19, weight: 600, align: 'center' });
+      hbracket(ctx, g.X(v0), g.X(v1), g.Y(0) + 74, C('volume'), '');
+      text(ctx, 'ΔV_1', (g.X(v0) + g.X(v1)) / 2, g.Y(0) + 100, C('volume'), { size: 19, weight: 600, align: 'center' });
       line(ctx, g.X(v0) - 40, g.Y(pm), g.X(v0) - 6, g.Y(pm), pc, 2, [4, 6]);
       text(ctx, 'P_{1(ave)}', g.X(v0) - 46, g.Y(pm), pc, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     }
@@ -315,7 +315,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
   const d = sim('sim-cycle-work', 690);
   const pab = ctl(d.controls, { label: '\\kPrAB', cls: 'pressure', min: 1, max: 2, step: 0.05, value: 1.5, unit: '× 10⁶ N/m²', dec: 2, onInput: reset, aria: 'the pressure along AB' });
   const pcd = ctl(d.controls, { label: '\\kPrCD', cls: 'pressure', min: 0.1, max: 0.9, step: 0.05, value: 0.2, unit: '× 10⁶ N/m²', dec: 2, onInput: reset, aria: 'the pressure along CD' });
-  const dvs = ctl(d.controls, { label: '\\Delta V', cls: '', min: 100, max: 800, step: 10, value: 500, unit: 'cm³', dec: 0, onInput: reset, aria: 'the change in volume along AB' });
+  const dvs = ctl(d.controls, { label: '\\kdvol', cls: 'volume', min: 100, max: 800, step: 10, value: 500, unit: 'cm³', dec: 0, onInput: reset, aria: 'the change in volume along AB' });
   const path = select(d.controls, { label: '\\text{the path}', options: [
     { value: 'ABC', label: 'A to C by B' }, { value: 'ADC', label: 'A to C by D' },
     { value: 'ABCDA', label: 'ABCDA ↻ clockwise' }, { value: 'ADCBA', label: 'ADCBA ↺ the other way' },
@@ -340,7 +340,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const { ctx } = begin(d.c);
     const ec = C('energy'), pc = C('pressure');
     const c = corners(), R = route(), k = path.value, t = cy.now(), done = t >= TWALK - 1e-9;
-    const g = axes(ctx, box, [0, 1000], [0, 2], { xl: 'V (cm³)', xc: PAL.ink, yl: 'P (10⁶ N/m²)', yc: pc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
+    const g = axes(ctx, box, [0, 1000], [0, 2], { xl: 'V (cm³)', xc: C('volume'), yl: 'P (10⁶ N/m²)', yc: pc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     const X = (p) => g.X(p[0]), Y = (p) => g.Y(p[1]);
     /* how far along the path the walk has come, by length on the canvas */
     const segs = R.pts.slice(1).map((p, i) => [R.pts[i], p]);
@@ -375,8 +375,8 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     text(ctx, sci(pab.v * 1e6, 6, 2) + ' N/m²', box.l + 10, Y(c.A) + 46, pc, { size: 17, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'P_CD', box.l + 10, Y(c.D) + (near ? 22 : -46), pc, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, sci(pcd.v * 1e6, 5, 2) + ' N/m²', box.l + 10, Y(c.D) + (near ? 46 : -22), pc, { size: 17, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    hbracket(ctx, X(c.A), X(c.B), box.b + 84, PAL.ink, '');
-    text(ctx, 'ΔV = ' + fmt(dvs.v, 0) + ' cm³', (X(c.A) + X(c.B)) / 2, box.b + 108, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    hbracket(ctx, X(c.A), X(c.B), box.b + 84, C('volume'), '');
+    text(ctx, 'ΔV = ' + fmt(dvs.v, 0) + ' cm³', (X(c.A) + X(c.B)) / 2, box.b + 108, C('volume'), { size: 19, weight: 600, align: 'center' });
     dot(ctx, X(cur), Y(cur), ec, true, 10);
     /* what the fills mean */
     fillPoly(ctx, [[860, 622], [860, 646], [900, 646], [900, 622]], ec, 0.3); text(ctx, 'counted positive, the volume growing', 912, 634, PAL.muted, { size: 17 });
@@ -421,17 +421,18 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const PA = ps.v, r = rs.v, VB = VA * r, b = panel.value === 'b', q = panel.mix((v) => (v === 'b' ? 1 : 0));
     const iso = (v) => (PA * VA) / v, adi = (v) => PA * Math.pow(VA / v, GAMMA);
     const PC = adi(VB), EA = 1.5 * PA * VA * 100, Wiso = PA * VA * 100 * Math.log(r), Wad = 1.5 * (PA * VA - PC * VB) * 100;
-    const g = axes(ctx, box, [0, 5], [0, 5], { xl: 'V (10⁻³ m³)', xc: PAL.ink, yl: 'P (10⁵ N/m²)', yc: pc, nx: 5, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const g = axes(ctx, box, [0, 5], [0, 5], { xl: 'V (10⁻³ m³)', xc: C('volume'), yl: 'P (10⁵ N/m²)', yc: pc, nx: 5, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     /* the areas: the one under the adiabat drains as the band the isotherm adds above it deepens into the net work of the cycle */
     if (q < 1) fillPoly(ctx, under(adi, VA, VB, g.X, g.Y), ec, 0.22 * (1 - q));
     fillPoly(ctx, between(iso, adi, VA, VB, g.X, g.Y), ec, 0.22 + 0.13 * q);
     /* the two paths, the isotherm solid and the adiabat dashed; the adiabat's arrowhead shrinks and turns round as the cycle walks it back */
-    walk(ctx, iso, VA, VB, g.X, g.Y, PAL.ink, 5);
-    walk(ctx, adi, VA, VB, g.X, g.Y, PAL.ink, 4, [12, 9]);
+    const ic = F.ref('isotherm'), ac = F.ref('adiabat');
+    walk(ctx, iso, VA, VB, g.X, g.Y, ic, 5);
+    walk(ctx, adi, VA, VB, g.X, g.Y, ac, 4, [12, 9]);
     const mid = VA * Math.sqrt(r), dvm = 1e-3, turn = 1 - 2 * q;
-    for (const [f, sgn, s] of [[iso, 1, 18], [adi, turn < 0 ? -1 : 1, 18 * Math.abs(turn)]]) {
+    for (const [f, sgn, s, hc] of [[iso, 1, 18, ic], [adi, turn < 0 ? -1 : 1, 18 * Math.abs(turn), ac]]) {
       if (s < 1) continue;
-      const sl = (g.Y(f(mid + dvm)) - g.Y(f(mid))) / (g.X(mid + dvm) - g.X(mid)), L = Math.hypot(1, sl); head(ctx, g.X(mid), g.Y(f(mid)), sgn / L, (sgn * sl) / L, PAL.ink, s);
+      const sl = (g.Y(f(mid + dvm)) - g.Y(f(mid))) / (g.X(mid + dvm) - g.X(mid)), L = Math.hypot(1, sl); head(ctx, g.X(mid), g.Y(f(mid)), sgn / L, (sgn * sl) / L, hc, s);
     }
     /* the isochoric leg grows down from B */
     const yB = g.Y(iso(VB)), yC = g.Y(PC);
@@ -441,8 +442,8 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     line(ctx, g.X(VB), g.Y(PC * q), g.X(VB), g.Y(0), alpha(PAL.ink, 0.5), 2, [4, 8]);
     state(ctx, g.X(VA), g.Y(PA), 'A', -0.9, -0.6); state(ctx, g.X(VB), yB, 'B', 0.9, -0.5); state(ctx, g.X(VB), yC, 'C', 0.9, 0.7);
     const lx = VA * Math.pow(r, 0.6);
-    text(ctx, 'isothermal, ΔT = 0', g.X(lx) + 14, g.Y(iso(lx)) - 30, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'adiabatic, Q = 0', g.X(lx) - 30, g.Y(adi(lx)) + 44, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'isothermal, ΔT = 0', g.X(lx) + 14, g.Y(iso(lx)) - 30, ic, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'adiabatic, Q = 0', g.X(lx) - 30, g.Y(adi(lx)) + 44, ac, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     panel.only(ctx, 'b', () => text(ctx, 'isochoric', g.X(VB) + 16, (yB + yC) / 2, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) }));
     panel.only(ctx, 'a', () => text(ctx, 'work along AB = ' + J(Wiso) + ' J, along AC = ' + J(Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }), [0, -12]);
     panel.only(ctx, 'b', () => text(ctx, 'net work of the cycle = ' + J(Wiso - Wad) + ' J', box.r - 10, box.t + 26, ec, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }), [0, -12]);
@@ -484,7 +485,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const { ctx } = begin(d.c);
     const ec = C('energy'), pc = C('pressure');
     const k = kind.value, m = model(k);
-    const g = axes(ctx, box, [0, 4], [0, 6], { xl: 'V (10⁻³ m³)', xc: PAL.ink, yl: 'P (10⁵ N/m²)', yc: pc, nx: 4, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const g = axes(ctx, box, [0, 4], [0, 6], { xl: 'V (10⁻³ m³)', xc: C('volume'), yl: 'P (10⁵ N/m²)', yc: pc, nx: 4, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     /* all four processes are always drawn; a change of process thins the old path into a ghost while the new ghost thickens,
        and the area under the path passes from one to the other */
     const w = kind.mix((v) => KINDS.map((o) => (o === v ? 1 : 0)));
@@ -551,7 +552,7 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; poly(ctx, [A, Bp, Dp, Ep]); ctx.stroke(); ctx.beginPath(); ctx.moveTo(Fp[0], Fp[1]); ctx.lineTo(Cp[0], Cp[1]); ctx.stroke(); ctx.restore();
     /* the axes, unnumbered as the book leaves them */
     arrow(ctx, L, B, L, T, PAL.muted, 3); arrow(ctx, L, B, R, B, PAL.muted, 3);
-    text(ctx, 'P', L - 30, T + 10, pc, { size: 24, weight: 600, align: 'center' }); text(ctx, 'V', R, B + 34, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'P', L - 30, T + 10, pc, { size: 24, weight: 600, align: 'center' }); text(ctx, 'V', R, B + 34, C('volume'), { size: 24, weight: 600, align: 'center' });
     for (const [p, s, ox, oy] of [[A, 'A', -1, 0], [Bp, 'B', 1, 0], [Cp, 'C', 1, 0], [Dp, 'D', 1, 0], [Ep, 'E', -1, 0], [Fp, 'F', -1, 0]]) text(ctx, s, p[0] + ox * 34, p[1] + oy * 30, PAL.ink, { size: 24, weight: 600, align: 'center' });
     headline(ctx, 'Two cyclical processes start and end at A: the loop ABCFA, and the taller loop ABDEA.');
   }
@@ -572,11 +573,11 @@ const GAMMA = 5 / 3;   /* the adiabatic exponent of a monatomic ideal gas */
     const X = (v) => box.l + (v / 5) * (box.r - box.l), Y = (p) => box.b - (p / 3) * (box.b - box.t);
     arrow(ctx, box.l, box.b, box.l, box.t - 10, PAL.muted, 3); arrow(ctx, box.l, box.b, box.r + 10, box.b, PAL.muted, 3);
     text(ctx, 'P (10⁶ N/m²)', box.l, box.t - 36, pc, { size: 20, weight: 600, align: 'left' });
-    text(ctx, 'V (10⁻³ m³)', box.r, box.b + 62, PAL.ink, { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'V (10⁻³ m³)', box.r, box.b + 62, C('volume'), { size: 20, weight: 600, align: 'right' });
     const A = [1, 2.6], B = [4, 2.0], Cc = [4, 0.6], D = [1, 1.0];
     /* the values each state sits at, dropped to the axes as the book draws them */
     for (const p of [2.6, 2.0, 1.0, 0.6]) { line(ctx, box.l, Y(p), X(p === 2.6 || p === 1.0 ? 1 : 4), Y(p), alpha(PAL.ink, 0.45), 2, [6, 6]); text(ctx, fmt(p, 1), box.l - 12, Y(p), pc, { size: 19, weight: 600, align: 'right' }); }
-    for (const v of [1, 4]) { line(ctx, X(v), box.b, X(v), Y(v === 1 ? 2.6 : 2.0), alpha(PAL.ink, 0.45), 2, [6, 6]); text(ctx, fmt(v, 1), X(v), box.b + 28, PAL.ink, { size: 19, weight: 600, align: 'center' }); }
+    for (const v of [1, 4]) { line(ctx, X(v), box.b, X(v), Y(v === 1 ? 2.6 : 2.0), alpha(PAL.ink, 0.45), 2, [6, 6]); text(ctx, fmt(v, 1), X(v), box.b + 28, C('volume'), { size: 19, weight: 600, align: 'center' }); }
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; poly(ctx, [A, B, Cc, D].map(([v, p]) => [X(v), Y(p)])); ctx.stroke(); ctx.restore();
     line(ctx, X(D[0]), Y(D[1]), X(B[0]), Y(B[1]), PAL.ink, 3, [12, 9]);
     for (const [p, s, ox, oy] of [[A, 'A', -0.9, -0.8], [B, 'B', 1, -0.3], [Cc, 'C', 1, 0.4], [D, 'D', -1, 0]]) { dot(ctx, X(p[0]), Y(p[1]), PAL.ink, true, 8); text(ctx, s, X(p[0]) + ox * 30, Y(p[1]) + oy * 30, PAL.ink, { size: 24, weight: 600, align: 'center' }); }

@@ -26,16 +26,18 @@ function fat(ctx, x1, y1, x2, y2, w, color) {
   ctx.lineTo(x2, y2); ctx.lineTo(bx - nx * hw / 2, by - ny * hw / 2); ctx.lineTo(bx - nx * w / 2, by - ny * w / 2); ctx.lineTo(x1 - nx * w / 2, y1 - ny * w / 2);
   ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
 }
-/* a reservoir, drawn in ink as every body is, its temperature in the temperature hue */
-function reservoir(ctx, x, y, w, h, name, tlabel) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(x, y, w, h); ctx.strokeRect(x, y, w, h); ctx.restore();
-  text(ctx, name, x + w / 2, y + h / 2 - 16, PAL.muted, { size: 19, align: 'center' });
+/* a reservoir, outlined and named in its referent's hue, its temperature in the temperature hue */
+function reservoir(ctx, x, y, w, h, name, tlabel, id) {
+  const c = F.ref(id);
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.fillRect(x, y, w, h); ctx.strokeRect(x, y, w, h); ctx.restore();
+  text(ctx, name, x + w / 2, y + h / 2 - 16, c, { size: 19, align: 'center' });
   text(ctx, tlabel, x + w / 2, y + h / 2 + 16, C('temperature'), { size: 22, weight: 600, align: 'center' });
 }
-/* the machine, a circle in ink with its name inside */
-function machine(ctx, x, y, r, name) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-  text(ctx, name, x, y, PAL.ink, { size: 20, weight: 600, align: 'center' });
+/* the machine, a circle outlined and named in its referent's hue */
+function machine(ctx, x, y, r, name, id) {
+  const c = F.ref(id);
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+  text(ctx, name, x, y, c, { size: 20, weight: 600, align: 'center' });
 }
 /* diagonal hatching inside the current path, for an area that counts as negative */
 function hatch(ctx, pathFn, color) {
@@ -72,22 +74,22 @@ function hatch(ctx, pathFn, color) {
     const turned = (x1, y1, x2, y2, w) => (s >= 0 ? fat(ctx, x1, y1, x1 + (x2 - x1) * s, y1 + (y2 - y1) * s, w, ec) : fat(ctx, x2, y2, x2 + (x1 - x2) * -s, y2 + (y1 - y2) * -s, w, ec));
     /* a part only one mode has, faded and shifted with the mode */
     /* ---- the schematic: hot reservoir above, cold below, the machine between ---- */
-    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, 'hot reservoir', 'T_h = ' + fmt(Th, 0) + ' K');
-    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, 'cold reservoir', 'T_c = ' + fmt(Tc, 0) + ' K');
+    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, 'hot reservoir', 'T_h = ' + fmt(Th, 0) + ' K', 'hot-reservoir');
+    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, 'cold reservoir', 'T_c = ' + fmt(Tc, 0) + ' K', 'cold-reservoir');
     const top = HOT.y + HOT.h, bot = COLD.y;
     turned(MX, top, MX, MY - MR - 2, wOf(Qh));
     if (Qc > 0) turned(MX, MY + MR + 2, MX, bot, wOf(Qc));
     if (W > 0.5) turned(MX + MR + 2, MY, 600, MY, wOf(W));
-    machine(ctx, MX, MY, MR, '');
-    mode.only(ctx, 'pump', () => text(ctx, 'heat pump', MX, MY, PAL.ink, { size: 20, weight: 600, align: 'center' }), [0, 10]);
-    mode.only(ctx, 'engine', () => text(ctx, 'heat engine', MX, MY, PAL.ink, { size: 20, weight: 600, align: 'center' }), [0, 10]);
+    machine(ctx, MX, MY, MR, '', 'machine');
+    mode.only(ctx, 'pump', () => text(ctx, 'heat pump', MX, MY, F.ref('machine'), { size: 20, weight: 600, align: 'center' }), [0, 10]);
+    mode.only(ctx, 'engine', () => text(ctx, 'heat engine', MX, MY, F.ref('machine'), { size: 20, weight: 600, align: 'center' }), [0, 10]);
     text(ctx, 'Q_h = ' + fmt(Qh, 0) + ' J', MX - wOf(Qh) / 2 - 22, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Q_c = ' + fmt(Qc, 0) + ' J', MX - wOf(Qc) / 2 - 22, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'W = ' + fmt(W, 0) + ' J', 500, MY - wOf(W) / 2 - 30, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     mode.only(ctx, 'pump', () => text(ctx, 'work put in', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }), [0, 10]);
     mode.only(ctx, 'engine', () => text(ctx, 'work got out', 500, MY + wOf(W) / 2 + 30, PAL.muted, { size: 17, align: 'center' }), [0, 10]);
-    /* ---- the PV diagram: pressure wears its hue on the vertical axis, volume is ink ---- */
-    const { X, Y } = axes(ctx, box, [0, 10], [0, 500], { xl: 'V (L)', yl: 'P (kPa)', yc: pc, nx: 5, ny: 5 });
+    /* ---- the PV diagram: pressure wears its hue on the vertical axis, volume on the horizontal ---- */
+    const { X, Y } = axes(ctx, box, [0, 10], [0, 500], { xl: 'V (L)', xc: C('volume'), yl: 'P (kPa)', yc: pc, nx: 5, ny: 5 });
     const k = 1 / (GAM - 1), VC = VB * Math.pow(Th / Tc, k), VD = VA * Math.pow(Th / Tc, k);
     const Ph = (V) => NR * Th / V, Pc = (V) => NR * Tc / V;
     const adia = (V0, T0) => (V) => NR * T0 / V0 * Math.pow(V0 / V, GAM);   /* the adiabat through (V0, T0) */
@@ -166,15 +168,15 @@ function hatch(ctx, pathFn, color) {
     ];
   };
   hover(d.stage, parts);
-  function coil(ctx, x, y, w, h) {
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
+  function coil(ctx, x, y, w, h, color) {
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath();
     ctx.roundRect(x - w / 2, y - h / 2, w, h, 22); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath();
     for (let k = -2; k <= 2; k++) { ctx.moveTo(x - w / 2 + 12, y + k * 22); ctx.lineTo(x + w / 2 - 12, y + k * 22); }
     ctx.stroke(); ctx.restore();
   }
-  function pipe(ctx, pts) { ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore(); }
-  function head(ctx, x, y, dx, dy) { arrow(ctx, x - dx * 14, y - dy * 14, x + dx * 14, y + dy * 14, PAL.ink, 6); }
+  function pipe(ctx, pts) { ctx.save(); ctx.strokeStyle = F.ref('working-fluid'); ctx.lineWidth = 6; ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore(); }
+  function head(ctx, x, y, dx, dy) { arrow(ctx, x - dx * 14, y - dy * 14, x + dx * 14, y + dy * 14, F.ref('working-fluid'), 6); }
   function draw() {
     const { ctx } = begin(d.c);
     const ec = C('energy'), heating = mode.value === 'heat', s = mode.mix((v) => (v === 'heat' ? 1 : -1));
@@ -197,20 +199,21 @@ function hatch(ctx, pathFn, color) {
       head(ctx, (WX + 36 + IX) / 2, TOP, -s, 0); head(ctx, (OX + WX - 36) / 2, TOP, -s, 0);
     }
     /* the four components */
-    coil(ctx, OX, CY, CW, CH); coil(ctx, IX, CY, CW, CH);
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.arc(WX, TOP, 30, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.arc(WX, BOT, 34, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-    line(ctx, WX - 16, TOP - 16, WX + 16, TOP + 16, PAL.ink, 3); line(ctx, WX - 16, TOP + 16, WX + 16, TOP - 16, PAL.ink, 3);
-    text(ctx, '4', WX, BOT, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    two('3', '1', (t) => text(ctx, t, OX, CY, PAL.ink, { size: 26, weight: 600, align: 'center', bg: PAL.panel }));
-    two('1', '3', (t) => text(ctx, t, IX, CY, PAL.ink, { size: 26, weight: 600, align: 'center', bg: PAL.panel }));
-    text(ctx, 'expansion valve (2)', WX, TOP - 52, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'compressor (4)', WX - 48, BOT + 44, PAL.ink, { size: 19, weight: 600, align: 'right' });
-    text(ctx, 'outdoor coil', OX, CY - CH / 2 + 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    two('evaporator (3)', 'condenser (1)', (t) => text(ctx, t, OX, CY + CH / 2 - 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel }));
-    text(ctx, 'indoor coil', IX, CY - CH / 2 + 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    two('condenser (1)', 'evaporator (3)', (t) => text(ctx, t, IX, CY + CH / 2 - 24, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel }));
+    const oc = F.ref('outdoor-coil'), ic = F.ref('indoor-coil'), vc = F.ref('expansion-valve'), kc = F.ref('compressor');
+    coil(ctx, OX, CY, CW, CH, oc); coil(ctx, IX, CY, CW, CH, ic);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.lineWidth = 3;
+    ctx.strokeStyle = vc; ctx.beginPath(); ctx.arc(WX, TOP, 30, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = kc; ctx.beginPath(); ctx.arc(WX, BOT, 34, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    line(ctx, WX - 16, TOP - 16, WX + 16, TOP + 16, vc, 3); line(ctx, WX - 16, TOP + 16, WX + 16, TOP - 16, vc, 3);
+    text(ctx, '4', WX, BOT, kc, { size: 22, weight: 600, align: 'center' });
+    two('3', '1', (t) => text(ctx, t, OX, CY, oc, { size: 26, weight: 600, align: 'center', bg: PAL.panel }));
+    two('1', '3', (t) => text(ctx, t, IX, CY, ic, { size: 26, weight: 600, align: 'center', bg: PAL.panel }));
+    text(ctx, 'expansion valve (2)', WX, TOP - 52, vc, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'compressor (4)', WX - 48, BOT + 44, kc, { size: 19, weight: 600, align: 'right' });
+    text(ctx, 'outdoor coil', OX, CY - CH / 2 + 24, oc, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    two('evaporator (3)', 'condenser (1)', (t) => text(ctx, t, OX, CY + CH / 2 - 24, oc, { size: 18, weight: 600, align: 'center', bg: PAL.panel }));
+    text(ctx, 'indoor coil', IX, CY - CH / 2 + 24, ic, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    two('condenser (1)', 'evaporator (3)', (t) => text(ctx, t, IX, CY + CH / 2 - 24, ic, { size: 18, weight: 600, align: 'center', bg: PAL.panel }));
     /* the state of the fluid on each leg */
     const gas = 'gas, low pressure', hot = 'hot gas, high pressure', liq = 'liquid, high pressure', cold = 'cold liquid and gas';
     two(gas, hot, (t) => text(ctx, t, (OX + WX - 40) / 2, BOT - 30, PAL.muted, { size: 17, align: 'center' }));
@@ -254,8 +257,8 @@ function hatch(ctx, pathFn, color) {
     const W = ws.v, f = fs.v / 100, r = kelvin(tc.v) / kelvin(th.v);
     const Wp = W * (1 - f), Qf = W - Wp, Qh = Wp / (1 - r), Qc = Qh - Wp, cop = Qh / W, cop0 = 1 / (1 - r);
     const wOf = (Q) => Math.max(3, 92 * Q / Qh);     /* widths in proportion, the delivered heat transfer widest */
-    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, 'hot reservoir', 'T_h = ' + num(th.v, 1) + ' °C');
-    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, 'cold reservoir', 'T_c = ' + num(tc.v, 1) + ' °C');
+    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, 'hot reservoir', 'T_h = ' + num(th.v, 1) + ' °C', 'hot-reservoir');
+    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, 'cold reservoir', 'T_c = ' + num(tc.v, 1) + ' °C', 'cold-reservoir');
     const top = HOT.y + HOT.h, bot = COLD.y;
     /* the work arrives from the right and splits at a junction: W′ on into the pump, Q_f down to the cold reservoir */
     fat(ctx, 800, MY, JX + 8, MY, wOf(W), ec);
@@ -263,7 +266,7 @@ function hatch(ctx, pathFn, color) {
     if (Qf > 0.01) fat(ctx, JX, MY + wOf(W) / 2, JX, bot, wOf(Qf), ec);
     fat(ctx, MX, bot, MX, MY + MR + 2, wOf(Qc), ec);
     fat(ctx, MX, MY - MR - 2, MX, top, wOf(Qh), ec);
-    machine(ctx, MX, MY, MR, 'heat pump');
+    machine(ctx, MX, MY, MR, 'heat pump', 'real-pump');
     text(ctx, 'Q_h = ' + fmt(Qh, 0) + ' J', MX - wOf(Qh) / 2 - 20, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Q_c = ' + fmt(Qc, 0) + ' J', MX - wOf(Qc) / 2 - 20, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'W = ' + fmt(W, 0) + ' J', 700, MY - wOf(W) / 2 - 28, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
@@ -306,19 +309,21 @@ function hatch(ctx, pathFn, color) {
     const Th = th.v, Tc = tc.v, ThK = kelvin(Th), TcK = kelvin(Tc), eff = 1 - TcK / ThK, cop = 1 / eff;
     /* ---- the house and the outside ---- */
     line(ctx, 60, GY, 1340, GY, PAL.muted, 3);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = F.ref('house'); ctx.lineWidth = 4; ctx.beginPath();
     ctx.moveTo(WX, GY); ctx.lineTo(WX, 190); ctx.lineTo(1000, 128); ctx.lineTo(1300, 190); ctx.lineTo(1300, GY); ctx.stroke(); ctx.restore();
     text(ctx, 'wall', WX + 14, 208, PAL.muted, { size: 17 });
     text(ctx, 'inside air ' + fmt(IN, 0) + ' °C', 1000, 214, PAL.ink, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'outside air ' + num(OUT, 0) + ' °C', 300, 214, PAL.ink, { size: 20, weight: 600, align: 'center' });
     /* ---- the pump across the wall: the outdoor coil and the indoor coil ---- */
     const CY = 320, CH = 120, OC = { x: 520, w: 180 }, IC = { x: 700, w: 180 };
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
-    ctx.fillRect(OC.x, CY - CH / 2, OC.w + IC.w, CH); ctx.strokeRect(OC.x, CY - CH / 2, OC.w + IC.w, CH); ctx.restore();
-    line(ctx, WX, CY - CH / 2, WX, CY + CH / 2, PAL.ink, 3);
-    text(ctx, 'outdoor coil', OC.x + OC.w / 2, CY - 22, PAL.muted, { size: 17, align: 'center' });
+    const occ = F.ref('outdoor-coil'), icc = F.ref('indoor-coil');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.lineWidth = 3;
+    ctx.fillRect(OC.x, CY - CH / 2, OC.w + IC.w, CH);
+    ctx.strokeStyle = occ; ctx.strokeRect(OC.x, CY - CH / 2, OC.w, CH); ctx.strokeStyle = icc; ctx.strokeRect(IC.x, CY - CH / 2, IC.w, CH); ctx.restore();
+    line(ctx, WX, CY - CH / 2, WX, CY + CH / 2, F.ref('house'), 3);
+    text(ctx, 'outdoor coil', OC.x + OC.w / 2, CY - 22, occ, { size: 17, align: 'center' });
     text(ctx, 'T_c = ' + num(Tc, 1) + ' °C', OC.x + OC.w / 2, CY + 14, tcol, { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'indoor coil', IC.x + IC.w / 2, CY - 22, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'indoor coil', IC.x + IC.w / 2, CY - 22, icc, { size: 17, align: 'center' });
     text(ctx, 'T_h = ' + fmt(Th, 1) + ' °C', IC.x + IC.w / 2, CY + 14, tcol, { size: 22, weight: 600, align: 'center' });
     /* ---- the three transfers, drawn in units of the work ---- */
     const U = 11, wQh = Math.min(100, U * cop), wQc = Math.min(100, U * (cop - 1)), wW = U;
@@ -371,13 +376,13 @@ function hatch(ctx, pathFn, color) {
     const ec = C('energy'), warm = use.value === 'warm';
     const r = kelvin(tc.v) / kelvin(th.v), cophp = 1 / (1 - r), copref = cophp - 1;
     const wOf = (v) => Math.max(3, 92 * v / cophp);
-    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, warm ? 'hot reservoir, the space to warm' : 'hot reservoir, the outdoors', 'T_h = ' + num(th.v, 1) + ' °C');
-    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, warm ? 'cold reservoir, the outdoors' : 'cold reservoir, the space to cool', 'T_c = ' + num(tc.v, 1) + ' °C');
+    reservoir(ctx, HOT.x, HOT.y, HOT.w, HOT.h, warm ? 'hot reservoir, the space to warm' : 'hot reservoir, the outdoors', 'T_h = ' + num(th.v, 1) + ' °C', 'hot-reservoir');
+    reservoir(ctx, COLD.x, COLD.y, COLD.w, COLD.h, warm ? 'cold reservoir, the outdoors' : 'cold reservoir, the space to cool', 'T_c = ' + num(tc.v, 1) + ' °C', 'cold-reservoir');
     const top = HOT.y + HOT.h, bot = COLD.y;
     fat(ctx, MX, bot, MX, MY + MR + 2, wOf(copref), ec);
     fat(ctx, MX, MY - MR - 2, MX, top, wOf(cophp), ec);
     fat(ctx, 600, MY, MX + MR + 2, MY, wOf(1), ec);
-    machine(ctx, MX, MY, MR, warm ? 'heat pump' : 'refrigerator');
+    machine(ctx, MX, MY, MR, warm ? 'heat pump' : 'refrigerator', 'machine');
     text(ctx, 'Q_h = ' + fmt(cophp, 2) + ' W', MX - wOf(cophp) / 2 - 18, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Q_c = ' + fmt(copref, 2) + ' W', MX - wOf(copref) / 2 - 18, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'W', 520, MY - wOf(1) / 2 - 26, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });

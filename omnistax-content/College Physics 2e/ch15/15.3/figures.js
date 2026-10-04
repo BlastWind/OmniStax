@@ -25,16 +25,17 @@ function wide(ctx, x1, y1, x2, y2, w, color, fill = true) {
   ctx.lineTo(x2, y2); ctx.lineTo(bx - nx * hw, by - ny * hw); ctx.lineTo(bx - nx * h, by - ny * h); ctx.lineTo(x1 - nx * h, y1 - ny * h);
   ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
 }
-/* a reservoir: an ink box whose label wears the temperature hue */
-function reservoir(ctx, x, y, w, h, label, value) {
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(x - w / 2, y - h / 2, w, h); ctx.strokeRect(x - w / 2, y - h / 2, w, h); ctx.restore();
+/* a reservoir: a box outlined in its referent's hue, whose label wears the temperature hue */
+function reservoir(ctx, x, y, w, h, label, value, color = PAL.ink) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.fillRect(x - w / 2, y - h / 2, w, h); ctx.strokeRect(x - w / 2, y - h / 2, w, h); ctx.restore();
   text(ctx, label, x, y - (value ? 14 : 0), C('temperature'), { size: 24, weight: 600, align: 'center' });
   if (value) text(ctx, value, x, y + 16, C('temperature'), { size: 20, weight: 600, align: 'center' });
 }
 /* the engine of Figures 15.16 and 15.18: a circle between two reservoirs */
 function engineCircle(ctx, x, y, r, label) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-  text(ctx, label, x, y, PAL.ink, { size: 20, weight: 600, align: 'center' });
+  const c = F.ref('engine');
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+  text(ctx, label, x, y, c, { size: 20, weight: 600, align: 'center' });
 }
 /* a seeded random sequence, so that a run of molecules is the same on every loop and at every scrub */
 function seeded(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
@@ -98,7 +99,7 @@ function hatch(ctx, color) {
     line(ctx, bx0 - 10, road, bx1 + 30, road, PAL.muted, 3);
     const xs = bx0 + 40, xe = bx1 - 60, s = 2 * f - f * f;   /* constant deceleration: the fraction of the distance covered */
     const cx = xs + (xe - xs) * s;
-    car(ctx, cx, road - 12, PAL.ink, 1.5);
+    car(ctx, cx, road - 12, F.ref('car'), 1.5);
     const lost = s;   /* the fraction of the kinetic energy already turned to heat transfer */
     if (lost > 0.02) {
       const w = 6 + 34 * lost;
@@ -106,16 +107,16 @@ function hatch(ctx, color) {
       wide(ctx, cx - 36, road + 6, ex, eyy, w, alpha(cE, 0.85));
       text(ctx, 'Q', ex - 22, eyy + 8, cE, { size: 24, weight: 600, align: 'right' });
     }
-    text(ctx, done ? 'at rest' : tau < 1e-9 ? 'moving' : 'braking', cx, road - 70, PAL.ink, { size: 18, align: 'center', bg: PAL.panel });
+    text(ctx, done ? 'at rest' : tau < 1e-9 ? 'moving' : 'braking', cx, road - 70, F.ref('car'), { size: 18, align: 'center', bg: PAL.panel });
     text(ctx, 'the brakes convert kinetic energy to heat transfer', (bx0 + bx1) / 2 + 10, top + 60, PAL.muted, { size: 18, align: 'center' });
     text(ctx, '(b)', (bx0 + bx1) / 2 + 10, top + 336, PAL.ink, { size: 20, align: 'center' });
     /* ---- (c) the puff of gas ---- */
     const gx = 980, gy = top + 24, gw = 380, gh = 250;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(gx, gy, gw, gh); ctx.strokeRect(gx, gy, gw, gh); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('chamber'); ctx.lineWidth = 3; ctx.fillRect(gx, gy, gw, gh); ctx.strokeRect(gx, gy, gw, gh); ctx.restore();
     /* the nozzle in the lower-left corner */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(gx + 8, gy + gh - 8); ctx.lineTo(gx + 8, gy + gh - 40); ctx.lineTo(gx + 22, gy + gh - 40); ctx.lineTo(gx + 22, gy + gh - 8); ctx.stroke(); ctx.restore();
-    mol.forEach((m) => { const px = bounce(m.x0, m.vx, tau, gw - 16), py = bounce(m.y0, m.vy, tau, gh - 16); dot(ctx, gx + 8 + px, gy + gh - 8 - py, PAL.ink, true, 4.5); });
-    text(ctx, done ? 'the gas fills the chamber uniformly' : tau < 1e-9 ? 'a puff of gas in a vacuum chamber' : 'the gas spreads through the vacuum', gx + gw / 2, gy + gh + 24, PAL.muted, { size: 18, align: 'center' });
+    mol.forEach((m) => { const px = bounce(m.x0, m.vx, tau, gw - 16), py = bounce(m.y0, m.vy, tau, gh - 16); dot(ctx, gx + 8 + px, gy + gh - 8 - py, F.ref('puff'), true, 4.5); });
+    text(ctx, done ? 'the gas fills the chamber uniformly' : tau < 1e-9 ? 'a puff of gas in a vacuum chamber' : 'the gas spreads through the vacuum', gx + gw / 2, gy + gh + 24, F.ref('puff'), { size: 18, align: 'center' });
     text(ctx, '(c)', gx + gw / 2, top + 336, PAL.ink, { size: 20, align: 'center' });
     /* the readout: which way the heat transfer goes */
     readout(d.readout, same ? `\\kTemph = \\kTempc = ${hot}\\ \\text{K}: \\text{ no heat transfer crosses}`
@@ -146,15 +147,15 @@ function hatch(ctx, color) {
     const hotY = 140, coldY = 560, rw = 260, rh = 80;
     /* (a) */
     const ax = 330;
-    reservoir(ctx, ax, hotY, rw, rh, 'T_h');
-    reservoir(ctx, ax, coldY, rw, rh, 'T_c');
+    reservoir(ctx, ax, hotY, rw, rh, 'T_h', undefined, F.ref('hot-reservoir'));
+    reservoir(ctx, ax, coldY, rw, rh, 'T_c', undefined, F.ref('cold-reservoir'));
     wide(ctx, ax, hotY + rh / 2, ax, coldY - rh / 2 - 4, Math.max(qh * K, 4), alpha(cE, 0.85));
     text(ctx, 'Q = ' + fmt(qh, 1) + ' kJ', ax + Math.max(qh * K * 0.9, 12) + 16, 350, cE, { size: 22, weight: 600 });
     text(ctx, '(a)', ax, 628, PAL.ink, { size: 20, align: 'center' });
     /* (b) */
     const bx = 900, ey = 350, er = 84;
-    reservoir(ctx, bx, hotY, rw, rh, 'T_h');
-    reservoir(ctx, bx, coldY, rw, rh, 'T_c');
+    reservoir(ctx, bx, hotY, rw, rh, 'T_h', undefined, F.ref('hot-reservoir'));
+    reservoir(ctx, bx, coldY, rw, rh, 'T_c', undefined, F.ref('cold-reservoir'));
     wide(ctx, bx, hotY + rh / 2, bx, ey - er - 4, Math.max(qh * K, 4), alpha(cE, 0.85));
     text(ctx, 'Q_h = ' + fmt(qh, 1) + ' kJ', bx + Math.max(qh * K * 0.9, 12) + 16, (hotY + rh / 2 + ey - er) / 2, cE, { size: 22, weight: 600 });
     if (qc > 0.05) wide(ctx, bx, ey + er, bx, coldY - rh / 2 - 4, qc * K, alpha(cE, 0.85));
@@ -228,25 +229,26 @@ function hatch(ctx, color) {
     /* the gas in the chamber, crowding as the volume shrinks; it enters on the intake and leaves on the exhaust */
     const share = k === 0 || k === 3 ? (vol - vmin) / (vmax - vmin) : 1;
     const nShow = Math.round(70 * clamp(share, 0, 1));
-    mol.slice(0, nShow).forEach((m) => dot(ctx, wl + 10 + m.u * (BORE - 20), HEAD + 12 + m.v * Math.max(vol - 24, 2), PAL.ink, true, 4));
+    mol.slice(0, nShow).forEach((m) => dot(ctx, wl + 10 + m.u * (BORE - 20), HEAD + 12 + m.v * Math.max(vol - 24, 2), F.ref('mixture'), true, 4));
     /* the flow through the open pipe */
-    if (inOpen) { arrow(ctx, vI - seat - 160, HEAD - 98, vI - seat - 100, HEAD - 98, PAL.ink, 4); text(ctx, 'air and fuel', vI - seat - 168, HEAD - 98, PAL.ink, { size: 18, align: 'right' }); }
+    if (inOpen) { arrow(ctx, vI - seat - 160, HEAD - 98, vI - seat - 100, HEAD - 98, PAL.ink, 4); text(ctx, 'air and fuel', vI - seat - 168, HEAD - 98, F.ref('mixture'), { size: 18, align: 'right' }); }
     if (exOpen) { arrow(ctx, vE + seat + 100, HEAD - 98, vE + seat + 160, HEAD - 98, PAL.ink, 4); text(ctx, 'exhaust', vE + seat + 168, HEAD - 98, PAL.ink, { size: 18 }); }
     /* the crank, the rod and the piston */
     const cpx = CX + R * Math.sin(th), cpy = CRANK_Y - R * Math.cos(th);
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([6, 8]); ctx.beginPath(); ctx.arc(CX, CRANK_Y, R, 0, TAU); ctx.stroke(); ctx.restore();
-    line(ctx, CX, CRANK_Y, cpx, cpy, PAL.ink, 14);
+    const kc = F.ref('crankshaft'), pc0 = F.ref('piston');
+    line(ctx, CX, CRANK_Y, cpx, cpy, kc, 14);
     line(ctx, cpx, cpy, CX, py, PAL.muted, 12);
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.fillRect(wl + 3, crown, BORE - 6, CROWN + 30); ctx.strokeRect(wl + 3, crown, BORE - 6, CROWN + 30); ctx.restore();
-    dot(ctx, CX, py, PAL.ink, true, 9); dot(ctx, cpx, cpy, PAL.ink, true, 10); dot(ctx, CX, CRANK_Y, PAL.ink, false, 14);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = pc0; ctx.lineWidth = 4; ctx.fillRect(wl + 3, crown, BORE - 6, CROWN + 30); ctx.strokeRect(wl + 3, crown, BORE - 6, CROWN + 30); ctx.restore();
+    dot(ctx, CX, py, pc0, true, 9); dot(ctx, cpx, cpy, kc, true, 10); dot(ctx, CX, CRANK_Y, kc, false, 14);
     /* the piston's direction and the crank's turn */
     const down = k === 0 || k === 2;
     arrow(ctx, CX - 50, crown + 18 + (down ? 0 : 34), CX - 50, crown + 18 + (down ? 34 : 0), PAL.ink, 4);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(CX, CRANK_Y, R + 26, -1.25, -0.25); ctx.stroke(); ctx.restore();
     arrow(ctx, CX + (R + 26) * Math.cos(-0.3), CRANK_Y + (R + 26) * Math.sin(-0.3), CX + (R + 26) * Math.cos(-0.12), CRANK_Y + (R + 26) * Math.sin(-0.12), PAL.ink, 3);
     /* labels, once each, leadered where the slot is taken */
-    lab.add('piston', wr + 12, crown + 32, 1, 0, PAL.ink, 18);
-    lab.add('crankshaft', CX + 20, CRANK_Y + 36, 1, 0.5, PAL.ink, 18);
+    lab.add('piston', wr + 12, crown + 32, 1, 0, pc0, 18);
+    lab.add('crankshaft', CX + 20, CRANK_Y + 36, 1, 0.5, kc, 18);
     lab.add('intake valve', vI - seat - 60, HEAD - 56, -1, 0, PAL.ink, 18, 30);
     lab.add('exhaust valve', vE + seat + 60, HEAD - 56, 1, 0, PAL.ink, 18, 30);
     lab.add('spark plug', CX, HEAD - 88, 0, -1, PAL.ink, 18, 26);
@@ -254,7 +256,7 @@ function hatch(ctx, color) {
     /* ---- the PV trace beside the cylinder ---- */
     const box = { l: 800, r: 1320, t: 220, b: 660 };
     const P0 = 1, PB = Math.pow(vmax / vmin, GAMMA), PC = 2.4 * PB, PD = PC * Math.pow(vmin / vmax, GAMMA);
-    const g = axes(ctx, box, [0, vmax * 1.12], [0, PC * 1.08], { xl: 'V', xc: PAL.ink, yl: 'P', yc: cP, nx: 1, ny: 1, fx: () => '', fy: () => '' });
+    const g = axes(ctx, box, [0, vmax * 1.12], [0, PC * 1.08], { xl: 'V', xc: C('volume'), yl: 'P', yc: cP, nx: 1, ny: 1, fx: () => '', fy: () => '' });
     const adia = (Pk, Vk) => (V) => Pk * Math.pow(Vk / V, GAMMA);
     curve(ctx, adia(P0, vmax), vmin, vmax, g.X, g.Y, PAL.ink, 3, 60);
     curve(ctx, adia(PC, vmin), vmin, vmax, g.X, g.Y, PAL.ink, 3, 60);
@@ -319,7 +321,7 @@ function hatch(ctx, color) {
       : leg === 1 ? 'Along path BC heat transfer Q_h = ' + sig3(s.Qh) + ' J enters at constant volume and the pressure leaps to ' + fmt(s.PC, 2) + ' MPa.'
       : leg === 2 ? 'Along path CD the gas expands adiabatically and does ' + sig3(s.Wcd) + ' J of work on the outside world, more than the ' + sig3(s.Wab) + ' J done on it along AB.'
       : 'Along path DA heat transfer Q_c = ' + sig3(s.Qc) + ' J leaves at constant volume and the gas returns to its original state.');
-    const g = axes(ctx, box, [0, 0.6], [0, 4], { xl: 'V (L)', xc: PAL.ink, yl: 'P (MPa)', yc: cP, nx: 6, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
+    const g = axes(ctx, box, [0, 0.6], [0, 4], { xl: 'V (L)', xc: C('volume'), yl: 'P (MPa)', yc: cP, nx: 6, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
     /* how far each leg has been walked */
     const fAB = leg > 0 ? 1 : f, fBC = leg > 1 ? 1 : leg === 1 ? f : 0, fCD = leg > 2 ? 1 : leg === 2 ? f : 0, fDA = leg === 3 ? f : 0;
     const vAB = VA - (VA - VB) * fAB, vCD = VB + (VA - VB) * fCD;
@@ -374,8 +376,8 @@ function hatch(ctx, color) {
     dot(ctx, g.X(V), g.Y(P), cP, true, 10);
     /* ---- the engine beside the diagram ---- */
     const ex = 1160, hotY = 140, coldY = 580, rw = 220, rh = 76, ey = 355, er = 80, K2 = 0.12;
-    reservoir(ctx, ex, hotY, rw, rh, 'T_h');
-    reservoir(ctx, ex, coldY, rw, rh, 'T_c');
+    reservoir(ctx, ex, hotY, rw, rh, 'T_h', undefined, F.ref('hot-reservoir'));
+    reservoir(ctx, ex, coldY, rw, rh, 'T_c', undefined, F.ref('cold-reservoir'));
     const on = (which) => (done || leg === which ? 0.85 : 0.3);
     wide(ctx, ex, hotY + rh / 2, ex, ey - er - 4, Math.max(s.Qh * K2, 4), alpha(cE, on(1)));
     text(ctx, 'Q_h = ' + sig3(s.Qh) + ' J', ex + Math.max(s.Qh * K2 * 0.9, 12) + 14, (hotY + rh / 2 + ey - er) / 2, cE, { size: 20, weight: 600 });

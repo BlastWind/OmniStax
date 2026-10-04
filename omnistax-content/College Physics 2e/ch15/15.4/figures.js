@@ -26,16 +26,18 @@ function band(ctx, x1, y1, x2, y2, w, color, dashed) {
   else { ctx.fillStyle = color; ctx.fill(); }
   ctx.restore();
 }
-/* a reservoir: a box in ink with a soft fill and its temperature written in the temperature hue */
-function reservoir(ctx, x1, y1, x2, y2, name, label) {
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(x1, y1, x2 - x1, y2 - y1); ctx.strokeRect(x1, y1, x2 - x1, y2 - y1); ctx.restore();
-  text(ctx, name, (x1 + x2) / 2, y1 + 24, PAL.muted, { size: 17, align: 'center' });
+/* a reservoir: a box outlined and named in its referent's hue, with a soft fill and its temperature written in the temperature hue */
+function reservoir(ctx, x1, y1, x2, y2, name, label, id) {
+  const c = F.ref(id);
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.fillRect(x1, y1, x2 - x1, y2 - y1); ctx.strokeRect(x1, y1, x2 - x1, y2 - y1); ctx.restore();
+  text(ctx, name, (x1 + x2) / 2, y1 + 24, c, { size: 17, align: 'center' });
   text(ctx, label, (x1 + x2) / 2, (y1 + y2) / 2 + 12, C('temperature'), { size: 24, weight: 600, align: 'center' });
 }
-/* the engine itself, a circle in ink */
-function engine(ctx, x, y, r, name) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-  text(ctx, name, x, y, PAL.muted, { size: 19, align: 'center' });
+/* the engine itself, a circle outlined and named in its referent's hue */
+function engine(ctx, x, y, r, name, id) {
+  const c = F.ref(id);
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = c; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+  text(ctx, name, x, y, c, { size: 19, align: 'center' });
 }
 
 /* =====================================================================
@@ -85,8 +87,8 @@ function engine(ctx, x, y, r, name) {
     const c = corners(), t = cy.now(), done = t >= PERIOD - 1e-6;
     const leg = done ? 3 : Math.min(3, Math.floor(t / (PERIOD / 4))), s = done ? 1 : (t - leg * (PERIOD / 4)) / (PERIOD / 4);
     const Qh = R_GAS * c.th * Math.log(c.r) / 1000, Qc = R_GAS * c.tc * Math.log(c.r) / 1000, W = Qh - Qc, eff = 1 - c.tc / c.th;
-    /* the PV diagram: pressure is a type and wears its hue on the vertical axis; volume is not and its axis is ink */
-    const { X, Y } = axes(ctx, box, [0, 35], [0, 2], { xl: 'volume V (L)', xc: PAL.ink, yl: 'pressure P (MPa)', yc: pc, nx: 7, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
+    /* the PV diagram: pressure wears its hue on the vertical axis and volume on the horizontal */
+    const { X, Y } = axes(ctx, box, [0, 35], [0, 2], { xl: 'volume V (L)', xc: C('volume'), yl: 'pressure P (MPa)', yc: pc, nx: 7, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     const P = (p) => [X(p[0]), Y(p[1])];
     /* the two isotherms run on past the loop, faintly, so that each leg is seen to lie on a curve of constant temperature */
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
@@ -125,9 +127,9 @@ function engine(ctx, x, y, r, name) {
     line(ctx, box.r - 250, box.t + 50, box.r - 200, box.t + 50, PAL.ink, 4, [12, 10]); text(ctx, 'adiabat', box.r - 190, box.t + 50, PAL.ink, { size: 17 });
     /* the engine beside the diagram: hot reservoir above, engine, cold reservoir below, the three energies as bands whose widths are the energies */
     const EX = 1150, kW = 5.0;
-    reservoir(ctx, 1030, 120, 1270, 215, 'hot reservoir', 'T_h = ' + K(c.th));
-    reservoir(ctx, 1030, 545, 1270, 640, 'cold reservoir', 'T_c = ' + K(c.tc));
-    engine(ctx, EX, 380, 92, 'Carnot engine');
+    reservoir(ctx, 1030, 120, 1270, 215, 'hot reservoir', 'T_h = ' + K(c.th), 'hot-reservoir');
+    reservoir(ctx, 1030, 545, 1270, 640, 'cold reservoir', 'T_c = ' + K(c.tc), 'cold-reservoir');
+    engine(ctx, EX, 380, 92, 'Carnot engine', 'carnot-engine');
     const onQh = leg === 0 && !done, onQc = leg === 2 && !done, onW = done;
     band(ctx, EX, 215, EX, 292, kW * Qh, alpha(ec, onQh || done ? 1 : 0.28));
     text(ctx, 'Q_h = ' + kJ(Qh), EX + kW * Qh / 2 + 22, 253, alpha(ec, onQh || done ? 1 : 0.45), { size: 21, weight: 600 });
@@ -207,7 +209,7 @@ function engine(ctx, x, y, r, name) {
     arrow(ctx, b[0] - (b[0] - a[0]) / L * 22, b[1] - (b[1] - a[1]) / L * 22, b[0], b[1], color, w);
   }
   function turbine(ctx, x1, x2, y, h1, h2) {
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('turbines'); ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(x1, y - h1 / 2); ctx.lineTo(x2, y - h2 / 2); ctx.lineTo(x2, y + h2 / 2); ctx.lineTo(x1, y + h1 / 2); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath();
     for (let k = 1; k < 4; k++) { const x = x1 + (x2 - x1) * k / 4, h = h1 + (h2 - h1) * k / 4; ctx.moveTo(x, y - h / 2); ctx.lineTo(x, y + h / 2); }
@@ -240,20 +242,21 @@ function engine(ctx, x, y, r, name) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(350, GY); ctx.lineTo(350, 335); ctx.arc(395, 335, 45, Math.PI, TAU); ctx.lineTo(440, GY); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'steam generator', 395, GY + 24, PAL.muted, { size: 17, align: 'center' });
-    pipe(ctx, [[260, 400], [350, 400]], 5, PAL.ink);
-    pipe(ctx, [[350, 500], [260, 500]], 5, PAL.ink);
-    text(ctx, 'pressurized water', 305, 380, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    const pw = F.ref('pressurized-water'), st = F.ref('steam'), tb = F.ref('turbines'), ct = F.ref('cooling-tower');
+    pipe(ctx, [[260, 400], [350, 400]], 5, pw);
+    pipe(ctx, [[350, 500], [260, 500]], 5, pw);
+    text(ctx, 'pressurized water', 305, 380, pw, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     band(ctx, 262, 450, 350, 450, 26, ec);
     text(ctx, 'Q_h', 305, 450 - 30, ec, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the steam line to the turbines, the shaft to the generator, and the exhaust down to the condenser */
-    pipe(ctx, [[395, 290], [395, 175], [640, 175]], 5, PAL.ink);
-    text(ctx, 'steam', 500, 155, PAL.muted, { size: 17, align: 'center' });
+    pipe(ctx, [[395, 290], [395, 175], [640, 175]], 5, st);
+    text(ctx, 'steam', 500, 155, st, { size: 17, align: 'center' });
     turbine(ctx, 640, 720, SHAFT, 60, 120);
     turbine(ctx, 750, 880, SHAFT, 80, 170);
     line(ctx, 720, SHAFT, 750, SHAFT, PAL.ink, 6); line(ctx, 880, SHAFT, 915, SHAFT, PAL.ink, 6);
-    text(ctx, 'high-pressure turbine', 680, 118, PAL.ink, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'low-pressure turbine', 836, 322, PAL.ink, { size: 17, align: 'left', bg: alpha(PAL.panel, 0.85) });
-    pipe(ctx, [[720, SHAFT + 40], [735, SHAFT + 40], [735, SHAFT - 20], [750, SHAFT - 20]], 4, PAL.ink);
+    text(ctx, 'high-pressure turbine', 680, 118, tb, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'low-pressure turbine', 836, 322, tb, { size: 17, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    pipe(ctx, [[720, SHAFT + 40], [735, SHAFT + 40], [735, SHAFT - 20], [750, SHAFT - 20]], 4, st);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(960, SHAFT, 45, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'G', 960, SHAFT, PAL.ink, { size: 26, weight: 600, align: 'center' });
     text(ctx, 'generator', 960, SHAFT + 66, PAL.ink, { size: 17, align: 'center' });
@@ -261,7 +264,7 @@ function engine(ctx, x, y, r, name) {
     text(ctx, 'W', 1065, SHAFT - 13 * eff - 22, ec, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'electrical energy', 1065, SHAFT + 13 * eff + 22, PAL.muted, { size: 17, align: 'center' });
     /* the condenser, the water back to the steam generator, and the heat carried off to the cooling tower */
-    pipe(ctx, [[815, SHAFT + 85], [815, 360]], 5, PAL.ink);
+    pipe(ctx, [[815, SHAFT + 85], [815, 360]], 5, st);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(700, 360, 230, 80); ctx.strokeRect(700, 360, 230, 80); ctx.restore();
     text(ctx, 'condenser', 815, 380, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'T_c = ' + degC(Tc.v, 1), 815, 414, tc, { size: 21, weight: 600, align: 'center' });
@@ -270,12 +273,12 @@ function engine(ctx, x, y, r, name) {
     band(ctx, 932, 400, 1165, 400, 26 * (1 - eff), ec);
     text(ctx, 'Q_c', 1048, 400 - 13 * (1 - eff) - 22, ec, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the cooling tower, with the vapour that leaves it */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = ct; ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(1140, GY); ctx.quadraticCurveTo(1195, 330, 1180, 190); ctx.lineTo(1300, 190); ctx.quadraticCurveTo(1285, 330, 1340, GY); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath();
     ctx.arc(1215, 150, 22, Math.PI * 0.9, Math.PI * 1.9); ctx.moveTo(1290, 140); ctx.arc(1268, 140, 22, 0, Math.PI * 1.1, true); ctx.moveTo(1262, 105); ctx.arc(1242, 105, 20, 0, Math.PI, true);
     ctx.stroke(); ctx.restore();
-    text(ctx, 'cooling tower', 1240, GY + 24, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'cooling tower', 1240, GY + 24, ct, { size: 17, align: 'center' });
     text(ctx, 'water evaporates', 1240, 470, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'into the environment', 1240, 492, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, 'Pressurized water at ' + degC(Th.v) + ' and condensed steam at ' + degC(Tc.v, 1) + ' allow a maximum efficiency of ' + pct(eff) + '; a real station reaches about 35%.');
@@ -305,9 +308,9 @@ function engine(ctx, x, y, r, name) {
     const ec = C('energy');
     const effC = 1 - Tc.v / Th.v, eff = sh.v * effC, W = QH * eff, Qc = QH - W, Qf = W * fr.v / 100, Wleft = W - Qf, WC = QH * effC, QcC = QH - WC;
     const EX = 560, EY = 375, ER = 105;
-    reservoir(ctx, 380, 110, 800, 200, 'hot reservoir', 'T_h = ' + K(Th.v));
-    reservoir(ctx, 380, 545, 800, 635, 'cold reservoir', 'T_c = ' + K(Tc.v));
-    engine(ctx, EX, EY, ER, 'real engine');
+    reservoir(ctx, 380, 110, 800, 200, 'hot reservoir', 'T_h = ' + K(Th.v), 'hot-reservoir');
+    reservoir(ctx, 380, 545, 800, 635, 'cold reservoir', 'T_c = ' + K(Tc.v), 'cold-reservoir');
+    engine(ctx, EX, EY, ER, 'real engine', 'real-engine');
     /* what a Carnot engine would do, as dashed outlines, behind the solid bands of the real engine */
     band(ctx, EX + ER - 4, EY - 30, 1010, EY - 30, kW * WC, ec, true);
     band(ctx, 500, EY + ER - 6, 500, 545, kW * QcC, ec, true);

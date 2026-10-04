@@ -2,10 +2,11 @@
    The first law is a balance struck between the start and the end of a
    process, and nothing in it runs on a clock, so every figure here is a
    still picture: none registers a cycle, none carries a transport, and a
-   slider's input alone redraws it. The page binds energy alone: heat
-   transfer, work and internal energy are one type and wear one hue, told
-   apart by where they are drawn, heat on the left of the system, work on
-   the right and internal energy as a gauge inside. */
+   slider's input alone redraws it. Heat transfer, work and internal
+   energy are one category and wear one hue, told apart by where they are
+   drawn, heat on the left of the system, work on the right and internal
+   energy as a gauge inside; the two processes of 15.4 and the body and
+   the plant of 15.5 are referents. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, strip, person } = F;
@@ -39,11 +40,11 @@ function fatArrow(ctx, x1, y1, x2, y2, w, color) {
 }
 /* the width of an arrow for the energy it carries: a hairline for nothing, and never fatter than 58 */
 const wOf = (v, k) => (v <= 0 ? 0 : Math.min(58, 6 + k * v));
-/* the boundary of a system, an ellipse in ink filled the colour of the page, named once at the top */
-function system(ctx, cx, cy, rx, ry, name) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+/* the boundary of a system, an ellipse in ink or a referent's hue filled the colour of the page, named once at the top */
+function system(ctx, cx, cy, rx, ry, name, color = PAL.ink) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4;
   ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-  if (name) text(ctx, name, cx, cy - ry + 34, PAL.ink, { size: 20, align: 'center' });
+  if (name) text(ctx, name, cx, cy - ry + 34, color, { size: 20, align: 'center' });
 }
 /* a gauge of the internal energy: a tank whose dashed line is the level at the start and whose
    bar is the change, filled when the internal energy rises and hatched when it falls. dy is the
@@ -138,10 +139,10 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
     const { ctx } = begin(d.c);
     const ec = C('energy');
     const dE = de.v, Qa = qa.v, Qb = qb.v, Wa = Qa - dE, Wb = Qb - dE;
-    const procs = [['(a)', 360, Qa, Wa], ['(b)', 1040, Qb, Wb]];
-    for (const [nm, cx, Q, W] of procs) {
-      system(ctx, cx, CY, R, R, 'the system');
-      text(ctx, 'process ' + nm, cx, CY - R - 34, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    const procs = [['(a)', 360, Qa, Wa, F.ref('process-a')], ['(b)', 1040, Qb, Wb, F.ref('process-b')]];
+    for (const [nm, cx, Q, W, rc] of procs) {
+      system(ctx, cx, CY, R, R, 'the system', rc);
+      text(ctx, 'process ' + nm, cx, CY - R - 34, rc, { size: 22, weight: 600, align: 'center' });
       /* the net heat transfer on the left: in when Q is positive, out when it is negative */
       const y = CY - 30, xl = cx - R, xr = cx + R;
       const wq = wOf(Math.abs(Q), K), ww = wOf(Math.abs(W), K);
@@ -198,9 +199,9 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
     ctx.beginPath(); for (let i = 0; i < 12; i++) { const a = (i / 12) * TAU; ctx.moveTo(x + (r + 10) * Math.cos(a), y + (r + 10) * Math.sin(a)); ctx.lineTo(x + (r + 30) * Math.cos(a), y + (r + 30) * Math.sin(a)); } ctx.stroke();
     ctx.restore();
   }
-  /* a flowering plant in ink, its roots at (x, y) */
-  function plantSprite(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 5; ctx.lineCap = 'round';
+  /* a flowering plant in the plant's referent hue, its roots at (x, y) */
+  function plantSprite(ctx, x, y, color) {
+    ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 5; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x - 10, y - 90, x, y - 170); ctx.stroke();
     ctx.lineWidth = 3.5;
     for (const [sx, sy, dir] of [[x - 4, y - 70, -1], [x - 2, y - 110, 1]]) {
@@ -218,8 +219,8 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
     if (body) {
       const Fd = food.v, Qo = qout.v, Wo = work.v, dE = -Qo - (Wo - Fd), eff = Fd > 0 ? (100 * Wo) / Fd : 0;
       const kw = (v) => wOf(v, 0.0035), KG = 0.026;                     /* the gauge holds −5,000 to +5,000 kJ */
-      const PX = 500; person(ctx, PX, GY, PAL.ink, { s: 2.8 });
-      text(ctx, 'the body', PX, GY + 52, PAL.ink, { size: 20, align: 'center' });
+      const PX = 500; person(ctx, PX, GY, F.ref('body'), { s: 2.8 });
+      text(ctx, 'the body', PX, GY + 52, F.ref('body'), { size: 20, align: 'center' });
       /* food comes in at the mouth, heat transfer leaves from the trunk, work leaves at the hands */
       const mouth = { x: PX - 44, y: GY - 232 }, chest = { x: PX + 48, y: GY - 172 }, hand = { x: PX - 48, y: GY - 122 };
       const wf = kw(Fd), wq = kw(Qo), ww = kw(Wo);
@@ -247,8 +248,8 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
       const Qi = sun.v, Qo = pout.v, dE = Qi - Qo;
       const kw = (v) => wOf(v, 0.052), KG = 0.13;                        /* the gauge holds −1,000 to +1,000 kJ */
       sunSprite(ctx, 230, 200, 48); text(ctx, 'the Sun', 230, 296, PAL.ink, { size: 20, align: 'center' });
-      const PX = 640; plantSprite(ctx, PX, GY);
-      text(ctx, 'the plant', PX, GY + 52, PAL.ink, { size: 20, align: 'center' });
+      const PX = 640; plantSprite(ctx, PX, GY, F.ref('plant'));
+      text(ctx, 'the plant', PX, GY + 52, F.ref('plant'), { size: 20, align: 'center' });
       const wi = kw(Qi), wo = kw(Qo);
       if (wi > 0) fatArrow(ctx, 318, 226, PX - 76, GY - 214, wi, ec); else line(ctx, 318, 226, PX - 76, GY - 214, alpha(ec, 0.35), 2, [6, 8]);
       text(ctx, 'Q_in = ' + kJ(Qi) + ' kJ', 440, 256 - wi / 2 - 46, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
