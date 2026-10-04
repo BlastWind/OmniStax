@@ -1,8 +1,9 @@
 /* Figures for section 22.9 Magnetic Fields Produced by Currents: Ampere's Law.
-   The page binds magnetic-field, current and position, which is what ch22/COLOR.md
-   gives it; the permeability of free space, the number of turns, the turns per
-   metre, the length of the coil and every label on a frame are untyped and in ink,
-   and no conductor is tinted. One full three-dimensional scene folds the book's
+   The page colours magnetic-field, current and position; the permeability of free
+   space, the number of turns and the turns per metre stay ink. The wire (straight,
+   then bent into a loop), the solenoid it is stacked into and the right hand of
+   rule 2 are the section's referents, and the toroid is the same solenoid bent
+   round, so it wears the solenoid's colour. One full three-dimensional scene folds the book's
    three arrangements of a current, argued in plan.md under root rule 28.3, and one
    still figure on a locked view bends the solenoid of Example 22.7 into a ring.
    Both answer their controls and register no cycle: the field of a steady current
@@ -149,7 +150,7 @@ function oval(c, A, B, u, v, n = 72) {
     e.style.fontWeight = '600'; e.style.color = col; e.style.background = 'transparent'; e.style.border = 'none'; e.style.opacity = String(op);
     return e;
   };
-  const INK = () => PAL.ink, MUT = () => PAL.muted;
+  const INK = () => PAL.ink, MUT = () => PAL.muted, WC = () => F.ref('wire'), SC = () => F.ref('solenoid'), HC = () => F.ref('hand');
   const BC = () => C('magnetic-field'), IC = () => C('current'), PC = () => C('position');
   const OP = 0.45, THIN = 0.009, MAIN = 0.017, WIRE_R = 0.026;
   const stag = (k, i, n, lag = 0.12) => clamp((k - i * lag) / (1 - (n - 1) * lag), 0, 1);
@@ -183,9 +184,9 @@ function oval(c, A, B, u, v, n = 72) {
     if (op <= 0.01) return;
     const h = new THREE.Group(), G = F.mesh.geo(), D = 0.0065;
     const pre = new THREE.MeshBasicMaterial({ colorWrite: false, transparent: true, depthWrite: true });
-    const hull = new THREE.MeshBasicMaterial({ color: new THREE.Color(PAL.ink), side: THREE.BackSide, transparent: true, opacity: op, depthWrite: false });
+    const hull = new THREE.MeshBasicMaterial({ color: new THREE.Color(HC()), side: THREE.BackSide, transparent: true, opacity: op, depthWrite: false });
     const fill = new THREE.MeshBasicMaterial({ color: new THREE.Color(PAL.muted), transparent: true, opacity: 0.5 * op, depthWrite: false });
-    paint.push({ m: hull, col: INK }, { m: fill, col: MUT });
+    paint.push({ m: hull, col: HC }, { m: fill, col: MUT });
     const add = (geo, mat, order, name, place) => { const m = new THREE.Mesh(geo, mat); m.renderOrder = order; place(m); h.add(m); if (name) V.pickable(m, name); };
     [[pre, 10, 0], [hull, 11, D], [fill, 12, 0]].forEach(([mat, order, dd]) => HAND.forEach((p) => {
       const name = mat === fill ? p.n : null;
@@ -238,7 +239,7 @@ function oval(c, A, B, u, v, n = 72) {
     const closed = b > 0.999, N = closed ? NS.v : 1;
     for (let k = 0; k < N; k++) {
       const dq = (k - (N - 1) / 2) * 0.052;
-      const wire = closed ? tube(g3, circle([0, 0, 0], rhoL + dq, [0, 0, 1], [1, 0, 0], 96), WIRE_R, INK, 1, true) : tube(g3, W.path(-W.L / 2, W.L / 2, 96), WIRE_R, INK);
+      const wire = closed ? tube(g3, circle([0, 0, 0], rhoL + dq, [0, 0, 1], [1, 0, 0], 96), WIRE_R, WC, 1, true) : tube(g3, W.path(-W.L / 2, W.L / 2, 96), WIRE_R, WC);
       if (wire) V.pickable(wire, b < 0.5 ? 'the long straight wire' : N === 1 ? 'the loop of wire' : 'one turn of the flat coil');
     }
     /* the current, an arrow along the wire that shortens to the loop's own arrow */
@@ -305,7 +306,7 @@ function oval(c, A, B, u, v, n = 72) {
     const rr = lerp(rhoL, a, k), npt = turns * 26, pts = [], sc = loopScale(rhoL);
     const at = (s) => { const u = TAU * turns * s; return [k * (-HX + 2 * HX * s), -rr * Math.sin(u), rr * Math.cos(u)]; };
     for (let i = 0; i <= npt; i++) pts.push(at(i / npt));
-    const coil = tube(sub, pts, 0.022, INK); if (coil) V.pickable(coil, 'the winding of the solenoid');
+    const coil = tube(sub, pts, 0.022, SC); if (coil) V.pickable(coil, 'the winding of the solenoid');
     const onTurn = (m, th) => (Math.round(m * turns) + th / TAU) / turns;
     parrow(sub, Array.from({ length: 21 }, (_, i) => at(onTurn(0.62, lerp(I_AZ[0], I_AZ[1], i / 20)))), lerp(0.032 * sc, 0.030, k), IC, 1, 'I, the current in the winding');
     const pI = at(onTurn(0.62, I_AZ[1]));
@@ -628,7 +629,8 @@ function oval(c, A, B, u, v, n = 72) {
     }
     turns.sort((p, q) => q.z - p.z);
     const back = turns.filter((t) => t.z > 0), front = turns.filter((t) => t.z <= 0);
-    back.forEach((t) => poly(ctx, t.pts, alpha(PAL.ink, 1 - 0.72 * b), 3 - 0.5 * b));
+    const sc = F.ref('solenoid');
+    back.forEach((t) => poly(ctx, t.pts, alpha(sc, 1 - 0.72 * b), 3 - 0.5 * b));
     /* the field inside, which the bend carries round until its ends meet */
     const span = 0.5 - 0.06 * (1 - b);
     [-0.5, 0, 0.5].forEach((f, i) => {
@@ -655,7 +657,7 @@ function oval(c, A, B, u, v, n = 72) {
       text(ctx, 'and swings back around the outside to the south end', 700, 512, PAL.muted, { size: 18, align: 'center' });
       ctx.restore();
     }
-    front.forEach((t) => poly(ctx, t.pts, PAL.ink, 3));
+    front.forEach((t) => poly(ctx, t.pts, sc, 3));
     /* the current, on the turn nearest the reader */
     const near = front.length ? front[front.length - 1] : turns[turns.length - 1];
     const p0 = P(near.pts[4]), p1 = P(near.pts[13]);

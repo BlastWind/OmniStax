@@ -4,10 +4,11 @@
    along the wire and the current slider the current hue, every force on a side of
    the loop the force hue, and the turning effect about the shaft — the field's on
    the motor and the spring's on the meter — Chapter 9's torque hue, although its
-   dimension matches energy's. The number of turns, the side of the loop, its area,
-   the angle, the spring's torsion constant and every axis title are untyped and in
-   ink, and no body is tinted: the pole pieces are ink lettered N and S, the wire,
-   the shaft, the commutator, the brushes, the needle and the spring are ink.
+   dimension matches energy's. The side of the loop wears position, its area area,
+   and the angle and the needle's deflection angle; the number of turns and the
+   spring's torsion constant stay ink. The motor's loop, magnet, shaft and brushes
+   and the meter's coil, pole faces, spring and needle are the section's
+   referents; the poles are lettered N and S.
 
    The motor moves and the meter does not (rule 14). A motor has a clock in it —
    the loop comes round, the torque falls to zero and reverses, and the brushes
@@ -76,7 +77,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   const nS = ctl(d.controls, { label: 'N', cls: '', min: 1, max: 120, step: 1, value: 100, unit: 'turns', dec: 0, aria: 'the number of turns of wire in the loop' });
   const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 20, step: 0.5, value: 15, unit: 'A', dec: 1, aria: 'the current in the loop' });
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 2.5, step: 0.05, value: 2, unit: 'T', dec: 2, aria: 'the strength of the magnetic field between the poles' });
-  const wS = ctl(d.controls, { label: 'w', cls: '', min: 5, max: 12, step: 0.5, value: 10, unit: 'cm', dec: 1, aria: 'the side of the square loop' });
+  const wS = ctl(d.controls, { label: '\\kwloop', cls: 'position', min: 5, max: 12, step: 0.5, value: 10, unit: 'cm', dec: 1, aria: 'the side of the square loop' });
   const brushC = choice(d.controls, { label: '\\text{the brushes}', options: [{ value: 'on', label: 'on' }, { value: 'off', label: 'off' }], value: 'on', aria: 'whether the brushes reverse the current twice a revolution', onInput: reset });
 
   const T = 4.0;                                    /* one revolution, or one swing, in four seconds */
@@ -148,31 +149,32 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   function build() {
     if (!V || !V.scene || !turn) return;
     V.clear(); paint.length = 0;
-    const inkC = () => PAL.ink, mutedC = () => PAL.muted;
-    const BC = () => C('magnetic-field'), IC = () => C('current'), FC = () => C('force'), TC = () => C('torque');
+    const mutedC = () => PAL.muted;
+    const BC = () => C('magnetic-field'), IC = () => C('current'), FC = () => C('force'), TC = () => C('torque'), AC = () => C('angle');
+    const LC = () => F.ref('loop'), MC = () => F.ref('magnet'), SC = () => F.ref('shaft'), RC = () => F.ref('brushes');
     S = { coil: new THREE.Group() };
     /* the two pole pieces, lettered on their faces, and the field between them */
     [-1, 1].forEach((sx) => {
-      const m = F.mesh.box(turn, [sx * (GAP + PW / 2), 0, 0], [PW, PH, PD], PAL.muted, { transparent: true, opacity: 0.55 });   /* a little see-through, so the loop still shows from along the field */
-      keep(m, mutedC); V.pickable(m, sx < 0 ? 'the north pole of the magnet' : 'the south pole of the magnet');
+      const m = F.mesh.box(turn, [sx * (GAP + PW / 2), 0, 0], [PW, PH, PD], MC(), { transparent: true, opacity: 0.55 });   /* a little see-through, so the loop still shows from along the field */
+      keep(m, MC); V.pickable(m, sx < 0 ? 'the north pole of the magnet' : 'the south pole of the magnet');
     });
     S.field = [[0.5, 0.52], [0.5, -0.52], [-0.5, 0.52], [-0.5, -0.52]].map(([y, z]) => {
       const a = vec(turn, BC, 0.035, 'the magnetic field, running from the north pole to the south pole');
       a.set([-GAP + 0.07, y, z], [GAP - 0.07, y, z]); return a;
     });
     /* the shaft, the base it stands on, and the coil hanging from it */
-    const shaft = F.mesh.stick(turn, [0, -1.82, 0], [0, 1.62, 0], 0.05, PAL.ink); keep(shaft, inkC); V.pickable(shaft, 'the shaft the loop turns');
+    const shaft = F.mesh.stick(turn, [0, -1.82, 0], [0, 1.62, 0], 0.05, SC()); keep(shaft, SC); V.pickable(shaft, 'the shaft the loop turns');
     const foot = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.56, 0.12, 36), pmat(mutedC)); foot.position.set(0, -1.88, 0); turn.add(foot); V.pickable(foot, 'the foot the motor stands on');
     turn.add(S.coil);
     /* the windings: five of them drawn, four sticks each, and how many are shown says
        how many turns the slider asks for */
     S.wind = [];
     for (let j = 0; j < WIND; j++) {
-      const g = [0, 1, 2, 3].map(() => keep(F.mesh.stick(S.coil, [0, 0, 0], [0, 1, 0], 0.022, PAL.ink), inkC));
+      const g = [0, 1, 2, 3].map(() => keep(F.mesh.stick(S.coil, [0, 0, 0], [0, 1, 0], 0.022, LC()), LC));
       g.forEach((m) => V.pickable(m, 'the loop of wire, which carries the current through the field'));
       S.wind.push(g);
     }
-    S.lead = [-1, 1].map((sz) => keep(F.mesh.stick(S.coil, [0, 0, 0], [0, 1, 0], 0.022, PAL.ink), inkC));
+    S.lead = [-1, 1].map((sz) => keep(F.mesh.stick(S.coil, [0, 0, 0], [0, 1, 0], 0.022, LC()), LC));
     /* the split ring of a commutator, which turns with the coil, or the plain slip ring
        that stands in its place when the brushes are taken away, and the two brushes */
     S.split = [0, Math.PI].map((a) => {
@@ -182,7 +184,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     S.ring = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.26, 24), pmat(mutedC));
     S.ring.position.set(0, YRING, 0); S.coil.add(S.ring); V.pickable(S.ring, 'a plain ring, which cannot reverse the current');
     S.brush = [-1, 1].map((sx) => {
-      const m = F.mesh.box(turn, [sx * 0.29, YRING, 0], [0.16, 0.2, 0.2], PAL.ink); keep(m, inkC);
+      const m = F.mesh.box(turn, [sx * 0.29, YRING, 0], [0.16, 0.2, 0.2], RC()); keep(m, RC);
       V.pickable(m, 'a brush, the sliding contact the current reaches the coil through'); return m;
     });
     /* the current along the two vertical sides, and the four forces the field puts on
@@ -194,7 +196,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     /* the perpendicular to the loop, and the arc of the angle it makes with the field */
     S.norm = keep(F.mesh.stick(S.coil, [0, 0, 0], [0.9, 0, 0], 0.012, PAL.muted), mutedC);
     S.ang = [];
-    for (let i = 0; i < ANGN; i++) S.ang.push(keep(F.mesh.stick(turn, [0, 0, 0], [0, 0.01, 0], 0.012, PAL.muted), mutedC));
+    for (let i = 0; i < ANGN; i++) S.ang.push(keep(F.mesh.stick(turn, [0, 0, 0], [0, 0.01, 0], 0.012, AC()), AC));
     /* the torque, a curved arrow about the top of the shaft whose span carries its size */
     S.arc = [];
     for (let i = 0; i < ARCN; i++) S.arc.push(keep(F.mesh.stick(turn, [0, 0, 0], [0, 0.01, 0], 0.03, PAL.ink), TC));
@@ -295,7 +297,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     V.move(S.lab.th, [ANGR * 1.35 * Math.cos(span / 2), 0.12, -ANGR * 1.35 * Math.sin(span / 2)]);
     V.move(S.lab.perp, [st.sgn * (nlen + 0.12), 0, 0]);
     S.lab.B.style.color = C('magnetic-field'); S.lab.I.style.color = C('current');
-    S.lab.Fs.style.color = C('force'); S.lab.Fv.style.color = C('force'); S.lab.tau.style.color = C('torque');
+    S.lab.Fs.style.color = C('force'); S.lab.Fv.style.color = C('force'); S.lab.tau.style.color = C('torque'); S.lab.th.style.color = C('angle');
     S.lab.th.textContent = 'θ = ' + deg(Math.abs(st.thEff));
     S.pole.forEach((e) => { e.style.color = PAL.ink; });
     Object.entries(S.lab).forEach(([key, e]) => {
@@ -322,7 +324,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     const ux = Math.sin(st.th * RAD), uy = Math.cos(st.th * RAD);   /* the loop's own direction, seen from above */
     const half = Math.min(hh, 250);
     const pA = [cx - ux * half, cy0 + uy * half], pB = [cx + ux * half, cy0 - uy * half];
-    line(ctx, pA[0], pA[1], pB[0], pB[1], PAL.ink, 4);
+    line(ctx, pA[0], pA[1], pB[0], pB[1], F.ref('loop'), 4);
     const outAt = st.sgn > 0 ? pA : pB, inAt = st.sgn > 0 ? pB : pA;
     outMark(ctx, outAt[0], outAt[1], C('current'), 17);
     inMark(ctx, inAt[0], inAt[1], C('current'), 17);
@@ -337,15 +339,15 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     const nx = Math.cos(st.th * RAD), ny = -Math.sin(st.th * RAD);
     line(ctx, cx, cy0, cx + nx * 150, cy0 + ny * 150, alpha(PAL.ink, 0.5), 2.5, [8, 8]);
     if (Math.abs(st.th) > 3) {
-      turnArrow(ctx, cx, cy0, 96, 0, -st.th * RAD, alpha(PAL.ink, 0.45), 2.5);
-      text(ctx, 'θ = ' + deg(Math.abs(st.th)), cx + 118 * Math.cos(st.th * RAD / 2), cy0 - 118 * Math.sin(st.th * RAD / 2), PAL.ink, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+      turnArrow(ctx, cx, cy0, 96, 0, -st.th * RAD, C('angle'), 2.5);
+      text(ctx, 'θ = ' + deg(Math.abs(st.th)), cx + 118 * Math.cos(st.th * RAD / 2), cy0 - 118 * Math.sin(st.th * RAD / 2), C('angle'), { size: 20, weight: 600, align: 'left', bg: PAL.panel });
     }
     if (Math.abs(st.tau) > 0.02) {
       const sp = (0.5 + 2.2 * Math.min(1, Math.abs(st.tau) / TMAX)) * (st.tau >= 0 ? 1 : -1);
       turnArrow(ctx, cx, cy0, 54, -2.4, sp, C('torque'), 4.5);
       text(ctx, 'τ = ' + fmt(Math.abs(st.tau), 1) + ' N⋅m', cx - 70, cy0 - 74, C('torque'), { size: 21, weight: 600, align: 'right', bg: PAL.panel });
     }
-    dot(ctx, cx, cy0, PAL.ink, true, 8);
+    dot(ctx, cx, cy0, F.ref('shaft'), true, 8);
     text(ctx, 'This browser cannot turn the scene, so the loop is drawn from above,', 700, 468, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'with the current coming out of the view at one side of it and going into the view at the other.', 700, 492, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, headText(st));
@@ -355,7 +357,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   function drawGraph(ctx, st, y0) {
     const BOX = { l: 180, r: 1250, t: y0 + 62, b: y0 + 254 };
     const { X, Y } = axes(ctx, BOX, [-180, 180], [-90, 90], {
-      xl: 'the angle the loop has turned from the position where it faces the field (degrees)',
+      xl: 'the angle the loop has turned from the position where it faces the field (degrees)', xc: C('angle'),
       yl: 'τ (N⋅m), clockwise seen from above', yc: C('torque'),
       nx: 6, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
@@ -379,7 +381,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     else if (S) apply(st);
     drawGraph(ctx, st, hasGL ? 8 : 486);
     readout(d.readout,
-      `\\ktau = N\\kIcur A\\kBmag\\sin\\theta = (${fmt(nS.v, 0)})(${fmt(iS.v, 1)}\\ \\text{A})(${fmt(area(), 4)}\\ \\text{m}^2)(${fmt(bS.v, 2)}\\ \\text{T})\\sin ${st.thEff < 0 ? '(' + degTex(st.thEff) + ')' : degTex(st.thEff)} = ${fmt(st.tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
+      `\\ktau = N\\kIcur \\karea\\kBmag\\sin\\ktheta = (${fmt(nS.v, 0)})(${fmt(iS.v, 1)}\\ \\text{A})(${fmt(area(), 4)}\\ \\text{m}^2)(${fmt(bS.v, 2)}\\ \\text{T})\\sin ${st.thEff < 0 ? '(' + degTex(st.thEff) + ')' : degTex(st.thEff)} = ${fmt(st.tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
       `A positive torque is clockwise as seen from above, and the angle in the formula is measured from the field round to the perpendicular the right hand rule makes from the current, which the brushes turn over twice a revolution: that is why the sine never goes negative while they are on, and why it does once they are taken away. The loop is square, so its area is the side squared. Example 22.5 is a hundred turns of 10.0 cm square carrying 15.0 A in a 2.00 T field, whose greatest torque is 30.0 N⋅m. The loop is drawn turning steadily at one revolution every ${fmt(T, 1)} s, which is what a motor does against the load it drives; with the brushes off it is drawn swinging back and forth in the same time, and how quickly it would really swing depends on how heavy the coil is, which the section does not give. The forces on the top and bottom segments are drawn as well: they are equal and opposite, they run along the shaft, and they turn the loop no way at all.`);
   }
 
@@ -447,11 +449,12 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     /* the needle swings to its new balance with the faces rather than jumping */
     const drawn = poleC.mix((v) => Math.min(deflect(iS.v, v === 'shaped'), STOP));
     const M = nS.v * iS.v * 1e-3 * AREA * bS.v, torque = shaped ? M : M * Math.cos(Math.min(phi, STOP));
-    const cB = C('magnetic-field'), cI = C('current'), cT = C('torque');
+    const cB = C('magnetic-field'), cI = C('current'), cT = C('torque'), cA = C('angle');
+    const cP = F.ref('meter-poles'), cL = F.ref('meter-loop'), cS = F.ref('spring'), cN = F.ref('needle');
     const kFlat = poleC.mix((v) => (v === 'flat' ? 1 : 0)), aSh = poleC.a('shaped'), aFl = poleC.a('flat');
     /* the pole faces: curved about the pivot where they are shaped, straight where they
        are not, each lettered on its outer edge */
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 5;
+    ctx.save(); ctx.strokeStyle = cP; ctx.lineWidth = 5;
     [-1, 1].forEach((sx) => {
       const pts = F.lerpPts(faceOf(sx, true), faceOf(sx, false), kFlat);
       ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
@@ -491,13 +494,13 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     /* the coil, edge on, turned through the deflection from the position it rests in */
     const ux = Math.cos(drawn), uy = Math.sin(drawn), CL = 82;
     const eA = [CX - ux * CL, CY - uy * CL], eB = [CX + ux * CL, CY + uy * CL];
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 13; ctx.lineCap = 'round';
+    ctx.save(); ctx.strokeStyle = cL; ctx.lineWidth = 13; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(eA[0], eA[1]); ctx.lineTo(eB[0], eB[1]); ctx.stroke(); ctx.restore();
     if (iS.v > 0.004) { outMark(ctx, eA[0], eA[1], cI, 15); inMark(ctx, eB[0], eB[1], cI, 15); }
     label(ctx, 'I = ' + fmt(iS.v, 2) + ' mA', eA[0], eA[1], { side: 'left', size: 21, color: cI, gap: 26, H });
     /* the spring, a spiral about the pivot that winds tighter as the coil turns, and the
        two torques that balance on it */
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = cS; ctx.lineWidth = 2.5; ctx.beginPath();
     const turns = 3.2 + drawn / TAU * 2;
     for (let i = 0; i <= 180; i++) { const t = (i / 180) * turns * TAU, r = 13 + (48 - 13) * (i / 180); const x = CX + r * Math.cos(t), y = CY + r * Math.sin(t); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
     ctx.stroke(); ctx.restore();
@@ -510,7 +513,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     dot(ctx, CX, CY, PAL.ink, true, 9);
     /* the needle and the scale it sweeps, marked in the current a shaped meter reads */
     const na = -Math.PI / 2 + drawn;
-    line(ctx, CX, CY, CX + Math.cos(na) * RSC * 0.94, CY + Math.sin(na) * RSC * 0.94, PAL.ink, 4);
+    line(ctx, CX, CY, CX + Math.cos(na) * RSC * 0.94, CY + Math.sin(na) * RSC * 0.94, cN, 4);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(CX, CY, RSC, -Math.PI / 2, -Math.PI / 2 + FULL); ctx.stroke(); ctx.restore();
     for (let i = 0; i <= 10; i++) {
       const a = -Math.PI / 2 + (FULL * i) / 10, big = i % 2 === 0, r0 = RSC - (big ? 18 : 10);
@@ -524,16 +527,16 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     const BOX = { l: 200, r: 1240, t: 730, b: 916 };
     const { X, Y } = axes(ctx, BOX, [0, 1], [0, 90], {
       xl: 'I, the current through the meter (mA)', xc: C('current'),
-      yl: 'the deflection of the needle (degrees)', nx: 5, ny: 3, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0),
+      yl: 'the deflection of the needle (degrees)', yc: cA, nx: 5, ny: 3, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0),
     });
     line(ctx, BOX.l, Y(75), BOX.r, Y(75), alpha(PAL.ink, 0.35), 2, [10, 10]);
     text(ctx, 'the stop', BOX.r - 10, Y(75) - 16, PAL.muted, { size: 17, align: 'right' });
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
     /* the chosen face's curve is the bold one; a change passes the weight across */
-    curve(ctx, (t) => deflect(t, true) / RAD, 0, 1, X, Y, alpha(PAL.ink, 0.3 + 0.7 * (1 - kFlat)), 3 + 2 * (1 - kFlat), 90);
-    curve(ctx, (t) => deflect(t, false) / RAD, 0, 1, X, Y, alpha(PAL.ink, 0.3 + 0.7 * kFlat), 3 + 2 * kFlat, 90);
+    curve(ctx, (t) => deflect(t, true) / RAD, 0, 1, X, Y, alpha(cA, 0.3 + 0.7 * (1 - kFlat)), 3 + 2 * (1 - kFlat), 90);
+    curve(ctx, (t) => deflect(t, false) / RAD, 0, 1, X, Y, alpha(cA, 0.3 + 0.7 * kFlat), 3 + 2 * kFlat, 90);
     ctx.restore();
-    pinned(ctx, BOX, X, Y, iS.v, phi / RAD, PAL.ink, deg(phi / RAD));
+    pinned(ctx, BOX, X, Y, iS.v, phi / RAD, cA, deg(phi / RAD));
     note(ctx, BOX, shaped
       ? 'The deflection is proportional to the current, so the divisions of the scale are even.'
       : 'The torque falls away as the coil turns, so the divisions close up toward the top of the scale.',
@@ -542,7 +545,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
       ? 'With no current through the coil there is no torque on it, and the spring holds the needle at zero.'
       : `A current of ${fmt(iS.v, 2)} mA through ${fmt(nS.v, 0)} turns in a ${fmt(bS.v, 3)} T field turns the coil against its spring to ${deg(Math.min(phi, STOP) / RAD)}${phi > STOP ? ', which is past the stop' : ' of the 60° scale'}.`);
     readout(d.readout,
-      `N\\kIcur A\\kBmag\\sin\\theta = k\\varphi = ${fmt(torque * 1e6, 2)}\\ \\mu\\text{N}\\cdot\\text{m}`,
+      `N\\kIcur \\karea\\kBmag\\sin\\ktheta = k\\varphi = ${fmt(torque * 1e6, 2)}\\ \\mu\\text{N}\\cdot\\text{m}`,
       `The spring balances the coil at φ = ${fmt(phi / RAD, 1)}°. The coil is 3.00 cm by 2.00 cm, so its area is 6.00 cm², and the spring takes 1.15 × 10⁻⁵ N⋅m to every radian it is wound, which puts the needle at full scale when 1.00 mA runs through two hundred turns in a 0.100 T field.${phi > STOP ? ' At this setting the spring would balance the coil only at ' + fmt(phi / RAD, 1) + '°, which is past the stop, so the needle rests against the stop and the meter is reading over its range.' : ''} The scale is marked for those two hundred turns in that field, so raising either sends the needle past the mark the current belongs to, which is what calibrating a gauge has to put right. Shaped faces keep the field square to the coil at every deflection, so the sine stays 1 and the deflection is proportional to the current; flat faces leave the torque falling away as the coil turns, which is the same sine that makes the motor above reverse.`);
   }
   register(d.fig, { update: () => {}, draw });

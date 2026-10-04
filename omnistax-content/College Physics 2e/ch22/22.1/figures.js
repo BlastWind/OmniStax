@@ -1,7 +1,8 @@
 /* Figures for section 22.1 Magnets. Boots against the section's text article.
-   The page binds no type; every
-   angle, latitude, length, gap and count here is untyped and in ink, and no body
-   is tinted, a bar magnet being ink with N and S lettered on its ends. Both
+   The tilt, the latitude and the
+   angle the hanging magnet makes wear angle; Earth, its magnet, the hanging
+   magnet and the magnet that is cut are the section's referents, and N and S
+   stay ink on every bar. Both
    figures answer their controls and register no cycle: a hanging magnet has
    settled, and a cut magnet is a state the reader steps through. Figure 22.5
    is the book's own image. */
@@ -18,12 +19,12 @@ const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const COUNT = ['none', 'two', 'four', 'eight', 'sixteen', 'thirty-two'];
 const POLES = ['two', 'four', 'eight', 'sixteen', 'thirty-two', 'sixty-four'];
 
-/* a bar magnet: an ink outline with a rule across its middle and a letter in
+/* a bar magnet: an outline with a rule across its middle and a letter in
    each half. (cx, cy) is the centre, `ang` the way the bar runs, and `first` the
-   letter on the end the bar points away from. */
-function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
+   letter on the end the bar points away from; `color` is the outline's. */
+function bar(ctx, cx, cy, L, T, ang, first, second, lsize, color = PAL.ink) {
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(ang);
-  ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
+  ctx.lineWidth = 3; ctx.strokeStyle = color; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.rect(-L / 2, -T / 2, L, T); ctx.fill(); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(0, -T / 2); ctx.lineTo(0, T / 2); ctx.stroke();
   ctx.restore();
@@ -42,15 +43,16 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
 ===================================================================== */
 (function () {
   const d = sim('sim-earth-magnet', 680);
-  const tiltS = ctl(d.controls, { label: '\\text{tilt}', cls: '', min: 0, max: 25, step: 1, value: 11, unit: '°', dec: 0, aria: 'the tilt of Earth’s magnetic axis from its rotation axis' });
-  const latS = ctl(d.controls, { label: '\\text{latitude}', cls: '', min: -20, max: 45, step: 1, value: 20, unit: '°', dec: 0, aria: 'where on the globe the magnet is hung, as a latitude' });
+  const tiltS = ctl(d.controls, { label: '\\text{tilt}', cls: 'angle', min: 0, max: 25, step: 1, value: 11, unit: '°', dec: 0, aria: 'the tilt of Earth’s magnetic axis from its rotation axis' });
+  const latS = ctl(d.controls, { label: '\\text{latitude}', cls: 'angle', min: -20, max: 45, step: 1, value: 20, unit: '°', dec: 0, aria: 'where on the globe the magnet is hung, as a latitude' });
   const CX = 480, CY = 400, R = 200, OFF = 280;      /* the globe and where the hanging magnet is held */
 
   function draw() {
     const { ctx } = begin(d.c);
     const tilt = tiltS.v * RAD, lat = latS.v * RAD;
     /* Earth, its rotation axis and its geographic North Pole */
-    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = alpha(PAL.ink, 0.05);
+    const ec = F.ref('earth'), mc = F.ref('earth-magnet'), hc = F.ref('hanging-magnet'), ac = C('angle');
+    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = ec; ctx.fillStyle = alpha(PAL.ink, 0.05);
     ctx.beginPath(); ctx.arc(CX, CY, R, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
     /* the equator and two parallels, so the circle reads as a globe */
     line(ctx, CX - R, CY, CX + R, CY, alpha(PAL.ink, 0.3), 2);
@@ -62,7 +64,7 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
     /* Earth's own magnet, tilted from the rotation axis, S at the top */
     const mx = Math.sin(tilt), my = -Math.cos(tilt);
     const sm = { x: CX + mx * R, y: CY + my * R };          /* the south magnetic pole, where the magnet's axis reaches the surface */
-    bar(ctx, CX, CY, R * 1.6, 54, Math.atan2(-my, -mx), 'S', 'N', 30);
+    bar(ctx, CX, CY, R * 1.6, 54, Math.atan2(-my, -mx), 'S', 'N', 30, mc);
     /* the magnet hung by a thread, its north-seeking end turned toward the
        south magnetic pole that Earth's magnet puts near the geographic north */
     const h = { x: CX + OFF * Math.cos(lat), y: CY - OFF * Math.sin(lat) };
@@ -72,18 +74,18 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
     const dn = { x: np.x - h.x, y: np.y - h.y }, ln = Math.hypot(dn.x, dn.y);
     /* the direction of the geographic North Pole, drawn as a dashed guide that starts clear of the bar */
     line(ctx, h.x + (dn.x / ln) * 82, h.y + (dn.y / ln) * 82, h.x + (dn.x / ln) * 150, h.y + (dn.y / ln) * 150, alpha(PAL.ink, 0.6), 2.5, [8, 8]);
-    bar(ctx, h.x, h.y, 150, 36, Math.atan2(-dm.y, -dm.x), 'S', 'N', 22);
+    bar(ctx, h.x, h.y, 150, 36, Math.atan2(-dm.y, -dm.x), 'S', 'N', 22, hc);
     dot(ctx, sm.x, sm.y, PAL.ink, true, 6);
     const ang = Math.acos(Math.max(-1, Math.min(1, (dm.x * dn.x + dm.y * dn.y) / (lm * ln)))) / RAD;
     /* the arc between the two directions, always the minor one */
     const aM = Math.atan2(-dm.y, dm.x), aN = Math.atan2(-dn.y, dn.x);
     const dlt = ((aN - aM + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
-    angleArc(ctx, h, 96, aM, aM + dlt, fmt(ang, 1) + '°');
+    angleArc(ctx, h, 96, aM, aM + dlt, fmt(ang, 1) + '°', undefined, ac);
     /* names */
     label(ctx, 'geographic North Pole', np.x, np.y, { side: 'left', size: 19 });
     label(ctx, 'rotation axis', CX, CY + R + 62, { side: 'below', size: 19, color: PAL.muted });
-    label(ctx, 'Earth’s own magnet', CX - mx * 60, CY - my * 60, { side: 'left', size: 19, gap: 245 });
-    label(ctx, 'a magnet on a thread', h.x, h.y - 72, { side: 'right', size: 19 });
+    label(ctx, 'Earth’s own magnet', CX - mx * 60, CY - my * 60, { side: 'left', size: 19, gap: 245, color: mc });
+    label(ctx, 'a magnet on a thread', h.x, h.y - 72, { side: 'right', size: 19, color: hc });
     const say = [
       'The end of Earth’s magnet that lies nearest the',
       'geographic North Pole is a south magnetic pole,',
@@ -124,7 +126,7 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
   function draw() {
     const { ctx } = begin(d.c);
     const n = cutS.v, was = +cutC.from, lo = Math.min(n, was), hi = Math.max(n, was);
-    const rows = stages(hi, whereS.v / 100);
+    const rows = stages(hi, whereS.v / 100), mc = F.ref('cut-magnet');
     /* how far row k has split off the row above: 1 for rows both states hold, and
        for the rows the change adds or takes away, staggered from the top down */
     const part = (k) => {
@@ -140,7 +142,7 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize) {
       text(ctx, k === 0 ? 'the magnet' : `after ${wd(k)} ${k === 1 ? 'cut' : 'cuts'}`, X0 - 24, k === 0 ? Y0 : y, PAL.muted, { size: 18, align: 'right' });
       row.forEach(([a, b]) => {
         const x1 = X0 + a * W + 3 * p, x2 = X0 + b * W - 3 * p, w = x2 - x1;
-        bar(ctx, (x1 + x2) / 2, k === 0 ? Y0 : y, w, TH, 0, 'N', 'S', Math.min(26, w * 0.30));
+        bar(ctx, (x1 + x2) / 2, k === 0 ? Y0 : y, w, TH, 0, 'N', 'S', Math.min(26, w * 0.30), mc);
       });
       ctx.restore();
       /* where the next cut will fall */

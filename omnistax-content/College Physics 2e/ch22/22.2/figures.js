@@ -1,15 +1,13 @@
 /* Figures for section 22.2 Ferromagnets and Electromagnets. Boots against the
    section's text article.
 
-   The page binds magnetic-field and current, as ch22/COLOR.md says it should,
-   and temperature, which that file does not list for this page: the Curie
-   temperature is the section's one result, and a figure that shows it must
-   carry a temperature the reader can raise, so the slider and the readout wear
-   Chapter 13's hue rather than standing in ink. Every gap, count of turns,
-   share of a sample and count of domains here is untyped and in ink, and no
-   body is tinted: a bar magnet, an iron core, a domain cell, a recording head
-   and a strip of magnetic medium are all ink, and the electron, proton and
-   neutron of the atomic models wear the element palette.
+   The page colours magnetic-field and current, temperature where the Curie
+   figure carries it on a slider and in the readout, and position for the gap
+   of Figure 22.7. The pieces of iron, the original magnets, the winding and
+   core of the electromagnet, the recording head and the medium are the
+   section's referents; counts of turns and domains stay ink, and the
+   electron, proton and neutron of the atomic models wear the element
+   palette.
 
    Four of the five simulations are still, because each reports the state its
    controls command and nothing in it has a clock. The fifth, the domains,
@@ -31,13 +29,13 @@ const smooth = (p) => p * p * (3 - 2 * p);
 const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
 const wd = (n) => WORDS[n] ?? String(n);
 
-/* An ink bar with a rule across its middle and a letter in each half: every bar
-   magnet and every piece of iron on this page is drawn with it, since a body is
-   never tinted and a pole is told by its letter. A null letter leaves the half
+/* A bar with a rule across its middle and a letter in each half: every bar
+   magnet and every piece of iron on this page is drawn with it, outlined in its
+   referent's colour, a pole told by its letter. A null letter leaves the half
    blank, which is how an unmagnetized piece of iron is drawn. */
-function bar(ctx, cx, cy, L, T, first, second, lsize, rule = true) {
+function bar(ctx, cx, cy, L, T, first, second, lsize, rule = true, color = PAL.ink) {
   ctx.save();
-  ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
+  ctx.lineWidth = 3; ctx.strokeStyle = color; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.rect(cx - L / 2, cy - T / 2, L, T); ctx.fill(); ctx.stroke();
   if (rule) { ctx.beginPath(); ctx.moveTo(cx, cy - T / 2); ctx.lineTo(cx, cy + T / 2); ctx.stroke(); }
   ctx.restore();
@@ -72,7 +70,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     options: [{ value: 'on', label: 'in place' }, { value: 'off', label: 'taken away' }],
     value: 'on', aria: 'whether the two original magnets are still in place',
   });
-  const gapS = ctl(d.controls, { label: '\\text{gap}', cls: '', min: 1, max: 6, step: 0.5, value: 2, unit: 'cm', dec: 1, aria: 'the gap between the iron and each of the two magnets' });
+  const gapS = ctl(d.controls, { label: '\\text{gap}', cls: 'position', min: 1, max: 6, step: 0.5, value: 2, unit: 'cm', dec: 1, aria: 'the gap between the iron and each of the two magnets' });
   const CY = 296, L = 296, T = 92, S = 24;             /* 24 units to the centimetre */
   const COLS = 8, ROWS = 3;                            /* the domains drawn inside the iron */
   /* The order in which the cells of the iron fall into line, and the direction each
@@ -93,7 +91,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     const { ctx } = begin(d.c);
     const st = state();
     gapS.disable(st.away);
-    const fc = C('magnetic-field');
+    const fc = C('magnetic-field'), pc = C('position'), ic = F.ref('iron'), mc = F.ref('magnets');
     const g = gapS.v * S, cx = 700;
     /* the magnets slide out and back rather than vanishing, and the domains fall
        out of line or into it as they go */
@@ -105,8 +103,8 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
        left and its south pole toward the iron on its right */
     if (mA > 0) {
       ctx.save(); ctx.globalAlpha = mA;
-      bar(ctx, lc, CY, L, T, 'S', 'N', 44);
-      bar(ctx, rc, CY, L, T, 'S', 'N', 44);
+      bar(ctx, lc, CY, L, T, 'S', 'N', 44, true, mc);
+      bar(ctx, rc, CY, L, T, 'S', 'N', 44, true, mc);
       /* the field of the magnets crossing each gap, from a north pole to a south */
       for (let k = -1; k <= 1; k++) {
         const y = CY + k * 30;
@@ -117,7 +115,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     }
     /* the iron, with its domains inside it and, once it is magnetized, its induced
        poles lettered under its two ends where the domain arrows leave room */
-    bar(ctx, cx, CY, L, T, null, null, 44, false);
+    bar(ctx, cx, CY, L, T, null, null, 44, false, ic);
     const poleA = clamp((al - 0.3) / 0.2, 0, 1);
     if (poleA > 0) {
       ctx.save(); ctx.globalAlpha = poleA;
@@ -156,13 +154,13 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     }
     /* names: five where the magnets are in place, two once they are gone */
     if (mA > 0.5) {
-      lab.add('an original magnet', lc, CY + T / 2, 0, 1, PAL.ink, 19, 30);
-      lab.add('an original magnet', rc, CY + T / 2, 0, 1, PAL.ink, 19, 30);
+      lab.add('an original magnet', lc, CY + T / 2, 0, 1, mc, 19, 30);
+      lab.add('an original magnet', rc, CY + T / 2, 0, 1, mc, 19, 30);
       lab.add('the field crosses the gap', cx - L / 2 - g / 2, CY - T / 2, -0.5, -0.87, fc, 19, 34);
-      hbracket(ctx, lc + L / 2, cx - L / 2, CY + T / 2 + 104, alpha(PAL.ink, 0.6), fmt(gapS.v, 1) + ' cm', { side: 'below', size: 19 });
-      hbracket(ctx, cx + L / 2, rc - L / 2, CY + T / 2 + 104, alpha(PAL.ink, 0.6));
+      hbracket(ctx, lc + L / 2, cx - L / 2, CY + T / 2 + 104, pc, fmt(gapS.v, 1) + ' cm', { side: 'below', size: 19 });
+      hbracket(ctx, cx + L / 2, rc - L / 2, CY + T / 2 + 104, pc);
     }
-    lab.add(st.away ? 'the iron, on its own' : 'the iron', cx, CY - T / 2, 0, -1, PAL.ink, 19, 26);
+    lab.add(st.away ? 'the iron, on its own' : 'the iron', cx, CY - T / 2, 0, -1, ic, 19, 26);
     lab.flush();
     const say = st.away
       ? (st.kept
@@ -242,7 +240,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     const { ctx } = begin(d.c);
     const a = target() * smooth(clamp(cy.now() / 4.5, 0, 1));
     const s = sample(a);
-    const fc = C('magnetic-field'), tc = C('temperature');
+    const fc = C('magnetic-field'), tc = C('temperature'), sc = F.ref('iron-square');
     const lab = labeller(ctx, 680); lab.block(0, 0, 1400, 96);
     /* the external field, drawn to either side of the sample so that it never
        crosses the sample's own arrows */
@@ -264,7 +262,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       if (c < N - 1 && s.owner[i] !== s.owner[i + 1]) line(ctx, X0 + (c + 1) * CELL, Y0 + r * CELL, X0 + (c + 1) * CELL, Y0 + (r + 1) * CELL, alpha(PAL.ink, 0.5), 2.5);
       if (r < N - 1 && s.owner[i] !== s.owner[i + N]) line(ctx, X0 + c * CELL, Y0 + (r + 1) * CELL, X0 + (c + 1) * CELL, Y0 + (r + 1) * CELL, alpha(PAL.ink, 0.5), 2.5);
     }
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(X0, Y0, SIDE, SIDE); ctx.restore();
+    ctx.save(); ctx.strokeStyle = sc; ctx.lineWidth = 3; ctx.strokeRect(X0, Y0, SIDE, SIDE); ctx.restore();
     /* the sample's own poles, once enough of it lies one way to give it any */
     if (s.mean > 0.5) {
       text(ctx, 'S', X0 - 34, Y0 + SIDE * 0.35, PAL.ink, { size: 32, weight: 700, align: 'center', bg: PAL.panel });
@@ -277,11 +275,11 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     const ty = (T) => TB - ((T - 300) / 1000) * (TB - TT);
     ctx.save(); ctx.fillStyle = alpha(tc, 0.3); ctx.fillRect(TX + 2, ty(tS.v), TW - 4, TB - ty(tS.v) - 2); ctx.restore();
     line(ctx, TX - 12, ty(tS.v), TX + TW + 12, ty(tS.v), tc, 4);
-    line(ctx, TX - 24, ty(TC), TX + TW + 24, ty(TC), PAL.ink, 3, [10, 10]);
+    line(ctx, TX - 24, ty(TC), TX + TW + 24, ty(TC), tc, 3, [10, 10]);
     text(ctx, '1300 K', TX - 14, TT, PAL.muted, { size: 17, align: 'right' });
     text(ctx, '300 K', TX - 14, TB, PAL.muted, { size: 17, align: 'right' });
-    text(ctx, 'the temperature of the iron', TX + TW / 2, TT - 34, PAL.ink, { size: 19, weight: 600, align: 'center' });
-    lab.add('the Curie temperature, 1043 K', TX + TW + 24, ty(TC), 1, 0, PAL.ink, 19, 22);
+    text(ctx, 'the temperature of the iron', TX + TW / 2, TT - 34, tc, { size: 19, weight: 600, align: 'center' });
+    lab.add('the Curie temperature, 1043 K', TX + TW + 24, ty(TC), 1, 0, tc, 19, 22);
     lab.add(fmt(tS.v, 0) + ' K', TX + TW + 12, ty(tS.v), 1, 0, tc, 20, 22);
     lab.flush();
     const above = tS.v >= TC;
@@ -326,7 +324,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const cc = C('current'), fc = C('magnetic-field');
+    const cc = C('current'), fc = C('magnetic-field'), wc = F.ref('winding'), kc = F.ref('core');
     const I = iS.v, n = nS.v, iron = coreC.value === 'iron';
     const lab = labeller(ctx, 640); lab.block(0, 0, 1400, 96);
     /* taking the core out fades it and lets the field shrink back, never a cut */
@@ -362,7 +360,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       pts.push([-LX + 2 * LX * q, R * Math.cos(ph), R * Math.sin(ph)]);
     }
     const seg = (wantNear) => {
-      ctx.save(); ctx.strokeStyle = cc; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.save(); ctx.strokeStyle = wc; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       let open = false;
       for (let i = 0; i < steps; i++) {
         const a = pts[i], b = pts[i + 1];
@@ -375,7 +373,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       ctx.restore();
     };
     seg(false);
-    /* the core: an ink box seen from the book's own viewpoint, its lit faces shaded */
+    /* the core: a box seen from the book's own viewpoint, its lit faces shaded */
     if (ironA > 0) {
       const P = (x, y, z) => V.P([x, y, z]);
       ctx.save(); ctx.globalAlpha = ironA;
@@ -383,7 +381,11 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
         { pts: [P(-LX, HC, HC), P(LX, HC, HC), P(LX, HC, -HC), P(-LX, HC, -HC)], nrm: [0, 1, 0] },
         { pts: [P(-LX, -HC, HC), P(LX, -HC, HC), P(LX, HC, HC), P(-LX, HC, HC)], nrm: [0, 0, 1] },
         { pts: [P(LX, -HC, HC), P(LX, -HC, -HC), P(LX, HC, -HC), P(LX, HC, HC)], nrm: [1, 0, 0] },
-      ].forEach((f) => face(ctx, f.pts, V.shade(f.nrm), 2.5));
+      ].forEach((f) => {
+        face(ctx, f.pts, V.shade(f.nrm));
+        ctx.save(); ctx.strokeStyle = kc; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+        ctx.beginPath(); f.pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.stroke(); ctx.restore();
+      });
       ctx.restore();
     }
     if (airA > 0) {
@@ -410,9 +412,9 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       text(ctx, 'S', ps[0], ps[1], PAL.ink, { size: 34, weight: 700, align: 'center', bg: PAL.panel });
     }
     const wp = V.P([-LX * 0.75, R * 0.7, R * 0.7]);
-    lab.add('the winding, carrying ' + fmt(Math.abs(I), 1) + ' A', wp[0], wp[1], -0.45, -0.89, cc, 19, 40);
+    lab.add('the winding, carrying ' + fmt(Math.abs(I), 1) + ' A', wp[0], wp[1], -0.45, -0.89, wc, 19, 40);
     const cp = V.P([LX * 0.35, -HC, HC]);
-    lab.add(iron ? 'the iron core' : 'no core, only air', cp[0], cp[1], -0.25, 0.97, PAL.ink, 19, 96);
+    lab.add(iron ? 'the iron core' : 'no core, only air', cp[0], cp[1], -0.25, 0.97, iron ? kc : PAL.ink, 19, 96);
     if (loops) { const fp = V.P([-(LX + 26) * 0.89, outer * 0.45, 0]); lab.add('the field of the coil', fp[0], fp[1], -0.62, -0.78, fc, 19, 26); }
     lab.flush();
     topline(ctx, I === 0
@@ -444,19 +446,19 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const cc = C('current'), fc = C('magnetic-field');
+    const cc = C('current'), fc = C('magnetic-field'), hc = F.ref('head'), mc = F.ref('medium');
     const I = iS.v, digital = modeC.value === 'digital';
     const lab = labeller(ctx, 600); lab.block(0, 0, 1400, 96);
     /* the head: a ring of iron with a gap in the face it turns to the medium */
     const OL = 560, OR = 840, OT = 132, OB = 336, IL = 620, IR = 780, IT = 192, IB = 286, GW = 18;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = hc; ctx.lineWidth = 3; ctx.lineJoin = 'round';
     ctx.beginPath();
     ctx.moveTo(OL, OT); ctx.lineTo(OR, OT); ctx.lineTo(OR, OB); ctx.lineTo(GX + GW / 2, OB);
     ctx.lineTo(GX + GW / 2, IB); ctx.lineTo(IR, IB); ctx.lineTo(IR, IT); ctx.lineTo(IL, IT);
     ctx.lineTo(IL, IB); ctx.lineTo(GX - GW / 2, IB); ctx.lineTo(GX - GW / 2, OB); ctx.lineTo(OL, OB);
     ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     /* the winding on the left limb of the head */
-    ctx.save(); ctx.strokeStyle = cc; ctx.lineWidth = 4;
+    ctx.save(); ctx.strokeStyle = hc; ctx.lineWidth = 4;
     for (let k = 0; k < 5; k++) { ctx.beginPath(); ctx.ellipse((OL + IL) / 2, OT + 34 + k * 28, 44, 11, 0, 0, TAU); ctx.stroke(); }
     ctx.restore();
     if (I !== 0) {
@@ -466,7 +468,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       arrow(ctx, GX - s * 48, OB + 26, GX + s * 48, OB + 26, fc, 4);
     }
     /* the medium, its regions already written, the one under the gap and the blank ones */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = mc; ctx.lineWidth = 3;
     ctx.fillRect(MX0, MY - MH / 2, MX1 - MX0, MH); ctx.strokeRect(MX0, MY - MH / 2, MX1 - MX0, MH); ctx.restore();
     /* a change of storage bends each region's strength to its new one */
     const full = modeC.mix((m) => (m === 'digital' ? 1 : 0));
@@ -484,7 +486,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     lab.add('already written', MX0 + CW * 2.5, MY + MH / 2, 0, 1, PAL.ink, 19, 26);
     lab.add('still blank', MX0 + CW * 10, MY + MH / 2, 0, 1, PAL.ink, 19, 26);
     lab.add('the region under the gap', GX, MY + MH / 2, 0, 1, fc, 19, 64);
-    lab.add('the winding of the head', (OL + IL) / 2, OT + 34, -0.8, -0.6, cc, 19, 30);
+    lab.add('the winding of the head', (OL + IL) / 2, OT + 34, -0.8, -0.6, hc, 19, 30);
     if (I !== 0) lab.add('the field across the gap', GX + 48, OB + 26, 1, 0, fc, 19, 30);
     else lab.add('the gap in the core', GX + GW / 2, (IB + OB) / 2, 1, 0, PAL.ink, 19, 40);
     lab.flush();

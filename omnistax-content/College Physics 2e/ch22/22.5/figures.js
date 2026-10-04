@@ -14,16 +14,15 @@
    period is 2*pi*m/qB, and the charge that walks into the crowded field and
    comes back. The other three answer their controls and register no cycle.
 
-   The page binds magnetic-field, velocity, force, charge and position, which
-   is the list ch22/COLOR.md gives it. The mass, the angle, the latitude and
-   every count and ratio are untyped and in ink; no body is tinted, so Earth,
-   the bar magnet, the detector and the tokamak's chamber and windings are all
-   ink; and the two oxygen ions are told apart with F.cat, which the chapter's
-   colour plan names as one of its two categorical cases. The dot and the
-   cross that stand for a field out of and into the page wear the field hue. */
+   The page colours magnetic-field, velocity, force, charge and position, mass
+   on the heavier ion's slider and the angle and latitude where a slider or an
+   arc carries them. The two oxygen ions and their source, the bar magnet, the
+   Earth, the two Van Allen belts and the tokamak's chamber are the section's
+   referents; the protons wear the element palette. The dot and the cross that
+   stand for a field out of and into the page wear the field hue. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['22.5'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, label, labeller, hbracket, vbracket, angleArc, hover, view } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, label, labeller, hbracket, vbracket, angleArc, hover, view } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -49,9 +48,9 @@ function outOfPage(ctx, x, y, color, s = 9) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(x, y, s, 0, TAU); ctx.stroke();
   ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, 3.2, 0, TAU); ctx.fill(); ctx.restore();
 }
-/* a bar magnet: an ink outline with a rule across its middle and a letter in each half */
-function bar(ctx, cx, cy, L, T, first, second) {
-  ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
+/* a bar magnet: an outline in `color` with a rule across its middle and a letter in each half */
+function bar(ctx, cx, cy, L, T, first, second, color = PAL.ink) {
+  ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = color; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.rect(cx - L / 2, cy - T / 2, L, T); ctx.fill(); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(cx, cy - T / 2); ctx.lineTo(cx, cy + T / 2); ctx.stroke(); ctx.restore();
   const sz = Math.min(T * 0.6, L * 0.3);
@@ -138,7 +137,7 @@ function legend(ctx, mark, x, y, s, color) {
       text(ctx, s, 1044, 472 + i * 28, PAL.muted, { size: 18 }));
     topline(ctx, `A ${neg ? 'negative' : 'positive'} charge at ${sci(vS.v * 1e7, 2)} m/s across a ${fmt(bS.v, 3)} T field runs round a circle ${fmt(rmm, 3)} mm in radius, once every ${fmt(period() * 1e12, 1)} ps.`);
     readout(d.readout,
-      `\\kr = \\frac{m\\kv}{\\kq\\kBmag} = \\frac{(9.11 \\times 10^{-31}\\,\\text{kg})(${sciTex(vS.v * 1e7, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(rmm, 3)}\\ \\text{mm}`,
+      `\\kr = \\frac{\\km\\kv}{\\kq\\kBmag} = \\frac{(9.11 \\times 10^{-31}\\,\\text{kg})(${sciTex(vS.v * 1e7, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(rmm, 3)}\\ \\text{mm}`,
       `The magnetic force supplies the centripetal force, qvB = mv²/r, which gives the radius. The radius grows with the speed, but the time for one turn, ${fmt(period() * 1e12, 1)} ps, does not change; only the field changes that. A positive charge goes round the other way.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -152,7 +151,7 @@ function legend(ctx, mark, x, y, s, color) {
 ===================================================================== */
 (function () {
   const H = 740, d = sim('sim-isotope-arcs', H);
-  const mS = ctl(d.controls, { label: '\\text{the heavier ion}', cls: '', min: 17, max: 22, step: 1, value: 18, unit: 'u', dec: 0, detents: [18, 20, 22], aria: 'the mass of the heavier ion, in unified mass units' });
+  const mS = ctl(d.controls, { label: '\\text{the heavier ion}', cls: 'mass', min: 17, max: 22, step: 1, value: 18, unit: 'u', dec: 0, detents: [18, 20, 22], aria: 'the mass of the heavier ion, in unified mass units' });
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 1, max: 1.6, step: 0.05, value: 1.2, unit: 'T', dec: 2, aria: 'the strength of the magnetic field' });
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 4.2, max: 6, step: 0.1, value: 5, unit: '× 10⁶ m/s', dec: 2, aria: 'the speed at which the ions enter the field' });
   const SX = 180, SY = 620, SCALE = 350;                 /* units to the metre, fixed from the widest pair of arcs */
@@ -161,7 +160,7 @@ function legend(ctx, mark, x, y, s, color) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const col = { B: C('magnetic-field'), v: C('velocity'), r: C('position') };
+    const col = { B: C('magnetic-field'), v: C('velocity'), r: C('position') }, c16 = F.ref('oxygen-16'), cH = F.ref('heavy-ion'), sc = F.ref('source');
     const r1 = rOf(16), r2 = rOf(mS.v), R1 = r1 * SCALE, R2 = r2 * SCALE, gap = 2 * (r2 - r1);
     const heavy = mS.v === 18 ? 'oxygen-18' : 'an ion of ' + fmt(mS.v, 0) + ' u';
     /* the field, out of the page, over the whole chamber */
@@ -170,12 +169,12 @@ function legend(ctx, mark, x, y, s, color) {
     /* the source, and the detector the ions come back to */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.14); ctx.fillRect(SX + 46, SY + 8, FR - SX - 46, 24); ctx.restore();
     line(ctx, SX + 46, SY + 8, FR, SY + 8, PAL.muted, 3);
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = sc; ctx.lineWidth = 3;
     ctx.fillRect(SX - 120, SY - 30, 104, 60); ctx.strokeRect(SX - 120, SY - 30, 104, 60); ctx.restore();
-    line(ctx, SX - 16, SY, SX, SY, PAL.ink, 3);
+    line(ctx, SX - 16, SY, SX, SY, sc, 3);
     arrow(ctx, SX, SY, SX, SY - 92, col.v, 5);
     /* the two half circles: up, over and back down to the detector */
-    [[R1, cat(0)], [R2, cat(1)]].forEach(([R, c]) => {
+    [[R1, c16], [R2, cH]].forEach(([R, c]) => {
       const pts = [];
       for (let i = 0; i <= 96; i++) { const a = Math.PI + (i / 96) * Math.PI; pts.push([SX + R + R * Math.cos(a), SY + R * Math.sin(a)]); }
       poly(ctx, pts, c, 4.5);
@@ -183,20 +182,20 @@ function legend(ctx, mark, x, y, s, color) {
     });
     /* the two arcs are named in a key rather than on the curves, which cross and
        come together as the sliders move (rule 26.6) */
-    [['oxygen-16', cat(0)], [heavy, cat(1)]].forEach(([name, c], i) => {
+    [['oxygen-16', c16], [heavy, cH]].forEach(([name, c], i) => {
       const y = 470 + i * 34;
       line(ctx, 1000, y, 1044, y, c, 4.5);
       text(ctx, name, 1056, y, c, { size: 19, weight: 600, bg: PAL.panel });
     });
     /* the gap between the two landing points, which is what a spectrometer reads */
     hbracket(ctx, SX + 2 * R1, SX + 2 * R2, SY + 62, col.r, fmt(gap, 3) + ' m', { side: 'below', H });
-    label(ctx, 'the source', SX - 68, SY + 30, { side: 'below', size: 19, gap: 20, H });
+    label(ctx, 'the source', SX - 68, SY + 30, { side: 'below', size: 19, gap: 20, H, color: sc });
     label(ctx, 'the detector', FR - 110, SY + 20, { side: 'above', size: 19, gap: 30, H });
     legend(ctx, outOfPage, 1000, 130, 'the magnetic field B, out of the page', col.B);
     text(ctx, 'The heavier ion swings wider.', 1000, 424, PAL.muted, { size: 18, bg: PAL.panel });
     topline(ctx, `Oxygen-16 and ${heavy} enter at ${sci(vS.v * 1e6, 2)} m/s, cross a ${fmt(bS.v, 2)} T field and land ${fmt(gap, 3)} m apart.`);
     readout(d.readout,
-      `2(\\kr_2 - \\kr_1) = \\frac{2(m_2 - m_1)\\kv}{\\kq\\kBmag} = \\frac{2(${sciTex((mS.v - 16) * U16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 2)}\\,\\text{T})} = ${fmt(gap, 3)}\\ \\text{m}`,
+      `2(\\kr_2 - \\kr_1) = \\frac{2(\\kmtwo - \\kmone)\\kv}{\\kq\\kBmag} = \\frac{2(${sciTex((mS.v - 16) * U16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 2)}\\,\\text{T})} = ${fmt(gap, 3)}\\ \\text{m}`,
       `Each ion turns through a half circle of radius r = mv/qB, ${fmt(r1, 3)} m for oxygen-16 and ${fmt(r2, 3)} m for the heavier ion. ` + 'The two ions carry the same charge and enter at the same speed in the same field, so the only thing that sets them apart is mass, and the gap they open grows in proportion to the difference between their masses.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -216,7 +215,7 @@ function legend(ctx, mark, x, y, s, color) {
 ===================================================================== */
 (function () {
   const H = 700, d = sim('sim-spiral-mirror', H);
-  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 10, max: 60, step: 1, value: 30, unit: '°', dec: 0, aria: 'the angle between the velocity and the field where the charge enters' });
+  const thS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 10, max: 60, step: 1, value: 30, unit: '°', dec: 0, aria: 'the angle between the velocity and the field where the charge enters' });
   const btS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.05, max: 0.5, step: 0.005, value: 0.25, unit: 'T', dec: 3, aria: 'the strength of the field where the lines are most crowded' });
   const B0 = 0.050, XL = 80, XR = 1108, YC = 350, D = 92;
   const sOf = (x) => (x - XL) / (XR - XL);
@@ -260,7 +259,7 @@ function legend(ctx, mark, x, y, s, color) {
       for (let i = 0; i <= 80; i++) { const x = XL + ((XR - XL) * i) / 80; pts.push([x, YC + k * D * width(sOf(x))]); }
       poly(ctx, pts, alpha(col.B, k === 0 ? 0.95 : 0.65), k === 0 ? 3.5 : 2.6);
     }
-    bar(ctx, 1218, YC, 180, 104, 'N', 'S');
+    bar(ctx, 1218, YC, 180, 104, 'N', 'S', F.ref('magnet'));
     /* the charge's path: a gyration about the middle line whose swing narrows as the field rises */
     const P = mirrored ? 5 : 2.6, half = !mirrored || cy.now() <= P / 2;
     const tt = ((half ? cy.now() : P - cy.now()) / (mirrored ? P / 2 : P)) * tab.total;
@@ -315,7 +314,7 @@ function legend(ctx, mark, x, y, s, color) {
 ===================================================================== */
 (function () {
   const H = 700, d = sim('sim-earth-trap', H);
-  const latS = ctl(d.controls, { label: '\\text{latitude}', cls: '', min: 0, max: 80, step: 1, value: 72, unit: '°', dec: 0, aria: 'the latitude at which the particle arrives, or at which a trapped particle is turned back' });
+  const latS = ctl(d.controls, { label: '\\text{latitude}', cls: 'angle', min: 0, max: 80, step: 1, value: 72, unit: '°', dec: 0, aria: 'the latitude at which the particle arrives, or at which a trapped particle is turned back' });
   const whatC = choice(d.controls, { label: '\\text{the particle}', options: [{ value: 'ray', label: 'a cosmic ray arriving' }, { value: 'inner', label: 'trapped, inner belt' }, { value: 'outer', label: 'trapped, outer belt' }], value: 'ray', aria: 'which particle arrives or is held' });
   const EX = 680, EY = 420, RE = 90, R0 = 2.2;           /* the Earth, and where an arriving ray meets the field */
   const shell = (L, lat) => [EX + RE * L * Math.pow(Math.cos(lat), 3), EY - RE * L * Math.cos(lat) * Math.cos(lat) * Math.sin(lat)];
@@ -336,15 +335,15 @@ function legend(ctx, mark, x, y, s, color) {
     const col = { B: C('magnetic-field'), v: C('velocity'), q: F.el('p+') };
     const lat = latS.v * RAD, what = whatC.value;
     /* the two belts, then the field lines they sit on */
-    band(ctx, 1.3, 1.9, alpha(PAL.ink, 0.13));
-    band(ctx, 3.1, 4.5, alpha(PAL.ink, 0.08));
+    band(ctx, 1.3, 1.9, alpha(F.ref('inner-belt'), 0.2));
+    band(ctx, 3.1, 4.5, alpha(F.ref('outer-belt'), 0.16));
     [1.5, 2.2, 3.1, 4.3, 5.6].forEach((L) => {
       const pts = lineOf(L);
       poly(ctx, pts, alpha(col.B, 0.85), 2.6);
       poly(ctx, pts.map(([x, y]) => [2 * EX - x, y]), alpha(col.B, 0.85), 2.6);
     });
     /* the Earth, its axis, its equator and its poles */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('earth'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(EX, EY, RE, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     line(ctx, EX, EY - RE - 44, EX, EY + RE + 44, alpha(PAL.ink, 0.4), 2, [10, 10]);
     line(ctx, EX - RE - 30, EY, EX + RE + 30, EY, alpha(PAL.ink, 0.3), 2, [6, 8]);
@@ -387,7 +386,7 @@ function legend(ctx, mark, x, y, s, color) {
         label(ctx, 'turned aside, never reaching the air', end[0], end[1], { side: end[0] > EX ? 'right' : 'left', size: 19, color: col.q, gap: 30, H });
       }
       const nxt = shell(L, lat + 0.05);
-      angleArc(ctx, { x: meet[0], y: meet[1] }, 50, Math.atan2(-(far[1] - meet[1]), far[0] - meet[0]), Math.atan2(-(nxt[1] - meet[1]), nxt[0] - meet[0]), fmt(ang, 0) + '°');
+      angleArc(ctx, { x: meet[0], y: meet[1] }, 50, Math.atan2(-(far[1] - meet[1]), far[0] - meet[0]), Math.atan2(-(nxt[1] - meet[1]), nxt[0] - meet[0]), fmt(ang, 0) + '°', undefined, C('angle'));
       ctx.restore();
     }
     if (aTrap > 0) {
@@ -441,12 +440,12 @@ function legend(ctx, mark, x, y, s, color) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const col = { B: C('magnetic-field'), q: F.el('p+'), r: C('position') };
+    const col = { B: C('magnetic-field'), q: F.el('p+'), r: C('position') }, ch = F.ref('chamber');
     /* the chamber: its outer and inner equators and its top and bottom circles */
-    poly(ctx, ring(RMAJ + AMIN, 0), PAL.ink, 3);
-    poly(ctx, ring(RMAJ - AMIN, 0), PAL.ink, 3);
-    poly(ctx, ring(RMAJ, AMIN), alpha(PAL.ink, 0.5), 2.5);
-    poly(ctx, ring(RMAJ, -AMIN), alpha(PAL.ink, 0.28), 2.5, [8, 8]);
+    poly(ctx, ring(RMAJ + AMIN, 0), ch, 3);
+    poly(ctx, ring(RMAJ - AMIN, 0), ch, 3);
+    poly(ctx, ring(RMAJ, AMIN), alpha(ch, 0.5), 2.5);
+    poly(ctx, ring(RMAJ, -AMIN), alpha(ch, 0.28), 2.5, [8, 8]);
     /* the coil wound round it */
     for (let k = 0; k < 16; k++) {
       const a = (k / 16) * TAU, ca = Math.cos(a), sa = Math.sin(a), pts = [];
@@ -454,7 +453,7 @@ function legend(ctx, mark, x, y, s, color) {
         const t = (i / 48) * TAU, rr = RMAJ + AMIN * 1.18 * Math.cos(t);
         pts.push(P3(rr * ca, AMIN * 1.18 * Math.sin(t), rr * sa));
       }
-      poly(ctx, pts, alpha(PAL.ink, 0.34), 2.2);
+      poly(ctx, pts, alpha(ch, 0.34), 2.2);
     }
     /* the field line that runs the whole way round inside, and the deuteron's spiral about it */
     const centre = ring(RMAJ, 0);
@@ -471,13 +470,13 @@ function legend(ctx, mark, x, y, s, color) {
     vbracket(ctx, mid[0] + 104, top[1], mid[1], col.r, fmt(AMIN, 1) + ' m', 1, { side: 'right', H });
     const outer = ring(RMAJ + AMIN, 0);
     label(ctx, 'the field runs all the way around', centre[34][0], centre[34][1], { side: 'below', size: 19, color: col.B, gap: 40, H });
-    label(ctx, 'the chamber and its coil', outer[60][0], outer[60][1], { side: 'left', size: 19, gap: 34, H });
+    label(ctx, 'the chamber and its coil', outer[60][0], outer[60][1], { side: 'left', size: 19, gap: 34, H, color: ch });
     label(ctx, 'a proton of the plasma and its path', pts[390][0], pts[390][1], { side: 'below', size: 19, color: col.q, gap: 40, H });
     ['The spiral is drawn', BIG + ' times its true size.', 'At its true size the', 'circle would be a', fmt(AMIN / rg, 0) + 'th of the chamber’s', 'half width, which is', 'why the plasma never', 'reaches the wall.'].forEach((s, i) =>
       text(ctx, s, 34, 180 + i * 28, PAL.muted, { size: 18 }));
     topline(ctx, `A proton at ${sci(vS.v * 1e5, 1)} m/s in a ${fmt(bS.v, 1)} T field circles a field line every ${fmt(rg * 1000, 2)} mm, a ${fmt(AMIN / rg, 0)}th of the chamber’s half width, so it follows the ring round without touching the wall.`);
     readout(d.readout,
-      `\\kr = \\frac{m\\kv}{\\kq\\kBmag} = \\frac{(1.67 \\times 10^{-27}\\,\\text{kg})(${sciTex(vS.v * 1e5, 1)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 1)}\\,\\text{T})} = ${fmt(rg * 1000, 2)}\\ \\text{mm}`,
+      `\\kr = \\frac{\\km\\kv}{\\kq\\kBmag} = \\frac{(1.67 \\times 10^{-27}\\,\\text{kg})(${sciTex(vS.v * 1e5, 1)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 1)}\\,\\text{T})} = ${fmt(rg * 1000, 2)}\\ \\text{mm}`,
       `That radius is a ${fmt(AMIN / rg, 0)}th of the chamber’s 1.0 m half width. The spiral is drawn ${BIG} times its true width so that it can be seen at all. Raise the speed or lower the field and the circle widens, and a chamber holds its plasma only while that circle stays small against the chamber itself.`);
   }
   register(d.fig, { update: () => {}, draw });

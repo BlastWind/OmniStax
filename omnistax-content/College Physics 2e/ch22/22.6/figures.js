@@ -4,11 +4,10 @@
    force, electric-field and voltage. The first six of them are the bindings
    ch22/COLOR.md expects of this page; force is bound here as well, and the
    plan says why, since the whole section is one force set against another and
-   both are drawn as arrows. The conductor, the vessel and the magnet are the
-   frame of a diagram and are drawn in ink, with N and S lettered on the poles;
-   a carrier's sign is told by the letter on it and never by a second hue, and
-   the width of a conductor and the bore of a vessel are lengths, which this
-   book leaves untyped. All three figures answer their controls and register no
+   both are drawn as arrows. The two conductors, the vessel and the magnet are
+   the section's referents, with N and S lettered on the poles; a carrier's
+   sign is told by the letter on it and never by a second hue, and the width of
+   a conductor and the bore of a vessel wear position. All three figures answer their controls and register no
    cycle: the pile-up is over as soon as it begins, and what each figure draws
    is the state it settles into. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -72,8 +71,8 @@ function carrier(ctx, x, y, color, sign, r) {
     const neg = who.value === 'e';
     const B = bs.v, vd = vs.v * 1e-3, Fm = QE * vd * B;
 
-    /* the conductor, an ink slab */
-    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = alpha(PAL.ink, 0.045);
+    /* the conductor, a slab */
+    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = F.ref('conductor'); ctx.fillStyle = alpha(PAL.ink, 0.045);
     ctx.beginPath(); ctx.rect(X0, YT, X1 - X0, YB - YT); ctx.fill(); ctx.stroke(); ctx.restore();
 
     /* the conventional current, to the right whichever sign carries it */
@@ -146,7 +145,7 @@ function carrier(ctx, x, y, color, sign, r) {
   const d = sim('sim-hall-balance', 720);
   const bs = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.02, max: 0.50, step: 0.01, value: 0.10, unit: 'T', dec: 3, aria: 'the strength of the magnetic field out of the front face' });
   const vs = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.05, max: 0.50, step: 0.01, value: 0.20, unit: 'm/s', dec: 3, aria: 'the speed of the carriers along the conductor' });
-  const ls = ctl(d.controls, { label: 'l', cls: '', min: 3.0, max: 10.0, step: 0.25, value: 4.0, unit: 'mm', dec: 2, aria: 'the width of the conductor across which the Hall emf appears' });
+  const ls = ctl(d.controls, { label: '\\kl', cls: 'position', min: 3.0, max: 10.0, step: 0.25, value: 4.0, unit: 'mm', dec: 2, aria: 'the width of the conductor across which the Hall emf appears' });
 
   /* the viewpoint, fixed: a little to the right of the conductor and a little
      above it, which is the book's own viewpoint, so that the front face, the
@@ -162,16 +161,21 @@ function carrier(ctx, x, y, color, sign, r) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const bc = C('magnetic-field'), ec = C('electric-field'), fc = C('force'), vc = C('velocity'), qc = C('charge'), uc = C('voltage');
+    const bc = C('magnetic-field'), ec = C('electric-field'), fc = C('force'), vc = C('velocity'), qc = C('charge'), uc = C('voltage'), pc = C('position'), sc = F.ref('slab');
     const B = bs.v, v = vs.v, lmm = ls.v, l = lmm * 1e-3;
     const E = v * B, emf = B * l * v, HY = (lmm * PXMM) / 2, inset = Math.min(14, HY * 0.3);
     const P = (x, y, z) => V.P([x, y, z]);
     const quad = (pts) => pts.map((p) => V.P(p));
 
     /* the slab: the end the viewpoint shows, the top, and the front face last */
-    face(ctx, quad([[LX, -HY, DZ], [LX, -HY, -DZ], [LX, HY, -DZ], [LX, HY, DZ]]), kR, 3);
-    face(ctx, quad([[-LX, HY, DZ], [LX, HY, DZ], [LX, HY, -DZ], [-LX, HY, -DZ]]), kT, 3);
-    face(ctx, quad([[-LX, -HY, DZ], [LX, -HY, DZ], [LX, HY, DZ], [-LX, HY, DZ]]), kF, 3);
+    const slabFace = (pts, k) => {
+      face(ctx, pts, k);
+      ctx.save(); ctx.strokeStyle = sc; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+      ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.stroke(); ctx.restore();
+    };
+    slabFace(quad([[LX, -HY, DZ], [LX, -HY, -DZ], [LX, HY, -DZ], [LX, HY, DZ]]), kR);
+    slabFace(quad([[-LX, HY, DZ], [LX, HY, DZ], [LX, HY, -DZ], [-LX, HY, -DZ]]), kT);
+    slabFace(quad([[-LX, -HY, DZ], [LX, -HY, DZ], [LX, HY, DZ], [-LX, HY, DZ]]), kF);
 
     /* the field, coming straight out of the front face */
     for (const x of BX) { const p = P(x, 0, DZ); outDot(ctx, p[0], p[1], bc, 10); }
@@ -203,7 +207,7 @@ function carrier(ctx, x, y, color, sign, r) {
 
     /* the width the emf appears across, bracketed at the free end */
     const tl = P(-LX, HY, DZ), bl = P(-LX, -HY, DZ);
-    vbracket(ctx, Math.min(tl[0], bl[0]) - 48, tl[1], bl[1], PAL.ink, 'l = ' + fmt(lmm, 2) + ' mm', -1, { side: 'left' });
+    vbracket(ctx, Math.min(tl[0], bl[0]) - 48, tl[1], bl[1], pc, 'l = ' + fmt(lmm, 2) + ' mm', -1, { side: 'left' });
     text(ctx, 'ε = ' + volt(emf).n + ' ' + volt(emf).u + ' across the width', 680, 566, uc, { size: 23, weight: 600, align: 'center' });
 
     /* what each mark in the slab is, once, in a legend */
@@ -213,7 +217,7 @@ function carrier(ctx, x, y, color, sign, r) {
 
     topline(ctx, 'The electric force on the electron is as large as the magnetic force and points the other way, so the field between the faces holds at ' + fmt(E, 4) + ' V/m and the charge stops gathering.');
     readout(d.readout,
-      `\\kemfhall = \\kBmag l \\kv = ${volt(emf).n}\\ ${volt(emf).tex}`,
+      `\\kemfhall = \\kBmag \\kl \\kv = ${volt(emf).n}\\ ${volt(emf).tex}`,
       `At the balance qE = qvB, so the field between the faces is E = vB = ${fmt(E, 4)} V/m. ` + 'The charge cancels from the balance, so the field the separation settles at does not depend on how much charge each carrier holds; the width of the conductor then turns that field into the Hall emf, which is why a wider conductor gives a larger reading at the same field and the same speed.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -229,7 +233,7 @@ function carrier(ctx, x, y, color, sign, r) {
   const d = sim('sim-flow-probe', 900);
   const bs = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0.010, max: 0.500, step: 0.005, value: 0.100, unit: 'T', dec: 3, aria: 'the strength of the magnetic field across the vessel' });
   const vs = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.02, max: 1.00, step: 0.01, value: 0.20, unit: 'm/s', dec: 3, aria: 'the average speed of the flow' });
-  const ls = ctl(d.controls, { label: 'l', cls: '', min: 3.0, max: 10.0, step: 0.25, value: 4.0, unit: 'mm', dec: 2, aria: 'the bore of the vessel' });
+  const ls = ctl(d.controls, { label: '\\kl', cls: 'position', min: 3.0, max: 10.0, step: 0.25, value: 4.0, unit: 'mm', dec: 2, aria: 'the bore of the vessel' });
 
   /* the vessel, on one fixed scale: 1 mm of bore is 19 units of radius, so the
      widest vessel the slider reaches, 10.0 mm, is 190 units in radius and
@@ -245,19 +249,20 @@ function carrier(ctx, x, y, color, sign, r) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const bc = C('magnetic-field'), vc = C('velocity'), qc = C('charge'), fc = C('force'), uc = C('voltage');
+    const bc = C('magnetic-field'), vc = C('velocity'), qc = C('charge'), fc = C('force'), uc = C('voltage'), pc = C('position');
+    const mg = F.ref('magnet'), vs2 = F.ref('vessel');
     const B = bs.v, v = vs.v, lmm = ls.v, l = lmm * 1e-3, emf = B * l * v, R = lmm * PXMM;
 
-    /* the two pole pieces of the magnet, in ink with their poles lettered */
+    /* the two pole pieces of the magnet, with their poles lettered */
     for (const [x0, nm] of [[280, 'N'], [900, 'S']]) {
-      ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft;
+      ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = mg; ctx.fillStyle = PAL.soft;
       ctx.beginPath(); ctx.rect(x0, 200, 120, 220); ctx.fill(); ctx.stroke(); ctx.restore();
       text(ctx, nm, x0 + 60, 310, PAL.ink, { size: 44, weight: 700, align: 'center' });
     }
     text(ctx, 'B = ' + fmt(B, 3) + ' T, across the vessel', 340, 456, bc, { size: 21, weight: 600, align: 'center' });
 
     /* the vessel, seen end on, with the flow coming straight out of the page */
-    ctx.save(); ctx.lineWidth = 4; ctx.strokeStyle = PAL.ink; ctx.fillStyle = alpha(PAL.ink, 0.045);
+    ctx.save(); ctx.lineWidth = 4; ctx.strokeStyle = vs2; ctx.fillStyle = alpha(PAL.ink, 0.045);
     ctx.beginPath(); ctx.arc(CX, CY, R, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
     /* the field, crossing the vessel from the north pole to the south */
     arrow(ctx, 410, CY, 890, CY, bc, 5);
@@ -285,8 +290,8 @@ function carrier(ctx, x, y, color, sign, r) {
     /* the bore, bracketed with its label lifted off the field arrow that
        crosses the vessel on the center line */
     const bx = CX - R - 38;
-    vbracket(ctx, bx, CY - R, CY + R, PAL.ink);
-    label(ctx, 'l = ' + fmt(lmm, 2) + ' mm', bx, CY - R * 0.52, { side: 'left', size: 21, gap: 14 });
+    vbracket(ctx, bx, CY - R, CY + R, pc);
+    label(ctx, 'l = ' + fmt(lmm, 2) + ' mm', bx, CY - R * 0.52, { side: 'left', size: 21, gap: 14, color: pc });
     /* the leads run just clear of the vessel and over and under the pole pieces to the meter */
     const MX = 1230, MY = CY, topY = Math.min(180, CY - R - 24), botY = Math.max(440, CY + R + 24);
     line(ctx, CX, CY - R, CX, topY, PAL.muted, 3); line(ctx, CX, topY, MX, topY, PAL.muted, 3); line(ctx, MX, topY, MX, MY - 46, PAL.muted, 3);
@@ -301,7 +306,7 @@ function carrier(ctx, x, y, color, sign, r) {
     text(ctx, 'so the emf comes out the same way whichever sign of carrier is free to move.', 700, 606, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
 
     /* the scale of voltage, with the heart's own voltages shaded on it */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12);
+    ctx.save(); ctx.fillStyle = alpha(uc, 0.14);
     ctx.fillRect(sx(3e-4), SY - 20, sx(5e-3) - sx(3e-4), 40); ctx.restore();
     line(ctx, SX0, SY, SX1, SY, PAL.ink, 3);
     for (let i = 0; i < DEC.length; i++) {
@@ -318,7 +323,7 @@ function carrier(ctx, x, y, color, sign, r) {
 
     topline(ctx, 'A field of ' + fmt(B, 3) + ' T across a vessel ' + fmt(lmm, 2) + ' mm wide, with the flow moving at ' + fmt(v, 3) + ' m/s, gives a Hall emf of ' + volt(emf).n + ' ' + volt(emf).u + '.');
     readout(d.readout,
-      `\\kemfhall = \\kBmag l \\kv = (${fmt(B, 3)}\\ \\text{T})(${sci(l, 2)}\\ \\text{m})(${fmt(v, 3)}\\ \\text{m/s}) = ${volt(emf).n}\\ ${volt(emf).tex}`,
+      `\\kemfhall = \\kBmag \\kl \\kv = (${fmt(B, 3)}\\ \\text{T})(${sci(l, 2)}\\ \\text{m})(${fmt(v, 3)}\\ \\text{m/s}) = ${volt(emf).n}\\ ${volt(emf).tex}`,
       'The sign of the emf is settled by the directions of the field and the flow alone, since the positive and the negative carriers are driven to opposite walls, and a fluid carrying both signs still gives a reading. The scale shows how small that reading is beside the millivolts of a heartbeat, which is why the probe applies an alternating field and the amplifier listens at that one frequency.');
   }
   register(d.fig, { update: () => {}, draw });

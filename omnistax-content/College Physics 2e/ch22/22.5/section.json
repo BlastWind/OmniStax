@@ -4,7 +4,7 @@
  "chapter": "22",
  "title": "Force on a Moving Charge in a Magnetic Field: Examples and Applications",
  "short": "Force on a Moving Charge: Applications",
- "lead": "A magnetic force always acts at right angles to the velocity of the charge, and such a force can never speed a particle up or slow it down. All it can do is turn it, and a force of constant size that keeps turning a particle at right angles to its motion is exactly what uniform circular motion needs. The radius of that circle is the mass times the speed divided by the charge times the field strength. Tip the velocity out of the plane, and the circle becomes a spiral running along a field line. That accounts for the curved tracks in a bubble chamber, the spiral a magnet makes of the electrons in a television tube, the aurora, and the belts of trapped particles above the atmosphere. It also explains the fields designed to hold a beam or a plasma in place.",
+ "lead": "A magnetic force always acts at right angles to the velocity of the charge, and such a force can never speed a particle up or slow it down. All it can do is turn it, and a force of constant size that keeps turning a particle at right angles to its motion is exactly what uniform circular motion needs. The radius of that circle is the mass times the speed divided by the charge times the field strength. Tip the velocity out of the plane, and the circle becomes a spiral running along a field line. That accounts for the curved tracks in a bubble chamber, the spiral <span data-ref=\"magnet\">a magnet</span> makes of the electrons in a television tube, the aurora, and <span data-ref=\"inner-belt outer-belt\">the belts of trapped particles</span> above the atmosphere. It also explains the fields designed to hold a beam or a plasma in place.",
  "objectives": [
   "Describe the effects of a magnetic field on a moving charge.",
   "Calculate the radius of curvature of the path of a charge that is moving in a magnetic field."
@@ -49,7 +49,7 @@
   {
    "id": "sim-isotope-arcs",
    "kind": "sim",
-   "draws": ["magnetic-field", "velocity", "charge", "position"]
+   "draws": ["magnetic-field", "velocity", "charge", "position", "mass"]
   },
   {
    "id": "sim-spiral-mirror",
@@ -59,7 +59,7 @@
    "originals": ["/media/ch22/Figure_23_05_03a.jpg", "/media/ch22/Figure_23_05_04a.jpg"],
    "original_caption": "(Figure 22.20) Side view showing what happens when a magnet comes in contact with a computer monitor or TV screen. Electrons moving toward the screen spiral about magnetic field lines, maintaining the component of their velocity parallel to the field lines. This distorts the image on the screen. (Figure 22.21) When a charged particle moves along a magnetic field line into a region where the field becomes stronger, the particle experiences a force that reduces the component of velocity parallel to the field. This force slows the motion along the field line and here reverses it, forming a “magnetic mirror.”",
    "widths": [350, 250],
-   "draws": ["magnetic-field", "velocity", "force", "charge"]
+   "draws": ["magnetic-field", "velocity", "force", "charge", "angle"]
   },
   {
    "id": "sim-earth-trap",
@@ -69,7 +69,7 @@
    "originals": ["/media/ch22/Figure_23_05_05a.jpg", "/media/ch22/Figure_23_05_06a.jpg"],
    "original_caption": "(Figure 22.22) Energetic electrons and protons, components of cosmic rays, from the Sun and deep outer space often follow the Earth’s magnetic field lines rather than cross them. (Recall that the Earth’s north magnetic pole is really a south pole in terms of a bar magnet.) (Figure 22.23) The Van Allen radiation belts are two regions in which energetic charged particles are trapped in the Earth’s magnetic field. One belt lies about 300 km above the Earth’s surface, the other about 16,000 km. Charged particles in these belts migrate along magnetic field lines and are partially reflected away from the poles by the stronger fields there. The charged particles that enter the atmosphere are replenished by the Sun and sources in deep outer space.",
    "widths": [300, 300],
-   "draws": ["magnetic-field", "velocity"]
+   "draws": ["magnetic-field", "velocity", "angle"]
   },
   {
    "id": "fig-fermilab",
@@ -323,5 +323,47 @@
   {"exercise": "p3", "concept": "force-from-electric-field", "weight": 3, "weights_by": "ai"},
   {"exercise": "p4", "concept": "radius-of-curvature"},
   {"exercise": "p4", "concept": "circular-motion-in-a-magnetic-field", "weight": 2, "weights_by": "ai"}
+ ],
+ "referents": [
+  {
+   "id": "oxygen-16",
+   "label": "the oxygen-16 ion",
+   "figure": "sim-isotope-arcs"
+  },
+  {
+   "id": "heavy-ion",
+   "label": "the heavier ion",
+   "figure": "sim-isotope-arcs"
+  },
+  {
+   "id": "source",
+   "label": "the source",
+   "figure": "sim-isotope-arcs"
+  },
+  {
+   "id": "magnet",
+   "label": "the magnet held against the screen",
+   "figure": "sim-spiral-mirror"
+  },
+  {
+   "id": "earth",
+   "label": "the Earth",
+   "figure": "sim-earth-trap"
+  },
+  {
+   "id": "inner-belt",
+   "label": "the inner Van Allen belt",
+   "figure": "sim-earth-trap"
+  },
+  {
+   "id": "outer-belt",
+   "label": "the outer Van Allen belt",
+   "figure": "sim-earth-trap"
+  },
+  {
+   "id": "chamber",
+   "label": "the tokamak’s chamber",
+   "figure": "sim-tokamak"
+  }
  ]
 }

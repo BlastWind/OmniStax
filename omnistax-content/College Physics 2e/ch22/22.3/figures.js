@@ -1,9 +1,9 @@
 /* Figures for section 22.3 Magnetic Fields and Magnetic Field Lines. Boots
-   against the section's text article. The page binds magnetic-field, from every
-   field line and every compass needle of both figures, and current, from the
-   arrow that runs along a wire and round a loop; every distance, angle and place
-   is untyped and in ink, and no body is tinted, a bar magnet being ink with N and
-   S lettered on its ends and a wire being ink. Both figures answer their controls
+   against the section's text article. The page colours magnetic-field, from every
+   field line and every compass needle of both figures, current, from the arrow
+   that runs along a wire and round a loop, and position and angle where a slider
+   places the reader's compass. The bar magnet, the mark, the loop, the wire and
+   the reader's two compasses are the section's referents; N and S stay ink. Both figures answer their controls
    and register no cycle: a compass laid beside a magnet or a wire has settled
    where the field holds it, and the question is which way it ended up pointing
    (rule 14). */
@@ -48,10 +48,10 @@ function inSym(ctx, X, Y, r, color) {
   ctx.restore();
 }
 
-/* a compass lying flat on the page: an ink case, and a needle whose north half
-   wears the field hue and carries the point */
-function compass(ctx, X, Y, r, ang, color, letter) {
-  ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.75); ctx.lineWidth = Math.max(2, r * 0.09); ctx.fillStyle = PAL.panel;
+/* a compass lying flat on the page: a case, ink unless it is a referent's, and a
+   needle whose north half wears the field hue and carries the point */
+function compass(ctx, X, Y, r, ang, color, letter, rim = alpha(PAL.ink, 0.75)) {
+  ctx.save(); ctx.strokeStyle = rim; ctx.lineWidth = Math.max(2, r * 0.09); ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.arc(X, Y, r, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
   const ux = Math.cos(ang), uy = Math.sin(ang), px = -uy, py = ux, w = Math.max(2.4, r * 0.16);
   ctx.fillStyle = color;
@@ -63,8 +63,8 @@ function compass(ctx, X, Y, r, ang, color, letter) {
   if (letter) text(ctx, letter, X + Math.cos(ang) * (r + 14), Y + Math.sin(ang) * (r + 14), color, { size: 19, weight: 700, align: 'center' });
 }
 /* the same compass seen edge-on, for a field that runs perpendicular to the page */
-function compassEdge(ctx, X, Y, r, out, color) {
-  ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.75); ctx.lineWidth = 2.5; ctx.fillStyle = PAL.panel;
+function compassEdge(ctx, X, Y, r, out, color, rim = alpha(PAL.ink, 0.75)) {
+  ctx.save(); ctx.strokeStyle = rim; ctx.lineWidth = 2.5; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.ellipse(X, Y, r, r * 0.34, 0, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
   if (out > 0) outSym(ctx, X, Y, r * 0.45, color);
   else if (out < 0) inSym(ctx, X, Y, r * 0.45, color);
@@ -83,8 +83,8 @@ function compassEdge(ctx, X, Y, r, out, color) {
 (function () {
   const d = sim('sim-field-map', 900);
   const stS = ctl(d.controls, { label: '\\text{needles} \\to \\text{loops}', cls: '', min: 0, max: 2, step: 0.01, value: 0, unit: '', dec: 2, aria: 'from the compass needles, to the field lines they trace, to the closed loops those lines make inside the magnet' });
-  const alongS = ctl(d.controls, { label: '\\text{along}', cls: '', min: -16, max: 16, step: 0.5, value: 9, unit: 'cm', dec: 1, aria: 'how far along the magnet your own compass is held' });
-  const acrossS = ctl(d.controls, { label: '\\text{across}', cls: '', min: -10, max: 10, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'how far across the magnet your own compass is held' });
+  const alongS = ctl(d.controls, { label: '\\text{along}', cls: 'position', min: -16, max: 16, step: 0.5, value: 9, unit: 'cm', dec: 1, aria: 'how far along the magnet your own compass is held' });
+  const acrossS = ctl(d.controls, { label: '\\text{across}', cls: 'position', min: -10, max: 10, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'how far across the magnet your own compass is held' });
 
   const CX = 700, CY = 480, S = 30;            /* 30 units to the centimeter, so the compass at 10 cm above the magnet clears the headline */
   const HL = 7, TH = 4, A = 5.5, MX = 10;      /* the bar is 14 cm by 4 cm, its poles sit 5.5 cm out, the mark 3 cm off the north end */
@@ -158,7 +158,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const col = C('magnetic-field');
+    const col = C('magnetic-field'), bm = F.ref('magnet'), mk = F.ref('mark'), yc = F.ref('your-compass');
     const px = alongS.v, py = acrossS.v;
     const b = B(px, py);
     const fromAxis = Math.acos(Math.max(-1, Math.min(1, b.x / Math.hypot(b.x, b.y)))) * DEG;
@@ -173,9 +173,9 @@ function compassEdge(ctx, X, Y, r, out, color) {
 
     if (kLine > 0) ARCS.forEach((pts) => stroke(ctx, F.partial(pts, kLine), col, 3.5));
 
-    /* the magnet: ink, with N and S lettered on its ends and no tint of its own */
+    /* the magnet, with N and S lettered on its ends */
     const L = 2 * HL * S, T = TH * S;
-    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
+    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = bm; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.rect(CX - L / 2, CY - T / 2, L, T); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(CX, CY - T / 2); ctx.lineTo(CX, CY + T / 2); ctx.stroke();
     ctx.restore();
@@ -185,8 +185,8 @@ function compassEdge(ctx, X, Y, r, out, color) {
 
     /* the mark the packing of the lines is counted against */
     const mx = PX(MX), my = PY(0);
-    line(ctx, mx - 11, my - 11, mx + 11, my + 11, alpha(PAL.ink, 0.85), 3);
-    line(ctx, mx + 11, my - 11, mx - 11, my + 11, alpha(PAL.ink, 0.85), 3);
+    line(ctx, mx - 11, my - 11, mx + 11, my + 11, mk, 3);
+    line(ctx, mx + 11, my - 11, mx - 11, my + 11, mk, 3);
 
     if (kNeedle > 0) {
       ctx.save(); ctx.globalAlpha = kNeedle;
@@ -199,8 +199,8 @@ function compassEdge(ctx, X, Y, r, out, color) {
       ctx.restore();
     }
 
-    label(ctx, 'bar magnet', CX, PY(-TH / 2), { side: 'below', size: 19, gap: 28, leader: false });
-    label(ctx, 'the mark', mx, my, { side: 'above', size: 19, gap: 46 });
+    label(ctx, 'bar magnet', CX, PY(-TH / 2), { side: 'below', size: 19, gap: 28, leader: false, color: bm });
+    label(ctx, 'the mark', mx, my, { side: 'above', size: 19, gap: 46, color: mk });
     if (kNeedle < 1) {
       const i = Math.round(NAMED.length * 0.5);
       ctx.save(); ctx.globalAlpha = 1 - kNeedle;
@@ -217,8 +217,8 @@ function compassEdge(ctx, X, Y, r, out, color) {
     const cx = PX(px), cy = PY(py);
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.globalAlpha = 0.88;
     ctx.beginPath(); ctx.arc(cx, cy, 43, 0, 2 * Math.PI); ctx.fill(); ctx.restore();
-    compass(ctx, cx, cy, 34, Math.atan2(-b.y, b.x), col, 'N');
-    label(ctx, 'your compass', cx, cy + (py > 6 ? 43 : -43), { side: py > 6 ? 'below' : 'above', size: 19, gap: 22 });
+    compass(ctx, cx, cy, 34, Math.atan2(-b.y, b.x), col, 'N', yc);
+    label(ctx, 'your compass', cx, cy + (py > 6 ? 43 : -43), { side: py > 6 ? 'below' : 'above', size: 19, gap: 22, color: yc });
 
     const says = {
       compasses: 'Every needle has settled along the field at the place its compass lies, away from the north pole of the magnet and toward the south pole.',
@@ -275,8 +275,8 @@ function compassEdge(ctx, X, Y, r, out, color) {
     value: 'book',
     aria: 'which way the current runs',
   });
-  const angS = ctl(d.controls, { label: '\\text{angle}', cls: '', min: 0, max: 360, step: 5, value: 60, unit: '°', dec: 0, aria: 'where round the source the compass is held, as an angle counterclockwise from the right of the page' });
-  const distS = ctl(d.controls, { label: '\\text{distance}', cls: '', min: 2, max: 12, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: 'how far from the source the compass is held' });
+  const angS = ctl(d.controls, { label: '\\text{angle}', cls: 'angle', min: 0, max: 360, step: 5, value: 60, unit: '°', dec: 0, aria: 'where round the source the compass is held, as an angle counterclockwise from the right of the page' });
+  const distS = ctl(d.controls, { label: '\\text{distance}', cls: 'position', min: 2, max: 12, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: 'how far from the source the compass is held' });
 
   const CX = 700, CY = 420, S = 24, R = 4;     /* 24 units to the centimeter; the loop is 4 cm across its radius */
   const PX = (x) => CX + x * S, PY = (y) => CY - y * S;
@@ -349,8 +349,9 @@ function compassEdge(ctx, X, Y, r, out, color) {
     const X = PX(px), Y = PY(py);
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.globalAlpha *= 0.88;
     ctx.beginPath(); ctx.arc(X, Y, 39, 0, 2 * Math.PI); ctx.fill(); ctx.restore();
-    compass(ctx, X, Y, 31, Math.atan2(-by, bx) + turn, col, 'N');
-    label(ctx, 'your compass', X, Y + (py > 7 ? 39 : -39), { side: py > 7 ? 'below' : 'above', size: 19, gap: 22 });
+    const wc = F.ref('wire-compass');
+    compass(ctx, X, Y, 31, Math.atan2(-by, bx) + turn, col, 'N', wc);
+    label(ctx, 'your compass', X, Y + (py > 7 ? 39 : -39), { side: py > 7 ? 'below' : 'above', size: 19, gap: 22, color: wc });
   }
   /* a symbol for a direction through the page whose sign may be turning over: the
      dot fades as the cross arrives, never a cut */
@@ -362,7 +363,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const col = C('magnetic-field'), cur = C('current');
+    const col = C('magnetic-field'), cur = C('current'), lc = F.ref('loop'), wr = F.ref('wire'), wc = F.ref('wire-compass');
     const a = angS.v * RAD, r = distS.v;
     const px = r * Math.cos(a), py = r * Math.sin(a);
     const src = srcC.value;
@@ -383,7 +384,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
          from a seed in the plane of the loop draws the whole of it */
       LOOPLINES.forEach((pts) => stroke(ctx, pts, col));
       /* the loop, seen edge-on: the near arc solid, the arc behind it dashed */
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+      ctx.save(); ctx.strokeStyle = lc; ctx.lineWidth = 4;
       ctx.setLineDash([9, 9]); ctx.beginPath(); ctx.ellipse(CX, CY, R * S, R * S * 0.26, 0, Math.PI, 2 * Math.PI); ctx.stroke();
       ctx.setLineDash([]); ctx.beginPath(); ctx.ellipse(CX, CY, R * S, R * S * 0.26, 0, 0, Math.PI); ctx.stroke();
       ctx.restore();
@@ -391,7 +392,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
       if (Math.abs(s) > 0.05) arrow(ctx, CX - s * 48, ay, CX + s * 48, ay, cur, 5);
       through(ctx, PX(-R), CY, 14, cur, s);
       through(ctx, PX(R), CY, 14, cur, -s);
-      label(ctx, 'the current loop, seen edge-on', CX, ay, { side: 'below', size: 19, gap: 58, leader: false });
+      label(ctx, 'the current loop, seen edge-on', CX, ay, { side: 'below', size: 19, gap: 58, leader: false, color: lc });
       label(ctx, 'I', CX + (s >= 0 ? 54 : -54), ay, { side: s >= 0 ? 'right' : 'left', size: 24, gap: 12, color: cur, leader: false });
       const b = bookOf(Bloop);
       flat(ctx, b.x, b.y, col, px, py, turn);
@@ -407,7 +408,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
       });
       ctx.globalAlpha = aEnd;
       through(ctx, CX, CY, 15, cur, s);
-      label(ctx, 'the wire, seen end-on', CX, CY, { side: 'below', size: 19, gap: 48 });
+      label(ctx, 'the wire, seen end-on', CX, CY, { side: 'below', size: 19, gap: 48, color: wr });
       label(ctx, 'I', CX + 22, CY - 22, { side: 'right', size: 24, gap: 10, color: cur, leader: false });
       const b = bookOf(Bendon);
       flat(ctx, b.x, b.y, col, px, py, turn);
@@ -418,7 +419,7 @@ function compassEdge(ctx, X, Y, r, out, color) {
       /* the wire itself, foreshortened as it turns out of the page */
       const h = 12.2 * (pair ? 1 - tilt : 1);
       ctx.globalAlpha = pair ? 1 : aWire;
-      if (h > 0.3) line(ctx, CX, PY(h), CX, PY(-h), PAL.ink, 5);
+      if (h > 0.3) line(ctx, CX, PY(h), CX, PY(-h), wr, 5);
       ctx.globalAlpha = aWire;
       if (Math.abs(s) > 0.05 && h > 9) arrow(ctx, CX, PY(s * 9.2 * h / 12.2), CX, PY(s * 11.9 * h / 12.2), cur, 5);
       label(ctx, 'I', CX, PY(10.6 * h / 12.2 * (s >= 0 ? 1 : -1)), { side: 'right', size: 24, gap: 14, color: cur, leader: false });
@@ -426,11 +427,11 @@ function compassEdge(ctx, X, Y, r, out, color) {
         const rad = 6 + 13 / Math.pow(x, 0.6);
         through(ctx, PX(sd * x), PY(y), rad, col, -sd * s);
       })));
-      label(ctx, 'a long straight wire lying in the page', CX, PY(-12.2), { side: 'below', size: 19, gap: 22, leader: false });
+      label(ctx, 'a long straight wire lying in the page', CX, PY(-12.2), { side: 'below', size: 19, gap: 22, leader: false, color: wr });
       const onWire = Math.abs(px) < 0.6;
-      compassEdge(ctx, PX(px), PY(py), 27, 0, col);
+      compassEdge(ctx, PX(px), PY(py), 27, 0, col, wc);
       if (!onWire) through(ctx, PX(px), PY(py), 27 * 0.45, col, -Math.sign(px) * s);
-      label(ctx, 'your compass', PX(px), PY(py) + (py > 7 ? 12 : -12), { side: py > 7 ? 'below' : 'above', size: 19, gap: 40 });
+      label(ctx, 'your compass', PX(px), PY(py) + (py > 7 ? 12 : -12), { side: py > 7 ? 'below' : 'above', size: 19, gap: 40, color: wc });
       ctx.restore();
     }
 

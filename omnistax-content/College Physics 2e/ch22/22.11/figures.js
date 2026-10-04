@@ -22,17 +22,17 @@
    charge and force. The first five are the list ch22/COLOR.md gives it; force
    and charge are the two the plan adds, since the selector draws qE against
    qvB and every readout of the first three figures writes the charge that
-   cancels out of the balance. No body is tinted: the source, the plates, the
-   chamber wall, the tube, the bore and the patient are all ink. The two
-   isotopes of the spectrometer are told apart with F.cat, which ch22/COLOR.md
-   names as one of the chapter's two categorical cases, while the three ions of
-   the selector are one species at three speeds and are drawn in oxygen's own
-   colour from the element palette, as the electron of the tube and the protons
-   of the MRI slice are drawn in theirs. The dot that stands for a field out of
+   cancels out of the balance. The two isotopes of the spectrometer, its ion
+   source, selector and detector, the gun, steering coil and screen of the tube,
+   the patient, and the Earth, the heart and brain and the MRI magnet on the
+   scale of field strengths (the magnet is also the bore the patient lies in)
+   are the section's referents. The three ions of the selector are one species at three
+   speeds and are drawn in oxygen's own colour from the element palette, as the
+   electron of the tube and the protons of the MRI slice are drawn in theirs. The dot that stands for a field out of
    the page and the cross for one into it wear the field hue. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['22.11'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, label, labeller, hbracket, vbracket, axes, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, label, labeller, hbracket, vbracket, axes, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -133,30 +133,31 @@ function legend(ctx, mark, x, y, s, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const col = { B: C('magnetic-field'), E: C('electric-field'), v: C('velocity'), r: C('position') };
-    const ions = [{ a: 16, m: M16, c: cat(0), name: 'oxygen-16' }, { a: 18, m: M16 * 18 / 16, c: cat(1), name: 'oxygen-18' }];
+    const ions = [{ a: 16, m: M16, c: F.ref('oxygen-16'), name: 'oxygen-16' }, { a: 18, m: M16 * 18 / 16, c: F.ref('oxygen-18'), name: 'oxygen-18' }];
+    const sc = F.ref('source'), vc = F.ref('selector'), dc = F.ref('detector');
     const t = cy.now();
     /* the chamber, and the field that fills it, out of the page */
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.22); ctx.lineWidth = 2; ctx.strokeRect(XW, 92, CH_R - XW, CH_B - 92); ctx.restore();
     for (let x = XW + 42; x < CH_R; x += 84) for (let y = 130; y < CH_B; y += 84) outOfPage(ctx, x, y, alpha(col.B, 0.55));
     /* the ion source */
-    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
+    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = sc; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.rect(40, 96, 110, 68); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'ion', 95, 120, PAL.ink, { size: 18, align: 'center' });
-    text(ctx, 'source', 95, 142, PAL.ink, { size: 18, align: 'center' });
+    text(ctx, 'ion', 95, 120, sc, { size: 18, align: 'center' });
+    text(ctx, 'source', 95, 142, sc, { size: 18, align: 'center' });
     /* the velocity selector: two plates, the field between them and the beam through the middle */
-    line(ctx, 220, 96, 500, 96, PAL.ink, 4);
-    line(ctx, 220, 164, 500, 164, PAL.ink, 4);
+    line(ctx, 220, 96, 500, 96, vc, 4);
+    line(ctx, 220, 164, 500, 164, vc, 4);
     text(ctx, '−', 210, 96, PAL.ink, { size: 24, weight: 700, align: 'right' });
     text(ctx, '+', 210, 164, PAL.ink, { size: 24, weight: 700, align: 'right' });
     for (let x = 250; x < 500; x += 62) outOfPage(ctx, x, 112, alpha(col.B, 0.55), 7);
     arrow(ctx, 470, 158, 470, 102, col.E, 4);
     text(ctx, 'E', 482, 128, col.E, { size: 22, weight: 600 });
-    text(ctx, 'velocity selector', 360, 190, PAL.muted, { size: 19, weight: 600, align: 'center' });
+    text(ctx, 'velocity selector', 360, 190, vc, { size: 19, weight: 600, align: 'center' });
     line(ctx, XS, Y0, XW, Y0, alpha(col.v, 0.45), 3, [10, 10]);
     arrow(ctx, 520, Y0, 556, Y0, col.v, 4);
     /* the detector wall, and the arcs the two ions turn */
-    line(ctx, XW, Y0, XW, CH_B - 6, PAL.ink, 5);
-    text(ctx, 'detector', XW + 16, Y0 - 22, PAL.ink, { size: 19, weight: 600 });
+    line(ctx, XW, Y0, XW, CH_B - 6, dc, 5);
+    text(ctx, 'detector', XW + 16, Y0 - 22, dc, { size: 19, weight: 600 });
     ions.forEach((ion, i) => {
       const R = rOf(ion.m) * SC, cyc = Y0 + R;
       ctx.save(); ctx.strokeStyle = alpha(ion.c, 0.25); ctx.lineWidth = 3; ctx.setLineDash([9, 9]);
@@ -186,7 +187,7 @@ function legend(ctx, mark, x, y, s, color) {
     const sep = 2 * (rOf(ions[1].m) - rOf(ions[0].m));
     topline(ctx, `At ${sci(vS.v * 1e6, 2)} m/s in a ${fmt(bS.v, 3)} T field, oxygen-16 turns a half circle ${fmt(rOf(M16), 3)} m in radius and oxygen-18 one of ${fmt(rOf(ions[1].m), 3)} m, so the two land ${fmt(sep, 3)} m apart on the detector.`);
     readout(d.readout,
-      `2\\kr_{18} - 2\\kr_{16} = \\frac{2(m_{18} - m_{16})\\kv}{\\kq\\kBmag} = \\frac{2(${sciTex(ions[1].m - M16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(sep, 3)}\\ \\text{m}`,
+      `2\\kr_{18} - 2\\kr_{16} = \\frac{2(\\km_{18} - \\km_{16})\\kv}{\\kq\\kBmag} = \\frac{2(${sciTex(ions[1].m - M16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(sep, 3)}\\ \\text{m}`,
       `Oxygen-16 turns a half circle of radius r = mv/qB = ${fmt(rOf(M16), 3)} m. A higher field or a lower speed tightens both arcs together, but the gap between the two landing points shrinks with them, which is why a spectrometer is built to hold the speed and the field steady while the sample changes. The lighter ion lands first, since its arc is the shorter and both ions travel at the same speed.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 5), draw });
@@ -297,7 +298,7 @@ function legend(ctx, mark, x, y, s, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const col = { B: C('magnetic-field'), v: C('velocity'), F: C('force'), V: C('voltage'), r: C('position') };
-    const E = el('e-'), into = dirC.value === 'in';
+    const E = el('e-'), into = dirC.value === 'in', gc = F.ref('gun'), kc = F.ref('coil'), rc = F.ref('screen');
     /* +1 sends the beam down the screen; reversing the field swings it through the axis to the other side */
     const s = dirC.mix((v) => (v === 'in' ? 1 : -1));
     const through = (x, y, r0, c = alpha(col.B, 0.85)) => [['in', intoPage], ['out', outOfPage]].forEach(([v, sym]) => dirC.only(ctx, v, () => sym(ctx, x, y, c, r0), [0, 0]));
@@ -307,16 +308,16 @@ function legend(ctx, mark, x, y, s, color) {
     ctx.beginPath(); ctx.moveTo(XG, AX - 46); ctx.lineTo(XC - 20, AX - 62); ctx.lineTo(XS, AX - 190);
     ctx.moveTo(XG, AX + 46); ctx.lineTo(XC - 20, AX + 62); ctx.lineTo(XS, AX + 250); ctx.stroke(); ctx.restore();
     /* the gun: a cathode, an anode and the voltage between them */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.strokeStyle = gc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(90, AX - 34); ctx.lineTo(90, AX + 34); ctx.moveTo(180, AX - 34); ctx.lineTo(180, AX - 12); ctx.moveTo(180, AX + 12); ctx.lineTo(180, AX + 34); ctx.stroke(); ctx.restore();
     text(ctx, 'cathode', 90, AX - 52, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'anode', 182, AX - 52, PAL.muted, { size: 18, align: 'center' });
     text(ctx, fmt(uS.v, 1) + ' kV', 135, AX + 62, col.V, { size: 21, weight: 600, align: 'center' });
     /* the coil's field, drawn between the pole faces of the coil pair */
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 3;
+    ctx.save(); ctx.strokeStyle = kc; ctx.lineWidth = 3;
     ctx.strokeRect(XC, AX - 110, XCE - XC, 220); ctx.restore();
     for (let x = XC + 34; x < XCE; x += 68) for (let y = AX - 76; y <= AX + 76; y += 76) through(x, y);
-    text(ctx, 'steering coil', (XC + XCE) / 2, AX - 130, PAL.muted, { size: 19, weight: 600, align: 'center' });
+    text(ctx, 'steering coil', (XC + XCE) / 2, AX - 130, kc, { size: 19, weight: 600, align: 'center' });
     /* the beam: straight to the coil, an arc across it, straight on to the screen */
     line(ctx, 180, AX, XC, AX, E, 5);
     ctx.save(); ctx.strokeStyle = E; ctx.lineWidth = 5; ctx.beginPath();
@@ -326,8 +327,8 @@ function legend(ctx, mark, x, y, s, color) {
     const spotY = AX + s * drop() * SC;
     line(ctx, xe, ye, XS, spotY, E, 5);
     /* the screen and the spot */
-    line(ctx, XS, AX - 190, XS, AX + 250, PAL.ink, 6);
-    text(ctx, 'screen', XS + 16, AX - 170, PAL.muted, { size: 19, weight: 600 });
+    line(ctx, XS, AX - 190, XS, AX + 250, rc, 6);
+    text(ctx, 'screen', XS + 16, AX - 170, rc, { size: 19, weight: 600 });
     dot(ctx, XS, spotY, E, true, 12);
     line(ctx, XC, AX, XS, AX, alpha(PAL.ink, 0.28), 2, [10, 10]);
     if (Math.abs(spotY - AX) > 4) vbracket(ctx, XS - 34, AX, spotY, col.r, fmt(drop() * 100, 2) + ' cm', -1, { H, side: 'left', size: 20 });
@@ -349,7 +350,7 @@ function legend(ctx, mark, x, y, s, color) {
       text(ctx, str, 700, 500 + i * 28, PAL.muted, { size: 18, bg: PAL.panel }));
     topline(ctx, `A ${fmt(uS.v, 1)} kV gun sends electrons across the coil at ${sci(speed(), 2)} m/s, and a ${fmt(bS.v, 3)} mT field bends them onto a circle ${fmt(r, 3)} m in radius, putting the spot ${fmt(drop() * 100, 2)} cm ${into ? 'below' : 'above'} the axis.`);
     readout(d.readout,
-      `\\kr = \\frac{m\\kv}{\\kq\\kBmag} = \\frac{(9.11 \\times 10^{-31}\\,\\text{kg})(${sciTex(speed(), 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${sciTex(bS.v * 1e-3, 2)}\\,\\text{T})} = ${fmt(r, 3)}\\ \\text{m}`,
+      `\\kr = \\frac{\\km\\kv}{\\kq\\kBmag} = \\frac{(9.11 \\times 10^{-31}\\,\\text{kg})(${sciTex(speed(), 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${sciTex(bS.v * 1e-3, 2)}\\,\\text{T})} = ${fmt(r, 3)}\\ \\text{m}`,
       `The gun sets the speed through qV = ½mv², which gives ${sci(speed(), 2)} m/s at ${fmt(uS.v, 1)} kV. A higher voltage brings the spot back toward the axis, because the radius grows with the speed, and a stronger field sends it farther away. Reversing the coil's field sends the beam the other way, which is how a pair of coils reaches every point on the screen.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -376,10 +377,11 @@ function legend(ctx, mark, x, y, s, color) {
     const { ctx } = begin(d.c);
     const col = { B: C('magnetic-field'), x: C('position') };
     const p = slice(), inside = p >= 0 && p <= LEN;
-    /* the bore of the magnet, in ink, and the field that fills it */
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 4;
+    /* the bore of the magnet, and the field that fills it */
+    const mc = F.ref('mri-magnet');
+    ctx.save(); ctx.strokeStyle = mc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.rect(330, 160, 740, 290); ctx.stroke(); ctx.restore();
-    text(ctx, 'the bore of the superconducting magnet', 700, 138, PAL.muted, { size: 19, weight: 600, align: 'center' });
+    text(ctx, 'the bore of the superconducting magnet', 700, 138, mc, { size: 19, weight: 600, align: 'center' });
     for (let x = 372; x < 1060; x += 96) arrow(ctx, x, 196, x + 58, 196, alpha(col.B, 0.55), 3);
     text(ctx, 'B', 350, 196, col.B, { size: 22, weight: 600 });
     /* the slice the receiver has picked out */
@@ -391,7 +393,7 @@ function legend(ctx, mark, x, y, s, color) {
       text(ctx, 'the slice in resonance', sx, 470, col.B, { size: 20, weight: 600, align: 'center' });
     }
     /* the patient, lying head to the left with the feet to the right */
-    supine(ctx, XH, 330, LEN * SC, alpha(PAL.ink, 0.55));
+    supine(ctx, XH, 330, LEN * SC, alpha(F.ref('patient'), 0.7));
     text(ctx, 'head', XH, 402, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'feet', XF, 402, PAL.muted, { size: 18, align: 'center' });
     /* the graph: how far the field stands above the magnet's own value, along the patient */
@@ -457,14 +459,14 @@ function legend(ctx, mark, x, y, s, color) {
     text(ctx, 'magnetic field strength (T)', XL, AXY - 130, col.B, { size: 20, weight: 600 });
     /* the marks, each one the book's own number */
     const marks = [
-      { key: 'mri', b: 1.50, lo: 1.00, hi: 2.00, name: 'an MRI magnet, 1 to 2 T', up: true },
+      { key: 'mri', ref: 'mri-magnet', b: 1.50, lo: 1.00, hi: 2.00, name: 'an MRI magnet, 1 to 2 T', up: true },
       { key: 'perm', b: 0.500, name: 'a permanent magnet, 0.500 T', up: false },
-      { key: 'earth', b: B_EARTH, name: 'the Earth, ' + sci(B_EARTH, 2) + ' T', up: true },
-      { key: 'body', b: B_EARTH * Math.pow(10, facC.mix((v) => Number(v))), name: 'the heart and the brain, ' + sci(bodyB(), 2) + ' T', up: false },
+      { key: 'earth', ref: 'earth', b: B_EARTH, name: 'the Earth, ' + sci(B_EARTH, 2) + ' T', up: true },
+      { key: 'body', ref: 'heart-brain', b: B_EARTH * Math.pow(10, facC.mix((v) => Number(v))), name: 'the heart and the brain, ' + sci(bodyB(), 2) + ' T', up: false },
     ];
     const lab = labeller(ctx, H, { headline: 2 });
     marks.forEach((m) => {
-      const x = X(m.b), on = srcC.value === m.key, c = alpha(PAL.ink, 0.5);
+      const x = X(m.b), on = srcC.value === m.key, c = m.ref ? alpha(F.ref(m.ref), on ? 1 : 0.7) : alpha(PAL.ink, 0.5);
       if (m.lo) { ctx.save(); ctx.fillStyle = alpha(col.B, on ? 0.3 : 0.14); ctx.fillRect(X(m.lo), AXY - 26, X(m.hi) - X(m.lo), 52); ctx.restore(); }
       line(ctx, x, m.up ? AXY - 74 : AXY + 74, x, AXY, c, on ? 5 : 3);
       dot(ctx, x, AXY, c, true, 8);

@@ -6,10 +6,11 @@
    the current hue, every force arrow wears the force hue, a magnetic force
    being a force and nothing here being given a hue for being magnetic, and the
    separation of two conductors, on its slider and in the bracket that measures
-   it, wears the position hue. The diameter of an arc column, the number of
-   turns on a coil, the length of wire that faces its neighbor and the mass on a
-   balance pan are untyped and in ink, and no body is tinted: a wire is ink, a
-   balance beam is ink, and the boundary of the arc column is a faint ink circle.
+   it, wears the position hue, as does the diameter of an arc column, and the
+   mass on a balance pan wears mass. Wires 1 and 2, the arc column, the balance
+   and its two coils are the section's referents: a wire's body, and the ring of
+   a wire seen end-on, wear its referent colour, and the dot or cross inside the
+   ring wears the current hue. The number of turns on a coil stays ink.
 
    All three figures answer their controls and register no cycle (rule 14): two
    wires carrying steady currents pull on each other, an arc of a given current
@@ -57,10 +58,11 @@ const num = (v) => (!v ? '0' : big(v) ? sci(v) : Number(v).toPrecision(3));
 const numTex = (v) => (!v ? '0' : big(v) ? sciTex(v) : Number(v).toPrecision(3));
 
 /* a current seen end-on: a ring with a dot in it for a current toward the reader
-   and a cross in it for a current away from her (ch22/COLOR.md; the mark wears the
-   current hue, and no sign anywhere on this page is told by a second colour) */
-function currentMark(ctx, x, y, out, color, R) {
-  dot(ctx, x, y, PAL.panel, true, R); dot(ctx, x, y, color, false, R);
+   and a cross in it for a current away from her. The dot and the cross wear the
+   current hue; the ring, the wire itself, wears `rim`, a referent's colour where
+   the wire is one. */
+function currentMark(ctx, x, y, out, color, R, rim = color) {
+  dot(ctx, x, y, PAL.panel, true, R); dot(ctx, x, y, rim, false, R);
   if (out) dot(ctx, x, y, color, true, Math.max(4, R * 0.34));
   else { const k = R * 0.62; line(ctx, x - k, y - k, x + k, y + k, color, 3.5); line(ctx, x - k, y + k, x + k, y - k, color, 3.5); }
 }
@@ -119,7 +121,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
     const { ctx } = begin(d.c);
     const I1 = i1S.v, I2 = i2S.v, r = rS.v, same = dirC.value === 'same';
     const B1 = K * I1 / r, B2 = K * I2 / r, FL = K * I1 * I2 / r;
-    const cB = C('magnetic-field'), cI = C('current'), cF = C('force'), cR = C('position');
+    const cB = C('magnetic-field'), cI = C('current'), cF = C('force'), cR = C('position'), w1 = F.ref('wire-1'), w2 = F.ref('wire-2');
     /* +1 draws each wire pulled toward the other; reversing wire 2 turns its current,
        its field line and both forces over through nothing rather than cutting */
     const pull = dirC.mix((v) => (v === 'same' ? 1 : -1));
@@ -136,8 +138,8 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
         [-118, 0, 118].forEach((y) => circle3(ctx, x1, y, D, cB, lw, true));
         [0.55, 1.45].forEach((k) => { if (D * k < 560) circle3(ctx, x1, 0, D * k, alpha(cB, 0.65), Math.max(1.4, widthOf(B1 / k) * 0.8), false); });
       }
-      /* the two wires, ink, and the current along each of them */
-      [x1, x2].forEach((x) => line3(ctx, [x, -WY, 0], [x, WY, 0], PAL.ink, 7));
+      /* the two wires, and the current along each of them */
+      [[x1, w1], [x2, w2]].forEach(([x, c]) => line3(ctx, [x, -WY, 0], [x, WY, 0], c, 7));
       if (I1 > 0.5) arr3(ctx, [x1, -46, 0], [x1, 130, 0], cI, 6);
       if (I2 > 0.5 && Math.abs(up2) > 0.1) arr3(ctx, [x2, -up2 * 74, 0], [x2, up2 * 74, 0], cI, 6);
       /* the field wire 1 makes where wire 2 stands is at right angles to wire 2 and
@@ -149,8 +151,8 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
         arr3(ctx, [x1, -58, 0], [x1 + pull * 118, -58, 0], cF, W);
       }
       const t1 = V.P([x1, WY, 0]), t2 = V.P([x2, WY, 0]), apart = Math.max(0, 16 - (t2[0] - t1[0]) / 2);
-      text(ctx, '1', t1[0] - apart, t1[1] - 28, PAL.ink, { size: 26, weight: 700, align: 'center' });
-      text(ctx, '2', t2[0] + apart, t2[1] - 28, PAL.ink, { size: 26, weight: 700, align: 'center' });
+      text(ctx, '1', t1[0] - apart, t1[1] - 28, w1, { size: 26, weight: 700, align: 'center' });
+      text(ctx, '2', t2[0] + apart, t2[1] - 28, w2, { size: 26, weight: 700, align: 'center' });
       const b1 = V.P([x1, -WY, 0]), b2 = V.P([x2, -WY, 0]);
       hbracket(ctx, b1[0], b2[0], Math.max(b1[1], b2[1]) + 42, cR, 'r = ' + fmt(r, 2) + ' m', { side: 'below', H: SCENE });
       ctx.restore();
@@ -185,8 +187,8 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
          line between them, so that RHR-1 sends the force straight along that line */
       if (B1 > 1e-12) arrow(ctx, xb, y0, xb, y0 - 88, cB, 5);
       if (B2 > 1e-12 && Math.abs(pull) > 0.1) arrow(ctx, xa, y0, xa, y0 + pull * 88, cB, 5);
-      currentMark(ctx, xa, y0, true, cI, R);
-      ['same', 'opp'].forEach((v) => dirC.only(ctx, v, () => currentMark(ctx, xb, y0, v === 'same', cI, R), [0, 0]));
+      currentMark(ctx, xa, y0, true, cI, R, w1);
+      ['same', 'opp'].forEach((v) => dirC.only(ctx, v, () => currentMark(ctx, xb, y0, v === 'same', cI, R, w2), [0, 0]));
       /* each force arrow is set on the side of its wire that the other wire's field
          arrow has left clear, so that no force crosses a field */
       const fy2 = y0 + 44, fy1 = y0 - pull * 44;
@@ -195,8 +197,8 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
         arrow(ctx, xa, fy1, xa + pull * 126, fy1, cF, W);
       }
       const apart = Math.max(0, 16 - D / 2);
-      text(ctx, '1', xa - apart, y0 - 34, PAL.ink, { size: 24, weight: 700, align: 'center' });
-      text(ctx, '2', xb + apart, y0 - 34, PAL.ink, { size: 24, weight: 700, align: 'center' });
+      text(ctx, '1', xa - apart, y0 - 34, w1, { size: 24, weight: 700, align: 'center' });
+      text(ctx, '2', xb + apart, y0 - 34, w2, { size: 24, weight: 700, align: 'center' });
       hbracket(ctx, xa, xb, y0 + 178, cR, 'r = ' + fmt(r, 2) + ' m', { side: 'below', H: SCENE });
       ctx.restore();
       label(ctx, 'I₁ = ' + fmt(I1, 0) + ' A', xa, y0 - 16, { side: 'left', size: 21, color: cI, gap: 30, H: SCENE });
@@ -227,7 +229,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       ? 'With no current in one of the wires there is no force on either of them, however close together they are laid.'
       : `Two wires ${fmt(r, 2)} m apart, one carrying ${fmt(I1, 0)} A and the other ${fmt(I2, 0)} A ${same ? 'the same way' : 'the opposite way'}, ${same ? 'are pulled together with' : 'are pushed apart with'} ${num(FL)} N on every meter of their length.`);
     readout(d.readout,
-      `\\frac{\\kF}{l} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(I1, 0)}\\ \\text{A})(${fmt(I2, 0)}\\ \\text{A})}{2\\pi(${fmt(r, 2)}\\ \\text{m})} = ${numTex(FL)}\\ \\text{N/m}`,
+      `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(I1, 0)}\\ \\text{A})(${fmt(I2, 0)}\\ \\text{A})}{2\\pi(${fmt(r, 2)}\\ \\text{m})} = ${numTex(FL)}\\ \\text{N/m}`,
       (same
         ? 'The two currents run the same way, so each wire is pulled toward the other. '
         : 'The two currents run opposite ways, so each wire is pushed away from the other, and nothing else about the arrangement has changed: the force is the size it was and only its direction has turned over. ')
@@ -248,7 +250,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
 (function () {
   const d = sim('sim-pinch-effect', 780);
   const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 5, max: 20, step: 0.5, value: 15, unit: 'kA', dec: 1, aria: 'the current in the arc' });
-  const dS = ctl(d.controls, { label: 'd', cls: '', min: 6, max: 16, step: 0.5, value: 10, unit: 'mm', dec: 1, aria: 'the diameter of the column the current flows in' });
+  const dS = ctl(d.controls, { label: 'd', cls: 'position', min: 6, max: 16, step: 0.5, value: 10, unit: 'mm', dec: 1, aria: 'the diameter of the column the current flows in' });
   /* 22 canvas units to the millimeter, so the widest column the slider reaches,
      16.0 mm, has a rim 176 units from the axis. The force arrows are drawn to one
      fixed scale, 0.1365 units to the newton per meter, taken from the greatest force
@@ -277,10 +279,10 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
   function draw() {
     const { ctx } = begin(d.c);
     const I = iS.v * 1000, dmm = dS.v, a = dmm / 2000, Is = I / 7, R = (dmm / 2) * SD;
-    const cI = C('current'), cF = C('force');
+    const cI = C('current'), cF = C('force'), cR = C('position');
     const ps = strands(a), net = netOn(ps, Is, 1), pair = K * Is * Is / a, L = Math.max(10, net * SA);
-    /* the column the current runs in, an ink outline with no tint of any kind */
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 3; ctx.setLineDash([9, 9]);
+    /* the column the current runs in, its outline in its referent's colour */
+    ctx.save(); ctx.strokeStyle = alpha(F.ref('arc'), 0.7); ctx.lineWidth = 3; ctx.setLineDash([9, 9]);
     ctx.beginPath(); ctx.arc(CX, CY, R + 34, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
     /* the squeeze: one arrow to each strand of the rim, all six the same size by
        symmetry, drawn from outside the column and stopping short of the strand */
@@ -291,7 +293,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
     }
     /* the two neighbors whose pair force the readout writes */
     const p0 = { x: CX + R, y: CY }, p1 = { x: CX + R * Math.cos(Math.PI / 3), y: CY - R * Math.sin(Math.PI / 3) };
-    line(ctx, p0.x, p0.y, p1.x, p1.y, alpha(PAL.ink, 0.55), 2.5, [7, 7]);
+    line(ctx, p0.x, p0.y, p1.x, p1.y, alpha(cR, 0.8), 2.5, [7, 7]);
     /* the strands themselves: seven equal currents, all coming toward the reader */
     dot(ctx, CX, CY, cF, false, Math.max(18, R * 0.16 + 11));
     const mr = Math.max(10, Math.min(16, R * 0.16));
@@ -300,12 +302,12 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
        because symmetry makes every one of them the same (rule 26.7) */
     label(ctx, 'F/l = ' + fmt(net, 0) + ' N/m', CX + R + 26 + L, CY, { side: 'right', size: 22, color: cF, H: 780 });
     label(ctx, fmt(Is / 1000, 2) + ' kA in each strand', p1.x, p1.y, { side: 'above', size: 20, color: cI, gap: 28, H: 780 });
-    label(ctx, fmt(dmm / 2, 2) + ' mm apart', (p0.x + p1.x) / 2, (p0.y + p1.y) / 2, { side: 'above', size: 19, gap: 18, H: 780 });
+    label(ctx, fmt(dmm / 2, 2) + ' mm apart', (p0.x + p1.x) / 2, (p0.y + p1.y) / 2, { side: 'above', size: 19, gap: 18, H: 780, color: cR });
     text(ctx, 'Take the column as seven strands of equal current. Each of the six on the rim is pulled toward the other six, so that the whole', 700, 650, PAL.muted, { size: 18, align: 'center' });
     text(ctx, 'column squeezes itself into a narrower tube, while the strand on the axis, pulled equally in every direction, is pulled nowhere at all.', 700, 678, PAL.muted, { size: 18, align: 'center' });
     topline(ctx, `A ${fmt(iS.v, 1)} kA arc ${fmt(dmm, 1)} mm across squeezes itself: each strand of the rim is pulled toward the other six with ${fmt(net, 0)} N on every meter.`);
     readout(d.readout,
-      `\\frac{\\kF}{l} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${sciTex(Is)}\\ \\text{A})^2}{2\\pi(${sciTex(a)}\\ \\text{m})} = ${fmt(pair, 0)}\\ \\text{N/m}`,
+      `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${sciTex(Is)}\\ \\text{A})^2}{2\\pi(${sciTex(a)}\\ \\text{m})} = ${fmt(pair, 0)}\\ \\text{N/m}`,
       `That is the pull between one strand and the neighbor beside it. Adding the pull of all six of the others on one strand of the rim gives ${fmt(net, 0)} N on every meter, directed straight at the axis, while the strand on the axis is pulled equally in every direction and so is pulled nowhere at all. Double the current and the squeeze is four times as strong, which is why it is the largest currents that burn holes in the plates of a breaker.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -338,22 +340,22 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
   function draw() {
     const { ctx } = begin(d.c);
     const I = iS.v, N = nS.v, rcm = rS.v, r = rcm / 100;
-    const cI = C('current'), cF = C('force'), cR = C('position');
+    const cI = C('current'), cF = C('force'), cR = C('position'), cM = C('mass'), bal = F.ref('balance'), coil = F.ref('coils');
     const FL = K * (N * I) * (N * I) / r, Fn = FL * LEN, mg = (Fn / G) * 1e6;   /* the mass in milligrams */
     const gap = rcm * SG, yL = YU + gap, rows = Math.ceil(N / PER), span = (rows - 1) * MK * 1.35;
     const upTop = YU - MK * 0.7 - span - MK / 2, lowBot = yL + MK * 0.7 + span + MK / 2;
     const mass = mg >= 1000 ? fmt(mg / 1000, 2) + ' g' : fmt(mg, mg < 10 ? 2 : 0) + ' mg';
-    /* the beam, its pivot and its pan, all ink: the beam is drawn level, because the
-       mass on the pan is the mass that balances what the coils do to each other */
-    line(ctx, PANX - 30, BEAM, COILX + 30, BEAM, PAL.ink, 7);
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.6); ctx.beginPath(); ctx.moveTo(PIV, BEAM + 6); ctx.lineTo(PIV - 34, BEAM + 96); ctx.lineTo(PIV + 34, BEAM + 96); ctx.closePath(); ctx.fill(); ctx.restore();
-    line(ctx, PIV - 76, BEAM + 96, PIV + 76, BEAM + 96, PAL.ink, 5);
-    line(ctx, PANX, BEAM, PANX, BEAM + 100, PAL.ink, 3);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
+    /* the beam, its pivot and its pan: the beam is drawn level, because the mass on
+       the pan is the mass that balances what the coils do to each other */
+    line(ctx, PANX - 30, BEAM, COILX + 30, BEAM, bal, 7);
+    ctx.save(); ctx.fillStyle = alpha(bal, 0.6); ctx.beginPath(); ctx.moveTo(PIV, BEAM + 6); ctx.lineTo(PIV - 34, BEAM + 96); ctx.lineTo(PIV + 34, BEAM + 96); ctx.closePath(); ctx.fill(); ctx.restore();
+    line(ctx, PIV - 76, BEAM + 96, PIV + 76, BEAM + 96, bal, 5);
+    line(ctx, PANX, BEAM, PANX, BEAM + 100, bal, 3);
+    ctx.save(); ctx.strokeStyle = bal; ctx.lineWidth = 4; ctx.beginPath();
     ctx.moveTo(PANX - 92, BEAM + 100); ctx.lineTo(PANX + 92, BEAM + 100); ctx.lineTo(PANX + 62, BEAM + 142); ctx.lineTo(PANX - 62, BEAM + 142); ctx.closePath(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.rect(PANX - 42, BEAM + 54, 84, 46); ctx.fill(); ctx.stroke(); ctx.restore();
-    label(ctx, mass, PANX, BEAM + 77, { side: 'left', size: 22, gap: 58, H: 800 });
+    label(ctx, mass, PANX, BEAM + 77, { side: 'left', size: 22, gap: 58, H: 800, color: cM });
     /* the hanger and the coil it carries */
     line(ctx, COILX, BEAM, COILX, upTop, PAL.ink, 3);
     /* each coil is drawn end-on, one mark to a turn, in rows of eight, so that the
@@ -361,7 +363,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
     const bank = (yBase, up) => {
       for (let k = 0; k < N; k++) {
         const row = Math.floor(k / PER), col = k % PER, wide = Math.min(PER, N - row * PER);
-        currentMark(ctx, COILX + (col - (wide - 1) / 2) * MK * 1.35, yBase + up * row * MK * 1.35, true, cI, MK / 2.1);
+        currentMark(ctx, COILX + (col - (wide - 1) / 2) * MK * 1.35, yBase + up * row * MK * 1.35, true, cI, MK / 2.1, coil);
       }
     };
     bank(YU - MK * 0.7, -1);
@@ -385,7 +387,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       ? 'With no current in the coils there is nothing for the balance to weigh.'
       : `${fmt(N, 0)} ${N === 1 ? 'turn' : 'turns'} carrying ${fmt(I, 2)} A, ${fmt(rcm, 2)} cm above ${N === 1 ? 'one more' : fmt(N, 0) + ' more'}, are pulled together with ${num(Fn)} N over the 10.0 cm that face each other, the weight of ${mass}.`);
     readout(d.readout,
-      `\\frac{\\kF}{l} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(N, 0)}\\times ${fmt(I, 2)}\\ \\text{A})^2}{2\\pi(${fmt(r, 4)}\\ \\text{m})} = ${numTex(FL)}\\ \\text{N/m}`,
+      `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(N, 0)}\\times ${fmt(I, 2)}\\ \\text{A})^2}{2\\pi(${fmt(r, 4)}\\ \\text{m})} = ${numTex(FL)}\\ \\text{N/m}`,
       `Every turn of the upper coil is a current running parallel to every turn of the lower one, so each of the two currents in the law is ${fmt(N, 0)} times ${fmt(I, 2)} A. The definition itself asks for two wires one meter apart carrying one ampere each, which pull with 2 × 10⁻⁷ N on every meter, the weight of about twenty micrograms; gathering the wire into coils and bringing them a few centimeters apart is what turns that into something a balance can weigh.`);
   }
   register(d.fig, { update: () => {}, draw });
