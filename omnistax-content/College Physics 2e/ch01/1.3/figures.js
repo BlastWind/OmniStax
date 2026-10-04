@@ -1,7 +1,7 @@
 /* Figures for section 1.3 Accuracy, Precision, and Significant Figures. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.3'] = function (root, F) {
-const { el, fmt, tex, PAL, alpha, ctl, register, begin, line, dot, text, headline, hbracket, vbracket, strip, nice } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, dot, text, headline, hbracket, vbracket, strip, nice } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -33,8 +33,8 @@ function restaurant(ctx, x, y, color) {
   ctx.strokeRect(x + 12, y + 6, 12, 10);                                                     /* the window */
   ctx.restore();
 }
-function bar(ctx, x, y, w, h, filled) {
-  ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = filled ? PAL.ink : PAL.panel; ctx.fillRect(x, y - h / 2, w, h); ctx.strokeRect(x, y - h / 2, w, h); ctx.restore();
+function bar(ctx, x, y, w, h, filled, color = PAL.ink) {
+  ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = color; ctx.fillStyle = filled ? color : PAL.panel; ctx.fillRect(x, y - h / 2, w, h); ctx.strokeRect(x, y - h / 2, w, h); ctx.restore();
 }
 /* one line of text in several colours: runs of [string, colour, weight], left-aligned at x */
 function runs(ctx, parts, x, y, size) {
@@ -59,8 +59,8 @@ function runs(ctx, parts, x, y, size) {
     /* the target: five rings about the restaurant */
     for (let i = 5; i >= 1; i--) { ctx.save(); ctx.beginPath(); ctx.arc(CX, CY, i * RING, 0, Math.PI * 2); ctx.fillStyle = i % 2 ? PAL.soft : PAL.panel; ctx.fill(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.stroke(); ctx.restore(); }
     line(ctx, CX - 5 * RING - 16, CY, CX + 5 * RING + 16, CY, PAL.rule, 1.5); line(ctx, CX, CY - 5 * RING - 16, CX, CY + 5 * RING + 16, PAL.rule, 1.5);
-    restaurant(ctx, CX, CY, PAL.ink);
-    text(ctx, 'the restaurant, at the center', CX, CY + 5 * RING + 40, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    restaurant(ctx, CX, CY, F.ref('restaurant'));
+    text(ctx, 'the restaurant, at the center', CX, CY + 5 * RING + 40, F.ref('restaurant'), { size: 20, weight: 600, align: 'center' });
     /* the attempts about their centre, and the centre against the restaurant */
     const mx = CX + O.v * RING * Math.cos(ANG), my = CY + O.v * RING * Math.sin(ANG);
     line(ctx, mx, my, CX, CY, PAL.ink, 2.5, [6, 8]);
@@ -89,7 +89,7 @@ function runs(ctx, parts, x, y, size) {
 ===================================================================== */
 (function () {
   const d = sim('sim-percent', 560);
-  const A = ctl(d.controls, { label: 'A', cls: '', min: 1, max: 10, step: 0.1, value: 5.1, unit: 'lb', dec: 1, specials: [{ at: 5.1, label: 'Example 1.2' }], aria: 'average weight' });
+  const A = ctl(d.controls, { label: 'A', cls: 'force', min: 1, max: 10, step: 0.1, value: 5.1, unit: 'lb', dec: 1, specials: [{ at: 5.1, label: 'Example 1.2' }], aria: 'average weight' });
   const dA = ctl(d.controls, { label: '\\delta A', cls: '', min: 0.1, max: 1, step: 0.1, value: 0.4, unit: 'lb', dec: 1, aria: 'uncertainty in the weight' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const WEEKS = [4.8, 5.3, 4.9, 5.4];
@@ -114,10 +114,10 @@ function runs(ctx, parts, x, y, size) {
       line(ctx, L, y, R, y, PAL.muted, 3);
       for (let m = span.lo; m <= span.hi + 1e-9; m += step) { line(ctx, X(m), y - 8, X(m), y + 8, PAL.muted, 2); text(ctx, fmt(m, 0) + ' lb', X(m), y + 28, PAL.muted, { size: 17, align: 'center' }); }
       if (ln.weeks && atExample) {
-        WEEKS.slice().sort((u, v) => u - v).forEach((w, i) => { const ty = y - 42 - 24 * (i % 3); line(ctx, X(w), ty + 12, X(w), y - 4, PAL.ink, 3); text(ctx, fmt(w, 1) + ' lb', X(w), ty, PAL.ink, { size: 17, weight: 600, align: 'center', bg: PAL.panel }); });
+        WEEKS.slice().sort((u, v) => u - v).forEach((w, i) => { const ty = y - 42 - 24 * (i % 3); line(ctx, X(w), ty + 12, X(w), y - 4, C('force'), 3); text(ctx, fmt(w, 1) + ' lb', X(w), ty, C('force'), { size: 17, weight: 600, align: 'center', bg: PAL.panel }); });
         text(ctx, 'the four weekly weights of Example 1.2', R, y - 104, PAL.muted, { size: 17, align: 'right' });
       }
-      dot(ctx, Xc(a), y, PAL.ink, true, 10);
+      dot(ctx, Xc(a), y, C('force'), true, 10);
       hbracket(ctx, Xc(a - dA.v), Xc(a + dA.v), y + 84, PAL.ink, fmt(a, ln.dec) + ' lb ± ' + fmt(dA.v, 1) + ' lb, which is ± ' + pct(a, dA.v) + '%');
     }
     headline(ctx, 'A weight of ' + fmt(A.v, 1) + ' lb known to ± ' + fmt(dA.v, 1) + ' lb is known to ± ' + p + '%.');
@@ -140,7 +140,7 @@ function runs(ctx, parts, x, y, size) {
   const LEN = 4, WID = 3, K = 130, CX = 420, CY = 330;
   const pc = (p) => (Number.isInteger(p) ? fmt(p, 0) : fmt(p, 1)) + '%';
   const pcTex = (p) => (Number.isInteger(p) ? fmt(p, 0) : fmt(p, 1)) + '\\%';
-  function outline(ctx, w, h, width, dash) { ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = width; if (dash) ctx.setLineDash(dash); ctx.strokeRect(CX - w / 2, CY - h / 2, w, h); ctx.restore(); }
+  function outline(ctx, w, h, width, dash) { ctx.save(); ctx.strokeStyle = C('area'); ctx.lineWidth = width; if (dash) ctx.setLineDash(dash); ctx.strokeRect(CX - w / 2, CY - h / 2, w, h); ctx.restore(); }
   function draw() {
     const { ctx } = begin(d.c);
     const a = LEN * (1 + pL.v / 100), b = WID * (1 + pW.v / 100), a2 = LEN * (1 - pL.v / 100), b2 = WID * (1 - pW.v / 100);
@@ -148,15 +148,15 @@ function runs(ctx, parts, x, y, size) {
     /* the ring between the largest and the smallest floor */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.beginPath(); ctx.rect(CX - (a * K) / 2, CY - (b * K) / 2, a * K, b * K); ctx.rect(CX - (a2 * K) / 2, CY - (b2 * K) / 2, a2 * K, b2 * K); ctx.fill('evenodd'); ctx.restore();
     outline(ctx, a * K, b * K, 2.5, [10, 10]); outline(ctx, a2 * K, b2 * K, 2.5, [10, 10]); outline(ctx, LEN * K, WID * K, 4);
-    text(ctx, '12.0 m²', CX, CY, PAL.ink, { size: 26, weight: 600, align: 'center' });
+    text(ctx, '12.0 m²', CX, CY, C('area'), { size: 26, weight: 600, align: 'center' });
     const bot = CY + (b * K) / 2, rgt = CX + (a * K) / 2;
-    hbracket(ctx, CX - (LEN * K) / 2, CX + (LEN * K) / 2, bot + 50, PAL.ink, '4.00 m ± ' + pc(pL.v));
-    vbracket(ctx, rgt + 40, CY - (WID * K) / 2, CY + (WID * K) / 2, PAL.ink, '3.00 m ± ' + pc(pW.v), 1);
+    hbracket(ctx, CX - (LEN * K) / 2, CX + (LEN * K) / 2, bot + 50, C('position'), '4.00 m ± ' + pc(pL.v));
+    vbracket(ctx, rgt + 40, CY - (WID * K) / 2, CY + (WID * K) / 2, C('position'), '3.00 m ± ' + pc(pW.v), 1);
     /* the key */
     const px = 930;
     const row = (y, swatch, head, val) => { swatch(y); text(ctx, head, px + 44, y, PAL.muted, { size: 20, weight: 600 }); text(ctx, val, px + 44, y + 34, PAL.ink, { size: 22 }); };
-    const dashed = (y) => line(ctx, px, y, px + 30, y, PAL.ink, 2.5, [8, 8]);
-    row(150, (y) => line(ctx, px, y, px + 30, y, PAL.ink, 4), 'the floor as measured', '4.00 m by 3.00 m, 12.0 m²');
+    const dashed = (y) => line(ctx, px, y, px + 30, y, C('area'), 2.5, [8, 8]);
+    row(150, (y) => line(ctx, px, y, px + 30, y, C('area'), 4), 'the floor as measured', '4.00 m by 3.00 m, 12.0 m²');
     row(250, dashed, 'the largest floor allowed', '(' + fmt(a, 2) + ' m)(' + fmt(b, 2) + ' m) = ' + fmt(a * b, 1) + ' m²');
     row(350, dashed, 'the smallest floor allowed', '(' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m²');
     row(450, (y) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fillRect(px, y - 12, 30, 24); ctx.restore(); }, 'the uncertainty in the area', '± ' + pc(pA) + ' of 12.0 m², or ± ' + fmt(dArea, 1) + ' m²');
@@ -179,7 +179,7 @@ function runs(ctx, parts, x, y, size) {
 ===================================================================== */
 (function () {
   const d = sim('sim-ruler', 500);
-  const Lc = ctl(d.controls, { label: '\\text{length}', cls: '', min: 10, max: 50, step: 0.01, value: 36.71, unit: 'cm', dec: 2, aria: 'true length of the stick' });
+  const Lc = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 10, max: 50, step: 0.01, value: 36.71, unit: 'cm', dec: 2, aria: 'true length of the stick' });
   /* The smallest division is one of three rulers, not a quantity to slide through, so it is a choice (rule 26.1). */
   const DIVS = { cm: { cm: 1, dec: 0, name: 'centimeter divisions' }, mm: { cm: 0.1, dec: 1, name: 'millimeter divisions' }, tenth: { cm: 0.01, dec: 2, name: '0.1 mm divisions' } };
   const Dv = F.choice(d.controls, { label: '\\text{smallest division}', options: [{ value: 'cm', label: '1 cm' }, { value: 'mm', label: '1 mm' }, { value: 'tenth', label: '0.1 mm' }], value: 'mm', aria: 'smallest division of the ruler' });
@@ -193,10 +193,10 @@ function runs(ctx, parts, x, y, size) {
     const slide = -(1 - u) * SLIDE, sw = slide / K;
     /* the scene: the stick on a strip, the ruler sliding in beneath it */
     strip(ctx, 60, 1340, YS, 44);
-    bar(ctx, X0, YS - 2, L * K, 20, true);
-    text(ctx, 'the stick, ' + fmt(L, 2) + ' cm long', X0, 104, PAL.muted, { size: 17 });
+    bar(ctx, X0, YS - 2, L * K, 20, true, F.ref('stick'));
+    text(ctx, 'the stick, ' + fmt(L, 2) + ' cm long', X0, 104, F.ref('stick'), { size: 17 });
     const rx = X0 + slide, rt = YS + 30;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(rx, rt, 50 * K + 36, 50); ctx.strokeRect(rx, rt, 50 * K + 36, 50); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 3; ctx.fillRect(rx, rt, 50 * K + 36, 50); ctx.strokeRect(rx, rt, 50 * K + 36, 50); ctx.restore();
     for (let c = 0; c <= 50; c++) { const len = c % 10 ? (c % 5 ? 12 : 18) : 26; line(ctx, rx + c * K, rt, rx + c * K, rt + len, PAL.ink, c % 10 ? 1.5 : 2.5); if (c % 10 === 0) text(ctx, String(c), rx + c * K, rt + 38, PAL.ink, { size: 17, align: 'center' }); }
     text(ctx, 'cm', rx + 50 * K + 22, rt + 38, PAL.ink, { size: 17, align: 'center' });
     /* the magnifier: from the end of the stick down to the box */
@@ -206,11 +206,11 @@ function runs(ctx, parts, x, y, size) {
     const w0 = Math.floor(L) - 0.25, Xm = (c) => BOX.l + (c - w0) * KM;
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
     text(ctx, 'under a magnifier, the end of the stick against a ruler with ' + dv.name, BOX.l + 16, BOX.t + 20, PAL.muted, { size: 17 });
-    bar(ctx, Xm(w0) - 20, 360, Xm(L) - Xm(w0) + 20, 26, true);
+    bar(ctx, Xm(w0) - 20, 360, Xm(L) - Xm(w0) + 20, 26, true, F.ref('stick'));
     /* the ruler's marks where the ruler is */
     const lo = Math.max(w0, sw), hi = Math.min(w0 + WIN, 50 + sw);
     if (hi > lo) {
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(Xm(lo), 390, Xm(hi) - Xm(lo), 72); ctx.strokeRect(Xm(lo), 390, Xm(hi) - Xm(lo), 72); ctx.restore();
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 3; ctx.fillRect(Xm(lo), 390, Xm(hi) - Xm(lo), 72); ctx.strokeRect(Xm(lo), 390, Xm(hi) - Xm(lo), 72); ctx.restore();
       const dcm = dv.cm, i0 = Math.ceil((lo - sw) / dcm - 1e-9), i1 = Math.floor((hi - sw) / dcm + 1e-9);
       for (let i = Math.max(0, i0); i <= i1; i++) {
         const c = i * dcm, x = Xm(c + sw), labelled = dcm === 1 || i % 10 === 0, medium = i % 5 === 0;
@@ -229,7 +229,7 @@ function runs(ctx, parts, x, y, size) {
     ctx.restore();
     headline(ctx, aligned ? 'With ' + dv.name + ' the stick reads ' + reading + ' cm, ' + words(n) + ' figures, and the ' + last + ' is estimated.'
       : 'The ruler slides under the stick until its zero mark meets the stick’s left end.');
-    readout(d.readout, `L = ${reading}\\ \\text{cm}`,
+    readout(d.readout, `\\kLlen = ${reading}\\ \\text{cm}`,
       'The last digit written down is the first with some uncertainty. A ruler marked in centimeters gives ' + L.toFixed(0) + ' cm, ' + words(sigfigs(L, 0)) + ' figures, and a caliper reading to 0.1 mm gives ' + L.toFixed(2) + ' cm, ' + words(sigfigs(L, 2)) + '.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -243,9 +243,9 @@ function runs(ctx, parts, x, y, size) {
 ===================================================================== */
 (function () {
   const d = sim('sim-calc', 560);
-  const a0 = ctl(d.controls, { label: 'a', cls: '', min: 1, max: 20, step: 0.01, value: 7.56, unit: '', dec: 2, aria: 'length a' });
+  const a0 = ctl(d.controls, { label: 'a', cls: 'position', min: 1, max: 20, step: 0.01, value: 7.56, unit: '', dec: 2, aria: 'length a' });
   const da = ctl(d.controls, { label: '\\text{decimals of } a', cls: '', min: 0, max: 3, step: 1, value: 2, unit: '', dec: 0, aria: 'decimals of a' });
-  const b0 = ctl(d.controls, { label: 'b', cls: '', min: 1, max: 20, step: 0.001, value: 6.052, unit: '', dec: 3, aria: 'length b' });
+  const b0 = ctl(d.controls, { label: 'b', cls: 'position', min: 1, max: 20, step: 0.001, value: 6.052, unit: '', dec: 3, aria: 'length b' });
   const db = ctl(d.controls, { label: '\\text{decimals of } b', cls: '', min: 0, max: 3, step: 1, value: 3, unit: '', dec: 0, aria: 'decimals of b' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const PLACES = ['whole units', 'tenths', 'hundredths', 'thousandths'];
@@ -269,15 +269,15 @@ function runs(ctx, parts, x, y, size) {
     const k = Math.min(1100 / (A + B), 220 / B, 480 / A), x0 = 150, wa = A * k, wb = B * k, hb = B * k;
     const ys = 140, yt = 262;
     text(ctx, 'sum', 60, ys, PAL.muted, { size: 20, weight: 600 });
-    bar(ctx, x0, ys, wa, 26, true); bar(ctx, x0 + wa, ys, wb, 26, false);
-    text(ctx, 'a = ' + As, x0 + wa / 2, ys - 30, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'b = ' + Bs, x0 + wa + wb / 2, ys - 30, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    hbracket(ctx, x0, x0 + wa + wb, ys + 52, PAL.ink, 'a + b = ' + sumKept);
+    bar(ctx, x0, ys, wa, 26, true, C('position')); bar(ctx, x0 + wa, ys, wb, 26, false, C('position'));
+    text(ctx, 'a = ' + As, x0 + wa / 2, ys - 30, C('position'), { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'b = ' + Bs, x0 + wa + wb / 2, ys - 30, C('position'), { size: 22, weight: 600, align: 'center' });
+    hbracket(ctx, x0, x0 + wa + wb, ys + 52, C('position'), 'a + b = ' + sumKept);
     text(ctx, 'product', 60, yt + hb / 2, PAL.muted, { size: 20, weight: 600 });
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(x0, yt, wa, hb); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.strokeRect(x0, yt, wa, hb); ctx.restore();
-    hbracket(ctx, x0, x0 + wa, yt - 16, PAL.ink, 'a = ' + As);
-    vbracket(ctx, x0 + wa + 24, yt, yt + hb, PAL.ink, 'b = ' + Bs, 1);
-    text(ctx, 'a × b = ' + plainSig(pRound), x0, yt + hb + 34, PAL.ink, { size: 22, weight: 600 });
+    ctx.save(); ctx.fillStyle = alpha(C('area'), 0.08); ctx.fillRect(x0, yt, wa, hb); ctx.strokeStyle = C('area'); ctx.lineWidth = 4; ctx.strokeRect(x0, yt, wa, hb); ctx.restore();
+    hbracket(ctx, x0, x0 + wa, yt - 16, C('position'), 'a = ' + As);
+    vbracket(ctx, x0 + wa + 24, yt, yt + hb, C('position'), 'b = ' + Bs, 1);
+    text(ctx, 'a × b = ' + plainSig(pRound), x0, yt + hb + 34, C('area'), { size: 22, weight: 600 });
     /* the calculator's results, the rejected digits muted */
     const px = 820;
     text(ctx, 'the sum keeps the ' + PLACES[dec] + ' of ' + (da.v === db.v ? 'both' : da.v < db.v ? 'a' : 'b'), px, 120, PAL.muted, { size: 20, weight: 600 });

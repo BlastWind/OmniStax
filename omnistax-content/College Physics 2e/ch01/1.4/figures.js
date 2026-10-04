@@ -1,7 +1,7 @@
 /* Figures for section 1.4 Approximation. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.4'] = function (root, F) {
-const { el, fmt, tex, PAL, alpha, ctl, register, begin, line, text, headline, topline, vbracket, nice } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, text, headline, topline, vbracket, nice } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -35,7 +35,7 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
 (function () {
   const d = sim('sim-building', 620);
   const N = ctl(d.controls, { label: '\\text{stories}', cls: '', min: 1, max: 100, step: 1, value: 39, unit: '', dec: 0, aria: 'number of stories' });
-  const P = ctl(d.controls, { label: '\\text{person}', cls: '', min: 1.5, max: 2, step: 0.1, value: 2, unit: 'm', dec: 1, aria: 'height of a person' });
+  const P = ctl(d.controls, { label: '\\text{person}', cls: 'position', min: 1.5, max: 2, step: 0.1, value: 2, unit: 'm', dec: 1, aria: 'height of a person' });
   const S = ctl(d.controls, { label: '\\text{persons per story}', cls: '', min: 1, max: 3, step: 0.5, value: 2, unit: '', dec: 1, aria: 'persons per story' });
   function draw() {
     const { ctx } = begin(d.c);
@@ -54,7 +54,7 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
     text(ctx, 'and is ' + num(story) + ' m tall', icx, 162, PAL.muted, { size: 17, align: 'center' });
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05); ctx.fillRect(ix0, it, ix1 - ix0, ih); ctx.restore();
     ctx.save(); ctx.beginPath(); ctx.rect(ix0, it, ix1 - ix0, ih); ctx.clip();
-    for (let i = 0; i < Math.ceil(S.v - 1e-9); i++) person(ctx, icx, G - i * ph, ph, PAL.ink);
+    for (let i = 0; i < Math.ceil(S.v - 1e-9); i++) person(ctx, icx, G - i * ph, ph, F.ref('person'));
     ctx.restore();
     line(ctx, ix0, it, ix1, it, PAL.ink, 3); line(ctx, ix0, it, ix0, G, PAL.muted, 2); line(ctx, ix1, it, ix1, G, PAL.muted, 2);
     /* the building, one story at a time */
@@ -70,16 +70,16 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
         ctx.fillStyle = PAL.ink; ctx.fillRect(bx0 + 28 + 2 * 40 - 4, G - Math.min(sh * 0.8, 30), 26, Math.min(sh * 0.8, 30));
         ctx.restore();
       }
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(bx0, top, bx1 - bx0, G - top); ctx.restore();
-      line(ctx, bx0 - 8, top, bx1 + 8, top, PAL.ink, 4);
-      if (G - top >= 40) vbracket(ctx, 950, G, top, PAL.ink, Math.round(up) + ' m');
-      else { vbracket(ctx, 950, G, top, PAL.ink); text(ctx, Math.round(up) + ' m', 966, top - 22, PAL.ink, { weight: 600 }); }
+      ctx.save(); ctx.strokeStyle = F.ref('building'); ctx.lineWidth = 3; ctx.strokeRect(bx0, top, bx1 - bx0, G - top); ctx.restore();
+      line(ctx, bx0 - 8, top, bx1 + 8, top, F.ref('building'), 4);
+      if (G - top >= 40) vbracket(ctx, 950, G, top, C('position'), Math.round(up) + ' m');
+      else { vbracket(ctx, 950, G, top, C('position')); text(ctx, Math.round(up) + ' m', 966, top - 22, C('position'), { weight: 600 }); }
     }
     text(ctx, N.v + (N.v === 1 ? ' story' : ' stories'), (bx0 + bx1) / 2, G + 30, PAL.muted, { size: 17, align: 'center' });
     /* the person beside it, at the same scale as the building */
     const hp = P.v * k;
-    person(ctx, 560, G, hp, PAL.ink);
-    text(ctx, 'a person, ' + num(P.v) + ' m', 560, G - hp - 24, PAL.ink, { size: 17, weight: 600, align: 'center' });
+    person(ctx, 560, G, hp, F.ref('person'));
+    text(ctx, 'a person, ' + num(P.v) + ' m', 560, G - hp - 24, F.ref('person'), { size: 17, weight: 600, align: 'center' });
     headline(ctx, done ? (N.v === 1 ? 'One story of about ' + num(story) + ' m makes a building about ' + Math.round(total) + ' m tall.' : N.v + ' stories of about ' + num(story) + ' m each make a building about ' + Math.round(total) + ' m tall.')
       : n + ' of the ' + N.v + ' stories ' + (n === 1 ? 'is' : 'are') + ' up, and the building stands ' + Math.round(up) + ' m tall so far.');
     const exact = Math.abs(total - Math.round(total)) < 1e-9;
@@ -102,7 +102,7 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
 (function () {
   const d = sim('sim-trillion', 640);
   const A = ctl(d.controls, { label: '\\text{amount}', cls: '', min: 0.1, max: 30, step: 0.1, value: 1, unit: 'trillion dollars', dec: 1, specials: [{ at: 28, label: '2021 debt' }], aria: 'amount in trillions of dollars' });
-  const TH = ctl(d.controls, { label: '\\text{stack thickness}', cls: '', min: 0.3, max: 0.7, step: 0.05, value: 0.5, unit: 'in.', dec: 2, aria: 'thickness of a stack of 100 bills' });
+  const TH = ctl(d.controls, { label: '\\text{stack thickness}', cls: 'position', min: 0.3, max: 0.7, step: 0.05, value: 0.5, unit: 'in.', dec: 2, aria: 'thickness of a stack of 100 bills' });
   const AREA = 6480000;   /* the field between the end zones, 100 yd by 50 yd, in square inches */
   const volumeOf = (trillions) => (trillions * 1e12 / 1e4) * 6 * 3 * TH.v;   /* stacks of 10,000 dollars, each 6 in. by 3 in. by the set thickness */
   function draw() {
@@ -114,8 +114,8 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
     /* the field in side view: the end zones shaded, the yard line ticked every 10 yd */
     const G = 560, fx0 = 240, fx1 = 1300, ez = (fx1 - fx0) / 12, gx0 = fx0 + ez, gx1 = fx1 - ez, Xy = (yd) => gx0 + ((gx1 - gx0) * yd) / 100;
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(fx0, G, fx1 - fx0, 24); ctx.fillStyle = alpha(PAL.muted, 0.25); ctx.fillRect(fx0, G, ez, 24); ctx.fillRect(gx1, G, ez, 24); ctx.restore();
-    line(ctx, 200, G, 1340, G, PAL.muted, 3);
-    for (let yd = 0; yd <= 100; yd += 10) line(ctx, Xy(yd), G, Xy(yd), G + 24, PAL.muted, yd % 50 ? 1.5 : 3);
+    line(ctx, 200, G, 1340, G, PAL.muted, 3); line(ctx, gx0, G, gx1, G, F.ref('field'), 4);
+    for (let yd = 0; yd <= 100; yd += 10) line(ctx, Xy(yd), G, Xy(yd), G + 24, F.ref('field'), yd % 50 ? 1.5 : 3);
     for (const yd of [0, 50, 100]) text(ctx, yd + ' yd', Xy(yd), G + 44, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'end zone', fx0 + ez / 2, G + 12, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'end zone', fx1 - ez / 2, G + 12, PAL.muted, { size: 17, align: 'center' });
@@ -130,16 +130,16 @@ function person(ctx, x, y, h, color) { F.person(ctx, x, y, color, { s: h / PERSO
     /* the pile of stacks between the end zones */
     const py = Y(h);
     if (h > 0) {
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fillRect(gx0, py, gx1 - gx0, G - py); ctx.restore();
+      ctx.save(); ctx.fillStyle = alpha(F.ref('pile'), 0.1); ctx.fillRect(gx0, py, gx1 - gx0, G - py); ctx.restore();
       const gap = 14; if (G - py > 2 * gap) for (let y = G - gap; y > py + 2; y -= gap) line(ctx, gx0, y, gx1, y, alpha(PAL.ink, 0.18), 1.5);
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(gx0, py, gx1 - gx0, G - py); ctx.restore();
-      text(ctx, dec(h * 12) + ' in., or ' + dec(h) + ' ft' + (over ? ', which runs past the top of the scale' : ''), (gx0 + gx1) / 2, py - 22, PAL.ink, { weight: 600, align: 'center' });
+      ctx.save(); ctx.strokeStyle = F.ref('pile'); ctx.lineWidth = 3; ctx.strokeRect(gx0, py, gx1 - gx0, G - py); ctx.restore();
+      text(ctx, dec(h * 12) + ' in., or ' + dec(h) + ' ft' + (over ? ', which runs past the top of the scale' : ''), (gx0 + gx1) / 2, py - 22, C('position'), { weight: 600, align: 'center' });
     }
     /* a person 6 ft tall in the end zone, at the scale of the axis */
     const hp = (6 / span.hi) * (G - top), px = fx1 - ez / 2;
-    person(ctx, px, G, hp, PAL.ink);
-    text(ctx, 'a person', px, G - hp - 44, PAL.ink, { size: 17, weight: 600, align: 'center' });
-    text(ctx, '6 ft tall', px, G - hp - 24, PAL.ink, { size: 17, weight: 600, align: 'center' });
+    person(ctx, px, G, hp, F.ref('fan'));
+    text(ctx, 'a person', px, G - hp - 44, F.ref('fan'), { size: 17, weight: 600, align: 'center' });
+    text(ctx, '6 ft tall', px, G - hp - 24, C('position'), { size: 17, weight: 600, align: 'center' });
     const amount = A.v === 1 ? 'One trillion dollars' : fmt(A.v, 1) + ' trillion dollars';
     topline(ctx, done ? amount + ' in $100 bills covers the field to a height of about ' + plain(H1) + ' in., ' + (F1 >= 1 ? 'or about ' + plain(F1) + ' ft' : 'which is less than a foot') + (over ? ', which is taller than the scale on the left reaches.' : '.')
       : 'The stacks are being laid down, and the pile is ' + dec(h) + ' ft high so far.');
