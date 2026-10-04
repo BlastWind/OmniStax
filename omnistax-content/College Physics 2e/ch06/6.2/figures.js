@@ -61,7 +61,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
   const d = sim('sim-triangles', 740);
   const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.5, max: 4, step: 0.1, value: 2, unit: 'm', dec: 1, onInput: reset, aria: 'radius of the circular path' });
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 1, max: 10, step: 0.5, value: 5, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed round the circle' });
-  const dth = ctl(d.controls, { label: '\\Delta\\theta', cls: '', min: 5, max: 90, step: 1, value: 40, unit: '°', dec: 0, aria: 'angle between the two points' });
+  const dth = ctl(d.controls, { label: '\\kdtheta', cls: 'angle', min: 5, max: 90, step: 1, value: 40, unit: '°', dec: 0, aria: 'angle between the two points' });
   const per = () => (TAU * r.v) / v.v;                 /* the time for one revolution, in seconds */
   const cy = cycle(per, 1.2);
   function reset() { cy.reset(); }
@@ -87,8 +87,8 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     L.add('Δs = ' + fmt(ds, 2) + ' m', cxa(cx, R, am), cya(cyc, R, am), Math.cos(am), -Math.sin(am), pos, 20, 30);
     /* the angle at the center */
     const ra = Math.min(0.26 * R, 60);
-    arcpath(ctx, cx, cyc, ra, a1, th, PAL.ink, 2.5);
-    L.add('Δθ = ' + fmt(dth.v, 0) + '°', cxa(cx, ra, am), cya(cyc, ra, am), Math.cos(am), -Math.sin(am), PAL.ink, 20, 24);
+    arcpath(ctx, cx, cyc, ra, a1, th, C('angle'), 2.5);
+    L.add('Δθ = ' + fmt(dth.v, 0) + '°', cxa(cx, ra, am), cya(cyc, ra, am), Math.cos(am), -Math.sin(am), C('angle'), 20, 24);
     /* the change of velocity, laid on the circle at the point the object has reached. It runs along
        the inward radius of the middle of the arc, so it stands at half of Δθ from the radius drawn to
        the object and swings onto that radius as Δθ is taken down toward zero, which is the book's
@@ -102,7 +102,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     L.add('v₁', x1 + t1[0] * Lv, y1 + t1[1] * Lv, t1[0], t1[1], vel, 22, 24);
     arrow(ctx, x2, y2, x2 + t2[0] * Lv, y2 + t2[1] * Lv, vel, 5);
     L.add('v₂', x2 + t2[0] * Lv, y2 + t2[1] * Lv, t2[0], t2[1], vel, 22, 24);
-    dot(ctx, x1, y1, pos, false, 10); dot(ctx, x2, y2, PAL.ink, true, 11);
+    dot(ctx, x1, y1, F.ref('object'), false, 10); dot(ctx, x2, y2, F.ref('object'), true, 11);
     /* the velocity triangle, the same two arrows laid tail to tail at the right, drawn at the same scale */
     const tx = 1060, ty = 430;
     text(ctx, 'the same two velocities, laid tail to tail', tx, 150, PAL.muted, { size: 19, align: 'center' });
@@ -156,7 +156,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     { const t = tang(th); L.add('r = ' + fmt(r.v, 0) + ' m', cxa(cx, R * 0.45, th), cya(cyc, R * 0.45, th), -t[0], -t[1], pos, 20, 22); }
     /* the car, nose along the tangent, with its velocity and its acceleration */
     const tv = tang(th);
-    ctx.save(); ctx.translate(bx, by); ctx.rotate(Math.atan2(tv[1], tv[0])); car(ctx, 0, 0, PAL.ink, 1); ctx.restore();
+    ctx.save(); ctx.translate(bx, by); ctx.rotate(Math.atan2(tv[1], tv[0])); car(ctx, 0, 0, F.ref('car'), 1); ctx.restore();
     const Lv = 60 + 2.4 * v.v, La = Math.min(0.55 * R, 50 + 100 * Math.min(1, ac / 8));
     arrow(ctx, bx, by, bx + tv[0] * Lv, by + tv[1] * Lv, vel, 5);
     L.add('v = ' + fmt(v.v, 1) + ' m/s', bx + tv[0] * Lv, by + tv[1] * Lv, tv[0], tv[1], vel, 20, 24);
@@ -206,17 +206,17 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const pos = C('position'), vel = C('velocity'), acc = C('acceleration'), ang = C('angular-rate');
     /* the rotor: its housing, the bar through the axis, and a tube at each end of it */
     const cx = 380, cyc = 370, HOUSE = 235, a0 = 30 * RAD, Rr = 42 + 10.5 * r.v;
-    arcpath(ctx, cx, cyc, HOUSE, 0, TAU, PAL.rule, 4);
+    arcpath(ctx, cx, cyc, HOUSE, 0, TAU, F.ref('ultracentrifuge'), 4);
     arcpath(ctx, cx, cyc, HOUSE - 14, 0, TAU, PAL.soft, 18);
     const sx = cxa(cx, Rr, a0), sy = cya(cyc, Rr, a0), ox = cxa(cx, Rr, a0 + Math.PI), oy = cya(cyc, Rr, a0 + Math.PI);
     arcpath(ctx, cx, cyc, Rr, 0, TAU, PAL.muted, 2, [10, 10]);
-    line(ctx, ox, oy, sx, sy, PAL.muted, 16);
+    line(ctx, ox, oy, sx, sy, alpha(F.ref('ultracentrifuge'), 0.5), 16);
     line(ctx, cx, cyc, sx, sy, pos, 5);
     dot(ctx, ox, oy, PAL.muted, true, 13);
     dot(ctx, cx, cyc, PAL.panel, true, 9);
-    dot(ctx, sx, sy, PAL.ink, true, 15);
+    dot(ctx, sx, sy, F.ref('sample'), true, 15);
     const L = labeller(ctx, 660); L.block(0, 0, 1400, 90);
-    L.add('m', sx, sy, Math.cos(a0), -Math.sin(a0), PAL.ink, 22, 26);
+    L.add('m', sx, sy, Math.cos(a0), -Math.sin(a0), C('mass'), 22, 26);
     { const t = tang(a0); L.add('r = ' + fmt(r.v, 2) + ' cm', cxa(cx, Rr * 0.5, a0), cya(cyc, Rr * 0.5, a0), -t[0], -t[1], pos, 20, 26); }
     curl(ctx, cx, cyc, HOUSE + 24, ang);
     text(ctx, 'ω = ' + Math.round(w) + ' rad/s', cx, cyc - HOUSE - 40, ang, { size: 22, weight: 600, align: 'center' });

@@ -97,7 +97,7 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
 (function () {
   const d = sim('sim-ellipse', 690);
   const ecc = ctl(d.controls, { label: 'e', cls: '', min: 0, max: 0.8, step: 0.01, value: 0.5, unit: '', dec: 2, aria: 'eccentricity', specials: [{ at: 0, label: 'circle' }] });
-  const ang = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 360, step: 1, value: 55, unit: '°', dec: 0, aria: 'place of the point on the curve' });
+  const ang = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 360, step: 1, value: 55, unit: '°', dec: 0, aria: 'place of the point on the curve' });
   function draw() {
     const { ctx } = begin(d.c);
     const e = ecc.v, a = 205, b = a * Math.sqrt(1 - e * e), c = a * e, th = ang.v * RAD;
@@ -116,20 +116,20 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     pin(ctx, f1.x, f1.y, PAL.ink); pin(ctx, f2.x, f2.y, PAL.ink);
     text(ctx, 'f₁', f1.x, f1.y + 26, PAL.muted, { size: 20, align: 'center' });
     text(ctx, 'f₂', f2.x, f2.y + 26, PAL.muted, { size: 20, align: 'center' });
-    pencil(ctx, P1.x, P1.y, cx1, cy1, PAL.ink, 1.25);
-    dot(ctx, P1.x, P1.y, PAL.ink, true, 5);
-    { const pa = Math.atan2(P1.y - cy1, P1.x - cx1), qx = P1.x + 70 * Math.cos(pa), qy = P1.y + 70 * Math.sin(pa); L.add('the pencil', qx, qy, -Math.sin(pa), Math.cos(pa), PAL.ink, 17, 26); }
+    pencil(ctx, P1.x, P1.y, cx1, cy1, F.ref('pencil'), 1.25);
+    dot(ctx, P1.x, P1.y, F.ref('pencil'), true, 5);
+    { const pa = Math.atan2(P1.y - cy1, P1.x - cx1), qx = P1.x + 70 * Math.cos(pa), qy = P1.y + 70 * Math.sin(pa); L.add('the pencil', qx, qy, -Math.sin(pa), Math.cos(pa), F.ref('pencil'), 17, 26); }
     /* (b) the same curve as an orbit, with M at one focus */
     const cx2 = 1030, cy2 = 385, M = { x: cx2 - c, y: cy2 }, P2 = { x: px(cx2), y: py(cy2) };
     text(ctx, '(b) the same curve as an orbit, with M at one focus', 1030, 655, PAL.muted, { size: 20, align: 'center' });
     ellipsePath(ctx, cx2 - c, cy2, a, e, PAL.ink, 4);
     line(ctx, M.x, M.y, P2.x, P2.y, C('position'), 4);
     text(ctx, 'r = ' + fmt(d1, 2) + 'a', (M.x + P2.x) / 2, (M.y + P2.y) / 2 - 20, C('position'), { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    sun(ctx, M.x, M.y, 15, PAL.ink);
-    text(ctx, 'M', M.x, M.y + 44, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'the Sun', M.x, M.y + 68, PAL.muted, { size: 17, align: 'center' });
-    planet(ctx, P2.x, P2.y, 24, PAL.ink);
-    L.add('m, the planet', P2.x, P2.y, Math.cos(th), -Math.sin(th), PAL.ink, 18, 30);
+    sun(ctx, M.x, M.y, 15, F.ref('sun'));
+    text(ctx, 'M', M.x, M.y + 44, C('mass'), { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'the Sun', M.x, M.y + 68, F.ref('sun'), { size: 17, align: 'center' });
+    planet(ctx, P2.x, P2.y, 24, F.ref('planet'));
+    L.add('m, the planet', P2.x, P2.y, Math.cos(th), -Math.sin(th), F.ref('planet'), 18, 30);
     L.flush();
     headline(ctx, e < 0.005
       ? 'At e = 0.00 the two foci meet at the center, and both distances are 1.00a everywhere.'
@@ -164,7 +164,7 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     /* the three sectors, each swept in the same time */
     STARTS.forEach((s, i) => {
       const active = tau >= s && tau <= s + dt;
-      ctx.save(); ctx.fillStyle = alpha(PAL.muted, active ? 0.34 : 0.16); ctx.beginPath();
+      ctx.save(); ctx.fillStyle = alpha(C('area'), active ? 0.34 : 0.16); ctx.beginPath();
       ctx.moveTo(CX - A * e, CY);
       for (let k = 0; k <= 40; k++) { const p = at(s + (dt * k) / 40, e); ctx.lineTo(p.x, p.y); }
       ctx.closePath(); ctx.fill(); ctx.restore();
@@ -184,9 +184,9 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     const vl = clamp(48 * vrel, 24, 110);
     arrow(ctx, p.x, p.y, p.x + (ux / un) * vl, p.y + (uy / un) * vl, C('velocity'), 5);
     text(ctx, 'v', p.x + (ux / un) * (vl + 20), p.y + (uy / un) * (vl + 20), C('velocity'), { size: 22, weight: 600, align: 'center' });
-    sun(ctx, CX - A * e, CY, 15, PAL.ink);
-    text(ctx, 'M', CX - A * e, CY + 44, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    planet(ctx, p.x, p.y, 11, PAL.ink);
+    sun(ctx, CX - A * e, CY, 15, F.ref('sun'));
+    text(ctx, 'M', CX - A * e, CY + 44, C('mass'), { size: 22, weight: 600, align: 'center' });
+    planet(ctx, p.x, p.y, 11, F.ref('planet'));
     /* the graph: the speed against time for one whole orbit, the three intervals shaded */
     const box = { l: 800, r: 1340, t: 210, b: 520 };
     const { X, Y } = axes(ctx, box, [0, 1], [0, 2.5], { xl: 't / T', yl: 'v ÷ (2πa/T)', xc: C('time'), yc: C('velocity'), nx: 4, ny: 5, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 1) });
@@ -214,7 +214,7 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
 (function () {
   const d = sim('sim-third-law', 690);
   const rad = ctl(d.controls, { label: '\\kr', cls: 'position', min: 7, max: 400, step: 0.01, value: 7.88, unit: '×10³ km', dec: 2, onInput: reset, aria: 'orbital radius' });
-  const mass = ctl(d.controls, { label: 'M', cls: '', min: 0.2, max: 2.5, step: 0.01, value: 1, unit: 'M⊕', dec: 2, onInput: reset, aria: 'mass of the parent body', specials: [{ at: 1, label: 'through the Moon' }] });
+  const mass = ctl(d.controls, { label: '\\kM', cls: 'mass', min: 0.2, max: 2.5, step: 0.01, value: 1, unit: 'M⊕', dec: 2, onInput: reset, aria: 'mass of the parent body', specials: [{ at: 1, label: 'through the Moon' }] });
   const cy = cycle(() => 1, 1.0);
   function reset() { cy.reset(); }
   const CX = 340, CY = 400, RDRAW = 200;
@@ -227,12 +227,12 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.beginPath(); ctx.arc(CX, CY, RDRAW, 0, TAU); ctx.stroke(); ctx.restore();
     const bodyR = clamp((RDRAW * R_EARTH) / (rk * 1e6), 7, 162);
     if (bodyR > 24) {
-      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('earth'); ctx.lineWidth = 3;
       ctx.beginPath(); ctx.arc(CX, CY, bodyR, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-      text(ctx, 'M', CX, CY, PAL.ink, { size: 26, weight: 600, align: 'center' });
+      text(ctx, 'M', CX, CY, C('mass'), { size: 26, weight: 600, align: 'center' });
     } else {
-      planet(ctx, CX, CY, bodyR, PAL.ink);
-      text(ctx, 'M', CX, CY + bodyR + 24, PAL.ink, { size: 22, weight: 600, align: 'center' });
+      planet(ctx, CX, CY, bodyR, F.ref('earth'));
+      text(ctx, 'M', CX, CY + bodyR + 24, C('mass'), { size: 22, weight: 600, align: 'center' });
     }
     line(ctx, CX, CY, sx, sy, C('position'), 3, [6, 8]);
     const rl = beside(CX, CY, sx, sy, 20, 0.76);
@@ -246,9 +246,9 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     arrow(ctx, sx, sy, sx - Math.sin(th) * vl, sy - Math.cos(th) * vl, C('velocity'), 5);
     text(ctx, 'v', sx - Math.sin(th) * (vl + 22), sy - Math.cos(th) * (vl + 22), C('velocity'), { size: 22, weight: 600, align: 'center' });
     /* the satellite: a body with a panel on each side, set square to its radius */
-    ctx.save(); ctx.translate(sx, sy); ctx.rotate(-th); ctx.fillStyle = PAL.ink; ctx.fillRect(-8, -8, 16, 16); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2;
+    ctx.save(); ctx.translate(sx, sy); ctx.rotate(-th); ctx.fillStyle = F.ref('satellite'); ctx.fillRect(-8, -8, 16, 16); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('satellite'); ctx.lineWidth = 2;
     ctx.beginPath(); ctx.rect(-30, -5, 18, 10); ctx.rect(12, -5, 18, 10); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'the satellite, of mass m', CX, CY + RDRAW + 62, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the satellite, of mass m', CX, CY + RDRAW + 62, F.ref('satellite'), { size: 17, align: 'center' });
     /* the graph: the period against the radius, where the third law is a straight line */
     const box = { l: 730, r: 1330, t: 150, b: 540 };
     const { X, Y } = axes(ctx, box, [0, 3], [0, 4], { xl: 'r (×10³ km)', yl: 'T (h)', xc: C('position'), yc: C('time'), nx: 3, ny: 4, fx: pow10, fy: pow10 });
@@ -256,12 +256,12 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     const lrLo = clamp((0 - lK) / 1.5, 0, 3), lrHi = clamp((4 - lK) / 1.5, 0, 3);
     curve(ctx, (lr) => Math.log10(orbitT(Math.pow(10, lr), mE)), lrLo, lrHi, X, Y, C('time'), 5, 60);
     const moonT = orbitT(MOON_R, mE), moonOff = orbitT(MOON_R, 1) / moonT;
-    dot(ctx, X(Math.log10(MOON_R)), Y(Math.log10(orbitT(MOON_R, 1))), PAL.ink, false, 11);
-    text(ctx, 'the Moon', X(Math.log10(MOON_R)) - 16, Y(Math.log10(orbitT(MOON_R, 1))) - 24, PAL.ink, { size: 17, align: 'right' });
+    dot(ctx, X(Math.log10(MOON_R)), Y(Math.log10(orbitT(MOON_R, 1))), F.ref('moon'), false, 11);
+    text(ctx, 'the Moon', X(Math.log10(MOON_R)) - 16, Y(Math.log10(orbitT(MOON_R, 1))) - 24, F.ref('moon'), { size: 17, align: 'right' });
     dot(ctx, X(Math.log10(rk)), Y(Math.log10(T)), C('time'), true, 10);
     line(ctx, X(Math.log10(rk)), Y(Math.log10(T)), X(Math.log10(rk)), box.b, C('position'), 2, [4, 8]);
     headline(ctx, 'At ' + fmt(rk, 2) + ' × 10³ km the satellite goes round in ' + sayT(T) + ' at ' + sig3(v) + ' km/s, whatever its mass.');
-    readout(d.readout, `G\\frac{mM}{\\kr^2} = m\\kac = m\\frac{\\kv^2}{\\kr} \\;\\Rightarrow\\; \\kv = \\sqrt{\\frac{GM}{\\kr}} = ${sig3(v)}\\ \\text{km/s}, \\quad \\kac = \\frac{\\kv^2}{\\kr} = ${sig3(ac)}\\ \\text{m/s}^2`,
+    readout(d.readout, `G\\frac{\\km\\kM}{\\kr^2} = \\km\\kac = \\km\\frac{\\kv^2}{\\kr} \\;\\Rightarrow\\; \\kv = \\sqrt{\\frac{G\\kM}{\\kr}} = ${sig3(v)}\\ \\text{km/s}, \\quad \\kac = \\frac{\\kv^2}{\\kr} = ${sig3(ac)}\\ \\text{m/s}^2`,
       Math.abs(moonOff - 1) < 0.02
         ? 'The line runs through the Moon’s point, so a parent of ' + fmt(mE, 2) + ' Earth masses is what holds the Moon in an orbit of 384 × 10³ km and 27.3 d. That is how the mass of a parent body is found from a satellite.'
         : 'The Moon takes 27.3 d over an orbit of 384 × 10³ km, and the line misses its point by a factor of ' + fmt(moonOff > 1 ? moonOff : 1 / moonOff, 2) + '. Slide the parent’s mass until the line runs through the Moon, and you have weighed the parent.');
@@ -303,14 +303,14 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     const e1 = earth(t), o1 = outer(t);
     const sunG = { x: CX1 - e1.x * S1, y: CY + e1.y * S1 }, outG = { x: CX1 + (o1.x - e1.x) * S1, y: CY - (o1.y - e1.y) * S1 };
     const away = (q, k) => { const n = Math.hypot(q.x - CX1, q.y - CY) || 1; return { x: q.x + ((q.x - CX1) / n) * k, y: q.y + ((q.y - CY) / n) * k }; };
-    sun(ctx, sunG.x, sunG.y, 13, PAL.ink);
-    const sl = away(sunG, 42); text(ctx, 'Sun', sl.x, sl.y, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    planet(ctx, outG.x, outG.y, 10, PAL.ink);
-    const ol = away(outG, 34); text(ctx, 'planet', ol.x, ol.y, PAL.ink, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    planet(ctx, CX1, CY, 13, PAL.ink);
+    sun(ctx, sunG.x, sunG.y, 13, F.ref('sun'));
+    const sl = away(sunG, 42); text(ctx, 'Sun', sl.x, sl.y, F.ref('sun'), { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    planet(ctx, outG.x, outG.y, 10, F.ref('outer-planet'));
+    const ol = away(outG, 34); text(ctx, 'planet', ol.x, ol.y, F.ref('outer-planet'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    planet(ctx, CX1, CY, 13, F.ref('earth'));
     /* Earth's own label goes on the side away from the Sun, so the two never sit on each other */
     const sn = Math.hypot(sunG.x - CX1, sunG.y - CY) || 1;
-    text(ctx, 'Earth', CX1 - ((sunG.x - CX1) / sn) * 34, CY - ((sunG.y - CY) / sn) * 34, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'Earth', CX1 - ((sunG.x - CX1) / sn) * 34, CY - ((sunG.y - CY) / sn) * 34, F.ref('earth'), { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* (b) the Sun at the center: two plain circles */
     const S2 = RMAX / r;
     text(ctx, '(b) the Sun at the center, as the Copernican model has it', CX2, 150, PAL.muted, { size: 20, align: 'center' });
@@ -321,12 +321,12 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     line(ctx, CX2, CY, oH.x, oH.y, C('position'), 3);
     const rl2 = beside(CX2, CY, oH.x, oH.y, 20);
     text(ctx, 'r = ' + fmt(r, 2) + ' AU', rl2.x, rl2.y, C('position'), { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    sun(ctx, CX2, CY, 15, PAL.ink);
+    sun(ctx, CX2, CY, 15, F.ref('sun'));
     const out2 = (q, k) => { const n = Math.hypot(q.x - CX2, q.y - CY) || 1; return { x: q.x + ((q.x - CX2) / n) * k, y: q.y + ((q.y - CY) / n) * k }; };
-    planet(ctx, eH.x, eH.y, 9, PAL.ink);
-    const el2 = out2(eH, 30); text(ctx, 'Earth', el2.x, el2.y, PAL.ink, { size: 18, weight: 600, align: 'center' });
-    planet(ctx, oH.x, oH.y, 10, PAL.ink);
-    const ol2 = out2(oH, 32); text(ctx, 'planet', ol2.x, ol2.y, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    planet(ctx, eH.x, eH.y, 9, F.ref('earth'));
+    const el2 = out2(eH, 30); text(ctx, 'Earth', el2.x, el2.y, F.ref('earth'), { size: 18, weight: 600, align: 'center' });
+    planet(ctx, oH.x, oH.y, 10, F.ref('outer-planet'));
+    const ol2 = out2(oH, 32); text(ctx, 'planet', ol2.x, ol2.y, F.ref('outer-planet'), { size: 18, weight: 600, align: 'center' });
     const loops = Math.floor((t - t0) / syn);
     headline(ctx, t - t0 < 0.3
       ? 'After ' + fmt(t, 1) + ' y the two planets have just set out, and the track seen from Earth is only beginning.'

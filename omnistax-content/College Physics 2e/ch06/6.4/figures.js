@@ -33,13 +33,13 @@ function curl(ctx, cx, cy, r, color) {
 const panelTitle = (ctx, s, x, y) => text(ctx, s, x, y, PAL.muted, { size: 20, weight: 600, align: 'center' });
 const divider = (ctx, x, y1, y2) => line(ctx, x, y1, x, y2, PAL.rule, 2);
 /* a disc of boards with its eight spokes, turned through φ */
-function disc(ctx, cx, cy, R, phi) {
+function disc(ctx, cx, cy, R, phi, rim = PAL.muted) {
   ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.fill(); ctx.restore();
   /* the spokes stop at the rim's inner edge, a half width back for the round
      cap, and the rim is stroked over them, so no spoke crosses the rim */
   const IN = R - 3;
   for (let k = 0; k < 8; k++) { const a = phi + (k * TAU) / 8; line(ctx, cx, cy, cx + IN * Math.cos(a), cy - IN * Math.sin(a), PAL.panel, 3); }
-  ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.stroke(); ctx.restore();
+  ctx.save(); ctx.strokeStyle = rim; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); ctx.stroke(); ctx.restore();
   dot(ctx, cx, cy, PAL.muted, true, 6);
 }
 /* a car seen from above, its nose along (ux, uy), centred on (x, y) */
@@ -91,13 +91,13 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     divider(ctx, 700, 128, 596);
 
     /* ---- left: the car stands still and the driver slides toward the door ---- */
-    carTop(ctx, SEATX, SEATY, 0, -1, PAL.ink, 1.2);
+    carTop(ctx, SEATX, SEATY, 0, -1, F.ref('car'), 1.2);
     const LB = labeller(ctx, 640); LB.block(0, 0, 1400, 90);
     const slide = Math.min(1, lateral / DOOR), px = SEATX - slide * 40;
     /* the seat she slides along, then the driver herself, facing forward */
     line(ctx, SEATX - 48, SEATY - 24, SEATX + 48, SEATY - 24, alpha(PAL.muted, 0.5), 2, [6, 6]);
-    personTop(ctx, px, SEATY - 24, 0, -1, PAL.ink, 1);
-    LB.add('the driver', px, SEATY - 24, 1, 0, PAL.ink, 17, 26);
+    personTop(ctx, px, SEATY - 24, 0, -1, F.ref('driver'), 1);
+    LB.add('the driver', px, SEATY - 24, 1, 0, F.ref('driver'), 17, 26);
     const L = 40 + 96 * Math.min(1, (V.v * V.v) / R.v / 15);
     arrow(ctx, px - 18, SEATY - 24, px - 18 - L, SEATY - 24, C('force'), 5);
     LB.add('fictitious force', px - 18 - L, SEATY - 24, -1, 0, C('force'), 18, 22);
@@ -114,15 +114,15 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     line(ctx, OX, OY, cxp, cyp, C('position'), 2, [10, 10]);
     const ux = -Math.sin(th), uy = Math.cos(th);
     LB.add('r = ' + fmt(R.v, 0) + ' m', OX + Rp * 0.3 * Math.cos(th), OY + Rp * 0.3 * Math.sin(th), -ux, -uy, C('position'), 18, 22);
-    carTop(ctx, cxp, cyp, ux, uy, PAL.ink, 0.55);
-    personTop(ctx, cxp - 8 * ux + 6 * uy, cyp - 8 * uy - 6 * ux, ux, uy, PAL.ink, 0.5);
+    carTop(ctx, cxp, cyp, ux, uy, F.ref('car'), 0.55);
+    personTop(ctx, cxp - 8 * ux + 6 * uy, cyp - 8 * uy - 6 * ux, ux, uy, F.ref('driver'), 0.5);
     const fx = cxp + (OX - cxp) * 0.5, fy = cyp + (OY - cyp) * 0.5;
     arrow(ctx, cxp, cyp, fx, fy, C('force'), 5);
     LB.add('the road’s real force', fx, fy, (OX - cxp) / Rp, (OY - cyp) / Rp, C('force'), 18, 22);
     const sx = OX - Rp, sy = OY, dy = sy - V.v * t * k;
     line(ctx, sx, sy, sx, dy, C('velocity'), 3, [12, 10]);
     dot(ctx, sx, sy, PAL.muted, false, 9);
-    personTop(ctx, sx, dy, 0, -1, C('velocity'), 0.5);
+    personTop(ctx, sx, dy, 0, -1, alpha(F.ref('driver'), 0.6), 0.5);
     LB.add('her straight line', sx, (sy + dy) / 2, -1, 0, C('velocity'), 18, 22);
     LB.flush();
 
@@ -159,7 +159,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     divider(ctx, 700, 128, 762);
 
     /* ---- left: Earth's frame ---- */
-    disc(ctx, LX, CY, RP, phi);
+    disc(ctx, LX, CY, RP, phi, F.ref('boards'));
     curl(ctx, LX, CY, RP + 30, C('angular-rate'));
     text(ctx, 'ω', LX, CY - RP - 54, C('angular-rate'), { weight: 600, align: 'center' });
     /* the unshaded rider: no net force on him, so he keeps the tangent he was on */
@@ -169,16 +169,16 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     const glen = Math.min(cap, rr * W.v * t), gx = gx0 - glen * s0, gy = gy0 - glen * c0;
     const LB = labeller(ctx, 800); LB.block(0, 0, 1400, 90);
     line(ctx, gx0, gy0, gx, gy, PAL.muted, 2, [8, 8]);
-    ctx.save(); ctx.globalAlpha = 0.45; personTop(ctx, gx, gy, -s0, -c0, PAL.muted, 0.7); ctx.restore();
-    LB.add('F_net = 0', gx, gy, -c0, s0, PAL.muted, 17, 26);
+    ctx.save(); ctx.globalAlpha = 0.45; personTop(ctx, gx, gy, -s0, -c0, F.ref('free-rider'), 0.7); ctx.restore();
+    LB.add('F_net = 0', gx, gy, -c0, s0, F.ref('free-rider'), 17, 26);
     /* the rider, held on his circle by a real force toward the middle */
     const rx = LX + rr * Math.cos(phi + A0), ry = CY - rr * Math.sin(phi + A0);
     line(ctx, LX, CY, rx, ry, C('position'), 2, [8, 8]);
-    personTop(ctx, rx, ry, -Math.sin(phi + A0), -Math.cos(phi + A0), PAL.ink, 0.7);
+    personTop(ctx, rx, ry, -Math.sin(phi + A0), -Math.cos(phi + A0), F.ref('rider'), 0.7);
     { const hx = rx + (LX - rx) * 0.46, hy = ry + (CY - ry) * 0.46; arrow(ctx, rx, ry, hx, hy, C('force'), 5); LB.add('he must hang on', hx, hy, (LX - rx) / rr, (CY - ry) / rr, C('force'), 17, 22); }
     /* the ball, dead straight over the ground */
     line(ctx, LX, CY, LX + br * S, CY, C('velocity'), 5);
-    dot(ctx, LX + br * S, CY, C('velocity'), true, 10);
+    dot(ctx, LX + br * S, CY, F.ref('ball'), true, 10);
     dot(ctx, LX, CY, PAL.muted, false, 8);
     text(ctx, 'A', LX - 10, CY + 28, PAL.ink, { size: 20, weight: 600, align: 'right' });
     dot(ctx, LX + RP, CY, PAL.muted, false, 9);
@@ -188,10 +188,10 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     LB.add('B′', bx, by, Math.cos(phi), -Math.sin(phi), PAL.ink, 20, 22);
 
     /* ---- right: the boards' own frame ---- */
-    disc(ctx, RX, CY, RP, 0);
+    disc(ctx, RX, CY, RP, 0, F.ref('boards'));
     const qx = RX + rr * Math.cos(A0), qy = CY - rr * Math.sin(A0);
     line(ctx, RX, CY, RX + RP, CY, PAL.muted, 2, [8, 8]);
-    personTop(ctx, qx, qy, -Math.sin(A0), -Math.cos(A0), PAL.ink, 0.7);
+    personTop(ctx, qx, qy, -Math.sin(A0), -Math.cos(A0), F.ref('rider'), 0.7);
     const ax2 = qx + 78 * Math.cos(A0), ay2 = qy - 78 * Math.sin(A0);
     arrow(ctx, qx, qy, ax2, ay2, C('force'), 5);
     LB.add('centrifugal force', ax2, ay2, Math.cos(A0), -Math.sin(A0), C('force'), 17, 22);
@@ -201,7 +201,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     for (let i = 0; i <= n; i++) { const s = (br * i) / n, ang = -W.v * (s / V.v), ex = RX + s * S * Math.cos(ang), ey = CY - s * S * Math.sin(ang); if (i) ctx.lineTo(ex, ey); else ctx.moveTo(ex, ey); }
     ctx.stroke(); ctx.restore();
     const ea = -W.v * t, hx = RX + br * S * Math.cos(ea), hy = CY - br * S * Math.sin(ea);
-    dot(ctx, hx, hy, C('velocity'), true, 10);
+    dot(ctx, hx, hy, F.ref('ball'), true, 10);
     dot(ctx, RX, CY, PAL.muted, false, 8);
     text(ctx, 'A', RX - 10, CY + 28, PAL.ink, { size: 20, weight: 600, align: 'right' });
     dot(ctx, RX + RP, CY, PAL.ink, false, 10);
@@ -245,21 +245,21 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     dot(ctx, AX, AY, PAL.muted, true, 8);
     text(ctx, 'the axis', AX - 18, AY, PAL.muted, { size: 17, align: 'right' });
     text(ctx, 'r = ' + fmt(R.v, 3) + ' m', AX + Rp * 0.5, AY - 46, C('position'), { size: 18, weight: 600, align: 'center', bg: PAL.bg });
-    tube(ctx, AX + Rp - 30, AY, 1, 0, 126, 30, PAL.ink);
+    tube(ctx, AX + Rp - 30, AY, 1, 0, 126, 30, F.ref('tube'));
     const qx = AX + Rp + 40, qy = AY;
     line(ctx, qx, qy + 66, qx, qy - 130, PAL.muted, 2, [10, 10]);
     text(ctx, 'inertia carries it along the tangent', qx, qy + 94, PAL.muted, { size: 17, align: 'center', bg: PAL.bg });
-    dot(ctx, qx, qy, PAL.ink, true, 9);
+    dot(ctx, qx, qy, F.ref('particles'), true, 9);
     arrow(ctx, qx, qy, qx - 74, qy, C('force'), 5);
     text(ctx, 'the wall’s real force', qx - 37, qy + 54, C('force'), { size: 17, weight: 600, align: 'center', bg: PAL.bg });
 
     /* ---- right: the tube as the sample meets it ---- */
     const TX = 1035, TY = 150, TL = 320;
-    tube(ctx, TX, TY, 0, 1, TL, 52, PAL.ink);
+    tube(ctx, TX, TY, 0, 1, TL, 52, F.ref('tube'));
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.rect(TX - 48, TY + 6, 96, TL - 12); ctx.fill(); ctx.restore();
     const pellet = Math.min(0.46, 0.1 + 0.14 * Math.log10(Math.max(2, ratio)));
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.3); ctx.beginPath(); ctx.rect(TX - 48, TY + TL - 24 - pellet * TL, 96, pellet * TL); ctx.fill(); ctx.restore();
-    for (let i = 0; i < 12; i++) { const fr = ((i * 7) % 12) / 12, yy = TY + TL - 40 - fr * fr * (TL - 90); dot(ctx, TX - 32 + ((i * 23) % 66), yy, PAL.ink, true, 6); }
+    for (let i = 0; i < 12; i++) { const fr = ((i * 7) % 12) / 12, yy = TY + TL - 40 - fr * fr * (TL - 90); dot(ctx, TX - 32 + ((i * 23) % 66), yy, F.ref('particles'), true, 6); }
     arrow(ctx, TX + 90, TY + 56, TX + 90, TY + TL - 34, C('force'), 5);
     text(ctx, 'centrifugal force', TX + 104, TY + TL / 2 - 12, C('force'), { size: 18, weight: 600 });
     text(ctx, 'with no physical origin', TX + 104, TY + TL / 2 + 16, PAL.muted, { size: 17 });
