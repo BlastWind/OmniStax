@@ -99,19 +99,20 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     /* the corners of the curve blend from one substance to the next; a substance with no liquid has its liquid step of zero length */
     const [gB, gM, gL, gS] = sub.mix((v) => { const q = SUBS.find((s) => s.value === v); return [q.boil ?? q.melt, q.melt, (q.vliq ?? q.vsol) * X100, q.vsol * X100]; });
     const box = { l: 150, r: 1320, t: 120, b: 520 };
-    const { X, Y } = axes(ctx, box, [-300, 150], [0, 40], { xl: 'Temperature T (°C)', xc: C('temperature'), yl: 'Volume V (L)', nx: 9, ny: 4, fx: (v) => (v === -300 || Math.abs(v) % 100 > 1 ? '' : neg(fmt(v, 0))), fy: (v) => fmt(v, 0) });
+    const vc = C('volume');
+    const { X, Y } = axes(ctx, box, [-300, 150], [0, 40], { xl: 'Temperature T (°C)', xc: C('temperature'), yl: 'Volume V (L)', yc: vc, nx: 9, ny: 4, fx: (v) => (v === -300 || Math.abs(v) % 100 > 1 ? '' : neg(fmt(v, 0))), fy: (v) => fmt(v, 0) });
     line(ctx, X(-273.15), box.b - 8, X(-273.15), box.b + 8, PAL.muted, 2);
     text(ctx, '−273.15', X(-273.15), box.b + 26, PAL.muted, { size: 17, align: 'center' });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l - 3, box.t - 3, box.r - box.l + 6, box.b - box.t + 6); ctx.clip();
     /* the ideal line, dashed where the substance is no longer a gas */
     line(ctx, X(-273.15), Y(0), X(gB), Y(ideal(gB)), PAL.muted, 3, [10, 10]);
-    line(ctx, X(gB), Y(ideal(gB)), X(150), Y(ideal(150)), PAL.ink, 5);
+    line(ctx, X(gB), Y(ideal(gB)), X(150), Y(ideal(150)), vc, 5);
     /* the condensed part, drawn ×100 */
     const gyL = Y(gL), gyS = Y(gS);
-    line(ctx, X(gB), Y(ideal(gB)), X(gB), gyL, PAL.ink, 5);
-    line(ctx, X(gB), gyL, X(gM), gyL, PAL.ink, 5);
-    line(ctx, X(gM), gyL, X(gM), gyS, PAL.ink, 5);
-    line(ctx, X(gM), gyS, X(-273.15), gyS, PAL.ink, 5);
+    line(ctx, X(gB), Y(ideal(gB)), X(gB), gyL, vc, 5);
+    line(ctx, X(gB), gyL, X(gM), gyL, vc, 5);
+    line(ctx, X(gM), gyL, X(gM), gyS, vc, 5);
+    line(ctx, X(gM), gyS, X(-273.15), gyS, vc, 5);
     ctx.restore();
     /* labels beside the pieces of the curve */
     const L = labeller(ctx, H); L.block(0, 0, 1400, 92);
@@ -127,7 +128,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     const vTrue = phase === 'gas' ? ideal(tc) : phase === 'liquid' ? S.vliq : S.vsol;
     const yPt = phase === 'gas' ? Y(vTrue) : Y(vTrue * X100);
     line(ctx, X(tc), box.b, X(tc), yPt, C('temperature'), 3, [4, 8]);
-    dot(ctx, X(tc), yPt, PAL.ink, true, 10);
+    dot(ctx, X(tc), yPt, vc, true, 10);
     if (box.b - yPt > 90) L.add('T = ' + neg(fmt(tc, 0)) + ' °C', X(tc), (box.b + yPt) / 2 + 30, tc > 60 ? -1 : 1, 0, C('temperature'), 20);
     else L.add('T = ' + neg(fmt(tc, 0)) + ' °C', X(tc), yPt - 14, 0.3, -1, C('temperature'), 20);
     L.flush();
@@ -135,9 +136,9 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     topline(ctx, phase === 'gas' ? 'At ' + neg(fmt(tc, 0)) + ' °C one mole of ' + nm + ' is a gas on the ideal line, filling ' + fmt(vI, 1) + ' L at 1.00 atm.'
       : phase === 'liquid' ? 'At ' + neg(fmt(tc, 0)) + ' °C ' + nm + ' is a liquid: one mole fills ' + fmt(vTrue, 3) + ' L, not the ' + fmt(vI, 1) + ' L the ideal line would give.'
       : 'At ' + neg(fmt(tc, 0)) + ' °C ' + nm + ' is a solid, and one mole fills ' + fmt(vTrue, 3) + ' L; the volume never reaches zero.');
-    if (phase === 'gas') readout(d.readout, `V = \\frac{Nk\\kTemp}{\\kPr} = \\frac{(${sciTex(N_A)})(${sciTex(K_B)}\\ \\text{J/K})(${fmt(tk, 0)}\\ \\text{K})}{${sciTex(ATM)}\\ \\text{Pa}} = ${fmt(vI, 1)}\\ \\text{L}`,
+    if (phase === 'gas') readout(d.readout, `\\kvol = \\frac{Nk\\kTemp}{\\kPr} = \\frac{(${sciTex(N_A)})(${sciTex(K_B)}\\ \\text{J/K})(${fmt(tk, 0)}\\ \\text{K})}{${sciTex(ATM)}\\ \\text{Pa}} = ${fmt(vI, 1)}\\ \\text{L}`,
       'One mole at 1.00 atm follows the same straight line whatever the gas, and that line would reach zero volume at −273.15 °C, absolute zero.');
-    else readout(d.readout, `V = ${fmt(vTrue, 3)}\\ \\text{L},\\qquad \\frac{Nk\\kTemp}{\\kPr} = ${fmt(vI, 1)}\\ \\text{L}`,
+    else readout(d.readout, `\\kvol = ${fmt(vTrue, 3)}\\ \\text{L},\\qquad \\frac{Nk\\kTemp}{\\kPr} = ${fmt(vI, 1)}\\ \\text{L}`,
       vI / vTrue >= 3 ? 'One mole of ' + (phase === 'liquid' ? 'liquid ' : 'solid ') + nm + ' fills ' + Math.round(vI / vTrue) + ' times less than the ideal line would give; the liquid and the solid are drawn ' + X100 + ' times larger than the scale of the graph.'
         : 'One mole of solid ' + nm + ' keeps its ' + fmt(vTrue, 3) + ' L all the way down to absolute zero, where the ideal line reaches zero; the liquid and the solid are drawn ' + X100 + ' times larger than the scale of the graph.');
   }
@@ -170,7 +171,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
   const T = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: 213, max: 456, step: 1, value: 290, unit: 'K', dec: 1, aria: 'temperature of the isotherm',
     specials: [{ at: () => SUBS.find((q) => q.value === sub.value).Tc, label: 'critical' }] });
   const tIn = lastInput(d.controls);
-  const V = ctl(d.controls, { label: 'V', cls: '', min: 0.05, max: 0.77, step: 0.005, value: 0.2, unit: 'L/mol', dec: 3, aria: 'volume of one mole' });
+  const V = ctl(d.controls, { label: '\\kvol', cls: 'volume', min: 0.05, max: 0.77, step: 0.005, value: 0.2, unit: 'L/mol', dec: 3, aria: 'volume of one mole' });
   const vIn = lastInput(d.controls);
   /* the reduced model: p in units of Pc, v of Vc, t of Tc */
   const p = (v, t) => (8 * t) / (3 * v - 1) - 3 / (v * v);
@@ -198,7 +199,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     const box = { l: 170, r: 1330, t: 110, b: 520 };
     /* the axes in L/mol and MPa, rounded to ticks from 6 Vc and 2.5 Pc; the model's reduced coordinates are scaled into them */
     const rx = nice(0, 6 * Vc, 4), ry = nice(0, (2.5 * S.Pc) / 1e6, 5), dx = (rx.hi - rx.lo) / rx.n, dy = (ry.hi - ry.lo) / ry.n;
-    const A = axes(ctx, box, [0, rx.hi], [0, ry.hi], { xl: 'Volume V (L/mol)', yl: 'Pressure P (MPa)', yc: C('pressure'), nx: rx.n, ny: ry.n, fx: (q) => fmt(q, dx < 0.1 ? 2 : 1), fy: (q) => fmt(q, dy < 1 ? 1 : 0) });
+    const A = axes(ctx, box, [0, rx.hi], [0, ry.hi], { xl: 'Volume V (L/mol)', xc: C('volume'), yl: 'Pressure P (MPa)', yc: C('pressure'), nx: rx.n, ny: ry.n, fx: (q) => fmt(q, dx < 0.1 ? 2 : 1), fy: (q) => fmt(q, dy < 1 ? 1 : 0) });
     const X = (v) => A.X(v * Vc), Y = (pr) => A.Y((pr * S.Pc) / 1e6), VMAX = rx.hi / Vc, PMAX = (ry.hi * 1e6) / S.Pc;
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     /* the liquid-vapor region under its dome */
@@ -231,8 +232,8 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     const P_Pa = pp * S.Pc, V_L = v * Vc, PV = (P_Pa * V_L) / 1000 / 1000, RT = (R_GAS * T.v) / 1000;   /* kJ */
     const pt = pinned(ctx, box, X, Y, v, pp, C('pressure'), 'P = ' + fmt(P_Pa / 1e6, 1) + ' MPa');
     if (!pt.out) {
-      line(ctx, box.l, pt.y, pt.x, pt.y, C('pressure'), 2.5, [4, 8]); line(ctx, pt.x, box.b, pt.x, pt.y, PAL.ink, 2.5, [4, 8]);
-      L.add('V = ' + fmt(V_L, 3) + ' L', pt.x, (box.b + pt.y) / 2, v > VMAX * 0.7 ? -1 : 1, 0, PAL.ink, 18);
+      line(ctx, box.l, pt.y, pt.x, pt.y, C('pressure'), 2.5, [4, 8]); line(ctx, pt.x, box.b, pt.x, pt.y, C('volume'), 2.5, [4, 8]);
+      L.add('V = ' + fmt(V_L, 3) + ' L', pt.x, (box.b + pt.y) / 2, v > VMAX * 0.7 ? -1 : 1, 0, C('volume'), 18);
     }
     L.flush();
     const nm = S.name, tS = fmt(T.v, S.Tc < 50 ? 1 : 0) + ' K', pS = fmt(P_Pa / 1e6, S.Pc < 1e6 ? 2 : 1) + ' MPa';
@@ -241,7 +242,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
       : state === 'flat' ? 'At ' + tS + ' ' + nm + ' condenses along the flat part of its isotherm, where liquid and vapor coexist at ' + pS + '.'
       : state === 'liquid' ? 'At ' + tS + ' and ' + fmt(V_L, 3) + ' L/mol ' + nm + ' is a liquid, and its volume barely changes as the pressure climbs.'
       : 'At ' + tS + ' and ' + fmt(V_L, 3) + ' L/mol ' + nm + ' is a vapor at ' + pS + ', below its boiling pressure.');
-    readout(d.readout, `\\kPr V = (${fmt(P_Pa / 1e6, S.Pc < 1e6 ? 2 : 1)}\\ \\text{MPa})(${fmt(V_L, 3)}\\ \\text{L}) = ${fmt(PV, RT < 0.5 ? 3 : 2)}\\ \\text{kJ} = ${fmt(PV / RT, 2)}\\,Nk\\kTemp`,
+    readout(d.readout, `\\kPr \\kvol = (${fmt(P_Pa / 1e6, S.Pc < 1e6 ? 2 : 1)}\\ \\text{MPa})(${fmt(V_L, 3)}\\ \\text{L}) = ${fmt(PV, RT < 0.5 ? 3 : 2)}\\ \\text{kJ} = ${fmt(PV / RT, 2)}\\,Nk\\kTemp`,
       state === 'gas' ? 'For one mole NkT is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; the fluid is squeezed to the density of a liquid at small volumes and never condenses.'
       : state === 'flat' ? 'For one mole NkT is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; between ' + fmt(s.vl * Vc, 3) + ' and ' + fmt(s.vg * Vc, 3) + ' L/mol the pressure stays at ' + pS + ' while liquid turns to vapor.'
       : state === 'liquid' ? 'For one mole NkT is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; the isotherm rises almost vertically here, since a liquid is nearly incompressible.'

@@ -177,18 +177,18 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const pc = C('pressure'), tc = C('temperature');
+    const pc = C('pressure'), tc = C('temperature'), vc = C('volume'), rc = F.ref('tire');
     const s = state(), R = radius(s.V), cyy = RIM_Y - 4 - (s.N === 0 ? 14 : R), nhit = hits.length;
     /* the rim and the tube in section, in ink; a flat tube lies on the rim as an ellipse */
     fixed(ctx, CX - 130, RIM_Y, 260, 26);
     text(ctx, 'the rim', CX, RIM_Y + 46, PAL.muted, { size: 17, align: 'center' });
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = s.full ? 7 : 4; ctx.fillStyle = alpha(PAL.soft, 0.5); ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = rc; ctx.lineWidth = s.full ? 7 : 4; ctx.fillStyle = alpha(PAL.soft, 0.5); ctx.beginPath();
     if (s.N === 0) ctx.ellipse(CX, cyy, R_FULL * 0.9, 14, 0, 0, TAU); else ctx.arc(CX, cyy, R, 0, TAU);
     ctx.fill(); ctx.stroke(); ctx.restore();
     /* the molecules inside it, nitrogen and oxygen in their own colours */
     for (const m of mol) molecule(ctx, CX + m.x, cyy + m.y, m.kind, 2 * RM, m.ang);
     /* what the tube is doing */
-    text(ctx, s.N === 0 ? 'flat' : s.full ? 'V = ' + fmt(s.V * 1e3, 2) + ' L, full' : 'V = ' + fmt(s.V * 1e3, 2) + ' L, still filling', CX, cyy - R - 30, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, s.N === 0 ? 'flat' : s.full ? 'V = ' + fmt(s.V * 1e3, 2) + ' L, full' : 'V = ' + fmt(s.V * 1e3, 2) + ' L, still filling', CX, cyy - R - 30, s.N === 0 ? rc : vc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     if (s.full && s.N > 0) text(ctx, 'the wall holds the volume', CX, cyy - R - 58, PAL.muted, { size: 17, align: 'center' });
     /* the strikes on the wall, and the legend */
     text(ctx, 'strikes on the wall', 40, 120, PAL.ink, { size: 20, weight: 600 });
@@ -211,7 +211,7 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
       : 'With ' + Nt + ' at ' + Tt + ' the tire is full, and the gauge reads an absolute pressure of ' + sciU(s.P, 2) + ' Pa.');
     const rate = nhit === 0 ? 'No strikes are counted while the figure stands still. ' : 'In the drawing the molecules struck the wall ' + nhit + ' times in the last second; more of them, or faster ones, strike it more often, and that is what the gauge feels. ';
     /* one equation in three forms: the variables keep their tags, so reaching the circle on N bends V = NkT/P into P = NkT/V */
-    const sym = { P: '\\mk{P}{\\kPr}', V: '\\mk{V}{V}', N: '\\mk{N}{N}', k: '\\mk{k}{k}', T: '\\mk{T}{\\kTemp}' };
+    const sym = { P: '\\mk{P}{\\kPr}', V: '\\mk{V}{\\kvol}', N: '\\mk{N}{N}', k: '\\mk{k}{k}', T: '\\mk{T}{\\kTemp}' };
     const nums = `(\\mk{nN}{${sciK(s.N || 1, 2)}})(\\mk{nk}{1.38\\times10^{-23}}\\ \\text{J/K})(\\mk{nT}{${fmt(s.TK, 0)}}\\ \\text{K})`;
     const now = s.N === 0 ? 'flat' : s.full ? 'full' : 'filling';
     const tx = now === 'flat' ? `${sym.P} ${sym.V} = ${sym.N}${sym.k}${sym.T} = \\mk{z}{0}`
@@ -240,7 +240,7 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
 ===================================================================== */
 (function () {
   const d = sim('sim-mole', 620);
-  const dd = ctl(d.controls, { label: '\\text{diameter}', cls: '', min: 5, max: 50, step: 0.5, value: 37.5, unit: 'mm', dec: 1, detents: [{ v: 37.5, label: 'a table tennis ball' }], snap: true, aria: 'the diameter of each ball' });
+  const dd = ctl(d.controls, { label: '\\text{diameter}', cls: 'position', min: 5, max: 50, step: 0.5, value: 37.5, unit: 'mm', dec: 1, detents: [{ v: 37.5, label: 'a table tennis ball' }], snap: true, aria: 'the diameter of each ball' });
   const fs = ctl(d.controls, { label: '\\text{extra space}', cls: '', min: 0, max: 50, step: 1, value: 25, unit: '%', dec: 0, aria: 'the space between the balls, as a share of their own volume' });
   const R_E = 6.371e6, AREA = 4 * Math.PI * R_E * R_E;   /* the Earth's surface, 5.10 × 10^14 m² */
   const EVEREST = 8.85, CRUISE = 11, SPACE = 100;        /* km */
@@ -249,6 +249,7 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
   const L = 190, Rr = 1240;                              /* the scene runs from L to Rr */
   function draw() {
     const { ctx } = begin(d.c);
+    const poc = C('position'), bc = F.ref('balls'), evc = F.ref('everest');
     const dm = dd.v / 1000, f = fs.v / 100, vBall = (Math.PI / 6) * dm * dm * dm, vMole = N_A * vBall * (1 + f), h = vMole / AREA, hkm = h / 1000;
     const out = hkm > SPACE, top = Y(Math.min(hkm, SPACE));
     /* the ground and the Earth beneath it */
@@ -258,27 +259,27 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
     /* the layer of balls, a band from the ground up to the depth, textured with rows of balls */
     ctx.save(); ctx.beginPath(); ctx.rect(L, top, Rr - L, GY - top); ctx.clip();
     ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(L, top, Rr - L, GY - top);
-    ctx.strokeStyle = alpha(PAL.ink, 0.28); ctx.lineWidth = 1.5;
+    ctx.strokeStyle = alpha(bc, 0.4); ctx.lineWidth = 1.5;
     const br = 6, pitch = 14;
     for (let j = 0, y = GY - br; y > top - br; j++, y -= pitch) for (let x = L + br + (j % 2) * (pitch / 2); x < Rr; x += pitch) { ctx.beginPath(); ctx.arc(x, y, br, 0, TAU); ctx.stroke(); }
     ctx.restore();
-    line(ctx, L, top, Rr, top, PAL.ink, 3);
+    line(ctx, L, top, Rr, top, bc, 3);
     /* Everest, to scale, and the two heights above it */
     const ex = 520, ew = 34;
-    ctx.save(); ctx.fillStyle = PAL.muted; ctx.beginPath(); ctx.moveTo(ex - ew, GY); ctx.lineTo(ex - 8, Y(EVEREST) + 4); ctx.lineTo(ex, Y(EVEREST)); ctx.lineTo(ex + 10, Y(EVEREST) + 8); ctx.lineTo(ex + ew, GY); ctx.closePath(); ctx.fill(); ctx.restore();
-    text(ctx, 'Mount Everest, 8.85 km', ex + ew + 12, Y(EVEREST) + 2, PAL.ink, { size: 17, bg: alpha(PAL.panel, 0.85) });
+    ctx.save(); ctx.fillStyle = evc; ctx.beginPath(); ctx.moveTo(ex - ew, GY); ctx.lineTo(ex - 8, Y(EVEREST) + 4); ctx.lineTo(ex, Y(EVEREST)); ctx.lineTo(ex + 10, Y(EVEREST) + 8); ctx.lineTo(ex + ew, GY); ctx.closePath(); ctx.fill(); ctx.restore();
+    text(ctx, 'Mount Everest, 8.85 km', ex + ew + 12, Y(EVEREST) + 2, evc, { size: 17, bg: alpha(PAL.panel, 0.85) });
     plane(ctx, 840, Y(CRUISE), PAL.muted, 0.45);
     text(ctx, 'airliners cruise near 11 km', 880, Y(CRUISE), PAL.muted, { size: 17, bg: alpha(PAL.panel, 0.85) });
     line(ctx, L, Y(SPACE), Rr, Y(SPACE), PAL.muted, 2, [10, 10]);
     text(ctx, 'the edge of space, 100 km', Rr, Y(SPACE) - 18, PAL.muted, { size: 17, align: 'right' });
     /* the depth of the layer, bracketed at the right, or pinned at the top of the picture */
-    if (!out) vbracket(ctx, Rr + 30, top, GY, PAL.ink, fmt(hkm, 1) + ' km', 1);
-    else { arrow(ctx, Rr + 30, GY, Rr + 30, TOP - 24, PAL.ink, 3); text(ctx, fmt(hkm, 0) + ' km', Rr + 46, TOP + 10, PAL.ink, { size: 22, weight: 600 }); text(ctx, 'past the top', Rr + 46, TOP + 36, PAL.muted, { size: 16 }); }
+    if (!out) vbracket(ctx, Rr + 30, top, GY, poc, fmt(hkm, 1) + ' km', 1);
+    else { arrow(ctx, Rr + 30, GY, Rr + 30, TOP - 24, poc, 3); text(ctx, fmt(hkm, 0) + ' km', Rr + 46, TOP + 10, poc, { size: 22, weight: 600 }); text(ctx, 'past the top', Rr + 46, TOP + 36, PAL.muted, { size: 16 }); }
     /* one ball, at the left, its drawn size following the slider */
     const bx = 60, by = 300, brad = dd.v * 0.9;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(bx + 50, by, brad, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'one ball', bx + 50, by + brad + 28, PAL.ink, { size: 18, align: 'center' });
-    text(ctx, 'd = ' + fmt(dd.v, 1) + ' mm', bx + 50, by + brad + 54, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = bc; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(bx + 50, by, brad, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, 'one ball', bx + 50, by + brad + 28, bc, { size: 18, align: 'center' });
+    text(ctx, 'd = ' + fmt(dd.v, 1) + ' mm', bx + 50, by + brad + 54, poc, { size: 18, weight: 600, align: 'center' });
     text(ctx, fmt(fs.v, 0) + '% extra space', bx + 50, by + brad + 80, PAL.muted, { size: 16, align: 'center' });
     const times = hkm / EVEREST;
     topline(ctx, 'A mole of balls ' + fmt(dd.v, 1) + ' mm across, with ' + fmt(fs.v, 0) + '% of their volume again in the spaces between them, would cover the Earth to a depth of ' + fmt(hkm, hkm < 10 ? 2 : 1) + ' km, ' + (times < 0.5 ? 'less than ' + (times < 0.1 ? 'a tenth' : 'half') + ' the height of Everest.' : fmt(times, 1) + ' times the height of Everest.'));

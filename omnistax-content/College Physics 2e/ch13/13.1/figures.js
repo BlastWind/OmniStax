@@ -5,7 +5,7 @@
    them, so none registers a cycle. The fifth, two blocks and a plate coming
    to one temperature, is the one idea of the section with a time in it, and
    it moves. Temperature is never a tint on a body here: the metals, the
-   gases and the three bodies wear the categorical palette, and the
+   gases and the three bodies wear their referent colours, and the
    temperature hue is on the symbol, the slider and the axis alone. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['13.1'] = function (root, F) {
@@ -59,7 +59,6 @@ function thermometer(ctx, x, yb, h, frac, color) {
   const T0 = 20, ALPHA_L = 19e-6, ALPHA_R = 12e-6, L = 0.10, THICK = 1e-3, EXAG = 4;
   const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -40, max: 200, step: 1, value: T0, unit: '°C', dec: 0, aria: 'the temperature of the strip', specials: [{ at: T0, label: 'T₀' }], detents: [{ v: 120, label: 'heated' }] });
   const BX = 640, BY = 566, LPX = 376, S = LPX / L, W = 18;       /* the strip: base, height in units, units per metre, half-width of one layer */
-  const brass = F.cat(0), steel = F.cat(1);
   let hits = [];
   hover(d.stage, () => hits);
   /* the centre line of the strip as an arc of curvature k (per unit), tangent up at the base */
@@ -72,7 +71,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const tc = C('temperature');
+    const tc = C('temperature'), brass = F.ref('brass'), steel = F.ref('steel');
     const dT = Ts.v - T0;
     const kTrue = (1.5 * (ALPHA_L - ALPHA_R) * dT) / THICK;        /* per metre, for two layers of equal thickness */
     const k = (EXAG * kTrue) / S, tipTrue = (kTrue * L * L) / 2;   /* per unit on the canvas; the true sideways move of the tip */
@@ -89,7 +88,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
     if (Math.abs(tip.x - BX) > 8) {
       hbracket(ctx, Math.min(BX, tip.x), Math.max(BX, tip.x), tip.y - 44, PAL.ink, 'the tip has moved ' + fmt(Math.abs(tipTrue) * 1000, 1) + ' mm, drawn ×' + EXAG);
     }
-    /* the legend: two instances, told apart by the categorical palette */
+    /* the legend: the two referents, each in its referent colour */
     for (const [i, col, name] of [[0, brass, 'brass, which expands more, on the left'], [1, steel, 'steel, which expands less, on the right']]) {
       ctx.save(); ctx.fillStyle = col; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 1.5; ctx.fillRect(950, 150 + i * 40, 30, 22); ctx.strokeRect(950, 150 + i * 40, 30, 22); ctx.restore();
       text(ctx, name, 994, 161 + i * 40, PAL.ink, { size: 19 });
@@ -100,7 +99,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
     topline(ctx, Math.abs(dT) < 0.5 ? 'At T₀ = ' + fmt(T0, 0) + ' °C the two metals have the same length and the strip stands straight.'
       : dT > 0 ? 'At ' + num(Ts.v, 0) + ' °C the metal on the left has grown more than the metal on the right, and the strip curves to the right.'
       : 'At ' + num(Ts.v, 0) + ' °C the metal on the left has shrunk more than the metal on the right, and the strip curves to the left.');
-    readout(d.readout, `\\kTemp - T_0 = ${num(Ts.v, 0)}^\\circ\\text{C} - ${fmt(T0, 0)}^\\circ\\text{C} = ${num(dT, 0)}^\\circ\\text{C}`,
+    readout(d.readout, `\\kTemp - \\kTempo = ${num(Ts.v, 0)}^\\circ\\text{C} - ${fmt(T0, 0)}^\\circ\\text{C} = ${num(dT, 0)}^\\circ\\text{C}`,
       Math.abs(dT) < 0.5 ? 'Brass grows by 19 parts in a million for each degree and steel by 12, so the two are the same length only at the temperature they were bonded at, and a strip that stands straight is a thermometer reading T₀.'
         : 'Brass grows by 19 parts in a million for each degree and steel by 12, so ' + fmt(Math.abs(dT), 0) + ' degrees ' + (dT > 0 ? 'above' : 'below') + ' T₀ leave the brass ' + fmt(Math.abs(dL) * 1000, 2) + ' parts in a thousand ' + (dT > 0 ? 'longer' : 'shorter') + ' than the steel. The two are bonded and cannot slide, so the strip curls, and the tip of a 10 cm strip moves ' + fmt(Math.abs(tipTrue) * 1000, 1) + ' mm; the drawing curls it four times as far so that the bend can be seen.');
   }
@@ -260,7 +259,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
   const d = sim('sim-gas-extrapolation', 640);
   const Ts = ctl(d.controls, { label: '\\kTempC', cls: 'temperature', min: -273.15, max: 150, step: 0.05, value: 20, unit: '°C', dec: 2, aria: 'the temperature the gases are held at',
     specials: [{ at: -273.15, label: 'absolute zero' }, { at: 0, label: 'water freezes' }], detents: [{ v: 100 }] });
-  const Ps = ctl(d.controls, { label: 'P_0', cls: 'pressure', min: 0.2, max: 1.2, step: 0.01, value: 1, unit: 'atm', dec: 2, aria: 'the pressure of gas 1 at 0 °C' });
+  const Ps = ctl(d.controls, { label: '\\kPro', cls: 'pressure', min: 0.2, max: 1.2, step: 0.01, value: 1, unit: 'atm', dec: 2, aria: 'the pressure of gas 1 at 0 °C' });
   const OTHERS = [0.75, 0.5, 0.3], T0 = -273.15, TLIQ = -200;
   const box = { l: 170, r: 1240, t: 110, b: 520 };
   function draw() {
@@ -271,7 +270,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
     const { X, Y } = axes(ctx, box, [-300, 150], [0, 2], { xl: 'temperature, T (°C)', xc: tc, yl: 'pressure, P (atm)', yc: pc, nx: 9, ny: 4, fx: (v) => num(v, 0), fy: (v) => fmt(v, 1) });
     /* the four gases: measured where the line is solid, extrapolated where it is dashed */
     P0s.forEach((p0, i) => {
-      const col = F.cat(i);
+      const col = F.ref('gas-' + (i + 1));
       ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (t) => Pof(p0, t), T0, TLIQ, X, Y, col, 3, 20); ctx.restore();
       curve(ctx, (t) => Pof(p0, t), TLIQ, 150, X, Y, col, 4, 40);
       const pEnd = Pof(p0, 150), yEnd = Math.max(box.t + 12, Y(Math.min(pEnd, 2)));
@@ -284,13 +283,13 @@ function thermometer(ctx, x, yb, h, frac, color) {
     line(ctx, X(T), box.b, X(T), box.t, tc, 2.5, [6, 8]);
     const reads = P0s.map((p0) => Pof(p0, T));
     P0s.forEach((p0, i) => {
-      const p = pinned(ctx, box, X, Y, T, reads[i], F.cat(i));
+      const p = pinned(ctx, box, X, Y, T, reads[i], F.ref('gas-' + (i + 1)));
       if (!p.out && i === 0) text(ctx, fmt(reads[i], 2) + ' atm', p.x + (X(T) > 1000 ? -18 : 18), p.y - 22, pc, { size: 19, weight: 600, align: X(T) > 1000 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     });
     text(ctx, 'T = ' + num(T, 2) + ' °C', X(T) + (X(T) > 1000 ? -12 : 12), box.t + 26, tc, { size: 19, weight: 600, align: X(T) > 1000 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, T <= T0 + 0.03 ? 'At −273.15 °C every extrapolated pressure is zero, whatever the gas and however much of it there is.'
       : 'At ' + num(T, 2) + ' °C the four gases read ' + reads.map((p) => fmt(p, 2)).join(', ').replace(/, ([^,]*)$/, ' and $1') + ' atm, and every line reaches zero at −273.15 °C.');
-    readout(d.readout, `\\kPr = P_0\\left(1 + \\frac{\\kTempC}{273.15^\\circ\\text{C}}\\right) = (${fmt(Ps.v, 2)}\\ \\text{atm})\\left(1 + \\frac{${num(T, 2)}}{273.15}\\right) = ${fmt(reads[0], 2)}\\ \\text{atm}`,
+    readout(d.readout, `\\kPr = \\kPro\\left(1 + \\frac{\\kTempC}{273.15^\\circ\\text{C}}\\right) = (${fmt(Ps.v, 2)}\\ \\text{atm})\\left(1 + \\frac{${num(T, 2)}}{273.15}\\right) = ${fmt(reads[0], 2)}\\ \\text{atm}`,
       'For gas 1, whose pressure at 0 °C is P₀ = ' + fmt(Ps.v, 2) + ' atm; gases 2, 3 and 4 read ' + fmt(reads[1], 2) + ', ' + fmt(reads[2], 2) + ' and ' + fmt(reads[3], 2) + ' atm at the same temperature. Whatever the amount of gas, the factor in parentheses is zero at −273.15 °C, so every line reaches zero pressure there; in kelvins that factor is simply T/273.15 K, and the pressure is proportional to the absolute temperature, here ' + fmt(cToK(T), 2) + ' K. Below about −200 °C a real gas has liquefied and the line is an extrapolation, drawn dashed.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -302,7 +301,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
    the same, and that "until" is a time, so the figure moves: one cycle is
    60 s of the approach, then a hold, and the transport is the app's. The
    plate is twice the mass of either block; the three bodies are told apart
-   by their labels and the categorical palette, never by a tint.
+   by their labels and their referent colours, never by a tint.
 ===================================================================== */
 (function () {
   const d = sim('sim-thermal-equilibrium', 720);
@@ -324,11 +323,11 @@ function thermometer(ctx, x, yb, h, frac, color) {
     hist = rows; return rows;
   }
   const at = (tau) => { const h = history(); const i = Math.min(h.length - 1, Math.round(tau / DT)); return h[i]; };
-  const cols = [F.cat(0), F.cat(1), F.cat(2)], names = ['block A', 'block B', 'the plate'];
+  const names = ['block A', 'block B', 'the plate'];
   const PY = 268, box = { l: 170, r: 1250, t: 400, b: 640 };
   function draw() {
     const { ctx } = begin(d.c);
-    const tc = C('temperature'), tmc = C('time');
+    const tc = C('temperature'), tmc = C('time'), cols = [F.ref('block-a'), F.ref('block-b'), F.ref('plate')];
     const tau = cy.now(), [a, b, p] = at(tau), fin = (TA.v + TB.v + 2 * TP.v) / 4, done = tau >= END - 1e-9;
     const frac = (T) => (T + 20) / 140;
     /* the plate and the two blocks on it, with a thermometer on each block */

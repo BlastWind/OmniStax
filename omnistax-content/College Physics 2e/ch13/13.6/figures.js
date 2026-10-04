@@ -119,13 +119,13 @@ const TAU = Math.PI * 2;
   function draw() {
     const { ctx } = begin(d.c); hits.length = 0;
     if (stale) schedule();
-    const t = cy.now(), T = m.T, oxy = F.el('O'), tc = C('temperature'), pc = C('pressure'), dc = C('density');
+    const t = cy.now(), T = m.T, oxy = F.el('O'), tc = C('temperature'), pc = C('pressure'), dc = C('density'), kc = F.ref('container'), lc = F.ref('lid');
     /* the container */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05); ctx.fillRect(XL, YS, XR - XL, YB - YS); ctx.restore();
-    line(ctx, XL, YR - 6, XL, YB, PAL.ink, 4); line(ctx, XR, YR - 6, XR, YB, PAL.ink, 4); line(ctx, XL, YB, XR, YB, PAL.ink, 4);
+    line(ctx, XL, YR - 6, XL, YB, kc, 4); line(ctx, XR, YR - 6, XR, YB, kc, 4); line(ctx, XL, YB, XR, YB, kc, 4);
     line(ctx, XL, YS, XR, YS, alpha(PAL.ink, 0.5), 2);
     const lid = box.a('sealed'), [lx, ly] = box.off('sealed', [0, -30]), [ox, oy] = box.off('open', [0, -30]);
-    if (lid > 0) { ctx.save(); ctx.globalAlpha *= lid; ctx.fillStyle = PAL.ink; ctx.fillRect(XL - 12 + lx, YR - 12 + ly, XR - XL + 24, 12); ctx.restore(); text(ctx, 'lid', XR + 22 + lx, YR - 6 + ly, alpha(PAL.ink, lid), { size: 20, weight: 600 }); }
+    if (lid > 0) { ctx.save(); ctx.globalAlpha *= lid; ctx.fillStyle = lc; ctx.fillRect(XL - 12 + lx, YR - 12 + ly, XR - XL + 24, 12); ctx.restore(); text(ctx, 'lid', XR + 22 + lx, YR - 6 + ly, alpha(lc, lid), { size: 20, weight: 600 }); }
     if (box.a('open') > 0) text(ctx, 'open to the room', XR + 22 + ox, YR - 6 + oy, alpha(PAL.ink, box.a('open')), { size: 20, weight: 600 });
     /* the liquid */
     ctx.save(); ctx.fillStyle = oxy;
@@ -241,15 +241,15 @@ const TAU = Math.PI * 2;
   hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c); hits.length = 0;
-    const T = Ts.v, P = Ps.v * ATM, tc = C('temperature'), pc = C('pressure');
+    const T = Ts.v, P = Ps.v * ATM, tc = C('temperature'), pc = C('pressure'), kc = F.ref('beaker'), bc = F.ref('bubble');
     const pv = vapP(T), pair = P - pv, boils = pair <= P * 1e-6, tb = tableInv(P, 1);
     /* the bubble's volume from the ideal gas law with its air fixed, against the book's 20 °C, 1.00 atm start */
     const ratio = boils ? Infinity : ((T + 273.15) / 293.15) * (ATM - vapP(20)) / pair;
     const r = boils ? 0 : Math.min(60, R0 * Math.cbrt(ratio));
     /* the beaker and the water */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(XL, YW, XR - XL, YB - YW); ctx.restore();
-    line(ctx, XL, YR, XL, YB, PAL.ink, 4); line(ctx, XR, YR, XR, YB, PAL.ink, 4); line(ctx, XL, YB, XR, YB, PAL.ink, 4);
-    line(ctx, XL - 14, YR, XL, YR + 8, PAL.ink, 4); line(ctx, XR + 14, YR, XR, YR + 8, PAL.ink, 4);
+    line(ctx, XL, YR, XL, YB, kc, 4); line(ctx, XR, YR, XR, YB, kc, 4); line(ctx, XL, YB, XR, YB, kc, 4);
+    line(ctx, XL - 14, YR, XL, YR + 8, kc, 4); line(ctx, XR + 14, YR, XR, YR + 8, kc, 4);
     line(ctx, XL, YW, XR, YW, alpha(PAL.ink, 0.5), 2);
     /* the burner, in ink */
     const cxb = (XL + XR) / 2;
@@ -259,15 +259,15 @@ const TAU = Math.PI * 2;
     text(ctx, 'T = ' + degC(T, 1), XL + 16, YW + 30, tc, { size: 22, weight: 600, bg: PAL.panel });
     text(ctx, 'P = ' + fmt(Ps.v, 2) + ' atm over the water', XL, YR - 26, pc, { size: 20, weight: 600 });
     /* the bubble: on the bottom while the vapor pressure is below the pressure over the water, broken away and rising once it reaches it */
-    const bubble = (x, y, rr) => { ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, rr, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore(); };
+    const bubble = (x, y, rr) => { ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = bc; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, rr, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore(); };
     if (!boils) {
       const bx = cxb + 60, by = YB - r - 3; bubble(bx, by, r);
       hits.push({ x: bx, y: by, r: r + 8, name: `a bubble of air saturated with water vapor, ${fmt(r / R0, 2)} times its radius at 20 °C` });
-      text(ctx, 'a bubble of air and water vapor', bx + r + 16, by, PAL.ink, { size: 18, bg: PAL.panel });
+      text(ctx, 'a bubble of air and water vapor', bx + r + 16, by, bc, { size: 18, bg: PAL.panel });
     } else {
       [[cxb + 60, YB - 34, 24], [cxb + 20, YB - 120, 32], [cxb + 90, YB - 220, 40]].forEach(([x, y, rr]) => { bubble(x, y, rr); hits.push({ x, y, r: rr + 8, name: 'a bubble growing without limit as it rises' }); });
       arrow(ctx, cxb + 90, YB - 220 - 40 - 6, cxb + 90, YW + 16, PAL.ink, 4);
-      text(ctx, 'bubbles break away and rise', XR + 20, YB - 220, PAL.ink, { size: 18, bg: PAL.panel });
+      text(ctx, 'bubbles break away and rise', XR + 20, YB - 220, bc, { size: 18, bg: PAL.panel });
     }
     /* the bar of partial pressures inside the bubble: the vapor's share and the air's, summing to the pressure over the water */
     const fv = boils ? 1 : pv / P;

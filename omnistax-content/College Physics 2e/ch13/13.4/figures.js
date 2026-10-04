@@ -100,12 +100,13 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     const g = pick(gas.value), T = Ts.v, N = Ns.v, sg = sigma();
     const V = L * L * L, P = (N * KB * T) / V, Fth = (N * KB * T) / L, Fm = clock - winStart > 0.2 ? hits.reduce((a, h) => a + h.J, 0) / (Math.min(W, clock - winStart) * MODEL) : Fth;
     const vr = vrms(T, g.m), vx0 = Math.abs(sx[0] * ux[0] * sg), vy0 = Math.abs(sy[0] * uy[0] * sg), v0 = Math.hypot(vx0, vy0), dt0 = (2 * L) / vx0, dp0 = 2 * g.m * vx0;
-    const tc = C('temperature'), pc = C('pressure'), vc = C('velocity'), mc = C('momentum'), fc = C('force');
-    /* the box, its axes and its size */
+    const tc = C('temperature'), pc = C('pressure'), vc = C('velocity'), mc = C('momentum'), fc = C('force'), mac = C('mass'), poc = C('position'), tic = C('time'), molc = F.ref('molecule'), wc = F.ref('wall');
+    /* the box, its axes and its size; the right wall in its referent colour */
     box(ctx, B);
+    line(ctx, B.r, B.t, B.r, B.b, wc, 6);
     text(ctx, 'y', B.l - 26, B.t + 10, PAL.ink, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'x', B.r + 26, B.b - 8, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    hbracket(ctx, B.l, B.r, B.b + 34, PAL.ink); text(ctx, 'l = 10 nm', (B.l + B.r) / 2, B.b + 34 + 22, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    hbracket(ctx, B.l, B.r, B.b + 34, poc); text(ctx, 'l = 10 nm', (B.l + B.r) / 2, B.b + 34 + 22, poc, { size: 18, weight: 600, align: 'center' });
     /* the molecules, clipped to the box; the one followed wears a ring and its velocity */
     ctx.save(); ctx.beginPath(); ctx.rect(B.l + 2, B.t + 2, S - 4, S - 4); ctx.clip();
     hitsList = [];
@@ -115,7 +116,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
       hitsList.push({ x: x[i], y: y[i], r: R + 6, name: i === 0 ? 'the ' + g.name + ' followed: v = ' + fmt(v0, 0) + ' m/s, vₓ = ' + fmt(vx0, 0) + ' m/s, v_y = ' + fmt(vy0, 0) + ' m/s' : g.name });
     }
     { const vx = sx[0] * ux[0] * sg, vy = sy[0] * uy[0] * sg, k = 0.12, px = x[0], py = y[0];
-      dot(ctx, px, py, PAL.ink, false, R + 6);
+      dot(ctx, px, py, molc, false, R + 6);
       line(ctx, px, py, px + vx * k, py, alpha(vc, 0.55), 3, [6, 6]); line(ctx, px + vx * k, py, px + vx * k, py + vy * k, alpha(vc, 0.55), 3, [6, 6]);
       arrow(ctx, px, py, px + vx * k, py + vy * k, vc, 5);
     }
@@ -135,18 +136,18 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     meter(ctx, MX, MW, B.b, B.t, Fm / FMAX, fc);
     { const yt = Math.max(B.t, B.b - (Fth / FMAX) * (B.b - B.t)); line(ctx, MX - 12, yt, MX + MW + 12, yt, PAL.ink, 3, [8, 6]); text(ctx, 'N m v_x²/l', MX + MW + 18, yt, PAL.ink, { size: 17, weight: 600, align: 'left' }); }
     text(ctx, 'force on the', MX + MW / 2, B.t - 46, fc, { size: 18, weight: 600, align: 'center' });
-    text(ctx, 'right wall', MX + MW / 2, B.t - 24, fc, { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'right wall', MX + MW / 2, B.t - 24, wc, { size: 18, weight: 600, align: 'center' });
     text(ctx, 'over the last 3 s: ' + sciTxt(Fm, 2) + ' N', MX + MW / 2, B.b + 30, fc, { size: 17, align: 'center' });
     text(ctx, 'predicted: ' + sciTxt(Fth, 2) + ' N', MX + MW / 2, B.b + 54, PAL.ink, { size: 17, align: 'center' });
     /* the numbers, on the right */
     const PX = 960, rows = [
-      [null, g.name + ', m = ' + sciTxt(g.m, 2) + ' kg', PAL.ink],
+      [null, g.name + ', m = ' + sciTxt(g.m, 2) + ' kg', mac],
       ['T = ' + T + ' K', null, tc],
       ['v_rms = ' + fmt(vr, 0) + ' m/s', null, vc],
-      [null, 'the molecule followed:', PAL.ink],
+      [null, 'the molecule followed:', molc],
       ['v = ' + fmt(v0, 0) + ' m/s, v_x = ' + fmt(vx0, 0) + ' m/s', null, vc],
-      [null, 'it strikes the right wall every', PAL.ink],
-      ['Δt = 2l/v_x = ' + sciTxt(dt0, 2) + ' s', null, PAL.ink],
+      [null, 'it strikes the right wall every', wc],
+      ['Δt = 2l/v_x = ' + sciTxt(dt0, 2) + ' s', null, tic],
       [null, 'and each strike delivers', PAL.ink],
       ['Δp = 2mv_x = ' + sciTxt(dp0, 2) + ' kg·m/s', null, mc],
     ];
@@ -156,7 +157,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     text(ctx, 'P = ' + sciTxt(P, 2) + ' Pa', PX, B.b - 20, pc, { size: 26, weight: 600 });
     text(ctx, fmt(P / 1.013e5, 2) + ' atm', PX + 300, B.b - 20, pc, { size: 20, weight: 400 });
     topline(ctx, 'At ' + T + ' K ' + (N === 1 ? 'the one ' + g.name + ' presses' : 'the ' + N + ' ' + g.name + 's press') + ' on the walls of the box at ' + sciTxt(P, 2) + ' Pa, ' + (P > 0.95e5 && P < 1.07e5 ? 'about one atmosphere.' : fmt(P / 1.013e5, 2) + ' atmospheres.'));
-    readout(d.readout, `\\kPr V = \\tfrac{1}{3}Nm\\overline{v^2} = Nk\\kTemp \\;\\Rightarrow\\; \\kPr = \\frac{(${N})(1.38\\times10^{-23}\\ \\text{J/K})(${T}\\ \\text{K})}{${sciTex(V, 1)}\\ \\text{m}^3} = ${sciTex(P, 2)}\\ \\text{Pa}`,
+    readout(d.readout, `\\kPr \\kvol = \\tfrac{1}{3}N\\km\\overline{v^2} = Nk\\kTemp \\;\\Rightarrow\\; \\kPr = \\frac{(${N})(1.38\\times10^{-23}\\ \\text{J/K})(${T}\\ \\text{K})}{${sciTex(V, 1)}\\ \\text{m}^3} = ${sciTex(P, 2)}\\ \\text{Pa}`,
       'The box is a cube 10 nm on a side, V = ' + sciTxt(V, 1) + ' m³, seen in section; its molecules move in and out of the page as well, which is why only a third of the mean square speed, 3kT/m = ' + sciTxt(vr * vr, 2) + ' m²/s², pushes on the right wall. The molecule followed crosses the box and back in Δt = 2l/vₓ = ' + sciTxt(dt0, 2) + ' s and delivers Δp = 2mvₓ = ' + sciTxt(dp0, 2) + ' kg·m/s at each strike, so on average it alone pushes on the wall with F = mvₓ²/l = ' + sciTxt(g.m * vx0 * vx0 / L, 2) + ' N.');
   }
   register(d.fig, { update, draw });
@@ -181,7 +182,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const g = pick(gas.value), T = Ts.v, m = gas.mix((v) => pick(v).m), sg = Math.sqrt((KB * T) / m), KE = 1.5 * KB * T, vr = vrms(T, m);
-    const tc = C('temperature'), vc = C('velocity'), ec = C('energy');
+    const tc = C('temperature'), vc = C('velocity'), ec = C('energy'), mac = C('mass');
     const both = gas.from === gas.value ? [g] : [pick(gas.from), g];
     const each = (f) => both.forEach((q) => { const a = gas.a(q.value); if (a <= 0) return; ctx.save(); ctx.globalAlpha *= a; f(q); ctx.restore(); });
     box(ctx, B);
@@ -192,7 +193,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     ctx.restore();
     /* the legend under the box: the gas and an arrow the length of the rms speed */
     each((q) => { ctx.fillStyle = F.el(q.el); ctx.beginPath(); ctx.arc(B.l + 10, B.b + 34, 8, 0, TAU); ctx.fill(); });
-    text(ctx, g.name + ', m = ' + sciTxt(g.m, 2) + ' kg', B.l + 28, B.b + 34, PAL.ink, { size: 18 });
+    text(ctx, g.name + ', m = ' + sciTxt(g.m, 2) + ' kg', B.l + 28, B.b + 34, mac, { size: 18 });
     arrow(ctx, B.r - vr * KA, B.b + 34 + 26, B.r, B.b + 34 + 26, vc, 3);
     text(ctx, 'an arrow this long is v_rms = ' + fmt(vr, 0) + ' m/s', B.r - vr * KA - 12, B.b + 34 + 26, vc, { size: 17, weight: 600, align: 'right' });
     /* the average kinetic energy as a bar, the same for every gas, and the rms speed as an arrow, which is not */
@@ -215,7 +216,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     text(ctx, 'at this temperature', 1220, yy, PAL.ink, { size: 17, align: 'center' }); yy += 34;
     GASES.forEach((q) => { ctx.save(); ctx.fillStyle = F.el(q.el); ctx.beginPath(); ctx.arc(1130, yy, 7, 0, TAU); ctx.fill(); ctx.restore(); text(ctx, q.label + '  ' + fmt(vrms(T, q.m), 0) + ' m/s', 1150, yy, q === g ? vc : PAL.muted, { size: 18, weight: q === g ? 600 : 400 }); yy += 32; });
     topline(ctx, 'At ' + T + ' K a ' + g.name + ' has an average kinetic energy of ' + sciTxt(KE, 2) + ' J and an rms speed of ' + fmt(vr, 0) + ' m/s.');
-    readout(d.readout, `\\begin{aligned}\\kKEbar &= \\tfrac{3}{2}k\\kTemp = \\tfrac{3}{2}(1.38\\times10^{-23}\\ \\text{J/K})(${T}\\ \\text{K}) = ${sciTex(KE, 2)}\\ \\text{J} \\\\ \\kvrms &= \\sqrt{\\frac{3k\\kTemp}{m}} = \\sqrt{\\frac{3(1.38\\times10^{-23}\\ \\text{J/K})(${T}\\ \\text{K})}{${sciTex(g.m, 2)}\\ \\text{kg}}} = ${fmt(vr, 0)}\\ \\text{m/s}\\end{aligned}`,
+    readout(d.readout, `\\begin{aligned}\\kKEbar &= \\tfrac{3}{2}k\\kTemp = \\tfrac{3}{2}(1.38\\times10^{-23}\\ \\text{J/K})(${T}\\ \\text{K}) = ${sciTex(KE, 2)}\\ \\text{J} \\\\ \\kvrms &= \\sqrt{\\frac{3k\\kTemp}{\\km}} = \\sqrt{\\frac{3(1.38\\times10^{-23}\\ \\text{J/K})(${T}\\ \\text{K})}{${sciTex(g.m, 2)}\\ \\text{kg}}} = ${fmt(vr, 0)}\\ \\text{m/s}\\end{aligned}`,
       'The molecules move in every direction alike, so their large speeds produce no wind, and each travels only a tiny distance between collisions. A sound wave through this gas travels at a speed set by these molecular speeds, about 340 m/s in air at room temperature, and faster in hot air and in a light gas such as helium, whose atoms move fastest of the three at any temperature.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -268,7 +269,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
     const pa = vp(ta, g.m), ra = vrms(ta, g.m), pb = vp(tb, g.m), rb = vrms(tb, g.m);
     topline(ctx, same ? 'At ' + ta + ' K the most probable speed of ' + (g.atoms === 1 ? 'a helium atom' : 'an ' + g.name) + ' is ' + fmt(pa, 0) + ' m/s and its rms speed ' + fmt(ra, 0) + ' m/s; the two curves lie on one another.'
       : 'At ' + ta + ' K the most probable speed of ' + (g.atoms === 1 ? 'a helium atom' : 'an ' + g.name) + ' is ' + fmt(pa, 0) + ' m/s and its rms speed ' + fmt(ra, 0) + ' m/s; at ' + tb + ' K the curve moves to ' + fmt(pb, 0) + ' and ' + fmt(rb, 0) + ' m/s and ' + (tb > ta ? 'flattens.' : 'sharpens.'));
-    readout(d.readout, `\\kvrms = \\sqrt{\\frac{3k\\kTempone}{m}} = \\sqrt{\\frac{3(1.38\\times10^{-23}\\ \\text{J/K})(${ta}\\ \\text{K})}{${sciTex(g0.m, 2)}\\ \\text{kg}}} = ${fmt(ra, 0)}\\ \\text{m/s} \\qquad \\kvrms = \\sqrt{\\frac{3k\\kTemptwo}{m}} = ${fmt(rb, 0)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kvrms = \\sqrt{\\frac{3k\\kTempone}{\\km}} = \\sqrt{\\frac{3(1.38\\times10^{-23}\\ \\text{J/K})(${ta}\\ \\text{K})}{${sciTex(g0.m, 2)}\\ \\text{kg}}} = ${fmt(ra, 0)}\\ \\text{m/s} \\qquad \\kvrms = \\sqrt{\\frac{3k\\kTemptwo}{\\km}} = ${fmt(rb, 0)}\\ \\text{m/s}`,
       'At each temperature the most probable speed, at the peak of the curve, lies below the rms speed, ' + fmt(pa, 0) + ' m/s against ' + fmt(ra, 0) + ' m/s at T₁, and the long tail on the right holds the few molecules moving at several times the rms speed. ' + (same ? 'Raise either temperature and its curve moves out to higher speeds and broadens.' : 'The higher temperature gives the broader curve, since the range of speeds widens as the speeds rise.'));
   }
   register(d.fig, { update: () => {}, draw });
@@ -296,7 +297,7 @@ function meter(ctx, x, w, yb, yt, frac, color) {
   hover(d.stage, () => hitsList);
   function draw() {
     const { ctx, H } = begin(d.c);
-    const T = Ts.v, ve = vesc(), tc = C('temperature'), vc = C('velocity');
+    const T = Ts.v, ve = vesc(), tc = C('temperature'), vc = C('velocity'), mac = C('mass');
     hitsList = [];
     text(ctx, 'at T = ' + commas(fmt(T, 0)) + ' K', TBX, G.t + 8, tc, { size: 19, weight: 600 });
     const A = axes(ctx, G, [0, TX], [0, VY], { xl: 'temperature T (K)', xc: tc, yl: 'rms speed (km/s)', yc: vc, nx: 6, ny: 3, fx: (t) => commas(fmt(t, 0)), fy: (v) => fmt(v / 1000, 0) });
@@ -327,12 +328,12 @@ function meter(ctx, x, w, yb, yt, frac, color) {
       lab.add(g.label, A.X(tEnd), A.Y(Math.min(f(TX), VY)), tEnd < TX ? 1 : -1, tEnd < TX ? 0.6 : -0.6, PAL.ink, 19, 18);
     });
     lab.flush();
-    ctx.save(); LIST.forEach((g, i) => { ctx.fillStyle = F.el(g.el); ctx.beginPath(); ctx.arc(G.l + 10 + i * 240, G.b + 96, 7, 0, TAU); ctx.fill(); text(ctx, g.label + ', m = ' + sciTxt(g.m, 2) + ' kg', G.l + 26 + i * 240, G.b + 96, PAL.ink, { size: 16 }); }); ctx.restore();
+    ctx.save(); LIST.forEach((g, i) => { ctx.fillStyle = F.el(g.el); ctx.beginPath(); ctx.arc(G.l + 10 + i * 240, G.b + 96, 7, 0, TAU); ctx.fill(); text(ctx, g.label + ', m = ' + sciTxt(g.m, 2) + ' kg', G.l + 26 + i * 240, G.b + 96, mac, { size: 16 }); }); ctx.restore();
     text(ctx, 'hollow: where the rms speed reaches the escape velocity; filled: the rms speed at the set temperature', G.l + 10, G.b + 126, vc, { size: 16, align: 'left' });
     const he = speeds.He, tHe = tesc(HE.m, ve);
     topline(ctx, Math.abs(T - tHe) < 150 ? 'At ' + commas(fmt(T, 0)) + ' K the rms speed of helium reaches ' + whose() + ' escape velocity of ' + kms() + ' km/s, while nitrogen and oxygen are still far below it.'
       : 'At ' + commas(fmt(T, 0)) + ' K the rms speed of helium is ' + fmt(he / 1000, 2) + ' km/s, ' + (he > ve ? 'above' : 'below') + ' ' + whose() + ' escape velocity of ' + kms() + ' km/s; hydrogen is at ' + fmt(speeds.H2 / 1000, 2) + ', nitrogen at ' + fmt(speeds.N2 / 1000, 2) + ' and oxygen at ' + fmt(speeds.O2 / 1000, 2) + ' km/s.');
-    readout(d.readout, `\\kTemp = \\frac{m\\overline{v^2}}{3k} = \\frac{(6.65\\times10^{-27}\\ \\text{kg})(${kms()}\\times10^{3}\\ \\text{m/s})^2}{3(1.38\\times10^{-23}\\ \\text{J/K})} = ${sciTex(tHe, 2)}\\ \\text{K}\\ \\text{for helium}`,
+    readout(d.readout, `\\kTemp = \\frac{\\km\\overline{v^2}}{3k} = \\frac{(6.65\\times10^{-27}\\ \\text{kg})(${kms()}\\times10^{3}\\ \\text{m/s})^2}{3(1.38\\times10^{-23}\\ \\text{J/K})} = ${sciTex(tHe, 2)}\\ \\text{K}\\ \\text{for helium}`,
       (world.value === 'moon'
         ? 'The Moon’s escape velocity is so low that the rms speed of hydrogen reaches it at ' + commas(fmt(tesc(H2.m, ve), 0)) + ' K, that of helium at ' + commas(fmt(tHe, 0)) + ' K and even that of oxygen at ' + commas(fmt(tesc(O2.m, ve), 0)) + ' K, so at the temperature of its sunlit surface a far larger share of every gas lies in the tail above the escape velocity than on Earth, which is why the Moon has lost almost its entire atmosphere.'
         : 'At the top of the atmosphere the temperature is about 250 K, where the rms speed of helium is only ' + fmt(vrms(250, HE.m) / 1000, 2) + ' km/s; the atoms that leave are the few in the tail of the distribution whose speed at some instant exceeds 11.1 km/s. Oxygen would need ' + sciTxt(tesc(O2.m, ve), 2) + ' K for its rms speed to reach the escape velocity, so almost none of it is ever lost.'));

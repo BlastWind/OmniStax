@@ -1,77 +1,63 @@
 # Chapter 13 colour plan
 
-Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
-declared physical types and the app's selected palette, as root rule 7
-requires, and adds one type of its own, `temperature`. No figure hard-codes
-hues.
+Prepared 2026-09-14, brought under item 7 on 2026-10-04. This chapter uses
+the book's declared categories and the app's selected palette, as root
+`RULES.md` item 7 requires, and declares two of its own, `temperature` and
+`temperature-coefficient`. No figure hard-codes hues.
 
-| Quantity | Type | Treatment |
-|---|---|---|
-| Temperature $T$, a temperature change $\Delta T$, an initial, final or critical temperature, a temperature on one scale $T_{^\circ\text{C}}$, $T_{^\circ\text{F}}$, $T_\text{K}$ | `temperature` (new) | One hue; the symbol in a readout, the slider that sets it and the axis of a graph whose axis is temperature wear it. Nothing else does: see the rule below |
-| Pressure $P$, $P_0$, $P_\text{f}$, $P_1$, $P_2$, $P_\text{atm}$, a vapor pressure and a partial pressure | `pressure` (Chapter 11) | One hue; declared by Chapter 11 and used here by name. The gauge on a tire, the axis of a $PV$ or $PT$ diagram and the pressure term of every gas law wear it |
-| Density $\rho$, the density of water against temperature, a vapor density | `density` (Chapter 11) | One hue; declared by Chapter 11 and used here by name |
-| Molecular speed $v$, the rms speed $v_\text{rms}$, the most probable speed $v_\text{p}$, a component $v_x$ | `velocity` | One hue; the speed axis of the Maxwell-Boltzmann graph and the marks on it wear it. An rms speed is the same type as an instantaneous one and is told by its subscript |
-| Momentum $p$ and its change $\Delta p$ at the wall | `momentum` | Bind in 13.4 only, where the collision with the wall is drawn |
-| Force $F$ on the wall or the piston | `force` | Bind where a figure draws the force a gas exerts |
-| Kinetic energy $\text{KE}$ and the average translational kinetic energy $\overline{\text{KE}}$ | `energy` | Bind in 13.4, where thermal energy is stated and drawn |
-| The change in length $\Delta L$ of an expanding body | `position` | Bind where a figure draws the extension growing; the row is Chapter 5's and keeps its hue |
-| Bulk modulus $B$ | `elastic-modulus` | Bind in 13.2 only, where thermal stress is stated |
-| Elapsed time $\Delta t$ between collisions | `time` | Bind only where a moving figure exposes a clock |
-| Length $L$, area $A$, volume $V$, their changes $\Delta A$ and $\Delta V$, the box length $l$; the number of molecules $N$, the number of moles $n$, molar mass $M$ and the mass $m$ of a molecule; the constants $k$, $R$, $N_\text{A}$; the coefficients $\alpha$ and $\beta$; the mean square speed $\overline{v^2}$; every percentage and ratio | Untyped | Ink, including the sliders that set them and the equation symbols |
+| Quantity | Category |
+|---|---|
+| Temperature $T$, a temperature change $\Delta T$, an initial, final, critical or Reaumur temperature, a temperature on one scale $T_{^\circ\text{C}}$, $T_{^\circ\text{F}}$, $T_\text{K}$ | `temperature` (declared here) |
+| The coefficients of linear and volume expansion $\alpha$ and $\beta$, and $\beta$ of the steel tank and of the gasoline in Example 13.4 | `temperature-coefficient` (declared here) |
+| Pressure $P$, $P_0$, $P_\text{f}$, a vapor pressure and a partial pressure | `pressure` (Chapter 11) |
+| Density $\rho$, the density of water against temperature, a vapor density | `density` (Chapter 11) |
+| Area $A$ and its change $\Delta A$ | `area` |
+| Volume $V$, $V_0$, $V_\text{f}$, its change $\Delta V$, the volumes of the tank, the gasoline and the spill | `volume` |
+| The mass $m$ of a molecule, a mass of air | `mass` |
+| A length $L$, its change $\Delta L$, the box length $l$, a diameter, a height or an altitude | `position` |
+| Molecular speed $v$, the rms speed $v_\text{rms}$, the most probable speed $v_\text{p}$, a component $v_x$, an escape velocity | `velocity` |
+| Momentum change $\Delta p$ at the wall | `momentum` |
+| The force $F$ on the wall or of a liquid on its container, a buoyant force | `force` |
+| The average translational kinetic energy $\overline{\text{KE}}$ | `energy` |
+| Bulk modulus $B$ | `elastic-modulus` |
+| The time $\Delta t$ between collisions, the time on a graph of cooling | `time` |
+| The counts $N$ and $n$, the molar mass $M$, the constants $k$, $R$, $N_\text{A}$, the mean square speed $\overline{v^2}$, every percentage and relative humidity | ink |
 
-Two rules of root rule 7 bite in this chapter and are written down so that no
-section has to decide them twice.
+**Temperature is never a tint on a body.** A gas at 600 K and a gas at 300 K
+are drawn in the same colours: their molecules wear the element palette
+(`F.el('N')`, `F.el('O')`, `F.el('He')`), the box is ink, and the reader tells
+the hot gas from the cold one by how fast the molecules move and how hard the
+gauge reads. A bimetallic strip at $T_0$ and at $T$ is the same two metals in
+the same two referent colours, told apart by its bend. Two Maxwell-Boltzmann
+curves at $T_1$ and $T_2$ are the same ink curve, the second dashed, told
+apart by where they sit and by their labels. A liquid and its vapor are told
+apart by packing, and a heated beaker is not drawn redder as it warms. The
+temperature hue appears on the symbol, the words that name a particular
+temperature, the slider that sets it and the temperature axis of a graph. No
+thermograph palette, no red-for-hot, no blue-for-cold; the one image that uses
+such a palette, Figure 13.8, is a photograph and is kept as one.
 
-**Temperature is never a tint on a body.** Root rule 7 § temperature says it
-in one clause and this chapter is where it is tested. A gas at 600 K and a gas
-at 300 K are drawn in the same colours: their molecules wear the element
-palette (`F.el('N')`, `F.el('O')`, `F.el('He')`), the box is ink, and the
-reader tells the hot gas from the cold one by how fast the molecules move and
-how hard the gauge reads. A bimetallic strip at $T_0$ and at $T$ is the same
-two metals in the same two colours, told apart by its bend. Two
-Maxwell-Boltzmann curves at $T_1$ and $T_2$ are the same curve wearing the same
-ink, told apart by where they sit and by their labels. A liquid and its vapor
-are told apart by packing, not by colour, and a heated beaker is not drawn
-redder as it warms. The temperature hue appears on the symbol $T$ wherever a
-readout or a label writes it, on the slider that sets it, and on the
-temperature axis of a graph, and nowhere else. No thermograph palette, no
-red-for-hot, no blue-for-cold, anywhere in the chapter; the one image that
-uses such a palette, Figure 13.8, is a photograph and is kept as one.
+**A count is not a category.** $N$ and $n$ vary on the sliders of 13.3 and
+13.4 and stay in ink; what changes colour when the reader pumps air into the
+tire is the pressure gauge and the readout, which writes $PV = NkT$ with $P$,
+$V$ and $T$ in their hues and $N$ and $k$ in ink. The constants $k$, $R$ and
+$N_\text{A}$ are ink as $G$ was in Chapter 6.
 
-**A count is not a type.** $N$ and $n$ vary on the sliders of 13.3 and 13.4
-and stay in ink; what changes colour when the reader pumps air into the tire
-is the pressure gauge, which is a pressure, and the readout, which writes
-$PV = NkT$ with $P$ and $T$ in their hues and $N$ and $k$ in ink. The same
-holds for the constants $k$, $R$ and $N_\text{A}$, which are ink as $G$ was in
-Chapter 6, and for $\alpha$ and $\beta$, which are material constants with
-the standing of a coefficient of friction.
+Of item 7's four ways this chapter uses three. The element palette
+`F.el(symbol)` colours every molecule drawn in a box, a liquid or a vapor: a
+nitrogen molecule is nitrogen's colour, an oxygen molecule oxygen's, a helium
+atom helium's, a water molecule an oxygen and two hydrogens or oxygen's colour
+with a hover name. Referents, drawn with `F.ref` and marked in the text, are
+the things a figure and its passage both point at: the brass and steel of the
+bimetallic strip, gases 1 to 4 of Figure 13.10, the two blocks and the plate
+of the thermal equilibrium Sim (13.1); the bridge span, the plate, plug, hole
+and box of Figure 13.12, and the tank and its liquid in Example 13.4 and the
+thermal stress Sim, whose subscripts s and gas split in the referents' colours
+(13.2); the bicycle tire, Mount Everest and the mole of balls (13.3); the
+molecule followed and the right wall of the box (13.4); the container and its
+lid, the beaker and its bubble (13.6). Categories carry every quantity in the
+table. A colour that is the physical fact does not arise here.
 
-After the build the pages colour this
-(brought into line with the pages in the chapter pass): 13.1 colours
-temperature, pressure on the axis and slider of Figure 13.10, and time on the
-graph of the two blocks and the plate, the one figure of the page with a
-clock; 13.2 colours temperature, position on the extension of the linear
-expansion Sim, density on the axis of Figure 13.13, and pressure and elastic
-modulus on the gauge and slider of the thermal stress Sim; 13.3 colours
-temperature and pressure; 13.4 colours temperature, pressure, velocity,
-momentum, energy and force, and not time, since no readout of the collision
-scene colours $\Delta t$; 13.5 colours temperature and pressure, and not
-density, since no figure of the page reads a volume as a density; 13.6 colours
-temperature, pressure and density.
-
-Of root rule 7's four families this chapter uses three. Type hues from the
-scheme carry every quantity above. The element palette `F.el(symbol)` is
-used, for the first time in this book, for every molecule drawn in a box, a
-liquid or a vapor: a nitrogen molecule is nitrogen's colour, an oxygen
-molecule oxygen's, a helium atom helium's, a water molecule is drawn as an
-oxygen and two hydrogens or in oxygen's colour with a hover name, and no gas
-box draws an anonymous grey dot. The categorical palette `F.cat(i)` tells
-apart the four gases of Figure 13.10, which carry no type and must be
-distinguished, the two metals of the bimetallic strip, and the two blocks
-and the plate of 13.1's thermal equilibrium Sim; it is never used in a category hue the figure draws. A colour that is the physical fact does not arise
-here.
-
-All canvas colours come from `C(type)`, `F.el()`, `F.cat()` and `PAL`.
-Turning colour off drops the type hues and keeps the element and categorical
-colours, so every figure must stay legible from its labels, its motion, its
-curve positions and its caption alone.
+All canvas colours come from `C(type)`, `F.el()`, `F.ref()` and `PAL`. With
+colour off every figure stays legible from its labels, its motion, its curve
+positions and its caption alone.

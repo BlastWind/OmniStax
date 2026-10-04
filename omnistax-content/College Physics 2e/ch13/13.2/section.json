@@ -56,7 +56,8 @@
    "kind": "sim",
    "draws": [
     "temperature",
-    "position"
+    "position",
+    "temperature-coefficient"
    ]
   },
   {
@@ -71,7 +72,9 @@
     450
    ],
    "draws": [
-    "temperature"
+    "temperature",
+    "volume",
+    "temperature-coefficient"
    ]
   },
   {
@@ -94,7 +97,9 @@
    "id": "sim-tank-spill",
    "kind": "sim",
    "draws": [
-    "temperature"
+    "temperature",
+    "volume",
+    "temperature-coefficient"
    ]
   },
   {
@@ -103,7 +108,8 @@
    "draws": [
     "temperature",
     "pressure",
-    "elastic-modulus"
+    "elastic-modulus",
+    "volume"
    ]
   },
   {
@@ -397,5 +403,42 @@
   { "exercise": "p14", "concept": "volume-thermal-expansion" },
   { "exercise": "p14", "concept": "archimedes-principle", "weight": 3 },
   { "exercise": "p14", "concept": "density", "weight": 2 }
+ ],
+ "referents": [
+  {
+   "id": "span",
+   "label": "the span, the Golden Gate Bridge’s main span on load",
+   "figure": "sim-linear-expansion"
+  },
+  {
+   "id": "plate",
+   "label": "the metal plate, with its plug and with the plug removed",
+   "figure": "sim-expanding-plate"
+  },
+  {
+   "id": "plug",
+   "label": "the circular plug",
+   "figure": "sim-expanding-plate"
+  },
+  {
+   "id": "hole",
+   "label": "the hole the plug leaves",
+   "figure": "sim-expanding-plate"
+  },
+  {
+   "id": "box",
+   "label": "the box",
+   "figure": "sim-expanding-plate"
+  },
+  {
+   "id": "tank",
+   "label": "the tank, steel in Example 13.4",
+   "figure": "sim-tank-spill"
+  },
+  {
+   "id": "liquid",
+   "label": "the liquid that fills the tank, gasoline in Example 13.4",
+   "figure": "sim-tank-spill"
+  }
  ]
 }
