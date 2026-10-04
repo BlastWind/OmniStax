@@ -192,8 +192,8 @@ function triangle(ctx, X, Y, p1, p2, runLabel, riseLabel, runColor, riseColor, b
     clipped(ctx, box, () => line(ctx, X(lo), Y(xQ + vQ * (lo - tQ.v)), X(hi), Y(xQ + vQ * (hi - tQ.v)), PAL.ink, 3));
     if (Math.abs(dt) > 0.05) triangle(ctx, X, Y, [t1.v, x1], [t2.v, x2], 'Δt = ' + neg(fmt(dt, 1)) + ' s', 'Δx = ' + neg(fmt(dx, 0)) + ' m', C('time'), C('position'), box);
     clipped(ctx, box, () => { dot(ctx, X(t1.v), Y(x1), PAL.ink, false, 8); dot(ctx, X(t2.v), Y(x2), PAL.ink, false, 8); });
-    dot(ctx, X(tQ.v), Y(xQ), PAL.ink, true, 10);
-    text(ctx, 'Q', X(tQ.v) - 18, Y(xQ) - 26, PAL.ink, { align: 'right', weight: 600, size: 24 });
+    dot(ctx, X(tQ.v), Y(xQ), F.ref('point-q'), true, 10);
+    text(ctx, 'Q', X(tQ.v) - 18, Y(xQ) - 26, F.ref('point-q'), { align: 'right', weight: 600, size: 24 });
     text(ctx, 'slope = v', box.l + 40, box.t + 40, C('velocity'), { weight: 600, size: 22 });
     /* the book's table of positions, the row at Q's time in ink when Q sits on one */
     const tx = 1090, ty = 150;

@@ -13,7 +13,7 @@ const reading = (x, d) => (x < -eps(d) ? '−' : '') + fmt(Math.abs(x), d);
 const readingTex = (x, d) => (x < -eps(d) ? '-' : '') + fmt(Math.abs(x), d);
 /* the jet of Figure 2.6, nose to the left when heading is −1 and to the right when it is +1 */
 function jet(ctx, x, y, heading, s) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(heading < 0 ? -1 : 1, 1); plane(ctx, 0, 0, PAL.ink, s); ctx.restore();
+  ctx.save(); ctx.translate(x, y); ctx.scale(heading < 0 ? -1 : 1, 1); plane(ctx, 0, 0, F.ref('jet'), s); ctx.restore();
 }
 
 /* =====================================================================
@@ -26,7 +26,7 @@ function jet(ctx, x, y, heading, s) {
 (function () {
   const d = sim('sim-vector-scalar', 430);
   const V = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: -120, max: 120, step: 5, value: 90, unit: 'km/h', dec: 0, aria: 'velocity, east positive' });
-  const T = ctl(d.controls, { label: '\\text{temperature}', cls: '', min: -40, max: 40, step: 1, value: 20, unit: '°C', dec: 0, aria: 'temperature' });
+  const T = ctl(d.controls, { label: '\\text{temperature}', cls: 'temperature', min: -40, max: 40, step: 1, value: 20, unit: '°C', dec: 0, aria: 'temperature' });
   /* a still picture: it registers no cycle, so it gets no transport, and a slider's input alone redraws it */
   const jx = 400, jy = 262;                 /* where the jet sits on its strip */
   const tx = 1060, tTop = 150, tBot = 366;  /* the thermometer's tube and the scale along it */
@@ -54,8 +54,8 @@ function jet(ctx, x, y, heading, s) {
       if (deg % 20 === 0) text(ctx, reading(deg, 0) + ' °C', tx + 44, Y(deg), PAL.muted, { size: 17 });
     }
     line(ctx, tx - 26, Y(0), tx - 16, Y(0), PAL.muted, 2);
-    dot(ctx, tx, Y(temp), PAL.ink, true, 10);
-    text(ctx, reading(temp, 0) + ' °C', tx - 28, Y(temp), PAL.ink, { weight: 600, size: 24, align: 'right' });
+    dot(ctx, tx, Y(temp), C('temperature'), true, 10);
+    text(ctx, reading(temp, 0) + ' °C', tx - 28, Y(temp), C('temperature'), { weight: 600, size: 24, align: 'right' });
     text(ctx, temp < 0 ? 'the minus sign is a point below zero, not a direction' : temp > 0 ? 'a point above zero on the scale' : 'the zero of the scale', 1060, jy + 140, PAL.ink, { size: 17, align: 'center' });
     headline(ctx, (mag > 0 ? 'A velocity of ' + fmt(mag, 0) + ' km/h ' + (east ? 'east' : 'west') + ' is an arrow' : 'A velocity of 0 km/h has no arrow')
       + ', and a temperature of ' + reading(temp, 0) + ' °C is a point on a scale.');

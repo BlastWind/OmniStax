@@ -6,7 +6,7 @@ const sim = (id, H) => F.sim(root, id, H);
 function twoLine(host, a, b) { if (!host._a) { host._a = document.createElement('div'); host._b = document.createElement('small'); host.replaceChildren(host._a, host._b); } tex(host._a, a); tex(host._b, b); }
 const sgn = (n, d) => (n > 0 ? '+' : n < 0 ? '−' : '') + fmt(Math.abs(n), d);
 
-/* a bicycle sprite, ink coloured, about 90 units long */
+/* a bicycle and its rider, about 90 units long */
 function bike(ctx, x, y, color, dir, phase) {
   ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 4; ctx.lineCap = 'round';
   const r = 15, w = 46 * dir;
@@ -65,8 +65,9 @@ function bike(ctx, x, y, color, dir, phase) {
     }, [0, -24]);
     line(ctx, L - 30, floor, R + 30, floor, PAL.muted, 3);
     /* the person where the motion ended, and a faint trace of them where it began */
-    ctx.save(); ctx.globalAlpha = 0.3; person(ctx, X(p0), floor, PAL.ink, { face }); ctx.restore();
-    person(ctx, X(pf), floor, PAL.ink, { face });
+    const body = W.mixColor((v) => F.ref(v));
+    ctx.save(); ctx.globalAlpha = 0.3; person(ctx, X(p0), floor, body, { face }); ctx.restore();
+    person(ctx, X(pf), floor, body, { face });
     /* the displacement, an arrow at chest height from where the person was to where they are */
     const ay = floor - 62;
     if (Math.abs(dx) >= 0.25) { arrow(ctx, X(p0), ay, X(pf), ay, C('position'), 5); text(ctx, 'Δx = ' + sgn(xf.v - x0.v, 1) + ' m', (X(p0) + X(pf)) / 2, ay - 28, C('position'), { align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) }); }
@@ -114,7 +115,7 @@ function bike(ctx, x, y, color, dir, phase) {
     if (leg1() > 0) { line(ctx, X(x0.v), y1, X(xt.v), y1, PAL.rule, 4); if (s1 > 0.05) arrow(ctx, X(x0.v), y1, X(p1), y1, PAL.ink, 5); }
     if (leg2() > 0) { line(ctx, X(xt.v), y2, X(xf.v), y2, PAL.rule, 4); line(ctx, X(xt.v), y1, X(xt.v), y2, PAL.rule, 4); if (s2 > 0.05) arrow(ctx, X(xt.v), y2, X(p2), y2, PAL.ink, 5); }
     const onLeg2 = s > leg1() + 1e-6, px = onLeg2 ? p2 : p1, py = onLeg2 ? y2 : y1, dir = onLeg2 ? Math.sign(xf.v - xt.v) || 1 : Math.sign(xt.v - x0.v) || 1;
-    bike(ctx, X(px), py - 22, PAL.ink, dir, s * 4);
+    bike(ctx, X(px), py - 22, F.ref('cyclist'), dir, s * 4);
     // displacement bracket below the axis, start and end markers on it
     dot(ctx, X(x0.v), y, C('position'), false, 11); dot(ctx, X(xf.v), y, C('position'), true, 11);
     const apart = Math.abs(X(xf.v) - X(x0.v)) > 60;

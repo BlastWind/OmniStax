@@ -60,7 +60,7 @@ function stopwatch(ctx, x, y, r, f) {
   /* the two values the book works with are soft detents on the slider: the Moon's 1.67 m/s² and Earth's 9.80 */
   const GDET = [{ v: 1.67, label: 'Moon' }, { v: 9.8, label: 'Earth' }];
   const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.5, max: 10, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration due to gravity', detents: GDET, snap: true });
-  const h = ctl(d.controls, { label: 'h', cls: '', min: 0.5, max: 5, step: 0.1, value: 2, unit: 'm', dec: 1, onInput: reset, aria: 'drop height' });
+  const h = ctl(d.controls, { label: 'h', cls: 'position', min: 0.5, max: 5, step: 0.1, value: 2, unit: 'm', dec: 1, onInput: reset, aria: 'drop height' });
   const T = () => Math.sqrt((2 * h.v) / g.v);
   const cy = cycle(T, 1.4);
   function reset() { cy.reset(); }
@@ -84,13 +84,13 @@ function stopwatch(ctx, x, y, r, f) {
     /* the two panels and the release line */
     panel(ctx, 150, 590, 'in air'); panel(ctx, 780, 1220, 'in a vacuum');
     [[150, 590], [780, 1220]].forEach(([a, b]) => line(ctx, a, Y(h.v), b, Y(h.v), PAL.muted, 2, [8, 8]));
-    text(ctx, 'released from h = ' + fmt(h.v, 1) + ' m', 380, Y(h.v) - 20, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
+    text(ctx, 'released from h = ' + fmt(h.v, 1) + ' m', 380, Y(h.v) - 20, C('position'), { size: 17, align: 'center', bg: PAL.panel });
     vscale(ctx, 120, Y, 0, Math.floor(h.v), 1, 'm');
     /* in air: the hammer falls freely and the feather settles to its terminal speed */
-    hammer(ctx, 250, Y(ht), PAL.ink, 0.8); feather(ctx, 510, Y(htAir), PAL.ink, 0.8);
+    hammer(ctx, 250, Y(ht), F.ref('hammer'), 0.8); feather(ctx, 510, Y(htAir), F.ref('feather'), 0.8);
     text(ctx, 'the air holds the feather to ' + fmt(vT(), 2) + ' m/s', 370, floorY + 62, PAL.muted, { size: 17, align: 'center' });
     /* in a vacuum: both fall together */
-    hammer(ctx, 890, Y(ht), PAL.ink, 0.8); feather(ctx, 1110, Y(ht), PAL.ink, 0.8);
+    hammer(ctx, 890, Y(ht), F.ref('hammer'), 0.8); feather(ctx, 1110, Y(ht), F.ref('feather'), 0.8);
     text(ctx, 'no air, so nothing but gravity acts', 1000, floorY + 62, PAL.muted, { size: 17, align: 'center' });
     if (fallen > 0.02) vbracket(ctx, 1170, Y(h.v), Y(ht), C('position'), 'fallen ' + fmt(fallen, 2) + ' m', 1);
     /* the acceleration due to gravity, the same for both */
@@ -142,7 +142,7 @@ function stopwatch(ctx, x, y, r, f) {
     const ground = Y(0) + 96;
     if (ground < sBot + 40) fixed(ctx, 150, ground, 150, Math.max(20, sBot + 60 - ground));
     /* the thrower stands at the cliff edge, an arm raised toward where the rock left the hand */
-    figure(ctx, 262, ground, PAL.ink, { face: 1, reach: { x: 330, y: Y(0) + 10 } });
+    figure(ctx, 262, ground, F.ref('thrower'), { face: 1, reach: { x: 330, y: Y(0) + 10 } });
     vscale(ctx, 110, Y, yr.lo, yr.hi, (yr.hi - yr.lo) / yr.n, 'm');
     line(ctx, 130, Y(0), 640, Y(0), C('position'), 2, [8, 8]);
     /* every label of the scene goes through the labeller, since the rock, its arrows, the highest point
@@ -157,7 +157,7 @@ function stopwatch(ctx, x, y, r, f) {
     lab.add('highest point, ' + fmt(ytop, 2) + ' m at ' + fmt(ttop, 2) + ' s', rx, Y(ytop), -0.35, -1, C('position'), 17, 22);
     /* the rock with its velocity and acceleration arrows */
     line(ctx, rx, Y(yr.hi), rx, Y(yr.lo), PAL.rule, 1.5);
-    dot(ctx, rx, Y(y), PAL.ink, true, 11);
+    dot(ctx, rx, Y(y), F.ref('rock'), true, 11);
     if (Math.abs(v) > 0.3) {
       const L = 30 + Math.abs(v) * 7, tip = Y(y) - Math.sign(v) * L; arrow(ctx, rx, Y(y), rx, tip, C('velocity'), 5);
       lab.block(rx - 10, Math.min(tip, Y(y)) - 10, rx + 10, Math.max(tip, Y(y)) + 10);
@@ -234,11 +234,11 @@ function stopwatch(ctx, x, y, r, f) {
     /* the scene: the cliff, the person, the two rocks */
     const ground = Y(0) + 96;
     fixed(ctx, 60, ground, 140, Math.max(20, box.b + 60 - ground));
-    figure(ctx, 150, ground, PAL.ink, { face: 1, reach: { x: 210, y: Y(0) + 10 } });
+    figure(ctx, 150, ground, F.ref('thrower'), { face: 1, reach: { x: 210, y: Y(0) + 10 } });
     line(ctx, 200, Y(0), 640, Y(0), C('position'), 2, [8, 8]); text(ctx, 'y₀ = 0', 640, Y(0) - 18, C('position'), { size: 20, weight: 600, align: 'right' });
     line(ctx, 200, Y(yE.v), 640, Y(yE.v), C('position'), 2, [8, 8]); text(ctx, 'y = ' + stex(yE.v, 2).replace('-', '−') + ' m', 640, Y(yE.v) + 22, C('position'), { size: 20, weight: 600, align: 'right' });
     const xa = 320, xb = 480;
-    text(ctx, 'thrown up', xa, Y(yr.hi) - 30, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'thrown down', xb, Y(yr.hi) - 30, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'thrown up', xa, Y(yr.hi) - 30, F.ref('rock'), { size: 17, align: 'center' }); text(ctx, 'thrown down', xb, Y(yr.hi) - 30, F.ref('rock-down'), { size: 17, align: 'center' });
     line(ctx, xa, Y(yr.hi), xa, Y(yr.lo), PAL.rule, 1.5); line(ctx, xb, Y(yr.hi), xb, Y(yr.lo), PAL.rule, 1.5);
     /* The marks the rock thrown up leaves as it flies. A flight of many seconds would stack fifty
        marks on one column, so the interval between marks is widened until at most eight are drawn,
@@ -252,9 +252,9 @@ function stopwatch(ctx, x, y, r, f) {
       marks.push({ x: xa, y: Y(yk), r: 12, name: k + ' s after the throw' });
     }
     hits = marks;
-    dot(ctx, xa, Y(yA), PAL.ink, true, 11);
+    dot(ctx, xa, Y(yA), F.ref('rock'), true, 11);
     if (Math.abs(vA) > 0.3) arrow(ctx, xa - 26, Y(yA), xa - 26, Y(yA) - Math.sign(vA) * (16 + Math.abs(vA) * 4), C('velocity'), 4);
-    dot(ctx, xb, Y(yB), PAL.ink, true, 11);
+    dot(ctx, xb, Y(yB), F.ref('rock-down'), true, 11);
     arrow(ctx, xb + 26, Y(yB), xb + 26, Y(yB) + 16 + Math.abs(vB) * 4, C('velocity'), 4);
     const lab = labeller(ctx, 720);
     lab.block(0, Y(yr.hi) - 50, 640, Y(yr.hi) - 10); lab.block(box.l - 70, box.t - 30, box.r, box.b + 60);
@@ -271,7 +271,7 @@ function stopwatch(ctx, x, y, r, f) {
     text(ctx, '+v₀', GX(v0.v) + 14, Y(0) - 20, C('velocity'), { size: 20, weight: 600 }); text(ctx, '−v₀', GX(-v0.v) - 14, Y(0) - 20, C('velocity'), { size: 20, weight: 600, align: 'right' });
     dot(ctx, GX(-vm), Y(yE.v), C('velocity'), false, 9);
     text(ctx, signed(-vm, 1) + ' m/s at y = ' + stex(yE.v, 2).replace('-', '−') + ' m', GX(-vm) + 16, Y(yE.v) + 24, C('velocity'), { size: 17, weight: 600 });
-    dot(ctx, GX(vA), Y(yA), PAL.ink, true, 9); dot(ctx, GX(vB), Y(yB), PAL.ink, true, 9);
+    dot(ctx, GX(vA), Y(yA), F.ref('rock'), true, 9); dot(ctx, GX(vB), Y(yB), F.ref('rock-down'), true, 9);
     /* the equation names three types at once, so it is written in ink rather than in any one of their hues */
     text(ctx, 'v² = v₀² − 2g(y − y₀)', box.r - 10, box.t + 26, PAL.ink, { size: 18, weight: 600, align: 'right' });
     /* what the numbers say */
@@ -330,7 +330,7 @@ function stopwatch(ctx, x, y, r, f) {
       text(ctx, stex(pos(tk), 3).replace('-', '−'), cols[1], rowY(k), on ? C('position') : PAL.muted, { size: 17, align: 'center' });
       text(ctx, stex(vel(tk), 2).replace('-', '−'), cols[2], rowY(k), on ? C('velocity') : PAL.muted, { size: 17, align: 'center' });
     }
-    dot(ctx, bx, Y(y), PAL.ink, true, 12);
+    dot(ctx, bx, Y(y), F.ref('ball'), true, 12);
     if (Math.abs(v) > 0.05) { const L = 24 + Math.abs(v) * 10; arrow(ctx, bx + 30, Y(y), bx + 30, Y(y) + L, C('velocity'), 4); }
     const aL = 30 + Math.min(gg, 25) * 5; arrow(ctx, 78, 300, 78, 300 + aL, C('acceleration'), 5); text(ctx, 'a = −g', 78, 270, C('acceleration'), { size: 20, weight: 600, align: 'center' });
     /* the three graphs, y, v and a against t, on the fixed ranges */
@@ -370,7 +370,7 @@ function stopwatch(ctx, x, y, r, f) {
      hammer-and-feather figure does. The speed of sound is not a slider: every value between 300 and
      360 m/s moved the drawing by less than a line's width, so it is stated as the 340 m/s the
      problem uses (rule 24.6). */
-  const D = ctl(d.controls, { label: 'd', cls: '', min: 5, max: 100, step: 1, value: 40, unit: 'm', dec: 0, onInput: reset, aria: 'depth of the shaft' });
+  const D = ctl(d.controls, { label: 'd', cls: 'position', min: 5, max: 100, step: 1, value: 40, unit: 'm', dec: 0, onInput: reset, aria: 'depth of the shaft' });
   const G = 9.8, VS = 340;
   const tFall = () => Math.sqrt((2 * D.v) / G), tSound = () => D.v / VS, tTot = () => tFall() + tSound();
   const cy = cycle(tTot, 1.4);
@@ -390,10 +390,10 @@ function stopwatch(ctx, x, y, r, f) {
     fixed(ctx, wl - 40, Y(0), 40, Y(-D.v) - Y(0) + 40); fixed(ctx, wr, Y(0), 40, Y(-D.v) - Y(0) + 40);
     ctx.save(); ctx.fillStyle = alpha(C('position'), 0.15); ctx.fillRect(wl, Y(-D.v) - 10, wr - wl, 50); ctx.restore();
     line(ctx, wl, Y(-D.v), wr, Y(-D.v), C('position'), 3);
-    line(ctx, 100, Y(0), wl - 40, Y(0), PAL.ink, 4); figure(ctx, 150, Y(0), PAL.ink, { face: 1, lean: 0.25, reach: { x: 215, y: Y(0) - 40 } });
-    vbracket(ctx, 500, Y(0), Y(-D.v), PAL.ink, 'd = ' + fmt(D.v, 0) + ' m', 1);
+    line(ctx, 100, Y(0), wl - 40, Y(0), PAL.ink, 4); figure(ctx, 150, Y(0), F.ref('listener'), { face: 1, lean: 0.25, reach: { x: 215, y: Y(0) - 40 } });
+    vbracket(ctx, 500, Y(0), Y(-D.v), C('position'), 'd = ' + fmt(D.v, 0) + ' m', 1);
     /* the rock, and after the splash the sound on its way up */
-    dot(ctx, sx, Y(yRock), PAL.ink, true, 10);
+    dot(ctx, sx, Y(yRock), F.ref('shaft-rock'), true, 10);
     if (falling && tau > 0.05) arrow(ctx, sx + 26, Y(yRock), sx + 26, Y(yRock) + 20 + G * tau * 3, C('velocity'), 4);
     if (ySound !== null && ySound < -0.01) {
       ctx.save(); ctx.strokeStyle = C('velocity'); ctx.lineWidth = 3;

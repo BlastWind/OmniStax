@@ -32,7 +32,7 @@ function pair(ctx, left, right, x, y, color, size = 22) {
 /* the range a function takes over [0, T], sampled */
 function span(f, T, n = 80) { let lo = Infinity, hi = -Infinity; for (let i = 0; i <= n; i++) { const v = f((T * i) / n); lo = Math.min(lo, v); hi = Math.max(hi, v); } return [lo, hi]; }
 
-/* ---------- sprites, in ink ---------- */
+/* ---------- sprites ---------- */
 /* a subway car standing on the rail at y, about 112 units long; hollow draws only its outline */
 function train(ctx, x, y, color, s = 1, hollow = false) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
@@ -101,7 +101,7 @@ function topCar(ctx, x, y, heading, color) {
     scale(ctx, X, MLO + 20, MHI - 15, 50, y + 26, 'm', 1);
     arrow(ctx, 1200, y - 55, 1300, y - 55, PAL.ink, 3); text(ctx, '+x', 1310, y - 55, PAL.ink, { size: 20, weight: 600 });
     const px = X(pos(tau));
-    carDir(ctx, px, y - 6, PAL.ink, 1.2, vv >= 0 ? 1 : -1);
+    carDir(ctx, px, y - 6, F.ref('car'), 1.2, vv >= 0 ? 1 : -1);
     arrow(ctx, px, y - 106, px + vv * 6, y - 106, C('velocity'), 5);
     text(ctx, 'v = ' + num(vv, 1) + ' m/s', px + (vv >= 0 ? -6 : 6), y - 138, C('velocity'), { align: vv >= 0 ? 'left' : 'right', weight: 600 });
     if (Math.abs(a.v) > 0.05) {
@@ -146,7 +146,7 @@ function topCar(ctx, x, y, heading, color) {
 (function () {
   const d = sim('sim-turning', 560);
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 5, max: 20, step: 0.5, value: 10, unit: 'm/s', dec: 1, onInput: reset });
-  const Rm = ctl(d.controls, { label: '\\text{radius}', cls: '', min: 20, max: 80, step: 5, value: 40, unit: 'm', dec: 0, onInput: reset, aria: 'radius of the bend' });
+  const Rm = ctl(d.controls, { label: '\\text{radius}', cls: 'position', min: 20, max: 80, step: 5, value: 40, unit: 'm', dec: 0, onInput: reset, aria: 'radius of the bend' });
   const K = 2.75;                                     /* canvas units per meter */
   const x0 = 100, xb = 480, yroad = 430, ytop = 120;   /* the straight in, the start of the bend, the road's level and the top of the exit */
   const Rpx = () => Rm.v * K, Lin = xb - x0, arc = () => (Math.PI / 2) * Rpx(), Lout = () => yroad - Rpx() - ytop;
@@ -171,10 +171,10 @@ function topCar(ctx, x, y, heading, color) {
     ctx.moveTo(x0 - 40, yroad); ctx.lineTo(cx, yroad); ctx.arc(cx, cyy, R, Math.PI / 2, 0, true); ctx.lineTo(cx + R, ytop - 20); ctx.stroke(); ctx.restore();
     /* the centre of the bend and its radius */
     dot(ctx, cx, cyy, PAL.muted, true, 5);
-    line(ctx, cx, cyy, cx + R * Math.sin(Math.PI / 4), cyy + R * Math.cos(Math.PI / 4), PAL.muted, 2, [4, 8]);
-    text(ctx, 'radius ' + fmt(Rm.v, 0) + ' m', cx - 14, cyy - 6, PAL.muted, { size: 17, align: 'right' });
+    line(ctx, cx, cyy, cx + R * Math.sin(Math.PI / 4), cyy + R * Math.cos(Math.PI / 4), C('position'), 2, [4, 8]);
+    text(ctx, 'radius ' + fmt(Rm.v, 0) + ' m', cx - 14, cyy - 6, C('position'), { size: 17, align: 'right' });
     /* the car and its velocity */
-    topCar(ctx, at.x, at.y, at.h, PAL.ink);
+    topCar(ctx, at.x, at.y, at.h, F.ref('turning-car'));
     const vl = v.v * 12, ux = Math.cos(at.h), uy = -Math.sin(at.h), tx = at.x + ux * vl, ty = at.y + uy * vl;
     arrow(ctx, at.x, at.y, tx, ty, C('velocity'), 5);
     if (at.h < Math.PI / 3) text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', tx + 14, Math.max(100, ty), C('velocity'), { weight: 600, size: 20 });
@@ -228,7 +228,7 @@ function topCar(ctx, x, y, heading, color) {
   const T = () => v0.v / am.v;
   const cy = cycle(T, 1.2);
   function reset() { cy.reset(); }
-  const CARS = [['(a)', 1, 1], ['(b)', 1, -1], ['(c)', -1, 1], ['(d)', -1, -1]];   /* label, sign of v, sign of a */
+  const CARS = [['(a)', 1, 1, 'car-a'], ['(b)', 1, -1, 'car-b'], ['(c)', -1, 1, 'car-c'], ['(d)', -1, -1, 'car-d']];   /* label, sign of v, sign of a, referent */
   let hits = [];
   F.hover(d.stage, () => hits);
   function draw() {
@@ -240,15 +240,15 @@ function topCar(ctx, x, y, heading, color) {
     const L = 150, R = 1000, D = (1.5 * v0.v * v0.v) / am.v, k = (R - L - 100) / D;
     arrow(ctx, 1220, 96, 1320, 96, PAL.ink, 3); text(ctx, '+x', 1330, 96, PAL.ink, { size: 20, weight: 600 });
     const next = [];
-    CARS.forEach(([lab, sv, sa], i) => {
+    CARS.forEach(([lab, sv, sa, id], i) => {
       const y = 150 + 130 * i, vel = sv * v0.v + sa * am.v * tau, x = sv * v0.v * tau + 0.5 * sa * am.v * tau * tau;
       const px = sv > 0 ? L + 50 + x * k : R - 50 + x * k;
       const stopped = sv * sa < 0 && tau >= T() - 1e-9;
       const what = stopped ? 'stopped' : sv * sa > 0 ? 'speeding up' : 'slowing down';
       strip(ctx, L, R, y, 44);
-      text(ctx, lab, 36, y - 14, PAL.ink, { weight: 600 });
+      text(ctx, lab, 36, y - 14, F.ref(id), { weight: 600 });
       text(ctx, what, 36, y + 14, PAL.muted, { size: 17 });
-      carDir(ctx, px, y - 6, PAL.ink, 1.1, sv);
+      carDir(ctx, px, y - 6, F.ref(id), 1.1, sv);
       if (Math.abs(vel) > 0.2) arrow(ctx, px, y - 58, px + vel * 4, y - 58, C('velocity'), 5);
       arrow(ctx, px, y + 44, px + sa * am.v * 20, y + 44, C('acceleration'), 5);
       pair(ctx, 'v =', signed(vel, 1) + ' m/s', 1040, y - 16, C('velocity'), 20);
@@ -303,8 +303,8 @@ function accelSim(o) {
     arrow(ctx, 1190, y - 55, 1280, y - 55, PAL.ink, 3); text(ctx, o.axis, 1290, y - 55, PAL.ink, { size: 20, weight: 600 });
     const here = pos(tau), off = here < o.xlo || here > o.xhi;
     const px = X(Math.min(o.xhi, Math.max(o.xlo, here))), dir = vv !== 0 ? Math.sign(vv) : vf.v - v0.v !== 0 ? Math.sign(vf.v - v0.v) : 1;
-    if (o.sprite === 'horse') horse(ctx, px, y + 4, PAL.ink, ph, dir);
-    else { ctx.save(); ctx.translate(px, 0); ctx.scale(dir < 0 ? -1 : 1, 1); train(ctx, 0, y + 6, PAL.ink, 1); ctx.restore(); }
+    if (o.sprite === 'horse') horse(ctx, px, y + 4, F.ref('horse'), ph, dir);
+    else { ctx.save(); ctx.translate(px, 0); ctx.scale(dir < 0 ? -1 : 1, 1); train(ctx, 0, y + 6, F.ref('train'), 1); ctx.restore(); }
     /* the velocity arrow above and the acceleration arrow below */
     const kv = 260 / o.vmax;
     if (Math.abs(vv) > 0.05) arrow(ctx, px, y - 108, px + vv * kv, y - 108, C('velocity'), 5);
@@ -412,7 +412,7 @@ accelSim({ ...TRAIN, id: 'sim-subway-deceleration', v0: -20, vf: 0, dt: 10, xlo:
     const dx = b - a;
     strip(ctx, L, R, y, 44); scale(ctx, X, 0, 10, 1, y + 22, 'km', 2);
     text(ctx, lab, 40, y - 14, PAL.ink, { weight: 600 });
-    train(ctx, X(a), y + 6, PAL.muted, 0.9, true); train(ctx, X(b), y + 6, PAL.ink, 0.9);
+    train(ctx, X(a), y + 6, alpha(F.ref('train'), 0.55), 0.9, true); train(ctx, X(b), y + 6, F.ref('train'), 0.9);
     dot(ctx, X(a), y, C('position'), false, 9); dot(ctx, X(b), y, C('position'), true, 9);
     if (Math.abs(dx) > 0.15) { arrow(ctx, X(a), y - 100, X(b), y - 100, C('position'), 5); text(ctx, 'Δx' + prime + ' = ' + signed(dx, 2) + ' km', (X(a) + X(b)) / 2, y - 126, C('position'), { align: 'center', weight: 600 }); }
     else text(ctx, 'Δx' + prime + ' = ' + signed(dx, 2) + ' km', X(a), y - 126, C('position'), { align: 'center', weight: 600 });
@@ -466,7 +466,7 @@ accelSim({ ...TRAIN, id: 'sim-subway-deceleration', v0: -20, vf: 0, dt: 10, xlo:
     strip(ctx, L, R, y, 52);
     scale(ctx, X, 0, XMAX, 100, y + 26, 'm', 1);
     const px = X(pos(tau));
-    train(ctx, px, y + 6, PAL.ink, 1);
+    train(ctx, px, y + 6, F.ref('train'), 1);
     if (vv > 0.05) arrow(ctx, px, y - 104, px + vv * 14, y - 104, C('velocity'), 5);
     text(ctx, 'v = ' + fmt(vv, 2) + ' m/s (' + fmt(vv * 3.6, 1) + ' km/h)', px - 6, y - 132, C('velocity'), { weight: 600 });
     if (Math.abs(aa) > 1e-9) { arrow(ctx, px, y - 78, px + aa * 110, y - 78, C('acceleration'), 5); text(ctx, 'a', px + aa * 110 + 16 * Math.sign(aa), y - 78, C('acceleration'), { weight: 600, size: 24, align: 'center' }); }
@@ -526,7 +526,7 @@ accelSim({ ...TRAIN, id: 'sim-subway-deceleration', v0: -20, vf: 0, dt: 10, xlo:
     if (Math.abs(dx) > 0.15) hbracket(ctx, X(x0.v), X(xf.v), y - 70, C('position'), 'Δx′ = ' + signed(dx, 2) + ' km');
     const px = X(xm);
     /* the train faces the way it is going, so a trip to the left is not drawn driving backwards */
-    ctx.save(); ctx.translate(px, 0); ctx.scale(dx < 0 ? -1 : 1, 1); train(ctx, 0, y + 6, PAL.ink, 0.9); ctx.restore();
+    ctx.save(); ctx.translate(px, 0); ctx.scale(dx < 0 ? -1 : 1, 1); train(ctx, 0, y + 6, F.ref('train'), 0.9); ctx.restore();
     if (Math.abs(v) > 0.2) arrow(ctx, px, y - 120, px + v * 4, y - 120, C('velocity'), 5);
     text(ctx, 'v̄ = ' + num(v, 1) + ' km/h', Math.min(LW - 16, Math.max(16, px + (v >= 0 ? -6 : 6))), y - 150, C('velocity'), { align: v >= 0 ? 'left' : 'right', weight: 600 });
     /* x against t, on axes fixed at 0 to 15 min and the 0 to 10 km of the strip above, so the graph

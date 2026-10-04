@@ -106,7 +106,7 @@ function dragster(ctx, x, y, color, s = 1) {
     strip(ctx, L, R, y, 44); scale(ctx, X, 0, 1600, 200, y + 22, 'm', 2);
     dot(ctx, X(x0.v), y, C('position'), false, 10); text(ctx, 'x₀', X(x0.v), y + 76, C('position'), { align: 'center', weight: 600, size: 24 });
     if (Math.abs(x - x0.v) > 20) hbracket(ctx, X(x0.v), X(x), y - 100, C('position'), 'Δx = v̄ t = ' + fmt(x - x0.v, 0) + ' m');
-    person(ctx, X(xm), y + 22, PAL.ink, { face: 1, phase: cy.tau < t.v && vb.v > 0 ? ph : 0 });
+    person(ctx, X(xm), y + 22, F.ref('jogger'), { face: 1, phase: cy.tau < t.v && vb.v > 0 ? ph : 0 });
     dot(ctx, X(x), y, C('position'), true, 10); text(ctx, 'x = ' + fmt(x, 0) + ' m', Math.min(X(x), 1250), y + 76, C('position'), { align: 'center', weight: 600, size: 22 });
     arrow(ctx, X(xm) + 14, y - 82, X(xm) + 14 + vb.v * 22, y - 82, C('velocity'), 4); text(ctx, 'v̄', X(xm) + 24 + vb.v * 22, y - 82, C('velocity'), { weight: 600, size: 24 });
     // final position against average velocity, a straight line of slope t; the axes are fixed at the
@@ -155,7 +155,7 @@ function dragster(ctx, x, y, color, s = 1) {
     line(ctx, X(xend), y - 28, X(xend), y + 28, C('position'), 3);
     text(ctx, (far ? 'stops at ' : '') + fmt(xend, 0) + ' m', Math.min(X(xend), 1300), y - 44, C('position'), { align: far ? 'right' : 'center', size: 18, weight: 600, bg: alpha(PAL.panel, 0.85) });
     const px = X(pos(tau)), vv = vel(tau), rest = vv <= 1e-9 && a.v < 0;
-    plane(ctx, px, y - 2, PAL.ink, 1.1);
+    plane(ctx, px, y - 2, F.ref('airplane'), 1.1);
     /* the arrows are anchored on the plane and clamped to the canvas, and each label sits on the arrow's side that has room */
     const vtip = Math.min(1380, px + vv * 3.2), atip = Math.max(20, Math.min(1380, px + a.v * 60));
     arrow(ctx, px, y - 110, vtip, y - 110, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 1) + ' m/s', px > 1100 ? px + 10 : px - 10, y - 142, C('velocity'), { align: px > 1100 ? 'right' : 'left', weight: 600 });
@@ -210,7 +210,7 @@ function dragster(ctx, x, y, color, s = 1) {
     line(ctx, X(xe), y - 40, X(xe), y + 40, C('position'), 4); lab.add('x = ' + fmt(xe, 0) + ' m', X(xe), y + 40, 0, 1, C('position'), 20, 26);
     dot(ctx, X(xh), y + 28, C('position'), false, 9); lab.add('at t/2: ' + fmt(xh, 0) + ' m, ' + fmt(100 * xh / (xe || 1), 0) + '% of the way', X(xh), y + 40, 0, 1, C('position'), 18, 26);
     const px = X(pos(tau)), vv = v0.v + a.v * tau;
-    dragster(ctx, px, y - 8, PAL.ink, 1);
+    dragster(ctx, px, y - 8, F.ref('dragster'), 1);
     arrow(ctx, px, y - 100, px + vv * 1.6, y - 100, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 0) + ' m/s', px, y - 132, C('velocity'), { weight: 600 });
     arrow(ctx, px, y - 62, px + a.v * 3, y - 62, C('acceleration'), 5); text(ctx, 'a', px + a.v * 3 + 14, y - 62, C('acceleration'), { weight: 600, size: 24 });
     lab.flush();
@@ -270,7 +270,7 @@ function dragster(ctx, x, y, color, s = 1) {
       if (rd > 0.5) text(ctx, 'reaction ' + fmt(rd, 1) + ' m', (X(0) + X(rd)) / 2, y - 38, C('position'), { align: 'center', size: 17, weight: 600 });
       text(ctx, 'braking ' + fmt(b, 1) + ' m', (X(rd) + X(rd + b)) / 2, y - 38, C('position'), { align: 'center', size: 17, weight: 600 });
       text(ctx, fmt(rd + b, 1) + ' m in ' + fmt(tstop(a), 2) + ' s', Math.min(X(rd + b) + 16, R + 16), y, PAL.muted, { size: 17 });
-      car(ctx, X(pos(a, tau)), y + 20, PAL.ink, 0.7);
+      car(ctx, X(pos(a, tau)), y + 20, F.ref('braking-car'), 0.7);
     });
     line(ctx, X(0), 96, X(0), 320, C('position'), 3, [4, 8]); text(ctx, 'light turns red', X(0), 344, PAL.muted, { align: 'center', size: 16 });
     topline(ctx, 'After ' + fmt(tau, 2) + ' s the two cars are this far down the road, and since the speed and the driver are the same, only the road surface separates them'
@@ -305,7 +305,7 @@ function dragster(ctx, x, y, color, s = 1) {
     dot(ctx, X(0), y + 25, C('position'), false, 7); lab.add('x_0 = 0', X(0), y + 36, 0, 1, C('position'), 18, 44);
     line(ctx, X(x.v), y - 36, X(x.v), y + 36, C('position'), 4); lab.add('end of ramp, x = ' + x.v + ' m', X(x.v), y - 36, 0, -1, C('position'), 18, 22);
     const px = X(pos(tau)), vv = v0.v + a.v * tau;
-    car(ctx, px, y - 6, PAL.ink, 1);
+    car(ctx, px, y - 6, F.ref('merging-car'), 1);
     const vt = Math.min(1380, px + vv * 5);
     arrow(ctx, px, y - 64, vt, y - 64, C('velocity'), 5); text(ctx, 'v = ' + fmt(vv, 1) + ' m/s', vt > 1180 ? px - 16 : vt + 16, y - 64, C('velocity'), { weight: 600, size: 20, align: vt > 1180 ? 'right' : 'left' });
     /* The axes are fixed at −40 to 40 s and −500 to 1000 m, which hold every root the sliders can

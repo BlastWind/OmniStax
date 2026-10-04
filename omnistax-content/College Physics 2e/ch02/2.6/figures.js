@@ -47,7 +47,7 @@ const times = (n) => (WORDS[n] ?? String(n)) + ' times';
     /* the runner, whose stride quickens with the speed */
     const rx = X(dist);
     if (!done && v > 0) stride += 0.25 + 0.3 * Math.min(1, v / RUN);
-    person(ctx, rx, ys + 24, PAL.ink, { face: 1, phase: done || v <= 0 ? 0 : stride, lean: 0.12 });
+    person(ctx, rx, ys + 24, F.ref('runner'), { face: 1, phase: done || v <= 0 ? 0 : stride, lean: 0.12 });
     /* the velocity arrow over the runner, its length proportional to v */
     if (v > 0.05) {
       const len = Math.min(240, 24 + 5.4 * v), ax = rx + 8;

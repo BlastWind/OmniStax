@@ -96,7 +96,7 @@ function trip(u) {
     const swings = Math.floor(tau / sw.v + 1e-9);
     /* the pendulum, swinging since the clock started at zero */
     fixed(ctx, 100, 82, 160, 18);
-    pendulum(ctx, 180, 100, 150, 0.38 * Math.cos((2 * Math.PI * clock) / sw.v), PAL.ink);
+    pendulum(ctx, 180, 100, 150, 0.38 * Math.cos((2 * Math.PI * clock) / sw.v), F.ref('pendulum'));
     text(ctx, 'one full swing every ' + fmt(sw.v, 2) + ' s', 180, 300, PAL.muted, { size: 17, align: 'center' });
     text(ctx, begun ? swings + (swings === 1 ? ' swing' : ' swings') + ' since t₀' : 'no swings counted', 180, 326, PAL.ink, { weight: 600, size: 20, align: 'center' });
     /* the time line, the two readings and the elapsed time between them */
@@ -158,7 +158,7 @@ function trip(u) {
     text(ctx, 'x_0 = ' + fmt(x0.v, 1) + ' m', X(x0.v), y + 150, C('position'), { align: apart ? 'center' : 'right', weight: 600, size: 22 });
     text(ctx, 'x_f = ' + fmt(xf.v, 1) + ' m', X(xf.v), y + (apart ? 150 : 178), C('position'), { align: apart ? 'center' : 'left', weight: 600, size: 22 });
     /* the passenger walking the aisle, facing the way he goes, and his average velocity as an arrow over his head */
-    person(ctx, X(xm), y + 28, PAL.ink, { face: dx < 0 ? -1 : 1, phase: done || dx === 0 ? 0 : ph });
+    person(ctx, X(xm), y + 28, F.ref('passenger'), { face: dx < 0 ? -1 : 1, phase: done || dx === 0 ? 0 : ph });
     const ax = X(xm), len = Math.max(-300, Math.min(300, vb * 70));
     if (Math.abs(len) > 6) {
       arrow(ctx, ax, y - 72, ax + len, y - 72, C('velocity'), 5);
@@ -228,7 +228,7 @@ function trip(u) {
     if (Math.abs(X(xb) - X(xa)) > 6) arrow(ctx, X(xa), iy, X(xb), iy, C('position'), 4); else dot(ctx, X(xa), iy, C('position'), true, 6);
     text(ctx, 'over this interval Δx = ' + signed(xb - xa, 2) + ' m', (X(xa) + X(xb)) / 2, iy + 30, C('position'), { align: 'center', weight: 600, size: 20 });
     /* the passenger and his instantaneous velocity */
-    person(ctx, X(now.x), y + 28, PAL.ink, { face: now.v < 0 ? -1 : 1, phase: done || Math.abs(now.v) < 0.05 ? 0 : ph });
+    person(ctx, X(now.x), y + 28, F.ref('passenger'), { face: now.v < 0 ? -1 : 1, phase: done || Math.abs(now.v) < 0.05 ? 0 : ph });
     const ax = X(now.x), len = Math.max(-300, Math.min(300, now.v * 70));
     if (Math.abs(len) > 6) {
       arrow(ctx, ax, y - 72, ax + len, y - 72, C('velocity'), 5);
@@ -302,7 +302,7 @@ function trip(u) {
     else text(ctx, 'Δx = 0, at home', X(0), y + 84, C('position'), { weight: 600, align: 'left' });
     /* the car, facing the way it drives, with its velocity as an arrow */
     const cx = X(pos), dir = back ? -1 : 1;
-    ctx.save(); ctx.translate(cx, 0); ctx.scale(dir, 1); car(ctx, 0, y - 6, PAL.ink, 1.2); ctx.restore();
+    ctx.save(); ctx.translate(cx, 0); ctx.scale(dir, 1); car(ctx, 0, y - 6, F.ref('car'), 1.2); ctx.restore();
     const len = dir * Math.min(260, 40 + sp * 6);
     if (!done) {
       arrow(ctx, cx, y - 46, cx + len, y - 46, C('velocity'), 5);
@@ -360,7 +360,7 @@ function trip(u) {
     house(ctx, L - 80, y + 20, PAL.ink); store(ctx, stx, y + 20, PAL.ink);
     text(ctx, 'home', L - 80, y + 56, PAL.muted, { size: 17, align: 'center' }); text(ctx, 'store', stx, y + 56, PAL.muted, { size: 17, align: 'center' });
     const cx = X(Math.max(0, Math.min(D.v, pos))), dir = back ? -1 : 1;
-    ctx.save(); ctx.translate(cx, 0); ctx.scale(dir, 1); car(ctx, 0, y - 6, PAL.ink, 1.1); ctx.restore();
+    ctx.save(); ctx.translate(cx, 0); ctx.scale(dir, 1); car(ctx, 0, y - 6, F.ref('car'), 1.1); ctx.restore();
     const len = dir * (40 + (180 * Math.min(sp, SPMAX)) / SPMAX);
     if (!done) { arrow(ctx, cx, y - 44, cx + len, y - 44, C('velocity'), 5); text(ctx, 'v = ' + (dir > 0 ? '+' : '−') + sig3(sp) + ' km/h', cx + len + dir * 14, y - 44, C('velocity'), { weight: 600, size: 20, align: dir > 0 ? 'left' : 'right' }); }
     /* the three graphs, on ranges that never follow the sliders */
