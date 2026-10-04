@@ -70,13 +70,13 @@ function protractor(ctx, x, y, r, deg) {
     line(ctx, x + r * Math.cos(t), y + sgn * r * Math.sin(t), x + (r - len) * Math.cos(t), y + sgn * (r - len) * Math.sin(t), PAL.muted, big ? 2 : 1.2);
     if (big && k > 0 && k < 18) text(ctx, String(k * 10), x + (r + 16) * Math.cos(t), y + sgn * (r + 16) * Math.sin(t), PAL.muted, { size: 12, align: 'center' });
   }
-  if (a > 0.05) { ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r * 0.5, 0, sgn * a * RAD, !below); ctx.stroke(); ctx.restore(); }
+  if (a > 0.05) { ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, r * 0.5, 0, sgn * a * RAD, !below); ctx.stroke(); ctx.restore(); }
 }
 /* the angle written along the bisector of the swept angle, pushed clear of the east-west line when the angle is small */
 function thetaLabel(ctx, ox, oy, deg, dec = 1, R = 128, push = 24) {
   const a = Math.abs(deg); if (a < 0.05) return;
   const small = a < 12, x = ox + R * cos(deg / 2) + (small ? 20 : 0), y = oy - R * sin(deg / 2) + (small ? (deg < 0 ? push : -push) : 0);
-  text(ctx, 'θ = ' + fmt(a, dec) + '°', x, y, PAL.ink, { weight: 600, size: 20, bg: PAL.panel });
+  text(ctx, 'θ = ' + fmt(a, dec) + '°', x, y, C('angle'), { weight: 600, size: 20, bg: PAL.panel });
 }
 /* the library's walker set on a map: walking east she is drawn upright with her feet on the street, and walking
    in any other direction the drawing is turned so that she walks along the leg; `deg` is the leg's direction */
@@ -86,7 +86,7 @@ function walker(ctx, x, y, deg, phase, color) {
   person(ctx, 0, 0, color, { face: 1, phase, s: 0.8 });
   ctx.restore();
 }
-/* a sailing boat whose waterline is centred on (x, y), in ink */
+/* a sailing boat whose waterline is centred on (x, y) */
 function boat(ctx, x, y, color, s = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.moveTo(-38, 0); ctx.lineTo(40, 0); ctx.lineTo(30, 14); ctx.quadraticCurveTo(0, 20, -26, 14); ctx.closePath(); ctx.fill();   /* the hull */
@@ -116,7 +116,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
 (function () {
   const d = sim('sim-vector-2d', 660);
   const D = ctl(d.controls, { label: '\\kD\\ \\text{(blocks)}', cls: 'position', min: 1, max: 12, step: 0.1, value: 10.3, unit: '', dec: 1, aria: 'magnitude in blocks' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 0.1, value: 29.1, unit: '°', dec: 1, aria: 'direction' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 0.1, value: 29.1, unit: '°', dec: 1, aria: 'direction' });
   const ox = 330, oy = 590, b = 40;
   function draw() {
     const { ctx } = begin(d.c);
@@ -135,10 +135,10 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     text(ctx, 'the ruler along the arrow reads', 900, 200, PAL.ink, { size: 20 });
     text(ctx, 'D = ' + fmt(Dm, 1) + ' blocks', 900, 236, C('position'), { size: 26, weight: 600 });
     text(ctx, 'the protractor at its tail reads', 900, 310, PAL.ink, { size: 20 });
-    text(ctx, 'θ = ' + compass(th), 900, 346, PAL.ink, { size: 26, weight: 600 });
+    text(ctx, 'θ = ' + compass(th), 900, 346, C('angle'), { size: 26, weight: 600 });
     text(ctx, 'starting point', ox - 8, oy + 48, PAL.muted, { size: 15, align: 'left' });
     topline(ctx, 'The ruler along the arrow reads ' + fmt(Dm, 1) + ' blocks and the protractor at its tail reads ' + fmt(th, 1) + '°, so D is ' + fmt(Dm, 1) + ' blocks at ' + compass(th) + '.');
-    readout(d.readout, `\\kD = ${fmt(Dm, 1)}\\ \\text{blocks},\\quad \\theta = ${fmt(th, 1)}^\\circ\\ \\text{north of east}`,
+    readout(d.readout, `\\kD = ${fmt(Dm, 1)}\\ \\text{blocks},\\quad \\ktheta = ${fmt(th, 1)}^\\circ\\ \\text{north of east}`,
       'The length of the arrow is proportional to the magnitude of the vector and the arrow points in its direction, so the two numbers and the arrow say the same thing.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -181,7 +181,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
       if (done) thetaLabel(ctx, ox, oy, deg, 1, 150, 44);
     }
     /* the walker */
-    if (!done) walker(ctx, tau < TW ? ax : ox + e * b, tau < TW ? ny : oy - n * b, tau < TW && walked > e ? 90 : 0, tau < TW ? tau * 14 : 0, PAL.ink);
+    if (!done) walker(ctx, tau < TW ? ax : ox + e * b, tau < TW ? ny : oy - n * b, tau < TW && walked > e ? 90 : 0, tau < TW ? tau * 14 : 0, F.ref('city-walker'));
     dot(ctx, ox, oy, PAL.ink, true, 6);
     /* the steps of the book, the current one in ink */
     const steps = [['Step 1', 'draw the first vector, ' + fmt(e, 0) + ' blocks east'], ['Step 2', 'draw the second, ' + fmt(n, 0) + ' blocks north, with its tail at the head of the first'],
@@ -192,7 +192,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
       : cur === 0 ? 'In step 1 she walks ' + fmt(e, 0) + ' blocks east, and the first arrow is drawn with a ruler.'
         : cur === 1 ? 'In step 2 she walks ' + fmt(n, 0) + ' blocks north, and the second arrow starts at the head of the first.'
           : 'In step 4 the resultant is drawn from the tail of the first vector to the head of the last.');
-    readout(d.readout, `\\kD = ${fmt(r, 1)}\\ \\text{blocks},\\quad \\theta = ${fmt(deg, 1)}^\\circ\\ \\text{north of east}`,
+    readout(d.readout, `\\kD = ${fmt(r, 1)}\\ \\text{blocks},\\quad \\ktheta = ${fmt(deg, 1)}^\\circ\\ \\text{north of east}`,
       'A ruler along the resultant reads ' + fmt(r, 1) + ' blocks and a protractor at its tail reads ' + fmt(deg, 1) + '°; the Pythagorean theorem gives the same length, √(' + fmt(e, 0) + '² + ' + fmt(n, 0) + '²) = ' + fmt(r, 1) + '.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -243,7 +243,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
         thetaLabel(ctx, ox, oy, deg, 2, 150, deg < 0 ? 92 : 30);
       }
     }
-    if (!done) walker(ctx, wx, wy, cur >= 0 ? WALK_DEG[cur] : 0, tau < TW ? tau * 14 : 0, PAL.ink);
+    if (!done) walker(ctx, wx, wy, cur >= 0 ? WALK_DEG[cur] : 0, tau < TW ? tau * 14 : 0, F.ref('woman'));
     dot(ctx, ox, oy, PAL.ink, true, 6);
     /* the legs of the example, the current one in ink, and the resultant when it is drawn */
     const legs = ['A = ' + fmt(mags[0], 1) + ' m at 49.0° north of east', 'B = ' + fmt(mags[1], 1) + ' m at 15.0° north of east', 'C = ' + fmt(mags[2], 1) + ' m at 68.0° south of east'];
@@ -252,7 +252,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     topline(ctx, done ? 'The resultant R is ' + fmt(r, 1) + ' m at ' + compass(deg, 2) + ', measured with a ruler and a protractor.'
       : cur >= 0 ? 'She walks leg ' + NAMES[cur] + ', ' + fmt(mags[cur], 1) + ' m, with its tail at the head of the leg before.'
         : 'The resultant is drawn from the tail of the first vector to the head of the last.');
-    readout(d.readout, `\\kR = ${fmt(r, 1)}\\ \\text{m},\\quad \\theta = ${fmt(Math.abs(deg), 2)}^\\circ\\ \\text{${deg < 0 ? 'south' : 'north'} of east}`,
+    readout(d.readout, `\\kR = ${fmt(r, 1)}\\ \\text{m},\\quad \\ktheta = ${fmt(Math.abs(deg), 2)}^\\circ\\ \\text{${deg < 0 ? 'south' : 'north'} of east}`,
       'The head-to-tail method works for any number of vectors and is limited in accuracy only by the precision of the drawing and of the ruler and protractor.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -268,9 +268,9 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
   /* The order of addition is one of six arrangements, not a quantity to slide through, and six
      options would wrap a button row, so it is a dropdown (rule 26.1). */
   const O = F.select(d.controls, { label: '\\text{order}', options: ORDERS.map((o, i) => ({ value: String(i), label: o.map((j) => NAMES[j]).join(' + ') })), value: '4', aria: 'order of addition' });
-  const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: -180, max: 180, step: 1, value: 49, unit: '°', dec: 0, aria: 'direction of A' });
-  const TB = ctl(d.controls, { label: '\\theta_{\\text{B}}', cls: '', min: -180, max: 180, step: 1, value: 15, unit: '°', dec: 0, aria: 'direction of B' });
-  const TC = ctl(d.controls, { label: '\\theta_{\\text{C}}', cls: '', min: -180, max: 180, step: 1, value: -68, unit: '°', dec: 0, aria: 'direction of C' });
+  const TA = ctl(d.controls, { label: '\\ktheta_{\\text{A}}', cls: 'angle', min: -180, max: 180, step: 1, value: 49, unit: '°', dec: 0, aria: 'direction of A' });
+  const TB = ctl(d.controls, { label: '\\ktheta_{\\text{B}}', cls: 'angle', min: -180, max: 180, step: 1, value: 15, unit: '°', dec: 0, aria: 'direction of B' });
+  const TC = ctl(d.controls, { label: '\\ktheta_{\\text{C}}', cls: 'angle', min: -180, max: 180, step: 1, value: -68, unit: '°', dec: 0, aria: 'direction of C' });
   /* The three legs are 25, 23 and 32 m, so the walk can reach 80 m from the start when all three
      point the same way. At 5.2 units to the metre that is 416 units, which the canvas holds in every
      direction about the origin at (640, 520), so the walk never leaves the drawing at any setting. */
@@ -333,9 +333,9 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
 (function () {
   const d = sim('sim-subtraction', 780);
   const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 35, step: 0.5, value: 27.5, unit: 'm', dec: 1, aria: 'first leg' });
-  const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: 0, max: 180, step: 1, value: 66, unit: '°', dec: 0, aria: 'direction of A' });
+  const TA = ctl(d.controls, { label: '\\ktheta_{\\text{A}}', cls: 'angle', min: 0, max: 180, step: 1, value: 66, unit: '°', dec: 0, aria: 'direction of A' });
   const B = ctl(d.controls, { label: '\\kB', cls: 'position', min: 5, max: 35, step: 0.5, value: 30, unit: 'm', dec: 1, aria: 'second leg' });
-  const TB = ctl(d.controls, { label: '\\theta_{\\text{B}}', cls: '', min: 0, max: 180, step: 1, value: 112, unit: '°', dec: 0, aria: 'direction of B' });
+  const TB = ctl(d.controls, { label: '\\ktheta_{\\text{B}}', cls: 'angle', min: 0, max: 180, step: 1, value: 112, unit: '°', dec: 0, aria: 'direction of B' });
   /* Six units to the metre, fixed. Both legs point into the northern half, so the drawing reaches at most
      70 m north of the start (A + B straight up), 35 m south (A along the shore and −B straight down) and
      70 m east or west; with the start at (560, 530) the canvas holds every setting of the four sliders. */
@@ -349,7 +349,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     line(ctx, ox - 430, oy, ox + 430, oy, PAL.rule, 2); text(ctx, 'east', ox + 430, oy - 16, PAL.muted, { size: 15, align: 'right' });
     line(ctx, ax - 60, ay, ax + 60, ay, PAL.rule, 1.5, [6, 6]);
     /* the dock at the head of B and the boat where she ends up, under the arrows so that every head shows */
-    dock(ctx, bx + 6, by - 10, PAL.ink); boat(ctx, nx, ny + 8, PAL.ink, 0.9);
+    dock(ctx, bx + 6, by - 10, F.ref('dock')); boat(ctx, nx, ny + 8, F.ref('sailor'), 0.9);
     /* the two resultants, then the legs on top of them */
     arrow(ctx, ox, oy, bx, by, C('position'), 6.5); arrow(ctx, ox, oy, nx, ny, C('position'), 6.5);
     arrow(ctx, ox, oy, ax, ay, C('position'), 4); arrow(ctx, ax, ay, bx, by, C('position'), 4); arrow(ctx, ax, ay, nx, ny, C('position'), 4);
@@ -357,14 +357,14 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     side('R′ = ' + fmt(sum.r, 1) + ' m', ox, oy, bx, by, C('position'), -1, 20, 30);
     side('R = ' + fmt(dif.r, 1) + ' m', ox, oy, nx, ny, C('position'), -1, 20, 30);
     /* each named beside itself */
-    lab.add('the dock, at A + B', bx + 50, by - 24, 1, -1, PAL.ink, 18, 40);
-    lab.add('where she ends up, at A − B', nx, ny + 20, 1, 1, PAL.ink, 18, 50);
+    lab.add('the dock, at A + B', bx + 50, by - 24, 1, -1, F.ref('dock'), 18, 40);
+    lab.add('where she ends up, at A − B', nx, ny + 20, 1, 1, F.ref('sailor'), 18, 50);
     dot(ctx, ox, oy, PAL.ink, true, 6); lab.add('start', ox, oy, -1, 0.6, PAL.muted, 17, 22);
     lab.flush();
     /* the comparison, on the right */
-    text(ctx, 'the dock is at A + B:', 1030, 130, PAL.ink, { size: 18 });
+    text(ctx, 'the dock is at A + B:', 1030, 130, F.ref('dock'), { size: 18 });
     text(ctx, fmt(sum.r, 1) + ' m at ' + compass(sum.deg), 1030, 160, C('position'), { size: 20, weight: 600 });
-    text(ctx, 'she arrives at A + (−B) = A − B:', 1030, 220, PAL.ink, { size: 18 });
+    text(ctx, 'she arrives at A + (−B) = A − B:', 1030, 220, F.ref('sailor'), { size: 18 });
     text(ctx, fmt(dif.r, 1) + ' m at ' + compass(dif.deg), 1030, 250, C('position'), { size: 20, weight: 600 });
     text(ctx, '−B has the magnitude of B, ' + fmt(B.v, 1) + ' m,', 1030, 310, PAL.muted, { size: 16 });
     text(ctx, 'and points the opposite way, ' + compass(TB.v + 180, 0), 1030, 334, PAL.muted, { size: 16 });
@@ -384,14 +384,14 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
 (function () {
   const d = sim('sim-scalar', 740);
   const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 30, step: 0.5, value: 27.5, unit: 'm', dec: 1, aria: 'magnitude of A' });
-  const TA = ctl(d.controls, { label: '\\theta_{\\text{A}}', cls: '', min: 0, max: 180, step: 1, value: 66, unit: '°', dec: 0, aria: 'direction of A' });
+  const TA = ctl(d.controls, { label: '\\ktheta_{\\text{A}}', cls: 'angle', min: 0, max: 180, step: 1, value: 66, unit: '°', dec: 0, aria: 'direction of A' });
   const K = ctl(d.controls, { label: 'c', cls: '', min: -3, max: 3, step: 0.5, value: 3, unit: '', dec: 1, aria: 'scalar' });
   /* 3.4 units to the metre, fixed: cA reaches 90 m, which is 306 units, and the canvas holds that above
      and below the origin of the right-hand drawing at every setting of the three sliders. */
   const S = 3.4, o1 = [300, 410], o2 = [950, 410];
   function arc(ctx, x, y, deg, r) {
     if (deg < 0.5) return;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r, 0, -deg * RAD, true); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r, 0, -deg * RAD, true); ctx.stroke(); ctx.restore();
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -401,14 +401,14 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     const [ax, ay] = tip(o1[0], o1[1], A.v * S, TA.v);
     arrow(ctx, o1[0], o1[1], ax, ay, C('position'), 5);
     lab.add('A = ' + fmt(A.v, 1) + ' m', (o1[0] + ax) / 2, (o1[1] + ay) / 2, (ay - o1[1]) / (A.v * S), -(ax - o1[0]) / (A.v * S), C('position'), 22, 26);
-    arc(ctx, o1[0], o1[1], TA.v, 44); lab.add('θ = ' + fmt(TA.v, 0) + '°', o1[0] + 44 * cos(TA.v / 2), o1[1] - 44 * sin(TA.v / 2), cos(TA.v / 2), -sin(TA.v / 2), PAL.ink, 18, 26);
+    arc(ctx, o1[0], o1[1], TA.v, 44); lab.add('θ = ' + fmt(TA.v, 0) + '°', o1[0] + 44 * cos(TA.v / 2), o1[1] - 44 * sin(TA.v / 2), cos(TA.v / 2), -sin(TA.v / 2), C('angle'), 18, 26);
     const cs = (c < 0 ? '−' : '') + fmt(Math.abs(c), 1);
     text(ctx, '× ' + cs, 640, 400, PAL.ink, { size: 34, weight: 600, align: 'center' });
     if (mag > 0.01) {
       const [hx, hy] = tip(o2[0], o2[1], mag * S, deg);
       arrow(ctx, o2[0], o2[1], hx, hy, C('position'), 5);
       lab.add(cs + 'A = ' + fmt(mag, 1) + ' m', (o2[0] + hx) / 2, (o2[1] + hy) / 2, (hy - o2[1]) / (mag * S), -(hx - o2[0]) / (mag * S), C('position'), 22, 26);
-      arc(ctx, o2[0], o2[1], deg, 44); lab.add(fmt(deg, 0) + '°', o2[0] + 44 * cos(deg / 2), o2[1] - 44 * sin(deg / 2), cos(deg / 2), -sin(deg / 2), PAL.ink, 18, 26);
+      arc(ctx, o2[0], o2[1], deg, 44); lab.add(fmt(deg, 0) + '°', o2[0] + 44 * cos(deg / 2), o2[1] - 44 * sin(deg / 2), cos(deg / 2), -sin(deg / 2), C('angle'), 18, 26);
     } else text(ctx, '0A: the vector vanishes', o2[0], o2[1] - 30, PAL.muted, { size: 17, align: 'center' });
     for (const [x, y] of [o1, o2]) dot(ctx, x, y, PAL.ink, true, 6);
     lab.flush();
@@ -430,7 +430,7 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
 (function () {
   const d = sim('sim-components', 700);
   const D = ctl(d.controls, { label: '\\kD\\ \\text{(blocks)}', cls: 'position', min: 1, max: 12, step: 0.1, value: 10.3, unit: '', dec: 1, aria: 'magnitude in blocks' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 0.1, value: 29.0, unit: '°', dec: 1, aria: 'direction' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 0.1, value: 29.0, unit: '°', dec: 1, aria: 'direction' });
   const ox = 330, oy = 590, b = 40;
   function draw() {
     const { ctx } = begin(d.c);
@@ -486,18 +486,19 @@ const orderName = (k) => ORDERS[k].map((i) => NAMES[i]).join(', then ');
     ctx.restore();
     rose(ctx, 150, 200, 44);
     for (const { n, pts, dash, label } of PATHS) {
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (dash) ctx.setLineDash(dash);
+      const pc = F.ref('path-' + n.toLowerCase());
+      ctx.save(); ctx.strokeStyle = pc; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; if (dash) ctx.setLineDash(dash);
       ctx.beginPath(); pts.forEach(([i, j], k) => (k ? ctx.lineTo(SX(i), SY(j)) : ctx.moveTo(SX(i), SY(j)))); ctx.stroke(); ctx.restore();
       const [a, b2] = pts, [y, z] = pts.slice(-2), mid = [(SX(a[0]) + SX(b2[0])) / 2, (SY(a[1]) + SY(b2[1])) / 2];
-      arrowhead(ctx, mid[0], mid[1], Math.atan2(SY(a[1]) - SY(b2[1]), SX(b2[0]) - SX(a[0])) / RAD, PAL.ink);
-      arrowhead(ctx, SX(z[0]), SY(z[1]), Math.atan2(SY(y[1]) - SY(z[1]), SX(z[0]) - SX(y[0])) / RAD, PAL.ink);
-      text(ctx, n, label[0], label[1], PAL.ink, { size: 24, weight: 700, align: 'center', bg: PAL.panel });
+      arrowhead(ctx, mid[0], mid[1], Math.atan2(SY(a[1]) - SY(b2[1]), SX(b2[0]) - SX(a[0])) / RAD, pc);
+      arrowhead(ctx, SX(z[0]), SY(z[1]), Math.atan2(SY(y[1]) - SY(z[1]), SX(z[0]) - SX(y[0])) / RAD, pc);
+      text(ctx, n, label[0], label[1], pc, { size: 24, weight: 700, align: 'center', bg: PAL.panel });
     }
     dot(ctx, SX(0), SY(1), PAL.ink, true, 8); dot(ctx, SX(1), SY(2), PAL.ink, true, 8);
     line(ctx, 300, SY(1), SX(0) - 14, SY(1), PAL.ink, 2); text(ctx, 'Start', 290, SY(1), PAL.ink, { size: 20, align: 'right' });
     /* a key to the dash patterns */
     text(ctx, 'the paths', 1180, 120, PAL.ink, { size: 17, weight: 600 });
-    PATHS.forEach(({ n, dash }, i) => { const y = 156 + 34 * i; line(ctx, 1180, y, 1260, y, PAL.ink, 5, dash ?? undefined); text(ctx, n, 1276, y, PAL.ink, { size: 20, weight: 600 }); });
+    PATHS.forEach(({ n, dash }, i) => { const y = 156 + 34 * i; const pc = F.ref('path-' + n.toLowerCase()); line(ctx, 1180, y, 1260, y, pc, 5, dash ?? undefined); text(ctx, n, 1276, y, pc, { size: 20, weight: 600 }); });
     headline(ctx, 'All blocks are 120 m on a side, and each path is walked in the direction of its arrowheads.');
     readout(d.readout, '\\text{one block} = 120\\ \\text{m}');
   }

@@ -6,7 +6,7 @@ const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const G = 9.80;
 
-/* ---------- sprites, in ink ---------- */
+/* ---------- sprites, in the colour they are given ---------- */
 /* a helicopter seen from above, centred on (x, y), its nose turned to the angle a (radians, counterclockwise
    on the page) and its rotor turned to the angle r: a cabin, a tail boom with a tail rotor, two main blades
    over a faint rotor disc, and a skid either side of the cabin */
@@ -61,8 +61,8 @@ function walker(ctx, x, y, north, phase, color) {
     ctx.restore();
     /* the angle of the straight-line path above east */
     const ra = Math.min(80, e * s * 0.4);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x0, yb, ra, -theta, 0); ctx.stroke(); ctx.restore();
-    lab.add('θ = ' + fmt(theta * 180 / Math.PI, 1) + '°', x0 + ra * Math.cos(theta / 2), yb - ra * Math.sin(theta / 2), Math.cos(theta / 2), -Math.sin(theta / 2), PAL.ink, 20, 30);
+    ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x0, yb, ra, -theta, 0); ctx.stroke(); ctx.restore();
+    lab.add('θ = ' + fmt(theta * 180 / Math.PI, 1) + '°', x0 + ra * Math.cos(theta / 2), yb - ra * Math.sin(theta / 2), Math.cos(theta / 2), -Math.sin(theta / 2), C('angle'), 20, 30);
     /* the three vectors: east, north and the straight-line path, each with a hash mark per block */
     arrow(ctx, x0, yb, xr, yb, pc, 5); arrow(ctx, xr, yb, xr, yt, pc, 5); arrow(ctx, x0, yb, xr, yt, pc, 5);
     for (let i = 1; i < e; i++) line(ctx, x0 + i * s, yb - 8, x0 + i * s, yb + 8, pc, 3);
@@ -82,8 +82,8 @@ function walker(ctx, x, y, north, phase, color) {
     /* the walker on the streets and the helicopter on the diagonal, one block per unit of model time */
     const wx = tau <= e ? x0 + tau * s : xr, wy = tau <= e ? yb : yb - (tau - e) * s;
     const hf = Math.min(tau, c) / c, hx = x0 + (xr - x0) * hf, hy = yb + (yt - yb) * hf;
-    helicopter(ctx, hx, hy, theta, cy.tau * 2.4, PAL.ink);
-    walker(ctx, wx, wy, tau > e && !done, done ? 0 : cy.tau * 9, PAL.ink);
+    helicopter(ctx, hx, hy, theta, cy.tau * 2.4, F.ref('helicopter'));
+    walker(ctx, wx, wy, tau > e && !done, done ? 0 : cy.tau * 9, F.ref('walker'));
     lab.flush();
     const gone = Math.min(tau, total()), flown = Math.min(tau, c);
     topline(ctx, done ? 'The walk covers ' + total() + ' blocks, ' + e + ' east and then ' + n + ' north, while the straight-line distance is ' + fmt(c, 1) + ' blocks.'
@@ -131,18 +131,18 @@ function walker(ctx, x, y, north, phase, color) {
     vbracket(ctx, 90, Y(Y0.v), yg, pc);
     text(ctx, 'y₀ = ' + fmt(Y0.v, 2) + ' m', 90, Y(Y0.v) - 28, pc, { weight: 600, size: 22, align: 'center' });
     text(ctx, 'y = 0', 90, yg + 40, pc, { weight: 600, size: 20, align: 'center' });
-    text(ctx, 'dropped', X(0), Y(Y0.v) - 34, PAL.muted, { size: 18, align: 'center' });
-    text(ctx, 'thrown', X(0) + 14 + V.v * AS + 40, Y(Y0.v) - 34, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'dropped', X(0), Y(Y0.v) - 34, F.ref('dropped-ball'), { size: 18, align: 'center' });
+    text(ctx, 'thrown', X(0) + 14 + V.v * AS + 40, Y(Y0.v) - 34, F.ref('thrown-ball'), { size: 18, align: 'center' });
     /* a ball pair at time t: a strobe copy in a lighter ink, or the pair as it is now */
     function pair(t, ghost) {
       const y = yOf(t), yd = Y(y), xd = X(0), xt = X(V.v * t), vy = Math.min(G * t, G * tf);
-      const col = ghost ? alpha(PAL.ink, 0.4) : PAL.ink, arr = ghost ? alpha(vc, 0.55) : vc, w = ghost ? 3 : 4;
+      const cd = F.ref('dropped-ball'), ct = F.ref('thrown-ball'), arr = ghost ? alpha(vc, 0.55) : vc, w = ghost ? 3 : 4;
       if (xt - xd > 14) line(ctx, xd, yd, xt, yd, PAL.muted, 2, [6, 8]);
       if (ghost || !done) {
         if (vy * AS > 6) { arrow(ctx, xd, yd + 12, xd, yd + 12 + vy * AS, arr, w); arrow(ctx, xt, yd + 12, xt, yd + 12 + vy * AS, arr, w); }
         arrow(ctx, xt + 12, yd, xt + 12 + V.v * AS, yd, arr, w);
       }
-      dot(ctx, xd, yd, col, true, ghost ? 8 : 10); dot(ctx, xt, yd, col, true, ghost ? 8 : 10);
+      dot(ctx, xd, yd, ghost ? alpha(cd, 0.4) : cd, true, ghost ? 8 : 10); dot(ctx, xt, yd, ghost ? alpha(ct, 0.4) : ct, true, ghost ? 8 : 10);
       return { xd, xt, yd, vy };
     }
     flashes.filter((t) => t <= tau + 1e-9).forEach((t) => pair(t, true));

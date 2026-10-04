@@ -41,7 +41,7 @@ function alongLabel(ctx, s, x1, y1, x2, y2, color, side = 1, size = 20, lab) {
   text(ctx, s, (x1 + x2) / 2 + ox, (y1 + y2) / 2 + oy, color, { size, weight: 600, align, bg: alpha(PAL.panel, 0.75) });
 }
 
-/* ---------- sprites, in ink ---------- */
+/* ---------- sprites, in the colour they are given ---------- */
 /* a rowing boat centred on (x, y), its bow pointing along heading (degrees counterclockwise from +x) */
 function boat(ctx, x, y, heading, color, s = 1) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(-heading * DEG); ctx.scale(s, s); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineCap = 'round';
@@ -79,7 +79,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
   const d = sim('sim-boat', 640);
   const vb = ctl(d.controls, { label: '\\kvboat', cls: 'velocity', min: 0.1, max: 3, step: 0.01, value: 0.75, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the boat relative to the water' });
   const vr = ctl(d.controls, { label: '\\kvriver', cls: 'velocity', min: 0, max: 3, step: 0.01, value: 1.2, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed of the river relative to the shore' });
-  const ph = ctl(d.controls, { label: '\\text{heading}', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, specials: [{ at: 90, label: 'straight across' }], onInput: reset, aria: 'heading of the boat, degrees from downstream' });
+  const ph = ctl(d.controls, { label: '\\text{heading}', cls: 'angle', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, specials: [{ at: 90, label: 'straight across' }], onInput: reset, aria: 'heading of the boat, degrees from downstream' });
   /* The example gives no width for the river, so one is assumed here and the reader may set it. */
   const WC = ctl(d.controls, { label: '\\text{river width}', cls: 'position', min: 10, max: 30, step: 1, value: 25, unit: 'm', dec: 0, onInput: reset, aria: 'width of the river' });
   const vx = () => vr.v + vb.v * Math.cos(ph.v * DEG), vy = () => vb.v * Math.sin(ph.v * DEG), T = () => WC.v / vy();
@@ -99,9 +99,10 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     ctx.save(); ctx.beginPath(); ctx.rect(L, PT, R - L, PB - PT); ctx.clip();
     ctx.fillStyle = PAL.soft2; ctx.fillRect(L, PT, R - L, PB - PT);
     ctx.fillStyle = PAL.soft; ctx.fillRect(L, Y(W), R - L, W * s);
-    line(ctx, L, Y(W), R, Y(W), PAL.muted, 2); line(ctx, L, Y(0), R, Y(0), PAL.muted, 2);
+    const cr = F.ref('river');
+    line(ctx, L, Y(W), R, Y(W), cr, 2); line(ctx, L, Y(0), R, Y(0), cr, 2);
     /* the current, as streaks drifting downstream at the river's speed */
-    for (let i = 0; i < 18; i++) { const yy = Y(W * ((i % 6) + 0.5) / 6), base = (i * 173) % 700, xx = L + ((base + vr.v * tau * s) % 700 + 700) % 700; streak(ctx, xx, yy, 34, 0, alpha(PAL.muted, 0.6)); }
+    for (let i = 0; i < 18; i++) { const yy = Y(W * ((i % 6) + 0.5) / 6), base = (i * 173) % 700, xx = L + ((base + vr.v * tau * s) % 700 + 700) % 700; streak(ctx, xx, yy, 34, 0, alpha(cr, 0.6)); }
     /* the path relative to the shore, from where the boat set out to where it lands */
     line(ctx, X(0), Y(0), X(drift), Y(W), PAL.muted, 3, [10, 10]);
     const bx = X(ux * tau), by = Y(uy * tau), lx = X(drift), off = lx < L + 10 || lx > R - 10;
@@ -109,7 +110,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     dot(ctx, X(0), Y(0), PAL.ink, false, 9); if (!off) dot(ctx, lx, Y(W), PAL.ink, true, 9);
     /* the boat, rowed along its heading, and the three velocities riding on it: its own, the river's from
        the head of that, and their sum */
-    boat(ctx, bx, by, ph.v, PAL.ink, 1.4);
+    boat(ctx, bx, by, ph.v, F.ref('boat'), 1.4);
     const k = 70, hx = bx + vb.v * Math.cos(ph.v * DEG) * k, hy = by - vb.v * Math.sin(ph.v * DEG) * k;
     arrow(ctx, bx, by, hx, hy, alpha(C('velocity'), 0.55), 3);
     if (vr.v > 0.02) arrow(ctx, hx, hy, hx + vr.v * k, hy, alpha(C('velocity'), 0.55), 3);
@@ -118,7 +119,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     if (bx > L && bx < R) lab.add('v (total)', bx + ux * k, by - uy * k, ux / vt, -uy / vt, C('velocity'), 17, 22);
     if (off) { const ex = lx > R ? R - 12 : L + 12, dir = lx > R ? 1 : -1; arrow(ctx, ex - dir * 30, Y(W), ex, Y(W), PAL.ink, 3); lab.add('lands ' + fmt(Math.abs(drift), 0) + ' m ' + (drift > 0 ? 'downstream' : 'upstream') + ', off the picture', ex, Y(W), -dir, 0.6, PAL.ink, 17, 26); }
     text(ctx, 'downstream →', R - 8, PB + 22, PAL.muted, { size: 17, align: 'right' });
-    text(ctx, 'far bank', L + 8, Y(W) - 20, PAL.muted, { size: 17 }); text(ctx, 'near bank', L + 8, Y(0) + 22, PAL.muted, { size: 17 });
+    text(ctx, 'far bank', L + 8, Y(W) - 20, F.ref('river'), { size: 17 }); text(ctx, 'near bank', L + 8, Y(0) + 22, F.ref('river'), { size: 17 });
     /* the velocity triangle, drawn as the book draws it: the boat's velocity, then the river's head to tail, then the sum */
     const cx = vb.v * Math.cos(ph.v * DEG), sy = vb.v * Math.sin(ph.v * DEG);
     const xs = [0, cx, cx + vr.v], ys = [0, sy], xspan = Math.max(0.6, Math.max(...xs) - Math.min(...xs)), yspan = Math.max(0.6, sy);
@@ -129,7 +130,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (boat) = ' + sf(vb.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), -1, 18, lab);
     if (vr.v > 0.02) { arrow(ctx, Hx, Hy, Hx + vr.v * K, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (river) = ' + sf(vr.v) + ' m/s', Hx, Hy, Hx + vr.v * K, Hy, C('velocity'), -1, 18, lab); }
     arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v (total) = ' + sf(vt) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), 1, 20, lab);
-    if (vt > 0.05) angleArc(ctx, Ox, Oy, 48, 0, th, PAL.ink, 'θ = ' + fmt(th, 1) + '°', lab);
+    if (vt > 0.05) angleArc(ctx, Ox, Oy, 48, 0, th, C('angle'), 'θ = ' + fmt(th, 1) + '°', lab);
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     lab.flush();
     /* what the numbers say */
@@ -137,7 +138,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     topline(ctx, done ? 'After ' + fmt(Tc, 1) + ' s the boat reaches the far bank ' + where + ', moving at ' + sf(vt) + ' m/s, ' + fmt(th, 1) + '° from the bank.'
       : 'After ' + fmt(tau, 1) + ' s the boat has crossed ' + fmt(uy * tau, 1) + ' m of the ' + WC.v + ' m river and is ' + fmt(Math.abs(ux * tau), 1) + ' m ' + (ux >= 0 ? 'downstream' : 'upstream') + ' of where it set out.');
     const main = straight
-      ? `\\kvtot = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{(${sf(vr.v)})^2 + (${sf(vb.v)})^2} = ${sf(vt)}\\ \\text{m/s}\\qquad \\theta = \\tan^{-1}(\\kvy/\\kvx) = \\tan^{-1}(${sf(vb.v)}/${sf(vr.v)}) = ${fmt(th, 1)}^\\circ`
+      ? `\\kvtot = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{(${sf(vr.v)})^2 + (${sf(vb.v)})^2} = ${sf(vt)}\\ \\text{m/s}\\qquad \\ktheta = \\tan^{-1}(\\kvy/\\kvx) = \\tan^{-1}(${sf(vb.v)}/${sf(vr.v)}) = ${fmt(th, 1)}^\\circ`
       : `\\kvx = \\kvriver + \\kvboat\\cos ${ph.v}^\\circ = ${sf(ux)}\\ \\text{m/s},\\quad \\kvy = \\kvboat\\sin ${ph.v}^\\circ = ${sf(uy)}\\ \\text{m/s},\\quad \\kvtot = ${sf(vt)}\\ \\text{m/s at } ${fmt(th, 1)}^\\circ`;
     const small = straight
       ? (vr.v > vb.v ? 'Because the river is fast compared with the boat, the boat is swept rapidly downstream, and the total velocity makes only a small angle with the bank.'
@@ -158,7 +159,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
   const d = sim('sim-plane', 640);
   const vp = ctl(d.controls, { label: '\\kvp', cls: 'velocity', min: 0, max: 70, step: 0.5, value: 45, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the plane relative to the air' });
   const vw = ctl(d.controls, { label: '\\kvw', cls: 'velocity', min: 0, max: 40, step: 0.1, value: 16, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the wind' });
-  const dir = ctl(d.controls, { label: '\\text{wind toward}', cls: '', min: 0, max: 360, step: 0.1, value: 215.6, unit: '°', dec: 1, onInput: reset, aria: 'direction the wind blows toward, degrees counterclockwise from east' });
+  const dir = ctl(d.controls, { label: '\\text{wind toward}', cls: 'angle', min: 0, max: 360, step: 0.1, value: 215.6, unit: '°', dec: 1, onInput: reset, aria: 'direction the wind blows toward, degrees counterclockwise from east' });
   const wx = () => vw.v * Math.cos(dir.v * DEG), wy = () => vw.v * Math.sin(dir.v * DEG), tx = () => wx(), ty = () => vp.v + wy();
   const L = 70, R = 770, PT = 100, PB = 600, x0 = 420;
   const y0 = () => (ty() >= 0 ? 540 : 160);
@@ -174,12 +175,12 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     ctx.fillStyle = PAL.soft2; ctx.fillRect(L, PT, R - L, PB - PT);
     ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.moveTo(L, 300); for (let x = L; x <= R; x += 35) ctx.lineTo(x, 300 + 10 * Math.sin(x / 40)); ctx.lineTo(R, 348); for (let x = R; x >= L; x -= 35) ctx.lineTo(x, 348 + 10 * Math.sin(x / 40 + 1)); ctx.closePath(); ctx.fill();
     const pw = R - L, phh = PB - PT, sl = Math.min(36, 4 + vw.v * 1.6), ux0 = vw.v > 0.02 ? vwx / vw.v : 1, uy0 = vw.v > 0.02 ? -vwy / vw.v : 0;
-    for (let i = 0; i < 22; i++) { const bx = (i * 211) % pw, by = (i * 137) % phh, xx = L + (((bx + vwx * tau) % pw) + pw) % pw, yy = PT + (((by - vwy * tau) % phh) + phh) % phh; streak(ctx, xx, yy, sl * ux0, sl * uy0, alpha(PAL.muted, 0.55)); }
+    for (let i = 0; i < 22; i++) { const bx = (i * 211) % pw, by = (i * 137) % phh, xx = L + (((bx + vwx * tau) % pw) + pw) % pw, yy = PT + (((by - vwy * tau) % phh) + phh) % phh; streak(ctx, xx, yy, sl * ux0, sl * uy0, alpha(F.ref('air'), 0.55)); }
     /* the track over the ground, and the plane on it, still pointed north */
     const sx = x0, sy = y0(), ex = sx + ux * Tc, ey = sy - uy * Tc, px = sx + ux * tau, py = sy - uy * tau;
     line(ctx, sx, sy, ex, ey, PAL.muted, 3, [10, 10]);
     line(ctx, sx, sy, px, py, PAL.ink, 2.5); dot(ctx, sx, sy, PAL.ink, false, 8);
-    ctx.save(); ctx.translate(px, py); ctx.rotate(-Math.PI / 2); plane(ctx, 0, 0, PAL.ink, 0.9); ctx.restore();
+    ctx.save(); ctx.translate(px, py); ctx.rotate(-Math.PI / 2); plane(ctx, 0, 0, F.ref('plane'), 0.9); ctx.restore();
     const k = 4, hx = px, hy = py - vp.v * k;
     arrow(ctx, px, py, hx, hy, alpha(C('velocity'), 0.55), 3);
     if (vw.v > 0.02) arrow(ctx, hx, hy, hx + vwx * k, hy - vwy * k, alpha(C('velocity'), 0.55), 3);
@@ -198,7 +199,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     if (vp.v > 0.02) { arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (plane) = ' + sf(vp.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), ux <= 0 ? 1 : -1, 18, lab); }
     if (vw.v > 0.02) { arrow(ctx, Hx, Hy, Hx + vwx * K, Hy - vwy * K, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (wind) = ' + sf(vw.v) + ' m/s', Hx, Hy, Hx + vwx * K, Hy - vwy * K, C('velocity'), vwy <= 0 ? -1 : 1, 18, lab); }
     arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v (total) = ' + sf(vt) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), ux <= 0 ? -1 : 1, 20, lab);
-    if (vt > 0.05) angleArc(ctx, Ox, Oy, 44, 0, Math.atan2(uy, ux) / DEG, PAL.ink, fmt(Math.atan2(uy, ux) / DEG, 1) + '°', lab);
+    if (vt > 0.05) angleArc(ctx, Ox, Oy, 44, 0, Math.atan2(uy, ux) / DEG, C('angle'), fmt(Math.atan2(uy, ux) / DEG, 1) + '°', lab);
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     lab.flush();
     /* what the numbers say */
@@ -220,7 +221,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
 (function () {
   const d = sim('sim-components', 760);
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.2, max: 3, step: 0.01, value: 1.42, unit: 'm/s', dec: 2, aria: 'magnitude of the velocity' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: -180, max: 180, step: 0.5, value: 32, unit: '°', dec: 1, aria: 'direction of the velocity, degrees from the x-axis' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: -180, max: 180, step: 0.5, value: 32, unit: '°', dec: 1, aria: 'direction of the velocity, degrees from the x-axis' });
   const Ox = 640, Oy = 420;
   function draw() {
     const { ctx } = begin(d.c);
@@ -236,7 +237,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     if (Math.abs(vy) > 0.01) { arrow(ctx, Hx, Oy, Hx, Hy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'vy = ' + sf(vy) + ' m/s', Hx + (vx >= 0 ? 18 : -18), (Oy + Hy) / 2, C('velocity'), { size: 20, weight: 600, align: vx >= 0 ? 'left' : 'right', bg: alpha(PAL.panel, 0.75) }); }
     arrow(ctx, Ox, Oy, Hx, Hy, C('velocity'), 5);
     alongLabel(ctx, 'v = ' + sf(v.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), vy >= 0 ? -1 : 1, 22, lab);
-    if (Math.abs(th.v) > 2) angleArc(ctx, Ox, Oy, 58, 0, th.v, PAL.ink, 'θ = ' + fmt(th.v, 1) + '°', lab);
+    if (Math.abs(th.v) > 2) angleArc(ctx, Ox, Oy, 58, 0, th.v, C('angle'), 'θ = ' + fmt(th.v, 1) + '°', lab);
     dot(ctx, Ox, Oy, PAL.ink, true, 5); dot(ctx, Hx, Hy, C('velocity'), true, 7);
     lab.flush();
     /* what the numbers say */
@@ -244,7 +245,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     const back = Math.hypot(vx, vy), calc = Math.abs(vx) < 1e-9 ? null : Math.atan(vy / vx) / DEG;
     const angleNote = calc === null ? ' Because the x component is zero here, the ratio of the y component to it is undefined, and the angle is ' + (vy > 0 ? '+90°' : '−90°') + ' by inspection.'
       : vx < 0 ? ' Because the x component is negative, the angle is 180° away from the ' + fmt(calc, 1) + '° a calculator’s tan⁻¹ returns.' : '';
-    readout(d.readout, `\\kvx = \\kv\\cos\\theta = (${sf(v.v)})\\cos ${fmt(th.v, 1)}^\\circ = ${sf(vx)}\\ \\text{m/s}\\qquad \\kvy = \\kv\\sin\\theta = (${sf(v.v)})\\sin ${fmt(th.v, 1)}^\\circ = ${sf(vy)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kvx = \\kv\\cos\\ktheta = (${sf(v.v)})\\cos ${fmt(th.v, 1)}^\\circ = ${sf(vx)}\\ \\text{m/s}\\qquad \\kvy = \\kv\\sin\\ktheta = (${sf(v.v)})\\sin ${fmt(th.v, 1)}^\\circ = ${sf(vy)}\\ \\text{m/s}`,
       'The last two equations return what you set: √(' + sf(vx) + '² + ' + sf(vy) + '²) = ' + sf(back) + ' m/s' + (calc === null ? '.' : ', and tan⁻¹(' + sf(vy) + '/' + sf(vx) + ') gives ' + fmt(th.v, 1) + '°.') + angleNote);
   }
   register(d.fig, { update: () => {}, draw });
@@ -259,7 +260,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
   const d = sim('sim-wind', 600);
   const vp = ctl(d.controls, { label: '\\kvp', cls: 'velocity', min: 10, max: 70, step: 0.5, value: 45, unit: 'm/s', dec: 1, aria: 'speed of the plane relative to the air' });
   const vt = ctl(d.controls, { label: '\\kvtot', cls: 'velocity', min: 5, max: 70, step: 0.5, value: 38, unit: 'm/s', dec: 1, aria: 'speed of the plane relative to the ground' });
-  const b = ctl(d.controls, { label: '\\text{west of north}', cls: '', min: -60, max: 60, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'direction of the total velocity, degrees west of north' });
+  const b = ctl(d.controls, { label: '\\text{west of north}', cls: 'angle', min: -60, max: 60, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'direction of the total velocity, degrees west of north' });
   function draw() {
     const { ctx } = begin(d.c);
     const a = 90 + b.v, ux = vt.v * Math.cos(a * DEG), uy = vt.v * Math.sin(a * DEG), vwx = ux, vwy = uy - vp.v, vw = Math.hypot(vwx, vwy);
@@ -274,8 +275,8 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (plane) = ' + sf(vp.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), b.v >= 0 ? 1 : -1, 18, lab);
     if (vw > 0.05) { arrow(ctx, Hx, Hy, Tx, Ty, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (wind) = ' + sf(vw) + ' m/s', Hx, Hy, Tx, Ty, C('velocity'), vwy <= 0 ? -1 : 1, 18, lab); }
     arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v (total) = ' + sf(vt.v) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), b.v >= 0 ? -1 : 1, 20, lab);
-    angleArc(ctx, Ox, Oy, 48, 0, a, PAL.ink, fmt(a, 1) + '°', lab);
-    if (Math.abs(b.v) > 2) angleArc(ctx, Ox, Oy, 110, 90, a, PAL.ink, fmt(Math.abs(b.v), 1) + '° west of north', lab);
+    angleArc(ctx, Ox, Oy, 48, 0, a, C('angle'), fmt(a, 1) + '°', lab);
+    if (Math.abs(b.v) > 2) angleArc(ctx, Ox, Oy, 110, 90, a, C('angle'), fmt(Math.abs(b.v), 1) + '° west of north', lab);
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     lab.flush();
     /* the three velocities in words, beside the triangle */
@@ -325,17 +326,17 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
       for (let j = 0; j < 9; j++) { const base = (j * 151) % 600, xx = L + ((((base - (shore ? 0 : vs.v * tau * s)) % 600) + 600) % 600), yy = WATER + 18 + (j % 3) * 26; streak(ctx, xx, yy, 28, 0, alpha(PAL.muted, 0.7)); }
       /* the ship: fixed in its own frame, moving in the shore's */
       const mx = shore ? L + 170 + vs.v * tau * s : (L + R) / 2;
-      if (shore) { ctx.save(); ctx.globalAlpha = 0.22; ship(ctx, L + 170, DECK, H, PAL.ink); ctx.restore(); }
-      ship(ctx, mx, DECK, H, PAL.ink);
+      if (shore) { ctx.save(); ctx.globalAlpha = 0.22; ship(ctx, L + 170, DECK, H, F.ref('ship')); ctx.restore(); }
+      ship(ctx, mx, DECK, H, F.ref('ship'));
       /* the observer: on the deck beside the mast, or on a strip of shore */
-      if (shore) { ctx.save(); ctx.fillStyle = PAL.soft2; ctx.fillRect(L, WATER - 2, 70, PB - WATER + 2); ctx.restore(); person(ctx, L + 35, WATER - 2, PAL.ink, 1); }
-      else person(ctx, mx + 44, DECK, PAL.ink, -1);
+      if (shore) { ctx.save(); ctx.fillStyle = PAL.soft2; ctx.fillRect(L, WATER - 2, 70, PB - WATER + 2); ctx.restore(); person(ctx, L + 35, WATER - 2, F.ref('shore-observer'), 1); }
+      else person(ctx, mx + 44, DECK, F.ref('ship-observer'), -1);
       /* the path so far, and the binoculars on it with their velocity in this frame */
       ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.setLineDash([8, 8]); ctx.beginPath();
       for (let j = 0; j <= 40; j++) { const t = (tau * j) / 40, x = shore ? L + 170 + vs.v * t * s : mx, y = DECK - H + 0.5 * G * t * t * s; if (j) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
       ctx.stroke(); ctx.restore();
       const bx = mx, by = DECK - H + drop * s;
-      dot(ctx, bx, by, PAL.ink, true, 9);
+      dot(ctx, bx, by, F.ref('binoculars'), true, 9);
       const ax = shore ? vs.v * k : 0, ay = -vyNow * k;
       if (Math.hypot(ax, ay) > 4) arrow(ctx, bx, by, bx + ax, by + ay, C('velocity'), 4);
       text(ctx, shore ? 'v = (' + fmt(vs.v, 1) + ', ' + sf(vyNow) + ') m/s' : 'v = (0, ' + sf(vyNow) + ') m/s', bx + 22 + ax, by + ay / 2, C('velocity'), { size: 17, weight: 600, bg: alpha(PAL.panel, 0.75) });
@@ -366,13 +367,13 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
   function reset() { cy.reset(); }
   /* the cabin of an airliner seen from the aisle: the floor, a wall curving in to the ceiling, two windows
      and the overhead bins; (l, t, r, b) is the box it fills and `floor` the height of the floor line */
-  function cabin(ctx, l, t, r, b, floor) {
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
+  function cabin(ctx, l, t, r, b, floor, color) {
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.moveTo(l, b); ctx.lineTo(l, t + 90); ctx.quadraticCurveTo(l, t, l + 90, t); ctx.lineTo(r - 90, t); ctx.quadraticCurveTo(r, t, r, t + 90); ctx.lineTo(r, b); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.fillStyle = PAL.soft2; ctx.fillRect(l + 30, t + 26, r - l - 60, 44); ctx.strokeRect(l + 30, t + 26, r - l - 60, 44);   /* the overhead bins */
     ctx.fillStyle = PAL.panel; for (const wx of [l + 80, r - 80]) { ctx.beginPath(); ctx.roundRect(wx - 26, t + 120, 52, 70, 22); ctx.fill(); ctx.stroke(); }   /* the windows */
     ctx.restore();
-    line(ctx, l, floor, r, floor, PAL.muted, 3);
+    line(ctx, l, floor, r, floor, color, 3);
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -381,12 +382,12 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
        to the metre (the highest drop the slider allows, 2 m, is 300 units) */
     title(ctx, 'relative to the plane', 290, 112);
     const s = 150, FLOOR = 520, top = FLOOR - h.v * s, CX = 330;
-    cabin(ctx, 100, 140, 480, FLOOR, FLOOR); text(ctx, 'floor', 470, FLOOR + 20, PAL.muted, { size: 17, align: 'right' });
-    F.person(ctx, CX - 70, FLOOR, PAL.ink, { face: 1, s: 3, reach: { x: CX - 6, y: top } });
-    line(ctx, CX, top, CX, FLOOR, PAL.muted, 2, [6, 8]); dot(ctx, CX, top, PAL.ink, false, 7);
+    cabin(ctx, 100, 140, 480, FLOOR, FLOOR, F.ref('airliner')); text(ctx, 'floor', 470, FLOOR + 20, F.ref('airliner'), { size: 17, align: 'right' });
+    F.person(ctx, CX - 70, FLOOR, F.ref('passenger'), { face: 1, s: 3, reach: { x: CX - 6, y: top } });
+    line(ctx, CX, top, CX, FLOOR, PAL.muted, 2, [6, 8]); dot(ctx, CX, top, F.ref('coin'), false, 7);
     vbracket(ctx, CX + 100, top, FLOOR, PAL.ink, fmt(h.v, 2) + ' m', 1);
     const cyy = top + drop * s, k = 8;
-    dot(ctx, CX, cyy, PAL.ink, true, 9);
+    dot(ctx, CX, cyy, F.ref('coin'), true, 9);
     if (tau > 0.02) { arrow(ctx, CX, cyy, CX, cyy + G * tau * k, C('velocity'), 4); text(ctx, 'vy = ' + sf(-G * tau) + ' m/s', CX + 16, cyy + G * tau * k / 2, C('velocity'), { size: 17, weight: 600, bg: alpha(PAL.panel, 0.75) }); }
     /* right: the ground's view, a graph of the path with the plane above it */
     title(ctx, 'relative to the Earth', 990, 100);
@@ -395,10 +396,10 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     const { X, Y } = axes(ctx, box, [0, xr.hi], [-yr.hi, 0], { xl: 'x (m)', xc: PAL.ink, yl: 'y (m)', yc: PAL.ink, nx: xr.n, ny: yr.n, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 1) });
     curve(ctx, (x) => -0.5 * G * (x / vp.v) * (x / vp.v), 0, R, X, Y, PAL.muted, 3, 60);
     const px = X(vp.v * tau);
-    plane(ctx, px, 150, PAL.ink, 0.55);
+    plane(ctx, px, 150, F.ref('airliner'), 0.55);
     line(ctx, px, 172, px, Y(-drop) - 12, PAL.muted, 1.5, [4, 8]);
     dot(ctx, X(0), Y(0), PAL.ink, false, 7); dot(ctx, X(R), Y(-h.v), PAL.ink, true, 7);
-    dot(ctx, px, Y(-drop), PAL.ink, true, 9);
+    dot(ctx, px, Y(-drop), F.ref('coin'), true, 9);
     /* the velocity at the floor, to one scale: the fall is a stub beside the plane's speed */
     text(ctx, 'the coin’s velocity at the floor, relative to the Earth', 700, 448, PAL.muted, { size: 17 });
     const kx = 540 / 300, ox = 700, oy = 500, tipx = ox + vp.v * kx, tipy = oy - vy * kx;
@@ -409,7 +410,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     /* what the numbers say */
     topline(ctx, done ? 'The coin lands after ' + fmt(Tc, 3) + ' s, ' + fmt(h.v, 2) + ' m below where it was dropped and ' + fmt(R, 0) + ' m along the ground, at ' + sf(v, 5) + ' m/s.'
       : 'After ' + fmt(tau, 2) + ' s the coin has fallen ' + fmt(drop, 2) + ' m and moved ' + fmt(vp.v * tau, 0) + ' m along the ground, staying directly below the passenger.');
-    readout(d.readout, `\\kv = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{(${sf(vp.v)})^2 + (${sf(vy)})^2} = ${sf(v, 5)}\\ \\text{m/s}\\qquad \\theta = \\tan^{-1}(\\kvy/\\kvx) = \\tan^{-1}(${sf(vy)}/${sf(vp.v)}) = ${fmt(th, 2)}^\\circ`,
+    readout(d.readout, `\\kv = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{(${sf(vp.v)})^2 + (${sf(vy)})^2} = ${sf(v, 5)}\\ \\text{m/s}\\qquad \\ktheta = \\tan^{-1}(\\kvy/\\kvx) = \\tan^{-1}(${sf(vy)}/${sf(vp.v)}) = ${fmt(th, 2)}^\\circ`,
       'Relative to the plane the coin’s velocity at the floor is ' + sf(vy) + ' m/s alone, straight down, the same as if it had been dropped from rest on the ground.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
@@ -426,9 +427,10 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     const { ctx } = begin(d.c);
     line(ctx, 60, 165, 1340, 165, PAL.rule, 1.5);
     ROWS.forEach(([n, dist, vel, x]) => {
-      text(ctx, n === 3 ? 'Galaxy 3' : 'Galaxy ' + n, x, 62, PAL.ink, { size: 22, weight: 600, align: 'center' });
-      text(ctx, n === 3 ? 'MW' : dist, x, 92, PAL.ink, { size: 20, align: 'center' });
-      galaxy(ctx, x, 165, PAL.ink);
+      const cg = n === 3 ? F.ref('milky-way') : PAL.ink;
+      text(ctx, n === 3 ? 'Galaxy 3' : 'Galaxy ' + n, x, 62, cg, { size: 22, weight: 600, align: 'center' });
+      text(ctx, n === 3 ? 'MW' : dist, x, 92, n === 3 ? cg : C('position'), { size: 20, align: 'center' });
+      galaxy(ctx, x, 165, cg);
       if (vel) {
         const len = vel * 0.026; arrow(ctx, x, 235, x + len, 235, C('velocity'), 4);
         text(ctx, 'v' + '₁₂₃₄₅'[n - 1] + ' = ' + (vel < 0 ? '−' : '') + Math.abs(vel) + ' km/s', x, 278, C('velocity'), { size: 20, weight: 600, align: 'center' });
