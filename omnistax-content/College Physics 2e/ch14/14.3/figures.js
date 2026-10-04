@@ -94,7 +94,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
     gold: { name: 'gold', form: 'atom', el: 'Au', Lf: 64.5, Lv: 1578, mp: '1063', bp: '2660' },
   };
   const sub = select(d.controls, { label: '\\text{the substance}', options: Object.keys(SUBS).map((k) => ({ value: k, label: SUBS[k].name })), value: 'water', aria: 'the substance from Table 14.2' });
-  const ms = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'kg', dec: 2, aria: 'the mass of the sample' });
+  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'kg', dec: 2, aria: 'the mass of the sample' });
   /* the three panels and the fixed positions of the particles in them */
   const PANEL = { t: 110, b: 470 }, SOL = { l: 50, r: 390 }, LIQ = { l: 530, r: 870 }, GAS = { l: 1010, r: 1350 };
   const rnd = seeded(7);
@@ -144,7 +144,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
     heatBar(ctx, BX0, BX1, 616, 30, Qv / MAXKJ, ec, 'Q = mL_v = ' + fmt(Qv, Qv < 100 ? 1 : 0) + ' kJ');
     kjScale(ctx, BX0, BX1, 650, MAXKJ, 1000);
     topline(ctx, 'Melting ' + fmt(m, 2) + ' kg of ' + s.name + ' takes ' + fmt(Qf, Qf < 100 ? 1 : 0) + ' kJ, and boiling it takes ' + fmt(Qv, Qv < 100 ? 1 : 0) + ' kJ, ' + fmt(s.Lv / s.Lf, 1) + ' times as much.');
-    readout(d.readout, `\\kQh = mL_{\\text{f}} = (${fmt(m, 2)}\\ \\text{kg})(${s.Lf}\\ \\text{kJ/kg}) = ${fmt(Qf, Qf < 100 ? 1 : 0)}\\ \\text{kJ} \\qquad \\kQh = mL_{\\text{v}} = (${fmt(m, 2)}\\ \\text{kg})(${s.Lv}\\ \\text{kJ/kg}) = ${fmt(Qv, Qv < 100 ? 1 : 0)}\\ \\text{kJ}`,
+    readout(d.readout, `\\kQh = \\km\\kLf = (${fmt(m, 2)}\\ \\text{kg})(${s.Lf}\\ \\text{kJ/kg}) = ${fmt(Qf, Qf < 100 ? 1 : 0)}\\ \\text{kJ} \\qquad \\kQh = \\km\\kLv = (${fmt(m, 2)}\\ \\text{kg})(${s.Lv}\\ \\text{kJ/kg}) = ${fmt(Qv, Qv < 100 ? 1 : 0)}\\ \\text{kJ}`,
       s.name.charAt(0).toUpperCase() + s.name.slice(1) + ' melts at ' + s.mp + ' °C and boils at ' + s.bp + ' °C at atmospheric pressure. The same ' + fmt(Qf, Qf < 100 ? 1 : 0) + ' kJ must be removed to freeze the liquid again and the same ' + fmt(Qv, Qv < 100 ? 1 : 0) + ' kJ to condense the gas, and the temperature does not change while either transition is under way.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -160,7 +160,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
 (function () {
   const d = sim('sim-heating-curve', 640);
   const qs = ctl(d.controls, { label: '\\Delta Q/m', cls: '', min: 0, max: 3200, step: 5, value: 200, unit: 'kJ/kg', dec: 0, aria: 'the heat added per kilogram of the sample', specials: [{ at: C_ICE * 20, label: 'melting' }, { at: C_ICE * 20 + L_F, label: 'melted' }, { at: C_ICE * 20 + L_F + C_W * 100, label: 'boiling' }, { at: C_ICE * 20 + L_F + C_W * 100 + L_V, label: 'boiled' }] });
-  const ms = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'kg', dec: 2, aria: 'the mass of the sample' });
+  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'kg', dec: 2, aria: 'the mass of the sample' });
   const T0 = -20, Q1 = C_ICE * 20, Q2 = Q1 + L_F, Q3 = Q2 + C_W * 100, Q4 = Q3 + L_V;   /* the corners of the curve, kJ/kg */
   /* the state of one kilogram after q kJ/kg: its temperature and the fraction that is ice, water and steam */
   function state(q) {
@@ -176,13 +176,13 @@ function curl(ctx, x, y, R, a0, ang, w) {
   const CUP = { l: 90, r: 310, t: 150, b: 520 };
   const rnd = seeded(3), wisps = Array.from({ length: 36 }, () => ({ x: rnd(), y: rnd() }));
   function container(ctx, st) {
-    const inner = CUP.b - CUP.t - 12, condensed = st.ice + st.water, fillH = inner * 0.78 * condensed;
+    const rs = F.ref('sample'), inner = CUP.b - CUP.t - 12, condensed = st.ice + st.water, fillH = inner * 0.78 * condensed;
     const yTop = CUP.b - 6 - fillH;
     /* the water, and the ice floating on it as blocks filling the upper part of the contents */
-    if (st.water > 0.002) { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.fillRect(CUP.l + 6, yTop, CUP.r - CUP.l - 12, fillH); ctx.restore(); }
+    if (st.water > 0.002) { ctx.save(); ctx.fillStyle = alpha(rs, 0.18); ctx.fillRect(CUP.l + 6, yTop, CUP.r - CUP.l - 12, fillH); ctx.restore(); }
     if (st.ice > 0.002) {
       const iceH = fillH * (st.ice / condensed);
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2;
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = rs; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.rect(CUP.l + 6, yTop, CUP.r - CUP.l - 12, iceH); ctx.clip();
       for (let y = yTop; y < yTop + iceH; y += 34) for (let x = CUP.l + 6; x < CUP.r - 6; x += 52) { ctx.fillRect(x + 2, y + 2, 48, 30); ctx.strokeRect(x + 2, y + 2, 48, 30); }
       ctx.restore();
@@ -190,7 +190,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
     /* the steam, as a scatter of small marks in the space above the contents */
     if (st.steam > 0.002) {
       const n = Math.round(36 * st.steam), top = CUP.t + 10, span = yTop - 20 - top;
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.35);
+      ctx.save(); ctx.fillStyle = alpha(rs, 0.45);
       for (let i = 0; i < n; i++) { const w = wisps[i]; ctx.beginPath(); ctx.arc(CUP.l + 20 + w.x * (CUP.r - CUP.l - 40), top + w.y * Math.max(20, span), 4, 0, TAU); ctx.fill(); }
       ctx.restore();
     }
@@ -206,9 +206,10 @@ function curl(ctx, x, y, R, a0, ang, w) {
     if (st.ice > 0.002) parts.push('ice ' + fmt(st.ice * 100, 0) + '%');
     if (st.water > 0.002) parts.push('water ' + fmt(st.water * 100, 0) + '%');
     if (st.steam > 0.002) parts.push('steam ' + fmt(st.steam * 100, 0) + '%');
-    text(ctx, parts.join(' · '), (CUP.l + CUP.r) / 2, CUP.b + 34, PAL.ink, { size: 19, align: 'center' });
+    text(ctx, parts.join(' · '), (CUP.l + CUP.r) / 2, CUP.b + 34, F.ref('sample'), { size: 19, align: 'center' });
     text(ctx, 'T = ' + num(st.T, st.stage === 1 || st.stage === 3 ? 0 : 1) + ' °C', (CUP.l + CUP.r) / 2, CUP.b + 64, tc, { size: 22, weight: 600, align: 'center' });
-    text(ctx, fmt(m, 2) + ' kg, in an insulated container', (CUP.l + CUP.r) / 2, CUP.t - 22, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'in an insulated container', (CUP.l + CUP.r) / 2, CUP.t - 22, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'm = ' + fmt(m, 2) + ' kg', (CUP.l + CUP.r) / 2, CUP.b + 94, C('mass'), { size: 19, weight: 600, align: 'center' });
     /* the curve on fixed axes, with the book's names on its five segments */
     const { X, Y } = axes(ctx, box, [0, 3200], [-20, 180], { xl: 'ΔQ/m (kJ/kg)', xc: PAL.ink, yl: 'T (°C)', yc: tc, nx: 8, ny: 10 });
     const pts = [[0, T0], [Q1, 0], [Q2, 0], [Q3, 100], [Q4, 100], [3200, state(3200).T]];
@@ -239,11 +240,11 @@ function curl(ctx, x, y, R, a0, ang, w) {
        the spent heat and the stage's term bend together into the next one's spent heat, and back again they bend apart */
     const mk = (k, x) => `\\mk{${k}}{${x}}`;
     const form = [
-      () => `${mk('Q', '\\kQh')} = ${mk('t0', 'mc_{\\text{ice}}\\kdTemp')} = ${mk('tv0', `(${kg}${U('kg')})(${fmt(C_ICE, 2)}${CU})(${fmt(st.T - T0, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
-      () => `${mk('Q', '\\kQh')} = ${mk('b', 'mc_{\\text{ice}}(20^\\circ\\text{C})')} + ${mk('t1', 'm_{\\text{melted}}L_{\\text{f}}')} = ${mk('bv', kJ(m * Q1) + U('kJ'))} + ${mk('tv1', `(${fmt(m * st.water, 2)}${U('kg')})(${fmt(L_F, 0)}${U('kJ/kg')})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
-      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q2) + U('kJ'))} + ${mk('t2', 'mc_{\\text{w}}\\kdTemp')} = ${mk('bv', kJ(m * Q2) + U('kJ'))} + ${mk('tv2', `(${kg}${U('kg')})(${fmt(C_W, 2)}${CU})(${fmt(st.T, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
-      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q3) + U('kJ'))} + ${mk('t3', 'm_{\\text{boiled}}L_{\\text{v}}')} = ${mk('bv', kJ(m * Q3) + U('kJ'))} + ${mk('tv3', `(${fmt(m * st.steam, 2)}${U('kg')})(${fmt(L_V, 0)}${U('kJ/kg')})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
-      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q4) + U('kJ'))} + ${mk('t4', 'mc_{\\text{steam}}\\kdTemp')} = ${mk('bv', kJ(m * Q4) + U('kJ'))} + ${mk('tv4', `(${kg}${U('kg')})(${fmt(C_STEAM, 2)}${CU})(${fmt(st.T - 100, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('t0', '\\km\\kcspec_{\\text{ice}}\\kdTemp')} = ${mk('tv0', `(${kg}${U('kg')})(${fmt(C_ICE, 2)}${CU})(${fmt(st.T - T0, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('b', '\\km\\kcspec_{\\text{ice}}(20^\\circ\\text{C})')} + ${mk('t1', '\\km_{\\text{melted}}\\kLf')} = ${mk('bv', kJ(m * Q1) + U('kJ'))} + ${mk('tv1', `(${fmt(m * st.water, 2)}${U('kg')})(${fmt(L_F, 0)}${U('kJ/kg')})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q2) + U('kJ'))} + ${mk('t2', '\\km\\kcspec_{\\text{w}}\\kdTemp')} = ${mk('bv', kJ(m * Q2) + U('kJ'))} + ${mk('tv2', `(${kg}${U('kg')})(${fmt(C_W, 2)}${CU})(${fmt(st.T, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q3) + U('kJ'))} + ${mk('t3', '\\km_{\\text{boiled}}\\kLv')} = ${mk('bv', kJ(m * Q3) + U('kJ'))} + ${mk('tv3', `(${fmt(m * st.steam, 2)}${U('kg')})(${fmt(L_V, 0)}${U('kJ/kg')})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
+      () => `${mk('Q', '\\kQh')} = ${mk('b', kJ(m * Q4) + U('kJ'))} + ${mk('t4', '\\km\\kcspec_{\\text{steam}}\\kdTemp')} = ${mk('bv', kJ(m * Q4) + U('kJ'))} + ${mk('tv4', `(${kg}${U('kg')})(${fmt(C_STEAM, 2)}${CU})(${fmt(st.T - 100, 1)}^\\circ\\text{C})`)} = ${mk('Qv', kJ(Q))}${U('kJ')}`,
     ];
     const s0 = was, s1 = st.stage; was = s1;
     const keyMap = s1 === s0 + 1 ? (s0 === 0 ? { t0: 'b', tv0: 'bv' } : { b: 'b', ['t' + s0]: 'b', bv: 'bv', ['tv' + s0]: 'bv' })
@@ -268,15 +269,15 @@ function curl(ctx, x, y, R, a0, ang, w) {
 ===================================================================== */
 (function () {
   const d = sim('sim-ice-soda', 640);
-  const mi = ctl(d.controls, { label: 'm_{\\text{ice}}', cls: '', min: 0, max: 100, step: 1, value: 18, unit: 'g', dec: 0, aria: 'the mass of ice, six grams to a cube', detents: Array.from({ length: 17 }, (_, i) => 6 * i) });
-  const msod = ctl(d.controls, { label: 'm_{\\text{soda}}', cls: '', min: 0.1, max: 0.5, step: 0.01, value: 0.25, unit: 'kg', dec: 2, aria: 'the mass of soda' });
+  const mi = ctl(d.controls, { label: '\\kmice', cls: 'mass', min: 0, max: 100, step: 1, value: 18, unit: 'g', dec: 0, aria: 'the mass of ice, six grams to a cube', detents: Array.from({ length: 17 }, (_, i) => 6 * i) });
+  const msod = ctl(d.controls, { label: '\\kmsoda', cls: 'mass', min: 0.1, max: 0.5, step: 0.01, value: 0.25, unit: 'kg', dec: 2, aria: 'the mass of soda' });
   const Ts = ctl(d.controls, { label: 'T_{\\text{soda}}', cls: 'temperature', min: 1, max: 40, step: 1, value: 20, unit: '°C', dec: 0, aria: 'the starting temperature of the soda' });
   const { formula, note } = F.readout(d);
   const CW = 4186, LF = 334000;                                      /* J/(kg·°C) and J/kg, the example's values */
   const CUP = { l: 120, r: 380, t: 150, b: 520 }, BAR = { x: 450, t: 160, b: 520 }, HX0 = 700, HX1 = 1320, MAXKJ = 40;
   function draw() {
     const { ctx } = begin(d.c);
-    const tc = C('temperature'), ec = C('energy');
+    const tc = C('temperature'), ec = C('energy'), ri = F.ref('ice'), rs = F.ref('soda'), rc = F.ref('cup');
     const mIce = mi.v / 1000, mS = msod.v, T = Ts.v;
     const avail = mS * CW * T, need = mIce * LF;                      /* what the soda can give before it reaches 0 °C, and what melting all the ice takes */
     const allMelts = need <= avail;
@@ -285,17 +286,17 @@ function curl(ctx, x, y, R, a0, ang, w) {
     const Qmelt = melted * LF, Qwarm = allMelts ? mIce * CW * Tf : 0, Qsoda = mS * CW * (T - Tf);
     /* the cup, the soda in it and the ice that is still ice floating at its surface; the cubes that have melted are gone */
     const fillH = 120 + 380 * mS, yTop = CUP.b - 6 - fillH;
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.13); ctx.fillRect(CUP.l + 6, yTop, CUP.r - CUP.l - 12, fillH); ctx.restore();
-    line(ctx, CUP.l + 6, yTop, CUP.r - 6, yTop, PAL.muted, 2);
+    ctx.save(); ctx.fillStyle = alpha(rs, 0.2); ctx.fillRect(CUP.l + 6, yTop, CUP.r - CUP.l - 12, fillH); ctx.restore();
+    line(ctx, CUP.l + 6, yTop, CUP.r - 6, yTop, rs, 2);
     const cubes = Math.round(mi.v / 6), left = allMelts ? 0 : Math.max(1, Math.round((mIce - melted) / 0.006));
     for (let k = 0; k < left; k++) {
       const col = k % 5, row = Math.floor(k / 5), x = CUP.l + 18 + col * 46, y = yTop - 12 + row * 34;
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(x, y, 38, 30, 4); ctx.fill(); ctx.stroke(); ctx.restore();
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = ri; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(x, y, 38, 30, 4); ctx.fill(); ctx.stroke(); ctx.restore();
     }
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(CUP.l, CUP.t); ctx.lineTo(CUP.l + 10, CUP.b); ctx.lineTo(CUP.r - 10, CUP.b); ctx.lineTo(CUP.r, CUP.t); ctx.stroke(); ctx.restore();
-    text(ctx, 'a foam cup', (CUP.l + CUP.r) / 2, CUP.t - 22, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, cubes === 0 ? 'no ice' : cubes + (cubes === 1 ? ' ice cube, ' : ' ice cubes, ') + fmt(mi.v, 0) + ' g, at 0 °C' + (cubes > 0 && allMelts ? ', all melted' : ''), (CUP.l + CUP.r) / 2, CUP.b + 30, PAL.ink, { size: 19, align: 'center' });
-    text(ctx, fmt(mS, 2) + ' kg of soda' + (allMelts ? '' : ', with ' + fmt((mIce - melted) * 1000, 0) + ' g of ice left'), (CUP.l + CUP.r) / 2, CUP.b + 58, PAL.ink, { size: 19, align: 'center' });
+    ctx.save(); ctx.strokeStyle = rc; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(CUP.l, CUP.t); ctx.lineTo(CUP.l + 10, CUP.b); ctx.lineTo(CUP.r - 10, CUP.b); ctx.lineTo(CUP.r, CUP.t); ctx.stroke(); ctx.restore();
+    text(ctx, 'a foam cup', (CUP.l + CUP.r) / 2, CUP.t - 22, rc, { size: 17, align: 'center' });
+    text(ctx, cubes === 0 ? 'no ice' : cubes + (cubes === 1 ? ' ice cube, ' : ' ice cubes, ') + fmt(mi.v, 0) + ' g, at 0 °C' + (cubes > 0 && allMelts ? ', all melted' : ''), (CUP.l + CUP.r) / 2, CUP.b + 30, ri, { size: 19, align: 'center' });
+    text(ctx, fmt(mS, 2) + ' kg of soda' + (allMelts ? '' : ', with ' + fmt((mIce - melted) * 1000, 0) + ' g of ice left'), (CUP.l + CUP.r) / 2, CUP.b + 58, rs, { size: 19, align: 'center' });
     /* the temperature bar: the soda's starting temperature hollow, the final temperature filled */
     const Yt = (t) => BAR.b - (t / 40) * (BAR.b - BAR.t);
     line(ctx, BAR.x, BAR.t, BAR.x, BAR.b, PAL.muted, 2);
@@ -321,10 +322,10 @@ function curl(ctx, x, y, R, a0, ang, w) {
       : allMelts ? (cubes === 1 ? 'One ice cube, ' : cubes + ' ice cubes, ') + fmt(mi.v, 0) + ' g in all, melt' + (cubes === 1 ? 's' : '') + ' in ' + fmt(mS, 2) + ' kg of soda at ' + fmt(T, 0) + ' °C and bring' + (cubes === 1 ? 's' : '') + ' it to ' + fmt(Tf, 1) + ' °C.'
       : 'The soda cannot melt ' + fmt(mi.v, 0) + ' g of ice: it cools to 0 °C having melted ' + fmt(melted * 1000, 0) + ' g, and the rest floats in it.');
     /* past the mass the soda can just melt, the all-melts formula bends into the one that stops at 0 °C: the soda's side, m_soda c_W T_soda, keeps its place */
-    const mk = (k, x) => `\\mk{${k}}{${x}}`, soda = mk('a', `m_{\\text{soda}}c_{\\text{W}}(${fmt(T, 0)}^\\circ\\text{C})`), sodaV = mk('av', `${fmt(avail, 0)}\\ \\text{J}`);
+    const mk = (k, x) => `\\mk{${k}}{${x}}`, soda = mk('a', `\\kmsoda\\kcW(${fmt(T, 0)}^\\circ\\text{C})`), sodaV = mk('av', `${fmt(avail, 0)}\\ \\text{J}`);
     if (cubes === 0) F.morph(formula, `${mk('Q', '\\kQh')} = ${mk('z', '0')}`);
-    else if (allMelts) F.morph(formula, `${mk('Tf', '\\kTempf')} = \\frac{${soda} - ${mk('n', 'm_{\\text{ice}}L_{\\text{f}}')}}{${mk('dn', '(m_{\\text{soda}} + m_{\\text{ice}})c_{\\text{W}}')}} = \\frac{${sodaV} - ${mk('nv', `${fmt(need, 0)}\\ \\text{J}`)}}{${mk('dv', `${fmt((mS + mIce) * CW, 0)}\\ \\text{J/}{}^\\circ\\text{C}`)}} = ${mk('Tv', fmt(Tf, 1))}^\\circ\\text{C}`);
-    else F.morph(formula, `${mk('Tf', '\\kTempf')} = ${mk('Tv', '0')}^\\circ\\text{C}, \\qquad ${mk('mm', 'm_{\\text{melted}}')} = \\frac{${soda}}{${mk('n', 'L_{\\text{f}}')}} = \\frac{${sodaV}}{${mk('nv', `${fmt(LF, 0)}\\ \\text{J/kg}`)}} = ${mk('mv', fmt(melted, 3))}\\ \\text{kg}`);
+    else if (allMelts) F.morph(formula, `${mk('Tf', '\\kTempf')} = \\frac{${soda} - ${mk('n', '\\kmice\\kLf')}}{${mk('dn', '(\\kmsoda + \\kmice)\\kcW')}} = \\frac{${sodaV} - ${mk('nv', `${fmt(need, 0)}\\ \\text{J}`)}}{${mk('dv', `${fmt((mS + mIce) * CW, 0)}\\ \\text{J/}{}^\\circ\\text{C}`)}} = ${mk('Tv', fmt(Tf, 1))}^\\circ\\text{C}`);
+    else F.morph(formula, `${mk('Tf', '\\kTempf')} = ${mk('Tv', '0')}^\\circ\\text{C}, \\qquad ${mk('mm', '\\km_{\\text{melted}}')} = \\frac{${soda}}{${mk('n', '\\kLf')}} = \\frac{${sodaV}}{${mk('nv', `${fmt(LF, 0)}\\ \\text{J/kg}`)}} = ${mk('mv', fmt(melted, 3))}\\ \\text{kg}`);
     note.textContent = cubes === 0 ? 'There is no ice to melt, so no heat leaves the soda and its temperature does not change.'
       : allMelts ? 'The soda gives up ' + fmt(Qsoda / 1000, 1) + ' kJ in cooling from ' + fmt(T, 0) + ' °C to ' + fmt(Tf, 1) + ' °C. Of that, ' + fmt(Qmelt / 1000, 1) + ' kJ melts the ice at 0 °C and the remaining ' + fmt(Qwarm / 1000, 1) + ' kJ warms the meltwater from 0 °C to ' + fmt(Tf, 1) + ' °C, so the two sides of the budget are equal.'
       : 'Cooling all the way to 0 °C the soda can give up only ' + fmt(avail / 1000, 1) + ' kJ, and melting all the ice would take ' + fmt(need / 1000, 1) + ' kJ. The soda reaches 0 °C first, ' + fmt((mIce - melted) * 1000, 0) + ' g of ice is left, and with nothing warmer than 0 °C in the cup no more heat flows.';

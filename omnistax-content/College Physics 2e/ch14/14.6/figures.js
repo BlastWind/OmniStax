@@ -90,15 +90,16 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     const L = 200, R = 1200, FL = 560, CE = 150;
     /* the house: floor, walls, ceiling, roof and the chimney of the furnace */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(L, CE, R - L, FL - CE); ctx.restore();
-    line(ctx, L - 40, FL, R + 40, FL, PAL.ink, 4); line(ctx, L, FL, L, CE, PAL.ink, 3); line(ctx, R, FL, R, CE, PAL.ink, 3);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(L - 40, CE); ctx.lineTo(700, 100); ctx.lineTo(R + 40, CE); ctx.closePath(); ctx.stroke(); ctx.restore();
+    const rh = F.ref('house');
+    line(ctx, L - 40, FL, R + 40, FL, PAL.ink, 4); line(ctx, L, FL, L, CE, rh, 3); line(ctx, R, FL, R, CE, rh, 3);
+    ctx.save(); ctx.strokeStyle = rh; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(L - 40, CE); ctx.lineTo(700, 100); ctx.lineTo(R + 40, CE); ctx.closePath(); ctx.stroke(); ctx.restore();
     line(ctx, 175, FL - 20, 175, 116, PAL.muted, 6); line(ctx, 175, FL - 20, 220, FL - 20, PAL.muted, 6);
     /* the window on the back wall and the sofa against it, both behind the loop */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.strokeRect(620, 230, 160, 100); ctx.beginPath(); ctx.moveTo(700, 230); ctx.lineTo(700, 330); ctx.moveTo(620, 280); ctx.lineTo(780, 280); ctx.stroke();
     ctx.fillStyle = alpha(PAL.muted, 0.35); ctx.fillRect(560, 470, 280, 70); ctx.fillRect(560, 440, 40, 40); ctx.fillRect(800, 440, 40, 40); ctx.fillRect(600, 450, 200, 30); ctx.restore();
     /* the gravity furnace with its flame */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(210, 430, 90, 130); ctx.strokeRect(210, 430, 90, 130); ctx.restore();
-    flame(ctx, 255, 548, 80, FLAME.furnace);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('furnace'); ctx.lineWidth = 3; ctx.fillRect(210, 430, 90, 130); ctx.strokeRect(210, 430, 90, 130); ctx.restore();
+    flame(ctx, 255, 548, 80, F.fact(FLAME.furnace));
     /* the loop and the parcels on it */
     const lp = rectLoop(345, 1110, 205, 515, 60);
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.25); ctx.lineWidth = 2; ctx.setLineDash([6, 10]); ctx.beginPath();
@@ -107,19 +108,20 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 95);
     lab.add('Hot air rises', 345, 380, 1, 0, PAL.ink, 22, 30);
     lab.add('Air cooled by the room sinks', 1110, 345, -1, 0, PAL.ink, 22, 30);
-    lab.add('Gravity furnace', 300, 470, 1, 0, PAL.ink, 20, 24);
+    lab.add('Gravity furnace', 300, 470, 1, 0, F.ref('furnace'), 20, 24);
     lab.flush();
     text(ctx, 'Each dot is a parcel of air riding the loop.', 200, 596, PAL.muted, { size: 17 });
   }
   function pot(ctx, ph) {
     const L = 470, R = 930, TOP = 190, BOT = 510, WL = 235;
     /* the burner ring and its flames, the pot cut away to show the water */
-    line(ctx, 540, 560, 860, 560, PAL.ink, 5); line(ctx, 560, 560, 560, 590, PAL.ink, 4); line(ctx, 840, 560, 840, 590, PAL.ink, 4);
-    for (let i = 0; i < 8; i++) flame(ctx, 575 + i * 36, 556, 40, FLAME.burner, 14);
-    ctx.save(); ctx.fillStyle = alpha(C('density'), 0.10); ctx.fillRect(L, WL, R - L, BOT - WL); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(L - 30, TOP); ctx.lineTo(L, TOP); ctx.lineTo(L, BOT); ctx.lineTo(R, BOT); ctx.lineTo(R, TOP); ctx.lineTo(R + 30, TOP); ctx.stroke();
-    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(L, WL); ctx.lineTo(R, WL); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(L - 30, TOP + 40); ctx.lineTo(L - 70, TOP + 40); ctx.moveTo(R + 30, TOP + 40); ctx.lineTo(R + 70, TOP + 40); ctx.stroke(); ctx.restore();
+    const rb = F.ref('burner'), rp = F.ref('pot');
+    line(ctx, 540, 560, 860, 560, rb, 5); line(ctx, 560, 560, 560, 590, rb, 4); line(ctx, 840, 560, 840, 590, rb, 4);
+    for (let i = 0; i < 8; i++) flame(ctx, 575 + i * 36, 556, 40, F.fact(FLAME.burner), 14);
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(L, WL, R - L, BOT - WL); ctx.restore();
+    ctx.save(); ctx.strokeStyle = rp; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(L - 30, TOP); ctx.lineTo(L, TOP); ctx.lineTo(L, BOT); ctx.lineTo(R, BOT); ctx.lineTo(R, TOP); ctx.lineTo(R + 30, TOP); ctx.stroke();
+    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(L, WL); ctx.lineTo(R, WL); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = rp; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(L - 30, TOP + 40); ctx.lineTo(L - 70, TOP + 40); ctx.moveTo(R + 30, TOP + 40); ctx.lineTo(R + 70, TOP + 40); ctx.stroke(); ctx.restore();
     /* two loops: water rises through the middle, spreads at the surface and sinks at the walls */
     const cx = [590, 810], cy0 = 372, rx = 96, ry = 120;
     cx.forEach((c, k) => {
@@ -130,7 +132,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 95);
     lab.add('Hot water rises', 700, 300, 0, -1, PAL.ink, 22, 30);
     lab.add('Cooler water sinks', 500, 470, -1, 0.3, PAL.ink, 22, 40);
-    lab.add('Burner', 860, 585, 1, 0, PAL.ink, 20, 24);
+    lab.add('Burner', 860, 585, 1, 0, rb, 20, 24);
     lab.flush();
     text(ctx, 'Each dot is a parcel of water riding a loop.', 200, 596, PAL.muted, { size: 17 });
   }
@@ -172,16 +174,16 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
   const d = sim('sim-house-turnover', 560);
   const dT = ctl(d.controls, { label: '\\kdTemp', cls: 'temperature', min: 0, max: 30, step: 0.5, value: 10, unit: '°C', dec: 1, aria: 'the temperature change of the incoming air' });
   const ts = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.25, max: 6, step: 0.05, value: 0.5, unit: 'h', dec: 2, aria: 'the turnover time of the air', detents: [{ v: 0.5 }, { v: 2, label: 'new home' }, { v: 6, label: 'tight' }] });
-  const Vs = ctl(d.controls, { label: 'V', cls: '', min: 100, max: 1500, step: 1, value: 648, unit: 'm³', dec: 0, aria: 'the volume of air in the house' });
+  const Vs = ctl(d.controls, { label: '\\kvol', cls: 'volume', min: 100, max: 1500, step: 1, value: 648, unit: 'm³', dec: 0, aria: 'the volume of air in the house' });
   const RHO = 1.29, CP = 1000;
   /* the bar holds 70 kW, the largest rate the sliders can ask for (1500 m³, 30 °C, a quarter hour) */
   const BAR = { l: 800, r: 1340, y: 190, h: 40, max: 70 };
   const GRID = { l: 800, t: 290, cols: 40, dx: 13.5, dy: 15, rows: 17 };
   function house(ctx) {
-    const L = 120, R = 640, FL = 470, CE = 220;
+    const L = 120, R = 640, FL = 470, CE = 220, rh = F.ref('leaky-house');
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(L, CE, R - L, FL - CE); ctx.restore();
-    line(ctx, L - 40, FL, R + 40, FL, PAL.ink, 4); line(ctx, L, FL, L, CE, PAL.ink, 3); line(ctx, R, FL, R, CE, PAL.ink, 3);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(L - 40, CE); ctx.lineTo((L + R) / 2, 130); ctx.lineTo(R + 40, CE); ctx.closePath(); ctx.stroke();
+    line(ctx, L - 40, FL, R + 40, FL, PAL.ink, 4); line(ctx, L, FL, L, CE, rh, 3); line(ctx, R, FL, R, CE, rh, 3);
+    ctx.save(); ctx.strokeStyle = rh; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(L - 40, CE); ctx.lineTo((L + R) / 2, 130); ctx.lineTo(R + 40, CE); ctx.closePath(); ctx.stroke();
     ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.strokeRect(330, 280, 110, 80); ctx.strokeRect(160, 340, 60, 130); ctx.restore();
     /* cold air in at the cracks of the left wall, warm air out at the right: symbolic arrows in ink */
     [300, 420].forEach((y) => arrow(ctx, L - 70, y, L + 40, y, PAL.ink, 4));
@@ -193,7 +195,8 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     const { ctx } = begin(d.c);
     const pc = C('power'), m = RHO * Vs.v, Q = m * CP * dT.v, tsec = ts.v * 3600, P = Q / tsec, kW = P / 1000, bulbs = Math.round(P / 100);
     house(ctx);
-    text(ctx, `V = ${fmt(Vs.v, 0)} m³ of air, m = ρV = ${fmt(m, 0)} kg`, 380, 245, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, `V = ${fmt(Vs.v, 0)} m³ of air`, 380, 240, C('volume'), { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, `m = ρV = ${fmt(m, 0)} kg`, 380, 264, C('mass'), { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, `replaced once every ${fmt(ts.v, 2)} h, warmed by ${fmt(dT.v, 1)} °C`, 420, 425, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the bar of watts */
     text(ctx, 'rate of heat transfer Q/t (kW)', BAR.l, BAR.y - 34, pc, { size: 20, weight: 600 });
@@ -208,7 +211,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     text(ctx, bulbs === 1 ? 'one bulb of 100 W' : `${bulbs} bulbs of 100 W` + (bulbs > cap ? `, ${bulbs - cap} more than the row can hold` : ''), BAR.l, GRID.t - 34, pc, { size: 20, weight: 600 });
     topline(ctx, bulbs === 0 ? `With no temperature change the incoming air needs no warming and the heater does no work.`
       : `Warming ${fmt(m, 0)} kg of air by ${fmt(dT.v, 1)} °C every ${fmt(ts.v, 2)} h takes ${fmt(kW, 2)} kW, the power of ${bulbs} bulb${bulbs === 1 ? '' : 's'} of 100 W.`);
-    readout(d.readout, `\\frac{\\kQh}{\\kt} = \\frac{m\\,c\\,\\kdTemp}{\\kt} = \\frac{(${fmt(m, 0)}\\ \\text{kg})(1000\\ \\text{J/kg}\\cdot{}^\\circ\\text{C})(${fmt(dT.v, 1)}^\\circ\\text{C})}{${fmt(tsec, 0)}\\ \\text{s}} = \\htmlClass{kv-power}{${fmt(kW, 2)}\\ \\text{kW}}`,
+    readout(d.readout, `\\frac{\\kQh}{\\kt} = \\frac{\\km\\,\\kcspec\\,\\kdTemp}{\\kt} = \\frac{(${fmt(m, 0)}\\ \\text{kg})(1000\\ \\text{J/kg}\\cdot{}^\\circ\\text{C})(${fmt(dT.v, 1)}^\\circ\\text{C})}{${fmt(tsec, 0)}\\ \\text{s}} = \\htmlClass{kv-power}{${fmt(kW, 2)}\\ \\text{kW}}`,
       `The mass of air is m = ρV = (1.29 kg/m³)(${fmt(Vs.v, 0)} m³) = ${fmt(m, 0)} kg, and it is replaced once every ${fmt(ts.v, 2)} h = ${fmt(tsec, 0)} s, so the heat of ${sig3(Q / 1e6)} × 10⁶ J is needed that often.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -244,14 +247,14 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
   const TH = { top: 180, bot: 470, lo: -90, hi: 10 };
   const hits = [];
   hover(d.stage, () => hits);
-  function thermometer(ctx, x, T, name, tc) {
+  function thermometer(ctx, x, T, name, tc, rc) {
     const lines = Array.isArray(name) ? name : [name];
     const Y = (v) => TH.bot - ((v - TH.lo) / (TH.hi - TH.lo)) * (TH.bot - TH.top);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel; rrect(ctx, x - 14, TH.top - 14, 28, TH.bot - TH.top + 14, 14); ctx.fill(); ctx.stroke();
+    ctx.save(); ctx.strokeStyle = rc; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel; rrect(ctx, x - 14, TH.top - 14, 28, TH.bot - TH.top + 14, 14); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.arc(x, TH.bot + 20, 24, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = tc; ctx.beginPath(); ctx.arc(x, TH.bot + 20, 17, 0, TAU); ctx.fill(); ctx.fillRect(x - 6, Y(T), 12, TH.bot + 12 - Y(T)); ctx.restore();
     for (let v = TH.lo; v <= TH.hi; v += 10) { line(ctx, x + 14, Y(v), x + 22, Y(v), PAL.muted, 2); if (v % 20 === -10 || v === 10) text(ctx, neg(v), x + 28, Y(v), PAL.muted, { size: 15 }); }
-    lines.forEach((ln, i) => text(ctx, ln, x, TH.top - 36 - (lines.length - 1 - i) * 22, PAL.ink, { size: 18, weight: 600, align: 'center' }));
+    lines.forEach((ln, i) => text(ctx, ln, x, TH.top - 36 - (lines.length - 1 - i) * 22, rc, { size: 18, weight: 600, align: 'center' }));
     text(ctx, neg(fmt(T, 0)) + ' °C', x, TH.bot + 62, tc, { size: 22, weight: 600, align: 'center' });
   }
   function draw() {
@@ -260,11 +263,11 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     hits.length = 0;
     /* the person in the wind, the wind drawn as arrows whose length follows the speed */
     line(ctx, 60, 520, 470, 520, PAL.muted, 3);
-    silhouette(ctx, { x: 300, y: 520, s: 2.4, face: -1, pose: 'lean' });   /* leaning into the wind, which comes from the left */
+    silhouette(ctx, { x: 300, y: 520, s: 2.4, face: -1, pose: 'lean', color: F.ref('person-wind') });   /* leaning into the wind, which comes from the left */
     if (v > 0) [230, 300, 370].forEach((y, i) => { const L = 40 + v * 7; arrow(ctx, 60 + (i % 2) * 20, y, 60 + (i % 2) * 20 + L, y, vc, 4); });
     text(ctx, v > 0 ? `wind ${fmt(v, 1)} m/s` : 'still air', 70, 190, vc, { size: 20, weight: 600 });
-    thermometer(ctx, 570, T, 'moving air', tc);
-    thermometer(ctx, 720, W, ['still air that', 'chills the same'], tc);
+    thermometer(ctx, 570, T, 'moving air', tc, F.ref('air-thermometer'));
+    thermometer(ctx, 720, W, ['still air that', 'chills the same'], tc, F.ref('chill-thermometer'));
     /* the table as one curve per row, the current row picked out, the reader's point on it */
     const { X, Y } = axes(ctx, GB, [0, 20], [-90, 10], { xl: 'wind speed (m/s)', xc: vc, yl: 'still air that chills the same (°C)', yc: tc, nx: 4, ny: 5, fy: (y) => neg(fmt(y, 0)) });
     ROWS.forEach((Tr, r) => { curve(ctx, (x) => chillRow(r, x), 0, 20, X, Y, alpha(PAL.muted, 0.6), 2, 40); hits.push({ x: X(20), y: Y(chillRow(r, 20)), r: 14, name: `moving air at ${neg(Tr)} °C` }); dot(ctx, X(20), Y(chillRow(r, 20)), PAL.muted, false, 5); });
@@ -293,7 +296,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
 ===================================================================== */
 (function () {
   const d = sim('sim-fur', 600);
-  const ds = ctl(d.controls, { label: 'd', cls: '', min: 1, max: 100, step: 1, value: 1, unit: 'mm', dec: 0, aria: 'the size of an air pocket', detents: [{ v: 1 }, { v: 10, label: 'double pane' }, { v: 90, label: 'wall cavity' }] });
+  const ds = ctl(d.controls, { label: 'd', cls: 'position', min: 1, max: 100, step: 1, value: 1, unit: 'mm', dec: 0, aria: 'the size of an air pocket', detents: [{ v: 1 }, { v: 10, label: 'double pane' }, { v: 90, label: 'wall cavity' }] });
   const dT = ctl(d.controls, { label: '\\kdTemp', cls: 'temperature', min: 5, max: 40, step: 1, value: 20, unit: '°C', dec: 0, aria: 'the temperature difference across a pocket' });
   const cy = cycle(() => Infinity, 0);
   /* the buoyant drive of a pocket against the viscous drag on it grows as d³ΔT (the Rayleigh number of air,
@@ -312,8 +315,9 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     const { ctx } = begin(d.c);
     const ph = phaseOf(cy), nm = names(), st = state(), f = FLUIDS.air, pct = pctLighter(f, dT.v);
     /* the warm side, the cold side and the layer between */
-    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.18); ctx.fillRect(LAY.r, LAY.t, 1400 - LAY.r - 60, LAY.b - LAY.t); ctx.fillStyle = PAL.soft; ctx.fillRect(LAY.l, LAY.t, LAY.r - LAY.l, LAY.b - LAY.t); ctx.restore();
-    line(ctx, LAY.l, LAY.t, LAY.l, LAY.b, PAL.ink, 3); line(ctx, LAY.r, LAY.t, LAY.r, LAY.b, PAL.ink, 3);
+    const rw = F.ref('warm-side'), rl = F.ref('layer'), rc = F.ref('cold-side');
+    ctx.save(); ctx.fillStyle = alpha(rw, 0.16); ctx.fillRect(LAY.r, LAY.t, 1400 - LAY.r - 60, LAY.b - LAY.t); ctx.fillStyle = PAL.soft; ctx.fillRect(LAY.l, LAY.t, LAY.r - LAY.l, LAY.b - LAY.t); ctx.restore();
+    line(ctx, LAY.l, LAY.t, LAY.l, LAY.b, rl, 3); line(ctx, LAY.r, LAY.t, LAY.r, LAY.b, rl, 3);
     if (ds.v <= 3) { ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.28); ctx.lineWidth = 1.5; ctx.beginPath(); FIB.forEach(([x, y, a, L]) => { ctx.moveTo(x, y); ctx.lineTo(x + Math.sin(a) * L, y - Math.cos(a) * L); }); ctx.stroke(); ctx.restore(); }
     else if (ds.v <= 20) { line(ctx, LAY.l + 8, LAY.t, LAY.l + 8, LAY.b, alpha(PAL.ink, 0.35), 2); line(ctx, LAY.r - 8, LAY.t, LAY.r - 8, LAY.b, alpha(PAL.ink, 0.35), 2); }
     else { ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; for (let y = LAY.t; y <= LAY.b; y += 28) { ctx.beginPath(); ctx.moveTo(LAY.l - 22, y); ctx.lineTo(LAY.l - 4, y + 12); ctx.moveTo(LAY.r + 4, y); ctx.lineTo(LAY.r + 22, y + 12); ctx.stroke(); } ctx.restore(); }
@@ -325,11 +329,11 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     });
     if (st !== 'still') { arrow(ctx, LAY.r - 30, 340, LAY.r - 30, 280, PAL.ink, 3); arrow(ctx, LAY.l + 30, 280, LAY.l + 30, 340, PAL.ink, 3); }
     /* the scale bar of one pocket and the labels */
-    hbracket(ctx, LOOPS[0].x - 40, LOOPS[0].x + 40, LAY.t - 18, PAL.ink, `d = ${fmt(ds.v, 0)} mm`);
+    hbracket(ctx, LOOPS[0].x - 40, LOOPS[0].x + 40, LAY.t - 18, C('position'), `d = ${fmt(ds.v, 0)} mm`);
     const lab = labeller(ctx, 600); lab.block(0, 0, 1400, 95);
-    lab.add(nm.cold, 300, 330, 0, 0, PAL.ink, 22, 0);
-    lab.add(nm.warm, 1080, 330, 0, 0, PAL.ink, 22, 0);
-    lab.add(nm.layer, 615, 578, 0, 0, PAL.ink, 22, 0);
+    lab.add(nm.cold, 300, 330, 0, 0, rc, 22, 0);
+    lab.add(nm.warm, 1080, 330, 0, 0, rw, 22, 0);
+    lab.add(nm.layer, 615, 578, 0, 0, rl, 22, 0);
     lab.add(st === 'still' ? 'the air in each pocket stands still' : 'a convection loop in each pocket', LOOPS[2].x + 40, LOOPS[2].y, 1, -0.35, PAL.ink, 18, 30);
     lab.flush();
     topline(ctx, st === 'still' ? `In pockets ${fmt(ds.v, 0)} mm across the air's viscosity holds it still, and heat crosses the ${ds.v <= 3 ? 'fur' : 'layer'} only by conduction through air, a poor conductor.`
@@ -369,7 +373,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     /* the bench, and the person sitting on it in the shade */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(150, 362, 300, 22, 4); ctx.fill(); ctx.stroke(); ctx.restore();
     line(ctx, 170, 384, 170, 480, PAL.ink, 4); line(ctx, 430, 384, 430, 480, PAL.ink, 4);
-    silhouette(ctx, { x: 250, y: 480, s: 2.6, pose: 'sit' });
+    silhouette(ctx, { x: 250, y: 480, s: 2.6, pose: 'sit', color: F.ref('person-shade') });
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 2; ctx.setLineDash([4, 7]);
     for (let i = 0; i < 4; i++) { const x = 180 + i * 34, y = 300 - (i % 2) * 20; ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x - 10, y - 30, x + 4, y - 55); ctx.quadraticCurveTo(x + 14, y - 75, x, y - 95); ctx.stroke(); }
     ctx.restore();
@@ -385,13 +389,13 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     /* the jug that collects the water evaporated in the time chosen */
     const level = JUG.b - Math.min(1, m / JUG.max) * (JUG.b - JUG.t);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fillRect(JUG.l, level, JUG.r - JUG.l, JUG.b - level); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(JUG.l - 10, JUG.t); ctx.lineTo(JUG.l, JUG.b); ctx.lineTo(JUG.r, JUG.b); ctx.lineTo(JUG.r + 10, JUG.t); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('cup'); ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(JUG.l - 10, JUG.t); ctx.lineTo(JUG.l, JUG.b); ctx.lineTo(JUG.r, JUG.b); ctx.lineTo(JUG.r + 10, JUG.t); ctx.stroke(); ctx.restore();
     for (let g = 0; g <= JUG.max; g += 250) { const y = JUG.b - (g / JUG.max) * (JUG.b - JUG.t); line(ctx, JUG.r - 12, y, JUG.r, y, PAL.muted, 2); if (g % 500 === 0) text(ctx, g + ' g', JUG.r + 16, y, PAL.muted, { size: 15 }); }
     line(ctx, JUG.l, level, JUG.r, level, PAL.ink, 3);
-    text(ctx, `${fmt(m, 0)} g in ${fmt(tmin, 0)} min`, (JUG.l + JUG.r) / 2, JUG.t - 30, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, `${fmt(m, 0)} g in ${fmt(tmin, 0)} min`, (JUG.l + JUG.r) / 2, JUG.t - 30, C('mass'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'the water evaporated', (JUG.l + JUG.r) / 2, JUG.b + 30, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, `To shed ${fmt(P, 0)} W by sweat alone, ${fmt(gpm, 2)} g of water must evaporate every minute, ${fmt(m, 0)} g in ${fmt(tmin, 0)} min.`);
-    readout(d.readout, `\\frac{m}{\\kt} = \\frac{\\kQh/\\kt}{L_{\\text{v}}} = \\frac{${fmt(P, 0)}\\ \\text{J/s}}{2430\\ \\text{J/g}} = ${fmt(gps, 4)}\\ \\text{g/s} = ${fmt(gpm, 2)}\\ \\text{g/min}`,
+    readout(d.readout, `\\frac{\\km}{\\kt} = \\frac{\\kQh/\\kt}{\\kLv} = \\frac{${fmt(P, 0)}\\ \\text{J/s}}{2430\\ \\text{J/g}} = ${fmt(gps, 4)}\\ \\text{g/s} = ${fmt(gpm, 2)}\\ \\text{g/min}`,
       `In ${fmt(tmin, 0)} min that is ${fmt(m, 0)} g of water${tmin === 60 && P === 120 ? ', about 7 oz, the amount the example finds reasonable for an hour at rest' : ''}. The air must keep moving, since without it the air next to the skin saturates and evaporation stops.`);
   }
   register(d.fig, { update: () => {}, draw });

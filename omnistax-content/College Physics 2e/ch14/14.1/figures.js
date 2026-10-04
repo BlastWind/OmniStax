@@ -30,10 +30,10 @@ function tempBar(ctx, x, yb, h, lo, hi, T, label, side) {
   for (let v = lo; v <= hi + 1e-9; v += 20) { line(ctx, x - 12 - 6 * (side < 0 ? 1 : 0), Y(v), x + 12 + 6 * (side > 0 ? 1 : 0), Y(v), PAL.muted, 1.5); if (v === lo || v === hi || v === 0) text(ctx, sgn(v) + fmt(Math.abs(v), 0), x + side * 24, Y(v), PAL.muted, { size: 15, align: side > 0 ? 'left' : 'right' }); }
   text(ctx, label, x, yb - h - 22, C('temperature'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
 }
-/* a cylinder (a can) standing on the bench, centre x, bottom yb, in ink with a soft fill */
-function can(ctx, x, yb, w, h) {
+/* a cylinder (a can) standing on the bench, centre x, bottom yb, outlined in its colour with a soft fill */
+function can(ctx, x, yb, w, h, color) {
   const r = w / 2, e = w * 0.16;
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.moveTo(x - r, yb - h); ctx.lineTo(x - r, yb); ctx.ellipse(x, yb, r, e, 0, Math.PI, 0, true); ctx.lineTo(x + r, yb - h); ctx.ellipse(x, yb - h, r, e, 0, 0, Math.PI, true); ctx.closePath(); ctx.fill(); ctx.stroke();
   ctx.beginPath(); ctx.ellipse(x, yb - h, r, e, 0, 0, TAU); ctx.stroke();
   line(ctx, x - r, yb - h + 14, x + r, yb - h + 14, PAL.muted, 2); line(ctx, x - r, yb - 14, x + r, yb - 14, PAL.muted, 2);
@@ -57,13 +57,13 @@ function cubeGeo(s) {
   return { faces, l, r, t, b, fc, tc };
 }
 const CUBEG = cubeGeo(112);
-function cube(ctx, xl, yb) {
+function cube(ctx, xl, yb, color) {
   const dx = xl - CUBEG.l, dy = yb - CUBEG.b;
   ctx.save(); ctx.translate(dx, dy); ctx.lineJoin = 'round';
   for (const [f, n] of CUBEG.faces) {
     ctx.beginPath(); f.forEach((q, i) => (i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]))); ctx.closePath();
     ctx.fillStyle = PAL.panel; ctx.fill(); ctx.fillStyle = alpha(PAL.ink, CV.shade(n) * 0.7); ctx.fill();
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.stroke();
+    ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke();
   }
   ctx.restore();
   return { l: xl, r: CUBEG.r + dx, t: CUBEG.t + dy, fx: CUBEG.fc[0] + dx, fy: CUBEG.fc[1] + dy, tx: CUBEG.tc[0] + dx, ty: CUBEG.tc[1] + dy };
@@ -93,11 +93,12 @@ function cube(ctx, xl, yb) {
     const t = cy.now(), [a, b] = temps(t), diff = a - b, Tp = prime();
     const slide = Math.min(1, Math.max(0, (t - 0.6) / (TC - 0.6))), cx = FAR + (NEAR - FAR) * slide, touching = t >= TC;
     const same = Math.abs(T1.v - T2.v) < 0.5, settled = touching && Math.abs(diff) < 0.1;
+    const rd = F.ref('drink'), ri = F.ref('ice');
     fixed(ctx, 90, BENCH, 1220, 40);
-    can(ctx, CANX, BENCH, CANW, CANH);
-    text(ctx, 'soft drink', CANX, BENCH - CANH / 2, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    const cb = cube(ctx, cx, BENCH);
-    text(ctx, 'ice', cb.tx, cb.ty, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });   /* the name on the top face, clear of the heat arrow that ends on the front face */
+    can(ctx, CANX, BENCH, CANW, CANH, rd);
+    text(ctx, 'soft drink', CANX, BENCH - CANH / 2, rd, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    const cb = cube(ctx, cx, BENCH, ri);
+    text(ctx, 'ice', cb.tx, cb.ty, ri, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });   /* the name on the top face, clear of the heat arrow that ends on the front face */
     /* the temperature bars, one beside each body, the ice's travelling with it */
     tempBar(ctx, CANX - CANW / 2 - 60, BARB, CANH, LO, HI, a, 'T_1 = ' + deg(a), -1);
     tempBar(ctx, cb.r + 60, BARB, CANH, LO, HI, b, 'T_2 = ' + deg(b), 1);
@@ -119,18 +120,18 @@ function cube(ctx, xl, yb) {
     const { X, Y } = axes(ctx, box, [0, PERIOD], [LO, HI], { xl: 't (min)', xc: C('time'), yl: 'T (°C)', yc: C('temperature'), nx: 6, ny: 4 });
     line(ctx, box.l, Y(Tp), box.r, Y(Tp), alpha(C('temperature'), 0.6), 2, [4, 8]);
     text(ctx, "T′ = " + deg(Tp), box.r - 8, Y(Tp) - 16 < box.t + 10 ? Y(Tp) + 16 : Y(Tp) - 16, C('temperature'), { size: 17, weight: 600, align: 'right', bg: PAL.panel });
-    ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => temps(s)[1], 0, PERIOD, X, Y, alpha(C('temperature'), 0.3), 3, 160); ctx.restore();
-    curve(ctx, (s) => temps(s)[0], 0, PERIOD, X, Y, alpha(C('temperature'), 0.3), 3, 160);
+    ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => temps(s)[1], 0, PERIOD, X, Y, alpha(ri, 0.3), 3, 160); ctx.restore();
+    curve(ctx, (s) => temps(s)[0], 0, PERIOD, X, Y, alpha(rd, 0.3), 3, 160);
     if (t > 0.01) {
-      ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => temps(s)[1], 0, t, X, Y, C('temperature'), 4, 160); ctx.restore();
-      curve(ctx, (s) => temps(s)[0], 0, t, X, Y, C('temperature'), 5, 160);
+      ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => temps(s)[1], 0, t, X, Y, ri, 4, 160); ctx.restore();
+      curve(ctx, (s) => temps(s)[0], 0, t, X, Y, rd, 5, 160);
       line(ctx, X(t), box.b, X(t), Math.min(Y(a), Y(b)), alpha(PAL.ink, 0.35), 2, [4, 8]);
     }
-    dot(ctx, X(t), Y(a), C('temperature'), true, 9); dot(ctx, X(t), Y(b), C('temperature'), false, 9);
+    dot(ctx, X(t), Y(a), rd, true, 9); dot(ctx, X(t), Y(b), ri, false, 9);
     /* the two starting labels, the upper one above its curve and the lower one below, kept inside the box; one label when the two start together */
     const up = Math.max(T1.v, T2.v), lo = Math.min(T1.v, T2.v), yUp = Math.max(box.t + 14, Y(up) - 20), yLo = Math.min(box.b - 14, Y(lo) + 20);
     if (same) text(ctx, 'T_1 = T_2', X(0) + 16, Y(up) - 20 < box.t + 10 ? yLo : yUp, C('temperature'), { size: 20, weight: 600, bg: PAL.panel });
-    else { text(ctx, T1.v >= T2.v ? 'T_1' : 'T_2', X(0) + 16, yUp, C('temperature'), { size: 20, weight: 600, bg: PAL.panel }); text(ctx, T1.v >= T2.v ? 'T_2' : 'T_1', X(0) + 16, yLo, C('temperature'), { size: 20, weight: 600, bg: PAL.panel }); }
+    else { text(ctx, T1.v >= T2.v ? 'T_1' : 'T_2', X(0) + 16, yUp, T1.v >= T2.v ? rd : ri, { size: 20, weight: 600, bg: PAL.panel }); text(ctx, T1.v >= T2.v ? 'T_2' : 'T_1', X(0) + 16, yLo, T1.v >= T2.v ? ri : rd, { size: 20, weight: 600, bg: PAL.panel }); }
     line(ctx, X(TC), box.t, X(TC), box.b, alpha(PAL.ink, 0.3), 2, [4, 8]);
     text(ctx, 'contact', X(TC) + 8, box.b - 14, PAL.muted, { size: 15, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* the headline and the readout */
@@ -155,9 +156,9 @@ function cube(ctx, xl, yb) {
 ===================================================================== */
 (function () {
   const d = sim('sim-joule', 880);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 2, max: 20, step: 0.5, value: 10, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of each weight' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 2, max: 20, step: 0.5, value: 10, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of each weight' });
   const h = ctl(d.controls, { label: 'h', cls: '', min: 0.5, max: 2, step: 0.05, value: 1.5, unit: 'm', dec: 2, onInput: reset, aria: 'height of descent' });
-  const mw = ctl(d.controls, { label: 'm_{\\text{w}}', cls: '', min: 0.5, max: 5, step: 0.1, value: 1, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of water in the can' });
+  const mw = ctl(d.controls, { label: '\\kmw', cls: 'mass', min: 0.5, max: 5, step: 0.1, value: 1, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of water in the can' });
   const G = 9.80, KCAL = 4186, PERIOD = 5;
   const cy = cycle(() => PERIOD, 1.2);
   function reset() { cy.reset(); }
@@ -175,13 +176,13 @@ function cube(ctx, xl, yb) {
   }
   function pulley(ctx, x, y) { dot(ctx, x, y, PAL.soft, true, 22); ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, 22, 0, TAU); ctx.stroke(); ctx.restore(); dot(ctx, x, y, PAL.ink, true, 4); }
   function weight(ctx, x, y, label) {
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(x - WS / 2, y, WS, WS, 6); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('weights'); ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(x - WS / 2, y, WS, WS, 6); ctx.fill(); ctx.stroke(); ctx.restore();
     line(ctx, x, y, x, y - 14, PAL.ink, 3);
-    text(ctx, label, x, y + WS / 2, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, label, x, y + WS / 2, C('mass'), { size: 22, weight: 600, align: 'center' });
   }
   function paddles(ctx, ang) {
-    const top = CANB - CANH + 40;
-    line(ctx, CANX, DRUMY + 50, CANX, CANB - 30, PAL.ink, 4);
+    const top = CANB - CANH + 40, pc = F.ref('paddles');
+    line(ctx, CANX, DRUMY + 50, CANX, CANB - 30, pc, 4);
     /* the fixed vanes on the can wall between the tiers, then three tiers of blades on the shaft seen from the side:
        each tier is a pair of blades on opposite arms, and as the shaft turns an arm foreshortens with the cosine of
        its angle while its blade shows its face by the sine; the tiers are staggered so one pair is always broadside */
@@ -193,17 +194,17 @@ function cube(ctx, xl, yb) {
         if (Math.abs(c) < 0.18) continue;                                /* an arm pointing at the viewer hides behind the shaft */
         const bx = CANX + 64 * c, w = 7 + 13 * Math.abs(Math.sin(a + k * Math.PI));
         ctx.save(); ctx.globalAlpha = behind ? 0.4 : 1;
-        line(ctx, CANX, y, bx, y, PAL.ink, 3);
-        ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.rect(bx - w / 2, y - 14, w, 28); ctx.fill(); ctx.stroke();
+        line(ctx, CANX, y, bx, y, pc, 3);
+        ctx.fillStyle = PAL.soft; ctx.strokeStyle = pc; ctx.lineWidth = 2; ctx.beginPath(); ctx.rect(bx - w / 2, y - 14, w, 28); ctx.fill(); ctx.stroke();
         ctx.restore();
       }
     }
   }
   function thermometer(ctx, rise) {
-    const yb = CANB - 90, ytop = CANB - CANH - 60, tube = yb - ytop - 20, colH = Math.min(1, rise / 0.4) * tube;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.roundRect(THX - 9, ytop, 18, yb - ytop, 9); ctx.fill(); ctx.stroke(); ctx.restore();
+    const yb = CANB - 90, ytop = CANB - CANH - 60, tube = yb - ytop - 20, colH = Math.min(1, rise / 0.4) * tube, oc = F.ref('thermometer');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = oc; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.roundRect(THX - 9, ytop, 18, yb - ytop, 9); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = C('temperature'); ctx.fillRect(THX - 5, yb - 20 - colH, 10, colH + 20); ctx.restore();
-    dot(ctx, THX, yb, C('temperature'), true, 13); ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(THX, yb, 13, 0, TAU); ctx.stroke(); ctx.restore();
+    dot(ctx, THX, yb, C('temperature'), true, 13); ctx.save(); ctx.strokeStyle = oc; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(THX, yb, 13, 0, TAU); ctx.stroke(); ctx.restore();
     for (let v = 0; v <= 0.4 + 1e-9; v += 0.1) { const yy = yb - 20 - (v / 0.4) * tube; line(ctx, THX + 9, yy, THX + 16, yy, PAL.muted, 1.5); text(ctx, fmt(v, 1), THX + 22, yy, PAL.muted, { size: 14, align: 'left' }); }
   }
   function draw() {
@@ -226,12 +227,13 @@ function cube(ctx, xl, yb) {
     text(ctx, 'h = ' + fmt(h.v, 2) + ' m', DX - 14, hb + hpx / 2, PAL.ink, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
     /* the can of water, its paddles and its thermometer */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.rect(CANX - CANW / 2, CANB - CANH, CANW, CANH); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = PAL.soft; ctx.fillRect(CANX - CANW / 2 + 3, CANB - CANH + 40, CANW - 6, CANH - 43); ctx.restore();
-    line(ctx, CANX - CANW / 2, CANB - CANH + 40, CANX + CANW / 2, CANB - CANH + 40, PAL.muted, 2);
+    ctx.fillStyle = alpha(F.ref('water'), 0.18); ctx.fillRect(CANX - CANW / 2 + 3, CANB - CANH + 40, CANW - 6, CANH - 43); ctx.restore();
+    line(ctx, CANX - CANW / 2, CANB - CANH + 40, CANX + CANW / 2, CANB - CANH + 40, F.ref('water'), 2);
     paddles(ctx, ang);
     thermometer(ctx, rise);
     text(ctx, 'ΔT = ' + fmt(rise, 3) + ' °C', THX - 30, CANB - CANH - 84, C('temperature'), { size: 20, weight: 600, align: 'left', bg: PAL.panel });
-    text(ctx, 'insulated can of water, m_w = ' + fmt(mw.v, 2) + ' kg', CANX, CANB + 46, PAL.ink, { size: 17, align: 'center' });
+    text(ctx, 'insulated can of water', CANX, CANB + 40, F.ref('water'), { size: 17, align: 'center' });
+    text(ctx, 'm_w = ' + fmt(mw.v, 2) + ' kg', CANX, CANB + 66, C('mass'), { size: 17, align: 'center' });
     /* the graph beside the scene: the rise against the work done, a line whose slope is the mechanical equivalent over the water's mass */
     const box = { l: 990, r: 1330, t: 210, b: 720 };   /* fixed: 0 to 800 J across, 0 to 0.40 °C up, from the slider maxima */
     const { X, Y } = axes(ctx, box, [0, 800], [0, 0.4], { xl: 'W (J)', xc: C('energy'), yl: 'ΔT (°C)', yc: C('temperature'), nx: 4, ny: 4, fy: (v) => fmt(v, 1) });
@@ -244,7 +246,7 @@ function cube(ctx, xl, yb) {
     topline(ctx, done ? 'After the full ' + fmt(h.v, 2) + ' m descent the weights have done ' + sig3(Wfull) + ' J = ' + sig3(Wfull / KCAL) + ' kcal of work, and the water has warmed by ' + fmt(rise, 3) + ' °C, the rise that much heat would give.'
       : t < 0.01 ? 'The weights hang ' + fmt(h.v, 2) + ' m above their lowest point, about to fall and turn the paddles in ' + fmt(mw.v, 2) + ' kg of water.'
       : 'The weights have fallen ' + fmt(fallen, 2) + ' m of ' + fmt(h.v, 2) + ' m and done ' + sig3(W) + ' J of work on the water, which has warmed by ' + fmt(rise, 3) + ' °C.');
-    readout(d.readout, `\\kW = 2mgh = 2(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${sig3(Wfull)}\\ \\text{J} = ${sig3(Wfull / KCAL)}\\ \\text{kcal}`,
+    readout(d.readout, `\\kW = 2\\km gh = 2(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${sig3(Wfull)}\\ \\text{J} = ${sig3(Wfull / KCAL)}\\ \\text{kcal}`,
       done ? 'One kilocalorie warms 1.00 kg of water by 1.00 °C, so ' + sig3(Wfull / KCAL) + ' kcal warms the ' + fmt(mw.v, 2) + ' kg in the can by ' + fmt(rise, 3) + ' °C, which is what the thermometer shows.'
       : 'So far the weights have fallen ' + fmt(fallen, 2) + ' m and done ' + sig3(W) + ' J = ' + sig3(kcal) + ' kcal of work, which has warmed the ' + fmt(mw.v, 2) + ' kg of water by ' + fmt(rise, 3) + ' °C, since one kilocalorie warms 1.00 kg of water by 1.00 °C.');
   }

@@ -80,7 +80,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     const T = Ts.v, tc = C('temperature'), lam = peakAt(T), share = visibleShare(T), P = SIGMA * T ** 4;
     const { X, Y } = axes(ctx, BOX, [0, 3000], [0, YMAX], { xl: 'wavelength λ (nm)', yl: 'intensity', nx: 6, ny: 4, fy: () => '' });
     /* the visible band as the colours it is, and the ranges named as the book names them */
-    ctx.save(); const g = ctx.createLinearGradient(X(380), 0, X(700), 0); VIS.forEach(([l, c]) => g.addColorStop((l - 380) / 320, c));
+    ctx.save(); const g = ctx.createLinearGradient(X(380), 0, X(700), 0); VIS.forEach(([l, c]) => g.addColorStop((l - 380) / 320, F.fact(c)));
     ctx.globalAlpha = 0.22; ctx.fillStyle = g; ctx.fillRect(X(380), BOX.t, X(700) - X(380), BOX.b - BOX.t); ctx.restore();
     text(ctx, 'visible', X(540), BOX.t + 18, PAL.ink, { size: 17, align: 'center', bg: PAL.panel });
     text(ctx, 'UV', X(190), BOX.t + 18, PAL.muted, { size: 17, align: 'center' });
@@ -100,13 +100,13 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     lab.flush();
     /* the glow: a swatch of the colour the radiator shows the eye */
     const sx = 1110, sy = 170, sw = 230, sh = 150;
-    ctx.save(); ctx.fillStyle = glow(T); ctx.fillRect(sx, sy, sw, sh); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.strokeRect(sx, sy, sw, sh); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.fact(glow(T)); ctx.fillRect(sx, sy, sw, sh); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.strokeRect(sx, sy, sw, sh); ctx.restore();
     text(ctx, 'the glow at ' + T + ' K', sx + sw / 2, sy - 24, PAL.ink, { size: 19, weight: 600, align: 'center' });
     text(ctx, T < 3500 ? 'orange, the red heat of a stove element' : T < 5000 ? 'yellow-white' : 'white hot', sx + sw / 2, sy + sh + 26, PAL.muted, { size: 17, align: 'center' });
     text(ctx, percent(share) + ' of the radiation', sx + sw / 2, sy + sh + 70, PAL.ink, { size: 19, align: 'center' });
     text(ctx, 'falls in the visible band', sx + sw / 2, sy + sh + 96, PAL.ink, { size: 19, align: 'center' });
     topline(ctx, 'At ' + T + ' K an ideal radiator sends out ' + watts(P) + ' from each square meter, and its spectrum peaks at ' + fmt(lam, 0) + ' nm, in the ' + (lam <= 700 ? 'visible' : 'infrared') + '.');
-    readout(d.readout, `\\frac{\\kQh}{\\kt} = \\sigma e A \\kTemp^4 = (${SIGTEX})(1)(1.00\\ \\text{m}^2)(${T}\\ \\text{K})^4 = ${wattsTex(P)}`,
+    readout(d.readout, `\\frac{\\kQh}{\\kt} = \\sigma e \\karea \\kTemp^4 = (${SIGTEX})(1)(1.00\\ \\text{m}^2)(${T}\\ \\text{K})^4 = ${wattsTex(P)}`,
       'The curve peaks at ' + fmt(lam, 0) + ' nm and ' + percent(share) + ' of the radiation is visible; the rate is for 1.00 m² of an ideal radiator, whose emissivity is 1. At 3000 K the peak lies at ' + fmt(peakAt(3000), 0) + ' nm in the infrared and the rate is ' + watts(SIGMA * 3000 ** 4) + '; at 6000 K it lies at ' + fmt(peakAt(6000), 0) + ' nm in the visible and the rate is ' + watts(SIGMA * 6000 ** 4) + ', sixteen times as much.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -134,9 +134,9 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     ctx.save(); ctx.lineJoin = 'round';
     [[front, 0], [right, 1], [top, 2]].forEach(([pts, i]) => {
       ctx.beginPath(); pts.forEach((p, j) => (j ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
-      ctx.fillStyle = fill(e); ctx.fill();
+      ctx.fillStyle = F.fact(fill(e)); ctx.fill();
       ctx.fillStyle = i === 2 ? 'rgba(255,255,255,0.22)' : i === 1 ? 'rgba(0,0,0,0.28)' : 'rgba(0,0,0,0.08)'; ctx.fill();
-      ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.stroke();
+      ctx.strokeStyle = F.ref('block'); ctx.lineWidth = 2.5; ctx.stroke();
     });
     ctx.restore();
     /* the point on the top face where the beams meet, and the corners for the labels */
@@ -225,7 +225,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
       : ratio > 1 && ratio < 2 ? 'At ' + b + ' K the radiator emits ' + fmt(100 * (ratio - 1), 0) + ' percent more than at ' + a + ' K, because (' + b + '/' + a + ')⁴ = ' + sig(ratio) + '.'
         : ratio >= 2 ? 'At ' + b + ' K the radiator emits ' + sig(ratio) + ' times what it does at ' + a + ' K, because (' + b + '/' + a + ')⁴ = ' + sig(ratio) + '.'
           : 'At ' + b + ' K the radiator emits only ' + sig(ratio) + ' of what it does at ' + a + ' K, because (' + b + '/' + a + ')⁴ = ' + sig(ratio) + '.');
-    readout(d.readout, `\\frac{\\kQh}{\\kt} = \\sigma e A \\kTemp^4:\\quad ${wattsTex(Pa)}\\ \\text{at}\\ \\kTempone = ${a}\\ \\text{K},\\qquad ${wattsTex(Pb)}\\ \\text{at}\\ \\kTemptwo = ${b}\\ \\text{K},\\qquad \\left(\\frac{\\kTemptwo}{\\kTempone}\\right)^{\\!4} = ${sig(ratio)}`,
+    readout(d.readout, `\\frac{\\kQh}{\\kt} = \\sigma e \\karea \\kTemp^4:\\quad ${wattsTex(Pa)}\\ \\text{at}\\ \\kTempone = ${a}\\ \\text{K},\\qquad ${wattsTex(Pb)}\\ \\text{at}\\ \\kTemptwo = ${b}\\ \\text{K},\\qquad \\left(\\frac{\\kTemptwo}{\\kTempone}\\right)^{\\!4} = ${sig(ratio)}`,
       'The rates are for A = 1.00 m² with the emissivity ' + fmt(e, 2) + '; the emissivity scales both rates alike and leaves their ratio alone. The law takes the absolute temperature: ' + a + ' K is ' + degS(a - 273.15) + ' °C and ' + b + ' K is ' + degS(b - 273.15) + ' °C, and the ratio of the Celsius values would give the wrong answer.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -243,7 +243,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
   const T1 = ctl(d.controls, { label: '\\kTempone\\text{, the person}', cls: 'temperature', min: -50, max: 120, step: 0.5, value: 33, unit: '°C', dec: 1, aria: 'the skin temperature of the person', specials: [{ at: () => T2.v, label: 'equal' }] });
   const T2 = ctl(d.controls, { label: '\\kTemptwo\\text{, the walls}', cls: 'temperature', min: -50, max: 120, step: 0.5, value: 22, unit: '°C', dec: 1, aria: 'the temperature of the walls of the room', specials: [{ at: () => T1.v, label: 'equal' }] });
   const es = ctl(d.controls, { label: 'e', cls: '', min: 0, max: 1, step: 0.01, value: 0.97, unit: '', dec: 2, aria: 'the emissivity of the person' });
-  const As = ctl(d.controls, { label: 'A', cls: '', min: 0.1, max: 2, step: 0.05, value: 1.5, unit: 'm²', dec: 2, aria: 'the surface area of the person' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.1, max: 2, step: 0.05, value: 1.5, unit: 'm²', dec: 2, aria: 'the surface area of the person' });
   /* The bars share one fixed scale, 0 to 3 kW: an emissivity of 1, 2.00 m² and 120 °C give 2.71 kW. */
   const ROOM = { l: 120, r: 1280, t: 96, b: 420 }, BX = 330, BW = 960, PMAX = 3000, BY1 = 512, BY2 = 592;
   function draw() {
@@ -252,9 +252,9 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     const Pout = SIGMA * e * A * Ka ** 4, Pin = SIGMA * e * A * Kb ** 4, net = Pin - Pout;
     /* the room: a wall all round, the floor thicker, and the person standing on it */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(ROOM.l, ROOM.t, ROOM.r - ROOM.l, ROOM.b - ROOM.t); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.strokeRect(ROOM.l, ROOM.t, ROOM.r - ROOM.l, ROOM.b - ROOM.t); ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('walls'); ctx.lineWidth = 6; ctx.strokeRect(ROOM.l, ROOM.t, ROOM.r - ROOM.l, ROOM.b - ROOM.t); ctx.restore();
     const px = 700, py = ROOM.b - 4;
-    silhouette(ctx, { x: px, y: py, s: 1.7, pose: 'stand' });
+    silhouette(ctx, { x: px, y: py, s: 1.7, pose: 'stand', color: F.ref('person') });
     /* the radiation: outward arrows on the left at the emitted rate's width, inward on the right at the absorbed rate's */
     const wOf = (P) => 2 + 12 * Math.min(1, P / PMAX);
     const mid = (ROOM.t + ROOM.b) / 2 - 20;
@@ -285,7 +285,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     topline(ctx, sameT ? 'A person at ' + degS(ta) + ' °C in a room at the same temperature emits and absorbs ' + watts(Pout) + ' alike, and the net rate is zero.'
       : net < 0 ? 'A person at ' + degS(ta) + ' °C in a room at ' + degS(tb) + ' °C loses ' + watts(-net) + ' by radiation.'
         : 'A person at ' + degS(ta) + ' °C in a room at ' + degS(tb) + ' °C gains ' + watts(net) + ' by radiation.');
-    readout(d.readout, `\\frac{\\kQnet}{\\kt} = \\sigma e A\\left(\\kTemptwo^4 - \\kTempone^4\\right) = (${SIGTEX})(${fmt(e, 2)})(${fmt(A, 2)}\\ \\text{m}^2)\\left[(${fmt(Kb, 0)}\\ \\text{K})^4 - (${fmt(Ka, 0)}\\ \\text{K})^4\\right] = ${net < 0 ? '-' : ''}${wattsTex(Math.abs(net))}`,
+    readout(d.readout, `\\frac{\\kQnet}{\\kt} = \\sigma e \\karea\\left(\\kTemptwo^4 - \\kTempone^4\\right) = (${SIGTEX})(${fmt(e, 2)})(${fmt(A, 2)}\\ \\text{m}^2)\\left[(${fmt(Kb, 0)}\\ \\text{K})^4 - (${fmt(Ka, 0)}\\ \\text{K})^4\\right] = ${net < 0 ? '-' : ''}${wattsTex(Math.abs(net))}`,
       'The person emits ' + watts(Pout) + ' and absorbs ' + watts(Pin) + ' from the walls, so ' + (sameT ? 'the net rate is zero and the person neither warms nor cools by radiation.' : net < 0 ? watts(-net) + ' leaves the person; the minus sign says the net transfer is out of the person, from hot to cold.' : watts(net) + ' enters the person; the positive sign says the net transfer is into the person, from the hotter walls.') + ' The emissivity is the person’s alone, whatever the walls are made of.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -315,14 +315,15 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     const wOf = (P) => 4 + 30 * Math.min(1, P / 900), wIR = (P) => 3 + 12 * Math.min(1, P / 900);
     /* the ground, the atmosphere band and space */
     bandOf(0, RE, PAL.soft)(ctx);
-    bandOf(RA - 22, RA + 22, alpha(PAL.ink, 0.12))(ctx);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(CX, CY, RE, Math.PI * 1.25, Math.PI * 1.75); ctx.stroke(); ctx.restore();
-    text(ctx, 'Earth’s surface', 120, yOn(120, RE) + 40, PAL.ink, { size: 20, weight: 600 });
-    text(ctx, 'atmosphere', 1180, yOn(1180, RA) - 44, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    const re = F.ref('earth'), ra = F.ref('atmosphere'), rs = F.ref('sun');
+    bandOf(RA - 22, RA + 22, alpha(ra, 0.2))(ctx);
+    ctx.save(); ctx.strokeStyle = re; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(CX, CY, RE, Math.PI * 1.25, Math.PI * 1.75); ctx.stroke(); ctx.restore();
+    text(ctx, 'Earth’s surface', 120, yOn(120, RE) + 40, re, { size: 20, weight: 600 });
+    text(ctx, 'atmosphere', 1180, yOn(1180, RA) - 44, ra, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'space', 1300, 92, PAL.muted, { size: 18, align: 'center' });
     /* the Sun */
-    ctx.save(); ctx.fillStyle = SUN; ctx.beginPath(); ctx.arc(110, 110, 44, 0, 2 * Math.PI); ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
-    text(ctx, 'Sun', 110, 178, PAL.ink, { size: 18, align: 'center' });
+    ctx.save(); ctx.fillStyle = F.fact(SUN); ctx.beginPath(); ctx.arc(110, 110, 44, 0, 2 * Math.PI); ctx.fill(); ctx.strokeStyle = rs; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+    text(ctx, 'Sun', 110, 178, rs, { size: 18, align: 'center' });
     /* the flows: sunlight in, infrared up to the atmosphere, then part back and part out */
     const xs = 400, xr = 800, xb = 1040;
     beam(ctx, 150, 160, xs, yOn(xs, RE) - 6, wOf(S), pc);

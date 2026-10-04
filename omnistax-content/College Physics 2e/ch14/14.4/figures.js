@@ -72,7 +72,7 @@ function poly(ctx, pts, fill, stroke, w) {
     ctx.restore();
   }
   function logs(ctx, x, y, burnt) {
-    const c = burnt ? alpha(PAL.ink, 0.55) : PAL.ink;
+    const c = burnt ? alpha(F.ref('fire'), 0.55) : F.ref('fire');
     ctx.save(); ctx.fillStyle = burnt ? alpha(PAL.ink, 0.25) : PAL.soft; ctx.strokeStyle = c; ctx.lineWidth = 3;
     for (const [lx, ly, r] of [[x - 30, y + 14, 16], [x + 8, y + 16, 17], [x + 44, y + 14, 15], [x - 12, y - 10, 15], [x + 26, y - 10, 15]]) {
       ctx.beginPath(); ctx.arc(lx, ly, r, 0, TAU); ctx.fill(); ctx.stroke();
@@ -82,13 +82,13 @@ function poly(ctx, pts, fill, stroke, w) {
   }
   function couch(ctx, x, y) {                                          /* x, y: the front-left corner of the seat */
     const w = 270, seat = 60, back = 70, arm = 34;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('couch'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(x + arm, y - seat - back, w - 2 * arm, back + 10, 12); ctx.fill(); ctx.stroke();          /* the back */
     ctx.beginPath(); ctx.roundRect(x, y - seat, w, seat, 10); ctx.fill(); ctx.stroke();                                    /* the seat */
     ctx.beginPath(); ctx.roundRect(x, y - seat - 36, arm, seat + 36, 12); ctx.fill(); ctx.stroke();                          /* the arms */
     ctx.beginPath(); ctx.roundRect(x + w - arm, y - seat - 36, arm, seat + 36, 12); ctx.fill(); ctx.stroke();
     line(ctx, x + arm + (w - 2 * arm) / 2, y - seat - back + 8, x + arm + (w - 2 * arm) / 2, y - seat, PAL.muted, 2);
-    for (const lx of [x + 14, x + w - 14]) line(ctx, lx, y, lx, y + 16, PAL.ink, 4);
+    for (const lx of [x + 14, x + w - 14]) line(ctx, lx, y, lx, y + 16, F.ref('couch'), 4);
     ctx.restore();
   }
   function draw() {
@@ -99,7 +99,7 @@ function poly(ctx, pts, fill, stroke, w) {
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.10); ctx.fillRect(CH.l - 20, GROUND.t, ROOM.r + 20 - (CH.l - 20), GROUND.b - GROUND.t); ctx.restore();
     line(ctx, CH.l - 20, GROUND.t, ROOM.r + 20, GROUND.t, PAL.ink, 3); line(ctx, CH.l - 20, GROUND.b, ROOM.r + 20, GROUND.b, PAL.muted, 2);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(CH.l, CH.top, CH.r - CH.l, GROUND.t - CH.top); ctx.restore();
-    line(ctx, CH.l, CH.top, CH.l, GROUND.t, PAL.ink, 10); line(ctx, CH.r, CH.top, CH.r, CH.open, PAL.ink, 10);   /* the shaft's walls; the right one stops at the opening */
+    line(ctx, CH.l, CH.top, CH.l, GROUND.t, F.ref('chimney'), 10); line(ctx, CH.r, CH.top, CH.r, CH.open, F.ref('chimney'), 10);   /* the shaft's walls; the right one stops at the opening */
     poly(ctx, [[ROOM.l, ROOM.t], [ROOM.r, ROOM.t], [BACK.r, BACK.t], [BACK.l, BACK.t]], alpha(PAL.ink, 0.04), PAL.ink, 3);          /* ceiling */
     poly(ctx, [[BACK.l, BACK.b], [BACK.r, BACK.b], [ROOM.r, ROOM.b], [ROOM.l, ROOM.b]], alpha(PAL.ink, 0.12), PAL.ink, 3);          /* floor */
     poly(ctx, [[ROOM.r, ROOM.t], [ROOM.r, ROOM.b], [BACK.r, BACK.b], [BACK.r, BACK.t]], alpha(PAL.ink, 0.08), PAL.ink, 3);          /* right wall */
@@ -107,15 +107,15 @@ function poly(ctx, pts, fill, stroke, w) {
     poly(ctx, [[ROOM.l, ROOM.t], [BACK.l, BACK.t], [BACK.l, BACK.b], [ROOM.l, ROOM.b]], alpha(PAL.ink, 0.08), PAL.ink, 3);          /* left wall */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.04); ctx.fillRect(CH.r, CH.open, BACK.l - CH.r, ROOM.b - CH.open); ctx.restore();  /* the opening of the hearth */
     line(ctx, CH.r, CH.open, BACK.l, BACK.t + (CH.open - ROOM.t) * (BACK.b - BACK.t) / (ROOM.b - ROOM.t), PAL.ink, 3);
-    poly(ctx, WIN, PAL.panel, PAL.ink, 3);                                                                                          /* the window */
-    line(ctx, 1182, 284, 1182, 432, PAL.ink, 2); line(ctx, WIN[0][0], 371, WIN[1][0], 345, PAL.ink, 2);
+    poly(ctx, WIN, PAL.panel, F.ref('window'), 3);                                                                                          /* the window */
+    line(ctx, 1182, 284, 1182, 432, F.ref('window'), 2); line(ctx, WIN[0][0], 371, WIN[1][0], 345, F.ref('window'), 2);
     /* the couch and the fire */
     couch(ctx, 640, 560);
     logs(ctx, FIRE.x, FIRE.y + 18, !on);
     /* the flame and the three paths exist only while a temperature difference drives them, and fade with the fire */
     if (lit > 0) {
       ctx.save(); ctx.globalAlpha = lit; ctx.translate(ox, oy);
-      flame(ctx, FIRE.x, FIRE.y + 6, 1, FLAME_OUT, FLAME_IN);
+      flame(ctx, FIRE.x, FIRE.y + 6, 1, F.fact(FLAME_OUT), F.fact(FLAME_IN));
       const cd = PAL.ink, cv = PAL.ink, rd = PAL.ink;
       /* conduction: from under the logs down into the ground and along it */
       ctx.save(); ctx.strokeStyle = cd; ctx.lineWidth = width('conduction'); ctx.beginPath(); ctx.moveTo(FIRE.x, GROUND.t + 4); ctx.lineTo(FIRE.x, GROUND.t + 32); ctx.quadraticCurveTo(FIRE.x, GROUND.t + 46, FIRE.x + 14, GROUND.t + 46); ctx.lineTo(500, GROUND.t + 46); ctx.stroke(); ctx.restore();
@@ -174,37 +174,37 @@ function poly(ctx, pts, fill, stroke, w) {
   function draw() {
     const { ctx } = begin(d.c);
     /* the container, thick-walled, and the air inside it */
-    ctx.save(); ctx.lineJoin = 'round'; bottle(ctx, CON); ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.10); ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.lineJoin = 'round'; bottle(ctx, CON); ctx.closePath(); ctx.fillStyle = alpha(F.ref('air-layer'), 0.14); ctx.fill(); ctx.strokeStyle = F.ref('container'); ctx.lineWidth = 12; ctx.stroke(); ctx.restore();
     /* the vacuum between the two glass walls, empty, and the walls themselves with their silvered faces */
-    ctx.save(); bottle(ctx, OUT); ctx.closePath(); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
-    ctx.save(); bottle(ctx, INN); ctx.closePath(); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    ctx.save(); bottle(ctx, OUT); ctx.closePath(); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.fillStyle = alpha(F.ref('vacuum'), 0.12); ctx.fill(); ctx.strokeStyle = F.ref('glass-walls'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    ctx.save(); bottle(ctx, INN); ctx.closePath(); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = F.ref('glass-walls'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
     /* the silvering: a grey band along each wall's face onto the vacuum */
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 5; bottle(ctx, { ...OUT, l: OUT.l + 5, r: OUT.r - 5, b: OUT.b - 5, neck: OUT.neck - 5, top: OUT.top + 4 }); ctx.stroke(); bottle(ctx, { ...INN, l: INN.l - 5, r: INN.r + 5, b: INN.b + 5, neck: INN.neck + 5, top: INN.top + 4 }); ctx.stroke(); ctx.restore();
     /* the liquid, up to its level */
-    ctx.save(); bottle(ctx, INN); ctx.closePath(); ctx.clip(); ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.fillRect(INN.l - 10, LEVEL, INN.r - INN.l + 20, INN.b - LEVEL + 20); ctx.restore();
-    line(ctx, INN.l + 2, LEVEL, INN.r - 2, LEVEL, PAL.ink, 2);
+    ctx.save(); bottle(ctx, INN); ctx.closePath(); ctx.clip(); ctx.fillStyle = alpha(F.ref('liquid'), 0.22); ctx.fillRect(INN.l - 10, LEVEL, INN.r - INN.l + 20, INN.b - LEVEL + 20); ctx.restore();
+    line(ctx, INN.l + 2, LEVEL, INN.r - 2, LEVEL, F.ref('liquid'), 2);
     /* the neck: the two walls meet at the lip, and the stopper closes it */
     line(ctx, CX - OUT.neck, OUT.top, CX - INN.neck, INN.top, PAL.ink, 3); line(ctx, CX + OUT.neck, OUT.top, CX + INN.neck, INN.top, PAL.ink, 3);
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.5); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = alpha(F.ref('stopper'), 0.4); ctx.strokeStyle = F.ref('stopper'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(CX - 52, 86, 104, 38, 8); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(CX - 30, 124); ctx.lineTo(CX - 26, 166); ctx.quadraticCurveTo(CX, 182, CX + 26, 166); ctx.lineTo(CX + 30, 124); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.restore();
     /* the spring centering device on each side, and the rubber support under the vessel */
-    spring(ctx, CON.l + 8, 380, OUT.l - 2, 380, 3, 7, PAL.ink, 3); spring(ctx, OUT.r + 2, 380, CON.r - 8, 380, 3, 7, PAL.ink, 3);
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.55); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(CX - 22, OUT.b - 2, 44, CON.b - OUT.b + 2, 4); ctx.fill(); ctx.stroke(); ctx.restore();
+    spring(ctx, CON.l + 8, 380, OUT.l - 2, 380, 3, 7, F.ref('spring'), 3); spring(ctx, OUT.r + 2, 380, CON.r - 8, 380, 3, 7, F.ref('spring'), 3);
+    ctx.save(); ctx.fillStyle = alpha(F.ref('support'), 0.45); ctx.strokeStyle = F.ref('support'); ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(CX - 22, OUT.b - 2, 44, CON.b - OUT.b + 2, 4); ctx.fill(); ctx.stroke(); ctx.restore();
     /* the book's six labels, each beside its part with a leader to it */
     const LAB = [
-      ['Glass walls with silvered surfaces', 820, 236, 'left', 692, 300],
-      ['Spring centering device', 820, 380, 'left', 722, 380],
-      ['Container', 820, 470, 'left', 742, 470],
-      ['Vacuum', 820, 560, 'left', 694, 560],
-      ['Rubber support', 820, 662, 'left', 642, 664],
-      ['Hot or cold liquid', 420, 520, 'right', 600, 520],
+      ['Glass walls with silvered surfaces', 820, 236, 'left', 692, 300, 'glass-walls'],
+      ['Spring centering device', 820, 380, 'left', 722, 380, 'spring'],
+      ['Container', 820, 470, 'left', 742, 470, 'container'],
+      ['Vacuum', 820, 560, 'left', 694, 560, 'vacuum'],
+      ['Rubber support', 820, 662, 'left', 642, 664, 'support'],
+      ['Hot or cold liquid', 420, 520, 'right', 600, 520, 'liquid'],
     ];
-    for (const [s, lx, ly, align, hx, hy] of LAB) {
-      const ex = align === 'left' ? lx - 8 : lx + 8;
-      line(ctx, hx, hy, ex, ly, alpha(PAL.ink, 0.55), 1.5, [5, 6]); dot(ctx, hx, hy, PAL.ink, true, 4);
-      text(ctx, s, lx, ly, PAL.ink, { size: 22, weight: 600, align, bg: PAL.panel });
+    for (const [s, lx, ly, align, hx, hy, id] of LAB) {
+      const ex = align === 'left' ? lx - 8 : lx + 8, rc = F.ref(id);
+      line(ctx, hx, hy, ex, ly, alpha(rc, 0.55), 1.5, [5, 6]); dot(ctx, hx, hy, rc, true, 4);
+      text(ctx, s, lx, ly, rc, { size: 22, weight: 600, align, bg: PAL.panel });
     }
     topline(ctx, 'A thermos bottle is built to slow every method of heat transfer at once.');
   }

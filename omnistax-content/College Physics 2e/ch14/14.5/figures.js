@@ -127,16 +127,17 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
     const Thot = meanT(true), Tcold = meanT(false), dT = Thot - Tcold, dT0 = Th.v - Tc.v;
     /* the two bodies and the surface between them */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(L, TOP, Rt - L, BOT - TOP); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(L, TOP, Rt - L, BOT - TOP); ctx.restore();
+    const rh = F.ref('hot-body'), rc = F.ref('cold-body');
+    ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = rh; ctx.strokeRect(L, TOP, S - L, BOT - TOP); ctx.strokeStyle = rc; ctx.strokeRect(S, TOP, Rt - S, BOT - TOP); ctx.restore();
     line(ctx, S, TOP - 10, S, BOT + 10, PAL.ink, 4);
     text(ctx, 'surface', S, TOP - 30, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'higher temperature', L + (S - L) / 2, BOT + 26, PAL.muted, { size: 20, align: 'center' });
-    text(ctx, 'lower temperature', S + (Rt - S) / 2, BOT + 26, PAL.muted, { size: 20, align: 'center' });
-    /* the molecules, each with a tail the length of its speed, in ink because the book names no substance */
+    text(ctx, 'higher temperature', L + (S - L) / 2, BOT + 26, rh, { size: 20, align: 'center' });
+    text(ctx, 'lower temperature', S + (Rt - S) / 2, BOT + 26, rc, { size: 20, align: 'center' });
+    /* the molecules, each with a tail the length of its speed, in the colour of the body it belongs to, since the book names no substance */
     for (const p of s.ps) {
-      const v = SPD * Math.sqrt(keOf(p)), tail = 0.1 * v;
-      line(ctx, p.x, p.y, p.x - p.ux * tail, p.y - p.uy * tail, alpha(PAL.ink, 0.35), 3);
-      dot(ctx, p.x, p.y, PAL.ink, true, R);
+      const v = SPD * Math.sqrt(keOf(p)), tail = 0.1 * v, pc = p.hot ? rh : rc;
+      line(ctx, p.x, p.y, p.x - p.ux * tail, p.y - p.uy * tail, alpha(pc, 0.35), 3);
+      dot(ctx, p.x, p.y, pc, true, R);
     }
     /* the packets of heat crossing the surface, one per collision, fading over half a second */
     for (const f of s.flashes) {
@@ -182,8 +183,8 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
   ];
   const T2 = ctl(d.controls, { label: '\\kTemptwo', cls: 'temperature', min: 0, max: 400, step: 0.5, value: 35, unit: '°C', dec: 1, onInput: () => { if (T1.v > T2.v - 1) T1.set(T2.v - 1); }, aria: 'the temperature of the hot face' });
   const T1 = ctl(d.controls, { label: '\\kTempone', cls: 'temperature', min: -40, max: 100, step: 0.5, value: 0, unit: '°C', dec: 1, onInput: () => { if (T2.v < T1.v + 1) T2.set(T1.v + 1); }, aria: 'the temperature of the cold face' });
-  const A = ctl(d.controls, { label: 'A', cls: '', min: 0.01, max: 3, step: 0.005, value: 0.95, unit: 'm²', dec: 3, aria: 'the cross-sectional area', detents: [{ v: 0.0154, label: 'pan' }, { v: 0.95, label: 'ice box' }] });
-  const D = ctl(d.controls, { label: 'd', cls: '', min: 0.2, max: 15, step: 0.05, value: 2.5, unit: 'cm', dec: 2, aria: 'the thickness', detents: [0.8, 2.5] });
+  const A = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.01, max: 3, step: 0.005, value: 0.95, unit: 'm²', dec: 3, aria: 'the cross-sectional area', detents: [{ v: 0.0154, label: 'pan' }, { v: 0.95, label: 'ice box' }] });
+  const D = ctl(d.controls, { label: '\\kdthick', cls: 'position', min: 0.2, max: 15, step: 0.05, value: 2.5, unit: 'cm', dec: 2, aria: 'the thickness', detents: [0.8, 2.5] });
   const mat = select(d.controls, { label: '\\text{the material}', options: MAT.map(([n]) => ({ value: n, label: n })), value: 'Styrofoam', aria: 'the material of the slab' });
   const kOf = () => MAT.find(([n]) => n === mat.value)[1];
   const rate = () => (kOf() * A.v * (T2.v - T1.v)) / (D.v / 100);
@@ -219,6 +220,10 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
     box(ctx, 0, xc, -h, h, -h, h, 0.92);                                   /* the far half of the bar */
     poly(ctx, [P([0, -h, -h]), P([0, h, -h]), P([0, h, h]), P([0, -h, h])], alpha(PAL.ink, 0.22), PAL.ink, 2.5);   /* the section, area A */
     box(ctx, xh, 0, -h, h, -h, h, 0.5, false);                             /* the near half of the bar, translucent, open at the section */
+    const rs = F.ref('slab');                                              /* the bar's outline, top and front, in its own colour */
+    for (const f of [[P([xh, h, -h]), P([xc, h, -h]), P([xc, h, h]), P([xh, h, h])], [P([xh, -h, h]), P([xc, -h, h]), P([xc, h, h]), P([xh, h, h])]]) {
+      ctx.save(); ctx.beginPath(); f.forEach((q, i) => (i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]))); ctx.closePath(); ctx.strokeStyle = rs; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.stroke(); ctx.restore();
+    }
     box(ctx, xc, xc + BW, -BH, BH, -BH, BH, 1);                            /* the cold body */
     /* the current of heat through the bar: packets in four lanes, spaced 30 apart, running from the hot face to the cold face */
     const SP = 34, ph = ((run % SP) + SP) % SP;
@@ -236,13 +241,15 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
     text(ctx, 'T_1', cf[0], cf[1] - 18, tc, { size: 26, weight: 600, align: 'center' });
     text(ctx, degC(T1.v) + ' °C', cf[0], cf[1] + 16, tc, { size: 17, weight: 600, align: 'center' });
     const sec = P([0, h, h]);
-    line(ctx, sec[0], sec[1] - 6, sec[0] + 40, sec[1] - 70, PAL.ink, 1.5, [4, 6]);
-    text(ctx, 'area A = ' + sig(A.v) + ' m²', sec[0] + 48, sec[1] - 78, PAL.ink, { size: 20, weight: 600, bg: PAL.panel });
+    line(ctx, sec[0], sec[1] - 6, sec[0] + 40, sec[1] - 70, C('area'), 1.5, [4, 6]);
+    text(ctx, 'area A = ' + sig(A.v) + ' m²', sec[0] + 48, sec[1] - 78, C('area'), { size: 20, weight: 600, bg: PAL.panel });
     const q0 = P([xh, -h, h]), q1 = P([xc, -h, h]);
-    hbracket(ctx, q0[0], q1[0], Math.max(q0[1], q1[1]) + 36, PAL.ink);
-    text(ctx, 'd = ' + fmt(D.v, 2) + ' cm', (q0[0] + q1[0]) / 2, Math.max(q0[1], q1[1]) + 62, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    hbracket(ctx, q0[0], q1[0], Math.max(q0[1], q1[1]) + 36, C('position'));
+    text(ctx, 'd = ' + fmt(D.v, 2) + ' cm', (q0[0] + q1[0]) / 2, Math.max(q0[1], q1[1]) + 62, C('position'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     const qm = P([xh + len * 0.3, h, -h]);
-    text(ctx, mat.value.replace(/ \(.*\)$/, '') + ', k = ' + sig(k, 2) + ' J/(s·m·°C)', qm[0], Math.max(100, qm[1] - 36), PAL.ink, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
+    const my = Math.max(126, qm[1] - 36);
+    text(ctx, mat.value.replace(/ \(.*\)$/, ''), qm[0], my - 26, rs, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'k = ' + sig(k, 2) + ' J/(s·m·°C)', qm[0], my, C('thermal-conductivity'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
     /* the gauge */
     text(ctx, 'rate of heat transfer Q/t', GL, GY - 44, pc, { size: 20, weight: 600 });
     line(ctx, GL, GY, GR, GY, PAL.muted, 2);
@@ -254,7 +261,7 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
     text(ctx, watts(Pw), gx, GY + 50, pc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     topline(ctx, `Through ${sig(A.v)} m² of ${mat.value.replace(/ \(.*\)$/, '').toLowerCase()} ${fmt(D.v, 2)} cm thick, a difference of ${degC(dT)} °C drives ${watts(Pw)}.`);
     const Qday = Pw * 86400, mIce = Qday / 334e3;
-    readout(d.readout, `\\frac{\\kQh}{\\kt} = \\frac{kA(\\kTemptwo - \\kTempone)}{d} = \\frac{(${sig(k, 2)})(${sig(A.v)}\\ \\text{m}^2)(${degTex(T2.v)} - ${degSub(T1.v)})}{${sig(D.v / 100)}\\ \\text{m}} = \\htmlClass{kv-power}{${wattsTex(Pw)}}`,
+    readout(d.readout, `\\frac{\\kQh}{\\kt} = \\frac{\\kkcond\\karea(\\kTemptwo - \\kTempone)}{\\kdthick} = \\frac{(${sig(k, 2)})(${sig(A.v)}\\ \\text{m}^2)(${degTex(T2.v)} - ${degSub(T1.v)})}{${sig(D.v / 100)}\\ \\text{m}} = \\htmlClass{kv-power}{${wattsTex(Pw)}}`,
       `In one day this rate carries ${sci(Qday)} J across the slab, which would melt ${sci(mIce)} kg of ice at 0 °C.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });

@@ -4,7 +4,7 @@
  "chapter": "14",
  "title": "Phase Change and Latent Heat",
  "short": "Phase change and latent heat",
- "lead": "Heat that melts ice or boils water changes no temperature at all. It goes into pulling the molecules apart, and the same energy comes back out when the vapor condenses or the liquid freezes. This hidden energy is the latent heat, and the heat of a phase change is the mass times a latent heat coefficient. A sample of ice climbs the heating curve to steam, ice cubes melt in a soda, and a strategy follows for any problem that mixes temperature changes and phase changes.",
+ "lead": "Heat that melts ice or boils water changes no temperature at all. It goes into pulling the molecules apart, and the same energy comes back out when the vapor condenses or the liquid freezes. This hidden energy is the latent heat, and the heat of a phase change is the mass times a latent heat coefficient. <span data-ref=\"sample\">A sample of ice</span> climbs the heating curve to steam, <span data-ref=\"ice\">ice cubes</span> melt in <span data-ref=\"soda\">a soda</span>, and a strategy follows for any problem that mixes temperature changes and phase changes.",
  "objectives": [
   "Examine heat transfer.",
   "Calculate final temperature from heat transfer."
@@ -64,7 +64,9 @@
     425
    ],
    "draws": [
-    "energy"
+    "energy",
+    "mass",
+    "latent-heat"
    ]
   },
   {
@@ -80,7 +82,10 @@
    ],
    "draws": [
     "energy",
-    "temperature"
+    "temperature",
+    "mass",
+    "specific-heat",
+    "latent-heat"
    ]
   },
   {
@@ -88,7 +93,10 @@
    "kind": "sim",
    "draws": [
     "energy",
-    "temperature"
+    "temperature",
+    "mass",
+    "latent-heat",
+    "specific-heat"
    ]
   },
   {
@@ -634,5 +642,27 @@
   { "exercise": "p18", "concept": "heat-of-vaporization" },
   { "exercise": "p18", "concept": "heat-of-fusion", "weight": 2 },
   { "exercise": "p18", "concept": "heat-and-temperature-change", "weight": 2 }
+ ],
+ "referents": [
+  {
+   "id": "sample",
+   "label": "the sample of ice heated into steam",
+   "figure": "sim-heating-curve"
+  },
+  {
+   "id": "ice",
+   "label": "the ice cubes",
+   "figure": "sim-ice-soda"
+  },
+  {
+   "id": "soda",
+   "label": "the soda",
+   "figure": "sim-ice-soda"
+  },
+  {
+   "id": "cup",
+   "label": "the foam cup",
+   "figure": "sim-ice-soda"
+  }
  ]
 }
