@@ -48,7 +48,7 @@ function hook(ctx, x, y, color) {
   const d = sim('sim-skaters', 620);
   const F1 = ctl(d.controls, { label: '\\kFone', cls: 'force', min: 10, max: 80, step: 1, value: 50, unit: 'N', dec: 0, aria: 'the push of the first skater' });
   const F2 = ctl(d.controls, { label: '\\kFtwo', cls: 'force', min: 10, max: 80, step: 1, value: 40, unit: 'N', dec: 0, aria: 'the push of the second skater' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the two pushes',
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the two pushes',
     specials: [{ at: 90, label: 'right angle' }] });
   const ro = F.readout(d);
   const U = 2.5;                                  /* logical units per newton */
@@ -88,11 +88,11 @@ function hook(ctx, x, y, color) {
     arrow(ctx, px, py, px + F2.v * U * Math.cos(th), py - F2.v * U * Math.sin(th), C('force'), 5);
     beyond(ctx, sub2, px + F2.v * U * Math.cos(th), py - F2.v * U * Math.sin(th), th, C('force'));
     const arcR = Math.min(64, 0.7 * Math.min(F1.v, F2.v) * U);
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, arcR, -th, 0); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, arcR, -th, 0); ctx.stroke(); ctx.restore();
     /* the angle is named on its bisector, except when the pushes are so far apart that the total
        force runs along that bisector, when it is named below the first skater's arms instead */
-    if (TH.v <= 110) text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px + (arcR + 50) * Math.cos(th / 2), py - (arcR + 50) * Math.sin(th / 2), PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    else text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px - 124, py + 54, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    if (TH.v <= 110) text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px + (arcR + 50) * Math.cos(th / 2), py - (arcR + 50) * Math.sin(th / 2), C('angle'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    else text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px - 124, py + 54, C('angle'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
 
     /* ---- the free-body diagram: the body as a single point, the outside forces leaving it ---- */
     const bx = 940, by = 400;
@@ -108,9 +108,9 @@ function hook(ctx, x, y, color) {
     beyond(ctx, sub1, ex1, ey1, 0, C('force'));
     arrow(ctx, bx, by, ex2, ey2, C('force'), 5);
     beyond(ctx, sub2, ex2, ey2, th, C('force'));
-    dot(ctx, bx, by, PAL.ink, true, 11);
-    line(ctx, bx, by + 14, bx, by + 32, PAL.muted, 2);
-    text(ctx, 'the body, as a single point', bx, by + 46, PAL.muted, { size: 17, align: 'center' });
+    dot(ctx, bx, by, F.ref('skater-3'), true, 11);
+    line(ctx, bx, by + 14, bx, by + 32, F.ref('skater-3'), 2);
+    text(ctx, 'the body, as a single point', bx, by + 46, F.ref('skater-3'), { size: 17, align: 'center' });
 
     headline(ctx, 'A push of ' + fmt(F1.v, 0) + ' N and a push of ' + fmt(F2.v, 0) + ' N, ' + fmt(TH.v, 0)
       + '° apart, add to a total force of ' + fmt(tot, 1) + ' N at ' + fmt(ang / RAD, 1) + '° from the first push');
@@ -143,15 +143,15 @@ function hook(ctx, x, y, color) {
     /* ---- (a) the spring at its undistorted length ---- */
     text(ctx, '(a) the spring at its relaxed length', WALL, 112, PAL.muted, { size: 17 });
     fixed(ctx, WALL - 40, 130, 40, 90);
-    spring(ctx, X0, 175, rest, 175, 9, 20, PAL.ink, 4);
-    line(ctx, rest, 149, rest, 201, PAL.ink, 5);
+    spring(ctx, X0, 175, rest, 175, 9, 20, F.ref('spring'), 4);
+    line(ctx, rest, 149, rest, 201, F.ref('spring'), 5);
     hbracket(ctx, X0, rest, 240, C('position'), 'x = ' + fmt(X.v, 2) + ' m');
 
     /* ---- (b) the spring stretched, and the restoring force it exerts ---- */
     text(ctx, '(b) the same spring, pulled out a distance Δx', WALL, 290, PAL.muted, { size: 17 });
     fixed(ctx, WALL - 40, 318, 40, 90);
-    spring(ctx, X0, 363, pulled, 363, 9, 20, PAL.ink, 4);
-    line(ctx, pulled, 337, pulled, 389, PAL.ink, 5);
+    spring(ctx, X0, 363, pulled, 363, 9, 20, F.ref('spring'), 4);
+    line(ctx, pulled, 337, pulled, 389, F.ref('spring'), 5);
     grip(ctx, pulled, 363, PAL.ink);
     line(ctx, rest, 320, rest, 430, PAL.muted, 2, [8, 8]);
     if (DX.v > 0.0001) {
@@ -168,7 +168,7 @@ function hook(ctx, x, y, color) {
     ctx.fillRect(180, fy - 48, 1010, 96); ctx.strokeRect(180, fy - 48, 1010, 96); ctx.restore();
     line(ctx, FX(0), fy + 22, FX(10), fy + 22, PAL.muted, 2);
     for (let u = 0; u <= 10; u++) { line(ctx, FX(u), fy + 14, FX(u), fy + 22, PAL.muted, 2); text(ctx, String(u), FX(u), fy + 40, PAL.muted, { size: 17, align: 'center' }); }
-    spring(ctx, 196, fy - 12, Math.max(FX(0), FX(r)) - 8, fy - 12, 9, 16, PAL.ink, 4);
+    spring(ctx, 196, fy - 12, Math.max(FX(0), FX(r)) - 8, fy - 12, 9, 16, F.ref('spring'), 4);
     line(ctx, FX(r), fy - 40, FX(r), fy + 10, C('force'), 5);
     text(ctx, fmt(r, 1) + ' units', FX(r), fy - 58, C('force'), { weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, FX(r), fy - 12, 1240, fy - 12, PAL.ink, 5);

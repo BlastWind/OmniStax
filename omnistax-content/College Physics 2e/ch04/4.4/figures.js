@@ -70,7 +70,7 @@ function plume(ctx, x, y, color, f) {
 (function () {
   const d = sim('sim-swimmer', 760);
   const Fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 100, max: 600, step: 10, value: 350, unit: 'N', dec: 0, onInput: reset, aria: 'force of the push' });
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 90, step: 1, value: 60, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the swimmer' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 90, step: 1, value: 60, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the swimmer' });
   const tp = ctl(d.controls, { label: '\\Delta\\kt', cls: 'time', min: 0.2, max: 0.8, step: 0.05, value: 0.4, unit: 's', dec: 2, onInput: reset, aria: 'how long her feet stay on the wall' });
   const GLIDE = 1.6, WALL = 1100, KF = 0.28;
   const run = () => { const a = Fp.v / mm.v, ve = a * tp.v, xp = 0.5 * a * tp.v * tp.v; return { a, ve, xp, T: tp.v + GLIDE, D: xp + ve * GLIDE }; };
@@ -142,7 +142,7 @@ function plume(ctx, x, y, color, f) {
       arrow(ctx, fx, fy, fx - Lb, fy, cf, 5);
       text(ctx, 'F wall on feet', fx - Lb - 14, fy, cf, { size: 19, weight: 600, align: 'right' });
     } else text(ctx, 'no horizontal force acts on her now', fx - 40, fy, PAL.muted, { size: 17, align: 'right' });
-    dot(ctx, fx, fy, PAL.ink, true, 10);
+    dot(ctx, fx, fy, F.ref('swimmer'), true, 10);
     text(ctx, 'the vertical forces cancel, since there is no vertical motion', 1110, 688, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, pushing
       ? 'After ' + fmt(tau, 2) + ' s the wall is still pushing back on her feet with ' + fmt(Fp.v, 0) + ' N, so her ' + fmt(mm.v, 0) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s² away from it'
@@ -150,7 +150,7 @@ function plume(ctx, x, y, color, f) {
         ? 'Her feet left the wall at ' + fmt(r.ve, 2) + ' m/s, and after ' + fmt(tau, 2) + ' s she has glided ' + fmt(s, 1) + ' m, past the 5 m of pool drawn here'
         : 'Her feet left the wall at ' + fmt(r.ve, 2) + ' m/s, and after ' + fmt(tau, 2) + ' s she is still gliding at that speed, ' + fmt(s, 1) + ' m out');
     readout(d.readout, pushing
-      ? `\\ka = \\frac{\\kF_{\\text{wall on feet}}}{m} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mm.v, 0)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`
+      ? `\\ka = \\frac{\\kFwallfeet}{\\km} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mm.v, 0)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`
       : `\\kv = \\ka\\,\\Delta\\kt = (${fmt(r.a, 2)}\\ \\text{m/s}^2)(${fmt(tp.v, 2)}\\ \\text{s}) = ${fmt(r.ve, 2)}\\ \\text{m/s}`,
       'The force she exerts on the wall and the force the wall exerts on her are equal in magnitude and opposite in direction, but they act on different bodies and so they do not cancel. Only the force on her feet is an external force on the system of interest, and only that force accelerates her.');
   }
@@ -168,8 +168,8 @@ function plume(ctx, x, y, color, f) {
   const d = sim('sim-cart', 860);
   const Ff = ctl(d.controls, { label: '\\kFfloor', cls: 'force', min: 100, max: 250, step: 5, value: 150, unit: 'N', dec: 0, onInput: reset, aria: 'reaction force of the floor' });
   const fr = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 60, step: 1, value: 24, unit: 'N', dec: 1, onInput: reset, aria: 'forces opposing the motion' });
-  const mp = ctl(d.controls, { label: 'm_{\\text{prof}}', cls: '', min: 40, max: 100, step: 1, value: 65, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the professor' });
-  const mc = ctl(d.controls, { label: 'm_{\\text{cart}}', cls: '', min: 5, max: 40, step: 1, value: 19, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the cart and its equipment' });
+  const mp = ctl(d.controls, { label: '\\km_{\\htmlData{ref=professor}{\\text{prof}}}', cls: 'mass', min: 40, max: 100, step: 1, value: 65, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the professor' });
+  const mc = ctl(d.controls, { label: '\\km_{\\htmlData{ref=cart}{\\text{cart}}}', cls: 'mass', min: 5, max: 40, step: 1, value: 19, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the cart and its equipment' });
   /* The force labels would ride a scene that crosses the room, and two pairs share an origin, so the
      scene draws none (rule 26.7): the two system boundaries are frame labels and stay, the free-body
      diagrams below carry every value, and the pointer names any arrow. */
@@ -182,14 +182,14 @@ function plume(ctx, x, y, color, f) {
   const cy = cycle(() => run().T, 1.2);
   function reset() { cy.reset(); }
   /* one system's free-body diagram: the force driving it, the force opposing it, and what they give */
-  function fbd(ctx, l, t, rr, title, Fap, Flab, Fnet, m, a, cf) {
+  function fbd(ctx, l, t, rr, title, Fap, Flab, Fnet, m, a, cf, body) {
     panel(ctx, l, t, rr, t + 320);
     const mid = (l + rr) / 2, y = t + 120;
     text(ctx, title, mid, t + 28, PAL.muted, { size: 18, align: 'center' });
     const La = Math.min(180, Fap * KF), Lf = Math.min(120, Math.max(44, fr.v * KF));
     arrow(ctx, mid, y, mid + La, y, cf, 5); text(ctx, Flab + ' = ' + fmt(Fap, 1) + ' N', mid + La + 12, y, cf, { size: 19, weight: 600 });
     arrow(ctx, mid, y, mid - Lf, y, cf, 5); text(ctx, 'f', mid - Lf - 12, y, cf, { size: 19, weight: 600, align: 'right' });
-    dot(ctx, mid, y, PAL.ink, true, 10);
+    dot(ctx, mid, y, body ?? PAL.ink, true, 10);
     text(ctx, 'F_net = ' + fmt(Fnet, 1) + ' N on ' + fmt(m, 1) + ' kg', mid, y + 84, cf, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'a = ' + fmt(a, 2) + ' m/s²', mid, y + 130, C('acceleration'), { size: 22, weight: 600, align: 'center' });
   }
@@ -223,9 +223,9 @@ function plume(ctx, x, y, color, f) {
     ].map((q) => ({ ...q, r: 30 }));
     /* a free-body diagram for each system */
     fbd(ctx, 100, 470, 660, 'System 1: the professor, the cart and the equipment', Ff.v, 'F_floor', r.Fnet, r.M, r.a, cf);
-    fbd(ctx, 740, 470, 1300, 'System 2: the cart and the equipment', r.Fprof, 'F_prof', r.Fnet2, mc.v, r.a, cf);
+    fbd(ctx, 740, 470, 1300, 'System 2: the cart and the equipment', r.Fprof, 'F_prof', r.Fnet2, mc.v, r.a, cf, F.ref('cart'));
     topline(ctx, 'After ' + fmt(tau, 2) + ' s System 1 is still pushed forward with ' + fmt(Ff.v, 0) + ' N and held back by ' + fmt(fr.v, 1) + ' N, so its ' + fmt(r.M, 1) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s²');
-    readout(d.readout, `\\ka = \\frac{\\kFfloor - \\kff}{m} = \\frac{${fmt(Ff.v, 0)}\\ \\text{N} - ${fmt(fr.v, 1)}\\ \\text{N}}{${fmt(r.M, 1)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
+    readout(d.readout, `\\ka = \\frac{\\kFfloor - \\kff}{\\km} = \\frac{${fmt(Ff.v, 0)}\\ \\text{N} - ${fmt(fr.v, 1)}\\ \\text{N}}{${fmt(r.M, 1)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
       'The force the professor exerts on the cart is ' + fmt(r.Fnet2, 1) + ' N + ' + fmt(fr.v, 1) + ' N = ' + fmt(r.Fprof, 1) + ' N. It is internal to System 1, where it cancels against the force the cart exerts back on her, so it never enters the first calculation; taking the cart alone as System 2 makes it external, and then it is the force that accelerates the cart.');
   }
   hover(d.stage, () => hits);
@@ -241,7 +241,7 @@ function plume(ctx, x, y, color, f) {
 (function () {
   const d = sim('sim-rocket', 700);
   const Fk = ctl(d.controls, { label: '\\kF', cls: 'force', min: 2, max: 20, step: 0.5, value: 10, unit: 'kN', dec: 1, onInput: reset, aria: 'force the rocket exerts on the gas' });
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 500, max: 3000, step: 100, value: 1200, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the rocket' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 500, max: 3000, step: 100, value: 1200, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the rocket' });
   const BURN = 4;
   const run = () => { const a = (Fk.v * 1000) / mm.v; return { a, ve: a * BURN, S: 0.5 * a * BURN * BURN }; };
   const cy = cycle(() => BURN, 1.2);
@@ -285,7 +285,7 @@ function plume(ctx, x, y, color, f) {
     pinned(ctx, gbox, g.X, g.Y, tau, v, PAL.ink, fmt(v, 1) + ' m/s');
     text(ctx, 'the slope is the acceleration, ' + fmt(r.a, 2) + ' m/s²', g.X(BURN * 0.44), g.Y(Math.min(r.ve, VR) * 0.82), C('acceleration'), { size: 18, weight: 600, align: 'center' });
     topline(ctx, 'After ' + fmt(tau, 2) + ' s the gas has pushed the rocket forward with ' + fmt(Fk.v, 1) + ' kN, and its ' + fmt(mm.v, 0) + ' kg has reached ' + fmt(v, 1) + ' m/s' + (past ? ', ' + fmt(s, 0) + ' m from where it started and past the 80 m drawn here' : ''));
-    readout(d.readout, `\\ka = \\frac{\\kF}{m} = \\frac{${fmt(Fk.v * 1000, 0)}\\ \\text{N}}{${fmt(mm.v, 0)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
+    readout(d.readout, `\\ka = \\frac{\\kF}{\\km} = \\frac{${fmt(Fk.v * 1000, 0)}\\ \\text{N}}{${fmt(mm.v, 0)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
       'The rocket has nothing to push on but its own exhaust gas, and that is enough: it exerts a large backward force on the gas, and by Newton’s third law the gas exerts an equal forward force on the rocket, which is its thrust.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => BURN / 4.5), draw });

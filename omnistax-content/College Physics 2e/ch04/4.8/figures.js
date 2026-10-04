@@ -86,7 +86,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
   const d = sim('sim-field', 620);
   const TX = ctl(d.controls, { label: '\\kx', cls: 'position', min: -2.4, max: 2.4, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'the test charge across the field' });
   const TY = ctl(d.controls, { label: '\\ky', cls: 'position', min: -1.15, max: 1.15, step: 0.05, value: 0.7, unit: 'm', dec: 2, aria: 'the test charge up the field' });
-  const TQ = ctl(d.controls, { label: 'q', cls: '', min: 1, max: 4, step: 0.5, value: 2, unit: 'units', dec: 1, aria: 'the size of the test charge' });
+  const TQ = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 4, step: 0.5, value: 2, unit: 'units', dec: 1, aria: 'the size of the test charge' });
   const S = 190, CX = 700, CY = 360, SEP = 1;
   const px = (x) => CX + x * S, py = (y) => CY - y * S;
   /* the field of the two charges, in units where one charge at one metre gives one */
@@ -152,11 +152,11 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
         { weight: 600, size: 24, align: 'center', bg: PAL.panel });
     }
     dot(ctx, px(x), py(y), F.ref('test-charge'), true, 7 + 3 * q);
-    text(ctx, 'q = ' + fmt(q, 1), px(x), py(y) + (uy >= 0 ? 1 : -1) * (26 + 3 * q), PAL.ink, { size: 17, align: 'center', bg: PAL.panel });
+    text(ctx, 'q = ' + fmt(q, 1), px(x), py(y) + (uy >= 0 ? 1 : -1) * (26 + 3 * q), C('charge'), { size: 17, align: 'center', bg: PAL.panel });
     headline(ctx, near ? 'At a charge itself the field has no single direction, so the force on the test charge there is not defined'
       : Math.abs(ang) < 1 ? 'The force on the test charge is ' + fmt(Fm, 2) + ' units and runs straight along the axis, following the field line through it'
         : 'The force on the test charge is ' + fmt(Fm, 2) + ' units and points ' + fmt(Math.abs(ang), 0) + '° ' + (ang > 0 ? 'above' : 'below') + ' the axis');
-    readout(d.readout, `\\kF = qE = (${fmt(q, 1)}\\ \\text{units})(${fmt(E, 2)}\\ \\text{units}) = ${fmt(Fm, 2)}\\ \\text{units}`,
+    readout(d.readout, `\\kF = \\kq\\kE = (${fmt(q, 1)}\\ \\text{units})(${fmt(E, 2)}\\ \\text{units}) = ${fmt(Fm, 2)}\\ \\text{units}`,
       'The charges here carry no coulombs and the field no newtons per coulomb, so both are counted in units of their own: the charge in units of the charge that makes the field, and the field in units of its strength midway between the two charges. Raise q and the arrow grows with it, while the lines stay exactly where they are, because the field is a characteristic of the two charges that make it and not of the charge you place in it.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -217,7 +217,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     /* the proton and the neutron, doing the same thing with a meson */
     text(ctx, 'a meson exchanged between a proton and a neutron', 60, 322, PAL.muted, { size: 20, weight: 600 });
     const yn = 404;
-    dot(ctx, xa, yn, PAL.ink, true, 26); dot(ctx, xb, yn, PAL.ink, false, 26);
+    dot(ctx, xa, yn, F.el('p+'), true, 26); dot(ctx, xb, yn, F.el('n0'), false, 26);
     text(ctx, 'p', xa, yn, PAL.panel, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'n', xb, yn, PAL.ink, { size: 22, weight: 600, align: 'center' });
     const mx = xa + 26 + (xb - 26 - (xa + 26)) * u;

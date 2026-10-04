@@ -44,7 +44,7 @@ function trafficLight(ctx, x, y, color) {
   const d = sim('sim-barge', 800);
   const fx = ctl(d.controls, { label: '\\kFx', cls: 'force', min: 1, max: 5, step: 0.1, value: 2.7, unit: '×10⁵ N', dec: 1, aria: 'force of the first tugboat' });
   const fy = ctl(d.controls, { label: '\\kFy', cls: 'force', min: 1, max: 5, step: 0.1, value: 3.6, unit: '×10⁵ N', dec: 1, aria: 'force of the second tugboat' });
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 2, max: 8, step: 0.1, value: 5, unit: '×10⁶ kg', dec: 1, aria: 'mass of the barge' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 2, max: 8, step: 0.1, value: 5, unit: '×10⁶ kg', dec: 1, aria: 'mass of the barge' });
   const ac = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0, max: 0.2, step: 0.005, value: 0.075, unit: 'm/s²', dec: 3, aria: 'acceleration of the barge' });
   function draw() {
     const { ctx } = begin(d.c);
@@ -79,14 +79,14 @@ function trafficLight(ctx, x, y, color) {
     text(ctx, 'F_y', hx + 30, (oy + hy) / 2, fc, { size: 20, weight: 600 });
     arrow(ctx, ox, oy, hx, hy, fc, 5);
     text(ctx, 'F_app = ' + fmt(app, 1) + ' × 10⁵ N', hx, hy - 28, fc, { size: 20, weight: 600, align: 'center' });
-    angleArc(ctx, ox, oy, 0, th, 56, PAL.ink);
-    text(ctx, fmt(th, 1) + '°', ox + 96 * cos(th / 2), oy - 96 * sin(th / 2) + 4, PAL.ink, { size: 19, align: 'center' });
+    angleArc(ctx, ox, oy, 0, th, 56, C('angle'));
+    text(ctx, fmt(th, 1) + '°', ox + 96 * cos(th / 2), oy - 96 * sin(th / 2) + 4, C('angle'), { size: 19, align: 'center' });
     if (ok) {
       const dl = drag * S2;
       arrow(ctx, ox, oy, ox - dl * cos(th), oy + dl * sin(th), fc, 5);
       text(ctx, 'F_D = ' + fmt(drag, 2) + ' × 10⁵ N', ox - dl * cos(th) - 14, oy + dl * sin(th) + 26, fc, { size: 20, weight: 600, align: 'right' });
     }
-    dot(ctx, ox, oy, PAL.ink, true, 8);
+    dot(ctx, ox, oy, F.ref('barge'), true, 8);
     /* the subtraction, as one bar along the direction of the applied force */
     const l = 200, bw = 120, ybar = 630;
     text(ctx, 'along the direction of the applied force', l, ybar - 54, PAL.muted, { size: 19 });
@@ -105,7 +105,7 @@ function trafficLight(ctx, x, y, color) {
     headline(ctx, ok
       ? 'The tugs push with ' + fmt(app, 1) + ' × 10⁵ N together, the barge takes ' + fmt(ma, 2) + ' × 10⁵ N of it, and the water drags back with ' + fmt(drag, 2) + ' × 10⁵ N'
       : 'These pushes cannot accelerate ' + fmt(mm.v, 1) + ' × 10⁶ kg at ' + fmt(ac.v, 3) + ' m/s², so no drag force is left to find');
-    readout(d.readout, `\\kFD = \\kFa - m\\ka = ${sci(app * 1e5)}\\ \\text{N} - (${sci(mm.v * 1e6)}\\ \\text{kg})(${fmt(ac.v, 3)}\\ \\text{m/s}^2) = ${ok ? sci(drag * 1e5, 2) : '-\\,' + sci(Math.abs(drag) * 1e5 + 1e-9, 2)}\\ \\text{N}`,
+    readout(d.readout, `\\kFD = \\kFa - \\km\\ka = ${sci(app * 1e5)}\\ \\text{N} - (${sci(mm.v * 1e6)}\\ \\text{kg})(${fmt(ac.v, 3)}\\ \\text{m/s}^2) = ${ok ? sci(drag * 1e5, 2) : '-\\,' + sci(Math.abs(drag) * 1e5 + 1e-9, 2)}\\ \\text{N}`,
       ok ? 'The weight of the barge is ' + sciP(mm.v * 1e6 * G) + ' N, so the drag on it is only one ' + fmt(mm.v * 1e6 * G / (drag * 1e5), 0) + 'th of that. A well-designed hull needs very little push at a low speed.'
         : 'The drag opposes the motion, so it cannot be negative: the applied force has to be at least as large as the mass times the acceleration. Lower the acceleration, or have the tugs push harder.');
   }
@@ -120,9 +120,9 @@ function trafficLight(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-traffic-light', 780);
-  const t1 = ctl(d.controls, { label: '\\theta_1', cls: '', min: 10, max: 80, step: 0.5, value: 30, unit: '°', dec: 1, aria: 'angle of the left wire above the horizontal' });
-  const t2 = ctl(d.controls, { label: '\\theta_2', cls: '', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, aria: 'angle of the right wire above the horizontal' });
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 5, max: 40, step: 0.5, value: 15, unit: 'kg', dec: 1, aria: 'mass of the traffic light' });
+  const t1 = ctl(d.controls, { label: '\\ktheta_1', cls: 'angle', min: 10, max: 80, step: 0.5, value: 30, unit: '°', dec: 1, aria: 'angle of the left wire above the horizontal' });
+  const t2 = ctl(d.controls, { label: '\\ktheta_2', cls: 'angle', min: 10, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, aria: 'angle of the right wire above the horizontal' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 5, max: 40, step: 0.5, value: 15, unit: 'kg', dec: 1, aria: 'mass of the traffic light' });
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('force'), w = mm.v * G, sm = sin(t1.v + t2.v);
@@ -132,14 +132,14 @@ function trafficLight(ctx, x, y, color) {
     const ax = px - L * cos(t1.v), ay = py - L * sin(t1.v), bx = px + L * cos(t2.v), bgy = py - L * sin(t2.v);
     strip(ctx, 80, 800, gy, 26);
     line(ctx, ax, ay, ax, gy, PAL.muted, 8); line(ctx, bx, bgy, bx, gy, PAL.muted, 8);
-    line(ctx, ax, ay, px, py, PAL.ink, 4); line(ctx, px, py, bx, bgy, PAL.ink, 4);
-    trafficLight(ctx, px, py, PAL.ink);
-    angleArc(ctx, px, py, 180 - t1.v, 180, 76, PAL.muted); angleArc(ctx, px, py, 0, t2.v, 76, PAL.muted);
-    text(ctx, fmt(t1.v, 1) + '°', px - 112 * cos(t1.v / 2), py - 112 * sin(t1.v / 2), PAL.ink, { size: 19, align: 'center' });
-    text(ctx, fmt(t2.v, 1) + '°', px + 112 * cos(t2.v / 2), py - 112 * sin(t2.v / 2), PAL.ink, { size: 19, align: 'center' });
+    line(ctx, ax, ay, px, py, F.ref('wire-1'), 4); line(ctx, px, py, bx, bgy, F.ref('wire-2'), 4);
+    trafficLight(ctx, px, py, F.ref('light'));
+    angleArc(ctx, px, py, 180 - t1.v, 180, 76, C('angle')); angleArc(ctx, px, py, 0, t2.v, 76, C('angle'));
+    text(ctx, fmt(t1.v, 1) + '°', px - 112 * cos(t1.v / 2), py - 112 * sin(t1.v / 2), C('angle'), { size: 19, align: 'center' });
+    text(ctx, fmt(t2.v, 1) + '°', px + 112 * cos(t2.v / 2), py - 112 * sin(t2.v / 2), C('angle'), { size: 19, align: 'center' });
     line(ctx, px - 150, py, px + 150, py, PAL.rule, 2, [8, 8]);
     dot(ctx, px, py, PAL.ink, true, 7);
-    text(ctx, 'm = ' + fmt(mm.v, 1) + ' kg', px + 46, py + 78, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, 'm = ' + fmt(mm.v, 1) + ' kg', px + 46, py + 78, C('mass'), { size: 20, weight: 600 });
     /* the free-body diagram with the components dashed */
     const ox = 1090, oy = 330, S = 175 / Math.max(T1, T2, w);
     text(ctx, 'the free-body diagram of the light', 880, 116, PAL.muted, { size: 19 });
@@ -152,15 +152,15 @@ function trafficLight(ctx, x, y, color) {
     text(ctx, 'T₁ = ' + fmt(T1, 0) + ' N', h1x - 12, h1y - 22, fc, { size: 20, weight: 600, align: 'right' });
     text(ctx, 'T₂ = ' + fmt(T2, 0) + ' N', h2x + 12, h2y - 22, fc, { size: 20, weight: 600 });
     text(ctx, 'w = ' + fmt(w, 0) + ' N', ox + 16, oy + w * S + 8, fc, { size: 20, weight: 600 });
-    dot(ctx, ox, oy, PAL.ink, true, 8);
+    dot(ctx, ox, oy, F.ref('light'), true, 8);
     /* the balance the horizontal axis gives, as the book's part (e) */
     const cyy = 660, hb = T1 * S * cos(t1.v);
     text(ctx, 'the horizontal components cancel', 880, cyy - 56, PAL.muted, { size: 19 });
     arrow(ctx, ox, cyy, ox - hb, cyy, fc, 4); arrow(ctx, ox, cyy, ox + hb, cyy, fc, 4);
-    dot(ctx, ox, cyy, PAL.ink, true, 6);
+    dot(ctx, ox, cyy, F.ref('light'), true, 6);
     text(ctx, 'T₁ₓ = T₂ₓ = ' + fmt(T1 * cos(t1.v), 1) + ' N', ox, cyy + 36, fc, { size: 20, weight: 600, align: 'center' });
     headline(ctx, 'At ' + fmt(t1.v, 1) + '° and ' + fmt(t2.v, 1) + '° the wires carry ' + fmt(T1, 0) + ' N and ' + fmt(T2, 0) + ' N, and together they hold up ' + fmt(w, 0) + ' N');
-    readout(d.readout, `\\kTone\\sin\\theta_1 + \\kTtwo\\sin\\theta_2 = (${fmt(T1, 0)}\\ \\text{N})\\sin ${fmt(t1.v, 1)}^\\circ + (${fmt(T2, 0)}\\ \\text{N})\\sin ${fmt(t2.v, 1)}^\\circ = ${fmt(w, 0)}\\ \\text{N} = \\kwgt`,
+    readout(d.readout, `\\kTone\\sin\\ktheta_1 + \\kTtwo\\sin\\ktheta_2 = (${fmt(T1, 0)}\\ \\text{N})\\sin ${fmt(t1.v, 1)}^\\circ + (${fmt(T2, 0)}\\ \\text{N})\\sin ${fmt(t2.v, 1)}^\\circ = ${fmt(w, 0)}\\ \\text{N} = \\kwgt`,
       'The horizontal components cancel, T₁ cos θ₁ = T₂ cos θ₂, and that with the vertical balance fixes both tensions. ' + (Math.abs(t1.v - t2.v) < 0.26 ? 'The angles on either side are equal, so the two tensions are equal, as they were for the tightrope walker.'
         : 'The wire at ' + fmt(Math.max(t1.v, t2.v), 1) + '° is nearer the vertical and carries the larger tension, because it holds up the greater part of the weight. Brought toward the horizontal, both wires carry larger tensions.'));
   }
@@ -176,7 +176,7 @@ function trafficLight(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-elevator-scale', 800);
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 120, step: 0.5, value: 75, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the person' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 0.5, value: 75, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the person' });
   const ac = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0.2, max: 3, step: 0.05, value: 1.2, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration of the lift' });
   const T = 10, TA = 3, TB = 7;
   const cy = cycle(() => T, 1.2);
@@ -228,7 +228,7 @@ function trafficLight(ctx, x, y, color) {
     text(ctx, 'F_s', 672, fby - 58 * (Fs / top) - 2, fc, { size: 20, weight: 600 });
     arrow(ctx, 658, fby, 658, fby + 58 * (w / top), fc, 5);
     text(ctx, 'w', 672, fby + 58 * (w / top) + 2, fc, { size: 20, weight: 600 });
-    dot(ctx, 658, fby, PAL.ink, true, 9);
+    dot(ctx, 658, fby, F.ref('man'), true, 9);
     /* the two graphs, beside the vertical scene */
     /* fixed axes: the ride always lasts 10 s, and the largest reading the sliders allow is the
        heaviest person under the hardest acceleration, 120 × (9.80 + 3) = 1,536 N, so the reading axis
@@ -253,7 +253,7 @@ function trafficLight(ctx, x, y, color) {
       : t < TB ? 'riding at a constant ' + fmt(ac.v * TA, 2) + ' m/s, and the dial reads his weight of ' + fmt(w, 0) + ' N exactly'
         : 'slowing to a stop, and the dial reads only ' + fmt(Fs, 0) + ' N against his ' + fmt(w, 0) + ' N weight';
     headline(ctx, 'After ' + fmt(t, 1) + ' s the lift is ' + phase);
-    readout(d.readout, `\\kFs = m\\ka + m\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${fmt(aAt(t), 2)}\\ \\text{m/s}^2) + (${fmt(mm.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(Fs, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kFs = \\km\\ka + \\km\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${fmt(aAt(t), 2)}\\ \\text{m/s}^2) + (${fmt(mm.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(Fs, 0)}\\ \\text{N}`,
       'Were the cable to break, the man and the lift would fall together, the acceleration would be −9.80 m/s², and the dial would read zero: he would appear to be weightless.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
@@ -270,7 +270,7 @@ function trafficLight(ctx, x, y, color) {
   const d = sim('sim-soccer', 700);
   const vf = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 4, max: 12, step: 0.1, value: 8, unit: 'm/s', dec: 2, onInput: reset, aria: 'top speed reached' });
   const el1 = ctl(d.controls, { label: '\\kdt', cls: 'time', min: 1, max: 5, step: 0.05, value: 2.5, unit: 's', dec: 2, onInput: reset, aria: 'time taken' });
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 100, step: 0.5, value: 70, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the player' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 100, step: 0.5, value: 70, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the player' });
   const cy = cycle(() => el1.v, 1.2);
   function reset() { cy.reset(); }
   function draw() {
@@ -306,7 +306,7 @@ function trafficLight(ctx, x, y, color) {
     line(ctx, g.X(t), box.b, g.X(t), g.Y(v), PAL.ink, 2, [4, 8]);
     dot(ctx, g.X(t), g.Y(v), vc, true, 9);
     headline(ctx, 'After ' + fmt(t, 2) + ' s he is at ' + fmt(v, 2) + ' m/s, and the ground has pushed him forward with ' + fmt(Fn, 0) + ' N all the way');
-    readout(d.readout, `\\kFnet = m\\frac{\\kdv}{\\kdt} = (${fmt(mm.v, 1)}\\ \\text{kg})\\frac{${fmt(vf.v, 2)}\\ \\text{m/s}}{${fmt(el1.v, 2)}\\ \\text{s}} = ${fmt(Fn, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kFnet = \\km\\frac{\\kdv}{\\kdt} = (${fmt(mm.v, 1)}\\ \\text{kg})\\frac{${fmt(vf.v, 2)}\\ \\text{m/s}}{${fmt(el1.v, 2)}\\ \\text{s}} = ${fmt(Fn, 0)}\\ \\text{N}`,
       'The average acceleration is ' + fmt(a, 2) + ' m/s². The force is about ' + fmt(Fn / 4.45, 0) + ' pounds, a reasonable average force, and he covers ' + fmt(stot, 1) + ' m while he is getting up to speed.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.max(0.2, el1.v / 5)), draw });
@@ -332,14 +332,14 @@ function trafficLight(ctx, x, y, color) {
     F.person(ctx, px, py + 120, F.ref('rescued'), { s: 1.3, reach: { x: px, y: py } });
     line(ctx, px, py, px, py - 180, PAL.rule, 2, [8, 8]);
     line(ctx, px, py, px + 240, py, PAL.rule, 2, [8, 8]);
-    angleArc(ctx, px, py, 90, a1, 120, PAL.muted); angleArc(ctx, px, py, 0, a2, 180, PAL.muted);
+    angleArc(ctx, px, py, 90, a1, 120, C('angle')); angleArc(ctx, px, py, 0, a2, 180, C('angle'));
     arrow(ctx, px, py, px + 170 * cos(a1), py - 170 * sin(a1), fc, 5);
     text(ctx, 'T₁', px + 170 * cos(a1) - 30, py - 170 * sin(a1) - 8, fc, { size: 22, weight: 600, align: 'right' });
     arrow(ctx, px, py, px + 330 * cos(a2), py - 330 * sin(a2), fc, 5);
     text(ctx, 'T₂', px + 344 * cos(a2), py - 344 * sin(a2) - 18, fc, { size: 22, weight: 600 });
     arrow(ctx, px, py, px, py + 160, fc, 5);
     text(ctx, 'w', px + 16, py + 150, fc, { size: 22, weight: 600 });
-    dot(ctx, px, py, PAL.ink, true, 8);
+    dot(ctx, px, py, F.ref('rescued'), true, 8);
     /* the two notes sit clear of the ropes: the left one above the building, the right one above the
        long rope, so neither line is crossed by a word */
     text(ctx, 'the left rope makes 15° with the vertical', 120, 100, F.ref('rope-left'), { size: 20 });

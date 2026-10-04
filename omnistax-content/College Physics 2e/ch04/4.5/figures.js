@@ -39,10 +39,10 @@ function tvec(ctx, x, y, ux, uy, len, color, label, side, size, off) {
 }
 /* the arc of an angle at (x, y) between two directions given in degrees, with its label */
 function angleArc(ctx, x, y, r, a0, a1, label, size) {
-  ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
+  ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2.5;
   ctx.beginPath(); ctx.arc(x, y, r, a0 * RAD, a1 * RAD); ctx.stroke(); ctx.restore();
   const mid = ((a0 + a1) / 2) * RAD;
-  text(ctx, label, x + (r + 30) * Math.cos(mid), y + (r + 30) * Math.sin(mid), PAL.ink,
+  text(ctx, label, x + (r + 30) * Math.cos(mid), y + (r + 30) * Math.sin(mid), C('angle'),
     { size: size || 20, weight: 600, align: 'center', bg: PAL.panel });
 }
 /* an open hand seen from the side, palm up, cupping whatever rests on it at (x, y), the
@@ -114,7 +114,7 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-normal', 860);
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 30, step: 0.5, value: 10, unit: 'kg', dec: 1, aria: 'mass of the bag' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 1, max: 30, step: 0.5, value: 10, unit: 'kg', dec: 1, aria: 'mass of the bag' });
   const K = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 2000, max: 40000, step: 500, value: 5000, unit: 'N/m', dec: 0, aria: 'stiffness of the table' });
   const WMAX = 30 * G;
   function draw() {
@@ -159,7 +159,7 @@ function walker(ctx, x, y, color) {
     });
     headline(ctx, 'A bag of ' + fmt(M.v, 1) + ' kg weighs ' + num(w, 1) + ' N, and the table sags '
       + fmt(sagCm, 1) + ' cm until it pushes back with that same ' + num(w, 1) + ' N');
-    readout(d.readout, `\\kN = \\kwgt = m\\kg = (${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(w, 1)}\\ \\text{N}`,
+    readout(d.readout, `\\kN = \\kwgt = \\km\\kg = (${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(w, 1)}\\ \\text{N}`,
       'The table sags until its restoring force is as large as the weight of the load, and then the net external force on the load is zero. A stiffer table sags less and still supports exactly the same ' + num(w, 1) + ' N.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -174,8 +174,8 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-skier', 920);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 40, step: 0.5, value: 25, unit: '°', dec: 1, onInput: reset, aria: 'angle of the slope' });
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the skier' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 5, max: 40, step: 0.5, value: 25, unit: '°', dec: 1, onInput: reset, aria: 'angle of the slope' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the skier' });
   const FR = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 250, step: 1, value: 45, unit: 'N', dec: 1, onInput: reset, aria: 'friction' });
   const SLOPE = 40;                                   /* the length of the slope, in metres */
   const H = 920;
@@ -193,7 +193,7 @@ function walker(ctx, x, y, color) {
      legs and the skis lying along the slope */
   function skier(ctx, x, y, ang) {
     ctx.save(); ctx.translate(x, y); ctx.rotate(ang); ctx.scale(1.5, 1.5);
-    ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const cs = F.ref('skier'); ctx.strokeStyle = cs; ctx.fillStyle = cs; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.arc(-22, -70, 11, 0, Math.PI * 2); ctx.fill();
     ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(-14, -58); ctx.lineTo(6, -32); ctx.stroke();
     ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(-8, -50); ctx.lineTo(-34, -40); ctx.lineTo(-40, -22); ctx.stroke();
@@ -223,11 +223,11 @@ function walker(ctx, x, y, color) {
     line(ctx, X0, BASE, HIX, BASE, PAL.muted, 3);
     line(ctx, HIX, BASE, HIX, HIY, PAL.muted, 3);
     line(ctx, X0, BASE, HIX, HIY, PAL.ink, 4);
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
+    ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.arc(X0, BASE, 96, -th, 0); ctx.stroke(); ctx.restore();
     /* the angle is named below the base line, clear of the wedge, which closes
        up at small angles until nothing will fit inside it */
-    lab.add('θ = ' + deg(TH.v, 1), X0 + 96 * Math.cos(th / 2), BASE - 96 * Math.sin(th / 2), 0.34, 0.94, PAL.ink, 20, 60);
+    lab.add('θ = ' + deg(TH.v, 1), X0 + 96 * Math.cos(th / 2), BASE - 96 * Math.sin(th / 2), 0.34, 0.94, C('angle'), 20, 60);
     /* ---------- the skier, at her distance along the slope ---------- */
     const ux = -Math.cos(th), uy = Math.sin(th);                /* down the slope, to the left */
     const nx = -Math.sin(th), ny = -Math.cos(th);               /* out of the slope, up and to the left */
@@ -265,7 +265,7 @@ function walker(ctx, x, y, color) {
     arrow(ctx, FX, FY, hperp[0], hperp[1], col, 5);
     arrow(ctx, FX, FY, hN[0], hN[1], col, 5);
     if (fL > 3) arrow(ctx, FX, FY, hf[0], hf[1], col, 5);
-    dot(ctx, FX, FY, PAL.ink, true, 8);
+    dot(ctx, FX, FY, F.ref('skier'), true, 8);
     lab.add('w = ' + num(w, 0) + ' N', hw[0], hw[1], -0.5, 0.87, col, 21, 26);
     lab.add('N = ' + num(wperp, 0) + ' N', hN[0], hN[1], 0.3, -0.95, col, 21, 26);
     lab.add('w∥ = ' + num(wpar, 0) + ' N', hpar[0], hpar[1], -1, 0.2, col, 21, 26);
@@ -293,7 +293,7 @@ function walker(ctx, x, y, color) {
       pinned(ctx, box, X, Y, tn, speed, C('velocity'), fmt(tn, 1) + ' s');
     } else text(ctx, 'she does not start to slide', X(TR / 2), Y(VR / 2), PAL.muted, { size: 20, align: 'center', bg: PAL.panel });
     lab.flush();
-    readout(d.readout, `\\kapar = \\frac{m\\kg\\sin\\theta - \\kff}{m} = \\frac{(${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ - ${fmt(FR.v, 1)}\\ \\text{N}}{${fmt(M.v, 1)}\\ \\text{kg}} = ${fmt(Math.max(0, a), 2)}\\ \\text{m/s}^2`,
+    readout(d.readout, `\\kapar = \\frac{\\km\\kg\\sin\\ktheta - \\kff}{\\km} = \\frac{(${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ - ${fmt(FR.v, 1)}\\ \\text{N}}{${fmt(M.v, 1)}\\ \\text{kg}} = ${fmt(Math.max(0, a), 2)}\\ \\text{m/s}^2`,
       'With friction neglected the acceleration would be g sin θ = ' + fmt(G * Math.sin(th), 2)
       + ' m/s², and that value is the same for a skier of any mass. The normal force N = mg cos θ = ' + num(wperp, 0)
       + ' N balances the perpendicular component of the weight, so there is no motion across the slope.');
@@ -308,8 +308,8 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-incline', 780);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 60, step: 0.5, value: 30, unit: '°', dec: 1, aria: 'angle of the incline' });
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 5, max: 60, step: 1, value: 20, unit: 'kg', dec: 1, aria: 'mass of the object' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 60, step: 0.5, value: 30, unit: '°', dec: 1, aria: 'angle of the incline' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 5, max: 60, step: 1, value: 20, unit: 'kg', dec: 1, aria: 'mass of the object' });
   function draw() {
     const { ctx } = begin(d.c);
     const th = TH.v * RAD, w = M.v * G, wpar = w * Math.sin(th), wperp = w * Math.cos(th), col = C('force');
@@ -324,8 +324,8 @@ function walker(ctx, x, y, color) {
     const nx = -Math.sin(th), ny = -Math.cos(th);               /* out of the slope */
     const along = run * 0.5 / Math.cos(th);
     const mx = AX + ux * along + nx * 26, my = AY + uy * along + ny * 26;
-    ctx.save(); ctx.translate(mx, my); ctx.rotate(-th); block(ctx, 0, 0, 96, 56, PAL.ink); ctx.restore();
-    text(ctx, 'm', mx, my, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    ctx.save(); ctx.translate(mx, my); ctx.rotate(-th); block(ctx, 0, 0, 96, 56, F.ref('object')); ctx.restore();
+    text(ctx, 'm', mx, my, F.ref('object'), { size: 20, weight: 600, align: 'center' });
     const S = 175 / w;
     fvec(ctx, mx, my, 0, w * S, col, 'w = ' + num(w, 0) + ' N', 20);
     fvec(ctx, mx, my, -ux * wpar * S, -uy * wpar * S, col, 'w∥ = ' + num(wpar, 0) + ' N', 20);
@@ -343,7 +343,7 @@ function walker(ctx, x, y, color) {
        0 to 600 N, ticked every 150 N, and it never rescales as a slider moves */
     const WR = 600, box = { l: 240, r: 1240, t: 560, b: 700 };
     const { X, Y } = axes(ctx, box, [0, 90], [0, WR], {
-      xl: 'angle of the incline θ (°)', xc: PAL.ink, yl: 'the two components (N)', yc: col, nx: 6, ny: 4,
+      xl: 'angle of the incline θ (°)', xc: C('angle'), yl: 'the two components (N)', yc: col, nx: 6, ny: 4,
       fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
     curve(ctx, (t) => w * Math.sin(t * RAD), 0, 90, X, Y, col, 5, 90);
@@ -354,7 +354,7 @@ function walker(ctx, x, y, color) {
     dot(ctx, X(TH.v), Y(wpar), col, true, 9); dot(ctx, X(TH.v), Y(wperp), col, false, 9);
     headline(ctx, 'At ' + deg(TH.v, 1) + ' the weight of ' + num(w, 0) + ' N divides into ' + num(wpar, 0)
       + ' N down the slope and ' + num(wperp, 0) + ' N into it');
-    readout(d.readout, `\\kwpar = \\kwgt\\sin\\theta = m\\kg\\sin\\theta = (${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ = ${num(wpar, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kwpar = \\kwgt\\sin\\ktheta = \\km\\kg\\sin\\ktheta = (${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ = ${num(wpar, 0)}\\ \\text{N}`,
       'The other component, w⊥ = mg cos θ = ' + num(wperp, 0) + ' N, presses into the surface, and the normal force is equal in magnitude and opposite in direction to it. The angle between the weight and its perpendicular component is the angle of the incline itself, and at 45° the two components are equal.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -368,7 +368,7 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-rope', 790);
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 20, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass hanging from the rope' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 1, max: 20, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass hanging from the rope' });
   /* the two values the chapter names are ticked on the slider, and the step lands on either exactly;
      they sit so far apart that a thumb settling on the nearer of them would swallow most of the
      slider, so the ticks mark them and nothing is snapped */
@@ -398,7 +398,7 @@ function walker(ctx, x, y, color) {
     fvec(ctx, 1010, 390, 0, -130, col, 'T = ' + num(T, 1) + ' N');
     fvec(ctx, 1010, 410, 0, 130, col, 'w = ' + num(T, 1) + ' N');
     headline(ctx, 'A ' + fmt(M.v, 2) + ' kg mass hangs at rest, so the rope carries ' + num(T, 1) + ' N at every point along it');
-    readout(d.readout, `\\kTf = \\kwgt = m\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(${fmt(GG.v, 2)}\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`,
+    readout(d.readout, `\\kTf = \\kwgt = \\km\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(${fmt(GG.v, 2)}\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`,
       'The acceleration of the mass is zero, so the tension must balance the weight exactly. The rope pulls up on the mass and down on the hand with the same ' + num(T, 1)
       + ' N, and once the tension is known at one place it is known all along the rope.');
   }
@@ -413,9 +413,9 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-corners', 800);
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 20, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass of the load' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 1, max: 20, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass of the load' });
   /* the corner stops at 60°: past that the second pulley comes down onto the load it carries */
-  const PH = ctl(d.controls, { label: '\\text{corner}', cls: '', min: 10, max: 60, step: 1, value: 40, unit: '°', dec: 0, aria: 'angle the cable is turned through' });
+  const PH = ctl(d.controls, { label: '\\text{corner}', cls: 'angle', min: 10, max: 60, step: 1, value: 40, unit: '°', dec: 0, aria: 'angle the cable is turned through' });
   function draw() {
     const { ctx } = begin(d.c);
     const T = M.v * G, col = C('force'), ph = PH.v * RAD;
@@ -447,7 +447,7 @@ function walker(ctx, x, y, color) {
     text(ctx, 'the same corner carries a finger tendon and a bicycle brake cable', 120, 744, PAL.muted, { size: 18 });
     headline(ctx, 'The ' + fmt(M.v, 2) + ' kg load makes a tension of ' + num(T, 1)
       + ' N, and the same ' + num(T, 1) + ' N is carried round both corners to the hand');
-    readout(d.readout, `\\kTf = m\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`,
+    readout(d.readout, `\\kTf = \\km\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`,
       'Where there is no friction the tension is transmitted undiminished: a corner changes the direction of the pull and not its size, so the three arrows are the same length however far the cable is bent.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -461,8 +461,8 @@ function walker(ctx, x, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-tightrope', 820);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0.5, max: 30, step: 0.5, value: 5, unit: '°', dec: 1, aria: 'angle the wire sags by' });
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 120, step: 1, value: 70, unit: 'kg', dec: 1, aria: 'mass of the walker' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0.5, max: 30, step: 0.5, value: 5, unit: '°', dec: 1, aria: 'angle the wire sags by' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 1, value: 70, unit: 'kg', dec: 1, aria: 'mass of the walker' });
   const tension = (thDeg, w) => w / (2 * Math.sin(thDeg * RAD));
   function draw() {
     const { ctx } = begin(d.c);
@@ -498,7 +498,7 @@ function walker(ctx, x, y, color) {
        changes as a slider moves. */
     const TR = 6000, box = { l: 880, r: 1300, t: 510, b: 700 };
     const { X, Y } = axes(ctx, box, [0, 30], [0, TR], {
-      xl: 'sag angle θ (°)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 6, ny: 4,
+      xl: 'sag angle θ (°)', xc: C('angle'), yl: 'tension T (N)', yc: col, nx: 6, ny: 4,
       fx: (v) => fmt(v, 0), fy: (v) => num(v, 0),
     });
     const thMin = Math.asin(Math.min(1, w / (2 * TR))) / RAD;
@@ -509,7 +509,7 @@ function walker(ctx, x, y, color) {
     pinned(ctx, box, X, Y, TH.v, T, col, num(T, 0) + ' N');
     headline(ctx, 'A ' + fmt(M.v, 1) + ' kg walker sags the wire by ' + deg(TH.v, 1) + ', and each half pulls with '
       + num(T, 0) + ' N, ' + fmt(T / w, 1) + ' times his ' + num(w, 0) + ' N weight');
-    readout(d.readout, `\\kTf = \\frac{\\kwgt}{2\\sin\\theta} = \\frac{${num(w, 0)}\\ \\text{N}}{2\\sin ${fmt(TH.v, 1)}^\\circ} = ${num(T, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kTf = \\frac{\\kwgt}{2\\sin\\ktheta} = \\frac{${num(w, 0)}\\ \\text{N}}{2\\sin ${fmt(TH.v, 1)}^\\circ} = ${num(T, 0)}\\ \\text{N}`,
       'The horizontal components of the two tensions are equal and opposite and cancel, so only the vertical components hold him up, and together they come to 2T sin θ = '
       + num(w, 0) + ' N. The straighter the wire, the smaller the share of the tension that points upward, and the larger the tension has to be.');
   }
@@ -525,7 +525,7 @@ function walker(ctx, x, y, color) {
 (function () {
   const d = sim('sim-chain', 740);
   const FP = ctl(d.controls, { label: '\\kFperp', cls: 'force', min: 100, max: 1500, step: 10, value: 300, unit: 'N', dec: 0, aria: 'force perpendicular to the chain' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0.5, max: 15, step: 0.25, value: 2, unit: '°', dec: 2, aria: 'angle of the bent chain' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0.5, max: 15, step: 0.25, value: 2, unit: '°', dec: 2, aria: 'angle of the bent chain' });
   const tension = (thDeg, f) => f / (2 * Math.sin(thDeg * RAD));
   /* a car seen from above, its nose to the right, centred on (x, y) */
   function carTop(ctx, x, y, color) {
@@ -566,7 +566,7 @@ function walker(ctx, x, y, color) {
        and neither range changes as a slider moves. */
     const TR = 10000, box = { l: 240, r: 1240, t: 480, b: 660 };
     const g = axes(ctx, box, [0, 15], [0, TR], {
-      xl: 'angle of the chain θ (°)', xc: PAL.ink, yl: 'tension T (N)', yc: col, nx: 5, ny: 5,
+      xl: 'angle of the chain θ (°)', xc: C('angle'), yl: 'tension T (N)', yc: col, nx: 5, ny: 5,
       fx: (v) => fmt(v, 0), fy: (v) => num(v, 0),
     });
     const thMin = Math.asin(Math.min(1, FP.v / (2 * TR))) / RAD;
@@ -577,7 +577,7 @@ function walker(ctx, x, y, color) {
     pinned(ctx, box, g.X, g.Y, TH.v, T, col, num(T, 0) + ' N');
     headline(ctx, 'A push of ' + num(FP.v, 0) + ' N at ' + deg(TH.v, 2) + ' puts ' + num(T, 0) + ' N on the car, '
       + fmt(T / FP.v, 1) + ' times the push');
-    readout(d.readout, `\\kTf = \\frac{\\kFperp}{2\\sin\\theta} = \\frac{${num(FP.v, 0)}\\ \\text{N}}{2\\sin ${fmt(TH.v, 2)}^\\circ} = ${num(T, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kTf = \\frac{\\kFperp}{2\\sin\\ktheta} = \\frac{${num(FP.v, 0)}\\ \\text{N}}{2\\sin ${fmt(TH.v, 2)}^\\circ} = ${num(T, 0)}\\ \\text{N}`,
       'Only the small component of each half of the chain that points across its length answers the push, so the tension grows without limit as the chain is pulled straight. At θ = 0 the equation has no answer, which is why no connector is ever exactly straight.');
   }
   register(d.fig, { update: () => {}, draw });

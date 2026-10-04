@@ -45,7 +45,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     text(ctx, surface(r.a), 700, 104, PAL.muted, { size: 20, weight: 600, align: 'center' });
     strip(ctx, SL, SR, yS, 48);
     line(ctx, X(TRACK), yS - 44, X(TRACK), yS + 44, PAL.rule, 2, [6, 8]);
-    block(ctx, X(s), yBlk, 76, 52, PAL.ink);
+    block(ctx, X(s), yBlk, 76, 52, F.ref('block'));
     if (v > 0.05) {
       const nose = X(s) + 42, tip = nose + v * 14;
       arrow(ctx, nose, yBlk, tip, yBlk, C('velocity'), 5);

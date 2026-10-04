@@ -19,7 +19,7 @@ const RAD = Math.PI / 180;
 ===================================================================== */
 (function () {
   const d = sim('sim-tarzan', 720);
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 100, step: 5, value: 80, unit: 'kg', dec: 0, aria: 'mass of the man' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 100, step: 5, value: 80, unit: 'kg', dec: 0, aria: 'mass of the man' });
   const A = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: -2.5, max: 2.5, step: 0.25, value: 0, unit: 'm/s²', dec: 2, aria: 'vertical acceleration',
     specials: [{ at: 0, label: 'stationary' }] });
   const ro = F.readout(d);
@@ -95,8 +95,8 @@ const RAD = Math.PI / 180;
       ? 'Tarzan hangs still, so the tension of ' + fmt(T, 0) + ' N is exactly his weight of ' + fmt(w, 0) + ' N'
       : 'Tarzan accelerates ' + (a > 0 ? 'upward' : 'downward') + ' at ' + fmt(Math.abs(a), 2) + ' m/s², so the tension of ' + fmt(T, 0) + ' N is ' + fmt(Math.abs(gap), 0) + ' N ' + (a > 0 ? 'more' : 'less') + ' than his weight');
     ro.set(Math.abs(a) < 1e-9
-      ? `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} = \\mk{m}{m}\\mk{g}{\\kg} = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}}\\ \\text{m/s}^2) = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`
-      : `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} \\mk{ma}{{}+ m\\ka} = \\mk{m}{m}(\\mk{g}{\\kg} \\mk{a}{{}+ \\ka}) = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}} \\mk{na}{{}${a < 0 ? '-' : '+'} ${fmt(Math.abs(a), 2)}})\\ \\text{m/s}^2 = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`, Math.abs(a) < 1e-9
+      ? `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} = \\mk{m}{\\km}\\mk{g}{\\kg} = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}}\\ \\text{m/s}^2) = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`
+      : `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} \\mk{ma}{{}+ \\km\\ka} = \\mk{m}{\\km}(\\mk{g}{\\kg} \\mk{a}{{}+ \\ka}) = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}} \\mk{na}{{}${a < 0 ? '-' : '+'} ${fmt(Math.abs(a), 2)}})\\ \\text{m/s}^2 = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`, Math.abs(a) < 1e-9
         ? 'The acceleration along the vertical axis is zero, so the net force along that axis is zero and the tension is exactly the weight.'
         : 'The acceleration along the vertical axis is ' + fmt(Math.abs(a), 2) + ' m/s², so the net force along that axis is ' + fmt(Math.abs(gap), 0) + ' N and the tension no longer matches the weight.');
   }
@@ -115,10 +115,10 @@ const RAD = Math.PI / 180;
 ===================================================================== */
 (function () {
   const d = sim('sim-axes', 780);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 40, step: 1, value: 25, unit: '°', dec: 0, aria: 'angle of the incline' });
-  const PH = ctl(d.controls, { label: '\\varphi', cls: '', min: 0, max: 45, step: 1, value: 0, unit: '°', dec: 0, aria: 'angle the axes are turned through',
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 5, max: 40, step: 1, value: 25, unit: '°', dec: 0, aria: 'angle of the incline' });
+  const PH = ctl(d.controls, { label: '\\htmlClass{kv-angle}{\\varphi}', cls: 'angle', min: 0, max: 45, step: 1, value: 0, unit: '°', dec: 0, aria: 'angle the axes are turned through',
     specials: [{ at: () => TH.v, label: 'along the slope' }] });
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 100, step: 5, value: 40, unit: 'kg', dec: 0, aria: 'mass of the block' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 10, max: 100, step: 5, value: 40, unit: 'kg', dec: 0, aria: 'mass of the block' });
   const GY = 440, X0 = 90, L = 430;           /* the ground, the foot of the incline and the length of its face */
   const WLEN = 115;                           /* the weight always draws this long, so the picture reads at every mass */
   const O = [900, 320];                       /* the centre of the free-body diagram */
@@ -145,11 +145,11 @@ const RAD = Math.PI / 180;
     ctx.moveTo(X0, yTop); ctx.lineTo(xR, GY); ctx.lineTo(X0, GY); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, X0, yTop, xR, GY, PAL.muted, 3);
     line(ctx, X0 - 20, GY, xR + 40, GY, PAL.muted, 3);
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(xR, GY, 52, Math.PI, Math.PI + th); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(xR, GY, 52, Math.PI, Math.PI + th); ctx.stroke(); ctx.restore();
     const wide = TH.v >= 12;                  /* a narrow wedge has no room for the label inside it */
-    text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', wide ? xR - 92 * Math.cos(th / 2) : xR + 18, wide ? GY - 92 * Math.sin(th / 2) : GY - 18, PAL.muted, { size: 17, align: wide ? 'center' : 'left' });
+    text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', wide ? xR - 92 * Math.cos(th / 2) : xR + 18, wide ? GY - 92 * Math.sin(th / 2) : GY - 18, C('angle'), { size: 17, align: wide ? 'center' : 'left' });
     const P = [X0 + 0.45 * L * Math.cos(th), yTop + 0.45 * L * Math.sin(th)], B = at(P, nrm, 24);
-    ctx.save(); ctx.translate(B[0], B[1]); ctx.rotate(th); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.translate(B[0], B[1]); ctx.rotate(th); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('block'); ctx.lineWidth = 4;
     ctx.fillRect(-22, -22, 44, 44); ctx.strokeRect(-22, -22, 44, 44); ctx.restore();
     ray(ctx, B, [0, 1], WLEN, C('force'), 5);
     text(ctx, 'w', B[0] - 14, B[1] + WLEN / 2, C('force'), { size: 24, weight: 600, align: 'right' });
@@ -158,7 +158,7 @@ const RAD = Math.PI / 180;
     const aFoot = at(B, dwn, 28), aTip = at(aFoot, dwn, kA * aMag);
     ray(ctx, aFoot, dwn, kA * aMag, C('acceleration'), 5);
     text(ctx, 'a', aTip[0] + nrm[0] * 24 + dwn[0] * 14, aTip[1] + nrm[1] * 24 + dwn[1] * 14, C('acceleration'), { size: 24, weight: 600, align: 'center' });
-    text(ctx, 'the block on the incline', 300, 560, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the block on the incline', 300, 560, F.ref('block'), { size: 17, align: 'center' });
 
     /* the free-body diagram: only the forces, on the axes the reader chose */
     line(ctx, ...at(O, ux, -210), ...at(O, ux, 210), PAL.muted, 2, [12, 10]);
@@ -166,8 +166,8 @@ const RAD = Math.PI / 180;
     text(ctx, 'x′', ...at(O, ux, 228), PAL.muted, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'y′', ...at(O, uy, 218), PAL.muted, { size: 20, weight: 600, align: 'center' });
     if (PH.v >= 1) {
-      ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(O[0], O[1], 44, 0, ph); ctx.stroke(); ctx.restore();
-      text(ctx, 'φ = ' + fmt(PH.v, 0) + '°', O[0] + 76 * Math.cos(ph / 2), O[1] + 76 * Math.sin(ph / 2), PAL.muted, { size: 17, align: 'left' });
+      ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(O[0], O[1], 44, 0, ph); ctx.stroke(); ctx.restore();
+      text(ctx, 'φ = ' + fmt(PH.v, 0) + '°', O[0] + 76 * Math.cos(ph / 2), O[1] + 76 * Math.sin(ph / 2), C('angle'), { size: 17, align: 'left' });
     }
     [[wV, 'w', wx, wy], [nV, 'N', nx, ny]].forEach(([V, name, cx0, cy0]) => {
       const head = at(O, V, kF), mag = Math.hypot(V[0], V[1]);
@@ -182,7 +182,7 @@ const RAD = Math.PI / 180;
       const off = 22 / mag;
       text(ctx, name, head[0] + V[0] * off, head[1] + V[1] * off, C('force'), { size: 24, weight: 600, align: 'center' });
     });
-    dot(ctx, O[0], O[1], PAL.ink, true, 9);
+    dot(ctx, O[0], O[1], F.ref('block'), true, 9);
     text(ctx, 'the free-body diagram on the chosen axes', O[0], 560, PAL.muted, { size: 17, align: 'center' });
 
     /* the ledger: what each force contributes along each axis, and what the mass times the acceleration comes to */
@@ -201,7 +201,7 @@ const RAD = Math.PI / 180;
     headline(ctx, along
       ? 'With one axis along the slope the block accelerates at ' + num(ax, 2) + ' m/s² along it and not at all across it'
       : 'Turned ' + fmt(Math.abs(TH.v - PH.v), 0) + '° from the slope, the axes split the acceleration into ' + num(ax, 2) + ' and ' + num(ay, 2) + ' m/s²');
-    readout(d.readout, `\\kFnety = m\\ka_{y'} = ${num(wy + ny, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kFnety = \\km\\ka_{y'} = ${num(wy + ny, 0)}\\ \\text{N}`,
       along
         ? 'With one axis along the slope the block accelerates along x′ alone, with a net force of ' + num(wx + nx, 0) + ' N, and only the weight is left to resolve.'
         : 'The net force along x′ is ' + num(wx + nx, 0) + ' N. These axes leave the block accelerating along both of them, so both the weight and the normal force have to be resolved; with the axes at ' + fmt(TH.v, 0) + '°, the angle of the slope, the net force across it is zero.');

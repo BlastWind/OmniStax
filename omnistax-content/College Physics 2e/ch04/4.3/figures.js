@@ -111,7 +111,7 @@ function bathScale(ctx, x, y, w, color) {
   const F1 = ctl(d.controls, { label: '\\kFone', cls: 'force', min: 0, max: 60, step: 0.5, value: 25, unit: 'N', dec: 1, onInput: reset, aria: 'force of the first child' });
   const F2 = ctl(d.controls, { label: '\\kFtwo', cls: 'force', min: 0, max: 60, step: 0.5, value: 30, unit: 'N', dec: 1, onInput: reset, aria: 'force of the second child' });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 40, step: 0.5, value: 12, unit: 'N', dec: 1, onInput: reset, aria: 'force of friction' });
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 60, step: 0.5, value: 30, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the wagon and its rider' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 10, max: 60, step: 0.5, value: 30, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the wagon and its rider' });
   const T = 4;
   const fr = () => Math.min(ff.v, F1.v + F2.v);   /* at rest the friction holds only as much as the pushes ask of it */
   const net = () => F1.v + F2.v - fr();
@@ -214,8 +214,8 @@ function bathScale(ctx, x, y, w, color) {
 (function () {
   const d = sim('sim-mass', 990);
   const Fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 10, max: 500, step: 5, value: 200, unit: 'N', dec: 0, aria: 'force the player exerts' });
-  const mb = ctl(d.controls, { label: 'm_{\\text{ball}}', cls: '', min: 0.2, max: 3, step: 0.001, value: 0.624, unit: 'kg', dec: 3, aria: 'mass of the basketball' });
-  const ms = ctl(d.controls, { label: 'm_{\\text{SUV}}', cls: '', min: 800, max: 3000, step: 20, value: 1800, unit: 'kg', dec: 0, aria: 'mass of the SUV' });
+  const mb = ctl(d.controls, { label: '\\km_{\\htmlData{ref=ball}{\\text{ball}}}', cls: 'mass', min: 0.2, max: 3, step: 0.001, value: 0.624, unit: 'kg', dec: 3, aria: 'mass of the basketball' });
+  const ms = ctl(d.controls, { label: '\\km_{\\htmlData{ref=suv}{\\text{SUV}}}', cls: 'mass', min: 800, max: 3000, step: 20, value: 1800, unit: 'kg', dec: 0, aria: 'mass of the SUV' });
   const MX = 1, MY = 2;   /* the decades the two axes are shifted by */
   function draw() {
     const { ctx } = begin(d.c);
@@ -223,14 +223,14 @@ function bathScale(ctx, x, y, w, color) {
     /* the two scenes, the same push drawn the same length on each */
     const L = 40 + Fp.v * 0.34, gy = 300;
     line(ctx, 80, gy, 680, gy, PAL.muted, 3); line(ctx, 740, gy, 1340, gy, PAL.muted, 3);
-    F.person(ctx, 214, gy, PAL.ink, { lean: 0.22, reach: { x: 276, y: gy - 50 } });
+    F.person(ctx, 214, gy, F.ref('player'), { lean: 0.22, reach: { x: 276, y: gy - 50 } });
     const cb = F.ref('ball'), cs = F.ref('suv');
     basketball(ctx, 300, gy - 50, cb, 26);
     arrow(ctx, 332, gy - 50, 332 + L, gy - 50, cf, 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', 332 + L / 2, gy - 78, cf, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'a basketball of ' + fmt(mb.v, 3) + ' kg', 360, gy + 36, cb, { size: 18, align: 'center' });
     text(ctx, 'a = ' + sig3(ab) + ' m/s²', 360, gy - 140, ca, { size: 22, weight: 600, align: 'center' });
-    F.person(ctx, 860, gy, PAL.ink, { lean: 0.22, reach: { x: 922, y: gy - 44 } });
+    F.person(ctx, 860, gy, F.ref('player'), { lean: 0.22, reach: { x: 922, y: gy - 44 } });
     car(ctx, 980, gy - 26, cs, 1.5);
     arrow(ctx, 1046, gy - 50, 1046 + L, gy - 50, cf, 5);
     text(ctx, 'F = ' + fmt(Fp.v, 0) + ' N', 1046 + L / 2, gy - 78, cf, { size: 20, weight: 600, align: 'center' });
@@ -248,7 +248,7 @@ function bathScale(ctx, x, y, w, color) {
     /* acceleration against mass, both axes stepping by tens */
     const gbox = { l: 220, r: 1230, t: 620, b: 910 };
     const g = axes(ctx, gbox, [0, 5], [0, 6],
-      { xl: 'm (kg)', xc: PAL.ink, yl: 'a (m/s²)', yc: ca, nx: 5, ny: 6, fx: (e) => powLabel(e - MX), fy: (e) => powLabel(e - MY) });
+      { xl: 'm (kg)', xc: C('mass'), yl: 'a (m/s²)', yc: ca, nx: 5, ny: 6, fx: (e) => powLabel(e - MX), fy: (e) => powLabel(e - MY) });
     inbox(ctx, gbox, () => {
       curve(ctx, (e) => Math.log10(Fp.v) - (e - MX) + MY, 0, 5, g.X, g.Y, ca, 5, 40);
       [[mb.v, ab], [ms.v, as]].forEach(([m, a]) => {
@@ -265,7 +265,7 @@ function bathScale(ctx, x, y, w, color) {
     });
     text(ctx, 'every step of ten in the mass is a step of a tenth in the acceleration', g.X(2.6), g.Y(5.5), PAL.muted, { size: 17, align: 'center' });
     headline(ctx, 'The same ' + fmt(Fp.v, 0) + ' N gives the ' + fmt(mb.v, 3) + ' kg ball ' + sig3(ab) + ' m/s² and the ' + commas(fmt(ms.v, 0)) + ' kg SUV ' + sig3(as) + ' m/s²');
-    readout(d.readout, `\\ka = \\frac{\\kF}{m} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mb.v, 3)}\\ \\text{kg}} = ${sig3(ab)}\\ \\text{m/s}^2`,
+    readout(d.readout, `\\ka = \\frac{\\kF}{\\km} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mb.v, 3)}\\ \\text{kg}} = ${sig3(ab)}\\ \\text{m/s}^2`,
       'The same force on the SUV gives ' + sig3(as) + ' m/s². It is the same in both cases, so the only thing that sets the two accelerations apart is the mass: the SUV is ' + sig3(ms.v / mb.v) + ' times as massive as the ball and accelerates at ' + sig3(ms.v / mb.v) + ' times less.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -280,7 +280,7 @@ function bathScale(ctx, x, y, w, color) {
 (function () {
   const d = sim('sim-mower', 470);
   const Fn = ctl(d.controls, { label: '\\kFnet', cls: 'force', min: 10, max: 120, step: 1, value: 51, unit: 'N', dec: 0, onInput: reset, aria: 'net external force on the mower' });
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 5, max: 60, step: 0.5, value: 24, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the mower' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 5, max: 60, step: 0.5, value: 24, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the mower' });
   const T = 3;
   const acc = () => Fn.v / mm.v;
   const cy = cycle(() => T, 1.2);
@@ -295,8 +295,8 @@ function bathScale(ctx, x, y, w, color) {
     strip(ctx, 60, 1340, gy + 22, 44);
     const past = x > XMAX;
     const px = SX(Math.min(x, XMAX)), py = gy - 26, cf = C('force');
-    F.person(ctx, px - 156, gy, PAL.ink, { lean: 0.22, reach: { x: px - 116, y: py - 78 }, phase: tau > 0 && tau < T ? tau * 6 : 0 });
-    mower(ctx, px, py, PAL.ink);
+    F.person(ctx, px - 156, gy, F.ref('pusher'), { lean: 0.22, reach: { x: px - 116, y: py - 78 }, phase: tau > 0 && tau < T ? tau * 6 : 0 });
+    mower(ctx, px, py, F.ref('mower'));
     const La = Math.min(230, 30 + a * 48), LF = Fn.v * 3.2, Lv = Math.min(240, v * 22);
     /* the net force is drawn from the deck it acts on, the acceleration and the velocity above it */
     arrow(ctx, px + 20, py - 96, px + 20 + La, py - 96, C('acceleration'), 5);
@@ -316,7 +316,7 @@ function bathScale(ctx, x, y, w, color) {
     topline(ctx, past
       ? 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(Fn.v, 0) + ' N on ' + fmt(mm.v, 1) + ' kg has carried the mower ' + fmt(x, 2) + ' m, past the end of the ' + XMAX + ' m of lawn drawn here, at ' + fmt(v, 2) + ' m/s'
       : 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(Fn.v, 0) + ' N on ' + fmt(mm.v, 1) + ' kg has given the mower ' + fmt(a, 2) + ' m/s², so it has reached ' + fmt(v, 2) + ' m/s and gone ' + fmt(x, 2) + ' m');
-    readout(d.readout, `\\ka = \\frac{\\kFnet}{m} = \\frac{${fmt(Fn.v, 0)}\\ \\text{kg}\\cdot\\text{m/s}^2}{${fmt(mm.v, 1)}\\ \\text{kg}} = ${fmt(a, 2)}\\ \\text{m/s}^2`,
+    readout(d.readout, `\\ka = \\frac{\\kFnet}{\\km} = \\frac{${fmt(Fn.v, 0)}\\ \\text{kg}\\cdot\\text{m/s}^2}{${fmt(mm.v, 1)}\\ \\text{kg}} = ${fmt(a, 2)}\\ \\text{m/s}^2`,
       'One newton is one kilogram meter per second squared, so substituting the units for N leaves the kilograms to cancel and an answer in meters per second squared. The acceleration points the same way as the net force, which is parallel to the ground.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
@@ -381,13 +381,15 @@ function bathScale(ctx, x, y, w, color) {
   /* the parts of the picture that the diagram leaves out, in local coordinates about the platform centre */
   function extras(ctx, x, y, lv) {
     ctx.save(); ctx.translate(x, y); ctx.scale(Z, Z); x = 0; y = 0;
-    ctx.fillStyle = PAL.ink; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineCap = 'round';
+    const cs = F.ref('sled');
+    ctx.fillStyle = cs; ctx.strokeStyle = cs; ctx.lineWidth = 4; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.arc(x + 74, y - 44, 13, 0, TAU); ctx.fill();
     ctx.beginPath(); ctx.moveTo(x + 74, y - 30); ctx.lineTo(x + 74, y - 8); ctx.moveTo(x + 74, y - 24); ctx.lineTo(x + 90, y - 14); ctx.stroke();
     ctx.beginPath(); ctx.arc(x - 50, y + 20, 12, 0, TAU); ctx.arc(x + 52, y + 20, 12, 0, TAU); ctx.fill();
     ctx.lineWidth = 2.5; ctx.beginPath();
     for (let i = 1; i < 4; i++) { ctx.moveTo(x - 86, y - 6 - 22 * i); ctx.lineTo(x - 46, y - 6 - 22 * i); }
     ctx.stroke();
+    ctx.fillStyle = PAL.ink;
     lv.forEach((g, i) => {
       if (g < 0.02) return;
       const yc = ROCKY[i] / Z;
@@ -410,7 +412,7 @@ function bathScale(ctx, x, y, w, color) {
     /* the outline bending point by point into the dot */
     ctx.save(); ctx.beginPath();
     OUTLINE.forEach((p, j) => { const q = CIRCLE[j], X = ox + lerp(p[0], q[0], m), Y = oy + lerp(p[1], q[1], m); if (j) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); });
-    ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, lerp(0.35, 1, m)); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
+    ctx.closePath(); ctx.fillStyle = alpha(F.ref('sled'), lerp(0.35, 1, m)); ctx.strokeStyle = F.ref('sled'); ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
     ctx.fill(); ctx.stroke(); ctx.restore();
     /* every force from its point of application to its place on the dot */
     const Lt = Tt.v * K, Lw = W * K, Lf = alen(ff.v, K, 40);
@@ -478,7 +480,7 @@ function bathScale(ctx, x, y, w, color) {
      detent. The gravity carries the two the section names as detents of its own; they are so far
      apart that a thumb settling on the nearer of them would swallow most of the slider, so the ticks
      mark them and the step lands on either exactly. */
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.1, value: 1, unit: 'kg', dec: 1, aria: 'mass on the scale', detents: [{ v: 1, label: '1.0 kg' }], snap: true });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.1, value: 1, unit: 'kg', dec: 1, aria: 'mass on the scale', detents: [{ v: 1, label: '1.0 kg' }], snap: true });
   const gg = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1, max: 11, step: 0.005, value: 9.8, unit: 'm/s²', dec: 3, aria: 'acceleration due to gravity', detents: [{ v: 1.625, label: 'Moon' }, { v: 9.8, label: 'Earth' }], snap: false });
   /* 9.80 and 1.625 are the two the book names, so each is printed as the book prints it */
   const gtxt = (g) => (Math.abs(g * 100 - Math.round(g * 100)) < 1e-9 ? fmt(g, 2) : fmt(g, 3));
@@ -489,11 +491,11 @@ function bathScale(ctx, x, y, w, color) {
     /* the scene: a mass resting on a bathroom scale on the floor */
     const cx = 340, fy = 300;
     fixed(ctx, 100, fy, 480, 28);
-    bathScale(ctx, cx, fy, 240, PAL.ink);
+    bathScale(ctx, cx, fy, 240, F.ref('scale'));
     const bh = 46 + Math.min(110, Math.cbrt(mm.v) * 30), bw = 84 + Math.min(130, Math.cbrt(mm.v) * 38);
     const by = fy - 34 - bh / 2;
-    block(ctx, cx, by, bw, bh, PAL.ink);
-    text(ctx, fmt(mm.v, 1) + ' kg', cx, by, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    block(ctx, cx, by, bw, bh, F.ref('load'));
+    text(ctx, fmt(mm.v, 1) + ' kg', cx, by, C('mass'), { size: 22, weight: 600, align: 'center' });
     text(ctx, 'the dial reads ' + sig3(w / G) + ' kg', cx, fy + 58, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'g = ' + gtxt(gg.v) + ' m/s²', cx, fy + 90, ca, { size: 21, weight: 600, align: 'center' });
     /* the two forces on the mass, equal and opposite, at a length that follows the gravity */
@@ -503,7 +505,7 @@ function bathScale(ctx, x, y, w, color) {
     text(ctx, 'w = ' + sig3(w) + ' N', cx + 16, dy + L - 12, cf, { size: 21, weight: 600 });
     arrow(ctx, cx, dy, cx, dy - L, cf, 5);
     text(ctx, 'the scale pushes back with ' + sig3(w) + ' N', cx + 16, dy - L + 12, cf, { size: 19, weight: 600 });
-    dot(ctx, cx, dy, PAL.ink, true, 8);
+    dot(ctx, cx, dy, F.ref('load'), true, 8);
     /* the weight against the acceleration due to gravity */
     /* fixed axes: the gravity slider stops at 11 m/s² and the mass slider at 2.0 kg, so no weight on
        the sliders can pass 22 N and the weight axis is fixed at 0 to 24 N, ticked every 6 N. Neither
@@ -522,7 +524,7 @@ function bathScale(ctx, x, y, w, color) {
     });
     pinned(ctx, gbox, g.X, g.Y, gg.v, w, ca, sig3(w) + ' N');
     headline(ctx, place(gg.v) + ' g = ' + gtxt(gg.v) + ' m/s², a mass of ' + fmt(mm.v, 1) + ' kg weighs ' + sig3(w) + ' N');
-    readout(d.readout, `\\kwgt = m\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${gtxt(gg.v)}\\ \\text{m/s}^2) = ${sig3(w)}\\ \\text{N}`,
+    readout(d.readout, `\\kwgt = \\km\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${gtxt(gg.v)}\\ \\text{m/s}^2) = ${sig3(w)}\\ \\text{N}`,
       'The mass is the same wherever the scale is carried, but the weight is not: the same ' + fmt(mm.v, 1) + ' kg weighs ' + sig3(mm.v * G) + ' N on Earth and ' + sig3(mm.v * 1.625) + ' N on the Moon. A bathroom scale measures the force and divides it by 9.80 to print a mass, so here it would read ' + sig3(w / G) + ' kg.');
   }
   register(d.fig, { update: () => {}, draw });

@@ -71,7 +71,8 @@
    "meaning": "the force the first skater exerts on the third skater",
    "unit": "N",
    "section": "4.1",
-   "anchor": "4.1-force"
+   "anchor": "4.1-force",
+   "ref": "skater-1"
   },
   {
    "sym": "F_2",
@@ -79,7 +80,8 @@
    "meaning": "the force the second skater exerts on the third skater",
    "unit": "N",
    "section": "4.1",
-   "anchor": "4.1-force"
+   "anchor": "4.1-force",
+   "ref": "skater-2"
   },
   {
    "sym": "F_tot",
@@ -114,14 +116,6 @@
    "anchor": "4.1-standard"
   },
   {
-   "sym": "m",
-   "concept": "mass",
-   "meaning": "the mass of a body, which measures its inertia and is the quantity of matter in it",
-   "unit": "kg",
-   "section": "4.2",
-   "anchor": "4.2-mass"
-  },
-  {
    "sym": "v",
    "concept": "instantaneous-velocity",
    "meaning": "the velocity of a body, which stays the same unless a net external force acts on the body",
@@ -134,14 +128,6 @@
    "concept": "net-external-force",
    "meaning": "the net external force on the system, the vector sum of all the external forces acting on it",
    "unit": "N",
-   "section": "4.3",
-   "anchor": "4.3-net-force"
-  },
-  {
-   "sym": "m",
-   "concept": "mass",
-   "meaning": "the mass of the system, which is what the net external force is divided by to give the acceleration",
-   "unit": "kg",
    "section": "4.3",
    "anchor": "4.3-net-force"
   },
@@ -208,7 +194,8 @@
    "meaning": "the forward reaction force the floor exerts on the professor when she pushes backward on it",
    "unit": "N",
    "section": "4.4",
-   "anchor": "4.4-choosing-a-system"
+   "anchor": "4.4-choosing-a-system",
+   "ref": "floor"
   },
   {
    "sym": "F_prof",
@@ -216,21 +203,14 @@
    "meaning": "the force the professor exerts on the cart, which is internal to System 1 and external to System 2",
    "unit": "N",
    "section": "4.4",
-   "anchor": "4.4-choosing-a-system"
+   "anchor": "4.4-choosing-a-system",
+   "ref": "professor"
   },
   {
    "sym": "f_fric",
    "concept": "friction",
    "meaning": "all the forces opposing the motion, such as friction on the cart’s wheels and air resistance, taken together",
    "unit": "N",
-   "section": "4.4",
-   "anchor": "4.4-choosing-a-system"
-  },
-  {
-   "sym": "m",
-   "concept": "mass",
-   "meaning": "the mass of the system of interest",
-   "unit": "kg",
    "section": "4.4",
    "anchor": "4.4-choosing-a-system"
   },
@@ -291,14 +271,6 @@
    "anchor": "4.5-weight-on-incline"
   },
   {
-   "sym": "θ",
-   "concept": "angle",
-   "meaning": "the angle the incline makes with the horizontal, or the angle a sagging connector makes with the horizontal",
-   "unit": "°",
-   "section": "4.5",
-   "anchor": "4.5-weight-on-incline"
-  },
-  {
    "sym": "T_force",
    "concept": "tension",
    "meaning": "the tension in a rope or cable, the pull it carries along its length",
@@ -330,14 +302,6 @@
    "unit": "N",
    "section": "4.5",
    "anchor": "4.5-large-tension"
-  },
-  {
-   "sym": "m",
-   "concept": "mass",
-   "meaning": "the mass the surface or the rope supports",
-   "unit": "kg",
-   "section": "4.5",
-   "anchor": "4.5-normal-force"
   },
   {
    "sym": "g",
@@ -389,14 +353,6 @@
    "anchor": "4.6-steps"
   },
   {
-   "sym": "m",
-   "concept": "mass",
-   "meaning": "the mass of the system of interest",
-   "unit": "kg",
-   "section": "4.6",
-   "anchor": "4.6-axes"
-  },
-  {
    "sym": "a",
    "concept": "acceleration",
    "meaning": "the acceleration of the system along the axis the forces are added along",
@@ -444,7 +400,8 @@
    "meaning": "the tension in the wire on the left of the traffic light, which makes the smaller angle with the horizontal",
    "unit": "N",
    "section": "4.7",
-   "anchor": "4.7-tensions"
+   "anchor": "4.7-tensions",
+   "ref": "wire-1"
   },
   {
    "sym": "T_2",
@@ -452,7 +409,8 @@
    "meaning": "the tension in the wire on the right of the traffic light, which makes the larger angle with the horizontal",
    "unit": "N",
    "section": "4.7",
-   "anchor": "4.7-tensions"
+   "anchor": "4.7-tensions",
+   "ref": "wire-2"
   },
   {
    "sym": "F_s",
@@ -460,7 +418,8 @@
    "meaning": "the force of the scale on the person, which is what the scale reads",
    "unit": "N",
    "section": "4.7",
-   "anchor": "4.7-scale"
+   "anchor": "4.7-scale",
+   "ref": "scale"
   },
   {
    "sym": "w",
@@ -479,7 +438,87 @@
    "anchor": "4.7-drag"
   },
   {
-   "sym": "m",
+   "sym": "T_1x",
+   "concept": "tension",
+   "meaning": "the horizontal component of the tension T_1",
+   "unit": "N",
+   "section": "4.7",
+   "ref": "wire-1"
+  },
+  {
+   "sym": "T_1y",
+   "concept": "tension",
+   "meaning": "the vertical component of the tension T_1",
+   "unit": "N",
+   "section": "4.7",
+   "ref": "wire-1"
+  },
+  {
+   "sym": "T_2x",
+   "concept": "tension",
+   "meaning": "the horizontal component of the tension T_2",
+   "unit": "N",
+   "section": "4.7",
+   "ref": "wire-2"
+  },
+  {
+   "sym": "T_2y",
+   "concept": "tension",
+   "meaning": "the vertical component of the tension T_2",
+   "unit": "N",
+   "section": "4.7",
+   "ref": "wire-2"
+  },
+  {
+   "sym": "m_mass",
+   "concept": "mass",
+   "meaning": "the mass of a body, which measures its inertia and is the quantity of matter in it",
+   "unit": "kg",
+   "section": "4.2",
+   "anchor": "4.2-mass"
+  },
+  {
+   "sym": "m_mass",
+   "concept": "mass",
+   "meaning": "the mass of the system, which is what the net external force is divided by to give the acceleration",
+   "unit": "kg",
+   "section": "4.3",
+   "anchor": "4.3-net-force"
+  },
+  {
+   "sym": "m_mass",
+   "concept": "mass",
+   "meaning": "the mass of the system of interest",
+   "unit": "kg",
+   "section": "4.4",
+   "anchor": "4.4-choosing-a-system"
+  },
+  {
+   "sym": "θ_angle",
+   "concept": "angle",
+   "meaning": "the angle the incline makes with the horizontal, or the angle a sagging connector makes with the horizontal",
+   "unit": "°",
+   "section": "4.5",
+   "anchor": "4.5-weight-on-incline"
+  },
+  {
+   "sym": "m_mass",
+   "concept": "mass",
+   "meaning": "the mass the surface or the rope supports",
+   "unit": "kg",
+   "section": "4.5",
+   "anchor": "4.5-normal-force"
+  },
+  {
+   "sym": "m_mass",
+   "concept": "mass",
+   "meaning": "the mass of the system of interest",
+   "unit": "kg",
+   "section": "4.6",
+   "anchor": "4.6-axes"
+  },
+  {
+   "sym": "m_mass",
    "concept": "mass",
    "meaning": "the mass of the system of interest",
    "unit": "kg",
@@ -487,7 +526,7 @@
    "anchor": "4.7-drag"
   },
   {
-   "sym": "θ",
+   "sym": "θ_angle",
    "concept": "angle",
    "meaning": "the angle a wire makes with the horizontal",
    "unit": "°",
@@ -495,32 +534,67 @@
    "anchor": "4.7-tensions"
   },
   {
-   "sym": "T_1x",
-   "concept": "tension",
-   "meaning": "the horizontal component of the tension T_1",
+   "sym": "θ_angle",
+   "concept": "angle",
+   "meaning": "the angle between the pushes of the first and the second skater",
+   "unit": "°",
+   "section": "4.1"
+  },
+  {
+   "sym": "F_wallfeet",
+   "concept": "force",
+   "ref": "wall",
+   "meaning": "the force the wall of the pool exerts on the swimmer’s feet, external to the swimmer",
+   "unit": "N",
+   "section": "4.4"
+  },
+  {
+   "sym": "F_feetwall",
+   "concept": "force",
+   "ref": "swimmer",
+   "meaning": "the force the swimmer’s feet exert on the wall of the pool, which acts on the wall and not on the swimmer",
+   "unit": "N",
+   "section": "4.4"
+  },
+  {
+   "sym": "F_foot",
+   "concept": "force",
+   "ref": "professor",
+   "meaning": "the backward force the professor’s foot exerts on the floor, which acts on the floor and not on System 1",
+   "unit": "N",
+   "section": "4.4"
+  },
+  {
+   "sym": "F_cart",
+   "concept": "force",
+   "ref": "cart",
+   "meaning": "the force the cart exerts back on the professor, internal to System 1",
+   "unit": "N",
+   "section": "4.4"
+  },
+  {
+   "sym": "F_p",
+   "concept": "force",
+   "ref": "man",
+   "meaning": "the force the person exerts downward on the scale, equal in magnitude to the scale’s reading",
    "unit": "N",
    "section": "4.7"
   },
   {
-   "sym": "T_1y",
-   "concept": "tension",
-   "meaning": "the vertical component of the tension T_1",
+   "sym": "F_1",
+   "concept": "force",
+   "ref": "thrower",
+   "meaning": "the force that pushes the thrower back as the ball leaves",
    "unit": "N",
-   "section": "4.7"
+   "section": "4.8"
   },
   {
-   "sym": "T_2x",
-   "concept": "tension",
-   "meaning": "the horizontal component of the tension T_2",
+   "sym": "F_2",
+   "concept": "force",
+   "ref": "catcher",
+   "meaning": "the force that pushes the catcher back as the ball arrives",
    "unit": "N",
-   "section": "4.7"
-  },
-  {
-   "sym": "T_2y",
-   "concept": "tension",
-   "meaning": "the vertical component of the tension T_2",
-   "unit": "N",
-   "section": "4.7"
+   "section": "4.8"
   }
  ]
 }
