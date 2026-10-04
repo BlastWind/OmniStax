@@ -1,8 +1,10 @@
-/* Figures for section 29.6 The Wave Nature of Matter. The page binds position
-   (λ, d and the path length difference), momentum, velocity and energy.
-   Planck's constant, a mass, the order n and the angle θ are ink. An electron
+/* Figures for section 29.6 The Wave Nature of Matter. The figures draw
+   position (λ, d and the path length difference), momentum, velocity, energy,
+   mass and the angle θ; Planck's constant and the order n are ink. An electron
    is F.el('e-'), a proton F.el('p+'), a neutron F.el('n0'), and the atoms of
-   the crystal F.el('Ni'), the nickel of Davisson and Germer. */
+   the crystal F.el('Ni'), the nickel of Davisson and Germer. The bowling ball,
+   the electron of Example 29.7 and the two scattered waves of Figure 29.20 are
+   the section's referents, drawn with F.ref. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['29.6'] = function (root, F) {
 const { fmt, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, label, vbracket, angleArc, axes, curve, pinned, hover, readout } = F;
@@ -84,8 +86,9 @@ const lenTex = (m) => { const l = lengthOf(m); return l.u === 'm' ? sciTex(m, 2)
     /* the particle, its velocity, and the chain v → p → λ */
     const Y1 = 160, PX = 170;
     if (P.el) dot(ctx, PX, Y1, F.el(P.el), true, 14);
-    else dot(ctx, PX, Y1, PAL.ink, true, 34);
-    label(ctx, P.el ? P.sym : 'ball', PX, Y1, { side: 'below', size: 20, gap: P.el ? 24 : 44 });
+    else dot(ctx, PX, Y1, F.ref('bowling-ball'), true, 34);
+    const nameC = pick.value === 'ball' ? F.ref('bowling-ball') : pick.value === 'e' ? F.ref('electron') : PAL.ink;
+    label(ctx, P.el ? P.sym : 'ball', PX, Y1, { side: 'below', size: 20, gap: P.el ? 24 : 44, color: nameC });
     arrow(ctx, PX + (P.el ? 24 : 44), Y1, PX + 170, Y1, VC, 5);
     hits.push({ x: PX, y: Y1, r: P.el ? 16 : 36, name: 'a ' + P.name + ' of mass ' + P.mText });
     text(ctx, 'v = ' + sci(speed, 2) + ' m/s', PX + 190, Y1, VC, { size: 22, weight: 600, align: 'left', base: 'middle' });
@@ -113,7 +116,7 @@ const lenTex = (m) => { const l = lengthOf(m); return l.u === 'm' ? sciTex(m, 2)
 
     topline(ctx, P.a + ' moving at ' + sci(speed, 2) + ' m/s has a de Broglie wavelength of ' + lenText(lam) + ', ' + where(lam) + '.');
     const ke = P.el ? sciTex(KEj / EV, 2) + '\\ \\text{eV}' : sciTex(KEj, 2) + '\\ \\text{J}';
-    ro.set('\\klam = \\frac{h}{m\\kv} = \\frac{6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s}}{(' + P.mTex + ')(' + sciTex(speed, 2) + '\\ \\text{m/s})} = ' + lenTex(lam) + ',\\quad \\kKE = \\frac{1}{2}m\\kv^{2} = ' + ke, '');
+    ro.set('\\klam = \\frac{h}{\\km\\kv} = \\frac{6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s}}{(' + P.mTex + ')(' + sciTex(speed, 2) + '\\ \\text{m/s})} = ' + lenTex(lam) + ',\\quad \\kKE = \\frac{1}{2}\\km\\kv^{2} = ' + ke, '');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -137,7 +140,7 @@ const lenTex = (m) => { const l = lengthOf(m); return l.u === 'm' ? sciTex(m, 2)
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 2, max: 10, step: 0.01, value: 4.36, unit: '× 10⁶ m/s', dec: 2, aria: 'the speed of the electrons' });
   const dS = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.05, max: 0.25, step: 0.001, value: 0.091, unit: 'nm', dec: 3, aria: 'the spacing between planes of atoms' });
   const first = Math.asin(Hh / (ME * 4.36e6) * 1e9 / (2 * 0.091)) * 180 / Math.PI;
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 90, step: 0.1, value: +first.toFixed(1), unit: '°', dec: 1, aria: 'the angle of incidence',
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 5, max: 90, step: 0.1, value: +first.toFixed(1), unit: '°', dec: 1, aria: 'the angle of incidence',
     specials: [1, 2, 3, 4, 5, 6].map((n) => ({ at: bragg(n), label: 'n = ' + n })) });
   const ro = readout(d);
   const S = 1400, NPL = 4;
@@ -185,12 +188,12 @@ const lenTex = (m) => { const l = lengthOf(m); return l.u === 'm' ? sciTex(m, 2)
     const ui = { x: Math.cos(t), y: Math.sin(t) }, uo = { x: Math.cos(t), y: -Math.sin(t) }, L = 440;
     const P1 = { x: XC0, y: Y0 }, P2 = { x: XC0, y: Y0 + dU }, ds = dU * Math.sin(t);
     const A = { x: P2.x - ui.x * ds, y: P2.y - ui.y * ds }, Cc = { x: P2.x + uo.x * ds, y: P2.y + uo.y * ds };
-    [[P1, 0], [P2, ds]].forEach(([P, lp]) => {
+    [[P1, 0, F.ref('top-ray')], [P2, ds, F.ref('second-ray')]].forEach(([P, lp, rc]) => {
       const a = { x: P.x - ui.x * L, y: P.y - ui.y * L };
       line(ctx, a.x, a.y, P.x, P.y, alpha(PAL.ink, 0.25), 2);
       line(ctx, P.x, P.y, P.x + uo.x * L, P.y + uo.y * L, alpha(PAL.ink, 0.25), 2);
-      wave(ctx, a, ui, L, lp - L, lamU, PAL.ink);
-      wave(ctx, P, uo, L, lp, lamU, PAL.ink);
+      wave(ctx, a, ui, L, lp - L, lamU, rc);
+      wave(ctx, P, uo, L, lp, lamU, rc);
     });
     line(ctx, A.x, A.y, P2.x, P2.y, XC, 6);
     line(ctx, P2.x, P2.y, Cc.x, Cc.y, XC, 6);
@@ -204,7 +207,7 @@ const lenTex = (m) => { const l = lengthOf(m); return l.u === 'm' ? sciTex(m, 2)
       label(ctx, 'e⁻', e0.x, e0.y, { side: 'left', size: 20, gap: 20 });
       hits.push({ x: e0.x, y: e0.y, r: 14, name: 'an electron of the beam' });
     }
-    angleArc(ctx, P1, 62, Math.PI - t, Math.PI, 'θ');
+    angleArc(ctx, P1, 62, Math.PI - t, Math.PI, 'θ', undefined, C('angle'));
     text(ctx, 'A', A.x - 16, A.y + 4, PAL.ink, { size: 18, align: 'right', base: 'middle', bg: PAL.panel });
     text(ctx, 'B', P2.x, P2.y + 26, PAL.ink, { size: 18, align: 'center', bg: PAL.panel });
     text(ctx, 'C', Cc.x + 16, Cc.y + 4, PAL.ink, { size: 18, align: 'left', base: 'middle', bg: PAL.panel });
@@ -230,7 +233,7 @@ const lenTex = (m) => { const l = lengthOf(m); return l.u === 'm' ? sciTex(m, 2)
       : Math.abs(ratio - Math.floor(ratio) - 0.5) < 0.03 ? ', and the electrons interfere destructively.'
       : ', not a whole number of wavelengths, so the waves partly cancel.';
     topline(ctx, 'At θ = ' + fmt(th.v, 1) + '° the path length difference is ' + fmt(ratio, 2) + ' λ' + state);
-    ro.set('\\klam = \\frac{h}{m\\kv} = ' + fmt(lam, 3) + '\\ \\text{nm},\\quad \\text{PLD} = 2\\kd\\sin\\theta = 2(' + fmt(dd, 3) + '\\ \\text{nm})\\sin ' + fmt(th.v, 1) + '^\\circ = ' + fmt(pld, 3) + '\\ \\text{nm} = ' + fmt(ratio, 2) + '\\,\\klam', '');
+    ro.set('\\klam = \\frac{h}{\\km\\kv} = ' + fmt(lam, 3) + '\\ \\text{nm},\\quad \\text{PLD} = 2\\kd\\sin\\ktheta = 2(' + fmt(dd, 3) + '\\ \\text{nm})\\sin ' + fmt(th.v, 1) + '^\\circ = ' + fmt(pld, 3) + '\\ \\text{nm} = ' + fmt(ratio, 2) + '\\,\\klam', '');
   }
   register(d.fig, { update: () => {}, draw });
 })();

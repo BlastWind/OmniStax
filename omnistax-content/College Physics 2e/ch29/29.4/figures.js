@@ -1,9 +1,9 @@
-/* Figures for section 29.4 Photon Momentum. The page binds momentum, energy,
-   position (the wavelength) and velocity (the electron's speed). Planck's
-   constant, the electron's mass and the scattering angle are ink. An x-ray,
-   microwave, infrared or ultraviolet photon is ink with its band named; a
-   visible photon is drawn in the color of its wavelength, the physical fact of
-   rule 7, through `wavelengthColor` alone. An electron is F.el('e-'). */
+/* Figures for section 29.4 Photon Momentum. The figures draw momentum, energy,
+   position (the wavelength), velocity (the electron's speed), mass and the
+   scattering angle; Planck's constant is ink. A visible photon is drawn in the
+   color of its wavelength, the physical fact, through `wavelengthColor` and
+   F.fact; any other photon is a referent of the section and wears F.ref, its
+   band named. An electron's body is F.el('e-'), and its name label F.ref. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['29.4'] = function (root, F) {
 const { fmt, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, label, labeller, angleArc, hover, readout } = F;
@@ -14,7 +14,7 @@ const Hh = 6.63e-34, ME = 9.11e-31, CL = 3.00e8, EV = 1.60e-19;
 
 /* the color of visible light of wavelength nm, the fit 29.2 uses; outside 380 to 700 nm the photon is ink */
 function wavelengthColor(nm) {
-  if (nm < 380 || nm > 700) return PAL.ink;
+  if (nm < 380 || nm > 700) return null;
   let r = 0, g = 0, b = 0;
   if (nm < 440) { r = (440 - nm) / 60; b = 1; }
   else if (nm < 490) { g = (nm - 440) / 50; b = 1; }
@@ -24,7 +24,7 @@ function wavelengthColor(nm) {
   else r = 1;
   const k = nm < 420 ? 0.4 + 0.6 * (nm - 380) / 40 : nm > 680 ? 0.4 + 0.6 * (700 - nm) / 20 : 1;
   const c = (x) => Math.round(255 * Math.pow(x * Math.max(k, 0.55), 0.8));
-  return 'rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')';
+  return F.fact('rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')');
 }
 
 /* a photon as a short wave packet along (ux, uy), with its wavelength drawn as the ripple count */
@@ -66,7 +66,7 @@ function sciTex(v, dec) {
   const H = 600;
   const d = sim('sim-compton', H);
   const lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 2, max: 12, step: 0.1, value: 5, unit: 'pm', dec: 1, aria: 'the wavelength of the incoming photon' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, aria: 'the scattering angle' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, aria: 'the scattering angle' });
   const ro = readout(d);
   const LC = Hh / (ME * CL) * 1e12;                    /* h/mc, 2.43 pm */
   const HC_KEV_PM = Hh * CL / EV / 1e3 * 1e12;         /* hc in keV·pm, 1243 */
@@ -81,27 +81,28 @@ function sciTex(v, dec) {
     const E = HC_KEV_PM / L, E2 = HC_KEV_PM / L2, KE = E - E2;
     const p = Hh / (L * 1e-12) / 1e-23, p2 = Hh / (L2 * 1e-12) / 1e-23;
     const pex = p - p2 * Math.cos(t), pey = -p2 * Math.sin(t), pe = Math.hypot(pex, pey);
-    const PC = C('momentum');
+    const PC = C('momentum'), XC = C('position'), AC = C('angle');
+    const IN = F.ref('compton-photon'), OUT = F.ref('scattered-photon'), EL_ = F.ref('compton-electron');
     const lab = labeller(ctx, H, { headline: true });
     hits = [];
 
     /* the collision: the incoming photon, the scattered photon at θ, the recoiling electron */
     const ripples = (l) => Math.max(1.5, 7 - l * 0.45);
     line(ctx, EL.x - 260, EL.y, EL.x + 200, EL.y, alpha(PAL.ink, 0.3), 2, [6, 6]);
-    packet(ctx, EL.x - 180, EL.y, 1, 0, PAL.ink, ripples(L));
+    packet(ctx, EL.x - 180, EL.y, 1, 0, IN, ripples(L));
     arrow(ctx, EL.x - 135, EL.y, EL.x - 30, EL.y, PAL.muted, 4);
     const ux = Math.cos(t), uy = -Math.sin(t);
     arrow(ctx, EL.x + ux * 30, EL.y + uy * 30, EL.x + ux * 120, EL.y + uy * 120, PAL.muted, 4);
-    packet(ctx, EL.x + ux * 170, EL.y + uy * 170, ux, uy, PAL.ink, ripples(L2));
-    if (th.v > 0) angleArc(ctx, EL, 64, 0, t, 'θ = ' + fmt(th.v, 0) + '°');
+    packet(ctx, EL.x + ux * 170, EL.y + uy * 170, ux, uy, OUT, ripples(L2));
+    if (th.v > 0) angleArc(ctx, EL, 64, 0, t, 'θ = ' + fmt(th.v, 0) + '°', undefined, AC);
     if (pe * S > 6) {
       const ex = pex / pe, ey = -pey / pe;
       arrow(ctx, EL.x + ex * 20, EL.y + ey * 20, EL.x + ex * 140, EL.y + ey * 140, PAL.muted, 4);
     }
     dot(ctx, EL.x, EL.y, F.el('e-'), true, 12);
-    label(ctx, 'e⁻', EL.x, EL.y, { side: 'below', size: 20, gap: 22 });
-    text(ctx, 'λ = ' + fmt(L, 2) + ' pm', EL.x - 180, EL.y + 44, PAL.ink, { size: 20, align: 'center', bg: PAL.panel });
-    lab.add("λ′ = " + fmt(L2, 2) + ' pm', EL.x + ux * 205, EL.y + uy * 205, ux, uy, PAL.ink, 20, 18);
+    label(ctx, 'e⁻', EL.x, EL.y, { side: 'below', size: 20, gap: 22, color: EL_ });
+    text(ctx, 'λ = ' + fmt(L, 2) + ' pm', EL.x - 180, EL.y + 44, XC, { size: 20, align: 'center', bg: PAL.panel });
+    lab.add("λ′ = " + fmt(L2, 2) + ' pm', EL.x + ux * 205, EL.y + uy * 205, ux, uy, XC, 20, 18);
     hits.push({ x: EL.x - 180, y: EL.y, r: 40, name: 'the x-ray photon before, ' + fmt(E, 0) + ' keV' });
     hits.push({ x: EL.x + ux * 170, y: EL.y + uy * 170, r: 40, name: 'the scattered photon, ' + fmt(E2, 0) + ' keV' });
     hits.push({ x: EL.x, y: EL.y, r: 16, name: 'the electron, which recoils with ' + fmt(KE, 1) + ' keV' });
@@ -158,17 +159,20 @@ function sciTex(v, dec) {
     const { ctx } = begin(d.c);
     const ph = PH[pick.value], lam = ph.nm * 1e-9;
     const p = Hh / lam, v = p / ME, Ej = Hh * CL / lam, E = Ej / EV, KE = 0.5 * ME * v * v / EV;
-    const PC = C('momentum'), EC = C('energy'), VC = C('velocity');
-    const col = wavelengthColor(ph.nm);
+    const PC = C('momentum'), EC = C('energy'), VC = C('velocity'), XC = C('position');
+    const PH_ = F.ref('photon'), EL_ = F.ref('electron');
+    const col = wavelengthColor(ph.nm) || PH_;
     hits = [];
 
     /* the two with equal momenta */
     packet(ctx, 330, ROW1, 1, 0, col, ph.band === 'microwave' ? 1.5 : ph.band === 'infrared' ? 2.5 : ph.band === 'visible' ? 4 : 6);
-    text(ctx, 'photon, λ = ' + (ph.nm >= 1e6 ? '4.00 cm' : ph.nm >= 1000 ? '2.50 μm' : fmt(ph.nm, ph.nm < 100 ? 1 : 0) + ' nm'), 330, ROW1 + 48, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'photon', 330, ROW1 + 40, PH_, { size: 20, align: 'center' });
+    text(ctx, 'λ = ' + (ph.nm >= 1e6 ? '4.00 cm' : ph.nm >= 1000 ? '2.50 μm' : fmt(ph.nm, ph.nm < 100 ? 1 : 0) + ' nm'), 330, ROW1 + 66, XC, { size: 20, align: 'center' });
     arrow(ctx, AX, ROW1, AX + AL, ROW1, PC, 5);
     text(ctx, 'p = ' + sci(p, 2) + ' kg·m/s', AX + AL + 24, ROW1, PC, { size: 22, weight: 600, align: 'left', base: 'middle' });
     dot(ctx, 330, ROW2, F.el('e-'), true, 12);
-    text(ctx, 'electron, v = ' + sci(v, 2) + ' m/s', 330, ROW2 + 48, VC, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'electron', 330, ROW2 + 40, EL_, { size: 20, align: 'center' });
+    text(ctx, 'v = ' + sci(v, 2) + ' m/s', 330, ROW2 + 66, VC, { size: 20, weight: 600, align: 'center' });
     arrow(ctx, AX, ROW2, AX + AL, ROW2, PC, 5);
     text(ctx, 'p = ' + sci(p, 2) + ' kg·m/s', AX + AL + 24, ROW2, PC, { size: 22, weight: 600, align: 'left', base: 'middle' });
     hits.push({ x: 330, y: ROW1, r: 40, name: 'a ' + ph.name + ' photon' }, { x: 330, y: ROW2, r: 16, name: 'an electron with the same momentum' });
@@ -182,14 +186,14 @@ function sciTex(v, dec) {
     text(ctx, 'energy (eV)', GB.r, GB.y + 64, EC, { size: 20, weight: 600, align: 'right' });
     const xe = X(E), xk = X(KE);
     line(ctx, xk, GB.y, xe, GB.y, alpha(EC, 0.35), 8);
-    dot(ctx, xe, GB.y, EC, true, 11);
-    dot(ctx, xk, GB.y, EC, false, 11);
-    label(ctx, 'photon E = ' + sci(E, 2) + ' eV', xe, GB.y, { side: 'above', color: EC, size: 20, gap: 30 });
-    label(ctx, 'electron KEₑ = ' + sci(KE, 2) + ' eV', xk, GB.y, { side: 'above', color: EC, size: 20, gap: 30 });
+    dot(ctx, xe, GB.y, PH_, true, 11);
+    dot(ctx, xk, GB.y, EL_, false, 11);
+    label(ctx, 'photon E = ' + sci(E, 2) + ' eV', xe, GB.y, { side: 'above', color: PH_, size: 20, gap: 30 });
+    label(ctx, 'electron KEₑ = ' + sci(KE, 2) + ' eV', xk, GB.y, { side: 'above', color: EL_, size: 20, gap: 30 });
     hits.push({ x: xe, y: GB.y, r: 14, name: 'the photon’s energy' }, { x: xk, y: GB.y, r: 14, name: 'the electron’s kinetic energy' });
 
     topline(ctx, 'A ' + ph.name + ' photon and an electron moving at ' + sci(v, 2) + ' m/s carry the same momentum, ' + sci(p, 2) + ' kg·m/s.');
-    ro.set('\\kp = \\frac{h}{\\klam} = ' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s},\\quad \\kv = \\frac{\\kp}{m} = ' + sciTex(v, 2) + '\\ \\text{m/s}',
+    ro.set('\\kp = \\frac{h}{\\klam} = ' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s},\\quad \\kv = \\frac{\\kp}{\\km} = ' + sciTex(v, 2) + '\\ \\text{m/s}',
       'The photon carries E = ' + sci(E, 2) + ' eV and the electron KEₑ = ' + sci(KE, 2) + ' eV, a ratio of ' + sci(E / KE, 2) + '.');
   }
   register(d.fig, { update: () => {}, draw });

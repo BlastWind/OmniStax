@@ -1,52 +1,63 @@
 # Chapter 29 colour plan
 
-Prepared 2026-09-28 in the chapter's prep pass, beside `config.md`. The chapter
-declares no type of its own.
+Prepared 2026-09-28 in the chapter's prep pass, beside `config.md`, and brought
+under root `RULES.md` item 7 on 2026-10-04. The chapter declares no type of its
+own. Colour reaches its pages in item 7's four ways, the earlier winning: fact,
+convention, referent, category.
+
+## Categories
 
 | Quantity | Type | Treatment |
 |---|---|---|
 | Photon energy $E$, $E'$, an energy step $\Delta E$, the binding energy BE, the electron's kinetic energy $\text{KE}_e$, an uncertainty in energy | `energy` | one hue; the scattered photon's $E'$ is told by its prime |
 | Frequency $f$, threshold $f_0$, $f_{\text{max}}$ of an x-ray tube | `frequency` | one hue; variants by subscript |
-| Wavelength $\lambda$, a plane or slit spacing $d$, an uncertainty in position $\Delta x$ | `position` | one hue |
-| Photon and particle momentum $p$, its uncertainty $\Delta p$ | `momentum` | one hue |
-| The speed of light $c$, a particle's speed $v$, $\Delta v$ | `velocity` | one hue |
-| A lifetime or uncertainty in time $\Delta t$ | `time` | 29.7 only |
-| The accelerating voltage $V$ of an x-ray tube | `voltage` | 29.3 |
-| The electron's charge $q$ | `charge` | 29.3's readout only if it writes `\kq` |
-| A source's power | `power` | unbound as built: no figure draws a power |
-| Blackbody intensity and temperature | `intensity`, `temperature` | 29.1's blackbody sim |
-| Planck's constant $h$, a mass $m$, the integers $n$, an angle $\theta$, a count of photons | untyped | ink |
+| Wavelength $\lambda$, a plane or slit spacing $d$, a path length difference, a position $x$ and its uncertainty $\Delta x$ | `position` | one hue |
+| Photon and particle momentum $p$, its uncertainty $\Delta p$, the momenta $p_1$, $p_2$ of Example 29.10 | `momentum` | one hue; the subscripts wear the referents' colours |
+| The speed of light $c$, a particle's speed $v$ or velocity $u$, $\Delta v$ | `velocity` | one hue |
+| A lifetime or uncertainty in time $\Delta t$ | `time` | |
+| The accelerating voltage $V$ of an x-ray tube, the retarding voltage of a photoelectric tube | `voltage` | |
+| The electron's charge $q$ | `charge` | |
+| The power of a light bulb | `power` | words only; no figure draws a power |
+| Blackbody intensity and temperature | `intensity`, `temperature` | 29.1's blackbody figure |
+| A particle's mass $m$, the mass of an electron or a grain of dust | `mass` | |
+| The Compton scattering angle, the Bragg angle, the double-slit angle $\theta$, $\theta_1$ | `angle` | |
 
-Which section colours what, as built:
+Planck's constant $h$, the integers $n$, an order of interference $m$ and a
+count of photons stay in ink. A curve that is one quantity (the blackbody
+spectrum, the photoelectric line, the uncertainty limits of 29.7) keeps its
+category's colour; the relative intensity of the x-ray spectrum and of the
+Bragg and double-slit patterns is a shape, not a typed quantity, and stays ink.
 
-| Section | Types coloured |
+## Facts and conventions
+
+A photon or a beam of visible light is drawn in the colour of its wavelength,
+the visible band of a spectrum in its true colours, and a stretch of spectrum
+with no light in it black: `spectral()` in 29.1 (the function of 27.1) and
+`wavelengthColor(nm)` in 29.2, 29.3, 29.4, 29.7 and 29.8, each page carrying its
+own copy, all through `F.fact` so the reader's Facts and conventions switch
+reaches them. A photon outside the visible band has no real colour and is never
+given a false one; where the text names it, it is a referent.
+
+Every electron, proton and neutron is `F.el('e-')`, `F.el('p+')`, `F.el('n0')`,
+and an atom of a crystal is `F.el` of its element. A metal plate or an anode is
+not tinted to say what it is; its name and binding energy are its label.
+
+## Referents
+
+Each figure's referents are listed in its section's `referents` table, drawn
+with `F.ref` and marked `data-ref` in the text:
+
+| Section | Referents |
 |---|---|
-| intro | none |
-| 29.1 | `energy`, `frequency`; `intensity`, `temperature`, `position` on the blackbody figure |
-| 29.2 | `energy`, `frequency`, `position`; no figure draws a voltage, so `voltage` is unbound |
-| 29.3 | `energy`, `frequency`, `position`, `voltage`, `charge` (the tube's readout writes $\kq\kV$); no figure draws a power, so `power` is unbound |
-| 29.4 | `momentum`, `energy`, `position`, `velocity` |
-| 29.5 | none |
-| 29.6 | `position`, `momentum`, `velocity`, `energy` |
-| 29.7 | `position`, `momentum`, `energy`, `time`, `velocity` |
-| 29.8 | `momentum`, `velocity`, `position` |
+| 29.1 | the ladder's oscillator and the classical oscillator beside it |
+| 29.2 | the lamp and the metal plate of the photoelectric figure |
+| 29.3 | the x-ray tube, its filament (the cathode) and its anode |
+| 29.4 | the incoming and scattered photons and the struck electron of the Compton figure; the photon and electron of Example 29.5 |
+| 29.6 | the bowling ball and the electron of Example 29.7; the waves scattered from the top and second planes of Figure 29.20 |
+| 29.7 | the source, slits, screen and coils of the double-slit figure; the atom and electron of Example 29.8; the excited state of Example 29.9 |
+| 29.8 | the 550-nm photon and the grain of dust of Example 29.10, whose momenta $p_1$ and $p_2$ split their subscripts to them |
 
-The colour of visible light is one piecewise fit of the spectrum, `spectral()` in
-29.1 (the function of 27.1) and `wavelengthColor(nm)` in 29.2, 29.3, 29.4, 29.7 and
-29.8, each page carrying its own copy.
-
-Of root rule 7's four families the chapter uses three. **Physical colour**: a
-photon or a beam of visible light is drawn in the colour of its wavelength, the
-visible band of the spectrum in 29.1 and 29.3 in its true colours, and this is the
-one place a hex literal (or a wavelength-to-colour function) appears, named in the
-plan line; a photon outside the visible band is ink with its band's name, never a
-false colour. A photon is never a typed thing: the wavelength slider wears the
-`position` hue and the photon wears the colour the number means. **Element
-palette**: every electron, proton and neutron is `F.el('e-')`, `F.el('p+')`,
-`F.el('n0')`, and an atom of the plate or the crystal is `F.el` of its element.
-**Categorical**: `F.cat(i)` for instances with no type and no element, such as two
-metals on one graph, never in a category hue the figure draws. A metal plate is not tinted
-to say what it is; its name and binding energy are its label.
-
-Colour-off drops the type hues and keeps the physical and element colours, so each
-figure must stay legible from its labels and caption alone.
+A referent whose body already wears a fact or a convention (a visible photon,
+an electron) keeps that colour on its body and wears its referent colour on its
+name. Colour-off drops every hue but leaves each figure legible from its labels
+and caption.

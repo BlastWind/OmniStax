@@ -1,8 +1,9 @@
-/* Figures for section 29.8 The Particle-Wave Duality Reviewed. The page binds
-   momentum, velocity (the grain's recoil) and position (the wavelength).
-   Planck's constant and the grain's mass are ink, and so is the grain. A
-   visible photon is drawn in the color of its wavelength, the physical fact of
-   rule 7, through `wavelengthColor` alone. */
+/* Figures for section 29.8 The Particle-Wave Duality Reviewed. The figure draws
+   momentum, velocity (the grain's recoil), position (the wavelength) and the
+   grain's mass; Planck's constant is ink. A visible photon is drawn in the color
+   of its wavelength, the physical fact, through `wavelengthColor` and F.fact.
+   The photon and the grain of dust are the section's referents: the grain wears
+   F.ref, and the photon, whose body is its fact colour, wears it on its name. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['29.8'] = function (root, F) {
 const { fmt, C, PAL, alpha, ctl, choice, register, begin, line, arrow, text, topline, hover, readout } = F;
@@ -23,7 +24,7 @@ function wavelengthColor(nm) {
   else r = 1;
   const k = nm < 420 ? 0.4 + 0.6 * (nm - 380) / 40 : nm > 680 ? 0.4 + 0.6 * (700 - nm) / 20 : 1;
   const c = (x) => Math.round(255 * Math.pow(x * Math.max(k, 0.55), 0.8));
-  return 'rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')';
+  return F.fact('rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')');
 }
 
 /* a photon as a short wave packet along x, its wavelength drawn as the ripple count */
@@ -38,14 +39,14 @@ function packet(ctx, x, y, color, ripples) {
 }
 
 /* a grain of dust as an irregular lump of radius r */
-function grain(ctx, x, y, r) {
+function grain(ctx, x, y, r, color) {
   ctx.save(); ctx.beginPath();
   for (let i = 0; i <= 14; i++) {
     const a = i / 14 * 2 * Math.PI, rr = r * (1 + 0.14 * Math.sin(3 * a + 0.6) + 0.08 * Math.cos(5 * a));
     if (i) ctx.lineTo(x + rr * Math.cos(a), y + rr * Math.sin(a)); else ctx.moveTo(x + rr * Math.cos(a), y + rr * Math.sin(a));
   }
-  ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.35); ctx.fill();
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+  ctx.closePath(); ctx.fillStyle = alpha(color, 0.35); ctx.fill();
+  ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
 }
 
 const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
@@ -73,7 +74,7 @@ function sciTex(v, dec) {
   const H = 440;
   const d = sim('sim-dust-recoil', H);
   const lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 380, max: 700, step: 1, value: 550, unit: 'nm', dec: 0, aria: 'the wavelength of the photon' });
-  const ms = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 10, step: 0.01, value: 1, unit: 'μg', dec: 2, aria: 'the mass of the grain of dust' });
+  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 10, step: 0.01, value: 1, unit: 'μg', dec: 2, aria: 'the mass of the grain of dust' });
   const pick = choice(d.controls, { label: '\\text{Absorption}', options: [
     { value: 'before', label: 'before' }, { value: 'after', label: 'after' },
   ], value: 'before', aria: 'before or after the photon is absorbed' });
@@ -85,7 +86,7 @@ function sciTex(v, dec) {
   function draw() {
     const { ctx } = begin(d.c);
     const nm = lam.v, m = ms.v * 1e-9, p = Hh / (nm * 1e-9), v = p / m;
-    const PC = C('momentum'), VC = C('velocity');
+    const PC = C('momentum'), VC = C('velocity'), MC = C('mass'), PH = F.ref('photon'), DU = F.ref('dust');
     const t = pick.mix((s) => (s === 'after' ? 1 : 0));
     const after = pick.value === 'after';
     const col = wavelengthColor(nm);
@@ -98,12 +99,13 @@ function sciTex(v, dec) {
     const px = PX + (GX - r - 60 - PX) * t, fade = t < 0.75 ? 1 : Math.max(0, 1 - (t - 0.75) / 0.25);
     if (fade > 0) F.faded(ctx, fade, [0, 0], () => {
       packet(ctx, px, Y, col, 2.5 + (700 - nm) / 110);
-      text(ctx, fmt(nm, 0) + '-nm photon', px, Y + 52, PAL.ink, { size: 20, align: 'center', bg: PAL.panel });
+      text(ctx, fmt(nm, 0) + '-nm photon', px, Y + 52, PH, { size: 20, align: 'center', bg: PAL.panel });
     });
     if (!after) hits.push({ x: px, y: Y, r: 55, name: 'a ' + fmt(nm, 0) + '-nm photon of visible light' });
 
-    grain(ctx, GX, Y, r);
-    text(ctx, 'dust, m = ' + fmt(ms.v, 2) + ' μg', GX, Y + r + 40, PAL.ink, { size: 20, align: 'center', bg: PAL.panel });
+    grain(ctx, GX, Y, r, DU);
+    text(ctx, 'dust', GX, Y + r + 34, DU, { size: 20, align: 'center', bg: PAL.panel });
+    text(ctx, 'm = ' + fmt(ms.v, 2) + ' μg', GX, Y + r + 62, MC, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     hits.push({ x: GX, y: Y, r: r + 6, name: 'a grain of dust at rest in outer space' });
 
     /* one momentum, carried first by the photon and then by the grain */
@@ -124,7 +126,7 @@ function sciTex(v, dec) {
     topline(ctx, after
       ? 'The ' + fmt(ms.v, 2) + '-μg grain that absorbs the photon recoils at ' + sci(v, 2) + ' m/s, carrying the photon’s momentum.'
       : 'A ' + fmt(nm, 0) + '-nm photon carries ' + sci(p, 2) + ' kg·m/s toward a ' + fmt(ms.v, 2) + '-μg grain of dust at rest.');
-    if (after) ro.set('\\kv = \\frac{\\kp}{m} = \\frac{' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s}}{' + sciTex(m, 2) + '\\ \\text{kg}} = ' + sciTex(v, 2) + '\\ \\text{m/s}',
+    if (after) ro.set('\\kv = \\frac{\\kp}{\\km} = \\frac{' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s}}{' + sciTex(m, 2) + '\\ \\text{kg}} = ' + sciTex(v, 2) + '\\ \\text{m/s}',
       'At this speed the grain would take ' + sci(yrs, 1) + ' years to move one millimeter.', { form: 'after' });
     else ro.set('\\kp = \\frac{h}{\\klam} = \\frac{6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s}}{' + fmt(nm, 0) + '\\times 10^{-9}\\ \\text{m}} = ' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s}',
       'Before absorption the grain is at rest, so the photon carries all the momentum there is.', { form: 'before' });

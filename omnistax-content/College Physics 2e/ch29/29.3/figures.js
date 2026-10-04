@@ -2,9 +2,10 @@
    The page binds energy, frequency, position (the wavelength), voltage and
    charge. Planck's constant, counts of photons, the relative x-ray intensity
    and the anode's element are ink. The visible band is drawn in its true
-   colours through `wavelengthColor` alone, the physical fact of rule 7; every
-   photon outside it, x rays included, is ink with its band's name. An electron
-   is F.el('e-'). */
+   colours through `wavelengthColor` and F.fact, the physical fact; every photon
+   outside it, x rays included, is ink with its band's name. An electron is
+   F.el('e-'). The tube, its filament and its anode are the section's
+   referents, drawn with F.ref. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['29.3'] = function (root, F) {
 const { fmt, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, label, hbracket, axes, curve, hover, readout } = F;
@@ -49,7 +50,7 @@ function wavelengthColor(nm) {
   else r = 1;
   const k = nm < 420 ? 0.4 + 0.6 * (nm - 380) / 40 : nm > 680 ? 0.4 + 0.6 * (700 - nm) / 20 : 1;
   const c = (x) => Math.round(255 * Math.pow(x * Math.max(k, 0.55), 0.8));
-  return 'rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')';
+  return F.fact('rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')');
 }
 
 /* =====================================================================
@@ -212,19 +213,19 @@ function wavelengthColor(nm) {
   }
   function tube(ctx, A) {
     ctx.save();
-    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.soft, 0.5);
+    ctx.strokeStyle = F.ref('tube'); ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.soft, 0.5);
     ctx.beginPath(); ctx.roundRect(200, 160, 1000, 180, 90); ctx.fill(); ctx.stroke();
     /* the filament as a coil */
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
+    ctx.strokeStyle = F.ref('filament'); ctx.lineWidth = 3; ctx.beginPath();
     for (let j = 0; j <= 40; j++) { const y = 200 + j * 2.5, x = CAT.x - 10 + 12 * Math.sin(j * Math.PI / 4); if (j) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
     ctx.stroke();
     ctx.restore();
     /* the anode, a block with its face slanted toward the window */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('anode'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(AN.x - 10, 190); ctx.lineTo(AN.x + 40, 190); ctx.lineTo(AN.x + 40, 330); ctx.lineTo(AN.x + 20, 330); ctx.lineTo(AN.x + 20, 290); ctx.lineTo(AN.x - 30, 290); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.restore();
-    text(ctx, 'filament', CAT.x, 372, PAL.muted, { size: 18, align: 'center' });
-    text(ctx, 'anode, ' + A.name, AN.x + 20, 372, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'filament', CAT.x, 372, F.ref('filament'), { size: 18, align: 'center' });
+    text(ctx, 'anode, ' + A.name, AN.x + 20, 372, F.ref('anode'), { size: 18, align: 'center' });
     /* the detector the photons are counted in */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(DET.x - 60, DET.y, 120, 22); ctx.restore();
     line(ctx, DET.x - 60, DET.y, DET.x + 60, DET.y, PAL.muted, 2);
@@ -239,6 +240,7 @@ function wavelengthColor(nm) {
     hits = [];
 
     tube(ctx, A);
+    hits.push({ x: 700, y: 162, r: 20, name: 'the evacuated x-ray tube' });
     hbracket(ctx, CAT.x, AN.x - 30, 128, VC, 'V = ' + fmt(Em, 1) + ' kV', { side: 'above' });
 
     const counts = new Array(NB).fill(0);

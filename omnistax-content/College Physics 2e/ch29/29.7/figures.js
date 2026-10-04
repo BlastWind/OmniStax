@@ -1,9 +1,11 @@
 /* Figures for section 29.7 Probability: The Heisenberg Uncertainty Principle.
-   The page binds position (λ, d, Δx), momentum (Δp), velocity (Δv), energy (ΔE)
-   and time (Δt). Planck's constant, a mass, the order m, the angle θ and a count
-   of arrivals are ink. A photon is drawn in the color of its wavelength, the
-   physical fact of rule 7, through `wavelengthColor` alone; an electron is
-   F.el('e-') and a proton F.el('p+'). */
+   The figures draw position (λ, d, Δx), momentum (Δp), velocity (Δv), energy
+   (ΔE), time (Δt) and the angle θ₁. Planck's constant, a mass, the order m and a
+   count of arrivals are ink. A photon is drawn in the color of its wavelength,
+   the physical fact, through `wavelengthColor` and F.fact; an electron is
+   F.el('e-') and a proton F.el('p+'). The source, slits, screen and coils, the
+   atom and electron of Example 29.8 and the excited state of Example 29.9 are
+   the section's referents, drawn with F.ref. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['29.7'] = function (root, F) {
 const { fmt, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, label, hbracket, axes, curve, pinned, hover, readout } = F;
@@ -38,7 +40,7 @@ function wavelengthColor(nm) {
   else r = 1;
   const k = nm < 420 ? 0.4 + 0.6 * (nm - 380) / 40 : nm > 680 ? 0.4 + 0.6 * (700 - nm) / 20 : 1;
   const c = (x) => Math.round(255 * Math.pow(x * Math.max(k, 0.55), 0.8));
-  return 'rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')';
+  return F.fact('rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')');
 }
 const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453; return x - Math.floor(x); };
 
@@ -105,28 +107,29 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
     hits = [];
 
     /* the source, the barrier with its two slits, the screen seen edge on and face on */
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+    const SRC_ = F.ref('source'), SL = F.ref('slits'), SCN = F.ref('screen'), CO = F.ref('coils');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = SRC_; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.rect(SRC.x - 60, SRC.y - 26, 60, 52); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, isE ? 'electron gun' : 'faint lamp', SRC.x - 30, SRC.y + 52, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, isE ? 'electron gun' : 'faint lamp', SRC.x - 30, SRC.y + 52, SRC_, { size: 18, align: 'center' });
     hits.push({ x: SRC.x - 30, y: SRC.y, r: 34, name: isE ? 'a source that sends out one electron at a time' : 'a lamp so faint it sends out one photon at a time' });
     const g = 9;
-    line(ctx, BAR, GB.t - 10, BAR, SRC.y - SLIT - g, PAL.ink, 6);
-    line(ctx, BAR, SRC.y - SLIT + g, BAR, SRC.y + SLIT - g, PAL.ink, 6);
-    line(ctx, BAR, SRC.y + SLIT + g, BAR, GB.b + 10, PAL.ink, 6);
-    text(ctx, 'two slits', BAR, GB.t - 34, PAL.muted, { size: 18, align: 'center' });
+    line(ctx, BAR, GB.t - 10, BAR, SRC.y - SLIT - g, SL, 6);
+    line(ctx, BAR, SRC.y - SLIT + g, BAR, SRC.y + SLIT - g, SL, 6);
+    line(ctx, BAR, SRC.y + SLIT + g, BAR, GB.b + 10, SL, 6);
+    text(ctx, 'two slits', BAR, GB.t - 34, SL, { size: 18, align: 'center' });
     hits.push({ x: BAR, y: SRC.y - SLIT, r: 14, name: 'the upper slit' }, { x: BAR, y: SRC.y + SLIT, r: 14, name: 'the lower slit' });
     watch.only(ctx, 'yes', () => {
       [-1, 1].forEach((k) => {
-        ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5;
+        ctx.save(); ctx.strokeStyle = CO; ctx.lineWidth = 2.5;
         for (let j = 0; j < 4; j++) { ctx.beginPath(); ctx.ellipse(BAR - 12 + j * 8, SRC.y + k * SLIT, 5, 17, 0, 0, 2 * Math.PI); ctx.stroke(); }
         ctx.restore();
       });
-      text(ctx, 'coils detect which slit', BAR, GB.b + 36, PAL.muted, { size: 18, align: 'center' });
+      text(ctx, 'coils detect which slit', BAR, GB.b + 36, CO, { size: 18, align: 'center' });
     }, [8, 0]);
     if (watched) hits.push({ x: BAR, y: SRC.y + SLIT + 30, r: 20, name: 'coils around each slit that detect the particle passing through it' });
-    line(ctx, SCR, GB.t, SCR, GB.b, PAL.muted, 4);
+    line(ctx, SCR, GB.t, SCR, GB.b, SCN, 4);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(PAN.l, GB.t, PAN.r - PAN.l, GB.b - GB.t); ctx.restore();
-    text(ctx, 'screen', (SCR + PAN.r) / 2, GB.t - 34, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'screen', (SCR + PAN.r) / 2, GB.t - 34, SCN, { size: 18, align: 'center' });
     hits.push({ x: (PAN.l + PAN.r) / 2, y: GB.t + 20, r: 40, name: 'the screen, seen face on, with a dot where each particle landed' });
 
     /* arrivals so far, and a few in flight */
@@ -167,8 +170,8 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
     topline(ctx, n === 0 ? 'The ' + plural + ' leave the source one at a time.'
       : n + ' ' + (n === 1 ? who + ' has' : plural + ' have') + ' arrived, each at one definite place, and together they build ' + (watched ? 'a single-slit pattern, because each was seen to pass through one slit.' : 'a double-slit pattern.'));
     const note = isE ? 'An electron of this wavelength moves at only v = h/mλ = ' + fmt(Hh / (ME * nm * 1e-9), 0) + ' m/s.' : 'Electrons of the same wavelength build exactly the same pattern.';
-    if (watched) ro.set('D\\sin\\theta_1 = \\klam,\\quad \\sin\\theta_1 = \\frac{\\klam}{D} = \\frac{' + fmt(nm, 0) + '\\ \\text{nm}}{800\\ \\text{nm}} = ' + fmt(nm / DW, 3) + '\\ \\text{(first dark place)}', note, { form: 'single' });
-    else ro.set('\\kd\\sin\\theta_1 = \\klam,\\quad \\sin\\theta_1 = \\frac{\\klam}{\\kd} = \\frac{' + fmt(nm, 0) + '\\ \\text{nm}}{2000\\ \\text{nm}} = ' + fmt(nm / DS, 3) + '\\ \\text{(first bright band)}', note, { form: 'double' });
+    if (watched) ro.set('D\\sin\\kthetaone = \\klam,\\quad \\sin\\kthetaone = \\frac{\\klam}{D} = \\frac{' + fmt(nm, 0) + '\\ \\text{nm}}{800\\ \\text{nm}} = ' + fmt(nm / DW, 3) + '\\ \\text{(first dark place)}', note, { form: 'single' });
+    else ro.set('\\kd\\sin\\kthetaone = \\klam,\\quad \\sin\\kthetaone = \\frac{\\klam}{\\kd} = \\frac{' + fmt(nm, 0) + '\\ \\text{nm}}{2000\\ \\text{nm}} = ' + fmt(nm / DS, 3) + '\\ \\text{(first bright band)}', note, { form: 'double' });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -207,7 +210,7 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
     ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(0), Y(12));
     for (let k = 0; k <= 120; k++) { const v = x0 + (0.2 - x0) * k / 120; ctx.lineTo(X(v), Y(Math.min(dpOf(v), 12))); }
     ctx.lineTo(X(0.2), Y(0)); ctx.closePath(); ctx.fill(); ctx.restore();
-    curve(ctx, dpOf, x0, 0.2, X, Y, PAL.ink, 5, 160);
+    curve(ctx, dpOf, x0, 0.2, X, Y, PC, 5, 160);
     label(ctx, 'ruled out: Δx Δp < h/4π', X(0.16), Y(0.15), { side: 'above', size: 18, gap: 56, color: PAL.muted, leader: true });
     line(ctx, X(0.1), GB.t, X(0.1), GB.b, alpha(PAL.ink, 0.4), 2, [10, 10]);
     text(ctx, 'size of an atom', X(0.1) + 8, GB.t + 16, PAL.muted, { size: 17, align: 'left', bg: PAL.panel });
@@ -217,9 +220,10 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
     hits.push({ x: X(x), y: Y(dp), r: 14, name: 'the smallest uncertainty in momentum for this uncertainty in position' });
 
     /* the atom to scale, the band where the particle may be, and the uncertainty in its velocity */
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.setLineDash([6, 6]);
+    const ATC = F.ref('atom');
+    ctx.save(); ctx.strokeStyle = ATC; ctx.lineWidth = 2.5; ctx.setLineDash([6, 6]);
     ctx.beginPath(); ctx.arc(AT.x, AT.y, 0.05 * S, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
-    dot(ctx, AT.x, AT.y, PAL.ink, true, 5);
+    dot(ctx, AT.x, AT.y, ATC, true, 5);
     hits.push({ x: AT.x, y: AT.y - 0.05 * S, r: 12, name: 'an atom, about 0.1 nm across' });
     const w = x * S, ex = AT.x + 0.3 * w;
     ctx.save(); ctx.fillStyle = alpha(XC, 0.18); ctx.fillRect(AT.x - w / 2, AT.y - 120, w, 240); ctx.restore();
@@ -227,7 +231,7 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
     line(ctx, AT.x + w / 2, AT.y - 120, AT.x + w / 2, AT.y + 120, alpha(XC, 0.7), 2);
     hbracket(ctx, AT.x - w / 2, AT.x + w / 2, AT.y - 138, XC, 'Δx = ' + fmt(x, 4) + ' nm', {});
     dot(ctx, ex, AT.y + 40, F.el(P.el), true, 9);
-    label(ctx, P.sym, ex, AT.y + 40, { side: 'right', size: 20, gap: 18 });
+    label(ctx, P.sym, ex, AT.y + 40, { side: 'right', size: 20, gap: 18, color: P.el === 'e-' ? F.ref('electron') : PAL.ink });
     hits.push({ x: ex, y: AT.y + 40, r: 12, name: 'the ' + P.name + ', found somewhere within Δx' });
     const L = Math.min(380, Math.max(6, dv / 1e6 * 30)), AY = AT.y + 170, AX = 920;
     arrow(ctx, AX, AY, AX + L, AY, VC, 5);
@@ -284,9 +288,9 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
       line(ctx, GB.l, Y(lv.e), GB.r, Y(lv.e), alpha(PAL.ink, 0.4), 2, [10, 10]);
       text(ctx, lv.name, GB.r - 8, Y(lv.e) - 14, PAL.muted, { size: 17, align: 'right', bg: PAL.panel });
     });
-    curve(ctx, f, -26, -2, X, Y, PAL.ink, 5, 60);
+    curve(ctx, f, -26, -2, X, Y, EC, 5, 60);
     text(ctx, 'ruled out: ΔE Δt < h/4π', X(-8), Y(-12), PAL.muted, { size: 18, align: 'center' });
-    dot(ctx, X(-10), Y(f(-10)), EC, false, 11);
+    dot(ctx, X(-10), Y(f(-10)), F.ref('excited-state'), false, 11);
     hits.push({ x: X(-10), y: Y(f(-10)), r: 14, name: 'Example 29.9: an atomic excited state that lives 1.0 × 10⁻¹⁰ s' });
     line(ctx, X(tl), GB.b, X(tl), Y(f(tl)), alpha(TC, 0.6), 2, [4, 8]);
     line(ctx, GB.l, Y(f(tl)), X(tl), Y(f(tl)), alpha(EC, 0.6), 2, [4, 8]);

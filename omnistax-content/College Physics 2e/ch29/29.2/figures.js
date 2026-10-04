@@ -1,8 +1,9 @@
 /* Figures for section 29.2 The Photoelectric Effect. The page binds energy,
    frequency and position (the wavelength). Planck's constant, the count of
    photons and the name of the metal are ink. A photon is drawn in the color of
-   its wavelength, the physical fact of rule 7, through `wavelengthColor` alone;
-   below 380 nm it is ink. An electron is F.el('e-'). */
+   its wavelength, the physical fact, through `wavelengthColor` and F.fact;
+   below 380 nm it is ink. An electron is F.el('e-'). The lamp and the plate are
+   the section's referents, drawn with F.ref. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['29.2'] = function (root, F) {
 const { fmt, C, PAL, alpha, ctl, select, register, cycle, begin, line, arrow, dot, text, topline, label, axes, curve, hover, readout } = F;
@@ -25,7 +26,7 @@ function wavelengthColor(nm) {
   else r = 1;
   const k = nm < 420 ? 0.4 + 0.6 * (nm - 380) / 40 : nm > 680 ? 0.4 + 0.6 * (700 - nm) / 20 : 1;
   const c = (x) => Math.round(255 * Math.pow(x * Math.max(k, 0.55), 0.8));
-  return 'rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')';
+  return F.fact('rgb(' + c(r) + ',' + c(g) + ',' + c(b) + ')');
 }
 const tint = (col, a) => (col.startsWith('rgb(') ? col.replace('rgb(', 'rgba(').replace(')', ',' + a + ')') : alpha(col, a));
 
@@ -74,7 +75,7 @@ const tint = (col, a) => (col.startsWith('rgb(') ? col.replace('rgb(', 'rgba(').
   function lamp(ctx, color) {
     ctx.save();
     ctx.translate(LAMP.x, LAMP.y); ctx.rotate(Math.atan2(PL.y - LAMP.y, (PL.l + PL.r) / 2 - LAMP.x));
-    ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+    ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('lamp'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(-70, -22); ctx.lineTo(-10, -22); ctx.lineTo(24, -46); ctx.lineTo(24, 46); ctx.lineTo(-10, 22); ctx.lineTo(-70, 22); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.fillStyle = tint(color, 0.55); ctx.beginPath(); ctx.ellipse(24, 0, 8, 44, 0, 0, 2 * Math.PI); ctx.fill();
     ctx.restore();
@@ -92,9 +93,10 @@ const tint = (col, a) => (col.startsWith('rgb(') ? col.replace('rgb(', 'rgba(').
     ctx.save(); ctx.fillStyle = tint(col, 0.1); ctx.beginPath(); ctx.moveTo(LAMP.x + 20, LAMP.y - 30); ctx.lineTo(PL.r, PL.y); ctx.lineTo(PL.l, PL.y); ctx.lineTo(LAMP.x + 10, LAMP.y + 36); ctx.closePath(); ctx.fill(); ctx.restore();
     lamp(ctx, col);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(PL.l, PL.y, PL.r - PL.l, 26); ctx.restore();
-    line(ctx, PL.l, PL.y, PL.r, PL.y, PAL.muted, 3);
-    text(ctx, M.name + ', BE = ' + fmt(M.BE, 2) + ' eV', (PL.l + PL.r) / 2, PL.y + 48, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, nm < 380 ? 'ultraviolet lamp' : 'lamp', LAMP.x - 60, LAMP.y - 62, PAL.muted, { size: 18, align: 'left' });
+    line(ctx, PL.l, PL.y, PL.r, PL.y, F.ref('plate'), 3);
+    text(ctx, M.name, (PL.l + PL.r) / 2 - 8, PL.y + 48, F.ref('plate'), { size: 20, align: 'right' });
+    text(ctx, 'BE = ' + fmt(M.BE, 2) + ' eV', (PL.l + PL.r) / 2 + 8, PL.y + 48, EC, { size: 20, align: 'left' });
+    text(ctx, nm < 380 ? 'ultraviolet lamp' : 'lamp', LAMP.x - 60, LAMP.y - 62, F.ref('lamp'), { size: 18, align: 'left' });
 
     /* photon i leaves the lamp at (i + 0.5)/rate and lands FLY s later; an electron leaves at once */
     const n = Math.floor((T - FLY) * rate.v - 0.5) + 1;

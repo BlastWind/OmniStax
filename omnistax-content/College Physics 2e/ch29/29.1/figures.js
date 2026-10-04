@@ -1,9 +1,10 @@
-/* Figures for section 29.1 Quantization of Energy. The page binds energy,
-   frequency, temperature, intensity and position, as ch29/COLOR.md gives 29.1.
-   Planck's constant h, the integer n and every count are untyped and in ink.
-   Light is drawn in the color of its wavelength by spectral(), as in 27.1, and a
-   stretch of spectrum with no light in it is black; those are the only literal
-   colors on the page, since both are the physical fact. Nothing here moves: a
+/* Figures for section 29.1 Quantization of Energy. The figures draw energy,
+   frequency, temperature, intensity and position. Planck's constant h, the
+   integer n and every count are untyped and in ink. Light is drawn in the color
+   of its wavelength by spectral(), as in 27.1, and a stretch of spectrum with no
+   light in it is black; both are the physical fact and go through F.fact. The
+   ladder's oscillator and the classical oscillator are the section's referents,
+   drawn with F.ref. Nothing here moves: a
    spectrum and an allowed energy are states with no clock in them, so every
    figure registers no cycle, takes no transport and redraws on its controls
    alone (root rule 14). */
@@ -41,7 +42,7 @@ function spectral(lam) {
   else r = 1;
   const f = lam < 420 ? 0.45 + (0.55 * (lam - 380)) / 40 : lam > 700 ? 0.45 + (0.55 * (760 - lam)) / 60 : 1;
   const c = (x) => Math.round(255 * Math.pow(Math.max(0, x * f), 0.8));
-  return `rgb(${c(r)}, ${c(g)}, ${c(b)})`;
+  return F.fact(`rgb(${c(r)}, ${c(g)}, ${c(b)})`);
 }
 
 /* =====================================================================
@@ -150,7 +151,7 @@ function spectral(lam) {
     }
     const yE = Y(E);
     line(ctx, L1, yE, L2, yE, EC, 6);
-    dot(ctx, (L1 + L2) / 2, yE, EC, true, 11);
+    dot(ctx, (L1 + L2) / 2, yE, F.ref('oscillator'), true, 11);
     text(ctx, `n = ${n}`, L1 - 16, yE, EC, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
 
     /* the step to the next rung, or to the one below where the next is off the axis */
@@ -160,8 +161,9 @@ function spectral(lam) {
     const g = ctx.createLinearGradient(0, YB, 0, YT);
     g.addColorStop(0, alpha(EC, 0.15)); g.addColorStop(1, alpha(EC, 0.55));
     ctx.save(); ctx.fillStyle = g; ctx.fillRect(BX, Y(E_TOP), BW, YB - Y(E_TOP)); ctx.restore();
-    text(ctx, 'classical oscillator:', BX + BW / 2, YB + 36, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'any energy', BX + BW / 2, YB + 62, PAL.ink, { size: 20, align: 'center' });
+    const CO = F.ref('classical-oscillator');
+    text(ctx, 'classical oscillator:', BX + BW / 2, YB + 36, CO, { size: 20, align: 'center' });
+    text(ctx, 'any energy', BX + BW / 2, YB + 62, CO, { size: 20, align: 'center' });
 
     readout(d.readout,
       `\\kE = \\left(n + \\tfrac{1}{2}\\right)h\\kf = \\left(${n} + \\tfrac{1}{2}\\right)(6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s})(${sciTex(f, 2)}\\ \\text{Hz}) = ${sciTex(E * EV, 2)}\\ \\text{J} = ${fmt(E, 2)}\\ \\text{eV}`,
@@ -207,7 +209,7 @@ function spectral(lam) {
       : `A hot solid emits at ${fmt(lam, 0)} nm as at every visible wavelength, and the light there carries ${fmt(dE, 2)} eV.`);
 
     const aSolid = srcC.mix((v) => (v === 'solid' ? 1 : 0)), aGas = 1 - aSolid;
-    ctx.save(); ctx.fillStyle = '#000'; ctx.fillRect(SX1, ST, SX2 - SX1, SB - ST); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.shown.facts ? F.fact('#000') : PAL.soft; ctx.fillRect(SX1, ST, SX2 - SX1, SB - ST); ctx.restore();
     F.faded(ctx, aSolid, [0, 0], () => { for (let nm = 380; nm <= 750; nm += 1) line(ctx, X(nm), ST, X(nm), SB, spectral(nm), 4); });
     F.faded(ctx, aGas, [0, 0], () => LINES.forEach((w) => line(ctx, X(w), ST, X(w), SB, spectral(w), 7)));
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1; ctx.strokeRect(SX1, ST, SX2 - SX1, SB - ST); ctx.restore();
