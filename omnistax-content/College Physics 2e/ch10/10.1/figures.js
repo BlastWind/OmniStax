@@ -41,20 +41,20 @@ function rightAngle(ctx, x, y, ux, uy, wx, wy, color) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
   ctx.moveTo(x + ux * s, y + uy * s); ctx.lineTo(x + (ux + wx) * s, y + (uy + wy) * s); ctx.lineTo(x + wx * s, y + wy * s); ctx.stroke(); ctx.restore();
 }
-/* a spoked wheel at (x, y) of radius R, turned by the canvas angle phi, in ink */
-function wheel(ctx, x, y, R, phi, spokes = 8) {
-  ring(ctx, x, y, R, PAL.ink, Math.max(6, R * 0.12));
+/* a spoked wheel at (x, y) of radius R, turned by the canvas angle phi, its rim and hub in col */
+function wheel(ctx, x, y, R, phi, spokes = 8, col = PAL.ink) {
+  ring(ctx, x, y, R, col, Math.max(6, R * 0.12));
   ring(ctx, x, y, R * 0.8, PAL.muted, 2);
   ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath();
   for (let i = 0; i < spokes; i++) { const a = phi + (i * TAU) / spokes; ctx.moveTo(x, y); ctx.lineTo(x + (R * 0.8 - 1) * Math.cos(a), y + (R * 0.8 - 1) * Math.sin(a)); }
   ctx.stroke(); ctx.restore();
-  dot(ctx, x, y, PAL.ink, true, Math.max(5, R * 0.08));
+  dot(ctx, x, y, col, true, Math.max(5, R * 0.08));
 }
-/* a motorcycle in side view facing right, in ink with light panels: the hubs at rear and front on the line y = hub,
+/* a motorcycle in side view facing right, stroked in col with light panels: the hubs at rear and front on the line y = hub,
    the wheels of radius rw drawn by the caller. The frame hangs from the hub line, so it rides higher on larger wheels.
    Swing arm and fork, an engine block, a tank, a seat, two fenders, a headlight, handlebars, an exhaust and a footpeg. */
-function motorcycle(ctx, bx, hub, rw, rear, front) {
-  const ink = PAL.ink;
+function motorcycle(ctx, bx, hub, rw, rear, front, col = PAL.ink) {
+  const ink = col;
   ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
   line(ctx, rear, hub, bx - 46, hub - 34, ink, 7);                                   /* the swing arm */
   line(ctx, front, hub, front - 34, hub - 116, ink, 7);                              /* the fork */
@@ -109,31 +109,31 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
   const CX = 700, CY = 460, S = 240, KV = 50, VMAX = 175;
   function draw() {
     const { ctx, H } = begin(d.c);
-    const wc = C('angular-rate'), pc = C('position'), vc = C('velocity'), tc = C('time');
+    const wc = C('angular-rate'), pc = C('position'), vc = C('velocity'), tc = C('time'), anc = C('angle'), dc = F.ref('disk'), rp = F.ref('rim-point');
     const w = ws.v, r = rs.v, t = cy.now(), th = w * t, v = r * w, R = r * S;
     const px = CX + R * Math.cos(th), py = CY - R * Math.sin(th);
     /* the disk, the reference radius and the radius that has turned */
-    disk(ctx, CX, CY, R, PAL.soft, PAL.muted, 3);
+    disk(ctx, CX, CY, R, PAL.soft, dc, 3);
     line(ctx, CX, CY, CX + R, CY, PAL.muted, 2, [8, 8]);
     line(ctx, CX, CY, px, py, pc, 4);
     /* the angle swept so far */
     if (th > 0.05) {
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(CX, CY, Math.min(52, R * 0.45), 0, -th, true); ctx.stroke(); ctx.restore();
+      ctx.save(); ctx.strokeStyle = anc; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(CX, CY, Math.min(52, R * 0.45), 0, -th, true); ctx.stroke(); ctx.restore();
     }
     const am = -th / 2, ar = Math.min(52, R * 0.45) + 10;
     /* the sense of rotation, inside the disk and clear of the radius */
     turnArc(ctx, CX, CY, R * 0.68, true, PAL.ink, Math.PI * 0.75, 3, 0.5);
     /* the velocity of the rim point, tangent to the circle: hollow at the start, filled now */
     const ux = -Math.sin(th), uy = -Math.cos(th);
-    dot(ctx, CX + R, CY, PAL.ink, false, 9);
+    dot(ctx, CX + R, CY, rp, false, 9);
     const L = Math.min(v * KV, VMAX), cut = L < v * KV - 1;
     arrow(ctx, px, py, px + L * ux, py + L * uy, vc, 5);
-    dot(ctx, px, py, PAL.ink, true, 9);
+    dot(ctx, px, py, rp, true, 9);
     const lab = labeller(ctx, H);
     lab.block(0, 0, 1400, 96);
     lab.add('v = ' + fmt(v, 2) + ' m/s' + (cut ? ' (arrow shortened)' : ''), px + L * ux, py + L * uy, ...away(py + L * uy, ux, uy), vc, 21, 24);
     lab.add('r = ' + fmt(r, 2) + ' m', (CX + px) / 2, (CY + py) / 2, Math.sin(th), Math.cos(th), pc, 21, 22);
-    lab.add('Δθ = ' + fmt(th, 2) + ' rad', CX + ar * Math.cos(am), CY + ar * Math.sin(am), Math.cos(am), Math.sin(am), PAL.ink, 20, 24);
+    lab.add('Δθ = ' + fmt(th, 2) + ' rad', CX + ar * Math.cos(am), CY + ar * Math.sin(am), Math.cos(am), Math.sin(am), anc, 20, 24);
     lab.flush();
     /* the clock sits in the corner, clear of the disk at every radius */
     text(ctx, 't = ' + fmt(t, 2) + ' s', 70, 140, tc, { size: 22, weight: 600 });
@@ -174,8 +174,9 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     /* the upturned bicycle: the wheel on its fork, the frame on the ground */
     line(ctx, WX - 60, WY + R + 70, WX + 60, WY + R + 70, PAL.muted, 4);
     line(ctx, WX - 18, WY + R + 70, WX - 4, WY + 8, PAL.muted, 5); line(ctx, WX + 18, WY + R + 70, WX + 4, WY + 8, PAL.muted, 5);
-    text(ctx, 'the rear wheel of the upturned bicycle', WX, WY + R + 100, PAL.muted, { size: 18, align: 'center' });
-    wheel(ctx, WX, WY, R, -phiOf(t), 10);
+    const wr = F.ref('wheel');
+    text(ctx, 'the rear wheel of the upturned bicycle', WX, WY + R + 100, wr, { size: 18, align: 'center' });
+    wheel(ctx, WX, WY, R, -phiOf(t), 10, wr);
     /* a mark on the tire so the turning shows */
     dot(ctx, WX + (R - 2) * Math.cos(-phiOf(t)), WY + (R - 2) * Math.sin(-phiOf(t)), PAL.panel, true, 7);
     /* the sense of the angular acceleration, drawn round the wheel */
@@ -268,7 +269,7 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
       if (Math.abs(at) > 0.005) rightAngle(ctx, px, py, Math.sign(at) * ux, Math.sign(at) * uy, cx, cyy, acc);
     }
     lab.add('r = ' + fmt(r, 2) + ' m', (CX + px) / 2, (CY + py) / 2, Math.sin(th), Math.cos(th), pc, 20, 20);
-    dot(ctx, px, py, PAL.ink, true, 9);
+    dot(ctx, px, py, F.ref('point'), true, 9);
     lab.flush();
     /* the graph of speed against time: a straight line whose slope is the tangential acceleration */
     const { X, Y } = axes(ctx, box, [0, 4], [-2, 4], { xl: 't (s)', xc: tc, yl: 'v (m/s)', yc: vc, nx: 4, ny: 6 });
@@ -320,12 +321,13 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
        forward with both hands on the bars */
     const bx = RX(x), rear = bx - 140, front = bx + 140, hub = RY - rw;
     const bars = { x: front - 40, y: hub - 120 }, peg = { x: bx + 10, y: hub + 4 };
-    motorcycle(ctx, bx, hub, rw, rear, front);
+    motorcycle(ctx, bx, hub, rw, rear, front, F.ref('motorcycle'));
     /* the rider sits on the seat, feet on the peg and both hands on the bars: the silhouette's joints are given in its
        own frame, 1/1.6 of the canvas, so the hands land on the bars whatever the wheel radius */
     const RS = 1.6, hand = { x: (bars.x - peg.x) / RS, y: (bars.y - peg.y) / RS };
     silhouette(ctx, { x: peg.x, y: peg.y, s: RS, pose: 'sit', hip: { x: -30, y: -65 }, shoulder: { x: 12, y: -112 }, head: { x: 24, y: -134 }, feet: [{ x: 0, y: 0 }, { x: -6, y: 2 }], hands: [hand, { x: hand.x - 4, y: hand.y + 4 }], kneeSide: 1, elbowSide: -1 });
-    wheel(ctx, rear, hub, rw, phi, 6); wheel(ctx, front, hub, rw, phi, 6);
+    const wh = F.ref('wheels');
+    wheel(ctx, rear, hub, rw, phi, 6, wh); wheel(ctx, front, hub, rw, phi, 6, wh);
     /* the linear acceleration of the machine and its velocity, stacked under the headline and pointing the way it
        goes, moved left where their tips would leave the canvas; the angular acceleration of the wheels, on arcs round
        both, named under the rear wheel below the distance marks; the radius drawn on the front wheel and named under it */

@@ -28,7 +28,7 @@ function poly(ctx, pts, color, w, close = false) {
 /* A short cylinder standing on a vertical axis, seen from a locked view: the far
    half of its wall, the bottom rim, the near half of the wall over it and the top
    face last. `e` is the eye's horizontal direction, which says which half is near. */
-function drum(ctx, V, c, R, h, e) {
+function drum(ctx, V, c, R, h, e, col) {
   const X = [1, 0, 0], Z = [0, 0, 1], top = add(c, [0, 1, 0], h);
   const phi = Math.atan2(e[2], e[0]);
   const near = (cc) => ring(cc, R, X, Z, 40, phi - Math.PI / 2, phi + Math.PI / 2);
@@ -37,6 +37,10 @@ function drum(ctx, V, c, R, h, e) {
   face(ctx, side(far(c), far(top)), V.shade([-e[0], 0, -e[2]]) + 0.1, 0);
   face(ctx, side(near(c), near(top)), V.shade([e[0], 0.2, e[2]]), 2.5);
   face(ctx, ring(top, R, X, Z).map(V.P), V.shade([0, 1, 0]), 2.5);
+  if (!col) return;
+  for (const pts of [side(near(c), near(top)), ring(top, R, X, Z).map(V.P)]) {
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.lineJoin = 'round'; ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.stroke(); ctx.restore();
+  }
 }
 /* an arrow along a projected direction with its length in canvas units */
 function arrowTo(ctx, V, from, dir, len, color, w = 5) {
@@ -79,9 +83,9 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
      the right, which is the way the near rim moves when the turn is
      counterclockwise seen from above. The clockwise hand is this one turned
      through 180° in the plane of the page, which is still a right hand. */
-  function hand(ctx, x, y, turn) {
+  function hand(ctx, x, y, turn, col) {
     ctx.save(); ctx.translate(x, y); ctx.rotate(turn);
-    ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft2; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.strokeStyle = col; ctx.fillStyle = PAL.soft2; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
     /* the palm, a rounded slab to the left of the axis */
     ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(-92, -40); ctx.lineTo(-30, -52); ctx.quadraticCurveTo(-8, -52, -6, -30); ctx.lineTo(-6, 90); ctx.quadraticCurveTo(-8, 112, -30, 114); ctx.lineTo(-96, 108); ctx.quadraticCurveTo(-118, 100, -118, 70); ctx.lineTo(-118, -10); ctx.quadraticCurveTo(-116, -38, -92, -40);
@@ -90,13 +94,13 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     for (let k = 0; k < 4; k++) {
       const cy = -26 + k * 40, a = 58 - k * 3, b = 22;
       ctx.lineWidth = 26; ctx.strokeStyle = PAL.soft2; ctx.beginPath(); ctx.ellipse(-6, cy, a, b, 0, 0.62 * Math.PI, 2.02 * Math.PI, false); ctx.stroke();
-      ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.beginPath(); ctx.ellipse(-6, cy, a, b + 13, 0, 0.6 * Math.PI, 2.02 * Math.PI, false); ctx.stroke();
+      ctx.lineWidth = 3; ctx.strokeStyle = col; ctx.beginPath(); ctx.ellipse(-6, cy, a, b + 13, 0, 0.6 * Math.PI, 2.02 * Math.PI, false); ctx.stroke();
       ctx.beginPath(); ctx.ellipse(-6, cy, a, b - 13, 0, 0.66 * Math.PI, 2.0 * Math.PI, false); ctx.stroke();
       ctx.beginPath(); ctx.arc(-6 + a, cy, 13, -Math.PI / 2, Math.PI / 2); ctx.stroke();
     }
     /* the thumb, up along the axis from the top of the palm */
     ctx.lineWidth = 30; ctx.strokeStyle = PAL.soft2; ctx.beginPath(); ctx.moveTo(-40, -44); ctx.lineTo(-22, -136); ctx.stroke();
-    ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.beginPath(); ctx.moveTo(-56, -42); ctx.lineTo(-38, -138); ctx.arc(-22, -136, 16, Math.PI, 0); ctx.lineTo(-7, -50); ctx.stroke();
+    ctx.lineWidth = 3; ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(-56, -42); ctx.lineTo(-38, -138); ctx.arc(-22, -136, 16, Math.PI, 0); ctx.lineTo(-7, -50); ctx.stroke();
     ctx.restore();
   }
   function draw() {
@@ -108,8 +112,8 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     const L = I * w.v;
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 96);
     /* the disk */
-    const c = [0, -HD / 2, 0];
-    drum(ctx, V, c, RD, HD, E);
+    const c = [0, -HD / 2, 0], hc = F.ref('hand');
+    drum(ctx, V, c, RD, HD, E, F.ref('disk'));
     for (const v of ['ccw', 'cw']) {
       const a = sense.from === sense.value ? (v === sense.value ? 1 : 0) : sense.a(v);
       if (a <= 0) continue;
@@ -132,14 +136,14 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     line(ctx, hx, 110, hx, 500, alpha(PAL.ink, 0.3), 2, [6, 8]);
     const turn = (Math.PI * (1 - s)) / 2, ct = Math.cos(turn), st = Math.sin(turn);
     const rot = (x, y) => [hx + x * ct - y * st, hy + x * st + y * ct];
-    hand(ctx, hx, hy, turn);
+    hand(ctx, hx, hy, turn, hc);
     const thumbTip = rot(-22, -156), thumbFoot = rot(-22, -152), thumbHead = rot(-22, -226);
-    arrow(ctx, thumbFoot[0], thumbFoot[1], thumbHead[0], thumbHead[1], PAL.ink, 4);
-    lab.add('thumb: the direction of ω and L', thumbHead[0], thumbHead[1], 1, 0, PAL.ink, 18, 30);
-    lab.add('fingers curl the way the rim moves', hx + 60, hy + (ccw ? 70 : -70), 1, 0.2, PAL.ink, 18, 40);
+    arrow(ctx, thumbFoot[0], thumbFoot[1], thumbHead[0], thumbHead[1], hc, 4);
+    lab.add('thumb: the direction of ω and L', thumbHead[0], thumbHead[1], 1, 0, hc, 18, 30);
+    lab.add('fingers curl the way the rim moves', hx + 60, hy + (ccw ? 70 : -70), 1, 0.2, hc, 18, 40);
     lab.flush();
     topline(ctx, `Seen from above the disk turns ${ccw ? 'counterclockwise' : 'clockwise'}, so the thumb, ω and L all point ${up > 0 ? 'up' : 'down'} along the axis.`);
-    readout(d.readout, `\\kL = I\\kw = (${fmt(I, 4)}\\ \\text{kg}\\cdot\\text{m}^2)(${fmt(w.v, 1)}\\ \\text{rad/s}) = ${fmt(L, 3)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`,
+    readout(d.readout, `\\kL = \\kI\\kw = (${fmt(I, 4)}\\ \\text{kg}\\cdot\\text{m}^2)(${fmt(w.v, 1)}\\ \\text{rad/s}) = ${fmt(L, 3)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`,
       `The moment of inertia is a positive number, so the angular momentum points the way the angular velocity points; here both point ${up > 0 ? 'up' : 'down'} the axis. The disk has a mass of 2.0 kg and a radius of 0.25 m, so I = ½MR² = ${fmt(I, 4)} kg·m².`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -175,7 +179,8 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     /* the ground shadow and the platform */
     const c = [0, -HP, 0];
     face(ctx, ring([0, -HP - 2, 0], 2.55 * S, [1, 0, 0], [0, 0, 1]).map(V.P), 0.08, 0);
-    drum(ctx, V, c, 2.5 * S, HP, E);
+    const mgc = F.ref('merry-go-round');
+    drum(ctx, V, c, 2.5 * S, HP, E, mgc);
     /* the central post */
     const pB = V.P([0, 0, 0]), pT = V.P([0, 1.1 * S, 0]);
     line(ctx, pB[0], pB[1], pT[0], pT[1], PAL.muted, 10);
@@ -192,8 +197,8 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     const stand = add(hp, tangent, -0.42 * S);
     const feet = V.P(stand);
     const pf = tangent[0] >= 0 ? 1 : -1, PS = 2.0, phx = (q1[0] - feet[0]) / (PS * pf), phy = (q1[1] - feet[1]) / PS;
-    silhouette(ctx, { x: feet[0], y: feet[1], s: PS, face: pf, pose: 'push', hands: [{ x: phx, y: phy }, { x: phx - 3, y: phy + 5 }] });
-    line(ctx, q0[0], q0[1], q1[0], q1[1], PAL.muted, 8);
+    silhouette(ctx, { x: feet[0], y: feet[1], s: PS, face: pf, pose: 'push', color: F.ref('person'), hands: [{ x: phx, y: phy }, { x: phx - 3, y: phy + 5 }] });
+    line(ctx, q0[0], q0[1], q1[0], q1[1], mgc, 8);
     /* r from the axis to the handle, along the platform */
     arrow(ctx, o[0], o[1], q0[0], q0[1], C('position'), 4);
     lab.add('r', (o[0] + q0[0]) / 2, (o[1] + q0[1]) / 2, 0.4, 1, C('position'), 24, 22);
@@ -272,22 +277,23 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     const drawHalf = (side, reach) => {
       const lh = { x: (reach[0] - stand[0]) / WS, y: (reach[1] - stand[1]) / WS };
       ctx.save(); ctx.beginPath(); ctx.rect(side < 0 ? 0 : stand[0], 0, side < 0 ? stand[0] : 1400 - stand[0], H); ctx.clip();
-      silhouette(ctx, { x: stand[0], y: stand[1], s: WS, pose: 'stand', hands: [lh, lh], elbowSide: side });
+      silhouette(ctx, { x: stand[0], y: stand[1], s: WS, pose: 'stand', color: F.ref('woman'), hands: [lh, lh], elbowSide: side });
       ctx.restore();
     };
     drawHalf(-1, pf[0] < stand[0] ? pf : pn); drawHalf(1, pf[0] < stand[0] ? pn : pf);
     /* the wheel: the rim in the plane perpendicular to the axle, the spokes turning at a fifth of the true rate */
     const u = [0, 1, 0], v = cross(a, u);
     const rim = ring(hub, RW * S, u, v, 72).map(V.P);
-    poly(ctx, rim, PAL.ink, 9, true);
+    const whc = F.ref('wheel');
+    poly(ctx, rim, whc, 9, true);
     poly(ctx, rim, PAL.soft2, 3, true);
     const psi = (w.v * st.t) / 5;
     for (let k = 0; k < 8; k++) {
       const t = psi + (k * TAU) / 8, p = V.P(add(add(hub, u, RW * S * 0.94 * Math.cos(t)), v, RW * S * 0.94 * Math.sin(t)));
       line(ctx, ph[0], ph[1], p[0], p[1], PAL.muted, 2.5);
     }
-    line(ctx, pf[0], pf[1], pn[0], pn[1], PAL.ink, 10);
-    dot(ctx, ph[0], ph[1], PAL.ink, true, 8);
+    line(ctx, pf[0], pf[1], pn[0], pn[1], whc, 10);
+    dot(ctx, ph[0], ph[1], whc, true, 8);
     hits.push({ x: ph[0], y: ph[1], r: RW * S * 0.5, name: 'the spinning bicycle wheel, seen from her side' }, { x: pn[0], y: pn[1], r: 18, name: 'the handle her left hand pushes down' }, { x: pf[0], y: pf[1], r: 18, name: 'the handle her right hand lifts' });
     /* the two forces at the handles and the torque they make, toward her */
     const fl2 = 150 * (Fv.v / 10);
@@ -345,7 +351,7 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
   const d = sim('sim-gyroscope');
   const mode = choice(d.controls, { label: '\\text{Gyroscope}', options: [{ value: 'spin', label: 'spinning' }, { value: 'still', label: 'not spinning' }], value: 'spin', aria: 'whether the gyroscope spins', onInput: reset });
   const w = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 40, max: 200, step: 5, value: 100, unit: 'rad/s', dec: 0, aria: 'the spin of the flywheel', onInput: reset });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 10, max: 80, step: 1, value: 30, unit: '°', dec: 0, aria: 'the tilt of the axle from the vertical', onInput: reset });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 10, max: 80, step: 1, value: 30, unit: '°', dec: 0, aria: 'the tilt of the axle from the vertical', onInput: reset });
   const m = 0.50, R = 0.050, r = 0.060, I = 0.5 * m * R * R, IP = 0.25 * m * R * R + m * r * r;
   const U = 1 / R;                                /* scene units per metre */
   const KL = 2.0 / (I * 200), KT = 1.8 / (m * G * r), KF = 1.2 / (m * G), DT = 0.2, SLOW = 6, PY = -0.6;
@@ -393,20 +399,20 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     if (!V || !V.scene) return;
     V.clear(); paint.length = 0;
     const turn = V.part(0);
-    const inkC = () => PAL.ink, mutedC = () => PAL.muted, softC = () => PAL.soft2;
+    const gyC = () => F.ref('gyroscope'), standC = () => F.ref('stand'), mutedC = () => PAL.muted, softC = () => PAL.soft2;
     const LC = () => C('angular-momentum'), TC = () => C('torque'), FC = () => C('force');
     /* the stand: a round foot, a post and the cup the axle turns in */
-    const base = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.45, 0.16, 48), mat(mutedC)); base.position.set(0, PY - 1.35, 0); turn.add(base); V.pickable(base, 'the foot of the stand');
-    const post = F.mesh.stick(turn, [0, PY - 1.27, 0], [0, PY - 0.1, 0], 0.09, PAL.muted); paint.push({ m: post.material, col: mutedC }); V.pickable(post, 'the stand');
-    const cup = F.mesh.sphere(turn, [0, PY, 0], 0.15, PAL.muted); paint.push({ m: cup.material, col: mutedC }); V.pickable(cup, 'the pivot, where the stand supports the gyroscope');
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.45, 0.16, 48), mat(standC)); base.position.set(0, PY - 1.35, 0); turn.add(base); V.pickable(base, 'the foot of the stand');
+    const post = F.mesh.stick(turn, [0, PY - 1.27, 0], [0, PY - 0.1, 0], 0.09, standC()); paint.push({ m: post.material, col: standC }); V.pickable(post, 'the stand');
+    const cup = F.mesh.sphere(turn, [0, PY, 0], 0.15, standC()); paint.push({ m: cup.material, col: standC }); V.pickable(cup, 'the pivot, where the stand supports the gyroscope');
     /* the precessing frame, the tilted axle in it, the wheel on the axle */
     S = { turn, prec: new THREE.Group(), tilt: new THREE.Group(), wheel: new THREE.Group() };
     turn.add(S.prec); S.prec.add(S.tilt); S.tilt.add(S.wheel); S.prec.position.set(0, PY, 0);
     const axle = F.mesh.stick(S.tilt, [0, 0, 0], [0, 1.95, 0], 0.05, PAL.muted); paint.push({ m: axle.material, col: mutedC }); V.pickable(axle, 'the axle');
     S.wheel.position.set(0, r * U, 0);
-    const rim = new THREE.Mesh(new THREE.TorusGeometry(R * U, 0.1, 12, 56), mat(inkC)); rim.rotation.x = Math.PI / 2; S.wheel.add(rim); V.pickable(rim, 'the flywheel');
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(R * U, 0.1, 12, 56), mat(gyC)); rim.rotation.x = Math.PI / 2; S.wheel.add(rim); V.pickable(rim, 'the flywheel');
     for (let k = 0; k < 6; k++) { const t = (k * TAU) / 6; const sp = F.mesh.stick(S.wheel, [0, 0, 0], [R * U * 0.95 * Math.cos(t), 0, R * U * 0.95 * Math.sin(t)], 0.035, PAL.soft2); paint.push({ m: sp.material, col: softC }); }
-    const hubm = F.mesh.sphere(S.wheel, [0, 0, 0], 0.12, PAL.ink); paint.push({ m: hubm.material, col: inkC });
+    const hubm = F.mesh.sphere(S.wheel, [0, 0, 0], 0.12, gyC()); paint.push({ m: hubm.material, col: gyC });
     /* the arrows: L along the axle, w at the center, N at the pivot, τ horizontal at the pivot, ΔL at the tip of L */
     S.L = vec(S.tilt, LC, 0.07, 'L, the angular momentum, along the axle');
     S.Lfall = vec(S.prec, LC, 0.07, 'L = ΔL, the angular momentum the falling gyroscope acquires along the torque');
@@ -463,8 +469,8 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     if (S) apply(st);
     const spin = mode.value === 'spin', theta = st.theta, tauv = m * G * r * Math.sin(theta), L = I * w.v, P = TAU / OMEGA();
     readout(d.readout, spin
-      ? `\\ktau = mgr\\sin\\theta = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}\\ \\text{at}\\ ${fmt(th.v, 0)}^\\circ`
-      : `\\ktau = mgr\\sin\\theta = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}\\ \\text{at a tilt of}\\ ${fmt(theta / RAD, 0)}^\\circ`,
+      ? `\\ktau = \\km\\kg\\kr\\sin\\ktheta = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}\\ \\text{at}\\ ${fmt(th.v, 0)}^\\circ`
+      : `\\ktau = \\km\\kg\\kr\\sin\\ktheta = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}\\ \\text{at a tilt of}\\ ${fmt(theta / RAD, 0)}^\\circ`,
       spin
         ? `The spinning flywheel carries L = Iω = ${fmt(L, 4)} kg·m²/s. The torque turns L through the small horizontal change ΔL = τΔt every Δt, so the tip of L goes round the circle once every 2πIω/(mgr) = ${fmt(P, 2)} s without the tilt changing. The arrow ΔL is the change in ${fmt(DT, 2)} s. The flywheel is a ${fmt(m, 2)} kg disk of radius ${fmt(R, 3)} m, so I = ½mR² = ${fmt(I, 6)} kg·m², and its center is ${fmt(r, 3)} m from the pivot; its spin is drawn at one twentieth of its true rate so the spokes can be followed.`
         : `With the flywheel still, the gyroscope starts with no angular momentum, so the angular momentum it acquires is ΔL itself, L = ΔL = τΔt, horizontal and along the torque, and it turns about a horizontal axis through the pivot: it falls. The fall from ${fmt(th.v, 0)}° to the horizontal takes ${fmt(fall.T, 2)} s and is drawn ${SLOW} times slower than life.`);

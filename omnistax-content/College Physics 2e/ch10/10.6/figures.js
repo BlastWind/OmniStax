@@ -11,12 +11,12 @@ const sgn = (v) => (v < 0 ? '−' : '');
 /* three significant figures, never in exponent form */
 const sig3 = (x) => { const s = Math.abs(x).toPrecision(3); return sgn(x) + (s.includes('e') ? String(Math.round(Number(s))) : s); };
 const ELL = 1.20;                                   /* the stick's length, the book's 1.20 m, held fixed */
-/* a uniform stick of width w from (x1, y1) to (x2, y2), in ink */
+/* a uniform stick of width w from (x1, y1) to (x2, y2), in color */
 function stick(ctx, x1, y1, x2, y2, w, color) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); ctx.restore();
 }
 /* a nail head at (x, y): a filled dot with a lighter centre */
-function nail(ctx, x, y) { dot(ctx, x, y, PAL.ink, true, 8); dot(ctx, x, y, PAL.panel, true, 3); }
+function nail(ctx, x, y, color = PAL.ink) { dot(ctx, x, y, color, true, 8); dot(ctx, x, y, PAL.panel, true, 3); }
 /* a flat disk of radius r centred on (x, y), seen from above */
 function disk(ctx, x, y, r, color) { dot(ctx, x, y, color, true, r); dot(ctx, x, y, PAL.panel, false, r * 0.45); }
 /* a clockwise arc arrow about (cx, cy) of radius R from angle a0 through da (radians, canvas sense) */
@@ -48,10 +48,10 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
 ===================================================================== */
 (function () {
   const d = sim('sim-disk-stick', 820);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 200, step: 1, value: 50, unit: 'g', dec: 0, onInput: reset, aria: 'mass of the disk' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 10, max: 200, step: 1, value: 50, unit: 'g', dec: 0, onInput: reset, aria: 'mass of the disk' });
   const v = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 5, max: 40, step: 0.5, value: 30, unit: 'm/s', dec: 1, onInput: reset, aria: 'speed of the disk' });
   const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.1, max: 1.2, step: 0.01, value: 1.2, unit: 'm', dec: 2, onInput: reset, aria: 'where the disk strikes, from the nail', specials: [{ at: 0.8, label: 'percussion point' }], detents: [{ v: 0.1, label: 'nail' }, { v: 1.2 }] });
-  const M = ctl(d.controls, { label: 'M', cls: '', min: 0.5, max: 4, step: 0.05, value: 2, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the stick' });
+  const M = ctl(d.controls, { label: '\\kM', cls: 'mass', min: 0.5, max: 4, step: 0.05, value: 2, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the stick' });
   const APPROACH = 2.4;                            /* metres of table the disk crosses before it strikes */
   const state = () => {
     const mk = m.v / 1000, L = mk * v.v * r.v, Ip = mk * r.v * r.v + (M.v * ELL * ELL) / 3, w = L / Ip;
@@ -72,18 +72,19 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
     text(ctx, 'frictionless surface, seen from above', 350, 508, PAL.muted, { size: 17 });
     const at = (dist, ang) => ({ x: NX + dist * SC * Math.sin(ang), y: NY - dist * SC * Math.cos(ang) });
     const tip = at(ELL, th), hit = at(r.v, th);
-    if (struck) { const g = at(ELL, 0); line(ctx, NX, NY, g.x, g.y, alpha(PAL.ink, 0.3), 3, [10, 10]); }
-    stick(ctx, NX, NY, tip.x, tip.y, 16, PAL.ink);
-    nail(ctx, NX, NY);
+    const sc = F.ref('stick'), dc = F.ref('disk');
+    if (struck) { const g = at(ELL, 0); line(ctx, NX, NY, g.x, g.y, alpha(sc, 0.3), 3, [10, 10]); }
+    stick(ctx, NX, NY, tip.x, tip.y, 16, sc);
+    nail(ctx, NX, NY, F.ref('nail'));
     hits = [{ x: NX, y: NY, r: 22, name: 'the nail, the pivot' }, { x: (NX + tip.x) / 2, y: (NY + tip.y) / 2, r: 60, name: 'the stick, mass M' }];
     if (!struck) {
       const dx = NX - (APPROACH - v.v * tau) * SC, dy = NY - r.v * SC;
-      disk(ctx, dx, dy, 13, PAL.ink); hits.push({ x: dx, y: dy, r: 24, name: 'the disk, mass m' });
+      disk(ctx, dx, dy, 13, dc); hits.push({ x: dx, y: dy, r: 24, name: 'the disk, mass m' });
       arrow(ctx, dx + 16, dy, dx + 16 + K * v.v, dy, C('velocity'), 5);
       lab.add('v', dx + 16 + (K * v.v) / 2, dy, 0, 1, C('velocity'), 24, 26);
       vbracket(ctx, NX + 34, NY, NY - r.v * SC, C('position'), 'r = ' + fmt(r.v, 2) + ' m', 1);
     } else {
-      disk(ctx, hit.x, hit.y, 13, PAL.ink); hits.push({ x: hit.x, y: hit.y, r: 24, name: 'the disk, stuck to the stick' });
+      disk(ctx, hit.x, hit.y, 13, dc); hits.push({ x: hit.x, y: hit.y, r: 24, name: 'the disk, stuck to the stick' });
       /* the velocity of the disk and of the stick's centre, tangential and clockwise */
       const tx = Math.cos(th), ty = Math.sin(th), vp = r.v * s.w, vcm = (ELL / 2) * s.w;
       const ax = hit.x + 18 * tx, ay = hit.y + 18 * ty;
@@ -116,7 +117,7 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
       ? 'The ' + fmt(m.v, 0) + ' g disk slides toward the stick at ' + fmt(v.v, 1) + ' m/s and will strike it ' + fmt(r.v, 2) + ' m from the nail.'
       : 'Stuck together, the disk and the ' + fmt(M.v, 2) + ' kg stick turn about the nail at ' + sig3(s.w) + ' rad/s.');
     const dp = s.pp - s.p, same = Math.abs(dp) < 0.005 * s.p;
-    readout(d.readout, `\\kwprime = \\frac{m\\kv\\kr}{\\kIprime} = \\frac{(${sig3(s.mk)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})(${fmt(r.v, 2)}\\ \\text{m})}{${sig3(s.Ip)}\\ \\text{kg}\\cdot\\text{m}^2} = ${sig3(s.w)}\\ \\text{rad/s}`,
+    readout(d.readout, `\\kwprime = \\frac{\\km\\kv\\kr}{\\kIprime} = \\frac{(${sig3(s.mk)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})(${fmt(r.v, 2)}\\ \\text{m})}{${sig3(s.Ip)}\\ \\text{kg}\\cdot\\text{m}^2} = ${sig3(s.w)}\\ \\text{rad/s}`,
       !struck ? 'Before the collision the disk’s angular momentum about the nail is L = mvr = ' + sig3(s.L) + ' kg·m²/s, its kinetic energy is ' + sig3(s.KE) + ' J and its linear momentum is ' + sig3(s.p) + ' kg·m/s.'
         : 'The angular momentum is still ' + sig3(s.L) + ' kg·m²/s and the kinetic energy has fallen to ' + sig3(s.KEp) + ' J, while the linear momentum '
           + (same ? 'is unchanged at ' + sig3(s.pp) + ' kg·m/s, because the disk struck at the percussion point and the nail pushed neither forward nor backward.'
@@ -138,37 +139,38 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
   const d = sim('sim-percussion', 640);
   const f = ctl(d.controls, { label: 'r/\\ell', cls: '', min: 0.1, max: 1, step: 0.01, value: 0.95, unit: 'of the length', dec: 2, aria: 'where the ball strikes, as a fraction of the length from the pivot', specials: [{ at: 2 / 3, label: 'percussion point' }], detents: [{ v: 0.35, label: 'down the shaft' }, { v: 0.95, label: 'near the end' }] });
   const SC = 350, PY = 540, LS = ELL, LR = 0.685, SX = 430, RX = 940, FL = 120;   /* lengths in m, body x positions, the ball's arrow length */
-  function racquet(ctx, x, top, base) {
+  function racquet(ctx, x, top, base, col) {
     const L = base - top, head = { cy: top + 0.24 * L, rx: 0.19 * L, ry: 0.24 * L }, throat = top + 0.5 * L, grip = base - 0.22 * L;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineJoin = 'round';
+    ctx.save(); ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 5; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.ellipse(x, head.cy, head.rx, head.ry, 0, 0, TAU); ctx.stroke();
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.ellipse(x, head.cy, head.rx, head.ry, 0, 0, TAU); ctx.clip();
+    ctx.save(); ctx.strokeStyle = alpha(col, 0.35); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.ellipse(x, head.cy, head.rx, head.ry, 0, 0, TAU); ctx.clip();
     for (let k = -4; k <= 4; k++) { ctx.moveTo(x + k * 9, head.cy - head.ry); ctx.lineTo(x + k * 9, head.cy + head.ry); ctx.moveTo(x - head.rx, head.cy + k * 12); ctx.lineTo(x + head.rx, head.cy + k * 12); }
     ctx.stroke(); ctx.restore();
     ctx.beginPath(); ctx.moveTo(x - head.rx * 0.55, head.cy + head.ry * 0.85); ctx.lineTo(x - 6, throat); ctx.lineTo(x - 6, base); ctx.lineTo(x + 6, base); ctx.lineTo(x + 6, throat); ctx.lineTo(x + head.rx * 0.55, head.cy + head.ry * 0.85); ctx.closePath(); ctx.stroke();
     ctx.fillRect(x - 6, grip, 12, base - grip);
     ctx.restore();
   }
-  function hand(ctx, x, y) {
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
+  function hand(ctx, x, y, col) {
+    ctx.save(); ctx.fillStyle = alpha(col, 0.18); ctx.strokeStyle = col; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.roundRect(x - 22, y - 34, 44, 40, 10); ctx.fill(); ctx.stroke();
-    for (let k = 0; k < 3; k++) line(ctx, x - 22, y - 26 + k * 10, x + 22, y - 26 + k * 10, alpha(PAL.ink, 0.5), 1.5);
+    for (let k = 0; k < 3; k++) line(ctx, x - 22, y - 26 + k * 10, x + 22, y - 26 + k * 10, alpha(col, 0.5), 1.5);
     ctx.restore();
   }
   function draw() {
     const { ctx, H } = begin(d.c);
     const k = 1 - 1.5 * f.v, zero = Math.abs(k) < 0.02, rs = f.v * LS, rr = f.v * LR;
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 90);
+    const sc = F.ref('stick'), nc = F.ref('nail'), bc = F.ref('ball'), rc = F.ref('racquet'), hc = F.ref('hand');
     const bodies = [
-      { x: SX, len: LS, pivot: 'nail', force: 'F_nail', r: rs },
-      { x: RX, len: LR, pivot: 'hand', force: 'F_hand', r: rr },
+      { x: SX, len: LS, pivot: 'nail', force: 'F_nail', r: rs, pc: nc },
+      { x: RX, len: LR, pivot: 'hand', force: 'F_hand', r: rr, pc: hc },
     ];
     for (const b of bodies) {
       const top = PY - b.len * SC, ys = PY - f.v * b.len * SC, yp = PY - (2 / 3) * b.len * SC;
-      if (b.pivot === 'nail') { stick(ctx, b.x, PY, b.x, top, 18, PAL.ink); nail(ctx, b.x, PY); }
-      else { racquet(ctx, b.x, top, PY); hand(ctx, b.x, PY); }
+      if (b.pivot === 'nail') { stick(ctx, b.x, PY, b.x, top, 18, sc); nail(ctx, b.x, PY, nc); }
+      else { racquet(ctx, b.x, top, PY, rc); hand(ctx, b.x, PY, hc); }
       /* the ball and its blow */
-      dot(ctx, b.x - 34, ys, PAL.ink, true, 15); dot(ctx, b.x - 34, ys, PAL.panel, false, 8);
+      dot(ctx, b.x - 34, ys, bc, true, 15); dot(ctx, b.x - 34, ys, PAL.panel, false, 8);
       arrow(ctx, b.x + 14, ys, b.x + 14 + FL, ys, C('force'), 5);
       lab.add('F_ball', b.x + 14 + FL, ys, 1, 0, C('force'), 22, 18);
       /* the force the body delivers to its pivot */
@@ -183,10 +185,10 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
       dot(ctx, b.x, yp, C('position'), false, 8);
       if (b.pivot === 'nail') lab.add('percussion point', b.x, yp, 1, 1, C('position'), 20, 22);
       vbracket(ctx, b.x - 110, PY, ys, C('position'), 'r = ' + fmt(b.r, b.r < 1 ? 3 : 2) + ' m', -1);
-      lab.add(b.pivot, b.x, PY, -1, 0.3, PAL.ink, 20, 30);
+      lab.add(b.pivot, b.x, PY, -1, 0.3, b.pc, 20, 30);
     }
-    text(ctx, 'stick, 1.20 m, nailed at one end', SX, 620, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'racquet, 0.685 m, held at the end of its handle', RX, 620, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'stick, 1.20 m, nailed at one end', SX, 620, sc, { size: 17, align: 'center' });
+    text(ctx, 'racquet, 0.685 m, held at the end of its handle', RX, 620, rc, { size: 17, align: 'center' });
     lab.flush();
     const where = zero ? 'at the percussion point' : f.v > 0.85 ? 'near its end' : k < 0 ? 'beyond the percussion point' : f.v < 0.4 ? 'down on its shaft' : 'short of the percussion point';
     topline(ctx, zero

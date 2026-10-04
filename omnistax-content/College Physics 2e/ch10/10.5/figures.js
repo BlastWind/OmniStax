@@ -92,17 +92,18 @@ function plate(ctx, x, y, r, color) {
     const th = pushing ? 0.5 * (tau / I) * t * t : 0.5 * (tau / I) * dt * dt + wf * (t - dt);   /* the angle turned, counterclockwise */
     const tc = C('torque'), Lc = C('angular-momentum'), wc = C('angular-rate'), timec = C('time');
     /* the tray and what sits on it, turned through θ */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    const lsc = F.ref('lazy-susan'), pc = F.ref('person');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = lsc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(CX, CY, R, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, R * 0.62, 0, TAU); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = alpha(lsc, 0.35); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, R * 0.62, 0, TAU); ctx.stroke(); ctx.restore();
     [[0.62, 0, 46], [0.62, 2.1, 38], [0.62, 4.2, 42], [0.2, 3.3, 22]].forEach(([k, a, r]) => plate(ctx, CX + R * k * Math.cos(a - th), CY + R * k * Math.sin(a - th), r, PAL.ink));
-    line(ctx, CX + R * 0.93 * Math.cos(-th), CY + R * 0.93 * Math.sin(-th), CX + R * Math.cos(-th), CY + R * Math.sin(-th), PAL.ink, 4);   /* a mark on the rim to follow */
-    dot(ctx, CX, CY, PAL.ink, true, 6);
-    text(ctx, 'the lazy Susan, seen from above', CX - 10, CY + R + 36, PAL.muted, { size: 19, align: 'right' });   /* left of where the torque arc ends */
+    line(ctx, CX + R * 0.93 * Math.cos(-th), CY + R * 0.93 * Math.sin(-th), CX + R * Math.cos(-th), CY + R * Math.sin(-th), lsc, 4);   /* a mark on the rim to follow */
+    dot(ctx, CX, CY, lsc, true, 6);
+    text(ctx, 'the lazy Susan, seen from above', CX - 10, CY + R + 36, lsc, { size: 19, align: 'right' });   /* left of where the torque arc ends */
     /* the hand at the right of the rim, pushing upward on the canvas, which turns the tray counterclockwise */
     const hx = CX + R + 26, hy = CY + 40, open = pushing ? 0 : 1;
-    hand(ctx, hx, hy, -Math.PI / 2, PAL.ink, open);
-    text(ctx, 'the hand', hx + 34, hy + 40 + open * 70, PAL.muted, { size: 19, align: 'left' });
+    hand(ctx, hx, hy, -Math.PI / 2, pc, open);
+    text(ctx, 'the hand', hx + 34, hy + 40 + open * 70, pc, { size: 19, align: 'left' });
     if (pushing) {
       turnArc(ctx, CX, CY, R + 50, true, tc, Math.PI / 4 + 0.15, 0.5);
       text(ctx, 'net τ = ' + fmt(tau, 3) + ' N·m', CX + (R + 50) * 0.5 + 30, CY + (R + 50) * 0.87 + 30, tc, { size: 22, weight: 600, align: 'left' });
@@ -147,7 +148,7 @@ function plate(ctx, x, y, r, color) {
   const d = sim('sim-kick', 640);
   const ts = ctl(d.controls, { label: '\\text{net}\\;\\ktau', cls: 'torque', min: 10, max: 80, step: 0.5, value: 44, unit: 'N·m', dec: 1, onInput: reset, aria: 'the net torque about the knee', detents: [{ v: 44, label: '44.0' }], snap: false });
   const Is = ctl(d.controls, { label: '\\kI', cls: 'rotational-inertia', min: 0.5, max: 3, step: 0.01, value: 1.25, unit: 'kg·m²', dec: 2, onInput: reset, aria: 'the moment of inertia of the lower leg', detents: [{ v: 1.25, label: '1.25' }], snap: false });
-  const ths = ctl(d.controls, { label: '\\theta', cls: '', min: 10, max: 90, step: 0.1, value: 57.3, unit: '°', dec: 1, onInput: reset, aria: 'the angle the leg swings through', detents: [{ v: 57.3, label: '1.00 rad' }], snap: false });
+  const ths = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 10, max: 90, step: 0.1, value: 57.3, unit: '°', dec: 1, onInput: reset, aria: 'the angle the leg swings through', detents: [{ v: 57.3, label: '1.00 rad' }], snap: false });
   const alphaOf = () => ts.v / Is.v;
   const T = () => Math.sqrt((2 * ths.v * RAD) / alphaOf());
   const cy = cycle(T, 1.4);
@@ -162,18 +163,18 @@ function plate(ctx, x, y, r, color) {
     /* the thigh, the knee and the lower leg, which swings forward, to the right */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineCap = 'round'; ctx.lineWidth = 26;
     ctx.beginPath(); ctx.moveTo(90, KY - 10); ctx.lineTo(KX, KY); ctx.stroke();
-    const fx = KX + LEN * Math.sin(th), fy = KY + LEN * Math.cos(th);
-    ctx.lineWidth = 20; ctx.beginPath(); ctx.moveTo(KX, KY); ctx.lineTo(fx, fy); ctx.stroke();
+    const fx = KX + LEN * Math.sin(th), fy = KY + LEN * Math.cos(th), lgc = F.ref('leg');
+    ctx.strokeStyle = lgc; ctx.lineWidth = 20; ctx.beginPath(); ctx.moveTo(KX, KY); ctx.lineTo(fx, fy); ctx.stroke();
     ctx.lineWidth = 14; ctx.beginPath(); ctx.moveTo(fx, fy); ctx.lineTo(fx + 44 * Math.cos(th), fy - 44 * Math.sin(th)); ctx.stroke();   /* the foot */
     ctx.restore();
     line(ctx, KX, KY, KX, KY + LEN + 30, alpha(PAL.ink, 0.35), 2, [4, 8]);                     /* where the leg hung */
     dot(ctx, KX, KY, PAL.panel, true, 10); dot(ctx, KX, KY, PAL.ink, false, 10);
     text(ctx, 'knee', KX - 26, KY - 30, PAL.ink, { size: 19, align: 'right' });
-    text(ctx, 'the lower leg', 40, KY + LEN + 44, PAL.muted, { size: 19, align: 'left' });
+    text(ctx, 'the lower leg', 40, KY + LEN + 44, lgc, { size: 19, align: 'left' });
     /* the torque about the knee and the angle swung through */
     turnArc(ctx, KX, KY, 110, true, tc, Math.PI / 2 + 0.6, 0.5);
     text(ctx, 'net τ = ' + fmt(tau, 1) + ' N·m', KX - 70, KY + 180, tc, { size: 22, weight: 600, align: 'right' });
-    if (th > 0.03) angleArc(ctx, KX, KY, 170, Math.PI / 2, -th, PAL.ink, 'θ = ' + fmt(th / RAD, 1) + '°');
+    if (th > 0.03) angleArc(ctx, KX, KY, 170, Math.PI / 2, -th, C('angle'), 'θ = ' + fmt(th / RAD, 1) + '°');
     /* the spin the leg has, as an arc just beyond the foot's path, ahead of the foot */
     if (w > 0.05) {
       const af = Math.PI / 2 - th, span = 0.16 + Math.min(0.2, 0.012 * w), RA = LEN + 30;
@@ -183,7 +184,7 @@ function plate(ctx, x, y, r, color) {
     }
     /* the graph beside: KE_rot against θ, a straight line of slope net τ */
     const box = { l: 760, r: 1320, t: 150, b: 500 };
-    const g = axes(ctx, box, [0, 90], [0, KEMAX], { xl: 'θ (degrees)', xc: PAL.ink, yl: 'KE_rot (J)', yc: ec, nx: 3, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const g = axes(ctx, box, [0, 90], [0, KEMAX], { xl: 'θ (degrees)', xc: C('angle'), yl: 'KE_rot (J)', yc: ec, nx: 3, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, g.X(0), g.Y(0), g.X(ths.v), g.Y(tau * thmax), alpha(ec, 0.35), 3, [8, 8]);
     line(ctx, g.X(0), g.Y(0), g.X(th / RAD), g.Y(KE), ec, 5);
     line(ctx, g.X(th / RAD), box.b, g.X(th / RAD), g.Y(KE), PAL.ink, 2, [4, 8]);
@@ -228,7 +229,8 @@ function plate(ctx, x, y, r, color) {
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.3); ctx.lineWidth = 2; ctx.setLineDash([6, 8]);
     ctx.beginPath(); ctx.ellipse(SX, handY, reach, reach * 0.16, 0, 0, TAU); ctx.stroke(); ctx.restore();
     /* the skater, front view, her width foreshortened by k */
-    ctx.save(); ctx.translate(SX, 0); ctx.scale(k, 1); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.ink; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const skc = F.ref('skater');
+    ctx.save(); ctx.translate(SX, 0); ctx.scale(k, 1); ctx.strokeStyle = skc; ctx.fillStyle = skc; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.arc(0, 235, 24, 0, TAU); ctx.fill();                                          /* head */
     ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(0, 259); ctx.lineTo(0, 280); ctx.stroke();           /* neck */
     ctx.beginPath(); ctx.moveTo(-34, 280); ctx.lineTo(34, 280); ctx.lineTo(24, 430); ctx.lineTo(-24, 430); ctx.closePath(); ctx.fill(); /* torso */
@@ -240,7 +242,7 @@ function plate(ctx, x, y, r, color) {
     ctx.beginPath(); ctx.moveTo(-34, 286); ctx.lineTo(-ex, ey); ctx.lineTo(-hx, handY); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(34, 286); ctx.lineTo(ex, ey); ctx.lineTo(hx, handY); ctx.stroke();
     ctx.restore();
-    text(ctx, 'the skater', SX, ICE + 26, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the skater', SX, ICE + 26, skc, { size: 19, align: 'center' });
     /* her spin, as an arc over her head */
     turnArc(ctx, SX, 235, 88, true, wc, -Math.PI / 2, 0.7, 5);
     text(ctx, 'ω = ' + fmt(w, 3) + ' rev/s', SX, 118, wc, { size: 24, weight: 600, align: 'center' });
@@ -285,18 +287,19 @@ function plate(ctx, x, y, r, color) {
     const ratio = 1 / (f * f), done = t >= TM - 1e-9;
     const ic = C('rotational-inertia'), wc = C('angular-rate'), Lc = C('angular-momentum');
     /* the cloud's first edge and its edge now */
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.3); ctx.lineWidth = 2; ctx.setLineDash([6, 8]);
+    const clc = F.ref('cloud');
+    ctx.save(); ctx.strokeStyle = alpha(clc, 0.3); ctx.lineWidth = 2; ctx.setLineDash([6, 8]);
     ctx.beginPath(); ctx.arc(CX, CY, R0, 0, TAU); ctx.stroke();
-    ctx.setLineDash([]); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.beginPath(); ctx.arc(CX, CY, R0 * f, 0, TAU); ctx.stroke(); ctx.restore();
+    ctx.setLineDash([]); ctx.strokeStyle = alpha(clc, 0.5); ctx.beginPath(); ctx.arc(CX, CY, R0 * f, 0, TAU); ctx.stroke(); ctx.restore();
     text(ctx, 'R, the cloud at the start', CX + R0 * 0.72, CY - R0 * 0.72 - 18, PAL.muted, { size: 18, align: 'left' });
-    /* the particles, in ink, each at its own radius and angle */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.75);
+    /* the particles, in the cloud's colour, each at its own radius and angle */
+    ctx.save(); ctx.fillStyle = alpha(clc, 0.75);
     seeds.forEach((p) => { const r = p.r * R0 * f, a = p.a - Phi; ctx.beginPath(); ctx.arc(CX + r * Math.cos(a), CY + r * Math.sin(a), 3.2, 0, TAU); ctx.fill(); });
     ctx.restore();
     /* the body forming at the centre */
     const sun = 6 + 20 * (1 - f) / (1 - k);
     ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(CX, CY, sun, 0, TAU); ctx.fill(); ctx.restore();
-    text(ctx, 'gas and dust', CX - R0 - 20, CY + 30, PAL.muted, { size: 19, align: 'right' });
+    text(ctx, 'gas and dust', CX - R0 - 20, CY + 30, clc, { size: 19, align: 'right' });
     text(ctx, t > 0.3 * TM ? 'the Sun forming' : 'the centre', CX + sun + 14, CY, PAL.muted, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
     text(ctx, "R' = " + fmt(f, 2) + ' R', CX + R0 * f * 0.72 + 12, CY + R0 * f * 0.72 + 22, PAL.ink, { size: 20, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* the spin, as an arc at the rim */

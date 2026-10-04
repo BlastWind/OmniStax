@@ -21,7 +21,7 @@ function arcArrow(ctx, cx, cy, R, a0, sweep, color, w = 4) {
 function disc(ctx, cx, cy, R, fill, stroke, w = 3) {
   ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, TAU); if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = w; ctx.stroke(); } ctx.restore();
 }
-/* the fly: a body and two wings, in ink, about 30 units long */
+/* the fly: a body and two wings in color, about 30 units long */
 function fly(ctx, x, y, heading, color, halo) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(heading); ctx.fillStyle = color; ctx.strokeStyle = halo; ctx.lineWidth = 4; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.ellipse(0, 0, 19, 10, 0, 0, TAU); ctx.stroke(); ctx.fill();
@@ -60,13 +60,14 @@ function fly(ctx, x, y, heading, color, halo) {
     const om = m.om(tau), th = m.th(tau), rev = th / TAU, x = r * th, v = r * om, a = r * (tau < m.stop ? m.a : m.a < 0 ? 0 : m.a);
     /* the reel, face on, its drawn radius following the slider */
     const cx = 270, cyy = 300, Rd = 70 + rr.v * 9, top = cyy - Rd;
-    disc(ctx, cx, cyy, Rd, PAL.soft, PAL.ink, 6);
-    for (let i = 0; i < 4; i++) { const p = th + (i * TAU) / 4; line(ctx, cx, cyy, cx + (Rd - 4) * Math.cos(p), cyy + (Rd - 4) * Math.sin(p), i ? alpha(PAL.ink, 0.35) : PAL.ink, i ? 3 : 4); }
-    disc(ctx, cx, cyy, 16, PAL.panel, PAL.ink, 3);
-    dot(ctx, cx + (Rd - 4) * Math.cos(th), cyy + (Rd - 4) * Math.sin(th), PAL.ink, true, 8);
+    const rc = F.ref('reel'), lc = F.ref('line'), anc = C('angle');
+    disc(ctx, cx, cyy, Rd, PAL.soft, rc, 6);
+    for (let i = 0; i < 4; i++) { const p = th + (i * TAU) / 4; line(ctx, cx, cyy, cx + (Rd - 4) * Math.cos(p), cyy + (Rd - 4) * Math.sin(p), i ? alpha(rc, 0.35) : rc, i ? 3 : 4); }
+    disc(ctx, cx, cyy, 16, PAL.panel, rc, 3);
+    dot(ctx, cx + (Rd - 4) * Math.cos(th), cyy + (Rd - 4) * Math.sin(th), rc, true, 8);
     /* the line leaving the top of the reel: its dashes slide with the length paid out */
     const dashLen = 24, off = ((x * 41) % (2 * dashLen));
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.setLineDash([dashLen, dashLen]); ctx.lineDashOffset = -off; ctx.beginPath(); ctx.moveTo(cx, top); ctx.lineTo(1340, top); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = lc; ctx.lineWidth = 3; ctx.setLineDash([dashLen, dashLen]); ctx.lineDashOffset = -off; ctx.beginPath(); ctx.moveTo(cx, top); ctx.lineTo(1340, top); ctx.stroke(); ctx.restore();
     /* the angular velocity as a curved arrow round the reel, and the speed of the line as a straight one above it */
     if (om > 0) { arcArrow(ctx, cx, cyy, Rd + 24, Math.PI * 0.62, (0.25 + Math.min(om, 400) / 400) * 1.6, C('angular-rate'), 4); }
     if (v > 0) { arrow(ctx, cx + 30, top - 22, cx + 30 + 24 + Math.min(v, 30) * 8, top - 22, C('velocity'), 4); text(ctx, 'v', cx + 30 + 24 + Math.min(v, 30) * 8 + 14, top - 22, C('velocity'), { size: 24, weight: 600 }); }
@@ -74,7 +75,7 @@ function fly(ctx, x, y, heading, color, halo) {
     const px = 700, py = 250;
     text(ctx, 'ω = ' + sig3(om) + ' rad/s', px, py, C('angular-rate'), { size: 22, weight: 600 });
     text(ctx, 'α = ' + sgn(m.a) + fmt(Math.abs(m.a), 0) + ' rad/s²', px, py + 36, C('angular-acceleration'), { size: 22, weight: 600 });
-    text(ctx, 'θ = ' + sig3(th) + ' rad = ' + sig3(rev) + ' rev', px, py + 72, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'θ = ' + sig3(th) + ' rad = ' + sig3(rev) + ' rev', px, py + 72, anc, { size: 22, weight: 600 });
     text(ctx, 'v = rω = ' + sig3(v) + ' m/s', px, py + 108, C('velocity'), { size: 22, weight: 600 });
     text(ctx, 'a = rα = ' + sgn(a) + sig3(Math.abs(a)) + ' m/s²', px, py + 144, C('acceleration'), { size: 22, weight: 600 });
     /* the length of line paid out, on a fixed scale of 0 to 20 m */
@@ -85,19 +86,19 @@ function fly(ctx, x, y, heading, color, halo) {
     line(ctx, X0, sy, xp, sy, C('position'), 6);
     dot(ctx, xp, sy, C('position'), x <= 20, 10);
     if (x > 0.05) hbracket(ctx, X0, xp, sy - 40, C('position'), 'x = rθ = ' + sig3(x) + ' m' + (x > 20 ? ' (beyond the scale)' : ''));
-    text(ctx, 'line paid out', X0 - 24, sy, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'line paid out', X0 - 24, sy, lc, { size: 17, align: 'right' });
     /* ω against t below, the area under the line shaded as θ */
     const box = { l: 130, r: 1310, t: 590, b: 800 }, cw = C('angular-rate');
     const g = axes(ctx, box, [0, 4], [0, 500], { xl: 't (s)', xc: C('time'), yl: 'ω (rad/s)', yc: cw, nx: 4, ny: 5, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, 0) });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
-    ctx.fillStyle = alpha(cw, 0.18); ctx.beginPath(); ctx.moveTo(g.X(0), g.Y(0));
+    ctx.fillStyle = alpha(anc, 0.18); ctx.beginPath(); ctx.moveTo(g.X(0), g.Y(0));
     for (let i = 0; i <= 60; i++) { const s = (tau * i) / 60; ctx.lineTo(g.X(s), g.Y(m.om(s))); }
     ctx.lineTo(g.X(tau), g.Y(0)); ctx.closePath(); ctx.fill();
     ctx.strokeStyle = cw; ctx.lineWidth = 5; ctx.beginPath();
     for (let i = 0; i <= 80; i++) { const s = (m.T * i) / 80; const yy = g.Y(m.om(s)); if (i) ctx.lineTo(g.X(s), yy); else ctx.moveTo(g.X(s), yy); }
     ctx.stroke(); ctx.restore();
     const tc = Math.min(tau, m.stop) * 0.4;   /* the θ label sits well inside the shaded region, clear of the note the brake leaves */
-    if (tau > 0.3 && th > 30) text(ctx, 'θ', g.X(tc), g.Y(Math.min(m.om(tc), 500) * 0.4), cw, { size: 24, weight: 600, align: 'center' });
+    if (tau > 0.3 && th > 30) text(ctx, 'θ', g.X(tc), g.Y(Math.min(m.om(tc), 500) * 0.4), anc, { size: 24, weight: 600, align: 'center' });
     dot(ctx, g.X(0), g.Y(Math.min(m.o0, 500)), cw, false, 9);
     line(ctx, g.X(tau), box.b, g.X(tau), Math.max(g.Y(om), box.t), C('time'), 2, [4, 8]);
     pinned(ctx, box, g.X, g.Y, tau, om, cw, sig3(om) + ' rad/s');
@@ -142,19 +143,20 @@ function fly(ctx, x, y, heading, color, halo) {
     const { Rp } = geom(), s = state(), T = tt.v, ended = s.tau >= T - 1e-9;
     const ang = -s.th;   /* the plate turns counterclockwise, as the book draws it */
     /* the plate with its grooves and the lunch on it */
-    disc(ctx, cx, cyy, Rp, PAL.soft, PAL.ink, 4);
+    const plc = F.ref('plate'), fc = F.ref('fly'), lu = F.ref('lunch');
+    disc(ctx, cx, cyy, Rp, PAL.soft, plc, 4);
     disc(ctx, cx, cyy, Rp * 0.78, null, alpha(PAL.ink, 0.15), 2);
-    disc(ctx, cx, cyy, 10, PAL.ink, null);
+    disc(ctx, cx, cyy, 10, plc, null);
     const lx = cx + Rp * 0.6 * Math.cos(ang + 2.4), ly = cyy + Rp * 0.6 * Math.sin(ang + 2.4);
-    disc(ctx, lx, ly, Rp * 0.2, PAL.panel, PAL.muted, 2); text(ctx, 'lunch', lx, ly, PAL.muted, { size: 17, align: 'center' });
+    disc(ctx, lx, ly, Rp * 0.2, PAL.panel, lu, 2); text(ctx, 'lunch', lx, ly, lu, { size: 17, align: 'center' });
     /* the path along the rim since the fly started, wrapping each revolution, and the displacement chord */
     const sx = cx + Rp, sy = cyy, p = flyAt(), cp = C('position');
     if (s.th > 0) {
       ctx.save(); ctx.strokeStyle = alpha(cp, 0.55); ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(cx, cyy, Rp + 8, 0, Math.min(s.th, TAU), true); ctx.stroke(); ctx.restore();
       if (s.disp > 0.004) line(ctx, sx, sy, p.x, p.y, cp, 2.5, [8, 8]);
     }
-    dot(ctx, sx, sy, PAL.ink, false, 9); text(ctx, 'start', sx + 16, sy + 22, PAL.muted, { size: 17 });
-    fly(ctx, p.x, p.y, ang - Math.PI / 2, PAL.ink, PAL.panel);
+    dot(ctx, sx, sy, fc, false, 9); text(ctx, 'start', sx + 16, sy + 22, PAL.muted, { size: 17 });
+    fly(ctx, p.x, p.y, ang - Math.PI / 2, fc, PAL.panel);
     /* the angular velocity as a curved arrow round the centre */
     arcArrow(ctx, cx, cyy, Rp * 0.3, Math.PI * 0.15, -(0.5 + Math.min(wb.v, 12) / 12) * 1.7, C('angular-rate'), 4);
     text(ctx, 'ω̄ = ' + fmt(wb.v, 1) + ' rpm', 40, 112, C('angular-rate'), { size: 22, weight: 600 });   /* on the frame, where the fly on the rim can never reach it */
