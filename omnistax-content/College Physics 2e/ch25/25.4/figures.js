@@ -1,13 +1,15 @@
-/* Figures for section 25.4 Total Internal Reflection. The page binds no type:
-   every angle and every index of refraction is untyped, and no ray here carries a
-   wavelength, so every figure is wholly in ink, as ch25/COLOR.md gives 25.4. A ray
-   is drawn in ink with its brightness as its opacity, the surfaces in muted ink,
-   the perpendiculars dashed, and a denser medium under a faint neutral panel. Every
+/* Figures for section 25.4 Total Internal Reflection. Every angle wears the
+   angle hue; the index of refraction is a rating and stays in ink, and no ray
+   here carries a wavelength. A ray is drawn in ink with its brightness as its
+   opacity, the perpendiculars dashed, and a denser medium under a faint neutral
+   panel. The two media of Figure 25.13, the fiber, its cladding and the fiber
+   touching it, the two ends of the bundle, the two prisms and the cut gem are the
+   section's referents and wear F.ref on their outlines and names. Every
    figure is still: a ray diagram is a set of paths and has no clock, so each
    registers no cycle, takes no transport and redraws on its controls alone. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['25.4'] = function (root, F) {
-const { fmt, PAL, alpha, ctl, choice, select, register, begin, line, arrow, text, topline, label, angleArc } = F;
+const { fmt, C, PAL, alpha, ctl, choice, select, register, begin, line, arrow, text, topline, label, angleArc } = F;
 const sim = (id, H) => F.sim(root, id, H);
 
 const RAD = Math.PI / 180;
@@ -46,11 +48,11 @@ function fillPoly(ctx, pts, fill, stroke, w) {
 }
 /* the angle of a direction on the page, counterclockwise from +x with y up, as angleArc takes it */
 const pageAngle = (v) => Math.atan2(-v[1], v[0]);
-function arcBetween(ctx, q, r, u, v, s) {
+function arcBetween(ctx, q, r, u, v, s, color) {
   const a0 = pageAngle(u); let a1 = pageAngle(v);
   while (a1 - a0 > Math.PI) a1 -= 2 * Math.PI;
   while (a0 - a1 > Math.PI) a1 += 2 * Math.PI;
-  angleArc(ctx, { x: q[0], y: q[1] }, r, a0, a1, s);
+  angleArc(ctx, { x: q[0], y: q[1] }, r, a0, a1, s, undefined, color ?? C('angle'));
 }
 
 /* ---------- a ray traced through polygons of glass ----------
@@ -134,7 +136,7 @@ function drawTrace(ctx, tr) {
   const pick = select(d.controls, { label: '\\text{media}', value: 'poly', aria: 'the medium the ray travels in and the medium beyond the surface', options: [
     { value: 'poly', label: 'polystyrene into air' }, { value: 'water', label: 'water into air' }, { value: 'diamond', label: 'diamond into air' },
     { value: 'flint', label: 'flint glass into crown glass' }, { value: 'airwater', label: 'air into water' }] });
-  const th = ctl(d.controls, { label: '\\theta_1', cls: '', min: 0, max: 89, step: 0.1, value: 30, unit: '°', dec: 1, aria: 'the angle of incidence',
+  const th = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 0, max: 89, step: 0.1, value: 30, unit: '°', dec: 1, aria: 'the angle of incidence',
     specials: [{ at: () => critical(PAIRS[pick.value].n1, PAIRS[pick.value].n2), label: 'θc' }] });
   const ro = F.readout(d);
   const X0 = 700, Y0 = 330, L = 300;
@@ -151,8 +153,8 @@ function drawTrace(ctx, tr) {
     line(ctx, 40, Y0, 1360, Y0, PAL.muted, 3);
     line(ctx, X0, 110, X0, 570, alpha(PAL.ink, 0.4), 2, [10, 10]);
     const n1s = nStr(P.n1), n2s = nStr(P.n2);
-    text(ctx, `${P.m2}   n_2 = ${n2s}`, 70, 130, PAL.ink, { size: 22, align: 'left' });
-    text(ctx, `${P.m1}   n_1 = ${n1s}`, 70, 552, PAL.ink, { size: 22, align: 'left' });
+    text(ctx, `medium 2: ${P.m2}   n_2 = ${n2s}`, 70, 130, F.ref('medium-2'), { size: 22, align: 'left' });
+    text(ctx, `medium 1: ${P.m1}   n_1 = ${n1s}`, 70, 552, F.ref('medium-1'), { size: 22, align: 'left' });
     const src = [X0 - L * Math.sin(t1), Y0 + L * Math.cos(t1)];
     const rfl = [X0 + L * Math.sin(t1), Y0 + L * Math.cos(t1)];
     ray(ctx, [X0, Y0], rfl, tir ? 1 : Math.max(R, 0.02));
@@ -164,15 +166,15 @@ function drawTrace(ctx, tr) {
     if (t2 !== null && t2 > 0.01) arcBetween(ctx, [X0, Y0], 86, [0, -1], [Math.sin(t2), -Math.cos(t2)], atC ? 'θ_2 = 90°' : 'θ_2');
     if (atC) {
       topline(ctx, `At the critical angle of ${fmt(tc, 1)}° the refracted ray runs along the surface.`);
-      ro.set(`\\mk{tc}{\\theta_{\\text{c}}} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v2}{${n2s}}/\\mk{v1}{${n1s}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
+      ro.set(`\\mk{tc}{\\kthetac} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v2}{${n2s}}/\\mk{v1}{${n1s}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
         `At this incident angle the angle of refraction is 90°, and a larger one leaves no angle of refraction at all.`, { form: 'crit' });
     } else if (tir) {
       topline(ctx, `At ${fmt(th.v, 1)}° the ray in ${P.m1} is totally reflected, since that is more than the critical angle of ${fmt(tc, 1)}°.`);
-      ro.set(`\\mk{q}{\\frac{n_1\\sin\\theta_1}{n_2}} = \\mk{v}{\\frac{(${n1s})\\sin ${fmt(th.v, 1)}^\\circ}{${n2s}}} = \\mk{r}{${fmt(s2, 3)} > 1}`,
+      ro.set(`\\mk{q}{\\frac{n_1\\sin\\kthetaone}{n_2}} = \\mk{v}{\\frac{(${n1s})\\sin ${fmt(th.v, 1)}^\\circ}{${n2s}}} = \\mk{r}{${fmt(s2, 3)} > 1}`,
         `No angle has a sine greater than 1, so no ray is refracted and all the light is reflected back into the ${P.m1}.`, { form: 'tir' });
     } else {
       topline(ctx, `At ${fmt(th.v, 1)}° the ray in ${P.m1} refracts into ${P.m2} at ${fmt(deg(t2), 1)}°, and ${fmt(R * 100, 0)}% of the light is reflected.`);
-      ro.set(`\\mk{s}{\\sin\\theta_2} = \\mk{q}{\\frac{n_1\\sin\\theta_1}{n_2}} = \\mk{v}{\\frac{(${n1s})\\sin ${fmt(th.v, 1)}^\\circ}{${n2s}}} = \\mk{r}{${fmt(s2, 3)}}`,
+      ro.set(`\\mk{s}{\\sin\\kthetatwo} = \\mk{q}{\\frac{n_1\\sin\\kthetaone}{n_2}} = \\mk{v}{\\frac{(${n1s})\\sin ${fmt(th.v, 1)}^\\circ}{${n2s}}} = \\mk{r}{${fmt(s2, 3)}}`,
         tc === null ? `Light going into a medium of larger index bends toward the perpendicular, so the angle of refraction never reaches 90° and there is no critical angle.`
           : `The angle of refraction is ${fmt(deg(t2), 1)}°, larger than the angle of incidence, and it reaches 90° when the angle of incidence reaches ${fmt(tc, 1)}°.`, { form: 'refr' });
     }
@@ -196,7 +198,7 @@ function drawTrace(ctx, tr) {
   const d = sim('sim-light-pipe', 700);
   const mode = select(d.controls, { label: '\\text{around the core}', value: 'air', ms: 0, options: [
     { value: 'air', label: 'air' }, { value: 'clad', label: 'crown-glass cladding' }, { value: 'touch', label: 'a bare fiber touching it' }] });
-  const al = ctl(d.controls, { label: '\\alpha', cls: '', min: 0, max: 80, step: 1, value: 30, unit: '°', dec: 0, aria: 'the angle of the ray entering the end of the fiber' });
+  const al = ctl(d.controls, { label: '\\alpha', cls: 'angle', min: 0, max: 80, step: 1, value: 30, unit: '°', dec: 0, aria: 'the angle of the ray entering the end of the fiber' });
   const rb = ctl(d.controls, { label: '\\text{bend radius}', cls: '', min: 1.5, max: 6, step: 0.1, value: 4, unit: 'widths', dec: 1, aria: 'the radius of the bend in fiber widths' });
   const ro = F.readout(d);
   const W = 80, X0 = 160, Y0 = 240, L1 = 360, L2 = 380, PHI = 45 * RAD, NC = IDX.flint;
@@ -227,9 +229,10 @@ function drawTrace(ctx, tr) {
     const nb = [[X0, Y0 + W / 2], [X0 + L1, Y0 + W / 2], [X0 + L1, Y0 + 1.5 * W], [X0, Y0 + 1.5 * W]];
     if (m === 'touch') polys.push({ pts: nb, tags: ['wall', 'end', 'wall', 'start'], n: NC });
     const { ctx } = begin(d.c);
-    if (m === 'clad') { const cb = band(cl, W / 2 + 18); fillPoly(ctx, cb.pts, alpha(PAL.ink, 0.04), PAL.muted, 2); }
-    fillPoly(ctx, core.pts, alpha(PAL.ink, 0.08), PAL.muted, 2.5);
-    if (m === 'touch') fillPoly(ctx, nb, alpha(PAL.ink, 0.08), PAL.muted, 2.5);
+    const cFib = F.ref('fiber'), cClad = F.ref('cladding'), cNb = F.ref('second-fiber');
+    if (m === 'clad') { const cb = band(cl, W / 2 + 18); fillPoly(ctx, cb.pts, alpha(PAL.ink, 0.04), cClad, 2); }
+    fillPoly(ctx, core.pts, alpha(PAL.ink, 0.08), cFib, 2.5);
+    if (m === 'touch') fillPoly(ctx, nb, alpha(PAL.ink, 0.08), cNb, 2.5);
     const a = al.v * RAD, dir = [Math.cos(a), Math.sin(a)], aim = [X0, Y0 - 8], L0 = 140;
     const tr = trace(polys, n2, [aim[0] - dir[0] * L0, aim[1] - dir[1] * L0], dir, 200);
     drawTrace(ctx, tr);
@@ -241,9 +244,9 @@ function drawTrace(ctx, tr) {
       const back = [-low.d[0], -low.d[1]];
       arcBetween(ctx, low.q, 52, low.nrm, back, `${fmt(low.theta, 1)}°`);
     }
-    text(ctx, `core, flint glass   n_1 = ${fmt(NC, 2)}`, X0 + L1 / 2 + 60, Y0 - W / 2 - (m === 'clad' ? 44 : 26), PAL.ink, { size: 20, align: 'center' });
-    if (m === 'clad') label(ctx, `cladding, crown glass   n_2 = ${fmt(IDX.crown, 2)}`, X0 + 200, Y0 + W / 2 + 18, { side: 'below', size: 20, weight: 400 });
-    else if (m === 'touch') text(ctx, `a second fiber of flint glass   n_2 = ${fmt(NC, 2)}`, X0, Y0 + 1.5 * W + 26, PAL.ink, { size: 20, align: 'left' });
+    text(ctx, `core, flint glass   n_1 = ${fmt(NC, 2)}`, X0 + L1 / 2 + 60, Y0 - W / 2 - (m === 'clad' ? 44 : 26), cFib, { size: 20, align: 'center' });
+    if (m === 'clad') label(ctx, `cladding, crown glass   n_2 = ${fmt(IDX.crown, 2)}`, X0 + 200, Y0 + W / 2 + 18, { side: 'below', size: 20, weight: 400, color: cClad });
+    else if (m === 'touch') text(ctx, `a second fiber of flint glass   n_2 = ${fmt(NC, 2)}`, X0, Y0 + 1.5 * W + 26, cNb, { size: 20, align: 'left' });
     else text(ctx, `air   n_2 = 1.00`, X0 + 20, Y0 + W / 2 + 34, PAL.ink, { size: 20, align: 'left' });
     const nIn = Math.asin(Math.sin(a) / NC);
     if (m === 'touch') {
@@ -255,7 +258,7 @@ function drawTrace(ctx, tr) {
     const lowS = low ? `${fmt(low.theta, 1)}°` : '';
     topline(ctx, leak ? `A reflection at ${fmt(leak.theta, 1)}° is less than the critical angle of ${fmt(tc, 1)}°, so light leaks out of the fiber there.`
       : `The smallest angle of reflection is ${lowS}, more than the critical angle of ${fmt(tc, 1)}°, so every reflection is total.`);
-    ro.set(`\\mk{tc}{\\theta_{\\text{c}}} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v}{${fmt(n2, 2)}/${fmt(NC, 2)}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
+    ro.set(`\\mk{tc}{\\kthetac} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v}{${fmt(n2, 2)}/${fmt(NC, 2)}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
       `The ray enters the end at ${fmt(al.v, 0)}° and refracts to ${fmt(deg(nIn), 1)}° inside the core, and ${walls.length} reflections carry it ${leak ? 'until one of them fails' : 'to the far end'}.`, { form: 'tc' });
   }
   register(d.fig, { update: () => {}, draw });
@@ -288,9 +291,9 @@ function drawTrace(ctx, tr) {
   for (let i = perm.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
   const nLit = lit.filter(Boolean).length;
 
-  function face(ctx, cx, spots) {
+  function face(ctx, cx, spots, color) {
     ctx.save(); ctx.beginPath(); ctx.arc(cx, CY, RF + 6, 0, 2 * Math.PI); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.fillStyle = alpha(PAL.ink, 0.05); ctx.fill();
-    ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+    ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
     cells.forEach(([u, v]) => { ctx.save(); ctx.beginPath(); ctx.arc(cx + u, CY + v, r - 1.5, 0, 2 * Math.PI); ctx.strokeStyle = alpha(PAL.ink, 0.28); ctx.lineWidth = 1.5; ctx.stroke(); ctx.restore(); });
     spots.forEach(([u, v]) => { ctx.save(); ctx.beginPath(); ctx.arc(cx + u, CY + v, r - 3, 0, 2 * Math.PI); ctx.fillStyle = PAL.ink; ctx.fill(); ctx.restore(); });
   }
@@ -302,10 +305,11 @@ function drawTrace(ctx, tr) {
     const shown = [3, 17, 30, 45, 60, 74, 88].filter((i) => i < cells.length);
     const far = (i) => mode.mix((v) => (v === 'fixed' ? cells[i] : cells[perm[i]]));
     shown.forEach((i) => { const f = far(i); bez(cells[i][1], f[1], alpha(PAL.ink, 0.22), 2); });
-    face(ctx, AX, cells.filter((_, i) => lit[i]));
-    face(ctx, BX, cells.map((_, i) => i).filter((i) => lit[i]).map(far));
-    text(ctx, 'the near end, lit', AX, CY + RF + 44, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'the far end', BX, CY + RF + 44, PAL.ink, { size: 20, align: 'center' });
+    const cNear = F.ref('near-face'), cFar = F.ref('far-face');
+    face(ctx, AX, cells.filter((_, i) => lit[i]), cNear);
+    face(ctx, BX, cells.map((_, i) => i).filter((i) => lit[i]).map(far), cFar);
+    text(ctx, 'the near end, lit', AX, CY + RF + 44, cNear, { size: 20, align: 'center' });
+    text(ctx, 'the far end', BX, CY + RF + 44, cFar, { size: 20, align: 'center' });
     const fixed = mode.value === 'fixed';
     const kept = cells.filter((_, i) => lit[i] && (fixed || lit[perm[i]])).length;
     topline(ctx, fixed ? 'Every fiber keeps its place, so the letter arrives as it left.' : 'Every fiber still carries its light, but the pieces arrive in the wrong places.');
@@ -330,7 +334,7 @@ function drawTrace(ctx, tr) {
   const nS = ctl(d.controls, { label: 'n', cls: '', min: 1.30, max: 2.42, step: 0.001, value: 1.52, unit: '', dec: 3, aria: 'the index of refraction of the prism glass',
     detents: [{ v: 1.333, label: 'water' }, { v: 1.52, label: 'crown' }, 1.66, { v: 2.419, label: 'diamond' }],
     specials: [{ at: Math.SQRT2, label: '√2' }] });
-  const tS = ctl(d.controls, { label: '\\text{tilt}', cls: '', min: -8, max: 8, step: 0.5, value: 0, unit: '°', dec: 1, aria: 'the tilt of the entering ray' });
+  const tS = ctl(d.controls, { label: '\\text{tilt}', cls: 'angle', min: -8, max: 8, step: 0.5, value: 0, unit: '°', dec: 1, aria: 'the tilt of the entering ray' });
   const ro = F.readout(d);
   const A = 130, XA = 760, YA = 300, XB = XA - A, YB = 400;
   const prA = [[XA - A, YA], [XA + A, YA], [XA, YA - A]];
@@ -344,22 +348,23 @@ function drawTrace(ctx, tr) {
     fillPoly(ctx, [[XB - A - 60, 560], [XA + A + 60, 560], [XA + A + 60, 150], [XB - A - 60, 150]], null, alpha(PAL.ink, 0.25), 2);
     fillPoly(ctx, [[XA + A / 2 - 70, 590], [XA + A / 2 + 70, 590], [XA + A / 2 + 70, 572], [XA + A / 2 - 70, 572]], alpha(PAL.ink, 0.1), PAL.muted, 2);
     fillPoly(ctx, [[XB - A / 2 - 50, 112], [XB - A / 2 + 50, 112], [XB - A / 2 + 50, 96], [XB - A / 2 - 50, 96]], alpha(PAL.ink, 0.1), PAL.muted, 2);
-    fillPoly(ctx, prA, alpha(PAL.ink, 0.08), PAL.muted, 2.5);
-    fillPoly(ctx, prB, alpha(PAL.ink, 0.08), PAL.muted, 2.5);
+    const cA = F.ref('prism-1'), cB = F.ref('prism-2');
+    fillPoly(ctx, prA, alpha(PAL.ink, 0.08), cA, 2.5);
+    fillPoly(ctx, prB, alpha(PAL.ink, 0.08), cB, 2.5);
     const dir = [Math.sin(tau), -Math.cos(tau)], p0 = [XA + A / 2 - Math.tan(tau) * (640 - YA), 640];
     const tr = trace(polys, N_AIR, p0, dir, 420);
     drawTrace(ctx, tr);
     const legs = tr.hits.filter((h) => h.main && h.tag === 'leg' && h.from >= 0);
     const fail = legs.find((h) => !h.total);
     if (legs[0]) arcBetween(ctx, legs[0].q, 48, legs[0].nrm, [-legs[0].d[0], -legs[0].d[1]], `${fmt(legs[0].theta, 1)}°`);
-    label(ctx, 'prism', XA + A, YA - A / 2, { side: 'right', size: 20, weight: 400 });
-    label(ctx, 'prism', XB - A, YB + A / 2, { side: 'left', size: 20, weight: 400 });
+    label(ctx, 'prism', XA + A, YA - A / 2, { side: 'right', size: 20, weight: 400, color: cA });
+    label(ctx, 'prism', XB - A, YB + A / 2, { side: 'left', size: 20, weight: 400, color: cB });
     text(ctx, 'objective', XA + A / 2 + 90, 581, PAL.ink, { size: 20, align: 'left' });
     text(ctx, 'eyepiece', XB - A / 2 - 70, 104, PAL.ink, { size: 20, align: 'right' });
     const angs = legs.map((h) => `${fmt(h.theta, 1)}°`);
     topline(ctx, fail ? `At ${fmt(fail.theta, 1)}° a reflection is not total, since the critical angle is ${fmt(tc, 1)}°, and light leaks out of the prism.`
       : `The ray meets the faces at ${angs.length > 1 ? angs.slice(0, -1).join(', ') + ' and ' + angs[angs.length - 1] : angs.join('')}, each more than the critical angle of ${fmt(tc, 1)}°.`);
-    ro.set(`\\mk{tc}{\\theta_{\\text{c}}} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v}{1.00/${fmt(n, 3)}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
+    ro.set(`\\mk{tc}{\\kthetac} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v}{1.00/${fmt(n, 3)}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
       fail ? 'Below an index of 1.414 the critical angle is more than 45°, and a ray meeting a face near 45° is only partly reflected.'
         : `Every reflection is total, and the ray leaves the eyepiece tilted ${fmt(Math.abs(tS.v), 1)}°, parallel to the ray that entered.`, { form: 'tc' });
   }
@@ -381,7 +386,7 @@ function drawTrace(ctx, tr) {
   const gem = select(d.controls, { label: '\\text{gem}', value: 'diamond', aria: 'the material of the cut stone', options: [
     { value: 'diamond', label: 'diamond' }, { value: 'cz', label: 'cubic zirconia' }, { value: 'zircon', label: 'zircon' }, { value: 'crown', label: 'crown glass' }] });
   const xS = ctl(d.controls, { label: '\\text{entry point}', cls: '', min: -0.95, max: 0.95, step: 0.01, value: -0.35, unit: '', dec: 2, aria: 'where the ray enters the table, as a fraction of its half-width' });
-  const aS = ctl(d.controls, { label: '\\theta_1', cls: '', min: -60, max: 60, step: 1, value: -10, unit: '°', dec: 0, aria: 'the angle of incidence on the table, negative for a ray running to the left' });
+  const aS = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: -60, max: 60, step: 1, value: -10, unit: '°', dec: 0, aria: 'the angle of incidence on the table, negative for a ray running to the left' });
   const ro = F.readout(d);
   const U = 330, CX = 700, TOP = 210;
   const shape = [[-0.57, 0], [0.57, 0], [1, 0.296], [1, 0.326], [0, 1.187], [-1, 0.326], [-1, 0.296]];
@@ -391,7 +396,8 @@ function drawTrace(ctx, tr) {
   function draw() {
     const G = GEMS[gem.value], tc = critical(G.n, N_AIR), a = aS.v * RAD;
     const { ctx } = begin(d.c);
-    fillPoly(ctx, pts, alpha(PAL.ink, 0.07), PAL.muted, 2.5);
+    const cGem = F.ref('gem');
+    fillPoly(ctx, pts, alpha(PAL.ink, 0.07), cGem, 2.5);
     const entry = [CX + xS.v * 0.57 * U, TOP], dir = [Math.sin(a), Math.cos(a)];
     const tr = trace([{ pts, tags, n: G.n }], N_AIR, [entry[0] - dir[0] * 110, entry[1] - dir[1] * 110], dir, 170, 0.002);
     drawTrace(ctx, tr);
@@ -405,9 +411,9 @@ function drawTrace(ctx, tr) {
     const escape = tr.hits.find((h) => h.main && h.from === 0 && !h.total && fresnel(G.n, N_AIR, Math.cos(h.theta * RAD)) < 0.5);
     if (first) arcBetween(ctx, first.q, 46, first.nrm, [-first.d[0], -first.d[1]], `${fmt(first.theta, 1)}°`);
     text(ctx, 'air', 150, 170, PAL.ink, { size: 22, align: 'left' });
-    label(ctx, `${G.name}   n = ${fmt(G.n, 3)}`, CX + 0.55 * U, TOP + 0.62 * U, { side: 'right', size: 20, weight: 400, gap: 60 });
+    label(ctx, `${G.name}   n = ${fmt(G.n, 3)}`, CX + 0.55 * U, TOP + 0.62 * U, { side: 'right', size: 20, weight: 400, gap: 60, color: cGem });
     topline(ctx, `In ${G.name}, ${fmt(up * 100, 0)}% of the light that enters the top leaves through the top, and ${fmt(down * 100, 0)}% through the lower facets.`);
-    ro.set(`\\mk{tc}{\\theta_{\\text{c}}} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v}{1.00/${fmt(G.n, 3)}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
+    ro.set(`\\mk{tc}{\\kthetac} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v}{1.00/${fmt(G.n, 3)}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
       escape && escape.tag !== 'top'
         ? `The brightest part of the ray meets a lower facet at ${fmt(escape.theta, 1)}°, less than ${fmt(tc, 1)}°, and most of it leaves the stone there.`
         : `Along its brightest path the ray is totally reflected ${nTotal} ${nTotal === 1 ? 'time' : 'times'}, since every facet it meets at more than ${fmt(tc, 1)}° returns all of the light.`, { form: 'tc' });

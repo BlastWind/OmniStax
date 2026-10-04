@@ -1,10 +1,11 @@
-/* Figures for section 25.5 Dispersion: The Rainbow and Prisms. The page binds
-   position alone, for the wavelength on the sliders and in the readouts, which
-   is what ch25/COLOR.md gives 25.5 where no speed is drawn. Every angle and every
-   index of refraction is untyped and in ink, and so are the prism, the drop, the
-   frames and every name. A ray's color is its wavelength, drawn as the fact by
-   spectral(), and sunlight is the one pale yellow SUN; these are the page's only
-   literal colors. Optics has no clock in it, so nothing here moves: every figure
+/* Figures for section 25.5 Dispersion: The Rainbow and Prisms. The figures
+   colour position, for the wavelength, the entry height and where the observer
+   stands, and angle, for every angle drawn or set. The index of refraction is a
+   rating and stays in ink, and so do the frames. The prism, the drop and the
+   observer of the rainbow are the section's referents and wear F.ref. A ray's
+   color is its wavelength, drawn as the fact by spectral(), and sunlight is the
+   one pale yellow SUN; both go through F.fact and are the page's only literal
+   colors. Optics has no clock in it, so nothing here moves: every figure
    registers no cycle and redraws on its controls alone. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['25.5'] = function (root, F) {
@@ -47,7 +48,7 @@ function spectral(lam) {
   else r = 1;
   const f = lam < 420 ? 0.3 + (0.7 * (lam - 380)) / 40 : lam > 700 ? 0.3 + (0.7 * (750 - lam)) / 50 : 1;
   const c = (x) => Math.round(255 * Math.pow(x * f, 0.8));
-  return `rgb(${c(r)}, ${c(g)}, ${c(b)})`;
+  return F.fact(`rgb(${c(r)}, ${c(g)}, ${c(b)})`);
 }
 function colorName(lam) {
   return lam < 440 ? 'violet' : lam < 500 ? 'blue' : lam < 565 ? 'green' : lam < 595 ? 'yellow' : lam < 635 ? 'orange' : 'red';
@@ -124,7 +125,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
   const d = sim('sim-prism', 600);
   const mode = choice(d.controls, { label: '\\text{light}', options: [{ value: 'one', label: 'one wavelength' }, { value: 'white', label: 'white light' }], value: 'white', aria: 'whether one wavelength or white light falls on the prism' });
   const lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 410, max: 660, step: 1, value: 580, unit: 'nm', dec: 0, aria: 'the wavelength followed through the prism', detents: LAM_DETENTS, snap: true });
-  const th = ctl(d.controls, { label: '\\theta_1', cls: '', min: 30, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, aria: 'the angle of incidence at the first face', detents: [{ v: 45, label: '45' }] });
+  const th = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 30, max: 80, step: 0.5, value: 45, unit: '°', dec: 1, aria: 'the angle of incidence at the first face', detents: [{ v: 45, label: '45' }] });
   const med = select(d.controls, { label: '\\text{prism}', options: MEDIA_OPTS, value: 'crown', aria: 'the medium of Table 25.2 the prism is made of' });
 
   const FAN = 8, REF = 580;
@@ -160,11 +161,11 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
 
     /* the prism and its first normal */
     ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.1); ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(BL.x, BL.y); ctx.lineTo(BR.x, BR.y); ctx.closePath(); ctx.fill();
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    ctx.strokeStyle = F.ref('prism'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
     const n1 = dir(150);
     line(ctx, P.x - n1.x * 110, P.y - n1.y * 110, P.x + n1.x * 130, P.y + n1.y * 130, alpha(PAL.ink, 0.4), 2, [10, 10]);
-    text(ctx, '60°', A.x, A.y + 44, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, m.name, CX, BASE - 70, PAL.ink, { size: 22, align: 'center' });
+    text(ctx, '60°', A.x, A.y + 44, C('angle'), { size: 17, align: 'center' });
+    text(ctx, m.name, CX, BASE - 70, F.ref('prism'), { size: 22, align: 'center' });
 
     /* one ray of wavelength l, its angles drawn from the reference ray's by the factor k */
     function ray(l, w, k) {
@@ -183,7 +184,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
       return { q, tir: false, tr, end: { x: q.x + u.x * 560, y: q.y + u.y * 560 }, u };
     }
 
-    line(ctx, P.x - uIn.x * 420, P.y - uIn.y * 420, P.x, P.y, white ? SUN : spectral(lam.v), 5);
+    line(ctx, P.x - uIn.x * 420, P.y - uIn.y * 420, P.x, P.y, white ? F.fact(SUN) : spectral(lam.v), 5);
     let chosen, red, vio;
     const fan = path(nOf(key, 410), t1).out === null || path(nOf(key, 660), t1).out === null ? 1 : FAN;
     if (white) {
@@ -194,7 +195,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
     const cur = chosen?.tr ?? path(nOf(key, lam.v), t1);
 
     const back = 180 + aIn;
-    angleArc(ctx, { x: P.x, y: P.y }, 76, 150 * RAD, back * RAD, `θ₁ = ${fmt(t1, 1)}°`);
+    angleArc(ctx, { x: P.x, y: P.y }, 76, 150 * RAD, back * RAD, `θ₁ = ${fmt(t1, 1)}°`, undefined, C('angle'));
     if (chosen?.q && chosen.q.i === 2) {
       const n2 = dir(30);
       line(ctx, chosen.q.x - n2.x * 110, chosen.q.y - n2.y * 110, chosen.q.x + n2.x * 120, chosen.q.y + n2.y * 120, alpha(PAL.ink, 0.4), 2, [10, 10]);
@@ -204,7 +205,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
       label(ctx, 'red, 660 nm', red.end.x - red.u.x * 60, red.end.y - red.u.y * 60, { side: 'above', size: 20, color: PAL.ink });
       label(ctx, 'violet, 410 nm', vio.end.x - vio.u.x * 60, vio.end.y - vio.u.y * 60, { side: 'below', size: 20, color: PAL.ink });
     } else if (!white && chosen?.end) {
-      label(ctx, `${fmt(chosen.tr.out < 0 ? -chosen.tr.out : chosen.tr.out, 1)}° from the normal`, chosen.end.x - chosen.u.x * 120, chosen.end.y - chosen.u.y * 120, { side: 'above', size: 20, color: PAL.ink });
+      label(ctx, `${fmt(chosen.tr.out < 0 ? -chosen.tr.out : chosen.tr.out, 1)}° from the normal`, chosen.end.x - chosen.u.x * 120, chosen.end.y - chosen.u.y * 120, { side: 'above', size: 20, color: C('angle') });
     }
 
     const nT = nOf(key, lam.v), outAbs = cur.out === null ? null : Math.abs(cur.out);
@@ -223,7 +224,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
         ? `The critical angle of ${m.name} is ${fmt(Math.asin(1 / nOf(key, lam.v)) / RAD, 1)}° at ${fmt(lam.v, 0)} nm; a larger angle of incidence at the first face brings the light to the second face more squarely.`
         : `The fan is drawn ${FAN} times as wide as it is. The ${fmt(lam.v, 0)} nm ray, drawn heavier, leaves at ${fmt(outAbs ?? 0, 1)}° from the normal.`)
       : `At ${fmt(lam.v, 0)} nm, ${m.name} has an index of ${fmt(nT, 3)}; a shorter wavelength has a larger index and is bent more.`;
-    readout(d.readout, `\\sin\\theta_1 = n\\sin\\theta_2:\\quad \\sin ${fmt(t1, 1)}^\\circ = ${fmt(nT, 3)}\\,\\sin ${fmt(cur.t2, 1)}^\\circ`, note);
+    readout(d.readout, `\\sin\\kthetaone = n\\sin\\kthetatwo:\\quad \\sin ${fmt(t1, 1)}^\\circ = ${fmt(nT, 3)}\\,\\sin ${fmt(cur.t2, 1)}^\\circ`, note);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -240,7 +241,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
 ===================================================================== */
 (function () {
   const d = sim('sim-drop', 620);
-  const bS = ctl(d.controls, { label: 'b', cls: '', min: 0, max: 0.99, step: 0.005, value: 0.86, unit: '× radius', dec: 3, aria: 'the height at which the sunlight enters, as a fraction of the radius',
+  const bS = ctl(d.controls, { label: 'b', cls: 'position', min: 0, max: 0.99, step: 0.005, value: 0.86, unit: '× radius', dec: 3, aria: 'the height at which the sunlight enters, as a fraction of the radius',
     specials: [{ at: () => (refl.value === 'one' ? 0.862 : 0.951), label: 'rainbow ray' }] });
   const refl = choice(d.controls, { label: '\\text{reflections inside}', options: [{ value: 'one', label: 'one' }, { value: 'two', label: 'two' }], value: 'one', aria: 'how many times the light is reflected inside the drop', onInput: () => bS.refresh() });
   const NR = 1.331, NV = 1.342, OUT = 230;
@@ -264,14 +265,15 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
       ? 'Light entering at the center of the drop goes straight through and comes straight back, and nothing is spread.'
       : `Entering at ${fmt(b, 2)} of the radius, red light leaves at ${fmt(thR, 1)}° to the sunlight and violet at ${fmt(thV, 1)}°.`);
 
-    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.12); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    const cDrop = F.ref('drop');
+    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.12); ctx.strokeStyle = cDrop; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(O.x, O.y, R, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'water', O.x + (s > 0 ? 40 : 40), O.y + s * 30, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, 'water drop', O.x + (s > 0 ? 40 : 40), O.y + s * 30, cDrop, { size: 20, align: 'center' });
 
     const tr = trace(b, NR, k), tv = trace(b, NV, k);
     const e = tr.pts[0];
-    line(ctx, 30, e.y, e.x, e.y, SUN, 5);
-    arrow(ctx, 60, e.y, 130, e.y, SUN, 4);
+    line(ctx, 30, e.y, e.x, e.y, F.fact(SUN), 5);
+    arrow(ctx, 60, e.y, 130, e.y, F.fact(SUN), 4);
     label(ctx, 'sunlight', 70, e.y, { side: s > 0 ? 'above' : 'below', size: 20, color: PAL.ink });
     [[tv, vio], [tr, red]].forEach(([t, c]) => {
       for (let j = 0; j < t.pts.length - 1; j++) line(ctx, t.pts[j].x, t.pts[j].y, t.pts[j + 1].x, t.pts[j + 1].y, c, 3);
@@ -281,25 +283,25 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
     const q = tr.pts[tr.pts.length - 1];
     if (b > 0.05) {
       line(ctx, q.x, q.y, q.x - 150, q.y, alpha(PAL.ink, 0.4), 2, [10, 10]);
-      angleArc(ctx, { x: q.x, y: q.y }, 90, Math.PI, (180 + (k === 1 ? thR : -thR)) * RAD, `θ = ${fmt(thR, 1)}°`);
+      angleArc(ctx, { x: q.x, y: q.y }, 90, Math.PI, (180 + (k === 1 ? thR : -thR)) * RAD, `θ = ${fmt(thR, 1)}°`, undefined, C('angle'));
     }
     const qv = tv.pts[tv.pts.length - 1];
     label(ctx, 'red', q.x + tr.u.x * OUT, q.y + tr.u.y * OUT, { side: 'left', size: 20, color: PAL.ink });
     label(ctx, 'violet', qv.x + tv.u.x * OUT, qv.y + tv.u.y * OUT, { side: 'right', size: 20, color: PAL.ink });
 
     const box = { l: 860, r: 1320, t: 130, b: 500 };
-    const { X, Y } = axes(ctx, box, [0, 1], [0, 90], { nx: 5, ny: 6, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) + '°', xl: 'entry height, b (× radius)', yl: 'angle to the sunlight, θ', yc: PAL.ink });
+    const { X, Y } = axes(ctx, box, [0, 1], [0, 90], { nx: 5, ny: 6, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) + '°', xl: 'entry height, b (× radius)', xc: C('position'), yl: 'angle to the sunlight, θ', yc: C('angle') });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     curve(ctx, (x) => theta(x, NV, k), 0, 0.999, X, Y, vio, 4, 160);
     curve(ctx, (x) => theta(x, NR, k), 0, 0.999, X, Y, red, 4, 160);
     ctx.restore();
     const turnR = k === 1 ? 42.4 : 50.4;
     line(ctx, box.l, Y(turnR), box.r, Y(turnR), alpha(PAL.ink, 0.4), 2, [10, 10]);
-    text(ctx, (k === 1 ? 'greatest angle, red ' : 'least angle, red ') + fmt(turnR, 1) + '°', box.r, Y(turnR) + (k === 1 ? -16 : 18), PAL.muted, { size: 17, align: 'right' });
+    text(ctx, (k === 1 ? 'greatest angle, red ' : 'least angle, red ') + fmt(turnR, 1) + '°', box.r, Y(turnR) + (k === 1 ? -16 : 18), C('angle'), { size: 17, align: 'right' });
     pinned(ctx, box, X, Y, b, thV, vio);
     pinned(ctx, box, X, Y, b, thR, red);
 
-    readout(d.readout, `\\sin\\theta_1 = n\\sin\\theta_2:\\quad \\sin ${fmt(tr.t1, 1)}^\\circ = ${fmt(NR, 3)}\\,\\sin ${fmt(tr.t2, 1)}^\\circ`,
+    readout(d.readout, `\\sin\\kthetaone = n\\sin\\kthetatwo:\\quad \\sin ${fmt(tr.t1, 1)}^\\circ = ${fmt(NR, 3)}\\,\\sin ${fmt(tr.t2, 1)}^\\circ`,
       `This is red light entering the drop, with water’s index at 660 nm from Table 25.2; violet, with an index of ${fmt(NV, 3)}, is bent a little more and leaves ${fmt(Math.abs(thR - thV), 1)}° away from the red.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -325,8 +327,8 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
   const glOk = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } };
   const hasGL = !!(THREE && glOk());
   const d = sim('sim-rainbow-arc', hasGL ? 0 : 620);
-  const eS = ctl(d.controls, { label: '\\text{sun}', cls: '', min: 0, max: 50, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'the height of the sun above the horizon' });
-  const xS = hasGL ? ctl(d.controls, { label: '\\text{you}', cls: '', min: -4, max: 4, step: 0.1, value: 0, unit: 'm', dec: 1, aria: 'where the observer stands along the curtain of rain' }) : { v: 0 };
+  const eS = ctl(d.controls, { label: '\\text{sun}', cls: 'angle', min: 0, max: 50, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'the height of the sun above the horizon' });
+  const xS = hasGL ? ctl(d.controls, { label: '\\text{you}', cls: 'position', min: -4, max: 4, step: 0.1, value: 0, unit: 'm', dec: 1, aria: 'where the observer stands along the curtain of rain' }) : { v: 0 };
   const bows = choice(d.controls, { label: '\\text{bows}', options: [{ value: 'one', label: 'primary' }, { value: 'two', label: 'primary and secondary' }], value: 'one', aria: 'whether the secondary bow is drawn' });
 
   /* the angle of the rainbow ray from the antisolar direction, for one and for two reflections */
@@ -391,8 +393,9 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
     V.pickable(ground, 'the ground');
     const curtain = new THREE.Mesh(new THREE.PlaneGeometry(30, 12), F.mesh.mat(PAL.muted, { transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false }));
     curtain.position.set(0, 6, -CURT - 0.02); root3.add(curtain); V.pickable(curtain, 'the curtain of rain the bow is seen on');
-    F.mesh.stick(root3, [ox, 0, 0], [ox, HEAD - 0.2, 0], 0.12, PAL.ink);
-    V.pickable(F.mesh.sphere(root3, head, 0.14, PAL.ink), 'the observer’s head');
+    const cObs = F.ref('observer');
+    F.mesh.stick(root3, [ox, 0, 0], [ox, HEAD - 0.2, 0], 0.12, cObs);
+    V.pickable(F.mesh.sphere(root3, head, 0.14, cObs), 'the observer’s head');
     const t0 = HEAD / Math.sin(e), shadow = [ox + t0 * s[0], 0.01, t0 * s[2]];
     const far = Math.min(t0, CURT / Math.cos(e));
     const axisEnd = [ox, HEAD + far * s[1], far * s[2]];
@@ -407,7 +410,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
       drops.push(p);
       V.pickable(F.mesh.sphere(root3, p, 0.14, PAL.panel), 'a raindrop sending red light to the eye');
       const from = [p[0] - 7 * s[0], p[1] - 7 * s[1], p[2] - 7 * s[2]];
-      V.pickable(F.mesh.stick(root3, from, p, 0.025, SUN), 'a ray of sunlight');
+      V.pickable(F.mesh.stick(root3, from, p, 0.025, F.fact(SUN)), 'a ray of sunlight');
       V.pickable(F.mesh.stick(root3, p, head, 0.025, spectral(660)), 'red light reaching the eye at the same angle to the sunlight');
     });
     const pv = onCurtain(e, ANG[1].vio, Math.PI / 2, ox);
@@ -425,7 +428,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
   function drawFlat(ctx) {
     const e = eS.v * RAD, H = { x: 230, y: 470 }, G = 560;
     line(ctx, 40, G, 1360, G, PAL.muted, 2);
-    F.silhouette(ctx, { x: H.x, y: G, s: 0.62, face: 1, pose: 'stand', color: PAL.ink });
+    F.silhouette(ctx, { x: H.x, y: G, s: 0.62, face: 1, pose: 'stand', color: F.ref('observer') });
     const aAxis = -e, show = [[ANG[1].red, 660], [ANG[1].vio, 410]];
     if (bows.value === 'two') show.push([ANG[2].red, 660], [ANG[2].vio, 410]);
     const dist = 760;
@@ -433,11 +436,11 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
     show.forEach(([th, l]) => {
       const a = aAxis + th, D = { x: H.x + Math.cos(a) * dist, y: H.y - Math.sin(a) * dist };
       if (D.y > G - 10) return;
-      line(ctx, D.x - Math.cos(aAxis) * 700, D.y + Math.sin(aAxis) * 700, D.x, D.y, SUN, 3);
+      line(ctx, D.x - Math.cos(aAxis) * 700, D.y + Math.sin(aAxis) * 700, D.x, D.y, F.fact(SUN), 3);
       arrow(ctx, D.x, D.y, H.x + (D.x - H.x) * 0.25, H.y + (D.y - H.y) * 0.25, spectral(l), 4);
       dot(ctx, D.x, D.y, PAL.ink, false, 12);
     });
-    angleArc(ctx, { x: H.x, y: H.y }, 150, -eS.v * RAD, -eS.v * RAD + ANG[1].red, `θ = ${fmt(ANG[1].red / RAD, 1)}°`);
+    angleArc(ctx, { x: H.x, y: H.y }, 150, -eS.v * RAD, -eS.v * RAD + ANG[1].red, `θ = ${fmt(ANG[1].red / RAD, 1)}°`, undefined, C('angle'));
     label(ctx, 'the line from the sun through the head', H.x + Math.cos(aAxis) * 700, H.y - Math.sin(aAxis) * 700, { side: 'below', size: 17, color: PAL.muted });
     topline(ctx, words());
   }

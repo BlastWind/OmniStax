@@ -1,10 +1,12 @@
-/* Figures for section 25.6 Image Formation by Lenses. The page binds position
-   alone, as ch25/COLOR.md gives 25.6: the focal length, the object and image
-   distances and the two heights share its hue and are told apart by their
-   brackets and labels. The power in diopters, the magnification, the index of
-   refraction and every angle are untyped and in ink, as are the lenses, the axis,
-   the people and every frame. The three rays of a ray diagram are told apart by
-   the categorical palette. Nothing here moves: a ray diagram is a set of paths and
+/* Figures for section 25.6 Image Formation by Lenses. The focal length, the
+   object and image distances and the two heights share the position hue and are
+   told apart by their brackets and labels; the angles of the expanded view wear
+   the angle hue. The power in diopters, the magnification and the index of
+   refraction are ratings and stay in ink, as do the axis, the focal points and
+   every frame. The lenses, the numbered rays, the person and her image, and the
+   film, the retina and the two lenses of Figure 25.32 are the section's referents
+   and wear F.ref; the two unnamed rays of Figure 25.32 keep F.cat. Nothing here
+   moves: a ray diagram is a set of paths and
    an image is a state of the arrangement, so every figure registers no cycle and
    redraws on its controls alone (root rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -35,7 +37,7 @@ const atX = (x0, y0, ux, uy, X) => y0 + (uy / ux) * (X - x0);
 
 /* a thin lens at x, half height h, drawn as the book draws it: a lentil for a
    converging lens and a waisted slab for a diverging one */
-function lens(ctx, x, y, h, conv) {
+function lens(ctx, x, y, h, conv, color) {
   ctx.save(); ctx.beginPath();
   if (conv) {
     ctx.moveTo(x, y - h); ctx.quadraticCurveTo(x + 44, y, x, y + h); ctx.quadraticCurveTo(x - 44, y, x, y - h);
@@ -44,7 +46,7 @@ function lens(ctx, x, y, h, conv) {
     ctx.lineTo(x - 20, y + h); ctx.quadraticCurveTo(x + 2, y, x - 20, y - h);
   }
   ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fill();
-  ctx.strokeStyle = alpha(PAL.ink, 0.75); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+  ctx.strokeStyle = color ?? alpha(PAL.ink, 0.75); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
 }
 function focus(ctx, x, y, name) {
   dot(ctx, x, y, PAL.ink, true, 7);
@@ -121,7 +123,7 @@ function focus(ctx, x, y, name) {
   function between(ctx, p, a, b, r, s) {
     const a0 = ang(a); let dd = ang(b) - a0;
     while (dd > Math.PI) dd -= 2 * Math.PI; while (dd < -Math.PI) dd += 2 * Math.PI;
-    angleArc(ctx, { x: p[0], y: p[1] }, r, a0, a0 + dd, s);
+    angleArc(ctx, { x: p[0], y: p[1] }, r, a0, a0 + dd, s, undefined, C('angle'));
   }
   function expanded(ctx, conv, u0, s) {
     const cx = (IB.l + IB.r) / 2, ay = IB.b + 150, R = 1400, T = conv ? 200 : 36, hy = ay - (IB.t + IB.b) / 2;
@@ -137,7 +139,7 @@ function focus(ctx, x, y, name) {
     for (let y = IB.t - 10; y <= IB.b + 10; y += 6) ctx.lineTo(face1(y), y);
     for (let y = IB.b + 10; y >= IB.t - 10; y -= 6) ctx.lineTo(face2(y), y);
     ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fill();
-    ctx.strokeStyle = alpha(PAL.ink, 0.75); ctx.lineWidth = 2.5; ctx.stroke();
+    ctx.strokeStyle = F.ref('lens'); ctx.lineWidth = 3; ctx.stroke();
     /* ray 1: it meets the first face at height hy above the axis */
     const yA = ay - hy, pA = [face1(yA), yA];
     const start = [pA[0] - u0[0] * 400, pA[1] - u0[1] * 400];
@@ -146,7 +148,7 @@ function focus(ctx, x, y, name) {
     const pB = u1 && inter(pA, u1, c2, R, (q) => Math.abs(q[0] - face2(q[1])) < 2);
     const nB = pB && [(pB[0] - c2[0]) / R, (pB[1] - c2[1]) / R];
     const u2 = pB && refract(u1, nB, N_GLASS, 1);
-    const RC = cat(0);
+    const RC = F.ref('ray-1');
     ray(ctx, start[0], start[1], pA[0], pA[1], RC, 4);
     const out = [];
     if (u2) {
@@ -174,12 +176,12 @@ function focus(ctx, x, y, name) {
     const X = (x) => LX + s * x;
 
     line(ctx, X0 - 10, Y, X1 + 10, Y, alpha(PAL.ink, 0.45), 2);
-    lens(ctx, LX, Y, HL, conv);
+    lens(ctx, LX, Y, HL, conv, F.ref('lens'));
     focus(ctx, LX - fa * U, Y); focus(ctx, LX + fa * U, Y);
 
     const rs = rays(conv, mode, f);
     rs.forEach((r) => {
-      const col = cat(r.i);
+      const col = F.ref(['ray-1', 'ray-2', 'ray-3'][r.i]);
       r.segs.forEach((g) => ray(ctx, X(g[0]), Y + g[1], X(g[2]), Y + g[3], col, 4));
       r.dash.forEach((g) => line(ctx, X(g[0]), Y + g[1], X(g[2]), Y + g[3], alpha(col, 0.8), 2.5, [8, 8]));
       const g0 = r.segs[0];
@@ -194,7 +196,7 @@ function focus(ctx, x, y, name) {
     text(ctx, 'axis', s > 0 ? X1 + 6 : X0 - 6, Y - 18, PAL.muted, { size: 17, align: s > 0 ? 'right' : 'left' });
 
     /* the expanded view, of the incoming part of ray 1 */
-    text(ctx, 'ray 1, expanded', (IB.l + IB.r) / 2, IB.t - 22, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'ray 1, expanded', (IB.l + IB.r) / 2, IB.t - 22, F.ref('ray-1'), { size: 18, align: 'center' });
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.25); ctx.lineWidth = 1.5; ctx.strokeRect(IB.l, IB.t, IB.r - IB.l, IB.b - IB.t); ctx.restore();
     const seg = rs[0].segs[0];
     const L = Math.hypot(seg[2] - seg[0], seg[3] - seg[1]);
@@ -257,10 +259,10 @@ function focus(ctx, x, y, name) {
     return { conv, fa, f, dO, hO, dI, m, atF, hI: m * hO };
   }
 
-  function person(ctx, x, h, flip) {
+  function person(ctx, x, h, flip, color) {
     const s = Math.abs(h) / silhouette.height(1);
     ctx.save(); ctx.translate(x, Y); ctx.scale(1, flip ? -1 : 1);
-    silhouette(ctx, { x: 0, y: 0, s, face: 1, pose: 'stand', color: alpha(PAL.ink, 0.8) });
+    silhouette(ctx, { x: 0, y: 0, s, face: 1, pose: 'stand', color: alpha(color, 0.8) });
     ctx.restore();
   }
 
@@ -274,19 +276,20 @@ function focus(ctx, x, y, name) {
 
     ctx.save(); ctx.beginPath(); ctx.rect(FR.l, FR.t, FR.r - FR.l, FR.b - FR.t); ctx.clip();
     line(ctx, FR.l, Y, FR.r, Y, alpha(PAL.ink, 0.45), 2);
-    lens(ctx, LX, Y, HL, st.conv);
+    const cP = F.ref('person'), cI = F.ref('person-image');
+    lens(ctx, LX, Y, HL, st.conv, F.ref('imaging-lens'));
     focus(ctx, LX - st.fa * U, Y); focus(ctx, LX + st.fa * U, Y);
 
-    person(ctx, xo, st.hO * U, false);
+    person(ctx, xo, st.hO * U, false, cP);
     if (isFinite(st.dI)) {
       ctx.save(); ctx.globalAlpha = virt ? 0.4 : 1;
-      person(ctx, xi, st.hI * U, st.hI < 0);
+      person(ctx, xi, st.hI * U, st.hI < 0, cI);
       ctx.restore();
     }
 
     /* ray 1: in parallel to the axis, out along the line through the lens point and
        the focal point on the far side (converging) or the near side (diverging) */
-    const c1 = cat(0), c2 = cat(1), c3 = cat(2);
+    const c1 = F.ref('trace-ray-1'), c2 = F.ref('trace-ray-2'), c3 = F.ref('trace-ray-3');
     ray(ctx, xo, yt, LX, yt, c1, 4);
     let ux = fx, uy = Y - yt; if (ux < 0) { ux = -ux; uy = -uy; }
     ray(ctx, LX, yt, XE, atX(LX, yt, ux, uy, XE), c1, 4);
@@ -310,9 +313,9 @@ function focus(ctx, x, y, name) {
       line(ctx, LX, Y, xb, atX(LX, Y, LX - xo, Y - yt, xb), alpha(c2, 0.8), 2.5, [8, 8]);
       if (y3ok && Math.abs(y3 - Y) < HL) line(ctx, LX, y3, xb, y3, alpha(c3, 0.8), 2.5, [8, 8]);
     }
-    dot(ctx, xo, yt, PAL.ink, true, 6);
+    dot(ctx, xo, yt, cP, true, 6);
     const inFrame = isFinite(st.dI) && xi > FR.l + 10 && xi < FR.r - 10 && yi > FR.t && yi < FR.b;
-    if (inFrame) dot(ctx, xi, yi, PAL.ink, !virt, 7);
+    if (inFrame) dot(ctx, xi, yi, cI, !virt, 7);
     ctx.restore();
 
     /* the brackets: d_o below the axis on the object's side; d_i above the axis for a
@@ -382,7 +385,8 @@ function focus(ctx, x, y, name) {
     const xo = px(dO), HO = 150, yt = Y - HO;
     let xl;
     line(ctx, 40, Y, 1340, Y, alpha(PAL.ink, 0.4), 2);
-    silhouette(ctx, { x: xo, y: Y, s: HO / silhouette.height(1), face: 1, pose: 'stand', color: alpha(PAL.ink, 0.8) });
+    const cSub = F.ref('subject'), cImg = F.ref('projected-image'), cFilm = F.ref('film'), cRet = F.ref('retina');
+    silhouette(ctx, { x: xo, y: Y, s: HO / silhouette.height(1), face: 1, pose: 'stand', color: alpha(cSub, 0.8) });
 
     if (cam) {
       xl = FILM - 330 - (dI - FCAM) * 1000 * 40;
@@ -391,29 +395,30 @@ function focus(ctx, x, y, name) {
       ctx.beginPath(); ctx.rect(FILM - 250, Y - 130, 270, 260); ctx.fill(); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(FILM - 250, Y - 100); ctx.lineTo(xl + 10, Y - 80); ctx.lineTo(xl + 10, Y + 80); ctx.lineTo(FILM - 250, Y + 100); ctx.stroke();
       ctx.restore();
-      line(ctx, FILM, Y - 110, FILM, Y + 110, PAL.ink, 5);
-      text(ctx, 'film', FILM, Y - 150, PAL.muted, { size: 18, align: 'center' });
-      lens(ctx, xl, Y, 80, true);
+      line(ctx, FILM, Y - 110, FILM, Y + 110, cFilm, 5);
+      text(ctx, 'film', FILM, Y - 150, cFilm, { size: 18, align: 'center' });
+      lens(ctx, xl, Y, 80, true, F.ref('camera-lens'));
     } else {
       const ex = 1090, R = 170;
       xl = FILM - 330;
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 2.5; ctx.fillStyle = alpha(PAL.ink, 0.04);
       ctx.beginPath(); ctx.arc(ex, Y, R, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(ex, Y, R, -0.75, 0.75); ctx.stroke(); ctx.restore();
-      text(ctx, 'retina', ex + R + 14, Y - 110, PAL.muted, { size: 18, align: 'left' });
+      ctx.save(); ctx.strokeStyle = cRet; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(ex, Y, R, -0.75, 0.75); ctx.stroke(); ctx.restore();
+      text(ctx, 'retina', ex + R + 14, Y - 110, cRet, { size: 18, align: 'left' });
       /* the lens of the eye grows fatter as its power rises from 50 D */
       const k = 1 + (P - 50) * 0.35;
       ctx.save(); ctx.beginPath(); ctx.ellipse(xl, Y, 16 * k, 62, 0, 0, Math.PI * 2);
-      ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fill(); ctx.strokeStyle = alpha(PAL.ink, 0.75); ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
+      ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fill(); ctx.strokeStyle = F.ref('eye-lens'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
     }
     /* the image of the top of her head, where the ray through the center meets the
        film or the retina */
     const yImg = Y + ((Y - yt) * (FILM - xl)) / (xl - xo);
     const hi = yImg - Y;
-    ray(ctx, xo, yt, xl, Y, cat(1), 3.5); ray(ctx, xl, Y, FILM, yImg, cat(1), 3.5);
-    ray(ctx, xo, yt, xl, Y - 60, cat(0), 3.5); ray(ctx, xl, Y - 60, FILM, yImg, cat(0), 3.5);
+    /* F.cat offset past the figure's six referents */
+    ray(ctx, xo, yt, xl, Y, cat(7), 3.5); ray(ctx, xl, Y, FILM, yImg, cat(7), 3.5);
+    ray(ctx, xo, yt, xl, Y - 60, cat(6), 3.5); ray(ctx, xl, Y - 60, FILM, yImg, cat(6), 3.5);
     ctx.save(); ctx.translate(FILM - 6, Y); ctx.scale(1, -1);
-    silhouette(ctx, { x: 0, y: 0, s: hi / silhouette.height(1), face: 1, pose: 'stand', color: alpha(PAL.ink, 0.85) });
+    silhouette(ctx, { x: 0, y: 0, s: hi / silhouette.height(1), face: 1, pose: 'stand', color: alpha(cImg, 0.85) });
     ctx.restore();
 
     const PC = C('position');

@@ -1,10 +1,11 @@
-/* Figures for section 25.7 Image Formation by Mirrors. The page binds position
-   alone, which is what ch25/COLOR.md gives 25.7: the focal length, the radius of
-   curvature, the object and image distances and heights. The magnification, the
-   power, every angle and the width of a mirror are untyped and in ink, as are the
-   mirrors, the rays of the first two figures and every name on them. The three
-   traced rays of Figure 25.41 are told apart by the categorical palette, since
-   ray 1, ray 2 and ray 3 carry no type. An image is a place and not a history, so
+/* Figures for section 25.7 Image Formation by Mirrors. The figures colour
+   position: the focal length, the radius of curvature, the object and image
+   distances and heights, and the height of the eye. The magnification, the power
+   and the width of a mirror as a fraction of its radius are ratings and stay in
+   ink, as do the rays of the first two figures. The bottle, its image, the flat
+   mirror and the eye of Figure 25.38, the spherical mirror of Figure 25.39 + 25.40,
+   and the object, its image, the mirror and the three numbered rays of Figure 25.41
+   are the section's referents and wear F.ref. An image is a place and not a history, so
    every figure is still: no cycle, no transport, a redraw on its controls alone
    (root rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -35,7 +36,7 @@ function atX(a, b, x) {
 /* a spherical mirror seen edge on: an arc through its vertex (vx, y0), bowed toward
    the light (to the left) when concave and away from it when convex, with a
    shaded back so the reflecting face reads as the front */
-function mirrorArc(ctx, vx, y0, half, Rd, bow) {
+function mirrorArc(ctx, vx, y0, half, Rd, bow, color) {
   const pts = [];
   for (let i = 0; i <= 40; i++) {
     const y = -half + (2 * half * i) / 40;
@@ -47,7 +48,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
   pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
   for (let i = pts.length - 1; i >= 0; i--) ctx.lineTo(pts[i][0] + 16, pts[i][1]);
   ctx.closePath(); ctx.fill();
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
+  ctx.strokeStyle = color ?? PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
   pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
   ctx.stroke(); ctx.restore();
 }
@@ -65,7 +66,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
 (function () {
   const d = sim('sim-flat-mirror', 560);
   const doS = ctl(d.controls, { label: '\\kdobj', cls: 'position', min: 20, max: 100, step: 1, value: 50, unit: 'cm', dec: 0, aria: 'the distance of the bottle from the mirror' });
-  const eyS = ctl(d.controls, { label: '\\text{eye height}', cls: '', min: -20, max: 60, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'the height of the eye above the floor line' });
+  const eyS = ctl(d.controls, { label: '\\text{eye height}', cls: 'position', min: -20, max: 60, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'the height of the eye above the floor line' });
   const S = 5, MX = 700, AY = 430, HB = 24;           /* the bottle is 24 cm tall */
   const EX = MX - 600;                                 /* the eye stands 120 cm in front of the glass */
 
@@ -79,11 +80,11 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
     ctx.quadraticCurveTo(x + w / 2, top + 30, x + w / 2, top + 50); ctx.lineTo(x + w / 2, AY); ctx.closePath();
     ctx.stroke(); ctx.restore();
   }
-  function eye(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
+  function eye(ctx, x, y, color) {
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.moveTo(x - 34, y); ctx.quadraticCurveTo(x, y - 30, x + 34, y); ctx.quadraticCurveTo(x, y + 30, x - 34, y); ctx.closePath();
     ctx.fill(); ctx.stroke();
-    ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(x + 14, y, 10, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x + 14, y, 10, 0, Math.PI * 2); ctx.fill(); ctx.restore();
   }
 
   hover(d.stage, () => {
@@ -101,12 +102,13 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
     topline(ctx, `The bottle stands ${fmt(dO, 0)} cm in front of the mirror, and its image stands ${fmt(dO, 0)} cm behind it.`);
     line(ctx, 40, AY, 1360, AY, alpha(PAL.ink, 0.35), 2);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.fillRect(MX, 96, 14, AY - 96); ctx.restore();
-    line(ctx, MX, 96, MX, AY, PAL.ink, 4);
-    text(ctx, 'mirror', MX + 22, 110, PAL.muted, { size: 18, align: 'left' });
+    const cM = F.ref('flat-mirror');
+    line(ctx, MX, 96, MX, AY, cM, 4);
+    text(ctx, 'mirror', MX + 22, 110, cM, { size: 18, align: 'left' });
 
-    bottle(ctx, xi, HB, PAL.ink, true);
-    bottle(ctx, xo, HB, PAL.ink, false);
-    eye(ctx, EX, ye);
+    bottle(ctx, xi, HB, F.ref('bottle-image'), true);
+    bottle(ctx, xo, HB, F.ref('bottle'), false);
+    eye(ctx, EX, ye, F.ref('eye'));
 
     [[AY - HB * S + 4], [AY - 4]].forEach(([yp]) => {
       [-9, 9].forEach((off) => {
@@ -196,7 +198,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
     });
     ctx.restore();
     ctx.save(); ctx.beginPath(); ctx.rect(0, 80, 1400, 700); ctx.clip();
-    mirrorArc(ctx, MX, AY, half + 12, R, bow);
+    mirrorArc(ctx, MX, AY, half + 12, R, bow, F.ref('spherical-mirror'));
     ctx.restore();
 
     ctx.save(); ctx.globalAlpha = k;
@@ -277,40 +279,41 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
 
     line(ctx, XL, AY, XR, AY, alpha(PAL.ink, 0.35), 2);
     const bow = mode.mix((v) => (v === 'convex' ? -1 : 1));
-    mirrorArc(ctx, MX, AY, 250, 900 + 2 * fS.v * S, bow);
+    mirrorArc(ctx, MX, AY, 250, 900 + 2 * fS.v * S, bow, F.ref('curved-mirror'));
+    const RC = [F.ref('mirror-ray-1'), F.ref('mirror-ray-2'), F.ref('mirror-ray-3')];
 
     ctx.save(); ctx.beginPath(); ctx.rect(0, YT - 10, 1400, YB - YT + 20); ctx.clip();
     ctx.globalAlpha = k;
     /* ray 1: parallel to the axis, then through F or as if from F */
     const h1 = [MX, yt];
-    ray(ctx, [xo, yt], h1, F.cat(0), { at: 0.5 });
+    ray(ctx, [xo, yt], h1, RC[0], { at: 0.5 });
     const r1 = atX(h1, [xF, AY], XL) || [XL, AY];
-    ray(ctx, h1, r1, F.cat(0), { at: 0.3 });
+    ray(ctx, h1, r1, RC[0], { at: 0.3 });
     /* ray 2: to the center, leaving at the same angle to the axis */
     const r2 = [XL, AY + (AY - yt) * (MX - XL) / Math.max(MX - xo, 1)];
-    ray(ctx, [xo, yt], [MX, AY], F.cat(1), { at: 0.5 });
-    ray(ctx, [MX, AY], atX([MX, AY], r2, XL) || r2, F.cat(1), { at: 0.3 });
+    ray(ctx, [xo, yt], [MX, AY], RC[1], { at: 0.5 });
+    ray(ctx, [MX, AY], atX([MX, AY], r2, XL) || r2, RC[1], { at: 0.3 });
     /* ray 3: along the line through F, then parallel to the axis */
     const h3 = Math.abs(xF - xo) > 1e-6 ? atX([xo, yt], [xF, AY], MX) : null;
     if (h3 && !s.atF) {
-      ray(ctx, [xo, yt], h3, F.cat(2), { at: 0.5 });
-      ray(ctx, h3, [XL, h3[1]], F.cat(2), { at: 0.3 });
-      if (!convex && s.dO < s.f) ray(ctx, [xF, AY], [xo, yt], F.cat(2), { dash: true });
+      ray(ctx, [xo, yt], h3, RC[2], { at: 0.5 });
+      ray(ctx, h3, [XL, h3[1]], RC[2], { at: 0.3 });
+      if (!convex && s.dO < s.f) ray(ctx, [xF, AY], [xo, yt], RC[2], { dash: true });
     }
     if (!s.atF && s.dI < 0) {
-      ray(ctx, h1, [xi, yi], F.cat(0), { dash: true });
-      ray(ctx, [MX, AY], [xi, yi], F.cat(1), { dash: true });
-      if (h3) ray(ctx, h3, [xi, yi], F.cat(2), { dash: true });
+      ray(ctx, h1, [xi, yi], RC[0], { dash: true });
+      ray(ctx, [MX, AY], [xi, yi], RC[1], { dash: true });
+      if (h3) ray(ctx, h3, [xi, yi], RC[2], { dash: true });
     }
-    if (convex && h3) ray(ctx, h3, [xF, AY], F.cat(2), { dash: true });
+    if (convex && h3) ray(ctx, h3, [xF, AY], RC[2], { dash: true });
     ctx.restore();
 
     dot(ctx, xF, AY, PAL.ink, true, 8);
     label(ctx, 'F', xF, AY, { side: 'below', gap: 26, size: 22 });
     if (xC > XL && xC < XR) { dot(ctx, xC, AY, PAL.ink, false, 8); label(ctx, 'C', xC, AY, { side: 'below', gap: 26, size: 22 }); }
 
-    objArrow(ctx, xo, s.hO, PAL.ink, false);
-    if (inView) objArrow(ctx, xi, s.hI, PAL.ink, s.dI < 0);
+    objArrow(ctx, xo, s.hO, F.ref('object'), false);
+    if (inView) objArrow(ctx, xi, s.hI, F.ref('object-image'), s.dI < 0);
     else if (!s.atF) {
       const ex = s.dI > 0 ? XL + 10 : XR - 10;
       text(ctx, s.dI > 0 ? `image ${fmt(s.dI, 0)} cm in front, off the figure` : `image ${fmt(-s.dI, 0)} cm behind, off the figure`,
@@ -322,7 +325,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow) {
       const yy = i === 0 ? ray1y : i === 1 ? yt + (AY - yt) * 0.55 : (h3 ? yt + (h3[1] - yt) * 0.55 : null);
       if (yy === null || s.atF && i === 2) return;
       const xx = i === 1 ? xo + (MX - xo) * 0.55 : i === 2 ? xo + (MX - xo) * 0.55 : xo + (MX - xo) * 0.3;
-      text(ctx, String(i + 1), xx, yy - 18, F.cat(i), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+      text(ctx, String(i + 1), xx, yy - 18, RC[i], { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     });
 
     const y1 = AY + 150, y2 = AY + 200, y3 = AY + 250;

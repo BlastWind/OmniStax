@@ -1,6 +1,7 @@
-/* Figures for section 25.1 The Ray Aspect of Light. The page binds no type, as
-   ch25/COLOR.md gives 25.1: a path of light is a chain of straight lines, and the
-   Sun, the Earth, the window, the car, the person and every ray are in ink. Nothing
+/* Figures for section 25.1 The Ray Aspect of Light. The figure colours no
+   category: a path of light is a chain of straight lines, and every ray is in ink.
+   The Sun, the Earth, the window, the car and the person are the section's
+   referents and wear F.ref. Nothing
    moves, since a path has no clock in it, so the figure registers no cycle and
    redraws on its choice alone (root rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -84,18 +85,18 @@ function ray(ctx, pts, color, w) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const soft = alpha(PAL.ink, 0.35);
+    const cSun = F.ref('sun'), cEarth = F.ref('earth'), cWin = F.ref('window'), cCar = F.ref('car'), cMan = F.ref('person');
 
     /* panel (a) */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cSun; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(SUN.x, SUN.y, SUN.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
     for (let i = 0; i < 12; i++) {
       const a = (i / 12) * Math.PI * 2, c = Math.cos(a), s = Math.sin(a);
-      line(ctx, SUN.x + c * (SUN.r + 8), SUN.y + s * (SUN.r + 8), SUN.x + c * (SUN.r + 20), SUN.y + s * (SUN.r + 20), PAL.ink, 3);
+      line(ctx, SUN.x + c * (SUN.r + 8), SUN.y + s * (SUN.r + 8), SUN.x + c * (SUN.r + 20), SUN.y + s * (SUN.r + 20), cSun, 3);
     }
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cEarth; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(EARTH.x, EARTH.y, EARTH.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.setLineDash([10, 10]); ctx.strokeStyle = soft; ctx.lineWidth = 2;
+    ctx.setLineDash([10, 10]); ctx.strokeStyle = alpha(cEarth, 0.5); ctx.lineWidth = 2;
     ctx.beginPath(); ctx.arc(EARTH.x, EARTH.y, ATM, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
     line(ctx, 460, 100, 460, H - 20, alpha(PAL.ink, 0.2), 2);
 
@@ -104,10 +105,10 @@ function ray(ctx, pts, color, w) {
     line(ctx, GR, FLOOR, 1390, FLOOR, PAL.ink, 3);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.55);
     ctx.fillRect(GL, 110, GR - GL, GT - 110); ctx.fillRect(GL, GB, GR - GL, FLOOR - GB);
-    ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2;
+    ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.strokeStyle = cWin; ctx.lineWidth = 3;
     ctx.fillRect(GL, GT, GR - GL, GB - GT); ctx.strokeRect(GL, GT, GR - GL, GB - GT); ctx.restore();
-    car(ctx, CAR.x, CAR.y, PAL.ink, CAR.s);
-    silhouette(ctx, { x: PX, y: FLOOR, s: PS, face: -1, pose: 'stand', color: PAL.ink });
+    car(ctx, CAR.x, CAR.y, cCar, CAR.s);
+    silhouette(ctx, { x: PX, y: FLOOR, s: PS, face: -1, pose: 'stand', color: cMan });
 
     /* the three paths, the chosen one in full and the others faint */
     const P = paths();
@@ -118,11 +119,11 @@ function ray(ctx, pts, color, w) {
     const m = P[path.value];
     dot(ctx, m[m.length - 1].x, m[m.length - 1].y, PAL.ink, true, 7);
 
-    label(ctx, 'Sun', SUN.x, SUN.y - SUN.r - 14, { side: 'above', H });
-    label(ctx, 'upper atmosphere', EARTH.x - ATM * 0.8, EARTH.y - ATM * 0.6, { side: 'left', gap: 12, H });
+    label(ctx, 'Sun', SUN.x, SUN.y - SUN.r - 14, { side: 'above', H, color: cSun });
+    label(ctx, 'upper atmosphere', EARTH.x - ATM * 0.8, EARTH.y - ATM * 0.6, { side: 'left', gap: 12, H, color: cEarth });
     label(ctx, 'sunlight', LEFT, P.media[0].y, { side: 'above', H });
-    label(ctx, 'window glass', GL, GT, { side: 'above', gap: 40, H });
-    label(ctx, 'car', CAR.x - 60, CAR.y + 20, { side: 'left', H });
+    label(ctx, 'window glass', GL, GT, { side: 'above', gap: 40, H, color: cWin });
+    label(ctx, 'car', CAR.x - 60, CAR.y + 20, { side: 'left', H, color: cCar });
 
     topline(ctx, HEAD[path.value]);
     tex(d.readout, CHAIN[path.value]);

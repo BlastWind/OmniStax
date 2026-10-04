@@ -1,10 +1,12 @@
-/* Figures for section 25.3 The Law of Refraction. The page binds velocity,
-   position and time, which is what ch25/COLOR.md gives 25.3: the speed of light
-   and the speeds in each medium, Michelson's distance, and his round-trip time
-   and the period of his mirror. Every index of refraction and every angle is
-   untyped and in ink, and light carries no wavelength here, so every ray is ink
-   except the two paths of the fish tank, which F.cat tells apart. Only
-   Michelson's mirror has a clock in it; the other two figures are still. */
+/* Figures for section 25.3 The Law of Refraction. The figures colour velocity,
+   position, time and angle: the speed of light and the speeds in each medium,
+   Michelson's distance, his round-trip time and the period of his mirror, and
+   the angles of incidence and refraction. The index of refraction is a rating and
+   stays in ink. The fish, the tank and the eye of Figure 25.10, Michelson's two
+   mirrors, source and observer, and the two media of Figure 25.12 are the
+   section's referents and wear F.ref; the two paths of the fish tank, which the
+   text never names one by one, keep F.cat. Only Michelson's mirror has a clock in
+   it; the other two figures are still. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['25.3'] = function (root, F) {
 const { fmt, tex, C, PAL, alpha, cat, ctl, select, cycle, register, begin, line, arrow, dot, text, topline, label, hbracket, angleArc, solve } = F;
@@ -35,11 +37,11 @@ function poly(ctx, pts, stroke, w, fill, dash) {
   ctx.restore();
 }
 /* an eye seen from above or from the side, looking along the angle a (radians, on the page) */
-function eye(ctx, x, y, a, s) {
+function eye(ctx, x, y, a, s, color) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(s, s);
   ctx.beginPath(); ctx.moveTo(-18, 0); ctx.quadraticCurveTo(0, -16, 18, 0); ctx.quadraticCurveTo(0, 16, -18, 0); ctx.closePath();
-  ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.stroke();
-  ctx.beginPath(); ctx.arc(4, 0, 6.5, 0, 2 * Math.PI); ctx.fillStyle = PAL.ink; ctx.fill();
+  ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke();
+  ctx.beginPath(); ctx.arc(4, 0, 6.5, 0, 2 * Math.PI); ctx.fillStyle = color; ctx.fill();
   ctx.restore();
 }
 
@@ -90,11 +92,12 @@ function eye(ctx, x, y, a, s) {
     const { ctx } = begin(d.c);
     const y = NEAR - back.v * 2 * HALF, hw = HALF - Math.abs(y - MID);
     const F0 = [CX + across.v * hw * 0.8, y];
-    poly(ctx, [P0, PR, PF, PL], PAL.ink, 3, alpha(PAL.ink, 0.06));
+    const cFish = F.ref('fish'), cTank = F.ref('tank'), cEye = F.ref('viewer');
+    poly(ctx, [P0, PR, PF, PL], cTank, 3, alpha(PAL.ink, 0.06));
     const paths = faces.map((f) => path(F0, f));
     paths.forEach((p, i) => {
       if (!p) return;
-      const col = cat(i), f = faces[i];
+      const col = cat(i + 3), f = faces[i];   /* offset past the figure's three referents */
       line(ctx, p.Q[0] - f.n[0] * 70, p.Q[1] - f.n[1] * 70, p.Q[0] + f.n[0] * 70, p.Q[1] + f.n[1] * 70, alpha(PAL.ink, 0.35), 2, [6, 6]);
       line(ctx, p.Q[0], p.Q[1], p.G[0], p.G[1], alpha(col, 0.8), 2.5, [8, 7]);
       fish(ctx, p.G, alpha(col, 0.9), true);
@@ -104,16 +107,17 @@ function eye(ctx, x, y, a, s) {
       arrow(ctx, m[0] - (E[0] - p.Q[0]) * 0.08, m[1] - (E[1] - p.Q[1]) * 0.08, m[0] + (E[0] - p.Q[0]) * 0.08, m[1] + (E[1] - p.Q[1]) * 0.08, col, 4);
       label(ctx, 'image', p.G[0], p.G[1] - 30, { side: i ? 'right' : 'left', color: col, gap: 26, size: 20 });
     });
-    fish(ctx, F0, PAL.ink, false);
-    label(ctx, 'fish', F0[0], F0[1] - 30, { side: 'above', size: 20, gap: 14 });
-    eye(ctx, E[0], E[1], -Math.PI / 2, 1.1);
-    label(ctx, 'observer', E[0] + 24, E[1], { side: 'right', size: 20, gap: 12 });
+    fish(ctx, F0, cFish, false);
+    label(ctx, 'fish', F0[0], F0[1] - 30, { side: 'above', size: 20, gap: 14, color: cFish });
+    eye(ctx, E[0], E[1], -Math.PI / 2, 1.1, cEye);
+    label(ctx, 'observer', E[0] + 24, E[1], { side: 'right', size: 20, gap: 12, color: cEye });
+    label(ctx, 'tank', PL[0] + 10, MID - 90, { side: 'left', size: 20, gap: 30, color: cTank });
     text(ctx, 'water, n = 1.333', PR[0] + 20, TOP + 90, PAL.muted, { size: 19, align: 'left' });
     text(ctx, 'air, n = 1.00', 180, 620, PAL.muted, { size: 19, align: 'left' });
     topline(ctx, 'Light from the fish leaves through both front faces and bends away from the perpendicular at each, so the observer sees the fish in two places.');
     const a = paths[0], b = paths[1];
     if (!a || !b) return;
-    tex(d.readout, `n_1\\sin\\theta_1 = (1.333)\\sin ${fmt(a.tw, 1)}^\\circ = ${fmt(NW * Math.sin(a.tw * DEG), 3)} = (1.00)\\sin ${fmt(a.ta, 1)}^\\circ = n_2\\sin\\theta_2`);
+    tex(d.readout, `n_1\\sin\\kthetaone = (1.333)\\sin ${fmt(a.tw, 1)}^\\circ = ${fmt(NW * Math.sin(a.tw * DEG), 3)} = (1.00)\\sin ${fmt(a.ta, 1)}^\\circ = n_2\\sin\\kthetatwo`);
     d.readout.appendChild(F.el('small', null, `That is the path through the left face. Through the right face the ray meets the perpendicular at ${fmt(b.tw, 1)}° in the water and leaves at ${fmt(b.ta, 1)}° in the air.`));
   }
   register(d.fig, { update: () => {}, draw });
@@ -171,6 +175,7 @@ function eye(ctx, x, y, a, s) {
   function draw() {
     const { ctx } = begin(d.c);
     const TC = C('time'), XC = C('position');
+    const cRot = F.ref('rotating-mirror'), cStat = F.ref('stationary-mirror'), cSrc = F.ref('source'), cObs = F.ref('observer');
     const trt = 2 * dS.v * 1e3 / CLIGHT;             /* seconds */
     const T = TS.v * 1e-3;
     const u = U0 + cy.now();
@@ -202,20 +207,20 @@ function eye(ctx, x, y, a, s) {
         line(ctx, P[0], P[1], P[0] + ret.r[0] * len, P[1] + ret.r[1] * len, seen ? PAL.ink : alpha(PAL.ink, 0.6), 5);
       }
     }
-    poly(ctx, verts(a), PAL.ink, 4, alpha(PAL.ink, 0.08));
-    dot(ctx, O[0], O[1], PAL.ink, true, 5);
+    poly(ctx, verts(a), cRot, 4, alpha(cRot, 0.08));
+    dot(ctx, O[0], O[1], cRot, true, 5);
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.6); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(O[0], O[1], 36, -0.4, -Math.PI * 1.6, true); ctx.stroke(); ctx.restore();
     const tip = [O[0] + 36 * Math.cos(-Math.PI * 1.6), O[1] + 36 * Math.sin(-Math.PI * 1.6)];
     arrow(ctx, tip[0] + 10, tip[1] + 6, tip[0], tip[1] - 2, alpha(PAL.ink, 0.6), 3);
     const mh = 70;
-    line(ctx, MX + mirrorT[0] * mh, M[1] + mirrorT[1] * mh, MX - mirrorT[0] * mh, M[1] - mirrorT[1] * mh, PAL.ink, 7);
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(SRC[0] - 22, SRC[1] - 4, 44, 40); ctx.restore();
+    line(ctx, MX + mirrorT[0] * mh, M[1] + mirrorT[1] * mh, MX - mirrorT[0] * mh, M[1] - mirrorT[1] * mh, cStat, 7);
+    ctx.save(); ctx.fillStyle = cSrc; ctx.fillRect(SRC[0] - 22, SRC[1] - 4, 44, 40); ctx.restore();
     dot(ctx, SRC[0], SRC[1] + 16, PAL.panel, true, 10);
-    eye(ctx, EYE[0], EYE[1], Math.atan2(B0[1] - EYE[1], B0[0] - EYE[0]), 1.1);
-    label(ctx, 'light source', SRC[0] + 30, SRC[1] + 16, { side: 'right', size: 20, gap: 10 });
-    label(ctx, 'observer', EYE[0] + 26, EYE[1], { side: 'right', size: 20, gap: 10 });
-    label(ctx, 'rotating mirror', O[0] - R - 6, O[1] + 40, { side: 'left', size: 20, gap: 12 });
-    label(ctx, 'stationary mirror', MX, M[1] - mh - 8, { side: 'above', size: 20, gap: 16 });
+    eye(ctx, EYE[0], EYE[1], Math.atan2(B0[1] - EYE[1], B0[0] - EYE[0]), 1.1, cObs);
+    label(ctx, 'light source', SRC[0] + 30, SRC[1] + 16, { side: 'right', size: 20, gap: 10, color: cSrc });
+    label(ctx, 'observer', EYE[0] + 26, EYE[1], { side: 'right', size: 20, gap: 10, color: cObs });
+    label(ctx, 'rotating mirror', O[0] - R - 6, O[1] + 40, { side: 'left', size: 20, gap: 12, color: cRot });
+    label(ctx, 'stationary mirror', MX, M[1] - mh - 8, { side: 'above', size: 20, gap: 16, color: cStat });
     hbracket(ctx, A[0], MX, 600, XC, `d = ${fmt(dS.v, 1)} km`);
     const tNow = Math.max(0, Math.min(u, 1)) * trt;
     text(ctx, `t = ${fmt(tNow * 1e3, 3)} ms`, 700, A[1] + 44, TC, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
@@ -259,7 +264,7 @@ function eye(ctx, x, y, a, s) {
   const byV = (v) => MEDIA.find((m) => m.value === v);
   const m1 = select(d.controls, { label: '\\text{medium 1}', options: MEDIA.map(({ value, label }) => ({ value, label })), value: 'air', aria: 'the medium the light starts in' });
   const m2 = select(d.controls, { label: '\\text{medium 2}', options: MEDIA.map(({ value, label }) => ({ value, label })), value: 'water', aria: 'the medium the light crosses into' });
-  const th = ctl(d.controls, { label: '\\theta_1', cls: '', min: 0, max: 80, step: 0.5, value: 30, unit: '°', dec: 1, aria: 'the angle of incidence' });
+  const th = ctl(d.controls, { label: '\\kthetaone', cls: 'angle', min: 0, max: 80, step: 0.5, value: 30, unit: '°', dec: 1, aria: 'the angle of incidence' });
   const YI = 360, O = [640, YI], LEN = 250, W = 110, STEP = 58;
   const nStr = (n) => (n === 1 ? '1.00' : String(n));
   function front(ctx, k, n, phi, w, keep, color, lw) {
@@ -273,7 +278,7 @@ function eye(ctx, x, y, a, s) {
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const VC = C('velocity');
+    const VC = C('velocity'), AC = C('angle'), c1 = F.ref('medium-1'), c2 = F.ref('medium-2');
     const A = byV(m1.value), B = byV(m2.value), n1 = A.n, n2 = B.n, t1 = th.v * DEG;
     const s2 = n1 * Math.sin(t1) / n2, crosses = s2 <= 1, t2 = crosses ? Math.asin(s2) : 0;
     const k1 = [Math.sin(t1), Math.cos(t1)], k2 = [Math.sin(t2), Math.cos(t2)];
@@ -300,15 +305,15 @@ function eye(ctx, x, y, a, s) {
       [p1 && p1[0], p1 && p1[1], p2 && p2[0], p2 && p2[1]].filter((p) => p && Math.abs(p[1] - YI) > 1).forEach((p) => dot(ctx, p[0], p[1], PAL.ink, true, 8));
       tail = add(O, k2, LEN);
       arrow(ctx, O[0], O[1], tail[0], tail[1], PAL.ink, 4);
-      angleArc(ctx, { x: O[0], y: O[1] }, 70, -Math.PI / 2, -Math.PI / 2 + t2, '\u03B8_2');
+      angleArc(ctx, { x: O[0], y: O[1] }, 70, -Math.PI / 2, -Math.PI / 2 + t2, '\u03B8_2', undefined, AC);
     } else {
       tail = [O[0] + k1[0] * LEN, O[1] - k1[1] * LEN];
       arrow(ctx, O[0], O[1], tail[0], tail[1], PAL.ink, 4);
     }
-    if (t1 > 0.5 * DEG) angleArc(ctx, { x: O[0], y: O[1] }, 70, Math.PI / 2, Math.PI / 2 + t1, '\u03B8_1');
+    if (t1 > 0.5 * DEG) angleArc(ctx, { x: O[0], y: O[1] }, 70, Math.PI / 2, Math.PI / 2 + t1, '\u03B8_1', undefined, AC);
     label(ctx, 'perpendicular', O[0], 140, { side: 'above', size: 18, gap: 16, weight: 400, color: PAL.muted });
-    text(ctx, `medium 1: ${A.label}, n_1 = ${nStr(n1)}`, 40, YI - 34, PAL.ink, { size: 21, align: 'left', bg: PAL.panel });
-    text(ctx, `medium 2: ${B.label}, n_2 = ${nStr(n2)}`, 40, YI + 34, PAL.ink, { size: 21, align: 'left', bg: PAL.panel });
+    text(ctx, `medium 1: ${A.label}, n_1 = ${nStr(n1)}`, 40, YI - 34, c1, { size: 21, align: 'left', bg: PAL.panel });
+    text(ctx, `medium 2: ${B.label}, n_2 = ${nStr(n2)}`, 40, YI + 34, c2, { size: 21, align: 'left', bg: PAL.panel });
     const v1 = CLIGHT / n1, v2 = CLIGHT / n2;
     text(ctx, `v_1 = ${sci(v1, 2)} m/s`, 1360, YI - 34, VC, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, `v_2 = ${sci(v2, 2)} m/s`, 1360, YI + 34, VC, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
@@ -322,10 +327,10 @@ function eye(ctx, x, y, a, s) {
     topline(ctx, head);
     const lhs = n1 * Math.sin(t1);
     if (crosses) {
-      tex(d.readout, `n_1\\sin\\theta_1 = (${nStr(n1)})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(lhs, 3)} = (${nStr(n2)})\\sin ${fmt(t2 / DEG, 1)}^\\circ = n_2\\sin\\theta_2`);
+      tex(d.readout, `n_1\\sin\\kthetaone = (${nStr(n1)})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(lhs, 3)} = (${nStr(n2)})\\sin ${fmt(t2 / DEG, 1)}^\\circ = n_2\\sin\\kthetatwo`);
       d.readout.appendChild(F.el('small', null, `In ${A.label} light travels at v₁ = c/n₁ = ${sci(v1, 2)} m/s and in ${B.label} at v₂ = c/n₂ = ${sci(v2, 2)} m/s; the refracted angle is ${fmt(t2 / DEG, 1)}°.`));
     } else {
-      tex(d.readout, `n_1\\sin\\theta_1 = (${nStr(n1)})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(lhs, 3)} > n_2 = ${nStr(n2)}`);
+      tex(d.readout, `n_1\\sin\\kthetaone = (${nStr(n1)})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(lhs, 3)} > n_2 = ${nStr(n2)}`);
       d.readout.appendChild(F.el('small', null, `Since sin θ₂ can be no greater than 1, the right side of the law of refraction can be no greater than ${nStr(n2)}.`));
     }
   }
