@@ -2,9 +2,7 @@
 
 Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7
-requires, and adds one type of its own. No figure hard-codes hues, and every
-page binds only the union of the types its own figures actually draw. The
-introduction binds none.
+requires, and adds one type of its own. No figure hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -17,7 +15,7 @@ introduction binds none.
 | Force $F$ on a piston | `force` | Bind only where a cylinder figure draws the force arrow $F = PA$ |
 | Distance $d$ a piston moves | `position` | Bind only where a cylinder figure brackets the stroke |
 | Average speed $\bar v$ of a gas atom | `velocity` | Bind only if a figure of 15.2 draws the kinetic-theory relation; none is expected to |
-| Time $t$ since a gas was released into its container | `time` | Bound by 15.7 alone, where `sim-gas-disorder` traces the entropy of the arrangement against the time since the release on a graph beside the container; the horizontal axis of that graph wears the hue, since a typed quantity is never drawn in ink (settled in the chapter pass) |
+| Time $t$ since a gas was released into its container | `time` | Coloured by 15.7 alone, where `sim-gas-disorder` traces the entropy of the arrangement against the time since the release on a graph beside the container; the horizontal axis of that graph wears the hue, since a typed quantity is never drawn in ink (settled in the chapter pass) |
 | Volume $V$, $\Delta V$; area $A$; mass $m$; atom count $N$; efficiency $\text{Eff}$, $\text{Eff}_\text{C}$; coefficients of performance $\text{COP}_\text{hp}$, $\text{COP}_\text{ref}$; the EER; the number of microstates $W$; the counts of heads and tails; Boltzmann's constant $k$ | Untyped | Ink, including the sliders that set them and the equation symbols. The horizontal axis of every $PV$ diagram is ink |
 
 Three rules of rule 7 bite in this chapter and are written down so that no
@@ -54,18 +52,15 @@ themselves are ink, as every body in the book is; hot and cold are told by
 the labels and by the hot reservoir standing above. The Carnot efficiency
 that changes as the reader moves the temperatures is a pure number and is
 written in ink on the readout beside the two coloured temperatures that set
-it.
-
-A page binds only what it draws. 15.1 binds energy alone; 15.2 binds energy
+it. 15.1 binds energy alone; 15.2 binds energy
 and pressure, and force and position where a cylinder figure draws the
 piston's force and stroke; 15.3 binds energy, pressure and temperature;
 15.4 binds energy and temperature, and pressure where the Carnot cycle is
 drawn; 15.5 binds energy and temperature, and pressure where the reversed
-cycle is drawn; 15.6 binds entropy, energy and temperature; 15.7 binds
+cycle is drawn; 15.6 colours entropy, energy and temperature; 15.7 colours
 entropy, and time for the graph of `sim-gas-disorder`, and neither energy
-nor temperature, since no figure of the page restates $\Delta S = Q/T$. No
-page binds a type merely because the chapter declares it. As built, the
-pages bind exactly this: 15.1 energy; 15.2 energy, pressure, force and
+nor temperature, since no figure of the page restates $\Delta S = Q/T$. As built, the
+pages colour exactly this: 15.1 energy; 15.2 energy, pressure, force and
 position; 15.3 energy, pressure and temperature; 15.4 energy, temperature
 and pressure; 15.5 energy, temperature and pressure; 15.6 entropy, energy
 and temperature; 15.7 entropy and time; the introduction none.

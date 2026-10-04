@@ -3,9 +3,7 @@
 Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7
 requires, and adds two types of its own, the first two of electricity, which
-the rest of the book will reuse. No figure hard-codes hues, and every page
-binds only the union of the types its own figures actually draw. The
-introduction binds none.
+the rest of the book will reuse. No figure hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -13,9 +11,9 @@ introduction binds none.
 | Electric field $E$, $E_1$, $E_2$, $E_\text{tot}$, $E_\parallel$, $E_\perp$ | `electric-field` (new) | One hue; every field arrow, every field line, the probe's readout and the slider that sets a uniform field wear it. Field lines are the field and take its hue at every point; their density and direction, not a change of colour, tell strength and sense. A component keeps the hue and is told by its subscript |
 | Coulomb force $F$, $F_1$, $F_2$, $F_\parallel$, the gravitational force $F_\text{G}$, the weight $w$, the net force $F_\text{net}$ | `force` (Chapter 4) | One hue; a force arrow on a charge, told from the field arrow at the same point by its hue and its label. Attraction and repulsion are told by direction, not colour |
 | Acceleration $a$ of a charged drop or particle | `acceleration` | Bind only where a figure of 18.8 draws it |
-| Speed of light $c$ | `velocity` | Not expected to be bound; 18.1 writes $\Delta m = E/c^2$ once in prose and no figure draws it |
-| Energy $E$ of a created pair | `energy` | Not expected to be bound; the same sentence of 18.1, and the symbol clash with the field is why the field is `E_field` |
-| Coulomb's constant $k$, the gravitational constant $G$, the masses $m$, $M$, $m_\text{e}$, $\Delta m$, the separation $r$ and the distances $r_1$, $r_2$, the angle $\theta$, the side $d$ of a square, every count of electrons or protons, every fraction and percentage | Untyped | Ink, including the sliders that set a separation and the equation symbols. A distance between charges is a length and not a position, so no figure of the chapter binds `position` for it |
+| Speed of light $c$ | `velocity` | Not expected to be coloured; 18.1 writes $\Delta m = E/c^2$ once in prose and no figure draws it |
+| Energy $E$ of a created pair | `energy` | Not expected to be coloured; the same sentence of 18.1, and the symbol clash with the field is why the field is `E_field` |
+| Coulomb's constant $k$, the gravitational constant $G$, the masses $m$, $M$, $m_\text{e}$, $\Delta m$, the separation $r$ and the distances $r_1$, $r_2$, the angle $\theta$, the side $d$ of a square, every count of electrons or protons, every fraction and percentage | Untyped | Ink, including the sliders that set a separation and the equation symbols. A distance between charges is a length and not a position, so no figure of the chapter colours `position` for it |
 
 Three rules of rule 7 bite in this chapter and are written down so that no
 section has to decide them twice.
@@ -58,23 +56,22 @@ by hue, force in Chapter 4's and field in this chapter's, and by label, and
 the readout writes $E = F/q$ with all three in their colours, so the reader
 sees a force divided by a charge give a field.
 
-A page binds only what it draws, and this is what the built pages bind. The
-introduction binds none. 18.1 binds `charge` alone; 18.2 binds `charge`;
-18.3 binds `charge` and `force`; 18.4 binds `charge`, `force` and
-`electric-field`; 18.5 binds `charge` and `electric-field`, and not `force`,
-since no figure of that page draws a force arrow; 18.6 binds `charge`,
+This is what the built pages colour. 18.1 colours `charge` alone; 18.2 colours `charge`;
+18.3 colours `charge` and `force`; 18.4 colours `charge`, `force` and
+`electric-field`; 18.5 colours `charge` and `electric-field`, and not `force`,
+since no figure of that page draws a force arrow; 18.6 colours `charge`,
 `electric-field` for the screened lines and `force` for the attraction
-between the water molecule and the ion it surrounds; 18.7 binds `charge`,
+between the water molecule and the ion it surrounds; 18.7 colours `charge`,
 `electric-field` and `force` for Figure 18.26's parallel force; and 18.8
-binds `charge`, `electric-field`, `force` and `acceleration` for the drop of
-Example 18.5. No page binds a type merely because the chapter declares it.
+colours `charge`, `electric-field`, `force` and `acceleration` for the drop of
+Example 18.5.
 
 All canvas colours come from `C(type)` and `PAL`, with two exceptions the
 families of rule 7 allow. The element palette draws every electron, proton,
 neutron and ion, as above. The categorical palette
 `F.cat(i)` tells apart the two spheres of Figure 18.12, the two suspended
 balls of 18.2's AP item and the two glass rods of Figure 18.4(b) only where
-a label cannot, and is never used in a hue the page has bound; the
+a label cannot, and is never used in a category hue the figure draws; the
 photographs of a flame or a spark, where a page keeps one, are the physical
 fact and stay as the book prints them. Turning colour off must leave the
 $+$ and $-$ marks, the labels, the arrow directions and the line density

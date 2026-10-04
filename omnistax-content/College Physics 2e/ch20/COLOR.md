@@ -1,11 +1,10 @@
 # Chapter 20 colour plan
 
-Prepared 2026-09-14, approved with `config.md`, and brought to the bindings
+Prepared 2026-09-14, approved with `config.md`, and brought to the colours
 the seven pages were built with in the chapter pass of 2026-09-15. This
 chapter uses the book's declared physical types and the app's selected
 palette, as root rule 7 requires, and adds two types of its own. No figure
-hard-codes hues, and every page binds only the union of the types its own
-figures actually draw. The introduction binds none.
+hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -53,7 +52,7 @@ the temperature coefficient and for the conductor, semiconductor and
 insulator groupings, which are told apart by their position on a
 logarithmic scale and by their labels, never by three hues. Where the
 three groups must be distinguished as instances, the categorical palette
-`F.cat(i)` is used and never in a hue the page has bound.
+`F.cat(i)` is used and never in a category hue the figure draws.
 
 The element palette carries the carriers. Every free electron drawn in
 20.1's wire, in 20.5's reversing circuit and in 20.7's membrane is drawn
@@ -63,21 +62,21 @@ anonymous grey dot, and the positive carriers of 20.4's panel (a) are
 drawn with `F.el('p+')` where the book draws bare positive charges, or as
 labelled charges in the charge hue where it does not.
 
-A page binds only what it draws, and these are the bindings the seven
-plans expected, written here as the seven pages were built. 20.1 binds
-current, charge, velocity, electric-field and time. 20.2 binds current,
-resistance and voltage. 20.3 binds resistance, position and temperature;
+These are the colours the seven
+plans expected, written here as the seven pages were built. 20.1 colours
+current, charge, velocity, electric-field and time. 20.2 colours current,
+resistance and voltage. 20.3 colours resistance, position and temperature;
 its cylinder is set from a length, a diameter and a material and its two
 temperature figures from a temperature, so no figure of the section
-measures a resistance from a current and a voltage and the page binds
-neither. 20.4 binds power, current, voltage, resistance and energy, and
+measures a resistance from a current and a voltage and the page colours
+neither. 20.4 colours power, current, voltage, resistance and energy, and
 time as well, since the cost figure carries the hours the lamps are left
-on. 20.5 binds voltage, current, resistance, power and frequency: Ohm's
+on. 20.5 colours voltage, current, resistance, power and frequency: Ohm's
 law for alternating current is the section's own result, the resistance is
 a slider on all three of its figures, and their readouts write
-$I_\text{rms} = V_\text{rms}/R$. 20.6 binds current, voltage, resistance,
-power and frequency. 20.7 binds voltage, charge, electric-field, position and
-time. No page binds a type it does not draw.
+$I_\text{rms} = V_\text{rms}/R$. 20.6 colours current, voltage, resistance,
+power and frequency. 20.7 colours voltage, charge, electric-field, position and
+time.
 
 All canvas colours come from `C(type)` and `PAL`, with the element palette
 as the one exception named above. Turning colour off must leave labels,

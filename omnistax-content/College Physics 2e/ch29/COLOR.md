@@ -1,8 +1,7 @@
 # Chapter 29 colour plan
 
 Prepared 2026-09-28 in the chapter's prep pass, beside `config.md`. The chapter
-declares no type of its own; every page binds only the types its own figures
-draw, its sliders carry or its readouts state (root rules 7 and 22).
+declares no type of its own.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -18,9 +17,9 @@ draw, its sliders carry or its readouts state (root rules 7 and 22).
 | Blackbody intensity and temperature | `intensity`, `temperature` | 29.1's blackbody sim |
 | Planck's constant $h$, a mass $m$, the integers $n$, an angle $\theta$, a count of photons | untyped | ink |
 
-Which section binds what, as built:
+Which section colours what, as built:
 
-| Section | Types bound |
+| Section | Types coloured |
 |---|---|
 | intro | none |
 | 29.1 | `energy`, `frequency`; `intensity`, `temperature`, `position` on the blackbody figure |
@@ -46,7 +45,7 @@ false colour. A photon is never a typed thing: the wavelength slider wears the
 palette**: every electron, proton and neutron is `F.el('e-')`, `F.el('p+')`,
 `F.el('n0')`, and an atom of the plate or the crystal is `F.el` of its element.
 **Categorical**: `F.cat(i)` for instances with no type and no element, such as two
-metals on one graph, never in a hue the page binds. A metal plate is not tinted
+metals on one graph, never in a category hue the figure draws. A metal plate is not tinted
 to say what it is; its name and binding energy are its label.
 
 Colour-off drops the type hues and keeps the physical and element colours, so each

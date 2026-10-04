@@ -3,9 +3,7 @@
 Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7
 requires, and refines the book's `COLOR.md` rather than adding to it. No
-figure hard-codes hues, and every page binds only the union of the types its
-own figures draw, its sliders carry or its readouts state. The introduction
-binds none.
+figure hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -23,9 +21,9 @@ binds none.
 | Elapsed time | `time` | Bind where a moving scene exposes a clock |
 | Mass, angle, revolutions, pure ratios and categorical labels | Untyped | Ink, including controls and equation symbols |
 
-Which section binds what:
+Which section colours what:
 
-| Section | Types bound |
+| Section | Types coloured |
 |---|---|
 | 10.1 | `angular-rate`, `angular-acceleration`, `acceleration`, `velocity`, `position`, `time` |
 | 10.2 | `angular-rate`, `angular-acceleration`, `position`, `velocity`, `acceleration`, `time` |
@@ -36,19 +34,19 @@ Which section binds what:
 | 10.7 | `angular-momentum`, `torque`, `angular-rate`, `force`, `position` |
 
 The rows for 10.3, 10.4 and 10.6 were corrected after the build to the
-types the pages draw (2026-09-14). 10.3 binds `acceleration`, because the
+types the pages draw (2026-09-14). 10.3 colours `acceleration`, because the
 derivation's first step is $a = F/m$ and the point-mass figure draws that
 arrow, and `angular-rate` and `time`, because the bike wheel and the
 merry-go-round spin up under a clock and read out the angular velocity the
-push produces. 10.4 and 10.6 bind `force`, because the disk of Figure 10.17
+push produces. 10.4 and 10.6 colour `force`, because the disk of Figure 10.17
 and the grindstone of 10.19 are a force turning a disk, and the percussion
-figure of 10.34 draws the ball's blow and the force on the pivot. 10.7 binds
+figure of 10.34 draws the ball's blow and the force on the pivot. 10.7 colours
 `position` as forecast, for the $r$ of the merry-go-round.
 
 A body never wears a type hue. The skater, the merry-go-round, the cans of
 soup, the stick on its nail and the gyroscope are drawn in ink and told
 apart by shape, label and the categorical palette `F.cat(i)` where two of a
-kind must be distinguished, never in a hue the page has bound. Where a
+kind must be distinguished, never in a category hue the figure draws. Where a
 figure compares two states of one body — arms out and arms in, hollow and
 solid — the two are told apart by the categorical palette or by hatching,
 and the quantities that differ are read out in their own type hues.

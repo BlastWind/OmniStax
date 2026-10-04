@@ -3,8 +3,7 @@
 Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7
 requires, and adds one type of its own, `temperature`. No figure hard-codes
-hues, and every page binds only the union of the types its own figures
-actually draw. The introduction binds none.
+hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -47,19 +46,18 @@ holds for the constants $k$, $R$ and $N_\text{A}$, which are ink as $G$ was in
 Chapter 6, and for $\alpha$ and $\beta$, which are material constants with
 the standing of a coefficient of friction.
 
-A page binds only what it draws, and after the build the pages bind this
-(brought into line with the pages in the chapter pass): 13.1 binds
+After the build the pages colour this
+(brought into line with the pages in the chapter pass): 13.1 colours
 temperature, pressure on the axis and slider of Figure 13.10, and time on the
 graph of the two blocks and the plate, the one figure of the page with a
-clock; 13.2 binds temperature, position on the extension of the linear
+clock; 13.2 colours temperature, position on the extension of the linear
 expansion Sim, density on the axis of Figure 13.13, and pressure and elastic
-modulus on the gauge and slider of the thermal stress Sim; 13.3 binds
-temperature and pressure; 13.4 binds temperature, pressure, velocity,
+modulus on the gauge and slider of the thermal stress Sim; 13.3 colours
+temperature and pressure; 13.4 colours temperature, pressure, velocity,
 momentum, energy and force, and not time, since no readout of the collision
-scene colours $\Delta t$; 13.5 binds temperature and pressure, and not
-density, since no figure of the page reads a volume as a density; 13.6 binds
-temperature, pressure and density. No page binds a type merely because the
-chapter declares it.
+scene colours $\Delta t$; 13.5 colours temperature and pressure, and not
+density, since no figure of the page reads a volume as a density; 13.6 colours
+temperature, pressure and density.
 
 Of root rule 7's four families this chapter uses three. Type hues from the
 scheme carry every quantity above. The element palette `F.el(symbol)` is
@@ -70,8 +68,7 @@ oxygen and two hydrogens or in oxygen's colour with a hover name, and no gas
 box draws an anonymous grey dot. The categorical palette `F.cat(i)` tells
 apart the four gases of Figure 13.10, which carry no type and must be
 distinguished, the two metals of the bimetallic strip, and the two blocks
-and the plate of 13.1's thermal equilibrium Sim; it is never used in a hue
-the page has bound. A colour that is the physical fact does not arise
+and the plate of 13.1's thermal equilibrium Sim; it is never used in a category hue the figure draws. A colour that is the physical fact does not arise
 here.
 
 All canvas colours come from `C(type)`, `F.el()`, `F.cat()` and `PAL`.

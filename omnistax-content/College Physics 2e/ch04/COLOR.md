@@ -1,18 +1,15 @@
 # Chapter 4 colour plan
 
-Prepared 2026-09-11. Approved with `config.md`. This chapter uses the book's
-declared physical types and the app's selected palette, as root rule 7
-requires. No figure hard-codes hues, and every page binds only the union of
-the types actually drawn by its figures. The introduction binds none.
+The chapter colours with the book's categories and the reader's palette. Its
+referents and their colours follow root `RULES.md` item 7.
 
-| Quantity | Existing type | Treatment |
+| Quantity | Category | Treatment |
 |---|---|---|
 | Applied force, net force, weight, normal force, tension, friction, thrust and force components | `force` | One hue for all; distinguish forces by labels, arrow position, line decoration and the body acted upon |
 | Acceleration and gravitational acceleration | `acceleration` | One hue; components and variants keep it |
-| Velocity and speed | `velocity` | Bind where a motion figure shows them |
-| Position and displacement | `position` | Bind where a scene measures position or stretch |
-| Elapsed time | `time` | Bind where a moving scene exposes time |
-| Mass, angle, pure ratios and categorical labels | Untyped | Ink, including controls and equation symbols |
+| Velocity and speed | `velocity` | Where a motion figure shows them |
+| Position and displacement | `position` | Where a scene measures position or stretch |
+| Elapsed time | `time` | Where a moving scene exposes time |
 
 Force pairs do not receive different hues merely because they act on
 different bodies. Body outlines and labels distinguish the systems;

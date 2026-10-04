@@ -1,18 +1,14 @@
 # College Physics 2e: what the book colours
 
-Written 2026-09-14, the file root rule 22 asks of every book. It records
-what this book colours and by which family of root rule 7; the rules
-themselves are in the repository's root `RULES.md`, and this book's own
-`RULES.md` § Types states the declaration this file dresses. A chapter may
-keep a `COLOR.md` of its own that refines this one: it may bind fewer types,
-never invent a hue.
+The rule is root `RULES.md` item 7. This file records what is particular to
+this book: its categories, its variant decorations, and the facts and
+conventions it draws. A chapter's `COLOR.md` may refine it, never inventing a
+hue.
 
-A colour belongs to a type, and in this book a type is a kind of physical quantity. The
-book declares its types in `book.json` in the order the colour scheme lays
-its hues along, says nothing about hues itself, and the app dresses them
-from the reader's scheme. A page colours only the types it binds, the ones
-its figures draw, its sliders carry or its readouts state; every other
-symbol on that page is ink, and the page's plan lists what it binds.
+## Categories
+
+The categories are the `types` of `book.json`, in the order the palette lays
+its hues along. In this book each is a kind of physical quantity.
 
 | Type | What wears it | Declared in |
 |---|---|---|
@@ -50,32 +46,37 @@ symbol on that page is ink, and the page's plan lists what it binds.
 | `magnetic-flux` | Magnetic flux and its change | Chapter 23 |
 | `inductance` | Self and mutual inductance | Chapter 23 |
 
-The frame of a figure and every label on it stay in ink.
+The book intends mass, angle, area and volume to be categories as well
+(decided 2026-10-04); they are not yet declared.
 
-A derived quantity is another type and another colour, and nothing is
-coerced into a neighbouring type to save one: a frequency is not a time, a
-force constant is not a force, an angular acceleration is not an angular
-rate, and a torque keeps its own hue although its dimension matches
-energy's. A variant of one type keeps the hue and differs by decoration: an
-initial value is hollow or dashed, an average is dashed, a maximum and a
-value after a change are told by their subscript or their prime.
+A derived quantity is another category, and nothing is coerced into a
+neighbouring one to save a colour: a frequency is not a time, a force
+constant is not a force, an angular acceleration is not an angular rate, and
+a torque keeps its own hue although its dimension matches energy's.
 
-Of root rule 7's five families this book uses four, three of them
-sparingly. Type hues from the scheme, bound per page, carry almost
-everything it draws. The categorical palette `F.cat(i)` tells apart
-instances that carry no type and must be distinguished — two cars in a
+## Variants
+
+A variant keeps its category's hue and differs by decoration: an initial
+value is hollow or dashed, an average is dashed, a maximum and a value after a
+change are told by their subscript or their prime.
+
+## Facts and conventions
+
+The element palette `F.el(symbol)` colours every named atom or molecule a
+figure draws: the phases of 11.1, the gas boxes and speed distributions of
+Chapter 13, the water lattice of 15.6, the molecules of Chapter 12's random
+walk. A colour that is the physical fact is drawn where the plan names it: a
+flame, the visible band of a spectrum, mercury and a colourless liquid in a
+manometer, blood. A body never wears a category hue: a phase, a material and a
+temperature are told by shape, label and packing, not by a tint on the body.
+
+## Referents
+
+The book's examples are full of things to keep apart: two cars in a
 collision, two cans racing down an incline, the four hands on a rope, the
-metals of a bimetallic strip — and it is never used in a hue the page has
-bound. The element palette `F.el(symbol)` arises wherever a page draws a
-named atom or molecule: the phases of 11.1, the gas boxes and speed
-distributions of Chapter 13, the water lattice of 15.6, the molecules of
-Chapter 12's random walk. A colour that is the physical fact is drawn only
-where the plan names it: a flame, the visible band of a spectrum, mercury
-and a colourless liquid in a manometer, blood. A body never wears a type
-hue: a phase, a material and a temperature are told by shape, label and
-packing, not by a tint on the body.
+metals of a bimetallic strip. Each is a referent of its section and takes a
+referent colour.
 
-The test for one figure is root rule 7's: everything in it with an identity
-is coloured, or the whole figure is ink. Colour-off drops the type hues and
-keeps the categorical ones, so every figure must stay legible from its
-labels, its arrow directions and its caption alone.
+The frame of a figure and its labels stay in ink, and with colour coding off
+every figure stays legible from its labels, its arrow directions and its
+caption.

@@ -2,25 +2,24 @@
 
 Prepared 2026-09-28 in the chapter's prep pass, beside `config.md`. This chapter
 uses the book's declared types and the app's selected palette, as root rule 7 and
-root rule 22 require. It declares one type of its own, hard-codes no hue, and
-every page binds only the union of the types its own figures draw.
+root rule 22 require. It declares one type of its own, hard-codes no hue.
 
 | Quantity | Type | Treatment |
 |---|---|---|
 | Absorbed dose (Gy, rad) and dose equivalent (Sv, rem) | `dose` (new) | One hue; both are energy per kilogram of tissue, the RBE (untyped) the factor between them. A dose is not an energy: it is divided by the mass affected |
-| Activity of a source $R$ (Bq, Ci) | `activity` | Bound where a readout counts decays per second (32.1, 32.2) |
+| Activity of a source $R$ (Bq, Ci) | `activity` | Coloured where a readout counts decays per second (32.1, 32.2) |
 | Half-life, exposure time, confinement time | `time` | One hue |
 | Energy of a γ ray, of a decay or reaction, BE and BE/$A$, deposited energy, bomb yield | `energy` | One hue; BE/$A$ keeps it |
 | Separation of two nuclei, range, distance from a source, shielding thickness | `position` | One hue |
-| Fuel temperature | `temperature` | Bound on 32.5 only |
-| Average power of a source or reactor | `power` | Bound where a readout gives watts |
-| The magnetic field of a tokamak | `magnetic-field` | Bound on 32.5 if its confinement figure draws the field |
-| $c$ | `velocity` | Bound where a readout converts mass to energy |
+| Fuel temperature | `temperature` | Coloured on 32.5 only |
+| Average power of a source or reactor | `power` | Coloured where a readout gives watts |
+| The magnetic field of a tokamak | `magnetic-field` | Coloured on 32.5 if its confinement figure draws the field |
+| $c$ | `velocity` | Coloured where a readout converts mass to energy |
 | Mass, $\Delta m$, RBE, the numbers $A$, $Z$, $N$, $x$, a fraction, a risk, a count of neutrons or fissions | Untyped | Ink |
 
-Which section binds what:
+Which section colours what:
 
-| Section | Types bound |
+| Section | Types coloured |
 |---|---|
 | intro | none |
 | 32.1 | `energy`, `activity`, `time`, `position` |

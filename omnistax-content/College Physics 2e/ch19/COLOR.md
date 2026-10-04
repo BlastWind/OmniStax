@@ -2,9 +2,7 @@
 
 Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7
-requires, and adds two types of its own. No figure hard-codes hues, and every
-page binds only the union of the types its own figures actually draw. The
-introduction binds none.
+requires, and adds two types of its own. No figure hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -15,7 +13,7 @@ introduction binds none.
 | Electric potential energy $\text{PE}$, $\Delta\text{PE}$, $\text{PE}_\text{i}$, $\text{PE}_\text{f}$, $\Delta\text{PE}_\text{cycle}$, $\Delta\text{PE}_\text{car}$; kinetic energy $\text{KE}$, $\text{KE}_\text{i}$, $\text{KE}_\text{f}$; work $W$; the energy stored in a capacitor $E_\text{cap}$; the electron volt | `energy` | One hue; the two bars that trade potential for kinetic energy as a charge falls through a voltage, the work along an equipotential that reads zero, the shaded triangle under $V$ against $Q$ that is a capacitor's stored energy, and every readout that writes $\Delta\text{PE} = q\Delta V$, $\text{KE} + \text{PE} = \text{constant}$ or $E_\text{cap} = QV/2$. Potential and kinetic energy are one type told apart by their labels and by which bar is which |
 | Force $F$ on a charge | `force` | Bind only where a figure draws the force arrow $F = qE$ (Example 19.5 in 19.2, if drawn) |
 | Speed $v$ of an accelerated electron | `velocity` | Bind only where a figure of 19.1 draws the electron's final speed as an arrow or states it on a readout (Example 19.3) |
-| Plate separation $d$, distance $r$ from a point charge, the step $\Delta s$ over which the potential changes, the height $h$ of the gravitational analogy | `position` | Bind only where a figure brackets the separation or carries it on a slider: 19.2's plates, 19.3's point charge, 19.5's parallel plate capacitor and 19.6's equivalent capacitor with its larger $d$. Chapter 18 writes the Coulomb separation in ink; this chapter's sliders make $d$ and $r$ quantities the reader moves and so binds the type |
+| Plate separation $d$, distance $r$ from a point charge, the step $\Delta s$ over which the potential changes, the height $h$ of the gravitational analogy | `position` | Bind only where a figure brackets the separation or carries it on a slider: 19.2's plates, 19.3's point charge, 19.5's parallel plate capacitor and 19.6's equivalent capacitor with its larger $d$. Chapter 18 writes the Coulomb separation in ink; this chapter's sliders make $d$ and $r$ quantities the reader moves and so colours the type |
 | Area $A$; mass $m$; the dielectric constant $\kappa$; the dielectric strength; the number of electrons $n_\text{e}$; Coulomb's constant $k$; the permittivity $\varepsilon_0$; the angle $\theta$ | Untyped | Ink, including the sliders that set $A$ and $\kappa$, the dropdown of Table 19.1's materials and the equation symbols. A dielectric constant is a ratio of two fields and a pure number, as an efficiency is |
 
 Three rules of rule 7 bite in this chapter and are written down so that no
@@ -58,33 +56,31 @@ atom whose nucleus and electrons are drawn as Chapter 18's pages draw
 theirs; the 19.5 agent should read `ch18/COLOR.md` for that decision when it
 has landed and follow it.
 
-A page binds only what it draws, and these are the bindings as the seven
-pages were built. 19.1 binds voltage, charge, energy and velocity, the last
+These are the colours as the seven
+pages were built. 19.1 colours voltage, charge, energy and velocity, the last
 because the electron gun states the speed the voltage gives its particle.
-19.2 binds voltage, electric-field, position, charge and force, the force
-because Example 19.5 draws the arrow $F = qE$ on the electron. 19.3 binds
+19.2 colours voltage, electric-field, position, charge and force, the force
+because Example 19.5 draws the arrow $F = qE$ on the electron. 19.3 colours
 voltage, charge, position, electric-field and energy: the field because the
 $1/r$ potential and the $1/r^2$ field are drawn against each other, and the
 energy because the figure that adds two potentials writes the work a charge
-takes to reach the marked point. 19.4 binds voltage, electric-field, charge,
+takes to reach the marked point. 19.4 colours voltage, electric-field, charge,
 energy and position, the energy because the readout writes the zero work
 along an equipotential and the position because the plates carry their
-separation on a slider. 19.5 binds capacitance, charge, voltage,
-electric-field and position; 19.6 binds capacitance, voltage, charge and
-position; and 19.7 binds energy, voltage, capacitance and charge. No page
-binds a type it does not draw, and the categorical palette is used nowhere in
+separation on a slider. 19.5 colours capacitance, charge, voltage,
+electric-field and position; 19.6 colours capacitance, voltage, charge and
+position; and 19.7 binds energy, voltage, capacitance and charge. The categorical palette is used nowhere in
 the chapter, as this plan expected.
 
 The scheme sets the electric-field hue and the voltage hue two places apart
 on a circle of twenty-nine, so they come out close to each other, and the
 chapter invents no hue to separate them. Where both are drawn at once, the
 figure tells them apart in its drawing: a field line carries an arrowhead
-and an equipotential line carries its own voltage in volts. No page binds
-a type merely because the chapter declares it. The categorical palette
+and an equipotential line carries its own voltage in volts. The categorical palette
 `F.cat(i)` is not expected on any page: the three capacitors of 19.6 are
 told apart by their labels $C_1$, $C_2$, $C_3$ in the capacitance hue and by
 position, and a section agent who needs it must say so in the plan and keep
-it out of every hue the page binds.
+it out of every category hue the figure draws.
 
 All canvas colours come from `C(type)` and `PAL`, with the element palette
 as the one exception named above. Turning colour off must leave labels,

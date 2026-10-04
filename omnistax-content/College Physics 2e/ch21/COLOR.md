@@ -2,24 +2,23 @@
 
 Prepared 2026-09-15 in the chapter's prep pass, beside `config.md`. This chapter
 uses the book's declared types and the app's selected palette, as root rule 7 and
-root rule 22 require. It declares no type of its own, hard-codes no hue, and every
-page binds only the union of the types its own figures draw.
+root rule 22 require. It declares no type of its own, hard-codes no hue.
 
 | Quantity | Existing type | Treatment |
 |---|---|---|
 | Every current: the source's current, a branch current, an initial current, the current through a galvanometer | `current` (Chapter 20) | One hue for all; branches are told apart by label, by the path they run along and by the arrow's direction, never by a second hue |
 | Every resistance: a single resistor, a series or parallel equivalent, a load, an internal resistance, a shunt, an unknown | `resistance` (Chapter 20) | One hue; an equivalent resistance keeps the hue and is told by its subscript, and the internal resistance by the lower-case $r$ the book uses |
 | Every voltage: a source's output, an emf, a terminal voltage, a voltage drop across a resistor, the voltage across a capacitor | `voltage` (Chapter 19) | One hue; the emf and the terminal voltage share it deliberately, since $V = \mathcal{E} - Ir$ is a comparison of the two |
-| Capacitance | `capacitance` (Chapter 19) | Bound on 21.6 alone |
-| Charge stored on a plate | `charge` (Chapter 18) | Bound on 21.6 alone |
-| Elapsed time and the time constant $\tau = RC$ | `time` (Chapter 2) | Bound on 21.6, where a time axis is drawn |
-| Power dissipated or delivered | `power` (Chapter 7) | Bound where a readout states a dissipation, which is 21.1 and 21.2 |
+| Capacitance | `capacitance` (Chapter 19) | Coloured on 21.6 alone |
+| Charge stored on a plate | `charge` (Chapter 18) | Coloured on 21.6 alone |
+| Elapsed time and the time constant $\tau = RC$ | `time` (Chapter 2) | Coloured on 21.6, where a time axis is drawn |
+| Power dissipated or delivered | `power` (Chapter 7) | Coloured where a readout states a dissipation, which is 21.1 and 21.2 |
 | A galvanometer's current sensitivity | `current` (Chapter 20) | It is a current, the one that gives a full-scale deflection, so it wears the current hue on its slider and in the prose beside the dial |
 | A resistance ratio, a fraction of a time constant, a percentage error, a count of cells, the letters G, V and A on a meter and the letters a to h on a loop | Untyped | Ink, including the frame, the wires and every label |
 
-Which section binds what:
+Which section colours what:
 
-| Section | Types bound |
+| Section | Types coloured |
 |---|---|
 | intro | none |
 | 21.1 | `resistance`, `current`, `voltage`, `power` |
@@ -48,9 +47,9 @@ coloured, or the whole figure is ink. Colour-off drops the type hues and keeps t
 categorical ones, so every schematic must stay legible from its labels, its arrow
 directions and its caption alone.
 
-## What the build bound
+## What the build coloured
 
 The table above is the chapter as it stands after the chapter pass of 2026-09-15:
-every section binds exactly the types listed for it, which is the union of what its
-own figures draw, and no page binds a type it does not draw. No type was added and
+every section colours exactly the types listed for it, which is the union of what its
+own figures draw. No type was added and
 none was dropped.

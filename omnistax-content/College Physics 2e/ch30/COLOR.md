@@ -1,8 +1,7 @@
 # Chapter 30 colour plan
 
 Prepared 2026-09-28 in the chapter's prep pass. The chapter declares no type and
-uses the book's; a page binds only the types its own figures draw, slide or read
-out (root rules 7 and 22).
+uses the book's.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -16,7 +15,7 @@ out (root rules 7 and 22).
 | Photon frequency $f$ | `frequency` | In readouts of $hf$ only |
 | Quantum numbers $n$, $n_{\text{i}}$, $n_{\text{f}}$, $l$, $m_l$, $s$, $m_s$; $Z$; $R$; masses; counts; $h$ | untyped | Ink |
 
-| Section | Types bound |
+| Section | Types coloured |
 |---|---|
 | intro | none |
 | 30.1 | none (the Brownian figure's molecules and grain are identified by `F.el` and name) |
@@ -38,5 +37,5 @@ the one place a hex literal or a wavelength-to-colour call is allowed, named in
 the plan line; an ultraviolet, infrared or x-ray photon is ink with its wavelength
 labelled, never a false colour. **Categorical** `F.cat` for spectral series
 (Lyman, Balmer, Paschen) where they must be told apart and carry no type, for
-the $m_l$ cones, and for subshells in 30.9, never in a hue the page binds.
+the $m_l$ cones, and for subshells in 30.9, never in a category hue the figure draws.
 Colour-off keeps element, physical and categorical colour.

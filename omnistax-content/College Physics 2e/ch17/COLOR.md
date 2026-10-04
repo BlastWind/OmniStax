@@ -2,9 +2,7 @@
 
 Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7
-requires, and adds one type of its own. No figure hard-codes hues, and every
-page binds only the union of the types its own figures actually draw. The
-introduction binds none.
+requires, and adds one type of its own. No figure hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -12,10 +10,10 @@ introduction binds none.
 | Frequency $f$, the source and observed frequencies $f_\text{s}$ and $f_\text{obs}$, the harmonics $f_n$, $f_1$, $f_2$, $f_3$, $f'$, the beat frequency $f_\text{B}$ | `frequency` (Chapter 16) | One hue on the slider that sets a source going, on the fork's label, on the rings' spacing readout and on every Doppler and harmonic readout. The observed frequency is the same type as the source's and is told by its subscript; the two observers of the Doppler scene are told apart by position and label, never by a hue of their own |
 | Speed of sound $v_\text{w}$, the source and observer speeds $v_s$ and $v_\text{obs}$, the blood speed $v_\text{b}$, the rms speed $v_\text{rms}$, $v$ in $Z = \rho v$, $c$ | `velocity` | One hue; the arrow on a moving source or observer, the speed a wavefront's radius grows at, and the readout that writes $v_\text{w} = f\lambda$ or the Doppler ratio. Declared by Chapter 2 and used here by name |
 | Wavelength $\lambda$, $\lambda'$; the amplitude $X$ of an air element; a distance $d$ to an echo's reflector | `position` | One hue on the bracket between two compressions, along the tube where the standing wave's quarter-wavelengths are counted, and on the echo's distance. The tube's length $L$ is not a position of the wave and stays in ink (see below) |
-| Pressure amplitude $\Delta p$; the gauge pressure $P$ of the wave on the graph's axis; the force $F = PA$ on the eardrum | `pressure`, `force` | Pressure is Chapter 11's and wears its hue on the vertical axis of every gauge-pressure graph, its ticks and the amplitude bracket; force is bound by 17.1 alone if its eardrum figure draws the arrow $F = PA$. A compression is told by packing, never by a tint |
+| Pressure amplitude $\Delta p$; the gauge pressure $P$ of the wave on the graph's axis; the force $F = PA$ on the eardrum | `pressure`, `force` | Pressure is Chapter 11's and wears its hue on the vertical axis of every gauge-pressure graph, its ticks and the amplitude bracket; force is coloured by 17.1 alone if its eardrum figure draws the arrow $F = PA$. A compression is told by packing, never by a tint |
 | Temperature $T$ in $v_\text{w} = (331\ \text{m/s})\sqrt{T/273\ \text{K}}$ | `temperature` (Chapter 13) | One hue on the temperature slider and its readout; the air is never tinted warm or cold |
-| Density $\rho$ in $I = (\Delta p)^2/2\rho v_\text{w}$ and $Z = \rho v$ | `density` (Chapter 11) | Bound only where a figure states it; a medium's density is a label on the choice of medium, not a colour of the medium |
-| Power $P$ in $I = P/A$ | `power` (Chapter 7) | Bound only where a figure of 17.3 draws the power crossing an area |
+| Density $\rho$ in $I = (\Delta p)^2/2\rho v_\text{w}$ and $Z = \rho v$ | `density` (Chapter 11) | Coloured only where a figure states it; a medium's density is a label on the choice of medium, not a colour of the medium |
+| Power $P$ in $I = P/A$ | `power` (Chapter 7) | Coloured only where a figure of 17.3 draws the power crossing an area |
 | Time $t$; a period $T$ | `time` | Bind where a moving scene exposes the time since a pulse left or an echo's round trip |
 | Sound intensity level $\beta$ in dB, loudness in phons, the acoustic impedances $Z$, $Z_1$, $Z_2$, the intensity reflection coefficient $a$, the harmonic number $n$, the tube length $L$, the area $A$, the mass $m$, the cone angle $\theta$, the Boltzmann constant $k$, the Mach number, the medium's name | Untyped | Ink, including the sliders that set them and the equation symbols. The decibel axis of the ladder is ink beside an intensity axis in its hue |
 
@@ -50,27 +48,25 @@ arrow is the velocity hue and the frequency each observer counts is written
 in the frequency hue beside them. The observers themselves carry no type
 and no element and are told apart by label and position; the categorical
 palette is not needed for two people who are already on opposite sides of
-the picture.
-
-A page binds only what it draws. The expectation before the sections are
-built: 17.1 binds pressure, and position if its string figure brackets a
-wavelength, and force if the eardrum figure draws $F = PA$; 17.2 binds
-frequency, velocity, position and temperature; 17.3 binds intensity,
+the picture. The expectation before the sections are
+built: 17.1 colours pressure, and position if its string figure brackets a
+wavelength, and force if the eardrum figure draws $F = PA$; 17.2 colours
+frequency, velocity, position and temperature; 17.3 colours intensity,
 pressure, and power and density where a figure states $I = P/A$ or the
-pressure-amplitude form; 17.4 binds frequency and velocity, and position
-where a figure brackets the shortened wavelength; 17.5 binds frequency,
+pressure-amplitude form; 17.4 colours frequency and velocity, and position
+where a figure brackets the shortened wavelength; 17.5 colours frequency,
 velocity and position, and pressure where the noise-cancelling figure adds
-two gauge pressures; 17.6 binds frequency and intensity, and pressure and
-force where the middle ear's lever is drawn; 17.7 binds intensity, and
+two gauge pressures; 17.6 colours frequency and intensity, and pressure and
+force where the middle ear's lever is drawn; 17.7 colours intensity, and
 velocity, frequency and density where a figure computes $Z$ or the Doppler
-echo. No page binds a type merely because the chapter declares it, and the
-chapter pass records what the pages bound as built.
+echo. The
+chapter pass records what the pages coloured as built.
 
-What the pages bind as built, taken from the `draws` column of the figures
-each of them shows (chapter pass, 2026-09-14). The introduction binds
+What the pages colour as built, taken from the `draws` column of the figures
+each of them shows (chapter pass, 2026-09-14). The introduction colours
 nothing, as it was expected to.
 
-| Page | Types bound |
+| Page | Types coloured |
 |---|---|
 | 17.1 | frequency, pressure, position, force |
 | 17.2 | frequency, velocity, position, temperature, time |
@@ -80,16 +76,16 @@ nothing, as it was expected to.
 | 17.6 | frequency, intensity, pressure, force |
 | 17.7 | intensity, velocity, density, frequency, position, time |
 
-Four pages bound a type the expectation above did not name, and in each
-case a figure draws it. 17.1 binds frequency, because the string's own
+Four pages coloured a type the expectation above did not name, and in each
+case a figure draws it. 17.1 colours frequency, because the string's own
 frequency is a slider and the readout writes it beside the wavelength.
-17.2 and 17.7 bind time, because the bat's echo and the ultrasound pulse
-are both timed and their graphs carry a time axis. 17.5 binds temperature,
+17.2 and 17.7 colour time, because the bat's echo and the ultrasound pulse
+are both timed and their graphs carry a time axis. 17.5 colours temperature,
 because the tube that sounds a given note is drawn to the length the speed
-of sound at the temperature you set requires. 17.7 binds position, because
+of sound at the temperature you set requires. 17.7 colours position, because
 the wavelength in tissue and the depth a probe reaches are drawn on a
-scale of length. One type the expectation named is not bound: 17.3 does
-not bind power, since the figure that states $I = P/A$ writes the power in
+scale of length. One type the expectation named is not coloured: 17.3 does
+not colour power, since the figure that states $I = P/A$ writes the power in
 ink and colours only the intensity, the pressure amplitude, the density
 and the speed of sound.
 
@@ -101,6 +97,6 @@ draws a named gas (the helium of 17.5's voice problem) draws its atoms in
 instances that carry no type must be told apart and labels cannot do it
 alone (the two tubes of unequal length before one speaker in 17.5's AP
 item, if drawn; the three audiograms of 17.36, if redrawn as three curves
-on one axis), and never in a hue the page has bound. Turning colour off
+on one axis), and never in a category hue the figure draws. Turning colour off
 must leave the labels, the packing of the dots and the arrow directions
 sufficient to read every figure.

@@ -2,9 +2,7 @@
 
 Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7 and
-root rule 22 require. No figure hard-codes a hue, and every page binds only
-the union of the types its own figures draw, its sliders carry or its
-readouts state. The introduction binds none.
+root rule 22 require. No figure hard-codes a hue.
 
 ## The types this chapter adds
 
@@ -25,9 +23,9 @@ readouts state. The introduction binds none.
 | Depth, average depth, capillary rise, the height of a manometer column | `position` | Bind where a scene measures a depth or a height |
 | Area, volume, radius, wire length, mass, contact angle, specific gravity, the fraction submerged, pure ratios | Untyped | Ink, including their sliders and their appearance in the equations |
 
-## What each page binds
+## What each page colours
 
-| Page | Types bound |
+| Page | Types coloured |
 |---|---|
 | intro | none |
 | 11.1 | none. The phases are told by packing and by motion, not by colour, which is exactly rule 7's sentence; the atoms are drawn from the element palette `F.el` so that no phase box holds anonymous grey dots |
@@ -40,19 +38,18 @@ readouts state. The introduction binds none.
 | 11.8 | `surface-tension`, `pressure`, `force`, `density`, `position` |
 | 11.9 | `pressure`, `position`, `force` |
 
-A page binds fewer types than this only, never more, and the plan lists what
-it binds.
+The plan lists what each page colours.
 
 ## Families of rule 7 the chapter uses
 
-- **Type hues from the scheme**, bound per page as the table above says.
-  Where a page binds `pressure`, a field of little arrows drawn on the walls
+- **Type hues from the scheme**.
+  Where a page colours `pressure`, a field of little arrows drawn on the walls
   of a tire, on a swimmer's skin, on the sides of a tank or under the pistons
   of a hydraulic system takes the `pressure` hue, since a pressure is what
   each of them states, and the one arrow that is their effect on a chosen
   patch takes the `force` hue; that change of hue between the many small
   arrows and the one large one is the content of Figures 11.6, 11.7, 11.8
-  and 11.11 and is deliberate. 11.7 binds `force` and `density` only, as the
+  and 11.11 and is deliberate. 11.7 colours `force` and `density` only, as the
   table says, and its Figure 11.18 draws the two pushes on the cylinder's
   faces and their difference as the book draws them, three forces in the
   `force` hue, with no arrow field on the body.
@@ -71,7 +68,7 @@ it binds.
 - **The categorical palette `F.cat(i)`** for instances a figure must tell
   apart that carry no type and no element: the solids, liquids and gases of
   Table 11.1 on 11.2's density axis, and the three linings of an alveolus on
-  11.8's Figure 11.29, never in a hue the page has bound. The bars of 11.9's
+  11.8's Figure 11.29, never in a category hue the figure draws. The bars of 11.9's
   Table 11.5 figure are pressures and take the pressure hue, told apart by
   their names.
 

@@ -2,8 +2,7 @@
 
 Prepared 2026-09-28 in the chapter's prep pass, beside `config.md`. This chapter
 uses the book's declared types and the app's selected palette, as root rule 7 and
-root rule 22 require. It declares two types of its own, hard-codes no hue, and
-every page binds only the union of the types its own figures draw.
+root rule 22 require. It declares two types of its own, hard-codes no hue.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -12,17 +11,17 @@ every page binds only the union of the types its own figures draw.
 | Time $t$, half-life $t_{1/2}$, a lifetime | `time` | One hue; the half-life is a marked interval on the time axis |
 | Nuclear reaction energy $E$, binding energy BE and BE/$A$, decay and ionization energies, kinetic and potential energy of an α | `energy` | One hue; BE/$A$ keeps it (an energy per nucleon, a nucleon being a count) |
 | Nuclear radius $r$ and $r_0$, range of radiation, barrier thickness, range of the nuclear force | `position` | One hue |
-| Nuclear density | `density` | Bound on 31.3 alone |
-| Speed of α, β and γ, and $c$ | `velocity` | Bound where a figure draws or states a speed |
-| Momentum of the fragments of a decay | `momentum` | Bound on 31.4 if its decay figure draws the equal and opposite momenta |
-| Charge of a ray or a nucleus, $q_e$ | `charge` | Bound where a readout counts charge; the sign is told by the label, never a hue |
-| The deflecting magnetic field | `magnetic-field` | Bound on 31.1 |
-| Tube and dynode voltages, output current | `voltage`, `current` | Bound on 31.2; `current` on 31.7 for the STM |
+| Nuclear density | `density` | Coloured on 31.3 alone |
+| Speed of α, β and γ, and $c$ | `velocity` | Coloured where a figure draws or states a speed |
+| Momentum of the fragments of a decay | `momentum` | Coloured on 31.4 if its decay figure draws the equal and opposite momenta |
+| Charge of a ray or a nucleus, $q_e$ | `charge` | Coloured where a readout counts charge; the sign is told by the label, never a hue |
+| The deflecting magnetic field | `magnetic-field` | Coloured on 31.1 |
+| Tube and dynode voltages, output current | `voltage`, `current` | Coloured on 31.2; `current` on 31.7 for the STM |
 | Mass, $\Delta m$, $m_p$, $m_n$, $m_e$, the numbers $N$, $Z$, $A$, $\Delta N$, a fraction left, an abundance, a count of ion pairs | Untyped | Ink |
 
-Which section binds what:
+Which section colours what:
 
-| Section | Types bound |
+| Section | Types coloured |
 |---|---|
 | intro | none |
 | 31.1 | `energy`, `position`, `velocity`, `charge`, `magnetic-field` |
@@ -39,7 +38,7 @@ than any before it. Every particle with an identity is `F.el`: the proton
 α is drawn as two protons and two neutrons, never a coloured dot, and a nucleus
 is a packing of the two nucleon colours. The palette has no positron, neutrino
 or photon; until it does, a β⁺, a neutrino and a γ are told apart by
-`F.cat(i)` in a hue the page has not bound, each named by a label or hover. A γ
+`F.cat(i)` in a hue the page has not coloured, each named by a label or hover. A γ
 ray is not visible light and is never painted in a spectral colour. Type hues
 carry the typed quantities above; a nuclide on the chart of the nuclides is a
 place, not a quantity, and its stable or unstable state is told by fill (solid or

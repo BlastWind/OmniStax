@@ -2,9 +2,7 @@
 
 Prepared 2026-09-14. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7
-requires, and declares no type of its own. No figure hard-codes hues, and
-every page binds only the union of the types its own figures actually draw.
-The introduction binds none.
+requires, and declares no type of its own. No figure hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -32,13 +30,13 @@ ink, and for $e$ and $\sigma$ in the Stefan-Boltzmann law, where the bars of
 emitted and absorbed power carry the colour and the two constants do not. The
 case for this is in `exploration.md`.
 
-Heat in an amount and heat at a rate are two types, and a page binds the one
+Heat in an amount and heat at a rate are two types, and a page colours the one
 it draws. 14.1, 14.2 and 14.3 are about amounts: a bar of $Q$, the heat a
 phase change costs, the heat one body loses and another gains, all `energy`.
 14.5, 14.6 and 14.7 are about rates: every law they state is for $Q/t$ in
 watts, and the current, the gauge and the number are `power`. A page that
 draws both, such as 14.5 where a rate is multiplied by a day to melt a mass
-of ice, binds both and the readout shows the multiplication with each side in
+of ice, colours both and the readout shows the multiplication with each side in
 its own hue.
 
 A phase and a temperature are told by packing and by bars, never by tint.
@@ -51,20 +49,17 @@ contact surface are the same particles at two average speeds, not two
 colours. The visible band of 14.29's spectrum is a colour that is the physical
 fact, drawn as the fact from violet to red; the three curves at 3000 K,
 4000 K and 6000 K are instances of one untyped quantity, the intensity, told
-apart with `F.cat(i)`, never in a hue the page has bound, and a temperature
+apart with `F.cat(i)`, never in a category hue the figure draws, and a temperature
 slider that replaces the three curves with one moving curve wears the
-temperature hue on the slider and the readout alone.
-
-A page binds only what it draws. 14.1 binds energy, temperature and time;
+temperature hue on the slider and the readout alone. 14.1 binds energy, temperature and time;
 14.2 binds energy and temperature; 14.3 binds energy and temperature; 14.4,
-whose one figure sorts three mechanisms and states no quantity, binds nothing
+whose one figure sorts three mechanisms and states no quantity, colours nothing
 unless its heat arrows are labelled $Q$, in which case energy alone; 14.5
-binds power, temperature and, where the ice-box example is drawn, energy and
-time; 14.6 binds power, temperature and time, and density and velocity where
-a figure states them; 14.7 binds power and temperature, and energy and time
+colours power, temperature and, where the ice-box example is drawn, energy and
+time; 14.6 colours power, temperature and time, and density and velocity where
+a figure states them; 14.7 colours power and temperature, and energy and time
 through its readouts, which write every rate as $\kQh/\kt$ under the rule
-for the fraction above. No page binds a type merely because the chapter uses
-it.
+for the fraction above.
 
 All canvas colours come from `C(type)` and `PAL`. Turning colour off must
 leave labels, bar heights, arrow directions and packing sufficient to

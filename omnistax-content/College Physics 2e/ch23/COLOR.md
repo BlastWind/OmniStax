@@ -2,9 +2,7 @@
 
 Prepared 2026-09-15. Approved with `config.md`. This chapter uses the book's
 declared physical types and the app's selected palette, as root rule 7
-requires, and adds two types of its own. No figure hard-codes hues, and every
-page binds only the union of the types its own figures actually draw. The
-introduction binds none.
+requires, and adds two types of its own. No figure hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -63,36 +61,35 @@ against frequency, a power against frequency — it wears its own hue too. Where
 two curves of one type must be told apart, as the two resistances of the
 resonance curve in Figure 23.48 must, the second is dashed, not recoloured.
 
-A page binds only what it draws, and these are the bindings the twelve pages
+These are the colours the twelve pages
 took. The list below is the build as it stands, not the forecast the plan
 opened with; where a page took a type this file had not given it, the reason is
-in that section's `plan.md` and the type is named here. The introduction binds
-none. 23.1 binds `magnetic-flux`, `magnetic-field`, `voltage`, `velocity` (the
+in that section's `plan.md` and the type is named here. 23.1 colours `magnetic-flux`, `magnetic-field`, `voltage`, `velocity` (the
 speed of the magnet moved into the coil) and `angular-rate` (the rate the coil
-is turned). 23.2 binds `magnetic-flux`, `magnetic-field`, `voltage`, `current`
-and `time`. 23.3 binds `magnetic-flux`, `magnetic-field`, `voltage`, `current`,
+is turned). 23.2 colours `magnetic-flux`, `magnetic-field`, `voltage`, `current`
+and `time`. 23.3 colours `magnetic-flux`, `magnetic-field`, `voltage`, `current`,
 `velocity`, `force`, `position`, `time` (the time axis of both rail figures)
 and `power` (the power the tether converts from the shuttle's orbit). 23.4
-binds `magnetic-field`, `current`, `force`, `velocity`, `position` and `time`
-(the displacement of a damped bob graphed against it). 23.5 binds
+colours `magnetic-field`, `current`, `force`, `velocity`, `position` and `time`
+(the displacement of a damped bob graphed against it). 23.5 colours
 `magnetic-flux`, `magnetic-field`, `voltage`, `angular-rate`, `time` and
 `velocity` (the arrows of Figure 23.20, folded into this page's generator).
-23.6 binds `voltage`, `current`, `resistance`, `power` and `angular-rate`. 23.7
-binds `magnetic-flux`, `voltage`, `current`, `power`, `resistance` (the line
+23.6 colours `voltage`, `current`, `resistance`, `power` and `angular-rate`. 23.7
+colours `magnetic-flux`, `voltage`, `current`, `power`, `resistance` (the line
 resistance on a slider and the loss it states) and `time` (the time axis of the
-switched-DC figure). 23.8 binds `voltage`, `current`, `resistance` and
+switched-DC figure). 23.8 colours `voltage`, `current`, `resistance` and
 `magnetic-field` (the field the live and neutral wires raise inside a ground
 fault interrupter's core, which is what vanishes when the two currents are
-equal). 23.9 binds `inductance`, `magnetic-flux`, `voltage`, `current`,
+equal). 23.9 colours `inductance`, `magnetic-flux`, `voltage`, `current`,
 `magnetic-field`, `energy` and `time` (the switching interval of the
-self-inductance and camera-flash figures). 23.10 binds `inductance`,
-`resistance`, `current`, `voltage` and `time`. 23.11 binds `inductance`,
+self-inductance and camera-flash figures). 23.10 colours `inductance`,
+`resistance`, `current`, `voltage` and `time`. 23.11 colours `inductance`,
 `capacitance`, `resistance`, `frequency`, `voltage`, `current` and `time`.
-23.12 binds `inductance`, `capacitance`, `resistance`, `frequency`, `voltage`,
+23.12 colours `inductance`, `capacitance`, `resistance`, `frequency`, `voltage`,
 `current`, `power`, `time` and `energy`.
 
 The categorical palette `F.cat(i)` is used on one page only, and in no hue that
-page has bound: the three pendulum bobs of 23.4, solid, slotted and insulating,
+page has coloured: the three pendulum bobs of 23.4, solid, slotted and insulating,
 which carry no type of their own and must be told apart. The two other places
 this file allowed it did not need it. 23.12's resonance curve tells its second
 resistance by a dash, as this file preferred. 23.7's power distribution line

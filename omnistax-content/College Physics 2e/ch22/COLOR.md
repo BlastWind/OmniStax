@@ -1,13 +1,12 @@
 # Chapter 22 colour plan
 
 Prepared 2026-09-15 and settled by the chapter pass on the same day, once the
-eleven sections were built: the bindings below are the ones the pages took, the
+eleven sections were built: the colours below are the ones the pages took, the
 three kinds of small body the chapter draws are told apart under the element
 palette, and the sense of a field line round a current is written down at the
 end. This chapter uses the book's declared physical types and the app's
 selected palette, as root rule 7 requires, and adds one type of its own. No
-figure hard-codes hues, and every page binds only the union of the types its
-own figures actually draw. The introduction binds none.
+figure hard-codes hues.
 
 | Quantity | Type | Treatment |
 |---|---|---|
@@ -72,33 +71,33 @@ the chapter that draws such a carrier.
 Two instances of one element are told apart by the categorical palette. Two
 isotopes of oxygen share one element colour, so `F.el` cannot separate the arcs
 they turn, and 22.11's mass spectrometer and 22.5's separation problem draw
-theirs with `F.cat(0)` and `F.cat(1)`, in hues neither page has bound. That is
+theirs with `F.cat(0)` and `F.cat(1)`, in hues neither page has coloured. That is
 what the paragraph on `F.cat` below says, and it governs the ions of 22.11
 wherever the two readings of this file might once have differed.
 
-A page binds only what it draws, and these are the bindings the eleven pages
-took when they were built. 22.1 binds `force`, the pull and the push between two
-magnets; nothing else on that page is a typed quantity. 22.2 binds
+These are the colours the eleven pages
+took when they were built. 22.1 colours `force`, the pull and the push between two
+magnets; nothing else on that page is a typed quantity. 22.2 colours
 `magnetic-field`, `current` and `temperature`, the last of them because the
 domains of the Curie figure are taken apart by heat and the temperature is on a
-slider and in the readout. 22.3 binds `magnetic-field` and `current`. 22.4 binds
-`magnetic-field`, `force`, `velocity` and `charge`. 22.5 binds
-`magnetic-field`, `force`, `velocity`, `charge` and `position`. 22.6 binds
+slider and in the readout. 22.3 colours `magnetic-field` and `current`. 22.4 colours
+`magnetic-field`, `force`, `velocity` and `charge`. 22.5 colours
+`magnetic-field`, `force`, `velocity`, `charge` and `position`. 22.6 colours
 `magnetic-field`, `voltage`, `electric-field`, `velocity`, `charge`, `current`
 and `force`, the last of them because the whole of the section is the balance of
-two forces and both are drawn as arrows. 22.7 binds `magnetic-field`, `force`
-and `current`. 22.8 binds `magnetic-field`, `torque`, `force` and `current`.
-22.9 binds `magnetic-field`, `current` and `position`. 22.10 binds
-`magnetic-field`, `force`, `current` and `position`. 22.11 binds
+two forces and both are drawn as arrows. 22.7 colours `magnetic-field`, `force`
+and `current`. 22.8 colours `magnetic-field`, `torque`, `force` and `current`.
+22.9 colours `magnetic-field`, `current` and `position`. 22.10 colours
+`magnetic-field`, `force`, `current` and `position`. 22.11 colours
 `magnetic-field`, `velocity`, `electric-field`, `voltage`, `position`, `force`
 and `charge`, the last two because the velocity selector draws the electric and
 the magnetic force on one ion as opposed arrows and the charge is what cancels
 between them. The three additions, `temperature` in 22.2 and `force` and
-`charge` where they are named above, are bindings and not new hues: each is a
+`charge` where they are named above, are colours and not new hues: each is a
 type the book already declares, taken because the page draws it.
 
 The categorical palette `F.cat(i)` is used on two pages only, and never in
-a hue the page has bound: the two isotopes that part along two arcs in 22.11's
+a category hue the figure draws: the two isotopes that part along two arcs in 22.11's
 mass spectrometer, which carry no type of their own and must be told apart, and
 the two ions of 22.5's separation problem. The two wires of 22.10 are told
 apart by their labels 1 and 2 and by position, not by colour, since both wear
