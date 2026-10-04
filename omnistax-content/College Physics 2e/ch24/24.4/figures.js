@@ -1,8 +1,8 @@
-/* Figures for section 24.4 Energy in Electromagnetic Waves. The page binds
-   intensity, electric-field, magnetic-field, velocity and power, which is what
-   ch24/COLOR.md gives 24.4. The area a power is spread over, the permittivity and
-   the permeability of free space, every length and every count are untyped and in
-   ink, as are the oven, the frame of every figure and every name on it. Nothing
+/* Figures for section 24.4 Energy in Electromagnetic Waves. Intensity, the two
+   fields, velocity, power, the sides of the heated patch and its area wear their
+   category hues; the two waves of Figure 24.22 and the oven of Example 24.4 are
+   the section's referents. The permittivity and the permeability of free space
+   and every count are in ink, as are the frame of every figure. Nothing
    here moves: the energy a wave carries, the intensity it delivers and the field
    strengths that follow from it are all states of the wave, with no period and no
    clock in them, so every figure registers no cycle, takes no transport and
@@ -84,7 +84,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     return { E1, E2, B1: E1 / CLIGHT, B2: E2 / CLIGHT, I1: iave(E1), I2: iave(E2), k: E2 / E1 };
   };
 
-  function panel(ctx, y0, E0, B0, name, names) {
+  function panel(ctx, y0, E0, B0, name, names, rc) {
     const EC = C('electric-field'), BC = C('magnetic-field'), VC = C('velocity');
     const PT = (u, ey, bz) => [BX0 + u * (BX1 - BX0) + bz * KX, y0 - ey + bz * KY];
     const path = (f, color, w) => {
@@ -103,7 +103,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     }
     arrow(ctx, BX1 + 44, y0, BX1 + 96, y0, VC, 5);
     text(ctx, 'c', BX1 + 108, y0 - 12, VC, { size: 24, weight: 600, align: 'left' });
-    text(ctx, name, BX0 - 40, y0, PAL.muted, { size: 19, align: 'right' });
+    text(ctx, name, BX0 - 40, y0, rc, { size: 19, align: 'right' });
     if (!names) return;
     /* the two fields are named once, on the first wave, since a kind is labelled
        once and on one representative (rule 26.7) */
@@ -114,17 +114,17 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
   }
 
   function drawBars(ctx, st) {
-    const IC = C('intensity'), BX = 420, LEN = 760;
-    text(ctx, 'the energy each wave carries, as its average intensity', BX, 640, PAL.muted, { size: 19, align: 'left' });
-    text(ctx, 'the first wave', BX - 22, 692, PAL.muted, { size: 18, align: 'right' });
-    text(ctx, 'the second wave', BX - 22, 748, PAL.muted, { size: 18, align: 'right' });
-    bar(ctx, BX, 692, LEN, st.I1, I_MAX, IC, fmt(st.I1, 0) + ' W/m\u00B2');
-    bar(ctx, BX, 748, LEN, st.I2, I_MAX, IC, fmt(st.I2, 0) + ' W/m\u00B2');
+    const IC = C('intensity'), W1 = F.ref('wave-1'), W2 = F.ref('wave-2'), BX = 420, LEN = 760;
+    text(ctx, 'the energy each wave carries, as its average intensity', BX, 640, IC, { size: 19, align: 'left' });
+    text(ctx, 'the first wave', BX - 22, 692, W1, { size: 18, align: 'right' });
+    text(ctx, 'the second wave', BX - 22, 748, W2, { size: 18, align: 'right' });
+    bar(ctx, BX, 692, LEN, st.I1, I_MAX, W1, fmt(st.I1, 0) + ' W/m\u00B2', IC);
+    bar(ctx, BX, 748, LEN, st.I2, I_MAX, W2, fmt(st.I2, 0) + ' W/m\u00B2', IC);
   }
 
   function drawFlat(ctx, st) {
-    panel(ctx, 200, st.E1, st.B1, 'the first wave', true);
-    panel(ctx, 460, st.E2, st.B2, 'the second wave', false);
+    panel(ctx, 200, st.E1, st.B1, 'the first wave', true, F.ref('wave-1'));
+    panel(ctx, 460, st.E2, st.B2, 'the second wave', false, F.ref('wave-2'));
     drawBars(ctx, st);
   }
 
@@ -233,9 +233,9 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
    heated patch move and the three results answer, with the book's own
    1.00 kW over 30.0 by 40.0 cm as the state the figure opens on. The oven is
    a setting and not a motion, so the figure registers no cycle and takes no
-   transport (rule 14). The oven, its floor and the two dimensions are untyped
-   and drawn in ink; only the power arriving, the intensity on the patch and
-   the two field amplitudes carry a hue.
+   transport (rule 14). The oven is the section's referent; the power
+   arriving, the two sides of the patch, the intensity on it and the two field
+   amplitudes wear their category hues.
    Scales: the floor 545 units to the metre, one fixed scale taken from the
    0.60 m the sliders reach; the three bars 420 units at 25 kW/m², at
    5.00 kV/m and at 1.67 × 10⁻⁵ T, which are the values the book's own oven
@@ -245,8 +245,8 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
 (function () {
   const d = sim('sim-oven-intensity', 620);
   const pS = ctl(d.controls, { label: '\\kP', cls: 'power', min: 100, max: 2000, step: 50, value: 1000, unit: 'W', dec: 0, aria: 'the power the oven puts into the heated patch' });
-  const wS = ctl(d.controls, { label: '\\text{width}', cls: '', min: 0.10, max: 0.60, step: 0.01, value: 0.40, unit: 'm', dec: 2, aria: 'the width of the heated patch' });
-  const hS = ctl(d.controls, { label: '\\text{depth}', cls: '', min: 0.10, max: 0.60, step: 0.01, value: 0.30, unit: 'm', dec: 2, aria: 'the depth of the heated patch' });
+  const wS = ctl(d.controls, { label: '\\text{width}', cls: 'position', min: 0.10, max: 0.60, step: 0.01, value: 0.40, unit: 'm', dec: 2, aria: 'the width of the heated patch' });
+  const hS = ctl(d.controls, { label: '\\text{depth}', cls: 'position', min: 0.10, max: 0.60, step: 0.01, value: 0.30, unit: 'm', dec: 2, aria: 'the depth of the heated patch' });
 
   const BOX = { l: 170, r: 640, t: 150, b: 510 };
   const S = fitScale(BOX, { w: 0.72, h: 0.72 });        /* 500 units to the metre, fixed so the cavity is wider than the greatest patch the sliders reach */
@@ -259,9 +259,9 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
   };
 
   function drawOven(ctx, st) {
-    const IC = C('intensity'), PC = C('power');
+    const IC = C('intensity'), PC = C('power'), XC = C('position'), OC = F.ref('oven');
     /* the cavity floor, seen from above */
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.ink, 0.04);
+    ctx.save(); ctx.strokeStyle = OC; ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.ink, 0.04);
     ctx.beginPath(); ctx.roundRect(CX - 0.36 * S, CY - 0.36 * S, 0.72 * S, 0.72 * S, 10); ctx.fill(); ctx.stroke(); ctx.restore();
     /* the magnetron behind the right wall, and the microwaves it sends in */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.fillStyle = PAL.soft;
@@ -277,13 +277,13 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     text(ctx, fmt(st.P, 0) + ' W', CX + 0.36 * S + 43, CY - 28, PC, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     const iTxt = fmt(st.I, 0) + ' W/m\u00B2';
     const iW = F.measure(ctx, iTxt, { size: 21, weight: 600 });
-    hbracket(ctx, CX - pw / 2, CX + pw / 2, CY + ph / 2 + 26, PAL.muted, fmt(st.w, 2) + ' m', { side: 'below', size: 19 });
+    hbracket(ctx, CX - pw / 2, CX + pw / 2, CY + ph / 2 + 26, XC, fmt(st.w, 2) + ' m', { side: 'below', size: 19 });
     /* the intensity sits in the patch where the patch is wide enough to hold it, and below the
        width bracket where it is not, so that it never runs over the depth bracket's number */
     if (pw > iW + 28) text(ctx, iTxt, CX, CY, IC, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     else text(ctx, iTxt, CX + pw / 2 + 12, CY, IC, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
-    vbracket(ctx, CX - pw / 2 - 26, CY - ph / 2, CY + ph / 2, PAL.muted, fmt(st.h, 2) + ' m', -1, { side: 'left', size: 19 });
-    text(ctx, 'the oven floor, seen from above', CX, BOX.b + 74, PAL.muted, { size: 17, align: 'center' });
+    vbracket(ctx, CX - pw / 2 - 26, CY - ph / 2, CY + ph / 2, XC, fmt(st.h, 2) + ' m', -1, { side: 'left', size: 19 });
+    text(ctx, 'the oven floor, seen from above', CX, BOX.b + 74, OC, { size: 17, align: 'center' });
   }
 
   function drawBars(ctx, st) {
@@ -313,7 +313,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     drawOven(ctx, st);
     drawBars(ctx, st);
     readout(d.readout,
-      `\\kIntens = \\frac{\\kP}{A} = \\frac{${fmt(st.P, 0)}\\ \\text{W}}{${fmt(st.A, 3)}\\ \\text{m}^2} = ${sciTex(st.I, 2)}\\ \\text{W/m}^2`,
+      `\\kIntens = \\frac{\\kP}{\\karea} = \\frac{${fmt(st.P, 0)}\\ \\text{W}}{${fmt(st.A, 3)}\\ \\text{m}^2} = ${sciTex(st.I, 2)}\\ \\text{W/m}^2`,
       `Taking this as the average intensity and rearranging the first expression gives the electric amplitude, ${sci(st.E0, 2)} V/m, and dividing that by the speed of light gives the magnetic amplitude, ${sci(st.B0, 2)} T. The peak intensity is twice the average, ${sci(2 * st.I, 2)} W/m\u00B2. As always, a relatively strong electric field is accompanied by a relatively weak magnetic field, because the speed of light is a large number.`);
   }
 

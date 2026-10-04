@@ -3,8 +3,8 @@
    frequency, which is what ch24/COLOR.md gives 24.2. The index of refraction, the
    metre ruler under a scene, every count and every name are untyped and in ink;
    the sign of a charge is told by the glyph drawn on it and never by a hue; the
-   two receivers of Figure 24.7 are told apart by their shapes and their names,
-   not by a colour the page has bound. Three of the four figures move, because
+   antenna, its generator and the two receivers of Figure 24.7 are the section's
+   referents and wear their referent colours. Three of the four figures move, because
    three of the section's ideas have a period in them: the charges run up and down
    the antenna, the current that makes the magnetic part runs with them, and the
    wave itself travels. The ratio of the two field strengths is a state of the
@@ -78,13 +78,14 @@ function sciTex(x, dp) {
     const Ehere = fieldAt(st, 0);
 
     /* the antenna, its generator and the standing wave of charge along it */
-    line(ctx, AX, ATOP, AX, ABOT, PAL.ink, 6);
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    const AC = F.ref('antenna'), GC = F.ref('generator');
+    line(ctx, AX, ATOP, AX, ABOT, AC, 6);
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = GC; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(AX, MID, 26, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = GC; ctx.lineWidth = 2.5; ctx.beginPath();
     for (let i = 0; i <= 28; i++) { const t = i / 28, xx = AX - 15 + 30 * t, yy = MID - 9 * Math.sin(TAU * t); if (i) ctx.lineTo(xx, yy); else ctx.moveTo(xx, yy); }
     ctx.stroke(); ctx.restore();
-    text(ctx, 'the antenna', AX, ABOT + 30, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the antenna', AX, ABOT + 30, AC, { size: 19, align: 'center' });
     for (let i = 0; i <= 8; i++) {
       const yy = ATOP + 10 + (i * (ABOT - ATOP - 20)) / 8;
       const s = -Math.cos(TAU * st.tau) * ((MID - yy) / HALF);
@@ -244,9 +245,9 @@ function sciTex(x, dp) {
     });
 
     /* the antenna, its generator, its charge and the current in it */
-    poly(ctx, [[0, -AH, 0], [0, AH, 0]], PAL.ink, 6);
+    poly(ctx, [[0, -AH, 0], [0, AH, 0]], F.ref('antenna'), 6);
     const g = P([0, 0, 0]);
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('generator'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(g[0], g[1], 24, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     [[AH - 18, -st.E], [-AH + 18, st.E]].forEach(([y, s]) => {
       if (Math.abs(s) < 0.08) return;
@@ -368,6 +369,7 @@ function sciTex(x, dp) {
     'loop-b': 'a loop with the magnetic field passing through it',
     'loop-edge': 'a loop turned edge-on to the magnetic field',
   };
+  const recColor = (r) => (r.startsWith('loop') ? F.ref('receiver-loop') : r.startsWith('wire') ? F.ref('receiver-wire') : PAL.muted);
   function verdict(st) {
     if (st.rec === 'none') return 'nothing is held in the beam to be driven';
     if (st.rec === 'wire-e') return 'the field pushes the charges along the wire, so this wire is driven hardest';
@@ -417,8 +419,8 @@ function sciTex(x, dp) {
     /* the line of travel, the antenna it comes from and the arrow that says which way it goes */
     const axis = F.mesh.polyline(g3, [[X0 - 0.5, 0, 0], [X1 + 0.35, 0, 0]], PAL.rule);
     paint.push({ m: axis.material, col: () => PAL.rule });
-    S.ant = F.mesh.stick(g3, [X0 - 0.42, -0.8, 0], [X0 - 0.42, 0.8, 0], 0.026, PAL.ink);
-    paint.push({ m: S.ant.material, col: () => PAL.ink });
+    S.ant = F.mesh.stick(g3, [X0 - 0.42, -0.8, 0], [X0 - 0.42, 0.8, 0], 0.026, F.ref('antenna'));
+    paint.push({ m: S.ant.material, col: () => F.ref('antenna') });
     V.pickable(S.ant, 'the antenna the wave is leaving');
     S.c = vec(g3, VC, 0.024, 'c, the direction the wave travels, at the speed of light');
     S.c.set([X1 + 0.05, 0, 0], [X1 + 0.62, 0, 0]);
@@ -434,12 +436,12 @@ function sciTex(x, dp) {
     }
     /* the receiver held in the beam */
     const RX = X0 + REC_M * UPM;
-    S.wire = F.mesh.stick(g3, [RX, -0.75, 0], [RX, 0.75, 0], 0.030, PAL.ink);
-    paint.push({ m: S.wire.material, col: () => PAL.ink });
+    S.wire = F.mesh.stick(g3, [RX, -0.75, 0], [RX, 0.75, 0], 0.030, F.ref('receiver-wire'));
+    paint.push({ m: S.wire.material, col: () => F.ref('receiver-wire') });
     V.pickable(S.wire, 'the receiving wire');
-    S.loopXY = F.mesh.polyline(g3, ringPts('xy', 0.62, RX), PAL.ink);
-    S.loopXZ = F.mesh.polyline(g3, ringPts('xz', 0.62, RX), PAL.ink);
-    paint.push({ m: S.loopXY.material, col: () => PAL.ink }); paint.push({ m: S.loopXZ.material, col: () => PAL.ink });
+    S.loopXY = F.mesh.polyline(g3, ringPts('xy', 0.62, RX), F.ref('receiver-loop'));
+    S.loopXZ = F.mesh.polyline(g3, ringPts('xz', 0.62, RX), F.ref('receiver-loop'));
+    paint.push({ m: S.loopXY.material, col: () => F.ref('receiver-loop') }); paint.push({ m: S.loopXZ.material, col: () => F.ref('receiver-loop') });
     S.RX = RX;
     /* the names: five things carry one each, which is under the six of rule 26.7 */
     S.lab = {
@@ -449,7 +451,7 @@ function sciTex(x, dp) {
       rec: V.label('', [RX, -1.28, 0], g3, -6),
     };
     S.lab.E.style.color = C('electric-field'); S.lab.B.style.color = C('magnetic-field'); S.lab.c.style.color = C('velocity');
-    [S.lab.ant, S.lab.rec].forEach((e) => { e.style.background = 'transparent'; e.style.border = '0'; e.style.fontWeight = '500'; e.style.color = PAL.muted; });
+    [S.lab.ant, S.lab.rec].forEach((e) => { e.style.background = 'transparent'; e.style.border = '0'; e.style.fontWeight = '500'; });
     V.invalidate();
   }
 
@@ -457,6 +459,7 @@ function sciTex(x, dp) {
     if (!S) return;
     paint.forEach((p) => { try { p.m.color.set(p.col()); } catch (e) { /* a palette value the renderer cannot read is left as it was */ } });
     S.lab.E.style.color = C('electric-field'); S.lab.B.style.color = C('magnetic-field'); S.lab.c.style.color = C('velocity');
+    S.lab.ant.style.color = F.ref('antenna'); S.lab.rec.style.color = recColor(st.rec);
     const kE = (EA * st.E0) / E_MAX, kB = (BA * st.E0) / E_MAX;
     const ep = [], bp = [];
     for (let i = 0; i <= N_CURVE; i++) {
@@ -508,8 +511,8 @@ function sciTex(x, dp) {
     const a0 = PT(X0 - 0.5, 0, 0), a1 = PT(X1 + 0.5, 0, 0);
     line(ctx, a0[0], a0[1], a1[0], a1[1], alpha(PAL.ink, 0.45), 2);
     const t0 = PT(X0 - 0.42, -0.8, 0), t1 = PT(X0 - 0.42, 0.8, 0);
-    line(ctx, t0[0], t0[1], t1[0], t1[1], PAL.ink, 6);
-    text(ctx, 'the antenna', t0[0], t0[1] + 26, PAL.muted, { size: 18, align: 'center' });
+    line(ctx, t0[0], t0[1], t1[0], t1[1], F.ref('antenna'), 6);
+    text(ctx, 'the antenna', t0[0], t0[1] + 26, F.ref('antenna'), { size: 18, align: 'center' });
     path((m) => PT(X0 + m * UPM, kE * shapeOf(st, m), 0), EC, 5);
     path((m) => PT(X0 + m * UPM, 0, kB * shapeOf(st, m)), BC, 5);
     for (let i = 0; i < N_COMB; i++) {
@@ -544,7 +547,7 @@ function sciTex(x, dp) {
     const rp = pinned(ctx, box, X, Y, REC_M, st.E0 * shapeOf(st, REC_M), C('electric-field'));
     if (!rp.out && st.rec !== 'none') {
       line(ctx, rp.x, box.t, rp.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
-      text(ctx, 'the receiver', rp.x, box.t + 18, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
+      text(ctx, 'the receiver', rp.x, box.t + 18, recColor(st.rec), { size: 17, align: 'center', bg: PAL.panel });
     }
   }
 

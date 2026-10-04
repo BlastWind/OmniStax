@@ -36,7 +36,7 @@ function arcArrow(ctx, cx, cy, R, a0, a1, color, w) {
 }
 /* a charge drawn as a ring with its sign inside; the sign is told by the label, never by a hue */
 function charge(ctx, x, y, positive, r) {
-  dot(ctx, x, y, PAL.ink, false, r);
+  dot(ctx, x, y, C('charge'), false, r);
   text(ctx, positive ? '+' : '−', x, y - 1, PAL.ink, { size: r * 1.6, weight: 600, align: 'center' });
 }
 /* a spark across a gap: a jagged thread from one end to the other, with a few short flashes about it */
@@ -138,7 +138,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
     const bc = C('magnetic-field'), levels = Math.abs(s), CX = 700, CY = 360, HW = 132, HH = 38;
     const northRight = s > 0, dir = northRight ? -1 : 1;
     /* the magnet, drawn first so that the lines can be seen running through it */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('magnet'); ctx.lineWidth = 4;
     ctx.beginPath(); ctx.rect(CX - HW, CY - HH, 2 * HW, 2 * HH); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(CX, CY - HH); ctx.lineTo(CX, CY + HH); ctx.stroke(); ctx.restore();
     for (let k = 0; k < levels; k++) {
@@ -159,7 +159,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
     }
     text(ctx, northRight ? 'S' : 'N', CX - HW / 2, CY, PAL.ink, { size: 30, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, northRight ? 'N' : 'S', CX + HW / 2, CY, PAL.ink, { size: 30, weight: 600, align: 'center', bg: PAL.panel });
-    label(ctx, 'the magnet', CX - HW, CY + HH, { side: 'left', gap: 34, size: 20 });
+    label(ctx, 'the magnet', CX - HW, CY + HH, { side: 'left', gap: 34, color: F.ref('magnet'), size: 20 });
     const extMax = 44 + (levels - 1) * 46, bhMax = 60 + (levels - 1) * 42;
     label(ctx, 'the magnetic field lines', CX - HW - extMax + 26, CY - bhMax * 0.55, { side: 'left', gap: 24, color: bc, size: 20 });
   }
@@ -173,7 +173,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
       intoPage(ctx, x, y, 13, bc);
     }
     /* the loop of wire */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(CX, CY, R, 0, TAU); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('loop'); ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(CX, CY, R, 0, TAU); ctx.stroke(); ctx.restore();
     /* the induced electric field round it. A field into the page that is growing induces a field
        that drives charge counterclockwise as the reader sees it, which on a canvas whose y runs
        downward is a sweep of decreasing angle. */
@@ -182,7 +182,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
       for (let k = 0; k < 4; k++) { const a0 = (k * TAU) / 4 + 0.2; arcArrow(ctx, CX, CY, R - 30, a0, a0 + dir * span, ec, 5); }
       label(ctx, 'the induced electric field', CX + R, CY, { side: 'right', gap: 36, color: ec, size: 20 });
     }
-    label(ctx, 'the loop of wire', CX, CY - R, { side: 'above', gap: 26, size: 20 });
+    label(ctx, 'the loop of wire', CX, CY - R, { side: 'above', gap: 26, color: F.ref('loop'), size: 20 });
     label(ctx, 'the magnetic field, into the page', CX, CY + R, { side: 'below', gap: 30, color: bc, size: 20 });
   }
 
@@ -276,8 +276,8 @@ function spark(ctx, x1, y1, x2, y2, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-hertz', 560);
-  const Ls = ctl(d.controls, { label: 'L', cls: '', min: 100, max: 300, step: 10, value: 200, unit: 'nH', dec: 0, aria: 'the inductance of the transmitting circuit' });
-  const Cs = ctl(d.controls, { label: 'C', cls: '', min: 10, max: 60, step: 2, value: 50, unit: 'pF', dec: 0, aria: 'the capacitance of the transmitting circuit' });
+  const Ls = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 100, max: 300, step: 10, value: 200, unit: 'nH', dec: 0, aria: 'the inductance of the transmitting circuit' });
+  const Cs = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 10, max: 60, step: 2, value: 50, unit: 'pF', dec: 0, aria: 'the capacitance of the transmitting circuit' });
   const tune = select(d.controls, { label: '\\text{the far loop}', options: [{ value: 'on', label: 'tuned to Loop 1' }, { value: 'off', label: 'tuned elsewhere' }], value: 'on', aria: 'whether the receiving circuit is tuned to the transmitter' });
   /* The laboratory is 12.0 m across, which fixes the scale of the drawing once and for all.
      The sliders reach 8.00 m of wavelength at most, which is 487 units, and the wave is drawn
@@ -288,8 +288,8 @@ function spark(ctx, x1, y1, x2, y2, color) {
   /* The driving circuit, drawn as the book draws it: an alternating source, a resistor, a
      coil and a capacitor round one rectangle, with the transmitting loop wired across it. */
   function circuit(ctx) {
-    const L = 60, Rt = 212, T = 180, B = 360;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    const L = 60, Rt = 212, T = 180, B = 360, rc = F.ref('circuit-1');
+    ctx.save(); ctx.strokeStyle = rc; ctx.lineWidth = 4;
     ctx.beginPath();
     ctx.moveTo(L, 232); ctx.lineTo(L, T); ctx.lineTo(112, T);          /* up the left side and along the top to the resistor */
     ctx.moveTo(182, T); ctx.lineTo(Rt, T); ctx.lineTo(Rt, 224);        /* on to the corner and down to the coil */
@@ -325,9 +325,9 @@ function spark(ctx, x1, y1, x2, y2, color) {
     ctx.stroke(); ctx.restore();
   }
   /* a loop of wire with a gap in it, the gap centred on the canvas angle `gap` */
-  function wireLoop(ctx, cx, half) {
+  function wireLoop(ctx, cx, half, color) {
     const a = half === 'left' ? Math.PI : 0, w = 0.21;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 8;
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 8;
     ctx.beginPath(); ctx.arc(cx, Y0, R, a + w, a - w + TAU); ctx.stroke(); ctx.restore();
     const e1 = { x: cx + R * Math.cos(a - w), y: Y0 + R * Math.sin(a - w) };
     const e2 = { x: cx + R * Math.cos(a + w), y: Y0 + R * Math.sin(a + w) };
@@ -342,16 +342,16 @@ function spark(ctx, x1, y1, x2, y2, color) {
     const tuned = tune.value === 'on';
     /* the transmitter: the circuit, its leads, the loop and the spark across its gap */
     circuit(ctx);
-    const t = wireLoop(ctx, X1, 'left');
+    const t = wireLoop(ctx, X1, 'left', F.ref('loop-1'));
     leads(ctx, t[0], t[1]);
     spark(ctx, t[1].x, t[1].y, t[0].x, t[0].y, PAL.ink);
     /* the receiver: the loop, its leads and the tuner */
-    const q = wireLoop(ctx, X2, 'right');
+    const q = wireLoop(ctx, X2, 'right', F.ref('loop-2'));
     line(ctx, q[0].x, q[0].y, 1230, q[0].y, PAL.ink, 4);
     line(ctx, q[1].x, q[1].y, 1230, q[1].y, PAL.ink, 4);
     const sa = tune.a('on');
     if (sa > 0.01) { ctx.save(); ctx.globalAlpha = sa; spark(ctx, q[1].x, q[1].y, q[0].x, q[0].y, PAL.ink); ctx.restore(); }
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('circuit-2'); ctx.lineWidth = 4;
     ctx.beginPath(); ctx.rect(1230, 222, 140, 96); ctx.fill(); ctx.stroke();
     ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(1300, 270, 28, 0, TAU); ctx.stroke(); ctx.restore();
     const dial = -Math.PI / 2 + tune.mix((v) => (v === 'on' ? 0 : 1.1));
@@ -375,10 +375,10 @@ function spark(ctx, x1, y1, x2, y2, color) {
     arrow(ctx, 540, 152, 760, 152, vc, 5);
     text(ctx, 'c = 3.00 × 10⁸ m/s', 772, 152, vc, { size: 21, weight: 600 });
     /* the names of the things on the bench */
-    text(ctx, 'an RLC circuit', 136, 424, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'Loop 1, the transmitter', X1, Y0 - R - 26, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'Loop 2, the receiver', X2, Y0 - R - 26, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'the tuner', 1300, 340, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'an RLC circuit', 136, 424, F.ref('circuit-1'), { size: 20, align: 'center' });
+    text(ctx, 'Loop 1, the transmitter', X1, Y0 - R - 26, F.ref('loop-1'), { size: 20, align: 'center' });
+    text(ctx, 'Loop 2, the receiver', X2, Y0 - R - 26, F.ref('loop-2'), { size: 20, align: 'center' });
+    text(ctx, 'the tuner', 1300, 340, F.ref('circuit-2'), { size: 20, align: 'center' });
     text(ctx, 'the electric field of the wave', (XA + XB) / 2, 466, ec, { size: 20, align: 'center' });
     text(ctx, 'the magnetic field is out of the page at each crest and into it at each trough', (XA + XB) / 2, 496, bc, { size: 19, align: 'center' });
     text(ctx, 'the two loops stand ' + fmt(LAB, 1) + ' m apart', 700, 526, PAL.muted, { size: 18, align: 'center' });

@@ -10,15 +10,16 @@
    must watch the envelope swell and the crests bunch as the audio passes.
 
    Colour follows the chapter's plan. The type hues are frequency, position,
-   velocity, time, the electric field and energy. The carrier wave of a
-   modulation and the wave it becomes are both the electric field of the radio
-   wave and wear its hue; the audio signal that rides on them is no field of a
-   wave at all, carries no type, and is told apart by the categorical palette,
-   as are the X-rays of the two mechanisms. The striking and captured electrons
-   are filled from the element palette. The one colour on
-   this page that is a physical fact is the colour of visible light: the
-   function `spectral` below turns a wavelength into the hue the eye sees at
-   it, and it is the only place a hex literal appears. */
+   velocity, time, the electric field and energy. The carrier wave, the audio
+   signal and the modulated wave of each modulation are referents of the
+   section, one trace apiece, as are the submarine, the three signals of
+   Example 24.2, and the atom, the material and the characteristic X-ray of the
+   X-ray figure; the X-rays of braking, which the text never names one by one,
+   take a referent hue by index. The striking and captured electrons are filled
+   from the element palette. The one colour on this page that is a physical
+   fact is the colour of visible light: the function `spectralHex` below turns a
+   wavelength into the hue the eye sees at it, it is the only place a hex
+   literal appears, and it reaches the canvas only through `F.fact`. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['24.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, hbracket, label, labeller, axes, curve, pinned } = F;
@@ -50,7 +51,7 @@ function lamText(L) {
    dimmed at the two ends of the range where the eye's response falls away.
    This is root rule 7's third family, and the plan names it; nowhere else on
    this page is a hex written. */
-function spectral(nm) {
+function spectralHex(nm) {
   let r = 0, g = 0, b = 0;
   if (nm >= 380 && nm < 440) { r = -(nm - 440) / 60; b = 1; }
   else if (nm < 490) { g = (nm - 440) / 50; b = 1; }
@@ -64,6 +65,8 @@ function spectral(nm) {
   const ch = (v) => Math.round(255 * Math.pow(Math.max(0, Math.min(1, v)) * k, 0.8)).toString(16).padStart(2, '0');
   return '#' + ch(r) + ch(g) + ch(b);
 }
+const spectral = (nm) => F.fact(spectralHex(nm));
+const spectralFill = (nm) => (F.shown.facts ? spectral(nm) : PAL.soft);
 /* the seven colours the book names across the visible strip */
 const COLOURS = [[620, 750, 'red'], [590, 620, 'orange'], [570, 590, 'yellow'], [495, 570, 'green'], [450, 495, 'blue'], [425, 450, 'indigo'], [380, 425, 'violet']];
 const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0, null])[2];
@@ -104,7 +107,7 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     BANDS.forEach((b) => {
       const x1 = X(b.a), x2 = X(b.b);
       if (b.name === 'visible') {
-        for (let x = x1; x < x2; x += 1) { ctx.save(); ctx.fillStyle = spectral(CLIGHT / Math.pow(10, b.a + ((x - x1) / (x2 - x1)) * (b.b - b.a)) * 1e9); ctx.fillRect(x, YT, 1.4, YB - YT); ctx.restore(); }
+        for (let x = x1; x < x2; x += 1) { ctx.save(); ctx.fillStyle = spectralFill(CLIGHT / Math.pow(10, b.a + ((x - x1) / (x2 - x1)) * (b.b - b.a)) * 1e9); ctx.fillRect(x, YT, 1.4, YB - YT); ctx.restore(); }
       } else { ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x1, YT, x2 - x1, YB - YT); ctx.restore(); }
       ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(x1, YT, x2 - x1, YB - YT); ctx.restore();
     });
@@ -196,8 +199,8 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     line(ctx, LX, reach, RX, reach, fc, 3, [12, 10]);
     text(ctx, 'how far down the wave gets', LX + 16, reach > SEA + 80 ? reach - 22 : reach + 24, fc, { size: 19, weight: 600, bg: PAL.panel });
     /* the submarine: a hull with a conning tower */
-    const sx = 1120, sy = SEA + (FLOOR - SEA) * 0.66;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
+    const sx = 1120, sy = SEA + (FLOOR - SEA) * 0.66, sub = F.ref('submarine');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = sub; ctx.lineWidth = 3.5;
     /* the tail fin and the rudder, drawn first so the hull sits over their roots */
     ctx.beginPath(); ctx.moveTo(sx - 104, sy - 12); ctx.lineTo(sx - 138, sy - 34); ctx.lineTo(sx - 122, sy - 6); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(sx - 104, sy + 12); ctx.lineTo(sx - 138, sy + 34); ctx.lineTo(sx - 122, sy + 6); ctx.closePath(); ctx.fill(); ctx.stroke();
@@ -216,7 +219,7 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     ctx.fillStyle = alpha(PAL.ink, 0.5);
     for (let k = -3; k <= 3; k++) { ctx.beginPath(); ctx.arc(sx + 22 * k + 30, sy - 2, 3, 0, TAU); ctx.fill(); }
     ctx.restore();
-    label(ctx, 'a submerged submarine', sx, sy - 74, { side: 'above', gap: 12, size: 19 });
+    label(ctx, 'a submerged submarine', sx, sy - 74, { side: 'above', gap: 12, color: sub, size: 19 });
     topline(ctx, e <= 3.2 ? 'At ' + sciTxt(f, 2) + ' Hz one wavelength is ' + lamText(lam) + ', and waves this long are the ones used to reach a submarine under the surface.'
       : 'At ' + sciTxt(f, 2) + ' Hz one wavelength is ' + lamText(lam) + ', and salt water absorbs a wave this short before it has gone far below the surface.');
     readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}`,
@@ -258,13 +261,13 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
   const cy = cycle(() => 1, 0.8);
   function draw() {
     const { ctx } = begin(d.c);
-    const ec = C('electric-field'), tc = C('time'), car = ec, aud = cat(0);
+    const ec = C('electric-field'), tc = C('time'), car = F.ref('am-carrier'), aud = F.ref('am-audio'), wav = F.ref('am-wave');
     const m = ms.v, u = Math.min(1, cy.now()) * 2, Wms = 2000 / faud.v;
     const audio = (t) => Math.sin(TAU * t);
     const carr = (t) => Math.cos(TAU * NCAR * t);
     const env = (t) => 1 + m * audio(t);
     const fx = (v) => fmt((v * Wms) / 2, 2);
-    PANELS.forEach((b) => text(ctx, b.title, b.l, b.t - 54, PAL.muted, { size: 19 }));
+    PANELS.forEach((b, i) => text(ctx, b.title, b.l, b.t - 54, [car, aud, wav][i], { size: 19 }));
     const A = axes(ctx, PANELS[0], [0, 2], [-1, 1], { nx: 4, ny: 2, fx, fy: fieldTick, yl: 'electric field, E', yc: ec });
     curve(ctx, carr, 0, 2, A.X, A.Y, car, 3.5, 900);
     cursorOn(ctx, PANELS[0], A.X, A.Y, u, carr(u), car);
@@ -272,10 +275,10 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     curve(ctx, audio, 0, 2, B.X, B.Y, aud, 5, 400);
     cursorOn(ctx, PANELS[1], B.X, B.Y, u, audio(u), aud);
     const G = axes(ctx, PANELS[2], [0, 2], [-2, 2], { nx: 4, ny: 4, fx, fy: fieldTick, xl: 'time, t (ms)', xc: tc, yl: 'electric field, E', yc: ec });
-    curve(ctx, (t) => env(t) * carr(t), 0, 2, G.X, G.Y, car, 3.5, 1200);
+    curve(ctx, (t) => env(t) * carr(t), 0, 2, G.X, G.Y, wav, 3.5, 1200);
     curve(ctx, env, 0, 2, G.X, G.Y, aud, 3, 400);
     curve(ctx, (t) => -env(t), 0, 2, G.X, G.Y, aud, 3, 400);
-    cursorOn(ctx, PANELS[2], G.X, G.Y, u, env(u) * carr(u), car);
+    cursorOn(ctx, PANELS[2], G.X, G.Y, u, env(u) * carr(u), wav);
     label(ctx, 'the envelope is the audio signal', G.X(0.45), G.Y(env(0.45)), { side: 'above', color: aud, gap: 18, size: 19 });
     topline(ctx, 'A carrier of ' + fmt(fcar.v, 0) + ' kHz is modulated in amplitude by an audio signal of ' + fmt(faud.v, 0) + ' Hz to a depth of ' + fmt(m, 2) + ', so the height of the wave rises and falls with the sound while its frequency never changes at all.');
     readout(d.readout, `\\kEf(\\kt) = \\kEfo\\left[1 + m\\sin(2\\pi \\kf_{\\text{a}}\\kt)\\right]\\cos(2\\pi \\kf_{\\text{c}}\\kt) = \\kEfo\\left[1 + ${fmt(m, 2)}\\sin(2\\pi (${fmt(faud.v, 0)}\\ \\text{Hz})\\kt)\\right]\\cos(2\\pi (${fmt(fcar.v, 0)}\\ \\text{kHz})\\kt)`,
@@ -296,13 +299,13 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
   const DRAWN = 0.45;                 /* the fractional swing the picture is drawn with at the full 20 kHz */
   function draw() {
     const { ctx } = begin(d.c);
-    const ec = C('electric-field'), tc = C('time'), car = ec, aud = cat(0);
+    const ec = C('electric-field'), tc = C('time'), car = F.ref('fm-carrier'), aud = F.ref('fm-audio'), wav = F.ref('fm-wave');
     const u = Math.min(1, cy.now()) * 2, Wms = 2000 / faud.v, A = DRAWN * (dfs.v / 20);
     const audio = (t) => Math.sin(TAU * t);
     const carr = (t) => Math.cos(TAU * NCAR * t);
     const fmw = (t) => Math.cos(TAU * NCAR * (t + (A / TAU) * (1 - Math.cos(TAU * t))));
     const fx = (v) => fmt((v * Wms) / 2, 2);
-    PANELS.forEach((b) => text(ctx, b.title, b.l, b.t - 54, PAL.muted, { size: 19 }));
+    PANELS.forEach((b, i) => text(ctx, b.title, b.l, b.t - 54, [car, aud, wav][i], { size: 19 }));
     const P = axes(ctx, PANELS[0], [0, 2], [-1, 1], { nx: 4, ny: 2, fx, fy: fieldTick, yl: 'electric field, E', yc: ec });
     curve(ctx, carr, 0, 2, P.X, P.Y, car, 3.5, 900);
     cursorOn(ctx, PANELS[0], P.X, P.Y, u, carr(u), car);
@@ -310,8 +313,8 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     curve(ctx, audio, 0, 2, B.X, B.Y, aud, 5, 400);
     cursorOn(ctx, PANELS[1], B.X, B.Y, u, audio(u), aud);
     const G = axes(ctx, PANELS[2], [0, 2], [-1, 1], { nx: 4, ny: 2, fx, fy: fieldTick, xl: 'time, t (ms)', xc: tc, yl: 'electric field, E', yc: ec });
-    curve(ctx, fmw, 0, 2, G.X, G.Y, car, 3.5, 1600);
-    cursorOn(ctx, PANELS[2], G.X, G.Y, u, fmw(u), car);
+    curve(ctx, fmw, 0, 2, G.X, G.Y, wav, 3.5, 1600);
+    cursorOn(ctx, PANELS[2], G.X, G.Y, u, fmw(u), wav);
     topline(ctx, 'A carrier of ' + fmt(fcar.v, 1) + ' MHz is swung by ' + fmt(dfs.v, 1) + ' kHz either way by an audio signal of ' + fmt(faud.v, 0) + ' Hz, so the wave runs between ' + fmt(fcar.v - dfs.v / 1000, 3) + ' and ' + fmt(fcar.v + dfs.v / 1000, 3) + ' MHz while its height never changes.');
     readout(d.readout, `\\kf(\\kt) = \\kf_{\\text{c}} + \\Delta \\kf \\sin(2\\pi \\kf_{\\text{a}}\\kt) = ${fmt(fcar.v, 1)}\\ \\text{MHz} \\pm ${fmt(dfs.v, 1)}\\ \\text{kHz}`,
       dfs.v === 0 ? 'The amplitude E₀ never changes. With no swing at all the station sends out its bare carrier and carries no sound, and a receiver that looks only for changes of frequency hears nothing.'
@@ -340,7 +343,7 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     /* the strip: painted where the eye responds, plain where it does not */
     for (let x = LX; x < RX; x += 1) {
       const w = NMA - ((x - LX) / (RX - LX)) * (NMA - NMB);
-      ctx.save(); ctx.fillStyle = w <= 750 && w >= 380 ? spectral(w) : PAL.soft; ctx.fillRect(x, TOP, 1.8, BOT - TOP); ctx.restore();
+      ctx.save(); ctx.fillStyle = w <= 750 && w >= 380 ? spectralFill(w) : PAL.soft; ctx.fillRect(x, TOP, 1.8, BOT - TOP); ctx.restore();
     }
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(LX, TOP, RX - LX, BOT - TOP); ctx.restore();
     text(ctx, 'infrared', (LX + X(750)) / 2, (TOP + BOT) / 2, PAL.muted, { size: 20, weight: 600, align: 'center' });
@@ -392,20 +395,21 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     ctx.stroke(); ctx.restore();
     arrow(ctx, x1 + (L - 22) * Math.cos(a), y1 + (L - 22) * Math.sin(a), x2, y2, color, 3.5);
   }
-  /* an atom: a clustered nucleus and three orbits, all in ink, the innermost drawn broken where it is empty */
+  /* an atom: a clustered nucleus and three orbits, in the atom's referent colour, the innermost drawn broken where it is empty */
   function atom(ctx, cx, cy, R, gone) {
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.6); ctx.lineWidth = 2.5;
+    const ac = F.ref('atom');
+    ctx.save(); ctx.strokeStyle = alpha(ac, 0.75); ctx.lineWidth = 2.5;
     [0.32, 0.64, 1].forEach((k, i) => { ctx.setLineDash(gone && i === 0 ? [7, 8] : []); ctx.beginPath(); ctx.ellipse(cx, cy, R * k, R * k * (i === 0 ? 1 : 0.68), i * 0.55, 0, TAU); ctx.stroke(); });
     ctx.restore();
-    ctx.save(); ctx.fillStyle = PAL.ink;
+    ctx.save(); ctx.fillStyle = ac;
     [[0, 0], [-7, -5], [7, -4], [-4, 7], [6, 6]].forEach(([a, b]) => { ctx.beginPath(); ctx.arc(cx + a, cy + b, 6, 0, TAU); ctx.fill(); });
     ctx.restore();
   }
   function bar(ctx, x1, x2, y, h, color) { ctx.save(); ctx.fillStyle = alpha(color, 0.3); ctx.fillRect(x1, y, x2 - x1, h); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.strokeRect(x1, y, x2 - x1, h); ctx.restore(); }
   function draw() {
     const { ctx } = begin(d.c);
-    const En = C('energy'), E = Es.v, e0 = F.el('e-'), ray = cat(1);
-    const chosen = how.value === 'char';
+    const En = C('energy'), E = Es.v, e0 = F.el('e-'), xr = F.ref('x-ray'), brake = cat(3), mc = F.ref('material');
+    const chosen = how.value === 'char', ray = chosen ? xr : brake;
     /* the striking electron and its energy bar belong to both mechanisms and hold; each scene fades and drifts on its own */
     const [ax2, ay2] = how.mix((v) => (v === 'char' ? [300, 312] : [430, 292]));
     arrow(ctx, 150, 262, ax2, ay2, En, 5);
@@ -423,13 +427,13 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
       arrow(ctx, 1146, 250, 1036, 324, PAL.ink, 4);
       dot(ctx, 1154, 246, e0, true, 10);
       label(ctx, 'another electron falls into the empty orbit', 1154, 240, { side: 'above', gap: 14, size: 19 });
-      xray(ctx, 1010, 360, 1010, 494, ray);
-      label(ctx, 'the X-ray', 1010, 498, { side: 'below', color: ray, gap: 12, size: 20 });
-      text(ctx, 'the nucleus and the orbits around it belong to the atom', 1300, 542, PAL.muted, { size: 17, align: 'right' });
+      xray(ctx, 1010, 360, 1010, 494, xr);
+      label(ctx, 'the X-ray', 1010, 498, { side: 'below', color: xr, gap: 12, size: 20 });
+      text(ctx, 'the nucleus and the orbits around it belong to the atom', 1300, 542, F.ref('atom'), { size: 17, align: 'right' });
     });
     scene('brake', () => {
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(360, 200, 900, 300); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.strokeRect(360, 200, 900, 300); ctx.restore();
-      text(ctx, 'the material the electron strikes', 1250, 478, PAL.muted, { size: 19, align: 'right' });
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(360, 200, 900, 300); ctx.strokeStyle = mc; ctx.lineWidth = 3; ctx.strokeRect(360, 200, 900, 300); ctx.restore();
+      text(ctx, 'the material the electron strikes', 1250, 478, mc, { size: 19, align: 'right' });
       ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.4);
       for (let r = 0; r < 3; r++) for (let q = 0; q < 10; q++) { ctx.beginPath(); ctx.arc(404 + q * 96 + (r % 2) * 48, 246 + r * 84, 9, 0, TAU); ctx.fill(); }
       ctx.restore();
@@ -438,8 +442,8 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
       for (let i = 1; i < path.length - 1; i++) line(ctx, path[i][0], path[i][1], path[i + 1][0], path[i + 1][1], En, Math.max(1.5, 5 - i * 0.7));
       dot(ctx, 1200, 350, e0, true, 8);
       label(ctx, 'and what is left of it', 1200, 360, { side: 'below', gap: 14, size: 19 });
-      [1, 2, 3, 4].forEach((i, k) => xray(ctx, path[i][0], path[i][1], path[i][0] + 26 + k * 12, path[i][1] - 120 + k * 10, ray));
-      label(ctx, 'every deflection sends out an X-ray of its own', 700, 130, { side: 'above', color: ray, gap: 6, size: 20 });
+      [1, 2, 3, 4].forEach((i, k) => xray(ctx, path[i][0], path[i][1], path[i][0] + 26 + k * 12, path[i][1] - 120 + k * 10, brake));
+      label(ctx, 'every deflection sends out an X-ray of its own', 700, 130, { side: 'above', color: brake, gap: 6, size: 20 });
     });
     /* the two bars: what the electron arrives with, and what the X-ray carries away */
     line(ctx, BL, BY + 118, BR, BY + 118, PAL.muted, 2);
@@ -452,11 +456,11 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     ctx.save(); ctx.fillStyle = alpha(ray, 0.3); ctx.strokeStyle = ray; ctx.lineWidth = 2.5; ctx.beginPath();
     ctx.moveTo(q[0], q[1]); ctx.lineTo(q[2], q[3]); ctx.lineTo(q[4], q[5]); ctx.lineTo(BL, BY + 84); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     scene('char', () => {
-      text(ctx, 'the X-ray carries what the atom decides', BL - 18, BY + 68, ray, { size: 19, weight: 600, align: 'right' });
+      text(ctx, 'the X-ray carries what the atom decides', BL - 18, BY + 68, xr, { size: 19, weight: 600, align: 'right' });
       text(ctx, 'fixed by the orbits of the atom, whatever the electron arrives with', KX(12), BY + 68, PAL.muted, { size: 17 });
     });
     scene('brake', () => {
-      text(ctx, 'the X-rays carry anything up to ' + fmt(E, 0) + ' keV', BL - 18, BY + 68, ray, { size: 19, weight: 600, align: 'right' });
+      text(ctx, 'the X-rays carry anything up to ' + fmt(E, 0) + ' keV', BL - 18, BY + 68, brake, { size: 19, weight: 600, align: 'right' });
       text(ctx, 'many low energies and few high ones, because the collisions are random', Math.min(KX(E) + 16, 900), BY + 68, PAL.muted, { size: 17 });
     });
     topline(ctx, chosen ? 'An electron arriving with ' + fmt(E, 0) + ' keV knocks an inner electron out, and the X-ray that follows carries the energy another electron loses falling into the empty orbit, which is the atom’s own and not the striking electron’s.'
@@ -483,7 +487,7 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     aria: 'the power of ten of the frequency the station broadcasts at', snap: true,
     detents: [{ v: 6.185, label: 'AM' }, { v: 8.022, label: 'FM' }, { v: 9.279, label: 'cell' }] });
   const mount = choice(d.controls, { label: '\\text{the antenna}', options: [{ value: 'half', label: 'standing free' }, { value: 'quarter', label: 'one end on the ground' }], value: 'half', aria: 'how the antenna is mounted' });
-  const MARKS = [[6.185, 'AM, 1530 kHz'], [8.022, 'FM, 105.1 MHz'], [9.279, 'a cell phone, 1.90 GHz']];
+  const MARKS = [[6.185, 'AM, 1530 kHz', 'am-signal'], [8.022, 'FM, 105.1 MHz', 'fm-signal'], [9.279, 'a cell phone, 1.90 GHz', 'cell-signal']];
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('frequency'), pc = C('position'), vc = C('velocity');
@@ -508,7 +512,7 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     line(ctx, box.l, Y(Math.log10(1.7)), box.r, Y(Math.log10(1.7)), alpha(PAL.ink, 0.4), 2, [10, 10]);
     text(ctx, 'the height of a person, 1.7 m', box.r - 10, Y(Math.log10(1.7)) - 16, PAL.muted, { size: 17, align: 'right' });
     /* the three frequencies of Example 24.2 */
-    MARKS.forEach(([ee, name]) => { const yy = Math.log10(CLIGHT / (km * Math.pow(10, ee))); dot(ctx, X(ee), Y(yy), PAL.ink, false, 10); lab.add(name, X(ee), Y(yy), 0.4, -0.9, PAL.muted, 17, 16); });
+    MARKS.forEach(([ee, name, id]) => { const yy = Math.log10(CLIGHT / (km * Math.pow(10, ee))), rc = F.ref(id); dot(ctx, X(ee), Y(yy), rc, false, 10); lab.add(name, X(ee), Y(yy), 0.4, -0.9, rc, 17, 16); });
     pinned(ctx, box, X, Y, e, Math.log10(Lm), fc, lamText(L));
     /* the length's name goes below the point, and above it near the bottom of the graph */
     if (Math.log10(Lm) < -1.3) lab.add('L = ' + lamText(L), X(e), Y(Math.log10(Lm)), -0.6, -0.8, pc, 21, 20);
