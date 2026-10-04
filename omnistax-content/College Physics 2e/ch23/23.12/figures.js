@@ -150,7 +150,7 @@ function flow(ctx, x, y, dx, dy, L) {
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
     /* one voltage curve for each element and one for the source, each in its referent's
        colour and told apart by its dash as well; the current on its own scale */
-    const rR = F.ref('resistor'), rL = F.ref('inductor'), rC = F.ref('capacitor'), rS = F.ref('source');
+    const rR = F.ref('resistor'), rL = F.ref('inductor'), rC = F.ref('capacitor'), rSrc = F.ref('source');
     curve(ctx, (u) => I0 * R * Math.sin(TWO_PI * u), 0, CYCLES, X, Y, rR, 4, 300);
     ctx.save(); ctx.setLineDash([10, 10]);
     curve(ctx, (u) => I0 * XL * Math.cos(TWO_PI * u), 0, CYCLES, X, Y, rL, 4, 300);
@@ -158,7 +158,7 @@ function flow(ctx, x, y, dx, dy, L) {
     ctx.save(); ctx.setLineDash([4, 8]);
     curve(ctx, (u) => -I0 * XC * Math.cos(TWO_PI * u), 0, CYCLES, X, Y, rC, 4, 300);
     ctx.restore();
-    curve(ctx, (u) => I0 * Z * Math.sin(TWO_PI * u + phi), 0, CYCLES, X, Y, rS, 5, 300);
+    curve(ctx, (u) => I0 * Z * Math.sin(TWO_PI * u + phi), 0, CYCLES, X, Y, rSrc, 5, 300);
     curve(ctx, (u) => I0 * Math.sin(TWO_PI * u), 0, CYCLES, X, Y2, cI, 5, 300);
     ctx.restore();
     /* the right-hand scale, which the current rides */
@@ -167,7 +167,7 @@ function flow(ctx, x, y, dx, dy, L) {
     text(ctx, 'current (A)', BOX.r, BOX.t - 24, cI, { size: 20, weight: 600, align: 'right' });
     /* the names on the curves, set at the crest each one reaches first */
     /* five curves: the legend above the frame names them all, so no name has to sit on a crowded crest */
-    const legend = [['V_R', rR, []], ['V_L', rL, [10, 10]], ['V_C', rC, [4, 8]], ['V, the source', rS, []], ['I', cI, []]];
+    const legend = [['V_R', rR, []], ['V_L', rL, [10, 10]], ['V_C', rC, [4, 8]], ['V, the source', rSrc, []], ['I', cI, []]];
     let lx = BOX.l + 150;             /* clear of the axis title at the frame's top left */
     legend.forEach(([s, col, dash]) => {
       line(ctx, lx, BOX.t - 30, lx + 44, BOX.t - 30, col, 4, dash.length ? dash : undefined);
@@ -179,7 +179,7 @@ function flow(ctx, x, y, dx, dy, L) {
     pinned(ctx, BOX, X, Y, cy.now(), vR, rR, null);
     pinned(ctx, BOX, X, Y, cy.now(), vL, rL, null);
     pinned(ctx, BOX, X, Y, cy.now(), vC, rC, null);
-    pinned(ctx, BOX, X, Y, cy.now(), vS, rS, null);
+    pinned(ctx, BOX, X, Y, cy.now(), vS, rSrc, null);
     pinned(ctx, BOX, X, Y2, cy.now(), iNow, cI, null);
 
     topline(ctx, XC > XL
