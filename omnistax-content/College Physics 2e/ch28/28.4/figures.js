@@ -1,9 +1,11 @@
-/* Figures for section 28.4 Relativistic Addition of Velocities. The page binds
-   velocity (v, u, u', c), position (λ_s, λ_obs) and frequency (f_s, f_obs), as
-   ch28/COLOR.md gives 28.4. u' is the dashed variant of the velocity hue, the
-   classical sum a hollow marker, λ_s the dashed bracket. v/c and u/c are in ink.
-   The one physical-fact colour is the spectral colour of hydrogen light in the
-   Doppler sim, drawn only while its wavelength is visible. */
+/* Figures for section 28.4 Relativistic Addition of Velocities. The figures draw
+   velocity (v, u, u', c), position (λ_s, λ_obs) and frequency (f_s, f_obs). u' is
+   the dashed variant of the velocity hue, the classical sum a hollow marker, λ_s
+   the dashed bracket. v/c and u/c are in ink. The girl, the sled, the snowball,
+   the man, the boy, the car, its driver, the observer on the sidewalk, the
+   spaceship, the Earth, the canister and the Doppler source are referents. The
+   one physical-fact colour is the spectral colour of hydrogen light in the
+   Doppler sim, drawn through F.fact only while its wavelength is visible. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['28.4'] = function (root, F) {
 const { fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, label, hbracket, silhouette, car } = F;
@@ -36,25 +38,25 @@ function ghostArrow(ctx, x1, y, x2, color) {
   ctx.restore();
 }
 
-function ship(ctx, x, y, s) {
+function ship(ctx, x, y, s, color) {
   const L = 90 * s, h = 16 * s;
-  ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.85); ctx.beginPath();
+  ctx.save(); ctx.fillStyle = alpha(color, 0.85); ctx.beginPath();
   ctx.moveTo(x, y); ctx.lineTo(x - 28 * s, y - h); ctx.lineTo(x - L, y - h);
   ctx.lineTo(x - L - 14 * s, y - h - 12 * s); ctx.lineTo(x - L - 14 * s, y + h + 12 * s);
   ctx.lineTo(x - L, y + h); ctx.lineTo(x - 28 * s, y + h); ctx.closePath(); ctx.fill(); ctx.restore();
 }
 
-function planet(ctx, x, y, r) {
-  ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 3;
+function planet(ctx, x, y, r, color) {
+  ctx.save(); ctx.fillStyle = alpha(color, 0.2); ctx.strokeStyle = alpha(color, 0.85); ctx.lineWidth = 3;
   ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 
-function star(ctx, x, y) {
+function star(ctx, x, y, color) {
   for (let i = 0; i < 8; i++) {
     const a = i * Math.PI / 4, r1 = i % 2 ? 12 : 16, r2 = i % 2 ? 22 : 30;
-    line(ctx, x + Math.cos(a) * r1, y + Math.sin(a) * r1, x + Math.cos(a) * r2, y + Math.sin(a) * r2, alpha(PAL.ink, 0.75), 3);
+    line(ctx, x + Math.cos(a) * r1, y + Math.sin(a) * r1, x + Math.cos(a) * r2, y + Math.sin(a) * r2, alpha(color, 0.85), 3);
   }
-  dot(ctx, x, y, PAL.ink, true, 10);
+  dot(ctx, x, y, color, true, 10);
 }
 
 /* a velocity line: ticks from lo to hi in steps of one unit, named by `name` */
@@ -88,24 +90,25 @@ function velocityLine(ctx, X, lo, hi, y, name) {
 
     topline(ctx, 'Thrown ' + (fwd ? 'forward' : 'backward') + ', the snowball moves at u = ' + signed(u, 1) + ' m/s relative to the Earth.');
 
+    const cG = F.ref('girl'), cS = F.ref('sled'), cB = F.ref('snowball'), cY = F.ref('boy'), cM = F.ref('man');
     line(ctx, 60, G, 1340, G, alpha(PAL.ink, 0.35), 2);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.strokeStyle = cS; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(300, G - 6); ctx.lineTo(470, G - 6); ctx.quadraticCurveTo(495, G - 6, 495, G - 26); ctx.stroke();
     ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(330, G - 6); ctx.lineTo(330, G - 26); ctx.moveTo(450, G - 6); ctx.lineTo(450, G - 26); ctx.moveTo(310, G - 26); ctx.lineTo(480, G - 26); ctx.stroke();
     ctx.restore();
-    silhouette(ctx, { x: 395, y: G - 26, s: 0.62, pose: 'sit', face: fwd ? 1 : -1 });
-    silhouette(ctx, { x: 610, y: G, s: 0.8, pose: 'pull', face: 1 });
+    silhouette(ctx, { x: 395, y: G - 26, s: 0.62, pose: 'sit', face: fwd ? 1 : -1, color: cG });
+    silhouette(ctx, { x: 610, y: G, s: 0.8, pose: 'pull', face: 1, color: cM });
     line(ctx, 490, G - 24, 640, G - 80, alpha(PAL.ink, 0.6), 2);
-    silhouette(ctx, { x: 1250, y: G, s: 0.8, pose: 'stand', face: -1 });
-    label(ctx, 'girl', 360, G - 70, { side: 'left', gap: 30, size: 19 });
-    label(ctx, 'man', 640, G - 60, { side: 'right', gap: 24, size: 19 });
-    label(ctx, 'boy', 1250, G - 60, { side: 'left', gap: 36, size: 19 });
+    silhouette(ctx, { x: 1250, y: G, s: 0.8, pose: 'stand', face: -1, color: cY });
+    label(ctx, 'girl', 360, G - 70, { side: 'left', color: cG, gap: 30, size: 19 });
+    label(ctx, 'man', 640, G - 60, { side: 'right', color: cM, gap: 24, size: 19 });
+    label(ctx, 'boy', 1250, G - 60, { side: 'left', color: cY, gap: 36, size: 19 });
 
     solidArrow(ctx, 300, G + 30, 300 + 60 * v, G + 30, C('velocity'), 4);
     if (v > 0.05) text(ctx, 'v', 300 + 30 * v, G + 52, C('velocity'), { size: 22, weight: 600, align: 'center' });
 
     const bx = 405 + side * 90, by = 120;
-    dot(ctx, bx, by, PAL.ink, true, 11);
+    dot(ctx, bx, by, cB, true, 11);
     const L = 60 * Math.abs(u), dir = Math.sign(u);
     if (L >= 2) {
       solidArrow(ctx, bx + dir * 16, by, bx + dir * (16 + L), by, C('velocity'), 4);
@@ -148,10 +151,10 @@ function velocityLine(ctx, X, lo, hi, y, name) {
     line(ctx, 60, ROAD, 1340, ROAD, alpha(PAL.ink, 0.5), 3);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.beginPath();
     ctx.moveTo(X0, ROAD - 26); ctx.lineTo(1180, ROAD - 70); ctx.lineTo(1180, ROAD - 6); ctx.closePath(); ctx.fill(); ctx.restore();
-    car(ctx, X0 - 70, ROAD - 16, PAL.ink, 1.65);
-    label(ctx, 'driver', X0 - 90, ROAD - 60, { side: 'above', gap: 26, size: 19 });
-    silhouette(ctx, { x: 1250, y: ROAD, s: 0.8, pose: 'stand', face: -1 });
-    label(ctx, 'observer', 1250, ROAD - 50, { side: 'left', gap: 40, size: 19 });
+    car(ctx, X0 - 70, ROAD - 16, F.ref('car'), 1.65);
+    label(ctx, 'driver', X0 - 90, ROAD - 60, { side: 'above', color: F.ref('driver'), gap: 26, size: 19 });
+    silhouette(ctx, { x: 1250, y: ROAD, s: 0.8, pose: 'stand', face: -1, color: F.ref('sidewalk-observer') });
+    label(ctx, 'observer', 1250, ROAD - 50, { side: 'left', color: F.ref('sidewalk-observer'), gap: 40, size: 19 });
 
     if (b > 0.005) {
       solidArrow(ctx, X0 - 150, ROAD + 40, X0 - 150 + CU * b, ROAD + 40, V, 4);
@@ -198,10 +201,11 @@ function velocityLine(ctx, X, lo, hi, y, name) {
       ? 'The laser light ' + (up > 0 ? 'reaches the Earth at c' : 'moves away from the Earth at −c') + ', not the ' + signed(cl, 3) + 'c classical addition gives.'
       : 'The Earth sees the canister at ' + signed(u, 3) + 'c, not the ' + signed(cl, 3) + 'c classical addition gives.');
 
-    ship(ctx, SX, SY, 1);
-    label(ctx, 'ship', SX - 55, SY + 30, { side: 'below', gap: 20, size: 19 });
-    planet(ctx, 1250, SY, 48);
-    label(ctx, 'Earth', 1250, SY + 48, { side: 'below', gap: 22, size: 19 });
+    const cSh = F.ref('spaceship'), cE = F.ref('earth'), cC = F.ref('canister');
+    ship(ctx, SX, SY, 1, cSh);
+    label(ctx, 'ship', SX - 55, SY + 30, { side: 'below', color: cSh, gap: 20, size: 19 });
+    planet(ctx, 1250, SY, 48, cE);
+    label(ctx, 'Earth', 1250, SY + 48, { side: 'below', color: cE, gap: 22, size: 19 });
     if (b > 0.005) {
       solidArrow(ctx, SX - 110, SY - 50, SX - 110 + 150 * b, SY - 50, V(), 4);
       text(ctx, 'v', SX - 110 + 75 * b, SY - 72, V(), { size: 22, weight: 600, align: 'center' });
@@ -211,7 +215,7 @@ function velocityLine(ctx, X, lo, hi, y, name) {
       text(ctx, up > 0 ? 'u′ = c' : 'u′ = −c', up > 0 ? 820 : 170, SY - 24, V(), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     } else {
       const cx = up >= 0 ? SX + 150 : SX - 160, dir = up >= 0 ? 1 : -1;
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      ctx.save(); ctx.fillStyle = alpha(cC, 0.2); ctx.strokeStyle = cC; ctx.lineWidth = 3;
       ctx.fillRect(cx - 18, SY - 11, 36, 22); ctx.strokeRect(cx - 18, SY - 11, 36, 22); ctx.restore();
       if (Math.abs(up) > 0.005) {
         dashArrow(ctx, cx + dir * 24, SY, cx + dir * (24 + 150 * Math.abs(up)), SY, V(), 4);
@@ -283,17 +287,19 @@ function velocityLine(ctx, X, lo, hi, y, name) {
       ? 'At rest relative to the Earth, ' + what + (radio ? ' arrive' : ' arrives') + ' unchanged.'
       : (b > 0 ? 'Receding' : 'Approaching') + ' at ' + fmt(Math.abs(b), 3) + 'c, ' + what + (radio ? ' arrive ' : ' arrives ') + lamTxt(lo) + ' long: a ' + (b > 0 ? 'red' : 'blue') + ' shift.');
 
-    star(ctx, 250, 110);
-    label(ctx, radio ? 'galaxy' : 'hydrogen gas', 250, 110, { side: 'right', gap: 40, size: 19 });
-    planet(ctx, 1290, 110, 26);
-    label(ctx, 'Earth', 1290, 110, { side: 'left', gap: 40, size: 19 });
+    const cSrc = F.ref('source'), cRe = F.ref('receiver');
+    star(ctx, 250, 110, cSrc);
+    label(ctx, radio ? 'galaxy' : 'hydrogen gas', 250, 110, { side: 'right', color: cSrc, gap: 40, size: 19 });
+    planet(ctx, 1290, 110, 26, cRe);
+    label(ctx, 'Earth', 1290, 110, { side: 'left', color: cRe, gap: 40, size: 19 });
     if (Math.abs(b) > 0.005) {
       const x0 = b > 0 ? 210 : 290;
       solidArrow(ctx, x0, 158, x0 - 160 * b, 158, V, 4);
       text(ctx, 'u', x0 - 80 * b, 180, V, { size: 22, weight: 600, align: 'center' });
     }
 
-    const cs = radio ? PAL.ink : (spectral(656) ?? PAL.ink), co = radio ? PAL.ink : (spectral(lo * 1e9) ?? PAL.ink);
+    const seen = (nm) => { const s = spectral(nm); return s ? F.fact(s) : PAL.ink; };
+    const cs = radio ? PAL.ink : seen(656), co = radio ? PAL.ink : seen(lo * 1e9);
     wave(ctx, YA, LAM, cs);
     wave(ctx, YB, LAM * k, co);
     ctx.save(); ctx.setLineDash([8, 6]);

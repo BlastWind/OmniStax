@@ -1,8 +1,8 @@
-/* Figures for section 28.2 Simultaneity And Time Dilation. The page binds time,
-   velocity and position, as ch28/COLOR.md gives 28.2. Proper time is the dashed or
-   hollow variant of the time hue. γ and v/c are untyped and in ink; the observers
-   and the twins are told apart by the categorical palette; the light, the rail car,
-   the ship, the muon and the Earth are ink. */
+/* Figures for section 28.2 Simultaneity And Time Dilation. The figures draw time,
+   velocity and position. Proper time is the dashed or hollow variant of the time
+   hue. γ and v/c are untyped and in ink. The observers, the lamps, the rail car,
+   the ship, the muon and the twins are referents; the light, the Earth and the
+   star system are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['28.2'] = function (root, F) {
 const { fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, label, hbracket, vbracket, axes, curve, pinned } = F;
@@ -52,7 +52,7 @@ function dial(ctx, x, y, r, f, proper) {
   const d = sim('sim-flash-lamps', 480);
   const frameC = choice(d.controls, { label: 'frame', options: [{ value: 'B', label: 'B’s frame (platform)' }, { value: 'A', label: 'A’s frame (rail car)' }], value: 'B', aria: 'whose frame the flashes are watched in', onInput: reset });
   const vS = ctl(d.controls, { label: '\\kv/\\kc', cls: 'velocity', min: 0, max: 0.5, step: 0.01, value: 0.4, unit: '', dec: 2, onInput: reset, aria: 'the speed of the rail car relative to the platform, as a fraction of the speed of light' });
-  const PX = 420, LY = 170, CAR_Y = 225, CAR_H = 50, RAIL = 267, PLAT = 400, VEL = C('velocity');
+  const PX = 420, LY = 170, CAR_Y = 225, CAR_H = 50, RAIL = 267, PLAT = 400;
   const RATE = 1 / 1.5;
 
   function model() {
@@ -79,6 +79,7 @@ function dial(ctx, x, y, r, f, proper) {
     const { ctx } = begin(d.c);
     const m = model(), v = vS.v, t = m.t0 + cy.now(), X = (x) => m.x0 + x * PX;
     const xA = X(m.A(t)), xB = X(m.B(t)), [xl, xr] = m.lamps(t).map(X);
+    const VEL = C('velocity'), cA = F.ref('observer-a'), cB = F.ref('observer-b'), cL = F.ref('left-lamp'), cR = F.ref('right-lamp');
 
     if (v < 0.005) topline(ctx, 'With no relative motion the lamps flash together for both, and each flash reaches A and B together.');
     else if (frameC.value === 'B') topline(ctx, 'In B’s frame the lamps flash at the same moment; the right flash reaches A first, and both reach B together.');
@@ -89,10 +90,10 @@ function dial(ctx, x, y, r, f, proper) {
     line(ctx, xB, LY + 14, xB, PLAT - 96, alpha(PAL.ink, 0.25), 2, [4, 8]);
     line(ctx, 40, LY, 1360, LY, alpha(PAL.ink, 0.08), 2);
 
-    F.cart(ctx, (xl + xr) / 2, CAR_Y, xr - xl + 40, CAR_H, alpha(PAL.ink, 0.7));
-    [[xl, m.Lf], [xr, m.R]].forEach(([x, ev]) => {
-      line(ctx, x, LY, x, CAR_Y - CAR_H / 2, alpha(PAL.ink, 0.6), 3);
-      dot(ctx, x, LY, PAL.ink, true, 11);
+    F.cart(ctx, (xl + xr) / 2, CAR_Y, xr - xl + 40, CAR_H, alpha(F.ref('rail-car'), 0.7));
+    [[xl, m.Lf, cL], [xr, m.R, cR]].forEach(([x, ev, lc]) => {
+      line(ctx, x, LY, x, CAR_Y - CAR_H / 2, alpha(lc, 0.6), 3);
+      dot(ctx, x, LY, lc, true, 11);
       const since = t - ev[0];
       if (since >= 0 && since < 0.25) {
         const k = 1 - since / 0.25;
@@ -102,8 +103,8 @@ function dial(ctx, x, y, r, f, proper) {
         }
       }
     });
-    text(ctx, 'left lamp', xl, LY - 36, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'right lamp', xr, LY - 36, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'left lamp', xl, LY - 36, cL, { size: 17, align: 'center' });
+    text(ctx, 'right lamp', xr, LY - 36, cR, { size: 17, align: 'center' });
 
     [[m.R, -1], [m.Lf, 1]].forEach(([ev, dir]) => {
       if (t < ev[0]) return;
@@ -111,10 +112,10 @@ function dial(ctx, x, y, r, f, proper) {
       if (x > 60 && x < 1340) pulse(ctx, x, LY, dir);
     });
 
-    F.silhouette(ctx, { x: xA, y: CAR_Y - CAR_H / 2, s: 0.55, face: -1, pose: 'stand', color: F.cat(0) });
-    F.silhouette(ctx, { x: xB, y: PLAT, s: 0.55, face: 1, pose: 'stand', color: F.cat(1) });
-    label(ctx, 'A', xA + 18, CAR_Y - CAR_H / 2 - 70, { side: 'right', color: F.cat(0), size: 22 });
-    label(ctx, 'B', xB + 18, PLAT - 70, { side: 'right', color: F.cat(1), size: 22 });
+    F.silhouette(ctx, { x: xA, y: CAR_Y - CAR_H / 2, s: 0.55, face: -1, pose: 'stand', color: cA });
+    F.silhouette(ctx, { x: xB, y: PLAT, s: 0.55, face: 1, pose: 'stand', color: cB });
+    label(ctx, 'A', xA + 18, CAR_Y - CAR_H / 2 - 70, { side: 'right', color: cA, size: 22 });
+    label(ctx, 'B', xB + 18, PLAT - 70, { side: 'right', color: cB, size: 22 });
 
     if (v >= 0.005) {
       const len = 40 + 200 * v, xm = m.mover === 'car' ? xA - 60 : xB + 60, dir = m.mover === 'car' ? 1 : -1;
@@ -123,8 +124,8 @@ function dial(ctx, x, y, r, f, proper) {
     }
 
     const hA = heard(m.arrA, t), hB = heard(m.arrB, t);
-    text(ctx, 'A receives: ' + (hA || '…'), 40, 432, F.cat(0), { size: 20, weight: 600 });
-    text(ctx, 'B receives: ' + (hB || '…'), 40, 462, F.cat(1), { size: 20, weight: 600 });
+    text(ctx, 'A receives: ' + (hA || '…'), 40, 432, cA, { size: 20, weight: 600 });
+    text(ctx, 'B receives: ' + (hB || '…'), 40, 462, cB, { size: 20, weight: 600 });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => RATE), draw });
 })();
@@ -146,10 +147,10 @@ function dial(ctx, x, y, r, f, proper) {
   const cy = cycle(() => gammaOf(vS.v), 1.2);
   function reset() { cy.reset(); }
   const D = 130, CPX = 2 * D, YT = 170, YB = YT + D, BW = 120, X0 = 520, AX = 250;
-  const T = C('time'), P = C('position'), VEL = C('velocity');
 
   function cabin(ctx, x, dashed) {
-    ctx.save(); ctx.strokeStyle = dashed ? alpha(PAL.ink, 0.35) : alpha(PAL.ink, 0.7); ctx.lineWidth = 3;
+    const S = F.ref('ship');
+    ctx.save(); ctx.strokeStyle = dashed ? alpha(S, 0.35) : alpha(S, 0.8); ctx.lineWidth = 3;
     if (dashed) ctx.setLineDash([8, 7]);
     ctx.strokeRect(x - BW / 2, YT - 22, BW, D + 44); ctx.restore();
     line(ctx, x - 26, YT - 6, x + 26, YT - 6, dashed ? alpha(PAL.ink, 0.35) : PAL.ink, 6);
@@ -158,12 +159,13 @@ function dial(ctx, x, y, r, f, proper) {
 
   function draw() {
     const { ctx } = begin(d.c);
+    const T = C('time'), P = C('position'), VEL = C('velocity');
     const v = vS.v, g = gammaOf(v), tau = cy.now();
     topline(ctx, v < 0.005 ? 'With the ship at rest, both observers time the round trip of the light the same.'
       : 'At v = ' + fmt(v, 2) + 'c the Earth-bound observer times the round trip at ' + fmt(g, 2) + ' times the astronaut’s proper time.');
 
-    text(ctx, '(a) the astronaut’s frame', AX, 110, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, '(b) the Earth-bound observer’s frame', 900, 110, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, '(a) the astronaut’s frame', AX, 110, F.ref('astronaut'), { size: 17, align: 'center' });
+    text(ctx, '(b) the Earth-bound observer’s frame', 900, 110, F.ref('earth-observer'), { size: 17, align: 'center' });
     line(ctx, 410, 100, 410, 500, alpha(PAL.ink, 0.15), 2);
 
     /* (a) */
@@ -172,7 +174,7 @@ function dial(ctx, x, y, r, f, proper) {
     line(ctx, AX, YB, AX, p < 0.5 ? ya : YT, alpha(PAL.ink, 0.55), 3);
     dot(ctx, AX, ya, PAL.ink, true, 8);
     vbracket(ctx, AX + 90, YT, YB, P, 'D', 1);
-    F.silhouette(ctx, { x: AX - 38, y: YB + 22, s: 0.42, face: 1, pose: 'stand', color: F.cat(0) });
+    F.silhouette(ctx, { x: AX - 38, y: YB + 22, s: 0.42, face: 1, pose: 'stand', color: F.ref('astronaut') });
     dial(ctx, AX - 20, 420, 34, p / 4, true);
     text(ctx, 'Δt_0', AX + 26, 420, T, { size: 24, weight: 600 });
     text(ctx, fmt(p, 2) + ' Δt_0', AX + 26, 452, T, { size: 17 });
@@ -197,7 +199,7 @@ function dial(ctx, x, y, r, f, proper) {
       label(ctx, 'v', xs - 50 + 40 + 120 * v, YT - 48, { side: 'right', color: VEL, size: 22, gap: 12 });
     }
     line(ctx, 430, 490, 1380, 490, alpha(PAL.ink, 0.3), 2);
-    F.silhouette(ctx, { x: 1345, y: 490, s: 0.5, face: -1, pose: 'stand', color: F.cat(1) });
+    F.silhouette(ctx, { x: 1345, y: 490, s: 0.5, face: -1, pose: 'stand', color: F.ref('earth-observer') });
     const te = Math.min(tau, g);
     dial(ctx, 1150, 440, 34, te / 4, false);
     text(ctx, 'Δt', 1196, 426, T, { size: 24, weight: 600 });
@@ -221,10 +223,10 @@ function dial(ctx, x, y, r, f, proper) {
     specials: [{ at: 0.95, label: '0.950c' }] });
   const tS = ctl(d.controls, { label: '\\kdto', cls: 'time', min: 0.5, max: 3, step: 0.01, value: 1.52, unit: 'μs', dec: 2, aria: 'the lifetime of the muon measured by its own clock, in microseconds' });
   const box = { l: 110, r: 780, t: 110, b: 420 };
-  const T = C('time'), VEL = C('velocity');
   const BY0 = 430, BH = 280, BMAX = 20, B1 = 1150, B2 = 1290;
 
   function bar(ctx, x, val, proper, name) {
+    const T = C('time');
     const h = Math.min(val, BMAX) / BMAX * BH;
     ctx.save();
     ctx.fillStyle = alpha(T, proper ? 0.25 : 0.7); ctx.fillRect(x - 28, BY0 - h, 56, h);
@@ -238,6 +240,7 @@ function dial(ctx, x, y, r, f, proper) {
   function draw() {
     const { ctx } = begin(d.c);
     const v = vS.v, g = gammaOf(v), t0 = tS.v, t = g * t0;
+    const VEL = C('velocity'), MU = F.ref('muon');
     topline(ctx, 'At v = ' + sig(v) + 'c, γ = ' + sig(g) + ', so a muon that lives ' + fmt(t0, 2) + ' μs by its own clock lives ' + sig(t) + ' μs by the Earth’s.');
 
     const { X, Y } = axes(ctx, box, [0, 1], [0, 12], { xl: 'v/c', xc: VEL, yl: 'γ', nx: 5, ny: 6, fx: (x) => fmt(x, 1) });
@@ -250,9 +253,9 @@ function dial(ctx, x, y, r, f, proper) {
     label(ctx, 'γ = ' + sig(g), pt.x, pt.y, { side: 'left', size: 22, gap: 22 });
 
     line(ctx, 830, 460, 1040, 460, alpha(PAL.ink, 0.45), 3);
-    F.silhouette(ctx, { x: 960, y: 460, s: 0.5, face: -1, pose: 'stand', color: PAL.ink });
-    dot(ctx, 900, 150, PAL.ink, true, 10);
-    label(ctx, 'muon', 900, 150, { side: 'left', size: 20, gap: 18 });
+    F.silhouette(ctx, { x: 960, y: 460, s: 0.5, face: -1, pose: 'stand', color: F.ref('muon-observer') });
+    dot(ctx, 900, 150, MU, true, 10);
+    label(ctx, 'muon', 900, 150, { side: 'left', color: MU, size: 20, gap: 18 });
     if (v >= 0.005) {
       arrow(ctx, 900, 172, 900, 172 + 30 + 110 * v, VEL, 4);
       label(ctx, 'v', 900, 172 + 15 + 55 * v, { side: 'right', color: VEL, size: 22, gap: 14 });
@@ -287,10 +290,11 @@ function dial(ctx, x, y, r, f, proper) {
     specials: [{ at: 30, label: '30.0' }] });
   const tS = ctl(d.controls, { label: '\\kdto', cls: 'time', min: 1, max: 4, step: 0.05, value: 2, unit: 'y', dec: 2, aria: 'the length of the round trip in the astronaut’s frame, in years' });
   const ro = F.readout(d);
-  const T = C('time'), XE = 170, XS = 1230, BX = 260, BW = 1000, YMAX = 80;
+  const XE = 170, XS = 1230, BX = 260, BW = 1000, YMAX = 80;
   const Xy = (y) => BX + Math.min(y, YMAX) / YMAX * BW;
 
   function ageBar(ctx, y, years, proper, color, who) {
+    const T = C('time');
     ctx.save();
     ctx.fillStyle = alpha(T, proper ? 0.25 : 0.7); ctx.fillRect(BX, y - 14, Xy(years) - BX, 28);
     ctx.strokeStyle = T; ctx.lineWidth = 3; if (proper) ctx.setLineDash([8, 6]); ctx.strokeRect(BX, y - 14, Xy(years) - BX, 28);
@@ -323,11 +327,12 @@ function dial(ctx, x, y, r, f, proper) {
     text(ctx, 'star system', XS, 104, PAL.ink, { size: 20, align: 'center' });
     arrow(ctx, XE + 40, 128, XS - 40, 128, alpha(PAL.ink, 0.55), 3);
     arrow(ctx, XS - 40, 154, XE + 40, 154, alpha(PAL.ink, 0.55), 3);
-    [[XE + 60, 128], [XS - 60, 128], [XS - 60, 154], [XE + 60, 154]].forEach(([x, y]) => dot(ctx, x, y, F.cat(1), true, 8));
-    text(ctx, 'the four accelerations only the astronaut goes through', (XE + XS) / 2, 186, F.cat(1), { size: 17, align: 'center' });
+    const tr = F.ref('traveler');
+    [[XE + 60, 128], [XS - 60, 128], [XS - 60, 154], [XE + 60, 154]].forEach(([x, y]) => dot(ctx, x, y, tr, true, 8));
+    text(ctx, 'the four accelerations only the astronaut goes through', (XE + XS) / 2, 186, tr, { size: 17, align: 'center' });
 
-    ageBar(ctx, 270, tw, !earth, F.cat(0), 'Earth-bound twin');
-    ageBar(ctx, 360, t0, true, F.cat(1), 'astronaut');
+    ageBar(ctx, 270, tw, !earth, F.ref('earth-twin'), 'Earth-bound twin');
+    ageBar(ctx, 360, t0, true, tr, 'astronaut');
     line(ctx, BX, 405, BX + BW, 405, alpha(PAL.ink, 0.4), 2);
     for (let y = 0; y <= YMAX; y += 10) {
       line(ctx, Xy(y), 399, Xy(y), 411, PAL.muted, 2);

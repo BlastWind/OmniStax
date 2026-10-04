@@ -1,7 +1,7 @@
-/* Figures for section 28.6 Relativistic Energy. The page binds energy (E, E0,
-   KE_rel, KE_class), velocity (v, c) and momentum (p), as ch28/COLOR.md gives 28.6;
-   the rest energy and the classical kinetic energy are the dashed variants of the
-   energy hue. γ, m and v/c are untyped and in ink. */
+/* Figures for section 28.6 Relativistic Energy. The figures draw energy (E, E0,
+   KE_rel, KE_class), velocity (v, c), momentum (p) and the triangle's angle θ; the
+   rest energy and the classical kinetic energy are the dashed variants of the
+   energy hue. γ and v/c are untyped and in ink; m wears mass in the readouts. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['28.6'] = function (root, F) {
 const { fmt, tex, C, PAL, alpha, ctl, register, begin, line, text, topline, label, axes, curve, pinned, angleArc } = F;
@@ -69,7 +69,7 @@ function sciTex(x, dp) {
     pinned(ctx, box, X, Y, b, rel, E, fmt(rel, 2) + ' mc²');
 
     const J = rel * ME * CL * CL;
-    tex(d.readout, '\\kKErel = (\\gamma - 1)m\\kc^{2} = (' + fmt(g, 3) + ' - 1)(9.11\\times 10^{-31}\\;\\text{kg})(3.00\\times 10^{8}\\;\\text{m/s})^{2} = '
+    tex(d.readout, '\\kKErel = (\\gamma - 1)\\km\\kc^{2} = (' + fmt(g, 3) + ' - 1)(9.11\\times 10^{-31}\\;\\text{kg})(3.00\\times 10^{8}\\;\\text{m/s})^{2} = '
       + (J > 0 ? sciTex(J, 2) : '0') + '\\;\\text{J}');
   }
   register(d.fig, { update: () => {}, draw });
@@ -93,7 +93,7 @@ function sciTex(x, dp) {
   function draw() {
     const { ctx } = begin(d.c);
     const b = vS.v, g = gammaOf(b), th = Math.asin(b);
-    const E = C('energy'), P = C('momentum');
+    const E = C('energy'), P = C('momentum'), AN = C('angle');
     const A = { x: O.x + R * Math.cos(th), y: O.y };
     const B = { x: A.x, y: O.y - R * Math.sin(th) };
 
@@ -111,7 +111,7 @@ function sciTex(x, dp) {
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 2; ctx.beginPath();
       ctx.moveTo(A.x - s, A.y); ctx.lineTo(A.x - s, A.y - s); ctx.lineTo(A.x, A.y - s); ctx.stroke(); ctx.restore();
     }
-    if (th > 0.05) angleArc(ctx, O, 70, 0, th, 'θ');
+    if (th > 0.05) angleArc(ctx, O, 70, 0, th, 'θ', undefined, AN);
 
     const mx = (O.x + B.x) / 2, my = (O.y + B.y) / 2;
     const nx = -Math.sin(th), ny = -Math.cos(th);
@@ -123,7 +123,7 @@ function sciTex(x, dp) {
     text(ctx, 'γ = E/(mc²) = ' + sig(g, 4), 1080, 350, PAL.ink, { size: 22, align: 'center', bg: PAL.panel });
 
     const Em = g * REST_MEV, pm = g * b * REST_MEV;
-    tex(d.readout, '\\kE^{2} = (\\kp\\kc)^{2} + (m\\kc^{2})^{2}: \\quad (' + sig(Em, 3) + '\\;\\text{MeV})^{2} = ('
+    tex(d.readout, '\\kE^{2} = (\\kp\\kc)^{2} + (\\km\\kc^{2})^{2}: \\quad (' + sig(Em, 3) + '\\;\\text{MeV})^{2} = ('
       + sig(pm, 3) + '\\;\\text{MeV})^{2} + (' + fmt(REST_MEV, 3) + '\\;\\text{MeV})^{2}');
   }
   register(d.fig, { update: () => {}, draw });

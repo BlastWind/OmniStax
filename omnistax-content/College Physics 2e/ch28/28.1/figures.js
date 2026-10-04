@@ -1,6 +1,6 @@
-/* Figures for section 28.1 Einstein’s Postulates. The page binds velocity alone,
-   as ch28/COLOR.md allows 28.1 when a figure is drawn. The ship, the observer and
-   the pulses of light are ink; v/c is a ratio and its number is untyped. */
+/* Figures for section 28.1 Einstein’s Postulates. The figure draws velocity; the
+   ship, the observer and the two pulses are referents; v/c is a ratio and its
+   number is untyped. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['28.1'] = function (root, F) {
 const { fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, text, topline, label, curve } = F;
@@ -26,17 +26,16 @@ const sim = (id, H) => F.sim(root, id, H);
   function reset() { cy.reset(); }
 
   const OBS = 1250, YREAL = 170, YNEWT = 250, YSHIP = 330, GROUND = 372, PER_C = 130;
-  const VEL = C('velocity');
 
   function ship(ctx, x, y, face) {
     const s = face, L = 110, h = 22;
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.85); ctx.beginPath();
+    ctx.save(); ctx.fillStyle = alpha(F.ref('ship'), 0.85); ctx.beginPath();
     ctx.moveTo(x, y); ctx.lineTo(x - s * 34, y - h); ctx.lineTo(x - s * L, y - h);
     ctx.lineTo(x - s * (L + 18), y - h - 16); ctx.lineTo(x - s * (L + 18), y + h + 16);
     ctx.lineTo(x - s * L, y + h); ctx.lineTo(x - s * 34, y + h); ctx.closePath(); ctx.fill(); ctx.restore();
   }
   function packet(ctx, xc, y, dashed) {
-    const col = dashed ? alpha(PAL.ink, 0.55) : PAL.ink;
+    const col = dashed ? alpha(F.ref('newton-pulse'), 0.75) : F.ref('light-pulse');
     ctx.save(); if (dashed) ctx.setLineDash([6, 6]);
     curve(ctx, (t) => y - 14 * Math.sin(t * 6 * Math.PI) * Math.sin(t * Math.PI), 0, 1, (t) => xc - 36 + 72 * t, (yy) => yy, col, 4, 90);
     ctx.restore();
@@ -44,6 +43,7 @@ const sim = (id, H) => F.sim(root, id, H);
 
   function draw() {
     const { ctx } = begin(d.c);
+    const VEL = C('velocity');
     const dir = +dirC.value, v = vS.v, x0 = dir > 0 ? 160 : 660, D = OBS - x0;
     const t = cy.now(), uN = 1 + dir * v;
     const xReal = x0 + D * Math.min(t, 1);
@@ -60,8 +60,8 @@ const sim = (id, H) => F.sim(root, id, H);
 
     line(ctx, x0, YREAL, OBS - 30, YREAL, alpha(PAL.ink, 0.12), 2);
     line(ctx, x0, YNEWT, OBS - 30, YNEWT, alpha(PAL.ink, 0.12), 2);
-    text(ctx, 'observed', 70, YREAL, PAL.ink, { size: 17, align: 'left', bg: PAL.panel });
-    text(ctx, 'Newton', 70, YNEWT, PAL.muted, { size: 17, align: 'left', bg: PAL.panel });
+    text(ctx, 'observed', 70, YREAL, F.ref('light-pulse'), { size: 17, align: 'left', bg: PAL.panel });
+    text(ctx, 'Newton', 70, YNEWT, F.ref('newton-pulse'), { size: 17, align: 'left', bg: PAL.panel });
 
     packet(ctx, Math.min(xReal, OBS - 66), YREAL, false);
     packet(ctx, Math.min(xNewt, OBS - 66), YNEWT, true);
@@ -82,7 +82,7 @@ const sim = (id, H) => F.sim(root, id, H);
       arrow(ctx, ax0, YSHIP - 44, ax1, YSHIP - 44, VEL, 4);
       label(ctx, 'v', (ax0 + ax1) / 2, YSHIP - 44, { side: 'above', color: VEL, size: 22 });
     }
-    F.silhouette(ctx, { x: OBS + 50, y: GROUND, s: 0.9, face: -1, pose: 'stand', color: PAL.ink });
+    F.silhouette(ctx, { x: OBS + 50, y: GROUND, s: 0.9, face: -1, pose: 'stand', color: F.ref('observer') });
 
     tex(d.readout, '\\ku_{\\text{Newton}} = \\kc ' + (dir > 0 ? '+' : '-') + ' \\kv = ' + fmt(uN, 2) + '\\,\\kc,\\quad \\ku_{\\text{observed}} = \\kc');
   }

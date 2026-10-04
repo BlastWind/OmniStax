@@ -1,6 +1,6 @@
-/* Figures for section 28.5 Relativistic Momentum. The page binds momentum (p) and
-   velocity (u, c), as ch28/COLOR.md gives 28.5; the classical momentum mu is the
-   dashed variant of the momentum hue. γ, m and u/c are untyped and in ink. */
+/* Figures for section 28.5 Relativistic Momentum. The figure draws momentum (p) and
+   velocity (u, c); the classical momentum mu is the dashed variant of the momentum
+   hue. γ and u/c are untyped and in ink; the rest mass m wears mass in the readout. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['28.5'] = function (root, F) {
 const { fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, text, topline, label, axes, curve, pinned } = F;
@@ -67,7 +67,7 @@ function sciTex(x, dp) {
 
     const m = MASS[part.value], p = g * m * b * CL;
     const mt = sciTex(m, 2) + '\\;\\text{kg}';
-    tex(d.readout, '\\kp = \\gamma m\\ku = \\frac{(' + mt + ')(' + fmt(b, 3) + ')(3.00\\times 10^{8}\\;\\text{m/s})}{\\sqrt{1 - ' + fmt(b, 3) + '^{2}}} = ' + (p > 0 ? sciTex(p, 2) : '0') + '\\;\\text{kg}\\cdot\\text{m/s}');
+    tex(d.readout, '\\kp = \\gamma\\km\\ku = \\frac{(' + mt + ')(' + fmt(b, 3) + ')(3.00\\times 10^{8}\\;\\text{m/s})}{\\sqrt{1 - ' + fmt(b, 3) + '^{2}}} = ' + (p > 0 ? sciTex(p, 2) : '0') + '\\;\\text{kg}\\cdot\\text{m/s}');
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -1,7 +1,9 @@
-/* Figures for section 28.3 Length Contraction. The page binds position (L_0, L),
-   velocity (v, c) and time (Δt, Δt_0), as ch28/COLOR.md gives 28.3; the proper
-   value of each is its dashed variant. γ and v/c are untyped and in ink. The two
-   frames are told apart by F.cat(0) for the Earth and F.cat(1) for the traveler. */
+/* Figures for section 28.3 Length Contraction. The figures draw position (L_0, L),
+   velocity (v, c), time (Δt, Δt_0) and the electron's electric field; the proper
+   value of each is its dashed variant. γ and v/c are untyped and in ink. The muon,
+   the clouds, the Earth, the astronaut's ship, Alpha Centauri, the beam pipe and
+   the coil are referents, and each frame's tag wears the colour of the body at
+   rest in it; the electron wears the element palette. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['28.3'] = function (root, F) {
 const { fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, label, hbracket } = F;
@@ -15,11 +17,12 @@ const sig = (n, k) => {
 };
 
 function cloud(ctx, x, y) {
-  ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 2;
+  const K = F.ref('clouds');
+  ctx.save(); ctx.fillStyle = alpha(K, 0.14); ctx.strokeStyle = alpha(K, 0.6); ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.arc(x - 22, y + 6, 18, 0, 2 * Math.PI); ctx.arc(x, y - 6, 24, 0, 2 * Math.PI); ctx.arc(x + 24, y + 6, 17, 0, 2 * Math.PI);
   ctx.fill(); ctx.restore();
-  ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 2;
+  ctx.save(); ctx.strokeStyle = alpha(K, 0.6); ctx.lineWidth = 2;
   [[x - 22, y + 6, 18], [x, y - 6, 24], [x + 24, y + 6, 17]].forEach(([a, b, r]) => { ctx.beginPath(); ctx.arc(a, b, r, 0, 2 * Math.PI); ctx.stroke(); });
   ctx.restore();
 }
@@ -41,23 +44,25 @@ function clock(ctx, x, y, r, k, proper, caption) {
 
 function ship(ctx, x, y, s) {
   const L = 90 * s, h = 16 * s;
-  ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.85); ctx.beginPath();
+  ctx.save(); ctx.fillStyle = alpha(F.ref('astronaut'), 0.85); ctx.beginPath();
   ctx.moveTo(x, y); ctx.lineTo(x - 28 * s, y - h); ctx.lineTo(x - L, y - h);
   ctx.lineTo(x - L - 14 * s, y - h - 12 * s); ctx.lineTo(x - L - 14 * s, y + h + 12 * s);
   ctx.lineTo(x - L, y + h); ctx.lineTo(x - 28 * s, y + h); ctx.closePath(); ctx.fill(); ctx.restore();
 }
 
 function planet(ctx, x, y) {
-  ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 3;
+  const K = F.ref('earth');
+  ctx.save(); ctx.fillStyle = alpha(K, 0.2); ctx.strokeStyle = alpha(K, 0.85); ctx.lineWidth = 3;
   ctx.beginPath(); ctx.arc(x, y, 22, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 
 function star(ctx, x, y) {
+  const K = F.ref('alpha-centauri');
   for (let i = 0; i < 8; i++) {
     const a = i * Math.PI / 4, r1 = i % 2 ? 12 : 16, r2 = i % 2 ? 22 : 30;
-    line(ctx, x + Math.cos(a) * r1, y + Math.sin(a) * r1, x + Math.cos(a) * r2, y + Math.sin(a) * r2, alpha(PAL.ink, 0.75), 3);
+    line(ctx, x + Math.cos(a) * r1, y + Math.sin(a) * r1, x + Math.cos(a) * r2, y + Math.sin(a) * r2, alpha(K, 0.85), 3);
   }
-  dot(ctx, x, y, PAL.ink, true, 10);
+  dot(ctx, x, y, K, true, 10);
 }
 
 /* a bracket for a proper length (dashed) or a contracted one (solid) */
@@ -67,8 +72,8 @@ function span(ctx, x1, x2, y, proper, name) {
   ctx.restore();
 }
 
-function frameTag(ctx, s, y, i) {
-  text(ctx, s, 60, y, F.cat(i), { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+function frameTag(ctx, s, y, color) {
+  text(ctx, s, 60, y, color, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
 }
 
 /* =====================================================================
@@ -97,25 +102,26 @@ function frameTag(ctx, s, y, i) {
 
     topline(ctx, 'At ' + fmt(b, 3) + 'c the Earth measures ' + sig(L0km, 3) + ' km in ' + sig(dtus, 3) + ' μs; the muon measures ' + sig(Lkm, 3) + ' km in 2.20 μs.');
 
-    frameTag(ctx, 'Earth’s frame', A.tag, 0);
-    line(ctx, 60, A.ground, 1200, A.ground, alpha(PAL.ink, 0.3), 2);
+    const MU = F.ref('muon'), GR = F.ref('muon-earth');
+    frameTag(ctx, 'Earth’s frame', A.tag, GR);
+    line(ctx, 60, A.ground, 1200, A.ground, alpha(GR, 0.6), 3);
     [X0, X0 + L0].forEach((x) => { cloud(ctx, x, A.cloud); line(ctx, x, A.cloud + 24, x, A.ground, alpha(PAL.ink, 0.35), 2, [4, 8]); });
     span(ctx, X0, X0 + L0, A.span, true, 'L_{0} = ' + sig(L0km, 3) + ' km');
     const xm = X0 + L0 * p;
     if (p < 1) {
-      dot(ctx, xm, A.path, PAL.ink, true, 9);
+      dot(ctx, xm, A.path, MU, true, 9);
       arrow(ctx, xm + 14, A.path, xm + 14 + 90 * b, A.path, C('velocity'), 4);
       text(ctx, 'v', xm + 14 + 45 * b, A.path - 20, C('velocity'), { size: 22, weight: 600, bg: PAL.panel, align: 'center' });
-    } else dot(ctx, xm, A.path, PAL.ink, false, 11);
+    } else dot(ctx, xm, A.path, MU, false, 11);
     clock(ctx, 1260, 150, 38, p, false, 'Δt = ' + sig(dtus * p, 3) + ' μs');
 
-    frameTag(ctx, 'muon’s frame', B.tag, 1);
-    line(ctx, 60, B.ground, 1200, B.ground, alpha(PAL.ink, 0.3), 2);
+    frameTag(ctx, 'muon’s frame', B.tag, MU);
+    line(ctx, 60, B.ground, 1200, B.ground, alpha(GR, 0.6), 3);
     const xa = X0 - L * p, xb = X0 + L * (1 - p);
     [xa, xb].forEach((x) => { cloud(ctx, x, B.cloud); line(ctx, x, B.cloud + 24, x, B.ground, alpha(PAL.ink, 0.35), 2, [4, 8]); });
     span(ctx, xa, xb, B.span, false, 'L = ' + sig(Lkm, 3) + ' km');
-    dot(ctx, X0, B.path, PAL.ink, p < 1, p < 1 ? 9 : 11);
-    label(ctx, 'muon', X0, B.path, { side: 'right', gap: 22, size: 20 });
+    dot(ctx, X0, B.path, MU, p < 1, p < 1 ? 9 : 11);
+    label(ctx, 'muon', X0, B.path, { side: 'right', color: MU, gap: 22, size: 20 });
     arrow(ctx, 1100, B.ground - 18, 1100 - 90 * b, B.ground - 18, C('velocity'), 4);
     text(ctx, 'v', 1100 - 45 * b, B.ground - 38, C('velocity'), { size: 22, weight: 600, bg: PAL.panel, align: 'center' });
     clock(ctx, 1260, 372, 38, p, true, 'Δt_{0} = ' + sig(2.20 * p, 3) + ' μs');
@@ -152,11 +158,11 @@ function frameTag(ctx, s, y, i) {
 
     topline(ctx, 'At γ = ' + sig(g, 4) + ' the astronaut measures ' + sig(Lly, 4) + ' ly between the Earth and Alpha Centauri, not 4.300 ly.');
 
-    frameTag(ctx, 'Earth’s frame', A.tag, 0);
+    frameTag(ctx, 'Earth’s frame', A.tag, F.ref('earth'));
     line(ctx, 60, A.ground, 1240, A.ground, alpha(PAL.ink, 0.18), 2);
     planet(ctx, X0, A.body); star(ctx, X0 + L0, A.body);
-    text(ctx, "Earth", X0, A.body + 44, PAL.ink, { size: 20, bg: PAL.panel, align: 'center' });
-    text(ctx, "Alpha Centauri", X0 + L0 + 20, A.body + 46, PAL.ink, { size: 20, bg: PAL.panel, align: 'right' });
+    text(ctx, "Earth", X0, A.body + 44, F.ref('earth'), { size: 20, bg: PAL.panel, align: 'center' });
+    text(ctx, "Alpha Centauri", X0 + L0 + 20, A.body + 46, F.ref('alpha-centauri'), { size: 20, bg: PAL.panel, align: 'right' });
     span(ctx, X0, X0 + L0, A.span, true, 'L_{0} = 4.300 ly');
     const xs = X0 + 30 + (L0 - 60) * p;
     ship(ctx, xs, A.body - 44, 0.7);
@@ -166,14 +172,14 @@ function frameTag(ctx, s, y, i) {
     }
     clock(ctx, 1260, 150, 34, p, false, 'Δt = ' + sig(dt * p, 4) + ' y');
 
-    frameTag(ctx, 'ship’s frame', B.tag, 1);
+    frameTag(ctx, 'ship’s frame', B.tag, F.ref('astronaut'));
     line(ctx, 60, B.ground, 1240, B.ground, alpha(PAL.ink, 0.18), 2);
     const xe = X0 - L * p, xa = X0 + L * (1 - p);
     if (xe > 20) planet(ctx, xe, B.body);
     star(ctx, xa, B.body);
     span(ctx, Math.max(xe, 16), xa, B.span, false, 'L = ' + sig(Lly, 4) + ' ly');
     ship(ctx, X0 + 90, B.body - 42, 0.7);
-    label(ctx, 'ship', X0 + 90, B.body - 42, { side: 'right', gap: 24, size: 20 });
+    label(ctx, 'ship', X0 + 90, B.body - 42, { side: 'right', color: F.ref('astronaut'), gap: 24, size: 20 });
     arrow(ctx, 1100, B.ground - 16, 1100 - 90 * b, B.ground - 16, C('velocity'), 4);
     text(ctx, 'v', 1100 - 45 * b, B.ground - 36, C('velocity'), { size: 22, weight: 600, bg: PAL.panel, align: 'center' });
     clock(ctx, 1260, 372, 34, p, true, 'Δt_{0} = ' + sig(dt0 * p, 4) + ' y');
@@ -203,20 +209,21 @@ function frameTag(ctx, s, y, i) {
 
     topline(ctx, 'At ' + fmt(b, 3) + 'c the field pattern is ' + fmt(k, 3) + ' of its rest length along the pipe.');
 
-    line(ctx, 60, EY - PIPE, 1340, EY - PIPE, alpha(PAL.ink, 0.5), 3);
-    line(ctx, 60, EY + PIPE, 1340, EY + PIPE, alpha(PAL.ink, 0.5), 3);
-    text(ctx, 'beam pipe', 120, EY - PIPE - 18, PAL.muted, { size: 17 });
+    const PP = F.ref('beam-pipe'), EF = C('electric-field'), CO = F.ref('coil');
+    line(ctx, 60, EY - PIPE, 1340, EY - PIPE, alpha(PP, 0.7), 3);
+    line(ctx, 60, EY + PIPE, 1340, EY + PIPE, alpha(PP, 0.7), 3);
+    text(ctx, 'beam pipe', 120, EY - PIPE - 18, PP, { size: 17 });
 
     for (let i = 0; i < N; i++) {
       const a0 = (i + 0.5) * 2 * Math.PI / N;
       const ux = Math.cos(a0) / g, uy = Math.sin(a0), n = Math.hypot(ux, uy);
-      line(ctx, EX + (ux / n) * 18, EY + (uy / n) * 18, EX + (ux / n) * R, EY + (uy / n) * R, alpha(PAL.ink, 0.75), 2.5);
+      line(ctx, EX + (ux / n) * 18, EY + (uy / n) * 18, EX + (ux / n) * R, EY + (uy / n) * R, alpha(EF, 0.85), 2.5);
       const hx = EX + (ux / n) * (R * 0.7), hy = EY + (uy / n) * (R * 0.7), px = -uy / n, py = ux / n;
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.75); ctx.beginPath();
+      ctx.save(); ctx.fillStyle = alpha(EF, 0.85); ctx.beginPath();
       ctx.moveTo(hx - (ux / n) * 10 + px * 6, hy - (uy / n) * 10 + py * 6); ctx.lineTo(hx, hy); ctx.lineTo(hx - (ux / n) * 10 - px * 6, hy - (uy / n) * 10 - py * 6);
       ctx.closePath(); ctx.fill(); ctx.restore();
     }
-    text(ctx, 'field lines', EX + 150, EY - R + 10, PAL.muted, { size: 17, align: 'left', bg: PAL.panel });
+    text(ctx, 'field lines', EX + 150, EY - R + 10, EF, { size: 17, align: 'left', bg: PAL.panel });
 
     dot(ctx, EX, EY, F.el('e-'), true, 14);
     label(ctx, 'electron', EX, EY + 14, { side: 'below', gap: 20, size: 20 });
@@ -227,10 +234,10 @@ function frameTag(ctx, s, y, i) {
 
     const CX = 1080;
     for (let j = 0; j < 6; j++) {
-      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 3;
+      ctx.save(); ctx.strokeStyle = alpha(CO, 0.85); ctx.lineWidth = 3;
       ctx.beginPath(); ctx.ellipse(CX + j * 22, EY, 14, PIPE + 26, 0, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
     }
-    text(ctx, 'coil', CX + 55, EY + PIPE + 50, PAL.ink, { size: 20, bg: PAL.panel, align: 'center' });
+    text(ctx, 'coil', CX + 55, EY + PIPE + 50, CO, { size: 20, bg: PAL.panel, align: 'center' });
 
     tex(d.readout, '\\kLrel = \\kLo\\sqrt{1 - \\frac{\\kv^{2}}{\\kc^{2}}} = ' + fmt(k, 3) + '\\,\\kLo,\\quad \\gamma = ' + sig(g, 3));
   }
