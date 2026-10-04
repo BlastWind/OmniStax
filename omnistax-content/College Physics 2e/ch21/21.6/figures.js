@@ -3,8 +3,8 @@
    time and the whole of the section is how long they take: each registers a cycle
    and carries the app's transport. The page binds the voltage, the time, the
    capacitance, the resistance, the current and the charge, which is what
-   ch21/COLOR.md gives 21.6; the wires, the cell, the plates, the lamp and the
-   frame are ink. Resistances are in kilohms and capacitances in microfarads, so a
+   ch21/COLOR.md gives 21.6. The capacitor, the resistor and the lamp the text names
+   wear their referent colours; the wires, the cell and the frame are ink. Resistances are in kilohms and capacitances in microfarads, so a
    time constant in milliseconds is simply their product. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['21.6'] = function (root, F) {
@@ -27,12 +27,13 @@ const node = (ctx, x, y, r) => dot(ctx, x, y, PAL.ink, true, r || 7);
 function gap(ctx, x, y, a, L, w) { ctx.save(); ctx.translate(x, y); ctx.rotate(a); line(ctx, -L / 2, 0, L / 2, 0, PAL.panel, w || 8); ctx.restore(); }
 const ZL = 96, ZA = 13;
 /* The zigzag itself, centred at (x, y) and running along the angle a; o.len is its
-   length and o.variable strikes the arrow of a variable resistor across it. */
+   length, o.variable strikes the arrow of a variable resistor across it, and o.color
+   is the resistor's referent colour. */
 function zigzag(ctx, x, y, a, o) {
   const L = (o && o.len) || ZL, n = 6, s = L / n;
   gap(ctx, x, y, a, L, 6);
   ctx.save(); ctx.translate(x, y); ctx.rotate(a);
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
+  ctx.strokeStyle = (o && o.color) || PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(-L / 2, 0);
   for (let i = 0; i < n; i++) { ctx.lineTo(-L / 2 + (i + 0.25) * s, -ZA); ctx.lineTo(-L / 2 + (i + 0.75) * s, ZA); }
   ctx.lineTo(L / 2, 0); ctx.stroke();
@@ -128,11 +129,13 @@ function flow(ctx, x, y, dx, dy, name, o) {
 }
 /* A capacitor standing on a vertical wire: two equal plates with the wire broken
    between them, its name and value in the capacitance hue on the right and the
-   charge on each plate in the charge hue on the left. */
-function capacitor(ctx, x, y, farads, q, showQ) {
+   charge on each plate in the charge hue on the left; the plates are in `color`, the
+   capacitor's referent colour. */
+function capacitor(ctx, x, y, farads, q, showQ, color) {
+  const pc = color || PAL.ink;
   gap(ctx, x, y, Math.PI / 2, 22, 8);
-  line(ctx, x - 38, y - 11, x + 38, y - 11, PAL.ink, 5);
-  line(ctx, x - 38, y + 11, x + 38, y + 11, PAL.ink, 5);
+  line(ctx, x - 38, y - 11, x + 38, y - 11, pc, 5);
+  line(ctx, x - 38, y + 11, x + 38, y + 11, pc, 5);
   text(ctx, 'C', x + 56, y - 14, C('capacitance'), { size: 24, weight: 600, align: 'left' });
   text(ctx, fmt(farads, 2) + ' μF', x + 56, y + 16, C('capacitance'), { size: 21, align: 'left' });
   if (showQ) {
@@ -193,8 +196,8 @@ function current(ctx, x, y, dx, frac, label) {
     wires(ctx, [[L, T], [Rx, T], [Rx, B], [L, B], [L, T]]);
     const aC = mode.a('charging');
     if (aC > 0.01) { ctx.save(); ctx.globalAlpha = aC; cell(ctx, L, 285, 'up', fmt(E.v, 1) + ' V'); ctx.restore(); }
-    resistor(ctx, 700, T, true, 'R', ohms(R.v));
-    capacitor(ctx, Rx, 285, Cc.v, q, true);
+    resistor(ctx, 700, T, true, 'R', ohms(R.v), { color: F.ref('resistor') });
+    capacitor(ctx, Rx, 285, Cc.v, q, true, F.ref('capacitor'));
     sw(ctx, 700, B, 0, true);
     text(ctx, 'the switch, closed at t = 0', 700, B + 40, PAL.muted, { size: 18, align: 'center' });
     current(ctx, 520, B, charging ? -1 : 1, I / (E.v / R.v), 'I = ' + fmt(I, 2) + ' mA');
@@ -270,9 +273,9 @@ function current(ctx, x, y, dx, frac, label) {
     wires(ctx, [[M, T], [M, B]]);
     node(ctx, M, T); node(ctx, M, B);
     cell(ctx, L, 285, 'up', fmt(EMF, 1) + ' V');
-    resistor(ctx, 540, T, true, 'R', fmt(R.v, 0) + ' kΩ');
-    capacitor(ctx, M, 285, Cc.v, Cc.v * V, false);
-    lamp(ctx, Rx, 285, firing);
+    resistor(ctx, 540, T, true, 'R', fmt(R.v, 0) + ' kΩ', { color: F.ref('resistor') });
+    capacitor(ctx, M, 285, Cc.v, Cc.v * V, false, F.ref('capacitor'));
+    lamp(ctx, Rx, 285, firing, F.ref('lamp'));
     current(ctx, 900, B, -1, firing ? V / Vth : (EMF - V) / EMF, 'I = ' + (I < 1 ? fmt(I, 3) : fmt(I, 1)) + ' mA');
     text(ctx, firing ? 'the lamp conducts and the capacitor empties through it' : 'the lamp does not conduct, so the capacitor charges through R', 700, 480, PAL.muted, { size: 19, align: 'center' });
     /* ---- the sawtooth ---- */
@@ -293,12 +296,12 @@ function current(ctx, x, y, dx, frac, label) {
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
-/* A lamp on a vertical wire: the book's circle with a coiled filament, in ink; when it
-   conducts, rays are struck out from it and it is named as flashing beside it, so the
-   figure reads the same with the type colours turned off. */
-function lamp(ctx, x, y, firing) {
-  const r = 40;
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE; ctx.fillStyle = PAL.panel;
+/* A lamp on a vertical wire: the book's circle with a coiled filament, in its referent
+   colour; when it conducts, rays are struck out from it and it is named as flashing
+   beside it, so the figure reads the same with the colours turned off. */
+function lamp(ctx, x, y, firing, color) {
+  const r = 40, lc = color || PAL.ink;
+  ctx.save(); ctx.strokeStyle = lc; ctx.lineWidth = WIRE; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU2); ctx.fill(); ctx.stroke();
   ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x - 28, y + 4); ctx.lineTo(x - 22, y + 4);
   for (let k = 0; k < 4; k++) ctx.arc(x - 16 + k * 11, y + 4, 5.5, Math.PI, 0, false);
@@ -308,6 +311,6 @@ function lamp(ctx, x, y, firing) {
     for (let i = 0; i < 8; i++) { const a = (i * TAU2) / 8 + 0.2; ctx.beginPath(); ctx.moveTo(x + (r + 10) * Math.cos(a), y + (r + 10) * Math.sin(a)); ctx.lineTo(x + (r + 30) * Math.cos(a), y + (r + 30) * Math.sin(a)); ctx.stroke(); }
   }
   ctx.restore();
-  text(ctx, firing ? 'the lamp, flashing' : 'the lamp', x + r + 42, y, PAL.ink, { size: 21, weight: 600, align: 'left' });
+  text(ctx, firing ? 'the lamp, flashing' : 'the lamp', x + r + 42, y, lc, { size: 21, weight: 600, align: 'left' });
 }
 };

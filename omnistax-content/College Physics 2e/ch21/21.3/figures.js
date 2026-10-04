@@ -2,8 +2,10 @@
    A steady circuit has no time in it, so every figure here is a still picture:
    none registers a cycle, none carries a transport, and a slider or a choice
    alone redraws it. The page binds the current, the voltage and the resistance,
-   which is what ch21/COLOR.md gives 21.3; the wires, the cells, the zigzags, the
-   letters a to h and the frame are ink. */
+   which is what ch21/COLOR.md gives 21.3. The resistors R₁, R₂ and R₃ and the two
+   sources of the two-loop circuit wear their referent colours, R₁ and R₂ of the
+   loop rule's circuit with them; the wires, the letters a to h and the frame are
+   ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['21.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, axes } = F;
@@ -29,12 +31,13 @@ const node = (ctx, x, y, r) => dot(ctx, x, y, PAL.ink, true, r || 7);
 function gap(ctx, x, y, a, L, w) { ctx.save(); ctx.translate(x, y); ctx.rotate(a); line(ctx, -L / 2, 0, L / 2, 0, PAL.panel, w || 8); ctx.restore(); }
 const ZL = 96, ZA = 13;
 /* The zigzag itself, centred at (x, y) and running along the angle a; o.len is its
-   length and o.variable strikes the arrow of a variable resistor across it. */
+   length, o.variable strikes the arrow of a variable resistor across it, and o.color
+   is the referent colour of the thing it belongs to. */
 function zigzag(ctx, x, y, a, o) {
   const L = (o && o.len) || ZL, n = 6, s = L / n;
   gap(ctx, x, y, a, L, 6);
   ctx.save(); ctx.translate(x, y); ctx.rotate(a);
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
+  ctx.strokeStyle = (o && o.color) || PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(-L / 2, 0);
   for (let i = 0; i < n; i++) { ctx.lineTo(-L / 2 + (i + 0.25) * s, -ZA); ctx.lineTo(-L / 2 + (i + 0.75) * s, ZA); }
   ctx.lineTo(L / 2, 0); ctx.stroke();
@@ -68,15 +71,16 @@ function resistor(ctx, x, y, horiz, name, val, o) {
    terminal and a short thick one for the negative. `plus` is the way the positive
    plate faces, 'up' or 'down' on a vertical wire and 'left' or 'right' on a
    horizontal one. The label, one string or [name, value], is set in the voltage
-   hue on the side o.side (-1 is left, or above) and the two signs on the other. */
+   hue on the side o.side (-1 is left, or above) and the two signs on the other; the
+   plates take o.color, the referent colour of the source they belong to. */
 function cell(ctx, x, y, plus, label, o) {
-  o = o || {}; const vc = C('voltage'), vert = plus === 'up' || plus === 'down', s = plus === 'up' || plus === 'left' ? -1 : 1;
+  o = o || {}; const pc = o.color || PAL.ink, vc = C('voltage'), vert = plus === 'up' || plus === 'down', s = plus === 'up' || plus === 'left' ? -1 : 1;
   const side = o.side === undefined ? (vert ? -1 : 1) : o.side, q = -side;   /* the signs go opposite the label */
   const lab = label === null || label === undefined ? [] : Array.isArray(label) ? label : [label];
   if (vert) {
     gap(ctx, x, y, Math.PI / 2, 20, 8);
-    line(ctx, x - 30, y + s * 10, x + 30, y + s * 10, PAL.ink, 4.5);       /* the long positive plate */
-    line(ctx, x - 15, y - s * 10, x + 15, y - s * 10, PAL.ink, 8);          /* the short negative one */
+    line(ctx, x - 30, y + s * 10, x + 30, y + s * 10, pc, 4.5);       /* the long positive plate */
+    line(ctx, x - 15, y - s * 10, x + 15, y - s * 10, pc, 8);          /* the short negative one */
     if (o.signs !== false) {
       text(ctx, '+', x + q * 48, y + s * 15, PAL.muted, { size: 22, weight: 600, align: 'center' });
       text(ctx, '−', x + q * 48, y - s * 15, PAL.muted, { size: 22, weight: 600, align: 'center' });
@@ -209,8 +213,8 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
     wires(ctx, [[210, T], [1230, T], [1230, B], [210, B], [210, T]]);
     cell(ctx, 210, 295, 'up', fmt(E.v, 1) + ' V');
     resistor(ctx, 420, T, true, 'r', r.v, { len: 84 });
-    resistor(ctx, 760, T, true, 'R_1', R1.v);
-    resistor(ctx, 1080, T, true, 'R_2', R2.v);
+    resistor(ctx, 760, T, true, 'R_1', R1.v, { color: F.ref('resistor-1') });
+    resistor(ctx, 1080, T, true, 'R_2', R2.v, { color: F.ref('resistor-2') });
     flow(ctx, 600, T, 1, 0, 'I = ' + fmt(I, 2) + ' A');
     flow(ctx, 720, B, -1, 0, null);
     const wc = cw ? 1 : -1;
@@ -343,15 +347,16 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
     wires(ctx, [[700, 130], [700, 610]]);
     wires(ctx, [[1100, 130], [1100, 610]]);
     /* the left branch: R_2, then the first source, walked a to b to c to d */
-    resistor(ctx, 300, 205, false, 'R_2', R2.v);
-    cell(ctx, 300, 350, 'up', 'ℰ₁ = ' + fmt(E1.v, 1) + ' V');
-    resistor(ctx, 300, 490, false, 'r_1', r1);
+    const s1 = F.ref('source-1'), s2 = F.ref('source-2');
+    resistor(ctx, 300, 205, false, 'R_2', R2.v, { color: F.ref('resistor-2') });
+    cell(ctx, 300, 350, 'up', 'ℰ₁ = ' + fmt(E1.v, 1) + ' V', { color: s1 });
+    resistor(ctx, 300, 490, false, 'r_1', r1, { color: s1 });
     /* the middle branch: R_1 alone */
-    resistor(ctx, 700, 370, false, 'R_1', R1.v);
+    resistor(ctx, 700, 370, false, 'R_1', R1.v, { color: F.ref('resistor-1') });
     /* the right branch: the second source, then r_2 and R_3, walked e to f to g to h */
-    cell(ctx, 1100, 215, 'up', 'ℰ₂ = ' + fmt(E2.v, 1) + ' V', { side: 1 });
-    resistor(ctx, 1100, 360, false, 'r_2', r2, { side: 1 });
-    resistor(ctx, 1100, 505, false, 'R_3', R3, { side: 1 });
+    cell(ctx, 1100, 215, 'up', 'ℰ₂ = ' + fmt(E2.v, 1) + ' V', { side: 1, color: s2 });
+    resistor(ctx, 1100, 360, false, 'r_2', r2, { side: 1, color: s2 });
+    resistor(ctx, 1100, 505, false, 'R_3', R3, { side: 1, color: F.ref('resistor-3') });
     lettered(ctx, 700, 130, 'a', 24, -22); lettered(ctx, 700, 610, 'e', 24, 24);
     [[300, 275, 'b'], [300, 425, 'c'], [300, 565, 'd']].forEach(([x, y, s]) => lettered(ctx, x, y, s, -26, 0));
     [[1100, 570, 'f'], [1100, 285, 'g'], [1100, 160, 'h']].forEach(([x, y, s]) => lettered(ctx, x, y, s, 26, 0));

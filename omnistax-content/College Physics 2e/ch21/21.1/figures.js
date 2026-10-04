@@ -4,7 +4,8 @@
    slider or a choice alone redraws it; the reduction told as a story has the one
    transport, which plays its step slider. The page binds the
    resistance, the current, the voltage and the power, which is what ch21/COLOR.md
-   gives 21.1; the wires, the source, the zigzags and the frame are ink. */
+   gives 21.1, and each resistor the text names, R₁ to R₄, wears its referent
+   colour; the wires, the source and the frame are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['21.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline } = F;
@@ -27,12 +28,13 @@ const node = (ctx, x, y, r) => dot(ctx, x, y, PAL.ink, true, r || 7);
 function gap(ctx, x, y, a, L, w) { ctx.save(); ctx.translate(x, y); ctx.rotate(a); line(ctx, -L / 2, 0, L / 2, 0, PAL.panel, w || 8); ctx.restore(); }
 const ZL = 96, ZA = 13;
 /* The zigzag itself, centred at (x, y) and running along the angle a; o.len is its
-   length and o.variable strikes the arrow of a variable resistor across it. */
+   length, o.variable strikes the arrow of a variable resistor across it, and o.color
+   is the referent colour of a resistor the text names. */
 function zigzag(ctx, x, y, a, o) {
   const L = (o && o.len) || ZL, n = 6, s = L / n;
   gap(ctx, x, y, a, L, 6);
   ctx.save(); ctx.translate(x, y); ctx.rotate(a);
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
+  ctx.strokeStyle = (o && o.color) || PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(-L / 2, 0);
   for (let i = 0; i < n; i++) { ctx.lineTo(-L / 2 + (i + 0.25) * s, -ZA); ctx.lineTo(-L / 2 + (i + 0.75) * s, ZA); }
   ctx.lineTo(L / 2, 0); ctx.stroke();
@@ -128,10 +130,11 @@ function flow(ctx, x, y, dx, dy, name, o) {
 /* A resistor on its way from one wiring to another: its zigzag at (x, y) turned to the
    angle a, and its name and value beside it as `resistor` sets them, horizontal below a
    quarter turn and vertical past it, faded out through the middle of the turn so the
-   labels never ride a slanted zigzag. `side` is the vertical labels' side. */
-function resistorPose(ctx, x, y, a, name, val, side) {
+   labels never ride a slanted zigzag. `side` is the vertical labels' side and `color`
+   the resistor's referent colour. */
+function resistorPose(ctx, x, y, a, name, val, side, color) {
   const la = Math.abs(Math.cos(2 * a));
-  zigzag(ctx, x, y, a);
+  zigzag(ctx, x, y, a, { color });
   if (la < 0.02) return;
   ctx.save(); ctx.globalAlpha *= la;
   const rc = C('resistance'), v = ohms(val);
@@ -145,14 +148,15 @@ function spot(ctx, l, t, r, b) {
   ctx.lineWidth = 2.5; ctx.setLineDash([9, 7]); ctx.beginPath(); ctx.roundRect(l, t, r - l, b - t, 14); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 /* A lamp on a vertical wire: the book's circle with a coiled filament, its glow set by
-   the fraction of its full power it is giving out, in the power hue. */
-function bulb(ctx, x, y, frac) {
+   the fraction of its full power it is giving out, in the power hue, and its glass and
+   filament in `color`, the referent colour of the bulb. */
+function bulb(ctx, x, y, frac, color) {
   if (frac > 0) {
     const g = ctx.createRadialGradient(x, y, 40, x, y, 110);
     g.addColorStop(0, alpha(C('power'), 0.42 * frac)); g.addColorStop(1, alpha(C('power'), 0));
     ctx.save(); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 110, 0, 2 * Math.PI); ctx.fill(); ctx.restore();
   }
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE;
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color || PAL.ink; ctx.lineWidth = WIRE;
   ctx.beginPath(); ctx.arc(x, y, 44, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
   ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x - 30, y + 4); ctx.lineTo(x - 24, y + 4);
   for (let k = 0; k < 4; k++) ctx.arc(x - 18 + k * 12, y + 4, 6, Math.PI, 0, false);
@@ -203,7 +207,7 @@ function bulb(ctx, x, y, frac) {
     });
     cell(ctx, 180, 335, 'up', null);
     const poses = how.mix((v) => POSE[v].flat());
-    rs.forEach((r, i) => resistorPose(ctx, poses[3 * i], poses[3 * i + 1], poses[3 * i + 2], names[i], r));
+    rs.forEach((r, i) => resistorPose(ctx, poses[3 * i], poses[3 * i + 1], poses[3 * i + 2], names[i], r, undefined, F.ref('resistor-' + (i + 1))));
     /* each resistance keeps its key, so a rewiring carries every term into its place in the other rule */
     const terms = rs.map((r, i) => '\\mk{r' + i + '}{' + ohm(r) + '}');
     F.morph(fx, series
@@ -292,7 +296,7 @@ function bulb(ctx, x, y, frac) {
     });
     const p = how.mix((v) => POSE[v].flat());
     cell(ctx, 160, p[9], 'up', fmt(V, 1) + ' V');
-    rs.forEach((r, i) => resistorPose(ctx, p[3 * i], p[3 * i + 1], p[3 * i + 2], 'R_' + (i + 1), r, i === 0 ? 1 : -1));
+    rs.forEach((r, i) => resistorPose(ctx, p[3 * i], p[3 * i + 1], p[3 * i + 2], 'R_' + (i + 1), r, i === 0 ? 1 : -1, F.ref('resistor-' + (i + 1))));
     const [Req, I] = w === 'series' ? [Rs, V / Rs] : w === 'parallel' ? [Rp3, V / Rp3] : [Rt, V / Rt];
     equivalent(ctx, w === 'series' ? 'R_s' : w === 'parallel' ? 'R_p' : 'R_tot', Req, V);
     headline(ctx, w === 'series'
@@ -324,12 +328,14 @@ function bulb(ctx, x, y, frac) {
    R₂ and R₃ stay the reader's after they fold: a drag lights and pulses
    the resistor each now lives in, whose value changes with it. The seven
    names stay on at step 1, past root rule 26.7's six, because a schematic
-   whose resistors are unnamed cannot be read.
+   whose resistors are unnamed cannot be read. These seven are the network's
+   own and not the worked examples' resistors, so their subscripts are not
+   split to the section's referents and the zigzags stay ink.
 ===================================================================== */
 (function () {
   const d = sim('sim-reduce-network', 660);
-  const R2 = ctl(d.controls, { label: '\\kRestwo', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 4, unit: 'Ω', dec: 1, aria: 'the second resistance' });
-  const R3 = ctl(d.controls, { label: '\\kResthree', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 6, unit: 'Ω', dec: 1, aria: 'the third resistance' });
+  const R2 = ctl(d.controls, { label: '\\kRes_2', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 4, unit: 'Ω', dec: 1, aria: 'the second resistance' });
+  const R3 = ctl(d.controls, { label: '\\kRes_3', cls: 'resistance', min: 1, max: 20, step: 0.5, value: 6, unit: 'Ω', dec: 1, aria: 'the third resistance' });
   const st = ctl(d.controls, { label: '\\text{step}', cls: 'k', min: 1, max: 5, step: 0.01, value: 1, unit: '', dec: 0, aria: 'how far the reduction has been carried' });
   F.story(d, st, { stops: [{ v: 1, label: '7 resistors' }, { v: 2, label: 'Rp, Rp′' }, { v: 3, label: 'Rs' }, { v: 4, label: 'Rp″' }, { v: 5, label: 'Rtot' }], ms: 1400 });
   const r1 = 1.0, r4 = 12.0, r5 = 3.0, r6 = 6.0, r7 = 20.0;
@@ -384,7 +390,7 @@ function bulb(ctx, x, y, frac) {
   /* the grouping at each stop: the terms about to merge carry one key, and the key map bends them into the one they become */
   const q = (x) => '\\left(' + x + '\\right)^{-1}';
   const mk = (key, x) => '\\mk{' + key + '}{' + x + '}', inv = (...xs) => q(xs.map((x) => '\\frac{1}{' + x + '}').join(' + '));
-  const SYM = { R1: '\\kResone', R2: '\\kRestwo', R3: '\\kResthree', R4: '\\kResfour', R5: '\\kRes_5', R6: '\\kRes_6', R7: '\\kRes_7', Rp: '\\kResp', Rq: '\\kResp\'', Rs: '\\kRess', Rpp: '\\kResp\'\'', Rtot: '\\kRestot' };
+  const SYM = { R1: '\\kRes_1', R2: '\\kRes_2', R3: '\\kRes_3', R4: '\\kRes_4', R5: '\\kRes_5', R6: '\\kRes_6', R7: '\\kRes_7', Rp: '\\kResp', Rq: '\\kResp\'', Rs: '\\kRess', Rpp: '\\kResp\'\'', Rtot: '\\kRestot' };
   const S = (k) => mk(k, SYM[k]), N = (v, k) => mk(k + 'val', ohm(v[k]));
   /* each stop states the step it is about to take, as the new resistance = the combination = its numbers = its value */
   const FORM = [
@@ -495,6 +501,7 @@ function bulb(ctx, x, y, frac) {
   function draw() {
     const { ctx } = begin(d.c);
     const rw = Rw.v, rb = Rb.v, rm = Rm.v, on = sw2.value === 'on', rc = C('resistance');
+    const cw = F.ref('resistor-1'), cb = F.ref('resistor-2'), cm = F.ref('resistor-3');
     const Rload = on ? par(rb, rm) : rb, I = V / (rw + Rload), Vp = V - I * rw, Pb = Vp * Vp / rb;
     const Pfull = V * V / rb, bulbP = (m) => { const L = m === 'on' ? par(rb, rm) : rb, v = V - (V / (rw + L)) * rw; return v * v / rb; };
     const frac = Math.max(0, Math.min(1, sw2.mix(bulbP) / Pfull));
@@ -505,20 +512,20 @@ function bulb(ctx, x, y, frac) {
     wires(ctx, [[170, 480], [1030, 480]]);
     wires(ctx, [[170, 200], [170, 480]]);
     cell(ctx, 170, 340, 'up', fmt(V, 1) + ' V');
-    resistor(ctx, 380, 200, true, 'R_1', rw);
-    text(ctx, 'the wires', 380, 132, PAL.muted, { size: 19, align: 'center' });
+    resistor(ctx, 380, 200, true, 'R_1', rw, { color: cw });
+    text(ctx, 'the wires', 380, 132, cw, { size: 19, align: 'center' });
     flow(ctx, 560, 200, 1, 0, 'I = ' + fmt(I, 2) + ' A');
     /* the bulb on its own path, and the motor on a path of its own behind a switch */
     wires(ctx, [[700, 200], [700, 480]]);
     node(ctx, 700, 200); node(ctx, 700, 480);
-    bulb(ctx, 700, 340, frac);
+    bulb(ctx, 700, 340, frac, cb);
     text(ctx, 'R_2', 636, 326, rc, { size: 24, weight: 600, align: 'right' });
     text(ctx, fmt(rb, 0) + ' Ω', 636, 356, rc, { size: 21, align: 'right' });
-    text(ctx, 'the bulb', 764, 340, PAL.muted, { size: 19, align: 'left' });
+    text(ctx, 'the bulb', 764, 340, cb, { size: 19, align: 'left' });
     wires(ctx, [[1030, 200], [1030, 480]]);
     sw(ctx, 1030, 262, Math.PI / 2, sw2.mix((m) => (m === 'on' ? 1 : 0)));
-    resistor(ctx, 1030, 385, false, 'R_3', rm);
-    text(ctx, on ? 'the motor, running' : 'the motor, switched off', 1030, 520, PAL.muted, { size: 19, align: 'center' });
+    resistor(ctx, 1030, 385, false, 'R_3', rm, { color: cm });
+    text(ctx, on ? 'the motor, running' : 'the motor, switched off', 1030, 520, cm, { size: 19, align: 'center' });
     text(ctx, 'V_p = ' + fmt(Vp, 1) + ' V reaches the bulb', 700, 546, C('voltage'), { size: 21, weight: 600, align: 'center' });
     readout(d.readout,
       '\\kVp = \\kV - \\kIcur\\kResone = ' + fmt(V, 1) + '\\ \\text{V} - (' + fmt(I, 2) + '\\ \\text{A})(' + ohm(rw) + ') = ' + fmt(Vp, 1) + '\\ \\text{V}',

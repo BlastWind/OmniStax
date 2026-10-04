@@ -3,9 +3,11 @@
    every figure here is a still picture: none registers a cycle, none carries a
    transport, and a slider or a choice alone redraws it. The page binds the
    voltage, the resistance, the current and the power, which is what
-   ch21/COLOR.md gives 21.2; the wires, the plates, the cases and the frame are
-   ink, and the only other colour on the page is the element palette on the lone
-   electrons of Figure 21.11. */
+   ch21/COLOR.md gives 21.2. The referents the text names wear their referent
+   colours: the anode and the cathode, the two sources (the two cells, or the
+   charger and the battery on charge) and the load each source drives. The wires
+   and the frame are ink, and the lone electrons of Figure 21.11 wear the
+   element palette. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['21.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline } = F;
@@ -28,12 +30,13 @@ const node = (ctx, x, y, r) => dot(ctx, x, y, PAL.ink, true, r || 7);
 function gap(ctx, x, y, a, L, w) { ctx.save(); ctx.translate(x, y); ctx.rotate(a); line(ctx, -L / 2, 0, L / 2, 0, PAL.panel, w || 8); ctx.restore(); }
 const ZL = 96, ZA = 13;
 /* The zigzag itself, centred at (x, y) and running along the angle a; o.len is its
-   length and o.variable strikes the arrow of a variable resistor across it. */
+   length, o.variable strikes the arrow of a variable resistor across it, and o.color
+   is the referent colour of the thing it belongs to. */
 function zigzag(ctx, x, y, a, o) {
   const L = (o && o.len) || ZL, n = 6, s = L / n;
   gap(ctx, x, y, a, L, 6);
   ctx.save(); ctx.translate(x, y); ctx.rotate(a);
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
+  ctx.strokeStyle = (o && o.color) || PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(-L / 2, 0);
   for (let i = 0; i < n; i++) { ctx.lineTo(-L / 2 + (i + 0.25) * s, -ZA); ctx.lineTo(-L / 2 + (i + 0.75) * s, ZA); }
   ctx.lineTo(L / 2, 0); ctx.stroke();
@@ -67,15 +70,16 @@ function resistor(ctx, x, y, horiz, name, val, o) {
    terminal and a short thick one for the negative. `plus` is the way the positive
    plate faces, 'up' or 'down' on a vertical wire and 'left' or 'right' on a
    horizontal one. The label, one string or [name, value], is set in the voltage
-   hue on the side o.side (-1 is left, or above) and the two signs on the other. */
+   hue on the side o.side (-1 is left, or above) and the two signs on the other; the
+   plates take o.color, the referent colour of the source they belong to. */
 function cell(ctx, x, y, plus, label, o) {
-  o = o || {}; const vc = C('voltage'), vert = plus === 'up' || plus === 'down', s = plus === 'up' || plus === 'left' ? -1 : 1;
+  o = o || {}; const pc = o.color || PAL.ink, vc = C('voltage'), vert = plus === 'up' || plus === 'down', s = plus === 'up' || plus === 'left' ? -1 : 1;
   const side = o.side === undefined ? (vert ? -1 : 1) : o.side, q = -side;   /* the signs go opposite the label */
   const lab = label === null || label === undefined ? [] : Array.isArray(label) ? label : [label];
   if (vert) {
     gap(ctx, x, y, Math.PI / 2, 20, 8);
-    line(ctx, x - 30, y + s * 10, x + 30, y + s * 10, PAL.ink, 4.5);       /* the long positive plate */
-    line(ctx, x - 15, y - s * 10, x + 15, y - s * 10, PAL.ink, 8);          /* the short negative one */
+    line(ctx, x - 30, y + s * 10, x + 30, y + s * 10, pc, 4.5);       /* the long positive plate */
+    line(ctx, x - 15, y - s * 10, x + 15, y - s * 10, pc, 8);          /* the short negative one */
     if (o.signs !== false) {
       text(ctx, '+', x + q * 48, y + s * 15, PAL.muted, { size: 22, weight: 600, align: 'center' });
       text(ctx, '−', x + q * 48, y - s * 15, PAL.muted, { size: 22, weight: 600, align: 'center' });
@@ -86,8 +90,8 @@ function cell(ctx, x, y, plus, label, o) {
   } else {
     if (o.plates !== false) {                                  /* a cell turning round draws its plates itself */
       gap(ctx, x, y, 0, 20, 8);
-      line(ctx, x + s * 10, y - 30, x + s * 10, y + 30, PAL.ink, 4.5);
-      line(ctx, x - s * 10, y - 15, x - s * 10, y + 15, PAL.ink, 8);
+      line(ctx, x + s * 10, y - 30, x + s * 10, y + 30, pc, 4.5);
+      line(ctx, x - s * 10, y - 15, x - s * 10, y + 15, pc, 8);
     }
     const sy = y - side * 32;
     if (o.signs !== false) {
@@ -141,14 +145,15 @@ function meter(ctx, x, y, letter, reading, color) {
   if (reading) text(ctx, reading, x + 60, y, color || C('voltage'), { size: 22, weight: 600, align: 'left' });
 }
 /* A lamp on a vertical wire: the book's circle with a coiled filament, its glow set
-   by how much of its brightest power it gives out, in the power hue. */
-function bulb(ctx, x, y, frac) {
+   by how much of its brightest power it gives out, in the power hue, and its glass
+   and filament in `color`, the referent colour of the bulb. */
+function bulb(ctx, x, y, frac, color) {
   if (frac > 0) {
     const g = ctx.createRadialGradient(x, y, 36, x, y, 100);
     g.addColorStop(0, alpha(C('power'), 0.42 * frac)); g.addColorStop(1, alpha(C('power'), 0));
     ctx.save(); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 100, 0, 2 * Math.PI); ctx.fill(); ctx.restore();
   }
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE;
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color || PAL.ink; ctx.lineWidth = WIRE;
   ctx.beginPath(); ctx.arc(x, y, 40, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
   ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x - 28, y + 4); ctx.lineTo(x - 22, y + 4);
   for (let k = 0; k < 4; k++) ctx.arc(x - 16 + k * 11, y + 4, 5.5, Math.PI, 0, false);
@@ -226,12 +231,13 @@ function bulb(ctx, x, y, frac) {
     line(ctx, L + 6, LEVEL, R - 6, LEVEL, alpha(PAL.ink, 0.55), 2.5);
     /* the two plates, each a slab standing in the acid and reaching above it to a terminal */
     [[560, 'the lead plate', 'anode', '−'], [840, 'the lead oxide plate', 'cathode', '+']].forEach(([x, what, pole, sign]) => {
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.40); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      const pc = F.ref(pole);
+      ctx.save(); ctx.fillStyle = alpha(pc, 0.40); ctx.strokeStyle = pc; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.roundRect(x - 22, 210, 44, B - 240, 5); ctx.fill(); ctx.stroke();
       ctx.beginPath(); ctx.roundRect(x - 34, 174, 68, 40, 6); ctx.fill(); ctx.stroke(); ctx.restore();
       text(ctx, sign, x, 194, PAL.ink, { size: 26, weight: 600, align: 'center' });
-      text(ctx, pole, x + 54, 194, PAL.ink, { size: 23, weight: 600, align: 'left' });
-      text(ctx, what, x, B + 40, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, pole, x + 54, 194, pc, { size: 23, weight: 600, align: 'left' });
+      text(ctx, what, x, B + 40, pc, { size: 19, align: 'center' });
     });
     text(ctx, 'sulfuric acid', 700, 340, PAL.muted, { size: 20, align: 'center' });
     readout(d.readout, '\\kV \\approx 2\\ \\text{V per cell}',
@@ -256,10 +262,11 @@ function bulb(ctx, x, y, frac) {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.strokeRect(EL, T, ER - EL, B - T); ctx.restore();
     text(ctx, 'the electrolyte, in which the reaction runs', (EL + ER) / 2, B + 42, PAL.muted, { size: 19, align: 'center' });
     [[EL + 60, 'anode', '−'], [ER - 60, 'cathode', '+']].forEach(([x, pole, sign]) => {
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.40); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      const pc = F.ref(pole);
+      ctx.save(); ctx.fillStyle = alpha(pc, 0.40); ctx.strokeStyle = pc; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.roundRect(x - 26, T - 70, 52, B - T + 70, 6); ctx.fill(); ctx.stroke(); ctx.restore();
       text(ctx, sign, x, T - 42, PAL.ink, { size: 26, weight: 600, align: 'center' });
-      text(ctx, pole, x + (x < 700 ? -54 : 54), T - 42, PAL.ink, { size: 23, weight: 600, align: x < 700 ? 'right' : 'left' });
+      text(ctx, pole, x + (x < 700 ? -54 : 54), T - 42, pc, { size: 23, weight: 600, align: x < 700 ? 'right' : 'left' });
     });
     /* the two electrons the reaction places on the anode, and the two places it empties on the cathode */
     [330, 400].forEach((y) => {
@@ -302,8 +309,8 @@ function bulb(ctx, x, y, frac) {
     node(ctx, 700, 220, 8); node(ctx, 700, 460, 8);
     text(ctx, 'the terminals', 700, 556, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'V = ' + fmt(V, 2) + ' V across them', 860, 340, C('voltage'), { size: 22, weight: 600, align: 'center' });
-    resistor(ctx, 1150, 340, false, 'R_load', rl);
-    text(ctx, 'the load', 1150, 556, PAL.muted, { size: 19, align: 'center' });
+    resistor(ctx, 1150, 340, false, 'R_load', rl, { color: F.ref('load') });
+    text(ctx, 'the load', 1150, 556, F.ref('load'), { size: 19, align: 'center' });
     flow(ctx, 960, 220, 1, 0, 'I = ' + fmt(i, 3) + ' A');
     text(ctx, 'P = ' + fmt(P, 1) + ' W given out here', 1150, 168, C('power'), { size: 21, weight: 600, align: 'center' });
     readout(d.readout,
@@ -329,10 +336,10 @@ function bulb(ctx, x, y, frac) {
     headline(ctx, 'A battery charger drives current in at the positive terminal of the battery and out at the negative one, which is the opposite of the way the battery drives current through a load.');
     const cc = C('current');
     /* the charger, a case with two posts, and the battery beside it */
-    function caseBox(ctx, x, y, w, h, name) {
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineJoin = 'round';
+    function caseBox(ctx, x, y, w, h, name, color) {
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineJoin = 'round';
       ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 10); ctx.fill(); ctx.stroke(); ctx.restore();
-      text(ctx, name, x, y + h / 2 + 40, PAL.muted, { size: 20, align: 'center' });
+      text(ctx, name, x, y + h / 2 + 40, color, { size: 20, align: 'center' });
     }
     function post(ctx, x, y, sign) {
       ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.40); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
@@ -344,8 +351,8 @@ function bulb(ctx, x, y, frac) {
     ctx.beginPath(); ctx.moveTo(330, 260); ctx.bezierCurveTo(330, 160, 920, 160, 920, 280); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(470, 260); ctx.bezierCurveTo(500, 200, 1060, 200, 1080, 280); ctx.stroke();
     ctx.restore();
-    caseBox(ctx, 400, 380, 280, 200, 'the charger');
-    caseBox(ctx, 1000, 390, 300, 180, 'the battery');
+    caseBox(ctx, 400, 380, 280, 200, 'the charger', F.ref('source-1'));
+    caseBox(ctx, 1000, 390, 300, 180, 'the battery', F.ref('source-2'));
     post(ctx, 330, 280, '+'); post(ctx, 470, 280, '−');
     post(ctx, 920, 300, '+'); post(ctx, 1080, 300, '−');
     arrow(ctx, 600, 350, 790, 350, cc, 5);
@@ -394,15 +401,16 @@ function bulb(ctx, x, y, frac) {
       : 'The two emfs add to ' + fmt(Et, 2) + ' V and the two internal resistances add to ' + fmt(Rt, 3) + ' Ω, so the pair behaves as one source of ' + fmt(Et, 2) + ' V and ' + fmt(Rt, 3) + ' Ω.');
     wires(ctx, [[220, Y], [1280, Y]]);
     node(ctx, 220, Y, 8); node(ctx, 1280, Y, 8);
-    cell(ctx, 375, Y, 'right', ['emf₁', fmt(e1, 2) + ' V']);
-    resistor(ctx, 620, Y, true, 'r₁', r1);
+    const c1 = F.ref('source-1'), c2 = F.ref('source-2');
+    cell(ctx, 375, Y, 'right', ['emf₁', fmt(e1, 2) + ' V'], { color: c1 });
+    resistor(ctx, 620, Y, true, 'r₁', r1, { color: c1 });
     /* the second cell turns round about its own centre; its signs return once it has come to rest */
     const turn = sense.mix((v) => (v === 'back' ? Math.PI : 0)), still = sense.k >= 1;
-    ctx.save(); ctx.translate(875, Y); ctx.rotate(turn); cell(ctx, 0, 0, 'right', null, { signs: false }); ctx.restore();
+    ctx.save(); ctx.translate(875, Y); ctx.rotate(turn); cell(ctx, 0, 0, 'right', null, { signs: false, color: c2 }); ctx.restore();
     cell(ctx, 875, Y, back ? 'left' : 'right', ['emf₂', fmt(e2, 2) + ' V'], { signs: still, plates: false });
-    resistor(ctx, 1120, Y, true, 'r₂', r2);
-    text(ctx, 'the first cell', 375, Y + 112, PAL.muted, { size: 19, align: 'center' });
-    text(ctx, back ? 'the second cell, put in backward' : 'the second cell, the same way round', 875, Y + 112, PAL.muted, { size: 19, align: 'center' });
+    resistor(ctx, 1120, Y, true, 'r₂', r2, { color: c2 });
+    text(ctx, 'the first cell', 375, Y + 112, c1, { size: 19, align: 'center' });
+    text(ctx, back ? 'the second cell, put in backward' : 'the second cell, the same way round', 875, Y + 112, c2, { size: 19, align: 'center' });
     text(ctx, 'the pair’s two terminals', 750, Y + 176, PAL.muted, { size: 19, align: 'center' });
     line(ctx, 220, Y + 136, 220, Y + 162, alpha(PAL.ink, 0.4), 2.5);
     line(ctx, 1280, Y + 136, 1280, Y + 162, alpha(PAL.ink, 0.4), 2.5);
@@ -441,12 +449,13 @@ function bulb(ctx, x, y, frac) {
         ? 'The battery’s emf is now the larger, so ' + fmt(-i, 2) + ' A runs the other way and the battery is driving the charger instead of being charged.'
         : 'The two emfs are equal, so nothing drives the loop and no current flows at all.');
     wires(ctx, [[L, T], [R, T], [R, B], [L, B], [L, T]]);
-    cell(ctx, L, 340, 'up', ['emf₁', fmt(e1, 2) + ' V'], { side: -1 });
-    cell(ctx, R, 340, 'up', ['emf₂', fmt(e2, 2) + ' V'], { side: 1 });
-    resistor(ctx, 560, T, true, 'r₁', r1);
-    resistor(ctx, 840, B, true, 'r₂', r2);
-    text(ctx, 'the charger', L, B + 62, PAL.muted, { size: 20, align: 'center' });
-    text(ctx, 'the battery on charge', R, B + 62, PAL.muted, { size: 20, align: 'center' });
+    const c1 = F.ref('source-1'), c2 = F.ref('source-2');
+    cell(ctx, L, 340, 'up', ['emf₁', fmt(e1, 2) + ' V'], { side: -1, color: c1 });
+    cell(ctx, R, 340, 'up', ['emf₂', fmt(e2, 2) + ' V'], { side: 1, color: c2 });
+    resistor(ctx, 560, T, true, 'r₁', r1, { color: c1 });
+    resistor(ctx, 840, B, true, 'r₂', r2, { color: c2 });
+    text(ctx, 'the charger', L, B + 62, c1, { size: 20, align: 'center' });
+    text(ctx, 'the battery on charge', R, B + 62, c2, { size: 20, align: 'center' });
     text(ctx, 'the two emfs face each other', 700, 340, PAL.muted, { size: 20, align: 'center' });
     if (i !== 0) flow(ctx, 880, T, i > 0 ? 1 : -1, 0, 'I = ' + fmt(Math.abs(i), 2) + ' A', { side: i > 0 ? 1 : -1 });
     else text(ctx, 'no current', 880, T + 40, C('current'), { size: 20, weight: 600, align: 'center' });
@@ -483,14 +492,15 @@ function bulb(ctx, x, y, frac) {
     const T = 230, B = 500, L = 250, R = 1150, rc = C('resistance');
     headline(ctx, 'Two cells in series drive ' + fmt(i, 3) + ' A round the loop, and the bulb gives out ' + fmt(P, 2) + ' W of it; the rest, ' + fmt(i * i * (r1 + r2), 2) + ' W, is left inside the cells.');
     wires(ctx, [[L, T], [R, T], [R, B], [L, B], [L, T]]);
-    cell(ctx, 445, B, 'right', ['emf₁', fmt(e1, 2) + ' V']);
-    resistor(ctx, 670, B, true, 'r₁', r1);
-    cell(ctx, 895, B, 'right', ['emf₂', fmt(e2, 2) + ' V']);
-    resistor(ctx, 1050, B, true, 'r₂', r2, { stack: 'above' });
-    bulb(ctx, R, 350, frac);
+    const c1 = F.ref('source-1'), c2 = F.ref('source-2'), cl = F.ref('load');
+    cell(ctx, 445, B, 'right', ['emf₁', fmt(e1, 2) + ' V'], { color: c1 });
+    resistor(ctx, 670, B, true, 'r₁', r1, { color: c1 });
+    cell(ctx, 895, B, 'right', ['emf₂', fmt(e2, 2) + ' V'], { color: c2 });
+    resistor(ctx, 1050, B, true, 'r₂', r2, { stack: 'above', color: c2 });
+    bulb(ctx, R, 350, frac, cl);
     text(ctx, 'R_load', R - 60, 336, rc, { size: 23, weight: 600, align: 'right' });
     text(ctx, fmt(rl, 2) + ' Ω', R - 60, 366, rc, { size: 20, align: 'right' });
-    text(ctx, 'the bulb', R + 60, 336, PAL.muted, { size: 19, align: 'left' });
+    text(ctx, 'the bulb', R + 60, 336, cl, { size: 19, align: 'left' });
     text(ctx, 'P = ' + fmt(P, 2) + ' W', R + 60, 366, C('power'), { size: 21, weight: 600, align: 'left' });
     flow(ctx, 700, T, -1, 0, 'I = ' + fmt(i, 3) + ' A');
     text(ctx, 'the two cells, one after the other', 670, B + 100, PAL.muted, { size: 19, align: 'center' });
@@ -538,16 +548,17 @@ function bulb(ctx, x, y, frac) {
     wires(ctx, [[x1, B], [RX, B]]);
     wires(ctx, [[RX, T], [RX, B]]);
     const source = (x, k) => {
+      const sc = F.ref('source-' + (k + 1));
       wires(ctx, [[x, T], [x, B]]);
       if (k > 0) { node(ctx, x, T); node(ctx, x, B); }
-      cell(ctx, x, 274, 'up', ['emf', fmt(e, 2) + ' V']);
-      resistor(ctx, x, 417, false, k === 0 ? 'r₁' : 'r₂', k === 0 ? r1 : r2);
-      text(ctx, two ? 'source ' + (k + 1) : 'the source', x, B + 44, PAL.muted, { size: 19, align: 'center' });
+      cell(ctx, x, 274, 'up', ['emf', fmt(e, 2) + ' V'], { color: sc });
+      resistor(ctx, x, 417, false, k === 0 ? 'r₁' : 'r₂', k === 0 ? r1 : r2, { color: sc });
+      text(ctx, two ? 'source ' + (k + 1) : 'the source', x, B + 44, sc, { size: 19, align: 'center' });
     };
     source(x1, 0);
     F.faded(ctx, a2, [0, 0], () => source(580, 1));
-    resistor(ctx, RX, 350, false, 'R_load', rl);
-    text(ctx, 'the load', RX, B + 44, PAL.muted, { size: 19, align: 'center' });
+    resistor(ctx, RX, 350, false, 'R_load', rl, { color: F.ref('load') });
+    text(ctx, 'the load', RX, B + 44, F.ref('load'), { size: 19, align: 'center' });
     flow(ctx, 920, T, 1, 0, 'I = ' + fmt(i, 1) + ' A');
     text(ctx, 'V = ' + fmt(V, 2) + ' V across the load', 900, 410, C('voltage'), { size: 21, weight: 600, align: 'center' });
     text(ctx, 'P = ' + fmt(P, 0) + ' W', RX, 168, C('power'), { size: 21, weight: 600, align: 'center' });

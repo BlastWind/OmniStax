@@ -3,8 +3,10 @@
    no time in it, so all four are still pictures: none registers a cycle, none
    carries a transport, and a slider or a choice alone redraws it. The page binds
    the resistance, the voltage and the current, which is what ch21/COLOR.md gives
-   21.5; the wires, the cells, the meter faces, the zigzags, the letters on the
-   meters and the letters on the bridge are ink. */
+   21.5. The referents the text names wear their referent colours: the battery and
+   the voltmeter on it, the unknown and the standard cell, the long wire, the four
+   arms of the bridge and its galvanometer. The wires, the letters on the bridge
+   and the frame are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['21.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline } = F;
@@ -27,16 +29,17 @@ const node = (ctx, x, y, r) => dot(ctx, x, y, PAL.ink, true, r || 7);
 function gap(ctx, x, y, a, L, w) { ctx.save(); ctx.translate(x, y); ctx.rotate(a); line(ctx, -L / 2, 0, L / 2, 0, PAL.panel, w || 8); ctx.restore(); }
 const ZL = 96, ZA = 13;
 /* The zigzag itself, centred at (x, y) and running along the angle a; o.len is its
-   length and o.variable strikes the arrow of a variable resistor across it. */
+   length, o.variable strikes the arrow of a variable resistor across it, and o.color
+   is the referent colour of the thing it belongs to. */
 function zigzag(ctx, x, y, a, o) {
   const L = (o && o.len) || ZL, n = 6, s = L / n;
   gap(ctx, x, y, a, L, 6);
   ctx.save(); ctx.translate(x, y); ctx.rotate(a);
-  ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
+  ctx.strokeStyle = (o && o.color) || PAL.ink; ctx.lineWidth = WIRE; ctx.lineJoin = 'miter'; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(-L / 2, 0);
   for (let i = 0; i < n; i++) { ctx.lineTo(-L / 2 + (i + 0.25) * s, -ZA); ctx.lineTo(-L / 2 + (i + 0.75) * s, ZA); }
   ctx.lineTo(L / 2, 0); ctx.stroke();
-  if (o && o.variable) arrow(ctx, -L * 0.42, ZA + 18, L * 0.42, -ZA - 18, PAL.ink, 3);
+  if (o && o.variable) arrow(ctx, -L * 0.42, ZA + 18, L * 0.42, -ZA - 18, (o && o.color) || PAL.ink, 3);
   ctx.restore();
 }
 /* A resistor lying along a horizontal wire or standing on a vertical one, its name
@@ -66,15 +69,16 @@ function resistor(ctx, x, y, horiz, name, val, o) {
    terminal and a short thick one for the negative. `plus` is the way the positive
    plate faces, 'up' or 'down' on a vertical wire and 'left' or 'right' on a
    horizontal one. The label, one string or [name, value], is set in the voltage
-   hue on the side o.side (-1 is left, or above) and the two signs on the other. */
+   hue on the side o.side (-1 is left, or above) and the two signs on the other; the
+   plates take o.color, the referent colour of the cell. */
 function cell(ctx, x, y, plus, label, o) {
-  o = o || {}; const vc = C('voltage'), vert = plus === 'up' || plus === 'down', s = plus === 'up' || plus === 'left' ? -1 : 1;
+  o = o || {}; const pc = o.color || PAL.ink, vc = C('voltage'), vert = plus === 'up' || plus === 'down', s = plus === 'up' || plus === 'left' ? -1 : 1;
   const side = o.side === undefined ? (vert ? -1 : 1) : o.side, q = -side;   /* the signs go opposite the label */
   const lab = label === null || label === undefined ? [] : Array.isArray(label) ? label : [label];
   if (vert) {
     gap(ctx, x, y, Math.PI / 2, 20, 8);
-    line(ctx, x - 30, y + s * 10, x + 30, y + s * 10, PAL.ink, 4.5);       /* the long positive plate */
-    line(ctx, x - 15, y - s * 10, x + 15, y - s * 10, PAL.ink, 8);          /* the short negative one */
+    line(ctx, x - 30, y + s * 10, x + 30, y + s * 10, pc, 4.5);       /* the long positive plate */
+    line(ctx, x - 15, y - s * 10, x + 15, y - s * 10, pc, 8);          /* the short negative one */
     if (o.signs !== false) {
       text(ctx, '+', x + q * 48, y + s * 15, PAL.muted, { size: 22, weight: 600, align: 'center' });
       text(ctx, '−', x + q * 48, y - s * 15, PAL.muted, { size: 22, weight: 600, align: 'center' });
@@ -84,8 +88,8 @@ function cell(ctx, x, y, plus, label, o) {
     else if (lab.length === 1) text(ctx, lab[0], lx, y, vc, { size: 23, weight: 600, align: al });
   } else {
     gap(ctx, x, y, 0, 20, 8);
-    line(ctx, x + s * 10, y - 30, x + s * 10, y + 30, PAL.ink, 4.5);
-    line(ctx, x - s * 10, y - 15, x - s * 10, y + 15, PAL.ink, 8);
+    line(ctx, x + s * 10, y - 30, x + s * 10, y + 30, pc, 4.5);
+    line(ctx, x - s * 10, y - 15, x - s * 10, y + 15, pc, 8);
     const sy = y - side * 32;
     if (o.signs !== false) {
       text(ctx, '+', x + s * 24, sy, PAL.muted, { size: 22, weight: 600, align: 'center' });
@@ -127,11 +131,12 @@ function flow(ctx, x, y, dx, dy, name, o) {
   else text(ctx, name, ax, ay + ny * g, cc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
 }
 /* A resistor lying along the arm from p to q, drawn square to the arm, its name and
-   value stacked beside it on the side o.flip chooses, clear of the arm. */
+   value stacked beside it on the side o.flip chooses, clear of the arm; o.color is
+   the arm's referent colour. */
 function armResistor(ctx, p, q, name, val, o) {
   o = o || {}; const mx = (p[0] + q[0]) / 2, my = (p[1] + q[1]) / 2;
   const a = Math.atan2(q[1] - p[1], q[0] - p[0]);
-  zigzag(ctx, mx, my, a, { variable: o.variable });
+  zigzag(ctx, mx, my, a, { variable: o.variable, color: o.color });
   const nx = Math.sin(a), ny = -Math.cos(a), k = o.flip ? -1 : 1, rc = C('resistance');
   const lx = mx + k * nx * 78, ly = my + k * ny * 78;
   if (name) text(ctx, name, lx, ly - 14, rc, { size: 24, weight: 600, align: 'center' });
@@ -140,10 +145,11 @@ function armResistor(ctx, p, q, name, val, o) {
 }
 /* A meter with a needle: a round face with a scale across the top, the needle, and
    the letter the book puts inside it. `frac` runs from −1 at the left of the scale
-   to +1 at the right, and `centre` marks the middle of the scale with a zero. */
+   to +1 at the right, `centre` marks the middle of the scale with a zero, and
+   `body` is the referent colour of a meter the text names, on its rim and letter. */
 function meter(ctx, x, y, R, frac, letter, opts) {
-  const o = opts || {}, f = Math.max(-1, Math.min(1, frac));
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE;
+  const o = opts || {}, f = Math.max(-1, Math.min(1, frac)), bc = o.body || PAL.ink;
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = bc; ctx.lineWidth = WIRE;
   ctx.beginPath(); ctx.arc(x, y, R, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
   ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2.5;
   ctx.beginPath(); ctx.arc(x, y + R * 0.3, R * 0.78, -Math.PI * 0.86, -Math.PI * 0.14); ctx.stroke();
@@ -156,7 +162,7 @@ function meter(ctx, x, y, R, frac, letter, opts) {
   const a = -Math.PI / 2 + f * 0.62;
   line(ctx, x, y + R * 0.3, x + R * 0.82 * Math.cos(a), y + R * 0.3 + R * 0.82 * Math.sin(a), o.needle || PAL.ink, 4);
   dot(ctx, x, y + R * 0.3, PAL.ink, true, 5);
-  text(ctx, letter, x, y + R * 0.62, PAL.ink, { size: 24, weight: 600, align: 'center' });
+  text(ctx, letter, x, y + R * 0.62, bc, { size: 24, weight: 600, align: 'center' });
 }
 
 /* =====================================================================
@@ -179,16 +185,17 @@ function meter(ctx, x, y, R, frac, letter, opts) {
     const Rtot = Rm.v + RG, I = E.v / (Rtot + ri.v), V = E.v - I * ri.v, miss = E.v - V;
     headline(ctx, 'The meter draws a current of ' + fmt(I * 1000, 2) + ' mA, so it reads ' + volts(V)
       + ', which falls short of the emf of ' + volts(E.v) + ' by ' + fmt(miss * 1000, 1) + ' mV.');
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2.5; ctx.setLineDash([9, 7]);
+    const cb = F.ref('battery'), cv = F.ref('voltmeter');
+    ctx.save(); ctx.strokeStyle = alpha(cv, 0.6); ctx.lineWidth = 2.5; ctx.setLineDash([9, 7]);
     ctx.beginPath(); ctx.roundRect(880, 120, 380, 400, 14); ctx.stroke(); ctx.restore();
     wires(ctx, [[300, 150], [1080, 150], [1080, 480], [300, 480], [300, 150]]);
-    cell(ctx, 300, 233, 'up', 'ℰ = ' + volts(E.v));
-    resistor(ctx, 300, 380, false, 'r', ri.v);
-    text(ctx, 'the battery', 300, 545, PAL.muted, { size: 19, align: 'center' });
+    cell(ctx, 300, 233, 'up', 'ℰ = ' + volts(E.v), { color: cb });
+    resistor(ctx, 300, 380, false, 'r', ri.v, { color: cb });
+    text(ctx, 'the battery', 300, 545, cb, { size: 19, align: 'center' });
     meter(ctx, 1080, 270, 62, 2 * (V / 3) - 1, 'G', { needle: vc });
     text(ctx, 'r_G = ' + ohms(RG), 1006, 270, rc, { size: 20, align: 'right' });
     resistor(ctx, 1080, 394, false, 'R', Rm.v);
-    text(ctx, 'the voltmeter', 1080, 545, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the voltmeter', 1080, 545, cv, { size: 19, align: 'center' });
     flow(ctx, 690, 150, 1, 0, 'I = ' + fmt(I * 1000, 2) + ' mA');
     text(ctx, 'it reads ' + volts(V), 690, 310, vc, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'the emf is ' + volts(E.v), 690, 350, vc, { size: 21, align: 'center' });
@@ -230,7 +237,7 @@ function meter(ctx, x, y, R, frac, letter, opts) {
     wires(ctx, [[X0, YW - 17], [X0, YT], [X1, YT], [X1, YW - 17]]);
     cell(ctx, 775, YT, 'left', null);
     text(ctx, 'the source that drives the wire', 775, YT + 48, PAL.muted, { size: 19, align: 'center' });
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('wire'); ctx.lineWidth = WIRE;
     ctx.beginPath(); ctx.roundRect(X0, YW - 17, X1 - X0, 34, 6); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = alpha(PAL.ink, 0.3); ctx.lineWidth = 2; ctx.beginPath();
     for (let k = 1; k < 20; k++) { const x = X0 + (k / 20) * (X1 - X0); ctx.moveTo(x, YW - 17); ctx.lineTo(x, YW + 17); }
@@ -246,8 +253,8 @@ function meter(ctx, x, y, R, frac, letter, opts) {
     arrow(ctx, xc, YW + 96, xc, YW + 24, PAL.ink, 4);
     text(ctx, 'the contact', xc + (xc > 900 ? -16 : 16), YW + 76, PAL.muted, { size: 19, align: xc > 900 ? 'right' : 'left' });
     wires(ctx, [[xc, YW + 96], [xc, YB], [X0, YB], [X0, YW + 17]]);
-    meter(ctx, xc, 492, 54, diff / FULL, 'G', { centre: true, needle: cc });
-    cell(ctx, xc, 629, 'up', name + ' = ' + volts(cellE));
+    meter(ctx, xc, 492, 54, diff / FULL, 'G', { centre: true, needle: cc, body: F.ref('galvanometer') });
+    cell(ctx, xc, 629, 'up', name + ' = ' + volts(cellE), { color: F.ref(which.value === 'x' ? 'unknown-cell' : 'standard-cell') });
     /* the reading sits on whichever side of the meter the canvas has room for */
     const onLeft = xc > 900;
     text(ctx, Math.abs(diff) < 0.004
@@ -287,7 +294,7 @@ function meter(ctx, x, y, R, frac, letter, opts) {
     wires(ctx, [[340, 160], [1120, 160], [1120, 470], [340, 470], [340, 160]]);
     cell(ctx, 340, 243, 'up', 'ℰ = ' + fmt(E, 2) + ' V');
     resistor(ctx, 340, 390, false, 'r', ri.v);
-    resistor(ctx, 1120, 315, false, 'R', Rv.v, { side: 1 });
+    resistor(ctx, 1120, 315, false, 'R', Rv.v, { side: 1, color: F.ref('unknown-resistor') });
     meter(ctx, 730, 160, 54, 2 * (I / IFULL) - 1, 'A', { needle: cc });
     text(ctx, 'the ammeter, ' + ohms(RA), 800, 212, PAL.muted, { size: 19, align: 'left' });
     flow(ctx, 520, 160, 1, 0, 'I = ' + fmt(I * 1000, 1) + ' mA');
@@ -338,11 +345,11 @@ function meter(ctx, x, y, R, frac, letter, opts) {
       : 'The points b and d differ by ' + volts(Math.abs(diff)) + ', so a current crosses the bridge; setting the variable arm to ' + ohms(Rx.v * R1 / R2.v) + ' would bring the needle to zero.');
     wires(ctx, [A, B]); wires(ctx, [B, Cc]); wires(ctx, [A, D]); wires(ctx, [D, Cc]);
     wires(ctx, [B, D]);
-    armResistor(ctx, A, B, 'R₁', R1);
-    armResistor(ctx, B, Cc, 'R₂', R2.v);
-    armResistor(ctx, A, D, 'R₃', R3.v, { variable: true, flip: true });
-    armResistor(ctx, D, Cc, 'Rₓ', null, { flip: true, note: 'the unknown' });
-    meter(ctx, 760, 380, 58, diff / FULL, 'G', { centre: true, needle: cc });
+    armResistor(ctx, A, B, 'R₁', R1, { color: F.ref('resistor-1') });
+    armResistor(ctx, B, Cc, 'R₂', R2.v, { color: F.ref('resistor-2') });
+    armResistor(ctx, A, D, 'R₃', R3.v, { variable: true, flip: true, color: F.ref('resistor-3') });
+    armResistor(ctx, D, Cc, 'Rₓ', null, { flip: true, note: 'the unknown', color: F.ref('unknown-resistor') });
+    meter(ctx, 760, 380, 58, diff / FULL, 'G', { centre: true, needle: cc, body: F.ref('galvanometer') });
     [[A, 'a', -30, -26], [B, 'b', 0, -46], [Cc, 'c', 30, -26], [D, 'd', 0, 46]].forEach(([p, s, dx, dy]) => {
       node(ctx, p[0], p[1], 8);
       text(ctx, s, p[0] + dx, p[1] + dy, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });

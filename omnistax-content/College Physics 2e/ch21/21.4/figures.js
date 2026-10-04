@@ -2,8 +2,9 @@
    A meter on a direct-current circuit rests at a steady reading, so every figure
    here is a still picture: none registers a cycle, none carries a transport, and
    a slider or a choice alone redraws it. The page binds the resistance, the
-   current and the voltage, which is what ch21/COLOR.md gives 21.4; the wires, the
-   source, the zigzags, the meter faces and the frame are ink. */
+   current and the voltage, which is what ch21/COLOR.md gives 21.4. The voltmeter,
+   the ammeter and the galvanometer the text names wear their referent colours on
+   their faces; the wires, the source, the zigzags and the frame are ink. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['21.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline } = F;
@@ -102,12 +103,13 @@ function cell(ctx, x, y, plus, label, o) {
     else if (lab.length === 1) text(ctx, lab[0], x, ly, vc, { size: 23, weight: 600, align: 'center' });
   }
 }
-/* A meter: a ring in ink with its letter in it, painted over the wire it sits on. */
-function meterFace(ctx, x, y, letter, r) {
-  const R = r || 42;
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = WIRE;
+/* A meter: a ring with its letter in it, painted over the wire it sits on, in ink or
+   in `color`, the referent colour of a meter the text names. */
+function meterFace(ctx, x, y, letter, r, color) {
+  const R = r || 42, c = color || PAL.ink;
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = c; ctx.lineWidth = WIRE;
   ctx.beginPath(); ctx.arc(x, y, R, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
-  if (letter) text(ctx, letter, x, y, PAL.ink, { size: 28, weight: 600, align: 'center' });
+  if (letter) text(ctx, letter, x, y, c, { size: 28, weight: 600, align: 'center' });
 }
 /* A switch on a wire running along the angle a: two contacts and a blade hinged on
    the first, lying on the second when closed and lifted off it when open. */
@@ -132,10 +134,11 @@ function flow(ctx, x, y, dx, dy, name, o) {
   if (dy) text(ctx, name, ax + nx * g, ay, cc, { size: 21, weight: 600, align: nx > 0 ? 'left' : 'right', bg: PAL.panel });
   else text(ctx, name, ax, ay + ny * g, cc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
 }
-/* A meter face with its reading set beneath it in the hue of what it reads. */
-function meter(ctx, x, y, letter, reading, color, r, above) {
+/* A meter face, in its referent colour `body`, with its reading set beneath it in the
+   hue of what it reads. */
+function meter(ctx, x, y, letter, reading, color, r, above, body) {
   const R = r || 42;
-  meterFace(ctx, x, y, letter, R);
+  meterFace(ctx, x, y, letter, R, body);
   if (reading) text(ctx, reading, x, y + (above ? -(R + 24) : R + 24), color, { size: 22, weight: 600, align: 'center' });
 }
 
@@ -188,13 +191,13 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       wires(ctx, [[mx - 78, TOP], [mx - 78, my], [mx - 42, my]]);
       wires(ctx, [[mx + 78, tapY], [mx + 78, my], [mx + 42, my]]);
       node(ctx, mx - 78, TOP); node(ctx, mx + 78, tapY);
-      meter(ctx, mx, my, 'V', fmt(reading, 2) + ' V', vc);
+      meter(ctx, mx, my, 'V', fmt(reading, 2) + ' V', vc, 42, false, F.ref('voltmeter'));
       text(ctx, what, mx, my + 96, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
     });
     F.faded(ctx, which.a('A'), [0, 0], () => {
       const [mx, my] = where.mix((v) => (v === 's' ? [320, TOP] : v === '1' ? [710, TOP] : [Rt, 385]));
       /* on the top wire the reading and its caption go above, clear of the resistors' names; on the right wire they go inside the loop */
-      meter(ctx, mx, my, 'A', w === '2' ? null : fmt(I, 3) + ' A', cc, 42, true);
+      meter(ctx, mx, my, 'A', w === '2' ? null : fmt(I, 3) + ' A', cc, 42, true, F.ref('ammeter'));
       text(ctx, w === 's' ? 'in the line leaving the source' : w === '1' ? 'in the line between R₁ and R₂' : 'in the line beyond R₂',
         w === '2' ? mx - 60 : mx, w === '2' ? my + 66 : my - 98, PAL.muted, { size: 19, align: w === '2' ? 'right' : 'center' });
       if (w === '2') text(ctx, fmt(I, 3) + ' A', mx - 60, my + 36, cc, { size: 22, weight: 600, align: 'right' });
@@ -231,10 +234,10 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
   function draw() {
     const { ctx } = begin(d.c);
     const i = Ig.v * 1e-6, s = Is.v * 1e-6, rr = rg.v;
-    const frac = Math.min(1, i / s), over = i > s, V = i * rr, Vfull = s * rr, cc = C('current');
+    const frac = Math.min(1, i / s), over = i > s, V = i * rr, Vfull = s * rr, cc = C('current'), gc = F.ref('galvanometer');
     /* the dial: an arc from the left-hand zero to the right-hand full scale */
     const a0 = Math.PI * 1.15, a1 = Math.PI * 1.85;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(CX, CY, RAD, a0, a1); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = gc; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(CX, CY, RAD, a0, a1); ctx.stroke(); ctx.restore();
     for (let k = 0; k <= 10; k++) {
       const a = a0 + (a1 - a0) * k / 10, big = k % 5 === 0, rr0 = RAD - (big ? 30 : 18);
       line(ctx, CX + rr0 * Math.cos(a), CY + rr0 * Math.sin(a), CX + RAD * Math.cos(a), CY + RAD * Math.sin(a), PAL.ink, big ? 3.5 : 2);
@@ -249,7 +252,7 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       const ak = a0 + (a1 - a0) * k / 10;
       text(ctx, fmt(Is.v * k / 10, 0) + ' µA', CX + (RAD - 56) * Math.cos(ak), CY + (RAD - 56) * Math.sin(ak), cc, { size: 19, align: 'center', base: 'middle', bg: PAL.panel });
     }
-    text(ctx, 'G', CX, CY + 54, PAL.ink, { size: 28, weight: 600, align: 'center' });
+    text(ctx, 'G', CX, CY + 54, gc, { size: 28, weight: 600, align: 'center' });
     text(ctx, over ? 'the needle is pinned at full scale' : fmt(100 * frac, 0) + ' per cent of full scale',
       CX, CY + 100, over ? PAL.ink : cc, { size: 22, weight: 600, align: 'center' });
     /* the two leads and the resistance of the movement itself */
@@ -257,7 +260,7 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
     wires(ctx, [[CX + 300, CY + 170], [CX + 300, CY + 30]]);
     resistor(ctx, CX - 300, CY + 90, false, 'r', fmt(rr, 0) + ' Ω');
     node(ctx, CX - 300, CY + 170); node(ctx, CX + 300, CY + 170);
-    text(ctx, 'the two terminals of the movement, with its own resistance on one of them', CX, CY + 208, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the two terminals of the movement, with its own resistance on one of them', CX, CY + 208, gc, { size: 19, align: 'center' });
     headline(ctx, over
       ? 'A current of ' + fmt(Ig.v, 0) + ' µA is more than the ' + fmt(Is.v, 0) + ' µA this movement can take, so the needle is driven past the end of its scale and the reading is lost.'
       : 'A current of ' + fmt(Ig.v, 0) + ' µA through a movement whose full-scale current is ' + fmt(Is.v, 0) + ' µA swings the needle to ' + fmt(100 * frac, 0) + ' per cent of full scale.');
@@ -285,7 +288,7 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
   const Is = ctl(d.controls, { label: '\\text{the sensitivity}', cls: 'current', min: 10, max: 100, step: 5, value: 50, unit: 'µA', dec: 0, aria: 'the current that gives a full-scale deflection' });
   function draw() {
     const { ctx } = begin(d.c);
-    const isV = which.value === 'V', rr = rg.v, s = Is.v * 1e-6, rc = C('resistance');
+    const isV = which.value === 'V', rr = rg.v, s = Is.v * 1e-6, rc = C('resistance'), gc = F.ref('galvanometer');
     Vfs.disable(!isV); Ifs.disable(isV);
     const L = 240, R = 1160, Y = 270;
     let head = '', main = '', small = '';
@@ -293,12 +296,12 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       const Rtot = Vfs.v / s, Rx = Rtot - rr;
       wires(ctx, [[L, Y], [R, Y]]);
       resistor(ctx, 450, Y, true, 'R', ohms(Rx));
-      meterFace(ctx, 830, Y, 'G', 42);
+      meterFace(ctx, 830, Y, 'G', 42, gc);
       text(ctx, 'r = ' + fmt(rr, 0) + ' Ω', 830, Y + 72, rc, { size: 21, align: 'center' });
       node(ctx, L, Y, 10); node(ctx, R, Y, 10);
       text(ctx, 'the two terminals of the voltmeter', (L + R) / 2, Y - 110, PAL.muted, { size: 19, align: 'center' });
       text(ctx, 'the large resistance in series', 450, Y + 72, PAL.muted, { size: 19, align: 'center' });
-      text(ctx, 'the movement, with its own resistance', 830, Y + 104, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, 'the movement, with its own resistance', 830, Y + 104, gc, { size: 19, align: 'center' });
       head = 'To read ' + fmt(Vfs.v, 1) + ' V at full scale, a ' + fmt(rr, 0) + ' Ω movement of ' + fmt(Is.v, 0) + ' µA sensitivity needs ' + ohms(Rx) + ' in series with it.';
       main = '\\kRestot = \\kRes + \\krint = \\dfrac{\\kV}{\\kIcur} = \\dfrac{' + fmt(Vfs.v, 1) + '\\ \\text{V}}{' + fmt(Is.v, 0) + '\\ \\mu\\text{A}} = ' + tohms(Rtot);
       small = 'Less the movement’s own ' + fmt(rr, 0) + ' Ω, that leaves R = ' + ohms(Rx) + ' in series. The series resistance is what the meter is: it is ' + fmt(Rtot / rr, 0) + ' times the resistance of the movement, so almost the whole of the ' + fmt(Vfs.v, 1) + ' V falls across it and the movement itself keeps only ' + fmt(s * rr * 1e3, 2) + ' mV. Half the voltage sends half the current through and gives half a scale.';
@@ -307,14 +310,14 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       wires(ctx, [[L, Y], [420, Y]]); wires(ctx, [[980, Y], [R, Y]]);
       wires(ctx, [[420, Y], [420, Y - 110], [980, Y - 110], [980, Y]]);
       wires(ctx, [[420, Y], [420, Y + 110], [980, Y + 110], [980, Y]]);
-      meterFace(ctx, 700, Y - 110, 'G', 42);
+      meterFace(ctx, 700, Y - 110, 'G', 42, gc);
       text(ctx, 'r = ' + fmt(rr, 0) + ' Ω', 700, Y - 110 - 68, rc, { size: 21, align: 'center' });
       resistor(ctx, 700, Y + 110, true, 'R', ohms(Rx));
       node(ctx, L, Y, 10); node(ctx, R, Y, 10);
       node(ctx, 420, Y); node(ctx, 980, Y);
       flow(ctx, 330, Y, 1, 0, 'I = ' + fmt(Ifs.v, 2) + ' A', { side: -1 });
       text(ctx, 'the small shunt in parallel', 700, Y + 110 + 66, PAL.muted, { size: 19, align: 'center' });
-      text(ctx, 'the movement', 700, Y - 110 + 68, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, 'the movement', 700, Y - 110 + 68, gc, { size: 19, align: 'center' });
       head = 'To read ' + fmt(Ifs.v, 2) + ' A at full scale, the same movement needs a shunt of only ' + ohms(Rx) + ' across it.';
       main = '\\kRes = \\krint\\dfrac{\\kIcurG}{\\kIcur} = (' + fmt(rr, 0) + '\\ \\Omega)\\dfrac{' + fmt(Is.v, 0) + '\\ \\mu\\text{A}}{' + fmt(Ifs.v - s, 4) + '\\ \\text{A}} = ' + tohms(Rx);
       small = 'The shunt and the movement have the same voltage across them, so the current divides in the ratio of their resistances: of the ' + fmt(Ifs.v, 2) + ' A coming in, all but ' + fmt(Is.v, 0) + ' µA goes round through the shunt, and the movement is left with just enough to swing the needle over.';
@@ -358,7 +361,7 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       text(ctx, 'two equal resistors share the source between them', 710, TOP - 92, PAL.muted, { size: 19, align: 'center' });
       wires(ctx, [[836, TOP], [836, 430], [858, 430]]); wires(ctx, [[964, TOP], [964, 430], [942, 430]]);
       node(ctx, 836, TOP); node(ctx, 964, TOP);
-      meter(ctx, 900, 430, 'V', fmt(Vread, 3) + ' V', vc);
+      meter(ctx, 900, 430, 'V', fmt(Vread, 3) + ' V', vc, 42, false, F.ref('voltmeter'));
       text(ctx, 'the voltmeter, ' + ohms(rv), 900, 566, C('resistance'), { size: 20, align: 'center' });
       text(ctx, 'without it the resistor has ' + fmt(Vtrue, 3) + ' V across it', 400, 470, vc, { size: 20, weight: 600, align: 'center' });
       head = 'The voltmeter is ' + fmt(rv / rd, 1) + ' times the resistance it is placed across, and it reads ' + fmt(Vread, 3) + ' V where the resistor alone would have ' + fmt(Vtrue, 3) + ' V, an error of ' + fmt(Math.abs(err), 2) + ' per cent.';
@@ -368,7 +371,7 @@ function meter(ctx, x, y, letter, reading, color, r, above) {
       const rb = Rb.v, ra = Ra.v, Itrue = EMF / rb, Iread = EMF / (rb + ra);
       const err = 100 * (Iread - Itrue) / Itrue;
       resistor(ctx, 520, TOP, true, 'R', ohms(rb));
-      meter(ctx, 900, TOP, 'A', fmt(Iread, 3) + ' A', cc);
+      meter(ctx, 900, TOP, 'A', fmt(Iread, 3) + ' A', cc, 42, false, F.ref('ammeter'));
       text(ctx, 'the ammeter, ' + ohms(ra), 900, TOP - 86, C('resistance'), { size: 20, align: 'center' });
       flow(ctx, 700, BOT, -1, 0, null);
       text(ctx, 'without the meter the branch carries ' + fmt(Itrue, 3) + ' A', 700, BOT + 60, cc, { size: 20, weight: 600, align: 'center' });
