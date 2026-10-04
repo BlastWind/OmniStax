@@ -16,7 +16,7 @@ const NT = (x) => N0(x).replace(/,/g, '{,}');              /* the same number, w
 const cap = (L, m) => Math.max(0, Math.min(L, m));
 
 /* a free-body diagram: a dot at (cx, cy) with one arrow per force, each scaled by its own k */
-function fbd(ctx, cx, cy, forces, title) {
+function fbd(ctx, cx, cy, forces, title, body) {
   const reach = Math.max(...forces.map((f) => Math.abs(f.v) * f.k), 60);
   if (title) text(ctx, title, cx, cy - reach - 48, PAL.muted, { size: 18, align: 'center' });
   forces.forEach((f) => {
@@ -26,7 +26,7 @@ function fbd(ctx, cx, cy, forces, title) {
     const ax = f.dx > 0.5 ? 'left' : f.dx < -0.5 ? 'right' : 'center';
     text(ctx, f.label, ex + f.dx * 14, ey + f.dy * 20 + (f.off ?? 0), f.c, { size: 19, weight: 600, align: ax });
   });
-  dot(ctx, cx, cy, PAL.ink, true, 8);
+  dot(ctx, cx, cy, body || PAL.ink, true, 8);
 }
 
 /* The forces along one axis added with their signs: one bar per force, then their
@@ -53,10 +53,10 @@ function balance(ctx, box, items, title, top) {
 /* a person standing still, the feet on (x, y), about 225 units tall, with a pack on the back
    when he carries one; the pack hangs from the shoulders and grows with its mass */
 const PS = 1.5;
-function person(ctx, x, y, color, pack) {
+function person(ctx, x, y, color, pack, packColor) {
   if (pack > 0) {
     const h = 44 + Math.min(70, pack * 1.7), sh = { x: x + 2 * PS, y: y - 118 * PS };
-    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.fillStyle = PAL.soft; ctx.lineJoin = 'round';
+    ctx.save(); ctx.strokeStyle = packColor || color; ctx.lineWidth = 3; ctx.fillStyle = PAL.soft; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.roundRect(sh.x - 14 * PS - 44, sh.y + 4, 46, h, 8); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(sh.x - 14 * PS, sh.y + 10); ctx.lineTo(sh.x - 2, sh.y - 4); ctx.stroke();   /* the strap */
     ctx.restore();
@@ -86,15 +86,16 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-person', 660);
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 120, step: 0.5, value: 70, unit: 'kg', dec: 1, aria: 'mass of the person' });
-  const mp = ctl(d.controls, { label: 'm_{\\text{pack}}', cls: '', min: 0, max: 40, step: 0.5, value: 0, unit: 'kg', dec: 1, aria: 'mass of the pack he carries' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 0.5, value: 70, unit: 'kg', dec: 1, aria: 'mass of the person' });
+  const mp = ctl(d.controls, { label: '\\km_{\\htmlData{ref=pack}{\\text{pack}}}', cls: 'mass', min: 0, max: 40, step: 0.5, value: 0, unit: 'kg', dec: 1, aria: 'mass of the pack he carries' });
   function draw() {
     const { ctx } = begin(d.c);
     const w = (mm.v + mp.v) * G, cf = C('force'), K = 170 / 1600, L = cap(w * K, 170);
     const gy = 430, cx = 330, cgy = gy - 90 * PS;          /* the center of gravity, a little above the hips */
     fixed(ctx, 90, gy, 480, 24);
-    person(ctx, cx, gy, PAL.ink, mp.v);
-    dot(ctx, cx, cgy, PAL.ink, true, 7);
+    const cp = F.ref('person');
+    person(ctx, cx, gy, cp, mp.v, F.ref('pack'));
+    dot(ctx, cx, cgy, cp, true, 7);
     arrow(ctx, cx, cgy, cx, cgy + L, cf, 5);
     label(ctx, 'w = ' + N0(w) + ' N', cx, cgy + L, { side: 'right', color: cf, gap: 34, size: 21 });
     arrow(ctx, cx, gy + 24 + L, cx, gy + 24, cf, 5);
@@ -104,7 +105,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     fbd(ctx, 790, 390, [
       { dx: 0, dy: -1, v: w, k: K, label: 'N', c: cf },
       { dx: 0, dy: 1, v: w, k: K, label: 'w', c: cf },
-    ], 'the forces on the person and his pack');
+    ], 'the forces on the person and his pack', cp);
     /* the column runs to 1600 N, the heaviest person and pack the sliders reach */
     balance(ctx, { l: 1010, r: 1340, t: 220, b: 560 }, [
       { label: 'N', v: w, c: cf },
@@ -126,7 +127,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-car', 900);
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 800, max: 1600, step: 10, value: 1200, unit: 'kg', dec: 0, aria: 'mass of the car' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 800, max: 1600, step: 10, value: 1200, unit: 'kg', dec: 0, aria: 'mass of the car' });
   const Fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 2000, step: 10, value: 700, unit: 'N', dec: 0, aria: 'applied force between the tires and the road',
     specials: [{ at: () => ff.v, label: 'equilibrium' }] });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 2000, step: 10, value: 700, unit: 'N', dec: 0, aria: 'air friction on the car',
@@ -140,7 +141,8 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     const gy = 330, cx = 700, s = 4.6, cgy = gy - 14 * s;   /* the car's center of gravity, low in the body */
     const LW = cap(w * kv, 190), LFa = cap(Fa.v * kh, 200), Lf = cap(ff.v * kh, 200);
     line(ctx, 100, gy, 1300, gy, PAL.muted, 3);
-    car(ctx, cx, gy - 16 * s, PAL.ink, s);
+    const cc = F.ref('car');
+    car(ctx, cx, gy - 16 * s, cc, s);
     if (ok) {
       arrow(ctx, cx - 110, 130, cx + 130, 130, cv, 5);
       text(ctx, 'v constant', cx + 10, 98, cv, { size: 21, weight: 600, align: 'center' });
@@ -148,7 +150,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     /* the book draws the support as four equal arrows, one at each tire, so each is a quarter of N */
     [-120, -72, 72, 120].forEach((o) => arrow(ctx, cx + o, gy + 34, cx + o, gy + 34 - LW / 4, cf, 4));
     label(ctx, 'a quarter of N at each tire', cx + 150, gy + 40, { side: 'right', color: cf, gap: 8, size: 20 });
-    dot(ctx, cx, cgy, PAL.ink, true, 7);
+    dot(ctx, cx, cgy, cc, true, 7);
     arrow(ctx, cx, cgy, cx, cgy + LW, cf, 5);
     label(ctx, 'w = ' + N0(w) + ' N', cx, cgy + LW, { side: 'below', color: cf, gap: 22, size: 21 });
     /* the tires drive the car forward where they meet the road, and the air pushes back on the body */
@@ -161,7 +163,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
       { dx: 0, dy: 1, v: w, k: 130 / 15680, label: 'w', c: cf },
       { dx: 1, dy: 0, v: Fa.v, k: 150 / 2000, label: 'F_app', c: cf },
       { dx: -1, dy: 0, v: ff.v, k: 150 / 2000, label: 'f', c: cf },
-    ], 'the forces on the car');
+    ], 'the forces on the car', cc);
     text(ctx, 'The horizontal and the vertical forces are drawn to scales of their own.', 700, 884, PAL.muted, { size: 17, align: 'center' });
     /* the columns run to the slider maxima: 2000 N along the road, and 15,680 N across it, which a 1600 kg car weighs */
     balance(ctx, { l: 520, r: 880, t: 620, b: 840 }, [
@@ -195,7 +197,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
 (function () {
   const d = sim('sim-stick', 720);
   const Fm = ctl(d.controls, { label: '\\kF', cls: 'force', min: 5, max: 60, step: 0.5, value: 30, unit: 'N', dec: 1, aria: 'size of each of the two forces' });
-  const dd = ctl(d.controls, { label: 'd', cls: '', min: 0, max: 0.6, step: 0.02, value: 0, unit: 'm', dec: 2, aria: 'distance between the two lines of action',
+  const dd = ctl(d.controls, { label: 'd', cls: 'position', min: 0, max: 0.6, step: 0.02, value: 0, unit: 'm', dec: 2, aria: 'distance between the two lines of action',
     specials: [{ at: 0, label: 'one line' }] });
   const SC = 300;                                          /* logical units to the metre */
   function draw() {
@@ -206,13 +208,13 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     const yA = mid - off, yB = mid + off, xA = xOf(yA), xB = xOf(yB);
     line(ctx, 250, yA, 1000, yA, PAL.rule, 2, [10, 10]);
     if (off > 0) line(ctx, 250, yB, 1000, yB, PAL.rule, 2, [10, 10]);
-    hockeyStick(ctx, ax, ay, bx, by, PAL.ink);
+    hockeyStick(ctx, ax, ay, bx, by, F.ref('stick'));
     arrow(ctx, xA - L - 10, yA, xA - 10, yA, cf, 5);
     label(ctx, 'F = ' + fmt(Fm.v, 1) + ' N', xA - L - 10, yA, { side: 'left', color: cf, gap: 14, size: 21 });
     arrow(ctx, xB + L + 10, yB, xB + 10, yB, cf, 5);
     label(ctx, 'F = ' + fmt(Fm.v, 1) + ' N', xB + L + 10, yB, { side: 'right', color: cf, gap: 14, size: 21 });
     if (off > 4) {
-      vbracket(ctx, 310, yA, yB, PAL.muted, 'd = ' + fmt(dd.v, 2) + ' m', -1);
+      vbracket(ctx, 310, yA, yB, C('position'), 'd = ' + fmt(dd.v, 2) + ' m', -1);
       turn(ctx, 700, mid, 236, -2.3, -1.0, PAL.muted);
       turn(ctx, 700, mid, 236, 0.84, 2.14, PAL.muted);
       text(ctx, 'The stick turns.', 700, 130, PAL.muted, { size: 19, align: 'center' });
@@ -222,7 +224,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     fbd(ctx, 1140, 415, [
       { dx: 1, dy: 0, v: Fm.v, k: 150 / 60, label: 'F', c: cf },
       { dx: -1, dy: 0, v: Fm.v, k: 150 / 60, label: 'F', c: cf },
-    ], 'the free-body diagram');
+    ], 'the free-body diagram', F.ref('stick'));
     text(ctx, 'This drawing is the same at every setting.', 1140, 500, PAL.muted, { size: 17, align: 'center' });
     headline(ctx, off > 4
       ? 'The two forces of ' + fmt(Fm.v, 1) + ' N still add to zero, but their lines of action are ' + fmt(dd.v, 2) + ' m apart.'
@@ -243,7 +245,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-equilibrium', 860);
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 150, step: 1, value: 100, unit: 'kg', dec: 0, aria: 'mass of the crate' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 150, step: 1, value: 100, unit: 'kg', dec: 0, aria: 'mass of the crate' });
   const Fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 400, step: 5, value: 150, unit: 'N', dec: 0, aria: 'force of the push' });
   const vv = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 0, unit: 'm/s', dec: 1, aria: 'constant speed of the crate',
     specials: [{ at: 0, label: 'at rest' }] });
@@ -255,11 +257,12 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
     const CW = 150, CH = 120, cl = cx - CW / 2, cgy = gy - CH / 2;
     fixed(ctx, 100, gy, 820, 22);
     /* the person who pushes, hands flat on the crate's side, and the crate itself */
-    if (Fa.v > 0) silhouette(ctx, { x: cl - 52, y: gy, s: 1.34, pose: 'push', hands: [{ x: 39, y: -70 }, { x: 40, y: -62 }] });
-    else silhouette(ctx, { x: cl - 60, y: gy, s: 1.34, pose: 'stand' });
-    crate(ctx, cx, cgy, CW, CH);
-    label(ctx, fmt(mm.v, 0) + ' kg', cx, cgy - CH / 2, { side: 'above', gap: 18, size: 22 });
-    dot(ctx, cx, cgy, PAL.ink, true, 7);
+    const cu = F.ref('pusher'), ck = F.ref('crate');
+    if (Fa.v > 0) silhouette(ctx, { x: cl - 52, y: gy, s: 1.34, pose: 'push', color: cu, hands: [{ x: 39, y: -70 }, { x: 40, y: -62 }] });
+    else silhouette(ctx, { x: cl - 60, y: gy, s: 1.34, pose: 'stand', color: cu });
+    crate(ctx, cx, cgy, CW, CH, ck);
+    label(ctx, fmt(mm.v, 0) + ' kg', cx, cgy - CH / 2, { side: 'above', color: C('mass'), gap: 18, size: 22 });
+    dot(ctx, cx, cgy, ck, true, 7);
     if (LF > 4) {
       arrow(ctx, cl, cgy - 28, cl + LF, cgy - 28, cf, 5);
       label(ctx, 'F_app = ' + N0(Fa.v) + ' N', cl + LF, cgy - 28, { side: 'above', color: cf, gap: 52, size: 21 });
@@ -282,7 +285,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
       { dx: 0, dy: 1, v: w, k: 130 / 1470, label: 'w', c: cf },
       { dx: 1, dy: 0, v: Fa.v, k: 150 / 400, label: 'F_app', c: cf },
       { dx: -1, dy: 0, v: Fa.v, k: 150 / 400, label: 'f', c: cf },
-    ], 'the forces on the crate');
+    ], 'the forces on the crate', ck);
     text(ctx, 'Not one of these arrows answers the speed.', 1140, 490, PAL.muted, { size: 17, align: 'center' });
     /* the columns run to the slider maxima: 400 N along the floor, and 1470 N across it, which a 150 kg crate weighs */
     balance(ctx, { l: 180, r: 560, t: 600, b: 820 }, [

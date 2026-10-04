@@ -29,15 +29,16 @@ const FCAP = 100;
 const alen = (f, base, span) => base + span * Math.min(1, Math.abs(f) / FCAP);
 /* the pole itself: two rails, as the book draws it */
 function pole(ctx, y) {
-  line(ctx, 0, y - 6, 1400, y - 6, PAL.ink, 3);
-  line(ctx, 0, y + 6, 1400, y + 6, PAL.ink, 3);
+  const c = F.ref('pole');
+  line(ctx, 0, y - 6, 1400, y - 6, c, 3);
+  line(ctx, 0, y + 6, 1400, y + 6, c, 3);
 }
 /* the vaulter standing between his hands and facing us, in muted ink so that the free body
    diagram reads over him: the library's silhouette with its shoulders at the height of the pole
    and its hands on the two grips, drawn in its own 150-unit frame */
 function vaulter(ctx, xR, xL, yPole, yFeet) {
   const cx = (xR + xL) / 2, s = (yFeet - yPole) / 118;
-  silhouette(ctx, { x: cx, y: yFeet, s, color: PAL.muted, pose: 'stand',
+  silhouette(ctx, { x: cx, y: yFeet, s, color: alpha(F.ref('vaulter'), 0.55), pose: 'stand',
     feet: [{ x: 16, y: 0 }, { x: -16, y: 0 }], hip: { x: 0, y: -72 }, shoulder: { x: 0, y: -118 }, head: { x: 0, y: -140 },
     hands: [{ x: (xL - cx) / s, y: -118 }, { x: (xR - cx) / s, y: -118 }], elbowSide: -1 });
 }
@@ -67,7 +68,7 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
     specials: [{ at: () => S.v / 2, label: 'halfway' }, { at: () => S.v, label: 'over the left hand' }] });
   const S = ctl(d.controls, { label: '\\text{hands apart}', cls: 'position', min: 0.3, max: 1.5, step: 0.05, value: 0.9, unit: 'm', dec: 3, aria: 'distance between the hands' });
   P.refresh();
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 10, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass of the pole' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 1, max: 10, step: 0.25, value: 5, unit: 'kg', dec: 2, aria: 'mass of the pole' });
   const YP = 290;
   function draw() {
     const { ctx } = begin(d.c);
@@ -87,8 +88,8 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
     text(ctx, 'w = ' + fmt(w, 1) + ' N', X(p) + 18, YP + L(w) / 2, C('force'), { size: 22, weight: 600, bg: PAL.panel });
     if (over) text(ctx, 'An arrow stops at 100 N, and the labels go on giving the true forces.', 700, 92, PAL.muted, { size: 17, align: 'center' });
     cgMark(ctx, X(p), YP);
-    text(ctx, 'right hand', X(0), YP + 32, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
-    text(ctx, 'left hand', X(s), YP + 32, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
+    text(ctx, 'right hand', X(0), YP + 32, F.ref('right-hand'), { size: 17, align: 'center', bg: PAL.panel });
+    text(ctx, 'left hand', X(s), YP + 32, F.ref('left-hand'), { size: 17, align: 'center', bg: PAL.panel });
     /* the two lever arms the worked example measures */
     hbracket(ctx, Math.min(X(p), X(s)), Math.max(X(p), X(s)), 540, C('position'), fmt(rL, 3) + ' m from the left hand to the cg');
     hbracket(ctx, X(0), X(s), 600, C('position'), fmt(s, 3) + ' m between the hands');

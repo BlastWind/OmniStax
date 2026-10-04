@@ -64,7 +64,7 @@ function leanForces(ctx, o) {
    it stands, so the axis never rescales under a slider; the curve is clipped where it leaves the
    box and the current lean is drawn through pinned(). */
 function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel, lo, hi, ny, dec, key) {
-  const { X, Y } = axes(ctx, box, [0, thMax], [lo, hi], { xl: 'lean θ (°)', yl: yLabel, yc: C('torque'), nx: 5, ny, fy: (v) => fmt(v, dec) });
+  const { X, Y } = axes(ctx, box, [0, thMax], [lo, hi], { xl: 'lean θ (°)', xc: C('angle'), yl: yLabel, yc: C('torque'), nx: 5, ny, fy: (v) => fmt(v, dec) });
   /* The readout prints the size of the torque and the axis prints its sign, so the axis says
      which sign means which turn (rule 26.5). */
   if (key) text(ctx, key, box.l, box.b + 92, PAL.muted, { size: 17 });
@@ -146,9 +146,9 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-eraser', 640);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 25, step: 0.5, value: 3, unit: '°', dec: 1, aria: 'the lean of the pencil',
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 25, step: 0.5, value: 3, unit: '°', dec: 1, aria: 'the lean of the pencil',
     specials: [{ at: () => Math.atan2(A.v, 90) / RAD, label: 'critical lean' }] });
-  const A = ctl(d.controls, { label: 'a', cls: '', min: 2, max: 40, step: 1, value: 16, unit: 'mm', dec: 0, aria: 'half-width of the flat end' });
+  const A = ctl(d.controls, { label: 'a', cls: 'position', min: 2, max: 40, step: 1, value: 16, unit: 'mm', dec: 0, aria: 'half-width of the flat end' });
   TH.refresh();
   const H = 90, W = 0.060, SC = 2.2, GY = 500, BX = 300;          /* the cg 90 mm up, a 0.060 N pencil */
   function draw() {
@@ -157,7 +157,7 @@ function chicken(ctx, d, h, SC, color) {
     const px = BX + g.px * SC, cgx = BX + g.cx * SC, cgy = GY - g.cy * SC, tau = W * Math.abs(g.rp);
     fixed(ctx, 80, GY, 540, 28);
     ctx.save(); ctx.translate(px, GY); ctx.rotate(g.th); ctx.translate(-A.v * SC, 0);
-    pencilFlat(ctx, 2 * H * SC, 2 * A.v * SC, PAL.ink); ctx.restore();
+    pencilFlat(ctx, 2 * H * SC, 2 * A.v * SC, F.ref('pencil')); ctx.restore();
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' mm', side: -1, arcR: 200, arc: !g.up });
     /* the sliders reach τ = 0.060 × 90 sin 25° = 2.17 mN·m one way and 0.060 × 40 = 2.4 mN·m the
        other, so the torque axis is fixed at −3 to 3 mN·m, ticked every 1, and never rescales */
@@ -179,8 +179,8 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-point', 640);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 20, step: 0.5, value: 3, unit: '°', dec: 1, aria: 'the lean of the pencil' });
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 60, max: 200, step: 5, value: 180, unit: 'mm', dec: 0, aria: 'length of the pencil' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 20, step: 0.5, value: 3, unit: '°', dec: 1, aria: 'the lean of the pencil' });
+  const L = ctl(d.controls, { label: 'L', cls: 'position', min: 60, max: 200, step: 5, value: 180, unit: 'mm', dec: 0, aria: 'length of the pencil' });
   const SC = 2.1, GY = 520, BX = 300;
   function draw() {
     const { ctx } = begin(d.c);
@@ -188,7 +188,7 @@ function chicken(ctx, d, h, SC, color) {
     const cgx = BX + g.cx * SC, cgy = GY - g.cy * SC, tau = W * g.rp;
     fixed(ctx, 80, GY, 540, 28);
     ctx.save(); ctx.translate(BX, GY); ctx.rotate(g.th);
-    pencilPoint(ctx, L.v * SC, 18, PAL.ink); ctx.restore();
+    pencilPoint(ctx, L.v * SC, 18, F.ref('pencil')); ctx.restore();
     leanForces(ctx, { px: BX, cgx, cgy, gy: GY, rpU: g.cx * SC, topple: true, rLabel: 'r⊥ = ' + fmt(g.rp, 1) + ' mm', side: -1, arcR: 200, arc: !g.up, nSide: -1 });
     /* the longest pencil the slider allows gives 0.060 × (200/180) × 100 mm × sin 20° = 2.28 mN·m,
        so the torque axis is fixed at 0 to 2.5 mN·m, ticked every 0.5, and never rescales */
@@ -210,7 +210,7 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-neutral', 510);
-  const X = ctl(d.controls, { label: 'x', cls: '', min: -18, max: 18, step: 1, value: 12, unit: 'cm', dec: 0, aria: 'displacement along the surface' });
+  const X = ctl(d.controls, { label: 'x', cls: 'position', min: -18, max: 18, step: 1, value: 12, unit: 'cm', dec: 0, aria: 'displacement along the surface' });
   /* The radius of the sphere was a slider once and is now fixed at 5 cm: changing it
      moved nothing the figure is about, since the center of gravity of a sphere of any
      size sits straight above the point of support (rule 24.6). */
@@ -231,13 +231,13 @@ function chicken(ctx, d, h, SC, color) {
     const dx = X.v * SC, r = RAD_CM * SC, roll = X.v / RAD_CM;
     fixed(ctx, 60, GY, 620, 26); fixed(ctx, 730, GY, 630, 26);
     const sx = AX + dx;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('sphere'); ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(sx, GY - r, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
     line(ctx, sx, GY - r, sx + r * 0.78 * Math.sin(roll), GY - r - r * 0.78 * Math.cos(roll), PAL.muted, 3);
     support(ctx, sx, GY - r, r + 12, 0);
     text(ctx, '(a) a sphere on a flat surface', AX, 118, PAL.ink, { size: 20, weight: 600, align: 'center' });
     const pl = 260, pw = 36;
-    pencilLying(ctx, BX + dx - pl / 2, GY, pl, pw, PAL.ink);
+    pencilLying(ctx, BX + dx - pl / 2, GY, pl, pw, F.ref('pencil'));
     support(ctx, BX + dx, GY - pw / 2, 16, -30);
     text(ctx, '(b) a round pencil lying on its side', BX, 118, PAL.ink, { size: 20, weight: 600, align: 'center' });
     headline(ctx, X.v === 0 ? 'Each body rests with its center of gravity straight above the point of support, so the torque about that point is zero.'
@@ -257,7 +257,7 @@ function chicken(ctx, d, h, SC, color) {
   const d = sim('sim-marble', 540);
   const S = ctl(d.controls, { label: '\\text{shape}', cls: '', min: -1, max: 1, step: 0.05, value: 1, unit: '', dec: 2, aria: 'shape of the surface, a hill at minus one and a bowl at plus one',
     specials: [{ at: -1, label: 'a hill' }, { at: 0, label: 'flat' }, { at: 1, label: 'a bowl' }] });
-  const X = ctl(d.controls, { label: 'x', cls: '', min: -40, max: 40, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'displacement of the ball' });
+  const X = ctl(d.controls, { label: 'x', cls: 'position', min: -40, max: 40, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'displacement of the ball' });
   const SC = 11, CX = 700, CY = 330, W = 1.96, RB = 30, FSC = 70;   /* a 0.200 kg ball; 70 units of arrow per newton */
   const yOf = (s, x) => (s * x * x) / 160;                          /* centimeters above the level place */
   const px = (x) => CX + x * SC, py = (y) => CY - y * SC;
@@ -272,9 +272,10 @@ function chicken(ctx, d, h, SC, color) {
     dot(ctx, px(0), py(0), PAL.muted, false, 8);
     text(ctx, 'the level place', px(0), py(0) + (s >= 0 ? 42 : -36), PAL.muted, { size: 17, align: 'center' });
     const bx = px(x) - RB * Math.sin(phi), by = py(yOf(s, x)) - RB * Math.cos(phi);
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    const cb = F.ref('ball'), ca = C('angle');
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cb; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(bx, by, RB, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-    dot(ctx, bx, by, PAL.ink, true, 6);
+    dot(ctx, bx, by, cb, true, 6);
     arrow(ctx, bx, by, bx, by + W * FSC, C('force'), 5);
     text(ctx, 'w', bx + 14, by + W * FSC - 26, C('force'), { weight: 600, size: 24 });
     const nl = W * FSC * Math.cos(phi);
@@ -284,11 +285,11 @@ function chicken(ctx, d, h, SC, color) {
     const tx = px(x), ty = py(yOf(s, x));
     if (Math.abs(phi) > 0.02) {
       line(ctx, tx, ty, tx + 104, ty, PAL.rule, 2, [6, 8]);
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
+      ctx.save(); ctx.strokeStyle = ca; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.arc(tx, ty, 64, 0, -phi, phi > 0); ctx.stroke(); ctx.restore();
-      text(ctx, 'θ = ' + fmt(Math.abs(phi) / RAD, 1) + '°', tx + 104 * Math.cos(-phi / 2), ty + 104 * Math.sin(-phi / 2), PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'θ = ' + fmt(Math.abs(phi) / RAD, 1) + '°', tx + 104 * Math.cos(-phi / 2), ty + 104 * Math.sin(-phi / 2), ca, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     } else {
-      text(ctx, 'θ = 0°', tx + 46, ty + 30, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'θ = 0°', tx + 46, ty + 30, ca, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     }
     const len = Math.abs(along) * FSC, dir = along > 0 ? 1 : -1;
     if (len > 14) {
@@ -300,7 +301,7 @@ function chicken(ctx, d, h, SC, color) {
     headline(ctx, kind === 'neutral' ? 'The surface is flat, so there is no force along it wherever the ball is put and the equilibrium is neutral.'
       : kind === 'stable' ? 'The force along the surface, ' + fmt(Math.abs(along), 2) + ' N, points back toward the bottom, so the equilibrium is stable.'
         : 'The force along the surface, ' + fmt(Math.abs(along), 2) + ' N, points away from the crest, so the equilibrium is unstable.');
-    readout(d.readout, `\\kF_{\\parallel} = \\kwgt\\sin\\theta = (${fmt(W, 2)}\\ \\text{N})\\sin(${fmt(Math.abs(phi) / RAD, 1)}^\\circ) = ${fmt(Math.abs(along), 2)}\\ \\text{N}`,
+    readout(d.readout, `\\kF_{\\parallel} = \\kwgt\\sin\\ktheta = (${fmt(W, 2)}\\ \\text{N})\\sin(${fmt(Math.abs(phi) / RAD, 1)}^\\circ) = ${fmt(Math.abs(along), 2)}\\ \\text{N}`,
       kind === 'neutral' ? 'A flat surface leaves the weight and the normal force in one line at every position, so the ball has no reason to go anywhere and stays where it is left.'
         : kind === 'stable' ? 'The force grows with the displacement and always points back toward the lowest place, which is what a restoring force is: displace the ball further and it is pushed back harder.'
           : 'The force grows with the displacement and always points away from the crest, so the smallest displacement is enough to send the ball off it.');
@@ -316,9 +317,9 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-stance', 660);
-  const D = ctl(d.controls, { label: 'd', cls: '', min: 10, max: 90, step: 1, value: 25, unit: 'cm', dec: 0, aria: 'distance between the feet' });
-  const HG = ctl(d.controls, { label: 'h', cls: '', min: 60, max: 110, step: 1, value: 100, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 30, step: 0.5, value: 4, unit: '°', dec: 1, aria: 'the lean of the person',
+  const D = ctl(d.controls, { label: 'd', cls: 'position', min: 10, max: 90, step: 1, value: 25, unit: 'cm', dec: 0, aria: 'distance between the feet' });
+  const HG = ctl(d.controls, { label: 'h', cls: 'position', min: 60, max: 110, step: 1, value: 100, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 30, step: 0.5, value: 4, unit: '°', dec: 1, aria: 'the lean of the person',
     specials: [{ at: () => Math.atan2(D.v / 2, HG.v) / RAD, label: 'critical lean' }] });
   const SC = 2.2, GY = 480, BX = 320, W = 700;                     /* a 700 N adult */
   function draw() {
@@ -327,9 +328,9 @@ function chicken(ctx, d, h, SC, color) {
     const px = BX + g.px * SC, cgx = BX + g.cx * SC, cgy = GY - g.cy * SC, tau = (W * g.rp) / 100;
     fixed(ctx, 70, GY, 560, 28);
     ctx.save(); ctx.translate(px, GY); ctx.rotate(g.th); ctx.translate(-a * SC, 0);
-    person(ctx, D.v, HG.v, SC, PAL.ink); ctx.restore();
+    person(ctx, D.v, HG.v, SC, F.ref('person')); ctx.restore();
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' cm', side: 1, arcR: 190, arc: !g.up });
-    hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, PAL.ink, 'base of support, ' + fmt(D.v, 0) + ' cm');
+    hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, C('position'), 'base of support, ' + fmt(D.v, 0) + ' cm');
     /* the sliders reach 7.00 × (110 sin 30° − 5 cos 30°) = 355 N·m one way and 7.00 × 45 = 315 N·m
        the other, so the torque axis is fixed at −400 to 400 N·m, ticked every 100, and never moves */
     tauGraph(ctx, { l: 820, r: 1340, t: 130, b: 460 }, 30, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -400, 400, 8, 0,
@@ -350,9 +351,9 @@ function chicken(ctx, d, h, SC, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-chicken', 660);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 45, step: 0.5, value: 10, unit: '°', dec: 1, aria: 'the lean of the chicken',
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 45, step: 0.5, value: 10, unit: '°', dec: 1, aria: 'the lean of the chicken',
     specials: [{ at: () => Math.atan2(9, HG.v) / RAD, label: 'critical lean' }] });
-  const HG = ctl(d.controls, { label: 'h', cls: '', min: 5, max: 28, step: 1, value: 15, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
+  const HG = ctl(d.controls, { label: 'h', cls: 'position', min: 5, max: 28, step: 1, value: 15, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
   TH.refresh();
   const SC = 6.5, GY = 470, BX = 330, W = 24.5, D = 18;            /* a 2.50 kg chicken on feet 18 cm apart */
   function draw() {
@@ -361,9 +362,9 @@ function chicken(ctx, d, h, SC, color) {
     const px = BX + g.px * SC, cgx = BX + g.cx * SC, cgy = GY - g.cy * SC, tau = (W * g.rp) / 100;
     fixed(ctx, 70, GY, 560, 28);
     ctx.save(); ctx.translate(px, GY); ctx.rotate(g.th); ctx.translate(-a * SC, 0);
-    chicken(ctx, D, HG.v, SC, PAL.ink); ctx.restore();
+    chicken(ctx, D, HG.v, SC, F.ref('chicken')); ctx.restore();
     leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' cm', side: 1, arcR: 235, arc: !g.up });
-    hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, PAL.ink, 'base of support, ' + fmt(D, 0) + ' cm');
+    hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, C('position'), 'base of support, ' + fmt(D, 0) + ' cm');
     const box = { l: 820, r: 1340, t: 130, b: 460 };
     /* with feet 18 cm apart the sliders reach 0.245 × (28 − 9) sin 45° = 3.29 N·m one way and
        0.245 × 9 = 2.21 N·m the other, so the torque axis is fixed at −4 to 4 N·m, ticked every 1 */

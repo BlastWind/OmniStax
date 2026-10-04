@@ -18,16 +18,16 @@ function turn(ctx, cx, cy, r, a0, a1, color, w) {
   arrow(ctx, tx - 16 * Math.cos(tan), ty - 16 * Math.sin(tan), tx, ty, color, lw);
 }
 /* a closed book lying flat, its top edge centred on (cx, top): the cover with the block of pages under it */
-function book(ctx, cx, top, w, h) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+function book(ctx, cx, top, w, h, color = PAL.ink) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
   ctx.fillRect(cx - w / 2, top, w, h); ctx.strokeRect(cx - w / 2, top, w, h);
-  ctx.fillStyle = PAL.ink; ctx.fillRect(cx - w / 2, top, w, 8);                                     /* the cover */
+  ctx.fillStyle = color; ctx.fillRect(cx - w / 2, top, w, 8);                                     /* the cover */
   ctx.strokeStyle = PAL.muted; ctx.lineWidth = 1.5; ctx.beginPath();
   for (let y = top + 16; y < top + h - 4; y += 7) { ctx.moveTo(cx - w / 2 + 6, y); ctx.lineTo(cx + w / 2 - 6, y); } ctx.stroke();   /* the pages */
   ctx.restore();
 }
 /* a box carried in the hands, drawn as the library's crate */
-function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
+function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, color); }
 /* =====================================================================
    FIGURE 9.25: the forearm holding a book, with the equivalent lever
    system drawn over it. The elbow is the pivot, the biceps pulls up a
@@ -40,7 +40,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
 (function () {
   const d = sim('sim-forearm', 990);
   const R1 = ctl(d.controls, { label: '\\krone', cls: 'position', min: 2, max: 8, step: 0.5, value: 4, unit: 'cm', dec: 1, aria: 'distance from the elbow to the biceps' });
-  const MB = ctl(d.controls, { label: 'm_{\\text{b}}', cls: '', min: 0, max: 8, step: 0.5, value: 4, unit: 'kg', dec: 2, aria: 'mass of the book' });
+  const MB = ctl(d.controls, { label: '\\km_{\\htmlData{ref=book}{\\text{b}}}', cls: 'mass', min: 0, max: 8, step: 0.5, value: 4, unit: 'kg', dec: 2, aria: 'mass of the book' });
   const R3 = ctl(d.controls, { label: '\\krthree', cls: 'position', min: 25, max: 45, step: 1, value: 38, unit: 'cm', dec: 1, aria: 'distance from the elbow to the book' });
   const MA = 2.50, R2 = 0.160;         /* the book's forearm: 2.50 kg with its centre of gravity 16.0 cm out */
   const PX = 230, PY = 330, S = 1750;  /* the elbow, and the units the scene draws one metre in */
@@ -58,12 +58,13 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
 
     /* the upper arm, the biceps and the forearm with the book in the hand */
     line(ctx, PX, PY, PX, 170, PAL.muted, 22);                                                     /* the upper arm */
-    ctx.save(); ctx.fillStyle = alpha(C('force'), 0.25); ctx.strokeStyle = C('force'); ctx.lineWidth = 2.5;   /* the biceps, from the upper arm to its tendon on the forearm */
+    const cbi = F.ref('biceps'), cfa = F.ref('forearm');
+    ctx.save(); ctx.fillStyle = alpha(cbi, 0.25); ctx.strokeStyle = cbi; ctx.lineWidth = 2.5;   /* the biceps, from the upper arm to its tendon on the forearm */
     ctx.beginPath(); ctx.moveTo(PX + 11, 200); ctx.quadraticCurveTo(PX + 60, 236, x1, PY - 8); ctx.quadraticCurveTo(PX + 34, 250, PX + 11, 200); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-    line(ctx, PX, PY, hand, PY, PAL.ink, 12);                                                       /* the forearm */
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.roundRect(hand - 14, PY - 12, 44, 34, 10); ctx.fill(); ctx.restore();   /* the hand */
-    dot(ctx, PX, PY, PAL.ink, true, 11);
-    book(ctx, x3, PY + 22, 100, 46);
+    line(ctx, PX, PY, hand, PY, cfa, 12);                                                       /* the forearm */
+    ctx.save(); ctx.fillStyle = cfa; ctx.beginPath(); ctx.roundRect(hand - 14, PY - 12, 44, 34, 10); ctx.fill(); ctx.restore();   /* the hand */
+    dot(ctx, PX, PY, F.ref('elbow'), true, 11);
+    book(ctx, x3, PY + 22, 100, 46, F.ref('book'));
 
     /* the four forces on the forearm */
     const lB = Math.min(K * FB, 240);
@@ -133,9 +134,9 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
   /* The lean runs to 65° rather than 60° so that the 0.350 m lever arm the worked example uses is
      reachable: with the center of gravity 0.400 m up the spine it arrives at 61°, which is given
      a detent of its own, as the upright position is. */
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 65, step: 1, value: 0, unit: '°', dec: 0, aria: 'lean of the upper body away from the vertical',
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 65, step: 1, value: 0, unit: '°', dec: 0, aria: 'lean of the upper body away from the vertical',
     specials: [{ at: 0, label: 'upright' }], detents: [{ v: 61, label: 'Example 9.5' }], snap: true });
-  const MU = ctl(d.controls, { label: 'm_{\\text{ub}}', cls: '', min: 40, max: 80, step: 1, value: 55, unit: 'kg', dec: 1, aria: 'mass of the upper body' });
+  const MU = ctl(d.controls, { label: '\\km_{\\text{ub}}', cls: 'mass', min: 40, max: 80, step: 1, value: 55, unit: 'kg', dec: 1, aria: 'mass of the upper body' });
   const RB = ctl(d.controls, { label: '\\krbperp', cls: 'position', min: 4, max: 12, step: 0.5, value: 8, unit: 'cm', dec: 1, aria: 'perpendicular lever arm of the back muscles' });
   const DCG = 0.400, SP = 308;         /* the centre of gravity sits 0.400 m up the spine, which makes its lever */
   const FX = 250, GY = 600, TRUNK = 210;  /* arm the 0.350 m of Example 9.5 at the lean the book draws there */
@@ -158,7 +159,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
     const ps = 2.4, J = (q) => ({ x: (q[0] - FX) / ps, y: (q[1] - GY) / ps });
     const sh = [hip[0] + 160 * u[0], hip[1] + 160 * u[1]], hd = [hip[0] + (TRUNK + 14) * u[0], hip[1] + (TRUNK + 14) * u[1]];
     const hnd = [sh[0] - 50 * n[0] + 10 * u[0], sh[1] - 50 * n[1] + 10 * u[1]];
-    silhouette(ctx, { x: FX, y: GY, s: ps, color: PAL.ink, pose: 'stand', feet: [J([FX + 16, GY]), J([FX - 12, GY])], hip: J(hip), shoulder: J(sh), head: J(hd), hands: [J(hnd), J([hnd[0] - 10, hnd[1] + 8])], kneeSide: 1, elbowSide: -1 });
+    silhouette(ctx, { x: FX, y: GY, s: ps, color: F.ref('person'), pose: 'stand', feet: [J([FX + 16, GY]), J([FX - 12, GY])], hip: J(hip), shoulder: J(sh), head: J(hd), hands: [J(hnd), J([hnd[0] - 10, hnd[1] + 8])], kneeSide: 1, elbowSide: -1 });
     dot(ctx, hip[0], hip[1], PAL.ink, true, 11);
     text(ctx, 'hips', hip[0] - 22, hip[1] + 8, PAL.muted, { size: 17, align: 'right' });
 
@@ -177,7 +178,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
     /* the back muscles: a cable parallel to the spine, offset behind it by its lever arm */
     const a = [hip[0] + rb * SP * n[0], hip[1] + rb * SP * n[1]];
     const b = [a[0] + 132 * u[0], a[1] + 132 * u[1]];
-    line(ctx, a[0], a[1], b[0], b[1], PAL.muted, 9);
+    line(ctx, a[0], a[1], b[0], b[1], F.ref('back-muscles'), 9);
     line(ctx, hip[0], hip[1], a[0], a[1], C('position'), 3);
     text(ctx, 'r_b⊥ = ' + fmt(RB.v, 1) + ' cm', a[0] - 14, a[1] - 20, C('position'), { size: 17, weight: 600, align: 'right' });
     if (FB > 0) {
@@ -199,7 +200,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
        is always 0 to 70° by 0 to 8000 N, ticked every 10° and every 1000 N, and never rescales */
     const FR2 = 8000, THR = 70;
     const { X, Y } = axes(ctx, box, [0, THR], [0, FR2], {
-      xl: 'lean θ (°)', yl: 'F_B (N)', yc: C('force'),
+      xl: 'lean θ (°)', xc: C('angle'), yl: 'F_B (N)', yc: C('force'),
       nx: 7, ny: 8, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
     });
     curve(ctx, (t) => Math.min(muscle(t, MU.v, rb), FR2), 0, 65, X, Y, C('force'), 5, 120);
@@ -229,9 +230,9 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
 ===================================================================== */
 (function () {
   const d = sim('sim-lift', 820);
-  const MBX = ctl(d.controls, { label: 'm_{\\text{box}}', cls: '', min: 0, max: 50, step: 1, value: 30, unit: 'kg', dec: 1, aria: 'mass of the box' });
+  const MBX = ctl(d.controls, { label: '\\km_{\\htmlData{ref=box}{\\text{box}}}', cls: 'mass', min: 0, max: 50, step: 1, value: 30, unit: 'kg', dec: 1, aria: 'mass of the box' });
   const RBX = ctl(d.controls, { label: 'r_{\\text{box}}', cls: 'position', min: 30, max: 70, step: 1, value: 50, unit: 'cm', dec: 1, aria: 'distance from the hips to the box' });
-  const MUB = ctl(d.controls, { label: 'm_{\\text{ub}}', cls: '', min: 40, max: 80, step: 1, value: 55, unit: 'kg', dec: 1, aria: 'mass of the upper body' });
+  const MUB = ctl(d.controls, { label: '\\km_{\\text{ub}}', cls: 'mass', min: 40, max: 80, step: 1, value: 55, unit: 'kg', dec: 1, aria: 'mass of the upper body' });
   const RUB = 0.350, RM = 0.0800, ANG = 29.0 * RAD;   /* the book's lever arms, and the angle of the spine and the muscles */
   const HX = 250, HY = 300, S = 520, GY = 560;
   const u = [Math.cos(ANG), -Math.sin(ANG)], n = [-Math.sin(ANG), -Math.cos(ANG)];
@@ -253,8 +254,8 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
     /* the whole body bent over the box, the arms down to its top, in the silhouette's own frame */
     const ps = 2.4, J = (q) => ({ x: (q[0] - HX) / ps, y: (q[1] - GY) / ps });
     const sh = [HX + 288 * u[0], HY + 288 * u[1]], head = [HX + 354 * u[0], HY + 354 * u[1]];
-    silhouette(ctx, { x: HX, y: GY, s: ps, color: PAL.ink, pose: 'stand', feet: [J([HX + 18, GY]), J([HX - 16, GY])], hip: J([HX, HY]), shoulder: J(sh), head: J(head), hands: [J([xbox - 30, 412]), J([xbox + 30, 412])], kneeSide: 1, elbowSide: 1 });
-    crate(ctx, xbox, 410, 92, 62);
+    silhouette(ctx, { x: HX, y: GY, s: ps, color: F.ref('lifter'), pose: 'stand', feet: [J([HX + 18, GY]), J([HX - 16, GY])], hip: J([HX, HY]), shoulder: J(sh), head: J(head), hands: [J([xbox - 30, 412]), J([xbox + 30, 412])], kneeSide: 1, elbowSide: 1 });
+    crate(ctx, xbox, 410, 92, 62, F.ref('box'));
     dot(ctx, HX, HY, PAL.ink, true, 11);
 
     /* the two weights, with a drop line each to the lever arms below the ground */
@@ -276,7 +277,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
     /* the back muscles, parallel to the spine and offset behind it by their lever arm */
     const a = [HX + RM * S * n[0], HY + RM * S * n[1]];
     const b = [a[0] + 210 * u[0], a[1] + 210 * u[1]];
-    line(ctx, a[0], a[1], b[0], b[1], PAL.muted, 9);
+    line(ctx, a[0], a[1], b[0], b[1], F.ref('back-muscles'), 9);
     line(ctx, HX, HY, a[0], a[1], C('position'), 3);
     text(ctx, '0.0800 m', a[0] - 12, a[1] - 18, C('position'), { size: 17, weight: 600, align: 'right' });
     const lf = Math.max(K * FB, 30);
@@ -324,7 +325,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
 ===================================================================== */
 (function () {
   const d = sim('sim-lever-arm-trade', 770);
-  const PH = ctl(d.controls, { label: '\\varphi', cls: '', min: 40, max: 140, step: 1, value: 70, unit: '°', dec: 0, aria: 'angle at the elbow',
+  const PH = ctl(d.controls, { label: '\\varphi', cls: 'angle', min: 40, max: 140, step: 1, value: 70, unit: '°', dec: 0, aria: 'angle at the elbow',
     specials: [{ at: 90, label: 'Example 9.4' }] });
   const R1 = ctl(d.controls, { label: '\\krone', cls: 'position', min: 2, max: 8, step: 0.5, value: 4, unit: 'cm', dec: 1, aria: 'distance from the elbow to the biceps' });
   const { formula, note } = F.readout(d);
@@ -345,9 +346,9 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
     text(ctx, '25.0 cm up the humerus', up[0] - 22, up[1], PAL.muted, { size: 17, align: 'right' });
     line(ctx, EX, EY, EX + HAND * S * ref[0], EY + HAND * S * ref[1], PAL.rule, 9);
     line(ctx, up[0], up[1], EX + r1 * S * ref[0], EY + r1 * S * ref[1], PAL.rule, 8);
-    line(ctx, up[0], up[1], EX + r1 * S * now[0], EY + r1 * S * now[1], PAL.soft2, 13);
-    line(ctx, EX, EY, EX + HAND * S * now[0], EY + HAND * S * now[1], PAL.ink, 11);
-    dot(ctx, EX, EY, PAL.ink, true, 11);
+    line(ctx, up[0], up[1], EX + r1 * S * now[0], EY + r1 * S * now[1], alpha(F.ref('biceps'), 0.6), 13);
+    line(ctx, EX, EY, EX + HAND * S * now[0], EY + HAND * S * now[1], F.ref('forearm'), 11);
+    dot(ctx, EX, EY, F.ref('elbow'), true, 11);
     text(ctx, 'elbow', EX - 22, EY + 32, PAL.muted, { size: 17, align: 'right' });
     dot(ctx, EX + r1 * S * now[0], EY + r1 * S * now[1], C('position'), true, 9);
     dot(ctx, EX + HAND * S * ref[0], EY + HAND * S * ref[1], PAL.ink, false, 10);
@@ -359,7 +360,7 @@ function crate(ctx, cx, top, w, h) { F.crate(ctx, cx, top + h / 2, w, h); }
       const a0 = Math.atan2(ref[1], ref[0]), a1 = Math.atan2(now[1], now[0]);
       turn(ctx, EX, EY, HAND * S, a0, a1, C('position'), 4);
     }
-    text(ctx, 'φ = ' + fmt(ph, 0) + '°', EX + 62, EY - 46, PAL.ink, { size: 22, weight: 600, align: 'left' });
+    text(ctx, 'φ = ' + fmt(ph, 0) + '°', EX + 62, EY - 46, C('angle'), { size: 22, weight: 600, align: 'left' });
 
     /* the contraction beside the movement it produces, drawn to one scale */
     const SB = 900 / (HAND * 50 * RAD), BL = 320;

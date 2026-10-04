@@ -4,7 +4,7 @@
   "chapter": "9",
   "title": "Forces and Torques in Muscles and Joints",
   "short": "Muscles and joints",
-  "lead": "Muscles, bones and joints are some of the most interesting applications of statics, and they hold a surprise. A muscle attaches to a bone very close to the joint it turns, so it must pull far harder than the limb ever presses on the world. You work out the force in the biceps holding a book and the force the elbow joint carries. The same arithmetic then reaches the back of someone lifting a box with their spine, and you ask what the body gains for paying so much force.",
+  "lead": "Muscles, bones and joints are some of the most interesting applications of statics, and they hold a surprise. A muscle attaches to a bone very close to the joint it turns, so it must pull far harder than the limb ever presses on the world. You work out <span data-type=\"force\">the force</span> in <span data-ref=\"biceps\">the biceps</span> holding <span data-ref=\"book\">a book</span> and <span data-type=\"force\">the force</span> <span data-ref=\"elbow\">the elbow joint</span> carries. The same arithmetic then reaches the back of <span data-ref=\"lifter\">someone</span> lifting <span data-ref=\"box\">a box</span> with <span data-ref=\"lifter\">their</span> spine, and you ask what the body gains for paying so much force.",
   "objectives": [
     "Explain the forces exerted by muscles.",
     "State how a bad posture causes back strain.",
@@ -56,7 +56,8 @@
       "draws": [
         "force",
         "position",
-        "torque"
+        "torque",
+        "mass"
       ]
     },
     {
@@ -73,7 +74,9 @@
       "draws": [
         "force",
         "position",
-        "torque"
+        "torque",
+        "angle",
+        "mass"
       ]
     },
     {
@@ -99,14 +102,16 @@
       "draws": [
         "force",
         "position",
-        "torque"
+        "torque",
+        "mass"
       ]
     },
     {
       "id": "sim-lever-arm-trade",
       "kind": "sim",
       "draws": [
-        "position"
+        "position",
+        "angle"
       ]
     }
   ],
@@ -855,6 +860,48 @@
       "exercise": "p12",
       "concept": "calculate-power",
       "weight": 2
+    }
+  ],
+  "referents": [
+    {
+      "id": "forearm",
+      "label": "the forearm",
+      "figure": "sim-forearm"
+    },
+    {
+      "id": "biceps",
+      "label": "the biceps",
+      "figure": "sim-forearm"
+    },
+    {
+      "id": "book",
+      "label": "the book in the hand",
+      "figure": "sim-forearm"
+    },
+    {
+      "id": "elbow",
+      "label": "the elbow joint",
+      "figure": "sim-forearm"
+    },
+    {
+      "id": "person",
+      "label": "the person standing",
+      "figure": "sim-posture"
+    },
+    {
+      "id": "back-muscles",
+      "label": "the back muscles",
+      "figure": "sim-posture"
+    },
+    {
+      "id": "lifter",
+      "label": "the person lifting",
+      "figure": "sim-lift"
+    },
+    {
+      "id": "box",
+      "label": "the box",
+      "figure": "sim-lift"
     }
   ]
 }

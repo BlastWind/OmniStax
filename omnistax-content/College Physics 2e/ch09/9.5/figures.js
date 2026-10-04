@@ -30,8 +30,8 @@ function bar(ctx, x0, y, wmax, v, full, h, color, label, value) {
 }
 /* a hand closed round a bar at (x, y), seen from the side: a rounded palm with the fingers
    curled over the bar, the wrist running off upward and away from the bar's free end */
-function grip(ctx, x, y, dir = 1) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+function grip(ctx, x, y, dir = 1, color = PAL.ink) {
+  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
   ctx.beginPath(); ctx.roundRect(x - 22, y - 24, 44, 40, 12); ctx.fill(); ctx.stroke();
   ctx.lineWidth = 2; ctx.beginPath(); for (const dx of [-10, 0, 10]) { ctx.moveTo(x + dx, y - 24); ctx.lineTo(x + dx, y + 8); } ctx.stroke();
   ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(x - dir * 14, y - 22); ctx.lineTo(x - dir * 40, y - 70); ctx.stroke();   /* the wrist */
@@ -59,16 +59,17 @@ function grip(ctx, x, y, dir = 1) {
     const hx = PX - SC * li.v, nx = PX + SC * lo.v;
 
     fixed(ctx, 220, PY, 1120, 34);                                       /* the plank */
-    line(ctx, nx, PY + 44, nx, 330, PAL.muted, 5);                       /* the nail, its head just clear of the plank */
-    line(ctx, nx - 9, 330, nx + 9, 330, PAL.muted, 5);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const cn = F.ref('nail');
+    line(ctx, nx, PY + 44, nx, 330, cn, 5);                       /* the nail, its head just clear of the plank */
+    line(ctx, nx - 9, 330, nx + 9, 330, cn, 5);
+    ctx.save(); ctx.strokeStyle = F.ref('puller'); ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(hx, HY); ctx.lineTo(PX, PY); ctx.stroke();                          /* the handle */
     ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(PX, PY); ctx.quadraticCurveTo(nx - 4, PY + 14, nx - 10, 336); ctx.stroke();   /* the claw under the head */
     ctx.beginPath(); ctx.moveTo(PX, PY); ctx.quadraticCurveTo(nx + 14, PY + 4, nx + 10, 336); ctx.stroke();
     ctx.restore();
     dot(ctx, PX, PY, PAL.ink, false, 11);                                /* the pivot */
     text(ctx, 'pivot', PX, PY + 62, PAL.muted, { size: 17, align: 'center' });
-    grip(ctx, hx, HY, 1);
+    grip(ctx, hx, HY, 1, F.ref('hand'));
 
     arrow(ctx, hx, HY + 18, hx, HY + 110, C('force'), 5);                /* the three external forces on the puller */
     label(ctx, 'Fᵢ = ' + sig3(Fi.v) + ' N', hx, HY + 110, { side: 'below', color: C('force'), gap: 20, size: 21 });
@@ -118,23 +119,23 @@ function grip(ctx, x, y, dir = 1) {
   const li = ctl(d.controls, { label: '\\kli', cls: 'position', min: 0.50, max: 1.50, step: 0.01, value: 1.02, unit: 'm', dec: 2, aria: 'lever arm of the hands',
     specials: [{ at: () => lo.v, label: 'MA = 1' }] });
   lo.refresh();
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 100, step: 2.5, value: 45, unit: 'kg', dec: 1, aria: 'combined mass of the load and the machine' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 10, max: 100, step: 2.5, value: 45, unit: 'kg', dec: 1, aria: 'combined mass of the load and the machine' });
   const SC = 600, PX = 1180, PY = 392, GY = 430;   /* units per metre, the pivot, and the ground */
 
   /* the tray of a wheelbarrow, centred on x and standing on the frame */
   function tray(ctx, x) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
+    ctx.save(); ctx.strokeStyle = F.ref('barrow'); ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(x - 92, 268); ctx.lineTo(x + 92, 268); ctx.lineTo(x + 56, 344); ctx.lineTo(x - 56, 344); ctx.closePath();
     ctx.fill(); ctx.stroke(); ctx.restore();
   }
   /* the blade of a shovel, centred on x */
   function blade(ctx, x) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
+    ctx.save(); ctx.strokeStyle = F.ref('barrow'); ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(x - 64, 296); ctx.lineTo(x + 60, 314); ctx.lineTo(x + 48, 356); ctx.lineTo(x - 60, 338); ctx.closePath();
     ctx.fill(); ctx.stroke(); ctx.restore();
   }
   function wheel(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(x, y, 38, 0, Math.PI * 2); ctx.stroke();
+    ctx.save(); ctx.strokeStyle = F.ref('barrow'); ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(x, y, 38, 0, Math.PI * 2); ctx.stroke();
     ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
   }
   function draw() {
@@ -143,13 +144,13 @@ function grip(ctx, x, y, dir = 1) {
     const xi = PX - SC * li.v, xo = PX - SC * lo.v, shovel = lo.v > li.v;
     const left = Math.min(xi, xo) - 96;
 
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 8; ctx.lineCap = 'round';   /* the frame of the barrow, or the shaft of the shovel */
+    ctx.save(); ctx.strokeStyle = F.ref('barrow'); ctx.lineWidth = 8; ctx.lineCap = 'round';   /* the frame of the barrow, or the shaft of the shovel */
     ctx.beginPath(); ctx.moveTo(left, 296); ctx.lineTo(PX, PY); ctx.stroke(); ctx.restore();
     if (shovel) { blade(ctx, xo); grip(ctx, PX - 10, PY - 6, -1); } else { tray(ctx, xo); wheel(ctx, PX, PY); line(ctx, 120, GY, 1360, GY, PAL.muted, 3); }
     /* the person who lifts, standing behind the handles with both hands on them */
     const ps = 1.6, px = xi - 30;
-    silhouette(ctx, { x: px, y: GY, s: ps, pose: 'lean', color: PAL.ink, hands: [{ x: (xi - px) / ps, y: (300 - GY) / ps }, { x: (xi - px) / ps + 2, y: (300 - GY) / ps + 4 }] });
-    dot(ctx, xi, 300, PAL.ink, true, 7);
+    silhouette(ctx, { x: px, y: GY, s: ps, pose: 'lean', color: F.ref('lifter'), hands: [{ x: (xi - px) / ps, y: (300 - GY) / ps }, { x: (xi - px) / ps + 2, y: (300 - GY) / ps + 4 }] });
+    dot(ctx, xi, 300, F.ref('lifter'), true, 7);
     dot(ctx, PX, PY, PAL.ink, false, 10);
     text(ctx, shovel ? 'the pivot, at the rear hand' : 'the pivot, at the wheel’s axle', PX + 40, PY + 58, PAL.muted, { size: 17, align: 'right' });
 
@@ -196,14 +197,14 @@ function grip(ctx, x, y, dir = 1) {
 ===================================================================== */
 (function () {
   const d = sim('sim-incline', 760);
-  const TH = ctl(d.controls, { label: '\\theta', cls: '', min: 10, max: 60, step: 1, value: 20, unit: '°', dec: 0, aria: 'angle of the ramp' });
+  const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 10, max: 60, step: 1, value: 20, unit: '°', dec: 0, aria: 'angle of the ramp' });
   const W = ctl(d.controls, { label: '\\kwgt', cls: 'force', min: 100, max: 1200, step: 25, value: 500, unit: 'N', dec: 0, aria: 'weight of the cart' });
-  const HT = ctl(d.controls, { label: 'h', cls: '', min: 0.5, max: 3.0, step: 0.1, value: 1.5, unit: 'm', dec: 1, aria: 'height to be climbed' });
+  const HT = ctl(d.controls, { label: 'h', cls: 'position', min: 0.5, max: 3.0, step: 0.1, value: 1.5, unit: 'm', dec: 1, aria: 'height to be climbed' });
   const GY = 440, X0 = 150, LX = 1150;
 
   /* a cart, its deck centred on (x, y) and tilted to a slope of th radians */
   function cart(ctx, x, y, th) {
-    ctx.save(); ctx.translate(x, y); ctx.rotate(-th); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
+    ctx.save(); ctx.translate(x, y); ctx.rotate(-th); ctx.strokeStyle = F.ref('cart'); ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.rect(-42, -46, 84, 38); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.arc(-24, 0, 9, 0, Math.PI * 2); ctx.stroke();
     ctx.beginPath(); ctx.arc(24, 0, 9, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
@@ -220,8 +221,9 @@ function grip(ctx, x, y, dir = 1) {
     line(ctx, 100, GY, 1360, GY, PAL.muted, 3);                              /* the ground */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath();                   /* the ramp */
     ctx.moveTo(X0, GY); ctx.lineTo(tx, ty); ctx.lineTo(tx, GY); ctx.closePath(); ctx.fill(); ctx.restore();
-    line(ctx, X0, GY, tx, ty, PAL.ink, 4); line(ctx, tx, ty, tx, GY, PAL.ink, 4);
-    text(ctx, fmt(TH.v, 0) + '°', X0 + 70, GY - 18, PAL.ink, { size: 20, weight: 600, align: 'left' });
+    const cr = F.ref('ramp');
+    line(ctx, X0, GY, tx, ty, cr, 4); line(ctx, tx, ty, tx, GY, cr, 4);
+    text(ctx, fmt(TH.v, 0) + '°', X0 + 70, GY - 18, C('angle'), { size: 20, weight: 600, align: 'left' });
 
     const mx = (X0 + tx) / 2, my = (GY + ty) / 2;                            /* the cart on the ramp, and the push along it */
     cart(ctx, mx, my, th);
@@ -231,7 +233,7 @@ function grip(ctx, x, y, dir = 1) {
 
     cart(ctx, LX, ty, 0);                                                    /* the same cart taken straight up beside the ramp */
     line(ctx, LX - 78, GY, LX + 78, GY, PAL.rule, 2, [10, 10]);
-    vbracket(ctx, LX - 105, ty, GY, PAL.ink, fmt(h, 2) + ' m', -1);
+    vbracket(ctx, LX - 105, ty, GY, C('position'), fmt(h, 2) + ' m', -1);
     arrow(ctx, LX + 95, GY - 10, LX + 95, GY - 10 - w * kF, C('force'), 5);
     text(ctx, 'w = ' + sig3(w) + ' N', LX + 111, GY - 10 - (w * kF) / 2, C('force'), { size: 21, weight: 600, align: 'left' });
     text(ctx, 'a lift of ' + sig3(w) + ' N over ' + fmt(h, 2) + ' m', LX, GY + 36, PAL.muted, { size: 18, align: 'center' });
@@ -243,13 +245,13 @@ function grip(ctx, x, y, dir = 1) {
     bar(ctx, BX, 544, BW, Fi, FULLF, 24, C('force'), 'ramp', sig3(Fi) + ' N');
     bar(ctx, BX, 582, BW, w, FULLF, 24, C('force'), 'lift', sig3(w) + ' N');
     text(ctx, 'the distance you must apply it through', BX, 628, PAL.muted, { size: 17, align: 'left' });
-    bar(ctx, BX, 662, BW, L, FULLD, 24, PAL.ink, 'ramp', fmt(L, 2) + ' m');
-    bar(ctx, BX, 700, BW, h, FULLD, 24, PAL.ink, 'lift', fmt(h, 2) + ' m');
+    bar(ctx, BX, 662, BW, L, FULLD, 24, C('position'), 'ramp', fmt(L, 2) + ' m');
+    bar(ctx, BX, 700, BW, h, FULLD, 24, C('position'), 'lift', fmt(h, 2) + ' m');
     if (L > FULLD) text(ctx, 'The ramp is longer than the 8.00 m the bar runs to, so the bar stops at the end and the label gives the true length.', 700, 742, PAL.muted, { size: 17, align: 'center' });
 
     head(ctx, 'A ramp at ' + fmt(TH.v, 0) + '° needs a push of ' + sig3(Fi) + ' N over ' + fmt(L, 2)
       + ' m, where lifting the cart straight up needs ' + sig3(w) + ' N over ' + fmt(h, 2) + ' m.');
-    readout(d.readout, `\\text{MA} = \\frac{\\kFo}{\\kFi} = \\frac{\\kwgt}{\\kwgt\\sin\\theta} = \\frac{1}{\\sin ${fmt(TH.v, 0)}^\\circ} = ${fmt(1 / s, 2)}`,
+    readout(d.readout, `\\text{MA} = \\frac{\\kFo}{\\kFi} = \\frac{\\kwgt}{\\kwgt\\sin\\ktheta} = \\frac{1}{\\sin ${fmt(TH.v, 0)}^\\circ} = ${fmt(1 / s, 2)}`,
       'The push of ' + sig3(Fi) + ' N over ' + fmt(L, 2) + ' m and the lift of ' + sig3(w) + ' N over ' + fmt(h, 2)
       + ' m each come to ' + sig3(w * h) + ' J of work, so the ramp buys its smaller force with a longer path and with nothing else.');
   }
@@ -274,7 +276,7 @@ function grip(ctx, x, y, dir = 1) {
   const SC = 280, CY = 320, CX = [250, 700, 1150];
   const TTL = ['(a) a crank, driven at the handle', '(b) an axle driving a wheel, driven at the axle', '(c) an ordinary pulley, one radius only'];
 
-  function ring(ctx, x, y, r, w) { ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.stroke(); ctx.restore(); }
+  function ring(ctx, x, y, r, w, color = PAL.ink) { ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.stroke(); ctx.restore(); }
   /* a radius drawn from the centre out to the angle a, with its name just beyond the rim */
   function radius(ctx, x, y, r, a, label) {
     line(ctx, x, y, x + r * Math.cos(a), y + r * Math.sin(a), C('position'), 3);
@@ -288,18 +290,19 @@ function grip(ctx, x, y, dir = 1) {
     CX.forEach((cx, i) => text(ctx, TTL[i], cx, 116, PAL.muted, { size: 17, align: 'center' }));
 
     /* (a) the crank: the hand turns the handle at r_i and the shaft gives its force at r_o */
-    ring(ctx, CX[0], CY, Ri, 4); ring(ctx, CX[0], CY, Ro, 4);
-    dot(ctx, CX[0], CY, PAL.ink, true, 6);
+    const ck = F.ref('crank');
+    ring(ctx, CX[0], CY, Ri, 4, ck); ring(ctx, CX[0], CY, Ro, 4, ck);
+    dot(ctx, CX[0], CY, ck, true, 6);
     radius(ctx, CX[0], CY, Ri, -0.6, 'rᵢ'); radius(ctx, CX[0], CY, Ro, 2.3, 'rₒ');
-    dot(ctx, CX[0] + Ri * Math.cos(-0.6), CY + Ri * Math.sin(-0.6), PAL.ink, true, 13);
+    dot(ctx, CX[0] + Ri * Math.cos(-0.6), CY + Ri * Math.sin(-0.6), ck, true, 13);
     arrow(ctx, CX[0], CY - Ri, CX[0] + 104, CY - Ri, C('force'), 5);
     text(ctx, 'Fᵢ', CX[0] + 116, CY - Ri, C('force'), { size: 21, weight: 600, align: 'left' });
     arrow(ctx, CX[0], CY + Ro, CX[0] - 104, CY + Ro, C('force'), 5);
     text(ctx, 'Fₒ', CX[0] - 116, CY + Ro, C('force'), { size: 21, weight: 600, align: 'right', bg: PAL.panel });
 
     /* (b) the axle and the wheel: the input turns the axle and the output is the force on the road */
-    ring(ctx, CX[1], CY, Ri, 6); ring(ctx, CX[1], CY, Ro, 4);
-    dot(ctx, CX[1], CY, PAL.ink, true, 6);
+    ring(ctx, CX[1], CY, Ri, 6, F.ref('wheel')); ring(ctx, CX[1], CY, Ro, 4, F.ref('axle'));
+    dot(ctx, CX[1], CY, F.ref('axle'), true, 6);
     /* The two radii change places here, as the book's sentence about the car axle does: the input
        is at the axle, which is the circle the crank drove its output at, and the output is at the
        rim of the much larger wheel, so this machine's MA is the other one's turned upside down. */
@@ -314,7 +317,7 @@ function grip(ctx, x, y, dir = 1) {
     /* (c) the pulley: the cord comes down one side and goes up the other with the tension it arrived with */
     fixed(ctx, CX[2] - 70, 132, 140, 24);
     line(ctx, CX[2], 156, CX[2], CY - Ri, PAL.muted, 3);
-    ring(ctx, CX[2], CY, Ri, 5); dot(ctx, CX[2], CY, PAL.ink, true, 6);
+    ring(ctx, CX[2], CY, Ri, 5, F.ref('pulley')); dot(ctx, CX[2], CY, F.ref('pulley'), true, 6);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(CX[2], CY, Ri, Math.PI, 0, false); ctx.stroke(); ctx.restore();
     line(ctx, CX[2] - Ri, CY, CX[2] - Ri, CY + 118, PAL.muted, 4);
     line(ctx, CX[2] + Ri, CY, CX[2] + Ri, CY + 84, PAL.muted, 4);
@@ -352,7 +355,7 @@ function grip(ctx, x, y, dir = 1) {
     options: [{ value: '1', label: '1 cable' }, { value: '2', label: '2 cables' }, { value: '3', label: '3 cables' }, { value: '4', label: '4 cables' }],
     value: '2',
   });
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 200, step: 5, value: 115, unit: 'kg', dec: 0, aria: 'mass of the load' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 200, step: 5, value: 115, unit: 'kg', dec: 0, aria: 'mass of the load' });
   const BEAM = 150, YOKE = 456, CX = 620;
 
   function pulleyAt(ctx, x, y, r) {
@@ -390,12 +393,13 @@ function grip(ctx, x, y, dir = 1) {
 
     fixed(ctx, 260, BEAM - 34, 900, 34);                                      /* the ceiling the system hangs from */
     text(ctx, 'the ceiling', 272, BEAM - 52, PAL.muted, { size: 17, align: 'left' });
-    line(ctx, CX - half, YOKE, CX + half, YOKE, PAL.ink, 8);                  /* the movable block and the load under it */
+    const cy2 = F.ref('block'), cl = F.ref('load');
+    line(ctx, CX - half, YOKE, CX + half, YOKE, cy2, 8);                  /* the movable block and the load under it */
     const strop = Math.min(62, half - 12);
-    line(ctx, CX - strop, YOKE, CX - strop, YOKE + 40, PAL.ink, 4);
-    line(ctx, CX + strop, YOKE, CX + strop, YOKE + 40, PAL.ink, 4);
-    block(ctx, CX, YOKE + 96, Math.min(2 * half, 280), 104, PAL.ink);
-    text(ctx, fmt(M.v, 0) + ' kg', CX, YOKE + 78, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    line(ctx, CX - strop, YOKE, CX - strop, YOKE + 40, cy2, 4);
+    line(ctx, CX + strop, YOKE, CX + strop, YOKE + 40, cy2, 4);
+    block(ctx, CX, YOKE + 96, Math.min(2 * half, 280), 104, cl);
+    text(ctx, fmt(M.v, 0) + ' kg', CX, YOKE + 78, C('mass'), { size: 22, weight: 600, align: 'center' });
     text(ctx, 'w = ' + sig3(w) + ' N', CX, YOKE + 116, C('force'), { size: 21, weight: 600, align: 'center' });
 
     /* the straight legs of the cord: a leg both counts have runs between its two lengths */

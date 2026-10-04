@@ -68,8 +68,8 @@ function grip(ctx, x, y, color) {
   ctx.restore();
 }
 /* the fulcrum a plank is balanced on, its point at (x, y) and h tall */
-function fulcrum(ctx, x, y, h) {
-  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+function fulcrum(ctx, x, y, h, color) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color || PAL.muted; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.moveTo(x, y + 6); ctx.lineTo(x - h * 0.66, y + h); ctx.lineTo(x + h * 0.66, y + h); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
   line(ctx, x - h, y + h, x + h, y + h, PAL.muted, 4);
 }
@@ -91,14 +91,14 @@ function fulcrum(ctx, x, y, h) {
      door the force is applied from is a state and not a quantity, so it is a choice:
      panel (a) of the book's figure is the push, and panel (d), the same force the other
      way about, is the pull. */
-  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle between the push and the line back to the hinges',
+  const ts = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 5, value: 90, unit: '°', dec: 0, aria: 'the angle between the push and the line back to the hinges',
     specials: [{ at: 0, label: 'along the door' }, { at: 90, label: 'perpendicular' }, { at: 180, label: 'along the door' }] });
   const side = choice(d.controls, { label: '\\text{the force}', options: [{ value: 'push', label: 'push' }, { value: 'pull', label: 'pull' }], value: 'push', aria: 'which way the door is acted on' });
   const { formula, note } = F.readout(d);
   const S = 780, KF = 4.6, HX = 250, HY = 390, LEN = 0.9;
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('force'), pc = C('position'), tc = C('torque');
+    const fc = C('force'), pc = C('position'), tc = C('torque'), ac = C('angle'), cd = F.ref('door'), ch = F.ref('hinges');
     const r = rs.v, Fv = Fs.v, th = ts.v, sgn = side.value === 'push' ? 1 : -1;
     const px = HX + r * S, py = HY;
     /* a change between push and pull swings the force through to the other side of the door */
@@ -108,8 +108,8 @@ function fulcrum(ctx, x, y, h) {
     /* the wall, the hinges and the door seen from overhead */
     fixed(ctx, 70, HY - 30, 180, 60);
     text(ctx, 'the wall', 128, HY + 50, PAL.muted, { size: 19, align: 'center' });
-    dot(ctx, HX + 0.82 * S, HY, PAL.ink, true, 5);                                         /* the handle */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    dot(ctx, HX + 0.82 * S, HY, cd, true, 5);                                         /* the handle */
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cd; ctx.lineWidth = 4;
     ctx.fillRect(HX, HY - 12, LEN * S, 24); ctx.strokeRect(HX, HY - 12, LEN * S, 24); ctx.restore();
     for (let k = 0; k <= 9; k++) { const x = HX + (k / 10) * S; line(ctx, x, HY + 12, x, HY + 26, PAL.muted, 2); if (k % 2 === 0) text(ctx, fmt(k / 10, 1) + ' m', x, HY + 50, PAL.muted, { size: 17, align: 'center' }); }
     text(ctx, 'the door, seen from overhead', HX + LEN * S, HY + 82, PAL.muted, { size: 19, align: 'right' });
@@ -123,14 +123,14 @@ function fulcrum(ctx, x, y, h) {
       }
       arrow(ctx, px, py, px + Fv * KF * ux, py + Fv * KF * uy, fc, 5);
       label(ctx, 'F = ' + fmt(Fv, 0) + ' N', px + Fv * KF * ux, py + Fv * KF * uy, { side: Math.abs(uy) > 0.7 ? (uy < 0 ? 'above' : 'below') : ux < 0 ? 'left' : 'right', color: fc, gap: 18, size: 21 });
-      if (th > 12 && th < 168) betweenArc(ctx, px, py, Math.PI, sgn * th, 66, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
-      else label(ctx, 'θ = ' + fmt(th, 0) + '°', px, py - sgn * 70, { side: sgn > 0 ? 'above' : 'below', gap: 10, size: 20 });
+      if (th > 12 && th < 168) betweenArc(ctx, px, py, Math.PI, sgn * th, 66, ac, 'θ = ' + fmt(th, 0) + '°');
+      else label(ctx, 'θ = ' + fmt(th, 0) + '°', px, py - sgn * 70, { side: sgn > 0 ? 'above' : 'below', color: ac, gap: 10, size: 20 });
     }
     /* the distance from the hinges to the point of application */
     hbracket(ctx, HX, px, HY + 130, pc, 'r = ' + fmt(r, 3) + ' m');
     dot(ctx, px, py, PAL.ink, true, 9);
-    dot(ctx, HX, HY, PAL.ink, false, 11);
-    text(ctx, 'the hinges', HX, HY - 46, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
+    dot(ctx, HX, HY, ch, false, 11);
+    text(ctx, 'the hinges', HX, HY - 46, ch, { size: 19, align: 'center', bg: PAL.panel });
     /* which way the door turns */
     if (Math.abs(tau) > 0.005) { turnArc(ctx, HX, HY, 92, tau > 0, tc, Math.PI / 2); text(ctx, 'τ', HX, HY + 124, tc, { size: 24, weight: 600, align: 'center' }); }
     const tv = sgn * r * Fv * sind(th);
@@ -139,7 +139,7 @@ function fulcrum(ctx, x, y, h) {
       : Math.abs(tv) < 0.005 ? 'The force runs straight along the line to the hinges, so its lever arm is nothing and it makes no torque.'
       : 'A ' + act + ' of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at θ = ' + fmt(th, 0) + '°, makes ' + fmt(Math.abs(tv), 1) + ' N·m ' + (tv > 0 ? 'counterclockwise' : 'clockwise') + '.');
     const mi = sgn > 0 ? '' : '\\mk{s}{-}', mj = sgn > 0 ? '' : '\\mk{s2}{-}';
-    F.morph(formula, `\\mk{t}{\\ktau} = ${mi}\\mk{r}{\\krlev}\\mk{f}{\\kF}\\mk{a}{\\sin\\theta} = ${mj}(\\mk{rn}{${fmt(r, 3)}}\\ \\text{m})(\\mk{fn}{${fmt(Fv, 0)}}\\ \\text{N})\\sin \\mk{an}{${fmt(th, 0)}}^\\circ = \\mk{tn}{${num(tv, 1)}}\\ \\text{N}\\cdot\\text{m}`);
+    F.morph(formula, `\\mk{t}{\\ktau} = ${mi}\\mk{r}{\\krlev}\\mk{f}{\\kF}\\mk{a}{\\sin\\ktheta} = ${mj}(\\mk{rn}{${fmt(r, 3)}}\\ \\text{m})(\\mk{fn}{${fmt(Fv, 0)}}\\ \\text{N})\\sin \\mk{an}{${fmt(th, 0)}}^\\circ = \\mk{tn}{${num(tv, 1)}}\\ \\text{N}\\cdot\\text{m}`);
     note.textContent = Math.abs(tv) < 0.005 ? 'The perpendicular lever arm is the shortest distance from the hinges to the line along which the force acts, and here that line runs through the hinges themselves, so the lever arm is zero and the door will not turn however hard you push.'
         : 'The perpendicular lever arm is r⊥ = r sin θ = ' + fmt(rp, 3) + ' m, and τ = r⊥F gives the same ' + fmt(Math.abs(tv), 1) + ' N·m. A pull is the same force applied the other way about, so it makes a torque of the same size in the opposite sense, and the counterclockwise-positive convention writes that one with a minus sign.';
   }
@@ -158,14 +158,14 @@ function fulcrum(ctx, x, y, h) {
   const ps = ctl(d.controls, { label: '\\text{the nail}', cls: 'position', min: 0.1, max: 1.3, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'where the nail is driven, measured from the blade',
     specials: [{ at: 1.1, label: 'at the hand' }] });
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 30, unit: 'N', dec: 0, aria: 'the size of the push' });
-  const gs = ctl(d.controls, { label: '\\text{the push}', cls: '', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, aria: 'the direction of the push, measured from the horizontal',
+  const gs = ctl(d.controls, { label: '\\text{the push}', cls: 'angle', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, aria: 'the direction of the push, measured from the horizontal',
     specials: [{ at: 90, label: 'along the stick' }] });
   const { formula, note } = F.readout(d);
   const X = 560, YB = 620, S = 338, HAND = 1.10, KF = 4.4, PX = 1010;
   const yOf = (s) => YB - s * S;
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('force'), pc = C('position'), tc = C('torque');
+    const fc = C('force'), pc = C('position'), tc = C('torque'), ac = C('angle'), cs = F.ref('stick'), cn = F.ref('nail'), chd = F.ref('hand');
     const p = ps.v, Fv = Fs.v, g = gs.v;
     const hy = yOf(HAND), qy = yOf(p), ux = cosd(g), uy = -sind(g);
     const r = Math.abs(HAND - p), up = qy > hy ? 1 : -1;         /* which way the nail lies from the hand, on the canvas */
@@ -174,14 +174,14 @@ function fulcrum(ctx, x, y, h) {
     const fp = foot(X, qy, X, hy, ux, uy), rp = Math.hypot(fp.x - X, fp.y - qy) / S;
     /* the ice, the stick, and the two pivots the book names */
     strip(ctx, 360, 820, YB + 40, 24);
-    hockeyStick(ctx, X, YB, yOf(1.36), PAL.ink);
+    hockeyStick(ctx, X, YB, yOf(1.36), cs);
     for (const [s, nm] of [[0.2, 'A'], [1.25, 'B']]) { const y = yOf(s); line(ctx, X + 24, y, X + 46, y, PAL.muted, 2); text(ctx, nm, X + 54, y, PAL.muted, { size: 20, weight: 600, align: 'left' }); }
     /* the line along which the force acts, the lever arm, and the push itself; the names near the
        hand are placed against one another, so that a nail driven close to the hand does not pile them up */
     const lab = labeller(ctx, 700);
     lab.block(0, 0, 1400, 80);
     lab.block(PX - 20, 130, 1400, 350);
-    grip(ctx, X, hy, PAL.ink);
+    grip(ctx, X, hy, chd);
     if (Fv > 0) {
       line(ctx, X - 420 * ux, hy - 420 * uy, X + 420 * ux, hy + 420 * uy, alpha(PAL.ink, 0.35), 2, [10, 10]);
       if (rp > 0.012) {
@@ -190,20 +190,20 @@ function fulcrum(ctx, x, y, h) {
       }
       arrow(ctx, X, hy, X + Fv * KF * ux, hy + Fv * KF * uy, fc, 5);
       lab.add('F = ' + fmt(Fv, 0) + ' N', X + Fv * KF * ux, hy + Fv * KF * uy, ux, uy, fc, 21, 18);
-      if (r > 0.02) { const a0 = up > 0 ? Math.PI / 2 : -Math.PI / 2; betweenArc(ctx, X, hy, a0, wrap(Math.atan2(uy, ux) / RAD - a0 / RAD), 58, PAL.ink); const m = a0 + wrap(Math.atan2(uy, ux) / RAD - a0 / RAD) * RAD / 2; lab.add('θ = ' + fmt(th, 0) + '°', X + 58 * Math.cos(m), hy + 58 * Math.sin(m), Math.cos(m), Math.sin(m), PAL.ink, 20, 22); }
+      if (r > 0.02) { const a0 = up > 0 ? Math.PI / 2 : -Math.PI / 2; betweenArc(ctx, X, hy, a0, wrap(Math.atan2(uy, ux) / RAD - a0 / RAD), 58, ac); const m = a0 + wrap(Math.atan2(uy, ux) / RAD - a0 / RAD) * RAD / 2; lab.add('θ = ' + fmt(th, 0) + '°', X + 58 * Math.cos(m), hy + 58 * Math.sin(m), Math.cos(m), Math.sin(m), ac, 20, 22); }
     }
-    dot(ctx, X, hy, PAL.ink, true, 8);
-    lab.add('the hand', X, hy, 1, 0.3, PAL.ink, 19, 34);
+    dot(ctx, X, hy, chd, true, 8);
+    lab.add('the hand', X, hy, 1, 0.3, chd, 19, 34);
     /* the distance from the nail to the hand, and the way the stick turns */
     if (r > 0.02) vbracket(ctx, X - 104, Math.min(qy, hy), Math.max(qy, hy), pc, 'r = ' + fmt(r, 2) + ' m', -1);
-    dot(ctx, X, qy, PAL.ink, false, 11);
-    lab.add('the nail', X, qy, -1, 0.3, PAL.ink, 19, 30);
+    dot(ctx, X, qy, cn, false, 11);
+    lab.add('the nail', X, qy, -1, 0.3, cn, 19, 30);
     lab.flush();
     if (Math.abs(tau) > 0.02) turnArc(ctx, X, qy, 78, tau > 0, tc, 0);
     /* what the nail you have chosen makes of the push */
     text(ctx, 'about the nail you have chosen', PX, 152, PAL.muted, { size: 19 });
     text(ctx, 'r = ' + fmt(r, 2) + ' m', PX, 200, pc, { size: 22, weight: 600 });
-    text(ctx, 'θ = ' + fmt(th, 0) + '°', PX, 242, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'θ = ' + fmt(th, 0) + '°', PX, 242, ac, { size: 22, weight: 600 });
     text(ctx, 'r⊥ = r sin θ = ' + fmt(rp, 2) + ' m', PX, 284, pc, { size: 22, weight: 600 });
     text(ctx, 'τ = ' + (eps(tau, 1) < 0 ? '−' : '') + 'r⊥F = ' + num(tau, 1) + ' N·m', PX, 326, tc, { size: 22, weight: 600 });
     headline(ctx, Fv === 0 ? 'With no push on the stick there is no torque about the nail.'
@@ -226,11 +226,11 @@ function fulcrum(ctx, x, y, h) {
 ===================================================================== */
 (function () {
   const d = sim('sim-seesaw', 700);
-  const m1 = ctl(d.controls, { label: 'm_1', cls: '', min: 10, max: 50, step: 0.5, value: 26, unit: 'kg', dec: 1, aria: 'the mass of the first child',
+  const m1 = ctl(d.controls, { label: '\\kmone', cls: 'mass', min: 10, max: 50, step: 0.5, value: 26, unit: 'kg', dec: 1, aria: 'the mass of the first child',
     specials: [{ at: () => (m2.v * r2.v) / r1.v, label: 'balanced' }] });
   const r1 = ctl(d.controls, { label: '\\krone', cls: 'position', min: 0.2, max: 2.5, step: 0.05, value: 1.6, unit: 'm', dec: 2, aria: 'the distance from the pivot to the first child',
     specials: [{ at: () => (m2.v * r2.v) / m1.v, label: 'balanced' }] });
-  const m2 = ctl(d.controls, { label: 'm_2', cls: '', min: 10, max: 50, step: 0.5, value: 32, unit: 'kg', dec: 1, aria: 'the mass of the second child',
+  const m2 = ctl(d.controls, { label: '\\kmtwo', cls: 'mass', min: 10, max: 50, step: 0.5, value: 32, unit: 'kg', dec: 1, aria: 'the mass of the second child',
     specials: [{ at: () => (m1.v * r1.v) / r2.v, label: 'balanced' }] });
   const r2 = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 0.2, max: 2.5, step: 0.05, value: 1.3, unit: 'm', dec: 2, aria: 'the distance from the pivot to the second child',
     specials: [{ at: () => (m1.v * r1.v) / m2.v, label: 'balanced' }] });
@@ -243,14 +243,14 @@ function fulcrum(ctx, x, y, h) {
     const a = (-7 * net / (Math.abs(net) + 240)) * RAD;                 /* the tilt: a positive net torque puts the first child down */
     const ca = Math.cos(a), sa = Math.sin(a);
     const on = (u) => ({ x: FX + u * S * ca, y: FY + u * S * sa });     /* a point u meters along the plank */
-    fulcrum(ctx, FX, FY, 84);
+    fulcrum(ctx, FX, FY, 84, F.ref('pivot'));
     const L = on(-HALF), R = on(HALF);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 16; ctx.lineCap = 'butt';
+    ctx.save(); ctx.strokeStyle = F.ref('seesaw'); ctx.lineWidth = 16; ctx.lineCap = 'butt';
     ctx.beginPath(); ctx.moveTo(L.x, L.y); ctx.lineTo(R.x, R.y); ctx.stroke(); ctx.restore();
     /* the two children, their weights, and the torque each weight makes about the pivot */
     for (const [u, w, t, nm, face] of [[-r1.v, w1, t1, '1', 1], [r2.v, w2, t2, '2', -1]]) {
       const s = on(u), tip = s.y + 16 + w * KW;
-      child(ctx, s.x, s.y - 8, PAL.ink, 0.86, face);
+      child(ctx, s.x, s.y - 8, F.ref('child-' + nm), 0.86, face);
       arrow(ctx, s.x, s.y + 16, s.x, tip, fc, 5);
       label(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', s.x, tip, { side: 'below', color: fc, gap: 22, size: 20 });
       const side = s.x > 1110 ? -1 : s.x < 300 ? 1 : -face;
@@ -259,7 +259,7 @@ function fulcrum(ctx, x, y, h) {
     /* the supporting force at the pivot, which has no lever arm of its own */
     arrow(ctx, FX, FY - 6, FX, FY - 6 - Fp * KW, fc, 5);
     text(ctx, 'F_p = ' + fmt(Fp, 0) + ' N', FX + 16, FY - 22 - Fp * KW, fc, { size: 21, weight: 600 });
-    dot(ctx, FX, FY, PAL.ink, true, 9);
+    dot(ctx, FX, FY, F.ref('pivot'), true, 9);
     /* the two distances, measured from the pivot */
     hbracket(ctx, on(-r1.v).x, FX, 652, pc, 'r_1 = ' + fmt(r1.v, 2) + ' m');
     hbracket(ctx, FX, on(r2.v).x, 652, pc, 'r_2 = ' + fmt(r2.v, 2) + ' m');
@@ -284,8 +284,7 @@ function fulcrum(ctx, x, y, h) {
 (function () {
   const d = sim('sim-any-pivot', 770);
   const ds = ctl(d.controls, { label: '\\text{the pivot}', cls: 'position', min: -2.5, max: 2.5, step: 0.05, value: 0, unit: 'm', dec: 2, aria: 'the point the torques are taken about, measured from the fulcrum' });
-  const ms = ctl(d.controls, { label: 'm_1', cls: '', min: 20, max: 40, step: 0.5, value: 26, unit: 'kg', dec: 1, aria: 'the mass of the first child',
-    specials: [{ at: () => (m2.v * r2.v) / r1.v, label: 'balanced' }] });
+  const ms = ctl(d.controls, { label: '\\kmone', cls: 'mass', min: 20, max: 40, step: 0.5, value: 26, unit: 'kg', dec: 1, aria: 'the mass of the first child' });
   const rs = ctl(d.controls, { label: '\\krone', cls: 'position', min: 0.6, max: 2, step: 0.05, value: 1.6, unit: 'm', dec: 2, aria: 'the distance from the fulcrum to the first child' });
   const M2 = 32, FX = 700, FY = 300, S = 228, HALF = 2.6, KW = 0.2, KT = 0.13;
   function draw() {
@@ -294,11 +293,11 @@ function fulcrum(ctx, x, y, h) {
     const w1 = ms.v * G, w2 = M2 * G, rr2 = (rs.v * ms.v) / M2, Fp = w1 + w2, p = ds.v;
     const t1 = (rs.v + p) * w1, t2 = -(rr2 - p) * w2, tp = -p * Fp, net = t1 + t2 + tp;
     const X = (u) => FX + u * S;
-    fulcrum(ctx, FX, FY, 76);
-    line(ctx, X(-HALF), FY, X(HALF), FY, PAL.ink, 16);
+    fulcrum(ctx, FX, FY, 76, F.ref('pivot'));
+    line(ctx, X(-HALF), FY, X(HALF), FY, F.ref('seesaw'), 16);
     /* the three forces on a seesaw that balances by construction */
     for (const [u, w, nm, face] of [[-rs.v, w1, '1', 1], [rr2, w2, '2', -1]]) {
-      child(ctx, X(u), FY - 8, PAL.ink, 0.78, face);
+      child(ctx, X(u), FY - 8, F.ref('child-' + nm), 0.78, face);
       arrow(ctx, X(u), FY + 14, X(u), FY + 14 + w * KW, fc, 5);
       const side = X(u) > 1110 ? -1 : X(u) < 300 ? 1 : -face;
       label(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', X(u), FY + 14 + w * KW, { side: side > 0 ? 'right' : 'left', color: fc, gap: 16, size: 20 });
@@ -343,7 +342,8 @@ function fulcrum(ctx, x, y, h) {
     const { ctx } = begin(d.c);
     const fc = C('force');
     /* the anchored object */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.14); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+    const co = F.ref('object');
+    ctx.save(); ctx.fillStyle = alpha(co, 0.14); ctx.strokeStyle = co; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(370, 400);
     ctx.bezierCurveTo(332, 344, 380, 300, 462, 292);
     ctx.bezierCurveTo(560, 282, 662, 252, 760, 236);
