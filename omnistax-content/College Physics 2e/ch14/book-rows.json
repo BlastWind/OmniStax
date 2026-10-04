@@ -1,5 +1,21 @@
 {
- "types": [],
+ "types": [
+  {
+   "id": "latent-heat",
+   "label": "latent heat",
+   "dimension": "J/kg"
+  },
+  {
+   "id": "specific-heat",
+   "label": "specific heat",
+   "dimension": "J/(kg·°C)"
+  },
+  {
+   "id": "thermal-conductivity",
+   "label": "thermal conductivity",
+   "dimension": "J/(s·m·°C)"
+  }
+ ],
  "symbols": [
   {
    "sym": "Q_heat",
@@ -190,6 +206,7 @@
    "terms": [
     "specific heat"
    ],
+   "type": "specific-heat",
    "statement": "The specific heat is the amount of heat necessary to change the temperature of 1.00 kg of a substance by 1.00 °C. It depends on the material and its phase, must generally be looked up in a table because there is no simple way to calculate it, and varies little with temperature for most solids and liquids. Water's is among the largest of any material, five times that of glass and ten times that of iron, which is important for sustaining life on Earth."
   },
   {
@@ -259,6 +276,7 @@
    "terms": [
     "latent heat coefficient"
    ],
+   "type": "latent-heat",
    "statement": "Heat transfer causes no temperature change while a substance changes phase. The energy goes into breaking the cohesive bonds between molecules rather than into their kinetic energy, so ice at 0 °C stays at 0 °C until all of it has melted. The same energy comes back out, usually as thermal energy, when the bonds form again in freezing or condensation. The heat that changes the phase of a mass is that mass times a latent heat coefficient, a material constant. It is latent, or hidden, because the energy enters or leaves without changing the temperature.",
    "forms": [
     {
@@ -276,6 +294,7 @@
    "section": "14.3",
    "name": "Heat of fusion",
    "symbol": "L_f",
+   "type": "latent-heat",
    "statement": "The latent heat of fusion is the heat that melts a kilogram of a substance at its melting point, and the kilogram releases the same heat when it freezes. For water it is 334 kJ/kg, enough to warm a kilogram of liquid water from 0 °C to 79.8 °C. A bag of ice at 0 °C therefore absorbs far more energy than a bag of water at the same temperature, and water freezing on a sprayed orchard warms the trees.",
    "forms": [
     {
@@ -301,6 +320,7 @@
    "section": "14.3",
    "name": "Heat of vaporization",
    "symbol": "L_v",
+   "type": "latent-heat",
    "statement": "The latent heat of vaporization is the heat that turns a kilogram of liquid into vapor at the boiling point, and the vapor releases the same heat when it condenses. For water it is 2256 kJ/kg, nearly seven times its heat of fusion, so boiling away a kilogram of water costs more than raising it from ice-cold to boiling. Condensation on a glass of iced tea releases energy into the glass and speeds the melting of the ice.",
    "forms": [
     {
@@ -331,7 +351,7 @@
    "kind": "idea",
    "section": "14.3",
    "name": "Condensation and freezing release heat",
-   "statement": "Energy must be removed from vapor to make it condense and from liquid to make it freeze, exactly the energy the phase change absorbed in the other direction, and the surroundings receive it. This is why condensation on a cold glass speeds the melting of the ice inside, why temperatures in humid weather rarely fall below the dew point, why an orchard sprayed with water is protected from a hard frost, and why the moment water freezes it is at 0 °C and no colder."
+   "statement": "To make vapor condense or liquid freeze, you must remove exactly the energy the phase change absorbed in the other direction, and the surroundings receive it. That is why condensation on a cold glass speeds the melting of the ice inside, why temperatures in humid weather rarely fall below the dew point, why spraying an orchard with water protects it from a hard frost, and why freezing water stays at 0 °C and no colder."
   },
   {
    "id": "heat-of-sublimation",
@@ -342,6 +362,7 @@
    "terms": [
     "heat of sublimation"
    ],
+   "type": "latent-heat",
    "statement": "Sublimation is the transition from the solid phase directly to the vapor phase, as when snow disappears without a trace of liquid, dry ice makes its smoke, or frost forms on a cold window from vapor alone. It occurs because the equilibrium vapor pressure of a solid is not zero. The energy required is the mass times the heat of sublimation, a constant of the same order as the other latent heats, so dry ice is an effective coolant and frosting releases energy.",
    "forms": [
     {
@@ -446,7 +467,8 @@
    "terms": [
     "thermal conductivity"
    ],
-   "statement": "The thermal conductivity is the property of a material's ability to conduct heat, and it spans more than four orders of magnitude across common substances. The best thermal conductors, silver, copper, gold and aluminum, are also the best electrical conductors, because of the density of free electrons in them, and cooking utensils are made of them; Styrofoam, fiberglass, wool and down are poor conductors because they trap many small pockets of air, whose own conductivity is among the lowest of all."
+   "type": "thermal-conductivity",
+   "statement": "Thermal conductivity measures a material's ability to conduct heat, and it spans more than four orders of magnitude across common substances. The best thermal conductors, silver, copper, gold and aluminum, are also the best electrical conductors, because of the density of free electrons in them, and cooks use utensils made of them. Styrofoam, fiberglass, wool and down conduct poorly because they trap many small pockets of air, whose own conductivity is among the lowest of all."
   },
   {
    "id": "r-factor",
@@ -493,7 +515,7 @@
    "kind": "idea",
    "section": "14.6",
    "name": "Natural convection",
-   "statement": "Natural convection is driven by buoyant forces: a fluid that is heated expands, its density falls, and it rises through the cooler, denser fluid around it, which sinks to take its place, so that a loop forms and carries heat with the moving matter. A gravity furnace heats a house this way, a pot of water on a stove circulates this way, and ocean currents and the atmosphere carry energy across the globe this way. Forced convection, in a car's cooling system or the blood vessels of the skin, is the same transport driven by a pump."
+   "statement": "Buoyant forces drive natural convection. A heated fluid expands, its density falls, and it rises through the cooler, denser fluid around it, which sinks to take its place; the loop that forms carries heat with the moving matter. A gravity furnace heats a house this way, a pot of water on a stove circulates this way, and ocean currents and the atmosphere carry energy across the globe this way. Forced convection, in a car's cooling system or the blood vessels of the skin, is the same transport driven by a pump."
   },
   {
    "id": "convection-heat-rate",
@@ -523,7 +545,7 @@
    "kind": "idea",
    "section": "14.6",
    "name": "Trapped air is an insulator",
-   "statement": "Air transfers heat rapidly by convection but conducts poorly, so whether it insulates depends on whether it can flow. The 9 cm space inside a house wall is large enough for convection to work, and insulation is added to stop the air moving; the 1 cm gap of a double-paned window is too small for convection and takes advantage of air's low conductivity. Fur, feathers and fiberglass all trap air in pockets too small to support convection, which is why they are light and warm."
+   "statement": "Air transfers heat rapidly by convection but conducts poorly, so whether it insulates depends on whether it can flow. The 9 cm space inside a house wall is large enough for convection, so builders fill it with insulation to stop the air moving. The 1 cm gap of a double-paned window is too small for convection and takes advantage of air's low conductivity. Fur, feathers and fiberglass all trap air in pockets too small for convection, which is why they are light and warm."
   },
   {
    "id": "convection-with-phase-change",

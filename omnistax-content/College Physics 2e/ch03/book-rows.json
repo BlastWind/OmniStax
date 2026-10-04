@@ -1,0 +1,870 @@
+{
+ "types": [
+  {
+   "id": "angle",
+   "label": "angle",
+   "dimension": "rad"
+  }
+ ],
+ "symbols": [],
+ "concepts": [
+  {
+   "id": "right-triangle-resultant",
+   "kind": "result",
+   "section": "3.1",
+   "name": "Adding perpendicular displacements",
+   "statement": "A walk of 9 blocks east followed by 5 blocks north covers 14 blocks, but the straight-line distance between the two points is only 10.3 blocks. The two legs of the trip and the straight-line path form a right triangle, and the Pythagorean theorem gives the hypotenuse. This is one example of a general characteristic of vectors: the total displacement is the sum of its perpendicular parts, and the theorem gives its magnitude. You cannot add vectors that are not perpendicular this way.",
+   "forms": [
+    {
+     "id": "eq-pythagoras",
+     "latex": "a^2 + b^2 = c^2,\\quad c = \\sqrt{a^2 + b^2}",
+     "condition": "a right triangle with legs a and b and hypotenuse c",
+     "anchor": "3.1-walking"
+    }
+   ]
+  },
+  {
+   "id": "vector-components",
+   "kind": "definition",
+   "section": "3.1",
+   "name": "Components of a vector",
+   "terms": [
+    "component (of a 2-d vector)"
+   ],
+   "statement": "In two-dimensional motion, three vectors represent the path of an object: one for the straight-line path between the initial and final points, one for the horizontal component of the motion, and one for the vertical component. The horizontal and vertical components add together to give the straight-line path, and only the motion in its own direction affects each one.",
+   "forms": [
+    {
+     "id": "eq-component-sum",
+     "latex": "\\mathbf{A}_x + \\mathbf{A}_y = \\mathbf{A}",
+     "condition": "as vectors; the magnitudes A_x + A_y ≠ A",
+     "section": "3.3",
+     "anchor": "3.3-components"
+    }
+   ]
+  },
+  {
+   "id": "independence-of-perpendicular-motions",
+   "kind": "axiom",
+   "section": "3.1",
+   "name": "Independence of perpendicular motions",
+   "statement": "The horizontal and vertical components of two-dimensional motion are independent of each other: motion in the horizontal direction does not affect motion in the vertical direction, and vice versa. Drop one ball from rest and throw another horizontally at the same instant from the same height. At every flash of a stroboscope they share the same vertical position, while the thrown ball covers the same horizontal distance between flashes because nothing accelerates it horizontally. This is the key to projectile motion, which you resolve into motions along perpendicular directions."
+  },
+  {
+   "id": "vector-in-two-dimensions",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Vector in two dimensions",
+   "symbol": "θ",
+   "statement": "In two dimensions, an angle gives the direction of a vector relative to a reference frame. An arrow represents the vector, with a length proportional to its magnitude, its tail at the starting point and its head at the pointed end. This text writes a vector in boldface, its magnitude in italics and its direction as an angle, such as the total displacement $\\mathbf{D}$ of 10.3 blocks at 29.1º north of east."
+  },
+  {
+   "id": "resultant-vector",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Resultant vector",
+   "symbol": "R",
+   "terms": [
+    "resultant",
+    "resultant vector"
+   ],
+   "type": "position",
+   "statement": "The resultant is the sum of two or more vectors, drawn from the tail of the first vector to the head of the last. Its magnitude is at most the sum of the magnitudes, when the vectors point the same way, and at least their difference, so two nonzero vectors add to zero only when they have equal magnitudes and opposite directions."
+  },
+  {
+   "id": "head-to-tail-method",
+   "kind": "skill",
+   "section": "3.2",
+   "name": "Adding vectors head to tail",
+   "statement": "To add vectors graphically, draw the first as an arrow using a ruler and protractor. Place the tail of the second vector at the head of the first, and continue for every vector you add. Then draw the resultant from the tail of the first vector to the head of the last, and measure its length with a ruler and its angle with a protractor. The method works for any number of vectors, and only the precision of the drawing and of the measuring tools limits its accuracy."
+  },
+  {
+   "id": "vector-addition-commutative",
+   "kind": "result",
+   "section": "3.2",
+   "name": "Commutativity of vector addition",
+   "terms": [
+    "commutative"
+   ],
+   "statement": "The resultant is independent of the order in which the vectors are added: adding the same displacements in a different order ends at the same point. This is true in every case and is an important characteristic of vectors, just as you get the same result whether you add 2 + 3 or 3 + 2.",
+   "forms": [
+    {
+     "id": "eq-commutative",
+     "latex": "\\mathbf{A} + \\mathbf{B} = \\mathbf{B} + \\mathbf{A}",
+     "anchor": "3.2-ex-walk"
+    }
+   ]
+  },
+  {
+   "id": "vector-subtraction",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Vector subtraction",
+   "statement": "The negative of a vector has the same magnitude but the opposite direction, and subtracting a vector is defined to be adding its negative. A sailor who follows the second leg of her directions in the opposite direction arrives at $\\mathbf{A} - \\mathbf{B}$ instead of at $\\mathbf{A} + \\mathbf{B}$, a very different place from the dock, and the graphical method of subtraction is the head-to-tail method with $-\\mathbf{B}$ in place of $\\mathbf{B}$.",
+   "forms": [
+    {
+     "id": "eq-vector-subtraction",
+     "latex": "\\mathbf{A} - \\mathbf{B} = \\mathbf{A} + (-\\mathbf{B})",
+     "anchor": "3.2-subtraction"
+    }
+   ]
+  },
+  {
+   "id": "scalar-multiplication",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Multiplying a vector by a scalar",
+   "statement": "When you multiply a vector by a scalar $c$, its magnitude becomes the absolute value of $c$ times the original magnitude. If $c$ is positive the direction does not change, and if $c$ is negative the direction reverses. Walking three times as far on a leg of 27.5 m at 66.0º north of east means walking 82.5 m in the same direction, and division is multiplication by a scalar between 0 and 1."
+  },
+  {
+   "id": "resolving-vector",
+   "kind": "skill",
+   "section": "3.2",
+   "name": "Resolving a vector into components",
+   "statement": "Often we need the opposite of addition: to take a single vector and find what other vectors add together to produce it, usually its components along perpendicular axes such as north and east. Given a total displacement of 10.3 blocks in a direction 29.0º north of east, you can find how many blocks east and north the walk covered, graphically with a ruler and protractor or analytically with the right triangle the components form."
+  },
+  {
+   "id": "angle",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Angle",
+   "symbol": "θ",
+   "type": "angle",
+   "statement": "An angle measures the turn between two directions. In two dimensions an angle, such as 29.1º north of east, gives the direction of a vector relative to a reference axis."
+  },
+  {
+   "id": "vector-head",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Head of a vector",
+   "terms": [
+    "head (of a vector)"
+   ],
+   "statement": "The head of a vector is its end point, the location of the tip of its arrowhead, also called the tip."
+  },
+  {
+   "id": "vector-tail",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Tail of a vector",
+   "terms": [
+    "tail"
+   ],
+   "statement": "The tail of a vector is its start point, at the opposite end of the arrow from the head."
+  },
+  {
+   "id": "vector-magnitude",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Magnitude of a vector",
+   "terms": [
+    "magnitude (of a vector)"
+   ],
+   "statement": "The magnitude of a vector is its length or size, and it is a scalar quantity."
+  },
+  {
+   "id": "vector-direction",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Direction of a vector",
+   "terms": [
+    "direction (of a vector)"
+   ],
+   "statement": "The direction of a vector is its orientation in space, given in two dimensions by an angle relative to a reference axis."
+  },
+  {
+   "id": "head-to-tail-method-def",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Head-to-tail method",
+   "terms": [
+    "head-to-tail method"
+   ],
+   "statement": "The head-to-tail method is a method of adding vectors in which the tail of each vector is placed at the head of the previous vector."
+  },
+  {
+   "id": "vector-addition",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Vector addition",
+   "terms": [
+    "vector addition"
+   ],
+   "statement": "Vector addition is the set of rules that apply to adding vectors together, giving their resultant."
+  },
+  {
+   "id": "components-from-magnitude-angle",
+   "kind": "result",
+   "section": "3.3",
+   "name": "Components from magnitude and direction",
+   "statement": "If you know a vector by its magnitude $\\kA$ and its angle $\\theta$ from the $x$-axis, its components along the axes are the two legs of a right triangle, $\\kAx = \\kA\\cos\\theta$ and $\\kAy = \\kA\\sin\\theta$. The component vectors add to the vector, but their magnitudes do not add to its magnitude: 3 m east and 4 m north make 5 m, not 7 m, and no component can be greater than the magnitude of the vector itself.",
+   "forms": [
+    {
+     "id": "eq-Ax",
+     "latex": "A_x = A\\cos\\theta",
+     "ktex": "\\kAx = \\kA\\cos\\theta",
+     "anchor": "3.3-components"
+    },
+    {
+     "id": "eq-Ay",
+     "latex": "A_y = A\\sin\\theta",
+     "ktex": "\\kAy = \\kA\\sin\\theta",
+     "anchor": "3.3-components"
+    },
+    {
+     "id": "eq-vx-comp",
+     "latex": "v_x = v\\cos\\theta",
+     "ktex": "\\kvx = \\kv\\cos\\theta",
+     "section": "3.4",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-vy-comp",
+     "latex": "v_y = v\\sin\\theta",
+     "ktex": "\\kvy = \\kv\\sin\\theta",
+     "section": "3.4",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-vel-x",
+     "latex": "v_x = v\\cos\\theta",
+     "ktex": "\\kvx = \\kv\\cos\\theta",
+     "section": "3.5",
+     "anchor": "3.5-velocity-addition"
+    },
+    {
+     "id": "eq-vel-y",
+     "latex": "v_y = v\\sin\\theta",
+     "ktex": "\\kvy = \\kv\\sin\\theta",
+     "section": "3.5",
+     "anchor": "3.5-velocity-addition"
+    }
+   ]
+  },
+  {
+   "id": "magnitude-direction-from-components",
+   "kind": "result",
+   "section": "3.3",
+   "name": "Magnitude and direction from components",
+   "statement": "If you know the perpendicular components of a vector, you can find the vector analytically. Its magnitude is $\\sqrt{\\kAx^2 + \\kAy^2}$, the Pythagorean theorem for the right triangle the components form, and its direction relative to the $x$-axis is $\\tan^{-1}(\\kAy / \\kAx)$. For components of 9 and 5 blocks this gives 10.3 blocks at 29.1º, as in the walk in the city.",
+   "forms": [
+    {
+     "id": "eq-A-magnitude",
+     "latex": "A = \\sqrt{A_x^2 + A_y^2}",
+     "ktex": "\\kA = \\sqrt{\\kAx^2 + \\kAy^2}",
+     "anchor": "3.3-resultant"
+    },
+    {
+     "id": "eq-A-direction",
+     "latex": "\\theta = \\tan^{-1}(A_y / A_x)",
+     "ktex": "\\theta = \\tan^{-1}(\\kAy / \\kAx)",
+     "anchor": "3.3-resultant"
+    },
+    {
+     "id": "eq-vel-direction",
+     "latex": "\\theta = \\tan^{-1}(v_y / v_x)",
+     "ktex": "\\theta = \\tan^{-1}(\\kvy / \\kvx)",
+     "section": "3.5",
+     "anchor": "3.5-velocity-addition"
+    }
+   ]
+  },
+  {
+   "id": "analytical-vector-addition",
+   "kind": "skill",
+   "section": "3.3",
+   "name": "Adding vectors by components",
+   "statement": "To add vectors analytically, identify the $x$- and $y$-axes and find the components of each vector with $\\kAx = \\kA\\cos\\theta$ and $\\kAy = \\kA\\sin\\theta$. Add the components along each axis to get $\\kRx = \\kAx + \\kBx$ and $\\kRy = \\kAy + \\kBy$. Then find the magnitude $\\kR = \\sqrt{\\kRx^2 + \\kRy^2}$ and the direction $\\theta = \\tan^{-1}(\\kRy / \\kRx)$ of the resultant. The method works because components along the same axis add like ordinary numbers. Subtraction is identical, since the components of $-\\mathbf{B}$ are the negatives of the components of $\\mathbf{B}$. Analytical methods are more concise, accurate and precise than graphical ones, which are only as accurate as the drawing.",
+   "forms": [
+    {
+     "id": "eq-Rx",
+     "latex": "R_x = A_x + B_x",
+     "ktex": "\\kRx = \\kAx + \\kBx",
+     "anchor": "3.3-adding"
+    },
+    {
+     "id": "eq-Ry",
+     "latex": "R_y = A_y + B_y",
+     "ktex": "\\kRy = \\kAy + \\kBy",
+     "anchor": "3.3-adding"
+    },
+    {
+     "id": "eq-R-magnitude",
+     "latex": "R = \\sqrt{R_x^2 + R_y^2}",
+     "ktex": "\\kR = \\sqrt{\\kRx^2 + \\kRy^2}",
+     "anchor": "3.3-adding"
+    },
+    {
+     "id": "eq-R-direction",
+     "latex": "\\theta = \\tan^{-1}(R_y / R_x)",
+     "ktex": "\\theta = \\tan^{-1}(\\kRy / \\kRx)",
+     "anchor": "3.3-adding"
+    },
+    {
+     "id": "eq-Rx-subtraction",
+     "latex": "R_x = A_x + (-B_x),\\quad R_y = A_y + (-B_y)",
+     "ktex": "\\kRx = \\kAx + (-\\kBx),\\quad \\kRy = \\kAy + (-\\kBy)",
+     "condition": "the resultant of A − B",
+     "anchor": "3.3-subtraction"
+    }
+   ]
+  },
+  {
+   "id": "analytical-method",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "Analytical method",
+   "terms": [
+    "analytical method"
+   ],
+   "statement": "The analytical method determines the magnitude and direction of a resultant vector using the Pythagorean theorem and trigonometric identities."
+  },
+  {
+   "id": "projectile-motion",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "Projectile motion",
+   "terms": [
+    "projectile motion"
+   ],
+   "statement": "Projectile motion is the motion of an object thrown or projected into the air, subject only to the acceleration of gravity; the object is a projectile and its path is its trajectory. Because gravity is vertical, the horizontal and vertical motions are independent. The key is to break the curved path into a horizontal motion with no acceleration and a vertical motion with $\\kay = -\\kg$. With air resistance negligible, the trajectory is a parabola."
+  },
+  {
+   "id": "projectile-horizontal-motion",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Horizontal motion of a projectile",
+   "statement": "With air resistance negligible there is no acceleration along the horizontal axis, so the horizontal component of the velocity stays at its initial value $\\kvx = \\kvo\\cos\\theta_0$ and the horizontal displacement is simply $\\kvx\\kt$. The horizontal motion continues at this constant velocity for as long as the vertical motion keeps the projectile in the air.",
+   "forms": [
+    {
+     "id": "eq-proj-x",
+     "latex": "x = x_0 + v_x t",
+     "ktex": "\\kx = \\kxo + \\kvx\\kt",
+     "condition": "horizontal motion of a projectile, a_x = 0",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-proj-vx",
+     "latex": "v_x = v_{0x} = \\text{constant}",
+     "ktex": "\\kvx = \\kvox = \\text{constant}",
+     "condition": "horizontal motion of a projectile, a_x = 0",
+     "anchor": "3.4-steps"
+    }
+   ]
+  },
+  {
+   "id": "projectile-vertical-motion",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Vertical motion of a projectile",
+   "statement": "Along the vertical axis a projectile is in free fall with the initial vertical velocity $\\kvoy = \\kvo\\sin\\theta_0$, so the kinematic equations apply with $\\kay = -\\kg$ when up is positive: $\\kvy = \\kvoy - \\kg\\kt$, $\\ky = \\kyo + \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2$ and $\\kvy^2 = \\kvoy^2 - 2\\kg(\\ky - \\kyo)$. The vertical velocity decreases as the object rises, is zero at the highest point and grows again downward as it falls. The time a projectile is in the air is governed by its vertical motion alone, and time is the one variable the two motions share.",
+   "forms": [
+    {
+     "id": "eq-proj-y",
+     "latex": "y = y_0 + v_{0y}t - \\tfrac12 gt^2",
+     "ktex": "\\ky = \\kyo + \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2",
+     "condition": "projectile motion with negligible air resistance and up taken as positive, so that a_y = −g",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-proj-y-avg",
+     "latex": "y = y_0 + \\tfrac12(v_{0y} + v_y)t",
+     "ktex": "\\ky = \\kyo + \\tfrac{1}{2}(\\kvoy + \\kvy)\\kt",
+     "condition": "projectile motion with negligible air resistance and up taken as positive, so that a_y = −g",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-proj-vy",
+     "latex": "v_y = v_{0y} - gt",
+     "ktex": "\\kvy = \\kvoy - \\kg\\kt",
+     "condition": "projectile motion with negligible air resistance and up taken as positive, so that a_y = −g",
+     "anchor": "3.4-steps"
+    },
+    {
+     "id": "eq-proj-vy2",
+     "latex": "v_y^2 = v_{0y}^2 - 2g(y - y_0)",
+     "ktex": "\\kvy^2 = \\kvoy^2 - 2\\kg(\\ky - \\kyo)",
+     "condition": "projectile motion with negligible air resistance and up taken as positive, so that a_y = −g",
+     "anchor": "3.4-steps"
+    }
+   ]
+  },
+  {
+   "id": "projectile-analysis",
+   "kind": "skill",
+   "section": "3.4",
+   "name": "Solving a projectile problem",
+   "statement": "To analyze projectile motion, resolve the initial velocity into components along the horizontal and vertical axes. Treat the motion as two independent one-dimensional motions linked only by the time, and solve for the unknowns in each. When you want the total displacement or velocity, recombine the components with $\\ks = \\sqrt{\\kx^2 + \\ky^2}$ and $\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$ and the angles $\\theta = \\tan^{-1}(\\ky / \\kx)$ and $\\theta_v = \\tan^{-1}(\\kvy / \\kvx)$. The vertical equation is often a quadratic in the time; discard the root that describes an event before the launch.",
+   "forms": [
+    {
+     "id": "eq-v-mag",
+     "latex": "v = \\sqrt{v_x^2 + v_y^2}",
+     "ktex": "\\kv = \\sqrt{\\kvx^2 + \\kvy^2}",
+     "anchor": "3.4-recombine"
+    },
+    {
+     "id": "eq-s",
+     "latex": "s = \\sqrt{x^2 + y^2}",
+     "ktex": "\\ks = \\sqrt{\\kx^2 + \\ky^2}",
+     "anchor": "3.4-recombine"
+    },
+    {
+     "id": "eq-s-direction",
+     "latex": "\\theta = \\tan^{-1}(y / x)",
+     "ktex": "\\theta = \\tan^{-1}(\\ky / \\kx)",
+     "anchor": "3.4-recombine"
+    },
+    {
+     "id": "eq-v-direction",
+     "latex": "\\theta_v = \\tan^{-1}(v_y / v_x)",
+     "ktex": "\\theta_v = \\tan^{-1}(\\kvy / \\kvx)",
+     "anchor": "3.4-recombine"
+    }
+   ]
+  },
+  {
+   "id": "maximum-height",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Maximum height of a projectile",
+   "type": "position",
+   "statement": "The highest point in any trajectory, called the apex, is reached when the vertical velocity is zero, and solving $\\kvy^2 = \\kvoy^2 - 2\\kg\\ky$ at that point gives the maximum height $\\kh = \\kvoy^2 / 2\\kg$. It depends only on the vertical component of the initial velocity, so any projectile with a 67.6 m/s initial vertical component of velocity rises 233 m, whatever its horizontal velocity.",
+   "forms": [
+    {
+     "id": "eq-h",
+     "latex": "h = \\frac{v_{0y}^2}{2g}",
+     "ktex": "\\kh = \\frac{\\kvoy^2}{2\\kg}",
+     "condition": "negligible air resistance",
+     "anchor": "3.4-max-height"
+    }
+   ]
+  },
+  {
+   "id": "range",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Range of a projectile",
+   "terms": [
+    "range"
+   ],
+   "type": "position",
+   "statement": "On level ground, the range is the horizontal distance a projectile travels, $\\kR = \\kvo^2\\sin 2\\theta_0 / \\kg$ when air resistance is negligible. The greater the initial speed, the greater the range. For a given speed the maximum range comes at 45º, and every other angle has a complement that gives the same range with a different maximum height. The range also depends on $\\kg$, which is why a golf ball travels so far on the Moon. When the range is large, the Earth curves away beneath the projectile, until at a great enough speed it goes into orbit.",
+   "forms": [
+    {
+     "id": "eq-range",
+     "latex": "R = \\frac{v_0^2 \\sin 2\\theta_0}{g}",
+     "ktex": "\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}",
+     "condition": "level ground and negligible air resistance",
+     "anchor": "3.4-range"
+    }
+   ]
+  },
+  {
+   "id": "motion",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "Motion",
+   "terms": [
+    "motion"
+   ],
+   "statement": "Motion is the displacement of an object as a function of time."
+  },
+  {
+   "id": "air-resistance",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "Air resistance",
+   "terms": [
+    "air resistance"
+   ],
+   "statement": "Air resistance is a frictional force that slows the motion of objects as they travel through the air. When solving basic physics problems, air resistance is assumed to be zero."
+  },
+  {
+   "id": "projectile",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "Projectile",
+   "terms": [
+    "projectile"
+   ],
+   "statement": "A projectile is an object that travels through the air and experiences only acceleration due to gravity."
+  },
+  {
+   "id": "trajectory",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "Trajectory",
+   "terms": [
+    "trajectory"
+   ],
+   "statement": "The trajectory is the path of a projectile through the air."
+  },
+  {
+   "id": "relative-velocity",
+   "kind": "idea",
+   "section": "3.5",
+   "name": "Relative velocity",
+   "terms": [
+    "relative velocity"
+   ],
+   "statement": "A velocity is always relative to some reference frame. A boat on a river or a plane in a crosswind has a velocity relative to the medium, while the medium has a velocity relative to an observer on solid ground. The object’s velocity relative to the observer is the vector sum of the two, so the boat moves diagonally to the shore and the plane does not move in the direction it points. In one-dimensional motion, velocities add like ordinary numbers: a ball driven at 30 m/s by a player running at 5 m/s moves at 35 m/s relative to the goalkeeper."
+  },
+  {
+   "id": "velocity-addition",
+   "kind": "skill",
+   "section": "3.5",
+   "name": "Adding velocities",
+   "statement": "Velocity is a vector, so the rules of vector addition apply to it. The components are $\\kvx = \\kv\\cos\\theta$ and $\\kvy = \\kv\\sin\\theta$, and $\\kv = \\sqrt{\\kvx^2 + \\kvy^2}$ and $\\theta = \\tan^{-1}(\\kvy / \\kvx)$ give back the magnitude and direction. A coordinate system with one axis parallel to one of the velocities makes the mathematics easier, as for a boat heading straight across a river. When you know the total velocity, the same components give the unknown velocity of a wind or a current.",
+   "forms": [
+    {
+     "id": "eq-vel-mag",
+     "latex": "v = \\sqrt{v_x^2 + v_y^2}",
+     "ktex": "\\kv = \\sqrt{\\kvx^2 + \\kvy^2}",
+     "anchor": "3.5-velocity-addition"
+    },
+    {
+     "id": "eq-wind-components",
+     "latex": "v_{\\text{tot}\\,x} = v_{\\text{w}x},\\quad v_{\\text{tot}\\,y} = v_{\\text{w}y} + v_{\\text{p}}",
+     "ktex": "\\kvtotx = \\kvwx,\\quad \\kvtoty = \\kvwy + \\kvp",
+     "condition": "the plane of Example 3.7 heading due north, with the x-axis due east and the y-axis due north",
+     "anchor": "3.5-ex-plane"
+    }
+   ]
+  },
+  {
+   "id": "classical-relativity",
+   "kind": "idea",
+   "section": "3.5",
+   "name": "Classical relativity",
+   "terms": [
+    "classical relativity"
+   ],
+   "statement": "Relativity is the study of how observers moving relative to each other measure the same phenomenon. Classical relativity, which Galileo and Newton first discussed correctly, holds below about 1% of the speed of light. Binoculars dropped from the mast of a moving ship fall straight down to an observer on the ship and along a curved path to an observer on shore, yet both see them strike the deck at the base of the mast. A coin dropped in an airliner falls at 5.42 m/s to the passenger and at 260.06 m/s, almost horizontally, to an observer on the ground. For a correct description, always state the velocities relative to the observer."
+  },
+  {
+   "id": "velocity",
+   "kind": "definition",
+   "section": "3.5",
+   "name": "Velocity",
+   "symbol": "v",
+   "terms": [
+    "velocity"
+   ],
+   "type": "velocity",
+   "statement": "Velocity is speed in a given direction."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "right-triangle-resultant",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "right-triangle-resultant",
+   "prereq": "vector"
+  },
+  {
+   "concept": "right-triangle-resultant",
+   "prereq": "distance-traveled"
+  },
+  {
+   "concept": "vector-components",
+   "prereq": "vector"
+  },
+  {
+   "concept": "vector-components",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "independence-of-perpendicular-motions",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "independence-of-perpendicular-motions",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "independence-of-perpendicular-motions",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "vector-in-two-dimensions",
+   "prereq": "vector"
+  },
+  {
+   "concept": "vector-in-two-dimensions",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "resultant-vector",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "resultant-vector",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "head-to-tail-method",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "head-to-tail-method",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-addition-commutative",
+   "prereq": "head-to-tail-method"
+  },
+  {
+   "concept": "vector-subtraction",
+   "prereq": "head-to-tail-method"
+  },
+  {
+   "concept": "scalar-multiplication",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "scalar-multiplication",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "resolving-vector",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "resolving-vector",
+   "prereq": "head-to-tail-method"
+  },
+  {
+   "concept": "components-from-magnitude-angle",
+   "prereq": "resolving-vector"
+  },
+  {
+   "concept": "components-from-magnitude-angle",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "magnitude-direction-from-components",
+   "prereq": "right-triangle-resultant"
+  },
+  {
+   "concept": "magnitude-direction-from-components",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "magnitude-direction-from-components"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "vector-subtraction"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "coordinate-system"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "independence-of-perpendicular-motions"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "projectile-horizontal-motion",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "projectile-horizontal-motion",
+   "prereq": "x-from-vbar"
+  },
+  {
+   "concept": "projectile-horizontal-motion",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "projectile-vertical-motion",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "projectile-vertical-motion",
+   "prereq": "free-fall-kinematics"
+  },
+  {
+   "concept": "projectile-vertical-motion",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "projectile-horizontal-motion"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "projectile-vertical-motion"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "magnitude-direction-from-components"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "choose-equation"
+  },
+  {
+   "concept": "projectile-analysis",
+   "prereq": "physical-solution"
+  },
+  {
+   "concept": "maximum-height",
+   "prereq": "projectile-vertical-motion"
+  },
+  {
+   "concept": "maximum-height",
+   "prereq": "free-fall-highest-point"
+  },
+  {
+   "concept": "range",
+   "prereq": "projectile-analysis"
+  },
+  {
+   "concept": "relative-velocity",
+   "prereq": "reference-frame"
+  },
+  {
+   "concept": "relative-velocity",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "relative-velocity",
+   "prereq": "vector"
+  },
+  {
+   "concept": "velocity-addition",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "velocity-addition",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "classical-relativity",
+   "prereq": "relative-velocity"
+  },
+  {
+   "concept": "classical-relativity",
+   "prereq": "independence-of-perpendicular-motions"
+  },
+  {
+   "concept": "classical-relativity",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "motion",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "motion",
+   "prereq": "time"
+  },
+  {
+   "concept": "air-resistance",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "angle",
+   "prereq": "vector"
+  },
+  {
+   "concept": "vector-head",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-tail",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-magnitude",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-magnitude",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "vector-direction",
+   "prereq": "vector-in-two-dimensions"
+  },
+  {
+   "concept": "vector-direction",
+   "prereq": "angle"
+  },
+  {
+   "concept": "head-to-tail-method-def",
+   "prereq": "vector-head"
+  },
+  {
+   "concept": "head-to-tail-method-def",
+   "prereq": "vector-tail"
+  },
+  {
+   "concept": "head-to-tail-method-def",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "vector-addition",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "analytical-method",
+   "prereq": "resultant-vector"
+  },
+  {
+   "concept": "analytical-method",
+   "prereq": "vector-components"
+  },
+  {
+   "concept": "projectile",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "trajectory",
+   "prereq": "projectile"
+  },
+  {
+   "concept": "velocity",
+   "prereq": "vector"
+  },
+  {
+   "concept": "velocity",
+   "prereq": "instantaneous-speed"
+  },
+  {
+   "concept": "head-to-tail-method",
+   "prereq": "head-to-tail-method-def"
+  },
+  {
+   "concept": "vector-addition-commutative",
+   "prereq": "vector-addition"
+  },
+  {
+   "concept": "analytical-vector-addition",
+   "prereq": "vector-addition"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "projectile"
+  }
+ ]
+}

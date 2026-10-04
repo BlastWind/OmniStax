@@ -236,6 +236,61 @@
       "id": "dose",
       "label": "radiation dose",
       "dimension": "Gy"
+    },
+    {
+      "id": "latent-heat",
+      "label": "latent heat",
+      "dimension": "J/kg"
+    },
+    {
+      "id": "acoustic-impedance",
+      "label": "acoustic impedance",
+      "dimension": "kg/(m²·s)"
+    },
+    {
+      "id": "specific-heat",
+      "label": "specific heat",
+      "dimension": "J/(kg·°C)"
+    },
+    {
+      "id": "area",
+      "label": "area",
+      "dimension": "m²"
+    },
+    {
+      "id": "mass",
+      "label": "mass",
+      "dimension": "kg"
+    },
+    {
+      "id": "volume",
+      "label": "volume",
+      "dimension": "m³"
+    },
+    {
+      "id": "resistivity",
+      "label": "resistivity",
+      "dimension": "Ω·m"
+    },
+    {
+      "id": "angle",
+      "label": "angle",
+      "dimension": "rad"
+    },
+    {
+      "id": "diffusion-constant",
+      "label": "diffusion constant",
+      "dimension": "m²/s"
+    },
+    {
+      "id": "temperature-coefficient",
+      "label": "temperature coefficient",
+      "dimension": "1/°C"
+    },
+    {
+      "id": "thermal-conductivity",
+      "label": "thermal conductivity",
+      "dimension": "J/(s·m·°C)"
     }
   ],
   "symbols": [
@@ -3556,6 +3611,7 @@
       "section": "1.3",
       "name": "Area",
       "symbol": "A",
+      "type": "area",
       "statement": "Area is the size of a surface, found for a rectangle as its length times its width. Its SI unit is the square meter."
     },
     {
@@ -3571,6 +3627,7 @@
       "section": "1.4",
       "name": "Volume",
       "symbol": "V",
+      "type": "volume",
       "statement": "Volume is the space an object occupies, found for a box as its length times its width times its height. Its SI unit is the cubic meter."
     },
     {
@@ -4323,6 +4380,7 @@
       "section": "3.2",
       "name": "Angle",
       "symbol": "θ",
+      "type": "angle",
       "statement": "An angle measures the turn between two directions. In two dimensions an angle, such as 29.1º north of east, gives the direction of a vector relative to a reference axis."
     },
     {
@@ -4832,6 +4890,7 @@
       "terms": [
         "mass"
       ],
+      "type": "mass",
       "statement": "Mass is the quantity of matter in a body, and it is how much inertia the body has. Unlike weight, mass does not vary with location: a body has the same mass on Earth, in orbit and on the Moon, and masses are found in practice by comparison with the standard kilogram."
     },
     {
@@ -7454,6 +7513,7 @@
       "terms": [
         "rotation angle"
       ],
+      "type": "angle",
       "statement": "The rotation angle is the amount of rotation, defined as the ratio of the arc length to the radius of curvature, and it is the angular quantity that stands in for linear distance. Because it is a ratio of two lengths, every point of a rotating object turns through the same rotation angle in the same time, however far from the axis it sits.",
       "forms": [
         {
@@ -9175,6 +9235,7 @@
       "terms": [
         "contact angle"
       ],
+      "type": "angle",
       "statement": "Where a liquid meets a solid, the angle between the tangent to the liquid surface and the solid surface is the contact angle, and it says which of the two kinds of force is winning. A large angle means the cohesive forces are strong relative to the adhesive ones and the liquid draws itself into a droplet; a small angle means adhesion is flattening the drop against the solid. Water on waxed car paint stands at a large angle, water on bare paint at a small one."
     },
     {
@@ -9799,6 +9860,7 @@
       "section": "12.7",
       "name": "Diffusion constant",
       "symbol": "D_diff",
+      "type": "diffusion-constant",
       "statement": "The diffusion constant is determined experimentally and gathers into one number most of the things that set the rate: the molecule, the medium, the temperature and the cohesive and adhesive forces. It gets progressively smaller for more massive molecules, because the average molecular speed at a given temperature is inversely proportional to molecular mass, and it is far smaller in water than in air, because a molecule in water makes many more collisions in its random walk. It increases with temperature, since the average kinetic energy of the molecules is proportional to absolute temperature."
     },
     {
@@ -10714,6 +10776,7 @@
       "terms": [
         "specific heat"
       ],
+      "type": "specific-heat",
       "statement": "The specific heat is the amount of heat necessary to change the temperature of 1.00 kg of a substance by 1.00 °C. It depends on the material and its phase, must generally be looked up in a table because there is no simple way to calculate it, and varies little with temperature for most solids and liquids. Water's is among the largest of any material, five times that of glass and ten times that of iron, which is important for sustaining life on Earth."
     },
     {
@@ -10783,6 +10846,7 @@
       "terms": [
         "latent heat coefficient"
       ],
+      "type": "latent-heat",
       "statement": "Heat transfer causes no temperature change while a substance changes phase. The energy goes into breaking the cohesive bonds between molecules rather than into their kinetic energy, so ice at 0 °C stays at 0 °C until all of it has melted. The same energy comes back out, usually as thermal energy, when the bonds form again in freezing or condensation. The heat that changes the phase of a mass is that mass times a latent heat coefficient, a material constant. It is latent, or hidden, because the energy enters or leaves without changing the temperature.",
       "forms": [
         {
@@ -10800,6 +10864,7 @@
       "section": "14.3",
       "name": "Heat of fusion",
       "symbol": "L_f",
+      "type": "latent-heat",
       "statement": "The latent heat of fusion is the heat that melts a kilogram of a substance at its melting point, and the kilogram releases the same heat when it freezes. For water it is 334 kJ/kg, enough to warm a kilogram of liquid water from 0 °C to 79.8 °C. A bag of ice at 0 °C therefore absorbs far more energy than a bag of water at the same temperature, and water freezing on a sprayed orchard warms the trees.",
       "forms": [
         {
@@ -10825,6 +10890,7 @@
       "section": "14.3",
       "name": "Heat of vaporization",
       "symbol": "L_v",
+      "type": "latent-heat",
       "statement": "The latent heat of vaporization is the heat that turns a kilogram of liquid into vapor at the boiling point, and the vapor releases the same heat when it condenses. For water it is 2256 kJ/kg, nearly seven times its heat of fusion, so boiling away a kilogram of water costs more than raising it from ice-cold to boiling. Condensation on a glass of iced tea releases energy into the glass and speeds the melting of the ice.",
       "forms": [
         {
@@ -10866,6 +10932,7 @@
       "terms": [
         "heat of sublimation"
       ],
+      "type": "latent-heat",
       "statement": "Sublimation is the transition from the solid phase directly to the vapor phase, as when snow disappears without a trace of liquid, dry ice makes its smoke, or frost forms on a cold window from vapor alone. It occurs because the equilibrium vapor pressure of a solid is not zero. The energy required is the mass times the heat of sublimation, a constant of the same order as the other latent heats, so dry ice is an effective coolant and frosting releases energy.",
       "forms": [
         {
@@ -10970,6 +11037,7 @@
       "terms": [
         "thermal conductivity"
       ],
+      "type": "thermal-conductivity",
       "statement": "Thermal conductivity measures a material's ability to conduct heat, and it spans more than four orders of magnitude across common substances. The best thermal conductors, silver, copper, gold and aluminum, are also the best electrical conductors, because of the density of free electrons in them, and cooks use utensils made of them. Styrofoam, fiberglass, wool and down conduct poorly because they trap many small pockets of air, whose own conductivity is among the lowest of all."
     },
     {
@@ -13173,6 +13241,7 @@
       "terms": [
         "acoustic impedance"
       ],
+      "type": "acoustic-impedance",
       "statement": "Reflections at boundaries between two media occur because of differences in their acoustic impedance, the product of a medium's density and the speed of sound through it, in kg/(m²·s). The acoustic impedances of soft tissues do not vary much, but there is a big difference between soft tissue and air and between soft tissue and bone, which is why those boundaries reflect so strongly.",
       "forms": [
         {
@@ -14019,6 +14088,7 @@
       "terms": [
         "resistivity"
       ],
+      "type": "resistivity",
       "statement": "For a given shape, the resistance depends on the material the object is made of, and the resistivity is the property that carries that dependence. Resistivity is an intrinsic property of a material, independent of its shape or size, and its unit is the ohm-meter."
     },
     {
@@ -14062,6 +14132,7 @@
       "terms": [
         "temperature coefficient of resistivity"
       ],
+      "type": "temperature-coefficient",
       "statement": "The temperature coefficient of resistivity is the empirical quantity that describes how much a material's resistivity changes with temperature. It is positive for metals, because at higher temperatures their atoms vibrate more rapidly and over larger distances, so the electrons make more collisions. It is negative for the semiconductors of Table 20.2, because increased thermal agitation there frees more charges to carry current. Some alloys, such as manganin, have a coefficient close to zero, which makes them ideal for a temperature-independent resistance standard."
     },
     {
@@ -18180,6 +18251,7 @@
       "terms": [
         "Brewster’s angle"
       ],
+      "type": "angle",
       "statement": "Brewster's angle is the angle of reflection at which the reflected light is completely polarized, $\\theta_{\\text{b}} = \\tan^{-1}(n_2/n_1)$."
     },
     {
@@ -18616,6 +18688,7 @@
       "terms": [
         "rest mass"
       ],
+      "type": "mass",
       "statement": "The rest mass of an object is its mass as measured by an observer at rest relative to it. Since the mass of a moving object can be found only through processes that involve momentum, the rest mass is the only meaningful mass, and $m$ means the rest mass."
     },
     {
@@ -18856,6 +18929,7 @@
       "section": "25.2",
       "name": "Angle of incidence",
       "symbol": "θ_i",
+      "type": "angle",
       "statement": "The angle of incidence is the angle between an incoming ray and the perpendicular to the surface at the point where the ray strikes it."
     },
     {
@@ -18864,6 +18938,7 @@
       "section": "25.2",
       "name": "Angle of reflection",
       "symbol": "θ_r",
+      "type": "angle",
       "statement": "The angle of reflection is the angle between a reflected ray and the perpendicular to the surface at the point where the ray strikes it."
     },
     {
@@ -18974,6 +19049,7 @@
       "section": "25.3",
       "name": "Angle of refraction",
       "symbol": "θ_2",
+      "type": "angle",
       "statement": "The angle of refraction is the angle between a refracted ray and the perpendicular to the surface, in the medium the ray crosses into."
     },
     {
@@ -18985,6 +19061,7 @@
       "terms": [
         "critical angle"
       ],
+      "type": "angle",
       "statement": "The critical angle is the incident angle that produces an angle of refraction of 90°. It exists only for light going from a medium of larger index into one of smaller index, where the ray bends away from the perpendicular."
     },
     {
@@ -22148,6 +22225,7 @@
       "terms": [
         "coefficient of linear expansion"
       ],
+      "type": "temperature-coefficient",
       "statement": "The coefficient of linear expansion is the change in length per unit length per degree of temperature change. It depends on the material and varies slightly with temperature, and its unit is the inverse degree Celsius, 1/°C."
     },
     {
@@ -22159,6 +22237,7 @@
       "terms": [
         "coefficient of volume expansion"
       ],
+      "type": "temperature-coefficient",
       "statement": "The coefficient of volume expansion is the change in volume per unit volume per degree of temperature change. For a solid it is very nearly three times the coefficient of linear expansion, and liquids have much larger values than solids."
     },
     {
@@ -22980,6 +23059,7 @@
       "terms": [
         "atomic mass"
       ],
+      "type": "mass",
       "statement": "The atomic mass is the total mass of the protons, neutrons and electrons in a single atom."
     },
     {
@@ -23582,6 +23662,7 @@
       "kind": "result",
       "section": "30.2",
       "name": "Electron mass",
+      "type": "mass",
       "statement": "The charge from Millikan and the ratio from Thomson give the mass of the electron, $m_{\\text{e}} = 9.11 \\times 10^{-31}$ kg, the smallest of any particle that has mass. The proton is about 1836 times heavier and carries nearly all the mass of a hydrogen atom.",
       "forms": [
         {

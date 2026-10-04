@@ -141,7 +141,12 @@ momentum (10), pressure, density and surface tension (11), flow rate and
 viscosity (12), temperature (13), entropy (15), intensity (17), charge and
 electric field (18), voltage and capacitance (19), current and
 resistance (20), magnetic field (22), magnetic flux and inductance (23),
-thirty-four in all. Heat is an energy and a rate of heat transfer is a
+activity and decay constant (31), dose (32). On 2026-10-04 the rest were
+added at the end under the test of root `RULES.md` item 7: latent heat
+(14), acoustic impedance (17), specific heat (14), area (5), mass (4),
+volume (5), resistivity (20), angle (3), diffusion constant (12),
+temperature coefficient (13) and thermal conductivity (14), forty-eight in
+all, which fills the scheme. Heat is an energy and a rate of heat transfer is a
 power.
 
 With this many types each hue must still be legible and distinct. Since

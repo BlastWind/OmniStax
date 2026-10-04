@@ -9,6 +9,11 @@
    "id": "viscosity",
    "label": "viscosity",
    "dimension": "Pa·s"
+  },
+  {
+   "id": "diffusion-constant",
+   "label": "diffusion constant",
+   "dimension": "m²/s"
   }
  ],
  "symbols": [
@@ -105,7 +110,7 @@
     "flow rate"
    ],
    "type": "flow-rate",
-   "statement": "Flow rate is the volume of fluid that passes a location through an area during a period of time, and it is the quantity almost every question about a moving fluid is asked in: how much blood a heart pumps, how much water a hose delivers, how much air a duct carries. Because it counts volume rather than distance, it tells you nothing on its own about how fast the fluid is moving or how wide the conduit is, only about the product of the two.",
+   "statement": "Flow rate is the volume of fluid that passes a location through an area during a period of time. Almost every question about a moving fluid asks for it: how much blood a heart pumps, how much water a hose delivers, how much air a duct carries. Because it counts volume rather than distance, it tells you nothing on its own about how fast the fluid is moving or how wide the conduit is, only about the product of the two.",
    "forms": [
     {
      "id": "eq-flow-rate",
@@ -142,7 +147,7 @@
    "kind": "definition",
    "section": "12.1",
    "name": "Incompressible fluid",
-   "statement": "A fluid is incompressible when a given amount of it always occupies the same volume, however hard it is pressed. Since liquids are essentially incompressible, the equation of continuity is valid for all of them; gases are compressible, and the equation must be applied to them with caution if they are subjected to compression or expansion. Every result of this chapter, Bernoulli’s equation and Poiseuille’s law included, is written for an incompressible fluid."
+   "statement": "A fluid is incompressible when a given amount of it always occupies the same volume, however hard you press it. Liquids are nearly incompressible, so the equation of continuity is valid for all of them. Gases are compressible, and you must apply the equation to them with caution when they compress or expand. Every result of this chapter, Bernoulli’s equation and Poiseuille’s law included, assumes an incompressible fluid."
   },
   {
    "id": "equation-of-continuity",
@@ -380,7 +385,7 @@
    "terms": [
     "laminar"
    ],
-   "statement": "Laminar flow is characterized by the smooth flow of a fluid in layers that do not mix. The lines drawn in the figures of this chapter are streamlines, the paths followed by small volumes of fluid, and in laminar flow they are smooth and continuous. The precise definition of viscosity is based on laminar flow, and so is Poiseuille’s law, so the whole of this section assumes it."
+   "statement": "In laminar flow a fluid moves smoothly in layers that do not mix. The lines in this chapter's figures are streamlines, the paths that small volumes of fluid follow, and in laminar flow they are smooth and continuous. The precise definition of viscosity rests on laminar flow, and so does Poiseuille’s law."
   },
   {
    "id": "turbulent-flow",
@@ -402,7 +407,7 @@
     "viscosity"
    ],
    "type": "viscosity",
-   "statement": "Viscosity is fluid friction, both within the fluid and between the fluid and its surroundings: juice pours freely and syrup sticks to the pitcher. It is measured by shearing a fluid between two plates, one held fixed and one moved at a steady speed, and finding the force that keeps the top plate moving. That force grows with the speed, with the area of the plate and with the viscosity, and falls as the plates are moved apart, so the viscosity is the force times the separation divided by the speed times the area. Viscosities vary from one fluid to another by several orders of magnitude, gases being far less viscous than liquids, and most of them depend on temperature.",
+   "statement": "Viscosity is fluid friction, both within the fluid and between the fluid and its surroundings: juice pours freely and syrup sticks to the pitcher. To measure it, shear a fluid between two plates, one fixed and one moving at a steady speed, and find the force that keeps the top plate moving. That force grows with the speed, with the area of the plate and with the viscosity, and falls as the plates move apart. The viscosity is therefore the force times the separation divided by the speed times the area. Viscosities vary from one fluid to another by several orders of magnitude, gases being far less viscous than liquids, and most of them depend on temperature.",
    "forms": [
     {
      "id": "eq-viscosity-force",
@@ -577,7 +582,7 @@
     "viscous drag"
    ],
    "type": "force",
-   "statement": "One of the consequences of viscosity is a resistance force called viscous drag, exerted on an object moving through a fluid. Unlike simple friction it depends on the object’s speed, and how it depends on it changes with the Reynolds number: for laminar flow the drag is proportional to the speed, while between about 10 and a million it is proportional to the speed squared, which is why even a small headwind costs a bicycle racer so much and why cyclists take turns leading the pack. For laminar flow around a sphere the drag is proportional to the viscosity, the size of the object and its speed, all of which makes sense, since the more viscous the fluid and the larger the object the more drag is to be expected; Stokes’ law gives the constant."
+   "statement": "One consequence of viscosity is a resistance force called viscous drag, exerted on an object moving through a fluid. Unlike simple friction, it depends on the object’s speed, and how it depends on it changes with the Reynolds number. For laminar flow the drag is proportional to the speed, while between about 10 and a million it is proportional to the speed squared. That is why even a small headwind costs a bicycle racer so much and why cyclists take turns leading the pack. For laminar flow around a sphere the drag is proportional to the viscosity, the size of the object and its speed: a more viscous fluid and a larger object both mean more drag. Stokes’ law gives the constant."
   },
   {
    "id": "sedimentation-rate",
@@ -618,6 +623,7 @@
    "section": "12.7",
    "name": "Diffusion constant",
    "symbol": "D_diff",
+   "type": "diffusion-constant",
    "statement": "The diffusion constant is determined experimentally and gathers into one number most of the things that set the rate: the molecule, the medium, the temperature and the cohesive and adhesive forces. It gets progressively smaller for more massive molecules, because the average molecular speed at a given temperature is inversely proportional to molecular mass, and it is far smaller in water than in air, because a molecule in water makes many more collisions in its random walk. It increases with temperature, since the average kinetic energy of the molecules is proportional to absolute temperature."
   },
   {
@@ -665,7 +671,7 @@
    "terms": [
     "osmotic pressure"
    ],
-   "statement": "Osmosis can create a substantial pressure. Water moving through a membrane raises the solution on the low-concentration side, and the movement continues until the pressure created by the extra height of fluid is large enough to stop further osmosis. That back pressure is called the relative osmotic pressure if neither solution is pure water and the osmotic pressure if one of them is, and it can be very large: pure water and sea water separated by a membrane that passes no salt come to equilibrium at 25.9 atmospheres, which would raise the salt water 268 meters above the pure water. Turgor, the pressure of a plant cell’s fluid against its wall, is the same effect holding a plant up. Where the back pressure is sufficient to reverse the normal direction, the process becomes reverse osmosis or reverse dialysis, which is how water is desalinated and how a membrane is used to filter."
+   "statement": "Osmosis can create a substantial pressure. Water moving through a membrane raises the solution on the low-concentration side, and the movement continues until the pressure of the extra height of fluid stops further osmosis. That back pressure is the relative osmotic pressure if neither solution is pure water, and the osmotic pressure if one of them is. It can be very large. Pure water and sea water separated by a membrane that passes no salt come to equilibrium at 25.9 atmospheres, which would raise the salt water 268 meters above the pure water. Turgor, the pressure of a plant cell’s fluid against its wall, is the same effect holding a plant up. Where the back pressure is large enough to reverse the normal direction, the process becomes reverse osmosis or reverse dialysis, which desalinates water and lets a membrane act as a filter."
   },
   {
    "id": "active-transport",
@@ -675,7 +681,7 @@
    "terms": [
     "active transport"
    ],
-   "statement": "Substances sometimes pass through a membrane in the direction opposite to the one expected. Cypress tree roots extract pure water from salt water although osmosis would move it the other way, and this is not reverse osmosis, because there is no back pressure to cause it. What is happening is active transport, a process in which a living membrane expends energy to move substances across it. Many living membranes do this, the kidneys among them, and it is estimated that at least a quarter of the body’s energy is expended on active transport at the cellular level."
+   "statement": "Substances sometimes pass through a membrane in the direction opposite to the one expected. Cypress tree roots extract pure water from salt water although osmosis would move it the other way. This is not reverse osmosis, because no back pressure causes it. It is active transport, in which a living membrane expends energy to move substances across it. Many living membranes do this, the kidneys among them, and at least a quarter of the body’s energy by some estimates goes to active transport at the cellular level."
   },
   {
    "id": "relative-osmotic-pressure",

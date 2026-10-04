@@ -45,9 +45,38 @@ its hues along. In this book each is a kind of physical quantity.
 | `magnetic-field` | The magnetic field strength, its lines and arrows, an amplitude | Chapter 22 |
 | `magnetic-flux` | Magnetic flux and its change | Chapter 23 |
 | `inductance` | Self and mutual inductance | Chapter 23 |
+| `activity` | The activity of a radioactive source, its decays per second | Chapter 31 |
+| `decay-constant` | The decay constant of a nuclide | Chapter 31 |
+| `dose` | Radiation dose, absorbed and effective | Chapter 32 |
+| `latent-heat` | Latent heat: the heats of fusion, vaporization and sublimation, and the coefficient standing for any of them | Chapter 14 |
+| `acoustic-impedance` | The acoustic impedance of a medium, on either side of a boundary | Chapter 17 |
+| `specific-heat` | Specific heat, and its values at constant volume and at constant pressure | Chapter 14 |
+| `area` | An area: a cross-section, a piston, a plate, a loop, a radiating surface, the area a power or a flux passes through, and its change | Chapter 5 |
+| `mass` | Mass: of a body, a system, a particle, a rocket and the gas it ejects; the electron's mass, a rest mass, the mass of a nuclide, a mass defect | Chapter 4 |
+| `volume` | Volume: of a body, a fluid, a gas, the part submerged, the fluid displaced, and a change in volume | Chapter 5 |
+| `resistivity` | Resistivity, before and after a temperature change | Chapter 20 |
+| `angle` | An angle: a direction, an incline, a rotation angle, a contact angle, the angles of incidence, reflection and refraction, the critical and Brewster's angles, a phase angle | Chapter 3 |
+| `diffusion-constant` | The diffusion constant of a molecule in a medium | Chapter 12 |
+| `temperature-coefficient` | A fractional change per degree: the coefficients of linear and volume expansion, the temperature coefficient of resistivity | Chapter 13 |
+| `thermal-conductivity` | Thermal conductivity | Chapter 14 |
 
-The book intends mass, angle, area and volume to be categories as well
-(decided 2026-10-04); they are not yet declared.
+A material property is a category: what a material or a medium is like,
+which differs from one to the next. The expansion coefficients and the
+temperature coefficient of resistivity are one category, since each is the
+fractional change of a property per degree, entering as $X = X_0(1 + \alpha\,\Delta T)$;
+the linear and the volume coefficient are variants of it. These stay in ink:
+a constant of nature ($G$, $h$, $k_B$, $\varepsilon_0$, $\mu_0$, $R$, $N_A$,
+Coulomb's, Stefan–Boltzmann's, Rydberg's and Hubble's constants); a count or a
+label (a quantum number, $Z$, $A$, $N$, a number of turns, an order of
+interference, a harmonic number, an amount in moles, a baryon or lepton
+number); and a rating, one number comparing two quantities of one kind
+(efficiency, a coefficient of performance, mechanical advantage, magnification,
+numerical aperture, a coefficient of friction or of drag, the index of
+refraction, emissivity, a reflection coefficient, RBE, the Reynolds number,
+the sound level in decibels, a percent). The book has used all forty-eight
+places the scheme deals; the flow resistance of 12.4 and the power of a lens
+of 25.6 pass the test but wait for a place, and stay in ink until one is
+found.
 
 A derived quantity is another category, and nothing is coerced into a
 neighbouring one to save a colour: a frequency is not a time, a force

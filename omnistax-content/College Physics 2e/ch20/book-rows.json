@@ -9,6 +9,11 @@
    "id": "resistance",
    "label": "resistance",
    "dimension": "Ω"
+  },
+  {
+   "id": "resistivity",
+   "label": "resistivity",
+   "dimension": "Ω·m"
   }
  ],
  "symbols": [
@@ -138,7 +143,7 @@
    "kind": "skill",
    "section": "20.1",
    "name": "Reading a circuit schematic",
-   "statement": "A schematic represents a battery by two parallel lines, a conducting wire by a straight line and a load by a zigzag, and a single schematic can stand for anything from a truck battery lighting a headlight to a small battery lighting a keyhole. Schematics are useful because the analysis is the same for a wide variety of situations, so understanding a few of them lets the reader apply the concepts to many more."
+   "statement": "A schematic represents a battery by two parallel lines, a conducting wire by a straight line and a load by a zigzag. A single schematic can stand for anything from a truck battery lighting a headlight to a small battery lighting a keyhole. Because the analysis is the same for a wide variety of situations, understanding a few schematics lets you apply the concepts to many more."
   },
   {
    "id": "charge-carriers",
@@ -270,7 +275,7 @@
    "terms": [
     "ohmic"
    ],
-   "statement": "Ohm's law, like Hooke's law, is not universally valid. The many substances for which it holds are called ohmic, and they include good conductors like copper and aluminum and some poor conductors under certain circumstances; an ohmic material has a resistance that does not depend on the voltage across it or the current through it. Knowing that the law is empirical rather than fundamental tells the reader when a straight line through the origin is the right model and when it is not."
+   "statement": "Ohm's law, like Hooke's law, is not universally valid. The many substances that obey it are called ohmic, and they include good conductors like copper and aluminum and some poor conductors under certain circumstances. An ohmic material has a resistance that does not depend on the voltage across it or the current through it. Because the law is empirical rather than fundamental, you need to know when a straight line through the origin is the right model and when it is not."
   },
   {
    "id": "simple-circuit",
@@ -309,6 +314,7 @@
    "terms": [
     "resistivity"
    ],
+   "type": "resistivity",
    "statement": "For a given shape, the resistance depends on the material the object is made of, and the resistivity is the property that carries that dependence. Resistivity is an intrinsic property of a material, independent of its shape or size, and its unit is the ohm-meter."
   },
   {
@@ -331,7 +337,7 @@
    "kind": "idea",
    "section": "20.3",
    "name": "Conductors, semiconductors and insulators",
-   "statement": "The materials of Table 20.1 fall into three groups by their resistivities. Conductors have the smallest resistivities and varying but large free charge densities; insulators have the largest, because most of their charges are bound to atoms and are not free to move; and semiconductors are intermediate, having far fewer free charges than conductors but a number of free charges that depends strongly on the type and amount of impurities present. That last property is what modern electronics is built on."
+   "statement": "The materials of Table 20.1 fall into three groups by their resistivities. Conductors have the smallest resistivities and varying but large free charge densities. Insulators have the largest, because most of their charges are bound to atoms and are not free to move. Semiconductors are intermediate: they have far fewer free charges than conductors, but the number depends strongly on the type and amount of impurities present, and modern electronics rests on that property."
   },
   {
    "id": "superconductivity",
@@ -352,6 +358,7 @@
    "terms": [
     "temperature coefficient of resistivity"
    ],
+   "type": "temperature-coefficient",
    "statement": "The temperature coefficient of resistivity is the empirical quantity that describes how much a material's resistivity changes with temperature. It is positive for metals, because at higher temperatures their atoms vibrate more rapidly and over larger distances, so the electrons make more collisions. It is negative for the semiconductors of Table 20.2, because increased thermal agitation there frees more charges to carry current. Some alloys, such as manganin, have a coefficient close to zero, which makes them ideal for a temperature-independent resistance standard."
   },
   {
@@ -641,7 +648,7 @@
    "terms": [
     "thermal hazard"
    ],
-   "statement": "A thermal hazard is one in which excessive electric power causes undesired thermal effects, such as starting a fire in the wall of a house. Electric power causes such heating whenever electric energy is converted to thermal energy faster than it can safely be dissipated, and naming the hazard separately from shock is what lets the reader see that the two are governed by different quantities."
+   "statement": "A thermal hazard is one in which excessive electric power causes undesired thermal effects, such as starting a fire in the wall of a house. Electric power causes such heating whenever electric energy turns into thermal energy faster than it can safely be dissipated. Keeping this hazard separate from shock makes clear that different quantities govern the two."
   },
   {
    "id": "short-circuit",
