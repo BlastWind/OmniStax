@@ -51,9 +51,9 @@ function rock(ctx, x, y, r, color) {
 /* a baseball player sliding feet first along the ground, his hip over (x, y) and the ground under him
    turned through `rot`: a silhouette laid nearly flat, legs out ahead, one arm trailing on the ground
    and the other thrown up, so the slide reads without its label */
-function slidingPlayer(ctx, x, y, rot) {
+function slidingPlayer(ctx, x, y, rot, color) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
-  F.silhouette(ctx, { x: 0, y: 0, s: 0.9, hip: { x: 0, y: -18 }, shoulder: { x: -44, y: -44 }, head: { x: -58, y: -64 },
+  F.silhouette(ctx, { x: 0, y: 0, s: 0.9, color, hip: { x: 0, y: -18 }, shoulder: { x: -44, y: -44 }, head: { x: -58, y: -64 },
     feet: [{ x: 64, y: -6 }, { x: 56, y: -16 }], hands: [{ x: -88, y: -6 }, { x: -34, y: -84 }], kneeSide: 1, elbowSide: -1 });
   ctx.restore();
 }
@@ -67,12 +67,12 @@ function foamCup(ctx, x, y, color) {
   ctx.restore();
 }
 /* a skier on her skis, the base of the skis at (x, y): crouched over the skis with a pole in each hand */
-function skierSprite(ctx, x, y) {
+function skierSprite(ctx, x, y, color) {
   ctx.save(); ctx.translate(x, y);
-  line(ctx, -50, 0, 50, 0, PAL.ink, 5);
+  line(ctx, -50, 0, 50, 0, color, 5);
   const hands = [{ x: 34, y: -60 }, { x: 38, y: -54 }];
   hands.forEach((h) => line(ctx, h.x * 0.85, h.y * 0.85, h.x * 0.85 - 36, -2, PAL.muted, 3));
-  F.silhouette(ctx, { x: 0, y: -2, s: 0.85, hip: { x: -8, y: -58 }, shoulder: { x: 18, y: -98 }, head: { x: 30, y: -116 }, feet: [{ x: 10, y: 0 }, { x: -10, y: 0 }], hands });
+  F.silhouette(ctx, { x: 0, y: -2, s: 0.85, color, hip: { x: -8, y: -58 }, shoulder: { x: 18, y: -98 }, head: { x: 30, y: -116 }, feet: [{ x: 10, y: 0 }, { x: -10, y: 0 }], hands });
   ctx.restore();
 }
 
@@ -150,7 +150,7 @@ function skierSprite(ctx, x, y) {
 (function () {
   const d = sim('sim-spring-ground', 690);
   const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0.5, max: 3, step: 0.1, value: 1.5, unit: 'm', dec: 2, onInput: reset, aria: 'height the rock is dropped from' });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.5, max: 5, step: 0.1, value: 2, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the rock' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.5, max: 5, step: 0.1, value: 2, unit: 'kg', dec: 2, onInput: reset, aria: 'mass of the rock' });
   const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 200, max: 3000, step: 50, value: 900, unit: 'N/m', dec: 0, onInput: reset, aria: 'force constant of the spring' });
   const SC = 75, GROUND = 570, TOP = GROUND - 170;
   const drop = () => Math.sqrt((2 * h.v) / G);
@@ -174,15 +174,15 @@ function skierSprite(ctx, x, y) {
     text(ctx, '(a) dropped onto a spring', 110, 110, PAL.ink, { size: 22, weight: 600 });
     text(ctx, '(b) dropped onto the ground', 760, 110, PAL.ink, { size: 22, weight: 600 });
     const springTop = TOP + comp * SC;
-    spring(ctx, 300, GROUND, 300, springTop, 7, 34, PAL.ink, 5);
-    line(ctx, 246, springTop, 354, springTop, PAL.ink, 5);
-    rock(ctx, 300, springTop - 32 - Math.max(0, leftUp) * SC, 30, PAL.ink);
-    rock(ctx, 900, GROUND - 32 - rightUp * SC, 30, PAL.ink);
+    spring(ctx, 300, GROUND, 300, springTop, 7, 34, F.ref('spring'), 5);
+    line(ctx, 246, springTop, 354, springTop, F.ref('spring'), 5);
+    rock(ctx, 300, springTop - 32 - Math.max(0, leftUp) * SC, 30, F.ref('rock'));
+    rock(ctx, 900, GROUND - 32 - rightUp * SC, 30, F.ref('rock'));
     line(ctx, 170, TOP - h.v * SC, 430, TOP - h.v * SC, C('position'), 2, [8, 8]);
     line(ctx, 790, GROUND - h.v * SC, 1030, GROUND - h.v * SC, C('position'), 2, [8, 8]);
     vbracket(ctx, 190, TOP, TOP - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     vbracket(ctx, 810, GROUND, GROUND - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
-    text(ctx, fmt(m.v, 2) + ' kg', 300, springTop - 82 - Math.max(0, leftUp) * SC, PAL.ink, { size: 18, weight: 600, align: 'center' });
+    text(ctx, fmt(m.v, 2) + ' kg', 300, springTop - 82 - Math.max(0, leftUp) * SC, C('mass'), { size: 18, weight: 600, align: 'center' });
     if (comp > xc * 0.35) text(ctx, 'the spring is pushing back', 380, TOP + 46, PAL.muted, { size: 18, weight: 600 });
     if (tau > tf) text(ctx, 'heat, sound and a dent in the ground', 900, GROUND + 62, PAL.muted, { size: 18, align: 'center' });
     /* the two energy accounts, drawn to one fixed scale: the outline holds 147 J, which is the
@@ -207,7 +207,7 @@ function skierSprite(ctx, x, y) {
       : tau <= tf + tc
         ? 'The spring holds ' + fmt(PEs, 1) + ' J of the ' + fmt(E, 1) + ' J and will give it back, while on the right all ' + fmt(E, 1) + ' J has gone.'
         : 'The spring has sent the rock back up to ' + fmt(leftUp, 2) + ' m of the ' + fmt(h.v, 2) + ' m it fell, and the other rock has not moved.');
-    readout(d.readout, `\\kPEg = m\\kg\\kh = (${fmt(m.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 1)}\\ \\text{J}`,
+    readout(d.readout, `\\kPEg = \\km\\kg\\kh = (${fmt(m.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 1)}\\ \\text{J}`,
       'The force in the spring is conservative, so the ' + fmt(E, 1) + ' J the rock brings down is stored in the spring at its fullest squeeze of ' + fmt(xc * 100, 1) + ' cm and is handed back, and the rock rises to the height it started from. The ground exerts nonconservative forces, so the same ' + fmt(E, 1) + ' J becomes thermal energy, sound and a dent, and that rock has lost its mechanical energy for good.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 4.5), draw });
@@ -225,8 +225,8 @@ function skierSprite(ctx, x, y) {
   const d = sim('sim-ramp', 580);
   const fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 800, step: 10, value: 400, unit: 'N', dec: 0, onInput: reset, aria: 'force the person applies' });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 400, step: 10, value: 120, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction on the crate' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 30, step: 1, value: 25, unit: '\u00b0', dec: 0, onInput: reset, aria: 'angle of the ramp' });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 10, max: 120, step: 5, value: 50, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the crate' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 30, step: 1, value: 25, unit: '\u00b0', dec: 0, onInput: reset, aria: 'angle of the ramp' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 10, max: 120, step: 5, value: 50, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the crate' });
   /* the text's third case: on level ground a push equal to the friction keeps the mechanical energy where it is */
   fa.mark([{ at: () => (th.v === 0 ? ff.v : null), label: 'W_nc = 0' }]);
   th.mark([{ at: 0, label: 'level' }]);
@@ -264,17 +264,17 @@ function skierSprite(ctx, x, y) {
     line(ctx, s0x, YBASE, s1x, YBASE, PAL.rule, 2, [8, 8]);
     const cx = X0 + s * SC * ca, cyy = y0 - s * SC * sa;
     const lab = F.labeller(ctx, 580);
-    if (th.v > 0) F.angleArc(ctx, { x: s0x, y: YBASE }, 70, 0, a, fmt(th.v, 0) + '°', lab);
+    if (th.v > 0) F.angleArc(ctx, { x: s0x, y: YBASE }, 70, 0, a, fmt(th.v, 0) + '°', lab, C('angle'));
     /* the crate and the person, both standing on the ramp: the crate is 96 by 80 on the slope, and the
        person walks behind it with both hands on its back face, so the push is seen to come from her */
     const CW = 96, CH = 80, PS = 0.9;
     const walking = s > 0.02 && s < tr.end - 0.02, sw = walking ? Math.sin(s * 5) : 0;
     ctx.save(); ctx.translate(cx, cyy); ctx.rotate(-a);
-    F.crate(ctx, 0, -CH / 2, CW, CH, PAL.ink);
-    F.silhouette(ctx, { x: -CW / 2 - 54 * PS, y: 0, s: PS, pose: 'push', hands: [{ x: 54, y: -58 / PS }, { x: 56, y: -48 / PS }],
+    F.crate(ctx, 0, -CH / 2, CW, CH, F.ref('crate'));
+    F.silhouette(ctx, { x: -CW / 2 - 54 * PS, y: 0, s: PS, pose: 'push', color: F.ref('pusher'), hands: [{ x: 54, y: -58 / PS }, { x: 56, y: -48 / PS }],
       feet: [{ x: 8 + 14 * sw, y: 0 }, { x: -34 - 14 * sw, y: 0 }] });
     ctx.restore();
-    lab.add(fmt(m.v, 0) + ' kg', cx - (CH + 6) * sa, cyy - (CH + 6) * ca, -sa, -ca, PAL.ink, 18, 14);
+    lab.add(fmt(m.v, 0) + ' kg', cx - (CH + 6) * sa, cyy - (CH + 6) * ca, -sa, -ca, C('mass'), 18, 14);
     if (vNow > 0.02) {
       const vx = cx + 10 * ca - (CH + 12) * sa, vy = cyy - 10 * sa - (CH + 12) * ca, vl = 40 + 60 * Math.min(1, vNow / 3);
       arrow(ctx, vx, vy, vx + vl * ca, vy - vl * sa, C('velocity'), 5);
@@ -329,8 +329,8 @@ function skierSprite(ctx, x, y) {
   const vi = ctl(d.controls, { label: '\\kvi', cls: 'velocity', min: 2, max: 10, step: 0.25, value: 6, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed at which the slide begins' });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 200, max: 800, step: 10, value: 450, unit: 'N', dec: 0, onInput: reset, aria: 'force of friction against the player' });
   /* the two slopes the section works out, level ground and a rise of 5.00 degrees, are soft detents */
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 15, step: 0.25, value: 0, unit: '\u00b0', dec: 2, onInput: reset, aria: 'angle of the slope', specials: [{ at: 0, label: 'level' }, { at: 5, label: '5.00°' }] });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 110, step: 0.5, value: 65, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the player' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 15, step: 0.25, value: 0, unit: '\u00b0', dec: 2, onInput: reset, aria: 'angle of the slope', specials: [{ at: 0, label: 'level' }, { at: 5, label: '5.00°' }] });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 110, step: 0.5, value: 65, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the player' });
   const ro = F.readout(d);
   const opp = () => ff.v + m.v * G * Math.sin(th.v * RAD);            /* everything that takes energy from him */
   const stop = () => (0.5 * m.v * vi.v * vi.v) / opp();
@@ -352,13 +352,13 @@ function skierSprite(ctx, x, y) {
     /* the ground he slides along, level or rising */
     ctx.save(); ctx.strokeStyle = PAL.soft; ctx.lineWidth = 30; ctx.beginPath(); ctx.moveTo(x0 - 60, y0 + 16 + 60 * ta); ctx.lineTo(x0 + W, y0 + 16 - W * ta); ctx.stroke(); ctx.restore();
     line(ctx, x0 - 60, y0 + 60 * ta, x0 + W, y0 - W * ta, PAL.muted, 4);
-    if (th.v > 0.01) { line(ctx, x0 - 60, y0 + 60 * ta, x0 + W, y0 + 60 * ta, PAL.rule, 2, [8, 8]); text(ctx, fmt(th.v, 2) + '\u00b0', x0 + 16, y0 + 60 * ta - 20, PAL.ink, { size: 19, weight: 600 }); }
+    if (th.v > 0.01) { line(ctx, x0 - 60, y0 + 60 * ta, x0 + W, y0 + 60 * ta, PAL.rule, 2, [8, 8]); text(ctx, fmt(th.v, 2) + '\u00b0', x0 + 16, y0 + 60 * ta - 20, C('angle'), { size: 19, weight: 600 }); }
     const sDraw = Math.min(s, DR), dDraw = Math.min(D, DR);
     const px = x0 + sDraw * SC * ca, py = y0 - sDraw * SC * sa;
     const sx = x0 + dDraw * SC * ca, sy = y0 - dDraw * SC * sa;
     line(ctx, sx, sy, sx, y0 + 76 + 60 * ta, C('position'), 2, [6, 8]);
     dot(ctx, x0, y0, C('position'), false, 10);
-    slidingPlayer(ctx, px, py, -a);
+    slidingPlayer(ctx, px, py, -a, F.ref('player'));
     const lab = F.labeller(ctx, 730);
     if (v > 0.05) {
       const L = 40 + 130 * (v / vi.v), ax = px + 10 * ca - 96 * sa, ay = py - 10 * sa - 96 * ca;
@@ -395,10 +395,10 @@ function skierSprite(ctx, x, y) {
       ? 'He has stopped after ' + fmt(D, 2) + ' m, with ' + num(Wfr, 0) + ' J taken by friction' + (th.v > 0.01 ? ' and ' + num(PE, 0) + ' J stored in the height.' : '.')
       : 'He has slid ' + fmt(s, 2) + ' m of the ' + fmt(D, 2) + ' m it takes him to stop, and ' + num(Wfr, 0) + ' J of his ' + num(KEi, 0) + ' J have gone into friction.');
     /* on the level the slope's share has nothing to take, so its term leaves the sum and returns as the slope rises */
-    const top = `\\mk{KE}{\\tfrac{1}{2}m{\\kvi}^2}`, nTop = `\\mk{nKE}{(0.5)(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(vi.v, 2)}\\ \\text{m/s})^2}`, dv = `\\mk{dv}{${fmt(D, 2)}}\\ \\text{m}`;
+    const top = `\\mk{KE}{\\tfrac{1}{2}\\km{\\kvi}^2}`, nTop = `\\mk{nKE}{(0.5)(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(vi.v, 2)}\\ \\text{m/s})^2}`, dv = `\\mk{dv}{${fmt(D, 2)}}\\ \\text{m}`;
     ro.set(th.v === 0
       ? `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff}} = \\frac{${nTop}}{\\mk{nf}{${num(ff.v, 0)}}\\ \\text{N}} = ${dv}`
-      : `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff} \\mk{g}{{}+ m\\kg\\sin\\theta}} = \\frac{${nTop}}{\\mk{nf}{${num(ff.v, 0)}}\\ \\text{N} \\mk{ng}{{}+ (${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin(${fmt(th.v, 2)}^\\circ)}} = ${dv}`, th.v === 0
+      : `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff} \\mk{g}{{}+ \\km\\kg\\sin\\ktheta}} = \\frac{${nTop}}{\\mk{nf}{${num(ff.v, 0)}}\\ \\text{N} \\mk{ng}{{}+ (${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin(${fmt(th.v, 2)}^\\circ)}} = ${dv}`, th.v === 0
         ? 'On the level the only thing taking energy from him is friction, so he slides ' + fmt(D, 2) + ' m. Raise the slope to 5.00 degrees and the gravitational force takes a share as well, which brings him to rest in ' + fmt((0.5 * m.v * vi.v * vi.v) / (ff.v + m.v * G * Math.sin(5 * RAD)), 2) + ' m.'
         : 'Sliding up the ' + fmt(th.v, 2) + '-degree slope he stops in ' + fmt(D, 2) + ' m, where on the level the same slide would have carried him ' + fmt((0.5 * m.v * vi.v * vi.v) / ff.v, 2) + ' m. The difference is the ' + num(m.v * G * D * sa, 0) + ' J of gravitational potential energy he gains on the way up, which friction no longer has to take.');
   }
@@ -415,7 +415,7 @@ function skierSprite(ctx, x, y) {
 (function () {
   const d = sim('sim-cup', 700);
   const rel = ctl(d.controls, { label: '\\text{release}', cls: 'position', min: 5, max: 30, step: 1, value: 10, unit: 'cm', dec: 0, onInput: reset, aria: 'release position of the marble on the ruler' });
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 2, max: 30, step: 1, value: 5, unit: 'g', dec: 0, onInput: reset, aria: 'mass of the marble' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 2, max: 30, step: 1, value: 5, unit: 'g', dec: 0, onInput: reset, aria: 'mass of the marble' });
   const mu = ctl(d.controls, { label: '\\mu_{\\text{k}}', cls: '', min: 0.1, max: 0.6, step: 0.01, value: 0.3, unit: '', dec: 2, onInput: reset, aria: 'coefficient of kinetic friction of the cup on the table' });
   const ANG = 30 * RAD, MCUP = 0.003, TABLE = 350, SCR = 10, LIP = 560, CUP0 = LIP + 110;
   const mkg = () => mm.v / 1000;
@@ -442,12 +442,12 @@ function skierSprite(ctx, x, y) {
     /* the book, the ruler propped on it, the marble and the cup */
     strip(ctx, 110, 1180, TABLE + 16, 30);
     fixed(ctx, rx(31) - 150, ry(31), 150, TABLE - ry(31));
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 9; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(rx(0), ry(0)); ctx.lineTo(rx(31), ry(31)); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 9; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(rx(0), ry(0)); ctx.lineTo(rx(31), ry(31)); ctx.stroke(); ctx.restore();
     for (let c = 5; c <= 30; c += 5) { line(ctx, rx(c) - 4, ry(c) - 7, rx(c) - 11, ry(c) - 19, PAL.muted, 2); text(ctx, String(c), rx(c) - 17, ry(c) - 28, PAL.muted, { size: 16, align: 'center' }); }
     dot(ctx, rx(rel.v) - 7, ry(rel.v) - 12, C('position'), false, 11);
-    foamCup(ctx, cupX, TABLE, PAL.ink);
-    if (rolling) dot(ctx, rx(along) - 7, ry(along) - 12, PAL.ink, true, 13);
-    else dot(ctx, cupX + 22, TABLE - 14, PAL.ink, true, 13);
+    foamCup(ctx, cupX, TABLE, F.ref('cup'));
+    if (rolling) dot(ctx, rx(along) - 7, ry(along) - 12, F.ref('marble'), true, 13);
+    else dot(ctx, cupX + 22, TABLE - 14, F.ref('marble'), true, 13);
     line(ctx, rx(rel.v), ry(rel.v), LIP + 46, ry(rel.v), C('position'), 2, [8, 8]);
     vbracket(ctx, LIP + 46, TABLE, ry(rel.v), C('position'));
     text(ctx, 'h = ' + fmt(hgt(rel.v) * 100, 1) + ' cm', LIP + 38, ry(rel.v) - 18, C('position'), { size: 18, weight: 600, align: 'right' });
@@ -482,7 +482,7 @@ function skierSprite(ctx, x, y) {
     topline(ctx, rolling
       ? 'Released at ' + fmt(rel.v, 0) + ' cm, the marble has ' + fmt(along, 1) + ' cm of ruler left to run.'
       : 'The marble arrived with ' + fmt(KE * 1000, 2) + ' mJ and has pushed the cup ' + fmt(moved * 100, 1) + ' cm of the ' + fmt(D * 100, 1) + ' cm friction allows.');
-    readout(d.readout, `\\kKE = m\\kg\\kh = \\mu_{\\text{k}}\\kN\\kd = (${fmt(mu.v, 2)})(${fmt(N * 1000, 1)}\\ \\text{mN})(${fmt(D, 3)}\\ \\text{m}) = ${fmt(KE * 1000, 2)}\\ \\text{mJ}`,
+    readout(d.readout, `\\kKE = \\km\\kg\\kh = \\mu_{\\text{k}}\\kN\\kd = (${fmt(mu.v, 2)})(${fmt(N * 1000, 1)}\\ \\text{mN})(${fmt(D, 3)}\\ \\text{m}) = ${fmt(KE * 1000, 2)}\\ \\text{mJ}`,
       'The marble brings ' + fmt(KE * 1000, 2) + ' mJ to the cup, and friction does that much work through the distance the cup travels before it stops. Because the energy the marble arrives with grows in step with the release position, so does the distance the cup moves, and the plot is the straight line the investigation asks you to look for. A heavier marble arrives with more energy, and the cup goes farther.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 4.5), draw });
@@ -506,20 +506,20 @@ function skierSprite(ctx, x, y) {
     line(ctx, xb, y0, xt, yt, PAL.muted, 5);
     line(ctx, xt, yt, 1270, yt, PAL.muted, 5);
     line(ctx, xb, y0, xt + 90, y0, PAL.rule, 2, [8, 8]);
-    text(ctx, '35\u00b0', xb + 56, y0 - 20, PAL.ink, { size: 20, weight: 600 });
-    skierSprite(ctx, xa, y0);
-    skierSprite(ctx, xt + 190, yt);
+    text(ctx, '35\u00b0', xb + 56, y0 - 20, C('angle'), { size: 20, weight: 600 });
+    skierSprite(ctx, xa, y0, F.ref('skier'));
+    skierSprite(ctx, xt + 190, yt, F.ref('skier'));
     arrow(ctx, xa + 60, y0 - 56, xa + 226, y0 - 56, C('velocity'), 5);
     text(ctx, 'v_i = 12.0 m/s', xa + 240, y0 - 56, C('velocity'), { size: 20, weight: 600 });
     arrow(ctx, xt + 254, yt - 56, xt + 350, yt - 56, C('velocity'), 5);
     text(ctx, 'v_f = ?', xt + 364, yt - 56, C('velocity'), { size: 20, weight: 600 });
     vbracket(ctx, xt + 52, y0, yt, C('position'), '2.50 m', 1);
-    text(ctx, '60.0 kg', xa, y0 - 118, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    text(ctx, '60.0 kg', xa, y0 - 118, C('mass'), { size: 19, weight: 600, align: 'center' });
     text(ctx, 'KE_i', xa, y0 - 152, C('energy'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'KE_f + PE_f', xt + 190, yt - 136, C('energy'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'the coefficient of friction between her skis and the snow is 0.0800', 700, y0 + 84, PAL.ink, { size: 18, align: 'center' });
     topline(ctx, 'The skier meets the rise at 12.0 m/s and coasts to the top, 2.50 m up a slope of 35\u00b0.');
-    readout(d.readout, '\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf,\\quad m = 60.0\\ \\text{kg},\\ \\kvi = 12.0\\ \\text{m/s},\\ \\kh = 2.50\\ \\text{m},\\ \\mu_{\\text{k}} = 0.0800',
+    readout(d.readout, '\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf,\\quad \\km = 60.0\\ \\text{kg},\\ \\kvi = 12.0\\ \\text{m/s},\\ \\kh = 2.50\\ \\text{m},\\ \\mu_{\\text{k}} = 0.0800',
       'Her kinetic energy at the bottom has to pay both for the height she gains and for the work friction does along the slope, and what is left of it is the kinetic energy she has at the top. The hint the problem gives is to take her path up the rise as a straight line, so that the distance friction acts through follows from the height of the rise and the angle of the slope.');
   }
   register(d.fig, { update: () => {}, draw });

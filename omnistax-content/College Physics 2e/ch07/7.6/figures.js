@@ -47,7 +47,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
   const d = sim('sim-account', 560);
   const H = ctl(d.controls, { label: '\\kh', cls: 'position', min: 2, max: 20, step: 0.5, value: 8, unit: 'm', dec: 1, onInput: reset, aria: 'height climbed' });
   const V = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0.4, max: 2, step: 0.1, value: 1, unit: 'm/s', dec: 1, onInput: reset, aria: 'walking speed' });
-  const M = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 110, step: 1, value: 65, unit: 'kg', dec: 0, onInput: reset, aria: 'mass' });
+  const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 110, step: 1, value: 65, unit: 'kg', dec: 0, onInput: reset, aria: 'mass' });
   const E = ctl(d.controls, { label: '\\text{Eff}', cls: '', min: 5, max: 25, step: 1, value: 20, unit: '%', dec: 0, onInput: reset, aria: 'efficiency of the body' });
   /* the stairs rise at 30 degrees, so she gains height at half her walking speed */
   const SIN = 0.5;
@@ -76,7 +76,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     const cx = done ? x1 + 24 : x0 + tread * (step + 0.3 + 0.4 * within), cyy = done ? yt : yb - ((yb - yt) * step) / N;
     /* the climber stands to the stairs' own scale, her front foot on the step above while she climbs */
     const stepUp = (yb - yt) / N, PS = 0.66, sw = done ? 0 : Math.sin(within * Math.PI);
-    F.silhouette(ctx, done ? { x: cx, y: cyy, s: PS, pose: 'stand' } : { x: cx, y: cyy, s: PS, pose: 'walk', hands: [{ x: 18 + 10 * sw, y: -78 }, { x: -14 - 10 * sw, y: -80 }],
+    F.silhouette(ctx, done ? { x: cx, y: cyy, s: PS, pose: 'stand', color: F.ref('climber') } : { x: cx, y: cyy, s: PS, pose: 'walk', color: F.ref('climber'), hands: [{ x: 18 + 10 * sw, y: -78 }, { x: -14 - 10 * sw, y: -80 }],
       feet: [{ x: 16 + 8 * sw, y: -stepUp / PS }, { x: -18 - 6 * sw, y: 0 }] });
     /* her speed, along the stairs */
     const ax = 78, ay = -78 * ((yb - yt) / (x1 - x0));
@@ -331,7 +331,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     /* the car at each of the positions the question asks about, leaning on the slope, with the book's arrow above it */
     STOP.forEach(([x, label], i) => {
       const y = ground(x), a = Math.atan2(ground(x + 8) - ground(x - 8), 16);
-      ctx.save(); ctx.translate(x, y - 10); ctx.rotate(a); F.car(ctx, 0, 0, PAL.ink, 0.9); ctx.restore();
+      ctx.save(); ctx.translate(x, y - 10); ctx.rotate(a); F.car(ctx, 0, 0, F.ref('car'), 0.9); ctx.restore();
       const ly = Math.max(84, y - 132), at = ly + 22, ab = y - 54;
       if (ab - at > 14) arrow(ctx, x, at, x, ab, PAL.ink, 4);
       text(ctx, label, x, ly, PAL.ink, { size: 17, align: i === 0 ? 'left' : i === STOP.length - 1 ? 'right' : 'center', bg: PAL.panel });

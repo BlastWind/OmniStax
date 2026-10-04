@@ -70,7 +70,7 @@ function coasterCar(ctx, x, y, rot, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-cuckoo', 620);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 2, step: 0.05, value: 0.5, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the weight' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 0.5, unit: 'kg', dec: 3, onInput: reset, aria: 'mass of the weight' });
   const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0.2, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: 'height the weight is raised' });
   const cy = cycle(() => 2, 1.1);
   function reset() { cy.reset(); }
@@ -81,11 +81,11 @@ function coasterCar(ctx, x, y, rot, color) {
     const floorY = 540, SC = 160, yw = floorY - f * h.v * SC;
     /* the scene */
     strip(ctx, 110, 700, floorY + 14, 26);
-    clockCase(ctx, 340, 96, PAL.ink);
+    clockCase(ctx, 340, 96, F.ref('clock'));
     line(ctx, 340, 214, 340, yw, PAL.muted, 3);
-    coneWeight(ctx, 340, yw, PAL.ink);
+    coneWeight(ctx, 340, yw, F.ref('clock-weight'));
     /* the label follows the weight down but never off the canvas */
-    text(ctx, fmt(m.v, 3) + ' kg', 340, Math.min(yw + 84, floorY + 56), PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, fmt(m.v, 3) + ' kg', 340, Math.min(yw + 84, floorY + 56), C('mass'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     if (h.v * SC > 40) vbracket(ctx, 208, floorY, floorY - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     line(ctx, 190, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
     if (up) { arrow(ctx, 428, yw + 30, 428, yw - 54, C('force'), 5); text(ctx, 'F = mg = ' + fmt(m.v * G, 2) + ' N', 444, yw - 18, C('force'), { size: 18, weight: 600 }); }
@@ -112,7 +112,7 @@ function coasterCar(ctx, x, y, rot, color) {
     topline(ctx, f < 0.02 ? 'The weight rests on the floor, where the clock has stored nothing yet.'
       : f > 0.98 ? 'The weight is fully wound, ' + fmt(h.v, 2) + ' m up, and the mass-Earth system holds ' + fmt(E, 2) + ' J.'
       : (up ? 'The clock is being wound, and the weight is ' : 'The clock is running, and the weight is ') + fmt(f * h.v, 2) + ' m up, so ' + fmt(PE, 2) + ' J of the ' + fmt(E, 2) + ' J is stored.');
-    readout(d.readout, `\\kdPEg = m\\kg\\kh = (${fmt(m.v, 3)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 2)}\\ \\text{J}`,
+    readout(d.readout, `\\kdPEg = \\km\\kg\\kh = (${fmt(m.v, 3)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 2)}\\ \\text{J}`,
       'The work done in winding the weight up is stored in the mass-Earth system, and the clock spends it again as the weight comes down. Raising twice the mass, or raising it twice as far, stores twice the energy.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
@@ -150,7 +150,7 @@ function coasterCar(ctx, x, y, rot, color) {
       text(ctx, fmt(M * G * (n * RISE - z.v), 1) + ' J', 424, y, on ? C('energy') : PAL.muted, { size: 17, weight: on ? 600 : 400 });
       text(ctx, String(n), 232, y, on ? C('position') : PAL.muted, { size: 17, align: 'right' });
     }
-    F.crate(ctx, 325, Yp(gHi) - 19, 72, 38, PAL.ink);
+    F.crate(ctx, 325, Yp(gHi) - 19, 72, 38, F.ref('crate'));
     dot(ctx, 325, Yp(gLo), C('position'), false, 10);
     vbracket(ctx, 196, Yp(gLo), Yp(gHi), C('position'), 'h = ' + fmt(yHi - yLo, 2) + ' m', -1);
     line(ctx, 150, Yp(z.v), 700, Yp(z.v), C('energy'), 3, [10, 10]);
@@ -168,7 +168,7 @@ function coasterCar(ctx, x, y, rot, color) {
     dot(ctx, X(yHi), Y(M * G * (yHi - z.v)), C('position'), true, 9);
     vbracket(ctx, X(yHi) + 34, Y(M * G * (yLo - z.v)), Y(M * G * (yHi - z.v)), C('energy'), fmt(dPE, 1) + ' J', 1);
     topline(ctx, 'The climb from rung ' + lo + ' to rung ' + hi + ' stores ' + fmt(dPE, 1) + ' J, wherever the zero is put.');
-    readout(d.readout, `\\kdPEg = m\\kg\\kh = (${fmt(M, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(yHi - yLo, 2)}\\ \\text{m}) = ${fmt(dPE, 1)}\\ \\text{J}`,
+    readout(d.readout, `\\kdPEg = \\km\\kg\\kh = (${fmt(M, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(yHi - yLo, 2)}\\ \\text{m}) = ${fmt(dPE, 1)}\\ \\text{J}`,
       'With the zero level at ' + fmt(z.v, 1) + ' m, rung ' + lo + ' holds ' + fmt(M * G * (yLo - z.v), 1) + ' J and rung ' + hi + ' holds ' + fmt(M * G * (yHi - z.v), 1) + ' J. Lower the zero by a meter and both grow by ' + fmt(M * G, 1) + ' J, while the climb between them is still ' + fmt(dPE, 1) + ' J, which is why the first two rungs are worth the same as the last two.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -182,7 +182,7 @@ function coasterCar(ctx, x, y, rot, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-paths', 640);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 5, max: 40, step: 1, value: 20, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the television' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 5, max: 40, step: 1, value: 20, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the television' });
   const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 2, max: 12, step: 0.5, value: 6, unit: 'm', dec: 1, onInput: reset, aria: 'height of the landing' });
   const run = ctl(d.controls, { label: '\\text{run}', cls: '', min: 2, max: 14, step: 0.5, value: 6, unit: 'm', dec: 1, onInput: reset, aria: 'horizontal run of the staircase' });
   const L1 = () => run.v + h.v, L2 = () => h.v;
@@ -221,7 +221,7 @@ function coasterCar(ctx, x, y, rot, color) {
     line(ctx, px + 18, Yp(h.v) - 26, px + 18, hy, PAL.ink, 3);
     const hx = px + 18 + 46 * PS;
     F.silhouette(ctx, { x: hx, y: Yp(0), s: PS, face: -1, pose: 'pull', hands: [{ x: 46, y: -118 }, { x: 50, y: -110 }], feet: [{ x: 26, y: 0 }, { x: -30, y: 0 }] });
-    tv(ctx, px - 18, Yp(s2), PAL.ink, PS * 1.25);
+    tv(ctx, px - 18, Yp(s2), F.ref('tv-rope'), PS * 1.25);
     /* the carried set: the climber walks the treads, her front foot already on the step above, the set held at her chest */
     const riser = (h.v / 8) * SC;
     const climbing = s1 > 0 && s1 < L1(), sw = climbing ? Math.sin(s1 * 2.4) : 0;
@@ -229,9 +229,9 @@ function coasterCar(ctx, x, y, rot, color) {
     const frontUp = climbing ? -riser / PS : 0;
     F.silhouette(ctx, { x: cxp, y: cyp, s: PS, pose: 'walk', hands: [{ x: 30, y: -96 }, { x: 26, y: -88 }],
       feet: [{ x: 16 + 8 * sw, y: frontUp }, { x: -18 - 6 * sw, y: 0 }] });
-    tv(ctx, cxp + 44 * PS, cyp - 84 * PS, PAL.ink, PS * 1.1);
-    text(ctx, 'up the stairs', Xp(run.v / 2), ground + 62, PAL.muted, { size: 18, align: 'center' });
-    text(ctx, 'straight up', px, ground + 62, PAL.muted, { size: 18, align: 'center' });
+    tv(ctx, cxp + 44 * PS, cyp - 84 * PS, F.ref('tv-stairs'), PS * 1.1);
+    text(ctx, 'up the stairs', Xp(run.v / 2), ground + 62, F.ref('tv-stairs'), { size: 18, align: 'center' });
+    text(ctx, 'straight up', px, ground + 62, F.ref('tv-rope'), { size: 18, align: 'center' });
     /* the two accounts */
     ebar(ctx, 1220, ground, 56, full, pe1, 300, 'carried', fmt(pe1, 0) + ' J');
     ebar(ctx, 1300, ground, 56, full, pe2, 300, 'hoisted', fmt(pe2, 0) + ' J');
@@ -240,7 +240,7 @@ function coasterCar(ctx, x, y, rot, color) {
     topline(ctx, s1 >= L1() - 1e-9
       ? 'Both sets are on the landing ' + fmt(h.v, 1) + ' m up, one having walked ' + fmt(L1(), 1) + ' m and the other having risen ' + fmt(h.v, 1) + ' m, and each gained ' + num(full, 0) + ' J.'
       : 'The carried set has walked ' + fmt(s1, 1) + ' m to be ' + fmt(p1.y, 1) + ' m up, and the hoisted set has taken ' + fmt(s2, 1) + ' m of rope to be ' + fmt(s2, 1) + ' m up.');
-    readout(d.readout, `\\kdPEg = m\\kg\\kh = (${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 1)}\\ \\text{m}) = ${num(full, 0)}\\ \\text{J}`,
+    readout(d.readout, `\\kdPEg = \\km\\kg\\kh = (${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 1)}\\ \\text{m}) = ${num(full, 0)}\\ \\text{J}`,
       'The staircase is ' + fmt(L1(), 1) + ' m long and the rope only ' + fmt(h.v, 1) + ' m, yet both sets end with the same ' + num(full, 0) + ' J, since only the change in vertical position enters mgh.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => L1() / 5), draw });
@@ -258,7 +258,7 @@ function coasterCar(ctx, x, y, rot, color) {
   /* the two landings the section works out are marked on the slider, since the graph
      beside the scene is a ratio scale and the interesting ground is all at its left-hand end */
   const kb = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.005, max: 0.75, step: 0.005, value: 0.005, unit: 'm', dec: 3, onInput: reset, aria: 'distance the knees bend', specials: [{ at: 0.005, label: 'stiff' }, { at: 0.5, label: 'bent' }] });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the person' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the person' });
   const cy = cycle(() => 1.3, 1.0);
   function reset() { cy.reset(); }
   const lg = (v) => Math.log10(v);
@@ -273,9 +273,9 @@ function coasterCar(ctx, x, y, rot, color) {
     /* he falls standing and his knees give on landing: the joints run from the standing pose to the crouch as p goes 0 to 1 */
     const A = F.silhouette.pose('stand'), B = F.silhouette.pose('crouch'), mix = (u, w) => ({ x: u.x + (w.x - u.x) * p, y: u.y + (w.y - u.y) * p });
     const LS = 0.62;
-    F.silhouette(ctx, { x: 330, y: feet, s: LS, hip: mix(A.hip, B.hip), shoulder: mix(A.shoulder, B.shoulder), head: mix(A.head, B.head),
+    F.silhouette(ctx, { x: 330, y: feet, s: LS, color: F.ref('jumper'), hip: mix(A.hip, B.hip), shoulder: mix(A.shoulder, B.shoulder), head: mix(A.head, B.head),
       feet: [mix(A.feet[0], B.feet[0]), mix(A.feet[1], B.feet[1])], hands: [mix(A.hands[0], B.hands[0]), mix(A.hands[1], B.hands[1])] });
-    text(ctx, fmt(m.v, 1) + ' kg', 330, Math.max(104, feet - 150 * LS - 22), PAL.ink, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, fmt(m.v, 1) + ' kg', 330, Math.max(104, feet - 150 * LS - 22), C('mass'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     if (h.v * SC > 40) vbracket(ctx, 168, floorY, floorY - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
     line(ctx, 150, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
     if (!falling) {
@@ -304,7 +304,7 @@ function coasterCar(ctx, x, y, rot, color) {
     text(ctx, 'bending the legs', X(lg(0.5)) - 16, Y(lg(KE / 0.5)) + 30, PAL.muted, { size: 17, align: 'right' });
     topline(ctx, falling ? 'Falling from ' + fmt(h.v, 2) + ' m, the person reaches the floor with ' + num(KE, 0) + ' J of kinetic energy.'
       : 'The knees bend ' + fmt(kb.v * 100, 2) + ' cm, so the floor takes ' + num(KE, 0) + ' J away over that distance and pushes with ' + sciPlain(Fst) + ' N, which is ' + fmt(Fst / wgt, 0) + ' times the weight.');
-    readout(d.readout, `\\kF = -\\frac{m\\kg\\kh}{\\kd} = -\\frac{(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(-${fmt(h.v, 2)}\\ \\text{m})}{${sci(kb.v)}\\ \\text{m}} = ${sci(Fst)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = -\\frac{\\km\\kg\\kh}{\\kd} = -\\frac{(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(-${fmt(h.v, 2)}\\ \\text{m})}{${sci(kb.v)}\\ \\text{m}} = ${sci(Fst)}\\ \\text{N}`,
       'The same ' + num(KE, 0) + ' J has to be removed however the person lands, so the distance is what decides the force. Bending through 0.500 m instead of ' + fmt(kb.v * 100, 2) + ' cm would spread it over ' + fmt(0.5 / kb.v, 0) + ' times the distance and bring the force down to ' + sciPlain(KE / 0.5) + ' N.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.26), draw });
@@ -321,7 +321,7 @@ function coasterCar(ctx, x, y, rot, color) {
   const d = sim('sim-coaster', 780);
   const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 5, max: 40, step: 0.5, value: 20, unit: 'm', dec: 1, onInput: reset, aria: 'height of the hill' });
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 10, step: 0.25, value: 0, unit: 'm/s', dec: 2, onInput: reset, aria: 'speed at the top' });
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 100, max: 2000, step: 50, value: 500, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the car' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 100, max: 2000, step: 50, value: 500, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the car' });
   const X0 = 110, X1 = 1330, XH = 700, BASE = 430, SCY = 6;
   const hgt = (x) => (x <= XH ? (h.v * (1 + Math.cos((Math.PI * (x - X0)) / (XH - X0)))) / 2 : 0);
   const yOf = (x) => BASE - hgt(x) * SCY;
@@ -356,7 +356,7 @@ function coasterCar(ctx, x, y, rot, color) {
     for (let k = 0; k <= 120; k++) { const xx = X0 + ((X1 - X0) * k) / 120; if (k) ctx.lineTo(xx, yOf(xx)); else ctx.moveTo(xx, yOf(xx)); }
     ctx.stroke(); ctx.restore();
     line(ctx, X0, BASE, X1, BASE, PAL.rule, 2, [8, 8]);
-    coasterCar(ctx, x, y - 12, rot, PAL.ink);
+    coasterCar(ctx, x, y - 12, rot, F.ref('coaster'));
     vbracket(ctx, X0 - 34, BASE, BASE - h.v * SCY, C('position'), 'h = ' + fmt(h.v, 1) + ' m', 1);
     line(ctx, X0 - 44, BASE - h.v * SCY, X0 + 40, BASE - h.v * SCY, C('position'), 2, [8, 8]);
     /* the speed arrow is drawn ahead of the car while there is room for it, and behind the car
@@ -405,7 +405,7 @@ function coasterCar(ctx, x, y, rot, color) {
 (function () {
   const d = sim('sim-marble', 690);
   const rel = ctl(d.controls, { label: '\\kd', cls: 'position', min: 5, max: 30, step: 1, value: 10, unit: 'cm', dec: 0, onInput: reset, aria: 'release position along the ruler' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 5, max: 25, step: 1, value: 15, unit: '°', dec: 0, onInput: reset, aria: 'angle of the incline' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 5, max: 25, step: 1, value: 15, unit: '°', dec: 0, onInput: reset, aria: 'angle of the incline' });
   const dm = () => rel.v / 100, sn = () => Math.sin(th.v * RAD), cs = () => Math.cos(th.v * RAD);
   const acc = () => G * sn(), vEnd = () => Math.sqrt(2 * G * dm() * sn());
   const t1 = () => Math.sqrt((2 * dm()) / acc()), t2 = () => 1 / vEnd();
@@ -422,11 +422,11 @@ function coasterCar(ctx, x, y, rot, color) {
     /* the scene: a book, a ruler on it and the marble */
     strip(ctx, 100, 1360, table + 14, 26);
     fixed(ctx, 50, yTop, 150, table - yTop);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 8; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(xTop, yTop); ctx.lineTo(xBot, table); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 8; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(xTop, yTop); ctx.lineTo(xBot, table); ctx.stroke(); ctx.restore();
     for (let c = 5; c <= 30; c += 5) { const f = c / 30, px = xTop + (xBot - xTop) * (1 - f), py = yTop + (table - yTop) * (1 - f); line(ctx, px, py - 12, px, py - 4, PAL.muted, 2); }
     const mx = onRuler ? xBot - s * cs() * SC : xBot + along * SC, my = onRuler ? table - s * sn() * SC - 12 : table - 12;
     dot(ctx, xBot - dm() * cs() * SC, table - dm() * sn() * SC - 12, C('position'), false, 10);
-    dot(ctx, mx, my, PAL.ink, true, 12);
+    dot(ctx, mx, my, F.ref('marble'), true, 12);
     hbracket(ctx, xBot, xBot + SC, table + 56, C('position'), 'one meter of level surface');
     vbracket(ctx, xBot + 26, table, table - dm() * sn() * SC, C('position'), 'h = ' + fmt(h * 100, 1) + ' cm', 1);
     if (v > 0.05) { const al = 40 + 130 * (v / Math.max(0.2, vEnd())); arrow(ctx, mx, my - 40, mx + al, my - 40, C('velocity'), 5); text(ctx, fmt(v, 2) + ' m/s', mx + al + 12, my - 40, C('velocity'), { size: 18, weight: 600 }); }

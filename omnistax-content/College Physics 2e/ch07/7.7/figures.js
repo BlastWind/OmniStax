@@ -32,7 +32,7 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
 ===================================================================== */
 (function () {
   const d = sim('sim-stairs', 660);
-  const m = ctl(d.controls, { label: 'm', cls: '', min: 40, max: 100, step: 1, value: 60, unit: 'kg', dec: 0, onInput: reset, aria: 'her mass' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 100, step: 1, value: 60, unit: 'kg', dec: 0, onInput: reset, aria: 'her mass' });
   const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 1, max: 6, step: 0.25, value: 3, unit: 'm', dec: 2, onInput: reset, aria: 'height of the flight' });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 1.5, max: 12, step: 0.25, value: 3.5, unit: 's', dec: 2, onInput: reset, aria: 'the time she takes' });
   const vf = ctl(d.controls, { label: '\\kvf', cls: 'velocity', min: 0, max: 4, step: 0.1, value: 2, unit: 'm/s', dec: 2, onInput: reset, aria: 'her speed at the top' });
@@ -55,12 +55,12 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     stairs(ctx, x0, y0, rise, run, n);
     vbracket(ctx, x0 + run + 40, y0, y0 - rise, C('position'), 'h = ' + fmt(h.v, 2) + ' m', 1);
     dot(ctx, x0 - 8, y0 - 12, PAL.ink, false, 10);
-    text(ctx, 'she starts from rest', x0 - 20, y0 + 36, PAL.muted, { size: 17 });
+    text(ctx, 'she starts from rest', x0 - 20, y0 + 36, F.ref('woman'), { size: 17 });
     const tread = Math.min(n - 1, Math.floor(f * n));
     /* she runs to the flight's own scale, about 1.7 m, her front foot already on the step above and her arms swinging */
     const PS = clamp((1.7 * SC) / 150, 0.5, 0.95), sw = done ? 0 : Math.sin(tau * 9), stepUp = rise / n;
     const at = { x: x0 + f * run, y: y0 - ((tread + 1) * rise) / n, s: PS };
-    F.silhouette(ctx, done ? { ...at, pose: 'stand' } : { ...at, pose: 'run',
+    F.silhouette(ctx, done ? { ...at, pose: 'stand', color: F.ref('woman') } : { ...at, pose: 'run', color: F.ref('woman'),
       feet: [{ x: 26 + 6 * sw, y: -stepUp / PS }, { x: -24 - 6 * sw, y: 0 }],
       hands: [{ x: 30 + 14 * sw, y: -96 }, { x: -20 - 14 * sw, y: -92 }] });
     if (vf.v > 0.05) {
@@ -88,7 +88,7 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     topline(ctx, tau < 1e-9 ? 'She stands at the foot of a ' + fmt(h.v, 2) + ' m flight, about to run up it in ' + fmt(T.v, 2) + ' s.'
       : done ? 'After ' + fmt(T.v, 2) + ' s she reaches the top, having done ' + whole(W) + ' J of work, an output of ' + whole(P) + ' W.'
       : 'At ' + fmt(tau, 2) + ' s she is ' + fmt(100 * f, 0) + ' percent of the way up and has delivered ' + whole(W * f) + ' J of the ' + whole(W) + ' J, a rate of ' + whole(P) + ' W.');
-    readout(d.readout, `\\kP = \\frac{\\kW}{\\kt} = \\frac{\\tfrac{1}{2}m{\\kvf}^2 + m\\kg\\kh}{\\kt} = \\frac{${whole(KE)}\\ \\text{J} + ${whole(PE)}\\ \\text{J}}{${fmt(T.v, 2)}\\ \\text{s}} = ${whole(P)}\\ \\text{W}`,
+    readout(d.readout, `\\kP = \\frac{\\kW}{\\kt} = \\frac{\\tfrac{1}{2}\\km{\\kvf}^2 + \\km\\kg\\kh}{\\kt} = \\frac{${whole(KE)}\\ \\text{J} + ${whole(PE)}\\ \\text{J}}{${fmt(T.v, 2)}\\ \\text{s}} = ${whole(P)}\\ \\text{W}`,
       'That is ' + fmt(P / HP, 3) + ' hp, since 1 hp = 746 W. Of the ' + whole(W) + ' J the job takes, ' + whole(PE) + ' J go into lifting her and only ' + whole(KE) + ' J into speeding her up, so nearly all of her output is spent on the climb.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });

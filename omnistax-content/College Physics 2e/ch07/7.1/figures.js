@@ -53,7 +53,7 @@ function crate(ctx, x, y, w, color) {
 (function () {
   const d = sim('sim-work', 840);
   const Fc = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 150, step: 2.5, value: 75, unit: 'N', dec: 1, onInput: reset, aria: 'force' });
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 5, value: 35, unit: '°', dec: 0, onInput: reset, aria: 'angle between the force and the displacement',
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 5, value: 35, unit: '°', dec: 0, onInput: reset, aria: 'angle between the force and the displacement',
     specials: [{ at: 90, label: 'perpendicular' }, { at: 180, label: 'opposite' }] });
   const dd = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0, max: 40, step: 0.5, value: 25, unit: 'm', dec: 1, onInput: reset, aria: 'displacement', specials: [{ at: 0, label: 'no motion' }] });
   const ro = F.readout(d);
@@ -69,12 +69,12 @@ function crate(ctx, x, y, w, color) {
     /* the ground and the mower on it */
     line(ctx, 60, GY, 1370, GY, PAL.muted, 3);
     const mx = X0 + s * SC;
-    mower(ctx, mx, GY, PAL.ink, MS, -1);
+    mower(ctx, mx, GY, F.ref('mower'), MS, -1);
     /* the person behind the mower, both hands on the grip and her feet on the ground; she strides while it moves */
     const gx = mx - 96 * MS, gy = GY - 104 * MS;
     const walking = s > 0.05 && s < D - 0.05, sw = walking ? Math.sin(s * 1.6) : 0;
     const px = gx - 58 * PS;
-    F.silhouette(ctx, { x: px, y: GY, s: PS, pose: 'push', hands: [{ x: (gx - px) / PS, y: (gy - GY) / PS + 2 }, { x: (gx - px) / PS - 4, y: (gy - GY) / PS + 8 }],
+    F.silhouette(ctx, { x: px, y: GY, s: PS, pose: 'push', color: F.ref('pusher'), hands: [{ x: (gx - px) / PS, y: (gy - GY) / PS + 2 }, { x: (gx - px) / PS - 4, y: (gy - GY) / PS + 8 }],
       feet: [{ x: 10 + 18 * sw, y: 0 }, { x: -30 - 18 * sw, y: 0 }] });
     /* the force at the grip, its head where the hands push and its tail back along the line of the push,
        with the angle it makes with the direction of motion drawn at the tail. Nothing of the force is
@@ -92,7 +92,7 @@ function crate(ctx, x, y, w, color) {
         lab.add('F cos θ = ' + fmt(Fv * cs, 1) + ' N', (tx + gx) / 2, ty, 0, cs > 0 ? -1 : -1, C('force'), 20, 18);
       }
       arrow(ctx, tx, ty, gx, gy, C('force'), 5);
-      if (ang > 4 && ang < 176) F.angleArc(ctx, { x: tx, y: ty }, 40, -ang * RAD, 0, 'θ = ' + fmt(ang, 0) + '°', lab);
+      if (ang > 4 && ang < 176) F.angleArc(ctx, { x: tx, y: ty }, 40, -ang * RAD, 0, 'θ = ' + fmt(ang, 0) + '°', lab, C('angle'));
       lab.add('F = ' + fmt(Fv, 1) + ' N', tx - 10 * cs, ty - 10 * sn, -cs, -sn - 0.4, C('force'), 22, 26);
     } else {
       lab.add('F = 0 N', gx, gy - 12, 0, -1, C('force'), 22, 30);
@@ -137,10 +137,10 @@ function crate(ctx, x, y, w, color) {
        and at 180° it bends into the minus sign of work done against the motion */
     const nums = `(\\mk{Fv}{${fmt(Fv, 1)}}\\ \\text{N})(\\mk{dv}{${fmt(D, 1)}}\\ \\text{m})`;
     ro.set(ang === 90
-      ? `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\theta} = ${nums}\\mk{cv}{\\cos 90^\\circ} = \\mk{Wv}{0}\\ \\text{J}`
+      ? `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta} = ${nums}\\mk{cv}{\\cos 90^\\circ} = \\mk{Wv}{0}\\ \\text{J}`
       : ang === 180
         ? `\\mk{W}{\\kW} = \\mk{c}{-}\\mk{F}{\\kF}\\mk{d}{\\kd} = \\mk{cv}{-}${nums} = \\mk{Wv}{${sig3(Wtot)}}\\ \\text{J}`
-        : `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\theta} = ${nums}\\mk{cv}{\\cos ${fmt(ang, 0)}^\\circ} = \\mk{Wv}{${sig3(Wtot)}}\\ \\text{J}`, caseLine);
+        : `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta} = ${nums}\\mk{cv}{\\cos ${fmt(ang, 0)}^\\circ} = \\mk{Wv}{${sig3(Wtot)}}\\ \\text{J}`, caseLine);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
 })();
@@ -155,13 +155,13 @@ function crate(ctx, x, y, w, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-joule', 640);
-  const mm = ctl(d.controls, { label: 'm', cls: '', min: 0.05, max: 100, step: 0.05, value: 0.1, unit: 'kg', dec: 2, aria: 'mass lifted' });
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.05, max: 100, step: 0.05, value: 0.1, unit: 'kg', dec: 2, aria: 'mass lifted' });
   const hh = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.2, max: 20, step: 0.1, value: 1, unit: 'm', dec: 2, aria: 'height it is lifted through' });
   const LO = -2, HI = 7, LX = 130, RX = 1330, BT = 420, BB = 520, GY = 330, CX = 700;
   const Xe = (E) => LX + ((Math.log10(E) - LO) / (HI - LO)) * (RX - LX);
   const DEC = ['0.01 J', '0.1 J', '1 J', '10 J', '100 J', '1 kJ', '10 kJ', '100 kJ', '1 MJ', '10 MJ'];
   const MARKS = [
-    { E: 0.98, label: 'an apple lifted about a meter', row: 0 },
+    { E: 0.98, label: 'an apple lifted about a meter', row: 0, ref: 'apple' },
     { E: 1536, label: 'the lawn mower of Example 7.1', row: 1 },
     { E: 4186, label: 'one food calorie', row: 0 },
     { E: 1.0e7, label: 'a day’s food energy', row: 1 },
@@ -180,7 +180,7 @@ function crate(ctx, x, y, w, color) {
     vbracket(ctx, CX - side / 2 - 66, base, GY, C('position'), 'd = ' + fmt(h, 2) + ' m', -1);
     arrow(ctx, CX, top - 8, CX, top - 68, C('force'), 5);
     text(ctx, 'F = mg = ' + sig3(Fw) + ' N', CX + 22, top - 46, C('force'), { size: 22, weight: 600 });
-    text(ctx, 'm = ' + fmt(m, 2) + ' kg', CX + side / 2 + 22, base - side / 2, PAL.ink, { size: 22, weight: 600 });
+    text(ctx, 'm = ' + fmt(m, 2) + ' kg', CX + side / 2 + 22, base - side / 2, C('mass'), { size: 22, weight: 600 });
     /* the ladder of energies, a power of ten to the rung */
     for (let e = LO; e < HI; e += 2) {
       ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(Xe(Math.pow(10, e)), BT, Xe(Math.pow(10, e + 1)) - Xe(Math.pow(10, e)), BB - BT); ctx.restore();
@@ -194,9 +194,10 @@ function crate(ctx, x, y, w, color) {
     MARKS.forEach((k) => {
       const x = Xe(k.E), ly = k.row ? 352 : 390;
       const right = x > RX - 220, left = x < LX + 220;
-      line(ctx, x, ly + 12, x, BB, PAL.muted, 2, [6, 8]);
-      dot(ctx, x, BB, PAL.muted, true, 7);
-      text(ctx, k.label, right ? RX : left ? LX : x, ly, PAL.muted, { size: 18, align: right ? 'right' : left ? 'left' : 'center' });
+      const kc = k.ref ? F.ref(k.ref) : PAL.muted;
+      line(ctx, x, ly + 12, x, BB, kc, 2, [6, 8]);
+      dot(ctx, x, BB, kc, true, 7);
+      text(ctx, k.label, right ? RX : left ? LX : x, ly, kc, { size: 18, align: right ? 'right' : left ? 'left' : 'center' });
     });
     /* where the work the sliders set falls among them */
     const xw = Math.max(LX, Math.min(RX, Xe(W)));
@@ -205,7 +206,7 @@ function crate(ctx, x, y, w, color) {
     text(ctx, 'W = ' + sci(W, 2) + ' J', Math.max(LX + 110, Math.min(xw, RX - 110)), BB + 68, C('energy'), { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, 'Lifting ' + fmt(m, 2) + ' kg through ' + fmt(h, 2) + ' m takes ' + sci(W, 2) + ' J of work'
       + (W > 0.7 && W < 1.4 ? ', which is about one joule.' : '.'));
-    readout(d.readout, `\\kW = \\kF\\kd\\cos\\theta = (${sig3(Fw)}\\ \\text{N})(${fmt(h, 2)}\\ \\text{m})\\cos 0^\\circ = ${sci(W, 2)}\\ \\text{J}`,
+    readout(d.readout, `\\kW = \\kF\\kd\\cos\\ktheta = (${sig3(Fw)}\\ \\text{N})(${fmt(h, 2)}\\ \\text{m})\\cos 0^\\circ = ${sci(W, 2)}\\ \\text{J}`,
       'That much work is ' + sci(W / 4186, 2) + ' kcal, and the person of Example 7.1 eats about 2400 kcal in a day, so it is '
       + sci(W / 4186 / 2400, 2) + ' of a day’s food energy.');
   }

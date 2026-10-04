@@ -41,8 +41,8 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     const y = 200, wall = 150, nat = 380, rest = wall + 44 + nat, plate = rest + xv * SC;
     strip(ctx, 110, 1310, y + 120, 30);
     fixed(ctx, wall, y - 78, 44, 156);
-    spring(ctx, wall + 44, y, plate - 16, y, 13, 26, PAL.ink, 4);
-    line(ctx, plate - 16, y - 42, plate - 16, y + 42, PAL.ink, 8);
+    spring(ctx, wall + 44, y, plate - 16, y, 13, 26, F.ref('spring'), 4);
+    line(ctx, plate - 16, y - 42, plate - 16, y + 42, F.ref('spring'), 8);
     /* the reference stops above the bracket, whose label is centred on it when the stretch is small */
     line(ctx, rest, y - 96, rest, y + 38, PAL.muted, 2, [8, 8]);
     text(ctx, 'undeformed length', rest, y - 112, PAL.muted, { size: 18, align: 'center' });
@@ -99,11 +99,12 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     [[0, xv, 'the first setting'], [1, 2 * xv, 'the second setting']].forEach(([i, xc, lab]) => {
       const y = 120 + i * 120, wall = 180, nat = 380, rest = wall + 44 + nat, plate = rest - xc * SC;
       fixed(ctx, wall, y - 44, 44, 88);
-      spring(ctx, wall + 44, y, plate - 10, y, 11, 20, PAL.ink, 4);
-      line(ctx, plate - 10, y - 30, plate - 10, y + 30, PAL.ink, 7);
+      const sc = F.ref(i ? 'spring-2' : 'spring-1');
+      spring(ctx, wall + 44, y, plate - 10, y, 11, 20, sc, 4);
+      line(ctx, plate - 10, y - 30, plate - 10, y + 30, sc, 7);
       line(ctx, rest, y - 38, rest, y + 38, PAL.muted, 2, [8, 8]);
       hbracket(ctx, plate - 10, rest, y + 66, C('position'), fmt(xc, 3) + ' m');
-      text(ctx, lab, wall - 20, y, PAL.muted, { size: 19, align: 'right' });
+      text(ctx, lab, wall - 20, y, sc, { size: 19, align: 'right' });
       text(ctx, '½kx² = ' + fmt(0.5 * kv * xc * xc, 3) + ' J', rest + 60, y, C('energy'), { size: 21, weight: 600 });
     });
     /* the graph: the big triangle cut into four copies of the small one */
@@ -188,8 +189,8 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     ctx.fillStyle = PAL.panel; [-36, -18, 0, 18, 36].forEach((o) => { ctx.beginPath(); ctx.arc(bridge, y + o, 3, 0, TAU); ctx.fill(); });
     ctx.restore();
     line(ctx, nut, y, bridge, y, PAL.muted, 2, [10, 10]);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(78, y - 8); ctx.lineTo(nut, y); ctx.lineTo(mid, y + dy); ctx.lineTo(bridge, y); ctx.stroke(); ctx.restore();
-    dot(ctx, mid, y + dy, PAL.ink, true, 8);
+    ctx.save(); ctx.strokeStyle = F.ref('string'); ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(78, y - 8); ctx.lineTo(nut, y); ctx.lineTo(mid, y + dy); ctx.lineTo(bridge, y); ctx.stroke(); ctx.restore();
+    dot(ctx, mid, y + dy, F.ref('string'), true, 8);
     if (Math.abs(xv) > 0.0004) {
       vbracket(ctx, mid, y, y + dy, C('position'));
       text(ctx, 'x = ' + fmt(Math.abs(xv), 4) + ' m', mid + 18, y + dy / 2, C('position'), { weight: 600, bg: PAL.panel });
@@ -287,7 +288,7 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     /* the launcher */
     const carA = launching ? [X0 - xc * LSC, GY] : A.p;
     fixed(ctx, 60, GY - 86, 40, 86);
-    spring(ctx, 100, GY - 26, (launching ? carA[0] : X0) - 26, GY - 26, 10, 18, PAL.ink, 4);
+    spring(ctx, 100, GY - 26, (launching ? carA[0] : X0) - 26, GY - 26, 10, 18, F.ref('launcher'), 4);
     /* the two paths and the shelf they share */
     trace(ctx, T.B.pts, PAL.muted, 3, [10, 10]);
     trace(ctx, T.A.pts, PAL.ink, 4);
@@ -296,12 +297,12 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     line(ctx, 110, GY - hf.v * SC, X1 + 40, GY - hf.v * SC, PAL.rule, 1.5);
     if (hf.v > 0.005) vbracket(ctx, X1 + 26, GY, GY - hf.v * SC, C('position'), 'h_f = ' + fmt(hf.v, 2) + ' m', 1);
     line(ctx, 120, 96, 180, 96, PAL.ink, 4);
-    text(ctx, 'the gradual rise', 194, 96, PAL.muted, { size: 18 });
+    text(ctx, 'the gradual rise', 194, 96, F.ref('toy-car'), { size: 18 });
     line(ctx, 120, 126, 180, 126, PAL.muted, 3, [10, 10]);
-    text(ctx, 'the dip and the loop', 194, 126, PAL.muted, { size: 18 });
+    text(ctx, 'the dip and the loop', 194, 126, F.ref('loop-car'), { size: 18 });
     /* the two cars */
-    car(ctx, B.p[0], B.p[1] - 14, PAL.muted, 0.46);
-    car(ctx, carA[0], carA[1] - 14, PAL.ink, 0.46);
+    car(ctx, B.p[0], B.p[1] - 14, F.ref('loop-car'), 0.46);
+    car(ctx, carA[0], carA[1] - 14, F.ref('toy-car'), 0.46);
     /* the label of the car on the dip goes below and behind it, since the two cars run
        side by side at the start and a label above this one lands on the other car */
     if (!launching && !B.done) text(ctx, fmt(vB, 2) + ' m/s', B.p[0] - 28, B.p[1] + 40, C('velocity'), { size: 18, weight: 600, align: 'right' });
@@ -317,7 +318,7 @@ function stack(ctx, x0, y0, w, h, total, parts) {
       : short ? 'The spring stores ' + fmt(E, 3) + ' J, less than the ' + fmt(M * G * hf.v, 3) + ' J the climb costs, so the car stops short of the shelf.'
       : A.done && B.done ? 'Both cars are on the shelf ' + fmt(hf.v, 2) + ' m up, each moving at ' + fmt(speedAt(E, hf.v), 3) + ' m/s, whichever path it took.'
       : 'At ' + fmt(tr, 2) + ' s the car on the rise is ' + fmt(hA, 3) + ' m up and moving at ' + fmt(vA, 2) + ' m/s, and the car round the loop is moving at ' + fmt(vB, 2) + ' m/s.');
-    readout(d.readout, `\\tfrac{1}{2}\\kk\\kxi^2 = \\tfrac{1}{2}m\\kvf^2 + m\\kg\\khf \\;\\Rightarrow\\; ${fmt(E, 3)}\\ \\text{J} = ${fmt(Math.max(0, E - M * G * hf.v), 3)}\\ \\text{J} + ${fmt(M * G * hf.v, 3)}\\ \\text{J}`,
+    readout(d.readout, `\\tfrac{1}{2}\\kk\\kxi^2 = \\tfrac{1}{2}\\km\\kvf^2 + \\km\\kg\\khf \\;\\Rightarrow\\; ${fmt(E, 3)}\\ \\text{J} = ${fmt(Math.max(0, E - M * G * hf.v), 3)}\\ \\text{J} + ${fmt(M * G * hf.v, 3)}\\ \\text{J}`,
       'Before the slope the whole ' + fmt(E, 3) + ' J is kinetic, so the car leaves the spring at ' + fmt(speedAt(E, 0), 2) + ' m/s, and at the top of the ' + fmt(hf.v, 2) + ' m shelf it has ' + fmt(speedAt(E, hf.v), 3) + ' m/s left.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => tracks().T / 5), draw });
