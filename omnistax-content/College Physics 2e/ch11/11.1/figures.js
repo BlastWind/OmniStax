@@ -38,8 +38,9 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
    choice pushes on all four at once, sideways, downward, or by taking the
    lids off, and each sample answers as the text says it does. The motion
    has no period, so the cycle is unbounded and the figure carries play,
-   stop and speed with no scrubber. The page binds no type: every particle
-   takes the element palette, the electrons and the apparatus are ink.
+   stop and speed with no scrubber. Every particle takes the element
+   palette and the electrons are ink; each sample's container and caption
+   take its referent's colour, and the pushes are forces.
    ===================================================================== */
 (function () {
   const H = 580, d = sim('sim-phases', H);
@@ -149,19 +150,19 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
   /* ---------- drawing ---------- */
   const hits = [];
   const hit = (x, y, r, name) => hits.push({ x, y, r, name });
-  /* the plate or the piston, with the push on it drawn as an arrow in ink, since this page binds no type: sideways onto a plate's left end, downward onto a piston's middle */
+  /* the plate or the piston, with the push on it drawn as a force: sideways onto a plate's left end, downward onto a piston's middle */
   function plate(ctx, x, y, w, name, dir) {
     fixed(ctx, x, y, w, PLATE_H); for (let s = 15; s < w; s += 30) hit(x + s, y + PLATE_H / 2, 17, name);
-    if (dir === 'right') arrow(ctx, x - 46, y + PLATE_H / 2, x - 3, y + PLATE_H / 2, PAL.ink, 4);
-    if (dir === 'down') arrow(ctx, x + w / 2, y - 46, x + w / 2, y - 3, PAL.ink, 4);
+    if (dir === 'right') arrow(ctx, x - 46, y + PLATE_H / 2, x - 3, y + PLATE_H / 2, F.C('force'), 4);
+    if (dir === 'down') arrow(ctx, x + w / 2, y - 46, x + w / 2, y - 3, F.C('force'), 4);
   }
   /* a part that only some pushes have, drawn under its fade and shift as the push changes */
   const SLIDE = [30, 0], LIFT = [0, -24];
   /* a closed container, whose lid lifts away when the reader takes it off */
-  function box(ctx, i, name) {
-    const xl = XL(i), xr = XR(i);
-    line(ctx, xl, BT, xl, BB, PAL.ink, 4); line(ctx, xr, BT, xr, BB, PAL.ink, 4); line(ctx, xl - 2, BB, xr + 2, BB, PAL.ink, 4);
-    faded(ctx, 1 - mode.a('open'), [0, -24 * mode.a('open')], () => line(ctx, xl - 2, BT, xr + 2, BT, PAL.ink, 4));
+  function box(ctx, i, name, ref) {
+    const xl = XL(i), xr = XR(i), c = F.ref(ref);
+    line(ctx, xl, BT, xl, BB, c, 4); line(ctx, xr, BT, xr, BB, c, 4); line(ctx, xl - 2, BB, xr + 2, BB, c, 4);
+    faded(ctx, 1 - mode.a('open'), [0, -24 * mode.a('open')], () => line(ctx, xl - 2, BT, xr + 2, BT, c, 4));
     hit(xl, (BT + BB) / 2, 12, name); hit(xr, (BT + BB) / 2, 12, name);
   }
   const HEAD = {
@@ -201,13 +202,13 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
     faded(ctx, shear, slide, () => { const x = CX0 - 100 + solid.lean, y = solidTop() - PLATE_H; plate(ctx, x, y, 200, 'a plate pushed sideways, which the solid holds after a hair of lean', 'right'); text(ctx, 'a sideways push', CX0, y - 18, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); });
     faded(ctx, press, lift, () => { const y = solidTop() - PLATE_H; plate(ctx, CX0 - 100, y, 200, 'a piston pushed down, which the solid stops almost at once', 'down'); text(ctx, 'a piston pushed down', CX0, y - 62, PAL.ink, { size: 17, align: 'center', bg: PAL.panel }); });
     /* (b) the beaker and the water in it */
-    line(ctx, XL(1), BT + 20, XL(1), BB, PAL.ink, 4); line(ctx, XR(1), BT + 20, XR(1), BB, PAL.ink, 4); line(ctx, XL(1) - 2, BB, XR(1) + 2, BB, PAL.ink, 4);
+    { const c = F.ref('water'); line(ctx, XL(1), BT + 20, XL(1), BB, c, 4); line(ctx, XR(1), BT + 20, XR(1), BB, c, 4); line(ctx, XL(1) - 2, BB, XR(1) + 2, BB, c, 4); }
     hit(XL(1), (BT + BB) / 2, 12, 'an open beaker'); hit(XR(1), (BT + BB) / 2, 12, 'an open beaker');
     for (const p of liq) { water(ctx, p.x, p.y, p.a); hit(p.x, p.y, LR + 2, 'a water molecule, an oxygen atom with two hydrogens'); }
     faded(ctx, shear, slide, () => plate(ctx, XL(1) + 4 + liquid.plateX, liquid.plateY - PLATE_H, PLATE_W, 'a plate pushed sideways, which slides across the liquid', 'right'));
     faded(ctx, press, lift, () => plate(ctx, XL(1) + 4, liquid.plateY + liquid.depth - PLATE_H, BW - 8, 'a piston pushed down, which the liquid stops almost at once', 'down'));
     /* (c) the oxygen and (d) the plasma in their boxes */
-    box(ctx, 2, 'a closed container of oxygen'); box(ctx, 3, 'a closed container of hydrogen plasma');
+    box(ctx, 2, 'a closed container of oxygen', 'oxygen'); box(ctx, 3, 'a closed container of hydrogen plasma', 'plasma');
     const back = 1 - mode.a('open');                /* molecules that refill a closed box fade in where they are */
     for (const q of gas.p) { if (q.gone) continue; faded(ctx, q.back ? back : 1, [0, 0], () => dioxygen(ctx, q.x, q.y, q.a)); hit(q.x, q.y, 16, 'an oxygen molecule, O₂'); }
     for (const q of plasma.p) { if (q.gone) continue; faded(ctx, q.back ? back : 1, [0, 0], () => { if (q.kind === 'p') proton(ctx, q.x, q.y); else electron(ctx, q.x, q.y); }); hit(q.x, q.y, q.kind === 'p' ? 12 : 10, q.kind === 'p' ? 'a proton, the nucleus of a hydrogen atom' : 'an electron'); }
@@ -216,7 +217,7 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
       faded(ctx, press, lift, () => plate(ctx, XL(i) + 4, BT + b.depth - PLATE_H, BW - 8, 'a piston pushed down, which travels half way before it is stopped', 'down'));
     }
     /* the captions under the four panels */
-    CAP.forEach(([cap, note], i) => { text(ctx, cap, PX(i) + 150, 502, PAL.ink, { size: 19, weight: 600, align: 'center' }); text(ctx, note, PX(i) + 150, 530, PAL.muted, { size: 16, align: 'center' }); });
+    CAP.forEach(([cap, note], i) => { text(ctx, cap, PX(i) + 150, 502, F.ref(['crystal', 'water', 'oxygen', 'plasma'][i]), { size: 19, weight: 600, align: 'center' }); text(ctx, note, PX(i) + 150, 530, PAL.muted, { size: 16, align: 'center' }); });
     readout(READ[m][0], READ[m][1]);
   }
   hover(d.stage, () => hits);

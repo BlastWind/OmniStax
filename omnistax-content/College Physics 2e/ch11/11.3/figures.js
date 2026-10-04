@@ -37,7 +37,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
   /* The width rather than the area is the slider: a width is what the picture shows, and the
      area, which goes as the square of the width, runs through four powers of ten. The two
      detents are the book's two panels, the point of a needle and the pad of a fingertip. */
-  const ds = ctl(d.controls, { label: 'd', cls: '', min: 0.1, max: 12, step: 0.1, value: 12, unit: 'mm', dec: 1, aria: 'the width of the contact', detents: [{ v: 0.3, label: 'needle' }, { v: 12, label: 'fingertip' }], snap: true });
+  const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.1, max: 12, step: 0.1, value: 12, unit: 'mm', dec: 1, aria: 'the width of the contact', detents: [{ v: 0.3, label: 'needle' }, { v: 12, label: 'fingertip' }], snap: true });
   /* the scene: 1 mm is 20 units; the skin stands at x = 900 with the body behind it, and the push
      comes from the left. A finger 14 mm across pushes while the contact is 4 mm or wider, its pad
      flattening against the skin to the width d; below that the pusher is a hypodermic needle on its
@@ -57,14 +57,14 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     const dent = Fv === 0 ? 0 : Math.min(44, Math.max(6, 12 + 8 * Math.log10(P / 1e4)));
     const hw = Math.max(finger ? half + 70 : 60, 2.2 * half);
     /* the body behind the skin, its surface dented where the push lands */
-    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.14); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.14); ctx.strokeStyle = F.ref('skin'); ctx.lineWidth = 4; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(SX, 100);
     for (let y = 100; y <= 500; y += 4) ctx.lineTo(skinX(y, dent, hw), y);
     ctx.lineTo(1300, 500); ctx.lineTo(1300, 100); ctx.closePath(); ctx.fill();
     ctx.beginPath(); ctx.moveTo(SX, 100); for (let y = 100; y <= 500; y += 4) ctx.lineTo(skinX(y, dent, hw), y); ctx.stroke(); ctx.restore();
-    text(ctx, 'the skin', SX + 120, 128, PAL.muted, { size: 19 });
+    text(ctx, 'the skin', SX + 120, 128, F.ref('skin'), { size: 19 });
     const tipX = SX + dent;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref(finger ? 'fingertip' : 'needle'); ctx.lineWidth = 4; ctx.lineJoin = 'round';
     if (finger) {
       /* a finger: a rounded rod whose tip circle meets the skin along the chord d wide, so the pad flattens to the contact */
       const cx = tipX - Math.sqrt(FR * FR - half * half), th = Math.asin(half / FR);
@@ -72,7 +72,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
       /* the nail, an oval on the upper side of the tip, and the knuckle crease */
       ctx.lineWidth = 2.5; ctx.beginPath(); ctx.ellipse(cx - 30, CY - FR + 34, 62, 26, 0, 0, TAU); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(X0 + 200, CY - FR + 6); ctx.quadraticCurveTo(X0 + 214, CY - FR + 40, X0 + 200, CY - FR + 70); ctx.stroke();
-      text(ctx, 'a fingertip', (X0 + cx) / 2, CY - FR - 24, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, 'a fingertip', (X0 + cx) / 2, CY - FR - 24, F.ref('fingertip'), { size: 19, align: 'center' });
     } else {
       /* a hypodermic needle on its syringe: the barrel, its flange, the hub and a shaft that tapers to the point */
       const barrelR = 36, hubX = X0 + 330, taper = 110, shaftR = 0.6 * MM;
@@ -80,13 +80,14 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
       ctx.fillRect(X0 - 10, CY - barrelR - 14, 14, 2 * barrelR + 28); ctx.strokeRect(X0 - 10, CY - barrelR - 14, 14, 2 * barrelR + 28);
       ctx.beginPath(); ctx.moveTo(hubX, CY - barrelR); ctx.lineTo(hubX + 40, CY - shaftR - 6); ctx.lineTo(hubX + 40, CY + shaftR + 6); ctx.lineTo(hubX, CY + barrelR); ctx.closePath(); ctx.fill(); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(hubX + 40, CY - shaftR); ctx.lineTo(tipX - taper, CY - shaftR); ctx.lineTo(tipX, CY - half); ctx.lineTo(tipX, CY + half); ctx.lineTo(tipX - taper, CY + shaftR); ctx.lineTo(hubX + 40, CY + shaftR); ctx.closePath(); ctx.fill(); ctx.stroke();
-      text(ctx, 'a hypodermic needle', (X0 + hubX) / 2, CY - barrelR - 24, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, 'a hypodermic needle', (X0 + hubX) / 2, CY - barrelR - 24, F.ref('needle'), { size: 19, align: 'center' });
     }
     ctx.restore();
     /* the contact, marked on the skin and bracketed */
     line(ctx, tipX, CY - half, tipX, CY + half, pc, 8);
-    if (half > 14) vbracket(ctx, tipX + 60, CY - half, CY + half, PAL.ink, 'd = ' + fmt(dw, 1) + ' mm', 1);
-    else { line(ctx, tipX + 40, CY, tipX + 60, CY, PAL.ink, 3); text(ctx, 'd = ' + fmt(dw, 1) + ' mm', tipX + 66, CY, PAL.ink, { weight: 600 }); }
+    const posc = C('position');
+    if (half > 14) vbracket(ctx, tipX + 60, CY - half, CY + half, posc, 'd = ' + fmt(dw, 1) + ' mm', 1);
+    else { line(ctx, tipX + 40, CY, tipX + 60, CY, posc, 3); text(ctx, 'd = ' + fmt(dw, 1) + ' mm', tipX + 66, CY, posc, { weight: 600 }); }
     /* the force, along the axis of the push, anchored on the pusher's end and drawn thicker than any body line */
     if (Fv > 0) {
       const la = 50 + Fv * 11, ax = X0 - (finger ? 0 : 10);
@@ -108,8 +109,8 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     const like = dw <= 0.5 ? ', about the point of a needle,' : dw >= 8 ? ', about the pad of a fingertip,' : '';
     topline(ctx, Fv === 0 ? 'With no push against the skin there is no pressure on it, however narrow the contact.'
       : 'A push of ' + fmt(Fv, 1) + ' N over a contact ' + fmt(dw, 1) + ' mm across' + like + ' makes a pressure of ' + sci(P, 3) + ' Pa.');
-    readout(d.readout, Fv === 0 ? `\\kPr = \\frac{\\kF}{A} = \\frac{0\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = 0\\ \\text{Pa}`
-      : `\\kPr = \\frac{\\kF}{A} = \\frac{${fmt(Fv, 1)}\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = ${sciTex(P, 3)}\\ \\text{Pa}`,
+    readout(d.readout, Fv === 0 ? `\\kPr = \\frac{\\kF}{\\karea} = \\frac{0\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = 0\\ \\text{Pa}`
+      : `\\kPr = \\frac{\\kF}{\\karea} = \\frac{${fmt(Fv, 1)}\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = ${sciTex(P, 3)}\\ \\text{Pa}`,
       'The contact is a circle ' + fmt(dw, 1) + ' mm across, so its area is A = π(d/2)² = ' + sig3(A * 1e6) + ' mm² = ' + sci(A, 3) + ' m². Halving the width quarters the area and multiplies the pressure by four, which is why the same push over the point of a needle, 0.3 mm across, makes 1600 times the pressure it makes over the pad of a fingertip, 12.0 mm across.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -125,7 +126,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
 (function () {
   const d = sim('sim-tire', 760);
   const Ps = ctl(d.controls, { label: '\\kPr', cls: 'pressure', min: 0, max: 400, step: 5, value: 220, unit: 'kPa', dec: 0, aria: 'the pressure of the air in the tire' });
-  const As = ctl(d.controls, { label: 'A', cls: '', min: 0.1, max: 10, step: 0.1, value: 2, unit: 'cm²', dec: 1, aria: 'the area of the patch of wall' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.1, max: 10, step: 0.1, value: 2, unit: 'cm²', dec: 1, aria: 'the area of the patch of wall' });
   /* which wall the patch sits on is a state, not a quantity, so it is a choice */
   const where = choice(d.controls, { label: '\\text{the patch}', options: [{ value: 'tread', label: 'tread' }, { value: 'rim', label: 'rim' }, { value: 'valve', label: 'valve' }], value: 'tread', aria: 'which wall the patch sits on' });
   const CX = 540, CY = 410, RO = 290, RI = 150, GROUND = 712;
@@ -146,10 +147,11 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     strip(ctx, 140, 940, GROUND, 24);
     text(ctx, 'the ground', 940, GROUND + 36, PAL.muted, { size: 17, align: 'right' });
     ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.12); ctx.beginPath(); ctx.arc(CX, CY, RO, 0, TAU); ctx.arc(CX, CY, RI, 0, TAU, true); ctx.fill(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.setLineDash([9, 7]); ctx.beginPath(); ctx.arc(CX, CY, RO + 4, 0, TAU); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(CX, CY, RO - 3, 0, TAU); ctx.stroke(); ctx.beginPath(); ctx.arc(CX, CY, RI, 0, TAU); ctx.stroke(); ctx.restore();
-    text(ctx, 'the tread', CX + RO + 14, CY - 60, PAL.muted, { size: 17 });
-    text(ctx, 'the rim', CX, CY - RI + 32, PAL.muted, { size: 17, align: 'center' });
+    const tc = F.ref('tire');
+    ctx.save(); ctx.strokeStyle = tc; ctx.lineWidth = 12; ctx.setLineDash([9, 7]); ctx.beginPath(); ctx.arc(CX, CY, RO + 4, 0, TAU); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = tc; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(CX, CY, RO - 3, 0, TAU); ctx.stroke(); ctx.beginPath(); ctx.arc(CX, CY, RI, 0, TAU); ctx.stroke(); ctx.restore();
+    text(ctx, 'the tread', CX + RO + 14, CY - 60, tc, { size: 17 });
+    text(ctx, 'the rim', CX, CY - RI + 32, tc, { size: 17, align: 'center' });
     /* the valve on the rim, pointing in toward the hub, and the leaders to its magnified view */
     const vx = CX + RI * Math.cos(VA), vy = CY + RI * Math.sin(VA), ux = -Math.cos(VA), uy = -Math.sin(VA);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.setLineDash([6, 6]);
@@ -191,7 +193,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
       return { px: CX + (r + sgn * 7) * Math.cos(PA), py: CY + (r + sgn * 7) * Math.sin(PA), nx: sgn * Math.cos(PA), ny: sgn * Math.sin(PA), r, lw: v === 'tread' ? 18 : 14, on: 1 };
     };
     const { px, py, nx, ny, r, lw, on } = where.mix(spot), half = 0.07 + 0.13 * Math.sqrt(As.v / 10);
-    if (on > 0) { ctx.save(); ctx.globalAlpha = on; ctx.strokeStyle = fc; ctx.lineWidth = lw; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.arc(CX, CY, r, PA - half, PA + half); ctx.stroke(); ctx.restore(); }
+    if (on > 0) { ctx.save(); ctx.globalAlpha = on; ctx.strokeStyle = C('area'); ctx.lineWidth = lw; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.arc(CX, CY, r, PA - half, PA + half); ctx.stroke(); ctx.restore(); }
     hits.push({ x: px, y: py, r: 30, name: 'the patch of ' + fmt(As.v, 1) + ' cm² you chose' });
     if (Fv > 0) {
       arrow(ctx, px, py, px + nx * LF, py + ny * LF, fc, 7);
@@ -206,7 +208,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
       : w === 'tread' ? 'At ' + fmt(Pk, 0) + ' kPa the air pushes on a ' + fmt(As.v, 1) + ' cm² patch of the tread with ' + Fs + ', straight out through the wall.'
       : w === 'rim' ? 'At ' + fmt(Pk, 0) + ' kPa the air pushes on a ' + fmt(As.v, 1) + ' cm² patch of the rim with ' + Fs + ', straight in toward the hub, the same force as on the tread.'
       : 'At ' + fmt(Pk, 0) + ' kPa the air pushes on the ' + fmt(As.v, 1) + ' cm² face of the valve core with ' + Fs + ', which is what holds the valve shut.');
-    readout(d.readout, `\\kF = \\kPr A = (${sciTex(P, 3)}\\ \\text{N/m}^2)(${sciTex(A, 2)}\\ \\text{m}^2) = ${Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = \\kPr \\karea = (${sciTex(P, 3)}\\ \\text{N/m}^2)(${sciTex(A, 2)}\\ \\text{m}^2) = ${Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)}\\ \\text{N}`,
       'The pressure is the same at every point inside the tire, so an equal patch of the tread, of the rim or of the valve core feels the same force, and on each it stands perpendicular to the wall, since a static fluid cannot exert a force along a surface. A tire gauge reads this pressure as ' + fmt(Pk / 6.895, 1) + ' psi.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -222,7 +224,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
 (function () {
   const d = sim('sim-swimmer', 640);
   const who = choice(d.controls, { label: '\\text{in the water}', options: [{ value: 'swimmer', label: 'the swimmer' }, { value: 'water', label: 'water in his place' }], value: 'swimmer', aria: 'whether the swimmer is there or the water fills his place' });
-  const ts = ctl(d.controls, { label: '\\text{his tilt}', cls: '', min: -30, max: 30, step: 5, value: 0, unit: '°', dec: 0, aria: 'the tilt of his body, positive with his head down' });
+  const ts = ctl(d.controls, { label: '\\text{his tilt}', cls: 'angle', min: -30, max: 30, step: 5, value: 0, unit: '°', dec: 0, aria: 'the tilt of his body, positive with his head down' });
   const CX = 700, CY = 380, S = 3.2, LEN = 124 * S, R = 46, SURF = 140, BASE = 58, NX = 1090;
   let hits = [];
   hover(d.stage, () => hits);
@@ -253,11 +255,11 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     /* his outline holds its place while his body fades into the water that fills it, and back */
     const aw = who.a('water'), as = who.a('swimmer');
     ctx.globalAlpha = aw; ctx.fillStyle = alpha(PAL.muted, 0.22); ctx.fill();
-    ctx.globalAlpha = 0.35 + 0.65 * aw; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.stroke();
+    ctx.globalAlpha = 0.35 + 0.65 * aw; ctx.strokeStyle = F.ref('swimmer'); ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.stroke();
     ctx.restore();
     if (as > 0) {
       ctx.save(); ctx.globalAlpha = as; ctx.translate(CX, CY); ctx.rotate(a);
-      F.silhouette(ctx, { x: 0, y: LEN / 2 - 8, s: (LEN - 16) / 160, face: -1, pose: 'reach', hands: [{ x: 10, y: -158 }, { x: 2, y: -156 }], feet: [{ x: 6, y: 0 }, { x: -6, y: 0 }], kneeSide: 1, elbowSide: -1 });
+      F.silhouette(ctx, { x: 0, y: LEN / 2 - 8, s: (LEN - 16) / 160, color: F.ref('swimmer'), face: -1, pose: 'reach', hands: [{ x: 10, y: -158 }, { x: 2, y: -156 }], feet: [{ x: 6, y: 0 }, { x: -6, y: 0 }], kneeSide: 1, elbowSide: -1 });
       ctx.restore();
     }
     if (aw > 0) {
@@ -274,7 +276,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
       hits.push({ x: c.x + nx * (len / 2 + 6), y: c.y + ny * (len / 2 + 6), r: 20, name: w === 'swimmer' ? 'the push of the water on his skin here, perpendicular to it' : 'the push of the surrounding water on this boundary, perpendicular to it' });
     }
     /* the sum of the pushes, and the weight that balances it */
-    dot(ctx, NX, CY, PAL.ink, true, 8);
+    dot(ctx, NX, CY, F.ref('swimmer'), true, 8);
     arrow(ctx, NX, CY, NX, CY - 130, fc, 5);
     text(ctx, 'the net upward force', NX + 18, CY - 112, fc, { weight: 600 });
     hits.push({ x: NX, y: CY - 65, r: 24, name: 'the net upward force, the sum of every push of the water' });
@@ -287,7 +289,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     text(ctx, 'the arrows are the push of the water, perpendicular to the surface at every point', 700, 112, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, w === 'swimmer' ? 'The water pushes on every part of the swimmer’s skin at once, each force perpendicular to the skin where it acts, and the forces underneath are a little larger than those on top.'
       : 'With the swimmer gone, the water that fills his place feels the same forces on its boundary, which is why water would flow into that space if he were not there.');
-    readout(d.readout, `\\kF = \\kPr A\\ \\text{on every patch of ${w === 'swimmer' ? 'his skin' : 'the boundary'}, perpendicular to that patch}`,
+    readout(d.readout, `\\kF = \\kPr \\karea\\ \\text{on every patch of ${w === 'swimmer' ? 'his skin' : 'the boundary'}, perpendicular to that patch}`,
       'The pressure is a little greater on the patches underneath, because the water is deeper there, so the forces underneath are a little larger than those on top and their sum has an upward part. On the swimmer that net upward force is balanced by his weight; on the water in his place it holds up the weight of that water, which is why the water stays where it is. How much greater the pressure is at a greater depth is the subject of the next section.');
   }
   register(d.fig, { update: () => {}, draw });

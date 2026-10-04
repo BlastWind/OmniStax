@@ -56,7 +56,7 @@ function shape(ctx, build, fill, stroke, w = 3) {
   ctx.save(); ctx.beginPath(); build(ctx); if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = w; ctx.stroke(); } ctx.restore();
 }
 /* a glass wall: a pale double line */
-function glass(ctx, x1, y1, x2, y2, w = 5) { line(ctx, x1, y1, x2, y2, alpha(PAL.ink, 0.35), w); }
+function glass(ctx, x1, y1, x2, y2, w = 5, color = PAL.ink) { line(ctx, x1, y1, x2, y2, alpha(color, 0.35), w); }
 /* a free-body diagram: a point with named arrows in the given directions (unit vectors) and lengths */
 function freeBody(ctx, x, y, arrows, title) {
   text(ctx, title, x, y - 150, PAL.muted, { size: 19, align: 'center' });
@@ -76,7 +76,7 @@ function freeBody(ctx, x, y, arrows, title) {
   const BODIES = { insect: { L: 10, w: 0.3 }, needle: { L: 70, w: 1.0 } };
   const body = choice(d.controls, { label: '\\text{the body}', options: [{ value: 'insect', label: 'insect’s foot' }, { value: 'needle', label: 'iron needle' }], value: 'insect', aria: 'which body rests on the surface', onInput: (v) => { ws.set(BODIES[v].w); Ls.set(BODIES[v].L); } });
   const ws = ctl(d.controls, { label: '\\kwgt', cls: 'force', min: 0, max: 8, step: 0.01, value: 0.3, unit: 'mN', dec: 2, aria: 'the weight of the body' });
-  const Ls = ctl(d.controls, { label: 'L', cls: '', min: 2, max: 100, step: 1, value: 10, unit: 'mm', dec: 0, aria: 'the length of the line along which the body touches the liquid' });
+  const Ls = ctl(d.controls, { label: '\\kLwire', cls: 'position', min: 2, max: 100, step: 1, value: 10, unit: 'mm', dec: 0, aria: 'the length of the line along which the body touches the liquid' });
   const gs = ctl(d.controls, { label: '\\kgamma', cls: 'surface-tension', min: 0.01, max: 0.1, step: 0.0001, value: 0.0728, unit: 'N/m', dec: 4, detents: GAMMA_TICKS, snap: true, aria: 'the surface tension of the liquid' });
   /* the basin, the undisturbed surface and the force scale: 220 units per millinewton, so that the book's own weights are readable, every arrow capped at 250 units and carrying its number */
   const XL = 90, XR = 900, Y0 = 320, YB = 580, CX = 495, KF = 220, DENT = 120, CAP = 250;
@@ -113,15 +113,17 @@ function freeBody(ctx, x, y, arrows, title) {
     const bx = CX, by = breaks ? sunk.y : yc;
     /* each body fades and slides in or out as the choice turns, while the dent and the pulls stay */
     body.only(ctx, 'needle', () => {
-      dot(ctx, bx, by, PAL.ink, false, R); dot(ctx, bx, by, PAL.ink, true, Math.max(1, R - 8));
-      text(ctx, 'iron needle, seen end-on', bx + R + 150, by + 58, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
+      const nc = F.ref('needle');
+      dot(ctx, bx, by, nc, false, R); dot(ctx, bx, by, nc, true, Math.max(1, R - 8));
+      text(ctx, 'iron needle, seen end-on', bx + R + 150, by + 58, nc, { size: 19, bg: alpha(PAL.panel, 0.85) });
       line(ctx, bx + R + 10, by + 10, bx + R + 62, by + 50, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
     }, [0, -40]);
     body.only(ctx, 'insect', () => {
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      const ic = F.ref('insect');
+      ctx.save(); ctx.strokeStyle = ic; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       ctx.beginPath(); ctx.moveTo(bx, by - R + 4); ctx.lineTo(bx + 60, by - 130); ctx.lineTo(bx + 210, by - 225); ctx.stroke(); ctx.restore();
-      shape(ctx, (c) => c.ellipse(bx, by, R, R * 0.6, 0, 0, TAU), PAL.ink);
-      text(ctx, 'insect’s foot on its leg', bx + 120, by - 250, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
+      shape(ctx, (c) => c.ellipse(bx, by, R, R * 0.6, 0, 0, TAU), ic);
+      text(ctx, 'insect’s foot on its leg', bx + 120, by - 250, ic, { size: 19, bg: alpha(PAL.panel, 0.85) });
     }, [0, -40]);
     /* the forces: the two pulls of the surface along itself, their net, and the weight */
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
@@ -131,7 +133,7 @@ function freeBody(ctx, x, y, arrows, title) {
       arrow(ctx, CX - R, yc, CX - R - len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX - R - len * cosT, yc - len * sinT, -cosT, -sinT, fc, 20, 22);
       arrow(ctx, CX + R, yc, CX + R + len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX + R + len * cosT, yc - len * sinT, cosT, -sinT, fc, 20, 22);
       const nl = Math.min(alen(w), yc - R * 0.6 - 150); arrow(ctx, CX, yc - R * 0.6, CX, yc - R * 0.6 - nl, fc, 5); lab.add('net F_ST = ' + sigz(w, 3) + ' mN', CX, yc - R * 0.6 - nl, 0, -1, fc, 20, 22);
-      angleArc(ctx, CX + R, yc, 0, -th, 48, PAL.ink, 'θ = ' + fmt(th, 0) + '°');
+      angleArc(ctx, CX + R, yc, 0, -th, 48, C('angle'), 'θ = ' + fmt(th, 0) + '°');
     } else if (!breaks) {
       arrow(ctx, CX - R, yc, CX - R - alen(half), yc, fc, 4); lab.add('F_ST', CX - R - alen(half), yc, -1, 0, fc, 20, 22);
       arrow(ctx, CX + R, yc, CX + R + alen(half), yc, fc, 4); lab.add('F_ST', CX + R + alen(half), yc, 1, 0, fc, 20, 22);
@@ -147,8 +149,8 @@ function freeBody(ctx, x, y, arrows, title) {
       : w === 0 ? 'With no weight on it the surface stays flat, and its two pulls are level and cancel.'
       : 'A weight of ' + sigz(w, 3) + ' mN on a contact line ' + fmt(Ls.v, 0) + ' mm long dents the surface until its pull rises at ' + fmt(th, 0) + '° and holds ' + what + ' up.');
     readout(d.readout, breaks
-      ? `\\kwgt = ${sigz(w, 3)}\\ \\text{mN} > \\kgamma L = (${sigz(g, 3)}\\ \\text{N/m})(${sigz(L, 3)}\\ \\text{m}) = ${sigz(hold, 3)}\\ \\text{mN}`
-      : `\\kwgt = \\kgamma L\\sin\\theta:\\quad ${sigz(w, 3)}\\times 10^{-3}\\ \\text{N} = (${sigz(g, 3)}\\ \\text{N/m})(${sigz(L, 3)}\\ \\text{m})\\sin\\theta,\\quad \\theta = ${fmt(th, 0)}^\\circ`,
+      ? `\\kwgt = ${sigz(w, 3)}\\ \\text{mN} > \\kgamma \\kLwire = (${sigz(g, 3)}\\ \\text{N/m})(${sigz(L, 3)}\\ \\text{m}) = ${sigz(hold, 3)}\\ \\text{mN}`
+      : `\\kwgt = \\kgamma \\kLwire\\sin\\ktheta:\\quad ${sigz(w, 3)}\\times 10^{-3}\\ \\text{N} = (${sigz(g, 3)}\\ \\text{N/m})(${sigz(L, 3)}\\ \\text{m})\\sin\\ktheta,\\quad \\ktheta = ${fmt(th, 0)}^\\circ`,
       breaks ? 'The surface can pull no harder than γL, which it reaches when its two pulls are vertical, so a body heavier than that is not held up; it breaks through and sinks, as the needle placed point down does, since a point touches the water along a far shorter line.'
         : 'The two pulls act along the dented surface, so only their upward parts hold the weight, and the surface dents until those parts add up to w. The most it can carry is γL = ' + sigz(hold, 3) + ' mN, when the pulls are vertical; a heavier body breaks the surface.');
   }
@@ -164,7 +166,7 @@ function freeBody(ctx, x, y, arrows, title) {
 (function () {
   const d = sim('sim-slide-wire', 780);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 8, step: 0.01, value: 3.16, unit: 'mN', dec: 2, aria: 'the force that holds the wire in place' });
-  const ls = ctl(d.controls, { label: 'l', cls: '', min: 5, max: 50, step: 0.1, value: 25, unit: 'mm', dec: 1, aria: 'the length of the sliding wire' });
+  const ls = ctl(d.controls, { label: '\\kl', cls: 'position', min: 5, max: 50, step: 0.1, value: 25, unit: 'mm', dec: 1, aria: 'the length of the sliding wire' });
   /* the frame, the axis and the force scale: 40 units per millinewton, fixed from the slider maximum; the axis runs 0 to 0.10 N/m */
   const FL = 260, FY = 280, WX = 580, KF = 40;
   const AX = { l: 200, r: 1300, t: 620, b: 690 }, GR = [0, 0.1];
@@ -182,14 +184,14 @@ function freeBody(ctx, x, y, arrows, title) {
     shape(ctx, (c) => c.rect(FL, FT, WX - FL, hgt), alpha(PAL.ink, 0.1));
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 12; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(FL + 560, FT); ctx.lineTo(FL, FT); ctx.lineTo(FL, FB); ctx.lineTo(FL + 560, FB); ctx.stroke(); ctx.restore();
-    line(ctx, WX, FT - 10, WX, FB + 10, PAL.ink, 9);
-    text(ctx, 'the sliding wire', WX + 18, FT + 16, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.85) });
-    if (hgt > 90) text(ctx, 'the film', (FL + WX) / 2 - 40, FT + hgt * 0.22, PAL.muted, { size: 18, align: 'center' });
+    line(ctx, WX, FT - 10, WX, FB + 10, F.ref('wire'), 9);
+    text(ctx, 'the sliding wire', WX + 18, FT + 16, F.ref('wire'), { size: 19, bg: alpha(PAL.panel, 0.85) });
+    if (hgt > 90) text(ctx, 'the film', (FL + WX) / 2 - 40, FT + hgt * 0.22, F.ref('film'), { size: 18, align: 'center' });
     /* the film's pull on the wire, spread along its length, and the force that holds the wire */
     const n = Math.max(2, Math.round(hgt / 70));
     for (let i = 0; i < n; i++) { const y = FT + hgt * (i + 0.5) / n; arrow(ctx, WX - 12, y, WX - 12 - Math.min(70, 26 + g * 600), y, fc, 3); }
     if (Fv > 0) { arrow(ctx, WX + 12, (FT + FB) / 2, WX + 12 + Fv * KF, (FT + FB) / 2, fc, 5); text(ctx, 'F = ' + sigz(Fv, 3) + ' mN', WX + 12 + Fv * KF + 14, (FT + FB) / 2 - 22, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) }); }
-    vbracket(ctx, FL - 60, FT, FB, PAL.ink, 'l = ' + fmt(l, 1) + ' mm', -1);
+    vbracket(ctx, FL - 60, FT, FB, C('position'), 'l = ' + fmt(l, 1) + ' mm', -1);
     /* the side view: two film surfaces between the frame wire and the sliding wire */
     const SY = FB + 44, SL = 260, SR = 580;
     dot(ctx, SL, SY, alpha(PAL.ink, 0.45), true, 8); dot(ctx, SR, SY, PAL.ink, true, 8);
@@ -212,7 +214,7 @@ function freeBody(ctx, x, y, arrows, title) {
     lab.flush();
     topline(ctx, Fv === 0 ? 'With no force on the wire there is no film pulling on it, and nothing is measured.'
       : 'A force of ' + sigz(Fv, 3) + ' mN holds a wire ' + fmt(l, 1) + ' mm long against two liquid surfaces, so the surface tension is ' + sigz(g, 3) + ' N/m' + (match ? ', which is ' + near.n + '’s.' : '.'));
-    readout(d.readout, `\\kgamma = \\frac{\\kF}{L} = \\frac{\\kF}{2l} = \\frac{${sigz(Fv, 3)}\\times 10^{-3}\\ \\text{N}}{2(${sigz(l / 1000, 3)}\\ \\text{m})} = ${sigz(g, 3)}\\ \\text{N/m}`,
+    readout(d.readout, `\\kgamma = \\frac{\\kF}{\\kLwire} = \\frac{\\kF}{2\\kl} = \\frac{${sigz(Fv, 3)}\\times 10^{-3}\\ \\text{N}}{2(${sigz(l / 1000, 3)}\\ \\text{m})} = ${sigz(g, 3)}\\ \\text{N/m}`,
       'The wire is attached to two liquid surfaces, the front and the back of the film, so the length the force is spread along is 2l and not l. ' + (match ? 'The value matches ' + near.n + ' in Table 11.3.' : 'No liquid of Table 11.3 is within a few percent of this value; the nearest is ' + near.n + ' at ' + sigz(near.g, 3) + ' N/m.'));
   }
   register(d.fig, { update: () => {}, draw });
@@ -227,8 +229,8 @@ function freeBody(ctx, x, y, arrows, title) {
 (function () {
   const d = sim('sim-two-balloons', 660);
   const reset = () => cy.reset();
-  const r1s = ctl(d.controls, { label: 'r_1', cls: '', min: 1, max: 8, step: 0.1, value: 6, unit: 'cm', dec: 1, onInput: reset, aria: 'the radius of the first balloon' });
-  const r2s = ctl(d.controls, { label: 'r_2', cls: '', min: 1, max: 8, step: 0.1, value: 3, unit: 'cm', dec: 1, onInput: reset, aria: 'the radius of the second balloon' });
+  const r1s = ctl(d.controls, { label: '\\krone', cls: 'position', min: 1, max: 8, step: 0.1, value: 6, unit: 'cm', dec: 1, onInput: reset, aria: 'the radius of the first balloon' });
+  const r2s = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 1, max: 8, step: 0.1, value: 3, unit: 'cm', dec: 1, onInput: reset, aria: 'the radius of the second balloon' });
   const gs = ctl(d.controls, { label: '\\kgamma', cls: 'surface-tension', min: 0.01, max: 0.1, step: 0.0001, value: 0.037, unit: 'N/m', dec: 4, detents: GAMMA_TICKS, snap: true, onInput: reset, aria: 'the surface tension of the film' });
   /* one loop: the valve is closed for the first 0.8 s, the air crosses over the next 3.4 s, then the picture holds */
   const T0 = 0.8, T1 = 4.2;
@@ -236,13 +238,13 @@ function freeBody(ctx, x, y, arrows, title) {
   /* the tube, the balloon scale (16 units per centimetre, so that two 8 cm balloons merged still fit under the headline) and the pressure bars, capped at 20 Pa, half the pressure of the smallest balloon at the largest surface tension, so that the book's own balloons read as more than slivers */
   const TY = 460, X1 = 380, X2 = 1020, S = 16, PCAP = 20, BW = 260;
   const P = (g, r) => (r > 0 ? 4 * g / (r / 100) : Infinity);
-  function balloon(ctx, x, r, name, p, ok) {
-    if (r < 0.03) { line(ctx, x, TY, x, TY - 40, PAL.ink, 4); text(ctx, name + ' is empty', x, TY - 66, PAL.ink, { size: 19, align: 'center' }); return; }
+  function balloon(ctx, x, r, name, p, ok, bc = PAL.ink) {
+    if (r < 0.03) { line(ctx, x, TY, x, TY - 40, bc, 4); text(ctx, name + ' is empty', x, TY - 66, bc, { size: 19, align: 'center' }); return; }
     const R = r * S, cyy = TY - 40 - R;
-    line(ctx, x, TY, x, cyy + R - 2, PAL.ink, 4);
-    shape(ctx, (c) => c.arc(x, cyy, R, 0, TAU), alpha(PAL.ink, 0.06), PAL.ink, 3);
-    text(ctx, name, x, cyy - R - 22, PAL.ink, { size: 19, align: 'center' });
-    if (R > 50) text(ctx, 'r = ' + fmt(r, 1) + ' cm', x, cyy, PAL.ink, { size: 19, align: 'center' });
+    line(ctx, x, TY, x, cyy + R - 2, bc, 4);
+    shape(ctx, (c) => c.arc(x, cyy, R, 0, TAU), alpha(PAL.ink, 0.06), bc, 3);
+    text(ctx, name, x, cyy - R - 22, bc, { size: 19, align: 'center' });
+    if (R > 50) text(ctx, 'r = ' + fmt(r, 1) + ' cm', x, cyy, C('position'), { size: 19, align: 'center' });
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -260,7 +262,7 @@ function freeBody(ctx, x, y, arrows, title) {
     dot(ctx, VX, TY, PAL.ink, false, 18);
     line(ctx, VX + (open ? -12 : 0), TY + (open ? 0 : -12), VX + (open ? 12 : 0), TY + (open ? 0 : 12), PAL.ink, 5);
     text(ctx, open ? 'valve open' : 'valve closed', VX, TY + 44, PAL.ink, { size: 19, align: 'center' });
-    balloon(ctx, X1, r1, 'balloon 1', p1); balloon(ctx, X2, r2, 'balloon 2', p2);
+    balloon(ctx, X1, r1, 'balloon 1', p1, true, F.ref('balloon-1')); balloon(ctx, X2, r2, 'balloon 2', p2, true, F.ref('balloon-2'));
     /* the air on its way: a dashed run along the tube toward the larger balloon while the small one empties */
     if (open && !same && prog < 1) {
       const dir = smallFirst ? 1 : -1, from = smallFirst ? X1 : X2;
@@ -280,8 +282,8 @@ function freeBody(ctx, x, y, arrows, title) {
       : !open ? 'With the valve closed ' + nm[0] + ' holds ' + sigz(P(g, rs), 3) + ' Pa above the air outside and ' + nm[1] + ' ' + sigz(P(g, rl), 3) + ' Pa, so air will flow from the small one to the large one.'
       : prog < 1 ? 'The valve is open and air runs from ' + nm[0] + ' into ' + nm[1] + ': the small balloon shrinks, its pressure climbs, and the large one grows.'
       : nm[0][0].toUpperCase() + nm[0].slice(1) + ' has emptied into ' + nm[1] + ', which now has a radius of ' + fmt(rln, 2) + ' cm and holds ' + sigz(P(g, rln), 3) + ' Pa.');
-    const one = r1 < 0.03 ? '\\kProne:\\ \\text{balloon 1 is empty}' : `\\kProne = \\frac{4\\kgamma}{r_1} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r1 / 100, 3)}\\ \\text{m}} = ${sigz(p1, 3)}\\ \\text{Pa}`;
-    const two = r2 < 0.03 ? '\\kPrtwo:\\ \\text{balloon 2 is empty}' : `\\kPrtwo = \\frac{4\\kgamma}{r_2} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r2 / 100, 3)}\\ \\text{m}} = ${sigz(p2, 3)}\\ \\text{Pa}`;
+    const one = r1 < 0.03 ? '\\kProne:\\ \\text{balloon 1 is empty}' : `\\kProne = \\frac{4\\kgamma}{\\krone} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r1 / 100, 3)}\\ \\text{m}} = ${sigz(p1, 3)}\\ \\text{Pa}`;
+    const two = r2 < 0.03 ? '\\kPrtwo:\\ \\text{balloon 2 is empty}' : `\\kPrtwo = \\frac{4\\kgamma}{\\krtwo} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r2 / 100, 3)}\\ \\text{m}} = ${sigz(p2, 3)}\\ \\text{Pa}`;
     readout(d.readout, `${one},\\qquad ${two}`,
       'The pressure inside a balloon is inversely proportional to its radius, so the smaller balloon holds the greater pressure and air moves from it to the larger one, which is the opposite of what a balloon full of air seems to promise. As the small one shrinks its pressure rises further, so the flow does not stop until it is empty; the total volume of air is kept throughout.');
   }
@@ -296,7 +298,7 @@ function freeBody(ctx, x, y, arrows, title) {
 ===================================================================== */
 (function () {
   const d = sim('sim-surfactant', 640);
-  const rs = ctl(d.controls, { label: 'r', cls: '', min: 0.02, max: 0.1, step: 0.001, value: 0.05, unit: 'mm', dec: 3, aria: 'the radius of the alveolus' });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.02, max: 0.1, step: 0.001, value: 0.05, unit: 'mm', dec: 3, aria: 'the radius of the alveolus' });
   /* the three linings: the surfactant's surface tension runs from 0.010 N/m at the smallest area to 0.050 N/m at the largest; the detergent stands at soapy water's 0.037 N/m and the tissue fluid at Table 11.3's 0.050 N/m */
   const AMIN = 4 * Math.PI * 0.02 ** 2, AMAX = 4 * Math.PI * 0.1 ** 2;
   const gSurf = (A) => 0.01 + 0.04 * (A - AMIN) / (AMAX - AMIN);
@@ -304,24 +306,24 @@ function freeBody(ctx, x, y, arrows, title) {
   /* fixed axes: surface tension 0 to 0.08 N/m across, area 0 to 0.14 mm² up; the pressure bars are capped at 10 kPa, the tissue fluid's pressure in the smallest sac */
   const BOX = { l: 130, t: 130, r: 700, b: 560 }, GR = [0, 0.08], AR = [0, 0.14], PCAP = 10000;
   const SX = 1090, SY = 250, SS = 1500;                                       /* the sac: 0.1 mm draws as a 150-unit radius */
-  const CAT = [0, 1, 2];                                                     /* three categorical hues, the palette itself keeping clear of the bound type hues */
+  const REF = ['surfactant', 'detergent', 'tissue-fluid'];                   /* each lining is a referent the caption names */
   function draw() {
     const { ctx } = begin(d.c);
     const pc = C('pressure'), gc = C('surface-tension');
     const r = rs.v, A = 4 * Math.PI * r * r;
     const { X, Y } = axes(ctx, BOX, GR, AR, { nx: 4, ny: 7, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 2), xl: 'surface tension γ (N/m)', xc: gc, yl: 'surface area of the alveolus (mm²)' });
     /* the three linings, told apart by the categorical palette and named in a legend */
-    LININGS.forEach((L, i) => { const c = F.cat(CAT[i]); ctx.save(); ctx.strokeStyle = c; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(X(L.g(AMIN)), Y(AMIN)); ctx.lineTo(X(L.g(AMAX)), Y(AMAX)); ctx.stroke(); ctx.restore(); });
-    LININGS.forEach((L, i) => { const c = F.cat(CAT[i]), y = BOX.t + 22 + i * 30; line(ctx, BOX.l + 24, y, BOX.l + 64, y, c, 4); text(ctx, L.n, BOX.l + 76, y, c, { size: 18, weight: 600 }); });
+    LININGS.forEach((L, i) => { const c = F.ref(REF[i]); ctx.save(); ctx.strokeStyle = c; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(X(L.g(AMIN)), Y(AMIN)); ctx.lineTo(X(L.g(AMAX)), Y(AMAX)); ctx.stroke(); ctx.restore(); });
+    LININGS.forEach((L, i) => { const c = F.ref(REF[i]), y = BOX.t + 22 + i * 30; line(ctx, BOX.l + 24, y, BOX.l + 64, y, c, 4); text(ctx, L.n, BOX.l + 76, y, c, { size: 18, weight: 600 }); });
     /* the chosen area, and the surface tension of each lining at it */
     line(ctx, BOX.l, Y(A), BOX.r, Y(A), alpha(PAL.ink, 0.4), 2, [8, 8]);
-    text(ctx, 'A = 4πr² = ' + sigz(A, 3) + ' mm²', BOX.r - 10, Y(A) - 18, PAL.ink, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    const vals = LININGS.map((L, i) => { const g = L.g(A), p = 4 * g / (r / 1000); dot(ctx, X(g), Y(A), F.cat(CAT[i]), true, 8); return { n: L.n, g, p, c: F.cat(CAT[i]) }; });
+    text(ctx, 'A = 4πr² = ' + sigz(A, 3) + ' mm²', BOX.r - 10, Y(A) - 18, C('area'), { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    const vals = LININGS.map((L, i) => { const g = L.g(A), p = 4 * g / (r / 1000); dot(ctx, X(g), Y(A), F.ref(REF[i]), true, 8); return { n: L.n, g, p, c: F.ref(REF[i]) }; });
     /* the sac at the chosen radius, and the pressure inside it for each lining */
     const R = r * SS;
-    shape(ctx, (c) => c.arc(SX, SY, R, 0, TAU), alpha(PAL.ink, 0.06), PAL.ink, 3);
-    text(ctx, 'an alveolus, r = ' + fmt(r, 3) + ' mm', SX, SY + R + 28, PAL.ink, { size: 19, align: 'center' });
-    hbracket(ctx, SX - R, SX, SY - R - 30, PAL.ink, 'r');
+    shape(ctx, (c) => c.arc(SX, SY, R, 0, TAU), alpha(PAL.ink, 0.06), F.ref('alveolus'), 3);
+    text(ctx, 'an alveolus, r = ' + fmt(r, 3) + ' mm', SX, SY + R + 28, F.ref('alveolus'), { size: 19, align: 'center' });
+    hbracket(ctx, SX - R, SX, SY - R - 30, C('position'), 'r');
     text(ctx, 'gauge pressure inside, P = 4γ/r', SX + 20, 446, PAL.muted, { size: 18, align: 'center' });
     vals.forEach((v, i) => {
       const y = 472 + i * 48, w = 260 * Math.min(1, v.p / PCAP), lx = SX - 110;
@@ -332,7 +334,7 @@ function freeBody(ctx, x, y, arrows, title) {
     text(ctx, '0', SX - 110, 464, PAL.muted, { size: 14, align: 'center' }); text(ctx, '10 kPa', SX + 150, 464, PAL.muted, { size: 14, align: 'center' });
     const [s, dg, tf] = vals;
     topline(ctx, 'At a radius of ' + fmt(r, 3) + ' mm the surfactant’s surface tension is ' + sigz(s.g, 3) + ' N/m and the pressure inside the sac is ' + sigz(s.p / 1000, 3) + ' kPa, against ' + sigz(dg.p / 1000, 3) + ' kPa for a detergent and ' + sigz(tf.p / 1000, 3) + ' kPa for tissue fluid.');
-    readout(d.readout, `\\kPr = \\frac{4\\kgamma}{r} = \\frac{4(${sigz(s.g, 3)}\\ \\text{N/m})}{${sciTex(r / 1000, 3)}\\ \\text{m}} = ${sigz(s.p / 1000, 3)}\\ \\text{kPa}\\ \\text{for the surfactant}`,
+    readout(d.readout, `\\kPr = \\frac{4\\kgamma}{\\krad} = \\frac{4(${sigz(s.g, 3)}\\ \\text{N/m})}{${sciTex(r / 1000, 3)}\\ \\text{m}} = ${sigz(s.p / 1000, 3)}\\ \\text{kPa}\\ \\text{for the surfactant}`,
       'A lining whose surface tension does not change makes the pressure climb as 1/r when the sac shrinks, so a small alveolus would empty into a large one; the surfactant’s surface tension falls with the area, and the pressure inside stays nearly level from the largest sac to the smallest. The values here are representative of the three linings rather than measured ones.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -346,7 +348,7 @@ function freeBody(ctx, x, y, arrows, title) {
 ===================================================================== */
 (function () {
   const d = sim('sim-contact-angle', 560);
-  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 107, unit: '°', dec: 0, detents: THETA_DETENTS, snap: true, specials: [{ at: 90, label: 'the line between wetting and not wetting' }], aria: 'the contact angle' });
+  const ts = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 1, value: 107, unit: '°', dec: 0, detents: THETA_DETENTS, snap: true, specials: [{ at: 90, label: 'the line between wetting and not wetting' }], aria: 'the contact angle' });
   const YS = 420, CX = 620, A0 = 150 * 150 * Math.PI / 2;                    /* the drop's area: a half-disc of radius 150 at 90°; below 10° and above 172° the drawing holds its shape, since a thinner film would run off the canvas */
   function draw() {
     const { ctx } = begin(d.c);
@@ -355,21 +357,21 @@ function freeBody(ctx, x, y, arrows, title) {
     /* the solid and the drop */
     fixed(ctx, 60, YS, 1280, 40);
     text(ctx, th <= 20 ? 'the solid, which the liquid wets' : th >= 160 ? 'the solid, which the liquid barely touches' : 'the solid', 80, YS + 66, PAL.muted, { size: 18 });
-    shape(ctx, (c) => c.arc(CX, yc, R, td - Math.PI / 2, 1.5 * Math.PI - td, true), alpha(PAL.ink, 0.12), PAL.ink, 3);
+    shape(ctx, (c) => c.arc(CX, yc, R, td - Math.PI / 2, 1.5 * Math.PI - td, true), alpha(PAL.ink, 0.12), F.ref('drop'), 3);
     line(ctx, CX - a, YS, CX + a, YS, PAL.ink, 3);
-    text(ctx, 'the liquid', CX, Math.max(YS - 24, yc - R + Math.min(R, 40)) - (th < 30 ? 44 : 0), PAL.ink, { size: 19, align: 'center' });
+    text(ctx, 'the liquid', CX, Math.max(YS - 24, yc - R + Math.min(R, 40)) - (th < 30 ? 44 : 0), F.ref('drop'), { size: 19, align: 'center' });
     /* the tangent to the liquid surface at the contact point, and the angle between it and the solid, measured through the liquid */
     const px = CX + a, ux = -cs, uy = -sn;
     line(ctx, px - 320 * ux, YS - 320 * uy, px + 320 * ux, YS + 320 * uy, PAL.ink, 2, [10, 10]);
     const rad = Math.min(260, Math.max(90, 2 * R + 20));
-    angleArc(ctx, px, YS, Math.PI, th, rad, PAL.ink, 'θ = ' + fmt(th, 0) + '°', 22);
+    angleArc(ctx, px, YS, Math.PI, th, rad, C('angle'), 'θ = ' + fmt(th, 0) + '°', 22);
     dot(ctx, px, YS, PAL.ink, true, 6);
     text(ctx, 'tangent to the liquid surface', px + 60 * ux + 16, YS + 60 * uy - 28, PAL.ink, { size: 17, bg: alpha(PAL.panel, 0.85), align: ux < 0 ? 'right' : 'left' });
     const pair = PAIRS[th];
     topline(ctx, th < 90 ? 'At a contact angle of ' + fmt(th, 0) + '° the adhesive forces are the stronger, and the liquid spreads out and flattens on the solid.'
       : th === 90 ? 'At a contact angle of 90° the cohesive and adhesive forces are evenly matched, and the drop stands as a half-dome.'
       : 'At a contact angle of ' + fmt(th, 0) + '° the cohesive forces are the stronger, and the liquid draws itself up into a bead.');
-    readout(d.readout, th < 90 ? `\\theta = ${fmt(th, 0)}^\\circ < 90^\\circ` : th === 90 ? `\\theta = 90^\\circ` : `\\theta = ${fmt(th, 0)}^\\circ > 90^\\circ`,
+    readout(d.readout, th < 90 ? `\\ktheta = ${fmt(th, 0)}^\\circ < 90^\\circ` : th === 90 ? `\\ktheta = 90^\\circ` : `\\ktheta = ${fmt(th, 0)}^\\circ > 90^\\circ`,
       (pair ? 'Table 11.4 gives this angle for ' + pair + '. ' : '') + 'The larger the angle, the larger the ratio of cohesive to adhesive forces; the drop keeps the same volume at every angle here, so what changes is only how far the adhesive forces can flatten it.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -386,8 +388,8 @@ function freeBody(ctx, x, y, arrows, title) {
   const d = sim('sim-capillary', 740);
   const LIQ = { water: { n: 'water', g: 0.0728, rho: 1000 }, alcohol: { n: 'ethyl alcohol', g: 0.0223, rho: 790 }, glycerin: { n: 'glycerin', g: 0.0631, rho: 1260 }, mercury: { n: 'mercury', g: 0.465, rho: 13600 }, olive: { n: 'olive oil', g: 0.032, rho: 920 } };
   const liq = choice(d.controls, { label: '\\text{the liquid}', options: Object.entries(LIQ).map(([v, L]) => ({ value: v, label: L.n })), value: 'water', aria: 'the liquid in the container' });
-  const ts = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 180, step: 1, value: 0, unit: '°', dec: 0, detents: THETA_TICKS, snap: true, specials: [{ at: 90, label: 'neither raised nor suppressed' }], aria: 'the contact angle between the liquid and the glass' });
-  const rs = ctl(d.controls, { label: 'r', cls: '', min: 0.1, max: 9, step: 0.01, value: 0.5, unit: 'mm', dec: 2, aria: 'the radius of the tube' });
+  const ts = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 1, value: 0, unit: '°', dec: 0, detents: THETA_TICKS, snap: true, specials: [{ at: 90, label: 'neither raised nor suppressed' }], aria: 'the contact angle between the liquid and the glass' });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.1, max: 9, step: 0.01, value: 0.5, unit: 'mm', dec: 2, aria: 'the radius of the tube' });
   /* the scene: the level in the container at Y0, 20 units per centimetre of height, the tube from 16 cm above to 8 cm below; the graph: r 0 to 9 mm, h −8 to 16 cm, fixed */
   const Y0 = 480, SC = 20, HMAX = 16, HMIN = -8, TX = 400, BL = 160, BR = 640, BB = 680;
   const BOX = { l: 860, t: 150, r: 1340, b: 630 }, RR = [0, 9], HR = [HMIN, HMAX];
@@ -408,8 +410,9 @@ function freeBody(ctx, x, y, arrows, title) {
     const dep = Math.max(-bw, Math.min(bw, bw * (1 - Math.sin(th * RAD)) / Math.max(0.05, Math.abs(Math.cos(th * RAD))) * Math.sign(Math.cos(th * RAD) || 1)));
     shape(ctx, (c) => { c.moveTo(TX - bw, BB - 30); c.lineTo(TX - bw, ytop); c.quadraticCurveTo(TX, ytop + 2 * dep, TX + bw, ytop); c.lineTo(TX + bw, BB - 30); c.closePath(); }, fill);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(TX - bw, ytop); ctx.quadraticCurveTo(TX, ytop + 2 * dep, TX + bw, ytop); ctx.stroke(); ctx.restore();
-    glass(ctx, TX - bw - wall / 2, TT, TX - bw - wall / 2, BB - 30, wall); glass(ctx, TX + bw + wall / 2, TT, TX + bw + wall / 2, BB - 30, wall);
-    text(ctx, 'glass tube, r = ' + fmt(r, 2) + ' mm', TX, BB + 26, PAL.ink, { size: 18, align: 'center' });
+    const tc = F.ref('tube');
+    glass(ctx, TX - bw - wall / 2, TT, TX - bw - wall / 2, BB - 30, wall, tc); glass(ctx, TX + bw + wall / 2, TT, TX + bw + wall / 2, BB - 30, wall, tc);
+    text(ctx, 'glass tube, r = ' + fmt(r, 2) + ' mm', TX, BB + 26, tc, { size: 18, align: 'center' });
     /* the pulls of the surface at the edge of the meniscus, and their net */
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
     const cs = Math.cos(th * RAD), sn = Math.sin(th * RAD), len = Math.max(30, Math.min(50 + 180 * L.g, ytop - 120));
@@ -432,7 +435,7 @@ function freeBody(ctx, x, y, arrows, title) {
     const rword = fmt(r, 2) + ' mm', tword = fmt(th, 0) + '°';
     topline(ctx, Math.abs(cs) <= 0.02 ? L.n[0].toUpperCase() + L.n.slice(1) + ' in a glass tube ' + rword + ' in radius, with a contact angle of 90°, is neither raised nor suppressed.'
       : L.n[0].toUpperCase() + L.n.slice(1) + ' in a glass tube ' + rword + ' in radius, with a contact angle of ' + tword + ', is ' + (h > 0 ? 'raised ' : 'suppressed ') + sigz(Math.abs(hcm), 3) + ' cm' + (out ? ', which is beyond the frame drawn here.' : '.'));
-    readout(d.readout, `\\kh = \\frac{2\\kgamma\\cos\\theta}{\\krho\\kg r} = \\frac{2(${sigz(L.g, 3)}\\ \\text{N/m})\\cos ${fmt(th, 0)}^\\circ}{(${Math.round(L.rho)}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${sciTex(r / 1000, 3)}\\ \\text{m})} = ${minus(sigz(hcm, 3))}\\ \\text{cm}`,
+    readout(d.readout, `\\kh = \\frac{2\\kgamma\\cos\\ktheta}{\\krho\\kg \\krad} = \\frac{2(${sigz(L.g, 3)}\\ \\text{N/m})\\cos ${fmt(th, 0)}^\\circ}{(${Math.round(L.rho)}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${sciTex(r / 1000, 3)}\\ \\text{m})} = ${minus(sigz(hcm, 3))}\\ \\text{cm}`,
       'The height is positive, and the liquid raised, when the contact angle is less than 90°, and negative, the liquid suppressed, when it is more, as it is for mercury in glass. The column is held up by the pull of the surface round the rim of the tube, and it climbs until the weight of the column matches that pull, which is why a narrower tube and a lighter liquid climb higher.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -447,7 +450,7 @@ function freeBody(ctx, x, y, arrows, title) {
 (function () {
   const d = sim('sim-negative-pressure', 680);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 300, step: 1, value: 100, unit: 'N', dec: 0, aria: 'the force pulling the piston up' });
-  const As = ctl(d.controls, { label: 'A', cls: '', min: 0.5, max: 4, step: 0.05, value: 1, unit: 'cm²', dec: 2, aria: 'the area of the piston' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.5, max: 4, step: 0.05, value: 1, unit: 'cm²', dec: 2, aria: 'the area of the piston' });
   const LIMIT = 25.0;                                                        /* atmospheres below zero, the value the book states for this device */
   const V = view({ yaw: 0.0, pitch: 0.42, dist: 2600, cx: 560, cy: 400 });
   const ring = (R, y, n = 48) => Array.from({ length: n + 1 }, (_, i) => V.P([R * Math.cos(TAU * i / n), y, R * Math.sin(TAU * i / n)]));
@@ -477,15 +480,15 @@ function freeBody(ctx, x, y, arrows, title) {
     /* the piston, a disc with a rod, and the pull on it */
     const pT = ring(R, YL + 28), pB = ring(R, YL);
     ctx.save(); ctx.fillStyle = PAL.soft; path(ctx, [...half(pB, true), ...half(pT, true).slice().reverse()], true); ctx.fill(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fill();
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.stroke(); ctx.fillStyle = PAL.soft; path(ctx, pT, true); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.strokeStyle = F.ref('piston'); ctx.lineWidth = 2.5; ctx.stroke(); ctx.fillStyle = PAL.soft; path(ctx, pT, true); ctx.fill(); ctx.stroke(); ctx.restore();
     const rodB = V.P([0, YL + 28, 0]), rodT = V.P([0, YL + 90, 0]);
-    line(ctx, rodB[0], rodB[1], rodT[0], rodT[1], PAL.ink, 6);
-    text(ctx, 'piston', rodB[0] + 22, rodB[1] - 8, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.85) });
+    line(ctx, rodB[0], rodB[1], rodT[0], rodT[1], F.ref('piston'), 6);
+    text(ctx, 'piston', rodB[0] + 22, rodB[1] - 8, F.ref('piston'), { size: 18, bg: alpha(PAL.panel, 0.85) });
     if (Fv > 0) { const al = Math.min(40 + Fv * 0.42, rodT[1] - 104); arrow(ctx, rodT[0], rodT[1], rodT[0], rodT[1] - al, fc, 7); text(ctx, 'F = ' + fmt(Fv, 0) + ' N', rodT[0] + 22, rodT[1] - al / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) }); }
     const wl = V.P([0, YB + 40, 0]);
     text(ctx, 'water', wl[0], wl[1], PAL.ink, { size: 18, align: 'center' });
     const aL = V.P([-R, YL + 14, 0]);
-    text(ctx, 'A = ' + fmt(A, 2) + ' cm²', aL[0] - 18, aL[1], PAL.ink, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'A = ' + fmt(A, 2) + ' cm²', aL[0] - 18, aL[1], C('area'), { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     const pL = V.P([0, parts ? -100 : (YB + YL) / 2, 0]);
     if (Fv > 0 && !parts) text(ctx, 'P = −F/A = ' + minus(sigz(atm, 3)) + ' atm', pL[0], pL[1], pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the height of water a pull this size could hold up, stated beside the cylinder */
@@ -493,7 +496,7 @@ function freeBody(ctx, x, y, arrows, title) {
     topline(ctx, Fv === 0 ? 'With no pull on the piston the water is under no tension, and its pressure is simply the pressure of the air above the piston.'
       : parts ? 'A pull of ' + fmt(Fv, 0) + ' N on a piston of ' + fmt(A, 2) + ' cm² would put the water ' + sigz(-atm, 3) + ' atm below zero, which is more than its cohesive forces can bear, and it separates.'
       : 'A pull of ' + fmt(Fv, 0) + ' N on a piston of ' + fmt(A, 2) + ' cm² puts the water under a negative pressure of ' + sigz(-atm, 3) + ' atm, and the water holds together.');
-    readout(d.readout, `\\kPr = -\\frac{\\kF}{A} = -\\frac{${fmt(Fv, 0)}\\ \\text{N}}{${sciTex(A * 1e-4, 3)}\\ \\text{m}^2} = ${minus(sciTex(P, 3))}\\ \\text{Pa} = ${minus(sigz(atm, 3))}\\ \\text{atm}`,
+    readout(d.readout, `\\kPr = -\\frac{\\kF}{\\karea} = -\\frac{${fmt(Fv, 0)}\\ \\text{N}}{${sciTex(A * 1e-4, 3)}\\ \\text{m}^2} = ${minus(sciTex(P, 3))}\\ \\text{Pa} = ${minus(sigz(atm, 3))}\\ \\text{atm}`,
       parts ? 'The device reaches about 25 atm below zero before the water separates, which is the limit the book gives for it. Up to that limit the water is under tension, held together by the cohesive forces between its molecules.'
         : 'A fluid under tension has a negative absolute pressure, and a negative pressure of this size could hold up a column of water h = |P|/ρg = ' + sigz(hw, 3) + ' m tall, so a pull of this kind, made by evaporation in the leaves, is what can bring sap to the top of a tall tree. The device parts the water at about 25 atm below zero.');
   }

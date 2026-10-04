@@ -89,7 +89,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
 ===================================================================== */
 (function () {
   const d = sim('sim-ton', 680);
-  const ms = ctl(d.controls, { label: 'm', cls: '', min: 100, max: 2000, step: 10, value: 1000, unit: 'kg', dec: 0, aria: 'the mass of each pile', detents: [{ v: 1000, label: 'a ton' }] });
+  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 100, max: 2000, step: 10, value: 1000, unit: 'kg', dec: 0, aria: 'the mass of each pile', detents: [{ v: 1000, label: 'a ton' }] });
   const OPTS = SUBST.filter((r) => r.p !== 'gas' && single(r)).map(optionOf);
   const left = select(d.controls, { label: '\\text{left pile}', options: OPTS, value: 'Polystyrene', aria: 'the substance of the left pile' });
   const right = select(d.controls, { label: '\\text{right pile}', options: OPTS, value: 'Granite', aria: 'the substance of the right pile' });
@@ -101,11 +101,17 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
   const kFront = V.shade([0, 0, 1]), kTop = V.shade([0, 1, 0]), kLeft = V.shade([-1, 0, 0]);
   const quad = (pts) => pts.map((p) => V.P(p));
   /* a cube of side S whose front-bottom-centre sits at x0 on the plank, the plank's depth behind it centred */
-  function cube(x0, S) {
+  /* a shaded face outlined in its pile's referent colour */
+  function rface(pts, k, color) {
+    face(ctx, pts, k);
+    ctx.save(); ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+    ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.stroke(); ctx.restore();
+  }
+  function cube(x0, S, color) {
     const z0 = -DEPTH / 2 + S / 2, z1 = z0 - S, h = S / 2;
-    face(ctx, quad([[x0 - h, 0, z0], [x0 - h, 0, z1], [x0 - h, S, z1], [x0 - h, S, z0]]), kLeft, 3);
-    face(ctx, quad([[x0 - h, S, z0], [x0 + h, S, z0], [x0 + h, S, z1], [x0 - h, S, z1]]), kTop, 3);
-    face(ctx, quad([[x0 - h, 0, z0], [x0 + h, 0, z0], [x0 + h, S, z0], [x0 - h, S, z0]]), kFront, 3);
+    rface(quad([[x0 - h, 0, z0], [x0 - h, 0, z1], [x0 - h, S, z1], [x0 - h, S, z0]]), kLeft, color);
+    rface(quad([[x0 - h, S, z0], [x0 + h, S, z0], [x0 + h, S, z1], [x0 - h, S, z1]]), kTop, color);
+    rface(quad([[x0 - h, 0, z0], [x0 + h, 0, z0], [x0 + h, S, z0], [x0 - h, S, z0]]), kFront, color);
   }
   let ctx;
   function draw() {
@@ -123,19 +129,19 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     face(ctx, quad([[-w, 0, 0], [w, 0, 0], [w, 0, -DEPTH], [-w, 0, -DEPTH]]), kTop, 2.5);
     face(ctx, quad([[-w, -THICK, 0], [w, -THICK, 0], [w, 0, 0], [-w, 0, 0]]), kFront, 2.5);
     /* the two piles */
-    cube(-270, left.mix(side) * PX); cube(270, right.mix(side) * PX);
+    cube(-270, left.mix(side) * PX, F.ref('pile-left')); cube(270, right.mix(side) * PX, F.ref('pile-right'));
     /* one metre, for scale */
     hbracket(ctx, 1170, 1170 + PX, 130, PAL.ink, '1 m');
     /* each pile named once, beneath its place on the plank, with its volume and its density */
-    for (const [x, r, Vv, s] of [[CX - 270, L, VL, sL], [CX + 270, R, VR, sR]]) {
-      text(ctx, lower(r.n) + ': ' + fmt(m, 0) + ' kg fills ' + sigz(Vv, 3) + ' m³, a cube ' + fmt(s, 2) + ' m on a side', x, 618, PAL.ink, { size: 19, align: 'center' });
+    for (const [x, r, Vv, s, id] of [[CX - 270, L, VL, sL, 'pile-left'], [CX + 270, R, VR, sR, 'pile-right']]) {
+      text(ctx, lower(r.n) + ': ' + fmt(m, 0) + ' kg fills ' + sigz(Vv, 3) + ' m³, a cube ' + fmt(s, 2) + ' m on a side', x, 618, F.ref(id), { size: 19, align: 'center' });
       text(ctx, 'ρ = ' + rhoText(r), x, 652, dc, { size: 20, weight: 600, align: 'center' });
     }
     const same = L.n === R.n;
     topline(ctx, same ? fmt(m, 0) + ' kg of ' + lower(L.n) + ' on each side makes two cubes ' + fmt(sL, 2) + ' m on a side, and the plank balances.'
       : fmt(m, 0) + ' kg of ' + lower(L.n) + ' makes a cube ' + fmt(sL, 2) + ' m on a side and ' + fmt(m, 0) + ' kg of ' + lower(R.n) + ' a cube ' + fmt(sR, 2) + ' m on a side, and the plank balances.');
     const ratio = Math.max(VL, VR) / Math.min(VL, VR), big = VL >= VR ? L : R;
-    readout(d.readout, `V = \\frac{m}{\\krho} = \\frac{${fmt(m, 0)}\\ \\text{kg}}{${rhoTex(L)}} = ${sigz(VL, 3)}\\ \\text{m}^3\\text{ of ${lower(L.n)}},\\quad \\frac{${fmt(m, 0)}\\ \\text{kg}}{${rhoTex(R)}} = ${sigz(VR, 3)}\\ \\text{m}^3\\text{ of ${lower(R.n)}}`,
+    readout(d.readout, `\\kvol = \\frac{\\km}{\\krho} = \\frac{${fmt(m, 0)}\\ \\text{kg}}{${rhoTex(L)}} = ${sigz(VL, 3)}\\ \\text{m}^3\\text{ of ${lower(L.n)}},\\quad \\frac{${fmt(m, 0)}\\ \\text{kg}}{${rhoTex(R)}} = ${sigz(VR, 3)}\\ \\text{m}^3\\text{ of ${lower(R.n)}}`,
       same ? 'The two piles are the same substance and the same mass, so they are the same size; the plank balances whatever the two substances are, because a balance compares masses and not volumes.'
         : 'The two piles have the same mass, so the plank balances, and their volumes are in the inverse ratio of their densities: the ' + lower(big.n) + ' pile is ' + sig(ratio, 2) + ' times the volume of the other, because the same mass has to be spread through ' + sig(ratio, 2) + ' times the space.');
   }
@@ -151,8 +157,8 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
 ===================================================================== */
 (function () {
   const d = sim('sim-identify', 1000);
-  const ms = ctl(d.controls, { label: 'm', cls: '', min: 0.1, max: 1000, step: 0.1, value: 240, unit: 'g', dec: 1, aria: 'the mass of the sample' });
-  const vs = ctl(d.controls, { label: 'V', cls: '', min: 1, max: 1000, step: 0.5, value: 89, unit: 'cm³', dec: 1, aria: 'the volume of the sample' });
+  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 1000, step: 0.1, value: 240, unit: 'g', dec: 1, aria: 'the mass of the sample' });
+  const vs = ctl(d.controls, { label: '\\kvol', cls: 'volume', min: 1, max: 1000, step: 0.5, value: 89, unit: 'cm³', dec: 1, aria: 'the volume of the sample' });
   /* rows in the order of their densities, densest first; a range sorts by its upper end */
   const ROWS = SUBST.slice().sort((a, b) => (b.hi ?? b.v) - (a.hi ?? a.v));
   /* The axis is logarithmic, fixed and never rescales: it runs from 10⁻² to 10⁵ kg/m³ in decades, the only
@@ -207,7 +213,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
       : above ? 'It is smaller than any density in the table; the nearest is ' + lower(above.n) + ' (' + rhoText(above) + ').' : '';
     topline(ctx, 'A mass of ' + fmt(m, 1) + ' g in a volume of ' + fmt(Vv, 1) + ' cm³ has a density of ' + sigz(rho, 3) + ' g/cm³, '
       + (found.length ? 'which is the density of ' + list + '.' : 'which matches no substance in the table.'));
-    readout(d.readout, `\\krho = \\frac{m}{V} = \\frac{${fmt(m, 1)}\\ \\text{g}}{${fmt(Vv, 1)}\\ \\text{cm}^3} = ${sigz(rho, 3)}\\ \\text{g/cm}^3 = ${sciTex(rho * 1e3, 3)}\\ \\text{kg/m}^3`,
+    readout(d.readout, `\\krho = \\frac{\\km}{\\kvol} = \\frac{${fmt(m, 1)}\\ \\text{g}}{${fmt(Vv, 1)}\\ \\text{cm}^3} = ${sigz(rho, 3)}\\ \\text{g/cm}^3 = ${sciTex(rho * 1e3, 3)}\\ \\text{kg/m}^3`,
       found.length > 1 ? 'That density belongs to ' + list + ' alike, so a mass and a volume alone cannot say which of them the sample is, and something more than its average density is needed to tell.'
         : found.length === 1 ? 'That density belongs to ' + list + ' and to no other substance in the table, which is how a density can identify what an object is made of. ' + where
         : 'No substance in the table has that density. ' + where);
@@ -223,20 +229,20 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
 ===================================================================== */
 (function () {
   const d = sim('sim-reservoir', 660);
-  const As = ctl(d.controls, { label: 'A', cls: '', min: 10, max: 200, step: 0.5, value: 50, unit: 'km²', dec: 1, aria: 'the surface area of the reservoir' });
-  const hs = ctl(d.controls, { label: 'h', cls: '', min: 5, max: 100, step: 0.5, value: 40, unit: 'm', dec: 1, aria: 'the average depth of the reservoir' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 10, max: 200, step: 0.5, value: 50, unit: 'km²', dec: 1, aria: 'the surface area of the reservoir' });
+  const hs = ctl(d.controls, { label: '\\kh', cls: 'position', min: 5, max: 100, step: 0.5, value: 40, unit: 'm', dec: 1, aria: 'the average depth of the reservoir' });
   const liq = select(d.controls, { label: '\\text{the liquid}', options: SUBST.filter((r) => r.p === 'liquid').map(optionOf), value: 'Water (4°C)', aria: 'the liquid the reservoir holds' });
   /* Both scales are fixed from the slider maxima and never follow a slider: the plan holds a square
      14.1 km across (200 km²) in 360 units, and the section holds 100 m of depth in 330 units. */
   const KM = 360 / Math.sqrt(200), MPX = 330 / 100;
   const PCX = 270, PCY = 340, SX1 = 640, SX2 = 1160, DAMW = 60, SURF = 160;
   /* the pale blue a colourless liquid is drawn in, the chapter's physical-fact colour (the manometer of 11.6 uses the same), tinted toward the ink for the darker liquids */
-  const CLEAR = '#bfe0f2';
+  const CLEAR = () => (F.shown.facts ? F.fact('#bfe0f2') : alpha(PAL.ink, 0.18));
   /* the share of the pale blue in the fill, 1 for a colourless liquid; a new liquid's tint blends in */
   const clear = (n) => (rowOf(n).v < 1.5 ? 1 : 0);
   function fill(ctx, x, y, w, h) {
     const k = liq.mix(clear);
-    ctx.save(); ctx.globalAlpha = k; ctx.fillStyle = CLEAR; ctx.fillRect(x, y, w, h);
+    ctx.save(); ctx.globalAlpha = k; ctx.fillStyle = CLEAR(); ctx.fillRect(x, y, w, h);
     ctx.globalAlpha = 1 - k; ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fillRect(x, y, w, h); ctx.restore();
   }
   const G = 9.80;
@@ -248,30 +254,33 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     /* the plan: the reservoir as a square of its area, the dam along its right edge */
     text(ctx, 'seen from above', PCX, 108, PAL.muted, { size: 19, align: 'center' });
     fill(ctx, PCX - side / 2, PCY - side / 2, side, side);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(PCX - side / 2, PCY - side / 2, side, side); ctx.restore();
+    const rc = F.ref('reservoir'), dmc = F.ref('dam');
+    ctx.save(); ctx.strokeStyle = rc; ctx.lineWidth = 3; ctx.strokeRect(PCX - side / 2, PCY - side / 2, side, side); ctx.restore();
     fixed(ctx, PCX + side / 2, PCY - side / 2 - 10, 18, side + 20);
-    text(ctx, 'the dam', PCX + side / 2 + 30, PCY, PAL.muted, { size: 17, align: 'left' });
-    text(ctx, lower(r.n), PCX, PCY, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.8) });
+    ctx.save(); ctx.strokeStyle = dmc; ctx.lineWidth = 3; ctx.strokeRect(PCX + side / 2, PCY - side / 2 - 10, 18, side + 20); ctx.restore();
+    text(ctx, 'the dam', PCX + side / 2 + 30, PCY, dmc, { size: 17, align: 'left' });
+    text(ctx, lower(r.n), PCX, PCY, rc, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.8) });
     hbracket(ctx, PCX - side / 2, PCX + side / 2, PCY + side / 2 + 28, PAL.ink, '');
-    text(ctx, 'A = ' + fmt(A, 1) + ' km², ' + sigz(Math.sqrt(A), 3) + ' km across', PCX, PCY + side / 2 + 54, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    text(ctx, 'A = ' + fmt(A, 1) + ' km², ' + sigz(Math.sqrt(A), 3) + ' km across', PCX, PCY + side / 2 + 54, C('area'), { size: 19, weight: 600, align: 'center' });
     hbracket(ctx, 90, 90 + 5 * KM, 628, PAL.muted, '');
     text(ctx, '5 km', 90 + 5 * KM + 16, 628, PAL.muted, { size: 17 });
     /* the section: the liquid behind the dam, its average depth bracketed */
     text(ctx, 'in section through the dam', (SX1 + SX2 + DAMW) / 2, 108, PAL.muted, { size: 19, align: 'center' });
     const bottom = SURF + h * MPX;
     fixed(ctx, SX2, 130, DAMW, bottom + 34 - 130);
+    ctx.save(); ctx.strokeStyle = dmc; ctx.lineWidth = 3; ctx.strokeRect(SX2, 130, DAMW, bottom + 34 - 130); ctx.restore();
     fixed(ctx, SX1 - 20, bottom, SX2 - SX1 + 20, 34);
     fill(ctx, SX1, SURF, SX2 - SX1, bottom - SURF);
-    line(ctx, SX1, SURF, SX2, SURF, PAL.ink, 3, [14, 10]);
-    line(ctx, SX1, bottom, SX2, bottom, PAL.ink, 2);
-    text(ctx, lower(r.n), (SX1 + SX2) / 2, (SURF + bottom) / 2, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.8) });
-    text(ctx, 'the dam', SX2 + DAMW / 2, bottom + 56, PAL.muted, { size: 17, align: 'center' });
-    vbracket(ctx, SX1 - 36, SURF, bottom, PAL.ink, '', -1);
-    text(ctx, 'h = ' + fmt(h, 1) + ' m', SX1 - 52, (SURF + bottom) / 2, PAL.ink, { size: 19, weight: 600, align: 'right' });
+    line(ctx, SX1, SURF, SX2, SURF, rc, 3, [14, 10]);
+    line(ctx, SX1, bottom, SX2, bottom, rc, 2);
+    text(ctx, lower(r.n), (SX1 + SX2) / 2, (SURF + bottom) / 2, rc, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.8) });
+    text(ctx, 'the dam', SX2 + DAMW / 2, bottom + 56, dmc, { size: 17, align: 'center' });
+    vbracket(ctx, SX1 - 36, SURF, bottom, C('position'), '', -1);
+    text(ctx, 'h = ' + fmt(h, 1) + ' m', SX1 - 52, (SURF + bottom) / 2, C('position'), { size: 19, weight: 600, align: 'right' });
     text(ctx, 'the average depth', SX1 - 52, (SURF + bottom) / 2 + 26, PAL.muted, { size: 15, align: 'right' });
     text(ctx, 'ρ = ' + rhoText(r), (SX1 + SX2) / 2, bottom + 58, dc, { size: 20, weight: 600, align: 'center' });
     topline(ctx, 'A reservoir of ' + fmt(A, 1) + ' km² and average depth ' + fmt(h, 1) + ' m holds ' + sciText(Vv, 3) + ' m³ of ' + lower(r.n) + ', a mass of ' + sciText(m, 3) + ' kg.');
-    readout(d.readout, `m = \\krho V = \\krho A h = (${rhoTex(r)})(${sciTex(Vv, 3)}\\ \\text{m}^3) = ${sciTex(m, 3)}\\ \\text{kg}`,
+    readout(d.readout, `\\km = \\krho \\kvol = \\krho \\karea \\kh = (${rhoTex(r)})(${sciTex(Vv, 3)}\\ \\text{m}^3) = ${sciTex(m, 3)}\\ \\text{kg}`,
       'The volume is V = Ah = (' + fmt(A, 1) + ' km²)(' + fmt(h, 1) + ' m) = ' + sciText(Vv, 3) + ' m³, and the weight of that ' + lower(r.n) + ' is mg = ' + sciText(m * G, 3) + ' N, which, as the following sections show, is not the force the dam must supply.');
   }
   register(d.fig, { update: () => {}, draw });

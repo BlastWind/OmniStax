@@ -57,8 +57,8 @@ function pressRow(ctx, cx, cy, sx, sy, span, gap, ux, uy, L, color) {
   for (let i = 0; i < n; i++) press(ctx, cx + sx * (off + i * gap), cy + sy * (off + i * gap), ux, uy, L, color);
 }
 /* a piston: a slab of ink-outlined panel centred on (x, y), w wide and h tall */
-function piston(ctx, x, y, w, h, dashed) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.fillStyle = PAL.panel;
+function piston(ctx, x, y, w, h, dashed, color = PAL.ink) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.fillStyle = PAL.panel;
   if (dashed) { ctx.setLineDash([8, 8]); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.strokeRect(x - w / 2, y - h / 2, w, h); }
   else { ctx.fillRect(x - w / 2, y - h / 2, w, h); ctx.strokeRect(x - w / 2, y - h / 2, w, h); }
   ctx.restore();
@@ -87,8 +87,8 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
 (function () {
   const d = sim('sim-hydraulic', 680);
   const Fs = ctl(d.controls, { label: '\\kFone', cls: 'force', min: 0, max: 500, step: 10, value: 100, unit: 'N', dec: 0, aria: 'the force on the left piston' });
-  const A1 = ctl(d.controls, { label: 'A_1', cls: '', min: 2, max: 50, step: 1, value: 10, unit: 'cm²', dec: 1, detents: [10], aria: 'the area of the left piston' });
-  const A2 = ctl(d.controls, { label: 'A_2', cls: '', min: 10, max: 250, step: 5, value: 50, unit: 'cm²', dec: 0, detents: [50], aria: 'the area of the right piston' });
+  const A1 = ctl(d.controls, { label: '\\kareaone', cls: 'area', min: 2, max: 50, step: 1, value: 10, unit: 'cm²', dec: 1, detents: [10], aria: 'the area of the left piston' });
+  const A2 = ctl(d.controls, { label: '\\kareatwo', cls: 'area', min: 10, max: 250, step: 5, value: 50, unit: 'cm²', dec: 0, detents: [50], aria: 'the area of the right piston' });
   /* Geometry, fixed: the two pistons at one height, the vessel from y = 250 to the floor at 600.
      A piston is drawn as wide as its diameter, 24 units per centimetre; a force arrow is 0.55
      units per newton, so that F_2 = 5F_1 reads as five times the length; the pressure arrows
@@ -114,7 +114,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       pressRow(ctx, (LX + RX) / 2, LT + 2, 1, 0, RX - w2 / 2 - LX - w1 / 2 - 20, 40, 0, -1, L, pc); /* the roof of the line */
       pressRow(ctx, (LX + RX) / 2 + 20, FL - 2, 1, 0, RX + w2 / 2 - LX + w1 / 2 - 60, 40, 0, 1, L, pc); /* the floor */
     }
-    piston(ctx, LX, PY, w1, PH); piston(ctx, RX, PY, w2, PH);
+    piston(ctx, LX, PY, w1, PH, false, F.ref('piston-1')); piston(ctx, RX, PY, w2, PH, false, F.ref('piston-2'));
     /* the two forces */
     const t1 = push(ctx, LX, pt, 0, 1, F1 * KF, pt - 96, fc);
     const t2 = pushFrom(ctx, RX, pt, 0, -1, F2 * KF, pt - 96, fc);
@@ -122,8 +122,8 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       text(ctx, 'F_1 = ' + N(F1), LX + w1 / 2 + 12, Math.min((t1.y + pt) / 2, pt - 24), fc, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
       text(ctx, 'F_2 = ' + N(F2), RX + w2 / 2 + 12, Math.min((t2.y + pt) / 2, pt - 24), fc, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
     }
-    text(ctx, 'A_1 = ' + fmt(a1, 1) + ' cm²', LX - w1 / 2 - 16, PY, PAL.ink, { size: 22, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'A_2 = ' + fmt(a2, 0) + ' cm²', RX + w2 / 2 + 16, PY, PAL.ink, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'A_1 = ' + fmt(a1, 1) + ' cm²', LX - w1 / 2 - 16, PY, C('area'), { size: 22, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'A_2 = ' + fmt(a2, 0) + ' cm²', RX + w2 / 2 + 16, PY, C('area'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, F1 > 0 ? 'P_1 = P_2 = ' + sci(P, 2) + ' N/m²' : 'P_1 = P_2 = 0', (LX + RX) / 2, FL + 40, pc, { size: 22, weight: 600, align: 'center' });
     hits = [
       { x: LX, y: PY, r: w1 / 2 + 6, name: 'the left piston, of area ' + fmt(a1, 1) + ' cm²' },
@@ -134,7 +134,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     ];
     topline(ctx, F1 === 0 ? 'With no force on the left piston the pressure in the fluid is not raised, and nothing pushes on the right piston.'
       : 'A force of ' + N(F1) + ' on the ' + fmt(a1, 1) + ' cm² piston raises the pressure everywhere in the fluid by ' + sci(P, 2) + ' N/m², which lifts the ' + fmt(a2, 0) + ' cm² piston with ' + N(F2) + '.');
-    readout(d.readout, `\\kProne = \\frac{\\kFone}{A_1} = ${sciTex(P, 2)}\\ \\text{N/m}^2 = \\kPrtwo \\qquad \\kFtwo = \\frac{A_2}{A_1}\\kFone = ${sig3Tex(a2 / a1)}\\times ${fmt(F1, 0)}\\ \\text{N} = ${NTex(F2)}`,
+    readout(d.readout, `\\kProne = \\frac{\\kFone}{\\kareaone} = ${sciTex(P, 2)}\\ \\text{N/m}^2 = \\kPrtwo \\qquad \\kFtwo = \\frac{\\kareatwo}{\\kareaone}\\kFone = ${sig3Tex(a2 / a1)}\\times ${fmt(F1, 0)}\\ \\text{N} = ${NTex(F2)}`,
       'The pressure is the same on every wall and under both pistons, so the force on each piston is that one pressure times the piston\u2019s own area, and the right piston, with ' + sig3(a2 / a1) + ' times the area, is pushed with ' + sig3(a2 / a1) + ' times the force. The pistons are at the same height, so no part of the pressure comes from a difference in depth.');
   }
   hover(d.stage, () => hits);
@@ -151,8 +151,8 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
 (function () {
   const d = sim('sim-brakes', 730);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 200, step: 5, value: 100, unit: 'N', dec: 0, aria: 'the force of the foot on the brake pedal' });
-  const D1 = ctl(d.controls, { label: '\\text{pedal cylinder}', cls: '', min: 0.3, max: 1.5, step: 0.05, value: 0.5, unit: 'cm', dec: 2, detents: [0.5], aria: 'the diameter of the pedal cylinder' });
-  const D2 = ctl(d.controls, { label: '\\text{wheel cylinder}', cls: '', min: 1, max: 4, step: 0.1, value: 2.5, unit: 'cm', dec: 2, detents: [2.5], aria: 'the diameter of each wheel cylinder' });
+  const D1 = ctl(d.controls, { label: '\\text{pedal cylinder}', cls: 'position', min: 0.3, max: 1.5, step: 0.05, value: 0.5, unit: 'cm', dec: 2, detents: [0.5], aria: 'the diameter of the pedal cylinder' });
+  const D2 = ctl(d.controls, { label: '\\text{wheel cylinder}', cls: 'position', min: 1, max: 4, step: 0.1, value: 2.5, unit: 'cm', dec: 2, detents: [2.5], aria: 'the diameter of each wheel cylinder' });
   const count = choice(d.controls, { label: '\\text{wheel cylinders}', options: [{ value: '2', label: 'two' }, { value: '4', label: 'four' }], value: '4', aria: 'how many wheel cylinders the line feeds' });
   /* Geometry, fixed: the lever's arms are the book's 0.20 m and 0.040 m at 1400 units per metre; a
      cylinder is drawn 34 units per centimetre of diameter, one scale for both kinds; force arrows are
@@ -169,9 +169,9 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     for (const [c, w] of [[PAL.ink, 14], [PAL.soft, 9]]) { ctx.strokeStyle = c; ctx.lineWidth = w; ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); }
     ctx.restore();
   }
-  function cylinder(ctx, x0, x1, yc, h, openLeft) {
+  function cylinder(ctx, x0, x1, yc, h, openLeft, color) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x0, yc - h / 2, x1 - x0, h);
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath();
+    ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.beginPath();
     ctx.moveTo(x0, yc - h / 2); ctx.lineTo(x1, yc - h / 2); if (!openLeft) ctx.lineTo(x1, yc + h / 2); else ctx.moveTo(x1, yc + h / 2);
     ctx.lineTo(x0, yc + h / 2); ctx.stroke(); ctx.restore();
   }
@@ -193,22 +193,23 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     const labelRow = count.mix((v) => (v === '4' ? [ROWS[0], ROWS[3]] : [ROWS[1], ROWS[2]]));
     /* the pedal and its lever: pivot at the top, the pushrod 0.040 m below it, the pad 0.20 m below it */
     fixed(ctx, PV.x - 30, PV.y - 36, 60, 26);
-    line(ctx, PV.x, PV.y, PV.x, PAD + 14, PAL.ink, 9);
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(PV.x - 14, PAD + 8, 28, 14); ctx.restore();
+    const pdc = F.ref('pedal'), pcc = F.ref('pedal-cylinder'), wcc = F.ref('wheel-cylinders'), xc = C('position');
+    line(ctx, PV.x, PV.y, PV.x, PAD + 14, pdc, 9);
+    ctx.save(); ctx.fillStyle = pdc; ctx.fillRect(PV.x - 14, PAD + 8, 28, 14); ctx.restore();
     line(ctx, PV.x, ROD, CX0 + 4, ROD, PAL.ink, 6);
     dot(ctx, PV.x, PV.y, PAL.ink, false, 10);
     dot(ctx, PV.x, ROD, PAL.ink, true, 6);
-    vbracket(ctx, 250, PV.y, ROD, PAL.ink, '0.040 m', -1);
-    vbracket(ctx, 130, PV.y, PAD, PAL.ink, '0.20 m', -1);
+    vbracket(ctx, 250, PV.y, ROD, xc, '0.040 m', -1);
+    vbracket(ctx, 130, PV.y, PAD, xc, '0.20 m', -1);
     /* the pedal cylinder, its piston on the pushrod, and the pressure in it */
-    cylinder(ctx, CX0, CX1, ROD, h1, true);
-    piston(ctx, CX0 + 8, ROD, 16, h1);
+    cylinder(ctx, CX0, CX1, ROD, h1, true, pcc);
+    piston(ctx, CX0 + 8, ROD, 16, h1, false, pcc);
     if (L > 0) {
       press(ctx, CX0 + 18, ROD, -1, 0, L, pc); press(ctx, CX1 - 2, ROD, 1, 0, L, pc);
       if (h1 / 2 - 4 >= L) for (const x of [460, 500]) { press(ctx, x, ROD - h1 / 2 + 2, 0, -1, L, pc); press(ctx, x, ROD + h1 / 2 - 2, 0, 1, L, pc); }
     }
-    vbracket(ctx, CX1 + 22, ROD - h1 / 2, ROD + h1 / 2, PAL.ink, fmt(d1, 2) + ' cm', 1);
-    text(ctx, 'A_1 = ' + sig3(a1) + ' cm²', CX0 + 20, ROD - h1 / 2 - 26, PAL.ink, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    vbracket(ctx, CX1 + 22, ROD - h1 / 2, ROD + h1 / 2, xc, fmt(d1, 2) + ' cm', 1);
+    text(ctx, 'A_1 = ' + sig3(a1) + ' cm²', CX0 + 20, ROD - h1 / 2 - 26, C('area'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the wheel cylinders, each with two pistons pushed outward by the same pressure */
     ROWS.forEach((y0, i) => {
       const { a, dy } = partOf(i), yc = y0 + dy;
@@ -217,8 +218,8 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       ctx.save(); ctx.strokeStyle = alpha(PAL.muted, 0.55); ctx.lineWidth = 10; ctx.lineCap = 'butt';
       const R = Math.max(72, h2 / 2 + 30);
       ctx.beginPath(); ctx.arc(WX, yc, R, -0.78, 0.78); ctx.stroke(); ctx.beginPath(); ctx.arc(WX, yc, R, Math.PI - 0.78, Math.PI + 0.78); ctx.stroke(); ctx.restore();
-      cylinder(ctx, WX - WL / 2, WX + WL / 2, yc, h2, false);
-      piston(ctx, WX - WL / 2 + PW / 2, yc, PW, h2); piston(ctx, WX + WL / 2 - PW / 2, yc, PW, h2);
+      cylinder(ctx, WX - WL / 2, WX + WL / 2, yc, h2, false, wcc);
+      piston(ctx, WX - WL / 2 + PW / 2, yc, PW, h2, false, wcc); piston(ctx, WX + WL / 2 - PW / 2, yc, PW, h2, false, wcc);
       if (L > 0) {
         const ys = h2 >= 96 ? [yc - h2 / 4, yc, yc + h2 / 4] : [yc];
         for (const y of ys) { press(ctx, WX - WL / 2 + PW + 2, y, -1, 0, L, pc); press(ctx, WX + WL / 2 - PW - 2, y, 1, 0, L, pc); }
@@ -232,9 +233,9 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     {
       const [yc, yb] = labelRow, room = 172;
       if (F2 > 0) text(ctx, 'F_2 = ' + N(F2), WX + WL / 2 + 2 + Math.max(60, Math.min(F2 * KF, room)) / 2, yc - 28, fc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      vbracket(ctx, WX + 30, yb - h2 / 2, yb + h2 / 2, PAL.ink, undefined, 1);
-      text(ctx, fmt(d2, 2) + ' cm', WX + 30, yb + h2 / 2 + 22, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      text(ctx, 'A_2 = ' + sig3(a2) + ' cm²', WX + 30, yb + h2 / 2 + 52, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      vbracket(ctx, WX + 30, yb - h2 / 2, yb + h2 / 2, xc, undefined, 1);
+      text(ctx, fmt(d2, 2) + ' cm', WX + 30, yb + h2 / 2 + 22, xc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'A_2 = ' + sig3(a2) + ' cm²', WX + 30, yb + h2 / 2 + 52, C('area'), { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     }
     /* the foot on the pedal and the force on the pedal cylinder */
     const tf = push(ctx, PV.x - 5, PAD, 1, 0, Fp * KF, 160, fc);
@@ -254,7 +255,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     const word = n === 4 ? 'four' : 'two';
     topline(ctx, Fp === 0 ? 'With no push on the pedal there is no force on the pedal cylinder, no pressure in the line, and nothing at the wheels.'
       : 'A push of ' + N(Fp) + ' on the pedal becomes ' + N(F1) + ' on the pedal cylinder, and the pressure it makes gives each of the ' + word + ' wheel cylinders ' + N(F2) + '.');
-    readout(d.readout, `\\kFtwo = \\frac{A_2}{A_1}\\kFone = \\frac{\\pi r_2^2}{\\pi r_1^2}\\kFone = \\frac{(${sig3Tex(d2 / 2)}\\ \\text{cm})^2}{(${sig3Tex(d1 / 2)}\\ \\text{cm})^2}\\times ${NTex(F1)} = ${NTex(F2)}`,
+    readout(d.readout, `\\kFtwo = \\frac{\\kareatwo}{\\kareaone}\\kFone = \\frac{\\pi \\krtwo^2}{\\pi \\krone^2}\\kFone = \\frac{(${sig3Tex(d2 / 2)}\\ \\text{cm})^2}{(${sig3Tex(d1 / 2)}\\ \\text{cm})^2}\\times ${NTex(F1)} = ${NTex(F2)}`,
       'The lever\u2019s arms are 0.20 m and 0.040 m, so the ' + N(Fp) + ' on the pedal becomes F\u2081 = ' + N(F1) + ' on the pedal cylinder. That force on ' + sig3(a1) + ' cm² makes a pressure of ' + sci(P, 2) + ' N/m², and the fluid carries the same pressure to every wheel cylinder, so each pushes out with the same ' + N(F2) + ' whether there are two of them or four.');
   }
   hover(d.stage, () => hits);
@@ -272,8 +273,8 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
 (function () {
   const d = sim('sim-hydraulic-work', 700);
   const Fs = ctl(d.controls, { label: '\\kFone', cls: 'force', min: 0, max: 500, step: 10, value: 100, unit: 'N', dec: 0, aria: 'the force on the small piston' });
-  const A2 = ctl(d.controls, { label: 'A_2', cls: '', min: 10, max: 250, step: 5, value: 50, unit: 'cm²', dec: 0, detents: [50], aria: 'the area of the large piston' });
-  const Ds = ctl(d.controls, { label: 'd_1', cls: '', min: 0, max: 10, step: 0.25, value: 5, unit: 'cm', dec: 2, aria: 'how far the small piston is pushed down' });
+  const A2 = ctl(d.controls, { label: '\\kareatwo', cls: 'area', min: 10, max: 250, step: 5, value: 50, unit: 'cm²', dec: 0, detents: [50], aria: 'the area of the large piston' });
+  const Ds = ctl(d.controls, { label: 'd_1', cls: 'position', min: 0, max: 10, step: 0.25, value: 5, unit: 'cm', dec: 2, aria: 'how far the small piston is pushed down' });
   /* Geometry, fixed: the pistons start level at y = 400, the small one drawn for its fixed 10.0 cm²,
      both as wide as their diameters at 24 units per centimetre; a piston's travel is 12 units per
      centimetre, so the small piston at 10.0 cm sits 120 units below its start and the large one can
@@ -293,12 +294,12 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       ctx.strokeRect(LX - w1 / 2 + 4, Y0 + PH / 2, w1 - 8, y1 - Y0);
       ctx.strokeRect(RX - w2 / 2 + 4, y2 + PH / 2, w2 - 8, Y0 - y2);
       ctx.restore();
-      vbracket(ctx, LX - w1 / 2 - 30, Y0, y1, PAL.ink, 'd_1 = ' + sig3(d1) + ' cm', -1);
-      vbracket(ctx, RX + w2 / 2 + 30, y2, Y0, PAL.ink, 'd_2 = ' + sig3(d2) + ' cm', 1);
+      vbracket(ctx, LX - w1 / 2 - 30, Y0, y1, C('position'), 'd_1 = ' + sig3(d1) + ' cm', -1);
+      vbracket(ctx, RX + w2 / 2 + 30, y2, Y0, C('position'), 'd_2 = ' + sig3(d2) + ' cm', 1);
       text(ctx, 'A_1 d_1 = ' + sig3(V) + ' cm³', LX - w1 / 2 - 46, (Y0 + y1) / 2 + 30, PAL.muted, { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
       text(ctx, 'A_2 d_2 = ' + sig3(V) + ' cm³', RX + w2 / 2 + 46, (Y0 + y2) / 2 + 30, PAL.muted, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     }
-    piston(ctx, LX, y1, w1, PH); piston(ctx, RX, y2, w2, PH);
+    piston(ctx, LX, y1, w1, PH, false, F.ref('piston-1')); piston(ctx, RX, y2, w2, PH, false, F.ref('piston-2'));
     const pt1 = y1 - PH / 2, pt2 = y2 - PH / 2;
     const t1 = push(ctx, LX, pt1, 0, 1, F1 * KF, pt1 - 96, fc);
     const t2 = pushFrom(ctx, RX, pt2, 0, -1, F2 * KF, pt2 - 96, fc);
@@ -306,8 +307,8 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       text(ctx, 'F_1 = ' + N(F1), LX + w1 / 2 + 12, Math.min((t1.y + pt1) / 2, pt1 - 24), fc, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
       text(ctx, 'F_2 = ' + N(F2), RX - w2 / 2 - 12, Math.min((t2.y + pt2) / 2, pt2 - 24), fc, { size: 22, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     }
-    text(ctx, 'A_1 = ' + fmt(A1, 1) + ' cm²', LX, FL + 40, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'A_2 = ' + fmt(a2, 0) + ' cm²', RX, FL + 40, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'A_1 = ' + fmt(A1, 1) + ' cm²', LX, FL + 40, C('area'), { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'A_2 = ' + fmt(a2, 0) + ' cm²', RX, FL + 40, C('area'), { size: 22, weight: 600, align: 'center' });
     hits = [
       { x: LX, y: y1, r: w1 / 2 + 6, name: 'the small piston, of area 10.0 cm², pushed down ' + sig3(d1) + ' cm' },
       { x: RX, y: y2, r: w2 / 2 + 6, name: 'the large piston, of area ' + fmt(a2, 0) + ' cm², raised ' + sig3(d2) + ' cm' },

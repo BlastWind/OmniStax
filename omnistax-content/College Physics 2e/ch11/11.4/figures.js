@@ -57,7 +57,7 @@ function tree(ctx, x, y, s = 1) {
   const hs = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0, max: 12, step: 0.1, value: 10.3, unit: 'm', dec: 1, aria: 'the depth of the fluid' });
   const rs = ctl(d.controls, { label: '\\krho', cls: 'density', min: 600, max: 1400, step: 5, value: 1000, unit: 'kg/m³', dec: 0, aria: 'the density of the fluid',
     detents: [{ v: 680, label: 'gasoline' }, 790, 920, 1000, 1025, 1050, { v: 1260, label: 'glycerin' }] });
-  const As = ctl(d.controls, { label: 'A', cls: '', min: 0.25, max: 2, step: 0.05, value: 1, unit: 'm²', dec: 2, aria: 'the area of the bottom of the container' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.25, max: 2, step: 0.05, value: 1, unit: 'm²', dec: 2, aria: 'the area of the bottom of the container' });
   /* the book's derivation as a story: each stop rewrites one factor of P = F/A, and the fluid, the depth and the pressure arrive with it */
   const st = ctl(d.controls, { label: '\\text{derivation}', cls: '', min: 0, max: 4, step: 0.01, value: 0, unit: '', dec: 2, aria: 'the steps from P = F/A to P = hρg' });
   F.story(d, st, { stops: [{ v: 0, label: 'F/A' }, { v: 1, label: 'mg/A' }, { v: 2, label: 'ρVg/A' }, { v: 3, label: 'ρAhg/A' }, { v: 4, label: 'hρg' }] });
@@ -65,10 +65,10 @@ function tree(ctx, x, y, s = 1) {
   d.readout.append(formula, note);
   const res = (P) => ` = \\mk{r}{${sci(P).tex}}\\ \\text{N/m}^2`;
   const STEPS = [
-    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{F}{\\kF}}{\\mk{A}{A}}` + res(P),
-    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{m}{m}\\mk{g}{\\kg}}{\\mk{A}{A}}` + res(P),
-    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{rho}{\\krho}\\mk{V}{V}\\mk{g}{\\kg}}{\\mk{A}{A}}` + res(P),
-    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{rho}{\\krho}\\mk{A2}{A}\\mk{h}{\\kh}\\mk{g}{\\kg}}{\\mk{A}{A}}` + res(P),
+    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{F}{\\kF}}{\\mk{A}{\\karea}}` + res(P),
+    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{m}{\\km}\\mk{g}{\\kg}}{\\mk{A}{\\karea}}` + res(P),
+    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{rho}{\\krho}\\mk{V}{\\kvol}\\mk{g}{\\kg}}{\\mk{A}{\\karea}}` + res(P),
+    (P) => `\\mk{P}{\\kPr} = \\frac{\\mk{rho}{\\krho}\\mk{A2}{\\karea}\\mk{h}{\\kh}\\mk{g}{\\kg}}{\\mk{A}{\\karea}}` + res(P),
     (P, h, rho) => `\\mk{P}{\\kPr} = \\mk{h}{\\kh}\\mk{rho}{\\krho}\\mk{g}{\\kg} = (\\mk{hv}{${fmt(h, 1)}}\\ \\text{m})(\\mk{rv}{${sci(rho).tex}}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)` + res(P),
   ];
   /* the factor each step splits: F into m and g, m into ρ and V, V into A and h; at the last the two areas cancel */
@@ -98,7 +98,8 @@ function tree(ctx, x, y, s = 1) {
       ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.22); ctx.fillRect(L, y, R - L, BOT - y); ctx.restore();
       line(ctx, L, SY, R, SY, PAL.muted, 2, kFill < 1 ? [8, 8] : undefined);
     }
-    line(ctx, L, TOPY, L, BOT, PAL.ink, 4); line(ctx, R, TOPY, R, BOT, PAL.ink, 4); line(ctx, L - 2, BOT, R + 2, BOT, PAL.ink, 4);
+    const cc = F.ref('container');
+    line(ctx, L, TOPY, L, BOT, cc, 4); line(ctx, R, TOPY, R, BOT, cc, 4); line(ctx, L - 2, BOT, R + 2, BOT, cc, 4);
     /* the pressure on the walls, one arrow per metre of depth and one at the bottom, and on the bottom, growing in a cascade as the areas cancel */
     const depths = []; for (let k = 1; k < h - 0.3; k += 1) depths.push(k); if (h > 0) depths.push(h);
     const nB = A < 0.6 ? 3 : 5;   /* fewer arrows under a narrow bottom, so they never touch */
@@ -120,9 +121,9 @@ function tree(ctx, x, y, s = 1) {
     ctx.save(); ctx.globalAlpha = 0.35 + 0.65 * kDepth;
     if (h > 0) vbracket(ctx, L - 118, SY, BOT, xc, 'h = ' + fmt(h, 1) + ' m', -1, { size: 19 });
     ctx.restore();
-    text(ctx, 'A = ' + fmt(A, 2) + ' m²', CX, BOT + 88 + 24, PAL.ink, { align: 'center', weight: 600, size: 22 });
+    text(ctx, 'A = ' + fmt(A, 2) + ' m²', CX, BOT + 88 + 24, C('area'), { align: 'center', weight: 600, size: 22 });
     if (h > 0 && kP > 0.5) lab.add('P = ' + kpa(P) + ' kPa', R + 4, BOT + Math.max(lenB, 10) / 2 + 6, 1, 0.2, pc, 21, 20);
-    text(ctx, 'the container', L - 4, TOPY - 16, PAL.muted, { size: 18, align: 'left' });
+    text(ctx, 'the container', L - 4, TOPY - 16, cc, { size: 18, align: 'left' });
     /* the graph: pressure against depth for this fluid, the 1 atm level dashed across it */
     const { X, Y } = axes(ctx, box, [0, 12], [0, 200], { xl: 'depth h (m)', yl: 'pressure due to the fluid, P (kPa)', xc, yc: pc, nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, box.l, Y(101), box.r, Y(101), PAL.muted, 2, [10, 10]);
@@ -165,7 +166,7 @@ function tree(ctx, x, y, s = 1) {
   const H = 640;
   const d = sim('sim-dam', H);
   const hs = ctl(d.controls, { label: '\\kh', cls: 'position', min: 10, max: 120, step: 1, value: 80, unit: 'm', dec: 1, aria: 'the depth of the water at the dam' });
-  const Ls = ctl(d.controls, { label: 'L', cls: '', min: 100, max: 1000, step: 10, value: 500, unit: 'm', dec: 0, aria: 'the length of the dam' });
+  const Ls = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 100, max: 1000, step: 10, value: 500, unit: 'm', dec: 0, aria: 'the length of the dam' });
   /* The scene is in metres scaled by K, 1.9 canvas units to the metre, fixed from the
      120 m maximum of the depth. The dam is a prism 125 m tall, 10 m across at the crest
      and 80 m at its base, its water face at x = 0 running from z = 0 (the near end) to
@@ -187,7 +188,8 @@ function tree(ctx, x, y, s = 1) {
     const lab = labeller(ctx, H); lab.block(0, 0, 1400, 100);
     /* the ground, then the dam: its water face, its near end and its crest */
     poly([P(-160, 0, 70), P(WRES + 120, 0, 70), P(WRES + 120, 0, -L - 200), P(-160, 0, -L - 200)], PAL.soft, null);
-    const solid = (pts, k) => { poly(pts, PAL.soft, null); poly(pts, alpha(PAL.ink, k), PAL.ink, 2.5); };
+    const dmc = F.ref('dam');
+    const solid = (pts, k) => { poly(pts, PAL.soft, null); poly(pts, alpha(PAL.ink, k), dmc, 2.5); };
     solid([P(0, 0, 0), P(0, DAMH, 0), P(0, DAMH, -L), P(0, 0, -L)], 0.16);
     solid([P(0, 0, 0), P(0, DAMH, 0), P(-10, DAMH, 0), P(-80, 0, 0)], 0.08);
     solid([P(0, DAMH, 0), P(-10, DAMH, 0), P(-10, DAMH, -L), P(0, DAMH, -L)], 0.03);
@@ -214,14 +216,14 @@ function tree(ctx, x, y, s = 1) {
     bracket(ctx, hA, hB, xc); bracket(ctx, bA, bB, xc);
     lab.add('h = ' + fmt(h, 1) + ' m', (hA[0] + hB[0]) / 2, (hA[1] + hB[1]) / 2, -1, 0, xc, 22, 22);
     lab.add('h̄ = ' + fmt(hb, 1) + ' m', bB[0], bB[1], 1, 1.5, xc, 22, 22);
-    bracket(ctx, P(0, DAMH + 7, 0), P(0, DAMH + 7, -L), PAL.ink, 'L = ' + fmt(L, 0) + ' m', 0);
+    bracket(ctx, P(0, DAMH + 7, 0), P(0, DAMH + 7, -L), xc, 'L = ' + fmt(L, 0) + ' m', 0);
     dot(ctx, ...P(34, h - hb, 10), xc, true, 6);
     const cn = P(-5, DAMH, -L * 0.3), wn = P(WRES * 0.8, h, -L * 0.85);
-    lab.add('the dam', cn[0], cn[1], -0.3, 1, PAL.ink, 19, 34);
+    lab.add('the dam', cn[0], cn[1], -0.3, 1, dmc, 19, 34);
     lab.add('the water it retains', wn[0], wn[1], 0.9, -0.5, PAL.muted, 19, 26);
     lab.flush();
     topline(ctx, 'Water ' + fmt(h, 1) + ' m deep along a dam ' + fmt(L, 0) + ' m long presses on it with an average pressure of ' + kpa(Pbar) + ' kPa and a force of ' + sci(Fv).txt + ' N.');
-    readout(d.readout, `\\begin{aligned}\\kPbar &= \\khbar\\krho\\kg = (${fmt(hb, 1)}\\ \\text{m})(1.00\\times 10^{3}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${sci(Pbar).tex}\\ \\text{N/m}^2\\\\ \\kF &= \\kPbar A = (${sci(Pbar).tex}\\ \\text{N/m}^2)(${sci(A).tex}\\ \\text{m}^2) = ${sci(Fv).tex}\\ \\text{N}\\end{aligned}`,
+    readout(d.readout, `\\begin{aligned}\\kPbar &= \\khbar\\krho\\kg = (${fmt(hb, 1)}\\ \\text{m})(1.00\\times 10^{3}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${sci(Pbar).tex}\\ \\text{N/m}^2\\\\ \\kF &= \\kPbar \\karea = (${sci(Pbar).tex}\\ \\text{N/m}^2)(${sci(A).tex}\\ \\text{m}^2) = ${sci(Fv).tex}\\ \\text{N}\\end{aligned}`,
       'The pressure grows in a straight line from nothing at the surface to hρg = ' + kpa(Pbot) + ' kPa at the bottom, so its average over the face is the pressure at the average depth, halfway down. That average depends on the depth alone and not on how far the reservoir reaches behind the dam; the force depends on the depth and on the size of the face, A = hL = ' + sci(A).txt + ' m².');
   }
   register(d.fig, { update: () => {}, draw });
@@ -236,7 +238,7 @@ function tree(ctx, x, y, s = 1) {
 (function () {
   const H = 600;
   const d = sim('sim-atmosphere', H);
-  const As = ctl(d.controls, { label: 'A', cls: '', min: 0.25, max: 4, step: 0.05, value: 1, unit: 'm²', dec: 2, aria: 'the area of the patch of ground' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.25, max: 4, step: 0.05, value: 1, unit: 'm²', dec: 2, aria: 'the area of the patch of ground' });
   const hs = ctl(d.controls, { label: '\\kh', cls: 'position', min: 20, max: 200, step: 1, value: 120, unit: 'km', dec: 0, aria: 'the height the atmosphere is taken to extend to' });
   /* The patch's width follows the square root of the area at 70 units to the metre,
      so the 4 m² patch is 140 wide; the weight arrow takes 260 units at the largest
@@ -258,15 +260,15 @@ function tree(ctx, x, y, s = 1) {
     const part = (y0, y1, a0, a1) => {
       const g = ctx.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, alpha(PAL.ink, a0)); g.addColorStop(1, alpha(PAL.ink, a1));
       ctx.save(); ctx.fillStyle = g; ctx.fillRect(L, y1, R - L, y0 - y1); ctx.restore();
-      line(ctx, L, y0, L, y1, PAL.muted, 2); line(ctx, R, y0, R, y1, PAL.muted, 2);
+      line(ctx, L, y0, L, y1, F.ref('column'), 2); line(ctx, R, y0, R, y1, F.ref('column'), 2);
     };
     part(GND, BRK, 0.34, 0.06); part(BRK - 22, TOP, 0.05, 0.01);
-    for (const x of [L, R]) { line(ctx, x - 12, BRK - 4, x + 12, BRK - 18, PAL.muted, 2); }
-    line(ctx, L, TOP, R, TOP, PAL.muted, 2, [6, 6]);
+    for (const x of [L, R]) { line(ctx, x - 12, BRK - 4, x + 12, BRK - 18, F.ref('column'), 2); }
+    line(ctx, L, TOP, R, TOP, F.ref('column'), 2, [6, 6]);
     text(ctx, 'the top of the atmosphere', R + 14, TOP, PAL.muted, { size: 18, align: 'left' });
     /* the patch of ground the column stands on */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.5); ctx.beginPath(); ctx.moveTo(L, GND); ctx.lineTo(R, GND); ctx.lineTo(R + 18, GND + 12); ctx.lineTo(L + 18, GND + 12); ctx.closePath(); ctx.fill(); ctx.restore();
-    text(ctx, 'A = ' + fmt(A, 2) + ' m²', CX + 9, GND + 42, PAL.ink, { align: 'center', weight: 600, size: 22 });
+    ctx.save(); ctx.fillStyle = alpha(C('area'), 0.5); ctx.beginPath(); ctx.moveTo(L, GND); ctx.lineTo(R, GND); ctx.lineTo(R + 18, GND + 12); ctx.lineTo(L + 18, GND + 12); ctx.closePath(); ctx.fill(); ctx.restore();
+    text(ctx, 'A = ' + fmt(A, 2) + ' m²', CX + 9, GND + 42, C('area'), { align: 'center', weight: 600, size: 22 });
     text(ctx, 'P = w/A = 1.01 × 10⁵ N/m² = 1 atm', CX + 9, GND + 70, pc, { align: 'center', weight: 600, size: 20 });
     /* the height of the column, with the same break */
     const bx = L - 40;

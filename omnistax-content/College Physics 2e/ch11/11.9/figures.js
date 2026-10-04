@@ -28,6 +28,8 @@ const ltx = (v, d) => { const x = eps(v, d); return (x < 0 ? '-' : '') + fmt(Mat
 const listOf = (xs) => (xs.length <= 1 ? xs.join('') : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1]);
 /* blood, which is red: bright where it carries oxygen and dark where it returns to the heart (rule 7, the physical fact) */
 const BLOOD = '#C93A2E', BLOOD_DARK = '#7B2A3B';
+/* blood's own colour through the facts switch; with facts off it is a neutral grey rather than a solid ink fill */
+const blood = (c) => (F.shown.facts ? F.fact(c) : PAL.muted);
 /* a rounded rectangle path */
 function rrect(ctx, x, y, w, h, r) {
   ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
@@ -162,31 +164,31 @@ const UNITS = {
     for (const s of [-1, 1]) { ctx.beginPath(); ctx.ellipse(HX + s * 62, 160, 52, 62, 0, 0, TAU); ctx.fill(); ctx.stroke(); }
     ctx.restore();
     /* the systemic loop: bright blood from the left ventricle down the right side and along the bottom to the capillaries, dark blood back up the left side to the right atrium */
-    tube(ctx, [[HX + HW, LOOP.y], [LOOP.r, LOOP.y], [LOOP.r, LOOP.b], [HX + 60, LOOP.b]], BLOOD, W);
-    tube(ctx, [[HX - 60, LOOP.b], [LOOP.l, LOOP.b], [LOOP.l, LOOP.y], [HX - HW, LOOP.y]], BLOOD_DARK, W);
+    tube(ctx, [[HX + HW, LOOP.y], [LOOP.r, LOOP.y], [LOOP.r, LOOP.b], [HX + 60, LOOP.b]], blood(BLOOD), W);
+    tube(ctx, [[HX - 60, LOOP.b], [LOOP.l, LOOP.b], [LOOP.l, LOOP.y], [HX - HW, LOOP.y]], blood(BLOOD_DARK), W);
     /* the capillary bed between them, where bright blood becomes dark */
     ctx.save(); ctx.lineWidth = 4; ctx.lineCap = 'round';
     for (let k = -3; k <= 3; k++) {
-      const g = ctx.createLinearGradient(HX + 60, 0, HX - 60, 0); g.addColorStop(0, BLOOD); g.addColorStop(1, BLOOD_DARK);
+      const g = ctx.createLinearGradient(HX + 60, 0, HX - 60, 0); g.addColorStop(0, blood(BLOOD)); g.addColorStop(1, blood(BLOOD_DARK));
       ctx.strokeStyle = g; ctx.beginPath(); ctx.moveTo(HX + 60, LOOP.b - 8 + k * 3);
       for (let x = HX + 50; x >= HX - 60; x -= 10) ctx.lineTo(x, LOOP.b + k * 9 + (x % 20 === 0 ? 5 : -5) * Math.sin(k));
       ctx.stroke();
     }
     ctx.restore();
     /* the pulmonary loop: dark blood from the right ventricle up to the lungs, bright blood back down to the left atrium */
-    tube(ctx, [[PL.l, HY - HH / 2 + 4], [PL.l, PL.top]], BLOOD_DARK, W);
-    tube(ctx, [[PL.r, PL.top], [PL.r, HY - HH / 2 + 4]], BLOOD, W);
+    tube(ctx, [[PL.l, HY - HH / 2 + 4], [PL.l, PL.top]], blood(BLOOD_DARK), W);
+    tube(ctx, [[PL.r, PL.top], [PL.r, HY - HH / 2 + 4]], blood(BLOOD), W);
     /* the heart: the right side dark, the left side bright, atria above the ventricles */
     ctx.save(); ctx.lineWidth = 4; ctx.strokeStyle = PAL.ink;
-    ctx.fillStyle = BLOOD_DARK; rrect(ctx, HX - HW, HY - HH / 2, HW, HH, 22); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = BLOOD; rrect(ctx, HX, HY - HH / 2, HW, HH, 22); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = blood(BLOOD_DARK); rrect(ctx, HX - HW, HY - HH / 2, HW, HH, 22); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = blood(BLOOD); rrect(ctx, HX, HY - HH / 2, HW, HH, 22); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = alpha(PAL.panel, 0.8); ctx.lineWidth = 3; ctx.setLineDash([8, 8]); ctx.beginPath(); ctx.moveTo(HX - HW + 8, HY); ctx.lineTo(HX + HW - 8, HY); ctx.stroke();
     ctx.restore();
     /* which way the blood goes: fixed arrowheads, since the flow itself is Chapter 12's subject */
     head(ctx, 600, LOOP.y, 1, 0); head(ctx, LOOP.r, 560, 0, 1); head(ctx, 600, LOOP.b, -1, 0); head(ctx, 280, LOOP.b, -1, 0); head(ctx, LOOP.l, 545, 0, -1); head(ctx, 300, LOOP.y, 1, 0);
     head(ctx, PL.l, 300, 0, -1); head(ctx, PL.r, 300, 0, 1);
     /* the two pumps */
-    text(ctx, 'right side', HX - HW / 2, HY + 88, PAL.ink, { size: 17, align: 'center' }); text(ctx, 'left side', HX + HW / 2, HY + 88, PAL.ink, { size: 17, align: 'center' });
+    text(ctx, 'right side', HX - HW / 2, HY + 88, F.ref('right-side'), { size: 17, align: 'center' }); text(ctx, 'left side', HX + HW / 2, HY + 88, F.ref('left-side'), { size: 17, align: 'center' });
     text(ctx, 'the heart, two pumps', HX, HY + 114, PAL.ink, { size: 17, align: 'center' });
     /* the stations and their pressures; the chosen one is filled and the others hollow */
     for (const s of ST) {
@@ -216,8 +218,8 @@ const UNITS = {
     });
     /* the pumps: from the vena cavae up to the pulmonary artery, and from the pulmonary veins back up to the aorta */
     const yOf = (i) => box.t + (i + 0.5) * RH;
-    arrow(ctx, X(4) + 6, yOf(4) + 6, X(25) - 4, yOf(5) - 8, pc, 3); text(ctx, 'the right side pumps', X(25) + 40, (yOf(4) + yOf(5)) / 2 + 2, PAL.muted, { size: 16 });
-    arrow(ctx, X(8) + 8, yOf(6) - 4, X(120) - 6, yOf(0) + 12, pc, 3); text(ctx, 'the left side pumps', X(60), (yOf(0) + yOf(6)) / 2 - 40, PAL.muted, { size: 16, align: 'center', bg: alpha(PAL.panel, 0.9) });
+    arrow(ctx, X(4) + 6, yOf(4) + 6, X(25) - 4, yOf(5) - 8, pc, 3); text(ctx, 'the right side pumps', X(25) + 40, (yOf(4) + yOf(5)) / 2 + 2, F.ref('right-side'), { size: 16 });
+    arrow(ctx, X(8) + 8, yOf(6) - 4, X(120) - 6, yOf(0) + 12, pc, 3); text(ctx, 'the left side pumps', X(60), (yOf(0) + yOf(6)) / 2 - 40, F.ref('left-side'), { size: 16, align: 'center', bg: alpha(PAL.panel, 0.9) });
     topline(ctx, cur.head);
     const lost = 120 - cur.P;
     readout(d.readout, `\\kPg = ${fmt(cur.P, 0)}\\ \\text{mm Hg} = ${fmt(cur.P, 0)}\\times 133\\ \\text{N/m}^2 = ${sci(cur.P * MMHG, 2)}\\ \\text{N/m}^2`,
@@ -242,11 +244,12 @@ const UNITS = {
   /* a person drawn along an axis: u runs from the feet (0) towards the head, v is across the body; the frame is rotated so the same drawing stands and lies */
   function body(ctx, ox, oy, ux, uy) {
     const P = (u, v) => [ox + u * SC * ux - v * SC * uy, oy + u * SC * uy + v * SC * ux];
-    const seg = (a, b, w) => { const [x1, y1] = P(...a), [x2, y2] = P(...b); line(ctx, x1, y1, x2, y2, PAL.ink, w); };
+    const pc = F.ref('person');
+    const seg = (a, b, w) => { const [x1, y1] = P(...a), [x2, y2] = P(...b); line(ctx, x1, y1, x2, y2, pc, w); };
     ctx.save(); ctx.lineCap = 'round';
     seg([0, -0.09], [0.96, -0.09], 9); seg([0, 0.09], [0.96, 0.09], 9);                  /* legs */
     seg([0, -0.09], [0, -0.16], 7); seg([0, 0.09], [0, 0.16], 7);                       /* feet */
-    ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6;             /* torso */
+    ctx.fillStyle = PAL.panel; ctx.strokeStyle = pc; ctx.lineWidth = 6;             /* torso */
     ctx.beginPath(); const pts = [[0.92, -0.16], [1.5, -0.22], [1.5, 0.22], [0.92, 0.16]]; pts.forEach(([u, v], i) => { const [x, y] = P(u, v); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }); ctx.closePath(); ctx.fill(); ctx.stroke();
     seg([1.47, -0.22], [0.95, -0.3], 7); seg([1.47, 0.22], [0.95, 0.3], 7);              /* arms */
     seg([1.5, 0], [1.58, 0], 8);                                                          /* neck */
@@ -271,10 +274,10 @@ const UNITS = {
     const P = body(ctx, turn[1], turn[2], ux, uy);
     const [hx, hy] = P(HEART, 0), [px, py] = P(HEART - dh, 0);
     /* the column of blood between the heart and the point, fading as the body lies down and the column has no height */
-    faded(ctx, 0.3 * up, [0, 0], () => { const [ax, ay] = P(HEART, -0.045), [bx, by] = P(HEART, 0.045), [cx, cy] = P(HEART - dh, 0.045), [ex, ey] = P(HEART - dh, -0.045); ctx.fillStyle = BLOOD; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.lineTo(cx, cy); ctx.lineTo(ex, ey); ctx.closePath(); ctx.fill(); });
-    dot(ctx, hx, hy, BLOOD, true, 9); dot(ctx, px, py, xc, true, 9);
+    faded(ctx, 0.3 * up, [0, 0], () => { const [ax, ay] = P(HEART, -0.045), [bx, by] = P(HEART, 0.045), [cx, cy] = P(HEART - dh, 0.045), [ex, ey] = P(HEART - dh, -0.045); ctx.fillStyle = blood(BLOOD); ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.lineTo(cx, cy); ctx.lineTo(ex, ey); ctx.closePath(); ctx.fill(); });
+    dot(ctx, hx, hy, blood(BLOOD), true, 9); dot(ctx, px, py, xc, true, 9);
     faded(ctx, aS, [0, 0], () => {
-      text(ctx, 'the heart', hx + 0.24 * SC + 16, hy, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.9) });
+      text(ctx, 'the heart', hx + 0.24 * SC + 16, hy, F.ref('heart'), { size: 18, bg: alpha(PAL.panel, 0.9) });
       /* the scale of depth below the heart beside the person */
       const SX = 560; line(ctx, SX, hy - (TOP - HEART) * SC, SX, hy + HEART * SC, PAL.muted, 2);
       for (let v = -0.4; v <= 1.41; v += 0.2) { const y = hy + v * SC; line(ctx, SX - 8, y, SX + 8, y, PAL.muted, 2); text(ctx, plus(v, 1) + ' m', SX + 16, y, PAL.muted, { size: 16 }); }
@@ -284,7 +287,7 @@ const UNITS = {
     faded(ctx, aL, [0, 0], () => {
       line(ctx, 40, hy, 700, hy, xc, 2, [10, 10]);
       text(ctx, 'the level of the heart', 60, hy - 60, xc, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.9) });
-      text(ctx, 'the heart', hx, hy - 34 - 0.22 * SC, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.9) });
+      text(ctx, 'the heart', hx, hy - 34 - 0.22 * SC, F.ref('heart'), { size: 18, align: 'center', bg: alpha(PAL.panel, 0.9) });
     });
     if (Math.abs(py - hy) > 6) vbracket(ctx, Math.min(hx, px) - 130, Math.min(hy, py), Math.max(hy, py), xc, 'Δh = ' + num(dhEff, 2) + ' m', -1);
     else text(ctx, 'Δh = 0', standing ? 184 : px, standing ? hy : hy + 0.3 * SC + 26, xc, { size: 22, weight: 600, align: standing ? 'right' : 'center', bg: alpha(PAL.panel, 0.9) });
@@ -316,7 +319,7 @@ const UNITS = {
 (function () {
   const d = sim('sim-eye-force', 620);
   const ps = ctl(d.controls, { label: '\\kPg', cls: 'pressure', min: 0, max: 100, step: 0.5, value: 85, unit: 'mm Hg', dec: 1, aria: 'the pressure of the fluid inside the eye', detents: [12, 24, 85] });
-  const as = ctl(d.controls, { label: 'A', cls: '', min: 3, max: 9, step: 0.5, value: 6, unit: 'cm²', dec: 1, aria: 'the area of the back of the eye' });
+  const as = ctl(d.controls, { label: '\\karea', cls: 'area', min: 3, max: 9, step: 0.5, value: 6, unit: 'cm²', dec: 1, aria: 'the area of the back of the eye' });
   const EX = 400, EY = 350, R = 165, KF = 15;                     /* the eye's centre and radius; KF is canvas units per newton */
   function draw() {
     const { ctx } = begin(d.c);
@@ -326,12 +329,12 @@ const UNITS = {
     /* the optic nerve leaving the back of the eye below the force, then the eyeball */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.soft;
     ctx.beginPath(); ctx.moveTo(EX + R * Math.cos(0.42), EY + R * Math.sin(0.42)); ctx.lineTo(EX + R + 150, EY + 140); ctx.lineTo(EX + R + 150, EY + 176); ctx.lineTo(EX + R * Math.cos(0.68), EY + R * Math.sin(0.68)); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = PAL.panel; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(EX, EY, R, 0, TAU); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = PAL.panel; ctx.lineWidth = 5; ctx.strokeStyle = F.ref('eye'); ctx.beginPath(); ctx.arc(EX, EY, R, 0, TAU); ctx.fill(); ctx.stroke();
     /* the cornea bulging at the front, and the lens behind it */
     ctx.beginPath(); ctx.arc(EX - R + 62, EY, 82, Math.PI - 1.05, Math.PI + 1.05); ctx.stroke();
     ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(EX - R + 66, EY, 12, 46, 0, 0, TAU); ctx.stroke();
     /* the back of the eye, the area A the pressure acts on */
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.beginPath(); ctx.arc(EX, EY, R, -half, half); ctx.stroke();
+    ctx.strokeStyle = C('area'); ctx.lineWidth = 12; ctx.beginPath(); ctx.arc(EX, EY, R, -half, half); ctx.stroke();
     ctx.restore();
     /* the fluid presses outward everywhere; the pushes on the back of the eye are the ones that add to the force */
     if (P > 0) {
@@ -347,7 +350,7 @@ const UNITS = {
     /* the one force those pushes add to, on the back of the eye */
     if (Fv > 0.05) arrow(ctx, EX + R + 6, EY, EX + R + 6 + Fv * KF, EY, fc, 5);
     text(ctx, 'F = ' + fmt(Fv, 1) + ' N', EX + R + 20, EY - 30, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
-    leader(ctx, 'the back of the eye, area A = ' + fmt(A, 1) + ' cm²', EX + R * Math.cos(-half) - 10, EY - R - 40, EX + R * Math.cos(-half) - 4, EY + R * Math.sin(-half) - 6, PAL.ink, 'right');
+    leader(ctx, 'the back of the eye, area A = ' + fmt(A, 1) + ' cm²', EX + R * Math.cos(-half) - 10, EY - R - 40, EX + R * Math.cos(-half) - 4, EY + R * Math.sin(-half) - 6, C('area'), 'right');
     leader(ctx, 'cornea', EX - R - 20, EY - 120, EX - R - 4, EY - 60, PAL.ink, 'right');
     leader(ctx, 'lens', EX - R - 20, EY + 130, EX - R + 60, EY + 48, PAL.ink, 'right');
     leader(ctx, 'optic nerve', EX + R + 70, EY + 210, EX + R + 60, EY + 150, PAL.ink, 'left');
@@ -356,15 +359,15 @@ const UNITS = {
     line(ctx, MX, MY + 8, MX, MY + 70, PAL.muted, 6); line(ctx, MX - 70, MY + 70, MX + 70, MY + 70, PAL.muted, 6);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; rrect(ctx, MX - 90, MY - 6, 180, 14, 6); ctx.fill(); ctx.stroke();
     const bw = 40 + Math.cbrt(Math.max(m, 0.01)) * 70;
-    ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; rrect(ctx, MX - bw / 2, MY - 6 - bw * 0.7, bw, bw * 0.7, 6); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'm = ' + fmt(m, 2) + ' kg', MX, MY - 6 - bw * 0.7 - 26, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('block'); ctx.lineWidth = 4; rrect(ctx, MX - bw / 2, MY - 6 - bw * 0.7, bw, bw * 0.7, 6); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, 'm = ' + fmt(m, 2) + ' kg', MX, MY - 6 - bw * 0.7 - 26, C('mass'), { size: 20, weight: 600, align: 'center' });
     if (Fv > 0.05) arrow(ctx, MX, MY - bw * 0.35, MX, MY - bw * 0.35 + Fv * KF, fc, 5);
     text(ctx, 'w = mg = ' + fmt(Fv, 1) + ' N', MX + 24, MY + 40 + Math.min(Fv * KF, 100), fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
-    text(ctx, 'a mass whose weight is the same force, resting on the eye', MX, 560, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'a mass whose weight is the same force, resting on the eye', MX, 560, F.ref('block'), { size: 17, align: 'center' });
     const range = P >= 12 && P <= 24 ? ', within the normal range,' : P > 24 ? ', above the normal range,' : P > 0 ? ', below the normal range,' : '';
     topline(ctx, P === 0 ? 'With no pressure in the eye the fluid pushes on nothing, and the eye would not keep its shape.'
       : 'A pressure of ' + fmt(P, 1) + ' mm Hg' + range + ' on the ' + fmt(A, 1) + ' cm² at the back of the eye is a force of ' + fmt(Fv, 1) + ' N, the weight of a ' + fmt(m, 2) + ' kg mass resting on the eye.');
-    readout(d.readout, `\\kF = \\kh\\krho\\kg A = (${fmt(P, 1)}\\times 10^{-3}\\ \\text{m})(13.6\\times 10^{3}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${fmt(A, 1)}\\times 10^{-4}\\ \\text{m}^2) = ${fmt(Fv, 1)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = \\kh\\krho\\kg \\karea = (${fmt(P, 1)}\\times 10^{-3}\\ \\text{m})(13.6\\times 10^{3}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${fmt(A, 1)}\\times 10^{-4}\\ \\text{m}^2) = ${fmt(Fv, 1)}\\ \\text{N}`,
       'The pressure is written as the height of the column of mercury it supports, ' + fmt(P, 1) + ' mm, so hρg with the density of mercury is the pressure in N/m², and the force is that pressure times the area. Intraocular pressure is normally 12.0 to 24.0 mm Hg; when the circulation of the fluid is blocked, glaucoma can raise it to 85.0 mm Hg, enough to damage the optic nerve.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -405,12 +408,12 @@ const UNITS = {
     ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(CX - cw, 586); ctx.quadraticCurveTo(CX, dTop - 60, CX + cw, 586); ctx.stroke();
     /* the lungs, growing with the breath, and the trachea and bronchi */
     const k = 1 + 0.11 * V;
-    ctx.fillStyle = PAL.panel; ctx.lineWidth = 4;
+    ctx.fillStyle = PAL.panel; ctx.lineWidth = 4; ctx.strokeStyle = F.ref('lungs');
     for (const s of [-1, 1]) {
       const lx = CX + s * (108 + 12 * V), ly = 380 + 6 * V;
       ctx.beginPath(); ctx.ellipse(lx, ly, 88 * k, 135 * k, s * 0.12, 0, TAU); ctx.fill(); ctx.stroke();
     }
-    ctx.fillStyle = PAL.soft; ctx.lineWidth = 3;
+    ctx.fillStyle = PAL.soft; ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink;
     ctx.beginPath(); ctx.moveTo(CX - 13, 100); ctx.lineTo(CX - 13, 300); ctx.lineTo(CX - 70, 350); ctx.lineTo(CX - 50, 364); ctx.lineTo(CX, 318); ctx.lineTo(CX + 50, 364); ctx.lineTo(CX + 70, 350); ctx.lineTo(CX + 13, 300); ctx.lineTo(CX + 13, 100); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.restore();
     /* the air, flowing in while the lungs expand and out while they contract */
@@ -423,29 +426,30 @@ const UNITS = {
       for (const s of [-1, 1]) arrow(ctx, CX + s * (inhaling ? 30 : 56), inhaling ? 326 : 348, CX + s * (inhaling ? 56 : 30), inhaling ? 348 : 326, PAL.muted, 3);
     }
     /* the two pressures, where they act */
-    text(ctx, 'inside the lungs', CX + 120, 380, PAL.muted, { size: 16, align: 'center' });
+    text(ctx, 'inside the lungs', CX + 120, 380, F.ref('lungs'), { size: 16, align: 'center' });
     text(ctx, plus(PL, 1) + ' mm Hg', CX + 120, 408, pc, { size: 21, weight: 600, align: 'center' });
     line(ctx, CX - cw + 6, 470, CX - 150, 636, alpha(pc, 0.5), 1.5, [5, 6]);
-    text(ctx, 'between the lungs and the chest wall: ', CX - 8, 636, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'between the lungs and the chest wall: ', CX - 8, 636, F.ref('pleural-liquid'), { size: 17, align: 'right' });
     text(ctx, plus(PP, 1) + ' mm Hg', CX - 8, 636, pc, { size: 21, weight: 600, align: 'left' });
     /* the parts named, at fixed places beside the chest */
     leader(ctx, 'trachea', CX + 60, 120, CX + 16, 140, PAL.ink, 'left');
     leader(ctx, 'chest wall', CX - w - 24, 300, CX - w - 4, 300, PAL.ink, 'right');
-    leader(ctx, 'lungs', CX + w + 24, 300, CX + 108 + 88 * k + 4, 330, PAL.ink, 'left');
+    leader(ctx, 'lungs', CX + w + 24, 300, CX + 108 + 88 * k + 4, 330, F.ref('lungs'), 'left');
     leader(ctx, 'diaphragm', CX + w + 24, 600, CX + cw - 50, 583, PAL.ink, 'left');
     /* the graph beside the chest: both gauge pressures through one breath, on fixed axes */
     const box = { l: 900, r: 1350, t: 140, b: 520 };
     const { X, Y } = axes(ctx, box, [0, T], [-8, 4], { xl: 'time (s)', yl: 'gauge pressure (mm Hg)', yc: pc, nx: 5, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => plus(v, 0) });
     text(ctx, 'atmospheric', box.r - 6, Y(0) - 14, PAL.muted, { size: 15, align: 'right' });
-    curve(ctx, (s) => pLung(phaseOf(s)), 0, T, X, Y, pc, 4, 120);
-    ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => pPleural(phaseOf(s)), 0, T, X, Y, pc, 3, 120); ctx.restore();
+    const lc = F.ref('lungs'), qc = F.ref('pleural-liquid');
+    curve(ctx, (s) => pLung(phaseOf(s)), 0, T, X, Y, lc, 4, 120);
+    ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => pPleural(phaseOf(s)), 0, T, X, Y, qc, 3, 120); ctx.restore();
     line(ctx, X(TIN), box.t, X(TIN), box.b, alpha(PAL.ink, 0.3), 2, [4, 8]);
     text(ctx, 'breathing in', X(TIN / 2), box.t + 16, PAL.muted, { size: 16, align: 'center' }); text(ctx, 'breathing out', X(TIN + TEX / 2), box.t + 16, PAL.muted, { size: 16, align: 'center' });
     /* the legend: the two pressures are one type, told apart by the dash */
-    line(ctx, box.l + 10, box.b + 84, box.l + 50, box.b + 84, pc, 4); text(ctx, 'inside the lungs', box.l + 60, box.b + 84, PAL.ink, { size: 16 });
-    line(ctx, box.l + 10, box.b + 112, box.l + 50, box.b + 112, pc, 3, [10, 10]); text(ctx, 'between the lungs and the chest wall', box.l + 60, box.b + 112, PAL.ink, { size: 16 });
+    line(ctx, box.l + 10, box.b + 84, box.l + 50, box.b + 84, lc, 4); text(ctx, 'inside the lungs', box.l + 60, box.b + 84, lc, { size: 16 });
+    line(ctx, box.l + 10, box.b + 112, box.l + 50, box.b + 112, qc, 3, [10, 10]); text(ctx, 'between the lungs and the chest wall', box.l + 60, box.b + 112, qc, { size: 16 });
     line(ctx, X(t), box.t, X(t), box.b, alpha(pc, 0.5), 2, [4, 8]);
-    dot(ctx, X(t), Y(PL), pc, true, 9); dot(ctx, X(t), Y(PP), pc, false, 9);
+    dot(ctx, X(t), Y(PL), lc, true, 9); dot(ctx, X(t), Y(PP), qc, false, 9);
     topline(ctx, still ? 'Between breaths the pressure inside the lungs is atmospheric, so no air flows, while the liquid between the lungs and the chest wall stays at ' + num(PP, 1) + ' mm Hg.'
       : inhaling ? 'Breathing in, the diaphragm moves down and the chest expands, the pressure inside the lungs is ' + num(PL, 1) + ' mm Hg, and air flows in.'
       : 'Breathing out, the muscles relax and surface tension in the alveoli raises the pressure inside the lungs to ' + plus(PL, 1) + ' mm Hg, forcing air out.');

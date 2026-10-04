@@ -65,7 +65,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
   const d = sim('sim-cylinder', 720);
   const shown = F.readout(d);
   const HC = 0.200, A = 0.0500, VOL = HC * A, R = Math.sqrt(A / Math.PI);          /* the cylinder: 20.0 cm tall, faces of 500 cm², 10.0 L */
-  const h1 = ctl(d.controls, { label: 'h_1', cls: '', min: 0, max: 0.35, step: 0.01, value: 0.2, unit: 'm', dec: 2, aria: 'the depth of the top face of the cylinder' });
+  const h1 = ctl(d.controls, { label: '\\khone', cls: 'position', min: 0, max: 0.35, step: 0.01, value: 0.2, unit: 'm', dec: 2, aria: 'the depth of the top face of the cylinder' });
   const rf = ctl(d.controls, { label: '\\krhofl', cls: 'density', min: 600, max: 1400, step: 10, value: 1000, unit: 'kg/m³', dec: 0, detents: LIQUIDS_SHORT, snap: true, aria: 'the density of the fluid in the tank' });
   const ro = ctl(d.controls, { label: '\\krhoobj', cls: 'density', min: 100, max: 3000, step: 10, value: 1000, unit: 'kg/m³', dec: 0, detents: [{ v: 100, label: 'polystyrene' }, { v: 240 }, { v: 917 }, { v: 2700, label: 'aluminum' }], snap: true, specials: [{ at: () => rf.v, label: 'suspended' }], aria: 'the average density of the cylinder' });
   const what = choice(d.controls, { label: '\\text{in the outline}', options: [{ value: 'object', label: 'the cylinder' }, { value: 'fluid', label: 'the fluid' }], value: 'object', aria: 'whether the outline holds the cylinder or the fluid that replaces it', onInput: (v) => ro.disable(v === 'fluid') });   /* the cylinder's density says nothing about the fluid that replaces it */
@@ -93,24 +93,24 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     poly(ctx, [P(-hx, yb, -hz), P(hx, yb, -hz), P(hx, yb, hz), P(-hx, yb, hz)], alpha(PAL.ink, 0.12), null);
     poly(ctx, [P(-hx, 0, -hz), P(hx, 0, -hz), P(hx, 0, hz), P(-hx, 0, hz)], alpha(PAL.ink, 0.06), PAL.muted, 2);
     /* the cylinder, or the outline of the fluid that fills its place */
-    const top = ring(y1, rr), bot = ring(y2, rr);
+    const top = ring(y1, rr), bot = ring(y2, rr), cyc = F.ref('cylinder');
     const L1 = P(-rr, y1, 0), R1 = P(rr, y1, 0), L2 = P(-rr, y2, 0), R2 = P(rr, y2, 0);
     /* the outline stays; the cylinder's fill fades to let the fluid show through it */
     if (aFl > 0) {
       ctx.save(); ctx.globalAlpha = aFl;
-      poly(ctx, bot, null, PAL.ink, 2.5, [8, 8]);
-      line(ctx, L1[0], L1[1], L2[0], L2[1], PAL.ink, 2.5, [8, 8]); line(ctx, R1[0], R1[1], R2[0], R2[1], PAL.ink, 2.5, [8, 8]);
-      poly(ctx, top, null, PAL.ink, 2.5, [8, 8]);
+      poly(ctx, bot, null, cyc, 2.5, [8, 8]);
+      line(ctx, L1[0], L1[1], L2[0], L2[1], cyc, 2.5, [8, 8]); line(ctx, R1[0], R1[1], R2[0], R2[1], cyc, 2.5, [8, 8]);
+      poly(ctx, top, null, cyc, 2.5, [8, 8]);
       ctx.restore();
     }
     if (aObj > 0) {
       ctx.save(); ctx.globalAlpha = aObj;
       poly(ctx, bot, PAL.panel, null);
       poly(ctx, [L1, R1, R2, L2], PAL.panel, null);
-      poly(ctx, bot.slice(0, 25), null, PAL.ink, 3, [6, 6]);                         /* the far half of the bottom rim, seen through */
-      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); bot.slice(24).forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.lineTo(bot[0][0], bot[0][1]); ctx.stroke(); ctx.restore();
-      line(ctx, L1[0], L1[1], L2[0], L2[1], PAL.ink, 3); line(ctx, R1[0], R1[1], R2[0], R2[1], PAL.ink, 3);
-      poly(ctx, top, alpha(PAL.ink, 0.1), PAL.ink, 3);
+      poly(ctx, bot.slice(0, 25), null, cyc, 3, [6, 6]);                         /* the far half of the bottom rim, seen through */
+      ctx.save(); ctx.strokeStyle = cyc; ctx.lineWidth = 3; ctx.beginPath(); bot.slice(24).forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.lineTo(bot[0][0], bot[0][1]); ctx.stroke(); ctx.restore();
+      line(ctx, L1[0], L1[1], L2[0], L2[1], cyc, 3); line(ctx, R1[0], R1[1], R2[0], R2[1], cyc, 3);
+      poly(ctx, top, alpha(PAL.ink, 0.1), cyc, 3);
       ctx.restore();
     }
     /* the front of the fluid, laid over the cylinder so it reads as under the surface, and the front rim of the tank */
@@ -131,13 +131,14 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     /* the depths, measured from the surface at the left of the tank */
     const sL = P(-hx, 0, 0), f1L = P(-hx, y1, 0), f2L = P(-hx, y2, 0);
     const bx1 = sL[0] - 60, bx2 = sL[0] - 120;
-    if (hh1 > 0.005) { vbracket(ctx, bx1, sL[1], f1L[1], PAL.ink); text(ctx, 'h_1 = ' + fmt(hh1, 2) + ' m', bx2 - 16, (sL[1] + f1L[1]) / 2, PAL.ink, { align: 'right', weight: 600 }); }
-    else text(ctx, 'h_1 = 0', bx2 - 16, sL[1] - 26, PAL.ink, { align: 'right', weight: 600 });
-    vbracket(ctx, bx2, sL[1], f2L[1], PAL.ink); text(ctx, 'h_2 = ' + fmt(hh2, 2) + ' m', bx2 - 16, (sL[1] + f2L[1]) / 2 + (hh1 > 0.005 && hh1 < 0.06 ? 30 : 0), PAL.ink, { align: 'right', weight: 600 });
+    const xc = C('position');
+    if (hh1 > 0.005) { vbracket(ctx, bx1, sL[1], f1L[1], xc); text(ctx, 'h_1 = ' + fmt(hh1, 2) + ' m', bx2 - 16, (sL[1] + f1L[1]) / 2, xc, { align: 'right', weight: 600 }); }
+    else text(ctx, 'h_1 = 0', bx2 - 16, sL[1] - 26, xc, { align: 'right', weight: 600 });
+    vbracket(ctx, bx2, sL[1], f2L[1], xc); text(ctx, 'h_2 = ' + fmt(hh2, 2) + ' m', bx2 - 16, (sL[1] + f2L[1]) / 2 + (hh1 > 0.005 && hh1 < 0.06 ? 30 : 0), xc, { align: 'right', weight: 600 });
     line(ctx, bx2, f2L[1], f2L[0] - 4, f2L[1], alpha(PAL.ink, 0.35), 2, [4, 8]);
     if (hh1 > 0.005) line(ctx, bx1, f1L[1], f1L[0] - 4, f1L[1], alpha(PAL.ink, 0.35), 2, [4, 8]);
     text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'a fluid of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', bl[0] - 10, bl[1] + 34, dc, { size: 20, weight: 600, align: 'right' });
-    text(ctx, fluid ? 'the fluid that would fill the cylinder’s place' : 'a cylinder 20.0 cm tall, faces of 500 cm², 10.0 L', bl[0] - 10, bl[1] + 62, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, fluid ? 'the fluid that would fill the cylinder’s place' : 'a cylinder 20.0 cm tall, faces of 500 cm², 10.0 L', bl[0] - 10, bl[1] + 62, fluid ? PAL.muted : cyc, { size: 18, align: 'right' });
     /* the free-body diagram of what is in the outline */
     const FX = 1170, FY = 340, wgt = what.mix((v) => (v === 'fluid' ? FB : W));
     text(ctx, 'free-body diagram', FX, 160, PAL.muted, { size: 19, align: 'center' });
@@ -146,7 +147,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     text(ctx, 'F_B = ' + sf(FB) + ' N', FX + 4, FY - FB * KF / 2 - 10, fc, { size: 21, weight: 600 });
     arrow(ctx, FX + 14, FY, FX + 14, FY + wgt * KF, fc, 5);
     text(ctx, (fluid ? 'w_fl' : 'w') + ' = ' + sf(fluid ? FB : W) + ' N', FX + 32, FY + wgt * KF / 2 + 10, fc, { size: 21, weight: 600 });
-    dot(ctx, FX, FY, PAL.ink, true, 9);
+    dot(ctx, FX, FY, fluid ? PAL.ink : cyc, true, 9);
     const verdict = fluid ? 'The fluid weighs exactly what holds it up.'
       : Math.abs(W - FB) < 0.05 ? 'The cylinder remains suspended.' : W < FB ? 'The cylinder will rise.' : 'The cylinder will sink.';
     text(ctx, verdict, FX, Math.max(FY + wgt * KF, FY + 90) + 44, PAL.ink, { size: 20, weight: 600, align: 'center' });
@@ -172,7 +173,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
 (function () {
   const d = sim('sim-ship', 700);
   const MS = 1.00e7, VH = 1.00e5, HH = 25, LEN = 100;                              /* the hull: 1.00 × 10⁷ kg of steel, 1.00 × 10⁵ m³, 100 m by 40 m by 25 m */
-  const cargo = ctl(d.controls, { label: '\\text{cargo}', cls: '', min: 0, max: 100, step: 1, value: 0, unit: '× 10⁶ kg', dec: 0, detents: [{ v: 0, label: 'empty' }, { v: 90, label: 'the deck awash' }], snap: false, aria: 'the mass of cargo on the deck, in millions of kilograms' });
+  const cargo = ctl(d.controls, { label: '\\text{cargo}', cls: 'mass', min: 0, max: 100, step: 1, value: 0, unit: '× 10⁶ kg', dec: 0, detents: [{ v: 0, label: 'empty' }, { v: 90, label: 'the deck awash' }], snap: false, aria: 'the mass of cargo on the deck, in millions of kilograms' });
   const rf = ctl(d.controls, { label: '\\krhofl', cls: 'density', min: 900, max: 1300, step: 5, value: 1000, unit: 'kg/m³', dec: 0, detents: [{ v: 1000 }, { v: 1025, label: 'sea water' }], snap: true, aria: 'the density of the water the ship floats in' });
   const U = 6.5, SURF = 320, X0 = 375, SEA = 35, KW = 1.6e-7;                          /* U: canvas units per metre, fixed; KW: units per newton */
   function draw() {
@@ -185,7 +186,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     fluidBox(ctx, 60, 1340, SURF, SURF + SEA * U);
     line(ctx, 60, SURF + SEA * U, 1340, SURF + SEA * U, PAL.muted, 4);
     text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'water of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', 70, SURF + 32, dc, { size: 20, weight: 600, align: 'left' });
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('ship'); ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(X0, top); ctx.lineTo(x1 - 70, top); ctx.lineTo(x1, top + 30); ctx.lineTo(x1 - 40, bottom); ctx.lineTo(X0 + 30, bottom); ctx.lineTo(X0, top + 60); ctx.closePath(); ctx.fill(); ctx.stroke();
     /* the deckhouse at the stern */
     ctx.fillRect(X0 + 40, top - 46, 78, 46); ctx.strokeRect(X0 + 40, top - 46, 78, 46); ctx.restore();
@@ -193,13 +194,13 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     const boxes = mc / 5e6, full = Math.floor(boxes + 1e-9), part = boxes - full;
     for (let i = 0; i < 20; i++) {
       const row = Math.floor(i / 10), col = i % 10, bx = X0 + 150 + col * 50, by = top - 24 - row * 24;
-      if (i < full) panelRect(ctx, bx, by, 46, 22, PAL.ink, alpha(PAL.ink, 0.12), 2);
-      else if (i === full && part > 0.02) panelRect(ctx, bx, by, 46 * part, 22, PAL.ink, alpha(PAL.ink, 0.12), 2);
+      if (i < full) panelRect(ctx, bx, by, 46, 22, F.ref('cargo'), alpha(PAL.ink, 0.12), 2);
+      else if (i === full && part > 0.02) panelRect(ctx, bx, by, 46 * part, 22, F.ref('cargo'), alpha(PAL.ink, 0.12), 2);
     }
     /* the cargo's label sits beside a short row of boxes and above a long one, so that it never reaches the free-body diagram at the right */
-    if (mc > 0 && boxes < 7) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + Math.max(1, Math.ceil(boxes)) * 50 + 10, top - 36, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    else if (mc > 0) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + 250, top - 24 - 24 - 28, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'steel hull, 1.00 × 10⁷ kg', X0 - 16, (top + bottom) / 2 - 14, PAL.ink, { size: 19, weight: 600, align: 'right' });
+    if (mc > 0 && boxes < 7) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + Math.max(1, Math.ceil(boxes)) * 50 + 10, top - 36, F.ref('cargo'), { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    else if (mc > 0) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + 250, top - 24 - 24 - 28, F.ref('cargo'), { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'steel hull, 1.00 × 10⁷ kg', X0 - 16, (top + bottom) / 2 - 14, F.ref('ship'), { size: 19, weight: 600, align: 'right' });
     text(ctx, '100 m by 40 m by 25 m, 1.00 × 10⁵ m³', X0 - 16, (top + bottom) / 2 + 14, PAL.muted, { size: 18, align: 'right' });
     fluidTint(ctx, 60, 1340, SURF, SURF + SEA * U);
     text(ctx, 'the surface', 70, SURF - 18, PAL.muted, { size: 18, align: 'left' });
@@ -210,7 +211,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     text(ctx, 'F_B = ' + sci(FB) + ' N', cx + 16, cy - FB * KW / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
     arrow(ctx, cx, cy, cx, cy + W * KW, fc, 5);
     text(ctx, 'w = ' + sci(W) + ' N', cx + 16, cy + W * KW / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    dot(ctx, cx, cy, PAL.ink, true, 9);
+    dot(ctx, cx, cy, F.ref('ship'), true, 9);
     /* how much of the hull is under */
     if (floats) {
       vbracket(ctx, x1 + 40, SURF, bottom, PAL.ink, 'fraction submerged ' + fmt(f, 3), 1);
@@ -250,7 +251,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     fluidBox(ctx, BX1, BX2, SURF, BOT);
     glass(ctx, BX1, BX2, 130, BOT);
     /* the hydrometer: the lead at the bottom of the bulb, the bulb, the stem */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('hydrometer'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(HX, bulbC, RB, 0, TAU); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.rect(HX - SW, stemTop, 2 * SW, bulbTop - stemTop + RB * 0.4); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.arc(HX, bulbC, RB, 0, TAU); ctx.fill(); ctx.stroke();
@@ -258,7 +259,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     ctx.restore();
     text(ctx, 'lead shot', HX + RB + 14, bulbC + RB * 0.6, PAL.ink, { size: 18, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'air-filled glass bulb', HX + RB + 14, bulbC - RB * 0.3, PAL.muted, { size: 18, bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'the hydrometer, 35.0 g', HX - RB - 14, bulbC, PAL.muted, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the hydrometer, 35.0 g', HX - RB - 14, bulbC, F.ref('hydrometer'), { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
     /* the scale on the stem: a mark wherever the surface falls in a fluid of that specific gravity */
     for (let m = 65; m <= 130; m += 5) {
       const sg = m / 100, y = bulbTop - zOf(sg) * K, labelled = m <= 85 || m % 10 === 0;
@@ -302,7 +303,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
 ===================================================================== */
 (function () {
   const d = sim('sim-coin', 700);
-  const mass = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 20, step: 0.01, value: 8.63, unit: 'g', dec: 3, aria: 'the mass of the coin' });
+  const mass = ctl(d.controls, { label: '\\kmc', cls: 'mass', min: 1, max: 20, step: 0.01, value: 8.63, unit: 'g', dec: 3, aria: 'the mass of the coin' });
   const rc = ctl(d.controls, { label: '\\krho_{\\text{c}}', cls: 'density', min: 2, max: 20, step: 0.01, value: 10.4, unit: 'g/cm³', dec: 2, detents: [{ v: 2.7, label: 'aluminum' }, { v: 7.8 }, { v: 8.44 }, { v: 8.8 }, { v: 10.49, label: 'silver' }, { v: 11.3 }, { v: 19.3 }, { v: 19.32, label: 'gold' }], snap: true, aria: 'the density of the metal the coin is made of' });
   const rf = ctl(d.controls, { label: '\\krhofl', cls: 'density', min: 0.6, max: 1.4, step: 0.005, value: 1, unit: 'g/cm³', dec: 3, detents: [{ v: 0.68, label: 'gasoline' }, { v: 0.79 }, { v: 0.92 }, { v: 1, label: 'water' }, { v: 1.025 }, { v: 1.05 }, { v: 1.26, label: 'glycerin' }], snap: true, aria: 'the density of the liquid the coin is submerged in' });
   const KM = 8;                                                                       /* canvas units per gram of force, one scale for every arrow */
@@ -311,10 +312,10 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     fixed(ctx, x - 110, 100, 220, 18);
     line(ctx, x, 118, x, 132, PAL.ink, 3);
     panelRect(ctx, x - 80, 132, 160, 64, PAL.ink, PAL.panel, 3);
-    text(ctx, reading, x, 164, PAL.ink, { size: 28, weight: 600, align: 'center' });
+    text(ctx, reading, x, 164, C('mass'), { size: 28, weight: 600, align: 'center' });
     line(ctx, x, 196, x, cy - 44, PAL.ink, 2);
     text(ctx, sub, x, 220, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('coin'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(x, cy, 44, 0, TAU); ctx.fill(); ctx.stroke();
     ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(x, cy, 33, 0, TAU); ctx.stroke(); ctx.restore();
   }
@@ -345,14 +346,14 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     text(ctx, (liquidNamed(rho * 1000) ?? 'a liquid') + ', ρ_fl = ' + rho.toFixed(3) + ' g/cm³', BL + 12, BT - 22, dc, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, '(b) submerged', BX, 660, PAL.muted, { size: 19, align: 'center' });
     /* what the coin is */
-    text(ctx, 'the coin: ' + m.toFixed(3) + ' g, V = ' + sf(V) + ' cm³', 700, 380, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'the coin: ' + m.toFixed(3) + ' g, V = ' + sf(V) + ' cm³', 700, 380, F.ref('coin'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'ρ_c = ' + rhoc.toFixed(2) + ' g/cm³', 700, 410, dc, { size: 20, weight: 600, align: 'center' });
     const near = METALS.filter(([v]) => Math.abs(v - rhoc) / v < 0.03).map(([, n]) => n);
     const below = METALS.filter(([v]) => v < rhoc).sort((a, b) => b[0] - a[0])[0], above = METALS.filter(([v]) => v > rhoc).sort((a, b) => a[0] - b[0])[0];
     const nameLine = near.length ? 'A density of ' + rhoc.toFixed(2) + ' g/cm³ is within three percent of ' + near.join(' and ') + ' in Table 11.1.'
       : 'A density of ' + rhoc.toFixed(2) + ' g/cm³ matches no metal of Table 11.1; it lies between ' + (below ? below[1] + ' (' + below[0] + ')' : 'nothing') + ' and ' + (above ? above[1] + ' (' + above[0] + ')' : 'nothing') + '.';
     topline(ctx, 'A coin of ' + m.toFixed(3) + ' g whose density is ' + rhoc.toFixed(2) + ' g/cm³ displaces ' + sf(V) + ' cm³ of ' + (liquidNamed(rho * 1000) ?? 'the liquid') + ', so its apparent mass submerged is ' + mapp.toFixed(3) + ' g.');
-    readout(d.readout, `m - m_{\\text{app}} = ${mw.toFixed(3)}\\ \\text{g} = \\krhofl V_{\\text{w}} \\quad\\Rightarrow\\quad \\krho_{\\text{c}} = \\frac{m}{V_{\\text{w}}} = \\frac{${m.toFixed(3)}\\ \\text{g}}{${sf(V)}\\ \\text{cm}^3} = ${sf(rhoc)}\\ \\text{g/cm}^3`,
+    readout(d.readout, `\\kmc - m_{\\text{app}} = ${mw.toFixed(3)}\\ \\text{g} = \\krhofl \\kvolw \\quad\\Rightarrow\\quad \\krho_{\\text{c}} = \\frac{\\kmc}{\\kvolw} = \\frac{${m.toFixed(3)}\\ \\text{g}}{${sf(V)}\\ \\text{cm}^3} = ${sf(rhoc)}\\ \\text{g/cm}^3`,
       'The balance reads ' + mw.toFixed(3) + ' g less with the coin under the surface because the liquid pushes up on it with a buoyant force equal to the weight of ' + sf(V) + ' cm³ of liquid, which is the coin’s own volume; dividing the mass by that volume gives the density back. ' + nameLine + ' Gold and tungsten, at 19.32 and 19.30 g/cm³, differ by a tenth of a percent, so telling a gold-plated tungsten ingot from gold this way asks for a balance good to a few parts in a hundred thousand.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -376,7 +377,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     const bottom = floats ? SURF + f * SIDE : even ? SURF + 60 + SIDE : BOT, top = bottom - SIDE, bx = (X1 + X2) / 2 - SIDE / 2;
     fluidBox(ctx, X1, X2, SURF, BOT);
     glass(ctx, X1, X2, 130, BOT);
-    panelRect(ctx, bx, top, SIDE, SIDE, PAL.ink, PAL.panel, 3.5);
+    panelRect(ctx, bx, top, SIDE, SIDE, F.ref('block'), PAL.panel, 3.5);
     fluidTint(ctx, X1, X2, SURF, BOT);
     /* the two forces on the block, one scale; while it floats they are equal */
     const cx = bx + SIDE / 2, cy = top + SIDE / 2, W = rob * KW, FB = (floats || even ? rob : rho) * KW;
@@ -384,7 +385,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     text(ctx, 'F_B', cx - 30, cy - FB / 2, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     arrow(ctx, cx + 14, cy, cx + 14, cy + W, fc, 5);
     text(ctx, 'w', cx + 30, cy + W / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    dot(ctx, cx, cy, PAL.ink, true, 9);
+    dot(ctx, cx, cy, F.ref('block'), true, 9);
     /* the block and the fluid named, and the part under the surface bracketed */
     text(ctx, 'the block, ρ̄_obj = ' + fmt(rob, 0) + ' kg/m³', X1 - 20, top + 30 < 130 ? 150 : top + 30, dc, { size: 20, weight: 600, align: 'right' });
     text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'a fluid of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', X1 + 16, SURF + 30, dc, { size: 20, weight: 600 });

@@ -17,6 +17,8 @@ const PSI = 6.90e3;                                   /* Pa per lb/in², Table 1
    mercury is silver, and the three colourless liquids are the pale blue the
    book prints its water in, told apart by their label. */
 const HG = '#a9b2bd', CLEAR = '#bfe0f2';
+/* a fluid's own colour through the facts switch; with facts off it is a neutral tint, not a solid ink fill */
+const liquid = (c) => (F.shown.facts ? F.fact(c) : PAL.soft);
 const FLUIDS = {
   water: { name: 'water', rho: 1000, s: '1.00\\times 10^{3}', color: CLEAR, of: 'of water' },
   alcohol: { name: 'ethyl alcohol', rho: 790, s: '0.79\\times 10^{3}', color: CLEAR, of: 'of ethyl alcohol' },
@@ -70,8 +72,8 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     const B = { x: PX + ARM * s, y: PY + ARM * c }, T = { x: PX - TIP * s, y: PY - TIP * c }, S = { x: PX - 110 * s, y: PY - 110 * c };
     /* the wall the spring is anchored to, the spring, the pivot and the pointer */
     fixed(ctx, 250, PY - 70, 24, 140);
-    spring(ctx, 274, PY, S.x, S.y, 9, 13, PAL.ink, 3);
-    text(ctx, 'spring', 262, PY - 100, PAL.ink, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    spring(ctx, 274, PY, S.x, S.y, 9, 13, F.ref('spring'), 3);
+    text(ctx, 'spring', 262, PY - 100, F.ref('spring'), { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* the dial: an arc about the pivot with its ticks placed by the linkage */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.beginPath();
     ctx.arc(PX, PY, DIAL, -Math.PI / 2 - angleOf(-14.7), -Math.PI / 2 - angleOf(60)); ctx.stroke(); ctx.restore();
@@ -101,7 +103,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     text(ctx, 'being measured', 1236, PY + 44, PAL.muted, { size: 18, align: 'left' });
     /* the bellows: a pleated box between the moving plate at xm and the fixed plate at XR */
     const n = 6, step = L / n;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('bellows'); ctx.lineWidth = 3; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(xm, PY - BH);
     for (let i = 0; i < n; i++) { ctx.lineTo(xm + step * (i + 0.5), PY - BH - 22); ctx.lineTo(xm + step * (i + 1), PY - BH); }
     ctx.lineTo(XR, PY + BH);
@@ -110,7 +112,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     for (let i = 1; i < n; i++) line(ctx, xm + step * i, PY - BH, xm + step * i, PY + BH, alpha(PAL.ink, 0.3), 2);
     ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.muted; ctx.fillRect(xm - 14, PY - BH - 20, 14, 2 * BH + 40); ctx.fillRect(XR, PY - BH - 20, 14, 2 * BH + 40); ctx.restore();
-    text(ctx, 'flexible bellows', (xm + XR) / 2, PY - BH - 52, PAL.ink, { size: 19, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'flexible bellows', (xm + XR) / 2, PY - BH - 52, F.ref('bellows'), { size: 19, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the force the pressure makes on the two ends, outward when the gauge pressure is positive */
     if (Math.abs(p) >= 0.05) {
       const len = KF * Math.abs(p), a = xm - 7, b = xm - 7 - len, c2 = XR + 7, e = XR + 7 + len, y = PY - 40;
@@ -122,11 +124,11 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     /* the rod from the moving plate to the lower end of the pointer, the pivot, the pointer */
     line(ctx, xm - 14, PY, B.x, B.y, PAL.ink, 4);
     dot(ctx, B.x, B.y, PAL.ink, true, 5);
-    line(ctx, B.x, B.y, T.x, T.y, PAL.ink, 5);
-    arrow(ctx, PX - (TIP - 60) * s, PY - (TIP - 60) * c, T.x, T.y, PAL.ink, 5);
+    line(ctx, B.x, B.y, T.x, T.y, F.ref('pointer'), 5);
+    arrow(ctx, PX - (TIP - 60) * s, PY - (TIP - 60) * c, T.x, T.y, F.ref('pointer'), 5);
     dot(ctx, PX, PY, PAL.ink, true, 11);
     text(ctx, 'pivot', PX - 22, PY + 34, PAL.ink, { size: 19, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'pointer', T.x + (s > -0.1 ? 22 : -22), T.y + 30, PAL.ink, { size: 19, align: s > -0.1 ? 'left' : 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'pointer', T.x + (s > -0.1 ? 22 : -22), T.y + 30, F.ref('pointer'), { size: 19, align: s > -0.1 ? 'left' : 'right', bg: alpha(PAL.panel, 0.85) });
     /* the ruler of absolute pressure under the gauge, fixed from 0 to 80 psi */
     line(ctx, RX0, RY, RX1, RY, PAL.muted, 2);
     for (let v = 0; v <= RMAX; v += 10) { line(ctx, RX(v), RY - 8, RX(v), RY + 8, PAL.muted, 2); text(ctx, fmt(v, 0), RX(v), RY + 28, PAL.muted, { size: 17, align: 'center' }); }
@@ -178,11 +180,11 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     const outL = yl < YT || yl > YB, outR = yr < YT || yr > YB, out = outL || outR;
     const yL = Math.min(Math.max(yl, YT), YB), yR = Math.min(Math.max(yr, YT), YB);
     /* the glass: walls, then the bore */
-    ctx.save(); ctx.lineCap = 'butt'; ctx.strokeStyle = PAL.ink; ctx.lineWidth = IW + 2 * WALL; tubePath(ctx); ctx.stroke();
+    ctx.save(); ctx.lineCap = 'butt'; ctx.strokeStyle = F.ref('tube'); ctx.lineWidth = IW + 2 * WALL; tubePath(ctx); ctx.stroke();
     ctx.strokeStyle = PAL.panel; ctx.lineWidth = IW; tubePath(ctx); ctx.stroke(); ctx.restore();
     /* the fluid, clipped to below the two levels */
     ctx.save(); ctx.beginPath(); ctx.rect(XL - IW / 2, yL, IW, YRUN - yL + IW); ctx.rect(XR - IW / 2, yR, IW, YRUN - yR + IW); ctx.rect(XL, YRUN - IW, XR - XL, 2 * IW); ctx.clip();
-    ctx.lineCap = 'butt'; ctx.lineWidth = IW; ctx.strokeStyle = fl.mixColor((v) => FLUIDS[v].color); tubePath(ctx); ctx.stroke(); ctx.restore();
+    ctx.lineCap = 'butt'; ctx.lineWidth = IW; ctx.strokeStyle = fl.mixColor((v) => liquid(FLUIDS[v].color)); tubePath(ctx); ctx.stroke(); ctx.restore();
     line(ctx, XL - IW / 2, yL, XL + IW / 2, yL, PAL.ink, 2.5); line(ctx, XR - IW / 2, yR, XR + IW / 2, yR, PAL.ink, 2.5);
     /* the meter stick between the legs, in centimetres from the rest level */
     const MX = 420;
@@ -212,18 +214,18 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
       text(ctx, 'P_abs = ' + fmt((PATM + p) / 1000, 1) + ' kPa', 885, PY + 50, pc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       if (p > 0) {
         /* the toy balloon */
-        ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+        ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('balloon'); ctx.lineWidth = 3;
         ctx.beginPath(); ctx.ellipse(1130, PY, 124, 94, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
         ctx.beginPath(); ctx.ellipse(1222, PY - 54, 44, 32, 0.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
         ctx.beginPath(); ctx.ellipse(1222, PY + 54, 44, 32, -0.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(1000, PY - 18); ctx.lineTo(1012, PY); ctx.lineTo(1000, PY + 18); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
-        text(ctx, 'toy balloon', 1130, PY + 130, PAL.ink, { size: 19, align: 'center' });
+        text(ctx, 'toy balloon', 1130, PY + 130, F.ref('balloon'), { size: 19, align: 'center' });
       } else {
         /* the vacuum-packed jar, its lid at the pipe */
-        rrect(ctx, 1040, PY - 12, 180, 210, 18, PAL.soft, PAL.ink, 3);
-        rrect(ctx, 1000, PY - 28, 60, 56, 8, PAL.muted, PAL.ink, 3);
+        rrect(ctx, 1040, PY - 12, 180, 210, 18, PAL.soft, F.ref('jar'), 3);
+        rrect(ctx, 1000, PY - 28, 60, 56, 8, PAL.muted, F.ref('jar'), 3);
         ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); for (let i = 0; i < 26; i++) { const x = 1060 + (i * 37) % 140, y = PY + 60 + (i * 53) % 118; ctx.beginPath(); ctx.ellipse(x, y, 9, 6, i, 0, Math.PI * 2); ctx.fill(); } ctx.restore();
-        text(ctx, 'vacuum-packed jar', 1130, PY + 226, PAL.ink, { size: 19, align: 'center' });
+        text(ctx, 'vacuum-packed jar', 1130, PY + 226, F.ref('jar'), { size: 19, align: 'center' });
       }
     }
     text(ctx, f.name, (XL + XR) / 2, YRUN + 62, PAL.ink, { size: 18, align: 'center' });
@@ -261,15 +263,15 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     const p = Ps.v * 1000, f = FLUIDS[fl.value];
     const h = p / (f.rho * G), hd = fl.mix((v) => p / (FLUIDS[v].rho * G)), out = hd > TUBE, yh = YS - Math.min(hd, TUBE) * S;
     /* the dish and the fluid in it */
-    ctx.fillStyle = fl.mixColor((v) => FLUIDS[v].color); ctx.fillRect(452, YS, 496, 60);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.lineCap = 'butt';
+    ctx.fillStyle = fl.mixColor((v) => liquid(FLUIDS[v].color)); ctx.fillRect(452, YS, 496, 60);
+    ctx.save(); ctx.strokeStyle = F.ref('dish'); ctx.lineWidth = 5; ctx.lineCap = 'butt';
     ctx.beginPath(); ctx.moveTo(450, 580); ctx.lineTo(450, 682); ctx.lineTo(950, 682); ctx.lineTo(950, 580); ctx.stroke(); ctx.restore();
     line(ctx, 452, YS, TX - TW / 2 - WALL, YS, PAL.ink, 2.5); line(ctx, TX + TW / 2 + WALL, YS, 948, YS, PAL.ink, 2.5);
     text(ctx, f.name, 700, 706, PAL.ink, { size: 19, align: 'center' });
     /* the tube: the walls, the bore, the vacuum above the column and the column itself */
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(TX - TW / 2 - WALL, YTOP - WALL, TW + 2 * WALL, YS + 40 - YTOP + WALL); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.ref('barometer'); ctx.fillRect(TX - TW / 2 - WALL, YTOP - WALL, TW + 2 * WALL, YS + 40 - YTOP + WALL); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(TX - TW / 2, YTOP, TW, YS + 40 - YTOP); ctx.restore();
-    ctx.fillStyle = fl.mixColor((v) => FLUIDS[v].color); ctx.fillRect(TX - TW / 2, yh, TW, YS + 40 - yh);
+    ctx.fillStyle = fl.mixColor((v) => liquid(FLUIDS[v].color)); ctx.fillRect(TX - TW / 2, yh, TW, YS + 40 - yh);
     if (!out) line(ctx, TX - TW / 2, yh, TX + TW / 2, yh, PAL.ink, 2.5);
     if (!out) text(ctx, 'vacuum (P_abs = 0)', TX + TW / 2 + 24, YTOP + 22, PAL.ink, { size: 19, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* a scale up the tube, in tenths of a metre */

@@ -214,7 +214,8 @@
       "meaning": "the pressure the first piston creates in the enclosed fluid",
       "unit": "N/m²",
       "section": "11.5",
-      "anchor": "11.5-hydraulic-forces"
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-1"
     },
     {
       "sym": "P_2",
@@ -222,7 +223,8 @@
       "meaning": "the pressure felt at the second piston, which equals the pressure at the first because the fluid transmits it undiminished",
       "unit": "N/m²",
       "section": "11.5",
-      "anchor": "11.5-hydraulic-forces"
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-2"
     },
     {
       "sym": "F_1",
@@ -230,7 +232,8 @@
       "meaning": "the force applied to the first piston",
       "unit": "N",
       "section": "11.5",
-      "anchor": "11.5-hydraulic-forces"
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-1"
     },
     {
       "sym": "F_2",
@@ -238,7 +241,8 @@
       "meaning": "the force the fluid exerts on the second piston",
       "unit": "N",
       "section": "11.5",
-      "anchor": "11.5-hydraulic-forces"
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-2"
     },
     {
       "sym": "A_1",
@@ -246,7 +250,8 @@
       "meaning": "the cross-sectional area of the first piston",
       "unit": "m²",
       "section": "11.5",
-      "anchor": "11.5-hydraulic-forces"
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-1"
     },
     {
       "sym": "A_2",
@@ -254,7 +259,8 @@
       "meaning": "the cross-sectional area of the second piston",
       "unit": "m²",
       "section": "11.5",
-      "anchor": "11.5-hydraulic-forces"
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-2"
     },
     {
       "sym": "P_g",
@@ -512,6 +518,353 @@
       "unit": "m",
       "section": "11.9",
       "anchor": "11.9-eye"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "the surface area of the reservoir",
+      "unit": "m²",
+      "section": "11.2",
+      "anchor": "11.2-reservoir"
+    },
+    {
+      "sym": "h",
+      "concept": "position",
+      "meaning": "the average depth of the reservoir below the surface of its water",
+      "unit": "m",
+      "section": "11.2",
+      "anchor": "11.2-reservoir",
+      "redefines": true
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "the acceleration due to the Earth’s gravity, about 9.80 m/s²",
+      "unit": "m/s²",
+      "section": "11.2",
+      "anchor": "11.2-reservoir"
+    },
+    {
+      "sym": "r",
+      "concept": "position",
+      "meaning": "the radius of the flat end of the air tank, from which its area πr² is found",
+      "unit": "m",
+      "section": "11.3",
+      "anchor": "11.3-force-from-pressure"
+    },
+    {
+      "sym": "d",
+      "concept": "position",
+      "meaning": "the width of the round contact a push is spread over",
+      "unit": "m",
+      "section": "11.3",
+      "anchor": "11.3-units"
+    },
+    {
+      "sym": "L_len",
+      "concept": "position",
+      "meaning": "the length of the dam along its crest",
+      "unit": "m",
+      "section": "11.4",
+      "anchor": "11.4-dam"
+    },
+    {
+      "sym": "r_1",
+      "concept": "position",
+      "meaning": "the radius of the pedal cylinder",
+      "unit": "m",
+      "section": "11.5",
+      "anchor": "11.5-ex-brakes",
+      "ref": "pedal-cylinder"
+    },
+    {
+      "sym": "r_2",
+      "concept": "position",
+      "meaning": "the radius of each wheel cylinder",
+      "unit": "m",
+      "section": "11.5",
+      "anchor": "11.5-ex-brakes",
+      "ref": "wheel-cylinders"
+    },
+    {
+      "sym": "h_1",
+      "concept": "position",
+      "meaning": "the depth of the top face of the cylinder below the surface",
+      "unit": "m",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "h_2",
+      "concept": "position",
+      "meaning": "the depth of the bottom face of the cylinder below the surface",
+      "unit": "m",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "F_1",
+      "concept": "force",
+      "meaning": "the downward force of the fluid on the top face of the cylinder",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "F_2",
+      "concept": "force",
+      "meaning": "the upward force of the fluid on the bottom face of the cylinder",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "the area of each end face of the cylinder",
+      "unit": "m²",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "the acceleration due to gravity, about 9.80 m/s² at the Earth’s surface",
+      "unit": "m/s²",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "the mass of the substance or object",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-floating-sinking"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "the volume the substance or object occupies",
+      "unit": "m³",
+      "section": "11.7",
+      "anchor": "11.7-floating-sinking"
+    },
+    {
+      "sym": "V_st",
+      "concept": "volume",
+      "meaning": "the volume of the steel of Example 11.8",
+      "unit": "m³",
+      "section": "11.7",
+      "anchor": "11.7-ex-steel"
+    },
+    {
+      "sym": "m_st",
+      "concept": "mass",
+      "meaning": "the mass of the steel of Example 11.8",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-ex-steel"
+    },
+    {
+      "sym": "m_w",
+      "concept": "mass",
+      "meaning": "the mass of the water an object displaces",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-ex-steel",
+      "redefines": true
+    },
+    {
+      "sym": "w_w",
+      "concept": "weight",
+      "meaning": "the weight of the water an object displaces",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-ex-steel"
+    },
+    {
+      "sym": "m_fl",
+      "concept": "mass",
+      "meaning": "the mass of the fluid a floating object displaces",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "m_obj_mass",
+      "concept": "mass",
+      "meaning": "the mass of the floating object",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "m_c",
+      "concept": "mass",
+      "meaning": "the mass of the coin of Example 11.10",
+      "unit": "g",
+      "section": "11.7",
+      "anchor": "11.7-ex-coin"
+    },
+    {
+      "sym": "V_coin",
+      "concept": "volume",
+      "meaning": "the volume of the coin of Example 11.10",
+      "unit": "cm³",
+      "section": "11.7",
+      "anchor": "11.7-ex-coin"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "the area of the piston that stretches the liquid",
+      "unit": "m²",
+      "section": "11.8",
+      "anchor": "11.8-negative-pressure"
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "the acceleration due to gravity, about 9.80 m/s² at the Earth’s surface",
+      "unit": "m/s²",
+      "section": "11.8",
+      "anchor": "11.8-capillary-action"
+    },
+    {
+      "sym": "P_1",
+      "concept": "pressure",
+      "meaning": "the gauge pressure inside the first balloon",
+      "unit": "N/m²",
+      "section": "11.8",
+      "anchor": "11.8-bubbles",
+      "ref": "balloon-1",
+      "redefines": true
+    },
+    {
+      "sym": "P_2",
+      "concept": "pressure",
+      "meaning": "the gauge pressure inside the second balloon",
+      "unit": "N/m²",
+      "section": "11.8",
+      "anchor": "11.8-bubbles",
+      "ref": "balloon-2",
+      "redefines": true
+    },
+    {
+      "sym": "r_1",
+      "concept": "position",
+      "meaning": "the radius of the first balloon",
+      "unit": "m",
+      "section": "11.8",
+      "anchor": "11.8-bubbles",
+      "ref": "balloon-1",
+      "redefines": true
+    },
+    {
+      "sym": "r_2",
+      "concept": "position",
+      "meaning": "the radius of the second balloon",
+      "unit": "m",
+      "section": "11.8",
+      "anchor": "11.8-bubbles",
+      "ref": "balloon-2",
+      "redefines": true
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "pressure, the force divided by the area perpendicular to the force over which it is applied",
+      "unit": "N/m²",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "a force applied perpendicular to a surface; on the brake pedal, the push of the foot",
+      "unit": "N",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces",
+      "redefines": true
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "the area perpendicular to the force over which it is applied",
+      "unit": "m²",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "the pressure due to the weight of a column of fluid",
+      "unit": "N/m²",
+      "section": "11.6",
+      "anchor": "11.6-manometer"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "the force the measured pressure exerts on the bellows of an aneroid gauge",
+      "unit": "N",
+      "section": "11.6",
+      "anchor": "11.6-gauges",
+      "redefines": true
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "the acceleration due to gravity, about 9.80 m/s² at the Earth’s surface",
+      "unit": "m/s²",
+      "section": "11.6",
+      "anchor": "11.6-manometer"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "the density of a substance or object, which is its mass per unit volume",
+      "unit": "kg/m³",
+      "section": "11.7",
+      "anchor": "11.7-floating-sinking"
+    },
+    {
+      "sym": "w",
+      "concept": "weight",
+      "meaning": "the weight of the object in the fluid",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "w",
+      "concept": "weight",
+      "meaning": "the weight of the body resting on the liquid surface",
+      "unit": "N",
+      "section": "11.8",
+      "anchor": "11.8-surface-tension"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "the pressure due to the weight of a column of fluid, or a pressure acting on an area of the body",
+      "unit": "N/m²",
+      "section": "11.9",
+      "anchor": "11.9-blood-pressure"
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "the acceleration due to gravity, about 9.80 m/s² at the Earth’s surface",
+      "unit": "m/s²",
+      "section": "11.9",
+      "anchor": "11.9-blood-pressure"
     }
   ]
 }

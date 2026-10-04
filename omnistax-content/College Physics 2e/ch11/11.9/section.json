@@ -4,7 +4,7 @@
  "chapter": "11",
  "title": "Pressures in the Body",
  "short": "Pressures in the body",
- "lead": "Every pressure a physician measures is a gauge pressure, and the most common of all medical examinations reads the pressure in the arteries. You take the pressures of the body in turn. Blood pressure rises in the feet of a standing person by the weight of the column of blood below the heart. A pressure holds the eye in shape, and glaucoma raises it into a damaging force. The pressure inside the lungs swings below and above atmospheric with each breath. Fluid floats the brain, the bladder has its reflex, and the largest pressures of all act between the vertebrae of the spine.",
+ "lead": "Every pressure a physician measures is a gauge pressure, and the most common of all medical examinations reads the pressure in the arteries. You take the pressures of the body in turn. Blood pressure rises in the feet of <span data-ref=\"person\">a standing person</span> by <span data-type=\"force\">the weight of the column of blood</span> below <span data-ref=\"heart\">the heart</span>. A pressure holds the eye in shape, and glaucoma raises it into a damaging force. The pressure inside the lungs swings below and above atmospheric with each breath. Fluid floats the brain, the bladder has its reflex, and the largest pressures of all act between the vertebrae of the spine.",
  "objectives": [
   "Explain the concept of pressure the in human body.",
   "Explain systolic and diastolic blood pressures.",
@@ -49,7 +49,9 @@
    "kind": "sim",
    "draws": [
     "pressure",
-    "position"
+    "position",
+    "density",
+    "acceleration"
    ]
   },
   {
@@ -73,7 +75,11 @@
    "draws": [
     "pressure",
     "force",
-    "position"
+    "position",
+    "area",
+    "density",
+    "mass",
+    "acceleration"
    ]
   },
   {
@@ -535,6 +541,48 @@
    "exercise": "p18",
    "concept": "pressure",
    "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "person",
+   "label": "the standing person",
+   "figure": "sim-blood-column"
+  },
+  {
+   "id": "heart",
+   "label": "the heart",
+   "figure": "sim-blood-column"
+  },
+  {
+   "id": "right-side",
+   "label": "the right side of the heart",
+   "figure": "sim-circulation"
+  },
+  {
+   "id": "left-side",
+   "label": "the left side of the heart",
+   "figure": "sim-circulation"
+  },
+  {
+   "id": "eye",
+   "label": "the eye",
+   "figure": "sim-eye-force"
+  },
+  {
+   "id": "block",
+   "label": "the mass on the pan",
+   "figure": "sim-eye-force"
+  },
+  {
+   "id": "lungs",
+   "label": "the lungs",
+   "figure": "sim-breath"
+  },
+  {
+   "id": "pleural-liquid",
+   "label": "the liquid between the lungs and the chest wall",
+   "figure": "sim-breath"
   }
  ]
 }
