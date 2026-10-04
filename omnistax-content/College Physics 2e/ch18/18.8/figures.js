@@ -1,10 +1,12 @@
 /* Figures for section 18.8 Applications of Electrostatics. Boots against the section's text article.
-   The page binds charge, electric field, force and acceleration, which is what
-   ch18/COLOR.md says 18.8 binds. Every machine of the section is a body and is
-   drawn in ink, with the book's + and − marks on it; the charge a body holds is
-   stated beside it in the charge hue, the field arrows and field lines wear the
-   field hue, and the two forces on the drop of Example 18.5 wear the force hue.
-   Masses, radii, distances, counts and fractions are untyped and stay in ink.
+   The figures colour charge, electric field, force, acceleration, mass and
+   the distances (position). Each machine part the text names (the sphere,
+   belt and battery, the drum, corotron and paper, the nozzle, plates and
+   droplets, the grids and particles, the drop) is a referent and wears its
+   referent colour on outline and name, with the book's + and − marks in ink;
+   the charge a body holds is stated beside it in the charge hue, the field
+   arrows wear the field hue, and the two forces on the drop wear the force
+   hue. Counts and fractions stay in ink.
    Four of the five figures are machines whose parts carry charge from one place
    to another, which is the kinematic arrow of rule 24.1, so they register a
    cycle and carry a transport; the copier drum tells its four stations as a
@@ -35,25 +37,25 @@ function sciTex(v, d) {
 /* a number with the typographic minus, and one that always carries its sign */
 const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
 const plus = (v, d) => (v === 0 ? '' : v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
-/* a rounded rectangle, filled and outlined in ink: every body of these machines */
-function panel(ctx, x, y, w, h, r, fill) {
-  ctx.save(); ctx.fillStyle = fill === undefined ? PAL.panel : fill; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+/* a rounded rectangle, filled, outlined in ink unless a stroke is given */
+function panel(ctx, x, y, w, h, r, fill, stroke = PAL.ink) {
+  ctx.save(); ctx.fillStyle = fill === undefined ? PAL.panel : fill; ctx.strokeStyle = stroke; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
   ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
 }
-/* a circle in ink */
-function circle(ctx, x, y, r, fill, w) {
-  ctx.save(); ctx.fillStyle = fill === undefined ? PAL.panel : fill; ctx.strokeStyle = PAL.ink; ctx.lineWidth = w || 3;
+/* a circle, outlined in ink unless a stroke is given */
+function circle(ctx, x, y, r, fill, w, stroke = PAL.ink) {
+  ctx.save(); ctx.fillStyle = fill === undefined ? PAL.panel : fill; ctx.strokeStyle = stroke; ctx.lineWidth = w || 3;
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 /* the book's + and − marks, drawn in ink so that a sign is never a hue */
 const mark = (ctx, s, x, y, size) => text(ctx, s, x, y + 1, PAL.ink, { size: size || 22, weight: 700, align: 'center' });
 /* a comb of points, the pointed conductor the book draws, its teeth facing the direction given */
-function comb(ctx, x, y, n, dx, dy, len) {
+function comb(ctx, x, y, n, dx, dy, len, col = PAL.ink) {
   for (let i = 0; i < n; i++) {
     const o = (i - (n - 1) / 2) * 16;
     const px = x + (dy ? o : 0), py = y + (dx ? o : 0);
-    line(ctx, px, py, px + dx * len, py + dy * len, PAL.ink, 3);
+    line(ctx, px, py, px + dx * len, py + dy * len, col, 3);
   }
 }
 /* the ground symbol the book draws under a grounded conductor */
@@ -75,12 +77,13 @@ function ground(ctx, x, y) {
   const T = 6;
   const cy = cycle(() => T, 1.4);
   const rate = ctl(d.controls, { label: '\\text{the belt}', cls: 'charge', min: 4, max: 50, step: 1, value: 20, unit: 'µC/s', dec: 0, aria: 'the charge the belt delivers to the sphere each second', onInput: () => cy.reset() });
-  const rad = ctl(d.controls, { label: '\\text{the sphere}', cls: '', min: 0.3, max: 1.2, step: 0.05, value: 0.5, unit: 'm', dec: 2, aria: 'the radius of the sphere', onInput: () => cy.reset() });
+  const rad = ctl(d.controls, { label: '\\text{the sphere}', cls: 'position', min: 0.3, max: 1.2, step: 0.05, value: 0.5, unit: 'm', dec: 2, aria: 'the radius of the sphere', onInput: () => cy.reset() });
   const CX = 560, SY = 400, BX1 = 522, BX2 = 598, BBOT = 730;
   const Rof = (R) => 100 + R * 120;                     /* the sphere on the canvas, 272 to 488 units across */
   function draw() {
     const { ctx } = begin(d.c);
     const qc = C('charge'), ec = C('electric-field');
+    const sc = F.ref('sphere'), bc = F.ref('belt'), btc = F.ref('battery'), spc = F.ref('sprayer'), coc = F.ref('collector');
     const t = cy.now(), R = rad.v;
     const qMax = (EAIR * R * R) / K;                    /* the charge whose surface field just ionizes the air, in C */
     const qDel = rate.v * 1e-6 * t;                     /* what the belt has delivered by now, in C */
@@ -92,10 +95,10 @@ function ground(ctx, x, y) {
     panel(ctx, CX - 50, SY, 100, 740 - SY, 10, PAL.soft);
     text(ctx, 'insulating column', CX + 64, 660, PAL.muted, { size: 19 });
     /* the sphere, drawn as the book draws it, cut away so the belt inside can be seen */
-    circle(ctx, CX, SY, Rpx, PAL.panel, 4);
+    circle(ctx, CX, SY, Rpx, PAL.panel, 4, sc);
     /* the belt, a loop between two pulleys, with the charge it carries drawn on it */
-    circle(ctx, CX, BBOT, 28, PAL.panel); circle(ctx, CX, BTOP, 24, PAL.panel);
-    line(ctx, BX1, BTOP, BX1, BBOT, PAL.ink, 3); line(ctx, BX2, BTOP, BX2, BBOT, PAL.ink, 3);
+    circle(ctx, CX, BBOT, 28, PAL.panel, 3, bc); circle(ctx, CX, BTOP, 24, PAL.panel, 3, bc);
+    line(ctx, BX1, BTOP, BX1, BBOT, bc, 3); line(ctx, BX2, BTOP, BX2, BBOT, bc, 3);
     const nb = 6, span = BBOT - BTOP;
     for (let i = 0; i < nb; i++) {
       const f = ((i / nb) + (t / 1.6)) % 1;             /* the belt runs up the left side and down the right */
@@ -103,9 +106,9 @@ function ground(ctx, x, y) {
       if (t > 0.3) mark(ctx, '+', BX2 + 1, BTOP + f * span, 13);
     }
     arrow(ctx, BX1 - 36, BBOT - 30, BX1 - 36, BTOP + 80, PAL.ink, 4);
-    text(ctx, 'the belt carries the charge up', BX1 - 52, 600, PAL.muted, { size: 19, align: 'right' });
+    text(ctx, 'the belt carries the charge up', BX1 - 52, 600, bc, { size: 19, align: 'right' });
     /* the ring of the sphere, stroked over the belt, so the drawing reads as a cutaway */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.strokeStyle = sc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(CX, SY, Rpx, 0, TAU); ctx.stroke(); ctx.restore();
     /* the excess charge, every coulomb of it on the outside surface */
     const nm = Math.max(0, Math.round((q / Math.max(qMax, 1e-12)) * 16));
@@ -114,18 +117,18 @@ function ground(ctx, x, y) {
       mark(ctx, '+', CX + (Rpx - 17) * Math.cos(a), SY + (Rpx - 17) * Math.sin(a), 20);
     }
     /* the pointed conductor B inside the sphere, and the ion source the caption names */
-    comb(ctx, CX, BTOP - 30, 3, 0, 1, 24);
-    text(ctx, 'B', CX + 42, BTOP - 18, PAL.ink, { size: 22, weight: 700 });
-    line(ctx, CX, BTOP - 30, CX, SY - Rpx + 6, PAL.ink, 3);
+    comb(ctx, CX, BTOP - 30, 3, 0, 1, 24, coc);
+    text(ctx, 'B', CX + 42, BTOP - 18, coc, { size: 22, weight: 700 });
+    line(ctx, CX, BTOP - 30, CX, SY - Rpx + 6, coc, 3);
     circle(ctx, CX - 66, SY + 52, 15, PAL.soft);
     line(ctx, CX - 80, SY + 58, CX - Rpx - 10, SY + 96, PAL.muted, 2);
     text(ctx, 'ion source', CX - Rpx - 16, SY + 100, PAL.muted, { size: 18, align: 'right' });
     /* the battery and the pointed conductor that sprays the belt */
-    panel(ctx, CX + 170, BBOT - 60, 96, 76, 8, PAL.panel);
-    text(ctx, 'A', CX + 218, BBOT - 22, PAL.ink, { size: 24, weight: 700, align: 'center' });
-    line(ctx, CX + 170, BBOT - 22, BX2 + 62, BBOT - 22, PAL.ink, 3);
-    comb(ctx, BX2 + 56, BBOT - 22, 3, -1, 0, 30);
-    text(ctx, 'the points spray charge onto the belt', CX + 172, BBOT + 62, PAL.muted, { size: 19 });
+    panel(ctx, CX + 170, BBOT - 60, 96, 76, 8, PAL.panel, btc);
+    text(ctx, 'A', CX + 218, BBOT - 22, btc, { size: 24, weight: 700, align: 'center' });
+    line(ctx, CX + 170, BBOT - 22, BX2 + 62, BBOT - 22, spc, 3);
+    comb(ctx, BX2 + 56, BBOT - 22, 3, -1, 0, 30, spc);
+    text(ctx, 'the points spray charge onto the belt', CX + 172, BBOT + 62, spc, { size: 19 });
     /* the field the charged sphere makes outside itself, drawn where the drawing has room */
     if (q > 0) {
       const L = 40 + 110 * (E / EAIR);
@@ -148,7 +151,7 @@ function ground(ctx, x, y) {
     topline(ctx, over
       ? `The sphere is holding all it can: ${fmt(q * 1e6, 1)} µC on a sphere of radius ${fmt(R, 2)} m brings the field at the surface to ${sci(E, 2)} N/C, and the air around it ionizes and carries off whatever the belt brings up.`
       : `The belt has delivered ${fmt(q * 1e6, 1)} µC to the sphere, all of it on the outside surface, where it makes a field of ${sci(E, 2)} N/C.`);
-    readout(d.readout, `\\kEf = k\\frac{|\\kq|}{r^2} = (8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2\\text{/C}^2)\\frac{${sciTex(q, 2)}\\ \\text{C}}{(${fmt(R, 2)}\\ \\text{m})^2} = ${sciTex(E, 2)}\\ \\text{N/C}`,
+    readout(d.readout, `\\kEf = k\\frac{|\\kq|}{\\krad^2} = (8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2\\text{/C}^2)\\frac{${sciTex(q, 2)}\\ \\text{C}}{(${fmt(R, 2)}\\ \\text{m})^2} = ${sciTex(E, 2)}\\ \\text{N/C}`,
       'A very large excess charge can be deposited on the sphere because it moves quickly to the outer surface, so the sphere fills from the outside and none of the charge sits inside it. The practical limit is the air: enlarge the sphere and the same charge makes a smaller field at its surface, so a larger sphere holds more charge before the surrounding material polarizes, ionizes and lets the excess escape.');
   }
   hover(d.stage, () => [
@@ -195,9 +198,10 @@ function ground(ctx, x, y) {
     const light = sm(clamp((s - 0.25) / 0.75)), beam = sm(clamp(s / 0.5)) * (1 - sm(clamp((s - 1.2) / 0.5)));
     const toner = sm(clamp((s - 1.3) / 0.7)), paper = sm(clamp((s - 2) / 0.5)), pulled = sm(clamp(s - 2));
     /* the aluminum drum, its selenium coat, and the ground the book names */
-    circle(ctx, CX, CY, R, PAL.panel, 4);
-    circle(ctx, CX, CY, R - 26, PAL.soft, 3);
-    text(ctx, 'aluminum drum', CX, CY, PAL.muted, { size: 20, align: 'center' });
+    const drc = F.ref('drum');
+    circle(ctx, CX, CY, R, PAL.panel, 4, drc);
+    circle(ctx, CX, CY, R - 26, PAL.soft, 3, drc);
+    text(ctx, 'aluminum drum', CX, CY, drc, { size: 20, align: 'center' });
     line(ctx, CX - R + 6, CY - 130, CX - R - 60, CY - 180, PAL.muted, 2);
     text(ctx, 'selenium, a photoconductor', CX - R - 66, CY - 184, PAL.muted, { size: 19, align: 'right' });
     line(ctx, CX, CY + R - 26, CX, CY + R + 40, PAL.ink, 3);
@@ -213,12 +217,12 @@ function ground(ctx, x, y) {
       });
     }
     /* the corotron, which sprays the selenium with positive charge */
-    comb(ctx, CX - 150, CY - R - 62, 4, 0.55, 0.84, 26);
-    text(ctx, 'corotron', CX - 200, CY - R - 78, PAL.ink, { size: 19, align: 'right' });
+    comb(ctx, CX - 150, CY - R - 62, 4, 0.55, 0.84, 26, F.ref('corotron'));
+    text(ctx, 'corotron', CX - 200, CY - R - 78, F.ref('corotron'), { size: 19, align: 'right' });
     /* what writes the image, while the image is being written */
     F.faded(ctx, beam * writer.a('laser'), [0, 0], () => {
-      panel(ctx, 1030, 150, 150, 64, 8, PAL.panel);
-      text(ctx, 'laser', 1105, 182, PAL.ink, { size: 20, weight: 600, align: 'center' });
+      panel(ctx, 1030, 150, 150, 64, 8, PAL.panel, F.ref('laser'));
+      text(ctx, 'laser', 1105, 182, F.ref('laser'), { size: 20, weight: 600, align: 'center' });
       line(ctx, 1030, 182, 900, 182, PAL.ink, 3);
       for (let i = 0; i < 4; i++) {
         const deg = -150 + i * 46, a = deg * (Math.PI / 180);
@@ -229,8 +233,8 @@ function ground(ctx, x, y) {
       text(ctx, 'a turning mirror scans the beam', 880, 146, PAL.muted, { size: 18, align: 'right' });
     });
     F.faded(ctx, beam * writer.a('lamp'), [0, 0], () => {
-      panel(ctx, 1000, 150, 190, 300, 8, PAL.soft);
-      text(ctx, 'the original', 1095, 176, PAL.ink, { size: 19, align: 'center' });
+      panel(ctx, 1000, 150, 190, 300, 8, PAL.soft, F.ref('original'));
+      text(ctx, 'the original', 1095, 176, F.ref('original'), { size: 19, align: 'center' });
       for (let i = 0; i < 4; i++) panel(ctx, 1024, 210 + i * 56, 142, 26, 4, PAL.panel);
       for (let i = 0; i < 5; i++) {
         const deg = -160 + i * 42, a = deg * (Math.PI / 180);
@@ -249,10 +253,10 @@ function ground(ctx, x, y) {
       text(ctx, 'toner, sprayed with negative charge', CX - R - 30, CY + R + 40, PAL.muted, { size: 19, align: 'right' });
     });
     F.faded(ctx, paper, [0, 0], () => {
-      panel(ctx, 900, CY + 40, 330, 150, 6, PAL.panel);
+      panel(ctx, 900, CY + 40, 330, 150, 6, PAL.panel, F.ref('paper'));
       for (let i = 0; i < 7; i++) mark(ctx, '+', 930 + i * 46, CY + 176, 20);
       for (let i = 0; i < Math.round(5 * pulled); i++) dot(ctx, 950 + i * 40, CY + 78, PAL.ink, true, 7);
-      text(ctx, 'the paper, charged more strongly than the drum', 1065, CY + 214, PAL.muted, { size: 18, align: 'center' });
+      text(ctx, 'the paper, charged more strongly than the drum', 1065, CY + 214, F.ref('paper'), { size: 18, align: 'center' });
       arrow(ctx, CX + R + 30, CY + 60, 890, CY + 90, PAL.ink, 4);
     });
     const frac = (NDARK + (48 - NDARK) * (1 - light)) / 48, dens = q * frac;
@@ -304,21 +308,22 @@ function ground(ctx, x, y) {
   const yOf = (m) => Math.max(120, Math.min(540, YC + m * SY));
   function draw() {
     const { ctx } = begin(d.c);
-    const qc = C('charge'), ec = C('electric-field'), fc = C('force');
+    const qc = C('charge'), ec = C('electric-field'), fc = C('force'), pc = C('position');
+    const nzc = F.ref('nozzle'), elc = F.ref('electrodes'), plc = F.ref('plates'), ppc = F.ref('page'), dpc = F.ref('droplets');
     const t = cy.now(), q = qs.v * 1e-12, E = Es.v * 1e3;
     const a = (q * E) / M, yEnd = landing(q, E);
     /* the nozzle, the charging electrodes, the plates and the paper */
-    panel(ctx, 40, YC - 40, 110, 80, 10, PAL.soft);
-    text(ctx, 'nozzle', 95, YC - 62, PAL.ink, { size: 19, align: 'center' });
-    panel(ctx, 280, YC - 92, 26, 60, 4, PAL.panel); panel(ctx, 280, YC + 32, 26, 60, 4, PAL.panel);
-    text(ctx, 'charging electrodes', 293, YC + 122, PAL.muted, { size: 18, align: 'center' });
-    panel(ctx, PL1, YC - 150, PL2 - PL1, 26, 4, PAL.panel); panel(ctx, PL1, YC + 124, PL2 - PL1, 26, 4, PAL.panel);
+    panel(ctx, 40, YC - 40, 110, 80, 10, PAL.soft, nzc);
+    text(ctx, 'nozzle', 95, YC - 62, nzc, { size: 19, align: 'center' });
+    panel(ctx, 280, YC - 92, 26, 60, 4, PAL.panel, elc); panel(ctx, 280, YC + 32, 26, 60, 4, PAL.panel, elc);
+    text(ctx, 'charging electrodes', 293, YC + 122, elc, { size: 18, align: 'center' });
+    panel(ctx, PL1, YC - 150, PL2 - PL1, 26, 4, PAL.panel, plc); panel(ctx, PL1, YC + 124, PL2 - PL1, 26, 4, PAL.panel, plc);
     for (let i = 0; i < 6; i++) { mark(ctx, '+', PL1 + 34 + i * 58, YC - 137, 20); mark(ctx, '−', PL1 + 34 + i * 58, YC + 137, 20); }
-    text(ctx, 'deflection plates', (PL1 + PL2) / 2, YC - 178, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'deflection plates', (PL1 + PL2) / 2, YC - 178, plc, { size: 19, align: 'center' });
     for (let i = 0; i < 6; i++) arrow(ctx, PL1 + 34 + i * 58, YC - 112, PL1 + 34 + i * 58, YC + 112, ec, 3);
     text(ctx, 'E = ' + fmt(Es.v, 0) + ' kN/C', PL2 + 12, YC - 100, ec, { size: 21, weight: 600 });
-    panel(ctx, PAPER, 90, 130, 460, 6, PAL.soft);
-    text(ctx, 'the paper', PAPER + 65, 66, PAL.ink, { size: 19, align: 'center' });
+    panel(ctx, PAPER, 90, 130, 460, 6, PAL.soft, ppc);
+    text(ctx, 'the paper', PAPER + 65, 66, ppc, { size: 19, align: 'center' });
     for (let k = -8; k <= 8; k += 2) {                 /* the page carries a scale, so the deflection can be read off it */
       const y = YC + (k / 100) * SY; if (y < 100 || y > 546) continue;
       line(ctx, PAPER, y, PAPER + 14, y, PAL.muted, 2);
@@ -332,7 +337,7 @@ function ground(ctx, x, y) {
       const u = Math.max(0, Math.min(1, (x - PL1) / (PL2 - PL1)));
       const v = Math.max(0, Math.min(1, (x - PL2) / (PAPER - PL2)));
       const y = yOf(drop(q, E, u, v));
-      dot(ctx, x, y, PAL.ink, true, 9);
+      dot(ctx, x, y, dpc, true, 9);
       if (x > 306) mark(ctx, q > 0 ? '+' : q < 0 ? '−' : '', x, y - 22, 18);
       if (i === 0 && x > PL1 && x < PL2 && q !== 0) {
         arrow(ctx, x, y, x, y + Math.max(-90, Math.min(90, (q * E) / 4e-6 * 60)), fc, 5);
@@ -341,8 +346,8 @@ function ground(ctx, x, y) {
     }
     /* where the stream is writing on the page */
     const yLand = yOf(yEnd);
-    line(ctx, PAPER - 30, yLand, PAPER + 8, yLand, PAL.ink, 3);
-    text(ctx, num(yEnd * 100, 2) + ' cm', PAPER + 40, yLand + (Math.abs(yLand - YC) < 18 ? -24 : yLand > YC ? 24 : -24), PAL.ink, { size: 20, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.9) });
+    line(ctx, PAPER - 30, yLand, PAPER + 8, yLand, pc, 3);
+    text(ctx, num(yEnd * 100, 2) + ' cm', PAPER + 40, yLand + (Math.abs(yLand - YC) < 18 ? -24 : yLand > YC ? 24 : -24), pc, { size: 20, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.9) });
     text(ctx, 'q = ' + plus(qs.v, 0) + ' pC', 95, YC + 82, qc, { size: 21, weight: 600, align: 'center' });
     topline(ctx, qs.v === 0 || Es.v === 0
       ? 'The droplets carry no charge, or the plates make no field, so no force acts on them between the plates and the stream flies straight on to the middle of the page.'
@@ -379,10 +384,11 @@ function ground(ctx, x, y) {
     const pull = 1 - Math.exp(-(q * E) / 3.0e-4);
     /* the duct, and the two grids the book draws */
     panel(ctx, X0, YT, X3 - X0, YB - YT, 8, PAL.soft);
-    for (const [x, sign, name, off] of [[X1, '+', 'the charging grid', -16], [X2, '−', 'the collecting grid', -16]]) {
-      line(ctx, x, YT + 6, x, YB - 6, PAL.ink, 4);
+    const ptc = F.ref('particles');
+    for (const [x, sign, name, off, id] of [[X1, '+', 'the charging grid', -16, 'charging-grid'], [X2, '−', 'the collecting grid', -16, 'collecting-grid']]) {
+      line(ctx, x, YT + 6, x, YB - 6, F.ref(id), 4);
       for (let i = 0; i < 6; i++) mark(ctx, sign, x + off, YT + 34 + i * ((YB - YT - 68) / 5), 22);
-      text(ctx, name, x, YB + 34, PAL.ink, { size: 19, align: 'center' });
+      text(ctx, name, x, YB + 34, F.ref(id), { size: 19, align: 'center' });
     }
     for (let i = 0; i < 5; i++) arrow(ctx, X1 + 24, YT + 40 + i * 70, X2 - 12, YT + 40 + i * 70, ec, 3);
     text(ctx, 'E = ' + fmt(Es.v, 0) + ' kN/C', (X1 + X2) / 2, YT - 28, ec, { size: 21, weight: 600, align: 'center' });
@@ -400,16 +406,16 @@ function ground(ctx, x, y) {
       let y = LANE[i];
       if (held && charged) {                                    /* drawn toward the collecting grid as it approaches */
         const g = Math.min(1, Math.max(0, (x - X1) / (X2 - X1)));
-        dot(ctx, Math.min(x, X2 - 24), y, PAL.ink, true, 8);
+        dot(ctx, Math.min(x, X2 - 24), y, ptc, true, 8);
         mark(ctx, '+', Math.min(x, X2 - 24), y - 20, 16);
         if (g > 0.8) arrow(ctx, Math.min(x, X2 - 24) + 10, y, X2 - 14, y, ec, 3);
         continue;
       }
-      dot(ctx, x, y, PAL.ink, true, 8);
+      dot(ctx, x, y, ptc, true, 8);
       if (charged && q > 0) mark(ctx, '+', x, y - 20, 16);
     }
     /* what the second grid is holding */
-    for (let i = 0; i < Math.min(12, Math.round(pull * 12)); i++) dot(ctx, X2 + 20, YT + 26 + i * ((YB - YT - 52) / 11), PAL.ink, true, 8);
+    for (let i = 0; i < Math.min(12, Math.round(pull * 12)); i++) dot(ctx, X2 + 20, YT + 26 + i * ((YB - YT - 52) / 11), ptc, true, 8);
     const pct = pull * 100;
     text(ctx, 'q on each particle = ' + fmt(qs.v, 1) + ' nC', X1, YT - 28, qc, { size: 21, weight: 600, align: 'center' });
     text(ctx, fmt(pct, 0) + '% collected', X3 - 20, YB + 34, PAL.ink, { size: 21, weight: 600, align: 'right' });
@@ -438,14 +444,14 @@ function ground(ctx, x, y) {
     specials: [{ at: () => (Es && ms && Es.v > 0 ? (ms.v * 1e-15 * G) / (Es.v * 1e5) / 1e-19 : null), label: 'hangs' }] });
   Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 0, max: 6, step: 0.1, value: 3.0, unit: '×10⁵ N/C', dec: 2, aria: 'the strength of the upward electric field',
     specials: [{ at: () => (ms && qs.v > 0 ? (ms.v * 1e-15 * G) / (qs.v * 1e-19) / 1e5 : null), label: 'hangs' }] });
-  ms = ctl(d.controls, { label: 'm', cls: '', min: 1, max: 10, step: 0.1, value: 4.0, unit: '×10⁻¹⁵ kg', dec: 2, aria: 'the mass of the drop',
+  ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 1, max: 10, step: 0.1, value: 4.0, unit: '×10⁻¹⁵ kg', dec: 2, aria: 'the mass of the drop',
     specials: [{ at: () => (qs.v * 1e-19 * Es.v * 1e5) / G / 1e-15, label: 'hangs' }] });
   const { formula, note } = F.readout(d);
   let wasHung = null;
   const DX = 470, DY = 330, FX = 1010;
   function draw() {
     const { ctx } = begin(d.c);
-    const qc = C('charge'), ec = C('electric-field'), fc = C('force'), ac = C('acceleration');
+    const qc = C('charge'), ec = C('electric-field'), fc = C('force'), ac = C('acceleration'), mc = C('mass'), drc = F.ref('drop');
     const q = qs.v * 1e-19, E = Es.v * 1e5, m = ms.v * 1e-15;
     const w = m * G, Fe = q * E, hung = q > 0 && E > 0 && Math.abs(Fe - w) < 1e-6 * w, net = hung ? 0 : Fe - w, a = net / m;
     /* the upward field the drop hangs in */
@@ -455,11 +461,11 @@ function ground(ctx, x, y) {
     }
     text(ctx, 'E = ' + sci(E, 2) + ' N/C, upward', 150, 570, ec, { size: 21, weight: 600 });
     /* the drop, with the sign the book gives it */
-    circle(ctx, DX, DY, 34, PAL.panel, 3);
+    circle(ctx, DX, DY, 34, PAL.panel, 3, drc);
     mark(ctx, '+', DX, DY, 26);
     const bg = alpha(PAL.panel, 0.9);
-    text(ctx, 'a drop of gasoline', DX - 52, DY - 26, PAL.ink, { size: 19, align: 'right', bg });
-    text(ctx, 'm = ' + sci(m, 2) + ' kg', DX - 52, DY + 4, PAL.ink, { size: 19, align: 'right', bg });
+    text(ctx, 'a drop of gasoline', DX - 52, DY - 26, drc, { size: 19, align: 'right', bg });
+    text(ctx, 'm = ' + sci(m, 2) + ' kg', DX - 52, DY + 4, mc, { size: 19, weight: 600, align: 'right', bg });
     text(ctx, 'q = ' + sci(q, 2) + ' C', DX - 52, DY + 34, qc, { size: 19, weight: 600, align: 'right', bg });
     /* the free-body diagram: the two forces, drawn to a common scale, and the net */
     const S = 1.1e15;                                          /* canvas units per newton, so 9.6 × 10⁻¹⁴ N is 106 units */
@@ -484,7 +490,7 @@ function ground(ctx, x, y) {
           : `The electric force and the weight are both ${sci(w, 2)} N, so the net force is zero and the drop hangs where it is.`);
     F.morph(formula, hung
       ? `\\mk{F}{\\kF} = \\mk{w}{\\kwgt} = \\mk{nw}{${sciTex(w, 2)}}\\ \\text{N}`
-      : `\\mk{a}{\\ka} = \\frac{\\mk{F}{\\kF} - \\mk{w}{\\kwgt}}{m} = \\frac{\\mk{nF}{${sciTex(Fe, 2)}} - \\mk{nw}{${sciTex(w, 2)}}}{\\mk{m}{${sciTex(m, 2)}}} = \\mk{na}{${a === 0 ? '0' : num(a, 1)}}\\ \\text{m/s}^2`,
+      : `\\mk{a}{\\ka} = \\frac{\\mk{F}{\\kF} - \\mk{w}{\\kwgt}}{\\km} = \\frac{\\mk{nF}{${sciTex(Fe, 2)}} - \\mk{nw}{${sciTex(w, 2)}}}{\\mk{m}{${sciTex(m, 2)}}} = \\mk{na}{${a === 0 ? '0' : num(a, 1)}}\\ \\text{m/s}^2`,
       { force: wasHung !== null && hung !== wasHung });
     wasHung = hung;
     note.textContent = (hung ? 'The electric force holds up the whole weight, so the drop neither rises nor falls. ' : '')

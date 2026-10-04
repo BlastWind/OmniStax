@@ -1,11 +1,12 @@
 /* Figures for section 18.7 Conductors and Electric Fields in Static Equilibrium.
    Boots against the section's text article.
 
-   The page binds charge, electric field and force, which is what
-   `ch18/COLOR.md` gives 18.7. A charge's sign is told by the sign written on
-   it and by which way the arrows and the lines run, never by a hue; the
-   conductors themselves are bodies and are drawn in ink, with the book's plus
-   and minus marks on them in ink as well.
+   The figures colour charge, electric field, force, the distances (position)
+   and the angle of the applied field. A charge's sign is told by the sign
+   written on it and by which way the arrows and the lines run, never by a
+   hue. The conductors, the sphere, the plates, the probe and the charges the
+   text names are referents and wear their referent colours on outline and
+   name; the book's plus and minus marks on them stay in ink.
 
    Only the first figure moves. The section's argument is that free charges
    move until nothing is left to move them, and that settling has a clock in
@@ -36,17 +37,16 @@ function sciTex(v, d) {
   return fmt(m, d) + ' \\times 10^{' + e + '}';
 }
 
-/* A point charge: a filled disc in the charge hue with its sign written on it,
-   the same drawing 18.4 and 18.5 use. */
-function pointCharge(ctx, x, y, q, r) {
-  const qc = C('charge');
-  ctx.save(); ctx.fillStyle = q === 0 ? PAL.panel : qc; ctx.strokeStyle = qc; ctx.lineWidth = 3;
+/* A point charge: a filled disc with its sign written on it, in its referent
+   colour where the text names it and in the charge hue where it does not. */
+function pointCharge(ctx, x, y, q, r, col = C('charge')) {
+  ctx.save(); ctx.fillStyle = q === 0 ? PAL.panel : col; ctx.strokeStyle = col; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
   if (q !== 0) text(ctx, q < 0 ? '−' : '+', x, y + 1, PAL.panel, { size: r * 1.8, weight: 700, align: 'center' });
 }
 
-/* A plus or a minus written on the body of a conductor. A body is ink, and so
-   are the marks the book draws on it. */
+/* A plus or a minus written on the body of a conductor, in ink as the book
+   draws it. */
 function signMark(ctx, x, y, positive, size) {
   text(ctx, positive ? '+' : '−', x, y, PAL.ink, { size, weight: 700, align: 'center' });
 }
@@ -114,12 +114,12 @@ function drawLine(ctx, pts, color, w, heads) {
   const cy = cycle(() => T, 1.2);
   const reset = () => cy.reset();
   const Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 100, max: 1000, step: 20, value: 400, unit: 'N/C', dec: 0, aria: 'the strength of the applied field', onInput: reset });
-  const as = ctl(d.controls, { label: '\\text{the angle}', cls: '', min: 15, max: 90, step: 5, value: 35, unit: '°', dec: 0, aria: 'the angle the applied field makes with the surface', onInput: reset });
+  const as = ctl(d.controls, { label: '\\text{the angle}', cls: 'angle', min: 15, max: 90, step: 5, value: 35, unit: '°', dec: 0, aria: 'the angle the applied field makes with the surface', onInput: reset });
   const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 0.1, max: 5, step: 0.1, value: 1, unit: 'μC', dec: 2, aria: 'the free charge in the conductor', onInput: reset });
   const X0 = 190, X1 = 1210, YS = 420, YB = 548, KE = 0.26, KF = 0.055;
   function draw() {
     const { ctx } = begin(d.c);
-    const ec = C('electric-field'), fc = C('force'), qc = C('charge');
+    const ec = C('electric-field'), fc = C('force'), qc = C('charge'), cdc = F.ref('conductor');
     const E0 = Es.v, al = as.v * RAD, q = qs.v;
     /* the share of the parallel component the gathered charge has already
        cancelled; it settles quickly and then holds, as a conductor does */
@@ -127,9 +127,9 @@ function drawLine(ctx, pts, color, w, heads) {
     const Epar = E0 * Math.cos(al) * (1 - s), Eperp = E0 * Math.sin(al);
     const Enet = Math.hypot(Epar, Eperp), Fpar = q * Epar;        /* μC × N/C = μN */
     /* the conductor, seen edge on */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.10); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.10); ctx.strokeStyle = cdc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.rect(X0, YS, X1 - X0, YB - YS); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'the conductor', (X0 + X1) / 2, (YS + YB) / 2 + 2, PAL.muted, { size: 21, align: 'center' });
+    text(ctx, 'the conductor', (X0 + X1) / 2, (YS + YB) / 2 + 2, cdc, { size: 21, align: 'center' });
     /* the field above the surface, drawn at five places */
     const ux = Epar / (Enet || 1), uy = Eperp / (Enet || 1), L = Enet * KE;
     for (const x of [280, 440, 900, 1060, 1160]) arrow(ctx, x - L * ux, YS - L * uy, x, YS, ec, 4);
@@ -155,7 +155,7 @@ function drawLine(ctx, pts, color, w, heads) {
       signMark(ctx, X0 + 34 + i * 30, YS + 28, false, 28);
     }
     const cxq = 540 + s * 580, yq = YS - 24;
-    pointCharge(ctx, cxq, yq, 1, 20);
+    pointCharge(ctx, cxq, yq, 1, 20, F.ref('free-charge'));
     text(ctx, 'q = ' + fmt(q, 2) + ' μC', cxq, yq - 40, qc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     if (Fpar * KF > 5) {
       arrow(ctx, cxq + 26, yq, cxq + 26 + Fpar * KF, yq, fc, 5);
@@ -185,7 +185,7 @@ function drawLine(ctx, pts, color, w, heads) {
 (function () {
   const d = sim('sim-sphere-in-field', 700);
   const Es = ctl(d.controls, { label: '\\kEf', cls: 'electric-field', min: 50, max: 500, step: 10, value: 200, unit: 'N/C', dec: 0, aria: 'the strength of the applied field' });
-  const as = ctl(d.controls, { label: '\\text{the radius}', cls: '', min: 5, max: 14, step: 0.5, value: 10, unit: 'cm', dec: 1, aria: 'the radius of the sphere' });
+  const as = ctl(d.controls, { label: '\\text{the radius}', cls: 'position', min: 5, max: 14, step: 0.5, value: 10, unit: 'cm', dec: 1, aria: 'the radius of the sphere' });
   const kind = choice(d.controls, { label: '\\text{the sphere}', options: [{ value: 'metal', label: 'a conductor' }, { value: 'insulator', label: 'an insulator' }], value: 'metal', aria: 'what the sphere is made of' });
   const CX = 700, CY = 372, S = 15;                 /* 15 logical units to the centimetre */
   const BOX = { x0: 120, x1: 1280, y0: 96, y1: 648 };
@@ -223,10 +223,11 @@ function drawLine(ctx, pts, color, w, heads) {
       }
       ctx.restore();
     }
-    /* the sphere itself, a body and so in ink, with the charge its two faces
-       carry marked the way the book marks it */
+    /* the sphere itself, outlined in its referent colour, with the charge its
+       two faces carry marked the way the book marks it */
+    const spc = F.ref('sphere');
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05 + 0.07 * mA);
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.strokeStyle = spc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(CX, CY, a, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     for (const [marks, ma] of [[7, mA], [5, 1 - mA]]) {
       if (ma < 0.01) continue;
@@ -239,7 +240,7 @@ function drawLine(ctx, pts, color, w, heads) {
       ctx.restore();
     }
     text(ctx, metal ? 'no field inside' : 'E = ' + fmt(shown, 0) + ' N/C inside', CX, CY, metal ? PAL.muted : ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, metal ? 'a metal sphere' : 'an insulating sphere', CX, CY + a + 44, PAL.muted, { size: 21, align: 'center' });
+    text(ctx, metal ? 'a metal sphere' : 'an insulating sphere', CX, CY + a + 44, spc, { size: 21, align: 'center' });
     text(ctx, 'the applied field, ' + fmt(E0, 0) + ' N/C', BOX.x0 + 6, BOX.y0 + 20, ec, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
     topline(ctx, metal
       ? 'The free charges have moved to the two faces of the sphere, and the field they make cancels the applied field inside it exactly, leaving nothing there and meeting the surface at right angles.'
@@ -264,16 +265,16 @@ function drawLine(ctx, pts, color, w, heads) {
   /* the surface, where the field inside gives way to the field outside, is a circle on the probe's
      slider at the radius and on the radius's slider at the probe */
   let rs;
-  const as = ctl(d.controls, { label: '\\text{the radius}', cls: '', min: 2, max: 9, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'the radius of the sphere',
+  const as = ctl(d.controls, { label: '\\text{the radius}', cls: 'position', min: 2, max: 9, step: 0.5, value: 5, unit: 'cm', dec: 1, aria: 'the radius of the sphere',
     specials: [{ at: () => (rs ? rs.v : null), label: 'the surface' }] });
-  rs = ctl(d.controls, { label: '\\text{the probe}', cls: '', min: 1, max: 24, step: 0.5, value: 15, unit: 'cm', dec: 1, aria: 'the distance of the probe from the centre of the sphere',
+  rs = ctl(d.controls, { label: '\\text{the probe}', cls: 'position', min: 1, max: 24, step: 0.5, value: 15, unit: 'cm', dec: 1, aria: 'the distance of the probe from the centre of the sphere',
     specials: [{ at: () => as.v, label: 'the surface' }] });
   const { formula, note } = F.readout(d);
   let wasOut = null;
   const CX = 560, CY = 386, S = 17;                 /* 17 logical units to the centimetre */
   function draw() {
     const { ctx } = begin(d.c);
-    const ec = C('electric-field'), qc = C('charge');
+    const ec = C('electric-field'), qc = C('charge'), msc = F.ref('metal-sphere'), prc = F.ref('probe');
     const Q = Qs.v, a = as.v, r = rs.v, sgn = Q === 0 ? 0 : Q > 0 ? 1 : -1;
     const Ein = 0, Eout = (8.99e4 * Math.abs(Q)) / (r * r);        /* nC and cm give N/C */
     const out = r > a, Eread = out ? Eout : Ein;
@@ -287,19 +288,19 @@ function drawLine(ctx, pts, color, w, heads) {
         else { line(ctx, x0, y0, x1, y1, ec, 3); arrow(ctx, CX + 212 * cx, CY + 212 * sy, CX + 190 * cx, CY + 190 * sy, ec, 4); }
       }
     }
-    /* the sphere, in ink, with its excess charge marked on the surface */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    /* the sphere, outlined in its referent colour, with its excess charge marked on the surface */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = msc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(CX, CY, a * S, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     if (Q !== 0) for (let i = 0; i < 10; i++) { const ph = (i * 36 + 18) * RAD; signMark(ctx, CX + (a * S - 13) * Math.cos(ph), CY + (a * S - 13) * Math.sin(ph), sgn > 0, 24); }
     if (out) text(ctx, 'E = 0', CX, CY, PAL.muted, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'q = ' + fmt(Q, 1) + ' nC on the surface', CX, CY + a * S + 36, qc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the probe, set down at the distance the slider gives it */
     const ph = -32 * RAD, px = CX + r * S * Math.cos(ph), py = CY + r * S * Math.sin(ph);
-    line(ctx, CX, CY, px, py, PAL.rule, 2, [10, 10]);
-    dot(ctx, px, py, PAL.ink, false, 11);
+    line(ctx, CX, CY, px, py, C('position'), 2, [10, 10]);
+    dot(ctx, px, py, prc, false, 11);
     /* inside the sphere the probe's two lines are set above the sphere, where no mark on the surface is */
     const ly = out ? py : CY - a * S - 20;
-    text(ctx, 'the probe, ' + fmt(r, 1) + ' cm from the centre', out ? px : CX, ly - 32, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the probe, ' + fmt(r, 1) + ' cm from the centre', out ? px : CX, ly - 32, prc, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     if (!out) line(ctx, px, py - 12, CX, ly - 14, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
     if (Eread > 0) {
       const L = Math.min(190, Eread * 0.028), dx = Math.cos(ph) * sgn, dy = Math.sin(ph) * sgn;
@@ -313,7 +314,7 @@ function drawLine(ctx, pts, color, w, heads) {
       : out ? 'At ' + fmt(r, 1) + ' cm the probe reads ' + sci(Eout, 2) + ' N/C, which is what a point charge of ' + fmt(Q, 1) + ' nC at the centre would give there; drag the radius and the reading does not move.'
         : 'The probe is inside the metal, where the excess charge on the surface leaves no field at all, however much of it there is.');
     F.morph(formula, out
-      ? `\\mk{E}{\\kEf} = \\mk{law}{k\\frac{|\\kq|}{r^2}} = \\mk{nums}{\\frac{(8.99 \\times 10^{9})(${sciTex(Math.abs(Q) * 1e-9, 2)})}{(${fmt(r / 100, 4)})^2}} = \\mk{v}{${sciTex(Eout, 2)}}\\ \\text{N/C}`
+      ? `\\mk{E}{\\kEf} = \\mk{law}{k\\frac{|\\kq|}{\\krad^2}} = \\mk{nums}{\\frac{(8.99 \\times 10^{9})(${sciTex(Math.abs(Q) * 1e-9, 2)})}{(${fmt(r / 100, 4)})^2}} = \\mk{v}{${sciTex(Eout, 2)}}\\ \\text{N/C}`
       : `\\mk{E}{\\kEf} = \\mk{v}{0}`, { force: wasOut !== null && out !== wasOut });
     wasOut = out;
     note.textContent = out
@@ -333,8 +334,8 @@ function drawLine(ctx, pts, color, w, heads) {
 (function () {
   const d = sim('sim-parallel-plates', 700);
   const Qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 20, step: 0.5, value: 8, unit: 'nC', dec: 1, aria: 'the excess charge on each plate' });
-  const ds = ctl(d.controls, { label: '\\text{the separation}', cls: '', min: 2, max: 18, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: 'the distance between the plates' });
-  const Ls = ctl(d.controls, { label: '\\text{the plates}', cls: '', min: 12, max: 38, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'the length of each plate' });
+  const ds = ctl(d.controls, { label: '\\text{the separation}', cls: 'position', min: 2, max: 18, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: 'the distance between the plates' });
+  const Ls = ctl(d.controls, { label: '\\text{the plates}', cls: 'position', min: 12, max: 38, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'the length of each plate' });
   const CX = 700, YM = 336, S = 26, N = 30;          /* 26 logical units to the centimetre */
   function draw() {
     const { ctx } = begin(d.c);
@@ -356,9 +357,9 @@ function drawLine(ctx, pts, color, w, heads) {
       const x = x0 + 6 + ((i) * (x1 - x0 - 12)) / 14;
       drawLine(ctx, traceLine({ x, y: YT + 8 }, field, 1, BOX, stop, 6, 300), ec, 3, [0.5]);
     }
-    /* the two plates, bodies in ink, with the book's marks on them */
+    /* the two plates, outlined in their referent colours, with the book's marks on them */
     for (const [y, pos] of [[YT, true], [yb, false]]) {
-      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.strokeStyle = F.ref(pos ? 'positive-plate' : 'negative-plate'); ctx.lineWidth = 3;
       ctx.beginPath(); ctx.rect(x0, y - 11, x1 - x0, 22); ctx.fill(); ctx.stroke(); ctx.restore();
       for (let i = 0; i < 12; i++) signMark(ctx, x0 + 18 + (i * (x1 - x0 - 36)) / 11, y + (pos ? 28 : -26), pos, 26);
     }
@@ -444,7 +445,7 @@ function drawLine(ctx, pts, color, w, heads) {
   }
   function drawBody(ctx, r1, r2) {
     const pts = outline(r1, r2);
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = F.ref('pointed-conductor'); ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
     for (const [x, y] of pts) ctx.lineTo(x, y);
     ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
@@ -485,7 +486,7 @@ function drawLine(ctx, pts, color, w, heads) {
         arrow(ctx, px, py, px + FL * Math.cos(dl) * tx, py + FL * Math.cos(dl) * ty, fc, 4);
         text(ctx, 'F = ' + fmt(Fpair, 1) + ' μN', px, py - FL - 26, fc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
         text(ctx, 'F∥ = ' + fmt(Fpair * Math.cos(dl), 1) + ' μN', px + ox * 46 + FL * Math.cos(dl) * tx, py + FL * Math.cos(dl) * ty - 4, fc, { size: 20, weight: 600, align: ox < 0 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
-        text(ctx, nm, cx, YC + r + 132, PAL.muted, { size: 21, align: 'center' });
+        text(ctx, nm, cx, YC + r + 132, F.ref('pointed-conductor'), { size: 21, align: 'center' });
       }
     }, [0, 18]);
     /* (b) the excess charge that has settled, and the field it makes */
@@ -545,7 +546,7 @@ function drawLine(ctx, pts, color, w, heads) {
     }, [0, 18]);
     if (cur === 'a') {
       topline(ctx, 'The two charges of a pair sit the same distance apart at either end, so the force between them is the same ' + fmt(Fpair, 1) + ' μN; but ' + fmt(100 * Math.cos(dlL), 0) + ' per cent of it lies along the flat surface against only ' + fmt(100 * Math.cos(dlR), 0) + ' per cent along the pointed one.');
-      readout(d.readout, `\\kFpar = \\kF\\cos\\theta = (${fmt(Fpair, 1)}\\ \\mu\\text{N})(${fmt(Math.cos(dlR), 2)}) = ${fmt(Fpair * Math.cos(dlR), 1)}\\ \\mu\\text{N}`,
+      readout(d.readout, `\\kFpar = \\kF\\cos\\ktheta = (${fmt(Fpair, 1)}\\ \\mu\\text{N})(${fmt(Math.cos(dlR), 2)}) = ${fmt(Fpair * Math.cos(dlR), 1)}\\ \\mu\\text{N}`,
         'That is the part along the surface at the point; at the flat end it is ' + fmt(Fpair * Math.cos(dlL), 1) + ' μN. It is the part of the force that lies along the surface that moves a charge once it has reached the surface, since nothing can carry it off the metal. That part is largest where the surface is flattest, so the charges at the flat end are driven apart most effectively and end up least concentrated, and the charges at the point are left crowded together. Sharpen the point and the gap between the two widens.');
     } else if (cur === 'b') {
       topline(ctx, Etip >= BREAKDOWN
@@ -582,10 +583,10 @@ function drawLine(ctx, pts, color, w, heads) {
     ctx.strokeRect(CX - H, CY - H, 2 * H, 2 * H); ctx.restore();
     for (const [x, y] of [[CX - H, CY - H], [CX + H, CY - H]]) line(ctx, x, y, 2 * CX - x, 2 * CY - y, PAL.rule, 2, [10, 10]);
     for (const [nm, x, y, side] of corners) {
-      pointCharge(ctx, x, y, 0, 22);
+      pointCharge(ctx, x, y, 0, 22, F.ref('charge-' + nm));
       text(ctx, 'q_' + nm, x + side * 34, y, qc, { size: 24, weight: 600, align: side < 0 ? 'right' : 'left' });
     }
-    pointCharge(ctx, CX, CY, 0, 22);
+    pointCharge(ctx, CX, CY, 0, 22, F.ref('centre-charge'));
     text(ctx, 'q', CX + 34, CY, qc, { size: 24, weight: 600 });
     text(ctx, 'the charge at the center is the same distance from all four corners', CX, CY + H + 66, PAL.muted, { size: 21, align: 'center' });
     topline(ctx, 'Four point charges lie on the corners of a square and a fifth charge lies at its center.');

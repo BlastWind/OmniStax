@@ -1,6 +1,7 @@
 /* Figures for section 18.1 Static Electricity and Charge: Conservation of Charge. Boots against the section's text article.
-   The page binds charge alone: every readout states a charge, and the one
-   typed slider sets one. Electrons, protons and neutrons are the element
+   Every readout states a charge, and the typed sliders set a charge and a
+   distance. The rods, cloths, amber and nucleus the text names are its
+   referents and wear their referent colours on outline and name. Electrons, protons and neutrons are the element
    palette's particles; a charge's sign is told by its sign and label, never
    by a hue. Four figures answer their controls and register no cycle; the
    pair of Figure 18.9 is created and annihilated on a clock and moves. */
@@ -48,8 +49,8 @@ function turnArc(ctx, cx, cy, R, a0, a1, color) {
   arrow(ctx, hx + 30 * Math.cos(t), hy + 30 * Math.sin(t), hx, hy, color, 4);
 }
 /* a body in ink: a closed path of the given points about (cx, cy), turned by `ang` */
-function body(ctx, cx, cy, pts, ang, fill) {
-  ctx.save(); ctx.translate(cx, cy); ctx.rotate(ang); ctx.fillStyle = fill; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+function body(ctx, cx, cy, pts, ang, fill, stroke = PAL.ink) {
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(ang); ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = 3;
   ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
 }
 /* a point (x, y) about (cx, cy) turned by `ang` */
@@ -79,7 +80,7 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
   const pair = choice(d.controls, { label: '\\text{the pair}', options: [
     { value: 'glass-silk', label: 'glass rod and silk' }, { value: 'glass-glass', label: 'two glass rods' }, { value: 'silk-silk', label: 'two silk cloths' }], value: 'glass-silk', aria: 'which two charged bodies are brought together' });
   const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 0.5, max: 5, step: 0.1, value: 3, unit: 'nC', dec: 1, aria: 'the size of the charge rubbing left on each body' });
-  const rs = ctl(d.controls, { label: '\\text{distance}', cls: '', min: 2, max: 12, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: 'the distance between the hanging body and the one brought near' });
+  const rs = ctl(d.controls, { label: '\\text{distance}', cls: 'position', min: 2, max: 12, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: 'the distance between the hanging body and the one brought near' });
   const CX = 520, CY = 360, L = 340, S = 26, DIR = -18 * RAD;   /* the held body sits 18° above the rod's line, 26 units per centimeter */
   const ux = Math.cos(DIR), uy = Math.sin(DIR);
   const ROD = rodPts(L, 22);
@@ -103,9 +104,10 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
   }
   function draw() {
     const { ctx, H } = begin(d.c);
-    const qc = C('charge');
+    const qc = C('charge'), pc = C('position');
     const q = qs.v, r = rs.v, kind = pair.value;
     const hangGlass = kind !== 'silk-silk', heldGlass = kind === 'glass-glass';
+    const hangC = F.ref(hangGlass ? 'rod-1' : 'cloth-1'), heldC = F.ref(heldGlass ? 'rod-2' : hangGlass ? 'silk' : 'cloth-2');
     const qHang = hangGlass ? q : -q, qHeld = heldGlass ? q : -q, unlike = qHang * qHeld < 0;
     const g = pair.mix(scene), ang = g.ang;
     const nm = Math.max(1, Math.round(q * 2));
@@ -122,26 +124,26 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     /* the held body: its near point a distance r from the rest position's near end, along the 18° line */
     const px = ex + r * S * ux, py = ey + r * S * uy;
     line(ctx, ex, ey, px, py, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    text(ctx, fmt(r, 1) + ' cm', (ex + px) / 2 + 14, (ey + py) / 2 + 22, PAL.ink, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, fmt(r, 1) + ' cm', (ex + px) / 2 + 14, (ey + py) / 2 + 22, pc, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
     const rodAt = { x: px + (L / 2) * ux, y: py + (L / 2) * uy }, clothAt = { x: px + 70 * ux, y: py + 70 * uy };
-    F.faded(ctx, g.held, [0, 0], () => { body(ctx, rodAt.x, rodAt.y, ROD, DIR, PAL.soft); marks(ctx, rodAt.x, rodAt.y, DIR, nm, '+', false); });
-    F.faded(ctx, 1 - g.held, [0, 0], () => { body(ctx, clothAt.x, clothAt.y, CLOTH, 0, PAL.soft); clothFolds(ctx, clothAt.x, clothAt.y, 0); marks(ctx, clothAt.x, clothAt.y, 0, nm, '−', true); });
+    F.faded(ctx, g.held, [0, 0], () => { body(ctx, rodAt.x, rodAt.y, ROD, DIR, PAL.soft, F.ref('rod-2')); marks(ctx, rodAt.x, rodAt.y, DIR, nm, '+', false); });
+    F.faded(ctx, 1 - g.held, [0, 0], () => { body(ctx, clothAt.x, clothAt.y, CLOTH, 0, PAL.soft, F.ref(hangGlass ? 'silk' : 'cloth-2')); clothFolds(ctx, clothAt.x, clothAt.y, 0); marks(ctx, clothAt.x, clothAt.y, 0, nm, '−', true); });
     const hx = heldGlass ? rodAt.x : clothAt.x, hy = heldGlass ? rodAt.y : clothAt.y;
     /* the hanging body, turned about the thread */
-    F.faded(ctx, g.hang, [0, 0], () => { body(ctx, CX, CY, ROD, ang, PAL.soft); marks(ctx, CX, CY, ang, nm, '+', false); });
-    F.faded(ctx, 1 - g.hang, [0, 0], () => { const hc = turned(CX, CY, 0, 94, ang); body(ctx, hc.x, hc.y, CLOTH, ang, PAL.soft); clothFolds(ctx, hc.x, hc.y, ang); marks(ctx, hc.x, hc.y, ang, nm, '−', true); });
+    F.faded(ctx, g.hang, [0, 0], () => { body(ctx, CX, CY, ROD, ang, PAL.soft, F.ref('rod-1')); marks(ctx, CX, CY, ang, nm, '+', false); });
+    F.faded(ctx, 1 - g.hang, [0, 0], () => { const hc = turned(CX, CY, 0, 94, ang); body(ctx, hc.x, hc.y, CLOTH, ang, PAL.soft, F.ref('cloth-1')); clothFolds(ctx, hc.x, hc.y, ang); marks(ctx, hc.x, hc.y, ang, nm, '−', true); });
     line(ctx, CX, CY - 190, CX, CY, PAL.ink, 2);
     dot(ctx, CX, CY, PAL.ink, false, 8);
     /* labels beside their things */
     const off = hangGlass ? { x: 0, y: 0 } : { x: 0, y: 94 };
     const far = turned(CX, CY, hangGlass ? -L / 2 : off.x - 66, off.y, ang);
-    Lb.add(hangGlass ? 'glass rod, hanging' : 'silk cloth, hanging', far.x, far.y, -1, 0, PAL.ink, 20, 16);
+    Lb.add(hangGlass ? 'glass rod, hanging' : 'silk cloth, hanging', far.x, far.y, -1, 0, hangC, 20, 16);
     Lb.add('thread', CX, CY - 150, -1, 0, PAL.ink, 18, 14);
     const top = turned(CX, CY, off.x, off.y - (hangGlass ? 18 : 92), ang);
     Lb.add('q = ' + plus(qHang, 1) + ' nC', top.x, top.y, 0, -1, qc, 21, 22);
     const heldName = heldGlass ? 'glass rod, brought near' : hangGlass ? 'silk, brought near' : 'a second cloth, brought near';
     const tip = heldGlass ? { x: px + L * ux, y: py + L * uy } : { x: hx, y: hy - 96 };
-    Lb.add(heldName, tip.x, tip.y, heldGlass ? 0.3 : 0, -1, PAL.ink, 20, 22);
+    Lb.add(heldName, tip.x, tip.y, heldGlass ? 0.3 : 0, -1, heldC, 20, 22);
     Lb.add('q = ' + plus(qHeld, 1) + ' nC', heldGlass ? hx : hx + 72, heldGlass ? hy + 20 : hy, heldGlass ? 0 : 1, heldGlass ? 1 : 0, qc, 21, 24);
     text(ctx, 'seen from the front', 40, H - 30, PAL.muted, { size: 18 });
     const hang = hangGlass ? 'glass rod' : 'silk cloth', held = heldGlass ? 'a second rod' : hangGlass ? 'silk' : 'a second cloth';
@@ -189,7 +191,7 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     /* the electrons, spread over the three orbits */
     for (let i = 0; i < Ne; i++) { const o = ORBITS[i % 3], t = o.t0 + Math.floor(i / 3) * (TAU / 4); const p = onOrbit(o, t); particle(ctx, p.x, p.y, 'e-', 11); hits.push({ x: p.x, y: p.y, r: 14, name: 'an electron, charge −|qₑ|' }); }
     const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 96);
-    Lb.add('nucleus', CX + 13 * Math.sqrt(Math.max(0, nucleons.length - 1)) + 4, CY + 30, 0.7, 0.7, PAL.ink, 19, 40);
+    Lb.add('nucleus', CX + 13 * Math.sqrt(Math.max(0, nucleons.length - 1)) + 4, CY + 30, 0.7, 0.7, F.ref('nucleus'), 19, 40);
     /* the legend and the tally at the right */
     const LX = 1010, LY = 140;
     legendRow(ctx, LX, LY, 'p+', 'proton, charge +|q_e|'); legendRow(ctx, LX, LY + 36, 'n0', 'neutron, no charge'); legendRow(ctx, LX, LY + 72, 'e-', 'electron, charge −|q_e|');
@@ -263,17 +265,17 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
   const CLOTH2 = CLOTH.map(([x, y]) => [x * 1.6, y * 1.5]);
   function draw() {
     const { ctx, H } = begin(d.c);
-    const qc = C('charge');
+    const qc = C('charge'), amc = F.ref('amber'), clc = F.ref('cloth');
     const n = ns.v;
-    body(ctx, AX, AY, AMBER, 0, PAL.soft); body(ctx, KX, KY, CLOTH2, 0, PAL.soft); clothFolds(ctx, KX, KY, 0, 1.6, 1.5);
+    body(ctx, AX, AY, AMBER, 0, PAL.soft, amc); body(ctx, KX, KY, CLOTH2, 0, PAL.soft, clc); clothFolds(ctx, KX, KY, 0, 1.6, 1.5);
     AP.forEach(([x, y]) => particle(ctx, AX + x, AY + y, 'p+', 12));
     AE.slice(0, 2 + n).forEach(([x, y]) => particle(ctx, AX + x, AY + y, 'e-', 12));
     KP.forEach(([x, y]) => particle(ctx, KX + x, KY + y, 'p+', 12));
     KE.slice(0, 3 - n).forEach(([x, y]) => particle(ctx, KX + x, KY + y, 'e-', 12));
     /* the empty slots the electrons left, and the ones they took, faint */
     KE.slice(3 - n).forEach(([x, y]) => { ctx.save(); ctx.setLineDash([4, 5]); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(KX + x, KY + y, 12, 0, TAU); ctx.stroke(); ctx.restore(); });
-    text(ctx, 'amber', AX, AY + 150, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'cloth', KX, KY + 160, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'amber', AX, AY + 150, amc, { size: 20, align: 'center' });
+    text(ctx, 'cloth', KX, KY + 160, clc, { size: 20, align: 'center' });
     const tally = (x, y, p, e) => {
       text(ctx, `${p} proton${p === 1 ? '' : 's'}, ${e} electron${e === 1 ? '' : 's'}`, x, y, PAL.ink, { size: 19, align: 'center' });
       text(ctx, 'net charge  q = ' + (p === e ? '0' : plus(p - e, 0) + ' |q_e|'), x, y + 32, qc, { size: 22, weight: 600, align: 'center' });
@@ -302,10 +304,11 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
   const ev = choice(d.controls, { label: '\\text{the event}', options: [{ value: 'create', label: 'creation' }, { value: 'annihilate', label: 'annihilation' }], value: 'create', aria: 'whether a pair is created from energy or annihilated into it', onInput: () => cy.reset() });
   const BX = 640, BY = 250, DX = 560, DY = 165;
   let hits = [], lastKey = '';
-  /* the thick ink arrow the book draws for the energy, its head at (hx, y) */
+  /* the thick arrow the book draws for the energy, its head at (hx, y) */
   function energyArrow(ctx, hx, y, a) {
-    ctx.save(); ctx.globalAlpha = a; arrow(ctx, hx - 320, y, hx, y, PAL.ink, 12); ctx.restore();
-    text(ctx, 'E', hx - 160, y - 34, PAL.ink, { size: 26, weight: 600, align: 'center' });
+    const ec = C('energy');
+    ctx.save(); ctx.globalAlpha = a; arrow(ctx, hx - 320, y, hx, y, ec, 12); ctx.restore();
+    text(ctx, 'E', hx - 160, y - 34, ec, { size: 26, weight: 600, align: 'center' });
   }
   /* the burst at the event, k from 0 to 1 */
   function burst(ctx, k) {

@@ -3,8 +3,9 @@
    figure here draws a Coulomb force arrow, and the screening sim draws field
    lines as well. A charge's sign is told by the +, −, δ⁺ and δ⁻ marks and by
    the direction of the arrows, never by a hue; oxygen, hydrogen and the sodium
-   ion are the element palette. The separations, the counts and the nanometre
-   scales are untyped and stay in ink. Nothing in this section has a clock in
+   ion are the element palette. The separations wear position; the counts stay
+   in ink. The helix, the two charged sites, the two water molecules and the
+   charged strand the text names are referents, outlined in their colours. Nothing in this section has a clock in
    it, so no figure registers a cycle and none carries a transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['18.6'] = function (root, F) {
@@ -34,10 +35,10 @@ const coulomb = (q1, q2, r) => (K * Math.abs(q1 * q2)) / (r * r);
 /* a label kept inside the canvas whatever the sliders do */
 const clampX = (x, half) => Math.min(Math.max(x, half + 16), 1400 - half - 16);
 
-/* a centre of charge drawn as a ring in ink with its sign inside it, so that
-   the drawing stays legible with the type hues turned off */
-function signRing(ctx, x, y, sign, r) {
-  ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
+/* a centre of charge drawn as a ring with its sign inside it, so that the
+   drawing stays legible with the hues turned off */
+function signRing(ctx, x, y, sign, r, stroke = PAL.ink) {
+  ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = stroke; ctx.fillStyle = PAL.panel;
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
   text(ctx, sign, x, y + 1, PAL.ink, { size: r * 1.7, weight: 700, align: 'center' });
 }
@@ -70,7 +71,7 @@ function atom(ctx, x, y, r, symbol, label) {
 ===================================================================== */
 (function () {
   const d = sim('sim-dna', 700);
-  const rs = ctl(d.controls, { label: 'r', cls: '', min: 0.1, max: 2, step: 0.05, value: 0.3, unit: 'nm', dec: 2, aria: 'the distance between the two charged sites' });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.1, max: 2, step: 0.05, value: 0.3, unit: 'nm', dec: 2, aria: 'the distance between the two charged sites' });
   const ns = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 1, max: 4, step: 1, value: 2, unit: 'q_e', dec: 0, aria: 'the number of elementary charges at each site' });
   /* the graph's ranges are fixed from the sliders and never rescaled: the
      force at the closest separation the slider reaches is far above the top
@@ -79,7 +80,7 @@ function atom(ctx, x, y, r, symbol, label) {
   const BOX = { l: 620, r: 1330, t: 360, b: 600 };
   function draw() {
     const { ctx } = begin(d.c);
-    const qc = C('charge'), fc = C('force');
+    const qc = C('charge'), fc = C('force'), pc = C('position'), hc = F.ref('helix');
     const r = rs.v, n = ns.v, q = n * QE;
     const Fv = coulomb(q, q, r * NM), F1 = coulomb(q, q, NM);
     topline(ctx, `Two charges of ${fmt(n, 0)} q_e set ${fmt(r, 2)} nm apart attract each other with ${sci(Fv, 2)} N.`);
@@ -87,7 +88,7 @@ function atom(ctx, x, y, r, symbol, label) {
     /* ---- the double helix, drawn upright on the left ---- */
     const cx = 210, y0 = 110, y1 = 552, A = 74, LAM = 226;
     const sx = (y, k) => cx + A * Math.sin((TAU * (y - y0)) / LAM + k * Math.PI);
-    ctx.save(); ctx.lineWidth = 6; ctx.strokeStyle = PAL.ink;
+    ctx.save(); ctx.lineWidth = 6; ctx.strokeStyle = hc;
     for (let k = 0; k < 2; k++) {
       ctx.beginPath();
       for (let y = y0; y <= y1; y += 4) { const x = sx(y, k); if (y === y0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
@@ -99,19 +100,19 @@ function atom(ctx, x, y, r, symbol, label) {
       const y = y0 + 26 + i * 56, xa = sx(y, 0), xb = sx(y, 1);
       line(ctx, xa, y, xb, y, PAL.muted, 3);
       text(ctx, PAIRS[i], (xa + xb) / 2, y - 1, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.9) });
-      dot(ctx, xa, y, PAL.ink, true, 6); dot(ctx, xb, y, PAL.ink, true, 6);
+      dot(ctx, xa, y, hc, true, 6); dot(ctx, xb, y, hc, true, 6);
     }
-    text(ctx, 'the two strands, about 1 nm apart', cx, y1 + 44, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'the two strands, about 1 nm apart', cx, y1 + 44, hc, { size: 18, align: 'center' });
     text(ctx, 'about 2 q_e per 0.3 nm of each strand', cx, y1 + 78, qc, { size: 19, weight: 600, align: 'center' });
 
     /* ---- the two charged sites, set r apart, with the force on each ---- */
     const SC = 300;                                   /* 300 units to the nanometre */
     const midx = 950, y = 175, half = Math.max(70, Math.min(r * SC, 600)) / 2;
     const xa = midx - half, xb = midx + half, R = 26;
-    line(ctx, xa, y + 58, xb, y + 58, PAL.muted, 2);
-    line(ctx, xa, y + 48, xa, y + 68, PAL.muted, 2); line(ctx, xb, y + 48, xb, y + 68, PAL.muted, 2);
-    text(ctx, 'r = ' + fmt(r, 2) + ' nm', midx, y + 90, PAL.muted, { size: 19, align: 'center' });
-    signRing(ctx, xa, y, '−', R); signRing(ctx, xb, y, '+', R);
+    line(ctx, xa, y + 58, xb, y + 58, pc, 2);
+    line(ctx, xa, y + 48, xa, y + 68, pc, 2); line(ctx, xb, y + 48, xb, y + 68, pc, 2);
+    text(ctx, 'r = ' + fmt(r, 2) + ' nm', midx, y + 90, pc, { size: 19, align: 'center' });
+    signRing(ctx, xa, y, '−', R, F.ref('site-1')); signRing(ctx, xb, y, '+', R, F.ref('site-2'));
     text(ctx, fmt(n, 0) + ' q_e', xa, y - 52, qc, { size: 21, weight: 600, align: 'center' });
     text(ctx, fmt(n, 0) + ' q_e', xb, y - 52, qc, { size: 21, weight: 600, align: 'center' });
     /* each charge is pulled towards the other: the arrows stand in the gap
@@ -124,7 +125,7 @@ function atom(ctx, x, y, r, symbol, label) {
 
     /* ---- the force against the separation ---- */
     const { X, Y } = axes(ctx, BOX, XR, YR, {
-      xl: 'r (nm)', yl: 'F (10⁻⁸ N)', xc: PAL.ink, yc: fc, nx: 4, ny: 4,
+      xl: 'r (nm)', yl: 'F (10⁻⁸ N)', xc: pc, yc: fc, nx: 4, ny: 4,
       fx: (v) => fmt(v, 1), fy: (v) => fmt(v / 1e-8, 1),
     });
     /* the curve is drawn only where it lies inside the fixed box, so nothing is stroked above the frame */
@@ -136,7 +137,7 @@ function atom(ctx, x, y, r, symbol, label) {
     });
     pinned(ctx, BOX, X, Y, r, Fv, fc, sci(Fv, 2) + ' N');
 
-    readout(d.readout, `\\kF = \\dfrac{k\\lvert \\kqone \\kqtwo\\rvert}{r^2} = \\dfrac{(8.99 \\times 10^{9})(${fmt(n, 0)} \\kqe)^2}{(${fmt(r, 2)}\\ \\text{nm})^2} = ${sciTex(Fv, 2)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = \\dfrac{k\\lvert \\kqone \\kqtwo\\rvert}{\\krad^2} = \\dfrac{(8.99 \\times 10^{9})(${fmt(n, 0)} \\kqe)^2}{(${fmt(r, 2)}\\ \\text{nm})^2} = ${sciTex(Fv, 2)}\\ \\text{N}`,
       `At the 1 nm that separates the two strands the same two charges pull on each other with only ${sci(F1, 2)} N, which is why the atoms of a base pair must sit as close together as they do.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -153,7 +154,7 @@ function atom(ctx, x, y, r, symbol, label) {
 ===================================================================== */
 (function () {
   const d = sim('sim-water', 560);
-  const ds = ctl(d.controls, { label: 'd', cls: '', min: 0.2, max: 0.8, step: 0.02, value: 0.3, unit: 'nm', dec: 2, aria: 'the distance between the two nearest centers of charge' });
+  const ds = ctl(d.controls, { label: 'd', cls: 'position', min: 0.2, max: 0.8, step: 0.02, value: 0.3, unit: 'nm', dec: 2, aria: 'the distance between the two nearest centers of charge' });
   const qs = ctl(d.controls, { label: '\\delta', cls: 'charge', min: 0.1, max: 0.6, step: 0.01, value: 0.33, unit: 'q_e', dec: 2, aria: 'the charge at each center, as a fraction of the elementary charge' });
   const face = F.select(d.controls, {
     label: '\\text{the ends that face}',
@@ -164,9 +165,9 @@ function atom(ctx, x, y, r, symbol, label) {
   /* one water molecule: its oxygen at (x, y), its first hydrogen along `a`
      degrees and its second at a + 104.5°, with δ⁻ on the oxygen and δ⁺ on
      each hydrogen */
-  function water(ctx, x, y, a, qc, dlab) {
+  function water(ctx, x, y, a, qc, dlab, bond) {
     const hs = [a - HALF, a + HALF].map((t) => ({ x: x + BOND * Math.cos(t * RAD), y: y + BOND * Math.sin(t * RAD) }));
-    hs.forEach((h) => line(ctx, x, y, h.x, h.y, PAL.ink, 5));
+    hs.forEach((h) => line(ctx, x, y, h.x, h.y, bond, 5));
     hs.forEach((h) => {
       atom(ctx, h.x, h.y, 22, 'H', 'H');
       const a = Math.atan2(h.y - y, h.x - x);
@@ -199,7 +200,7 @@ function atom(ctx, x, y, r, symbol, label) {
     /* the two nearest centres, and the dashed line between them */
     const na = { x: mid - gap / 2, y }, nb = { x: mid + gap / 2, y };
     line(ctx, na.x, y, nb.x, y, alpha(PAL.ink, 0.4), 2.5, [10, 10]);
-    water(ctx, xa, y, aA, qc, 'δ'); water(ctx, xb, y, aB, qc, 'δ');
+    water(ctx, xa, y, aA, qc, 'δ', F.ref('molecule-1')); water(ctx, xb, y, aB, qc, 'δ', F.ref('molecule-2'));
     /* the force on each molecule, towards the other when the ends are unlike */
     const L = Math.max(44, Math.min(130, 130 * Math.pow(0.3 / dist, 0.6)));
     if (Math.abs(s) > 0.08) {
@@ -208,13 +209,14 @@ function atom(ctx, x, y, r, symbol, label) {
     }
     text(ctx, 'F = ' + sci(Fv, 2) + ' N', clampX(mid, 150), y + 162, fc, { size: 21, weight: 600, align: 'center' });
     /* the separation of the two nearest centres */
-    line(ctx, na.x, y - 130, nb.x, y - 130, PAL.muted, 2);
-    line(ctx, na.x, y - 140, na.x, y - 120, PAL.muted, 2); line(ctx, nb.x, y - 140, nb.x, y - 120, PAL.muted, 2);
-    text(ctx, 'd = ' + fmt(dist, 2) + ' nm', (na.x + nb.x) / 2, y - 160, PAL.muted, { size: 19, align: 'center', bg: alpha(PAL.panel, 0.9) });
+    const pc = C('position');
+    line(ctx, na.x, y - 130, nb.x, y - 130, pc, 2);
+    line(ctx, na.x, y - 140, na.x, y - 120, pc, 2); line(ctx, nb.x, y - 140, nb.x, y - 120, pc, 2);
+    text(ctx, 'd = ' + fmt(dist, 2) + ' nm', (na.x + nb.x) / 2, y - 160, pc, { size: 19, align: 'center', bg: alpha(PAL.panel, 0.9) });
     text(ctx, 'each center carries ' + fmt(del, 2) + ' q_e', 700, 500, qc, { size: 20, weight: 600, align: 'center' });
     text(ctx, pull ? 'unlike ends: the molecules are drawn together' : 'like ends: the molecules are pushed apart', 700, 534, PAL.muted, { size: 18, align: 'center' });
 
-    readout(d.readout, `\\kF = \\dfrac{k\\lvert \\kqone \\kqtwo\\rvert}{r^2} = \\dfrac{(8.99 \\times 10^{9})(${fmt(del, 2)} \\kqe)^2}{(${fmt(dist, 2)}\\ \\text{nm})^2} = ${sciTex(Fv, 2)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = \\dfrac{k\\lvert \\kqone \\kqtwo\\rvert}{\\krad^2} = \\dfrac{(8.99 \\times 10^{9})(${fmt(del, 2)} \\kqe)^2}{(${fmt(dist, 2)}\\ \\text{nm})^2} = ${sciTex(Fv, 2)}\\ \\text{N}`,
       (pull ? 'Unlike ends, so the force is an attraction. ' : 'Like ends, so the force is a repulsion. ') + 'The ten electrons of the molecule remain closer to the oxygen nucleus than to the hydrogen nuclei, which is what leaves the oxygen end negative and the hydrogen ends positive.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -232,7 +234,7 @@ function atom(ctx, x, y, r, symbol, label) {
 (function () {
   const d = sim('sim-screening', 660);
   const ns = ctl(d.controls, { label: '\\text{water}', cls: '', min: 0, max: 8, step: 1, value: 4, unit: 'molecules', dec: 0, aria: 'the number of water molecules between the charge and the ion' });
-  const rs = ctl(d.controls, { label: 'r', cls: '', min: 0.5, max: 4, step: 0.1, value: 2, unit: 'nm', dec: 1, aria: 'the distance of the ion from the charged strand' });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.5, max: 4, step: 0.1, value: 2, unit: 'nm', dec: 1, aria: 'the distance of the ion from the charged strand' });
   const LINES = 8, QS = 2 * QE;                       /* the eight lines drawn, and the 2 q_e of the site */
   const XL = 200, SC = 260;                           /* the strand, and 260 units to the nanometre */
   /* a water molecule drawn small, its negative end towards the strand */
@@ -244,7 +246,7 @@ function atom(ctx, x, y, r, symbol, label) {
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const qc = C('charge'), ec = C('electric-field'), fc = C('force');
+    const qc = C('charge'), ec = C('electric-field'), fc = C('force'), pc = C('position'), sc = F.ref('strand');
     const n = Math.min(ns.v, LINES), r = rs.v;
     const through = LINES - n, ratio = through / LINES;
     const E0 = (K * QS) / Math.pow(r * NM, 2), E = ratio * E0, Fv = QE * E;
@@ -254,12 +256,12 @@ function atom(ctx, x, y, r, symbol, label) {
 
     const yc = 300, xi = Math.min(XL + r * SC, 1230);
     /* the charged site on the strand */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = sc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.roundRect(XL - 54, yc - 170, 46, 340, 12); ctx.fill(); ctx.stroke(); ctx.restore();
     for (let i = 0; i < 5; i++) text(ctx, '−', XL - 31, yc - 130 + i * 65, PAL.ink, { size: 26, weight: 700, align: 'center' });
-    signRing(ctx, XL, yc, '−', 30);
+    signRing(ctx, XL, yc, '−', 30, sc);
     text(ctx, '2 q_e on the strand', XL - 20, yc - 210, qc, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'a charged site of the DNA', XL - 20, yc + 204, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'a charged site of the DNA', XL - 20, yc + 204, sc, { size: 18, align: 'center' });
 
     /* the field lines, fanning out towards the ion; the first n are taken by water */
     const span = 200;
@@ -289,12 +291,12 @@ function atom(ctx, x, y, r, symbol, label) {
     } else {
       text(ctx, 'no line reaches the ion', clampX(xi, 140), yc - 86, PAL.muted, { size: 20, align: 'center' });
     }
-    line(ctx, XL, yc + 246, xi, yc + 246, PAL.muted, 2);
-    line(ctx, XL, yc + 236, XL, yc + 256, PAL.muted, 2); line(ctx, xi, yc + 236, xi, yc + 256, PAL.muted, 2);
-    text(ctx, 'r = ' + fmt(r, 1) + ' nm', (XL + xi) / 2, yc + 278, PAL.muted, { size: 19, align: 'center' });
+    line(ctx, XL, yc + 246, xi, yc + 246, pc, 2);
+    line(ctx, XL, yc + 236, XL, yc + 256, pc, 2); line(ctx, xi, yc + 236, xi, yc + 256, pc, 2);
+    text(ctx, 'r = ' + fmt(r, 1) + ' nm', (XL + xi) / 2, yc + 278, pc, { size: 19, align: 'center' });
     text(ctx, through + ' of the ' + LINES + ' lines get through', 700, yc + 330, ec, { size: 21, weight: 600, align: 'center' });
 
-    readout(d.readout, `\\kEf = \\dfrac{${through}}{${LINES}}\\,\\dfrac{k\\kQch}{r^2} = \\dfrac{${through}}{${LINES}}\\,\\dfrac{(8.99 \\times 10^{9})(2\\kqe)}{(${fmt(r, 1)}\\ \\text{nm})^2} = ${sciTex(E, 2)}\\ \\text{N/C}`,
+    readout(d.readout, `\\kEf = \\dfrac{${through}}{${LINES}}\\,\\dfrac{k\\kQch}{\\krad^2} = \\dfrac{${through}}{${LINES}}\\,\\dfrac{(8.99 \\times 10^{9})(2\\kqe)}{(${fmt(r, 1)}\\ \\text{nm})^2} = ${sciTex(E, 2)}\\ \\text{N/C}`,
       `The sodium ion carries one elementary charge, so the force on it is ${sci(Fv, 2)} N, and it falls away both with the distance and with every molecule of water that stands between.`);
   }
   register(d.fig, { update: () => {}, draw });

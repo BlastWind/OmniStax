@@ -2,7 +2,9 @@
    Electrostatics held still has no time in it: two charges at a chosen
    separation, and an electron and a proton at a chosen separation, are each
    one state of a formula and not one moment of a motion, so neither figure
-   registers a cycle and neither carries a transport. */
+   registers a cycle and neither carries a transport. The two point charges
+   of Figure 18.17 are referents, outlined in their referent colours; the
+   separation wears position. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['18.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, axes, pinned, curve } = F;
@@ -37,20 +39,20 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
   const d = sim('sim-coulomb-pair', 820);
   const q1s = ctl(d.controls, { label: '\\kqone', cls: 'charge', min: -5, max: 5, step: 0.25, value: 2, unit: 'μC', dec: 2, aria: 'the first charge, in microcoulombs' });
   const q2s = ctl(d.controls, { label: '\\kqtwo', cls: 'charge', min: -5, max: 5, step: 0.25, value: 2, unit: 'μC', dec: 2, aria: 'the second charge, in microcoulombs' });
-  const rs = ctl(d.controls, { label: 'r', cls: '', min: 2, max: 20, step: 0.5, value: 10, unit: 'cm', dec: 1, aria: 'the separation of the two charges, in centimetres' });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 2, max: 20, step: 0.5, value: 10, unit: 'cm', dec: 1, aria: 'the separation of the two charges, in centimetres' });
   const CX = 700, CY = 250, S = 30;              /* 30 logical units to the centimetre */
   const BOX = { l: 190, r: 1250, t: 450, b: 750 };
   const XR = [2, 20], YR = [0, 20];              /* fixed: the slider's own range, and 0 to 20 N */
   const force = (q1, q2, rcm) => K * Math.abs(q1 * q2) * 1e-12 / Math.pow(rcm / 100, 2);
   function draw() {
     const { ctx } = begin(d.c);
-    const qc = C('charge'), fc = C('force');
+    const qc = C('charge'), fc = C('force'), pc = C('position');
     const q1 = q1s.v, q2 = q2s.v, r = rs.v, Fv = force(q1, q2, r);
     const half = (r * S) / 2, x1 = CX - half, x2 = CX + half;
     const prod = q1 * q2, away = prod > 0 ? 1 : -1;               /* like charges push apart */
     /* the line the two charges sit on, and the separation between them */
     line(ctx, x1 - 40, CY, x2 + 40, CY, PAL.rule, 2, [10, 10]);
-    hbracket(ctx, x1, x2, CY + 96, PAL.ink, 'r = ' + fmt(r, 1) + ' cm');
+    hbracket(ctx, x1, x2, CY + 96, pc, 'r = ' + fmt(r, 1) + ' cm');
     /* the force on each charge: away from the other where the product is positive */
     if (Fv > 0) {
       const L = Math.min(300, 40 + 26 * Math.sqrt(Fv));
@@ -62,19 +64,19 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
       text(ctx, Fs, x1 - away * L / 2, CY - 36, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
       text(ctx, Fs, x2 + away * L / 2, away > 0 ? CY - 36 : CY + 40, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
     }
-    /* the charges themselves, ink bodies whose signs are written on them */
+    /* the charges themselves, outlined in their referent colours, their signs written on them */
     /* the two labels are stepped apart in height, and leadered back to their own
        charge, so that they stay legible when the charges are brought as close
        together as the slider allows */
-    for (const [x, q, nm, up] of [[x1, q1, 'q_1', 148], [x2, q2, 'q_2', 66]]) {
-      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
+    for (const [x, q, nm, up, id] of [[x1, q1, 'q_1', 148, 'charge-1'], [x2, q2, 'q_2', 66, 'charge-2']]) {
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref(id); ctx.lineWidth = 4;
       ctx.beginPath(); ctx.arc(x, CY, 20, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
       text(ctx, q > 0 ? '+' : q < 0 ? '−' : '0', x, CY, PAL.ink, { size: 24, weight: 600, align: 'center' });
       line(ctx, x, CY - 24, x, CY - up + 14, alpha(PAL.ink, 0.35), 2, [4, 8]);
       text(ctx, nm + ' = ' + signed(q, 2) + ' μC', x, CY - up, qc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     }
     /* the same force plotted against the separation, for the charges as they stand */
-    const { X, Y } = axes(ctx, BOX, XR, YR, { xl: 'r (cm)', nx: 6, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const { X, Y } = axes(ctx, BOX, XR, YR, { xl: 'r (cm)', xc: pc, nx: 6, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     if (Fv > 0) {
       ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
       curve(ctx, (t) => force(q1, q2, t), XR[0], XR[1], X, Y, fc, 5, 160);
@@ -86,7 +88,7 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     text(ctx, 'the force between the two charges you have set', BOX.l, BOX.t - 56, PAL.muted, { size: 19 });
     topline(ctx, Fv === 0 ? 'With one of the charges set to zero there is no force between them at all.'
       : 'Charges of ' + signed(q1, 2) + ' μC and ' + signed(q2, 2) + ' μC, ' + fmt(r, 1) + ' cm apart, ' + (prod > 0 ? 'repel' : 'attract') + ' one another with ' + fmt(Fv, Fv < 10 ? 2 : 1) + ' N on each.');
-    readout(d.readout, `\\kF = k\\frac{|\\kqone\\kqtwo|}{r^2} = (8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)\\frac{|(${sci(q1 * 1e-6, 2)}\\ \\text{C})(${sci(q2 * 1e-6, 2)}\\ \\text{C})|}{(${fmt(r / 100, 3)}\\ \\text{m})^2} = ${Fv === 0 ? '0' : sci(Fv, 2)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = k\\frac{|\\kqone\\kqtwo|}{\\krad^2} = (8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)\\frac{|(${sci(q1 * 1e-6, 2)}\\ \\text{C})(${sci(q2 * 1e-6, 2)}\\ \\text{C})|}{(${fmt(r / 100, 3)}\\ \\text{m})^2} = ${Fv === 0 ? '0' : sci(Fv, 2)}\\ \\text{N}`,
       Fv === 0 ? 'A charge of zero exerts no force and feels none, and the graph has nothing to draw.'
         : 'The two arrows are equal in length and opposite in direction whatever the two charges are, since Newton’s third law holds here as it does everywhere else. On the drawing an arrow’s length follows the square root of the force, so that a force of a fraction of a newton and one of several hundred newtons both fit the same picture; the numbers above and on the arrows are the true ones.');
   }
@@ -101,13 +103,13 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
 ===================================================================== */
 (function () {
   const d = sim('sim-coulomb-versus-gravity', 700);
-  const rs = ctl(d.controls, { label: 'r', cls: '', min: 0.1, max: 5, step: 0.01, value: 0.53, unit: '× 10⁻¹⁰ m', dec: 3, aria: 'the separation of the electron and the proton, in units of ten to the minus ten metres' });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.1, max: 5, step: 0.01, value: 0.53, unit: '× 10⁻¹⁰ m', dec: 3, aria: 'the separation of the electron and the proton, in units of ten to the minus ten metres' });
   const PX = 240, CY = 250, AL = 220, AR = 1290, AY = 560;
   const LO = -50, HI = -5;                       /* fixed: the axis runs from 10^-50 N to 10^-5 N */
   const X = (lv) => AL + ((Math.min(HI, Math.max(LO, lv)) - LO) / (HI - LO)) * (AR - AL);
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('force'), qc = C('charge');
+    const fc = C('force'), qc = C('charge'), pc = C('position');
     const r = rs.v * 1e-10;
     const Fc = K * QE * QE / (r * r), Fg = GRAV * ME * MP / (r * r), ratio = Fc / Fg;
     const ex = PX + 160 + rs.v * 150;
@@ -122,7 +124,7 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     text(ctx, '+q_e', PX, CY - 58, qc, { size: 22, weight: 600, align: 'center' });
     text(ctx, '−q_e', ex, CY - 58, qc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'F = ' + sciText(Fc, 2) + ' N', (PX + ex) / 2, CY + 48, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    hbracket(ctx, PX, ex, CY + 116, PAL.ink, 'r = ' + fmt(rs.v, 3) + ' × 10⁻¹⁰ m');
+    hbracket(ctx, PX, ex, CY + 116, pc, 'r = ' + fmt(rs.v, 3) + ' × 10⁻¹⁰ m');
     /* the two forces set side by side on an axis laid out by powers of ten */
     line(ctx, AL, AY, AR, AY, PAL.muted, 2);
     for (let lv = LO; lv <= HI; lv += 5) {
@@ -142,7 +144,7 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     const xc = mark(Fc, true, 96, 'F');
     hbracket(ctx, xg, xc, AY - 178, PAL.ink, 'a factor of ' + sciText(ratio, 2));
     topline(ctx, 'At a separation of ' + fmt(rs.v, 3) + ' × 10⁻¹⁰ m the Coulomb attraction is ' + sciText(Fc, 2) + ' N and the gravitational attraction is ' + sciText(Fg, 2) + ' N, so the first is ' + sciText(ratio, 2) + ' times the second.');
-    readout(d.readout, `\\frac{\\kF}{\\kFG} = \\frac{k\\kqe^2/r^2}{GmM/r^2} = \\frac{${sci(Fc, 2)}\\ \\text{N}}{${sci(Fg, 2)}\\ \\text{N}} = ${sci(ratio, 2)}`,
+    readout(d.readout, `\\frac{\\kF}{\\kFG} = \\frac{k\\kqe^2/\\krad^2}{G\\km\\kM/\\krad^2} = \\frac{${sci(Fc, 2)}\\ \\text{N}}{${sci(Fg, 2)}\\ \\text{N}} = ${sci(ratio, 2)}`,
       'Both forces fall off as the inverse square of the separation, so moving the electron out weakens each of them by the same factor and their ratio never changes. At the scale of the Coulomb force, the gravitational attraction would be shorter than an atomic nucleus: gravity plays no part in holding the atom together.');
   }
   register(d.fig, { update: () => {}, draw });

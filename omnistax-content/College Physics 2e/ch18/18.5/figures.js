@@ -1,7 +1,8 @@
 /* Figures for section 18.5 Electric Field Lines: Multiple Charges. Boots against the section's text article.
-   The page binds charge and electric field: the charges and their sliders and
-   labels wear the charge hue, and every field arrow and field line wears the
-   electric-field hue, as `ch18/COLOR.md` asks. A charge's sign is told by the
+   The charges' sliders and value labels wear the charge hue, every field
+   arrow and field line wears the electric-field hue, distances wear position
+   and the angle of the total field wears angle. Each point charge or object
+   the text names is a referent, its disc and name in its referent colour. A charge's sign is told by the
    sign on its label and by which way the lines run, never by a second hue.
    Every figure here is still. A field is there all at once around charges that
    stay where they are, so none of the five registers a cycle, none carries a
@@ -34,12 +35,11 @@ function sciTex(v, d) {
 const SUPS = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
 const sup = (e) => String(e).split('').map((ch) => SUPS[ch] ?? ch).join('');
 
-/* A point charge: a filled disc in the charge hue with its sign on it. The
-   disc grows a little with the charge it carries, and never enough to hide
-   where the lines start. */
-function pointCharge(ctx, x, y, q, r) {
-  const qc = C('charge');
-  ctx.save(); ctx.fillStyle = q === 0 ? PAL.panel : qc; ctx.strokeStyle = qc; ctx.lineWidth = 3;
+/* A point charge: a filled disc in its referent colour with its sign on it.
+   The disc grows a little with the charge it carries, and never enough to
+   hide where the lines start. */
+function pointCharge(ctx, x, y, q, r, col) {
+  ctx.save(); ctx.fillStyle = q === 0 ? PAL.panel : col; ctx.strokeStyle = col; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
   if (q !== 0) text(ctx, q < 0 ? '−' : '+', x, y + 1, PAL.panel, { size: r * 1.8, weight: 700, align: 'center' });
 }
@@ -177,7 +177,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
         ctx.restore();
       }
     }
-    pointCharge(ctx, CX, CY, q, R0 * (0.78 + 0.22 * Math.min(1, mag / 10)));
+    pointCharge(ctx, CX, CY, q, R0 * (0.78 + 0.22 * Math.min(1, mag / 10)), F.ref('point-charge'));
     text(ctx, 'Q = ' + plus(q, 1) + ' nC', CX, CY + R0 + 34, qc, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the scale the reader measures the closeness of the lines against */
     line(ctx, BOX.x0 + 24, BOX.y1 - 30, BOX.x0 + 24 + 2 * S, BOX.y1 - 30, PAL.muted, 3);
@@ -186,7 +186,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     text(ctx, '2 cm', BOX.x0 + 24 + S, BOX.y1 - 48, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, mag === 0 ? 'A charge of nothing makes no field at all, and no line leaves the point.'
       : 'The charge of ' + plus(q, 1) + ' nC ' + (q > 0 ? 'sends out ' : 'takes in ') + wd(n) + ' lines, and the field 3.0 cm from it is ' + sci(E, 2) + ' N/C.');
-    readout(d.readout, `\\kEf = k\\frac{|\\kQch|}{r^2} = ${sciTex(E, 2)}\\ \\text{N/C at } r = 3.0\\ \\text{cm}`,
+    readout(d.readout, `\\kEf = k\\frac{|\\kQch|}{\\krad^2} = ${sciTex(E, 2)}\\ \\text{N/C at } \\krad = 3.0\\ \\text{cm}`,
       how.value === 'lines' ? 'The lines are closer together near the charge, which is where the field is strong.' : 'Each arrow is the force a positive test charge of one unit would feel at that point.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -202,8 +202,8 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
   const d = sim('sim-adding-fields', 640);
   const q1s = ctl(d.controls, { label: '\\kqone', cls: 'charge', min: 1, max: 10, step: 0.5, value: 5, unit: 'nC', dec: 2, aria: 'the charge on the y-axis' });
   const q2s = ctl(d.controls, { label: '\\kqtwo', cls: 'charge', min: 1, max: 10, step: 0.5, value: 10, unit: 'nC', dec: 2, aria: 'the charge on the x-axis' });
-  const r1s = ctl(d.controls, { label: 'r_1', cls: '', min: 2, max: 6, step: 0.25, value: 2, unit: 'cm', dec: 2, aria: 'the distance from the origin to the charge on the y-axis' });
-  const r2s = ctl(d.controls, { label: 'r_2', cls: '', min: 2, max: 6, step: 0.25, value: 4, unit: 'cm', dec: 2, aria: 'the distance from the origin to the charge on the x-axis' });
+  const r1s = ctl(d.controls, { label: '\\krone', cls: 'position', min: 2, max: 6, step: 0.25, value: 2, unit: 'cm', dec: 2, aria: 'the distance from the origin to the charge on the y-axis' });
+  const r2s = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 2, max: 6, step: 0.25, value: 4, unit: 'cm', dec: 2, aria: 'the distance from the origin to the charge on the x-axis' });
   const OX = 770, OY = 555, S = 60;                   /* the origin O, and 60 units to the centimetre */
   /* One scale for both arrows, fixed from the widest field the sliders reach,
      10.0 nC at 2.00 cm, so that the longest arrow just fills the frame and no
@@ -211,7 +211,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
   const KS = 440 / ((K * 10e-9) / Math.pow(2e-2, 2));
   function draw() {
     const { ctx } = begin(d.c);
-    const ec = C('electric-field'), qc = C('charge');
+    const ec = C('electric-field'), qc = C('charge'), pc = C('position'), ac = C('angle');
     const q1 = q1s.v, q2 = q2s.v, r1 = r1s.v, r2 = r2s.v;
     const E1 = (K * q1 * 1e-9) / Math.pow(r1 * 1e-2, 2), E2 = (K * q2 * 1e-9) / Math.pow(r2 * 1e-2, 2);
     const Et = Math.hypot(E1, E2), th = Math.atan2(E1, E2) / RAD;
@@ -231,12 +231,12 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     }
     /* the two charges, the first above the origin and the second to its right */
     const p1 = { x: OX, y: OY - r1 * S }, p2 = { x: OX + r2 * S, y: OY };
-    pointCharge(ctx, p1.x, p1.y, q1, 17);
-    pointCharge(ctx, p2.x, p2.y, q2, 17);
+    pointCharge(ctx, p1.x, p1.y, q1, 17, F.ref('charge-1'));
+    pointCharge(ctx, p2.x, p2.y, q2, 17, F.ref('charge-2'));
     text(ctx, 'q₁ = ' + plus(q1, 2) + ' nC', p1.x + 28, p1.y - 6, qc, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'q₂ = ' + plus(q2, 2) + ' nC', p2.x + 4, p2.y - 30, qc, { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    line(ctx, OX, OY, p1.x, p1.y, PAL.muted, 2, [6, 8]);
-    line(ctx, OX, OY, p2.x, p2.y, PAL.muted, 2, [6, 8]);
+    line(ctx, OX, OY, p1.x, p1.y, pc, 2, [6, 8]);
+    line(ctx, OX, OY, p2.x, p2.y, pc, 2, [6, 8]);
     /* the two fields at O and their sum, drawn as the book draws them */
     const L1 = E1 * KS, L2 = E2 * KS;
     ctx.save(); ctx.strokeStyle = alpha(ec, 0.42); ctx.lineWidth = 2; ctx.setLineDash([8, 8]);
@@ -253,7 +253,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     text(ctx, 'O', OX - 18, OY + 26, PAL.ink, { size: 21, weight: 600, align: 'right' });
     dot(ctx, OX, OY, PAL.ink, true, 6);
     /* the angle the sum makes with the axis it is measured from */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
+    ctx.save(); ctx.strokeStyle = ac; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.arc(OX, OY, Math.min(74, 0.55 * hyp), Math.PI, Math.PI + th * RAD); ctx.stroke(); ctx.restore();
     topline(ctx, 'The two fields at O add to ' + sci(Et, 2) + ' N/C, at ' + fmt(th, 1) + '° above the x-axis.');
     readout(d.readout, `\\kEftot = \\left(\\kEfone^2 + \\kEftwo^2\\right)^{1/2} = \\left[(${sciTex(E1, 2)})^2 + (${sciTex(E2, 2)})^2\\right]^{1/2} = ${sciTex(Et, 2)}\\ \\text{N/C}`,
@@ -276,7 +276,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     specials: [{ at: () => (q2s && q2s.v !== 0 ? q2s.v : null), label: 'equal' }, { at: () => (q2s && q2s.v !== 0 ? -q2s.v : null), label: 'opposite' }] });
   q2s = ctl(d.controls, { label: '\\kqtwo', cls: 'charge', min: -3, max: 3, step: 0.5, value: 1, unit: 'q', dec: 1, aria: 'the charge on the right, in units of q',
     specials: [{ at: () => (q1s.v !== 0 ? q1s.v : null), label: 'equal' }, { at: () => (q1s.v !== 0 ? -q1s.v : null), label: 'opposite' }] });
-  const ss = ctl(d.controls, { label: '\\text{separation}', cls: '', min: 4, max: 14, step: 0.5, value: 8, unit: 'cm', dec: 1, aria: 'the distance between the two charges' });
+  const ss = ctl(d.controls, { label: '\\text{separation}', cls: 'position', min: 4, max: 14, step: 0.5, value: 8, unit: 'cm', dec: 1, aria: 'the distance between the two charges' });
   const how = choice(d.controls, { label: '\\text{the field, as}', options: [
     { value: 'lines', label: 'field lines' }, { value: 'arrows', label: 'arrows' }], value: 'lines', aria: 'whether the field is drawn as continuous lines or as separate arrows' });
   const CX = 700, CY = 340, S = 34;                   /* the pair is centred here, at 34 units to the centimetre */
@@ -306,13 +306,13 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     }
     if (w < 0.99) { ctx.save(); ctx.globalAlpha = 1 - w; arrowGrid(ctx, qs, BOX, 62, 2.5e5, 55, ec); ctx.restore(); }
     for (const c of [a, b]) {
-      pointCharge(ctx, c.x, c.y, c.q, 16 + 5 * Math.min(1, Math.abs(c.q) / 3));
+      pointCharge(ctx, c.x, c.y, c.q, 16 + 5 * Math.min(1, Math.abs(c.q) / 3), F.ref(c === a ? 'first-charge' : 'second-charge'));
       text(ctx, (c === a ? 'q₁ = ' : 'q₂ = ') + (c.q === 0 ? '0' : plus(c.q, 1) + 'q'), c.x, c.y + (c === a ? -40 : 48), qc,
         { size: 23, weight: 600, align: 'center', base: c === a ? 'bottom' : 'top', bg: alpha(PAL.panel, 0.85) });
     }
     /* the separation, so the closeness of the lines can be read against a length */
-    line(ctx, a.x, CY - 120, b.x, CY - 120, PAL.muted, 2, [6, 8]);
-    text(ctx, fmt(sep, 1) + ' cm', CX, CY - 130, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    line(ctx, a.x, CY - 120, b.x, CY - 120, C('position'), 2, [6, 8]);
+    text(ctx, fmt(sep, 1) + ' cm', CX, CY - 130, C('position'), { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the field halfway between the charges, against the field the same distance outside the pair */
     const like = q1 * q2 > 0, mid = fieldAt(CX, CY, qs).m, out = fieldAt(a.x - (sep * S) / 2, CY, qs).m;
     const ratio = out > 0 ? mid / out : 0;
@@ -349,8 +349,9 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
       { x: (L + R) / 2, y: B, name: 'Z', lx: 0, ly: 34 },
     ];
     for (const p of pts) {
-      pointCharge(ctx, p.x, p.y, 1, 16);
-      text(ctx, p.name, p.x + p.lx, p.y + p.ly, PAL.ink, { size: 27, weight: 700, align: 'center', base: p.ly < 0 ? 'bottom' : 'top' });
+      const oc = F.ref('object-' + p.name.toLowerCase());
+      pointCharge(ctx, p.x, p.y, 1, 16, oc);
+      text(ctx, p.name, p.x + p.lx, p.y + p.ly, oc, { size: 27, weight: 700, align: 'center', base: p.ly < 0 ? 'bottom' : 'top' });
     }
     /* the charge every one of them carries, said once rather than four times */
     text(ctx, 'each object carries the charge +q', (L + R) / 2, B + 104, qc, { size: 22, weight: 600, align: 'center' });
@@ -362,7 +363,7 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     arrow(ctx, MX, (T + B) / 2 + 10, MX, B, PAL.muted, 3);
     text(ctx, 'd', MX + 16, (T + B) / 2, PAL.ink, { size: 24, weight: 600, base: 'middle' });
     topline(ctx, 'Four objects of charge +q are held fixed on a square of side d, with X and Z at the midpoints of two sides.');
-    readout(d.readout, `\\kF = k\\frac{|\\kqone \\kqtwo|}{r^2}`,
+    readout(d.readout, `\\kF = k\\frac{|\\kqone \\kqtwo|}{\\krad^2}`,
       'The force object W exerts on object X is the F every other force in the items is measured against.');
   }
   hover(d.stage, () => [
@@ -397,8 +398,9 @@ function arrowGrid(ctx, qs, box, gap, unit, cap2, color) {
     const names = [['R', '−q', -D], ['S', '+2q', 0], ['T', '−q', D]];
     for (const [n, lab, dx] of names) {
       const c = qs.find((z) => z.x === CX + dx);
-      pointCharge(ctx, c.x, c.y, c.q, 15);
-      text(ctx, n, c.x, c.y - 30, PAL.ink, { size: 26, weight: 700, align: 'center', base: 'bottom' });
+      const oc = F.ref('object-' + n.toLowerCase());
+      pointCharge(ctx, c.x, c.y, c.q, 15, oc);
+      text(ctx, n, c.x, c.y - 30, oc, { size: 26, weight: 700, align: 'center', base: 'bottom' });
       text(ctx, lab, c.x, c.y + 34, qc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, dx === 0 ? '0' : dx < 0 ? '−d' : 'd', c.x, c.y + 62, PAL.muted, { size: 19, align: 'center', bg: alpha(PAL.panel, 0.85) });
     }
