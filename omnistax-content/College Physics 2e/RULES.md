@@ -134,19 +134,15 @@ file records where it came from.
 The book declares its types in `book.json`, in the order the colour
 scheme lays its hues along. The first nine came with Chapters 1 to 3 and
 16: time, position, velocity, acceleration, force, energy, frequency,
-stiffness, angular rate. Each later chapter added the kinds of quantity
-its figures draw and its readouts colour, staged in its `book-rows.json`
-and merged: stress and elastic modulus (5), power (7), torque (9),
+stiffness, angular rate. Later chapters added theirs, staged in each
+chapter's `book-rows.json` and merged: stress and elastic modulus (5), power (7), torque (9),
 momentum (8), angular acceleration, moment of inertia and angular
 momentum (10), pressure, density and surface tension (11), flow rate and
 viscosity (12), temperature (13), entropy (15), intensity (17), charge and
 electric field (18), voltage and capacitance (19), current and
 resistance (20), magnetic field (22), magnetic flux and inductance (23),
-thirty-four in all. Mass,
-length, angle, count, amount of substance and every material constant
-(a specific heat, a latent heat, a conductivity, an emissivity, an
-expansion coefficient) are not typed and stay in ink; heat is an energy
-and a rate of heat transfer is a power.
+thirty-four in all. Heat is an energy and a rate of heat transfer is a
+power.
 
 With this many types each hue must still be legible and distinct. Since
 2026-09-15 the app's scheme for a book of up to thirty types is a fixed

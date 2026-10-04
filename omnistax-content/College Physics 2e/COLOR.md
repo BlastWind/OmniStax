@@ -50,11 +50,7 @@ symbol on that page is ink, and the page's plan lists what it binds.
 | `magnetic-flux` | Magnetic flux and its change | Chapter 23 |
 | `inductance` | Self and mutual inductance | Chapter 23 |
 
-Mass, length, angle, a count, a revolution, a percent and every
-dimensionless ratio — a coefficient of friction, a mechanical advantage, an
-efficiency — are untyped and stay in ink, as does the frame of a figure and
-every label on it. A measured value $A$ and its uncertainty $\delta A$ are
-untyped too.
+The frame of a figure and every label on it stay in ink.
 
 A derived quantity is another type and another colour, and nothing is
 coerced into a neighbouring type to save one: a frequency is not a time, a
