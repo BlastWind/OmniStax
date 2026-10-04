@@ -46,13 +46,14 @@ function burst(ctx, x, y, f, color) {
     const fY = FS * (VW - vo.v) / (VW - vs.v), fX = FS * (VW + vo.v) / (VW + vs.v);
     ground(ctx, 0, 1400, ROAD, 14);
     /* the car and the observers, in ink; an observer faces the way they walk, or the car when still */
-    car(ctx, cx, ROAD - 12, PAL.ink, 1.1);
+    car(ctx, cx, ROAD - 12, F.ref('car'), 1.1);
     /* the observers as filled bodies, 143 units tall; a walker strides once every four periods of the horn */
     const walk = vo.v !== 0, ph = ((t / T) * 0.25) % 1;
-    if (walk) { silhouette(ctx, { x: xX, y: ROAD, s: 0.95, pose: 'walk', phase: ph, face: Math.sign(vo.v), color: PAL.ink }); silhouette(ctx, { x: xY, y: ROAD, s: 0.95, pose: 'walk', phase: ph, face: Math.sign(vo.v), color: PAL.ink }); }
-    else { silhouette(ctx, { x: xX, y: ROAD, s: 0.95, pose: 'stand', face: 1, color: PAL.ink }); silhouette(ctx, { x: xY, y: ROAD, s: 0.95, pose: 'stand', face: -1, color: PAL.ink }); }
-    text(ctx, 'X', xX, ROAD + 34, PAL.ink, { size: 24, weight: 600, align: 'center' });
-    text(ctx, 'Y', xY, ROAD + 34, PAL.ink, { size: 24, weight: 600, align: 'center' });
+    const oX = F.ref('observer-x'), oY = F.ref('observer-y');
+    if (walk) { silhouette(ctx, { x: xX, y: ROAD, s: 0.95, pose: 'walk', phase: ph, face: Math.sign(vo.v), color: oX }); silhouette(ctx, { x: xY, y: ROAD, s: 0.95, pose: 'walk', phase: ph, face: Math.sign(vo.v), color: oY }); }
+    else { silhouette(ctx, { x: xX, y: ROAD, s: 0.95, pose: 'stand', face: 1, color: oX }); silhouette(ctx, { x: xY, y: ROAD, s: 0.95, pose: 'stand', face: -1, color: oY }); }
+    text(ctx, 'X', xX, ROAD + 34, oX, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'Y', xY, ROAD + 34, oY, { size: 24, weight: 600, align: 'center' });
     /* the wavefronts, each centred on the point where it was emitted, clipped to the scene above the road */
     ctx.save(); ctx.beginPath(); ctx.rect(0, 92, 1400, ROAD + 14 - 92); ctx.clip();
     const fronts = [];
@@ -201,13 +202,13 @@ function burst(ctx, x, y, f, color) {
       line(ctx, xs, Y0, xs - L * Math.cos(a), Y0 + L * Math.sin(a), PAL.ink, 3.5);
       const R = Math.min(xs - 70, 300);
       if (R > 60) {
-        ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(xs, Y0, R, Math.PI - a, Math.PI + a); ctx.stroke();
-        text(ctx, 'θ = ' + fmt(theta, 0) + '°', xs - R - 14, Y0, PAL.ink, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
+        ctx.strokeStyle = C('angle'); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(xs, Y0, R, Math.PI - a, Math.PI + a); ctx.stroke();
+        text(ctx, 'θ = ' + fmt(theta, 0) + '°', xs - R - 14, Y0, C('angle'), { size: 22, weight: 600, align: 'right', bg: PAL.panel });
       }
       ctx.restore();
     }
     /* the source and its velocity */
-    dot(ctx, xs, Y0, PAL.ink, true, 8);
+    dot(ctx, xs, Y0, F.ref('source'), true, 8);
     const aEnd = Math.min(1180, xs + 40 + 0.16 * vs.v);
     arrow(ctx, xs, Y0, aEnd, Y0, C('velocity'), 5);
     text(ctx, 'v_s = ' + vs.v + ' m/s', Math.min(1390, aEnd + 12), Y0 - 26, C('velocity'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
@@ -217,7 +218,7 @@ function burst(ctx, x, y, f, color) {
       : 'At ' + vs.v + ' m/s the source is slower than its sound, so the wavefronts nest inside one another, bunched ahead of it as in Figure 17.14.');
     /* past the speed of sound the cone's angle appears, and v_s and v_w move into the arcsine */
     ro.set(M >= 1
-      ? `\\mk{th}{\\theta} = 2\\arcsin\\frac{\\mk{vw}{\\kvw}}{\\mk{vs}{\\kvs}} = 2\\arcsin\\frac{\\mk{wv}{340\\ \\text{m/s}}}{\\mk{vv}{${vs.v}\\ \\text{m/s}}} = \\mk{tv}{${fmt(theta, 0)}^\\circ}`
+      ? `\\mk{th}{\\ktheta} = 2\\arcsin\\frac{\\mk{vw}{\\kvw}}{\\mk{vs}{\\kvs}} = 2\\arcsin\\frac{\\mk{wv}{340\\ \\text{m/s}}}{\\mk{vv}{${vs.v}\\ \\text{m/s}}} = \\mk{tv}{${fmt(theta, 0)}^\\circ}`
       : `\\mk{vs}{\\kvs} = \\mk{vv}{${vs.v}\\ \\text{m/s}} = \\mk{M}{${fmt(M, 2)}}\\,\\mk{vw}{\\kvw}`, M >= 1 ? 'By the time the source is a distance v_s t beyond the point where it emitted a wavefront, that wavefront has grown to a radius v_w t, so the lines tangent to every wavefront make half the angle θ with the path, with sin(θ/2) = v_w / v_s = ' + fmt(1 / M, 3) + '.'
         : 'Below the speed of sound no wavefront is overtaken, and there is no line along which they arrive together; the frequency ahead is f_s v_w/(v_w − v_s) = ' + fmt(1 / (1 - M), 2) + ' f_s.');
   }
@@ -252,7 +253,7 @@ function burst(ctx, x, y, f, color) {
     for (const x of [nose, tail]) { line(ctx, x, py, x - 3000, py - 3000 * tanA, PAL.ink, 3); line(ctx, x, py, x - 3000, py + 3000 * tanA, PAL.ink, 3); }
     ctx.restore();
     ground(ctx, 0, 1400, GY, 16);
-    plane(ctx, nose - 44 * SPR, py, PAL.ink, SPR);
+    plane(ctx, nose - 44 * SPR, py, F.ref('aircraft'), SPR);
     const vEnd = Math.min(1250, nose + 60 + 0.12 * vs.v);
     if (vEnd > nose + 30) arrow(ctx, nose + 10, py - 52, vEnd, py - 52, C('velocity'), 5);
     text(ctx, 'v_s = ' + vs.v + ' m/s', Math.min(1390, vEnd + 12), Math.max(118, py - 78), C('velocity'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
@@ -261,7 +262,7 @@ function burst(ctx, x, y, f, color) {
     /* the observers: each is passed by the aircraft, then swept by the nose boom and the tail boom */
     OBS.forEach((x, i) => {
       const headY = GY - 112;
-      silhouette(ctx, { x, y: GY, s: 0.85, pose: 'stand', face: 1, color: PAL.ink });
+      silhouette(ctx, { x, y: GY, s: 0.85, pose: 'stand', face: 1, color: F.ref('observers') });
       const sinceN = (gN - x) / (S * vs.v), sinceT = (gT - x) / (S * vs.v);   /* seconds since each boom swept this observer */
       const flash = (since) => since >= 0 && since < 0.6;
       if (flash(sinceN)) burst(ctx, x, headY, sinceN / 0.6, PAL.ink);
@@ -273,7 +274,7 @@ function burst(ctx, x, y, f, color) {
     const reached = OBS.filter((x) => gN >= x).length;
     topline(ctx, reached === 0 ? 'The aircraft is ' + fmt(dGround / 1000, 2) + ' km short of the first observer\u2019s boom, which will reach him ' + fmt(tLag, 1) + ' s after it passes overhead.'
       : 'The aircraft is ' + fmt(dGround / 1000, 2) + ' km beyond the ' + ['first', 'second', 'third'][reached - 1] + ' observer, ' + fmt(tLag, 1) + ' s after passing over him, as its first boom reaches him.');
-    readout(d.readout, `\\kvs = ${vs.v}\\ \\text{m/s} = ${fmt(M, 2)}\\,\\kvw, \\qquad \\theta = ${fmt(theta, 0)}^\\circ`,
+    readout(d.readout, `\\kvs = ${vs.v}\\ \\text{m/s} = ${fmt(M, 2)}\\,\\kvw, \\qquad \\ktheta = ${fmt(theta, 0)}^\\circ`,
       'The shock wave reaches the ground d = h / tan(θ/2) = ' + fmt(dGround, 0) + ' m behind the aircraft, so the first boom arrives t = d / v_s = ' + fmt(tLag, 1) + ' s after it passes overhead. The two booms are L / v_s = ' + fmt(dt * 1000, 0) + ' ms apart for an aircraft ' + LEN + ' m long; it is drawn ' + fmt(DRAWN / (LEN * S), 0) + ' times its true size so that the two cones can be seen apart.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => (RUN / vs.v) / 5), draw });

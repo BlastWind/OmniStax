@@ -76,9 +76,9 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
       ctx.stroke(); ctx.restore();
     };
     bow(-U, alpha(PAL.ink, 0.25), 2, [6, 8]); bow(U, alpha(PAL.ink, 0.25), 2, [6, 8]);
-    bow(u, PAL.ink, 5);
+    bow(u, F.ref('string'), 5);
     if (Math.abs(vel) > 0.15 && tau < run()) arrow(ctx, X0 + u + Math.sign(vel) * 12, MID, X0 + u + Math.sign(vel) * (12 + 30 * Math.abs(vel)), MID, PAL.ink, 3);
-    text(ctx, 'string', X0, TOP - 40, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'string', X0, TOP - 40, F.ref('string'), { size: 20, weight: 600, align: 'center' });
     /* the wave front on the right, while it is in the scene */
     const xf = V * tau;
     if (xf > 0.05 && xf < LEN - 0.02) {
@@ -123,7 +123,7 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
 (function () {
   const d = sim('sim-eardrum', 640);
   const dp = ctl(d.controls, { label: '\\kdpamp', cls: 'pressure', min: 0.2, max: 2, step: 0.1, value: 1, unit: 'Pa', dec: 1, aria: 'pressure amplitude' });
-  const A = ctl(d.controls, { label: 'A', cls: '', min: 0.3, max: 1, step: 0.05, value: 0.5, unit: 'cm²', dec: 2, aria: 'area of the eardrum' });
+  const A = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.3, max: 1, step: 0.05, value: 0.5, unit: 'cm²', dec: 2, aria: 'area of the eardrum' });
   const cy = cycle(() => Infinity, 0);
   const TD = 3;                                  /* the drawn period of the wave, real seconds at 1× */
   const SP = 150;                                /* the drawn spacing of the compression fronts */
@@ -153,7 +153,8 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
     /* the canal, open to the air at its mouth */
     ctx.fillStyle = PAL.panel; ctx.beginPath();
     ctx.moveTo(MOUTH - 28, CT - 14); ctx.lineTo(DRUM, CT); ctx.lineTo(DRUM, CB); ctx.lineTo(MOUTH - 28, CB + 14); ctx.closePath(); ctx.fill();
-    line(ctx, MOUTH - 28, CT - 14, DRUM, CT, PAL.muted, 2.5); line(ctx, MOUTH - 28, CB + 14, DRUM, CB, PAL.muted, 2.5);
+    const cc = F.ref('ear-canal');
+    line(ctx, MOUTH - 28, CT - 14, DRUM, CT, cc, 2.5); line(ctx, MOUTH - 28, CB + 14, DRUM, CB, cc, 2.5);
     /* the middle ear behind the eardrum, at atmospheric pressure, and the bones that carry the vibration on */
     ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.ellipse(1078, 331, 68, 62, 0, 0, TAU); ctx.fill(); ctx.stroke();
     ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineCap = 'round';
@@ -195,13 +196,13 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
       const xc = DRUM + SP * frac - n * SP; front(ctx, xc, true); front(ctx, xc - SP / 2, false);
     }
     /* the eardrum */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath();
+    ctx.save(); ctx.strokeStyle = F.ref('eardrum'); ctx.lineWidth = 5; ctx.beginPath();
     ctx.moveTo(DRUM, CT - 2); ctx.quadraticCurveTo(DRUM + 2 * bulge, 331, DRUM, CB + 2); ctx.stroke(); ctx.restore();
     /* the force on the drum, inward under a compression and outward under a rarefaction */
     const lab = labeller(ctx, H);
     lab.block(0, 0, 1400, 96); lab.block(MOUTH - 10, CB + 26, MOUTH + 130, CB + 58); lab.block(DRUM - 190, CT - 50, DRUM, CT - 18);
     text(ctx, 'P = ' + signed(p, 2) + ' Pa', DRUM - 16, CT - 34, C('pressure'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'ear canal', MOUTH + 10, CB + 42, PAL.ink, { size: 20, weight: 600, bg: PAL.panel });
+    text(ctx, 'ear canal', MOUTH + 10, CB + 42, F.ref('ear-canal'), { size: 20, weight: 600, bg: PAL.panel });
     text(ctx, 'pinna', 626, 500, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'cochlea', 1200, 416, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
     if (Math.abs(p) > 0.12 * dp.v) {
@@ -209,14 +210,14 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
       arrow(ctx, x0, 331, x0 + s * Lp, 331, C('force'), 5);
       lab.add('F = PA = ' + (Fn < 0 ? '−' : '+') + sciTxt(Math.abs(Fn)) + ' N', x0 + s * Lp / 2, 331, 0, 1, C('force'), 20, 64);
     }
-    lab.add('eardrum of area A = ' + fmt(A.v, 2) + ' cm²', DRUM + 4, CB + 6, 0.5, 1, PAL.ink, 20, 60);
+    lab.add('eardrum of area A = ' + fmt(A.v, 2) + ' cm²', DRUM + 4, CB + 6, 0.5, 1, F.ref('eardrum'), 20, 60);
     lab.add('atmospheric pressure behind the eardrum', 1090, 395, 0.15, 1, PAL.muted, 18, 44);
     lab.flush();
     text(ctx, 'A solid arc is a compression and a dashed arc a rarefaction; both travel toward the ear.', 52, 614, PAL.muted, { size: 17 });
     topline(ctx, p > 0.35 * dp.v ? 'A compression has reached the eardrum and pushes it inward with a net force of ' + sciTxt(Math.abs(Fn)) + ' N.'
       : p < -0.35 * dp.v ? 'A rarefaction has reached the eardrum, and the atmospheric pressure behind it pushes it outward with a net force of ' + sciTxt(Math.abs(Fn)) + ' N.'
       : 'The gauge pressure at the eardrum is passing through zero, and for an instant there is almost no net force on it.');
-    readout(d.readout, `\\kF = \\kPr A = (${signed(p, 2)}\\ \\text{Pa})(${sci(A.v * 1e-4, 1)}\\ \\text{m}^2) = ${p === 0 ? '0' : (Fn < 0 ? '-' : '+') + sci(Math.abs(Fn), 1)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = \\kPr \\karea = (${signed(p, 2)}\\ \\text{Pa})(${sci(A.v * 1e-4, 1)}\\ \\text{m}^2) = ${p === 0 ? '0' : (Fn < 0 ? '-' : '+') + sci(Math.abs(Fn), 1)}\\ \\text{N}`,
       'The pressure behind the eardrum stays atmospheric, so the net force follows the gauge pressure of the wave, inward at +' + fmt(dp.v, 1) + ' Pa and outward at −' + fmt(dp.v, 1) + ' Pa; the swing of the eardrum is drawn far larger than it is.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });

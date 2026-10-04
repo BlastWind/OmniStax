@@ -145,9 +145,10 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     line(ctx, box.l, py, box.r, py, alpha(PAL.ink, 0.5), 2, [4, 8]);
     line(ctx, IX - 8, py, IX + 8, py, ic, 3);
     text(ctx, hz(fs.f), px, box.b - 16, fc, { size: 18, weight: 600, align: px > box.r - 120 ? 'right' : px < box.l + 120 ? 'left' : 'center', bg: alpha(PAL.panel, 0.85) });
-    dot(ctx, px, py, PAL.ink, true, 10);
+    const sc = F.ref('sound');
+    dot(ctx, px, py, sc, true, 10);
     const word = L < 0 ? 'not heard' : L > 120 ? 'painful' : fmt(L, 0) + ' phons';
-    text(ctx, word, px + (px > box.r - 220 ? -18 : 18), py - 26, PAL.ink, { size: 21, weight: 600, align: px > box.r - 220 ? 'right' : 'left', bg: alpha(PAL.panel, 0.9) });
+    text(ctx, word, px + (px > box.r - 220 ? -18 : 18), py - 26, sc, { size: 21, weight: 600, align: px > box.r - 220 ? 'right' : 'left', bg: alpha(PAL.panel, 0.9) });
     /* what the point says */
     topline(ctx, L < 0 ? 'A ' + hz(fs.f) + ' sound at ' + fmt(beta, 0) + ' dB lies below the 0-phon curve, so most people do not hear it at all.'
       : L > 120 ? 'A ' + hz(fs.f) + ' sound at ' + fmt(beta, 0) + ' dB lies above the 120-phon curve, and a sound that loud is painful as well as damaging.'
@@ -262,7 +263,7 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
   function bracket(ctx, x, y, open) { ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); const s = open ? -1 : 1; ctx.moveTo(x + s * 6, y - 12); ctx.lineTo(x, y - 12); ctx.lineTo(x, y + 12); ctx.lineTo(x + s * 6, y + 12); ctx.stroke(); ctx.restore(); }
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('frequency'), rc = F.cat(0), lc = F.cat(3);
+    const fc = C('frequency'), rc = F.ref('right-ear'), lc = F.ref('left-ear');
     const p = PEOPLE[who.value], q = who.mix((v) => ({ R: PEOPLE[v].R, L: PEOPLE[v].L })), bone = who.a('presby');
     hits.length = 0;
     /* the frame: the six test frequencies, and the level every 10 dB downward */
@@ -289,8 +290,8 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
       });
     }
     /* the legend, where the book puts it */
-    dot(ctx, box.l + 40, box.b - 92, rc, true, 9); text(ctx, 'right ear', box.l + 62, box.b - 92, PAL.ink, { size: 18 });
-    diamond(ctx, box.l + 40, box.b - 58, lc); text(ctx, 'left ear', box.l + 62, box.b - 58, PAL.ink, { size: 18 });
+    dot(ctx, box.l + 40, box.b - 92, rc, true, 9); text(ctx, 'right ear', box.l + 62, box.b - 92, rc, { size: 18 });
+    diamond(ctx, box.l + 40, box.b - 58, lc); text(ctx, 'left ear', box.l + 62, box.b - 58, lc, { size: 18 });
     if (bone > 0) { ctx.save(); ctx.globalAlpha = bone; bracket(ctx, box.l + 34, box.b - 24, true); bracket(ctx, box.l + 46, box.b - 24, false); text(ctx, 'bone conduction', box.l + 62, box.b - 24, PAL.ink, { size: 18 }); ctx.restore(); }
     const w = who.value;
     topline(ctx, w === 'normal' ? 'Both ears lie within 5 dB of the normal threshold at every frequency tested, which is normal hearing.'
@@ -315,9 +316,9 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
 (function () {
   const d = sim('sim-middle-ear', 640);
   const ps = ctl(d.controls, { label: '\\kProne', cls: 'pressure', min: 0.02, max: 2, step: 0.02, value: 0.2, unit: 'Pa', dec: 2, aria: 'the sound pressure on the eardrum' });
-  const a1 = ctl(d.controls, { label: 'A_1', cls: '', min: 30, max: 90, step: 1, value: 60, unit: 'mm²', dec: 0, aria: 'the area of the eardrum' });
-  const a2 = ctl(d.controls, { label: 'A_2', cls: '', min: 1, max: 5, step: 0.1, value: 2, unit: 'mm²', dec: 1, aria: 'the area of the oval window' });
-  const rs = ctl(d.controls, { label: 'r_1/r_2', cls: '', min: 1, max: 3, step: 0.1, value: 1.3, unit: '', dec: 1, aria: 'the ratio of the lever arms, hammer to stirrup' });
+  const a1 = ctl(d.controls, { label: '\\kareaone', cls: 'area', min: 30, max: 90, step: 1, value: 60, unit: 'mm²', dec: 0, aria: 'the area of the eardrum' });
+  const a2 = ctl(d.controls, { label: '\\kareatwo', cls: 'area', min: 1, max: 5, step: 0.1, value: 2, unit: 'mm²', dec: 1, aria: 'the area of the oval window' });
+  const rs = ctl(d.controls, { label: '\\krone/\\krtwo', cls: '', min: 1, max: 3, step: 0.1, value: 1.3, unit: '', dec: 1, aria: 'the ratio of the lever arms, hammer to stirrup' });
   const PX = 560, PY = 120, R1 = 300, EX = 250, WX = 800, MM = 28;       /* the pivot, the hammer arm in units, the eardrum and window x, units per mm */
   const GX = 1180, GT = 130, GB = 570;                                     /* the pressure gauge: log scale, 0.01 to 1000 Pa */
   const gy = (P) => GB - ((Math.log10(P) + 2) / 5) * (GB - GT);
@@ -330,22 +331,23 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     const d1 = MM * 2 * Math.sqrt(A1 / Math.PI), d2 = MM * 2 * Math.sqrt(A2 / Math.PI);   /* the membranes drawn as the diameter of a circle of that area */
     /* the bones: the anvil from the pivot down to the hammer, the hammer to the eardrum, the stirrup to the window */
     fixed(ctx, PX - 60, PY - 40, 120, 30);
-    line(ctx, PX, PY, PX, HY, PAL.ink, 6);
-    line(ctx, EX, HY, PX, HY, PAL.ink, 6);
-    line(ctx, PX, SY, WX, SY, PAL.ink, 6);
+    const hc = F.ref('hammer'), ac = F.ref('anvil'), stc = F.ref('stirrup'), ec = F.ref('eardrum'), wc = F.ref('oval-window');
+    line(ctx, PX, PY, PX, HY, ac, 6);
+    line(ctx, EX, HY, PX, HY, hc, 6);
+    line(ctx, PX, SY, WX, SY, stc, 6);
     dot(ctx, PX, PY, PAL.ink, false, 9); dot(ctx, PX, SY, PAL.ink, true, 8); dot(ctx, PX, HY, PAL.ink, true, 8);
     /* the two membranes, drawn as taut skins bowed a little inward by the pressure on them */
-    const membrane = (x, y, dia) => {
+    const membrane = (x, y, dia, col) => {
       const h = dia / 2, bow = Math.max(6, Math.min(16, h / 6));
-      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3.5;
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = col; ctx.lineWidth = 3.5;
       ctx.beginPath(); ctx.moveTo(x - 4, y - h); ctx.quadraticCurveTo(x + bow, y, x - 4, y + h); ctx.quadraticCurveTo(x + bow + 6, y, x - 4, y - h); ctx.fill(); ctx.stroke();
       ctx.restore();
       fixed(ctx, x - 12, y - h - 14, 16, 12); fixed(ctx, x - 12, y + h + 2, 16, 12);
     };
-    membrane(EX, HY, d1); membrane(WX, SY, d2);
+    membrane(EX, HY, d1, ec); membrane(WX, SY, d2, wc);
     /* the lever arms, bracketed on either side of the anvil */
-    vbracket(ctx, PX + 42, PY, HY, PAL.ink, 'r_1', 1);
-    vbracket(ctx, PX - 42, PY, SY, PAL.ink, 'r_2', -1);
+    vbracket(ctx, PX + 42, PY, HY, C('position'), 'r_1', 1);
+    vbracket(ctx, PX - 42, PY, SY, C('position'), 'r_2', -1);
     /* the pressures and the forces. The force arrows are drawn to one scale, so the stirrup's is r₁/r₂ times the
        hammer's; the pressure arrows only point, since the two pressures differ by a factor the gauge shows. */
     arrow(ctx, EX - 120, HY, EX - 14, HY, pc, 5);
@@ -358,11 +360,11 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     text(ctx, 'P_2 = ' + fmt(P2, P2 < 10 ? 1 : 0) + ' Pa', WX + 104, SY + 40, pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* names */
     text(ctx, 'pivot', PX + 20, PY - 4, PAL.muted, { size: 18 });
-    text(ctx, 'anvil', PX - 16, (SY + HY) / 2, PAL.muted, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'hammer', (EX + PX) / 2 + 40, HY + 28, PAL.muted, { size: 18, align: 'center' });
-    text(ctx, 'stirrup', (PX + WX) / 2 + 60, SY + 28, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'eardrum, A_1 = ' + fmt(A1, 0) + ' mm²', EX, HY - d1 / 2 - 32, PAL.ink, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'oval window, A_2 = ' + fmt(A2, 1) + ' mm²', WX + 22, SY - d2 / 2 - 22, PAL.ink, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'anvil', PX - 16, (SY + HY) / 2, ac, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'hammer', (EX + PX) / 2 + 40, HY + 28, hc, { size: 18, align: 'center' });
+    text(ctx, 'stirrup', (PX + WX) / 2 + 60, SY + 28, stc, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'eardrum, A_1 = ' + fmt(A1, 0) + ' mm²', EX, HY - d1 / 2 - 32, ec, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'oval window, A_2 = ' + fmt(A2, 1) + ' mm²', WX + 22, SY - d2 / 2 - 22, wc, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the gauge: the two pressures on one logarithmic scale */
     line(ctx, GX, GT, GX, GB, PAL.muted, 2);
     for (let e = -2; e <= 3; e++) { const y = gy(Math.pow(10, e)); line(ctx, GX - 8, y, GX + 8, y, PAL.muted, 2); text(ctx, (e === -2 ? '0.01' : e === -1 ? '0.1' : e === 3 ? '1000' : String(Math.pow(10, e))) + ' Pa', GX + 18, y, PAL.muted, { size: 16 }); }
@@ -374,7 +376,7 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     text(ctx, 'P_2', GX - 20, y2, pc, { size: 20, weight: 600, align: 'right' });
     text(ctx, '× ' + fmt(P2 / P1, 0), GX - 16, (y1 + y2) / 2, PAL.ink, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, 'A sound pressure of ' + fmt(P1, 2) + ' Pa on the eardrum becomes ' + fmt(P2, P2 < 10 ? 1 : 0) + ' Pa at the oval window, ' + fmt(P2 / P1, 0) + ' times as great.');
-    readout(d.readout, `\\kPrtwo = \\frac{\\kFtwo}{A_2} = \\frac{(r_1/r_2)\\,\\kProne A_1}{A_2} = \\frac{${fmt(ratio, 1)}\\,(${fmt(P1, 2)}\\ \\text{Pa})(${fmt(A1, 0)}\\ \\text{mm}^2)}{${fmt(A2, 1)}\\ \\text{mm}^2} = ${fmt(P2, P2 < 10 ? 1 : 0)}\\ \\text{Pa}`,
+    readout(d.readout, `\\kPrtwo = \\frac{\\kFtwo}{\\kareatwo} = \\frac{(\\krone/\\krtwo)\\,\\kProne \\kareaone}{\\kareatwo} = \\frac{${fmt(ratio, 1)}\\,(${fmt(P1, 2)}\\ \\text{Pa})(${fmt(A1, 0)}\\ \\text{mm}^2)}{${fmt(A2, 1)}\\ \\text{mm}^2} = ${fmt(P2, P2 < 10 ? 1 : 0)}\\ \\text{Pa}`,
       'The force on the eardrum is F₁ = P₁A₁ = ' + fmt(F1, 1) + ' µN, and the lever raises it to F₂ = ' + fmt(F2, 1) + ' µN, a factor of ' + fmt(ratio, 1) + '. The oval window has ' + fmt(A1 / A2, 0) + ' times less area than the eardrum, so the pressure is raised ' + fmt(P2 / P1, 0) + ' times in all' + (Math.abs(P2 / P1 - 40) < 6 ? ', about the 40 the text gives.' : '.') + ' The protective muscles of the middle ear act by reducing the mechanical advantage of this lever.');
   }
   register(d.fig, { update: () => {}, draw });

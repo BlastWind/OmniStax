@@ -31,10 +31,11 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const As = Math.sqrt(DP1 * DP1 + dp2.v * dp2.v + 2 * DP1 * dp2.v * Math.cos(ph));
     const boxes = [{ l: 190, r: 1310, t: 110, b: 290 }, { l: 190, r: 1310, t: 372, b: 552 }];
     const g0 = axes(ctx, boxes[0], [0, XM], [-PM, PM], { xl: '', yl: 'gauge pressure (Pa)', yc: C('pressure'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
-    curve(ctx, p1, 0, XM, g0.X, g0.Y, C('pressure'), 5, 300);
-    ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, p2, 0, XM, g0.X, g0.Y, C('pressure'), 4, 300); ctx.restore();
-    text(ctx, 'the noise, ' + fmt(DP1, 2) + ' Pa', boxes[0].l + 14, boxes[0].t + 22, C('pressure'), { size: 19, weight: 600, bg: PAL.panel });
-    text(ctx, 'the introduced sound, ' + fmt(dp2.v, 2) + ' Pa (dashed)', boxes[0].l + 14, boxes[0].t + 48, C('pressure'), { size: 19, weight: 600, bg: PAL.panel });
+    const nc = F.ref('noise'), ic = F.ref('introduced');
+    curve(ctx, p1, 0, XM, g0.X, g0.Y, nc, 5, 300);
+    ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, p2, 0, XM, g0.X, g0.Y, ic, 4, 300); ctx.restore();
+    text(ctx, 'the noise, ' + fmt(DP1, 2) + ' Pa', boxes[0].l + 14, boxes[0].t + 22, nc, { size: 19, weight: 600, bg: PAL.panel });
+    text(ctx, 'the introduced sound, ' + fmt(dp2.v, 2) + ' Pa (dashed)', boxes[0].l + 14, boxes[0].t + 48, ic, { size: 19, weight: 600, bg: PAL.panel });
     arrow(ctx, 820, 332, 950, 332, C('velocity'), 4);
     text(ctx, 'both travel at v_w = 344 m/s', 964, 332, C('velocity'), { size: 20, weight: 600 });
     const g1 = axes(ctx, boxes[1], [0, XM], [-PM, PM], { xl: 'distance along the sound (m)', xc: C('position'), yl: 'their sum (Pa)', yc: C('pressure'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
@@ -57,7 +58,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 ===================================================================== */
 (function () {
   const d = sim('sim-tube-resonance', 650);
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 0.2, max: 1.5, step: 0.002, value: 0.672, unit: 'm', dec: 3, onInput: reset, aria: 'length of the tube',
+  const L = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 0.2, max: 1.5, step: 0.002, value: 0.672, unit: 'm', dec: 3, onInput: reset, aria: 'length of the tube',
     specials: [{ at: () => (nearest().n * VW) / (4 * fq.v), label: 'resonance' }] });
   const fq = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 50, max: 800, step: 1, value: 128, unit: 'Hz', dec: 0, onInput: reset });
   const where = choice(d.controls, { label: '\\text{the fork}', options: [{ value: 'open', label: 'at the open end' }, { value: 'closed', label: 'near the closed end' }], value: 'open', aria: 'where the tuning fork is held' });
@@ -73,12 +74,13 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   function fork(ctx, x, y, open) {
     /* a stem, a rounded yoke and two prongs, about 130 tall; the prongs' swing is drawn as faint ghosts either side */
     const s = open ? 15 : 11, top = y - 130, yoke = y - 46;
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.lineCap = 'round';
+    const fk = F.ref('fork');
+    ctx.save(); ctx.strokeStyle = fk; ctx.lineWidth = 6; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, yoke + s); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(x - s, top); ctx.lineTo(x - s, yoke); ctx.arc(x, yoke, s, Math.PI, 0, true); ctx.lineTo(x + s, top); ctx.stroke();
     ctx.restore();
-    [-1, 1].forEach((k) => line(ctx, x + k * (s + 7), top, x + k * (s + 7), yoke - 30, alpha(PAL.ink, 0.3), 3));
-    text(ctx, 'tuning fork', x, top - 22, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
+    [-1, 1].forEach((k) => line(ctx, x + k * (s + 7), top, x + k * (s + 7), yoke - 30, alpha(fk, 0.3), 3));
+    text(ctx, 'tuning fork', x, top - 22, fk, { size: 19, align: 'center', bg: PAL.panel });
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -109,7 +111,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       ctx.restore();
     }
     /* the tube: two walls, a closed end at the right, an open end at the left */
-    line(ctx, xL, tubeT, xR, tubeT, PAL.ink, 5); line(ctx, xL, tubeB, xR, tubeB, PAL.ink, 5);
+    const tb = F.ref('tube');
+    line(ctx, xL, tubeT, xR, tubeT, tb, 5); line(ctx, xL, tubeB, xR, tubeB, tb, 5);
     fixed(ctx, xR, tubeT, 26, tubeB - tubeT);
     /* the air: ink dots, and a crowd of them is a compression */
     const N = Math.max(6, Math.round(span / 34));
@@ -123,7 +126,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       arrow(ctx, px - dir * 70, tubeT - 30, px, tubeT - 30, C('velocity'), 4);
       text(ctx, 'v_w = 344 m/s', px + dir * 14, tubeT - 30, C('velocity'), { size: 20, weight: 600, align: dir > 0 ? 'left' : 'right', bg: PAL.panel });
     }
-    hbracket(ctx, xL, xR, tubeB + 122, PAL.ink, 'L = ' + fmt(L.v, 3) + ' m');
+    hbracket(ctx, xL, xR, tubeB + 122, C('position'), 'L = ' + fmt(L.v, 3) + ' m');
     fork(ctx, where.value === 'open' ? xL - 80 : xR + 74, tubeB + 10, where.value === 'open');
     text(ctx, 'open end: an antinode', xL + 6, tubeB + 40, C('position'), { size: 19, weight: 600 });
     text(ctx, 'closed end: a node', xR + 26, tubeB + 72, C('position'), { size: 19, weight: 600, align: 'right' });
@@ -132,7 +135,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       : onRes ? 'It arrives back half a cycle later and adds to the sound the fork is still making, so the air column resonates at ' + fmt(fn, 0) + ' Hz'
       : 'At ' + fmt(fq.v, 0) + ' Hz it arrives back out of step with the fork, so the air column vibrates very little');
     const lam = VW / fq.v;
-    readout(d.readout, `\\klam = \\frac{\\kvw}{\\kf} = \\frac{344\\ \\text{m/s}}{${fmt(fq.v, 0)}\\ \\text{Hz}} = ${fmt(lam, 3)}\\ \\text{m}, \\qquad \\frac{4L}{${n}} = ${fmt((4 * L.v) / n, 3)}\\ \\text{m}`,
+    readout(d.readout, `\\klam = \\frac{\\kvw}{\\kf} = \\frac{344\\ \\text{m/s}}{${fmt(fq.v, 0)}\\ \\text{Hz}} = ${fmt(lam, 3)}\\ \\text{m}, \\qquad \\frac{4\\kLlen}{${n}} = ${fmt((4 * L.v) / n, 3)}\\ \\text{m}`,
       onRes ? 'The two are equal, so the tube holds ' + (n === 1 ? 'one-fourth' : n + ' fourths') + ' of a wavelength: the reflected sound comes back in step and the air column resonates at ' + fmt(fn, 0) + ' Hz, its ' + (n === 1 ? 'fundamental' : 'harmonic number ' + n) + '.'
         : 'The two do not agree, so no standing wave can hold. The nearest resonance of a ' + fmt(L.v, 3) + ' m tube is ' + fmt(fn, 0) + ' Hz, harmonic number ' + n + '; move the frequency to it and the air column comes to life.');
   }
@@ -146,7 +149,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 ===================================================================== */
 (function () {
   const d = sim('sim-harmonic-ladder', 840);
-  const L = ctl(d.controls, { label: 'L', cls: '', min: 0.2, max: 2, step: 0.002, value: 0.672, unit: 'm', dec: 3, aria: 'length of the tube' });
+  const L = ctl(d.controls, { label: '\\kLlen', cls: 'position', min: 0.2, max: 2, step: 0.002, value: 0.672, unit: 'm', dec: 3, aria: 'length of the tube' });
   const ends = choice(d.controls, { label: '\\text{the tube is}', options: [{ value: 'closed', label: 'closed at one end' }, { value: 'open', label: 'open at both ends' }], value: 'closed', aria: 'the ends of the tube' });
   const harm = select(d.controls, { label: '\\text{harmonic}', options: [{ value: '0', label: 'fundamental' }, { value: '1', label: 'first overtone' }, { value: '2', label: 'second overtone' }, { value: '3', label: 'third overtone' }], value: '0', aria: 'which harmonic to read' });
   const NAMES = ['Fundamental', 'First overtone', 'Second overtone', 'Third overtone'];
@@ -166,7 +169,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     for (let i = 0; i < 4; i++) {
       const n = nOf(i), y0 = 190 + i * 160, e = harm.a(String(i));
       const col = alpha(C('position'), 0.3 + 0.7 * e);
-      const ink = alpha(PAL.ink, 0.35 + 0.65 * e);
+      const ink = alpha(F.ref('ladder-tube'), 0.35 + 0.65 * e);
       /* the tube, drawn with its closed end walled and its open ends left bare */
       line(ctx, xL, y0 - 74, xR, y0 - 74, ink, 3 + 2 * e); line(ctx, xL, y0 + 74, xR, y0 + 74, ink, 3 + 2 * e);
       if (ends.a('closed') > 0) { ctx.save(); ctx.globalAlpha = ends.a('closed'); fixed(ctx, xR, y0 - 74, 22, 148); ctx.restore(); }
@@ -204,12 +207,12 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       text(ctx, 'f_' + n + ' = ' + fmt(fOf(n), 0) + ' Hz', xR + 44, y0 + 12, alpha(C('frequency'), 0.45 + 0.55 * e), { size: 21, weight: 600 });
       text(ctx, 'λ = ' + fmt(lamOf(n), 3) + ' m', xR + 44, y0 + 44, alpha(C('position'), 0.45 + 0.55 * e), { size: 19 });
     }
-    hbracket(ctx, xL, xR, 796, PAL.ink, 'L = ' + fmt(L.v, 3) + ' m');
+    hbracket(ctx, xL, xR, 796, C('position'), 'L = ' + fmt(L.v, 3) + ' m');
     const n = nOf(pick);
     headline(ctx, 'A ' + fmt(L.v, 3) + ' m tube ' + (closed ? 'closed at one end' : 'open at both ends') + ' sounds its ' + NAMES[pick].toLowerCase() + ' at ' + fmt(fOf(n), 0) + ' Hz, which is harmonic number ' + n);
     readout(d.readout, closed
-      ? `\\kfn = n\\frac{\\kvw}{4L} = ${n}\\frac{344\\ \\text{m/s}}{4(${fmt(L.v, 3)}\\ \\text{m})} = ${fmt(fOf(n), 0)}\\ \\text{Hz}`
-      : `\\kfn = n\\frac{\\kvw}{2L} = ${n}\\frac{344\\ \\text{m/s}}{2(${fmt(L.v, 3)}\\ \\text{m})} = ${fmt(fOf(n), 0)}\\ \\text{Hz}`,
+      ? `\\kfn = n\\frac{\\kvw}{4\\kLlen} = ${n}\\frac{344\\ \\text{m/s}}{4(${fmt(L.v, 3)}\\ \\text{m})} = ${fmt(fOf(n), 0)}\\ \\text{Hz}`
+      : `\\kfn = n\\frac{\\kvw}{2\\kLlen} = ${n}\\frac{344\\ \\text{m/s}}{2(${fmt(L.v, 3)}\\ \\text{m})} = ${fmt(fOf(n), 0)}\\ \\text{Hz}`,
       closed ? 'A tube closed at one end has a node at the closed end and an antinode at the open one, so only the odd harmonics fit: its fundamental here is ' + fmt(fOf(1), 0) + ' Hz and its first overtone is the third harmonic, ' + fmt(fOf(3), 0) + ' Hz.'
         : 'A tube open at both ends has an antinode at each end, so every harmonic fits: its fundamental here is ' + fmt(fOf(1), 0) + ' Hz, twice what the same tube would sound if it were closed at one end, and the overtones run 2, 3, 4 times it.');
   }
@@ -243,7 +246,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       if (big) text(ctx, fmt(m / 10, 1) + ' m', cx - w / 2 - 78, y, PAL.muted, { size: 17, align: 'right' });
     }
     /* the tube: open at the top, closed at the bottom */
-    line(ctx, cx - w / 2, top, cx - w / 2, bot, PAL.ink, 5); line(ctx, cx + w / 2, top, cx + w / 2, bot, PAL.ink, 5);
+    const et = F.ref('example-tube');
+    line(ctx, cx - w / 2, top, cx - w / 2, bot, et, 5); line(ctx, cx + w / 2, top, cx + w / 2, bot, et, 5);
     fixed(ctx, cx - w / 2 - 4, bot, w + 8, 22);
     /* the standing wave of the chosen harmonic, drawn sideways inside the tube */
     const sOf = (u) => Math.cos((n * Math.PI * u) / 2);
@@ -252,17 +256,17 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     ctx.stroke(); ctx.restore();
     text(ctx, 'open end', cx + w / 2 + 14, top + 8, C('position'), { size: 19, weight: 600 });
     text(ctx, 'closed end', cx + w / 2 + 14, bot + 16, C('position'), { size: 19, weight: 600 });
-    text(ctx, 'L = ' + fmt(Lv, 3) + ' m', cx, bot + 56, PAL.ink, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'L = ' + fmt(Lv, 3) + ' m', cx, bot + 56, C('position'), { size: 21, weight: 600, align: 'center' });
     /* the graph: the same reckoning across the whole range of notes, beside the vertical scene */
     const box = { l: 640, r: 1310, t: 140, b: 520 };
-    const { X, Y } = axes(ctx, box, [60, 600], [0, LMAX], { xl: 'fundamental frequency (Hz)', xc: C('frequency'), yl: 'length of the tube (m)', nx: 6, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 1) });
-    curve(ctx, (q) => v / (4 * q), 60, 600, X, Y, PAL.ink, 4, 200);
+    const { X, Y } = axes(ctx, box, [60, 600], [0, LMAX], { xl: 'fundamental frequency (Hz)', xc: C('frequency'), yl: 'length of the tube (m)', yc: C('position'), nx: 6, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 1) });
+    curve(ctx, (q) => v / (4 * q), 60, 600, X, Y, C('position'), 4, 200);
     line(ctx, X(f1.v), box.b, X(f1.v), Y(Lv), C('frequency'), 2, [4, 8]);
-    line(ctx, box.l, Y(Lv), X(f1.v), Y(Lv), PAL.ink, 2, [4, 8]);
-    dot(ctx, X(f1.v), Y(Lv), PAL.ink, true, 9);
-    text(ctx, 'L = v_w/4f_1', X(330) + 10, Y(v / (4 * 330)) - 30, PAL.ink, { size: 20, weight: 600 });
+    line(ctx, box.l, Y(Lv), X(f1.v), Y(Lv), C('position'), 2, [4, 8]);
+    dot(ctx, X(f1.v), Y(Lv), et, true, 9);
+    text(ctx, 'L = v_w/4f_1', X(330) + 10, Y(v / (4 * 330)) - 30, C('position'), { size: 20, weight: 600 });
     headline(ctx, 'A tube closed at one end that sounds ' + fmt(f1.v, 0) + ' Hz at ' + fmt(Tc.v, 1) + ' °C must be ' + fmt(Lv, 3) + ' m long');
-    readout(d.readout, `L = \\frac{\\kvw}{4\\kfone} = \\frac{${fmt(v, 0)}\\ \\text{m/s}}{4(${fmt(f1.v, 0)}\\ \\text{Hz})} = ${fmt(Lv, 3)}\\ \\text{m}`,
+    readout(d.readout, `\\kLlen = \\frac{\\kvw}{4\\kfone} = \\frac{${fmt(v, 0)}\\ \\text{m/s}}{4(${fmt(f1.v, 0)}\\ \\text{Hz})} = ${fmt(Lv, 3)}\\ \\text{m}`,
       'The speed of sound comes first: v_w = (331 m/s)√(T/273 K) = ' + fmt(v, 0) + ' m/s at ' + fmt(Tc.v, 1) + ' °C. ' + (n === 1 ? 'Its fundamental is ' + fmt(f1.v, 0) + ' Hz.' : 'Harmonic number ' + n + ' is ' + n + ' times the fundamental, ' + (n * f1.v >= 1000 ? fmt((n * f1.v) / 1000, 2) + ' kHz' : fmt(n * f1.v, 0) + ' Hz') + '.') + ' A tube closed at one end sounds the odd harmonics only.');
   }
   register(d.fig, { update: () => {}, draw });

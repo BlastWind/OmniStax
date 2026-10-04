@@ -69,8 +69,8 @@ function speaker(ctx, x, y, color, a, s) {
     const pc = C('pressure'), ic = C('intensity');
     const dp = ps.v, I = dp * dp / (2 * RHO * VW), k = TAU / LAM;
     /* the loudspeaker that makes the wave */
-    speaker(ctx, 150, 410, PAL.ink, 0, 1.6);
-    text(ctx, 'the source', 150, 480, PAL.muted, { size: 19, align: 'center' });
+    speaker(ctx, 150, 410, F.ref('loudspeaker'), 0, 1.6);
+    text(ctx, 'the source', 150, 480, F.ref('loudspeaker'), { size: 19, align: 'center' });
     /* the air, each dot moved along the wave by a displacement drawn far larger than life;
        the pressure is highest where the dots have gathered */
     const xi = 15 * dp;                              /* 30 units at the slider's end, under λ/2π so no dot crosses another */
@@ -205,17 +205,17 @@ function speaker(ctx, x, y, color, a, s) {
     const b = bs.v, N = +ns.value, I1 = iOf(b), IN = N * I1, bN = betaOf(IN), rise = 10 * Math.log10(N);
     /* the listener and the ring of sources */
     if (N <= 10) {
-      for (let i = 0; i < N; i++) { const a = -Math.PI / 2 + (i / N) * TAU; speaker(ctx, CX + R * Math.cos(a), CY + R * Math.sin(a), PAL.ink, a + Math.PI, 1); }
+      for (let i = 0; i < N; i++) { const a = -Math.PI / 2 + (i / N) * TAU; speaker(ctx, CX + R * Math.cos(a), CY + R * Math.sin(a), F.ref('sources'), a + Math.PI, 1); }
     } else {
       const rings = N === 100 ? 1 : 4;
-      ctx.save(); ctx.fillStyle = PAL.ink;
+      ctx.save(); ctx.fillStyle = F.ref('sources');
       for (let i = 0; i < N; i++) { const ring = i % rings, r = R - 12 * (rings - 1) / 2 + 12 * ring, a = (i / N) * TAU; ctx.beginPath(); ctx.arc(CX + r * Math.cos(a), CY + r * Math.sin(a), N === 100 ? 5 : 2.4, 0, TAU); ctx.fill(); }
       ctx.restore();
     }
-    silhouette(ctx, { x: CX, y: CY + 40, s: 0.76, pose: 'stand', color: PAL.ink, front: true });
-    text(ctx, 'the listener', CX, CY + 66, PAL.muted, { size: 17, align: 'center' });
-    if (N === 1) text(ctx, 'the source', CX + 44, CY - R, PAL.muted, { size: 17 });
-    else text(ctx, 'the ' + fmt(N, 0) + ' sources', CX - R - 34, CY, PAL.muted, { size: 17, align: 'right' });
+    silhouette(ctx, { x: CX, y: CY + 40, s: 0.76, pose: 'stand', color: F.ref('listener'), front: true });
+    text(ctx, 'the listener', CX, CY + 66, F.ref('listener'), { size: 17, align: 'center' });
+    if (N === 1) text(ctx, 'the source', CX + 44, CY - R, F.ref('sources'), { size: 17 });
+    else text(ctx, 'the ' + fmt(N, 0) + ' sources', CX - R - 34, CY, F.ref('sources'), { size: 17, align: 'right' });
     /* the panel of numbers */
     text(ctx, 'each source', PX, 150, PAL.muted, { size: 19 });
     text(ctx, 'I_one = ' + sci(I1, 2) + ' W/m², which is ' + fmt(b, 0) + ' dB', PX, 186, ic, { size: 21, weight: 600 });

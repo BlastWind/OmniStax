@@ -64,17 +64,17 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     const a = Math.pow(B.Z - A.Z, 2) / Math.pow(A.Z + B.Z, 2), tr = 1 - a;
     /* the two media, ink fields told apart by a boundary and their labels */
     ctx.save();
-    ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(120, TOPY, BX - 120, BOTY - TOPY);
-    ctx.fillStyle = alpha(PAL.ink, 0.14); ctx.fillRect(BX, TOPY, 1280 - BX, BOTY - TOPY);
+    ctx.fillStyle = alpha(F.ref('medium-1'), 0.08); ctx.fillRect(120, TOPY, BX - 120, BOTY - TOPY);
+    ctx.fillStyle = alpha(F.ref('medium-2'), 0.14); ctx.fillRect(BX, TOPY, 1280 - BX, BOTY - TOPY);
     ctx.restore();
     line(ctx, BX, TOPY - 16, BX, BOTY + 16, PAL.ink, 4);
     text(ctx, 'the boundary', BX, TOPY - 34, PAL.ink, { size: 20, weight: 600, align: 'center' });
-    [[A, 120, BX, 'medium 1'], [B, BX, 1280, 'medium 2']].forEach(([m, x1, x2, which]) => {
+    [[A, 120, BX, 'medium 1', 'medium-1'], [B, BX, 1280, 'medium 2', 'medium-2']].forEach(([m, x1, x2, which, id]) => {
       const cx = (x1 + x2) / 2;
-      text(ctx, which + ': ' + m.name, cx, BOTY + 34, PAL.ink, { size: 22, weight: 600, align: 'center' });
+      text(ctx, which + ': ' + m.name, cx, BOTY + 34, F.ref(id), { size: 22, weight: 600, align: 'center' });
       text(ctx, 'ρ = ' + fmt(m.rho, m.rho < 10 ? 1 : 0) + ' kg/m³', cx, BOTY + 64, dc, { size: 19, align: 'center' });
       text(ctx, 'v = ' + fmt(m.v, 0) + ' m/s', cx, BOTY + 90, vc, { size: 19, align: 'center' });
-      text(ctx, 'Z = ' + zText(m.Z) + ' kg/(m²·s)', cx, TOPY + 24, PAL.ink, { size: 19, weight: 600, align: 'center' });
+      text(ctx, 'Z = ' + zText(m.Z) + ' kg/(m²·s)', cx, TOPY + 24, C('acoustic-impedance'), { size: 19, weight: 600, align: 'center' });
     });
     /* the incident beam and the two shares, each arrow as long as its share of the intensity */
     const LEN = 300;
@@ -95,7 +95,7 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     text(ctx, 'transmitted', BAR.r, BAR.b + 26, ic, { size: 18, weight: 600, align: 'right' });
     headline(ctx, a < 0.005 ? 'Between ' + A.name + ' and ' + B.name + ' the impedances are so nearly equal that almost none of the intensity is reflected.'
       : 'Between ' + A.name + ' and ' + B.name + ' ' + fmt(100 * a, 1) + '% of the intensity is reflected, and the rest is transmitted.');
-    readout(d.readout, `a = \\frac{(Z_2 - Z_1)^2}{(Z_1 + Z_2)^2} = \\frac{(${zTex(B.Z)} - ${zTex(A.Z)})^2}{(${zTex(A.Z)} + ${zTex(B.Z)})^2} = ${a >= 0.001 ? fmt(a, 3) : sciTex(a, 2)}`,
+    readout(d.readout, `a = \\frac{(\\kZtwo - \\kZone)^2}{(\\kZone + \\kZtwo)^2} = \\frac{(${zTex(B.Z)} - ${zTex(A.Z)})^2}{(${zTex(A.Z)} + ${zTex(B.Z)})^2} = ${a >= 0.001 ? fmt(a, 3) : sciTex(a, 2)}`,
       'Each impedance is the medium\u2019s density times the speed of sound through it, Z = ρv: ' + fmt(A.rho, A.rho < 10 ? 1 : 0) + ' kg/m³ times ' + fmt(A.v, 0) + ' m/s for the ' + A.name + ', and ' + fmt(B.rho, B.rho < 10 ? 1 : 0) + ' kg/m³ times ' + fmt(B.v, 0) + ' m/s for the ' + B.name + '. The greater the difference between the two, the greater the reflection, which is why a transducer is coupled to the skin through a gel rather than through air.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -135,8 +135,8 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
       text(ctx, String(i + 1), xOf(cm), DEEP + 22, PAL.ink, { size: 19, weight: 600, align: 'center' });
     });
     /* the transducer at the surface */
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(XL - 46, SKIN - 40, 44, 80); ctx.restore();
-    text(ctx, 'the transducer', XL - 24, SKIN - 58, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    ctx.save(); ctx.fillStyle = F.ref('echo-transducer'); ctx.fillRect(XL - 46, SKIN - 40, 44, 80); ctx.restore();
+    text(ctx, 'the transducer', XL - 24, SKIN - 58, F.ref('echo-transducer'), { size: 20, weight: 600, align: 'center' });
     /* the outgoing pulse and the echoes on their way back, each a mark on the beam line */
     const BY = (SKIN + DEEP) / 2, cmOf = (us) => (VT * (us / 1e6)) * 100;
     line(ctx, XL, BY, XR, BY, alpha(PAL.ink, 0.35), 2, [10, 10]);
@@ -186,8 +186,8 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(XL, SKIN, XR - XL, DEEP - SKIN); ctx.restore();
     ctx.save(); ctx.fillStyle = alpha(pc, 0.22); ctx.fillRect(XL, SKIN, xOf(Math.min(depth, 80)) - XL, DEEP - SKIN); ctx.restore();
     line(ctx, XL, SKIN, XR, SKIN, PAL.ink, 3);
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(XL - 44, SKIN - 34, 42, 68); ctx.restore();
-    text(ctx, 'the probe', XL - 23, SKIN - 52, PAL.ink, { size: 19, weight: 600, align: 'center' });
+    ctx.save(); ctx.fillStyle = F.ref('probe'); ctx.fillRect(XL - 44, SKIN - 34, 42, 68); ctx.restore();
+    text(ctx, 'the probe', XL - 23, SKIN - 52, F.ref('probe'), { size: 19, weight: 600, align: 'center' });
     for (let cm = 0; cm <= 80; cm += 10) { line(ctx, xOf(cm), DEEP, xOf(cm), DEEP + 9, PAL.muted, 2); text(ctx, fmt(cm, 0), xOf(cm), DEEP + 30, PAL.muted, { size: 17, align: 'center' }); }
     text(ctx, 'depth into the tissue (cm)', XR, DEEP + 58, pc, { size: 20, weight: 600, align: 'right' });
     hbracket(ctx, XL, xOf(Math.min(depth, 80)), DEEP + 96, pc, 'the probe reaches about ' + fmt(depth, 1) + ' cm');
@@ -233,18 +233,19 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     const fB = f2 - fsrc;
     /* the artery, its blood moving toward the probe, and the probe on the skin */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(ART.l, ART.y - ART.h / 2, ART.r - ART.l, ART.h); ctx.restore();
-    line(ctx, ART.l, ART.y - ART.h / 2, ART.r, ART.y - ART.h / 2, PAL.ink, 3);
-    line(ctx, ART.l, ART.y + ART.h / 2, ART.r, ART.y + ART.h / 2, PAL.ink, 3);
-    text(ctx, 'the artery', ART.r, ART.y + ART.h / 2 + 26, PAL.muted, { size: 19, align: 'right' });
-    for (let i = 0; i < 7; i++) dot(ctx, ART.l + 130 + i * 150, ART.y, PAL.ink, true, 7);
+    const arc = F.ref('artery'), bl = F.ref('blood'), tdc = F.ref('transducer');
+    line(ctx, ART.l, ART.y - ART.h / 2, ART.r, ART.y - ART.h / 2, arc, 3);
+    line(ctx, ART.l, ART.y + ART.h / 2, ART.r, ART.y + ART.h / 2, arc, 3);
+    text(ctx, 'the artery', ART.r, ART.y + ART.h / 2 + 26, arc, { size: 19, align: 'right' });
+    for (let i = 0; i < 7; i++) dot(ctx, ART.l + 130 + i * 150, ART.y, bl, true, 7);
     const VY = ART.y - ART.h / 2 - 34;
     if (v > 0) {
       arrow(ctx, 1080, VY, 1080 - 2.6 * vb.v - 40, VY, vc, 5);
       text(ctx, 'v_b = ' + fmt(vb.v, 1) + ' cm/s', 1096, VY, vc, { size: 21, weight: 600 });
-    } else text(ctx, 'the blood is at rest', 1096, VY, PAL.muted, { size: 20 });
-    text(ctx, 'the blood, moving toward the transducer', ART.l + 10, ART.y + ART.h / 2 + 26, PAL.muted, { size: 19 });
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(120, ART.y - 34, 48, 68); ctx.restore();
-    text(ctx, 'the transducer', 144, ART.y - 54, PAL.ink, { size: 20, weight: 600, align: 'center' });
+    } else text(ctx, 'the blood is at rest', 1096, VY, bl, { size: 20 });
+    text(ctx, 'the blood, moving toward the transducer', ART.l + 10, ART.y + ART.h / 2 + 26, bl, { size: 19 });
+    ctx.save(); ctx.fillStyle = tdc; ctx.fillRect(120, ART.y - 34, 48, 68); ctx.restore();
+    text(ctx, 'the transducer', 144, ART.y - 54, tdc, { size: 20, weight: 600, align: 'center' });
     /* the chain of three frequencies, each written where it belongs */
     const CH = 110;
     text(ctx, 'broadcast  f_s = ' + hz(fsrc) + ' Hz', 200, CH, fc, { size: 21, weight: 600 });

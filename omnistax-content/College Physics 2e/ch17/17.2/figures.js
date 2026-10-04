@@ -45,12 +45,13 @@ function metreBar(ctx, x, y, px, label = '1 m') {
   const names = [];
   hover(d.stage, () => names);
   function fork(ctx) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 7; ctx.lineCap = 'round';
+    const fk = F.ref('tuning-fork');
+    ctx.save(); ctx.strokeStyle = fk; ctx.lineWidth = 7; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(CX - 13, CY - 70); ctx.lineTo(CX - 13, CY + 36); ctx.arc(CX, CY + 36, 13, Math.PI, 0, true); ctx.lineTo(CX + 13, CY - 70); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(CX, CY + 49); ctx.lineTo(CX, CY + 118); ctx.stroke();
     ctx.restore();
     /* the prongs' motion, drawn as faint ghosts either side */
-    [-1, 1].forEach((s) => { line(ctx, CX + s * 20, CY - 70, CX + s * 20, CY - 10, alpha(PAL.ink, 0.28), 4); });
+    [-1, 1].forEach((s) => { line(ctx, CX + s * 20, CY - 70, CX + s * 20, CY - 10, alpha(fk, 0.28), 4); });
   }
   function draw() {
     const { ctx, H } = begin(d.c);
@@ -122,7 +123,8 @@ function metreBar(ctx, x, y, px, label = '1 m') {
   /* a bat in flight, seen from the side, mouth to the right: two membranes with scalloped
      trailing edges and finger struts, a body, a head with ears, under 12 path commands each */
   function bat(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    const bc = F.ref('bat');
+    ctx.save(); ctx.strokeStyle = bc; ctx.fillStyle = PAL.soft; ctx.lineWidth = 3; ctx.lineJoin = 'round';
     const wing = (sy, span, rise) => {
       ctx.beginPath(); ctx.moveTo(x - 6, y + sy * 2);
       ctx.quadraticCurveTo(x - span * 0.45, y - sy * rise * 1.15, x - span, y - sy * rise);
@@ -130,7 +132,7 @@ function metreBar(ctx, x, y, px, label = '1 m') {
       ctx.quadraticCurveTo(x - span * 0.5, y - sy * rise * 0.1, x - span * 0.38, y - sy * rise * 0.2);
       ctx.quadraticCurveTo(x - span * 0.26, y + sy * 8, x - 8, y + sy * 10);
       ctx.closePath(); ctx.fill(); ctx.stroke();
-      ctx.save(); ctx.lineWidth = 1.6; ctx.strokeStyle = alpha(PAL.ink, 0.6);
+      ctx.save(); ctx.lineWidth = 1.6; ctx.strokeStyle = alpha(bc, 0.6);
       [0.62, 0.38].forEach((k) => { ctx.beginPath(); ctx.moveTo(x - 8, y + sy * 4); ctx.lineTo(x - span * k, y - sy * rise * (k > 0.5 ? 0.5 : 0.2)); ctx.stroke(); });
       ctx.beginPath(); ctx.moveTo(x - 8, y + sy * 4); ctx.lineTo(x - span, y - sy * rise); ctx.stroke();
       ctx.restore();
@@ -141,18 +143,19 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     ctx.beginPath(); ctx.arc(x + 17, y, 11, 0, TAU); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(x + 10, y - 9); ctx.lineTo(x + 7, y - 26); ctx.lineTo(x + 18, y - 10); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(x + 21, y - 9); ctx.lineTo(x + 27, y - 25); ctx.lineTo(x + 28, y - 6); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(x + 21, y - 2, 2.4, 0, TAU); ctx.fill();
+    ctx.fillStyle = bc; ctx.beginPath(); ctx.arc(x + 21, y - 2, 2.4, 0, TAU); ctx.fill();
     ctx.fillStyle = PAL.soft; wing(-1, 84, 54);               /* the near wing, lowered */
     ctx.restore();
   }
   /* a moth seen from above, about 60 wide: two forewings swept back, two hindwings, a body and antennae */
   function insect(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+    const ic = F.ref('insect');
+    ctx.save(); ctx.strokeStyle = ic; ctx.fillStyle = PAL.soft; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
     [-1, 1].forEach((sy) => {
       ctx.beginPath(); ctx.moveTo(x - 4, y + sy * 3); ctx.quadraticCurveTo(x - 30, y + sy * 26, x - 34, y + sy * 12); ctx.quadraticCurveTo(x - 24, y + sy * 4, x - 6, y + sy * 5); ctx.closePath(); ctx.fill(); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(x + 6, y + sy * 3); ctx.quadraticCurveTo(x + 22, y + sy * 30, x + 2, y + sy * 26); ctx.quadraticCurveTo(x - 10, y + sy * 18, x - 6, y + sy * 6); ctx.closePath(); ctx.fill(); ctx.stroke();
     });
-    ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.ellipse(x, y, 20, 4.5, 0, 0, TAU); ctx.fill();
+    ctx.fillStyle = ic; ctx.strokeStyle = ic; ctx.beginPath(); ctx.ellipse(x, y, 20, 4.5, 0, 0, TAU); ctx.fill();
     ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(x + 18, y - 2); ctx.quadraticCurveTo(x + 30, y - 12, x + 40, y - 14); ctx.moveTo(x + 18, y + 2); ctx.quadraticCurveTo(x + 30, y + 12, x + 40, y + 14); ctx.stroke();
     ctx.restore();
   }
@@ -181,8 +184,8 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     ctx.restore();
     bat(ctx, 150, SY); insect(ctx, xi, SY);
     names.push({ x: 150, y: SY, r: 60, name: 'the bat' }, { x: xi, y: SY, r: 34, name: 'the insect, ' + fmt(dist, 2) + ' m away' });
-    lab.add('the bat', 150, SY + 62, 0, 1, PAL.ink, 19, 26);
-    lab.add('the insect', xi, SY + 30, 0, 1, PAL.ink, 19, 26);
+    lab.add('the bat', 150, SY + 62, 0, 1, F.ref('bat'), 19, 26);
+    lab.add('the insect', xi, SY + 30, 0, 1, F.ref('insect'), 19, 26);
     /* the distance and the clock */
     hbracket(ctx, X0, xi, SY - 100, xc);
     text(ctx, 'd = ' + fmt(dist, 2) + ' m', (X0 + xi) / 2, SY - 124, xc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
@@ -227,7 +230,9 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.rect(150, 120, 150, 440); ctx.fill(); ctx.stroke();
     ctx.fillStyle = PAL.panel;
+    ctx.strokeStyle = F.ref('tweeter');
     ctx.beginPath(); ctx.arc(X0 - 40, YT, 22, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(X0 - 40, YT, 8, 0, TAU); ctx.stroke();
+    ctx.strokeStyle = F.ref('woofer');
     ctx.beginPath(); ctx.arc(X0 - 40, YW, 60, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(X0 - 40, YW, 40, 0, TAU); ctx.stroke(); ctx.beginPath(); ctx.arc(X0 - 40, YW, 14, 0, TAU); ctx.stroke();
     ctx.restore();
   }
@@ -244,7 +249,7 @@ function metreBar(ctx, x, y, px, label = '1 m') {
       hbracket(ctx, xa, xb, yb, C('position'));
       text(ctx, 'λ' + sub + ' = ' + lamTxt(lam), (xa + xb) / 2, yb + (top ? -22 : 24), C('position'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     }
-    text(ctx, name, X0 - 75, top ? y + 40 : y + 78, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, name, X0 - 75, top ? y + 40 : y + 78, F.ref(name), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'f' + sub + ' = ' + f + ' Hz', X0 - 75, top ? y + 62 : y + 100, C('frequency'), { size: 17, weight: 600, align: 'center', bg: PAL.panel });
   }
   function draw() {

@@ -59,7 +59,7 @@
   {
    "id": "sim-acoustic-boundary",
    "kind": "sim",
-   "draws": ["intensity", "density", "velocity"]
+   "draws": ["intensity", "density", "velocity", "acoustic-impedance"]
   },
   {
    "id": "sim-echo-ranging",
@@ -396,5 +396,42 @@
   { "exercise": "p11", "concept": "echo-ranging", "weight": 3, "weights_by": "ai" },
   { "exercise": "p13", "concept": "doppler-shifted-ultrasound" },
   { "exercise": "p13", "concept": "beat-frequency", "weight": 3, "weights_by": "ai" }
+ ],
+ "referents": [
+  {
+   "id": "medium-1",
+   "label": "the first medium, the one the ultrasound arrives through",
+   "figure": "sim-acoustic-boundary"
+  },
+  {
+   "id": "medium-2",
+   "label": "the second medium, beyond the boundary",
+   "figure": "sim-acoustic-boundary"
+  },
+  {
+   "id": "echo-transducer",
+   "label": "the transducer held against the abdomen",
+   "figure": "sim-echo-ranging"
+  },
+  {
+   "id": "probe",
+   "label": "the probe",
+   "figure": "sim-resolution-depth"
+  },
+  {
+   "id": "transducer",
+   "label": "the transducer, the speaker-microphone",
+   "figure": "sim-doppler-ultrasound"
+  },
+  {
+   "id": "artery",
+   "label": "the artery",
+   "figure": "sim-doppler-ultrasound"
+  },
+  {
+   "id": "blood",
+   "label": "the blood in the artery",
+   "figure": "sim-doppler-ultrasound"
+  }
  ]
 }
