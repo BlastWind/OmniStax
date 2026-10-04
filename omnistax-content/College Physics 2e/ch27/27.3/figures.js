@@ -1,15 +1,16 @@
-/* Figures for section 27.3 Young's Double Slit Experiment. The page binds
-   position alone, for the wavelength, the slit separation, the path difference,
-   the distance to the screen and the positions along it, as ch27/COLOR.md gives
-   27.3. Every angle, the order m and the amplitudes of Figure 27.11 are untyped
-   and in ink. Light is drawn in the colour of its wavelength by spectral(), the
-   page's only literal colours; the two waves of Figure 27.11 carry no light and
-   are told apart by the categorical palette, and where two waves of one light
-   must be told apart the second is dashed. Only the ripple tank moves; every
-   other figure is a state of its sliders and registers no cycle. */
+/* Figures for section 27.3 Young's Double Slit Experiment. Position carries
+   the wavelength, the slit separation, the path difference, the distance to the
+   screen and the positions along it, and angle every angle. The order m and the
+   amplitudes of Figure 27.11 are untyped and in ink. The slits, the screen, the
+   two waves and the resultant of Figure 27.11 and the two paths of Figure 27.13
+   are the section's referents. Light is drawn in the colour of its wavelength
+   by spectral(), and an unlit screen black, both facts through F.fact; where two
+   waves of one light must be told apart the second is dashed. Only the ripple
+   tank moves; every other figure is a state of its sliders and registers no
+   cycle. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, begin, cycle, line, dot, text, topline, label, angleArc, hbracket, vbracket, view, face } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, cycle, line, dot, text, topline, label, angleArc, hbracket, vbracket, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -29,7 +30,13 @@ function spectralRGB(lam) {
   const c = (x) => Math.round(255 * Math.pow(clamp(x * f, 0, 1), 0.8));
   return [c(r), c(g), c(b)];
 }
-const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return `rgba(${r}, ${g}, ${b}, ${a})`; };
+const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return F.fact(`rgba(${r}, ${g}, ${b}, ${a})`); };
+/* the components of a wavelength's colour as the Facts switch leaves it, read back through a canvas */
+const probe = document.createElement('canvas').getContext('2d');
+function factRGB(lam) {
+  probe.clearRect(0, 0, 1, 1); probe.fillStyle = F.fact(`rgb(${spectralRGB(lam).join(', ')})`); probe.fillRect(0, 0, 1, 1);
+  const p = probe.getImageData(0, 0, 1, 1).data; return [p[0], p[1], p[2]];
+}
 
 /* The relative intensity of a double slit toward sin θ = s. Each slit is given a
    width of 2d/15, so the bright fringes fall off outward as the book draws them
@@ -73,16 +80,18 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
       const y = x / UPM, s = y / Math.hypot(y, XS), I = doubleSlit(s, D * 1e-3, L * 1e-9);
       if (I > 0.02) quad(ctx, [[x, 40, ZB], [x + 2.4, 40, ZB], [x + 2.4, WH - 40, ZB], [x, WH - 40, ZB]], spectral(L, Math.min(1, I * 1.1)));
     }
+    const so = [[-HALF, 0, ZB], [HALF, 0, ZB], [HALF, WH, ZB], [-HALF, WH, ZB]].map(P);
+    ctx.save(); ctx.strokeStyle = F.ref('screen'); ctx.lineWidth = 3; ctx.beginPath(); so.forEach((q, i) => (i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]))); ctx.closePath(); ctx.stroke(); ctx.restore();
     face(ctx, [[-HALF, 0, ZF], [HALF, 0, ZF], [HALF, WH, ZF], [-HALF, WH, ZF]].map(P), V.shade([0, 0, 1]), 2);
     const gap = 40 + ((D - 0.005) / 0.035) * 110;
     [-gap / 2, gap / 2].forEach((x) => {
-      quad(ctx, [[x - 5, 70, ZF], [x + 5, 70, ZF], [x + 5, 230, ZF], [x - 5, 230, ZF]], PAL.ink);
+      quad(ctx, [[x - 5, 70, ZF], [x + 5, 70, ZF], [x + 5, 230, ZF], [x - 5, 230, ZF]], F.ref('slits'));
       const a = P([x - 180, 150, ZF + 520]), b = P([x, 150, ZF]);
       F.arrow(ctx, a[0], a[1], b[0], b[1], spectral(L), 5);
     });
     const sl = P([gap / 2 + 20, 250, ZF]), sc = P([-HALF, 0, ZB]);
-    label(ctx, 'double slit', sl[0], sl[1], { side: 'above', size: 20, color: PAL.ink });
-    label(ctx, 'screen', sc[0] + 40, sc[1], { side: 'below', size: 20, color: PAL.ink });
+    label(ctx, 'double slit', sl[0], sl[1], { side: 'above', size: 20, color: F.ref('slits') });
+    label(ctx, 'screen', sc[0] + 40, sc[1], { side: 'below', size: 20, color: F.ref('screen') });
     readout(d.readout, `\\kdy = \\frac{\\kx\\klam}{\\kd} = \\frac{(${fmt(XS, 2)}\\ \\text{m})(${fmt(L, 0)}\\ \\text{nm})}{${fmt(D, 4)}\\ \\text{mm}} = ${fmt(sp * 100, 2)}\\ \\text{cm}`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -100,7 +109,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
   const sh = ctl(d.controls, { label: '\\text{shift}', cls: '', min: 0, max: 1, step: 0.01, value: 0, unit: 'λ', dec: 2, aria: 'how far the second wave is shifted, in wavelengths', specials: [{ at: 0, label: 'in phase' }, { at: 0.5, label: 'out of phase' }, { at: 1 }] });
   const rA = ctl(d.controls, { label: 'A_2/A_1', cls: '', min: 0.5, max: 3, step: 0.05, value: 1, unit: '', dec: 2, aria: 'the amplitude of the second wave as a multiple of the first', specials: [{ at: 1, label: 'equal' }] });
   const X0 = 250, X1 = 1250, WL = (X1 - X0) / 3, U = 28;
-  const ROWS = [{ y: 126, name: 'wave 1' }, { y: 262, name: 'wave 2' }, { y: 440, name: 'resultant' }];
+  const ROWS = [{ y: 126, name: 'wave 1', ref: 'wave-1' }, { y: 262, name: 'wave 2', ref: 'wave-2' }, { y: 440, name: 'resultant', ref: 'resultant' }];
 
   function wave(ctx, y0, f, color, w) {
     ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath();
@@ -114,16 +123,16 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     topline(ctx, inPhase ? `In phase, the two waves add to a wave of amplitude ${fmt(A, 2)} A₁.`
       : outPhase && Math.abs(r - 1) < 0.005 ? 'Shifted by half a wavelength, crest meets trough and the two waves cancel.'
         : `Shifted by ${fmt(s, 2)} λ, the two waves add to a wave of amplitude ${fmt(A, 2)} A₁.`);
-    const c1 = cat(0), c2 = cat(1);
+    const c1 = F.ref('wave-1'), c2 = F.ref('wave-2'), c3 = F.ref('resultant');
     const f1 = (u) => U * Math.cos(TAU * u), f2 = (u) => r * U * Math.cos(TAU * (u - s));
     ROWS.forEach((row) => {
       line(ctx, X0, row.y, X1, row.y, alpha(PAL.ink, 0.3), 2, [4, 8]);
-      text(ctx, row.name, X0 - 30, row.y, PAL.ink, { size: 22, align: 'right' });
+      text(ctx, row.name, X0 - 30, row.y, F.ref(row.ref), { size: 22, align: 'right' });
     });
     for (let k = 0; k <= 3; k++) line(ctx, X0 + k * WL, 90, X0 + k * WL, 560, alpha(PAL.ink, 0.12), 2);
     wave(ctx, ROWS[0].y, f1, c1, 5);
     wave(ctx, ROWS[1].y, f2, c2, 5);
-    wave(ctx, ROWS[2].y, (u) => f1(u) + f2(u), PAL.ink, 5);
+    wave(ctx, ROWS[2].y, (u) => f1(u) + f2(u), c3, 5);
     vbracket(ctx, X1 + 30, ROWS[0].y - U, ROWS[0].y, PAL.ink, 'A₁', 1, { size: 20 });
     vbracket(ctx, X1 + 30, ROWS[1].y - r * U, ROWS[1].y, PAL.ink, 'A₂', 1, { size: 20 });
     if (A * U > 6) vbracket(ctx, X1 + 30, ROWS[2].y - A * U, ROWS[2].y, PAL.ink, 'A', 1, { size: 20 });
@@ -167,7 +176,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     const L = lam.v, D = dS.v, lpx = (UPU * L) / 1000, dpx = UPU * D, k = TAU / lpx, wt = TAU * cy.now();
     const th1 = Math.asin((L / 1000) / D) / RAD;
     topline(ctx, `Crests from two slits ${fmt(D, 2)} μm apart meet along lines, and the first bright line leaves at ${fmt(th1, 1)}°.`);
-    const [R, G, B] = spectralRGB(L), s1 = YC - dpx / 2, s2 = YC + dpx / 2;
+    const [R, G, B] = factRGB(L), s1 = YC - dpx / 2, s2 = YC + dpx / 2;
     for (let j = 0; j < GH; j++) {
       const y = YT + (j + 0.5) * CELL;
       for (let i = 0; i < GW; i++) {
@@ -198,17 +207,17 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
         if (ye > YT + 10 && ye < YB - 10) labels.push({ y: ye, s: max ? 'Max' : 'Min', c: n === 0 });
       });
     }
-    ctx.save(); ctx.fillStyle = PAL.ink; ctx.fillRect(XB - 7, YT, 14, s1 - 8 - YT); ctx.fillRect(XB - 7, s1 + 8, 14, s2 - s1 - 16); ctx.fillRect(XB - 7, s2 + 8, 14, YB - s2 - 8); ctx.restore();
-    ctx.save(); ctx.fillStyle = PAL.muted; ctx.fillRect(XS, YT, 12, YB - YT); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.ref('slits'); ctx.fillRect(XB - 7, YT, 14, s1 - 8 - YT); ctx.fillRect(XB - 7, s1 + 8, 14, s2 - s1 - 16); ctx.fillRect(XB - 7, s2 + 8, 14, YB - s2 - 8); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.ref('screen'); ctx.fillRect(XS, YT, 12, YB - YT); ctx.restore();
     labels.sort((a, b) => a.y - b.y);
     const kept = [];
     labels.filter((l) => l.c).concat(labels.filter((l) => !l.c).sort((a, b) => Math.abs(a.y - YC) - Math.abs(b.y - YC)))
       .forEach((l) => { if (kept.every((q) => Math.abs(q.y - l.y) >= 26)) kept.push(l); });
     kept.forEach((l) => text(ctx, l.s, XS + 24, l.y, PAL.ink, { size: 19 }));
-    text(ctx, 'screen', XS + 6, YB + 16, PAL.muted, { size: 17, align: 'center' });
-    label(ctx, 'S_{1}', XB - 14, s1, { side: 'left', size: 20, color: PAL.ink, gap: 12 });
-    label(ctx, 'S_{2}', XB - 14, s2, { side: 'left', size: 20, color: PAL.ink, gap: 12 });
-    readout(d.readout, `\\kd\\sin\\theta = m\\klam:\\quad (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th1, 1)}^\\circ = 1\\,(${fmt(L, 0)}\\ \\text{nm})`,
+    text(ctx, 'screen', XS + 6, YB + 16, F.ref('screen'), { size: 17, align: 'center' });
+    label(ctx, 'S_{1}', XB - 14, s1, { side: 'left', size: 20, color: F.ref('slits'), gap: 12 });
+    label(ctx, 'S_{2}', XB - 14, s2, { side: 'left', size: 20, color: F.ref('slits'), gap: 12 });
+    readout(d.readout, `\\kd\\sin\\ktheta = m\\klam:\\quad (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th1, 1)}^\\circ = 1\\,(${fmt(L, 0)}\\ \\text{nm})`,
       `Between the slits and the screen there are ${2 * nMax + 1} lines of maxima, one for each whole number of wavelengths up to d/λ = ${fmt(D * 1000 / L, 2)}.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.25), draw });
@@ -226,12 +235,12 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
 (function () {
   const d = sim('sim-path-difference', 700);
   let lam = { v: 600 }, dS = { v: 3 };
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 35, step: 0.1, value: 30, unit: '°', dec: 1, aria: 'the direction from the slits to the point on the screen',
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 35, step: 0.1, value: 30, unit: '°', dec: 1, aria: 'the direction from the slits to the point on the screen',
     specials: Array.from({ length: 26 }, (_, k) => ({ at: () => { const s = (k * lam.v / 1000) / (2 * dS.v); return s <= Math.sin(35 * RAD) ? Math.asin(s) / RAD : null; } })) });
   lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 400, max: 750, step: 1, value: 600, unit: 'nm', dec: 0, aria: 'the wavelength of the light', detents: LAM_DETENTS });
   dS = ctl(d.controls, { label: '\\kd', cls: 'position', min: 1.5, max: 5, step: 0.05, value: 3, unit: 'μm', dec: 2, aria: 'the distance between the slits' });
   const UPU = 50, XB = 200, YC = 520, AMP = 13;
-  const PX0 = 900, PX1 = 1340, PROWS = [{ y: 190, name: 'path 1' }, { y: 330, name: 'path 2' }, { y: 500, name: 'sum' }];
+  const PX0 = 900, PX1 = 1340, PROWS = [{ y: 190, name: 'path 1', ref: 'path-1' }, { y: 330, name: 'path 2', ref: 'path-2' }, { y: 500, name: 'sum' }];
 
   function rayWave(ctx, x0, y0, ux, uy, len, lpx, color, dash) {
     ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 4; if (dash) ctx.setLineDash([12, 8]); ctx.beginPath();
@@ -260,7 +269,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     const S1 = { x: XB, y: YC - dpx / 2 }, S2 = { x: XB, y: YC + dpx / 2 };
     const ux = Math.cos(t), uy = -Math.sin(t), L1 = lpx * Math.round(480 / lpx), dlp = dpx * Math.sin(t);
 
-    ctx.save(); ctx.fillStyle = PAL.ink;
+    ctx.save(); ctx.fillStyle = F.ref('slits');
     ctx.fillRect(XB - 8, 110, 16, S1.y - 7 - 110); ctx.fillRect(XB - 8, S1.y + 7, 16, S2.y - S1.y - 14); ctx.fillRect(XB - 8, S2.y + 7, 16, 680 - S2.y - 7); ctx.restore();
     line(ctx, XB, YC, XB + 560, YC, alpha(PAL.ink, 0.35), 2, [4, 8]);
     const e1 = { x: S1.x + ux * L1, y: S1.y + uy * L1 }, e2 = { x: S2.x + ux * (L1 + dlp), y: S2.y + uy * (L1 + dlp) };
@@ -272,12 +281,12 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     if (dlp > 2) line(ctx, S2.x, S2.y, Fp.x, Fp.y, PC, 7);
     vbracket(ctx, XB - 36, S1.y, S2.y, PC, 'd', -1, { size: 22 });
     if (t > 0.02) {
-      angleArc(ctx, S2, 90, 0, t, 'θ');
-      angleArc(ctx, S1, Math.min(46, dpx * 0.6), -Math.PI / 2, t - Math.PI / 2, 'θ');
+      angleArc(ctx, S2, 90, 0, t, 'θ', undefined, C('angle'));
+      angleArc(ctx, S1, Math.min(46, dpx * 0.6), -Math.PI / 2, t - Math.PI / 2, 'θ', undefined, C('angle'));
     }
     if (dlp > 8) label(ctx, 'Δl', (S2.x + Fp.x) / 2, (S2.y + Fp.y) / 2, { side: 'below', size: 22, color: PC, gap: 18 });
-    label(ctx, 'l_{1}', S1.x + ux * L1 * 0.55, S1.y + uy * L1 * 0.55, { side: 'above', size: 22, color: PAL.ink, gap: 28 });
-    label(ctx, 'l_{2}', S2.x + ux * L1 * 0.55, S2.y + uy * L1 * 0.55, { side: 'below', size: 22, color: PAL.ink, gap: 28 });
+    label(ctx, 'l_{1}', S1.x + ux * L1 * 0.55, S1.y + uy * L1 * 0.55, { side: 'above', size: 22, color: F.ref('path-1'), gap: 28 });
+    label(ctx, 'l_{2}', S2.x + ux * L1 * 0.55, S2.y + uy * L1 * 0.55, { side: 'below', size: 22, color: F.ref('path-2'), gap: 28 });
     label(ctx, 'toward the screen', e1.x, e1.y, { side: 'right', size: 18, color: PAL.muted, gap: 30 });
 
     const ph = TAU * n;
@@ -285,14 +294,14 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     text(ctx, 'arriving at the screen', (PX0 + PX1) / 2, 116, PAL.ink, { size: 20, align: 'center' });
     PROWS.forEach((r) => {
       line(ctx, PX0, r.y, PX1, r.y, alpha(PAL.ink, 0.3), 2, [4, 8]);
-      text(ctx, r.name, PX0 - 16, r.y, PAL.ink, { size: 20, align: 'right' });
+      text(ctx, r.name, PX0 - 16, r.y, r.ref ? F.ref(r.ref) : PAL.ink, { size: 20, align: 'right' });
     });
     trace(ctx, PROWS[0].y, f1, col, 4, false);
     trace(ctx, PROWS[1].y, f2, col, 4, true);
     trace(ctx, PROWS[2].y, (u) => f1(u) + f2(u), PAL.ink, 5, false);
     text(ctx, bright ? 'bright' : dark ? 'dark' : '', (PX0 + PX1) / 2, 610, PAL.ink, { size: 22, weight: 600, align: 'center' });
 
-    readout(d.readout, `\\kdl = \\kd\\sin\\theta = (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(dl, 3)}\\ \\mu\\text{m} = ${fmt(n, 2)}\\,\\klam`);
+    readout(d.readout, `\\kdl = \\kd\\sin\\ktheta = (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(dl, 3)}\\ \\mu\\text{m} = ${fmt(n, 2)}\\,\\klam`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -324,9 +333,9 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
       : `Bright line ${m} of ${fmt(L, 0)}-nm light through slits ${fmt(D, 4)} mm apart lies at ${fmt(thm / RAD, 2)}°, beyond the part of the screen drawn.`);
     const XSC = XSL + x * UPM, col = spectral(L);
 
-    ctx.save(); ctx.fillStyle = PAL.ink;
+    ctx.save(); ctx.fillStyle = F.ref('slits');
     ctx.fillRect(XSL - 12, Yof(YR), 12, YC - 6 - Yof(YR)); ctx.fillRect(XSL - 12, YC - 3, 12, 6); ctx.fillRect(XSL - 12, YC + 6, 12, Yof(-YR) - YC - 6); ctx.restore();
-    line(ctx, XSC, Yof(YR), XSC, Yof(-YR), PAL.ink, 3);
+    line(ctx, XSC, Yof(YR), XSC, Yof(-YR), F.ref('screen'), 3);
     line(ctx, XSL, YC, XSC + 20, YC, alpha(PAL.ink, 0.5), 2);
 
     ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.beginPath();
@@ -335,7 +344,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
       if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
     }
     ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.fillStyle = '#000'; ctx.fillRect(SX0, Yof(YR), SX1 - SX0, Yof(-YR) - Yof(YR)); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.shown.facts ? F.fact('#000') : PAL.soft; ctx.fillRect(SX0, Yof(YR), SX1 - SX0, Yof(-YR) - Yof(YR)); ctx.restore();
     for (let py = Yof(YR); py < Yof(-YR); py += 1.5) {
       const y = (YC - py) / UPM, I = doubleSlit(y / Math.hypot(y, x), dm, lm);
       if (I > 0.01) { ctx.save(); ctx.fillStyle = spectral(L, Math.min(1, 1.2 * Math.sqrt(I))); ctx.fillRect(SX0 + 10, py, SX1 - SX0 - 20, 1.8); ctx.restore(); }
@@ -346,14 +355,14 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
       const py = Yof(ym);
       line(ctx, XSL, YC, XSC, py, alpha(PAL.ink, 0.6), 2.5, [10, 10]);
       line(ctx, XSC, py, SX0, py, alpha(PAL.ink, 0.3), 2, [4, 8]);
-      angleArc(ctx, { x: XSL, y: YC }, Math.min(170, x * UPM * 0.6), 0, Math.atan2(ym * UPM, x * UPM), `θ_{${m}}`);
+      angleArc(ctx, { x: XSL, y: YC }, Math.min(170, x * UPM * 0.6), 0, Math.atan2(ym * UPM, x * UPM), `θ_{${m}}`, undefined, C('angle'));
       vbracket(ctx, XSC + 26, py, YC, PC, `y_{${m}}`, 1, { size: 22 });
       const pp = Yof(x * Math.tan(Math.asin(((m - 1) * lm) / dm)));
       vbracket(ctx, SX0 - 24, py, pp, PC, 'Δy', -1, { size: 20 });
     }
     hbracket(ctx, XSL, XSC, Yof(-YR) + 30, PC, `x = ${fmt(x, 2)} m`, { side: 'below', size: 20 });
     const mMax = (dm / lm);
-    readout(d.readout, `\\kd\\sin\\theta = m\\klam:\\quad (${fmt(D, 4)}\\ \\text{mm})\\sin ${fmt(thm / RAD, 2)}^\\circ = ${m}\\,(${fmt(L, 0)}\\ \\text{nm})`,
+    readout(d.readout, `\\kd\\sin\\ktheta = m\\klam:\\quad (${fmt(D, 4)}\\ \\text{mm})\\sin ${fmt(thm / RAD, 2)}^\\circ = ${m}\\,(${fmt(L, 0)}\\ \\text{nm})`,
       `The highest order is the whole number below d/λ = ${fmt(mMax, 1)}, which is ${Math.floor(mMax)}, and near the center the fringes are Δy = xλ/d = ${fmt(dy * 1000, 1)} mm apart.`);
   }
   register(d.fig, { update: () => {}, draw });

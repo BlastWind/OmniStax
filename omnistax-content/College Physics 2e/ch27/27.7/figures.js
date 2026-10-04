@@ -1,10 +1,12 @@
-/* Figures for section 27.7 Thin Film Interference. The page binds position
-   alone, for the wavelength, the wavelength in the film, the film's thickness
-   and the spacer under the slides, as ch27/COLOR.md gives 27.7. The indices
-   are untyped and in ink. Light is drawn in the colour of its wavelength by
-   spectral(), and a film in white light in the colour it reflects, the page's
-   only literal colours besides the black ground of the slides seen from
-   above. Every figure is a state of its controls and registers no cycle. */
+/* Figures for section 27.7 Thin Film Interference. Position carries the
+   wavelength, the wavelength in the film, the film's thickness and the spacer
+   under the slides. The indices are untyped and in ink. Ray 1, ray 2 and the
+   film of Figure 27.33 and the two slides and the spacer of Figure 27.34 are
+   the section's referents. Light is drawn in the colour of its wavelength by
+   spectral(), a film in white light in the colour it reflects, and the ground
+   of the slides seen from above black, all facts through F.fact; with facts
+   off a colour of light falls back to ink at its brightness. Every figure is a
+   state of its controls and registers no cycle. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, text, topline, label, hbracket, vbracket } = F;
@@ -26,7 +28,9 @@ function spectralRGB(lam) {
   const c = (x) => Math.round(255 * Math.pow(clamp(x * f, 0, 1), 0.8));
   return [c(r), c(g), c(b)];
 }
-const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return `rgba(${r}, ${g}, ${b}, ${a})`; };
+const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return F.fact(`rgba(${r}, ${g}, ${b}, ${a})`); };
+/* a colour of light given as sRGB components, through the Facts switch: with facts off, ink at its brightness */
+const lightFill = ([r, g, b], a = 1) => (F.shown.facts ? F.fact(`rgba(${r}, ${g}, ${b}, ${a})`) : alpha(PAL.ink, a * Math.max(r, g, b) / 255));
 
 /* the colour white light takes on when each wavelength is reflected in the share refl(λ) */
 const WHITE = (() => { const s = [0, 0, 0]; for (let l = 380; l <= 750; l += 5) spectralRGB(l).forEach((v, i) => { s[i] += v; }); return s; })();
@@ -71,14 +75,14 @@ function whiteRGB(refl) {
 
     const h = 0.3 * t, BOT = TOP + h;
     ctx.save();
-    ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(60, TOP, 600, h);
+    ctx.fillStyle = alpha(F.ref('film'), 0.1); ctx.fillRect(60, TOP, 600, h);
     ctx.fillStyle = alpha(PAL.ink, 0.14); ctx.fillRect(60, BOT, 600, 620 - BOT);
     ctx.restore();
-    line(ctx, 60, TOP, 660, TOP, PAL.ink, 2);
-    line(ctx, 60, BOT, 660, BOT, PAL.ink, 2);
+    line(ctx, 60, TOP, 660, TOP, F.ref('film'), 2);
+    line(ctx, 60, BOT, 660, BOT, F.ref('film'), 2);
     text(ctx, `air, n₁ = ${fmt(n1, 2)}`, 650, TOP - 24, PAL.ink, { size: 18, align: 'right' });
-    if (h > 34) text(ctx, `${F0.mat}, n₂ = ${fmt(n2, n2 === 1.333 ? 3 : 2)}`, 650, TOP + h / 2, PAL.ink, { size: 18, align: 'right' });
-    else text(ctx, `${F0.mat}, n₂ = ${fmt(n2, n2 === 1.333 ? 3 : 2)}`, 650, 600, PAL.muted, { size: 17, align: 'right' });
+    if (h > 34) text(ctx, `${F0.mat}, n₂ = ${fmt(n2, n2 === 1.333 ? 3 : 2)}`, 650, TOP + h / 2, F.ref('film'), { size: 18, align: 'right' });
+    else text(ctx, `${F0.mat}, n₂ = ${fmt(n2, n2 === 1.333 ? 3 : 2)}`, 650, 600, F.ref('film'), { size: 17, align: 'right' });
     text(ctx, `${F0.lo}, n₃ = ${fmt(n3, n3 === 1.333 ? 3 : 2)}`, 650, Math.min(BOT + 30, 600), PAL.ink, { size: 18, align: 'right' });
 
     const b = Math.asin((n1 * Math.sin(A)) / n2), up = 170, ta = Math.tan(A);
@@ -92,8 +96,8 @@ function whiteRGB(refl) {
     line(ctx, p3.x, p3.y, p3.x + up * ta, TOP - up, col, 4);
     ctx.restore();
     label(ctx, 'incident light', p1.x - up * ta, TOP - up, { side: 'left', size: 19, color: PAL.ink, gap: 14 });
-    label(ctx, 'ray 1', p1.x + up * ta, TOP - up, { side: 'left', size: 19, color: PAL.ink, gap: 16 });
-    label(ctx, 'ray 2', p3.x + up * ta, TOP - up, { side: 'right', size: 19, color: PAL.ink, gap: 16 });
+    label(ctx, 'ray 1', p1.x + up * ta, TOP - up, { side: 'left', size: 19, color: F.ref('ray-1'), gap: 16 });
+    label(ctx, 'ray 2', p3.x + up * ta, TOP - up, { side: 'right', size: 19, color: F.ref('ray-2'), gap: 16 });
     label(ctx, sh1 ? 'λ/2 shift' : 'no shift', p1.x, p1.y, { side: 'left', size: 17, color: PAL.muted, gap: 22 });
     label(ctx, sh2 ? 'λ/2 shift' : 'no shift', p2.x, Math.max(p2.y, TOP + 30), { side: 'below', size: 17, color: PAL.muted, gap: 22 });
     if (h > 18) vbracket(ctx, 700, TOP, BOT, PC, 't', 1, { size: 22 });
@@ -109,12 +113,11 @@ function whiteRGB(refl) {
     wave(ROWS[0], (x) => amp * Math.sin(k * x + ph1), col, 4);
     wave(ROWS[1], (x) => amp * Math.sin(k * x + ph2), col, 4, [12, 9]);
     wave(ROWS[2], (x) => amp * (Math.sin(k * x + ph1) + Math.sin(k * x + ph2)), col, 5);
-    text(ctx, 'ray 1', WAVE.l - 16, ROWS[0], PAL.ink, { size: 19, align: 'right' });
-    text(ctx, 'ray 2', WAVE.l - 16, ROWS[1], PAL.ink, { size: 19, align: 'right' });
+    text(ctx, 'ray 1', WAVE.l - 16, ROWS[0], F.ref('ray-1'), { size: 19, align: 'right' });
+    text(ctx, 'ray 2', WAVE.l - 16, ROWS[1], F.ref('ray-2'), { size: 19, align: 'right' });
     text(ctx, 'sum', WAVE.l - 16, ROWS[2], PAL.ink, { size: 19, align: 'right' });
 
-    const [r, g, bl] = whiteRGB((l) => Math.pow(Math.cos(Math.PI * shiftOf(l)), 2));
-    ctx.save(); ctx.fillStyle = `rgb(${r}, ${g}, ${bl})`; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2;
+    ctx.save(); ctx.fillStyle = lightFill(whiteRGB((l) => Math.pow(Math.cos(Math.PI * shiftOf(l)), 2))); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2;
     ctx.fillRect(WAVE.l, 520, WAVE.r - WAVE.l, 56); ctx.strokeRect(WAVE.l, 520, WAVE.r - WAVE.l, 56); ctx.restore();
     text(ctx, 'the film in white light', (WAVE.l + WAVE.r) / 2, 500, PAL.muted, { size: 17, align: 'center' });
 
@@ -153,25 +156,28 @@ function whiteRGB(refl) {
       ? `In white light the colors repeat from violet to red, then wash out as the air grows thicker.`
       : `Dark bands of ${fmt(L, 0)}-nm light lie ${fmt(dx, 2)} mm apart on slides 7.50 cm long held ${fmt(hs, 1)} μm apart at one end.`);
 
-    ctx.save(); ctx.fillStyle = '#000'; ctx.fillRect(X0, S.t, X1 - X0, S.b - S.t);
-    const [r, g, b] = spectralRGB(L);
+    ctx.save(); ctx.fillStyle = F.shown.facts ? F.fact('#000') : PAL.soft; ctx.fillRect(X0, S.t, X1 - X0, S.b - S.t);
+    const rgb = spectralRGB(L);
     for (let x = X0; x < X1; x += 2) {
       const t = tAt(((x + 1 - X0) / (X1 - X0)) * LEN);
-      if (white) { const [wr, wg, wb] = whiteRGB((l) => Math.pow(Math.sin((2 * Math.PI * t) / l), 2)); ctx.fillStyle = `rgb(${wr}, ${wg}, ${wb})`; }
-      else ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.pow(Math.sin((2 * Math.PI * t) / L), 2)})`;
+      if (white) ctx.fillStyle = lightFill(whiteRGB((l) => Math.pow(Math.sin((2 * Math.PI * t) / l), 2)));
+      else ctx.fillStyle = lightFill(rgb, Math.pow(Math.sin((2 * Math.PI * t) / L), 2));
       ctx.fillRect(x, S.t, 2.5, S.b - S.t);
     }
     ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.strokeRect(X0, S.t, X1 - X0, S.b - S.t); ctx.restore();
     text(ctx, 'the slides seen from above', (X0 + X1) / 2, S.t - 22, PAL.muted, { size: 17, align: 'center' });
 
     const gap = hs * KV, topY = (x) => BASE - (gap * (x - X0)) / (X1 - X0);
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    const TS = F.ref('top-slide'), BS = F.ref('bottom-slide'), SPC = F.ref('spacer');
+    ctx.save(); ctx.lineWidth = 3;
+    ctx.fillStyle = alpha(BS, 0.12); ctx.strokeStyle = BS;
     ctx.beginPath(); ctx.rect(X0, BASE, X1 - X0, 30); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = alpha(TS, 0.12); ctx.strokeStyle = TS;
     ctx.beginPath(); ctx.moveTo(X0, BASE); ctx.lineTo(X1, BASE - gap); ctx.lineTo(X1, BASE - gap - 30); ctx.lineTo(X0, BASE - 30); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = PAL.ink; ctx.fillRect(X1 - 14, BASE - gap, 10, gap); ctx.restore();
-    label(ctx, 'top slide', xOf(20), topY(xOf(20)) - 30, { side: 'above', size: 19, color: PAL.ink, gap: 12 });
-    label(ctx, 'bottom slide', xOf(20), BASE + 30, { side: 'below', size: 19, color: PAL.ink, gap: 12 });
-    label(ctx, 'spacer', X1 - 9, BASE + 30, { side: 'below', size: 19, color: PAL.ink, gap: 16 });
+    ctx.fillStyle = SPC; ctx.fillRect(X1 - 14, BASE - gap, 10, gap); ctx.restore();
+    label(ctx, 'top slide', xOf(20), topY(xOf(20)) - 30, { side: 'above', size: 19, color: TS, gap: 12 });
+    label(ctx, 'bottom slide', xOf(20), BASE + 30, { side: 'below', size: 19, color: BS, gap: 12 });
+    label(ctx, 'spacer', X1 - 9, BASE + 30, { side: 'below', size: 19, color: SPC, gap: 16 });
     label(ctx, 'slides touch', X0, BASE, { side: 'left', size: 17, color: PAL.muted, gap: 14 });
     vbracket(ctx, X1 + 30, BASE - gap, BASE, PC, '', 1);
 

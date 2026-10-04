@@ -1,11 +1,12 @@
 /* Figures for section 27.9 Microscopy Enhanced by the Wave Characteristics of
-   Light. The page binds no type, as ch27/COLOR.md gives 27.9: the one slider is
-   the index of the object and the readout counts wavelengths, both untyped. The
-   light is drawn in the color of 546 nm by spectral(), the one literal color on
-   the page, as in 27.1. */
+   Light. The one slider is the index of the object and the readout counts
+   wavelengths, both untyped; the object's thickness wears position. The object
+   and the background are the section's referents. The light is drawn in the
+   color of 546 nm by spectral(), and the strip it is seen on is black, both
+   facts through F.fact, as in 27.1. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.9'] = function (root, F) {
-const { el, fmt, tex, PAL, alpha, ctl, register, begin, line, text, topline, hbracket, hover } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, text, topline, hbracket, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -19,7 +20,7 @@ function spectral(lam) {
   else if (lam < 645) { r = 1; g = (645 - lam) / 65; }
   else r = 1;
   const c = (x) => Math.round(255 * Math.pow(x, 0.8));
-  return '#' + [r, g, b].map((x) => c(x).toString(16).padStart(2, '0')).join('');
+  return F.fact('#' + [r, g, b].map((x) => c(x).toString(16).padStart(2, '0')).join(''));
 }
 
 /* =====================================================================
@@ -36,7 +37,6 @@ function spectral(lam) {
   const NB = 1.333, THICK = 3, LB = 70, A = 38;
   const XL = 50, XO1 = 330, XO2 = XO1 + THICK * LB, XR = 860;
   const YU = 220, YD = 390, SX1 = 960, SX2 = 1340, YS = 305;
-  const light = spectral(546);
 
   function phaseDown(x, n) {
     if (x <= XO1) return (x - XL) / LB;
@@ -56,7 +56,7 @@ function spectral(lam) {
   let current = [];
   function draw() {
     const { ctx } = begin(d.c);
-    const n = nS.v, dN = THICK * (n - NB) / NB;
+    const n = nS.v, dN = THICK * (n - NB) / NB, light = spectral(546), OB = F.ref('object'), BG = F.ref('background');
     const frac = dN - Math.floor(dN), off = Math.min(frac, 1 - frac);
     const bright = Math.pow(Math.cos(Math.PI * dN), 2);
     const verdict = off < 0.02 ? 'so its light leaves in step with the background and the two add to a bright sum'
@@ -65,16 +65,16 @@ function spectral(lam) {
       : `so its light leaves ${fmt(off, 2)} of a wavelength out of step and their sum is dimmer`;
     topline(ctx, `An object of index ${fmt(n, 3)} in water, three wavelengths thick, holds ${fmt(dN, 2)} more wavelengths than the background beside it, ${verdict}.`);
 
-    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.1); ctx.fillRect(XL, 140, XR - XL, 330); ctx.restore();
-    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.28); ctx.fillRect(XO1, YD - 70, XO2 - XO1, 140); ctx.restore();
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.strokeRect(XO1, YD - 70, XO2 - XO1, 140); ctx.restore();
-    text(ctx, `background, n = ${fmt(NB, 3)}`, (XL + XO1) / 2 - 10, 166, PAL.ink, { size: 19, align: 'center' });
-    text(ctx, `object, n = ${fmt(n, 3)}`, (XO1 + XO2) / 2, YD + 98, PAL.ink, { size: 19, align: 'center' });
+    ctx.save(); ctx.fillStyle = alpha(BG, 0.1); ctx.fillRect(XL, 140, XR - XL, 330); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(OB, 0.25); ctx.fillRect(XO1, YD - 70, XO2 - XO1, 140); ctx.restore();
+    ctx.save(); ctx.strokeStyle = OB; ctx.lineWidth = 2; ctx.strokeRect(XO1, YD - 70, XO2 - XO1, 140); ctx.restore();
+    text(ctx, `background, n = ${fmt(NB, 3)}`, (XL + XO1) / 2 - 10, 166, BG, { size: 19, align: 'center' });
+    text(ctx, `object, n = ${fmt(n, 3)}`, (XO1 + XO2) / 2, YD + 98, OB, { size: 19, align: 'center' });
 
     const up = (x) => (x - XL) / LB, down = (x) => phaseDown(x, n);
     wave(ctx, XL, XR, YU, A, up, light, 5);
     wave(ctx, XL, XR, YD, A, down, light, 5);
-    hbracket(ctx, XO1, XO2, YU - A - 26, PAL.ink, 'three wavelengths');
+    hbracket(ctx, XO1, XO2, YU - A - 26, C('position'), 'three wavelengths');
 
     const endU = up(XR), endD = down(XR);
     const shiftU = (x) => endU + (x - SX1) / LB, shiftD = (x) => endD + (x - SX1) / LB;
@@ -88,12 +88,12 @@ function spectral(lam) {
 
     const sw = 120, sy = 430;
     ctx.save();
-    ctx.fillStyle = '#000'; ctx.fillRect(SX1, sy, sw, 50); ctx.fillRect(SX2 - sw, sy, sw, 50);
+    ctx.fillStyle = F.shown.facts ? F.fact('#000') : PAL.soft; ctx.fillRect(SX1, sy, sw, 50); ctx.fillRect(SX2 - sw, sy, sw, 50);
     ctx.globalAlpha = 1; ctx.fillStyle = light; ctx.fillRect(SX1, sy, sw, 50);
     ctx.globalAlpha = bright; ctx.fillRect(SX2 - sw, sy, sw, 50);
     ctx.restore();
-    text(ctx, 'background', SX1 + sw / 2, sy + 76, PAL.ink, { size: 18, align: 'center' });
-    text(ctx, 'object', SX2 - sw / 2, sy + 76, PAL.ink, { size: 18, align: 'center' });
+    text(ctx, 'background', SX1 + sw / 2, sy + 76, BG, { size: 18, align: 'center' });
+    text(ctx, 'object', SX2 - sw / 2, sy + 76, OB, { size: 18, align: 'center' });
 
     current = [
       { x: (XL + XO1) / 2, y: YU, r: 30, name: 'the ray through the background' },

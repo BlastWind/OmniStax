@@ -1,11 +1,12 @@
-/* Figures for section 27.4 Multiple Slit Diffraction. The page binds position
-   alone, for the wavelength, the slit separation, the path difference, the
-   distance to the screen and the positions along it, as ch27/COLOR.md gives
-   27.4. Every angle, the order m and the number of slits are untyped and in
-   ink, and the brightness graphs are relative, so intensity is not bound.
-   Light is drawn in the colour of its wavelength by spectral(); white light is
-   white on the black ground of the screen as seen and muted on the page, since
-   the page itself is its background. No figure moves. */
+/* Figures for section 27.4 Multiple Slit Diffraction. Position carries the
+   wavelength, the slit separation, the path difference, the distance to the
+   screen and the positions along it, and angle every angle. The order m and
+   the number of slits are untyped and in ink, and the brightness graphs are
+   relative, so intensity is not drawn. The screen, the double slit and the
+   grating are the section's referents. Light is drawn in the colour of its
+   wavelength by spectral(); white light is white on the black ground of the
+   screen as seen, both facts through F.fact, and muted on the page, since the
+   page itself is its background. No figure moves. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, dot, text, topline, label, angleArc, vbracket, axes } = F;
@@ -28,7 +29,7 @@ function spectralRGB(lam) {
   const c = (x) => Math.round(255 * Math.pow(clamp(x * f, 0, 1), 0.8));
   return [c(r), c(g), c(b)];
 }
-const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return `rgba(${r}, ${g}, ${b}, ${a})`; };
+const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return F.fact(`rgba(${r}, ${g}, ${b}, ${a})`); };
 const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
 
 /* =====================================================================
@@ -77,16 +78,16 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     ctx.restore();
     F.arrow(ctx, 20, YC, XG - 10, YC, white ? PAL.muted : spectral(L0), 4);
 
-    ctx.save(); ctx.fillStyle = PAL.ink;
+    ctx.save(); ctx.fillStyle = F.ref('grating');
     for (let k = -8; k <= 8; k++) ctx.fillRect(XG - 6, YC + k * 12 - 4, 12, 7);
     ctx.fillRect(XG - 6, TOP + 60, 12, YC - 100 - TOP - 60); ctx.fillRect(XG - 6, YC + 100, 12, BOT - 60 - YC - 100);
     ctx.restore();
-    line(ctx, XSC, TOP, XSC, BOT, PAL.ink, 3);
-    text(ctx, 'grating', XG, TOP + 34, PAL.ink, { size: 18, align: 'center' });
-    text(ctx, 'screen', XSC + 10, TOP + 10, PAL.muted, { size: 17, align: 'left' });
+    line(ctx, XSC, TOP, XSC, BOT, F.ref('screen'), 3);
+    text(ctx, 'grating', XG, TOP + 34, F.ref('grating'), { size: 18, align: 'center' });
+    text(ctx, 'screen', XSC + 10, TOP + 10, F.ref('screen'), { size: 17, align: 'left' });
 
-    ctx.save(); ctx.fillStyle = '#000'; ctx.fillRect(SX0, TOP, SX1 - SX0, BOT - TOP); ctx.restore();
-    ctx.save(); ctx.fillStyle = '#fff'; ctx.fillRect(SX0 + 6, YC - 2, SX1 - SX0 - 12, 4); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.shown.facts ? F.fact('#000') : PAL.soft; ctx.fillRect(SX0, TOP, SX1 - SX0, BOT - TOP); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.fact('#fff'); ctx.fillRect(SX0 + 6, YC - 2, SX1 - SX0 - 12, 4); ctx.restore();
     for (let m = -mMax; m <= mMax; m++) {
       if (m === 0) continue;
       lams.forEach((lam, i) => {
@@ -107,19 +108,19 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     if (white) {
       if (yV <= YR) vbracket(ctx, XSC + 22, Yof(yV), YC, PC, 'y_{V}', 1, { size: 20 });
       if (yR !== null) vbracket(ctx, XSC + 62, Yof(Math.min(yR, YR)), YC, PC, 'y_{R}', 1, { size: 20 });
-      angleArc(ctx, { x: XG, y: YC }, 70, 0, Math.asin(0.38 / D), 'θ_{V}');
-      if (yR !== null) angleArc(ctx, { x: XG, y: YC }, 150, 0, Math.asin(0.76 / D), 'θ_{R}');
+      angleArc(ctx, { x: XG, y: YC }, 70, 0, Math.asin(0.38 / D), 'θ_{V}', undefined, C('angle'));
+      if (yR !== null) angleArc(ctx, { x: XG, y: YC }, 150, 0, Math.asin(0.76 / D), 'θ_{R}', undefined, C('angle'));
     } else {
       const y1 = yAt(1, L0);
       if (y1 !== null && y1 * UPM > 36) {
         vbracket(ctx, XSC + 22, Yof(Math.min(y1, YR)), YC, PC, 'y', 1, { size: 20 });
-        angleArc(ctx, { x: XG, y: YC }, 90, 0, Math.asin(L0 / (D * 1000)), 'θ');
+        angleArc(ctx, { x: XG, y: YC }, 90, 0, Math.asin(L0 / (D * 1000)), 'θ', undefined, C('angle'));
       }
     }
     F.hbracket(ctx, XG, XSC, BOT + 44, PC, `x = ${fmt(x, 2)} m`, { side: 'below', size: 20 });
 
     /* the angle of each order against the wavelength */
-    const { X, Y } = axes(ctx, GB, [380, 760], [0, 90], { xl: 'λ (nm)', xc: PC, yl: 'θ (°)', nx: 4, ny: 3, fx: (v) => fmt(v, 0) });
+    const { X, Y } = axes(ctx, GB, [380, 760], [0, 90], { xl: 'λ (nm)', xc: PC, yl: 'θ (°)', yc: C('angle'), nx: 4, ny: 3, fx: (v) => fmt(v, 0) });
     for (let m = 1; m <= 14; m++) {
       let prev = null, lab = null;
       for (let lam = 380; lam <= 760; lam += 4) {
@@ -136,13 +137,13 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     }
 
     if (white) {
-      if (yR !== null) readout(d.readout, `\\ky_{\\text{R}} - \\ky_{\\text{V}} = \\kx(\\tan\\theta_{\\text{R}} - \\tan\\theta_{\\text{V}}) = (${fmt(x, 2)}\\ \\text{m})(\\tan ${fmt(Math.asin(0.76 / D) / RAD, 2)}^\\circ - \\tan ${fmt(Math.asin(0.38 / D) / RAD, 2)}^\\circ) = ${fmt(yR - yV, 2)}\\ \\text{m}`,
+      if (yR !== null) readout(d.readout, `\\ky_{\\text{R}} - \\ky_{\\text{V}} = \\kx(\\tan\\ktheta_{\\text{R}} - \\tan\\ktheta_{\\text{V}}) = (${fmt(x, 2)}\\ \\text{m})(\\tan ${fmt(Math.asin(0.76 / D) / RAD, 2)}^\\circ - \\tan ${fmt(Math.asin(0.38 / D) / RAD, 2)}^\\circ) = ${fmt(yR - yV, 2)}\\ \\text{m}`,
         `The angles come from d sin θ = mλ with m = 1, d = ${fmt(D, 2)} μm, and λ = 380 nm for violet and 760 nm for red.`);
-      else readout(d.readout, `\\ky_{\\text{V}} = \\kx\\tan\\theta_{\\text{V}} = (${fmt(x, 2)}\\ \\text{m})\\tan ${fmt(Math.asin(0.38 / D) / RAD, 2)}^\\circ = ${fmt(yV, 3)}\\ \\text{m}`,
+      else readout(d.readout, `\\ky_{\\text{V}} = \\kx\\tan\\ktheta_{\\text{V}} = (${fmt(x, 2)}\\ \\text{m})\\tan ${fmt(Math.asin(0.38 / D) / RAD, 2)}^\\circ = ${fmt(yV, 3)}\\ \\text{m}`,
         `Red light of 760 nm would need sin θ = ${fmt(0.76 / D, 2)}, more than 1, so it has no first-order maximum with lines this close.`);
     } else {
       const t1 = Math.asin(L0 / (D * 1000));
-      readout(d.readout, `\\ky = \\kx\\tan\\theta = (${fmt(x, 2)}\\ \\text{m})\\tan ${fmt(t1 / RAD, 2)}^\\circ = ${fmt(x * Math.tan(t1), 3)}\\ \\text{m}`,
+      readout(d.readout, `\\ky = \\kx\\tan\\ktheta = (${fmt(x, 2)}\\ \\text{m})\\tan ${fmt(t1 / RAD, 2)}^\\circ = ${fmt(x * Math.tan(t1), 3)}\\ \\text{m}`,
         `The first-order angle comes from d sin θ = mλ: sin θ = (1)(${L0} nm)/(${fmt(D, 2)} μm) = ${fmt(L0 / (D * 1000), 3)}.`);
     }
   }
@@ -181,9 +182,9 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     topline(ctx, N === 2
       ? 'With only two slits the grating is a double slit, and the two patterns are the same.'
       : `With ${N} slits the bright lines stand where the double slit’s do, but each is ${fmt(2 / N, 2)} as wide, with ${N - 2} small peaks between neighbors.`);
-    const a1 = axes(ctx, B1, [-60, 60], [0, 1], { yl: 'double slit', nx: 6, ny: 1, fx: (v) => `${fmt(v, 0)}°`, fy: (v) => fmt(v, 0) });
+    const a1 = axes(ctx, B1, [-60, 60], [0, 1], { yl: 'double slit', yc: F.ref('double-slit'), nx: 6, ny: 1, fx: (v) => `${fmt(v, 0)}°`, fy: (v) => fmt(v, 0) });
     trace(ctx, B1, a1.X, a1.Y, 2, L);
-    const a2 = axes(ctx, B2, [-60, 60], [0, 1], { yl: `grating, N = ${N}`, xl: 'θ', nx: 6, ny: 1, fx: (v) => `${fmt(v, 0)}°`, fy: (v) => fmt(v, 0) });
+    const a2 = axes(ctx, B2, [-60, 60], [0, 1], { yl: `grating, N = ${N}`, yc: F.ref('grating'), xl: 'θ', xc: C('angle'), nx: 6, ny: 1, fx: (v) => `${fmt(v, 0)}°`, fy: (v) => fmt(v, 0) });
     trace(ctx, B2, a2.X, a2.Y, N, L);
     const mTop = Math.floor(DS * 1000 * Math.sin(60 * RAD) / L);
     for (let m = -mTop; m <= mTop; m++) {
@@ -192,7 +193,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
       if (Math.abs(m) <= 2) text(ctx, `m = ${m}`, a1.X(th), B1.t - 8, PAL.ink, { size: 18, align: 'center' });
     }
     const th1 = Math.asin(L / (DS * 1000)) / RAD;
-    readout(d.readout, `\\kd\\sin\\theta = m\\klam:\\quad (${fmt(DS, 2)}\\ \\mu\\text{m})\\sin ${fmt(th1, 1)}^\\circ = 1\\,(${fmt(L, 0)}\\ \\text{nm})`,
+    readout(d.readout, `\\kd\\sin\\ktheta = m\\klam:\\quad (${fmt(DS, 2)}\\ \\mu\\text{m})\\sin ${fmt(th1, 1)}^\\circ = 1\\,(${fmt(L, 0)}\\ \\text{nm})`,
       `From the center of a bright line to the first dark place beside it, sin θ changes by λ/(Nd) = ${fmt(L / (N * DS * 1000), 4)} for the grating and by λ/(2d) = ${fmt(L / (2 * DS * 1000), 4)} for the double slit.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -208,7 +209,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
 (function () {
   const d = sim('sim-grating-rays', 700);
   let lam = { v: 600 }, dS = { v: 2 };
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 40, step: 0.01, value: Math.asin(0.3) / RAD, unit: '°', dec: 1, aria: 'the direction of the rays from the grating',
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 40, step: 0.01, value: Math.asin(0.3) / RAD, unit: '°', dec: 1, aria: 'the direction of the rays from the grating',
     specials: Array.from({ length: 8 }, (_, k) => ({ at: () => { const s = (k * lam.v / 1000) / dS.v; return s <= Math.sin(40 * RAD) ? Math.asin(s) / RAD : null; } })) });
   lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 400, max: 700, step: 1, value: 600, unit: 'nm', dec: 0, aria: 'the wavelength of the light', detents: LAM_DETENTS });
   dS = ctl(d.controls, { label: '\\kd', cls: 'position', min: 1, max: 3, step: 0.05, value: 2, unit: 'μm', dec: 2, aria: 'the distance between neighboring slits' });
@@ -231,7 +232,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     const ux = Math.cos(t), uy = -Math.sin(t);
     const S = Array.from({ length: NS }, (_, k) => ({ x: XB, y: YC + (k - (NS - 1) / 2) * dpx }));
 
-    ctx.save(); ctx.fillStyle = PAL.ink;
+    ctx.save(); ctx.fillStyle = F.ref('grating');
     ctx.fillRect(XB - 7, 110, 14, S[0].y - 6 - 110);
     for (let k = 0; k < NS - 1; k++) ctx.fillRect(XB - 7, S[k].y + 6, 14, dpx - 12);
     ctx.fillRect(XB - 7, S[NS - 1].y + 6, 14, 680 - S[NS - 1].y - 6);
@@ -248,7 +249,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
       if (dlp > 2) line(ctx, S[k].x, S[k].y, Fp.x, Fp.y, PC, 7);
       if (k === NS - 1) {
         if (dlp > 8) label(ctx, 'Δl', (S[k].x + Fp.x) / 2, (S[k].y + Fp.y) / 2, { side: 'below', size: 22, color: PC, gap: 16 });
-        if (t > 0.03) angleArc(ctx, S[k], Math.min(70, dpx * 0.9), 0, t, 'θ');
+        if (t > 0.03) angleArc(ctx, S[k], Math.min(70, dpx * 0.9), 0, t, 'θ', undefined, C('angle'));
       }
     }
     vbracket(ctx, XB - 34, S[0].y, S[1].y, PC, 'd', -1, { size: 22 });
@@ -266,7 +267,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     text(ctx, 'sum', PX0 - 14, YSUM, PAL.ink, { size: 20, align: 'right' });
     trace(ctx, YSUM, (u) => { let v = 0; for (let k = 0; k < NS; k++) v += AMP * Math.cos(TAU * u - k * ph); return v; }, PAL.ink, 5);
 
-    readout(d.readout, `\\kdl = \\kd\\sin\\theta = (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(D * Math.sin(t), 3)}\\ \\mu\\text{m} = ${fmt(n, 2)}\\,\\klam`,
+    readout(d.readout, `\\kdl = \\kd\\sin\\ktheta = (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(D * Math.sin(t), 3)}\\ \\mu\\text{m} = ${fmt(n, 2)}\\,\\klam`,
       `The sum of the five waves is ${fmt(amp, 2)} times as large as one of them.`);
   }
   register(d.fig, { update: () => {}, draw });

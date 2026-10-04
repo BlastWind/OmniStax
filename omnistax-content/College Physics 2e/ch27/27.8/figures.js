@@ -1,10 +1,13 @@
-/* Figures for section 27.8 Polarization. The page binds electric-field and
-   intensity, as ch27/COLOR.md gives 27.8: every polarization arrow and dot
-   wears the field's hue, and the intensities of Malus's law wear intensity's.
-   Angles, indices and the rope's amplitude are untyped and in ink, and so is
-   every ray, since the section gives its light no wavelength. The one colour
-   that is the physical fact is the grey of the LCD pixel, drawn as bright as
-   the light the analyzer passes. Only the rope moves, because only its idea has
+/* Figures for section 27.8 Polarization. Every polarization arrow and dot
+   wears electric-field, the intensities of Malus's law wear intensity, and
+   every angle wears angle. Indices and the rope's amplitude are untyped and in
+   ink. The rope and the slit, the two filters of the chain, the surface and
+   its three rays, the filter face on with its molecules and electron, the
+   sunlight and the molecule that scatters it, and the polarizer, layer,
+   analyzer and pixel of the LCD are the section's referents; any other ray is
+   ink, since the section gives its light no wavelength. The one colour that is
+   the physical fact is the grey of the LCD pixel, drawn as bright as the light
+   the analyzer passes, through F.fact. Only the rope moves, because only its idea has
    a clock; every filter, surface and molecule figure is a state of its
    controls. The chain of filters is drawn from one locked viewpoint, the book's
    own, by F.view (root rule 28.2). */
@@ -30,22 +33,24 @@ const add = (p, u, s) => [p[0] + u[0] * s, p[1] + u[1] * s, p[2] + u[2] * s];
 
 /* one polarizing filter across the beam at x, its square turned with its axis,
    lines drawn along the axis as the book draws them */
-function filter(ctx, P, x, a, h, name) {
+function filter(ctx, P, x, a, h, name, col = PAL.ink) {
   const c = [x, 0, 0], u = across(a), w = across(a + Math.PI / 2);
   const corner = (su, sw) => P(add(add(c, u, su * h), w, sw * h));
   ctx.save(); ctx.globalAlpha = 0.9;
-  face(ctx, [corner(1, 1), corner(1, -1), corner(-1, -1), corner(-1, 1)], 0.1, 2.5);
+  const rim = [corner(1, 1), corner(1, -1), corner(-1, -1), corner(-1, 1)];
+  face(ctx, rim, 0.1, 2.5);
   ctx.restore();
+  ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.beginPath(); rim.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.stroke(); ctx.restore();
   for (let k = -3; k <= 3; k++) {
     if (k === 0) continue;
     const p = P(add(add(c, w, (k * h) / 4), u, h * 0.9)), q = P(add(add(c, w, (k * h) / 4), u, -h * 0.9));
     line(ctx, p[0], p[1], q[0], q[1], alpha(PAL.ink, 0.25), 2);
   }
   const t = P(add(c, u, h * 0.8)), b = P(add(c, u, -h * 0.8));
-  dbl(ctx, b, t, PAL.ink, 3);
+  dbl(ctx, b, t, col, 3);
   if (name) {
     const top = P(add(c, [0, 1, 0], h * 1.45));
-    text(ctx, name, top[0], top[1], PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, name, top[0], top[1], col, { size: 19, align: 'center', bg: PAL.panel });
   }
   return { axisEnd: t };
 }
@@ -97,7 +102,8 @@ function ray(ctx, P, x1, x2, k, head) {
       return A * s * (x > XS ? pass : 1);
     };
     const pts = (xa, xb) => { const out = []; for (let x = xa; x <= xb; x += 6) out.push(P(add([x, 0, 0], u, disp(x)))); return out; };
-    const stroke = (list, w) => { ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = w; ctx.beginPath(); list.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore(); };
+    const RP = F.ref('rope'), SL = F.ref('slit');
+    const stroke = (list, w) => { ctx.save(); ctx.strokeStyle = RP; ctx.lineWidth = w; ctx.beginPath(); list.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore(); };
 
     /* the far side of the board first, then the board, then the near rope */
     stroke(pts(XS, X1), 4);
@@ -106,21 +112,21 @@ function ray(ctx, P, x1, x2, k, head) {
     face(ctx, [corner(H, H), corner(H, -H), corner(-H, -H), corner(-H, H)], 0.12, 2.5);
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.beginPath();
     [[H * 0.85, SW], [H * 0.85, -SW], [-H * 0.85, -SW], [-H * 0.85, SW]].forEach(([a, b], i) => { const p = corner(a, b); if (i) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); });
-    ctx.closePath(); ctx.fill(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+    ctx.closePath(); ctx.fill(); ctx.strokeStyle = SL; ctx.lineWidth = 2.5; ctx.stroke(); ctx.restore();
     stroke(pts(X0, XS), 4);
     const hand = P(add([X0, 0, 0], u, disp(X0)));
-    dot(ctx, hand[0], hand[1], PAL.ink, true, 8);
+    dot(ctx, hand[0], hand[1], RP, true, 8);
 
     const bt = corner(H, 0);
-    label(ctx, slit.value === 'v' ? 'a vertical slit' : 'a horizontal slit', bt[0], bt[1] - 10, { side: 'above', size: 20, color: PAL.ink });
-    text(ctx, rope.value === 'v' ? 'the rope shaken in a vertical plane' : 'the rope shaken in a horizontal plane', 40, 470, PAL.muted, { size: 19, align: 'left' });
+    label(ctx, slit.value === 'v' ? 'a vertical slit' : 'a horizontal slit', bt[0], bt[1] - 10, { side: 'above', size: 20, color: SL });
+    text(ctx, rope.value === 'v' ? 'the rope shaken in a vertical plane' : 'the rope shaken in a horizontal plane', 40, 470, RP, { size: 19, align: 'left' });
 
     const ok = pass > 0.5;
     topline(ctx, ok
       ? `A ${rope.value === 'v' ? 'vertically' : 'horizontally'} polarized wave passes the ${slit.value === 'v' ? 'vertical' : 'horizontal'} slit unchanged.`
       : `A ${rope.value === 'v' ? 'vertically' : 'horizontally'} polarized wave is blocked by the ${slit.value === 'v' ? 'vertical' : 'horizontal'} slit.`);
     readout(d.readout,
-      `A_{\\text{passed}} = A\\cos\\theta = A\\cos ${fmt(th, 0)}^\\circ = ${th === 0 ? 'A' : '0'}`,
+      `A_{\\text{passed}} = A\\cos\\ktheta = A\\cos ${fmt(th, 0)}^\\circ = ${th === 0 ? 'A' : '0'}`,
       ok ? 'The rope’s motion lies along the slit, so the slit leaves it free to move and the whole wave goes through.'
         : 'The rope’s motion lies across the slit, so the edges of the slit hold it still and nothing of the wave goes on.');
   }
@@ -137,7 +143,7 @@ function ray(ctx, P, x1, x2, k, head) {
 ===================================================================== */
 (function () {
   const d = sim('sim-filter-chain', 560);
-  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 0.1, value: 45, unit: '°', dec: 1, aria: 'the angle between the axes of the two filters',
+  const thS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 0.1, value: 45, unit: '°', dec: 1, aria: 'the angle between the axes of the two filters',
     specials: [{ at: 45, label: '45°' }, { at: 71.6, label: 'Example 27.8' }, { at: 90, label: 'crossed' }] });
   const V = F.view({ yaw: -0.62, pitch: -0.14, dist: 3200, cx: 520, cy: 300 });
   const P = V.P;
@@ -160,10 +166,10 @@ function ray(ctx, P, x1, x2, k, head) {
     /* from the far end of the ray to the near one */
     ray(ctx, P, XF2, XEND, c2 / 2, true);
     const e2 = field(ctx, P, XE2, t, L * c, EC);
-    filter(ctx, P, XF2, t, HF, 'the second filter');
+    filter(ctx, P, XF2, t, HF, 'the second filter', F.ref('filter-2'));
     ray(ctx, P, XF1, XF2, 0.5, false);
     const e1 = field(ctx, P, XE1, 0, L, EC);
-    const f1 = filter(ctx, P, XF1, 0, HF, 'the first filter');
+    const f1 = filter(ctx, P, XF1, 0, HF, 'the first filter', F.ref('filter-1'));
     text(ctx, 'axis', f1.axisEnd[0] + 12, f1.axisEnd[1] + 10, PAL.ink, { size: 17, align: 'left', bg: PAL.panel });
     ray(ctx, P, XS - 140, XF1, 1, false);
     burst(ctx, P, XS, L, EC);
@@ -174,7 +180,7 @@ function ray(ctx, P, x1, x2, k, head) {
     else { const q = P([XE2, 0, 0]); text(ctx, 'no light', q[0], q[1] - 30, PAL.muted, { size: 19, align: 'center', bg: PAL.panel }); }
 
     /* the end-on view of the second filter */
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(IX, IY, IR, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('filter-2'); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(IX, IY, IR, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'looking along the ray', IX, IY - IR - 22, PAL.muted, { size: 17, align: 'center' });
     const ux = Math.sin(t), uy = -Math.cos(t), LI = 110;
     line(ctx, IX - ux * (IR - 8), IY - uy * (IR - 8), IX + ux * (IR - 8), IY + uy * (IR - 8), alpha(PAL.ink, 0.55), 2, [10, 8]);
@@ -186,13 +192,13 @@ function ray(ctx, P, x1, x2, k, head) {
       line(ctx, IX, IY - LI, tip[0], tip[1], alpha(PAL.ink, 0.4), 2, [4, 8]);
       dbl(ctx, [IX - ux * cl, IY - uy * cl], tip, EC, 5);
     }
-    if (th > 3) angleArc(ctx, { x: IX, y: IY }, 44, Math.PI / 2 - t, Math.PI / 2, 'θ');
+    if (th > 3) angleArc(ctx, { x: IX, y: IY }, 44, Math.PI / 2 - t, Math.PI / 2, 'θ', undefined, C('angle'));
 
     topline(ctx, th >= 89.95
       ? 'The axes of the two filters are perpendicular, and the second filter passes no light at all.'
       : `The second filter is turned ${fmt(th, 1)}° from the first and passes ${fmt(100 * c2, 1)}% of the light that reaches it.`);
     readout(d.readout,
-      `\\kIntens = \\kIopol\\cos^2\\theta = \\kIopol\\cos^2 ${fmt(th, 1)}^\\circ = ${fmt(c2, 3)}\\,\\kIopol`,
+      `\\kIntens = \\kIopol\\cos^2\\ktheta = \\kIopol\\cos^2 ${fmt(th, 1)}^\\circ = ${fmt(c2, 3)}\\,\\kIopol`,
       `The field that reaches the second filter is vertical; only its component E cos θ = ${fmt(c, 3)} E along the axis passes, and the intensity goes as the square of that amplitude.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -212,7 +218,7 @@ function ray(ctx, P, x1, x2, k, head) {
   const N2 = { water: 1.333, glass: 1.52 };
   let surf = { value: 'water' };
   const thB = () => Math.atan(N2[surf.value] / 1.0) / RAD;
-  const iS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 85, step: 0.1, value: 53.1, unit: '°', dec: 1, aria: 'the angle of incidence', specials: [{ at: () => Math.round(thB() * 10) / 10, label: 'θb' }] });
+  const iS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 85, step: 0.1, value: 53.1, unit: '°', dec: 1, aria: 'the angle of incidence', specials: [{ at: () => Math.round(thB() * 10) / 10, label: 'θb' }] });
   surf = choice(d.controls, { label: '\\text{the surface}', options: [{ value: 'water', label: 'water' }, { value: 'glass', label: 'crown glass' }], value: 'water', aria: 'the medium that reflects the light', onInput: () => iS.refresh() });
   const OX = 470, OY = 320, R = 250;
 
@@ -236,24 +242,26 @@ function ray(ctx, P, x1, x2, k, head) {
     const b = thB(), atB = Math.abs(th - Math.round(b * 10) / 10) < 0.05;
 
     /* the two media and the normal */
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(60, OY, 840, 210); ctx.restore();
-    line(ctx, 60, OY, 900, OY, PAL.ink, 3);
+    const SU = F.ref('surface');
+    ctx.save(); ctx.fillStyle = alpha(SU, 0.08); ctx.fillRect(60, OY, 840, 210); ctx.restore();
+    line(ctx, 60, OY, 900, OY, SU, 3);
     line(ctx, OX, OY - 230, OX, OY + 200, alpha(PAL.ink, 0.35), 2, [10, 10]);
     text(ctx, 'air, n₁ = 1.00', 80, OY - 24, PAL.ink, { size: 20, align: 'left' });
-    text(ctx, (surf.value === 'water' ? 'water' : 'crown glass') + ', n₂ = ' + fmt(n2, 3), 80, OY + 28, PAL.ink, { size: 20, align: 'left' });
+    text(ctx, (surf.value === 'water' ? 'water' : 'crown glass') + ', n₂ = ' + fmt(n2, 3), 80, OY + 28, SU, { size: 20, align: 'left' });
 
     const ix = OX - R * Math.sin(ti), iy = OY - R * ci, rx = OX + R * Math.sin(ti), ry = iy;
     const tx = OX + R * 0.85 * Math.sin(tt), ty = OY + R * 0.85 * ct;
-    arrow(ctx, ix, iy, OX, OY, PAL.ink, 3);
-    arrow(ctx, OX, OY, rx, ry, alpha(PAL.ink, 0.35 + 0.65 * Math.sqrt((Rs + Rp) / 2)), 3);
-    arrow(ctx, OX, OY, tx, ty, PAL.ink, 3);
+    const RI = F.ref('incident-ray'), RR = F.ref('reflected-ray'), RT = F.ref('refracted-ray');
+    arrow(ctx, ix, iy, OX, OY, RI, 3);
+    arrow(ctx, OX, OY, rx, ry, alpha(RR, 0.35 + 0.65 * Math.sqrt((Rs + Rp) / 2)), 3);
+    arrow(ctx, OX, OY, tx, ty, RT, 3);
     markers(ctx, ix, iy, OX, OY, 1, 1, EC);
     markers(ctx, OX, OY, rx, ry, Math.abs(rs) / mr, Math.abs(rp) / mr, EC);
     markers(ctx, OX, OY, tx, ty, ts / mt, tp / mt, EC);
-    if (th > 2) angleArc(ctx, { x: OX, y: OY }, 70, Math.PI / 2, Math.PI / 2 + ti, 'θ');
-    label(ctx, 'unpolarized light', ix, iy, { side: 'above', size: 19, color: PAL.muted });
-    label(ctx, atB ? 'completely polarized' : 'partially polarized', rx, ry, { side: 'above', size: 19, color: PAL.muted });
-    label(ctx, 'refracted light', tx, ty, { side: 'right', size: 19, color: PAL.muted });
+    if (th > 2) angleArc(ctx, { x: OX, y: OY }, 70, Math.PI / 2, Math.PI / 2 + ti, 'θ', undefined, C('angle'));
+    label(ctx, 'unpolarized light', ix, iy, { side: 'above', size: 19, color: RI });
+    label(ctx, atB ? 'completely polarized' : 'partially polarized', rx, ry, { side: 'above', size: 19, color: RR });
+    label(ctx, 'refracted light', tx, ty, { side: 'right', size: 19, color: RT });
 
     /* the share of the reflected intensity polarized parallel to the surface */
     const BX = 1080, BT = 140, BB = 480, BW = 70;
@@ -269,7 +277,7 @@ function ray(ctx, P, x1, x2, k, head) {
       ? `At ${fmt(th, 1)}° on ${surf.value === 'water' ? 'water' : 'crown glass'} the reflected light is completely polarized parallel to the surface.`
       : `At ${fmt(th, 1)}° on ${surf.value === 'water' ? 'water' : 'crown glass'}, ${fmt(100 * share, 1)}% of the reflected light is polarized parallel to the surface.`);
     readout(d.readout,
-      `\\tan\\theta_{\\text{b}} = \\frac{n_2}{n_1} = \\frac{${fmt(n2, 3)}}{1.00} = ${fmt(n2, 3)}, \\quad \\theta_{\\text{b}} = ${fmt(b, 1)}^\\circ`,
+      `\\tan\\kthetab = \\frac{n_2}{n_1} = \\frac{${fmt(n2, 3)}}{1.00} = ${fmt(n2, 3)}, \\quad \\kthetab = ${fmt(b, 1)}^\\circ`,
       'The dots and arrows of each ray are drawn in proportion to one another, not to the other rays; the reflected ray is much weaker than the other two.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -284,7 +292,7 @@ function ray(ctx, P, x1, x2, k, head) {
 ===================================================================== */
 (function () {
   const d = sim('sim-filter-molecules', 560);
-  const thS = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 90, step: 0.1, value: 30, unit: '°', dec: 1, aria: 'the angle between the electric field and the axis of the filter' });
+  const thS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 0.1, value: 30, unit: '°', dec: 1, aria: 'the angle between the electric field and the axis of the filter' });
   const CX = 450, CY = 330, HS = 190, LE = 160;
 
   hover(d.stage, () => [
@@ -295,11 +303,11 @@ function ray(ctx, P, x1, x2, k, head) {
   function draw() {
     const { ctx } = begin(d.c);
     const th = thS.v, t = th * RAD, c = Math.cos(t), s = Math.sin(t), EC = C('electric-field');
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.fillRect(CX - HS, CY - HS, 2 * HS, 2 * HS); ctx.strokeRect(CX - HS, CY - HS, 2 * HS, 2 * HS); ctx.restore();
-    for (let k = -3; k <= 3; k++) line(ctx, CX - HS + 26, CY + k * 52, CX + HS - 26, CY + k * 52, alpha(PAL.ink, 0.3), 12);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('filter'); ctx.lineWidth = 2.5; ctx.fillRect(CX - HS, CY - HS, 2 * HS, 2 * HS); ctx.strokeRect(CX - HS, CY - HS, 2 * HS, 2 * HS); ctx.restore();
+    for (let k = -3; k <= 3; k++) line(ctx, CX - HS + 26, CY + k * 52, CX + HS - 26, CY + k * 52, alpha(F.ref('molecules'), 0.35), 12);
     line(ctx, CX, CY - HS - 20, CX, CY + HS + 20, PAL.ink, 2.5, [10, 8]);
     text(ctx, 'axis', CX, CY - HS - 38, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, 'long molecules', CX + HS + 20, CY - 3 * 52, PAL.muted, { size: 19, align: 'left' });
+    text(ctx, 'long molecules', CX + HS + 20, CY - 3 * 52, F.ref('molecules'), { size: 19, align: 'left' });
 
     /* the incoming field and its two components */
     const ex = LE * s, ey = -LE * c;
@@ -315,13 +323,13 @@ function ray(ctx, P, x1, x2, k, head) {
       ctx.save(); ctx.setLineDash([12, 8]); dbl(ctx, [CX - LE * s, CY], [CX + LE * s, CY], alpha(EC, 0.7), 4); ctx.restore();
       text(ctx, 'E sin θ absorbed', CX + LE * s + 14, CY + 30, EC, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
     }
-    if (th > 3) angleArc(ctx, { x: CX, y: CY }, 60, Math.PI / 2 - t, Math.PI / 2, 'θ');
+    if (th > 3) angleArc(ctx, { x: CX, y: CY }, 60, Math.PI / 2 - t, Math.PI / 2, 'θ', undefined, C('angle'));
 
     /* the electron on the middle molecule, driven along it by E sin θ */
     const exl = CX + 90;
     dot(ctx, exl, CY + 52, F.el('e-'), true, 10);
     if (s > 0.03) { arrow(ctx, exl + 14, CY + 52, exl + 14 + 60 * s, CY + 52, PAL.ink, 3); arrow(ctx, exl - 14, CY + 52, exl - 14 - 60 * s, CY + 52, PAL.ink, 3); }
-    text(ctx, 'an electron driven along its molecule', 1000, CY + 52, PAL.muted, { size: 18, align: 'left' });
+    text(ctx, 'an electron driven along its molecule', 1000, CY + 52, F.ref('electron'), { size: 18, align: 'left' });
     line(ctx, exl + 80, CY + 52, 990, CY + 52, alpha(PAL.ink, 0.3), 1.5, [5, 6]);
 
     topline(ctx, th < 0.05
@@ -330,7 +338,7 @@ function ray(ctx, P, x1, x2, k, head) {
         ? 'The field lies along the molecules, and all of it is absorbed.'
         : `The field makes ${fmt(th, 1)}° with the axis; ${fmt(c, 3)} of it passes and the part along the molecules is absorbed.`);
     readout(d.readout,
-      `\\kEf\\cos\\theta = \\kEf\\cos ${fmt(th, 1)}^\\circ = ${fmt(c, 3)}\\,\\kEf`,
+      `\\kEf\\cos\\ktheta = \\kEf\\cos ${fmt(th, 1)}^\\circ = ${fmt(c, 3)}\\,\\kEf`,
       `The part along the molecules, ${fmt(s, 3)} of the field, sets the electrons oscillating and gives up its energy to them, so the intensity that passes is ${fmt(c * c, 3)} of the intensity that arrived.`);
   }
   register(d.fig, { update: () => {}, draw });
@@ -345,7 +353,7 @@ function ray(ctx, P, x1, x2, k, head) {
 ===================================================================== */
 (function () {
   const d = sim('sim-scattering', 560);
-  const phS = ctl(d.controls, { label: '\\varphi', cls: '', min: 0, max: 180, step: 0.5, value: 90, unit: '°', dec: 1, aria: 'the angle between the original ray and the line of sight', specials: [{ at: 90, label: '90°' }] });
+  const phS = ctl(d.controls, { label: '\\varphi', cls: 'angle', min: 0, max: 180, step: 0.5, value: 90, unit: '°', dec: 1, aria: 'the angle between the original ray and the line of sight', specials: [{ at: 90, label: '90°' }] });
   const OX = 560, OY = 200, RL = 320;
 
   function marks(ctx, x, y, dx, dy, p, EC) {
@@ -358,18 +366,18 @@ function ray(ctx, P, x1, x2, k, head) {
     const { ctx } = begin(d.c);
     const ph = phS.v, f = ph * RAD, c = Math.cos(f), EC = C('electric-field');
     const pol = (1 - c * c) / (1 + c * c);
-    arrow(ctx, 60, OY, OX - 14, OY, PAL.ink, 3);
+    arrow(ctx, 60, OY, OX - 14, OY, F.ref('sunlight'), 3);
     [180, 360].forEach((x) => marks(ctx, x, OY, 1, 0, 1, EC));
-    text(ctx, 'unpolarized sunlight', 120, OY - 50, PAL.muted, { size: 19, align: 'left' });
+    text(ctx, 'unpolarized sunlight', 120, OY - 50, F.ref('sunlight'), { size: 19, align: 'left' });
     line(ctx, OX + 14, OY, OX + 300, OY, alpha(PAL.ink, 0.25), 2, [10, 10]);
 
     const dx = Math.cos(f), dy = Math.sin(f), ex = OX + RL * dx, ey = OY + RL * dy;
     arrow(ctx, OX, OY, ex, ey, PAL.ink, 3);
     [0.45, 0.75].forEach((k) => marks(ctx, OX + RL * dx * k, OY + RL * dy * k, dx, dy, Math.abs(c), EC));
-    dot(ctx, OX, OY, PAL.ink, false, 12);
-    label(ctx, 'molecule', OX, OY - 14, { side: 'above', size: 19, color: PAL.ink });
+    dot(ctx, OX, OY, F.ref('molecule'), false, 12);
+    label(ctx, 'molecule', OX, OY - 14, { side: 'above', size: 19, color: F.ref('molecule') });
     label(ctx, 'to the observer', ex, ey, { side: dx > 0.3 ? 'right' : dx < -0.3 ? 'left' : 'below', size: 19, color: PAL.muted });
-    if (ph > 3) angleArc(ctx, { x: OX, y: OY }, 60, -f, 0, 'φ');
+    if (ph > 3) angleArc(ctx, { x: OX, y: OY }, 60, -f, 0, 'φ', undefined, C('angle'));
 
     /* the key to the two marks */
     const KX = 1010;
@@ -401,18 +409,20 @@ function ray(ctx, P, x1, x2, k, head) {
 (function () {
   const d = sim('sim-rotator', 560);
   const layer = choice(d.controls, { label: '\\text{the layer}', options: [{ value: 'lcd', label: 'liquid crystal' }, { value: 'sample', label: 'optically active sample' }], value: 'lcd', aria: 'what stands between the two filters' });
-  const rS = ctl(d.controls, { label: '\\text{rotation}', cls: '', min: 0, max: 90, step: 0.5, value: 90, unit: '°', dec: 1, aria: 'the angle the layer turns the direction of polarization through',
+  const rS = ctl(d.controls, { label: '\\text{rotation}', cls: 'angle', min: 0, max: 90, step: 0.5, value: 90, unit: '°', dec: 1, aria: 'the angle the layer turns the direction of polarization through',
     specials: [{ at: 0, label: '0°' }, { at: 90, label: '90°' }] });
   const V = F.view({ yaw: -0.62, pitch: -0.14, dist: 3200, cx: 500, cy: 300 });
   const P = V.P;
   const XS = -470, XF1 = -320, XE1 = -205, XL = -60, XE2 = 90, XA = 230, XE3 = 390, XEND = 520, HF = 90, L = 76;
   const PX = 1150, PY = 290, PS = 150;
 
-  function slab(ctx, x, h, w) {
+  function slab(ctx, x, h, w, col) {
     const c = (dx, y, z) => P([x + dx, y, z]);
     face(ctx, [c(-w, h, -h), c(w, h, -h), c(w, h, h), c(-w, h, h)], 0.04, 2);
     face(ctx, [c(-w, h, h), c(w, h, h), c(w, -h, h), c(-w, -h, h)], 0.16, 2);
     face(ctx, [c(-w, h, -h), c(-w, h, h), c(-w, -h, h), c(-w, -h, -h)], 0.1, 2);
+    const rim = [c(-w, h, h), c(w, h, h), c(w, -h, h), c(-w, -h, h)];
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.beginPath(); rim.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.stroke(); ctx.restore();
   }
 
   function draw() {
@@ -423,24 +433,24 @@ function ray(ctx, P, x1, x2, k, head) {
 
     ray(ctx, P, XA, XEND, c2 / 2, true);
     const e3 = field(ctx, P, XE3, an * RAD, L * Math.abs(Math.cos((an - rho) * RAD)), EC);
-    filter(ctx, P, XA, an * RAD, HF, 'the analyzer');
+    filter(ctx, P, XA, an * RAD, HF, 'the analyzer', F.ref('analyzer'));
     ray(ctx, P, XL, XA, 0.5, false);
     field(ctx, P, XE2, r, L, EC);
-    slab(ctx, XL, HF * 0.9, 45);
+    slab(ctx, XL, HF * 0.9, 45, F.ref('layer'));
     const lt = P([XL, HF * 1.45, 0]);
-    text(ctx, lcd ? 'the liquid crystal' : 'the optically active sample', lt[0], lt[1] - 12, PAL.ink, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, lcd ? 'the liquid crystal' : 'the optically active sample', lt[0], lt[1] - 12, F.ref('layer'), { size: 19, align: 'center', bg: PAL.panel });
     ray(ctx, P, XF1, XL, 0.5, false);
     field(ctx, P, XE1, 0, L, EC);
-    filter(ctx, P, XF1, 0, HF, 'the first filter');
+    filter(ctx, P, XF1, 0, HF, 'the first filter', F.ref('polarizer'));
     ray(ctx, P, XS - 100, XF1, 1, false);
     burst(ctx, P, XS, L, EC);
     if (!e3) { const q = P([XE3, 0, 0]); text(ctx, 'no light', q[0], q[1] - 30, PAL.muted, { size: 19, align: 'center', bg: PAL.panel }); }
 
     /* the pixel, or the patch of light the analyzer lets through */
     const g = Math.round(255 * c2);
-    ctx.save(); ctx.fillStyle = `rgb(${g}, ${g}, ${g})`; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
+    ctx.save(); ctx.fillStyle = F.shown.facts ? F.fact(`rgb(${g}, ${g}, ${g})`) : alpha(PAL.ink, c2); ctx.strokeStyle = F.ref('pixel'); ctx.lineWidth = 2.5;
     ctx.fillRect(PX - PS / 2, PY - PS / 2, PS, PS); ctx.strokeRect(PX - PS / 2, PY - PS / 2, PS, PS); ctx.restore();
-    text(ctx, lcd ? 'the pixel' : 'the light after the analyzer', PX, PY - PS / 2 - 24, PAL.ink, { size: 19, align: 'center' });
+    text(ctx, lcd ? 'the pixel' : 'the light after the analyzer', PX, PY - PS / 2 - 24, F.ref('pixel'), { size: 19, align: 'center' });
     text(ctx, fmt(100 * c2, 1) + '% of I₀', PX, PY + PS / 2 + 28, IC, { size: 20, weight: 600, align: 'center' });
 
     topline(ctx, lcd
@@ -449,7 +459,7 @@ function ray(ctx, P, x1, x2, k, head) {
           : `The liquid crystal turns the polarization ${fmt(rho, 1)}°, and the horizontal analyzer passes ${fmt(100 * c2, 1)}% of the light.`)
       : `The sample turns the polarization ${fmt(rho, 1)}°, and the vertical analyzer passes ${fmt(100 * c2, 1)}% of the light.`);
     readout(d.readout,
-      `\\kIntens = \\kIopol\\cos^2\\theta = \\kIopol\\cos^2 ${fmt(th, 1)}^\\circ = ${fmt(c2, 3)}\\,\\kIopol`,
+      `\\kIntens = \\kIopol\\cos^2\\ktheta = \\kIopol\\cos^2 ${fmt(th, 1)}^\\circ = ${fmt(c2, 3)}\\,\\kIopol`,
       `Here θ is the angle between the turned polarization and the axis of the analyzer, ${lcd ? '90° less the rotation, since the analyzer is horizontal' : 'the rotation itself, since the analyzer is vertical'}.`);
   }
   register(d.fig, { update: () => {}, draw });

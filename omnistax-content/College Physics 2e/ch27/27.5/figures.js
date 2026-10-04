@@ -1,9 +1,10 @@
-/* Figures for section 27.5 Single Slit Diffraction. The page binds position
-   alone, for the wavelength and the slit width, as ch27/COLOR.md gives 27.5.
-   Angles, sin θ, the order m and the relative intensity are untyped and in ink.
-   Light is drawn in the colour of its wavelength by spectral(), the page's only
-   literal colours besides the black ground of the strip where the pattern is
-   seen. Both figures are states of their sliders and register no cycle. */
+/* Figures for section 27.5 Single Slit Diffraction. Position carries the
+   wavelength and the slit width, and angle every angle. sin θ, the order m and
+   the relative intensity are untyped and in ink. The slit of Figure 27.22 is
+   the section's referent. Light is drawn in the colour of its wavelength by
+   spectral(), and the strip where the pattern is seen is black, both facts
+   through F.fact. Both figures are states of their sliders and register no
+   cycle. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, text, topline, label, angleArc, axes, pinned, curve } = F;
@@ -26,7 +27,7 @@ function spectralRGB(lam) {
   const c = (x) => Math.round(255 * Math.pow(clamp(x * f, 0, 1), 0.8));
   return [c(r), c(g), c(b)];
 }
-const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return `rgba(${r}, ${g}, ${b}, ${a})`; };
+const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return F.fact(`rgba(${r}, ${g}, ${b}, ${a})`); };
 
 /* the relative intensity of a single slit of width D toward sin θ = s */
 function singleSlit(s, D, lam) {
@@ -76,7 +77,7 @@ function tallCurve(ctx, box, f, t0, t1, X, Y, color) {
       });
     }
 
-    ctx.save(); ctx.fillStyle = '#000'; ctx.fillRect(box.l, SY0, box.r - box.l, SY1 - SY0); ctx.restore();
+    ctx.save(); ctx.fillStyle = F.shown.facts ? F.fact('#000') : PAL.soft; ctx.fillRect(box.l, SY0, box.r - box.l, SY1 - SY0); ctx.restore();
     for (let x = box.l; x < box.r; x += 1.5) {
       const s = -1 + (2 * (x - box.l)) / (box.r - box.l), I = f(s);
       if (I > 0.002) { ctx.save(); ctx.fillStyle = spectral(L, Math.min(1, 1.6 * Math.pow(I, 0.4))); ctx.fillRect(x, SY0 + 8, 1.8, SY1 - SY0 - 16); ctx.restore(); }
@@ -85,8 +86,8 @@ function tallCurve(ctx, box, f, t0, t1, X, Y, color) {
 
     const th1 = s1 <= 1 ? Math.asin(s1) / RAD : null;
     readout(d.readout, th1 !== null
-      ? `\\kDslit\\sin\\theta_1 = \\klam:\\quad \\sin\\theta_1 = \\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\mu\\text{m}} = ${fmt(s1, 3)},\\quad \\theta_1 = ${fmt(th1, 1)}^\\circ`
-      : `\\kDslit\\sin\\theta_1 = \\klam \\ \\text{asks}\\ \\sin\\theta_1 = \\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\mu\\text{m}} = ${fmt(s1, 3)} > 1`,
+      ? `\\kDslit\\sin\\ktheta_1 = \\klam:\\quad \\sin\\ktheta_1 = \\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\mu\\text{m}} = ${fmt(s1, 3)},\\quad \\ktheta_1 = ${fmt(th1, 1)}^\\circ`
+      : `\\kDslit\\sin\\ktheta_1 = \\klam \\ \\text{asks}\\ \\sin\\ktheta_1 = \\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\mu\\text{m}} = ${fmt(s1, 3)} > 1`,
       th1 !== null ? `The central maximum spreads ${fmt(th1, 1)}° on either side of the beam, ${fmt(2 * th1, 1)}° in all.` : 'No angle has a sine greater than 1, so the slit, narrower than the wavelength, makes no minimum.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -107,7 +108,7 @@ function tallCurve(ctx, box, f, t0, t1, X, Y, color) {
     ...Array.from({ length: 14 }, (_, k) => ({ at: () => { const s = ((k + 1) * lam.v / 1000) / wS.v; return s <= Math.sin(TMAX * RAD) ? Math.asin(s) / RAD : null; } })),
     { at: () => { const s = (1.5 * lam.v / 1000) / wS.v; return s <= Math.sin(TMAX * RAD) ? Math.asin(s) / RAD : null; } },
   ];
-  const th = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: TMAX, step: 0.1, value: 45, unit: '°', dec: 1, aria: 'the angle of the rays from the original direction of the light', specials });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: TMAX, step: 0.1, value: 45, unit: '°', dec: 1, aria: 'the angle of the rays from the original direction of the light', specials });
   lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 380, max: 750, step: 1, value: 550, unit: 'nm', dec: 0, aria: 'the wavelength of the light', detents: LAM_DETENTS });
   wS = ctl(d.controls, { label: '\\kDslit', cls: 'position', min: 1, max: 5, step: 0.01, value: 1.56, unit: 'μm', dec: 2, aria: 'the width of the slit' });
   const XB = 220, YC = 480, HS = 220, LEN = 250, NR = 7;
@@ -128,7 +129,7 @@ function tallCurve(ctx, box, f, t0, t1, X, Y, color) {
           : `Toward θ = ${fmt(th.v, 1)}° the ray from the bottom of the slit travels ${fmt(n, 2)} wavelengths farther than the ray from the top.`);
 
     const top = YC - HS / 2, bot = YC + HS / 2, ux = Math.cos(t), uy = -Math.sin(t);
-    ctx.save(); ctx.fillStyle = PAL.ink;
+    ctx.save(); ctx.fillStyle = F.ref('slit');
     ctx.fillRect(XB - 8, 110, 16, top - 110); ctx.fillRect(XB - 8, bot, 16, 620 - bot); ctx.restore();
     for (let i = 0; i < 4; i++) { const y = top + (HS * (i + 0.5)) / 4; line(ctx, 70, y, XB - 14, y, col, 3); }
     line(ctx, XB, YC, XB + 480, YC, alpha(PAL.ink, 0.35), 2, [4, 8]);
@@ -150,11 +151,11 @@ function tallCurve(ctx, box, f, t0, t1, X, Y, color) {
       label(ctx, 'D sin θ', (XB + Fp.x) / 2, (bot + Fp.y) / 2, { side: 'right', size: 22, color: PC, gap: 20 });
     }
     F.vbracket(ctx, XB - 34, top, bot, PC, 'D', -1, { size: 22 });
-    if (t > 0.03) angleArc(ctx, { x: XB, y: bot }, Math.max(110, extra + 70), 0, t, 'θ');
+    if (t > 0.03) angleArc(ctx, { x: XB, y: bot }, Math.max(110, extra + 70), 0, t, 'θ', undefined, C('angle'));
     label(ctx, 'toward a distant screen', XB + ux * LEN, top + uy * LEN, { side: 'right', size: 17, color: PAL.muted, gap: 16 });
 
     const f = (deg) => singleSlit(Math.sin(deg * RAD), D, lm);
-    const { X, Y } = axes(ctx, box, [0, TMAX], [0, 1], { nx: 6, ny: 2, fx: (v) => `${fmt(v, 0)}°`, fy: (v) => fmt(v, 1), xl: 'θ', yl: 'relative intensity' });
+    const { X, Y } = axes(ctx, box, [0, TMAX], [0, 1], { nx: 6, ny: 2, fx: (v) => `${fmt(v, 0)}°`, fy: (v) => fmt(v, 1), xl: 'θ', xc: C('angle'), yl: 'relative intensity' });
     tallCurve(ctx, box, f, 0, TMAX, X, Y, alpha(col, 0.8));
     curve(ctx, f, 0, TMAX, X, Y, col, 5, 400);
     line(ctx, X(th.v), box.b, X(th.v), Y(f(th.v)), alpha(PAL.ink, 0.4), 2, [4, 8]);
@@ -162,7 +163,7 @@ function tallCurve(ctx, box, f, t0, t1, X, Y, color) {
     const s15 = (1.5 * lm) / D;
     if (s15 < Math.sin(55 * RAD)) { const a = Math.asin(s15) / RAD; label(ctx, '× 6', X(a), Y(Math.min(0.92, 6 * f(a))), { side: 'above', size: 20, color: PAL.ink, gap: 14 }); }
 
-    readout(d.readout, `\\kDslit\\sin\\theta = (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(dl * 1000, 0)}\\ \\text{nm} = ${fmt(n, 2)}\\,\\klam`,
+    readout(d.readout, `\\kDslit\\sin\\ktheta = (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(dl * 1000, 0)}\\ \\text{nm} = ${fmt(n, 2)}\\,\\klam`,
       dark ? `A minimum of order m = ${Math.round(n)}.` : undefined);
   }
   register(d.fig, { update: () => {}, draw });

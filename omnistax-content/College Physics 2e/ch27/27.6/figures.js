@@ -1,10 +1,12 @@
-/* Figures for section 27.6 Limits of Resolution: The Rayleigh Criterion. The
-   page binds position alone, for the wavelength, the aperture, the distances d
-   and x, as ch27/COLOR.md gives 27.6. Angles, the numerical aperture, the index
-   and the relative intensity are untyped and in ink. Light is drawn in the
-   colour of its wavelength by spectral(), the page's only literal colours
-   besides the black ground of the panel where an image is seen. Every figure
-   is a state of its controls and registers no cycle. */
+/* Figures for section 27.6 Limits of Resolution: The Rayleigh Criterion.
+   Position carries the wavelength, the aperture and the distances d and x, and
+   angle every angle. The numerical aperture, the index and the relative
+   intensity are untyped and in ink. The two objects, the antenna, the
+   objective, the specimen, point P, the two point objects, the lens and the
+   focal spot are the section's referents. Light is drawn in the colour of its
+   wavelength by spectral(), and the panel where an image is seen is black,
+   both facts through F.fact. Every figure is a state of its controls and
+   registers no cycle. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, dot, text, topline, label, angleArc, axes, curve, hbracket, vbracket, hover } = F;
@@ -26,7 +28,13 @@ function spectralRGB(lam) {
   const c = (x) => Math.round(255 * Math.pow(clamp(x * f, 0, 1), 0.8));
   return [c(r), c(g), c(b)];
 }
-const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return `rgba(${r}, ${g}, ${b}, ${a})`; };
+const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return F.fact(`rgba(${r}, ${g}, ${b}, ${a})`); };
+/* the components of a wavelength's colour as the Facts switch leaves it, read back through a canvas */
+const probe = document.createElement('canvas').getContext('2d');
+function factRGB(lam) {
+  probe.clearRect(0, 0, 1, 1); probe.fillStyle = F.fact(`rgb(${spectralRGB(lam).join(', ')})`); probe.fillRect(0, 0, 1, 1);
+  const p = probe.getImageData(0, 0, 1, 1).data; return [p[0], p[1], p[2]];
+}
 const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 550, label: '550' }, { v: 633, label: '633' }];
 
 /* the relative intensity of a circular aperture's pattern, (2 J1(u) / u)², tabulated to u = 60 */
@@ -54,7 +62,7 @@ const AIRY = (() => {
   const d = sim('sim-rayleigh', 600);
   let lam = { v: 550 }, Dap = { v: 3 };
   const lim = () => (1.22 * lam.v) / Dap.v;
-  const sep = ctl(d.controls, { label: '\\theta', cls: '', min: 0, max: 800, step: 1, value: 300, unit: 'μrad', dec: 0, aria: 'the angle between the two sources', specials: [{ at: () => { const v = lim(); return v <= 800 ? v : null; }, label: 'Rayleigh' }] });
+  const sep = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 800, step: 1, value: 300, unit: 'μrad', dec: 0, aria: 'the angle between the two sources', specials: [{ at: () => { const v = lim(); return v <= 800 ? v : null; }, label: 'Rayleigh' }] });
   lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 380, max: 750, step: 1, value: 550, unit: 'nm', dec: 0, aria: 'the wavelength of the light', detents: LAM_DETENTS });
   Dap = ctl(d.controls, { label: '\\kDap', cls: 'position', min: 1.5, max: 8, step: 0.01, value: 3, unit: 'mm', dec: 2, aria: 'the diameter of the aperture' });
   const P = { l: 60, t: 130, s: 400 }, TM = 800;
@@ -73,8 +81,8 @@ const AIRY = (() => {
         ? `Two sources ${fmt(th, 0)} μrad apart through an aperture ${fmt(D, 2)} mm wide are resolved, since the limit for ${fmt(L, 0)}-nm light is ${fmt(R, 0)} μrad.`
         : `Two sources ${fmt(th, 0)} μrad apart through an aperture ${fmt(D, 2)} mm wide blur together, since the limit for ${fmt(L, 0)}-nm light is ${fmt(R, 0)} μrad.`);
 
-    ctx.save(); ctx.fillStyle = '#000'; ctx.fillRect(P.l, P.t, P.s, P.s); ctx.restore();
-    const cell = 5, n = P.s / cell, [r, g, b] = spectralRGB(L);
+    ctx.save(); ctx.fillStyle = F.shown.facts ? F.fact('#000') : PAL.soft; ctx.fillRect(P.l, P.t, P.s, P.s); ctx.restore();
+    const cell = 5, n = P.s / cell, [r, g, b] = factRGB(L);
     for (let i = 0; i < n; i++) {
       const tx = -TM + ((i + 0.5) / n) * 2 * TM;
       for (let j = 0; j < n; j++) {
@@ -90,7 +98,7 @@ const AIRY = (() => {
     const px = (t) => P.l + ((t + TM) / (2 * TM)) * P.s;
     hits = [{ x: px(-th / 2), y: P.t + P.s / 2, r: 24, name: 'the image of object 1' }, { x: px(th / 2), y: P.t + P.s / 2, r: 24, name: 'the image of object 2' }];
 
-    const { X, Y } = axes(ctx, box, [-TM, TM], [0, 2], { nx: 4, ny: 2, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1), xl: 'θ (μrad)', yl: 'relative intensity' });
+    const { X, Y } = axes(ctx, box, [-TM, TM], [0, 2], { nx: 4, ny: 2, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1), xl: 'θ (μrad)', xc: C('angle'), yl: 'relative intensity' });
     ctx.save(); ctx.setLineDash([10, 8]);
     curve(ctx, I1, -TM, TM, X, Y, alpha(col, 0.85), 3, 600);
     curve(ctx, I2, -TM, TM, X, Y, alpha(col, 0.85), 3, 600);
@@ -98,12 +106,12 @@ const AIRY = (() => {
     curve(ctx, (t) => I1(t) + I2(t), -TM, TM, X, Y, col, 5, 800);
     [-1, 1].forEach((sg) => line(ctx, X(sg * th / 2), box.b, X(sg * th / 2), Y(1), alpha(PAL.ink, 0.4), 2, [4, 8]));
     if (X(th / 2) - X(-th / 2) > 60) {
-      label(ctx, 'object 1', X(-th / 2), Y(1), { side: 'left', size: 20, color: PAL.ink, gap: 14 });
-      label(ctx, 'object 2', X(th / 2), Y(1), { side: 'right', size: 20, color: PAL.ink, gap: 14 });
-      hbracket(ctx, X(-th / 2), X(th / 2), Y(1.35), PAL.ink, 'θ');
+      label(ctx, 'object 1', X(-th / 2), Y(1), { side: 'left', size: 20, color: F.ref('object-1'), gap: 14 });
+      label(ctx, 'object 2', X(th / 2), Y(1), { side: 'right', size: 20, color: F.ref('object-2'), gap: 14 });
+      hbracket(ctx, X(-th / 2), X(th / 2), Y(1.35), C('angle'), 'θ');
     } else label(ctx, 'objects 1 and 2', X(0), Y(Math.max(1, I1(0) + I2(0))), { side: 'above', size: 20, color: PAL.ink, gap: 14 });
 
-    readout(d.readout, `\\theta_{\\text{min}} = 1.22\\frac{\\klam}{\\kDap} = 1.22\\,\\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\text{mm}} = ${fmt(R, 0)}\\ \\mu\\text{rad}`,
+    readout(d.readout, `\\ktheta_{\\text{min}} = 1.22\\frac{\\klam}{\\kDap} = 1.22\\,\\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\text{mm}} = ${fmt(R, 0)}\\ \\mu\\text{rad}`,
       th === 0 ? 'The two sources lie in one direction and make a single image.' : just ? 'The two sources sit exactly at the Rayleigh criterion.' : ok ? `The sources are ${fmt(th / R, 2)} times the smallest resolvable angle apart.` : `The sources are only ${fmt(th / R, 2)} times the smallest resolvable angle apart.`);
   }
   hover(d.stage, () => hits);
@@ -137,15 +145,17 @@ const AIRY = (() => {
     line(ctx, X0, CY + h, x1, CY + h, alpha(PAL.ink, 0.4), 2, [4, 8]);
 
     const dh = Math.max(h + 30, 60);
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath();
+    const AN = F.ref('antenna');
+    ctx.save(); ctx.strokeStyle = AN; ctx.lineWidth = 5; ctx.beginPath();
     for (let i = 0; i <= 40; i++) { const y = -dh + (2 * dh * i) / 40, x = X0 - 40 * (1 - Math.pow(y / dh, 2)); i ? ctx.lineTo(x, y + CY) : ctx.moveTo(x, y + CY); }
     ctx.stroke(); ctx.restore();
-    line(ctx, X0 - 40, CY, X0 - 40, 540, PAL.ink, 4);
-    line(ctx, X0 - 100, 540, X0 + 20, 540, PAL.ink, 4);
+    line(ctx, X0 - 40, CY, X0 - 40, 540, AN, 4);
+    line(ctx, X0 - 100, 540, X0 + 20, 540, AN, 4);
+    text(ctx, 'antenna', X0 + 34, 540, AN, { size: 17, align: 'left' });
 
     vbracket(ctx, X0 - 70, CY - h, CY + h, PC, 'D', -1, { size: 22 });
-    angleArc(ctx, { x: X0, y: CY - h }, 560, 0, a, 'θ');
-    readout(d.readout, `\\theta = 1.22\\frac{\\klam}{\\kDap} = 1.22\\,\\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\text{mm}} = ${fmt(th, 0)}\\ \\mu\\text{rad}`,
+    angleArc(ctx, { x: X0, y: CY - h }, 560, 0, a, 'θ', undefined, C('angle'));
+    readout(d.readout, `\\ktheta = 1.22\\frac{\\klam}{\\kDap} = 1.22\\,\\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\text{mm}} = ${fmt(th, 0)}\\ \\mu\\text{rad}`,
       'The spreading is drawn 100 times larger than it is; a wider beam spreads less.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -172,26 +182,27 @@ const AIRY = (() => {
     topline(ctx, `An objective ${fmt(D, 1)} mm across held ${fmt(dd, 1)} mm above the specimen can separate points ${fmt(x, 2)} μm apart.`);
 
     const SY = LY + dd * PX, hw = (D * PX) / 2;
-    line(ctx, CX - 260, SY, CX + 260, SY, PAL.ink, 3);
+    const OB = F.ref('objective'), SP = F.ref('specimen'), PP = F.ref('point-p');
+    line(ctx, CX - 260, SY, CX + 260, SY, SP, 3);
     ctx.save(); ctx.fillStyle = spectral(L, 0.2); ctx.beginPath(); ctx.moveTo(CX, SY); ctx.lineTo(CX - hw, LY); ctx.lineTo(CX + hw, LY); ctx.closePath(); ctx.fill(); ctx.restore();
     line(ctx, CX, SY, CX - hw, LY, col, 4);
     line(ctx, CX, SY, CX + hw, LY, col, 4);
     line(ctx, CX, SY, CX, LY, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = alpha(OB, 0.12); ctx.strokeStyle = OB; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.ellipse(CX, LY, hw, 14, 0, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
-    dot(ctx, CX, SY, PAL.ink, true, 7);
-    label(ctx, 'P', CX, SY, { side: 'below', size: 22, color: PAL.ink, gap: 12 });
-    text(ctx, 'microscope objective', CX + hw + 20, LY - 30, PAL.muted, { size: 17 });
+    dot(ctx, CX, SY, PP, true, 7);
+    label(ctx, 'P', CX, SY, { side: 'below', size: 22, color: PP, gap: 12 });
+    text(ctx, 'microscope objective', CX + hw + 20, LY - 30, OB, { size: 17 });
     hbracket(ctx, CX - hw, CX + hw, LY - 40, PC, 'D');
     vbracket(ctx, CX + 290, LY, SY, PC, 'd', 1, { size: 22 });
     const ea = Math.atan2(SY - LY, hw);
-    angleArc(ctx, { x: CX, y: SY }, Math.min(90, (SY - LY) * 0.55), ea, Math.PI / 2, 'α');
+    angleArc(ctx, { x: CX, y: SY }, Math.min(90, (SY - LY) * 0.55), ea, Math.PI / 2, 'α', undefined, C('angle'));
 
     line(ctx, CX + 12, SY, IN.l, IN.b, alpha(PAL.ink, 0.3), 2, [4, 8]);
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.strokeRect(IN.l, IN.t, IN.r - IN.l, IN.b - IN.t); ctx.restore();
-    text(ctx, 'the specimen near P, magnified', (IN.l + IN.r) / 2, IN.t - 18, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the specimen near P, magnified', (IN.l + IN.r) / 2, IN.t - 18, SP, { size: 17, align: 'center' });
     const mx = (IN.l + IN.r) / 2, my = (IN.t + IN.b) / 2 + 20, half = (x * PXUM) / 2;
-    dot(ctx, mx - half, my, PAL.ink, true, 7); dot(ctx, mx + half, my, PAL.ink, true, 7);
+    dot(ctx, mx - half, my, F.ref('point-objects'), true, 7); dot(ctx, mx + half, my, F.ref('point-objects'), true, 7);
     hbracket(ctx, mx - half, mx + half, my - 40, PC, `x = ${fmt(x, 2)} μm`);
     line(ctx, IN.l + 30, IN.b - 30, IN.l + 30 + PXUM, IN.b - 30, PAL.ink, 3);
     text(ctx, '1 μm', IN.l + 30 + PXUM / 2, IN.b - 50, PAL.muted, { size: 17, align: 'center' });
@@ -230,13 +241,13 @@ const AIRY = (() => {
       for (let i = 0; i <= 80; i++) { const xx = LX + ((x1 - LX) * i) / 80, z = xx - FX, y = CY + sg * Math.sqrt(w * w + (h * h - w * w) * (z / Lf) * (z / Lf)); i ? ctx.lineTo(xx, y) : ctx.moveTo(xx, y); }
       ctx.stroke(); ctx.restore();
     }
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
+    ctx.save(); ctx.fillStyle = alpha(F.ref('lens'), 0.12); ctx.strokeStyle = F.ref('lens'); ctx.lineWidth = 3;
     ctx.beginPath(); ctx.ellipse(LX, CY, 14, h + 24, 0, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
     line(ctx, 60, CY, 1360, CY, alpha(PAL.ink, 0.3), 2, [4, 8]);
     if (w > 0.5) { ctx.save(); ctx.fillStyle = spectral(LAM, 0.35 * mode.a('wave')); ctx.beginPath(); ctx.ellipse(FX, CY, Math.max(8, w), w, 0, 0, 2 * Math.PI); ctx.fill(); ctx.restore(); }
-    else dot(ctx, FX, CY, PAL.ink, true, 6);
-    label(ctx, wave ? 'focal region' : 'focal point', FX, CY + w, { side: 'below', size: 20, color: PAL.ink, gap: 40 });
-    angleArc(ctx, { x: FX, y: CY }, 130, Math.PI - al, Math.PI, 'α');
+    else dot(ctx, FX, CY, F.ref('focal-spot'), true, 6);
+    label(ctx, wave ? 'focal region' : 'focal point', FX, CY + w, { side: 'below', size: 20, color: F.ref('focal-spot'), gap: 40 });
+    angleArc(ctx, { x: FX, y: CY }, 130, Math.PI - al, Math.PI, 'α', undefined, C('angle'));
 
     readout(d.readout, `\\kx = 0.61\\frac{\\klam n}{\\text{NA}} = 0.61\\,\\frac{(${LAM}\\ \\text{nm})(1.00)}{${fmt(N, 2)}} = ${fmt(x / 1000, 2)}\\ \\mu\\text{m}`,
       wave ? 'A larger NA makes the spot smaller and brighter; the waist is drawn far wider than it is.' : 'Geometric optics ignores diffraction, so it predicts a spot of no size whatever the NA.');

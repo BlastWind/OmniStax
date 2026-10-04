@@ -1,9 +1,9 @@
 /* Figures for section 27.1 The Wave Aspect of Light: Interference. The page
    binds position for the two wavelengths, velocity for c and v, and frequency
-   for f, as ch27/COLOR.md gives 27.1. The index n is untyped and in ink. The
-   light is drawn in the color of its wavelength in vacuum by spectral(), the
-   one literal color on the page, on both sides of the boundary, since its
-   color follows its frequency. */
+   for f. The index n is untyped and in ink. The vacuum and the medium are the
+   section's referents. The light is drawn in the color of its wavelength in
+   vacuum by spectral(), a fact through F.fact, on both sides of the boundary,
+   since its color follows its frequency. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, dot, text, topline, hbracket, hover } = F;
@@ -21,7 +21,7 @@ function spectral(lam) {
   else r = 1;
   const f = lam < 420 ? 0.45 + (0.55 * (lam - 380)) / 40 : lam > 700 ? 0.45 + (0.55 * (760 - lam)) / 60 : 1;
   const c = (x) => Math.round(255 * Math.pow(x * f, 0.8));
-  return `rgb(${c(r)}, ${c(g)}, ${c(b)})`;
+  return F.fact(`rgb(${c(r)}, ${c(g)}, ${c(b)})`);
 }
 function colorName(lam) {
   return lam < 440 ? 'violet' : lam < 500 ? 'blue' : lam < 565 ? 'green' : lam < 595 ? 'yellow' : lam < 635 ? 'orange' : 'red';
@@ -67,11 +67,11 @@ function sci(x, dec) {
     const vs = sci(v, 2), fs = sci(f, 2);
     topline(ctx, `Light of ${fmt(L, 0)} nm enters a medium of index ${fmt(n, 3)}: it slows to ${vs.plain} m/s and its wavelength shrinks to ${fmt(Ln, 0)} nm, while its frequency and its color stay the same.`);
 
-    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.12); ctx.fillRect(XB, MED.t, XR - XB + 40, MED.b - MED.t); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(F.ref('medium'), 0.1); ctx.fillRect(XB, MED.t, XR - XB + 40, MED.b - MED.t); ctx.restore();
     line(ctx, XB, MED.t, XB, MED.b, PAL.rule, 2);
     line(ctx, XL, Y0, XR, Y0, alpha(PAL.ink, 0.3), 2, [4, 8]);
-    text(ctx, 'vacuum', (XL + XB) / 2, MED.b + 26, PAL.ink, { size: 20, align: 'center' });
-    text(ctx, `medium, n = ${fmt(n, 3)}`, (XB + XR) / 2, MED.b + 26, PAL.ink, { size: 20, align: 'center' });
+    text(ctx, 'vacuum', (XL + XB) / 2, MED.b + 26, F.ref('vacuum'), { size: 20, align: 'center' });
+    text(ctx, `medium, n = ${fmt(n, 3)}`, (XB + XR) / 2, MED.b + 26, F.ref('medium'), { size: 20, align: 'center' });
 
     ctx.save(); ctx.strokeStyle = light; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.beginPath();
     for (let x = XL; x <= XR; x += 2) {
