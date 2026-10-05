@@ -73,49 +73,7 @@ mark each of them as used where the text uses it.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `sim-collision` · replaces Figure 8.7 and folds Figure 8.8 and Figure
-   8.9 (rule 14: the book draws one one-dimensional scene three times, with
-   different masses, different velocities and a different outcome, because
-   print cannot move) · inelastic-collision, perfectly-inelastic-collision,
-   recoil-velocity, kinetic-energy-lost-in-collision,
-   energy-released-in-collision · **moves**: the two objects slide toward
-   each other along a strip, meet at the middle of the run, and leave with
-   the velocities conservation of momentum gives them; the idea has a time
-   in it, the run is finite, so it loops in about five seconds and gets the
-   scrubber · a choice of the three book figures, 8.7, 8.8 and 8.9, which is
-   the control the reader reaches for first: choosing one sets the five
-   sliders to that figure's state and fixes both graph ranges and both arrow
-   scales from it, so that no range follows a slider afterward. Then $m_1$
-   (0.05 to 5.00 kg, default 0.150, ink), $m_2$ (0.05 to
-   80.0 kg, default 70.0, ink), $\kvone$ (−40 to 40 m/s, default 35.0,
-   velocity), $\kvtwo$ (−40 to 40 m/s, default 0, velocity), $c$ (0 to
-   3.50, default 0, ink, with detents at 0, 1 and the 3.08 of Figure 8.9),
-   the ratio of the speed the two separate at to the
-   speed they approached at, which is the coefficient of restitution the
-   section's own Take-Home Experiment defines: at $c = 0$ they stick
-   together and the collision is perfectly inelastic, at $c = 1$ no
-   internal kinetic energy is lost, and above 1 a spring has given the pair
-   more than it brought · "They leave at 0.0748 m/s and 0.0748 m/s, and the
-   internal kinetic energy has fallen by 91.7 J." · graph below, two panels
-   sharing the time axis, both with the time axis in the time hue: the two
-   momenta and their total against time, where $\kpone$ and $\kptwo$ step
-   in opposite directions at the collision and $\kptot$ runs flat through
-   it, and the internal kinetic energy against time, which steps down (or,
-   above $c = 1$, up); the momentum range is −3 to 3 kg·m/s for Figure 8.7,
-   −5 to 15 for Figure 8.8 and −2 to 2 for Figure 8.9, and the energy range
-   is 5 J, 120 J and 8 J for the same three · no. Five sliders and a choice
-   rather than the usual four sliders, because the figure carries three book
-   figures: Figure 8.8 is the goalie and the puck of Example 8.5 and is where
-   the figure opens; Figure 8.7 is two equal 1.00 kg masses at ±2.00 m/s with
-   $c = 0$, both coming to rest; and Figure 8.9 is $m_1 = 0.350$ kg,
-   $m_2 = 0.500$ kg, $\kvone = 2.00$ m/s, $\kvtwo = -0.500$ m/s and
-   $c = 3.08$, Example 8.6, which comes out at $-4.00$ m/s and $3.70$ m/s
-   with 5.46 J released.
-   Draws time as well, since both graphs carry the time hue on their axis.
-   Readout: $m_1\kvone + m_2\kvtwo = m_1\kvoneprime + m_2\kvtwoprime$ with
-   the live numbers on both sides; small line on $\kKEint$, $\kKEintprime$
-   and the difference. Draws velocity, momentum, energy.
-   Manim pass, 2026-09-28: the detents at $c = 0$ and $c = 1$ are dashed circles (perfectly inelastic, elastic; 3.08 stays a detent); at $c = 0$ the readout morphs by meaning into $m_1\kvone + m_2\kvtwo = (m_1 + m_2)\kvprime$, the two after terms bending together into the one of the stuck pair.
+1. `sim-collision` · Figure 8.7 + 8.8 + 8.9 (fold kept) · inelastic-collision, perfectly-inelastic-collision, conservation-of-momentum · variation by slider, flow by animation · moving, one pass with the scrubber · figure choice (8.7, 8.8, 8.9) that swaps the bodies: two equal blocks for 8.7; for 8.8 the goalie as F.silhouette (pose crouch, facing left) on ice with a puck sprite caught in the glove; for 8.9 two F.cart air-track carts with the spring drawn between them, compressed before and uncoiled after; m₁, m₂, v₁, v₂, c with specials at 0 and 1 and detent 3.08 · headline as now · graphs below as now (fixed per choice) · 2D · note cut to the energy change through the macros. No split.
 2. `sim-recoil` · Sim, replacing nothing in the book · recoil-velocity,
    perfectly-inelastic-collision · **still**: the recoil velocity answers
    its three sliders and has no time in it, so the figure redraws when a
