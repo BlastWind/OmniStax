@@ -166,8 +166,12 @@ headline · graph · 3D
    the length and the fluid on controls with the flow rate and the
    resistance following, so the reader sees the fourth power of the radius
    as a stream that fattens or dies while the other three sliders move it
-   only in proportion · **still**: the law relates steady quantities and the
-   figure answers its sliders (rule 14) · the fluid, a dropdown over the
+   only in proportion · arrows: kinematic (the book’s arrows are the flow
+   along the tube from $\kPrtwo$ to $\kProne$); the profile arrows of Figure
+   12.17 are velocity vectors, symbolic · **moving**: parcels of the fluid
+   ride the profile’s lanes, slowed 1000 times, on a 5 s loop with a 1.2 s
+   hold, and one column of them, marked at the entrance, stretches into the
+   parabola; the book’s flow arrow is deleted, the motion carries it · the fluid, a dropdown over the
    liquids of Table 12.1 near water, from water at 100 °C to milk, at their
    tabulated temperatures (rule 26.1, default water at 20 °C, which is the
    saline of Example 12.8; the oils are left out because at the needle’s
@@ -178,7 +182,7 @@ headline · graph · 3D
    needle 0.150 mm in radius and 2.50 cm long flows at 0.120 cm³/s." ·
    none: the tube in section with its profile arrows and the flow rate on a
    bar under it · 2D. Labels: the pressures at the two ends, $r$, $l$ and
-   the fluid on the tube, the flow arrow once. Readout:
+   the fluid on the tube, $\kQ$ once at the entrance; the parcels and the marked column have hover names. Readout:
    $\kQ = (\kPrtwo - \kProne)\pi r^4 / 8\keta l$ with the live numbers;
    small line giving $R = 8\keta l/\pi r^4$. The flow-rate bar sits on a
    fixed cap of 0.500 cm³/s and pins above it where the maximum radius at

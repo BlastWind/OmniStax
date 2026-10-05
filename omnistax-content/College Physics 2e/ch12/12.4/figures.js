@@ -1,9 +1,8 @@
 /* Figures for section 12.4 Viscosity and Laminar Flow; Poiseuille's Law. Boots against the section's text article.
-   Nothing here has a clock the reader must watch: laminar layers, a plate sheared
-   at a steady speed, a steady velocity profile, Poiseuille's law, a water main
-   and the circulation at rest are each a still picture that answers its
-   controls, registers no cycle and carries no transport, as the chapter's
-   config decides for everything before the onset of turbulence in 12.5. */
+   Laminar layers, a plate sheared at a steady speed, a steady velocity profile,
+   a water main and the circulation at rest are each a still picture that answers
+   its controls and carries no transport. Poiseuille's law moves: the book draws
+   the flow along its tube, so the fluid is carried through it on a clock. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, fixed, view, faded } = F;
@@ -281,20 +280,28 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
 
 /* =====================================================================
    FIGURE 12.18: Poiseuille's law on the intravenous needle of Example
-   12.8. Still: the law relates steady quantities and the figure answers
-   its sliders; the fourth power of the radius is what the stream shows.
+   12.8. Moving: the book's arrows are the flow along the tube, so parcels
+   of the fluid ride the profile's lanes, slowed 1000 times, and one column
+   of them, marked at the entrance, stretches into the profile's parabola;
+   the fourth power of the radius is a stream that races or dies.
 ===================================================================== */
 (function () {
-  const d = sim('sim-poiseuille', 610);
+  const d = sim('sim-poiseuille', 640);
   let fluid = 'water20';
-  select(d.controls, { label: '\\keta\\ \\text{(fluid)}', options: NEAR_WATER.map((f) => ({ value: f.id, label: f.name })), value: fluid, aria: 'the fluid in the tube', onInput: (v) => { fluid = v; } });
-  const dPs = ctl(d.controls, { label: '\\kPrtwo - \\kProne', cls: 'pressure', min: 0.5, max: 3, step: 0.01, value: 1.51, unit: '× 10⁴ N/m²', dec: 2, aria: 'the pressure difference between the ends of the tube' });
-  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.1, max: 0.2, step: 0.001, value: 0.15, unit: 'mm', dec: 3, aria: 'the radius of the tube', detents: [{ v: 0.15, label: 'the needle' }] });
-  const ls = ctl(d.controls, { label: '\\kl', cls: 'position', min: 1, max: 5, step: 0.01, value: 2.5, unit: 'cm', dec: 2, aria: 'the length of the tube' });
+  select(d.controls, { label: '\\keta\\ \\text{(fluid)}', options: NEAR_WATER.map((f) => ({ value: f.id, label: f.name })), value: fluid, aria: 'the fluid in the tube', onInput: (v) => { fluid = v; reset(); } });
+  const dPs = ctl(d.controls, { label: '\\kPrtwo - \\kProne', cls: 'pressure', min: 0.5, max: 3, step: 0.01, value: 1.51, unit: '× 10⁴ N/m²', dec: 2, aria: 'the pressure difference between the ends of the tube', onInput: reset });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.1, max: 0.2, step: 0.001, value: 0.15, unit: 'mm', dec: 3, aria: 'the radius of the tube', detents: [{ v: 0.15, label: 'the needle' }], onInput: reset });
+  const ls = ctl(d.controls, { label: '\\kl', cls: 'position', min: 1, max: 5, step: 0.01, value: 2.5, unit: 'cm', dec: 2, aria: 'the length of the tube', onInput: reset });
   /* the tube at 170 units to the centimeter of length and 700 to the millimeter of radius, fixed from the slider maxima
      (5.00 cm is 850 units, 0.200 mm is 140); the profile arrows at 40 units per m/s, cut at the tube's end when the
      speed outruns it; the flow-rate bar on a cap of 0.500 cm³/s */
-  const KL = 170, KR = 700, KV = 40, CY = 285, XC = 700, P1 = 1.066e3, QCAP = 0.5, BX = 420, BW = 680, BY = 548;
+  const KL = 170, KR = 700, KV = 40, CY = 285, XC = 700, P1 = 1.066e3, QCAP = 0.5, BX = 420, BW = 680, BY = 578;
+  /* the parcels on the center line and the profile's six lanes, about 60 units apart, moving at 1/1000 of the fluid's
+     speed (1 m/s is 17 000 units/s in the tube's scale, so 17 units/s on screen; the needle's center line crosses
+     about 70 % of the tube in the 5 s loop); a fast parcel is drawn as the streak it covers in 0.06 s, so a stream
+     too fast to follow reads as one, not as dots stepping backwards */
+  const SLOW = 1000, KS = (100 * KL) / SLOW, LANES = [0, 1, -1, 2, -2, 3, -3].map((k) => k / 3.7), T = 5, cy = F.cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
   const hits = [];
   function draw() {
     const { ctx } = begin(d.c); hits.length = 0;
@@ -306,15 +313,29 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     ctx.save(); ctx.fillStyle = alpha(ec, 0.12); ctx.fillRect(X1, CY - R, X2 - X1, 2 * R); ctx.restore();
     line(ctx, X1, CY - R, X2, CY - R, cTube, 4); line(ctx, X1, CY + R, X2, CY + R, cTube, 4);
     line(ctx, X1, CY - R - 20, X1, CY + R + 20, pc, 3); line(ctx, X2, CY - R - 20, X2, CY + R + 20, pc, 3, [8, 8]);
-    /* the velocity profile inside it, and the flow along it */
+    /* the fluid carried along it, beneath the velocity profile; the marked column leaves the entrance at t = 0 and is
+       not replaced, the rest of the stream runs round */
+    const len = X2 - X1, n = Math.max(3, Math.round(len / 60)), t = cy.now(), XM = X1 + 12, vmax = 2 * vb * KS;
+    const parcel = (x, y, tail, col, r) => { if (tail > 3) line(ctx, Math.max(X1, x - tail), y, x, y, col, 2 * r); else dot(ctx, x, y, col, true, r); };
+    for (const u of LANES) {
+      const vs = vmax * (1 - u * u), y = CY + u * R, tail = Math.min(0.8 * len / n, vs * 0.06);
+      for (let j = 0; j < n; j++) {
+        const x = X1 + ((((j + 0.5) / n + (vs * t) / len) % 1) + 1) % 1 * len, a = Math.max(0, Math.min(1, (x - X1) / 24, (X2 - x) / 24));
+        if (a > 0) parcel(x, y, tail, alpha(fc, 0.45 * a), 5);
+      }
+    }
+    ctx.save(); ctx.beginPath(); ctx.rect(X1, CY - R, len, 2 * R); ctx.clip(); ctx.strokeStyle = fc; ctx.lineWidth = 3; ctx.beginPath();
+    for (let i = 0; i <= 40; i++) { const u = -1 + i / 20, x = XM + vmax * (1 - u * u) * t; i ? ctx.lineTo(x, CY + u * R) : ctx.moveTo(x, CY + u * R); }
+    ctx.stroke(); ctx.restore();
+    for (const u of LANES) { const vs = vmax * (1 - u * u), x = XM + vs * t; if (x < X2 - 6) parcel(x, CY + u * R, Math.min(40, vs * 0.06), fc, 7); }
+    const nose = Math.min(X2 - 20, XM + vmax * t);
+    /* the velocity profile inside it */
     let cut = false;
     for (let k = -3; k <= 3; k++) {
       if (k === 0) continue;
       const u = k / 3.7, y = CY + u * R, v = 2 * vb * (1 - u * u), len = v * KV, L = Math.min(len, X2 - X1 - 130); if (len > L) cut = true;
       arrow(ctx, X1 + 40, y, X1 + 40 + L, y, vc, 3);
     }
-    const qlen = Math.min(X2 - X1 - 130, Math.max(0, (Qcc / QCAP) * 600));
-    if (qlen > 6) arrow(ctx, X1 + 40, CY, X1 + 40 + qlen, CY, fc, 6);
     text(ctx, 'Q', X1 + 32, CY, fc, { size: 24, weight: 600, align: 'right' });
     text(ctx, fl.name + ', η = ' + sf(fl.eta, 4) + ' mPa·s', XC, CY - R - 24, ec, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     /* the pressures at the two ends, the radius and the length */
@@ -324,8 +345,9 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     text(ctx, 'the vein', X2 + 16, CY + 68, PAL.muted, { size: 17 });
     vbracket(ctx, X2 + 30, CY - R, CY, lc, 'r = ' + fmt(rs.v, 3) + ' mm', 1);
     hbracket(ctx, X1, X2, CY + R + 70, lc, 'l = ' + fmt(ls.v, 2) + ' cm');
-    if (cut) text(ctx, 'the profile arrows are cut at the tube’s end', X2, CY + R + 110, PAL.muted, { size: 17, align: 'right' });
-    hits.push({ x: XC, y: CY, r: R, name: 'the stream: Q = ' + sf(Qcc) + ' cm³/s, v̄ = ' + sf(vb) + ' m/s' });
+    text(ctx, 'the fluid drawn 1000 times slower than it flows' + (cut ? '; the profile arrows cut at the tube’s end' : ''), XC, CY + R + 110, PAL.muted, { size: 17, align: 'center' });
+    hits.push({ x: nose, y: CY, r: Math.max(16, R * 0.4), name: 'a column of the fluid marked at the entrance, its center ahead and its edges held at the wall' },
+      { x: XC, y: CY, r: R, name: 'parcels of the fluid, slowed 1000 times: Q = ' + sf(Qcc) + ' cm³/s, v̄ = ' + sf(vb) + ' m/s' });
     /* the flow rate on a fixed cap, and the resistance in words */
     bar(ctx, BX, BY, BW, Qcc / QCAP, fc, 'Q', sf(Qcc) + ' cm³/s');
     text(ctx, 'the bar is drawn on a cap of 0.500 cm³/s; the tube begins as the needle of Example 12.8', BX + BW, BY + 36, PAL.muted, { size: 17, align: 'right' });
@@ -334,7 +356,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
       `The resistance is $R = 8\\keta\\kl/\\pi\\krad^4 = ${sci(Rres).tex}\\ \\text{N·s/m}^5$, and the flow is the pressure difference divided by it.`);
   }
   hover(d.stage, () => hits);
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================
