@@ -1,0 +1,1006 @@
+{
+ "id": "30.5",
+ "module": "m42602",
+ "chapter": "30",
+ "title": "Applications of Atomic Excitations and De-Excitations",
+ "short": "Lasers and fluorescence",
+ "lead": "The <span data-concept=\"energy\">energy</span> levels of atoms decide which light a material absorbs and which it gives off. They lie behind the colors of things, the glow of fluorescent and phosphorescent materials, and the laser, which is put to work in surgery, in reading CDs and in recording holograms.",
+ "objectives": [
+  "Define and discuss fluorescence.",
+  "Define metastable.",
+  "Describe how laser emission is produced.",
+  "Explain population inversion.",
+  "Define and discuss holography."
+ ],
+ "summary_html": "<ul><li>An important atomic process is fluorescence, defined to be any process in which an atom or molecule is excited by absorbing a photon of a given <span data-concept=\"energy\">energy</span> and de-excited by emitting a photon of a lower <span data-concept=\"energy\">energy</span>.</li><li>Some states live much longer than others and are termed metastable.</li><li>Phosphorescence is the de-excitation of a metastable state.</li><li>Lasers produce coherent single-wavelength EM radiation by stimulated emission, in which a metastable state is stimulated to decay.</li><li>Lasing requires a population inversion, in which a majority of the atoms or molecules are in their metastable state.</li></ul>",
+ "notes": "The paragraph beginning “This atom is excited to one of its higher levels” reads as the caption of a figure the module no longer prints and is kept as printed, in place; two unkeyed problems are left out (the wavelength that would pump a helium-neon laser, and the photons that pump chromium in a ruby to its second and third excited states), the correspondence-principle question reprinted from 30.2 is set once, in 30.3, and the two conceptual questions on discrete spectra are set in 30.3.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-05",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Of the module’s five problems, three are keyed and set here with the level diagrams they read on their cards; the two unkeyed ones (the wavelength that would pump a helium-neon laser, and the photons that pump chromium in a ruby) are left out and named in the section’s notes. Two keyed Integrated Concepts problems printed in 30.9, the carbon dioxide surgical laser and the excimer laser for vision correction, are set here, where lasers are introduced, and 30.9’s notes say so. Of the seven conceptual questions, the correspondence-principle question is a reprint of one kept in 30.3 and is left out here, and the two on discrete spectra and on absorption by hydrogen are moved to 30.3, which introduces them; the four kept carry AI-marked suggested approaches. Three of the six AP items are keyed and set as graded choices; the other three have their solutions commented out of the source, so the book prints none, and they are open items with AI-marked suggested approaches. The module prints no Check Your Understanding box, so nothing is set inline. Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "photo-laser-beams",
+   "kind": "photo",
+   "number": "30.28",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-scorpion",
+   "kind": "photo",
+   "number": "30.29",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-fluorescence",
+   "kind": "sim",
+   "widths": [],
+   "draws": [
+    "energy",
+    "position"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-fluorescein",
+   "kind": "photo",
+   "number": "30.30",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-dye-in-water",
+   "kind": "photo",
+   "number": "30.31",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-chicken-cells",
+   "kind": "photo",
+   "number": "30.32",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-ceramic-lion",
+   "kind": "photo",
+   "number": "30.33",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-laser",
+   "kind": "sim",
+   "number": "30.34",
+   "folds": [
+    "30.35",
+    "30.36"
+   ],
+   "originals": [
+    "/media/ch30/Figure_31_05_06.jpg",
+    "/media/ch30/Figure_31_05_07.jpg",
+    "/media/ch30/Figure_31_05_08.jpg"
+   ],
+   "original_caption": "(Figure 30.34) (a) Energy-level diagram for an atom showing the first few states, one of which is metastable. (b) Massive energy input excites atoms to a variety of states. (c) Most states decay quickly, leaving electrons only in the metastable and ground state. If a majority of electrons are in the metastable state, a population inversion has been achieved. (Figure 30.35) One atom in the metastable state spontaneously decays to a lower level, producing a photon that goes on to stimulate another atom to de-excite. The second photon has exactly the same energy and wavelength as the first and is in phase with it. Both go on to stimulate the emission of other photons. A population inversion is necessary for there to be a net production rather than a net absorption of the photons. (Figure 30.36) Typical laser construction has a method of pumping energy into the lasing material to produce a population inversion. (a) Spontaneous emission begins with some photons escaping and others stimulating further emissions. (b) and (c) Mirrors are used to enhance the probability of stimulated emission by passing photons through the material several times.",
+   "widths": [
+    350,
+    500,
+    250
+   ],
+   "draws": [
+    "energy"
+   ],
+   "conventions": [
+    "e-"
+   ],
+   "facts": [
+    "#ff4200"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-he-ne",
+   "kind": "sim",
+   "number": "30.37",
+   "originals": [
+    "/media/ch30/Figure_31_05_09.jpg"
+   ],
+   "original_caption": "Energy levels in helium and neon. In the common helium-neon laser, an electrical discharge pumps energy into the metastable states of both atoms. The gas mixture has about ten times more helium atoms than neon atoms. Excited helium atoms easily de-excite by transferring energy to neon in a collision. A population inversion in neon is achieved, allowing lasing by the neon to occur.",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "energy",
+    "position"
+   ],
+   "conventions": [
+    "e-",
+    "He",
+    "Ne"
+   ],
+   "facts": [
+    "#ff4200"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-retina",
+   "kind": "photo",
+   "number": "30.38",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-livermore",
+   "kind": "photo",
+   "number": "30.39",
+   "widths": [
+    225
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-cd",
+   "kind": "sim",
+   "number": "30.40",
+   "originals": [
+    "/media/ch30/Figure_31_05_12.jpg"
+   ],
+   "original_caption": "A CD has digital information stored in the form of laser-created pits on its surface. These in turn can be read by detecting the laser light scattered from the pit. Large information capacity is possible because of the precision of the laser. Shorter-wavelength lasers enable greater storage capacity.",
+   "widths": [
+    185
+   ],
+   "draws": [
+    "position"
+   ],
+   "facts": [
+    "#ff0000",
+    "#8700d0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-hologram-card",
+   "kind": "photo",
+   "number": "30.41",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-hologram",
+   "kind": "sim",
+   "number": "30.42",
+   "folds": [
+    "30.43"
+   ],
+   "originals": [
+    "/media/ch30/Figure_31_05_14.jpg",
+    "/media/ch30/Figure_31_05_15.jpg"
+   ],
+   "original_caption": "(Figure 30.42) Production of a hologram. Single-wavelength coherent light from a laser produces a well-defined interference pattern on a piece of film. The laser beam is split by a partially silvered mirror, with part of the light illuminating the object and the remainder shining directly on the film. (Figure 30.43) A transmission hologram is one that produces real and virtual images when a laser of the same type as that which exposed the hologram is passed through it. Diffraction from various parts of the film produces the same interference pattern as the object that was used to expose it.",
+   "widths": [
+    225,
+    250
+   ],
+   "draws": [
+    "angle"
+   ],
+   "facts": [
+    "#ff4200"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "color-and-energy-levels",
+   "concept": "color-from-energy-levels",
+   "verb": "introduces"
+  },
+  {
+   "span": "color-and-energy-levels",
+   "concept": "photon-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "atomic-excitation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "atomic-de-excitation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "fluorescence",
+   "verb": "introduces"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "photon-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "energy-level-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "bohr-transition-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "fluorescence",
+   "concept": "color-from-energy-levels",
+   "verb": "uses"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "metastable-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "phosphorescence",
+   "verb": "introduces"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "metastable-state-and-phosphorescence",
+   "verb": "introduces"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "atomic-excitation",
+   "verb": "uses"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "atomic-de-excitation",
+   "verb": "uses"
+  },
+  {
+   "span": "phosphorescence",
+   "concept": "fluorescence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lasers",
+   "concept": "population-inversion",
+   "verb": "introduces"
+  },
+  {
+   "span": "lasers",
+   "concept": "stimulated-emission",
+   "verb": "introduces"
+  },
+  {
+   "span": "lasers",
+   "concept": "laser",
+   "verb": "introduces"
+  },
+  {
+   "span": "lasers",
+   "concept": "metastable-state",
+   "verb": "uses"
+  },
+  {
+   "span": "lasers",
+   "concept": "metastable-state-and-phosphorescence",
+   "verb": "uses"
+  },
+  {
+   "span": "lasers",
+   "concept": "atomic-de-excitation",
+   "verb": "uses"
+  },
+  {
+   "span": "lasers",
+   "concept": "energy-level-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "lasers",
+   "concept": "coherent",
+   "verb": "uses"
+  },
+  {
+   "span": "helium-neon-laser",
+   "concept": "wavelength-from-a-level-spacing",
+   "verb": "introduces"
+  },
+  {
+   "span": "helium-neon-laser",
+   "concept": "metastable-state",
+   "verb": "uses"
+  },
+  {
+   "span": "helium-neon-laser",
+   "concept": "population-inversion",
+   "verb": "uses"
+  },
+  {
+   "span": "helium-neon-laser",
+   "concept": "laser",
+   "verb": "uses"
+  },
+  {
+   "span": "laser-applications",
+   "concept": "laser",
+   "verb": "uses"
+  },
+  {
+   "span": "laser-applications",
+   "concept": "color-from-energy-levels",
+   "verb": "reinforces"
+  },
+  {
+   "span": "holography",
+   "concept": "hologram",
+   "verb": "introduces"
+  },
+  {
+   "span": "holography",
+   "concept": "holography",
+   "verb": "introduces"
+  },
+  {
+   "span": "holography",
+   "concept": "laser",
+   "verb": "uses"
+  },
+  {
+   "span": "holography",
+   "concept": "constructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "holography",
+   "concept": "destructive-interference",
+   "verb": "uses"
+  },
+  {
+   "span": "holography",
+   "concept": "diffraction-grating",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2531682",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "A sample of hydrogen gas confined to a tube is initially at room temperature. As the gas is heated, the observer notices that the gas begins to glow with a pale pink color. Careful study of the spectrum shows that the light spectrum is not continuous. Instead, the hydrogen gas is only emitting visible wavelength photons of four specific colors, which combine to form the overall color to the human eye. What is the best way to explain this behavior?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "As the gas heats up, atoms have more and more collisions and close approaches, so frictional heating causes the gas to glow.",
+     "As the gas heats up, the electrons within the hydrogen atoms are excited to high energy levels. As the electrons transition to lower energies, they emit light of specific colors.",
+     "As the gas heats up, more and more collisions occur, and the energy lost in these inelastic collisions is converted into light.",
+     "As the gas heats up, the turbulence of the gas within the tube causes friction between the gas and the walls of the container, causing the gas to glow."
+    ],
+    "correct": 1,
+    "hint": "Light of only a few definite colors means photons of only a few definite energies. What in an atom has only certain energies?",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2020093",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "A rock is illuminated with high energy ultraviolet light. This causes the rock to emit visible light. Explain what is happening in the atomic substructure of the rock that causes this effect, which we call fluorescence.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each ultraviolet photon carries enough energy to lift an electron in an atom of the rock from its ground state to a level several steps above it. The electron does not have to come back in one step. It can drop through the levels in between, emitting one photon at each step. Each of those steps is smaller than the one it went up, so each emitted photon has less energy and a longer wavelength than the ultraviolet photon that was absorbed, and some of them fall in the visible range. The colors seen depend on the spacing of the levels, which is why each mineral glows with its own colors."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2619962",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "color-and-energy-levels",
+   "prompt": "Which of the following is the best way of explaining why the leaves on a given tree are green?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The molecules in the leaves absorb all visible light but strongly reflect green light.",
+     "The molecules in the leaves absorb green light and reflect other visible light.",
+     "The molecules are excited by external light sources, and their electrons emit green light when they are de-excited to a lower energy level within the molecules.",
+     "The molecules glow with a characteristic green energy in order to balance the absorption of energy due to light and heat from their surroundings."
+    ],
+    "correct": 0,
+    "hint": "A tomato looks red because its pigment absorbs every visible wavelength except red.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2647247",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phosphorescence",
+   "prompt": "Explain what phosphorescence is and how it differs from fluorescence. Which process typically takes longer and why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both begin when an atom or molecule absorbs energy and an electron is raised to an excited level. In fluorescence the electron comes back down through ordinary levels, each of which de-excites in about $10^{-8}$ s, so the light is emitted almost at once and stops as soon as the illumination stops. In phosphorescence the electron ends up in a metastable state, a level whose quantum numbers differ greatly from those of the levels below it, so its de-excitation is inhibited. It stays there for milliseconds to minutes or even hours before it emits, and phosphorescence is the de-excitation of that metastable state. Phosphorescence therefore takes much longer, which is why glow-in-the-dark materials keep glowing after the light that excited them is turned off."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2029970",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "An electron is excited from the ground state of an atom (energy level 1) into a highly excited state (energy level 8). Which of the following electron behaviors represents the fluorescence effect by the atom?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "The electron remains at level 8 for a very long time, then transitions up to level 9.",
+     "The electron transitions directly down from level 8 to level 1.",
+     "The electron transitions from level 8 to level 1 and then returns quickly to level 8.",
+     "The electron transitions from level 8 to level 6, then to level 5, then to level 3, then to level 1."
+    ],
+    "correct": 3,
+    "hint": "Fluorescence emits photons of lower energy than the one absorbed. Which path comes down in smaller steps?",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1976847",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "Describe the process of fluorescence in terms of the emission of photons as electron transitions between energy states. Specifically, explain how this process differs from ordinary atomic emission.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An atom absorbs a photon whose energy equals the spacing between its ground state and a high excited level, and an electron is raised to that level. In the simplest de-excitation the electron drops straight back to the ground state and emits a single photon of the same energy as the one absorbed. In fluorescence it comes down instead through one or more intermediate levels, emitting one photon at each step. Each of these photons has less energy, and so a longer wavelength, than the absorbed one, and their energies add up to the energy absorbed. That is how ultraviolet light going in can produce visible light coming out."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3077267",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-applications",
+   "prompt": "Lasers are used to burn and read CDs. Explain why a laser that emits blue light would be capable of burning and reading more information than one that emits infrared.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A laser beam cannot be focused to a spot much smaller than its wavelength, because diffraction spreads it. Blue light has a wavelength roughly half that of the infrared used for CDs, so a blue laser can be focused to a much smaller spot. The pits it burns can then be shorter and narrower, and the tracks can lie closer together, while the smaller spot can still read them without picking up the neighboring tracks. More pits fit on the same area of disc, so more information can be stored and read."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2383870",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fluorescence",
+   "prompt": "The coating on the inside of fluorescent light tubes absorbs ultraviolet light and subsequently emits visible light. An inventor claims that he is able to do the reverse process. Is the inventor’s claim possible?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The reverse process would absorb visible photons and emit ultraviolet photons, each of which carries more energy than a visible photon. In the fluorescence process one atom absorbs one photon and gives the energy back as one or more photons, so the photons it emits can together carry no more energy than it absorbed, and each one carries less. An atom raised by a single visible photon cannot emit a more energetic ultraviolet photon, so the claim is not possible for this process. It would require energy to be created, or the energy of several absorbed photons to be combined into one, which ordinary fluorescent coatings do not do."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2989879",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phosphorescence",
+   "prompt": "What is the difference between fluorescence and phosphorescence?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In fluorescence an atom or molecule excited by a photon de-excites almost at once, in about $10^{-8}$ s, by emitting one or more photons of lower energy than the one absorbed, so the glow stops as soon as the light that excites it stops. Phosphorescence is the de-excitation of a metastable state, one that lives for milliseconds to hours, so the material keeps emitting light long after it was excited, as glow-in-the-dark materials do."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1934114",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holography",
+   "prompt": "How can you tell that a hologram is a true three-dimensional image and that those in 3-D movies are not?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Move your head while you look at each. In a hologram, objects change their relative positions as you change the angle you view from: a nearer object shifts against a farther one, and you can see around an object a little, just as you could with the objects themselves, because the hologram reconstructs the light that came from them. A 3-D movie shows each eye a fixed flat picture taken from one viewpoint. When you move your head, the nearer and farther objects do not shift against one another and you cannot see any part that was hidden from the camera, so the depth is an illusion made from two flat images."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1420277",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "helium-neon-laser",
+   "figure": {
+    "src": "/media/ch30/Figure_31_05_09.jpg",
+    "alt": "On the left side of the figure, the ground state and first metastable state of helium atom are shown, and on the right side, the ground state and first metastable state of neon atom are shown. The difference between the two states of helium and neon atoms are estimated to be twenty point six one electron volts and twenty point six six electron volts, respectively. The collision transfer energy from helium to neon atoms is given as one point nine six electron volts.",
+    "caption": "Energy levels in helium and neon. In the common helium-neon laser, an electrical discharge pumps energy into the metastable states of both atoms. The gas mixture has about ten times more helium atoms than neon atoms. Excited helium atoms easily de-excite by transferring energy to neon in a collision. A population inversion in neon is achieved, allowing lasing by the neon to occur."
+   },
+   "prompt": "Figure 30.37 shows the energy-level diagram for neon. (a) Verify that the energy of the photon emitted when neon goes from its metastable state to the one immediately below is equal to 1.96 eV. (b) Show that the wavelength of this radiation is 633 nm. (c) What wavelength is emitted when the neon makes a direct transition to its ground state?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the photon energy",
+      "value": 1.96,
+      "unit": "eV",
+      "hint": "Read the spacing between the metastable state and the level just below it from the diagram."
+     },
+     {
+      "part": "(b) the wavelength",
+      "value": 633,
+      "unit": "nm",
+      "hint": "Use $\\klam = h\\kc/\\kdE$ with $h\\kc = 1240$ eV·nm."
+     },
+     {
+      "part": "(c) the wavelength of the direct transition",
+      "value": 60.0,
+      "unit": "nm",
+      "hint": "The metastable state lies 20.66 eV above the ground state."
+     }
+    ],
+    "solution": "(a) 1.96 eV; (b) $(1240\\;\\text{eV}\\cdot\\text{nm})/(1.96\\;\\text{eV}) = 633\\;\\text{nm}$; (c) 60.0 nm"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3292679",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "helium-neon-laser",
+   "figure": {
+    "src": "/media/ch30/Figure_31_05_16.jpg",
+    "alt": "The figure shows energy levels of chromium atoms in an aluminum oxide crystal. Ground state is at zero point zero electron volts, first metastable state is at one point seventy nine electron volts, second state is at two point three electron volts, and the third state is at three point zero electron volts.",
+    "caption": "Chromium atoms in an aluminum oxide crystal have these energy levels, one of which is metastable. This is the basis of a ruby laser. Visible light can pump the atom into an excited state above the metastable state to achieve a population inversion."
+   },
+   "prompt": "Ruby lasers have chromium atoms doped in an aluminum oxide crystal. The energy level diagram for chromium in a ruby is shown below. What wavelength is emitted by a ruby laser?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 693,
+    "unit": "nm",
+    "hint": "The laser light comes from the metastable state's drop to the ground state; use $\\klam = h\\kc/\\kdE$ with $h\\kc = 1240$ eV·nm.",
+    "solution": "693 nm"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2670689",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "helium-neon-laser",
+   "figure": {
+    "src": "/media/ch30/Figure_31_05_18.jpg",
+    "alt": "The figure shows different energy levels of neodymium atoms in glass. The ground state is at zero electron volts, first state is at zero point five zero electron volts, the metastable second state is at one point sixty seven electron volts, and the group state levels above metastable second are at two point one electron volts. The photons release one point seventeen electron volts at wavelength of one point zero six micro meters while coming from the metastable second state to first state.",
+    "caption": "Neodymium atoms in glass have these energy levels, one of which is metastable. The group of levels above the metastable state is convenient for achieving a population inversion, since photons of many different energies can be absorbed by atoms in the ground state."
+   },
+   "prompt": "Some of the most powerful lasers are based on the energy levels of neodymium in solids, such as glass, as shown below. (a) What average wavelength light can pump the neodymium into the levels above its metastable state? (b) Verify that the 1.17 eV transition produces $1.06\\;\\mu\\text{m}$ radiation.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the average pumping wavelength",
+      "value": 590,
+      "unit": "nm",
+      "hint": "The group of levels above the metastable state lies about 2.1 eV above the ground state."
+     },
+     {
+      "part": "(b) the wavelength of the 1.17-eV transition",
+      "value": 1.06,
+      "unit": "μm",
+      "hint": "Use $\\klam = h\\kc/\\kdE$ with $h\\kc = 1240$ eV·nm."
+     }
+    ],
+    "solution": "(a) 590 nm; (b) $(1240\\;\\text{eV}\\cdot\\text{nm})/(1.17\\;\\text{eV}) = 1.06\\;\\mu\\text{m}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id3168724",
+   "source_section": "30.9",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-applications",
+   "prompt": "A carbon dioxide laser used in surgery emits infrared radiation with a wavelength of $10.6\\;\\mu\\text{m}$. In 1.00 ms, this laser raised the temperature of $1.00\\;\\text{cm}^{3}$ of flesh to $100^\\circ\\text{C}$ and evaporated it. (a) How many photons were required? You may assume flesh has the same heat of vaporization as water. (b) What was the minimum power output during the flash?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the number of photons",
+      "value": 1.34e+23,
+      "hint": "Find the heat to warm the water from body temperature to 100°C and to evaporate it, then divide by the energy of one 10.6-μm photon."
+     },
+     {
+      "part": "(b) the minimum power",
+      "value": 2.52,
+      "unit": "MW",
+      "hint": "Divide the energy delivered by the 1.00 ms it took."
+     }
+    ],
+    "solution": "(a) $1.34\\times 10^{23}$; (b) 2.52 MW"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1545878",
+   "source_section": "30.9",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "Integrated Concepts",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laser-applications",
+   "prompt": "(a) An excimer laser used for vision correction emits 193-nm UV. Calculate the photon energy in eV. (b) These photons are used to evaporate corneal tissue, which is very similar to water in its properties. Calculate the amount of energy needed per molecule of water to make the phase change from liquid to gas. That is, divide the heat of vaporization in kJ/kg by the number of water molecules in a kilogram. (c) Convert this to eV and compare to the photon energy. Discuss the implications.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the photon energy",
+      "value": 6.42,
+      "unit": "eV",
+      "hint": "Use $\\kE = h\\kc/\\klam$ with $h\\kc = 1240$ eV·nm."
+     },
+     {
+      "part": "(b) the energy per molecule",
+      "value": 7.27e-20,
+      "unit": "J",
+      "hint": "A kilogram of water is 1000/18.0 mol, and each mole holds Avogadro’s number of molecules."
+     },
+     {
+      "part": "(c) the energy per molecule in eV",
+      "value": 0.454,
+      "unit": "eV",
+      "hint": "Divide by $1.60\\times 10^{-19}$ J/eV."
+     }
+    ],
+    "solution": "(a) 6.42 eV; (b) $7.27\\times 10^{-20}$ J/molecule; (c) 0.454 eV, 14.1 times less than a single UV photon. Therefore, each photon will evaporate approximately 14 molecules of tissue. This gives the surgeon a rather precise method of removing corneal tissue from the surface of the eye."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "atomic-de-excitation"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "atomic-excitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "fluorescence"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "atomic-excitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "color-from-energy-levels"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "phosphorescence"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "fluorescence",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "metastable-state",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "fluorescence"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "fluorescence"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "atomic-de-excitation",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "laser"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "color-from-energy-levels",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "fluorescence"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "photon-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "phosphorescence"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "fluorescence",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "hologram"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "holography",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "wavelength-from-a-level-spacing"
+  },
+  {
+   "exercise": "p1",
+   "concept": "energy-level-diagram",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "wavelength-from-a-level-spacing"
+  },
+  {
+   "exercise": "p2",
+   "concept": "laser",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "wavelength-from-a-level-spacing"
+  },
+  {
+   "exercise": "p3",
+   "concept": "population-inversion",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "photon-energy-from-wavelength"
+  },
+  {
+   "exercise": "p4",
+   "concept": "heat-of-vaporization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "power",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "photon-energy-in-ev"
+  },
+  {
+   "exercise": "p5",
+   "concept": "heat-of-vaporization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "laser",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": []
+}
