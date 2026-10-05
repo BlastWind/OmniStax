@@ -3,7 +3,7 @@
    none registers a cycle and none gets a transport; each redraws when a slider moves. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, topline, FONT } = F;
+const { el, fmt, tex, C, PAL, ctl, register, begin, line, arrow, dot, text, topline } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 
@@ -54,6 +54,12 @@ function frame(ctx, ox, oy, x1, x2, y1, y2) {
   text(ctx, 'x', x2 + 6, oy + 24, PAL.muted, { size: 22, weight: 600, align: 'right' });
   text(ctx, 'y', ox - 22, y1 + 8, PAL.muted, { size: 22, weight: 600, align: 'center' });
 }
+/* the component labels of a vector drawn from (OX, OY) to (tx, ty): the x-component across the axis from the vector,
+   the y-component beside its dashed arrow; a component shorter than its own label is named only in the readout */
+function compLabels(ctx, ax, ay, tx, ty, OX, OY, S, pos) {
+  if (Math.abs(ax) * S > 70) text(ctx, 'Ax = ' + fmt(ax, 1) + ' blocks', (OX + tx) / 2, OY + (ay >= 0 ? 30 : -30), pos, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+  const lft = ax >= 0; if (Math.abs(ay) * S > 30) text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', tx + (lft ? 16 : -16), (OY + ty) / 2, pos, { size: 20, weight: 600, align: lft ? 'left' : 'right', bg: PAL.panel });
+}
 /* a label beside the midpoint of a segment, pushed off it to the left of its direction */
 function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
   const L = Math.hypot(x2 - x1, y2 - y1) || 1, nx = (y2 - y1) / L, ny = -(x2 - x1) / L;
@@ -75,29 +81,20 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
     const a = A.v, th = TH.v, ax = a * cos(th), ay = a * sin(th);
     const tx = OX + ax * S, ty = OY - ay * S, pos = C('position');
     frame(ctx, OX, OY, OX - 330, OX + 340, OY - 325, OY + 315);
-    compass(ctx, 120, 170);
+    compass(ctx, 110, 680);
     /* the components, dashed, and the right angle where they meet */
     if (Math.abs(ax) > 0.05) darrow(ctx, OX, OY, tx, OY, pos, 3);
     if (Math.abs(ay) > 0.05) darrow(ctx, tx, OY, tx, ty, pos, 3);
     if (Math.abs(ax) > 0.8 && Math.abs(ay) > 0.8) rightAngle(ctx, tx, OY, -ax, ay);
     /* the vector itself and its angle */
     arrow(ctx, OX, OY, tx, ty, pos, 5);
-    sideLabel(ctx, 'A', OX, OY, tx, ty, pos);
+    sideLabel(ctx, 'A', OX, OY, tx, ty, pos, ax * ay < 0 ? -26 : 26);
     angleArc(ctx, OX, OY, th, Math.min(56, Math.max(30, a * S * 0.45)), 'θ', C('angle'));
     dot(ctx, OX, OY, PAL.ink, true, 5);
     /* the component labels: the x-component under the axis, the y-component beside its arrow */
-    if (Math.abs(ax) > 0.05) text(ctx, 'Ax = ' + fmt(ax, 1) + ' blocks', (OX + tx) / 2, OY + (ay >= 0 ? 30 : -30), pos, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    const lft = ax >= 0; if (Math.abs(ay) > 0.05) text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', tx + (lft ? 16 : -16), (OY + ty) / 2, pos, { size: 20, weight: 600, align: lft ? 'left' : 'right', bg: PAL.panel });
-    /* the numbers, at the right */
-    const px = 1060, py = 280;
-    text(ctx, 'magnitude', px, py, PAL.muted, { size: 17 }); text(ctx, 'A = ' + fmt(a, 1) + ' blocks', px, py + 30, pos, { size: 24, weight: 600 });
-    text(ctx, 'direction', px, py + 80, PAL.muted, { size: 17 }); text(ctx, 'θ = ' + fmt(th, 1) + '°', px, py + 110, C('angle'), { size: 24, weight: 600 });
-    text(ctx, 'components', px, py + 160, PAL.muted, { size: 17 });
-    text(ctx, 'Ax = ' + fmt(ax, 1) + ' blocks', px, py + 190, pos, { size: 24, weight: 600 });
-    text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', px, py + 224, pos, { size: 24, weight: 600 });
+    compLabels(ctx, ax, ay, tx, ty, OX, OY, S, pos);
     const axis = Math.abs(ax) < 0.05 || Math.abs(ay) < 0.05;
-    text(ctx, axis ? 'one component is zero, so the other is A itself' : 'the magnitudes do not add: ' + fmt(Math.abs(ax), 1) + ' + ' + fmt(Math.abs(ay), 1) + ' ≠ ' + fmt(a, 1), px, py + 270, PAL.muted, { size: 17 });
-    topline(ctx, 'A vector of ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '° has the components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks.');
+    topline(ctx, 'A vector of ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '° has the components $\\kAx = ' + fmt(ax, 1) + '$ and $\\kAy = ' + fmt(ay, 1) + '$ blocks.');
     readout(d.readout, `\\begin{aligned}\\kAx &= \\kA\\cos\\ktheta = (${fmt(a, 1)}\\ \\text{blocks})(\\cos ${fmt(th, 1)}^\\circ) = ${fmt(ax, 1)}\\ \\text{blocks}\\\\ \\kAy &= \\kA\\sin\\ktheta = (${fmt(a, 1)}\\ \\text{blocks})(\\sin ${fmt(th, 1)}^\\circ) = ${fmt(ay, 1)}\\ \\text{blocks}\\end{aligned}`,
       axis ? 'A vector along one of the axes has a component of zero along the other, and its remaining component is as long as the vector itself.'
         : 'The component vectors add to A, but their magnitudes do not: ' + fmt(Math.abs(ax), 1) + ' blocks + ' + fmt(Math.abs(ay), 1) + ' blocks is not ' + fmt(a, 1) + ' blocks, and neither component is longer than A itself.');
@@ -120,36 +117,26 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
     const ax = AX.v, ay = AY.v, a = Math.hypot(ax, ay), th = a > 0 ? angleOf(ax, ay) : 0, atn = ax !== 0 ? Math.atan(ay / ax) / RAD : (ay >= 0 ? 90 : -90);
     const tx = OX + ax * S, ty = OY - ay * S, pos = C('position');
     frame(ctx, OX, OY, OX - 330, OX + 340, OY - 325, OY + 315);
-    compass(ctx, 120, 170);
+    compass(ctx, 110, 680);
     if (Math.abs(ax) > 0.05) darrow(ctx, OX, OY, tx, OY, pos, 3);
     if (Math.abs(ay) > 0.05) darrow(ctx, tx, OY, tx, ty, pos, 3);
     if (Math.abs(ax) > 0.8 && Math.abs(ay) > 0.8) rightAngle(ctx, tx, OY, -ax, ay);
-    if (a > 0.05) { arrow(ctx, OX, OY, tx, ty, pos, 5); sideLabel(ctx, 'A', OX, OY, tx, ty, pos); }
+    if (a > 0.05) { arrow(ctx, OX, OY, tx, ty, pos, 5); sideLabel(ctx, 'A', OX, OY, tx, ty, pos, ax * ay < 0 ? -26 : 26); }
     if (a > 0.05) angleArc(ctx, OX, OY, th, Math.min(56, Math.max(30, a * S * 0.45)), 'θ', C('angle'));
     dot(ctx, OX, OY, PAL.ink, true, 5);
-    if (Math.abs(ax) > 0.05) text(ctx, 'Ax = ' + fmt(ax, 1) + ' blocks', (OX + tx) / 2, OY + (ay >= 0 ? 30 : -30), pos, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    const lft = ax >= 0; if (Math.abs(ay) > 0.05) text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', tx + (lft ? 16 : -16), (OY + ty) / 2, pos, { size: 20, weight: 600, align: lft ? 'left' : 'right', bg: PAL.panel });
-    /* the numbers, at the right */
-    const px = 1060, py = 280;
-    text(ctx, 'components', px, py, PAL.muted, { size: 17 });
-    text(ctx, 'Ax = ' + fmt(ax, 1) + ' blocks', px, py + 30, pos, { size: 24, weight: 600 });
-    text(ctx, 'Ay = ' + fmt(ay, 1) + ' blocks', px, py + 64, pos, { size: 24, weight: 600 });
-    text(ctx, 'magnitude', px, py + 114, PAL.muted, { size: 17 }); text(ctx, 'A = ' + fmt(a, 1) + ' blocks', px, py + 144, pos, { size: 24, weight: 600 });
-    text(ctx, 'direction', px, py + 194, PAL.muted, { size: 17 });
-    if (a > 0.05) { text(ctx, 'θ = ' + fmt(th, 1) + '°', px, py + 224, C('angle'), { size: 24, weight: 600 }); text(ctx, bearing(th), px, py + 258, C('angle'), { size: 20 }); }
-    else text(ctx, 'none: the vector has no length', px, py + 224, PAL.muted, { size: 20 });
+    compLabels(ctx, ax, ay, tx, ty, OX, OY, S, pos);
     /* the equations with the live numbers */
     const sq = `\\sqrt{${num(ax, 1)}^2 + ${num(ay, 1)}^2}`;
     let dir, small;
-    if (a <= 0.05) { dir = `\\ktheta &\\ \\text{is undefined: both components are zero}`; small = 'A vector with no length has no direction.'; }
-    else if (ax === 0) { dir = `\\kAx &= 0,\\ \\text{so}\\ \\ktheta = ${fmt(th, 1)}^\\circ`; small = 'With no x-component the vector lies along the y-axis, and its direction is ' + bearing(th) + '.'; }
+    if (a <= 0.05) dir = `\\ktheta &\\ \\text{is undefined: both components are zero}`;
+    else if (ax === 0) dir = `\\kAx &= 0,\\ \\text{so}\\ \\ktheta = ${fmt(th, 1)}^\\circ`;
+    else if (ax > 0) dir = `\\ktheta &= \\tan^{-1}(\\kAy / \\kAx) = \\tan^{-1}(${fmt(ay, 1)} / ${num(ax, 1)}) = ${fmt(atn, 1)}^\\circ`;
     else {
-      dir = `\\ktheta &= \\tan^{-1}(\\kAy / \\kAx) = \\tan^{-1}(${fmt(ay, 1)} / ${num(ax, 1)}) = ${fmt(atn, 1)}^\\circ`;
-      small = ax > 0 ? 'The direction ' + fmt(th, 1) + '° from the +x axis is ' + bearing(th) + ', as the problems state it.'
-        : 'The inverse tangent gives ' + fmt(atn, 1) + '°, the angle of the line the vector lies along; the arrow points the other way along that line, at ' + fmt(th, 1) + '° from the +x axis, which is ' + bearing(th) + '.';
+      dir = `\\ktheta &= \\tan^{-1}(\\kAy / \\kAx) ${th > atn ? '+' : '-'} 180^\\circ = ${fmt(atn, 1)}^\\circ ${th > atn ? '+' : '-'} 180^\\circ = ${fmt(th, 1)}^\\circ`;
+      small = 'The inverse tangent gives the line the vector lies along; with the x-component negative the arrow points the other way along it, so 180° is added or taken away.';
     }
-    topline(ctx, a > 0.05 ? 'The components Ax = ' + fmt(ax, 1) + ' blocks and Ay = ' + fmt(ay, 1) + ' blocks add to A = ' + fmt(a, 1) + ' blocks at ' + fmt(th, 1) + '°, which is ' + bearing(th) + '.'
-      : 'Both components are zero, so A has no length and no direction.');
+    topline(ctx, a > 0.05 ? 'Components of ' + fmt(ax, 1) + ' and ' + fmt(ay, 1) + ' blocks add to $\\kA = ' + fmt(a, 1) + '$ blocks, ' + bearing(th) + '.'
+      : 'Both components are zero, so $\\kA$ has no length and no direction.');
     readout(d.readout, `\\begin{aligned}\\kA &= \\sqrt{\\kAx^2 + \\kAy^2} = ${sq} = ${fmt(a, 1)}\\ \\text{blocks}\\\\ ${dir}\\end{aligned}`, small);
   }
   register(d.fig, { update: () => {}, draw });

@@ -4,12 +4,15 @@ window.OMNISTAX_FIGURES['3.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, nice, curve, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+/* a note line set through the macros, for a note that names symbols */
+function texNote(host, s) { const sm = el('small', null, ''); host.appendChild(sm); tex(sm, s); }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
 const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const sgn = (v) => (v < 0 ? '−' : '');
 /* three significant figures, never in exponent form, with commas */
+const texc = (s) => s.replace(/,/g, '{,}');
 const sig3 = (x) => { const s = Math.abs(x).toPrecision(3); return sgn(x) + (s.includes('e') || Math.abs(x) >= 1000 ? commas(String(Math.round(Number(s)))) : s); };
 /* the decimals a tick label needs for the step nice() chose */
 const decs = (r) => ((r.hi - r.lo) / r.n < 1 ? 1 : 0);
@@ -106,20 +109,20 @@ function tower(ctx, x, y, h, color) {
       line(ctx, X(x), box.b, X(x), Y(y), C('position'), 3, [4, 8]);
       arrow(ctx, X(0), box.b + 40, X(x), box.b + 40, C('position'), 4);
       text(ctx, 'x = ' + fmt(x, 1) + ' m', (X(0) + X(x)) / 2, box.b + 66, C('position'), { weight: 600, align: 'center' });
-      if (y > 0.5) { arrow(ctx, X(x) + 46, box.b, X(x) + 46, Y(y), C('position'), 4); text(ctx, 'y = ' + fmt(y, 1) + ' m', X(x) + 62, (box.b + Y(y)) / 2, C('position'), { weight: 600 }); }
+      if (y > 0.5) { arrow(ctx, X(x) + 46, box.b, X(x) + 46, Y(y), C('position'), 4); lab.add('y = ' + fmt(y, 1) + ' m', X(x) + 46, (box.b + Y(y)) / 2, 1, 0, C('position'), 22, 16); }
       arrow(ctx, X(0), Y(0), X(x), Y(y), C('position'), 5);
       const mid = 0.55, sn = Math.hypot(x, y) || 1; lab.add('s = ' + fmt(s, 1) + ' m', X(x * mid), Y(y * mid), -y / sn, -x / sn, C('position'), 24, 26);
-      if (ang > 4 && x * SC > 120) angleArc(ctx, X(0), Y(0), 70, ang, 'θ = ' + fmt(ang, 1) + '°', C('angle'), lab);
+      if (ang > 4 && s * SC > 60) angleArc(ctx, X(0), Y(0), Math.min(70, s * SC * 0.5), ang, 'θ = ' + fmt(ang, 1) + '°', C('angle'), lab);
     }
     dot(ctx, X(0), Y(0), C('position'), false, 10);
     ball(ctx, X(x), Y(y), F.ref('ball'));
     lab.flush();
     topline(ctx, tau < 1e-9 ? 'The ball is at the origin, about to be kicked at ' + fmt(v0.v, 1) + ' m/s and ' + th.v + '° above the horizontal.'
-      : done ? 'After ' + fmt(f.T, 2) + ' s the ball lands ' + fmt(f.R, 1) + ' m away, where s = x = ' + fmt(f.R, 1) + ' m and θ = 0.'
-      : 'After ' + fmt(tau, 2) + ' s the ball is ' + fmt(x, 1) + ' m along and ' + fmt(y, 1) + ' m up, so s = ' + fmt(s, 1) + ' m at ' + fmt(ang, 1) + '° above the horizontal.');
-    readout(d.readout, `\\ks = \\sqrt{\\kx^2 + \\ky^2} = \\sqrt{(${fmt(x, 1)}\\ \\text{m})^2 + (${fmt(y, 1)}\\ \\text{m})^2} = ${fmt(s, 1)}\\ \\text{m}`,
-      x > 0.5 ? 'The direction of the displacement is θ = tan⁻¹(y/x) = tan⁻¹(' + fmt(y, 1) + '/' + fmt(x, 1) + ') = ' + fmt(ang, 1) + '° above the horizontal.'
-        : 'The ball has not left the origin yet, so its displacement is zero and has no direction.');
+      : done ? 'After ' + fmt(f.T, 2) + ' s the ball lands ' + fmt(f.R, 1) + ' m away, where $\\ks = \\kx = ' + fmt(f.R, 1) + '$ m and $\\ktheta = 0$.'
+      : 'After ' + fmt(tau, 2) + ' s the ball is ' + fmt(x, 1) + ' m along and ' + fmt(y, 1) + ' m up, so $\\ks = ' + fmt(s, 1) + '$ m at ' + fmt(ang, 1) + '° above the horizontal.');
+    readout(d.readout, `\\ks = \\sqrt{\\kx^2 + \\ky^2} = \\sqrt{(${fmt(x, 1)}\\ \\text{m})^2 + (${fmt(y, 1)}\\ \\text{m})^2} = ${fmt(s, 1)}\\ \\text{m}`);
+    texNote(d.readout, x > 0.5 ? `\\text{Its direction is } \\ktheta = \\tan^{-1}(\\ky/\\kx) = \\tan^{-1}(${fmt(y, 1)}/${fmt(x, 1)}) = ${fmt(ang, 1)}^\\circ \\text{ above the horizontal.}`
+      : `\\text{The ball has not left the origin yet, so its displacement is zero and has no direction.}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => fl().T / 5), draw });
 })();
@@ -137,7 +140,7 @@ function tower(ctx, x, y, h, color) {
   const fl = () => flight(v0.v, th.v);
   const cy = cycle(() => fl().T, 1.2);
   function reset() { cy.reset(); }
-  const K = 9;   /* canvas units per m/s of velocity arrow, so the fastest launch, 30 m/s, is 270 units */
+  const K = 4;   /* canvas units per m/s of velocity arrow, so the fastest launch, 30 m/s, is 120 units and a landing vy stays above the graphs */
   function draw() {
     const { ctx } = begin(d.c);
     const f = fl(), tau = cy.now(), done = tau >= f.T - 1e-9;
@@ -156,16 +159,14 @@ function tower(ctx, x, y, h, color) {
     /* the velocity, its components and the acceleration at the projectile */
     const px = X(x), py = Y(y), cv = C('velocity');
     arrow(ctx, px, py, px + f.vx * K, py, alpha(cv, 0.6), 3.5);
-    lab.add('vx = ' + fmt(f.vx, 1) + ' m/s', px + f.vx * K * 0.5, py, 0, vy >= 0 ? 1 : -1, cv, 20, 22);
-    if (Math.abs(vy) > 0.4) {
-      arrow(ctx, px, py, px, py - vy * K, alpha(cv, 0.6), 3.5);
-      lab.add('vy = ' + sgn(vy) + fmt(Math.abs(vy), 1) + ' m/s', px, py - vy * K * 0.5, -1, 0, cv, 20, 22);
-    }
+    if (Math.abs(vy) > 0.4) arrow(ctx, px, py, px, py - vy * K, alpha(cv, 0.6), 3.5);
     arrow(ctx, px, py, px + f.vx * K, py - vy * K, cv, 5);
-    const vn = Math.hypot(f.vx, vy) || 1;
-    lab.add('v = ' + fmt(v, 1) + ' m/s', px + f.vx * K, py - vy * K, f.vx / vn, -vy / vn, cv, 22, 26);
-    arrow(ctx, px - 30, py, px - 30, py + G * 6, C('acceleration'), 5);
-    lab.add('a = −g', px - 30, py + G * 6, -1, 0.3, C('acceleration'), 20, 22);
+    arrow(ctx, px - 30, py, px - 30, py + G * 4, C('acceleration'), 5);
+    /* the arrows ride the projectile, so they are named once in a key where nothing moves (rule 26.7) */
+    const kx = 1010, ky = 130;
+    arrow(ctx, kx, ky, kx + 60, ky, cv, 5); text(ctx, 'velocity v', kx + 76, ky, cv, { size: 18, weight: 600 });
+    arrow(ctx, kx, ky + 34, kx + 60, ky + 34, alpha(cv, 0.6), 3.5); text(ctx, 'its components vx and vy', kx + 76, ky + 34, cv, { size: 18 });
+    arrow(ctx, kx + 30, ky + 56, kx + 30, ky + 96, C('acceleration'), 5); text(ctx, 'acceleration, a = −g', kx + 76, ky + 76, C('acceleration'), { size: 18, weight: 600 });
     dot(ctx, px, py, PAL.ink, true, 9);
     lab.flush();
     /* the two graphs: vx against t, and vy against t, on fixed axes: 30 m/s is the fastest launch and 7 s
@@ -175,18 +176,18 @@ function tower(ctx, x, y, h, color) {
     line(ctx, gl.X(0), gl.Y(f.vx), gl.X(f.T), gl.Y(f.vx), cv, 5);
     line(ctx, gl.X(tau), gl.Y(0), gl.X(tau), gl.Y(f.vx), C('time'), 2, [4, 8]);
     dot(ctx, gl.X(tau), gl.Y(f.vx), PAL.ink, true, 9);
-    text(ctx, 'vx stays the same', gl.X(f.T / 2), gl.Y(f.vx) - 24, cv, { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'vx stays the same', gl.X(tr.hi) - 8, gl.Y(f.vx) - 24, cv, { size: 18, weight: 600, align: 'right' });
     const gr = axes(ctx, { l: 860, r: 1300, t: 600, b: 780 }, [0, tr.hi], [-vmax, vmax], { xl: 't (s)', xc: C('time'), yl: 'vy (m/s)', yc: cv, nx: tr.n, ny: 2, fx: (t) => fmt(t, td) });
     line(ctx, gr.X(0), gr.Y(f.vy0), gr.X(f.T), gr.Y(-f.vy0), cv, 5);
     line(ctx, gr.X(tau), gr.Y(0), gr.X(tau), gr.Y(vy), C('time'), 2, [4, 8]);
     dot(ctx, gr.X(0), gr.Y(f.vy0), cv, false, 9); dot(ctx, gr.X(tau), gr.Y(vy), PAL.ink, true, 9);
-    text(ctx, 'slope = −g', gr.X(f.T * 0.78), gr.Y(-f.vy0 * 0.56) - 30, C('acceleration'), { size: 18, weight: 600, align: 'center' });
-    topline(ctx, done ? 'At landing, ' + fmt(f.T, 2) + ' s after the kick, vy = −' + fmt(f.vy0, 1) + ' m/s, the negative of its initial value, while vx is unchanged.'
-      : Math.abs(vy) < 0.6 ? 'At the highest point, ' + fmt(tau, 2) + ' s after the kick, vy = 0 and the velocity is entirely horizontal, v = vx = ' + fmt(f.vx, 1) + ' m/s.'
-      : vy > 0 ? 'After ' + fmt(tau, 2) + ' s vx stays at ' + fmt(f.vx, 1) + ' m/s while vy has fallen from ' + fmt(f.vy0, 1) + ' m/s to ' + fmt(vy, 1) + ' m/s.'
-      : 'After ' + fmt(tau, 2) + ' s vx stays at ' + fmt(f.vx, 1) + ' m/s while vy is now −' + fmt(-vy, 1) + ' m/s, pointing downward.');
-    readout(d.readout, `\\kv = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{${fmt(f.vx, 1)}^2 + (${sgn(vy)}${fmt(Math.abs(vy), 1)})^2} = ${fmt(v, 1)}\\ \\text{m/s}\\qquad \\kthetav = \\tan^{-1}(\\kvy/\\kvx) = ${sgn(thv)}${fmt(Math.abs(thv), 1)}^\\circ`,
-      'The horizontal motion has no acceleration, so vx is the same at every point; the vertical motion is free fall with a_y = −g, so vy changes by 9.80 m/s every second.');
+    text(ctx, 'slope = −g', gr.X(tr.hi) - 8, gr.Y(vmax) + 20, C('acceleration'), { size: 18, weight: 600, align: 'right' });   /* the corner the line never reaches */
+    topline(ctx, done ? 'At landing, ' + fmt(f.T, 2) + ' s after the kick, $\\kvy = −' + fmt(f.vy0, 1) + '$ m/s, the negative of its initial value, while $\\kvx$ is unchanged.'
+      : Math.abs(vy) < 0.6 ? 'At the highest point, ' + fmt(tau, 2) + ' s after the kick, $\\kvy = 0$ and the velocity is horizontal, $\\kv = \\kvx = ' + fmt(f.vx, 1) + '$ m/s.'
+      : vy > 0 ? 'After ' + fmt(tau, 2) + ' s $\\kvx$ stays at ' + fmt(f.vx, 1) + ' m/s while $\\kvy$ has fallen from ' + fmt(f.vy0, 1) + ' m/s to ' + fmt(vy, 1) + ' m/s.'
+      : 'After ' + fmt(tau, 2) + ' s $\\kvx$ stays at ' + fmt(f.vx, 1) + ' m/s while $\\kvy$ is now −' + fmt(-vy, 1) + ' m/s, pointing downward.');
+    readout(d.readout, `\\kv = \\sqrt{\\kvx^2 + \\kvy^2} = \\sqrt{${fmt(f.vx, 1)}^2 + (${sgn(vy)}${fmt(Math.abs(vy), 1)})^2} = ${fmt(v, 1)}\\ \\text{m/s}\\qquad \\kthetav = \\tan^{-1}(\\kvy/\\kvx) = ${sgn(thv)}${fmt(Math.abs(thv), 1)}^\\circ`);
+    texNote(d.readout, `\\text{With no horizontal acceleration } \\kvx \\text{ never changes; in free fall } \\kay = -\\kg \\text{, so } \\kvy \\text{ changes by 9.80 m/s every second.}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => fl().T / 5), draw });
 })();
@@ -224,7 +225,7 @@ function tower(ctx, x, y, h, color) {
     /* the height and the horizontal displacement of the apex */
     line(ctx, X(xTop), Y(f.h), X(xTop), box.b, PAL.muted, 2, [4, 8]);
     line(ctx, X(0), Y(f.h), X(xTop), Y(f.h), PAL.muted, 2, [4, 8]);
-    vbracket(ctx, X(xTop) + 46, Y(f.h), Y(0), C('position'), 'h = ' + fmt(f.h, 0) + ' m', 1);
+    vbracket(ctx, X(xTop) + 96, Y(f.h), Y(0), C('position'), 'h = ' + fmt(f.h, 0) + ' m', 1);   /* outside the burst, which opens to 80 units */
     hbracket(ctx, X(0), X(xTop), box.b + 54, C('position'), '');
     text(ctx, 'x = ' + fmt(xTop, 0) + ' m', (X(0) + X(xTop)) / 2, box.b + 80, C('position'), { weight: 600, align: 'center' });
     /* the shell and, at the top, its burst */
@@ -239,10 +240,10 @@ function tower(ctx, x, y, h, color) {
     line(ctx, g.X(t), g.Y(0), g.X(t), g.Y(vy), C('time'), 2, [4, 8]);
     dot(ctx, g.X(0), g.Y(f.vy0), C('velocity'), false, 9); dot(ctx, g.X(t), g.Y(vy), PAL.ink, true, 9);
     text(ctx, 'vy = 0 at the top', g.X(tr.hi) - 10, g.Y(100) + 22, C('velocity'), { size: 17, weight: 600, align: 'right' });
-    topline(ctx, atTop ? 'After ' + fmt(f.tTop, 2) + ' s the shell reaches its highest point, ' + fmt(f.h, 0) + ' m up and ' + fmt(xTop, 0) + ' m along, where vy = 0.'
-      : 'After ' + fmt(t, 2) + ' s the shell is ' + fmt(y, 0) + ' m up and still rising at vy = ' + fmt(vy, 1) + ' m/s.');
-    readout(d.readout, `\\kh = \\frac{\\kvoy^2}{2\\kg} = \\frac{(${fmt(f.vy0, 1)}\\ \\text{m/s})^2}{2(9.80\\ \\text{m/s}^2)} = ${fmt(f.h, 0)}\\ \\text{m}`,
-      'The time to the top is t = 2y/(v₀y + vy) = ' + fmt(f.tTop, 2) + ' s, and in that time the horizontal velocity vx = ' + fmt(f.vx, 1) + ' m/s carries the shell x = vx t = ' + fmt(xTop, 0) + ' m.');
+    topline(ctx, atTop ? 'After ' + fmt(f.tTop, 2) + ' s the shell reaches its highest point, ' + fmt(f.h, 0) + ' m up and ' + fmt(xTop, 0) + ' m along, where $\\kvy = 0$.'
+      : 'After ' + fmt(t, 2) + ' s the shell is ' + fmt(y, 0) + ' m up and still rising at $\\kvy = ' + fmt(vy, 1) + '$ m/s.');
+    readout(d.readout, `\\kh = \\frac{\\kvoy^2}{2\\kg} = \\frac{(${fmt(f.vy0, 1)}\\ \\text{m/s})^2}{2(9.80\\ \\text{m/s}^2)} = ${fmt(f.h, 0)}\\ \\text{m}`);
+    texNote(d.readout, `\\text{The time to the top is } \\kt = 2\\ky/(\\kvoy + \\kvy) = ${fmt(f.tTop, 2)}\\ \\text{s, and in that time } \\kx = \\kvx\\kt = ${fmt(xTop, 0)}\\ \\text{m.}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => (fl().tTop + 0.6) / 5), draw });
 })();
@@ -274,7 +275,7 @@ function tower(ctx, x, y, h, color) {
     const box = { l: 300, r: 1150, t: 100, b: 440 }, SC = 4.5, top = 34.4;
     const X = (m) => box.l + m * SC, Y = (m) => box.t + (top - m) * SC;
     const lab = labeller(ctx, 800); lab.block(0, 0, 1400, 96); lab.block(0, 540, 1400, 800);
-    const xr = Math.min(X(xl) + 120, 1200), yr0 = Y(yl.v) + ((xr - X(xl)) * (Y(yl.v) - Y(0))) / (X(xl) - X(0));
+    const xr = Math.min(X(xl) + 120, 1200), yr0 = Math.min(Y(yl.v) + ((xr - X(xl)) * (Y(yl.v) - Y(0))) / (X(xl) - X(0)), Y(yl.v) + 30);   /* a steep flank levels off before it reaches the graph */
     const Y0 = Y(0), surface = [[40, Y0 + 60], [90, Y0 + 6], [160, Y0 + 60], [235, Y0 + 54], [X(0), Y0], [X(xl), Y(yl.v)], [xr, yr0], [1340, yr0 + 40]];
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); surface.forEach(([sx, sy], i) => (i ? ctx.lineTo(sx, sy) : ctx.moveTo(sx, sy))); ctx.lineTo(1340, 530); ctx.lineTo(40, 530); ctx.closePath(); ctx.fill();
     ctx.strokeStyle = F.ref('volcano'); ctx.lineWidth = 3; ctx.beginPath(); surface.forEach(([sx, sy], i) => (i ? ctx.lineTo(sx, sy) : ctx.moveTo(sx, sy))); ctx.stroke(); ctx.restore();
@@ -305,7 +306,7 @@ function tower(ctx, x, y, h, color) {
     lab.flush();
     /* y against t on fixed axes: both roots of the quadratic. The latest landing the sliders allow is at
        5.8 s and the earliest ghost root at −1.3 s; the rise is at most 34.4 m and the drop 40 m. */
-    const yr = { lo: -40, hi: 40, n: 4 }, tr = { lo: -2, hi: 6, n: 8 };
+    const yr = { lo: -80, hi: 40, n: 6 }, tr = { lo: -3, hi: 7, n: 10 };   /* fixed: the latest landing is 6.55 s (30 m/s, 60°, −40 m) and the earliest ghost root −2.86 s */
     const g = axes(ctx, { l: 180, r: 1240, t: 585, b: 770 }, [tr.lo, tr.hi], [yr.lo, yr.hi], { xl: 't (s)', xc: C('time'), yl: 'y (m)', yc: C('position'), nx: tr.n, ny: yr.n, fx: (s) => fmt(s, 0) });
     ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.08); ctx.fillRect(g.X(tr.lo), 585, g.X(0) - g.X(tr.lo), 185); ctx.restore();
     curve(ctx, f.y, tr.lo, tr.hi, g.X, g.Y, C('position'), 5, 120);
@@ -318,8 +319,8 @@ function tower(ctx, x, y, h, color) {
     text(ctx, 't = ' + fmt(tn, 2) + ' s, before the launch', g.X(tn) + 14, g.Y(yl.v) + 24, PAL.muted, { size: 17, weight: 600 });
     topline(ctx, done ? 'After ' + fmt(tp, 2) + ' s the rock lands ' + fmt(-yl.v, 1) + ' m below its start at ' + fmt(vl, 1) + ' m/s, ' + fmt(-thl, 1) + '° below the horizontal.'
       : 'After ' + fmt(tau, 2) + ' s the rock is ' + fmt(Math.abs(y), 1) + ' m ' + (y >= 0 ? 'above' : 'below') + ' the rim and ' + fmt(x, 1) + ' m along, moving at ' + fmt(v, 1) + ' m/s.');
-    readout(d.readout, `(${fmt(G / 2, 2)}\\ \\text{m/s}^2)\\kt^2 - (${fmt(f.vy0, 1)}\\ \\text{m/s})\\kt - (${fmt(-yl.v, 1)}\\ \\text{m}) = 0 \\;\\Rightarrow\\; \\kt = ${fmt(tp, 2)}\\ \\text{s}\\ \\text{or}\\ ${fmt(tn, 2)}\\ \\text{s}`,
-      'The negative root is an event before the launch and is discarded. At impact vx = ' + fmt(f.vx, 1) + ' m/s and vy = ' + sgn(vyl) + fmt(Math.abs(vyl), 1) + ' m/s, so v = ' + fmt(vl, 1) + ' m/s at θv = ' + fmt(thl, 1) + '°.');
+    readout(d.readout, `(${fmt(G / 2, 2)}\\ \\text{m/s}^2)\\kt^2 - (${fmt(f.vy0, 1)}\\ \\text{m/s})\\kt - (${fmt(-yl.v, 1)}\\ \\text{m}) = 0 \\;\\Rightarrow\\; \\kt = ${fmt(tp, 2)}\\ \\text{s}\\ \\text{or}\\ ${fmt(tn, 2)}\\ \\text{s}`);
+    texNote(d.readout, `\\text{The negative root comes before the launch and is discarded. At impact } \\kvx = ${fmt(f.vx, 1)},\\ \\kvy = ${fmt(vyl, 1)}\\ \\text{m/s, so } \\kv = ${fmt(vl, 1)}\\ \\text{m/s at } \\kthetav = ${fmt(thl, 1)}^\\circ.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => roots()[0] / 5), draw });
 })();
@@ -511,11 +512,11 @@ function tower(ctx, x, y, h, color) {
       : done ? 'At ' + fmt(v0.v, 2) + ' km/s the Earth curves away as fast as the projectile falls, so after ' + min(run.T) + ' it is in orbit.'
       : 'After ' + min(tau) + ' the projectile is ' + sig3((r - RE) / 1000) + ' km up and has covered ' + sig3(sofar) + ' km of the surface so far.');
     /* the level-ground range, or the orbit condition: v₀, g and h are the same quantities in both */
-    const gv = '\\mk{gval}{(9.80\\ \\text{m/s}^2)}', hv = `\\mk{hval}{${commas(fmt(ht.v * 1000, 0))}\\ \\text{m}}`, re = '6.37 \\times 10^6\\ \\text{m}';
+    const gv = '\\mk{gval}{(9.80\\ \\text{m/s}^2)}', hv = `\\mk{hval}{${texc(commas(fmt(ht.v * 1000, 0)))}\\ \\text{m}}`, re = '6.37 \\times 10^6\\ \\text{m}';
     const orbit = `\\sqrt{\\frac{\\mk{g}{\\kg}\\mk{RE}{R_E^2}}{\\mk{RE2}{R_E} + \\mk{h}{h}}} = \\sqrt{\\frac{${gv}\\mk{REval}{(${re})^2}}{\\mk{REval2}{${re}} + ${hv}}}`;
     const vc = `\\ \\text{km/s}`;
     ro.set(run.landed
-      ? `\\mk{R}{\\kR} = \\mk{v0}{\\kvo}\\sqrt{\\frac{2\\mk{h}{h}}{\\mk{g}{\\kg}}} = \\mk{v0val}{(${fmt(v0.v, 1)}\\ \\text{km/s})}\\sqrt{\\frac{2(${hv})}{${gv}}} = \\mk{Rval}{${sig3(flat)}\\ \\text{km}}`
+      ? `\\mk{R}{\\kR} = \\mk{v0}{\\kvo}\\sqrt{\\frac{2\\mk{h}{h}}{\\mk{g}{\\kg}}} = \\mk{v0val}{(${fmt(v0.v, 1)}\\ \\text{km/s})}\\sqrt{\\frac{2(${hv})}{${gv}}} = \\mk{Rval}{${texc(sig3(flat))}\\ \\text{km}}`
       : circ ? `\\mk{v0}{\\kvo} = ${orbit} = \\mk{v0val}{${fmt(vo, 2)}${vc}}`
       : `\\mk{v0}{\\kvo} ${v0.v > vo ? '\\mk{gt}{>}' : '\\mk{lt}{<}'} ${orbit} = \\mk{vc}{${fmt(vo, 2)}${vc}}`,
       run.landed ? 'The projectile went ' + sig3(along) + ' km along the curved surface, ' + fmt(along / flat, 1) + ' times as far, because the ground fell away beneath it and it had farther to fall.'

@@ -4,6 +4,8 @@ window.OMNISTAX_FIGURES['3.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, nice, curve, plane, labeller, FONT } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+/* a note line set through the macros, for a note that names symbols */
+function texNote(host, s) { const sm = el('small', null, ''); host.appendChild(sm); tex(sm, s); }
 
 /* ---------- small helpers shared by the figures ---------- */
 const DEG = Math.PI / 180, G = 9.8;
@@ -116,7 +118,6 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     if (vr.v > 0.02) arrow(ctx, hx, hy, hx + vr.v * k, hy, alpha(C('velocity'), 0.55), 3);
     arrow(ctx, bx, by, bx + ux * k, by - uy * k, C('velocity'), 5);
     ctx.restore();
-    if (bx > L && bx < R) lab.add('v (total)', bx + ux * k, by - uy * k, ux / vt, -uy / vt, C('velocity'), 17, 22);
     if (off) { const ex = lx > R ? R - 12 : L + 12, dir = lx > R ? 1 : -1; arrow(ctx, ex - dir * 30, Y(W), ex, Y(W), PAL.ink, 3); lab.add('lands ' + fmt(Math.abs(drift), 0) + ' m ' + (drift > 0 ? 'downstream' : 'upstream') + ', off the picture', ex, Y(W), -dir, 0.6, PAL.ink, 17, 26); }
     text(ctx, 'downstream →', R - 8, PB + 22, PAL.muted, { size: 17, align: 'right' });
     text(ctx, 'far bank', L + 8, Y(W) - 20, F.ref('river'), { size: 17 }); text(ctx, 'near bank', L + 8, Y(0) + 22, F.ref('river'), { size: 17 });
@@ -130,7 +131,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     arrow(ctx, Ox, Oy, Hx, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (boat) = ' + sf(vb.v) + ' m/s', Ox, Oy, Hx, Hy, C('velocity'), -1, 18, lab);
     if (vr.v > 0.02) { arrow(ctx, Hx, Hy, Hx + vr.v * K, Hy, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (river) = ' + sf(vr.v) + ' m/s', Hx, Hy, Hx + vr.v * K, Hy, C('velocity'), -1, 18, lab); }
     arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v (total) = ' + sf(vt) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), 1, 20, lab);
-    if (vt > 0.05) angleArc(ctx, Ox, Oy, 48, 0, th, C('angle'), 'θ = ' + fmt(th, 1) + '°', lab);
+    if (vt > 0.05) angleArc(ctx, Ox, Oy, 48, 0, th, C('angle'), th > 8 && th < 172 ? 'θ = ' + fmt(th, 1) + '°' : '', lab);   /* a sliver of an angle is named in the readout only */
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     lab.flush();
     /* what the numbers say */
@@ -186,13 +187,12 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     if (vw.v > 0.02) arrow(ctx, hx, hy, hx + vwx * k, hy - vwy * k, alpha(C('velocity'), 0.55), 3);
     arrow(ctx, px, py, px + ux * k, py - uy * k, C('velocity'), 5);
     ctx.restore();
-    if (vt > 0.05) lab.add('v (total)', px + ux * k, py - uy * k, ux / vt, -uy / vt, C('velocity'), 17, 22);
     arrow(ctx, L + 30, PB - 30, L + 100, PB - 30, PAL.muted, 3); text(ctx, 'x (east)', L + 110, PB - 30, PAL.muted, { size: 17 });
     arrow(ctx, L + 30, PB - 30, L + 30, PB - 100, PAL.muted, 3); text(ctx, 'y (north)', L + 30, PB - 114, PAL.muted, { size: 17, align: 'center' });
     /* the velocity triangle: the plane's velocity, the wind's from its head, and the sum, at a fixed
        4.2 units per m/s, which holds the tallest triangle the sliders allow (70 m/s of plane and 40 of
        tailwind) in the box beside the map */
-    const K = 4.2, Ox = 1090, Oy = 580;
+    const K = 4.2, Ox = 1090, Oy = Math.min(580, 630 + Math.min(0, uy) * K);   /* a southward total lifts the origin so the triangle stays on the canvas */
     line(ctx, Ox - 180, Oy, Ox + 180, Oy, PAL.muted, 2); line(ctx, Ox, Oy + 40, Ox, Oy - 60, PAL.muted, 2);
     text(ctx, 'x (east)', Ox + 190, Oy, PAL.muted, { size: 17 }); lab.add('y (north)', Ox, Oy - 60, 0, -1, PAL.muted, 17, 14);
     const Hx = Ox, Hy = Oy - vp.v * K, Tx = Ox + ux * K, Ty = Oy - uy * K;
@@ -243,10 +243,9 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     /* what the numbers say */
     topline(ctx, 'A velocity of ' + sf(v.v) + ' m/s at ' + fmt(th.v, 1) + '° has components ' + sf(vx) + ' m/s along x and ' + sf(vy) + ' m/s along y.');
     const back = Math.hypot(vx, vy), calc = Math.abs(vx) < 1e-9 ? null : Math.atan(vy / vx) / DEG;
-    const angleNote = calc === null ? ' Because the x component is zero here, the ratio of the y component to it is undefined, and the angle is ' + (vy > 0 ? '+90°' : '−90°') + ' by inspection.'
-      : vx < 0 ? ' Because the x component is negative, the angle is 180° away from the ' + fmt(calc, 1) + '° a calculator’s tan⁻¹ returns.' : '';
-    readout(d.readout, `\\kvx = \\kv\\cos\\ktheta = (${sf(v.v)})\\cos ${fmt(th.v, 1)}^\\circ = ${sf(vx)}\\ \\text{m/s}\\qquad \\kvy = \\kv\\sin\\ktheta = (${sf(v.v)})\\sin ${fmt(th.v, 1)}^\\circ = ${sf(vy)}\\ \\text{m/s}`,
-      'The last two equations return what you set: √(' + sf(vx) + '² + ' + sf(vy) + '²) = ' + sf(back) + ' m/s' + (calc === null ? '.' : ', and tan⁻¹(' + sf(vy) + '/' + sf(vx) + ') gives ' + fmt(th.v, 1) + '°.') + angleNote);
+    readout(d.readout, `\\kvx = \\kv\\cos\\ktheta = (${sf(v.v)})\\cos ${fmt(th.v, 1)}^\\circ = ${sf(vx)}\\ \\text{m/s}\\qquad \\kvy = \\kv\\sin\\ktheta = (${sf(v.v)})\\sin ${fmt(th.v, 1)}^\\circ = ${sf(vy)}\\ \\text{m/s}`);
+    texNote(d.readout, `\\text{Back again: } \\kv = \\sqrt{\\kvx^2 + \\kvy^2} = ${sf(back)}\\ \\text{m/s}` + (calc === null ? `\\text{, and with } \\kvx = 0 \\text{ the angle is } ${vy > 0 ? '+' : '-'}90^\\circ.`
+      : vx < 0 ? `\\text{, and } \\tan^{-1}(\\kvy/\\kvx) = ${fmt(calc, 1)}^\\circ \\text{ is 180° from } \\ktheta \\text{ because } \\kvx < 0.` : `\\text{, and } \\tan^{-1}(\\kvy/\\kvx) = ${fmt(th.v, 1)}^\\circ.`));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -267,7 +266,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     /* the triangle at a fixed 6 units per m/s, which holds the tallest the sliders allow, 70 m/s straight
        north, above the origin; the plane sits at the origin, headed north, as the book draws it */
     const K = 6, Ox = 460, Oy = 540;
-    const lab = labeller(ctx, 600); lab.block(0, 0, 1400, 96); lab.block(880, 96, 1400, 600);
+    const lab = labeller(ctx, 600); lab.block(0, 0, 1400, 96);
     line(ctx, Ox - 340, Oy, Ox + 340, Oy, PAL.muted, 2); line(ctx, Ox, Oy + 40, Ox, Oy - 60, PAL.muted, 2);
     text(ctx, 'x (east)', Ox + 350, Oy, PAL.muted, { size: 17 }); lab.add('y (north)', Ox, Oy - 60, 0, -1, PAL.muted, 17, 14);
     ctx.save(); ctx.translate(Ox, Oy + 34); ctx.rotate(-Math.PI / 2); plane(ctx, 0, 0, PAL.muted, 0.6); ctx.restore();
@@ -276,17 +275,9 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     if (vw > 0.05) { arrow(ctx, Hx, Hy, Tx, Ty, alpha(C('velocity'), 0.55), 3); alongLabel(ctx, 'v (wind) = ' + sf(vw) + ' m/s', Hx, Hy, Tx, Ty, C('velocity'), vwy <= 0 ? -1 : 1, 18, lab); }
     arrow(ctx, Ox, Oy, Tx, Ty, C('velocity'), 5); alongLabel(ctx, 'v (total) = ' + sf(vt.v) + ' m/s', Ox, Oy, Tx, Ty, C('velocity'), b.v >= 0 ? -1 : 1, 20, lab);
     angleArc(ctx, Ox, Oy, 48, 0, a, C('angle'), fmt(a, 1) + '°', lab);
-    if (Math.abs(b.v) > 2) angleArc(ctx, Ox, Oy, 110, 90, a, C('angle'), fmt(Math.abs(b.v), 1) + '° west of north', lab);
+    if (Math.abs(b.v) > 2) angleArc(ctx, Ox, Oy, 110, 90, a, C('angle'), fmt(Math.abs(b.v), 1) + (b.v >= 0 ? '° west of north' : '° east of north'), lab);
     dot(ctx, Ox, Oy, PAL.ink, true, 5);
     lab.flush();
-    /* the three velocities in words, beside the triangle */
-    const tx = 900, rows = [
-      ['plane relative to the air', 'v (plane) = ' + sf(vp.v) + ' m/s, due north'],
-      ['plane relative to the ground', 'v (total) = ' + sf(vt.v) + ' m/s, ' + compass(ux, uy)],
-      ['wind, found from the two', 'v (wind) = ' + sf(vw) + ' m/s, ' + (vw < 0.05 ? 'no wind at all' : compass(vwx, vwy))],
-      ['its components', 'x: ' + sf(vwx) + ' m/s, y: ' + sf(vwy) + ' m/s'],
-    ];
-    rows.forEach(([lab, val], i) => { text(ctx, lab, tx, 150 + i * 96, PAL.muted, { size: 17 }); text(ctx, val, tx, 150 + i * 96 + 30, C('velocity'), { size: 20, weight: 600 }); });
     /* what the numbers say */
     topline(ctx, vw < 0.05 ? 'With the two velocities equal, no wind is needed to account for the plane’s track.'
       : 'The wind that accounts for the plane’s track is ' + sf(vw) + ' m/s toward ' + compass(vwx, vwy) + '.');
@@ -315,7 +306,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     const tau = cy.now(), Tc = T(), done = tau >= Tc - 1e-9, drop = 0.5 * G * tau * tau, vyNow = -G * tau, vyLand = -G * Tc, dShip = vs.v * Tc;
     /* a fixed 13 units to the metre: the tallest mast the slider allows, 20 m, is 260 units, and the
        farthest the ship moves in that fall, 30 m at 15 m/s, keeps it inside the shore panel */
-    const s = 13, H = h.v * s, k = 7;
+    const s = 13, H = h.v * s, k = 4;
     const panels = [[60, 660, 'seen from the ship'], [740, 1340, 'seen from shore']];
     panels.forEach(([L, R, name], i) => {
       const shore = i === 1;
@@ -339,7 +330,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
       dot(ctx, bx, by, F.ref('binoculars'), true, 9);
       const ax = shore ? vs.v * k : 0, ay = -vyNow * k;
       if (Math.hypot(ax, ay) > 4) arrow(ctx, bx, by, bx + ax, by + ay, C('velocity'), 4);
-      text(ctx, shore ? 'v = (' + fmt(vs.v, 1) + ', ' + sf(vyNow) + ') m/s' : 'v = (0, ' + sf(vyNow) + ') m/s', bx + 22 + ax, by + ay / 2, C('velocity'), { size: 17, weight: 600, bg: alpha(PAL.panel, 0.75) });
+      if (!shore) text(ctx, 'binoculars', mx - 14, DECK - H, F.ref('binoculars'), { size: 17, align: 'right' });   /* named where they start; the readout carries the velocities */
       ctx.restore();
     });
     /* what the numbers say */
@@ -347,8 +338,8 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
       ? (vs.v < 0.05 ? 'The ship is at rest, so both observers see the same straight fall, ' + fmt(Tc, 2) + ' s to the deck at the base of the mast.'
         : 'The binoculars land at the base of the mast after ' + fmt(Tc, 2) + ' s, having moved ' + fmt(dShip, 1) + ' m forward with the ship.')
       : 'After ' + fmt(tau, 2) + ' s the binoculars have fallen ' + fmt(drop, 1) + ' m and, seen from shore, moved ' + fmt(vs.v * tau, 1) + ' m forward with the ship.');
-    readout(d.readout, `\\text{from shore: } \\kv = (${fmt(vs.v, 1)},\\ ${sf(vyLand)})\\ \\text{m/s}\\qquad \\text{from the ship: } \\kv = (0,\\ ${sf(vyLand)})\\ \\text{m/s}`,
-      'Both observers find the vertical velocity at the deck to be −√(2gh) = ' + sf(vyLand) + ' m/s and disagree about the horizontal velocity by exactly the ship’s ' + fmt(vs.v, 1) + ' m/s, so both see the binoculars strike the deck at the base of the mast.');
+    readout(d.readout, `\\text{from shore: } \\kv = (${fmt(vs.v, 1)},\\ ${sf(vyLand)})\\ \\text{m/s}\\qquad \\text{from the ship: } \\kv = (0,\\ ${sf(vyLand)})\\ \\text{m/s}`);
+    texNote(d.readout, `\\text{Both find } \\kvy = -\\sqrt{2\\kg h} = ${sf(vyLand)}\\ \\text{m/s at the deck and differ only by the ship's ${fmt(vs.v, 1)} m/s across it.}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
 })();
@@ -388,7 +379,7 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     vbracket(ctx, CX + 100, top, FLOOR, PAL.ink, fmt(h.v, 2) + ' m', 1);
     const cyy = top + drop * s, k = 8;
     dot(ctx, CX, cyy, F.ref('coin'), true, 9);
-    if (tau > 0.02) { arrow(ctx, CX, cyy, CX, cyy + G * tau * k, C('velocity'), 4); text(ctx, 'vy = ' + sf(-G * tau) + ' m/s', CX + 16, cyy + G * tau * k / 2, C('velocity'), { size: 17, weight: 600, bg: alpha(PAL.panel, 0.75) }); }
+    if (tau > 0.02) arrow(ctx, CX, cyy, CX, cyy + G * tau * k, C('velocity'), 4);
     /* right: the ground's view, a graph of the path with the plane above it */
     title(ctx, 'relative to the Earth', 990, 100);
     /* fixed axes: the farthest the coin can travel is 192 m (300 m/s for the 0.64 s fall from 2 m) */
@@ -396,15 +387,15 @@ const streak = (ctx, x, y, dx, dy, color) => line(ctx, x, y, x + dx, y + dy, col
     const { X, Y } = axes(ctx, box, [0, xr.hi], [-yr.hi, 0], { xl: 'x (m)', xc: PAL.ink, yl: 'y (m)', yc: PAL.ink, nx: xr.n, ny: yr.n, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 1) });
     curve(ctx, (x) => -0.5 * G * (x / vp.v) * (x / vp.v), 0, R, X, Y, PAL.muted, 3, 60);
     const px = X(vp.v * tau);
-    plane(ctx, px, 150, F.ref('airliner'), 0.55);
-    line(ctx, px, 172, px, Y(-drop) - 12, PAL.muted, 1.5, [4, 8]);
+    plane(ctx, px, 124, F.ref('airliner'), 0.55);
+    line(ctx, px, 146, px, Y(-drop) - 12, PAL.muted, 1.5, [4, 8]);
     dot(ctx, X(0), Y(0), PAL.ink, false, 7); dot(ctx, X(R), Y(-h.v), PAL.ink, true, 7);
     dot(ctx, px, Y(-drop), F.ref('coin'), true, 9);
     /* the velocity at the floor, to one scale: the fall is a stub beside the plane's speed */
     text(ctx, 'the coin’s velocity at the floor, relative to the Earth', 700, 448, PAL.muted, { size: 17 });
     const kx = 540 / 300, ox = 700, oy = 500, tipx = ox + vp.v * kx, tipy = oy - vy * kx;
     arrow(ctx, ox, oy, tipx, oy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'vx = ' + sf(vp.v) + ' m/s', (ox + tipx) / 2, oy - 22, C('velocity'), { size: 18, weight: 600, align: 'center' });
-    arrow(ctx, tipx, oy, tipx, tipy, alpha(C('velocity'), 0.6), 3.5); text(ctx, 'vy = ' + sf(vy) + ' m/s', tipx + 16, tipy, C('velocity'), { size: 18, weight: 600 });
+    arrow(ctx, tipx, oy, tipx, tipy, alpha(C('velocity'), 0.6), 3.5); const far = tipx > 1100; text(ctx, 'vy = ' + sf(vy) + ' m/s', far ? tipx : tipx + 16, far ? oy + 30 : tipy, C('velocity'), { size: 18, weight: 600, align: far ? 'right' : 'left' });   /* under the tip where the stage edge is near */
     arrow(ctx, ox, oy, tipx, tipy, C('velocity'), 5);
     text(ctx, 'v = ' + sf(v, 5) + ' m/s at ' + fmt(th, 2) + '°', ox, oy + 48, C('velocity'), { size: 20, weight: 600 });
     /* what the numbers say */

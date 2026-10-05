@@ -4389,3 +4389,4 @@ exercise card.
 
 Review pass ch01 (2026-10-04, Claude Opus 5.5 high): 16 pass, 15 fixed (11 figures, 4 leads), 0 rewrite filed.
 Review pass ch05 (2026-10-04, Claude Opus 5.5 high): 6 pass, 16 fixed (13 figures, 3 leads), 3 rewrite filed.
+Review pass ch03 (2026-10-04, Claude Opus 5.5 high): 2 pass, 23 fixed, 2 rewrite filed.

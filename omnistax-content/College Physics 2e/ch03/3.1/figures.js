@@ -1,34 +1,10 @@
 /* Figures for section 3.1 Kinematics in Two Dimensions: An Introduction. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.1'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, nice, curve, fixed, person, labeller } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, curve, fixed, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const G = 9.80;
-
-/* ---------- sprites, in the colour they are given ---------- */
-/* a helicopter seen from above, centred on (x, y), its nose turned to the angle a (radians, counterclockwise
-   on the page) and its rotor turned to the angle r: a cabin, a tail boom with a tail rotor, two main blades
-   over a faint rotor disc, and a skid either side of the cabin */
-function helicopter(ctx, x, y, a, r, color) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(-a); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineCap = 'round';
-  ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(-14, -20); ctx.lineTo(14, -20); ctx.moveTo(-14, 20); ctx.lineTo(14, 20); ctx.stroke();   /* the skids */
-  ctx.beginPath(); ctx.moveTo(24, 0); ctx.quadraticCurveTo(22, -16, 4, -16); ctx.lineTo(-18, -12); ctx.lineTo(-18, 12); ctx.lineTo(4, 16); ctx.quadraticCurveTo(22, 16, 24, 0); ctx.closePath(); ctx.fill();   /* the cabin, nose to the right */
-  ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(-18, 0); ctx.lineTo(-62, 0); ctx.stroke();   /* the tail boom */
-  ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(-62, -14); ctx.lineTo(-62, 14); ctx.moveTo(-58, -4); ctx.lineTo(-66, -4); ctx.stroke();   /* the tail rotor and fin */
-  ctx.fillStyle = alpha(color, 0.12); ctx.beginPath(); ctx.arc(0, 0, 44, 0, Math.PI * 2); ctx.fill();   /* the rotor disc */
-  ctx.rotate(r); ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(-44, 0); ctx.lineTo(44, 0); ctx.moveTo(0, -44); ctx.lineTo(0, 44); ctx.stroke();
-  ctx.fillStyle = color; ctx.beginPath(); ctx.arc(0, 0, 5, 0, Math.PI * 2); ctx.fill();
-  ctx.restore();
-}
-/* the library's walker set on a map: walking east she is drawn upright with her feet on the street, and walking
-   north the drawing is turned so that she walks up the page */
-function walker(ctx, x, y, north, phase, color) {
-  ctx.save(); ctx.translate(x, y);
-  if (north) ctx.rotate(-Math.PI / 2);
-  person(ctx, 0, 0, color, { face: 1, phase, s: 0.8 });
-  ctx.restore();
-}
 
 /* =====================================================================
    FIGURE 3.3: the walk in the city. A pedestrian walks east along the
@@ -71,26 +47,25 @@ function walker(ctx, x, y, north, phase, color) {
     for (let k = 1; k < c; k++) { const px = x0 + k * s * ux, py = yb + k * s * uy; line(ctx, px + 8 * uy, py - 8 * ux, px - 8 * uy, py + 8 * ux, pc, 3); }
     /* block numbers along the two legs */
     for (let i = 0; i <= e; i++) text(ctx, String(i), x0 + i * s, yb + 28, PAL.muted, { size: 17, align: 'center' });
-    for (let j = 1; j <= n; j++) text(ctx, String(j), xr + 24, yb - j * s, PAL.muted, { size: 17 });
+    for (let j = 1; j < n; j++) text(ctx, String(j), xr + 24, yb - j * s, PAL.muted, { size: 17 });
     /* the three sides carry the letters the readout uses, so a, b and c can be found on the drawing */
     text(ctx, 'a = ' + e + (e === 1 ? ' block east' : ' blocks east'), (x0 + xr) / 2, yb + 60, pc, { weight: 600, align: 'center' });
     lab.add('b = ' + n + (n === 1 ? ' block north' : ' blocks north'), xr + 36, (yb + yt) / 2, 1, 0, pc, 22, 20);
-    ctx.save(); ctx.translate((x0 + xr) / 2, (yb + yt) / 2); ctx.rotate(-theta);
-    text(ctx, 'c = ' + fmt(c, 1) + ' blocks, the straight-line path', 0, -28, pc, { weight: 600, align: 'center', bg: PAL.panel }); ctx.restore();
     lab.add('start', x0, yb, -1, 0, PAL.muted, 17, 26);
-    lab.add('destination', xr, yt, 0.4, -1, PAL.muted, 17, 56);
+    lab.add('destination', xr, yt, 1, 0, PAL.muted, 17, 48);
+    lab.beside({ x1: x0, y1: yb, x2: xr, y2: yt }, 'right', 'c = ' + fmt(c, 1) + ' blocks', pc, 22, { gap: 56 });
     /* the walker on the streets and the helicopter on the diagonal, one block per unit of model time */
     const wx = tau <= e ? x0 + tau * s : xr, wy = tau <= e ? yb : yb - (tau - e) * s;
     const hf = Math.min(tau, c) / c, hx = x0 + (xr - x0) * hf, hy = yb + (yt - yb) * hf;
-    helicopter(ctx, hx, hy, theta, cy.tau * 2.4, F.ref('helicopter'));
-    walker(ctx, wx, wy, tau > e && !done, done ? 0 : cy.tau * 9, F.ref('walker'));
+    F.personTop(ctx, wx, wy, 1, tau > e ? -Math.PI / 2 : 0, F.ref('walker'));
+    F.helicopterTop(ctx, hx, hy, 0.8, theta, cy.tau * 2.4, F.ref('helicopter'));
     lab.flush();
     const gone = Math.min(tau, total()), flown = Math.min(tau, c);
     topline(ctx, done ? 'The walk covers ' + total() + ' blocks, ' + e + ' east and then ' + n + ' north, while the straight-line distance is ' + fmt(c, 1) + ' blocks.'
       : tau >= c ? 'The helicopter has arrived after ' + fmt(c, 1) + ' blocks, and the walker still has ' + fmt(total() - gone, 1) + ' blocks to go.'
       : 'The walker has gone ' + fmt(gone, 1) + ' of the ' + total() + ' blocks, and the helicopter ' + fmt(flown, 1) + ' of its ' + fmt(c, 1) + '.');
-    readout(d.readout, `c = \\sqrt{a^2 + b^2} = \\sqrt{(${e}\\ \\text{blocks})^2 + (${n}\\ \\text{blocks})^2} = ${fmt(c, 1)}\\ \\text{blocks}`,
-      'The walk covers ' + e + ' + ' + n + ' = ' + total() + ' blocks, and the straight-line path rises ' + fmt(theta * 180 / Math.PI, 1) + '° above east.');
+    const bl = (k) => k + (k === 1 ? '\\ \\text{block}' : '\\ \\text{blocks}');
+    readout(d.readout, `c = \\sqrt{a^2 + b^2} = \\sqrt{(${bl(e)})^2 + (${bl(n)})^2} = ${fmt(c, 1)}\\ \\text{blocks}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => total() / 5), draw });
 })();
@@ -131,8 +106,8 @@ function walker(ctx, x, y, north, phase, color) {
     vbracket(ctx, 90, Y(Y0.v), yg, pc);
     text(ctx, 'y₀ = ' + fmt(Y0.v, 2) + ' m', 90, Y(Y0.v) - 28, pc, { weight: 600, size: 22, align: 'center' });
     text(ctx, 'y = 0', 90, yg + 40, pc, { weight: 600, size: 20, align: 'center' });
-    text(ctx, 'dropped', X(0), Y(Y0.v) - 34, F.ref('dropped-ball'), { size: 18, align: 'center' });
-    text(ctx, 'thrown', X(0) + 14 + V.v * AS + 40, Y(Y0.v) - 34, F.ref('thrown-ball'), { size: 18, align: 'center' });
+    text(ctx, 'dropped', X(0) - 6, Y(Y0.v) - 34, F.ref('dropped-ball'), { size: 18, align: 'right' });
+    text(ctx, 'thrown', X(0) + 6, Y(Y0.v) - 34, F.ref('thrown-ball'), { size: 18, align: 'left' });
     /* a ball pair at time t: a strobe copy in a lighter ink, or the pair as it is now */
     function pair(t, ghost) {
       const y = yOf(t), yd = Y(y), xd = X(0), xt = X(V.v * t), vy = Math.min(G * t, G * tf);
@@ -148,15 +123,18 @@ function walker(ctx, x, y, north, phase, color) {
     flashes.filter((t) => t <= tau + 1e-9).forEach((t) => pair(t, true));
     const now = pair(tau, false);
     if (!done) {
-      /* the acceleration on each ball never changes; the velocities are named once each, on the thrown ball */
-      arrow(ctx, now.xd - 26, now.yd, now.xd - 26, now.yd + 60, ac, 4); arrow(ctx, now.xt + V.v * AS + 40, now.yd, now.xt + V.v * AS + 40, now.yd + 60, ac, 4);
-      text(ctx, 'g', now.xt + V.v * AS + 54, now.yd + 34, ac, { weight: 600, size: 24 });
-      text(ctx, 'v₀x = ' + fmt(V.v, 2) + ' m/s', now.xt + 12 + (V.v * AS) / 2, now.yd - 24, vc, { weight: 600, size: 18, align: 'center', bg: PAL.panel });
+      /* the acceleration on each ball never changes, drawn on the side of each ball away from the velocity labels and named once, on the dropped ball;
+         the velocities are named once each, on the thrown ball */
+      arrow(ctx, now.xd - 26, now.yd, now.xd - 26, now.yd + 60, ac, 4);
+      if (now.xt - now.xd > 60) arrow(ctx, now.xt - 26, now.yd, now.xt - 26, now.yd + 60, ac, 4);
+      text(ctx, 'g', now.xd - 40, now.yd + 34, ac, { weight: 600, size: 24, align: 'right' });
+      text(ctx, 'v₀x = ' + fmt(V.v, 2) + ' m/s', now.xt + 12, now.yd - 24, vc, { weight: 600, size: 18, align: 'left', bg: PAL.panel });
       if (now.vy > 0.3) text(ctx, 'vy = ' + fmt(now.vy, 2) + ' m/s', now.xt + 14, now.yd + 22 + (now.vy * AS) / 2, vc, { weight: 600, size: 18, bg: PAL.panel });
     }
     if (xnow * SC > 30) { hbracket(ctx, X(0), X(xnow), yg + 50, pc); text(ctx, 'x = ' + fmt(xnow, 2) + ' m', (X(0) + X(xnow)) / 2, yg + 78, pc, { weight: 600, size: 20, align: 'center' }); }
     /* ---- the graphs, beside the scene: the same height at every flash, a different sideways distance ---- */
-    const tr = nice(0, tf, 3), yr = nice(0, Y0.v, 3), xr = nice(0, Math.max(xmax, 0.5), 2);
+    /* fixed from the slider maxima: a 3.0 m drop lasts 0.78 s, and the fastest throw carries 3.1 m in it */
+    const tr = { hi: 0.8, n: 4 }, yr = { hi: 3, n: 3 }, xr = { hi: 4, n: 4 };
     const top = { l: 900, r: 1330, t: 120, b: 290 }, bot = { l: 900, r: 1330, t: 400, b: 570 };
     const g1 = axes(ctx, top, [0, tr.hi], [0, yr.hi], { xl: 't (s)', xc: tc, yl: 'height y (m)', yc: pc, nx: tr.n, ny: yr.n, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
     curve(ctx, yOf, 0, tf, g1.X, g1.Y, pc, 4);
@@ -167,8 +145,9 @@ function walker(ctx, x, y, north, phase, color) {
     line(ctx, g2.X(0), g2.Y(0), g2.X(tf), g2.Y(xmax), pc, 4);
     flashes.forEach((t) => { if (t <= tau + 1e-9) { dot(ctx, g2.X(t), g2.Y(V.v * t), pc, true, 7); dot(ctx, g2.X(t), g2.Y(0), pc, false, 7); } });
     line(ctx, g2.X(tau), bot.b, g2.X(tau), g2.Y(xnow), tc, 2, [4, 8]); dot(ctx, g2.X(tau), g2.Y(xnow), PAL.ink, true, 9);
-    text(ctx, 'thrown ball', g2.X(tf * 0.45), g2.Y(xmax * 0.45) - 26, pc, { size: 17, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'dropped ball stays at x = 0', g2.X(0) + 16, g2.Y(0) - 24, PAL.muted, { size: 17, bg: PAL.panel });
+    /* a key in the corner the line never reaches: filled for the thrown ball, hollow for the dropped one */
+    dot(ctx, bot.l + 24, bot.t + 14, pc, true, 7); text(ctx, 'thrown ball', bot.l + 40, bot.t + 14, pc, { size: 17, weight: 600 });
+    dot(ctx, bot.l + 24, bot.t + 42, pc, false, 7); text(ctx, 'dropped ball, at x = 0', bot.l + 40, bot.t + 42, pc, { size: 17, weight: 600 });
     topline(ctx, done ? 'Both balls reach the ground together after ' + fmt(tf, 2) + ' s, and the thrown ball has gone ' + fmt(xmax, 2) + ' m sideways.'
       : 'After ' + fmt(tau, 2) + ' s both balls are ' + fmt(yOf(tau), 2) + ' m above the ground, and the thrown ball has gone ' + fmt(xnow, 2) + ' m sideways.');
     readout(d.readout, `\\ky = \\kyo - \\tfrac{1}{2}\\kg\\kt^2 = ${fmt(yOf(tau), 2)}\\ \\text{m for both balls}\\qquad \\kx = \\kvox\\kt = ${fmt(xnow, 2)}\\ \\text{m for the thrown ball}`,
