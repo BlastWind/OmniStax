@@ -128,10 +128,13 @@ headline · graph · 3D
    drawn as two bars in the entropy hue beside the reservoirs, and the cold
    bar is always the taller; a slider bringing the two temperatures together
    shrinks the difference to nothing, which is the reversible limit the
-   Carnot cycle's zero total describes, and pulling them apart grows it ·
-   **still**: a transfer between two reservoirs whose temperatures do not
-   change has no clock the figure could run, and the two panels of the book
-   are two accounts of one end state (rule 14) · a choice, labelled direct or
+   Carnot cycle's zero total describes, and pulling them apart grows it,
+   and flow by animation · arrows: kinematic (the heat Q leaving the hot
+   reservoir and entering the cold one, directly or by the two reversible
+   transfers) · **moving**: the heat crosses as packets along the faint
+   arrows over a 5 s loop with a 1.2 s hold, and the three bars fill with
+   the share delivered, standing at the book's account at the hold;
+   reduced motion shows that end state · a choice, labelled direct or
    reversible, of the direct irreversible transfer or the two reversible
    processes (rule 26.1: the book's two panels are two states of the figure,
    not a quantity; the scene names each state in full), $\kQh$
@@ -201,8 +204,14 @@ headline · graph · 3D
    the Sun into deep space, the Sun's temperature and the Earth's own
    change in entropy, and three bars show the Sun's small loss, the Earth's
    decrease and deep space's enormous gain at 3 K, so the total is seen to
-   stay positive however far the Earth's entropy is pushed down · **still**:
-   the account of one heat transfer has no clock (rule 14) · $\kQh$ (400 to
+   stay positive however far the Earth's entropy is pushed down, and flow by
+   animation · arrows: kinematic (the heat Q streaming from the Sun to deep
+   space, and the part $\Delta E_\text{int}$ the Earth takes in) ·
+   **moving**: packets of heat stream from the Sun into deep space over a
+   5 s loop with a 1.2 s hold, one in four stopping at the Earth, and the
+   four bars fill with the share delivered; the bold arrow stays as a faint
+   channel and the Earth's arrow at half strength for the still frame ·
+   $\kQh$ (400 to
    2000 J, default 1000, energy, the floor chosen so that no setting of the
    Earth's slider can push the total below zero), $\kTemph$ (3000 to 8000 K, default 5773,
    the 5500 °C surface of the section's own problem on the Sun, temperature),

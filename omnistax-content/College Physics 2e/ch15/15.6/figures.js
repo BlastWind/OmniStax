@@ -1,8 +1,9 @@
 /* Figures for section 15.6 Entropy and the Second Law of Thermodynamics: Disorder and the Unavailability of Energy.
-   Boots against the section's text article. Every figure here compares two
-   end states, two paths or two accounts of one heat transfer, and none of
-   that runs on a clock, so every figure is a still picture: none registers a
-   cycle, none carries a transport, and a slider's input alone redraws it.
+   Boots against the section's text article. Three figures compare two end
+   states, two paths or two engines and are still pictures a slider's input
+   redraws. The two whose book figures draw heat flowing (15.33, 15.36) run
+   on a clock: the heat crosses as packets and the entropy bars fill with the
+   share delivered, so the bars stand at the book's account once it is over.
    A heat transfer is an arrow in the energy hue as wide as the energy it
    carries, a temperature wears its hue on the label of the reservoir that
    holds it, and an entropy change is a bar or a gauge in the entropy hue, or
@@ -56,6 +57,16 @@ function fatArrow(ctx, x1, y1, x2, y2, w, color) {
 }
 /* the width of an arrow for the energy it carries: a hairline for nothing, and never fatter than the cap */
 const wOf = (v, k, cap = 58) => (v <= 0 ? 0 : Math.min(cap, 6 + k * v));
+/* heat on a clock: n packets leave at even steps over the first TQ − tr seconds and each crosses in its own time;
+   prog is how far packet i has gone, 0 before it leaves and 1 once it has arrived */
+const TQ = 5;
+const prog = (tau, i, n, tr, own = tr) => Math.max(0, Math.min(1, (tau - (i * (TQ - tr)) / (n - 1)) / own));
+/* one packet of heat transfer: a round dab in the energy hue, ringed in the page colour, fading in and out at the ends of its run */
+function packet(ctx, x, y, r, color, p) {
+  const a = Math.min(1, p / 0.08, (1 - p) / 0.08); if (a <= 0) return;
+  ctx.save(); ctx.globalAlpha *= a; ctx.fillStyle = color; ctx.strokeStyle = PAL.panel; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+}
 /* a heat reservoir: a box outlined and named in its referent's hue, its temperature written in the temperature hue beneath the name */
 function reservoir(ctx, x1, y1, x2, y2, name, temp, id) {
   const c = F.ref(id);
@@ -167,22 +178,27 @@ function earthSprite(ctx, x, y, r, color) {
    produce the same end states. Beside the reservoirs, three bars: the hot
    reservoir's loss −Q/T_h, the cold reservoir's gain Q/T_c, and the total,
    which is positive because the same heat makes a larger change at the
-   lower temperature. Still: two reservoirs at fixed temperatures have no
-   clock, and the book's two panels are two accounts of one end state.
+   lower temperature. Moving: the book's arrows are heat flowing, so the
+   heat crosses as packets along them and the bars fill with the share
+   delivered; the faint arrows stay as the still frame's direction.
 ===================================================================== */
 (function () {
   const d = sim('sim-irreversible-transfer', 640);
-  const how = choice(d.controls, { label: '\\text{the process}', options: [{ value: 'direct', label: 'direct' }, { value: 'rev', label: 'reversible' }], value: 'direct', aria: 'whether the heat transfer is direct or by two reversible processes' });
-  const q = ctl(d.controls, { label: '\\kQh', cls: 'energy', min: 0, max: 8000, step: 100, value: 4000, unit: 'J', dec: 0, aria: 'the heat transfer from the hot reservoir to the cold one' });
-  const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 300, max: 1000, step: 10, value: 600, unit: 'K', dec: 0, aria: 'the temperature of the hot reservoir' });
-  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 100, max: 1000, step: 10, value: 250, unit: 'K', dec: 0, aria: 'the temperature of the cold reservoir', specials: [{ at: () => th.v, label: 'reversible' }] });
+  const how = choice(d.controls, { label: '\\text{the process}', options: [{ value: 'direct', label: 'direct' }, { value: 'rev', label: 'reversible' }], value: 'direct', onInput: reset, aria: 'whether the heat transfer is direct or by two reversible processes' });
+  const q = ctl(d.controls, { label: '\\kQh', cls: 'energy', min: 0, max: 8000, step: 100, value: 4000, unit: 'J', dec: 0, onInput: reset, aria: 'the heat transfer from the hot reservoir to the cold one' });
+  const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 300, max: 1000, step: 10, value: 600, unit: 'K', dec: 0, onInput: reset, aria: 'the temperature of the hot reservoir' });
+  const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 100, max: 1000, step: 10, value: 250, unit: 'K', dec: 0, onInput: reset, aria: 'the temperature of the cold reservoir', specials: [{ at: () => th.v, label: 'reversible' }] });
   const BX1 = 170, BX2 = 560, HY1 = 110, HY2 = 220, CY1 = 440, CY2 = 550, MX = (BX1 + BX2) / 2, K = 0.0085;
   const box = { l: 800, r: 1320, t: 135, b: 520 }, LO = -40, HI = 100;   /* the entropy axis is fixed at −40 to 100 J/K: 8000 J at 100 K is 80 J/K, with room for its label */
+  const N = 10, TR = 1.5, cy = F.cycle(() => TQ, 1.2);
+  function reset() { cy.reset(); }
   function draw() {
     const { ctx } = begin(d.c);
     const sc = C('entropy'), ec = C('energy');
     const Q = q.v, Th = th.v, Tc = tc.v, dSh = -Q / Th, dSc = Q / Tc, tot = dSh + dSc, w = wOf(Q, K);
-    const rev = how.value === 'rev';
+    const tau = cy.now(), ps = Array.from({ length: N }, (_, i) => prog(tau, i, N, TR)), f = ps.reduce((a, b) => a + b, 0) / N;
+    const r = Math.max(5, Math.min(15, w * 0.32)), track = alpha(ec, 0.22);
+    const along = (x1, y1, x2, y2) => ps.forEach((p) => { if (p > 0 && p < 1) packet(ctx, x1 + (x2 - x1) * p, y1 + (y2 - y1) * p, r, ec, p); });
     /* the two reservoirs, the hot one above */
     reservoir(ctx, BX1, HY1, BX2, HY2, 'hot reservoir', 'T_h = ' + fmt(Th, 0) + ' K', 'hot-reservoir');
     reservoir(ctx, BX1, CY1, BX2, CY2, 'cold reservoir', 'T_c = ' + fmt(Tc, 0) + ' K', 'cold-reservoir');
@@ -191,15 +207,17 @@ function earthSprite(ctx, x, y, r, color) {
       /* the direct arrow splits: its upper half swings out into the transfer leaving the hot reservoir, its lower half into the one entering the cold */
       const k = how.mix((v) => (v === 'rev' ? 1 : 0)), mid = (HY2 + CY1) / 2, L = (a, b) => a + (b - a) * k;
       how.only(ctx, 'direct', () => {
-        fatArrow(ctx, MX, HY2 + 2, MX, CY1 - 2, w, ec);
+        fatArrow(ctx, MX, HY2 + 2, MX, CY1 - 2, w, track);
+        along(MX, HY2 + r, MX, CY1 - r);
         text(ctx, 'Q = ' + fmt(Q, 0) + ' J', MX + w / 2 + 22, 330, ec, { size: 22, weight: 600, align: 'left' });
         text(ctx, 'direct from T_h to T_c', MX + w / 2 + 22, 360, PAL.muted, { size: 17, align: 'left' });
       }, [0, 10]);
       const ar = how.a('rev');
       if (ar > 0) {
         ctx.save(); ctx.globalAlpha *= ar;
-        fatArrow(ctx, L(MX, MX + 30), HY2 + 2, L(MX, MX + 130), L(mid - 8, HY2 + 96), w, ec);
-        fatArrow(ctx, L(MX, MX - 130), L(mid + 8, CY1 - 96), L(MX, MX - 30), CY1 - 2, w, ec);
+        const a1 = [L(MX, MX + 30), HY2 + 2, L(MX, MX + 130), L(mid - 8, HY2 + 96)], a2 = [L(MX, MX - 130), L(mid + 8, CY1 - 96), L(MX, MX - 30), CY1 - 2];
+        fatArrow(ctx, ...a1, w, track); fatArrow(ctx, ...a2, w, track);
+        along(...a1); along(...a2);
         ctx.restore();
       }
       how.only(ctx, 'rev', () => {
@@ -216,7 +234,7 @@ function earthSprite(ctx, x, y, r, color) {
     how.only(ctx, 'direct', () => text(ctx, 'irreversible', MX, CY2 + 40, PAL.ink, { size: 20, align: 'center' }), [0, 10]);
     /* the bars on a fixed axis */
     const { Y } = axes(ctx, box, [0, 3], [LO, HI], { yl: 'ΔS (J/K)', yc: sc, nx: 3, ny: 7, fx: () => '' });
-    const cols = [['ΔS_h', dSh, 'hot reservoir', F.ref('hot-reservoir')], ['ΔS_c', dSc, 'cold reservoir', F.ref('cold-reservoir')], ['ΔS_tot', tot, 'total', PAL.muted]];
+    const cols = [['ΔS_h', f * dSh, 'hot reservoir', F.ref('hot-reservoir')], ['ΔS_c', f * dSc, 'cold reservoir', F.ref('cold-reservoir')], ['ΔS_tot', f * tot, 'total', PAL.muted]];
     cols.forEach(([nm, v, who, wc], i) => {
       const xc = box.l + ((i + 0.5) / 3) * (box.r - box.l), bw = 90;
       const { y } = bar(ctx, xc, bw, Y, v, who === 'total' ? sc : wc, LO, HI);
@@ -233,7 +251,7 @@ function earthSprite(ctx, x, y, r, color) {
       backwards ? 'Heat transfer from cold to hot would lower the total entropy, which never happens on its own.'
         : level ? '' : 'The same heat makes the larger change at the lower temperature, so the cold reservoir gains more than the hot one loses.');
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================
@@ -369,28 +387,36 @@ function earthSprite(ctx, x, y, r, color) {
    the Sun and ends in deep space at 3 K; the Earth in its path keeps a
    small part and may lower its own entropy. Three bars beneath show the
    Sun's small loss, the Earth's decrease and deep space's enormous gain,
-   and their total stays positive. Still: the account of one transfer.
+   and their total stays positive. Moving: the book's bold arrow is heat
+   streaming out, so packets cross from the Sun to deep space, one in four
+   stopping at the Earth, and the bars fill with the share delivered.
 ===================================================================== */
 (function () {
   const d = sim('sim-sun-earth', 720);
-  const q = ctl(d.controls, { label: '\\kQh', cls: 'energy', min: 400, max: 2000, step: 10, value: 1000, unit: 'J', dec: 0, aria: 'the heat transfer from the Sun into deep space' });
-  const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 3000, max: 8000, step: 1, value: 5773, unit: 'K', dec: 0, aria: 'the temperature of the Sun' });
-  const ds = ctl(d.controls, { label: '\\kdSsyst', cls: 'entropy', min: -100, max: 20, step: 1, value: -50, unit: 'J/K', dec: 0, aria: 'the change in entropy of the Earth' });
+  const q = ctl(d.controls, { label: '\\kQh', cls: 'energy', min: 400, max: 2000, step: 10, value: 1000, unit: 'J', dec: 0, onInput: reset, aria: 'the heat transfer from the Sun into deep space' });
+  const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 3000, max: 8000, step: 1, value: 5773, unit: 'K', dec: 0, onInput: reset, aria: 'the temperature of the Sun' });
+  const ds = ctl(d.controls, { label: '\\kdSsyst', cls: 'entropy', min: -100, max: 20, step: 1, value: -50, unit: 'J/K', dec: 0, onInput: reset, aria: 'the change in entropy of the Earth' });
   const TC = 3, SX = 150, SY = 200, EX = 760, K = 0.03;
   const box = { l: 200, r: 1300, t: 400, b: 640 }, LO = -100, HI = 700;   /* the entropy axis is fixed at −100 to 700 J/K: 2000 J into deep space at 3 K is 667 J/K */
+  /* packets run from the Sun's rim to deep space in TR; every fourth stops at the Earth's rim, at the same speed */
+  const N = 12, TR = 2.4, X0 = SX + 62, X1 = 1310, XE = EX - 36, cy = F.cycle(() => TQ, 1.2);
+  const stops = (i) => i % 4 === 2, jit = (i) => (((i * 5) % 7) / 6 - 0.5) * 0.5;
+  function reset() { cy.reset(); }
   function draw() {
     const { ctx } = begin(d.c);
     const sc = C('entropy'), ec = C('energy'), tc = C('temperature');
     const Q = q.v, Th = th.v, dSs = ds.v, dSsun = -Q / Th, dSspace = Q / TC, dSenv = dSsun + dSspace, tot = dSs + dSenv;
-    /* the heat transfer, as wide as the energy it carries, from the Sun past the Earth to deep space */
-    const w = wOf(Q, K, 80);
-    fatArrow(ctx, SX + 92, SY, 1330, SY, w, alpha(ec, 0.55));
+    const tau = cy.now(), ps = Array.from({ length: N }, (_, i) => prog(tau, i, N, TR, stops(i) ? TR * (XE - X0) / (X1 - X0) : TR)), f = ps.reduce((a, b) => a + b, 0) / N;
+    /* the heat transfer, as wide as the energy it carries, from the Sun past the Earth to deep space: a faint channel with the packets in it */
+    const w = wOf(Q, K, 80), r = Math.max(8, Math.min(20, w * 0.36));
+    fatArrow(ctx, SX + 92, SY, 1330, SY, w, alpha(ec, 0.22));
+    ps.forEach((p, i) => { if (p > 0 && p < 1) packet(ctx, X0 + ((stops(i) ? XE : X1) - X0) * p, SY + (stops(i) ? 0 : jit(i) * w), r, ec, p); });
     sunSprite(ctx, SX, SY, 58, F.ref('sun'));
     text(ctx, 'Sun', SX, SY + 112, F.ref('sun'), { size: 20, align: 'center' });
     text(ctx, 'T_h = ' + fmt(Th, 0) + ' K', SX, SY + 140, tc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'Q = ' + fmt(Q, 0) + ' J', 430, SY - w / 2 - 26, ec, { size: 22, weight: 600, align: 'center' });
     /* the Earth, keeping a small part of it */
-    fatArrow(ctx, EX - 150, SY + 6, EX - 46, SY + 6, 12, ec);
+    fatArrow(ctx, EX - 150, SY + 6, EX - 46, SY + 6, 12, alpha(ec, 0.5));
     text(ctx, 'ΔE_int', EX - 100, SY + 46, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     earthSprite(ctx, EX, SY, 42, F.ref('earth'));
     text(ctx, 'Earth', EX, SY + 72, F.ref('earth'), { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
@@ -399,7 +425,7 @@ function earthSprite(ctx, x, y, r, color) {
     text(ctx, 'T_c = ' + fmt(TC, 0) + ' K', 1230, SY + 112, tc, { size: 22, weight: 600, align: 'center' });
     /* the bars on a fixed axis */
     const { Y } = axes(ctx, box, [0, 4], [LO, HI], { yl: 'ΔS (J/K)', yc: sc, nx: 4, ny: 8, fx: () => '' });
-    const cols = [['Sun', dSsun, '−Q/T_h', F.ref('sun')], ['Earth', dSs, 'ΔS_syst', F.ref('earth')], ['deep space', dSspace, '+Q/T_c', F.ref('deep-space')], ['total', tot, 'ΔS_tot', PAL.muted]];
+    const cols = [['Sun', f * dSsun, '−Q/T_h', F.ref('sun')], ['Earth', f * dSs, 'ΔS_syst', F.ref('earth')], ['deep space', f * dSspace, '+Q/T_c', F.ref('deep-space')], ['total', f * tot, 'ΔS_tot', PAL.muted]];
     cols.forEach(([who, v, nm, wc], i) => {
       const xc = box.l + ((i + 0.5) / 4) * (box.r - box.l);
       const { y } = bar(ctx, xc, 110, Y, v, who === 'total' ? sc : wc, LO, HI);
@@ -412,6 +438,6 @@ function earthSprite(ctx, x, y, r, color) {
     readout(d.readout, `\\kdStot = \\kdSsyst + \\kdSenvir = ${texnum(dSs, 0)}\\ \\text{J/K} + \\left(-\\frac{${fmt(Q, 0)}\\ \\text{J}}{${fmt(Th, 0)}\\ \\text{K}} + \\frac{${fmt(Q, 0)}\\ \\text{J}}{${fmt(TC, 0)}\\ \\text{K}}\\right) = ${texnum(tot, 0)}\\ \\text{J/K} > 0`,
       'Deep space at 3 K gains far more entropy than the Sun at ' + fmt(Th, 0) + ' K loses, so what the Earth sheds locally never brings the total below zero.');
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 };
