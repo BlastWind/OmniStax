@@ -1,0 +1,678 @@
+{
+ "id": "32.2",
+ "module": "m42652",
+ "chapter": "32",
+ "title": "Biological Effects of Ionizing Radiation",
+ "short": "Biological Effects",
+ "lead": "Ionizing radiation harms living tissue by damaging the DNA in its cells. This section defines the units that measure a radiation <span data-concept=\"absorbed-dose-rad-and-gray\">dose</span>, explains why some kinds of radiation do more harm than others for the same <span data-concept=\"energy\">energy</span> deposited, and surveys the immediate and long-term effects of a dose, the background radiation everyone receives, and the ways a dose is limited.",
+ "objectives": [
+  "Define various units of radiation.",
+  "Describe RBE."
+ ],
+ "summary_html": "<ul><li>The biological effects of ionizing radiation are due to two effects it has on cells: interference with cell reproduction, and destruction of cell function.</li><li>A radiation <span data-concept=\"absorbed-dose-rad-and-gray\">dose</span> unit called the rad is defined in terms of the ionizing <span data-concept=\"energy\">energy</span> deposited per kilogram of tissue: $$1\\;\\text{rad}=0.01\\;\\text{J/kg}.$$</li><li>The SI unit for radiation <span data-concept=\"absorbed-dose-rad-and-gray\">dose</span> is the gray (Gy), which is defined to be $1\\;\\text{Gy}=1\\;\\text{J/kg}=100\\;\\text{rad}.$</li><li>To account for the effect of the type of particle creating the ionization, we use the relative biological effectiveness (RBE) or quality factor (QF) given in Table 32.2 and define a unit called the roentgen equivalent man (rem) as $$\\text{rem}=\\text{rad}\\times\\text{RBE}.$$</li><li>Particles that have short ranges or create large ionization densities have RBEs greater than unity. The SI equivalent of the rem is the sievert (Sv), defined to be $$\\text{Sv}=\\text{Gy}\\times\\text{RBE}\\;\\text{and}\\;1\\;\\text{Sv}=100\\;\\text{rem}.$$</li><li>Whole-body, single-exposure <span data-concept=\"absorbed-dose-rad-and-gray\">doses</span> of <span data-type=\"dose\">0.1 Sv or less</span> are low <span data-concept=\"absorbed-dose-rad-and-gray\">doses</span> while those of <span data-type=\"dose\">0.1 to 1 Sv</span> are moderate, and those <span data-type=\"dose\">over 1 Sv</span> are high <span data-concept=\"absorbed-dose-rad-and-gray\">doses</span>. Some immediate radiation effects are given in Table 32.4. Effects due to low <span data-concept=\"absorbed-dose-rad-and-gray\">doses</span> are not observed, but their risk is assumed to be directly proportional to those of high <span data-concept=\"absorbed-dose-rad-and-gray\">doses</span>, an assumption known as the linear hypothesis. Long-term effects are cancer deaths at the rate of $10/10^{6}\\;\\text{rem}\\cdot\\text{y}$ and genetic defects at roughly one-third this rate. Background radiation <span data-concept=\"absorbed-dose-rad-and-gray\">doses</span> and sources are given in Table 32.5. World-wide average radiation exposure from natural sources, including radon, is <span data-type=\"dose\">about 3 mSv, or 300 mrem</span>. Radiation protection utilizes shielding, <span data-concept=\"distance\">distance</span>, and <span data-concept=\"time\">time</span> to limit exposure.</li></ul>",
+ "notes": "The PhET interactive Alpha Decay, on α particles escaping a polonium nucleus, is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-05",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s own key. The problem on the energy of a “picowave” photon of 1-pm wavelength is printed here and set in 32.4, which teaches food irradiation. Four unkeyed problems are left out: the doses in Gy of a fluoroscopic series, of an α emitter on the skin and of the ⁴⁰K in the body; the dose in Sv of a 200-Gy γ treatment; the cancer and genetic risks of a plumber’s 30-mSv dose; and the mass of ²³⁹Pu that has an activity of 1.00 μCi. The seven conceptual questions and the AP item on a 90-kg person’s 50-mrem α dose are unkeyed and carry AI-marked suggested approaches. The module prints no Check Your Understanding box, so nothing is set inline.",
+ "figures": [
+  {
+   "id": "sim-ionization",
+   "kind": "sim",
+   "number": "32.6",
+   "originals": [
+    "/media/ch32/Figure_33_02_01a.jpg"
+   ],
+   "original_caption": "The image shows ionization created in cells by α and γ radiation. Because of its shorter range, the ionization and damage created by α is more concentrated and harder for the organism to repair. Thus, the RBE for αs is greater than the RBE for γs, even though they create the same amount of ionization at the same energy.",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "dose"
+   ],
+   "conventions": [
+    "gamma",
+    "e-",
+    "p+",
+    "n0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-dose",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "mass",
+    "dose"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-protection",
+   "kind": "sim",
+   "number": "32.7",
+   "originals": [
+    "/media/ch32/Figure_33_02_02a.jpg"
+   ],
+   "original_caption": "A lead apron is placed over the dental patient and shielding surrounds the x-ray tube to limit exposure to tissue other than the tissue that is being imaged. Fast films limit the time needed to obtain images, reducing exposure to the imaged tissue. The technician stands a few meters away behind a lead-lined door with a lead glass window, reducing her occupational exposure.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "time",
+    "position",
+    "dose"
+   ],
+   "conventions": [
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "radiation-and-cells",
+   "concept": "radiation-damages-dna",
+   "verb": "introduces"
+  },
+  {
+   "span": "radiation-and-cells",
+   "concept": "ionizing-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "absorbed-dose-rad-and-gray",
+   "verb": "introduces"
+  },
+  {
+   "span": "dose-units",
+   "concept": "rad",
+   "verb": "introduces"
+  },
+  {
+   "span": "dose-units",
+   "concept": "gray",
+   "verb": "introduces"
+  },
+  {
+   "span": "dose-units",
+   "concept": "energy",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "kilogram",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "dose-units",
+   "concept": "ionization-energy-to-count",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "relative-biological-effectiveness",
+   "verb": "introduces"
+  },
+  {
+   "span": "rbe",
+   "concept": "dose-equivalent-rem-and-sievert",
+   "verb": "introduces"
+  },
+  {
+   "span": "rbe",
+   "concept": "rem",
+   "verb": "introduces"
+  },
+  {
+   "span": "rbe",
+   "concept": "sievert",
+   "verb": "introduces"
+  },
+  {
+   "span": "rbe",
+   "concept": "range-of-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "alpha-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "beta-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "gamma-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "x-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "neutron",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "activity",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "exponential-decay-law",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "becquerel",
+   "verb": "uses"
+  },
+  {
+   "span": "rbe",
+   "concept": "curie",
+   "verb": "uses"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "immediate-effects-and-dose-levels",
+   "verb": "introduces"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "low-dose",
+   "verb": "introduces"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "moderate-dose",
+   "verb": "introduces"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "high-dose",
+   "verb": "introduces"
+  },
+  {
+   "span": "immediate-effects",
+   "concept": "sievert",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term-effects",
+   "concept": "linear-hypothesis-and-long-term-risk",
+   "verb": "introduces"
+  },
+  {
+   "span": "long-term-effects",
+   "concept": "hormesis",
+   "verb": "introduces"
+  },
+  {
+   "span": "long-term-effects",
+   "concept": "ultraviolet-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "background",
+   "concept": "background-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "background",
+   "concept": "nuclear-radioactivity",
+   "verb": "uses"
+  },
+  {
+   "span": "background",
+   "concept": "becquerel",
+   "verb": "uses"
+  },
+  {
+   "span": "radiation-protection",
+   "concept": "radiation-protection",
+   "verb": "introduces"
+  },
+  {
+   "span": "radiation-protection",
+   "concept": "shielding",
+   "verb": "introduces"
+  },
+  {
+   "span": "radiation-protection",
+   "concept": "x-ray-radiation",
+   "verb": "uses"
+  },
+  {
+   "span": "radiation-protection",
+   "concept": "intensity-area-ratio",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "dose-from-a-source",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "activity",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "curie",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "relative-biological-effectiveness",
+   "verb": "uses"
+  },
+  {
+   "span": "risk-versus-benefit",
+   "concept": "half-life",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1541499",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "A patient receives $A$ rad of radiation as part of her treatment and absorbs $E$ J of energy. The RBE of the radiation particles is $R$. If the RBE is increased to $1.5R$, what will be the energy absorbed by the patient?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "$1.5E$ J",
+     "$E$ J",
+     "$0.75E$ J",
+     "$0.67E$ J"
+    ],
+    "correct": 1,
+    "generated_by": "source",
+    "hint": "The dose in rad is the energy absorbed per kilogram. Ask which of the doses the RBE enters, the dose in rad or the dose in rem.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1556618",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "If a 90-kg person is exposed to 50 mrem of alpha particles (with RBE of 16), calculate the dosage (in rad) received by the person. What is the amount of energy absorbed by the person?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The dose in rem is the dose in rad times the RBE, so divide the 50 mrem, written as 0.050 rem, by the RBE of 16 to find the dose in rad. That dose is an energy per kilogram: convert it to joules per kilogram with $1\\;\\text{rad}=0.01\\;\\text{J/kg}$, then multiply by the 90-kg mass of the person to find the energy absorbed, assuming the whole body is exposed."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3105443",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "Isotopes that emit $\\alpha$ radiation are relatively safe outside the body and exceptionally hazardous inside. Yet those that emit $\\gamma$ radiation are hazardous outside and inside. Explain why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An $\\alpha$ has a very short range: a few centimeters of air or the dead outer layer of the skin stops it, so a source outside the body deposits almost no energy in living cells. Inside the body there is nothing between the source and living tissue, and the $\\alpha$ deposits all its energy in a few cells along a short, densely ionized track, damage that is hard to repair, which is why its RBE is 10 to 20. A $\\gamma$ ray has a long range and passes through the skin and deep into the body, so it reaches living cells from outside as well as from inside. Its ionization is spread thinly, so its RBE is 1, but it is never kept out by distance alone."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2449112",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "background",
+   "prompt": "Why is radon more closely associated with inducing lung cancer than other types of cancer?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Radon is a gas, so it is breathed in, and it and its short-lived radioactive daughters, which cling to dust, lodge in the lungs. They are $\\alpha$ emitters, and an $\\alpha$ has so short a range that its energy is deposited in the cells lining the lungs and hardly anywhere else. The dose is therefore concentrated in lung tissue, with the large RBE of $\\alpha$ radiation, while other organs receive almost none."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1931641",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "The RBE for low-energy $\\beta$s is 1.7, whereas that for higher-energy $\\beta$s is only 1. Explain why, considering how the range of radiation depends on its energy.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The lower the energy of a $\\beta$, the shorter its range, and a low-energy $\\beta$ also moves more slowly, so it ionizes more often per unit length. A $\\beta$ below 32 keV deposits all of its energy within about a cell's width, so its damage is concentrated and harder for the cell to repair. A higher-energy $\\beta$ spreads the same number of ionizations along a track millimeters long, crossing many cells and damaging each only lightly. Concentrated damage has the greater biological effect, so the low-energy $\\beta$ has the larger RBE."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1357684",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radiation-protection",
+   "figure": {
+    "src": "/media/ch32/Figure_33_02_03a.jpg",
+    "alt": "Figure A shows a “shoe fitting x-ray device.” Figure B shows a group of people wearing white protective suits standing near a yellow radiation hazard sign.",
+    "caption": "(a) This x-ray fluorescence machine is one of the thousands used in shoe stores to produce images of feet as a check on the fit of shoes. They are unshielded and remain on as long as the feet are in them, producing doses much greater than medical images. Children were fascinated with them. These machines were used in shoe stores until laws preventing such unwarranted radiation exposure were enacted in the 1950s. (credit: Andrew Kuchling ) (b) Now that we know the effects of exposure to radioactive material, safety is a priority. (credit: U.S. Navy)"
+   },
+   "prompt": "Which methods of radiation protection were used in the device shown in the first photo? Which were used in the situation shown in the second photo?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The three methods are shielding, distance and time. The shoe-fitting machine used almost none of them: it was unshielded, the feet sat right at the x-ray tube, and it stayed on as long as the feet were in it, so the exposure time was set by curiosity rather than need. In the second photo the workers wear protective suits, which shield them from $\\alpha$ particles and some $\\beta$s and keep radioactive material off the skin, and the hazard sign keeps others at a distance; working quickly and taking turns limits the time each person is exposed."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2595406",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "background",
+   "prompt": "What radioisotope could be a problem in homes built of cinder blocks made from uranium mine tailings? (This is true of homes and schools in certain regions near uranium mines.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Radon, ${}^{222}\\text{Rn}$. Uranium mine tailings still hold the radium, ${}^{226}\\text{Ra}$, of uranium's decay series, and radium decays to radon, a gas that diffuses out of the blocks into the air of the rooms. There it is breathed in, and its $\\alpha$ emission dose the lungs, especially where the building has little exchange of air with the outside."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1548365",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radiation-and-cells",
+   "prompt": "Are some types of cancer more sensitive to radiation than others? If so, what makes them more sensitive?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. Radiation acts mainly by damaging DNA, and the damage matters most in cells that are dividing, so cancers whose cells reproduce rapidly are the most sensitive. Cancers whose cells divide slowly, or that have poor blood supply and so little oxygen, respond less. Sensitivity also depends on how well the cells repair DNA damage: tumor cells that repair it poorly are killed more easily than the normal tissue around them."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2589205",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategy",
+   "prompt": "Suppose a person swallows some radioactive material by accident. What information is needed to be able to assess possible damage?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Follow the steps of a dose calculation. One needs the isotope, which gives its type of radiation and so its RBE, the energy of each decay, and its half-life; the activity swallowed; how long it stays in the body, which depends on its half-life and on how quickly the body eliminates it; and which organs it collects in, with their mass, since the dose is the energy deposited divided by the mass of tissue affected. The age and health of the person also matter."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3398507",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "What is the dose in mSv for: (a) a 0.1 Gy x-ray? (b) 2.5 mGy of neutron exposure to the eye? (c) 1.5 mGy of $\\alpha$ exposure?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "solution": "(a) 100 mSv (b) 80 mSv (c) ~30 mSv",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 100,
+      "unit": "mSv",
+      "hint": "Multiply the dose in Gy by the RBE of x rays from Table 32.2 and convert to mSv."
+     },
+     {
+      "part": "(b)",
+      "value": 80,
+      "unit": "mSv",
+      "hint": "Use the RBE Table 32.2 gives for fast neutrons in the eyes."
+     },
+     {
+      "part": "(c)",
+      "value": 30,
+      "unit": "mSv",
+      "tol": 0.05,
+      "hint": "Take the higher RBE of Table 32.2 for $\\alpha$ rays."
+     }
+    ]
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id744946",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rbe",
+   "prompt": "How many Gy of exposure is needed to give a cancerous tumor a dose of 40 Sv if it is exposed to $\\alpha$ activity?",
+   "answer": {
+    "type": "number",
+    "value": 2,
+    "unit": "Gy",
+    "tol": 0.05,
+    "generated_by": "source",
+    "hint": "Divide the dose in Sv by the RBE of $\\alpha$ rays, taking the higher value in Table 32.2.",
+    "solution": "~2 Gy"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3402426",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radiation-protection",
+   "prompt": "One half the $\\gamma$ rays from ${}^{99\\text{m}}\\text{Tc}$ are absorbed by a 0.170-mm-thick lead shielding. Half of the $\\gamma$ rays that pass through the first layer of lead are absorbed in a second layer of equal thickness. What thickness of lead will absorb all but one in 1000 of these $\\gamma$ rays?",
+   "answer": {
+    "type": "number",
+    "value": 1.69,
+    "unit": "mm",
+    "generated_by": "source",
+    "hint": "Each 0.170-mm layer passes half of what reaches it, so $n$ layers pass $(1/2)^{n}$. Find the $n$ that makes this $1/1000$.",
+    "solution": "1.69 mm"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "dose-equivalent-rem-and-sievert"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "rem"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "rad"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "absorbed-dose-rad-and-gray"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "background-radiation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "range-of-radiation"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "radiation-protection"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "shielding"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "background-radiation"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "radiation-damages-dna"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "dose-from-a-source"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sievert"
+  },
+  {
+   "exercise": "p1",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "p2",
+   "concept": "sievert"
+  },
+  {
+   "exercise": "p2",
+   "concept": "gray"
+  },
+  {
+   "exercise": "p2",
+   "concept": "relative-biological-effectiveness"
+  },
+  {
+   "exercise": "p3",
+   "concept": "shielding"
+  }
+ ]
+}
