@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES['5.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, hover, ctl, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- helpers shared by the figures ---------- */
 /* a rectangle outlined in a dashed line: the shape the object had before the force was applied */
@@ -79,7 +79,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       text(ctx, 'the spring has broken', (wall + nat * 0.55 + end - nat * 0.55) / 2, y - 46, PAL.muted, { size: 20, align: 'center', weight: 600 });
     }
     line(ctx, wall + nat, y - 62, wall + nat, y + 62, PAL.muted, 2, [6, 6]);
-    text(ctx, 'original length', wall + nat - 12, y - 76, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'original length', wall + nat - 12, y - 46, PAL.muted, { size: 17, align: 'right' });
     if (x * SC > 8 && reg < 3) hbracket(ctx, wall + nat, end, y + 96, C('position'), 'ΔL = ' + fmt(x, 3) + ' m');
     /* the graph: the deformation against the force, with the three regions the book names */
     /* The range is fixed. At the slider extremes (k = 50 N/m with the Hooke limit at 300 N) the
@@ -111,8 +111,9 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       : reg === 1 ? 'A force of ' + fmt(f, 0) + ' N has stretched the spring ' + fmt(x, 3) + ' m, so the graph has left its straight segment, but the stretch is still elastic and comes back'
         : reg === 2 ? 'A force of ' + fmt(f, 0) + ' N has stretched the spring ' + fmt(x, 3) + ' m and deformed it permanently, so it will not return to its original length'
           : 'A force of ' + fmt(f, 0) + ' N has fractured the spring, which happens here at ' + fmt(fracture(), 0) + ' N');
-    const past = reg > 0;
-    ro.set(`\\mk{dL}{\\kdL} = \\mk{nx}{${fmt(x, 3)}}\\ \\text{m} \\mk{rel}{${past ? '>' : '='}} \\mk{Fk}{\\frac{\\kF}{\\kk}} = \\mk{fk}{\\frac{${fmt(f, 0)}\\ \\text{N}}{${fmt(kk.v, 0)}\\ \\text{N/m}}} = \\mk{nfk}{${fmt(f / kk.v, 3)}}\\ \\text{m}`, 'The slope of the straight region is 1/k, so a stiffer spring gives a flatter line. The straight region is long for a metal or a spring and short for a bone.', { form: past });
+    /* once it has fractured, the stretch it reached is set against the force that broke it */
+    const past = reg > 0, fe = reg === 3 ? fracture() : f;
+    ro.set(`\\mk{dL}{\\kdL} = \\mk{nx}{${fmt(x, 3)}}\\ \\text{m} \\mk{rel}{${past ? '>' : '='}} \\mk{Fk}{\\frac{\\kF}{\\kk}} = \\mk{fk}{\\frac{${fmt(fe, 0)}\\ \\text{N}}{${fmt(kk.v, 0)}\\ \\text{N/m}}} = \\mk{nfk}{${fmt(fe / kk.v, 3)}}\\ \\text{m}`, undefined, { form: past });
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -139,7 +140,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
        so a longer string really is drawn stretching farther instead of the picture rescaling itself
        around it. The longest stretch the sliders allow, 12.2 mm, still draws inside its 90 units. */
     const MAG = 7000;
-    const yTop = 210, len = 130 + 200 * (L0.v / 1.2);
+    const yTop = 240, len = 130 + 200 * (L0.v / 1.2);
     fixed(ctx, 200, yTop - 44, 560, 44);
     STR.forEach((s, i) => {
       const x = 270 + i * 190, dL = dl(s, w.v), grow = Math.min(90, dL * MAG);
@@ -147,12 +148,14 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
       line(ctx, x, yTop + len, x, yTop + len + grow, C('position'), i === 1 ? 7 : 4);
       block(ctx, x, yTop + len + grow + 30, 74, 46, PAL.ink);
       arrow(ctx, x, yTop + len + grow + 58, x, yTop + len + grow + 58 + 16 + w.v * 1.1, C('force'), 5);
-      text(ctx, s.name, x, yTop - 100, F.ref(s.id), { size: 19, align: 'center', weight: 600 });
-      text(ctx, 'Y = ' + giga(s.Y / 1e9), x, yTop - 74, C('elastic-modulus'), { size: 17, align: 'center' });
-      text(ctx, fmt(dL * 1000, 2) + ' mm', x + 14, yTop + len + grow / 2 + 2, C('position'), { size: 17, weight: 600 });
+      /* the middle string's name and modulus sit a row higher, so the three moduli never run into one another */
+      const up = i === 1 ? 26 : 0;
+      text(ctx, s.name, x, yTop - 100 - up, F.ref(s.id), { size: 19, align: 'center', weight: 600 });
+      text(ctx, 'Y = ' + giga(s.Y / 1e9), x, yTop - 74 - up, C('elastic-modulus'), { size: 17, align: 'center' });
+      text(ctx, fmt(dL * 1000, 2) + ' mm', x + 46, yTop + len + grow / 2 - 12, C('position'), { size: 17, weight: 600 });
     });
-    text(ctx, 'w = ' + fmt(w.v, 0) + ' N on each string', 200, 700, C('force'), { size: 20, weight: 600 });
-    text(ctx, 'the stretch is drawn about ' + timesLarger(MAG, len / L0.v) + ' times larger than it is', 200, 728, PAL.muted, { size: 17 });
+    text(ctx, 'w = ' + fmt(w.v, 0) + ' N on each string', 830, 700, C('force'), { size: 20, weight: 600 });
+    text(ctx, 'the stretch is drawn about ' + timesLarger(MAG, len / L0.v) + ' times larger than it is', 830, 728, PAL.muted, { size: 17 });
     vbracket(ctx, 176, yTop, yTop + len, C('position'), 'L₀ = ' + fmt(L0.v, 2) + ' m', -1);
     /* the graph beside the vertical scene: the stretch each string takes against the weight hung on it */
     /* The range is fixed: at the slider maxima (w = 40 N and L₀ = 1.20 m) the thin nylon string, the
@@ -170,7 +173,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     });
     headline(ctx, 'A ' + fmt(w.v, 0) + ' N weight stretches the thin nylon string ' + fmt(dl(STR[0], w.v) * 1000, 2) + ' mm, the thicker nylon string ' + fmt(dl(STR[1], w.v) * 1000, 2) + ' mm and the steel string ' + fmt(dl(STR[2], w.v) * 1000, 2) + ' mm');
     readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kwgt}{\\karea}\\kLo = \\frac{(${fmt(w.v, 0)}\\ \\text{N})(${fmt(L0.v, 2)}\\ \\text{m})}{(${sci(STR[0].Y, 0)}\\ \\text{N/m}^2)(${sci(area(STR[0]), 2)}\\ \\text{m}^2)} = ${sci(dl(STR[0], w.v), 2)}\\ \\text{m}`,
-      'The thicker nylon string has four times the cross-sectional area of the thin one, so the same weight stretches it a quarter as far; the steel string has the same area as the thin nylon one but forty-two times its Young’s modulus, so it stretches forty-two times less. All three lines are straight, which is Hooke’s law.');
+      'The thicker nylon string has four times the area of the thin one and the steel string forty-two times its Young’s modulus, so they stretch a quarter as far and forty-two times less.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -226,21 +229,24 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const YHI = 0.5, YN = 5;
     const box = { l: 790, r: 1310, t: 150, b: 560 };
     const { X, Y } = axes(ctx, box, [0, 5000], [0, YHI], { xl: 'force F (N)', xc: C('force'), yl: 'change in length ΔL (mm)', yc: C('position'), nx: 5, ny: YN, fy: (v) => fmt(v, 2) });
+    const names = [];
     OTHERS.forEach((o, i) => {
       const e = Math.min(5000, (YHI / 1000) * o.Y * 1e9 * area() / L0.v);
       if (e < 120) return;
       line(ctx, X(0), Y(0), X(e), Y(dl(e, o.Y) * 1000), PAL.rule, 3);
-      /* a line that leaves through the top of the box is named beside where it leaves, not above it, so the labels keep off the axis title */
-      if (e < 4980) text(ctx, o.name, X(e) + 10, box.t + 20 + i * 24, PAL.muted, { size: 16 });
-      else text(ctx, o.name, X(e) - 8, Y(dl(e, o.Y) * 1000) - 16, PAL.muted, { size: 16, align: 'right' });
+      /* a line that leaves through the top of the box is named beside where it leaves, not above it, so the labels keep off the axis title;
+         the names go on panels after every line is drawn, so no other line runs through them */
+      if (e < 4980) names.push([o.name, X(e) + 10, box.t + 20 + i * 30, 'left']);
+      else names.push([o.name, X(e) - 8, Y(dl(e, o.Y) * 1000) - 16, 'right']);
     });
     const ec = Math.min(5000, (YHI / 1000) * YY.v * 1e9 * area() / L0.v);
     line(ctx, X(0), Y(0), X(ec), Y(dl(ec, YY.v) * 1000), C('position'), 5);
     if (x * 1000 <= YHI) { line(ctx, X(Fa.v), box.b, X(Fa.v), Y(x * 1000), C('force'), 2, [4, 8]); dot(ctx, X(Fa.v), Y(x * 1000), PAL.ink, true, 10); }
     else pinned(ctx, box, X, Y, Fa.v, x * 1000, C('position'), fmt(x * 1000, 2) + ' mm');
+    names.forEach(([s, nx, ny, align]) => text(ctx, s, nx, ny, PAL.muted, { size: 16, align, bg: PAL.panel }));
     headline(ctx, 'A force of ' + fmt(Fa.v, 0) + ' N stretches the rod ' + fmt(x * 1000, 3) + ' mm in tension and compresses it by the same amount');
     readout(d.readout, `\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(YY.v * 1e9, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
-      'For very small deformations and uniform materials the change in length is the same for a tension and for a compression of the same size, which is why the two rods move by equal amounts. Double the length and the change doubles; double the radius and the area is four times as large, so the change falls to a quarter.');
+      'Double the length and the change doubles; double the radius and the area is four times as large, so the change falls to a quarter.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -277,7 +283,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     arrow(ctx, x0 + base + grow + 20, y, x0 + base + grow + 20 + 40 + s / 6e5, y, C('stress'), 5);
     text(ctx, 'stress ' + fmt(s / 1e6, 1) + ' MN/m²', x0 + base + grow + 26, y - 34, C('stress'), { weight: 600, size: 20 });
     if (grow > 6) hbracket(ctx, x0 + base, x0 + base + grow, y + 80, C('position'), 'ΔL = ' + fmt(dL * 1000, 1) + ' mm');
-    text(ctx, 'L₀ = ' + fmt(L0.v, 0) + ' cm', x0 + base / 2, y + 124, C('position'), { size: 20, align: 'center', weight: 600 });
+    hbracket(ctx, x0, x0 + base, y + 80, C('position'), 'L₀ = ' + fmt(L0.v, 0) + ' cm');
     /* the graph: the stress the tendon carries against its strain, with the three regions the book names */
     const box = { l: 210, r: 1270, t: 340, b: 640 };
     const { X, Y: Yg } = axes(ctx, box, [0, 0.1], [0, TOP / 1e6], { xl: 'strain ΔL / L₀', xc: PAL.ink, yl: 'tensile stress (MN/m²)', yc: C('stress'), nx: 5, ny: 4, fx: (v) => fmt(v, 2) });
@@ -298,7 +304,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     /* the book gives stress no letter of its own, so the readout writes the word; it is a bound type
        here, so the word is set in the stress hue rather than left in ink */
     readout(d.readout, `\\text{strain} = \\frac{\\kdL}{\\kLo} = \\frac{${fmt(dL * 1000, 1)}\\ \\text{mm}}{${fmt(L0.v, 0)}\\ \\text{cm}} = ${fmt(e, 3)}`,
-      'In the linear region the curve rises by Young’s modulus for tendon, 1 × 10⁹ N/m², for every unit of strain, so stress = Y × strain holds there. In the toe region the fibers are still aligning themselves with the stress and the tendon gives more easily, and in the failure region individual fibers break, so the slope falls away.');
+      'Only in the linear region does stress = $\\kY$ × strain hold, with $\\kY = 1 \\times 10^9\\ \\text{N/m}^2$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -355,11 +361,13 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     dashed(quad([-1, -1, -1], [-1, -1, 1], [-1, 1, 1], [-1, 1, -1], 0));
     const tl = pt(-1, 1, 1, lean), tl0 = pt(-1, 1, 1, 0), br = pt(1, -1, 1, 0), bl = pt(-1, -1, 1, 0), topC = pt(0, 1, -1, lean);
     const fl = 40 + Fa.v * 0.055;
-    arrow(ctx, tl[0] - 16 - fl, tl[1] + 30, tl[0] - 16, tl[1] + 30, C('force'), 5);
-    text(ctx, 'F = ' + fmt(Fa.v, 0) + ' N', tl[0] - 16 - fl / 2, tl[1] + 2, C('force'), { align: 'center', weight: 600, size: 21, bg: PAL.panel });
+    /* the push meets the case at its left side, so the arrow stops short of the side face, and its name sits above it, clear of the case */
+    const xe = Math.min(tl[0], pt(-1, 1, -1, lean)[0]) - 12;
+    arrow(ctx, xe - fl, tl[1] + 30, xe, tl[1] + 30, C('force'), 5);
+    text(ctx, 'F = ' + fmt(Fa.v, 0) + ' N', Math.min(xe - 4, tl0[0] - 14), tl[1] - 26, C('force'), { align: 'right', weight: 600, size: 21, bg: PAL.panel });
     arrow(ctx, br[0] + 24 + fl, br[1] - 14, br[0] + 24, br[1] - 14, C('force'), 5);
     text(ctx, 'F', br[0] + 24 + fl + 12, br[1] - 14, C('force'), { weight: 600, size: 21 });
-    text(ctx, 'A = ' + fmt(AA.v, 2) + ' m²', topC[0] + 20, topC[1] - 30, C('area'), { align: 'center', weight: 600, size: 18 });
+    text(ctx, 'A = ' + fmt(AA.v, 2) + ' m²', topC[0] + 10, topC[1] - 30, C('area'), { weight: 600, size: 18 });
     const lx = Math.min(tl0[0], bl[0]) - 50;
     vbracket(ctx, lx, tl0[1], bl[1], C('position'), '', -1);
     text(ctx, 'L₀ = ' + fmt(L0.v, 1) + ' m', lx - 12, (tl0[1] + bl[1]) / 2, C('position'), { align: 'right', weight: 600, size: 20 });
@@ -387,7 +395,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     else pinned(ctx, box, X, Y, SS.v, x * 1e6, C('position'), fmt(x * 1e6, 1) + ' µm');
     headline(ctx, 'A force of ' + fmt(Fa.v, 0) + ' N shears a bookcase ' + fmt(L0.v, 1) + ' m tall with a shear modulus of ' + giga(SS.v) + ' sideways by ' + fmt(x * 1e6, 3) + ' µm');
     readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(Fa.v, 0)}\\ \\text{N})(${fmt(L0.v, 1)}\\ \\text{m})}{(${sci(SS.v * 1e9, 1)}\\ \\text{N/m}^2)(${fmt(AA.v, 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
-      'The deformation falls as one over the shear modulus, so the curve drops steeply at the left and flattens at the right. Bone sits at the far right beside steel, which is why bones are so rigid, and lead sits at the far left.');
+      );
   }
   hover(d.stage, () => marks);
   register(d.fig, { update: () => {}, draw });
@@ -399,7 +407,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
    wall, and it flexes by an amount too small to see. Still.
 ===================================================================== */
 (function () {
-  const d = sim('sim-nail', 620);
+  const d = sim('sim-nail', 690);
   const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.5, max: 20, step: 0.1, value: 5.2, unit: 'kg', dec: 1, aria: 'mass of the picture' });
   const rr = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.25, max: 2, step: 0.05, value: 0.75, unit: 'mm', dec: 2, aria: 'radius of the nail' });
   const L0 = ctl(d.controls, { label: '\\kLo', cls: 'position', min: 2, max: 20, step: 0.5, value: 5, unit: 'mm', dec: 2, aria: 'length of nail outside the wall' });
@@ -441,7 +449,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     text(ctx, 'steel nail', wallR + len / 2, y - 62, cn, { size: 18, align: 'center', weight: 600 });
     line(ctx, wallR, y - 90, wallR + len, y - 90, PAL.muted, 2, [6, 6]);
     hbracket(ctx, wallR, wallR + len, y - 112, C('position'), 'L₀ = ' + fmt(L0.v, 2) + ' mm');
-    text(ctx, '2r = ' + fmt(2 * rr.v, 2) + ' mm', wallR + 40, y + half + 26, C('position'), { size: 18 });
+    text(ctx, '2r = ' + fmt(2 * rr.v, 2) + ' mm', wallR + 14, cen(wallR + 160) + half + 26, C('position'), { size: 18 });
     /* the picture: a frame with its mat, hung from the nail by a wire that hooks over the shank just behind the head */
     const wx = hx0 - 14, wy = cen(wx) + width(wx), ft = wy + 74, fw = 210, fh = 170;
     line(ctx, wx, wy, wx - 80, ft + 12, PAL.muted, 2); line(ctx, wx, wy, wx + 80, ft + 12, PAL.muted, 2);
@@ -451,17 +459,17 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     text(ctx, fmt(mm.v, 1) + ' kg', wx, ft + fh / 2, C('mass'), { size: 22, align: 'center', weight: 600 });
     /* the two equal and opposite forces on the nail: the picture's weight pulling down where the wire
        hangs, and the wall pushing up where the nail leaves it */
-    const aL = 40 + w * 0.6;
+    const aL = 40 + 30 * (w / (20 * G));                               /* the heaviest picture the slider allows draws 70 units, clear of the bracket above and the notes below */
     arrow(ctx, wx, wy + 2, wx, wy + 2 + aL, C('force'), 5);
     text(ctx, 'w = ' + fmt(w, 1) + ' N', wx + 16, wy + 14 + Math.min(aL, 60) / 2, C('force'), { weight: 600, size: 20, bg: PAL.panel });
     arrow(ctx, wallR + 6, y - half - 2, wallR + 6, y - half - 2 - aL, C('force'), 5);
     text(ctx, 'w', wallR + 22, y - half - 2 - aL / 2, C('force'), { weight: 600, size: 20, bg: PAL.panel });
     if (flex > 4) vbracket(ctx, hx0 + 40, y, hy0, C('position'), 'Δx', 1);
-    text(ctx, 'the flex is drawn about ' + timesLarger(MAG, len / (L0.v / 1000)) + ' times larger than it is', 120, 560, PAL.muted, { size: 18 });
-    text(ctx, 'the nail is steel, so its shear modulus is 80 × 10⁹ N/m²', 120, 588, PAL.muted, { size: 18 });
+    text(ctx, 'the flex is drawn about ' + timesLarger(MAG, len / (L0.v / 1000)) + ' times larger than it is', 120, 630, PAL.muted, { size: 18 });
+    text(ctx, 'the nail is steel, so its shear modulus is 80 × 10⁹ N/m²', 120, 658, PAL.muted, { size: 18 });
     headline(ctx, 'A ' + fmt(mm.v, 1) + ' kg picture weighs ' + fmt(w, 0) + ' N and bends the nail ' + fmt(x * 1e6, 2) + ' µm, which is far too small to see');
     readout(d.readout, `\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{\\karea}\\kLo = \\frac{(${fmt(w, 1)}\\ \\text{N})(${sci(L0.v / 1000, 2)}\\ \\text{m})}{(${sci(S, 1)}\\ \\text{N/m}^2)(${sci(area(), 2)}\\ \\text{m}^2)} = ${sci(x, 2)}\\ \\text{m}`,
-      'Example 5.5 runs this the other way: it reads the flex off the figure as 1.80 µm and solves F = SAΔx/L₀ for the 51 N weight, which makes the picture’s mass w/g = 5.2 kg. Set the mass to 5.2 kg, the radius to 0.75 mm and the length to 5.00 mm to see those numbers.');
+      'Example 5.5 runs it the other way, solving $\\kF = \\kS\\karea\\kdx/\\kLo$ for the 51 N weight from a flex of 1.80 µm.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -526,7 +534,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     const aq = pt(h0)([-0.55, 1, -0.55]);
     text(ctx, 'A', aq[0], aq[1] + 2, C('area'), { size: 20, align: 'center', weight: 600 });
     text(ctx, 'V₀ = ' + fmt(V0.v, 1) + ' L', lo[0] - 6, lo[1] + 30, C('volume'), { size: 19, align: 'right' });
-    text(ctx, 'V₀ − ΔV', ctr[0], ctr[1], C('volume'), { size: 21, align: 'center', weight: 600 });
+    text(ctx, 'V₀ − ΔV', ctr[0], ctr[1] + 44, C('volume'), { size: 21, align: 'center', weight: 600 });   /* below the centre, off the arrow pressing on the hidden back face */
     text(ctx, 'ΔV = ' + fmt(dV * 1000, 1) + ' mL, which is ' + fmt(f * 100, 2) + '% of the volume', 120, 560, C('volume'), { size: 18 });
     text(ctx, 'the shrinking is drawn ' + MAG + ' times larger than it is', 120, 588, PAL.muted, { size: 18 });
     /* the graph beside the scene: the fractional change against the force per unit area, for the five liquids of Table 5.3 */
@@ -542,7 +550,7 @@ const timesLarger = (unitsPerMetreDrawn, unitsPerMetreScene) => (unitsPerMetreDr
     if (f * 100 <= TOPY) { line(ctx, X(st.v), box.b, X(st.v), Y(f * 100), C('stress'), 2, [4, 8]); dot(ctx, X(st.v), Y(f * 100), PAL.ink, true, 10); }
     headline(ctx, 'A force per unit area of ' + plain(stress(), 1) + ' N/m² on a material of bulk modulus ' + giga(BB.v) + ' compresses it by ' + fmt(f * 100, 2) + '% of its volume');
     readout(d.readout, `\\frac{\\kdvol}{\\kvolo} = \\frac{1}{\\kBb}\\frac{\\kF}{\\karea} = \\frac{${sci(stress(), 2)}\\ \\text{N/m}^2}{${sci(BB.v * 1e9, 1)}\\ \\text{N/m}^2} = ${fmt(f, 4)} = ${fmt(f * 100, 2)}\\%`,
-      'Example 5.6 is the water line at a force per unit area of 5.00 × 10⁷ N/m², the pressure 5.00 km down, which compresses seawater by 2.3 percent. Acetone, whose bulk modulus is the smallest in Table 5.3, gives way about three times as much under the same squeeze, and mercury about eleven times less.');
+      'Example 5.6 is the water line at 5.00 × 10⁷ N/m², the pressure 5.00 km down, which compresses seawater by 2.3 percent.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

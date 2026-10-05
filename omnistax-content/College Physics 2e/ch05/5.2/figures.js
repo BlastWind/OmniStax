@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['5.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, axes, curve, pinned, strip, car } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- constants and small helpers shared by the figures ---------- */
 const G = 9.80, RHO_AIR = 1.21, RHO_STEEL = 7.8e3, TAU = 2 * Math.PI;
@@ -32,16 +32,7 @@ const partOf = (x) => { const n = 1 / x; return '1 part in ' + fmt(n, n >= 20 ||
 /* ---------- sprites ---------- */
 /* a skydiver spread-eagled, belly to the earth and seen from below, centred on (x, y): a round head,
    a solid torso, and arms and legs thrown out as thick rounded strokes bent at the elbow and knee */
-function skydiver(ctx, x, y, color, s = 1) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
-  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-  const limb = (pts, w) => { ctx.lineWidth = w; ctx.beginPath(); pts.forEach((q, i) => (i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]))); ctx.stroke(); };
-  limb([[-11, -24], [-30, -34], [-46, -50]], 8); limb([[11, -24], [30, -34], [46, -50]], 8);
-  limb([[-7, 10], [-22, 30], [-36, 54]], 9); limb([[7, 10], [22, 30], [36, 54]], 9);
-  ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(-11, -26); ctx.lineTo(11, -26); ctx.lineTo(8, 12); ctx.lineTo(-8, 12); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.arc(0, -44, 12, 0, TAU); ctx.fill();
-  ctx.restore();
-}
+const skydiver = (ctx, x, y, color, s = 1) => F.skydiver(ctx, x, y, s, color);
 /* The body the drag coefficient belongs to, drawn at (x, y) in its referent colour; it returns the half-width the
    arrows are set beyond, so a skydiver is never drawn as a car and a plate is never drawn as one. */
 function bluff(ctx, x, y, name, col) {
@@ -162,7 +153,7 @@ function jar(ctx, x1, x2, top, bottom, surface, col) {
     /* the scene: a column of air with the skydiver falling down it */
     const top = 170, bot = 690, xl = 180, xr = 460, xc = 310;
     line(ctx, xl, top, xl, bot, PAL.rule, 2); line(ctx, xr, top, xr, bot, PAL.rule, 2);
-    text(ctx, 'how far the skydiver has fallen', xc, top - 34, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'how far the skydiver has fallen', 24, top - 34, PAL.muted, { size: 17 });
     /* fixed scene scale: the column is ruled 0 to 1000 m and never rescales. The skydiver the figure
        opens with falls 564 m in the run and so fills most of it; a heavier or sleeker one falls past
        the bottom, where the drawing holds her at the last mark and the note says how far she has gone. */
@@ -198,11 +189,12 @@ function jar(ctx, x1, x2, top, bottom, surface, col) {
       { xl: 't (s)', xc: ct, yl: 'v (m/s)', yc: cv, nx: 5, ny: 3, fx: (x) => fmt(x, 0), fy: (y) => fmt(y, 0) });
     inbox(ctx, box, () => {
       line(ctx, g.X(0), g.Y(V), g.X(TR), g.Y(V), cv, 3, [10, 10]);
-      text(ctx, 'v_t = ' + fmt(V, 1) + ' m/s', g.X(0) + 16, g.Y(V) - 22, cv, { size: 19, weight: 600 });
+      if (V <= VR) text(ctx, 'v_t = ' + fmt(V, 1) + ' m/s', g.X(0) + 16, g.Y(V) - 22, cv, { size: 19, weight: 600 });
       curve(ctx, (s) => speed(V, s), 0, Math.min(T, TR), g.X, g.Y, cv, 5, 90);
       line(ctx, g.X(t), g.Y(0), g.X(t), g.Y(v), ct, 2, [4, 8]);
     });
     pinned(ctx, box, g.X, g.Y, t, v, PAL.ink, fmt(v, 1) + ' m/s');
+    if (V > VR) text(ctx, 'v_t = ' + fmt(V, 1) + ' m/s, above this graph', g.X(TR) - 16, box.b - 24, cv, { size: 19, weight: 600, align: 'right', bg: PAL.panel });
     headline(ctx, t < 0.05 ? 'The skydiver has just been released, so there is no drag yet and the whole weight of ' + sig3(w) + ' N is free to accelerate the fall'
       : a < 0.05 ? 'After ' + fmt(t, 1) + ' s the drag has grown equal to the weight, ' + sig3(w) + ' N, so the net force is zero and the speed stays at ' + fmt(V, 1) + ' m/s'
         : 'After ' + fmt(t, 1) + ' s the fall is ' + fmt(v, 1) + ' m/s, the drag is ' + sig3(FD) + ' N against a weight of ' + sig3(w) + ' N, and the acceleration is down to ' + fmt(a, 2) + ' m/s²');
@@ -242,7 +234,7 @@ function jar(ctx, x1, x2, top, bottom, surface, col) {
     const top = 160, bot = 650, xA = 250, xB = 500;
     line(ctx, 140, top - 26, 610, top - 26, PAL.muted, 3);
     line(ctx, 140, bot, 610, bot, PAL.muted, 3);
-    const Y = (s) => top + (s / H.v) * (bot - top);
+    const Y = (s) => top + 20 + (s / H.v) * (bot - top - 66);         /* her feet reach the ground line, not past it */
     const cA = F.ref('body-full'), cB = F.ref('body-small');
     text(ctx, 'full size, ' + fmt(M.v, 0) + ' kg', xA, top - 54, cA, { size: 19, weight: 600, align: 'center' });
     text(ctx, fmt(K.v, 2) + ' times the length, ' + massLabel(mB), xB, top - 54, cB, { size: 19, weight: 600, align: 'center' });
@@ -263,27 +255,30 @@ function jar(ctx, x1, x2, top, bottom, surface, col) {
       { xl: 't (s)', xc: ct, yl: 'v (m/s)', yc: cv, nx: 5, ny: 3, fx: (x) => fmt(x, 0), fy: (y) => fmt(y, 0) });
     inbox(ctx, box, () => {
       line(ctx, g.X(0), g.Y(VA), g.X(TR), g.Y(VA), cv, 3, [10, 10]);
-      text(ctx, 'full size, v_t = ' + fmt(VA, 1) + ' m/s', g.X(0) + 16, g.Y(VA) - 22, cv, { size: 18, weight: 600 });
       line(ctx, g.X(0), g.Y(VB), g.X(TR), g.Y(VB), alpha(cv, 0.6), 3, [10, 10]);
-      /* when the two terminal velocities lie within a label's height of each other the second name
-         goes to the right end of its line and under it, where both curves have already levelled */
-      if (g.Y(VB) - g.Y(VA) < 44) text(ctx, 'smaller body, v_t = ' + fmt(VB, 1) + ' m/s', g.X(TR) - 16, g.Y(VB) + 24, cv, { size: 18, weight: 600, align: 'right', bg: PAL.panel });
-      else text(ctx, 'smaller body, v_t = ' + fmt(VB, 1) + ' m/s', g.X(0) + 16, g.Y(VB) - 22, cv, { size: 18, weight: 600 });
       curve(ctx, (s) => speed(VA, s), 0, Math.min(TA, TR), g.X, g.Y, cv, 5, 90);
       curve(ctx, (s) => speed(VB, s), 0, Math.min(TB, TR), g.X, g.Y, alpha(cv, 0.6), 5, 90);
       line(ctx, g.X(t), g.Y(0), g.X(t), g.Y(VR), ct, 2, [4, 8]);
     });
+    /* the names over the middle of their lines, where both curves have levelled below them and clear
+       of the landing marks pinned at the right edge, on panels so the time line never runs through
+       them; when the two terminal velocities lie within a label's height of each other the second
+       name goes under its line at the right end */
+    const vlab = { size: 18, weight: 600, bg: PAL.panel }, close = g.Y(VB) - g.Y(VA) < 44;
+    text(ctx, 'full size, v_t = ' + fmt(VA, 1) + ' m/s', g.X(0.45 * TR), g.Y(VA) - 26, cv, vlab);
+    if (close) text(ctx, 'smaller body, v_t = ' + fmt(VB, 1) + ' m/s', g.X(TR) - 16, g.Y(VB) + 26, cv, { ...vlab, align: 'right' });
+    else text(ctx, 'smaller body, v_t = ' + fmt(VB, 1) + ' m/s', g.X(0.45 * TR), g.Y(VB) - 26, cv, vlab);
     pinned(ctx, box, g.X, g.Y, TA, speed(VA, TA), cv, 'lands at ' + fmt(TA, 1) + ' s');
     pinned(ctx, box, g.X, g.Y, TB, speed(VB, TB), cv, 'lands at ' + fmt(TB, 1) + ' s');
     pinned(ctx, box, g.X, g.Y, t, vA, PAL.ink); pinned(ctx, box, g.X, g.Y, t, vB, PAL.ink);
+    hits = [[TA, VA, 'the full-size body lands at ' + fmt(TA, 1) + ' s'], [TB, VB, 'the smaller body lands at ' + fmt(TB, 1) + ' s']]
+      .filter((q) => q[0] <= TR).map(([tt, vv, name]) => ({ x: g.X(tt), y: g.Y(speed(vv, tt)), r: 20, name }));
     headline(ctx, sA >= H.v && sB >= H.v ? 'Both have landed: the full-size body hit the ground at ' + fmt(vA, 1) + ' m/s and the smaller one at ' + fmt(vB, 1) + ' m/s'
       : 'After ' + fmt(t, 1) + ' s the full-size body is falling at ' + fmt(vA, 1) + ' m/s and the smaller one at ' + fmt(vB, 1) + ' m/s');
-    readout(d.readout, `\\kvt \\propto \\sqrt{k}: \\quad (${fmt(VA, 1)}\\ \\text{m/s})\\sqrt{${fmt(K.v, 2)}} = ${fmt(VB, 1)}\\ \\text{m/s}`,
-      K.v > 0.995 ? 'The two bodies are the same size, so they meet the same drag at the same speed and settle at the same terminal velocity.'
-        : 'Dividing every length by ' + fmt(1 / K.v, 1) + ' reduces the weight to ' + partOf(Math.pow(K.v, 3)) + ' of what it was and the surface facing the air only to '
-          + partOf(K.v * K.v) + ', so the resistance to falling is relatively ' + fmt(1 / K.v, 1) + ' times greater and the smaller body settles at ' + fmt(VB, 1)
-          + ' m/s rather than ' + fmt(VA, 1) + ' m/s.');
+    readout(d.readout, `\\kvt \\propto \\sqrt{k}: \\quad (${fmt(VA, 1)}\\ \\text{m/s})\\sqrt{${fmt(K.v, 2)}} = ${fmt(VB, 1)}\\ \\text{m/s}`);
   }
+  let hits = [];
+  F.hover(d.stage, () => hits);
   register(d.fig, { update: (dt) => cy.step(dt, () => total() / 5), draw });
 })();
 
@@ -348,21 +343,23 @@ function jar(ctx, x1, x2, top, bottom, surface, col) {
       if (rMax < 4) {
         curve(ctx, (x) => steady(x) * 1000, rMax, 4, g.X, g.Y, PAL.muted, 5, 90);
         line(ctx, g.X(rMax), box.t, g.X(rMax), box.b, PAL.muted, 2, [8, 8]);
-        text(ctx, 'past ' + fmt(rMax, 1) + ' mm the flow is no longer smooth', g.X(rMax) + (rMax > 2.2 ? -12 : 12), box.b - 24, PAL.muted, { size: 17, align: rMax > 2.2 ? 'right' : 'left', bg: PAL.panel });
       }
       line(ctx, g.X(R.v), g.Y(0), g.X(R.v), g.Y(v * 1000), PAL.muted, 2, [4, 8]);
       line(ctx, g.X(0), g.Y(v * 1000), g.X(R.v), g.Y(v * 1000), cv, 2, [4, 8]);
     });
+    /* above the frame, where neither the live point nor its drop lines reach */
+    if (rMax < 4) {
+      const say = 'past ' + fmt(rMax, 1) + ' mm the flow is no longer smooth', lw = 1.15 * F.measure(ctx, say, { size: 17 });
+      text(ctx, say, Math.min(Math.max(g.X(rMax), box.l + 160 + lw / 2), 1390 - lw / 2), box.t - 16, PAL.muted, { size: 17, align: 'center' });
+    }
     pinned(ctx, box, g.X, g.Y, R.v, v * 1000, rough ? PAL.muted : cv, fmt(v * 1000, 1) + ' mm/s');
-    /* the note is left out when the live point is pinned up in the corner it would occupy */
-    if (!(v * 1000 > 0.82 * VR && R.v < 2.6)) text(ctx, 'the steady speed grows as the square of the radius', g.X(0) + 16, g.Y(VR) + 28, PAL.muted, { size: 17 });
     topline(ctx, rough
       ? 'A bead of ' + fmt(R.v, 1) + ' mm is too large for this oil to carry smoothly, so Stokes\u2019 law no longer holds and the ' + fmt(v * 1000, 1) + ' mm/s drawn here is only what it would predict'
       : s >= DROP - 1e-9 ? 'After ' + fmt(T, 1) + ' s the bead has reached the bottom, ' + fmt(DROP * 100, 0) + ' cm down, at the ' + fmt(v * 1000, 1) + ' mm/s it held the whole way'
         : 'After ' + fmt(t, 1) + ' s the ' + fmt(R.v, 1) + ' mm bead has sunk ' + fmt(s * 100, 1) + ' cm at a steady ' + fmt(v * 1000, 1) + ' mm/s, since the drag matched its weight almost at once');
     readout(d.readout, `\\kFs = 6\\pi\\krad\\ketav\\kv = 6\\pi(${sciTex(R.v / 1000, 2)}\\ \\text{m})(${fmt(ETA.v, 2)}\\ \\text{kg/(m}\\cdot\\text{s)})(${fmt(v, 4)}\\ \\text{m/s}) = ${sciTex(w, 2)}\\ \\text{N}`,
-      'That is exactly the weight of the bead, ' + massLabel(mass()) + ' of steel at 7.8 × 10³ kg/m³, which is why the speed never changes, and the ' + fmt(DROP * 100, 0) + ' cm fall takes ' + fmt(T, 1) + ' s.'
-      + (rough ? ' Stokes’ law asks that the fluid move smoothly round the bead, which it does while the Reynolds number ρv(2r)/η is about one or less; here it is ' + fmt(reynolds(R.v), 0) + ', so the real bead stirs the oil and falls more slowly than the line says.' : ''));
+      'That is the weight of the bead, ' + massLabel(mass()) + ' of steel, so the speed never changes and the ' + fmt(DROP * 100, 0) + ' cm fall takes ' + fmt(T, 1) + ' s.'
+      + (rough ? ' Here the Reynolds number is ' + fmt(reynolds(R.v), 0) + ', past the one the smooth flow of Stokes\u2019 law needs, so the real bead falls more slowly than the line says.' : ''));
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => total() / 5), draw });
 })();
