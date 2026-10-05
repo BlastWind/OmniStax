@@ -89,10 +89,7 @@ const times = (n) => (WORDS[n] ?? String(n)) + ' times';
     topline(ctx, (done ? 'After ' + fmt(tEnd, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner would be at ' + fmt(vEnd, 1) + ' m/s, about ' + mphEnd + ' mph, ' + verdict
       : 'After ' + fmt(tau, 0) + ' s at ' + fmt(a, 2) + ' m/s² the runner ' + (v > RUN * 1.05 ? 'would be at ' + fmt(v, 1) + ' m/s, about ' + mph + ' mph, faster than a person can run' : 'has reached ' + fmt(v, 1) + ' m/s, about ' + mph + ' mph, which is reasonable'))
       + (over ? ', and the line runs past the top of the velocity scale.' : '.'));
-    readout(d.readout, `\\kv = \\kvo + \\ka\\kt = 0 + (${fmt(a, 2)}\\ \\text{m/s}^2)(${fmt(tEnd, 0)}\\ \\text{s}) = ${fmt(vEnd, 1)}\\ \\text{m/s}`,
-      ratio > 1.05
-        ? fmt(vEnd, 1) + ' m/s is ' + mphEnd + ' mph, ' + verdict + ', so the result is unreasonable. The acceleration adds only ' + fmt(a, 2) + ' m/s each second, which a runner can manage, so the premise that fails is the time: nobody keeps up a constant acceleration for ' + fmt(tEnd, 0) + ' s.'
-        : fmt(vEnd, 1) + ' m/s is ' + mphEnd + ' mph, which a person can run, so both premises are reasonable: the acceleration adds ' + fmt(a, 2) + ' m/s each second, and it lasts only ' + fmt(tEnd, 0) + ' s.');
+    readout(d.readout, `\\kv = \\kvo + \\ka\\kt = 0 + (${fmt(a, 2)}\\ \\text{m/s}^2)(${fmt(tEnd, 0)}\\ \\text{s}) = ${fmt(vEnd, 1)}\\ \\text{m/s}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();

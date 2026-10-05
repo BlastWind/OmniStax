@@ -59,8 +59,7 @@ function jet(ctx, x, y, heading, s) {
     text(ctx, temp < 0 ? 'the minus sign is a point below zero, not a direction' : temp > 0 ? 'a point above zero on the scale' : 'the zero of the scale', 1060, jy + 140, PAL.ink, { size: 17, align: 'center' });
     headline(ctx, (mag > 0 ? 'A velocity of ' + fmt(mag, 0) + ' km/h ' + (east ? 'east' : 'west') + ' is an arrow' : 'A velocity of 0 km/h has no arrow')
       + ', and a temperature of ' + reading(temp, 0) + ' °C is a point on a scale.');
-    readout(d.readout, `\\kv = ${signedTex(v, 0)}\\ \\text{km/h}${mag > 0 ? `\\ (\\text{${east ? 'east' : 'west'}})` : ''} \\qquad \\text{temperature} = ${readingTex(temp, 0)}^{\\circ}\\text{C}`,
-      'The length of the arrow alone, ' + fmt(mag, 0) + ' km/h, is the speed, which is a scalar, and the sign of the temperature is a point on a scale rather than a direction.');
+    readout(d.readout, `\\kv = ${signedTex(v, 0)}\\ \\text{km/h}${mag > 0 ? `\\ (\\text{${east ? 'east' : 'west'}})` : ''} \\qquad \\text{temperature} = ${readingTex(temp, 0)}^{\\circ}\\text{C}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -117,7 +116,7 @@ function jet(ctx, x, y, heading, s) {
     cross(ctx, 420, 548);
     text(ctx, 'For vertical motion the usual choice is up positive and down negative,', 520, 530, PAL.ink, { size: 20 });
     text(ctx, 'and the two choices together make the usual pair of axes.', 520, 562, PAL.ink, { size: 20 });
-    headline(ctx, 'Flying ' + fmt(D.v, 1) + ' km to the left gives Δx = ' + signed(a.dx, 1) + ' km with right positive and ' + signed(b.dx, 1) + ' km with left positive.');
+    headline(ctx, 'Flying ' + fmt(D.v, 1) + ' km to the left gives $\\kdx = ' + signedTex(a.dx, 1) + '\\ \\text{km}$ with right positive and $' + signedTex(b.dx, 1) + '\\ \\text{km}$ with left positive.');
     readout(d.readout, `\\begin{aligned} \\text{right positive:}\\quad \\kdx &= \\kx - \\kxo = (${signedTex(a.x, 1)}) - (${signedTex(a.x0, 1)}) = ${signedTex(a.dx, 1)}\\ \\text{km} \\\\ \\text{left positive:}\\quad \\kdx &= \\kx - \\kxo = (${signedTex(b.x, 1)}) - (${signedTex(b.x0, 1)}) = ${signedTex(b.dx, 1)}\\ \\text{km} \\end{aligned}`,
       'Moving the origin changes the two positions but not the displacement, and choosing the other direction as positive turns each of the three numbers into its opposite.');
   }

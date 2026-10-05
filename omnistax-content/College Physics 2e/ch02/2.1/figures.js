@@ -1,7 +1,7 @@
 /* Figures for section 2.1 Displacement. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.1'] = function (root, F) {
-const { fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, scale, person } = F;
+const { fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, hbracket, scale, person } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function twoLine(host, a, b) { if (!host._a) { host._a = document.createElement('div'); host._b = document.createElement('small'); host.replaceChildren(host._a, host._b); } tex(host._a, a); tex(host._b, b); }
 const sgn = (n, d) => (n > 0 ? '+' : n < 0 ? '−' : '') + fmt(Math.abs(n), d);
@@ -96,7 +96,7 @@ function bike(ctx, x, y, color, dir, phase) {
 (function () {
   const d = sim('sim-path', 540);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: -5, max: 5, step: 0.5, value: 0, unit: 'km', dec: 1, onInput: reset });
-  const xt = ctl(d.controls, { label: 'x_{\\text{turn}}', cls: 'position', min: -5, max: 5, step: 0.5, value: -3, unit: 'km', dec: 1, onInput: reset, aria: 'turning point' });
+  const xt = ctl(d.controls, { label: '\\kx_{\\text{turn}}', cls: 'position', min: -5, max: 5, step: 0.5, value: -3, unit: 'km', dec: 1, onInput: reset, aria: 'turning point' });
   const xf = ctl(d.controls, { label: '\\kxf', cls: 'position', min: -5, max: 5, step: 0.5, value: -1, unit: 'km', dec: 1, onInput: reset, aria: 'final position' });
   const leg1 = () => Math.abs(xt.v - x0.v), leg2 = () => Math.abs(xf.v - xt.v), total = () => leg1() + leg2();
   const T = () => Math.max(1.5, total() * 0.8);
@@ -126,13 +126,14 @@ function bike(ctx, x, y, color, dir, phase) {
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.fillRect(1130, 150, 200, 96); ctx.strokeRect(1130, 150, 200, 96); ctx.restore();
     text(ctx, 'distance traveled', 1230, 176, PAL.muted, { size: 17, align: 'center' });
     text(ctx, fmt(s, 1) + ' km', 1230, 214, PAL.ink, { size: 30, weight: 600, align: 'center' });
-    /* A leg of zero length makes the ride a straight run, so the path length and the magnitude of
+    /* A ride that never doubles back is a straight run, so the path length and the magnitude of
        the displacement are the same number and the headline says why. */
-    const straight = leg1() < 1e-6 || leg2() < 1e-6;
+    const straight = (xt.v - x0.v) * (xf.v - xt.v) >= 0;
     topline(ctx, straight
       ? 'The cyclist rides straight through without turning back, so the ' + fmt(total(), 1) + ' km traveled is also the magnitude of the ' + sgn(dx, 1) + ' km displacement.'
       : 'The cyclist travels ' + fmt(total(), 1) + ' km along the path, but the displacement is only ' + sgn(dx, 1) + ' km, whose magnitude is ' + fmt(Math.abs(dx), 1) + ' km.');
-    twoLine(d.readout, `\\kdx = \\kxf - \\kxo = ${sgn(dx, 1).replace('−', '-')}\\ \\text{km}`, `\\text{distance traveled} = |${fmt(xt.v, 1)} - ${fmt(x0.v, 1)}| + |${fmt(xf.v, 1)} - (${fmt(xt.v, 1)})| = ${fmt(total(), 1)}\\ \\text{km}`);
+    const pv = (v) => (v < 0 ? `(${fmt(v, 1)})` : fmt(v, 1));
+    twoLine(d.readout, `\\kdx = \\kxf - \\kxo = ${fmt(xf.v, 1)} - ${pv(x0.v)} = ${sgn(dx, 1).replace('−', '-')}\\ \\text{km}`, `\\text{distance traveled} = |${fmt(xt.v, 1)} - ${pv(x0.v)}| + |${fmt(xf.v, 1)} - ${pv(xt.v)}| = ${fmt(total(), 1)}\\ \\text{km}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -165,7 +166,6 @@ function bike(ctx, x, y, color, dir, phase) {
       dot(ctx, X(P.p[last]), ey, C('position'), true, 9);
       line(ctx, X(P.p[last]), ey, X(P.p[last]), y, C('position'), 2, [4, 8]);
     });
-    headline(ctx, 'Four paths run along one axis, each starting at a hollow marker and ending at a filled one.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
