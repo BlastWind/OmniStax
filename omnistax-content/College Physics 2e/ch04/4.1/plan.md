@@ -69,30 +69,17 @@ config).
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `sim-skaters` · replaces Figure 4.3, whose parts (a) and (b) the book
-   prints as one image under one number ·
-   force, external-force, free-body-diagram · **still**: the idea has no
-   time in it. Two skaters push on a third and the total force answers the
-   two pushes; nothing travels, oscillates or accumulates, so the figure
-   registers no cycle and carries no transport (rule 14) · $\kFone$ (10 to
-   80 N, default 50, force), $\kFtwo$ (10 to 80 N, default 40, force),
-   $\theta$, the angle between the two pushes (30º to 150º, default 90º,
-   ink, since an angle is untyped) · "F₁ = 50 N and F₂ = 40 N at 90º to
-   each other add to a total force of 64 N, 38.7º from the first push" ·
-   no graph: the two panels are the picture · no. Layout: the book's (a)
-   at the left, an overhead view of the three skaters with the two pushes
-   drawn along the arms and the head-to-tail triangle laid on the scene,
-   and the book's (b) at the right, the free-body diagram, the third
-   skater drawn as a single point with the two external forces leaving it
-   and the total force dashed. Readout: $\kFtot = \sqrt{\kFx^2 + \kFy^2}$
-   with the numbers; small line on the head-to-tail method and on the
-   right angle of the book's figure, where the sum is simply
-   $\sqrt{\kFone^2 + \kFtwo^2}$. Draws force.
-   Revised in the figure-audit pass of 2026-09-12: the labels set beyond the
-   arrowheads are clamped inside the canvas at every slider setting, so the
-   total force no longer runs off the right edge when both pushes are at
-   their largest, and the total force and the two pushes are drawn with the
-   subscripts the caption uses.
+1. `sim-skaters` · Figure 4.3 · force, external-force, free-body-diagram · variation by slider:
+   the total force turns and grows as the two pushes and their angle change · still, no clock in
+   the idea · $\kFone$ (10 to 80 N, force), $\kFtwo$ (10 to 80 N, force), $\theta$ (30° to 150°,
+   angle, dashed circle at 90°) · "A push of 50 N and a push of 40 N, 90° apart, add to a total
+   force of 64.0 N at 38.7° from the first push" · no graph, panels (a) scene and (b) free-body
+   diagram side by side · 2D: the three skaters drawn with F.personTop in their referent colours,
+   the third facing along the total force, each pusher behind her on its line of push (the two
+   lines set apart by the angle so the pushers never meet each other or an arrow), both hands on
+   her; labels F1, F2, Ftot and θ placed through F.labeller with the arrows in its collision set,
+   θ by hover where its wedge is too narrow; the skaters named by hover; no note (the readout
+   morph at 90° already says it). No fold or split. Rebuilt in the review of 2026-10-05.
 2. `sim-spring` · replaces Figure 4.4, whose parts (a), (b) and (c) the
    book prints as one image under one number · force-standard, force · **still**: the idea has no
    time in it either. The spring answers its stretch and the scale answers

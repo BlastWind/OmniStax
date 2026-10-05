@@ -7,23 +7,6 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 const RAD = Math.PI / 180;
 
 /* ---------- sprites ---------- */
-/* an ice skater seen from above, centred on (x, y), the arms reaching toward the angle a measured as the canvas measures it */
-function skater(ctx, x, y, a, color) {
-  /* seen from above: a shoulder bar across the facing direction with the head on it, the two
-     arms reaching out ahead along the facing direction, and the two skates trailing behind */
-  ctx.save(); ctx.translate(x, y); ctx.scale(1.25, 1.25); ctx.translate(-x, -y);
-  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round';
-  const c = Math.cos(a), s = Math.sin(a), px = -s, py = c;
-  ctx.lineWidth = 4; ctx.beginPath();
-  ctx.moveTo(x - c * 14 + px * 9, y - s * 14 + py * 9); ctx.lineTo(x - c * 44 + px * 9, y - s * 44 + py * 9);
-  ctx.moveTo(x - c * 14 - px * 9, y - s * 14 - py * 9); ctx.lineTo(x - c * 44 - px * 9, y - s * 44 - py * 9); ctx.stroke();
-  ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(x + px * 22, y + py * 22); ctx.lineTo(x - px * 22, y - py * 22); ctx.stroke();
-  ctx.lineWidth = 5; ctx.beginPath();
-  ctx.moveTo(x + px * 22, y + py * 22); ctx.lineTo(x + c * 46 + px * 12, y + s * 46 + py * 12);
-  ctx.moveTo(x - px * 22, y - py * 22); ctx.lineTo(x + c * 46 - px * 12, y + s * 46 - py * 12); ctx.stroke();
-  ctx.beginPath(); ctx.arc(x, y, 12, 0, Math.PI * 2); ctx.fill();
-  ctx.restore();
-}
 /* the hook of a spring scale, hanging off the rod that ends at (x, y) */
 function hook(ctx, x, y, color) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.beginPath();
@@ -34,8 +17,7 @@ function hook(ctx, x, y, color) {
    FIGURE 4.3: two ice skaters push on a third. The overhead view, the
    two pushes laid head to tail, and the free-body diagram of the third
    skater, all answering the two magnitudes and the angle between them.
-   Nothing in the idea has a time in it, so the figure is a still one:
-   no cycle, no transport, and a slider's input alone redraws it.
+   Nothing in the idea has a time in it, so the figure is a still one.
 ===================================================================== */
 (function () {
   const d = sim('sim-skaters', 620);
@@ -44,73 +26,77 @@ function hook(ctx, x, y, color) {
   const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 30, max: 150, step: 1, value: 90, unit: '°', dec: 0, aria: 'the angle between the two pushes',
     specials: [{ at: 90, label: 'right angle' }] });
   const ro = F.readout(d);
-  const U = 2.5;                                  /* logical units per newton */
-  const sub1 = 'F₁', sub2 = 'F₂';
-  /* a label set just beyond the head of an arrow that points along the angle a, and
-     clamped so that the longest arrow the sliders allow still leaves its label on the canvas */
-  const beyond = (ctx, s, x, y, a, color, size, off) => {
-    const sz = size || 24, half = 0.3 * sz * s.length + 12;
-    const cx = Math.min(1400 - half, Math.max(half, x + (off || 32) * Math.cos(a)));
-    text(ctx, s, cx, y - (off || 32) * Math.sin(a), color, { weight: 600, size: sz, align: 'center', bg: PAL.panel });
-  };
+  const U = 2.5, S = 1.6, ARM = 96;               /* units per newton; the skaters' scale; a pusher's centre behind its hands */
+  const person = (ctx, c, h, color, reach) => F.personTop(ctx, c.x, c.y, S, h, color, reach);
+  let hits = [];
+  F.hover(d.stage, () => hits);
+  const at = (o, a, r) => ({ x: o.x + r * Math.cos(a), y: o.y - r * Math.sin(a) });   /* a is measured counterclockwise, as the book's angles are */
+  const box = (p, r) => ({ l: p.x - r, r: p.x + r, t: p.y - r, b: p.y + r });
   function draw() {
     const { ctx } = begin(d.c);
     const th = TH.v * RAD, fx = F1.v + F2.v * Math.cos(th), fy = F2.v * Math.sin(th);
     const tot = Math.hypot(fx, fy), ang = Math.atan2(fy, fx);
-    /* the two panels the book prints: (a) the scene with the two pushes added head to tail, (b) the free-body diagram */
+    const lines = headline(ctx, 'A push of ' + fmt(F1.v, 0) + ' N and a push of ' + fmt(F2.v, 0) + ' N, ' + fmt(TH.v, 0)
+      + '° apart, add to a total force of ' + fmt(tot, 1) + ' N at ' + fmt(ang / RAD, 1) + '° from the first push');
+    const lab = F.labeller(ctx, 620, { headline: lines });
     line(ctx, 720, 150, 720, 590, PAL.rule, 1.5);
+    lab.place({ l: 0, t: 98, r: 1400, b: 126 });
     text(ctx, '(a) the two pushes, seen from above and laid head to tail', 360, 112, PAL.muted, { size: 17, align: 'center' });
     text(ctx, '(b) the free-body diagram of the third skater', 1060, 112, PAL.muted, { size: 17, align: 'center' });
 
-    /* ---- the scene: the third skater, a pusher behind each arrow, and the head-to-tail construction ---- */
-    const px = 250, py = 400, R = 112;   /* the pushers' hands reach the third skater's shoulders */
-    skater(ctx, px - R, py, 0, F.ref('skater-1'));
-    skater(ctx, px - R * Math.cos(th), py + R * Math.sin(th), -th, F.ref('skater-2'));
-    skater(ctx, px, py, Math.PI / 2, F.ref('skater-3'));
-    /* named below and to the side the second skater has left free */
-    const side = TH.v <= 90 ? 1 : -1;
-    text(ctx, 'the third skater', px + side * 30, py + (TH.v <= 110 ? 52 : 84), F.ref('skater-3'), { size: 17, align: side > 0 ? 'left' : 'right' });
-    const h1x = px + F1.v * U, h1y = py;
-    const tx = h1x + F2.v * U * Math.cos(th), ty = h1y - F2.v * U * Math.sin(th);
-    line(ctx, h1x, h1y, tx, ty, alpha(C('force'), 0.45), 4, [10, 10]);
-    line(ctx, px, py, tx, ty, alpha(C('force'), 0.3), 10);
-    arrow(ctx, px, py, tx, ty, C('force'), 5);
-    beyond(ctx, 'total force F_tot', tx, ty, ang, C('force'), 22, 44);
-    arrow(ctx, px, py, h1x, h1y, C('force'), 5);
-    beyond(ctx, sub1, h1x, h1y, 0, C('force'));
-    arrow(ctx, px, py, px + F2.v * U * Math.cos(th), py - F2.v * U * Math.sin(th), C('force'), 5);
-    beyond(ctx, sub2, px + F2.v * U * Math.cos(th), py - F2.v * U * Math.sin(th), th, C('force'));
-    const arcR = Math.min(64, 0.7 * Math.min(F1.v, F2.v) * U);
-    ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(px, py, arcR, -th, 0); ctx.stroke(); ctx.restore();
-    /* the angle is named on its bisector, except when the pushes are so far apart that the total
-       force runs along that bisector, when it is named below the first skater's arms instead */
-    if (TH.v <= 110) text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px + (arcR + 50) * Math.cos(th / 2), py - (arcR + 50) * Math.sin(th / 2), C('angle'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    else text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', px - 124, py + 54, C('angle'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    /* ---- (a) the scene: the third skater facing the way the total force points, each pusher behind her
+       facing along its push, both hands on her; the two lines of push are set apart as the angle
+       closes or opens, so the pushers never meet each other or the arrows ---- */
+    const o = { x: 250, y: 400 };
+    const pusher = (a, side, color) => {
+      const u = { x: Math.cos(a), y: -Math.sin(a) }, n = { x: Math.sin(a), y: Math.cos(a) }, off = 34 * Math.cos(th) * side;
+      const base = { x: o.x + n.x * off, y: o.y + n.y * off }, c = { x: base.x - u.x * ARM, y: base.y - u.y * ARM };
+      person(ctx, c, -a, color, [{ x: base.x + n.x * 8, y: base.y + n.y * 8 }, { x: base.x - n.x * 8, y: base.y - n.y * 8 }]);
+      return c;
+    };
+    const c1 = pusher(0, -1, F.ref('skater-1')), c2 = pusher(th, 1, F.ref('skater-2'));
+    person(ctx, o, -ang, F.ref('skater-3'));
+    hits = [{ ...c1, r: 40, name: 'the first skater' }, { ...c2, r: 40, name: 'the second skater' }, { ...o, r: 40, name: 'the third skater' }];
+    [c1, c2, o].forEach((p) => lab.place(box(p, 40)));
+    /* the arrows and dashed lines join the collision set as a run of points, so no label lands on one */
+    const keep = (p, q) => { const n = Math.ceil(Math.hypot(q.x - p.x, q.y - p.y) / 20); for (let k = 0; k <= n; k++) lab.place(box({ x: p.x + (q.x - p.x) * k / n, y: p.y + (q.y - p.y) * k / n }, 1)); };
 
-    /* ---- the free-body diagram: the body as a single point, the outside forces leaving it ---- */
-    const bx = 940, by = 400;
-    const ex1 = bx + F1.v * U, ey1 = by;
-    const ex2 = bx + F2.v * U * Math.cos(th), ey2 = by - F2.v * U * Math.sin(th);
-    const etx = bx + tot * U * Math.cos(ang), ety = by - tot * U * Math.sin(ang);
-    line(ctx, ex1, ey1, etx, ety, PAL.rule, 2, [8, 8]);
-    line(ctx, ex2, ey2, etx, ety, PAL.rule, 2, [8, 8]);
-    line(ctx, bx, by, etx, ety, alpha(C('force'), 0.3), 10);
-    arrow(ctx, bx, by, etx, ety, C('force'), 5);
-    beyond(ctx, 'F_tot = ' + fmt(tot, 1) + ' N', etx, ety, ang, C('force'), 22, 40);
-    arrow(ctx, bx, by, ex1, ey1, C('force'), 5);
-    beyond(ctx, sub1, ex1, ey1, 0, C('force'));
-    arrow(ctx, bx, by, ex2, ey2, C('force'), 5);
-    beyond(ctx, sub2, ex2, ey2, th, C('force'));
-    dot(ctx, bx, by, F.ref('skater-3'), true, 11);
-    line(ctx, bx, by + 14, bx, by + 32, F.ref('skater-3'), 2);
-    text(ctx, 'the body, as a single point', bx, by + 46, F.ref('skater-3'), { size: 17, align: 'center' });
+    const h1 = at(o, 0, F1.v * U), h2 = at(o, th, F2.v * U), tip = at(o, ang, tot * U);
+    const ar = Math.min(60, 0.6 * Math.min(F1.v, F2.v) * U), am = ang > th - ang ? ang / 2 : (ang + th) / 2;
+    F.angleArc(ctx, o, ar, 0, th, undefined, undefined, C('angle'));
+    line(ctx, h1.x, h1.y, tip.x, tip.y, alpha(C('force'), 0.5), 3, [10, 10]);
+    [[o, tip], [o, h1], [o, h2], [h1, tip]].forEach(([p, q]) => keep(p, q));
+    arrow(ctx, o.x, o.y, tip.x, tip.y, C('force'), 5);
+    arrow(ctx, o.x, o.y, h1.x, h1.y, C('force'), 5);
+    arrow(ctx, o.x, o.y, h2.x, h2.y, C('force'), 5);
+    lab.add('F_tot', tip.x, tip.y, Math.cos(ang), -Math.sin(ang), C('force'), 22, 26);
+    lab.add('F₂', h2.x, h2.y, Math.cos(th), -Math.sin(th), C('force'), 22, 26);
+    lab.add('F₁', h1.x, h1.y, 1, 0, C('force'), 22, 26);
+    /* θ is named inside the wider of the two wedges the total force cuts, and by hover where that is too narrow to hold it */
+    const wedge = Math.max(ang, th - ang), arcAt = at(o, am, ar);
+    if (wedge >= 34 * RAD) lab.add('θ', arcAt.x, arcAt.y, Math.cos(am), -Math.sin(am), C('angle'), 20, 18);
+    hits.push({ ...arcAt, r: 18, name: 'θ, the angle between the two pushes' });
 
-    headline(ctx, 'A push of ' + fmt(F1.v, 0) + ' N and a push of ' + fmt(F2.v, 0) + ' N, ' + fmt(TH.v, 0)
-      + '° apart, add to a total force of ' + fmt(tot, 1) + ' N at ' + fmt(ang / RAD, 1) + '° from the first push');
+    /* ---- (b) the free-body diagram: the body as a single point, the outside forces leaving it ---- */
+    const b = { x: 940, y: 400 };
+    const e1 = at(b, 0, F1.v * U), e2 = at(b, th, F2.v * U), et = at(b, ang, tot * U);
+    line(ctx, e1.x, e1.y, et.x, et.y, PAL.rule, 2, [8, 8]);
+    line(ctx, e2.x, e2.y, et.x, et.y, PAL.rule, 2, [8, 8]);
+    arrow(ctx, b.x, b.y, et.x, et.y, C('force'), 5);
+    arrow(ctx, b.x, b.y, e1.x, e1.y, C('force'), 5);
+    arrow(ctx, b.x, b.y, e2.x, e2.y, C('force'), 5);
+    dot(ctx, b.x, b.y, F.ref('skater-3'), true, 11);
+    [[b, et], [b, e1], [b, e2], [e1, et], [e2, et]].forEach(([p, q]) => keep(p, q));
+    lab.place(box(b, 14));
+    lab.add('F_tot', et.x, et.y, Math.cos(ang), -Math.sin(ang), C('force'), 22, 26);
+    lab.add('F₁', e1.x, e1.y, 1, 0, C('force'), 22, 26);
+    lab.add('F₂', e2.x, e2.y, Math.cos(th), -Math.sin(th), C('force'), 22, 26);
+    lab.add('the third skater, as a single point', b.x, b.y, 0, 1, F.ref('skater-3'), 17, 34);
+    const missed = lab.flush();
+    if (missed.length) d.fig.dataset.missed = missed.join('|'); else delete d.fig.dataset.missed;
+
     const right = Math.abs(TH.v - 90) < 1e-9;
-    ro.set(`\\mk{t}{\\kFtot} = \\sqrt{\\mk{x}{${right ? '\\kFone' : '\\kFx'}}^2 + \\mk{y}{${right ? '\\kFtwo' : '\\kFy'}}^2} = \\sqrt{(\\mk{nx}{${fmt(fx, 1)}}\\ \\text{N})^2 + (\\mk{ny}{${fmt(fy, 1)}}\\ \\text{N})^2} = \\mk{nt}{${fmt(tot, 1)}}\\ \\text{N}`, right
-      ? 'At a right angle the components are the two pushes themselves.'
-      : 'The two pushes are laid head to tail, so the total force runs from the tail of the first arrow to the head of the second.', { form: right });
+    ro.set(`\\mk{t}{\\kFtot} = \\sqrt{\\mk{x}{${right ? '\\kFone' : '\\kFx'}}^2 + \\mk{y}{${right ? '\\kFtwo' : '\\kFy'}}^2} = \\sqrt{(\\mk{nx}{${fmt(fx, 1)}}\\ \\text{N})^2 + (\\mk{ny}{${fmt(fy, 1)}}\\ \\text{N})^2} = \\mk{nt}{${fmt(tot, 1)}}\\ \\text{N}`, undefined, { form: right });
   }
   register(d.fig, { update: () => {}, draw });
 })();
