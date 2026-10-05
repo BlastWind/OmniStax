@@ -91,7 +91,7 @@ function stopwatch(ctx, x, y, r, f) {
     headline(ctx, done ? 'In ' + fmt(T.v, 2) + ' ns light travels ' + fmt(dEnd, 2) + ' m, ' + clause + '.'
       : 'After ' + fmt(tau, 2) + ' ns the light has traveled ' + fmt(dist, 2) + ' m and is still going.');
     readout(d.readout, `\\kd = \\kc\\,\\kt = (299{,}792{,}458\\ \\text{m/s})(${fmt(T.v, 2)} \\times 10^{-9}\\ \\text{s}) = ${fmt(dEnd, 2)}\\ \\text{m}`,
-      'The meter is the distance light travels in a vacuum in 1/299,792,458 of a second, so the speed of light is exact by definition and the meter is what is measured.');
+      'Defined this way, the speed of light is exact, and it is the distance that is measured.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();
@@ -110,9 +110,10 @@ function stopwatch(ctx, x, y, r, f) {
   const PREFIX = [[-18, 'atto', 'a'], [-15, 'femto', 'f'], [-12, 'pico', 'p'], [-9, 'nano', 'n'], [-6, 'micro', 'µ'], [-3, 'milli', 'm'], [-2, 'centi', 'c'], [-1, 'deci', 'd'],
     [1, 'deka', 'da'], [2, 'hecto', 'h'], [3, 'kilo', 'k'], [6, 'mega', 'M'], [9, 'giga', 'G'], [12, 'tera', 'T'], [15, 'peta', 'P'], [18, 'exa', 'E']];
   /* the lengths of Table 1.3: power of ten, label, row above the ladder (0 nearest), and which side of its tick the label sits */
-  const LENGTHS = [[-15, 'a proton', 2, 'left'], [-10, 'a hydrogen atom', 0, 'right'], [-8, 'a cell membrane', 1, 'right'], [-6, 'visible light', 2, 'right'],
-    [-3, 'a grain of sand', 1, 'left'], [0, 'a child', 0, 'right'], [2, 'a football field', 2, 'left'], [7, 'the Earth', 0, 'left'], [11, 'the Earth to the Sun', 1, 'right'],
-    [16, 'a light year', 2, 'left'], [21, 'the Milky Way', 0, 'left'], [26, 'the known universe', 1, 'right']];
+  /* rows chosen so no leader passes behind another label: a label on a row is crossed only by the leaders of higher rows, and none falls inside its span */
+  const LENGTHS = [[-15, 'a proton', 0, 'right'], [-10, 'a hydrogen atom', 1, 'right'], [-8, 'a cell membrane', 2, 'right'], [-6, 'visible light', 3, 'right'],
+    [-3, 'a grain of sand', 3, 'left'], [0, 'a child', 1, 'right'], [2, 'a football field', 2, 'left'], [7, 'the Earth', 0, 'left'], [11, 'the Earth to the Sun', 1, 'right'],
+    [16, 'a light year', 1, 'left'], [21, 'the Milky Way', 2, 'right'], [26, 'the known universe', 3, 'right']];
   const L = 90, R = 1330, X = (n) => L + ((R - L) * (n + 18)) / 44;
   const yl = 250;
   /* the value written in the prefix nearest below n, when the mantissa stays under 1000 */
@@ -138,11 +139,8 @@ function stopwatch(ctx, x, y, r, f) {
       text(ctx, name, X(p), y, on ? PAL.ink : PAL.muted, { size: 17, align: 'center', weight: on ? 600 : 400 });
     }
     /* the known lengths above the ladder */
-    for (const [p, name, row, side] of LENGTHS) {
-      const y = yl - 42 - 30 * row;
-      line(ctx, X(p), yl - 8, X(p), y + 11, PAL.muted, 2);
-      text(ctx, name, X(p) + (side === 'left' ? 6 : -6), y, PAL.ink, { size: 17, align: side });
-    }
+    for (const [p, , row] of LENGTHS) line(ctx, X(p), yl - 8, X(p), yl - 31 - 30 * row, PAL.muted, 2);
+    for (const [p, name, row, side] of LENGTHS) text(ctx, name, X(p) + (side === 'left' ? 6 : -6), yl - 42 - 30 * row, PAL.ink, { size: 17, align: side });
     /* the marker */
     dot(ctx, x, yl, C('position'), true, 10);
     text(ctx, fmt(m, 1) + ' × ' + pow10(n) + ' m', x, yl + 72, C('position'), { weight: 600, align: x > 1250 ? 'right' : x < 150 ? 'left' : 'center', bg: PAL.panel });
@@ -164,7 +162,7 @@ function stopwatch(ctx, x, y, r, f) {
       r = `${sciTex} = ${fmt(m, 1)} \\times 10^{${n - 18}}\\ \\text{Em}`;
     }
     headline(ctx, h + '.');
-    readout(d.readout, r, 'Every number from 1 × ' + pow10(n) + ' to 9.9 × ' + pow10(n) + ' is of the same order of magnitude, ' + oom + ', just as 800 and 450 are.');
+    readout(d.readout, r);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -220,8 +218,9 @@ function stopwatch(ctx, x, y, r, f) {
     pair(ctx, 'or', sig3(mS) + ' m/s', 520, 456, C('velocity'));
     headline(ctx, done ? 'Driving ' + fmt(D.v, 1) + ' km in ' + fmt(T.v, 1) + ' min is an average speed of ' + sig3(kmMin) + ' km/min, which is ' + sig3(kmH) + ' km/h, or ' + sig3(mS) + ' m/s.'
       : 'After ' + fmt(tau, 1) + ' min the car has gone ' + fmt(pos, 1) + ' km of the ' + fmt(D.v, 1) + ' km.');
-    readout(d.readout, `\\text{average speed} = \\frac{${fmt(D.v, 1)}\\ \\text{km}}{${fmt(T.v, 1)}\\ \\text{min}} \\times \\frac{60\\ \\text{min}}{1\\ \\text{h}} = ${sig3(kmH)}\\ \\text{km/h}`,
-      'Two more conversion factors, one for hours to seconds and one for kilometers to meters, turn ' + sig3(kmH) + ' km/h into ' + sig3(mS) + ' m/s.');
+    tex(d.readout, `\\text{average speed} = \\frac{\\kd}{\\kt} = \\frac{${fmt(D.v, 1)}\\ \\text{km}}{${fmt(T.v, 1)}\\ \\text{min}} \\times \\frac{60\\ \\text{min}}{1\\ \\text{h}} = ${sig3(kmH)}\\ \\text{km/h}`);
+    const sm = d.readout.appendChild(el('small'));
+    tex(sm, `${sig3(kmH)}\\ \\text{km/h} \\times \\frac{1\\ \\text{h}}{3600\\ \\text{s}} \\times \\frac{1000\\ \\text{m}}{1\\ \\text{km}} = ${sig3(mS)}\\ \\text{m/s}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();

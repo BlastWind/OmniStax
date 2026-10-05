@@ -56,14 +56,13 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const lx = 1010;
     dot(ctx, lx, 170, E_COLOR(), true, 9); text(ctx, 'an electron', lx + 26, 170, PAL.muted);
     nucleus(ctx, lx, 226, 3, 6); text(ctx, 'the nucleus, which holds ' + z + (z === 1 ? ' proton' : ' protons'), lx + 26, 226, PAL.muted);
-    line(ctx, lx - 14, 274, lx + 14, 274, alpha(PAL.ink, 0.4), 3); text(ctx, 'an orbit, dashed while its shell is empty', lx + 26, 274, PAL.muted);
-    shells.forEach((n, s) => text(ctx, ORD[s] + ' shell, ' + n + ' of ' + SHELL[s] + (n === 1 ? ' electron' : ' electrons'), lx - 14, 340 + 40 * s, n ? PAL.ink : PAL.muted, { size: 20, weight: n ? 600 : 400 }));
+    line(ctx, lx - 14, 274, lx + 12, 274, alpha(PAL.ink, 0.4), 3); text(ctx, 'an orbit, dashed when empty', lx + 26, 274, PAL.muted);
+    shells.forEach((n, s) => text(ctx, ORD[s] + ' shell, ' + n + ' of ' + SHELL[s] + ' electrons', lx - 14, 340 + 40 * s, n ? PAL.ink : PAL.muted, { size: 20, weight: n ? 600 : 400 }));
     const an = /^[aeiou]/.test(NAMES[z - 1]) ? 'an ' : 'a ';
     headline(ctx, 'In this picture ' + WORDS[z - 1] + (z === 1 ? ' electron goes' : ' electrons go') + ' round the nucleus of ' + an + NAMES[z - 1] + ' atom, which holds ' + WORDS[z - 1] + (z === 1 ? ' proton' : ' protons') + '.');
-    const cap = (w) => w[0].toUpperCase() + w.slice(1), held = shells.filter((n) => n > 0);
-    const where = held.length > 1 ? 'and the shells hold ' + held.join(' + ') + ' of them' : 'and the first shell holds ' + (z === 1 ? 'it' : 'both');
-    readout(d.readout, '\\text{' + cap(WORDS[z - 1]) + (z === 1 ? ' electron goes round ' : ' electrons go round ') + WORDS[z - 1] + (z === 1 ? ' proton, ' : ' protons, ') + where + '.}',
-      'The atom is about 10⁻¹⁰ m across and its nucleus is about 10⁵ times smaller, so a drawing to scale would show nothing but the orbits. The model is not a photograph. It is a picture that helps explain what we can measure, such as the light a hot gas gives off.');
+    const held = shells.filter((n) => n > 0), unit = z === 1 ? '\\text{ electron}' : '\\text{ electrons}';
+    readout(d.readout, (held.length > 1 ? '\\text{shells: }' + held.join(' + ') + ' = ' : '\\text{first shell: }') + z + unit,
+      'The atom is about 10⁻¹⁰ m across and its nucleus about 10⁵ times smaller, so a drawing to scale would show nothing but the orbits.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

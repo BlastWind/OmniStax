@@ -4386,3 +4386,5 @@ Checks: `check:content` found no errors, `npm test` passed, `astro check` is
 clean and the build completed. A headless pass over all nine pages in light and
 dark found no console error, blank figure, KaTeX error, missing image or missing
 exercise card.
+
+Review pass ch01 (2026-10-04, Claude Opus 5.5 high): 16 pass, 15 fixed (11 figures, 4 leads), 0 rewrite filed.

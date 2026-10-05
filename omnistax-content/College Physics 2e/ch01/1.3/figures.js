@@ -114,15 +114,16 @@ function runs(ctx, parts, x, y, size) {
       line(ctx, L, y, R, y, PAL.muted, 3);
       for (let m = span.lo; m <= span.hi + 1e-9; m += step) { line(ctx, X(m), y - 8, X(m), y + 8, PAL.muted, 2); text(ctx, fmt(m, 0) + ' lb', X(m), y + 28, PAL.muted, { size: 17, align: 'center' }); }
       if (ln.weeks && atExample) {
-        WEEKS.slice().sort((u, v) => u - v).forEach((w, i) => { const ty = y - 42 - 24 * (i % 3); line(ctx, X(w), ty + 12, X(w), y - 4, C('force'), 3); text(ctx, fmt(w, 1) + ' lb', X(w), ty, C('force'), { size: 17, weight: 600, align: 'center', bg: PAL.panel }); });
+        /* each label beside the top of its own leader, away from the average; the weight nearer the average stands a row higher, so no leader passes a label */
+        WEEKS.forEach((w) => { const near = WEEKS.filter((v) => (v < a) === (w < a) && Math.abs(v - a) < Math.abs(w - a)).length === 0, ty = y - 44 - (near ? 26 : 0), left = w < a;
+          line(ctx, X(w), ty, X(w), y - 4, C('force'), 3); text(ctx, fmt(w, 1) + ' lb', X(w) + (left ? -6 : 6), ty, C('force'), { size: 17, weight: 600, align: left ? 'right' : 'left' }); });
         text(ctx, 'the four weekly weights of Example 1.2', R, y - 104, PAL.muted, { size: 17, align: 'right' });
       }
       dot(ctx, Xc(a), y, C('force'), true, 10);
       hbracket(ctx, Xc(a - dA.v), Xc(a + dA.v), y + 84, PAL.ink, fmt(a, ln.dec) + ' lb ± ' + fmt(dA.v, 1) + ' lb, which is ± ' + pct(a, dA.v) + '%');
     }
     headline(ctx, 'A weight of ' + fmt(A.v, 1) + ' lb known to ± ' + fmt(dA.v, 1) + ' lb is known to ± ' + p + '%.');
-    readout(d.readout, `\\%\\,\\text{unc} = \\frac{\\delta A}{A} \\times 100\\% = \\frac{${fmt(dA.v, 1)}\\ \\text{lb}}{${fmt(A.v, 1)}\\ \\text{lb}} \\times 100\\% = ${p}\\%`,
-      'The same uncertainty on a bag half as heavy, ' + fmt(half, 2) + ' lb ± ' + fmt(dA.v, 1) + ' lb, is ' + ph + '%, so the lighter the bag, the larger the share of it the uncertainty is.');
+    readout(d.readout, `\\%\\,\\text{unc} = \\frac{\\delta A}{A} \\times 100\\% = \\frac{${fmt(dA.v, 1)}\\ \\text{lb}}{${fmt(A.v, 1)}\\ \\text{lb}} \\times 100\\% = ${p}\\%`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -161,9 +162,8 @@ function runs(ctx, parts, x, y, size) {
     row(350, dashed, 'the smallest floor allowed', '(' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m²');
     row(450, (y) => { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fillRect(px, y - 12, 30, 24); ctx.restore(); }, 'the uncertainty in the area', '± ' + pc(pA) + ' of 12.0 m², or ± ' + fmt(dArea, 1) + ' m²');
     headline(ctx, 'A floor 4.00 m by 3.00 m, known to ' + pc(pL.v) + ' and ' + pc(pW.v) + ', has an area of 12.0 m² known to ' + pc(pA) + '.');
-    readout(d.readout, `12.0\\ \\text{m}^2 \\pm ${pcTex(pA)} = 12.0\\ \\text{m}^2 \\pm ${fmt(dArea, 1)}\\ \\text{m}^2`,
-      'The largest floor the uncertainties allow is (' + fmt(a, 2) + ' m)(' + fmt(b, 2) + ' m) = ' + fmt(a * b, 1) + ' m² and the smallest (' + fmt(a2, 2) + ' m)(' + fmt(b2, 2) + ' m) = ' + fmt(a2 * b2, 1) + ' m², so '
-      + (pA <= 5 ? 'adding the percents is very nearly exact when the uncertainties are small.' : 'adding the percents is only an approximation, which serves well when the uncertainties are a few percent or less.'));
+    readout(d.readout, `\\karea = 12.0\\ \\text{m}^2 \\pm (${pcTex(pL.v)} + ${pcTex(pW.v)}) = 12.0\\ \\text{m}^2 \\pm ${fmt(dArea, 1)}\\ \\text{m}^2`,
+      pA ? 'The largest floor is ' + fmt(100 * (a * b / 12 - 1), 1) + '% above 12.0 m² and the smallest ' + fmt(100 * (1 - a2 * b2 / 12), 1) + '% below.' : '');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -184,7 +184,7 @@ function runs(ctx, parts, x, y, size) {
   const DIVS = { cm: { cm: 1, dec: 0, name: 'centimeter divisions' }, mm: { cm: 0.1, dec: 1, name: 'millimeter divisions' }, tenth: { cm: 0.01, dec: 2, name: '0.1 mm divisions' } };
   const Dv = F.choice(d.controls, { label: '\\text{smallest division}', options: [{ value: 'cm', label: '1 cm' }, { value: 'mm', label: '1 mm' }, { value: 'tenth', label: '0.1 mm' }], value: 'mm', aria: 'smallest division of the ruler' });
   const X0 = 200, K = 22, YS = 140, SLIDE = 760;
-  const BOX = { l: 175, r: 1225, t: 262, b: 470 }, WIN = 1.5, KM = (BOX.r - BOX.l) / WIN;
+  const BOX = { l: 175, r: 1225, t: 262, b: 470 };
   function draw() {
     const { ctx } = begin(d.c);
     const dv = DIVS[Dv.value] ?? DIVS.mm;
@@ -197,22 +197,22 @@ function runs(ctx, parts, x, y, size) {
     text(ctx, 'the stick, ' + fmt(L, 2) + ' cm long', X0, 104, F.ref('stick'), { size: 17 });
     const rx = X0 + slide, rt = YS + 30;
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 3; ctx.fillRect(rx, rt, 50 * K + 36, 50); ctx.strokeRect(rx, rt, 50 * K + 36, 50); ctx.restore();
-    for (let c = 0; c <= 50; c++) { const len = c % 10 ? (c % 5 ? 12 : 18) : 26; line(ctx, rx + c * K, rt, rx + c * K, rt + len, PAL.ink, c % 10 ? 1.5 : 2.5); if (c % 10 === 0) text(ctx, String(c), rx + c * K, rt + 38, PAL.ink, { size: 17, align: 'center' }); }
-    text(ctx, 'cm', rx + 50 * K + 22, rt + 38, PAL.ink, { size: 17, align: 'center' });
+    for (let c = 0; c <= 50; c++) { const len = c % 10 ? (c % 5 ? 12 : 18) : 26; line(ctx, rx + c * K, rt, rx + c * K, rt + len, PAL.ink, c % 10 ? 1.5 : 2.5); if (c % 10 === 0) text(ctx, c === 50 ? '50 cm' : String(c), rx + c * K, rt + 38, PAL.ink, { size: 17, align: 'center' }); }
     /* the magnifier: from the end of the stick down to the box */
     const xe = X0 + L * K;
     line(ctx, xe, YS + 8, BOX.l, BOX.t, PAL.rule, 1.5); line(ctx, xe, YS + 8, BOX.r, BOX.t, PAL.rule, 1.5);
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.fillRect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.strokeRect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.restore();
-    const w0 = Math.floor(L) - 0.25, Xm = (c) => BOX.l + (c - w0) * KM;
+    /* a caliper's window is ten times narrower than a ruler's, so its 0.1 mm marks stand as far apart as a ruler's millimeters */
+    const S = dv.cm === 1 ? 1 : dv.cm * 10, WIN = 1.5 * S, KM = (BOX.r - BOX.l) / WIN, w0 = Math.floor(L / S + 1e-9) * S - 0.25 * S, Xm = (c) => BOX.l + (c - w0) * KM;
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    text(ctx, 'under a magnifier, the end of the stick against a ruler with ' + dv.name, BOX.l + 16, BOX.t + 20, PAL.muted, { size: 17 });
+    text(ctx, 'magnified, on a ruler with ' + dv.name, BOX.l + 16, BOX.t + 20, PAL.muted, { size: 17 });
     bar(ctx, Xm(w0) - 20, 360, Xm(L) - Xm(w0) + 20, 26, true, F.ref('stick'));
     /* the ruler's marks where the ruler is */
-    const lo = Math.max(w0, sw), hi = Math.min(w0 + WIN, 50 + sw);
+    const lo = Math.max(w0, sw), hi = Math.min(w0 + WIN, 50 + 36 / K + sw);   /* the ruler runs on past its 50 mark, as the one above does */
     if (hi > lo) {
       ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 3; ctx.fillRect(Xm(lo), 390, Xm(hi) - Xm(lo), 72); ctx.strokeRect(Xm(lo), 390, Xm(hi) - Xm(lo), 72); ctx.restore();
       const dcm = dv.cm, i0 = Math.ceil((lo - sw) / dcm - 1e-9), i1 = Math.floor((hi - sw) / dcm + 1e-9);
-      for (let i = Math.max(0, i0); i <= i1; i++) {
+      for (let i = Math.max(0, i0); i <= Math.min(i1, Math.round(50 / dcm)); i++) {
         const c = i * dcm, x = Xm(c + sw), labelled = dcm === 1 || i % 10 === 0, medium = i % 5 === 0;
         line(ctx, x, 390, x, 390 + (labelled ? 34 : medium ? 24 : 14), PAL.ink, labelled ? 3 : medium ? 2.5 : 1.5);
         if (labelled) text(ctx, dcm === 0.01 ? fmt(c, 1) : String(Math.round(c)), x, 446, PAL.ink, { size: 17, align: 'center' });
@@ -283,7 +283,7 @@ function runs(ctx, parts, x, y, size) {
     text(ctx, 'the sum keeps the ' + PLACES[dec] + ' of ' + (da.v === db.v ? 'both' : da.v < db.v ? 'a' : 'b'), px, 120, PAL.muted, { size: 20, weight: 600 });
     runs(ctx, [[As + ' + ' + Bs + ' = ', PAL.ink], [sumShow, PAL.ink, 600], [sumCut, PAL.muted]], px, 160, 26);
     text(ctx, 'which is written ' + sumKept, px, 196, PAL.ink, { size: 20 });
-    text(ctx, 'the product keeps ' + words(n) + ' significant figures', px, 300, PAL.muted, { size: 20, weight: 600 });
+    text(ctx, 'the product keeps ' + words(n) + (n === 1 ? ' significant figure' : ' significant figures'), px, 300, PAL.muted, { size: 20, weight: 600 });
     runs(ctx, [[As + ' × ' + Bs + ' = ', PAL.ink], [pShow, PAL.ink, 600], [pCut, PAL.muted]], px, 340, 26);
     text(ctx, 'which is written ' + plainSig(pRound) + ', since ' + (na === nb ? 'both have ' : (na < nb ? 'a' : 'b') + ' has only ') + words(n), px, 376, PAL.ink, { size: 20 });
     headline(ctx, da.v === db.v
