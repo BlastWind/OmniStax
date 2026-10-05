@@ -7,7 +7,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- numbers ---------- */
 const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
@@ -135,7 +135,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     topline(ctx, F1 === 0 ? 'With no force on the left piston the pressure in the fluid is not raised, and nothing pushes on the right piston.'
       : 'A force of ' + N(F1) + ' on the ' + fmt(a1, 1) + ' cm² piston raises the pressure everywhere in the fluid by ' + sci(P, 2) + ' N/m², which lifts the ' + fmt(a2, 0) + ' cm² piston with ' + N(F2) + '.');
     readout(d.readout, `\\kProne = \\frac{\\kFone}{\\kareaone} = ${sciTex(P, 2)}\\ \\text{N/m}^2 = \\kPrtwo \\qquad \\kFtwo = \\frac{\\kareatwo}{\\kareaone}\\kFone = ${sig3Tex(a2 / a1)}\\times ${fmt(F1, 0)}\\ \\text{N} = ${NTex(F2)}`,
-      'The pressure is the same on every wall and under both pistons, so the force on each piston is that one pressure times the piston\u2019s own area, and the right piston, with ' + sig3(a2 / a1) + ' times the area, is pushed with ' + sig3(a2 / a1) + ' times the force. The pistons are at the same height, so no part of the pressure comes from a difference in depth.');
+      'The pistons are at the same height, so no part of the pressure comes from a difference in depth.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });
@@ -209,7 +209,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       if (h1 / 2 - 4 >= L) for (const x of [460, 500]) { press(ctx, x, ROD - h1 / 2 + 2, 0, -1, L, pc); press(ctx, x, ROD + h1 / 2 - 2, 0, 1, L, pc); }
     }
     vbracket(ctx, CX1 + 22, ROD - h1 / 2, ROD + h1 / 2, xc, fmt(d1, 2) + ' cm', 1);
-    text(ctx, 'A_1 = ' + sig3(a1) + ' cm²', CX0 + 20, ROD - h1 / 2 - 26, C('area'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'A_1 = ' + sig3(a1) + ' cm²', CX0 + 70, ROD - h1 / 2 - 26, C('area'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the wheel cylinders, each with two pistons pushed outward by the same pressure */
     ROWS.forEach((y0, i) => {
       const { a, dy } = partOf(i), yc = y0 + dy;
@@ -232,7 +232,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     });
     {
       const [yc, yb] = labelRow, room = 172;
-      if (F2 > 0) text(ctx, 'F_2 = ' + N(F2), WX + WL / 2 + 2 + Math.max(60, Math.min(F2 * KF, room)) / 2, yc - 28, fc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      if (F2 > 0) text(ctx, 'F_2 = ' + N(F2), 1392, yc - 28, fc, { size: 22, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
       vbracket(ctx, WX + 30, yb - h2 / 2, yb + h2 / 2, xc, undefined, 1);
       text(ctx, fmt(d2, 2) + ' cm', WX + 30, yb + h2 / 2 + 22, xc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, 'A_2 = ' + sig3(a2) + ' cm²', WX + 30, yb + h2 / 2 + 52, C('area'), { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
@@ -242,7 +242,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     push(ctx, CX0 + 2, ROD, 1, 0, F1 * KF, CX0 - PV.x - 16, fc);
     if (Fp > 0) {
       text(ctx, 'F = ' + N(Fp), tf.x - 10, PAD, fc, { size: 22, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-      text(ctx, 'F_1 = ' + N(F1), (PV.x + CX0) / 2 + 6, ROD - 34, fc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'F_1 = ' + N(F1), (PV.x + CX0) / 2 + 18, ROD - 34, fc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     }
     hits = [
       { x: PV.x, y: PAD + 6, r: 30, name: 'the brake pedal, pushed by the driver\u2019s foot with ' + N(Fp) },
@@ -256,7 +256,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
     topline(ctx, Fp === 0 ? 'With no push on the pedal there is no force on the pedal cylinder, no pressure in the line, and nothing at the wheels.'
       : 'A push of ' + N(Fp) + ' on the pedal becomes ' + N(F1) + ' on the pedal cylinder, and the pressure it makes gives each of the ' + word + ' wheel cylinders ' + N(F2) + '.');
     readout(d.readout, `\\kFtwo = \\frac{\\kareatwo}{\\kareaone}\\kFone = \\frac{\\pi \\krtwo^2}{\\pi \\krone^2}\\kFone = \\frac{(${sig3Tex(d2 / 2)}\\ \\text{cm})^2}{(${sig3Tex(d1 / 2)}\\ \\text{cm})^2}\\times ${NTex(F1)} = ${NTex(F2)}`,
-      'The lever\u2019s arms are 0.20 m and 0.040 m, so the ' + N(Fp) + ' on the pedal becomes F\u2081 = ' + N(F1) + ' on the pedal cylinder. That force on ' + sig3(a1) + ' cm² makes a pressure of ' + sci(P, 2) + ' N/m², and the fluid carries the same pressure to every wheel cylinder, so each pushes out with the same ' + N(F2) + ' whether there are two of them or four.');
+      'The lever\u2019s arms are 0.20 m and 0.040 m, so the ' + N(Fp) + ' on the pedal becomes $\\kFone = ' + NTex(F1) + '$ on the pedal cylinder, a pressure of $' + sciTex(P, 2) + '\\ \\text{N/m}^2$ in the line.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });
@@ -318,7 +318,7 @@ function vessel(ctx, LX, w1, RX, w2, top, lineTop, floor, fy1, fy2) {
       : F1 === 0 ? 'With no force on the small piston, pushing it ' + sig3(d1) + ' cm moves ' + sig3(V) + ' cm³ of fluid and raises the large piston ' + sig3(d2) + ' cm, but no work is done.'
       : 'Pushing the small piston down ' + sig3(d1) + ' cm moves ' + sig3(V) + ' cm³ of fluid across and raises the large piston ' + sig3(d2) + ' cm, so ' + N(F2) + ' through ' + sig3(d2) + ' cm is the same work as ' + N(F1) + ' through ' + sig3(d1) + ' cm.');
     readout(d.readout, `\\kFtwo d_2 = \\kFone d_1:\\quad (${NTex(F2)})(${sig3Tex(d2 / 100)}\\ \\text{m}) = (${NTex(F1)})(${sig3Tex(d1 / 100)}\\ \\text{m}) = ${sig3Tex(W)}\\ \\text{J}`,
-      'The force is multiplied by A\u2082/A\u2081 = ' + sig3(a2 / A1) + ' and the distance is divided by the same factor, because the volume of the fluid does not change: A\u2081d\u2081 = A\u2082d\u2082 = ' + sig3(V) + ' cm³, so the large piston moves only ' + sig3(A1 / a2) + ' times as far as the small one. The work done on the small piston and the work done by the large one are both ' + sig3(W) + ' J, which is what conservation of energy requires of a machine with no friction.');
+      'The volume of the fluid does not change, $\\kareaone d_1 = \\kareatwo d_2 = ' + sig3(V) + '\\ \\text{cm}^3$, so the force is multiplied by $\\kareatwo/\\kareaone = ' + sig3(a2 / A1) + '$ and the distance divided by the same factor.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });

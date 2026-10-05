@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.8'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, curve, pinned, labeller, hover, fixed, view } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- numbers ---------- */
 const G = 9.80, ATM = 1.013e5, RAD = Math.PI / 180, TAU = 2 * Math.PI;
@@ -151,8 +151,8 @@ function freeBody(ctx, x, y, arrows, title) {
     readout(d.readout, breaks
       ? `\\kwgt = ${sigz(w, 3)}\\ \\text{mN} > \\kgamma \\kLwire = (${sigz(g, 3)}\\ \\text{N/m})(${sigz(L, 3)}\\ \\text{m}) = ${sigz(hold, 3)}\\ \\text{mN}`
       : `\\kwgt = \\kgamma \\kLwire\\sin\\ktheta:\\quad ${sigz(w, 3)}\\times 10^{-3}\\ \\text{N} = (${sigz(g, 3)}\\ \\text{N/m})(${sigz(L, 3)}\\ \\text{m})\\sin\\ktheta,\\quad \\ktheta = ${fmt(th, 0)}^\\circ`,
-      breaks ? 'The surface can pull no harder than γL, which it reaches when its two pulls are vertical, so a body heavier than that is not held up; it breaks through and sinks, as the needle placed point down does, since a point touches the water along a far shorter line.'
-        : 'The two pulls act along the dented surface, so only their upward parts hold the weight, and the surface dents until those parts add up to w. The most it can carry is γL = ' + sigz(hold, 3) + ' mN, when the pulls are vertical; a heavier body breaks the surface.');
+      breaks ? 'The surface can pull no harder than $\\kgamma\\kLwire$, which it reaches when its two pulls are vertical, so a heavier body breaks through.'
+        : 'The most the surface can carry is $\\kgamma\\kLwire = ' + sigz(hold, 3) + '\\ \\text{mN}$, when the pulls are vertical.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -185,7 +185,8 @@ function freeBody(ctx, x, y, arrows, title) {
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 12; ctx.lineJoin = 'round';
     ctx.beginPath(); ctx.moveTo(FL + 560, FT); ctx.lineTo(FL, FT); ctx.lineTo(FL, FB); ctx.lineTo(FL + 560, FB); ctx.stroke(); ctx.restore();
     line(ctx, WX, FT - 10, WX, FB + 10, F.ref('wire'), 9);
-    text(ctx, 'the sliding wire', WX + 18, FT + 16, F.ref('wire'), { size: 19, bg: alpha(PAL.panel, 0.85) });
+    const tall = FT < 160;   /* a short wire is named above the frame, clear of the force; a long one beside its top, under the headline */
+    text(ctx, 'the sliding wire', tall ? WX + 18 : WX, tall ? FT + 16 : FT - 36, F.ref('wire'), { size: 19, align: tall ? 'left' : 'center', bg: alpha(PAL.panel, 0.85) });
     if (hgt > 90) text(ctx, 'the film', (FL + WX) / 2 - 40, FT + hgt * 0.22, F.ref('film'), { size: 18, align: 'center' });
     /* the film's pull on the wire, spread along its length, and the force that holds the wire */
     const n = Math.max(2, Math.round(hgt / 70));
@@ -215,7 +216,7 @@ function freeBody(ctx, x, y, arrows, title) {
     topline(ctx, Fv === 0 ? 'With no force on the wire there is no film pulling on it, and nothing is measured.'
       : 'A force of ' + sigz(Fv, 3) + ' mN holds a wire ' + fmt(l, 1) + ' mm long against two liquid surfaces, so the surface tension is ' + sigz(g, 3) + ' N/m' + (match ? ', which is ' + near.n + '’s.' : '.'));
     readout(d.readout, `\\kgamma = \\frac{\\kF}{\\kLwire} = \\frac{\\kF}{2\\kl} = \\frac{${sigz(Fv, 3)}\\times 10^{-3}\\ \\text{N}}{2(${sigz(l / 1000, 3)}\\ \\text{m})} = ${sigz(g, 3)}\\ \\text{N/m}`,
-      'The wire is attached to two liquid surfaces, the front and the back of the film, so the length the force is spread along is 2l and not l. ' + (match ? 'The value matches ' + near.n + ' in Table 11.3.' : 'No liquid of Table 11.3 is within a few percent of this value; the nearest is ' + near.n + ' at ' + sigz(near.g, 3) + ' N/m.'));
+      'The film has a front and a back surface, so the force is spread along $2\\kl$ and not $\\kl$. ' + (match ? 'The value matches ' + near.n + ' in Table 11.3.' : 'No liquid of Table 11.3 is within a few percent of this value; the nearest is ' + near.n + ' at ' + sigz(near.g, 3) + ' N/m.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -285,7 +286,7 @@ function freeBody(ctx, x, y, arrows, title) {
     const one = r1 < 0.03 ? '\\kProne:\\ \\text{balloon 1 is empty}' : `\\kProne = \\frac{4\\kgamma}{\\krone} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r1 / 100, 3)}\\ \\text{m}} = ${sigz(p1, 3)}\\ \\text{Pa}`;
     const two = r2 < 0.03 ? '\\kPrtwo:\\ \\text{balloon 2 is empty}' : `\\kPrtwo = \\frac{4\\kgamma}{\\krtwo} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r2 / 100, 3)}\\ \\text{m}} = ${sigz(p2, 3)}\\ \\text{Pa}`;
     readout(d.readout, `${one},\\qquad ${two}`,
-      'The pressure inside a balloon is inversely proportional to its radius, so the smaller balloon holds the greater pressure and air moves from it to the larger one, which is the opposite of what a balloon full of air seems to promise. As the small one shrinks its pressure rises further, so the flow does not stop until it is empty; the total volume of air is kept throughout.');
+      'As the small balloon shrinks its pressure rises further, so the flow does not stop until it is empty.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -324,7 +325,7 @@ function freeBody(ctx, x, y, arrows, title) {
     shape(ctx, (c) => c.arc(SX, SY, R, 0, TAU), alpha(PAL.ink, 0.06), F.ref('alveolus'), 3);
     text(ctx, 'an alveolus, r = ' + fmt(r, 3) + ' mm', SX, SY + R + 28, F.ref('alveolus'), { size: 19, align: 'center' });
     hbracket(ctx, SX - R, SX, SY - R - 30, C('position'), 'r');
-    text(ctx, 'gauge pressure inside, P = 4γ/r', SX + 20, 446, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'gauge pressure inside, P = 4γ/r', SX + 20, 432, PAL.muted, { size: 18, align: 'center' });
     vals.forEach((v, i) => {
       const y = 472 + i * 48, w = 260 * Math.min(1, v.p / PCAP), lx = SX - 110;
       ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(lx, y, 260, 22); ctx.fillStyle = pc; ctx.fillRect(lx, y, w, 22); ctx.restore();
@@ -335,7 +336,7 @@ function freeBody(ctx, x, y, arrows, title) {
     const [s, dg, tf] = vals;
     topline(ctx, 'At a radius of ' + fmt(r, 3) + ' mm the surfactant’s surface tension is ' + sigz(s.g, 3) + ' N/m and the pressure inside the sac is ' + sigz(s.p / 1000, 3) + ' kPa, against ' + sigz(dg.p / 1000, 3) + ' kPa for a detergent and ' + sigz(tf.p / 1000, 3) + ' kPa for tissue fluid.');
     readout(d.readout, `\\kPr = \\frac{4\\kgamma}{\\krad} = \\frac{4(${sigz(s.g, 3)}\\ \\text{N/m})}{${sciTex(r / 1000, 3)}\\ \\text{m}} = ${sigz(s.p / 1000, 3)}\\ \\text{kPa}\\ \\text{for the surfactant}`,
-      'A lining whose surface tension does not change makes the pressure climb as 1/r when the sac shrinks, so a small alveolus would empty into a large one; the surfactant’s surface tension falls with the area, and the pressure inside stays nearly level from the largest sac to the smallest. The values here are representative of the three linings rather than measured ones.');
+      'A lining whose surface tension does not change makes the pressure climb as $1/\\krad$, so a small alveolus would empty into a large one. The values are representative of the three linings rather than measured.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -372,7 +373,7 @@ function freeBody(ctx, x, y, arrows, title) {
       : th === 90 ? 'At a contact angle of 90° the cohesive and adhesive forces are evenly matched, and the drop stands as a half-dome.'
       : 'At a contact angle of ' + fmt(th, 0) + '° the cohesive forces are the stronger, and the liquid draws itself up into a bead.');
     readout(d.readout, th < 90 ? `\\ktheta = ${fmt(th, 0)}^\\circ < 90^\\circ` : th === 90 ? `\\ktheta = 90^\\circ` : `\\ktheta = ${fmt(th, 0)}^\\circ > 90^\\circ`,
-      (pair ? 'Table 11.4 gives this angle for ' + pair + '. ' : '') + 'The larger the angle, the larger the ratio of cohesive to adhesive forces; the drop keeps the same volume at every angle here, so what changes is only how far the adhesive forces can flatten it.');
+      (pair ? 'Table 11.4 gives this angle for ' + pair + '. ' : '') + 'The larger the angle, the larger the ratio of cohesive to adhesive forces.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -387,7 +388,7 @@ function freeBody(ctx, x, y, arrows, title) {
 (function () {
   const d = sim('sim-capillary', 740);
   const LIQ = { water: { n: 'water', g: 0.0728, rho: 1000 }, alcohol: { n: 'ethyl alcohol', g: 0.0223, rho: 790 }, glycerin: { n: 'glycerin', g: 0.0631, rho: 1260 }, mercury: { n: 'mercury', g: 0.465, rho: 13600 }, olive: { n: 'olive oil', g: 0.032, rho: 920 } };
-  const liq = choice(d.controls, { label: '\\text{the liquid}', options: Object.entries(LIQ).map(([v, L]) => ({ value: v, label: L.n })), value: 'water', aria: 'the liquid in the container' });
+  const liq = choice(d.controls, { label: '\\text{the liquid}', options: Object.entries(LIQ).map(([v, L]) => ({ value: v, label: L.n })), value: 'water', aria: 'the liquid in the container', onInput: (v) => ts.drive(v === 'mercury' ? 140 : 0) });   /* each liquid arrives at its Table 11.4 angle on glass */
   const ts = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 1, value: 0, unit: '°', dec: 0, detents: THETA_TICKS, snap: true, specials: [{ at: 90, label: 'neither raised nor suppressed' }], aria: 'the contact angle between the liquid and the glass' });
   const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.1, max: 9, step: 0.01, value: 0.5, unit: 'mm', dec: 2, aria: 'the radius of the tube' });
   /* the scene: the level in the container at Y0, 20 units per centimetre of height, the tube from 16 cm above to 8 cm below; the graph: r 0 to 9 mm, h −8 to 16 cm, fixed */
@@ -436,7 +437,7 @@ function freeBody(ctx, x, y, arrows, title) {
     topline(ctx, Math.abs(cs) <= 0.02 ? L.n[0].toUpperCase() + L.n.slice(1) + ' in a glass tube ' + rword + ' in radius, with a contact angle of 90°, is neither raised nor suppressed.'
       : L.n[0].toUpperCase() + L.n.slice(1) + ' in a glass tube ' + rword + ' in radius, with a contact angle of ' + tword + ', is ' + (h > 0 ? 'raised ' : 'suppressed ') + sigz(Math.abs(hcm), 3) + ' cm' + (out ? ', which is beyond the frame drawn here.' : '.'));
     readout(d.readout, `\\kh = \\frac{2\\kgamma\\cos\\ktheta}{\\krho\\kg \\krad} = \\frac{2(${sigz(L.g, 3)}\\ \\text{N/m})\\cos ${fmt(th, 0)}^\\circ}{(${Math.round(L.rho)}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${sciTex(r / 1000, 3)}\\ \\text{m})} = ${minus(sigz(hcm, 3))}\\ \\text{cm}`,
-      'The height is positive, and the liquid raised, when the contact angle is less than 90°, and negative, the liquid suppressed, when it is more, as it is for mercury in glass. The column is held up by the pull of the surface round the rim of the tube, and it climbs until the weight of the column matches that pull, which is why a narrower tube and a lighter liquid climb higher.');
+      'The column climbs until its weight matches the pull of the surface round the rim of the tube, which is why a narrower tube and a lighter liquid climb higher.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -497,8 +498,8 @@ function freeBody(ctx, x, y, arrows, title) {
       : parts ? 'A pull of ' + fmt(Fv, 0) + ' N on a piston of ' + fmt(A, 2) + ' cm² would put the water ' + sigz(-atm, 3) + ' atm below zero, which is more than its cohesive forces can bear, and it separates.'
       : 'A pull of ' + fmt(Fv, 0) + ' N on a piston of ' + fmt(A, 2) + ' cm² puts the water under a negative pressure of ' + sigz(-atm, 3) + ' atm, and the water holds together.');
     readout(d.readout, `\\kPr = -\\frac{\\kF}{\\karea} = -\\frac{${fmt(Fv, 0)}\\ \\text{N}}{${sciTex(A * 1e-4, 3)}\\ \\text{m}^2} = ${minus(sciTex(P, 3))}\\ \\text{Pa} = ${minus(sigz(atm, 3))}\\ \\text{atm}`,
-      parts ? 'The device reaches about 25 atm below zero before the water separates, which is the limit the book gives for it. Up to that limit the water is under tension, held together by the cohesive forces between its molecules.'
-        : 'A fluid under tension has a negative absolute pressure, and a negative pressure of this size could hold up a column of water h = |P|/ρg = ' + sigz(hw, 3) + ' m tall, so a pull of this kind, made by evaporation in the leaves, is what can bring sap to the top of a tall tree. The device parts the water at about 25 atm below zero.');
+      parts ? 'Up to that limit the water is under tension, held together by the cohesive forces between its molecules.'
+        : 'A negative pressure of this size could hold up a column of water $\\kh = |\\kPr|/\\krho\\kg = ' + sigz(hw, 3) + '\\ \\text{m}$ tall.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

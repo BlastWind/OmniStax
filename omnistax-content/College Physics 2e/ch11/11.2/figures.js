@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, hover, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, pinned, fixed, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- Table 11.1, as the book prints it ----------
    `s` is the density as the table writes it, in 10³ kg/m³ (which is g/cm³ and
@@ -134,8 +134,9 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     hbracket(ctx, 1170, 1170 + PX, 130, PAL.ink, '1 m');
     /* each pile named once, beneath its place on the plank, with its volume and its density */
     for (const [x, r, Vv, s, id] of [[CX - 270, L, VL, sL, 'pile-left'], [CX + 270, R, VR, sR, 'pile-right']]) {
-      text(ctx, lower(r.n) + ': ' + fmt(m, 0) + ' kg fills ' + sigz(Vv, 3) + ' m³, a cube ' + fmt(s, 2) + ' m on a side', x, 618, F.ref(id), { size: 19, align: 'center' });
-      text(ctx, 'ρ = ' + rhoText(r), x, 652, dc, { size: 20, weight: 600, align: 'center' });
+      text(ctx, lower(r.n) + ': ' + fmt(m, 0) + ' kg fills ' + sigz(Vv, 3) + ' m³', x, 612, F.ref(id), { size: 19, align: 'center' });
+      text(ctx, 'a cube ' + fmt(s, 2) + ' m on a side', x, 638, F.ref(id), { size: 17, align: 'center' });
+      text(ctx, 'ρ = ' + rhoText(r), x, 664, dc, { size: 20, weight: 600, align: 'center' });
     }
     const same = L.n === R.n;
     topline(ctx, same ? fmt(m, 0) + ' kg of ' + lower(L.n) + ' on each side makes two cubes ' + fmt(sL, 2) + ' m on a side, and the plank balances.'
@@ -163,7 +164,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
   const ROWS = SUBST.slice().sort((a, b) => (b.hi ?? b.v) - (a.hi ?? a.v));
   /* The axis is logarithmic, fixed and never rescales: it runs from 10⁻² to 10⁵ kg/m³ in decades, the only
      scale that holds every entry from hydrogen (0.090 kg/m³) to gold (19 320 kg/m³). A density past either end goes through pinned(). */
-  const BOX = { l: 330, t: 130, r: 1340, b: 900 };
+  const BOX = { l: 330, t: 150, r: 1340, b: 900 };
   const LOGR = [0, 7];                                              /* the axis counts decades above 10⁻² kg/m³ */
   const TOL = 0.025;
   let hits = [];
@@ -235,7 +236,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
   /* Both scales are fixed from the slider maxima and never follow a slider: the plan holds a square
      14.1 km across (200 km²) in 360 units, and the section holds 100 m of depth in 330 units. */
   const KM = 360 / Math.sqrt(200), MPX = 330 / 100;
-  const PCX = 270, PCY = 340, SX1 = 640, SX2 = 1160, DAMW = 60, SURF = 160;
+  const PCX = 250, PCY = 340, SX1 = 760, SX2 = 1220, DAMW = 60, SURF = 160;
   /* the pale blue a colourless liquid is drawn in, the chapter's physical-fact colour (the manometer of 11.6 uses the same), tinted toward the ink for the darker liquids */
   const CLEAR = () => (F.shown.facts ? F.fact('#bfe0f2') : alpha(PAL.ink, 0.18));
   /* the share of the pale blue in the fill, 1 for a colourless liquid; a new liquid's tint blends in */
@@ -281,7 +282,7 @@ const sigz = (v, n) => { const a = Math.abs(v); if (!(a >= 0.01 && a < 1000)) re
     text(ctx, 'ρ = ' + rhoText(r), (SX1 + SX2) / 2, bottom + 58, dc, { size: 20, weight: 600, align: 'center' });
     topline(ctx, 'A reservoir of ' + fmt(A, 1) + ' km² and average depth ' + fmt(h, 1) + ' m holds ' + sciText(Vv, 3) + ' m³ of ' + lower(r.n) + ', a mass of ' + sciText(m, 3) + ' kg.');
     readout(d.readout, `\\km = \\krho \\kvol = \\krho \\karea \\kh = (${rhoTex(r)})(${sciTex(Vv, 3)}\\ \\text{m}^3) = ${sciTex(m, 3)}\\ \\text{kg}`,
-      'The volume is V = Ah = (' + fmt(A, 1) + ' km²)(' + fmt(h, 1) + ' m) = ' + sciText(Vv, 3) + ' m³, and the weight of that ' + lower(r.n) + ' is mg = ' + sciText(m * G, 3) + ' N, which, as the following sections show, is not the force the dam must supply.');
+      'The volume is $\\kvol = \\karea\\kh = (' + fmt(A, 1) + '\\ \\text{km}^2)(' + fmt(h, 1) + '\\ \\text{m}) = ' + sciTex(Vv, 3) + '\\ \\text{m}^3$, and the weight of that ' + lower(r.n) + ' is $\\km g = ' + sciTex(m * G, 3) + '\\ \\text{N}$, which, as the following sections show, is not the force the dam must supply.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

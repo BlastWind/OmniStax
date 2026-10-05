@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.9'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, register, cycle, begin, line, arrow, dot, text, topline, vbracket, strip, axes, pinned, curve, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, MMHG = 133, RHO_BLOOD = 1050, RHO_HG = 13.6e3, TAU = 2 * Math.PI;
@@ -43,10 +43,10 @@ function leader(ctx, s, x, y, tx, ty, color, align) {
 }
 /* the units a gauge pressure may be written in, from the mm Hg the table quotes */
 const UNITS = {
-  mmhg: { label: 'mm Hg', k: 1, dec: 0, tick: 0 },
-  kpa: { label: 'kPa', k: MMHG / 1000, dec: 1, tick: 1 },
-  cmh2o: { label: 'cm of water', k: 1.36, dec: 0, tick: 0 },
-  atm: { label: 'atm', k: 1 / 760, dec: 3, tick: 3 },
+  mmhg: { label: 'mm Hg', k: 1, dec: 0, tick: 0, step: 20 },
+  kpa: { label: 'kPa', k: MMHG / 1000, dec: 1, tick: 0, step: 2 },
+  cmh2o: { label: 'cm of water', k: 1.36, dec: 0, tick: 0, step: 20 },
+  atm: { label: 'atm', k: 1 / 760, dec: 3, tick: 2, step: 0.02 },
 };
 
 /* =====================================================================
@@ -75,7 +75,7 @@ const UNITS = {
     ['Intestines', 10, 20, 'the intestines'],
     ['Middle ear, less than', 0, 1, 'the middle ear'],
   ];
-  /* the axis is fixed from −10 to 150 mm Hg in ticks of 20, whatever unit it is written in, and never rescales */
+  /* the axis is fixed from −10 to 150 mm Hg whatever unit it is written in, and never rescales */
   const box = { l: 500, r: 1340, t: 118, b: 598 }, X0 = -10, X1 = 150, RH = (box.b - box.t) / ROWS.length;
   const X = (v) => box.l + ((v - X0) / (X1 - X0)) * (box.r - box.l);
   const rowY = (i) => box.t + (i + 0.5) * RH;
@@ -88,10 +88,11 @@ const UNITS = {
     const { ctx } = begin(d.c);
     const pc = C('pressure'), u = UNITS[us.value], P = ps.v;
     const inU = (v) => num(v * u.k, u.dec) + ' ' + u.label;
-    /* the frame: gridlines every 20 mm Hg, written in the chosen unit, and the zero of gauge pressure */
-    for (let v = X0 + 10; v <= X1; v += 20) {
-      line(ctx, X(v), box.t, X(v), box.b, v === 0 ? PAL.muted : PAL.rule, v === 0 ? 2 : 1.5);
-      text(ctx, num(v * u.k, u.tick), X(v), box.b + 24, PAL.muted, { size: 17, align: 'center' });
+    /* the frame: gridlines at round values of the chosen unit, and the zero of gauge pressure */
+    for (let i = 0; i * u.step <= X1 * u.k + 1e-9; i++) {   /* round steps of the chosen unit */
+      const v = (i * u.step) / u.k;
+      line(ctx, X(v), box.t, X(v), box.b, i === 0 ? PAL.muted : PAL.rule, i === 0 ? 2 : 1.5);
+      text(ctx, num(i * u.step, u.tick), X(v), box.b + 24, PAL.muted, { size: 17, align: 'center' });
     }
     line(ctx, box.l, box.b, box.r, box.b, PAL.muted, 2);
     text(ctx, 'gauge pressure (' + u.label + ')', box.r, box.b + 54, pc, { size: 20, weight: 600, align: 'right' });
@@ -114,7 +115,7 @@ const UNITS = {
     const where = inside.length ? 'falls within the range of ' + listOf(inside) + '.' : P < -8 ? 'lies below every pressure of the table.' : P > 150 ? 'lies above every pressure of the table.' : 'falls within no range of the table.';
     topline(ctx, 'A gauge pressure of ' + num(P, 0) + ' mm Hg, which is ' + said + ', ' + where);
     readout(d.readout, `\\kPg = ${ltx(P, 0)}\\ \\text{mm Hg} = ${ltx(P, 0)}\\times 133\\ \\text{N/m}^2 = ${P === 0 ? '0' : sci(P * MMHG, 2)}\\ \\text{N/m}^2` + (u.label === 'mm Hg' ? '' : ` = ${ltx(P * u.k, u.dec)}\\ \\text{${u.label}}`),
-      'Every pressure of the table is a gauge pressure, measured from atmospheric pressure at zero, so the chest cavity, the esophagus and the lungs while breathing in lie below zero. The whole table spans about 160 mm Hg, which is 21 kPa, 220 cm of water or a fifth of an atmosphere.');
+      'The whole table spans about 160 mm Hg, which is 21 kPa, 220 cm of water or a fifth of an atmosphere.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -131,8 +132,8 @@ const UNITS = {
   /* the stations the book gives a number to, in circuit order from the left side of the heart */
   const ST = [
     { id: 'aorta', name: 'aorta', P: 120, x: 680, y: 400, side: 'top', head: 'Blood leaves the left side of the heart into the aorta at about 120 mm Hg, the highest pressure in the circuit.', small: 'This is the pressure a cuff on the arm reads at systole, and aortal or arterial pressure is the only one in the circuit that can be measured without threading a catheter into the body.' },
-    { id: 'small', name: 'small arteries', P: 85, x: 740, y: 500, side: 'right', head: 'In the small arteries the pressure has fallen to about 85 mm Hg, 35 mm Hg below the aorta.' },
-    { id: 'arterioles', name: 'arterioles', P: 35, x: 740, y: 620, side: 'right', head: 'In the arterioles the pressure is about 35 mm Hg, and most of the fall from the aorta has happened by here.' },
+    { id: 'small', name: 'small arteries', P: 85, x: 740, y: 500, side: 'left', head: 'In the small arteries the pressure has fallen to about 85 mm Hg, 35 mm Hg below the aorta.' },
+    { id: 'arterioles', name: 'arterioles', P: 35, x: 740, y: 620, side: 'left', head: 'In the arterioles the pressure is about 35 mm Hg, and most of the fall from the aorta has happened by here.' },
     { id: 'venules', name: 'venules', P: 15, x: 140, y: 620, side: 'left', head: 'In the venules, just past the capillaries, the pressure is about 15 mm Hg.' },
     { id: 'cavae', name: 'vena cavae', P: 4, x: 140, y: 470, side: 'left', head: 'In the vena cavae the blood returns to the right side of the heart at about 4 mm Hg, almost zero.' },
     { id: 'pulm-artery', name: 'pulmonary artery', P: 25, x: 398, y: 265, side: 'left', head: 'The right side of the heart pumps the blood into the pulmonary artery at about 25 mm Hg, on its way to the lungs.', small: 'The right side of the heart is the pump for the lungs alone, and it raises the pressure far less than the left side does.' },
@@ -188,7 +189,7 @@ const UNITS = {
     head(ctx, 600, LOOP.y, 1, 0); head(ctx, LOOP.r, 560, 0, 1); head(ctx, 600, LOOP.b, -1, 0); head(ctx, 280, LOOP.b, -1, 0); head(ctx, LOOP.l, 545, 0, -1); head(ctx, 300, LOOP.y, 1, 0);
     head(ctx, PL.l, 300, 0, -1); head(ctx, PL.r, 300, 0, 1);
     /* the two pumps */
-    text(ctx, 'right side', HX - HW / 2, HY + 88, F.ref('right-side'), { size: 17, align: 'center' }); text(ctx, 'left side', HX + HW / 2, HY + 88, F.ref('left-side'), { size: 17, align: 'center' });
+    text(ctx, 'right side', HX - 8, HY + 88, F.ref('right-side'), { size: 17, align: 'right' }); text(ctx, 'left side', HX + 8, HY + 88, F.ref('left-side'), { size: 17, align: 'left' });
     text(ctx, 'the heart, two pumps', HX, HY + 114, PAL.ink, { size: 17, align: 'center' });
     /* the stations and their pressures; the chosen one is filled and the others hollow */
     for (const s of ST) {
@@ -208,7 +209,7 @@ const UNITS = {
     for (let v = 0; v <= 140; v += 20) { line(ctx, X(v), box.t, X(v), box.b, v ? PAL.rule : PAL.muted, v ? 1.5 : 2); text(ctx, fmt(v, 0), X(v), box.b + 24, PAL.muted, { size: 17, align: 'center' }); }
     line(ctx, box.l, box.b, box.r, box.b, PAL.muted, 2);
     text(ctx, 'gauge pressure (mm Hg)', box.r, box.b + 54, pc, { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'around the circuit, from the left side of the heart', box.l, box.t - 24, PAL.muted, { size: 17 });
+    text(ctx, 'around the circuit, from the left side of the heart', 1390, box.t - 24, PAL.muted, { size: 17, align: 'right' });
     const glow = st.mix((v) => ST.map((s) => (s.id === v ? 0.65 : 0.3)));
     ST.forEach((s, i) => {
       const y = box.t + (i + 0.5) * RH, on = s === cur;
@@ -223,7 +224,7 @@ const UNITS = {
     topline(ctx, cur.head);
     const lost = 120 - cur.P;
     readout(d.readout, `\\kPg = ${fmt(cur.P, 0)}\\ \\text{mm Hg} = ${fmt(cur.P, 0)}\\times 133\\ \\text{N/m}^2 = ${sci(cur.P * MMHG, 2)}\\ \\text{N/m}^2`,
-      cur.small || 'By the ' + cur.name + ' the blood has lost ' + fmt(lost, 0) + ' of the 120 mm Hg it left the aorta with. The pressure falls all the way around each loop because the blood flows, and only the two pumps of the heart raise it again.');
+      cur.small || 'By the ' + cur.name + ' the blood has lost ' + fmt(lost, 0) + ' of the 120 mm Hg it left the aorta with.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -304,8 +305,8 @@ const UNITS = {
       : dh > 0 ? 'Standing, ' + where + (where === 'the feet' ? ' are' : ' is') + ' ' + fmt(dh, 2) + ' m below the heart, and the pressure of the blood there is ' + fmt(dPmm, 0) + ' mm Hg higher than at the heart.'
       : 'Standing, ' + where + ' is ' + fmt(-dh, 2) + ' m above the heart, and the pressure of the blood there is ' + fmt(-dPmm, 0) + ' mm Hg lower than at the heart.');
     readout(d.readout, `\\kdPr = \\kdh\\krho\\kg = (${ltx(dhEff, 2)}\\ \\text{m})(1050\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${dPmm === 0 ? '0' : sci(dP, 2)}\\ \\text{Pa} = ${ltx(dPmm, 0)}\\ \\text{mm Hg}`,
-      standing ? 'The increase is the weight of the static column of blood between the heart and the point, standing on a unit of area, and it is the same in every vessel there whatever its size. Standing a long time lets blood accumulate in the legs under this pressure, which is why elastic bandages and tight stockings help the veins return it.'
-        : 'The blood is still a fluid with weight, but no point of the body is above or below any other, so there is no column between the heart and the point. This is why the brain and spinal fluid pressure of Table 11.5 is quoted for a person lying down, and why the spinal manometer reads more when the person sits up.');
+      standing ? 'Standing a long time lets blood collect in the legs under this pressure, which is why elastic stockings help the veins return it.'
+        : 'No point of the body is above or below any other, so there is no column between the heart and the point.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -338,21 +339,21 @@ const UNITS = {
     ctx.restore();
     /* the fluid presses outward everywhere; the pushes on the back of the eye are the ones that add to the force */
     if (P > 0) {
-      const L = 14 + P * 0.6;
+      const L = 12 + P * 0.38;   /* short enough to leave the middle clear for the labels at the largest pressure */
       for (let a = -Math.PI; a < Math.PI - 1e-6; a += Math.PI / 12) {
         const back = Math.abs(a) <= half;
         if (!back && Math.abs(a) > Math.PI - 1.15) continue;      /* the cornea is drawn over the front */
         arrow(ctx, EX + (R - 14 - L) * Math.cos(a), EY + (R - 14 - L) * Math.sin(a), EX + (R - 14) * Math.cos(a), EY + (R - 14) * Math.sin(a), back ? pc : alpha(pc, 0.4), back ? 3.5 : 2.5);
       }
     }
-    text(ctx, 'the fluid inside the eye', EX - 20, EY - 30, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.9) });
-    text(ctx, 'P_g = ' + fmt(P, 1) + ' mm Hg', EX - 20, EY, pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
+    text(ctx, 'P_g = ' + fmt(P, 1) + ' mm Hg', EX + 5, EY, pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
     /* the one force those pushes add to, on the back of the eye */
     if (Fv > 0.05) arrow(ctx, EX + R + 6, EY, EX + R + 6 + Fv * KF, EY, fc, 5);
     text(ctx, 'F = ' + fmt(Fv, 1) + ' N', EX + R + 20, EY - 30, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
     leader(ctx, 'the back of the eye, area A = ' + fmt(A, 1) + ' cm²', EX + R * Math.cos(-half) - 10, EY - R - 40, EX + R * Math.cos(-half) - 4, EY + R * Math.sin(-half) - 6, C('area'), 'right');
     leader(ctx, 'cornea', EX - R - 20, EY - 120, EX - R - 4, EY - 60, PAL.ink, 'right');
     leader(ctx, 'lens', EX - R - 20, EY + 130, EX - R + 60, EY + 48, PAL.ink, 'right');
+    leader(ctx, 'the fluid inside the eye', EX - 60, EY + R + 34, EX - 40, EY + 80, PAL.muted, 'right');
     leader(ctx, 'optic nerve', EX + R + 70, EY + 210, EX + R + 60, EY + 150, PAL.ink, 'left');
     /* the same force as a weight: a mass resting on a pan */
     const MX = 1090, MY = 300;
@@ -362,13 +363,13 @@ const UNITS = {
     ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('block'); ctx.lineWidth = 4; rrect(ctx, MX - bw / 2, MY - 6 - bw * 0.7, bw, bw * 0.7, 6); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'm = ' + fmt(m, 2) + ' kg', MX, MY - 6 - bw * 0.7 - 26, C('mass'), { size: 20, weight: 600, align: 'center' });
     if (Fv > 0.05) arrow(ctx, MX, MY - bw * 0.35, MX, MY - bw * 0.35 + Fv * KF, fc, 5);
-    text(ctx, 'w = mg = ' + fmt(Fv, 1) + ' N', MX + 24, MY + 40 + Math.min(Fv * KF, 100), fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
+    text(ctx, 'w = mg = ' + fmt(Fv, 1) + ' N', MX + 24, Math.max(MY - bw * 0.35 + Fv * KF + 26, MY + 96), fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
     text(ctx, 'a mass whose weight is the same force, resting on the eye', MX, 560, F.ref('block'), { size: 17, align: 'center' });
     const range = P >= 12 && P <= 24 ? ', within the normal range,' : P > 24 ? ', above the normal range,' : P > 0 ? ', below the normal range,' : '';
     topline(ctx, P === 0 ? 'With no pressure in the eye the fluid pushes on nothing, and the eye would not keep its shape.'
       : 'A pressure of ' + fmt(P, 1) + ' mm Hg' + range + ' on the ' + fmt(A, 1) + ' cm² at the back of the eye is a force of ' + fmt(Fv, 1) + ' N, the weight of a ' + fmt(m, 2) + ' kg mass resting on the eye.');
     readout(d.readout, `\\kF = \\kh\\krho\\kg \\karea = (${fmt(P, 1)}\\times 10^{-3}\\ \\text{m})(13.6\\times 10^{3}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${fmt(A, 1)}\\times 10^{-4}\\ \\text{m}^2) = ${fmt(Fv, 1)}\\ \\text{N}`,
-      'The pressure is written as the height of the column of mercury it supports, ' + fmt(P, 1) + ' mm, so hρg with the density of mercury is the pressure in N/m², and the force is that pressure times the area. Intraocular pressure is normally 12.0 to 24.0 mm Hg; when the circulation of the fluid is blocked, glaucoma can raise it to 85.0 mm Hg, enough to damage the optic nerve.');
+      'The pressure is written as the height of mercury it supports, so $\\kh\\krho\\kg$ with the density of mercury gives it in N/m².');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -439,7 +440,7 @@ const UNITS = {
     /* the graph beside the chest: both gauge pressures through one breath, on fixed axes */
     const box = { l: 900, r: 1350, t: 140, b: 520 };
     const { X, Y } = axes(ctx, box, [0, T], [-8, 4], { xl: 'time (s)', yl: 'gauge pressure (mm Hg)', yc: pc, nx: 5, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => plus(v, 0) });
-    text(ctx, 'atmospheric', box.r - 6, Y(0) - 14, PAL.muted, { size: 15, align: 'right' });
+    text(ctx, 'atmospheric', X(1), Y(0) - 14, PAL.muted, { size: 17, align: 'center' });
     const lc = F.ref('lungs'), qc = F.ref('pleural-liquid');
     curve(ctx, (s) => pLung(phaseOf(s)), 0, T, X, Y, lc, 4, 120);
     ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (s) => pPleural(phaseOf(s)), 0, T, X, Y, qc, 3, 120); ctx.restore();
@@ -454,7 +455,7 @@ const UNITS = {
       : inhaling ? 'Breathing in, the diaphragm moves down and the chest expands, the pressure inside the lungs is ' + num(PL, 1) + ' mm Hg, and air flows in.'
       : 'Breathing out, the muscles relax and surface tension in the alveoli raises the pressure inside the lungs to ' + plus(PL, 1) + ' mm Hg, forcing air out.');
     readout(d.readout, `\\kPg = ${ltx(PL, 1)}\\ \\text{mm Hg in the lungs}, \\quad \\kPg = ${ltx(PP, 1)}\\ \\text{mm Hg in the liquid at the chest wall}`,
-      'The pressure between the lungs and the chest wall never rises to zero. It is the negative pressure in the liquid that attaches the lungs to the chest wall against the surface tension of the alveoli, and if air enters the chest cavity and breaks the attachment, a lung may collapse.');
+      'This negative pressure holds the lungs to the chest wall against the surface tension of the alveoli; if air breaks in, a lung may collapse.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

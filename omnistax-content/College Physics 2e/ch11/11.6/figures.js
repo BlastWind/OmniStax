@@ -145,9 +145,9 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
       : p > 0 ? 'The gauge reads ' + num(p, 1) + ' psi, so the absolute pressure inside is ' + num(p, 1) + ' psi plus 14.7 psi, or ' + num(pabs, 1) + ' psi.'
       : 'The gauge reads ' + num(p, 1) + ' psi: the pressure inside is below atmospheric, the atmosphere squeezes the bellows, and the absolute pressure is ' + num(pabs, 1) + ' psi.');
     readout(d.readout, `\\kPabs = \\kPg + \\kPatm = ${num(p, 1)}\\ \\text{psi} + 14.7\\ \\text{psi} = ${num(pabs, 1)}\\ \\text{psi} = ${fmt(pabs * KPA, 0)}\\ \\text{kPa}`,
-      Math.abs(p) < 0.05 ? 'The bellows are at their rest length, the spring is unstretched, and the pointer sits on the zero of the gauge scale, which is the 14.7 psi mark of the absolute scale. This is what a tire gauge reads on a tire with a gaping hole in it.'
-      : p > 0 ? 'The pressure inside the bellows exceeds the atmosphere outside by ' + num(p, 1) + ' psi, or ' + fmt(p * KPA, 0) + ' kPa, so the bellows are pushed out with a force of that pressure times their area, the spring is stretched, and the pointer turns. The dial can be numbered from atmospheric pressure or from a vacuum without moving the pointer at all.'
-      : 'The pressure inside the bellows is below the atmosphere outside by ' + num(-p, 1) + ' psi, so the atmosphere squeezes the bellows shut and the pointer turns the other way. Fluids push rather than pull, so the reading can fall no lower than −14.7 psi, where the absolute pressure inside is zero.');
+      Math.abs(p) < 0.05 ? 'The zero of the gauge scale is the 14.7 psi mark of the absolute scale.'
+      : p > 0 ? 'The bellows are pushed out with a force of ' + num(p, 1) + ' psi times their area, which stretches the spring and turns the pointer.'
+      : 'Fluids push rather than pull, so the reading can fall no lower than −14.7 psi, where the absolute pressure inside is zero.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -198,7 +198,7 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     /* the levels carried to the stick, and the height between them */
     line(ctx, XL + IW / 2, yL, MX - 12, yL, alpha(PAL.ink, 0.35), 2, [4, 8]);
     line(ctx, XR - IW / 2, yR, MX + 12, yR, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    if (Math.abs(yR - yL) >= 1) vbracket(ctx, 535, Math.min(yL, yR), Math.max(yL, yR), hc, 'h = ' + hstr(Math.abs(h)), 1, { size: 20 });
+    if (Math.abs(yR - yL) >= 1) { vbracket(ctx, 535, Math.min(yL, yR), Math.max(yL, yR), hc); text(ctx, 'h = ' + hstr(Math.abs(h)), 551, (yL + yR) / 2, hc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) }); }
     if (outL) pinned(ctx, legBox(XL), ident, ident, XL, yl, hc);
     if (outR) pinned(ctx, legBox(XR), ident, ident, XR, yr, hc);
     /* the open side, and the source on the right */
@@ -216,8 +216,6 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
         /* the toy balloon */
         ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('balloon'); ctx.lineWidth = 3;
         ctx.beginPath(); ctx.ellipse(1130, PY, 124, 94, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-        ctx.beginPath(); ctx.ellipse(1222, PY - 54, 44, 32, 0.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-        ctx.beginPath(); ctx.ellipse(1222, PY + 54, 44, 32, -0.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(1000, PY - 18); ctx.lineTo(1012, PY); ctx.lineTo(1000, PY + 18); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
         text(ctx, 'toy balloon', 1130, PY + 130, F.ref('balloon'), { size: 19, align: 'center' });
       } else {
@@ -235,9 +233,9 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
       : p > 0 ? 'The balloon is ' + fmt(p / 1000, 2) + ' kPa above atmospheric pressure, so the ' + f.name + ' stands ' + hstr(h) + ' higher on the open side.'
       : 'The jar is ' + fmt(-p / 1000, 2) + ' kPa below atmospheric pressure, so the atmosphere pushes the ' + f.name + ' ' + hstr(-h) + ' higher on the jar’s side.');
     readout(d.readout, `\\kPg = \\kh\\krho\\kg = (${Math.abs(h) < 0.1 ? num(h, 4) : sig3(h)}\\ \\text{m})(${f.s}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${Math.abs(p) >= 1000 ? fmt(p / 1000, 2) + '\\ \\text{kPa}' : num(p, 0) + '\\ \\text{Pa}'}`,
-      Math.abs(p) < 0.5 ? 'Atmospheric pressure pushes down on each side equally, so its effect cancels and the levels are equal whatever the diameters of the two legs. Slide the pressure either way to connect a source to the right side.'
-      : out ? 'The absolute pressure is ' + fmt((PATM + p) / 1000, 1) + ' kPa. In the units the problem set asks for, the gauge pressure is ' + num(cmw, 1) + ' cm of water, which is ' + num(mmhg, 1) + ' mm of mercury. A column of ' + f.name + ' ' + hstr(Math.abs(h)) + ' tall runs far beyond this tube, which is why mercury, 13.6 times as dense as water, is used for pressures of this size.'
-      : 'The absolute pressure is ' + fmt((PATM + p) / 1000, 1) + ' kPa. In the units the problem set asks for, the gauge pressure is ' + num(cmw, 2) + ' cm of water, which is ' + num(mmhg, 2) + ' mm of mercury. The gauge pressure is negative when the source is below atmospheric pressure, and the atmosphere then holds the column up on the source’s side.');
+      Math.abs(p) < 0.5 ? 'Atmospheric pressure pushes down on each side equally, so its effect cancels.'
+      : out ? 'The gauge pressure is ' + num(cmw, 1) + ' cm of water, or ' + num(mmhg, 1) + ' mm of mercury, which at 13.6 times the density of water keeps a pressure of this size inside the tube.'
+      : 'The absolute pressure is ' + fmt((PATM + p) / 1000, 1) + ' kPa, and the gauge pressure is ' + num(cmw, 2) + ' cm of water, or ' + num(mmhg, 2) + ' mm of mercury.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -277,11 +275,12 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
     /* a scale up the tube, in tenths of a metre */
     for (let k = 1; k <= 9; k++) { const y = YS - k * 0.1 * S, x0 = TX - TW / 2 - WALL; line(ctx, x0 - 14, y, x0, y, PAL.muted, 2); text(ctx, fmt(k * 0.1, 1) + ' m', x0 - 20, y, PAL.muted, { size: 15, align: 'right' }); }
     /* the atmosphere on the surface of the dish */
-    for (const x of [470, 940]) arrow(ctx, x, YS - 110, x, YS - 12, pc, 5);
+    if (p >= 50) for (const x of [470, 935]) arrow(ctx, x, YS - 110, x, YS - 12, pc, 5);   /* no arrows where there is no atmosphere */
     text(ctx, 'P_atm = ' + fmt(p / 1000, 1) + ' kPa', 470, YS - 134, pc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the point in the tube at the level of the surface, where the column's weight balances the atmosphere */
     line(ctx, TX - 9, YS - 9, TX + 9, YS + 9, PAL.ink, 2.5); line(ctx, TX - 9, YS + 9, TX + 9, YS - 9, PAL.ink, 2.5);
-    text(ctx, 'P_abs = hρg = P_atm', TX + TW / 2 + 26, YS - 34, pc, { size: 19, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'P_abs = hρg', TX + TW / 2 + 22, YS - 50, pc, { size: 19, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, '= P_atm', TX + TW / 2 + 22, YS - 24, pc, { size: 19, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* the height of the column */
     if (hd > 0.0005) vbracket(ctx, TX - 130, out ? YTOP : yh, YS, hc, 'h = ' + (h >= 1 ? sig3(h) : fmt(h, 3)) + ' m', -1);
     if (out) pinned(ctx, { l: TX, r: TX, t: YTOP, b: YS }, ident, ident, TX, YS - hd * S, hc);
@@ -290,9 +289,9 @@ function rrect(ctx, x, y, w, h, r, fill, stroke, lw) {
       : out ? 'At ' + fmt(p / 1000, 1) + ' kPa the atmosphere would hold up ' + hstr(h) + ' of water, far beyond the top of this tube.'
       : 'At ' + fmt(p / 1000, 1) + ' kPa the atmosphere holds up ' + fmt(h, 3) + ' m of ' + f.name + ', which is ' + fmt(mmhg, 0) + ' mm Hg or ' + fmt(atm, 2) + ' atm.');
     readout(d.readout, `\\kh\\krho\\kg = (${h >= 1 ? sig3(h) : fmt(h, 3)}\\ \\text{m})(${f.s}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${fmt(p / 1000, 1)}\\ \\text{kPa} = \\kPatm`,
-      out ? 'A water barometer at this pressure would stand ' + hstr(h) + ' tall, ' + fmt(h / TUBE, 0) + ' times the height of the tube drawn here, which is why barometers hold mercury, 13.6 times as dense as water. The same pressure holds up ' + fmt(p / (FLUIDS.mercury.rho * G), 3) + ' m of mercury.'
-      : p < 50 ? 'The pressure above the column is zero, so the column stands only as high as the atmosphere on the dish can push it. When the atmosphere is gone, so is the column.'
-      : 'The atmosphere is quoted in millimeters of mercury because this is what a barometer reads: ' + fmt(p / 1000, 1) + ' kPa is ' + fmt(mmhg, 0) + ' mm Hg, or ' + fmt(atm, 2) + ' atm. A water barometer at the same pressure would stand ' + hstr(p / (FLUIDS.water.rho * G)) + ' tall.');
+      out ? 'The same pressure holds up ' + fmt(p / (FLUIDS.mercury.rho * G), 3) + ' m of mercury, which is why barometers hold mercury.'
+      : p < 50 ? 'The pressure above the column is zero, so only the atmosphere on the dish can hold it up.'
+      : 'A water barometer at the same pressure would stand ' + hstr(p / (FLUIDS.water.rho * G)) + ' tall.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

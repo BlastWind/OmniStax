@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, strip } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const RAD = Math.PI / 180, TAU = 2 * Math.PI;
@@ -111,7 +111,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
       : 'A push of ' + fmt(Fv, 1) + ' N over a contact ' + fmt(dw, 1) + ' mm across' + like + ' makes a pressure of ' + sci(P, 3) + ' Pa.');
     readout(d.readout, Fv === 0 ? `\\kPr = \\frac{\\kF}{\\karea} = \\frac{0\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = 0\\ \\text{Pa}`
       : `\\kPr = \\frac{\\kF}{\\karea} = \\frac{${fmt(Fv, 1)}\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = ${sciTex(P, 3)}\\ \\text{Pa}`,
-      'The contact is a circle ' + fmt(dw, 1) + ' mm across, so its area is A = π(d/2)² = ' + sig3(A * 1e6) + ' mm² = ' + sci(A, 3) + ' m². Halving the width quarters the area and multiplies the pressure by four, which is why the same push over the point of a needle, 0.3 mm across, makes 1600 times the pressure it makes over the pad of a fingertip, 12.0 mm across.');
+      'The contact is a circle, so $\\karea = \\pi(\\kd/2)^2 = ' + sig3(A * 1e6) + '\\ \\text{mm}^2$; halving the width quarters the area and multiplies the pressure by four.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -178,7 +178,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     ctx.fillStyle = PAL.soft; ctx.lineWidth = 3; ctx.fillRect(IX - 56, IY - 100, 112, 46); ctx.strokeRect(IX - 56, IY - 100, 112, 46);   /* the core, seated shut */
     ctx.fillRect(IX - 12, IY - 160, 24, 60); ctx.strokeRect(IX - 12, IY - 160, 24, 60);                      /* its pin */
     ctx.restore();
-    text(ctx, 'the valve core', IX, IY - 174, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the valve core', IX, IY - IR - 18, PAL.muted, { size: 17, align: 'center' });
     if (Pk > 0) {
       const l = 0.4 * L;
       for (const dx of [-36, 36]) arrow(ctx, IX + dx, IY - 54 + 12 + l, IX + dx, IY - 54 + 12, pc, 4);   /* on the underside of the core */
@@ -202,14 +202,13 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     }
     const va = where.a('valve');
     if (va > 0) { ctx.save(); ctx.globalAlpha = va; text(ctx, 'the patch is the face of the core', IX, IY + IR + 30, PAL.muted, { size: 17, align: 'center' }); ctx.restore(); }
-    text(ctx, 'the arrows are the push of the air on the walls, the same size everywhere at one pressure', 700, 100, PAL.muted, { size: 17, align: 'center' });
     const Fs = (Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)) + ' N';
     topline(ctx, Pk === 0 ? 'With no air pressure inside, nothing pushes on the walls of the tire.'
       : w === 'tread' ? 'At ' + fmt(Pk, 0) + ' kPa the air pushes on a ' + fmt(As.v, 1) + ' cm² patch of the tread with ' + Fs + ', straight out through the wall.'
       : w === 'rim' ? 'At ' + fmt(Pk, 0) + ' kPa the air pushes on a ' + fmt(As.v, 1) + ' cm² patch of the rim with ' + Fs + ', straight in toward the hub, the same force as on the tread.'
       : 'At ' + fmt(Pk, 0) + ' kPa the air pushes on the ' + fmt(As.v, 1) + ' cm² face of the valve core with ' + Fs + ', which is what holds the valve shut.');
     readout(d.readout, `\\kF = \\kPr \\karea = (${sciTex(P, 3)}\\ \\text{N/m}^2)(${sciTex(A, 2)}\\ \\text{m}^2) = ${Fv < 10 ? fmt(Fv, 1) : fmt(Fv, 0)}\\ \\text{N}`,
-      'The pressure is the same at every point inside the tire, so an equal patch of the tread, of the rim or of the valve core feels the same force, and on each it stands perpendicular to the wall, since a static fluid cannot exert a force along a surface. A tire gauge reads this pressure as ' + fmt(Pk / 6.895, 1) + ' psi.');
+      'A tire gauge reads this pressure as ' + fmt(Pk / 6.895, 1) + ' psi.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -259,7 +258,7 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     ctx.restore();
     if (as > 0) {
       ctx.save(); ctx.globalAlpha = as; ctx.translate(CX, CY); ctx.rotate(a);
-      F.silhouette(ctx, { x: 0, y: LEN / 2 - 8, s: (LEN - 16) / 160, color: F.ref('swimmer'), face: -1, pose: 'reach', hands: [{ x: 10, y: -158 }, { x: 2, y: -156 }], feet: [{ x: 6, y: 0 }, { x: -6, y: 0 }], kneeSide: 1, elbowSide: -1 });
+      F.silhouette(ctx, { x: 0, y: LEN / 2 - 8, s: (LEN - 16) / 184, color: F.ref('swimmer'), face: -1, pose: 'reach', hands: [{ x: 8, y: -176 }, { x: 2, y: -175 }], feet: [{ x: 6, y: 0 }, { x: -6, y: 0 }], kneeSide: 1 });
       ctx.restore();
     }
     if (aw > 0) {
@@ -284,13 +283,12 @@ const sig3 = (v) => Number(v.toPrecision(3)).toString();
     ctx.save(); ctx.globalAlpha = as; text(ctx, 'w, his weight', NX, CY + 140, fc, { weight: 600, align: 'center' });
     ctx.globalAlpha = aw; text(ctx, 'w, the weight of that water', NX, CY + 140, fc, { weight: 600, align: 'center' }); ctx.restore();
     hits.push({ x: NX, y: CY + 65, r: 24, name: w === 'swimmer' ? 'his weight, which balances the net upward force' : 'the weight of the water in his place, which the net upward force holds up' });
-    text(ctx, 'the sum of the pushes,', NX, CY - 160, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'and the weight it balances', NX, CY - 138, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'the arrows are the push of the water, perpendicular to the surface at every point', 700, 112, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the sum of the pushes,', NX, CY - 188, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'and the weight it balances', NX, CY - 166, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, w === 'swimmer' ? 'The water pushes on every part of the swimmer’s skin at once, each force perpendicular to the skin where it acts, and the forces underneath are a little larger than those on top.'
       : 'With the swimmer gone, the water that fills his place feels the same forces on its boundary, which is why water would flow into that space if he were not there.');
     readout(d.readout, `\\kF = \\kPr \\karea\\ \\text{on every patch of ${w === 'swimmer' ? 'his skin' : 'the boundary'}, perpendicular to that patch}`,
-      'The pressure is a little greater on the patches underneath, because the water is deeper there, so the forces underneath are a little larger than those on top and their sum has an upward part. On the swimmer that net upward force is balanced by his weight; on the water in his place it holds up the weight of that water, which is why the water stays where it is. How much greater the pressure is at a greater depth is the subject of the next section.');
+      'The water is deeper underneath, so the forces there are a little larger and their sum has an upward part, ' + (w === 'swimmer' ? 'which his weight balances.' : 'which holds up the weight of the water in his place.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();

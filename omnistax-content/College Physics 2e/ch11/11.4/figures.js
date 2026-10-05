@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['11.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, curve, pinned, labeller, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, PATM = 1.01e5, RHO_AIR = 1.29;
@@ -133,7 +133,7 @@ function tree(ctx, x, y, s = 1) {
       const pts = []; for (let i = 0; i <= 60; i++) { const x = (12 * i) / 60; pts.push([X(x), Y((x * rho * G) / 1000)]); }
       ctx.save(); ctx.strokeStyle = pc; ctx.lineWidth = 4; ctx.beginPath(); F.partial(pts, kP).forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke(); ctx.restore();
       ctx.save(); ctx.globalAlpha = kP;
-      text(ctx, 'slope ρg, ρ = ' + fmt(rho, 0) + ' kg/m³', X(12) - 6, Y((12 * rho * G) / 1000) + (rho > 1250 ? 24 : -20), dc, { size: 18, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'slope ρg, ρ = ' + fmt(rho, 0) + ' kg/m³', X(12) - 30, Y((12 * rho * G) / 1000) + (rho > 1250 ? 24 : -20), dc, { size: 18, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
       if (h > 0) {
         line(ctx, X(h), Y(P / 1000), X(h), box.b, xc, 2, [4, 8]);
         line(ctx, box.l, Y(P / 1000), X(h), Y(P / 1000), pc, 2, [4, 8]);
@@ -143,14 +143,14 @@ function tree(ctx, x, y, s = 1) {
     }
     lab.flush();
     const name = liquidOf(rho);
-    const what = name ? cap(name) : 'A fluid of density ' + fmt(rho, 0) + ' kg/m³';
+    const what = name ? cap(name) : 'A fluid of density ' + fmt(rho, 0) + ' kg/m³,';
     topline(ctx, h === 0 ? 'With no fluid in the container there is no weight on the bottom and no pressure.'
       : what + ' ' + fmt(h, 1) + ' m deep over ' + fmt(A, 2) + ' m² weighs ' + sci(w).txt + ' N, so the pressure it exerts on the bottom is ' + sci(P).txt + ' N/m², or ' + kpa(P) + ' kPa.');
     const i = Math.min(3, Math.floor(s)), k = s - i;
     if (k < 0.005 || s >= 4) F.morph(formula, STEPS[Math.round(s)](P, h, rho));
     else F.morphAt(formula, STEPS[i](P, h, rho), STEPS[i + 1](P, h, rho), k, { keyMap: SPLIT[i] });
     note.textContent = h === 0 ? 'The bottom supports nothing until there is fluid above it, and the pressure grows in proportion to the depth as soon as there is.'
-        : 'The fluid has a mass of ' + sci(m).txt + ' kg and weighs ' + sci(w).txt + ' N. A wider bottom holds up more fluid and more weight over more area, and the pressure, which is the weight divided by the area, does not change; only the depth and the density move it.';
+        : 'The fluid has a mass of ' + sci(m).txt + ' kg and weighs ' + sci(w).txt + ' N.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -194,7 +194,7 @@ function tree(ctx, x, y, s = 1) {
     solid([P(0, 0, 0), P(0, DAMH, 0), P(-10, DAMH, 0), P(-80, 0, 0)], 0.08);
     solid([P(0, DAMH, 0), P(-10, DAMH, 0), P(-10, DAMH, -L), P(0, DAMH, -L)], 0.03);
     /* the water: its surface and the cut face at the near end, translucent so the dam's face shows through */
-    const wf = alpha(PAL.muted, 0.24), ws = alpha(PAL.muted, 0.7);
+    const wf = F.shown.facts ? alpha(F.fact('#bfe0f2'), 0.55) : alpha(PAL.muted, 0.24), ws = alpha(PAL.muted, 0.7);   /* the chapter's pale water blue, as in 11.2 and 11.6 */
     poly([P(0, h, 0), P(WRES, h, 0), P(WRES, h, -L), P(0, h, -L)], wf, ws, 1.5);
     poly([P(0, 0, 0), P(WRES, 0, 0), P(WRES, h, 0), P(0, h, 0)], wf, ws, 1.5);
     /* the pressure on the face, at the near end: arrows that grow linearly with the depth, and the line their tails make */
@@ -224,7 +224,7 @@ function tree(ctx, x, y, s = 1) {
     lab.flush();
     topline(ctx, 'Water ' + fmt(h, 1) + ' m deep along a dam ' + fmt(L, 0) + ' m long presses on it with an average pressure of ' + kpa(Pbar) + ' kPa and a force of ' + sci(Fv).txt + ' N.');
     readout(d.readout, `\\begin{aligned}\\kPbar &= \\khbar\\krho\\kg = (${fmt(hb, 1)}\\ \\text{m})(1.00\\times 10^{3}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2) = ${sci(Pbar).tex}\\ \\text{N/m}^2\\\\ \\kF &= \\kPbar \\karea = (${sci(Pbar).tex}\\ \\text{N/m}^2)(${sci(A).tex}\\ \\text{m}^2) = ${sci(Fv).tex}\\ \\text{N}\\end{aligned}`,
-      'The pressure grows in a straight line from nothing at the surface to hρg = ' + kpa(Pbot) + ' kPa at the bottom, so its average over the face is the pressure at the average depth, halfway down. That average depends on the depth alone and not on how far the reservoir reaches behind the dam; the force depends on the depth and on the size of the face, A = hL = ' + sci(A).txt + ' m².');
+      'The face the water presses on has area $\\karea = \\kh\\kLlen = ' + sci(A).tex + '\\ \\text{m}^2$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -244,7 +244,7 @@ function tree(ctx, x, y, s = 1) {
      so the 4 m² patch is 140 wide; the weight arrow takes 260 units at the largest
      weight the slider reaches (4.04 × 10⁵ N). The column is broken below its top,
      since 120 km cannot share a scale with a tree. The bars run 0 to 1.5 kg/m³. */
-  const GND = 520, CX = 300, KA = 70, KW = 260 / 4.04e5, TOP = 118, BRK = 262;
+  const GND = 520, CX = 300, KA = 70, KW = 240 / 4.04e5, TOP = 118, BRK = 262;
   const box = { l: 900, r: 1300, t: 170, b: 480 };
   function draw() {
     const { ctx } = begin(d.c);
@@ -277,7 +277,7 @@ function tree(ctx, x, y, s = 1) {
     line(ctx, bx - 12, BRK - 4, bx + 12, BRK - 18, xc, 2);
     text(ctx, 'h = ' + fmt(hs.v, 0) + ' km', bx - 16, (GND + BRK) / 2, xc, { align: 'right', weight: 600, size: 22 });
     /* the weight of the air over the patch */
-    const len = w * KW, y0 = GND - 60 - len;
+    const len = w * KW, y0 = GND - 8 - len;
     arrow(ctx, CX, y0, CX, GND - 8, fc, 5);
     lab.add('w = ' + sci(w).txt + ' N', CX, (y0 + GND - 8) / 2, 1, 0, fc, 21, 24);
     /* the bars: the density of air at sea level beside the average density of the column */
@@ -295,7 +295,7 @@ function tree(ctx, x, y, s = 1) {
     lab.flush();
     topline(ctx, 'The air over ' + fmt(A, 2) + ' m² of ground weighs ' + sci(w).txt + ' N, and spread over ' + fmt(hs.v, 0) + ' km its average density is ' + rhobar.toPrecision(3) + ' kg/m³, so air at sea level is about ' + fmt(RHO_AIR / rhobar, 0) + ' times as dense as the average.');
     readout(d.readout, `\\krhobar = \\frac{\\kPatm}{\\kh\\kg} = \\frac{1.01\\times 10^{5}\\ \\text{N/m}^2}{(${fmt(hs.v, 0)}\\times 10^{3}\\ \\text{m})(9.80\\ \\text{m/s}^2)} = ${sci(rhobar).tex}\\ \\text{kg/m}^3`,
-      'The column of air over the patch weighs w = P<sub>atm</sub>A = (1.01 × 10⁵ N/m²)(' + fmt(A, 2) + ' m²) = ' + sci(w).txt + ' N. A wider patch carries more air and more weight at the same pressure, and taking the atmosphere to end higher spreads the same weight over a taller column and lowers its average density.');
+      'The column of air over the patch weighs $w = \\kPatm \\karea = (1.01 \\times 10^{5}\\ \\text{N/m}^2)(' + fmt(A, 2) + '\\ \\text{m}^2) = ' + sci(w).tex + '\\ \\text{N}$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

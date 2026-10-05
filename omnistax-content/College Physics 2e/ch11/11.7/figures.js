@@ -137,8 +137,8 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     vbracket(ctx, bx2, sL[1], f2L[1], xc); text(ctx, 'h_2 = ' + fmt(hh2, 2) + ' m', bx2 - 16, (sL[1] + f2L[1]) / 2 + (hh1 > 0.005 && hh1 < 0.06 ? 30 : 0), xc, { align: 'right', weight: 600 });
     line(ctx, bx2, f2L[1], f2L[0] - 4, f2L[1], alpha(PAL.ink, 0.35), 2, [4, 8]);
     if (hh1 > 0.005) line(ctx, bx1, f1L[1], f1L[0] - 4, f1L[1], alpha(PAL.ink, 0.35), 2, [4, 8]);
-    text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'a fluid of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', bl[0] - 10, bl[1] + 34, dc, { size: 20, weight: 600, align: 'right' });
-    text(ctx, fluid ? 'the fluid that would fill the cylinder’s place' : 'a cylinder 20.0 cm tall, faces of 500 cm², 10.0 L', bl[0] - 10, bl[1] + 62, fluid ? PAL.muted : cyc, { size: 18, align: 'right' });
+    text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'a fluid of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', 40, bl[1] + 34, dc, { size: 20, weight: 600, align: 'left' });
+    text(ctx, fluid ? 'the fluid that would fill the cylinder’s place' : 'a cylinder 20.0 cm tall, faces of 500 cm², 10.0 L', 40, bl[1] + 62, fluid ? PAL.muted : cyc, { size: 18, align: 'left' });
     /* the free-body diagram of what is in the outline */
     const FX = 1170, FY = 340, wgt = what.mix((v) => (v === 'fluid' ? FB : W));
     text(ctx, 'free-body diagram', FX, 160, PAL.muted, { size: 19, align: 'center' });
@@ -157,9 +157,9 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     /* F₂ − F₁ bends into the weight of the fluid in the outline, and a cylinder as dense as the fluid adds its own weight */
     const fb = `\\mk{FB}{\\kFB} = `, val = `\\mk{v}{${sf(FB)}}\\ \\text{N}`;
     shown.set(fluid ? `${fb}\\mk{d}{\\kwfl} = ${val}`
-      : `${fb}\\mk{d}{\\kFtwo - \\kFone} = \\mk{n}{${sf(F2)}\\ \\text{N} - ${f1s}\\ \\text{N}} = ${val}` + (Math.abs(W - FB) < 0.05 ? ` = \\mk{w}{\\kwgt}` : ''), 'The two forces are F₁ = h₁ρg A = ' + f1s + ' N and F₂ = h₂ρg A = ' + sf(F2) + ' N, and their difference is (h₂ − h₁)ρg A, the weight of the 10.0 L of fluid the cylinder displaces, whatever the depth. '
-      + (fluid ? 'With the cylinder taken out, that 10.0 L of fluid fills its place and weighs ' + sf(FB) + ' N, which the surrounding fluid holds up with the same ' + sf(FB) + ' N, so the buoyant force on any object here is the weight of the fluid it displaces.'
-        : 'The cylinder itself weighs ' + sf(W) + ' N, ' + (Math.abs(W - FB) < 0.05 ? 'the same, so it remains suspended at this depth.' : W < FB ? 'less than that, so it will rise to the surface and float.' : 'more than that, so it will sink.')));
+      : `${fb}\\mk{d}{\\kFtwo - \\kFone} = \\mk{n}{${sf(F2)}\\ \\text{N} - ${f1s}\\ \\text{N}} = ${val}` + (Math.abs(W - FB) < 0.05 ? ` = \\mk{w}{\\kwgt}` : ''), 'Their difference is the weight of the 10.0 L of fluid the cylinder displaces, whatever the depth. '
+      + (fluid ? 'With the cylinder taken out, that fluid is held up by the same ' + sf(FB) + ' N.'
+        : 'The cylinder itself weighs ' + sf(W) + ' N, ' + (Math.abs(W - FB) < 0.05 ? 'the same, so it remains suspended.' : W < FB ? 'less, so it will rise and float.' : 'more, so it will sink.')));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -200,32 +200,32 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     /* the cargo's label sits beside a short row of boxes and above a long one, so that it never reaches the free-body diagram at the right */
     if (mc > 0 && boxes < 7) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + Math.max(1, Math.ceil(boxes)) * 50 + 10, top - 36, F.ref('cargo'), { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     else if (mc > 0) text(ctx, 'cargo, ' + fmt(cargo.v, 0) + ' × 10⁶ kg', X0 + 150 + 250, top - 24 - 24 - 28, F.ref('cargo'), { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'steel hull, 1.00 × 10⁷ kg', X0 - 16, (top + bottom) / 2 - 14, F.ref('ship'), { size: 19, weight: 600, align: 'right' });
-    text(ctx, '100 m by 40 m by 25 m, 1.00 × 10⁵ m³', X0 - 16, (top + bottom) / 2 + 14, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, 'steel hull, 1.00 × 10⁷ kg', X0 - 16, (top + bottom) / 2 - 24, F.ref('ship'), { size: 19, weight: 600, align: 'right' });
+    text(ctx, '100 m by 40 m by 25 m,', X0 - 16, (top + bottom) / 2 + 2, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, '1.00 × 10⁵ m³', X0 - 16, (top + bottom) / 2 + 26, PAL.muted, { size: 18, align: 'right' });
     fluidTint(ctx, 60, 1340, SURF, SURF + SEA * U);
     text(ctx, 'the surface', 70, SURF - 18, PAL.muted, { size: 18, align: 'left' });
     /* the two forces on the ship, in a free-body diagram beside the hull so that neither arrow runs through the cargo; one scale */
     const cx = 1200, cy = SURF + 30;
-    text(ctx, 'free-body diagram of the ship', cx, cy - FB * KW - 44, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'free-body diagram of the ship', cx, cy - FB * KW - 50, PAL.muted, { size: 17, align: 'center' });
     arrow(ctx, cx, cy, cx, cy - FB * KW, fc, 5);
-    text(ctx, 'F_B = ' + sci(FB) + ' N', cx + 16, cy - FB * KW / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'F_B = ' + sci(FB) + ' N', cx, cy - FB * KW - 22, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     arrow(ctx, cx, cy, cx, cy + W * KW, fc, 5);
-    text(ctx, 'w = ' + sci(W) + ' N', cx + 16, cy + W * KW / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'w = ' + sci(W) + ' N', cx, cy + W * KW + 22, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (!floats) { arrow(ctx, cx - 40, cy, cx - 40, cy - (W - FB) * KW, fc, 5); text(ctx, 'N', cx - 54, cy - (W - FB) * KW / 2, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }); }   /* the seabed holds up what the water does not */
     dot(ctx, cx, cy, F.ref('ship'), true, 9);
     /* how much of the hull is under */
     if (floats) {
-      vbracket(ctx, x1 + 40, SURF, bottom, PAL.ink, 'fraction submerged ' + fmt(f, 3), 1);
+      vbracket(ctx, x1 + 40, SURF, bottom, PAL.ink);
       line(ctx, x1 - 40, bottom, x1 + 40, bottom, alpha(PAL.ink, 0.35), 2, [4, 8]);
     } else text(ctx, 'the ship rests on the bottom', (X0 + x1) / 2, SURF + SEA * U - 30, PAL.ink, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, mc === 0 ? 'With no cargo the hull’s average density is ' + fmt(rav, 0) + ' kg/m³, ' + (rho === 1000 ? 'a tenth of the water’s' : fmt(f * 100, 1) + ' percent of the water’s') + ', so ' + (rho === 1000 ? 'a tenth' : fmt(f * 100, 1) + ' percent') + ' of the hull is submerged.'
       : floats ? 'With a cargo of ' + fmt(cargo.v, 0) + ' × 10⁶ kg the hull’s average density is ' + fmt(rav, 0) + ' kg/m³, so ' + fmt(f * 100, 1) + ' percent of it is submerged.'
         : 'With a cargo of ' + fmt(cargo.v, 0) + ' × 10⁶ kg the hull’s average density is ' + fmt(rav, 0) + ' kg/m³, more than the water’s, so the ship sinks.');
     const fsea = rav / 1025, ffresh = rav / 1000;
-    readout(d.readout, `\\text{fraction submerged} = \\frac{\\krhoobj}{\\krhofl} = \\frac{${fmt(rav, 0)}\\ \\text{kg/m}^3}{${fmt(rho, 0)}\\ \\text{kg/m}^3} = ${fmt(f, 3)}` + (floats ? '' : ' > 1'),
-      'The steel and its cargo together, ' + sci(mt) + ' kg spread over the hull’s 1.00 × 10⁵ m³, give the average density. '
-      + (floats ? 'While the ship floats the buoyant force equals its weight, F_B = w = ' + sci(W) + ' N, and it displaces ' + sci(f * VH) + ' m³ of water. '
-        + (rho === 1000 ? 'In sea water of 1025 kg/m³ the same load would sit at ' + fmt(fsea, 3) + ', a little higher.' : 'In fresh water of 1000 kg/m³ the same load would sit at ' + fmt(ffresh, 3) + (ffresh > 1 ? ', which is more than one, so there it would sink.' : ', a little lower.'))
-        : 'Even with every one of its 1.00 × 10⁵ m³ under water the hull displaces only ' + sci(FB) + ' N of water, less than its weight of ' + sci(W) + ' N, so nothing holds it up and it goes to the bottom. Example 11.8 gives the limit: a load of 90 × 10⁶ kg, nine times the steel’s own mass, brings the deck to the water.'));
+    readout(d.readout, `${floats ? '\\text{fraction submerged} = ' : ''}\\frac{\\krhoobj}{\\krhofl} = \\frac{${fmt(rav, 0)}\\ \\text{kg/m}^3}{${fmt(rho, 0)}\\ \\text{kg/m}^3} = ${fmt(f, 3)}` + (floats ? '' : ' > 1'),
+      (floats ? 'While the ship floats the buoyant force equals its weight, ' + sci(W) + ' N, and it displaces ' + sci(f * VH) + ' m³ of water.'
+        : 'Even with the whole hull under water it displaces only ' + sci(FB) + ' N of water, less than its weight of ' + sci(W) + ' N, so it goes to the bottom.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -262,9 +262,9 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     text(ctx, 'the hydrometer, 35.0 g', HX - RB - 14, bulbC, F.ref('hydrometer'), { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
     /* the scale on the stem: a mark wherever the surface falls in a fluid of that specific gravity */
     for (let m = 65; m <= 130; m += 5) {
-      const sg = m / 100, y = bulbTop - zOf(sg) * K, labelled = m <= 85 || m % 10 === 0;
+      const sg = m / 100, y = bulbTop - zOf(sg) * K, labelled = m % 20 === 10;   /* every other tenth: the inset carries every number */
       line(ctx, HX - SW + 2, y, HX - SW + (labelled ? 16 : 9), y, PAL.ink, 2);
-      if (labelled) text(ctx, sg.toFixed(2), HX - SW + 22, y, PAL.ink, { size: m <= 100 ? 17 : 15, weight: 600 });
+      if (labelled) text(ctx, sg.toFixed(2), HX - SW + 22, y, PAL.ink, { size: 17, weight: 600 });
     }
     fluidTint(ctx, BX1, BX2, SURF, BOT);
     /* the stem near the surface, magnified, so the reading can be read: the same marks at 2.4 times the scale */
@@ -286,11 +286,11 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(IX - IW, IY1, 2 * IW, IY2 - IY1); ctx.restore();
     text(ctx, 'the stem at the surface, magnified', IX, IY1 - 18, PAL.muted, { size: 18, align: 'center' });
     arrow(ctx, IX + IW - 12, IYS, IX + SW2 + 14, IYS, PAL.ink, 3);
-    text(ctx, 'reads ' + s.toFixed(2), IX + SW2 + 30, IYS - 26, PAL.ink, { size: 21, weight: 600 });
+    text(ctx, 'reads ' + s.toFixed(2), IX + IW + 10, IYS, PAL.ink, { size: 19, weight: 600 });
     text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'a fluid of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', BX1 - 14, SURF + 30, dc, { size: 20, weight: 600, align: 'right' });
     topline(ctx, 'In ' + fluidPhrase(rho) + ' the hydrometer sinks until it displaces its own weight, and the surface crosses the stem at ' + s.toFixed(2) + '.');
     readout(d.readout, `\\text{specific gravity} = \\frac{\\krhofl}{\\krhow} = \\frac{${fmt(rho, 0)}\\ \\text{kg/m}^3}{1000\\ \\text{kg/m}^3} = ${s.toFixed(3)}`,
-      'The hydrometer has a mass of 35.0 g, so it sinks until it has displaced 35.0 g of fluid, which is ' + fmt(vsub, 1) + ' cm³ of this one' + (rho === 1000 ? '.' : ' and would be 35.0 cm³ of water.') + ' A denser fluid is displaced in a smaller volume, so less of the stem goes under and the instrument rides higher, which is why the smallest numbers are printed at the top. The marks are set where the surface falls in each fluid, and they crowd together toward the top because each step in specific gravity buys less stem as the number grows.');
+      'The hydrometer has a mass of 35.0 g, so it sinks until it has displaced 35.0 g of fluid, ' + fmt(vsub, 1) + ' cm³ of this one. Each step in specific gravity buys less stem as the number grows, so the marks crowd toward the top.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -332,7 +332,7 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     text(ctx, 'w = mg', AX + 14, CY + 44 + m * KM / 2, fc, { size: 20, weight: 600 });
     text(ctx, '(a) in air', AX, 660, PAL.muted, { size: 19, align: 'center' });
     /* (b) submerged: the beaker, the coin in it, the tint over it */
-    const BL = BX - 150, BR = BX + 150, ST = CY - 120, BT = CY + 220;
+    const BL = BX - 150, BR = BX + 230, ST = CY - 120, BT = CY + 220;   /* wider on the right, where the tension is named */
     fluidBox(ctx, BL, BR, ST, BT);
     glass(ctx, BL, BR, ST - 40, BT);
     balance(ctx, BX, CY, (mapp > 0 ? mapp : 0).toFixed(3) + ' g', 'the balance reads the apparent mass');
@@ -351,10 +351,10 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     const near = METALS.filter(([v]) => Math.abs(v - rhoc) / v < 0.03).map(([, n]) => n);
     const below = METALS.filter(([v]) => v < rhoc).sort((a, b) => b[0] - a[0])[0], above = METALS.filter(([v]) => v > rhoc).sort((a, b) => a[0] - b[0])[0];
     const nameLine = near.length ? 'A density of ' + rhoc.toFixed(2) + ' g/cm³ is within three percent of ' + near.join(' and ') + ' in Table 11.1.'
-      : 'A density of ' + rhoc.toFixed(2) + ' g/cm³ matches no metal of Table 11.1; it lies between ' + (below ? below[1] + ' (' + below[0] + ')' : 'nothing') + ' and ' + (above ? above[1] + ' (' + above[0] + ')' : 'nothing') + '.';
+      : 'A density of ' + rhoc.toFixed(2) + ' g/cm³ matches no metal of Table 11.1; ' + (below && above ? 'it lies between ' + below[1] + ' (' + below[0] + ') and ' + above[1] + ' (' + above[0] + ').' : below ? 'the densest is ' + below[1] + ' (' + below[0] + ').' : 'the lightest is ' + above[1] + ' (' + above[0] + ').');
     topline(ctx, 'A coin of ' + m.toFixed(3) + ' g whose density is ' + rhoc.toFixed(2) + ' g/cm³ displaces ' + sf(V) + ' cm³ of ' + (liquidNamed(rho * 1000) ?? 'the liquid') + ', so its apparent mass submerged is ' + mapp.toFixed(3) + ' g.');
     readout(d.readout, `\\kmc - m_{\\text{app}} = ${mw.toFixed(3)}\\ \\text{g} = \\krhofl \\kvolw \\quad\\Rightarrow\\quad \\krho_{\\text{c}} = \\frac{\\kmc}{\\kvolw} = \\frac{${m.toFixed(3)}\\ \\text{g}}{${sf(V)}\\ \\text{cm}^3} = ${sf(rhoc)}\\ \\text{g/cm}^3`,
-      'The balance reads ' + mw.toFixed(3) + ' g less with the coin under the surface because the liquid pushes up on it with a buoyant force equal to the weight of ' + sf(V) + ' cm³ of liquid, which is the coin’s own volume; dividing the mass by that volume gives the density back. ' + nameLine + ' Gold and tungsten, at 19.32 and 19.30 g/cm³, differ by a tenth of a percent, so telling a gold-plated tungsten ingot from gold this way asks for a balance good to a few parts in a hundred thousand.');
+      'The balance reads ' + mw.toFixed(3) + ' g less because the liquid pushes up with the weight of ' + sf(V) + ' cm³ of liquid, the coin’s own volume. ' + nameLine);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -386,9 +386,10 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
     arrow(ctx, cx + 14, cy, cx + 14, cy + W, fc, 5);
     text(ctx, 'w', cx + 30, cy + W / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
     dot(ctx, cx, cy, F.ref('block'), true, 9);
+    if (!floats && !even) { arrow(ctx, bx + 40, bottom, bx + 40, bottom - (W - FB), fc, 5); text(ctx, 'N', bx + 24, bottom - (W - FB) / 2, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) }); }   /* the bottom holds up what the fluid does not */
     /* the block and the fluid named, and the part under the surface bracketed */
     text(ctx, 'the block, ρ̄_obj = ' + fmt(rob, 0) + ' kg/m³', X1 - 20, top + 30 < 130 ? 150 : top + 30, dc, { size: 20, weight: 600, align: 'right' });
-    text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'a fluid of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', X1 + 16, SURF + 30, dc, { size: 20, weight: 600 });
+    text(ctx, fluidPhrase(rho) === liquidNamed(rho) ? liquidNamed(rho) + ', ρ_fl = ' + fmt(rho, 0) + ' kg/m³' : 'a fluid of density ρ_fl = ' + fmt(rho, 0) + ' kg/m³', X2 + 24, BOT - 16, dc, { size: 20, weight: 600 });
     text(ctx, 'the surface', X2 - 14, SURF - 18, PAL.muted, { size: 18, align: 'right' });
     if (floats) {
       vbracket(ctx, X2 + 40, SURF, bottom, PAL.ink, 'fraction submerged ' + fmt(f, 3), 1);
@@ -398,9 +399,9 @@ const fluidPhrase = (rho) => { const n = liquidNamed(rho); return n ? n : 'a flu
       : even ? 'An object whose average density is ' + fmt(rob, 0) + ' kg/m³ equals the fluid’s, so it hangs wherever it is placed, neither rising nor sinking.'
         : 'An object whose average density is ' + fmt(rob, 0) + ' kg/m³ is denser than ' + fluidPhrase(rho) + ', so it sinks to the bottom.');
     const sg = rob / 1000;
-    readout(d.readout, `\\text{fraction submerged} = \\frac{\\krhoobj}{\\krhofl} = \\frac{${fmt(rob, 0)}\\ \\text{kg/m}^3}{${fmt(rho, 0)}\\ \\text{kg/m}^3} = ${fmt(f, 3)}` + (floats ? '' : even ? ' = 1' : ' > 1'),
-      (rho === 1000 ? 'Its specific gravity, ρ̄/ρ_w, is ' + fmt(sg, 3) + ', and since the fluid here is water the fraction submerged and the specific gravity are the same number. ' + (floats ? 'In sea water at 1025 kg/m³ the same object would float with ' + fmt(rob / 1025, 3) + ' of its volume under.' : sg > 1 ? 'A specific gravity above one sinks in water.' : '')
-        : 'Its specific gravity, ρ̄/ρ_w, is ' + fmt(sg, 3) + ' whatever it floats in, since that ratio is taken against water; the fraction submerged in this fluid is ' + fmt(f, 3) + (floats ? ', so the two numbers differ here.' : '.')) + (floats ? ' While it floats the buoyant force equals its weight, so the two arrows on the block are the same length.' : even ? '' : ' Under water the buoyant force is the weight of the fluid the whole block displaces, which is less than the block’s own weight, so the two arrows differ.'));
+    readout(d.readout, `${floats || even ? '\\text{fraction submerged} = ' : ''}\\frac{\\krhoobj}{\\krhofl} = \\frac{${fmt(rob, 0)}\\ \\text{kg/m}^3}{${fmt(rho, 0)}\\ \\text{kg/m}^3} = ${fmt(f, 3)}` + (floats ? '' : even ? ' = 1' : ' > 1'),
+      (rho === 1000 ? 'In water the fraction submerged and the specific gravity are the same number, ' + fmt(sg, 3) + '.'
+        : 'Its specific gravity is ' + fmt(sg, 3) + ' whatever it floats in, since that ratio is taken against water.') + (floats ? ' While it floats the buoyant force equals its weight.' : ''));
   }
   register(d.fig, { update: () => {}, draw });
 })();

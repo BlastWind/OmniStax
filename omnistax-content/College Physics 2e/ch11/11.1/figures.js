@@ -172,7 +172,7 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
     open: 'With the lids off, the gas and the plasma escape, and the liquid stays in its open container.',
   };
   const READ = {
-    leave: ['Liquids, gases, and plasmas are fluids because they yield to shearing forces, whereas solids resist them.', 'The atoms of the solid keep the same neighbors and only vibrate; the molecules of the liquid stay in contact but slide past one another; the molecules of the gas and the particles of the plasma are far apart and move about freely.'],
+    leave: ['Liquids, gases, and plasmas are fluids because they yield to shearing forces, whereas solids resist them.', ''],
     shear: ['A fluid yields to a shearing force and flows; a solid resists one.', 'The atoms of the solid lean a little toward new positions and spring back when the push is removed, because the forces between them act like springs. The molecules of the liquid change neighbors and do not spring back, and the molecules of the gas and the particles of the plasma simply move out of the way.'],
     compress: ['Solids and liquids resist compression; gases and plasmas are easy to compress.', 'The atoms of the solid and the molecules of the liquid are already in contact, so pushing them closer would force them into one another. There is much space and little force between the molecules of a gas and the particles of a plasma, so the piston travels far.'],
     open: ['A liquid remains in an open container; a gas or a plasma escapes from one.', 'The molecules of the liquid are held together by their mutual attraction and by the floor of the beaker. The molecules of the gas and the particles of the plasma move freely in every direction, so nothing keeps them in a container with no lid.'],
@@ -181,10 +181,10 @@ function electron(ctx, x, y) { ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPat
   function readout(main, small) {
     if (shown === m) return; shown = m;
     const s = el('span'); s.style.fontFamily = 'var(--sans)'; s.style.fontSize = '1rem'; s.textContent = main;
-    d.readout.replaceChildren(s, el('small', null, small));
+    d.readout.replaceChildren(...(small ? [s, el('small', null, small)] : [s]));
   }
-  const CAP = [['(a) solid: a crystal of iron', 'atoms in contact, vibrating in place'], ['(b) liquid: water in a beaker', 'molecules in contact, sliding past one another'],
-    ['(c) gas: oxygen in a closed box', 'molecules far apart, moving freely'], ['(d) plasma: protons and electrons', 'particles far apart, moving freely']];
+  const CAP = [['(a) solid: a crystal of iron', 'vibrating in place'], ['(b) liquid: water in a beaker', 'sliding past one another'],
+    ['(c) gas: oxygen in a closed box', 'far apart, moving freely'], ['(d) plasma: protons and electrons', 'far apart, moving freely']];
   function draw() {
     const { ctx } = begin(d.c);
     hits.length = 0;
