@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, labeller, pinned, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
@@ -85,6 +85,7 @@ function helicopter(ctx, x, y, color, s = 1) {
     const { ctx, H } = begin(d.c);
     const Fv = Fc.v, r = rc.v, t = th.v, tau = Fv * r, ds = r * t, W = tau * t;
     const L = labeller(ctx, H); L.block(0, 0, 1400, 96);
+    L.block(340 - 44, 370 - 44, 340 + 44, 370 + 44);   /* the torque's turning arc about the axis */
     /* the disk: its drawn radius runs 100 to 220 units over the slider's range, so the radius is visibly a variable,
        and the centre sits low enough that the force arrow at the rim never reaches the headline band */
     const cx = 340, cy = 370, R = 100 + ((r - 0.1) / 0.4) * 120;
@@ -97,7 +98,7 @@ function helicopter(ctx, x, y, color, s = 1) {
     const px = cx + R * Math.cos(-t), py = cy + R * Math.sin(-t);
     line(ctx, cx, cy, px, py, C('position'), 3);
     L.add('r = ' + fmt(r, 3) + ' m', cx + (R / 2) * Math.cos(-t), cy + (R / 2) * Math.sin(-t), -Math.sin(-t), Math.cos(-t), C('position'), 20, 22);
-    if (t > 0.3) { const a = -t / 2; L.add('Δs = ' + fmt(ds, 3) + ' m', cx + R * Math.cos(a), cy + R * Math.sin(a), Math.cos(a), Math.sin(a), C('position'), 20, 26); }
+    if (t > 0.3) { const a = -Math.min(t / 2, Math.PI / 2 + 0.3); L.add('Δs = ' + fmt(ds, 3) + ' m', cx + R * Math.cos(a), cy + R * Math.sin(a), Math.cos(a), Math.sin(a), C('position'), 20, 26); }
     angleArc(ctx, L, cx, cy, 52, Math.min(t, TAU - 0.01), 'θ = ' + fmt(t, 2) + ' rad', C('angle'));
     /* the force, tangent to the rim in the direction of the turn */
     const ux = Math.sin(-t), uy = -Math.cos(-t), Lf = 20 + Fv * 0.22;
@@ -122,7 +123,7 @@ function helicopter(ctx, x, y, color, s = 1) {
     topline(ctx, t === 0 ? 'A force of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the axis makes a torque of ' + fmt(tau, 1) + ' N·m, but the disk has not turned, so no work is done yet.'
       : 'A force of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the axis, kept perpendicular through ' + fmt(t, 2) + ' rad, does ' + fmt(W, 1) + ' J of work.');
     readout(d.readout, `\\text{net}\\;\\kW = (\\text{net}\\;\\ktau)\\ktheta = (${fmt(tau, 1)}\\ \\text{N}\\cdot\\text{m})(${fmt(t, 2)}\\ \\text{rad}) = ${fmt(W, 1)}\\ \\text{J}`,
-      'The same work as force times arc length: (net F)Δs = (' + fmt(Fv, 0) + ' N)(' + fmt(ds, 3) + ' m) = ' + fmt(W, 1) + ' J, since Δs = rθ.');
+      `The same work as $(\\text{net}\\;\\kF)\\kds = (${fmt(Fv, 0)}\\ \\text{N})(${fmt(ds, 3)}\\ \\text{m}) = ${fmt(W, 1)}\\ \\text{J}$, since $\\kds = \\kr\\ktheta$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -149,7 +150,7 @@ function helicopter(ctx, x, y, color, s = 1) {
     const { ctx, H } = begin(d.c);
     const m = model(), t = cy.now(), done = t >= m.T - 1e-9;
     const phi = Math.min(th.v, 0.5 * m.a * t * t), w = m.a * t, W = m.tau * phi, KE = 0.5 * m.I * w * w;
-    const L = labeller(ctx, H); L.block(0, 0, 1400, 96);
+    const L = labeller(ctx, H); L.block(0, 0, 1400, 96); L.block(420 - 44, 370 - 44, 420 + 44, 370 + 44);   /* the turning arc about the axle */
     /* the stone, face on, standing on a mount; its drawn radius runs 100 to 210 units over the slider's range, and the
        centre sits low enough that the hand's force arrow never reaches the headline band */
     const cx = 420, cyy = 370, R = 100 + ((rc.v - 0.1) / 0.4) * 110, ground = cyy + 232;
@@ -167,13 +168,15 @@ function helicopter(ctx, x, y, color, s = 1) {
     line(ctx, cx, cyy, px, py, C('position'), 3);
     L.add('r = ' + fmt(rc.v, 3) + ' m', cx + (R / 2) * Math.cos(-phi), cyy + (R / 2) * Math.sin(-phi), -Math.sin(-phi), Math.cos(-phi), C('position'), 20, 22);
     angleArc(ctx, L, cx, cyy, 46, phi, 'θ = ' + fmt(phi, 2) + ' rad', C('angle'));
-    /* the person at the stone's edge, her hands on the point of application; she stands to the right of the mount */
-    const ppx = cx + R + 78, S = 2.2, hx = (px - ppx) / -S, hy = (py - ground) / S;
-    silhouette(ctx, { x: ppx, y: ground, s: S, face: -1, pose: 'reach', color: F.ref('person'), hands: [{ x: hx, y: hy }, { x: hx + 3, y: hy + 4 }] });
-    /* the force, tangent to the rim in the direction of the turn */
-    const ux = Math.sin(-phi), uy = -Math.cos(-phi), Lf = 30 + Fc.v * 0.25;
-    arrow(ctx, px, py, px + ux * Lf, py + uy * Lf, C('force'), 5);
-    forceLabel(L, 'F = ' + fmt(Fc.v, 0) + ' N', cx, px + ux * Lf, py + uy * Lf, ux, uy, C('force'));
+    /* the person's hand lies flat on the rim at the point of application and rides round with it, as the book draws it: the
+       library's hand seen from its back, fingers trailing behind the push and the palm on the stone */
+    const ux = Math.sin(-phi), uy = -Math.cos(-phi), ox = (px - cx) / R, oy = (py - cyy) / R, hs = 1.1;
+    F.hand(ctx, px + ux * 45 * hs + ox * 14, py + uy * 45 * hs + oy * 14, { aim: [-ux, -uy], view: 'back', curl: 0.15, thumb: 'along', s: hs, color: F.ref('person') });
+    L.block(px - 60, py - 60, px + 60, py + 60);
+    /* the force, tangent to the rim in the direction of the turn, drawn just outside the hand */
+    const Lf = 30 + Fc.v * 0.25, fx = px + ox * 72, fy = py + oy * 72;
+    arrow(ctx, fx, fy, fx + ux * Lf, fy + uy * Lf, C('force'), 5);
+    forceLabel(L, 'F = ' + fmt(Fc.v, 0) + ' N', cx, fx + ux * Lf, fy + uy * Lf, ux, uy, C('force'));
     dot(ctx, px, py, C('force'), true, 8);
     turnArc(ctx, cx, cyy, 30, C('torque'), Math.PI / 2 + 0.6, 1.1);
     L.add('net τ = ' + fmt(m.tau, 1) + ' N·m', cx, cyy + 36, 0, 1, C('torque'), 20, 26);
@@ -190,7 +193,7 @@ function helicopter(ctx, x, y, color, s = 1) {
       : done ? 'After ' + fmt(m.T, 2) + ' s the stone has turned through ' + fmt(th.v, 2) + ' rad and spins at ' + fmt(w, 2) + ' rad/s: the hand did ' + fmt(W, 1) + ' J of work and the stone holds ' + fmt(KE, 1) + ' J.'
       : 'After ' + fmt(t, 2) + ' s the stone has turned through ' + fmt(phi, 2) + ' rad, the hand has done ' + fmt(W, 1) + ' J of work, and the stone’s rotational kinetic energy is ' + fmt(KE, 1) + ' J.');
     readout(d.readout, `\\text{net}\\;\\kW = (\\text{net}\\;\\ktau)\\ktheta = (${fmt(m.tau, 1)}\\ \\text{N}\\cdot\\text{m})(${fmt(phi, 2)}\\ \\text{rad}) = ${fmt(W, 1)}\\ \\text{J} = \\frac{1}{2}\\kI\\kw^2 = \\kKErot`,
-      'The stone is a disk with I = ½MR² = ' + fmt(m.I, 3) + ' kg·m² turning at ' + fmt(w, 2) + ' rad/s so far, and the torque of ' + fmt(m.tau, 1) + ' N·m gives it an angular acceleration of ' + fmt(m.a, 1) + ' rad/s².');
+      `The stone is a disk, $\\kI = \\tfrac{1}{2}\\kM\\kr^2 = ${fmt(m.I, 3)}\\ \\text{kg}\\cdot\\text{m}^2$, turning at $\\kw = ${fmt(w, 2)}\\ \\text{rad/s}$ so far.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });
 })();
@@ -223,7 +226,8 @@ function helicopter(ctx, x, y, color, s = 1) {
     hbracket(ctx, hx - 2, hx - 2 + half, hy - 90, C('position'), 'ℓ = ' + fmt(ell.v, 2) + ' m');
     turnArc(ctx, hx - 2, hy - 40, 26, C('angular-rate'), -Math.PI / 2, 1.2);
     L.add('ω = ' + fmt(rpm.v, 0) + ' rpm = ' + fmt(w, 1) + ' rad/s', hx - 2, hy - 60, 0, -1, C('angular-rate'), 20, 92);
-    if (vc.v > 0) { const Lv = 20 + vc.v * 3; arrow(ctx, hx + 80, hy, hx + 80 + Lv, hy, C('velocity'), 5); L.add('v = ' + fmt(vc.v, 1) + ' m/s', hx + 80 + Lv, hy, 1, 0, C('velocity'), 22, 22); }
+    L.block(660, 120, 1400, H);   /* the bars and the height scale */
+    if (vc.v > 0) { const Lv = 20 + vc.v * 2.2; arrow(ctx, hx + 80, hy, hx + 80 + Lv, hy, C('velocity'), 5); const right = hx + 80 + Lv + 170 < 650; L.add('v = ' + fmt(vc.v, 1) + ' m/s', hx + 80 + Lv, hy, right ? 1 : 0, right ? 0 : -1, C('velocity'), 22, right ? 22 : 24); }   /* beside the tip, or above it where the bars leave no room */
     text(ctx, 'm = ' + fmt(mc.v, 0) + ' kg, four blades of ' + fmt(MB, 1) + ' kg', hx - 30, hy + 80, C('mass'), { size: 18, align: 'center' });
     /* the two energies on one fixed cap */
     const base = 520, top = 150;
@@ -237,14 +241,14 @@ function helicopter(ctx, x, y, color, s = 1) {
     const Y = (v) => base - (v / HMAX) * (base - top), X = () => 1230;
     line(ctx, 1230, base, 1230, top, PAL.muted, 2);
     for (let v = 0; v <= HMAX + 1e-9; v += 50) { line(ctx, 1222, Y(v), 1238, Y(v), PAL.muted, 2); text(ctx, fmt(v, 0) + (v === HMAX ? ' m' : ''), 1214, Y(v), PAL.muted, { size: 17, align: 'right' }); }
-    text(ctx, 'height the blades’ energy could lift it', 1230, top - 30, C('position'), { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'lift height', 1230, top - 30, C('position'), { size: 18, weight: 600, align: 'center' });
     const p = pinned(ctx, box, X, Y, 0, h, C('position'));
     if (!p.out) line(ctx, 1230, base, 1230, p.y, C('position'), 5);
     L.add('h = ' + sig3(h) + ' m', p.x, p.y, 1, 0, C('position'), 20, 24);
     L.flush();
     topline(ctx, 'At ' + fmt(rpm.v, 0) + ' rpm the four blades hold ' + sig3(KEr / 1000) + ' kJ, the helicopter flying at ' + fmt(vc.v, 1) + ' m/s carries ' + sig3(KEt / 1000) + ' kJ, and the blades’ energy could lift it ' + sig3(h) + ' m.');
     readout(d.readout, `\\kKErot = \\frac{1}{2}\\kI\\kw^2 = ${sig3(KEr / 1000)}\\ \\text{kJ}`,
-      'The helicopter itself carries KE_trans = ½mv² = ' + sig3(KEt / 1000) + ' kJ. With I = 4Mℓ²/3 = ' + fmt(I, 0) + ' kg·m² and ω = ' + fmt(w, 1) + ' rad/s, the ratio of translational to rotational kinetic energy is ' + sig3(KEt / KEr) + ', and h = KE_rot / mg = ' + sig3(h) + ' m.');
+      `$\\kKEtrans = \\tfrac{1}{2}\\km\\kv^2 = ${sig3(KEt / 1000)}\\ \\text{kJ}$ and $\\kh = \\kKErot/\\km\\kg = ${sig3(h)}\\ \\text{m}$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -299,7 +303,7 @@ function helicopter(ctx, x, y, color, s = 1) {
       if (mode === 'hatch') { ctx.beginPath(); ctx.rect(x, legendY - 11, 30, 22); ctx.clip(); ctx.beginPath(); for (let s = x - 22; s < x + 30; s += 10) { ctx.moveTo(s, legendY + 11); ctx.lineTo(s + 22, legendY - 11); } ctx.stroke(); }
       ctx.restore(); text(ctx, label, x + 40, legendY, C('energy'), { size: 18, weight: 600 });
     };
-    sw(900, 'still potential', 'hollow'); sw(1060, 'translational', 'solid'); sw(1220, 'rotational', 'hatch');
+    sw(830, 'still potential', 'hollow'); sw(1040, 'translational', 'solid'); sw(1230, 'rotational', 'hatch');
     const finals = [];
     m.ls.forEach((l, i) => {
       const yc = 240 + i * 175, top = yc - 50, bot = top + rise, col = F.ref(CANS[i]);
@@ -313,7 +317,8 @@ function helicopter(ctx, x, y, color, s = 1) {
       const px = x0 + f * run + nx * CR, py = top + f * rise + ny * CR;
       const phi = l.beta > 0 ? (f * Math.hypot(run, rise)) / CR : 0;
       can(ctx, px, py, CR, phi, col, l.beta > 0);
-      text(ctx, String(i + 1) + '  ' + l.name, x0, bot + 26, col, { size: 20, weight: 600, align: 'left' });
+      text(ctx, String(i + 1) + '  ' + l.name, x1 + 50, bot - 4, col, { size: 20, weight: 600, align: 'left' });   /* at the foot, clear of the next lane's can at the top */
+      L.block(x1 + 42, bot - 18, x1 + 58 + F.measure(ctx, String(i + 1) + '  ' + l.name, { size: 20, weight: 600 }), bot + 10);
       if (v > 0.3) { const Lv = v * 14; arrow(ctx, px + nx * 30, py + ny * 30, px + nx * 30 + ux * Lv, py + ny * 30 + uy * Lv, C('velocity'), 4); L.add('v = ' + fmt(v, 2) + ' m/s', px + nx * 30 + ux * Lv, py + ny * 30 + uy * Lv, ux, uy, C('velocity'), 18, 18); }
       if (t >= l.T - 1e-9) { text(ctx, fmt(l.T, 2) + ' s', x1 + 50, bot - 30, PAL.ink, { size: 18, weight: 600, align: 'left', bg: PAL.panel }); finals.push(l); }
       /* the bar: the can's starting energy divided at this instant */
@@ -341,7 +346,7 @@ function helicopter(ctx, x, y, color, s = 1) {
       : 'After ' + fmt(t, 2) + ' s the sliding can leads: nothing of its energy has gone into turning, so more of it is in its speed.');
     const KEt3 = 0.5 * M * l3.vf * l3.vf, KEr3 = l3.beta * KEt3;
     readout(d.readout, `\\km\\kg\\kh = \\frac{1}{2}\\km\\kv^2 + \\frac{1}{2}\\kI\\kw^2 \\;\\Rightarrow\\; ${fmt(m.E, 1)}\\ \\text{J} = ${fmt(KEt3, 1)}\\ \\text{J} + ${fmt(KEr3, 1)}\\ \\text{J}`,
-      'At the bottom the ' + l3.name + ', with I = ' + l3.I + ', has put ' + fmt((100 * l3.beta) / (1 + l3.beta), 0) + '% of its energy into rotation and reaches ' + fmt(l3.vf, 2) + ' m/s; the sliding can reaches ' + fmt(l1.vf, 2) + ' m/s and the thin soup ' + fmt(l2.vf, 2) + ' m/s. The slope changes the times but not these speeds.');
+      'At the bottom the ' + l3.name + ' has put ' + fmt((100 * l3.beta) / (1 + l3.beta), 0) + '% of its energy into rotation; the slope changes the times but not the final speeds.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });
 })();

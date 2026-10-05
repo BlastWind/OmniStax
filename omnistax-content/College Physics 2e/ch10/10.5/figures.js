@@ -7,7 +7,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI, RAD = Math.PI / 180;
@@ -46,17 +46,6 @@ function angleArc(ctx, x, y, R, a0, d, color, label) {
 }
 
 /* ---------- sprites, in ink ---------- */
-/* a hand seen from above at (x, y), its fingers pointing along the canvas angle `dir`;
-   `open` from 0 (pushing at the rim) to 1 (drawn back) */
-function hand(ctx, x, y, dir, color, open = 0) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(dir); ctx.translate(-open * 70, 0);
-  ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-  ctx.beginPath(); ctx.moveTo(-74, -14); ctx.lineTo(-30, -18); ctx.lineTo(-30, 18); ctx.lineTo(-74, 14); ctx.closePath(); ctx.fill();   /* the wrist */
-  ctx.beginPath(); ctx.moveTo(-30, -20); ctx.lineTo(-30, 20); ctx.lineTo(-6, 20); ctx.lineTo(-6, -20); ctx.closePath(); ctx.fill();       /* the palm */
-  [-15, -5, 5, 15].forEach((yy) => { ctx.beginPath(); ctx.moveTo(-8, yy); ctx.lineTo(8, yy); ctx.stroke(); });                           /* four fingers */
-  ctx.beginPath(); ctx.moveTo(-26, -20); ctx.lineTo(-14, -36); ctx.stroke();                                                                /* the thumb */
-  ctx.restore();
-}
 /* a plate of food seen from above, its centre at (x, y) */
 function plate(ctx, x, y, r, color) {
   ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3;
@@ -100,10 +89,11 @@ function plate(ctx, x, y, r, color) {
     line(ctx, CX + R * 0.93 * Math.cos(-th), CY + R * 0.93 * Math.sin(-th), CX + R * Math.cos(-th), CY + R * Math.sin(-th), lsc, 4);   /* a mark on the rim to follow */
     dot(ctx, CX, CY, lsc, true, 6);
     text(ctx, 'the lazy Susan, seen from above', CX - 10, CY + R + 36, lsc, { size: 19, align: 'right' });   /* left of where the torque arc ends */
-    /* the hand at the right of the rim, pushing upward on the canvas, which turns the tray counterclockwise */
-    const hx = CX + R + 26, hy = CY + 40, open = pushing ? 0 : 1;
-    hand(ctx, hx, hy, -Math.PI / 2, pc, open);
-    text(ctx, 'the hand', hx + 34, hy + 40 + open * 70, pc, { size: 19, align: 'left' });
+    /* the library's hand at the right of the rim, seen from above with its fingers over the tray, pushing upward on the
+       canvas, which turns the tray counterclockwise; once the push is over it has drawn back from the rim */
+    const open = pushing ? 0 : 1, hx = CX + R + 80 + open * 70, hy = CY + 40;
+    F.hand(ctx, hx, hy, { aim: [-1, 0], view: 'back', curl: 0.1, thumb: 'along', s: 1, color: pc });
+    text(ctx, 'the hand', hx + 14, hy + 50, pc, { size: 19, align: 'left' });
     if (pushing) {
       turnArc(ctx, CX, CY, R + 50, true, tc, Math.PI / 4 + 0.15, 0.5);
       text(ctx, 'net τ = ' + fmt(tau, 3) + ' N·m', CX + (R + 50) * 0.5 + 30, CY + (R + 50) * 0.87 + 30, tc, { size: 22, weight: 600, align: 'left' });
@@ -127,13 +117,13 @@ function plate(ctx, x, y, r, color) {
     line(ctx, g.X(dt), box.b, g.X(dt), box.t, timec, 2, [4, 8]);
     text(ctx, 'Δt = ' + fmt(dt, 3) + ' s', g.X(dt) + 10, box.t + 16, timec, { size: 19, weight: 600 });
     if (Lf < 0.68 * LMAX) text(ctx, 'slope = net τ', g.X(dt) + 14, g.Y(Lf) - 26, tc, { size: 19, weight: 600, align: 'left' });   /* just past the top of the ramp */
-    else text(ctx, 'slope = net τ', g.X(dt) + 150, box.t + 16, tc, { size: 19, weight: 600, align: 'left' });                        /* the ramp reaches the top: to the right of the Δt label */
+    else text(ctx, 'slope = net τ', g.X(dt) + 175, box.t + 16, tc, { size: 19, weight: 600, align: 'left' });                        /* the ramp reaches the top: to the right of the Δt label */
     pinned(ctx, box, g.X, g.Y, t, L, Lc, 'L = ' + sig3(L));
     topline(ctx, t < 1e-9 ? 'The tray is at rest, and the hand is about to push with a net torque of ' + fmt(tau, 3) + ' N·m for ' + fmt(dt, 3) + ' s.'
       : pushing ? 'The push is ' + fmt(t, 3) + ' s in, and the angular momentum of the tray has grown to ' + sig3(L) + ' kg·m²/s at ' + fmt(tau, 3) + ' kg·m²/s every second.'
       : 'After ' + fmt(dt, 3) + ' s the push is over and the tray carries ' + sig3(Lf) + ' kg·m²/s of angular momentum, turning at ' + fmt(wf, 3) + ' rad/s.');
     readout(d.readout, `\\kdLang = (\\text{net}\\;\\ktau)\\kdt = (${fmt(tau, 3)}\\ \\text{N}\\cdot\\text{m})(${fmt(dt, 3)}\\ \\text{s}) = ${sig3(Lf)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`,
-      'The angular momentum the push imparts depends only on the torque and the time it acts. The tray then turns at ω = L/I = ' + sig3(Lf) + '/' + fmt(I, 3) + ' = ' + fmt(wf, 3) + ' rad/s, which is one revolution in ' + fmt(TAU / wf, 2) + ' s.');
+      `The tray then turns at $\\kw = \\kL/\\kI = ${fmt(wf, 3)}\\ \\text{rad/s}$.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, rate), draw });
 })();
@@ -195,7 +185,7 @@ function plate(ctx, x, y, r, color) {
       : done ? 'After ' + fmt(T(), 3) + ' s the leg has swung through ' + fmt(ths.v, 1) + '° and turns at ' + fmt(w, 2) + ' rad/s, carrying ' + fmt(KE, 1) + ' J of rotational kinetic energy.'
       : 'After ' + fmt(t, 3) + ' s the leg has swung through ' + fmt(th / RAD, 1) + '° and turns at ' + fmt(w, 2) + ' rad/s, carrying ' + fmt(KE, 1) + ' J.');
     readout(d.readout, `\\kKErot = \\tfrac{1}{2}\\kI\\kw^2 = \\tfrac{1}{2}(${fmt(I, 2)}\\ \\text{kg}\\cdot\\text{m}^2)(${fmt(w, 2)}\\ \\text{rad/s})^2 = ${fmt(KE, 1)}\\ \\text{J}`,
-      'The angular acceleration is α = net τ/I = ' + fmt(tau, 1) + '/' + fmt(I, 2) + ' = ' + fmt(al, 1) + ' rad/s², and starting from rest ω² = 2αθ gives ω = ' + fmt(Math.sqrt(2 * al * th), 2) + ' rad/s after ' + fmt(th, 2) + ' rad. The torque does work (net τ)θ = ' + fmt(tau * th, 1) + ' J on the leg, which is where its kinetic energy comes from.');
+      `The torque's work, $(\\text{net}\\;\\ktau)\\theta = ${fmt(tau * th, 1)}\\ \\text{J}$, is where the leg's kinetic energy comes from.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 4.5), draw });
 })();
@@ -256,7 +246,7 @@ function plate(ctx, x, y, r, color) {
     topline(ctx, s > 0.98 ? 'With her arms out she spins at ' + fmt(w0, 3) + ' rev/s, and the same angular momentum would spin her at ' + fmt(Lv / IIN / TAU, 2) + ' rev/s with her arms pulled in to ' + fmt(IIN, 3) + ' kg·m².'
       : 'With her moment of inertia down to ' + fmt(I, 3) + ' kg·m², ' + fmt(I / IOUT * 100, 0) + '% of its value with her arms out, she spins at ' + fmt(w, 2) + ' rev/s, ' + fmt(IOUT / I, 2) + ' times as fast.');
     readout(d.readout, `\\kI\\kw = (${fmt(IOUT, 2)}\\ \\text{kg}\\cdot\\text{m}^2)(${fmt(w0, 3)}\\ \\text{rev/s}) = \\kIprime\\kwprime = (${fmt(I, 3)}\\ \\text{kg}\\cdot\\text{m}^2)(${fmt(w, 3)}\\ \\text{rev/s})`,
-      'Her angular momentum is L = ' + fmt(Lv, 1) + ' kg·m²/s in either state, because the friction at her skate exerts almost no torque. ' + (s > 0.98 ? 'Her rotational kinetic energy is ' + fmt(KE0, 1) + ' J with her arms out, and dragging her moment of inertia down shows how much it rises and how much work she does to pull her arms in.' : 'Her rotational kinetic energy is ' + fmt(KE0, 1) + ' J with her arms out and ' + fmt(KE, 1) + ' J now, and the ' + fmt(Math.abs(KE - KE0), 1) + ' J difference is the work she does in pulling her arms in.'));
+      s > 0.98 ? '' : `$\\kKErot$ rises from ${fmt(KE0, 1)} J to ${fmt(KE, 1)} J; the difference is the work she does pulling her arms in.`);
   }
   register(d.fig, { update: (dt) => { cy.step(dt, () => 1); phi += wNow() * TAU * dt; }, draw });
 })();
@@ -300,7 +290,7 @@ function plate(ctx, x, y, r, color) {
     const sun = 6 + 20 * (1 - f) / (1 - k);
     ctx.save(); ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(CX, CY, sun, 0, TAU); ctx.fill(); ctx.restore();
     text(ctx, 'gas and dust', CX - R0 - 20, CY + 30, clc, { size: 19, align: 'right' });
-    text(ctx, t > 0.3 * TM ? 'the Sun forming' : 'the centre', CX + sun + 14, CY, PAL.muted, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, t > 0.3 * TM ? 'the Sun forming' : 'the center', CX + sun + 14, CY, PAL.muted, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
     text(ctx, "R' = " + fmt(f, 2) + ' R', CX + R0 * f * 0.72 + 12, CY + R0 * f * 0.72 + 22, PAL.ink, { size: 20, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* the spin, as an arc at the rim */
     turnArc(ctx, CX, CY, R0 * f + 34, true, wc, -Math.PI / 2, 0.42 + 0.3 * Math.min(1, ratio / 8), 5);
@@ -316,7 +306,7 @@ function plate(ctx, x, y, r, color) {
       : done ? 'Contracted to ' + fmt(k, 2) + ' of its radius the cloud has ' + fmt(k * k, k * k < 0.1 ? 3 : 2) + ' of its moment of inertia and spins ' + fmt(ratio, 2) + ' times as fast.'
       : 'Drawn in to ' + fmt(f, 2) + ' of its radius, the cloud has ' + fmt(f * f, f * f < 0.1 ? 3 : 2) + ' of its moment of inertia and spins ' + fmt(ratio, 2) + ' times as fast.');
     readout(d.readout, `\\kIprime\\kwprime = \\kI\\kw \\quad\\text{so}\\quad \\frac{\\kwprime}{\\kw} = \\frac{\\kI}{\\kIprime} = \\left(\\frac{R}{R'}\\right)^2 = \\left(\\frac{1}{${fmt(f, 2)}}\\right)^2 = ${fmt(ratio, 2)}`,
-      'A uniform disk has a moment of inertia of ½MR², so a cloud that keeps its mass and draws in to ' + fmt(f, 2) + ' of its radius has ' + fmt(f * f, f * f < 0.1 ? 3 : 2) + ' of its moment of inertia, and the same angular momentum turns it ' + fmt(ratio, 2) + ' times as fast. The planets that form keep orbiting and spinning in the sense the cloud turned.');
+      `A uniform disk has $\\kI = \\tfrac{1}{2}MR^2$, so a cloud that keeps its mass has ${fmt(f * f, f * f < 0.1 ? 3 : 2)} of its moment of inertia.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TM / 5), draw });
 })();

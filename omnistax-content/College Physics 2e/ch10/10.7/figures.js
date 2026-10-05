@@ -8,7 +8,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, labeller, silhouette, view, face, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 const RAD = Math.PI / 180, TAU = 2 * Math.PI, G = 9.80;
 const unit = (v) => { const l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; };
@@ -139,12 +139,12 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     hand(ctx, hx, hy, turn, hc);
     const thumbTip = rot(-22, -156), thumbFoot = rot(-22, -152), thumbHead = rot(-22, -226);
     arrow(ctx, thumbFoot[0], thumbFoot[1], thumbHead[0], thumbHead[1], hc, 4);
-    lab.add('thumb: the direction of ω and L', thumbHead[0], thumbHead[1], 1, 0, hc, 18, 30);
-    lab.add('fingers curl the way the rim moves', hx + 60, hy + (ccw ? 70 : -70), 1, 0.2, hc, 18, 40);
+    lab.add('thumb: along ω and L', thumbHead[0], thumbHead[1], 1, 0, hc, 18, 30);
+    lab.add('fingers curl with the rim', hx + 60, hy + (ccw ? 70 : -70), 1, 0.2, hc, 18, 40);
     lab.flush();
     topline(ctx, `Seen from above the disk turns ${ccw ? 'counterclockwise' : 'clockwise'}, so the thumb, ω and L all point ${up > 0 ? 'up' : 'down'} along the axis.`);
     readout(d.readout, `\\kL = \\kI\\kw = (${fmt(I, 4)}\\ \\text{kg}\\cdot\\text{m}^2)(${fmt(w.v, 1)}\\ \\text{rad/s}) = ${fmt(L, 3)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`,
-      `The moment of inertia is a positive number, so the angular momentum points the way the angular velocity points; here both point ${up > 0 ? 'up' : 'down'} the axis. The disk has a mass of 2.0 kg and a radius of 0.25 m, so I = ½MR² = ${fmt(I, 4)} kg·m².`);
+      `The disk is 2.0 kg and 0.25 m, so $\\kI = \\tfrac{1}{2}MR^2 = ${fmt(I, 4)}\\ \\text{kg}\\cdot\\text{m}^2$, a positive number that keeps $\\kL$ along $\\kw$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -224,7 +224,7 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     lab.flush();
     topline(ctx, `A ${fmt(Fv.v, 0)} N push ${fmt(r.v, 1)} m from the axis makes a torque of ${fmt(tau, 0)} N·m pointing ${up > 0 ? 'up out of' : 'down through'} the platform, and the angular momentum it produces points the same way.`);
     readout(d.readout, `\\ktau = \\kr\\kF = (${fmt(r.v, 1)}\\ \\text{m})(${fmt(Fv.v, 0)}\\ \\text{N}) = ${fmt(tau, 0)}\\ \\text{N}\\cdot\\text{m}`,
-      `The push is along the rim, so the whole force turns the platform. The torque is perpendicular to the plane of r and F and points the way your right thumb points when your fingers curl in the direction of the push, and the change in angular momentum ΔL = τΔt points along the torque, ${up > 0 ? 'up out of' : 'down through'} the platform here.`);
+      `$\\kdLang = \\ktau\\,\\Delta t$ points along the torque, ${up > 0 ? 'up out of' : 'down through'} the platform.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -327,7 +327,7 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     lab.flush();
     topline(ctx, `After ${fmt(st.t, 2)} s of pushing the axis has swung ${fmt(st.phi / RAD, 0)}° toward her, and the wheel has not tipped.`);
     readout(d.readout, `\\kdLang = \\ktau\\,\\Delta t = (${fmt(st.tau, 1)}\\ \\text{N}\\cdot\\text{m})(${fmt(st.t, 2)}\\ \\text{s}) = ${fmt(st.dL, 2)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`,
-      `The wheel carries L = Iω = ${fmt(st.L0, 2)} kg·m²/s. The two hands make a torque τ = 2Fd = 2(${fmt(Fv.v, 1)} N)(0.25 m) = ${fmt(st.tau, 1)} N·m toward her, and the change in angular momentum points the same way, perpendicular to L. The new angular momentum makes an angle of tan⁻¹(ΔL/L) = ${fmt(st.phi / RAD, 0)}° with the old, so the axis has swung ${fmt(st.phi / RAD, 0)}° toward her. The wheel has I = 0.15 kg·m², and its spin is drawn at one fifth of its true rate.`);
+      `With $\\kL = \\kI\\kw = ${fmt(st.L0, 2)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$ the axis has swung $\\tan^{-1}(\\kdLang/\\kL) = ${fmt(st.phi / RAD, 0)}^\\circ$ toward her. The spin is drawn at one fifth of its true rate.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -459,9 +459,10 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     /* six names on arrows that sweep round would crowd, so every arrow is named under the pointer instead (rule 26.7) */
     Object.values(S.labels).forEach((e) => { e.hidden = true; });
     const P = TAU / OMEGA();
-    head.textContent = spin
-      ? `The axle sweeps round once every ${fmt(P, 2)} s: the torque is always horizontal and perpendicular to L, so L turns and does not shrink.`
+    const say = spin
+      ? `The axle sweeps round once every ${fmt(P, 2)} s: the torque is always horizontal and perpendicular to $\\kL$, so $\\kL$ turns and does not shrink.`
       : `With no spin there is no angular momentum to turn: the torque gives the gyroscope angular momentum in its own direction and it falls over, drawn ${SLOW} times slower than life.`;
+    if (head.dataset.said !== say) { head.dataset.said = say; head.textContent = say; F.renderMath(head); }   /* the headline is typeset, so L wears its colour */
     V.invalidate();
   }
   function draw() {
@@ -472,12 +473,12 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
       ? `\\ktau = \\km\\kg\\kr\\sin\\ktheta = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}\\ \\text{at}\\ ${fmt(th.v, 0)}^\\circ`
       : `\\ktau = \\km\\kg\\kr\\sin\\ktheta = ${fmt(tauv, 3)}\\ \\text{N}\\cdot\\text{m}\\ \\text{at a tilt of}\\ ${fmt(theta / RAD, 0)}^\\circ`,
       spin
-        ? `The spinning flywheel carries L = Iω = ${fmt(L, 4)} kg·m²/s. The torque turns L through the small horizontal change ΔL = τΔt every Δt, so the tip of L goes round the circle once every 2πIω/(mgr) = ${fmt(P, 2)} s without the tilt changing. The arrow ΔL is the change in ${fmt(DT, 2)} s. The flywheel is a ${fmt(m, 2)} kg disk of radius ${fmt(R, 3)} m, so I = ½mR² = ${fmt(I, 6)} kg·m², and its center is ${fmt(r, 3)} m from the pivot; its spin is drawn at one twentieth of its true rate so the spokes can be followed.`
-        : `With the flywheel still, the gyroscope starts with no angular momentum, so the angular momentum it acquires is ΔL itself, L = ΔL = τΔt, horizontal and along the torque, and it turns about a horizontal axis through the pivot: it falls. The fall from ${fmt(th.v, 0)}° to the horizontal takes ${fmt(fall.T, 2)} s and is drawn ${SLOW} times slower than life.`);
+        ? `The tip of $\\kL = \\kI\\kw = ${fmt(L, 4)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$ goes round once every $2\\pi\\kI\\kw/\\km\\kg\\kr = ${fmt(P, 2)}\\ \\text{s}$ without the tilt changing; the arrow $\\kdLang$ is the change in ${fmt(DT, 2)} s. The spin is drawn at one twentieth of its true rate.`
+        : `With no spin, the angular momentum it gains, $\\kdLang = \\ktau\\,\\Delta t$, turns it about a horizontal axis: it falls to the horizontal in ${fmt(fall.T, 2)} s, drawn ${SLOW} times slower than life.`);
   }
   if (hasGL) {
     V = F.view3d(d.stage, {
-      h: 560, dist: 8.5, tilt: 16 * RAD, spin: 'off',
+      h: 560, dist: 10, tilt: 16 * RAD, spin: 'off',
       views: [{ label: 'Side', yaw: 0, pitch: 10 * RAD }, { label: 'Above', yaw: 0, pitch: 72 * RAD }, { label: 'Front', yaw: 90 * RAD, pitch: 12 * RAD }],
       pitch: [5 * RAD, 75 * RAD], yaw: 'free', zoomMin: 0.7, zoomMax: 2.5,
     });

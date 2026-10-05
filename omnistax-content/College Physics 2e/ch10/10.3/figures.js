@@ -8,7 +8,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, hover, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, axes, curve, pinned, view, face, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -20,38 +20,6 @@ function turnArc(ctx, cx, cy, R, color, mid, w = 5) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(cx, cy, R, a0, a1); ctx.stroke(); ctx.restore();
   const hx = cx + R * Math.cos(a0), hy = cy + R * Math.sin(a0), t = a0 - Math.PI / 2;
   arrow(ctx, hx - 30 * Math.cos(t), hy - 30 * Math.sin(t), hx, hy, color, w);
-}
-/* a hand, in ink, gripping at (x, y) and reaching back along the direction (ux, uy): a palm and a thumb */
-function hand(ctx, x, y, ux, uy, color) {
-  const px = -uy, py = ux;
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
-  ctx.beginPath();
-  ctx.moveTo(x + px * 16, y + py * 16); ctx.lineTo(x + ux * 30 + px * 18, y + uy * 30 + py * 18); ctx.lineTo(x + ux * 62 + px * 12, y + uy * 62 + py * 12);
-  ctx.lineTo(x + ux * 62 - px * 12, y + uy * 62 - py * 12); ctx.lineTo(x + ux * 30 - px * 18, y + uy * 30 - py * 18); ctx.lineTo(x - px * 16, y - py * 16); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(x + ux * 30 + px * 18, y + uy * 30 + py * 18); ctx.lineTo(x + ux * 8 + px * 26, y + uy * 8 + py * 26); ctx.lineTo(x + px * 14, y + py * 14); ctx.stroke();
-  ctx.restore();
-}
-/* a fist gripping at (x, y) with the forearm reaching back along (ux, uy): a tapered forearm, a rounded fist,
-   the knuckles along its leading edge and a thumb closed over the grip, in ink on a light fill */
-function fist(ctx, x, y, ux, uy, color) {
-  const px = -uy, py = ux, P = (a, b) => [x + ux * a + px * b, y + uy * a + py * b], ang = Math.atan2(uy, ux);
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3.5; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  ctx.beginPath(); ctx.moveTo(...P(26, 15)); ctx.lineTo(...P(112, 12)); ctx.lineTo(...P(112, -12)); ctx.lineTo(...P(26, -15)); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.ellipse(...P(12, 0), 23, 19, ang, 0, TAU); ctx.fill(); ctx.stroke();
-  for (const b of [-11, 0, 11]) { ctx.beginPath(); ctx.arc(...P(-8, b), 5, ang + Math.PI / 2, ang + 3 * Math.PI / 2); ctx.stroke(); }
-  ctx.beginPath(); ctx.moveTo(...P(14, -16)); ctx.quadraticCurveTo(...P(-6, -22), ...P(-10, -4)); ctx.stroke();
-  ctx.restore();
-}
-/* a person seen from above at (x, y), s times the base size: the shoulders as a lens across the heading, the head on
-   them, and the arms reaching to the two points given, if any */
-function personAbove(ctx, x, y, s, heading, color, reach) {
-  const ux = Math.cos(heading), uy = Math.sin(heading), px = -uy, py = ux;
-  const L = { x: x + px * 24 * s, y: y + py * 24 * s }, R = { x: x - px * 24 * s, y: y - py * 24 * s };
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineCap = 'round'; ctx.lineWidth = 3;
-  if (reach) { for (const [sh, to] of [[L, reach[0]], [R, reach[1]]]) { ctx.lineWidth = 7 * Math.min(1, s); ctx.beginPath(); ctx.moveTo(sh.x, sh.y); ctx.lineTo(to.x, to.y); ctx.stroke(); } }
-  ctx.beginPath(); ctx.ellipse(x, y, 26 * s, 11 * s, heading, 0, TAU); ctx.fill();
-  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(x + ux * 3 * s, y + uy * 3 * s, 12 * s, 0, TAU); ctx.fill(); ctx.stroke();
-  ctx.restore();
 }
 /* a clock and a reading, stacked in a panel at (x, y): the label in muted ink and the value in its type colour */
 function reading(ctx, x, y, label, value, color) {
@@ -67,11 +35,11 @@ function reading(ctx, x, y, label, value, color) {
    so the wheel spins up from rest while the pull lasts and then holds.
 ===================================================================== */
 (function () {
-  const d = sim('sim-bike-wheel', 620);
+  const d = sim('sim-bike-wheel', 700);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 20, step: 0.5, value: 10, unit: 'N', dec: 1, onInput: reset, aria: 'the size of the pull' });
   const rs = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.05, max: 0.33, step: 0.01, value: 0.33, unit: 'm', dec: 2, onInput: reset, aria: 'the distance from the axle to the pull' });
   const Ms = ctl(d.controls, { label: '\\kM', cls: 'mass', min: 0.5, max: 5, step: 0.1, value: 2, unit: 'kg', dec: 1, onInput: reset, aria: 'the mass of the wheel' });
-  const R = 0.33, T = 2, CX = 470, CY = 365, S = 640, KF = 14, PX = 940;   /* 1 m is 640 units, so the arc over the wheel clears the headline's second line */
+  const R = 0.33, T = 2, CX = 470, CY = 430, S = 640, KF = 14, PX = 940;   /* 1 m is 640 units; the hand's forearm above the rim clears the headline's second line and the arc under the wheel the canvas foot */
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
   const model = () => { const tau = rs.v * Fs.v, I = Ms.v * R * R; return { tau, I, al: tau / I }; };
@@ -79,7 +47,7 @@ function reading(ctx, x, y, label, value, color) {
     const { ctx } = begin(d.c);
     const fc = C('force'), pc = C('position'), ic = C('rotational-inertia'), ac = C('angular-acceleration'), wc = C('angular-rate'), tc = C('time'), qc = C('torque');
     const m = model(), t = cy.now(), th = 0.5 * m.al * t * t, w = m.al * t, done = t >= T - 1e-9;
-    const Rp = R * S, px = CX, py = CY + rs.v * S;               /* the pull is applied at the bottom of the wheel, on the tire or on a spoke */
+    const Rp = R * S, px = CX, py = CY - rs.v * S;               /* the pull is applied above the axle, on the tire or on a spoke, as the book draws it */
     /* the tire, the spokes turning counterclockwise, the hub and the axle */
     const wr = F.ref('wheel'), hr = F.ref('hand');
     ctx.save(); ctx.strokeStyle = wr; ctx.lineWidth = 14; ctx.beginPath(); ctx.arc(CX, CY, Rp, 0, TAU); ctx.stroke();
@@ -91,18 +59,19 @@ function reading(ctx, x, y, label, value, color) {
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = wr; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(CX, CY, 22, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     dot(ctx, CX, CY, PAL.ink, true, 6);
     text(ctx, 'axle', CX + 34, CY - 2, PAL.ink, { size: 19, bg: alpha(PAL.panel, 0.9) });
-    /* the distance from the axle to the pull, then the hand and its pull, backward along the tire */
+    /* the distance from the axle to the pull, then the hand, its forearm reaching up and back, and its pull along the tire to the left,
+       which turns the wheel counterclockwise */
     line(ctx, CX, CY, px, py, pc, 3, [6, 8]);
-    fist(ctx, px, py, 1, 0, hr);
-    text(ctx, 'the hand', px + 130, py + 4, hr, { size: 19, bg: alpha(PAL.panel, 0.9) });
-    /* the distance label sits beside the dashed line, or above the forearm when the pull is close to the axle */
-    if (rs.v * S > 90) text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', CX + 14, (CY + py) / 2 + 20, pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) });
-    else text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', px + 130, py - 26, pc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.9) });
+    F.fist(ctx, px, py, 0.6, -0.8, 1, hr);
+    text(ctx, 'the hand', px + 92, py - 80, hr, { size: 19, bg: alpha(PAL.panel, 0.9) });
+    /* the distance label sits beside the dashed line, or under the axle when the pull is close to it */
+    if (rs.v * S > 90) text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', CX - 14, (CY + py) / 2 + 20, pc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
+    else text(ctx, 'r = ' + fmt(rs.v, 2) + ' m', CX - 30, CY + 44, pc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
     if (Fs.v > 0) {
       arrow(ctx, px, py, px - Fs.v * KF, py, fc, 5);
       text(ctx, 'F = ' + fmt(Fs.v, 1) + ' N', px - Fs.v * KF - 14, py - 26, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
-      turnArc(ctx, CX, CY, Rp + 44, ac, -Math.PI / 2);
-      text(ctx, 'α = ' + fmt(m.al, 1) + ' rad/s²', CX + (Rp + 44) * Math.cos(-0.87) + 14, CY + (Rp + 44) * Math.sin(-0.87) + 6, ac, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
+      turnArc(ctx, CX, CY, Rp + 28, ac, Math.PI / 2);
+      text(ctx, 'α = ' + fmt(m.al, 1) + ' rad/s²', CX + (Rp + 28) * Math.cos(0.87) + 18, CY + (Rp + 28) * Math.sin(0.87) - 4, ac, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.9) });
     }
     /* the readings beside the wheel */
     text(ctx, 'the wheel is a hoop of radius R = 0.330 m', PX, 130, PAL.muted, { size: 18 });
@@ -116,8 +85,7 @@ function reading(ctx, x, y, label, value, color) {
       : done ? 'A pull of ' + fmt(Fs.v, 1) + ' N at ' + fmt(rs.v, 2) + ' m from the axle of a ' + fmt(Ms.v, 1) + ' kg wheel gives it ' + fmt(m.al, 1) + ' rad/s², and after 2.00 s it turns at ' + fmt(w, 1) + ' rad/s.'
       : 'After ' + fmt(t, 2) + ' s of pulling at ' + fmt(Fs.v, 1) + ' N the wheel turns at ' + fmt(w, 1) + ' rad/s and is still gaining ' + fmt(m.al, 1) + ' rad/s every second.');
     readout(d.readout, `\\kalpha = \\frac{\\text{net}\\;\\ktau}{\\kI} = \\frac{\\kr\\kF}{\\kM\\kR^2} = \\frac{(${fmt(rs.v, 2)}\\ \\text{m})(${fmt(Fs.v, 1)}\\ \\text{N})}{(${fmt(Ms.v, 1)}\\ \\text{kg})(0.330\\ \\text{m})^2} = ${fmt(m.al, 1)}\\ \\text{rad/s}^2`,
-      Fs.v === 0 ? 'Without a torque the angular velocity does not change, which is the rotational form of Newton’s first law.'
-        : 'The angular velocity grows steadily while the pull lasts, ω = αt, and reaches ' + fmt(m.al * T, 1) + ' rad/s after 2.00 s. The same pull nearer the axle makes a smaller torque, and a heavier wheel has a larger moment of inertia, so either change spins the wheel up more slowly.');
+      Fs.v === 0 ? 'Without a torque the angular velocity does not change.' : '');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
@@ -135,51 +103,56 @@ function reading(ctx, x, y, label, value, color) {
   const rs = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.6, unit: 'm', dec: 2, aria: 'the length of the cord, the distance from the pivot to the mass' });
   const PXV = 440, PY = 350, S = 190, KF = 22, KA = 10, AMAX = 200, ANG = 0.75, PX = 980;   /* the mass sits at the lower right and the force runs up and to the right, inside the table at every radius */
   function draw() {
-    const { ctx } = begin(d.c);
+    const { ctx, H } = begin(d.c);
     const fc = C('force'), pc = C('position'), ac = C('acceleration'), gc = C('angular-acceleration'), qc = C('torque');
     const Fv = Fs.v, m = ms.v, r = rs.v, a = Fv / m, al = a / r, tau = r * Fv;
     const rp = r * S, mx = PXV + rp * Math.cos(ANG), my = PY + rp * Math.sin(ANG);
     const ux = Math.sin(ANG), uy = -Math.cos(ANG);                       /* the tangent, counterclockwise on the screen */
+    const rx = Math.cos(ANG), ry = Math.sin(ANG);                        /* outward along the cord */
+    /* every label goes through the labeller, the arrows, the cord, the arc and the bodies blocked, so none lands on another */
+    const L = labeller(ctx, H); L.block(0, 0, 1400, 96); L.block(PX - 30, 96, 1400, H);
+    const seg = (x1, y1, x2, y2, w = 8) => { const n = Math.max(1, Math.ceil(Math.hypot(x2 - x1, y2 - y1) / 16)); for (let i = 0; i <= n; i++) { const x = x1 + ((x2 - x1) * i) / n, y = y1 + ((y2 - y1) * i) / n; L.block(x - w, y - w, x + w, y + w); } };
     /* the table top seen from above, the circular path and the cord */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(120, 92, 700, 516, 26); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'frictionless tabletop', 150, 128, PAL.muted, { size: 18 });
+    L.block(140, 110, 360, 146);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.setLineDash([8, 10]); ctx.beginPath(); ctx.arc(PXV, PY, rp, 0, TAU); ctx.stroke(); ctx.restore();
-    const small = rp < 90;                                                   /* a short cord leaves no room beside it, so its labels step out */
-    text(ctx, 'circular path of radius r', PXV, small ? PY + 120 : PY + rp + 26, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.soft, 0.9) });
     const pmr = F.ref('point-mass'), pvr = F.ref('pivot'), cdr = F.ref('cord');
-    line(ctx, PXV, PY, mx, my, cdr, 3);
-    if (small) text(ctx, 'r = ' + fmt(r, 2) + ' m', mx + 26, my + 44, pc, { size: 20, weight: 600, bg: alpha(PAL.soft, 0.9) });
-    else text(ctx, 'r = ' + fmt(r, 2) + ' m', (PXV + mx) / 2 - 14, (PY + my) / 2 + 16, pc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.soft, 0.9) });
-    dot(ctx, PXV, PY, pvr, false, 10);
-    text(ctx, 'pivot', PXV - 18, PY + 26, pvr, { size: 19, align: 'right', bg: alpha(PAL.soft, 0.9) });
+    line(ctx, PXV, PY, mx, my, cdr, 3); seg(PXV, PY, mx, my, 5);
+    dot(ctx, PXV, PY, pvr, false, 10); L.block(PXV - 14, PY - 14, PXV + 14, PY + 14); L.block(mx - 22, my - 22, mx + 22, my + 22);
     /* the force on the mass and the acceleration it produces, both along the tangent */
+    const queue = [];
     if (Fv > 0) {
-      const LF = Fv * KF, rx = Math.cos(ANG), ry = Math.sin(ANG);                 /* (rx, ry) points outward along the cord */
-      arrow(ctx, mx, my, mx + LF * ux, my + LF * uy, fc, 5);
-      /* the force label sits on the inner side of its arrow, between the arrow and the cord */
-      text(ctx, 'F = ' + fmt(Fv, 1) + ' N', mx + LF * 0.55 * ux - 26 * rx, my + LF * 0.55 * uy - 26 * ry, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.soft, 0.9) });
+      const LF = Fv * KF;
+      arrow(ctx, mx, my, mx + LF * ux, my + LF * uy, fc, 5); seg(mx, my, mx + LF * ux, my + LF * uy);
       const La = Math.min(a * KA, AMAX), ox = rx * 34, oy = ry * 34;     /* the acceleration arrow sits just outside the path, parallel to the force */
       if (a * KA > AMAX) line(ctx, mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy, ac, 3, [8, 8]);
-      arrow(ctx, mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy, ac, a * KA > AMAX ? 2 : 4);
-      text(ctx, 'a = F/m = ' + fmt(a, 1) + ' m/s²', mx + ox + La * 0.5 * ux + 22 * rx, my + oy + La * 0.5 * uy + 22 * ry + 8, ac, { size: 20, weight: 600, bg: alpha(PAL.soft, 0.9) });
+      arrow(ctx, mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy, ac, a * KA > AMAX ? 2 : 4); seg(mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy);
       turnArc(ctx, PXV, PY, 62, gc, 4.0, 4);                                    /* the turn about the pivot, drawn above and to its left */
-      text(ctx, 'α = ' + fmt(al, 1) + ' rad/s²', PXV - 60, PY - 70, gc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.soft, 0.9) });
+      for (let k = 0; k <= 8; k++) { const q = 3.3 + (1.4 * k) / 8; L.block(PXV + 62 * Math.cos(q) - 8, PY + 62 * Math.sin(q) - 8, PXV + 62 * Math.cos(q) + 8, PY + 62 * Math.sin(q) + 8); }
+      queue.push(() => L.add('F = ' + fmt(Fv, 1) + ' N', mx + LF * ux, my + LF * uy, -rx * 0.6 + ux * 0.8, -ry * 0.6 + uy * 0.8, fc, 21, 20));
+      queue.push(() => L.add('a = F/m = ' + fmt(a, 1) + ' m/s²', mx + ox + La * 0.6 * ux, my + oy + La * 0.6 * uy, rx, ry, ac, 20, 22));
+      queue.push(() => L.add('α = ' + fmt(al, 1) + ' rad/s²', PXV + 62 * Math.cos(3.6), PY + 62 * Math.sin(3.6), -1, -0.3, gc, 20, 22));
     }
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = pmr; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(mx, my, 16, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'm = ' + fmt(m, 2) + ' kg', mx - 22, my + 36, C('mass'), { size: 20, weight: 600, align: 'right', bg: alpha(PAL.soft, 0.9) });
+    queue.forEach((f) => f());
+    L.add('pivot', PXV, PY, -0.9, 0.45, pvr, 19, 22);
+    L.add('r = ' + fmt(r, 2) + ' m', (PXV + mx) / 2, (PY + my) / 2, ry, -rx, pc, 20, 20);
+    L.add('m = ' + fmt(m, 2) + ' kg', mx, my, -0.5, 0.86, C('mass'), 20, 26);
+    L.add('circular path of radius r', PXV, PY + rp, 0, 1, PAL.muted, 17, 24);
+    L.flush();
     /* the three equalities of the derivation, with the live numbers */
     text(ctx, 'the same force, read three ways', PX, 130, PAL.muted, { size: 18 });
     reading(ctx, PX, 176, 'Newton’s second law along the force', 'a = F/m = ' + fmt(a, 1) + ' m/s²', ac);
     reading(ctx, PX, 250, 'the tangential acceleration is rα', 'α = a/r = ' + fmt(al, 1) + ' rad/s²', gc);
     reading(ctx, PX, 324, 'the torque about the pivot', 'τ = rF = ' + fmt(tau, 2) + ' N·m', qc);
     reading(ctx, PX, 398, 'and the same torque as mr²α', 'mr²α = ' + fmt(m * r * r * al, 2) + ' N·m', qc);
-    reading(ctx, PX, 472, 'the moment of inertia of the point mass', 'mr² = ' + fmt(m * r * r, 3) + ' kg·m²', C('rotational-inertia'));
+    reading(ctx, PX, 472, 'moment of inertia of the mass', 'mr² = ' + fmt(m * r * r, 3) + ' kg·m²', C('rotational-inertia'));
     topline(ctx, Fv === 0 ? 'With no force on the mass there is no acceleration, no angular acceleration and no torque.'
       : 'A force of ' + fmt(Fv, 1) + ' N on a ' + fmt(m, 2) + ' kg mass ' + fmt(r, 2) + ' m from the pivot gives it ' + fmt(a, 1) + ' m/s² along the force and ' + fmt(al, 1) + ' rad/s² about the pivot.');
     readout(d.readout, `\\ktau = \\kr\\kF = \\km\\kr^2\\kalpha = (${fmt(m, 2)}\\ \\text{kg})(${fmt(r, 2)}\\ \\text{m})^2(${fmt(al, 1)}\\ \\text{rad/s}^2) = ${fmt(tau, 2)}\\ \\text{N}\\cdot\\text{m}`,
-      Fv === 0 ? 'Move the force slider and the mass begins to accelerate along the force, which is also an angular acceleration about the pivot.'
-        : 'The force is perpendicular to the cord, so a = F/m = ' + fmt(a, 1) + ' m/s² is the tangential acceleration, and a = rα gives α = ' + fmt(al, 1) + ' rad/s². Multiplying F = mrα by r puts the torque on the left, and mr² = ' + fmt(m * r * r, 3) + ' kg·m² stands where the mass stands in F = ma.');
+      Fv === 0 ? '' : `$\\km\\kr^2 = ${fmt(m * r * r, 3)}\\ \\text{kg}\\cdot\\text{m}^2$ stands where $\\km$ stands in $\\kF = \\km\\ka$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -212,7 +185,7 @@ function reading(ctx, x, y, label, value, color) {
   const R1s = ctl(d.controls, { label: 'R_1', cls: 'position', min: 0.05, max: 1.9, step: 0.05, value: 1, unit: 'm', dec: 2, aria: 'the inner radius of the ring' });
   const cur = () => SHAPES.find((s) => s.value === shape.value);
   const formula = el('div');
-  d.readout.append(formula, el('small', null, 'The formulas differ only in how far from the axis the mass sits on the whole. The mass of a hoop is all at the rim, so its moment of inertia is the largest a body of that mass and radius can have; a disk of the same mass and radius has half as much, because most of its mass is nearer the axis than the rim.'));
+  d.readout.append(formula);
   /* the sliders a formula has no use for are held (root rule 24.6) */
   function hold() { const u = cur().uses; Rs.disable(!u.R); ls.disable(!u.l); R1s.disable(!u.R1); }
   hold();
@@ -328,15 +301,15 @@ function reading(ctx, x, y, label, value, color) {
     else { text(ctx, s.label.slice(0, cut + 1), PX, 118, PAL.ink, { size: 21, weight: 600 }); text(ctx, s.label.slice(cut + 2), PX, 144, PAL.ink, { size: 21, weight: 600 }); }
     text(ctx, 'M = ' + fmt(M, 1) + ' kg', PX, 174, C('mass'), { size: 20 });
     reading(ctx, PX, 214, 'moment of inertia about the axis', 'I = ' + fmt(I, I < 10 ? 3 : 1) + ' kg·m²', ic);
-    text(ctx, 'compared with all the mass ' + fmt(far, 2) + ' m from the axis,', PX, 300, PAL.muted, { size: 18 });
-    text(ctx, 'the farthest any of it sits: M·(' + fmt(far, 2) + ' m)² = ' + fmt(ref, ref < 10 ? 3 : 1) + ' kg·m²', PX, 326, PAL.muted, { size: 18 });
+    text(ctx, 'against all its mass ' + fmt(far, 2) + ' m out, the farthest any sits:', PX, 300, PAL.muted, { size: 18 });
+    text(ctx, 'M·(' + fmt(far, 2) + ' m)² = ' + fmt(ref, ref < 10 ? 3 : 1) + ' kg·m²', PX, 326, PAL.muted, { size: 18 });
     const bx = PX, bw = 440, by = 372;
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(bx, by, bw, 30); ctx.fillStyle = alpha(ic, 0.55); ctx.fillRect(bx, by, bw * Math.min(1, share), 30); ctx.restore();
     line(ctx, bx + bw * Math.min(1, share), by - 6, bx + bw * Math.min(1, share), by + 36, ic, 3);
     line(ctx, bx + bw, by - 6, bx + bw, by + 36, PAL.muted, 2);
     text(ctx, fmt(100 * share, 0) + '%', bx + bw * Math.min(1, share) + (share > 0.8 ? -10 : 10), by + 60, ic, { size: 20, weight: 600, align: share > 0.8 ? 'right' : 'left' });
-    text(ctx, 'a hoop about its axis reaches 100%, because every bit of it is at the rim', PX, by + 100, PAL.muted, { size: 17 });
-    topline(ctx, (/^[aeiou]/i.test(s.label) ? 'An ' : 'A ') + s.label.charAt(0).toLowerCase() + s.label.slice(1).replace(' (or disk)', '').replace(' (or ring)', '') + ' of ' + fmt(M, 1) + ' kg has a moment of inertia of ' + fmt(I, I < 10 ? 3 : 1) + ' kg·m², ' + fmt(100 * share, 0) + '% of what all its mass at ' + fmt(far, 2) + ' m would give.');
+    text(ctx, 'a hoop about its axis fills the bar', PX, by + 100, PAL.muted, { size: 17 });
+    topline(ctx, 'With ' + fmt(M, 1) + ' kg, ' + (/^[aeiou]/i.test(s.label) ? 'an ' : 'a ') + s.label.charAt(0).toLowerCase() + s.label.slice(1).replace(' (or disk)', '').replace(' (or ring)', '') + ' has a moment of inertia of ' + fmt(I, I < 10 ? 3 : 1) + ' kg·m², ' + fmt(100 * share, 0) + '% of what all its mass at ' + fmt(far, 2) + ' m would give.');
     const nums = s.value === 'annular' ? `\\frac{${fmt(M, 1)}\\ \\text{kg}}{2}\\left[(${fmt(R1, 2)}\\ \\text{m})^2 + (${fmt(R, 2)}\\ \\text{m})^2\\right]`
       : s.value === 'disk-diameter' ? `\\frac{(${fmt(M, 1)}\\ \\text{kg})(${fmt(R, 2)}\\ \\text{m})^2}{4} + \\frac{(${fmt(M, 1)}\\ \\text{kg})(${fmt(l, 2)}\\ \\text{m})^2}{12}`
       : s.value === 'slab' ? `\\frac{(${fmt(M, 1)}\\ \\text{kg})\\left[(${fmt(l, 2)}\\ \\text{m})^2 + (${fmt(R, 2)}\\ \\text{m})^2\\right]}{12}`
@@ -385,7 +358,7 @@ function reading(ctx, x, y, label, value, color) {
     ctx.restore();
     const a0 = -th + Math.PI; line(ctx, CX, CY, CX + (Rp - 10) * Math.cos(a0), CY + (Rp - 10) * Math.sin(a0), gr, 5);   /* one rail marked so the turn can be followed */
     dot(ctx, CX, CY, gr, true, 8);
-    text(ctx, 'center', CX + 16, CY - 20, PAL.ink, { size: 18, bg: alpha(PAL.soft, 0.9) });
+    text(ctx, 'center', CX + 16, CY - 20, PAL.ink, { size: 18, bg: alpha(PAL.soft, 0.9) }); L.block(CX + 8, CY - 34, CX + 90, CY - 6);
     /* the radius, read out where the push is applied */
     const ph = Math.PI / 2, ex = CX + Rp * Math.cos(ph), ey = CY + Rp * Math.sin(ph);
     line(ctx, CX, CY, ex, ey, pc, 3, [6, 8]);
@@ -394,18 +367,19 @@ function reading(ctx, x, y, label, value, color) {
       const ca = -th + Math.PI / 2 - 1.1, cx = CX + rc.v * S * Math.cos(ca), cyy = CY + rc.v * S * Math.sin(ca);
       childAt = { x: cx, y: cyy };
       if (rc.v > 0.1) line(ctx, CX, CY, cx, cyy, pc, 2, [4, 8]);
-      personAbove(ctx, cx, cyy, 0.8, ca + Math.PI / 2, chr);   /* the child sits facing the way the platform carries her */
-      const rx = cx - CX, ry = cyy - CY, rl = Math.hypot(rx, ry) || 1;
-      L.add('child, ' + fmt(mc.v, 1) + ' kg at ' + fmt(rc.v, 2) + ' m', cx, cyy, rx / rl, ry / rl, chr, 19, 30);
+      F.personTop(ctx, cx, cyy, 0.8, ca + Math.PI / 2, chr);   /* the child sits facing the way the platform carries her */
+      const rx = cx - CX, ry = cyy - CY, rl = Math.hypot(rx, ry), out = rl > 1;   /* a child at the center has her label put below her */
+      L.add('child, ' + fmt(mc.v, 1) + ' kg at ' + fmt(rc.v, 2) + ' m', cx, cyy, out ? rx / rl : 0, out ? ry / rl : 1, chr, 19, 30);
     } else text(ctx, 'no one is on the platform', CX, CY + 60, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.soft, 0.9) });
-    /* the father's push at the edge, perpendicular to the radius, and the turn it makes */
+    /* the father's push at the edge, perpendicular to the radius: to the right at the near edge, so the platform turns
+       counterclockwise seen from above, and the turn it makes */
     if (Fs.v > 0) {
-      arrow(ctx, ex, ey, ex - Fs.v * KF, ey, fc, 5);
-      text(ctx, 'F = ' + fmt(Fs.v, 0) + ' N', ex - Fs.v * KF - 12, ey + 30, fc, { size: 21, weight: 600, align: Fs.v * KF > 120 ? 'left' : 'right', bg: alpha(PAL.panel, 0.9) });
+      arrow(ctx, ex, ey, ex + Fs.v * KF, ey, fc, 5);
+      text(ctx, 'F = ' + fmt(Fs.v, 0) + ' N', ex + Fs.v * KF + 12, ey + 30, fc, { size: 21, weight: 600, align: Fs.v * KF > 120 ? 'right' : 'left', bg: alpha(PAL.panel, 0.9) });
       /* the father stands outside the rim behind his push, seen from above, both hands on the edge */
-      const fx = ex + 58, fy = ey + 34, fh = Math.atan2(ey - fy, ex - fx);
-      personAbove(ctx, fx, fy, 1, fh, far, [{ x: ex + 2, y: ey + 2 }, { x: ex + 14, y: ey + 10 }]);
-      text(ctx, 'the father', fx + 40, fy + 4, far, { size: 18, bg: alpha(PAL.panel, 0.9) });
+      const fx = ex - 58, fy = ey + 34, fh = Math.atan2(ey - fy, ex - fx);
+      F.personTop(ctx, fx, fy, 1, fh, far, [{ x: ex - 14, y: ey + 10 }, { x: ex - 2, y: ey + 2 }]);
+      text(ctx, 'the father', fx - 40, fy + 4, far, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.9) });
       turnArc(ctx, CX, CY, Rp + 40, ac, -Math.PI / 2);
       L.add('α = ' + fmt(m.al, 2) + ' rad/s²', CX + (Rp + 40) * Math.cos(-0.87), CY + (Rp + 40) * Math.sin(-0.87), 0.7, -0.5, ac, 21, 24);
     }
@@ -430,9 +404,8 @@ function reading(ctx, x, y, label, value, color) {
     /* with no child the child's term leaves the sum, and the example's part (a) is what remains */
     const child = loaded ? ' + \\mk{c}{\\km\\kr_{\\text{c}}^2}' : '', childN = loaded ? ` + \\mk{cn}{${fmt(m.Ic, 1)}}` : '';
     F.morph(formula, `\\mk{a}{\\kalpha} = \\frac{\\mk{t}{\\ktau}}{\\mk{d}{\\frac{1}{2}\\kM\\kR^2}${child}} = \\frac{\\mk{tn}{${fmt(m.tau, 0)}}\\ \\text{N}\\cdot\\text{m}}{(\\mk{dn}{${fmt(m.Id, 1)}}${childN})\\ \\text{kg}\\cdot\\text{m}^2} = \\mk{an}{${fmt(m.al, 2)}}\\ \\text{rad/s}^2`);
-    note.textContent = (loaded ? 'The moment of inertia is the disk’s plus the child’s, I = ½MR² + m r_c² = ' + fmt(m.Id, 1) + ' + ' + fmt(m.Ic, 1) + ' = ' + fmt(m.I, 1) + ' kg·m². '
-        : 'The moment of inertia is the disk’s alone, I = ½MR² = ' + fmt(m.Id, 1) + ' kg·m². ')
-      + 'After 2.00 s of pushing the platform turns at ω = αt = ' + fmt(m.al * T, 2) + ' rad/s, which is ' + fmt(m.al * T / TAU, 2) + ' rev/s; the same push on the empty platform would reach ' + fmt(m.al0 * T, 1) + ' rad/s.';
+    const say = loaded ? `The same push on the empty platform would reach $\\kw = ${fmt(m.al0 * T, 1)}\\ \\text{rad/s}$ after 2.00 s.` : '';
+    if (note.dataset.said !== say) { note.dataset.said = say; note.textContent = say; F.renderMath(note); }
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();

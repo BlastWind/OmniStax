@@ -7,9 +7,15 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, pinned, labeller, strip, scale, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
+/* a drawn stroke joins the labeller's collision set as a chain of small boxes, so labels step round arrows and arcs */
+function blockSeg(lab, x1, y1, x2, y2, w = 8) {
+  const n = Math.max(1, Math.ceil(Math.hypot(x2 - x1, y2 - y1) / 16));
+  for (let i = 0; i <= n; i++) { const x = x1 + ((x2 - x1) * i) / n, y = y1 + ((y2 - y1) * i) / n; lab.block(x - w, y - w, x + w, y + w); }
+}
+function blockArc(lab, cx, cy, R, a0, a1) { const n = 10; for (let i = 0; i < n; i++) { const a = a0 + ((a1 - a0) * i) / n, b = a0 + ((a1 - a0) * (i + 1)) / n; blockSeg(lab, cx + R * Math.cos(a), cy + R * Math.sin(a), cx + R * Math.cos(b), cy + R * Math.sin(b)); } }
 const TAU = 2 * Math.PI;
 /* a value that rounds to nothing at d decimals is nothing, so no reading shows a signed zero */
 const eps = (v, d) => (Math.abs(v) < 0.5 * Math.pow(10, -d) ? 0 : v);
@@ -131,6 +137,7 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     dot(ctx, px, py, rp, true, 9);
     const lab = labeller(ctx, H);
     lab.block(0, 0, 1400, 96);
+    blockSeg(lab, px, py, px + L * ux, py + L * uy); blockArc(lab, CX, CY, R * 0.68, Math.PI * 0.75 - 0.5, Math.PI * 0.75 + 0.5);
     lab.add('v = ' + fmt(v, 2) + ' m/s' + (cut ? ' (arrow shortened)' : ''), px + L * ux, py + L * uy, ...away(py + L * uy, ux, uy), vc, 21, 24);
     lab.add('r = ' + fmt(r, 2) + ' m', (CX + px) / 2, (CY + py) / 2, Math.sin(th), Math.cos(th), pc, 21, 22);
     lab.add('Δθ = ' + fmt(th, 2) + ' rad', CX + ar * Math.cos(am), CY + ar * Math.sin(am), Math.cos(am), Math.sin(am), anc, 20, 24);
@@ -141,8 +148,8 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
       : t >= TAU / w - 1e-9 ? 'After ' + fmt(t, 2) + ' s the radius has swept a full 2π rad, and the velocity has come back to the direction it began with.'
       : 'After ' + fmt(t, 2) + ' s the radius has swept ' + fmt(th, 2) + ' rad and the rim moves at ' + fmt(v, 2) + ' m/s in a direction that has turned with it.');
     readout(d.readout, `\\kv = \\kr\\kw = (${fmt(r, 2)}\\ \\text{m})(${fmt(w, 1)}\\ \\text{rad/s}) = ${fmt(v, 2)}\\ \\text{m/s}`,
-      t > 0.05 ? 'The radius has swept Δθ = ' + fmt(th, 2) + ' rad in Δt = ' + fmt(t, 2) + ' s, so ω = Δθ/Δt = ' + fmt(th / t, 1) + ' rad/s, the same at every instant because the motion is uniform. One revolution takes 2π/ω = ' + fmt(TAU / w, 2) + ' s.'
-        : 'One revolution takes 2π/ω = ' + fmt(TAU / w, 2) + ' s. Counterclockwise is the positive direction.');
+      t > 0.05 ? `$\\kw = \\kdtheta/\\kdt = ${fmt(th, 2)}\\ \\text{rad}/${fmt(t, 2)}\\ \\text{s} = ${fmt(th / t, 1)}\\ \\text{rad/s}$, the same at every instant because the motion is uniform.`
+        : `One revolution takes $2\\pi/\\kw = ${fmt(TAU / w, 2)}\\ \\text{s}$.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TAU / ws.v / 5), draw });
 })();
@@ -200,8 +207,8 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     const up = `\\kalpha = \\frac{\\kdw}{\\kdt} = \\frac{${fmt(m.w, 1)}\\ \\text{rad/s}}{${fmt(m.T1, 2)}\\ \\text{s}} = ${fmt(m.a1, 2)}\\ \\text{rad/s}^2`;
     const stop = `\\kdt = \\frac{\\kdw}{\\kalpha} = \\frac{${knum(-m.w, 1)}\\ \\text{rad/s}}{${knum(ab.v, 1)}\\ \\text{rad/s}^2} = ${fmt(m.ts, 3)}\\ \\text{s}`;
     readout(d.readout, braking ? stop : up,
-      braking ? 'The spin-up was the gentle slope, α = ' + fmt(m.a1, 2) + ' rad/s². The brakes make the angular acceleration large and negative, so the angular velocity goes to zero quickly.'
-        : 'Once the wheel is spinning, the brakes bring it to rest in Δt = Δω/α = ' + fmt(m.ts, 3) + ' s. The angular acceleration of the spin-up is small and positive, and that of the stop is large and negative.');
+      braking ? `The spin-up was the gentle slope, $\\kalpha = ${fmt(m.a1, 2)}\\ \\text{rad/s}^2$.`
+        : `The brakes will stop the wheel in $\\kdt = \\kdw/\\kalpha = ${fmt(m.ts, 3)}\\ \\text{s}$.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });
 })();
@@ -249,6 +256,12 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     /* the velocity, the tangential acceleration along it and the centripetal acceleration towards the center */
     const lab = labeller(ctx, H);
     lab.block(0, 0, 1400, 96); lab.block(box.l - 80, box.t - 40, 1400, H);
+    blockArc(lab, CX, CY, R + 30, Math.PI * 0.75 - 0.45, Math.PI * 0.75 + 0.45);
+    { const Lv = Math.min(Math.abs(v) * KV, VMAX) * Math.sign(v), ox = px - 16 * cx, oy = py - 16 * cyy, Lc = Math.min(ac * KA, R - 14);
+      if (Math.abs(v) > 0.02) blockSeg(lab, px, py, px + Lv * ux, py + Lv * uy);
+      if (Math.abs(at) > 0.005) blockSeg(lab, ox, oy, ox + at * KA * ux, oy + at * KA * uy);
+      if (ac > 0.005) blockSeg(lab, px, py, px + Lc * cx, py + Lc * cyy);
+      blockSeg(lab, CX, CY, px, py, 4); lab.block(px - 12, py - 12, px + 12, py + 12); }
     if (Math.abs(v) > 0.02) {
       const full = Math.abs(v) * KV, L = Math.min(full, VMAX), vs = Math.sign(v), cut = L < full - 1;
       arrow(ctx, px, py, px + L * vs * ux, py + L * vs * uy, vc, 5);
@@ -265,10 +278,9 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
       const full = ac * KA, L = Math.min(full, R - 14), cut = L < full - 1;
       arrow(ctx, px, py, px + L * cx, py + L * cyy, acc, 5);
       const sv = v >= 0 ? 1 : -1;   /* the label sits behind the point, away from the velocity arrow */
-      lab.add('a_c = ' + fmt(ac, 2) + ' m/s²' + (cut ? ' (arrow shortened)' : ''), px + L * 0.6 * cx, py + L * 0.6 * cyy, -ux * sv, -uy * sv, acc, 21, 22);
+      lab.add('a_c = ' + fmt(ac, 2) + ' m/s²' + (cut ? ' (shortened)' : ''), px + L * 0.6 * cx, py + L * 0.6 * cyy, -ux * sv, -uy * sv, acc, 21, 22);
       if (Math.abs(at) > 0.005) rightAngle(ctx, px, py, Math.sign(at) * ux, Math.sign(at) * uy, cx, cyy, acc);
     }
-    lab.add('r = ' + fmt(r, 2) + ' m', (CX + px) / 2, (CY + py) / 2, Math.sin(th), Math.cos(th), pc, 20, 20);
     dot(ctx, px, py, F.ref('point'), true, 9);
     lab.flush();
     /* the graph of speed against time: a straight line whose slope is the tangential acceleration */
@@ -280,10 +292,10 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     line(ctx, X(t), Y(Math.max(-2, Math.min(4, v))), X(t), box.b, tc, 2, [4, 8]);
     text(ctx, 'slope = a_t = ' + num(at, 2) + ' m/s²', box.r, box.t - 24, acc, { size: 18, weight: 600, align: 'right' });
     topline(ctx, Math.abs(a) < 1e-9
-      ? 'With no angular acceleration the speed stays at ' + fmt(Math.abs(v), 2) + ' m/s and only a_c = ' + fmt(ac, 2) + ' m/s² acts, turning the velocity: this is uniform circular motion.'
-      : 'At ' + fmt(t, 2) + ' s the point moves at ' + num(v, 2) + ' m/s; a_t = ' + num(at, 2) + ' m/s² is changing that speed and a_c = ' + fmt(ac, 2) + ' m/s² is changing its direction.');
-    readout(d.readout, `\\kat = \\kr\\kalpha = ${knum(at, 2)}\\ \\text{m/s}^2`,
-      'With r = ' + fmt(r, 2) + ' m, α = ' + num(a, 2) + ' rad/s² and ω = ω₀ + αt = ' + num(w, 2) + ' rad/s now, the tangential acceleration is (' + fmt(r, 2) + ' m)(' + num(a, 2) + ' rad/s²) and the centripetal acceleration is a_c = rω² = (' + fmt(r, 2) + ' m)(' + num(w, 2) + ' rad/s)² = ' + fmt(ac, 2) + ' m/s².The two are perpendicular and independent: the tangential acceleration is the same at every instant while α is, and the centripetal acceleration grows with the square of the angular velocity.' + (Math.abs(v) < 0.02 && t > 0.1 ? ' At this instant the point is at rest, so it has no centripetal acceleration at all.' : ''));
+      ? 'With no angular acceleration the speed stays at ' + fmt(Math.abs(v), 2) + ' m/s and only $\\kac = ' + fmt(ac, 2) + '\\ \\text{m/s}^2$ acts, turning the velocity: this is uniform circular motion.'
+      : 'At ' + fmt(t, 2) + ' s the point moves at ' + num(v, 2) + ' m/s; $\\kat = ' + knum(at, 2) + '\\ \\text{m/s}^2$ is changing that speed and $\\kac = ' + fmt(ac, 2) + '\\ \\text{m/s}^2$ is changing its direction.');
+    readout(d.readout, `\\kat = \\kr\\kalpha = (${fmt(r, 2)}\\ \\text{m})(${knum(a, 2)}\\ \\text{rad/s}^2) = ${knum(at, 2)}\\ \\text{m/s}^2`,
+      `$\\kac = \\kr\\kw^2 = (${fmt(r, 2)}\\ \\text{m})(${knum(w, 2)}\\ \\text{rad/s})^2 = ${fmt(ac, 2)}\\ \\text{m/s}^2$, perpendicular to $\\kat$.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
@@ -328,16 +340,15 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
     silhouette(ctx, { x: peg.x, y: peg.y, s: RS, pose: 'sit', hip: { x: -30, y: -65 }, shoulder: { x: 12, y: -112 }, head: { x: 24, y: -134 }, feet: [{ x: 0, y: 0 }, { x: -6, y: 2 }], hands: [hand, { x: hand.x - 4, y: hand.y + 4 }], kneeSide: 1, elbowSide: -1 });
     const wh = F.ref('wheels');
     wheel(ctx, rear, hub, rw, phi, 6, wh); wheel(ctx, front, hub, rw, phi, 6, wh);
-    /* the linear acceleration of the machine and its velocity, stacked under the headline and pointing the way it
-       goes, moved left where their tips would leave the canvas; the angular acceleration of the wheels, on arcs round
-       both, named under the rear wheel below the distance marks; the radius drawn on the front wheel and named under it */
-    /* the acceleration leaves the machine's centre and runs through its body; the velocity leaves its nose, ahead of the
-       front wheel at headlight height; both labels sit above their arrows so the tips stay on the canvas */
-    const cm = { x: bx, y: hub - 46 }, nose = { x: front + rw + 10, y: hub - 104 };
+    /* the angular acceleration of the wheels is drawn on arcs round both and named under the rear wheel below the
+       distance marks; the radius is drawn on the front wheel and named under it */
+    /* the velocity and the acceleration leave the nose, ahead of the front wheel, one above the other, clear of the
+       tank and the rider; the velocity's label sits above it and the acceleration's below */
+    const nose = { x: front + rw + 10, y: hub - 104 };
     const lab = labeller(ctx, 860); lab.block(0, 0, 1400, 96);
-    dot(ctx, cm.x, cm.y, PAL.ink, true, 7);
-    arrow(ctx, cm.x, cm.y, cm.x + a * KA, cm.y, acc, 5);
-    lab.add('a_t = ' + fmt(a, 2) + ' m/s²', cm.x + a * KA / 2, cm.y, 0, -1, acc, 21, 30);
+    const ahead = { x: nose.x, y: nose.y + 50 };
+    arrow(ctx, ahead.x, ahead.y, ahead.x + a * KA, ahead.y, acc, 5);
+    lab.add('a_t = ' + fmt(a, 2) + ' m/s²', ahead.x + a * KA / 2, ahead.y, 0, 1, acc, 21, 24);
     if (v > 0.2) {
       arrow(ctx, nose.x, nose.y, nose.x + v * KV, nose.y, vc, 5);
       lab.add('v = ' + fmt(v, 1) + ' m/s', nose.x + v * KV / 2, nose.y, 0, -1, vc, 21, 24);
@@ -357,7 +368,7 @@ function trace(ctx, f, t0, t1, tNow, X, Y, color) {
       : done ? 'After ' + fmt(T, 2) + ' s the motorcycle moves at ' + fmt(vf, 1) + ' m/s and each wheel turns at ' + fmt(vf / r, 1) + ' rad/s, having covered ' + fmt(x, 1) + ' m.'
       : 'At ' + fmt(t, 2) + ' s the motorcycle moves at ' + fmt(v, 1) + ' m/s and its wheels turn at ' + fmt(w, 1) + ' rad/s, gaining ' + fmt(al, 1) + ' rad/s every second.');
     readout(d.readout, `\\kalpha = \\frac{\\kat}{\\kr} = \\frac{${fmt(a, 2)}\\ \\text{m/s}^2}{${fmt(r, 3)}\\ \\text{m}} = ${fmt(al, 1)}\\ \\text{rad/s}^2`,
-      'The linear acceleration is a_t = Δv/Δt = (' + fmt(vf, 1) + ' m/s)/(' + fmt(T, 2) + ' s) = ' + fmt(a, 2) + ' m/s², and it is the tangential acceleration of the rim of each wheel where it meets the road. The smaller the wheel, the larger the angular acceleration the same linear acceleration asks of it.');
+      `$\\kat = \\kdv/\\kdt = (${fmt(vf, 1)}\\ \\text{m/s})/(${fmt(T, 2)}\\ \\text{s}) = ${fmt(a, 2)}\\ \\text{m/s}^2$, the tangential acceleration of each wheel's rim where it meets the road.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => dts.v / 5), draw });
 })();

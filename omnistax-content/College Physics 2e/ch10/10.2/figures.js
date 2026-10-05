@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, pinned, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -113,7 +113,7 @@ function fly(ctx, x, y, heading, color, halo) {
     const aStr = (m.a < 0 ? '(' : '') + sgn(m.a) + fmt(Math.abs(m.a), 0) + '\\ \\text{rad/s}^2' + (m.a < 0 ? ')' : '');
     const tEnd = Math.min(tau, m.stop), omEnd = m.om(tEnd);
     readout(d.readout, `\\kw = \\kwo + \\kalpha\\kt = ${fmt(m.o0, 0)}\\ \\text{rad/s} + ${aStr}(${sig3(tEnd)}\\ \\text{s}) = ${sig3(omEnd)}\\ \\text{rad/s}`,
-      'The angle turned through is θ = ω₀t + ½αt² = ' + sig3(th) + ' rad = ' + sig3(rev) + ' rev, so x = rθ = ' + sig3(x) + ' m of line has left the reel, at v = rω = ' + sig3(v) + ' m/s.');
+      `$\\ktheta = \\kwo\\kt + \\tfrac{1}{2}\\kalpha\\kt^2 = ${sig3(th)}\\ \\text{rad}$, so $\\kx = \\kr\\ktheta = ${sig3(x)}\\ \\text{m}$ of line has left the reel.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => tt.v / 5), draw });
 })();
@@ -137,7 +137,8 @@ function fly(ctx, x, y, heading, color, halo) {
   const geom = () => ({ Rp: 110 + (rr.v - 0.05) * 520 });
   const state = () => { const tau = cy.now(), th = wb.v * TAU * tau; return { tau, th, rev: th / TAU, x: rr.v * th, disp: 2 * rr.v * Math.abs(Math.sin(th / 2)) }; };
   const flyAt = () => { const { Rp } = geom(), { th } = state(); return { x: cx + Rp * Math.cos(-th), y: cyy + Rp * Math.sin(-th) }; };
-  hover(d.stage, () => { const p = flyAt(); return [{ x: p.x, y: p.y, r: 34, name: 'the fly' }]; });
+  const lunchAt = () => { const { Rp } = geom(), a = -state().th + 2.4; return { x: cx + Rp * 0.6 * Math.cos(a), y: cyy + Rp * 0.6 * Math.sin(a), r: Rp * 0.2 }; };
+  hover(d.stage, () => { const p = flyAt(), l = lunchAt(); return [{ x: p.x, y: p.y, r: 34, name: 'the fly' }, { x: l.x, y: l.y, r: Math.max(l.r, 16), name: 'the lunch' }]; });
   function draw() {
     const { ctx } = begin(d.c);
     const { Rp } = geom(), s = state(), T = tt.v, ended = s.tau >= T - 1e-9;
@@ -148,7 +149,8 @@ function fly(ctx, x, y, heading, color, halo) {
     disc(ctx, cx, cyy, Rp * 0.78, null, alpha(PAL.ink, 0.15), 2);
     disc(ctx, cx, cyy, 10, plc, null);
     const lx = cx + Rp * 0.6 * Math.cos(ang + 2.4), ly = cyy + Rp * 0.6 * Math.sin(ang + 2.4);
-    disc(ctx, lx, ly, Rp * 0.2, PAL.panel, lu, 2); text(ctx, 'lunch', lx, ly, lu, { size: 17, align: 'center' });
+    disc(ctx, lx, ly, Rp * 0.2, PAL.panel, lu, 2);
+    if (Rp * 0.4 > F.measure(ctx, 'lunch', { size: 17 }) + 8) text(ctx, 'lunch', lx, ly, lu, { size: 17, align: 'center' });   /* a plate too small to hold the word names the lunch on hover */
     /* the path along the rim since the fly started, wrapping each revolution, and the displacement chord */
     const sx = cx + Rp, sy = cyy, p = flyAt(), cp = C('position');
     if (s.th > 0) {
@@ -177,8 +179,7 @@ function fly(ctx, x, y, heading, color, halo) {
       ? 'After ' + fmt(s.tau, 1) + ' min the fly has gone round ' + sig3(s.rev) + ' times and travelled ' + sig3(s.x) + ' m' + (whole ? ', and is back where it started.' : ', and sits ' + fmt(s.disp, 2) + ' m from where it started.')
       : 'After ' + fmt(s.tau, 2) + ' min the fly has gone round ' + sig3(s.rev) + ' times and travelled ' + sig3(s.x) + ' m.';
     topline(ctx, headline);
-    readout(d.readout, `\\theta = \\kwb\\kt = (${fmt(wb.v, 1)}\\ \\text{rpm})(${fmt(s.tau, 2)}\\ \\text{min}) = ${sig3(s.rev)}\\ \\text{rev} = ${sig3(s.th)}\\ \\text{rad}, \\quad \\kx = \\kr\\theta = ${sig3(s.x)}\\ \\text{m}`,
-      'The distance travelled keeps growing, but the displacement is zero after every complete revolution, because each one brings the fly back to its original position.');
+    readout(d.readout, `\\ktheta = \\kwb\\kt = (${fmt(wb.v, 1)}\\ \\text{rpm})(${fmt(s.tau, 2)}\\ \\text{min}) = ${sig3(s.rev)}\\ \\text{rev} = ${sig3(s.th)}\\ \\text{rad}, \\quad \\kx = \\kr\\ktheta = ${sig3(s.x)}\\ \\text{m}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => tt.v / 6), draw });
 })();

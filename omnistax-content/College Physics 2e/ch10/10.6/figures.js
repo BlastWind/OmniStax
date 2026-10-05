@@ -76,6 +76,7 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
     if (struck) { const g = at(ELL, 0); line(ctx, NX, NY, g.x, g.y, alpha(sc, 0.3), 3, [10, 10]); }
     stick(ctx, NX, NY, tip.x, tip.y, 16, sc);
     nail(ctx, NX, NY, F.ref('nail'));
+    for (let k = 0; k <= 12; k++) { const p = at((ELL * k) / 12, th); lab.block(p.x - 14, p.y - 14, p.x + 14, p.y + 14); }   /* labels keep off the stick */
     hits = [{ x: NX, y: NY, r: 22, name: 'the nail, the pivot' }, { x: (NX + tip.x) / 2, y: (NY + tip.y) / 2, r: 60, name: 'the stick, mass M' }];
     if (!struck) {
       const dx = NX - (APPROACH - v.v * tau) * SC, dy = NY - r.v * SC;
@@ -95,7 +96,7 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
       lab.add('v_CM', cm.x + 12 * tx + K * vcm * tx, cm.y + 12 * ty + K * vcm * ty, tx, ty, C('velocity'), 22, 22);
       /* the angular velocity about the nail */
       arcArrow(ctx, NX, NY, 46, -Math.PI / 2 + th - 0.9, 1.8, C('angular-rate'), 4);
-      const la = -Math.PI / 2 + th; lab.add("ω′", NX + 70 * Math.cos(la), NY + 70 * Math.sin(la), Math.cos(la), Math.sin(la), C('angular-rate'), 24, 16);
+      const la = -Math.PI / 2 + th - 1.25; lab.add("ω′", NX + 52 * Math.cos(la), NY + 52 * Math.sin(la), Math.cos(la), Math.sin(la), C('angular-rate'), 24, 16);   /* behind the stick, where the arc starts */
     }
     /* the bars: before hollow, after filled, three fixed caps */
     const BY = 770, HM = 165;
@@ -118,11 +119,9 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
       : 'Stuck together, the disk and the ' + fmt(M.v, 2) + ' kg stick turn about the nail at ' + sig3(s.w) + ' rad/s.');
     const dp = s.pp - s.p, same = Math.abs(dp) < 0.005 * s.p;
     readout(d.readout, `\\kwprime = \\frac{\\km\\kv\\kr}{\\kIprime} = \\frac{(${sig3(s.mk)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})(${fmt(r.v, 2)}\\ \\text{m})}{${sig3(s.Ip)}\\ \\text{kg}\\cdot\\text{m}^2} = ${sig3(s.w)}\\ \\text{rad/s}`,
-      !struck ? 'Before the collision the disk’s angular momentum about the nail is L = mvr = ' + sig3(s.L) + ' kg·m²/s, its kinetic energy is ' + sig3(s.KE) + ' J and its linear momentum is ' + sig3(s.p) + ' kg·m/s.'
-        : 'The angular momentum is still ' + sig3(s.L) + ' kg·m²/s and the kinetic energy has fallen to ' + sig3(s.KEp) + ' J, while the linear momentum '
-          + (same ? 'is unchanged at ' + sig3(s.pp) + ' kg·m/s, because the disk struck at the percussion point and the nail pushed neither forward nor backward.'
-            : dp > 0 ? 'has risen from ' + sig3(s.p) + ' to ' + sig3(s.pp) + ' kg·m/s, because the nail pushed forward on the stick.'
-              : 'has fallen from ' + sig3(s.p) + ' to ' + sig3(s.pp) + ' kg·m/s, because the nail pushed backward on the stick.'));
+      !struck ? '' : same ? 'The linear momentum is unchanged: the disk struck at the percussion point, and the nail pushed neither way.'
+        : dp > 0 ? 'The linear momentum has risen because the nail pushed forward on the stick.'
+          : 'The linear momentum has fallen because the nail pushed backward on the stick.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => { const s = state(); return cy.now() < s.tA ? s.tA / 1.5 : s.tR / 3.5; }), draw });
 })();
@@ -150,12 +149,6 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
     ctx.fillRect(x - 6, grip, 12, base - grip);
     ctx.restore();
   }
-  function hand(ctx, x, y, col) {
-    ctx.save(); ctx.fillStyle = alpha(col, 0.18); ctx.strokeStyle = col; ctx.lineWidth = 2.5;
-    ctx.beginPath(); ctx.roundRect(x - 22, y - 34, 44, 40, 10); ctx.fill(); ctx.stroke();
-    for (let k = 0; k < 3; k++) line(ctx, x - 22, y - 26 + k * 10, x + 22, y - 26 + k * 10, alpha(col, 0.5), 1.5);
-    ctx.restore();
-  }
   function draw() {
     const { ctx, H } = begin(d.c);
     const k = 1 - 1.5 * f.v, zero = Math.abs(k) < 0.02, rs = f.v * LS, rr = f.v * LR;
@@ -168,7 +161,7 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
     for (const b of bodies) {
       const top = PY - b.len * SC, ys = PY - f.v * b.len * SC, yp = PY - (2 / 3) * b.len * SC;
       if (b.pivot === 'nail') { stick(ctx, b.x, PY, b.x, top, 18, sc); nail(ctx, b.x, PY, nc); }
-      else { racquet(ctx, b.x, top, PY, rc); hand(ctx, b.x, PY, hc); }
+      else { racquet(ctx, b.x, top, PY, rc); F.fist(ctx, b.x, PY - 14, 1, 0.2, 0.7, hc); }   /* the library's fist round the end of the handle, the forearm reaching back to the player */
       /* the ball and its blow */
       dot(ctx, b.x - 34, ys, bc, true, 15); dot(ctx, b.x - 34, ys, PAL.panel, false, 8);
       arrow(ctx, b.x + 14, ys, b.x + 14 + FL, ys, C('force'), 5);
@@ -196,7 +189,7 @@ function bar(ctx, x, base, w, hmax, value, cap, color, filled, label) {
       : k < 0 ? 'Struck ' + fmt(rr, 3) + ' m from the hand, ' + where + ', the racquet pulls the hand backward with ' + fmt(-k, 2) + ' of the ball’s force, and the stick does the same to its nail.'
         : 'Struck ' + fmt(rr, 3) + ' m from the hand, ' + where + ', the racquet pushes into the hand with ' + fmt(k, 2) + ' of the ball’s force, and the stick does the same to its nail.');
     readout(d.readout, `\\kF_{\\text{hand}} = \\kF_{\\text{nail}} = \\left(1 - \\frac{3}{2}\\,\\frac{r}{\\ell}\\right)\\kF_{\\text{ball}} = \\left(1 - \\frac{3}{2}\\times${fmt(f.v, 2)}\\right)\\kF_{\\text{ball}} = ${zero ? '0' : sgn(k) + fmt(Math.abs(k), 2) + '\\,\\kF_{\\text{ball}}'}`,
-      'Both bodies are taken as uniform rods pivoted at one end, for which the percussion point lies two thirds of the way along, 0.800 m from the nail and 0.457 m from the hand. A negative factor is a force opposite to the ball’s push, which pulls the handle out of the hand.');
+      'Both bodies are taken as uniform rods pivoted at one end, whose percussion point lies two thirds of the way along.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
