@@ -10,74 +10,67 @@ const RAD = Math.PI / 180;
 /* =====================================================================
    FIGURE 4.20: Tarzan on his vine, the four panels of the book under one
    number. (a) the sketch, (b) every force as an arrow, (c) the man alone
-   as the system of interest, (d) the two remaining forces compared. The
-   mass sets every arrow's length and the acceleration pulls the tension
-   away from the weight, which is what "T = -w, if Tarzan is stationary"
-   means. Nothing here has a time in it: Tarzan hangs, and the panels
-   answer the sliders, so the figure registers no cycle and carries no
-   transport.
+   as the system of interest, (d) the two remaining forces added head to
+   tail. The mass sets every arrow's length and the acceleration pulls the
+   tension away from the weight, which is what "T = -w, if Tarzan is
+   stationary" means. Nothing here has a time in it, so the figure is still.
 ===================================================================== */
 (function () {
-  const d = sim('sim-tarzan', 720);
+  const H = 740;
+  const d = sim('sim-tarzan', H);
   const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 100, step: 5, value: 80, unit: 'kg', dec: 0, aria: 'mass of the man' });
   const A = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: -2.5, max: 2.5, step: 0.25, value: 0, unit: 'm/s²', dec: 2, aria: 'vertical acceleration',
     specials: [{ at: 0, label: 'stationary' }] });
   const ro = F.readout(d);
-  const K = 0.20;                     /* logical units per newton, so an 80 kg weight draws 157 units long */
+  const K = 0.16;                     /* units per newton: the largest tension, 1230 N, draws 197 long */
   const PX = [30, 370, 710, 1050], PW = 310;
   const LAB = ['(a)', '(b)', '(c)', '(d)'];
   const PHR = ['the situation sketched', 'every force as an arrow', 'the system of interest', 'the forces added head to tail'];
-  const GRIP = 360, STOM = 462, BASE = 600;
-  /* the man hanging from the vine: both arms up along it to his hands at (cx, GRIP), a filled
-     torso, and legs hanging free; drawn here rather than with the library's person, whose
-     hands do not reach above its head */
-  function hanging(ctx, cx) {
-    const body = F.ref('tarzan');
-    ctx.save(); ctx.strokeStyle = body; ctx.fillStyle = body; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(cx - 8, GRIP); ctx.lineTo(cx - 16, GRIP + 60); ctx.moveTo(cx + 8, GRIP); ctx.lineTo(cx + 16, GRIP + 60); ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx, GRIP + 46, 14, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(cx - 16, GRIP + 60); ctx.lineTo(cx + 16, GRIP + 60); ctx.lineTo(cx + 11, GRIP + 126); ctx.lineTo(cx - 11, GRIP + 126); ctx.closePath(); ctx.fill();
-    ctx.lineWidth = 5.5; ctx.beginPath(); ctx.moveTo(cx - 8, GRIP + 124); ctx.lineTo(cx - 14, GRIP + 176); ctx.lineTo(cx - 10, GRIP + 214);
-    ctx.moveTo(cx + 8, GRIP + 124); ctx.lineTo(cx + 16, GRIP + 176); ctx.lineTo(cx + 14, GRIP + 214); ctx.stroke();
-    ctx.restore();
-  }
-
-  /* the branch and the vine the man hangs from; only the sketch shows the branch, so the tension arrow of the
-     other panels has clear room above the hand */
-  function vine(ctx, i, cx) {
-    const rope = F.ref('vine');
-    if (i === 0) { fixed(ctx, PX[i], 296, PW, 22); line(ctx, cx - 5, 318, cx + 4, 350, rope, 5); }
-    if (i < 2) line(ctx, cx + (i === 0 ? 4 : 0), 350, cx, GRIP, rope, 5);
+  const S = 1.6, GRIP = 300;          /* the silhouette's scale and the height of the upper hand on the vine */
+  const HANDS = [{ x: -1, y: -178 }, { x: 1, y: -170 }];
+  const STOM = GRIP + (178 - 74) * S, FEET = GRIP + 178 * S, BASE = 560;
+  const OFF = 28;                     /* the arrows stand this far beside the body's line */
+  const lead = (ctx, x1, y, x2) => line(ctx, x1, y, x2, y, alpha(C('force'), 0.5), 2, [4, 5]);
+  function man(ctx, cx) {
+    F.silhouette(ctx, { x: cx, y: FEET, s: S, color: F.ref('tarzan'), hip: { x: 0, y: -74 }, shoulder: { x: 0, y: -118 }, head: { x: 12, y: -138 },
+      feet: [{ x: 4, y: 0 }, { x: -4, y: 0 }], hands: HANDS, elbowSide: -1 });
+    /* the library's hands closed on the vine, the far one first */
+    [1, 0].forEach((k) => F.hand(ctx, cx + HANDS[k].x * S, FEET + HANDS[k].y * S, { aim: [0, -1], view: 'side', curl: 1, thumb: 'along', right: k === 0, s: 0.42, color: F.ref('tarzan'), ink: F.ref('tarzan') }));
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const m = M.v, a = A.v, w = m * G, T = m * (G + a), lw = K * w, lt = K * T, gap = T - w;
+    const m = M.v, a = A.v, still = Math.abs(a) < 1e-9, w = m * G, T = m * (G + a), lw = K * w, lt = K * T, gap = T - w;
+    const lines = headline(ctx, still
+      ? `Tarzan hangs still, so the tension $\\kTf$ of ${fmt(T, 0)} N is exactly his weight $\\kwgt$ of ${fmt(w, 0)} N`
+      : `Tarzan accelerates ${a > 0 ? 'upward' : 'downward'} at ${fmt(Math.abs(a), 2)} m/s², so the tension $\\kTf$ of ${fmt(T, 0)} N is ${fmt(Math.abs(gap), 0)} N ${a > 0 ? 'more' : 'less'} than his weight $\\kwgt$`);
+    const lab = F.labeller(ctx, H, { headline: lines });
     PX.forEach((px, i) => {
       const cx = px + PW / 2;
-      text(ctx, LAB[i], cx, 88, PAL.ink, { size: 22, weight: 600, align: 'center' });
-      text(ctx, PHR[i], cx, 112, PAL.muted, { size: 17, align: 'center' });
-      if (i < 3) { vine(ctx, i, cx); hanging(ctx, cx); }
+      text(ctx, LAB[i], cx, H - 54, PAL.ink, { size: 22, weight: 600, align: 'center' });
+      text(ctx, PHR[i], cx, H - 28, PAL.muted, { size: 17, align: 'center' });
+      if (i < 3) {
+        const rope = F.ref('vine');
+        if (i === 0) fixed(ctx, px, 112, PW, 22);
+        line(ctx, cx, i === 0 ? 134 : 150, cx, GRIP + (HANDS[1].y - HANDS[0].y) * S + 6, rope, 5);
+        man(ctx, cx);
+      }
       if (i === 2) {                               /* the boundary of the system of interest */
         ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.setLineDash([12, 10]);
-        ctx.strokeRect(cx - 66, GRIP - 14, 132, 240); ctx.restore();
+        ctx.strokeRect(cx - 92, GRIP - 18, 184, FEET - GRIP + 34); ctx.restore();
       }
-      /* the arrows stand beside the body, thinner than it, each leaving from the point where its
-         force acts: the tension from the hands, the weight from the middle of the body, and in (b)
-         his own pull on the vine down from the hands */
-      if (i === 1 || i === 2) {
-        arrow(ctx, cx - 34, GRIP, cx - 34, GRIP - lt, C('force'), 5);
-        text(ctx, 'T', cx - 48, GRIP - lt / 2, C('force'), { size: 24, weight: 600, align: 'right' });
-        line(ctx, cx - 34, GRIP, cx - 10, GRIP, alpha(C('force'), 0.5), 2, [4, 5]);
-        arrow(ctx, cx + 34, STOM, cx + 34, STOM + lw, C('force'), 5);
-        text(ctx, 'w', cx + 48, STOM + lw / 2 + 8, C('force'), { size: 24, weight: 600, align: 'left' });
-        line(ctx, cx + 12, STOM, cx + 34, STOM, alpha(C('force'), 0.5), 2, [4, 5]);
+      if (i === 1 || i === 2) {                    /* the tension up from the hands, the weight down from the middle of the body, both on the open side */
+        const xl = cx - OFF;
+        lead(ctx, xl, GRIP, cx - 6); arrow(ctx, xl, GRIP, xl, GRIP - lt, C('force'), 5);
+        lab.beside({ x1: xl, y1: GRIP, x2: xl, y2: GRIP - lt }, 'left', 'T', C('force'), 24, { offset: 0.6, gap: 20 });
+        lead(ctx, xl, STOM, cx - 8); arrow(ctx, xl, STOM, xl, STOM + lw, C('force'), 5);
+        lab.beside({ x1: xl, y1: STOM, x2: xl, y2: STOM + lw }, 'right', 'w', C('force'), 24, { offset: 0.6, gap: 20 });
       }
-      if (i === 1) {
-        arrow(ctx, cx + 64, GRIP, cx + 64, GRIP + lt, C('force'), 5);
-        text(ctx, 'F_T', cx + 78, GRIP + lt / 2, C('force'), { size: 24, weight: 600, align: 'left' });
-        line(ctx, cx + 10, GRIP, cx + 64, GRIP, alpha(C('force'), 0.5), 2, [4, 5]);
+      if (i === 1) {                               /* his pull on the vine, down from the hands, clear of the head */
+        const xr = cx + 52;
+        lead(ctx, cx + 6, GRIP, xr); arrow(ctx, xr, GRIP, xr, GRIP + lt, C('force'), 5);
+        lab.beside({ x1: xr, y1: GRIP, x2: xr, y2: GRIP + lt }, 'left', 'F_T', C('force'), 24, { offset: 0.5, gap: 20 });
       }
-      if (i === 3) {                               /* the two forces added head to tail, the second set beside the first so both read */
+      if (i === 3) {                               /* the two forces head to tail, the second set beside the first so both read */
         const end = BASE - lt + lw;
         line(ctx, cx - 110, BASE, cx + 110, BASE, PAL.rule, 2, [8, 8]);
         arrow(ctx, cx - 22, BASE, cx - 22, BASE - lt, C('force'), 5);
@@ -85,20 +78,16 @@ const RAD = Math.PI / 180;
         arrow(ctx, cx + 22, BASE - lt, cx + 22, end, C('force'), 5);
         dot(ctx, cx - 22, BASE, PAL.ink, false, 10);
         dot(ctx, cx + 22, end, PAL.ink, true, 10);
-        text(ctx, 'T = ' + fmt(T, 0) + ' N', cx - 36, BASE - lt / 2, C('force'), { size: 18, weight: 600, align: 'right' });
-        text(ctx, 'w = ' + fmt(w, 0) + ' N', cx + 36, (BASE - lt + end) / 2, C('force'), { size: 18, weight: 600, align: 'left' });
-        text(ctx, Math.abs(gap) < 1 ? 'the sum comes back to the start'
-          : 'the sum ends ' + fmt(Math.abs(gap), 0) + ' N ' + (gap > 0 ? 'above' : 'below') + ' the start', cx, 654, PAL.muted, { size: 17, align: 'center' });
+        lab.beside({ x1: cx - 22, y1: BASE, x2: cx - 22, y2: BASE - lt }, 'left', 'T = ' + fmt(T, 0) + ' N', C('force'), 20, { gap: 18 });
+        lab.beside({ x1: cx + 22, y1: BASE - lt, x2: cx + 22, y2: end }, 'left', 'w = ' + fmt(w, 0) + ' N', C('force'), 20, { gap: 18 });
+        text(ctx, still ? 'the sum comes back to the start'
+          : 'the sum ends ' + fmt(Math.abs(gap), 0) + ' N ' + (gap > 0 ? 'above' : 'below') + ' the start', cx, 650, PAL.muted, { size: 17, align: 'center' });
       }
     });
-    headline(ctx, Math.abs(a) < 1e-9
-      ? 'Tarzan hangs still, so the tension of ' + fmt(T, 0) + ' N is exactly his weight of ' + fmt(w, 0) + ' N'
-      : 'Tarzan accelerates ' + (a > 0 ? 'upward' : 'downward') + ' at ' + fmt(Math.abs(a), 2) + ' m/s², so the tension of ' + fmt(T, 0) + ' N is ' + fmt(Math.abs(gap), 0) + ' N ' + (a > 0 ? 'more' : 'less') + ' than his weight');
-    ro.set(Math.abs(a) < 1e-9
+    d.fig.dataset.missed = lab.flush().join(',');
+    ro.set(still
       ? `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} = \\mk{m}{\\km}\\mk{g}{\\kg} = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}}\\ \\text{m/s}^2) = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`
-      : `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} \\mk{ma}{{}+ \\km\\ka} = \\mk{m}{\\km}(\\mk{g}{\\kg} \\mk{a}{{}+ \\ka}) = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}} \\mk{na}{{}${a < 0 ? '-' : '+'} ${fmt(Math.abs(a), 2)}})\\ \\text{m/s}^2 = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`, Math.abs(a) < 1e-9
-        ? 'The acceleration along the vertical axis is zero, so the net force along that axis is zero and the tension is exactly the weight.'
-        : 'The acceleration along the vertical axis is ' + fmt(Math.abs(a), 2) + ' m/s², so the net force along that axis is ' + fmt(Math.abs(gap), 0) + ' N and the tension no longer matches the weight.');
+      : `\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} \\mk{ma}{{}+ \\km\\ka} = \\mk{m}{\\km}(\\mk{g}{\\kg} \\mk{a}{{}+ \\ka}) = (\\mk{nm}{${fmt(m, 0)}}\\ \\text{kg})(\\mk{ng}{${fmt(G, 2)}} \\mk{na}{{}${a < 0 ? '-' : '+'} ${fmt(Math.abs(a), 2)}})\\ \\text{m/s}^2 = \\mk{nT}{${fmt(T, 0)}}\\ \\text{N}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

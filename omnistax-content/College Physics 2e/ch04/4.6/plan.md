@@ -64,34 +64,7 @@ example of convenient axes).
 id · replaces or Sim · concepts · what moves or still · sliders · headline
 · graph · 3D
 
-1. `sim-tarzan` · Figure 4.20 (four panels under one number, so one row
-   with one original, not a fold) · newtons-laws-problem-solving,
-   net-force-by-axis, free-body-diagram · **still**: Tarzan hangs from
-   the vine and nothing in the idea has a time in it; the four panels
-   answer the sliders and redraw, so the figure registers no cycle and
-   carries no transport (rule 14) · mass $m$ (40 to 100 kg, step 5,
-   default 80, ink, since mass is untyped) and the vertical acceleration
-   $\ka$ (−2.50 to 2.50 m/s², step 0.25, default 0, acceleration hue) ·
-   "Tarzan hangs still, so the tension of 784 N is exactly his weight of
-   784 N", and, once he is given an acceleration, "Tarzan accelerates
-   upward at 1.50 m/s², so the tension of 904 N is 120 N more than his
-   weight" · no graph · 2D. The four panels stand side by side as the
-   book prints them: (a) the sketch of the man on the vine, (b) every
-   force drawn as an arrow, the tension $\kTf$ up the vine, the force
-   $F_{\text{T}}$ he exerts on the vine down from the same point and his
-   weight $\kwgt$ down from his stomach, (c) the man alone inside a
-   dashed system boundary, with $F_{\text{T}}$ gone because it acts on
-   the outside world, and (d) the two remaining arrows added head to
-   tail. Every arrow's length follows its force, so the reader sees the
-   tension grow past the weight as soon as the acceleration is not zero,
-   which is what "$T = -w$, if Tarzan is stationary" means. The
-   acceleration slider is what ties the figure to the boxed note: at
-   $\ka = 0$ the head-to-tail sum closes and the net force along the
-   vertical axis is zero, and at any other value it does not close and
-   the gap is $m\ka$. Readout: $\kTf = m(\kg + \ka)$ with the live
-   numbers, and a second line saying whether the net force along the
-   vertical axis is zero and by how much the tension differs from the
-   weight. Draws force and acceleration.
+1. `sim-tarzan` · Figure 4.20 · problem-solving-strategy, free-body-diagram, tension, weight · standardisation and variation: four panels carry the strategy, the head-to-tail sum closes only at a = 0 · still · m (mass), a (acceleration, dashed circle at 0) · "Tarzan hangs still, so the tension of 784 N is exactly his weight of 784 N" · no graph, four panels · 2D: Tarzan drawn with F.silhouette (stand, both hands raised to the grip by joints, F.hand closed on the vine at small scale if the silhouette's hands read poorly), arrow labels placed through F.labeller beside the shafts; note dropped where it restates the headline. No fold or split. Rebuilt 2026-10-05.
 
 2. `sim-axes` · Sim (it replaces no figure of the book; Step 3 has no
    drawing of its own) · resolve-forces-into-components, net-force-by-axis
