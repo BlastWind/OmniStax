@@ -7,9 +7,10 @@
    analyzer and pixel of the LCD are the section's referents; any other ray is
    ink, since the section gives its light no wavelength. The one colour that is
    the physical fact is the grey of the LCD pixel, drawn as bright as the light
-   the analyzer passes, through F.fact. Only the rope moves, because only its idea has
-   a clock; every filter, surface and molecule figure is a state of its
-   controls. The chain of filters is drawn from one locked viewpoint, the book's
+   the analyzer passes, through F.fact. The rope's wave and the chain's pulse of
+   light move, because the rope's wave travels and the book's slender arrow is the
+   ray's propagation; every other filter, surface and molecule figure is a state
+   of its controls. The chain of filters is drawn from one locked viewpoint, the book's
    own, by F.view (root rule 28.2). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.8'] = function (root, F) {
@@ -134,8 +135,11 @@ function ray(ctx, P, x1, x2, k, head) {
 })();
 
 /* =====================================================================
-   Figure 27.39 + 27.40 + 27.41 + 27.42 · sim-filter-chain · still · locked view
+   Figure 27.39 + 27.40 + 27.41 + 27.42 · sim-filter-chain · moving · locked view
    Unpolarized light, a first filter with a vertical axis and a second at θ.
+   A pulse of light runs the ray from its tail to its head over 5 s of model
+   time, then holds 1.2 s with its head at the ray's end, where the book draws
+   the arrow of the ray's direction; it dims with the stretch it is in.
    The field after the first filter has half-length 80 scene units; after the
    second, 80 cos θ. The ray's brightness is the share of the light it carries:
    1 before the first filter, 1/2 after it, cos²θ / 2 after the second. The
@@ -143,12 +147,21 @@ function ray(ctx, P, x1, x2, k, head) {
 ===================================================================== */
 (function () {
   const d = sim('sim-filter-chain', 560);
-  const thS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 0.1, value: 45, unit: '°', dec: 1, aria: 'the angle between the axes of the two filters',
+  const thS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 0.1, value: 45, unit: '°', dec: 1, aria: 'the angle between the axes of the two filters', onInput: () => cy.reset(),
     specials: [{ at: 45, label: '45°' }, { at: 71.6, label: 'Example 27.8' }, { at: 90, label: 'crossed' }] });
   const V = F.view({ yaw: -0.62, pitch: -0.14, dist: 3200, cx: 520, cy: 300 });
   const P = V.P;
   const XS = -470, XF1 = -230, XE1 = -40, XF2 = 150, XE2 = 360, XEND = 520, HF = 95, L = 80;
   const IX = 1150, IY = 300, IR = 150;
+  const X0 = XS - 140, PL = 90, T = 5;
+  const cy = cycle(() => T, 1.2);
+  /* the part of the pulse inside the stretch x1..x2, as bright as the share k */
+  function pulse(x1, x2, k, ctx) {
+    const head = X0 + ((XEND - X0) * cy.now()) / T, a = Math.max(head - PL, x1), b = Math.min(head, x2);
+    if (b - a < 2 || k < 0.004) return;
+    const p = P([a, 0, 0]), q = P([b, 0, 0]), col = alpha(PAL.ink, 0.25 + 0.75 * Math.sqrt(clamp(k, 0, 1)));
+    if (head <= x2) arrow(ctx, p[0], p[1], q[0], q[1], col, 7); else line(ctx, p[0], p[1], q[0], q[1], col, 7);
+  }
 
   hover(d.stage, () => {
     const s = P([XS, 0, 0]), f1 = P([XF1, 0, 0]), f2 = P([XF2, 0, 0]);
@@ -164,14 +177,17 @@ function ray(ctx, P, x1, x2, k, head) {
     const th = thS.v, t = th * RAD, c = Math.cos(t), c2 = c * c, EC = C('electric-field');
 
     /* from the far end of the ray to the near one */
-    ray(ctx, P, XF2, XEND, c2 / 2, true);
+    ray(ctx, P, XF2, XEND, c2 / 2, false);
+    pulse(XF2, XEND, c2 / 2, ctx);
     const e2 = field(ctx, P, XE2, t, L * c, EC);
     filter(ctx, P, XF2, t, HF, 'the second filter', F.ref('filter-2'));
     ray(ctx, P, XF1, XF2, 0.5, false);
+    pulse(XF1, XF2, 0.5, ctx);
     const e1 = field(ctx, P, XE1, 0, L, EC);
     const f1 = filter(ctx, P, XF1, 0, HF, 'the first filter', F.ref('filter-1'));
     text(ctx, 'axis', f1.axisEnd[0] + 12, f1.axisEnd[1] + 10, PAL.ink, { size: 17, align: 'left', bg: PAL.panel });
-    ray(ctx, P, XS - 140, XF1, 1, false);
+    ray(ctx, P, X0, XF1, 1, false);
+    pulse(X0, XF1, 1, ctx);
     burst(ctx, P, XS, L, EC);
     const sTop = P([XS, L + 40, 0]);
     text(ctx, 'unpolarized light', sTop[0], sTop[1] - 10, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
@@ -201,7 +217,7 @@ function ray(ctx, P, x1, x2, k, head) {
       `\\kIntens = \\kIopol\\cos^2\\ktheta = \\kIopol\\cos^2 ${fmt(th, 1)}^\\circ = ${fmt(c2, 3)}\\,\\kIopol`,
       `The field that reaches the second filter is vertical; only its component $\\kEf\\cos\\ktheta = ${fmt(c, 3)}\\,\\kEf$ along the axis passes, and the intensity goes as the square of that amplitude.`);
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================
