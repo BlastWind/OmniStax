@@ -84,32 +84,18 @@ where the text uses it.
 id · replaces or Sim · concepts · what moves or still · sliders · headline ·
 graph · 3D
 
-1. `sim-wagon` · replaces Figure 4.5 (a), (b) and (c) (the two children, the
-   free-body diagram, and the adult who pushes harder) · system-of-interest,
-   net-external-force, friction, newtons-second-law · **moves**: the wagon
-   starts from rest and rolls to the right for four seconds while the arrows
-   on it hold their lengths, so the reader sees a larger net force build
-   speed faster; the idea has a time in it, so it loops and gets the
-   scrubber · $\kFone$ (0 to 60 N, default 25.0, force), $\kFtwo$ (0 to 60 N,
-   default 30.0, force), $\kff$ (0 to 40 N, default 12.0, force), $m$ (10 to
-   60 kg, default 30.0, ink, since mass is untyped) · "t = 2.00 s · a net
-   force of 43.0 N on 30.0 kg gives a = 1.43 m/s², and the wagon has reached
-   2.87 m/s" · graph below right: $\kv$ against $\kt$, a straight line whose
-   slope is the acceleration, with the moving point on it · no. The
-   free-body diagram is drawn in its own panel below left, a dot with
-   $\kFone$, $\kFtwo$ and $\kff$ along the horizontal and $\kwgt$ and $\kN$
-   equal and opposite along the vertical, exactly as the book draws it.
-   Readout: $\kFnet = \kFone + \kFtwo - \kff$ with the numbers, and
-   $\ka = \kFnet/m$; small line on the vertical forces cancelling. Draws
-   force, acceleration, velocity, time.
-   Revised in the figure-audit pass of 2026-09-12: the ground is ruled 0 to
-   14 m at a fixed scale, with a meter scale under the strip, so a larger
-   net force really does carry the wagon farther; a run that passes the end
-   holds the wagon at the last mark and the headline gives its true
-   distance. The arrow labels flip back to the tails of their arrows late in
-   the run, the net force is drawn in the force hue rather than the
-   acceleration hue and told apart by the row it stands on, and the headline
-   is one capitalized sentence.
+1. sim-wagon · Figure 4.5 · net-external-force, newtons-second-law,
+   system-of-interest · flow by animation and variation by slider: the wagon
+   gathers speed as the net force grows or the mass falls · moving, the wagon
+   rolls for 4 s from rest · F1, F2 (0 to 60 N, force), f (0 to 40 N, force),
+   m (10 to 60 kg, mass) · "After 0.48 s a net force of 43.0 N on 30.0 kg has
+   given the wagon 1.43 m/s² and 0.69 m/s" · graph beside (v against t),
+   free-body diagram under the scene · 2D: the rider drawn with F.silhouette
+   (sit) inside the bed, the two pushers with F.silhouette (push) side by side
+   at full size with their hands on the wagon's back rail, the scene scaled up
+   so forces label beside their arrows through F.labeller; note reduced to the
+   division through the macros (\ka = \kFnet/\km) or dropped. No fold or
+   split.
 2. `sim-mass` · replaces Figure 4.6 (the basketball and the SUV) ·
    newtons-second-law, net-external-force · **still**: the two accelerations
    are thousands apart, so no shared strip could carry both, and the idea
@@ -149,32 +135,17 @@ graph · 3D
    the end holds the mower at the last mark and the headline gives its true
    distance. The arrow labels flip back to the tails of their arrows late in
    the run, and the headline is one capitalized sentence.
-4. `sim-sled` · replaces Figure 4.8 (the rocket sled of Example 4.2) ·
-   newtons-second-law, net-external-force, friction · **moves**: the sled
-   runs down its rail for two seconds with the burning rockets drawn firing;
-   the idea has a time in it, so it loops and gets the scrubber ·
-   $\kTf$ (5,000 to 40,000 N, default 25,900, force),
-   the number of rockets burning (1 to 4, default 4, ink, since it is a
-   count), $\kff$ (0 to 2000 N, default 650, force); the mass is held at the
-   example’s 2100 kg and stated in the headline · "t = 1.00 s · four thrusts
-   of 2.59 × 10⁴ N less 650 N of friction give a = 49.0 m/s², and the sled is
-   already at 49.0 m/s" · graph below right: $\ka$ against the number of
-   rockets burning, four points on a line that does not pass through the
-   origin, which is why one rocket does not give a quarter of the
-   acceleration · no. The free-body diagram is drawn below left, the four
-   thrusts to the right, friction to the left, $\kwgt$ and $\kN$ cancelling.
-   Readout: $\kFnet = n\kTf - \kff = m\ka$ with the numbers; small line
-   comparing the acceleration with one rocket and with four. The forces are
-   drawn to one scale, except that no arrow is drawn shorter than a legible
-   minimum, which is why the friction arrow is larger than scale, as the
-   book’s own caption says of Figure 4.8. Draws force,
-   acceleration, velocity.
-   Revised in the figure-audit pass of 2026-09-12: how many of the four
-   rockets are burning is an F.choice of 1 to 4 and no longer a slider, the
-   rail is ruled 0 to 100 m at a fixed scale with a meter scale under the
-   strip, the arrow labels flip back to the tails of their arrows late in
-   the run, the net force is drawn in the force hue, and the headline is one
-   capitalized sentence.
+4. sim-sled · Figure 4.8 · net-external-force, system-of-interest,
+   free-body-diagram · standardisation and a story: the picture of the sled
+   bends into its free-body diagram, and the acceleration against rockets
+   burning sits beside · still with one story slider (picture to diagram) · T
+   (5000 to 40000 N, force), rockets burning (F.select 1 to 4), f (0 to 2000
+   N, force) · "Four rockets of 25,900 N against 650 N of friction give the
+   2,100 kg sled 49.0 m/s²" · graph beside, its box placed clear of the
+   longest 4T arrow at T max · 2D: the rider drawn with F.silhouette (sit) on
+   the platform, the flames as the plan's flame shape, f, w and N placed
+   through F.labeller off the wheels with N rising from the rail's top face.
+   No fold or split.
 5. `sim-weight` · **Sim**, replacing nothing in the book · weight,
    mass-versus-weight · **still**: the figure answers its sliders and nothing
    else, since weight has no time in it; a mass sits on a bathroom scale

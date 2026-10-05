@@ -25,48 +25,8 @@ function headLabel(ctx, s, tail, head, y, color, size) {
   const sz = size ?? 20, late = head + 14 + 0.55 * sz * s.length > 1345;
   text(ctx, s, late ? tail - 14 : head + 14, y, color, { size: sz, weight: 600, align: late ? 'right' : 'left' });
 }
-/* a free-body diagram: a dot at (cx, cy) with one arrow per force. The horizontal
-   forces share a scale of their own so that a push can be told from a friction,
-   and the weight and the support of the ground, which are always equal and
-   opposite, are drawn at a fixed length and read from their labels. */
-function fbd(ctx, cx, cy, horiz, vert, k, title, body) {
-  if (title) text(ctx, title, cx, cy - 150, body ?? PAL.muted, { size: 18, align: 'center' });
-  vert.forEach((f) => {
-    arrow(ctx, cx, cy, cx, cy + f.dy * 96, f.c, 4);
-    text(ctx, f.label, cx + 14, cy + f.dy * 96 + f.dy * 16, f.c, { size: 19, weight: 600 });
-  });
-  horiz.forEach((f) => {
-    const y = cy + (f.row ?? 0);
-    arrow(ctx, cx, y, cx + f.dx * alen(f.v, k), y, f.c, 4);
-    text(ctx, f.label, cx + f.dx * (alen(f.v, k) + 12), y, f.c, { size: 19, weight: 600, align: f.dx > 0 ? 'left' : 'right' });
-  });
-  dot(ctx, cx, cy, body ?? PAL.ink, true, 8);
-}
 
 /* ---------- sprites, in ink ---------- */
-/* a wagon with a child sitting in it, its wheels on the ground at y and its bed centred on x:
-   an open bed with a raised rim, two spoked wheels, a handle raised toward the front, and the
-   rider seated in the bed with one hand on the handle, drawn large enough to be read */
-function wagon(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineCap = 'round';
-  /* the rider, behind the near side of the bed */
-  ctx.beginPath(); ctx.arc(x - 18, y - 118, 15, 0, TAU); ctx.fill();
-  ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(x - 18, y - 102); ctx.lineTo(x - 18, y - 60); ctx.stroke();
-  ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(x - 18, y - 94); ctx.lineTo(x + 22, y - 76); ctx.lineTo(x + 58, y - 84); ctx.stroke();
-  /* the bed, drawn over the rider's lap so the child sits inside it */
-  ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(x - 84, y - 66); ctx.lineTo(x + 84, y - 66); ctx.lineTo(x + 74, y - 30); ctx.lineTo(x - 74, y - 30); ctx.closePath(); ctx.fill();
-  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.moveTo(x - 74, y - 62); ctx.lineTo(x + 74, y - 62); ctx.lineTo(x + 68, y - 42); ctx.lineTo(x - 68, y - 42); ctx.closePath(); ctx.fill();
-  ctx.fillStyle = color;
-  /* the handle, up from the front of the bed */
-  ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(x + 80, y - 56); ctx.lineTo(x + 128, y - 104); ctx.moveTo(x + 118, y - 112); ctx.lineTo(x + 138, y - 96); ctx.stroke();
-  /* the wheels, hubs and rims, under the bed */
-  [x - 48, x + 48].forEach((wx) => {
-    ctx.beginPath(); ctx.arc(wx, y - 18, 18, 0, TAU); ctx.fill();
-    ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(wx, y - 18, 11, 0, TAU); ctx.fill(); ctx.fillStyle = color;
-    ctx.beginPath(); ctx.arc(wx, y - 18, 4, 0, TAU); ctx.fill();
-  });
-  ctx.restore();
-}
 /* a basketball centred on (x, y) */
 function basketball(ctx, x, y, color, r) {
   ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
@@ -82,16 +42,6 @@ function mower(ctx, x, y, color) {
   ctx.beginPath(); ctx.moveTo(x - 40, y - 14); ctx.lineTo(x - 104, y - 78); ctx.moveTo(x - 104, y - 78); ctx.lineTo(x - 128, y - 78); ctx.stroke();
   ctx.restore();
 }
-/* a rocket sled with n of its four rockets burning, its platform centred on (x, y) */
-function sled(ctx, x, y, color, n) {
-  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 4;
-  ctx.fillRect(x - 86, y - 6, 172, 14);
-  for (let i = 0; i < 4; i++) { const rx = x - 66 + i * 38; ctx.fillRect(rx - 15, y - 30, 30, 22); if (i < n) { ctx.beginPath(); ctx.moveTo(rx - 15, y - 26); ctx.lineTo(rx - 44, y - 19); ctx.lineTo(rx - 15, y - 12); ctx.closePath(); ctx.fill(); } }
-  ctx.beginPath(); ctx.arc(x + 58, y - 44, 13, 0, TAU); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(x + 58, y - 30); ctx.lineTo(x + 58, y - 8); ctx.stroke();
-  ctx.beginPath(); ctx.arc(x - 50, y + 20, 12, 0, TAU); ctx.arc(x + 52, y + 20, 12, 0, TAU); ctx.fill();
-  ctx.restore();
-}
 /* a bathroom scale standing on the floor at (x, y), w wide */
 function bathScale(ctx, x, y, w, color) {
   ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 4;
@@ -101,13 +51,13 @@ function bathScale(ctx, x, y, w, color) {
 }
 
 /* =====================================================================
-   FIGURE 4.5: the wagon, its free-body diagram, and the adult who pushes
-   harder. The wagon starts from rest and rolls for four seconds under the
-   forces the sliders set, so the idea has a time in it and the figure
-   loops with the scrubber.
+   FIGURE 4.5: two children push a wagon with a third riding in it, and
+   the free-body diagram of the wagon and its rider. The wagon starts
+   from rest and rolls for four seconds under the forces the sliders
+   set, so the idea has a time in it and the figure loops.
 ===================================================================== */
 (function () {
-  const d = sim('sim-wagon', 800);
+  const d = sim('sim-wagon', 850);
   const F1 = ctl(d.controls, { label: '\\kFone', cls: 'force', min: 0, max: 60, step: 0.5, value: 25, unit: 'N', dec: 1, onInput: reset, aria: 'force of the first child' });
   const F2 = ctl(d.controls, { label: '\\kFtwo', cls: 'force', min: 0, max: 60, step: 0.5, value: 30, unit: 'N', dec: 1, onInput: reset, aria: 'force of the second child' });
   const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 40, step: 0.5, value: 12, unit: 'N', dec: 1, onInput: reset, aria: 'force of friction' });
@@ -115,91 +65,133 @@ function bathScale(ctx, x, y, w, color) {
   const T = 4;
   const fr = () => Math.min(ff.v, F1.v + F2.v);   /* at rest the friction holds only as much as the pushes ask of it */
   const net = () => F1.v + F2.v - fr();
-  const acc = () => Math.max(0, net()) / mm.v;
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
+  /* fixed scales: the ground is ruled 0 to 14 m; a push of 60 N is 240 units on the scene and
+     210 in the diagram; the acceleration, at most 120 N on 10 kg = 12 m/s², is 28 units per m/s².
+     The bodies are drawn at U times the size the library gives a child, so the arrows have room. */
+  const gy = 350, x0 = 200, XMAX = 14, SC = 58, SX = (m) => x0 + m * SC;
+  const KS = 4, KD = 3.5, KA = 28, U = 1.3;
+  const SN = 0.92 * U, SF = 1.12 * U, SR = 1.05 * U;   /* the near child, the far child, the rider */
+  let hits = [];
   function draw() {
     const { ctx } = begin(d.c);
-    const a = acc(), n = net(), w = mm.v * G, tau = cy.now();
-    const x = 0.5 * a * tau * tau, v = a * tau;
-    /* fixed scene scale: the strip is ruled 0 to 14 m and never rescales. The run the figure opens
-       with covers 11.5 m in its four seconds and so fills it, and the hardest push the sliders allow
-       runs far past the end, where the wagon is held at the last meter mark and the headline says how
-       far it has really gone. */
-    const gy = 300, x0 = 300, XMAX = 14, SC = 880 / XMAX, SX = (mtr) => x0 + mtr * SC;   /* the wagon's handle stays on the canvas at the last mark */
-    strip(ctx, 60, 1340, gy + 22, 44);
-    const past = x > XMAX;
-    const wx = SX(Math.min(x, XMAX)), wy = gy, K = 3, cf = C('force');
-    /* the two children who push, one a step behind the other: feet on the ground, leaning into
-       the back of the wagon with both hands on its rim, walking whenever the wagon rolls. The
-       pushers and the system they push wear the two colours the text marks them with, and the
-       farther child is a paler shade of the pushers' so the two read as two. */
-    const walk = v > 0.02 ? (wx - x0) / 28 + 0.6 : 0, cp = F.ref('pushers'), cw = F.ref('wagon');
-    person(ctx, wx - 130, gy, F.mixColor(cp, PAL.panel, 0.45), { face: 1, s: 1.0, lean: 0.5, phase: walk ? walk + 2.2 : 0, reach: { x: wx - 86, y: wy - 44 } });
-    person(ctx, wx - 106, gy, cp, { face: 1, s: 1.12, lean: 0.45, phase: walk, reach: { x: wx - 84, y: wy - 54 } });
-    wagon(ctx, wx, wy, cw);
-    /* the two pushes, anchored at the back of the wagon where the hands are, one row each */
-    [[F1.v, 'F_1', wy - 158], [F2.v, 'F_2', wy - 132]].forEach(([val, lab, y]) => {
-      const L = alen(val, K, 10);
-      line(ctx, wx - 84, y, wx - 84, wy - 66, alpha(cf, 0.35), 2, [4, 6]);
-      arrow(ctx, wx - 84, y, wx - 84 + L, y, cf, 5);
-      headLabel(ctx, lab + ' = ' + fmt(val, 1) + ' N', wx - 84, wx - 84 + L, y, cf);
+    const n = net(), a = Math.max(0, n) / mm.v, w = mm.v * G, tau = cy.now();
+    const x = 0.5 * a * tau * tau, v = a * tau, past = x > XMAX;
+    const cf = C('force'), ca = C('acceleration'), cw = F.ref('wagon'), cp = F.ref('pushers');
+    const hl = topline(ctx, n <= 0
+      ? 'The friction matches the two pushes, ' + fmt(F1.v + F2.v, 1) + ' N together, so the net force is zero and the wagon stays put'
+      : past
+        ? 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(n, 1) + ' N on ' + fmt(mm.v, 1) + ' kg has carried the wagon ' + fmt(x, 1) + ' m, past the ' + XMAX + ' m drawn, at ' + fmt(v, 2) + ' m/s'
+        : 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(n, 1) + ' N on ' + fmt(mm.v, 1) + ' kg has given the wagon ' + fmt(a, 2) + ' m/s² and ' + fmt(v, 2) + ' m/s');
+    const lb = F.labeller(ctx, 850, { headline: hl });
+    strip(ctx, 40, 1360, gy + 22, 44);
+    /* bx is the back of the wagon's bed, and P a point of the wagon in the units the bed is drawn in */
+    const bx = SX(Math.min(x, XMAX)), P = (dx, dy) => ({ x: bx + dx * U, y: gy + dy * U });
+    const rail = P(0, -72).y, floor = P(0, -56).y;
+    const loc = (p, ox, s) => ({ x: (p.x - ox) / s, y: (p.y - gy) / s });
+    /* the two children push on the back of the bed: the far one, older and paler, with both hands
+       on the rail, the near one lower on the back panel */
+    const hF = { x: bx - 2, y: rail - 2 }, hN = P(-1.5, -58);
+    const pFx = hF.x - 64 * SF, pNx = hN.x - 60 * SN;
+    F.silhouette(ctx, { x: pFx, y: gy, s: SF, pose: 'push', color: F.mixColor(cp, PAL.panel, 0.45), hands: [loc(hF, pFx, SF), loc({ x: hF.x + 5, y: hF.y + 4 }, pFx, SF)] });
+    F.silhouette(ctx, { x: pNx, y: gy, s: SN, pose: 'push', color: cp, hands: [loc(hN, pNx, SN), loc({ x: hN.x, y: hN.y + 8 }, pNx, SN)] });
+    /* the rider sits on the floor of the bed, knees up, hands on the side rail */
+    const rx = P(150, 0).x, hold = P(190, -73);
+    F.silhouette(ctx, { x: rx, y: gy, s: SR, pose: 'sit', color: cw,
+      hip: { x: -10, y: (floor - gy) / SR }, feet: [{ x: 40, y: (floor - gy) / SR }, { x: 34, y: (floor - gy) / SR + 2 }],
+      hands: [loc(hold, rx, SR), loc({ x: hold.x - 8, y: hold.y + 2 }, rx, SR)] });
+    /* the bed, drawn over the rider's legs, its handle up from the front, and the wheels on the ground */
+    const h0 = P(224, -52), h1 = P(262, -118);
+    line(ctx, h0.x, h0.y, h1.x, h1.y, cw, 5);
+    line(ctx, h1.x - 14, h1.y, h1.x + 14, h1.y, cw, 6);
+    ctx.save(); ctx.fillStyle = F.mixColor(cw, PAL.panel, 0.7); ctx.strokeStyle = cw; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    const b0 = P(0, -72), b1 = P(230, -72), b2 = P(222, -42), b3 = P(8, -42);
+    ctx.beginPath(); ctx.moveTo(b0.x, b0.y); ctx.lineTo(b1.x, b1.y); ctx.lineTo(b2.x, b2.y); ctx.lineTo(b3.x, b3.y); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.restore();
+    const spin = x / 0.38, wr = 19 * U;
+    [48, 182].forEach((wx) => {
+      const c = P(wx, -22);
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cw; ctx.lineWidth = 6;
+      ctx.beginPath(); ctx.arc(c.x, c.y, wr, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+      for (let i = 0; i < 3; i++) { const q = spin + (i * TAU) / 3; line(ctx, c.x, c.y, c.x + (wr - 5) * Math.cos(q), c.y + (wr - 5) * Math.sin(q), cw, 2.5); }
+      dot(ctx, c.x, c.y, cw, true, 5);
     });
-    /* the friction acts where the wheels meet the ground, so it is drawn on the ground */
-    const Lf = alen(fr(), K, 10);
-    arrow(ctx, wx - 48, gy + 12, wx - 48 - Lf, gy + 12, cf, 5);
-    text(ctx, 'f = ' + fmt(fr(), 1) + ' N', wx - 60 - Lf, gy + 12, cf, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
-    /* the acceleration is a third row above the pushes, so it never runs off the right edge */
-    if (a > 0.01) {
-      const La = Math.min(200, 30 + a * 60);
-      arrow(ctx, wx - 84, wy - 190, wx - 84 + La, wy - 190, C('acceleration'), 5);
-      headLabel(ctx, 'a = ' + fmt(a, 2) + ' m/s²', wx - 84, wx - 84 + La, wy - 190, C('acceleration'));
+    hits = [
+      { x: pNx + 20, y: gy - 110, r: 50, name: 'the first child, pushing with F₁' },
+      { x: pFx + 30, y: gy - 160, r: 36, name: 'the second child, pushing with F₂' },
+      { x: rx, y: floor - 60, r: 40, name: 'the rider, part of the system' },
+      { x: P(115, 0).x, y: P(0, -50).y, r: 70, name: 'the wagon and its rider, the system of interest' },
+    ];
+    /* the two pushes leave the back of the bed where the hands are, the friction acts where the
+       front wheel meets the ground, and the acceleration rides above the whole scene */
+    if (F2.v > 0) {
+      const sg = { x1: bx, y1: rail - 6, x2: bx + F2.v * KS, y2: rail - 6 };
+      lb.halo(sg, 12); arrow(ctx, sg.x1, sg.y1, sg.x2, sg.y2, cf, 5);
+      lb.add('F_2', sg.x2, sg.y2, -0.25, -1, cf, 22, 20);
+      hits.push({ x: sg.x2, y: sg.y2, r: 22, name: 'F₂, the push of the second child' });
     }
+    if (F1.v > 0) {
+      const sg = { x1: bx, y1: hN.y + 4, x2: bx + F1.v * KS, y2: hN.y + 4 };
+      arrow(ctx, sg.x1, sg.y1, sg.x2, sg.y2, cf, 5);
+      lb.add('F_1', sg.x2, sg.y2, 1, 0, cf, 22, 14);
+      hits.push({ x: sg.x2, y: sg.y2, r: 22, name: 'F₁, the push of the first child' });
+    }
+    if (fr() > 0) {
+      const fx = P(182, 0).x, sf = { x1: fx, y1: gy - 6, x2: fx - Math.max(24, fr() * KS), y2: gy - 6 };
+      arrow(ctx, sf.x1, sf.y1, sf.x2, sf.y2, cf, 5);
+      /* named above the arrow, in the gap between the wheels */
+      lb.add('f', Math.min(Math.max((sf.x1 + sf.x2) / 2, P(80, 0).x), P(150, 0).x), sf.y1, 0, -1, cf, 22, 22);
+      hits.push({ x: sf.x2, y: sf.y2, r: 22, name: 'f, the friction on the wheels' });
+    }
+    if (a > 0.005) {
+      const sa = { x1: bx + 26, y1: gy - 210, x2: bx + 26 + Math.max(24, a * KA), y2: gy - 210 };
+      arrow(ctx, sa.x1, sa.y1, sa.x2, sa.y2, ca, 5);
+      lb.add('a', sa.x2, sa.y2, 1, 0, ca, 22, 14);
+      hits.push({ x: sa.x2, y: sa.y2, r: 22, name: 'a, the acceleration' });
+    }
+    /* how far the wagon has rolled, on the ruled ground */
     dot(ctx, x0, gy + 22, C('position'), false, 8);
-    if (wx - x0 > 34) {
-      hbracket(ctx, x0, wx, gy + 48, C('position'), '');
-      text(ctx, fmt(x, 2) + ' m', (x0 + wx) / 2, gy + 74, C('position'), { size: 19, weight: 600, align: 'center' });
+    if (bx - x0 > 34) {
+      hbracket(ctx, x0, bx, gy + 54, C('position'), '');
+      text(ctx, fmt(x, 2) + ' m', (x0 + bx) / 2, gy + 80, C('position'), { size: 19, weight: 600, align: 'center' });
     }
-    scale(ctx, SX, 0, XMAX, 2, gy + 104, 'm', 1);
-    /* the free-body diagram of the system: the wagon and its rider */
-    const k = 170 / Math.max(F1.v, F2.v, ff.v, 1);
-    fbd(ctx, 420, 620,
-      [{ dx: 1, v: F1.v, label: 'F_1 = ' + fmt(F1.v, 1) + ' N', c: cf, row: -22 },
-       { dx: 1, v: F2.v, label: 'F_2 = ' + fmt(F2.v, 1) + ' N', c: cf, row: 22 },
-       { dx: -1, v: fr(), label: 'f = ' + fmt(fr(), 1) + ' N', c: cf, row: 0 }],
-      [{ dy: 1, label: 'w = ' + sig3(w) + ' N', c: cf },
-       { dy: -1, label: 'N = ' + sig3(w) + ' N', c: cf }],
-      k, 'the external forces on the wagon and its rider', cw);
-    /* the net force is a force and takes the force hue; it is told from the others by standing
-       alone on its own row below the diagram */
+    scale(ctx, SX, 0, XMAX, 2, gy + 112, 'm', 1);
+    lb.block(0, gy, 1400, gy + 150);
+    /* the free-body diagram: every external force on the system from one dot, the pushes head to
+       tail as the book draws them, the net force on its own row beneath; the weight and the support
+       of the ground are equal and opposite and drawn at a fixed length */
+    const D = { x: 300, y: 690 };
+    text(ctx, 'free-body diagram', 60, 548, PAL.muted, { size: 18 });
+    lb.block(50, 532, 230, 564);
+    const put = (s, x1, x2, up) => lb.add(s, Math.max((x1 + x2) / 2, D.x + F.measure(ctx, s, { size: 19, weight: 600 }) / 2 + 16), D.y, 0, up ? -1 : 1, cf, 19, 20);
+    if (F1.v > 0) { arrow(ctx, D.x, D.y, D.x + F1.v * KD, D.y, cf, 4); put('F_1 = ' + fmt(F1.v, 1) + ' N', D.x, D.x + F1.v * KD, true); }
+    if (F2.v > 0) { const t0 = D.x + F1.v * KD; arrow(ctx, t0, D.y, t0 + F2.v * KD, D.y, cf, 4); put('F_2 = ' + fmt(F2.v, 1) + ' N', t0, t0 + F2.v * KD, false); }
+    if (fr() > 0) { arrow(ctx, D.x, D.y, D.x - fr() * KD, D.y, cf, 4); lb.add('f = ' + fmt(fr(), 1) + ' N', D.x - fr() * KD, D.y, -1, 0, cf, 19, 14); }
+    arrow(ctx, D.x, D.y, D.x, D.y + 88, cf, 4); lb.add('w = ' + sig3(w) + ' N', D.x, D.y + 88, -1, 0, cf, 19, 14);
+    arrow(ctx, D.x, D.y, D.x, D.y - 88, cf, 4); lb.add('N = ' + sig3(w) + ' N', D.x, D.y - 88, -1, 0, cf, 19, 14);
+    dot(ctx, D.x, D.y, cw, true, 8);
     if (n > 0) {
-      arrow(ctx, 420, 772, 420 + alen(n, k), 772, cf, 5);
-      text(ctx, 'F_net = ' + fmt(n, 1) + ' N', 420 + alen(n, k) + 12, 772, cf, { size: 19, weight: 600 });
+      const sn = { x1: D.x, y1: D.y + 125, x2: D.x + n * KD, y2: D.y + 125 };
+      arrow(ctx, sn.x1, sn.y1, sn.x2, sn.y2, cf, 5);
+      lb.add('F_net = ' + fmt(n, 1) + ' N', sn.x2, sn.y2, 1, 0, cf, 19, 14);
     }
-    /* the speed the wagon reaches, against time */
-    /* fixed axes: the sliders can reach a net force of 60 + 60 − 0 = 120 N on the least mass, 10 kg,
-       which is 12 m/s² and 48 m/s by the end of the 4 s run. A range that tall would leave the run
-       the figure opens with, which reaches 5.7 m/s, in an eighth of the height, so the speed axis is
-       fixed at 0 to 8 m/s instead, which holds that run comfortably, and a faster wagon runs off the
-       top as a pinned marker. Neither range changes as a slider moves. */
-    const VR = 8, gbox = { l: 900, r: 1290, t: 500, b: 730 };
+    /* the speed against time: the sliders reach 12 m/s² and 48 m/s, which would leave the opening
+       run's 5.7 m/s in an eighth of the box, so the axis is fixed at 0 to 8 m/s and a faster wagon
+       is pinned at the top edge with its value */
+    const VR = 8, gbox = { l: 900, r: 1330, t: 580, b: 780 };
     const g = axes(ctx, gbox, [0, T], [0, VR], { xl: 't (s)', xc: C('time'), yl: 'v (m/s)', yc: C('velocity'), nx: 4, ny: 4, fx: (s) => fmt(s, 0), fy: (s) => fmt(s, 0) });
+    lb.block(gbox.l - 50, gbox.t - 40, gbox.r + 20, gbox.b + 60);
     inbox(ctx, gbox, () => {
       line(ctx, g.X(0), g.Y(0), g.X(T), g.Y(a * T), C('velocity'), 5);
       line(ctx, g.X(tau), g.Y(0), g.X(tau), g.Y(v), C('time'), 2, [4, 8]);
     });
     pinned(ctx, gbox, g.X, g.Y, tau, v, PAL.ink, fmt(v, 1) + ' m/s');
-    text(ctx, 'the slope is the acceleration', g.X(2), g.Y(VR) + 26, C('acceleration'), { size: 17, weight: 600, align: 'center' });
-    topline(ctx, n <= 0
-      ? 'The two pushes together, ' + fmt(F1.v + F2.v, 1) + ' N, are no more than the ' + fmt(ff.v, 1) + ' N the friction can give, so the friction matches them and the wagon stays where it is'
-      : past
-        ? 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(n, 1) + ' N on ' + fmt(mm.v, 1) + ' kg has carried the wagon ' + fmt(x, 1) + ' m, past the end of the ' + XMAX + ' m of ground drawn here, at ' + fmt(v, 2) + ' m/s'
-        : 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(n, 1) + ' N on ' + fmt(mm.v, 1) + ' kg has given the wagon ' + fmt(a, 2) + ' m/s² of acceleration, and it has reached ' + fmt(v, 2) + ' m/s');
-    readout(d.readout, `\\kFnet = \\kFone + \\kFtwo - \\kff = ${fmt(F1.v, 1)}\\ \\text{N} + ${fmt(F2.v, 1)}\\ \\text{N} - ${fmt(fr(), 1)}\\ \\text{N} = ${fmt(n, 1)}\\ \\text{N}`,
-      n <= 0
-        ? 'The weight of the system, ' + sig3(w) + ' N, and the support of the ground are equal and opposite, so the net external force is the horizontal one alone, and here the friction cancels it.'
-        : 'Dividing by the mass gives a = F net / m = ' + fmt(n, 1) + ' N / ' + fmt(mm.v, 1) + ' kg = ' + fmt(a, 2) + ' m/s², in the direction of the net force. The weight of the system, ' + sig3(w) + ' N, and the support of the ground are equal and opposite, so they add nothing to it.');
+    const missed = lb.flush();
+    d.fig.dataset.missed = missed.join(' | ');
+    readout(d.readout, `\\ka = \\frac{\\kFnet}{\\km} = \\frac{\\kFone + \\kFtwo - \\kff}{\\km} = \\frac{${fmt(F1.v, 1)}\\ \\text{N} + ${fmt(F2.v, 1)}\\ \\text{N} - ${fmt(fr(), 1)}\\ \\text{N}}{${fmt(mm.v, 1)}\\ \\text{kg}} = ${fmt(a, 2)}\\ \\text{m/s}^2`);
   }
+  F.hover(d.stage, () => hits);
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
 
@@ -323,13 +315,13 @@ function bathScale(ctx, x, y, w, color) {
 
 /* =====================================================================
    FIGURE 4.8: the rocket sled of Example 4.2, made into its free-body
-   diagram. One story slider runs
-   from the picture to the diagram: the rail, the rider and the flames
-   fade, the outline of the sled and its rockets bends into a dot, and
-   the dot carries every force to where the diagram stands, each arrow
-   re-rooting its tail on it, while the graph of the acceleration
-   against the rockets burning arrives beside it. The sled is caught at
-   the instant of Example 4.2, so the story is the only timeline.
+   diagram. One story slider runs from the picture to the diagram: the
+   rail, the rider and the flames fade, the outline of the sled and its
+   rockets bends into a dot, and the dot carries every force to where the
+   diagram stands, each arrow re-rooting its tail on it, while the graph
+   of the acceleration against the rockets burning arrives beside it.
+   The sled is caught at the instant of Example 4.2, so the story is the
+   only timeline.
 ===================================================================== */
 (function () {
   const d = sim('sim-sled', 700);
@@ -338,8 +330,8 @@ function bathScale(ctx, x, y, w, color) {
   const Tt = ctl(d.controls, { label: '\\kTf', cls: 'force', min: 5000, max: 40000, step: 12.5, value: (M * A0 + 650) / 4, unit: 'N', dec: 0, aria: 'thrust of one rocket',
     specials: [{ at: () => (M * A0 + ff.v) / +nn.value, label: 'Example 4.2' }] });
   const burn = [0, 1, 2, 3].map(() => F.tween(d, 1));
-  nn = choice(d.controls, {
-    label: '\\text{rockets burning}', aria: 'number of rockets burning', value: '4',
+  nn = F.select(d.controls, {
+    label: '\\text{rockets burning}', key: 'rockets', aria: 'number of rockets burning', value: '4',
     options: [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }],
     onInput: (v) => light(+v),
   });
@@ -354,9 +346,14 @@ function bathScale(ctx, x, y, w, color) {
     lit = n;
   }
   const lerp = F.lerp, sm = F.ease.smooth, clamp = (x) => Math.min(1, Math.max(0, x));
-  /* one scale for every force, in the picture and in the diagram, so an arrow keeps its length as it travels */
-  const K = 0.0055, W = M * G;
-  const Z = 2.2, P0 = [640, 380], DOT = [380, 370], R = 16;
+  const tnum = (s) => s.replace(/,/g, '{,}');
+  const WORD = ['', 'One rocket', 'Two rockets', 'Three rockets', 'Four rockets'];
+  /* one scale for every force, in the picture and in the diagram, so an arrow keeps its length as it
+     travels: four thrusts of 40,000 N chain to 720 units from the dot at x = 180, which ends short of
+     the graph's box at x = 1010; the friction, never more than 9 units on that scale, is drawn at
+     50, larger than scale as the book draws it */
+  const K = 0.0045, W = M * G;
+  const Z = 2.2, P0 = [640, 380], DOT = [180, 400], R = 16;
   /* the silhouette of the platform and its column of rockets, about its centroid, resampled by arc
      length, and the circle it bends into, point for point in the same winding */
   const RAW = [[-90, 8], [90, 8], [90, -6], [-46, -6], [-46, -94], [-86, -94], [-86, -6], [-90, -6]].map(([x, y]) => [x * Z, y * Z]);
@@ -376,74 +373,88 @@ function bathScale(ctx, x, y, w, color) {
   const CIRCLE = OUTLINE.map((_, j) => [R * Math.cos(th0 - TAU * j / NPT), R * Math.sin(th0 - TAU * j / NPT)]);
   const at = (p) => [p[0] - O[0], p[1] - O[1]];
   const ROCKY = [0, 1, 2, 3].map((i) => (-17 - 22 * i) * Z);
-  const CONTACT = at([0, 32 * Z]), REAR = at([-50 * Z, 32 * Z]);
-  /* the parts of the picture that the diagram leaves out, in local coordinates about the platform centre */
-  function extras(ctx, x, y, lv) {
-    ctx.save(); ctx.translate(x, y); ctx.scale(Z, Z); x = 0; y = 0;
-    const cs = F.ref('sled');
-    ctx.fillStyle = cs; ctx.strokeStyle = cs; ctx.lineWidth = 4; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.arc(x + 74, y - 44, 13, 0, TAU); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(x + 74, y - 30); ctx.lineTo(x + 74, y - 8); ctx.moveTo(x + 74, y - 24); ctx.lineTo(x + 90, y - 14); ctx.stroke();
-    ctx.beginPath(); ctx.arc(x - 50, y + 20, 12, 0, TAU); ctx.arc(x + 52, y + 20, 12, 0, TAU); ctx.fill();
-    ctx.lineWidth = 2.5; ctx.beginPath();
-    for (let i = 1; i < 4; i++) { ctx.moveTo(x - 86, y - 6 - 22 * i); ctx.lineTo(x - 46, y - 6 - 22 * i); }
-    ctx.stroke();
-    ctx.fillStyle = PAL.ink;
+  const WHEELS = [-64, 64], RAIL = 32 * Z;
+  /* the thrusts end at the nozzles, the normal force rises from the rail's top face under the middle
+     of the platform, the friction acts back where the rear wheel meets the rail */
+  const NOZZLE = -86 * Z, NFOOT = at([0, RAIL]), REAR = at([WHEELS[0] * Z, RAIL]);
+  /* the parts of the picture that the diagram leaves out: the wheels, the rockets' seams, the flames
+     of the rockets that burn, and the rider sitting at the front of the platform */
+  function extras(ctx, lv, cs) {
+    const [x, y] = P0;
+    WHEELS.forEach((wx) => {
+      const c = { x: x + wx * Z, y: y + 20 * Z };
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cs; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(c.x, c.y, 12 * Z - 3, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+      dot(ctx, c.x, c.y, cs, true, 6);
+    });
+    for (let i = 1; i < 4; i++) line(ctx, x - 86 * Z, y + (-6 - 22 * i) * Z, x - 46 * Z, y + (-6 - 22 * i) * Z, cs, 2.5);
     lv.forEach((g, i) => {
       if (g < 0.02) return;
-      const yc = ROCKY[i] / Z;
-      ctx.beginPath(); ctx.moveTo(x - 86, yc - 7); ctx.lineTo(x - 86 - 34 * g, yc); ctx.lineTo(x - 86, yc + 7); ctx.closePath(); ctx.fill();
+      const yc = y + ROCKY[i], x0 = x + NOZZLE, L = 74 * g;
+      ctx.save();
+      ctx.fillStyle = alpha(PAL.muted, 0.45); ctx.beginPath(); ctx.moveTo(x0, yc - 15); ctx.quadraticCurveTo(x0 - L * 0.55, yc - 13, x0 - L, yc); ctx.quadraticCurveTo(x0 - L * 0.55, yc + 13, x0, yc + 15); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = alpha(PAL.ink, 0.35); ctx.beginPath(); ctx.moveTo(x0, yc - 7); ctx.quadraticCurveTo(x0 - L * 0.3, yc - 6, x0 - L * 0.55, yc); ctx.quadraticCurveTo(x0 - L * 0.3, yc + 6, x0, yc + 7); ctx.closePath(); ctx.fill();
+      ctx.restore();
     });
-    ctx.restore();
+    const s = 1, top = y - 6 * Z;
+    F.silhouette(ctx, { x: x + 60 * Z, y: top + 46 * s, s, pose: 'sit', color: cs, feet: [{ x: 38, y: -46 }, { x: 32, y: -44 }] });
   }
+  let hits = [];
   function draw() {
     const { ctx } = begin(d.c);
-    const n = +nn.value, s = st.v, lv = burn.map((b) => b.v), cf = C('force');
+    const n = +nn.value, s = st.v, lv = burn.map((b) => b.v), cf = C('force'), cs = F.ref('sled');
     const net = n * Tt.v - ff.v, a = Math.max(0, net) / M;
+    const hl = topline(ctx, WORD[n] + ' of ' + sig3(Tt.v) + ' N against ' + commas(fmt(ff.v, 0)) + ' N of friction ' + (n > 1 ? 'give' : 'gives') + ' the 2,100 kg sled ' + fmt(a, 1) + ' m/s²');
+    const lb = F.labeller(ctx, 700, { headline: hl });
     const fade = 1 - clamp(s / 0.3), m = sm(clamp((s - 0.2) / 0.35)), t = sm(clamp((s - 0.5) / 0.5));
     const ox = lerp(P0[0] + O[0], DOT[0], t), oy = lerp(P0[1] + O[1], DOT[1], t);
     if (fade > 0.001) {
       ctx.save(); ctx.globalAlpha = fade;
-      strip(ctx, 60, 1340, P0[1] + 32 * Z + 28, 40);
-      extras(ctx, P0[0], P0[1], lv);
+      strip(ctx, 40, 1360, P0[1] + RAIL + 20, 40);
+      extras(ctx, lv, cs);
       ctx.restore();
     }
     /* the outline bending point by point into the dot */
     ctx.save(); ctx.beginPath();
     OUTLINE.forEach((p, j) => { const q = CIRCLE[j], X = ox + lerp(p[0], q[0], m), Y = oy + lerp(p[1], q[1], m); if (j) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); });
-    ctx.closePath(); ctx.fillStyle = alpha(F.ref('sled'), lerp(0.35, 1, m)); ctx.strokeStyle = F.ref('sled'); ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
+    ctx.closePath(); ctx.fillStyle = alpha(cs, lerp(0.35, 1, m)); ctx.strokeStyle = cs; ctx.lineWidth = 3.5; ctx.lineJoin = 'round';
     ctx.fill(); ctx.stroke(); ctx.restore();
     /* every force from its point of application to its place on the dot */
-    const Lt = Tt.v * K, Lw = W * K, Lf = alen(ff.v, K, 40);
+    const Lt = Tt.v * K, Lw = W * K, Lf = alen(ff.v, K, 50);
     const place = (from, to) => [ox + lerp(from[0], to[0], t), oy + lerp(from[1], to[1], t)];
+    const seg = (x, y, dx, dy) => ({ x1: x, y1: y, x2: x + dx, y2: y + dy });
+    const pic = t < 0.5;
+    hits = fade > 0.5 ? [{ x: P0[0] + 66 * Z, y: P0[1] - 40, r: 40, name: 'the rider, part of the system' }, { x: P0[0] - 66 * Z, y: P0[1] - 110, r: 50, name: 'the four rockets' }] : [];
     let chain = 0;
     lv.forEach((g, i) => {
       if (g < 0.01) return;
-      const [x, y] = place(at([-46 * Z, ROCKY[i]]), [chain, 0]);
-      arrow(ctx, x, y, x + Lt * g, y, cf, 7);
-      if (t < 0.99) { ctx.save(); ctx.globalAlpha = 1 - t; text(ctx, 'T', x + Lt * g + 10, y, cf, { size: 26, weight: 600 }); ctx.restore(); }
+      const [x, y] = place(at([NOZZLE - Lt, ROCKY[i]]), [chain, 0]), sg = seg(x, y, Lt * g, 0);
+      arrow(ctx, sg.x1, sg.y1, sg.x2, sg.y2, cf, 6);
+      if (pic) lb.beside(sg, 'left', 'T', cf, 24, { gap: 16 });
+      hits.push({ x: sg.x1 + Lt * g / 2, y: sg.y1, r: 22, name: 'T, the thrust of one rocket' });
       chain += Lt * g;
     });
-    if (t > 0.01 && chain > 0) { ctx.save(); ctx.globalAlpha = t; text(ctx, n + 'T', ox + chain + 14, oy, cf, { size: 30, weight: 600 }); ctx.restore(); }
-    const [fx, fy] = place(REAR, [0, 0]);
-    arrow(ctx, fx, fy, fx - Lf, fy, cf, 7);
-    text(ctx, 'f', fx - Lf - 12, fy, cf, { size: 30, weight: 600, align: 'right' });
-    arrow(ctx, ox, oy, ox, oy + Lw, cf, 7);
-    text(ctx, 'w', ox + 14, oy + Lw + 6, cf, { size: 30, weight: 600 });
-    const [nx, ny] = place([CONTACT[0], CONTACT[1] + Lw], [0, 0]);
-    arrow(ctx, nx, ny, nx, ny - Lw, cf, 7);
-    text(ctx, 'N', nx + 14, ny - Lw - 6, cf, { size: 30, weight: 600 });
+    if (!pic && chain > 0) lb.add(n > 1 ? n + 'T' : 'T', ox + chain, oy, 1, 0, cf, 26, 14);
+    const [fx, fy] = place(REAR, [0, 0]), sf = seg(fx, fy, -Lf, 0);
+    if (ff.v > 0) { arrow(ctx, sf.x1, sf.y1, sf.x2, sf.y2, cf, 6); lb.add('f', sf.x2, sf.y2, -1, 0, cf, 26, 14); }
+    const sw = seg(ox, oy, 0, Lw);
+    if (pic) lb.halo(sw, 10);
+    arrow(ctx, sw.x1, sw.y1, sw.x2, sw.y2, cf, 6); lb.add('w', sw.x2, sw.y2, pic ? 1 : 0, pic ? 0 : 1, cf, 26, 14);
+    const [nx, ny] = place(NFOOT, [0, 0]), sN = seg(nx, ny, 0, -Lw);
+    if (pic) lb.halo(sN, 10);
+    arrow(ctx, sN.x1, sN.y1, sN.x2, sN.y2, cf, 6); lb.add('N', sN.x2, sN.y2, pic ? 1 : 0, pic ? 0 : -1, cf, 26, 14);
+    hits.push({ x: sf.x2, y: sf.y2, r: 22, name: 'f, the friction on the sled' }, { x: sw.x2, y: sw.y2, r: 22, name: 'w, the weight of the system' }, { x: sN.x2, y: sN.y2, r: 22, name: 'N, the support of the rail' });
     /* the answer the diagram gives: the net force, on its own row */
     if (t > 0.01 && net > 0) {
       ctx.save(); ctx.globalAlpha = t;
-      arrow(ctx, DOT[0], DOT[1] + 190, DOT[0] + net * K, DOT[1] + 190, cf, 8);
-      text(ctx, 'F_net', DOT[0] + net * K + 14, DOT[1] + 190, cf, { size: 30, weight: 600 });
+      arrow(ctx, DOT[0], DOT[1] + 160, DOT[0] + net * K, DOT[1] + 160, cf, 7);
       ctx.restore();
+      if (t > 0.5) lb.add('F_net', DOT[0] + net * K, DOT[1] + 160, 1, 0, cf, 26, 14);
     }
     /* the acceleration against the rockets burning, beside the diagram it follows from; with one
-       rocket it is not a quarter of four, since the same friction comes off every count */
+       rocket it is not a quarter of four, since the same friction comes off every count. The axis
+       is fixed at 0 to 80 m/s²: four rockets of 40,000 N against no friction give 76.2 m/s². */
     if (t > 0.01) {
-      const accOf = (k) => Math.max(0, k * Tt.v - ff.v) / M, AR = 80, gbox = { l: 1000, r: 1320, t: 140, b: 320 };
+      const accOf = (k) => Math.max(0, k * Tt.v - ff.v) / M, AR = 80, gbox = { l: 1010, r: 1330, t: 170, b: 360 };
       ctx.save(); ctx.globalAlpha = t;
       const g = axes(ctx, gbox, [0, 4], [0, AR], { xl: 'rockets burning', xc: PAL.ink, yl: 'a (m/s²)', yc: C('acceleration'), nx: 4, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
       inbox(ctx, gbox, () => {
@@ -453,14 +464,18 @@ function bathScale(ctx, x, y, w, color) {
       });
       const nm = nn.mix((v) => +v);   /* the marker slides along the line to the new count */
       pinned(ctx, gbox, g.X, g.Y, nm, accOf(nm), PAL.ink, fmt(a, 1) + ' m/s²');
-      text(ctx, 'simply proportional', g.X(1.6), g.Y(AR * 0.36) - 26, PAL.muted, { size: 17, align: 'center' });
+      /* the dashed line through the origin lies above the real one at every count, so its name goes above it */
+      text(ctx, 'simply proportional', g.X(3.2) - 6, g.Y(accOf(4) * 0.8) - 20, PAL.muted, { size: 17, align: 'right' });
       ctx.restore();
     }
+    const missed = lb.flush();
+    d.fig.dataset.missed = missed.join(' | ');
     const terms = [0, 1, 2, 3].slice(0, n).map((i) => `\\mk{T${i}}{${i ? '{}+' : ''}\\kTf}`).join(' ');
     ro.set(`\\mk{Fnet}{\\kFnet} = ${terms} \\mk{f}{{}-\\kff} = \\mk{n}{${n}}\\mk{nT}{\\kTf} \\mk{f2}{{}-\\kff}`
-      + ` = \\mk{nval}{${n}}\\mk{Tval}{(${sig3(Tt.v)}\\ \\text{N})} \\mk{fval}{{}-${commas(fmt(ff.v, 0))}\\ \\text{N}} = \\mk{Fval}{${sig3(net)}\\ \\text{N}}`, net > 0 ? 'Dividing by the 2,100 kg of the sled, its rockets and its rider gives a = ' + fmt(a, 1) + ' m/s².' : 'The thrust does not overcome the friction, and the sled stays where it is.');
+      + ` = \\mk{nval}{${n}}\\mk{Tval}{(${tnum(sig3(Tt.v))}\\ \\text{N})} \\mk{fval}{{}-${tnum(commas(fmt(ff.v, 0)))}\\ \\text{N}} = \\mk{Fval}{${tnum(sig3(net))}\\ \\text{N}}`);
   }
   const ro = F.readout(d);
+  F.hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });
 })();
 
