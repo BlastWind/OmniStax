@@ -93,10 +93,13 @@ headline · graph · 3D
    gap and one pair of arrows, and the reader has to imagine that a
    narrower gap means faster air and a lower pressure; here the gap and the
    speed are dragged and the streamlines bunch, the arrow lengthens and the
-   pressure difference is written live · **still**: a car and a truck held
-   side by side while the air streams past is one state of a steady flow,
-   and the book’s own arrows are the speeds, not a motion to replay (rule
-   24.9; `ch12/config.md` keeps every figure of this section still) ·
+   pressure difference is written live · arrows: kinematic (the book’s
+   streamline arrows, the air’s path past and between the vehicles) and
+   symbolic (the two speeds and the pressures, kept as drawn) · **moving**
+   (2026-10-05, rule 24.5): bits of air ride the streamlines in columns
+   released together, the inner ones pulling ahead and spreading where the
+   band is pinched, the outer ones keeping $\kvone$; a 5 s loop with a 1.2 s
+   hold, the streamlines kept faint without arrowheads ·
    $\kvone$, the speed of the air past the outside of the vehicles (5 to
    35 m/s, default 25, velocity), and the gap between the vehicles (1.2 to
    3.0 m, default 1.5, ink, a scene length). The air that passes between
@@ -151,9 +154,12 @@ headline · graph · 3D
    the side tube as the pressure in the stream falls, and be carried off as
    a spray once it reaches the top, which is the atomizer, the aspirator
    and the carburetor, while the Bunsen burner and the chimney entrain air
-   the same way. The four devices stay as the figure’s original · **still**:
-   the stream is steady, and the water’s level answers the speed and
-   nothing else · $\kvone$, the speed of the air entering the tube (0 to
+   the same way. The four devices stay as the figure’s original · arrows: kinematic (the
+   book’s arrows are the fluids’ paths: gas and air rising, perfume and
+   water drawn in) · **moving** (2026-10-05, rule 24.5): bits of air ride the
+   stream, faster through the narrow part, and each loop the water climbs
+   the side tube to its level and, where it reaches the top, leaves as drops
+   the stream carries off; a 5 s loop with a 1.2 s hold · $\kvone$, the speed of the air entering the tube (0 to
    40 m/s, default 20, velocity), and the narrowing $A_1/A_2$ (1.0 to 2.0,
    default 1.5, ink, a ratio of areas). Continuity gives
    $\kvtwo = \kvone A_1/A_2$, the pressure in the constriction is below

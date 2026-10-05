@@ -1,10 +1,10 @@
 /* Figures for section 12.2 Bernoulli's Equation. Boots against the section's text article.
-   Every figure here is a steady flow held at one state while the reader drags
-   its sliders, so none registers a cycle, none carries a transport, and a
-   slider's or a choice's input alone redraws it (ch12/config.md). */
+   The book's Figures 12.5 and 12.6 draw the air's path as arrows, so those two carry the
+   air along on a cycle; the rest are steady flows held at one state, with no cycle, no
+   transport, and a slider's or a choice's input alone redrawing them. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, vbracket, faded } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, hover, register, begin, line, arrow, dot, text, topline, vbracket, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
@@ -51,18 +51,36 @@ function shape(ctx, pts, fill, stroke, w = 3) {
 }
 const range = (n) => Array.from({ length: n }, (_, i) => i);
 const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 - x0) * i) / n; return [x, f(x)]; });
+/* a steady flow from x0 to x1 at speed(x) units per second: where a bit of the fluid that left x0 `age` seconds ago is, or null once past x1 */
+function flow(x0, x1, speed) {
+  const n = 240, xs = [x0], ts = [0];
+  for (let i = 1; i <= n; i++) { const x = x0 + ((x1 - x0) * i) / n, dx = (x1 - x0) / n; xs.push(x); ts.push(ts[i - 1] + (2 * dx) / (speed(x - dx) + speed(x))); }
+  return { tmax: ts[n], at(age) {
+    if (age < 0 || age > ts[n]) return null;
+    let i = 1; while (ts[i] < age) i++;
+    return xs[i - 1] + ((xs[i] - xs[i - 1]) * (age - ts[i - 1])) / (ts[i] - ts[i - 1]);
+  } };
+}
+/* the ages of bits released every dt into a stream that has run since before the loop: a pattern the same at T as at 0 when T/dt is whole */
+const ages = (tau, dt, tmax) => { const out = []; for (let a = tau % dt; a <= tmax; a += dt) out.push(a); return out; };
 
 /* =====================================================================
    FIGURE 12.5: the car passing the truck, from overhead. The air that ends
    up between the vehicles came from a band 3.0 m wide, so the equation of
    continuity fixes how much faster it moves in the gap, and Bernoulli's
-   principle fixes how much lower its pressure is. Still: a steady flow held
-   at one state while the gap and the speed are dragged.
+   principle fixes how much lower its pressure is. Moving: the book's streamline
+   arrows are the air's path, so bits of air ride the streamlines, released in
+   columns that stay together outside and pull ahead and spread in the gap.
 ===================================================================== */
 (function () {
   const d = sim('sim-car-truck', 800);
-  const vs = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 5, max: 35, step: 1, value: 25, unit: 'm/s', dec: 0, aria: 'the speed of the air past the outside of the vehicles' });
-  const gs = ctl(d.controls, { label: '\\text{the gap}', cls: 'position', min: 1.2, max: 3, step: 0.1, value: 1.5, unit: 'm', dec: 1, aria: 'the gap between the car and the truck' });
+  const vs = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 5, max: 35, step: 1, value: 25, unit: 'm/s', dec: 0, onInput: reset, aria: 'the speed of the air past the outside of the vehicles' });
+  const gs = ctl(d.controls, { label: '\\text{the gap}', cls: 'position', min: 1.2, max: 3, step: 0.1, value: 1.5, unit: 'm', dec: 1, onInput: reset, aria: 'the gap between the car and the truck' });
+  const T = 5, KS = 12, SP = 90;                                      /* the loop, s; 12 units per second for each m/s; columns 90 units apart upstream */
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  let hits = [];
+  hover(d.stage, () => hits);
   const S = 70, BAND = 3.0, YG = 470, KV = 3, KP = 0.04;              /* 70 units per metre; the push arrows at 0.04 units per N/m² */
   const TW = 2.5 * S, CW = 1.8 * S, CX0 = 560, CX1 = 875, TX0 = 330, TX1 = 1250;
   function draw() {
@@ -72,18 +90,18 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     const half = (gap * S) / 2, tB = YG - half, tT = tB - TW, cT = YG + half, cB = cT + CW;
     /* how far the band of air between the vehicles is pinched at each x: 1 upstream, gap/BAND alongside the car */
     const pinch = (x) => { const k = x < CX0 ? ease((x - (CX0 - 260)) / 260) : x > CX1 ? 1 - ease((x - CX1) / 260) : 1; return 1 + (gap / BAND - 1) * k; };
-    /* the streamlines between the vehicles, seven of them spread over the 3.0 m band upstream */
-    const mid = alpha(PAL.ink, 0.55);
-    for (let i = 0; i < 7; i++) {
-      const u = -105 + i * 35;
-      streamline(ctx, samples(60, 1330, 64, (x) => YG + u * pinch(x)), mid);
-    }
-    /* the streamlines outside, which bend around the bodies */
+    /* the streamlines: seven between the vehicles, spread over the 3.0 m band upstream, and three outside each, bending around the bodies */
     const bump = (x, x0, x1) => { const k = x < x0 ? ease((x - (x0 - 200)) / 200) : x > x1 ? 1 - ease((x - x1) / 240) : 1; return k; };
-    for (let i = 1; i <= 3; i++) {
-      streamline(ctx, samples(60, 1330, 64, (x) => tT - 22 * i - 24 * bump(x, TX0, TX1) * (1 - (i - 1) * 0.25)), mid);
-      streamline(ctx, samples(60, 1330, 64, (x) => cB + 22 * i + 24 * bump(x, CX0, CX1) * (1 - (i - 1) * 0.25)), mid);
-    }
+    const inner = range(7).map((i) => (x) => YG + (-105 + i * 35) * pinch(x));
+    const outer = [1, 2, 3].flatMap((i) => [(x) => tT - 22 * i - 24 * bump(x, TX0, TX1) * (1 - (i - 1) * 0.25), (x) => cB + 22 * i + 24 * bump(x, CX0, CX1) * (1 - (i - 1) * 0.25)]);
+    const lane = alpha(PAL.ink, 0.3);
+    [...inner, ...outer].forEach((f) => path(ctx, samples(60, 1330, 64, f), lane, 2));
+    /* the bits of air, one column released every dt: the inner ones speed up where the band is pinched, the outer ones keep v1 */
+    const dt = T / Math.max(1, Math.round((T * KS * v1) / SP)), tau = cy.now(), air = alpha(PAL.ink, 0.55);
+    const fin = flow(60, 1330, (x) => (KS * v1) / pinch(x)), fout = flow(60, 1330, () => KS * v1);
+    hits = [];
+    ages(tau, dt, fin.tmax).forEach((a) => { const x = fin.at(a); if (x === null) return; inner.forEach((f) => { const y = f(x); dot(ctx, x, y, air, true, 3.5); hits.push({ x, y, r: 12, name: 'air between the vehicles, at ' + fmt(v1 / pinch(x), 0) + ' m/s' }); }); });
+    ages(tau, dt, fout.tmax).forEach((a) => { const x = fout.at(a); if (x === null) return; outer.forEach((f) => { const y = f(x); dot(ctx, x, y, air, true, 3.5); hits.push({ x, y, r: 12, name: 'air outside the vehicles, at ' + fmt(v1, 0) + ' m/s' }); }); });
     /* the truck: cab at the left, trailer behind, seen from above */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cTruck; ctx.lineWidth = 3;
     ctx.fillRect(TX0, tT, TX1 - TX0, TW); ctx.strokeRect(TX0, tT, TX1 - TX0, TW);
@@ -124,7 +142,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       + (dp < 1 ? 'With no difference in speed there is no difference in pressure, and nothing pushes the vehicles together.'
         : 'The greater pressure outside pushes on every square meter of the car’s side with ' + dP(dp).replace('N/m²', 'N') + ' toward the truck, and on the truck toward the car.'));
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================
@@ -257,13 +275,20 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
    tube that narrows, a side tube from the narrow part dips into water that
    is open to the atmosphere, and the greater pressure outside pushes the
    water up the side tube until its weight makes up the difference; once it
-   reaches the stream it is carried off. Still: the stream is steady and the
-   water's level answers the speed and nothing else.
+   reaches the stream it is carried off. Moving: the book's arrows are the
+   fluids' paths, so bits of air ride the stream, faster through the narrow part,
+   and each loop the stream starts, the water climbs the side tube to its level
+   and, where it reaches the top, leaves as drops the stream carries off.
 ===================================================================== */
 (function () {
   const d = sim('sim-entrainment', 640);
-  const vs = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 0, max: 40, step: 1, value: 20, unit: 'm/s', dec: 0, aria: 'the speed of the air entering the tube' });
-  const rs = ctl(d.controls, { label: '\\kareaone/\\kareatwo', cls: '', min: 1, max: 2, step: 0.05, value: 1.5, unit: '', dec: 2, aria: 'how much the tube narrows, as the ratio of the wide area to the narrow one' });
+  const vs = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 0, max: 40, step: 1, value: 20, unit: 'm/s', dec: 0, onInput: reset, aria: 'the speed of the air entering the tube' });
+  const rs = ctl(d.controls, { label: '\\kareaone/\\kareatwo', cls: '', min: 1, max: 2, step: 0.05, value: 1.5, unit: '', dec: 2, onInput: reset, aria: 'how much the tube narrows, as the ratio of the wide area to the narrow one' });
+  const T = 5, KS = 15, SP = 60, CLIMB = 1.5, DROP = 0.06;            /* the loop, s; 15 units per second for each m/s; bits 60 units apart upstream; the climb and the drops, s */
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  let hits = [];
+  hover(d.stage, () => hits);
   const W1 = 70, YWALL = 330, XC0 = 560, XC1 = 840, XS = 700, TUBE = 0.20, SM = 1000, YSURF = YWALL + TUBE * SM, KV = 3;   /* 1000 units per metre in the side tube */
   function draw() {
     const { ctx } = begin(d.c);
@@ -276,19 +301,26 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); top.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); bot.slice().reverse().forEach(([x, y]) => ctx.lineTo(x, y)); ctx.closePath(); ctx.fill(); ctx.restore();
     path(ctx, top, cTube, 3);
     path(ctx, bot.filter(([x]) => x < XS - 14), cTube, 3); path(ctx, bot.filter(([x]) => x > XS + 14), cTube, 3);
-    /* the streamlines, five of them, following the tube's shape */
-    const mid = alpha(PAL.ink, 0.55);
-    if (v1 > 0) for (let i = -2; i <= 2; i++) streamline(ctx, samples(120, 1280, 64, (x) => YC + (i / 3) * wid(x)), mid);
+    /* the streamlines, five of them, following the tube's shape, and the bits of air riding them, released every dt */
+    const tau = cy.now(), air = alpha(PAL.ink, 0.55), lanes = [-2, -1, 0, 1, 2].map((i) => (x) => YC + (i / 3) * wid(x));
+    const fa = v1 > 0 ? flow(120, 1280, (x) => (KS * v1 * W1) / wid(x)) : null;
+    hits = [];
+    if (fa) {
+      lanes.forEach((f) => path(ctx, samples(120, 1280, 64, f), alpha(PAL.ink, 0.3), 2));
+      const dt = T / Math.max(1, Math.round((T * KS * v1) / SP));
+      ages(tau, dt, fa.tmax).forEach((a) => { const x = fa.at(a); if (x === null) return; lanes.forEach((f) => { const y = f(x); dot(ctx, x, y, air, true, 3.5); hits.push({ x, y, r: 12, name: 'air at ' + fmt((v1 * W1) / wid(x), 0) + ' m/s' }); }); });
+    }
     /* the side tube and the beaker of water beneath the constriction */
     ctx.save(); ctx.strokeStyle = cSide; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(XS - 14, YWALL); ctx.lineTo(XS - 14, YSURF + 40); ctx.moveTo(XS + 14, YWALL); ctx.lineTo(XS + 14, YSURF + 40); ctx.stroke();
     ctx.strokeStyle = PAL.ink;
     ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.fillRect(XS - 70, YSURF, 140, 70);
     ctx.beginPath(); ctx.moveTo(XS - 70, YSURF - 30); ctx.lineTo(XS - 70, YSURF + 70); ctx.lineTo(XS + 70, YSURF + 70); ctx.lineTo(XS + 70, YSURF - 30); ctx.stroke();
-    /* the water in the side tube, standing h above the surface */
-    ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.fillRect(XS - 14, YSURF - h * SM, 28, h * SM + 40);
+    /* the water in the side tube, climbing to h above the surface as the stream starts */
+    const hn = h * ease(tau / CLIMB);
+    ctx.fillStyle = alpha(PAL.ink, 0.16); ctx.fillRect(XS - 14, YSURF - hn * SM, 28, hn * SM + 40);
     ctx.restore();
-    line(ctx, XS - 14, YSURF - h * SM, XS + 14, YSURF - h * SM, PAL.ink, 2.5);
+    line(ctx, XS - 14, YSURF - hn * SM, XS + 14, YSURF - hn * SM, PAL.ink, 2.5);
     line(ctx, XS - 70, YSURF, XS - 14, YSURF, PAL.ink, 2.5); line(ctx, XS + 14, YSURF, XS + 70, YSURF, PAL.ink, 2.5);
     text(ctx, 'water', XS - 84, YSURF + 40, PAL.ink, { size: 19, align: 'right' });
     text(ctx, 'open to the air, P_0 = 1.01 × 10⁵ N/m²', XS + 100, YSURF + 50, pc, { size: 19, weight: 600 });
@@ -300,7 +332,12 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     }
     /* the drops the stream carries away once the water reaches it */
     if (lifted) {
-      for (let k = 0; k < 14; k++) { const x = XS + 30 + k * 38, y = YC + Math.sin(k * 2.3) * wid(x) * 0.55; dot(ctx, x, y, PAL.ink, true, 4); }
+      const fd = flow(XS, 1280, (x) => (KS * v1 * W1) / wid(x));
+      for (let k = 0; CLIMB + k * DROP <= tau; k++) {
+        const x = fd.at(tau - CLIMB - k * DROP); if (x === null) continue;
+        const lane = YC + Math.sin(k * 2.3) * wid(x) * 0.55, y = YWALL + (lane - YWALL) * ease((x - XS) / 90);
+        dot(ctx, x, y, PAL.ink, true, 5.5); hits.push({ x, y, r: 12, name: 'a drop of water carried off in the stream' });
+      }
       text(ctx, 'drops of water carried off in the stream', 1290, YC - wid(1290) - 22, PAL.ink, { size: 19, align: 'right', bg: alpha(PAL.panel, 0.85) });
     }
     /* the speeds and the pressures */
@@ -320,7 +357,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       'The equation of continuity gives $\\kvtwo = \\kvone\\kareaone/\\kareatwo = ' + fmt(v2, 0) + '\\ \\text{m/s}$ in the constriction. The water rises until its own weight makes up the difference in pressure, $\\kh = (\\kPr_{0} - \\kPrtwo)/\\krho g$ = ' + hStr(hfull, 0.01) + ' with water at 1.00 × 10³ kg/m³'
       + (lifted ? ', more than the 20 cm of the tube, so the water reaches the stream and is entrained.' : '.'));
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================
