@@ -130,21 +130,24 @@ id · replaces or Sim · concepts · what moves · sliders · headline · graph 
    passage is about, a person leaning forward, sideways and backward to
    keep the whole body's center of gravity over the base of support. The
    book's caption and its width of 269 are kept.
-4. `sim-lift` · replaces Figure 9.28 (the person lifting a box with the
-   back) · posture-and-back-strain, joint-force, muscle-force-from-torque ·
-   **still**: the box is lifted at constant speed, so the scene is a frozen
-   one · the mass of the box (0 to 50 kg, default 30.0, ink); the distance
-   from the hips to the box (30 to 70 cm, default 50.0, position); the mass
-   of the upper body (40 to 80 kg, default 55.0, ink) · "A 30.0 kg
-   box lifted with the back makes the muscles pull 4196 N and loads the
-   vertebrae with 4657 N." · no graph;
-   three bars beside the scene compare the weight supported, the force in
-   the back muscles and the force on the vertebrae, which is the comparison
-   the example ends on, all three drawn to a fixed 9,000 N taken from the
-   heaviest box at the longest reach, and the scene's arrows to a fixed
-   8,000 N · no. Readout: the torque balance solved for $\kFB$
-   with the live numbers; small line on $\kFV$ and its direction. Draws
-   force, position, torque.
+4. `sim-lift` · replaces Figure 9.28 · posture-and-back-strain, joint-force,
+   muscle-force-from-torque · variation by slider: a heavier box or one held
+   farther out drives the muscle and vertebra forces up many times the load ·
+   **still**, the box rises at constant speed · $m_\text{box}$ (mass, 0 to
+   50 kg, default 30.0), $r_\text{box}$ (position, 30 to 70 cm, default
+   50.0), $m_\text{ub}$ (mass, 40 to 80 kg, default 55.0) · headline "A 30.0
+   kg box lifted with the back makes the muscles pull 4196 N and loads the
+   vertebrae with 4657 N" · bars beside, fixed at 9000 N · 2D side view as
+   the book draws it; one `F.silhouette` at its own proportions, bent at the
+   hips, the scene scale chosen so the hands close on the box's handles at
+   every $r_\text{box}$ (box hidden at 0 kg), the 0.350 m and $r_\text{box}$
+   lever arms measured below the ground, labels through the labeller with
+   the body and box blocked; no fold or split.
+   Rewrite, 2026-10-05: the silhouette at s = 3.2 (a metre is 274 units) over
+   nearly straight legs, the hands in a handle slot of the box; $\kFV$ drawn
+   into the pivot with its angle $\theta$ from the horizontal; the torque arcs
+   dropped, so the figure draws force, position, mass and angle. Readout: the
+   torque balance solved for $\kFB$; note on $\kFVx$, $\kFVy$ and $\theta$.
 5. `sim-lever-arm-trade` · **Sim**, replaces nothing · benefits-of-short-lever-arms,
    muscle-lever-system · **still**: the elbow angle is a slider, not a
    clock, and the chapter draws no motion · the elbow angle (40º to 140º,

@@ -27,7 +27,6 @@ function book(ctx, cx, top, w, h, color = PAL.ink) {
   ctx.restore();
 }
 /* a box carried in the hands, drawn as the library's crate */
-function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, color); }
 /* =====================================================================
    FIGURE 9.25: the forearm holding a book, with the equivalent lever
    system drawn over it. The elbow is the pivot, the biceps pulls up a
@@ -218,97 +217,138 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
 })();
 
 /* =====================================================================
-   FIGURE 9.28: lifting a box with the back. The pivot is in the hips,
-   the weight of the upper body and the weight of the box both hang far
-   in front of it, and the back muscles answer both on a lever arm of
-   8.00 cm. The bars beside the scene compare the weight being supported
-   with the force in the muscles and the force the vertebrae carry. The
-   box goes up at constant speed, so the scene is a frozen one and the
-   figure registers no cycle.
+   FIGURE 9.28: lifting a box with the back, seen from the side as the
+   book draws it. The pivot is in the hips, the weight of the upper body
+   and the weight of the box both hang far in front of it, and the back
+   muscles answer both on a lever arm of 8.00 cm. The bars beside the
+   scene compare the weight being supported with the force in the
+   muscles and the force the vertebrae carry. The box goes up at constant
+   speed, so the scene is a frozen one and the figure registers no cycle.
 ===================================================================== */
 (function () {
-  const d = sim('sim-lift', 820);
+  const d = sim('sim-lift', 760);
   const MBX = ctl(d.controls, { label: '\\km_{\\htmlData{ref=box}{\\text{box}}}', cls: 'mass', min: 0, max: 50, step: 1, value: 30, unit: 'kg', dec: 1, aria: 'mass of the box' });
   const RBX = ctl(d.controls, { label: 'r_{\\text{box}}', cls: 'position', min: 30, max: 70, step: 1, value: 50, unit: 'cm', dec: 1, aria: 'distance from the hips to the box' });
   const MUB = ctl(d.controls, { label: '\\km_{\\text{ub}}', cls: 'mass', min: 40, max: 80, step: 1, value: 55, unit: 'kg', dec: 1, aria: 'mass of the upper body' });
   const RUB = 0.350, RM = 0.0800, ANG = 29.0 * RAD;   /* the book's lever arms, and the angle of the spine and the muscles */
-  const HX = 250, HY = 300, S = 520, GY = 560;
+  /* One scale for the person and the lever arms: the silhouette at s = 3.2 stands 480 units, a
+     person of 1.75 m, so a metre is 274 units. Bent 29° at hips 74 of its 150 units up, over
+     the nearly straight legs a lift with the back has, the shoulder sits 0.47 m in front of the
+     hips, and the hands reach the box's handles from 0.30 m to 0.70 m with the elbows bent. */
+  const P = 3.2, SC = 150 * P / 1.75, HX = 360, GY = 600;
+  const hip = { x: HX, y: GY - 74 * P };
   const u = [Math.cos(ANG), -Math.sin(ANG)], n = [-Math.sin(ANG), -Math.cos(ANG)];
+  const sh = { x: hip.x + 46 * P * u[0], y: hip.y + 46 * P * u[1] };
+  const head = { x: sh.x + 20 * P * Math.cos(15 * RAD), y: sh.y - 20 * P * Math.sin(15 * RAD) };
+  const feet = [{ x: HX + 16 * P, y: GY }, { x: HX + 4 * P, y: GY }];
+  const BW = 0.24 * SC, BH = 0.35 * SC, BT = hip.y + 0.16 * SC;           /* the box, 24 cm deep and 35 cm tall, its top just below the hips */
+  const HDL = BT + 0.075 * SC;                                              /* the handle slot in its near face */
+  const K = 200 / 8000;     /* arrows to a fixed 8000 N, the heaviest box at the longest reach; one past it stops there */
+  const ah = (f) => Math.min(Math.max(K * f, 40), 200);
+  const J = (p) => ({ x: (p.x - HX) / P, y: (p.y - GY) / P });
+  /* blocks a run of small boxes along a segment, so labels step round a body or an arrow */
+  const along = (lab, x1, y1, x2, y2, r) => { const L = Math.hypot(x2 - x1, y2 - y1), k = Math.max(1, Math.ceil(L / 12)); for (let i = 0; i <= k; i++) { const x = x1 + (x2 - x1) * i / k, y = y1 + (y2 - y1) * i / k; lab.block(x - r, y - r, x + r, y + r); } };
+  let hits = [];
+  F.hover(d.stage, () => hits);
 
   function draw() {
     const { ctx } = begin(d.c);
-    const wub = MUB.v * G, wbox = MBX.v * G, rbox = RBX.v / 100;
+    const cf = C('force'), cp = C('position'), ca = C('angle'), cl = F.ref('lifter'), cb = F.ref('box'), cm = F.ref('back-muscles');
+    const wub = MUB.v * G, wbox = MBX.v * G, rbox = RBX.v / 100, has = MBX.v > 0;
     const FB = (RUB * wub + rbox * wbox) / RM;
     const FVy = wub + wbox + FB * Math.sin(ANG), FVx = FB * Math.cos(ANG);
-    const FV = Math.hypot(FVx, FVy), th = Math.atan2(FVy, FVx) / RAD;
-    /* The arrows run to a fixed 8,000 N, which is the heaviest box the sliders reach held at the
-       longest reach, so a heavier box lengthens them instead of leaving the drawing as it was. */
-    const K = 150 / 8000;
-    const onSpine = (x) => HY - (x - HX) * Math.tan(ANG);
-    const xub = HX + RUB * S, xbox = HX + rbox * S;
+    const FV = Math.hypot(FVx, FVy), th = Math.atan2(FVy, FVx);
+    const xub = HX + RUB * SC, yub = hip.y - RUB * SC * Math.tan(ANG), xbox = HX + rbox * SC, ybox = BT + BH / 2;
 
-    /* the ground, the legs, the spine and the arms holding the box */
-    line(ctx, 60, GY, 780, GY, PAL.muted, 3);
-    /* the whole body bent over the box, the arms down to its top, in the silhouette's own frame */
-    const ps = 2.4, J = (q) => ({ x: (q[0] - HX) / ps, y: (q[1] - GY) / ps });
-    const sh = [HX + 288 * u[0], HY + 288 * u[1]], head = [HX + 354 * u[0], HY + 354 * u[1]];
-    const BT = 410;
-    silhouette(ctx, { x: HX, y: GY, s: ps, color: F.ref('lifter'), pose: 'stand', feet: [J([HX + 18, GY]), J([HX - 16, GY])], hip: J([HX, HY]), shoulder: J(sh), head: J(head), hands: [J([xbox - 30, BT + 2]), J([xbox + 30, BT + 2])], kneeSide: 1, elbowSide: 1 });
-    crate(ctx, xbox, BT, 92, 62, F.ref('box'));
-    dot(ctx, HX, HY, PAL.ink, true, 11);
+    const rows = headline(ctx, (has ? 'A ' + fmt(MBX.v, 1) + ' kg box lifted with the back makes' : 'With no box, the upper body alone makes')
+      + ' the muscles pull $\\kFB = ' + fmt(FB, 0) + '\\ \\text{N}$ and loads the vertebrae with $\\kFV = ' + fmt(FV, 0) + '\\ \\text{N}$.');
+    const lab = F.labeller(ctx, 760, { headline: rows });
 
-    /* the two weights, with a drop line each to the lever arms below the ground */
-    dot(ctx, xub, onSpine(xub), PAL.ink, false, 10);
-    const lu = Math.max(K * wub, 34);
-    arrow(ctx, xub, onSpine(xub), xub, onSpine(xub) + lu, C('force'), 5);
-    text(ctx, 'w_ub = ' + fmt(wub, 0) + ' N', xub + 14, onSpine(xub) + lu + 18, C('force'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
-    if (wbox > 0) {
-      const lx = Math.max(K * wbox, 30);
-      arrow(ctx, xbox, BT + 62, xbox, BT + 62 + lx, C('force'), 5);
-      text(ctx, 'w_box = ' + fmt(wbox, 0) + ' N', xbox + 14, BT + 62 + lx + 18, C('force'), { size: 19, weight: 600, align: 'left' });
+    /* the lever arms, measured below the ground from faint drop lines the body and the box cover */
+    const B1 = GY + 56, B2 = GY + 116;
+    line(ctx, HX, hip.y, HX, B2, alpha(PAL.ink, 0.3), 2, [4, 8]);
+    line(ctx, xub, yub, xub, B1, alpha(PAL.ink, 0.3), 2, [4, 8]);
+    if (has) line(ctx, xbox, ybox, xbox, B2, alpha(PAL.ink, 0.3), 2, [4, 8]);
+    line(ctx, 60, GY, 760, GY, PAL.muted, 3);
+    hbracket(ctx, HX, xub, B1, cp);
+    lab.add('r_ub⊥ = 0.350 m', (HX + xub) / 2, B1, 0, -1, cp, 20, 26);
+    if (has) { hbracket(ctx, HX, xbox, B2, cp); lab.add('r_box⊥ = ' + fmt(rbox, 3) + ' m', (HX + xbox) / 2, B2, 0, -1, cp, 20, 26); }
+
+    /* the box with a handle slot in its near face, behind the arms that hold it */
+    if (has) {
+      F.crate(ctx, xbox, ybox, BW, BH, cb);
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cb; ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(xbox - 0.07 * SC, HDL - 0.026 * SC, 0.14 * SC, 0.052 * SC, 0.026 * SC); ctx.fill(); ctx.stroke(); ctx.restore();
+      lab.block(xbox - BW / 2, BT, xbox + BW / 2, BT + BH);
     }
-    line(ctx, HX, GY + 12, HX, 676, PAL.rule, 2, [6, 8]);
-    line(ctx, xub, GY + 12, xub, 628, PAL.rule, 2, [6, 8]);
-    line(ctx, xbox, GY + 12, xbox, 676, PAL.rule, 2, [6, 8]);
-    hbracket(ctx, HX, xub, 620, C('position'), 'r_ub⊥ = 0.350 m');
-    hbracket(ctx, HX, xbox, 668, C('position'), 'r_box⊥ = ' + fmt(rbox, 3) + ' m');
+    /* the person, bent 29° at the hips over nearly straight legs, the hands in the slot or hanging free */
+    const hands = has ? [{ x: xbox - 1.5 * P, y: HDL + 0.5 * P }, { x: xbox + 1.5 * P, y: HDL }] : [{ x: sh.x + 2.5 * P, y: sh.y + 50 * P }, { x: sh.x + 0.5 * P, y: sh.y + 49 * P }];
+    silhouette(ctx, { x: HX, y: GY, s: P, color: cl, pose: 'stand', feet: feet.map(J), hip: J(hip), shoulder: J(sh), head: J(head), hands: hands.map(J), kneeSide: -1, elbowSide: -1 });
+    along(lab, hip.x, hip.y, sh.x, sh.y, 10 * P); along(lab, sh.x, sh.y, head.x, head.y, 6 * P); lab.block(head.x - 13 * P, head.y - 13 * P, head.x + 13 * P, head.y + 13 * P);
+    feet.forEach((f) => along(lab, hip.x + 5 * P, hip.y + 5 * P, f.x + 6 * P, f.y, 6 * P));
+    hands.forEach((h) => along(lab, sh.x, sh.y, h.x, h.y, 7 * P));
 
     /* the back muscles, parallel to the spine and offset behind it by their lever arm */
-    const a = [HX + RM * S * n[0], HY + RM * S * n[1]];
-    const b = [a[0] + 210 * u[0], a[1] + 210 * u[1]];
-    line(ctx, a[0], a[1], b[0], b[1], F.ref('back-muscles'), 9);
-    line(ctx, HX, HY, a[0], a[1], C('position'), 3);
-    text(ctx, '0.0800 m', a[0] - 12, a[1] - 40, C('position'), { size: 17, weight: 600, align: 'right', bg: PAL.panel });
-    const lf = Math.max(K * FB, 30);
-    arrow(ctx, b[0], b[1], b[0] - lf * u[0], b[1] - lf * u[1], C('force'), 5);
-    text(ctx, 'F_B = ' + fmt(FB, 0) + ' N', b[0] - lf * u[0] + 34 * n[0], b[1] - lf * u[1] + 34 * n[1], C('force'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });   /* behind the back, off the body */
-    /* the force the vertebrae push back with, at the pivot */
-    const lv = Math.min(Math.max(K * FV, 34), 110), vd = [Math.cos(th * RAD), -Math.sin(th * RAD)];
-    arrow(ctx, HX, HY, HX + lv * vd[0], HY + lv * vd[1], C('force'), 5);
-    text(ctx, 'F_V = ' + fmt(FV, 0) + ' N', HX - 26, 392, C('force'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
-    turn(ctx, HX, HY, 118, 214 * RAD, 158 * RAD, C('torque'));
-    text(ctx, 'τ = ' + fmt(FB * RM, 0) + ' N·m each way', 210, 124, C('torque'), { size: 18, weight: 600, align: 'center' });
+    const a = { x: hip.x + RM * SC * n[0], y: hip.y + RM * SC * n[1] }, b = { x: a.x + 30 * P * u[0], y: a.y + 30 * P * u[1] };
+    line(ctx, a.x, a.y, b.x, b.y, cm, 9);
+    line(ctx, hip.x, hip.y, a.x, a.y, cp, 3);
+    along(lab, a.x, a.y, b.x, b.y, 8);
+    lab.add('r_b⊥ = 0.0800 m', a.x, a.y, n[0], n[1], cp, 20, 18);
 
-    /* the three forces side by side, which is the comparison the example ends on */
-    const rows = [['the weight supported', wub + wbox], ['the back muscles', FB], ['the vertebrae', FV]];
-    /* the bars run to a fixed 9,000 N, taken from the heaviest box at the longest reach, so that
-       raising the mass lengthens them rather than leaving the three in the same proportion */
-    const mx = 9000, BL = 1000, BW = 280;
-    rows.forEach((row, i) => {
-      const y = 230 + i * 86, w = Math.max(Math.min(row[1] / mx, 1) * BW, 3);
+
+    /* the muscles pull the upper body toward the pelvis */
+    const lf = ah(FB), fb = { x: a.x - lf * u[0], y: a.y - lf * u[1] };
+    lab.halo({ x1: a.x, y1: a.y, x2: fb.x, y2: fb.y }, 12);
+    arrow(ctx, a.x, a.y, fb.x, fb.y, cf, 5);
+    along(lab, a.x, a.y, fb.x, fb.y, 8);
+    lab.add('F_B', fb.x, fb.y, -u[0], -u[1], cf, 24, 16);
+    /* the vertebrae push back on it at the pivot, at θ above the horizontal */
+    const lv = ah(FV), tl = { x: hip.x - lv * Math.cos(th), y: hip.y + lv * Math.sin(th) };
+    lab.halo({ x1: tl.x, y1: tl.y, x2: hip.x, y2: hip.y }, 12);
+    arrow(ctx, tl.x, tl.y, hip.x, hip.y, cf, 5);
+    along(lab, tl.x, tl.y, hip.x, hip.y, 8);
+    F.angleArc(ctx, tl, 56, 0, th, 'θ', undefined, ca);
+    lab.place({ l: tl.x + 76 * Math.cos(th / 2) - 14, t: tl.y - 76 * Math.sin(th / 2) - 14, r: tl.x + 76 * Math.cos(th / 2) + 14, b: tl.y - 76 * Math.sin(th / 2) + 14 });
+    lab.add('F_V', tl.x, tl.y, -Math.cos(th), Math.sin(th), cf, 24, 16);
+    dot(ctx, hip.x, hip.y, PAL.ink, true, 11);
+
+    /* the weights, from the two centers of gravity */
+    const lu = Math.max(ah(wub), 70);
+    dot(ctx, xub, yub, PAL.ink, false, 10);
+    lab.halo({ x1: xub, y1: yub, x2: xub, y2: yub + lu }, 12);
+    arrow(ctx, xub, yub, xub, yub + lu, cf, 5);
+    along(lab, xub, yub, xub, yub + lu, 8);
+    lab.add('w_ub', xub, yub, 0, -1, cf, 24, 40);
+    if (has) {
+      const lx = ah(wbox);
+      dot(ctx, xbox, ybox, PAL.ink, false, 10);
+      lab.halo({ x1: xbox, y1: ybox, x2: xbox, y2: ybox + lx }, 12);
+      arrow(ctx, xbox, ybox, xbox, ybox + lx, cf, 5);
+      along(lab, xbox, ybox, xbox, ybox + lx, 8);
+      lab.add('w_box', xbox, ybox + lx, 1, 0.4, cf, 24, 18);
+    }
+    d.fig.dataset.missed = lab.flush().join(" | ");
+
+    /* the three forces side by side, which is the comparison the example ends on, to a fixed
+       9000 N taken from the heaviest box at the longest reach */
+    const rowsB = [['the weight supported', wub + wbox], ['the back muscles', FB], ['the vertebrae', FV]];
+    const mx = 9000, BL = 1000, BWD = 280;
+    rowsB.forEach((row, i) => {
+      const y = 240 + i * 86, w = Math.max(Math.min(row[1] / mx, 1) * BWD, 3);
       text(ctx, row[0], BL - 20, y, PAL.ink, { size: 19, align: 'right' });
-      ctx.save(); ctx.fillStyle = C('force'); ctx.fillRect(BL, y - 18, w, 36); ctx.restore();
-      text(ctx, fmt(row[1], 0) + ' N', BL + w + 12, y, C('force'), { size: 19, weight: 600, align: 'left' });
+      ctx.save(); ctx.fillStyle = cf; ctx.fillRect(BL, y - 18, w, 36); ctx.restore();
+      text(ctx, fmt(row[1], 0) + ' N', BL + w + 12, y, cf, { size: 19, weight: 600, align: 'left' });
     });
-    text(ctx, 'The muscles and the joint carry many times the weight being lifted.', 1040, 470, PAL.muted, { size: 17, align: 'center' });
 
-    headline(ctx, 'A ' + fmt(MBX.v, 1) + ' kg box lifted with the back makes the muscles pull ' + fmt(FB, 0)
-      + ' N and loads the vertebrae with ' + fmt(FV, 0) + ' N.');
+    hits = [
+      { x: head.x, y: head.y, r: 50, name: 'the person lifting' },
+      { x: hip.x, y: hip.y, r: 16, name: 'the pivot in the hips' },
+      { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, r: 30, name: 'the back muscles' },
+      { x: xub, y: yub, r: 14, name: 'the center of gravity of the upper body' },
+      ...(has ? [{ x: xbox, y: ybox, r: 14, name: 'the center of gravity of the box' }, { x: xbox, y: ybox, r: BH / 2, name: 'the box' }] : []),
+    ];
     readout(d.readout,
-      `\\kFB = \\frac{(${fmt(RUB, 3)}\\ \\text{m})\\kwub + (${fmt(rbox, 3)}\\ \\text{m})\\kwbox}{${fmt(RM, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
-      'The first condition then gives the force on the vertebrae: its horizontal component is ' + fmt(FVx, 0)
-      + ' N and its vertical component ' + fmt(FVy, 0) + ' N, so it comes to ' + fmt(FV, 0) + ' N at '
-      + fmt(th, 1) + '° above the horizontal.');
+      `\\kFB = \\frac{(${fmt(RUB, 3)}\\ \\text{m})\\kwub${has ? ` + (${fmt(rbox, 3)}\\ \\text{m})\\kwbox` : ''}}{\\krbperp} = \\frac{(${fmt(RUB, 3)}\\ \\text{m})(${fmt(wub, 0)}\\ \\text{N})${has ? ` + (${fmt(rbox, 3)}\\ \\text{m})(${fmt(wbox, 0)}\\ \\text{N})` : ''}}{${fmt(RM, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
+      `With $\\kFVx = ${fmt(FVx, 0)}\\ \\text{N}$ and $\\kFVy = ${fmt(FVy, 0)}\\ \\text{N}$, the vertebrae push at $\\ktheta = ${fmt(th / RAD, 1)}°$ above the horizontal.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
