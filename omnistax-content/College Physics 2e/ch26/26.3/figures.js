@@ -98,8 +98,8 @@ function hueName(r, g, b) {
     const hue = hueName(...[1, 3, 5].map((i) => parseInt(sw.slice(i, i + 2), 16) / 255));
     const order = [['red', r], ['green', g], ['blue', b]].sort((a, c) => c[1] - a[1]);
     topline(ctx, `Light of ${fmt(v, 0)} nm is seen as ${hue}; it stimulates the ${order[0][0]} cones most and the ${order[2][0]} cones least.`);
-    const n = (x) => fmt(x, 0);
-    readout(d.readout, `\\klam = ${fmt(v, 0)}\\ \\text{nm}:\\quad \\text{red} : \\text{green} : \\text{blue} = ${n(r)} : ${n(g)} : ${n(b)}`,
+    const n = (x) => fmt(x, x >= 10 ? 0 : x >= 1 ? 1 : 2);
+    readout(d.readout, `\\klam = ${fmt(v, 0)}\\ \\text{nm},\\quad \\text{red} : \\text{green} : \\text{blue} = ${n(r)} : ${n(g)} : ${n(b)}`,
       'The hue is set by the ratio of the three stimulations, not by any one of them.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -116,8 +116,8 @@ function hueName(r, g, b) {
   const R = ctl(d.controls, { label: '\\text{red}', cls: 'intensity', min: 0, max: 100, step: 1, value: 100, unit: '%', dec: 0, aria: 'the intensity of the red light', detents: [0, 50, 100] });
   const G = ctl(d.controls, { label: '\\text{green}', cls: 'intensity', min: 0, max: 100, step: 1, value: 100, unit: '%', dec: 0, aria: 'the intensity of the green light', detents: [0, 50, 100] });
   const B = ctl(d.controls, { label: '\\text{blue}', cls: 'intensity', min: 0, max: 100, step: 1, value: 0, unit: '%', dec: 0, aria: 'the intensity of the blue light', detents: [0, 50, 100] });
-  const CX = 450, CY = 290, RR = 130, SEP = 78;
-  const CENT = [[CX - SEP, CY - 40], [CX + SEP, CY - 40], [CX, CY + 95]];
+  const CX = 450, CY = 270, RR = 130, SEP = 78;
+  const CENT = [[CX - SEP, CY - 50], [CX + SEP, CY - 50], [CX, CY + 80]];
 
   function draw() {
     const { ctx } = begin(d.c);
@@ -189,10 +189,10 @@ function hueName(r, g, b) {
         else dot(ctx, hx, Y0 - 3, col, true, 7);
       });
     });
-    text(ctx, L + ' light', X0 - 420, Y0 - 330, PAL.ink, { size: 22, align: 'center' });
+    text(ctx, L + ' light', X0 - 500, Y0 - 300, PAL.ink, { size: 22, align: 'right', base: 'middle' });
     /* what the eye receives */
     const seen = refl.length === 0 ? 'black' : refl.length === RAYS.length ? 'white' : refl.join(' and ');
-    if (refl.length) text(ctx, 'reflected', X0 + 420, Y0 - 330, PAL.ink, { size: 22, align: 'center' });
+    if (refl.length) text(ctx, 'reflected', X0 + 500, Y0 - 300, PAL.ink, { size: 22, align: 'left', base: 'middle' });
     const trueC = O;
     topline(ctx, refl.length === 0
       ? `The ${O} object absorbs all the ${L} light falling on it and appears black.`
@@ -250,7 +250,8 @@ function hueName(r, g, b) {
     text(ctx, s.seen, 1170, 430, PAL.ink, { size: 22, weight: 600, align: 'center' });
     const bl = s.f(450), rd = s.f(650);
     topline(ctx, `Under ${s.long}, a white tablecloth sends ${s.seen} light to the eye.`);
-    readout(d.readout, `I(450\\ \\text{nm}) : I(650\\ \\text{nm}) = ${fmt(bl, 0)} : ${fmt(rd, 0)}`,
+    readout(d.readout, s.key === 'D' ? `I(632.8\\ \\text{nm}) = ${fmt(s.f(632.8), 0)},\\quad I(450\\ \\text{nm}) = I(650\\ \\text{nm}) = 0`
+      : `I(450\\ \\text{nm}) : I(650\\ \\text{nm}) = ${fmt(bl, 0)} : ${fmt(rd, 0)}`,
       'The balance of short and long wavelengths in the source sets the tint of the light a white object reflects.');
   }
   register(d.fig, { update: () => {}, draw });

@@ -4,7 +4,7 @@
  "chapter": "26",
  "title": "Physics of the Eye",
  "short": "Physics of the eye",
- "lead": "<span data-ref=\"cornea lens\">The cornea and lens of the eye</span> act together as a single thin lens that forms a real, inverted image on <span data-ref=\"retina\">the retina</span>. <span data-ref=\"cornea\">The cornea</span> does most of the bending. The eye changes its <span data-concept=\"power-of-a-lens\">power</span> to keep the image on <span data-ref=\"retina\">the retina</span> as an object comes nearer, and the thin lens equations give the <span data-concept=\"power-of-a-lens\">power</span> of the eye and the size of the image it forms.",
+ "lead": "<span data-ref=\"cornea lens\">The cornea and lens of the eye</span> act together as a single thin lens that forms a real image on <span data-ref=\"retina\">the retina</span>. The eye changes its <span data-concept=\"power-of-a-lens\">power</span> to keep that image on <span data-ref=\"retina\">the retina</span> as an object comes nearer, and the thin lens equations describe that <span data-concept=\"power-of-a-lens\">power</span> and the size of the image.",
  "objectives": [
   "Explain the image formation by the eye.",
   "Explain why peripheral images lack detail and color.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5-5",
     "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
    }
   ],
   "figures": [
@@ -30,20 +34,49 @@
  "built": "2026-09-28",
  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Two of the five problems have no keyed answer and are left out, and they are named in the section’s notes; where a keyed problem asks for a discussion as its last part, the book’s words for that part are in the solution. The first AP item is keyed and set as a graded choice; the second carries a solution the publisher commented out of the source, so it is kept as an open item with an AI-marked suggested approach. Every conceptual question is unkeyed and carries an AI-marked suggested approach. The module prints no Check Your Understanding box, so nothing is set inline. Numeric answers accept 2% tolerance.",
  "figures": [
-  {"id": "sim-eye-anatomy", "kind": "sim", "number": "26.2", "originals": ["/media/ch26/Figure_27_01_01.jpg"], "original_caption": "The cornea and lens of an eye act together to form a real image on the light-sensing retina, which has its densest concentration of receptors in the fovea and a blind spot over the optic nerve. The power of the lens of an eye is adjustable to provide an image on the retina for varying object distances. Layers of tissues with varying indices of refraction in the lens are shown here. However, they have been omitted from other pictures for clarity.", "widths": [325], "draws": [], "ai": [
- {
-  "model": "claude-opus-5-5",
-  "effort": "low",
-  "part": "built"
- }
-]},
-  {"id": "sim-eye-accommodation", "kind": "sim", "number": "26.3", "folds": ["26.4"], "originals": ["/media/ch26/Figure_27_01_02.jpg", "/media/ch26/Figure_27_01_03.jpg"], "original_caption": "(Figure 26.3) An image is formed on the retina with light rays converging most at the cornea and upon entering and exiting the lens. Rays from the top and bottom of the object are traced and produce an inverted real image on the retina. The distance to the object is drawn smaller than scale. (Figure 26.4) Relaxed and accommodated vision for distant and close objects. (a) Light rays from the same point on a distant object must be nearly parallel while entering the eye and more easily converge to produce an image on the retina. (b) Light rays from a nearby object can diverge more and still enter the eye. A more powerful lens is needed to converge them on the retina than if they were parallel.", "widths": [350, 450], "draws": ["position"], "ai": [
- {
-  "model": "claude-opus-5-5",
-  "effort": "low",
-  "part": "built"
- }
-]}
+  {
+   "id": "sim-eye-anatomy",
+   "kind": "sim",
+   "number": "26.2",
+   "originals": ["/media/ch26/Figure_27_01_01.jpg"],
+   "original_caption": "The cornea and lens of an eye act together to form a real image on the light-sensing retina, which has its densest concentration of receptors in the fovea and a blind spot over the optic nerve. The power of the lens of an eye is adjustable to provide an image on the retina for varying object distances. Layers of tissues with varying indices of refraction in the lens are shown here. However, they have been omitted from other pictures for clarity.",
+   "widths": [325],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "optic disc label names the blind spot"
+    }
+   ]
+  },
+  {
+   "id": "sim-eye-accommodation",
+   "kind": "sim",
+   "number": "26.3",
+   "folds": ["26.4"],
+   "originals": ["/media/ch26/Figure_27_01_02.jpg", "/media/ch26/Figure_27_01_03.jpg"],
+   "original_caption": "(Figure 26.3) An image is formed on the retina with light rays converging most at the cornea and upon entering and exiting the lens. Rays from the top and bottom of the object are traced and produce an inverted real image on the retina. The distance to the object is drawn smaller than scale. (Figure 26.4) Relaxed and accommodated vision for distant and close objects. (a) Light rays from the same point on a distant object must be nearly parallel while entering the eye and more easily converge to produce an image on the retina. (b) Light rays from a nearby object can diverge more and still enter the eye. A more powerful lens is needed to converge them on the retina than if they were parallel.",
+   "widths": [350, 450],
+   "draws": ["position"],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "fir tree, rays kept to the pupil, cornea label, d_i bracket when blurred"
+    }
+   ]
+  }
  ],
  "coverage": [
   {"span": "eye-as-a-lens", "concept": "eye-as-a-single-thin-lens", "verb": "introduces"},

@@ -3,7 +3,7 @@
    share position's hue and are told apart by their brackets, and the axis of the
    astigmatism is an angle. The spectacle lens and the retina are referents and wear
    F.ref; every power in diopters, the strength of the astigmatism, the rest of the
-   eye and the chart are ink. The rays take F.cat(2), past the two referents' places.
+   eye and the chart are ink. The rays take F.cat(4), past the two referents' places.
    Nothing here moves: a defect and its correction are states, so every figure
    registers no cycle and redraws on its controls alone (root rule 14). */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -82,7 +82,7 @@ function spectacle(ctx, x, y, h, converging) {
 
   const Y = 250, EX = 1170, R = 140, DI = 0.02, GAP = 0.015, NEAR = 0.25;
   const xOf = (v) => 900 - (Math.log(v / 0.1) / Math.log(30)) * 800;
-  const HS = [-48, -16, 16, 48];
+  const HS = [-36, -12, 12, 36];
   let g = null, XL = 0, SX = 0;
 
   function toRetina(p, q) {
@@ -97,7 +97,7 @@ function spectacle(ctx, x, y, h, converging) {
     const near = defect.value === 'near', on = specs.value === 'on', v = pt.v;
     const Peye = 1 / v + 1 / DI;
     const dI = on ? DI : near ? 1 / Peye : 1 / (Peye - 1 / NEAR);
-    const PC = C('position'), ray = cat(2), SL = F.ref('spectacle-lens');
+    const PC = C('position'), ray = cat(4), SL = F.ref('spectacle-lens');
 
     line(ctx, 30, Y, 1370, Y, alpha(PAL.ink, 0.3), 2, [10, 10]);
     g = eye(ctx, EX, Y, R);
@@ -116,8 +116,9 @@ function spectacle(ctx, x, y, h, converging) {
     for (const h of HS) {
       let atEye;
       if (on) {
-        const from = near ? [30, Y + h] : [xo, Y];
-        const hs = near ? h : h * ((SX - xo) / (XL - xo));
+        /* heights at the spectacle lens chosen so every ray still passes the pupil */
+        const hs = near ? h * Math.min(1, (SX - xv) / (XL - xv)) : h * ((SX - xo) / (XL - xo));
+        const from = near ? [30, Y + hs] : [xo, Y];
         const ys = Y + hs;
         line(ctx, from[0], from[1], SX, ys, ray, 3);
         line(ctx, SX, ys, xv, Y, alpha(ray, 0.45), 2, [6, 8]);

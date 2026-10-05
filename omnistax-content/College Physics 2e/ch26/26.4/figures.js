@@ -42,9 +42,9 @@ function lens(ctx, x, y, h, bulge, color) {
   ctx.closePath(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fill();
   ctx.strokeStyle = color || alpha(PAL.ink, 0.75); ctx.lineWidth = color ? 3 : 2.5; ctx.stroke(); ctx.restore();
 }
-function focus(ctx, x, y, name) {
+function focus(ctx, x, y, name, above) {
   dot(ctx, x, y, PAL.ink, true, 6);
-  text(ctx, name, x, y + 26, PAL.ink, { size: 20, align: 'center', bg: PAL.panel });
+  text(ctx, name, x, above ? y - 22 : y + 26, PAL.ink, { size: 20, align: 'center', bg: PAL.panel });
 }
 /* an image or object drawn as an upright or inverted arrow of height h (up positive) */
 function arrowUp(ctx, x, y, h, color, dash) {
@@ -96,7 +96,9 @@ function arrowUp(ctx, x, y, h, color, dash) {
     const xOb = XO - s.a, xI1 = XO + s.b, XE = s.XE;
     const mdO = -s.b / s.a;
     const fin = !s.inf && Math.abs(s.diP * S2) < 1400;
-    const hd = Math.max(7, Math.min(40, 150 / Math.abs(mdO), fin ? 380 / Math.abs(mdO * s.me) : 40));
+    /* the rays' heights at the eyepiece per unit object height, kept within its 190-unit half-height */
+    const rE = (s.XE - XO) / s.b, gE = Math.max(Math.abs(1 + (mdO - 1) * rE), Math.abs(mdO * rE));
+    const hd = Math.max(4, Math.min(40, 150 / Math.abs(mdO), 190 / gE, fin ? 380 / Math.abs(mdO * s.me) : 40));
     const h1 = hd * mdO;
     const xI2 = s.inf ? Infinity : XE + s.diP * S2, h2 = s.inf ? 0 : h1 * s.me;
 
@@ -116,7 +118,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
       const out = k - hE / s.fdE;
       r.pts.push([XE, hE]); r.out = out; hits.push(hE);
     });
-    const HE = Math.max(110, Math.min(210, Math.max(...hits.map(Math.abs)) + 30));
+    const HE = Math.max(110, Math.min(220, Math.max(...hits.map(Math.abs)) + 30));
     lens(ctx, XO, Y, 90, 26, OB());
     lens(ctx, XE, Y, HE, 46, EY());
 
@@ -133,8 +135,8 @@ function arrowUp(ctx, x, y, h, color, dash) {
       }
     });
 
-    focus(ctx, XO - FD, Y, 'F_{o}'); focus(ctx, XO + FD, Y, 'F_{o}');
-    focus(ctx, XE - s.fdE, Y, 'F_{e}'); focus(ctx, XE + s.fdE, Y, 'F_{e}');
+    focus(ctx, XO - FD, Y, 'F_{o}'); focus(ctx, XO + FD, Y, 'F_{o}', true);
+    focus(ctx, XE - s.fdE, Y, 'F_{e}', true); focus(ctx, XE + s.fdE, Y, 'F_{e}', true);
 
     arrowUp(ctx, xOb, Y, hd, OJ());
     arrowUp(ctx, xI1, Y, h1, I1());
@@ -151,10 +153,11 @@ function arrowUp(ctx, x, y, h, color, dash) {
     if (i2in && Math.abs(xI2 - XE) > 40) hbracket(ctx, Math.min(xI2, XE), Math.max(xI2, XE), FR.b - 56, PC(), 'd_{i}′', { side: 'above' });
 
     text(ctx, 'objective', XO, Y + 118, OB(), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'eyepiece', XE + 30, Y - HE - 4, EY(), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
+    text(ctx, 'eyepiece', XE + 52, Y + HE + 4, EY(), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
     text(ctx, 'object', xOb - 12, Y - hd - 18, OJ(), { size: 18, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, 'first image', xI1, Y - h1 + 26, I1(), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    if (i2in) text(ctx, 'final image', xI2 + (s.diP < 0 ? 14 : -14), Math.min(FR.b - 16, Y - h2 - 16), I2(), { size: 18, weight: 600, align: s.diP < 0 ? 'left' : 'right', bg: PAL.panel });
+    const lft = s.diP < 0 && xI2 > FR.l + 130;
+    if (i2in) text(ctx, 'final image', xI2 + (lft ? -14 : 14), Y - h2 / 2, I2(), { size: 18, weight: 600, align: lft ? 'right' : 'left', base: 'middle', bg: PAL.panel });
     text(ctx, 'not to scale', FR.r - 10, FR.b - 14, PAL.muted, { size: 17, align: 'right' });
 
     const mm = (x) => sig3(Math.abs(x)) + ' mm';
@@ -169,8 +172,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
       const fT = fmt(s.fe, 1) + '\\ \\text{mm}';
       readout(d.readout, `\\frac{1}{\\kdimgp} = \\frac{1}{\\kfeye} - \\frac{1}{\\kdobjp} = \\frac{1}{${fT}} - \\frac{1}{${fT}} = 0`, note);
     } else {
-      readout(d.readout, `m = m_{\\text{o}}m_{\\text{e}} = (${sig3(s.mo)})(${sig3(s.me)}) =${sig3(s.m)}`,
-        note + ` The final image is ${mm(s.diP)} ${s.diP < 0 ? 'to the left of' : 'to the right of'} the eyepiece.`);
+      readout(d.readout, `m = m_{\\text{o}}m_{\\text{e}} = (${sig3(s.mo)})(${sig3(s.me)}) =${sig3(s.m)}`, note);
     }
   }
   hover(d.stage, () => {
@@ -228,6 +230,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
     let inN = 0, all = 0;
     for (let bd = -85; bd <= 85; bd += 5) {
       const b = bd * DEG, xs = CX + T * Math.tan(b), sg = (NG * Math.sin(b)) / n;
+      if (xs < 40 || xs > 1040) continue;
       all++;
       if (Math.abs(sg) >= 1) {
         const xr = xs + T * Math.tan(b);
@@ -239,7 +242,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
       if (Math.abs(xl - CX) <= W + 0.5) {
         inN++;
         line(ctx, CX, GB, xs, GT, RY, 3);
-        ray(ctx, xs, GT, xl, LY, RY, 3);
+        line(ctx, xs, GT, xl, LY, RY, 3);
       } else {
         const yEnd = Math.max(TOP, LY - (Math.abs(1040 - CX) - Math.abs(xl - CX)) / Math.max(0.05, Math.abs(Math.tan(g))));
         const xEnd = xs + (GT - yEnd) * Math.tan(g);
@@ -318,10 +321,11 @@ function arrowUp(ctx, x, y, h, color, dash) {
     const AC = C('angle'), CO = F.ref('core'), CL2 = F.ref('cladding');
 
     /* the acceptance cone, opening back from the center of the face */
-    const R = CL * Math.tan(am), apex = P([X0, 0, 0]), mouth = ring(X0 - CL, R);
+    /* the cone is drawn short enough that its mouth stays 215 units across at most */
+    const LC = Math.min(CL, 215 / Math.tan(am)), R = LC * Math.tan(am), apex = P([X0, 0, 0]), mouth = ring(X0 - LC, R);
     poly(ctx, hull([apex].concat(mouth)), alpha(PAL.ink, 0.06));
     poly(ctx, mouth, null, alpha(PAL.ink, 0.35));
-    const e1 = P([X0 - CL, -R, 0]), e2 = P([X0 - CL, R, 0]);
+    const e1 = P([X0 - LC, -R, 0]), e2 = P([X0 - LC, R, 0]);
     line(ctx, apex[0], apex[1], e1[0], e1[1], alpha(PAL.ink, 0.5), 2, [8, 6]);
     line(ctx, apex[0], apex[1], e2[0], e2[1], alpha(PAL.ink, 0.5), 2, [8, 6]);
 
@@ -376,7 +380,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
     const lc = P([X1 - 80, RL + 20, 0]), lk = P([X1 - 80, 0, 0]);
     text(ctx, `cladding, n₂ = ${fmt(n2, 2)}`, lc[0], lc[1] - 22, CL2, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'core, n₁ = 1.50', lk[0], lk[1] + 26, CO, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    const lcone = P([X0 - CL, R, 0]);
+    const lcone = P([X0 - LC, R, 0]);
     text(ctx, 'acceptance cone', lcone[0], lcone[1] - 24, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
 
     const amD = am / DEG;
@@ -406,9 +410,12 @@ function arrowUp(ctx, x, y, h, color, dash) {
   const CX = 560, SY = 330, OY = 250, OW = 110, TOP = 100;
   const IL = () => cat(4), SC = () => cat(5);
 
-  function objective(ctx) {
+  /* gap: the stretch of the left wall left open for a side port, [top, bottom] */
+  function objective(ctx, gap) {
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.moveTo(CX - OW - 12, OY); ctx.lineTo(CX - OW - 12, TOP); ctx.moveTo(CX + OW + 12, OY); ctx.lineTo(CX + OW + 12, TOP); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(CX - OW - 12, OY);
+    if (gap) { ctx.lineTo(CX - OW - 12, gap[1]); ctx.moveTo(CX - OW - 12, gap[0]); }
+    ctx.lineTo(CX - OW - 12, TOP); ctx.moveTo(CX + OW + 12, OY); ctx.lineTo(CX + OW + 12, TOP); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(CX - OW, OY); ctx.quadraticCurveTo(CX, OY - 70, CX + OW, OY); ctx.closePath();
     ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fill(); ctx.stroke(); ctx.restore();
   }
@@ -460,7 +467,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
       });
       fanUp(ctx, [-80, -40, 0, 40, 80], SC(), 2.5);
       text(ctx, 'annular stop', CX + 310, 554, F.ref('annular-stop'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
-      text(ctx, 'condenser lens', CX + 170, 490, F.ref('condenser'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
+      text(ctx, 'condenser lens', CX + 310, 500, F.ref('condenser'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
     },
     laser(ctx) {
       const ry = 170;
@@ -472,7 +479,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
         line(ctx, xm, OY - 20, CX, SY - 8, IL(), 3);
       });
       [-70, 70].forEach((dx) => { line(ctx, CX, SY - 8, CX + dx, OY - 20, SC(), 2.5); ray(ctx, CX + dx, OY - 20, CX + dx, TOP + 10, SC(), 2.5); });
-      text(ctx, 'plain glass reflector', CX + 110, ry + 76, F.ref('reflector'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
+      text(ctx, 'plain glass reflector', CX + OW + 30, ry - 20, F.ref('reflector'), { size: 18, weight: 600, align: 'left', bg: PAL.panel });
     },
   };
   const HEAD = {
@@ -491,7 +498,7 @@ function arrowUp(ctx, x, y, h, color, dash) {
   function draw() {
     const { ctx } = begin(d.c);
     Object.keys(parts).forEach((k) => opt.only(ctx, k, () => parts[k](ctx), [0, 12]));
-    objective(ctx); specimen(ctx);
+    objective(ctx, opt.value === 'laser' ? [118, 222] : null); specimen(ctx);
     text(ctx, 'objective', CX + OW + 30, OY - 40, PAL.muted, { size: 18, align: 'left', bg: PAL.panel });
     text(ctx, 'specimen', CX - 50, SY + 4, PAL.muted, { size: 18, align: 'right', bg: PAL.panel });
     /* the legend */

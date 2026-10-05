@@ -123,7 +123,7 @@ function spectral(nm) {
 
     const single = lens.value === 'single';
     topline(ctx, single
-      ? `This single crown-glass lens brings red to a focus ${fmt(spread, 1)} mm farther from the lens than violet.`
+      ? `This single crown-glass lens brings red to a focus ${fmt(spread, 2)} mm farther from the lens than violet.`
       : `The achromatic doublet brings violet and red to within ${fmt(Math.abs(spread), 2)} mm of each other.`);
     const um = lam.v / 1000;
     readout(d.readout, `\\kffoc = ${fmt(focal(lens.value, lam.v), 2)}\\ \\text{mm at}\\ \\klam = ${fmt(lam.v, 0)}\\ \\text{nm}`,

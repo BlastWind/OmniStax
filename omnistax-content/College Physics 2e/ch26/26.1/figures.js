@@ -53,10 +53,12 @@ const corneaX = (g, s) => g.cx - Math.sqrt(g.cr * g.cr - s * s);
 /* a tree standing on (x, y), h tall, drawn upside down when h < 0 */
 function tree(ctx, x, y, h, color) {
   const k = h / 120;
-  ctx.save(); ctx.fillStyle = color; ctx.beginPath();
-  ctx.moveTo(x - 6 * Math.abs(k), y); ctx.lineTo(x + 6 * Math.abs(k), y); ctx.lineTo(x + 6 * Math.abs(k), y - 40 * k);
-  ctx.lineTo(x + 34 * Math.abs(k), y - 40 * k); ctx.lineTo(x, y - 120 * k); ctx.lineTo(x - 34 * Math.abs(k), y - 40 * k);
-  ctx.lineTo(x - 6 * Math.abs(k), y - 40 * k); ctx.closePath(); ctx.fill(); ctx.restore();
+  const a = Math.abs(k), P = (pts) => { ctx.beginPath(); pts.forEach(([u, v], i) => (i ? ctx.lineTo : ctx.moveTo).call(ctx, x + u * a, y - v * k)); ctx.closePath(); ctx.fill(); };
+  ctx.save(); ctx.fillStyle = color;
+  P([[-6, 0], [6, 0], [6, 26], [-6, 26]]);
+  P([[-36, 24], [36, 24], [0, 82]]);
+  P([[-28, 58], [28, 58], [0, 120]]);
+  ctx.restore();
 }
 function ray(ctx, pts, color, w) {
   for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], color, w || 3, pts[i][2]);
@@ -106,7 +108,7 @@ function tag(ctx, s, px, py, lx, ly, color) {
     tag(ctx, 'vitreous humor', EX + 40, Y - 70, rx, Y - 140);
     tag(ctx, 'retina', EX + (R - 7) * c(-0.55), Y + (R - 7) * s(-0.55), rx, Y - 75, F.ref('retina'));
     tag(ctx, 'fovea', fov[0], fov[1], rx, Y);
-    tag(ctx, 'disc', EX + R * c(0.38), Y + R * s(0.38), rx, Y + 110);
+    tag(ctx, 'optic disc (blind spot)', EX + R * c(0.38), Y + R * s(0.38), rx, Y + 110);
     tag(ctx, 'optic nerve', EX + R + 120, Y + R * s(0.38) + 40, rx, Y + 190);
   }
   hover(d.stage, () => [
@@ -178,7 +180,8 @@ function tag(ctx, s, px, py, lx, ly, color) {
       if (t < 1) line(ctx, hit[0], hit[1], to[0], to[1], color, 2.5, [6, 8]);
       return hit;
     }
-    const hitsTop = [-42, -8, 30].map((s) => trace([xo, yt], top, s, RT));
+    /* each top ray enters where it will pass the pupil, 36 units either side of the axis */
+    const sl = TH / (g.ix - xo), hitsTop = [-36, -6, 24].map((h) => trace([xo, yt], top, Math.max(-76, h - sl * (g.ix - g.apex)), RT));
     const hitsBot = [-36, 36].map((s) => trace([xo, Y], bot, s, RB));
 
     if (clear) {
@@ -189,14 +192,14 @@ function tag(ctx, s, px, py, lx, ly, color) {
       const yb = hitsBot.map((p) => p[1]);
       line(ctx, g.retina + 2, Math.min(...yb), g.retina + 2, Math.max(...yb), RB, 9);
     }
-    text(ctx, 'cornea', g.apex - 8, Y - 110, F.ref('cornea'), { size: 18, weight: 600, align: 'right' });
-    line(ctx, g.apex - 4, Y - 100, corneaX(g, -70), Y - 70, alpha(PAL.ink, 0.4), 1.5);
+    line(ctx, g.apex - 4, Y + 100, corneaX(g, 70), Y + 70, alpha(PAL.ink, 0.4), 1.5);
+    text(ctx, 'cornea', g.apex - 8, Y + 110, F.ref('cornea'), { size: 18, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, 'lens', XL, Y + 90, F.ref('lens'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 'retina', EX + R + 14, Y - 110, F.ref('retina'), { size: 18, weight: 600, align: 'left' });
     text(ctx, 'tree', xo, Y + 30, TR, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
 
     hbracket(ctx, xo, XL, Y + 215, PC, 'd_o = ' + sig3(v) + ' m', { side: 'below' });
-    hbracket(ctx, XL, g.retina, Y + 215, PC, 'd_i = 2.00 cm', { side: 'below' });
+    hbracket(ctx, XL, clear ? g.retina : bot[0], Y + 215, PC, 'd_i = ' + sig3(dI * 100) + ' cm', { side: 'below' });
     text(ctx, 'not to scale', 40, 580, PAL.muted, { size: 17, align: 'left' });
 
     const m = (x) => sig3(x) + '\\ \\text{m}';

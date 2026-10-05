@@ -50,11 +50,11 @@ function eye(ctx, x, y, R) {
    FIGURE 26.23 + 26.24 · sim-telescope · still · flat
    Paraxial rays from a very distant object, traced through thin lenses: at a lens
    of power 1/f the height y is kept and the slope u becomes u − y/f. The objective
-   sits at x = 180 and lengths run at 6.50 px/cm, so the longest arrangement (a
+   sits at x = 180 and lengths run at 6.00 px/cm, so the longest arrangement (a
    100 cm objective, the erecting lens's 4 × 10.0 cm and a 25.0 cm eyepiece,
-   165 cm) ends at x = 1253. Every arrangement is afocal: the eyepiece stands its
+   165 cm) ends at x = 1170, the eye 110 px behind it. Every arrangement is afocal: the eyepiece stands its
    focal length from the last image, so the rays leave parallel. The drawn angle is
-   θ_d = min(0.12, 0.35/|M|) rad, the same factor on θ and θ', so their ratio is M.
+   θ_d = min(0.10, 0.28/|M|) rad, the same factor on θ and θ', so their ratio is M.
    The arrangement morphs: lens positions and powers blend, the erecting lens's
    power grows from nothing, and the rays are traced through the blend. The objective,
    the eyepiece, the erecting lens and the first image are the referents; the rays
@@ -68,7 +68,7 @@ function eye(ctx, x, y, R) {
   const fe = ctl(d.controls, { label: '\\kfeye', cls: 'position', min: 5, max: 25, step: 0.5, value: 12, unit: 'cm', dec: 1, aria: 'the focal length of the eyepiece' });
   const ro = F.readout(d);
 
-  const Y = 290, XO = 180, S = 6.5, FR = 10, A = 50, XEND = 1290;
+  const Y = 290, XO = 180, S = 6.0, FR = 10, A = 50, XEND = 1290;
   const cmx = (c) => XO + c * S;
 
   function layout(v) {
@@ -79,7 +79,7 @@ function eye(ctx, x, y, R) {
       xe: cmx(v === 'galileo' ? o - e : v === 'kepler' ? o + e : o + 4 * FR + e),
       pe: (v === 'galileo' ? -1 : 1) / (e * S),
       bulge: v === 'galileo' ? -1 : 1,
-      th: Math.min(0.12, 0.35 / Math.abs(M)),
+      th: Math.min(0.1, 0.28 / Math.abs(M)) * (v === 'erect' ? 0.5 : 1),
     };
   }
 
@@ -93,9 +93,9 @@ function eye(ctx, x, y, R) {
 
     line(ctx, 20, Y, XEND, Y, alpha(PAL.ink, 0.3), 2, [10, 10]);
 
-    const lenses = [{ x: XO, p: 1 / (o * S) }, { x: L.xr, p: L.pr }, { x: L.xe, p: L.pe }].sort((a, b) => a.x - b.x);
+    const lenses = [{ x: XO, p: 1 / (o * S) }, { x: L.xr, p: L.pr }, { x: L.xe, p: L.pe }].filter((l) => l.p !== 0).sort((a, b) => a.x - b.x);
     const reach = { obj: A, r: 0, e: 0 };
-    const trace = (y0) => {
+    const trace = (y0, xend) => {
       let x = 20, y = y0 + L.th * (XO - 20), u = -L.th;
       const pts = [[x, y]];
       for (const l of lenses) {
@@ -104,10 +104,15 @@ function eye(ctx, x, y, R) {
         else if (l.x === L.xr) reach.r = Math.max(reach.r, Math.abs(y));
         u -= y * l.p;
       }
-      y += u * (XEND - x); pts.push([XEND, y]);
+      y += u * (xend - x); pts.push([xend, y]);
       return { pts, u };
     };
-    const rays = [A, 0, -A].map(trace);
+    /* the eye stands where the leaving chief ray crosses the axis, the exit pupil,
+       kept clear of the eyepiece and inside the frame */
+    const c0 = trace(0, L.xe + 1), ce = c0.pts[c0.pts.length - 2];
+    const xc = Math.abs(c0.u) > 1e-6 ? ce[0] - ce[1] / c0.u : 1290;
+    const XEYE = Math.min(1290, Math.max(L.xe + 110, xc - 10));
+    const rays = [A, 0, -A].map((y0) => trace(y0, XEYE));
 
     lens(ctx, XO, Y, A + 16, 12, 1, OB);
     lens(ctx, L.xr, Y, Math.max(reach.r + 16, 50), 12, arr.a('erect'), ER);
@@ -126,7 +131,7 @@ function eye(ctx, x, y, R) {
 
     const yi = -o * S * L.th;
     dot(ctx, xf, Y, PAL.ink, true, 6);
-    text(ctx, 'F_o', xf + 10, Y + 24, PAL.ink, { size: 20, align: 'left', bg: PAL.panel });
+    text(ctx, 'F_o', xf + (v === 'galileo' ? 10 : -10), Y + (v === 'galileo' ? -24 : 24), PAL.ink, { size: 20, align: v === 'galileo' ? 'left' : 'right', bg: PAL.panel });
     if (v !== 'galileo') image(ctx, xf, Y, yi, I1);
     arr.only(ctx, 'erect', () => image(ctx, cmx(o + 4 * FR), Y, -yi, PAL.ink), [0, 0]);
 
@@ -135,7 +140,7 @@ function eye(ctx, x, y, R) {
     const ex = chief.pts[chief.pts.length - 2];
     const up = Math.atan(chief.u);
     angleArc(ctx, { x: ex[0], y: Y - ex[1] }, 46, 0, up, 'θ′', undefined, AC);
-    eye(ctx, 1300, Y, 34);
+    eye(ctx, XEYE, Y, 34);
 
     hbracket(ctx, XO, xf, Y - 170, PC, 'f_o = ' + sig3(o) + ' cm');
     const xe = cmx(v === 'galileo' ? o - e : v === 'kepler' ? o + e : o + 4 * FR + e);
@@ -150,7 +155,7 @@ function eye(ctx, x, y, R) {
 
     parts = [{ x: xf, y: Y - yi / 2, r: 20, name: v === 'galileo' ? 'where the rays would meet, the focal point of the objective' : 'the first image, at the focal point of the objective' }];
     if (v === 'erect') parts.push({ x: cmx(o + 4 * FR), y: Y + yi / 2, r: 20, name: 'the second image, upright' });
-    parts.push({ x: 1330, y: Y, r: 30, name: 'the eye' });
+    parts.push({ x: XEYE + 30, y: Y, r: 30, name: 'the eye' });
 
     const upright = M > 0;
     topline(ctx, `The image is ${upright ? 'upright' : 'inverted'}, and it subtends ${sig3(Math.abs(M))} times the angle the object subtends.`);
@@ -169,7 +174,7 @@ function eye(ctx, x, y, R) {
 /* =====================================================================
    FIGURE 26.25 · sim-reflecting-telescope · still · flat, not to scale
    The concave mirror's vertex is at x = 1240 on the axis y = 250. Its focal
-   length R/2 is drawn on a logarithmic run, 260 px for R = 1.00 m to 680 px for
+   length R/2 is drawn on a logarithmic run, 460 px for R = 3.00 m to 680 px for
    R = 10.0 m, and the mirror is the arc of radius twice that, so a larger mirror
    is visibly flatter. Parallel rays reflect toward the focal point; a flat mirror
    at 45°, 150 px before it, turns them down to a focus 150 px below the axis. The
@@ -179,9 +184,9 @@ function eye(ctx, x, y, R) {
 ===================================================================== */
 (function () {
   const d = sim('sim-reflecting-telescope', 620);
-  const R = ctl(d.controls, { label: '\\kRcur', cls: 'position', min: 1, max: 10, step: 0.1, value: 10, unit: 'm', dec: 2, aria: 'the radius of curvature of the mirror' });
+  const R = ctl(d.controls, { label: '\\kRcur', cls: 'position', min: 3, max: 10, step: 0.1, value: 10, unit: 'm', dec: 2, aria: 'the radius of curvature of the mirror' });
   const fe = ctl(d.controls, { label: '\\kfeye', cls: 'position', min: 1, max: 10, step: 0.05, value: 3, unit: 'cm', dec: 2, aria: 'the focal length of the eyepiece' });
-  const Y = 250, XM = 1240, H = 150, HS = [-110, -55, 55, 110], DROP = 150;
+  const Y = 250, XM = 1240, H = 150, HS = [-110, -80, 80, 110], DROP = 150;
   let parts = [];
 
   function draw() {
@@ -210,7 +215,10 @@ function eye(ctx, x, y, R) {
       line(ctx, lx, ye, lx, 610, ray, 3);
     }
     /* the flat mirror, "/" through (xd, Y) */
-    line(ctx, xd - 66, Y + 66, xd + 66, Y - 66, FM, 6);
+    /* the flat mirror just spans the cone it turns aside (its upper edge meets the top
+       ray), narrower than the gap between the inner rays from R = 3.00 m up */
+    const fm = 110 * DROP / (fd - 110) + 6;
+    line(ctx, xd - fm, Y + fm, xd + fm, Y - fm, FM, 6);
     const half = 110 * (DROP + ed) / fd + 20;
     ctx.save(); ctx.beginPath(); ctx.ellipse(xd, ye, half, 12, 0, 0, Math.PI * 2);
     ctx.fillStyle = alpha(PAL.ink, 0.1); ctx.fill(); ctx.strokeStyle = ME; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
@@ -221,9 +229,10 @@ function eye(ctx, x, y, R) {
     vbracket(ctx, xd - half - 26, yF, ye, PC, 'f_e = ' + sig3(fe.v) + ' cm', -1);
 
     const lab = { size: 18, weight: 600, bg: PAL.panel };
-    text(ctx, 'concave mirror (objective)', XM + 20, Y + H + 34, MI, { ...lab, align: 'right' });
+    text(ctx, 'concave mirror', XM + 16, Y - 100, MI, { ...lab, align: 'left' });
+    text(ctx, '(objective)', XM + 16, Y - 76, MI, { ...lab, align: 'left' });
     text(ctx, 'eyepiece', xd + half + 16, ye, ME, { ...lab, align: 'left' });
-    text(ctx, 'flat mirror', xd + 76, Y - 70, FM, { ...lab, align: 'left' });
+    text(ctx, 'flat mirror', xd - fm - 10, Y + 58, FM, { ...lab, align: 'right' });
     text(ctx, 'not to scale', 24, 600, PAL.muted, { size: 17, align: 'left' });
 
     parts = [
