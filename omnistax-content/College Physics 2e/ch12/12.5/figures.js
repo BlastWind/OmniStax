@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers ---------- */
 const TAU = 2 * Math.PI;
@@ -13,28 +13,26 @@ const sig3 = (x) => { const s = Math.abs(x).toPrecision(3); return s.includes('e
 /* a seeded generator, so that a run of the figure is the same at every scrub position */
 function rng(seed) {
   let a = seed >>> 0;
-  const u = () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
-  const n = () => Math.sqrt(-2 * Math.log(1 - u())) * Math.cos(TAU * u());
-  return { u, n };
+  return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 }
 const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
 
 /* =====================================================================
-   FIGURE 12.22: an artery narrowed by plaque. Dye threads enter from the
-   left and are carried along; where the local Reynolds number is below
-   2000 they stay straight, between 2000 and 3000 the flow switches at
-   random between the two behaviours, and above 3000 they are swirled
-   into eddies. The Reynolds number along the vessel is graphed beneath.
-   The threads' crossing is the cycle, about 6 s, so it gets the scrubber.
+   FIGURE 12.22: an artery narrowed by plaque. Four threads of dye, injected
+   in pulses at the left, are carried along as material lines. Wherever the
+   local Reynolds number is above 3000 (and, between 2000 and 3000, while a
+   random switch is on) vortices are born, ride downstream and decay, and the
+   threads wind round them into eddies. The run is integrated once per slider
+   state from a seeded generator and stored frame by frame for the scrubber.
 ===================================================================== */
 (function () {
-  const d = sim('sim-turbulence', 780);
+  const H = 820, d = sim('sim-turbulence', H);
   const RHO = 1025;                         /* blood, kg/m³, the book's value */
   const R1 = 2.00;                          /* radius of the wide part, mm */
   const LEN = 20;                           /* length of vessel shown, mm */
   const XA = 7, XB = 10;                    /* the taper runs from XA to XB mm */
-  const T = 6.0;                            /* one crossing of the threads, s of screen time */
-  const S1 = 20 / 3.4;                      /* the mean speed of the wide part on screen, mm/s: 20 mm in 3.4 s */
+  const T = 6.0, PRE = 1.2;                 /* the cycle, and the run before it that lets the eddies develop, s of screen time */
+  const S1 = 1.4;                           /* the mean speed of the wide part on screen, mm/s */
   const FLUIDS = [{ v: 1.002, name: 'water at 20 °C' }, { v: 1.257, name: 'blood plasma at 37 °C' }, { v: 2.084, name: 'whole blood at 37 °C' }, { v: 3.015, name: 'whole blood at 20 °C' }];
   const Q = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 1.0, max: 16.0, step: 0.1, value: 8.0, unit: 'cm³/s', dec: 1, onInput: reset, aria: 'flow rate',
     specials: [2000, 3000].map((N) => ({ at: () => (N * Math.PI * ETA.v * 1e-3 * R2.v * 1e-3) / (2 * RHO) * 1e6, label: 'N_R = ' + N + ' in the narrow part' })) });
@@ -46,7 +44,7 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
   });
   Q.refresh(); R2.refresh();
   const cy = cycle(() => T, 1.2);
-  const fluidNamed = () => { const f = FLUIDS.find((q) => Math.abs(q.v - ETA.v) < 5e-4); return f ? ' This is the viscosity of ' + f.name + ' from Table 12.1.' : ''; };
+  const fluid = () => FLUIDS.find((q) => Math.abs(q.v - ETA.v) < 5e-4);
 
   /* ---------- the model ---------- */
   const radius = (x) => R1 + (R2.v - R1) * smooth((x - XA) / (XB - XA));           /* mm */
@@ -54,89 +52,150 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
   const reynolds = (r) => (2 * RHO * meanSpeed(r) * r * 1e-3) / (ETA.v * 1e-3);
   const screenMean = (r) => S1 * (R1 / r) * (R1 / r);                                /* mm/s on screen */
 
-  /* ---------- the threads, integrated once per run with a seeded generator ---------- */
-  const LANES = [-0.85, -0.45, 0.45, 0.85];
-  const DT = 1 / 60, REL = 0.025, NS = Math.ceil(T / DT) + 3, TRAIL = 2.4;   /* TRAIL: the path each parcel draws behind it, mm */
-  let lanes = [], flips = [], on0 = false, phase = [0, 0];
+  /* N_R = Kn / r with r in mm. Turbulence is full above 3000; between 2000 and 3000 it is a switch
+     that flips at random times, eased over a quarter second, held in m while the run is integrated */
+  let Kn = 1, flips = [], on0 = false, m = 0;
   function telegraph(t) { let on = on0; for (const f of flips) { if (f > t) break; on = !on; } return on; }
-  /* N_R = Kn / r with r in mm, so the flow is laminar where r > Kn/2000 and turbulent where r < Kn/3000 */
-  let Kn = 1;
-  /* turbulence intensity at radius r and time t: none below 2000, a random switch between 2000 and 3000, full above 3000 */
-  const intensity = (r, t) => (r > Kn / 2000 ? 0 : r < Kn / 3000 ? 1 : telegraph(t) ? 0.85 : 0);
+  const intensity = (r) => { const N = Kn / r; return Math.max(smooth((N - 2900) / 200), m * smooth((N - 1950) / 100)); };
+
+  /* the vortices: each is born where the flow is turbulent, rides downstream with the flatter profile of
+     turbulent flow, swells and decays over its life, and is mirrored in both walls so no dye crosses them */
+  let vort = [], bins = [];
+  const LANES = [-0.85, -0.45, 0.45, 0.85];
+  const DT = 1 / 60, NPRE = Math.round(PRE / (2 * DT)), NF = Math.round(T / DT) + 1;
+  const HMAX = 0.11, HIN = 0.06, NMAX = 1600, PULSE = 0.35, CB = 0.5, NB = Math.ceil((LEN + 2) / CB);
+  let frames = [];                          /* frames[k][lane]: Float32Array of x, yf pairs; x carries +100 where the dye pulse is dark */
   let fu = 0, fw = 0;
-  /* the velocity of a fluid parcel at x (mm), yf (fraction of the local radius) and t, left in fu (screen mm/s
-     along the vessel) and fw (yf per second across it): a parabolic profile where the flow is laminar, and where
-     it is turbulent a flatter one with cells of swirl the size of the vessel riding along with the flow, from the
-     stream function A sin(k(x - st)) cos(πy/2r), whose crosswise speed vanishes at the wall */
-  function flow(x, yf, t, I, g) {
-    const r = radius(x), s = screenMean(r), sq = 1 - yf * yf;
-    const lam = 2 * s * sq, turb = s * (0.85 + 0.3 * sq);
-    let u = (1 - I) * lam + I * turb, w = 0;
-    if (I > 0) {
-      const l1 = 1.8 * r, l2 = 0.9 * r, k1 = TAU / l1, k2 = TAU / l2, half = (Math.PI / 2) * yf, ch = Math.cos(half), sh = Math.sin(half);
-      const a1 = k1 * (x - s * t) + phase[0], a2 = k2 * (x - s * t) + phase[1];
-      const A1 = (I * s * 0.36) / k1, A2 = (I * s * 0.22) / k2;
-      w = -(A1 * k1 * Math.cos(a1) + A2 * k2 * Math.cos(a2)) * ch + I * 0.08 * s * g.n() * sq;
-      u -= (Math.PI / (2 * r)) * sh * (A1 * Math.sin(a1) + A2 * Math.sin(a2));
+  function field(x, yf, dtOff) {
+    const r = radius(x), s = screenMean(r), I = intensity(r), sq = 1 - yf * yf, y = yf * r;
+    let u = s * ((1 - I) * 2 * sq + I * (0.85 + 0.3 * sq)), v = 0;
+    for (const q of bins[Math.max(0, Math.min(NB - 1, Math.floor(x / CB)))]) {
+      const xv = q.x + q.u * dtOff, dx = x - xv, R2c = q.cut;
+      if (dx * dx > R2c) continue;
+      for (let j = 0; j < 3; j++) {
+        const yv = j === 0 ? q.yf * r : j === 1 ? 2 * r - q.yf * r : -2 * r - q.yf * r, G = j ? -q.G : q.G, dy = y - yv, rr = dx * dx + dy * dy;
+        if (rr > R2c) continue;
+        const w1 = 1 - rr / R2c, k = (G / TAU) * w1 * w1 / (rr + q.a2);
+        u -= k * dy; v += k * dx;
+      }
     }
-    fu = u; fw = w / r;
+    fu = u; fw = v / r;
   }
-  /* a slider change marks the run stale; the threads are integrated again in the next frame, once for
-     however many input events a drag has fired */
-  let stale = true;
-  function reset() { cy.reset(); stale = true; }
-  function integrate() {
-    stale = false;
+  /* a slider change starts a new run; the run is integrated through its lead-in at once, in double steps, and
+     then a frame at a time as the cycle or the scrubber asks for it, every frame kept so the scrubber can go back */
+  let run = null;
+  function reset() { cy.reset(); run = null; }
+  /* a vortex's core turns at about half the local mean speed, but never slower than once in 1.6 s, so the
+     slow eddies of a wide vessel still roll up within the run; it lives about two turns, and they sit about
+     a radius apart, which sets the births per mm per second at each radius */
+  const spin = (r) => Math.max(0.5 * screenMean(r), (TAU * 0.35 * r) / 1.6);
+  const rate = (r) => spin(r) / (0.7 * r * 2.2 * TAU * 0.35 * r);
+  function start() {
     Kn = (2 * RHO * Q.v * 1e-6) / (Math.PI * ETA.v * 1e-3) / 1e-3;
     const g = rng(0x1257 + Math.round(Q.v * 100) * 7 + Math.round(R2.v * 100) * 131 + Math.round(ETA.v * 1000) * 17);
-    flips = []; on0 = g.u() < 0.5;
-    for (let t = 0; t < T + 1;) { t += Math.min(1.5, Math.max(0.25, -0.7 * Math.log(1 - g.u()))); flips.push(t); }
-    phase = [g.u() * TAU, g.u() * TAU];
-    lanes = LANES.map(() => []);
-    LANES.forEach((yf0, li) => {
-      for (let t0 = 0; t0 < T - 1e-9; t0 += REL) {
-        const xs = new Float32Array(NS), ys = new Float32Array(NS);
-        let x = 0, yf = yf0, n = 0, mixed = false;
-        for (let t = t0; t <= T + DT && x <= LEN + 0.5; t += DT, n++) {
-          xs[n] = x; ys[n] = yf;
-          const r = radius(x), I = intensity(r, t); if (I > 0) mixed = true;
-          /* the laminar profile needs one step; the swirl is integrated in sub-steps fine enough for the speed */
-          const sub = I > 0 ? Math.max(1, Math.ceil((screenMean(r) * DT) / 0.1)) : 1, h = DT / sub;
-          for (let k = 0; k < sub; k++) {
-            flow(x, yf, t + k * h, I, g);
-            x += fu * h; yf += fw * h;
-            if (yf > 0.93) yf = 0.93 - (yf - 0.93); if (yf < -0.93) yf = -0.93 - (yf + 0.93);
-          }
-        }
-        lanes[li].push({ t0, n, xs, ys, mixed });
-      }
+    flips = []; on0 = g() < 0.5;
+    for (let t = -PRE; t < T + 1;) { t += Math.min(1.5, Math.max(0.3, -0.7 * Math.log(1 - g()))); flips.push(t); }
+    m = telegraph(-PRE) ? 0.85 : 0;
+    vort = [];
+    /* the threads start as the steady laminar streaklines, straight at their heights, pulsed by the time the dye left the inlet */
+    const lines = LANES.map((yf0) => {
+      const L = { yf0, x: [], y: [], t: [] };
+      for (let x = 0, tt = 0; x <= LEN + 0.3; x += HIN, tt += HIN / (2 * screenMean(radius(x)) * (1 - yf0 * yf0))) { L.x.unshift(x); L.y.unshift(yf0); L.t.unshift(-PRE - tt); }
+      return L;
     });
+    run = { g, t: -PRE, acc: 0, rate0: rate(Math.min(R1, R2.v)), lines };
+    frames = [];
+    for (let n = 0; n < NPRE; n++) step(2 * DT);
+    run.t = 0;
+    snap();
+  }
+  function snap() {
+    frames.push(run.lines.map((L) => { const a = new Float32Array(2 * L.x.length); for (let i = 0; i < L.x.length; i++) { a[2 * i] = L.x[i] + (Math.floor(L.t[i] / PULSE) & 1 ? 0 : 100); a[2 * i + 1] = L.y[i]; } return a; }));
+  }
+  function frameAt(k) {
+    if (!run) start();
+    while (frames.length <= k && frames.length < NF) { step(DT); snap(); }
+    return frames[Math.min(k, frames.length - 1)];
+  }
+  function step(h) {
+    const { g, lines } = run, t = run.t;
+    run.t += h;
+    /* the switch, eased */
+    m += ((telegraph(t) ? 0.85 : 0) - m) * Math.min(1, h / 0.25);
+    /* births, sampled along the vessel and kept where the flow is turbulent */
+    run.acc += run.rate0 * LEN * h;
+    while (run.acc >= 1) {
+      run.acc -= 1;
+      const x = g() * (LEN + 1), r = radius(x), I = intensity(r);
+      if (g() > (I * rate(r)) / run.rate0) continue;
+      const yf = (g() * 2 - 1) * 0.6, a = (0.25 + 0.2 * g()) * r, vt = (0.8 + 0.5 * g()) * spin(r);
+      vort.push({ x, yf, a, a2: a * a, cut: 16 * a * a, sg: (g() < 0.75 ? (yf > 0 ? 1 : -1) : (yf > 0 ? -1 : 1)), g0: 2 * TAU * a * vt, tb: t, life: (1.6 + 1.2 * g()) * (TAU * a) / vt, u: 0, G: 0 });
+    }
+    vort = vort.filter((q) => t - q.tb < q.life && q.x < LEN + 1.5);
+    bins = Array.from({ length: NB }, () => []);
+    for (const q of vort) {
+      const r = radius(q.x);
+      q.u = screenMean(r) * (0.85 + 0.3 * (1 - q.yf * q.yf));
+      q.G = q.sg * q.g0 * Math.sin(Math.PI * Math.sqrt((t - q.tb) / q.life)) * intensity(r);
+      const span = 4 * q.a + q.u * h;
+      for (let c = Math.max(0, Math.floor((q.x - span) / CB)); c <= Math.min(NB - 1, Math.floor((q.x + span) / CB)); c++) bins[c].push(q);
+    }
+    /* the dye, a midpoint step per point */
+    for (const L of lines) {
+      for (let i = 0; i < L.x.length; i++) {
+        const x0 = L.x[i], y0 = L.y[i];
+        field(x0, y0, 0);
+        field(x0 + fu * h / 2, Math.max(-0.97, Math.min(0.97, y0 + fw * h / 2)), h / 2);
+        L.x[i] = x0 + fu * h; L.y[i] = Math.max(-0.96, Math.min(0.96, y0 + fw * h));
+      }
+      /* new dye at the inlet, spent dye dropped past the outlet, and the line refined where it has stretched */
+      const last = L.x.length - 1;
+      if (L.x[last] >= HIN) { L.x.push(0); L.y.push(L.yf0); L.t.push(t); }
+      let cut = 0; while (cut < L.x.length - 2 && L.x[cut] > LEN + 0.3) cut++;
+      if (cut) { L.x.splice(0, cut); L.y.splice(0, cut); L.t.splice(0, cut); }
+      if (L.x.length < NMAX) {
+        const nx = [], ny = [], nt = [];
+        for (let i = 0; i < L.x.length; i++) {
+          if (i) {
+            const r = radius(L.x[i]), dxx = L.x[i] - L.x[i - 1], dyy = (L.y[i] - L.y[i - 1]) * r;
+            if (dxx * dxx + dyy * dyy > HMAX * HMAX) { nx.push((L.x[i] + L.x[i - 1]) / 2); ny.push((L.y[i] + L.y[i - 1]) / 2); nt.push((L.t[i] + L.t[i - 1]) / 2); }
+          }
+          nx.push(L.x[i]); ny.push(L.y[i]); nt.push(L.t[i]);
+        }
+        L.x = nx; L.y = ny; L.t = nt;
+      }
+    }
+    for (const q of vort) q.x += q.u * h;
   }
 
   /* ---------- the drawing ---------- */
   /* the vessel: 20 mm across 80..1250, 58.5 units per mm; the graph beneath shares the same X, its N_R axis fixed 0..8000 */
   const VX0 = 80, VX1 = 1250, PX = (VX1 - VX0) / LEN, YC = 275, PR = 58.5;
   const X = (mm) => VX0 + mm * PX, Yv = (mm) => YC - mm * PR;
-  const box = { l: VX0, r: VX1, t: 470, b: 690 };
+  const box = { l: VX0, r: VX1, t: 520, b: 735 };
   const KV = 100;                          /* arrow units per m/s, fixed */
-  function wallPath(ctx, sign) {
-    ctx.beginPath(); ctx.moveTo(X(0), Yv(sign * R1));
-    for (let mm = 0; mm <= LEN + 1e-9; mm += 0.1) ctx.lineTo(X(mm), Yv(sign * radius(mm)));
-  }
-  function draw() {
-    const { ctx } = begin(d.c);
-    if (stale) integrate();
-    const tau = cy.now();
-    const r2 = R2.v, v1 = meanSpeed(R1), v2 = meanSpeed(r2), NR1 = reynolds(R1), NR2 = reynolds(r2), uniform = r2 >= R1 - 1e-9;
-    const stateOf = (NR) => (NR < 2000 ? 'laminar' : NR > 3000 ? 'turbulent' : 'unstable, ' + (telegraph(tau) ? 'turbulent' : 'laminar') + ' at this moment');
-    const state1 = stateOf(NR1), state2 = stateOf(NR2);
-
-    /* the lumen and the plaque */
-    ctx.save(); ctx.fillStyle = alpha(PAL.soft, 0.55);
+  const YA = Yv(-R1) + 34;                 /* the speed arrows, under the vessel */
+  function lumen(ctx) {
     ctx.beginPath(); ctx.moveTo(X(0), Yv(R1));
     for (let mm = 0; mm <= LEN + 1e-9; mm += 0.1) ctx.lineTo(X(mm), Yv(radius(mm)));
     for (let mm = LEN; mm >= -1e-9; mm -= 0.1) ctx.lineTo(X(mm), Yv(-radius(mm)));
-    ctx.closePath(); ctx.fill(); ctx.restore();
+    ctx.closePath();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now();
+    const fr = frameAt(Math.round(tau / DT));
+    const r2 = R2.v, v1 = meanSpeed(R1), v2 = meanSpeed(r2), NR1 = reynolds(R1), NR2 = reynolds(r2), uniform = r2 >= R1 - 1e-9;
+    const stateOf = (NR) => (NR < 2000 ? 'laminar' : NR > 3000 ? 'turbulent' : 'unstable, ' + (telegraph(tau) ? 'turbulent' : 'laminar') + ' at this moment');
+    const state1 = stateOf(NR1), state2 = stateOf(NR2);
+    const rows = topline(ctx, uniform
+      ? 'The vessel is a uniform 2.00 mm in radius, the Reynolds number is ' + sig3(NR1) + ' all along it, and the flow is ' + state1 + '.'
+      : 'In the wide part the Reynolds number is ' + sig3(NR1) + ' and the flow is ' + state1 + '; where plaque narrows the vessel to ' + fmt(r2, 2) + ' mm it is ' + sig3(NR2) + ' and the flow is ' + state2 + '.');
+    const lab = F.labeller(ctx, H, { headline: rows });
+    lab.block(X(0), Yv(R1) + 6, X(LEN), Yv(-R1) - 6);   /* the vessel, eddies and all */
+
+    /* the lumen and the plaque */
+    ctx.save(); ctx.fillStyle = alpha(PAL.soft, 0.55); lumen(ctx); ctx.fill(); ctx.restore();
     if (!uniform) {
       for (const sg of [1, -1]) {
         ctx.save(); ctx.beginPath(); ctx.moveTo(X(XA), Yv(sg * R1));
@@ -148,55 +207,49 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
         ctx.stroke(); ctx.restore();
       }
     }
+
+    /* the dye, clipped to the lumen: a pale thread with the darker pulses riding on it */
+    ctx.save(); lumen(ctx); ctx.clip();
+    ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    for (const pass of [0, 1]) {
+      ctx.strokeStyle = alpha(C('flow-rate'), pass ? 0.95 : 0.55); ctx.lineWidth = pass ? 3.5 : 2.5;
+      ctx.beginPath();
+      for (const a of fr) {
+        let pen = false;
+        for (let i = 0; i < a.length; i += 2) {
+          const raw = a[i], dark = raw > 50, x = dark ? raw - 100 : raw, px = X(x), py = Yv(a[i + 1] * radius(x));
+          if (pen && (pass && !dark)) { pen = false; continue; }
+          if (!pen) { if (!pass || dark) { ctx.moveTo(px, py); pen = true; } continue; }
+          ctx.lineTo(px, py);
+        }
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+
     /* the walls, the outer wall straight and the inner edge of the plaque following the taper */
     ctx.save(); ctx.strokeStyle = F.ref('plaque'); ctx.lineWidth = 3.5;
-    for (const sg of [1, -1]) { wallPath(ctx, sg); ctx.stroke(); }
+    for (const sg of [1, -1]) { ctx.beginPath(); ctx.moveTo(X(0), Yv(sg * R1)); for (let mm = 0; mm <= LEN + 1e-9; mm += 0.1) ctx.lineTo(X(mm), Yv(sg * radius(mm))); ctx.stroke(); }
     ctx.restore();
     line(ctx, X(0), Yv(R1), X(LEN), Yv(R1), F.ref('artery'), 3.5); line(ctx, X(0), Yv(-R1), X(LEN), Yv(-R1), F.ref('artery'), 3.5);
 
-    /* the dye threads, clipped to the lumen: every parcel draws the last 2.4 mm of its own path, so the parcels
-       of one lane overlap into one thread where the flow is laminar and into a tangle of curls where it is
-       turbulent */
-    ctx.save(); ctx.beginPath(); ctx.rect(X(0) - 1, Yv(R1), X(LEN) - X(0) + 2, Yv(-R1) - Yv(R1)); ctx.clip();
-    ctx.strokeStyle = alpha(C('flow-rate'), 0.9); ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-    ctx.beginPath();
-    for (const lane of lanes) {
-      for (let j = 0; j < lane.length; j++) {
-        const p = lane[j];
-        if (p.t0 > tau) continue;
-        const i = Math.floor((tau - p.t0) / DT); if (i < 0 || i > p.n - 1) continue;   /* not yet released, or already out of the vessel */
-        /* where the flow has stayed laminar the parcels of a lane retrace one another, so only every few are drawn */
-        const r = radius(p.xs[i]), sp = screenMean(r) * REL;
-        const stride = p.mixed ? 1 : Math.max(1, Math.floor((0.6 * TRAIL) / sp)); if (j % stride) continue;
-        let i0 = i, len = 0;
-        while (i0 > 0 && len < TRAIL) { len += Math.hypot(p.xs[i0] - p.xs[i0 - 1], (p.ys[i0] - p.ys[i0 - 1]) * r); i0--; }
-        let px = X(p.xs[i0]), py = Yv(p.ys[i0] * radius(p.xs[i0])); ctx.moveTo(px, py);
-        for (let k = i0 + 1; k <= i; k++) {
-          const cx = X(p.xs[k]), cyy = Yv(p.ys[k] * radius(p.xs[k]));
-          ctx.quadraticCurveTo(px, py, (px + cx) / 2, (py + cyy) / 2); px = cx; py = cyy;
-        }
-        ctx.lineTo(px, py);
-      }
-    }
-    ctx.stroke();
-    ctx.restore();
-
-    /* the speed arrows on the axis, at a fixed scale, clipped at the end of their part with a hollow tip */
-    function speedArrow(x0, xEnd, v, label) {
+    /* the speed arrows under the vessel, at a fixed scale, clipped at the end of their part with a hollow tip */
+    function speedArrow(x0, xEnd, v, s) {
       const L = v * KV, cut = X(xEnd) - X(x0), clipped = L > cut, len = clipped ? cut : L;
-      arrow(ctx, X(x0), YC, X(x0) + len, YC, C('velocity'), 5);
-      if (clipped) dot(ctx, X(x0) + len, YC, C('velocity'), false, 7);
-      text(ctx, label, X(x0) + Math.max(len, 60) / 2, YC - 28, C('velocity'), { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+      arrow(ctx, X(x0), YA, X(x0) + len, YA, C('velocity'), 5);
+      if (clipped) dot(ctx, X(x0) + len, YA, C('velocity'), false, 7);
+      lab.add(s, X(x0) + Math.max(len, 60) / 2, YA, 0, 1, C('velocity'), 21, 24);
     }
-    speedArrow(0.6, XA - 0.4, v1, 'v_1 = ' + (v1 < 10 ? fmt(v1, 2) : fmt(v1, 1)) + ' m/s');
-    if (!uniform) speedArrow(XB + 0.5, LEN - 0.4, v2, 'v_2 = ' + (v2 < 10 ? fmt(v2, 2) : fmt(v2, 1)) + ' m/s');
+    const vs = (v) => (v < 10 ? fmt(v, 2) : fmt(v, 1));
+    speedArrow(0.6, XA - 0.4, v1, 'v_1 = ' + vs(v1) + ' m/s');
+    if (!uniform) speedArrow(XB + 0.5, LEN - 0.4, v2, 'v_2 = ' + vs(v2) + ' m/s');
 
-    /* the kind labels: the threads once, the plaque once */
-    text(ctx, 'lines of flow', X(4.0), Yv(0.65 * R1), C('flow-rate'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    /* the kind labels and the radii, above the vessel */
+    lab.add('r_1 = 2.00 mm', X(1.3), Yv(R1), 0, -1, C('position'), 19, 22);
+    lab.add('lines of dye', X(4.6), Yv(0.85 * R1), 0, -1, C('flow-rate'), 20, 22);
+    if (!uniform) lab.add('r_2 = ' + fmt(r2, 2) + ' mm', X(18.4), Yv(R1), 0, -1, C('position'), 19, 22);
     if (!uniform && R1 - r2 > 0.3) text(ctx, 'plaque', X(15), Yv((R1 + radius(15)) / 2), F.ref('plaque'), { size: 20, weight: 600, align: 'center', bg: PAL.soft });
-    else if (!uniform) text(ctx, 'plaque', X(15), Yv(R1) - 22, F.ref('plaque'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'r_1 = 2.00 mm', X(0.2), Yv(R1) - 22, C('position'), { size: 19, weight: 600, align: 'left' });
-    if (!uniform) text(ctx, 'r_2 = ' + fmt(r2, 2) + ' mm', X(LEN) - 2, Yv(R1) - 22, C('position'), { size: 19, weight: 600, align: 'right' });
+    else if (!uniform) lab.add('plaque', X(14.6), Yv(R1), 0, -1, F.ref('plaque'), 20, 22);
 
     /* the graph: N_R along the vessel, axis fixed 0..8000 */
     const { X: GX, Y: GY } = axes(ctx, box, [0, LEN], [0, 8000], { xl: 'position along the vessel (mm)', yl: 'N_R', nx: 4, ny: 4, fy: (v) => (v ? commas(fmt(v, 0)) : '0') });
@@ -213,18 +266,14 @@ const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t));
     if (!uniform) pinned(ctx, box, GX, GY, 15, NR2, PAL.ink, 'N_R = ' + sig3(NR2));
     if (NR1 <= 8000) text(ctx, 'N_R = ' + sig3(NR1), GX(3.5), GY(NR1) - 24, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     if (!uniform && NR2 <= 8000) text(ctx, 'N_R = ' + sig3(NR2), GX(15), GY(NR2) - 24, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    const missed = lab.flush(); d.fig.dataset.missed = missed.join(' | ');
 
-    /* the headline and the readout */
-    topline(ctx, uniform
-      ? 'The vessel is a uniform 2.00 mm in radius, the Reynolds number is ' + sig3(NR1) + ' all along it, and the flow is ' + state1 + '.'
-      : 'In the wide part the Reynolds number is ' + sig3(NR1) + ' and the flow is ' + state1 + '; where plaque narrows the vessel to ' + fmt(r2, 2) + ' mm it is ' + sig3(NR2) + ' and the flow is ' + state2 + '.');
-    const rr = uniform ? R1 : r2, vv = uniform ? v1 : v2, NN = uniform ? NR1 : NR2;
-    const vs = vv < 10 ? fmt(vv, 2) : fmt(vv, 1);
+    /* the readout */
+    const rr = uniform ? R1 : r2, vv = uniform ? v1 : v2, NN = uniform ? NR1 : NR2, f = fluid();
     readout(d.readout,
-      `N_{\\text{R}} = \\frac{2\\krho\\kv \\krad}{\\keta} = \\frac{2(${RHO}\\ \\text{kg/m}^3)(${vs}\\ \\text{m/s})(${fmt(rr, 2)}\\times 10^{-3}\\ \\text{m})}{${fmt(ETA.v, 3)}\\times 10^{-3}\\ \\text{N}\\cdot\\text{s/m}^2} = ${sig3(NN).replace(/,/g, '{,}')}`,
-      (uniform ? 'The flow rate is ' + fmt(Q.v, 1) + ' cm³/s and the mean speed is ' + fmt(v1, 2) + ' m/s.'
-        : 'In the wide part, where <i>r</i> = 2.00 mm and <i>v</i><sub>1</sub> = ' + fmt(v1, 2) + ' m/s, <i>N</i><sub>R</sub> = ' + sig3(NR1) + '.')
-      + fluidNamed() + ' The picture runs about ' + commas(String(Number(((20 / S1 / 0.020) * v1).toPrecision(2)))) + ' times slower than the blood.');
+      `N_{\\text{R}} = \\frac{2\\krho\\kv \\krad}{\\keta} = \\frac{2(${RHO}\\ \\text{kg/m}^3)(${vs(vv)}\\ \\text{m/s})(${fmt(rr, 2)}\\times 10^{-3}\\ \\text{m})}{${fmt(ETA.v, 3)}\\times 10^{-3}\\ \\text{N}\\cdot\\text{s/m}^2} = ${sig3(NN).replace(/,/g, '{,}')}`,
+      (f ? '$\\keta = ' + fmt(f.v, 3) + '$ mPa·s is ' + f.name + ' in Table 12.1. ' : '')
+      + 'The picture runs about ' + commas(String(Number((v1 / (S1 * 1e-3)).toPrecision(2)))) + ' times slower than the blood.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

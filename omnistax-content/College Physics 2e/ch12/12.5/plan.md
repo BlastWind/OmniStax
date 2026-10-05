@@ -65,49 +65,44 @@ id · replaces · concepts · value add · motion · sliders · headline · grap
 1. `sim-turbulence` · replaces Figure 12.22 (the blood vessel narrowed by
    plaque, laminar on the left and turbulent on the right) ·
    turbulence-in-circulation, reynolds-number, turbulence-onset-thresholds ·
-   value add: flow by animation (lines of flow that stay parallel where the
-   Reynolds number is low and break into eddies where it is high, which the
-   still can only draw with curly arrows), variation by slider (the flow
+   value add: flow by animation (threads of dye that stay straight where the
+   Reynolds number is low and roll up into eddies where it is high, which
+   the still can only draw with curly arrows), variation by slider (the flow
    rate, the narrowed radius and the viscosity each move the Reynolds
    number of the narrow part across 2000 and 3000), and intuition (the
    graph beneath puts the Reynolds number along the vessel so the reader
-   sees where along it the flow turns) · **moves**: dye threads enter an
-   artery of radius 2.00 mm from the left at four heights and are carried
-   downstream at the parabolic profile of laminar flow; in the wide part they stay straight and parallel, they bend
-   inward through the taper where plaque narrows the vessel, and where the
-   local Reynolds number is above about 3000 they are swirled into eddies,
-   while between 2000 and 3000 the narrow part flips at random between the
-   two behaviours, which is the book's "oscillates chaotically"; the idea
-   has a clock in it (turbulence is disorder in time, and rule 14 and the
-   chapter config name this figure as one of the three that may move), so
-   it registers one cycle of the threads crossing the vessel, 6 s with a
-   1.2 s hold, and gets the transport; the run is integrated once from a
-   seeded generator so that the scrubber shows the same run at every
-   position; the picture runs slower than life and the readout's small
-   line states the factor (rule 28.4) · flow
-   rate $\kQ$ (1.0 to 16.0 cm³/s, default 8.0, flow-rate), radius of the
-   narrowed part $r_2$ (0.50 to 2.00 mm, default 0.75, ink, a scene
-   length; at 2.00 mm the vessel is uniform), viscosity $\keta$ (0.5 to
-   4.0 mPa·s, default 2.084, viscosity, with unlabelled detents at Table
-   12.1's water at 20 °C, blood plasma at 37 °C, whole blood at 37 °C and
-   whole blood at 20 °C, the readout naming the fluid when the thumb sits
-   on one, since four labels would not fit under the slider); the density is blood's 1025 kg/m³, stated in the readout in the
-   density hue, and the wide radius $r_1 = 2.00$ mm is fixed · "In the wide
-   part the Reynolds number is 1,250 and the flow is laminar; where plaque
-   narrows the vessel to 0.75 mm it is 3,340 and the flow is turbulent." ·
-   graph below (horizontal scene): $N_{\text{R}}$ against position along
-   the vessel, axis fixed 0 to 8000 with bands at 2000 to 3000, the curve
-   in ink, its two ends marked with `pinned()` where they leave the range ·
-   2D. Readout: $N_{\text{R}} = 2\krho\kv r/\keta$ with the narrow part's
-   numbers in type colours; small line with the wide part's number and the
-   slow-motion factor. Labels: $\kvone$ and $\kvtwo$ on their arrows, "lines
-   of flow" once beside the top thread, "plaque" once, $r_1$ and $r_2$ over
-   the wall, the zone words laminar, unstable and turbulent beside the
-   graph's bands; seven labels on things that do not move, so they are on
-   by default (rule 26.7). The velocity
-   arrows are drawn at a fixed 60 units per m/s and clipped at the end of
-   their part of the vessel with a hollow tip, the label carrying the
-   number. Draws flow-rate, velocity, viscosity, density.
+   sees where along it the flow turns) · **moves**: four threads of dye,
+   injected in pulses at the left so their motion shows where they run
+   straight, are advected as material lines through a seeded field of
+   decaying vortices; a vortex is born where the local $N_{\text{R}}$ is
+   above 3000, or between 2000 and 3000 while a random switch is on (the
+   book's "oscillates chaotically"), rides downstream, swells and decays,
+   and is mirrored in both walls, so the threads visibly wind into eddies
+   and stay inside the lumen, where they are also clipped; the eddies of
+   a wide vessel turn at least once in 1.6 s so they roll up within the
+   run; 6 s cycle with a 1.2 s hold and the transport, one seeded run per
+   slider state, integrated through a 1.2 s lead-in and then frame by frame,
+   every frame kept for the scrubber; the readout's small line states the
+   slow-motion factor (rule 28.4) · flow rate $\kQ$ (1.0 to 16.0 cm³/s,
+   default 8.0, flow-rate), radius of the narrowed part $\krtwo$ (0.50 to
+   2.00 mm, default 0.75, position; at 2.00 mm the vessel is uniform),
+   viscosity $\keta$ (0.5 to 4.0 mPa·s, default 2.084, viscosity, with
+   unlabelled detents at Table 12.1's water at 20 °C, blood plasma at
+   37 °C, whole blood at 37 °C and whole blood at 20 °C, the small line
+   naming the fluid when the thumb sits on one), dashed circles on $\kQ$
+   and $\krtwo$ where the narrow part reaches 2000 and 3000; the density is
+   blood's 1025 kg/m³ and $r_1 = 2.00$ mm is fixed · headline as before,
+   "In the wide part the Reynolds number is 1,250 and the flow is laminar;
+   where plaque narrows the vessel to 0.75 mm it is 3,340 and the flow is
+   turbulent." · graph below (horizontal scene): $N_{\text{R}}$ against
+   position, axis fixed 0 to 8000 with the 2000 to 3000 band, `pinned()`
+   where the curve leaves the range · 2D; no fold or split. Readout:
+   $N_{\text{R}} = 2\krho\kv\krad/\keta$ with the narrow part's numbers.
+   Labels through the labeller, which blocks the vessel so no label sits
+   in the eddy zone: $r_1$, $r_2$ and "lines of dye" above the wall,
+   $\kvone$ and $\kvtwo$ under their arrows, which run under the vessel
+   at a fixed 100 units per m/s and are clipped with a hollow tip, "plaque"
+   in the hatch. Draws flow-rate, velocity, viscosity, density, position.
 
 Photograph 12.23 (the sink-drain insert) is kept, since conceptual question
 2 asks how it works, and travels on that exercise's `figure` field as the
