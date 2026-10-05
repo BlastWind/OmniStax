@@ -103,33 +103,23 @@ headline · graph · 3D
    credit (Steve Ford Elliott).
 2. `sim-surface-sheet` · replaces Figure 11.25 (a) and (b), the insect leg
    and the iron needle on a dented water surface · surface-tension,
-   cohesive-forces · **intuition and variation by slider**: the book draws
-   the surface as an elastic sheet and asks the reader to believe it; here
-   the sheet dents under a weight the reader sets, the two restoring forces
-   turn toward the vertical as the dent deepens, and the surface breaks and
-   the body sinks when the weight is more than $\kgamma L$ can hold, none of
-   which the still shows · **still**: a body resting on a surface is an
-   equilibrium with no time in it, so the figure answers its sliders and
-   registers no cycle (rule 14) · the weight $\kwgt$ of the body (0 to 8.00
-   mN, force), the length $L$ of the contact line (2 to 100 mm, ink), the
-   surface tension $\kgamma$ (0.010 to 0.100 N/m, surface-tension, with
-   detents at Table 11.3's ethyl alcohol, soapy water, glycerin and water at
-   20 °C, default water), and a choice of the body (insect's foot, default
-   $L = 10$ mm and $\kwgt = 0.30$ mN, or iron needle, $L = 70$ mm and
-   $\kwgt = 1.00$ mN), since which body rests there is a state, not a
-   quantity (rule 26.1) · "A weight of 0.30 mN on a contact line 10 mm long
-   dents the surface until its pull rises at 24° and holds the foot up." ·
-   none: the cross-section of the dented surface with the two $\kFST$
-   arrows, their net and $\kwgt$, and the book's free-body diagram beside it,
-   is the picture; the force arrows are drawn at 220 units per millinewton so
-   that the book's own weights, a fraction of a millinewton, are readable,
-   and every arrow is capped at 250 units and carries its number · 2D. Readout: $\kwgt = \kgamma L\sin\theta$ with the live
-   numbers and the angle it solves for; small line on the largest weight the
-   surface can hold, $\kgamma L$, and on the surface breaking past it. Labels
-   on: four arrows and two names. The choice of body does not cut: the foot
-   and the needle fade and slide past each other through the choice's
-   `a`/`off` while the dent, the contact line and the two pulls stay, since
-   they are what the two bodies share (manim 16). Draws force, surface-tension.
+   cohesive-forces · **variation by slider**: the sheet dents under a weight
+   the reader sets, the two $\kFST$ pulls turn toward the vertical as the
+   dent deepens, and past $\kgamma L$ the surface breaks and the body sinks ·
+   **still**: an equilibrium with no time in it (rule 14) · the weight
+   $\kwgt$ (0 to 8.00 mN, force), the contact length $L$ (2 to 100 mm), the
+   surface tension $\kgamma$ (0.010 to 0.100 N/m, Table 11.3 detents, default
+   water) and a choice of body (insect's foot, $L = 10$ mm, $\kwgt = 0.30$
+   mN; iron needle, $L = 70$ mm, $\kwgt = 1.00$ mN) · "A weight of 0.30 mN on
+   a contact line 10 mm long dents the surface until its pull rises at 24°
+   and holds the foot up." · free-body diagram beside, labels through the
+   labeller · 2D: a water strider's jointed leg (femur, knee, tibia) whose
+   tarsus lies in the dent with its hairs splayed, a local sprite in
+   figures.js and a candidate for figlib; the needle a shaded steel bar
+   end-on; the angle drawn at the left contact, clear of the leg; the two
+   bodies fade and slide through the choice while the dent and the pulls
+   stay. Rewritten 2026-10-05 (Claude Opus 5.5) after the review filed the
+   glyph foot. Draws force, surface-tension, position, angle.
 3. `sim-slide-wire` · replaces Figure 11.26, the sliding wire device ·
    surface-tension · **variation by slider and standardisation**: the book
    draws the device and says the force it measures gives the surface tension

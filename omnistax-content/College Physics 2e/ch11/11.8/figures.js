@@ -57,12 +57,6 @@ function shape(ctx, build, fill, stroke, w = 3) {
 }
 /* a glass wall: a pale double line */
 function glass(ctx, x1, y1, x2, y2, w = 5, color = PAL.ink) { line(ctx, x1, y1, x2, y2, alpha(color, 0.35), w); }
-/* a free-body diagram: a point with named arrows in the given directions (unit vectors) and lengths */
-function freeBody(ctx, x, y, arrows, title) {
-  text(ctx, title, x, y - 150, PAL.muted, { size: 19, align: 'center' });
-  for (const a of arrows) { arrow(ctx, x, y, x + a.ux * a.len, y + a.uy * a.len, a.color, 4); text(ctx, a.name, x + a.ux * (a.len + 26), y + a.uy * (a.len + 26), a.color, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) }); }
-  dot(ctx, x, y, PAL.ink, true, 7);
-}
 
 /* =====================================================================
    FIGURE 11.25: the surface as a stretched sheet. A body rests on the
@@ -71,6 +65,44 @@ function freeBody(ctx, x, y, arrows, title) {
    upward parts hold the weight, or the weight is more than γL and the
    surface breaks. Still: an equilibrium with no time in it.
 ===================================================================== */
+/* A water strider's leg, seen from the side: the tarsus lies along the points `foot` (tip first,
+   joint last) and dimples the surface under it, its hairs splayed at the tip; the tibia rises
+   from the joint at `rise` degrees to the knee and the femur runs on toward the body, fading
+   out where the scene ends. Thin jointed segments in the referent's colour, rimmed in ink.
+   A candidate for figlib, as F.striderLeg, once a second figure needs an insect on water. */
+function striderLeg(ctx, foot, color, { rise = 64, tibia = 140, femur = 130, tilt = 24 } = {}) {
+  const rim = alpha(PAL.ink, 0.6);
+  const seg = (a, b, w0, w1, fill) => {
+    const dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L;
+    shape(ctx, (c) => {
+      c.moveTo(a.x + nx * w0 / 2, a.y + ny * w0 / 2); c.lineTo(b.x + nx * w1 / 2, b.y + ny * w1 / 2);
+      c.arc(b.x, b.y, w1 / 2, Math.atan2(ny, nx), Math.atan2(-ny, -nx));
+      c.lineTo(a.x - nx * w0 / 2, a.y - ny * w0 / 2);
+      c.arc(a.x, a.y, w0 / 2, Math.atan2(-ny, -nx), Math.atan2(ny, nx));
+    }, fill, rim, 1.5);
+  };
+  const joint = foot[foot.length - 1], tip = foot[0];
+  const knee = { x: joint.x + tibia * Math.cos(rise * RAD), y: joint.y - tibia * Math.sin(rise * RAD) };
+  const hip = { x: knee.x + femur * Math.cos(tilt * RAD), y: knee.y - femur * Math.sin(tilt * RAD) };
+  /* the femur fades toward the body the scene leaves out */
+  const g = ctx.createLinearGradient(knee.x, knee.y, hip.x, hip.y); g.addColorStop(0, color); g.addColorStop(1, alpha(color, 0));
+  ctx.save(); ctx.globalAlpha = 1; seg(knee, hip, 12, 15, g); ctx.restore();
+  seg(joint, knee, 8, 11, color);
+  dot(ctx, knee.x, knee.y, color, true, 7.5); dot(ctx, knee.x, knee.y, rim, false, 7.5);
+  /* the tarsus, tapering to the tip, and the hairs that splay from it onto the surface */
+  for (let i = foot.length - 1; i > 0; i--) seg(foot[i], foot[i - 1], 4 + 4 * i / (foot.length - 1), 4 + 4 * (i - 1) / (foot.length - 1), color);
+  const ux = (tip.x - foot[1].x), uy = (tip.y - foot[1].y), u = Math.hypot(ux, uy) || 1;
+  for (const a of [-28, 0, 28]) { const t = Math.atan2(uy, ux) + a * RAD; line(ctx, tip.x, tip.y, tip.x + 22 * Math.cos(t), tip.y + 22 * Math.sin(t), color, 2.5); }
+  for (let i = 1; i < foot.length - 1; i++) { const p = foot[i], q = foot[i + 1], L = Math.hypot(q.x - p.x, q.y - p.y) || 1; line(ctx, p.x, p.y, p.x + (q.y - p.y) / L * -9 - (q.x - p.x) / L * 6, p.y + (q.x - p.x) / L * 9 - (q.y - p.y) / L * 6, alpha(color, 0.8), 1.5); }
+  return { joint, knee, hip };
+}
+/* An iron needle seen end-on: a steel disc shaded as a polished round bar, lit from the upper left. */
+function needleEnd(ctx, x, y, R, color) {
+  const g = ctx.createRadialGradient(x - R * 0.35, y - R * 0.4, R * 0.1, x, y, R);
+  g.addColorStop(0, F.mixColor(color, PAL.panel, 0.7)); g.addColorStop(0.55, color); g.addColorStop(1, F.mixColor(color, PAL.ink, 0.45));
+  shape(ctx, (c) => c.arc(x, y, R, 0, TAU), g, alpha(PAL.ink, 0.7), 1.5);
+  shape(ctx, (c) => c.arc(x, y, R * 0.72, 0, TAU), null, alpha(PAL.panel, 0.35), 1.2);
+}
 (function () {
   const d = sim('sim-surface-sheet', 660);
   const BODIES = { insect: { L: 10, w: 0.3 }, needle: { L: 70, w: 1.0 } };
@@ -83,67 +115,61 @@ function freeBody(ctx, x, y, arrows, title) {
   const alen = (mN) => Math.min(CAP, mN * KF);
   function draw() {
     const { ctx, H } = begin(d.c);
-    const fc = C('force'), gc = C('surface-tension');
+    const fc = C('force');
     const w = ws.v, L = Ls.v / 1000, g = gs.v, hold = g * L * 1000;          /* hold: the most the surface can carry, in mN */
     const s = hold > 0 ? w / hold : Infinity, breaks = s > 1, th = breaks ? 90 : Math.asin(s) / RAD;
-    const needle = body.value === 'needle', R = body.mix((v) => (v === 'needle' ? 16 : 30));
-    const D = breaks ? DENT : DENT * Math.sin(th * RAD), yc = Y0 + D;      /* the dent bottom, where the body's equator sits */
+    const needle = body.value === 'needle';
+    /* the half-width of the contact and the depth the surface wraps under the body: the needle's round side, or the tarsus lying flat */
+    const R = body.mix((v) => (v === 'needle' ? 16 : 56)), RY = body.mix((v) => (v === 'needle' ? 16 : 9));
+    const D = breaks ? DENT : DENT * Math.sin(th * RAD), yc = Y0 + D;      /* the contact points sit at this depth */
     const cosT = Math.cos(th * RAD), sinT = Math.sin(th * RAD), k = 0.35 * (CX - R - XL);
-    /* the liquid: flat far away, dented to the contact points, or closed over a body that has sunk */
-    const sunk = { x: CX, y: Y0 + 110 };
+    const left = (c) => c.bezierCurveTo(XL + 0.5 * (CX - R - XL), Y0, CX - R - k * cosT, yc - k * sinT, CX - R, yc);
+    const right = (c) => c.bezierCurveTo(CX + R + k * cosT, yc - k * sinT, XR - 0.5 * (XR - CX - R), Y0, XR, Y0);
+    /* the liquid: flat far away, dented to the contact points and wrapped under the body, or closed over a body that has sunk */
     shape(ctx, (c) => {
       c.moveTo(XL, YB); c.lineTo(XL, Y0);
-      if (breaks) { c.lineTo(XR, Y0); }
-      else {
-        c.bezierCurveTo(XL + 0.5 * (CX - R - XL), Y0, CX - R - k * cosT, yc - k * sinT, CX - R, yc);
-        c.arc(CX, yc, R, Math.PI, 0, true);
-        c.bezierCurveTo(CX + R + k * cosT, yc - k * sinT, XR - 0.5 * (XR - CX - R), Y0, XR, Y0);
-      }
+      if (breaks) c.lineTo(XR, Y0);
+      else { left(c); c.ellipse(CX, yc, R, RY, 0, Math.PI, 0, true); right(c); }
       c.lineTo(XR, YB); c.closePath();
     }, alpha(PAL.ink, 0.1));
     shape(ctx, (c) => {
       c.moveTo(XL, Y0);
       if (breaks) c.lineTo(XR, Y0);
-      else { c.bezierCurveTo(XL + 0.5 * (CX - R - XL), Y0, CX - R - k * cosT, yc - k * sinT, CX - R, yc); c.moveTo(CX + R, yc); c.bezierCurveTo(CX + R + k * cosT, yc - k * sinT, XR - 0.5 * (XR - CX - R), Y0, XR, Y0); }
+      else { left(c); c.ellipse(CX, yc, R, RY, 0, Math.PI, 0, true); right(c); }
     }, null, PAL.ink, 3);
     glass(ctx, XL, Y0 - 40, XL, YB); glass(ctx, XR, Y0 - 40, XR, YB); glass(ctx, XL, YB, XR, YB);
     const liq = gammaName(g);
     text(ctx, liq ? liq : 'the liquid, γ = ' + sigz(g, 3) + ' N/m', XL + 16, YB - 26, PAL.muted, { size: 18 });
-    /* the body: the foot of an insect on its leg, or a needle seen end-on */
-    const bx = CX, by = breaks ? sunk.y : yc;
-    /* each body fades and slides in or out as the choice turns, while the dent and the pulls stay */
-    body.only(ctx, 'needle', () => {
-      const nc = F.ref('needle');
-      dot(ctx, bx, by, nc, false, R); dot(ctx, bx, by, nc, true, Math.max(1, R - 8));
-      text(ctx, 'iron needle, seen end-on', bx + R + 150, by + 58, nc, { size: 19, bg: alpha(PAL.panel, 0.85) });
-      line(ctx, bx + R + 10, by + 10, bx + R + 62, by + 50, alpha(PAL.ink, 0.5), 1.5, [5, 6]);
-    }, [0, -40]);
-    body.only(ctx, 'insect', () => {
-      const ic = F.ref('insect');
-      ctx.save(); ctx.strokeStyle = ic; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      ctx.beginPath(); ctx.moveTo(bx, by - R + 4); ctx.lineTo(bx + 60, by - 130); ctx.lineTo(bx + 210, by - 225); ctx.stroke(); ctx.restore();
-      shape(ctx, (c) => c.ellipse(bx, by, R, R * 0.6, 0, 0, TAU), ic);
-      text(ctx, 'insect’s foot on its leg', bx + 120, by - 250, ic, { size: 19, bg: alpha(PAL.panel, 0.85) });
-    }, [0, -40]);
+    /* the body: a strider's leg with its tarsus in the dent, or a needle seen end-on; each fades and slides as the choice turns, while the dent and the pulls stay */
+    const by = breaks ? Y0 + 110 : yc;
+    const lab = labeller(ctx, H); lab.block(0, 0, 1400, 96);
+    const footPts = Array.from({ length: 7 }, (_, i) => { const a = Math.PI - (i / 6) * Math.PI; return { x: CX + R * Math.cos(a), y: by + RY * Math.sin(a) * 0.9 - 4 }; });
+    let leg = null;
+    body.only(ctx, 'insect', () => { leg = striderLeg(ctx, footPts, F.ref('insect')); }, [0, -40]);
+    body.only(ctx, 'needle', () => needleEnd(ctx, CX, by, R, F.ref('needle')), [0, -40]);
+    if (needle) lab.add('iron needle, end-on', CX + R * 0.7, by + R * 0.7, 0.8, 0.6, F.ref('needle'), 19, 34);
+    else if (leg) lab.beside({ x1: leg.knee.x, y1: leg.knee.y, x2: leg.hip.x, y2: leg.hip.y }, 1, 'water strider’s leg', F.ref('insect'), 19, { offset: 0.6, gap: 20 });
     /* the forces: the two pulls of the surface along itself, their net, and the weight */
-    const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
     const half = hold / 2;
     if (!breaks && w > 0) {
       const len = Math.max(120, alen(half));
       arrow(ctx, CX - R, yc, CX - R - len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX - R - len * cosT, yc - len * sinT, -cosT, -sinT, fc, 20, 22);
-      arrow(ctx, CX + R, yc, CX + R + len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX + R + len * cosT, yc - len * sinT, cosT, -sinT, fc, 20, 22);
-      const nl = Math.min(alen(w), yc - R * 0.6 - 150); arrow(ctx, CX, yc - R * 0.6, CX, yc - R * 0.6 - nl, fc, 5); lab.add('net F_ST = ' + sigz(w, 3) + ' mN', CX, yc - R * 0.6 - nl, 0, -1, fc, 20, 22);
-      angleArc(ctx, CX + R, yc, 0, -th, 48, C('angle'), 'θ = ' + fmt(th, 0) + '°');
+      lab.halo({ x1: CX + R + 12 * cosT, y1: yc - 12 * sinT, x2: CX + R + len * cosT, y2: yc - len * sinT }, 10); arrow(ctx, CX + R, yc, CX + R + len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX + R + len * cosT, yc - len * sinT, cosT, -sinT, fc, 20, 22);
+      const top = yc - RY, nl = Math.min(alen(w), top - 150); arrow(ctx, CX, top, CX, top - nl, fc, 5); lab.add('net F_ST = ' + sigz(w, 3) + ' mN', CX, top - nl, 0, -1, fc, 20, 22);
+      F.angleArc(ctx, { x: CX - R, y: yc }, 64, Math.PI - th * RAD, Math.PI, 'θ = ' + fmt(th, 0) + '°', lab, C('angle'));
     } else if (!breaks) {
       arrow(ctx, CX - R, yc, CX - R - alen(half), yc, fc, 4); lab.add('F_ST', CX - R - alen(half), yc, -1, 0, fc, 20, 22);
       arrow(ctx, CX + R, yc, CX + R + alen(half), yc, fc, 4); lab.add('F_ST', CX + R + alen(half), yc, 1, 0, fc, 20, 22);
     }
-    if (w > 0) { const wl = Math.min(alen(w), YB - 30 - by - R); arrow(ctx, bx, by + body.mix((v) => (v === 'needle' ? 16 : 18)), bx, by + R + wl, fc, 5); lab.add('w = ' + sigz(w, 3) + ' mN', bx, by + R + wl, 0, 1, fc, 20, 22); }
-    lab.flush();
-    /* the free-body diagram the book draws beside each panel */
-    const FX = 1160, FY = 300, fl = 100;                                    /* each pull is drawn 100 long, and the weight as their two upward parts, 200 sin θ */
-    freeBody(ctx, FX, FY, breaks || w === 0 ? (w === 0 ? [{ ux: -1, uy: 0, len: fl, color: fc, name: 'F_ST' }, { ux: 1, uy: 0, len: fl, color: fc, name: 'F_ST' }] : [{ ux: 0, uy: 1, len: 150, color: fc, name: 'w' }])
-      : [{ ux: -cosT, uy: -sinT, len: fl, color: fc, name: 'F_ST' }, { ux: cosT, uy: -sinT, len: fl, color: fc, name: 'F_ST' }, { ux: 0, uy: 1, len: Math.max(24, 2 * fl * sinT), color: fc, name: 'w' }], 'free-body diagram');
+    if (w > 0) { const wl = Math.min(alen(w), YB - 62 - by - RY); arrow(ctx, CX, by + RY, CX, by + RY + wl, fc, 5); lab.add('w = ' + sigz(w, 3) + ' mN', CX, by + RY + wl, 0, 1, fc, 20, 22); }
+    /* the free-body diagram the book draws beside each panel: each pull 100 long, and the weight as their two upward parts, 200 sin θ */
+    const FX = 1160, FY = 300, fl = 100;
+    text(ctx, 'free-body diagram', FX, FY - 175, PAL.muted, { size: 19, align: 'center' }); lab.place({ l: FX - 90, t: FY - 190, r: FX + 90, b: FY - 160 });
+    const fb = breaks || w === 0 ? (w === 0 ? [[-1, 0, fl, 'F_ST'], [1, 0, fl, 'F_ST']] : [[0, 1, 150, 'w']])
+      : [[-cosT, -sinT, fl, 'F_ST'], [cosT, -sinT, fl, 'F_ST'], [0, 1, Math.max(24, 2 * fl * sinT), 'w']];
+    for (const [ux, uy, l, n] of fb) { arrow(ctx, FX, FY, FX + ux * l, FY + uy * l, fc, 4); lab.add(n, FX + ux * l, FY + uy * l, ux ? Math.sign(ux) : 0, ux ? -0.25 : uy, fc, 20, 18); }
+    dot(ctx, FX, FY, PAL.ink, true, 7);
+    const missed = lab.flush(); d.fig.dataset.missed = missed.join(' | ');
     const what = needle ? 'the needle' : 'the foot';
     topline(ctx, breaks ? 'A weight of ' + sigz(w, 3) + ' mN is more than the ' + sigz(hold, 3) + ' mN this surface can hold along ' + fmt(Ls.v, 0) + ' mm, so the surface breaks and ' + what + ' sinks.'
       : w === 0 ? 'With no weight on it the surface stays flat, and its two pulls are level and cancel.'
