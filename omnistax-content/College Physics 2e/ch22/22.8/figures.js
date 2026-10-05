@@ -105,15 +105,15 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   }
   const headText = (st) => {
     if (dead()) return iS.v === 0
-      ? 'With no current in the loop there is no force on its sides, so there is no torque and the shaft does not turn.'
-      : 'With no field across the gap there is no force on the loop, so there is no torque and the shaft does not turn.';
+      ? 'With no current in the loop there is no torque, and the shaft does not turn.'
+      : 'With no field across the gap there is no torque, and the shaft does not turn.';
     const t = Math.abs(st.tau);
-    if (st.on) return `The perpendicular to the loop stands ${deg(Math.abs(st.thEff))} from the field, so the torque about the shaft is ${fmt(t, 1)} N⋅m clockwise as seen from above, and the brushes reverse the current as the loop comes through.`;
+    if (st.on) return `At ${deg(Math.abs(st.thEff))} from the field the torque is ${fmt(t, 1)} N⋅m clockwise seen from above, and the brushes keep it so.`;
     return st.tau > 0.05
-      ? `The perpendicular to the loop stands ${deg(Math.abs(st.thEff))} from the field, so the torque about the shaft is ${fmt(t, 1)} N⋅m clockwise as seen from above, carrying the loop toward the position where it faces the field.`
+      ? `At ${deg(Math.abs(st.thEff))} from the field the torque is ${fmt(t, 1)} N⋅m clockwise seen from above, toward the position facing the field.`
       : st.tau < -0.05
-        ? `The loop has turned ${deg(Math.abs(st.thEff))} past the field, so the torque of ${fmt(t, 1)} N⋅m has reversed and is now counterclockwise as seen from above, pulling the loop back the way it came.`
-        : 'The perpendicular to the loop lies along the field, so the sine is zero and there is no torque at all: this is the position the loop swings about.';
+        ? `${deg(Math.abs(st.thEff))} past the field the torque of ${fmt(t, 1)} N⋅m has reversed, pulling the loop back the way it came.`
+        : 'Facing the field squarely, the loop feels no torque: this is the position it swings about.';
   };
 
   /* ---------- the scene ---------- */
@@ -359,7 +359,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     const { X, Y } = axes(ctx, BOX, [-180, 180], [-90, 90], {
       xl: 'the angle the loop has turned from the position where it faces the field (degrees)', xc: C('angle'),
       yl: 'τ (N⋅m), clockwise seen from above', yc: C('torque'),
-      nx: 6, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0),
+      nx: 6, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => (v % 90 === 0 ? fmt(v, 0) : ''),
     });
     const peak = nS.v * iS.v * area() * bS.v;
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
@@ -368,10 +368,6 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     if (st.on) [-180, 0, 180].forEach((v) => line(ctx, X(v), BOX.t, X(v), BOX.b, alpha(PAL.ink, 0.4), 2, [6, 8]));
     line(ctx, X(st.th), Math.min(Y(st.tau), Y(0)), X(st.th), Math.max(Y(st.tau), Y(0)), alpha(PAL.ink, 0.35), 2.5, [4, 8]);
     const p = pinned(ctx, BOX, X, Y, st.th, st.tau, C('torque'), fmt(Math.abs(st.tau), 1) + ' N⋅m');
-    note(ctx, BOX, st.on
-      ? 'The current reverses at each dashed line, so the torque keeps one sign.'
-      : 'With no brushes the torque changes sign as the loop passes zero.',
-      [{ l: p.x - 190, r: p.x + 190, t: BOX.t, b: BOX.b }]);
   }
 
   function draw() {
@@ -382,7 +378,9 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     drawGraph(ctx, st, hasGL ? 8 : 486);
     readout(d.readout,
       `\\ktau = N\\kIcur \\karea\\kBmag\\sin\\ktheta = (${fmt(nS.v, 0)})(${fmt(iS.v, 1)}\\ \\text{A})(${fmt(area(), 4)}\\ \\text{m}^2)(${fmt(bS.v, 2)}\\ \\text{T})\\sin ${st.thEff < 0 ? '(' + degTex(st.thEff) + ')' : degTex(st.thEff)} = ${fmt(st.tau, 1)}\\ \\text{N}\\cdot\\text{m}`,
-      `A positive torque is clockwise as seen from above, and the angle in the formula is measured from the field round to the perpendicular the right hand rule makes from the current, which the brushes turn over twice a revolution: that is why the sine never goes negative while they are on, and why it does once they are taken away. The loop is square, so its area is the side squared. Example 22.5 is a hundred turns of 10.0 cm square carrying 15.0 A in a 2.00 T field, whose greatest torque is 30.0 N⋅m. The loop is drawn turning steadily at one revolution every ${fmt(T, 1)} s, which is what a motor does against the load it drives; with the brushes off it is drawn swinging back and forth in the same time, and how quickly it would really swing depends on how heavy the coil is, which the section does not give. The forces on the top and bottom segments are drawn as well: they are equal and opposite, they run along the shaft, and they turn the loop no way at all.`);
+      st.on
+        ? 'A positive torque is clockwise seen from above; the brushes reverse the current at each dashed line, so the torque keeps one sign.'
+        : `With no brushes the torque changes sign as the loop passes zero. How fast it would really swing depends on the coil's weight, which the section does not give.`);
   }
 
   if (hasGL) {
@@ -464,8 +462,8 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
       ctx.lineTo(CX + sx * POUT, CY + PB); ctx.lineTo(CX + sx * ROUT * 0.4, CY + PB); ctx.stroke();
     });
     ctx.restore();
-    text(ctx, 'N', CX - 232, CY, PAL.ink, { size: 38, weight: 700, align: 'center' });
-    text(ctx, 'S', CX + 232, CY, PAL.ink, { size: 38, weight: 700, align: 'center' });
+    text(ctx, 'N', CX - 232, CY + 92, PAL.ink, { size: 38, weight: 700, align: 'center' });
+    text(ctx, 'S', CX + 232, CY + 92, PAL.ink, { size: 38, weight: 700, align: 'center' });
     /* the field across the gap: radial through the coil where the poles are shaped, so
        that it crosses the coil squarely wherever the coil stands, and parallel where
        they are flat */
@@ -507,8 +505,9 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     if (torque > 1e-9) {
       turnArrow(ctx, CX, CY, 66, Math.PI * 1.18, 0.82, cT, 4);
       turnArrow(ctx, CX, CY, 66, Math.PI * 0.18, -0.82, cT, 4);
-      text(ctx, 'τ = ' + fmt(torque * 1e6, 2) + ' μN⋅m from the field,', CX - POUT, CY - PB - 82, cT, { size: 20, weight: 600, align: 'left' });
-      text(ctx, 'and as much the other way from the spring', CX - POUT, CY - PB - 56, PAL.muted, { size: 18, align: 'left' });
+      /* set at the left edge, clear of the needle at every deflection */
+      text(ctx, 'τ = ' + fmt(torque * 1e6, 2) + ' μN⋅m from the field,', 60, CY - PB - 82, cT, { size: 20, weight: 600, align: 'left' });
+      text(ctx, 'and as much the other way from the spring', 60, CY - PB - 56, PAL.muted, { size: 18, align: 'left' });
     }
     dot(ctx, CX, CY, PAL.ink, true, 9);
     /* the needle and the scale it sweeps, marked in the current a shaped meter reads */
@@ -537,16 +536,12 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     curve(ctx, (t) => deflect(t, false) / RAD, 0, 1, X, Y, alpha(cA, 0.3 + 0.7 * kFlat), 3 + 2 * kFlat, 90);
     ctx.restore();
     pinned(ctx, BOX, X, Y, iS.v, phi / RAD, cA, deg(phi / RAD));
-    note(ctx, BOX, shaped
-      ? 'The deflection is proportional to the current, so the divisions of the scale are even.'
-      : 'The torque falls away as the coil turns, so the divisions close up toward the top of the scale.',
-      [{ l: X(iS.v) - 200, r: X(iS.v) + 200, t: BOX.t, b: BOX.b }, { l: BOX.r - 120, r: BOX.r, t: Y(75) - 34, b: Y(75) }]);
     topline(ctx, iS.v < 0.005
       ? 'With no current through the coil there is no torque on it, and the spring holds the needle at zero.'
       : `A current of ${fmt(iS.v, 2)} mA through ${fmt(nS.v, 0)} turns in a ${fmt(bS.v, 3)} T field turns the coil against its spring to ${deg(Math.min(phi, STOP) / RAD)}${phi > STOP ? ', which is past the stop' : ' of the 60° scale'}.`);
     readout(d.readout,
       `N\\kIcur \\karea\\kBmag\\sin\\ktheta = k\\varphi = ${fmt(torque * 1e6, 2)}\\ \\mu\\text{N}\\cdot\\text{m}`,
-      `The spring balances the coil at φ = ${fmt(phi / RAD, 1)}°. The coil is 3.00 cm by 2.00 cm, so its area is 6.00 cm², and the spring takes 1.15 × 10⁻⁵ N⋅m to every radian it is wound, which puts the needle at full scale when 1.00 mA runs through two hundred turns in a 0.100 T field.${phi > STOP ? ' At this setting the spring would balance the coil only at ' + fmt(phi / RAD, 1) + '°, which is past the stop, so the needle rests against the stop and the meter is reading over its range.' : ''} The scale is marked for those two hundred turns in that field, so raising either sends the needle past the mark the current belongs to, which is what calibrating a gauge has to put right. Shaped faces keep the field square to the coil at every deflection, so the sine stays 1 and the deflection is proportional to the current; flat faces leave the torque falling away as the coil turns, which is the same sine that makes the motor above reverse.`);
+      `The coil's area is 6.00 cm² and the spring takes 1.15 × 10⁻⁵ N⋅m per radian, so 1.00 mA through 200 turns in 0.100 T reads full scale.${phi > STOP ? ' Here the spring would balance the coil only at ' + fmt(phi / RAD, 1) + '°, past the stop.' : ''}`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {

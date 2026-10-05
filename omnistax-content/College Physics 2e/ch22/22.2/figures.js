@@ -19,7 +19,7 @@
    letters N and S on the poles it runs between. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['22.2'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, hbracket, labeller, view, face, hover } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, register, cycle, begin, line, arrow, dot, text, topline, hbracket, labeller, view, face, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 const TAU = Math.PI * 2;
@@ -60,7 +60,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
 ===================================================================== */
 (function () {
   const d = sim('sim-magnetize', 620);
-  const treatC = choice(d.controls, {
+  const treatC = select(d.controls, {
     label: '\\text{the iron is}',
     options: [{ value: 'none', label: 'left alone' }, { value: 'tap', label: 'tapped' }, { value: 'heat', label: 'heated' }],
     value: 'heat', aria: 'what is done to the iron while it lies between the magnets: nothing, tapped while cold, or heated and then cooled',
@@ -174,12 +174,8 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
         : 'Nothing was done to the iron while it lay between the magnets, so taking them away leaves it unmagnetized.')
       : `With the magnets ${fmt(gapS.v, 1)} cm away on either side, the iron is magnetized with its south pole beside the north pole of the magnet on its left.`;
     topline(ctx, words);
-    readout(d.readout,
-      `\\text{the iron ${st.magnet ? 'is' : 'is not'} a magnet}`,
-      `The iron was ${treatC.value === 'none' ? 'left alone' : treatC.value === 'tap' ? 'tapped while cold' : 'heated and then cooled'}, and the magnets are ${st.away ? 'taken away' : 'in place'}. `
-      + (st.magnet
-        ? 'Unlike poles lie closest across each gap, which is why the three bars are pulled toward one another.'
-        : 'Taken away from iron that was neither heated nor tapped, the magnets take the magnetization with them.'));
+    readout(d.readout, `\\text{the iron ${st.magnet ? 'is' : 'is not'} a magnet}`);
+
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -283,18 +279,12 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     lab.add(fmt(tS.v, 0) + ' K', TX + TW + 12, ty(tS.v), 1, 0, tc, 20, 22);
     lab.flush();
     const above = tS.v >= TC;
-    const say = above
-      ? ['Above the Curie temperature the thermal', 'motion of the atoms is too violent for any', 'field to hold the domains in line, and the', 'iron cannot be magnetized at all.']
-      : ['The domains that already lie along the', 'field grow at the expense of their', 'neighbors, and the neighbors that are', 'left swing into line behind them.'];
-    say.forEach((t, i) => text(ctx, t, 1180, 330 + i * 30, PAL.muted, { size: 18, align: 'center' }));
     topline(ctx, above
       ? `At ${fmt(tS.v, 0)} K the iron is above its Curie temperature, and a field of ${fmt(bS.v, 0)} mT leaves the domains pointing every which way.`
       : bS.v === 0
         ? `In no external field the domains of the iron point every which way, ${wd(s.left)} of them in all, and the sample shows no poles.`
         : `In a field of ${fmt(bS.v, 0)} mT at ${fmt(tS.v, 0)} K the domain lying along the field has grown to hold ${fmt(100 * s.grown / (N * N), 0)} per cent of the sample.`);
-    readout(d.readout,
-      `\\text{${wd(s.left)} domain${s.left === 1 ? '' : 's'} left}`,
-      `In a field of ${fmt(bS.v, 0)} mT at ${fmt(tS.v, 0)} K the largest domain holds ${fmt(100 * s.grown / (N * N), 0)} per cent of the sample. Above the Curie temperature of iron, 1043 K, no field however strong holds the alignment, which is why a permanent magnet can be demagnetized by heating it.`);
+    readout(d.readout, `\\kBmag = ${fmt(bS.v, 0)}\\ \\text{mT},\\ \\kTemp = ${fmt(tS.v, 0)}\\ \\text{K}:\\ \\text{${wd(s.left)} domain${s.left === 1 ? '' : 's'} left}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -402,7 +392,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
         if (w > bd) { bd = w; best = i; }
       }
       if (best < 0) return;
-      const pa = V.P(pts[best - 5]), pb = V.P(pts[best + 5]);
+      const pa = V.P(pts[best - 3]), pb = V.P(pts[best + 3]);
       arrow(ctx, pa[0], pa[1], pb[0], pb[1], cc, 5.5);
     });
     /* the poles, lettered on the two ends of the core */
@@ -422,7 +412,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       : `${cap(wd(n))} turns carrying ${fmt(Math.abs(I), 1)} A round ${iron ? 'an iron core' : 'nothing but air'} make a magnet with its north pole at the ${north > 0 ? 'right' : 'left'}-hand end.`);
     readout(d.readout,
       `\\kBmag \\text{ is } \\text{${I === 0 ? 'nothing at all' : strength > 0.62 ? 'strong' : strength > 0.28 ? 'moderate' : 'weak'}}`,
-      `${cap(wd(n))} turns carry ${fmt(Math.abs(I), 1)} A round ${iron ? 'an iron core' : 'no core at all'}. The field grows with the current and with the number of turns, and it is very much stronger with the iron core than without one, because the domains of the iron line up with the field of the coil and add a field of their own.`);
+      iron && I !== 0 ? 'The domains of the iron line up with the field of the coil and add a field of their own.' : '');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -434,7 +424,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
    running the strip past would add nothing to the idea (rule 14).
 ===================================================================== */
 (function () {
-  const d = sim('sim-recording', 600);
+  const d = sim('sim-recording', 560);
   const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: -3, max: 3, step: 0.1, value: 2, unit: 'A', dec: 1, aria: 'the current in the winding of the recording head' });
   const modeC = choice(d.controls, {
     label: '\\text{storage}', options: [{ value: 'digital', label: 'digital' }, { value: 'analog', label: 'analog' }],
@@ -490,16 +480,11 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     if (I !== 0) lab.add('the field across the gap', GX + 48, OB + 26, 1, 0, fc, 19, 30);
     else lab.add('the gap in the core', GX + GW / 2, (IB + OB) / 2, 1, 0, PAL.ink, 19, 40);
     lab.flush();
-    text(ctx, digital
-      ? 'In digital storage only the direction of a region is kept, so every region is written to the full.'
-      : 'In analog storage the strength of a region follows the strength of the current, so the regions come out uneven.',
-      700, 578, PAL.muted, { size: 18, align: 'center' });
     topline(ctx, I === 0
       ? 'With no current in the winding the gap makes no field, and the region passing under it is left as it was.'
       : `A current of ${fmt(Math.abs(I), 1)} A writes a region magnetized to the ${I > 0 ? 'right' : 'left'}, and in ${digital ? 'digital storage only its direction is kept' : 'analog storage its strength follows the current as well'}.`);
-    readout(d.readout,
-      `\\text{the new region ${I === 0 ? 'is left as it was' : 'points ' + (I > 0 ? 'right' : 'left')}}`,
-      `${I === 0 ? '' : `A current of ${fmt(Math.abs(I), 1)} A in ${digital ? 'digital' : 'analog'} storage writes the region to ${digital ? 'full strength' : fmt(100 * Math.abs(I) / 3, 0) + ' per cent of full strength'}. `}The head is an electromagnet with a gap in its core, and the medium keeps whatever magnetization the field at that gap leaves in it, which is what makes a ferromagnetic material a memory.`);
+    readout(d.readout, `\\kIcur = ${fmt(I, 1)}\\ \\text{A}:\\ \\text{the new region ${I === 0 ? 'is left as it was' : 'points ' + (I > 0 ? 'right' : 'left') + (digital ? ' at full strength' : ` at ${fmt(100 * Math.abs(I) / 3, 0)}\\%\\ of full strength`)}}`);
+
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -523,7 +508,7 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
     value: 'ccw', aria: 'which way round the electron goes, seen from above',
   });
   const CX = 540, CY = 350, RX = 196, RY = 68, EA = -0.72;
-  const KW = [150, 232], KH = [140, 210];              /* the two field lines that close through the loop */
+  const KW = [96, 150], KH = [150, 214], KIN = [22, 44];   /* two field lines a side: up the inside of the loop, down round the outside */
   const NUC = [[-15, -9], [13, -7], [0, 12], [-4, -20], [20, 9], [-22, 6]];
 
   function draw() {
@@ -534,19 +519,14 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
        conventional current, and the right hand then puts the north pole below */
     const nUp = !ccw;
     const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 96);
-    lab.block(900, 200, 1370, 420);
     /* the field, closing through the loop: no arrowhead on a line that closes on
        itself, the letters N and S saying which way it runs */
     ctx.save(); ctx.strokeStyle = alpha(fc, 0.85); ctx.lineWidth = 3;
-    for (let k = 0; k < 2; k++) {
+    for (let k = 0; k < 2; k++) [-1, 1].forEach((side) => {
       ctx.beginPath();
-      for (let i = 0; i <= 90; i++) {
-        const t = (i / 90) * TAU;
-        const x = CX + KW[k] * Math.sin(t), y = CY - KH[k] * Math.cos(t);
-        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
-      }
+      ctx.ellipse(CX + side * (KIN[k] + KW[k]), CY, KW[k], KH[k], 0, 0, TAU);
       ctx.stroke();
-    }
+    });
     ctx.restore();
     /* the current loop is the one part both models share, so it keeps its place and
        only resizes; the electron of each model fades out as the other's fades in */
@@ -593,21 +573,11 @@ function domainArrow(ctx, cx, cy, ang, len, color, w) {
       lab.add('the electron, as a spinning ball of charge', CX, CY + 80, 0, 1, PAL.ink, 19, 30);
     }
     lab.add('the conventional current', CX - crx, CY, -1, 0, cc, 19, 26);
-    lab.add('the field of the loop', CX - KW[1] * 0.72, CY - KH[1] * 0.69, -0.72, -0.69, fc, 19, 26);
+    lab.add('the field of the loop', CX - KIN[1] - KW[1] * 1.72, CY - KH[1] * 0.69, -0.72, -0.69, fc, 19, 26);
     lab.flush();
-    const say = [
-      orbit ? 'The electron goes round the nucleus ' + (ccw ? 'counterclockwise' : 'clockwise') : 'The electron turns about its axis ' + (ccw ? 'counterclockwise' : 'clockwise'),
-      'as seen from above, and because its charge is negative the',
-      'conventional current runs the other way round. In either',
-      'model and whichever way the charge goes, the loop',
-      'has a north pole on one face and a south pole on the other,',
-      'and never one of them by itself.',
-    ];
-    say.forEach((t, i) => text(ctx, t, 1120, 240 + i * 30, PAL.muted, { size: 17, align: 'center' }));
     topline(ctx, `An electron going ${ccw ? 'counterclockwise' : 'clockwise'} ${orbit ? 'round the nucleus' : 'about its own axis'}, seen from above, is a ${ccw ? 'clockwise' : 'counterclockwise'} current, and the loop has its north pole on its ${nUp ? 'upper' : 'lower'} face.`);
     readout(d.readout,
-      `\\kIcur \\text{ runs } \\text{${ccw ? 'clockwise' : 'counterclockwise'}}, \\text{ N on the ${nUp ? 'upper' : 'lower'} face}`,
-      `The electron goes ${ccw ? 'counterclockwise' : 'clockwise'}, and its charge is negative. A current loop always makes a pair of poles, which is why no amount of searching inside matter turns up a north pole standing on its own.`);
+      `\\kIcur \\text{ runs } \\text{${ccw ? 'clockwise' : 'counterclockwise'}}, \\text{ N on the ${nUp ? 'upper' : 'lower'} face}`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => (modelC.value === 'orbit'

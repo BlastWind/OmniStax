@@ -170,8 +170,8 @@ function legend(ctx, mark, x, y, s, color) {
       const land = Y0 + 2 * R;
       dot(ctx, XW, land, ion.c, true, 9);
       label(ctx, ion.name, XW, land, { side: 'right', size: 20, color: ion.c, gap: 22 });
-      line(ctx, XW, land, 1010 + i * 130, land, alpha(ion.c, 0.35), 2, [8, 8]);
-      vbracket(ctx, 1020 + i * 130, Y0, land, ion.c, '2r = ' + fmt(2 * rOf(ion.m), 3) + ' m', 1, { H, side: 'right', size: 20 });
+      line(ctx, XW, land, 1010 + i * 190, land, alpha(ion.c, 0.35), 2, [8, 8]);
+      vbracket(ctx, 1020 + i * 190, Y0, land, ion.c, '2r = ' + fmt(2 * rOf(ion.m), 3) + ' m', 1, { H, side: 'right', size: 20 });
     });
     line(ctx, XW, Y0, 1010, Y0, alpha(PAL.ink, 0.28), 2, [8, 8]);
     /* the bar that fixes the scale of the drawing */
@@ -179,16 +179,12 @@ function legend(ctx, mark, x, y, s, color) {
     line(ctx, 600, 912, 600, 928, PAL.muted, 2); line(ctx, 600 + SC, 912, 600 + SC, 928, PAL.muted, 2);
     text(ctx, '1 m', 600 + SC / 2, 944, PAL.muted, { size: 17, align: 'center' });
     /* the legend and the two sentences that say what to watch */
-    legend(ctx, outOfPage, 200, 300, 'the magnetic field B, out of the page', col.B);
-    ['The selector passes one speed only, so the', 'two ions enter the chamber together and', 'differ in nothing but their mass.'].forEach((s, i) =>
-      text(ctx, s, 190, 370 + i * 28, PAL.muted, { size: 18 }));
-    ['The radius is proportional to the mass, so', 'the heavier isotope swings round the wider', 'arc and lands the further down the wall.'].forEach((s, i) =>
-      text(ctx, s, 190, 480 + i * 28, PAL.muted, { size: 18 }));
+    legend(ctx, outOfPage, 40, 300, 'the magnetic field B, out of the page', col.B);
     const sep = 2 * (rOf(ions[1].m) - rOf(ions[0].m));
     topline(ctx, `At ${sci(vS.v * 1e6, 2)} m/s in a ${fmt(bS.v, 3)} T field, oxygen-16 turns a half circle ${fmt(rOf(M16), 3)} m in radius and oxygen-18 one of ${fmt(rOf(ions[1].m), 3)} m, so the two land ${fmt(sep, 3)} m apart on the detector.`);
     readout(d.readout,
       `2\\kr_{18} - 2\\kr_{16} = \\frac{2(\\km_{18} - \\km_{16})\\kv}{\\kq\\kBmag} = \\frac{2(${sciTex(ions[1].m - M16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(sep, 3)}\\ \\text{m}`,
-      `Oxygen-16 turns a half circle of radius r = mv/qB = ${fmt(rOf(M16), 3)} m. A higher field or a lower speed tightens both arcs together, but the gap between the two landing points shrinks with them, which is why a spectrometer is built to hold the speed and the field steady while the sample changes. The lighter ion lands first, since its arc is the shorter and both ions travel at the same speed.`);
+      'A higher field or a lower speed tightens both arcs, and the gap between the landing points shrinks with them.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 5), draw });
 })();
@@ -249,26 +245,26 @@ function legend(ctx, mark, x, y, s, color) {
       poly(ctx, tr.pts, tr.passes ? ION : alpha(ION, 0.6), tr.passes ? 5 : 3.5, tr.passes ? null : [12, 8]);
       if (tr.passes) poly(ctx, [[XE, AX], [XE + 50, AX]], ION, 5);
       dot(ctx, end[0], end[1], ION, true, 10);
-      const at = tr.pts[[30, 9, 34][i]];
-      label(ctx, fmt(v6, 2) + ' × 10⁶ m/s', at[0], at[1], { side: at[1] <= AX ? 'above' : 'below', size: 20, color: ION, gap: 24 });
+      const at = tr.pts[[36, 9, 34][i]];
+      /* the slow ion is named on the channel side of its track, past the force arrows */
+      const up = i === 0 ? at[1] > AX : at[1] <= AX;
+      label(ctx, fmt(v6, 2) + ' × 10⁶ m/s', at[0], at[1], { side: up ? 'above' : 'below', size: 20, color: ION, gap: 24 });
     });
     /* the two forces on an ion at the selected speed, drawn at the middle of the channel */
     const mx = (X0 + XE) / 2;
     dot(ctx, mx, AX, ION, true, 11);
     arrow(ctx, mx, AX, mx, AX - 70, col.F, 5);
     arrow(ctx, mx, AX, mx, AX + 70, col.F, 5);
-    text(ctx, neg ? 'qvB' : 'qE', mx + 16, AX - 56, col.F, { size: 22, weight: 600 });
-    text(ctx, neg ? 'qE' : 'qvB', mx + 16, AX + 56, col.F, { size: 22, weight: 600 });
+    text(ctx, neg ? 'qvB' : 'qE', mx - 16, AX - 56, col.F, { size: 22, weight: 600, align: 'right' });
+    text(ctx, neg ? 'qE' : 'qvB', mx - 16, AX + 56, col.F, { size: 22, weight: 600, align: 'right' });
     arrow(ctx, 40, AX, X0 - 8, AX, col.v, 5);
     text(ctx, 'ions in', 40, AX - 28, col.v, { size: 19, weight: 600 });
     /* the sentences that say what is being watched */
     const passing = SPEEDS.filter((v6) => track(v6 * 1e6).passes);
-    ['A slow ion is turned aside by the electric force and a fast one by the', 'magnetic force, so only the ion traveling at E/B holds the axis as far', 'as the slit. Both forces reverse together when the ions are negative,', 'so the speed that is selected does not depend on the sign of the charge.'].forEach((s, i) =>
-      text(ctx, s, X0, 540 + i * 28, PAL.muted, { size: 18 }));
     topline(ctx, `A field of ${sci(eS.v * 1e6, 2)} V/m crossed with ${fmt(bS.v, 3)} T passes ${sci(sel(), 2)} m/s, so ${passing.length ? 'that is the one ion of the three that reaches the slit' : 'none of the three ions reaches the slit'}.`);
     readout(d.readout,
       `\\kv = \\frac{\\kEf}{\\kBmag} = \\frac{${sciTex(eS.v * 1e6, 2)}\\,\\text{V/m}}{${fmt(bS.v, 3)}\\,\\text{T}} = ${sciTex(sel(), 2)}\\ \\text{m/s}`,
-      `The electric and magnetic forces balance, qE = qvB, only at that speed. The charge cancels from the balance, so the speed that is selected is the same for an ion of any charge and any mass. Raise the electric field and the selected speed rises with it; raise the magnetic field and it falls.`);
+      'The charge cancels from qE = qvB, so the speed selected is the same for an ion of any charge and any mass.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -346,12 +342,10 @@ function legend(ctx, mark, x, y, s, color) {
     const sd = into ? 1 : -1;
     text(ctx, 'F on a positive charge', rx + 16, ry - sd * 86, col.F, { size: 19, weight: 600 });
     text(ctx, 'F on the electron', rx + 16, ry + sd * 86, E, { size: 19, weight: 600 });
-    ['The gun sets the speed and the coil sets the radius, so a faster', 'electron crosses the field in less time and is turned less. A', 'second pair of coils, set at right angles to this one, carries the', 'spot across the screen the other way.'].forEach((str, i) =>
-      text(ctx, str, 700, 500 + i * 28, PAL.muted, { size: 18, bg: PAL.panel }));
     topline(ctx, `A ${fmt(uS.v, 1)} kV gun sends electrons across the coil at ${sci(speed(), 2)} m/s, and a ${fmt(bS.v, 3)} mT field bends them onto a circle ${fmt(r, 3)} m in radius, putting the spot ${fmt(drop() * 100, 2)} cm ${into ? 'below' : 'above'} the axis.`);
     readout(d.readout,
       `\\kr = \\frac{\\km\\kv}{\\kq\\kBmag} = \\frac{(9.11 \\times 10^{-31}\\,\\text{kg})(${sciTex(speed(), 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${sciTex(bS.v * 1e-3, 2)}\\,\\text{T})} = ${fmt(r, 3)}\\ \\text{m}`,
-      `The gun sets the speed through qV = ½mv², which gives ${sci(speed(), 2)} m/s at ${fmt(uS.v, 1)} kV. A higher voltage brings the spot back toward the axis, because the radius grows with the speed, and a stronger field sends it farther away. Reversing the coil's field sends the beam the other way, which is how a pair of coils reaches every point on the screen.`);
+      `The gun sets the speed through qV = ½mv², which gives ${sci(speed(), 2)} m/s at ${fmt(uS.v, 1)} kV.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -470,7 +464,8 @@ function legend(ctx, mark, x, y, s, color) {
       if (m.lo) { ctx.save(); ctx.fillStyle = alpha(col.B, on ? 0.3 : 0.14); ctx.fillRect(X(m.lo), AXY - 26, X(m.hi) - X(m.lo), 52); ctx.restore(); }
       line(ctx, x, m.up ? AXY - 74 : AXY + 74, x, AXY, c, on ? 5 : 3);
       dot(ctx, x, AXY, c, true, 8);
-      lab.beside({ x1: x, y1: AXY, x2: x, y2: m.up ? AXY - 74 : AXY + 74 }, m.up ? 'left' : 'right', m.name, c, on ? 21 : 19, { offset: 1, gap: 20 });
+      /* the heart's name runs toward the middle of the scale, never off its left end */
+      lab.beside({ x1: x, y1: AXY, x2: x, y2: m.up ? AXY - 74 : AXY + 74 }, m.up || m.key === 'body' ? 'left' : 'right', m.name, c, on ? 21 : 19, { offset: 1, gap: 20 });
     });
     lab.flush();
     /* the chosen field is one mark that slides along the decades to the next choice */
@@ -480,13 +475,10 @@ function legend(ctx, mark, x, y, s, color) {
     /* the span the scale covers, so the gap is a length on the page */
     hbracket(ctx, X(bodyB()), X(1.50), AXY + 150, alpha(PAL.ink, 0.5),
       fmt(Math.log10(1.50 / bodyB()), 0) + ' decades from an MRI magnet to a beating heart', { H, side: 'below', size: 19 });
-    ['Each step across the scale is a factor of ten, so the distance between two marks is', 'the number of times over that one field stands above the other. The fields of the heart', 'and the brain are the reason a magnetocardiogram and a magnetoencephalogram are read', 'with a detector held at the temperature of liquid helium.'].forEach((s, i) =>
-      text(ctx, s, XL, 520 + i * 28, PAL.muted, { size: 18 }));
+    text(ctx, 'The fields of the heart and the brain are read with a detector held at the temperature of liquid helium.', XL, 520, PAL.muted, { size: 18 });
     const b = chosen();
     topline(ctx, `${{ mri: 'The magnet of an MRI unit', perm: 'A permanent magnet', earth: 'The Earth', body: 'The field of the heart and of the brain' }[srcC.value]} reaches about ${sci(b, 2)} T, which is ${srcC.value === 'earth' ? 'the field every compass on the planet answers to' : sci(b / B_EARTH, 2) + ' times the Earth’s own field'}.`);
-    readout(d.readout,
-      `\\kBmag = ${sciTex(b, 2)}\\ \\text{T}`,
-      `${srcC.value === 'earth' ? '' : `That is ${sci(b / B_EARTH, 2)} times the Earth’s field. `}The field of the heart and of the brain is 10⁻⁶ to 10⁻⁸ of the Earth’s.`);
+    readout(d.readout, `\\kBmag = ${sciTex(b, 2)}\\ \\text{T}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

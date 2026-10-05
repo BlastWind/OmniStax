@@ -146,9 +146,11 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
          runs away from the reader, which is where RHR-1 takes over from RHR-2 */
       if (B1 > 1e-12) arr3(ctx, [x2, 0, 0], [x2, 0, -76], cB, 5);
       /* the pair of forces, equal in size and opposite in direction (Newton's third law) */
+      /* drawn toward each other, a force stops short of the other wire rather than crossing it */
+      const L3 = pull > 0 ? Math.min(118, 0.8 * (x2 - x1)) : 118;
       if (FL > 1e-12 && Math.abs(pull) > 0.1) {
-        arr3(ctx, [x2, 58, 0], [x2 - pull * 118, 58, 0], cF, W);
-        arr3(ctx, [x1, -58, 0], [x1 + pull * 118, -58, 0], cF, W);
+        arr3(ctx, [x2, 58, 0], [x2 - pull * L3, 58, 0], cF, W);
+        arr3(ctx, [x1, -58, 0], [x1 + pull * L3, -58, 0], cF, W);
       }
       const t1 = V.P([x1, WY, 0]), t2 = V.P([x2, WY, 0]), apart = Math.max(0, 16 - (t2[0] - t1[0]) / 2);
       text(ctx, '1', t1[0] - apart, t1[1] - 28, w1, { size: 26, weight: 700, align: 'center' });
@@ -158,12 +160,12 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       ctx.restore();
       /* the names: six of them, none on a thing that moves far (rule 26.7) */
       const pI1 = V.P([x1, 130, 0]), pI2 = V.P([x2, up2 * 74, 0]), pB = V.P([x2, 0, -76]);
-      const pF2 = V.P([x2 - pull * 118, 58, 0]), pF1 = V.P([x1 + pull * 118, -58, 0]);
+      const pF2 = V.P([x2 - pull * L3, 58, 0]), pF1 = V.P([x1 + pull * L3, -58, 0]);
       label(ctx, 'I₁ = ' + fmt(I1, 0) + ' A', pI1[0], pI1[1], { side: 'left', size: 21, color: cI, H: SCENE });
       label(ctx, 'I₂ = ' + fmt(I2, 0) + ' A', pI2[0], pI2[1], { side: 'right', size: 21, color: cI, H: SCENE });
       if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', pB[0], pB[1], { side: 'right', size: 21, color: cB, H: SCENE, bg: PAL.panel });
       if (FL > 1e-12) {
-        label(ctx, 'F₂/l = ' + num(FL) + ' N/m', pF2[0], pF2[1], { side: 'above', size: 21, color: cF, H: SCENE });
+        label(ctx, 'F₂/l = ' + num(FL) + ' N/m', pF2[0], pF2[1], { side: pull > 0 ? 'left' : 'above', size: 21, color: cF, H: SCENE });   /* pulled in, its name stands clear of I₂ */
         label(ctx, 'F₁/l = ' + num(FL) + ' N/m', pF1[0], pF1[1], { side: 'below', size: 21, color: cF, H: SCENE });
       }
       pts.push({ p: V.P([x1, 0, 0]), r: 56, name: 'wire 1, carrying ' + fmt(I1, 0) + ' A' }, { p: V.P([x2, 0, 0]), r: 56, name: 'wire 2, carrying ' + fmt(I2, 0) + ' A' });
@@ -192,9 +194,10 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       /* each force arrow is set on the side of its wire that the other wire's field
          arrow has left clear, so that no force crosses a field */
       const fy2 = y0 + 44, fy1 = y0 - pull * 44;
+      const L2 = pull > 0 ? Math.min(126, 0.8 * D) : 126;
       if (FL > 1e-12 && Math.abs(pull) > 0.1) {
-        arrow(ctx, xb, fy2, xb - pull * 126, fy2, cF, W);
-        arrow(ctx, xa, fy1, xa + pull * 126, fy1, cF, W);
+        arrow(ctx, xb, fy2, xb - pull * L2, fy2, cF, W);
+        arrow(ctx, xa, fy1, xa + pull * L2, fy1, cF, W);
       }
       const apart = Math.max(0, 16 - D / 2);
       text(ctx, '1', xa - apart, y0 - 34, w1, { size: 24, weight: 700, align: 'center' });
@@ -205,8 +208,8 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       label(ctx, 'I₂ = ' + fmt(I2, 0) + ' A', xb, y0 + 16, { side: 'right', size: 21, color: cI, gap: 30, H: SCENE });
       if (B1 > 1e-12) label(ctx, 'B₁ = ' + num(B1) + ' T', xb, y0 - 88, { side: 'above', size: 21, color: cB, H: SCENE });
       if (FL > 1e-12 && Math.abs(pull) > 0.5) {
-        label(ctx, 'F₂/l', xb - pull * 126, fy2, { side: 'below', size: 21, color: cF, H: SCENE });
-        label(ctx, 'F₁/l', xa + pull * 126, fy1, { side: pull > 0 ? 'above' : 'below', size: 21, color: cF, H: SCENE });
+        label(ctx, 'F₂/l', xb - pull * L2, fy2, { side: 'below', size: 21, color: cF, H: SCENE });
+        label(ctx, 'F₁/l', xa + pull * L2, fy1, { side: pull > 0 ? 'above' : 'below', size: 21, color: cF, H: SCENE });
       }
       text(ctx, 'A dot is a current coming toward you,', EX, 520, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
       text(ctx, 'and a cross one running away from you.', EX, 546, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
@@ -230,10 +233,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       : `Two wires ${fmt(r, 2)} m apart, one carrying ${fmt(I1, 0)} A and the other ${fmt(I2, 0)} A ${same ? 'the same way' : 'the opposite way'}, ${same ? 'are pulled together with' : 'are pushed apart with'} ${num(FL)} N on every meter of their length.`);
     readout(d.readout,
       `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(I1, 0)}\\ \\text{A})(${fmt(I2, 0)}\\ \\text{A})}{2\\pi(${fmt(r, 2)}\\ \\text{m})} = ${numTex(FL)}\\ \\text{N/m}`,
-      (same
-        ? 'The two currents run the same way, so each wire is pulled toward the other. '
-        : 'The two currents run opposite ways, so each wire is pushed away from the other, and nothing else about the arrangement has changed: the force is the size it was and only its direction has turned over. ')
-      + 'By Newton’s third law the two forces are the same size whichever way the currents run, and over a 50.0 m run of line a force of this size on every meter comes to ' + num(FL * 50) + ' N.');
+      'Over a 50.0 m run of line a force of this size on every meter comes to ' + num(FL * 50) + ' N.');
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => hits.map((h) => ({ x: h.p[0], y: h.p[1], r: h.r, name: h.name })));
@@ -303,12 +303,10 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
     label(ctx, 'F/l = ' + fmt(net, 0) + ' N/m', CX + R + 26 + L, CY, { side: 'right', size: 22, color: cF, H: 780 });
     label(ctx, fmt(Is / 1000, 2) + ' kA in each strand', p1.x, p1.y, { side: 'above', size: 20, color: cI, gap: 28, H: 780 });
     label(ctx, fmt(dmm / 2, 2) + ' mm apart', (p0.x + p1.x) / 2, (p0.y + p1.y) / 2, { side: 'above', size: 19, gap: 18, H: 780, color: cR });
-    text(ctx, 'Take the column as seven strands of equal current. Each of the six on the rim is pulled toward the other six, so that the whole', 700, 650, PAL.muted, { size: 18, align: 'center' });
-    text(ctx, 'column squeezes itself into a narrower tube, while the strand on the axis, pulled equally in every direction, is pulled nowhere at all.', 700, 678, PAL.muted, { size: 18, align: 'center' });
     topline(ctx, `A ${fmt(iS.v, 1)} kA arc ${fmt(dmm, 1)} mm across squeezes itself: each strand of the rim is pulled toward the other six with ${fmt(net, 0)} N on every meter.`);
     readout(d.readout,
       `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${sciTex(Is)}\\ \\text{A})^2}{2\\pi(${sciTex(a)}\\ \\text{m})} = ${fmt(pair, 0)}\\ \\text{N/m}`,
-      `That is the pull between one strand and the neighbor beside it. Adding the pull of all six of the others on one strand of the rim gives ${fmt(net, 0)} N on every meter, directed straight at the axis, while the strand on the axis is pulled equally in every direction and so is pulled nowhere at all. Double the current and the squeeze is four times as strong, which is why it is the largest currents that burn holes in the plates of a breaker.`);
+      `That is the pull between neighboring strands; all six others together pull a rim strand with ${fmt(net, 0)} N on every meter, straight at the axis, while the strand on the axis is pulled nowhere.`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {
@@ -388,7 +386,7 @@ const fw = (val, ref) => Math.max(3.5, Math.min(8, 3.5 + 4.5 * (val / ref)));
       : `${fmt(N, 0)} ${N === 1 ? 'turn' : 'turns'} carrying ${fmt(I, 2)} A, ${fmt(rcm, 2)} cm above ${N === 1 ? 'one more' : fmt(N, 0) + ' more'}, are pulled together with ${num(Fn)} N over the 10.0 cm that face each other, the weight of ${mass}.`);
     readout(d.readout,
       `\\frac{\\kF}{\\kl} = \\frac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(N, 0)}\\times ${fmt(I, 2)}\\ \\text{A})^2}{2\\pi(${fmt(r, 4)}\\ \\text{m})} = ${numTex(FL)}\\ \\text{N/m}`,
-      `Every turn of the upper coil is a current running parallel to every turn of the lower one, so each of the two currents in the law is ${fmt(N, 0)} times ${fmt(I, 2)} A. The definition itself asks for two wires one meter apart carrying one ampere each, which pull with 2 × 10⁻⁷ N on every meter, the weight of about twenty micrograms; gathering the wire into coils and bringing them a few centimeters apart is what turns that into something a balance can weigh.`);
+      `Every turn of one coil runs parallel to every turn of the other, so each current in the law is ${fmt(N, 0)} × ${fmt(I, 2)} A.`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {

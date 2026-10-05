@@ -106,7 +106,7 @@ function legend(ctx, mark, x, y, s, color) {
     ctx.beginPath(); ctx.arc(CX, CY, R, neg ? a0 : a, neg ? a : a0); ctx.stroke(); ctx.restore();
     /* the charge, its velocity along the tangent and the force toward the centre */
     const px = CX + R * Math.cos(a), py = CY + R * Math.sin(a);
-    const ux = (neg ? -1 : 1) * -Math.sin(a), uy = (neg ? -1 : 1) * Math.cos(a);
+    const ux = (neg ? 1 : -1) * -Math.sin(a), uy = (neg ? 1 : -1) * Math.cos(a);   /* along the way the charge is going round */
     const fl = Math.max(52, Math.min(96, R - 14));
     line(ctx, CX, CY, px, py, alpha(col.r, 0.8), 2.5, [8, 8]);
     dot(ctx, CX, CY, PAL.muted, true, 6);
@@ -131,14 +131,10 @@ function legend(ctx, mark, x, y, s, color) {
     /* the legend for the mark the book uses for a field into the page */
     legend(ctx, intoPage, 1050, 196, 'the magnetic field B,', col.B);
     text(ctx, 'perpendicular into the page', 1076, 222, col.B, { size: 19, weight: 600 });
-    ['The force is square to the velocity', 'at every point of the circle, so it', 'does no work: the direction changes', 'and the speed does not.'].forEach((s, i) =>
-      text(ctx, s, 1044, 322 + i * 28, PAL.muted, { size: 18 }));
-    ['One lap takes 2πm/qB, which has no', 'speed in it: a faster charge runs a', 'wider circle in the same time.'].forEach((s, i) =>
-      text(ctx, s, 1044, 472 + i * 28, PAL.muted, { size: 18 }));
     topline(ctx, `A ${neg ? 'negative' : 'positive'} charge at ${sci(vS.v * 1e7, 2)} m/s across a ${fmt(bS.v, 3)} T field runs round a circle ${fmt(rmm, 3)} mm in radius, once every ${fmt(period() * 1e12, 1)} ps.`);
     readout(d.readout,
       `\\kr = \\frac{\\km\\kv}{\\kq\\kBmag} = \\frac{(9.11 \\times 10^{-31}\\,\\text{kg})(${sciTex(vS.v * 1e7, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 3)}\\,\\text{T})} = ${fmt(rmm, 3)}\\ \\text{mm}`,
-      `The magnetic force supplies the centripetal force, qvB = mv²/r, which gives the radius. The radius grows with the speed, but the time for one turn, ${fmt(period() * 1e12, 1)} ps, does not change; only the field changes that. A positive charge goes round the other way.`);
+      `One lap takes 2πm/qB, ${fmt(period() * 1e12, 1)} ps, with no speed in it: a faster charge runs a wider circle in the same time.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -192,11 +188,10 @@ function legend(ctx, mark, x, y, s, color) {
     label(ctx, 'the source', SX - 68, SY + 30, { side: 'below', size: 19, gap: 20, H, color: sc });
     label(ctx, 'the detector', FR - 110, SY + 20, { side: 'above', size: 19, gap: 30, H });
     legend(ctx, outOfPage, 1000, 130, 'the magnetic field B, out of the page', col.B);
-    text(ctx, 'The heavier ion swings wider.', 1000, 424, PAL.muted, { size: 18, bg: PAL.panel });
     topline(ctx, `Oxygen-16 and ${heavy} enter at ${sci(vS.v * 1e6, 2)} m/s, cross a ${fmt(bS.v, 2)} T field and land ${fmt(gap, 3)} m apart.`);
     readout(d.readout,
       `2(\\kr_2 - \\kr_1) = \\frac{2(\\kmtwo - \\kmone)\\kv}{\\kq\\kBmag} = \\frac{2(${sciTex((mS.v - 16) * U16, 2)}\\,\\text{kg})(${sciTex(vS.v * 1e6, 2)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 2)}\\,\\text{T})} = ${fmt(gap, 3)}\\ \\text{m}`,
-      `Each ion turns through a half circle of radius r = mv/qB, ${fmt(r1, 3)} m for oxygen-16 and ${fmt(r2, 3)} m for the heavier ion. ` + 'The two ions carry the same charge and enter at the same speed in the same field, so the only thing that sets them apart is mass, and the gap they open grows in proportion to the difference between their masses.');
+      `The radii are ${fmt(r1, 3)} m for oxygen-16 and ${fmt(r2, 3)} m for the heavier ion.`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {
@@ -302,7 +297,7 @@ function legend(ctx, mark, x, y, s, color) {
       mirrored
         ? `\\text{turned back where } \\kBmag = ${fmt(need, 3)}\\ \\text{T}`
         : `\\text{never turned back: } \\kBmag = ${fmt(btS.v, 3)}\\ \\text{T} < ${fmt(need, 3)}\\ \\text{T}`,
-      `The charge enters at ${fmt(thS.v, 0)}° to the field, where the field is ${fmt(B0, 3)} T, and the field rises to ${fmt(btS.v, 3)} T at the crowded end. ` + 'Only the part of the velocity across the lines is bent into circles; the part along them carries the charge forward. Where the field rises, more and more of the speed is turned into the circling, until nothing is left for the walk along the line and the charge comes back.');
+      'Only the part of the velocity across the lines is bent into circles; as the field rises, more of the speed goes into the circling, until none is left for the walk along the line.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -315,7 +310,7 @@ function legend(ctx, mark, x, y, s, color) {
 (function () {
   const H = 700, d = sim('sim-earth-trap', H);
   const latS = ctl(d.controls, { label: '\\text{latitude}', cls: 'angle', min: 0, max: 80, step: 1, value: 72, unit: '°', dec: 0, aria: 'the latitude at which the particle arrives, or at which a trapped particle is turned back' });
-  const whatC = choice(d.controls, { label: '\\text{the particle}', options: [{ value: 'ray', label: 'a cosmic ray arriving' }, { value: 'inner', label: 'trapped, inner belt' }, { value: 'outer', label: 'trapped, outer belt' }], value: 'ray', aria: 'which particle arrives or is held' });
+  const whatC = F.select(d.controls, { label: '\\text{the particle}', options: [{ value: 'ray', label: 'a cosmic ray arriving' }, { value: 'inner', label: 'trapped, inner belt' }, { value: 'outer', label: 'trapped, outer belt' }], value: 'ray', aria: 'which particle arrives or is held' });
   const EX = 680, EY = 420, RE = 90, R0 = 2.2;           /* the Earth, and where an arriving ray meets the field */
   const shell = (L, lat) => [EX + RE * L * Math.pow(Math.cos(lat), 3), EY - RE * L * Math.cos(lat) * Math.cos(lat) * Math.sin(lat)];
   const latMax = (L) => Math.acos(Math.min(1, Math.sqrt(1 / L)));
@@ -399,8 +394,8 @@ function legend(ctx, mark, x, y, s, color) {
       label(ctx, 'and turned back again at the other end', pts[0][0], pts[0][1], { side: 'right', size: 19, color: col.q, gap: 30, H });
       ctx.restore();
     }
-    text(ctx, 'the Van Allen belts, where protons and electrons are held', 40, 618, PAL.muted, { size: 19, weight: 600 });
-    text(ctx, 'the Earth’s magnetic field lines', 40, 646, col.B, { size: 19, weight: 600 });
+    text(ctx, 'the Van Allen belts, where protons and electrons are held', 40, 648, PAL.muted, { size: 19, weight: 600 });
+    text(ctx, 'the Earth’s magnetic field lines', 40, 676, col.B, { size: 19, weight: 600 });
     const turned = fmt(Math.min(latS.v, latMax(belt) / RAD - 4), 0);
     topline(ctx, what === 'ray'
       ? (guided
@@ -411,10 +406,7 @@ function legend(ctx, mark, x, y, s, color) {
       what === 'ray'
         ? `\\kv \\text{ meets } \\kBmag \\text{ at } ${fmt(ang, 0)}^\\circ`
         : `\\text{turned back at } ${turned}^\\circ \\text{ of latitude}`,
-      (what === 'ray'
-        ? `A cosmic ray arriving at ${fmt(latS.v, 0)}° of latitude is ${guided ? 'carried along the lines' : 'turned aside'}. `
-        : `A particle trapped in the ${what === 'inner' ? 'inner' : 'outer'} belt runs to and fro along its line. `)
-      + 'A charge whose velocity lies nearly along a field line spirals about that line and is carried with it; one whose velocity is nearly square to the lines must cross them, and the same force that bends a circle turns it away. That is why the dose from cosmic rays is higher at the poles than at the equator.');
+      what === 'ray' ? 'Cosmic rays reach the air most readily near the poles, which is why the dose there is higher than at the equator.' : '');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -472,12 +464,10 @@ function legend(ctx, mark, x, y, s, color) {
     label(ctx, 'the field runs all the way around', centre[34][0], centre[34][1], { side: 'below', size: 19, color: col.B, gap: 40, H });
     label(ctx, 'the chamber and its coil', outer[60][0], outer[60][1], { side: 'left', size: 19, gap: 34, H, color: ch });
     label(ctx, 'a proton of the plasma and its path', pts[390][0], pts[390][1], { side: 'below', size: 19, color: col.q, gap: 40, H });
-    ['The spiral is drawn', BIG + ' times its true size.', 'At its true size the', 'circle would be a', fmt(AMIN / rg, 0) + 'th of the chamber’s', 'half width, which is', 'why the plasma never', 'reaches the wall.'].forEach((s, i) =>
-      text(ctx, s, 34, 180 + i * 28, PAL.muted, { size: 18 }));
-    topline(ctx, `A proton at ${sci(vS.v * 1e5, 1)} m/s in a ${fmt(bS.v, 1)} T field circles a field line every ${fmt(rg * 1000, 2)} mm, a ${fmt(AMIN / rg, 0)}th of the chamber’s half width, so it follows the ring round without touching the wall.`);
+    topline(ctx, `A proton at ${sci(vS.v * 1e5, 1)} m/s in a ${fmt(bS.v, 1)} T field circles a field line ${fmt(rg * 1000, 2)} mm in radius, a ${fmt(AMIN / rg, 0)}th of the chamber’s half width, so it follows the ring round without touching the wall.`);
     readout(d.readout,
       `\\kr = \\frac{\\km\\kv}{\\kq\\kBmag} = \\frac{(1.67 \\times 10^{-27}\\,\\text{kg})(${sciTex(vS.v * 1e5, 1)}\\,\\text{m/s})}{(1.60 \\times 10^{-19}\\,\\text{C})(${fmt(bS.v, 1)}\\,\\text{T})} = ${fmt(rg * 1000, 2)}\\ \\text{mm}`,
-      `That radius is a ${fmt(AMIN / rg, 0)}th of the chamber’s 1.0 m half width. The spiral is drawn ${BIG} times its true width so that it can be seen at all. Raise the speed or lower the field and the circle widens, and a chamber holds its plasma only while that circle stays small against the chamber itself.`);
+      `The spiral is drawn ${BIG} times its true width so that it can be seen at all.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

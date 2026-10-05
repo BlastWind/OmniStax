@@ -164,7 +164,7 @@ const deg = (x) => fmt(x, 0) + '°';
       : `A current of ${fmt(I, 1)} A through ${fmt(lcm, 2)} cm of wire in a ${fmt(B, 2)} T field is pushed ${sgn > 0 ? 'upward' : 'downward'} with a force of ${fmt(Fn, 2)} N.`);
     readout(d.readout,
       `\\kF = \\kIcur \\kl \\kBmag \\sin\\ktheta = (${fmt(I, 1)}\\ \\text{A})(${fmt(lcm / 100, 4)}\\ \\text{m})(${fmt(B, 2)}\\ \\text{T})\\sin 90^\\circ = ${fmt(Fn, 2)}\\ \\text{N}`,
-      'The wire lies across the field, so the angle between the current and the field is 90° and the sine is 1. With the current sent the other way the force turns over, because the field and the length in the field have not changed.');
+      'The wire lies across the field, so the angle between the current and the field is 90° and the sine is 1.');
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {
@@ -229,7 +229,6 @@ const deg = (x) => fmt(x, 0) + '°';
     label(ctx, 'B = ' + fmt(B, 2) + ' T', pB[0], pB[1], { side: th > 120 ? 'below' : 'right', size: 21, color: cB });
     label(ctx, 'θ = ' + deg(th), pA[0], pA[1], { side: 'right', size: 21, gap: 14, leader: false, color: cA });
     label(ctx, Flen > 8 ? 'F/l = ' + fmt(FL, 1) + ' N/m' : 'no force on the wire', pF[0], pF[1], { side: Flen > 8 ? 'above' : 'left', size: 22, color: cF, leader: false });
-    text(ctx, 'The force stands at right angles to the plane, whichever way the field is turned within it.', 700, 520, PAL.muted, { size: 18, align: 'center' });
     /* the curve the sine draws, with the state now set pinned on it */
     const { X, Y } = axes(ctx, BOX, [0, 180], [0, 60], { xl: 'θ, the angle between the current and the field (degrees)', xc: cA, yl: 'F/l (N/m)', yc: cF, nx: 6, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
@@ -237,13 +236,12 @@ const deg = (x) => fmt(x, 0) + '°';
     ctx.restore();
     line(ctx, X(th), Math.max(Y(FL), BOX.t), X(th), BOX.b, alpha(PAL.ink, 0.35), 2.5, [4, 8]);
     pinned(ctx, BOX, X, Y, th, FL, cF, fmt(FL, 1) + ' N/m');
-    note(ctx, BOX, 'The force is greatest when the wire lies across the field and nothing at all when it lies along it.', [{ l: X(th) - 170, r: X(th) + 170, t: BOX.t, b: BOX.b }]);
     topline(ctx, FL < 0.05
       ? (s < 0.02 ? 'The current runs along the field, so there is no force on the wire at all, however large the current and the field are.' : 'With no current or no field there is no force on the wire.')
       : `A ${fmt(I, 1)} A current across a ${fmt(B, 2)} T field at ${deg(th)} is pushed with ${fmt(FL, 1)} N on every meter of wire.`);
     readout(d.readout,
       `\\frac{\\kF}{\\kl} = \\kIcur\\kBmag\\sin\\ktheta = (${fmt(I, 1)}\\ \\text{A})(${fmt(B, 2)}\\ \\text{T})\\sin ${deg(th)} = ${fmt(FL, 1)}\\ \\text{N/m}`,
-      'The force stands at right angles to the plane the current and the field lie in, so turning the field within that plane changes how hard the wire is pushed but never which way.');
+      '');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -260,9 +258,9 @@ const deg = (x) => fmt(x, 0) + '°';
   const iS = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0, max: 150, step: 5, value: 100, unit: 'A', dec: 0, aria: 'the current driven across the duct' });
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 3, step: 0.1, value: 2, unit: 'T', dec: 2, aria: 'the strength of the magnetic field across the duct' });
   const lS = ctl(d.controls, { label: '\\kl', cls: 'position', min: 10, max: 40, step: 1, value: 25, unit: 'cm', dec: 1, aria: 'the diameter of the duct the current crosses' });
-  const carC = choice(d.controls, { label: '\\text{the carriers}', options: [{ value: 'pos', label: 'positive' }, { value: 'neg', label: 'negative' }, { value: 'both', label: 'both signs' }], value: 'both', aria: 'the sign of the charges that carry the current across the fluid' });
-  const sceneC = choice(d.controls, { label: '\\text{the pump}', options: [{ value: 'lab', label: 'between magnet poles' }, { value: 'sub', label: 'in a submarine' }], value: 'lab', aria: 'where the pump stands' });
-  const V = mkView(620, 330);
+  const carC = F.select(d.controls, { label: '\\text{the carriers}', options: [{ value: 'pos', label: 'positive' }, { value: 'neg', label: 'negative' }, { value: 'both', label: 'both signs' }], value: 'both', aria: 'the sign of the charges that carry the current across the fluid' });
+  const sceneC = F.select(d.controls, { label: '\\text{the pump}', options: [{ value: 'lab', label: 'between magnet poles' }, { value: 'sub', label: 'in a submarine' }], value: 'lab', aria: 'where the pump stands' });
+  const V = mkView(620, 372);        /* low enough that the widest duct and its poles clear the two-line headline */
   /* 11 canvas units to the centimeter of duct, so the widest duct the slider reaches
      (40.0 cm) is 440 units across and still clears the canvas with the poles beside
      it; the force arrow is a fixed 1.83 units to the newton, from the greatest force
@@ -342,9 +340,7 @@ const deg = (x) => fmt(x, 0) + '°';
       : `A ${fmt(I, 0)} A current across a ${fmt(lcm, 1)} cm duct in a ${fmt(B, 2)} T field drives the fluid along the tube with a force of ${fmt(Fn, 1)} N.`);
     readout(d.readout,
       `\\kF = \\kIcur \\kl \\kBmag \\sin\\ktheta = (${fmt(I, 0)}\\ \\text{A})(${fmt(lcm / 100, 3)}\\ \\text{m})(${fmt(B, 2)}\\ \\text{T})\\sin 90^\\circ = ${fmt(Fn, 1)}\\ \\text{N}`,
-      car === 'both'
-        ? 'Both signs of carrier are here at once. The positive ones drift the way the current runs and the negative ones drift against it, so both are pushed the same way and the fluid moves as one.'
-        : `The carriers are ${car === 'pos' ? 'positive and drift along the current' : 'negative and drift against the current'}. With carriers of the other sign the force does not move, because the sign of the charge and the direction it drifts reverse together.`);
+      car === 'both' ? 'With both signs present, each is pushed the same way and the fluid moves as one.' : '');
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {

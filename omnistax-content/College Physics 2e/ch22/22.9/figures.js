@@ -147,7 +147,7 @@ function oval(c, A, B, u, v, n = 72) {
   const lab = (s, p, g, dy, col, op = 1) => {
     if (op <= 0.01) return null;
     const e = V.label(s, p, g, dy);
-    e.style.fontWeight = '600'; e.style.color = col; e.style.background = 'transparent'; e.style.border = 'none'; e.style.opacity = String(op);
+    e.style.fontWeight = '600'; e.style.color = col; e.style.background = alpha(PAL.panel, 0.85); e.style.border = 'none'; e.style.opacity = String(op);
     return e;
   };
   const INK = () => PAL.ink, MUT = () => PAL.muted, WC = () => F.ref('wire'), SC = () => F.ref('solenoid'), HC = () => F.ref('hand');
@@ -461,9 +461,9 @@ function oval(c, A, B, u, v, n = 72) {
   /* r and R are both the distance from the current to where B is read */
   const KEYS_LOOP = { r: 'R', rval: 'Rval' };
   const NOTE = {
-    wire: 'The field lines are circles centered on the wire, and because the wire is long the picture is the same everywhere along it. Point the thumb of your right hand along the wire the way the current runs, and your fingers curl the way the field goes.',
-    loop: 'Bent into a circle, every part of the wire curls its field the same way through the middle, so the circles crowd together at the center and the field there is π times the straight wire’s at the same distance. The thumb along the current, the fingers curl up through the loop.',
-    sol: 'Stacked side by side, the loops add their fields inside and cancel them outside, so the field is uniform through the whole interior. No radius enters the formula. The winding is drawn one turn to every hundred the meter really holds.',
+    wire: 'Because the wire is long, the picture is the same everywhere along it.',
+    loop: 'At the center the field is π times the straight wire’s at the same distance.',
+    sol: 'The winding is drawn one turn to every hundred the meter really holds.',
   };
   let noteNow = '';
   const win = (s, a, b) => clamp((s - a) / (b - a), 0, 1);
@@ -480,10 +480,10 @@ function oval(c, A, B, u, v, n = 72) {
   const camAt = (s) => {
     const q = RHO(RS.v);
     return F.keyframes(s, [
-      { at: 0, yaw: Math.PI / 2, pitch: 0, zoom: 1.0 },
-      { at: 1, yaw: -0.55, pitch: 0.30, zoom: 0.92 },
-      { at: 2, yaw: LOOP_YAW, pitch: 0.60, zoom: clamp(1.75 / (1.3 * q + 0.3), 0.7, 2.3) },
-      { at: 3, yaw: -0.38, pitch: 0.26, zoom: 1.15 },
+      { at: 0, yaw: Math.PI / 2, pitch: 0, zoom: 0.72 },
+      { at: 1, yaw: -0.55, pitch: 0.30, zoom: 0.72 },
+      { at: 2, yaw: LOOP_YAW, pitch: 0.60, zoom: clamp(1.5 / (1.3 * q + 0.3), 0.7, 2.0) },
+      { at: 3, yaw: -0.38, pitch: 0.26, zoom: 0.95 },
     ]);
   };
   let own = false, lastS = sS.v;
@@ -498,7 +498,7 @@ function oval(c, A, B, u, v, n = 72) {
       if (k !== key) { key = k; try { build(); } catch (e) { console.error('sim-field-of-a-current: the scene could not be built', e); S = null; } }
       if (S) {
         paint.forEach((p) => { try { p.m.color.set(p.col()); } catch (e) { /* left as it was */ } });
-        S.labs.forEach((l) => { l.e.style.color = l.col(); });
+        S.labs.forEach((l) => { l.e.style.color = l.col(); l.e.style.background = alpha(PAL.panel, 0.85); });   /* a panel under each name, so no line runs through it */
         V.headline(headlineOf(st)).style.opacity = String(A[a]);
         V.invalidate();
       }
@@ -625,7 +625,6 @@ function oval(c, A, B, u, v, n = 72) {
       text(ctx, 'N', nn[0], nn[1], PAL.ink, { size: 26, weight: 600, align: 'center' });
       text(ctx, 'S', ss[0], ss[1], PAL.ink, { size: 26, weight: 600, align: 'center' });
       text(ctx, 'B = ' + fmt(st.B, 2) + ' T inside, and the field leaves at the north end', 700, 482, C('magnetic-field'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-      text(ctx, 'and swings back around the outside to the south end', 700, 512, PAL.muted, { size: 18, align: 'center' });
       ctx.restore();
     }
     front.forEach((t) => poly(ctx, t.pts, sc, 3));
@@ -637,10 +636,6 @@ function oval(c, A, B, u, v, n = 72) {
     if (aR > 0) {
       ctx.save(); ctx.globalAlpha = aR;
       text(ctx, 'B = ' + fmt(st.B, 2) + ' T, round and round inside', 700, 482, C('magnetic-field'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-      text(ctx, 'and nothing outside: no end for a field line, or a charged particle, to leave by', 700, 512, PAL.muted, { size: 18, align: 'center' });
-      const cm = P([0, 0, 0]), rm = P([RC, 0, 0]);
-      line(ctx, cm[0], cm[1], rm[0], rm[1], C('position'), 3, [10, 10]);
-      text(ctx, 'mean radius 0.318 m', (cm[0] + rm[0]) / 2, (cm[1] + rm[1]) / 2 - 30, C('position'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
       ctx.restore();
     }
   }
@@ -651,7 +646,7 @@ function oval(c, A, B, u, v, n = 72) {
     topline(ctx, `The same ${fmt(st.N, 0)} turns carrying ${fmt(st.I, 0)} A make ${fmt(st.B, 2)} T inside, whether the coil is straight or bent into a ring.`);
     readout(d.readout,
       `\\kBmag = \\mu_0 n\\kIcur = (4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(st.n, 0)}\\ \\text{m}^{-1})(${fmt(st.I, 0)}\\ \\text{A}) = ${fmt(st.B, 2)}\\ \\text{T}`,
-      `The coil is the 2.00 m coil of Example 22.7, so ${fmt(st.N, 0)} turns are ${fmt(st.n, 0)} turns per meter whether the coil is laid out straight or bent round until its two ends meet, and the field inside is the same either way. What the bending changes is the shape of the field rather than its strength: a straight coil has a north end the field leaves by and a south end it returns to, and the ring has neither, so the field simply goes round and round inside it. That is why a charged particle following a field line round a toroid never reaches a place where the line leaves, which is what confines the particles in a tokamak. The ring's mean radius is 2.00 m / 2π = 0.318 m, and the winding is drawn with one turn to every two hundred the coil holds, ${fmt(drawn(st.N), 0)} of them here, so that the turns can be told apart.`);
+      `The 2.00 m coil of Example 22.7 has ${fmt(st.n, 0)} turns per meter straight or bent; the ring's mean radius is 2.00 m / 2π = 0.318 m, and one turn is drawn for every two hundred.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

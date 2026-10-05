@@ -119,7 +119,6 @@ function carrier(ctx, x, y, color, sign, r) {
     });
 
     /* what the two marks in the slab are */
-    text(ctx, 'F is the magnetic force on that carrier, and the circled dots are the magnetic field coming out of the page.', 680, 590, PAL.muted, { size: 19, align: 'center' });
 
     topline(ctx, neg
       ? 'The carriers are electrons and drift to the left, against the conventional current, so the magnetic force drives them to the lower face and the Hall emf stands positive at the upper face.'
@@ -127,9 +126,7 @@ function carrier(ctx, x, y, color, sign, r) {
 
     readout(d.readout,
       `\\kF = \\kq\\kvd\\kBmag = (${sci(QE, 2)}\\ \\text{C})(${sci(vd, 2)}\\ \\text{m/s})(${fmt(B, 2)}\\ \\text{T}) = ${sci(Fm, 2)}\\ \\text{N}`,
-      neg
-        ? 'The force on each electron is the same force on a moving charge that the last two sections gave, and it points to the lower face, so the lower face gathers electrons and turns negative while the upper face is left positive.'
-        : 'The force on each positive carrier points to the lower face as well, because reversing both the sign of the charge and the direction it moves leaves the force where it was, so this time the lower face turns positive and the Hall emf comes out with the opposite sign.');
+      neg ? '' : 'Reversing both the sign of the charge and the way it moves leaves the force where it was.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -198,7 +195,7 @@ function carrier(ctx, x, y, color, sign, r) {
        on it, drawn the same length on the page because they are equal */
     const pe = P(0, 0, DZ), pv = P(-140, 0, DZ);
     arrow(ctx, pe[0] - 26, pe[1], pv[0], pv[1], vc, 5);
-    label(ctx, 'v = ' + fmt(v, 3) + ' m/s', (pe[0] + pv[0]) / 2, (pe[1] + pv[1]) / 2, { side: 'above', size: 21, color: vc, gap: 30 });
+    label(ctx, 'v = ' + fmt(v, 3) + ' m/s', pv[0] + 16, pv[1], { side: 'above', size: 21, color: vc, gap: 30 });
     arrow(ctx, pe[0], pe[1] + 22, pe[0], pe[1] + 106, fc, 5);
     arrow(ctx, pe[0], pe[1] - 22, pe[0], pe[1] - 106, fc, 5);
     label(ctx, 'F', pe[0], pe[1] + 106, { side: 'below', size: 22, color: fc, gap: 18 });
@@ -213,12 +210,11 @@ function carrier(ctx, x, y, color, sign, r) {
     /* what each mark in the slab is, once, in a legend */
     text(ctx, 'B = ' + fmt(B, 3) + ' T, coming out of the front face, the circled dots', 60, 608, bc, { size: 20, weight: 600 });
     text(ctx, 'E = ' + fmt(E, 4) + ' V/m, running from the positive face down to the negative one', 60, 638, ec, { size: 20, weight: 600 });
-    text(ctx, 'F = qvB downward and F_e = qE upward, equal at the balance, so the gathering stops', 60, 668, fc, { size: 20, weight: 600 });
 
     topline(ctx, 'The electric force on the electron is as large as the magnetic force and points the other way, so the field between the faces holds at ' + fmt(E, 4) + ' V/m and the charge stops gathering.');
     readout(d.readout,
       `\\kemfhall = \\kBmag \\kl \\kv = ${volt(emf).n}\\ ${volt(emf).tex}`,
-      `At the balance qE = qvB, so the field between the faces is E = vB = ${fmt(E, 4)} V/m. ` + 'The charge cancels from the balance, so the field the separation settles at does not depend on how much charge each carrier holds; the width of the conductor then turns that field into the Hall emf, which is why a wider conductor gives a larger reading at the same field and the same speed.');
+      'The charge cancels from qE = qvB, so the field E = vB the faces settle at does not depend on how much charge each carrier holds.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -299,11 +295,9 @@ function carrier(ctx, x, y, color, sign, r) {
     ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.arc(MX, MY, 46, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'ε', MX, MY, uc, { size: 30, weight: 700, align: 'center' });
-    text(ctx, volt(emf).n + ' ' + volt(emf).u, MX, MY + 76, uc, { size: 21, weight: 600, align: 'center' });
+    text(ctx, volt(emf).n + ' ' + volt(emf).u, MX, MY + 76, uc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
 
     text(ctx, 'v = ' + fmt(v, 3) + ' m/s, the flow, straight out of the page', CX, 548, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'The magnetic force takes the positive carriers to one wall and the negative carriers to the other,', 700, 580, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
-    text(ctx, 'so the emf comes out the same way whichever sign of carrier is free to move.', 700, 606, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
 
     /* the scale of voltage, with the heart's own voltages shaded on it */
     ctx.save(); ctx.fillStyle = alpha(uc, 0.14);
@@ -324,7 +318,7 @@ function carrier(ctx, x, y, color, sign, r) {
     topline(ctx, 'A field of ' + fmt(B, 3) + ' T across a vessel ' + fmt(lmm, 2) + ' mm wide, with the flow moving at ' + fmt(v, 3) + ' m/s, gives a Hall emf of ' + volt(emf).n + ' ' + volt(emf).u + '.');
     readout(d.readout,
       `\\kemfhall = \\kBmag \\kl \\kv = (${fmt(B, 3)}\\ \\text{T})(${sci(l, 2)}\\ \\text{m})(${fmt(v, 3)}\\ \\text{m/s}) = ${volt(emf).n}\\ ${volt(emf).tex}`,
-      'The sign of the emf is settled by the directions of the field and the flow alone, since the positive and the negative carriers are driven to opposite walls, and a fluid carrying both signs still gives a reading. The scale shows how small that reading is beside the millivolts of a heartbeat, which is why the probe applies an alternating field and the amplifier listens at that one frequency.');
+      'Positive and negative carriers are driven to opposite walls, so a fluid carrying both signs still gives a reading. Against the millivolts of a heartbeat, the probe applies an alternating field and its amplifier listens at that one frequency.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -225,7 +225,6 @@ function compassEdge(ctx, X, Y, r, out, color, rim = alpha(PAL.ink, 0.75)) {
       lines: 'Joining the arrows the needles make gives continuous lines, which leave the north pole and return to the south pole.',
       loops: 'If the inside of the magnet could be probed as well, every line would be found to close on itself, running back from the south end to the north end.',
     };
-    text(ctx, says[state], CX, 874, PAL.muted, { size: 18, align: 'center' });
 
     /* the place in words, since a signed number reads badly in a sentence */
     const along = px === 0 ? '' : `${fmt(Math.abs(px), 1)} cm toward the ${px < 0 ? 'south' : 'north'} pole`;
@@ -234,7 +233,7 @@ function compassEdge(ctx, X, Y, r, out, color, rim = alpha(PAL.ink, 0.75)) {
     topline(ctx, `The compass held ${place} points ${fmt(fromAxis, 0)}° from the line of the magnet, where the field lines are packed ${fmt(ratio, 2)} times as closely as they are at the mark.`);
     readout(d.readout,
       `\\kBmag = ${fmt(ratio, 2)}\\,\\kBmag_{\\text{mark}}`,
-      `The needle points ${fmt(fromAxis, 0)}° from the line of the magnet. In toward either pole the lines crowd together, which is what makes the field strong there; far out to the side they open out and the field weakens.`);
+      `In toward either pole the lines crowd together, which is what makes the field strong there; far out to the side they open out and the field weakens.`);
   }
   register(d.fig, { update: () => {}, draw });
   F.story(d, stS, { stops: [{ v: 0, label: 'needles' }, { v: 1, label: 'field lines' }, { v: 2, label: 'closed loops' }], ms: 1800 });
@@ -263,7 +262,7 @@ function compassEdge(ctx, X, Y, r, out, color, rim = alpha(PAL.ink, 0.75)) {
 ===================================================================== */
 (function () {
   const d = sim('sim-field-sources', 800);
-  const srcC = choice(d.controls, {
+  const srcC = F.select(d.controls, {
     label: '\\text{the source}',
     options: [{ value: 'loop', label: 'a current loop' }, { value: 'wire', label: 'a wire in the page' }, { value: 'endon', label: 'a wire seen end-on' }],
     value: 'loop',
@@ -333,8 +332,8 @@ function compassEdge(ctx, X, Y, r, out, color, rim = alpha(PAL.ink, 0.75)) {
     ctx.stroke(); ctx.restore();
   }
 
-  function legend(ctx, col, cur, withCurrent) {
-    const x = 70, y0 = 132;
+  function legend(ctx, col, cur, withCurrent, y0 = 132) {
+    const x = 70;
     const row = (y, sym, color, s) => { sym(ctx, x, y, 13, color); text(ctx, s, x + 26, y, PAL.ink, { size: 18, align: 'left' }); };
     line(ctx, x - 13, y0, x + 13, y0, col, 3.5);
     text(ctx, 'a field line', x + 26, y0, PAL.ink, { size: 18, align: 'left' });
@@ -431,7 +430,10 @@ function compassEdge(ctx, X, Y, r, out, color, rim = alpha(PAL.ink, 0.75)) {
       const onWire = Math.abs(px) < 0.6;
       compassEdge(ctx, PX(px), PY(py), 27, 0, col, wc);
       if (!onWire) through(ctx, PX(px), PY(py), 27 * 0.45, col, -Math.sign(px) * s);
-      label(ctx, 'your compass', PX(px), PY(py) + (py > 7 ? 12 : -12), { side: py > 7 ? 'below' : 'above', size: 19, gap: 40, color: wc });
+      /* the label stands clear of the grid of dots and crosses, above it or below it */
+      const yl = py >= 0 ? 9.4 : -9.4;
+      if (Math.abs(py) < 8.6) label(ctx, 'your compass', PX(px), PY(py), { side: py >= 0 ? 'above' : 'below', size: 19, gap: Math.abs(PY(yl) - PY(py)), color: wc });
+      else label(ctx, 'your compass', PX(px), PY(py) + (py > 7 ? 12 : -12), { side: py > 7 ? 'below' : 'above', size: 19, gap: 40, color: wc });
       ctx.restore();
     }
 
@@ -444,11 +446,11 @@ function compassEdge(ctx, X, Y, r, out, color, rim = alpha(PAL.ink, 0.75)) {
       const way = sg > 0 ? 'up through the middle of the loop and back down outside it' : 'down through the middle of the loop and back up outside it';
       headline = `The current comes out of the page where the loop crosses on the ${side} and goes back into it on the ${other}, so the field runs ${way}.`;
       main = `\\kBmag \\text{ lies } ${fmt(across, 0)}^\\circ \\text{ from the line out from the center}`;
-      small = `The current comes out of the page on the ${side}. The field of a circular loop of current is shaped like the field of a bar magnet, with one face of the loop for a north pole and the other for a south. Reverse the current and every needle turns end for end.`;
+      small = `The field of a circular loop of current is shaped like the field of a bar magnet, with one face of the loop for a north pole and the other for a south.`;
     } else if (src === 'endon') {
       headline = `Seen end-on, the field lines of a long straight wire are circles round it, and the compass held ${fmt(r, 1)} cm out lies along the circle that passes through the place it is held.`;
       main = `\\kBmag \\text{ lies } 90^\\circ \\text{ across the line out from the wire}`;
-      small = `The current runs ${sg > 0 ? 'out of' : 'into'} the page. All the way round the wire the needle turns with the compass, always square to the line out from the wire, because the field line through every place is a circle with the wire at its center. The circles close on themselves and so carry no arrowhead; the compass and the current tell which way round the field runs.`;
+      small = `The circles close on themselves and so carry no arrowhead; the compass and the current tell which way round the field runs.`;
     } else {
       const onWire = Math.abs(px) < 0.6;
       const outSide = sg > 0 ? 'left' : 'right', inSide = sg > 0 ? 'right' : 'left';
@@ -456,10 +458,10 @@ function compassEdge(ctx, X, Y, r, out, color, rim = alpha(PAL.ink, 0.75)) {
         ? `Held straight ${py < 0 ? 'below' : 'above'} the wire the compass sits on the wire itself, where there is no field outside the wire to lie along; a little to either side its needle stands out of the page on the ${outSide} and into the page on the ${inSide}.`
         : `The compass held ${fmt(Math.abs(px), 1)} cm to the ${px < 0 ? 'left' : 'right'} of the wire stands on end, its north pole pointing ${Bz(px) > 0 ? 'out of' : 'into'} the page, which is why the field there is a ${Bz(px) > 0 ? 'dot' : 'cross'}.`;
       main = `\\kBmag \\text{ ${onWire ? 'is not defined on the wire itself' : (Bz(px) > 0 ? 'comes out of the page here' : 'goes into the page here')}}`;
-      small = `The current runs ${sg > 0 ? 'up' : 'down'} the page. The field of this wire is perpendicular to the page everywhere in it, so a compass laid flat would tell nothing and one standing on edge tells everything: the dot is the tip of an arrow coming toward you, and the cross is the tail of one going away.`;
+      small = '';
     }
 
-    legend(ctx, col, cur, src !== 'wire');
+    legend(ctx, col, cur, src !== 'wire', src === 'loop' ? 590 : 132);
     topline(ctx, headline);
     readout(d.readout, main, small);
   }

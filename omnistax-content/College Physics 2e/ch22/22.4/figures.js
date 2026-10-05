@@ -332,14 +332,12 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     FIELDS.forEach((k, i) => {
       const x = XB(Math.log10(k.B)), on = k.v === f.v, col = on ? BC : PAL.muted, up = TIER[i], rc = F.ref(k.ref);
       dot(ctx, x, YB, rc, false, 9);
-      if (up) line(ctx, x, YB - 14, x, YB - 20 - up, alpha(PAL.ink, 0.35), 2, [4, 6]);
-      text(ctx, k.disp, x, YB - 54 - up, col, { size: 17, align: 'center', bg: PAL.panel });
-      text(ctx, k.short, x, YB - 78 - up, rc, { size: on ? 21 : 18, weight: 600, align: 'center', bg: PAL.panel });
+      if (up) line(ctx, x, YB - 42, x, YB - 28 - up, alpha(PAL.ink, 0.35), 2, [4, 6]);
+      text(ctx, k.disp, x, YB - 62 - up, col, { size: 17, align: 'center', bg: PAL.panel });
+      text(ctx, k.short, x, YB - 86 - up, rc, { size: on ? 21 : 18, weight: 600, align: 'center', bg: PAL.panel });
     });
     dot(ctx, XB(lgB), YB, BC, true, 12);
     /* the charge the reader has set, and the force that field puts on it */
-    text(ctx, 'A charge of ' + fmt(qS.v, 0) + ' nC crossing that field at ' + fmt(vS.v, 0) + ' m/s at right angles', 700, 356, PAL.muted, { size: 19, align: 'center' });
-    text(ctx, 'is pushed with the force marked below.', 700, 382, PAL.muted, { size: 19, align: 'center' });
     const xr = XF(Math.log10(1e-11));
     const near = Math.abs(Math.log10(Math.max(Fm, 1e-15)) + 11) < 0.45;   /* the reader's own force is standing on the book's mark */
     line(ctx, xr, YF - 14, xr, YF - (near ? 30 : 52), alpha(PAL.ink, 0.35), 2, [4, 6]);
@@ -352,8 +350,8 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     if (near) text(ctx, 'the glass rod of Example 22.1', xf, YF - 60, F.ref('rod'), { size: 17, align: 'center', bg: PAL.panel });
     topline(ctx, `${f.name.charAt(0).toUpperCase() + f.name.slice(1)} is ${f.disp}, or ${f.gauss}, and it pushes a ${fmt(qS.v, 0)} nC charge crossing it at ${fmt(vS.v, 0)} m/s at right angles with ${sci(Fv, 1)} N.`);
     readout(d.readout,
-      `\\kBmag = \\frac{\\kF}{\\kq\\kv\\sin\\ktheta} = \\frac{${sciTex(Fv, 1)}\\ \\text{N}}{(${fmt(qS.v, 0)} \\times 10^{-9}\\ \\text{C})(${fmt(vS.v, 0)}\\ \\text{m/s})} = ${f.tex}\\ \\text{T}`,
-      'Read the other way round, this is the definition the section gives: the strength of a field is the force it exerts on a charge, divided by the charge and by the speed at which the charge crosses it. The three fields stand far apart: a superconducting electromagnet is two hundred thousand times the Earth’s field, and even so the force on a charge anyone can rub onto a glass rod stays too small to feel, which is why the section says the effect is negligible on any macroscopic object.');
+      `\\kBmag = \\frac{\\kF}{\\kq\\kv\\sin\\ktheta} = \\frac{${sciTex(Fv, 1)}\\ \\text{N}}{(${fmt(qS.v, 0)} \\times 10^{-9}\\ \\text{C})(${fmt(vS.v, 0)}\\ \\text{m/s})\\sin 90^\\circ} = ${f.tex}\\ \\text{T}`,
+      'A superconducting electromagnet is two hundred thousand times the Earth’s field, and still the force on a charge rubbed onto a glass rod is too small to feel.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

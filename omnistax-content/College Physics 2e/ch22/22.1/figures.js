@@ -73,32 +73,22 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize, color = PAL.ink) {
     const dm = { x: sm.x - h.x, y: sm.y - h.y }, lm = Math.hypot(dm.x, dm.y);
     const dn = { x: np.x - h.x, y: np.y - h.y }, ln = Math.hypot(dn.x, dn.y);
     /* the direction of the geographic North Pole, drawn as a dashed guide that starts clear of the bar */
-    line(ctx, h.x + (dn.x / ln) * 82, h.y + (dn.y / ln) * 82, h.x + (dn.x / ln) * 150, h.y + (dn.y / ln) * 150, alpha(PAL.ink, 0.6), 2.5, [8, 8]);
-    bar(ctx, h.x, h.y, 150, 36, Math.atan2(-dm.y, -dm.x), 'S', 'N', 22, hc);
+    line(ctx, h.x + (dn.x / ln) * 82, h.y + (dn.y / ln) * 82, h.x + (dn.x / ln) * 190, h.y + (dn.y / ln) * 190, alpha(PAL.ink, 0.6), 2.5, [8, 8]);
+    bar(ctx, h.x, h.y, 150, 36, Math.atan2(-dm.y, -dm.x), 'N', 'S', 22, hc);
     dot(ctx, sm.x, sm.y, PAL.ink, true, 6);
     const ang = Math.acos(Math.max(-1, Math.min(1, (dm.x * dn.x + dm.y * dn.y) / (lm * ln)))) / RAD;
     /* the arc between the two directions, always the minor one */
     const aM = Math.atan2(-dm.y, dm.x), aN = Math.atan2(-dn.y, dn.x);
     const dlt = ((aN - aM + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
-    angleArc(ctx, h, 96, aM, aM + dlt, fmt(ang, 1) + '°', undefined, ac);
+    angleArc(ctx, h, 140, aM, aM + dlt, fmt(ang, 1) + '°', undefined, ac);
     /* names */
     label(ctx, 'geographic North Pole', np.x, np.y, { side: 'left', size: 19 });
     label(ctx, 'rotation axis', CX, CY + R + 62, { side: 'below', size: 19, color: PAL.muted });
     label(ctx, 'Earth’s own magnet', CX - mx * 60, CY - my * 60, { side: 'left', size: 19, gap: 245, color: mc });
     label(ctx, 'a magnet on a thread', h.x, h.y - 72, { side: 'right', size: 19, color: hc });
-    const say = [
-      'The end of Earth’s magnet that lies nearest the',
-      'geographic North Pole is a south magnetic pole,',
-      'which is why the north-seeking end of a hanging',
-      'magnet turns toward it. It misses the geographic',
-      'pole because Earth’s magnet is tilted.',
-    ];
-    say.forEach((s, i) => text(ctx, s, 1120, 250 + i * 30, PAL.muted, { size: 18, align: 'center' }));
     const where = latS.v === 0 ? 'over the equator' : `${fmt(Math.abs(latS.v), 0)}° ${latS.v > 0 ? 'north' : 'south'} of the equator`;
     topline(ctx, `A magnet hung ${where} points ${fmt(ang, 1)}° away from the direction of the geographic North Pole.`);
-    readout(d.readout,
-      `\\text{the magnet points } ${fmt(ang, 1)}^\\circ \\text{ from geographic north}`,
-      `With Earth’s magnet tilted ${fmt(tiltS.v, 0)}° from the rotation axis, the two directions part company. Were it not tilted at all, a hanging magnet would point straight at the geographic North Pole from anywhere on the globe.`);
+    readout(d.readout, `\\text{the magnet points } ${fmt(ang, 1)}^\\circ \\text{ from geographic north}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -110,11 +100,11 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize, color = PAL.ink) {
    one above it, its pieces parting at the cut (manim 16).
 ===================================================================== */
 (function () {
-  const d = sim('sim-split-magnet', 600);
+  const d = sim('sim-split-magnet', 540);
   const cutC = choice(d.controls, { label: '\\text{cuts}', options: [0, 1, 2, 3, 4].map((n) => ({ value: String(n), label: String(n) })), value: '3', aria: 'how many times the magnet is cut' });
   const cutS = { get v() { return +cutC.value; } };
   const whereS = ctl(d.controls, { label: '\\text{where the cut falls}', cls: '', min: 40, max: 60, step: 5, value: 50, unit: '%', dec: 0, aria: 'where along each piece the cut falls, as a percentage of its length' });
-  const X0 = 300, W = 1020, ROW = 82, Y0 = 150, TH = 46, NOTE_Y = 560;
+  const X0 = 300, W = 1020, ROW = 82, Y0 = 150, TH = 46;
 
   const stages = (n, f) => {
     const out = [[[0, 1]]];
@@ -154,13 +144,10 @@ function bar(ctx, cx, cy, L, T, ang, first, second, lsize, color = PAL.ink) {
       });
     });
     const k = Math.pow(2, n);
-    text(ctx, 'Every piece, however short, carries a north pole and a south pole.', 700, NOTE_Y, PAL.muted, { size: 18, align: 'center' });
     topline(ctx, n === 0
       ? 'Before any cut the magnet is one magnet, with a north pole at one end and a south pole at the other.'
       : `${cap(wd(n))} ${n === 1 ? 'cut leaves' : 'cuts leave'} ${COUNT[n]} shorter magnets, ${POLES[n]} poles and not one pole on its own.`);
-    readout(d.readout,
-      `2^{${n}} = ${k}\\ \\text{pieces}`,
-      `The ${k === 1 ? 'magnet has' : `${k} pieces have`} ${2 * k} poles between them and not one pole on its own. A cut that falls off the middle leaves the pieces unequal, but every piece still has both poles.`);
+    readout(d.readout, `2^{${n}} = ${k}\\ \\text{${k === 1 ? 'piece' : 'pieces'}, } ${2 * k}\\ \\text{poles}`);
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => {
