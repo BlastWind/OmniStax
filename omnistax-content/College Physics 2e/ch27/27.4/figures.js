@@ -11,7 +11,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, dot, text, topline, label, angleArc, vbracket, axes } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const nb = el('small', null, small); host.appendChild(nb); F.renderMath(nb); } }
 
 const RAD = Math.PI / 180, TAU = 2 * Math.PI;
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
@@ -45,7 +45,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
   const dS = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.8, max: 5, step: 0.01, value: 1, unit: 'μm', dec: 2, aria: 'the distance between neighboring lines of the grating',
     detents: [{ v: 1, label: '10,000/cm' }, { v: 5, label: '2000/cm' }] });
   const xS = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0.5, max: 2.5, step: 0.01, value: 2, unit: 'm', dec: 2, aria: 'the distance from the grating to the screen' });
-  const light = choice(d.controls, { label: 'light', options: [{ value: 'white', label: 'white' }, { value: '633', label: '633 nm' }, { value: '450', label: '450 nm' }], value: 'white', aria: 'the light sent through the grating' });
+  const light = F.select(d.controls, { label: 'light', options: [{ value: 'white', label: 'white' }, { value: '633', label: '633 nm' }, { value: '450', label: '450 nm' }], value: 'white', aria: 'the light sent through the grating' });
   const UPM = 110, XG = 110, YC = 384, YR = 2.6, SX0 = 480, SX1 = 548;
   const Yof = (y) => YC - y * UPM, TOP = Yof(YR), BOT = Yof(-YR);
   const GB = { l: 700, r: 1330, t: 120, b: 600 };
@@ -63,7 +63,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     if (white) topline(ctx, yR !== null
       ? `White light through a grating with ${lines} spreads its first-order rainbow from ${fmt(yV, 3)} m to ${fmt(yR, 3)} m along a screen ${fmt(x, 2)} m away.`
       : `White light through a grating with ${lines} bends its first order so far that only wavelengths up to ${fmt(D * 1000, 0)} nm leave the grating at all.`);
-    else topline(ctx, `Light of ${L0} nm through a grating with ${lines} makes a bright line in each of ${mMax} orders on either side of the center.`);
+    else topline(ctx, `Light of ${L0} nm through a grating with ${lines} ${mMax === 1 ? 'makes one bright line' : `makes a bright line in each of ${mMax} orders`} on either side of the center.`);
 
     ctx.save(); ctx.beginPath(); ctx.rect(XG, TOP, XSC - XG, BOT - TOP); ctx.clip();
     for (let m = -mMax; m <= mMax; m++) {
@@ -106,15 +106,17 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     });
 
     if (white) {
-      if (yV <= YR) vbracket(ctx, XSC + 22, Yof(yV), YC, PC, 'y_{V}', 1, { size: 20 });
-      if (yR !== null) vbracket(ctx, XSC + 62, Yof(Math.min(yR, YR)), YC, PC, 'y_{R}', 1, { size: 20 });
-      angleArc(ctx, { x: XG, y: YC }, 70, 0, Math.asin(0.38 / D), 'θ_{V}', undefined, C('angle'));
-      if (yR !== null) angleArc(ctx, { x: XG, y: YC }, 150, 0, Math.asin(0.76 / D), 'θ_{R}', undefined, C('angle'));
+      /* a bracket or an angle too small to hold its name is left to the readout */
+      const tV = Math.asin(0.38 / D), showV = yV * UPM >= 36, showR = yR !== null && (Math.min(yR, YR) - (showV ? yV : 0)) * UPM >= 36;
+      if (showV) vbracket(ctx, XSC + 22, Yof(yV), YC, PC, 'y_{V}', 1, { size: 20 });
+      if (showR) vbracket(ctx, XSC + 62, Yof(Math.min(yR, YR)), YC, PC, 'y_{R}', 1, { size: 20 });
+      if (showV) angleArc(ctx, { x: XG, y: YC }, Math.min(70, x * UPM * 0.4), 0, tV, 'θ_{V}', undefined, C('angle'));
+      if (showR) angleArc(ctx, { x: XG, y: YC }, Math.min(150, x * UPM * 0.8), 0, Math.asin(0.76 / D), 'θ_{R}', undefined, C('angle'));
     } else {
       const y1 = yAt(1, L0);
       if (y1 !== null && y1 * UPM > 36) {
         vbracket(ctx, XSC + 22, Yof(Math.min(y1, YR)), YC, PC, 'y', 1, { size: 20 });
-        angleArc(ctx, { x: XG, y: YC }, 90, 0, Math.asin(L0 / (D * 1000)), 'θ', undefined, C('angle'));
+        angleArc(ctx, { x: XG, y: YC }, Math.min(90, x * UPM * 0.8), 0, Math.asin(L0 / (D * 1000)), 'θ', undefined, C('angle'));
       }
     }
     F.hbracket(ctx, XG, XSC, BOT + 44, PC, `x = ${fmt(x, 2)} m`, { side: 'below', size: 20 });
@@ -138,13 +140,13 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
 
     if (white) {
       if (yR !== null) readout(d.readout, `\\ky_{\\text{R}} - \\ky_{\\text{V}} = \\kx(\\tan\\ktheta_{\\text{R}} - \\tan\\ktheta_{\\text{V}}) = (${fmt(x, 2)}\\ \\text{m})(\\tan ${fmt(Math.asin(0.76 / D) / RAD, 2)}^\\circ - \\tan ${fmt(Math.asin(0.38 / D) / RAD, 2)}^\\circ) = ${fmt(yR - yV, 2)}\\ \\text{m}`,
-        `The angles come from d sin θ = mλ with m = 1, d = ${fmt(D, 2)} μm, and λ = 380 nm for violet and 760 nm for red.`);
+        `The angles come from $\\kd\\sin\\ktheta = m\\klam$ with $m = 1$, $\\kd = ${fmt(D, 2)}\\ \\mu\\text{m}$, and $\\klam = 380\\ \\text{nm}$ for violet and $760\\ \\text{nm}$ for red.`);
       else readout(d.readout, `\\ky_{\\text{V}} = \\kx\\tan\\ktheta_{\\text{V}} = (${fmt(x, 2)}\\ \\text{m})\\tan ${fmt(Math.asin(0.38 / D) / RAD, 2)}^\\circ = ${fmt(yV, 3)}\\ \\text{m}`,
-        `Red light of 760 nm would need sin θ = ${fmt(0.76 / D, 2)}, more than 1, so it has no first-order maximum with lines this close.`);
+        `Red light of 760 nm would need $\\sin\\ktheta = ${fmt(0.76 / D, 2)}$, more than 1, so it has no first-order maximum with lines this close.`);
     } else {
       const t1 = Math.asin(L0 / (D * 1000));
       readout(d.readout, `\\ky = \\kx\\tan\\ktheta = (${fmt(x, 2)}\\ \\text{m})\\tan ${fmt(t1 / RAD, 2)}^\\circ = ${fmt(x * Math.tan(t1), 3)}\\ \\text{m}`,
-        `The first-order angle comes from d sin θ = mλ: sin θ = (1)(${L0} nm)/(${fmt(D, 2)} μm) = ${fmt(L0 / (D * 1000), 3)}.`);
+        `The first-order angle comes from $\\kd\\sin\\ktheta = m\\klam$: $\\sin\\ktheta = (1)(${L0}\\ \\text{nm})/(${fmt(D, 2)}\\ \\mu\\text{m}) = ${fmt(L0 / (D * 1000), 3)}$.`);
     }
   }
   register(d.fig, { update: () => {}, draw });
@@ -194,7 +196,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     }
     const th1 = Math.asin(L / (DS * 1000)) / RAD;
     readout(d.readout, `\\kd\\sin\\ktheta = m\\klam:\\quad (${fmt(DS, 2)}\\ \\mu\\text{m})\\sin ${fmt(th1, 1)}^\\circ = 1\\,(${fmt(L, 0)}\\ \\text{nm})`,
-      `From the center of a bright line to the first dark place beside it, sin θ changes by λ/(Nd) = ${fmt(L / (N * DS * 1000), 4)} for the grating and by λ/(2d) = ${fmt(L / (2 * DS * 1000), 4)} for the double slit.`);
+      `From the center of a bright line to the first dark place beside it, $\\sin\\ktheta$ changes by $\\klam/(N\\kd) = ${fmt(L / (N * DS * 1000), 4)}$ for the grating and by $\\klam/(2\\kd) = ${fmt(L / (2 * DS * 1000), 4)}$ for the double slit.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -227,8 +229,8 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     const n = (D * Math.sin(t) * 1000) / L, inPhase = Math.abs(n - Math.round(n)) < 0.01;
     const sn = Math.sin(Math.PI * n), amp = Math.abs(sn) < 1e-6 ? NS : Math.abs(Math.sin(NS * Math.PI * n) / sn);
     topline(ctx, inPhase
-      ? `Toward θ = ${fmt(th.v, 1)}°, each ray travels ${fmt(n, 2)} wavelengths farther than its neighbor, so all five arrive in phase.`
-      : `Toward θ = ${fmt(th.v, 1)}°, each ray travels ${fmt(n, 2)} wavelengths farther than its neighbor, so the five arrive out of step.`);
+      ? `Toward $\\ktheta = ${fmt(th.v, 1)}^\\circ$, each ray travels ${fmt(n, 2)} wavelengths farther than its neighbor, so all five arrive in phase.`
+      : `Toward $\\ktheta = ${fmt(th.v, 1)}^\\circ$, each ray travels ${fmt(n, 2)} wavelengths farther than its neighbor, so the five arrive out of step.`);
     const ux = Math.cos(t), uy = -Math.sin(t);
     const S = Array.from({ length: NS }, (_, k) => ({ x: XB, y: YC + (k - (NS - 1) / 2) * dpx }));
 
@@ -254,7 +256,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 633, label: '633' }];
     }
     vbracket(ctx, XB - 34, S[0].y, S[1].y, PC, 'd', -1, { size: 22 });
     const lo = S[NS - 1], loLen = Math.min((XR - XB) / ux, (lo.y - 110) / Math.max(-uy, 1e-6));
-    label(ctx, 'toward the screen', lo.x + ux * loLen, lo.y + uy * loLen, { side: 'below', size: 18, color: PAL.muted, gap: 14 });
+    label(ctx, 'toward the screen', lo.x + ux * loLen, lo.y + uy * loLen, { side: 'below', size: 18, color: PAL.muted, gap: 14 + 90 * Math.tan(t) });
 
     const ph = TAU * n;
     text(ctx, 'arriving at the screen', (PX0 + PX1) / 2, 104, PAL.ink, { size: 20, align: 'center' });

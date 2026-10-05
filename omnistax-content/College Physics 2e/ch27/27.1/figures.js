@@ -8,7 +8,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, dot, text, topline, hbracket, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const nb = el('small', null, small); host.appendChild(nb); F.renderMath(nb); } }
 
 /* the color a wavelength is seen as, in sRGB, as in 25.5 */
 function spectral(lam) {
@@ -65,7 +65,9 @@ function sci(x, dec) {
     const light = spectral(L), PC = C('position');
     const f = CVAC / (L * 1e-9), v = CVAC / n;
     const vs = sci(v, 2), fs = sci(f, 2);
-    topline(ctx, `Light of ${fmt(L, 0)} nm enters a medium of index ${fmt(n, 3)}: it slows to ${vs.plain} m/s and its wavelength shrinks to ${fmt(Ln, 0)} nm, while its frequency and its color stay the same.`);
+    topline(ctx, n > 1.0005
+      ? `Light of ${fmt(L, 0)} nm enters a medium of index ${fmt(n, 3)}: it slows to ${vs.plain} m/s and its wavelength shrinks to ${fmt(Ln, 0)} nm, while its frequency and its color stay the same.`
+      : `Light of ${fmt(L, 0)} nm crosses into a medium of index 1.000: its speed, its wavelength, its frequency and its color are all unchanged.`);
 
     ctx.save(); ctx.fillStyle = alpha(F.ref('medium'), 0.1); ctx.fillRect(XB, MED.t, XR - XB + 40, MED.b - MED.t); ctx.restore();
     line(ctx, XB, MED.t, XB, MED.b, PAL.rule, 2);
@@ -95,7 +97,7 @@ function sci(x, dec) {
     hbracket(ctx, m1, m2, yb, PC, `λₙ = ${fmt(Ln, 0)} nm`);
 
     readout(d.readout, `\\klamn = \\frac{\\klam}{n} = \\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(n, 3)}} = ${fmt(Ln, 0)}\\ \\text{nm}`,
-      `The frequency is ${fs.plain} Hz on both sides, so the light stays ${colorName(L)}; its speed drops from 3.00 × 10⁸ m/s in the vacuum to ${vs.plain} m/s in the medium.`);
+      `$\\kf = \\kc/\\klam = ${fs.tex}\\ \\text{Hz}$ on both sides, so the light stays ${colorName(L)}.`);
   }
   let current = [];
   hover(d.stage, () => current);

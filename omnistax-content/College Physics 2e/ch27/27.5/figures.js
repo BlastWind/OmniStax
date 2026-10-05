@@ -59,7 +59,7 @@ function tallCurve(ctx, box, f, t0, t1, X, Y, color) {
     const { ctx } = begin(d.c);
     const L = lam.v, D = wS.v, lm = L / 1000, s1 = lm / D, col = spectral(L), PC = C('position');
     topline(ctx, s1 <= 1
-      ? `Light of ${fmt(L, 0)} nm through a slit ${fmt(D, 2)} μm wide has its first minima at sin θ = ±${fmt(s1, 3)}, and the central maximum is twice as wide as the others.`
+      ? `Light of ${fmt(L, 0)} nm through a slit ${fmt(D, 2)} μm wide has its first minima at $\\sin\\ktheta = \\pm${fmt(s1, 3)}$, ${2 * s1 <= 1 ? 'and the central maximum is twice as wide as the others' : 'and no other minimum falls within 90° of the beam'}.`
       : `Light of ${fmt(L, 0)} nm through a slit ${fmt(D, 2)} μm wide spreads into a central maximum with no minimum at all.`);
     const { X, Y } = axes(ctx, box, [-1, 1], [0, 1], { nx: 4, ny: 2, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1), xl: 'sin θ', yl: 'relative intensity' });
     const f = (s) => singleSlit(s, D, lm);
@@ -123,10 +123,10 @@ function tallCurve(ctx, box, f, t0, t1, X, Y, color) {
     topline(ctx, center
       ? 'Straight ahead every ray from the slit travels the same distance, so all arrive in phase and the central maximum is bright.'
       : dark
-        ? `Toward θ = ${fmt(th.v, 1)}° the ray from the bottom of the slit travels ${fmt(n, 2)} wavelengths farther than the ray from the top, so every ray has a partner that cancels it and the screen is dark.`
+        ? `Toward $\\ktheta = ${fmt(th.v, 1)}^\\circ$ the ray from the bottom of the slit travels ${fmt(n, 2)} wavelengths farther than the ray from the top, so every ray has a partner that cancels it and the screen is dark.`
         : bright
-          ? `Toward θ = ${fmt(th.v, 1)}° the rays from the top and bottom differ by 1.50 wavelengths, so most rays have a partner in phase and a dimmer maximum appears.`
-          : `Toward θ = ${fmt(th.v, 1)}° the ray from the bottom of the slit travels ${fmt(n, 2)} wavelengths farther than the ray from the top.`);
+          ? `Toward $\\ktheta = ${fmt(th.v, 1)}^\\circ$ the rays from the top and bottom differ by 1.50 wavelengths, so two thirds of the slit cancel in pairs and the last third makes a dimmer maximum.`
+          : `Toward $\\ktheta = ${fmt(th.v, 1)}^\\circ$ the ray from the bottom of the slit travels ${fmt(n, 2)} wavelengths farther than the ray from the top.`);
 
     const top = YC - HS / 2, bot = YC + HS / 2, ux = Math.cos(t), uy = -Math.sin(t);
     ctx.save(); ctx.fillStyle = F.ref('slit');

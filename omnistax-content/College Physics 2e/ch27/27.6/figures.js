@@ -11,7 +11,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, dot, text, topline, label, angleArc, axes, curve, hbracket, vbracket, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const nb = el('small', null, small); host.appendChild(nb); F.renderMath(nb); } }
 
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 
@@ -108,7 +108,8 @@ const AIRY = (() => {
     if (X(th / 2) - X(-th / 2) > 60) {
       label(ctx, 'object 1', X(-th / 2), Y(1), { side: 'left', size: 20, color: F.ref('object-1'), gap: 14 });
       label(ctx, 'object 2', X(th / 2), Y(1), { side: 'right', size: 20, color: F.ref('object-2'), gap: 14 });
-      hbracket(ctx, X(-th / 2), X(th / 2), Y(1.35), C('angle'), 'θ');
+      hbracket(ctx, X(-th / 2), X(th / 2), Y(1.35), C('angle'));
+      text(ctx, 'θ', X(0), Y(1.35) - 24, C('angle'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     } else label(ctx, 'objects 1 and 2', X(0), Y(Math.max(1, I1(0) + I2(0))), { side: 'above', size: 20, color: PAL.ink, gap: 14 });
 
     readout(d.readout, `\\ktheta_{\\text{min}} = 1.22\\frac{\\klam}{\\kDap} = 1.22\\,\\frac{${fmt(L, 0)}\\ \\text{nm}}{${fmt(D, 2)}\\ \\text{mm}} = ${fmt(R, 0)}\\ \\mu\\text{rad}`,
@@ -208,7 +209,7 @@ const AIRY = (() => {
     text(ctx, '1 μm', IN.l + 30 + PXUM / 2, IN.b - 50, PAL.muted, { size: 17, align: 'center' });
 
     readout(d.readout, `\\kx = 1.22\\frac{\\klam\\kd}{\\kDap} = 1.22\\,\\frac{(${fmt(L, 0)}\\ \\text{nm})(${fmt(dd, 1)}\\ \\text{mm})}{${fmt(D, 1)}\\ \\text{mm}} = ${fmt(x, 2)}\\ \\mu\\text{m}`,
-      `In air, n = 1.00 and NA = n sin α = D/2d = ${fmt(NA, 2)}, so 0.61 λn/NA gives the same ${fmt(x, 2)} μm.`);
+      `In air, $n = 1.00$ and $\\text{NA} = n\\sin\\kalphahalf \\approx \\kDap/2\\kd = ${fmt(NA, 2)}$, so $0.61\\klam n/\\text{NA}$ gives the same ${fmt(x, 2)} μm.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -246,12 +247,16 @@ const AIRY = (() => {
     line(ctx, 60, CY, 1360, CY, alpha(PAL.ink, 0.3), 2, [4, 8]);
     if (w > 0.5) { ctx.save(); ctx.fillStyle = spectral(LAM, 0.35 * mode.a('wave')); ctx.beginPath(); ctx.ellipse(FX, CY, Math.max(8, w), w, 0, 0, 2 * Math.PI); ctx.fill(); ctx.restore(); }
     else dot(ctx, FX, CY, F.ref('focal-spot'), true, 6);
-    label(ctx, wave ? 'focal region' : 'focal point', FX, CY + w, { side: 'below', size: 20, color: F.ref('focal-spot'), gap: 40 });
-    angleArc(ctx, { x: FX, y: CY }, 130, Math.PI - al, Math.PI, 'α', undefined, C('angle'));
+    /* past NA 0.77 the rays leave no room below the focus, and the hover names it */
+    spotName = wave ? 'focal region' : 'focal point';
+    if (ta < 1.2) label(ctx, spotName, FX, CY + w, { side: 'below', size: 20, color: F.ref('focal-spot'), gap: 40 });
+    angleArc(ctx, { x: FX, y: CY }, Math.min(130, Lf * 0.8), Math.PI - al, Math.PI, Lf > 100 ? 'α' : '', undefined, C('angle'));
 
     readout(d.readout, `\\kx = 0.61\\frac{\\klam n}{\\text{NA}} = 0.61\\,\\frac{(${LAM}\\ \\text{nm})(1.00)}{${fmt(N, 2)}} = ${fmt(x / 1000, 2)}\\ \\mu\\text{m}`,
       wave ? 'A larger NA makes the spot smaller and brighter; the waist is drawn far wider than it is.' : 'Geometric optics ignores diffraction, so it predicts a spot of no size whatever the NA.');
   }
+  let spotName = 'focal region';
+  hover(d.stage, () => [{ x: FX, y: CY, r: 24, name: spotName }]);
   register(d.fig, { update: () => {}, draw });
 })();
 };

@@ -12,7 +12,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, cycle, line, dot, text, topline, label, angleArc, hbracket, vbracket, view, face } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const nb = el('small', null, small); host.appendChild(nb); F.renderMath(nb); } }
 
 const RAD = Math.PI / 180, TAU = 2 * Math.PI;
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
@@ -46,7 +46,7 @@ function doubleSlit(s, d, lam) {
   const env = Math.abs(beta) < 1e-6 ? 1 : Math.pow(Math.sin(beta) / beta, 2);
   return Math.pow(Math.cos(phi), 2) * env;
 }
-const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 633, label: '633' }];
+const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600 }, { v: 633, label: '633' }];
 
 /* =====================================================================
    Figure 27.10 · sim-young-apparatus
@@ -56,10 +56,10 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
    between the slits is drawn far larger than it is, growing with d. Still.
 ===================================================================== */
 (function () {
-  const d = sim('sim-young-apparatus', 600);
+  const d = sim('sim-young-apparatus', 690);
   const lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 380, max: 750, step: 1, value: 633, unit: 'nm', dec: 0, aria: 'the wavelength of the light', detents: LAM_DETENTS });
   const dS = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.005, max: 0.04, step: 0.0005, value: 0.01, unit: 'mm', dec: 4, aria: 'the distance between the slits' });
-  const V = view({ yaw: -0.62, pitch: 0.42, dist: 2600, cx: 700, cy: 430 });
+  const V = view({ yaw: -0.62, pitch: 0.42, dist: 2600, cx: 700, cy: 520 });
   const P = (p) => V.P(p);
   const HALF = 350, UPM = HALF / 0.30, XS = 1.0;      /* 0.30 m either side of the screen's center */
   const ZF = 260, ZB = -300, WH = 300;                 /* the slit wall, the screen, and their height */
@@ -105,11 +105,11 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
    each panel is sized for its greatest reach. Still.
 ===================================================================== */
 (function () {
-  const d = sim('sim-two-waves', 580);
+  const d = sim('sim-two-waves', 610);
   const sh = ctl(d.controls, { label: '\\text{shift}', cls: '', min: 0, max: 1, step: 0.01, value: 0, unit: 'λ', dec: 2, aria: 'how far the second wave is shifted, in wavelengths', specials: [{ at: 0, label: 'in phase' }, { at: 0.5, label: 'out of phase' }, { at: 1 }] });
   const rA = ctl(d.controls, { label: 'A_2/A_1', cls: '', min: 0.5, max: 3, step: 0.05, value: 1, unit: '', dec: 2, aria: 'the amplitude of the second wave as a multiple of the first', specials: [{ at: 1, label: 'equal' }] });
   const X0 = 250, X1 = 1250, WL = (X1 - X0) / 3, U = 28;
-  const ROWS = [{ y: 126, name: 'wave 1', ref: 'wave-1' }, { y: 262, name: 'wave 2', ref: 'wave-2' }, { y: 440, name: 'resultant', ref: 'resultant' }];
+  const ROWS = [{ y: 126, name: 'wave 1', ref: 'wave-1' }, { y: 262, name: 'wave 2', ref: 'wave-2' }, { y: 472, name: 'resultant', ref: 'resultant' }];
 
   function wave(ctx, y0, f, color, w) {
     ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath();
@@ -129,15 +129,14 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
       line(ctx, X0, row.y, X1, row.y, alpha(PAL.ink, 0.3), 2, [4, 8]);
       text(ctx, row.name, X0 - 30, row.y, F.ref(row.ref), { size: 22, align: 'right' });
     });
-    for (let k = 0; k <= 3; k++) line(ctx, X0 + k * WL, 90, X0 + k * WL, 560, alpha(PAL.ink, 0.12), 2);
+    for (let k = 0; k <= 3; k++) line(ctx, X0 + k * WL, 90, X0 + k * WL, 592, alpha(PAL.ink, 0.12), 2);
     wave(ctx, ROWS[0].y, f1, c1, 5);
     wave(ctx, ROWS[1].y, f2, c2, 5);
     wave(ctx, ROWS[2].y, (u) => f1(u) + f2(u), c3, 5);
     vbracket(ctx, X1 + 30, ROWS[0].y - U, ROWS[0].y, PAL.ink, 'A₁', 1, { size: 20 });
     vbracket(ctx, X1 + 30, ROWS[1].y - r * U, ROWS[1].y, PAL.ink, 'A₂', 1, { size: 20 });
     if (A * U > 6) vbracket(ctx, X1 + 30, ROWS[2].y - A * U, ROWS[2].y, PAL.ink, 'A', 1, { size: 20 });
-    readout(d.readout, `A = \\sqrt{A_1^2 + A_2^2 + 2A_1A_2\\cos(${fmt(s, 2)}\\times 360^\\circ)} = ${fmt(A, 2)}\\,A_1`,
-      `Wave 2 is ${fmt(r, 2)} times as large as wave 1 and shifted ${fmt(s, 2)} of a wavelength along it.`);
+    readout(d.readout, `A = \\sqrt{A_1^2 + A_2^2 + 2A_1A_2\\cos(${fmt(s, 2)}\\times 360^\\circ)} = ${fmt(A, 2)}\\,A_1`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -218,7 +217,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     label(ctx, 'S_{1}', XB - 14, s1, { side: 'left', size: 20, color: F.ref('slits'), gap: 12 });
     label(ctx, 'S_{2}', XB - 14, s2, { side: 'left', size: 20, color: F.ref('slits'), gap: 12 });
     readout(d.readout, `\\kd\\sin\\ktheta = m\\klam:\\quad (${fmt(D, 2)}\\ \\mu\\text{m})\\sin ${fmt(th1, 1)}^\\circ = 1\\,(${fmt(L, 0)}\\ \\text{nm})`,
-      `Between the slits and the screen there are ${2 * nMax + 1} lines of maxima, one for each whole number of wavelengths up to d/λ = ${fmt(D * 1000 / L, 2)}.`);
+      `Between the slits and the screen there are ${2 * nMax + 1} lines of maxima, one for each whole number of wavelengths up to $\\kd/\\klam = ${fmt(D * 1000 / L, 2)}$.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.25), draw });
 })();
@@ -262,9 +261,9 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     const t = th.v * RAD, L = lam.v, D = dS.v, lpx = (UPU * L) / 1000, dpx = UPU * D;
     const dl = D * Math.sin(t), n = (dl * 1000) / L, frac = n - Math.floor(n);
     const bright = Math.abs(n - Math.round(n)) < 0.01, dark = Math.abs(frac - 0.5) < 0.01;
-    topline(ctx, bright ? `Toward θ = ${fmt(th.v, 1)}°, the lower path is ${fmt(n, 2)} wavelengths longer, so the waves arrive crest to crest and the screen is bright.`
-      : dark ? `Toward θ = ${fmt(th.v, 1)}°, the lower path is ${fmt(n, 2)} wavelengths longer, so the waves arrive crest to trough and the screen is dark.`
-        : `Toward θ = ${fmt(th.v, 1)}°, the lower path is ${fmt(n, 2)} wavelengths longer, so the waves arrive partly out of step.`);
+    topline(ctx, bright ? `Toward $\\ktheta = ${fmt(th.v, 1)}^\\circ$, the lower path is ${fmt(n, 2)} wavelengths longer, so the waves arrive crest to crest and the screen is bright.`
+      : dark ? `Toward $\\ktheta = ${fmt(th.v, 1)}^\\circ$, the lower path is ${fmt(n, 2)} wavelengths longer, so the waves arrive crest to trough and the screen is dark.`
+        : `Toward $\\ktheta = ${fmt(th.v, 1)}^\\circ$, the lower path is ${fmt(n, 2)} wavelengths longer, so the waves arrive partly out of step.`);
     const col = spectral(L), PC = C('position');
     const S1 = { x: XB, y: YC - dpx / 2 }, S2 = { x: XB, y: YC + dpx / 2 };
     const ux = Math.cos(t), uy = -Math.sin(t), L1 = lpx * Math.round(480 / lpx), dlp = dpx * Math.sin(t);
@@ -287,7 +286,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     if (dlp > 8) label(ctx, 'Δl', (S2.x + Fp.x) / 2, (S2.y + Fp.y) / 2, { side: 'below', size: 22, color: PC, gap: 18 });
     label(ctx, 'l_{1}', S1.x + ux * L1 * 0.55, S1.y + uy * L1 * 0.55, { side: 'above', size: 22, color: F.ref('path-1'), gap: 28 });
     label(ctx, 'l_{2}', S2.x + ux * L1 * 0.55, S2.y + uy * L1 * 0.55, { side: 'below', size: 22, color: F.ref('path-2'), gap: 28 });
-    label(ctx, 'toward the screen', e1.x, e1.y, { side: 'right', size: 18, color: PAL.muted, gap: 30 });
+    label(ctx, 'toward the screen', e1.x, e1.y, { side: 'above', size: 18, color: PAL.muted, gap: 30 });
 
     const ph = TAU * n;
     const f1 = (u) => 40 * Math.cos(TAU * u), f2 = (u) => 40 * Math.cos(TAU * u - ph);
@@ -331,7 +330,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     topline(ctx, onScreen
       ? `Bright line ${m} of ${fmt(L, 0)}-nm light through slits ${fmt(D, 4)} mm apart lies at ${fmt(thm / RAD, 2)}°, ${fmt(ym, 3)} m from the center of a screen ${fmt(x, 2)} m away.`
       : `Bright line ${m} of ${fmt(L, 0)}-nm light through slits ${fmt(D, 4)} mm apart lies at ${fmt(thm / RAD, 2)}°, beyond the part of the screen drawn.`);
-    const XSC = XSL + x * UPM, col = spectral(L);
+    const XSC = XSL + x * UPM, col = spectral(L), peak = Math.min(PEAK, x * UPM * 0.4);
 
     ctx.save(); ctx.fillStyle = F.ref('slits');
     ctx.fillRect(XSL - 12, Yof(YR), 12, YC - 6 - Yof(YR)); ctx.fillRect(XSL - 12, YC - 3, 12, 6); ctx.fillRect(XSL - 12, YC + 6, 12, Yof(-YR) - YC - 6); ctx.restore();
@@ -340,7 +339,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
 
     ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.beginPath();
     for (let i = 0; i <= 900; i++) {
-      const y = -YR + (2 * YR * i) / 900, I = doubleSlit(y / Math.hypot(y, x), dm, lm), px = XSC - PEAK * I, py = Yof(y);
+      const y = -YR + (2 * YR * i) / 900, I = doubleSlit(y / Math.hypot(y, x), dm, lm), px = XSC - peak * I, py = Yof(y);
       if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
     }
     ctx.stroke(); ctx.restore();
@@ -355,7 +354,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
       const py = Yof(ym);
       line(ctx, XSL, YC, XSC, py, alpha(PAL.ink, 0.6), 2.5, [10, 10]);
       line(ctx, XSC, py, SX0, py, alpha(PAL.ink, 0.3), 2, [4, 8]);
-      angleArc(ctx, { x: XSL, y: YC }, Math.min(170, x * UPM * 0.6), 0, Math.atan2(ym * UPM, x * UPM), `θ_{${m}}`, undefined, C('angle'));
+      angleArc(ctx, { x: XSL, y: YC }, Math.min(170, (x * UPM - peak) * 0.6), 0, Math.atan2(ym * UPM, x * UPM), thm > 3 * RAD ? `θ_{${m}}` : '', undefined, C('angle'));
       vbracket(ctx, XSC + 26, py, YC, PC, `y_{${m}}`, 1, { size: 22 });
       const pp = Yof(x * Math.tan(Math.asin(((m - 1) * lm) / dm)));
       vbracket(ctx, SX0 - 24, py, pp, PC, 'Δy', -1, { size: 20 });
@@ -363,7 +362,7 @@ const LAM_DETENTS = [{ v: 450, label: '450' }, { v: 600, label: '600' }, { v: 63
     hbracket(ctx, XSL, XSC, Yof(-YR) + 30, PC, `x = ${fmt(x, 2)} m`, { side: 'below', size: 20 });
     const mMax = (dm / lm);
     readout(d.readout, `\\kd\\sin\\ktheta = m\\klam:\\quad (${fmt(D, 4)}\\ \\text{mm})\\sin ${fmt(thm / RAD, 2)}^\\circ = ${m}\\,(${fmt(L, 0)}\\ \\text{nm})`,
-      `The highest order is the whole number below d/λ = ${fmt(mMax, 1)}, which is ${Math.floor(mMax)}, and near the center the fringes are Δy = xλ/d = ${fmt(dy * 1000, 1)} mm apart.`);
+      `The highest order is the whole number below $\\kd/\\klam = ${fmt(mMax, 1)}$, which is ${Math.floor(mMax)}, and near the center the fringes are $\\kdy = \\kx\\klam/\\kd = ${fmt(dy * 1000, 1)}\\ \\text{mm}$ apart.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -15,7 +15,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.8'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, label, angleArc, face, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const nb = el('small', null, small); host.appendChild(nb); F.renderMath(nb); } }
 
 const RAD = Math.PI / 180;
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
@@ -181,7 +181,7 @@ function ray(ctx, P, x1, x2, k, head) {
 
     /* the end-on view of the second filter */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('filter-2'); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(IX, IY, IR, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'looking along the ray', IX, IY - IR - 22, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'looking along the ray', IX, IY - IR - 42, PAL.muted, { size: 17, align: 'center' });
     const ux = Math.sin(t), uy = -Math.cos(t), LI = 110;
     line(ctx, IX - ux * (IR - 8), IY - uy * (IR - 8), IX + ux * (IR - 8), IY + uy * (IR - 8), alpha(PAL.ink, 0.55), 2, [10, 8]);
     text(ctx, 'axis', IX + ux * (IR - 4) + 22, IY + uy * (IR - 4), PAL.muted, { size: 17, align: 'left', bg: PAL.panel });
@@ -199,7 +199,7 @@ function ray(ctx, P, x1, x2, k, head) {
       : `The second filter is turned ${fmt(th, 1)}° from the first and passes ${fmt(100 * c2, 1)}% of the light that reaches it.`);
     readout(d.readout,
       `\\kIntens = \\kIopol\\cos^2\\ktheta = \\kIopol\\cos^2 ${fmt(th, 1)}^\\circ = ${fmt(c2, 3)}\\,\\kIopol`,
-      `The field that reaches the second filter is vertical; only its component E cos θ = ${fmt(c, 3)} E along the axis passes, and the intensity goes as the square of that amplitude.`);
+      `The field that reaches the second filter is vertical; only its component $\\kEf\\cos\\ktheta = ${fmt(c, 3)}\\,\\kEf$ along the axis passes, and the intensity goes as the square of that amplitude.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -259,8 +259,8 @@ function ray(ctx, P, x1, x2, k, head) {
     markers(ctx, OX, OY, rx, ry, Math.abs(rs) / mr, Math.abs(rp) / mr, EC);
     markers(ctx, OX, OY, tx, ty, ts / mt, tp / mt, EC);
     if (th > 2) angleArc(ctx, { x: OX, y: OY }, 70, Math.PI / 2, Math.PI / 2 + ti, 'θ', undefined, C('angle'));
-    label(ctx, 'unpolarized light', ix, iy, { side: 'above', size: 19, color: RI });
-    label(ctx, atB ? 'completely polarized' : 'partially polarized', rx, ry, { side: 'above', size: 19, color: RR });
+    label(ctx, 'unpolarized light', ix, Math.min(Math.max(iy, 130), OY - 60), { side: 'left', size: 19, color: RI });
+    label(ctx, atB ? 'completely polarized' : 'partially polarized', rx, Math.min(Math.max(ry, 130), OY - 60), { side: 'right', size: 19, color: RR });
     label(ctx, 'refracted light', tx, ty, { side: 'right', size: 19, color: RT });
 
     /* the share of the reflected intensity polarized parallel to the surface */
@@ -376,7 +376,7 @@ function ray(ctx, P, x1, x2, k, head) {
     [0.45, 0.75].forEach((k) => marks(ctx, OX + RL * dx * k, OY + RL * dy * k, dx, dy, Math.abs(c), EC));
     dot(ctx, OX, OY, F.ref('molecule'), false, 12);
     label(ctx, 'molecule', OX, OY - 14, { side: 'above', size: 19, color: F.ref('molecule') });
-    label(ctx, 'to the observer', ex, ey, { side: dx > 0.3 ? 'right' : dx < -0.3 ? 'left' : 'below', size: 19, color: PAL.muted });
+    label(ctx, 'to the observer', ex, ey, { side: dx > 0.3 ? 'right' : dx < -0.3 && Math.abs(dy) > 0.4 ? 'left' : 'below', size: 19, color: PAL.muted });
     if (ph > 3) angleArc(ctx, { x: OX, y: OY }, 60, -f, 0, 'φ', undefined, C('angle'));
 
     /* the key to the two marks */
@@ -392,8 +392,8 @@ function ray(ctx, P, x1, x2, k, head) {
         ? `Seen along the line of the sunlight, the scattered light is unpolarized.`
         : `Seen at ${fmt(ph, 1)}° from the sunlight, the scattered light is ${fmt(100 * pol, 0)}% polarized.`);
     readout(d.readout,
-      `\\kEfpar = \\kEf\\cos\\varphi = \\kEf\\cos ${fmt(ph, 1)}^\\circ = ${fmt(Math.abs(c) < 0.0005 ? 0 : c, 3)}\\,\\kEf`,
-      'The field perpendicular to the page, E⊥, is always across the line of sight and is scattered whole; the field in the page can be scattered only in the part of it that lies across the line of sight.');
+      `\\kEfpar = \\kEf\\,|\\cos\\varphi| = \\kEf\\,|\\cos ${fmt(ph, 1)}^\\circ| = ${fmt(Math.abs(c) < 0.0005 ? 0 : Math.abs(c), 3)}\\,\\kEf`,
+      'The field perpendicular to the page, $\\kEf_{\\perp}$, is always across the line of sight and is scattered whole; the field in the page can be scattered only in the part of it that lies across the line of sight.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -460,7 +460,7 @@ function ray(ctx, P, x1, x2, k, head) {
       : `The sample turns the polarization ${fmt(rho, 1)}°, and the vertical analyzer passes ${fmt(100 * c2, 1)}% of the light.`);
     readout(d.readout,
       `\\kIntens = \\kIopol\\cos^2\\ktheta = \\kIopol\\cos^2 ${fmt(th, 1)}^\\circ = ${fmt(c2, 3)}\\,\\kIopol`,
-      `Here θ is the angle between the turned polarization and the axis of the analyzer, ${lcd ? '90° less the rotation, since the analyzer is horizontal' : 'the rotation itself, since the analyzer is vertical'}.`);
+      `Here $\\ktheta$ is the angle between the turned polarization and the axis of the analyzer, ${lcd ? '90° less the rotation, since the analyzer is horizontal' : 'the rotation itself, since the analyzer is vertical'}.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

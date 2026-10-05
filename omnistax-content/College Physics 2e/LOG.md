@@ -4412,3 +4412,4 @@ Review pass ch21 (2026-10-04, Claude Opus 5.5 high): 5 pass, 33 fixed (27 figure
 Review pass ch24 (2026-10-04, Claude Opus 5.5 high): 8 pass, 20 fixed (16 figures, 4 leads), 0 rewrite filed.
 Review pass ch23 (2026-10-04, Claude Opus 5.5 high): 11 pass, 46 fixed (34 figures, 12 leads), 1 rewrite filed.
 Review pass ch28 (2026-10-04, Claude Opus 5.5 high): 3 pass, 21 fixed (15 figures, 6 leads), 0 rewrite filed.
+Review pass ch27 (2026-10-04, Claude Opus 5.5 high): 18 pass, 32 fixed (23 figures, 9 leads), 0 rewrite filed.

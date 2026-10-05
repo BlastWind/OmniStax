@@ -11,7 +11,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['27.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, text, topline, label, hbracket, vbracket } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const nb = el('small', null, small); host.appendChild(nb); F.renderMath(nb); } }
 
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 
@@ -55,7 +55,7 @@ function whiteRGB(refl) {
     coating: { n: [1.0, 1.38, 1.52], name: 'A magnesium fluoride coating', mat: 'magnesium fluoride', lo: 'glass' },
     oil: { n: [1.0, 1.4, 1.333], name: 'An oil film', mat: 'oil', lo: 'water' },
   };
-  const film = choice(d.controls, { label: '\\text{film}', options: [{ value: 'bubble', label: 'soap bubble' }, { value: 'coating', label: 'lens coating' }, { value: 'oil', label: 'oil on water' }], value: 'bubble', aria: 'which film the light meets' });
+  const film = F.select(d.controls, { label: '\\text{film}', options: [{ value: 'bubble', label: 'soap bubble' }, { value: 'coating', label: 'lens coating' }, { value: 'oil', label: 'oil on water' }], value: 'bubble', aria: 'which film the light meets' });
   const th = ctl(d.controls, { label: '\\ktfilm', cls: 'position', min: 0, max: 700, step: 1, value: 122, unit: 'nm', dec: 0, aria: 'the thickness of the film' });
   const lam = ctl(d.controls, { label: '\\klam', cls: 'position', min: 380, max: 750, step: 1, value: 650, unit: 'nm', dec: 0, aria: 'the wavelength of the light in a vacuum', detents: [{ v: 450, label: '450' }, { v: 550, label: '550' }, { v: 650, label: '650' }] });
   const TOP = 330, PX = 250, A = (25 * Math.PI) / 180, WAVE = { l: 830, r: 1340, k: 200 }, ROWS = [170, 280, 400];
@@ -80,9 +80,9 @@ function whiteRGB(refl) {
     ctx.restore();
     line(ctx, 60, TOP, 660, TOP, F.ref('film'), 2);
     line(ctx, 60, BOT, 660, BOT, F.ref('film'), 2);
-    text(ctx, `air, n₁ = ${fmt(n1, 2)}`, 650, TOP - 24, PAL.ink, { size: 18, align: 'right' });
+    text(ctx, `air, n₁ = ${fmt(n1, 2)}`, 650, h > 34 ? TOP - 24 : TOP - 46, PAL.ink, { size: 18, align: 'right' });
     if (h > 34) text(ctx, `${F0.mat}, n₂ = ${fmt(n2, n2 === 1.333 ? 3 : 2)}`, 650, TOP + h / 2, F.ref('film'), { size: 18, align: 'right' });
-    else text(ctx, `${F0.mat}, n₂ = ${fmt(n2, n2 === 1.333 ? 3 : 2)}`, 650, 600, F.ref('film'), { size: 17, align: 'right' });
+    else text(ctx, `${F0.mat}, n₂ = ${fmt(n2, n2 === 1.333 ? 3 : 2)}`, 650, TOP + h / 2, F.ref('film'), { size: 17, align: 'right', bg: PAL.panel });
     text(ctx, `${F0.lo}, n₃ = ${fmt(n3, n3 === 1.333 ? 3 : 2)}`, 650, Math.min(BOT + 30, 600), PAL.ink, { size: 18, align: 'right' });
 
     const b = Math.asin((n1 * Math.sin(A)) / n2), up = 170, ta = Math.tan(A);
@@ -121,11 +121,11 @@ function whiteRGB(refl) {
     ctx.fillRect(WAVE.l, 520, WAVE.r - WAVE.l, 56); ctx.strokeRect(WAVE.l, 520, WAVE.r - WAVE.l, 56); ctx.restore();
     text(ctx, 'the film in white light', (WAVE.l + WAVE.r) / 2, 500, PAL.muted, { size: 17, align: 'center' });
 
-    const why = sh1 && sh2 ? 'Both rays are shifted by λ/2 on reflection, so the shifts cancel'
-      : sh1 ? 'Ray 1 is shifted by λ/2 on reflection and ray 2 is not'
-        : sh2 ? 'Ray 2 is shifted by λ/2 on reflection and ray 1 is not' : 'Neither ray is shifted on reflection';
+    const why = sh1 && sh2 ? 'Both rays are shifted by $\\klam/2$ on reflection, so the shifts cancel'
+      : sh1 ? 'Ray 1 is shifted by $\\klam/2$ on reflection and ray 2 is not'
+        : sh2 ? 'Ray 2 is shifted by $\\klam/2$ on reflection and ray 1 is not' : 'Neither ray is shifted on reflection';
     readout(d.readout, `2\\ktfilm = 2(${fmt(t, 0)}\\ \\text{nm}) = ${fmt((2 * t) / ln, 2)}\\,\\klamn`,
-      `In the film λₙ = λ/n₂ = ${fmt(ln, 0)} nm. ${why}, so the total shift is ${fmt(s, 2)} wavelengths: ${verdict === 'con' ? 'constructive' : verdict === 'des' ? 'destructive' : 'neither fully constructive nor destructive'}.`);
+      `In the film $\\klamn = \\klam/n_2 = ${fmt(ln, 0)}\\ \\text{nm}$. ${why}, so the total shift is ${fmt(s, 2)} wavelengths: ${verdict === 'con' ? 'constructive' : verdict === 'des' ? 'destructive' : 'neither fully constructive nor destructive'}.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -188,7 +188,7 @@ function whiteRGB(refl) {
       }
       if (px > 60) hbracket(ctx, xOf(dx), xOf(2 * dx), S.b + 42, PC, `${fmt(dx, 2)} mm`);
       readout(d.readout, `\\Delta\\ktfilm = \\frac{\\klam}{2} = \\frac{${fmt(L, 0)}\\ \\text{nm}}{2} = ${fmt(L / 2, 0)}\\ \\text{nm}`,
-        `From one dark band to the next the air grows ${fmt(L / 2, 0)} nm thicker, which takes ${fmt(dx, 2)} mm along the slides. The cross section is drawn 500 times thicker than it is.`);
+        'The cross section is drawn 500 times thicker than it is.');
     } else {
       readout(d.readout, `\\Delta\\ktfilm = \\frac{\\klam}{2} = 190\\text{ to }375\\ \\text{nm}`,
         'Each color repeats at its own spacing, so the colors blur into one another as the air grows thicker. The cross section is drawn 500 times thicker than it is.');

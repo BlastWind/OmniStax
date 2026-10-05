@@ -72,19 +72,19 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
       ctx.save(); ctx.fillStyle = alpha(col, 0.08 + 0.72 * Math.pow(Math.max(0, c), 2)); ctx.fillRect(x, A.y0, 4.5, A.y1 - A.y0); ctx.restore();
     }
     arrow(ctx, A.x0 - 20, (A.y0 + A.y1) / 2, A.x1 + 40, (A.y0 + A.y1) / 2, F.ref('ray'), 4);
-    text(ctx, 'view from above', (A.x0 + A.x1) / 2, A.y1 + 34, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, 'view from above', (A.x0 + A.x1) / 2, A.y1 + 46, PAL.muted, { size: 20, align: 'center' });
     /* view from the side: the field against distance along the ray */
     line(ctx, S.x0, S.y - S.amp - 30, S.x0, S.y + S.amp + 30, PAL.ink, 3);
     arrow(ctx, S.x0, S.y, S.x1 + 30, S.y, PAL.ink, 4);
     ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 5; ctx.beginPath();
     for (let x = S.x0; x <= S.x1; x += 3) { const y = S.y - S.amp * phase(x, S.x0); x === S.x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
     ctx.stroke(); ctx.restore();
-    text(ctx, 'view from side', (S.x0 + S.x1) / 2, A.y1 + 34, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, 'view from side', (S.x0 + S.x1) / 2, A.y1 + 46, PAL.muted, { size: 20, align: 'center' });
     /* the marked crest: it starts one wavelength in and moves s = ct along the ray */
     const xs = S.x0 + lp, xc = xs + u * lp;
     line(ctx, xs, S.y - S.amp - 6, xs, S.y + S.amp + 10, alpha(PAL.ink, 0.35), 2, [4, 8]);
     dot(ctx, xc, S.y - S.amp, PAL.ink, true, 8);
-    if (u * lp > 6) hbracket(ctx, xs, xc, S.y + S.amp + 26, XC, 's');
+    if (u * lp > 6) hbracket(ctx, xs, xc, S.y + S.amp + 16, XC, 's', { side: 'below' });
     /* overall view: the sheet from a locked perspective, strips painted far to near */
     const V = view({ yaw: 0.62, pitch: 0.5, dist: 1500, cx: 700, cy: 560 });
     const L = 290, Dp = 110, amp = 42, n = 140;
@@ -101,7 +101,7 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
     });
     text(ctx, 'overall view', 700, H - 36, PAL.muted, { size: 20, align: 'center' });
     const T = lam.v * 1e-9 / CLIGHT, t = u * T;
-    topline(ctx, `Crests of ${fmt(lam.v, 0)}-nm light are ${fmt(lam.v, 0)} nm apart and move along the ray at c; seen from above, they are the wavefronts.`);
+    topline(ctx, `Crests of ${fmt(lam.v, 0)}-nm light are ${fmt(lam.v, 0)} nm apart and move along the ray at $\\kc$; seen from above, they are the wavefronts.`);
     text(ctx, `t = ${fmt(t * 1e15, 2)} fs`, S.x1, S.y - S.amp - 34, TC, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     tex(d.readout, `\\ks = \\kc\\kt = (3.00\\times 10^{8}\\ \\text{m/s})(${fmt(t * 1e15, 2)}\\ \\text{fs}) = ${fmt(u * lam.v, 0)}\\ \\text{nm}`, false, { values: false });
     d.readout.appendChild(F.el('small', null, `The marked crest moves one wavelength, ${fmt(lam.v, 0)} nm, in one period of ${fmt(T * 1e15, 2)} fs.`));
@@ -122,7 +122,7 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 (function () {
   const H = 640;
   const d = sim('sim-huygens', H);
-  const surf = choice(d.controls, { label: '\\text{surface}', options: [{ value: 'open', label: 'open space' }, { value: 'mirror', label: 'mirror' }, { value: 'slower', label: 'slower medium' }], value: 'open', aria: 'what the wavefront meets', onInput: () => { regroupNow(); cy.reset(); } });
+  const surf = F.select(d.controls, { label: '\\text{surface}', options: [{ value: 'open', label: 'open space' }, { value: 'mirror', label: 'mirror' }, { value: 'slower', label: 'slower medium' }], value: 'open', aria: 'what the wavefront meets', onInput: () => { regroupNow(); cy.reset(); } });
   const th = ctl(d.controls, { label: '\\theta_1', cls: 'angle', min: 0, max: 70, step: 1, value: 45, unit: '°', dec: 0, aria: 'the angle of incidence', onInput: () => cy.reset() });
   const n2 = ctl(d.controls, { label: 'n_2', cls: '', min: 1.00, max: 2.42, step: 0.01, value: 1.50, unit: '', dec: 2, aria: 'the index of refraction of the second medium',
     detents: [1.33, 1.52, 2.42], onInput: () => cy.reset() });
@@ -150,7 +150,7 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
     const OW = F.ref('old-wavefront'), NW = F.ref('new-wavefront');
     line(ctx, x0, ys[0] - 30, x0, ys[7] + 30, OW, 4);
     ys.forEach((y) => {
-      if (t > 0.5) { ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.55); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x0, y, t, -Math.PI / 2, Math.PI / 2); ctx.stroke(); ctx.restore(); }
+      if (t > 0.5) { ctx.save(); ctx.beginPath(); ctx.rect(0, 100, 1400, H - 100); ctx.clip(); ctx.strokeStyle = alpha(PAL.ink, 0.55); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x0, y, t, -Math.PI / 2, Math.PI / 2); ctx.stroke(); ctx.restore(); }
       dot(ctx, x0, y, OW, true, 7);
     });
     if (t > 0.5) line(ctx, x0 + t, ys[0] - 30, x0 + t, ys[7] + 30, NW, 5);
@@ -158,11 +158,11 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
     if (t > 20) {
       const a = -35 * DEG, yc = ys[1];
       arrow(ctx, x0, yc, x0 + t * Math.cos(a), yc + t * Math.sin(a), XC, 4);
-      label(ctx, `s = vt = ${fmt(t * NM / 1000, 2)} µm`, x0 + t * Math.cos(a) * 0.5, yc + t * Math.sin(a) * 0.5 - 12, { side: 'above', color: XC, size: 20, gap: 10 });
+      label(ctx, 's', x0 + t * Math.cos(a) * 0.5, yc + t * Math.sin(a) * 0.5 - 12, { side: 'above', color: XC, size: 22, gap: 10 });
     }
-    label(ctx, 'old wavefront', x0 - 8, ys[7] + 30, { side: 'below', size: 20, gap: 12, color: OW });
+    label(ctx, 'old wavefront', x0 - 8, ys[0] - 30, { side: 'left', size: 20, gap: 12, color: OW });
     if (t > 60) label(ctx, 'new wavefront', x0 + t, ys[7] + 30, { side: 'below', size: 20, gap: 12, color: NW });
-    return 'Every point on the old wavefront sends out a wavelet, and after a time t each has moved s = vt; the new wavefront is the line tangent to them all.';
+    return 'Every point on the old wavefront sends out a wavelet, and after a time $\\kt$ each has moved $\\ks = \\kv\\kt$; the new wavefront is the line tangent to them all.';
   }
   function surfaceCase(ctx, t, mode) {
     const XC = C('position'), AC = C('angle'), OW = F.ref('old-wavefront'), NW = F.ref('new-wavefront');
@@ -210,7 +210,7 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
       const tu = tU(u);
       if (t <= tu) return;
       const p = hit(u), r = vOut * (t - tu);
-      ctx.save(); ctx.strokeStyle = faint; ctx.lineWidth = 2.5; ctx.beginPath();
+      ctx.save(); ctx.beginPath(); ctx.rect(0, 100, 1400, H - 100); ctx.clip(); ctx.strokeStyle = faint; ctx.lineWidth = 2.5; ctx.beginPath();
       if (mode === 'mirror') ctx.arc(p[0], p[1], r, Math.PI, 2 * Math.PI); else ctx.arc(p[0], p[1], r, 0, Math.PI);
       ctx.stroke(); ctx.restore();
     });
@@ -230,13 +230,13 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
       dot(ctx, p[0], p[1], OW, true, 6);
     });
     /* s on the first wavelet */
-    if (t > 40) {
+    if (vOut * t > 80) {
       const r = vOut * t, p = hit(0), end = add(p, kOut, r);
       arrow(ctx, p[0], p[1], end[0], end[1], XC, 4);
       const nm = mode === 'slower' ? 's_2' : 's';
       label(ctx, nm, (p[0] + end[0]) / 2, (p[1] + end[1]) / 2, { side: 'left', color: XC, size: 22, gap: 12 });
     }
-    if (q0 && t > 60) label(ctx, 'new wavefront', (q0[0] + q1[0]) / 2, (q0[1] + q1[1]) / 2, { side: mode === 'mirror' ? 'above' : 'right', size: 20, gap: 18, color: NW });
+    if (q0 && vOut * t > 80) label(ctx, 'new wavefront', q0[0], q0[1], { side: mode === 'mirror' ? 'above' : 'below', size: 20, gap: 14, color: NW });
     if (mode === 'mirror') return th.v < 0.5
       ? 'A wavefront that meets the mirror head-on reaches every point of it at once and comes straight back.'
       : `The wavefront meets the mirror at ${fmt(th.v, 0)}°, left end first, so the left wavelets are the largest and the new wavefront leaves at ${fmt(th.v, 0)}° on the other side of the perpendicular.`;
@@ -253,8 +253,9 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
     const fs = fmt(tt * 1e15, 2);
     if (m === 'slower') {
       const v2 = CLIGHT / n2.v;
-      tex(d.readout, `s_{2} = v_{2}\\kt = (${fmt(v2 / 1e8, 2)}\\times 10^{8}\\ \\text{m/s})(${fs}\\ \\text{fs}) = ${fmt(Math.max(0, t) * NM / n2.v / 1000, 2)}\\ \\mu\\text{m}`, false, { values: false });
-      d.readout.appendChild(F.el('small', null, `In the same time a wavelet in medium 1 travels s₁ = v₁t = ${fmt(Math.max(0, t) * NM / 1000, 2)} µm, and v₂ = c/n₂ = ${fmt(v2 / 1e8, 2)} × 10⁸ m/s.`));
+      tex(d.readout, `\\ks_{2} = \\kv_{2}\\kt = (${fmt(v2 / 1e8, 2)}\\times 10^{8}\\ \\text{m/s})(${fs}\\ \\text{fs}) = ${fmt(Math.max(0, t) * NM / n2.v / 1000, 2)}\\ \\mu\\text{m}`, false, { values: false });
+      const nb = F.el('small', null, `In the same time a wavelet in medium 1 travels $\\ks_{1} = \\kv_{1}\\kt = ${fmt(Math.max(0, t) * NM / 1000, 2)}\\ \\mu\\text{m}$, and $\\kv_{2} = \\kc/n_{2} = ${fmt(v2 / 1e8, 2)}\\times 10^{8}\\ \\text{m/s}$.`);
+      d.readout.appendChild(nb); F.renderMath(nb);
     } else {
       tex(d.readout, `\\ks = \\kv\\kt = (3.00\\times 10^{8}\\ \\text{m/s})(${fs}\\ \\text{fs}) = ${fmt(Math.max(0, t) * NM / 1000, 2)}\\ \\mu\\text{m}`, false, { values: false });
     }
@@ -346,8 +347,9 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
     }
     /* the wall and the open door, hinged at the upper jamb and swung back toward the source */
     ctx.save(); ctx.fillStyle = F.ref('wall'); ctx.fillRect(WX - 8, TOP, 16, y0 - TOP); ctx.fillRect(WX - 8, y1, 16, H - y1); ctx.restore();
-    const leaf = Math.min(gap, 200);
-    line(ctx, WX - 4, y0, WX - 4 - leaf * Math.SQRT1_2, y0 - leaf * Math.SQRT1_2, F.ref('door'), 6);
+    const leaf = Math.min(gap, 200, (y0 - TOP - 30) * Math.SQRT2), lx = WX - 4 - leaf * Math.SQRT1_2, ly = y0 - leaf * Math.SQRT1_2;
+    line(ctx, WX - 4, y0, lx, ly, F.ref('door'), 6);
+    label(ctx, 'door', (WX - 4 + lx) / 2, (y0 + ly) / 2, { side: 'left', size: 20, gap: 14, color: F.ref('door') });
     text(ctx, 'wall', WX - 24, H - 40, F.ref('wall'), { size: 20, align: 'right', bg: PAL.panel });
     const bx = WX + 34;
     ctx.save(); ctx.strokeStyle = XC; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(bx - 10, y0); ctx.lineTo(bx, y0); ctx.lineTo(bx, y1); ctx.lineTo(bx - 10, y1); ctx.stroke(); ctx.restore();
@@ -364,7 +366,6 @@ const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
           ? `Sound of wavelength ${fmt(lam, 2)} m fits ${fmt(ratio, 1)} times into the ${fmt(w.v, 2)}-m door, so it bends around the edges into most of the room.`
           : `Sound of wavelength ${fmt(lam, 2)} m fits ${fmt(ratio, 0)} times into the ${fmt(w.v, 2)}-m door, so most of it goes straight on and bends only a little at the edges.`);
       tex(d.readout, `\\klam = \\frac{\\kv}{\\kf} = \\frac{330\\ \\text{m/s}}{${fmt(f.v, 0)}\\ \\text{Hz}} = ${fmt(lam, 3)}\\ \\text{m}`);
-      d.readout.appendChild(F.el('small', null, `The door is ${fmt(w.v, 2)} m wide, ${fmt(ratio, 1)} wavelengths of the sound.`));
     } else {
       text(ctx, 'light, \u03BB = 500 nm', 30, TOP + 26, PAL.ink, { size: 20, align: 'left', bg: PAL.panel });
       topline(ctx, `The wavelength of light is ${fmt(ratio / 1e6, 1)} million times smaller than the ${fmt(w.v, 2)}-m door, so the light passes straight through and casts sharp shadows.`);
