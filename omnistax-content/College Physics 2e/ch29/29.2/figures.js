@@ -111,7 +111,7 @@ const tint = (col, a) => (col.startsWith('rgb(') ? col.replace('rgb(', 'rgba(').
         const x = sx + dx * k, y = sy + dy * k;
         packet(ctx, x, y, dx / L, dy / L, col);
         hits.push({ x, y, r: 26, name: 'a photon of ' + fmt(E, 2) + ' eV' });
-        lastPhoton = { x, y };
+        if (!lastPhoton || Math.abs(k - 0.45) < lastPhoton.d) lastPhoton = { x, y, d: Math.abs(k - 0.45) };
         continue;
       }
       arrived++;
@@ -143,7 +143,7 @@ const tint = (col, a) => (col.startsWith('rgb(') ? col.replace('rgb(', 'rgba(').
       ? 'Each ' + fmt(E, 2) + '-eV photon frees one electron from ' + M.name + ' with ' + fmt(KE, 2) + ' eV of kinetic energy.'
       : 'Each ' + fmt(E, 2) + '-eV photon carries less than the ' + fmt(M.BE, 2) + '-eV binding energy of ' + M.name + ', so no electron leaves.');
     const hf = '\\mk{hfv}{' + fmt(E, 2) + '\\ \\text{eV}}', be = '\\mk{bev}{' + fmt(M.BE, 2) + '\\ \\text{eV}}';
-    const fnote = 'The light has f = ' + fmt(f14, 2) + ' × 10¹⁴ Hz, and the threshold for ' + M.name + ' is f₀ = ' + fmt(f0, 2) + ' × 10¹⁴ Hz.';
+    const fnote = 'The light has $\\kf = ' + fmt(f14, 2) + '\\times 10^{14}\\ \\text{Hz}$, and the threshold for ' + M.name + ' is $\\kfo = ' + fmt(f0, 2) + '\\times 10^{14}\\ \\text{Hz}$.';
     if (frees) ro.set('\\mk{ke}{\\kKEe} = \\mk{hf}{h\\kf} - \\mk{be}{\\kBE} = ' + hf + ' - ' + be + ' = \\mk{kev}{' + fmt(Math.max(KE, 0), 2) + '\\ \\text{eV}}', fnote, { form: 'free' });
     else ro.set('\\mk{hf}{h\\kf} = ' + hf + ' < \\mk{be}{\\kBE} = ' + be, fnote, { form: 'held' });
   }

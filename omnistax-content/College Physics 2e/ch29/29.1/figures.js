@@ -103,11 +103,11 @@ function spectral(lam) {
 
     const p = pinned(ctx, box, X, Y, peak, pv, IC);
     line(ctx, p.x, p.y + 12, p.x, box.b - 14, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    label(ctx, `peak at ${fmt(peak, 0)} nm`, p.x, p.y, { side: 'right', color: IC, size: 20, gap: 24 });
+    const low = p.y > box.b - 60;
+    label(ctx, `peak at ${fmt(peak, 0)} nm`, p.x, p.y, { side: low ? 'above' : 'right', color: IC, size: 20, gap: low ? 100 : 24 });
 
     readout(d.readout,
-      `\\kIntens = \\sigma\\kTemp^4 = (5.67\\times 10^{-8}\\ \\text{W/m}^2\\cdot\\text{K}^4)(${fmt(T, 0)}\\ \\text{K})^4 = ${fmt(SIGMA * Math.pow(T, 4) / 1e6, 1)}\\ \\text{MW/m}^2`,
-      `The total intensity goes as the fourth power of the absolute temperature, so it is (${fmt(T, 0)} K / 3000 K)\u2074 = ${fmt(ratio, 1)} times the total at 3000 K.`);
+      `\\kIntens = \\sigma\\kTemp^4 = (5.67\\times 10^{-8}\\ \\text{W/m}^2\\cdot\\text{K}^4)(${fmt(T, 0)}\\ \\text{K})^4 = ${fmt(SIGMA * Math.pow(T, 4) / 1e6, 1)}\\ \\text{MW/m}^2`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -128,7 +128,7 @@ function spectral(lam) {
   const fS = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 0.1, max: 1.2, step: 0.01, value: 1.0, unit: '\u00D7 10\u00B9\u2074 Hz', dec: 2, aria: 'the frequency of the oscillator, in units of 10 to the 14 hertz' });
   const nS = ctl(d.controls, { label: 'n', cls: '', min: 0, max: 6, step: 1, value: 2, unit: '', dec: 0, detents: [0, 1, 2, 3, 4, 5, 6], aria: 'the state n of the oscillator' });
   const E_TOP = 3.5;
-  const AX = 250, YB = 500, YT = 120, L1 = 330, L2 = 760, BX = 1000, BW = 80;
+  const AX = 250, YB = 500, YT = 120, L1 = 330, L2 = 760, BX = 1100, BW = 80;
   const Y = (e) => YB - (e / E_TOP) * (YB - YT);
 
   function draw() {
@@ -162,12 +162,10 @@ function spectral(lam) {
     g.addColorStop(0, alpha(EC, 0.15)); g.addColorStop(1, alpha(EC, 0.55));
     ctx.save(); ctx.fillStyle = g; ctx.fillRect(BX, Y(E_TOP), BW, YB - Y(E_TOP)); ctx.restore();
     const CO = F.ref('classical-oscillator');
-    text(ctx, 'classical oscillator:', BX + BW / 2, YB + 36, CO, { size: 20, align: 'center' });
-    text(ctx, 'any energy', BX + BW / 2, YB + 62, CO, { size: 20, align: 'center' });
+    text(ctx, 'classical oscillator: any energy', BX + BW / 2, YB + 36, CO, { size: 20, align: 'center' });
 
     readout(d.readout,
-      `\\kE = \\left(n + \\tfrac{1}{2}\\right)h\\kf = \\left(${n} + \\tfrac{1}{2}\\right)(6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s})(${sciTex(f, 2)}\\ \\text{Hz}) = ${sciTex(E * EV, 2)}\\ \\text{J} = ${fmt(E, 2)}\\ \\text{eV}`,
-      `Each step is \u0394E = hf = ${sci(stepJ, 2)} J, or ${fmt(step, 3)} eV, so the oscillator can gain or lose energy only in lumps of that size.`);
+      `\\kE = \\left(n + \\tfrac{1}{2}\\right)h\\kf = \\left(${n} + \\tfrac{1}{2}\\right)(6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s})(${sciTex(f, 2)}\\ \\text{Hz}) = ${sciTex(E * EV, 2)}\\ \\text{J} = ${fmt(E, 2)}\\ \\text{eV}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

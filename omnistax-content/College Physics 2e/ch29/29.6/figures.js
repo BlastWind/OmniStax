@@ -208,11 +208,11 @@ const lenTex = (m) => { const l = lengthOf(m); return l.u === 'm' ? sciTex(m, 2)
       hits.push({ x: e0.x, y: e0.y, r: 14, name: 'an electron of the beam' });
     }
     angleArc(ctx, P1, 62, Math.PI - t, Math.PI, 'θ', undefined, C('angle'));
-    text(ctx, 'A', A.x - 16, A.y + 4, PAL.ink, { size: 18, align: 'right', base: 'middle', bg: PAL.panel });
+    if (ds > 30) text(ctx, 'A', A.x - 16, A.y + 4, PAL.ink, { size: 18, align: 'right', base: 'middle', bg: PAL.panel });
     text(ctx, 'B', P2.x, P2.y + 26, PAL.ink, { size: 18, align: 'center', bg: PAL.panel });
-    text(ctx, 'C', Cc.x + 16, Cc.y + 4, PAL.ink, { size: 18, align: 'left', base: 'middle', bg: PAL.panel });
+    if (ds > 30) text(ctx, 'C', Cc.x + 16, Cc.y + 4, PAL.ink, { size: 18, align: 'left', base: 'middle', bg: PAL.panel });
     vbracket(ctx, 690, Y0, Y0 + dU, XC, 'd = ' + fmt(dd, 3) + ' nm', 1, { side: 'left', size: 20 });
-    text(ctx, 'PLD = AB + BC = ' + fmt(pld, 3) + ' nm', 40, 110, XC, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+    text(ctx, 'PLD = AB + BC = ' + fmt(pld, 3) + ' nm', GB.l, H - 40, XC, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
 
     /* the intensity against θ, with the orders marked */
     const { X, Y } = axes(ctx, GB, [0, 90], [0, 1], { nx: 6, ny: 4, xl: 'θ (°)', yl: 'intensity', yc: PAL.ink, fy: () => '' });
@@ -222,9 +222,10 @@ const lenTex = (m) => { const l = lengthOf(m); return l.u === 'm' ? sciTex(m, 2)
       const s = n * lam / (2 * dd);
       if (s > 1) break;
       const a = Math.asin(s) * 180 / Math.PI;
-      if (X(a) - lastX < 64) continue;
-      lastX = X(a);
-      text(ctx, 'n = ' + n, X(a), Y(1) - 28, PAL.muted, { size: 17, align: 'center' });
+      const xn = Math.max(X(a), GB.l + 145);
+      if (xn - lastX < 64) continue;
+      lastX = xn;
+      text(ctx, 'n = ' + n, xn, Y(1) - 28, PAL.muted, { size: 17, align: 'center' });
     }
     pinned(ctx, GB, X, Y, th.v, inten(th.v, lam, dd), XC);
 

@@ -88,12 +88,12 @@ function sciTex(v, dec) {
 
     /* the collision: the incoming photon, the scattered photon at θ, the recoiling electron */
     const ripples = (l) => Math.max(1.5, 7 - l * 0.45);
-    line(ctx, EL.x - 260, EL.y, EL.x + 200, EL.y, alpha(PAL.ink, 0.3), 2, [6, 6]);
-    packet(ctx, EL.x - 180, EL.y, 1, 0, IN, ripples(L));
-    arrow(ctx, EL.x - 135, EL.y, EL.x - 30, EL.y, PAL.muted, 4);
+    line(ctx, EL.x - 300, EL.y, EL.x + 200, EL.y, alpha(PAL.ink, 0.3), 2, [6, 6]);
+    packet(ctx, EL.x - 235, EL.y, 1, 0, IN, ripples(L));
+    arrow(ctx, EL.x - 190, EL.y, EL.x - 30, EL.y, PAL.muted, 4);
     const ux = Math.cos(t), uy = -Math.sin(t);
-    arrow(ctx, EL.x + ux * 30, EL.y + uy * 30, EL.x + ux * 120, EL.y + uy * 120, PAL.muted, 4);
-    packet(ctx, EL.x + ux * 170, EL.y + uy * 170, ux, uy, OUT, ripples(L2));
+    arrow(ctx, EL.x + ux * 30, EL.y + uy * 30, EL.x + ux * 105, EL.y + uy * 105, PAL.muted, 4);
+    packet(ctx, EL.x + ux * 150, EL.y + uy * 150, ux, uy, OUT, ripples(L2));
     if (th.v > 0) angleArc(ctx, EL, 64, 0, t, 'θ = ' + fmt(th.v, 0) + '°', undefined, AC);
     if (pe * S > 6) {
       const ex = pex / pe, ey = -pey / pe;
@@ -101,10 +101,10 @@ function sciTex(v, dec) {
     }
     dot(ctx, EL.x, EL.y, F.el('e-'), true, 12);
     label(ctx, 'e⁻', EL.x, EL.y, { side: 'below', size: 20, gap: 22, color: EL_ });
-    text(ctx, 'λ = ' + fmt(L, 2) + ' pm', EL.x - 180, EL.y + 44, XC, { size: 20, align: 'center', bg: PAL.panel });
-    lab.add("λ′ = " + fmt(L2, 2) + ' pm', EL.x + ux * 205, EL.y + uy * 205, ux, uy, XC, 20, 18);
-    hits.push({ x: EL.x - 180, y: EL.y, r: 40, name: 'the x-ray photon before, ' + fmt(E, 0) + ' keV' });
-    hits.push({ x: EL.x + ux * 170, y: EL.y + uy * 170, r: 40, name: 'the scattered photon, ' + fmt(E2, 0) + ' keV' });
+    text(ctx, 'λ = ' + fmt(L, 2) + ' pm', EL.x - 235, EL.y + 44, XC, { size: 20, align: 'center', bg: PAL.panel });
+    label(ctx, "λ′ = " + fmt(L2, 2) + ' pm', EL.x + ux * 150, EL.y + uy * 150 - Math.abs(Math.sin(t)) * 35, { side: 'above', color: XC, size: 20, gap: 30 });
+    hits.push({ x: EL.x - 235, y: EL.y, r: 40, name: 'the x-ray photon before, ' + fmt(E, 0) + ' keV' });
+    hits.push({ x: EL.x + ux * 150, y: EL.y + uy * 150, r: 40, name: 'the scattered photon, ' + fmt(E2, 0) + ' keV' });
     hits.push({ x: EL.x, y: EL.y, r: 16, name: 'the electron, which recoils with ' + fmt(KE, 1) + ' keV' });
 
     /* the momenta: p along the axis, p′ at θ from the same tail, pₑ closing the triangle */
@@ -123,7 +123,7 @@ function sciTex(v, dec) {
       ? 'A ' + fmt(E, 0) + '-keV photon that passes straight on keeps all its energy, and the electron stays at rest.'
       : 'A ' + fmt(E, 0) + '-keV photon scatters through ' + fmt(th.v, 0) + '° and leaves with ' + fmt(E2, 0) + ' keV, and the electron recoils with ' + fmt(KE, 1) + ' keV.');
     ro.set('\\kKEe = \\kE - \\kEprime = ' + fmt(E, 1) + '\\ \\text{keV} - ' + fmt(E2, 1) + '\\ \\text{keV} = ' + fmt(KE, 1) + '\\ \\text{keV}',
-      'The momentum falls from p = h/λ = ' + fmt(p, 2) + ' × 10⁻²³ kg·m/s to p′ = h/λ′ = ' + fmt(p2, 2) + ' × 10⁻²³ kg·m/s, and the electron carries pₑ = ' + fmt(pe, 2) + ' × 10⁻²³ kg·m/s.');
+      'The momentum falls from $\\kp = h/\\klam = ' + fmt(p, 2) + '\\times 10^{-23}\\ \\text{kg}\\cdot\\text{m/s}$ to $\\kp\' = ' + fmt(p2, 2) + '\\times 10^{-23}\\ \\text{kg}\\cdot\\text{m/s}$, and the electron carries $\\kp_{e} = ' + fmt(pe, 2) + '\\times 10^{-23}\\ \\text{kg}\\cdot\\text{m/s}$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -189,12 +189,12 @@ function sciTex(v, dec) {
     dot(ctx, xe, GB.y, PH_, true, 11);
     dot(ctx, xk, GB.y, EL_, false, 11);
     label(ctx, 'photon E = ' + sci(E, 2) + ' eV', xe, GB.y, { side: 'above', color: PH_, size: 20, gap: 30 });
-    label(ctx, 'electron KEₑ = ' + sci(KE, 2) + ' eV', xk, GB.y, { side: 'above', color: EL_, size: 20, gap: 30 });
+    label(ctx, 'electron KEₑ = ' + sci(KE, 2) + ' eV', xk, GB.y, { side: 'below', color: EL_, size: 20, gap: 62 });
     hits.push({ x: xe, y: GB.y, r: 14, name: 'the photon’s energy' }, { x: xk, y: GB.y, r: 14, name: 'the electron’s kinetic energy' });
 
     topline(ctx, 'A ' + ph.name + ' photon and an electron moving at ' + sci(v, 2) + ' m/s carry the same momentum, ' + sci(p, 2) + ' kg·m/s.');
     ro.set('\\kp = \\frac{h}{\\klam} = ' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s},\\quad \\kv = \\frac{\\kp}{\\km} = ' + sciTex(v, 2) + '\\ \\text{m/s}',
-      'The photon carries E = ' + sci(E, 2) + ' eV and the electron KEₑ = ' + sci(KE, 2) + ' eV, a ratio of ' + sci(E / KE, 2) + '.');
+      'The photon carries $' + sciTex(E / KE, 2) + '$ times the energy of the electron.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

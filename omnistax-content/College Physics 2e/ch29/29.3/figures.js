@@ -86,8 +86,8 @@ function wavelengthColor(nm) {
 
   function scaleRow(ctx, y, color, name, lab) {
     line(ctx, X0, y, X1, y, PAL.muted, 2);
-    for (let s = 0; s <= 24; s += 4) { line(ctx, X(s), y - 7, X(s), y + 7, PAL.muted, 2); text(ctx, lab(s), X(s), y + 26, PAL.muted, { size: 16, align: 'center' }); }
-    text(ctx, name, X0 - 12, y, color, { size: 18, weight: 600, align: 'right' });
+    for (let s = 0; s <= 24; s += 4) { line(ctx, X(s), y - 7, X(s), y + 7, PAL.muted, 2); text(ctx, lab(s), X(s), y + 26, PAL.muted, { size: 16, align: 'center', bg: PAL.panel }); }
+    text(ctx, name, X0 - 24, y, color, { size: 18, weight: 600, align: 'right' });
   }
 
   function draw() {
@@ -95,6 +95,8 @@ function wavelengthColor(nm) {
     const s = lf.v, f = Math.pow(10, s), E = H_EV * f, lam = C_LIGHT / f, nm = lam * 1e9;
     const FC = C('frequency'), XC = C('position'), EC = C('energy');
     hits = [];
+    const x = X(s), pc = wavelengthColor(nm);
+    line(ctx, x, 90, x, YE, alpha(pc, 0.7), 3, [10, 10]);
 
     /* the bands, and the visible strip in its own colours */
     for (const B of BANDS) {
@@ -128,8 +130,6 @@ function wavelengthColor(nm) {
     hits.push({ x: (i0 + i1) / 2, y: YE + 56, r: 26, name: 'energy to ionize an atom or molecule, 10 to 1000 eV' });
 
     /* the photon: one mark through every scale, in its own colour where it is visible */
-    const x = X(s), pc = wavelengthColor(nm);
-    line(ctx, x, 90, x, YE, alpha(pc, 0.7), 3, [10, 10]);
     dot(ctx, x, YF, FC, true, 9); dot(ctx, x, YL, XC, true, 9); dot(ctx, x, YE, EC, true, 9);
     const side = x > 900 ? 'left' : 'right';
     label(ctx, 'f = ' + sciText(f) + ' Hz', x, YF - 22, { side, color: FC, size: 20, gap: 14 });
@@ -138,8 +138,7 @@ function wavelengthColor(nm) {
 
     const ionizes = E >= 10 - 1e-9;
     topline(ctx, 'A ' + energyText(E) + ' photon of ' + bandOf(s) + (ionizes ? ' carries enough energy to ionize an atom or molecule.' : ' carries too little energy to ionize an atom or molecule.'));
-    ro.set('\\kE = h\\kf = (4.14\\times 10^{-15}\\ \\text{eV}\\cdot\\text{s})(' + sciTex(f) + '\\ \\text{Hz}) = ' + sciTex(E) + '\\ \\text{eV}',
-      'Its wavelength is λ = ' + lengthText(lam) + '.', { form: 'e' });
+    ro.set('\\kE = h\\kf = (4.14\\times 10^{-15}\\ \\text{eV}\\cdot\\text{s})(' + sciTex(f) + '\\ \\text{Hz}) = ' + sciTex(E) + '\\ \\text{eV}', '', { form: 'e' });
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -263,7 +262,7 @@ function wavelengthColor(nm) {
         const dx = ex - sx, dy = ey - sy, L = Math.hypot(dx, dy), x = sx + dx * k, y = sy + dy * k;
         packet(ctx, x, y, dx / L, dy / L, E / 100);
         hits.push({ x, y, r: 24, name: 'an x-ray photon of ' + fmt(E, 1) + ' keV' });
-        lastP = { x, y, E };
+        if (!lastP || Math.abs(k - 0.6) < lastP.d) lastP = { x, y, E, d: Math.abs(k - 0.6) };
         continue;
       }
       counted++;
@@ -283,6 +282,7 @@ function wavelengthColor(nm) {
     curve(ctx, (f) => M.dens(f / FPK) * BIN / FPK * NMAX * sc, 0.01, fmax - 0.01, X, Y, alpha(PAL.ink, 0.7), 3, 160);
     line(ctx, X(fmax), GB.b, X(fmax), GB.t + 20, FC, 3, [10, 10]);
     text(ctx, 'fₘₐₓ = ' + fmt(fmax, 1), X(fmax) + (fmax > 20 ? -10 : 10), GB.t + 8, FC, { size: 18, weight: 600, align: fmax > 20 ? 'right' : 'left', bg: PAL.panel });
+    if (M.lines) [A.ka, A.kb].forEach((e) => { const xs = X(e * FPK); line(ctx, xs, GB.b, xs, Y(Math.min(1, M.exp[Math.floor(e * FPK / BIN)] * NMAX * sc)), alpha(PAL.ink, 0.7), 3); });
     if (M.lines) {
       const xa = X(A.ka * FPK), ya = Y(Math.min(1, M.exp[Math.floor(A.ka * FPK / BIN)] * NMAX * sc));
       label(ctx, 'characteristic', xa, ya, { side: 'right', color: PAL.muted, size: 17, gap: 18 });
@@ -292,8 +292,8 @@ function wavelengthColor(nm) {
 
     topline(ctx, 'Electrons accelerated through ' + fmt(Em, 1) + ' kV make x-ray photons of up to ' + fmt(Em, 1) + ' keV, so fₘₐₓ = ' + fmt(fmax, 1) + ' × 10¹⁸ Hz.');
     const note = M.lines
-      ? 'The ' + A.name + ' peaks at ' + fmt(A.ka, 2) + ' and ' + fmt(A.kb, 2) + ' keV appear because qV is above the ' + fmt(A.edge, 2) + '-keV energy that excites them.'
-      : 'The ' + A.name + ' peaks do not appear, because qV is below the ' + fmt(A.edge, 1) + '-keV energy that excites them.';
+      ? 'The ' + A.name + ' peaks at ' + fmt(A.ka, 2) + ' and ' + fmt(A.kb, 2) + ' keV appear because $\\kq\\kV$ is above the ' + fmt(A.edge, 2) + '-keV energy that excites them.'
+      : 'The ' + A.name + ' peaks do not appear, because $\\kq\\kV$ is below the ' + fmt(A.edge, 1) + '-keV energy that excites them.';
     ro.set('h\\kfmax = \\kq\\kV = (1.60\\times 10^{-19}\\ \\text{C})(' + fmt(Em, 1) + '\\times 10^{3}\\ \\text{V}) = ' + sciTex(1.60e-19 * Em * 1e3) + '\\ \\text{J} = ' + fmt(Em, 1) + '\\ \\text{keV}', note, { form: 'x' });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });

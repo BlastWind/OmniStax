@@ -128,8 +128,7 @@ function sciTex(v, dec) {
       : 'A ' + fmt(nm, 0) + '-nm photon carries ' + sci(p, 2) + ' kg·m/s toward a ' + fmt(ms.v, 2) + '-μg grain of dust at rest.');
     if (after) ro.set('\\kv = \\frac{\\kp}{\\km} = \\frac{' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s}}{' + sciTex(m, 2) + '\\ \\text{kg}} = ' + sciTex(v, 2) + '\\ \\text{m/s}',
       'At this speed the grain would take ' + sci(yrs, 1) + ' years to move one millimeter.', { form: 'after' });
-    else ro.set('\\kp = \\frac{h}{\\klam} = \\frac{6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s}}{' + fmt(nm, 0) + '\\times 10^{-9}\\ \\text{m}} = ' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s}',
-      'Before absorption the grain is at rest, so the photon carries all the momentum there is.', { form: 'before' });
+    else ro.set('\\kp = \\frac{h}{\\klam} = \\frac{6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s}}{' + fmt(nm, 0) + '\\times 10^{-9}\\ \\text{m}} = ' + sciTex(p, 2) + '\\ \\text{kg}\\cdot\\text{m/s}', '', { form: 'before' });
   }
   register(d.fig, { update: () => {}, draw });
 })();

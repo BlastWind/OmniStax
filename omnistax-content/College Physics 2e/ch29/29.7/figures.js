@@ -169,7 +169,7 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
     const plural = isE ? 'electrons' : 'photons';
     topline(ctx, n === 0 ? 'The ' + plural + ' leave the source one at a time.'
       : n + ' ' + (n === 1 ? who + ' has' : plural + ' have') + ' arrived, each at one definite place, and together they build ' + (watched ? 'a single-slit pattern, because each was seen to pass through one slit.' : 'a double-slit pattern.'));
-    const note = isE ? 'An electron of this wavelength moves at only v = h/mλ = ' + fmt(Hh / (ME * nm * 1e-9), 0) + ' m/s.' : 'Electrons of the same wavelength build exactly the same pattern.';
+    const note = isE ? 'An electron of this wavelength moves at only $\\kv = h/\\km\\klam = ' + fmt(Hh / (ME * nm * 1e-9), 0) + '\\ \\text{m/s}$.' : 'Electrons of the same wavelength build exactly the same pattern.';
     if (watched) ro.set('D\\sin\\kthetaone = \\klam,\\quad \\sin\\kthetaone = \\frac{\\klam}{D} = \\frac{' + fmt(nm, 0) + '\\ \\text{nm}}{800\\ \\text{nm}} = ' + fmt(nm / DW, 3) + '\\ \\text{(first dark place)}', note, { form: 'single' });
     else ro.set('\\kd\\sin\\kthetaone = \\klam,\\quad \\sin\\kthetaone = \\frac{\\klam}{\\kd} = \\frac{' + fmt(nm, 0) + '\\ \\text{nm}}{2000\\ \\text{nm}} = ' + fmt(nm / DS, 3) + '\\ \\text{(first bright band)}', note, { form: 'double' });
   }
@@ -239,7 +239,7 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
 
     topline(ctx, 'Locating ' + (P.name === 'electron' ? 'an electron' : 'a proton') + ' to ' + fmt(x, 4) + ' nm leaves its momentum uncertain by at least ' + sci(dp * 1e-24, 2) + ' kg·m/s and its velocity by ' + sci(dv, 2) + ' m/s.');
     ro.set('\\kdp = \\frac{h}{4\\pi\\kdx} = \\frac{6.63\\times 10^{-34}\\ \\text{J}\\cdot\\text{s}}{4\\pi(' + sciTex(x * 1e-9, 2) + '\\ \\text{m})} = ' + sciTex(dp * 1e-24, 2) + '\\ \\text{kg}\\cdot\\text{m/s}',
-      'Then Δv = Δp/m = ' + sci(dv, 2) + ' m/s, and ' + (P.name === 'electron' ? 'an electron' : 'a proton') + ' moving that fast has a kinetic energy of ' + sci(KE, 2) + ' eV.');
+      (P.name === 'electron' ? 'An electron' : 'A proton') + ' moving that fast has a kinetic energy of ' + sci(KE, 2) + ' eV.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -289,11 +289,11 @@ const hash = (i, s) => { const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
       text(ctx, lv.name, GB.r - 8, Y(lv.e) - 14, PAL.muted, { size: 17, align: 'right', bg: PAL.panel });
     });
     curve(ctx, f, -26, -2, X, Y, EC, 5, 60);
-    text(ctx, 'ruled out: ΔE Δt < h/4π', X(-8), Y(-12), PAL.muted, { size: 18, align: 'center' });
     dot(ctx, X(-10), Y(f(-10)), F.ref('excited-state'), false, 11);
     hits.push({ x: X(-10), y: Y(f(-10)), r: 14, name: 'Example 29.9: an atomic excited state that lives 1.0 × 10⁻¹⁰ s' });
     line(ctx, X(tl), GB.b, X(tl), Y(f(tl)), alpha(TC, 0.6), 2, [4, 8]);
     line(ctx, GB.l, Y(f(tl)), X(tl), Y(f(tl)), alpha(EC, 0.6), 2, [4, 8]);
+    text(ctx, 'ruled out: ΔE Δt < h/4π', X(-8), Y(-12), PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
     pinned(ctx, GB, X, Y, tl, f(tl), EC);
     hits.push({ x: X(tl), y: Y(f(tl)), r: 14, name: 'the smallest uncertainty in energy for this lifetime' });
 
