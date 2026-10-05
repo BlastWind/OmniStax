@@ -109,14 +109,16 @@ function stopwatch(ctx, x, y, r, f) {
 })();
 
 /* =====================================================================
-   FIGURE 2.39: the rock thrown upward. A vertical scene at the cliff, the
-   rock rising to its highest point and falling past the edge, with y, v
-   and a against t beside it. Finite flight, so it gets the scrubber.
+   FIGURE 2.38 + 2.39: the rock thrown upward. A vertical scene at the
+   cliff, the rock leaving the thrower's hand, rising to its highest point
+   and falling past the edge, with y, v and a against t stacked beside it
+   as the book stacks them. Finite flight, so it gets the scrubber.
 ===================================================================== */
 (function () {
-  const d = sim('sim-rock-up', 780);
-  /* v₀ starts at 1 m/s rather than 0, so the highest point is never the starting point and its label
-     never sits on the y₀ label. The two values of g the chapter uses are soft detents. */
+  const H = 820;
+  const d = sim('sim-rock-up', H);
+  /* v₀ starts at 1 m/s rather than 0, so the highest point is never the starting point. The two
+     values of g the chapter uses are soft detents. */
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 1, max: 25, step: 0.1, value: 13, unit: 'm/s', dec: 1, onInput: reset });
   const g = ctl(d.controls, { label: '\\kg', cls: 'acceleration', min: 1.5, max: 10, step: 0.01, value: 9.8, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration due to gravity', detents: [{ v: 1.67, label: 'Moon' }, { v: 9.8, label: 'Earth' }], snap: true });
   const T = ctl(d.controls, { label: '\\kt', cls: 'time', min: 0.5, max: 6, step: 0.05, value: 3, unit: 's', dec: 2, onInput: reset, aria: 'time shown', detents: [{ v: 3, label: '3.00 s' }], snap: true,
@@ -124,76 +126,94 @@ function stopwatch(ctx, x, y, r, f) {
   const cy = cycle(() => T.v, 1.4);
   function reset() { cy.reset(); }
   const pos = (s) => v0.v * s - 0.5 * g.v * s * s, vel = (s) => v0.v - g.v * s;
-  /* Every scale is fixed: the height runs −25 m to 25 m, the velocity −30 m/s to 30 m/s, the
-     acceleration −10 m/s² to 0 and the time 0 to 6 s, which are the ranges the sliders reach into.
-     A rock that flies higher or falls lower than the scale holds is drawn against its end and the
-     headline says so, rather than the scale stretching to follow it. */
-  const YLO = -25, YHI = 25, VLO = -30, VHI = 30, TMAX = 6;
+  /* Every scale is fixed: height and velocity run −30 to 30 in tens, the acceleration −10 m/s² to 0
+     and the time 0 to 6 s, the time slider's range. A rock that flies higher or falls lower than a
+     scale holds is drawn hollow against its end and the headline says so. */
+  const YLO = -30, YHI = 30, VLO = -30, VHI = 30, ALO = -10, TMAX = 6;
   const cl = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+  /* the scene column: the height scale at SX, the cliff, the thrower, and the rock's own column at RX,
+     the release point at y = 0 in the thrower's hand */
+  const sTop = 170, sBot = 720, SX = 80, RX = 360, PS = 0.7;
+  const Y = (m) => sBot - ((sBot - sTop) * (cl(m, YLO, YHI) - YLO)) / (YHI - YLO);
+  const HAND = { x: 54, y: -112 }, ground = Y(0) - HAND.y * PS, PX = RX - 13 - HAND.x * PS, EDGE = RX - 24;
+  /* the graph column: three boxes 150 tall, 80 apart so the tick labels clear the next title */
+  const GL = 800, GR = 1340;
+  const boxes = [134, 364, 594].map((t) => ({ l: GL, r: GR, t, b: t + 150 }));
+  const clipTo = (ctx, b, f) => { ctx.save(); ctx.beginPath(); ctx.rect(b.l, b.t, b.r - b.l, b.b - b.t); ctx.clip(); f(); ctx.restore(); };
+  const ptex = (v, dd) => (Math.abs(v) < Math.pow(10, -dd) / 2 ? '0' : (v < 0 ? '-' : '+') + fmt(Math.abs(v), dd));
+  let hits = [];
+  F.hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
-    const tau = cy.now(), ttop = v0.v / g.v, ytop = (v0.v * v0.v) / (2 * g.v), yEnd = pos(T.v);
-    const y = pos(tau), v = vel(tau);
-    const offScale = ytop > YHI || yEnd < YLO;
-    /* the scene: a cliff at the left, the rock on a vertical line above the edge, a height scale beside it */
-    const yr = { lo: YLO, hi: YHI, n: 5 }, sTop = 130, sBot = 690;
-    const Y0 = (m) => sBot - ((sBot - sTop) * (m - yr.lo)) / (yr.hi - yr.lo);
-    const Y = (m) => Y0(cl(m, YLO, YHI));
-    const ground = Y(0) + 96;
-    if (ground < sBot + 40) fixed(ctx, 150, ground, 150, Math.max(20, sBot + 60 - ground));
-    /* the thrower stands at the cliff edge, an arm raised toward where the rock left the hand */
-    figure(ctx, 262, ground, F.ref('thrower'), { face: 1, reach: { x: 330, y: Y(0) + 10 } });
-    vscale(ctx, 110, Y, yr.lo, yr.hi, (yr.hi - yr.lo) / yr.n, 'm');
-    line(ctx, 130, Y(0), 640, Y(0), C('position'), 2, [8, 8]);
-    /* every label of the scene goes through the labeller, since the rock, its arrows, the highest point
-       and the start all crowd one column and swap places as the flight runs */
-    const lab = labeller(ctx, 780);
-    lab.block(0, sTop - 20, 130, sBot + 20); lab.block(150, ground, 300, sBot + 60); lab.block(648, 90, 1400, 720);
-    lab.add('y_0 = 0', 140, Y(0), 1, -1, C('position'), 20, 20);
-    /* the highest point */
-    const rx = 380;
-    line(ctx, 130, Y(ytop), 640, Y(ytop), C('position'), 2, [8, 8]);
-    dot(ctx, rx, Y(ytop), C('position'), false, 10);
-    lab.add('highest point, ' + fmt(ytop, 2) + ' m at ' + fmt(ttop, 2) + ' s', rx, Y(ytop), -0.35, -1, C('position'), 17, 22);
-    /* the rock with its velocity and acceleration arrows */
-    line(ctx, rx, Y(yr.hi), rx, Y(yr.lo), PAL.rule, 1.5);
-    dot(ctx, rx, Y(y), F.ref('rock'), true, 11);
+    const tau = cy.now(), ttop = v0.v / g.v, ytop = (v0.v * v0.v) / (2 * g.v);
+    const y = pos(tau), v = vel(tau), yOut = y > YHI || y < YLO;
+    const offScale = ytop > YHI || pos(T.v) < YLO || vel(T.v) < VLO;
+    /* the scene */
+    vscale(ctx, SX, Y, YLO, YHI, 10);
+    text(ctx, 'y (m)', SX - 14, sTop - 34, C('position'), { size: 20, weight: 600 });
+    fixed(ctx, 110, ground, EDGE - 110, H - 12 - ground);
+    line(ctx, RX, Y(YHI), RX, Y(YLO), PAL.rule, 1.5);
+    line(ctx, SX + 14, Y(0), RX + 40, Y(0), C('position'), 2, [8, 8]);
+    line(ctx, SX + 14, Y(ytop), RX + 40, Y(ytop), C('position'), 2, [8, 8]);
+    F.silhouette(ctx, { x: PX, y: ground, s: PS, face: 1, pose: 'stand', color: F.ref('thrower'),
+      hands: [HAND, { x: -6, y: -76 }], elbowSide: 1 });
+    dot(ctx, RX, Y(ytop), C('position'), false, 10);
+    if (ytop > YHI) arrow(ctx, RX, Y(YHI) - 12, RX, Y(YHI) - 44, C('position'), 3);
+    dot(ctx, RX, Y(y), F.ref('rock'), !yOut, 11);
+    const lab = labeller(ctx, H, { headline: 2 });
+    lab.block(0, sTop - 50, SX + 12, sBot + 20); lab.block(PX - 20, ground - 110, RX - 6, ground); lab.block(100, ground, EDGE, H); lab.block(RX - 16, sTop - 16, RX + 16, sBot + 16);
+    /* the graph column's tick labels are set wider than the labeller measures them, so its block starts well left of them */
+    lab.block(GL - 130, 96, 1400, H);
+    /* the velocity and acceleration arrows ride beside the rock on its column */
+    const vx = RX + 22, ax = RX + 48;
+    let vTip = null;
     if (Math.abs(v) > 0.3) {
-      const L = 30 + Math.abs(v) * 7, tip = Y(y) - Math.sign(v) * L; arrow(ctx, rx, Y(y), rx, tip, C('velocity'), 5);
-      lab.block(rx - 10, Math.min(tip, Y(y)) - 10, rx + 10, Math.max(tip, Y(y)) + 10);
-      lab.add('v = ' + signed(v, 2) + ' m/s', rx, tip, -0.8, -Math.sign(v) * 0.4, C('velocity'), 20, 22);
-    } else lab.add('v = 0', rx, Y(y), -0.8, -0.4, C('velocity'), 20, 22);
-    const aL = 30 + g.v * 6;
-    arrow(ctx, rx + 80, Y(y), rx + 80, Y(y) + aL, C('acceleration'), 5);
-    lab.block(rx + 70, Y(y) - 10, rx + 90, Y(y) + aL + 10);
-    lab.add('a = −' + fmt(g.v, 2) + ' m/s²', rx + 80, Y(y) + aL / 2, 1, 0, C('acceleration'), 20, 16);
-    /* the three graphs, y, v and a against t, all on the fixed ranges */
-    const gx = { l: 700, r: 1330 };
-    const boxes = [{ t: 110, b: 250 }, { t: 330, b: 470 }, { t: 550, b: 690 }].map((b) => ({ ...gx, ...b }));
-    const G1 = axes(ctx, boxes[0], [0, TMAX], [YLO, YHI], { yl: 'y (m)', yc: C('position'), nx: 6, ny: 5, fx: (x) => fmt(x, 1) });
-    const G2 = axes(ctx, boxes[1], [0, TMAX], [VLO, VHI], { yl: 'v (m/s)', yc: C('velocity'), nx: 6, ny: 4, fx: (x) => fmt(x, 1) });
-    const G3 = axes(ctx, boxes[2], [0, TMAX], [-10, 0], { xl: 't (s)', xc: C('time'), yl: 'a (m/s²)', yc: C('acceleration'), nx: 6, ny: 5, fx: (x) => fmt(x, 1) });
-    const G1Y = (m) => G1.Y(cl(m, YLO, YHI)), G2Y = (m) => G2.Y(cl(m, VLO, VHI));
-    ctx.save(); ctx.beginPath(); ctx.rect(boxes[0].l, boxes[0].t, boxes[0].r - boxes[0].l, boxes[0].b - boxes[0].t); ctx.clip();
-    curve(ctx, pos, 0, T.v, G1.X, G1.Y, C('position'), 5);
-    ctx.restore();
-    line(ctx, G2.X(0), G2Y(v0.v), G2.X(T.v), G2Y(vel(T.v)), C('velocity'), 5);
+      vTip = cl(Y(y) - Math.sign(v) * Math.min(150, Math.abs(v) * 4.5), Y(YHI) - 40, H - 40);
+      arrow(ctx, vx, Y(y), vx, vTip, C('velocity'), 5);
+      lab.block(vx - 8, Math.min(vTip, Y(y)), vx + 8, Math.max(vTip, Y(y)));
+    }
+    const aEnd = Math.min(H - 40, Y(y) + 20 + g.v * 5);
+    arrow(ctx, ax, Y(y), ax, aEnd, C('acceleration'), 5);
+    lab.block(ax - 8, Y(y), ax + 8, aEnd);
+    /* the two levels are named left of the column, the start beside the scale and the highest point above
+       the thrower, which leaves the right of the column to the arrow labels */
+    lab.add('y_0 = 0', SX + 80, Y(0), 0, -1, C('position'), 20, 18);
+    lab.add('highest point ' + fmt(ytop, 2) + ' m', RX - 32, Y(ytop), -1, -0.3, C('position'), 18, 12);
+    lab.add('a = −' + fmt(g.v, 2) + ' m/s²', ax, (Y(y) + aEnd) / 2, 1, 0, C('acceleration'), 20, 14);
+    if (vTip !== null) lab.add('v = ' + signed(v, 2) + ' m/s', vx, vTip, v > 0 ? 1 : 0.8, v > 0 ? 0 : 0.6, C('velocity'), 20, 16);
+    else lab.add('v = 0', vx, Y(y), 1, -0.6, C('velocity'), 20, 16);
+    /* the three graphs on their fixed ranges */
+    const G1 = axes(ctx, boxes[0], [0, TMAX], [YLO, YHI], { yl: 'y (m)', yc: C('position'), nx: 6, ny: 6 });
+    const G2 = axes(ctx, boxes[1], [0, TMAX], [VLO, VHI], { yl: 'v (m/s)', yc: C('velocity'), nx: 6, ny: 6 });
+    const G3 = axes(ctx, boxes[2], [0, TMAX], [ALO, 0], { xl: 't (s)', xc: C('time'), yl: 'a (m/s²)', yc: C('acceleration'), nx: 6, ny: 5 });
+    clipTo(ctx, boxes[0], () => curve(ctx, pos, 0, T.v, G1.X, G1.Y, C('position'), 5));
+    clipTo(ctx, boxes[1], () => line(ctx, G2.X(0), G2.Y(v0.v), G2.X(T.v), G2.Y(vel(T.v)), C('velocity'), 5));
     line(ctx, G3.X(0), G3.Y(-g.v), G3.X(T.v), G3.Y(-g.v), C('acceleration'), 5);
-    if (ttop <= T.v) { dot(ctx, G1.X(ttop), G1Y(ytop), C('position'), false, 9); dot(ctx, G2.X(ttop), G2Y(0), C('velocity'), false, 9); }
-    dot(ctx, G2.X(0), G2Y(v0.v), C('velocity'), false, 9);
-    const glab = labeller(ctx, 780);
-    glab.block(boxes[1].l - 60, boxes[1].t - 30, boxes[1].l, boxes[1].b); glab.block(boxes[1].l - 20, boxes[1].t - 40, boxes[1].l + 110, boxes[1].t - 6);
-    glab.add('v_0', G2.X(0), G2Y(v0.v), 1, -0.5, C('velocity'), 22, 20);
-    [[G1, G1Y(y)], [G2, G2Y(v)], [G3, G3.Y(-g.v)]].forEach(([G, yy], i) => { line(ctx, G.X(tau), boxes[i].b, G.X(tau), yy, C('time'), 2, [4, 8]); dot(ctx, G.X(tau), yy, PAL.ink, true, 9); });
-    glab.add('slope = −g', G2.X(T.v * 0.7), G2Y(vel(T.v * 0.7)), 0.4, 1, C('acceleration'), 17, 22);
-    lab.flush(); glab.flush();
+    if (ttop <= T.v) { if (ytop <= YHI) dot(ctx, G1.X(ttop), G1.Y(ytop), C('position'), false, 9); dot(ctx, G2.X(ttop), G2.Y(0), C('velocity'), false, 9); }
+    dot(ctx, G2.X(0), G2.Y(v0.v), C('velocity'), false, 9);
+    const pts = [[G1, y, YLO, YHI], [G2, v, VLO, VHI], [G3, -g.v, ALO, 0]].map(([G, val, lo, hi], i) => {
+      const py = G.Y(cl(val, lo, hi)), px = G.X(tau);
+      line(ctx, px, boxes[i].b, px, py, C('time'), 2, [4, 8]); dot(ctx, px, py, PAL.ink, val >= lo && val <= hi, 9);
+      return { x: px, y: py };
+    });
+    /* the slope's name takes the corner of the velocity graph that the line and the moving point leave clear */
+    const sl = 'slope = −g', sw = F.measure(ctx, sl, { size: 18, weight: 600 }) + 14, b1 = boxes[1];
+    const near = [...Array(25)].map((_, i) => { const t = (T.v * i) / 24; return { x: G2.X(t), y: G2.Y(cl(vel(t), VLO, VHI)) }; }).concat([pts[1]]);
+    const spots = [[b1.r - 10 - sw, b1.t + 8], [b1.l + 10, b1.b - 34], [b1.r - 10 - sw, b1.b - 34], [b1.l + 10, b1.t + 8]];
+    const [sx, sy] = spots.map((p) => [p, near.filter((q) => q.x > p[0] - 14 && q.x < p[0] + sw + 14 && q.y > p[1] - 14 && q.y < p[1] + 40).length]).reduce((a, b) => (b[1] < a[1] ? b : a))[0];
+    text(ctx, sl, sx + 7, sy + 13, C('acceleration'), { size: 18, weight: 600, bg: PAL.panel });
+    const missed = lab.flush();
+    if (missed.length) d.fig.dataset.missed = missed.join(' | '); else delete d.fig.dataset.missed;
+    hits = [{ x: RX, y: Y(y), r: 16, name: 'the rock' }, { x: PX, y: ground - 40, r: 40, name: 'the thrower' }, { x: 210, y: ground + 80, r: 70, name: 'the cliff' }, { x: G2.X(0), y: G2.Y(cl(v0.v, VLO, VHI)), r: 12, name: 'v₀, the initial velocity' }, ...pts.map((p, i) => ({ x: p.x, y: p.y, r: 14, name: ['the rock’s position now', 'the rock’s velocity now', 'its acceleration now'][i] }))];
     /* what the numbers say */
     const at = Math.abs(tau - ttop) < 0.012 * T.v && ttop <= T.v;
-    const past = offScale ? ' The flight runs past the ends of the height scale, which holds −25 m to 25 m.' : '';
-    topline(ctx, (at ? 'At t = ' + fmt(ttop, 2) + ' s the rock is at its highest point, ' + fmt(ytop, 2) + ' m, where its velocity is zero but its acceleration is still −' + fmt(g.v, 2) + ' m/s².'
-      : 'After ' + fmt(tau, 2) + ' s the rock is at y = ' + signed(y, 2) + ' m with v = ' + signed(v, 2) + ' m/s, ' + (y > 0.005 ? 'above the start and ' : y < -0.005 ? 'below the start and ' : 'at the start and ') + (v > 0 ? 'still rising' : 'moving down') + ', while a = −' + fmt(g.v, 2) + ' m/s² throughout.') + past);
-    readout(d.readout, `\\ky = \\kyo + \\kvo\\kt - \\tfrac{1}{2}\\kg\\kt^2 = 0 + (${fmt(v0.v, 1)})(${fmt(tau, 2)}) - \\tfrac{1}{2}(${fmt(g.v, 2)})(${fmt(tau, 2)})^2 = ${stex(y, 2)}\\ \\text{m}\\qquad \\kv = \\kvo - \\kg\\kt = ${fmt(v0.v, 1)} - (${fmt(g.v, 2)})(${fmt(tau, 2)}) = ${stex(v, 2)}\\ \\text{m/s}`,
-      'The rock is highest at t = v₀/g = ' + fmt(ttop, 2) + ' s, where v = 0 and y = v₀²/2g = ' + fmt(ytop, 2) + ' m; its acceleration there is still −' + fmt(g.v, 2) + ' m/s².');
+    const run = ' the flight runs past the ends of the scales.';
+    topline(ctx, at
+      ? 'At t = ' + fmt(ttop, 2) + ' s the rock is at its highest point, ' + fmt(ytop, 2) + ' m, where its velocity is zero but its acceleration is still $\\ka = -' + fmt(g.v, 2) + '\\ \\text{m/s}^2$.' + (offScale ? ' Here' + run : '')
+      : 'After ' + fmt(tau, 2) + ' s the rock is at $\\ky = ' + ptex(y, 2) + '\\ \\text{m}$ with $\\kv = ' + ptex(v, 2) + '\\ \\text{m/s}$, ' + (y > 0.005 ? 'above the start and ' : y < -0.005 ? 'below the start and ' : 'at the start and ') + (v > 0 ? 'still rising' : 'moving down')
+        + (offScale ? ';' + run : ', while $\\ka = -' + fmt(g.v, 2) + '\\ \\text{m/s}^2$ throughout.'));
+    readout(d.readout, `\\begin{aligned} \\ky &= \\kyo + \\kvo\\kt - \\tfrac{1}{2}\\kg\\kt^2 = 0 + (${fmt(v0.v, 1)})(${fmt(tau, 2)}) - \\tfrac{1}{2}(${fmt(g.v, 2)})(${fmt(tau, 2)})^2 = ${stex(y, 2)}\\ \\text{m} \\\\ \\kv &= \\kvo - \\kg\\kt = ${fmt(v0.v, 1)} - (${fmt(g.v, 2)})(${fmt(tau, 2)}) = ${stex(v, 2)}\\ \\text{m/s} \\end{aligned}`,
+      'The rock is highest at $\\kt = \\kvo/\\kg = ' + fmt(ttop, 2) + '\\ \\text{s}$, where $\\kv = 0$ and $\\ky = \\kvo^2/2\\kg = ' + fmt(ytop, 2) + '\\ \\text{m}$.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();

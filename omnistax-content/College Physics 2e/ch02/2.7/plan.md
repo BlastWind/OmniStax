@@ -107,36 +107,36 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    with the live numbers; small line: the mass does not appear in the
    equation, and on the Moon the same fall takes the time the slider
    would give. Draws time, position, acceleration.
-2. `sim-rock-up` · replaces Figure 2.39 (Figure 2.38, the strategy
-   sketch, is its second original) · free-fall-kinematics,
-   free-fall-highest-point, acceleration-due-to-gravity · a rock leaves
-   the edge of a cliff straight up at $\kvo$, rises to its highest point,
-   stops there for an instant and falls past the edge; its velocity
-   arrow shrinks, reverses and grows, and its acceleration arrow points
-   down the whole time; the highest point is marked with a hollow dot
-   and the time and height it is reached · $\kvo$ in m/s (1.0 to 25.0,
-   step 0.1, default 13.0, velocity hue; it starts at 1.0 rather than 0
-   so that the highest point is never the starting point and its label
-   never sits on the y₀ label), $\kg$ in m/s² (1.50 to 10.00,
-   step 0.01, default 9.80, acceleration hue, with soft detents at 1.67
-   and 9.80), the time shown $\kt$ in s
-   (0.5 to 6.0, step 0.05, default 3.00, time hue, with a detent at
-   3.00) · "After 1.00 s the rock is at y =
-   8.10 m with v = +3.20 m/s, above the start and still
-   rising, while a = −9.80 m/s² throughout." At the top, "At t =
-   1.33 s the rock is at its highest point, 8.62 m, where its velocity is
-   zero but its acceleration is still −9.80 m/s²." · three graphs beside the
-   scene, stacked as the book stacks them: $\ky$ against $\kt$, $\kv$
-   against $\kt$, $\ka$ against $\kt$, the moving point on each, all on
-   ranges fixed once at 0 to 6 s, −25 m to 25 m, −30 m/s to 30 m/s and
-   −10 m/s² to 0 · 2D. A flight that runs past the ends of the height
-   scale is drawn against them and the headline says so, rather than the
-   scale stretching to follow it. Labels on, eight of them. The
-   scene is vertical, so the graphs go beside it. Moving: the rock
-   travels, one finite flight per loop in about 5 real seconds, with the
-   scrubber. Readout: the position and velocity equations with the live
-   time substituted; small line: the rock is highest at t = v₀/g, where v
-   = 0 and y = v₀²/2g. Draws time, position, velocity, acceleration. Revised 2026-09-28: the time of the highest point, $\kvo/\kg$, is a special value on $\kt$ (label "highest point"), recomputed from the other two sliders.
+2. `sim-rock-up` · Figure 2.38 + 2.39 · free-fall-kinematics,
+   free-fall-highest-point, acceleration-due-to-gravity · flow by
+   animation, variation by slider · moving: the rock leaves the thrower's
+   hand at the cliff edge, rises to its highest point and falls past the
+   edge, its velocity arrow shrinking, vanishing and growing downward
+   beside an acceleration arrow that points down throughout, while y, v
+   and a against t are drawn beside it; one finite flight per loop in
+   about 5 real seconds, with the scrubber · $\kvo$ 1.0 to 25.0 m/s
+   (velocity), $\kg$ 1.50 to 10.00 m/s² with Moon and Earth detents
+   (acceleration), $\kt$ 0.5 to 6.0 s with a 3.00 s detent and the
+   highest point, $\kvo/\kg$, as a special (time) · "After 3.00 s the rock
+   is at $\ky = -5.10$ m with $\kv = -16.40$ m/s, below the start and
+   moving down, while $\ka = -9.80$ m/s² throughout", and at the top "At
+   t = 1.33 s the rock is at its highest point, 8.62 m, where its
+   velocity is zero but its acceleration is still $\ka = -9.80$ m/s²" ·
+   graphs beside (vertical scene), stacked as the book stacks them on
+   round fixed ranges, y and v −30 to 30 in tens, a −10 to 0, t 0 to 6 s;
+   a value past a range is drawn hollow at its end and the headline says
+   the flight runs past the scales · 2D. The thrower is the library's
+   `F.silhouette` standing on the cliff clear of the rock's column, one
+   hand at the release point. Five labels through one labeller with the
+   scale, the cliff, the thrower, the rock's column, the graph column and
+   the headline band blocked: $\kyo$ and the highest point left of the
+   column, the v and a arrows' names right of it; the slope's name takes
+   the corner of the v graph the line leaves clear. Hover names for the
+   rock, the thrower, the cliff, $\kvo$ and the moving points. Readout:
+   the position and velocity equations in two aligned rows; small line:
+   the time and height of the highest point through the macros. Draws
+   time, position, velocity, acceleration. Rewritten 2026-10-05 after the
+   review.
 3. `sim-rock-down` · replaces Figure 2.41 (Figure 2.40, the strategy
    sketch, is its second original) · free-fall-symmetry,
    free-fall-kinematics · two rocks leave the same cliff edge at the same
