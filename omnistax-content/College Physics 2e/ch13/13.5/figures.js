@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['13.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, cycle, register, begin, line, arrow, dot, text, topline, axes, nice, pinned, labeller, REDUCED } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -25,7 +25,7 @@ function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 10139
 /* the vapor pressure of water in atm, a smooth curve through the triple point, the normal boiling point and
    the critical point (Tables 13.3 and 13.4); it reproduces Table 13.5 of 13.6 to within half a percent up to 120 °C */
 function vapFit(T3, P3, Tb, Tc, Pc) {
-  if (Tb == null) { const b = -Math.log(Pc / P3) / (1 / Tc - 1 / T3); return { a: Math.log(P3) - b / T3, b, c: 0 }; }
+  if (Tb == null) { const b = Math.log(Pc / P3) / (1 / Tc - 1 / T3); return { a: Math.log(P3) - b / T3, b, c: 0 }; }
   const x1 = 1 / T3, x2 = 1 / Tb, x3 = 1 / Tc, y1 = Math.log(P3), y2 = 0, y3 = Math.log(Pc);
   /* the parabola through three points in (1/T, ln P) */
   const c = ((y3 - y1) / (x3 - x1) - (y2 - y1) / (x2 - x1)) / (x3 - x2);
@@ -122,22 +122,21 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
       L.add('condenses to a liquid, drawn ×' + X100, X(gB), (Y(ideal(gB)) + gyL) / 2, side, 0, PAL.ink, 20);
       L.add('freezes to a solid', X(gM), (gyL + gyS) / 2 - 14, -1, 0.3, PAL.ink, 20);
     } else L.add('goes straight to a solid, drawn ×' + X100, X(gM), (Y(ideal(gM)) + gyS) / 2, side, 0, PAL.ink, 20);
-    L.add('solid, drawn ×' + X100, X((gM - 273.15) / 2), gyS, 0, -1, PAL.ink, 17);
+    L.add('solid, drawn ×' + X100, X(gM > -150 ? gM - 40 : (gM - 273.15) / 2), gyS, 0, -1, PAL.ink, 17);
     /* the state at the temperature set */
     const phase = tc > tCond ? 'gas' : S.boil != null && tc > S.melt ? 'liquid' : 'solid';
     const vTrue = phase === 'gas' ? ideal(tc) : phase === 'liquid' ? S.vliq : S.vsol;
     const yPt = phase === 'gas' ? Y(vTrue) : Y(vTrue * X100);
     line(ctx, X(tc), box.b, X(tc), yPt, C('temperature'), 3, [4, 8]);
     dot(ctx, X(tc), yPt, vc, true, 10);
-    if (box.b - yPt > 90) L.add('T = ' + neg(fmt(tc, 0)) + ' °C', X(tc), (box.b + yPt) / 2 + 30, tc > 60 ? -1 : 1, 0, C('temperature'), 20);
+    if (box.b - yPt > 90) L.add('T = ' + neg(fmt(tc, 0)) + ' °C', X(tc), box.b - 34, tc > 60 ? -1 : 1, 0, C('temperature'), 20);
     else L.add('T = ' + neg(fmt(tc, 0)) + ' °C', X(tc), yPt - 14, 0.3, -1, C('temperature'), 20);
     L.flush();
     const nm = S.name, vI = ideal(tc);
     topline(ctx, phase === 'gas' ? 'At ' + neg(fmt(tc, 0)) + ' °C one mole of ' + nm + ' is a gas on the ideal line, filling ' + fmt(vI, 1) + ' L at 1.00 atm.'
       : phase === 'liquid' ? 'At ' + neg(fmt(tc, 0)) + ' °C ' + nm + ' is a liquid: one mole fills ' + fmt(vTrue, 3) + ' L, not the ' + fmt(vI, 1) + ' L the ideal line would give.'
       : 'At ' + neg(fmt(tc, 0)) + ' °C ' + nm + ' is a solid, and one mole fills ' + fmt(vTrue, 3) + ' L; the volume never reaches zero.');
-    if (phase === 'gas') readout(d.readout, `\\kvol = \\frac{Nk\\kTemp}{\\kPr} = \\frac{(${sciTex(N_A)})(${sciTex(K_B)}\\ \\text{J/K})(${fmt(tk, 0)}\\ \\text{K})}{${sciTex(ATM)}\\ \\text{Pa}} = ${fmt(vI, 1)}\\ \\text{L}`,
-      'One mole at 1.00 atm follows the same straight line whatever the gas, and that line would reach zero volume at −273.15 °C, absolute zero.');
+    if (phase === 'gas') readout(d.readout, `\\kvol = \\frac{Nk\\kTemp}{\\kPr} = \\frac{(${sciTex(N_A)})(${sciTex(K_B)}\\ \\text{J/K})(${fmt(tk, 0)}\\ \\text{K})}{${sciTex(ATM)}\\ \\text{Pa}} = ${fmt(vI, 1)}\\ \\text{L}`);
     else readout(d.readout, `\\kvol = ${fmt(vTrue, 3)}\\ \\text{L},\\qquad \\frac{Nk\\kTemp}{\\kPr} = ${fmt(vI, 1)}\\ \\text{L}`,
       vI / vTrue >= 3 ? 'One mole of ' + (phase === 'liquid' ? 'liquid ' : 'solid ') + nm + ' fills ' + Math.round(vI / vTrue) + ' times less than the ideal line would give; the liquid and the solid are drawn ' + X100 + ' times larger than the scale of the graph.'
         : 'One mole of solid ' + nm + ' keeps its ' + fmt(vTrue, 3) + ' L all the way down to absolute zero, where the ideal line reaches zero; the liquid and the solid are drawn ' + X100 + ' times larger than the scale of the graph.');
@@ -218,7 +217,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     ctx.restore();
     /* labels */
     const L = labeller(ctx, H); L.block(0, 0, 1400, 92); L.block(0, box.b, 1400, H);
-    text(ctx, 'Liquid', X(0.47), Y(1.75), PAL.ink, { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'Liquid', X(0.4), Y(1.75), PAL.ink, { size: 20, weight: 600, align: 'right' });
     text(ctx, 'Liquid and vapor', X(0.95), Y(0.13), PAL.ink, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'Vapor', X(3.6), Y(0.3), PAL.ink, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'Gas', X(VMAX * 0.78), Y(PMAX * 0.78), PAL.ink, { size: 20, weight: 600, align: 'center' });
@@ -233,7 +232,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     const pt = pinned(ctx, box, X, Y, v, pp, C('pressure'), 'P = ' + fmt(P_Pa / 1e6, 1) + ' MPa');
     if (!pt.out) {
       line(ctx, box.l, pt.y, pt.x, pt.y, C('pressure'), 2.5, [4, 8]); line(ctx, pt.x, box.b, pt.x, pt.y, C('volume'), 2.5, [4, 8]);
-      L.add('V = ' + fmt(V_L, 3) + ' L', pt.x, (box.b + pt.y) / 2, v > VMAX * 0.7 ? -1 : 1, 0, C('volume'), 18);
+      L.add('V = ' + fmt(V_L, 3) + ' L', pt.x, box.b - 34, v > VMAX * 0.7 ? -1 : 1, 0, C('volume'), 18);
     }
     L.flush();
     const nm = S.name, tS = fmt(T.v, S.Tc < 50 ? 1 : 0) + ' K', pS = fmt(P_Pa / 1e6, S.Pc < 1e6 ? 2 : 1) + ' MPa';
@@ -243,10 +242,10 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
       : state === 'liquid' ? 'At ' + tS + ' and ' + fmt(V_L, 3) + ' L/mol ' + nm + ' is a liquid, and its volume barely changes as the pressure climbs.'
       : 'At ' + tS + ' and ' + fmt(V_L, 3) + ' L/mol ' + nm + ' is a vapor at ' + pS + ', below its boiling pressure.');
     readout(d.readout, `\\kPr \\kvol = (${fmt(P_Pa / 1e6, S.Pc < 1e6 ? 2 : 1)}\\ \\text{MPa})(${fmt(V_L, 3)}\\ \\text{L}) = ${fmt(PV, RT < 0.5 ? 3 : 2)}\\ \\text{kJ} = ${fmt(PV / RT, 2)}\\,Nk\\kTemp`,
-      state === 'gas' ? 'For one mole NkT is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; the fluid is squeezed to the density of a liquid at small volumes and never condenses.'
-      : state === 'flat' ? 'For one mole NkT is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; between ' + fmt(s.vl * Vc, 3) + ' and ' + fmt(s.vg * Vc, 3) + ' L/mol the pressure stays at ' + pS + ' while liquid turns to vapor.'
-      : state === 'liquid' ? 'For one mole NkT is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; the isotherm rises almost vertically here, since a liquid is nearly incompressible.'
-      : 'For one mole NkT is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; an ideal gas would have PV equal to it, and the vapor falls short because its molecules attract one another.');
+      state === 'gas' ? 'For one mole $Nk\\kTemp$ is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; the fluid is squeezed to the density of a liquid at small volumes and never condenses.'
+      : state === 'flat' ? 'For one mole $Nk\\kTemp$ is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; between ' + fmt(s.vl * Vc, 3) + ' and ' + fmt(s.vg * Vc, 3) + ' L/mol the pressure stays at ' + pS + ' while liquid turns to vapor.'
+      : state === 'liquid' ? 'For one mole $Nk\\kTemp$ is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; the isotherm rises almost vertically here, since a liquid is nearly incompressible.'
+      : 'For one mole $Nk\\kTemp$ is ' + fmt(RT, RT < 0.5 ? 3 : 2) + ' kJ; an ideal gas would have PV equal to it, and the vapor falls short because its molecules attract one another.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -334,7 +333,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     line(ctx, px, box.b, px, py, C('temperature'), 2.5, [4, 8]); line(ctx, box.l, py, px, py, C('pressure'), 2.5, [4, 8]);
     dot(ctx, px, py, PAL.ink, true, 10); dot(ctx, px, py, PAL.panel, true, 4);
     L.add('T = ' + degC(T), px, (box.b + py) / 2, T - 273.15 > (S.xr[0] + S.xr[1]) / 2 ? -1 : 1, 0, C('temperature'), 18);
-    L.add('P = ' + fmtP(P) + ' atm', (box.l + px) / 2, py, 0, -1, C('pressure'), 18);
+    text(ctx, 'P = ' + fmtP(P) + ' atm', box.l + 10, py - 16, C('pressure'), { size: 18 }); L.place({ l: box.l + 6, r: box.l + 160, t: py - 30, b: py - 2 });
     L.flush();
     /* which phase, and where the boundaries lie at this pressure */
     const Tb = P <= S.Pc ? vapT(S.vap, P) : null, Tm = meltT(S, P), Ts = subT(S, P), nm = S.name;
@@ -433,10 +432,9 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     /* the legend */
     water(ctx, 1110, B.t + 136, RM, -0.4); text(ctx, 'a water molecule', 1130, B.t + 136, PAL.muted, { size: 17 });
     text(ctx, vapor.length + ' in the vapor', 1110, B.t + 172, PAL.muted, { size: 17 });
-    text(ctx, 'liquid', B.l + 8, B.b - 14, PAL.muted, { size: 17, bg: alpha(PAL.panel, 0.7) }); text(ctx, 'vapor', B.l + 8, B.t + 18, PAL.muted, { size: 17 });
+    text(ctx, 'liquid', B.l + 8, B.b - 14, PAL.muted, { size: 17, bg: PAL.panel }); text(ctx, 'vapor', B.l + 8, B.t + 18, PAL.muted, { size: 17 });
     topline(ctx, 'At ' + fmt(tc, 0) + ' °C the vapor pressure of water is ' + sci(P) + ' Pa and ' + vapor.length + ' molecules are in the vapor; in the last two seconds ' + nl + ' left the liquid and ' + nb + ' returned.');
-    readout(d.readout, `\\kPr = ${sciTex(P)}\\ \\text{Pa} = ${fmt(P / ATM, 2)}\\ \\text{atm}\\quad\\text{at}\\quad \\kTemp = ${fmt(tk, 0)}\\ \\text{K}`,
-      'When the two counts match, apart from chance, the liquid and its vapor are in equilibrium at this temperature and pressure; raise the temperature and both rates rise together while the vapor grows to its new count.');
+    readout(d.readout, `\\kPr = ${sciTex(P)}\\ \\text{Pa} = ${fmt(P / ATM, 2)}\\ \\text{atm}\\quad\\text{at}\\quad \\kTemp = ${fmt(tk, 0)}\\ \\text{K}`);
   }
   register(d.fig, { update, draw });
 })();
@@ -471,7 +469,7 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     text(ctx, '22.4 L', B.l + 10, B.b - 16, PAL.muted, { size: 17, bg: alpha(PAL.panel, 0.8) });
     /* the gauge on the wall */
     line(ctx, B.r, 190, B.r + 30, 190, PAL.ink, 4); gauge(ctx, B.r + 66, 190, 36, P / PMAX);
-    text(ctx, 'P = ' + sci(P) + ' Pa', B.r + 66, 250, C('pressure'), { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'P = ' + sci(P) + ' Pa', B.r + 92, 250, C('pressure'), { size: 18, weight: 600, align: 'center' });
     /* the bars */
     const base = 470, hmax = 330;
     line(ctx, 960, base, 1360, base, PAL.muted, 2);
@@ -480,8 +478,8 @@ function thermometer(ctx, x, yTop, yBulb, frac) {
     diatomic(ctx, 976, 108, 6, 'N'); text(ctx, 'a nitrogen molecule', 998, 108, PAL.muted, { size: 17 });
     diatomic(ctx, 976, 138, 6, 'O'); text(ctx, 'an oxygen molecule', 998, 138, PAL.muted, { size: 17 });
     topline(ctx, 'In 22.4 L at ' + fmt(T.v, 0) + ' K, ' + fmt(nN.v, 3) + ' mol of nitrogen makes ' + sci(PN) + ' Pa and ' + fmt(nO.v, 3) + ' mol of oxygen ' + sci(PO) + ' Pa, and the gauge reads their sum, ' + sci(P) + ' Pa.');
-    readout(d.readout, `\\kPr = P_{\\text{N}_2} + P_{\\text{O}_2} = ${sciTex(PN)}\\ \\text{Pa} + ${sciTex(PO)}\\ \\text{Pa} = ${sciTex(P)}\\ \\text{Pa}`,
-      'Each gas makes its pressure by its own molecules’ collisions with the walls, P = nRT/V for that gas alone, whatever else is in the box; the total is the sum, which is Dalton’s law.');
+    readout(d.readout, `\\kPr = \\kPr_{\\text{N}_2} + \\kPr_{\\text{O}_2} = ${sciTex(PN)}\\ \\text{Pa} + ${sciTex(PO)}\\ \\text{Pa} = ${sciTex(P)}\\ \\text{Pa}`,
+      'Each partial pressure is $nR\\kTemp/\\kvol$ for that gas alone, whatever else is in the box.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

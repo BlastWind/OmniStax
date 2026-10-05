@@ -11,7 +11,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['13.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, topline, hbracket, axes, pinned, curve, fixed, cycle, hover, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -55,7 +55,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
    readout says so (root rule 28.4).
 ===================================================================== */
 (function () {
-  const d = sim('sim-bimetallic-strip', 620);
+  const d = sim('sim-bimetallic-strip', 670);
   const T0 = 20, ALPHA_L = 19e-6, ALPHA_R = 12e-6, L = 0.10, THICK = 1e-3, EXAG = 4;
   const Ts = ctl(d.controls, { label: '\\kTemp', cls: 'temperature', min: -40, max: 200, step: 1, value: T0, unit: '°C', dec: 0, aria: 'the temperature of the strip', specials: [{ at: T0, label: 'T₀' }], detents: [{ v: 120, label: 'heated' }] });
   const BX = 640, BY = 566, LPX = 376, S = LPX / L, W = 18;       /* the strip: base, height in units, units per metre, half-width of one layer */
@@ -94,14 +94,14 @@ function thermometer(ctx, x, yb, h, frac, color) {
       text(ctx, name, 994, 161 + i * 40, PAL.ink, { size: 19 });
     }
     text(ctx, 'a strip 10 cm long and 1 mm thick', 950, 250, PAL.muted, { size: 17 });
-    text(ctx, 'T₀ = ' + fmt(T0, 0) + ' °C', 950, 284, PAL.muted, { size: 17 });
+    text(ctx, 'T₀ = ' + fmt(T0, 0) + ' °C', 950, 284, tc, { size: 17 });
     text(ctx, 'T = ' + num(Ts.v, 0) + ' °C', 950, 318, tc, { size: 22, weight: 600 });
-    topline(ctx, Math.abs(dT) < 0.5 ? 'At T₀ = ' + fmt(T0, 0) + ' °C the two metals have the same length and the strip stands straight.'
+    topline(ctx, Math.abs(dT) < 0.5 ? 'At $\\kTempo = ' + fmt(T0, 0) + '\\,^\\circ\\text{C}$ the two metals have the same length and the strip stands straight.'
       : dT > 0 ? 'At ' + num(Ts.v, 0) + ' °C the metal on the left has grown more than the metal on the right, and the strip curves to the right.'
       : 'At ' + num(Ts.v, 0) + ' °C the metal on the left has shrunk more than the metal on the right, and the strip curves to the left.');
     readout(d.readout, `\\kTemp - \\kTempo = ${num(Ts.v, 0)}^\\circ\\text{C} - ${fmt(T0, 0)}^\\circ\\text{C} = ${num(dT, 0)}^\\circ\\text{C}`,
-      Math.abs(dT) < 0.5 ? 'Brass grows by 19 parts in a million for each degree and steel by 12, so the two are the same length only at the temperature they were bonded at, and a strip that stands straight is a thermometer reading T₀.'
-        : 'Brass grows by 19 parts in a million for each degree and steel by 12, so ' + fmt(Math.abs(dT), 0) + ' degrees ' + (dT > 0 ? 'above' : 'below') + ' T₀ leave the brass ' + fmt(Math.abs(dL) * 1000, 2) + ' parts in a thousand ' + (dT > 0 ? 'longer' : 'shorter') + ' than the steel. The two are bonded and cannot slide, so the strip curls, and the tip of a 10 cm strip moves ' + fmt(Math.abs(tipTrue) * 1000, 1) + ' mm; the drawing curls it four times as far so that the bend can be seen.');
+      Math.abs(dT) < 0.5 ? 'Brass grows by 19 parts in a million for each degree and steel by 12, so the two are the same length only at the temperature they were bonded at, and a strip that stands straight is a thermometer reading $\\kTempo$.'
+        : fmt(Math.abs(dT), 0) + ' degrees ' + (dT > 0 ? 'above' : 'below') + ' $\\kTempo$ leave the brass ' + fmt(Math.abs(dL) * 1000, 2) + ' parts in a thousand ' + (dT > 0 ? 'longer' : 'shorter') + ' than the steel, and since the two cannot slide the tip of the 10 cm strip moves ' + fmt(Math.abs(tipTrue) * 1000, 1) + ' mm. The drawing curls it four times as far.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -124,15 +124,15 @@ function thermometer(ctx, x, yb, h, frac, color) {
     { y: 440, unit: 'K', of: cToK, marks: [[-273.15, '0'], [-17.78, '255.25', 52], [0, '273.15'], [37, '310.15'], [100, '373.15']], tick: (c) => cToK(c), every: 50, from: 0 },
   ];
   /* the four landmarks the book names, each label set to the side of its guide that leaves room for its neighbours */
-  const LAND = [[-273.15, 'absolute zero', 'left'], [0, 'water freezes', 'right'], [37, 'body temperature', 'left'], [100, 'water boils', 'left']];
+  const LAND = [[-273.15, 'absolute zero', 'left'], [0, 'water freezes', 'right'], [37, 'body temperature', 'left', 132], [100, 'water boils', 'left']];
   function draw() {
     const { ctx } = begin(d.c);
     const tc = C('temperature');
     const c = Ts.v, vals = { '°F': cToF(c), '°C': c, 'K': cToK(c) };
     /* the four landmarks the book names, on vertical guides through all three scales */
-    for (const [lc, name, al] of LAND) {
+    for (const [lc, name, al, ly] of LAND) {
       line(ctx, X(lc), 120, X(lc), 470, PAL.rule, 1.5);
-      text(ctx, name, X(lc) + (al === 'left' ? 6 : -6), 104, PAL.muted, { size: 17, align: al });
+      text(ctx, name, X(lc) + (al === 'left' ? 6 : -6), ly ?? 104, PAL.muted, { size: 17, align: al });
     }
     line(ctx, X(c), 170, X(c), 470, tc, 2.5, [6, 8]);
     for (const r of ROWS) {
@@ -142,7 +142,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
       /* regular ticks in the scale's own unit, unlabelled, and the book's five numbers */
       const inv = r.unit === '°F' ? (f) => ((f - 32) * 5) / 9 : r.unit === 'K' ? (k) => k - 273.15 : (x) => x;
       for (let u = r.from; inv(u) <= CMAX + 1e-9; u += r.every) { if (inv(u) < CMIN - 1e-9) continue; line(ctx, X(inv(u)), r.y - 6, X(inv(u)), r.y + 6, PAL.muted, 1.5); }
-      for (const [mc, s, dy] of r.marks) { line(ctx, X(mc), r.y - 11, X(mc), r.y + 11, PAL.ink, 2.5); text(ctx, s, X(mc), r.y + (dy ?? 30), PAL.ink, { size: 17, align: 'center' }); }
+      for (const [mc, s, dy] of r.marks) { line(ctx, X(mc), r.y - 11, X(mc), r.y + 11, PAL.ink, 2.5); text(ctx, s, X(mc), r.y + (dy ?? 30), PAL.ink, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.9) }); }
       /* the live reading */
       dot(ctx, X(c), r.y, tc, true, 9);
       text(ctx, num(vals[r.unit], 2) + ' ' + r.unit, X(c) + (X(c) > 1000 ? -18 : 18), r.y - 30, tc, { size: 21, weight: 600, align: X(c) > 1000 ? 'right' : 'left', bg: alpha(PAL.panel, 0.9) });
@@ -163,7 +163,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
       : near(25) ? 'Room temperature, 25 °C, is 77 °F and 298.15 K.'
       : num(c, 2) + ' °C is ' + num(cToF(c), 2) + ' °F and ' + fmt(cToK(c), 2) + ' K.');
     readout(d.readout, `\\kTempF = \\tfrac{9}{5}\\kTempC + 32 = ${num(cToF(c), 2)}^\\circ\\text{F}, \\qquad \\kTempK = \\kTempC + 273.15 = ${fmt(cToK(c), 2)}\\ \\text{K}`,
-      'A change of 5 °C is a change of 5 K and of 9 °F: the Celsius degree and the kelvin are the same size, and each is 1.8 Fahrenheit degrees. The three scales differ in where they put their zero, and only the Kelvin scale puts it at the lowest possible temperature.');
+      'The three scales differ in where they put their zero, and only the Kelvin scale puts it at the lowest possible temperature.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -178,7 +178,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
   const d = sim('sim-temperature-ladder', 880);
   /* the book's landmarks, each with its temperature in kelvins */
   const LAND = [
-    [1e12, 'experiments at the Relativistic Heavy Ion Collider'], [1e9, 'interior of a neutron star'], [1e8, 'rapid hydrogen fusion'],
+    [1e12, 'Relativistic Heavy Ion Collider'], [1e9, 'interior of a neutron star'], [1e8, 'rapid hydrogen fusion'],
     [1.5e7, 'solar interior'], [1e6, 'solar corona'], [6e3, 'center of Earth'], [5.8e3, 'solar surface'], [1.2e3, 'fireplace fire'],
     [373.15, 'water boils'], [273.15, 'water freezes'], [183, 'Vostok, Antarctica'], [77, 'liquid nitrogen'], [4.2, 'liquid helium'],
     [1, 'Boomerang Nebula'], [1e-10, 'lowest temperature achieved'],
@@ -209,8 +209,8 @@ function thermometer(ctx, x, yb, h, frac, color) {
     const n = ns.v, Ttop = Math.pow(10, n);
     /* the logarithmic ladder, as the book draws it */
     line(ctx, LX, YB + 10, LX, YT - 30, PAL.ink, 3); arrow(ctx, LX, YT - 10, LX, YT - 40, PAL.ink, 3);
-    text(ctx, 'temperature, T (K)', LX - 60, YT - 44, tc, { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'a logarithmic scale', LX - 60, YT - 16, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'temperature, T (K)', LX - 80, YT - 44, tc, { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'a logarithmic scale', LX - 80, YT - 16, PAL.muted, { size: 17, align: 'right' });
     for (let e = EMIN; e <= EMAX; e++) { line(ctx, LX - 10, Y(e), LX + 10, Y(e), PAL.ink, 2); text(ctx, '10' + sup(e), LX - 20, Y(e), PAL.muted, { size: 17, align: 'right' }); }
     column(ctx, LX, LAND.map(([T, name]) => ({ y: Y(Math.log10(T)), name })));
     /* the linear scale, its top where the slider puts it */
@@ -244,7 +244,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
       : sun <= 1 ? 'With the top of the linear scale at ' + pow10(expo(n)) + ', the surface of the Sun sits ' + (sun >= 0.01 ? fmt(100 * sun, 1) + '% of the way up it' : 'in its bottom ' + fmt(100 * sun, 3) + '%') + (off ? ' and ' + off + ' landmarks are off the top.' : '.')
       : 'With the top of the linear scale at ' + pow10(expo(n)) + ', the surface of the Sun and ' + (off - 1) + ' other landmarks are off the top, and the cold ones spread out at last.');
     readout(d.readout, `\\kTempK = 10^{${expo(n)}}\\ \\text{K} = ${sci(Ttop, 2)}\\ \\text{K}, \\qquad \\kTempC = ${sci(Ttop - 273.15, 2)}\\ {}^\\circ\\text{C}, \\qquad \\kTempF = ${sci(cToF(Ttop - 273.15), 2)}\\ {}^\\circ\\text{F}`,
-      'Each rung of the ladder is a factor of ten above the one below, so the twenty-two rungs from the coldest laboratory to the hottest collision span a factor of 10²². Zero on a logarithmic scale would sit infinitely far below the page, which is why absolute zero is not on the ladder, and why the linear scale starts from it and the ladder cannot.');
+      'Zero on a logarithmic scale would sit infinitely far below the page, so absolute zero is not on the ladder, while the linear scale starts from it.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -274,23 +274,23 @@ function thermometer(ctx, x, yb, h, frac, color) {
       ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, (t) => Pof(p0, t), T0, TLIQ, X, Y, col, 3, 20); ctx.restore();
       curve(ctx, (t) => Pof(p0, t), TLIQ, 150, X, Y, col, 4, 40);
       const pEnd = Pof(p0, 150), yEnd = Math.max(box.t + 12, Y(Math.min(pEnd, 2)));
-      text(ctx, 'Gas ' + (i + 1), X(150) + 12, yEnd, col, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'Gas ' + (i + 1), X(150) + 20, yEnd, col, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
     });
     /* where every line meets zero */
     dot(ctx, X(T0), Y(0), PAL.ink, false, 10);
-    text(ctx, '−273.15 °C', X(T0), Y(0) - 28, tc, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the temperature the gases are held at, and their pressures there */
     line(ctx, X(T), box.b, X(T), box.t, tc, 2.5, [6, 8]);
+    text(ctx, '−273.15 °C', X(T0), Y(0) - 28, tc, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     const reads = P0s.map((p0) => Pof(p0, T));
     P0s.forEach((p0, i) => {
       const p = pinned(ctx, box, X, Y, T, reads[i], F.ref('gas-' + (i + 1)));
-      if (!p.out && i === 0) text(ctx, fmt(reads[i], 2) + ' atm', p.x + (X(T) > 1000 ? -18 : 18), p.y - 22, pc, { size: 19, weight: 600, align: X(T) > 1000 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+      if (!p.out && i === 0 && T > T0 + 0.03) text(ctx, fmt(reads[i], 2) + ' atm', p.x + (X(T) > 320 ? -18 : 18), p.y - (X(T) > 320 ? 22 : 58), pc, { size: 19, weight: 600, align: X(T) > 320 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     });
     text(ctx, 'T = ' + num(T, 2) + ' °C', X(T) + (X(T) > 1000 ? -12 : 12), box.t + 26, tc, { size: 19, weight: 600, align: X(T) > 1000 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, T <= T0 + 0.03 ? 'At −273.15 °C every extrapolated pressure is zero, whatever the gas and however much of it there is.'
       : 'At ' + num(T, 2) + ' °C the four gases read ' + reads.map((p) => fmt(p, 2)).join(', ').replace(/, ([^,]*)$/, ' and $1') + ' atm, and every line reaches zero at −273.15 °C.');
     readout(d.readout, `\\kPr = \\kPro\\left(1 + \\frac{\\kTempC}{273.15^\\circ\\text{C}}\\right) = (${fmt(Ps.v, 2)}\\ \\text{atm})\\left(1 + \\frac{${num(T, 2)}}{273.15}\\right) = ${fmt(reads[0], 2)}\\ \\text{atm}`,
-      'For gas 1, whose pressure at 0 °C is P₀ = ' + fmt(Ps.v, 2) + ' atm; gases 2, 3 and 4 read ' + fmt(reads[1], 2) + ', ' + fmt(reads[2], 2) + ' and ' + fmt(reads[3], 2) + ' atm at the same temperature. Whatever the amount of gas, the factor in parentheses is zero at −273.15 °C, so every line reaches zero pressure there; in kelvins that factor is simply T/273.15 K, and the pressure is proportional to the absolute temperature, here ' + fmt(cToK(T), 2) + ' K. Below about −200 °C a real gas has liquefied and the line is an extrapolation, drawn dashed.');
+      'In kelvins the factor in parentheses is $\\kTempK/273.15\\ \\text{K}$, so the pressure is proportional to the absolute temperature, here ' + fmt(cToK(T), 2) + ' K.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -364,7 +364,7 @@ function thermometer(ctx, x, yb, h, frac, color) {
       : done ? 'After ' + fmt(END, 0) + ' s all three are within ' + fmt(spread, 1) + ' °C of ' + fmt(fin, 1) + ' °C: each block is in thermal equilibrium with the plate, and so with the other.'
       : 'After ' + fmt(tau, 1) + ' s block A reads ' + num(a, 1) + ' °C, block B ' + num(b, 1) + ' °C and the plate ' + num(p, 1) + ' °C, and heat is still flowing.');
     readout(d.readout, `\\kTemp_{\\text{A}} = ${num(a, 1)}^\\circ\\text{C}, \\qquad \\kTemp_{\\text{B}} = ${num(b, 1)}^\\circ\\text{C}, \\qquad \\kTemp_{\\text{plate}} = ${num(p, 1)}^\\circ\\text{C} \\qquad \\longrightarrow \\qquad ${fmt(fin, 1)}^\\circ\\text{C}`,
-      'Heat flows from the hotter body to the cooler one until they have exactly the same temperature, and the flow slows as the difference shrinks, so the last degree takes longer than the first ten. The plate is twice the mass of either block and draws the common temperature towards its own. Once block A is in thermal equilibrium with the plate and block B is too, the two blocks are in thermal equilibrium with each other, and a thermometer on either reads the same number; that is the zeroth law.');
+      'The plate is twice the mass of either block and draws the common temperature towards its own; the flow slows as the differences shrink.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => END / 6), draw });
 })();

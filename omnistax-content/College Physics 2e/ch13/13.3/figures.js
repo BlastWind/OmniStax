@@ -11,7 +11,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['13.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, hover, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, fixed, plane } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -73,19 +73,20 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
     /* the legend and the numbers, at the right */
     const lx = 900;
     molecule(ctx, lx + 10, 150, kind, 30, kind === 'He' ? 0 : -0.3);
-    text(ctx, 'a ' + g.name + ' molecule, ' + g.formula, lx + 40, 150, PAL.ink, { size: 20 });
+    text(ctx, (/^[aeiou]/.test(g.name) ? 'an ' : 'a ') + g.name + ' molecule, ' + g.formula, lx + 40, 150, PAL.ink, { size: 20 });
     text(ctx, 'about ' + fmt(g.size, 2) + ' nm across', lx + 40, 180, PAL.muted, { size: 17 });
     text(ctx, 'spacing d = ' + fmt(sp, 1) + ' diameters', lx, 250, PAL.ink, { size: 22, weight: 600 });
     text(ctx, 'room per molecule ∝ d³ = ' + fmt(ratio, 0) + ' a³', lx, 292, PAL.ink, { size: 20 });
     text(ctx, 'density, against the packed liquid', lx, 340, PAL.muted, { size: 19 });
     text(ctx, ratio === 1 ? '1' : '1 / ' + fmt(ratio, ratio < 10 ? 1 : 0), lx, 378, PAL.ink, { size: 26, weight: 600 });
     text(ctx, sp === 1 ? 'packed one diameter apart, as in a liquid' : sp < 3 ? 'still crowded, as a dense gas is' : 'mostly empty space, as a gas is', lx, 420, PAL.muted, { size: 17 });
-    text(ctx, 'At the same temperature and pressure, equal volumes', lx, 470, PAL.muted, { size: 17 });
-    text(ctx, 'hold the same number of molecules, whatever the gas.', lx, 496, PAL.muted, { size: 17 });
+    text(ctx, 'Equal volumes at one temperature and', lx, 462, PAL.muted, { size: 17 });
+    text(ctx, 'pressure hold the same number of', lx, 486, PAL.muted, { size: 17 });
+    text(ctx, 'molecules, whatever the gas.', lx, 510, PAL.muted, { size: 17 });
     topline(ctx, sp === 1 ? 'Packed one diameter apart the molecules touch, as they do in a liquid, and the density is the liquid’s.'
       : 'At ' + fmt(sp, 1) + ' diameters apart the gas has 1/' + fmt(ratio, ratio < 10 ? 1 : 0) + ' of the density of the packed liquid, whatever the gas is.');
-    readout(d.readout, `\\frac{\\rho_{\\text{gas}}}{\\rho_{\\text{liquid}}} = \\left(\\frac{a}{d}\\right)^3 = \\left(\\frac{1}{${fmt(sp, 1)}}\\right)^3 = ${ratio === 1 ? '1' : '\\frac{1}{' + fmt(ratio, ratio < 10 ? 1 : 0) + '}'}`,
-      'At STP a cubic meter holds 2.68 × 10²⁵ molecules, so each has a cube of side 3.3 nm to itself, about ten diameters of a ' + g.name + ' molecule; that is why the density of a gas is about a thousandth of the density of the liquid it condenses to, and why the properties of a gas depend on how many molecules are in a given volume and on the temperature, not on which molecule it is.');
+    readout(d.readout, `\\frac{\\krho_{\\text{gas}}}{\\krho_{\\text{liquid}}} = \\left(\\frac{a}{d}\\right)^3 = \\left(\\frac{1}{${fmt(sp, 1)}}\\right)^3 = ${ratio === 1 ? '1' : '\\frac{1}{' + fmt(ratio, ratio < 10 ? 1 : 0) + '}'}`,
+      'At STP a cubic meter holds 2.68 × 10²⁵ molecules, so each has a cube of side 3.3 nm to itself, about ten diameters of a ' + g.name + ' molecule.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -209,7 +210,6 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
     topline(ctx, s.N === 0 ? 'With no air in it the tire lies flat on the rim, and there is nothing inside to push on its wall.'
       : !s.full ? 'With ' + Nt + ' at ' + Tt + ' the tire is still filling: its volume has grown to ' + fmt(s.V * 1e3, 2) + ' L and its pressure stays at atmospheric.'
       : 'With ' + Nt + ' at ' + Tt + ' the tire is full, and the gauge reads an absolute pressure of ' + sciU(s.P, 2) + ' Pa.');
-    const rate = nhit === 0 ? 'No strikes are counted while the figure stands still. ' : 'In the drawing the molecules struck the wall ' + nhit + ' times in the last second; more of them, or faster ones, strike it more often, and that is what the gauge feels. ';
     /* one equation in three forms: the variables keep their tags, so reaching the circle on N bends V = NkT/P into P = NkT/V */
     const sym = { P: '\\mk{P}{\\kPr}', V: '\\mk{V}{\\kvol}', N: '\\mk{N}{N}', k: '\\mk{k}{k}', T: '\\mk{T}{\\kTemp}' };
     const nums = `(\\mk{nN}{${sciK(s.N || 1, 2)}})(\\mk{nk}{1.38\\times10^{-23}}\\ \\text{J/K})(\\mk{nT}{${fmt(s.TK, 0)}}\\ \\text{K})`;
@@ -218,14 +218,13 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
       : now === 'filling' ? `${sym.V} = \\frac{${sym.N}${sym.k}${sym.T}}{${sym.P}} = \\frac{${nums}}{\\mk{nP}{${sciK(P_ATM, 2)}}\\ \\text{Pa}} = \\mk{nV}{${sciK(s.V, 2)}}\\ \\text{m}^3`
       : `${sym.P} = \\frac{${sym.N}${sym.k}${sym.T}}{${sym.V}} = \\frac{${nums}}{\\mk{nV}{${sciK(V_FULL, 2)}}\\ \\text{m}^3} = \\mk{nP}{${sciK(s.P, 2)}}\\ \\text{Pa}`;
     ro.set(tx, undefined, { form: now });
-    if (s.N === 0) ro.note.textContent = 'With N = 0 the tire holds nothing, so there is no volume to speak of and no pressure above the atmosphere’s outside. Pump some molecules in with the first slider.';
-    else if (!s.full) ro.note.textContent = rate + 'While the tire is filling, the pressure inside is essentially atmospheric and the volume grows in proportion to the number of molecules put in, which is panel (a) of the book’s figure; the wall takes over once the volume reaches 2.00 L.';
+    if (s.N === 0) ro.note.textContent = '';
+    else if (!s.full) ro.note.textContent = 'While the tire is filling, the pressure inside is essentially atmospheric and the volume grows in proportion to the number of molecules put in, which is panel (a) of the book’s figure; the wall takes over once the volume reaches 2.00 L.';
     else {
-      const P18 = s.N * K_B * 291 / V_FULL, n = s.N / N_A;
-      ro.note.textContent = rate + (Math.abs(s.TK - 291) < 0.5
-          ? 'Held at this volume and count, the pressure follows the absolute temperature: warm the tire to 35.0 °C and the reading rises in the ratio 308 K/291 K to ' + sciU(P18 * 308 / 291, 2) + ' Pa, which is what Example 13.4 finds. '
-          : 'Held at this volume and count, the pressure follows the absolute temperature in the ratio Example 13.4 takes: at 18.0 °C this tire would read ' + sciU(P18, 2) + ' Pa, and at ' + Tt + ' it reads ' + fmt(s.TK / 291, 3) + ' times that. ')
-        + 'In moles, n = N/Nₐ = ' + fmt(n, 3) + ' mol, and PV = nRT gives the same pressure.';
+      const P18 = s.N * K_B * 291 / V_FULL;
+      ro.note.textContent = (Math.abs(s.TK - 291) < 0.5
+          ? 'Held at this volume and count, the pressure follows the absolute temperature: warm the tire to 35.0 °C and the reading rises in the ratio 308 K/291 K to ' + sciU(P18 * 308 / 291, 2) + ' Pa, which is what Example 13.4 finds.'
+          : 'Held at this volume and count, the pressure follows the absolute temperature in the ratio Example 13.4 takes: at 18.0 °C this tire would read ' + sciU(P18, 2) + ' Pa, and at ' + Tt + ' it reads ' + fmt(s.TK / 291, 3) + ' times that.');
     }
   }
   register(d.fig, { update: (dt) => { cy.step(dt, () => 1); step(dt); }, draw });
@@ -284,7 +283,7 @@ const GAS = { N: { name: 'nitrogen', formula: 'N₂', size: 0.30 }, O: { name: '
     const times = hkm / EVEREST;
     topline(ctx, 'A mole of balls ' + fmt(dd.v, 1) + ' mm across, with ' + fmt(fs.v, 0) + '% of their volume again in the spaces between them, would cover the Earth to a depth of ' + fmt(hkm, hkm < 10 ? 2 : 1) + ' km, ' + (times < 0.5 ? 'less than ' + (times < 0.1 ? 'a tenth' : 'half') + ' the height of Everest.' : fmt(times, 1) + ' times the height of Everest.'));
     readout(d.readout, `h = \\frac{N_{\\text{A}}\\,\\tfrac{\\pi}{6}d^3\\,(1 + f)}{4\\pi R_{\\text{E}}^2} = \\frac{(6.02\\times10^{23})(${sciK(vBall, 2)}\\ \\text{m}^3)(${fmt(1 + f, 2)})}{${sciK(AREA, 2)}\\ \\text{m}^2} = ${sciK(h, 2)}\\ \\text{m}`,
-      'A mole of these balls takes up ' + sciU(vMole, 2) + ' m³, and spread over the ' + sciU(AREA, 2) + ' m² of the Earth’s surface that volume is a layer ' + fmt(hkm, hkm < 10 ? 2 : 1) + ' km deep. The depth follows the cube of the diameter, so halving the ball cuts the layer to an eighth.');
+      'A mole of these balls takes up ' + sciU(vMole, 2) + ' m³, and spread over the ' + sciU(AREA, 2) + ' m² of the Earth’s surface that volume is a layer ' + fmt(hkm, hkm < 10 ? 2 : 1) + ' km deep.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

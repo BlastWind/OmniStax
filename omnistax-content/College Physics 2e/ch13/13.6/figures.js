@@ -9,7 +9,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['13.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, cycle, begin, line, arrow, dot, text, topline, axes, pinned, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- Table 13.5: temperature in °C, vapor pressure in Pa, saturation vapor density in g/m³ ---------- */
 const TABLE = [
@@ -158,8 +158,8 @@ const TAU = Math.PI * 2;
     if (share > 0) { ctx.save(); ctx.fillStyle = alpha(dc, 0.3); ctx.fillRect(BX, YS - (YS - YR) * share, BW, (YS - YR) * share); ctx.restore(); line(ctx, BX, YS - (YS - YR) * share, BX + BW, YS - (YS - YR) * share, dc, 3); }
     line(ctx, BX, YS, BX + BW, YS, PAL.muted, 2);
     text(ctx, 'vapor density', BX + BW / 2, YS + 26, dc, { size: 18, weight: 600, align: 'center' });
-    text(ctx, 'saturation, ' + dens(satD(T)) + ' g/m³', BX + BW / 2, YR - 18, dc, { size: 17, weight: 600, align: 'center' });
-    box.only(ctx, 'sealed', () => text(ctx, dens(satD(T) * share) + ' g/m³', BX + BW + 12, YS - (YS - YR) * share, dc, { size: 17, weight: 600, bg: PAL.panel }));
+    text(ctx, 'saturation, ' + dens(satD(T)) + ' g/m³', BX + BW + 10, YR - 18, dc, { size: 17, weight: 600, align: 'right' });
+    box.only(ctx, 'sealed', () => share < 0.97 && text(ctx, dens(satD(T) * share) + ' g/m³', BX + BW + 12, YS - (YS - YR) * share, dc, { size: 17, weight: 600, bg: PAL.panel }));
     box.only(ctx, 'open', () => text(ctx, 'drifts away', BX + BW / 2, (YS + YR) / 2, PAL.muted, { size: 17, align: 'center' }));
     text(ctx, 'T = ' + degC(T), XL + 14, YS - 18, tc, { size: 22, weight: 600, bg: PAL.panel });
     /* the words */
@@ -170,8 +170,8 @@ const TAU = Math.PI * 2;
     const P = sci(vapP(T));
     readout(d.readout, `{\\kPr}_{\\text{vapor}} = ${P.tex}\\ \\text{Pa},\\qquad {\\krho}_{\\text{sat}} = ${dens(satD(T))}\\ \\text{g/m}^3\\qquad\\text{at } \\kTemp = ${fmt(T, 0)}^\\circ\\text{C}`,
       mode === 'sealed'
-        ? `The vapor space holds ${alive} molecules of the ${Math.round(m.nEq)} it holds at saturation. Each drawn molecule stands for the same amount of vapor at every temperature, ${T === 20 ? 'and at 100 °C the space is 35 times as crowded as it is here while the molecules move only 13% faster' : 'so the space is ' + fmt(satD(T) / satD(20), 1) + ' times as crowded as at 20 °C while the molecules move ' + (T > 20 ? 'only ' + fmt((m.c - 1) * 100, 0) + '% faster' : fmt((1 - m.c) * 100, 0) + '% slower') + ' than they do at 20 °C'}.`
-        : `Molecules leave the surface at the rate the temperature sets, ${T === 20 ? 'and at 100 °C they leave 35 times as fast while moving only 13% faster' : fmt(satD(T) / satD(20), 1) + ' times the rate at 20 °C, while the molecules move ' + (T > 20 ? 'only ' + fmt((m.c - 1) * 100, 0) + '% faster' : fmt((1 - m.c) * 100, 0) + '% slower') + ' than they do at 20 °C'}. With nothing to send them back, the vapor never builds up and evaporation goes on.`);
+        ? `Each drawn molecule stands for the same amount of vapor at every temperature, ${T === 20 ? 'and at 100 °C the space is 35 times as crowded as it is here while the molecules move only 13% faster' : 'so the space is ' + fmt(satD(T) / satD(20), 1) + ' times as crowded as at 20 °C while the molecules move ' + (T > 20 ? 'only ' + fmt((m.c - 1) * 100, 0) + '% faster' : fmt((1 - m.c) * 100, 0) + '% slower') + ' than they do at 20 °C'}.`
+        : `Molecules leave the surface at the rate the temperature sets, ${T === 20 ? 'and at 100 °C they leave 35 times as fast while moving only 13% faster' : fmt(satD(T) / satD(20), 1) + ' times the rate at 20 °C, while the molecules move ' + (T > 20 ? 'only ' + fmt((m.c - 1) * 100, 0) + '% faster' : fmt((1 - m.c) * 100, 0) + '% slower') + ' than they do at 20 °C'}.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -188,7 +188,7 @@ const TAU = Math.PI * 2;
   const Rs = ctl(d.controls, { label: '\\krho', cls: 'density', min: 0.5, max: 60, step: 0.1, value: 9.4, unit: 'g/m³', dec: 2, aria: 'vapor density of the air', specials: [{ at: () => satD(Ts.v), label: 'saturation' }] });
   Ts.mark([{ at: dewAt, label: 'dew point' }]);
   /* axes fixed at −20 to 40 °C and 0 to 60 g/m³, the range of the humidity problems; a dew point beyond 40 °C is pinned */
-  const box = { l: 170, r: 1300, t: 120, b: 450 };
+  const box = { l: 170, r: 1300, t: 142, b: 450 };
   function draw() {
     const { ctx } = begin(d.c);
     const T = Ts.v, rho = Rs.v, tc = C('temperature'), dc = C('density');
@@ -203,21 +203,22 @@ const TAU = Math.PI * 2;
     /* the air's state, the saturation point above or below it, and the dew point */
     const px = X(T), py = Y(rho), sy = Y(rs);
     line(ctx, px, py, px, sy, alpha(PAL.ink, 0.4), 2.5, [4, 8]);
-    const lab = labeller(ctx, 560); lab.block(0, 0, 1400, 96);
+    const lab = labeller(ctx, 560); lab.block(0, 0, 1400, 104);
     const dp = pinned(ctx, box, X, Y, tdew, rho, tc);
     if (!dp.out) { line(ctx, dp.x, dp.y, dp.x, box.b, tc, 2.5, [4, 8]); lab.add('dew point ' + degC(tdew, 1), dp.x, dp.y, -0.7, -0.7, tc, 19, 24); }
     else lab.add('dew point ' + degC(tdew, 1) + ', off the graph', dp.x, dp.y, dp.x < (box.l + box.r) / 2 ? 1 : -1, dp.x < (box.l + box.r) / 2 ? -0.8 : 0.8, tc, 19);   /* into the box, never up into the headline */
     line(ctx, Math.min(px, dp.x), py, Math.max(px, dp.x), py, tc, 2.5, [10, 10]);
     dot(ctx, px, sy, dc, false, 10); dot(ctx, px, py, dc, true, 10);
-    lab.add('ρ_sat = ' + dens(rs) + ' g/m³', px, sy, over ? -0.3 : 0.3, over ? 0.9 : -0.9, dc, 19);
-    lab.add('ρ = ' + dens(rho) + ' g/m³', px, py, 0.9, 0.5, dc, 19);
-    lab.add(over ? dens(rho - rs) + ' g/m³ condenses' : fmt(rh, 1) + '% of saturation', px, (py + sy) / 2, px < box.l + 260 ? 1 : -1, 0, PAL.ink, 19, 24);
+    lab.add('ρ_sat = ' + dens(rs) + ' g/m³', px, sy, px < box.l + 200 ? 0.6 : over ? -0.3 : 0.3, over && sy < box.b - 50 ? 0.9 : -0.9, dc, 19);
+    lab.add('ρ = ' + dens(rho) + ' g/m³', px, py, 0.9, over ? -0.9 : 0.5, dc, 19);
+    lab.add(over ? dens(rho - rs) + ' g/m³ condenses' : fmt(rh, 1) + '% of saturation', px, over ? (px < box.l + 260 ? py - 64 : 0.6 * py + 0.4 * sy) : (py + sy) / 2, px < box.l + 260 ? 1 : -1, 0, PAL.ink, 19, 24);
     lab.flush();
     if (!over) topline(ctx, `At ${degC(T, 1)} air carrying ${dens(rho)} g/m³ of water vapor is at ${fmt(rh, 1)}% relative humidity and reaches its dew point at ${degC(tdew, 1)}.`);
     else topline(ctx, `At ${degC(T, 1)} air cannot carry ${dens(rho)} g/m³ of water vapor: ${dens(rho - rs)} g/m³ condenses out as dew or fog, leaving the air saturated.`);
-    readout(d.readout, `\\text{percent relative humidity} = \\frac{\\krho}{{\\krho}_{\\text{sat}}}\\times 100 = \\frac{${dens(rho)}\\ \\text{g/m}^3}{${dens(rs)}\\ \\text{g/m}^3}\\times 100 = ${fmt(rh, 1)}\\%`,
-      over ? `The dew point, ${degC(tdew, 1)}, is above the air temperature, so the humidity cannot exceed 100% and ${dens(rho - rs)} g/m³ condenses out of each cubic meter.`
-        : `The dew point is ${degC(tdew, 1)}, the temperature at which ${dens(rho)} g/m³ is the saturation vapor density. The air cannot cool below it without water condensing out.`);
+    readout(d.readout, over ? `\\krho - {\\krho}_{\\text{sat}} = ${dens(rho)}\\ \\text{g/m}^3 - ${dens(rs)}\\ \\text{g/m}^3 = ${dens(rho - rs)}\\ \\text{g/m}^3\\ \\text{condenses}`
+      : `\\text{percent relative humidity} = \\frac{\\krho}{{\\krho}_{\\text{sat}}}\\times 100 = \\frac{${dens(rho)}\\ \\text{g/m}^3}{${dens(rs)}\\ \\text{g/m}^3}\\times 100 = ${fmt(rh, 1)}\\%`,
+      over ? `The dew point, ${degC(tdew, 1)}, is above the air temperature, so the air stays saturated at 100% relative humidity.`
+        : `The air cannot cool below its dew point without water condensing out.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -278,7 +279,7 @@ const TAU = Math.PI * 2;
     text(ctx, 'water vapor ' + fmt(fv * 100, boils ? 0 : 1) + '%', BX, BY + BH + 26, pc, { size: 18, weight: 600 });
     if (!boils) text(ctx, 'air ' + fmt((1 - fv) * 100, 1) + '%', BX + BW, BY + BH + 26, PAL.ink, { size: 18, weight: 600, align: 'right' });
     text(ctx, 'P = ' + sci(P).txt + ' Pa', BX + BW, BY - 16, pc, { size: 18, weight: 600, align: 'right' });
-    text(ctx, boils ? 'the vapor pressure has reached P: the bubble cannot hold its pressure' : 'the vapor pressure of water at T is the vapor’s share', BX, BY + BH + 56, PAL.muted, { size: 17 });
+    text(ctx, boils ? 'the vapor pressure alone has reached P' : 'the vapor’s share is the vapor pressure at T', BX, BY + BH + 84, PAL.muted, { size: 17 });
     hits.push({ x: BX + BW * fv / 2, y: BY + BH / 2, r: Math.max(20, BW * fv / 2), name: 'the partial pressure of water vapor, ' + sci(pv).txt + ' Pa' });
     if (!boils) hits.push({ x: BX + BW * fv + BW * (1 - fv) / 2, y: BY + BH / 2, r: Math.max(20, BW * (1 - fv) / 2), name: 'the partial pressure of the air, ' + sci(pair).txt + ' Pa' });
     /* the words */

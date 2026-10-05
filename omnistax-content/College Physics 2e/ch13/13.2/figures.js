@@ -9,7 +9,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['13.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, curve, pinned, view, face, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- Table 13.2, the coefficients the figures draw from ---------- */
 /* name, α and β in 10⁻⁶ per °C. Marble's β is the table's 2.1 × 10⁻⁵. */
@@ -87,7 +87,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = sc; ctx.lineWidth = 3.5;
     ctx.fillRect(X0, YW - BEAM / 2, xWarm - X0, BEAM); ctx.strokeRect(X0, YW - BEAM / 2, xWarm - X0, BEAM); ctx.restore();
     if (clipped) { line(ctx, xWarm - 10, YW - 24, xWarm + 12, YW + 24, PAL.panel, 9); line(ctx, xWarm - 10, YW - 24, xWarm + 12, YW + 24, PAL.ink, 3); }
-    text(ctx, 'after warming by ' + fmt(dt, 0) + ' °C', X0 + 14, YW + BEAM / 2 + 20, PAL.muted, { size: 17 });
+    text(ctx, (dt < 0 ? 'after cooling by ' : 'after warming by ') + fmt(Math.abs(dt), 0) + ' °C', X0 + 14, YW + BEAM / 2 + 20, PAL.muted, { size: 17 });
     /* the cold end carried down to the warm span, and the extension bracketed in the position hue */
     line(ctx, xEnd, YC + BEAM / 2, xEnd, YW + BEAM / 2 + 4, alpha(PAL.ink, 0.35), 2, [4, 8]);
     dot(ctx, xEnd, YW, PAL.ink, false, 8);
@@ -112,7 +112,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     topline(ctx, dt === 0 ? 'A ' + lo + ' span ' + fmt(L, 0) + ' m long at its original temperature has not changed length at all.'
       : 'A ' + lo + ' span ' + fmt(L, 0) + ' m long ' + (dt > 0 ? 'warms' : 'cools') + ' by ' + fmt(Math.abs(dt), 0) + ' °C and ' + (dt > 0 ? 'grows' : 'shrinks') + ' ' + sig(Math.abs(dL), 2) + ' m, drawn here ' + (k === 1 ? 'at true scale.' : fmt(k, 0) + ' times larger than life.'));
     readout(d.readout, `\\kdL = \\kalphaexp \\kLlen\\kdTemp = (${coefTex(a)})(${fmt(L, 0)}\\ \\text{m})(${fmt(dt, 0)}^\\circ\\text{C}) = ${sig(dL, 2)}\\ \\text{m}`,
-      (k === 1 ? 'The extension is drawn at true scale, and it is too small to see: ' : 'The extension is drawn ' + fmt(k, 0) + ' times larger than life; at true scale it is ') + sig(Math.abs(dL), 2) + ' m on a span of ' + fmt(L, 0) + ' m, ' + sig(Math.abs(al * dt) * 100, 2) + '% of the length. The graph is a straight line through the origin because the change in length is proportional to the change in temperature, and its slope is αL, so a longer span or a material with a larger coefficient tips it up.');
+      'The change is ' + sig(Math.abs(al * dt) * 100, 2) + '% of the length, and the line through the origin has slope $\\kalphaexp\\kLlen$, so a longer span or a larger coefficient tips it up.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -176,7 +176,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     const exact = Math.pow(1 + f, 3) - 1;
     const pctTex = (x) => sig(100 * x, 2) + '\\%';
     readout(d.readout, `\\frac{\\kdvol}{\\kvol} = \\kbeta\\kdTemp \\approx 3\\kalphaexp\\kdTemp = 3(${coefTex(a)})(${fmt(dt, 0)}^\\circ\\text{C}) = ${pctTex(3 * f)}`,
-      'Every length grows by αΔT = ' + pct(f) + ', so an area, which is a length times a length, grows by 2αΔT = ' + pct(2 * f) + ' and a volume by three times the fraction. The hole grows by the same fraction as the plug that filled it, ' + pct(2 * f) + ' in area, because the ring of material around it expands exactly as it would with the plug in place. The exact growth in volume, (1 + αΔT)³ − 1 = ' + pct(exact, 3) + ', is so close to 3αΔT that the table writes β = ' + coef(b) + ' × 10⁻⁶ per °C for ' + lo + ', almost exactly 3α' + (k === 1 ? '. At true scale the dashed outlines sit on the solid ones, which is why the book draws the expansion larger than it is.' : '.'));
+      'The hole grows by ' + pct(2 * f) + ' in area, as the plug would, because the ring around it expands as it would with the plug in place. The exact growth in volume, $(1 + \\kalphaexp\\kdTemp)^3 - 1 = ' + pct(exact, 3).replace('%', '\\%') + '$, is so close to $3\\kalphaexp\\kdTemp$ that the table writes $\\kbeta = ' + coef(b) + ' \\times 10^{-6}/^\\circ\\text{C}$ for ' + lo + '.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -210,7 +210,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     curve(ctx, rho, 0, 12, X, Y, rc, 5, 120);
     for (let t = 0; t <= 12; t++) dot(ctx, X(t), Y(RHO[t]), rc, true, 5);
     /* the maximum at 4 °C, and the chosen temperature */
-    if (Math.abs(T - 4) > 0.05) { dot(ctx, X(4), Y(MAX), rc, false, 9); text(ctx, 'densest, at 4 °C', X(4), Y(MAX) - 30, rc, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) }); }
+    if (Math.abs(T - 4) > 0.05) { dot(ctx, X(4), Y(MAX), rc, false, 9); text(ctx, 'densest, at 4 °C', X(4), Y(MAX) + 32, rc, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) }); }
     const p = pinned(ctx, GB, X, Y, T, r, rc);
     line(ctx, p.x, p.y, p.x, GB.b, alpha(tc, 0.7), 2, [4, 8]);
     line(ctx, GB.l, p.y, p.x, p.y, alpha(rc, 0.7), 2, [4, 8]);
@@ -219,10 +219,9 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     topline(ctx, Math.abs(T - 4) <= 0.05 ? 'At 4 °C water is at its densest, ' + fmt(MAX, 5) + ' g/cm³, and water at any other temperature between 0 and 12 °C floats on it.'
       : 'At ' + fmt(T, 1) + ' °C water has a density of ' + fmt(r, 5) + ' g/cm³, ' + sig(100 * short, 2) + '% below its maximum at 4 °C, so it floats on 4 °C water.');
     readout(d.readout, `\\krho = ${fmt(r, 5)}\\ \\text{g/cm}^3 \\text{ at } \\kTemp = ${fmt(T, 1)}^\\circ\\text{C}, \\qquad \\frac{\\krho_{\\text{max}} - \\krho}{\\krho_{\\text{max}}} = ${sig(100 * short, 2)}\\%`,
-      (T < 3.95 ? 'Water at ' + fmt(T, 1) + ' °C is lighter than the water at 4 °C beneath it, so in a cooling pond it stays at the surface and freezes there while the 4 °C water below keeps the fish alive. '
-        : T > 4.05 ? 'Water at ' + fmt(T, 1) + ' °C is lighter than water at 4 °C, so as the surface of a pond cools toward 4 °C it grows denser, sinks, and turns the pond over until the whole of it is at 4 °C. '
-          : 'Water at 4 °C sinks beneath water at any other temperature in this range, so a pond cools to 4 °C throughout before its surface can freeze. ')
-      + 'The whole curve spans only ' + sig(100 * (MAX - RHO[12]) / MAX, 2) + '% in density, which is why the book says the expansion is very small.');
+      T < 3.95 ? 'In a cooling pond, water this cold stays at the surface and freezes there while the 4 °C water below keeps the fish alive.'
+        : T > 4.05 ? 'As the surface of a pond cools toward 4 °C it grows denser, sinks, and turns the pond over until the whole of it is at 4 °C.'
+          : 'A pond cools to 4 °C throughout before its surface can freeze.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -274,7 +273,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     text(ctx, 'the tank, filled to the brim before warming', TX + TW / 2, TB + 26, tkc, { size: 17, align: 'center' });
     text(ctx, 'rim before', TX - 22, rimCold, PAL.muted, { size: 16, align: 'right', bg: alpha(PAL.panel, 0.85) });
     if (hs > 12) text(ctx, 'rim after', TX - 22, rimCold - hs, PAL.muted, { size: 16, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    if (hl > hs + 20) text(ctx, 'would reach here', TX + TW + 22, rimCold - hl, PAL.muted, { size: 16, bg: alpha(PAL.panel, 0.85) });
+    if (hl > hs + 20) text(ctx, 'would reach here', TX + TW + 22, rimCold - hl + (cut ? 30 : 0), PAL.muted, { size: 16, bg: alpha(PAL.panel, 0.85) });
     /* the three volumes as bars, in litres */
     const bars = [['ΔV of the liquid', dVl, lqc], ['ΔV of the tank', dVs, tkc], ['spilled', spill, PAL.muted]];
     line(ctx, BX[0] - 60, BB, BX[2] + BW + 20, BB, PAL.muted, 2);
@@ -291,7 +290,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
       : fmt(V, 1) + ' L of ' + lname + ' in a ' + tname + ' tank warms by ' + fmt(dt, 1) + ' °C, and ' + sig(spill) + ' L spills, because the ' + lname + ' grows ' + sig(dVl) + ' L while the tank grows only ' + sig(dVs, 2) + ' L.');
     const gs = ln.startsWith('Gasoline') ? '\\kbetagas' : '\\kbeta_{\\text{liq}}', ss = tn === 'Iron or steel' ? '\\kbetas' : '\\kbeta_{\\text{tank}}';
     readout(d.readout, `\\kvolspill = (${gs} - ${ss})\\kvol\\kdTemp = [(${coef(bl)} - ${coef(bs)}) \\times 10^{-6}/^\\circ\\text{C}](${fmt(V, 1)}\\ \\text{L})(${fmt(dt, 1)}^\\circ\\text{C}) = ${sig(spill)}\\ \\text{L}`,
-      (k === 1 ? 'The growth is drawn at true scale, and it is barely visible: ' : 'The growth is drawn ' + fmt(k, 0) + ' times larger than life, each volume shown as a height in a tank of fixed width; in truth ') + 'the ' + lname + ' grows ' + sig(100 * bl * 1e-6 * dt, 2) + '% of its volume and the ' + tname + ' tank ' + sig(100 * bs * 1e-6 * dt, 2) + '%. The spill is the difference of the two changes, and because the two original volumes are equal it is one coefficient less the other, times the volume, times the temperature change.');
+      (k === 1 ? 'At true scale the growth is barely visible: ' : 'Each volume is drawn as a height in a tank of fixed width; in truth ') + 'the ' + lname + ' grows ' + sig(100 * bl * 1e-6 * dt, 2) + '% of its volume and the ' + tname + ' tank ' + sig(100 * bs * 1e-6 * dt, 2) + '%.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -348,7 +347,7 @@ function circle(ctx, x, y, r, fill, stroke, wd = 3, dash) {
     topline(ctx, dt === 0 ? 'Until the ' + lname + ' warms it presses on the sealed tank with no more than it did when it was filled.'
       : lname[0].toUpperCase() + lname.slice(1) + ' sealed in a steel tank and warmed by ' + fmt(dt, 1) + ' °C would press on it with ' + sciText(P) + ' Pa, about ' + sig(P / 6895, 3) + ' lb/in², which is ' + sig(P / ATM, 3) + ' times the atmosphere.');
     readout(d.readout, `\\kPr = \\frac{\\kdvol}{\\kvolo}\\kBb = \\frac{${sig(dV)}\\ \\text{L}}{${fmt(V0, 1)}\\ \\text{L}}(${fmt(Bs.v, 2)} \\times 10^{9}\\ \\text{N/m}^2) = ${P > 0 ? sciTex(P) : '0'}\\ \\text{Pa}`,
-      'The ΔV of the equation is the volume the ' + lname + ' would have spilled had the lid been off, ' + sig(dV) + ' L for a warming of ' + fmt(dt, 1) + ' °C, and the pressure is what it takes to squeeze that much back into the original ' + fmt(V0, 1) + ' L. The ratio ΔV/V₀ is (β of the liquid − β of steel) times ΔT and does not depend on the volume, so a small can and a large tank feel the same pressure, and it is the bulk modulus that turns a fraction of a percent into ' + (P > 0 ? sig(P / ATM, 3) + ' atmospheres.' : 'nothing at all until the liquid warms.'));
+      'The ratio $\\kdvol/\\kvolo = (\\kbeta_{\\text{liq}} - \\kbetas)\\kdTemp$ does not depend on the volume, so a small can and a large tank feel the same pressure.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
