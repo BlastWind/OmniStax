@@ -82,35 +82,8 @@ the text uses them.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `sim-normal` · replaces Figure 4.11 (the bag of dog food held, then on the
-   table, with both free-body diagrams) · normal-force · **still**: the idea
-   has no time in it, since the picture answers the mass and the stiffness of
-   the table and nothing else; the sag is where the table has settled, not a
-   motion the reader watches · mass $m$ (1 to 30 kg, default 10.0, ink),
-   table stiffness $\kk$ (2,000 to 40,000 N/m, default 5,000, stiffness) ·
-   "a 10.0 kg bag weighs 98.0 N, so the hand pushes up with 98.0 N, and the
-   table sags 2.0 cm until its restoring force is the same 98.0 N" · none:
-   the two panels and their free-body diagrams are the picture · no.
-   Readout: $\kN = \kwgt = m\kg$ with the numbers; small line on the table
-   sagging until the restoring force matches the weight. Draws force,
-   acceleration, stiffness.
-2. `sim-skier` · replaces Figure 4.12 (the skier on the 25º slope) ·
-   weight-components-on-incline, acceleration-on-frictionless-incline,
-   normal-force · **moves**: the idea has a time in it, since the skier
-   accelerates down the slope; she starts from rest at the top and slides the
-   40 m of slope once per loop, her five force arrows following her, and the
-   loop gets the scrubber · the slope angle $\theta$ (5º to 40º, default
-   25.0º, ink), mass $m$ (20 to 120 kg, default 60.0, ink), friction $\kff$
-   (0 to 250 N, default 45.0, force) · "t = 1.80 s · she is 5.5 m down the
-   slope at 6.1 m/s, gaining 3.39 m/s every second" · graph below the slope:
-   speed against time, a straight line of slope $\kapar$ with the moving
-   point on it · no. Readout: $\kapar = (m\kg\sin\theta - \kff)/m$ with the
-   numbers; small line giving the frictionless value $\kg\sin\theta$, which
-   is the same for every mass. Draws force, acceleration, velocity, time.
-   Revised in the figure-audit pass of 2026-09-12: the loop has no length at
-   all when the friction holds her where she is, so the transport has
-   nothing to play through and no dummy four seconds run; the headline is
-   one capitalized sentence.
+1. sim-normal · Figure 4.11 · normal-force, weight · variation by slider: the table sags until its restoring force equals the weight · still · m (1 to 30 kg, mass), k (stiffness) · "A bag of 10.0 kg weighs 98.0 N, and the table sags 2.0 cm until it pushes back with that same 98.0 N" · free-body diagrams under each scene · 2D: the hand in (a) is F.hand (palm view, curl 0.3, palm up under the bag, forearm off to the left); the headline kept to one line by a shorter sentence or the panel titles moved below it; the sag bracket, w and N labels placed through F.labeller so none meets another at m and k extremes; note dropped. No fold or split. Rebuilt from this line on 2026-10-05.
+2. sim-skier · Figure 4.12 · weight-components, normal-force, friction, newtons-second-law · flow by animation and variation: she slides and gathers speed at the rate the slope and friction set · moving · θ (5° to 40°, angle), m (mass), f (0 to 250 N, force) · "After 3.84 s she is 25.0 m down the slope at 13.0 m/s, gaining 3.39 m/s every second" · graph below (v against t) · 2D: the skier drawn with F.silhouette (crouch, phase 0) standing on skis that sit on the slope at every angle; when f ≥ mg sin θ the readout morphs to a static form (f = mg sin θ, a = 0) rather than a negative quotient shown as zero; note cut to the g sin θ fact. No fold or split. Rebuilt from this line on 2026-10-05.
 3. `sim-incline` · replaces Figure 4.13 (the weight resolved on an incline) ·
    weight-components-on-incline, normal-force · **still**: the figure is the
    geometry of the resolution and answers its sliders alone · the slope angle
@@ -153,23 +126,7 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    note names the finger tendon and the bicycle brake cable the book draws
    under this number, which the scene stands for. The headline is one
    capitalized sentence.
-6. `sim-tightrope` · replaces Figure 4.16 and folds Figure 4.17 (the walker
-   on the sagging wire, and the same forces projected onto axes) ·
-   tension-from-perpendicular-force, tension · **still**: the walker stands
-   still and the net force is zero, which is the whole of the argument · the
-   sag angle $\theta$ (0.5º to 30º, default 5.0º, ink), mass $m$ (40 to 120
-   kg, default 70.0, ink) · "a 70.0 kg walker sags the wire by 5.0º, and each
-   half pulls with 3,930 N, nearly six times his 686 N weight" · graph
-   beside the components diagram: the tension against the sag angle, with the
-   set angle marked, so the reader sees it run away as the wire straightens ·
-   no. Readout: $\kTf = \kwgt / (2\sin\theta)$ with the numbers; small line
-   on the horizontal components cancelling and only $2\kTf\sin\theta$ holding
-   the walker up. Draws force, acceleration. The fold is the obvious one of
-   rule 14: the book draws the same walker twice, once as a scene and once as
-   its components, and one figure that draws the wire and the components
-   together says it better. The row carries 4.16 with 4.17 under `folds`,
-   both images under `originals`, and the eyebrow reads "Figure 4.16 + 4.17",
-   so both numbers in the prose land on it.
+6. sim-tightrope · Figure 4.16 + 4.17 · tension, vector-components · variation by slider: the straighter the wire, the larger the tension · still · θ (sag angle, angle), m (mass) · "A 70.0 kg walker sags the wire by 5.0°, and each half pulls with 3,935 N, 5.7 times his weight" · graph beside the components diagram · 2D: the walker drawn with F.silhouette (stand, arms out by joints) with both feet on the sag point; TL and TR named through F.labeller on the outside of each half; the components diagram's caption line and title kept inside the stage or dropped (the caption says it); note dropped or cut to one sentence. No fold or split. Rebuilt from this line on 2026-10-05.
 7. `sim-chain` · replaces Figure 4.18 (the chain, the car in the mud and the
    tree) · tension-from-perpendicular-force · **still**: the push is held and
    the chain is in equilibrium under it · the perpendicular force $\kFperp$

@@ -45,21 +45,6 @@ function angleArc(ctx, x, y, r, a0, a1, label, size) {
   text(ctx, label, x + (r + 30) * Math.cos(mid), y + (r + 30) * Math.sin(mid), C('angle'),
     { size: size || 20, weight: 600, align: 'center', bg: PAL.panel });
 }
-/* an open hand seen from the side, palm up, cupping whatever rests on it at (x, y), the
-   forearm running away to the lower left: the palm, a thumb up the near side and the four
-   fingers curling up the far side, all in outline the colour of the page */
-function palm(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  /* the forearm */
-  ctx.beginPath(); ctx.moveTo(x - 60, y + 26); ctx.lineTo(x - 150, y + 92); ctx.lineTo(x - 130, y + 118); ctx.lineTo(x - 40, y + 56); ctx.closePath(); ctx.fill(); ctx.stroke();
-  /* the palm, a shallow cup under the load */
-  ctx.beginPath(); ctx.moveTo(x - 72, y + 8); ctx.quadraticCurveTo(x - 76, y + 60, x - 20, y + 62);
-  ctx.lineTo(x + 40, y + 62); ctx.quadraticCurveTo(x + 84, y + 60, x + 84, y + 14); ctx.lineTo(x + 84, y + 2); ctx.lineTo(x - 72, y + 2); ctx.closePath(); ctx.fill(); ctx.stroke();
-  /* the fingers, curling up the far side, and the thumb up the near side */
-  for (let i = 0; i < 4; i++) { const fx = x + 84 - i * 3, fy = y + 4 - i * 2; ctx.beginPath(); ctx.moveTo(fx - 8, fy + 14); ctx.quadraticCurveTo(fx + 16, fy - 4, fx + 4, fy - 30 + i * 6); ctx.stroke(); }
-  ctx.beginPath(); ctx.moveTo(x - 66, y + 10); ctx.quadraticCurveTo(x - 82, y - 12, x - 56, y - 30); ctx.stroke();
-  ctx.restore();
-}
 /* a sack of dog food standing on (cx, base): a full bag with a gathered top and its name on the front */
 function sack(ctx, cx, base, color) {
   ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
@@ -76,16 +61,6 @@ function pulley(ctx, x, y) {
   ctx.beginPath(); ctx.arc(x, y, 22, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
   ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
 }
-/* a person standing with their feet at (x, y) */
-function walker(ctx, x, y, color) {
-  ctx.save(); ctx.translate(x, y);
-  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(0, -132, 15, 0, Math.PI * 2); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(0, -117); ctx.lineTo(0, -58);
-  ctx.moveTo(0, -58); ctx.lineTo(-18, 0); ctx.moveTo(0, -58); ctx.lineTo(18, 0);
-  ctx.moveTo(0, -106); ctx.lineTo(-52, -134); ctx.moveTo(0, -106); ctx.lineTo(52, -134);
-  ctx.stroke(); ctx.restore();
-}
 
 /* =====================================================================
    FIGURE 4.11: the normal force. A bag of dog food held in a hand, and
@@ -94,23 +69,32 @@ function walker(ctx, x, y, color) {
    answers its two sliders and nothing moves, so it registers no cycle.
 ===================================================================== */
 (function () {
-  const d = sim('sim-normal', 860);
+  const H = 860;
+  const d = sim('sim-normal', H);
   const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 1, max: 30, step: 0.5, value: 10, unit: 'kg', dec: 1, aria: 'mass of the bag' });
   const K = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 2000, max: 40000, step: 500, value: 5000, unit: 'N/m', dec: 0, aria: 'stiffness of the table' });
   const WMAX = 30 * G;
   function draw() {
     const { ctx } = begin(d.c);
     /* the sag is drawn at 14 units to the centimetre, capped so the deepest sag the sliders
-       allow, 14.7 cm, still leaves the top on its legs; the bracket carries the true number */
-    const w = M.v * G, L = 56 + 96 * (w / WMAX), sagCm = 100 * w / K.v, sag = Math.min(72, sagCm * 14), col = C('force');
-    const TOP = 400, AX = 360, BX = 1020;
-    text(ctx, '(a) held in the hand', AX, 92, PAL.muted, { size: 20, align: 'center' });
-    text(ctx, '(b) resting on the table', BX, 92, PAL.muted, { size: 20, align: 'center' });
-    /* (a) the hand holds the sack up: the palm under it, the forearm running off to the left */
-    palm(ctx, AX - 6, 396, PAL.ink);
+       allow, 14.7 cm, still leaves the top on its legs; the label carries the true number */
+    const w = M.v * G, L = 40 + 80 * (w / WMAX), sagCm = 100 * w / K.v, sag = Math.min(72, sagCm * 14), col = C('force');
+    const TOP = 400, AX = 300, BX = 1010, FBD = 740;
+    const rows = topline(ctx, 'The ' + fmt(M.v, 1) + ' kg bag weighs ' + num(w, 1) + ' N, and the table sags '
+      + fmt(sagCm, sagCm < 1 ? 2 : 1) + ' cm until it pushes back with ' + num(w, 1) + ' N');
+    const lab = labeller(ctx, H, { headline: rows });
+    /* the panel names, over each scene */
+    text(ctx, '(a) held in the hand', AX, 112, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, '(b) resting on the table', BX, 112, PAL.muted, { size: 20, align: 'center' });
+    lab.block(AX - 120, 96, AX + 120, 128); lab.block(BX - 130, 96, BX + 130, 128);
+    /* (a) the hand holds the sack up from below, palm up, the wrist off to the left */
+    F.hand(ctx, AX - 92, 404, { aim: [1, 0], view: 'palm', curl: 0.3, thumb: 'along', s: 1.45, color: PAL.muted });
     sack(ctx, AX, 398, F.ref('dog-food'));
-    fvec(ctx, AX + 110, 304, 0, -L, col, 'F_hand = ' + num(w, 1) + ' N');
-    fvec(ctx, AX + 110, 332, 0, L, col, 'w = ' + num(w, 1) + ' N');
+    lab.place({ l: AX - 104, t: 260, r: AX + 92, b: 440 });
+    fvec(ctx, AX + 120, 304, 0, -L, col, '');
+    fvec(ctx, AX + 120, 332, 0, L, col, '');
+    lab.add('F_hand = ' + num(w, 1) + ' N', AX + 120, 304 - L, 0.4, -0.92, col, 21, 18);
+    lab.add('w = ' + num(w, 1) + ' N', AX + 120, 332 + L, 0.4, 0.92, col, 21, 18);
     /* (b) the table, seen from the side: two legs and a top that sags under the sack until it
        pushes back with the weight; the dashed line is where the top lies unloaded */
     ctx.save(); ctx.strokeStyle = F.ref('table'); ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
@@ -118,30 +102,32 @@ function walker(ctx, x, y, color) {
     ctx.beginPath(); ctx.moveTo(BX - 226, TOP); ctx.quadraticCurveTo(BX, TOP + 2 * sag, BX + 226, TOP);
     ctx.lineTo(BX + 226, TOP + 18); ctx.quadraticCurveTo(BX, TOP + 18 + 2 * sag, BX - 226, TOP + 18); ctx.closePath(); ctx.fill(); ctx.stroke();
     ctx.restore();
-    line(ctx, BX - 226, TOP, BX + 226, TOP, PAL.muted, 2, [8, 8]);
-    text(ctx, 'the table', BX + 150, TOP + 186, F.ref('table'), { size: 18, align: 'center' });
+    line(ctx, BX - 300, TOP, BX + 226, TOP, PAL.muted, 2, [8, 8]);
     sack(ctx, BX, TOP + sag + 2, F.ref('dog-food'));
-    fvec(ctx, BX + 110, TOP + sag - 30, 0, -L, col, 'N = ' + num(w, 1) + ' N');
-    fvec(ctx, BX + 110, TOP + sag + 6, 0, L, col, 'w = ' + num(w, 1) + ' N');
+    lab.place({ l: BX - 230, t: TOP - 6, r: BX + 230, b: TOP + 24 + sag });
+    lab.place({ l: BX - 90, t: TOP + sag - 132, r: BX + 90, b: TOP + sag + 4 });
+    lab.place({ l: BX - 200, t: TOP + 14, r: BX - 170, b: TOP + 166 });
+    lab.place({ l: BX + 170, t: TOP + 14, r: BX + 200, b: TOP + 166 });
+    fvec(ctx, BX + 120, TOP + sag - 30, 0, -L, col, '');
+    fvec(ctx, BX + 120, TOP + sag + 6, 0, L, col, '');
+    lab.add('N = ' + num(w, 1) + ' N', BX + 120, TOP + sag - 30 - L, 0.4, -0.92, col, 21, 18);
+    lab.add('w = ' + num(w, 1) + ' N', BX + 120, TOP + sag + 6 + L, -0.4, 0.92, col, 21, 18);
+    lab.add('the table', BX - 185, TOP + 164, 0, 1, F.ref('table'), 19, 30);
     /* the sag, bracketed at the left end of the top between the unloaded level and the loaded one */
-    line(ctx, BX - 226, TOP, BX - 300, TOP, PAL.muted, 2, [8, 8]);
     if (sag > 5) {
       line(ctx, BX - 100, TOP + sag, BX - 300, TOP + sag, PAL.muted, 2, [8, 8]);
       vbracket(ctx, BX - 286, TOP, TOP + sag, PAL.ink);
     }
-    text(ctx, sag > 5 ? 'the top sags ' + fmt(sagCm, 1) + ' cm' : 'the top sags ' + fmt(sagCm, 2) + ' cm, too little to see', BX - 306, TOP + Math.max(sag / 2, 14), PAL.ink, { weight: 600, size: 20, align: 'right', bg: PAL.panel });
+    lab.add('sag ' + fmt(sagCm, sagCm < 1 ? 2 : 1) + ' cm', BX - 296, TOP + sag / 2, -1, 0, PAL.ink, 20, 14);
     /* the free-body diagrams */
-    text(ctx, 'Free-body diagrams', 700, 626, PAL.muted, { size: 20, align: 'center' });
     [[AX, 'F_hand'], [BX, 'N']].forEach(function (row) {
       const x = row[0];
-      dot(ctx, x, 740, F.ref('dog-food'), true, 9);
-      arrow(ctx, x, 732, x, 672, col, 5); text(ctx, row[1], x + 22, 700, col, { weight: 600 });
-      arrow(ctx, x, 748, x, 808, col, 5); text(ctx, 'w', x + 22, 780, col, { weight: 600 });
+      dot(ctx, x, FBD, F.ref('dog-food'), true, 9);
+      arrow(ctx, x, FBD - 8, x, FBD - 68, col, 5); text(ctx, row[1], x + 22, FBD - 40, col, { weight: 600 });
+      arrow(ctx, x, FBD + 8, x, FBD + 68, col, 5); text(ctx, 'w', x + 22, FBD + 40, col, { weight: 600 });
     });
-    headline(ctx, 'A bag of ' + fmt(M.v, 1) + ' kg weighs ' + num(w, 1) + ' N, and the table sags '
-      + fmt(sagCm, 1) + ' cm until it pushes back with that same ' + num(w, 1) + ' N');
-    readout(d.readout, `\\kN = \\kwgt = \\km\\kg = (${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(w, 1)}\\ \\text{N}`,
-      'The table sags until its restoring force is as large as the weight of the load, and then the net external force on the load is zero. A stiffer table sags less and still supports exactly the same ' + num(w, 1) + ' N.');
+    lab.flush();
+    tex(d.readout, `\\kN = \\kwgt = \\km\\kg = (${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(w, 1).replace(/,/g, '{,}')}\\ \\text{N}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -158,44 +144,40 @@ function walker(ctx, x, y, color) {
   const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 5, max: 40, step: 0.5, value: 25, unit: '°', dec: 1, onInput: reset, aria: 'angle of the slope' });
   const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the skier' });
   const FR = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 250, step: 1, value: 45, unit: 'N', dec: 1, onInput: reset, aria: 'friction' });
+  const ro = F.readout(d);
   const SLOPE = 40;                                   /* the length of the slope, in metres */
-  const H = 920;
+  const H = 920, PS = 1.05;                           /* PS: the skier's scale, about 135 units tall in her crouch */
   const cy = cycle(() => T(), 1.2);
   function reset() { cy.reset(); }
   const acc = () => (M.v * G * Math.sin(TH.v * RAD) - FR.v) / M.v;
-  const moving = () => acc() > 0.02;
+  const moving = () => acc() > 0;
   /* when the friction holds her the slide has no length at all, so the cycle has no time to run
      through and the transport's scrubber goes to zero rather than playing a loop in which
      nothing moves */
   const T = () => (moving() ? Math.sqrt((2 * SLOPE) / acc()) : 0);
-  /* a skier on skis at (x, y), the skis lying along the slope */
-  /* the skier crouched over her skis, drawn at half again the size of a sprite so that she reads
-     as a person: head, a filled torso leaning down the slope, one arm forward with its pole, bent
-     legs and the skis lying along the slope */
-  function skier(ctx, x, y, ang) {
-    ctx.save(); ctx.translate(x, y); ctx.rotate(ang); ctx.scale(1.5, 1.5);
-    const cs = F.ref('skier'); ctx.strokeStyle = cs; ctx.fillStyle = cs; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.beginPath(); ctx.arc(-22, -70, 11, 0, Math.PI * 2); ctx.fill();
-    ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(-14, -58); ctx.lineTo(6, -32); ctx.stroke();
-    ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(-8, -50); ctx.lineTo(-34, -40); ctx.lineTo(-40, -22); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(-40, -50); ctx.lineTo(-42, 4); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(6, -32); ctx.lineTo(-6, -14); ctx.lineTo(-8, 2); ctx.moveTo(6, -32); ctx.lineTo(10, -14); ctx.lineTo(8, 2); ctx.stroke();
-    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(-46, 4); ctx.lineTo(44, 4); ctx.moveTo(-40, 6); ctx.lineTo(50, 6); ctx.stroke();
-    ctx.restore();
+  /* the skier, crouched and facing down the slope, her feet on skis that lie along it: (x, y) is
+     the point of the slope under her boots, and each boot is set on the slope's own height there */
+  function skier(ctx, x, y, th) {
+    const t = Math.tan(th), c = F.ref('skier'), ux = -Math.cos(th), uy = Math.sin(th), nx = -uy, ny = ux, lift = 5;
+    const end = [x + ux * 62 + nx * lift, y + uy * 62 + ny * lift];
+    line(ctx, x - ux * 52 + nx * lift, y - uy * 52 + ny * lift, end[0], end[1], c, 4);
+    line(ctx, end[0], end[1], end[0] + ux * 10 + nx * 9, end[1] + uy * 10 + ny * 9, c, 4);
+    F.silhouette(ctx, { x, y: y - lift - 2, s: PS, face: -1, pose: 'crouch', color: c, feet: [{ x: 15, y: 15 * t }, { x: -15, y: -15 * t }] });
   }
   function draw() {
     const { ctx } = begin(d.c);
     const th = TH.v * RAD, a = acc(), tau = cy.now();
     const w = M.v * G, wpar = w * Math.sin(th), wperp = w * Math.cos(th), col = C('force');
+    /* the friction that acts: the set value while she slides, and only as much as holds her when it could give more */
+    const f = moving() ? FR.v : wpar;
     const dist = moving() ? Math.min(SLOPE, 0.5 * a * tau * tau) : 0, speed = moving() ? a * Math.min(tau, T()) : 0;
-    const lab = labeller(ctx, H);
     /* the headline first, so that no label is placed under it */
     const rows = topline(ctx, moving()
       ? 'After ' + fmt(Math.min(tau, T()), 2) + ' s she is ' + fmt(dist, 1) + ' m down the slope at ' + fmt(speed, 1)
-        + ' m/s, and she gains ' + fmt(a, 2) + ' m/s every second'
-      : 'Friction of ' + num(FR.v, 0) + ' N is as large as the ' + num(wpar, 0)
+        + ' m/s, gaining ' + fmt(a, 2) + ' m/s every second'
+      : 'Friction can reach ' + num(FR.v, 0) + ' N, more than the ' + num(wpar, 0)
         + ' N of weight along the slope, so she stays where she is');
-    lab.block(120, 12, 1280, rows === 2 ? 98 : 64);
+    const lab = labeller(ctx, H, { headline: rows });
     /* ---------- the slope, rising to the right as the book draws it ---------- */
     const BASE = 560, X0 = 300, run = Math.min(540, 300 / Math.tan(th)), drop = run * Math.tan(th);
     const HIX = X0 + run, HIY = BASE - drop;
@@ -215,15 +197,15 @@ function walker(ctx, x, y, color) {
     /* The hill is longer than the 40 m she covers, so her run is laid on the
        middle of it: her skis and the arrow she carries then stay on the slope
        at every angle instead of running off its lower corner. */
-    const LS = Math.hypot(run, drop), START = 0.03, SPAN = 0.69;
+    const LS = Math.hypot(run, drop), START = 0.1, SPAN = 0.66;
     const q0 = START * LS, q = (START + SPAN * (dist / SLOPE)) * LS;
     const sx = HIX + ux * q, sy = HIY + uy * q;
     line(ctx, HIX + ux * q0 + nx * 10, HIY + uy * q0 + ny * 10, sx + nx * 10, sy + ny * 10, alpha(PAL.ink, 0.38), 3, [11, 9]);
     dot(ctx, HIX + ux * q0 + nx * 12, HIY + uy * q0 + ny * 12, PAL.ink, false, 10);
-    skier(ctx, sx, sy, -th);
-    const bx = sx + nx * 70, by = sy + ny * 70;
+    skier(ctx, sx, sy, th);
+    lab.place({ l: sx - 90, t: sy - 145, r: sx + 55, b: sy });
     if (moving() && speed > 0.05) {
-      const LV = Math.min(120, 44 + 2.6 * speed);
+      const bx = sx + nx * 175, by = sy + ny * 175, LV = Math.min(120, 44 + 2.6 * speed);
       arrow(ctx, bx, by, bx + ux * LV, by + uy * LV, C('velocity'), 5);
       lab.add('v = ' + fmt(speed, 1) + ' m/s', bx + ux * LV, by + uy * LV, ux, uy, C('velocity'), 20);
     }
@@ -235,9 +217,10 @@ function walker(ctx, x, y, color) {
     text(ctx, 'the forces on the skier, drawn from one point', FX, 126, PAL.muted, { size: 20, align: 'center' });
     lab.block(FX - 250, 106, FX + 250, 146);
     line(ctx, FX - ux * 120 - nx * 18, FY - uy * 120 - ny * 18, FX + ux * 120 - nx * 18, FY + uy * 120 - ny * 18, alpha(PAL.ink, 0.5), 4);
+    for (let k = -120; k <= 120; k += 30) lab.place({ l: FX + ux * k - nx * 18 - 4, t: FY + uy * k - ny * 18 - 4, r: FX + ux * k - nx * 18 + 4, b: FY + uy * k - ny * 18 + 4 });
     const hw = [FX, FY + w * S], hpar = [FX + ux * wpar * S, FY + uy * wpar * S];
     const hperp = [FX - nx * wperp * S, FY - ny * wperp * S], hN = [FX + nx * wperp * S, FY + ny * wperp * S];
-    const fL = Math.min(200, FR.v * S), hf = [FX - ux * fL, FY - uy * fL];
+    const fL = Math.min(200, f * S), hf = [FX - ux * fL, FY - uy * fL];
     /* the parallelogram that resolves the weight: guide lines, under the arrows */
     line(ctx, hpar[0], hpar[1], hw[0], hw[1], alpha(col, 0.5), 2.5, [9, 7]);
     line(ctx, hperp[0], hperp[1], hw[0], hw[1], alpha(col, 0.5), 2.5, [9, 7]);
@@ -251,7 +234,7 @@ function walker(ctx, x, y, color) {
     lab.add('N = ' + num(wperp, 0) + ' N', hN[0], hN[1], 0.3, -0.95, col, 21, 26);
     lab.add('w∥ = ' + num(wpar, 0) + ' N', hpar[0], hpar[1], -1, 0.2, col, 21, 26);
     lab.add('w⊥ = ' + num(wperp, 0) + ' N', hperp[0], hperp[1], 1, 0.1, col, 21, 26);
-    if (fL > 3) lab.add('f = ' + num(FR.v, 0) + ' N', hf[0], hf[1], 0.9, -0.45, col, 21, 26);
+    if (fL > 3) lab.add('f = ' + num(f, 0) + ' N', hf[0], hf[1], 0.9, -0.45, col, 21, 26);
     /* ---------- the graph: the speed she has reached against the time ---------- */
     /* fixed axes: the 40 m of slope is covered at v = √(2 × 40 × a), and the steepest slope with no
        friction gives a = 9.80 sin 40° = 6.30 m/s², so she can never pass √(80 × 6.30) = 22.4 m/s and
@@ -274,10 +257,10 @@ function walker(ctx, x, y, color) {
       pinned(ctx, box, X, Y, tn, speed, C('velocity'), fmt(tn, 1) + ' s');
     } else text(ctx, 'she does not start to slide', X(TR / 2), Y(VR / 2), PAL.muted, { size: 20, align: 'center', bg: PAL.panel });
     lab.flush();
-    readout(d.readout, `\\kapar = \\frac{\\km\\kg\\sin\\ktheta - \\kff}{\\km} = \\frac{(${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ - ${fmt(FR.v, 1)}\\ \\text{N}}{${fmt(M.v, 1)}\\ \\text{kg}} = ${fmt(Math.max(0, a), 2)}\\ \\text{m/s}^2`,
-      'With friction neglected the acceleration would be g sin θ = ' + fmt(G * Math.sin(th), 2)
-      + ' m/s², and that value is the same for a skier of any mass. The normal force N = mg cos θ = ' + num(wperp, 0)
-      + ' N balances the perpendicular component of the weight, so there is no motion across the slope.');
+    const kg = (v) => `(${fmt(v, 1)}\\ \\text{kg})`, gs = `(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ`;
+    const note = 'With friction neglected, $\\kapar = \\kg\\sin\\ktheta = ' + fmt(G * Math.sin(th), 2) + '\\ \\text{m/s}^2$ for a skier of any mass.';
+    if (moving()) ro.set(`\\kapar = \\frac{\\km\\kg\\sin\\ktheta - \\kff}{\\km} = \\frac{${kg(M.v)}${gs} - ${fmt(FR.v, 1)}\\ \\text{N}}{${kg(M.v)}} = ${fmt(a, 2)}\\ \\text{m/s}^2`, note, { form: 'slide' });
+    else ro.set(`\\kff = \\km\\kg\\sin\\ktheta = ${kg(M.v)}${gs} = ${fmt(wpar, 1)}\\ \\text{N},\\quad \\kapar = 0`, note, { form: 'hold' });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
 })();
@@ -441,35 +424,53 @@ function walker(ctx, x, y, color) {
    is a still picture with a graph of the tension against the sag.
 ===================================================================== */
 (function () {
-  const d = sim('sim-tightrope', 820);
+  const H = 820;
+  const d = sim('sim-tightrope', H);
   const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0.5, max: 30, step: 0.5, value: 5, unit: '°', dec: 1, aria: 'angle the wire sags by' });
   const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 1, value: 70, unit: 'kg', dec: 1, aria: 'mass of the walker' });
   const tension = (thDeg, w) => w / (2 * Math.sin(thDeg * RAD));
+  const tx = (s) => s.replace(/,/g, '{,}');
   function draw() {
     const { ctx } = begin(d.c);
-    const th = TH.v * RAD, w = M.v * G, T = tension(TH.v, w), col = C('force');
+    const th = TH.v * RAD, w = M.v * G, T = tension(TH.v, w), col = C('force'), c = Math.cos(th), s = Math.sin(th);
+    const rows = topline(ctx, 'A ' + fmt(M.v, 1) + ' kg walker sags the wire by ' + deg(TH.v, 1) + ', and each half pulls with '
+      + num(T, 0) + ' N, ' + fmt(T / w, 1) + ' times his weight');
+    const lab = labeller(ctx, H, { headline: rows });
     /* the scene: two posts, the wire sagging to the walker at its middle */
-    const CX = 700, TOPY = 210, half = Math.min(500, 120 / Math.tan(th)), sagY = TOPY + half * Math.tan(th);
-    fixed(ctx, CX - half - 40, TOPY - 130, 36, 280); fixed(ctx, CX + half + 4, TOPY - 130, 36, 280);
-    line(ctx, CX - half, TOPY, CX, sagY, F.ref('wire'), 4); line(ctx, CX, sagY, CX + half, TOPY, F.ref('wire'), 4);
+    const CX = 700, TOPY = 240, half = Math.min(500, 120 / Math.tan(th)), sagY = TOPY + half * Math.tan(th);
+    fixed(ctx, CX - half - 40, TOPY - 110, 36, 260); fixed(ctx, CX + half + 4, TOPY - 110, 36, 260);
+    lab.place({ l: CX - half - 40, t: TOPY - 110, r: CX - half - 4, b: TOPY + 150 });
+    lab.place({ l: CX + half + 4, t: TOPY - 110, r: CX + half + 40, b: TOPY + 150 });
     line(ctx, CX - half, TOPY, CX + half, TOPY, PAL.rule, 2, [10, 10]);
-    walker(ctx, CX, sagY, F.ref('walker'));
+    line(ctx, CX - half, TOPY, CX, sagY, F.ref('wire'), 4); line(ctx, CX, sagY, CX + half, TOPY, F.ref('wire'), 4);
+    /* the walker faces the reader, arms out for balance, both feet on the low point of the wire */
+    F.silhouette(ctx, { x: CX, y: sagY - 2, s: 0.95, pose: 'stand', color: F.ref('walker'),
+      hip: { x: 0, y: -74 }, head: { x: 2, y: -140 }, shoulder: { x: 2, y: -118 }, feet: [{ x: 6, y: -6 * Math.tan(th) }, { x: -6, y: -6 * Math.tan(th) }],
+      hands: [{ x: 60, y: -122 }, { x: -56, y: -122 }] });
+    lab.place({ l: CX - 30, t: sagY - 150, r: CX + 30, b: sagY });
     const LT = Math.min(280, 80 + 200 * Math.min(1, T / 8000));
-    tvec(ctx, CX, sagY, -Math.cos(th), -Math.sin(th), LT, col, 'T_L = ' + num(T, 0) + ' N', -1, 20);
-    tvec(ctx, CX, sagY, Math.cos(th), -Math.sin(th), LT, col, 'T_R = ' + num(T, 0) + ' N', 1, 20);
-    fvec(ctx, CX, sagY, 0, 120, col, 'w = ' + num(w, 0) + ' N', 20);
+    const hL = [CX - LT * c, sagY - LT * s], hR = [CX + LT * c, sagY - LT * s];
+    arrow(ctx, CX, sagY, hL[0], hL[1], col, 5); arrow(ctx, CX, sagY, hR[0], hR[1], col, 5);
+    arrow(ctx, CX, sagY, CX, sagY + 120, col, 5);
+    /* each tension is named on the outside of its half, below the wire */
+    lab.beside({ x1: CX, y1: sagY, x2: hL[0], y2: hL[1] }, 'left', 'T_L = ' + num(T, 0) + ' N', col, 20, { offset: 1, gap: 30 });
+    lab.beside({ x1: CX, y1: sagY, x2: hR[0], y2: hR[1] }, 'right', 'T_R = ' + num(T, 0) + ' N', col, 20, { offset: 1, gap: 30 });
+    lab.add('w = ' + num(w, 0) + ' N', CX, sagY + 120, 0, 1, col, 20, 18);
     angleArc(ctx, CX - half, TOPY, 74, 0, TH.v, deg(TH.v, 1), 19);
-    /* the components, as the book's second drawing has them */
-    text(ctx, 'the same forces on horizontal and vertical axes', 380, 470, PAL.muted, { size: 20, align: 'center' });
+    /* the components, as the book's second drawing has them, drawn to one scale: each tension 150
+       units long, so each vertical component is 150 sin θ and the weight between them twice that */
     const OX = 380, OY = 620, U = 150;
+    line(ctx, OX - U - 30, OY, OX + U + 30, OY, alpha(PAL.ink, 0.35), 2, [10, 10]);
+    line(ctx, OX - U * c, OY - U * s, OX - U * c, OY, alpha(col, 0.6), 2.5, [6, 8]);
+    line(ctx, OX + U * c, OY - U * s, OX + U * c, OY, alpha(col, 0.6), 2.5, [6, 8]);
+    arrow(ctx, OX, OY, OX - U * c, OY - U * s, col, 5);
+    arrow(ctx, OX, OY, OX + U * c, OY - U * s, col, 5);
+    if (2 * U * s > 4) arrow(ctx, OX, OY, OX, OY + 2 * U * s, col, 5);
     dot(ctx, OX, OY, F.ref('walker'), true, 9);
-    tvec(ctx, OX, OY, -Math.cos(th), -Math.sin(th), U, col, 'T_L', -1, 20);
-    tvec(ctx, OX, OY, Math.cos(th), -Math.sin(th), U, col, 'T_R', 1, 20);
-    fvec(ctx, OX, OY, 0, 120, col, 'w', 20);
-    line(ctx, OX - U * Math.cos(th), OY - U * Math.sin(th), OX - U * Math.cos(th), OY, PAL.rule, 2, [6, 8]);
-    line(ctx, OX + U * Math.cos(th), OY - U * Math.sin(th), OX + U * Math.cos(th), OY, PAL.rule, 2, [6, 8]);
-    arrow(ctx, OX, OY - 8, OX, OY - 8 - Math.max(6, U * Math.sin(th) * 2), alpha(C('force'), 0.5), 4);
-    text(ctx, 'the two horizontal components cancel, and the two vertical ones add to the weight', OX, OY + 184, PAL.muted, { size: 19, align: 'center' });
+    lab.place({ l: OX - 12, t: OY - 12, r: OX + 12, b: OY + 12 });
+    lab.add('T_L', OX - U * c, OY - U * s, -0.8, -0.6, col, 20, 18);
+    lab.add('T_R', OX + U * c, OY - U * s, 0.8, -0.6, col, 20, 18);
+    lab.add('w', OX, OY + 2 * U * s, 0, 1, col, 20, 18);
     /* the graph: how the tension runs away as the wire is pulled straight */
     /* fixed axes: the sag slider covers 0.5° to 30°, so the angle runs 0 to 30°. The tension runs
        away without limit as the wire is pulled straight — at half a degree it is already 57 times the
@@ -488,11 +489,8 @@ function walker(ctx, x, y, color) {
       if (T <= TR) line(ctx, X(TH.v), box.b, X(TH.v), Y(T), PAL.ink, 2, [4, 8]);
     });
     pinned(ctx, box, X, Y, TH.v, T, col, num(T, 0) + ' N');
-    headline(ctx, 'A ' + fmt(M.v, 1) + ' kg walker sags the wire by ' + deg(TH.v, 1) + ', and each half pulls with '
-      + num(T, 0) + ' N, ' + fmt(T / w, 1) + ' times his ' + num(w, 0) + ' N weight');
-    readout(d.readout, `\\kTf = \\frac{\\kwgt}{2\\sin\\ktheta} = \\frac{${num(w, 0)}\\ \\text{N}}{2\\sin ${fmt(TH.v, 1)}^\\circ} = ${num(T, 0)}\\ \\text{N}`,
-      'The horizontal components of the two tensions are equal and opposite and cancel, so only the vertical components hold him up, and together they come to 2T sin θ = '
-      + num(w, 0) + ' N. The straighter the wire, the smaller the share of the tension that points upward, and the larger the tension has to be.');
+    lab.flush();
+    tex(d.readout, `\\kTf = \\frac{\\kwgt}{2\\sin\\ktheta} = \\frac{${tx(num(w, 0))}\\ \\text{N}}{2\\sin ${fmt(TH.v, 1)}^\\circ} = ${tx(num(T, 0))}\\ \\text{N}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
