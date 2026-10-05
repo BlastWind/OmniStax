@@ -6,7 +6,9 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, fixed, silhouette, label, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+/* a readout note set once per change of its words, its $…$ typeset under the macros */
+function say(note, s) { if (note.dataset.said === s) return; note.dataset.said = s; note.textContent = s; F.renderMath(note); }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, RAD = Math.PI / 180, TAU = 2 * Math.PI;
@@ -113,35 +115,47 @@ function fulcrum(ctx, x, y, h, color) {
     ctx.fillRect(HX, HY - 12, LEN * S, 24); ctx.strokeRect(HX, HY - 12, LEN * S, 24); ctx.restore();
     for (let k = 0; k <= 9; k++) { const x = HX + (k / 10) * S; line(ctx, x, HY + 12, x, HY + 26, PAL.muted, 2); if (k % 2 === 0) text(ctx, fmt(k / 10, 1) + ' m', x, HY + 50, PAL.muted, { size: 17, align: 'center' }); }
     text(ctx, 'the door, seen from overhead', HX + LEN * S, HY + 82, PAL.muted, { size: 19, align: 'right' });
+    /* the names step round the door, its ticks, the wall, the bracket and one another at every setting */
+    const lab = labeller(ctx, 600, { headline: 1 });
+    lab.block(HX, HY - 12, HX + LEN * S, HY + 12);
+    lab.block(HX - 30, HY + 36, HX + LEN * S + 30, HY + 94);
+    lab.block(70, HY - 30, 250, HY + 60);
+    lab.block(HX, HY + 96, Math.max(px, HX + 140), HY + 140);
+    if (Math.abs(tau) > 0.005) lab.block(HX - 70, HY + 20, HX + 70, HY + 100);
     /* the line along which the force acts, and the perpendicular lever arm back to the hinges */
     if (Fv > 0) {
-      line(ctx, px - 520 * ux, py - 520 * uy, px + 520 * ux, py + 520 * uy, PAL.rule, 2, [10, 10]);
+      line(ctx, px - 520 * ux, py - 520 * uy, px + 520 * ux, py + 520 * uy, alpha(PAL.ink, 0.35), 2.5, [10, 10]);
+      arrow(ctx, px, py, px + Fv * KF * ux, py + Fv * KF * uy, fc, 5);
+      /* a force along the door has its name lifted off the door, to the side it is applied from */
+      const ly = Math.abs(uy) < 0.5 ? uy - 0.9 * sgn : uy, ll = Math.hypot(ux, ly);
+      lab.add('F = ' + fmt(Fv, 0) + ' N', px + Fv * KF * ux, py + Fv * KF * uy, ux / ll, ly / ll, fc, 21, 18);
+      if (th > 12 && th < 168) {
+        betweenArc(ctx, px, py, Math.PI, sgn * th, 66, ac);
+        const m = Math.PI + sgn * th * RAD / 2;
+        lab.add('θ = ' + fmt(th, 0) + '°', px + 66 * Math.cos(m), py + 66 * Math.sin(m), Math.cos(m), Math.sin(m), ac, 20, 22);
+      } else lab.add('θ = ' + fmt(th, 0) + '°', px, py, 0, -sgn, ac, 20, 40);
       if (rp > 0.012) {
         line(ctx, HX, HY, fp.x, fp.y, pc, 3, [6, 8]);
-        const mx = (HX + fp.x) / 2, my = (HY + fp.y) / 2, flat = Math.abs(fp.y - HY) < 30;
-        label(ctx, 'r⊥ = ' + fmt(rp, 3) + ' m', flat ? Math.max(mx, 420) : mx, flat ? HY - 14 : my, { side: flat || fp.y < HY - 30 ? 'above' : 'below', color: pc, gap: flat ? 22 : 30, size: 20 });
+        lab.beside({ x1: HX, y1: HY, x2: fp.x, y2: fp.y }, fp.y < HY - 1 ? 'right' : 'left', 'r⊥ = ' + fmt(rp, 3) + ' m', pc, 20);
       }
-      arrow(ctx, px, py, px + Fv * KF * ux, py + Fv * KF * uy, fc, 5);
-      label(ctx, 'F = ' + fmt(Fv, 0) + ' N', px + Fv * KF * ux, py + Fv * KF * uy, { side: Math.abs(uy) > 0.7 ? (uy < 0 ? 'above' : 'below') : ux < 0 ? 'left' : 'right', color: fc, gap: 18, size: 21 });
-      if (th > 12 && th < 168) betweenArc(ctx, px, py, Math.PI, sgn * th, 66, ac, 'θ = ' + fmt(th, 0) + '°');
-      else label(ctx, 'θ = ' + fmt(th, 0) + '°', px, py - sgn * 70, { side: sgn > 0 ? 'above' : 'below', color: ac, gap: 10, size: 20 });
     }
     /* the distance from the hinges to the point of application */
     hbracket(ctx, HX, px, HY + 130, pc, 'r = ' + fmt(r, 3) + ' m');
     dot(ctx, px, py, PAL.ink, true, 9);
     dot(ctx, HX, HY, ch, false, 11);
-    text(ctx, 'the hinges', HX, HY - 46, ch, { size: 19, align: 'center', bg: PAL.panel });
+    lab.add('the hinges', HX, HY, -0.3, -1, ch, 19, 34);
     /* which way the door turns */
-    if (Math.abs(tau) > 0.005) { turnArc(ctx, HX, HY, 92, tau > 0, tc, Math.PI / 2); text(ctx, 'τ', HX, HY + 124, tc, { size: 24, weight: 600, align: 'center' }); }
+    if (Math.abs(tau) > 0.005) { turnArc(ctx, HX, HY, 92, tau > 0, tc, Math.PI / 2); lab.add('τ', HX - 65, HY + 65, -0.7, 0.7, tc, 24, 16); }
+    lab.flush();
     const tv = sgn * r * Fv * sind(th);
     const act = sgn > 0 ? 'push' : 'pull';
     headline(ctx, Fv === 0 ? 'With no force on the door there is no torque about the hinges at all.'
       : Math.abs(tv) < 0.005 ? 'The force runs straight along the line to the hinges, so its lever arm is nothing and it makes no torque.'
-      : 'A ' + act + ' of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at θ = ' + fmt(th, 0) + '°, makes ' + fmt(Math.abs(tv), 1) + ' N·m ' + (tv > 0 ? 'counterclockwise' : 'clockwise') + '.');
+      : 'A ' + act + ' of ' + fmt(Fv, 0) + ' N at ' + fmt(r, 3) + ' m from the hinges, at $\\ktheta = ' + fmt(th, 0) + '^\\circ$, makes ' + fmt(Math.abs(tv), 1) + ' N·m ' + (tv > 0 ? 'counterclockwise' : 'clockwise') + '.');
     const mi = sgn > 0 ? '' : '\\mk{s}{-}', mj = sgn > 0 ? '' : '\\mk{s2}{-}';
     F.morph(formula, `\\mk{t}{\\ktau} = ${mi}\\mk{r}{\\krlev}\\mk{f}{\\kF}\\mk{a}{\\sin\\ktheta} = ${mj}(\\mk{rn}{${fmt(r, 3)}}\\ \\text{m})(\\mk{fn}{${fmt(Fv, 0)}}\\ \\text{N})\\sin \\mk{an}{${fmt(th, 0)}}^\\circ = \\mk{tn}{${num(tv, 1)}}\\ \\text{N}\\cdot\\text{m}`);
-    note.textContent = Math.abs(tv) < 0.005 ? 'The perpendicular lever arm is the shortest distance from the hinges to the line along which the force acts, and here that line runs through the hinges themselves, so the lever arm is zero and the door will not turn however hard you push.'
-        : 'The perpendicular lever arm is r⊥ = r sin θ = ' + fmt(rp, 3) + ' m, and τ = r⊥F gives the same ' + fmt(Math.abs(tv), 1) + ' N·m. A pull is the same force applied the other way about, so it makes a torque of the same size in the opposite sense, and the counterclockwise-positive convention writes that one with a minus sign.';
+    say(note, Math.abs(tv) < 0.005 || Fv === 0 ? ''
+        : `The perpendicular lever arm is $\\krperp = \\krlev\\sin\\ktheta = ${fmt(rp, 3)}\\ \\text{m}$, and $\\ktau = \\krperp\\kF$ gives the same ${fmt(Math.abs(tv), 1)} N·m.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -250,7 +264,7 @@ function fulcrum(ctx, x, y, h, color) {
     /* the two children, their weights, and the torque each weight makes about the pivot */
     for (const [u, w, t, nm, face] of [[-r1.v, w1, t1, '1', 1], [r2.v, w2, t2, '2', -1]]) {
       const s = on(u), tip = s.y + 16 + w * KW;
-      child(ctx, s.x, s.y - 8, F.ref('child-' + nm), 0.86, face);
+      child(ctx, s.x, s.y - 8, F.ref('child-' + nm), 1.3, face);
       arrow(ctx, s.x, s.y + 16, s.x, tip, fc, 5);
       label(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', s.x, tip, { side: 'below', color: fc, gap: 22, size: 20 });
       const side = s.x > 1110 ? -1 : s.x < 300 ? 1 : -face;
@@ -268,7 +282,7 @@ function fulcrum(ctx, x, y, h, color) {
       ? 'Both torques come to ' + fmt(t1, 0) + ' N·m, one counterclockwise and one clockwise, so the seesaw balances.'
       : 'The torques are ' + fmt(t1, 0) + ' and ' + fmt(-t2, 0) + ' N·m, so a net ' + fmt(Math.abs(net), 0) + ' N·m takes the ' + (net > 0 ? 'first' : 'second') + ' child down.');
     readout(d.readout, `\\text{net}\\;\\ktau = \\ktauone + \\ktautwo = \\krone\\kwone - \\krtwo\\kwtwo = ${fmt(t1, 1)} - ${fmt(Math.abs(t2), 1)} = ${num(net, 1)}\\ \\text{N}\\cdot\\text{m}`,
-      'For these two masses the seesaw balances when r₂ = r₁m₁/m₂ = ' + fmt(bal, 2) + ' m, so the heavier child sits closer to the pivot. The first condition then gives the supporting force, Fp = w₁ + w₂ = ' + fmt(Fp, 0) + ' N, and the pivot makes no torque of its own because its lever arm is zero.');
+      `It balances at $\\krtwo = \\krone\\kmone/\\kmtwo = ${fmt(bal, 2)}\\ \\text{m}$, and the pivot holds up $\\kFp = \\kwone + \\kwtwo = ${fmt(Fp, 0)}\\ \\text{N}$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -297,7 +311,7 @@ function fulcrum(ctx, x, y, h, color) {
     line(ctx, X(-HALF), FY, X(HALF), FY, F.ref('seesaw'), 16);
     /* the three forces on a seesaw that balances by construction */
     for (const [u, w, nm, face] of [[-rs.v, w1, '1', 1], [rr2, w2, '2', -1]]) {
-      child(ctx, X(u), FY - 8, F.ref('child-' + nm), 0.78, face);
+      child(ctx, X(u), FY - 8, F.ref('child-' + nm), 1.3, face);
       arrow(ctx, X(u), FY + 14, X(u), FY + 14 + w * KW, fc, 5);
       const side = X(u) > 1110 ? -1 : X(u) < 300 ? 1 : -face;
       label(ctx, 'w_' + nm + ' = ' + fmt(w, 0) + ' N', X(u), FY + 14 + w * KW, { side: side > 0 ? 'right' : 'left', color: fc, gap: 16, size: 20 });
@@ -307,10 +321,8 @@ function fulcrum(ctx, x, y, h, color) {
     /* the point the torques are taken about */
     line(ctx, X(p), FY + 8, X(p), 560, pc, 3, [10, 10]);
     dot(ctx, X(p), FY, pc, true, 11);
-    text(ctx, p === 0 ? 'The torques are taken about the fulcrum.' : 'The torques are taken ' + fmt(Math.abs(p), 2) + ' m to the ' + (p > 0 ? 'right' : 'left') + ' of the fulcrum.',
-      X(p), 96, pc, { size: 20, weight: 600, align: X(p) > 1060 ? 'right' : X(p) < 340 ? 'left' : 'center', bg: alpha(PAL.panel, 0.85) });
     /* the lever arm each force has about that point */
-    const arms = [[X(-rs.v), 470, Math.abs(rs.v + p)], [X(rr2), 506, Math.abs(rr2 - p)], [FX, 542, Math.abs(p)]];
+    const arms = [[X(-rs.v), 458, Math.abs(rs.v + p)], [X(rr2), 502, Math.abs(rr2 - p)], [FX, 546, Math.abs(p)]];
     for (const [x, y, v] of arms) if (Math.abs(x - X(p)) > 6) hbracket(ctx, Math.min(x, X(p)), Math.max(x, X(p)), y, pc, fmt(v, 2) + ' m');
     /* the three torques and their sum, as signed bars from a zero line */
     const y0 = 596, bars = [['τ_1', t1], ['τ_2', t2], ['τ_p', tp], ['net τ', net]];
@@ -326,7 +338,7 @@ function fulcrum(ctx, x, y, h, color) {
       ? 'About the fulcrum the supporting force has no lever arm, and the two weights make ' + num(t1, 0) + ' and ' + num(t2, 0) + ' N·m.'
       : 'About a point ' + fmt(Math.abs(p), 2) + ' m to the ' + (p > 0 ? 'right' : 'left') + ' of the fulcrum the three torques are ' + num(t1, 0) + ', ' + num(t2, 0) + ' and ' + num(tp, 0) + ' N·m.');
     readout(d.readout, `\\text{net}\\;\\ktau = \\ktauone + \\ktautwo + \\tau_{\\text{p}} = ${num(t1, 1)} ${t2 < 0 ? '-' : '+'} ${fmt(Math.abs(eps(t2, 1)), 1)} ${tp < 0 ? '-' : '+'} ${fmt(Math.abs(eps(tp, 1)), 1)} = ${num(net, 1)}\\ \\text{N}\\cdot\\text{m}`,
-      'Move the point anywhere along the plank, or past its ends, and the sum comes back to zero every time. That is why the pivot may be chosen to make the work easy, and why the supporting force can be found from torques alone once the point is taken somewhere other than the fulcrum itself.');
+null);
   }
   register(d.fig, { update: () => {}, draw });
 })();

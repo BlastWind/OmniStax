@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, pinned, silhouette, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 const G = 9.80;                        /* the acceleration due to gravity, as the chapter takes it */
 const RAD = Math.PI / 180;
 
@@ -64,7 +64,7 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
     line(ctx, PX, PY, hand, PY, cfa, 12);                                                       /* the forearm */
     ctx.save(); ctx.fillStyle = cfa; ctx.beginPath(); ctx.roundRect(hand - 14, PY - 12, 44, 34, 10); ctx.fill(); ctx.restore();   /* the hand */
     dot(ctx, PX, PY, F.ref('elbow'), true, 11);
-    book(ctx, x3, PY + 22, 100, 46, F.ref('book'));
+    if (MB.v > 0) book(ctx, x3, PY + 22, 100, 46, F.ref('book'));
 
     /* the four forces on the forearm */
     const lB = Math.min(K * FB, 240);
@@ -113,9 +113,7 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
       + ' N, which is ' + fmt(FB / (wa + wb), 2) + ' times the weight it supports.');
     readout(d.readout,
       `\\kFB = \\frac{\\krtwo\\kwarm + \\krthree\\kwbook}{\\krone} = \\frac{(${fmt(R2, 3)}\\ \\text{m})(${fmt(wa, 1)}\\ \\text{N}) + (${fmt(r3, 3)}\\ \\text{m})(${fmt(wb, 1)}\\ \\text{N})}{${fmt(r1, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
-      'The humerus pushes down on the forearm at the elbow with ' + fmt(FE, 0)
-      + ' N, so the muscle and the joint act in opposite directions and leave just the ' + fmt(wa + wb, 1)
-      + ' N that is actually being supported.');
+      `The elbow takes up the difference, $\\kFE = \\kFB - \\kwarm - \\kwbook = ${fmt(FE, 0)}\\ \\text{N}$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -170,9 +168,10 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
     arrow(ctx, cg[0], cg[1], cg[0], cg[1] + lw, C('force'), 5);
     text(ctx, 'w_ub = ' + fmt(wub, 0) + ' N', cg[0] + 14, cg[1] + lw + 18, C('force'), { size: 20, weight: 600, align: 'left' });
     if (TH.v > 0) {
-      line(ctx, hip[0], hip[1], hip[0], 546, PAL.rule, 2, [6, 8]);
-      line(ctx, cg[0], cg[1] + lw, cg[0], 546, PAL.rule, 2, [6, 8]);
-      hbracket(ctx, hip[0], cg[0], 546, C('position'), 'r⊥ = ' + fmt(rperp, 3) + ' m');
+      /* the lever arm is measured below the ground, clear of the legs */
+      line(ctx, hip[0], hip[1], hip[0], GY + 96, alpha(PAL.ink, 0.35), 2, [6, 8]);
+      line(ctx, cg[0], cg[1] + lw, cg[0], GY + 96, alpha(PAL.ink, 0.35), 2, [6, 8]);
+      hbracket(ctx, hip[0], cg[0], GY + 96, C('position'), 'r⊥ = ' + fmt(rperp, 3) + ' m');
     }
 
     /* the back muscles: a cable parallel to the spine, offset behind it by its lever arm */
@@ -180,18 +179,18 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
     const b = [a[0] + 132 * u[0], a[1] + 132 * u[1]];
     line(ctx, a[0], a[1], b[0], b[1], F.ref('back-muscles'), 9);
     line(ctx, hip[0], hip[1], a[0], a[1], C('position'), 3);
-    text(ctx, 'r_b⊥ = ' + fmt(RB.v, 1) + ' cm', a[0] - 14, a[1] - 20, C('position'), { size: 17, weight: 600, align: 'right' });
+    /* the muscle's names sit behind the back, away from the body */
+    text(ctx, 'r_b⊥ = ' + fmt(RB.v, 1) + ' cm', a[0] + 26 * n[0] - 8, a[1] + 26 * n[1] - 8, C('position'), { size: 17, weight: 600, align: 'right', bg: PAL.panel });
     if (FB > 0) {
       const lf = Math.max(Math.min(170 * FB / 2600, 170), 28);
       arrow(ctx, b[0], b[1], b[0] - lf * u[0], b[1] - lf * u[1], C('force'), 5);
       /* the label goes to the right of the arrowhead, which keeps it on the canvas at the
          deepest lean, where the muscle is drawn furthest to the left */
-      text(ctx, 'F_B = ' + fmt(FB, 0) + ' N', b[0] - lf * u[0] + 14, b[1] - lf * u[1] - 20, C('force'), { size: 20, weight: 600, align: 'left' });
+      label(ctx, 'F_B = ' + fmt(FB, 0) + ' N', b[0] - lf * u[0], b[1] - lf * u[1], { side: 'left', color: C('force'), gap: 16, size: 20 });
       turn(ctx, hip[0], hip[1], 62, 300 * RAD, 240 * RAD, C('torque'));
       turn(ctx, hip[0], hip[1], 92, 240 * RAD, 300 * RAD, C('torque'));
     }
-    text(ctx, FB > 0 ? 'τ = ' + fmt(wub * rperp, 1) + ' N·m each way' : 'There is no torque about the hips at all.',
-      660, 556, C('torque'), { size: 18, weight: 600, align: 'right' });
+    if (FB > 0) text(ctx, 'τ = ' + fmt(wub * rperp, 1) + ' N·m each way', 660, 556, C('torque'), { size: 18, weight: 600, align: 'right' });
 
     /* the force the back muscles must exert, against the lean */
     const box = { l: 820, r: 1330, t: 190, b: 520 };
@@ -212,8 +211,7 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
       : 'Leaning ' + fmt(TH.v, 0) + '° puts the center of gravity ' + fmt(rperp, 3) + ' m in front of the hips, so the muscles must pull ' + fmt(FB, 0) + ' N.');
     readout(d.readout,
       `\\kFB = \\frac{\\kwub\\,\\krperp}{\\krbperp} = \\frac{(${fmt(wub, 0)}\\ \\text{N})(${fmt(rperp, 3)}\\ \\text{m})}{${fmt(rb, 4)}\\ \\text{m}} = ${fmt(FB, 0)}\\ \\text{N}`,
-      TH.v === 0
-        ? 'With no torque to counter, the only force needed at the hips is a vertical one equal to the weight supported, and the bones carry it up from the floor.'
+      TH.v === 0 ? null
         : 'The weight hangs ' + fmt(rperp / rb, 1) + ' times farther from the hips than the muscles pull, so the muscles must pull ' + fmt(rperp / rb, 1) + ' times as hard as the weight they hold.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -254,8 +252,9 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
     /* the whole body bent over the box, the arms down to its top, in the silhouette's own frame */
     const ps = 2.4, J = (q) => ({ x: (q[0] - HX) / ps, y: (q[1] - GY) / ps });
     const sh = [HX + 288 * u[0], HY + 288 * u[1]], head = [HX + 354 * u[0], HY + 354 * u[1]];
-    silhouette(ctx, { x: HX, y: GY, s: ps, color: F.ref('lifter'), pose: 'stand', feet: [J([HX + 18, GY]), J([HX - 16, GY])], hip: J([HX, HY]), shoulder: J(sh), head: J(head), hands: [J([xbox - 30, 412]), J([xbox + 30, 412])], kneeSide: 1, elbowSide: 1 });
-    crate(ctx, xbox, 410, 92, 62, F.ref('box'));
+    const BT = 410;
+    silhouette(ctx, { x: HX, y: GY, s: ps, color: F.ref('lifter'), pose: 'stand', feet: [J([HX + 18, GY]), J([HX - 16, GY])], hip: J([HX, HY]), shoulder: J(sh), head: J(head), hands: [J([xbox - 30, BT + 2]), J([xbox + 30, BT + 2])], kneeSide: 1, elbowSide: 1 });
+    crate(ctx, xbox, BT, 92, 62, F.ref('box'));
     dot(ctx, HX, HY, PAL.ink, true, 11);
 
     /* the two weights, with a drop line each to the lever arms below the ground */
@@ -265,8 +264,8 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
     text(ctx, 'w_ub = ' + fmt(wub, 0) + ' N', xub + 14, onSpine(xub) + lu + 18, C('force'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
     if (wbox > 0) {
       const lx = Math.max(K * wbox, 30);
-      arrow(ctx, xbox, 472, xbox, 472 + lx, C('force'), 5);
-      text(ctx, 'w_box = ' + fmt(wbox, 0) + ' N', xbox + 14, 472 + lx + 18, C('force'), { size: 19, weight: 600, align: 'left' });
+      arrow(ctx, xbox, BT + 62, xbox, BT + 62 + lx, C('force'), 5);
+      text(ctx, 'w_box = ' + fmt(wbox, 0) + ' N', xbox + 14, BT + 62 + lx + 18, C('force'), { size: 19, weight: 600, align: 'left' });
     }
     line(ctx, HX, GY + 12, HX, 676, PAL.rule, 2, [6, 8]);
     line(ctx, xub, GY + 12, xub, 628, PAL.rule, 2, [6, 8]);
@@ -279,16 +278,16 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
     const b = [a[0] + 210 * u[0], a[1] + 210 * u[1]];
     line(ctx, a[0], a[1], b[0], b[1], F.ref('back-muscles'), 9);
     line(ctx, HX, HY, a[0], a[1], C('position'), 3);
-    text(ctx, '0.0800 m', a[0] - 12, a[1] - 18, C('position'), { size: 17, weight: 600, align: 'right' });
+    text(ctx, '0.0800 m', a[0] - 12, a[1] - 40, C('position'), { size: 17, weight: 600, align: 'right', bg: PAL.panel });
     const lf = Math.max(K * FB, 30);
     arrow(ctx, b[0], b[1], b[0] - lf * u[0], b[1] - lf * u[1], C('force'), 5);
-    text(ctx, 'F_B = ' + fmt(FB, 0) + ' N', b[0] - lf * u[0] + 8, b[1] - lf * u[1] - 26, C('force'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
+    text(ctx, 'F_B = ' + fmt(FB, 0) + ' N', b[0] - lf * u[0] + 34 * n[0], b[1] - lf * u[1] + 34 * n[1], C('force'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });   /* behind the back, off the body */
     /* the force the vertebrae push back with, at the pivot */
     const lv = Math.min(Math.max(K * FV, 34), 110), vd = [Math.cos(th * RAD), -Math.sin(th * RAD)];
     arrow(ctx, HX, HY, HX + lv * vd[0], HY + lv * vd[1], C('force'), 5);
     text(ctx, 'F_V = ' + fmt(FV, 0) + ' N', HX - 26, 392, C('force'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
     turn(ctx, HX, HY, 118, 214 * RAD, 158 * RAD, C('torque'));
-    text(ctx, 'τ = ' + fmt(FB * RM, 0) + ' N·m each way', 210, 150, C('torque'), { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'τ = ' + fmt(FB * RM, 0) + ' N·m each way', 210, 124, C('torque'), { size: 18, weight: 600, align: 'center' });
 
     /* the three forces side by side, which is the comparison the example ends on */
     const rows = [['the weight supported', wub + wbox], ['the back muscles', FB], ['the vertebrae', FV]];
@@ -330,7 +329,7 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
   const R1 = ctl(d.controls, { label: '\\krone', cls: 'position', min: 2, max: 8, step: 0.5, value: 4, unit: 'cm', dec: 1, aria: 'distance from the elbow to the biceps' });
   const { formula, note } = F.readout(d);
   const HUM = 0.250, HAND = 0.380;    /* the biceps runs from 25.0 cm up the humerus, and the hand sits where the book has it */
-  const EX = 430, EY = 470, S = 1060;
+  const EX = 430, EY = 400, S = 700;   /* the forearm opened to 140° stays above the bars */
   const len = (ph, r1) => Math.sqrt(HUM * HUM + r1 * r1 - 2 * HUM * r1 * Math.cos(ph * RAD));
 
   function draw() {
@@ -360,7 +359,7 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
       const a0 = Math.atan2(ref[1], ref[0]), a1 = Math.atan2(now[1], now[0]);
       turn(ctx, EX, EY, HAND * S, a0, a1, C('position'), 4);
     }
-    text(ctx, 'φ = ' + fmt(ph, 0) + '°', EX + 62, EY - 46, C('angle'), { size: 22, weight: 600, align: 'left' });
+    text(ctx, 'φ = ' + fmt(ph, 0) + '°', EX - 22, EY - 46, C('angle'), { size: 22, weight: 600, align: 'right' });
 
     /* the contraction beside the movement it produces, drawn to one scale */
     const SB = 900 / (HAND * 50 * RAD), BL = 320;
@@ -376,15 +375,13 @@ function crate(ctx, cx, top, w, h, color) { F.crate(ctx, cx, top + h / 2, w, h, 
       ? 'At 90° the forearm stands where Example 9.4 holds it, so neither the biceps nor the hand has moved.'
       : (ph < 90 ? 'Closing' : 'Opening') + ' the elbow to ' + fmt(ph, 0) + '° '
         + (ph < 90 ? 'shortens' : 'lengthens') + ' the biceps by ' + fmt(Math.abs(dL) * 100, 2)
-        + ' cm while the hand sweeps ' + fmt(ds * 100, 1) + ' cm, which is ' + fmt(ds / Math.abs(dL), 0) + ' times as far.');
+        + ' cm while the hand sweeps ' + fmt(ds * 100, 1) + ' cm, which is ' + fmt(ds / Math.abs(dL), 1) + ' times as far.');
     /* at 90° nothing has moved, and the ratio unfolds into its two parts, each of them nothing */
     F.morph(formula,
       Math.abs(dL) < 1e-4
         ? `\\mk{s}{\\Delta s} = \\mk{l}{\\Delta L} = \\mk{n}{0}\\ \\text{cm}`
         : `\\frac{\\mk{s}{\\Delta s}}{\\mk{l}{\\Delta L}} = \\frac{\\mk{sn}{${fmt(ds * 100, 1)}}\\ \\text{cm}}{\\mk{ln}{${fmt(Math.abs(dL) * 100, 2)}}\\ \\text{cm}} = \\mk{q}{${fmt(ds / Math.abs(dL), 1)}}`);
-    note.textContent = Math.abs(dL) < 1e-4
-        ? 'Nothing has moved yet, since the arm is still in the position the example draws.'
-        : 'The same short lever arm that makes the biceps pull so hard is what turns a contraction of a centimeter or so into a large and quick movement of the hand. Slide the attachment out along the forearm and the muscle has to travel much farther for the same sweep.';
+    note.textContent = '';
   }
   register(d.fig, { update: () => {}, draw });
 })();

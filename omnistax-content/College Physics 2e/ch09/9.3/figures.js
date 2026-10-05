@@ -5,7 +5,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, fixed, pinned, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 const RAD = Math.PI / 180;
 
 /* ---------- shared drawing ---------- */
@@ -42,7 +42,7 @@ function lean(h, a, thDeg) {
    arc about the pivot. Everything arrives in scene units. */
 function leanForces(ctx, o) {
   const { px, cgx, cgy, gy, rpU, topple, rLabel, side, arcR, arc, nSide = 1 } = o;
-  line(ctx, cgx, cgy, cgx, gy + 96, PAL.muted, 2, [4, 8]);
+  line(ctx, cgx, cgy, cgx, gy + 52, PAL.muted, 2, [4, 8]);
   arrow(ctx, cgx, cgy, cgx, cgy + 104, C('force'), 5);
   text(ctx, 'w', cgx + 14, cgy + 76, C('force'), { weight: 600, size: 24 });
   arrow(ctx, px, gy, px, gy - 104, C('force'), 5);
@@ -111,10 +111,10 @@ function pencilLying(ctx, x, y, L, W, color) {
    the hips are lowered. The joints are given in the silhouette's own 150-unit frame. */
 function person(ctx, d, h, SC, color) {
   const HT = 170, s = (HT * SC) / 150, k = 150 / HT;                    /* a 170 cm adult */
-  const hip = Math.max(82, Math.min(93, h * 0.95)), foot = (d / 2) * k;   /* the knees bend a little as the cg is lowered; the cg dot itself follows h exactly */
+  const hip = Math.min(93, h * 0.95), foot = (d / 2) * k;   /* the hips follow the cg down and the knees bend outward to let them */
   silhouette(ctx, { x: 0, y: 0, s, color, pose: 'stand',
     feet: [{ x: foot, y: 0 }, { x: -foot, y: 0 }], hip: { x: 0, y: -hip * k }, shoulder: { x: 0, y: -(hip + 50) * k }, head: { x: 0, y: -(hip + 68) * k },
-    hands: [{ x: 24, y: -(hip - 22) * k }, { x: -24, y: -(hip - 22) * k }], kneeSide: -1, elbowSide: -1 });
+    hands: [{ x: 24, y: -(hip - 22) * k }, { x: -24, y: -(hip - 22) * k }], kneeSide: [-1, 1], front: true, elbowSide: -1 });
 }
 /* A chicken standing on two broad feet, the middle of the base on the ground
    at the origin; the body hangs from the hips, which sit above its cg. */
@@ -166,7 +166,8 @@ function chicken(ctx, d, h, SC, color) {
     headline(ctx, g.up ? 'Standing upright, the weight acts over the middle of the base, so the torque about any point is zero.'
       : topple ? 'Leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(g.rp, 1) + ' mm outside the pivot and its torque carries the pencil over.'
         : 'Leaned ' + fmt(TH.v, 1) + '°, the weight acts ' + fmt(-g.rp, 1) + ' mm inside the pivot and its torque brings the pencil back upright.');
-    readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp), 1)}\\ \\text{mm})(${fmt(W, 3)}\\ \\text{N}) = ${fmt(tau, 2)}\\ \\text{mN·m}`,
+    const sg = g.rp < -0.05 ? '-' : '';     /* the axis counts a turn back upright as negative, and so does the readout */
+    readout(d.readout, `\\ktau = ${sg}\\krperp\\kwgt = ${sg}(${fmt(Math.abs(g.rp), 1)}\\ \\text{mm})(${fmt(W, 3)}\\ \\text{N}) = ${sg}${fmt(tau, 2)}\\ \\text{mN·m}`,
       'The turn reverses at the lean that puts the weight straight over the edge of the base, which is ' + fmt(g.crit, 1) + '° for a flat end ' + fmt(2 * A.v, 0) + ' mm across and a center of gravity ' + fmt(H, 0) + ' mm up.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -197,7 +198,7 @@ function chicken(ctx, d, h, SC, color) {
     headline(ctx, g.up ? 'Balanced exactly upright, the weight and the normal force lie along one line and both conditions hold.'
       : 'Leaned ' + fmt(TH.v, 1) + '°, the weight already acts ' + fmt(g.rp, 1) + ' mm outside the point and its torque leans the pencil further.');
     readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(g.rp, 1)}\\ \\text{mm})(${fmt(W, 3)}\\ \\text{N}) = ${fmt(tau, 2)}\\ \\text{mN·m}`,
-      'The point gives the pencil no base to speak of, so nothing is subtracted from the lever arm: the torque is zero at one lean only, and every displacement from it leads away.');
+null);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -242,8 +243,7 @@ function chicken(ctx, d, h, SC, color) {
     text(ctx, '(b) a round pencil lying on its side', BX, 118, PAL.ink, { size: 20, weight: 600, align: 'center' });
     headline(ctx, X.v === 0 ? 'Each body rests with its center of gravity straight above the point of support, so the torque about that point is zero.'
       : 'Moved ' + fmt(Math.abs(X.v), 0) + ' cm along the surface, each body still has its center of gravity straight above the point of support.');
-    readout(d.readout, '\\ktau = \\krperp\\kwgt = (0)\\,\\kwgt = 0',
-      'The point of support travels with the body, so the lever arm of the weight about it is zero in every position. The equilibrium does not depend on where the body is put, and a body that is displaced simply stays where it is left.');
+    readout(d.readout, '\\ktau = \\krperp\\kwgt = (0)\\,\\kwgt = 0', 'Displaced, either body simply stays where it is left.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -284,7 +284,7 @@ function chicken(ctx, d, h, SC, color) {
     /* the angle the readout takes the sine of, marked where the ball touches the surface */
     const tx = px(x), ty = py(yOf(s, x));
     if (Math.abs(phi) > 0.02) {
-      line(ctx, tx, ty, tx + 104, ty, PAL.rule, 2, [6, 8]);
+      line(ctx, tx, ty, tx + 104, ty, alpha(PAL.ink, 0.35), 2.5, [6, 8]);
       ctx.save(); ctx.strokeStyle = ca; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.arc(tx, ty, 64, 0, -phi, phi > 0); ctx.stroke(); ctx.restore();
       text(ctx, 'θ = ' + fmt(Math.abs(phi) / RAD, 1) + '°', tx + 104 * Math.cos(-phi / 2), ty + 104 * Math.sin(-phi / 2), ca, { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
@@ -294,7 +294,7 @@ function chicken(ctx, d, h, SC, color) {
     const len = Math.abs(along) * FSC, dir = along > 0 ? 1 : -1;
     if (len > 14) {
       arrow(ctx, bx, by, bx + dir * len * Math.cos(phi), by - dir * len * Math.sin(phi), C('force'), 5);
-      text(ctx, fmt(Math.abs(along), 2) + ' N', bx + dir * (len + 16) * Math.cos(phi), by - dir * (len + 16) * Math.sin(phi) - 22,
+      text(ctx, 'F_{∥} = ' + fmt(Math.abs(along), 2) + ' N', bx + dir * (len + 16) * Math.cos(phi), by - dir * (len + 16) * Math.sin(phi) - 22,
         C('force'), { weight: 600, size: 20, align: dir > 0 ? 'left' : 'right' });
     }
     const kind = s > 0.03 ? 'stable' : s < -0.03 ? 'unstable' : 'neutral';
@@ -302,9 +302,7 @@ function chicken(ctx, d, h, SC, color) {
       : kind === 'stable' ? 'The force along the surface, ' + fmt(Math.abs(along), 2) + ' N, points back toward the bottom, so the equilibrium is stable.'
         : 'The force along the surface, ' + fmt(Math.abs(along), 2) + ' N, points away from the crest, so the equilibrium is unstable.');
     readout(d.readout, `\\kF_{\\parallel} = \\kwgt\\sin\\ktheta = (${fmt(W, 2)}\\ \\text{N})\\sin(${fmt(Math.abs(phi) / RAD, 1)}^\\circ) = ${fmt(Math.abs(along), 2)}\\ \\text{N}`,
-      kind === 'neutral' ? 'A flat surface leaves the weight and the normal force in one line at every position, so the ball has no reason to go anywhere and stays where it is left.'
-        : kind === 'stable' ? 'The force grows with the displacement and always points back toward the lowest place, which is what a restoring force is: displace the ball further and it is pushed back harder.'
-          : 'The force grows with the displacement and always points away from the crest, so the smallest displacement is enough to send the ball off it.');
+null);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -338,8 +336,9 @@ function chicken(ctx, d, h, SC, color) {
     headline(ctx, g.up ? 'Standing straight, the weight acts through the middle of the base of support and neither foot carries more than the other.'
       : topple ? 'Leaned ' + fmt(TH.v, 1) + '°, the weight falls outside the base of support and the person goes over.'
         : 'Leaned ' + fmt(TH.v, 1) + '°, the weight still falls ' + fmt(-g.rp, 1) + ' cm inside the edge of the base, so the torque brings the person back.');
-    readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp) / 100, 3)}\\ \\text{m})(${fmt(W, 0)}\\ \\text{N}) = ${fmt(Math.abs(tau), 1)}\\ \\text{N·m}`,
-      'The weight leaves the base of support at a lean of ' + fmt(g.crit, 1) + '°. Spreading the feet widens the base and bending the knees lowers the center of gravity, and each of them raises that lean.');
+    const sg = g.rp < -0.05 ? '-' : '';     /* the axis counts a turn back upright as negative, and so does the readout */
+    readout(d.readout, `\\ktau = ${sg}\\krperp\\kwgt = ${sg}(${fmt(Math.abs(g.rp) / 100, 3)}\\ \\text{m})(${fmt(W, 0)}\\ \\text{N}) = ${sg}${fmt(Math.abs(tau), 1)}\\ \\text{N·m}`,
+      'The weight leaves the base of support at a lean of ' + fmt(g.crit, 1) + '°.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

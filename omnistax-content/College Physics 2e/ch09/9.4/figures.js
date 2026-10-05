@@ -5,7 +5,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, pinned, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- helpers shared by the figures ---------- */
 const G = 9.80, TAU = 2 * Math.PI, EDGE = 60, WIDE = 1340;
@@ -85,7 +85,7 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
     forceArrow(ctx, X(0), YP, L(FR), FR >= 0, 'F_R = ' + signed(FR, 1) + ' N', C('force'), -1);
     forceArrow(ctx, X(s), YP, L(FL), FL >= 0, 'F_L = ' + signed(FL, 1) + ' N', C('force'), 1);
     arrow(ctx, X(p), YP, X(p), YP + L(w), C('force'), 5);
-    text(ctx, 'w = ' + fmt(w, 1) + ' N', X(p) + 18, YP + L(w) / 2, C('force'), { size: 22, weight: 600, bg: PAL.panel });
+    text(ctx, 'w = ' + fmt(w, 1) + ' N', X(p) + 18, YP + L(w) - 12, C('force'), { size: 22, weight: 600, bg: PAL.panel });
     if (over) text(ctx, 'An arrow stops at 100 N, and the labels go on giving the true forces.', 700, 92, PAL.muted, { size: 17, align: 'center' });
     cgMark(ctx, X(p), YP);
     text(ctx, 'right hand', X(0), YP + 32, F.ref('right-hand'), { size: 17, align: 'center', bg: PAL.panel });
@@ -128,11 +128,7 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
        the other hand, follows on the small line. */
     readout(d.readout,
       `\\kFR = \\frac{(${fmt(s - p, 3)}\\ \\text{m})\\,\\kwgt}{${fmt(s, 3)}\\ \\text{m}} = \\frac{(${fmt(s - p, 3)}\\ \\text{m})(${fmt(w, 1)}\\ \\text{N})}{${fmt(s, 3)}\\ \\text{m}} = ${signedTex(FR, 1)}\\ \\text{N}`,
-      even
-        ? 'Taking the pivot at the center of gravity, the weight has no lever arm and the two hands are equally far from the pivot, so their equal forces exert equal and opposite torques and both conditions for equilibrium are satisfied at once.'
-        : beyond
-          ? 'Taking the pivot at the left hand, the weight acts ' + fmt(rL, 3) + ' m away on the side away from the right hand, so the right hand can balance it only by pulling the pole down: it exerts ' + signed(FR, 1) + ' N, and the first condition then gives F_L = ' + fmt(FL, 1) + ' N.'
-          : 'Taking the pivot at the left hand, the weight’s lever arm is ' + fmt(rL, 3) + ' m and the right hand’s is ' + fmt(s, 3) + ' m, so the second condition gives F_R = (' + fmt(rL, 3) + ' m)(' + fmt(w, 1) + ' N)/(' + fmt(s, 3) + ' m) = ' + fmt(FR, 1) + ' N, and the first condition then gives F_L = ' + fmt(FL, 1) + ' N.');
+      `The first condition then gives $\\kFL = \\kwgt - \\kFR = ${signedTex(FL, 1)}\\ \\text{N}$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -186,8 +182,9 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
        three slivers; a bar that would pass it stops there and its label gives the true torque. */
     const TM = 60;
     const bars = [{ v: tR, n: 'from the right hand' }, { v: tW, n: 'from the weight' }, { v: tL, n: 'from the left hand' }, { v: tR + tW + tL, n: 'the three added up' }];
-    text(ctx, 'A bar above the line is a counterclockwise torque, and one below it is clockwise.', 700, 552, PAL.muted, { size: 18, align: 'center' });
-    if (Math.max(Math.abs(tR), Math.abs(tW), Math.abs(tL)) > TM) text(ctx, 'A bar stops at 60 N·m, and the labels go on giving the true torques.', 700, 580, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, Math.max(Math.abs(tR), Math.abs(tW), Math.abs(tL)) > TM
+      ? 'A bar above the line is counterclockwise and one below clockwise; a bar stops at 60 N·m and its label gives the true torque.'
+      : 'A bar above the line is a counterclockwise torque, and one below it is clockwise.', 700, 552, PAL.muted, { size: 18, align: 'center' });
     line(ctx, 190, BASE, 1290, BASE, PAL.muted, 2);
     bars.forEach((b, i) => {
       const cx = 340 + i * 250, h = BAR * Math.max(-1, Math.min(1, b.v / TM)), top = h >= 0 ? BASE - h : BASE;
@@ -205,10 +202,7 @@ function forceArrow(ctx, x, yPole, len, up, label, color, side) {
         : 'The pivot is ' + fmt(q, 3) + ' m from the right hand, and the three torques still add to zero.');
     readout(d.readout,
       `\\text{net}\\;\\ktau = \\ktau_{\\text{R}} + \\ktau_{\\text{w}} + \\ktau_{\\text{L}} = (${signedTex(tR, 1)}) + (${signedTex(tW, 1)}) + (${signedTex(tL, 1)}) = 0\\ \\text{N}\\cdot\\text{m}`,
-      atL ? 'The left hand is at the pivot, so its lever arm is zero and its torque drops out. The second condition is then left with one unknown force instead of two, which is why the worked example chooses this pivot.'
-        : atR ? 'The right hand is at the pivot, so its lever arm is zero and its torque drops out, and the second condition gives the left hand’s force on its own.'
-          : atW ? 'The weight acts at the pivot, so its lever arm is zero and its torque drops out, and the two hand forces are left to balance each other.'
-            : 'No force acts at this pivot, so all three torques have to be counted. They still add to zero, which is what lets any pivot point be chosen; the useful ones are those that make the torque of an unknown force vanish.');
+null);
   }
   register(d.fig, { update: () => {}, draw });
 })();

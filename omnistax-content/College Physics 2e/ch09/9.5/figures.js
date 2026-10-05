@@ -5,7 +5,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, ctl, choice, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, fixed, block, silhouette, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 const G = 9.80;                                  /* the acceleration due to gravity, as the chapter takes it */
 const RAD = Math.PI / 180;
@@ -51,7 +51,7 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
   const li = ctl(d.controls, { label: '\\kli', cls: 'position', min: 0.20, max: 0.80, step: 0.01, value: 0.50, unit: 'm', dec: 2, aria: 'input lever arm, from the pivot to the hand' });
   const lo = ctl(d.controls, { label: '\\klo', cls: 'position', min: 0.010, max: 0.080, step: 0.001, value: 0.025, unit: 'm', dec: 3, aria: 'output lever arm, from the pivot to the nail' });
   const Fi = ctl(d.controls, { label: '\\kFi', cls: 'force', min: 10, max: 120, step: 5, value: 50, unit: 'N', dec: 0, aria: 'input force on the handle' });
-  const SC = 1000, PX = 1150, PY = 350, HY = 140;   /* units per metre, the pivot, and the height of the handle */
+  const SC = 1000, PX = 1150, PY = 350, HY = 210;   /* units per metre, the pivot, and the height of the handle */
 
   function draw() {
     const { ctx } = begin(d.c);
@@ -69,10 +69,10 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
     ctx.restore();
     dot(ctx, PX, PY, PAL.ink, false, 11);                                /* the pivot */
     text(ctx, 'pivot', PX, PY + 62, PAL.muted, { size: 17, align: 'center' });
-    grip(ctx, hx, HY, 1, F.ref('hand'));
+    F.fist(ctx, hx, HY, -0.5, -0.87, 1, F.ref('hand'));
 
-    arrow(ctx, hx, HY + 18, hx, HY + 110, C('force'), 5);                /* the three external forces on the puller */
-    label(ctx, 'Fᵢ = ' + sig3(Fi.v) + ' N', hx, HY + 110, { side: 'below', color: C('force'), gap: 20, size: 21 });
+    arrow(ctx, hx, HY + 28, hx, HY + 110, C('force'), 5);                /* the three external forces on the puller */
+    label(ctx, 'Fᵢ = ' + sig3(Fi.v) + ' N', hx, HY + 80, { side: 'left', color: C('force'), gap: 20, size: 21 });
     arrow(ctx, nx, 254, nx, 338, C('force'), 5);
     text(ctx, 'Fₙ = ' + sig3(Fo) + ' N', nx + 20, 240, C('force'), { size: 21, weight: 600, align: 'left' });
     arrow(ctx, PX, PY, PX, PY - 148, C('force'), 5);
@@ -97,9 +97,7 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
     head(ctx, 'A pull of ' + sig3(Fi.v) + ' N at ' + fmt(li.v, 2) + ' m from the pivot draws the nail with '
       + sig3(Fo) + ' N, so the mechanical advantage is ' + fmt(MA, 1) + '.');
     readout(d.readout, `\\text{MA} = \\frac{\\kFo}{\\kFi} = \\frac{\\kli}{\\klo} = \\frac{${fmt(li.v, 2)}\\ \\text{m}}{${fmt(lo.v, 3)}\\ \\text{m}} = ${fmt(MA, 1)}`,
-      'The output force is ' + fmt(MA, 1) + ' times the input force, while the two torques they make about the pivot are equal at '
-      + sig3(tq) + ' N·m, which is what it means for the nail to be on the point of moving. The plank pushes up with '
-      + sig3(N) + ' N, the sum of the two downward forces.');
+null);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -228,14 +226,14 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
     const mx = (X0 + tx) / 2, my = (GY + ty) / 2;                            /* the cart on the ramp, and the push along it */
     cart(ctx, mx, my, th);
     arrow(ctx, mx, my - 28, mx + Fi * kF * Math.cos(th), my - 28 - Fi * kF * s, C('force'), 5);
-    text(ctx, 'Fᵢ = ' + sig3(Fi) + ' N', mx + 14, my - 86, C('force'), { size: 21, weight: 600, align: 'left' });
+    label(ctx, 'Fᵢ = ' + sig3(Fi) + ' N', mx + Fi * kF * Math.cos(th), my - 28 - Fi * kF * s, { side: 'right', color: C('force'), gap: 18, size: 21 });
     text(ctx, 'a push of ' + sig3(Fi) + ' N over ' + fmt(L, 2) + ' m', mx, GY + 36, PAL.muted, { size: 18, align: 'center' });
 
     cart(ctx, LX, ty, 0);                                                    /* the same cart taken straight up beside the ramp */
     line(ctx, LX - 78, GY, LX + 78, GY, PAL.rule, 2, [10, 10]);
     vbracket(ctx, LX - 105, ty, GY, C('position'), fmt(h, 2) + ' m', -1);
     arrow(ctx, LX + 95, GY - 10, LX + 95, GY - 10 - w * kF, C('force'), 5);
-    text(ctx, 'w = ' + sig3(w) + ' N', LX + 111, GY - 10 - (w * kF) / 2, C('force'), { size: 21, weight: 600, align: 'left' });
+    text(ctx, 'lift = ' + sig3(w) + ' N', LX + 111, GY - 10 - (w * kF) / 2, C('force'), { size: 21, weight: 600, align: 'left' });
     text(ctx, 'a lift of ' + sig3(w) + ' N over ' + fmt(h, 2) + ' m', LX, GY + 36, PAL.muted, { size: 18, align: 'center' });
 
     /* Both pairs run to fixed ends, 1,200 N and 8.00 m, taken from the sliders and from the
@@ -284,7 +282,7 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const Ri = Math.max(15, SC * ri.v), Ro = Math.max(15, SC * ro.v);
+    const Ri = Math.max(30, SC * ri.v), Ro = Math.max(30, SC * ro.v);   /* the smallest radii are drawn at 30 units so their names have room */
     const MAa = ri.v / ro.v, MAb = ro.v / ri.v, out = [Fi.v * MAa, Fi.v * MAb, Fi.v];
 
     CX.forEach((cx, i) => text(ctx, TTL[i], cx, 116, PAL.muted, { size: 17, align: 'center' }));
@@ -293,7 +291,7 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
     const ck = F.ref('crank');
     ring(ctx, CX[0], CY, Ri, 4, ck); ring(ctx, CX[0], CY, Ro, 4, ck);
     dot(ctx, CX[0], CY, ck, true, 6);
-    radius(ctx, CX[0], CY, Ri, -0.6, 'rᵢ'); radius(ctx, CX[0], CY, Ro, 2.3, 'rₒ');
+    radius(ctx, CX[0], CY, Ri, -0.6, 'rᵢ'); radius(ctx, CX[0], CY, Ro, 3.7, 'rₒ');
     dot(ctx, CX[0] + Ri * Math.cos(-0.6), CY + Ri * Math.sin(-0.6), ck, true, 13);
     arrow(ctx, CX[0], CY - Ri, CX[0] + 104, CY - Ri, C('force'), 5);
     text(ctx, 'Fᵢ', CX[0] + 116, CY - Ri, C('force'), { size: 21, weight: 600, align: 'left' });
@@ -312,7 +310,7 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
     arrow(ctx, CX[1], CY - Ri, CX[1] - 104, CY - Ri, C('force'), 5);
     text(ctx, 'Fₒ', CX[1] - 116, CY - Ri, C('force'), { size: 21, weight: 600, align: 'right' });
     line(ctx, CX[1] - 160, CY + Ri + 28, CX[1] + 160, CY + Ri + 28, PAL.muted, 3);
-    text(ctx, 'the road', CX[1] + 160, CY + Ri + 48, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'the road', CX[1] - 160, CY + Ri + 48, PAL.muted, { size: 17, align: 'left' });
 
     /* (c) the pulley: the cord comes down one side and goes up the other with the tension it arrived with */
     fixed(ctx, CX[2] - 70, 132, 140, 24);
@@ -335,7 +333,7 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
     head(ctx, 'A handle at ' + fmt(ri.v, 3) + ' m turning a shaft at ' + fmt(ro.v, 3) + ' m has a mechanical advantage of '
       + fmt(MAa, 1) + ', and the same two radii the other way round, as an axle driving a wheel, give ' + fmt(MAb, 3) + '.');
     readout(d.readout, `\\text{MA} = \\frac{r_{\\text{i}}}{r_{\\text{o}}} = \\frac{${fmt(ri.v, 3)}\\ \\text{m}}{${fmt(ro.v, 3)}\\ \\text{m}} = ${fmt(MAa, 1)}`,
-      'A crank is usually built with a large mechanical advantage, while an axle driving a much larger wheel has one well below one. The pulley is the case where the two radii are the same circle, so it turns the direction of the force and leaves its magnitude alone.');
+null);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -443,16 +441,12 @@ function grip(ctx, x, y, dir = 1, color = PAL.ink) {
     arrow(ctx, Xk(n), 400, Xk(n), 486, C('force'), 5);
     text(ctx, 'you pull with T = ' + sig3(T) + ' N', Xk(n) + 16, 446, C('force'), { size: 19, weight: 600, align: 'left' });
 
-    text(ctx, (n === 1 ? 'One cable pulls' : n + ' cables pull') + ' directly up on the load, each with the same tension T = '
-      + sig3(T) + ' N.', CX, 634, PAL.muted, { size: 18, align: 'center' });
     head(ctx, n === 1
       ? 'One cable pulls up on the load, so the pulley only turns your pull around and you supply the whole ' + sig3(w) + ' N.'
       : n + ' cables pull up on the load, so ' + sig3(T) + ' N of tension holds ' + sig3(w)
         + ' N and the mechanical advantage is about ' + n + '.');
-    readout(d.readout, `\\kFo \\approx n\\kTf = ${n}(${sig3(T)}\\ \\text{N}) = ${sig3(w)}\\ \\text{N}`,
-      'The tension is the same everywhere along a friction-free cord, so each of the ' + n + ' cable'
-      + (n === 1 ? '' : 's') + ' pulling on the block carries the same ' + sig3(T)
-      + ' N. Raise the count and each cable, and the hand at the free end with it, carries less.');
+    const tx = (v) => sig3(v).replace(/,/g, '{,}');   /* a thousands comma in TeX, not a list comma */
+    readout(d.readout, `\\kFo \\approx n\\kTf = ${n}(${tx(T)}\\ \\text{N}) = ${tx(w)}\\ \\text{N}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
