@@ -102,26 +102,8 @@ graph · 3D
    on a pull; small line on the perpendicular lever arm and on the force
    along the hinges that does nothing. Draws force, position, torque.
    Manim pass, 2026-09-28: dashed circles on $\theta$ at 0°, 90° and 180°; a change between push and pull swings the force through to the other side of the door (the choice's `mix`), and the readout is drawn with `F.morph`, so its minus sign arrives and leaves by meaning.
-2. `sim-hockey-stick` · replaces Figure 9.7 (a) and (b), the same stick about
-   pivot A and about pivot B · torque-depends-on-pivot, torque-sign-convention,
-   perpendicular-lever-arm · **still**: the stick is nailed down and the
-   question is what one force does about one chosen point, which is a picture
-   and not a motion; sliding the nail from A to B is the reader's choice of
-   pivot, not the passage of time (rule 14) · the position of the pivot along
-   the stick (0.10 to 1.30 m from the blade end, default 0.20, position, which
-   is A, with B at 1.25), $\kF$ (0 to 60 N, default 30, force) and the
-   direction of the push measured from the horizontal (0º to 180º, default
-   160, ink). The angle $\theta$ the book names is not a slider but a reading,
-   since it depends on where the nail has been driven as well as on the push:
-   at the default it is 110º about A, and the same push read about B, above
-   the hand, gives 70º · "About the nail 0.20 m from the blade a push of 30 N
-   turns the stick counterclockwise with 25.4 N·m." · none · no. Readout:
-   $\ktau = \krperp\kF$ with the live numbers, the minus sign written into the
-   equation itself when the turn is clockwise, since $\krperp$ and $\kF$ are
-   both positive; small line on the counterclockwise-positive convention and
-   on the torque being zero when the nail sits on the line of
-   action, because the lever arm is then nothing. Draws force, position, torque.
-   Manim pass, 2026-09-28: dashed circles where the torque vanishes: the nail at the hand (1.10 m) and the push along the stick (90°); the readout is drawn with `F.morph`, so the minus sign of a clockwise turn arrives by meaning.
+2. `sim-hockey-stick` · replaces Figure 9.7 · torque, perpendicular-lever-arm · variation by slider: one push, the pivot slid along the stick turns the torque counterclockwise, to zero and clockwise · still, the nail is the reader's choice and nothing runs on a clock · the nail's place (0.10 to 1.30 m, default 0.20, position, dashed circle at the hand), $\kF$ (0 to 60 N, default 30, force), the push's direction (0° to 180°, default 160, angle, dashed circle at 90°, along the stick) · headline "About the nail 0.20 m from the blade a push of $\kF = 30$ N turns the stick counterclockwise with $\ktau = 25.4$ N·m." · no graph, the side table dropped since the readout carries $\ktau = \krperp\kF$ · 2D, seen from overhead as the book draws it; the hand gripping the shaft is F.hand (view back, curl 0.8, fingers round the shaft) on the side the push comes from, every label through the labeller with the stick, hand and r bracket blocked so a nail near the hand stays legible; no fold or split. Readout $\ktau = \krperp\kF$ with the live numbers, the minus sign written in on a clockwise turn; note on the counterclockwise-positive convention. Draws force, position, torque, angle.
+   Rebuilt 2026-10-05 (review rewrite): library hand, the stick drawn as a filled shaft and blade, labels F, θ, r, r⊥, τ, the hand, the nail, A and B through one labeller, side table dropped.
 3. `sim-seesaw` · replaces Figure 9.8, the two children on the seesaw ·
    balanced-seesaw, second-condition-equilibrium, center-of-gravity,
    first-condition-equilibrium · **still**: a balanced seesaw stands still,

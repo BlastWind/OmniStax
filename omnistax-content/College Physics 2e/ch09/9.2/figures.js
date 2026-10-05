@@ -55,20 +55,6 @@ function child(ctx, x, y, color, s, face) {
   const k = s * 0.9;
   silhouette(ctx, { x: x - face * 10 * k, y: y + 46 * k, s: k, face, pose: 'sit', color, hands: [{ x: 14, y: -56 }, { x: 8, y: -54 }] });
 }
-/* an ice hockey stick standing on its blade, the shaft from (x, yb) up to (x, yt) */
-function hockeyStick(ctx, x, yb, yt, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 11; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-  ctx.beginPath(); ctx.moveTo(x, yt); ctx.lineTo(x, yb); ctx.lineTo(x + 104, yb + 16); ctx.stroke();
-  ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(x - 9, yt + 30); ctx.lineTo(x + 9, yt + 30); ctx.stroke();
-  ctx.restore();
-}
-/* a hand closed round a vertical shaft at (x, y): a rounded palm with the fingers over the shaft */
-function grip(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
-  ctx.beginPath(); ctx.roundRect(x - 20, y - 22, 40, 44, 12); ctx.fill(); ctx.stroke();
-  ctx.lineWidth = 2; ctx.beginPath(); for (const dy of [-10, 0, 10]) { ctx.moveTo(x - 20, y + dy); ctx.lineTo(x + 16, y + dy); } ctx.stroke();
-  ctx.restore();
-}
 /* the fulcrum a plank is balanced on, its point at (x, y) and h tall */
 function fulcrum(ctx, x, y, h, color) {
   ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color || PAL.muted; ctx.lineWidth = 3;
@@ -161,22 +147,37 @@ function fulcrum(ctx, x, y, h, color) {
 })();
 
 /* =====================================================================
-   FIGURE 9.7: the hockey stick about pivot A and about pivot B. One force
-   near the grip, and a nail that slides along the stick. Still: the stick
-   is nailed down and the question is what one force does about one chosen
-   point, so nothing here runs on a clock; sliding the nail is the reader's
-   choice of pivot, not the passage of time.
+   FIGURE 9.7: the hockey stick about pivot A and about pivot B, seen from
+   overhead as the book draws it. One push at the hand, and a nail that
+   slides along the shaft. Still: the stick is nailed down and the question
+   is what one force does about one chosen point, so nothing here runs on a
+   clock; sliding the nail is the reader's choice of pivot, not the passage
+   of time.
 ===================================================================== */
 (function () {
-  const d = sim('sim-hockey-stick', 700);
+  const H = 770;
+  const d = sim('sim-hockey-stick', H);
   const ps = ctl(d.controls, { label: '\\text{the nail}', cls: 'position', min: 0.1, max: 1.3, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'where the nail is driven, measured from the blade',
     specials: [{ at: 1.1, label: 'at the hand' }] });
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 30, unit: 'N', dec: 0, aria: 'the size of the push' });
   const gs = ctl(d.controls, { label: '\\text{the push}', cls: 'angle', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, aria: 'the direction of the push, measured from the horizontal',
     specials: [{ at: 90, label: 'along the stick' }] });
   const { formula, note } = F.readout(d);
-  const X = 560, YB = 620, S = 338, HAND = 1.10, KF = 4.4, PX = 1010;
+  /* one fixed scale: the shaft runs 1.36 m up from the blade at 300 units a metre, and the
+     longest push, 60 N straight up the shaft, ends 216 units above the hand, clear of a
+     two-line headline */
+  const X = 700, YB = 710, S = 300, HAND = 1.10, TOP = 1.36, KF = 3.6, HW = 13;
   const yOf = (s) => YB - s * S;
+  /* the part of the line through (x, y) along (ux, uy) that stays inside the box */
+  function clipLine(x, y, ux, uy, l, t, r, b) {
+    let lo = -2000, hi = 2000;
+    for (const [p, u, a, z] of [[x, ux, l, r], [y, uy, t, b]]) {
+      if (Math.abs(u) < 1e-9) continue;
+      const k1 = (a - p) / u, k2 = (z - p) / u;
+      lo = Math.max(lo, Math.min(k1, k2)); hi = Math.min(hi, Math.max(k1, k2));
+    }
+    return [x + lo * ux, y + lo * uy, x + hi * ux, y + hi * uy];
+  }
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('force'), pc = C('position'), tc = C('torque'), ac = C('angle'), cs = F.ref('stick'), cn = F.ref('nail'), chd = F.ref('hand');
@@ -186,48 +187,72 @@ function fulcrum(ctx, x, y, h, color) {
     const th = Math.acos(Math.max(-1, Math.min(1, uy * up))) / RAD;
     const tau = ((hy - qy) / S) * Fv * ux;                       /* counterclockwise positive */
     const fp = foot(X, qy, X, hy, ux, uy), rp = Math.hypot(fp.x - X, fp.y - qy) / S;
-    /* the ice, the stick, and the two pivots the book names */
-    strip(ctx, 360, 820, YB + 40, 24);
-    hockeyStick(ctx, X, YB, yOf(1.36), cs);
-    for (const [s, nm] of [[0.2, 'A'], [1.25, 'B']]) { const y = yOf(s); line(ctx, X + 24, y, X + 46, y, PAL.muted, 2); text(ctx, nm, X + 54, y, PAL.muted, { size: 20, weight: 600, align: 'left' }); }
-    /* the line along which the force acts, the lever arm, and the push itself; the names near the
-       hand are placed against one another, so that a nail driven close to the hand does not pile them up */
-    const lab = labeller(ctx, 700);
-    lab.block(0, 0, 1400, 80);
-    lab.block(PX - 20, 130, 1400, 350);
-    grip(ctx, X, hy, chd);
+    const side = ux > 1e-6 ? -1 : 1;                             /* the hand grips from the side the push comes from */
+    const tv = eps(tau, 1);
+    const rows = headline(ctx, Fv === 0 ? 'With no push on the stick there is no torque about the nail.'
+      : r < 0.02 ? 'The nail is driven through the very point the force is applied at, so there is no lever arm and no torque.'
+      : tv === 0 ? 'The nail lies on the line along which the force acts, so the lever arm is nothing and the stick does not turn.'
+      : 'About the nail ' + fmt(p, 2) + ' m from the blade a push of $\\kF = ' + fmt(Fv, 0) + '\\ \\text{N}$ turns the stick ' + (tau > 0 ? 'counterclockwise' : 'clockwise') + ' with $\\ktau = ' + fmt(Math.abs(tau), 1) + '\\ \\text{N}\\cdot\\text{m}$.');
+    const top = rows === 2 ? 100 : 72;
+    const lab = labeller(ctx, H, { headline: rows });
+    /* the stick lying on the ice: the shaft up from the heel, the blade out to the left */
+    ctx.save(); ctx.lineJoin = 'round'; ctx.lineWidth = 3; ctx.strokeStyle = cs; ctx.fillStyle = alpha(cs, 0.2);
+    ctx.beginPath(); ctx.moveTo(X - HW, yOf(TOP)); ctx.lineTo(X + HW, yOf(TOP)); ctx.lineTo(X + HW, YB + 16);
+    ctx.lineTo(X - 150, YB + 16); ctx.quadraticCurveTo(X - 176, YB + 16, X - 176, YB - 2); ctx.quadraticCurveTo(X - 176, YB - 16, X - 150, YB - 16);
+    ctx.lineTo(X - HW, YB - 16); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.restore();
+    lab.block(X - HW, yOf(TOP), X + HW, YB + 16); lab.block(X - 176, YB - 16, X, YB + 16);
+    lab.add('the stick, from overhead', X - 176, YB, -1, 0, cs, 19, 26);
+    /* the two pivots the book names */
+    const at = Math.abs(p - 0.2) < 0.03 ? 'A' : Math.abs(p - 1.25) < 0.03 ? 'B' : '';
+    for (const [s, nm] of [[0.2, 'A'], [1.25, 'B']]) { if (nm === at) continue; const y = yOf(s); line(ctx, X + side * HW, y, X + side * (HW + 14), y, PAL.muted, 2); lab.add(nm, X + side * (HW + 14), y, side, 0, PAL.muted, 20, 12); }
+    /* the line along which the force acts, clipped below the headline */
+    if (Fv > 0) { const [x1, y1, x2, y2] = clipLine(X, hy, ux, uy, 10, top, 1390, H - 10); line(ctx, x1, y1, x2, y2, alpha(PAL.ink, 0.4), 2.5, [10, 10]); }
+    /* the hand closed round the shaft, the library's hand seen from its back */
+    const wx = X + side * 50;
+    F.hand(ctx, wx, hy, { aim: [-side, 0], view: 'back', curl: 0.8, thumb: 'along', right: side > 0, s: 0.85, color: chd });
+    lab.place({ l: Math.min(X - HW - 8, wx - 14), t: hy - 30, r: Math.max(X + HW + 8, wx + 14), b: hy + 30 });
+    lab.add('the hand', wx, hy, side * 0.5, -up, chd, 19, 44);
+    /* the distance from the nail to the hand, on the hand's side of the shaft */
+    const bx = X + side * 190;
+    if (r > 0.02) {
+      vbracket(ctx, bx, Math.min(qy, hy), Math.max(qy, hy), pc);
+      lab.block(bx - 10, Math.min(qy, hy), bx + 10, Math.max(qy, hy));
+      lab.add('r = ' + fmt(r, 2) + ' m', bx, (qy + hy) / 2, side, 0, pc, 20, 26);
+    }
     if (Fv > 0) {
-      line(ctx, X - 420 * ux, hy - 420 * uy, X + 420 * ux, hy + 420 * uy, alpha(PAL.ink, 0.35), 2, [10, 10]);
+      /* the perpendicular lever arm, from the nail to the line of action */
       if (rp > 0.012) {
         line(ctx, X, qy, fp.x, fp.y, pc, 3, [6, 8]);
-        lab.beside({ x1: X, y1: qy, x2: fp.x, y2: fp.y }, fp.y < qy ? 'right' : 'left', 'r⊥ = ' + fmt(rp, 2) + ' m', pc, 20);
+        lab.beside({ x1: X, y1: qy, x2: fp.x, y2: fp.y }, (fp.x - X) * up > 0 ? 'right' : 'left', 'r⊥', pc, 22);
       }
-      arrow(ctx, X, hy, X + Fv * KF * ux, hy + Fv * KF * uy, fc, 5);
-      lab.add('F = ' + fmt(Fv, 0) + ' N', X + Fv * KF * ux, hy + Fv * KF * uy, ux, uy, fc, 21, 18);
-      if (r > 0.02) { const a0 = up > 0 ? Math.PI / 2 : -Math.PI / 2; betweenArc(ctx, X, hy, a0, wrap(Math.atan2(uy, ux) / RAD - a0 / RAD), 58, ac); const m = a0 + wrap(Math.atan2(uy, ux) / RAD - a0 / RAD) * RAD / 2; lab.add('θ = ' + fmt(th, 0) + '°', X + 58 * Math.cos(m), hy + 58 * Math.sin(m), Math.cos(m), Math.sin(m), ac, 20, 22); }
+      /* θ, between the push and the direction from the hand to the nail */
+      if (r > 0.02) {
+        const a0 = up * Math.PI / 2, w = wrap(Math.atan2(uy, ux) / RAD - a0 / RAD), sw = Math.abs(w) > 179.5 ? 180 * side : w, m = a0 + sw * RAD / 2;
+        const R = Math.min(52, 0.7 * r * S);
+        betweenArc(ctx, X, hy, a0, sw, R, ac);
+        lab.add('θ = ' + fmt(th, 0) + '°', X + R * Math.cos(m), hy + R * Math.sin(m), Math.cos(m), Math.sin(m), ac, 20, 20);
+      }
+      const hx = X + Fv * KF * ux, hy2 = hy + Fv * KF * uy;
+      lab.halo({ x1: X, y1: hy, x2: hx, y2: hy2 }, 12);
+      arrow(ctx, X, hy, hx, hy2, fc, 5);
+      for (let k = 0; k < 0.85 * Fv * KF; k += 24) lab.block(X + k * ux - 6, hy + k * uy - 6, X + k * ux + 6, hy + k * uy + 6);
+      lab.add('F', hx, hy2, ux, uy, fc, 24, 16);
     }
-    dot(ctx, X, hy, chd, true, 8);
-    lab.add('the hand', X, hy, 1, 0.3, chd, 19, 34);
-    /* the distance from the nail to the hand, and the way the stick turns */
-    if (r > 0.02) vbracket(ctx, X - 104, Math.min(qy, hy), Math.max(qy, hy), pc, 'r = ' + fmt(r, 2) + ' m', -1);
-    dot(ctx, X, qy, cn, false, 11);
-    lab.add('the nail', X, qy, -1, 0.3, cn, 19, 30);
+    dot(ctx, X, hy, PAL.ink, true, 6);
+    dot(ctx, X, qy, cn, true, 10);
+    lab.add(at ? 'the nail, at ' + at : 'the nail', X + side * HW, qy, side, r < 0.3 ? 0.6 * up : -0.5, cn, 19, 16);
+    /* the way the stick turns about the nail, on the side away from the hand */
+    if (tv !== 0) {
+      const dir = r < 0.5 ? up : -1, mid = side > 0 ? Math.PI - 0.45 * dir : 0.45 * dir;
+      turnArc(ctx, X, qy, 66, tau > 0, tc, mid);
+      lab.add('τ', X + 66 * Math.cos(mid), qy + 66 * Math.sin(mid), Math.cos(mid), Math.sin(mid), tc, 24, 14);
+    }
     lab.flush();
-    if (Math.abs(tau) > 0.02) turnArc(ctx, X, qy, 78, tau > 0, tc, 0);
-    /* what the nail you have chosen makes of the push */
-    text(ctx, 'about the nail you have chosen', PX, 152, PAL.muted, { size: 19 });
-    text(ctx, 'r = ' + fmt(r, 2) + ' m', PX, 200, pc, { size: 22, weight: 600 });
-    text(ctx, 'θ = ' + fmt(th, 0) + '°', PX, 242, ac, { size: 22, weight: 600 });
-    text(ctx, 'r⊥ = r sin θ = ' + fmt(rp, 2) + ' m', PX, 284, pc, { size: 22, weight: 600 });
-    text(ctx, 'τ = ' + (eps(tau, 1) < 0 ? '−' : '') + 'r⊥F = ' + num(tau, 1) + ' N·m', PX, 326, tc, { size: 22, weight: 600 });
-    headline(ctx, Fv === 0 ? 'With no push on the stick there is no torque about the nail.'
-      : r < 0.02 ? 'The nail is driven through the very point the force is applied at, so there is no lever arm and no torque.'
-      : Math.abs(tau) < 0.02 ? 'The nail lies on the line along which the force acts, so the lever arm is nothing and the stick does not turn.'
-      : 'About the nail ' + fmt(p, 2) + ' m from the blade a push of ' + fmt(Fv, 0) + ' N turns the stick ' + (tau > 0 ? 'counterclockwise' : 'clockwise') + ' with ' + fmt(Math.abs(tau), 1) + ' N·m.');
     /* r⊥ and F are both positive, so a clockwise turn takes its minus sign in the equation itself */
-    const neg = eps(tau, 1) < 0, mi = neg ? '\\mk{s}{-}' : '', mj = neg ? '\\mk{s2}{-}' : '';
+    const neg = tv < 0, mi = neg ? '\\mk{s}{-}' : '', mj = neg ? '\\mk{s2}{-}' : '';
     F.morph(formula, `\\mk{t}{\\ktau} = ${mi}\\mk{r}{\\krperp}\\mk{f}{\\kF} = ${mj}(\\mk{rn}{${fmt(rp, 2)}}\\ \\text{m})(\\mk{fn}{${fmt(Fv, 0)}}\\ \\text{N}) = \\mk{tn}{${num(tau, 1)}}\\ \\text{N}\\cdot\\text{m}`);
-    note.textContent = 'Counterclockwise is counted positive here, so the minus sign appears in the equation itself when the stick turns the other way. The same force at the same point gives a different answer for every nail, because the torque is always taken about a pivot you have chosen. Drive the nail at A, below the hand, and the stick turns counterclockwise; drive it at B, above the hand, and the same push turns it clockwise; put it on the line of the force and it does not turn at all.';
+    say(note, tv === 0 ? '' : 'Counterclockwise counts as positive, so a clockwise turn carries a minus sign in front of $\\krperp\\kF$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
