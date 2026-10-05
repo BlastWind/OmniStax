@@ -42,7 +42,7 @@ function sciTex(x, dp) {
     const rel = g - 1, cls = 0.5 * b * b;
 
     topline(ctx, b < 0.0005 ? 'At rest both kinetic energies are zero.'
-      : 'At ' + fmt(b, 3) + 'c the relativistic kinetic energy is ' + sig(rel / cls, 3) + ' times the classical value.');
+      : 'At $' + fmt(b, 3) + '\\,\\kc$ the relativistic kinetic energy is ' + sig(rel / cls, 3) + ' times the classical value.');
 
     const { X, Y } = axes(ctx, box, [0, 1], [0, TOP], {
       xl: 'speed v/c', xc: V, yl: 'kinetic energy KE/(mc²)', yc: E,
@@ -69,7 +69,7 @@ function sciTex(x, dp) {
     pinned(ctx, box, X, Y, b, rel, E, fmt(rel, 2) + ' mc²');
 
     const J = rel * ME * CL * CL;
-    tex(d.readout, '\\kKErel = (\\gamma - 1)\\km\\kc^{2} = (' + fmt(g, 3) + ' - 1)(9.11\\times 10^{-31}\\;\\text{kg})(3.00\\times 10^{8}\\;\\text{m/s})^{2} = '
+    tex(d.readout, '\\kKErel = (\\gamma - 1)\\km\\kc^{2} = (' + fmt(g, 3) + ' - 1)(9.11\\times 10^{-31}\\;\\text{kg})\\,\\kc^{2} = '
       + (J > 0 ? sciTex(J, 2) : '0') + '\\;\\text{J}');
   }
   register(d.fig, { update: () => {}, draw });
@@ -97,8 +97,8 @@ function sciTex(x, dp) {
     const A = { x: O.x + R * Math.cos(th), y: O.y };
     const B = { x: A.x, y: O.y - R * Math.sin(th) };
 
-    topline(ctx, b < 0.00005 ? 'At rest the total energy is the rest energy, and pc is zero.'
-      : 'At ' + fmt(b, 4) + 'c the total energy is ' + sig(g, 3) + ' times the rest energy, and pc is ' + fmt(100 * b, 2) + '% of it.');
+    topline(ctx, b < 0.00005 ? 'At rest the total energy is the rest energy, and $\\kp\\kc$ is zero.'
+      : 'At $' + fmt(b, 4) + '\\,\\kc$ the total energy is ' + sig(g, 3) + ' times the rest energy, and $\\kp\\kc$ is ' + fmt(100 * b, 2) + '% of it.');
 
     ctx.save(); ctx.setLineDash([12, 9]);
     line(ctx, O.x, O.y, A.x, A.y, E, 5);
@@ -111,7 +111,7 @@ function sciTex(x, dp) {
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 2; ctx.beginPath();
       ctx.moveTo(A.x - s, A.y); ctx.lineTo(A.x - s, A.y - s); ctx.lineTo(A.x, A.y - s); ctx.stroke(); ctx.restore();
     }
-    if (th > 0.05) angleArc(ctx, O, 70, 0, th, 'θ', undefined, AN);
+    if (th > 0.05) angleArc(ctx, O, Math.min(70, Math.max(26, 0.7 * (A.x - O.x))), 0, th, 'θ', undefined, AN);
 
     const mx = (O.x + B.x) / 2, my = (O.y + B.y) / 2;
     const nx = -Math.sin(th), ny = -Math.cos(th);
@@ -119,8 +119,8 @@ function sciTex(x, dp) {
     label(ctx, 'mc²', (O.x + A.x) / 2, O.y, { side: 'below', color: E, size: 24, gap: 20 });
     if (B.y < O.y - 40) label(ctx, 'pc', A.x, (A.y + B.y) / 2, { side: 'right', color: P, size: 24, gap: 20 });
 
-    text(ctx, 'sin θ = v/c = ' + fmt(b, 4), 1080, 300, PAL.ink, { size: 22, align: 'center', bg: PAL.panel });
-    text(ctx, 'γ = E/(mc²) = ' + sig(g, 4), 1080, 350, PAL.ink, { size: 22, align: 'center', bg: PAL.panel });
+    text(ctx, '$\\sin\\theta = \\kv/\\kc = ' + fmt(b, 4) + '$', 1080, 300, PAL.ink, { size: 22, align: 'center', bg: PAL.panel, tex: true });
+    text(ctx, '$\\gamma = \\kE/\\km\\kc^{2} = ' + sig(g, 4) + '$', 1080, 350, PAL.ink, { size: 22, align: 'center', bg: PAL.panel, tex: true });
 
     const Em = g * REST_MEV, pm = g * b * REST_MEV;
     tex(d.readout, '\\kE^{2} = (\\kp\\kc)^{2} + (\\km\\kc^{2})^{2}: \\quad (' + sig(Em, 3) + '\\;\\text{MeV})^{2} = ('

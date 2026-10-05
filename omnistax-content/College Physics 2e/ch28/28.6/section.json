@@ -4,7 +4,7 @@
  "chapter": "28",
  "title": "Relativistic Energy",
  "short": "Relativistic energy",
- "lead": "<span data-concept=\"energy\">Energy</span>, like momentum, needs a new definition if its conservation is to hold in every inertial frame. The <span data-concept=\"total-energy\">total energy</span> is $\\kE = \\gamma \\km\\kc^{2}$ and the <span data-concept=\"rest-energy\">rest energy</span> is $\\kErest = \\km\\kc^{2}$, so <span data-concept=\"mass\">mass</span> is a form of <span data-concept=\"energy\">energy</span>: stored <span data-concept=\"energy\">energy</span> increases it, and nuclear processes release it. The <span data-concept=\"relativistic-kinetic-energy\">relativistic kinetic energy</span> $\\kKErel = (\\gamma - 1)\\km\\kc^{2}$ reduces to the classical form at low speeds and grows without limit near $\\kc$, so no object with <span data-concept=\"mass\">mass</span> can reach <span data-type=\"velocity\">the speed of light</span>. <span data-concept=\"energy\">Energy</span> and momentum are related through $\\kE^{2} = (\\kp\\kc)^{2} + (\\km\\kc^{2})^{2}$.",
+ "lead": "<span data-concept=\"energy\">Energy</span>, like momentum, needs a new definition if its conservation is to hold in every inertial frame, and under it <span data-concept=\"mass\">mass</span> is a form of <span data-concept=\"energy\">energy</span>, which nuclear processes release. <span data-concept=\"total-energy\">Total energy</span>, <span data-concept=\"rest-energy\">rest energy</span> and <span data-concept=\"relativistic-kinetic-energy\">relativistic kinetic energy</span> follow from it, together with the reason no object with <span data-concept=\"mass\">mass</span> can reach <span data-type=\"velocity\">the speed of light</span> and a relation between <span data-concept=\"energy\">energy</span> and momentum.",
  "objectives": [
   "Compute total energy of a relativistic object.",
   "Compute the kinetic energy of a relativistic object.",
@@ -18,6 +18,10 @@
    {
     "model": "claude-opus-5-5",
     "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
    }
   ],
   "figures": [
@@ -32,21 +36,45 @@
  "figures": [
   {"id": "fig-nstx", "kind": "photo", "number": "28.20", "widths": [250], "draws": []},
   {"id": "fig-sun-station", "kind": "photo", "number": "28.21", "widths": [250], "draws": []},
-  {"id": "sim-ke-graph", "kind": "sim", "number": "28.22", "originals": ["/media/ch28/Figure_29_06_03a.jpg"], "original_caption": "This graph of KE_rel versus velocity shows how kinetic energy approaches infinity as velocity approaches the speed of light. It is thus not possible for an object having mass to reach the speed of light. Also shown is KE_class, the classical kinetic energy, which is similar to relativistic kinetic energy at low velocities. Note that much more energy is required to reach high velocities than predicted classically.", "widths": [250], "draws": ["energy", "velocity"], "ai": [
- {
-  "model": "claude-opus-5-5",
-  "effort": "low",
-  "part": "built"
- }
-]},
+  {
+   "id": "sim-ke-graph",
+   "kind": "sim",
+   "number": "28.22",
+   "originals": ["/media/ch28/Figure_29_06_03a.jpg"],
+   "original_caption": "This graph of KE_rel versus velocity shows how kinetic energy approaches infinity as velocity approaches the speed of light. It is thus not possible for an object having mass to reach the speed of light. Also shown is KE_class, the classical kinetic energy, which is similar to relativistic kinetic energy at low velocities. Note that much more energy is required to reach high velocities than predicted classically.",
+   "widths": [250],
+   "draws": ["energy", "velocity"],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset; readout kept to one line"
+    }
+   ]
+  },
   {"id": "fig-fermilab", "kind": "photo", "number": "28.23", "widths": [250], "draws": []},
-  {"id": "sim-energy-triangle", "kind": "sim", "draws": ["energy", "momentum", "velocity", "angle"], "ai": [
- {
-  "model": "claude-opus-5-5",
-  "effort": "low",
-  "part": "built"
- }
-]}
+  {
+   "id": "sim-energy-triangle",
+   "kind": "sim",
+   "draws": ["energy", "momentum", "velocity", "angle"],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline and side relations typeset; angle arc kept inside the triangle"
+    }
+   ]
+  }
  ],
  "coverage": [
   {"span": "energy-conserved", "concept": "total-energy", "verb": "uses"},

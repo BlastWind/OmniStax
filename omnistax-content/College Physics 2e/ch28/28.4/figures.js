@@ -75,7 +75,7 @@ function velocityLine(ctx, X, lo, hi, y, name) {
 ===================================================================== */
 (function () {
   const d = sim('sim-sled-snowball', 520);
-  const thr = choice(d.controls, { label: 'throw', options: [{ value: 'fwd', label: 'forward' }, { value: 'back', label: 'backward' }], value: 'fwd', aria: 'the direction the snowball is thrown' });
+  const thr = choice(d.controls, { label: '\\text{throw}', options: [{ value: 'fwd', label: 'forward' }, { value: 'back', label: 'backward' }], value: 'fwd', aria: 'the direction the snowball is thrown' });
   const vS = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 3, step: 0.1, value: 1, unit: 'm/s', dec: 1,
     aria: 'the velocity of the sled relative to the Earth', specials: [{ at: 1, label: '1.0 m/s' }] });
   const uS = ctl(d.controls, { label: '|\\kuprime|', cls: 'velocity', min: 0, max: 3, step: 0.1, value: 1.5, unit: 'm/s', dec: 1,
@@ -88,7 +88,7 @@ function velocityLine(ctx, X, lo, hi, y, name) {
     const fwd = thr.value === 'fwd', v = vS.v, up = (fwd ? 1 : -1) * uS.v, u = v + up;
     const side = thr.mix((s) => (s === 'fwd' ? 1 : -1));
 
-    topline(ctx, 'Thrown ' + (fwd ? 'forward' : 'backward') + ', the snowball moves at u = ' + signed(u, 1) + ' m/s relative to the Earth.');
+    topline(ctx, 'Thrown ' + (fwd ? 'forward' : 'backward') + ', the snowball moves at $\\ku = ' + signed(u, 1) + '$ m/s relative to the Earth.');
 
     const cG = F.ref('girl'), cS = F.ref('sled'), cB = F.ref('snowball'), cY = F.ref('boy'), cM = F.ref('man');
     line(ctx, 60, G, 1340, G, alpha(PAL.ink, 0.35), 2);
@@ -146,7 +146,8 @@ function velocityLine(ctx, X, lo, hi, y, name) {
     const { ctx } = begin(d.c);
     const b = vS.v, u = addRel(b, 1), V = C('velocity');
 
-    topline(ctx, 'At ' + fmt(b, 3) + 'c the light leaves the car at c and reaches the sidewalk at c, not ' + fmt(1 + b, 3) + 'c.');
+    topline(ctx, b < 0.0005 ? 'With the car at rest, the light leaves it and reaches the sidewalk at $\\kc$.'
+      : 'At $' + fmt(b, 3) + '\\,\\kc$ the light leaves the car at $\\kc$ and reaches the sidewalk at $\\kc$, not $' + fmt(1 + b, 3) + '\\,\\kc$.');
 
     line(ctx, 60, ROAD, 1340, ROAD, alpha(PAL.ink, 0.5), 3);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.beginPath();
@@ -198,8 +199,8 @@ function velocityLine(ctx, X, lo, hi, y, name) {
     const b = vS.v, up = uS.v, u = addRel(b, up), cl = b + up, laser = Math.abs(up) > 0.9995;
 
     topline(ctx, laser
-      ? 'The laser light ' + (up > 0 ? 'reaches the Earth at c' : 'moves away from the Earth at −c') + ', not the ' + signed(cl, 3) + 'c classical addition gives.'
-      : 'The Earth sees the canister at ' + signed(u, 3) + 'c, not the ' + signed(cl, 3) + 'c classical addition gives.');
+      ? 'The laser light ' + (up > 0 ? 'reaches the Earth at $\\kc$' : 'moves away from the Earth at $-\\kc$') + ', not the $' + signed(cl, 3) + '\\,\\kc$ classical addition gives.'
+      : 'The Earth sees the canister at $' + signed(u, 3) + '\\,\\kc$, not the $' + signed(cl, 3) + '\\,\\kc$ classical addition gives.');
 
     const cSh = F.ref('spaceship'), cE = F.ref('earth'), cC = F.ref('canister');
     ship(ctx, SX, SY, 1, cSh);
@@ -217,6 +218,7 @@ function velocityLine(ctx, X, lo, hi, y, name) {
       const cx = up >= 0 ? SX + 150 : SX - 160, dir = up >= 0 ? 1 : -1;
       ctx.save(); ctx.fillStyle = alpha(cC, 0.2); ctx.strokeStyle = cC; ctx.lineWidth = 3;
       ctx.fillRect(cx - 18, SY - 11, 36, 22); ctx.strokeRect(cx - 18, SY - 11, 36, 22); ctx.restore();
+      label(ctx, 'canister', cx, SY + 11, { side: 'below', color: cC, gap: 16, size: 19 });
       if (Math.abs(up) > 0.005) {
         dashArrow(ctx, cx + dir * 24, SY, cx + dir * (24 + 150 * Math.abs(up)), SY, V(), 4);
         text(ctx, 'u′', cx + dir * (24 + 75 * Math.abs(up)), SY - 24, V(), { size: 22, weight: 600, align: 'center' });
@@ -224,11 +226,12 @@ function velocityLine(ctx, X, lo, hi, y, name) {
     }
 
     velocityLine(ctx, X, -2, 2, LY + 50, (k) => (k === 0 ? '0' : (k < 0 ? '−' : '') + (Math.abs(k) === 1 ? '' : '2') + 'c'));
-    [-1, 1].forEach((k) => line(ctx, X(k), LY - 110, X(k), LY + 50, alpha(V(), 0.8), 2.5, [8, 7]));
+    [-1, 1].forEach((k) => line(ctx, X(k), LY - 130, X(k), LY + 50, alpha(V(), 0.8), 2.5, [8, 7]));
     solidArrow(ctx, X(0), LY - 80, X(b), LY - 80, V(), 4);
     if (b > 0.03) text(ctx, 'v', (X(0) + X(b)) / 2, LY - 102, V(), { size: 22, weight: 600, align: 'center' });
-    dashArrow(ctx, X(b), LY - 80, X(cl), LY - 80, V(), 4);
-    if (Math.abs(up) > 0.03) text(ctx, 'u′', (X(b) + X(cl)) / 2, LY - 102, V(), { size: 22, weight: 600, align: 'center' });
+    line(ctx, X(b), LY - 80, X(b), LY - 120, alpha(V(), 0.5), 1.5, [3, 5]);
+    dashArrow(ctx, X(b), LY - 120, X(cl), LY - 120, V(), 4);
+    if (Math.abs(up) > 0.03) text(ctx, 'u′', (X(b) + X(cl)) / 2, LY - 142, V(), { size: 22, weight: 600, align: 'center' });
     dot(ctx, X(cl), LY, V(), false, 11);
     label(ctx, 'classical', X(cl), LY - 12, { side: 'above', gap: 18, size: 18, color: PAL.muted, leader: false });
     solidArrow(ctx, X(0), LY, X(u) - Math.sign(u) * 12, LY, V(), 5);
@@ -250,7 +253,7 @@ function velocityLine(ctx, X, lo, hi, y, name) {
 ===================================================================== */
 (function () {
   const d = sim('sim-relativistic-doppler', 500);
-  const src = choice(d.controls, { label: 'source', options: [{ value: 'radio', label: 'radio, 0.525 m' }, { value: 'hydrogen', label: 'hydrogen, 656 nm' }], value: 'radio', aria: 'the radiation the source emits' });
+  const src = choice(d.controls, { label: '\\text{source}', options: [{ value: 'radio', label: 'radio, 0.525 m' }, { value: 'hydrogen', label: 'hydrogen, 656 nm' }], value: 'radio', aria: 'the radiation the source emits' });
   const uS = ctl(d.controls, { label: '\\ku/\\kc', cls: 'velocity', min: -0.9, max: 0.9, step: 0.001, value: 0.825, unit: '', dec: 3,
     aria: 'the velocity of the source away from the Earth as a fraction of the speed of light',
     specials: [{ at: 0.825, label: 'galaxy' }, { at: 0.35, label: 'probe' }, { at: 0, label: 'at rest' }] });
@@ -285,7 +288,7 @@ function velocityLine(ctx, X, lo, hi, y, name) {
     const what = radio ? '0.525 m radio waves' : '656 nm hydrogen light';
     topline(ctx, Math.abs(b) < 0.0005
       ? 'At rest relative to the Earth, ' + what + (radio ? ' arrive' : ' arrives') + ' unchanged.'
-      : (b > 0 ? 'Receding' : 'Approaching') + ' at ' + fmt(Math.abs(b), 3) + 'c, ' + what + (radio ? ' arrive ' : ' arrives ') + lamTxt(lo) + ' long: a ' + (b > 0 ? 'red' : 'blue') + ' shift.');
+      : (b > 0 ? 'Receding' : 'Approaching') + ' at $' + fmt(Math.abs(b), 3) + '\\,\\kc$, ' + what + (radio ? ' arrive ' : ' arrives ') + lamTxt(lo) + ' long: a ' + (b > 0 ? 'red' : 'blue') + ' shift.');
 
     const cSrc = F.ref('source'), cRe = F.ref('receiver');
     star(ctx, 250, 110, cSrc);

@@ -100,23 +100,23 @@ function frameTag(ctx, s, y, color) {
     const L0km = b * CL * g * TAU0 / 1000, Lkm = L0km / g, dtus = g * TAU0 * 1e6;
     const L0 = L0km * PER_KM, L = Lkm * PER_KM;
 
-    topline(ctx, 'At ' + fmt(b, 3) + 'c the Earth measures ' + sig(L0km, 3) + ' km in ' + sig(dtus, 3) + ' μs; the muon measures ' + sig(Lkm, 3) + ' km in 2.20 μs.');
+    topline(ctx, 'At $' + fmt(b, 3) + '\\,\\kc$ the Earth measures ' + sig(L0km, 3) + ' km in ' + sig(dtus, 3) + ' μs; the muon measures ' + sig(Lkm, 3) + ' km in 2.20 μs.');
 
     const MU = F.ref('muon'), GR = F.ref('muon-earth');
     frameTag(ctx, 'Earth’s frame', A.tag, GR);
-    line(ctx, 60, A.ground, 1200, A.ground, alpha(GR, 0.6), 3);
+    line(ctx, 60, A.ground, 1180, A.ground, alpha(GR, 0.6), 3);
     [X0, X0 + L0].forEach((x) => { cloud(ctx, x, A.cloud); line(ctx, x, A.cloud + 24, x, A.ground, alpha(PAL.ink, 0.35), 2, [4, 8]); });
     span(ctx, X0, X0 + L0, A.span, true, 'L_{0} = ' + sig(L0km, 3) + ' km');
     const xm = X0 + L0 * p;
     if (p < 1) {
       dot(ctx, xm, A.path, MU, true, 9);
       arrow(ctx, xm + 14, A.path, xm + 14 + 90 * b, A.path, C('velocity'), 4);
-      text(ctx, 'v', xm + 14 + 45 * b, A.path - 20, C('velocity'), { size: 22, weight: 600, bg: PAL.panel, align: 'center' });
+      text(ctx, 'v', xm + 14 + 90 * b + 10, A.path, C('velocity'), { size: 22, weight: 600, bg: PAL.panel, align: 'left' });
     } else dot(ctx, xm, A.path, MU, false, 11);
     clock(ctx, 1260, 150, 38, p, false, 'Δt = ' + sig(dtus * p, 3) + ' μs');
 
     frameTag(ctx, 'muon’s frame', B.tag, MU);
-    line(ctx, 60, B.ground, 1200, B.ground, alpha(GR, 0.6), 3);
+    line(ctx, 60, B.ground, 1180, B.ground, alpha(GR, 0.6), 3);
     const xa = X0 - L * p, xb = X0 + L * (1 - p);
     [xa, xb].forEach((x) => { cloud(ctx, x, B.cloud); line(ctx, x, B.cloud + 24, x, B.ground, alpha(PAL.ink, 0.35), 2, [4, 8]); });
     span(ctx, xa, xb, B.span, false, 'L = ' + sig(Lkm, 3) + ' km');
@@ -140,9 +140,8 @@ function frameTag(ctx, s, y, color) {
 ===================================================================== */
 (function () {
   const d = sim('sim-alpha-centauri', 520);
-  const B30 = Math.sqrt(1 - 1 / 900);
-  const vS = ctl(d.controls, { label: '\\kv/\\kc', cls: 'velocity', min: 0.05, max: 0.9999, step: 0.0000001, value: B30, unit: '', dec: 5, onInput: reset,
-    aria: 'the speed of the ship as a fraction of the speed of light', specials: [{ at: B30, label: 'γ = 30.00' }, { at: 0.95, label: '0.950c' }] });
+  const gS = ctl(d.controls, { label: '\\gamma', cls: '', min: 1.05, max: 60, step: 0.01, value: 30, unit: '', dec: 2, onInput: reset,
+    aria: 'the relativistic factor gamma of the ship, which sets its speed', specials: [{ at: 30, label: 'γ = 30.00' }, { at: gammaOf(0.95), label: '0.950c' }] });
   const cy = cycle(() => 1, 1.2);
   function reset() { cy.reset(); }
 
@@ -152,14 +151,14 @@ function frameTag(ctx, s, y, color) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const b = vS.v, g = gammaOf(b), p = cy.now();
+    const g = gS.v, b = Math.sqrt(1 - 1 / (g * g)), p = cy.now();
     const Lly = L0LY / g, dt = L0LY / b, dt0 = dt / g;
     const L0 = L0LY * PX, L = Lly * PX;
 
-    topline(ctx, 'At γ = ' + sig(g, 4) + ' the astronaut measures ' + sig(Lly, 4) + ' ly between the Earth and Alpha Centauri, not 4.300 ly.');
+    topline(ctx, 'At $\\kv = ' + fmt(b, b > 0.99 ? 5 : 3) + '\\,\\kc$ ($\\gamma = ' + sig(g, 4) + '$) the astronaut measures ' + sig(Lly, 4) + ' ly, not 4.300 ly.');
 
     frameTag(ctx, 'Earth’s frame', A.tag, F.ref('earth'));
-    line(ctx, 60, A.ground, 1240, A.ground, alpha(PAL.ink, 0.18), 2);
+    line(ctx, 60, A.ground, 1170, A.ground, alpha(PAL.ink, 0.18), 2);
     planet(ctx, X0, A.body); star(ctx, X0 + L0, A.body);
     text(ctx, "Earth", X0, A.body + 44, F.ref('earth'), { size: 20, bg: PAL.panel, align: 'center' });
     text(ctx, "Alpha Centauri", X0 + L0 + 20, A.body + 46, F.ref('alpha-centauri'), { size: 20, bg: PAL.panel, align: 'right' });
@@ -173,7 +172,7 @@ function frameTag(ctx, s, y, color) {
     clock(ctx, 1260, 150, 34, p, false, 'Δt = ' + sig(dt * p, 4) + ' y');
 
     frameTag(ctx, 'ship’s frame', B.tag, F.ref('astronaut'));
-    line(ctx, 60, B.ground, 1240, B.ground, alpha(PAL.ink, 0.18), 2);
+    line(ctx, 60, B.ground, 1170, B.ground, alpha(PAL.ink, 0.18), 2);
     const xe = X0 - L * p, xa = X0 + L * (1 - p);
     if (xe > 20) planet(ctx, xe, B.body);
     star(ctx, xa, B.body);
@@ -207,7 +206,7 @@ function frameTag(ctx, s, y, color) {
     const { ctx } = begin(d.c);
     const b = vS.v, g = gammaOf(b), k = Math.sqrt(1 - b * b);
 
-    topline(ctx, 'At ' + fmt(b, 3) + 'c the field pattern is ' + fmt(k, 3) + ' of its rest length along the pipe.');
+    topline(ctx, 'At $' + fmt(b, 3) + '\\,\\kc$ the field pattern is ' + fmt(k, 3) + ' of its rest length along the pipe.');
 
     const PP = F.ref('beam-pipe'), EF = C('electric-field'), CO = F.ref('coil');
     line(ctx, 60, EY - PIPE, 1340, EY - PIPE, alpha(PP, 0.7), 3);
@@ -220,7 +219,7 @@ function frameTag(ctx, s, y, color) {
       line(ctx, EX + (ux / n) * 18, EY + (uy / n) * 18, EX + (ux / n) * R, EY + (uy / n) * R, alpha(EF, 0.85), 2.5);
       const hx = EX + (ux / n) * (R * 0.7), hy = EY + (uy / n) * (R * 0.7), px = -uy / n, py = ux / n;
       ctx.save(); ctx.fillStyle = alpha(EF, 0.85); ctx.beginPath();
-      ctx.moveTo(hx - (ux / n) * 10 + px * 6, hy - (uy / n) * 10 + py * 6); ctx.lineTo(hx, hy); ctx.lineTo(hx - (ux / n) * 10 - px * 6, hy - (uy / n) * 10 - py * 6);
+      ctx.moveTo(hx + (ux / n) * 10 + px * 6, hy + (uy / n) * 10 + py * 6); ctx.lineTo(hx, hy); ctx.lineTo(hx + (ux / n) * 10 - px * 6, hy + (uy / n) * 10 - py * 6);
       ctx.closePath(); ctx.fill(); ctx.restore();
     }
     text(ctx, 'field lines', EX + 150, EY - R + 10, EF, { size: 17, align: 'left', bg: PAL.panel });

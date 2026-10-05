@@ -4,7 +4,7 @@
  "chapter": "28",
  "title": "Relativistic Addition of Velocities",
  "short": "Relativistic velocity addition",
- "lead": "Classically, <span data-concept=\"velocity\">velocities</span> along one line add like ordinary numbers, $\\ku = \\kv + \\kuprime$, but that cannot be true of light, which every observer measures at $\\kc$. Relativistic velocity addition, $\\ku = (\\kv + \\kuprime)/(1 + \\kv\\kuprime/\\kc^{2})$, replaces the classical sum. It returns $\\kc$ for a beam of light and keeps every other sum below $\\kc$, as <span data-ref=\"canister\">a canister</span> shot towards and away from <span data-ref=\"earth\">the Earth</span> shows. The same reasoning gives the relativistic Doppler shift: light from a receding source arrives with a longer <span data-concept=\"wavelength\">wavelength</span>, and light from an approaching one with a shorter <span data-concept=\"wavelength\">wavelength</span>.",
+ "lead": "Classically, <span data-concept=\"velocity\">velocities</span> along one line add like ordinary numbers, $\\ku = \\kv + \\kuprime$, but that cannot be true of light, which every observer measures at $\\kc$. Relativistic velocity addition replaces the classical sum for everything from <span data-ref=\"canister\">a canister</span> shot towards <span data-ref=\"earth\">the Earth</span> to a beam of light, and the same reasoning gives the relativistic Doppler shift of light from a moving source.",
  "objectives": [
   "Calculate relativistic velocity addition.",
   "Explain when relativistic velocity addition should be used instead of classical addition of velocities.",
@@ -17,6 +17,10 @@
    {
     "model": "claude-opus-5-5",
     "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
    }
   ],
   "figures": [
@@ -29,27 +33,70 @@
  "built": "2026-09-28",
  "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Seven of the fifteen problems have no keyed answer and are left out, and they are named in the section’s notes. Every conceptual question is unkeyed and carries an AI-marked suggested approach. The Check Your Understanding is set inline at the end of the Doppler shift passage. The AP item that asks whether F = ma governs motion near the speed of light is printed here but tests relativistic momentum, so it is set in Relativistic Momentum (28.5). Numeric answers accept 2% tolerance.",
  "figures": [
-  {"id": "sim-sled-snowball", "kind": "sim", "number": "28.14", "originals": ["/media/ch28/Figure_28_04_02.jpg"], "original_caption": "Classically, velocities add like ordinary numbers in one-dimensional motion. Here the girl throws a snowball forward and then backward from a sled. The velocity of the sled relative to the Earth is v = 1.0 m/s. The velocity of the snowball relative to the sled is u′, while its velocity relative to the Earth is u. Classically, u = v + u′.", "widths": [450], "draws": ["velocity"], "ai": [
- {
-  "model": "claude-opus-5-5",
-  "effort": "low",
-  "part": "built"
- }
-]},
-  {"id": "sim-headlights", "kind": "sim", "number": "28.15", "originals": ["/media/ch28/Figure_29_04_03a.jpg"], "original_caption": "According to experiment and the second postulate of relativity, light from the car’s headlights moves away from the car at speed c and towards the observer on the sidewalk at speed c. Classical velocity addition is not valid.", "widths": [475], "draws": ["velocity"], "ai": [
- {
-  "model": "claude-opus-5-5",
-  "effort": "low",
-  "part": "built"
- }
-]},
-  {"id": "sim-ship-canister", "kind": "sim", "number": "28.16", "folds": ["28.17"], "originals": ["/media/ch28/Figure_29_04_04a.jpg", "/media/ch28/Figure_29_04_05a.jpg"], "original_caption": "", "widths": [350, 450], "draws": ["velocity"], "ai": [
- {
-  "model": "claude-opus-5-5",
-  "effort": "low",
-  "part": "built"
- }
-]},
+  {
+   "id": "sim-sled-snowball",
+   "kind": "sim",
+   "number": "28.14",
+   "originals": ["/media/ch28/Figure_28_04_02.jpg"],
+   "original_caption": "Classically, velocities add like ordinary numbers in one-dimensional motion. Here the girl throws a snowball forward and then backward from a sled. The velocity of the sled relative to the Earth is v = 1.0 m/s. The velocity of the snowball relative to the sled is u′, while its velocity relative to the Earth is u. Classically, u = v + u′.",
+   "widths": [450],
+   "draws": ["velocity"],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "choice name set as text; headline typeset"
+    }
+   ]
+  },
+  {
+   "id": "sim-headlights",
+   "kind": "sim",
+   "number": "28.15",
+   "originals": ["/media/ch28/Figure_29_04_03a.jpg"],
+   "original_caption": "According to experiment and the second postulate of relativity, light from the car’s headlights moves away from the car at speed c and towards the observer on the sidewalk at speed c. Classical velocity addition is not valid.",
+   "widths": [475],
+   "draws": ["velocity"],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline typeset, and says at rest what holds at v = 0"
+    }
+   ]
+  },
+  {
+   "id": "sim-ship-canister",
+   "kind": "sim",
+   "number": "28.16",
+   "folds": ["28.17"],
+   "originals": ["/media/ch28/Figure_29_04_04a.jpg", "/media/ch28/Figure_29_04_05a.jpg"],
+   "original_caption": "",
+   "widths": [350, 450],
+   "draws": ["velocity"],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "u' row lifted off the v row; canister labelled; headline typeset"
+    }
+   ]
+  },
   {
    "id": "sim-relativistic-doppler",
    "kind": "sim",
@@ -62,6 +109,11 @@
      "model": "claude-opus-5-5",
      "effort": "low",
      "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "choice name set as text; headline typeset"
     }
    ]
   }

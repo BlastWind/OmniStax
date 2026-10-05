@@ -27,7 +27,7 @@ function sciTex(x, dp) {
 ===================================================================== */
 (function () {
   const d = sim('sim-momentum-graph', 560);
-  const part = choice(d.controls, { label: 'particle', options: [{ value: 'e', label: 'electron' }, { value: 'he', label: 'helium nucleus' }], value: 'e', aria: 'the particle whose momentum the readout gives' });
+  const part = choice(d.controls, { label: '\\text{particle}', options: [{ value: 'e', label: 'electron' }, { value: 'he', label: 'helium nucleus' }], value: 'e', aria: 'the particle whose momentum the readout gives' });
   const uS = ctl(d.controls, { label: '\\ku/\\kc', cls: 'velocity', min: 0, max: 0.99, step: 0.001, value: 0.985, unit: '', dec: 3,
     aria: 'the speed of the particle as a fraction of the speed of light',
     specials: [{ at: 0.985, label: 'electron, 0.985c' }, { at: 0.2, label: 'helium, 0.200c' }] });
@@ -39,7 +39,7 @@ function sciTex(x, dp) {
     const { ctx } = begin(d.c);
     const b = uS.v, g = gammaOf(b), P = C('momentum'), V = C('velocity');
 
-    topline(ctx, b < 0.0005 ? 'At rest the momentum is zero.' : 'At ' + fmt(b, 3) + 'c the momentum is ' + sig(g, 3) + ' times the classical mu.');
+    topline(ctx, b < 0.0005 ? 'At rest the momentum is zero.' : 'At $' + fmt(b, 3) + '\\,\\kc$ the momentum is ' + sig(g, 3) + ' times the classical $\\km\\ku$.');
 
     const { X, Y } = axes(ctx, box, [0, 1], [0, TOP], {
       xl: 'speed u/c', xc: V, yl: 'momentum p/(mc)', yc: P,
@@ -59,7 +59,7 @@ function sciTex(x, dp) {
     ctx.restore();
 
     label(ctx, 'γmu', X(0.93), Y(0.93 * gammaOf(0.93)), { side: 'left', color: P, size: 22, gap: 30 });
-    label(ctx, 'mu, classical', X(0.62), Y(0.62), { side: 'below', color: P, size: 20, gap: 18 });
+    text(ctx, 'mu, classical', X(1) + 14, Y(1), P, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
 
     line(ctx, X(b), Y(b), X(b), Y(Math.min(b * g, TOP)), alpha(PAL.ink, 0.35), 2, [4, 8]);
     pinned(ctx, box, X, Y, b, b, alpha(P, 0.75));

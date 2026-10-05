@@ -18,21 +18,23 @@ const sim = (id, H) => F.sim(root, id, H);
    units; arrows 130 units per c.
 ===================================================================== */
 (function () {
-  const d = sim('sim-light-from-moving-source', 420);
+  const d = sim('sim-light-from-moving-source', 480);
   const dirC = choice(d.controls, { label: '\\text{the ship moves}', options: [{ value: '1', label: 'toward the observer' }, { value: '-1', label: 'away from the observer' }], value: '1', aria: 'the direction the ship moves', onInput: reset });
   const vS = ctl(d.controls, { label: '\\kv/\\kc', cls: 'velocity', min: 0, max: 0.9, step: 0.01, value: 0.5, unit: '', dec: 2, onInput: reset, aria: 'the speed of the ship as a fraction of the speed of light',
     specials: [{ at: 0.5, label: '0.500c' }] });
   const cy = cycle(() => 1, 1.2);
   function reset() { cy.reset(); }
 
-  const OBS = 1250, YREAL = 170, YNEWT = 250, YSHIP = 330, GROUND = 372, PER_C = 130;
+  const OBS = 1250, YREAL = 170, YNEWT = 250, YSHIP = 395, GROUND = 437, PER_C = 130;
+  const sym = (ctx, s, x, y) => text(ctx, '$' + s + '$', x, y, PAL.ink, { size: 24, align: 'center', tex: true, bg: PAL.panel });
 
   function ship(ctx, x, y, face) {
     const s = face, L = 110, h = 22;
     ctx.save(); ctx.fillStyle = alpha(F.ref('ship'), 0.85); ctx.beginPath();
     ctx.moveTo(x, y); ctx.lineTo(x - s * 34, y - h); ctx.lineTo(x - s * L, y - h);
     ctx.lineTo(x - s * (L + 18), y - h - 16); ctx.lineTo(x - s * (L + 18), y + h + 16);
-    ctx.lineTo(x - s * L, y + h); ctx.lineTo(x - s * 34, y + h); ctx.closePath(); ctx.fill(); ctx.restore();
+    ctx.lineTo(x - s * L, y + h); ctx.lineTo(x - s * 34, y + h); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(x - s * 52, y, 7, 0, 2 * Math.PI); ctx.arc(x - s * 78, y, 7, 0, 2 * Math.PI); ctx.fill(); ctx.restore();
   }
   function packet(ctx, xc, y, dashed) {
     const col = dashed ? alpha(F.ref('newton-pulse'), 0.75) : F.ref('light-pulse');
@@ -49,9 +51,8 @@ const sim = (id, H) => F.sim(root, id, H);
     const xReal = x0 + D * Math.min(t, 1);
     const xNewt = x0 + Math.min(D, D * uN * t);
     const xShip = x0 + dir * v * D * Math.min(t, 1);
-    const sum = dir > 0 ? '+' : '−';
 
-    topline(ctx, 'Newton predicts the light travels at c ' + sum + ' v = ' + fmt(uN, 2) + 'c; it is observed to travel at c.');
+    topline(ctx, 'Newton predicts the light travels at $\\kc ' + (dir > 0 ? '+' : '-') + ' \\kv = ' + fmt(uN, 2) + '\\,\\kc$; it is observed to travel at $\\kc$.');
 
     line(ctx, 60, GROUND, 1360, GROUND, alpha(PAL.ink, 0.3), 2);
     line(ctx, x0, YREAL - 40, x0, GROUND, alpha(PAL.ink, 0.3), 2, [4, 8]);
@@ -66,21 +67,21 @@ const sim = (id, H) => F.sim(root, id, H);
     packet(ctx, Math.min(xReal, OBS - 66), YREAL, false);
     packet(ctx, Math.min(xNewt, OBS - 66), YNEWT, true);
     const aR = Math.min(xReal, OBS - 66) + 44, aN = Math.min(xNewt, OBS - 66) + 44;
-    if (xReal < OBS - 30) {
+    if (aR - 50 + PER_C < OBS - 30) {
       arrow(ctx, aR - 50, YREAL - 34, aR - 50 + PER_C, YREAL - 34, VEL, 4);
-      label(ctx, 'c', aR - 50 + PER_C / 2, YREAL - 34, { side: 'above', color: VEL, size: 22 });
+      sym(ctx, '\\kc', aR - 50 + PER_C / 2, YREAL - 58);
     }
-    if (xNewt < OBS - 30) {
+    if (aN - 50 + PER_C * uN < OBS - 30) {
       line(ctx, aN - 50, YNEWT + 30, aN - 50 + PER_C * uN - 20, YNEWT + 30, VEL, 4, [10, 8]);
       arrow(ctx, aN - 50 + PER_C * uN - 22, YNEWT + 30, aN - 50 + PER_C * uN, YNEWT + 30, VEL, 4);
-      label(ctx, 'c ' + sum + ' v', aN - 50 + PER_C * uN / 2, YNEWT + 30, { side: 'below', color: VEL, size: 22 });
+      sym(ctx, '\\kc ' + (dir > 0 ? '+' : '-') + ' \\kv', aN - 50 + PER_C * uN / 2, YNEWT + 50);
     }
 
     ship(ctx, xShip, YSHIP, dir);
     if (v > 0.005) {
       const ax0 = xShip - dir * 60, ax1 = ax0 + dir * PER_C * v;
       arrow(ctx, ax0, YSHIP - 44, ax1, YSHIP - 44, VEL, 4);
-      label(ctx, 'v', (ax0 + ax1) / 2, YSHIP - 44, { side: 'above', color: VEL, size: 22 });
+      sym(ctx, '\\kv', (ax0 + ax1) / 2, YSHIP - 64);
     }
     F.silhouette(ctx, { x: OBS + 50, y: GROUND, s: 0.9, face: -1, pose: 'stand', color: F.ref('observer') });
 
