@@ -1,0 +1,1299 @@
+{
+ "id": "31.4",
+ "module": "m42633",
+ "chapter": "31",
+ "title": "Nuclear Decay and Conservation Laws",
+ "short": "Nuclear decay",
+ "lead": "An unstable nucleus, the parent, decays into a daughter by emitting an α particle, a β particle or a γ ray, and some parents begin a long series of decays. Each kind of decay obeys conservation laws, two of them new, and releases energy from the mass it destroys.",
+ "objectives": [
+  "Define and discuss nuclear decay.",
+  "State the conservation laws.",
+  "Explain parent and daughter nucleus.",
+  "Calculate the energy emitted during nuclear decay."
+ ],
+ "summary_html": "<ul><li>When a parent nucleus decays, it produces a daughter nucleus following rules and conservation laws. There are three major types of nuclear decay, called alpha $(\\alpha)$, beta $(\\beta)$, and gamma $(\\gamma)$. The $\\alpha$ decay equation is $${}_{Z}^{A}\\text{X}_{N}\\to {}_{Z-2}^{A-4}\\text{Y}_{N-2}+{}_{2}^{4}\\text{He}_{2}.$$</li><li>Nuclear decay releases an amount of energy $\\kE$ related to the mass destroyed $\\kdm$ by $$\\kE=(\\kdm)\\kc^{2}.$$</li><li>There are three forms of beta decay. The $\\beta^{-}$ decay equation is $${}_{Z}^{A}\\text{X}_{N}\\to {}_{Z+1}^{A}\\text{Y}_{N-1}+\\beta^{-}+\\bar{\\nu}_{e}.$$</li><li>The $\\beta^{+}$ decay equation is $${}_{Z}^{A}\\text{X}_{N}\\to {}_{Z-1}^{A}\\text{Y}_{N+1}+\\beta^{+}+\\nu_{e}.$$</li><li>The electron capture equation is $${}_{Z}^{A}\\text{X}_{N}+e^{-}\\to {}_{Z-1}^{A}\\text{Y}_{N+1}+\\nu_{e}.$$</li><li>$\\beta^{-}$ is an electron, $\\beta^{+}$ is an antielectron or positron, $\\nu_{e}$ represents an electron’s neutrino, and $\\bar{\\nu}_{e}$ is an electron’s antineutrino. In addition to all previously known conservation laws, two new ones arise— conservation of electron family number and conservation of the total number of nucleons. The $\\gamma$ decay equation is $${}_{Z}^{A}\\text{X}_{N}^{*}\\to {}_{Z}^{A}\\text{X}_{N}+\\gamma_{1}+\\gamma_{2}+\\cdots$$ $\\gamma$ is a high-energy photon originating in a nucleus.</li></ul>",
+ "notes": "The PhET links of the module are left out, as the links to the publisher’s interactive content are throughout. Kept as printed: the prompt of the AP item on carbon-14 opens with a sentence that answers the β half of the americium item before it; the AP item on the missing particle prints ¹²₆C as both (c) and (d); the key to the β⁺ decay of ⁵⁰Mn writes the parent as M; and the key to the proton-decay problem says “conversation laws.” The nuclides that the source flattens are written in the book’s ᴬ_Z X_N notation. Thirteen problems have no keyed answer and are left out: the β⁻ decay of ⁴⁰K, the β⁻ parent of ⁹⁰Y, the α parent of ²⁰⁸Pb, the β⁺ decay of ⁵²Fe, electron capture by ¹⁰⁶In, the α decay of ²²⁶Ra, the two conservation checks for α decay and the β⁺ rule, the ¹⁴C emission of ²²²Ra, the decays of ²⁴⁹Cf, ⁹⁰Sr and ¹¹C, and the energy of electron capture by ⁷Be.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-05",
+ "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s own key. Thirteen problems have no keyed answer and are left out: fs-id1907192, fs-id1860601, fs-id1917574, fs-id3010127, fs-id3418134, fs-id3033134, fs-id2442449, fs-id2460264 (which prints the β⁻ label on the β⁺ rule), fs-id2590538, fs-id1893984, fs-id1116905, fs-id1441536 and fs-id3121887. Three AP items have their keys commented out of the source (the γ-ray frequency, the charge released by carbon-14 and the missing particle), and the AP item on uranium’s α decay, held here from 31.1, has none; all four are set as open items, the choice items with their options, each with an AI-marked suggested approach, never graded. The americium AP item is keyed for its α part only. The conceptual questions are unkeyed and carry AI-marked suggested approaches. Held here from 31.7, where the book prints them: the α decay of ²³⁵U and the proton-decay Unreasonable Results problem, since both rest on this section’s decay equations and E = (Δm)c². Numeric answers accept 2% tolerance.",
+ "figures": [
+  {
+   "id": "sim-decay-series",
+   "kind": "sim",
+   "number": "31.14",
+   "originals": [
+    "/media/ch31/Figure_32_04_01a.jpg"
+   ],
+   "original_caption": "The decay series produced by ²³⁸U, the most common uranium isotope. Nuclides are graphed in the same manner as in the chart of nuclides. The type of decay for each member of the series is shown, as well as the half-lives. Note that some nuclides decay by more than one mode. You can see why radium and polonium are found in uranium ore. A stable isotope of lead is the end product of the series.",
+   "widths": [
+    360
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-decay-modes",
+   "kind": "sim",
+   "number": "31.15",
+   "folds": [
+    "31.17",
+    "31.18"
+   ],
+   "originals": [
+    "/media/ch31/Figure_32_04_02a.jpg",
+    "/media/ch31/Figure_32_04_04a.jpg",
+    "/media/ch31/Figure_32_04_05a.jpg"
+   ],
+   "original_caption": "(Figure 31.15) Alpha decay is the separation of a ⁴He nucleus from the parent. The daughter nucleus has two fewer protons and two fewer neutrons than the parent. Alpha decay occurs spontaneously only if the daughter and ⁴He nucleus have less total mass than the parent. (Figure 31.17) In β⁻ decay, the parent nucleus emits an electron and an antineutrino. The daughter nucleus has one more proton and one less neutron than its parent. Neutrinos interact so weakly that they are almost never directly observed, but they play a fundamental role in particle physics. (Figure 31.18) β⁺ decay is the emission of a positron that eventually finds an electron to annihilate, characteristically producing gammas in opposite directions.",
+   "widths": [
+    200,
+    200,
+    200
+   ],
+   "draws": [
+    "momentum",
+    "energy",
+    "mass",
+    "velocity"
+   ],
+   "conventions": [
+    "p+",
+    "n0",
+    "e-",
+    "e+",
+    "nu",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-fermi-wu",
+   "kind": "photo",
+   "number": "31.16",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "nuclear-decay",
+   "concept": "nuclear-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-decay",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-series",
+   "concept": "parent-nuclide",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-series",
+   "concept": "daughter-nuclide",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-series",
+   "concept": "decay-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-series",
+   "concept": "parent-daughter-decay-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-series",
+   "concept": "nuclear-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-series",
+   "concept": "chart-of-the-nuclides",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-series",
+   "concept": "alpha-beta-gamma-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "alpha-decay-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "alpha-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "nuclide-notation",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "atomic-number",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "mass-number",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "neutron-number",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "alpha-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "parent-nuclide",
+   "verb": "uses"
+  },
+  {
+   "span": "alpha-decay",
+   "concept": "daughter-nuclide",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "nuclear-reaction-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "alpha-decay",
+   "verb": "reinforces"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "conservation-of-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-energy",
+   "concept": "angular-momentum",
+   "verb": "uses"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "decay-energy-from-atomic-masses",
+   "verb": "introduces"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "nuclear-reaction-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "atomic-mass-unit",
+   "verb": "uses"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "atomic-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "pu-239-alpha-energy",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-decay",
+   "concept": "beta-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "beta-decay",
+   "concept": "neutrino",
+   "verb": "introduces"
+  },
+  {
+   "span": "beta-decay",
+   "concept": "beta-rays",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-decay",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "electron-family",
+   "concept": "conservation-of-electron-family-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-family",
+   "concept": "electron-antineutrino",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-family",
+   "concept": "antimatter",
+   "verb": "introduces"
+  },
+  {
+   "span": "electron-family",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "verb": "introduces"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "conservation-of-nucleon-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "atomic-number",
+   "verb": "uses"
+  },
+  {
+   "span": "beta-minus-decay",
+   "concept": "daughter-nuclide",
+   "verb": "uses"
+  },
+  {
+   "span": "co-60-beta-energy",
+   "concept": "decay-energy-from-atomic-masses",
+   "verb": "reinforces"
+  },
+  {
+   "span": "co-60-beta-energy",
+   "concept": "nuclear-reaction-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "co-60-beta-energy",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "verb": "reinforces"
+  },
+  {
+   "span": "co-60-beta-energy",
+   "concept": "electron-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "positron-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "positron",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "electron-neutrino",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "electron-capture",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "beta-plus-decay-and-electron-capture",
+   "verb": "introduces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "antimatter",
+   "verb": "reinforces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "conservation-of-electron-family-number",
+   "verb": "reinforces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "conservation-of-nucleon-number",
+   "verb": "reinforces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "decay-energy-from-atomic-masses",
+   "verb": "reinforces"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "electron-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "chart-of-the-nuclides",
+   "verb": "uses"
+  },
+  {
+   "span": "positron-decay",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "gamma-decay",
+   "concept": "gamma-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "gamma-decay",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "gamma-decay",
+   "concept": "decay-series",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1505280",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gamma-decay",
+   "prompt": "A nucleus in an excited state undergoes $\\gamma$ decay, losing 1.33 MeV when emitting a $\\gamma$ ray. In order to conserve energy in the reaction, what frequency must the $\\gamma$ ray have?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The $\\gamma$ ray carries away exactly the energy the nucleus loses, so its photon energy is $\\kE = 1.33$ MeV. Convert this to joules with $1\\;\\text{MeV} = 1.60\\times 10^{-13}\\;\\text{J}$, and then use the photon energy $\\kE = h\\kf$ to find the frequency, $\\kf = \\kE/h$ with $h = 6.63\\times 10^{-34}\\;\\text{J}\\cdot\\text{s}$. Expect a frequency far above that of visible light, as befits a $\\gamma$ ray."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2639645",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-decay",
+   "prompt": "${}^{241}_{95}\\text{Am}$ is commonly used in smoke detectors because its α decay process provides a useful tool for detecting the presence of smoke particles. When ${}^{241}_{95}\\text{Am}$ undergoes α decay, what is the resulting nucleus? If ${}^{241}_{95}\\text{Am}$ were to undergo β decay, what would be the resulting nucleus? Explain each answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "When ${}^{241}_{95}\\text{Am}$ undergoes α decay, it loses 2 neutrons and 2 protons. The resulting nucleus is therefore ${}^{237}_{93}\\text{Np}$."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1278852",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "For β decay, the nucleus releases a negative charge. In order for charge to be conserved overall, the nucleus must gain a positive charge, increasing its atomic number by 1, resulting in ${}^{241}_{96}\\text{Cm}$.\nA ${}^{14}_{6}\\text{C}$ nucleus undergoes a decay process, and the resulting nucleus is ${}^{14}_{7}\\text{N}$. What is the value of the charge released by the original nucleus?\n(a) +1\n(b) 0\n(c) −1\n(d) −2",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Compare the atomic numbers. The nucleus goes from $Z = 6$ to $Z = 7$ while $A = 14$ stays the same, so a neutron has become a proton and the nucleus has gained one unit of positive charge. Charge is conserved, so whatever the nucleus emits must carry the opposite charge, one unit of negative charge: this is $\\beta^{-}$ decay, which points to (c)."
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2007406",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "Explain why the overall charge of the nucleus is increased by +1 during the β decay process.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "During this process, the nucleus emits a particle with −1 charge. In order for the overall charge of the system to remain constant, the charge of the nucleus must therefore increase by +1."
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1615174",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "Identify the missing particle based upon conservation principles:\n${}^{14}_{7}\\text{N} + {}^{4}_{2}\\text{He} \\to X + {}^{17}_{8}\\text{O}$\n(a) ${}^{2}_{1}\\text{H}$\n(b) ${}^{1}_{1}\\text{H}$\n(c) ${}^{12}_{6}\\text{C}$\n(d) ${}^{12}_{6}\\text{C}$\n(e) ${}^{8}_{4}\\text{Be}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Use the two conservation laws a nuclear reaction must obey. The total number of nucleons is conserved: $14 + 4 = A + 17$, so the missing particle has $A = 1$. Charge is conserved: $7 + 2 = Z + 8$, so it has $Z = 1$. A particle with $A = 1$ and $Z = 1$ is a proton, the nucleus ${}^{1}_{1}\\text{H}$, which points to (b)."
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id2736223",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "Are the following reactions possible? For each, explain why or why not.\n(a) ${}^{238}_{92}\\text{U} \\to {}^{234}_{88}\\text{Ra} + {}^{4}_{2}\\text{He}$\n(b) ${}^{223}_{88}\\text{Ra} \\to {}^{209}_{82}\\text{Pb} + {}^{14}_{6}\\text{C}$\n(c) ${}^{14}_{6}\\text{C} \\to {}^{14}_{7}\\text{N} + e^{-} + \\bar{v}_{\\text{e}}$\n(d) ${}^{24}_{12}\\text{Mg} \\to {}^{23}_{11}\\text{Na} + e^{+} + v_{\\text{e}}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) No. Nucleon number is conserved (238 = 234 + 4), but the atomic number or charge is NOT conserved (92 ≠ 88+2).\n(b) Yes. Nucleon number is conserved (223 = 209 + 14), and atomic number is conserved (88 = 82 + 6).\n(c) Yes. Nucleon number is conserved (14 = 14), and charge is conserved if the electron’s charge is properly counted (6 = 7 + (-1)).\n(d) No. Nucleon number is not conserved (24 ≠ 23). The positron released counts as a charge to conserve charge, but it doesn’t count as a nucleon."
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id3282097",
+   "source_section": "31.1",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-decay",
+   "prompt": "A uranium nucleus emits an α particle. Assuming charge is conserved, the resulting nucleus must be\n(a) thorium\n(b) plutonium\n(c) radium\n(d) curium",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An α particle is a ${}^{4}\\text{He}$ nucleus, which carries two protons. Uranium has $Z = 92$, so after the α leaves the daughter has $Z = 92 - 2 = 90$. Look up the element with atomic number 90 in the periodic table: it is thorium, as in the decay ${}^{238}\\text{U} \\to {}^{234}\\text{Th} + {}^{4}\\text{He}$, which points to (a)."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2209498",
+   "kind": "conceptual-question",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "Star Trek fans have often heard the term “antimatter drive.” Describe how you could use a magnetic field to trap antimatter, such as produced by nuclear decay, and later combine it with matter to produce energy. Be specific about the type of antimatter, the need for vacuum storage, and the fraction of matter converted into energy.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The antimatter nuclear decay produces is the positron, emitted in $\\beta^{+}$ decay. A positron is charged, so a magnetic field bends it into a circle or a helix about the field lines, and a suitably shaped field (a magnetic bottle, with stronger field at the ends) can hold positrons circling inside it without their touching any wall. The trap must be a high vacuum, since a positron that meets an electron of any gas atom or of the walls annihilates at once. To produce energy, the positrons are let out onto ordinary matter, where each annihilates with an electron, $e^{+}+e^{-}\\to\\gamma+\\gamma$. In annihilation all of the mass of the pair is converted, so the fraction of the mass converted into energy is 100%, by $\\kE = (\\kdm)\\kc^{2}$, far more than the small fraction converted in any decay."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1485777",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "What conservation law requires an electron’s neutrino to be produced in electron capture? Note that the electron no longer exists after it is captured by the nucleus.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Conservation of electron family number. Before the capture there is one member of the electron family, the electron, with electron family number $+1$. After the capture the electron is gone, and the nucleus has no electron family number, so some particle with electron family number $+1$ must be created to keep the total constant. That particle is the electron’s neutrino $\\nu_{e}$, which leaves the nucleus."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1576428",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-decay",
+   "prompt": "Neutrinos are experimentally determined to have an extremely small mass. Huge numbers of neutrinos are created in a supernova at the same time as massive amounts of light are first produced. When the 1987A supernova occurred in the Large Magellanic Cloud, visible primarily in the Southern Hemisphere and some 100,000 light-years away from Earth, neutrinos from the explosion were observed at about the same time as the light from the blast. How could the relative arrival times of neutrinos and light be used to place limits on the mass of neutrinos?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A particle with mass always travels slower than light, and the larger its mass for a given energy, the slower it goes. Over a distance of 100,000 light-years even a tiny shortfall in speed makes the neutrinos arrive measurably later than the light that set out with them. Since the neutrinos arrived at about the same time, the difference between their speed and $\\kc$ must be no more than the distance divided into the uncertainty in the arrival times. Knowing the neutrinos’ energies, relativity then gives the largest mass consistent with so small a speed difference, which is an upper limit on the neutrino’s mass."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2006022",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "What do the three types of beta decay have in common that is distinctly different from alpha decay?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In every type of beta decay the number of nucleons $A$ stays the same while $Z$ changes by one: a neutron becomes a proton in $\\beta^{-}$ decay, or a proton becomes a neutron in $\\beta^{+}$ decay and electron capture. Each also involves members of the electron family, an electron or positron emitted or an electron captured, together with a neutrino or antineutrino, and is due to the weak nuclear force. In alpha decay, by contrast, no nucleon changes its identity: a ${}^{4}\\text{He}$ nucleus breaks away, $A$ falls by four, $Z$ and $N$ each fall by two, and no electron or neutrino is involved."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2405551",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "$\\beta^{-}$ decay of ${}^{3}\\text{H}$ (tritium), a manufactured isotope of hydrogen used in some digital watch displays, and manufactured primarily for use in hydrogen bombs.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{3}_{1}\\text{H}_{2}\\to {}^{3}_{2}\\text{He}_{1}+\\beta^{-}+\\bar{\\nu}_{e}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2670256",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "$\\beta^{+}$ decay of ${}^{50}\\text{Mn}$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{50}_{25}\\text{M}_{25}\\to {}^{50}_{24}\\text{Cr}_{26}+\\beta^{+}+\\nu_{e}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2640350",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "Electron capture by ${}^{7}\\text{Be}$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{7}_{4}\\text{Be}_{3}+e^{-}\\to {}^{7}_{3}\\text{Li}_{4}+\\nu_{e}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2626117",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-decay",
+   "prompt": "$\\alpha$ decay of ${}^{210}\\text{Po}$, the isotope of polonium in the decay series of ${}^{238}\\text{U}$ that was discovered by the Curies. A favorite isotope in physics labs, since it has a short half-life and decays to a stable nuclide.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{210}_{84}\\text{Po}_{126}\\to {}^{206}_{82}\\text{Pb}_{124}+{}^{4}_{2}\\text{He}_{2}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1473021",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "$\\beta^{-}$ decay producing ${}^{137}\\text{Ba}$. The parent nuclide is a major waste product of reactors and has chemistry similar to potassium and sodium, resulting in its concentration in your cells if ingested.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{137}_{55}\\text{Cs}_{82}\\to {}^{137}_{56}\\text{Ba}_{81}+\\beta^{-}+\\bar{\\nu}_{e}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2011306",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alpha-decay",
+   "prompt": "$\\alpha$ decay producing ${}^{228}\\text{Ra}$. The parent nuclide is nearly 100% of the natural element and is found in gas lantern mantles and in metal alloys used in jets (${}^{228}\\text{Ra}$ is also radioactive).",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${}^{232}_{90}\\text{Th}_{142}\\to {}^{228}_{88}\\text{Ra}_{140}+{}^{4}_{2}\\text{He}_{2}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3164080",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "When an electron and positron annihilate, both their masses are destroyed, creating two equal energy photons to preserve momentum. (a) Confirm that the annihilation equation $e^{+}+e^{-}\\to \\gamma+\\gamma$ conserves charge, electron family number, and total number of nucleons. To do this, identify the values of each before and after the annihilation. (b) Find the energy of each $\\gamma$ ray, assuming the electron and positron are initially nearly at rest. (c) Explain why the two $\\gamma$ rays travel in exactly opposite directions if the center of mass of the electron-positron system is initially at rest.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.511,
+    "unit": "MeV",
+    "part": "(b)",
+    "hint": "Each photon takes the rest energy of one of the two particles, $\\kme\\kc^{2}$.",
+    "solution": "(a) $\\text{charge:}(+1)+(-1)=0;\\;\\;\\;\\text{electron family number:}\\;(+1)+(-1)=0;\\;\\;\\;A: 0+0=0$\n(b) 0.511 MeV\n(c) The two $\\gamma$ rays must travel in exactly opposite directions in order to conserve momentum, since initially there is zero momentum if the center of mass is initially at rest."
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id3291026",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beta-minus-decay",
+   "prompt": "Confirm that charge, electron family number, and the total number of nucleons are all conserved by the rule for $\\beta^{-}$ decay given in the equation ${}_{Z}^{A}\\text{X}_{N}\\to {}_{Z+1}^{A}\\text{Y}_{N-1}+\\beta^{-}+\\bar{\\nu}_{e}$. To do this, identify the values of each before and after the decay.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$Z=(Z+1)-1;\\;\\;\\;A=A;\\;\\;\\;\\text{efn : }0=(+1)+(-1)$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3178618",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "Confirm that charge, electron family number, and the total number of nucleons are all conserved by the rule for electron capture given in the equation ${}_{Z}^{A}\\text{X}_{N}+e^{-}\\to {}_{Z-1}^{A}\\text{Y}_{N+1}+\\nu_{e}$. To do this, identify the values of each before and after the capture.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$Z-1=Z-1;\\;\\;\\;A=A;\\;\\;\\;\\text{efn :}(+1)=(+1)$"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id2062598",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pu-239-alpha-energy",
+   "prompt": "(a) Write the complete $\\alpha$ decay equation for ${}^{226}\\text{Ra}$.\n(b) Find the energy released in the decay.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.87,
+    "unit": "MeV",
+    "part": "(b)",
+    "hint": "Find $\\kdm$ from the atomic masses of ${}^{226}\\text{Ra}$, ${}^{222}\\text{Rn}$ and ${}^{4}\\text{He}$ in Appendix A, then use $1\\;\\text{u} = 931.5\\;\\text{MeV}/\\kc^{2}$.",
+    "solution": "(a) ${}^{226}_{88}\\text{Ra}_{138}\\to {}^{222}_{86}\\text{Rn}_{136}+{}^{4}_{2}\\text{He}_{2}$\n(b) 4.87 MeV"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1871366",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "co-60-beta-energy",
+   "prompt": "(a) Write the complete $\\beta^{-}$ decay equation for the neutron. (b) Find the energy released in the decay.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.783,
+    "unit": "MeV",
+    "part": "(b)",
+    "hint": "$\\kdm$ is the mass of the neutron less the mass of a hydrogen atom, which includes the electron that is created.",
+    "solution": "(a) $\\text{n}\\to \\text{p}+\\beta^{-}+\\bar{\\nu}_{e}$\n(b) 0.783 MeV"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id3028069",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "Calculate the energy released in the $\\beta^{+}$ decay of ${}^{22}\\text{Na}$, the equation for which is given in the text. The masses of ${}^{22}\\text{Na}$ and ${}^{22}\\text{Ne}$ are 21.994434 and 21.991383 u, respectively.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.82,
+    "unit": "MeV",
+    "hint": "With atomic masses, $\\kdm = m(\\text{parent}) - [m(\\text{daughter}) + 2\\kme]$.",
+    "solution": "1.82 MeV"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3402996",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pu-239-alpha-energy",
+   "prompt": "(a) Calculate the energy released in the $\\alpha$ decay of ${}^{238}\\text{U}$.\n(b) What fraction of the mass of a single ${}^{238}\\text{U}$ is destroyed in the decay? The mass of ${}^{234}\\text{Th}$ is 234.043593 u.\n(c) Although the fractional mass loss is large for a single nucleus, it is difficult to observe for an entire macroscopic sample of uranium. Why is this?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.274,
+      "unit": "MeV",
+      "hint": "The products are ${}^{234}\\text{Th}$ and ${}^{4}\\text{He}$; find $\\kdm$ and multiply by 931.5 MeV/u."
+     },
+     {
+      "part": "(b)",
+      "value": 1.927e-05,
+      "hint": "Divide $\\kdm$ by the mass of ${}^{238}\\text{U}$."
+     }
+    ],
+    "solution": "(a) 4.274 MeV\n(b) $1.927\\times 10^{-5}$\n(c) Since U-238 is a slowly decaying substance, only a very small number of nuclei decay on human timescales; therefore, although those nuclei that decay lose a noticeable fraction of their mass, the change in the total mass of the sample is not detectable for a macroscopic sample."
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id2600565",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "(a) Write the complete reaction equation for electron capture by ${}^{15}\\text{O}$.\n(b) Calculate the energy released.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.754,
+    "unit": "MeV",
+    "part": "(b)",
+    "hint": "With atomic masses the captured electron is already counted in the parent’s mass, so $\\kdm = m({}^{15}\\text{O}) - m({}^{15}\\text{N})$.",
+    "solution": "(a) ${}^{15}_{8}\\text{O}_{7}+e^{-}\\to {}^{15}_{7}\\text{N}_{8}+\\nu_{e}$\n(b) 2.754 MeV"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2659160",
+   "source_section": "31.7",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pu-239-alpha-energy",
+   "prompt": "(a) Write the decay equation for the $\\alpha$ decay of ${}^{235}\\text{U}$. (b) What energy is released in this decay? The mass of the daughter nuclide is 231.036298 u. (c) Assuming the residual nucleus is formed in its ground state, how much energy goes to the $\\alpha$ particle?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(b)",
+      "value": 4.679,
+      "unit": "MeV"
+     },
+     {
+      "part": "(c)",
+      "value": 4.599,
+      "unit": "MeV",
+      "hint": "The α and the daughter leave with equal and opposite momenta, so their kinetic energies are in the inverse ratio of their masses."
+     }
+    ],
+    "solution": "(a) ${}^{235}_{92}\\text{U}_{143}\\to {}^{231}_{90}\\text{Th}_{141}+{}^{4}_{2}\\text{He}_{2}$\n(b) 4.679 MeV\n(c) 4.599 MeV"
+   }
+  },
+  {
+   "id": "p16",
+   "source_id": "fs-id3137818",
+   "source_section": "31.7",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "positron-decay",
+   "prompt": "Unreasonable Results\nA frazzled theoretical physicist reckons that all conservation laws are obeyed in the decay of a proton into a neutron, positron, and neutrino (as in $\\beta^{+}$ decay of a nucleus) and sends a paper to a journal to announce the reaction as a possible end of the universe due to the spontaneous decay of protons. (a) What energy is released in this decay? (b) What is unreasonable about this result? (c) What assumption is responsible?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1.805,
+    "unit": "MeV",
+    "part": "(a)",
+    "hint": "$\\kdm$ is the proton’s mass less the masses of the neutron and the positron.",
+    "solution": "(a) −1.805 MeV\n(b) Negative energy implies energy input is necessary and the reaction cannot be spontaneous.\n(c) Although all conversation laws are obeyed, energy must be supplied, so the assumption of spontaneous decay is incorrect."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "gamma-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "photon-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "alpha-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conservation-of-nucleon-number",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-nucleon-number",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "alpha-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "antimatter",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "positron"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "positron-decay"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conservation-of-electron-family-number",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electron-capture"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "electron-neutrino"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "rest-energy"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "beta-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "alpha-decay-process"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p1",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "nuclide-notation"
+  },
+  {
+   "exercise": "p2",
+   "concept": "beta-plus-decay-and-electron-capture",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "nuclide-notation"
+  },
+  {
+   "exercise": "p3",
+   "concept": "electron-capture",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "exercise": "p4",
+   "concept": "alpha-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "nuclide-notation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "parent-nuclide"
+  },
+  {
+   "exercise": "p6",
+   "concept": "alpha-decay",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "parent-nuclide"
+  },
+  {
+   "exercise": "p7",
+   "concept": "positron",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p7",
+   "concept": "rest-energy"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "p8",
+   "concept": "beta-minus-decay-and-the-neutrino",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p8",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p8",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "p9",
+   "concept": "electron-capture",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p9",
+   "concept": "conservation-of-charge"
+  },
+  {
+   "exercise": "p10",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p10",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "p10",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p11",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "beta-minus-decay-and-the-neutrino"
+  },
+  {
+   "exercise": "p11",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p12",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p12",
+   "concept": "beta-plus-decay-and-electron-capture"
+  },
+  {
+   "exercise": "p12",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p13",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p13",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "p14",
+   "concept": "electron-capture",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p14",
+   "concept": "decay-energy-from-atomic-masses"
+  },
+  {
+   "exercise": "p14",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p15",
+   "concept": "decay-energy-from-atomic-masses",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "p15",
+   "concept": "conservation-of-momentum"
+  },
+  {
+   "exercise": "p15",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p16",
+   "concept": "nuclear-reaction-energy",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p16",
+   "concept": "positron-decay"
+  },
+  {
+   "exercise": "p16",
+   "concept": "decay-energy-from-atomic-masses"
+  }
+ ],
+ "referents": [
+  {
+   "id": "pu-239",
+   "label": "the plutonium-239 nucleus, parent of the α decay",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "u-235",
+   "label": "the uranium-235 daughter of the α decay",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "co-60",
+   "label": "the cobalt-60 nucleus, parent of the β⁻ decay",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "ni-60",
+   "label": "the nickel-60 daughter of the β⁻ decay, excited or in its ground state",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "na-22",
+   "label": "the sodium-22 nucleus, parent of the β⁺ decay and the electron capture",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  },
+  {
+   "id": "ne-22",
+   "label": "the neon-22 daughter of the β⁺ decay and the electron capture",
+   "figures": [
+    "sim-decay-modes"
+   ]
+  }
+ ]
+}
