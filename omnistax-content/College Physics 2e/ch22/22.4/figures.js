@@ -44,7 +44,7 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
    who drifted underneath would be shown the left hand rule; the yaw is
    free, since every compass direction round the charge is a place worth
    standing. The arrows are drawn to a fixed scale taken from the slider
-   maxima: the velocity reaches 2.0 units at 15 m/s and the force 2.6 units
+   maxima: the velocity reaches 2.0 units at 15 m/s and the force 1.6 units
    at the greatest force the sliders give, 3.0 × 10⁻¹¹ N. The field's
    strength is told the way 22.3 tells it, by how closely its lines are
    drawn, one line to every tenth of a gauss.
@@ -63,8 +63,9 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
   const bS = ctl(d.controls, { label: '\\kBmag', cls: 'magnetic-field', min: 0, max: 1, step: 0.05, value: 0.5, unit: 'G', dec: 2, aria: 'the strength of the magnetic field, in gauss' });
   const thS = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 1, value: 90, unit: '°', dec: 0, specials: [{ at: 90, label: 'sin θ = 1' }], aria: 'the angle between the velocity of the charge and the magnetic field' });
 
-  const V_MAX = 15, B_MAX = 1, F_MAX = Q_C * V_MAX * B_MAX * G_TO_T;   /* 3.0 × 10⁻¹¹ N, and the graph's axis */
-  const LV = 2.0, LB = 2.0, LF = 3.2, R_DISC = 1.9;
+  const V_MAX = 15, B_MAX = 1, F_MAX = Q_C * V_MAX * B_MAX * G_TO_T;   /* 3.0 × 10⁻¹¹ N, the force arrow at its full length */
+  const LV = 2.0, LB = 2.0, LF = 1.6, R_DISC = 1.9;
+  const HAND_K = 2.6, HAND_AT = [1.0, 0.32, 0.4];   /* the hand's scale, and its wrist: east of the charge, where neither v nor its labels go */
   const state = () => {
     const th = thS.v * RAD, s = signC.value === 'pos' ? 1 : -1;
     /* the sign turning over: the force shrinks into the plane and grows out of the other side */
@@ -115,26 +116,23 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     /* the plane the velocity and the field lie in, drawn as a ring with the four compass points */
     const ring = [];
     for (let i = 0; i <= 96; i++) { const a = (i / 96) * 2 * Math.PI; ring.push([R_DISC * Math.cos(a), 0, R_DISC * Math.sin(a)]); }
-    const rim = F.mesh.polyline(root3, ring, alpha(PAL.ink, 0.35)); paint.push({ m: rim.material, col: () => alpha(PAL.ink, 0.35) });
+    const faint = (l, col, op) => { l.material.transparent = true; l.material.opacity = op; paint.push({ m: l.material, col }); return l; };
+    faint(F.mesh.polyline(root3, ring, PAL.ink), inkC, 0.35);
     for (let i = 0; i < 8; i++) {
       const a = (i / 8) * 2 * Math.PI, c = Math.cos(a), s2 = Math.sin(a);
-      const tk = F.mesh.polyline(root3, [[R_DISC * 0.94 * c, 0, R_DISC * 0.94 * s2], [R_DISC * c, 0, R_DISC * s2]], alpha(PAL.ink, 0.35));
-      paint.push({ m: tk.material, col: () => alpha(PAL.ink, 0.35) });
+      faint(F.mesh.polyline(root3, [[R_DISC * 0.94 * c, 0, R_DISC * 0.94 * s2], [R_DISC * c, 0, R_DISC * s2]], PAL.ink), inkC, 0.35);
     }
     S = { lines: new THREE.Group(), arc: new THREE.Group(), hand: new THREE.Group() };
     root3.add(S.lines); root3.add(S.arc); root3.add(S.hand);
-    /* the right hand of the rule: the palm above the plane facing the way the
-       force goes on a positive charge, the fingers along the field and the thumb
-       along the velocity. Only the thumb moves, since the field is due north */
-    const hm = pmat(mutedC, { transparent: true, opacity: 0.5 });
-    const palm = new THREE.Mesh(new THREE.BoxGeometry(0.74, 0.13, 0.82), hm); palm.position.set(0, 0.62, -0.06); S.hand.add(palm); V.pickable(palm, 'the palm of the right hand: the force on a positive charge comes out of it');
-    [-0.27, -0.09, 0.09, 0.27].forEach((x) => {
-      const f2 = new THREE.Mesh(F.mesh.geo().cyl, hm); f2.scale.set(0.055, 1, 0.055);
-      F.mesh.setStick(f2, [x, 0.62, -0.46], [x, 0.62, -1.02]); S.hand.add(f2); V.pickable(f2, 'the fingers, pointing the way the magnetic field runs');
-    });
-    const wrist = new THREE.Mesh(F.mesh.geo().cyl, hm); wrist.scale.set(0.17, 1, 0.17);
-    F.mesh.setStick(wrist, [0, 0.62, 0.33], [0, 0.62, 1.05]); S.hand.add(wrist); V.pickable(wrist, 'the wrist');
-    S.thumb = new THREE.Mesh(F.mesh.geo().cyl, hm); S.thumb.scale.set(0.072, 1, 0.072); S.hand.add(S.thumb); V.pickable(S.thumb, 'the thumb, pointing the way the charge travels');
+    /* the right hand of the rule (F.mesh.hand), laid flat beside the charge: the fingers along the
+       field, the palm facing the way the force goes on a positive charge, and so the thumb along
+       aim × palm, due west, the way the velocity runs at 90°. The field is due north and the force
+       straight down at every setting, so the hand never moves */
+    const HAND = { palm: 'the palm of the right hand: the force on a positive charge comes out of it', wrist: 'the wrist', thumb: 'the thumb, pointing the way the charge travels' };
+    const hand = F.mesh.hand({ right: true, curl: 0, thumb: 'up', aim: [0, 0, -1], palm: [0, -1, 0], at: HAND_AT, scale: HAND_K, ink: inkC(), color: mutedC() });
+    paint.push({ m: hand.userData.ink, col: inkC }, { m: hand.userData.fill, col: mutedC });
+    hand.children.forEach((m) => { if (m.material === hand.userData.fill) V.pickable(m, HAND[m.userData.part] ?? 'the fingers, pointing the way the magnetic field runs'); });
+    S.hand.add(hand);
     /* the charge and the three vectors */
     const RC = () => F.ref('rod');
     S.ball = F.mesh.sphere(root3, [0, 0, 0], 0.14, RC()); paint.push({ m: S.ball.material, col: RC }); V.pickable(S.ball, 'the charged glass rod, 20 nC');
@@ -144,13 +142,13 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     /* the names. Five belong to things the figure draws and are on; the four
        compass points are the frame and are drawn quieter (rule 26.7) */
     S.lab = {
-      v: V.label('v', [0, 0, 0], root3, 10), B: V.label('B', [0, 0, 0], root3, 10),
-      F: V.label('F', [0, 0, 0], root3, 10), q: V.label('q', [0, 0, 0], root3, -8),
-      th: V.label('θ', [0, 0, 0], root3, -16),
+      v: V.label('v', [0, 0, 0], root3, -12), B: V.label('B', [0, 0, 0], root3, 10),
+      F: V.label('F', [0, 0, 0], root3, 10), q: V.label('q', [0, 0, 0], root3, -14),
+      th: V.label('θ', [0, 0, 0], root3, 6),
     };
     S.lab.v.style.color = C('velocity'); S.lab.B.style.color = C('magnetic-field');
     S.lab.F.style.color = C('force'); S.lab.q.style.color = C('charge'); S.lab.th.style.color = C('angle');
-    const comp = [['N', [0, 0, -R_DISC - 0.3]], ['E', [R_DISC + 0.3, 0, 0]], ['S', [0, 0, R_DISC + 0.3]], ['W', [-R_DISC - 0.3, 0, 0]]];
+    const comp = [['N', [0, 0, -R_DISC - 0.24]], ['E', [R_DISC + 0.24, 0, 0]], ['S', [0, 0, R_DISC + 0.24]], ['W', [-R_DISC - 0.24, 0, 0]]];
     S.comp = comp.map(([s, p]) => dim(V.label(s, p, root3, 0), PAL.muted));
     V.invalidate();
   }
@@ -165,7 +163,6 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     const vt = [st.vdir[0] * lv, 0, st.vdir[2] * lv];
     const bt = [0, 0, -lb], ft = [0, -st.sm * lf, 0];
     S.v.set([0, 0, 0], vt); S.B.set([0, 0, 0], bt); S.F.set([0, 0, 0], ft);
-    F.mesh.setStick(S.thumb, [st.vdir[0] * 0.33, 0.62, st.vdir[2] * 0.33], [st.vdir[0] * 0.95, 0.62, st.vdir[2] * 0.95]);
     /* the field lines: one to every tenth of a gauss, spread across the plane */
     const n = Math.round(bS.v * 10);
     if (n !== lastLines) {
@@ -175,22 +172,25 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
         const x = n === 1 ? 0 : -1.5 + (3.0 * i) / (n - 1);
         if (Math.abs(x) < 0.12) continue;                       /* the bold arrow already stands on the middle line */
         const half = Math.sqrt(Math.max(0.16, R_DISC * R_DISC - x * x));
-        F.mesh.polyline(S.lines, [[x, 0, half], [x, 0, -half + 0.22]], alpha(C('magnetic-field'), 0.5));
-        const cone = new THREE.Mesh(F.mesh.geo().cone, F.mesh.mat(alpha(C('magnetic-field'), 0.5)));
+        const ln = F.mesh.polyline(S.lines, [[x, 0, half], [x, 0, -half + 0.22]], C('magnetic-field'));
+        ln.material.transparent = true; ln.material.opacity = 0.5;
+        const cone = new THREE.Mesh(F.mesh.geo().cone, F.mesh.mat(C('magnetic-field'), { transparent: true, opacity: 0.5 }));
         cone.position.set(x, 0, -half + 0.11); cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, -1));
         cone.scale.set(0.075, 0.26, 0.075); S.lines.add(cone);
       }
     }
-    S.lines.children.forEach((c) => { try { c.material.color.set(alpha(C('magnetic-field'), 0.5)); } catch (e) { /* left as it was */ } });
+    S.lines.children.forEach((c) => { try { c.material.color.set(C('magnetic-field')); } catch (e) { /* left as it was */ } });
     /* the angle between the two, redrawn when it changes */
     if (thS.v !== lastTh) {
       S.arc.children.forEach((c) => { c.geometry?.dispose(); c.material?.dispose(); });
       S.arc.clear(); lastTh = thS.v;
-      S.arcPt = (thS.v > 2 && thS.v < 178) ? F.mesh.arc(S.arc, st.vdir, st.bdir, 1.45, [0, 0, 0], C('angle')) : [0.9, 0, -0.9];
+      if (thS.v > 2 && thS.v < 178) F.mesh.arc(S.arc, st.vdir, st.bdir, 0.95, [0, 0, 0], C('angle'));
+      const h = (thS.v - Math.min(25, thS.v / 2)) * RAD;
+      S.arcPt = [-1.3 * Math.sin(h), 0, -1.3 * Math.cos(h)];   /* the angle's name just inside v, clear of an upward force and its name */
     }
     S.arc.children.forEach((c) => { try { c.material.color.set(C('angle')); } catch (e) { /* left as it was */ } });
-    V.move(S.lab.v, [vt[0] * 0.62, 0, vt[2] * 0.62]); V.move(S.lab.B, [0, 0, bt[2] * 0.5]);
-    V.move(S.lab.F, ft); S.lab.F.style.opacity = String(Math.abs(st.sm)); V.move(S.lab.q, [1.15, -0.08, 0.85]); V.move(S.lab.th, S.arcPt ?? [0.9, 0, -0.9]);
+    V.move(S.lab.v, [st.vdir[0] * lv * 0.55 + st.vdir[2] * 0.25, 0, st.vdir[2] * lv * 0.55 - st.vdir[0] * 0.25]);   /* beside v, on the side away from B and the angle */ V.move(S.lab.B, [0.45, 0, bt[2] * 0.35]);   /* east of B, where the angle never is */
+    V.move(S.lab.F, ft[1] < 0 ? [-0.25, ft[1] - 0.15, 0.25] : [0.3, ft[1], 0]); S.lab.F.style.opacity = String(Math.abs(st.sm)); V.move(S.lab.q, [1.55, 0, 1.1]); V.move(S.lab.th, S.arcPt ?? [0.9, 0, -0.9]);
     S.lab.v.textContent = 'v'; S.lab.B.textContent = 'B'; S.lab.F.textContent = 'F';
     S.lab.q.textContent = 'q = ' + (st.s > 0 ? '+' : '\u2212') + '20 nC';
     S.lab.th.textContent = 'θ = ' + fmt(thS.v, 0) + '°';
@@ -244,15 +244,14 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
   /* ---------- the graph of the force against the angle ---------- */
   function drawGraph(ctx, st, y0) {
     const box = { l: 170, r: 1280, t: y0 + 54, b: y0 + 232 };
-    const { X, Y } = axes(ctx, box, [0, 180], [0, 3], {
+    const { X, Y } = axes(ctx, box, [0, 180], [0, 4], {   /* 3.0 × 10⁻¹¹ N at the slider maxima, and headroom over it */
       xl: 'θ, the angle between v and B (degrees)', xc: C('angle'), yl: 'F (10⁻¹¹ N)', yc: C('force'),
-      nx: 6, ny: 3, fx: (t) => fmt(t, 0), fy: (t) => fmt(t, 1),
+      nx: 6, ny: 4, fx: (t) => fmt(t, 0), fy: (t) => fmt(t, 1),
     });
     const peak = (Q_C * vS.v * st.B_T) / 1e-11;
     curve(ctx, (t) => peak * Math.sin(t * RAD), 0, 180, X, Y, C('force'), 5, 120);
     const p = pinned(ctx, box, X, Y, thS.v, st.Fv / 1e-11, C('force'));
     line(ctx, p.x, p.y, p.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    text(ctx, 'the sine is what the angle costs the force', box.r - 10, box.t + 22, PAL.muted, { size: 17, align: 'right' });
   }
 
   function draw() {
@@ -262,18 +261,18 @@ const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => 
     else if (S) apply(st);
     drawGraph(ctx, st, hasGL ? 40 : 536);
     readout(d.readout,
-      `\\kF = \\kq\\kv\\kBmag\\sin\\ktheta = (${st.s > 0 ? '' : '-'}20 \\times 10^{-9}\\ \\text{C})(${fmt(vS.v, 1)}\\ \\text{m/s})(${sciTex(st.B_T, 2)}\\ \\text{T})\\sin ${fmt(thS.v, 0)}^\\circ = ${st.Fv > 0 ? sciTex(st.Fv, 1) : '0'}\\ \\text{N}`,
-      'The field is set in gauss, the smaller unit the section names, and written in teslas in the equation: 0.50 G is the 5 × 10⁻⁵ T of the Earth’s field at its surface, and at 10 m/s and 90° this is Example 22.1, with its answer of 1 × 10⁻¹¹ N. Point the thumb of your right hand along the velocity and your fingers along the field, and your palm pushes the way the force arrow goes; a negative charge is pushed into the palm instead. The arrows are drawn to a fixed scale, the velocity at its full length when the speed is 15 m/s and the force at its full length when the force is 3.0 × 10⁻¹¹ N, and the field is drawn with one line to every tenth of a gauss.');
+      `\\begin{aligned}\\kF &= \\kq\\kv\\kBmag\\sin\\ktheta = (${st.s > 0 ? '' : '-'}20 \\times 10^{-9}\\ \\text{C})(${fmt(vS.v, 1)}\\ \\text{m/s})(${sciTex(st.B_T, 2)}\\ \\text{T})\\sin ${fmt(thS.v, 0)}^\\circ \\\\ &= ${st.Fv > 0 ? sciTex(st.Fv, 1) : '0'}\\ \\text{N}\\end{aligned}`,
+      'The field is drawn with one line to every tenth of a gauss.');
   }
 
   if (hasGL) {
     V = F.view3d(d.stage, {
-      h: 680, dist: 8.0, tilt: 0.42, spin: 'off',
-      views: [{ label: 'the book’s view', yaw: -0.55, pitch: 0.42 }, { label: 'along the field', yaw: 0, pitch: 0.16 }, { label: 'from above', yaw: 0, pitch: 1.30 }],
+      h: 680, dist: 9.0, tilt: 0.42, spin: 'off',
+      views: [{ label: 'the book’s view', yaw: -0.55, pitch: 0.42 }, { label: 'along the field', yaw: 0, pitch: 0.3 }, { label: 'from above', yaw: 0, pitch: 1.2 }],
       pitch: [0.10, 1.43], yaw: 'free', zoomMin: 0.7, zoomMax: 2.4,
     });
     if (!V.scene) V = null;
-    else { root3 = V.part(0); V.setView(-0.55, 0.42); d.stage.appendChild(d.c); }
+    else { root3 = V.part(0); V.setView(-0.55, 0.42); V.look({ target: [0, 0.45, 0] });   /* the scene sat lower, so the force's arrow clears the headline */ d.stage.appendChild(d.c); }
   }
   if (V) { try { build(); } catch (e) { console.error('sim-rhr-1: the scene could not be built', e); S = null; } }
   register(d.fig, { update: () => {}, draw });

@@ -73,33 +73,20 @@ all five of its nodes.
 id · replaces or Sim · concepts · value add · what moves or still · sliders
 and choices · headline · graph · 3D
 
-1. `sim-rhr-1` · **Figure 22.16 + 22.17**, the hand with $v$, $B$ and $F$
-   and the charged rod thrown west in the Earth's northward field, folded
-   as `ch22/config.md` asks: one vector trio of which the book's glass rod
-   is a state, reached by loading the figure at the book's own numbers ·
-   right-hand-rule-1, magnetic-force-on-a-moving-charge,
-   force-reverses-with-sign-of-charge · value add: **shape in 3D**, and
-   variation by slider. The whole lesson is that $F$ stands perpendicular
-   to the plane the velocity and the field lie in, and flat the book has to
-   draw that force straight up off a sheet of paper and hope the reader
-   supplies the third axis. Turned, the reader sees the force leave the
-   plane, sees it shrink to nothing as the velocity swings onto the field,
-   and sees it change ends when the charge changes sign, which no still
-   drawing of a hand can say · **still**: a charge crossing a field at a
-   given angle feels a force that is a state of that arrangement, and the
-   figure answers its controls; the charge's path is 22.5's subject and
-   nothing here has a clock, so no cycle and no transport (rule 14) · the
-   speed $\kv$ (0 to 15 m/s, default 10, velocity), the field $\kBmag$ (0
-   to 1.00 G, default 0.50, magnetic-field) and the angle $\theta$ between
-   them (0 to 180°, default 90, untyped); a choice for the sign of the
-   charge (positive, the book's rule, or negative, default positive) and a
-   choice for the right hand itself (shown or hidden, default shown), both
-   discrete states and so never sliders (rule 26.1) · "A charge of +20 nC
-   crossing a 0.50 G field at 10 m/s and 90° is pushed straight down with
-   1.0 × 10⁻¹¹ N." · **graph below**: the scene is horizontal, so the graph
-   of $F$ against $\theta$ from 0° to 180° sits under it with the current
-   point pinned, its vertical axis fixed at 0 to 3.0 × 10⁻¹¹ N from the
-   slider maxima at 20 nC · **3D**, the tier argued below.
+1. `sim-rhr-1` · **Figure 22.16 + 22.17** · magnetic-force-on-moving-charge,
+   right-hand-rule-1 · value add: shape in 3D (F leaves the v–B plane),
+   variation by slider · still: the force is a state of the arrangement ·
+   charge sign choice; $\kv$, $\kBmag$, $\theta$ sliders with the 90°
+   detent · headline as before · graph of $F$ against $\theta$ below, fixed
+   at 0 to 4 × 10⁻¹¹ N for headroom over the 3.0 at the slider maxima · 3D
+   mathematical, F.view3d, pitch 6° to 82° above the v–B plane so the rule
+   is never seen from beneath, yaw free, snap views as before; the hand is
+   F.mesh.hand({right: true, curl: 0, aim: B, palm: F on a positive charge})
+   laid flat east of the charge, so the thumb falls along v, replacing the
+   box-and-stick palm, fingers and thumb; θ, F and q labels placed clear of
+   the hand and each other, the readout split over two lines so it never
+   passes the stage edge, ring colours given without alpha; no fold or split
+   (rewritten 2026-10-05 after review).
 2. `sim-tesla` · Sim · the-tesla, magnetic-field-strength-defined · value
    add: variation by slider and intuition. The section gives four field
    strengths in four sentences — the Earth's 5 × 10⁻⁵ T, half a gauss, the
