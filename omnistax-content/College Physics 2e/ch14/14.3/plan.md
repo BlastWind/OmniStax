@@ -99,13 +99,19 @@ choices · headline · graph · 3D
    from Table 14.2 and its mass, and two bars in the energy hue beneath the
    scene show the heat the melting and the boiling of that mass cost, so the
    reader sees that boiling costs several times what melting does for every
-   substance, and how the two heats grow with the mass · **still**: the idea
-   is an amount of energy and not a rate, and the book's curved arrows
-   labelled "energy input, melt" and "energy output, freeze" are notation
-   for a transition, not a thing in flight, so they are drawn in the app's
-   arrow style and never animated (rules 14 and 24.1; `ch14/config.md`
-   decides 14.8 is still, and the arrows the molecules carry that show the
-   limits of their motion are drawn as the book draws them, as marks) · a
+   substance, and how the two heats grow with the mass, and **flow by
+   animation**: the book's arrows on the molecules are their motion · arrows:
+   kinematic (the solid's short arrows to its limits of motion, the liquid's
+   curved paths, the gas's long flight arrows), and symbolic (the curved
+   energy input and output arrows between the phases, drawn in the app's
+   arrow style and never animated, rule 24.9) · **moving** (Stage C,
+   2026-10-05; rule 24.1 overrides the still of `ch14/config.md`): the
+   solid's molecules shake inside the dashed limit of motion with their
+   springs stretching, the liquid's wander closed loops near their
+   neighbours, the gas's fly and bounce off the walls and one another, one
+   5 s loop with a 1.2 s hold; a faint trail behind each liquid and gas
+   molecule is the book's arrow in motion and carries it in the reduced-motion
+   still; the sliders restart the loop · a
    substance chosen from Table 14.2 (a dropdown, since seven options would
    wrap a button row: water, helium, nitrogen, oxygen, copper, silver, gold,
    the seven whose particles the element palette can draw, water the

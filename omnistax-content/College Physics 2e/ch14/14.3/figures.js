@@ -1,10 +1,10 @@
 /* Figures for section 14.3 Phase Change and Latent Heat. Boots against the section's text article.
-   Every figure here is about an amount of heat and the state it produces,
-   not a rate, so all three are still pictures: none registers a cycle, none
-   carries a transport, and a slider's input alone redraws it. */
+   The heating curve and the soda are about an amount of heat and the state
+   it produces, not a rate, so they are still pictures that answer their
+   sliders; the molecules of Figure 14.8 move as the book's arrows say. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['14.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, select, register, begin, line, arrow, dot, text, headline, topline, axes, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, select, register, cycle, begin, line, arrow, dot, text, headline, topline, axes, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
@@ -68,19 +68,12 @@ function spring(ctx, x1, y1, x2, y2, gap) {
   for (let i = 1; i < n; i++) { const t = i / n, s = i % 2 ? amp : -amp; ctx.lineTo(a + ux * len * t + px * s, b + uy * len * t + py * s); }
   ctx.lineTo(a + ux * len, b + uy * len); ctx.stroke(); ctx.restore();
 }
-/* a curved arrow from (x, y) sweeping through `ang` radians on a circle of radius R, in ink */
-function curl(ctx, x, y, R, a0, ang, w) {
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(x, y, R, a0, a0 + ang, ang < 0); ctx.stroke(); ctx.restore();
-  const a = a0 + ang, t = a + (ang > 0 ? Math.PI / 2 : -Math.PI / 2);
-  const hx = x + R * Math.cos(a), hy = y + R * Math.sin(a);
-  arrow(ctx, hx - 14 * Math.cos(t), hy - 14 * Math.sin(t), hx, hy, PAL.ink, w);
-}
-
 /* =====================================================================
    FIGURE 14.8: the molecules of a solid, a liquid and a gas, and the
-   energy that each transition costs. Still: the idea is an amount of
-   energy, and the curved arrows between the phases are the book's notation
-   for a transition, drawn and never animated.
+   energy that each transition costs. The book's arrows on the molecules
+   are motion, so the molecules move: the solid's jiggle inside their
+   limits, the liquid's wander close together, the gas's fly and bounce.
+   The arrows between the phases are notation for a transition and stay.
 ===================================================================== */
 (function () {
   const d = sim('sim-phases', 720);
@@ -94,15 +87,45 @@ function curl(ctx, x, y, R, a0, ang, w) {
     silver: { name: 'silver', form: 'atom', el: 'Ag', Lf: 88.3, Lv: 2336, mp: '961', bp: '2193' },
     gold: { name: 'gold', form: 'atom', el: 'Au', Lf: 64.5, Lv: 1578, mp: '1063', bp: '2660' },
   };
-  const sub = select(d.controls, { label: '\\text{the substance}', options: Object.keys(SUBS).map((k) => ({ value: k, label: SUBS[k].name })), value: 'water', aria: 'the substance from Table 14.2' });
-  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'kg', dec: 2, aria: 'the mass of the sample' });
+  const sub = select(d.controls, { label: '\\text{the substance}', options: Object.keys(SUBS).map((k) => ({ value: k, label: SUBS[k].name })), value: 'water', aria: 'the substance from Table 14.2', onInput: () => cy.reset() });
+  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'kg', dec: 2, aria: 'the mass of the sample', onInput: () => cy.reset() });
+  const T = 5, cy = cycle(() => T, 1.2), w = (k, t) => TAU * k * t / T;   /* integer k: every loop closes on itself */
   /* the three panels and the fixed positions of the particles in them */
   const PANEL = { t: 110, b: 470 }, SOL = { l: 50, r: 390 }, LIQ = { l: 530, r: 870 }, GAS = { l: 1010, r: 1350 };
   const rnd = seeded(7);
-  const jitter = () => { const a = rnd() * TAU; return { ax: Math.cos(a), ay: Math.sin(a) }; };
-  const solid = []; for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) solid.push({ x: SOL.l + 44 + i * 84, y: PANEL.t + 44 + j * 84, ...jitter() });
-  const liquid = [[70, 60], [180, 40], [280, 80], [50, 170], [150, 150], [260, 190], [90, 280], [200, 260], [280, 300]].map(([x, y]) => ({ x: LIQ.l + x, y: PANEL.t + y, ...jitter(), sweep: (rnd() > 0.5 ? 1 : -1) * (1.3 + rnd() * 0.9) }));
-  const gas = [[40, 50], [200, 30], [310, 90], [90, 170], [240, 200], [40, 300], [180, 320], [300, 260]].map(([x, y]) => ({ x: GAS.l + x, y: PANEL.t + y, ...jitter(), len: 70 + rnd() * 50 }));
+  const wob = (k0, k1) => ({ kx: k0 + Math.floor(rnd() * (k1 - k0 + 1)), ky: k0 + Math.floor(rnd() * (k1 - k0 + 1)), px: rnd() * TAU, py: rnd() * TAU, tilt: rnd() * TAU });
+  /* the solid: each particle shakes about its lattice point, never more than AS from it */
+  const AS = 9, solid = []; for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) solid.push({ x: SOL.l + 44 + i * 84, y: PANEL.t + 44 + j * 84, ...wob(3, 5) });
+  const atSolid = (p, t) => [p.x + AS * Math.sin(w(p.kx, t) + p.px), p.y + AS * Math.sin(w(p.ky, t) + p.py)];
+  /* the liquid: each particle wanders a closed loop about AL across, near its neighbours (they never touch) */
+  const AL = 30, liquid = [[70, 64], [180, 58], [280, 84], [56, 170], [150, 150], [262, 190], [90, 280], [196, 262], [280, 296]].map(([x, y]) => ({ x: LIQ.l + x, y: PANEL.t + y, ...wob(1, 2) }));
+  const atLiquid = (p, t) => [p.x + AL * Math.sin(w(p.kx, t) + p.px), p.y + AL * Math.cos(w(p.ky, t) + p.py)];
+  /* the gas: free flight, bouncing off the walls and off one another, worked out once at
+     steps of DT so the same time always draws the same frame */
+  const DT = 1 / 120, GR = 20, GD = 30, gas = [[40, 50], [200, 40], [300, 90], [90, 170], [240, 200], [40, 300], [180, 320], [300, 260]].map(([x, y]) => {
+    const a = rnd() * TAU, v = 170 + rnd() * 70; return { x: GAS.l + x, y: PANEL.t + y, vx: v * Math.cos(a), vy: v * Math.sin(a), path: [], tilt: rnd() * TAU, spin: (rnd() - 0.5) * 6 };
+  });
+  for (let n = 0; n <= T / DT; n++) {
+    for (const p of gas) p.path.push([p.x, p.y]);
+    for (const p of gas) {
+      p.x += p.vx * DT; p.y += p.vy * DT;
+      if (p.x < GAS.l + GR) { p.x = GAS.l + GR; p.vx = Math.abs(p.vx); } if (p.x > GAS.r - GR) { p.x = GAS.r - GR; p.vx = -Math.abs(p.vx); }
+      if (p.y < PANEL.t + GR) { p.y = PANEL.t + GR; p.vy = Math.abs(p.vy); } if (p.y > PANEL.b - GR) { p.y = PANEL.b - GR; p.vy = -Math.abs(p.vy); }
+    }
+    for (let i = 0; i < gas.length; i++) for (let j = i + 1; j < gas.length; j++) {   /* equal masses: swap the velocity parts along the line of centres */
+      const a = gas[i], b = gas[j], dx = b.x - a.x, dy = b.y - a.y, r = Math.hypot(dx, dy);
+      if (r >= GD || r === 0) continue; const nx = dx / r, ny = dy / r, u = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+      if (u < 0) { a.vx += u * nx; a.vy += u * ny; b.vx -= u * nx; b.vy -= u * ny; }
+    }
+  }
+  const atGas = (p, t) => p.path[Math.max(0, Math.min(p.path.length - 1, Math.round(t / DT)))];
+  /* a faint trace of where a particle has just been, the book's arrow in motion */
+  function trail(ctx, at, p, t, span) {
+    const t0 = Math.max(0, t - span); if (t - t0 < 0.02) return;
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.3); ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.beginPath();
+    for (let k = 0; k <= 16; k++) { const [x, y] = at(p, t0 + (t - t0) * k / 16); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+    ctx.stroke(); ctx.restore();
+  }
   const MAXKJ = 5000, BX0 = 330, BX1 = 1330;             /* the fixed scale of the two heat bars: 0 to 5000 kJ */
   function panel(ctx, box, name) {
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(box.l, PANEL.t, box.r - box.l, PANEL.b - PANEL.t); ctx.restore();
@@ -110,27 +133,24 @@ function curl(ctx, x, y, R, a0, ang, w) {
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const ec = C('energy'), s = SUBS[sub.value], m = ms.v, Qf = m * s.Lf, Qv = m * s.Lv;
+    const ec = C('energy'), s = SUBS[sub.value], m = ms.v, Qf = m * s.Lf, Qv = m * s.Lv, t = cy.now();
     panel(ctx, SOL, 'solid'); panel(ctx, LIQ, 'liquid'); panel(ctx, GAS, 'gas');
     /* the solid: a lattice held by springs, each particle moving within a small limit */
+    const sp = solid.map((p) => atSolid(p, t));
     for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
-      const p = solid[i * 4 + j];
-      if (i < 3) spring(ctx, p.x, p.y, solid[(i + 1) * 4 + j].x, solid[(i + 1) * 4 + j].y, 18);
-      if (j < 3) spring(ctx, p.x, p.y, solid[i * 4 + j + 1].x, solid[i * 4 + j + 1].y, 18);
+      const [x, y] = sp[i * 4 + j];
+      if (i < 3) spring(ctx, x, y, ...sp[(i + 1) * 4 + j], 18);
+      if (j < 3) spring(ctx, x, y, ...sp[i * 4 + j + 1], 18);
     }
-    for (const p of solid) { arrow(ctx, p.x + p.ax * 15, p.y + p.ay * 15, p.x + p.ax * 42, p.y + p.ay * 42, PAL.ink, 2.5); particle(ctx, s, p.x, p.y, 13, p.ax * 0.5); }
-    { const p = solid[10]; ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.arc(p.x, p.y, 38, 0, TAU); ctx.stroke(); ctx.restore(); }
+    { const p = solid[10]; ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.arc(p.x, p.y, 34, 0, TAU); ctx.stroke(); ctx.restore(); }
+    solid.forEach((p, i) => particle(ctx, s, sp[i][0], sp[i][1], 13, p.tilt + 0.15 * Math.sin(w(p.kx, t))));
     text(ctx, 'limits of motion', SOL.r - 10, PANEL.b - 16, PAL.muted, { size: 17, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    /* the liquid: close but free, each particle wandering on a short curved path */
-    for (const p of liquid) { const a0 = Math.atan2(-p.ay, -p.ax); curl(ctx, p.x + p.ax * 34, p.y + p.ay * 34, 34, a0 + Math.sign(p.sweep) * 0.5, p.sweep, 2.5); particle(ctx, s, p.x, p.y, 13, p.ax); }
+    /* the liquid: close but free, each particle wandering */
+    for (const p of liquid) trail(ctx, atLiquid, p, t, 0.6);
+    for (const p of liquid) { const [x, y] = atLiquid(p, t); particle(ctx, s, x, y, 13, p.tilt + 0.8 * Math.sin(w(p.ky, t))); }
     /* the gas: far apart and in flight */
-    for (const p of gas) {
-      /* the flight arrow is shortened where it would leave the panel */
-      let L = p.len;
-      if (p.ax > 0) L = Math.min(L, (GAS.r - 10 - p.x) / p.ax); if (p.ax < 0) L = Math.min(L, (GAS.l + 10 - p.x) / p.ax);
-      if (p.ay > 0) L = Math.min(L, (PANEL.b - 10 - p.y) / p.ay); if (p.ay < 0) L = Math.min(L, (PANEL.t + 10 - p.y) / p.ay);
-      arrow(ctx, p.x + p.ax * 16, p.y + p.ay * 16, p.x + p.ax * L, p.y + p.ay * L, PAL.ink, 2); particle(ctx, s, p.x, p.y, 13, p.ay);
-    }
+    for (const p of gas) trail(ctx, atGas, p, t, 0.35);
+    for (const p of gas) { const [x, y] = atGas(p, t); particle(ctx, s, x, y, 13, p.tilt + p.spin * t); }
     /* the transitions between the panels: energy in one way, the same energy out the other */
     for (const [x0, x1, into, outof] of [[SOL.r, LIQ.l, 'melt', 'freeze'], [LIQ.r, GAS.l, 'boil', 'condense']]) {
       const cx = (x0 + x1) / 2, yi = 220, yo = 360;
@@ -148,7 +168,7 @@ function curl(ctx, x, y, R, a0, ang, w) {
     readout(d.readout, `\\kQh = \\km\\kLf = (${fmt(m, 2)}\\ \\text{kg})(${s.Lf}\\ \\text{kJ/kg}) = ${fmt(Qf, Qf < 100 ? 1 : 0)}\\ \\text{kJ} \\qquad \\kQh = \\km\\kLv = (${fmt(m, 2)}\\ \\text{kg})(${s.Lv}\\ \\text{kJ/kg}) = ${fmt(Qv, Qv < 100 ? 1 : 0)}\\ \\text{kJ}`,
       s.name.charAt(0).toUpperCase() + s.name.slice(1) + ' melts at ' + s.mp + ' °C and boils at ' + s.bp + ' °C at atmospheric pressure. The same ' + fmt(Qf, Qf < 100 ? 1 : 0) + ' kJ must be removed to freeze the liquid again and the same ' + fmt(Qv, Qv < 100 ? 1 : 0) + ' kJ to condense the gas, and the temperature does not change while either transition is under way.');
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================
