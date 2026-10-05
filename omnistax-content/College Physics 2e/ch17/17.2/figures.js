@@ -104,7 +104,7 @@ function metreBar(ctx, x, y, px, label = '1 m') {
    FIGURE 17.9: the bat and its echo. A wavefront leaves the bat's mouth,
    reaches the insect d away and returns as a dashed echo while a clock
    counts the milliseconds; the graph beneath draws the echo time against
-   the distance on fixed axes, 0 to 10 m and 0 to 70 ms (10 m in air at
+   the distance on fixed axes, 0 to 10 m and 0 to 80 ms (10 m in air at
    −20 °C). Moves: one cycle is the round trip 2d/v_w in model time,
    played over four real seconds and held, so the rate is the period over
    four.
@@ -117,7 +117,7 @@ function metreBar(ctx, x, y, px, label = '1 m') {
   const cy = cycle(period, 1.2);
   const X0 = 190, PPM = 106, SY = 280, HALF = 0.5;                          /* the bat's mouth, px per metre, the strip's centre line, the sector's half-angle */
   const X = (m) => X0 + m * PPM;
-  const G = { l: 170, r: 1230, t: 500, b: 690 };                              /* the graph box; axes fixed, see the header comment */
+  const G = { l: 170, r: 1230, t: 530, b: 700 };                              /* the graph box; axes fixed, see the header comment */
   const names = [];
   hover(d.stage, () => names);
   /* a bat in flight, seen from the side, mouth to the right: two membranes with scalloped
@@ -189,17 +189,17 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     /* the distance and the clock */
     hbracket(ctx, X0, xi, SY - 100, xc);
     text(ctx, 'd = ' + fmt(dist, 2) + ' m', (X0 + xi) / 2, SY - 124, xc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 't = ' + fmt(t * 1000, 1) + ' ms', 1270, SY + 100, kc, { size: 26, weight: 600, align: 'right' });
-    text(ctx, done ? 'the echo is back' : out <= dist ? 'the pulse is on its way out' : 'the echo is on its way back', 1270, SY + 128, PAL.ink, { size: 17, align: 'right' });
+    text(ctx, 't = ' + fmt(t * 1000, 1) + ' ms', 1270, SY + 76, kc, { size: 26, weight: 600, align: 'right' });
+    text(ctx, done ? 'the echo is back' : out <= dist ? 'the pulse is on its way out' : 'the echo is on its way back', 1270, SY + 104, PAL.ink, { size: 17, align: 'right' });
     lab.flush();
     /* the graph beneath: the echo time against the distance, the line 2d/v_w and the reading being taken */
-    const A = axes(ctx, G, [0, 10], [0, 70], { xl: 'distance to the insect d (m)', xc: xc, yl: 'time for the echo to return t (ms)', yc: kc, nx: 5, ny: 7, fx: (x) => fmt(x, 0), fy: (y) => fmt(y, 0) });
+    const A = axes(ctx, G, [0, 10], [0, 80], { xl: 'distance to the insect d (m)', xc: xc, yl: 'time for the echo to return t (ms)', yc: kc, nx: 5, ny: 4, fx: (x) => fmt(x, 0), fy: (y) => fmt(y, 0) });
     curve(ctx, (x) => (2000 * x) / v, 0, 10, A.X, A.Y, kc, 4, 2);
     line(ctx, A.X(dist), G.b, A.X(dist), A.Y(P * 1000), xc, 2.5, [4, 8]);
     line(ctx, G.l, A.Y(P * 1000), A.X(dist), A.Y(P * 1000), kc, 2.5, [4, 8]);
     dot(ctx, A.X(dist), A.Y(P * 1000), kc, done, 10);
     if (!done) dot(ctx, A.X(dist), A.Y(t * 1000), kc, true, 7);
-    text(ctx, 't = 2d/v_w = ' + fmt(P * 1000, 1) + ' ms', A.X(dist) + (dist > 7 ? -16 : 16), A.Y(P * 1000) - 24, kc, { size: 19, weight: 600, align: dist > 7 ? 'right' : 'left', bg: PAL.panel });
+    text(ctx, 't = 2d/v_w = ' + fmt(P * 1000, 1) + ' ms', A.X(0) + 20, G.t + 20, kc, { size: 19, weight: 600, bg: PAL.panel });
     topline(ctx, 'The echo from an insect ' + fmt(dist, 2) + ' m away returns to the bat after ' + fmt(P * 1000, 1) + ' ms at ' + degC(Tc) + '.');
     const v5 = vAir(5), v35 = vAir(35), t5 = (2 * dist) / v5 * 1000, t35 = (2 * dist) / v35 * 1000;
     readout(d.readout, `\\kvw = (331\\ \\text{m/s})\\sqrt{\\frac{${K(Tc)}\\ \\text{K}}{273\\ \\text{K}}} = ${sig(v)}\\ \\text{m/s}, \\qquad \\kt = \\frac{2\\kd}{\\kvw} = \\frac{2(${fmt(dist, 2)}\\ \\text{m})}{${sig(v)}\\ \\text{m/s}} = ${fmt(P * 1000, 1)}\\ \\text{ms}`,
@@ -228,18 +228,18 @@ function metreBar(ctx, x, y, px, label = '1 m') {
   hover(d.stage, () => names);
   function cabinet(ctx) {
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
-    ctx.beginPath(); ctx.rect(150, 120, 150, 440); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.rect(150, 110, 150, 472); ctx.fill(); ctx.stroke();
     ctx.fillStyle = PAL.panel;
     ctx.strokeStyle = F.ref('tweeter');
     ctx.beginPath(); ctx.arc(X0 - 40, YT, 22, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(X0 - 40, YT, 8, 0, TAU); ctx.stroke();
     ctx.strokeStyle = F.ref('woofer');
-    ctx.beginPath(); ctx.arc(X0 - 40, YW, 60, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(X0 - 40, YW, 40, 0, TAU); ctx.stroke(); ctx.beginPath(); ctx.arc(X0 - 40, YW, 14, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(X0 - 75, YW, 60, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(X0 - 75, YW, 40, 0, TAU); ctx.stroke(); ctx.beginPath(); ctx.arc(X0 - 75, YW, 14, 0, TAU); ctx.stroke();
     ctx.restore();
   }
   /* one lane: the fronts of frequency f at radii vt − nλ, clipped to its half of the scene, with the marker on the front that left at t = 0 */
   function lane(ctx, y, f, t, top, lab, name, sub) {
     const lam = V / f, lpx = lam * PPM, r0 = V * t * PPM;
-    ctx.save(); ctx.beginPath(); ctx.rect(X0, top ? 100 : SPLIT, 1100, top ? SPLIT - 100 : 570 - SPLIT); ctx.clip();
+    ctx.save(); ctx.beginPath(); ctx.rect(X0, top ? 148 : SPLIT, 1100, top ? SPLIT - 148 : 570 - SPLIT); ctx.clip();
     for (let n = 0; r0 - n * lpx > 0; n++) front(ctx, X0, y, r0 - n * lpx, 0, HALF, PAL.ink, 3);
     ctx.restore();
     if (r0 > 0 && r0 <= REACH * PPM + 1) { dot(ctx, X0 + r0, y, C('velocity'), true, 10); names.push({ x: X0 + r0, y, r: 16, name: 'the wavefront that left the ' + name + ' at t = 0' }); }
@@ -260,7 +260,7 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     cabinet(ctx);
     lane(ctx, YT, f2.v, t, true, lab, 'tweeter', '₂');
     lane(ctx, YW, f1.v, t, false, lab, 'woofer', '₁');
-    names.push({ x: X0 - 40, y: YT, r: 26, name: 'the tweeter, ' + f2.v + ' Hz' }, { x: X0 - 40, y: YW, r: 62, name: 'the woofer, ' + f1.v + ' Hz' });
+    names.push({ x: X0 - 40, y: YT, r: 26, name: 'the tweeter, ' + f2.v + ' Hz' }, { x: X0 - 75, y: YW, r: 62, name: 'the woofer, ' + f1.v + ' Hz' });
     const r0 = V * t * PPM;
     if (r0 > 40) text(ctx, 'v_w = ' + sig(V) + ' m/s', X0 + r0, SPLIT, C('velocity'), { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, 't = ' + fmt(t * 1000, 1) + ' ms', 1330, 596, C('time'), { size: 24, weight: 600, align: 'right', bg: PAL.panel });
@@ -269,7 +269,7 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     lab.flush();
     topline(ctx, 'Both sets of wavefronts cross the room at ' + sig(V) + ' m/s: the ' + f1.v + ' Hz sound is ' + lamTxt(l1) + ' from crest to crest and the ' + f2.v + ' Hz sound ' + lamTxt(l2) + '.');
     readout(d.readout, `\\kvw = \\kfone\\klam_1 = (${f1.v}\\ \\text{Hz})(${lamTex(l1)}) = ${sig(V)}\\ \\text{m/s} = \\kftwo\\klam_2 = (${f2.v}\\ \\text{Hz})(${lamTex(l2)})`,
-      'In the ' + fmt(period() * 1000, 1) + ' ms the marked wavefronts take to cross 4.0 m, the woofer sends out ' + fmt(f1.v * period(), 1) + ' wavefronts and the tweeter ' + fmt(f2.v * period(), 1) + '. The count each second is the frequency and the spacing is the wavelength, and neither changes the speed at which the sound travels.');
+      'In the ' + fmt(period() * 1000, 1) + ' ms the marked wavefronts take to cross 4.0 m, the woofer sends out ' + fmt(f1.v * period(), 1) + ' wavefronts and the tweeter ' + fmt(f2.v * period(), 1) + '.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 4), draw });
 })();
@@ -341,7 +341,7 @@ function metreBar(ctx, x, y, px, label = '1 m') {
     const up = V2 > V1;
     topline(ctx, 'At ' + f + ' Hz the wave passes from air into ' + m.label + ': the frequency stays ' + f + ' Hz, the speed ' + (up ? 'rises' : 'falls') + ' from ' + sig(V1) + ' to ' + sig(V2) + ' m/s, and the wavelength ' + (up ? 'stretches' : 'shrinks') + ' from ' + lamTxt(l1) + ' to ' + lamTxt(l2) + '.');
     readout(d.readout, `\\kf = ${f}\\ \\text{Hz on both sides}, \\qquad \\klam_1 = \\frac{\\kvw}{\\kf} = \\frac{${sig(V1)}\\ \\text{m/s}}{${f}\\ \\text{Hz}} = ${lamTex(l1)}, \\qquad \\klam_2 = \\frac{${sig(V2)}\\ \\text{m/s}}{${f}\\ \\text{Hz}} = ${lamTex(l2)}`,
-      'The ratio of the wavelengths is the ratio of the speeds, λ₂/λ₁ = ' + sig(V2) + '/' + sig(V1) + ' = ' + sig(V2 / V1) + ', so the same sound has a wavelength in air ' + sig(V1 / V2) + ' times its wavelength in ' + m.label + '. The frequency is the source\u2019s own, like a driven oscillation, and the boundary does not change it.');
+      'The wavelengths are in the ratio of the speeds, ' + sig(V2) + '/' + sig(V1) + ' = ' + sig(V2 / V1) + ', so the same sound has a wavelength in air ' + sig(V1 / V2) + ' times its wavelength in ' + m.label + '.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

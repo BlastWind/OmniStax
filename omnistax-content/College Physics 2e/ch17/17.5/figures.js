@@ -5,7 +5,7 @@ const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, select, cycle, regist
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 const VW = 344;                       /* the speed of sound the section works at, 344 m/s */
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* =====================================================================
    FIGURE 17.21: the noise and the sound the headphones introduce, and
@@ -34,19 +34,19 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     const nc = F.ref('noise'), ic = F.ref('introduced');
     curve(ctx, p1, 0, XM, g0.X, g0.Y, nc, 5, 300);
     ctx.save(); ctx.setLineDash([10, 10]); curve(ctx, p2, 0, XM, g0.X, g0.Y, ic, 4, 300); ctx.restore();
-    text(ctx, 'the noise, ' + fmt(DP1, 2) + ' Pa', boxes[0].l + 14, boxes[0].t + 22, nc, { size: 19, weight: 600, bg: PAL.panel });
-    text(ctx, 'the introduced sound, ' + fmt(dp2.v, 2) + ' Pa (dashed)', boxes[0].l + 14, boxes[0].t + 48, ic, { size: 19, weight: 600, bg: PAL.panel });
-    arrow(ctx, 820, 332, 950, 332, C('velocity'), 4);
-    text(ctx, 'both travel at v_w = 344 m/s', 964, 332, C('velocity'), { size: 20, weight: 600 });
+    /* the legend above the box, right-aligned, where no curve reaches at any amplitude */
+    const l2 = 'the introduced sound, ' + fmt(dp2.v, 2) + ' Pa (dashed)', LY = boxes[0].t - 14;
+    text(ctx, l2, boxes[0].r, LY, ic, { size: 19, weight: 600, align: 'right' });
+    text(ctx, 'the noise, ' + fmt(DP1, 2) + ' Pa', boxes[0].l + 260, LY, nc, { size: 19, weight: 600 });
+    arrow(ctx, 820, 344, 950, 344, C('velocity'), 4);
+    text(ctx, 'both travel at v_w = 344 m/s', 964, 344, C('velocity'), { size: 20, weight: 600 });
     const g1 = axes(ctx, boxes[1], [0, XM], [-PM, PM], { xl: 'distance along the sound (m)', xc: C('position'), yl: 'their sum (Pa)', yc: C('pressure'), nx: 4, ny: 4, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
     curve(ctx, (x) => p1(x) + p2(x), 0, XM, g1.X, g1.Y, C('pressure'), 5, 300);
-    text(ctx, 'the sum, amplitude ' + fmt(As, 2) + ' Pa', boxes[1].l + 14, boxes[1].t + 22, C('pressure'), { size: 19, weight: 600, bg: PAL.panel });
     const drop = As > 1e-4 ? 20 * Math.log10(As / DP1) : -Infinity;
-    headline(ctx, As < 0.02 ? 'Turned ' + fmt(phi.v, 0) + '° against the noise and matched in amplitude, the second sound cancels it everywhere'
-      : 'Turned ' + fmt(phi.v, 0) + '° against the noise, the second sound leaves a sum of ' + fmt(As, 2) + ' Pa, ' + (drop < 0 ? fmt(-drop, 1) + ' dB below the noise alone' : fmt(drop, 1) + ' dB above the noise alone'));
+    headline(ctx, As < 0.02 ? 'Turned ' + fmt(phi.v, 0) + '° against the noise and matched in amplitude, the second sound cancels it everywhere.'
+      : 'Turned ' + fmt(phi.v, 0) + '° against the noise, the second sound leaves a sum of ' + fmt(As, 2) + ' Pa, ' + (drop < 0 ? fmt(-drop, 1) + ' dB below the noise alone.' : fmt(drop, 1) + ' dB above the noise alone.'));
     readout(d.readout, `\\kdpamp_{\\text{sum}} = \\sqrt{\\kdpamp_1^2 + \\kdpamp_2^2 + 2\\kdpamp_1\\kdpamp_2\\cos\\varphi} = ${fmt(As, 2)}\\ \\text{Pa}`,
-      As < 0.02 ? 'Positive and negative gauge pressures add like simple numbers, so a second sound of the same amplitude turned half a cycle against the noise leaves nothing at all. The wavelength here is ' + fmt(lam, 2) + ' m.'
-        : 'The reversal has to be nearly exact. Move the phase a little away from 180°, or change the amplitude of the second sound, and a sum is left over; the level here is ' + (drop < 0 ? fmt(-drop, 1) + ' dB below' : fmt(drop, 1) + ' dB above') + ' the noise alone, and the wavelength is ' + fmt(lam, 2) + ' m.');
+      'The wavelength of both sounds here is $\\klam = ' + fmt(lam, 2) + '$ m.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
 })();
@@ -136,7 +136,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       : 'At ' + fmt(fq.v, 0) + ' Hz it arrives back out of step with the fork, so the air column vibrates very little');
     const lam = VW / fq.v;
     readout(d.readout, `\\klam = \\frac{\\kvw}{\\kf} = \\frac{344\\ \\text{m/s}}{${fmt(fq.v, 0)}\\ \\text{Hz}} = ${fmt(lam, 3)}\\ \\text{m}, \\qquad \\frac{4\\kLlen}{${n}} = ${fmt((4 * L.v) / n, 3)}\\ \\text{m}`,
-      onRes ? 'The two are equal, so the tube holds ' + (n === 1 ? 'one-fourth' : n + ' fourths') + ' of a wavelength: the reflected sound comes back in step and the air column resonates at ' + fmt(fn, 0) + ' Hz, its ' + (n === 1 ? 'fundamental' : 'harmonic number ' + n) + '.'
+      onRes ? 'The two are equal, so the tube holds ' + (n === 1 ? 'one-fourth' : n + ' fourths') + ' of a wavelength, and ' + fmt(fn, 0) + ' Hz is its ' + (n === 1 ? 'fundamental' : 'harmonic number ' + n) + '.'
         : 'The two do not agree, so no standing wave can hold. The nearest resonance of a ' + fmt(L.v, 3) + ' m tube is ' + fmt(fn, 0) + ' Hz, harmonic number ' + n + '; move the frequency to it and the air column comes to life.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1.1), draw });
@@ -203,9 +203,9 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
         text(ctx, 'node', Xu(zeros[0]), Yv(0) + 30, C('position'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
         text(ctx, 'antinode', Xu(peaks[0]), y0 - 96, C('position'), { size: 19, weight: 600, align: 'center' });
       }
-      text(ctx, NAMES[i], xR + 44, y0 - 22, alpha(PAL.ink, 0.5 + 0.5 * e), { size: 21, weight: 600 });
-      text(ctx, 'f_' + n + ' = ' + fmt(fOf(n), 0) + ' Hz', xR + 44, y0 + 12, alpha(C('frequency'), 0.45 + 0.55 * e), { size: 21, weight: 600 });
-      text(ctx, 'λ = ' + fmt(lamOf(n), 3) + ' m', xR + 44, y0 + 44, alpha(C('position'), 0.45 + 0.55 * e), { size: 19 });
+      text(ctx, NAMES[i], xR + 44, y0 - 22, alpha(PAL.ink, 0.75 + 0.25 * e), { size: 21, weight: 600 });
+      text(ctx, 'f_' + n + ' = ' + fmt(fOf(n), 0) + ' Hz', xR + 44, y0 + 12, alpha(C('frequency'), 0.8 + 0.2 * e), { size: 21, weight: 600 });
+      text(ctx, 'λ = ' + fmt(lamOf(n), 3) + ' m', xR + 44, y0 + 44, alpha(C('position'), 0.8 + 0.2 * e), { size: 19 });
     }
     hbracket(ctx, xL, xR, 796, C('position'), 'L = ' + fmt(L.v, 3) + ' m');
     const n = nOf(pick);
@@ -267,7 +267,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     text(ctx, 'L = v_w/4f_1', X(330) + 10, Y(v / (4 * 330)) - 30, C('position'), { size: 20, weight: 600 });
     headline(ctx, 'A tube closed at one end that sounds ' + fmt(f1.v, 0) + ' Hz at ' + fmt(Tc.v, 1) + ' °C must be ' + fmt(Lv, 3) + ' m long');
     readout(d.readout, `\\kLlen = \\frac{\\kvw}{4\\kfone} = \\frac{${fmt(v, 0)}\\ \\text{m/s}}{4(${fmt(f1.v, 0)}\\ \\text{Hz})} = ${fmt(Lv, 3)}\\ \\text{m}`,
-      'The speed of sound comes first: v_w = (331 m/s)√(T/273 K) = ' + fmt(v, 0) + ' m/s at ' + fmt(Tc.v, 1) + ' °C. ' + (n === 1 ? 'Its fundamental is ' + fmt(f1.v, 0) + ' Hz.' : 'Harmonic number ' + n + ' is ' + n + ' times the fundamental, ' + (n * f1.v >= 1000 ? fmt((n * f1.v) / 1000, 2) + ' kHz' : fmt(n * f1.v, 0) + ' Hz') + '.') + ' A tube closed at one end sounds the odd harmonics only.');
+      'The speed of sound comes first: $\\kvw = (331\\ \\text{m/s})\\sqrt{\\kTemp/273\\ \\text{K}} = ' + fmt(v, 0) + '$ m/s at ' + fmt(Tc.v, 1) + ' °C.' + (n === 1 ? '' : ' Harmonic number ' + n + ' is ' + n + ' times the fundamental, ' + (n * f1.v >= 1000 ? fmt((n * f1.v) / 1000, 2) + ' kHz' : fmt(n * f1.v, 0) + ' Hz') + '.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();

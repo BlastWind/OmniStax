@@ -7,7 +7,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['17.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, topline, vbracket, fixed, curve } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- the equal-loudness curves, shared by three figures ----------
    The thirteen curves of Figure 17.34, read from the book's graph at the
@@ -125,7 +125,7 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
        clear of the plot so that the curve labels have a gutter of their own between the two. */
     line(ctx, IX, box.t, IX, box.b, ic, 2);
     for (let v = 0; v <= 140; v += 20) { line(ctx, IX - 8, Y(v), IX + 8, Y(v), ic, 2); text(ctx, '10' + sup(v / 10 - 12) + ' W/m²', IX + 16, Y(v), ic, { size: 17 }); }
-    text(ctx, 'Intensity I (W/m²)', IX + 16, box.t - 24, ic, { align: 'left', weight: 600, size: 20 });
+    text(ctx, 'Intensity I (W/m²)', 1390, box.t - 24, ic, { align: 'right', weight: 600, size: 20 });
     /* the thirteen curves, the two that bracket the sound drawn heavier, each labelled at its right end */
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     CURVES.forEach((fn, k) => { const on = k === lo || k === hi; curve(ctx, fn, L0, L1, X, Y, on ? PAL.ink : alpha(PAL.ink, 0.45), on ? 4.5 : 2, 140); });
@@ -159,6 +159,7 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     readout(d.readout, `\\text{loudness} ${L < 0 ? '<' : L > 120 ? '>' : '\\approx'} ${L < 0 ? 0 : L > 120 ? 120 : fmt(L, 0)}\\ \\text{phons at } \\kf = ${hz(fs.f).replace(' Hz', '')}\\ \\text{Hz and } \\beta = ${fmt(beta, 0)}\\ \\text{dB, where } \\kIntens = \\kIo\\,10^{\\beta/10} = ${I}\\ \\text{W/m}^2`,
       fs.f === 1000 ? 'At 1000 Hz phons are taken to be numerically equal to decibels, which is why every curve crosses this frequency at the level its label names.'
         : L < 0 ? 'The 0-phon curve is the threshold of normal hearing at each frequency: here it lies at ' + fmt(c[0], 0) + ' dB, and a sound this far below it produces no sensation. Note that the threshold is well below 0 dB between about 2000 and 5000 Hz, where the ear is most sensitive.'
+        : L > 120 ? 'Here the 120-phon curve passes at ' + fmt(c[12], 0) + ' dB.'
         : 'The curves dip between about 2000 and 5000 Hz, where the ear is most sensitive, and rise at both ends of the range, so the same intensity level seems louder in the middle of the range than at either extreme. Here the ' + (10 * lo) + '-phon curve passes at ' + fmt(c[Math.max(0, lo)], 0) + ' dB and the ' + (10 * hi) + '-phon curve at ' + fmt(c[Math.min(12, hi)], 0) + ' dB.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -212,7 +213,8 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     if (loss > 0) curve(ctx, thr, L0, L1, X, Y, PAL.ink, 4.5, 140);
     ctx.restore();
     text(ctx, 'normal threshold, 0 phon', X(Math.log10(40)), Y(CURVES[0](Math.log10(40))) + 30, PAL.muted, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    if (loss > 0) text(ctx, 'threshold with ' + art + ' ' + fmt(loss, 0) + '-phon loss', X(Math.log10(3000)), Y(thr(Math.log10(3000))) + 32, PAL.ink, { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* the loss curve named above its low-frequency end, where it is highest; the marker's own label names it when the marker stands there */
+    if (loss > 0 && X(fs.lf) > X(Math.log10(22)) + 300) text(ctx, 'threshold with ' + art + ' ' + fmt(loss, 0) + '-phon loss', X(Math.log10(22)), Y(thr(Math.log10(22))) - 26, PAL.ink, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the frequency the reader is looking at: the threshold there, and the levels of speech there */
     const px = X(lf);
     line(ctx, px, box.t, px, box.b, fc, 2.5, [4, 8]);
@@ -233,8 +235,8 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
         : ', and speech there, at ' + fmt(b[0], 0) + ' to ' + fmt(b[1], 0) + ' dB, is not heard at all.'));
     readout(d.readout, `\\beta_{\\text{threshold}}(\\kf = ${hz(fs.f).replace(' Hz', '')}\\ \\text{Hz}) = ${fmt(thrHere, 0)}\\ \\text{dB}` + (b ? `,\\quad \\text{speech there } ${fmt(b[0], 0)}\\ \\text{to}\\ ${fmt(b[1], 0)}\\ \\text{dB}` : ''),
       loss >= 60 ? 'A person with a loss of 60 phons or more hears only the lowest frequencies of speech and cannot understand it unless it is much louder than normal. Female voices carry more of their sound at the higher frequencies, where the threshold has risen furthest, so they are the harder to follow.'
-        : loss >= 40 ? 'The threshold of a person with a loss of this many phons at all frequencies is the equal-loudness curve of that many phons. Speech still lies above it across most of its range, so conversation is understood, although it seems very quiet.'
-        : 'The threshold of a person with a loss of this many phons at all frequencies is the equal-loudness curve of that many phons; the shaded part of the speech region is what lies above it and is heard. Note that the threshold rises fastest at the low and high ends of the range.');
+        : loss >= 40 ? 'Speech still lies above the threshold across most of its range, so conversation is understood, although it seems very quiet.'
+        : 'The threshold rises fastest at the low and high ends of the range.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -300,8 +302,8 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     const fi = w === 'presby' ? 5 : 4;
     readout(d.readout, `\\text{at } \\kf = ${FT[fi]}\\ \\text{Hz: right ear } ${fmt(p.R[fi], 0)}\\ \\text{dB, left ear } ${fmt(p.L[fi], 0)}\\ \\text{dB above the normal threshold}`,
       w === 'normal' ? 'A hearing test measures the threshold relative to the normal threshold of Figure 17.34, so a person with normal hearing registers 0 dB at all frequencies, whatever the absolute threshold at each frequency may be.'
-        : w === 'capgun' ? 'Hearing loss caused by noise typically shows a dip near 4000 Hz, irrespective of the frequency that caused the loss, and often affects both ears. Everywhere else this child hears normally.'
-        : 'The brackets are the same test made by conducting sound through the bone behind the ear, which bypasses the middle ear. They agree with the readings through the ear canal, so the loss is in the nerves of the cochlea rather than in the conduction of the middle ear.');
+        : w === 'capgun' ? 'Noise leaves this dip near 4000 Hz whatever the frequency of the noise that caused it, and often in both ears.'
+        : 'Bone conduction carries the sound through the bone behind the ear, which bypasses the middle ear.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });
@@ -355,11 +357,11 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     arrow(ctx, EX + 14, HY, EX + 14 + 70, HY, fc, 5);
     text(ctx, 'F_1 = ' + fmt(F1, 1) + ' µN', EX + 14, HY + 40, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
     arrow(ctx, PX + 12, SY, PX + 12 + 70 * ratio, SY, fc, 5);
-    text(ctx, 'F_2 = ' + fmt(F2, 1) + ' µN', PX + 12, SY - 34, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'F_2 = ' + fmt(F2, 1) + ' µN', WX - 30, SY - 30, fc, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     arrow(ctx, WX + 14, SY, WX + 14 + 180, SY, pc, 5);
     text(ctx, 'P_2 = ' + fmt(P2, P2 < 10 ? 1 : 0) + ' Pa', WX + 104, SY + 40, pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* names */
-    text(ctx, 'pivot', PX + 20, PY - 4, PAL.muted, { size: 18 });
+    text(ctx, 'pivot', PX + 70, PY - 25, PAL.muted, { size: 18 });
     text(ctx, 'anvil', PX - 16, (SY + HY) / 2, ac, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'hammer', (EX + PX) / 2 + 40, HY + 28, hc, { size: 18, align: 'center' });
     text(ctx, 'stirrup', (PX + WX) / 2 + 60, SY + 28, stc, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
@@ -377,7 +379,7 @@ const MAJOR = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
     text(ctx, '× ' + fmt(P2 / P1, 0), GX - 16, (y1 + y2) / 2, PAL.ink, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, 'A sound pressure of ' + fmt(P1, 2) + ' Pa on the eardrum becomes ' + fmt(P2, P2 < 10 ? 1 : 0) + ' Pa at the oval window, ' + fmt(P2 / P1, 0) + ' times as great.');
     readout(d.readout, `\\kPrtwo = \\frac{\\kFtwo}{\\kareatwo} = \\frac{(\\krone/\\krtwo)\\,\\kProne \\kareaone}{\\kareatwo} = \\frac{${fmt(ratio, 1)}\\,(${fmt(P1, 2)}\\ \\text{Pa})(${fmt(A1, 0)}\\ \\text{mm}^2)}{${fmt(A2, 1)}\\ \\text{mm}^2} = ${fmt(P2, P2 < 10 ? 1 : 0)}\\ \\text{Pa}`,
-      'The force on the eardrum is F₁ = P₁A₁ = ' + fmt(F1, 1) + ' µN, and the lever raises it to F₂ = ' + fmt(F2, 1) + ' µN, a factor of ' + fmt(ratio, 1) + '. The oval window has ' + fmt(A1 / A2, 0) + ' times less area than the eardrum, so the pressure is raised ' + fmt(P2 / P1, 0) + ' times in all' + (Math.abs(P2 / P1 - 40) < 6 ? ', about the 40 the text gives.' : '.') + ' The protective muscles of the middle ear act by reducing the mechanical advantage of this lever.');
+      'The lever raises the force by ' + fmt(ratio, 1) + ' and $\\kareaone/\\kareatwo = ' + fmt(A1 / A2, 0) + '$, so the pressure is raised ' + fmt(P2 / P1, 0) + ' times in all; the protective muscles of the middle ear act by reducing the lever\u2019s mechanical advantage.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

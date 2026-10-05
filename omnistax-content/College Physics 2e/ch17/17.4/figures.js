@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['17.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, pinned, labeller, silhouette, car, plane } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- shared numbers and helpers ---------- */
 const TAU = 2 * Math.PI, DEG = 180 / Math.PI;
@@ -105,8 +105,8 @@ function burst(ctx, x, y, f, color) {
       : vs.v === 0 ? `\\kfobs = \\kfsrc\\left(\\frac{\\kvw ${sO} \\kvobs}{\\kvw}\\right) = (150\\ \\text{Hz})\\left(\\frac{340 ${sO} ${Math.abs(vo.v)}}{340}\\right) = ${sig3(fY)}\\ \\text{Hz}`
       : vo.v === 0 ? `\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw ${sS} \\kvs}\\right) = (150\\ \\text{Hz})\\left(\\frac{340}{340 - ${vs.v}}\\right) = ${sig3(fY)}\\ \\text{Hz}`
       : `\\kfobs = \\left[\\kfsrc\\left(\\frac{\\kvw ${sO} \\kvobs}{\\kvw}\\right)\\right]\\left(\\frac{\\kvw}{\\kvw ${sS} \\kvs}\\right) = (150\\ \\text{Hz})\\left(\\frac{340 ${sO} ${Math.abs(vo.v)}}{340}\\right)\\left(\\frac{340}{340 - ${vs.v}}\\right) = ${sig3(fY)}\\ \\text{Hz}`;
-    readout(d.readout, main, vs.v === 0 && vo.v === 0 ? 'The speed of sound is 340 m/s, and with nothing moving neither observer receives a shifted frequency.'
-      : 'This is what Y receives, with the speed of sound 340 m/s. For X the signs are the other way, so X receives ' + sig3(fX) + ' Hz.');
+    readout(d.readout, main, vs.v === 0 && vo.v === 0 ? 'The speed of sound is 340 m/s.'
+      : 'This is what Y receives, with the speed of sound 340 m/s; for X the signs are the other way.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => D / 5), draw });
 })();
@@ -130,12 +130,14 @@ function burst(ctx, x, y, f, color) {
     for (let i = 0; i <= 160; i++) { const s = s0 + ((s1 - s0) * i) / 160, y = f(s); if (!isFinite(y)) break; if (i) ctx.lineTo(X(s), Y(y)); else ctx.moveTo(X(s), Y(y)); }
     ctx.stroke(); ctx.restore();
   }
+  const pts = [];
+  F.hover(d.stage, () => pts);
   function draw() {
     const { ctx } = begin(d.c);
     const { X, Y } = axes(ctx, box, XR, YR, { xl: 'speed of the moving source or observer (m/s)', xc: C('velocity'), yl: 'f_obs (Hz)', yc: C('frequency'), nx: 7, ny: 6 });
     /* the asymptote at the speed of sound */
     line(ctx, X(VW), box.t, X(VW), box.b, alpha(C('velocity'), 0.6), 2.5, [10, 10]);
-    text(ctx, 'v_w = 340 m/s', X(VW) - 10, box.b - 18, C('velocity'), { size: 18, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'v_w = 340 m/s', X(VW) + 8, box.t + 16, C('velocity'), { size: 18, weight: 600, bg: PAL.panel });
     const FQ = C('frequency');
     clipped(ctx, srcT, 0, VW - 0.5, X, Y, FQ); clipped(ctx, srcA, 0, XR[1], X, Y, FQ);
     clipped(ctx, obsT, 0, XR[1], X, Y, FQ, [12, 10]); clipped(ctx, obsA, 0, VW, X, Y, FQ, [12, 10]);
@@ -143,6 +145,7 @@ function burst(ctx, x, y, f, color) {
     const lab = labeller(ctx, H);
     lab.block(box.l, 0, 1400, box.t - 4);
     lab.block(0, box.b + 8, 1400, box.b + 74);      /* the tick labels and the axis title keep their band */
+    lab.block(X(VW), box.t, 1400, box.t + 30);
     const sExit = VW * (1 - fs.v / YR[1]);          /* where f_s v_w/(v_w − s) reaches the top of the box */
     lab.add('source moving toward', X(sExit) - 6, box.t + 24, -1, 0.15, FQ, 18, 20);
     lab.add('observer moving toward', box.r + 8, Y(obsT(XR[1])), 1, -0.3, FQ, 18, 10);
@@ -151,19 +154,18 @@ function burst(ctx, x, y, f, color) {
     /* the current speed and its four values */
     line(ctx, X(v.v), box.b, X(v.v), box.t, alpha(C('velocity'), 0.5), 2, [4, 8]);
     text(ctx, 'v = ' + fmt(v.v, 1) + ' m/s', Math.max(box.l + 150, Math.min(X(v.v), box.r - 60)), box.t - 18, C('velocity'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
-    /* the four values, written to the left of the drop line so that they never reach the curve names on the right */
-    const mid = (box.t + box.b) / 2, side = X(v.v) < box.l + 170 ? 1 : -1;   /* to the left of the drop line, or to the right where the axis leaves no room */
-    lab.block(0, box.t, box.l - 2, box.b);
-    for (const f of [srcT(v.v), obsT(v.v), srcA(v.v), obsA(v.v)]) {
-      const p = pinned(ctx, box, X, Y, v.v, f, FQ);
-      lab.add(sig3(f) + ' Hz', p.x + side * 8, p.y, side, (p.y > mid ? -0.45 : 0.45), FQ, 18, 18);   /* the label leans toward the middle of the box, never into the frame */
-    }
+    /* the four values: the headline states them, and the points carry them as hover names, since four labels crowd where the curves meet */
+    pts.length = 0;
+    [[srcT, 'source moving toward'], [obsT, 'observer moving toward'], [srcA, 'source moving away'], [obsA, 'observer moving away']].forEach(([fn, nm]) => {
+      const f = fn(v.v), p = pinned(ctx, box, X, Y, v.v, f, FQ);
+      pts.push({ x: p.x, y: p.y, r: 14, name: nm + ', ' + sig3(f) + ' Hz' });
+    });
     lab.flush();
     const sT = srcT(v.v), sA = srcA(v.v), oT = obsT(v.v), oA = obsA(v.v);
     topline(ctx, v.v === 0 ? 'At rest nothing is shifted, and every observer receives the ' + fs.v + ' Hz the source sounds at.'
       : 'At ' + fmt(v.v, 1) + ' m/s a ' + fs.v + ' Hz source is received at ' + sig3(sT) + ' Hz coming and ' + sig3(sA) + ' Hz going when it moves, and at ' + sig3(oT) + ' Hz and ' + sig3(oA) + ' Hz when the observer moves instead.');
     readout(d.readout, `\\kfobs = \\kfsrc\\left(\\frac{\\kvw}{\\kvw \\mp \\kvs}\\right) = (${fs.v}\\ \\text{Hz})\\left(\\frac{340}{340 \\mp ${fmt(v.v, 1)}}\\right) = ${sig3(sT)}\\ \\text{Hz toward},\\ ${sig3(sA)}\\ \\text{Hz away}`,
-      'With the observer moving at the same speed and the source at rest, f_obs = f_s (v_w ± v_obs)/v_w gives ' + sig3(oT) + ' Hz toward and ' + sig3(oA) + ' Hz away. The shift for the source is the larger one toward and the smaller one away, and the speed of sound is 340 m/s.');
+      'With the source at rest and the observer moving at the same speed, $\\kfobs = \\kfsrc(\\kvw \\pm \\kvobs)/\\kvw$, with $\\kvw = 340$ m/s.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -203,7 +205,7 @@ function burst(ctx, x, y, f, color) {
       const R = Math.min(xs - 70, 300);
       if (R > 60) {
         ctx.strokeStyle = C('angle'); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(xs, Y0, R, Math.PI - a, Math.PI + a); ctx.stroke();
-        text(ctx, 'θ = ' + fmt(theta, 0) + '°', xs - R - 14, Y0, C('angle'), { size: 22, weight: 600, align: 'right', bg: PAL.panel });
+        text(ctx, 'θ = ' + fmt(theta, 0) + '°', xs - R - 14, Y0 - 24, C('angle'), { size: 22, weight: 600, align: 'right', bg: PAL.panel });
       }
       ctx.restore();
     }
@@ -219,8 +221,8 @@ function burst(ctx, x, y, f, color) {
     /* past the speed of sound the cone's angle appears, and v_s and v_w move into the arcsine */
     ro.set(M >= 1
       ? `\\mk{th}{\\ktheta} = 2\\arcsin\\frac{\\mk{vw}{\\kvw}}{\\mk{vs}{\\kvs}} = 2\\arcsin\\frac{\\mk{wv}{340\\ \\text{m/s}}}{\\mk{vv}{${vs.v}\\ \\text{m/s}}} = \\mk{tv}{${fmt(theta, 0)}^\\circ}`
-      : `\\mk{vs}{\\kvs} = \\mk{vv}{${vs.v}\\ \\text{m/s}} = \\mk{M}{${fmt(M, 2)}}\\,\\mk{vw}{\\kvw}`, M >= 1 ? 'By the time the source is a distance v_s t beyond the point where it emitted a wavefront, that wavefront has grown to a radius v_w t, so the lines tangent to every wavefront make half the angle θ with the path, with sin(θ/2) = v_w / v_s = ' + fmt(1 / M, 3) + '.'
-        : 'Below the speed of sound no wavefront is overtaken, and there is no line along which they arrive together; the frequency ahead is f_s v_w/(v_w − v_s) = ' + fmt(1 / (1 - M), 2) + ' f_s.');
+      : `\\mk{vs}{\\kvs} = \\mk{vv}{${vs.v}\\ \\text{m/s}} = \\mk{M}{${fmt(M, 2)}}\\,\\mk{vw}{\\kvw}`, M >= 1 ? 'By the time the source is $\\kvs t$ past the point where it emitted a wavefront, that wavefront has grown to $\\kvw t$, so $\\sin(\\ktheta/2) = \\kvw/\\kvs = ' + fmt(1 / M, 3) + '$.'
+        : 'Below the speed of sound no wavefront is overtaken, and the frequency ahead is $\\kfsrc\\kvw/(\\kvw - \\kvs) = ' + fmt(1 / (1 - M), 2) + '\\,\\kfsrc$.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => NP / 5), draw });
 })();
@@ -275,7 +277,7 @@ function burst(ctx, x, y, f, color) {
     topline(ctx, reached === 0 ? 'The aircraft is ' + fmt(dGround / 1000, 2) + ' km short of the first observer\u2019s boom, which will reach him ' + fmt(tLag, 1) + ' s after it passes overhead.'
       : 'The aircraft is ' + fmt(dGround / 1000, 2) + ' km beyond the ' + ['first', 'second', 'third'][reached - 1] + ' observer, ' + fmt(tLag, 1) + ' s after passing over him, as its first boom reaches him.');
     readout(d.readout, `\\kvs = ${vs.v}\\ \\text{m/s} = ${fmt(M, 2)}\\,\\kvw, \\qquad \\ktheta = ${fmt(theta, 0)}^\\circ`,
-      'The shock wave reaches the ground d = h / tan(θ/2) = ' + fmt(dGround, 0) + ' m behind the aircraft, so the first boom arrives t = d / v_s = ' + fmt(tLag, 1) + ' s after it passes overhead. The two booms are L / v_s = ' + fmt(dt * 1000, 0) + ' ms apart for an aircraft ' + LEN + ' m long; it is drawn ' + fmt(DRAWN / (LEN * S), 0) + ' times its true size so that the two cones can be seen apart.');
+      'The boom lands $\\kd = h/\\tan(\\ktheta/2)$ behind the aircraft and arrives $\\kd/\\kvs$ after it passes overhead; the two booms are ' + fmt(dt * 1000, 0) + ' ms apart for an aircraft ' + LEN + ' m long, drawn ' + fmt(DRAWN / (LEN * S), 0) + ' times its true size.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => (RUN / vs.v) / 5), draw });
 })();

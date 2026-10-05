@@ -40,7 +40,7 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
     for (let row = 0, y = TOP - 4; y <= BOT + 4; row++, y += 15) {
       for (let x = 52 + (row % 2) * 7.5; x <= 1352; x += 15) {
         const px = x + 3 * rnd(), py = y + 3 * rnd();
-        if (Math.abs(px - X0) > 9) out.push({ x: px, y: py });
+        out.push({ x: px, y: py });
       }
     }
     return out;
@@ -50,7 +50,7 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
   const shift = (xm, t, S, w) => {
     const a = Math.abs(xm); if (a > V * t) return 0;
     const phi = w * (t - a / V);
-    return Math.sign(xm) * S * (1 - Math.cos(phi));
+    return S * (1 - Math.cos(phi));
   };
   /* the gauge pressure at x metres to the right of the string at model time t */
   const press = (xm, t, w) => (xm > V * t ? 0 : dp.v * Math.sin(w * (t - xm / V)));
@@ -59,11 +59,12 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
     const tau = cy.now(), w = TAU * f.v, Tp = T(), L = lam();
     /* the drawn crowding: a fraction of the wavelength that grows with the pressure amplitude, far larger than the air's own motion */
     const S = (0.06 + 0.06 * dp.v / 2) * L;
-    const U = 14 + 26 * dp.v / 2;                       /* the string's swing in canvas units */
+    const U = S * SC;                                  /* the string's swing, the same as the air beside it, so the air moves with the string */
     const u = -U * Math.cos(w * tau), vel = Math.sin(w * tau);
     /* the air */
     ctx.save(); ctx.fillStyle = PAL.ink;
     for (const p of DOTS) {
+      if (Math.abs(p.x - (X0 - U)) < 9) continue;
       const xm = (p.x - X0) / SC, sx = shift(xm, tau, S, w) * SC;
       ctx.beginPath(); ctx.arc(p.x + sx, p.y, 3, 0, TAU); ctx.fill();
     }
@@ -83,7 +84,7 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
     const xf = V * tau;
     if (xf > 0.05 && xf < LEN - 0.02) {
       const px = X0 + xf * SC;
-      line(ctx, px, TOP - 10, px, BOT + 10, alpha(PAL.ink, 0.35), 2, [4, 8]);
+      line(ctx, px, TOP - 10, px, BOT + 10, alpha(PAL.ink, 0.6), 3, [4, 8]);
       text(ctx, 'wave front', px + 10, TOP - 22, PAL.muted, { size: 17, bg: PAL.panel });
     }
     /* the wavelength: from the first full compression behind the front to the next one, once both are in the scene */
@@ -108,7 +109,7 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
       : done ? 'After ' + fmt(n, 1) + ' vibrations the wave front has crossed 3.0 m, and a series of compressions and rarefactions is moving out from the string as a sound wave.'
       : 'After ' + fmt(n, 1) + ' vibrations a series of compressions and rarefactions is moving out from the string, one compression for each swing.');
     readout(d.readout, `\\kf_{\\text{wave}} = \\kf_{\\text{string}} = ${fmt(f.v, 0)}\\ \\text{Hz}, \\qquad \\klam = ${fmt(L, 3)}\\ \\text{m}`,
-      'The compressions travel outward at the speed of sound, about 343 m/s in air at room temperature. The gauge pressure swings by only ±' + fmt(dp.v, 1) + ' Pa about an atmospheric pressure of 101,300 Pa, one part in ' + commas(String(Math.round(PATM / dp.v))) + ', and the crowding of the dots is drawn far larger than it is in air.');
+      'The gauge pressure swings by only ±' + fmt(dp.v, 1) + ' Pa about an atmospheric pressure of 101,300 Pa, one part in ' + commas(String(Math.round(PATM / dp.v))) + ', and the crowding of the dots is drawn far larger than it is in air.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => run() / 5), draw });
 })();
@@ -213,12 +214,12 @@ const PATM = 101300;      /* atmospheric pressure, Pa */
     lab.add('eardrum of area A = ' + fmt(A.v, 2) + ' cm²', DRUM + 4, CB + 6, 0.5, 1, F.ref('eardrum'), 20, 60);
     lab.add('atmospheric pressure behind the eardrum', 1090, 395, 0.15, 1, PAL.muted, 18, 44);
     lab.flush();
-    text(ctx, 'A solid arc is a compression and a dashed arc a rarefaction; both travel toward the ear.', 52, 614, PAL.muted, { size: 17 });
+    text(ctx, 'Solid arcs are compressions, dashed arcs rarefactions.', 52, 614, PAL.muted, { size: 17 });
     topline(ctx, p > 0.35 * dp.v ? 'A compression has reached the eardrum and pushes it inward with a net force of ' + sciTxt(Math.abs(Fn)) + ' N.'
       : p < -0.35 * dp.v ? 'A rarefaction has reached the eardrum, and the atmospheric pressure behind it pushes it outward with a net force of ' + sciTxt(Math.abs(Fn)) + ' N.'
       : 'The gauge pressure at the eardrum is passing through zero, and for an instant there is almost no net force on it.');
     readout(d.readout, `\\kF = \\kPr \\karea = (${signed(p, 2)}\\ \\text{Pa})(${sci(A.v * 1e-4, 1)}\\ \\text{m}^2) = ${p === 0 ? '0' : (Fn < 0 ? '-' : '+') + sci(Math.abs(Fn), 1)}\\ \\text{N}`,
-      'The pressure behind the eardrum stays atmospheric, so the net force follows the gauge pressure of the wave, inward at +' + fmt(dp.v, 1) + ' Pa and outward at −' + fmt(dp.v, 1) + ' Pa; the swing of the eardrum is drawn far larger than it is.');
+      'The swing of the eardrum is drawn far larger than it is.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

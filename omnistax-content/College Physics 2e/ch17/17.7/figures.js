@@ -96,7 +96,7 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     headline(ctx, a < 0.005 ? 'Between ' + A.name + ' and ' + B.name + ' the impedances are so nearly equal that almost none of the intensity is reflected.'
       : 'Between ' + A.name + ' and ' + B.name + ' ' + fmt(100 * a, 1) + '% of the intensity is reflected, and the rest is transmitted.');
     readout(d.readout, `a = \\frac{(\\kZtwo - \\kZone)^2}{(\\kZone + \\kZtwo)^2} = \\frac{(${zTex(B.Z)} - ${zTex(A.Z)})^2}{(${zTex(A.Z)} + ${zTex(B.Z)})^2} = ${a >= 0.001 ? fmt(a, 3) : sciTex(a, 2)}`,
-      'Each impedance is the medium\u2019s density times the speed of sound through it, Z = ρv: ' + fmt(A.rho, A.rho < 10 ? 1 : 0) + ' kg/m³ times ' + fmt(A.v, 0) + ' m/s for the ' + A.name + ', and ' + fmt(B.rho, B.rho < 10 ? 1 : 0) + ' kg/m³ times ' + fmt(B.v, 0) + ' m/s for the ' + B.name + '. The greater the difference between the two, the greater the reflection, which is why a transducer is coupled to the skin through a gel rather than through air.');
+      'This is why a transducer is coupled to the skin through a gel rather than through air.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -111,7 +111,7 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
   const H = 760;
   const d = sim('sim-echo-ranging', H);
   const dep = ctl(d.controls, { label: '\\kd', cls: 'position', min: 2, max: 12, step: 0.1, value: 4, unit: 'cm', dec: 1, onInput: reset, aria: 'the depth of the first boundary' });
-  const thk = ctl(d.controls, { label: 'w', cls: 'position', min: 1, max: 8, step: 0.1, value: 5, unit: 'cm', dec: 1, onInput: reset, aria: 'the thickness of the body being scanned' });
+  const thk = ctl(d.controls, { label: 'w', cls: 'position', min: 3, max: 8, step: 0.1, value: 5, unit: 'cm', dec: 1, onInput: reset, aria: 'the thickness of the body being scanned' });
   const TMAX = 280;                                  /* the fixed time axis, 0 to 280 μs, which covers 20 cm there and back */
   const cy = cycle(() => TMAX, 1.2);
   function reset() { cy.reset(); }
@@ -159,7 +159,7 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     text(ctx, 't = ' + fmt(t, 0) + ' μs', cx + (late ? -10 : 10), G.t + 18, tc, { size: 19, weight: 600, align: late ? 'right' : 'left', bg: PAL.panel });
     topline(ctx, 'An echo from ' + fmt(B[0], 1) + ' cm deep returns in ' + fmt(tOf(B[0]), 0) + ' μs, because the pulse travels there and back at 1540 m/s, and the far wall at ' + fmt(B[3], 1) + ' cm answers ' + fmt(tOf(B[3]), 0) + ' μs after the bleep.');
     readout(d.readout, `\\kd = \\frac{\\kvw \\kt}{2} = \\frac{(1540\\ \\text{m/s})(${fmt(tOf(B[0]), 0)}\\times10^{-6}\\ \\text{s})}{2} = ${fmt(B[0], 1)}\\ \\text{cm}`,
-      'The four peaks are the four boundaries, numbered from the surface, and the time between the bleep and each peak gives that boundary its depth. The deeper peaks are lower because the tissue absorbs a little of the sound on the way down and again on the way back.');
+      'The deeper peaks are lower because the tissue absorbs a little of the sound on the way down and again on the way back.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TMAX / 5), draw });
 })();
@@ -204,8 +204,7 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     text(ctx, 'the same curve as the depth reached, 500 λ (cm)', G.r + 14, G.t - 28, pc, { size: 18, weight: 600, align: 'right' });
     text(ctx, 'v_w = 1540 m/s in tissue', 760, G.t + 22, vc, { size: 19, weight: 600, align: 'center' });
     topline(ctx, 'At ' + fmt(f, 1) + ' MHz the wavelength in tissue is ' + fmt(lam, 2) + ' mm, so no finer detail can be resolved, and the probe reaches about ' + fmt(depth, 1) + ' cm into the body.');
-    readout(d.readout, `\\klam = \\frac{\\kvw}{\\kf} = \\frac{1540\\ \\text{m/s}}{${sciTex(f * 1e6, 2)}\\ \\text{Hz}} = ${fmt(lam, 2)}\\ \\text{mm}`,
-      'The rule of thumb is that a probe scans usefully to about 500 wavelengths, which is ' + fmt(depth, 1) + ' cm here. A high frequency gives fine detail and a short reach, which suits the eye, and a low frequency gives coarse detail and a long reach, which suits the abdomen.');
+    readout(d.readout, `\\klam = \\frac{\\kvw}{\\kf} = \\frac{1540\\ \\text{m/s}}{${sciTex(f * 1e6, 2)}\\ \\text{Hz}} = ${fmt(lam, 2)}\\ \\text{mm}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -243,7 +242,7 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
       arrow(ctx, 1080, VY, 1080 - 2.6 * vb.v - 40, VY, vc, 5);
       text(ctx, 'v_b = ' + fmt(vb.v, 1) + ' cm/s', 1096, VY, vc, { size: 21, weight: 600 });
     } else text(ctx, 'the blood is at rest', 1096, VY, bl, { size: 20 });
-    text(ctx, 'the blood, moving toward the transducer', ART.l + 10, ART.y + ART.h / 2 + 26, bl, { size: 19 });
+    text(ctx, v > 0 ? 'the blood, moving toward the transducer' : 'the blood', ART.l + 10, ART.y + ART.h / 2 + 26, bl, { size: 19 });
     ctx.save(); ctx.fillStyle = tdc; ctx.fillRect(120, ART.y - 34, 48, 68); ctx.restore();
     text(ctx, 'the transducer', 144, ART.y - 54, tdc, { size: 20, weight: 600, align: 'center' });
     /* the chain of three frequencies, each written where it belongs */
@@ -266,8 +265,8 @@ const zText = (Z) => (Z < 1e4 ? fmt(Z, 0) : sci(Z, 2));
     }
     topline(ctx, v === 0 ? 'With the blood at rest nothing is shifted, the echo returns at the broadcast frequency, and the two make no beats at all.'
       : 'Blood moving toward the source at ' + fmt(vb.v, 1) + ' cm/s returns ' + hz(f2) + ' Hz to a ' + hz(fsrc) + ' Hz probe, and the two mix to a beat of ' + fmt(fB, 0) + ' Hz.');
-    readout(d.readout, `\\kfB = |\\kfobs - \\kfsrc| = |${hz(f2)}\\ \\text{Hz} - ${hz(fsrc)}\\ \\text{Hz}| = ${fmt(fB, 0)}\\ \\text{Hz}`,
-      'The echo is shifted twice. The blood receives the broadcast frequency multiplied by (1540 + ' + fmt(v, 3) + ')/1540 because it is a moving observer, and returns that frequency multiplied by 1540/(1540 − ' + fmt(v, 3) + ') because it is then a moving source, the speeds being in meters per second. The carrier is drawn at ' + NCAR + ' cycles across the window, where the real wave has about ' + hz(fsrc * TW) + ', so that the beats can be seen; the beat frequency itself is drawn true.');
+    readout(d.readout, `\\kfB = |\\kfobs - \\kfsrc| = |${hz(f2).replace(/,/g, '{,}')}\\ \\text{Hz} - ${hz(fsrc).replace(/,/g, '{,}')}\\ \\text{Hz}| = ${fmt(fB, 0)}\\ \\text{Hz}`,
+      'The carrier is drawn at ' + NCAR + ' cycles across the window, where the real wave has about ' + hz(fsrc * TW) + ', so that the beats can be seen; the beat frequency itself is drawn true.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['17.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, curve, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI, I0 = 1e-12;
@@ -63,7 +63,7 @@ function speaker(ctx, x, y, color, a, s) {
   /* the air: a fixed scatter of dots, so the same molecules are seen packing and spreading */
   const dots = []; let seed = 7;
   const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
-  for (let i = 0; i < 560; i++) dots.push({ x: G.l + rnd() * (G.r - G.l), y: AIR.t + 8 + rnd() * (AIR.b - AIR.t - 16), r: 3 + rnd() * 1.6 });
+  for (let row = 0, y = AIR.t + 8; y <= AIR.b - 8; row++, y += 11) for (let x = G.l - 40 + (row % 2) * 5.5; x <= G.r + 40; x += 11) dots.push({ x: x + 3 * (rnd() - 0.5), y: y + 3 * (rnd() - 0.5), r: 3 });
   function draw() {
     const { ctx } = begin(d.c);
     const pc = C('pressure'), ic = C('intensity');
@@ -106,7 +106,7 @@ function speaker(ctx, x, y, color, a, s) {
     headline(ctx, dp < 0.001 ? 'With no pressure variation there is no sound and no intensity.'
       : 'A pressure amplitude of ' + fmt(dp, 3) + ' Pa in air at 0 °C carries ' + sci(I, 2) + ' W/m².');
     readout(d.readout, `\\kIntens = \\frac{(\\kdpamp)^2}{2\\krho\\kvw} = \\frac{(${fmt(dp, 3)}\\ \\text{Pa})^2}{2(1.29\\ \\text{kg/m}^3)(331\\ \\text{m/s})} = ${sciTex(I, 2)}\\ \\text{W/m}^2`,
-      'The intensity goes as the square of the pressure amplitude, so doubling Δp to ' + fmt(2 * dp, 3) + ' Pa would make ' + sci(4 * I, 2) + ' W/m², four times as much. The displacement of the air is drawn far larger than life, since the real motion is much too small to see.');
+      'The displacement of the air is drawn far larger than life, since the real motion is much too small to see.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -123,7 +123,7 @@ function speaker(ctx, x, y, color, a, s) {
   const b2 = ctl(d.controls, { label: '\\beta_2', cls: '', min: 0, max: 160, step: 1, value: 90, unit: 'dB', dec: 0, aria: 'the second sound intensity level', specials: [{ at: () => b1.v, label: 'equal' }] });
   const RAIL = 300, TOP = 130, BOT = 770;           /* the ladder: 0 dB at the bottom, 160 dB at the top, 4 units per dB */
   const yOf = (b) => BOT - (b / 160) * (BOT - TOP);
-  const BR = 880;                                   /* where the bracket between the two marks stands */
+  const BR = 850;                                   /* where the bracket between the two marks stands */
   const LIN = { l: 1010, r: 1330, b: 740, t: 170 }; /* the linear panel */
   function draw() {
     const { ctx } = begin(d.c);
@@ -177,7 +177,7 @@ function speaker(ctx, x, y, color, a, s) {
     topline(ctx, diff === 0 ? 'Two sounds of the same level have the same intensity.'
       : 'A ' + fmt(v2, 0) + ' dB sound is ' + fmt(Math.abs(diff), 0) + ' dB ' + (diff > 0 ? 'above' : 'below') + ' a ' + fmt(v1, 0) + ' dB sound, so the ratio of their intensities is ' + ratioWords + '.');
     readout(d.readout, `\\beta_2 - \\beta_1 = 10\\log_{10}\\frac{\\kItwo}{\\kIone} = 10\\log_{10}\\frac{${sciTex(I2, 2)}\\ \\text{W/m}^2}{${sciTex(I1, 2)}\\ \\text{W/m}^2} = ${diff < 0 ? '-' : ''}${fmt(Math.abs(diff), 0)}\\ \\text{dB}`,
-      'Each level is read from its intensity by β = 10 log₁₀(I/I₀) with I₀ = 10⁻¹² W/m²: ' + fmt(v1, 0) + ' dB is ' + sci(I1, 2) + ' W/m² and ' + fmt(v2, 0) + ' dB is ' + sci(I2, 2) + ' W/m². Every 10 dB on the ladder is a factor of ten in intensity, and 3 dB is a factor of two.');
+      'Each level is read from its intensity by $\\beta = 10\\log_{10}(\\kIntens/\\kIo)$ with $\\kIo = 10^{-12}$ W/m²: ' + fmt(v1, 0) + ' dB is ' + sci(I1, 2) + ' W/m² and ' + fmt(v2, 0) + ' dB is ' + sci(I2, 2) + ' W/m².');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -194,7 +194,7 @@ function speaker(ctx, x, y, color, a, s) {
     detents: [{ v: 40, label: 'a housefly' }, { v: 110 }], snap: false });
   const ns = choice(d.controls, { label: 'N', options: [1, 2, 5, 10, 100, 1000].map((n) => ({ value: String(n), label: String(n) })), value: '1000', aria: 'the number of sources' });
   const ro = F.readout(d);
-  ro.note.textContent = 'The intensities add when interference between the sources can be neglected. The level rises by 10 log₁₀ N, which is 3 dB for every doubling and 10 dB for every factor of ten, and never by N times the level of one source.';
+  ro.note.textContent = 'The intensities add when interference between the sources can be neglected.';
   const CX = 420, CY = 290, R = 160;                /* the ring */
   const LAD = { l: 130, r: 1310, y: 610 };          /* the ladder: 0 to 160 dB, fixed */
   const xOf = (b) => LAD.l + (b / 160) * (LAD.r - LAD.l);
@@ -223,7 +223,6 @@ function speaker(ctx, x, y, color, a, s) {
     text(ctx, 'all of them together', PX, 302, PAL.muted, { size: 19 });
     text(ctx, 'I = N × I_one = ' + sci(IN, 2) + ' W/m²', PX, 338, ic, { size: 21, weight: 600 });
     text(ctx, 'β = 10 log₁₀(I/I₀) = ' + fmt(bN, 0) + ' dB', PX, 376, PAL.ink, { size: 21, weight: 600 });
-    text(ctx, 'a rise of 10 log₁₀ N = ' + fmt(rise, 0) + ' dB', PX, 414, PAL.ink, { size: 19 });
     /* the ladder */
     line(ctx, LAD.l - 10, LAD.y, LAD.r + 10, LAD.y, PAL.muted, 3);
     for (let v = 0; v <= 160; v += 10) {
