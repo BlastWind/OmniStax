@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, vbracket, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, RHO_AIR = 1.29, RHO_W = 1000, P_ATM = 1.01e5;
@@ -120,7 +120,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       ? 'With the vehicles ' + fmt(gap, 1) + ' m apart the air between them is not squeezed at all, so it moves at ' + fmt(v1, 0) + ' m/s and the pressure is the same inside and out.'
       : 'With the vehicles ' + fmt(gap, 1) + ' m apart the air between them moves at ' + fmt(v2, 0) + ' m/s, and the pressure there is ' + dP(dp) + ' below the pressure outside.');
     readout(d.readout, `\\kProut - \\kPrin = \\tfrac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2) = \\tfrac{1}{2}(1.29\\ \\text{kg/m}^3)[(${fmt(v2, 0)}\\ \\text{m/s})^2 - (${fmt(v1, 0)}\\ \\text{m/s})^2] = ${dPtex(dp)}`,
-      'The air that passes between the vehicles came from a band 3.0 m wide, so the equation of continuity gives v₂ = v₁(3.0 m)/(' + fmt(gap, 1) + ' m) = ' + fmt(v2, 0) + ' m/s, with the density of air taken as 1.29 kg/m³. '
+      'The air that passes between the vehicles came from a band 3.0 m wide, so the equation of continuity gives $\\kvtwo = \\kvone(3.0\\ \\text{m})/(' + fmt(gap, 1) + '\\ \\text{m}) = ' + fmt(v2, 0) + '\\ \\text{m/s}$, with the density of air taken as 1.29 kg/m³. '
       + (dp < 1 ? 'With no difference in speed there is no difference in pressure, and nothing pushes the vehicles together.'
         : 'The greater pressure outside pushes on every square meter of the car’s side with ' + dP(dp).replace('N/m²', 'N') + ' toward the truck, and on the truck toward the car.'));
   }
@@ -195,7 +195,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     const cen = (x) => ya + (yb - ya) * ease((x - XA) / (XB - XA)), wid = (x) => wa + (wb - wa) * ease((x - XA) / (XB - XA));
     const top = samples(200, 1120, 80, (x) => cen(x) - wid(x)), bot = samples(200, 1120, 80, (x) => cen(x) + wid(x)).reverse();
     line(ctx, 100, YREF, 1300, YREF, alpha(PAL.ink, 0.35), 2, [10, 10]);
-    text(ctx, 'reference height, h = 0', 1300, YREF, PAL.muted, { size: 17, align: 'right', bg: alpha(PAL.panel, 0.9) });
+    text(ctx, 'reference height, h = 0', 1300, YREF + 22, PAL.muted, { size: 17, align: 'right', bg: alpha(PAL.panel, 0.9) });
     shape(ctx, top.concat(bot), PAL.soft, PAL.ink, 3);
     for (const [x, v, h, y, w, P, nm] of [[X1, va, ha, ya, wa, P1, '1'], [X2, vb, hb, yb, wb, P2, '2']]) {
       const cp = F.ref('point-' + nm);
@@ -203,8 +203,8 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       dot(ctx, x, y, cp, true, 8);
       text(ctx, nm, x, y - w - 24, cp, { size: 22, weight: 600, align: 'center' });
       text(ctx, 'P_' + nm + ' = ' + atPow(P, 5, 2) + ' N/m²', x, y - w - 54, pc, { size: 20, weight: 600, align: 'center' });
-      text(ctx, 'v_' + nm + ' = ' + fmt(v, 1) + ' m/s', x, y + w + 26, vc, { size: 20, weight: 600, align: 'center' });
-      if (h > 0.01) vbracket(ctx, nm === '1' ? x - 110 : x + 130, y, YREF, hc, 'h_' + nm + ' = ' + fmt(h, 1) + ' m', nm === '1' ? -1 : 1);
+      text(ctx, 'v_' + nm + ' = ' + fmt(v, 1) + ' m/s', x, y + w + 26, vc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
+      if (h > 0.01) vbracket(ctx, nm === '1' ? 180 : x + 130, y, YREF, hc, 'h_' + nm + ' = ' + fmt(h, 1) + ' m', nm === '1' ? -1 : 1);
       else text(ctx, 'h_' + nm + ' = 0', x - 110, YREF + 60, hc, { size: 20, weight: 600, align: 'right' });
     }
     /* the legend: a term the case has crossed out is struck through where it stands */
@@ -247,7 +247,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
           : still ? [['P1', 'g1'], ['P2', 'g2']]
             : level ? [['P1', 'k1'], ['P2', 'k2']]
               : [['P1', 'k1', 'g1'], ['P2', 'k2', 'g2']];
-    ro.set(form(L, R, { P1, k1: ke1, g1: pe1, P2, k2: ke2, g2: pe2 }), 'Water at 1.00 × 10³ kg/m³ and g = 9.80 m/s², with P₁ held at 1.50 × 10⁵ N/m². Whatever the water gains in speed or in height it pays for out of its pressure.');
+    ro.set(form(L, R, { P1, k1: ke1, g1: pe1, P2, k2: ke2, g2: pe2 }), 'Water at $\\krho = 1.00 \\times 10^3\\ \\text{kg/m}^3$ and $\\kg = 9.80\\ \\text{m/s}^2$, with $\\kProne$ held at $1.50 \\times 10^5\\ \\text{N/m}^2$. Whatever the water gains in speed or in height it pays for out of its pressure.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -290,7 +290,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
     ctx.restore();
     line(ctx, XS - 14, YSURF - h * SM, XS + 14, YSURF - h * SM, PAL.ink, 2.5);
     line(ctx, XS - 70, YSURF, XS - 14, YSURF, PAL.ink, 2.5); line(ctx, XS + 14, YSURF, XS + 70, YSURF, PAL.ink, 2.5);
-    text(ctx, 'water', XS - 42, YSURF + 40, PAL.ink, { size: 19, align: 'center' });
+    text(ctx, 'water', XS - 84, YSURF + 40, PAL.ink, { size: 19, align: 'right' });
     text(ctx, 'open to the air, P_0 = 1.01 × 10⁵ N/m²', XS + 100, YSURF + 50, pc, { size: 19, weight: 600 });
     /* the height the water stands above the surface, bracketed beside the beaker */
     if (h > 0.004) {
@@ -317,9 +317,8 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       : lifted ? 'Air at ' + fmt(v2, 0) + ' m/s in the constriction has a pressure ' + dP(dp) + ' below the air outside, enough to lift the water the whole 20 cm of the tube, and the stream carries it off as a spray.'
         : 'Air at ' + fmt(v2, 0) + ' m/s in the constriction has a pressure ' + dP(dp) + ' below the air outside, and the water climbs ' + hStr(h, 0.01) + ' of the 20 cm tube.');
     readout(d.readout, `\\kPr_{0} - \\kPrtwo = \\tfrac{1}{2}\\krho\\kvtwo^2 = \\tfrac{1}{2}(1.29\\ \\text{kg/m}^3)(${fmt(v2, 0)}\\ \\text{m/s})^2 = ${dPtex(dp)}`,
-      'The equation of continuity gives v₂ = v₁A₁/A₂ = ' + fmt(v2, 0) + ' m/s in the constriction. The water rises until its own weight makes up the difference in pressure, h = (P₀ − P₂)/ρg = ' + hStr(hfull, 0.01) + ' with water at 1.00 × 10³ kg/m³'
-      + (lifted ? ', which is more than the 20 cm of the tube, so the water reaches the stream and is entrained. ' : '. ')
-      + 'The pressure in the stream can fall no lower than zero, so no such device can lift water more than about 10 m.');
+      'The equation of continuity gives $\\kvtwo = \\kvone\\kareaone/\\kareatwo = ' + fmt(v2, 0) + '\\ \\text{m/s}$ in the constriction. The water rises until its own weight makes up the difference in pressure, $\\kh = (\\kPr_{0} - \\kPrtwo)/\\krho g$ = ' + hStr(hfull, 0.01) + ' with water at 1.00 × 10³ kg/m³'
+      + (lifted ? ', more than the 20 cm of the tube, so the water reaches the stream and is entrained.' : '.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -411,7 +410,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       if (wing) {
         const x = 800, L = Math.abs(dp) * KP, y0 = dp > 0 ? wingBot(800) : wingTop(800), up = dp > 0 ? -1 : 1;
         arrow(ctx, x, y0, x, y0 + up * L, pc, 6);
-        text(ctx, 'P_b − P_t = ' + (dp < 0 ? '−' : '') + dP(Math.abs(dp)), x + 22, y0 + up * L / 2, pc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
+        text(ctx, 'P_b − P_t = ' + (dp < 0 ? '−' : '') + dP(Math.abs(dp)), x + 22, dp > 0 ? y0 + 30 : y0 - 30, pc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) });
       } else {
         const x = 810, y0 = sailF(810), sl = (sailF(820) - sailF(800)) / 20, nx = sl / Math.hypot(1, sl), ny = -1 / Math.hypot(1, sl);
         const L = Math.abs(dp) * KP, s = dp > 0 ? 1 : -1;
@@ -426,7 +425,7 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
         + (dp > 0 ? (wing ? 'a lift of ' : 'a forward push of ') : (wing ? 'a downward push of ' : 'a backward push of ')) + fmt(Math.abs(dp), 0) + ' N on each square meter.');
     const lhs = wing ? '\\kPr_{\\text{b}} - \\kPr_{\\text{t}}' : '\\kPr_{\\text{back}} - \\kPr_{\\text{front}}';
     readout(d.readout, `${lhs} = \\tfrac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2) = \\tfrac{1}{2}(1.29\\ \\text{kg/m}^3)[(${fmt(vFast, dec)}\\ \\text{m/s})^2 - (${fmt(vSlow, dec)}\\ \\text{m/s})^2] = ${dp < 0 ? '-' : ''}${dPtex(Math.abs(dp))}`,
-      wing ? 'A pressure difference is a force on each unit of area, so the lift on each square meter of wing is ' + fmt(dp, 0) + ' N with air at 1.29 kg/m³. A wing also gains lift by deflecting air downward, which Bernoulli’s principle alone does not count.'
+      wing ? 'A pressure difference is a force on each unit of area, so ' + (dp >= 0 ? 'the lift on each square meter of wing is ' + fmt(dp, 0) + ' N' : 'each square meter of wing is pushed down with ' + fmt(-dp, 0) + ' N') + ' with air at 1.29 kg/m³. A wing also gains lift by deflecting air downward, which Bernoulli’s principle alone does not count.'
         : 'A pressure difference is a force on each unit of area, so the push on each square meter of sail is ' + fmt(dp, 0) + ' N with air at 1.29 kg/m³, directed from the back of the sail toward its front, which is what lets a boat sail into the wind.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -506,8 +505,8 @@ const samples = (x0, x1, n, f) => range(n + 1).map((i) => { const x = x0 + ((x1 
       : out ? 'At ' + fmt(v, 1) + ' m/s the pressure at the side opening is ' + dP(dp) + ' below the dead spot’s, and the water would stand ' + hStr(h) + ' higher there, far above the top of this manometer.'
         : 'At ' + fmt(v, 1) + ' m/s the pressure at the side opening is ' + dP(dp) + ' below the pressure at the dead spot, and the ' + fluid + ' stands ' + hStr(h) + ' higher on that side.');
     readout(d.readout, `\\kh = \\frac{\\kProne - \\kPrtwo}{\\krho'\\kg} = \\frac{\\tfrac{1}{2}\\krho\\kvtwo^2}{\\krho'\\kg} = \\frac{${dPtex(dp)}}{\\krho'\\kg} = ${hTex(h)}`,
-      'The moving fluid is air at ρ = 1.29 kg/m³ and the manometer holds ' + fluid + ' at ρ′ = ' + (fl.value === 'hg' ? '13.6' : '1.00') + ' × 10³ kg/m³. The height grows as the square of the speed, so the speed is proportional to √h: at twice this speed, ' + fmt(2 * v, 1) + ' m/s, the ' + fluid + ' would stand ' + hStr(4 * h) + ' apart. '
-      + (fl.value === 'hg' ? 'Mercury is 13.6 times denser than water, so a water manometer would read 13.6 times as high, ' + hStr(13.6 * h) + ' here.' : 'Mercury is 13.6 times denser than water, so a mercury manometer would read ' + hStr(h / 13.6) + ' here, which is why an instrument for air speeds is filled with it.'));
+      'Air at $\\krho = 1.29\\ \\text{kg/m}^3$ against ' + fluid + ' at $\\krho\' = ' + (fl.value === 'hg' ? '13.6' : '1.00') + ' \\times 10^3\\ \\text{kg/m}^3$; at twice the speed the ' + fluid + ' would stand ' + hStr(4 * h) + ' apart. '
+      + (fl.value === 'hg' ? 'A water manometer would read 13.6 times as high, ' + hStr(13.6 * h) + '.' : 'A mercury manometer would read ' + hStr(h / 13.6) + ', which is why an instrument for air speeds is filled with it.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();

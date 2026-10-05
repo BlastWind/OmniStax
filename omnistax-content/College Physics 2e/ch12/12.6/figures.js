@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, hover, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, pinned, curve, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
@@ -169,9 +169,9 @@ function ball(ctx, x, y, r, fill, w = 3, edge = PAL.ink) { ctx.save(); ctx.fillS
     ];
     const FS = 6 * Math.PI * (L / 2) * f.eta * v, FD = 0.5 * 0.45 * f.rho * Math.PI * (L / 2) * (L / 2) * v * v;
     const smalls = [
-      'Below about 1 the viscous drag is proportional to the speed, and Stokes’ law gives <i>F</i><sub>S</sub> = 6π<i>Rηv</i> = ' + num3(FS).txt + ' N.',
+      'Below about 1 the viscous drag is proportional to the speed, and Stokes’ law gives $\\kFs = 6\\pi\\kRsphere\\keta\\kv$ = ' + num3(FS).txt + ' N.',
       'Between 1 and about 10 the flow is changing from laminar to turbulent, and no single law gives the drag.',
-      'Between 10 and 10⁶ the viscous drag is proportional to the speed squared, and with <i>C</i> = 0.45 for a sphere <i>F</i><sub>V</sub> = ½<i>CρAv</i>² = ' + num3(FD).txt + ' N.',
+      'Between 10 and 10⁶ the viscous drag is proportional to the speed squared, and with $C = 0.45$ for a sphere $\\kFV = \\tfrac{1}{2}C\\krho A\\kv^2$ = ' + num3(FD).txt + ' N.',
       'Above 10⁶ the drag increases dramatically and behaves with greater complexity, so no simple law gives it.',
     ];
     readout(d.readout, `{N'}_{\\text{R}} = \\frac{\\krho\\kv \\kLlen}{\\keta} = \\frac{(${f.rhoTex}\\ \\text{kg/m}^3)(${fmt(v, 1)}\\ \\text{m/s})(${fmt(L, 4)}\\ \\text{m})}{${f.etaTex}\\ \\text{Pa}\\cdot\\text{s}} = ${reTex(Re)}`, smalls[reg]);
@@ -273,8 +273,8 @@ function ball(ctx, x, y, r, fill, w = 3, edge = PAL.ink) { ctx.save(); ctx.fillS
         ? `\\begin{aligned}\\kFB - \\kwgt &= \\kFs,\\qquad (\\krhofl - \\krhoobj)\\kvol\\kg = 6\\pi \\kRsphere\\keta\\kvt\\\\ \\kvt &= \\frac{2\\kRsphere^2\\kg(\\krhofl - \\krhoobj)}{9\\keta}\\\\ &= \\frac{2(${Rtex})^2(9.80\\ \\text{m/s}^2)(${f.rhoTex} - ${fmt(rho, 0)}\\ \\text{kg/m}^3)}{9(${f.etaTex}\\ \\text{Pa}\\cdot\\text{s})} = ${speed(v).tex}\\ \\text{upward}\\end{aligned}`
         : `\\begin{aligned}\\kwgt - \\kFB &= \\kFs,\\qquad (\\krhoobj - \\krhofl)\\kvol\\kg = 6\\pi \\kRsphere\\keta\\kvt\\\\ \\kvt &= \\frac{2\\kRsphere^2\\kg(\\krhoobj - \\krhofl)}{9\\keta}\\\\ &= \\frac{2(${Rtex})^2(9.80\\ \\text{m/s}^2)(${fmt(rho, 0)} - ${f.rhoTex}\\ \\text{kg/m}^3)}{9(${f.etaTex}\\ \\text{Pa}\\cdot\\text{s})} = ${speed(v).tex}\\end{aligned}`;
     const small = still ? 'With no net force but the drag, the marble has no reason to move, and Stokes’ law gives no drag at zero speed.'
-      : Re <= 1 ? 'At ' + speed(v).txt + ' the Reynolds number is <i>N′</i><sub>R</sub> = <i>ρv</i><sub>t</sub>(2<i>R</i>)/<i>η</i> = ' + reTxt(Re) + ', so the flow around the marble is laminar and Stokes’ law holds.'
-      : 'At ' + speed(v).txt + ' the Reynolds number would be <i>N′</i><sub>R</sub> = <i>ρv</i><sub>t</sub>(2<i>R</i>)/<i>η</i> = ' + reTxt(Re) + ', past the range where Stokes’ law holds, so the real terminal speed is lower than this.';
+      : Re <= 1 ? 'At ' + speed(v).txt + ' the Reynolds number is $N^{\\prime}_{\\text{R}} = \\krhofl\\kvt(2\\kRsphere)/\\keta$ = ' + reTxt(Re) + ', so the flow around the marble is laminar and Stokes’ law holds.'
+      : 'At ' + speed(v).txt + ' the Reynolds number would be $N^{\\prime}_{\\text{R}} = \\krhofl\\kvt(2\\kRsphere)/\\keta$ = ' + reTxt(Re) + ', past the range where Stokes’ law holds, so the real terminal speed is lower than this.';
     readout(d.readout, main, small);
   }
   register(d.fig, { update: () => {}, draw });

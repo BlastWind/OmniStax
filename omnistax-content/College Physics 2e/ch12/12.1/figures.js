@@ -8,7 +8,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
@@ -86,11 +86,12 @@ function bar(ctx, x0, y, w, share, color, label, value) {
   ];
   const KEYS = [{ V: ['A', 'd'], Vn: ['An', 'dn'] }, { t: 'd', tn: 'dn' }];
   const NOTE = [
-    'Flow rate is the volume that passes a point in a unit of time: the shaded cylinder has passed P in the time t.',
-    'The cylinder’s volume is its cross-section times its length, V = Ad, and its length is d = v̄t.',
-    'The length over the time is the average speed, d/t = v̄, so the flow rate is the area times the average speed.',
+    'Flow rate is the volume that passes a point in a unit of time: the shaded cylinder has passed P in the time $\\kt$.',
+    'The cylinder’s volume is its cross-section times its length, $\\kvol = \\karea\\kd$, and its length is $\\kd = \\kvb\\kt$.',
+    'The length over the time is the average speed, $\\kd/\\kt = \\kvb$, so the flow rate is the area times the average speed.',
   ];
   const { formula: fx, note } = F.readout(d);
+  let said = '';
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('flow-rate'), vc = C('velocity'), tc = C('time'), pc = C('position'), ac = C('area'), oc = C('volume');
@@ -139,7 +140,7 @@ function bar(ctx, x0, y, w, share, color, label, value) {
     if (Math.abs(s - at) < 1e-6) F.morph(fx, FORM[at](n));
     else F.morphAt(fx, FORM[i](n), FORM[i + 1](n), s - i, { keyMap: KEYS[i] });
     const line2 = NOTE[at] + ' The radius of the pipe and the length of the cylinder are not drawn to one scale, since a centimeter of one and a meter of the other could not share a picture.';
-    if (note.textContent !== line2) note.textContent = line2;
+    if (said !== line2) { said = line2; note.textContent = line2; F.renderMath(note); }
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -207,7 +208,7 @@ function bar(ctx, x0, y, w, share, color, label, value) {
       ? 'The tube has the same radius, ' + fmt(r1, 3) + ' cm, at both points, so the ' + fmt(Q, 3) + ' L/s moves at ' + sf(v1) + ' m/s at both.'
       : 'The same ' + fmt(Q, 3) + ' L/s passes both points, so fluid moving at ' + sf(v1) + ' m/s where the radius is ' + fmt(r1, 3) + ' cm moves at ' + sf(v2) + ' m/s where it is ' + fmt(r2, 3) + ' cm.');
     readout(d.readout, `\\kQone = \\kQtwo:\\quad \\kareaone\\kvbone = \\kareatwo\\kvbtwo:\\quad (${sf(A1)}\\ \\text{cm}^2)(${sf(v1)}\\ \\text{m/s}) = (${sf(A2)}\\ \\text{cm}^2)(${sf(v2)}\\ \\text{m/s}) = ${fmt(Q, 3)}\\ \\text{L/s}`,
-      'The two shaded cylinders are the same 2.00 cm³ of fluid, drawn to scale, and each passes its point in ' + sf(tpass) + ' ms. The speeds stand in the ratio v̄₂/v̄₁ = (r₁/r₂)² = ' + sf(v2 / v1) + ', which is why the graph climbs so steeply as the radius shrinks.');
+      'The two shaded cylinders are the same 2.00 cm³ of fluid, drawn to scale, and each passes its point in ' + sf(tpass) + ' ms. The speeds stand in the ratio $\\kvbtwo/\\kvbone = (\\krone/\\krtwo)^2 = ' + sf(v2 / v1) + '$, which is why the graph climbs so steeply as the radius shrinks.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -227,7 +228,7 @@ function bar(ctx, x0, y, w, share, color, label, value) {
   const r2s = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 2, max: 8, step: 0.1, value: 5, unit: 'mm', dec: 1, aria: 'the radius of each branch' });
   /* radii at 4 units to the millimeter, so six branches of 8 mm fan across 444 units; speed arrows at 120 units
      per m/s and pinned at 560 with a hollow head, which the largest speed the sliders reach, 6.6 m/s, overruns; the area bars sit on a cap of 12.5 cm² */
-  const K = 4, KV = 120, VMAX = 560, CY = 340, XA = 40, XJ = 520, XF = 680, XE = 1200, ACAP = 12.5, BX = 420, BW = 820;
+  const K = 4, KV = 120, VMAX = 560, CY = 340, XA = 40, XJ = 520, XF = 680, XE = 1140, ACAP = 12.5, BX = 420, BW = 820;
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('flow-rate'), vc = C('velocity'), pc = C('position'), ac = C('area'), cv1 = F.ref('vessel'), cbr = F.ref('branches');

@@ -8,7 +8,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, fixed, view, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
@@ -140,8 +140,8 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     topline(ctx, lam
       ? `The layers slide past one another without mixing: the top one moves at ${fmt(vt, 2)} m/s, the one on the bed at ${fmt(vt / N, 2)} m/s, and friction acts between each pair.`
       : 'An obstruction 40% of the depth bends the layers over it and leaves eddies behind it that carry fluid across the flow.');
-    readout(d.readout, `{\\kv}_{\\text{t}} = ${fmt(vt, 2)}\\ \\text{m/s}`, lam
-      ? 'Laminar flow: the layers keep their order and slide past one another, the one on the bed at ' + fmt(vt / N, 2) + ' m/s, and the friction between them is the drag that viscosity describes.'
+    readout(d.readout, lam ? `{\\kv}_{\\text{t}} = ${fmt(vt, 2)}\\ \\text{m/s},\\quad {\\kv}_{\\text{b}} = {\\kv}_{\\text{t}}/${N} = ${fmt(vt / N, 2)}\\ \\text{m/s}` : `{\\kv}_{\\text{t}} = ${fmt(vt, 2)}\\ \\text{m/s}`, lam
+      ? ''
       : 'Turbulent flow: behind the obstruction the layers mix, there are velocities across the direction of flow, and there is more heating and more resistance than in laminar flow.');
   }
   hover(d.stage, () => hits);
@@ -204,7 +204,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     const ap = V.P([off + s / 2, T + PT, s * 0.35]); text(ctx, 'A = ' + fmt(As.v, 2) + ' cm²', ap[0], ap[1] - 22, arc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
     const l0 = V.P([-22, 0, s]), l1 = V.P([-22, T, s]);
     vbracket(ctx, l0[0], l1[1], l0[1], pc, 'L = ' + fmt(Ls.v, 2) + ' mm', -1);
-    const fp = V.P([0, -PT, s]); text(ctx, fl.name + ', η = ' + sf(fl.eta, 4) + ' mPa·s', fp[0] - 10, fp[1] + 32, ec, { size: 21, weight: 600, bg: PAL.panel });
+    const fp = V.P([0, -PT, s]); const fs = fl.name + ', η = ' + sf(fl.eta, 4) + ' mPa·s'; text(ctx, fs, Math.max(16 + F.measure(ctx, fs, { size: 19, weight: 600 }), fp[0] - 24), fp[1] + 24, ec, { size: 19, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, 'the moving plate above', 1330, 110, cTop, { size: 19, align: 'right' });
     text(ctx, 'the fixed plate below', 1330, 136, cBot, { size: 19, align: 'right' });
     /* the force on a fixed cap */
@@ -238,7 +238,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
   const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 1.5, max: 2.5, step: 0.05, value: 2, unit: 'cm', dec: 2, aria: 'the radius of the tubes' });
   /* the tubes at 90 units to the centimeter of radius (2.5 cm is 225 units) and the arrows at 150 units per m/s,
      fixed from the slider extremes: the center of the viscous tube at 0.80 L/s and 1.50 cm reaches 2.26 m/s, 340 units */
-  const KR = 90, KV = 150, BASE = 490, TOPY = 148, CX1 = 400, CX2 = 1000;
+  const KR = 90, KV = 150, BASE = 490, TOPY = 148, CX1 = 410, CX2 = 980;
   const hits = [];
   function tube(ctx, cx, R, tint, wall) {
     ctx.save(); ctx.fillStyle = alpha(tint, 0.12); ctx.fillRect(cx - R, TOPY, 2 * R, BASE - TOPY + 30); ctx.restore();
@@ -254,7 +254,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     /* the flat profile: every arrow the average speed */
     for (let k = -3; k <= 3; k++) { const x = CX1 + (k / 3.6) * R; arrow(ctx, x, BASE, x, BASE - vb * KV, vc, 4); }
     hits.push({ x: CX1, y: BASE - vb * KV / 2, r: R, name: 'every part of the fluid moves at v̄ = ' + fmt(vb, 2) + ' m/s' });
-    text(ctx, 'v̄ = ' + fmt(vb, 2) + ' m/s', CX1 + R + 14, BASE - vb * KV, vc, { size: 22, weight: 600, bg: PAL.panel });
+    text(ctx, 'v̄ = ' + fmt(vb, 2) + ' m/s', CX1 - R - 14, BASE - vb * KV, vc, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     /* the viscous profile: zero at the wall, twice the average at the center, a parabola between */
     ctx.save(); ctx.strokeStyle = alpha(vc, 0.5); ctx.lineWidth = 2; ctx.setLineDash([4, 8]); ctx.beginPath();
     for (let u = -1; u <= 1.001; u += 0.05) { const x = CX2 + u * R, y = BASE - 2 * vb * (1 - u * u) * KV; if (u === -1) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
@@ -273,7 +273,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     text(ctx, 'Q = ' + fmt(Qs.v, 2) + ' L/s up each tube', 700, BASE + 142, fc, { size: 22, weight: 600, align: 'center' });
     topline(ctx, `At ${fmt(Qs.v, 2)} L/s through a tube ${fmt(rs.v, 2)} cm in radius the average speed is ${fmt(vb, 2)} m/s; the viscous flow is fastest at the center and stands still at the wall.`);
     readout(d.readout, `\\kvb = \\frac{\\kQ}{\\karea} = \\frac{\\kQ}{\\pi \\krad^2} = \\frac{${sci(Q).tex}\\ \\text{m}^3\\text{/s}}{\\pi(${fmt(r, 4)}\\ \\text{m})^2} = ${fmt(vb, 3)}\\ \\text{m/s}`,
-      'Both tubes carry the same flow rate: the viscous profile averages to the same v̄ as the flat one, faster than v̄ near the center and slower than v̄ near the wall.');
+      'Both tubes carry the same flow rate: the viscous profile averages to the same $\\kvb$ as the flat one, faster than $\\kvb$ near the center and slower near the wall.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });
@@ -315,8 +315,8 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     }
     const qlen = Math.min(X2 - X1 - 130, Math.max(0, (Qcc / QCAP) * 600));
     if (qlen > 6) arrow(ctx, X1 + 40, CY, X1 + 40 + qlen, CY, fc, 6);
-    text(ctx, 'Q', X1 + 40 + qlen / 2, CY - 26, fc, { size: 26, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, fl.name + ', η = ' + sf(fl.eta, 4) + ' mPa·s', XC, CY - R - 40, ec, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'Q', X1 + 32, CY, fc, { size: 24, weight: 600, align: 'right' });
+    text(ctx, fl.name + ', η = ' + sf(fl.eta, 4) + ' mPa·s', XC, CY - R - 24, ec, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     /* the pressures at the two ends, the radius and the length */
     text(ctx, 'P_2 = ' + sci(P1 + dP).txt + ' N/m²', X1 - 16, CY - 30, pc, { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     text(ctx, 'the entrance', X1 - 16, CY + 4, PAL.muted, { size: 17, align: 'right' });
@@ -331,7 +331,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     text(ctx, 'the bar is drawn on a cap of 0.500 cm³/s; the tube begins as the needle of Example 12.8', BX + BW, BY + 36, PAL.muted, { size: 17, align: 'right' });
     topline(ctx, `${fl.name} driven by ${sci(dP).txt} N/m² through a tube ${fmt(rs.v, 3)} mm in radius and ${fmt(ls.v, 2)} cm long flows at ${sf(Qcc)} cm³/s.`);
     readout(d.readout, `\\kQ = \\frac{(\\kPrtwo - \\kProne)\\pi \\krad^4}{8\\keta \\kl} = \\frac{(${sci(dP).tex}\\ \\text{N/m}^2)\\pi(${sci(r).tex}\\ \\text{m})^4}{8(${etaTex(fl.eta)})(${sci(l).tex}\\ \\text{m})} = ${sci(Q).tex}\\ \\text{m}^3\\text{/s}`,
-      `The resistance is R = 8ηl/πr⁴ = ${sci(Rres).txt} N·s/m⁵, and the flow is the pressure difference divided by it.`);
+      `The resistance is $R = 8\\keta\\kl/\\pi\\krad^4 = ${sci(Rres).tex}\\ \\text{N·s/m}^5$, and the flow is the pressure difference divided by it.`);
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });
@@ -361,8 +361,9 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(x - 16, GY - GH, 32, GH); ctx.fillStyle = alpha(color, 0.35); ctx.fillRect(x - 16, GY - h, 32, h); ctx.restore();
     line(ctx, x - 16, GY - h, x + 16, GY - h, color, 3);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(x - 16, GY - GH, 32, GH); ctx.restore();
-    text(ctx, label, x, GY - GH - 40, color, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, sci(P * 1e5).txt + ' N/m²', x, GY - GH - 14, color, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    const tx = x > 600 ? x + 20 : x, al = x > 600 ? 'right' : 'center';
+    text(ctx, label, tx, GY - GH - 40, color, { size: 22, weight: 600, align: al, bg: PAL.panel });
+    text(ctx, sci(P * 1e5).txt + ' N/m²', tx, GY - GH - 14, color, { size: 19, weight: 600, align: al, bg: PAL.panel });
   }
   function draw() {
     const { ctx } = begin(d.c); hits.length = 0;
@@ -377,7 +378,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     const qlen = (Q / QCAP) * (X2 - X1 - 120);
     if (qlen > 4) arrow(ctx, X1 + 60, MY, X1 + 60 + qlen, MY, fc, 6);
     text(ctx, 'Q = ' + fmt(Q, 0) + ' L/min', (X1 + X2) / 2 + 30, MY + 50, fc, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'the main, resistance R = ' + fmt(Rs.v, 2) + ' × 10³ N/m² per L/min', (X1 + X2) / 2, MY - 44, cMain, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, 'the main, resistance R = ' + fmt(Rs.v, 2) + ' × 10³ N/m² per L/min', (X1 + X2) / 2, GY + 26, cMain, { size: 17, align: 'center', bg: PAL.panel });
     /* the two gauges */
     gauge(ctx, X1, P2 / 1e5, 'P_2', pc); gauge(ctx, X2, P1 / 1e5, 'P_1', pc);
     hits.push({ x: X1, y: GY - GH / 2, r: 40, name: 'the pressure at the water works, ' + sci(P2).txt + ' N/m²' }, { x: X2, y: GY - GH / 2, r: 40, name: 'the pressure at the houses, ' + sci(P1).txt + ' N/m²' });
@@ -395,7 +396,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     topline(ctx, n === 0 ? `With no tap open nothing flows, and the pressure at the houses is the ${sci(P2).txt} N/m² of the water works.`
       : `${n} ${n === 1 ? 'house draws' : 'houses draw'} ${fmt(Q, 0)} L/min through the main, and the pressure falls from ${sci(P2).txt} N/m² at the water works to ${sci(P1).txt} N/m² at the houses.`);
     readout(d.readout, `\\kPrtwo - \\kProne = R\\kQ = (${sci(R).tex}\\ \\text{N/m}^2\\ \\text{per L/min})(${fmt(Q, 0)}\\ \\text{L/min}) = ${sci(drop).tex}\\ \\text{N/m}^2`,
-      starved ? 'The drop the main would need exceeds the pressure the water works supplies, so the houses get no pressure at all.' : 'When the flow is very small the drop is negligible and P₁ ≈ P₂; when it is large the houses get much less than the water works creates.');
+      starved ? 'The drop the main would need exceeds the pressure the water works supplies, so the houses get no pressure at all.' : 'When the flow is very small the drop is negligible and $\\kProne \\approx \\kPrtwo$; when it is large the houses get much less than the water works creates.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });
@@ -417,9 +418,9 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
   const Q0 = 5, R_AO = 35 / Q0, R_ART = 50 / Q0, R_CAP = 20 / Q0, R_VEN = 11 / Q0, R_PUL = 17 / Q0, P_VC = 4, P_PV = 8;
   const REST = [120, 85, 35, 15, 4, 25, 8];
   const NAMES = ['Aorta', 'Small arteries', 'Arterioles', 'Venules', 'Venae cavae', 'Pulmonary artery', 'Pulmonary veins'];
-  /* the axis is 0 to 250 mm Hg, fixed from the slider maximum with the arterioles at rest (10.0 L/min puts the aorta at
-     236); a narrowed arteriole at a high flow can carry the aorta past it, and that bar is pinned at the top with its value */
-  const box = { l: 130, r: 1310, t: 120, b: 470 }, PMAX = 250;
+  /* the axis is 0 to 350 mm Hg, fixed from the slider extremes: 10.0 L/min through arterioles at 85 % of their radius
+     puts the aorta at 328 */
+  const box = { l: 130, r: 1310, t: 120, b: 470 }, PMAX = 350;
   const hits = [];
   function draw() {
     const { ctx } = begin(d.c); hits.length = 0;
@@ -427,7 +428,7 @@ const etaTex = (eta) => (eta >= 10 ? fmt(eta / 1000, 3) : sci(eta / 1000).tex) +
     const pVen = P_VC + R_VEN * Q, pArt = pVen + R_CAP * Q, pSmall = pArt + Rart * Q, pAo = pSmall + R_AO * Q, pPA = P_PV + R_PUL * Q;
     const P = [pAo, pSmall, pArt, pVen, P_VC, pPA, P_PV];
     const pc = C('pressure'), fc = C('flow-rate'), NREF = { 0: F.ref('aorta'), 2: F.ref('arterioles'), 4: F.ref('venae-cavae'), 6: F.ref('pulmonary-veins') };
-    const { X, Y } = axes(ctx, box, [0, 8], [0, PMAX], { yl: 'blood pressure, mm Hg', yc: pc, nx: 8, ny: 5, fx: () => '' });
+    const { X, Y } = axes(ctx, box, [0, 8], [0, PMAX], { yl: 'blood pressure, mm Hg', yc: pc, nx: 8, ny: 7, fx: () => '' });
     const xs = (i) => X(i < 5 ? i + 0.5 : i + 1.5), W = 90;
     /* the two pumps and the gap for the lungs */
     line(ctx, X(5.5), box.t, X(5.5), box.b, PAL.muted, 2, [10, 10]);

@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, vbracket, axes, pinned, curve, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, RHO = 1000, TAU = 2 * Math.PI;
@@ -106,8 +106,8 @@ function vscale(ctx, box, top, step, fx, title, color) {
     /* point 1 at the surface and point 2 at the outlet */
     dot(ctx, 150, ys, cSurf, true, 9);
     text(ctx, '1', 128, ys - 14, cSurf, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'P_1 = atmospheric', 172, ys - 38, prc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'v_1 = ' + fmt(v1, 2) + ' m/s', 172, ys - 12, vc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'P_1 = atmospheric', 172, ys - 48, prc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'v_1 = ' + fmt(v1, 2) + ' m/s', 172, ys - 22, vc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     dot(ctx, x1, YOUT, cOut, true, 9);
     text(ctx, '2', x1 + 4, YOUT - half - 18, cOut, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'opening A = ' + fmt(As.v, 1) + ' cm²', (x0 + x1) / 2, 692, arc, { size: 19, align: 'center' });
@@ -127,7 +127,7 @@ function vscale(ctx, box, top, step, fx, title, color) {
       ? 'Water ' + fmt(h, 2) + ' m below the surface leaves the opening at ' + fmt(v2, 2) + ' m/s, the speed it would have after falling ' + fmt(h, 2) + ' m.'
       : 'Water ' + fmt(h, 2) + ' m below a surface moving at ' + fmt(v1, 2) + ' m/s leaves the opening at ' + fmt(v2, 2) + ' m/s.');
     readout(d.readout, `\\kvtwo = \\sqrt{\\kvone^2 + 2\\kg\\kh} = \\sqrt{(${fmt(v1, 2)}\\ \\text{m/s})^2 + 2(9.80\\ \\text{m/s}^2)(${fmt(h, 2)}\\ \\text{m})} = ${fmt(v2, 2)}\\ \\text{m/s}`,
-      'Both pressures are atmospheric and the density cancels, so the size of the opening has no say in the speed. The opening of ' + fmt(As.v, 1) + ' cm² passes Q = Av₂ = ' + fmt(Q * 1000, 2) + ' L/s, and a larger one passes more water at the very same speed. The opening and the jet are drawn wider than their true size so that they can be seen against the dam.');
+      'The opening of ' + fmt(As.v, 1) + ' cm² passes $\\kQ = \\karea\\kvtwo = ' + fmt(Q * 1000, 2) + '\\ \\text{L/s}$. The opening and the jet are drawn wider than their true size so that they can be seen against the dam.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -147,7 +147,7 @@ function vscale(ctx, box, top, step, fx, title, color) {
   const hs = ctl(d.controls, { label: '\\khtwo', cls: 'position', min: 0, max: 20, step: 0.1, value: 10, unit: 'm', dec: 1, aria: 'the height of the nozzle above the ground' });
   const ds = ctl(d.controls, { label: '\\text{nozzle bore}', cls: 'position', min: 2.5, max: 6.4, step: 0.05, value: 3, unit: 'cm', dec: 2, aria: 'the inside diameter of the nozzle' });
   const S = 24, YG = 660, D1 = 0.064, A1 = Math.PI * (D1 / 2) ** 2, TOP = 6e6;
-  const bx = { l: 880, r: 1340, t: 150, b: 560 }, KB = (bx.b - bx.t) / TOP, COLS = [[900, 'at the base (1)'], [1180, 'in the nozzle (2)']], CW = 120;
+  const bx = { l: 920, r: 1340, t: 150, b: 560 }, KB = (bx.b - bx.t) / TOP, COLS = [[940, 'at the base (1)'], [1180, 'in the nozzle (2)']], CW = 120;
   function draw() {
     const { ctx } = begin(d.c);
     const vc = C('velocity'), pc = C('position'), ac = C('acceleration'), prc = C('pressure'), qc = C('flow-rate'), ec = C('energy'), dc = C('density');
@@ -179,8 +179,9 @@ function vscale(ctx, box, top, step, fx, title, color) {
     text(ctx, 'v_1 = ' + fmt(v1, 1) + ' m/s in the 6.40 cm hose', 60, 724, vc, { size: 20, weight: 600 });
     dot(ctx, lx1, yn, cNoz, true, 9);
     text(ctx, '2', lx1 + 4, yn - 28, cNoz, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'P_2 = 0 (gauge)', 590, yn - 40, prc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'v_2 = ' + fmt(v2, 1) + ' m/s in the ' + fmt(ds.v, 2) + ' cm bore', 590, yn - 14, vc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    const yl = Math.min(yn, 560);
+    text(ctx, 'P_2 = 0 (gauge)', 590, yl - 40, prc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'v_2 = ' + fmt(v2, 1) + ' m/s in the ' + fmt(ds.v, 2) + ' cm bore', 590, yl - 14, vc, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     if (h2 > 0.2) vbracket(ctx, 752, YG, yn, pc, 'h_2 = ' + fmt(h2, 1) + ' m', 1);
     else text(ctx, 'h_2 = 0', 768, YG - 14, pc, { size: 20, weight: 600 });
     text(ctx, 'Q = ' + fmt(Qs.v, 1) + ' L/s', 430, 696, qc, { size: 20, weight: 600 });
@@ -205,13 +206,12 @@ function vscale(ctx, box, top, step, fx, title, color) {
     const yt = bx.b - total * KB;
     line(ctx, COLS[0][0] - 10, yt, COLS[1][0] + CW + 10, yt, PAL.ink, 3);
     text(ctx, 'the same total at both points, ' + e6(total, 2), (COLS[0][0] + COLS[1][0] + CW) / 2, yt - 18, PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'hatched: ρgh', bx.r, bx.t - 24, ec, { size: 17, align: 'right' });
-    text(ctx, 'J/m³ = N/m²', bx.r, bx.t - 46, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'hatched: ρgh; J/m³ = N/m²', bx.r, bx.b + 146, PAL.muted, { size: 17, align: 'right' });
     topline(ctx, h2 < 0.05
       ? 'With the nozzle at ground level, leaving it at ' + fmt(v2, 1) + ' m/s takes a gauge pressure of ' + e6(P1, 2) + ' N/m² at the base of the hose.'
       : 'To reach a nozzle ' + fmt(h2, 1) + ' m up and leave it at ' + fmt(v2, 1) + ' m/s, the water at the base of the hose needs a gauge pressure of ' + e6(P1, 2) + ' N/m².');
     readout(d.readout, `\\kProne = \\kPrtwo + \\tfrac{1}{2}\\krho(\\kvtwo^2 - \\kvone^2) + \\krho\\kg\\khtwo = 0 + \\tfrac{1}{2}(1000\\ \\text{kg/m}^3)[(${fmt(v2, 1)}\\ \\text{m/s})^2 - (${fmt(v1, 1)}\\ \\text{m/s})^2] + (1000\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${fmt(h2, 1)}\\ \\text{m}) = ${e6tex(P1, 2)}\\ \\text{N/m}^2`,
-      'The speeds follow from the flow rate and the two cross-sections, v₁ = Q/A₁ = ' + fmt(v1, 1) + ' m/s in the hose and v₂ = Q/A₂ = ' + fmt(v2, 1) + ' m/s in the nozzle. Every term is an energy per unit volume, and the pressure the pump supplies at the base is spent on the speed in the nozzle and on the climb up the ladder.');
+      'The speeds follow from the flow rate and the two cross-sections, $\\kvone = \\kQ/A_1 = ' + fmt(v1, 1) + '\\ \\text{m/s}$ in the hose and $\\kvtwo = \\kQ/A_2 = ' + fmt(v2, 1) + '\\ \\text{m/s}$ in the nozzle.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -267,7 +267,7 @@ function vscale(ctx, box, top, step, fx, title, color) {
     if (v > 0.05) arrow(ctx, 626, yt, 626 + 5 * v, yt, vc, 4);
     text(ctx, 'v = ' + fmt(v, 1) + ' m/s', 632, yt - 30, vc, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     if (h > 0.2) vbracket(ctx, 690, YP, yt, pc, 'h = ' + fmt(h, 1) + ' m', 1);
-    else text(ctx, 'h = 0', 706, YP, pc, { size: 20, weight: 600 });
+    else text(ctx, 'h = 0', 706, YP + 28, pc, { size: 20, weight: 600 });
     line(ctx, 470, YP, 680, YP, alpha(PAL.ink, 0.35), 2, [10, 10]);
     text(ctx, 'ρ = 1000 kg/m³', 430, YG + 24, dc, { size: 20, weight: 600 });
     text(ctx, 'g = 9.80 m/s²', 650, YG + 24, ac, { size: 20, weight: 600 });
@@ -289,7 +289,7 @@ function vscale(ctx, box, top, step, fx, title, color) {
       : parts.length === 1 && Wp > 0.5 ? 'The pump supplies ' + fmt(W / 1000, 1) + ' kW, all of it to raise the pressure by ' + fmt(Ps.v, 3) + ' × 10⁶ N/m² in a flow of ' + fmt(Qs.v, 1) + ' L/s.'
       : 'The pump supplies ' + fmt(W / 1000, 1) + ' kW: ' + parts.join(', ') + '.');
     readout(d.readout, `\\text{power} = \\left(\\kPr + \\tfrac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = (${e6tex(P, 3)} + ${e6tex(0.5 * RHO * v * v, 3)} + ${e6tex(RHO * G * h, 3)}\\ \\text{N/m}^2)(${fmt(Qs.v, 1)} \\times 10^{-3}\\ \\text{m}^3\\text{/s}) = ${fmt(W / 1000, 1)}\\ \\text{kW}`,
-      'Each term of Bernoulli’s equation is an energy per unit volume, and multiplied by the volume that passes each second it becomes a power. ' + fmt(W / 1000, 1) + ' kW is about ' + fmt(W / 745.7, 0) + ' hp' + (Wk + Wg < 0.5 && Wp > 0.5 ? ', the pump of a fire truck that raises only the pressure of the water it passes on.' : '.'));
+      fmt(W / 1000, 1) + ' kW is about ' + fmt(W / 745.7, 0) + ' hp' + (Wk + Wg < 0.5 && Wp > 0.5 ? ', the pump of a fire truck that raises only the pressure of the water it passes on.' : '.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, hover, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, nice, curve, faded } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -142,7 +142,7 @@ const TABLE = [
       : 'After ' + fmt(tau, 2) + ' s ' + m.name + ' has wandered, on average, ' + sig(now * u.k) + ' ' + u.name + ' from where it started' + (done ? '.' : ', and the distance is still growing as the square root of the time.'));
     const ratios = ends.map((e) => (now > 0 ? sig(e.dist / now, 2) : '0'));
     readout(d.readout, `\\kxrms = \\sqrt{2\\kDdiff\\kt} = \\sqrt{2(${m.tex}\\ \\text{m}^2\\text{/s})(${fmt(tau, 2)}\\ \\text{s})} = ${sciTex(now)}\\ \\text{m} = ${sig(now * u.k)}\\ ${u.tex}`,
-      now > 0 ? 'The three molecules drawn are ' + ratios[0] + ', ' + ratios[1] + ' and ' + ratios[2] + ' times x_rms from the start. The root-mean-square distance is the average over very many such walks, so a single molecule may end nearer or farther, and doubling the time makes the average only √2 times larger.'
+      now > 0 ? 'The three molecules drawn are ' + ratios[0] + ', ' + ratios[1] + ' and ' + ratios[2] + ' times $\\kxrms$ from the start; $\\kxrms$ is the average over very many such walks, so a single molecule may end nearer or farther.'
         : 'The root-mean-square distance is the average over very many such walks, and it grows as the square root of the time: doubling the time makes the average distance only √2 times larger.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => ts.v / 5), draw });
@@ -205,7 +205,7 @@ const TABLE = [
       : 'With ' + fmt(C1, 0) + ' molecules in region 1 and ' + fmt(C2, 0) + ' in region 2 the net flow is to the ' + (diff > 0 ? 'right' : 'left') + ', since more molecules leave the crowded region than enter it.');
     readout(d.readout, `\\text{net rate of diffusion} \\propto \\kDdiff\\,(C_1 - C_2) = \\kDdiff\\,(${fmt(C1, 0)} - ${fmt(C2, 0)})`,
       diff === 0 ? 'Every molecule moves at random, so as many cross the slab one way as the other and the net rate is zero. A difference in concentration is what makes a net flow, and the diffusion constant D sets how fast each molecule wanders.'
-        : 'For every molecule that wanders from region ' + (diff > 0 ? '2 into region 1' : '1 into region 2') + ', more wander the other way, in the proportion ' + fmt(Math.max(C1, C2), 0) + ' to ' + fmt(Math.min(C1, C2), 0) + '. The net rate is greatest at the start, when the difference is greatest, and falls to nothing as the two concentrations draw level; the diffusion constant D sets how fast each molecule wanders and so how quickly the difference is worked off.');
+        : 'For every molecule that wanders from region ' + (diff > 0 ? '2 into region 1' : '1 into region 2') + ', more wander the other way, in the proportion ' + fmt(Math.max(C1, C2), 0) + ' to ' + fmt(Math.min(C1, C2), 0) + '; the diffusion constant $\\kDdiff$ sets how fast each molecule wanders.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -222,7 +222,7 @@ const TABLE = [
   const KINDS = [{ name: 'small', nm: 0.3 }, { name: 'medium', nm: 0.9 }, { name: 'large', nm: 1.6 }];
   const pore = ctl(d.controls, { label: '\\text{pore width}', cls: '', min: 0.2, max: 2, step: 0.1, value: 0.6, unit: 'nm', dec: 1, aria: 'the width of the pores through the membrane' });
   const kind = choice(d.controls, { label: '\\text{the membrane}', options: [{ value: 'pores', label: 'pores' }, { value: 'dissolving', label: 'dissolving' }], value: 'pores', aria: 'which kind of membrane stands between the two regions', onInput: (v) => pore.disable(v === 'dissolving') });
-  const NM = 36, ML = 660, MR = 750, TOP = 136, BOT = 530, PORES = [200, 300, 400, 500];
+  const NM = 36, ML = 660, MR = 750, TOP = 160, BOT = 530, PORES = [200, 300, 400, 500];
   const rOf = (k) => (k.nm * NM) / 2;
   /* one molecule of each kind, all in ink: the small filled, the medium hollow, the large shaded */
   function molecule(ctx, x, y, k) {
@@ -250,7 +250,7 @@ const TABLE = [
     const aP = kind.a('pores'), aD = kind.a('dissolving');
     /* the legend: the three kinds, named once */
     let lx = 70;
-    KINDS.forEach((k, i) => { molecule(ctx, lx + rOf(KINDS[2]), 104, i); text(ctx, k.name + ' molecules, ' + fmt(k.nm, 1) + ' nm across', lx + 2 * rOf(KINDS[2]) + 14, 104, PAL.muted, { size: 17 }); lx += 400; });
+    KINDS.forEach((k, i) => { molecule(ctx, lx + rOf(KINDS[2]), 120, i); text(ctx, k.name + ' molecules, ' + fmt(k.nm, 1) + ' nm across', lx + 2 * rOf(KINDS[2]) + 14, 120, PAL.muted, { size: 17 }); lx += 400; });
     /* the membrane, pierced or whole */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('membrane'); ctx.lineWidth = 2.5;
     const half = kind.mix((v) => (v === 'pores' ? (pw * NM) / 2 : 0));
@@ -281,17 +281,17 @@ const TABLE = [
       [[0.22, 0.14], [0.7, 0.3], [0.4, 0.5], [0.78, 0.68], [0.3, 0.86]].forEach(([u, v], i) => molecule(ctx, ML + 16 + u * (MR - ML - 32), TOP + 30 + v * (BOT - TOP - 60), i === 3 ? 1 : 0));
       text(ctx, 'dissolved in the membrane, on the way across', (ML + MR) / 2, BOT + 50, PAL.ink, { size: 19, weight: 600, align: 'center' });
     });
-    text(ctx, 'region 1', 60, TOP - 14, PAL.muted, { size: 19, bg: PAL.panel });
-    text(ctx, 'region 2', 1340, TOP - 14, PAL.muted, { size: 19, align: 'right', bg: PAL.panel });
+    text(ctx, 'region 1', 60, TOP + 6, PAL.muted, { size: 19, bg: PAL.panel });
+    text(ctx, 'region 2', 1340, TOP + 6, PAL.muted, { size: 19, align: 'right', bg: PAL.panel });
     const names = KINDS.filter((k, i) => passes[i]).map((k) => k.name);
     topline(ctx, !porous ? 'This membrane has no pores; the molecules that cross it dissolve in it and diffuse through, whatever their size.'
       : names.length === 0 ? 'Pores ' + fmt(pw, 1) + ' nm wide are narrower than every molecule here, so nothing gets through.'
       : names.length === 3 ? 'Pores ' + fmt(pw, 1) + ' nm wide are wider than every molecule here, so all three kinds get through and the membrane is not selective.'
       : 'Pores ' + fmt(pw, 1) + ' nm wide let the ' + names.join(' and ') + ' molecules through and hold back the ' + KINDS.filter((k, i) => !passes[i]).map((k) => k.name).join(' and ') + ' ones.');
     if (porous) readout(d.readout, `\\text{a molecule passes if it is narrower than the pore, } ${fmt(pw, 1)}\\ \\text{nm:}\\quad ${KINDS.map((k, i) => `${fmt(k.nm, 1)}\\ \\text{nm}\\ ${passes[i] ? '<' : '>'}\\ ${fmt(pw, 1)}`).join(',\\quad ')}`,
-      'A membrane with pores is selective by size alone. The membrane is drawn at about a quarter of the thickness a real one would have on this scale, since 6.5 to 10 nm across would put it wider than the molecules beside it.');
+      'The membrane is drawn at about a quarter of the thickness a real one would have on this scale, since 6.5 to 10 nm across would put it wider than the molecules beside it.');
     else readout(d.readout, `\\text{a molecule crosses if it dissolves in the membrane, whatever its size}`,
-      'The molecules that cross this membrane dissolve in it, or react with molecules in it, on the way through, so which ones get across depends on what the membrane is made of rather than on how big the molecule is. Living membranes are 6.5 to 10 nm across, and this one is drawn at about a quarter of that thickness on the scale of the molecules.');
+      'Which molecules get across depends on what the membrane is made of rather than on their size. Living membranes are 6.5 to 10 nm across, and this one is drawn at about a quarter of that thickness on the scale of the molecules.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -356,8 +356,8 @@ const TABLE = [
     } else text(ctx, 'h = 0', BR + 50, yl, xc, { size: 22, weight: 600 });
     /* the two pressures at the membrane, drawn from it, and the net transfer beneath the beaker */
     const K = 90, ya = (yl + BB) / 2 - 24, yb = ya + 48;
-    if (P > 0) { arrow(ctx, MX, ya, MX + K * P, ya, pc, 5); text(ctx, 'osmotic pressure ' + fmt(P, 2) + ' kPa', MX + K * P + 12, ya, pc, { size: 19, weight: 600, bg: PAL.panel }); }
-    if (bp > 0) { arrow(ctx, MX, yb, MX - K * bp, yb, pc, 5); text(ctx, 'back pressure ρgh = ' + fmt(bp, 2) + ' kPa', MX - K * bp - 12, yb, pc, { size: 19, weight: 600, align: 'right', bg: PAL.panel }); }
+    if (P > 0) { arrow(ctx, MX, ya, MX + K * P, ya, pc, 5); text(ctx, 'osmotic pressure ' + fmt(P, 2) + ' kPa', MX + 12, ya - 24, pc, { size: 19, weight: 600, bg: PAL.panel }); }
+    if (bp > 0) { arrow(ctx, MX, yb, MX - K * bp, yb, pc, 5); text(ctx, 'back pressure ρgh = ' + fmt(bp, 2) + ' kPa', MX - 12, yb + 20, pc, { size: 18, weight: 600, align: 'right', bg: PAL.panel }); }
     const yn = BB + 92;
     if (balanced) text(ctx, P > 0 ? 'the two pressures balance: the net transfer of water is zero' : 'no osmotic pressure and no back pressure: nothing moves', MX, yn, PAL.ink, { size: 20, weight: 600, align: 'center' });
     else {
@@ -369,8 +369,8 @@ const TABLE = [
       : net > 0 ? 'With ' + fmt(h, 1) + ' cm of extra height on the right the back pressure is ' + fmt(bp, 2) + ' kPa, less than the osmotic pressure of ' + fmt(P, 2) + ' kPa, so water still moves to the right and the column rises.'
       : 'With ' + fmt(h, 1) + ' cm of extra height on the right the back pressure is ' + fmt(bp, 2) + ' kPa, more than the osmotic pressure of ' + fmt(P, 2) + ' kPa, so water is driven back to the left.');
     readout(d.readout, `\\kPr = \\krho\\kg\\kh = (1.00\\times10^{3}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${fmt(h / 100, 3)}\\ \\text{m}) = ${fmt(bp * 1000, 0)}\\ \\text{Pa} = ${fmt(bp, 2)}\\ \\text{kPa}`,
-      balanced ? 'The back pressure ρgh equals the relative osmotic pressure of the two solutions, ' + fmt(P, 2) + ' kPa, so as much water crosses one way as the other and the level stops rising.'
-        : net > 0 ? 'The relative osmotic pressure of the two solutions is ' + fmt(P, 2) + ' kPa and the back pressure has reached only ' + fmt(bp, 2) + ' kPa, so water still moves to the right and the column goes on rising until the two are equal, at h = ' + fmt((P * 1000) / (RHO * G) * 100, 1) + ' cm.'
+      balanced ? 'The back pressure $\\krho\\kg\\kh$ equals the relative osmotic pressure of the two solutions, ' + fmt(P, 2) + ' kPa, so as much water crosses one way as the other and the level stops rising.'
+        : net > 0 ? 'The relative osmotic pressure of the two solutions is ' + fmt(P, 2) + ' kPa and the back pressure has reached only ' + fmt(bp, 2) + ' kPa, so water still moves to the right and the column goes on rising until the two are equal, at $\\kh = ' + fmt((P * 1000) / (RHO * G) * 100, 1) + '\\ \\text{cm}$.'
         : 'The back pressure ' + fmt(bp, 2) + ' kPa exceeds the relative osmotic pressure ' + fmt(P, 2) + ' kPa, so water is forced back through the membrane against its concentration difference. This is reverse osmosis, which a piston can produce as well, and it is how salt water is desalinated.');
   }
   register(d.fig, { update: () => {}, draw });
