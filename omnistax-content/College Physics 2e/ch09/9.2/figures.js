@@ -1,7 +1,7 @@
 /* Figures for section 9.2 The Second Condition for Equilibrium. Boots against the section's text article.
-   Statics has no time in it, so every figure here is a still picture: none
-   registers a cycle, none carries a transport, and a slider's input alone
-   redraws it. */
+   Statics has no time in it, so every figure here but the hockey stick is a
+   still picture: none of them registers a cycle or carries a transport, and a
+   slider's input alone redraws it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, fixed, silhouette, label, labeller } = F;
@@ -149,24 +149,27 @@ function fulcrum(ctx, x, y, h, color) {
 /* =====================================================================
    FIGURE 9.7: the hockey stick about pivot A and about pivot B, seen from
    overhead as the book draws it. One push at the hand, and a nail that
-   slides along the shaft. Still: the stick is nailed down and the question
-   is what one force does about one chosen point, so nothing here runs on a
-   clock; sliding the nail is the reader's choice of pivot, not the passage
-   of time.
+   slides along the shaft. The book's quarter-circle arrow says which way the
+   stick would turn, so the stick rocks a few degrees that way about the nail
+   and comes back; at rest the arrow is left faint.
 ===================================================================== */
 (function () {
   const H = 770;
   const d = sim('sim-hockey-stick', H);
-  const ps = ctl(d.controls, { label: '\\text{the nail}', cls: 'position', min: 0.1, max: 1.3, step: 0.05, value: 0.2, unit: 'm', dec: 2, aria: 'where the nail is driven, measured from the blade',
+  const ps = ctl(d.controls, { label: '\\text{the nail}', cls: 'position', min: 0.1, max: 1.3, step: 0.05, value: 0.2, unit: 'm', dec: 2, onInput: reset, aria: 'where the nail is driven, measured from the blade',
     specials: [{ at: 1.1, label: 'at the hand' }] });
-  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 30, unit: 'N', dec: 0, aria: 'the size of the push' });
-  const gs = ctl(d.controls, { label: '\\text{the push}', cls: 'angle', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, aria: 'the direction of the push, measured from the horizontal',
+  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 60, step: 1, value: 30, unit: 'N', dec: 0, onInput: reset, aria: 'the size of the push' });
+  const gs = ctl(d.controls, { label: '\\text{the push}', cls: 'angle', min: 0, max: 180, step: 5, value: 160, unit: '°', dec: 0, onInput: reset, aria: 'the direction of the push, measured from the horizontal',
     specials: [{ at: 90, label: 'along the stick' }] });
   const { formula, note } = F.readout(d);
   /* one fixed scale: the shaft runs 1.36 m up from the blade at 300 units a metre, and the
      longest push, 60 N straight up the shaft, ends 216 units above the hand, clear of a
      two-line headline */
   const X = 700, YB = 710, S = 300, HAND = 1.10, TOP = 1.36, KF = 3.6, HW = 13;
+  /* the rock: out over 45 % of the loop, a pause, back by its end; ROCK is the swing in radians */
+  const T = 4, ROCK = 6 * RAD, cy = F.cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  const rock = () => { const k = cy.now() / T; return k < 0.45 ? F.ease.smooth(k / 0.45) : k < 0.6 ? 1 : 1 - F.ease.smooth((k - 0.6) / 0.4); };
   const yOf = (s) => YB - s * S;
   /* the part of the line through (x, y) along (ux, uy) that stays inside the box */
   function clipLine(x, y, ux, uy, l, t, r, b) {
@@ -194,6 +197,10 @@ function fulcrum(ctx, x, y, h, color) {
       : tv === 0 ? 'The nail lies on the line along which the force acts, so the lever arm is nothing and the stick does not turn.'
       : 'About the nail ' + fmt(p, 2) + ' m from the blade a push of $\\kF = ' + fmt(Fv, 0) + '\\ \\text{N}$ turns the stick ' + (tau > 0 ? 'counterclockwise' : 'clockwise') + ' with $\\ktau = ' + fmt(Math.abs(tau), 1) + '\\ \\text{N}\\cdot\\text{m}$.');
     const top = rows === 2 ? 100 : 72;
+    /* everything fixed to the stick turns with it about the nail; counterclockwise is a negative canvas angle */
+    const sw = tv === 0 ? 0 : rock();
+    ctx.save(); ctx.beginPath(); ctx.rect(0, top, 1400, H - top); ctx.clip();
+    ctx.translate(X, qy); ctx.rotate(-Math.sign(tau) * ROCK * sw); ctx.translate(-X, -qy);
     const lab = labeller(ctx, H, { headline: rows });
     /* the stick lying on the ice: the shaft up from the heel, the blade out to the left */
     ctx.save(); ctx.lineJoin = 'round'; ctx.lineWidth = 3; ctx.strokeStyle = cs; ctx.fillStyle = alpha(cs, 0.2);
@@ -242,19 +249,21 @@ function fulcrum(ctx, x, y, h, color) {
     dot(ctx, X, hy, PAL.ink, true, 6);
     dot(ctx, X, qy, cn, true, 10);
     lab.add(at ? 'the nail, at ' + at : 'the nail', X + side * HW, qy, side, r < 0.3 ? 0.6 * up : -0.5, cn, 19, 16);
-    /* the way the stick turns about the nail, on the side away from the hand */
-    if (tv !== 0) {
-      const dir = r < 0.5 ? up : -1, mid = side > 0 ? Math.PI - 0.45 * dir : 0.45 * dir;
-      turnArc(ctx, X, qy, 66, tau > 0, tc, mid);
-      lab.add('τ', X + 66 * Math.cos(mid), qy + 66 * Math.sin(mid), Math.cos(mid), Math.sin(mid), tc, 24, 14);
-    }
+    /* the way the stick turns about the nail, on the side away from the hand: faint, and only while the stick is at rest */
+    const dir = r < 0.5 ? up : -1, mid = side > 0 ? Math.PI - 0.45 * dir : 0.45 * dir, tx = X + 92 * Math.cos(mid), ty = qy + 92 * Math.sin(mid);
+    if (tv !== 0) lab.place({ l: tx - 16, t: ty - 18, r: tx + 16, b: ty + 18 });
     lab.flush();
+    ctx.restore();
+    if (tv !== 0) F.faded(ctx, 1 - sw, [0, 0], () => {
+      F.faded(ctx, 0.4, [0, 0], () => turnArc(ctx, X, qy, 66, tau > 0, tc, mid));
+      text(ctx, 'τ', tx, ty, tc, { size: 24, weight: 600, align: 'center' });
+    });
     /* r⊥ and F are both positive, so a clockwise turn takes its minus sign in the equation itself */
     const neg = tv < 0, mi = neg ? '\\mk{s}{-}' : '', mj = neg ? '\\mk{s2}{-}' : '';
     F.morph(formula, `\\mk{t}{\\ktau} = ${mi}\\mk{r}{\\krperp}\\mk{f}{\\kF} = ${mj}(\\mk{rn}{${fmt(rp, 2)}}\\ \\text{m})(\\mk{fn}{${fmt(Fv, 0)}}\\ \\text{N}) = \\mk{tn}{${num(tau, 1)}}\\ \\text{N}\\cdot\\text{m}`);
     say(note, tv === 0 ? '' : 'Counterclockwise counts as positive, so a clockwise turn carries a minus sign in front of $\\krperp\\kF$.');
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================
