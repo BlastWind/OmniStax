@@ -107,3 +107,5 @@ the $\pi^{+}$ missing.
 - variables rows in 33.2 for the symbols the figure's slider, labels and readout write, none of which has a 33.2 row: `d` (`\kd`, position, the separation the carrier crosses), `Δt` (`\kdt`, time, the carrier's flight), `ΔE` (`\kdE`, energy, the energy borrowed for the carrier), `c` (`\kc`, velocity), `E_0rest` (`\kErest`, energy, the π⁺'s rest energy), `h_planck` (untyped)
 - `ch33/COLOR.md` 33.2 row: the page binds `time`, `position`, `energy` and `velocity` (the readout writes $\kdE$, $\kErest$ and $\kc$), not only time and position
 - No anchors (the section has no forms); no concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): Variables `d` (with `redefines`, the separation the carrier crosses), `Δt`, `ΔE`, `c`, `E_0rest` and `h_planck` added, anchored at `33.2-carrier-exchange`; `ch33/COLOR.md` gives 33.2 time, position, energy and velocity.

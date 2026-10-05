@@ -54,8 +54,8 @@ and whose outlines and labels wear the referent hue; the four forces of Figure 3
 (`strong-force`, `em-force`, `weak-force`, `gravity`), one curve each. Conventions:
 `F.el('e-')`, `F.el('nu')` (33.21), `F.el('p+')`, `F.el('n0')` (33.23). The $Z^{0}$ and the
 quark flavors u and d of 33.23 are `F.cat`. Facts: the color charges as six named
-constants, red `#e23b4e`, green `#22a35a`, blue `#2f7de1`, and the anticolors cyan
-`#1fbcd2` (antired), magenta `#d040b8` (antigreen), yellow `#f0c419` (antiblue), with
+constants, red `#e62828`, green `#28be3c`, blue `#2850e6`, and the anticolors cyan
+`#50ffff` (antired), magenta `#ff78ff` (antigreen), yellow `#ffe664` (antiblue), with
 white `#ffffff` for the two colorless gluons, used for nothing else.
 
 ## Figures
@@ -126,3 +126,5 @@ weak and certainly of the electromagnetic force" (the strong force is meant); Fi
 - variables rows in 33.6 for the symbols `sim-force-strengths` writes, none of which has a 33.6 row: `ΔE` (`\kdE`, energy, the energy put into a system to probe a distance, in GeV), `d` (`\kd`, position, the distance that energy probes), `c` (`\kc`, velocity), `h_planck` (untyped)
 - glossary: "superstring theory" names no concept; a definition `superstring-theory` (33.6, span `forces-converge`, prerequisite `grand-unified-theories`) carrying the term, or the term added to `grand-unified-theories`
 - `ch33/COLOR.md` 33.6 row: the page binds `velocity` too ($\kc$ in the readout), beside energy, position and time
+
+Applied by the chapter pass (2026-10-05): `eq-proton-decay` anchored at `33.6-proton-decay`; `ΔE` and `d` (both with `redefines`), `c` and `h_planck` added at `33.6-forces-converge`. Superstring theory: Chapter 34's build added `superstring-theory` (34.3, carrying the term and an edge to `grand-unified-theories`) while this pass was staging the same concept, so 33.6 reuses it: the bold term is marked `data-concept="superstring-theory"` and the coverage row at `forces-converge` says `uses`. The gluon figure's six color constants are now 33.5's, so a color wears one hue across the chapter. `ch33/COLOR.md` binds velocity for 33.6.

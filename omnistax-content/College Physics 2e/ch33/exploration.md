@@ -111,6 +111,7 @@ Each moved item carries `source_section` and a note in both sections.
 - 33.4: Example 33.3(b) says "Charge is conserved as $s \to d$".
 - 33.5: conceptual `fs-id1169737905434` prints "composition $W^{-}$ or $t\bar{t}$" (a $c\bar{c}$ is meant); `fs-id1169737780424`'s key prints "$Z==0+(-1)$"; glossary defines color as "a quark flavor"; `fs-id1169737780424` repeats the left-out `fs-id1169737821465` and `fs-id1169738209045` continues the left-out `fs-id1169738092971`, so each keeps a note restating what it needs.
 - 33.6: "transform the, and $Z^{0}$" (the $W^{+}$, $W^{-}$ dropped); "the carriers of the weak and certainly of the electromagnetic force" (the strong is meant); Figure 33.25's caption describes a Tevatron Higgs search while the image is a proton-decay detector.
+- Found in the build: the key of 33.4's Problem `fs-id1169738123938`(c) writes the negative tau's decay as $\tau^{-} \to \mu^{-} + \nu_{\mu} + \bar{\nu}_{\tau}$, the neutrinos the other way round from the text's $\tau^{-} \to \mu^{-} + \bar{\nu}_{\mu} + \nu_{\tau}$; 33.5's text reads "as seen in Table 33.2)." and "Unification of Forces..". Each is kept as printed and named in its section's `notes`.
 
 ## 3D, locked views (root rule 28)
 

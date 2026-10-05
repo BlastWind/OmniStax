@@ -13,16 +13,19 @@ declares no type and uses the book's.
 | $c$, a beam particle's speed | `velocity` | Coloured where a readout converts time to range |
 | Gap voltage $V_{\text{gap}}$, a Van de Graaff potential | `voltage` | 33.3 only |
 | The cyclotron's and synchrotron's magnetic field | `magnetic-field` | 33.3 only, where the figure draws the field |
+| The field across an accelerating gap | `electric-field` | 33.3 only, the arrows the book draws in the gaps |
 | Particle charge $q$, $q_{e}$, quark charge in units of $q_{e}$ | `charge` | Symbol and the readout that adds quark charges (33.5) |
 | The quantum numbers $B$, $L_{e}$, $L_{\mu}$, $L_{\tau}$, $S$, spin, relative force strength, a count, $h$ | untyped | Ink |
 
 Every page colours each category wherever it names a particular one: the
 energy borrowed for this pion, its mass, the time it lives, the range it
-reaches, the voltage across one gap. The intro names none and is ink. The
-figures draw energy, mass, time, position and velocity in 33.1, time and
-position in 33.2, energy, voltage, the magnetic field and velocity in 33.3,
-energy, mass and time in 33.4, charge and position in 33.5, and energy,
-position and time in 33.6.
+reaches, the voltage across one gap. The intro names none and is ink. As
+built, the figures and readouts bind energy, time, position, velocity and mass
+in 33.1; time, position, energy and velocity in 33.2; energy, voltage, the
+magnetic field, the electric field across the gaps, velocity, time, charge,
+position (the ring's radius) and mass in 33.3; energy in the annihilation and
+charge and time in the decay checker of 33.4; charge, position, energy and
+velocity in 33.5; and time, position, energy and velocity in 33.6.
 
 Canvas colours come in item 7's four ways, the earlier winning.
 
@@ -47,9 +50,11 @@ listed in its `referents` table, drawn with `F.ref` and marked
 two positive charges of 33.4 and the exchanged $\pi^{+}$ of 33.6 in 33.2
 (where the text calls the charges protons they are drawn `F.el('p+')` and are
 not referents); the cyclotron's dees, the synchrotron's accelerating tubes of
-Example 33.2 and the Fermilab rings the text names in 33.3; the
+Example 33.2 and the Fermilab rings and SLAC the text names in 33.3; the
 $\Xi^{-}$, $\Lambda^{0}$ and $\pi^{-}$ of Example 33.3(a) and the $K^{+}$,
-$\mu^{+}$ of (b) in 33.4, where a figure draws the decays; the $\pi^{+}$ and
+$\mu^{+}$ of (b) in 33.4, where the decay checker draws them (its muon and
+tau, which the text never names one by one, take `F.cat(3)` and `F.cat(5)`,
+since the first two sat too near the electron's blue); the $\pi^{+}$ and
 $\pi^{-}$ of 33.15 and the three families of 33.20 in 33.5; the two quarks
 whose colors the gluon changes in 33.22(b) (their color-charge hues winning as
 the convention, their outlines and labels in the referent hue) and the four
@@ -58,7 +63,10 @@ energy axis in `energy`. A quantity drawn on a referent keeps its category's
 hue. A symbol whose subscript names a referent splits it through its variables
 row's `ref`. `F.cat(i)` is left for instances the text never names one by one
 (the eight gluons of 33.22(a), the hadrons of a collision, quarks drawn without
-color charge), offset past the figure's referent count.
+color charge), offset past the figure's referent count. The quark color charges
+of 33.5 and 33.22(b) are the same six constants, red `#e62828`, green
+`#28be3c`, blue `#2850e6` and their anticolors `#50ffff`, `#ff78ff`,
+`#ffe664`, with white `#ffffff`, listed in each figure's `facts`.
 
 With every switch off each figure stays legible from its labels, its marker
 shapes and its caption.

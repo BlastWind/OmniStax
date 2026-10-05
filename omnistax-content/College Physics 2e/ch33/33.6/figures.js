@@ -15,8 +15,8 @@ const TAU = 2 * Math.PI;
 
 /* the color charges: red, green and blue, and the anticolors cyan (antired),
    magenta (antigreen) and yellow (antiblue), which with white are the facts */
-const COLOR = { R: '#e23b4e', G: '#22a35a', B: '#2f7de1' };
-const ANTI = { R: '#1fbcd2', G: '#d040b8', B: '#f0c419' };
+const COLOR = { R: '#e62828', G: '#28be3c', B: '#2850e6' };
+const ANTI = { R: '#50ffff', G: '#ff78ff', B: '#ffe664' };
 const WHITE = '#ffffff';
 const NAME = { R: 'red', G: 'green', B: 'blue' };
 const BAR = (c) => c + '̄';

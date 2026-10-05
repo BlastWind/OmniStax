@@ -158,3 +158,5 @@ named in `notes`: conceptual `fs-id1169737905434`'s "composition $W^{-}$ or $t\b
 - `ch33/COLOR.md` 33.5 row: the page binds `charge`, `position`, `energy` and `velocity` (the scattering readout writes $\kE$ and $\kc$), not only charge and position
 - glossary: the book's term "quarks" names `quark` (8.3); its `terms` already carry "quark", so nothing is wanted
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): Both form anchors set at `33.5-how-does-it-work`; existing rows anchored (`q_e` at `33.5-conception-of-quarks`, `B_bary` and `S_str` at `33.5-how-does-it-work`); `q` added at `33.5-fundamental-particles` and `λ`, `E`, `c`, `h_planck` at `33.5-direct-evidence`. `ch33/COLOR.md` gives 33.5 charge, position, energy and velocity, and names the six quark color constants, which 33.6's gluon figure now shares.

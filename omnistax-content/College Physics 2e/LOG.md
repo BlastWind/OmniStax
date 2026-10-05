@@ -4600,3 +4600,60 @@ Checks: `check:content` found no errors or warnings in the chapter.
 A headless pass over all eight pages in light and dark on the shared server
 found no console error, blank figure, KaTeX error or missing image; every eyebrow
 reads as its row says, and the ten moving figures alone carry a transport.
+
+
+### Pass 58 (2026-10-05): Chapter 33, Particle Physics, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+six sections, 33.1 to 33.6, by one agent each. It carries 64 concepts, 16
+forms, 44 variables, 39 glossary terms and 77 exercises (27 keyed problems,
+32 conceptual questions and 18 AP items, 9 of them keyed). No new type is
+declared. Every electron, proton, neutron, positron, neutrino and photon is
+drawn through `F.el`; the quark color charges are the one fact painted, six
+named constants shared by 33.5 and 33.6 that add to white on screen.
+
+The 25 numbered figures are 8 kept photographs and book images (33.1, 33.2,
+the Van de Graaff of 33.7, Dirac, Gell-Mann, the $\Omega^{-}$ trace, the ALICE
+collision and the detector of 33.25), two faithful copies (the three families
+of 33.20 and the $Z^{0}$ exchange of 33.21) and figures for the rest, three of
+them folds: the photon or pion exchange beside its Feynman diagram
+(Figure 33.4 + 33.5 + 33.6), Fermilab's ring or SLAC's line meeting head-on
+(33.10 + 33.11), and the hadron builder whose colors add to white
+(33.15 + 33.19). One Sim is added, 33.4's decay checker, which sums charge,
+$B$, $L_{e}$, $L_{\mu}$, $L_{\tau}$ and $S$ for eight decays and marks each
+lifetime on a log ruler. The pion's flight, the carrier exchange, the
+cyclotron, the synchrotron, the colliders, the annihilation and the electron
+scattering move on a clock; the pion exchange told quark by quark is a story
+slider; the rest are still. Nothing is drawn in 3D.
+
+The chapter pass anchored all 16 forms and all 19 variables the sections
+wrote, and added 25 rows the text and readouts wrote without one, among them
+the $\kd$, $\kdt$, $\kdE$ and $\kErest$ of 33.2's exchange, the cyclotron's
+$\kKE$ and the synchrotron's $\kBmag$, $\krad$, $\kv$ and $\gamma$, and the
+$\kErest$ and $\kEgam$ of the annihilation. Three forms now write $\km$ for
+the mass. The meson no longer rests on the hadron, which 33.4 introduces: its
+statement is the 33.1 glossary's, and 33.4's mesons and baryons rest on it.
+Superstring theory, which 33.6 names first, is the concept Chapter 34's build
+added while this pass was staging the same one; 33.6 marks the term and uses
+it. The quark colors of 33.6's gluon figure now match 33.5's.
+
+Across the sections no exercise is kept twice. The AP item on the $K^{-}$
+that makes an $\Omega$ and, moved by this pass, the one on a $Z$ boson's decay
+into kaons or electron-positron pairs go from 33.3 to 33.4, beside Table 33.2;
+the conceptual questions on electroweak unification and on gluon confinement
+go from 33.5 to 33.6; each carries its `source_section` and both notes agree.
+Figures 33.1 to 33.25, Tables 33.1 to 33.4 and Examples 33.1 to 33.4 run in
+book order.
+
+The book's slips are kept as printed and gathered in `ch33/exploration.md`:
+33.2's objective missing its $\pi^{+}$; a 33.3 AP key "(c), though this comes
+from Einstein's special relativity"; Example 33.3(b)'s "as $s \to d$" and a
+tau key with its neutrinos reversed in 33.4; in 33.5 color defined as "a quark
+flavor", mesons "$W^{-}$ or $t\bar{t}$" and a key's "$Z==0+(-1)$"; and in 33.6
+"transform the, and $Z^{0}$", "the carriers of the weak" for the strong, and
+Figure 33.25's caption of a Higgs search under a proton-decay detector.
+
+Checks: `check:content` found no errors. A headless pass over all seven pages
+in light and dark found no page error, blank figure, KaTeX error or missing
+image; the one console error is the dev server's missing
+`offline-catalog.json`.

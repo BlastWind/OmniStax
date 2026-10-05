@@ -92,3 +92,5 @@ its card its own id; the example's anchor here is unchanged.
 - forms `eq-virtual-particle-energy` and `eq-pion-mass` write plain `m` in `ktex`/`latex`; the page writes `\km` (mass is typed since 2026-10-04), so their `ktex` could take `\km`.
 - edge `meson` → `hadron` points forward (meson is introduced in 33.1, hadron in 33.4), and the meson statement's "made of a quark and an antiquark" is 33.5's; the chapter pass may move the edge or the statement.
 - `ch33/COLOR.md` 33.1 row: the page binds `energy`, `time`, `position`, `velocity` and `mass`.
+
+Applied by the chapter pass (2026-10-05): All seven form anchors and the six variable anchors as asked; `eq-virtual-particle-energy` and `eq-pion-mass` now write `\km` in their `ktex`, and so does 33.3's `eq-mass-from-energy-33`. The edge `meson` → `hadron` is gone and `meson` rests on `mass`; its statement is now the 33.1 glossary's, a particle whose mass is intermediate between the electron and nucleon masses, the name now covering a class, and 33.4's `mesons-and-baryons` rests on `meson`, so the quark-antiquark make-up stays with 33.5's `quark-composition-of-hadrons`. `ch33/COLOR.md` binds mass in 33.1.

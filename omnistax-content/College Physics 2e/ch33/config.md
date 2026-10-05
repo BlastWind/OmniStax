@@ -38,3 +38,16 @@ setting and its value.
 | Errata | carried as printed and named in `notes`, as `exploration.md` lists |
 | Credit | `ai` is `{"text": "Claude Opus 5.5", "figures": "Claude Opus 5.5"}`, `built` 2026-09-28 |
 | Book manifest | `ch33` in `book.json` chapters, merged with `ost merge college-physics-2e 33` |
+
+## What the build changed
+
+| Setting | As built (2026-10-05) |
+|---|---|
+| Folds | 33.4 + 33.5 + 33.6 in 33.2 (the pion's diagram joined the proposed pair as a choice); 33.10 + 33.11 in 33.3 (Fermilab or SLAC as a choice); 33.15 + 33.19 in 33.5; 33.9 (a)(b)(c) one synchrotron scene; 33.22 (a) and (b) one figure |
+| Motion | moving: 33.3, the 33.4 fold, 33.8, 33.9, the 33.10 fold, 33.13, 33.17; a story slider: 33.23; still: the decay checker, the 33.15 fold, 33.20, 33.21, 33.22, 33.24 |
+| Sims | one, the decay checker of 33.4 |
+| Photographs | 33.7, the artist's drawing, kept as a photograph |
+| Formulas | all 16 forms anchored by the chapter pass; `eq-virtual-particle-energy`, `eq-pion-mass` and `eq-mass-from-energy-33` write `\km` |
+| Exercise placement | AP `fs-id2432948` (a Z boson's decay into K⁰ or electron-positron pairs) also moves 33.3 → 33.4, since it needs Table 33.2 as `fs-id2783273` does; 33.3 keeps 2 keyed and 2 open AP items, 33.4 2 and 2 |
+| Credit | `ai` is `{"text": [{"model": "claude-opus-5-5", "effort": "high"}], "figures": [{"model": "claude-opus-5-5", "effort": "high"}]}`, `built` 2026-10-05; the intro keeps its prep-pass credit |
+| Colour | the quark color charges are one set of six constants in 33.5 and 33.6 (`ch33/COLOR.md`) |
