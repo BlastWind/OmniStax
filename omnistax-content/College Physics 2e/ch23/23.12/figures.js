@@ -251,7 +251,7 @@ function flow(ctx, x, y, dx, dy, L) {
       ctx.save(); ctx.beginPath(); ctx.moveTo(OX, OY); ctx.lineTo(fx, fy); ctx.lineTo(fx, ty); ctx.closePath(); ctx.fillStyle = alpha(cR, 0.5 * 0.4); ctx.fill(); ctx.restore();
     }
     arrow(ctx, OX, OY, fx, fy, cR, 6);
-    text(ctx, 'R = ' + fmt(R, 1) + ' Ω', OX + 4, OY + 56, cR, { size: 22, weight: 600, align: 'left' });
+    text(ctx, 'R = ' + fmt(R, 1) + ' Ω', OX + 4, Xd < 0 ? OY - 26 : OY + 34, cR, { size: 22, weight: 600, align: 'left' });
     if (Math.abs(Xd) * SC > 3) {
       arrow(ctx, fx, fy, fx, ty, cR, 6);
       if (!locked) text(ctx, (X > 0 ? 'X_L − X_C = ' : 'X_C − X_L = ') + fmt(Math.abs(X), Math.abs(X) > 99 ? 0 : Math.abs(X) > 9 ? 1 : 2) + ' Ω', fx + 18, (fy + ty) / 2, cR, { size: 22, weight: 600, align: 'left' });
@@ -259,7 +259,7 @@ function flow(ctx, x, y, dx, dy, L) {
     if (locked) text(ctx, 'X_L = X_C', fx + 18, fy - 30, cR, { size: 22, weight: 600, align: 'left' });
     line(ctx, OX, OY, fx, ty, cR, 7);
     text(ctx, 'Z = ' + fmt(Zs, Zs > 99 ? 0 : Zs > 9 ? 1 : 2) + ' Ω', OX - 22, locked ? OY - 30 : (OY + ty) / 2, cR, { size: 24, weight: 600, align: 'right' });
-    if (Math.abs(Math.atan2(Xd, R)) > 0.03 && !locked) angleArc(ctx, { x: OX, y: OY }, 78, 0, -phi, 'φ = ' + fmt(Math.abs(phi) * DEG, 1) + '°', undefined, C('angle'));
+    if (Math.abs(Math.atan2(Xd, R)) > 0.03 && !locked) angleArc(ctx, { x: OX, y: OY }, 78, 0, Math.atan2(Xd, R), 'φ = ' + fmt(Math.abs(phi) * DEG, 1) + '°', undefined, C('angle'));
     dot(ctx, OX, OY, PAL.ink, true, 7);
     hits.push({ x: (OX + fx) / 2, y: OY, r: 40, name: 'the resistance, ' + fmt(R, 1) + ' Ω, which is the foot of the triangle' });
     hits.push({ x: fx, y: (fy + ty) / 2, r: 46, name: 'the difference of the two reactances, ' + fmt(Math.abs(X), 1) + ' Ω' });
@@ -373,9 +373,6 @@ function flow(ctx, x, y, dx, dy, L) {
     pinned(ctx, BOX, X, Y, f, Irms, cLo, fmt(Irms, 2) + ' A');
     pinned(ctx, BOX, X, Y2, f, Pave, cP, fmt(Pave, 0) + ' W');
     line(ctx, X(f), BOX.t, X(f), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    note(ctx, BOX, 'four times the resistance gives a lower and broader peak at the same frequency, which is the book’s second circuit', [
-      { l: BOX.l, r: BOX.r, t: Y(IMAX), b: Y(0) },
-    ]);
 
     topline(ctx, 'A ' + fmt(R, 1) + ' Ω circuit with ' + fmt(lS.v, 2) + ' mH and ' + fmt(cS.v, 2) + ' µF resonates at ' + fmt(f0 / 1000, 2) + ' kHz, where the impedance falls to the resistance alone and the current reaches ' + fmt(VRMS / R, 2) + ' A on a 120 V rms source.');
     readout(d.readout,
@@ -495,8 +492,9 @@ function flow(ctx, x, y, dx, dy, L) {
       spring(ctx, top[0], top[1], mount[0], mount[1], 7, 22, F.ref('spring'), 4);
       line(ctx, top[0], top[1], mount[0], mount[1], F.ref('shock-absorber'), 5);
       /* the wing the spring hangs from, one line across the top of the arch */
-      const wa = V.P([-190, 330, WW / 2 + 2]), wb = V.P([190, 330, WW / 2 + 2]);
-      line(ctx, wa[0], wa[1], wb[0], wb[1], PAL.ink, 5);
+      const wing = [[-190, 330], [190, 330], [190, 372], [-190, 372]].map(([x, y]) => V.P([x, y, WW / 2 + 2]));
+      face(ctx, wing, 0.12, 3);
+      hits.push({ x: (wing[0][0] + wing[1][0]) / 2, y: (wing[0][1] + wing[2][1]) / 2, r: 40, name: 'the body of the car, which the spring holds up' });
       text(ctx, 'the shock absorber, which is the resistance', mount[0] + 26, mount[1] + 18, F.ref('shock-absorber'), { size: 20, weight: 600, align: 'left', bg: PAL.panel });
       text(ctx, 'the bumps in the road, which are the source', 340, 596, PAL.muted, { size: 19, align: 'center' });
       const hp = V.P([0, hubY, WW / 2]);

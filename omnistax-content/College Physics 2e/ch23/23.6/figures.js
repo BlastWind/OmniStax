@@ -61,11 +61,11 @@ function flow(ctx, x, y, dx, dy, L) {
   arrow(ctx, x - dx * L / 2, y - dy * L / 2, x + dx * L / 2, y + dy * L / 2, C('current'), 5);
 }
 /* The dashed panel that picks one device out of the circuit round it. */
-function panel(ctx, l, t, r, b, name, id) {
+function panel(ctx, l, t, r, b, name, id, nx) {
   const c = F.ref(id);
   ctx.save(); ctx.strokeStyle = alpha(c, 0.6); ctx.lineWidth = 2.5; ctx.setLineDash([9, 8]);
   ctx.beginPath(); ctx.roundRect(l, t, r - l, b - t, 16); ctx.stroke(); ctx.restore();
-  if (name) text(ctx, name, (l + r) / 2, t + 26, c, { size: 20, align: 'center', bg: PAL.panel });
+  if (name) text(ctx, name, nx ?? (l + r) / 2, t + 26, c, { size: 20, align: 'center', bg: PAL.panel });
 }
 /* The turning shaft of a motor: a rim with a shaft through it and an arc round it
    whose sweep and arrowhead grow with the angular velocity. */
@@ -163,14 +163,6 @@ function rotor(ctx, x, y, r, frac, id) {
     pinned(ctx, BOX, X, Y, w, I, cI, fmt(I, 1) + ' A');
     pinned(ctx, BOX, X, (p) => Y2(p), w, P, cP, fmt(P / 1000, 2) + ' kW');
     line(ctx, X(w), BOX.t, X(w), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    /* the sentence goes wherever the two curves leave the frame clear: both of them
-       fall from left to right, so the band they occupy is everything below the higher
-       of their two left-hand ends */
-    if (w >= 1) {
-      note(ctx, BOX, 'held at rest the same motor would draw ' + fmt(I0, 0) + ' A and dissipate ' + fmt(P0 / 1000, 2) + ' kW', [
-        { l: BOX.l, r: BOX.r, t: Math.min(Y(Math.min(IMAX, curr(0))), Y2(Math.min(PMAX, curr(0) * curr(0) * R))), b: BOX.b },
-      ]);
-    }
 
     topline(ctx, w < 1
       ? 'The shaft is not turning, so the motor generates nothing against the ' + fmt(E, 1) + ' V driving it and the whole of that voltage stands across coils of ' + fmt(R, 3) + ' Ω.'
@@ -253,7 +245,7 @@ function rotor(ctx, x, y, r, frac, id) {
 
     /* the motor on its own branch, drawn as the resistance of its coils with the
        emf it generates in series against the supply */
-    panel(ctx, 900, 200, 1340, 482, 'the motor', 'vacuum-motor');
+    panel(ctx, 900, 200, 1340, 482, 'the motor', 'vacuum-motor', 1240);
     wires(ctx, [[1060, 190], [1060, 500]]);
     resistor(ctx, 1060, 392, false, null, RM, 'vacuum-motor');
     const aOn = on.a('on'), aOff = on.a('off');

@@ -77,44 +77,6 @@ function fluxBar(ctx, cx, cy, h, frac, capt, value) {
 }
 
 
-/* A hand gripping the end of a bar: the forearm comes in from the side `ux, uy`
-   points to, the palm wraps round the end of the bar, four fingers close over its
-   face and the thumb comes round beneath. (x, y) is the end of the bar it holds
-   and `t` the bar's half-thickness. Drawn here because the library's fist is a
-   grip on a rope and does not read as a hand on a block. */
-function gripHand(ctx, x, y, ux, uy, t) {
-  const px = -uy, py = ux;                                   /* across the arm */
-  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.fillStyle = PAL.panel; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  /* the forearm, tapering toward the wrist */
-  ctx.beginPath();
-  ctx.moveTo(x + ux * 30 + px * (t + 6), y + uy * 30 + py * (t + 6));
-  ctx.lineTo(x + ux * 150 + px * (t + 12), y + uy * 150 + py * (t + 12));
-  ctx.lineTo(x + ux * 150 - px * (t + 12), y + uy * 150 - py * (t + 12));
-  ctx.lineTo(x + ux * 30 - px * (t + 6), y + uy * 30 - py * (t + 6));
-  ctx.closePath(); ctx.fill(); ctx.stroke();
-  /* the palm, a rounded block over the end of the bar */
-  const pl = 58, pw = t + 14;
-  ctx.beginPath();
-  ctx.moveTo(x + ux * 34 + px * pw, y + uy * 34 + py * pw);
-  ctx.lineTo(x - ux * (pl - 34) + px * pw, y - uy * (pl - 34) + py * pw);
-  ctx.quadraticCurveTo(x - ux * (pl - 20) + px * pw, y - uy * (pl - 20) + py * pw, x - ux * (pl - 20) + px * (pw - 14), y - uy * (pl - 20) + py * (pw - 14));
-  ctx.lineTo(x - ux * (pl - 20) - px * (pw - 14), y - uy * (pl - 20) - py * (pw - 14));
-  ctx.quadraticCurveTo(x - ux * (pl - 20) - px * pw, y - uy * (pl - 20) - py * pw, x - ux * (pl - 34) - px * pw, y - uy * (pl - 34) - py * pw);
-  ctx.lineTo(x + ux * 34 - px * pw, y + uy * 34 - py * pw);
-  ctx.closePath(); ctx.fill(); ctx.stroke();
-  /* four fingers closing over the near face, the thumb round the far side */
-  for (let i = 0; i < 4; i++) {
-    const a = -pl + 26 + i * 12;
-    ctx.beginPath();
-    ctx.moveTo(x - ux * (pl - 20) + px * (pw - 14), y - uy * (pl - 20) + py * (pw - 14));
-    ctx.moveTo(x - ux * a + px * pw, y - uy * a + py * pw);
-    ctx.lineTo(x - ux * a + px * (pw - 26), y - uy * a + py * (pw - 26));
-    ctx.stroke();
-  }
-  ctx.beginPath(); ctx.ellipse(x + ux * 6 - px * (pw - 4), y + uy * 6 - py * (pw - 4), 20, 9, Math.atan2(uy, ux), 0, TAU); ctx.fill(); ctx.stroke();
-  ctx.restore();
-}
-
 /* =====================================================================
    FIGURE 23.3 · sim-faraday-ring · moving · 2D from a locked view
    Faraday's iron ring: a coil on its upper part driven by a battery through a
@@ -227,7 +189,7 @@ function gripHand(ctx, x, y, ux, uy, t) {
     topline(ctx, head);
     readout(d.readout,
       `\\kPhi = \\kBmag \\karea = (${fmt(k() * b, 3)}\\ \\text{T})(0.012\\ \\text{m}^2) = ${sciTex(phi, 2)}\\ \\text{T}\\cdot\\text{m}^2`,
-      `The lower coil encloses 0.012 m² of the ring, and the meter answers the change in this flux and nothing else: while the switch stays closed the field is as strong as it ever gets and the needle stands at zero. ${core.value === 'iron' ? 'The iron ring carries almost the whole of the upper coil’s field round to the lower coil.' : 'With the iron taken away, only about a twenty-fifth of the upper coil’s field reaches the lower coil, and the swing is that much smaller.'} ${N.v === 1 ? 'The lower coil has a single turn here; give it more and each of them carries the same flux, so the emf grows with the number of turns.' : `Each of the ${fmt(N.v, 0)} turns of the lower coil carries the same flux, so the emf grows with the number of turns.`}`);
+      `${core.value === 'iron' ? 'The iron carries almost all of the upper coil’s field round to the lower coil.' : 'Without the iron, only about a twenty-fifth of the upper coil’s field reaches the lower coil.'} ${N.v === 1 ? 'A single turn carries this flux; each turn added carries it again, and the emf grows with the number of turns.' : `Each of the ${fmt(N.v, 0)} turns carries this flux, so the emf grows with the number of turns.`}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -310,11 +272,11 @@ function gripHand(ctx, x, y, ux, uy, t) {
     /* the hand on whatever moves, and the way it is going */
     if (!still()) {
       const onCoil = mover.value === 'coil';
-      if (onCoil) gripHand(ctx, coilX, CY - APER - 10, 0, -1, 30); else gripHand(ctx, mx, CY, -1, 0, 30);
+      F.hand(ctx, onCoil ? coilX - 16 : mx + 34, onCoil ? CY - APER - 92 : CY - 104, { aim: [0, 1], view: 'back', curl: 0.8, thumb: 'along', s: 1 });
       const way = onCoil ? (st.dz < 0 ? -1 : 1) : (st.dz < 0 ? 1 : -1);
-      const ax = onCoil ? coilX + 150 : mx + ML / 2, ay = onCoil ? CY - APER - 96 : CY - 62;
+      const ax = onCoil ? coilX + 150 : mx + ML / 2, ay = onCoil ? CY - APER - 96 : CY + 62;
       arrow(ctx, ax - way * 46, ay, ax + way * 46, ay, C('velocity'), 5);
-      text(ctx, fmt(v.v, 2) + ' m/s', ax, ay - 26, C('velocity'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+      text(ctx, fmt(v.v, 2) + ' m/s', ax, onCoil ? ay - 26 : ay + 28, C('velocity'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     }
     meter(ctx, 1150, 462, 95, r, 'induced emf', 'coil-galvanometer');
     fluxBar(ctx, 950, 300, 100, phi / (0.20 * AC), 'Φ through the coil', sci(phi, 1) + ' T·m²');
@@ -331,7 +293,7 @@ function gripHand(ctx, x, y, ux, uy, t) {
     topline(ctx, head);
     readout(d.readout,
       `\\kPhi = \\kBmag \\karea = (${fmt(Bat(st.z), 4)}\\ \\text{T})(0.0050\\ \\text{m}^2) = ${sciTex(Math.abs(phi), 2)}\\ \\text{T}\\cdot\\text{m}^2\\ \\text{, with the coil}\\ ${fmt(st.z * 100, 1)}\\ \\text{cm from the pole}`,
-      `The coil catches ${caught} of the ${n} lines out of the pole, and that count is the flux: bring the magnet up and the lines crowd into it, take it away and they spread past it. The needle answers how fast the flux is changing and not how much of it there is, which is why it falls back to zero the moment the motion stops, and why it changes ends when the magnet is pulled out instead of pushed in, or turned round so that the other pole faces the coil. Moving the coil onto a magnet held still does exactly what moving the magnet does: it is the relative motion that counts.`);
+      `The coil catches ${caught} of the ${n} lines out of the pole, and that count is the flux. The needle answers how fast the count changes, not how large it is, and moving the coil does what moving the magnet does.`);
   }
   let hits = [];
   F.hover(d.stage, () => hits);
@@ -376,7 +338,7 @@ function gripHand(ctx, x, y, ux, uy, t) {
     [0, 28].forEach((dy, i) => {
       ctx.save(); ctx.strokeStyle = rb; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.ellipse(CX, RY + dy, 26, 9, 0, 0, TAU); ctx.stroke(); ctx.restore();
-      const s = i ? -1 : 1, x = CX + s * 66, xe = i ? 1118 : 1182;
+      const s = i ? -1 : 1, x = CX + s * 66, xe = i ? 1168 : 1232;
       line(ctx, CX + s * 26, RY + dy, x, RY + dy, rb, 5);
       line(ctx, x, RY + dy, x, 636, PAL.ink, 3); line(ctx, x, 636, xe, 636, PAL.ink, 3); line(ctx, xe, 636, xe, 508, PAL.ink, 3);
     });
@@ -405,8 +367,8 @@ function gripHand(ctx, x, y, ux, uy, t) {
     dot(ctx, CX, CY, PAL.ink, true, 7);
     line(ctx, CX, CY, CX, RY - 40, alpha(PAL.ink, 0.35), 2, [6, 8]);
     rings(ctx);
-    meter(ctx, 1150, 478, 95, r, 'induced emf', 'generator-galvanometer');
-    fluxBar(ctx, 940, 300, 104, phi / PHI_MAX, 'Φ through the coil', sci(phi, 1) + ' T·m²');
+    meter(ctx, 1200, 478, 95, r, 'induced emf', 'generator-galvanometer');
+    fluxBar(ctx, 990, 300, 104, phi / PHI_MAX, 'Φ through the coil', sci(phi, 1) + ' T·m²');
     text(ctx, 'seen from above', 210, 120, PAL.muted, { size: 17, align: 'center' });
     label(ctx, 'B between the poles', CX, CY - 172, { side: 'above', size: 20, color: C('magnetic-field'), leader: false });
     hits = [
@@ -417,7 +379,7 @@ function gripHand(ctx, x, y, ux, uy, t) {
     topline(ctx, `The perpendicular to the coil stands at ${fmt(deg, 0)}° to the field, so the flux through the coil is ${sci(phi, 1)} T·m² and ${Math.abs(s) < 0.06 ? 'at a turning point' : s > 0 ? 'falling' : 'growing'}.`);
     readout(d.readout,
       `\\kPhi = \\kBmag \\karea\\cos\\ktheta = (${fmt(B.v, 2)}\\ \\text{T})(${fmt(A.v, 2)}\\ \\text{m}^2)\\cos ${fmt(deg, 0)}^\\circ = ${sciTex(phi, 2)}\\ \\text{T}\\cdot\\text{m}^2`,
-      `Neither the field nor the area changes as the coil turns: the angle alone does the work, and the flux follows its cosine. The needle stands at zero twice a turn, at the two angles where the coil faces the field squarely and the flux is greatest, and swings furthest as the coil passes edge on, where the flux is zero and changing fastest. Turn the coil faster and every swing grows, which is what the section means when it says the emf depends on the rotation rate.`);
+      `Neither the field nor the area changes as the coil turns; the angle alone carries the flux round. The needle stands at zero where the flux is greatest and swings furthest where the coil passes edge on and the flux is zero.`);
   }
   let hits = [];
   F.hover(d.stage, () => hits);
@@ -455,7 +417,7 @@ function gripHand(ctx, x, y, ux, uy, t) {
   const { formula: eqHost, note } = F.readout(d);
 
   const U = 3.5;                                   /* scene units to the metre, so 0.40 m² fills the frame */
-  const REG = 1.15, ZEND = 2.2;                    /* the lines cover a square of side 2 REG and run from −ZEND to ZEND */
+  const REG = 1.15, ZEND = 1.75;                    /* the lines cover a square of side 2 REG and run from −ZEND to ZEND */
   const state = () => {
     const t = th.v * RAD, c = th.v >= 90 ? 0 : Math.cos(t), a = (Math.sqrt(A.v) * U) / 2;   /* a right angle catches exactly nothing */
     const B_T = B.v * 1e-3, phi = B_T * A.v * c;
@@ -506,9 +468,9 @@ function gripHand(ctx, x, y, ux, uy, t) {
       S.loop.add(m); V.pickable(m, 'the loop that bounds the area'); return m;
     });
     vec(S.loop, [0, 0, 0], [0, 0, 1.85], 0.032, mutedC, 'the perpendicular to the area, which the angle θ is measured from');
-    vec(g3, [0, 0, -2.0], [0, 0, 2.0], 0.05, BC, 'B, the magnetic field, the same everywhere in the space');
+    vec(g3, [0, 0, -1.6], [0, 0, 1.6], 0.05, BC, 'B, the magnetic field, the same everywhere in the space');
     S.lab = {
-      B: V.label('B', [0, 0, 2.05], g3, 12),
+      B: V.label('B', [0, 0, 1.66], g3, 12),
       th: V.label('θ', [0, 0, 0], g3, 0),
       n: V.label('the perpendicular', [0, 0, 1.85], S.loop, 12),
       A: V.label('A', [0, 0, 0], S.loop, 0),
@@ -594,8 +556,8 @@ function gripHand(ctx, x, y, ux, uy, t) {
       : th.v >= 90
         ? `\\mk{Phi}{\\kPhi} = \\mk{r}{0}`
         : `\\mk{Phi}{\\kPhi} = \\mk{B}{\\kBmag} \\mk{A}{\\karea}\\mk{cos}{\\cos\\ktheta} = (${Bv})(${Av})\\mk{cv}{\\cos ${fmt(th.v, 0)}^\\circ} = \\mk{r}{${sciTex(st.phi, 2)}}${u}`);
-    note.textContent =
-      `The same flux is Φ = B⊥A, the area times the part of the field that goes straight through it, and here B⊥ = B cos θ = ${sci(st.B_T * st.c, 2)} T. ${hasGL ? `The loop catches ${st.caught} of the field lines, where face on it would catch ${st.face} of them, and turning it to 90° leaves it catching none at all while the field is as strong as it ever was. A stronger field is more lines to the square metre.` : 'Turning the loop to 90° leaves it catching nothing at all, while the field is as strong as it ever was.'}`;
+    const said = `The same flux is $\\kPhi = \\kBmag_{\\perp}\\karea$, the area times the part of the field that goes straight through it: here $\\kBmag_{\\perp} = \\kBmag\\cos\\ktheta = ${sciTex(st.B_T * st.c, 2)}\\ \\text{T}$.`;
+    if (note.dataset.said !== said) { note.dataset.said = said; note.textContent = said; F.renderMath(note); }
   }
 
   if (hasGL) {

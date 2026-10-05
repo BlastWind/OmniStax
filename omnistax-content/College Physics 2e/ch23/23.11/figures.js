@@ -18,7 +18,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.11'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 const VRMS = 120, V0 = VRMS * Math.SQRT2;      /* the rms voltage both worked examples apply, and its peak */
 /* A number of amps or ohms that may run from a thousandth to a few thousand. */
 const sig3 = (v) => fmt(v, v >= 100 ? 0 : v >= 10 ? 1 : v >= 1 ? 2 : 3);
@@ -185,8 +185,10 @@ function resistorBox(ctx, x, y) {
        lie exactly on top of each other, still shows both, and so that the two are
        told apart with the colour turned off */
     ctx.save(); ctx.setLineDash([14, 10]); curve(ctx, iff, 0, 2, X, Y, cI, 5, 260); ctx.restore();
-    text(ctx, 'voltage, peak ' + fmt(V0, 0) + ' V', BOX.l + 16, BOX.t + 24, cV, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
-    text(ctx, 'current, dashed, peak ' + big(I0, 'A'), BOX.l + 16, BOX.t + 58, cI, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
+    /* the key sits under the axis, where no curve reaches */
+    const kv = 'voltage, peak ' + fmt(V0, 0) + ' V';
+    text(ctx, kv, BOX.l, BOX.b + 54, cV, { size: 21, weight: 600, align: 'left' });
+    text(ctx, 'current, dashed, peak ' + big(I0, 'A'), BOX.l + F.measure(ctx, kv, { size: 21, weight: 600 }) + 36, BOX.b + 54, cI, { size: 21, weight: 600, align: 'left' });
     line(ctx, X(now), BOX.t, X(now), BOX.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
     pinned(ctx, BOX, X, Y, now, vf(now), cV);
     pinned(ctx, BOX, X, Y, now, iff(now), cI);
@@ -291,7 +293,7 @@ function resistorBox(ctx, x, y) {
       + ', while the ' + fmt(cS.v, 2) + ' µF capacitor offers ' + big(xc, 'Ω') + ' and passes ' + big(ic, 'A') + '.');
     readout(d.readout,
       `\\kXL = 2\\pi \\kf\\kLind = 2\\pi(${texHz(f)})(${fmt(lS.v, 2)}\\ \\text{mH}) = ${ohmTex(xl)}`,
-      'At the same frequency the capacitor offers X_C = 1/2πfC = ' + big(xc, 'Ω') + '. Take the frequency up and the inductor’s ohms climb while the capacitor’s fall, which is why a large inductor in series with a computer keeps high-frequency noise out of it and a capacitor in series with a loudspeaker keeps the 60 Hz hum out of that.');
+      'At the same frequency the capacitor offers $\\kXC = 1/2\\pi\\kf\\kCap$ = ' + big(xc, 'Ω') + '.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

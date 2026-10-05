@@ -147,8 +147,10 @@ function apparatus(ctx, o) {
     const vHead = p(Math.min(xr + 0.26, 1.58), L / 2, yA);
     if (v > 0) arr(ctx, rodMid, vHead, cV, 5);
     /* (a) the polarity of the rod */
+    const signs = [];
     if (emf > 1e-6) {
       const eF = p(xr, -0.13, yA), eB = p(xr, L + 0.13, yA);
+      signs.push(eF, eB);
       text(ctx, '+', eF[0], eF[1] - 4, PAL.ink, { size: 30, weight: 700, align: 'center', bg: PAL.panel });
       text(ctx, '−', eB[0], eB[1] - 4, PAL.ink, { size: 30, weight: 700, align: 'center', bg: PAL.panel });
     }
@@ -197,7 +199,10 @@ function apparatus(ctx, o) {
     }
     const lAt1 = p(0.02, 0, 0), lAt2 = p(0.02, L, 0);
     vbracket(ctx, Math.min(lAt1[0], lAt2[0]) - 34, lAt1[1], lAt2[1], cX, 'ℓ = ' + fmt(L, 2) + ' m', -1, { side: 'left', H });
-    labs.forEach(([s, x, y, side, col, gap]) => label(ctx, s, x, y, { side, size: 21, color: col, gap: gap || 20, H }));
+    const lab = F.labeller(ctx, H, { headline: 2 }), DIR = { above: [0, -1], below: [0, 1], left: [-1, 0], right: [1, 0] };
+    signs.forEach((q) => lab.block(q[0] - 14, q[1] - 22, q[0] + 14, q[1] + 14));
+    labs.forEach(([s, x, y, side, col, gap]) => lab.add(s, x, y, DIR[side][0], DIR[side][1], col, 21, gap || 20));
+    lab.flush();
 
     /* the graph: the flux against time, whose slope is the emf */
     const box = { l: 230, r: 1230, t: 622, b: 828 };
@@ -273,7 +278,7 @@ function apparatus(ctx, o) {
     if (aRod > 0) {
       const a = p(st.xr, L / 2, yA), b = p(st.xr + 0.26, L / 2, yA);
       arr(ctx, a, b, alpha(cV, aRod), 5);
-      label(ctx, 'the rod, ' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: alpha(cV, aRod), H });
+      label(ctx, 'the rod, ' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'right', size: 21, color: alpha(cV, aRod), H });
     }
     if (aBack > 0) {
       const a = p(st.xa - 0.10, L + 0.12, yA), b = p(st.xa - 0.36, L + 0.12, yA);
@@ -283,7 +288,7 @@ function apparatus(ctx, o) {
     if (aWith > 0) {
       const a = p(st.xa - 0.10, L + 0.12, yA), b = p(st.xa + 0.16, L + 0.12, yA);
       arr(ctx, a, b, alpha(cV, aWith), 5);
-      label(ctx, 'the rails, ' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'above', size: 21, color: alpha(cV, aWith), H });
+      label(ctx, 'the rails, ' + fmt(v, 2) + ' m/s', b[0], b[1], { side: 'below', size: 21, color: alpha(cV, aWith), H });
     }
     /* the width of the loop, which is what the flux follows */
     ctx.restore();
@@ -307,7 +312,7 @@ function apparatus(ctx, o) {
       : 'The rod and the resistor are separating at ' + fmt(rel, 2) + ' m/s, so the circuit encloses ' + fmt(width, 2) + ' m of rail and the emf is ' + fmt(emf, 2) + ' V.');
     readout(d.readout,
       `\\kemf = \\kBmag\\ell\\kv = (${fmt(B, 2)}\\ \\text{T})(${fmt(L, 3)}\\ \\text{m})(${fmt(rel, 2)}\\ \\text{m/s}) = ${fmt(emf, 2)}\\ \\text{V}`,
-      w === 'rod' ? 'The rails and the field stand still while the rod is pushed along them, the arrangement of the rod on its rails above.'
+      w === 'rod' ? 'The rails and the field stand still while the rod is pushed along them.'
         : w === 'field' ? 'The rod stands still now and the rails and the field are carried the other way, and because the rod and the field are separating at the same ' + fmt(rel, 2) + ' m/s as before, the emf is the same.'
           : 'Everything is moving, but nothing is moving relative to anything else, so the area the circuit encloses never changes and the speed in the expression is zero.');
   }
@@ -382,7 +387,7 @@ function apparatus(ctx, o) {
       ctx.save(); ctx.strokeStyle = cI; ctx.lineWidth = 3; ctx.setLineDash([11, 9]); ctx.beginPath();
       ctx.moveTo(XS + 18, yTop + 14); ctx.lineTo(880, yTop + 14); ctx.lineTo(880, 544); ctx.lineTo(XS + 6, 544); ctx.lineTo(XS + 6, YS + 34); ctx.stroke(); ctx.restore();
       arrow(ctx, 700, 544, 620, 544, cI, 4);
-      label(ctx, 'I = 10.0 A', 880, (yTop + 14 + 544) / 2, { side: 'left', size: 21, color: cI, H });
+      label(ctx, 'I = 10.0 A', 880, 510, { side: 'right', size: 21, color: cI, H });
       /* the drag on the current, which is the work that pays for the electrical energy;
          it is held clear of the shuttle so that a short tether's labels do not pile up */
       const yF = Math.min(YS - 46, mid);
@@ -412,13 +417,14 @@ function apparatus(ctx, o) {
     hits.push({ x: XS, y: YS + 14, r: 52, name: 'the space shuttle, at the lower end of the tether' });
     hits.push({ x: XS, y: yTop - 15, r: 44, name: 'the Tethered Satellite, at the upper end' });
 
+    const still = vS.v < 0.001;
     topline(ctx, emf < 1e-9
-      ? 'The tether is moving along the Earth’s field rather than across it, so no emf appears between its ends however long it is.'
+      ? still ? 'The tether is not moving, so no emf appears between its ends however long it is.' : 'The tether is moving along the Earth’s field rather than across it, so no emf appears between its ends however long it is.'
       : 'A ' + fmt(lS.v, 2) + ' km tether moving at ' + fmt(vS.v, 2) + ' km/s across the Earth’s 5.00 × 10⁻⁵ T field develops ' + fmt(emf / 1000, 2) + ' kV between its ends.');
     readout(d.readout,
       `\\kemf = \\kBmag\\ell\\kv\\sin\\ktheta = (5.00 \\times 10^{-5}\\ \\text{T})(${fmt(l, 0)}\\ \\text{m})(${fmt(v, 0)}\\ \\text{m/s})\\sin ${fmt(th, 0)}^\\circ = ${fmt(emf, 0)}\\ \\text{V}`,
       emf < 1e-9
-        ? 'With the velocity along the field there is nothing to drive a current, and the shuttle gives up none of its orbital energy to the tether.'
+        ? still ? 'With nothing moving there is nothing to drive a current, and the tether takes no energy from the orbit.' : 'With the velocity along the field there is nothing to drive a current, and the shuttle gives up none of its orbital energy to the tether.'
         : 'With the ' + fmt(I0, 1) + ' A the experiment expected to draw, the magnetic force on the tether is ' + fmt(drag, 1) + ' N against the motion, and the power that force takes out of the shuttle’s orbit is ' + fmt(power / 1000, 1) + ' kW, which is the electrical power the tether delivers.');
   }
   register(d.fig, { update: () => {}, draw });

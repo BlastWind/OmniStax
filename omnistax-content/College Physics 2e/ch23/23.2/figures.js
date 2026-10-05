@@ -17,7 +17,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, label, vbracket, axes, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 const PI = Math.PI;
 /* a value that rounds to nothing at d decimals is nothing, so that no reading shows a signed zero */
@@ -141,7 +141,7 @@ function solenoid(ctx, cx, cy, n, pitch, b, color) {
     topline(ctx, `Raising the field through the loop by ${fmt(dB, 2)} T in ${fmt(dt, 2)} s changes the flux by ${fmt(dPhi * 1e3, 2)} mWb, and ${N === 1 ? 'a single turn' : N + ' turns'} of wire then ${N === 1 ? 'carries' : 'carry'} an emf of ${fmt(emf * 1e3, 1)} mV.`);
     readout(d.readout,
       `\\kemf = N\\frac{\\kdPhi}{\\kdt} = (${N})\\frac{(${sciTex(A, 2)}\\ \\text{m}^2)(${fmt(dB, 2)}\\ \\text{T})}{${fmt(dt, 2)}\\ \\text{s}} = ${fmt(emf * 1e3, 1)}\\ \\text{mV}`,
-      'The area of the loop is fixed, so the change in flux is the area times the change in B cos θ, and the emf is the rate the flux changes at, multiplied by the number of turns. Faraday’s three factors act here one at a time: double the change in the field and the emf doubles, halve the time the change takes and the emf doubles again, and every turn of the coil adds an emf of its own. The sliders begin at Example 23.1, a single loop of 6.00 cm radius through which B cos θ rises from 0.0500 T to 0.250 T in 0.100 s, which gives 22.6 mV.');
+      'The defaults are Example 23.1: a loop of radius 6.00 cm whose $\\kBmag\\cos\\ktheta$ rises from 0.0500 T to 0.250 T in 0.100 s.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -220,6 +220,7 @@ function solenoid(ctx, cx, cy, n, pitch, b, color) {
     const { ctx } = begin(d.c);
     const fc = C('magnetic-field'), pc = C('magnetic-flux'), vc = C('voltage'), ic = C('current'), tc = C('time');
     const t = cy.now(), s = sOf(t), phi = phiOf(t), rate = rateOf(t), emf = emfOf(t);
+    const r2 = Number(mnum(rate * 1e3, 2)), e2 = eps(-nS.v * r2, 2);   /* the emf shown is the rate shown times the turns, so the readout adds up */
     const N = nS.v, mx = MX - s * CMU;
     const PHIFULL = 0.3 * A;                        /* the flux a 0.300 T magnet puts through the coil at its closest */
     const share = Math.min(1, Math.abs(phi) / PHIFULL), lit = Math.round(SLOT.length * share);
@@ -250,7 +251,7 @@ function solenoid(ctx, cx, cy, n, pitch, b, color) {
     if (moving) {
       const y = CYA + 56;
       arrow(ctx, MX - bdir * 76, y, MX + bdir * 76, y, fc, 5);
-      label(ctx, 'B_coil', MX, y, { side: 'below', color: fc, gap: 16, size: 21, leader: false });
+      label(ctx, 'B_coil', Math.max(coil.r, MX + 76) + 4, y, { side: 'right', color: fc, gap: 10, size: 21, leader: false });
       const xf = coil.front(Math.floor(N / 2)), rx = PITCH / 2;
       for (const th of [-0.95, 0.95]) {
         const px = xf + rx * Math.cos(th), py = CYA + BORE * Math.sin(th);
@@ -258,7 +259,7 @@ function solenoid(ctx, cx, cy, n, pitch, b, color) {
         const k = (bdir > 0 ? 1 : -1) / L;          /* a field toward the right runs the current down the near wire */
         arrow(ctx, px - ux * k * 24, py - uy * k * 24, px + ux * k * 26, py + uy * k * 26, ic, 5);
       }
-      label(ctx, 'I', xf + 12, CYA - BORE * 0.86, { side: 'right', color: ic, gap: 14, size: 22, leader: false });
+      label(ctx, 'I', xf, CYA - BORE - 4, { side: 'above', color: ic, gap: 8, size: 22, leader: false });
     }
     text(ctx, N === 1 ? 'the coil, of one turn' : 'the coil, of ' + N + ' turns', MX, CYA + BORE + 40, F.ref('lenz-coil'), { size: 19, align: 'center' });
     text(ctx, s > 0.05 ? fmt(s, 1) + ' cm from the coil' : 'held still inside the coil', mx, CYA + BORE + 76, PAL.muted, { size: 19, align: 'center', bg: PAL.panel });
@@ -278,12 +279,12 @@ function solenoid(ctx, cx, cy, n, pitch, b, color) {
       ? (s < 0.05
         ? 'The magnet is held still inside the coil. The flux through the coil is as large as it gets, but it is not changing, so there is no emf and no current at all.'
         : 'The magnet is held still far from the coil. Almost no flux passes through the coil, and what does pass is not changing, so nothing is induced.')
-      : `The flux through the coil points ${phi > 0 ? 'to the right' : 'to the left'} and is ${growing ? 'growing' : 'dying away'} at ${fmt(Math.abs(rate) * 1e3, 2)} mWb per second, so the ${N === 1 ? 'single turn' : N + ' turns'} carry an emf of ${fmt(Math.abs(emf) * 1e3, 1)} mV and the coil raises a field of its own that points ${bdir > 0 ? 'to the right' : 'to the left'}, against the change.`);
+      : `The flux through the coil points ${phi > 0 ? 'to the right' : 'to the left'} and is ${growing ? 'growing' : 'dying away'} at ${fmt(Math.abs(rate) * 1e3, 2)} mWb per second, so the ${N === 1 ? 'single turn' : N + ' turns'} carry an emf of ${fmt(Math.abs(e2), 2)} mV and the coil raises a field of its own that points ${bdir > 0 ? 'to the right' : 'to the left'}, against the change.`);
     readout(d.readout,
-      `\\kemf = -N\\frac{\\kdPhi}{\\kdt} = -(${N})(${mnum(rate * 1e3, 2)}\\ \\text{mWb/s}) = ${mnum(emf * 1e3, 1)}\\ \\text{mV}`,
+      `\\kemf = -N\\frac{\\kdPhi}{\\kdt} = -(${N})(${mnum(rate * 1e3, 2)}\\ \\text{mWb/s}) = ${mnum(e2, 2)}\\ \\text{mV}`,
       !moving
-        ? 'A flux that does not change induces nothing, which is why the emf falls to zero while the magnet is held still. It is the rate at which the flux changes, and not the size of the flux itself, that Faraday’s law sets the emf by.'
-        : `The minus sign is Lenz’s law. The induced current runs ${bdir > 0 ? 'down' : 'up'} the near wire of the coil, and the field it raises points ${bdir > 0 ? 'to the right' : 'to the left'}, which ${growing ? 'stands against the flux that is growing' : 'keeps up the flux that is dying away'} and so opposes the change. Put the other pole toward the coil and the flux, the emf, the induced field and the current all reverse together.`);
+        ? 'Faraday’s law sets the emf by the rate the flux changes at, not by the size of the flux.'
+        : `The minus sign is Lenz’s law. The induced current runs ${bdir > 0 ? 'down' : 'up'} the near wire of the coil, and the field it raises points ${bdir > 0 ? 'to the right' : 'to the left'}, which ${growing ? 'stands against the flux that is growing' : 'keeps up the flux that is dying away'} and so opposes the change.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

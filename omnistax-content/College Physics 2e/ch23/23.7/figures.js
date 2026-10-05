@@ -179,14 +179,14 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     curve(ctx, lossOf, VLO, VHI, X, Y, cP, 5, 400);
     ctx.restore();
     line(ctx, X(V), box.t, X(V), box.b, alpha(cR, 0.35), 2, [4, 8]);
-    const mk = pinned(ctx, box, X, Y, V, loss, cP, fmt(loss, 1) + ' MW');
+    const mk = pinned(ctx, box, X, Y, V, loss, cP, loss > LMAX ? undefined : fmt(loss, 1) + ' MW');
+    if (loss > LMAX) text(ctx, fmt(loss, 1) + ' MW, above the top of the scale', mk.x + 18, mk.y + 26, cP, { size: 17, weight: 600, align: 'left', bg: PAL.panel });
     if (!mk.out) label(ctx, fmt(loss, 1) + ' MW', mk.x, mk.y, { side: 'right', size: 19, color: cP, gap: 18, H });
-    note(ctx, box, 'the loss falls as the square of the current, and so as the square of the voltage', [{ l: box.l, r: box.l + 460, t: box.t, b: box.b }]);
 
     topline(ctx, 'Sending ' + fmt(P, 0) + ' MW at ' + fmt(V, 0) + ' kV puts ' + fmt(I, 0) + ' A into the line, and ' + fmt(R, 2) + ' Ω of line then wastes ' + fmt(loss, 1) + ' MW, which is ' + fmt(frac, 2) + '% of the power sent.');
     readout(d.readout,
       `\\kIcur = \\dfrac{\\kP}{\\kV} = \\dfrac{${fmt(P, 0)}\\ \\text{MW}}{${fmt(V, 0)}\\ \\text{kV}} = ${fmt(I, 0)}\\ \\text{A}`,
-      'That current in ' + fmt(R, 2) + ' Ω of line dissipates ' + fmt(loss, 1) + ' MW, since the power a resistance takes is the square of the current times the resistance. Raise the voltage and the current falls in proportion, so the loss falls as its square.');
+      'That current in ' + fmt(R, 2) + ' Ω of line dissipates ' + fmt(loss, 1) + ' MW, since the power a resistance takes is the square of the current times the resistance.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -379,7 +379,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
   const vpS = ctl(d.controls, { label: '\\kVprim', cls: 'voltage', min: 0, max: 240, step: 5, value: 120, unit: 'V', dec: 0, aria: 'the size of the voltage put on the primary coil' });
   const rS = ctl(d.controls, { label: 'N_{\\text{s}}/N_{\\text{p}}', cls: '', min: 0.25, max: 2, step: 0.25, value: 2, unit: '', dec: 2, aria: 'the ratio of the turns on the secondary to the turns on the primary' });
   const kindC = select(d.controls, {
-    label: '\\text{the primary is given}',
+    label: '\\text{the primary gets}',
     options: [{ value: 'steady', label: 'steady' }, { value: 'switched', label: 'switched' }, { value: 'ac', label: 'alternating' }],
     value: 'switched', aria: 'what the primary coil is given',
   });
@@ -439,12 +439,6 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     curve(ctx, w.u, 0, TMAX, ax1.X, ax1.Y, cV, 5, 1400);
     curve(ctx, w.s, 0, TMAX, ax2.X, ax2.Y, cV, 5, 1400);
 
-    const said = kind === 'steady'
-      ? 'the flux has settled, so nothing at all reaches the secondary'
-      : kind === 'switched'
-        ? 'each spike dies away in a few milliseconds, as the current in the primary settles'
-        : 'the secondary follows the input, in the ratio of the turns';
-    note(ctx, bot, said, [{ l: bot.l, r: bot.r, t: bot.t + 60, b: bot.b - 60 }]);
 
     const peak = kind === 'steady' ? 0 : r * v0;
     topline(ctx, kind === 'steady'
@@ -457,7 +451,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
         ? `\\kVsec = -N_{\\text{s}}\\dfrac{\\kdPhi}{\\kdt} = \\dfrac{N_{\\text{s}}}{N_{\\text{p}}}\\kVprim = (${fmt(r, 2)})(${fmt(v0, 0)}\\ \\text{V}) = ${fmt(peak, 0)}\\ \\text{V}`
         : kind === 'steady'
           ? `\\kVsec = -N_{\\text{s}}\\dfrac{\\kdPhi}{\\kdt} = 0\\ \\text{V}`
-          : `\\kVsec = -N_{\\text{s}}\\dfrac{\\kdPhi}{\\kdt}`,
+          : `\\kVsec = -N_{\\text{s}}\\dfrac{\\kdPhi}{\\kdt} \\approx \\pm${fmt(peak, 0)}\\ \\text{V at each throw}`,
       kind === 'steady'
         ? 'The primary voltage never changes, so the flux never changes, and a flux that does not change induces nothing. This is why a transformer is of no use on direct current.'
         : kind === 'switched'

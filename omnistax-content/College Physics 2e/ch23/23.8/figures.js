@@ -222,7 +222,7 @@ function coil(ctx, x, y1, y2, n, side, color) {
         : 'The appliance draws ' + amps(I) + ' from the ' + fmt(VS, 0) + ' V supply, the ' + fmt(rate, 0) + ' A breaker carries it, and the neutral wire and the case are both held at zero volts.'
       : 'The appliance draws ' + amps(I) + ' from the ' + fmt(VS, 0) + ' V supply, and nothing in this circuit limits that current or keeps the case of the appliance out of it.');
     readout(d.readout,
-      `\\kIcur = \\dfrac{\\kVrms}{\\kRes} = \\dfrac{${fmt(VS, 0)}\\ \\text{V}}{${ohmsTex(R, 1)}} = ${ampsTex(I)}`,
+      `\\kIcur = \\dfrac{\\kVrms}{\\kRes} = \\dfrac{${fmt(VS, 0)}\\ \\text{V}}{${ohmsTex(R, 1)}} = ${ampsTex(I)}${three && open ? `\\ > ${fmt(rate, 0)}\\ \\text{A, so the breaker opens}` : ''}`,
       three
         ? open
           ? 'The breaker is in series on the live/hot wire, so opening it takes the current from the whole circuit, which is what protects the wiring from overheating.'
@@ -299,11 +299,11 @@ function coil(ctx, x, y1, y2, n, side, color) {
     /* the names */
     tag(ctx, 'the outlet', 582, 136, PAL.ink, { size: 20 });
     tag(ctx, 'the plug', 725, 530, F.ref('plug'), { size: 20 });
-    tag(ctx, 'the live/hot wire', 860, LIVE - 36, LIVE_C(), { size: 20 });
-    tag(ctx, 'the neutral wire', 860, NEUT + 38, NEUT_C(), { size: 20 });
-    F.faded(ctx, a3, [0, 0], () => tag(ctx, 'the earth/ground wire', 880, GND + 40, EARTH_C(), { size: 20 }));
-    F.faded(ctx, a2, [0, 0], () => tag(ctx, 'no earth/ground wire, and a case that does not conduct', 780, GND + 46, PAL.muted, { size: 20, weight: 400 }));
-    F.faded(ctx, aCut, [0, 0], () => tag(ctx, 'the earth/ground wire, joined to no earth', 900, GND + 40, PAL.muted, { size: 20, weight: 400 }));
+    tag(ctx, 'the live/hot wire', 895, LIVE - 36, LIVE_C(), { size: 20 });
+    tag(ctx, 'the neutral wire', 895, NEUT + 38, NEUT_C(), { size: 20 });
+    F.faded(ctx, a3, [0, 0], () => tag(ctx, 'the earth/ground wire', 905, GND + 40, EARTH_C(), { size: 20 }));
+    F.faded(ctx, a2, [0, 0], () => tag(ctx, 'no earth/ground wire; the case does not conduct', 1120, GND + 46, PAL.muted, { size: 20, weight: 400 }));
+    F.faded(ctx, aCut, [0, 0], () => tag(ctx, 'the earth/ground wire, joined to no earth', 990, GND + 40, PAL.muted, { size: 20, weight: 400 }));
     tag(ctx, two ? 'a nonconducting case' : 'the metal case of the appliance', RX, CT - 26, F.ref('case'));
     tag(ctx, 'the appliance', 1145, 250, F.ref('appliance'), { align: 'right' });
 
@@ -406,14 +406,14 @@ function coil(ctx, x, y1, y2, n, side, color) {
     tag(ctx, fmt(Vcase, Vcase < 10 ? 2 : 1) + ' V', 960, 250, cV, { align: 'right' });
 
     topline(ctx, on
-      ? 'With the earth/ground wire intact the short draws ' + amps(Ishort) + ', which is ' + (trips ? 'far more than' : 'still within') + ' the ' + fmt(RATE, 1) + ' A the breaker will carry, and the person holding the case takes only ' + amps(Iperson) + '.'
+      ? 'With the earth/ground wire intact the short draws ' + amps(Ishort) + ', which is ' + (trips ? 'more than' : 'still within') + ' the ' + fmt(RATE, 1) + ' A the breaker will carry, and the person holding the case takes only ' + amps(Iperson) + '.'
       : 'With the earth/ground wire broken the case sits at ' + fmt(Vcase, 1) + ' V, the person carries ' + amps(Iperson) + ' to the water pipe, and the breaker never stirs.');
     readout(d.readout,
       on
         ? `\\kV_{\\text{case}} = \\kIcur_{\\text{short}}\\kRes_{\\text{g}} = (${fmt(Ishort, 1)}\\ \\text{A})(${ohmsTex(Rg)}) = ${fmt(Vcase, Vcase < 10 ? 2 : 1)}\\ \\text{V}`
         : `\\kIcur_{\\text{person}} = \\dfrac{\\kVrms}{\\kRes_{\\text{f}} + \\kRes_{\\text{person}}} = \\dfrac{${fmt(VS, 0)}\\ \\text{V}}{${ohmsTex(Rf)} + ${ohmsTex(Rp)}} = ${ampsTex(Iperson)}`,
       on
-        ? 'The person, at ' + ohms(Rp) + ', takes ' + amps(Iperson) + ' of that, while the ' + amps(Ishort) + ' in the short is ' + (trips ? 'far past' : 'still under') + ' the ' + fmt(RATE, 1) + ' A rating, so the breaker ' + (trips ? 'opens and the appliance must be repaired' : 'holds and the fault goes unnoticed') + '.'
+        ? 'The person, at ' + ohms(Rp) + ', takes ' + amps(Iperson) + ' of that, while the ' + amps(Ishort) + ' in the short is ' + (trips ? 'past' : 'still under') + ' the ' + fmt(RATE, 1) + ' A rating, so the breaker ' + (trips ? 'opens and the appliance must be repaired' : 'holds and the fault goes unnoticed') + '.'
         : 'The appliance may go on working perfectly while this is true, which is why the fault is so dangerous: nothing announces it until somebody completes the circuit to earth.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -639,9 +639,9 @@ function coil(ctx, x, y1, y2, n, side, color) {
 (function () {
   const H = 780;
   const d = sim('sim-isolation', H);
-  const iso = select(d.controls, {                   /* two long names that a button row clips (rule 26.1) */
-    label: '\\text{the appliance is run}',
-    options: [{ value: 'yes', label: 'through the transformer' }, { value: 'no', label: 'straight from the source' }],
+  const iso = select(d.controls, {
+    label: '\\text{the supply is}',
+    options: [{ value: 'yes', label: 'isolated' }, { value: 'no', label: 'not isolated' }],
     value: 'yes', aria: 'whether the isolation transformer is in the supply',
   });
   const nS = ctl(d.controls, { label: '\\kRes_{\\text{ins}}', cls: 'resistance', min: 10, max: 500, step: 10, value: 100, unit: 'MΩ', dec: 0, aria: 'the resistance of the material between the coils' });

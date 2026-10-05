@@ -164,8 +164,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       ? `The current in coil ${driven} is at its greatest, ${fmt(Math.abs(I), 2)} A, and for that one instant it is not changing at all, so the needle sits at zero.`
       : `The current in coil ${driven} is ${dI > 0 ? 'rising' : 'falling'} at ${fmt(Math.abs(dI), 1)} A/s, and the ${fmt(M.v, 1)} mH between the coils induces ${fmt(Math.abs(emf) * 1e3, 1)} mV in coil ${other}.`);
     readout(d.readout,
-      `${one ? '\\kemftwo' : '\\kemfone'} = -\\kMind\\frac{\\Delta ${one ? '\\kIcurone' : '\\kIcurtwo'}}{\\kdt} = -(${fmt(M.v, 1)}\\times 10^{-3}\\ \\text{H})(${fmt(dI, 1)}\\ \\text{A/s}) = ${fmt(-emf * 1e3, 1)}\\ \\text{mV}`,
-      `The needle answers the rate at which the current changes and nothing else, so it stands at zero twice in every swing, at the two instants when the current is greatest. Driving the other coil changes nothing about the size of the swing, since the same ${fmt(M.v, 1)} mH works in either direction, which is what the section means by saying that nature is symmetric here.`);
+      `${one ? '\\kemftwo' : '\\kemfone'} = -\\kMind\\frac{\\Delta ${one ? '\\kIcurone' : '\\kIcurtwo'}}{\\kdt} = -(${fmt(M.v, 1)}\\times 10^{-3}\\ \\text{H})(${fmt(dI, 1)}\\ \\text{A/s}) = ${fmt(-emf * 1e3, 1)}\\ \\text{mV}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -224,9 +223,9 @@ function inductorSymbol(ctx, x1, x2, y, color) {
         const y = 322 + i * 34;
         arrow(ctx, 330, y, 900, y, alpha(C('magnetic-field'), clamp(B / 8e-3, 0.2, 1)), 5);
       }
-      text(ctx, 'B = ' + sci(B, 2) + ' T inside the element', 700, 492, C('magnetic-field'), { size: 21, weight: 600, align: 'center' });
+      text(ctx, 'B = ' + sci(B, 2) + ' T inside the element', 700, 518, C('magnetic-field'), { size: 21, weight: 600, align: 'center' });
     } else {
-      text(ctx, 'the field inside the element cancels: B = 0', 700, 492, C('magnetic-field'), { size: 21, weight: 600, align: 'center' });
+      text(ctx, 'the field inside the element cancels: B = 0', 700, 518, C('magnetic-field'), { size: 21, weight: 600, align: 'center' });
     }
     const ce = F.ref('element');
     helix(ctx, X0, X1, nd, R0, 1, ce);
@@ -239,17 +238,19 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       const q1 = at(40, R0 * 1.22, Math.PI), q2 = at(40 - 160 * a2, R0 * 1.22, Math.PI);
       arrow(ctx, q1[0], q1[1], q2[0], q2[1], C('current'), 5);
     }
-    label(ctx, counter ? 'the second layer, wound back the other way' : 'one layer of ' + fmt(N.v, 0) + ' turns', at(X1, R0 * 1.22, Math.PI)[0], at(X1, R0 * 1.22, Math.PI)[1], { side: 'right', size: 20, color: ce });
-    text(ctx, fmt(I.v, 1) + ' A through the element', 700, 452, C('current'), { size: 21, weight: 600, align: 'center' });
+    if (counter) text(ctx, 'the second layer, wound back the other way', 700, 168, ce, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    else label(ctx, 'one layer of ' + fmt(N.v, 0) + ' turns', at(X1, R0 * 1.22, Math.PI)[0], at(X1, R0 * 1.22, Math.PI)[1], { side: 'right', size: 20, color: ce });
+    text(ctx, fmt(I.v, 1) + ' A through the element', 700, 480, C('current'), { size: 21, weight: 600, align: 'center' });
     label(ctx, '1.00 m of 0.800 cm tube', at(X0, R0, -Math.PI / 2)[0], at(X0, R0, -Math.PI / 2)[1], { side: 'left', size: 20, color: PAL.ink });
-    text(ctx, 'L = ' + (counter ? '0' : henry(L, 2)), 700, 552, C('inductance'), { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'L = ' + (counter ? '0' : henry(L, 2)), 700, 568, C('inductance'), { size: 24, weight: 600, align: 'center' });
     topline(ctx, counter
       ? `Counter-wound, the two layers of ${fmt(N.v / 2, 0)} turns carry the same current in opposite directions, the field inside the element cancels, and its inductance falls to zero.`
       : `Wound all one way, the ${fmt(N.v, 0)} turns raise a field of ${sci(B, 2)} T inside the element, and it has a self-inductance of ${henry(L, 2)}.`);
     F.morph(eqHost, counter
       ? `\\mk{L}{\\kLind} = \\mk{v}{0}`
       : `\\mk{L}{\\kLind} = \\mk{f}{\\frac{\\mu_0 N^2 \\karea}{\\ell}} = \\frac{(4\\pi\\times 10^{-7})(\\mk{N}{${fmt(N.v, 0)}})^2(${sciTex(AREA, 2)}\\ \\text{m}^2)}{1.00\\ \\text{m}} = \\mk{v}{${henryTex(L, 2)}}`);
-    small.textContent = `${counter ? 'Each layer alone would have L = μ₀N²A/ℓ, but the two carry the current round in opposite senses and their fields cancel. ' : ''}What the counterwinding protects is the case of the dryer. A mutual inductance between the element and the case would let every change in the heating current induce an emf on metal the user touches, and a winding that raises no field outside itself induces nothing. The same trick is what part (c) of the section's problem on the precision laboratory resistor asks for, where halving the length and counter-winding two layers of 250 turns leaves an inductance of zero.`;
+    const said = `${counter ? 'Each layer alone would have $\\kLind = \\mu_0 N^2\\karea/\\ell$, but the two carry the current round in opposite senses and their fields cancel. ' : ''}A winding that raises no field induces no emf on the dryer’s case, which the user touches.`;
+    if (small.dataset.said !== said) { small.dataset.said = said; small.textContent = said; F.renderMath(small); }
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -305,7 +306,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     }
     text(ctx, 'L = ' + fmt(L.v, 1) + ' H', 700, 146, C('inductance'), { size: 22, weight: 600, align: 'center' });
     label(ctx, 'the switch', xr + 60, 300, { side: 'right', size: 20, color: cs });
-    label(ctx, 'the source that set the current up', xl - 34, 300, { side: 'left', size: 20, gap: 16, color: PAL.ink });
+    label(ctx, 'the source', xl - 34, 300, { side: 'left', size: 20, gap: 16, color: PAL.ink });
     text(ctx, 'I = ' + fmt(I, 1) + ' A', 640, yb + 44, C('current'), { size: 21, weight: 600, align: 'center' });
     text(ctx, falling(t) ? 'the inductor induces ' + fmt(emf, 0) + ' V' : 'the inductor induces nothing', 640, yb + 76, C('voltage'), { size: 21, weight: 600, align: 'center' });
     /* the graph: real milliseconds across, the current on the left and the emf on the right */
@@ -325,7 +326,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
       : `The current stands at ${fmt(I, 1)} A and is not changing, so however large it is the inductor induces nothing at all.`);
     readout(d.readout,
       `\\kemf = -\\kLind\\frac{\\kdIcur}{\\kdt} = -(${fmt(L.v, 1)}\\ \\text{H})\\frac{-${fmt(I0.v, 0)}\\ \\text{A}}{${fmt(DT.v, 1)}\\times 10^{-3}\\ \\text{s}} = ${fmt(emf, 0)}\\ \\text{V}`,
-      `The sign says the emf opposes the change: the current is falling, so the emf drives it forward, and the positive number here is a voltage in the same direction as the current that is dying. The fall really takes ${fmt(DT.v, 1)} ms and is drawn over about a second so that it can be watched, while the graph's own axis is in true milliseconds. Take the interval down to a fraction of a millisecond and the induced emf passes the top of the axis, which is why switching equipment for a large inductor has to break its current slowly.`);
+      `The fall really takes ${fmt(DT.v, 1)} ms; the scene draws it over about a second so that it can be watched.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -348,7 +349,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
 
   const T_ON = 1.33e-3, NMAX = 60, TAU_N = 18, CYC = 6.0;
   const cy = cycle(() => CYC, 0.8);
-  const peak = () => (VB.v * T_ON) / (L.v * 1e-3);
+  const peak = () => Math.round((VB.v * T_ON) / (L.v * 1e-3) * 100) / 100;   /* to the hundredth the readout shows, so its numbers multiply out */
   const emfOf = () => ((L.v * 1e-3) * peak()) / (DT.v * 1e-6);
   const vcap = (n) => emfOf() * (1 - Math.exp(-n / TAU_N));
 
@@ -394,7 +395,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     topline(ctx, `After ${fmt(n, 0)} switchings the capacitor stands at ${fmt(V, 0)} V, charged in steps by the ${fmt(emf, 0)} V the ${fmt(L.v, 1)} mH pair induces each time the switch breaks its ${fmt(I, 2)} A.`);
     readout(d.readout,
       `\\kemf = -\\kLind\\frac{\\kdIcur}{\\kdt} = -(${fmt(L.v, 1)}\\times 10^{-3}\\ \\text{H})\\frac{-${fmt(I, 2)}\\ \\text{A}}{${fmt(DT.v, 0)}\\times 10^{-6}\\ \\text{s}} = ${fmt(emf, 0)}\\ \\text{V}`,
-      `A battery of ${fmt(VB.v, 1)} V cannot by itself put more than ${fmt(VB.v, 1)} V on the capacitor; what puts hundreds there is the inductor answering the break in its own current, and the oscillator repeats that break many times a second until the capacitor holds enough for the flash. The high pitched whine the passage mentions is this switching, heard. Breaking the current faster raises the emf, and a larger inductance both raises it and takes longer to build the current in the first place.`);
+      `A battery of ${fmt(VB.v, 1)} V cannot by itself put more than ${fmt(VB.v, 1)} V on the capacitor; the inductor answering each break is what puts hundreds there.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -452,7 +453,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     topline(ctx, `${fmt(N.v, 0)} turns on a ${fmt(LEN.v, 1)} cm solenoid of ${fmt(DIA.v, 2)} cm diameter give a self-inductance of ${henry(L, 3)}.`);
     readout(d.readout,
       `\\kLind = \\frac{\\mu_0 N^2 \\karea}{\\ell} = \\frac{(4\\pi\\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(N.v, 0)})^2(${sciTex(A, 2)}\\ \\text{m}^2)}{${fmt(LEN.v * 1e-2, 3)}\\ \\text{m}} = ${henryTex(L, 3)}`,
-      `The inductance goes as the square of the turns: double the turns and the inductance is four times as great, because each of twice as many turns catches twice as much flux. Stretching the solenoid out weakens it, since the same turns then stand further apart and raise a smaller field per ampere. All of this comes from the relation L = N ΔΦ/ΔI, which holds for any device at all and is carried here through the one field the book can write down.`);
+      `Each of twice as many turns catches twice as much flux, so doubling the turns gives four times the inductance; stretching the solenoid weakens its field per ampere.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -481,7 +482,7 @@ function inductorSymbol(ctx, x1, x2, y, color) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const L = Lof(), E = En(I.v), top = En(100);
+    const L = Lof(), E = En(I.v), ny = F.nice(0, En(100), 4), top = ny.hi;   /* round ticks over the greatest energy the current reaches */
     /* the coil, ink, with its field drawn at the density the current sets */
     const cx = 560, cy = 250, w = 620, r = 112, x0 = cx - w / 2, x1 = cx + w / 2;
     line(ctx, x0, cy - r, x1, cy - r, alpha(PAL.ink, 0.4), 3);
@@ -506,13 +507,13 @@ function inductorSymbol(ctx, x1, x2, y, color) {
     text(ctx, 'the energy stored', bx, by + 56, C('energy'), { size: 19, align: 'center' });
     /* the square law, below the coil, since the scene is a horizontal one */
     const box = { l: 220, r: 1280, t: 512, b: 742 };
-    const { X, Y } = axes(ctx, box, [0, 100], [0, top], { xl: 'I (A)', xc: C('current'), yl: 'E (J)', yc: C('energy'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => (top >= 1000 ? fmt(v / 1000, 0) + 'k' : fmt(v, top < 1 ? 2 : 1)) });
+    const { X, Y } = axes(ctx, box, [0, 100], [0, top], { xl: 'I (A)', xc: C('current'), yl: 'E (J)', yc: C('energy'), nx: 4, ny: ny.n, fx: (v) => fmt(v, 0), fy: (v) => (v === 0 ? '0' : top >= 1000 ? fmt(v / 1000, 0) + 'k' : fmt(v, top < 1 ? 2 : 1)) });
     curve(ctx, (i) => En(i), 0, 100, X, Y, C('energy'), 5, 120);
     pinned(ctx, box, X, Y, I.v, E, C('energy'));
     topline(ctx, `A current of ${fmt(I.v, 0)} A through the ${henry(L, 3)} inductor stores ${E < 1000 ? fmt(E, 3) + ' J' : fmt(E / 1000, 1) + ' kJ'} in its magnetic field.`);
     readout(d.readout,
       `\\kEind = \\frac{1}{2}\\kLind\\kIcur^2 = 0.5(${sciTex(L, 3)}\\ \\text{H})(${fmt(I.v, 1)}\\ \\text{A})^2 = ${E < 1000 ? fmt(E, 3) + '\\ \\text{J}' : sciTex(E, 2) + '\\ \\text{J}'}`,
-      `The current is squared, so doubling it stores four times the energy, which is why the research solenoid holds 125 kJ at 100 A while the moderate solenoid of the worked example holds less than a joule at 30 A. That stored energy is what has to go somewhere when the current is switched away, and where there is nowhere for it to go it goes into a spark; it is also why the current cannot be built up in no time, since building it in no time would take an infinite power.`);
+      `The current is squared, so doubling it stores four times the energy.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

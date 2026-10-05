@@ -152,7 +152,7 @@ function flow(ctx, x, y, dx, dy, L) {
       if (X(ms) - lastMark < 46) return;
       lastMark = X(ms);
       line(ctx, X(ms), BOX.t, X(ms), BOX.b, alpha(cT, 0.5), 2, [4, 8]);
-      text(ctx, n === 1 ? 'τ' : n + 'τ', X(ms), BOX.b + 74, cT, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+      text(ctx, n === 1 ? 'τ' : n + 'τ', X(ms), X(ms) > BOX.r - 140 ? BOX.b + 104 : BOX.b + 74, cT, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
       const pc = 100 * (on ? 1 - Math.exp(-n) : Math.exp(-n));
       text(ctx, fmt(pc, 1) + '%', X(ms), BOX.t + 22 + (n - 1) * 26, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
     });
@@ -170,7 +170,8 @@ function flow(ctx, x, y, dx, dy, L) {
     F.morph(eqHost, on
       ? `\\mk{I}{\\kIcur} = \\mk{I0}{\\kIocur}\\mk{o}{(1 - }\\mk{e}{e^{-\\kt/\\ktauRL}}\\mk{c}{)} = ${I0v}\\mk{o2}{(1 - }\\mk{ev}{${ex}}\\mk{c2}{)} = ${res}`
       : `\\mk{I}{\\kIcur} = \\mk{I0}{\\kIocur}\\mk{e}{e^{-\\kt/\\ktauRL}} = ${I0v}\\mk{ev}{${ex}} = ${res}`);
-    small.textContent = 'The time constant is τ = L/R = ' + fmt(lS.v, 2) + ' mH divided by ' + fmt(R, 2) + ' Ω, which is ' + fmt(tau * 1000, 2) + ' ms, so 25 ms is ' + fmt(TWIN / tau, 1) + ' time constants.';
+    const said = 'The time constant is $\\ktauRL = \\kLind/\\kRes$ = ' + fmt(lS.v, 2) + ' mH divided by ' + fmt(R, 2) + ' Ω, which is ' + fmt(tau * 1000, 2) + ' ms, so 25 ms is ' + fmt(TWIN / tau, 1) + ' time constants.';
+    if (small.dataset.said !== said) { small.dataset.said = said; small.textContent = said; F.renderMath(small); }
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TWIN / 5), draw });
 })();

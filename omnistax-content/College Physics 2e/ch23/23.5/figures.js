@@ -38,7 +38,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['23.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, cycle, register, begin, line, arrow, dot, text, topline, note, axes, curve, pinned, vbracket, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 const RAD = Math.PI / 180, TAU = 2 * Math.PI;
 const deg = (x) => fmt(x, 0) + '°';
@@ -116,7 +116,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
   }
   const headText = (st) => {
     if (bS.v === 0) return 'With no field across the gap there is no flux through the coil however fast it is turned, so no emf is induced and nothing comes out of the brushes.';
-    return `Turned ${deg(st.th)} from the position where it faces the field, the coil catches a flux of ${fluxStr(st.flux)} and induces ${fmt(st.emf, 0)} V.${st.split ? ' The split ring keeps what the circuit receives positive.' : ''}`;
+    return `Turned ${deg(st.th)} from the position where it faces the field, the coil catches a flux of ${fluxStr(st.flux)} and induces ${fmt(st.emf, 0)} V.`;
   };
 
   /* ---------- the scene ---------- */
@@ -413,7 +413,7 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     const drawnPeriod = T / 2, slow = drawnPeriod / st.period;
     readout(d.readout,
       `\\kemf = N\\karea\\kBmag\\kw\\sin\\kw\\kt = (${fmt(nS.v, 0)})(${milliTex(area(), 2)}\\ \\text{m}^2)(${fmt(bS.v, 2)}\\ \\text{T})(${fmt(wS.v, 1)}\\ \\text{rad/s})\\sin ${degTex(st.th)} = ${fmt(st.emf, 0)}\\ \\text{V}`,
-      `The angle is measured from the position where the coil faces the field squarely, which is where the flux through it is greatest, ${fluxStr(bS.v * area())}, and where the emf is zero; a quarter revolution on, the coil stands edge-on, the flux is zero and the emf is at its peak of ${fmt(peak(), 0)} V. The coil turns at ${fmt(wS.v, 1)} rad/s, so its period is ${fmt(st.period * 1000, 1)} ms and its frequency ${fmt(1 / st.period, 1)} Hz, but the scene is drawn at one revolution every ${fmt(drawnPeriod, 1)} s, about ${fmt(slow, 0)} times slower than the coil really turns, because a machine turning sixteen times a second shows the reader nothing. At the opening settings it is Example 23.3 and Example 23.4: two hundred turns of 7.85 × 10⁻³ m² in a 1.25 T field at 104.7 rad/s, whose average emf over a quarter revolution is 131 V and whose peak is 205 V, which Example 23.4 rounds to 206 V. From 0° to 90° is that quarter revolution, over which the flux falls from its greatest value to zero in 15.0 ms. ${st.split ? 'The split ring turns the connection over each half revolution, so the coil still induces the same sinusoid but the circuit receives a train of positive pulses.' : 'The slip rings keep each end of the coil on its own brush all the way round, so the circuit receives the sinusoid just as the coil induces it.'}`);
+      `The coil turns at ${fmt(wS.v, 1)} rad/s, once every ${fmt(st.period * 1000, 1)} ms; the scene turns once every ${fmt(drawnPeriod, 1)} s, about ${fmt(slow, 0)} times slower.`);
   }
 
   if (hasGL) {
@@ -484,11 +484,6 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     dot(ctx, p1[0], p1[1], cP, false, 10); dot(ctx, p2[0], p2[1], cP, true, 10);
     line(ctx, p1[0], p1[1], p2[0] + 44, p1[1], alpha(PAL.ink, 0.35), 2, [4, 8]);
     vbracket(ctx, p2[0] + 44, p1[1], p2[1], cP, 'ΔΦ = ' + milli(st.dPhi, 2) + ' T⋅m²', 1);
-    note(ctx, BA, 'The average emf follows the change in flux over the time it takes.', [
-      { l: Math.min(p1[0], p2[0]) - 30, r: Math.max(p1[0], p2[0]) + 280, t: BA.t, b: BA.b },
-      { l: BA.l, r: A.X(60), t: BA.t, b: A.Y(0) }, { l: A.X(300), r: BA.r, t: BA.t, b: A.Y(0) },
-      { l: A.X(135), r: A.X(225), t: A.Y(0), b: BA.b },
-    ]);
     /* the emf the same turn induces, and the mean of it over the same span */
     const Bx = axes(ctx, BB, [0, 360], [-250, 250], {
       xl: 'the angle the coil has turned from the position where it faces the field (degrees)', xc: C('angle'),
@@ -499,15 +494,12 @@ function turnArrow(ctx, x, y, r, a0, span, color, w) {
     line(ctx, BB.l, Bx.Y(st.peak), BB.r, Bx.Y(st.peak), alpha(cE, 0.4), 2, [10, 10]);
     text(ctx, 'emf₀ = ' + fmt(st.peak, 0) + ' V', BB.r - 10, Bx.Y(st.peak) - 17, cE, { size: 18, weight: 600, align: 'right', bg: PAL.panel });
     line(ctx, Bx.X(st.t1), Bx.Y(st.avg), Bx.X(st.t2), Bx.Y(st.avg), cE, 4, [12, 8]);
-    text(ctx, 'the average over this span, ' + fmt(st.avg, 0) + ' V', (Bx.X(st.t1) + Bx.X(st.t2)) / 2, Bx.Y(st.avg) - 20, cE, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
-    note(ctx, BB, 'The same average is the mean of the emf over the turn.', [
-      { l: Bx.X(st.t1) - 40, r: Bx.X(st.t2) + 40, t: BB.t, b: BB.b },
-      { l: Bx.X(45), r: Bx.X(135), t: BB.t, b: Bx.Y(0) }, { l: Bx.X(225), r: Bx.X(315), t: Bx.Y(0), b: BB.b },
-    ]);
+    const avgS = 'the average over this span, ' + fmt(st.avg, 0) + ' V', avgW = F.measure(ctx, avgS, { size: 19, weight: 600 }) / 2 + 40;
+    text(ctx, avgS, Math.max(BB.l + avgW, Math.min(BB.r - avgW, (Bx.X(st.t1) + Bx.X(st.t2)) / 2)), Bx.Y(st.avg) - 20, cE, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     topline(ctx, `Turned through ${deg(dtS.v)} from ${st.t1 === 0 ? 'the position where it faces the field' : deg(st.t1) + ' past the position where it faces the field'}, the coil's flux goes from ${fluxStr(flux(st.t1))} to ${fluxStr(flux(st.t2))} in ${fmt(st.dt * 1000, 1)} ms, so the average emf over that turn is ${fmt(st.avg, 0)} V against a peak of ${fmt(st.peak, 0)} V.`);
     readout(d.readout,
       `\\kemf = -N\\frac{\\kdPhi}{\\kdt} = -(${fmt(N0, 0)})\\frac{${milliTex(st.dPhi, 2)}\\ \\text{T}\\cdot\\text{m}^2}{${milliTex(st.dt, 2)}\\ \\text{s}} = ${fmt(st.avg, 0)}\\ \\text{V}`,
-      `The peak emf is emf₀ = NABω = ${fmt(st.peak, 0)} V. The coil is Example 23.3's own: two hundred turns of area 7.85 × 10⁻³ m² in a field of 1.25 T, so the greatest flux through it is 9.81 × 10⁻³ T⋅m² and the peak emf is 205 V at 104.7 rad/s, which Example 23.4 rounds to 206 V. Set the turn to a quarter revolution beginning where the coil faces the field and the average comes to 131 V, which is 2/π of that peak, because that is what the mean of a sine over a quarter of its cycle comes to, and that is Example 23.3 and Example 23.4 together. Move the start of the turn to 90° and the same quarter revolution gives the same average the other way about, since the flux is now climbing rather than falling. Start the turn at 90° and open it to a half revolution and the average falls to zero, because the flux ends where it began, which is why an average emf has to be quoted with the interval it was taken over. The angular velocity scales both the peak and the average together, since turning the coil twice as fast halves the time as well as leaving the change in flux alone.`);
+      'Over a quarter turn from where the coil faces the field, the average is $2/\\pi$ of the peak.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

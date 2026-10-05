@@ -159,6 +159,9 @@ function cross(ctx, x, y, r, color, w) {
       } else if (col.k === 'solid' && drive > 0.02) {
         swirl(ctx, pc[0], pc[1], 26, ccw, cI, 3 + 2.5 * Math.min(1, drive));
       }
+      /* the north pole stands between the viewer and the gap, so it is drawn again over the bob, see-through */
+      ctx.save(); ctx.globalAlpha = 0.55; solid(ctx, V, boxOf(GAP, GAP + PW, -118, 42, -PZ, PZ), cMag); ctx.restore();
+      text(ctx, 'N', pN[0], pN[1], PAL.ink, { size: 24, weight: 700, align: 'center' });
       /* the drag, against the motion and proportional to the speed */
       const fl = 170 * Math.min(1, drive);
       if (fl > 14) {
@@ -279,7 +282,6 @@ function cross(ctx, x, y, r, color, w) {
     });
     [[-24, -FH - PH], [-FH + PH, FH - PH], [FH + PH, 24]].forEach(([a, b]) => line(ctx, X(a), Y(0), X(b), Y(0), cF, 5));
     const marker = pinned(ctx, box, X, Y, p, drag, cF, fmt(drag, 2));
-    note(ctx, box, 'The drag is nothing at all while the plate is wholly inside the field.', [{ l: X(-FH - PH), r: X(FH + PH), t: box.t, b: box.b }, { l: marker.x - 90, r: marker.x + 90, t: marker.y - 30, b: marker.y + 30 }]);
     const where = entering ? 'entering the field' : leaving ? 'leaving the field' : Math.abs(p) < FH - PH ? 'inside' : 'clear';
     topline(ctx, mC.value === 'insulating'
       ? 'An insulating plate carries no eddy current wherever it stands, so the magnet does not slow it at all.'
@@ -290,7 +292,7 @@ function cross(ctx, x, y, r, color, w) {
           : 'The plate is ' + where + ', so the amount of it in the field is changing, the current runs ' + (ccw ? 'counterclockwise' : 'clockwise') + ' and the force on it is to the left.');
     readout(d.readout,
       `\\kF = ${fmt(drag, 2)}`,
-      'With the field at ' + fmt(bS.v, 2) + ' T, the plate moving at ' + fmt(vS.v, 2) + ' m/s and standing at ' + fmt(p, 1) + ' cm, the drag is that fraction of the greatest. Only the side of the loop that lies in the field is pushed, and it is pushed against the motion, on the way in and on the way out alike. Cutting the plate into slots leaves the same emf with many small loops to run in, and neighboring loops run opposite ways, so the forces on them very nearly cancel.');
+      'With the field at ' + fmt(bS.v, 2) + ' T, the plate moving at ' + fmt(vS.v, 2) + ' m/s and standing at ' + fmt(p, 1) + ' cm, the drag is that fraction of the greatest. Slots leave the same emf many small loops to run in, whose forces very nearly cancel.');
   }
   register(d.fig, { update: () => {}, draw });
   hover(d.stage, () => [
@@ -328,17 +330,17 @@ function cross(ctx, x, y, r, color, w) {
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect(PX - 34, PY + 40, 68, 460 - PY); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.strokeRect(PX - 34, PY + 40, 68, 460 - PY); ctx.restore();
     fixed(ctx, PX - 150, 500, 300, 34);
     ctx.save(); ctx.fillStyle = alpha(cB, 0.09); ctx.fillRect(PX - 100, PY - 80, 200, 160); ctx.restore();
-    if (bS.v > 0.001) [[-72, -52], [72, -52], [-72, 54], [72, 54]].forEach((m) => cross(ctx, PX + m[0], PY + m[1], 12, cB, 2 + 2 * (bS.v / 0.6)));
-    text(ctx, 'B = ' + fmt(bS.v, 2) + ' T into the page', PX + 118, PY - 62, cB, { size: 21, weight: 600 });
+    if (bS.v > 0.001) [[-72, -34], [72, -34], [-72, 34], [72, 34]].forEach((m) => cross(ctx, PX + m[0], PY + m[1], 12, cB, 2 + 2 * (bS.v / 0.6)));
+    text(ctx, 'B = ' + fmt(bS.v, 2) + ' T into the page', PX + 118, PY - 100, cB, { size: 21, weight: 600 });
     /* the disc on the beam's shaft, which turns with it */
     const cDisc = F.ref('disc'), cBal = F.ref('balance');
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(PX, PY, 46, 0, TAU); ctx.fill(); ctx.strokeStyle = cDisc; ctx.lineWidth = 3.5; ctx.stroke(); ctx.restore();
     const drive = Math.min(1, (speed(t) / (aS.v * (TAU / TP) || 1)) * (bS.v / 0.6));
     if (drive > 0.02) {
       swirl(ctx, PX, PY, 29, y <= 0, cI, 3 + 2 * drive);
-      const s = y > 0 ? 1 : -1, tail = PX + s * 56, tip = tail + s * (40 + 110 * drive);
-      arrow(ctx, tail, PY - 104, tip, PY - 104, cF, 5);
-      label(ctx, 'F', tip, PY - 104, { side: s > 0 ? 'right' : 'left', size: 22, color: cF, leader: false });
+      const s = y > 0 ? 1 : -1, tail = PX, tip = tail + s * (40 + 110 * drive);
+      arrow(ctx, tail, PY - 72, tip, PY - 72, cF, 5);
+      label(ctx, 'F', tip, PY - 72, { side: s > 0 ? 'right' : 'left', size: 22, color: cF, leader: false });
     }
     /* the beam, its two pans, and the level it settles to */
     line(ctx, PX - 360, PY, PX + 360, PY, alpha(PAL.ink, 0.35), 2, [10, 10]);
