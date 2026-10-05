@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, curve, choice, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- shared helpers ---------- */
 const RAD = Math.PI / 180, TAU = 2 * Math.PI;
@@ -72,7 +72,7 @@ function bar(ctx, x, y, w, h, color, a) {
     line(ctx, OX - 330, OY, OX + 320, OY, PAL.muted, 2);
     text(ctx, 'x', OX + 334, OY, PAL.ink, { size: 22, weight: 600 });
     line(ctx, OX, OY + 270, OX, OY - 280, PAL.muted, 2);
-    text(ctx, 'y', OX, OY - 300, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'y', OX + 16, OY - 270, PAL.ink, { size: 22, weight: 600 });
     /* the two directions the reader has set */
     line(ctx, OX, OY, OX + 300 * Math.cos(s.a1), OY - 300 * Math.sin(s.a1), PAL.rule, 2, [10, 10]);
     line(ctx, OX, OY, OX + 300 * Math.cos(s.a2), OY - 300 * Math.sin(s.a2), PAL.rule, 2, [10, 10]);
@@ -108,11 +108,11 @@ function bar(ctx, x, y, w, h, color, a) {
     text(ctx, gained > 0.002
       ? 'These two angles would need ' + fmt(gained, 3) + ' J from somewhere.'
       : 'The internal kinetic energy falls from ' + fmt(s.ke, 3) + ' J to ' + fmt(s.kep, 3) + ' J.',
-      820, 636, ce, { size: 18, weight: 600 });
+      760, 636, ce, { size: 18, weight: 600 });
     text(ctx, gained > 0.002
       ? 'It ends with ' + fmt(s.kep, 3) + ' J and began with ' + fmt(s.ke, 3) + ' J.'
-      : 'Momentum alone allows that, and no energy has to come from anywhere.',
-      820, 666, ce, { size: 18 });
+      : 'Momentum alone allows that; no energy comes from anywhere.',
+      760, 666, ce, { size: 18 });
     /* the ledger: the components along each axis, before the collision and after */
     const p1x = s.p1, ax1 = s.p1p * Math.cos(s.a1), ax2 = s.p2p * Math.cos(s.a2);
     const ay1 = s.p1p * Math.sin(s.a1), ay2 = s.p2p * Math.sin(s.a2);
@@ -144,8 +144,7 @@ function bar(ctx, x, y, w, h, color, a) {
       ? 'The two objects leave at ' + fmt(s.v1p, 2) + ' m/s and ' + fmt(s.v2p, 2) + ' m/s, and their momenta along y still cancel.'
       : 'All of the momentum is along x, ' + fmt(s.p1, 3) + ' kg·m/s, and there is none along y.');
     readout(d.readout,
-      `\\kmone\\kvone = ${fmt(s.p1, 3)}\\ \\text{kg}\\cdot\\text{m/s} = \\kmone\\kvoneprime\\cos\\kthetaone + \\kmtwo\\kvtwoprime\\cos\\kthetatwo = ${fmt(ax1, 3)} + ${fmt(ax2, 3)}`,
-      'Along the y-axis there was no momentum before the collision and there is none after it: 0 = ' + num(ay1, 3) + ' + ' + num(ay2, 3) + ' kg·m/s, so the two objects must leave on opposite sides of the axis.');
+      `\\kmone\\kvone = ${fmt(s.p1, 3)}\\ \\text{kg}\\cdot\\text{m/s} = \\kmone\\kvoneprime\\cos\\kthetaone + \\kmtwo\\kvtwoprime\\cos\\kthetatwo = ${fmt(ax1, 3)} + ${fmt(ax2, 3)}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TTOT / 5), draw });
 })();
@@ -228,12 +227,9 @@ function bar(ctx, x, y, w, h, color, a) {
     const diff = s.kep - s.ke;
     readout(d.readout,
       `\\tan\\kthetatwo = \\frac{\\kvoneprime\\sin\\kthetaone}{\\kvoneprime\\cos\\kthetaone - \\kvone} = ${num(s.tan, 3)}\\ \\Rightarrow\\ \\kthetatwo = ${fmt(s.deg, 1)}^\\circ`,
-      'The unseen object leaves with v′₂ = −(m₁/m₂)v′₁ sin θ₁/sin θ₂ = ' + fmt(s.v2p, 3) + ' m/s. '
-      + (Math.abs(diff) < 0.002
-        ? 'The internal kinetic energy is ' + fmt(s.ke, 3) + ' J before the collision and the same after it, so this collision is elastic.'
-        : diff < 0
-          ? 'The internal kinetic energy falls from ' + fmt(s.ke, 3) + ' J before the collision to ' + fmt(s.kep, 3) + ' J after it, so this collision is inelastic.'
-          : 'The internal kinetic energy rises from ' + fmt(s.ke, 3) + ' J before the collision to ' + fmt(s.kep, 3) + ' J after it, so energy was released inside the collision.'));
+      `$\\kvtwoprime = -(\\kmone/\\kmtwo)\\kvoneprime\\sin\\kthetaone/\\sin\\kthetatwo = ${fmt(s.v2p, 3)}\\ \\text{m/s}$, and the internal kinetic energy `
+      + (Math.abs(diff) < 0.002 ? 'stays ' + fmt(s.ke, 3) + ' J.'
+        : (diff < 0 ? 'falls' : 'rises') + ' from ' + fmt(s.ke, 3) + ' J to ' + fmt(s.kep, 3) + ' J.'));
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TTOT / 5), draw });
 })();
@@ -288,7 +284,7 @@ function bar(ctx, x, y, w, h, color, a) {
       const x = OX - (TA - tau) * v1.v * S;
       disc(ctx, x, OY, 26, F.ref('object-1'), true);
       arrow(ctx, x + 26, OY, x + 26 + v1.v * K, OY, cv, 5);
-      lab.add('v₁ = ' + fmt(v1.v, 2) + ' m/s', x + 26 + (v1.v * K) / 2, OY, 0, -1, cv, 20, 22);
+      lab.add('v₁ = ' + fmt(v1.v, 2) + ' m/s', x + 26 + (v1.v * K) / 2, OY, 0, -1, cv, 20, 44);
       disc(ctx, OX, OY, 26, F.ref('object-2'), false);
       lab.add('at rest', OX, OY + 26, 0, 1, F.ref('object-2'), 18, 22);
     } else {
@@ -309,9 +305,9 @@ function bar(ctx, x, y, w, h, color, a) {
     text(ctx, 'angle of separation θ₁ − θ₂ = ' + fmt(sep, 0) + '°', 110, 620, C('angle'), { size: 19, weight: 600 });
     /* the graph: the internal kinetic energy after the collision against the angle of separation */
     const box = { l: 300, r: 1120, t: 670, b: 830 };
-    const g = axes(ctx, box, [10, 170], [0.5, 1.5], { xl: 'angle of separation θ₁ − θ₂ (°)', xc: C('angle'), yl: 'KE′int / KEint', yc: ce, nx: 4, ny: 2, fy: (v) => fmt(v, 1) });
+    const g = axes(ctx, box, [10, 170], [0.5, 1.5], { xl: 'angle of separation θ₁ − θ₂ (°)', xc: C('angle'), yl: 'KE′_int / KE_int', yc: ce, nx: 4, ny: 2, fy: (v) => fmt(v, 1) });
     line(ctx, box.l, g.Y(1), box.r, g.Y(1), ce, 2.5, [10, 10]);
-    text(ctx, 'the internal kinetic energy before the collision', box.l + 12, g.Y(1) - 18, ce, { size: 17 });
+    text(ctx, 'as before the collision', box.r - 12, g.Y(1) - 18, ce, { size: 17, align: 'right' });
     line(ctx, g.X(90), box.t, g.X(90), box.b, PAL.muted, 2, [4, 8]);
     text(ctx, '90°', g.X(90), box.t - 16, PAL.ink, { size: 18, weight: 600, align: 'center' });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
@@ -322,10 +318,8 @@ function bar(ctx, x, y, w, h, color, a) {
       ? 'The balls separate at 90°, the cue ball leaving at ' + fmt(s.v1p, 2) + ' m/s and the struck ball at ' + fmt(s.v2p, 2) + ' m/s.'
       : 'The balls separate at ' + fmt(sep, 0) + '°, and the internal kinetic energy after the collision is ' + fmt(kep / ke, 2) + ' times what it was before.');
     readout(d.readout,
-      `\\tfrac{1}{2}\\km{\\kvone}^2 = \\tfrac{1}{2}\\km{\\kvoneprime}^2 + \\tfrac{1}{2}\\km{\\kvtwoprime}^2 + \\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)\\qquad ${fmt(ke, 1)} = ${fmt(0.5 * s.v1p * s.v1p, 1)} + ${fmt(0.5 * s.v2p * s.v2p, 1)} + ${num(extra, 1)}\\ \\text{J per kilogram}`,
-      Math.abs(extra) < 0.05
-        ? 'The last term is zero here, so the internal kinetic energy after the collision, ' + fmt(kep, 1) + ' J per kilogram of ball, is exactly what it was before, and only at this angle of separation can two equal masses collide elastically and both move afterward.'
-        : 'The last term comes to ' + num(extra, 1) + ' J per kilogram of ball here, so the internal kinetic energy after the collision is ' + fmt(kep, 1) + ' J per kilogram against ' + fmt(ke, 1) + ' before it, and the collision is not elastic.');
+      `\\tfrac{1}{2}{\\kvone}^2 = \\tfrac{1}{2}{\\kvoneprime}^2 + \\tfrac{1}{2}{\\kvtwoprime}^2 + \\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo):\\ ${fmt(ke, 1)} = ${fmt(0.5 * s.v1p * s.v1p, 1)} + ${fmt(0.5 * s.v2p * s.v2p, 1)} ${extra < 0 ? '-' : '+'} ${fmt(Math.abs(extra), 1)}\\ \\text{J/kg}`,
+      Math.abs(extra) < 0.05 ? 'The last term is zero, so the collision is elastic.' : 'The last term is not zero, so the collision is not elastic.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TTOT / 5), draw });
 })();

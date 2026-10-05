@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, vbracket, axes, nice, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- numbers ---------- */
 const G = 9.80;
@@ -88,7 +88,7 @@ function bar(ctx, x1, x2, y, h, f, color) {
     plume(ctx, rx, ry + 81, 70 + 40 * (R() / 2e4), F.ref('gas'));
     rocket(ctx, rx, ry, cr, S);
     arrow(ctx, rx, ry + 100, rx, ry + 100 + Lv, C('velocity'), 5);
-    text(ctx, 'v\u2091 = ' + sciT(V()) + ' m/s', rx - 40, Math.min(ry + 100 + Lv / 2, 656), C('velocity'), { size: 20, weight: 600, align: 'right' });   /* held above the ground line so it never lands on its label at liftoff */
+    text(ctx, 'v\u2091 = ' + sciT(V()) + ' m/s', rx - 58, Math.min(ry + 100 + Lv / 2, 656), C('velocity'), { size: 20, weight: 600, align: 'right' });   /* held above the ground line so it never lands on its label at liftoff */
     line(ctx, 40, 686, 190, 686, PAL.rule, 2, [10, 10]);
     text(ctx, 'where it lifted off', 40, 708, PAL.muted, { size: 17 });
 
@@ -113,8 +113,11 @@ function bar(ctx, x1, x2, y, h, f, color) {
     const TR = 200, ALO = -10, AHI = 50;
     const { X, Y } = axes(ctx, box, [0, TR], [ALO, AHI], { xl: 't (s)', yl: 'a (m/s\u00b2)', xc: C('time'), yc: C('acceleration'), nx: 4, ny: 6, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 0) });
     const ca = (t) => Math.min(Math.max(acc(t), ALO), AHI);
-    curve(ctx, ca, 0, Math.min(T, TR), X, Y, alpha(C('acceleration'), 0.35), 5, 90);
-    curve(ctx, ca, 0, Math.min(Math.max(tau, 1e-6), TR), X, Y, C('acceleration'), 5, 90);
+    /* the curve leaves the frame where it passes the range rather than running flat along its top */
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    curve(ctx, acc, 0, Math.min(T, TR), X, Y, alpha(C('acceleration'), 0.35), 5, 90);
+    curve(ctx, acc, 0, Math.min(Math.max(tau, 1e-6), TR), X, Y, C('acceleration'), 5, 90);
+    ctx.restore();
     line(ctx, X(Math.min(tau, TR)), Y(ca(Math.min(tau, TR))), X(Math.min(tau, TR)), box.b, C('acceleration'), 2, [4, 8]);
     dot(ctx, X(0), Y(ca(0)), C('acceleration'), false, 10);
     pinned(ctx, box, X, Y, tau, a, C('acceleration'), fmt(a, 1) + ' m/s²');
@@ -132,7 +135,7 @@ function bar(ctx, x1, x2, y, h, f, color) {
       : done ? 'The fuel is exhausted after ' + fmt(T, 0) + ' s, and the acceleration has reached its greatest value, ' + fmt(a, 1) + ' m/s\u00b2.'
       : 'After ' + fmt(tau, 0) + ' s, ' + sciT(m) + ' kg is left of the rocket, so the same thrust now gives it ' + fmt(a, 1) + ' m/s\u00b2.');
     readout(d.readout, `\\ka = \\frac{\\kve}{\\km}\\;\\frac{\\kdm}{\\kdt} - \\kg = \\frac{${sciX(V())}\\ \\text{m/s}}{${sciX(m)}\\ \\text{kg}}(${sciX(R())}\\ \\text{kg/s}) - 9.80\\ \\text{m/s}^2 = ${fmt(a, 2)}\\ \\text{m/s}^2`,
-      'The thrust is the exhaust velocity multiplied by the rate at which gas leaves, ' + sciT(thrust) + ' N, and it does not change as the rocket burns. The weight does, because the mass falls, and that is why the acceleration grows.');
+      `The thrust is $\\kFthrust = \\kve\\,\\kdm/\\kdt = ${sciX(thrust)}\\ \\text{N}$ all through the burn.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => burn() / 5), draw });
 })();
@@ -161,10 +164,9 @@ function bar(ctx, x1, x2, y, h, f, color) {
     ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = alpha(cr, 0.22); ctx.fillRect(rx - w / 2 + 2, top + keep, w - 4, bot - top - keep); ctx.restore();
     line(ctx, rx - w / 2, top + keep, rx + w / 2, top + keep, cr, 3);
-    vbracket(ctx, rx + w / 2 + 40, top + keep, bot, PAL.ink, 'fuel, ' + fmt(100 - left, 1) + '% of the mass at liftoff', 1);
+    vbracket(ctx, rx + w / 2 + 40, top + keep, bot, PAL.ink, 'fuel, ' + fmt(100 - left, 1) + '% of m\u2080', 1);
     arrow(ctx, rx - w / 2 - 120, top + keep / 2, rx - w / 2 - 10, top + keep / 2, PAL.ink, 4);
     text(ctx, 'm\u1d63, ' + fmt(left, 2) + '%', rx - w / 2 - 128, top + keep / 2, PAL.ink, { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'what is left when the fuel is gone', rx, bot + 46, PAL.muted, { size: 17, align: 'center' });
 
     /* the graph: the velocity against the mass ratio, flattening as the logarithm does */
     const box = { l: 830, r: 1330, t: 170, b: 490 };
@@ -174,16 +176,18 @@ function bar(ctx, x1, x2, y, h, f, color) {
     const VR = 30000;
     const { X, Y } = axes(ctx, box, [0, 200], [0, VR], { xl: 'mass ratio m\u2080 / m\u1d63', yl: 'v (m/s)', xc: PAL.ink, yc: C('velocity'), nx: 4, ny: 5, fx: (u) => fmt(u, 0), fy: (u) => commas(fmt(u, 0)) });
     curve(ctx, (r) => V * Math.log(r), 1, 200, X, Y, C('velocity'), 5, 120);
+    line(ctx, X(Rm), Y(Math.min(v, VR)), X(Rm), box.b, C('velocity'), 2, [4, 8]);
     if (ESCAPE <= VR) {
       line(ctx, box.l, Y(ESCAPE), box.r, Y(ESCAPE), PAL.muted, 3, [10, 10]);
-      text(ctx, 'escape velocity from Earth, 11.2 \u00d7 10\u00b3 m/s', box.l + 14, Y(ESCAPE) + 20, PAL.muted, { size: 17 });
+      /* named in a key above the frame, where neither the curve nor the drop line runs */
+      line(ctx, box.l + 140, box.t - 34, box.l + 190, box.t - 34, PAL.muted, 3, [10, 10]);
+      text(ctx, 'escape velocity, 11.2 \u00d7 10\u00b3 m/s', box.l + 204, box.t - 34, PAL.muted, { size: 17 });
     }
-    line(ctx, X(Rm), Y(Math.min(v, VR)), X(Rm), box.b, C('velocity'), 2, [4, 8]);
     pinned(ctx, box, X, Y, Rm, v, C('velocity'), commas(fmt(v, 0)) + ' m/s');
 
     topline(ctx, 'An exhaust velocity of ' + sciT(V) + ' m/s and a mass ratio of ' + fmt(Rm, 0) + ' give a final velocity of ' + sciT(v) + ' m/s.');
     readout(d.readout, `\\kv = \\kve\\;\\text{ln}\\;\\frac{\\kmo}{\\kmr} = (${sciX(V)}\\ \\text{m/s})\\,\\text{ln}\\;${fmt(Rm, 0)} = ${sciX(v)}\\ \\text{m/s}`,
-      'Only ' + fmt(left, 2) + ' percent of the rocket is left when the fuel is burnt, so payload, engines and fuel tanks together must weigh no more than that. Doubling the mass ratio does not double the velocity, since it adds the same ' + fmt(V * Math.LN2, 0) + ' m/s however large the ratio already is.');
+      'Payload, engines and tanks together are the ' + fmt(left, 2) + ' percent of the liftoff mass left when the fuel is burnt.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

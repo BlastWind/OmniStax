@@ -8,6 +8,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 const RAD = Math.PI / 180, TAU = 2 * Math.PI;
 /* a whole number with thousands separators, which is how this section's forces read */
 const whole = (x) => String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+/* the same inside TeX, where a bare comma is punctuation and takes a space after it */
+const wholeT = (x) => whole(x).replace(/,/g, '{,}');
 
 /* ---------- sprites drawn here ---------- */
 /* a seat facing right, its foot at (x, y): a cushion and a backrest, in the muted ink of the scene's furniture */
@@ -50,11 +52,12 @@ function ball(ctx, x, y, color, r = 18) {
     const y = 300, wallX = 1000, depth = 70, startX = 250;
     strip(ctx, 90, wallX, y + 22, 44);
     const cpad = F.ref('padding');
-    ctx.save(); ctx.fillStyle = alpha(cpad, 0.3); ctx.fillRect(wallX, 190, depth, 260); ctx.restore();
+    const squash = c * c * (3 - 2 * c) * depth * 0.7, face = wallX + squash;
+    /* the padding gives as the passenger presses into it; the dashed line is where its face stood */
+    ctx.save(); ctx.fillStyle = alpha(cpad, 0.3); ctx.fillRect(face, 190, wallX + depth - face, 260); ctx.restore();
     fixed(ctx, wallX + depth, 190, 110, 260);
     line(ctx, wallX, 190, wallX, 450, cpad, 3, [10, 10]);
     text(ctx, 'the padding', wallX + depth / 2, 474, cpad, { size: 17, align: 'center' });
-    const squash = c * c * (3 - 2 * c) * depth * 0.7;
     const px = hit ? wallX - 44 + squash : startX + (wallX - 44 - startX) * (tau / APPROACH);
     /* the passenger sits facing the padding, a filled body 0.85 of the library's height; the
        shoulder, where the momentum is drawn from and where the padding's push is drawn to, is at
@@ -62,21 +65,23 @@ function ball(ctx, x, y, color, r = 18) {
     seat(ctx, px, y);
     F.silhouette(ctx, { x: px, y, s: 0.85, pose: 'sit', color: F.ref('passenger') });
     const sx = px - 5, sy = y - 78;
-    text(ctx, fmt(m.v, 0) + ' kg', px - 14, y + 66, C('mass'), { size: 20, weight: 600, align: 'center' });
+    text(ctx, fmt(m.v, 0) + ' kg', px - 50, y + 66, C('mass'), { size: 20, weight: 600, align: 'center' });
     /* the momentum still to be taken away, and the force the padding pushes back with. Both arrows
        are on scales fixed from the slider maxima and never move: 320 units at 3,600 kg·m/s, which is
        120 kg at 30 m/s, and 250 units at 180,000 N, which is that momentum taken away in 0.02 s. */
     const PMAX = 120 * 30, FMAX = PMAX / 0.02;
     const len = (320 * left) / PMAX;
+    /* both arrows ride above the passenger and stop at the padding's face, so neither crosses it */
+    const pHead = Math.min(sx + len, face - 8);
     if (left > 1) {
-      arrow(ctx, sx, sy - 40, sx + len, sy - 40, cp, 5);
-      F.label(ctx, 'p = ' + whole(left) + ' kg·m/s', sx + len / 2, sy - 40, { side: 'above', color: cp, gap: 22, leader: false, H: 860 });
+      arrow(ctx, pHead - len, sy - 40, pHead, sy - 40, cp, 5);
+      F.label(ctx, 'p = ' + whole(left) + ' kg·m/s', pHead - len / 2, sy - 40, { side: 'above', color: cp, gap: 22, leader: false, H: 860 });
     } else F.label(ctx, 'p = 0, and the passenger is at rest', sx, sy - 40, { side: 'above', color: cp, gap: 22, leader: false, H: 860 });
     if (hit && !done) {
       /* the padding's push, drawn from the padding into the passenger's chest */
       const fl = 70 + 180 * Math.min(1, Fn / FMAX);
-      arrow(ctx, sx + 46 + fl, sy, sx + 46, sy, cf, 5);
-      F.label(ctx, 'F = ' + whole(Fn) + ' N', sx + 46 + fl / 2, sy, { side: 'above', color: cf, gap: 22, leader: false, H: 860 });
+      arrow(ctx, face - 8, sy - 110, face - 8 - fl, sy - 110, cf, 5);
+      F.label(ctx, 'F = ' + whole(Fn) + ' N', face - 8 - fl / 2, sy - 110, { side: 'above', color: cf, gap: 22, leader: false, H: 860 });
     }
     /* the graph: the force the stop needs against the time it is given */
     const box = { l: 230, r: 1290, t: 560, b: 750 };
@@ -89,7 +94,7 @@ function ball(ctx, x, y, color, r = 18) {
     const g = axes(ctx, box, [0, 0.5], [0, FR], { xl: 'Δt (s)', xc: C('time'), yl: 'F (N)', yc: cf, nx: 5, ny: 4, fx: (t) => fmt(t, 1), fy: (q) => whole(q) });
     const FnC = Math.min(Fn, FR);
     ctx.save(); ctx.fillStyle = alpha(cp, 0.24); ctx.fillRect(g.X(0), g.Y(FnC), g.X(dt.v) - g.X(0), g.Y(0) - g.Y(FnC)); ctx.restore();
-    curve(ctx, (t) => Math.min(FR, p / t), DTMIN, 0.5, g.X, g.Y, cf, 5, 200);
+    curve(ctx, (t) => p / t, Math.max(DTMIN, p / FR), 0.5, g.X, g.Y, cf, 5, 200);
     line(ctx, g.X(dt.v), g.Y(0), g.X(dt.v), g.Y(FnC), C('time'), 2, [4, 8]);
     line(ctx, g.X(0), g.Y(FnC), g.X(dt.v), g.Y(FnC), cf, 2, [4, 8]);
     pinned(ctx, box, g.X, g.Y, dt.v, Fn, PAL.ink, whole(Fn) + ' N');
@@ -99,8 +104,7 @@ function ball(ctx, x, y, color, r = 18) {
       : !done
         ? 'After ' + fmt(tin, 3) + ' s of contact, ' + whole(left) + ' kg·m/s is left and the padding pushes back with ' + whole(Fn) + ' N.'
         : 'All ' + whole(p) + ' kg·m/s has been taken away in ' + fmt(dt.v, 2) + ' s, which took a force of ' + whole(Fn) + ' N.');
-    readout(d.readout, `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{(${fmt(m.v, 0)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})}{${fmt(dt.v, 2)}\\ \\text{s}} = ${whole(Fn)}\\ \\text{N}`,
-      'The change in momentum is the same however the stop is made, so giving the force twice as long to act halves it. That is what the padding on a dashboard, and far more so an airbag, is for.');
+    readout(d.readout, `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{(${fmt(m.v, 0)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})}{${fmt(dt.v, 2)}\\ \\text{s}} = ${wholeT(Fn)}\\ \\text{N}`);
   }
   register(d.fig, { update: (s) => cy.step(s, () => 1), draw });
 })();
@@ -122,9 +126,10 @@ function ball(ctx, x, y, color, r = 18) {
   const cy = cycle(() => IN + OUT, 1.2);
   function reset() { cy.reset(); }
   /* the momentum arrows are on one scale fixed from the slider maxima and never move: 80 units per
-     kg·m/s, so the largest momentum the sliders reach, 0.3 kg at 10 m/s, is 300 units, and the
-     largest change in momentum, twice that at the perpendicular, is 600 units. No arrow is capped. */
-  const K = 100;
+     kg·m/s, so the largest momentum the sliders reach, 0.3 kg at 10 m/s, is 270 units, and the
+     largest change in momentum, twice that at the perpendicular, is 540 units, which the panel
+     between the wall's back (740) and the right edge holds. No arrow is capped. */
+  const K = 90;
   function draw() {
     const { ctx } = begin(d.c);
     const a = th.v * RAD, p = m.v * u.v, dp = 2 * p * Math.cos(a);
@@ -132,7 +137,7 @@ function ball(ctx, x, y, color, r = 18) {
     const cp = C('momentum'), cf = C('force');
     const lab = F.labeller(ctx, 820);
     /* the scene: the wall, the perpendicular, and the two legs of the ball's path */
-    const cx = 760, cyy = 380, run = Math.min(560, 250 / Math.max(Math.sin(a), 0.02));
+    const cx = 640, cyy = 380, run = Math.min(560, 250 / Math.max(Math.sin(a), 0.02));
     const cw = F.ref('wall'), ca = C('angle');
     fixed(ctx, cx, 90, 100, 580);
     line(ctx, cx, 90, cx, 670, cw, 4);
@@ -157,7 +162,7 @@ function ball(ctx, x, y, color, r = 18) {
       F.label(ctx, 'the force on the wall', cx + 50, cyy + 12, { side: 'below', color: cf, gap: 30, leader: false, H: 820 });
     }
     /* the triangle: both momenta from one tail, and the change from the head of one to the head of the other */
-    const ox = 1110, oy = 270;
+    const ox = 1100, oy = 270;
     text(ctx, 'the two momenta, and the change between them', ox, 140, PAL.ink, { size: 19, weight: 600, align: 'center' });
     const bx = ox + L * Math.cos(a), by = oy + L * Math.sin(a), ax = ox - L * Math.cos(a), ay = by;
     dot(ctx, ox, oy, PAL.ink, true, 5);
@@ -223,9 +228,8 @@ function ball(ctx, x, y, color, r = 18) {
     text(ctx, 't₁', g.X(T1), g.Y(0) + 54, PAL.ink, { size: 21, weight: 600, align: 'center' });
     text(ctx, 't₂', g.X(t2), g.Y(0) + 54, PAL.ink, { size: 21, weight: 600, align: 'center' });
     text(ctx, 'The shaded bump and the dashed rectangle have the same area, ' + fmt(imp, 1) + ' kg·m/s.', box.l, box.b + 110, cp, { size: 21, weight: 600 });
-    topline(ctx, 'The ball pushes with up to ' + whole(fp.v) + ' N, and a steady ' + whole(feff) + ' N over the same ' + fmt(D, 2) + ' s would give the same impulse.');
-    readout(d.readout, `\\kdp = \\kFeff\\kdt = (${whole(feff)}\\ \\text{N})(${fmt(D, 2)}\\ \\text{s}) = ${fmt(imp, 1)}\\ \\text{kg}\\cdot\\text{m/s}`,
-      'The area under the actual force has units of momentum and is the impulse between t₁ and t₂. The effective force is the steady force that encloses the same area over the same interval, so the two have the same effect on the ball.');
+    topline(ctx, 'A push of up to ' + whole(fp.v) + ' N for ' + fmt(D, 2) + ' s gives the same impulse as a steady ' + whole(feff) + ' N.');
+    readout(d.readout, `\\kdp = \\kFeff\\kdt = (${wholeT(feff)}\\ \\text{N})(${fmt(D, 2)}\\ \\text{s}) = ${fmt(imp, 1)}\\ \\text{kg}\\cdot\\text{m/s}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -234,21 +238,18 @@ function ball(ctx, x, y, color, r = 18) {
    The two graphs the test prep items are set on, copied over as the book
    draws them: no sliders, and nothing moving.
 ===================================================================== */
-function wallGraph(id, pts, note) {
-  const d = sim(id, 540);
+function wallGraph(id, pts) {
+  const d = sim(id, 480);
   function draw() {
     const { ctx } = begin(d.c);
     const cf = C('force'), ct = C('time');
-    const g = axes(ctx, { l: 230, r: 1250, t: 130, b: 420 }, [0, 0.32], [0, 20], { xl: 't (s)', xc: ct, yl: 'F (N)', yc: cf, nx: 4, ny: 4, fx: (t) => fmt(t, 2), fy: (q) => fmt(q, 0) });
+    const g = axes(ctx, { l: 230, r: 1250, t: 70, b: 360 }, [0, 0.32], [0, 20], { xl: 't (s)', xc: ct, yl: 'F (N)', yc: cf, nx: 4, ny: 4, fx: (t) => fmt(t, 2), fy: (q) => fmt(q, 0) });
     ctx.save(); ctx.strokeStyle = cf; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.beginPath();
     pts.forEach(([t, f], i) => (i ? ctx.lineTo(g.X(t), g.Y(f)) : ctx.moveTo(g.X(t), g.Y(f))));
     ctx.stroke(); ctx.restore();
-    topline(ctx, note);
   }
   register(d.fig, { update: () => {}, draw });
 }
-wallGraph('fig-bounce', [[0, 0], [0.08, 0], [0.08, 15], [0.24, 15], [0.24, 0], [0.32, 0]],
-  'The wall pushes with a steady 15 N from 0.080 s until 0.24 s, and with nothing at all outside that interval.');
-wallGraph('fig-collision', [[0, 0], [0.08, 15], [0.24, 15], [0.32, 0]],
-  'The wall builds up to 15 N by 0.080 s, holds it there until 0.24 s, and lets go by 0.32 s.');
+wallGraph('fig-bounce', [[0, 0], [0.08, 0], [0.08, 15], [0.24, 15], [0.24, 0], [0.32, 0]]);
+wallGraph('fig-collision', [[0, 0], [0.08, 15], [0.24, 15], [0.32, 0]]);
 };

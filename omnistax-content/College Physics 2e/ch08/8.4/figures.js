@@ -15,22 +15,18 @@ const term = (x, d) => (x < 0 ? '- ' : '+ ') + fmt(Math.abs(x), d);
 /* a number for the drawing, with the minus sign the book sets */
 const num = (x, d) => fmt(x, d).replace('-', '−');
 /* a velocity in words: which way it points and how fast */
-const says = (sym, v) => sym + ' = ' + num(v, 2) + ' m/s';
+const says = (sym, v) => sym + ' = ' + fmt(v, 2) + '\\ \\text{m/s}';
 
 /* A pair of bars, before the collision and after it, in a panel of its own. The two
-   stand at the same height whenever the quantity between them is conserved. */
+   stand at the same height whenever the quantity between them is conserved. The panel
+   carries no scale: its height is fitted to the pair, and the value is written on each
+   bar, so nothing on it moves when the sliders do except the two numbers. */
 function pair(ctx, box, title, color, vals, labels, unit, dec) {
   let lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
   if (hi - lo < 1e-6) { lo = -1; hi = 1; }
   const pad = (hi - lo) * 0.22;
   const r = nice(lo - (lo < 0 ? pad : 0), hi + (hi > 0 ? pad : 0), 3);
   const Y = (v) => box.b - ((v - r.lo) / (r.hi - r.lo)) * (box.b - box.t);
-  for (let i = 0; i <= r.n; i++) {
-    const v = r.lo + ((r.hi - r.lo) * i) / r.n;
-    line(ctx, box.l, Y(v), box.r, Y(v), PAL.rule, 1.5);
-    text(ctx, num(v, dec), box.l - 14, Y(v), PAL.muted, { size: 17, align: 'right' });
-  }
-  line(ctx, box.l, box.t, box.l, box.b, PAL.muted, 2);
   const zero = Y(0);
   line(ctx, box.l, zero, box.r, zero, PAL.muted, 2);
   const w = 116, gap = (box.r - box.l) / vals.length;
@@ -63,7 +59,9 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
   const v2 = ctl(d.controls, { label: '\\kvtwo', cls: 'velocity', min: -6, max: 0.5, step: 0.25, value: 0, unit: 'm/s', dec: 2, onInput: reset, aria: 'velocity of the second object before the collision' });
   m1.refresh();
 
-  const SC = 85, TC = 1.0, GY = 308, VY = 132, PY = 200;
+  const SC = 85, TC = 1.0, GY = 308;
+  /* one row per arrow, so two arrows pointing at each other before the impact never lie on one line */
+  const ROW = { v1: 118, v2: 148, p1: 190, p2: 220 };
   const wide = (m) => 58 + 26 * Math.sqrt(m);
   const state = () => {
     const a = after(m1.v, m2.v, v1.v, v2.v);
@@ -74,12 +72,12 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
   const cy = cycle(() => state().T, 1.2);
   function reset() { cy.reset(); }
 
-  /* an arrow along the surface from the object, with its symbol over the middle of it */
+  /* an arrow along the surface from the object, with its symbol just past the head */
   function along(ctx, x, y, value, k, color, label) {
-    if (Math.abs(value) < 0.02) { dot(ctx, x, y, color, false, 7); text(ctx, label, x, y - 26, color, { align: 'center', weight: 600, size: 20 }); return; }
+    if (Math.abs(value) < 0.02) { dot(ctx, x, y, color, false, 7); text(ctx, label, x + 16, y, color, { weight: 600, size: 20 }); return; }
     const dir = value < 0 ? -1 : 1, L = Math.min(340, Math.abs(value) * k);
     arrow(ctx, x, y, x + dir * L, y, color, 5);
-    text(ctx, label, x + (dir * L) / 2, y - 26, color, { align: 'center', weight: 600, size: 20 });
+    text(ctx, label, x + dir * (L + 12), y, color, { align: dir < 0 ? 'right' : 'left', weight: 600, size: 20 });
   }
 
   function draw() {
@@ -111,21 +109,20 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     block(ctx, x2, GY - 34, w2, 68, c2);
     text(ctx, '1', x1, GY + 62, c1, { align: 'center', size: 24, weight: 600 });
     text(ctx, '2', x2, GY + 62, c2, { align: 'center', size: 24, weight: 600 });
-    along(ctx, x1, VY, u1, 26, C('velocity'), hit ? 'v′₁' : 'v₁');
-    along(ctx, x2, VY, u2, 26, C('velocity'), hit ? 'v′₂' : 'v₂');
-    along(ctx, x1, PY, M1 * u1, kp, C('momentum'), hit ? 'p′₁' : 'p₁');
-    along(ctx, x2, PY, M2 * u2, kp, C('momentum'), hit ? 'p′₂' : 'p₂');
+    along(ctx, x1, ROW.v1, u1, 26, C('velocity'), hit ? 'v′₁' : 'v₁');
+    along(ctx, x2, ROW.v2, u2, 26, C('velocity'), hit ? 'v′₂' : 'v₂');
+    along(ctx, x1, ROW.p1, M1 * u1, kp, C('momentum'), hit ? 'p′₁' : 'p₁');
+    along(ctx, x2, ROW.p2, M2 * u2, kp, C('momentum'), hit ? 'p′₂' : 'p₂');
 
     /* the two conserved sums, before and after */
     pair(ctx, { l: 190, r: 620, t: 450, b: 640 }, 'total momentum (kg·m/s)', C('momentum'), [ptot, p1p + p2p], ['before', 'after'], '', 2);
     pair(ctx, { l: 830, r: 1260, t: 450, b: 640 }, 'internal kinetic energy (J)', C('energy'), [ke, kep], ['before', 'after'], '', 2);
 
     topline(ctx, hit
-      ? 'After the collision ' + says('v′₁', s.v1p) + ' and ' + says('v′₂', s.v2p) + '.'
-      : 'Before the collision ' + says('v₁', V1) + ' and ' + says('v₂', V2) + '.');
+      ? 'After the collision ' + says('$\\kvoneprime', s.v1p) + '$ and ' + says('$\\kvtwoprime', s.v2p) + '$.'
+      : 'Before the collision ' + says('$\\kvone', V1) + '$ and ' + says('$\\kvtwo', V2) + '$.');
     readout(d.readout,
-      `\\kpone + \\kptwo = ${fmt(p1, 2)} ${term(p2, 2)} = ${fmt(ptot, 2)}\\ \\text{kg}\\cdot\\text{m/s} = \\kponeprime + \\kptwoprime`,
-      'The internal kinetic energy of the system is ' + fmt(ke, 2) + ' J before the collision and ' + fmt(kep, 2) + ' J after it, because an elastic collision conserves the sum of the kinetic energies as well as the total momentum.');
+      `\\kpone + \\kptwo = ${fmt(p1, 2)} ${term(p2, 2)} = ${fmt(ptot, 2)}\\ \\text{kg}\\cdot\\text{m/s} = \\kponeprime + \\kptwoprime`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => state().T / 5), draw });
 })();
@@ -167,9 +164,11 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
     });
 
     /* conservation of internal kinetic energy: an ellipse through the two states */
-    const up = (x) => Math.min(VR, Math.sqrt(Math.max(0, k * (V * V - x * x))));
+    const up = (x) => Math.sqrt(Math.max(0, k * (V * V - x * x)));
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();   /* the ellipse leaves the box rather than running flat along its edge */
     curve(ctx, up, -V, V, X, Y, C('energy'), 5, 220);
     curve(ctx, (x) => -up(x), -V, V, X, Y, C('energy'), 5, 220);
+    ctx.restore();
 
     /* conservation of momentum: a straight line, clipped to the box */
     const ends = [V - VR / k, V + VR / k].map((x) => Math.max(-VR, Math.min(VR, x)));
@@ -187,22 +186,23 @@ function pair(ctx, box, title, color, vals, labels, unit, dec) {
 
     /* the two crossings: the initial condition, which is discarded, and the collision */
     dot(ctx, X(V), Y(0), C('velocity'), false, 12);
-    pinned(ctx, box, X, Y, v1p, v2p, C('velocity'), fmt(v2p, 2) + ' m/s');
+    const out = v2p > VR;
+    pinned(ctx, box, X, Y, v1p, v2p, C('velocity'), out ? 'after the collision, at ' + fmt(v2p, 2) + ' m/s' : undefined);
     text(ctx, 'before the collision', X(V) - 20, Y(0) + 34, PAL.muted, { align: 'right', size: 19, bg: alpha(PAL.panel, 0.85) });
     const high = v2p > VR * 0.72;
-    text(ctx, 'after the collision', X(v1p), Y(Math.min(Math.max(v2p, -VR), VR)) + (high ? 34 : -32), PAL.ink, { align: 'center', size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    if (!out) text(ctx, 'after the collision', X(v1p), Y(v2p) + (high ? 34 : -32), PAL.ink, { align: 'center', size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
 
-    topline(ctx, 'The curves meet twice, at v′₁ = ' + num(V, 2) + ' m/s before the collision and at v′₁ = ' + num(v1p, 2) + ' m/s after it.');
+    topline(ctx, 'The curves meet twice, at $\\kvoneprime = ' + fmt(V, 2) + '\\ \\text{m/s}$ before the collision and at $\\kvoneprime = ' + fmt(v1p, 2) + '\\ \\text{m/s}$ after it.');
     /* at equal masses the difference in the numerator is nothing, and the formula becomes the swap */
     const same = Math.abs(M1 - M2) < 1e-9;
     F.morph(formula, same
       ? `\\mk{v}{\\kvoneprime} = \\mk{n}{0}\\ \\text{m/s}`
       : `\\mk{v}{\\kvoneprime} = \\mk{f}{\\frac{\\kmone - \\kmtwo}{\\kmone + \\kmtwo}}\\mk{u}{\\kvone} = \\mk{n}{${fmt(v1p, 2)}}\\ \\text{m/s}`,
       { keyMap: same ? { f: 'n', u: 'n' } : {} });
-    note.textContent = (same
-      ? 'With equal masses the first object stops dead and the second leaves with v′₂ = v₁ = ' + fmt(V, 2) + ' m/s: the two exchange velocities. '
-      : 'The second object leaves with v′₂ = 2m₁v₁/(m₁ + m₂) = ' + fmt(v2p, 2) + ' m/s. ')
-      + 'The hollow crossing is the pair of velocities the objects already had, so it describes the situation before the collision and is discarded; the filled crossing is the only other way the two objects can leave one another with the momentum and the internal kinetic energy they came in with.';
+    note.textContent = same
+      ? `With equal masses the first object stops dead and the second leaves with $\\kvtwoprime = \\kvone = ${fmt(V, 2)}\\ \\text{m/s}$: the two exchange velocities.`
+      : `The second object leaves with $\\kvtwoprime = 2\\kmone\\kvone/(\\kmone + \\kmtwo) = ${fmt(v2p, 2)}\\ \\text{m/s}$.`;
+    F.renderMath(note);
   }
   register(d.fig, { update: () => {}, draw });
 })();

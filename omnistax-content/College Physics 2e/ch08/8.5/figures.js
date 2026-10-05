@@ -215,7 +215,6 @@ function vec(ctx, x, y, L, s, color, label) {
     box(ctx, xb, GY, w2, 'm₂', c2);
     vec(ctx, xa, GY - Math.max(w1, w2) - 40, (v / v1.v) * 150, 1, C('velocity'), 'v′ = ' + sig(v) + ' m/s');
     vec(ctx, xa, GY + 66, 150, 1, C('momentum'), 'p = ' + sig(p) + ' kg·m/s');
-    text(ctx, 'The momentum arrow has the same length on both sides, and the velocity arrow does not.', 700, 388, PAL.muted, { size: 19, align: 'center' });
     /* the curve: the recoil velocity against the catcher's mass, over three decades */
     /* fixed axes, both of them in decades. The catcher's mass is the slider's own range, 0.1 kg to
        100 kg. The recoil velocity runs from the 58.8 m/s of the lightest catcher down to the
@@ -231,8 +230,7 @@ function vec(ctx, x, y, L, s, color, label) {
     line(ctx, g0.l, g.Y(LV), g.X(L2), g.Y(LV), C('velocity'), 2, [4, 8]);
     pinned(ctx, g0, g.X, g.Y, L2, lg(v), C('velocity'), sig(v, 3) + ' m/s');
     topline(ctx, 'A ' + fmt(m1.v, 2) + ' kg object at ' + fmt(v1.v, 1) + ' m/s leaves a ' + fmt(m2.v, 1) + ' kg catcher moving at ' + sig(v) + ' m/s.');
-    readout(d.readout, `\\kvprime = \\frac{\\kmone}{\\kmone + \\kmtwo}\\kvone = \\left(\\frac{${fmt(m1.v, 2)}\\ \\text{kg}}{${fmt(m1.v, 2)}\\ \\text{kg} + ${fmt(m2.v, 1)}\\ \\text{kg}}\\right)(${fmt(v1.v, 1)}\\ \\text{m/s}) = ${texnum(v)}\\ \\text{m/s}`,
-      'The pair carries ' + sig(p) + ' kg·m/s away from the catch, exactly what the moving object brought to it. The heavier the catcher, the smaller the share of the speed that is left.');
+    readout(d.readout, `\\kvprime = \\frac{\\kmone}{\\kmone + \\kmtwo}\\kvone = \\left(\\frac{${fmt(m1.v, 2)}\\ \\text{kg}}{${fmt(m1.v, 2)}\\ \\text{kg} + ${fmt(m2.v, 1)}\\ \\text{kg}}\\right)(${fmt(v1.v, 1)}\\ \\text{m/s}) = ${texnum(v)}\\ \\text{m/s}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

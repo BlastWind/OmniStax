@@ -10,7 +10,7 @@ function hollowOrPinned(ctx, box, X, Y, xv, yv, color, label) {
   if (py >= box.t && py <= box.b && X(xv) >= box.l && X(xv) <= box.r) dot(ctx, X(xv), py, color, false, 9);
   else pinned(ctx, box, X, Y, xv, yv, color, label);
 }
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
@@ -87,13 +87,14 @@ function bar(ctx, x1, x2, y, color, h) {
     /* the momentum arrows are on a scale fixed from the slider maxima, 320 units at 40,000 kg·m/s */
     const LP = (p) => 320 * (p / PMAX);
     car(ctx, px1, yRoad, F.ref('car-1'), s); car(ctx, px2, yRoad, F.ref('car-2'), s);
-    F.label(ctx, 'm₁ = ' + whole(f.M1) + ' kg', px1, yRoad + 96, { side: 'below', gap: 14, leader: false, weight: 400, size: 19, color: C('mass'), H: 800 });
-    F.label(ctx, 'm₂ = 1,000 kg', px2, yRoad + 124, { side: 'below', gap: 14, leader: false, weight: 400, size: 19, color: C('mass'), H: 800 });
     /* the momentum each car carries, the lead car's on the upper row so the two never meet */
     arrow(ctx, px2 - LP(P2) / 2, 120, px2 + LP(P2) / 2, 120, C('momentum'), 5);
     F.label(ctx, 'p₂ = ' + whole(P2) + ' kg·m/s', px2, 120, { side: 'above', gap: 24, leader: false, color: C('momentum'), H: 800 });
+    /* each car's mass reads on its own arrow's row, just behind the arrow's tail */
+    text(ctx, 'm₂ = 1,000 kg', px2 - LP(P2) / 2 - 16, 120, C('mass'), { size: 19, align: 'right' });
     arrow(ctx, px1 - LP(P1) / 2, 186, px1 + LP(P1) / 2, 186, C('momentum'), 5);
     F.label(ctx, 'p₁ = ' + whole(P1) + ' kg·m/s', px1, 186, { side: 'above', gap: 24, leader: false, color: C('momentum'), H: 800 });
+    text(ctx, 'm₁ = ' + whole(f.M1) + ' kg', px1 - LP(P1) / 2 - 16, 186, C('mass'), { size: 19, align: 'right' });
     /* while the bumpers touch, the two forces are drawn equal and opposite from the point of contact */
     if (touching) {
       const xm = (px1 + px2) / 2, yF = yRoad - 8;
@@ -113,15 +114,17 @@ function bar(ctx, x1, x2, y, color, h) {
     curve(ctx, (t) => f.p1(t), 0, T, GX, GY, C('momentum'), 4, 320);
     curve(ctx, (t) => f.p2(t), 0, T, GX, GY, C('momentum'), 4, 320);
     text(ctx, 'p₁ + p₂ = ' + whole(f.ptot), box.r - 10, GY(f.ptot) - 24, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'p₁', box.r - 10, GY(f.p1(T)) - 26, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'p₂', box.r - 10, GY(f.p2(T)) + 30, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    /* the higher of the two ends is named above its line and the lower below, so neither name sits on the other line */
+    const up1 = f.p1(T) >= f.p2(T);
+    text(ctx, 'p₁', box.r - 10, GY(f.p1(T)) + (up1 ? -26 : 30), C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'p₂', box.r - 10, GY(f.p2(T)) + (up1 ? 30 : -26), C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     pinned(ctx, box, GX, GY, tau, P1, C('momentum'), whole(P1) + ' kg·m/s');
     hollowOrPinned(ctx, box, GX, GY, tau, P2, C('momentum'), whole(P2) + ' kg·m/s');
     topline(ctx, !f.hits ? 'The trailing car is no faster than the one in front, so it never catches it.'
       : tau < f.tc ? 'The cars are ' + fmt(f.x2(tau) - f.x1(tau) - LCAR, 1) + ' m apart and closing, and the total momentum is ' + whole(f.ptot) + ' kg·m/s.'
       : 'Car 1 has lost ' + whole(-f.dp) + ' kg·m/s and car 2 has gained the same, so the total is still ' + whole(f.ptot) + ' kg·m/s.');
     readout(d.readout, `\\kpone + \\kptwo = \\kponeprime + \\kptwoprime:\\quad ${tnum(f.M1 * f.u1)} + ${tnum(M2 * f.u2)} = ${tnum(f.M1 * f.w1)} + ${tnum(M2 * f.w2)}\\ \\text{kg·m/s}`,
-      f.hits ? 'The two cars push on each other for the same ' + fmt(DT, 2) + ' s, so each receives an impulse of ' + whole(f.Fc) + ' N times ' + fmt(DT, 2) + ' s, and the momentum one car loses is the momentum the other gains.'
+      f.hits ? `Each car receives an impulse of $${tnum(f.Fc)}\\ \\text{N} \\times ${fmt(DT, 2)}\\ \\text{s} = ${tnum(-f.dp)}\\ \\text{kg·m/s}$, the two in opposite directions.`
         : 'Set the trailing car moving faster than the one in front and the two will meet.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 6), draw });
@@ -232,7 +235,7 @@ function bar(ctx, x1, x2, y, color, h) {
    takes the scrubber.
 ===================================================================== */
 (function () {
-  const d = sim('sim-scatter', 680);
+  const d = sim('sim-scatter', 710);
   const T = 4.0, TC = 2.0, XT = 830, R = 46;
   const v1 = ctl(d.controls, { label: '\\kvone', cls: 'velocity', min: 1, max: 20, step: 0.5, value: 10, unit: 'Mm/s', dec: 1, onInput: reset, aria: 'speed of the incoming electron' });
   const rt = ctl(d.controls, { label: "{v'}_1 / v_1", cls: '', min: -1, max: 1, step: 0.05, value: -0.95, unit: '', dec: 2, onInput: reset, aria: 'fraction of its velocity the electron keeps' });
@@ -254,7 +257,7 @@ function bar(ctx, x1, x2, y, color, h) {
     const xtn = clamp(XT + (after ? K * f.w2 * (tau - TC) : 0), XT, 1290);
     const ctg = F.ref('target');
     particle(ctx, xtn, yIn, R, ctg);
-    text(ctx, 'the target, ' + whole(mr.v) + (mr.v === 1 ? ' electron mass' : ' electron masses'), clamp(xtn, 240, 1140), yIn + R + 32, ctg, { size: 19, align: 'center' });
+    text(ctx, 'the target, ' + whole(mr.v) + (mr.v === 1 ? ' electron mass' : ' electron masses'), clamp(xtn, 240, 1140), yIn + R + 58, ctg, { size: 19, align: 'center' });
     const xe = clamp(after ? XT - R + K * f.w1 * (tau - TC) : XT - R - K * v1.v * (TC - tau), 80, 1340);
     const ye = after ? yOut : yIn;
     dot(ctx, xe, ye, F.el('e-'), true, 13);
@@ -263,34 +266,34 @@ function bar(ctx, x1, x2, y, color, h) {
     const LV = 6;
     const ve = after ? f.w1 : v1.v;
     arrow(ctx, xe, ye + 32, xe + ve * LV, ye + 32, C('velocity'), 4);
-    F.label(ctx, (after ? "v′₁ = " : 'v₁ = ') + fmt(Math.abs(ve), 2) + ' Mm/s', xe + (ve * LV) / 2, ye + 32, { side: 'below', gap: 18, leader: false, color: C('velocity'), size: 18, H: 680 });
+    F.label(ctx, (after ? "v′₁ = " : 'v₁ = ') + fmt(Math.abs(ve), 2) + ' Mm/s', xe + (ve * LV) / 2, ye + 32, { side: 'below', gap: 18, leader: false, color: C('velocity'), size: 18, H: 710 });
     if (after) {
       /* the target's arrow is held inside the canvas, and its speed is written whatever its length */
       const L2 = Math.min(Math.sign(f.w2) * Math.max(8, Math.abs(f.w2) * LV), 1340 - xtn);
       arrow(ctx, xtn, yIn - 74, xtn + L2, yIn - 74, C('velocity'), 4);
-      F.label(ctx, "v′₂ = " + fmt(f.w2, f.w2 < 0.1 ? 4 : 2) + ' Mm/s', xtn + L2 / 2, yIn - 74, { side: 'above', gap: 18, leader: false, color: C('velocity'), size: 18, H: 680 });
+      F.label(ctx, "v′₂ = " + fmt(f.w2, f.w2 < 0.1 ? 4 : 2) + ' Mm/s', xtn + L2 / 2, yIn - 74, { side: 'above', gap: 18, leader: false, color: C('velocity'), size: 18, H: 710 });
     }
     /* the momenta, all measured off one origin, so that the target's bar overshoots
        the electron's original bar by exactly what the electron carries backward */
     /* and the momentum bars, 21.5 units per unit of momentum, so the slider lengthens every bar */
     const x0 = 500, S = 21.5, hB = 32;
-    const yB = 388, yA1 = 470, yA2 = 552;
-    line(ctx, x0, yB - 62, x0, yA2 + 58, PAL.rule, 2);
-    line(ctx, x0 + S * f.p1, yB - 62, x0 + S * f.p1, yA2 + 58, PAL.muted, 2, [7, 7]);
+    const yB = 420, yA1 = 502, yA2 = 584;
+    line(ctx, x0, yB - 42, x0, yA2 + 40, PAL.rule, 2);
+    line(ctx, x0 + S * f.p1, yB - 42, x0 + S * f.p1, yA2 + 40, PAL.muted, 2, [7, 7]);
+    const lb = alpha(PAL.panel, 0.9);
     bar(ctx, x0, x0 + S * f.p1, yB, C('momentum'), hB);
-    text(ctx, 'p₁ = ' + fmt(f.p1, 2) + ', before', x0 + 10, yB - 32, C('momentum'), { size: 19, weight: 600 });
+    text(ctx, 'p₁ = ' + fmt(f.p1, 2) + ', before', x0 + 10, yB - 32, C('momentum'), { size: 19, weight: 600, bg: lb });
     bar(ctx, x0, x0 + S * f.p1p, yA1, C('momentum'), hB);
-    text(ctx, "p'₁ = " + fmt(f.p1p, 2) + ', the electron afterward', f.p1p < 0 ? x0 - 10 : x0 + 10, yA1 - 32, C('momentum'), { size: 19, weight: 600, align: f.p1p < 0 ? 'right' : 'left' });
+    text(ctx, "p'₁ = " + fmt(f.p1p, 2) + ', the electron afterward', f.p1p < 0 ? x0 - 10 : x0 + 10, yA1 - 32, C('momentum'), { size: 19, weight: 600, align: f.p1p < 0 ? 'right' : 'left', bg: lb });
     bar(ctx, x0, x0 + S * f.p2p, yA2, C('momentum'), hB);
-    text(ctx, "p'₂ = " + fmt(f.p2p, 2) + ', the target afterward', x0 + 10, yA2 - 32, C('momentum'), { size: 19, weight: 600 });
-    text(ctx, 'momentum in units of one electron mass times one Mm/s', 700, 636, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, "p'₂ = " + fmt(f.p2p, 2) + ', the target afterward', x0 + 10, yA2 - 32, C('momentum'), { size: 19, weight: 600, bg: lb });
+    text(ctx, 'momentum in units of one electron mass times one Mm/s', 700, 674, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, !after
       ? 'The electron comes in at ' + fmt(v1.v, 1) + ' Mm/s and carries a momentum of ' + fmt(f.p1, 2) + '.'
       : f.w1 < 0
         ? 'The electron comes straight back at ' + fmt(-f.w1, 2) + ' Mm/s, and the target moves off at ' + fmt(f.w2, 4) + ' Mm/s.'
         : 'The electron goes on at ' + fmt(f.w1, 2) + ' Mm/s, and the target moves off at ' + fmt(f.w2, 4) + ' Mm/s.');
-    readout(d.readout, `\\kp_1 = {\\kp'}_1 + {\\kp'}_{\\htmlData{ref=target}{2}}:\\quad ${fmt(f.p1, 2)} = ${fmt(f.p1p, 2)} + ${fmt(f.p2p, 2)}`,
-      'The target takes a momentum of ' + fmt(f.p2p, 2) + ' whatever it is made of, and the more massive it is the more slowly it carries that momentum away. A target as massive as a proton hardly moves at all, which is why an electron can come straight back from it.');
+    readout(d.readout, `\\kp_1 = {\\kp'}_1 + {\\kp'}_{\\htmlData{ref=target}{2}}:\\quad ${fmt(f.p1, 2)} = ${fmt(f.p1p, 2)} + ${fmt(f.p2p, 2)}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
@@ -366,16 +369,16 @@ function bar(ctx, x1, x2, y, color, h) {
     [[f.b1, c1], [f.b2, c2]].forEach(([g, c]) => curve(ctx, clx(g), 0, TE, GX, GY, alpha(c, 0.35), 3, 100));
     [[f.s1, c1], [f.s2, c2]].forEach(([g, c]) => curve(ctx, clx(g), 0, TE, GX, GY, c, 4, 100));
     curve(ctx, clx(f.cm), 0, TE, GX, GY, C('position'), 5, 8);
-    text(ctx, 'the center of mass', box.r - 10, GY(clx(f.cm)(TE)) - 26, C('position'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    if (f.hits) text(ctx, 'if the carts bounced apart instead', box.r - 10, GY(clx(f.b2)(TE)) - 26, alpha(PAL.ink, 0.5), { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    /* each curve is named where it ends, which is short of the frame's edge when the run is short */
+    text(ctx, 'the center of mass', GX(TE) + 12, GY(clx(f.cm)(TE)), C('position'), { size: 19, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    if (f.hits) text(ctx, 'if the carts bounced apart instead', GX(TE) + 12, GY(clx(f.b2)(TE)) - (Math.abs(GY(clx(f.b2)(TE)) - GY(clx(f.cm)(TE))) < 26 ? 26 : 0), alpha(PAL.ink, 0.6), { size: 18, bg: alpha(PAL.panel, 0.85) });
     pinned(ctx, box, GX, GY, tau, a, c1, fmt(a, 1) + ' m');
     hollowOrPinned(ctx, box, GX, GY, tau, b, c2, fmt(b, 1) + ' m');
     pinned(ctx, box, GX, GY, tau, c, C('position'));
     topline(ctx, !f.hits ? 'The two carts never meet, and the center of mass moves at ' + fmt(f.vcm, 2) + ' m/s all the same.'
       : tau < f.tc ? 'The carts are still approaching, and the center of mass is moving at ' + fmt(f.vcm, 2) + ' m/s.'
       : 'The carts have stuck together and move at ' + fmt(f.vcm, 2) + ' m/s, which is the velocity the center of mass had all along.');
-    readout(d.readout, `\\kvcm = \\frac{\\kptot}{\\km_{\\htmlData{ref=cart-1}{1}} + \\km_{\\htmlData{ref=cart-2}{2}}} = \\frac{${fmt(f.ptot, 2)}\\ \\text{kg·m/s}}{${fmt(f.M1 + f.M2, 1)}\\ \\text{kg}} = ${fmt(f.vcm, 2)}\\ \\text{m/s}`,
-      'The carts can stick together or bounce apart, and the faint lines show the bounce. Either way the total momentum is the same, so the center of mass keeps the one velocity straight through the collision.');
+    readout(d.readout, `\\kvcm = \\frac{\\kptot}{\\km_{\\htmlData{ref=cart-1}{1}} + \\km_{\\htmlData{ref=cart-2}{2}}} = \\frac{${fmt(f.ptot, 2)}\\ \\text{kg·m/s}}{${fmt(f.M1 + f.M2, 1)}\\ \\text{kg}} = ${fmt(f.vcm, 2)}\\ \\text{m/s}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });
 })();
@@ -386,20 +389,18 @@ function bar(ctx, x1, x2, y, color, h) {
    with no cycle and no transport.
 ===================================================================== */
 (function () {
-  const d = sim('fig-cart-graph', 640);
+  const d = sim('fig-cart-graph', 580);
   const TS = [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0];
   const A = [0, 0.35, 0.6, 1.0, 1.2, 1.5, 1.7, 1.75, 1.95, 2.0, 2.1];
   const B = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.7, 1.75, 1.95, 2.0, 2.1];
   function draw() {
     const { ctx } = begin(d.c);
-    const box = { l: 210, r: 1220, t: 130, b: 500 };
+    const box = { l: 210, r: 1220, t: 70, b: 440 };
     const { X, Y } = axes(ctx, box, [0, 2], [0, 2.5], { xl: 'Time (s)', yl: 'Position (m)', xc: C('time'), yc: C('position'), nx: 10, ny: 5, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
     const ca = F.ref('cart-a'), cb = F.ref('cart-b');
-    TS.forEach((t, i) => { dot(ctx, X(t), Y(A[i]), ca, true, 10); dot(ctx, X(t), Y(B[i]), cb, false, 10); });
-    dot(ctx, 270, 175, ca, true, 10); text(ctx, 'Cart A', 292, 175, ca, { size: 19 });
-    dot(ctx, 270, 212, cb, false, 10); text(ctx, 'Cart B', 292, 212, cb, { size: 19 });
-    topline(ctx, 'Cart A closes on cart B, and from 1.0 s the two carts are at the same place at every reading.');
-    tex(d.readout, '\\text{position in m against time in s, one reading every }0.2\\ \\text{s}');
+    TS.forEach((t, i) => { dot(ctx, X(t), Y(B[i]), cb, false, 11); dot(ctx, X(t), Y(A[i]), ca, true, 7); });
+    dot(ctx, 270, 115, ca, true, 7); text(ctx, 'Cart A', 292, 115, ca, { size: 19 });
+    dot(ctx, 270, 152, cb, false, 11); text(ctx, 'Cart B', 292, 152, cb, { size: 19 });
   }
   register(d.fig, { update: () => {}, draw });
 })();

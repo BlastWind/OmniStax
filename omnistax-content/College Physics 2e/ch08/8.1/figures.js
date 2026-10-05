@@ -3,13 +3,15 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, strip, scale, axes, nice, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- helpers shared by the two figures ---------- */
 const TAU = 2 * Math.PI;
 const commas = (s) => String(s).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 /* three significant figures, never in exponent form, with commas above a thousand */
 const sig3 = (x) => { const a = Math.abs(x); const s = a.toPrecision(3); return (x < 0 ? '−' : '') + (a >= 1000 ? commas(Math.round(Number(s))) : s); };
+/* the same inside TeX, where a bare comma is punctuation and takes a space after it */
+const sig3t = (x) => sig3(x).replace(/,/g, '{,}');
 
 /* ---------- sprites, in the colour they are handed ---------- */
 /* a football lying on its long axis, centered on (x, y) */
@@ -95,10 +97,10 @@ function racquet(ctx, x, y, color) {
       : 'the football carries ' + sig3(ratio) + ' times the momentum of the player';
     topline(ctx, tau < 0.01
       ? 'Both set off from the same line, the player at ' + fmt(vp.v, 2) + ' m/s and the football at ' + fmt(vb.v, 1) + ' m/s.'
-      : 'At t = ' + fmt(tau, 2) + ' s ' + who + '.');
+      : 'At $\\kt = ' + fmt(tau, 2) + '\\ \\text{s}$ ' + who + '.');
     readout(d.readout,
-      `\\kpplayer = \\km\\kv = (${fmt(mp.v, 0)}\\ \\text{kg})(${fmt(vp.v, 2)}\\ \\text{m/s}) = ${sig3(pp)}\\ \\text{kg}\\cdot\\text{m/s}`,
-      'The football has p = (' + fmt(mb.v, 3) + ' kg)(' + fmt(vb.v, 1) + ' m/s) = ' + sig3(pb) + ' kg·m/s, so ' + who + ', even though the football is much the faster of the two.');
+      `\\kpplayer = \\km\\kv = (${fmt(mp.v, 0)}\\ \\text{kg})(${fmt(vp.v, 2)}\\ \\text{m/s}) = ${sig3t(pp)}\\ \\text{kg}\\cdot\\text{m/s}`,
+      `The football has $\\kpball = (${fmt(mb.v, 3)}\\ \\text{kg})(${fmt(vb.v, 1)}\\ \\text{m/s}) = ${sig3t(pb)}\\ \\text{kg}\\cdot\\text{m/s}$.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => (RUN / Math.max(vp.v, vb.v)) / 5), draw });
 })();
@@ -153,6 +155,10 @@ function racquet(ctx, x, y, color) {
       line(ctx, sc.X(dt.v), sc.Y(0), sc.X(dt.v), sc.Y(dp), C('momentum'), 2.5, [10, 10]);
       F.label(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s', sc.X(dt.v), (sc.Y(0) + sc.Y(dp)) / 2, { side, color: C('momentum'), gap: 14, leader: false, H: 760 });
     }
+    else {
+      line(ctx, sc.X(dt.v), sc.Y(0), sc.X(dt.v), sc.Y(PR), C('momentum'), 2.5, [10, 10]);
+      F.label(ctx, 'Δp = ' + fmt(dp, 2) + ' kg·m/s, above this graph', sc.X(dt.v), sc.Y(PR) + 16, { side, color: C('momentum'), gap: 14, leader: false, H: 760 });
+    }
     F.label(ctx, 'Δt = ' + fmt(dt.v, 1) + ' ms', sc.X(dt.v), sc.Y(0) - 22, { side, color: C('time'), gap: 14, leader: false, H: 760 });
     text(ctx, 'The slope of this line is the net force, ' + sig3(Fn) + ' N.', (box.l + box.r) / 2, 738, C('force'), { size: 22, weight: 600, align: 'center' });
     const xNow = Math.min(dt.v * f, TR), pNow = Math.min(p, PR);
@@ -161,10 +167,10 @@ function racquet(ctx, x, y, color) {
     pinned(ctx, box, sc.X, sc.Y, dt.v * f, p, C('momentum'), fmt(p, 2) + ' kg·m/s');
     topline(ctx, f < 0.01
       ? 'The ball is at rest against the strings, about to be given ' + fmt(dp, 2) + ' kg·m/s in ' + fmt(dt.v, 1) + ' ms.'
-      : 'At t = ' + fmt(tau * 1000, 1) + ' ms the ball has taken up ' + fmt(p, 2) + ' of the ' + fmt(dp, 2) + ' kg·m/s the racquet will give it.');
+      : 'At $\\kt = ' + fmt(tau * 1000, 1) + '\\ \\text{ms}$ the ball has taken up ' + fmt(p, 2) + ' of the ' + fmt(dp, 2) + ' kg·m/s the racquet will give it.');
     readout(d.readout,
-      `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{\\km(\\kvf - \\kvi)}{\\kdt} = \\frac{(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(vf.v, 0)}\\ \\text{m/s})}{${fmt(dt.v, 1)}\\times 10^{-3}\\ \\text{s}} = ${sig3(Fn)}\\ \\text{N}`,
-      'The mass of the ball does not change, so ma = (' + fmt(m.v, 3) + ' kg)(' + sig3(a) + ' m/s²) gives the same ' + sig3(Fn) + ' N. Spread the same change in momentum over twice the contact time and the force falls to half of what it was, which is why a follow-through and a soft landing hurt less.');
+      `\\kFnet = \\frac{\\kdp}{\\kdt} = \\frac{\\km(\\kvf - \\kvi)}{\\kdt} = \\frac{(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(vf.v, 0)}\\ \\text{m/s})}{${fmt(dt.v, 1)}\\times 10^{-3}\\ \\text{s}} = ${sig3t(Fn)}\\ \\text{N}`,
+      `The mass of the ball does not change, so $\\km\\ka = (${fmt(m.v, 3)}\\ \\text{kg})(${sig3t(a)}\\ \\text{m/s}^2) = ${sig3t(Fn)}\\ \\text{N}$ as well.`);
   }
   register(d.fig, { update: (dt2) => cy.step(dt2, () => T() / 5), draw });
 })();
