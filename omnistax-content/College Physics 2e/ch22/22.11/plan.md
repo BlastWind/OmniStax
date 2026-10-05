@@ -131,22 +131,17 @@ the format of `docs/prompts/interactive-figures.md`.
   figure does · 2D. The default 10.0 kV gives 5.93 × 10⁷ m/s, the speed the
   book uses for a CRT electron in 22.5. Fixed scale 2750 units to the metre.
 - `sim-mri-gradient` · Sim · magnetic-resonance-imaging · value add:
-  variation by slider, since turning the gradient to zero leaves every slice
-  answering the same frequency and the image with nowhere to come from,
-  which is the argument of the book's paragraph · still, because the tuning
-  of the receiver is a state and the sweep it stands for is not drawn ·
-  sliders: the field of the magnet, 1.00 to 2.00 T (magnetic-field), the
-  gradient across the patient, 0 to 20.0 mT/m (untyped), and the field
-  strength the broadcast answers to, 1.00 to 2.05 T (magnetic-field) ·
-  headline: which slice is in resonance, or that none is · graph below, the
-  scene being horizontal: the field above the magnet's own value in
-  millitesla against the distance along the patient, with the tuned level
-  dashed across it and the resonant slice pinned · 2D. The patient is the one
-  person this page draws and is not `F.silhouette`: the library's silhouette
-  stands on its feet and has no supine pose, and a standing pose turned on its
-  side reads as a person falling over rather than one lying in a bore, so the
-  figure draws its own outline from a profile of half widths down the body
-  (rule 25), in ink and with no limb heavier than the frame.
+  variation by slider (B0, gradient, tuned field), since turning the gradient
+  to zero leaves every slice answering the same frequency · still: the tuning
+  is a state · sliders: the field of the magnet, 1.00 to 2.00 T
+  (magnetic-field), the gradient, 0 to 20.0 mT/m (untyped), and the tuned
+  field, 1.00 to 2.05 T (magnetic-field) · headline: which slice is in
+  resonance, or that none is · graph below, the tuned level dashed and named in
+  the band above the plot · 2D; the patient is F.silhouette in the stand pose
+  drawn under ctx.rotate(−π/2), lying head-left along the bore with arms and
+  legs laid straight, scaled through F.silhouette.height to the 1.80 m the
+  scale gives; bore, resonant slice and labels kept; readout summed to B = B0
+  when the gradient is zero and its note one sentence; no fold or split
 - `sim-field-scale` · Sim · biomagnetic-measurement · value add: intuition,
   since fourteen decades separate an MRI magnet from the field of a brain
   and the sentence "10⁻⁶ to 10⁻⁸ less than the Earth's" cannot be held in
@@ -233,9 +228,6 @@ copied here too, because two kept problems of this section ask about it.
 - `ch22/config.md` counts six exercise images copied for this section; four
   of the six are, since two belong to problems the book leaves unkeyed, and
   one of 22.10's is copied here as well.
-- The MRI figure draws a supine body of its own rather than `F.silhouette`,
-  for the reason given in its plan line. If another section of the book ever
-  needs a person lying down, a supine pose belongs in the library.
 
 **Chapter pass, 2026-09-15.** The two equation rows of the section now carry
 `22.11-spectrometry`. The four variable lines this plan asked for are declined,
@@ -253,8 +245,6 @@ the whole chapter, that two isotopes of one element are told apart by
 the page names. The `force` and `charge` this page binds beyond the plan's five
 are in the colour plan's binding list with the reason. `config.md`'s count of
 the images copied for this section is corrected there, to five images on six
-cards with one of them shared with 22.10. The supine pose the MRI figure draws
-for itself is left where it is, and the library gap is recorded for the section
-that wants a person lying down next.
+cards with one of them shared with 22.10.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). Readouts to one equation each (manim 12): `sim-mass-spectrometer` the separation; `sim-velocity-selector` v = E/B, with qE = qvB in the small line; `sim-crt-steering` r = mv/qB, with the speed from qV = ½mv² in the small line; `sim-mri-gradient` B = B₀ + Gx with x filled in; `sim-field-scale` B, with the ratio to the Earth in the small line. `sim-velocity-selector`: dashed circles on E and on B at the values that select each of the three ions, v = E/B (rule 26.1). `sim-crt-steering`: reversing the coil's field swings the beam through the axis and crossfades the field marks. `sim-field-scale`: the chosen field is one mark that slides along the decades. Notes and caption no longer speak of dragging or of the corner.

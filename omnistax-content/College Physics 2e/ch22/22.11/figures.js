@@ -65,32 +65,6 @@ function poly(ctx, pts, color, w, dash) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.lineJoin = 'round';
   ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore();
 }
-/* A person lying on her back, drawn as one filled outline from the crown at (x, y)
-   to the feet L units away along the page. The library's silhouette stands on its
-   feet and has no supine pose, and a standing pose turned on its side reads as a
-   person falling over, so this figure draws its own patient (rule 25). The half
-   width at each point down the body is given as a fraction of the body's length,
-   and the outline is that profile taken down one side and back up the other. */
-const TORSO = [[0.105, 0.028], [0.13, 0.105], [0.20, 0.100], [0.40, 0.078], [0.50, 0.090], [0.58, 0.085], [0.60, 0.0]];
-function supine(ctx, x, y, L, color) {
-  const P = (u, w) => [x + u * L, y + w * L];
-  ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  /* the head, a circle at the crown end */
-  ctx.beginPath(); ctx.arc(x + 0.058 * L, y, 0.054 * L, 0, TAU); ctx.fill();
-  /* the trunk, from the neck over the shoulders down to the hips, one side and then the other */
-  ctx.beginPath();
-  TORSO.forEach(([u, w], i) => { const q = P(u, -w); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); });
-  for (let i = TORSO.length - 1; i >= 0; i--) { const q = P(TORSO[i][0], TORSO[i][1]); ctx.lineTo(q[0], q[1]); }
-  ctx.closePath(); ctx.fill();
-  /* the arms lying along the sides, and the two legs, as rounded strokes */
-  ctx.lineWidth = 0.036 * L;
-  [-1, 1].forEach((s) => { const a = P(0.17, s * 0.13), b = P(0.54, s * 0.118); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); });
-  ctx.lineWidth = 0.07 * L;
-  [-1, 1].forEach((s) => { const a = P(0.60, s * 0.045), b = P(0.95, s * 0.040); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); });
-  /* the feet, turned up at the far end */
-  [-1, 1].forEach((s) => { const q = P(0.975, s * 0.040); ctx.beginPath(); ctx.ellipse(q[0], q[1], 0.03 * L, 0.024 * L, 0, 0, TAU); ctx.fill(); });
-  ctx.restore();
-}
 /* a legend line: the mark, then its name set to the right of it */
 function legend(ctx, mark, x, y, s, color) {
   mark(ctx, x, y, color, 8);
@@ -366,18 +340,25 @@ function legend(ctx, mark, x, y, s, color) {
   const XF = XH + LEN * SC;                              /* the patient's feet */
   const fieldAt = (p) => b0S.v + (gS.v / 1000) * p;      /* the field a distance p from the head, in tesla */
   const slice = () => (gS.v > 1e-6 ? (tS.v - b0S.v) / (gS.v / 1000) : NaN);
+  const ro = F.readout(d);
 
   function draw() {
     const { ctx } = begin(d.c);
     const col = { B: C('magnetic-field'), x: C('position') };
-    const p = slice(), inside = p >= 0 && p <= LEN;
+    const p = slice(), inside = p >= -1e-9 && p <= LEN + 1e-9;
     /* the bore of the magnet, and the field that fills it */
     const mc = F.ref('mri-magnet');
     ctx.save(); ctx.strokeStyle = mc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.rect(330, 160, 740, 290); ctx.stroke(); ctx.restore();
     text(ctx, 'the bore of the superconducting magnet', 700, 138, mc, { size: 19, weight: 600, align: 'center' });
-    for (let x = 372; x < 1060; x += 96) arrow(ctx, x, 196, x + 58, 196, alpha(col.B, 0.55), 3);
+    for (let x = 372; x + 58 < 1060; x += 96) arrow(ctx, x, 196, x + 58, 196, alpha(col.B, 0.55), 3);
     text(ctx, 'B', 350, 196, col.B, { size: 22, weight: 600 });
+    /* the patient: the library's standing body turned a quarter turn, so the feet sit at XF,
+       the crown at XH and the face is up, scaled to the 1.80 m the scale gives */
+    ctx.save(); ctx.translate(XF, 330); ctx.rotate(-Math.PI / 2);
+    F.silhouette(ctx, { x: 0, y: 0, s: LEN * SC / F.silhouette.height(1), pose: 'stand', color: alpha(F.ref('patient'), 0.7),
+      feet: [{ x: 6, y: 4 }, { x: -6, y: 4 }], hands: [{ x: 14, y: -56 }, { x: -10, y: -56 }] });   /* legs and arms laid straight */
+    ctx.restore();
     /* the slice the receiver has picked out */
     if (inside) {
       const sx = XH + p * SC;
@@ -386,10 +367,8 @@ function legend(ctx, mark, x, y, s, color) {
       [0, 1, 2].forEach((i) => dot(ctx, sx, 246 + i * 42, el('p+'), true, 7));
       text(ctx, 'the slice in resonance', sx, 470, col.B, { size: 20, weight: 600, align: 'center' });
     }
-    /* the patient, lying head to the left with the feet to the right */
-    supine(ctx, XH, 330, LEN * SC, alpha(F.ref('patient'), 0.7));
-    text(ctx, 'head', XH, 402, PAL.muted, { size: 18, align: 'center' });
-    text(ctx, 'feet', XF, 402, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, 'head', XH - 22, 312, PAL.muted, { size: 18, align: 'right' });
+    text(ctx, 'feet', XF + 22, 330, PAL.muted, { size: 18, align: 'left' });
     /* the graph: how far the field stands above the magnet's own value, along the patient */
     const box = { l: 200, r: 1280, t: 570, b: 830 };
     const { X, Y } = axes(ctx, box, [0, LEN], [0, 40], {
@@ -398,19 +377,23 @@ function legend(ctx, mark, x, y, s, color) {
     });
     line(ctx, X(0), Y(0), X(LEN), Y(gS.v * LEN), col.B, 5);
     const lvl = (tS.v - b0S.v) * 1000;
-    line(ctx, box.l, Y(Math.min(40, Math.max(0, lvl))), box.r, Y(Math.min(40, Math.max(0, lvl))), alpha(col.B, 0.55), 3, [10, 10]);
-    text(ctx, 'the field the broadcast answers to', box.r - 12, Y(Math.min(40, Math.max(0, lvl))) - 18, alpha(col.B, 0.8), { size: 18, align: 'right', bg: PAL.panel });
+    if (lvl >= 0 && lvl <= 40) {               /* the tuned level, named in the band above the plot where no curve reaches */
+      line(ctx, box.l, Y(lvl), box.r, Y(lvl), alpha(col.B, 0.55), 3, [10, 10]);
+      line(ctx, box.r - 380, box.t - 24, box.r - 330, box.t - 24, alpha(col.B, 0.55), 3, [10, 10]);
+      text(ctx, 'the field the broadcast answers to', box.r - 318, box.t - 24, alpha(col.B, 0.8), { size: 18, align: 'left' });
+    }
     if (inside) { pinned(ctx, box, X, Y, p, lvl, col.x, fmt(p, 2) + ' m'); line(ctx, X(p), Y(lvl), X(p), box.b, alpha(col.x, 0.5), 2, [4, 8]); }
     topline(ctx, gS.v < 1e-6
       ? `With no gradient every slice of the patient sits in the same ${fmt(b0S.v, 2)} T field, so the whole body answers one broadcast at once and the signal that comes back carries no position in it.`
       : inside
         ? `The field rises by ${fmt(gS.v, 1)} mT every meter, so the slice ${fmt(p, 2)} m from the head sits in ${fmt(fieldAt(p), 3)} T and is the one the broadcast flips.`
         : `The field runs from ${fmt(b0S.v, 3)} T at the head to ${fmt(fieldAt(LEN), 3)} T at the feet, and ${fmt(tS.v, 3)} T lies outside that range, so no slice of the patient is in resonance.`);
-    readout(d.readout,
-      inside
-        ? `\\kBmag = \\kBmag_0 + G\\kx = ${fmt(b0S.v, 2)}\\,\\text{T} + (${fmt(gS.v, 1)}\\,\\text{mT/m})(${fmt(p, 2)}\\,\\text{m}) = ${fmt(fieldAt(p), 3)}\\ \\text{T}`
-        : `\\kBmag = \\kBmag_0 + G\\kx = ${fmt(b0S.v, 2)}\\,\\text{T} + (${fmt(gS.v, 1)}\\,\\text{mT/m})\\,\\kx`,
-      `${inside ? '' : 'No slice sits in the tuned field. '}Nuclei absorb and reemit a broadcast only where the field has the right strength, so a field that varies along the patient turns a frequency into a position. With no gradient the position is lost, and a steeper one lets a given tuning pick out a thinner slice.`);
+    const flat = gS.v < 1e-6, x = slice(), xd = Math.abs(x) < 10 ? 2 : 1;
+    ro.set(flat
+      ? `\\kBmag = \\kBmag_0 = ${fmt(b0S.v, 2)}\\ \\text{T}`
+      : `\\kBmag = \\kBmag_0 + G\\kx = ${fmt(b0S.v, 2)}\\,\\text{T} + (${fmt(gS.v, 1)}\\,\\text{mT/m})(${fmt(x, xd)}\\,\\text{m}) = ${fmt(tS.v, 3)}\\ \\text{T}`,
+      flat ? '' : 'For one tuning, a steeper gradient moves the slice toward the head, since $\\kx = (\\kBmag_\\text{tuned} - \\kBmag_0)/G$.',
+      { form: flat });
   }
   register(d.fig, { update: () => {}, draw });
 })();
