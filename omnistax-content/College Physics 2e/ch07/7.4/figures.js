@@ -44,8 +44,8 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     spring(ctx, wall + 44, y, plate - 16, y, 13, 26, F.ref('spring'), 4);
     line(ctx, plate - 16, y - 42, plate - 16, y + 42, F.ref('spring'), 8);
     /* the reference stops above the bracket, whose label is centred on it when the stretch is small */
-    line(ctx, rest, y - 96, rest, y + 38, PAL.muted, 2, [8, 8]);
-    text(ctx, 'undeformed length', rest, y - 112, PAL.muted, { size: 18, align: 'center' });
+    line(ctx, rest, y - 70, rest, y + 38, PAL.muted, 2, [8, 8]);
+    text(ctx, 'undeformed length', rest - 10, y - 60, PAL.muted, { size: 18, align: 'right' });
     if (xv > 0.0005) {
       hbracket(ctx, rest, plate - 16, y + 86, C('position'), 'x = ' + fmt(xv, 3) + ' m');
       arrow(ctx, plate + 10, y, Math.min(plate + 70 + 320 * (Fv / (500 * XMAX)), 1370), y, C('force'), 5);
@@ -73,7 +73,7 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     line(ctx, X(0), Y(0), X(XMAX), Y(kv * XMAX), C('force'), 5);
     ctx.restore();
     if (xv > 0.0005 && Fv > FR) pinned(ctx, box, X, Y, xv, Fv, C('force'), fmt(Fv, 1) + ' N');
-    text(ctx, 'slope = k = ' + fmt(kv, 0) + ' N/m', box.l + 24, box.t + 26, C('stiffness'), { size: 18, weight: 600 });
+    text(ctx, 'slope = k = ' + fmt(kv, 0) + ' N/m', box.l, box.b + 56, C('stiffness'), { size: 18, weight: 600 });
     topline(ctx, xv < 0.0005 ? 'The spring is at its undeformed length, so nothing is stored in it.'
       : 'Stretched by ' + fmt(xv, 3) + ' m, the spring pulls back with ' + fmt(Fv, 1) + ' N, and the shaded triangle is the ' + fmt(pe, 3) + ' J stored in it.');
     readout(d.readout, `\\kPEs = \\tfrac{1}{2}\\kk\\kx^2 = \\tfrac{1}{2}(${fmt(kv, 0)}\\ \\text{N/m})(${fmt(xv, 3)}\\ \\text{m})^2 = ${fmt(pe, 3)}\\ \\text{J}`,
@@ -96,7 +96,7 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     const xv = x.v, kv = k.v, SC = 1500;
     const pe1 = 0.5 * kv * xv * xv, pe2 = 4 * pe1;
     /* the two springs, one squeezed twice as far as the other */
-    [[0, xv, 'the first setting'], [1, 2 * xv, 'the second setting']].forEach(([i, xc, lab]) => {
+    [[0, xv, 'squeezed x'], [1, 2 * xv, 'squeezed 2x']].forEach(([i, xc, lab]) => {
       const y = 120 + i * 120, wall = 180, nat = 380, rest = wall + 44 + nat, plate = rest - xc * SC;
       fixed(ctx, wall, y - 44, 44, 88);
       const sc = F.ref(i ? 'spring-2' : 'spring-1');
@@ -131,8 +131,7 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     else text(ctx, 'four triangles of ' + fmt(pe1, 3) + ' J', X(2 * xv) + 24, Y(F2 * 0.5), C('energy'), { size: 17, weight: 600 });
     if (2 * xv < XR - 0.006) text(ctx, '2x', X(2 * xv), box.b + 26, C('position'), { size: 18, weight: 600, align: 'center' });   /* at the far edge the 0.12 tick already reads it */
     topline(ctx, 'Compressing this spring by ' + fmt(2 * xv, 3) + ' m stores ' + fmt(pe2, 3) + ' J, four times the ' + fmt(pe1, 3) + ' J that ' + fmt(xv, 3) + ' m stores.');
-    readout(d.readout, `\\frac{\\tfrac{1}{2}\\kk(2\\kx)^2}{\\tfrac{1}{2}\\kk\\kx^2} = \\frac{${fmt(pe2, 3)}\\ \\text{J}}{${fmt(pe1, 3)}\\ \\text{J}} = 4`,
-      'Squeezing the spring twice as far doubles the force it pushes back with and doubles the distance that force acts through, so the work done on it is four times as great. The larger triangle holds four copies of the smaller one.');
+    readout(d.readout, `\\frac{\\tfrac{1}{2}\\kk(2\\kx)^2}{\\tfrac{1}{2}\\kk\\kx^2} = \\frac{${fmt(pe2, 3)}\\ \\text{J}}{${fmt(pe1, 3)}\\ \\text{J}} = 4`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -191,7 +190,7 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     line(ctx, nut, y, bridge, y, PAL.muted, 2, [10, 10]);
     ctx.save(); ctx.strokeStyle = F.ref('string'); ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(78, y - 8); ctx.lineTo(nut, y); ctx.lineTo(mid, y + dy); ctx.lineTo(bridge, y); ctx.stroke(); ctx.restore();
     dot(ctx, mid, y + dy, F.ref('string'), true, 8);
-    if (Math.abs(xv) > 0.0004) {
+    if (Math.abs(dy) > 30) {
       vbracket(ctx, mid, y, y + dy, C('position'));
       text(ctx, 'x = ' + fmt(Math.abs(xv), 4) + ' m', mid + 18, y + dy / 2, C('position'), { weight: 600, bg: PAL.panel });
     }
@@ -211,7 +210,7 @@ function stack(ctx, x0, y0, w, h, total, parts) {
       : PE < 0.02 * E ? 'Crossing the rest line the string is not deformed, so the whole ' + fmt(E, 3) + ' J is the energy of its motion.'
       : 'The string is ' + fmt(Math.abs(xv), 4) + ' m from its rest line, so its shape holds ' + fmt(PE, 3) + ' J and its motion carries ' + fmt(KE, 3) + ' J.');
     readout(d.readout, `\\kPEs + \\kKE = ${fmt(PE, 3)}\\ \\text{J} + ${fmt(Math.max(0, KE), 3)}\\ \\text{J} = ${fmt(E, 3)}\\ \\text{J}`,
-      'The pluck did ½kx₀² = ' + fmt(E, 3) + ' J of work on the string, and because the string’s force is conservative that total stays the same however the two energies share it. A swing here takes ' + fmt(period(), 1) + ' s at ' + fmt(k.v, 0) + ' N/m, since the rate a string comes back at goes by the square root of its force constant; a real string does this hundreds of times a second.');
+      'A swing here takes ' + fmt(period(), 1) + ' s at ' + fmt(k.v, 0) + ' N/m, since the rate a string comes back at goes by the square root of its force constant; a real string does this hundreds of times a second.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -305,11 +304,11 @@ function stack(ctx, x0, y0, w, h, total, parts) {
     car(ctx, carA[0], carA[1] - 14, F.ref('toy-car'), 0.46);
     /* the label of the car on the dip goes below and behind it, since the two cars run
        side by side at the start and a label above this one lands on the other car */
-    if (!launching && !B.done) text(ctx, fmt(vB, 2) + ' m/s', B.p[0] - 28, B.p[1] + 40, C('velocity'), { size: 18, weight: 600, align: 'right' });
-    if (!launching && vA > 0.02) { arrow(ctx, carA[0] + 24, carA[1] - 36, carA[0] + 24 + Math.min(40 + 70 * vA, 210), carA[1] - 36, C('velocity'), 5); text(ctx, 'v = ' + fmt(vA, 2) + ' m/s', carA[0] + 24, carA[1] - 62, C('velocity'), { size: 19, weight: 600 }); }
+    if (!launching && !B.done) text(ctx, fmt(vB, 2) + ' m/s', B.p[0] - 28, B.p[1] + 40, C('velocity'), { size: 18, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
+    if (!launching && vA > 0.02) { arrow(ctx, carA[0] + 24, carA[1] - 36, carA[0] + 24 + Math.min(40 + 70 * vA, 210), carA[1] - 36, C('velocity'), 5); text(ctx, 'v = ' + fmt(vA, 2) + ' m/s', carA[0] + 24, carA[1] - 62, C('velocity'), { size: 19, weight: 600, bg: alpha(PAL.panel, 0.9) }); }
     if (launching) { hbracket(ctx, carA[0] - 26, X0, GY + 46, C('position'), 'x = ' + fmt(xc, 3) + ' m'); }
     /* the account: the whole energy of the car on the gradual rise, however it is shared */
-    const bx = 260, bw = 800, by = 520, bh = 46;
+    const bx = 260, bw = 800, by = 540, bh = 46;
     stack(ctx, bx, by, bw, bh, E, [{ label: 'PE_s', value: peS }, { label: 'KE', value: keA }, { label: 'PE_g', value: peA }]);
     text(ctx, 'the total mechanical energy of the car stays ' + fmt(E, 3) + ' J', bx + bw / 2, by - 26, C('energy'), { size: 19, weight: 600, align: 'center' });
     text(ctx, 'in the spring ' + fmt(peS, 3) + ' J, of the motion ' + fmt(keA, 3) + ' J, of the height ' + fmt(peA, 3) + ' J', bx + bw / 2, by + bh + 26, C('energy'), { size: 17, align: 'center' });

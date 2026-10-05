@@ -8,7 +8,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
 /* ---------- helpers shared by the figures ---------- */
 const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
 const commas = (s) => String(s).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-const num = (x, d) => commas(fmt(x, d));
+const num = (x, d) => commas(fmt(x, d)).replace('-', '−');
+const numT = (x, d) => num(x, d).replace(/,/g, '{,}');
 
 /* a vertical energy bar: an outline of the full amount, filled to `val` */
 function ebar(ctx, x, y0, w, full, val, cap, label, valText) {
@@ -55,15 +56,6 @@ function slidingPlayer(ctx, x, y, rot, color) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
   F.silhouette(ctx, { x: 0, y: 0, s: 0.9, color, hip: { x: 0, y: -18 }, shoulder: { x: -44, y: -44 }, head: { x: -58, y: -64 },
     feet: [{ x: 64, y: -6 }, { x: 56, y: -16 }], hands: [{ x: -88, y: -6 }, { x: -34, y: -84 }], kneeSide: 1, elbowSide: -1 });
-  ctx.restore();
-}
-/* a foam cup lying on its side on the table, its open mouth at (x, y) facing the ruler: the mouth is
-   the wide end with a rolled lip, and the cup narrows to its base on the right */
-function foamCup(ctx, x, y, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 4; ctx.lineJoin = 'round';
-  ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - 66); ctx.lineTo(x + 84, y - 52); ctx.lineTo(x + 84, y); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(x + 4, y - 2); ctx.lineTo(x + 4, y - 64); ctx.stroke();
-  ctx.lineWidth = 2; ctx.strokeStyle = PAL.muted; ctx.beginPath(); ctx.moveTo(x + 72, y - 50); ctx.lineTo(x + 72, y - 2); ctx.stroke();
   ctx.restore();
 }
 /* a skier on her skis, the base of the skis at (x, y): crouched over the skis with a pole in each hand */
@@ -134,7 +126,7 @@ function skierSprite(ctx, x, y, color) {
       ? 'Both erasers take the same route, so each rubs out the same face and each costs ' + fmt(Wa, 2) + ' J.'
       : 'The wandering route is ' + fmt((Lb / La - 1) * 100, 0) + ' percent longer, so it costs ' + fmt(Wb, 2) + ' J against the ' + fmt(Wa, 2) + ' J of the straight one.');
     readout(d.readout, `\\kWfr = \\kff\\kd = (${fmt(ff.v, 1)}\\ \\text{N})(${fmt(Lb, 3)}\\ \\text{m}) = ${fmt(Wb, 2)}\\ \\text{J}`,
-      'Both erasers begin at A and finish at B, and the straight route costs ' + fmt(Wa, 2) + ' J while the wandering one costs ' + fmt(Wb, 2) + ' J. The work done depends on the path taken and not only on where the eraser started and finished, which is what makes friction a nonconservative force, and it is why no potential energy can be defined for it.');
+      'The work done depends on the path taken and not only on where the eraser started and finished, which is what makes friction a nonconservative force, and it is why no potential energy can be defined for it.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -179,12 +171,12 @@ function skierSprite(ctx, x, y, color) {
     rock(ctx, 300, springTop - 32 - Math.max(0, leftUp) * SC, 30, F.ref('rock'));
     rock(ctx, 900, GROUND - 32 - rightUp * SC, 30, F.ref('rock'));
     line(ctx, 170, TOP - h.v * SC, 430, TOP - h.v * SC, C('position'), 2, [8, 8]);
-    line(ctx, 790, GROUND - h.v * SC, 1030, GROUND - h.v * SC, C('position'), 2, [8, 8]);
+    line(ctx, 830, GROUND - h.v * SC, 1070, GROUND - h.v * SC, C('position'), 2, [8, 8]);
     vbracket(ctx, 190, TOP, TOP - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
-    vbracket(ctx, 810, GROUND, GROUND - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
-    text(ctx, fmt(m.v, 2) + ' kg', 300, springTop - 82 - Math.max(0, leftUp) * SC, C('mass'), { size: 18, weight: 600, align: 'center' });
+    vbracket(ctx, 1050, GROUND, GROUND - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', 1);
+    text(ctx, fmt(m.v, 2) + ' kg', 342, springTop - 32 - Math.max(0, leftUp) * SC, C('mass'), { size: 18, weight: 600 });
     if (comp > xc * 0.35) text(ctx, 'the spring is pushing back', 380, TOP + 46, PAL.muted, { size: 18, weight: 600 });
-    if (tau > tf) text(ctx, 'heat, sound and a dent in the ground', 900, GROUND + 62, PAL.muted, { size: 18, align: 'center' });
+    if (tau > tf) text(ctx, 'heat, sound and a dent in the ground', 950, GROUND + 62, PAL.muted, { size: 18, align: 'center' });
     /* the two energy accounts, drawn to one fixed scale: the outline holds 147 J, which is the
        most the sliders can bring down (5 kg dropped 3 m), and the dashed rule across it is what
        this drop brings. A heavier rock now fills more of the outline instead of rescaling it. */
@@ -207,8 +199,7 @@ function skierSprite(ctx, x, y, color) {
       : tau <= tf + tc
         ? 'The spring holds ' + fmt(PEs, 1) + ' J of the ' + fmt(E, 1) + ' J and will give it back, while on the right all ' + fmt(E, 1) + ' J has gone.'
         : 'The spring has sent the rock back up to ' + fmt(leftUp, 2) + ' m of the ' + fmt(h.v, 2) + ' m it fell, and the other rock has not moved.');
-    readout(d.readout, `\\kPEg = \\km\\kg\\kh = (${fmt(m.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 1)}\\ \\text{J}`,
-      'The force in the spring is conservative, so the ' + fmt(E, 1) + ' J the rock brings down is stored in the spring at its fullest squeeze of ' + fmt(xc * 100, 1) + ' cm and is handed back, and the rock rises to the height it started from. The ground exerts nonconservative forces, so the same ' + fmt(E, 1) + ' J becomes thermal energy, sound and a dent, and that rock has lost its mechanical energy for good.');
+    readout(d.readout, `\\kPEg = \\km\\kg\\kh = (${fmt(m.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 1)}\\ \\text{J}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 4.5), draw });
 })();
@@ -274,7 +265,6 @@ function skierSprite(ctx, x, y, color) {
     F.silhouette(ctx, { x: -CW / 2 - 54 * PS, y: 0, s: PS, pose: 'push', color: F.ref('pusher'), hands: [{ x: 54, y: -58 / PS }, { x: 56, y: -48 / PS }],
       feet: [{ x: 8 + 14 * sw, y: 0 }, { x: -34 - 14 * sw, y: 0 }] });
     ctx.restore();
-    lab.add(fmt(m.v, 0) + ' kg', cx - (CH + 6) * sa, cyy - (CH + 6) * ca, -sa, -ca, C('mass'), 18, 14);
     if (vNow > 0.02) {
       const vx = cx + 10 * ca - (CH + 12) * sa, vy = cyy - 10 * sa - (CH + 12) * ca, vl = 40 + 60 * Math.min(1, vNow / 3);
       arrow(ctx, vx, vy, vx + vl * ca, vy - vl * sa, C('velocity'), 5);
@@ -292,7 +282,7 @@ function skierSprite(ctx, x, y, color) {
       /* friction acts along the base of the crate, at its front edge, back down the ramp */
       const L = 40 + (ff.v / 400) * 90, tx = cx + (CW / 2) * ca - 6 * sa, ty = cyy - (CW / 2) * sa - 6 * ca;
       arrow(ctx, tx, ty, tx - L * ca, ty + L * sa, C('force'), 5);
-      lab.add('f = ' + num(ff.v, 0) + ' N', tx - L * ca * 0.5, ty + L * sa * 0.5 + 8, sa * 0.3, 1, C('force'), 18, 26);
+      lab.add('f = ' + num(ff.v, 0) + ' N', tx - L * ca * 0.5, ty + L * sa * 0.5 + 8, sa * 0.3, 1, C('force'), 18, 46);
     }
     lab.flush();
     hbracket(ctx, X0, cx, YBASE + 40, C('position'), 'd = ' + fmt(s, 2) + ' m');
@@ -306,12 +296,12 @@ function skierSprite(ctx, x, y, color) {
     rowbar(ctx, ZERO, 262, Wf * sc, C('energy'), 'friction does', num(Wf, 0) + ' J');
     rowbar(ctx, ZERO, 344, Wg * sc, C('energy'), 'the gravitational force does', num(Wg, 0) + ' J');
     line(ctx, 700, 424, 1370, 424, PAL.rule, 1.5);
-    rowbar(ctx, ZERO, 448, Wnc * sc, C('energy'), 'the mechanical energy changes by', (Wnc >= 0 ? '+' : '') + num(Wnc, 0) + ' J');
+    rowbar(ctx, ZERO, 448, Wnc * sc, C('energy'), 'change in mechanical energy', (Wnc >= 0 ? '+' : '') + num(Wnc, 0) + ' J');
     topline(ctx, stalled && s >= tr.end - 1e-6
       ? 'The push is not enough to keep the crate going, so it has stopped after ' + fmt(s, 2) + ' m, with the person having done ' + num(Wa, 0) + ' J and friction having taken ' + num(-Wf, 0) + ' J.'
       : 'The person has done ' + num(Wa, 0) + ' J, friction has taken ' + num(-Wf, 0) + ' J, and the mechanical energy has changed by ' + (Wnc >= 0 ? '+' : '') + num(Wnc, 0) + ' J.');
-    readout(d.readout, `\\kWnc = \\kWapp + \\kWfr = ${num(Wa, 0)}\\ \\text{J} - ${num(-Wf, 0)}\\ \\text{J} = ${num(Wnc, 0)}\\ \\text{J} = \\kdKE + \\kdPE`,
-      'The gravitational force is conservative, so the ' + num(-Wg, 0) + ' J it does against the motion is already counted as the ' + num(-Wg, 0) + ' J of gravitational potential energy the crate gains, and what is left of the nonconservative work, ' + num(Wnc + Wg, 0) + ' J, is the change in the crate\u2019s kinetic energy. Lay the ramp flat and set the push equal to the friction and you have the lawn mower pushed at a constant speed, where W_nc is zero and the mechanical energy does not change at all.');
+    readout(d.readout, `\\kWnc = \\kWapp + \\kWfr = ${numT(Wa, 0)}\\ \\text{J} - ${numT(-Wf, 0)}\\ \\text{J} = ${numT(Wnc, 0)}\\ \\text{J} = \\kdKE + \\kdPE`,
+      'The gravitational force is conservative, so the ' + num(-Wg, 0) + ' J it does against the motion is already counted as the ' + num(-Wg, 0) + ' J of gravitational potential energy the crate gains, and what is left of the nonconservative work, ' + num(Wnc + Wg, 0) + ' J, is the change in the crate\u2019s kinetic energy.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => travel().T / 4.5), draw });
 })();
@@ -385,21 +375,22 @@ function skierSprite(ctx, x, y, color) {
     const frTo = Math.min(D, DR, ER / ff.v);
     line(ctx, X(0), Y(0), X(frTo), Y(ff.v * frTo), alpha(C('energy'), 0.55), 5);
     if (th.v > 0.01) { const peTo = Math.min(D, DR, ER / (m.v * G * sa)); line(ctx, X(0), Y(0), X(peTo), Y(m.v * G * peTo * sa), alpha(C('energy'), 0.3), 5); }
-    text(ctx, 'KE', X(Math.min(D, DR) * 0.08), Y(cl(KEi * 0.9)) - 16, C('energy'), { size: 18, weight: 600 });
-    text(ctx, 'taken by friction', X(frTo * 0.62), Y(ff.v * frTo * 0.62) - 20, alpha(C('energy'), 0.7), { size: 18, weight: 600 });
-    if (th.v > 0.01) text(ctx, 'PE_g', X(Math.min(D, DR) * 0.94), Y(cl(m.v * G * Math.min(D, DR) * 0.94 * sa)) - 20, alpha(C('energy'), 0.6), { size: 18, weight: 600, align: 'right' });
     line(ctx, X(Math.min(s, DR)), box.b, X(Math.min(s, DR)), Y(cl(KEi)), C('position'), 2, [4, 8]);
     pinned(ctx, box, X, Y, s, KE, C('energy'), num(KE, 0) + ' J');
     pinned(ctx, box, X, Y, s, Wfr, alpha(C('energy'), 0.7), num(Wfr, 0) + ' J');
+    /* the line names go on panels over the moving drop line and markers */
+    text(ctx, 'KE', X(Math.min(D, DR) * 0.08), Y(cl(KEi * 0.9)) - 16, C('energy'), { size: 18, weight: 600, bg: alpha(PAL.panel, 0.9) });
+    text(ctx, 'taken by friction', X(frTo * 0.62), Y(ff.v * frTo * 0.62) - 32, alpha(C('energy'), 0.7), { size: 18, weight: 600, bg: alpha(PAL.panel, 0.9) });
+    if (th.v > 0.01) text(ctx, 'PE_g', X(Math.min(D, DR) * 0.94), Y(cl(m.v * G * Math.min(D, DR) * 0.94 * sa)) - 20, alpha(C('energy'), 0.6), { size: 18, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
     topline(ctx, s >= D - 1e-6
       ? 'He has stopped after ' + fmt(D, 2) + ' m, with ' + num(Wfr, 0) + ' J taken by friction' + (th.v > 0.01 ? ' and ' + num(PE, 0) + ' J stored in the height.' : '.')
       : 'He has slid ' + fmt(s, 2) + ' m of the ' + fmt(D, 2) + ' m it takes him to stop, and ' + num(Wfr, 0) + ' J of his ' + num(KEi, 0) + ' J have gone into friction.');
     /* on the level the slope's share has nothing to take, so its term leaves the sum and returns as the slope rises */
     const top = `\\mk{KE}{\\tfrac{1}{2}\\km{\\kvi}^2}`, nTop = `\\mk{nKE}{(0.5)(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(vi.v, 2)}\\ \\text{m/s})^2}`, dv = `\\mk{dv}{${fmt(D, 2)}}\\ \\text{m}`;
     ro.set(th.v === 0
-      ? `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff}} = \\frac{${nTop}}{\\mk{nf}{${num(ff.v, 0)}}\\ \\text{N}} = ${dv}`
-      : `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff} \\mk{g}{{}+ \\km\\kg\\sin\\ktheta}} = \\frac{${nTop}}{\\mk{nf}{${num(ff.v, 0)}}\\ \\text{N} \\mk{ng}{{}+ (${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin(${fmt(th.v, 2)}^\\circ)}} = ${dv}`, th.v === 0
-        ? 'On the level the only thing taking energy from him is friction, so he slides ' + fmt(D, 2) + ' m. Raise the slope to 5.00 degrees and the gravitational force takes a share as well, which brings him to rest in ' + fmt((0.5 * m.v * vi.v * vi.v) / (ff.v + m.v * G * Math.sin(5 * RAD)), 2) + ' m.'
+      ? `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff}} = \\frac{${nTop}}{\\mk{nf}{${numT(ff.v, 0)}}\\ \\text{N}} = ${dv}`
+      : `\\mk{d}{\\kd} = \\frac{${top}}{\\mk{f}{\\kff} \\mk{g}{{}+ \\km\\kg\\sin\\ktheta}} = \\frac{${nTop}}{\\mk{nf}{${numT(ff.v, 0)}}\\ \\text{N} \\mk{ng}{{}+ (${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin(${fmt(th.v, 2)}^\\circ)}} = ${dv}`, th.v === 0
+        ? 'Raise the slope to 5.00 degrees and the gravitational force takes a share as well, which brings him to rest in ' + fmt((0.5 * m.v * vi.v * vi.v) / (ff.v + m.v * G * Math.sin(5 * RAD)), 2) + ' m.'
         : 'Sliding up the ' + fmt(th.v, 2) + '-degree slope he stops in ' + fmt(D, 2) + ' m, where on the level the same slide would have carried him ' + fmt((0.5 * m.v * vi.v * vi.v) / ff.v, 2) + ' m. The difference is the ' + num(m.v * G * D * sa, 0) + ' J of gravitational potential energy he gains on the way up, which friction no longer has to take.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => tstop() / 4.5), draw });
@@ -441,16 +432,16 @@ function skierSprite(ctx, x, y, color) {
     const cupX = CUP0 + Math.min(moved, DRAW) * SCT;
     /* the book, the ruler propped on it, the marble and the cup */
     strip(ctx, 110, 1180, TABLE + 16, 30);
-    fixed(ctx, rx(31) - 150, ry(31), 150, TABLE - ry(31));
+    F.book(ctx, rx(31) - 75, (ry(31) + TABLE) / 2, 150, TABLE - ry(31), PAL.ink);
     ctx.save(); ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 9; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(rx(0), ry(0)); ctx.lineTo(rx(31), ry(31)); ctx.stroke(); ctx.restore();
-    for (let c = 5; c <= 30; c += 5) { line(ctx, rx(c) - 4, ry(c) - 7, rx(c) - 11, ry(c) - 19, PAL.muted, 2); text(ctx, String(c), rx(c) - 17, ry(c) - 28, PAL.muted, { size: 16, align: 'center' }); }
+    for (let c = 5; c <= 30; c += 5) { line(ctx, rx(c) - 4, ry(c) - 7, rx(c) - 11, ry(c) - 19, PAL.muted, 2); text(ctx, String(c), rx(c) - 19, ry(c) - 40, PAL.muted, { size: 16, align: 'center' }); }
     dot(ctx, rx(rel.v) - 7, ry(rel.v) - 12, C('position'), false, 11);
-    foamCup(ctx, cupX, TABLE, F.ref('cup'));
+    F.cupOnSide(ctx, cupX, TABLE, 1, F.ref('cup'));
     if (rolling) dot(ctx, rx(along) - 7, ry(along) - 12, F.ref('marble'), true, 13);
     else dot(ctx, cupX + 22, TABLE - 14, F.ref('marble'), true, 13);
     line(ctx, rx(rel.v), ry(rel.v), LIP + 46, ry(rel.v), C('position'), 2, [8, 8]);
     vbracket(ctx, LIP + 46, TABLE, ry(rel.v), C('position'));
-    text(ctx, 'h = ' + fmt(hgt(rel.v) * 100, 1) + ' cm', LIP + 38, ry(rel.v) - 18, C('position'), { size: 18, weight: 600, align: 'right' });
+    text(ctx, 'h = ' + fmt(hgt(rel.v) * 100, 1) + ' cm', LIP + 46, TABLE + 48, C('position'), { size: 18, weight: 600, align: 'center' });
     if (!rolling) {
       /* friction on the cup acts where it meets the table and points back toward the ruler */
       arrow(ctx, cupX + 180, TABLE - 8, cupX + 88, TABLE - 8, C('force'), 5);
@@ -482,8 +473,7 @@ function skierSprite(ctx, x, y, color) {
     topline(ctx, rolling
       ? 'Released at ' + fmt(rel.v, 0) + ' cm, the marble has ' + fmt(along, 1) + ' cm of ruler left to run.'
       : 'The marble arrived with ' + fmt(KE * 1000, 2) + ' mJ and has pushed the cup ' + fmt(moved * 100, 1) + ' cm of the ' + fmt(D * 100, 1) + ' cm friction allows.');
-    readout(d.readout, `\\kKE = \\km\\kg\\kh = \\mu_{\\text{k}}\\kN\\kd = (${fmt(mu.v, 2)})(${fmt(N * 1000, 1)}\\ \\text{mN})(${fmt(D, 3)}\\ \\text{m}) = ${fmt(KE * 1000, 2)}\\ \\text{mJ}`,
-      'The marble brings ' + fmt(KE * 1000, 2) + ' mJ to the cup, and friction does that much work through the distance the cup travels before it stops. Because the energy the marble arrives with grows in step with the release position, so does the distance the cup moves, and the plot is the straight line the investigation asks you to look for. A heavier marble arrives with more energy, and the cup goes farther.');
+    readout(d.readout, `\\kKE = \\km\\kg\\kh = \\mu_{\\text{k}}\\kN\\kd = (${fmt(mu.v, 2)})(${fmt(N * 1000, 1)}\\ \\text{mN})(${fmt(D, 3)}\\ \\text{m}) = ${fmt(KE * 1000, 2)}\\ \\text{mJ}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 4.5), draw });
 })();
@@ -514,13 +504,12 @@ function skierSprite(ctx, x, y, color) {
     arrow(ctx, xt + 254, yt - 56, xt + 350, yt - 56, C('velocity'), 5);
     text(ctx, 'v_f = ?', xt + 364, yt - 56, C('velocity'), { size: 20, weight: 600 });
     vbracket(ctx, xt + 52, y0, yt, C('position'), '2.50 m', 1);
-    text(ctx, '60.0 kg', xa, y0 - 118, C('mass'), { size: 19, weight: 600, align: 'center' });
-    text(ctx, 'KE_i', xa, y0 - 152, C('energy'), { size: 20, weight: 600, align: 'center' });
+    text(ctx, '60.0 kg', xa, y0 - 142, C('mass'), { size: 19, weight: 600, align: 'center' });
+    text(ctx, 'KE_i', xa, y0 - 172, C('energy'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'KE_f + PE_f', xt + 190, yt - 136, C('energy'), { size: 20, weight: 600, align: 'center' });
     text(ctx, 'the coefficient of friction between her skis and the snow is 0.0800', 700, y0 + 84, PAL.ink, { size: 18, align: 'center' });
     topline(ctx, 'The skier meets the rise at 12.0 m/s and coasts to the top, 2.50 m up a slope of 35\u00b0.');
-    readout(d.readout, '\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf,\\quad \\km = 60.0\\ \\text{kg},\\ \\kvi = 12.0\\ \\text{m/s},\\ \\kh = 2.50\\ \\text{m},\\ \\mu_{\\text{k}} = 0.0800',
-      'Her kinetic energy at the bottom has to pay both for the height she gains and for the work friction does along the slope, and what is left of it is the kinetic energy she has at the top. The hint the problem gives is to take her path up the rise as a straight line, so that the distance friction acts through follows from the height of the rise and the angle of the slope.');
+    readout(d.readout, '\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf,\\quad \\km = 60.0\\ \\text{kg},\\ \\kvi = 12.0\\ \\text{m/s},\\ \\kh = 2.50\\ \\text{m},\\ \\mu_{\\text{k}} = 0.0800');
   }
   register(d.fig, { update: () => {}, draw });
 })();

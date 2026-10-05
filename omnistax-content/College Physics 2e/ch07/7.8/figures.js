@@ -55,8 +55,8 @@ const width = (s, size) => s.length * size * 0.52;
     const Wout = eff * Ein, therm = Ein - Wout, fat = E - Ein, grams = Math.abs(fat) / 39;
     const OEf = E - Wout, ce = C('energy');
     /* the food energy eaten today */
-    text(ctx, 'the food energy you eat today', XL, TOP - 28, PAL.muted, { size: 20 });
     bar(ctx, XL, XL + E * K, TOP, TH, alpha(ce, 0.4), ce);
+    text(ctx, 'the food energy you eat today', XL + 16, TOP + TH / 2, PAL.ink, { size: 20, bg: PAL.panel });
     text(ctx, 'E = ' + kj(E) + ' kJ', XL + E * K - 16, TOP + TH / 2, ce, { size: 22, weight: 600, align: 'right' });
     /* where it goes: the useful work, the thermal energy, and the fat stored or drawn upon */
     const xw = XL + Wout * K, xt = XL + Ein * K, xe = XL + E * K;
@@ -79,11 +79,7 @@ const width = (s, size) => s.length * size * 0.52;
         ? 'You spend ' + kj(Ein) + ' kJ today, ' + kj(Wout) + ' kJ of it as useful work, and the ' + kj(fat) + ' kJ you eat beyond that is stored as ' + fmt(grams, 0) + ' g of fat.'
         : 'You spend ' + kj(Ein) + ' kJ today and eat only ' + kj(E) + ' kJ, so the body finds the missing ' + kj(-fat) + ' kJ by metabolizing about ' + fmt(grams, 0) + ' g of fat.');
     readout(d.readout,
-      `\\kOEi + \\kWnc = \\kOEf : \\quad (${tkj(E)}\\ \\text{kJ}) + (-${tkj(Wout)}\\ \\text{kJ}) = ${tkj(OEf)}\\ \\text{kJ}`,
-      'The useful work is the efficiency, ' + fmt(eff * 100, 0) + ' percent, of the ' + kj(Ein) + ' kJ the body spends, and the rest of what it spends, ' + kj(therm) + ' kJ, leaves as thermal energy. '
-      + (Math.abs(fat) <= 40 ? 'What you eat covers exactly what you spend, so the fat you carry does not change.'
-        : fat > 0 ? 'The ' + kj(fat) + ' kJ left over is stored as ' + fmt(grams, 0) + ' g of fat, at the 39 kJ that go into each gram.'
-          : 'The ' + kj(-fat) + ' kJ that is missing comes out of about ' + fmt(grams, 0) + ' g of fat, at the 39 kJ each gram gives back.'));
+      `\\kOEi + \\kWnc = \\kOEf : \\quad (${tkj(E)}\\ \\text{kJ}) + (-${tkj(Wout)}\\ \\text{kJ}) = ${tkj(OEf)}\\ \\text{kJ}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -134,7 +130,8 @@ const width = (s, size) => s.length * size * 0.52;
       if (x1 - x0 > width(label, 18) + 20) text(ctx, label, (x0 + x1) / 2, ST + SH / 2, PAL.ink, { size: 18, align: 'center' });
     });
     bar(ctx, SL, SR, ST, SH, null, PAL.muted);
-    line(ctx, Xh(now), ST - 12, Xh(now), ST + SH + 12, PAL.ink, 3);
+    /* the clock marks the strip at its edges, clear of the activity names */
+    line(ctx, Xh(now), ST - 12, Xh(now), ST + 6, PAL.ink, 3); line(ctx, Xh(now), ST + SH - 6, Xh(now), ST + SH + 12, PAL.ink, 3);
     text(ctx, clock(now), Math.max(SL + 40, Math.min(SR - 40, Xh(now))), ST + SH + 32, PAL.ink, { size: 22, weight: 600, align: 'center' });
     /* the graph: the power against the hour of the day, whose area up to now is the energy spent */
     const { X, Y } = F.axes(ctx, BOX, [0, 24], [0, PMAX], {
@@ -147,7 +144,6 @@ const width = (s, size) => s.length * size * 0.52;
     });
     line(ctx, X(now), BOX.t, X(now), BOX.b, PAL.ink, 2, [4, 8]);
     dot(ctx, X(now), Y(here.P), cp, true, 9);
-    text(ctx, 'the shaded area is the energy spent so far', BOX.l + 12, BOX.t + 26, ce, { size: 18, weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the bar: the day's running total against a typical day's food energy */
     text(ctx, 'energy spent so far', SL, BARY - 24, PAL.muted, { size: 19 });
     bar(ctx, SL, SR, BARY, BARH, null, PAL.rule);

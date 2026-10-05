@@ -56,7 +56,7 @@ function package_(ctx, x, y, w, h, color) {
    nothing travels — so it registers no cycle and carries no transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-area', 660);
+  const d = sim('sim-area', 690);
   const f1 = ctl(d.controls, { label: '\\kF_{\\text{start}}', cls: 'force', min: 0, max: 200, step: 5, value: 115, unit: 'N', dec: 0, aria: 'the force component where the push begins' });
   const f2 = ctl(d.controls, { label: '\\kF_{\\text{end}}', cls: 'force', min: 0, max: 200, step: 5, value: 115, unit: 'N', dec: 0, aria: 'the force component where the push ends' });
   f1.mark([{ at: () => f2.v, label: 'steady' }]); f2.mark([{ at: () => f1.v, label: 'steady' }]);
@@ -89,9 +89,9 @@ function package_(ctx, x, y, w, h, color) {
     { const i = 4, xa = (D * i) / N, xb = (D * (i + 1)) / N, h = Fat((xa + xb) / 2);
       line(ctx, g.X(xa), g.Y(0), g.X(xa), g.Y(h), cE, 3);
       text(ctx, 'W_i', (g.X(xa) + g.X(xb)) / 2, g.Y(h) / 2 + g.Y(0) / 2, cE, { size: 20, weight: 600, align: 'center' });
-      hbracket(ctx, g.X(xa), g.X(xb), g.Y(0) + 56, cD, 'd_i');
+      hbracket(ctx, g.X(xa), g.X(xb), g.Y(0) + 64, cD, 'd_i', { side: 'below' });
       text(ctx, 'W = ' + sig3(W) + ' J', g.X(D / 2), g.Y(Math.max(Fa, Fb)) - 40, cE, { size: 26, weight: 600, align: 'center' });
-      text(ctx, 'd = ' + fmt(D, 2) + ' m', g.X(D / 2), g.Y(0) + 102, cD, { weight: 600, align: 'center' }); }
+      text(ctx, 'd = ' + fmt(D, 2) + ' m', g.X(D / 2), g.Y(0) + 128, cD, { weight: 600, align: 'center' }); }
     ctx.restore();
     /* the force line itself, and the distance it acts through */
     line(ctx, g.X(0), g.Y(Fa), g.X(D), g.Y(Fb), cF, 5);
@@ -103,8 +103,8 @@ function package_(ctx, x, y, w, h, color) {
     /* the product of the steady force bends out into the sum over the strips, and back */
     ro.set(steady
       ? `\\mk{W}{\\kW} = \\mk{P}{(\\kF\\cos\\ktheta)\\kd} = \\mk{nP}{(${sig3(Fa)}\\ \\text{N})(${fmt(D, 2)}\\ \\text{m})} = \\mk{Wv}{${sig3(W)}}\\ \\text{J}`
-      : `\\mk{W}{\\kW} = \\mk{S}{\\sum_i (F\\cos\\ktheta)_{i(\\text{ave})}\\,d_i} = \\mk{nS}{${N}\\times(${sig3(Fav)}\\ \\text{N})(${fmt(D / N, 3)}\\ \\text{m})} = \\mk{Wv}{${sig3(W)}}\\ \\text{J}`, steady
-      ? 'The shaded rectangle is the work the force does, so widening it by pushing through a greater distance and raising it by pushing harder both put more energy into the system.'
+      : `\\mk{W}{\\kW} = \\mk{S}{\\sum_i (\\kF\\cos\\ktheta)_{i(\\text{ave})}\\,{\\kd}_i} = \\mk{nS}{${N}\\times(${sig3(Fav)}\\ \\text{N})(${fmt(D / N, 3)}\\ \\text{m})} = \\mk{Wv}{${sig3(W)}}\\ \\text{J}`, steady
+      ? ''
       : 'The strips add to the same area as a rectangle of height ' + sig3(Fav) + ' N, so a force that climbs steadily does as much work as a steady force of its average value.', { keyMap: steady ? { S: 'P', nS: 'nP' } : { P: 'S', nP: 'nS' } });
   }
   register(d.fig, { update: () => {}, draw });
@@ -151,13 +151,12 @@ function package_(ctx, x, y, w, h, color) {
     if (fr.v > 0.01) {
       const fl = Math.max(30, fr.v * FSC);        /* a small friction still gets an arrow long enough to read */
       arrow(ctx, px - 48, py + 26, px - 48 - fl, py + 26, cF, 5);
-      text(ctx, 'f = ' + sig3(fr.v) + ' N', px - 58 - fl, py + 26, cF, { size: 20, weight: 600, align: 'right' });
+      text(ctx, 'f = ' + sig3(fr.v) + ' N', px - 58 - fl, py + 8, cF, { size: 20, weight: 600, align: 'right' });
     }
     arrow(ctx, px, py - 74, px + Math.max(24, v * 34), py - 74, cV, 5);
     text(ctx, 'v = ' + fmt(v, 2) + ' m/s', px + Math.max(24, v * 34) + 12, py - 74, cV, { size: 20, weight: 600 });
     dot(ctx, X(0), yB - 8, cD, false, 10);
     hbracket(ctx, X(0), Math.max(X(0) + 2, px), 500, cD, 'd = ' + fmt(x, 2) + ' m');
-    text(ctx, 'The weight and the normal force are perpendicular to the motion, so neither does any work.', 700, 552, PAL.muted, { size: 17, align: 'center' });
     /* the graph: the kinetic energy against the distance travelled */
     /* fixed axes. The distance axis is the slider's own range, 0 to 2 m, ticked every 0.5 m. The
        energy the sliders can reach is ½ × 30 kg × (3 m/s)² + 200 N × 2 m = 535 J, but the default
@@ -177,7 +176,7 @@ function package_(ctx, x, y, w, h, color) {
     if (x > 0.01 && g.Y(Math.min(KE0, ER)) - g.Y(keC) > 28) vbracket(ctx, g.X(xC) + 26, g.Y(Math.min(KE0, ER)), g.Y(keC), cE, 'W_net = ' + sig3(Wnet) + ' J', 1);
     line(ctx, g.X(xC), g.Y(0), g.X(xC), g.Y(keC), cD, 2, [4, 8]);
     pinned(ctx, gbox, g.X, g.Y, x, KE, PAL.ink, sig3(KE) + ' J');
-    text(ctx, 'slope = F_net = ' + sig3(p.Fn) + ' N', g.X(dEnd * 0.42), g.Y(Math.min(KE0 + p.Fn * dEnd * 0.42, ER)) - 34, cF, { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'slope = F_net = ' + sig3(p.Fn) + ' N', gbox.r, gbox.t - 22, cF, { size: 18, weight: 600, align: 'right' });
     topline(ctx, t < 1e-9
       ? 'The package starts at ' + fmt(p.u, 2) + ' m/s and carries ' + sig3(KE0) + ' J before the push begins.'
       : done
@@ -242,14 +241,13 @@ function package_(ctx, x, y, w, h, color) {
       text(ctx, fmt(u, 1) + ' m/s', bx[i], base + 34, cV, { size: 18, weight: 600, align: 'center' });
     });
     line(ctx, 985, base, 1310, base, PAL.muted, 2);
-    text(ctx, 'the same two energies side by side,', 1160, base + 52, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'against the same ' + fmt(KR, 0) + ' kJ', 1160, base + 76, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'the same two energies side by side,', 1160, base + 62, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'against the same ' + fmt(KR, 0) + ' kJ', 1160, base + 86, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, v < 0.05
       ? 'A body at rest carries no kinetic energy at all, whatever its mass.'
       : 'At ' + fmt(v, 1) + ' m/s a ' + sig3(m) + ' kg body carries ' + joules(ke(v)) + ', four times the ' + joules(ke(half)) + ' it carries at half that speed.');
     readout(d.readout,
-      `\\kKE = \\tfrac{1}{2}\\km\\kv^2 = \\tfrac{1}{2}(${sig3(m)}\\ \\text{kg})(${fmt(v, 1)}\\ \\text{m/s})^2 = ${Math.abs(ke(v)) >= 10000 ? sig3(ke(v) / 1000) + '\\ \\text{kJ}' : sig3(ke(v)) + '\\ \\text{J}'}`,
-      'The speed enters squared and the mass does not, so halving the speed leaves a quarter of the kinetic energy while halving the mass leaves half of it. That is why a car at 100 km/h carries four times the energy it carries at 50 km/h.');
+      `\\kKE = \\tfrac{1}{2}\\km\\kv^2 = \\tfrac{1}{2}(${fmt(m, 0)}\\ \\text{kg})(${fmt(v, 1)}\\ \\text{m/s})^2 = ${Math.abs(ke(v)) >= 10000 ? sig3(ke(v) / 1000) + '\\ \\text{kJ}' : sig3(ke(v)) + '\\ \\text{J}'}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

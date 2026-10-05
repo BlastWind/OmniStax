@@ -10,6 +10,7 @@ const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
 const SUPS = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
 const sup = (e) => String(e).split('').map((c) => SUPS[c]).join('');
 const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const tx$ = (s) => s.replace(/,/g, '{,}').replace(/ × 10([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)/, (_, e) => ' \\times 10^{' + [...e].map((c) => Object.keys(SUPS).find((k) => SUPS[k] === c)).join('') + '}');
 const sgn = (v) => (v < 0 ? '−' : '');
 /* three significant figures, never in exponent form, with commas */
 function sig3(x) {
@@ -29,8 +30,9 @@ function sci(x, dec) {
 function mower(ctx, x, y, color, s = 1, face = 1) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s * face, s);
   ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round';
-  ctx.beginPath(); ctx.moveTo(-54, -14); ctx.lineTo(-54, -42); ctx.lineTo(42, -42); ctx.lineTo(42, -14); ctx.closePath(); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(34, -38); ctx.lineTo(96, -104); ctx.moveTo(78, -104); ctx.lineTo(114, -104); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-58, -14); ctx.lineTo(-58, -26); ctx.quadraticCurveTo(-54, -34, -40, -34); ctx.lineTo(30, -34); ctx.quadraticCurveTo(44, -34, 46, -14); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(-14, -34, 22, 15, 0, Math.PI, 0); ctx.fill(); ctx.fillRect(-18, -54, 8, 6);
+  ctx.beginPath(); ctx.moveTo(34, -30); ctx.lineTo(88, -76); ctx.moveTo(74, -76); ctx.lineTo(102, -76); ctx.stroke();
   ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(-34, -14, 14, 0, TAU); ctx.moveTo(38, -14); ctx.arc(24, -14, 14, 0, TAU); ctx.fill();
   ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(-34, -14, 14, 0, TAU); ctx.moveTo(38, -14); ctx.arc(24, -14, 14, 0, TAU); ctx.stroke();
   ctx.restore();
@@ -59,7 +61,7 @@ function crate(ctx, x, y, w, color) {
   const ro = F.readout(d);
   const cy = cycle(() => 1, 1.2);            /* one trip per loop, counted as the fraction of it that is done */
   function reset() { cy.reset(); }
-  const SC = 22, X0 = 260, GY = 420;         /* logical units to the metre, the start of the trip, the ground */
+  const SC = 22, X0 = 400, GY = 420;         /* logical units to the metre, the start of the trip, the ground */
   const MS = 1.3, PS = 1.0;                  /* the mower's scale and the person's; she stands 150 units, the mower's handle reaches 135 */
   function draw() {
     const { ctx } = begin(d.c);
@@ -71,7 +73,7 @@ function crate(ctx, x, y, w, color) {
     const mx = X0 + s * SC;
     mower(ctx, mx, GY, F.ref('mower'), MS, -1);
     /* the person behind the mower, both hands on the grip and her feet on the ground; she strides while it moves */
-    const gx = mx - 96 * MS, gy = GY - 104 * MS;
+    const gx = mx - 88 * MS, gy = GY - 76 * MS;
     const walking = s > 0.05 && s < D - 0.05, sw = walking ? Math.sin(s * 1.6) : 0;
     const px = gx - 58 * PS;
     F.silhouette(ctx, { x: px, y: GY, s: PS, pose: 'push', color: F.ref('pusher'), hands: [{ x: (gx - px) / PS, y: (gy - GY) / PS + 2 }, { x: (gx - px) / PS - 4, y: (gy - GY) / PS + 8 }],
@@ -86,10 +88,10 @@ function crate(ctx, x, y, w, color) {
       /* a thin halo of the panel colour under the arrow keeps it legible where it crosses the body */
       line(ctx, tx, ty, gx, gy, PAL.panel, 9);
       /* the component of the force along the motion, which is the part of it that does the work */
-      if (Math.abs(cs) > 0.02) {
+      if (Math.abs(cs) > 0.02 && sn > 0.2) {
         line(ctx, gx, ty, gx, gy, C('force'), 2, [4, 8]);
         arrow(ctx, tx, ty, gx, ty, C('force'), 4);
-        lab.add('F cos θ = ' + fmt(Fv * cs, 1) + ' N', (tx + gx) / 2, ty, 0, cs > 0 ? -1 : -1, C('force'), 20, 18);
+        lab.add('F cos θ = ' + fmt(Fv * cs, 1).replace('-', '−') + ' N', (tx + gx) / 2, ty, 0, cs > 0 ? -1 : -1, C('force'), 20, 18);
       }
       arrow(ctx, tx, ty, gx, gy, C('force'), 5);
       if (ang > 4 && ang < 176) F.angleArc(ctx, { x: tx, y: ty }, 40, -ang * RAD, 0, 'θ = ' + fmt(ang, 0) + '°', lab, C('angle'));
@@ -129,18 +131,14 @@ function crate(ctx, x, y, w, color) {
       : D < 0.05 ? 'The mower does not move, so the force does no work on it however hard the person pushes.'
       : Math.abs(cs) < 0.005 ? 'The force is perpendicular to the motion, so it does no work however far the mower goes.'
       : 'The mower has gone ' + fmt(s, 1) + ' m of the ' + fmt(D, 1) + ' m, and the force has done ' + sig3(W) + ' J of work on it so far.');
-    const caseLine = Fv < 0.05 || D < 0.05 ? 'There is no work without both a force and a displacement, so nothing is transferred while the mower stands still.'
-      : Math.abs(cs) < 0.005 ? 'The force is perpendicular to the motion, so cos θ is zero and no energy is transferred.'
-      : cs > 0 ? 'The force has a component in the direction of the motion, so the work is positive and energy is transferred to the mower.'
-      : 'The force has a component opposite to the motion, so the work is negative and energy is taken out of the system.';
     /* the relation takes the form of the case: at 90° the cosine is the zero that empties the product,
        and at 180° it bends into the minus sign of work done against the motion */
     const nums = `(\\mk{Fv}{${fmt(Fv, 1)}}\\ \\text{N})(\\mk{dv}{${fmt(D, 1)}}\\ \\text{m})`;
     ro.set(ang === 90
       ? `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta} = ${nums}\\mk{cv}{\\cos 90^\\circ} = \\mk{Wv}{0}\\ \\text{J}`
       : ang === 180
-        ? `\\mk{W}{\\kW} = \\mk{c}{-}\\mk{F}{\\kF}\\mk{d}{\\kd} = \\mk{cv}{-}${nums} = \\mk{Wv}{${sig3(Wtot)}}\\ \\text{J}`
-        : `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta} = ${nums}\\mk{cv}{\\cos ${fmt(ang, 0)}^\\circ} = \\mk{Wv}{${sig3(Wtot)}}\\ \\text{J}`, caseLine);
+        ? `\\mk{W}{\\kW} = \\mk{c}{-}\\mk{F}{\\kF}\\mk{d}{\\kd} = \\mk{cv}{-}${nums} = \\mk{Wv}{${tx$(sig3(Wtot))}}\\ \\text{J}`
+        : `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta} = ${nums}\\mk{cv}{\\cos ${fmt(ang, 0)}^\\circ} = \\mk{Wv}{${tx$(sig3(Wtot))}}\\ \\text{J}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
 })();
@@ -163,7 +161,7 @@ function crate(ctx, x, y, w, color) {
   const MARKS = [
     { E: 0.98, label: 'an apple lifted about a meter', row: 0, ref: 'apple' },
     { E: 1536, label: 'the lawn mower of Example 7.1', row: 1 },
-    { E: 4186, label: 'one food calorie', row: 0 },
+    { E: 4186, label: 'one food calorie', row: 0, align: 'left' },
     { E: 1.0e7, label: 'a day’s food energy', row: 1 },
   ];
   function draw() {
@@ -197,7 +195,7 @@ function crate(ctx, x, y, w, color) {
       const kc = k.ref ? F.ref(k.ref) : PAL.muted;
       line(ctx, x, ly + 12, x, BB, kc, 2, [6, 8]);
       dot(ctx, x, BB, kc, true, 7);
-      text(ctx, k.label, right ? RX : left ? LX : x, ly, kc, { size: 18, align: right ? 'right' : left ? 'left' : 'center' });
+      text(ctx, k.label, right ? RX : left ? LX : k.align ? x - 8 : x, ly, kc, { size: 18, align: right ? 'right' : left ? 'left' : k.align || 'center' });
     });
     /* where the work the sliders set falls among them */
     const xw = Math.max(LX, Math.min(RX, Xe(W)));
@@ -206,7 +204,7 @@ function crate(ctx, x, y, w, color) {
     text(ctx, 'W = ' + sci(W, 2) + ' J', Math.max(LX + 110, Math.min(xw, RX - 110)), BB + 68, C('energy'), { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, 'Lifting ' + fmt(m, 2) + ' kg through ' + fmt(h, 2) + ' m takes ' + sci(W, 2) + ' J of work'
       + (W > 0.7 && W < 1.4 ? ', which is about one joule.' : '.'));
-    readout(d.readout, `\\kW = \\kF\\kd\\cos\\ktheta = (${sig3(Fw)}\\ \\text{N})(${fmt(h, 2)}\\ \\text{m})\\cos 0^\\circ = ${sci(W, 2)}\\ \\text{J}`,
+    readout(d.readout, `\\kW = \\kF\\kd\\cos\\ktheta = (${tx$(sig3(Fw))}\\ \\text{N})(${fmt(h, 2)}\\ \\text{m})\\cos 0^\\circ = ${tx$(sci(W, 2))}\\ \\text{J}`,
       'That much work is ' + sci(W / 4186, 2) + ' kcal, and the person of Example 7.1 eats about 2400 kcal in a day, so it is '
       + sci(W / 4186 / 2400, 2) + ' of a day’s food energy.');
   }

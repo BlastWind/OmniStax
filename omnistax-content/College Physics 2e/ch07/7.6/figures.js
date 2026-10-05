@@ -70,7 +70,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
       const ya = yb - ((yb - yt) * i) / N, yc = yb - ((yb - yt) * (i + 1)) / N;
       line(ctx, xa, ya, xc, ya, PAL.muted, 3); line(ctx, xc, ya, xc, yc, PAL.muted, 3);
     }
-    line(ctx, 60, yb, x0, yb, PAL.muted, 3);
+    line(ctx, 60, yb, x0, yb, PAL.muted, 3); line(ctx, x1, yt, 640, yt, PAL.muted, 3);
     /* the climber, her feet on the tread she has reached and her body leaning into the climb */
     const step = Math.min(N - 1, Math.floor(s.f * N)), within = done ? 1 : s.f * N - step, tread = (x1 - x0) / N;
     const cx = done ? x1 + 24 : x0 + tread * (step + 0.3 + 0.4 * within), cyy = done ? yt : yb - ((yb - yt) * step) / N;
@@ -80,8 +80,10 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
       feet: [{ x: 16 + 8 * sw, y: -stepUp / PS }, { x: -18 - 6 * sw, y: 0 }] });
     /* her speed, along the stairs */
     const ax = 78, ay = -78 * ((yb - yt) / (x1 - x0));
-    arrow(ctx, cx + 20, cyy - 108, cx + 20 + ax, cyy - 108 + ay, C('velocity'), 5);
-    text(ctx, fmt(V.v, 1) + ' m/s', cx + 26 + ax, cyy - 116 + ay, C('velocity'), { weight: 600, size: 20 });
+    if (!done) {
+      arrow(ctx, cx + 34, cyy - 60, cx + 34 + ax, cyy - 60 + ay, C('velocity'), 5);
+      text(ctx, fmt(V.v, 1) + ' m/s', cx + 40 + ax, cyy - 68 + ay, C('velocity'), { weight: 600, size: 20, bg: PAL.panel });
+    }
     /* the height gained so far, bracketed against the full climb */
     line(ctx, x0, yt, 660, yt, PAL.rule, 2, [10, 10]);
     line(ctx, x0, yb, 660, yb, PAL.rule, 2, [10, 10]);
@@ -107,23 +109,24 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     stack(ctx, X, Y, 0, tEnd, ke, ke + end.foodAll * kJ, ke + (end.pe + end.th) * kJ, ke + end.foodAll * kJ, 0.08);
     const totC = Math.min(tot, ER);
     line(ctx, X(0), Y(totC), X(tEnd), Y(totC), C('energy'), 5);
-    text(ctx, 'the total never changes', X(tEnd * 0.5), Y(totC) - 20, C('energy'), { size: 17, align: 'center', weight: 600 });
-    /* the bands named, each where it is thickest */
-    const name = (label, at, lo, hi) => { if ((hi - lo) * (box.b - box.t) / top > 26 && (lo + hi) / 2 < ER) text(ctx, label, X(tEnd * at), Y((lo + hi) / 2), PAL.ink, { size: 17, align: 'center' }); };
-    name('kinetic', 0.5, 0, ke);
-    name('potential', 0.78, ke, ke + end.pe * kJ);
-    name('thermal', 0.72, ke + end.pe * kJ, ke + (end.pe + end.th) * kJ);
-    name('chemical', 0.26, ke + 0.5 * end.foodAll * kJ, ke + end.foodAll * kJ);
     if (ke * (box.b - box.t) / top < 26) text(ctx, 'the kinetic energy, ' + J(s.ke) + ' J, is too small to see here', box.l, box.b + 58, PAL.muted, { size: 17 });
     /* where the clock stands */
     line(ctx, X(Math.min(tau, TR)), box.t, X(Math.min(tau, TR)), box.b, C('time'), 3, [4, 8]);
     F.pinned(ctx, box, X, Y, tau, tot, C('energy'), fmt(tot, 1) + ' kJ');
+    /* the names go over the clock's line, on panels */
+    if (X(tEnd) - X(0) > 240) text(ctx, 'the total never changes', X(tEnd * 0.5), Y(totC) - 20, C('energy'), { size: 17, align: 'center', weight: 600, bg: alpha(PAL.panel, 0.85) });
+    /* the bands named, each where it is thickest */
+    const name = (label, at, lo, hi) => { if (X(tEnd) - X(0) > 200 && (hi - lo) * (box.b - box.t) / top > 26 && (lo + hi) / 2 < ER) text(ctx, label, X(tEnd * at), Y((lo + hi) / 2), PAL.ink, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.7) }); };
+    name('kinetic', 0.5, 0, ke);
+    name('potential', 0.78, ke, ke + end.pe * kJ);
+    name('thermal', 0.72, ke + end.pe * kJ, ke + (end.pe + end.th) * kJ);
+    name('chemical', 0.26, ke + 0.5 * end.foodAll * kJ, ke + end.foodAll * kJ);
     topline(ctx, done
       ? 'She has climbed the whole ' + fmt(H.v, 1) + ' m on ' + fmt(s.foodAll * kJ, 1) + ' kJ of food energy, ' + fmt(s.peAll * kJ, 1) + ' kJ of it now height.'
       : 'At ' + fmt(tau, 1) + ' s she has climbed ' + fmt(s.y, 1) + ' m of the ' + fmt(H.v, 1) + ' m and spent ' + fmt(s.spent * kJ, 1) + ' kJ of the ' + fmt(s.foodAll * kJ, 1) + ' kJ.');
     readout(d.readout, `\\kKEi + \\kPEi + \\kWnc + \\kOEi = ${Jtex(s.ke)} + 0 + 0 + ${Jtex(s.foodAll)} = ${Jtex(s.total)}\\ \\text{J}`,
       'At this moment the other side of the equation reads ' + J(s.ke) + ' + ' + J(s.pe) + ' + ' + J(s.chem + s.th) + ' = ' + J(s.total)
-      + ' J, the same total. No outside nonconservative force does work on the climber and the Earth together, so the work done by nonconservative forces is zero, her kinetic energy is the same at the end as at the start, and every joule that has left her food has gone into height or into heat.');
+      + ' J, the same total.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
 })();
@@ -214,8 +217,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
         ? cap(a[0]) + ' carries ' + a[3] + ' J, which is ' + ratio(va / vb) + ' times the energy of ' + b[0] + '.'
         : cap(a[0]) + ' carries ' + a[3] + ' J, which is ' + ratio(vb / va) + ' times less than ' + b[0] + '.');
     readout(d.readout, same ? `${tx(a)} = ${tx(b)}`
-      : `\\frac{${tx(va >= vb ? a : b)}}{${tx(va >= vb ? b : a)}} = ${ratioTex(Math.max(va, vb) / Math.min(va, vb))}`,
-      'The table runs from the 10⁻¹⁹ J that breaks one strand of DNA to the 10⁶⁸ J of the Big Bang, eighty-seven powers of ten apart. In a column of figures a factor of a thousand looks much like a factor of ten; on the ladder the distance between two marks is the ratio between them.');
+      : `\\frac{${tx(va >= vb ? a : b)}}{${tx(va >= vb ? b : a)}} = ${ratioTex(Math.max(va, vb) / Math.min(va, vb))}`);
   }
   /* a row's value as LaTeX, so that the readout sets it the way the table prints it */
   function tx(r) {
@@ -234,7 +236,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
    still and gets no transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-conversion', 520);
+  const d = sim('sim-conversion', 545);
   const DEV = [
     ['cycling and climbing', 20], ['swimming at the surface', 2], ['swimming submerged', 4], ['shoveling', 3],
     ['weightlifting', 9], ['a steam engine', 17], ['a gasoline engine', 30], ['a diesel engine', 35],
@@ -255,6 +257,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     if (wide) text(ctx, useful, (from + cut) / 2, y - 20, C('energy'), { size: 20, weight: 600, align: 'center' });
     else text(ctx, useful, from, y + TH + 22, C('energy'), { size: 20, weight: 600 });
     if (to - cut > 280) text(ctx, waste, (cut + to) / 2, y + TH / 2, C('energy'), { size: 17, align: 'center' });
+    else if (to - cut > 3 && to < 1100) text(ctx, waste, to + 14, y + TH / 2, C('energy'), { size: 17 });
     else if (to - cut > 3) text(ctx, waste, to, y + TH + 22, C('energy'), { size: 17, align: 'right' });
     return cut;
   }
@@ -265,7 +268,7 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
     const mj = (x) => fmt(x, x < 1 ? 3 : x < 10 ? 2 : 1), MJ = (x) => mj(x) + ' MJ';
     /* what went in */
     band(ctx, L, 122, L + W, 122 + TH, 0.75);
-    text(ctx, 'energy in, ' + MJ(ein), L + W / 2, 100, C('energy'), { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'energy in, ' + MJ(ein), L + W / 2, 122 + TH / 2, C('energy'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     arrow(ctx, 200, 192, 200, 248, PAL.ink, 4);
     text(ctx, 'through ' + DEV[D1.v][0] + ', ' + fmt(DEV[D1.v][1], 0) + '% efficient', 224, 212, PAL.ink, { size: 20 });
     /* what the first device passed on, and what it did not */
@@ -274,17 +277,12 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
       arrow(ctx, 200, 366, 200, 418, PAL.ink, 4);
       text(ctx, 'through ' + DEV[D2.v - 1][0] + ', ' + fmt(DEV[D2.v - 1][1], 0) + '% efficient', 224, 384, PAL.ink, { size: 20 });
       stage(ctx, 434, L, cut1, e2, 'useful energy out, ' + MJ(out2), 'thermal energy, ' + MJ(out1 - out2));
-    } else {
-      text(ctx, 'Set a second device and the useful energy is sent on through that one as well,', L + W / 2, 420, PAL.muted, { size: 20, align: 'center' });
-      text(ctx, 'as the electricity from a solar cell is sent on to an electric motor.', L + W / 2, 450, PAL.muted, { size: 20, align: 'center' });
     }
     const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
     topline(ctx, two
       ? cap(DEV[D1.v][0]) + ' turns ' + MJ(ein) + ' into ' + MJ(out1) + ', and ' + DEV[D2.v - 1][0] + ' turns that into ' + MJ(out2) + ', so ' + fmt(e1 * e2 * 100, 1) + ' percent of what went in is left.'
       : cap(DEV[D1.v][0]) + ' turns ' + MJ(ein) + ' into ' + MJ(out1) + ' of useful energy, and the other ' + MJ(ein - out1) + ' leaves as thermal energy.');
-    readout(d.readout, `\\text{Eff} = \\frac{\\kWout}{\\kEin} = \\frac{${mj(two ? out2 : out1)}\\ \\text{MJ}}{${mj(ein)}\\ \\text{MJ}} = ${fmt(e1 * e2, 3)}`,
-      two ? 'The efficiency of the pair is the product of the two, ' + fmt(e1, 2) + ' × ' + fmt(e2, 2) + ' = ' + fmt(e1 * e2, 3) + ', because the second device works only on what the first one passed to it.'
-        : 'The ' + MJ(ein - out1) + ' that does not come out as useful energy has not been destroyed. It leaves as thermal energy, and the total is the same as it was before the conversion.');
+    readout(d.readout, `\\text{Eff} = \\frac{\\kWout}{\\kEin} = \\frac{${mj(two ? out2 : out1)}\\ \\text{MJ}}{${mj(ein)}\\ \\text{MJ}} = ${fmt(e1 * e2, 3)}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -336,7 +334,6 @@ function stack(ctx, X, Y, t0, t1, lo0, hi0, lo1, hi1, a) {
       if (ab - at > 14) arrow(ctx, x, at, x, ab, PAL.ink, 4);
       text(ctx, label, x, ly, PAL.ink, { size: 17, align: i === 0 ? 'left' : i === STOP.length - 1 ? 'right' : 'center', bg: PAL.panel });
     });
-    topline(ctx, 'The car accelerates down the first hill, runs out of gasoline, coasts over the crest and down again, and brakes to a stop.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

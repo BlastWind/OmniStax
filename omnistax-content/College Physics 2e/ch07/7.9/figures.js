@@ -16,7 +16,7 @@ function key(ctx, x, y, a, label, size = 17, color) {
   ctx.save(); ctx.fillStyle = color ? alpha(color, a) : alpha(C('energy'), a); ctx.fillRect(x, y - 8, 26, 16);
   ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(x, y - 8, 26, 16); ctx.restore();
   text(ctx, label, x + 34, y, PAL.ink, { size });
-  return x + 34 + F.measure(ctx, label, { size }) + 30;
+  return x + 34 + F.measure(ctx, label, { size }) + 52;
 }
 
 /* =====================================================================
@@ -27,7 +27,7 @@ function key(ctx, x, y, a, label, size = 17, color) {
    target. A still picture: the mix of a year has no time in it.
 ===================================================================== */
 (function () {
-  const d = sim('sim-mix', 580);
+  const d = sim('sim-mix', 610);
   const T = ctl(d.controls, { label: '\\text{renewable target}', cls: '', min: 7.2, max: 80, step: 0.1, value: 7.2, unit: '%', dec: 1, aria: 'renewable target share' });
   /* the shares the book's pie gives, in the book's own words and numbers */
   const SRC = [
@@ -42,20 +42,20 @@ function key(ctx, x, y, a, label, size = 17, color) {
   const R0 = SRC.filter((s) => s.ren).reduce((t, s) => t + s.pct, 0);        /* 7.18 */
   const N0 = SRC.filter((s) => !s.ren).reduce((t, s) => t + s.pct, 0);       /* 92.83 */
   const L = 520, RX = 1280, X = (p) => L + ((RX - L) * p) / 100;
-  const ROW = [140, 190, 240, 290, 385, 435, 485];
+  const ROW = [170, 220, 270, 320, 415, 465, 515];
   function draw() {
     const { ctx } = begin(d.c);
     const t = T.v, held = t <= R0 / (R0 + N0) * 100 + 0.05;
     const kr = t / R0, kn = (100 - t) / N0;
     /* the key, so the two bars of a row can be told apart */
-    ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.9); ctx.fillRect(1046, 84, 26, 16); ctx.restore();
-    text(ctx, 'in 2006', 1080, 92, PAL.ink, { size: 17 });
-    ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.32); ctx.fillRect(1046, 110, 26, 16);
-    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.strokeRect(1046, 110, 26, 16); ctx.restore();
-    text(ctx, 'with renewables at ' + fmt(t, 1) + '%', 1080, 118, PAL.ink, { size: 17 });
+    ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.9); ctx.fillRect(1046, 114, 26, 16); ctx.restore();
+    text(ctx, 'in 2006', 1080, 122, PAL.ink, { size: 17 });
+    ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.32); ctx.fillRect(1046, 140, 26, 16);
+    ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.strokeRect(1046, 140, 26, 16); ctx.restore();
+    text(ctx, 'with renewables at ' + fmt(t, 1) + '%', 1080, 148, PAL.ink, { size: 17 });
     /* the two groups, each with its heading and its rows */
-    text(ctx, 'sources that can be used up, ' + fmt(N0, 1) + '% of the world’s energy in 2006', 30, 95, PAL.ink, { size: 20, weight: 600 });
-    text(ctx, 'renewable sources, ' + fmt(R0, 1) + '% in 2006 and ' + fmt(t, 1) + '% at the target', 30, 340, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, 'sources that can be used up, ' + fmt(N0, 1) + '% of the world’s energy in 2006', 30, 125, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, 'renewable sources, ' + fmt(R0, 1) + '% in 2006 and ' + fmt(t, 1) + '% at the target', 30, 370, PAL.ink, { size: 20, weight: 600 });
     SRC.forEach((s, i) => {
       const y = ROW[i], now = s.pct, then = s.pct * (s.ren ? kr : kn);
       text(ctx, s.name, 500, y, PAL.ink, { size: 18, align: 'right' });
@@ -65,8 +65,9 @@ function key(ctx, x, y, a, label, size = 17, color) {
       ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.strokeRect(X(0), y + 3, Math.max(X(then) - X(0), 2), 14); ctx.restore();
       text(ctx, fmt(then, 2) + '%', X(then) + 12, y + 10, held ? PAL.muted : PAL.ink, { size: 17 });
     });
-    line(ctx, X(0), 120, X(0), 505, PAL.muted, 2);
-    scale(ctx, X, 0, 100, 20, 520, '%', 1);
+    /* the zero line breaks round the second group's heading */
+    line(ctx, X(0), 150, X(0), 340, PAL.muted, 2); line(ctx, X(0), 395, X(0), 535, PAL.muted, 2);
+    scale(ctx, X, 0, 100, 20, 550, '%', 1);
     topline(ctx, held
       ? 'In 2006 renewable sources supplied ' + fmt(R0, 1) + ' percent of the world’s energy, and oil, coal and natural gas supplied ' + fmt(SRC[0].pct + SRC[1].pct + SRC[2].pct, 1) + ' percent of it.'
       : 'Moving from ' + fmt(R0, 1) + ' percent renewable to ' + fmt(t, 1) + ' percent takes ' + fmt(t - R0, 1) + ' percentage points out of oil, coal, gas and nuclear power.');
@@ -113,7 +114,7 @@ function key(ctx, x, y, a, label, size = 17, color) {
     text(ctx, fmt(now, 0) + ' EJ', S.X(yr) - 16, S.Y(now) + 4, C('energy'), { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     topline(ctx, 'At ' + fmt(r, 2) + ' percent a year the world’s energy use reaches ' + fmt(now, 0) + ' EJ in ' + fmt(yr, 0) + ', which is ' + fmt(now / E0, 1) + ' times the 373 EJ of 1990.');
     readout(d.readout, `\\kE = (373\\ \\text{EJ})(1 + ${fmt(r / 100, 4)})^{\\,${fmt(yr, 0)} - 1990} = ${fmt(now, 0)}\\ \\text{EJ}`,
-      'World energy use was 373 EJ in 1990, and 812 EJ is projected for 2035; steady growth at 1.74 percent a year joins the two. Demand tripled in the 50 years before 1990, which is growth at about 2.2 percent a year.');
+      'Demand tripled in the 50 years before 1990, which is growth at about 2.2 percent a year.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -175,7 +176,7 @@ function key(ctx, x, y, a, label, size = 17, color) {
     const best = DATA.find((r) => r.name !== 'World');
     topline(ctx, above + ' of the 11 countries listed draw ' + fmt(th, 0) + ' percent or more of their energy from renewable sources.');
     readout(d.readout, `\\frac{38.2\\ \\text{EJ} + 31.7\\ \\text{EJ}}{557.1\\ \\text{EJ}} = 12.5\\%`,
-      'Across the world as a whole, hydroelectric power and the other renewable sources together came to 12.5% of the 557.1 EJ used in 2020, and ' + best.name + ' leads the countries listed with ' + fmt(best.ren, 1) + '%. Each bar is the share of that country’s own energy, and the total beside it is what the country uses in a year.');
+      best.name + ' leads the countries listed with ' + fmt(best.ren, 1) + '%.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -206,7 +207,7 @@ function key(ctx, x, y, a, label, size = 17, color) {
       seg(ctx, X(0), X(use), y, 30, 0.9);
       seg(ctx, X(use), X(100), y, 30, 0.2);
       if (X(use) - X(0) > 200) text(ctx, fmt(use, 1) + ' J', (X(0) + X(use)) / 2, y, PAL.bg, { size: 18, weight: 600, align: 'center' });
-      else text(ctx, fmt(use, 1) + ' J', X(use) + 10, y - 24, C('energy'), { size: 18, weight: 600 });
+      else text(ctx, fmt(use, 1) + ' J', X(use) + 10, y, C('energy'), { size: 18, weight: 600 });
       if (lost > 12) text(ctx, fmt(lost, 1) + ' J', RX - 12, y, PAL.ink, { size: 18, align: 'right' });
       ctx.restore();
     }
@@ -215,8 +216,7 @@ function key(ctx, x, y, a, label, size = 17, color) {
     text(ctx, 'the total is still 100 J', X(100), bot + 24, PAL.ink, { size: 18, align: 'right' });
     const use = 100 * Math.pow(f, n);
     topline(ctx, 'At ' + fmt(EF.v, 0) + ' percent each, ' + n + (n === 1 ? ' transformation leaves ' : ' transformations leave ') + fmt(use, 1) + ' J of the original 100 J able to do work.');
-    readout(d.readout, `\\kE_{\\text{useful}} = (100\\ \\text{J})\\,\\text{Eff}^{\\,${n}} = (100\\ \\text{J})(${fmt(f, 2)})^{${n}} = ${fmt(use, 1)}\\ \\text{J}`,
-      'The ' + fmt(100 - use, 1) + ' J that is gone from the left is still there, as waste heat in the surroundings, so the total has not changed. What has been lost is the ability of that energy to do work, and that is why an energy resource can run out even though energy is conserved.');
+    readout(d.readout, `\\kE_{\\text{useful}} = (100\\ \\text{J})\\,\\text{Eff}^{\\,${n}} = (100\\ \\text{J})(${fmt(f, 2)})^{${n}} = ${fmt(use, 1)}\\ \\text{J}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

@@ -76,12 +76,13 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     const TR = 12, WR = 8000;
     const { X, Y } = axes(ctx, box, [0, TR], [0, WR], { xl: 't (s)', xc: C('time'), yl: 'the work delivered (J)', yc: C('energy'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => commas(fmt(v, 0)) });
     /* the two levels the work is made of, labelled clear of one another even when they nearly meet */
-    const level = (y, s) => text(ctx, s, box.l + 14, y, C('energy'), { size: 17 });
+    const right = X(T.v) - box.l < 260;   /* the labels sit wherever the rising line is not */
+    const level = (y, s) => text(ctx, s, right ? box.r - 14 : box.l + 14, y, C('energy'), { size: 17, align: right ? 'right' : 'left' });
     if (Y(PE) - Y(W) > 14) { line(ctx, box.l, Y(PE), box.r, Y(PE), C('energy'), 3, [10, 10]); level(Y(PE) + 18, 'mgh = ' + whole(PE) + ' J, the climbing'); }
     line(ctx, box.l, Y(W), box.r, Y(W), C('energy'), 3, [10, 10]);
     level(Math.max(box.t + 12, Y(W) - 16), 'W = ' + whole(W) + ' J, the whole job');
     line(ctx, X(0), Y(0), X(T.v), Y(W), C('energy'), 5);
-    text(ctx, 'the slope of that line is the average rate, ' + whole(P) + ' W', box.r - 14, box.b - 26, C('power'), { size: 17, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the slope of that line is the average rate, ' + whole(P) + ' W', box.l, box.b + 102, C('power'), { size: 17, weight: 600 });
     if (tau > 1e-9) { line(ctx, X(tau), Y(0), X(tau), Y(W * f), PAL.muted, 2, [4, 8]); line(ctx, box.l, Y(W * f), X(tau), Y(W * f), PAL.muted, 2, [4, 8]); }
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
     pinned(ctx, box, X, Y, tau, W * f, C('energy'), whole(W * f) + ' J');
@@ -115,7 +116,7 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     [5e3, '5 × 10³', 'a football player'], [4e3, '4 × 10³', 'a clothes dryer'], [100, '100', 'a person at rest'],
     [60, '60', 'an incandescent light bulb'], [8, '8', 'the heart of a person at rest'], [3, '3', 'an electric clock'], [1e-3, '10⁻³', 'a pocket calculator'],
   ];
-  const LO = -4, HI = 38, BL = 350, BR = 1230, X = (u) => BL + ((BR - BL) * (u - LO)) / (HI - LO);
+  const LO = -4, HI = 38, BL = 380, BR = 1230, X = (u) => BL + ((BR - BL) * (u - LO)) / (HI - LO);
   const TOP = 112, DY = 27, AX = 584;
   function draw() {
     const { ctx } = begin(d.c);
@@ -124,25 +125,27 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     const below = ROWS.filter(([v]) => Math.log10(v) < u - 0.01).sort((a, b) => b[0] - a[0])[0];
     const above = ROWS.filter(([v]) => Math.log10(v) > u + 0.01).sort((a, b) => a[0] - b[0])[0];
     const on = ROWS.find(([v]) => Math.abs(Math.log10(v) - u) <= 0.01);
+    /* the line the sliders set runs behind the bars and their labels */
+    line(ctx, xm, 92, xm, AX - 14, PAL.ink, 3, [8, 6]);
     /* one bar to the row, each step to the right a power of ten */
     ROWS.forEach((row, i) => {
       const x = X(Math.log10(row[0])), y = TOP + i * DY, hot = row === below || row === above || row === on;
-      text(ctx, row[2], 330, y, hot ? C('power') : PAL.muted, { size: 17, align: 'right', weight: hot ? 600 : 400 });
+      text(ctx, row[2], 364, y, hot ? C('power') : PAL.muted, { size: 17, align: 'right', weight: hot ? 600 : 400 });
       line(ctx, BL, y, x, y, hot ? C('power') : alpha(C('power'), 0.38), 13);
-      text(ctx, row[1] + ' W', x + 13, y, hot ? C('power') : PAL.muted, { size: 17, weight: hot ? 600 : 400 });
+      text(ctx, row[1] + ' W', x + 13, y, hot ? C('power') : PAL.muted, { size: 17, weight: hot ? 600 : 400, bg: PAL.panel });
     });
     /* the scale the bars are drawn on */
     line(ctx, BL, AX, BR, AX, PAL.muted, 2);
     for (let n = LO; n <= HI; n++) line(ctx, X(n), AX - 6, X(n), AX + 6, PAL.rule, 2);
-    for (let n = -3; n <= 35; n += n === -3 ? 3 : 5) { line(ctx, X(n), AX - 8, X(n), AX + 10, PAL.muted, 2); text(ctx, '10' + sup(n) + ' W', X(n), AX + 34, PAL.muted, { size: 17, align: 'center' }); }
+    for (let n = 0; n <= 35; n += 5) { line(ctx, X(n), AX - 8, X(n), AX + 10, PAL.muted, 2); text(ctx, '10' + sup(n) + ' W', X(n), AX + 34, PAL.muted, { size: 17, align: 'center' }); }
     /* the power the sliders set, and how far it stands from the entry on either side of it */
-    line(ctx, xm, 92, xm, AX - 14, PAL.ink, 3, [8, 6]);
     text(ctx, printed + ' W', clamp(xm, 140, 1260), 74, C('power'), { size: 22, weight: 600, align: 'center' });
     /* the factor goes after the entry's own figure, where nothing else on the row can sit on it */
     const mark = (row, label) => {
       const x = X(Math.log10(row[0])), y = TOP + ROWS.indexOf(row) * DY;
       const w = F.measure(ctx, row[1] + ' W', { size: 17, weight: 600 });
-      text(ctx, label, Math.min(x + w + 30, 1330), y, PAL.ink, { size: 17, weight: 600 });
+      const fits = x + 13 + w + 36 < 1330;
+      text(ctx, label, fits ? x + 13 + w + 36 : x - 14, y, PAL.ink, { size: 17, weight: 600, align: fits ? 'left' : 'right', bg: PAL.panel });
     };
     if (below) mark(below, '× ' + factor(P / below[0]));
     if (above) mark(above, '× ' + factor(above[0] / P));
@@ -150,8 +153,8 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
       : below && above ? printed + ' W falls between ' + below[2] + ' and ' + above[2] + '.'
       : printed + ' W lies beyond every entry of Table 7.3.');
     readout(d.readout, `\\kP = ${M.v === 1 ? '' : fmt(M.v, 1) + ' \\times '}10^{${N.v}}\\ \\text{W}`,
-      below && above ? 'That is ' + factor(P / below[0]) + ' times the ' + below[1] + ' W of ' + below[2] + ' and ' + factor(P / above[0]) + ' of the ' + above[1] + ' W of ' + above[2] + '. A factor of that kind, read off two rows of Table 7.3, is what the first two problems of the section ask for.'
-        : 'The scale runs from the 10⁻³ W of a pocket calculator to beyond the 5 × 10³⁷ W of a supernova, and every entry of Table 7.3 has a bar on it.');
+      below && above ? 'That is ' + factor(P / below[0]) + ' times the ' + below[1] + ' W of ' + below[2] + ' and ' + factor(P / above[0]) + ' of the ' + above[1] + ' W of ' + above[2] + '.'
+        : '');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -186,7 +189,7 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     const tau = cy.now(), done = tau >= DAYS - 1e-9, E = energy(tau), Etot = energy(DAYS);
     /* the meter, one turn of its pointer to the kilowatt-hour */
     meter(ctx, 190, 195, 80, E);
-    text(ctx, 'the meter turns once for every kilowatt-hour', 190, 302, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'one turn per kW·h', 190, 302, PAL.muted, { size: 17, align: 'center' });
     /* the two things the rate of spending is made of */
     const bl = 400, bw = 420;
     const bar = (y, frac, color, caption, scale) => {
@@ -212,13 +215,13 @@ const money = (x) => '$' + (x < 10 ? x.toFixed(2) : commas(x.toFixed(0)));
     ctx.stroke(); ctx.restore();
     if (tau > 1e-9) line(ctx, X(tau), Y(0), X(tau), Y(cl(E)), PAL.muted, 2, [4, 8]);
     dot(ctx, X(0), Y(0), C('energy'), false, 10);
-    pinned(ctx, box, X, Y, tau, E, C('energy'), fmt(E, 1) + ' kW·h');
-    text(ctx, money(E * PR.v), clamp(X(tau), box.l + 50, box.r - 50), Y(cl(E)) - 30, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    pinned(ctx, box, X, Y, tau, E, C('energy'), X(tau) > box.l + 260 ? fmt(E, 1) + ' kW·h' : '');
+    if (E <= ER) text(ctx, money(E * PR.v), clamp(X(tau), box.l + 50, box.r - 50), Y(cl(E)) - 30, PAL.ink, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, tau < 1e-9 ? 'The month begins, and the appliance has taken nothing from the supply yet.'
       : done ? 'After ' + DAYS + ' days the appliance has used ' + fmt(Etot, 1) + ' kW·h, which at ' + money(PR.v) + ' per kW·h comes to ' + money(Etot * PR.v) + ' for the month.'
       : 'On day ' + fmt(tau, 1) + ' of ' + DAYS + ' the appliance has used ' + fmt(E, 1) + ' kW·h, which comes to ' + money(E * PR.v) + ' so far.');
     readout(d.readout, `\\kE = \\kP\\kt = (${fmt(P.v, 3)}\\ \\text{kW})(${fmt(HRS.v, 2)}\\ \\text{h/d})(${fmt(DAYS, 1)}\\ \\text{d}) = ${fmt(Etot, 1)}\\ \\text{kW}\\cdot\\text{h}`,
-      'At ＄' + fmt(PR.v, 3) + ' per kilowatt-hour that comes to ＄' + fmt(Etot * PR.v, 2) + ' for the month. The bill falls just as fast whether you cut the power the appliance draws or the hours you leave it running, which is why a water heater is worth going after and a toaster is not.');
+      'At ＄' + fmt(PR.v, 3) + ' per kilowatt-hour that comes to ＄' + fmt(Etot * PR.v, 2) + ' for the month.' + (Etot > ER ? ' The month’s total runs above the graph, which stops at ' + ER + ' kW·h.' : ''));
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => DAYS / 5), draw });
 })();
