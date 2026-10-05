@@ -225,9 +225,9 @@ function current(ctx, x, y, dx, frac, label) {
     /* a clock drives the numbers, so they are never highlighted; the law itself bends as the circuit is switched over */
     if (mode.k < 1) F.morphAt(fx, LAW(mode.from, t, tau, V), LAW(mode.value, t, tau, V), mode.k, { values: false });
     else F.morph(fx, LAW(mode.value, t, tau, V), { values: false });
-    note.textContent = (charging
-        ? 'The time constant is τ = RC = ' + fmt(tau, 2) + ' ms, and in that time the voltage covers 0.632 of what is left to cover, so it reaches ' + fmt(0.632 * E.v, 2) + ' V after one time constant and ' + fmt(E.v * (1 - Math.exp(-5)), 2) + ' V after five time constants. The charge on each plate is now ' + fmt(q, 1) + ' μC.'
-        : 'The time constant is τ = RC = ' + fmt(tau, 2) + ' ms, and in that time the voltage falls to 0.368 of what it was, so it is down to ' + fmt(0.368 * E.v, 2) + ' V after one time constant and to ' + fmt(E.v * Math.exp(-5), 2) + ' V after five time constants. The charge left on each plate is ' + fmt(q, 1) + ' μC.');
+    note.textContent = charging
+        ? 'In each time constant the voltage covers 0.632 of what is left to cover.'
+        : 'In each time constant the voltage falls to 0.368 of what it was.';
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => tauOf()), draw });
 })();
@@ -276,7 +276,7 @@ function current(ctx, x, y, dx, frac, label) {
     resistor(ctx, 540, T, true, 'R', fmt(R.v, 0) + ' kΩ', { color: F.ref('resistor') });
     capacitor(ctx, M, 285, Cc.v, Cc.v * V, false, F.ref('capacitor'));
     lamp(ctx, Rx, 285, firing, F.ref('lamp'));
-    current(ctx, 900, B, -1, firing ? V / Vth : (EMF - V) / EMF, 'I = ' + (I < 1 ? fmt(I, 3) : fmt(I, 1)) + ' mA');
+    current(ctx, firing ? 900 : 550, B, -1, firing ? V / Vth : (EMF - V) / EMF, 'I = ' + (I < 1 ? fmt(I, 3) : fmt(I, 1)) + ' mA');
     text(ctx, firing ? 'the lamp conducts and the capacitor empties through it' : 'the lamp does not conduct, so the capacitor charges through R', 700, 480, PAL.muted, { size: 19, align: 'center' });
     /* ---- the sawtooth ---- */
     const box = { l: 230, r: 1300, t: 560, b: 810 };
@@ -291,7 +291,7 @@ function current(ctx, x, y, dx, frac, label) {
     topline(ctx, 'The capacitor charges through R for ' + fmt(charge(), 2) + ' s, the lamp fires at ' + fmt(Vth, 2) + ' V and empties it in ' + fmt(flash() * 1000, 0) + ' ms, so the lamp flashes every ' + fmt(P, 2) + ' s, which is ' + fmt(60 / P, 0) + ' times a minute.');
     readout(d.readout,
       `\\ktauRC = \\kRes\\kCap = (${fmt(R.v, 0)}\\ \\text{k}\\Omega)(${fmt(Cc.v, 1)}\\ \\mu\\text{F}) = ${fmt(tauC(), 2)}\\ \\text{s}`,
-      'The lamp fires when the voltage reaches ' + fmt(fr.v, 2) + ' of the emf, which takes ' + fmt(charge(), 2) + ' s, or ' + fmt(charge() / tauC(), 2) + ' time constants. Raising either the resistance or the capacitance lengthens the time between flashes, and the discharge stays short because the lamp, once it conducts, has a resistance of only ' + fmt(RL, 1) + ' kΩ.');
+      'The discharge stays short because the lamp, once it conducts, has a resistance of only ' + fmt(RL, 1) + ' kΩ.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

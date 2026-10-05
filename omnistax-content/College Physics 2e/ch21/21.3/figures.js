@@ -175,8 +175,7 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
     text(ctx, 'the junction', 676, 292, PAL.muted, { size: 19, align: 'right' });
     text(ctx, 'Charge cannot collect at a junction, so the arrow that arrives is as wide as the two that leave together.', 700, 432, PAL.muted, { size: 19, align: 'center' });
     readout(d.readout,
-      '\\kIcurone = \\kIcurtwo + \\kIcurthree = ' + amp(I2.v) + ' + ' + amp(I3.v) + ' = ' + amp(i1),
-      'Charge cannot collect at the junction, so the current that arrives is always the two that leave put together.');
+      '\\kIcurone = \\kIcurtwo + \\kIcurthree = ' + amp(I2.v) + ' + ' + amp(I3.v) + ' = ' + amp(i1));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -257,8 +256,7 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
     F.morph(fx, order.map(([k, s, , g]) => '\\mk{s' + k + '}{' + sg(g) + '}\\mk{t' + k + '}{' + s + '}').join(' ') + ' = '
       + order.map(([k, , n, g]) => '\\mk{g' + k + '}{' + sg(g) + '}\\mk{n' + k + '}{' + volt(n) + '}').join(' ') + ' = 0', { force: walked !== way.value });
     walked = way.value;
-    note.textContent = (
-      'Walking the loop the other way reverses the sign of every term, which is the same as multiplying the whole equation by −1, and the potential still comes back to where it began.');
+    note.textContent = 'Turning the walk round multiplies the whole equation by −1.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -309,12 +307,10 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
       text(ctx, cs.term, cx, 418, col, { size: 23, weight: 600, align: 'center' });
       text(ctx, (cs.dv >= 0 ? '+' : '−') + fmt(Math.abs(cs.dv), 1) + ' V', cx, 452, on ? col : PAL.muted, { size: 21, align: 'center' });
     });
-    text(ctx, 'Each element is traversed from a to b, and the change in potential is written beneath it.', 700, 528, PAL.muted, { size: 19, align: 'center' });
     readout(d.readout,
       c.kind === 'R'
         ? (c.cur > 0 ? '\\Delta \\kV = -\\kIcur\\kRes = -(' + amp(I.v) + ')(' + ohm(R.v) + ') = ' + volt(c.dv) : '\\Delta \\kV = +\\kIcur\\kRes = +(' + amp(I.v) + ')(' + ohm(R.v) + ') = ' + volt(c.dv))
-        : (c.pos > 0 ? '\\Delta \\kV = +\\kemf = ' + volt(c.dv) : '\\Delta \\kV = -\\kemf = ' + volt(c.dv)),
-      'A resistor traversed the way its current runs takes the potential down, and one traversed the other way brings it up; a source brings the potential up when it is entered at its negative terminal and takes it down when it is entered at its positive one.');
+        : (c.pos > 0 ? '\\Delta \\kV = +\\kemf = ' + volt(c.dv) : '\\Delta \\kV = -\\kemf = ' + volt(c.dv)));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -336,8 +332,8 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
     const A = R2.v + r1, B = R3 + r2;
     const i1 = (E1.v / A + E2.v / B) / (1 + R1.v / A + R1.v / B);
     const i2 = (E1.v - i1 * R1.v) / A, i3 = (E2.v - i1 * R1.v) / B;
-    const back = [i1 < 0 ? 'I₁' : null, i2 < 0 ? 'I₂' : null, i3 < 0 ? 'I₃' : null].filter(Boolean);
-    headline(ctx, 'The two rules give ' + 'I₁ = ' + mn(fmt(i1, 2)) + ' A, I₂ = ' + mn(fmt(i2, 2)) + ' A and I₃ = ' + mn(fmt(i3, 2)) + ' A'
+    const back = [i1 < 0 ? '$\\kIcurone$' : null, i2 < 0 ? '$\\kIcurtwo$' : null, i3 < 0 ? '$\\kIcurthree$' : null].filter(Boolean);
+    headline(ctx, 'The two rules give $\\kIcurone$ = ' + mn(fmt(i1, 2)) + ' A, $\\kIcurtwo$ = ' + mn(fmt(i2, 2)) + ' A and $\\kIcurthree$ = ' + mn(fmt(i3, 2)) + ' A'
       + (back.length ? ', and ' + back.join(' and ') + (back.length > 1 ? ' are negative, so they run' : ' is negative, so it runs') + ' against the direction assumed for ' + (back.length > 1 ? 'them' : 'it') + '.'
         : ', every one of them positive, so every current runs the way it was assumed to.'));
     /* the frame: three branches between the top junction a and the bottom junction e */
@@ -364,10 +360,11 @@ const lettered = (ctx, x, y, s, dx, dy) => { node(ctx, x, y, 8); if (s) text(ctx
     branch(ctx, 700, 230, 0, -1, i1, 'I_1', 1);
     branch(ctx, 480, 610, 1, 0, i2, 'I_2', -1);
     branch(ctx, 920, 610, -1, 0, i3, 'I_3', 1);
-    text(ctx, 'No combination of series and parallel reductions reaches this circuit, so the two rules are used on it instead.', 700, 686, PAL.muted, { size: 19, align: 'center' });
-    readout(d.readout,
-      '\\kIcurone = \\kIcurtwo + \\kIcurthree = ' + amp(i2) + ' + ' + amp(i3) + ' = ' + amp(i1),
-      'The loop abcdea gives −I₂(R₂ + r₁) + ℰ₁ − I₁R₁ = 0 and the loop aefgha gives +I₁R₁ + I₃(R₃ + r₂) − ℰ₂ = 0, and those two with the junction rule are the three independent equations the three unknown currents need.');
+    tex(d.readout, '\\kIcurone = \\kIcurtwo + \\kIcurthree = ' + amp(i2) + ' + ' + amp(i3) + ' = ' + amp(i1));
+    const sm = el('small'), loopA = el('span'), loopB = el('span');
+    tex(loopA, '\\text{abcdea: } -\\kIcurtwo(\\kRestwo + \\krintone) + \\kemfone - \\kIcurone\\kResone = 0', false, { values: false });
+    tex(loopB, '\\text{aefgha: } \\kIcurone\\kResone + \\kIcurthree(\\kResthree + \\krinttwo) - \\kemftwo = 0', false, { values: false });
+    sm.append(loopA, ',  ', loopB); d.readout.appendChild(sm);
   }
   register(d.fig, { update: () => {}, draw });
 })();

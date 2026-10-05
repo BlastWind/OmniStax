@@ -183,7 +183,6 @@ function bulb(ctx, x, y, frac, color) {
     const rs = [R1, R2, R3.v, R4.v], names = ['R_1', 'R_2', 'R_3', 'R_4'];
     const series = how.value === 'series';
     const tot = series ? rs.reduce((a, b) => a + b, 0) : par(...rs);
-    const big = Math.max(...rs), small = Math.min(...rs);
     headline(ctx, series
       ? 'Wired one after the other, the four resistors together come to ' + fmt(tot, 1) + ' Ω, which is more than the largest of them on its own.'
       : 'Wired each on a path of its own, the four resistors together come to ' + fmt(tot, 2) + ' Ω, which is less than the smallest of them on its own.');
@@ -217,8 +216,8 @@ function bulb(ctx, x, y, frac, color) {
     wired = how.value;
     note.textContent = (
       series
-        ? 'The largest of the four on its own is ' + fmt(big, big < 10 ? 2 : 1) + ' Ω, and the four in series come to more than that, because the current has to pass through each of them in turn.'
-        : 'The smallest of the four on its own is ' + fmt(small, small < 10 ? 2 : 1) + ' Ω, and the four in parallel come to less than that, because every path added gives the current somewhere else to go.');
+        ? 'The current has to pass through each of them in turn.'
+        : 'Every path added gives the current somewhere else to go.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -265,7 +264,7 @@ function bulb(ctx, x, y, frac, color) {
     F.faded(ctx, how.a('series'), [0, 0], () => {
       const I = V / Rs, vs = rs.map((r) => I * r);
       wires(ctx, [[160, 230], [720, 230], [720, 480], [160, 480], [160, 230]]);
-      [280, 440, 600].forEach((x, i) => text(ctx, 'V_' + (i + 1) + ' = ' + fmt(vs[i], 2) + ' V', x, 330, vc, { size: 20, weight: 600, align: 'center' }));
+      [280, 440, 600].forEach((x, i) => text(ctx, 'V_' + (i + 1) + ' = ' + fmt(vs[i], 2) + ' V', x, 305, vc, { size: 20, weight: 600, align: 'center' }));
       flow(ctx, 440, 480, -1, 0, 'I = ' + fmt(I, 3) + ' A');
       text(ctx, 'the same current in every resistor', 440, 540, PAL.muted, { size: 19, align: 'center' });
     });
@@ -277,7 +276,7 @@ function bulb(ctx, x, y, frac, color) {
       [300, 520, 740].forEach((x, i) => {
         wires(ctx, [[x, 230], [x, 480]]);
         if (i < 2) { node(ctx, x, 230); node(ctx, x, 480); }
-        flow(ctx, x, 278, 0, 1, null, { len: 40, w: 4, side: i === 0 ? 1 : -1 });
+        flow(ctx, x, 278, 0, 1, null, { len: 40, w: 4, side: -1 });
         text(ctx, 'I_' + (i + 1) + ' = ' + fmt(V / rs[i], 2) + ' A', x, 524, cc, { size: 20, weight: 600, align: 'center' });
       });
       flow(ctx, 230, 230, 1, 0, 'I = ' + fmt(I, 2) + ' A', { len: 56 });
@@ -289,10 +288,10 @@ function bulb(ctx, x, y, frac, color) {
       wires(ctx, [[480, 200], [480, 350], [720, 350]]);
       node(ctx, 480, 200); node(ctx, 720, 350);
       flow(ctx, 300, 480, -1, 0, 'I = ' + fmt(I, 2) + ' A');
-      flow(ctx, 520, 200, 1, 0, 'I_2 = ' + fmt(Vp / r2, 2) + ' A', { len: 44, side: 1 });
+      flow(ctx, 500, 200, 1, 0, 'I_2 = ' + fmt(Vp / r2, 2) + ' A', { len: 44, side: -1 });
       flow(ctx, 500, 350, 1, 0, 'I_3 = ' + fmt(Vp / r3, 2) + ' A', { len: 36, side: 1 });
       text(ctx, 'V_1 = ' + fmt(V1, 2) + ' V', 310, 290, vc, { size: 20, weight: 600, align: 'center' });
-      text(ctx, 'V_p = ' + fmt(Vp, 2) + ' V across the pair', 600, 444, vc, { size: 20, weight: 600, align: 'center' });
+      text(ctx, 'V_p = ' + fmt(Vp, 2) + ' V across the pair', 575, 444, vc, { size: 20, weight: 600, align: 'center' });
     });
     const p = how.mix((v) => POSE[v].flat());
     cell(ctx, 160, p[9], 'up', fmt(V, 1) + ' V');
@@ -312,10 +311,10 @@ function bulb(ctx, x, y, frac, color) {
       + ' = \\mk{v}{' + ohm(Req) + '}', { force: wired !== w });
     wired = w;
     note.textContent = w === 'series'
-      ? 'The source drives ' + fmt(I, 3) + ' A through all three. The three voltage drops are ' + rs.map((r) => fmt(I * r, 2) + ' V').join(', ') + ', and they add to the ' + fmt(V, 1) + ' V the source puts out. The source delivers ' + fmt(V * I, 2) + ' W.'
+      ? 'The three drops add to the ' + fmt(V, 1) + ' V the source puts out, and it delivers ' + fmt(V * I, 2) + ' W.'
       : w === 'parallel'
-        ? 'The source drives ' + fmt(I, 2) + ' A. The three branch currents are ' + rs.map((r) => fmt(V / r, 2) + ' A').join(', ') + ', and they add to the ' + fmt(I, 2) + ' A the source drives. The source delivers ' + fmt(V * I, 1) + ' W.'
-        : 'The source drives ' + fmt(I, 2) + ' A. The resistor in series takes ' + fmt(I * r1, 2) + ' V, so the pair behind it has only ' + fmt(V - I * r1, 2) + ' V, and the current through R₂ is ' + fmt((V - I * r1) / r2, 2) + ' A, which dissipates ' + fmt(Math.pow(V - I * r1, 2) / r2, 1) + ' W in it.';
+        ? 'The three branch currents add to the ' + fmt(I, 2) + ' A the source drives, and it delivers ' + fmt(V * I, 1) + ' W.'
+        : 'The current through the second resistor dissipates ' + fmt(Math.pow(V - I * r1, 2) / r2, 1) + ' W in it.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -339,7 +338,7 @@ function bulb(ctx, x, y, frac, color) {
   const st = ctl(d.controls, { label: '\\text{step}', cls: 'k', min: 1, max: 5, step: 0.01, value: 1, unit: '', dec: 0, aria: 'how far the reduction has been carried' });
   F.story(d, st, { stops: [{ v: 1, label: '7 resistors' }, { v: 2, label: 'Rp, Rp′' }, { v: 3, label: 'Rs' }, { v: 4, label: 'Rp″' }, { v: 5, label: 'Rtot' }], ms: 1400 });
   const r1 = 1.0, r4 = 12.0, r5 = 3.0, r6 = 6.0, r7 = 20.0;
-  const TOP = 260, LOW = 450, BOT = 580, A = 430, B = 1180, ROWS = [155, 260, 365], ROWS2 = [210, 310];
+  const TOP = 260, LOW = 450, BOT = 580, A = 430, B = 1180, ROWS = [155, 260, 365], ROWS2 = [200, 320];
   const lerp = F.lerp, sm = F.ease.smooth;
   /* the resistor each slider feeds is lit while the slider is held or hovered, and pulses once when a drag starts */
   const lit = F.tween(d, 0), pulse = F.tween(d, 1);
@@ -424,8 +423,8 @@ function bulb(ctx, x, y, frac, color) {
     const HEADS = [
       'The three resistors in parallel and the pair in parallel are each combined first, because a parallel group is the easiest part of the network to pick out.',
       'The two equivalent resistances now sit one after the other, so they simply add.',
-      'That one resistance and R₇ lie on two paths between the same pair of points, so they combine as a parallel pair.',
-      'What is left is one resistance in series with R₁, and the network has come down to a single resistance.',
+      'That one resistance and $\\kRes_7$ lie on two paths between the same pair of points, so they combine as a parallel pair.',
+      'What is left is one resistance in series with $\\kRes_1$, and the network has come down to a single resistance.',
       'The whole network of seven resistors is one resistance of ' + fmt(Rtot, 2) + ' Ω across the source.',
     ];
     headline(ctx, HEADS[Math.round(s) - 1]);
@@ -476,11 +475,11 @@ function bulb(ctx, x, y, frac, color) {
     if (still) F.morph(fx, FORM[at1 - 1](vals));
     else F.morphAt(fx, FORM[i - 1](vals), FORM[i](vals), s - i, { keyMap: KEYS[i - 1] });
     note.textContent = [
-      'The pair R₅ and R₆ is combined in the same step, and it comes to ' + fmt(Rq, 2) + ' Ω. Four steps in all bring the seven resistances down to ' + fmt(Rtot, 2) + ' Ω.',
-      'Each of the two came from a parallel group, and in series they add to ' + fmt(Rs, 2) + ' Ω.',
-      'The pair in parallel comes to ' + fmt(Rpp, 2) + ' Ω, which is less than either of them.',
-      'R₁ carries the whole current of the circuit, so it is in series with everything behind it.',
-      'Every one of the seven resistances is inside this one number, and the source sees nothing else.',
+      'The other parallel pair folds in the same step, and four steps in all bring the seven down to ' + fmt(Rtot, 2) + ' Ω.',
+      '',
+      'That is less than either of the two.',
+      'The first resistor carries the whole current of the circuit, so it is in series with everything behind it.',
+      '',
     ][at1 - 1];
   }
   register(d.fig, { update: () => {}, draw });
@@ -529,9 +528,7 @@ function bulb(ctx, x, y, frac, color) {
     text(ctx, 'V_p = ' + fmt(Vp, 1) + ' V reaches the bulb', 700, 546, C('voltage'), { size: 21, weight: 600, align: 'center' });
     readout(d.readout,
       '\\kVp = \\kV - \\kIcur\\kResone = ' + fmt(V, 1) + '\\ \\text{V} - (' + fmt(I, 2) + '\\ \\text{A})(' + ohm(rw) + ') = ' + fmt(Vp, 1) + '\\ \\text{V}',
-      'The bulb then dissipates ' + fmt(Pb, 1) + ' W. ' + (on
-        ? 'The motor draws a large current through the wires, the drop in them grows, and the bulb is left with ' + fmt(100 * Pb / Pfull, 0) + ' per cent of the power it has when the motor is off.'
-        : 'With nothing but the bulb on the supply the current is small, so the wires take almost nothing and the bulb has practically the full supply voltage.'));
+      on ? 'The bulb is left with ' + fmt(100 * Pb / Pfull, 0) + ' per cent of the power it would have on the full supply voltage.' : null);
   }
   register(d.fig, { update: () => {}, draw });
 })();

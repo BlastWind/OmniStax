@@ -187,7 +187,7 @@ function meter(ctx, x, y, R, frac, letter, opts) {
       + ', which falls short of the emf of ' + volts(E.v) + ' by ' + fmt(miss * 1000, 1) + ' mV.');
     const cb = F.ref('battery'), cv = F.ref('voltmeter');
     ctx.save(); ctx.strokeStyle = alpha(cv, 0.6); ctx.lineWidth = 2.5; ctx.setLineDash([9, 7]);
-    ctx.beginPath(); ctx.roundRect(880, 120, 380, 400, 14); ctx.stroke(); ctx.restore();
+    ctx.beginPath(); ctx.roundRect(850, 120, 410, 400, 14); ctx.stroke(); ctx.restore();
     wires(ctx, [[300, 150], [1080, 150], [1080, 480], [300, 480], [300, 150]]);
     cell(ctx, 300, 233, 'up', 'ℰ = ' + volts(E.v), { color: cb });
     resistor(ctx, 300, 380, false, 'r', ri.v, { color: cb });
@@ -201,7 +201,7 @@ function meter(ctx, x, y, R, frac, letter, opts) {
     text(ctx, 'the emf is ' + volts(E.v), 690, 350, vc, { size: 21, align: 'center' });
     readout(d.readout,
       '\\kV = \\kemf - \\kIcur\\krint = ' + fmt(E.v, 3) + '\\ \\text{V} - (' + fmt(I, 5) + '\\ \\text{A})(' + ohm(ri.v) + ') = ' + fmt(V, 3) + '\\ \\text{V}',
-      'The meter needs a current to work, so the current is never zero and the reading is never the emf. Raising the meter’s resistance shrinks the current and brings the reading closer, and raising the internal resistance of the battery pushes it further away.');
+      'The meter needs a current to work, so its reading is never quite the emf.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -251,7 +251,7 @@ function meter(ctx, x, y, R, frac, letter, opts) {
     flow(ctx, 600, YT, -1, 0, 'I = ' + fmt(Iw.v, 3) + ' A');
     /* the branch: down from the contact through the galvanometer and the cell, and back to the near end */
     arrow(ctx, xc, YW + 96, xc, YW + 24, PAL.ink, 4);
-    text(ctx, 'the contact', xc + (xc > 900 ? -16 : 16), YW + 76, PAL.muted, { size: 19, align: xc > 900 ? 'right' : 'left' });
+    text(ctx, 'the contact', xc + (xc > 900 ? -16 : 16), YW + 82, PAL.muted, { size: 19, align: xc > 900 ? 'right' : 'left' });
     wires(ctx, [[xc, YW + 96], [xc, YB], [X0, YB], [X0, YW + 17]]);
     meter(ctx, xc, 492, 54, diff / FULL, 'G', { centre: true, needle: cc, body: F.ref('galvanometer') });
     cell(ctx, xc, 629, 'up', name + ' = ' + volts(cellE), { color: F.ref(which.value === 'x' ? 'unknown-cell' : 'standard-cell') });
@@ -265,7 +265,7 @@ function meter(ctx, x, y, R, frac, letter, opts) {
       xc + (onLeft ? -74 : 74), 492, cc, { size: 20, align: onLeft ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     readout(d.readout,
       '\\kemfx = \\kemfs\\dfrac{\\kResx}{\\kRess} = (' + fmt(ES, 3) + '\\ \\text{V})\\dfrac{' + ohm(RxB) + '}{' + ohm(RsB) + '} = ' + fmt(Ex.v, 3) + '\\ \\text{V}',
-      'The unknown cell balances at ' + ohms(RxB) + ' and the standard cell at ' + ohms(RsB) + '. Changing the current down the wire moves both balance points, but it moves them together, so the ratio that gives the unknown emf does not change at all.');
+      'Changing the current moves both balance points together, so their ratio does not change.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -281,7 +281,7 @@ function meter(ctx, x, y, R, frac, letter, opts) {
   const d = sim('sim-ohmmeter', 660);
   const Rv = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 1, max: 200, step: 1, value: 50, unit: 'Ω', dec: 0, aria: 'the resistance being measured' });
   const ri = ctl(d.controls, { label: '\\krint', cls: 'resistance', min: 0.05, max: 20, step: 0.05, value: 0.5, unit: 'Ω', dec: 2, aria: 'the internal resistance of the source' });
-  const how = F.select(d.controls, { label: '\\text{the configuration}', options: [{ value: 'a', label: 'the source’s voltage assumed' }, { value: 'b', label: 'the terminal voltage measured' }], value: 'a', aria: 'which of the two configurations is drawn' });
+  const how = choice(d.controls, { label: '\\text{the voltage}', options: [{ value: 'a', label: 'emf assumed' }, { value: 'b', label: 'terminals measured' }], value: 'a', aria: 'which of the two configurations is drawn' });
   const RA = 0.500, E = 3.00, IFULL = 3.00 / 1.55;   /* the ammeter's face is fixed to the largest current the sliders reach */
   function draw() {
     const { ctx } = begin(d.c);
@@ -306,15 +306,15 @@ function meter(ctx, x, y, R, frac, letter, opts) {
       node(ctx, 340, 160); node(ctx, 860, 470);
       meter(ctx, 614, 560, 54, 2 * (V / E) - 1, 'V', { needle: vc });
       text(ctx, 'it reads ' + volts(V), 614, 636, vc, { size: 21, align: 'center' });
-      text(ctx, 'the voltmeter, across the terminals', 400, 600, PAL.muted, { size: 19, align: 'center' });
+      text(ctx, 'the voltmeter, across the terminals', 370, 600, PAL.muted, { size: 19, align: 'center' });
     }
     text(ctx, 'R is calculated as ' + ohms(Rcalc), 700, 260, rc, { size: 24, weight: 600, align: 'center' });
     text(ctx, 'and R really is ' + ohms(Rv.v), 700, 298, rc, { size: 21, align: 'center' });
     readout(d.readout,
       '\\kRes = \\dfrac{\\kV}{\\kIcur} = \\dfrac{' + fmt(V, 3) + '\\ \\text{V}}{' + fmt(I, 5) + '\\ \\text{A}} = ' + ohm(Rcalc),
       a
-        ? 'The current the ammeter reads has passed through the internal resistance and through the ammeter as well as through R, so the calculated resistance carries both of them and grows as the source ages.'
-        : 'Measuring the terminal voltage takes the internal resistance out of the answer, but the ammeter is still in the circuit, so the calculated resistance is too high by the ammeter’s own ' + ohms(RA) + ' however good the source is.');
+        ? 'The calculated resistance carries the internal resistance and the ammeter too, and grows as the source ages.'
+        : 'The ammeter is still in the circuit, so the answer is too high by its own ' + ohms(RA) + '.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -356,15 +356,13 @@ function meter(ctx, x, y, R, frac, letter, opts) {
     });
     wires(ctx, [[300, 380], [300, 660], [1220, 660], [1220, 380]]);
     cell(ctx, 640, 660, 'left', 'ℰ = ' + fmt(E, 2) + ' V', { side: -1 });
-    sw(ctx, 915, 660, 0, false);
+    sw(ctx, 915, 660, 0, true);
     text(ctx, 'the switch', 915, 700, PAL.muted, { size: 19, align: 'center' });
     text(ctx, Math.abs(diff) < 0.0015 ? 'no current crosses the bridge' : 'a current crosses the bridge',
       760, 466, cc, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    readout(d.readout,
-      '\\kResx = \\kResthree\\dfrac{\\kRestwo}{\\kResone} = (' + ohm(R3.v) + ')\\dfrac{' + ohm(R2.v) + '}{' + ohm(R1) + '} = ' + ohm(bridge),
-      Math.abs(diff) < 0.0015
-        ? 'The bridge is balanced, so this is the unknown resistance itself, and it was found without any current at all through the galvanometer.'
-        : 'The bridge is not balanced yet, so this is what the three known arms would give rather than the unknown resistance; the needle has to be brought to zero first.');
+    const arms = '\\kResthree\\dfrac{\\kRestwo}{\\kResone} = (' + ohm(R3.v) + ')\\dfrac{' + ohm(R2.v) + '}{' + ohm(R1) + '} = ' + ohm(bridge);
+    readout(d.readout, Math.abs(diff) < 0.0015 ? '\\kResx = ' + arms : arms + ' \\neq \\kResx',
+      Math.abs(diff) < 0.0015 ? 'Found with no current at all through the galvanometer.' : null);
   }
   register(d.fig, { update: () => {}, draw });
 })();

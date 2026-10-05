@@ -193,16 +193,16 @@ function bulb(ctx, x, y, frac, color) {
     node(ctx, 1090, 210, 8); node(ctx, 1090, 410, 8);
     text(ctx, 'the output terminals', 1090, 506, PAL.muted, { size: 19, align: 'center' });
     if (i > 0) flow(ctx, 900, 210, 1, 0, 'I = ' + fmt(i, 2) + ' A');
-    else text(ctx, 'no current is being drawn', 870, 186, C('current'), { size: 20, weight: 600, align: 'center' });
+    else text(ctx, 'no current is being drawn', 850, 186, C('current'), { size: 20, weight: 600, align: 'center' });
     wires(ctx, [[1090, 210], [1230, 210], [1230, 410], [1090, 410]]);
     meter(ctx, 1230, 310, 'V', fmt(V, 2) + ' V', C('voltage'));
     readout(d.readout,
       '\\kV = \\kemf - \\kIcur\\krint = ' + volt(e) + ' - (' + fmt(i, 2) + '\\ \\text{A})(' + ohm(r) + ') = ' + volt(V),
       held
-        ? 'Every volt of the emf is then spent inside the cell, which is why a source is never asked for more current than its own internal resistance allows.'
+        ? 'Every volt of the emf is then spent inside the cell.'
         : i === 0
-        ? 'No current means no drop across the internal resistance, so the terminals carry the whole of the emf. This is what it means to say that the emf is the potential difference of a source when no current is flowing.'
-        : 'The current has to pass through the internal resistance on its way out of the cell, and the ' + fmt(i * r, 2) + ' V it loses there never reaches the terminals. A larger internal resistance, or a larger current, takes more of the emf away.');
+        ? 'No current means no drop across the internal resistance.'
+        : 'The volts lost in the internal resistance never reach the terminals.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -241,7 +241,7 @@ function bulb(ctx, x, y, frac, color) {
     });
     text(ctx, 'sulfuric acid', 700, 340, PAL.muted, { size: 20, align: 'center' });
     readout(d.readout, '\\kV \\approx 2\\ \\text{V per cell}',
-      'The chemical reaction between the plates and the acid separates charge, sending negative charge to the anode and leaving the cathode positive. Six such cells in series make the twelve-volt battery of a car, and the acid both conducts the charge and takes part in the reaction.');
+      'Six such cells in series make the twelve-volt battery of a car.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -280,7 +280,7 @@ function bulb(ctx, x, y, frac, color) {
     text(ctx, 'two electrons are placed here', EL + 60, B + 84, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'and two are removed from here', ER - 60, B + 84, PAL.muted, { size: 19, align: 'center' });
     readout(d.readout, '2\\ \\text{eV per electron} \\quad\\Rightarrow\\quad \\kV = \\dfrac{\\text{PE}}{\\kq} \\approx 2\\ \\text{V}',
-      'The reaction gives each electron sent to the anode about two electron volts, and an electron volt is the energy one electron gains through one volt, so the cell stands at about two volts. It proceeds only while a closed circuit returns two electrons to the cathode, and because the reacting substances have resistance, no emf can be made without an internal resistance.');
+      'Because the reacting substances have resistance, no emf can be made without an internal resistance.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -315,11 +315,11 @@ function bulb(ctx, x, y, frac, color) {
     text(ctx, 'P = ' + fmt(P, 1) + ' W given out here', 1150, 168, C('power'), { size: 21, weight: 600, align: 'center' });
     readout(d.readout,
       '\\kIcur = \\dfrac{\\kemf}{\\kRload + \\krint} = \\dfrac{' + volt(e) + '}{' + ohm(rl + r) + '} = ' + fmt(i, 3) + '\\ \\text{A}',
-      'The terminals hold ' + fmt(V, 2) + ' V of the emf, and the load dissipates ' + fmt(P, 1) + ' W. ' + (r / rl < 0.05
-        ? 'The internal resistance is a small fraction of the load, so the terminal voltage stays within ' + fmt(e - V, 2) + ' V of the emf and this is a light load for the source.'
+      r / rl < 0.05
+        ? 'The internal resistance is a small fraction of the load, so this is a light load for the source.'
         : r < rl
-        ? 'The internal resistance is now ' + fmt(100 * r / rl, 0) + ' per cent of the load, so it takes ' + fmt(e - V, 2) + ' V of the emf for itself and both the current and the power reaching the load are cut down. This is what a depleted battery does.'
-        : 'The internal resistance is now larger than the load itself, so it keeps ' + fmt(e - V, 2) + ' V of the emf inside the source and leaves only ' + fmt(V, 2) + ' V for the load. A source asked to drive a load smaller than its own resistance spends most of its energy heating itself.'));
+        ? 'The internal resistance is ' + fmt(100 * r / rl, 0) + ' per cent of the load, which is what a depleted battery does.'
+        : 'The internal resistance is larger than the load, so the source spends most of its energy heating itself.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -370,7 +370,7 @@ function bulb(ctx, x, y, frac, color) {
     }
     text(ctx, 'six cells in series', 1000, 440, PAL.muted, { size: 19, align: 'center' });
     readout(d.readout, '\\kV = \\kemf - \\kIcur\\krint, \\quad \\kIcur < 0',
-      'The charger must have a larger emf than the battery, or it cannot reverse the current through it. While the battery is being charged the current in the terminal voltage equation is negative, so the voltage across its terminals stands above its own emf, and the reversed current runs its chemical reaction backwards and replenishes its chemical potential.');
+      'The charger must have a larger emf than the battery, and while it charges, the battery’s terminal voltage stands above its own emf.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -418,9 +418,9 @@ function bulb(ctx, x, y, frac, color) {
     /* turning the cell round flips one sign in place, in the symbols and in the numbers */
     const op = back ? '-' : '+';
     F.morph(fx, '\\mk{a}{\\kemfone} \\mk{op}{' + op + '} \\mk{b}{\\kemftwo} = \\mk{na}{' + volt(e1) + '} \\mk{op2}{' + op + '} \\mk{nb}{' + volt(e2) + '} = \\mk{t}{' + volt(Et) + '}');
-    note.textContent = 'The internal resistances add to r₁ + r₂ = ' + fmt(Rt, 3) + ' Ω either way. ' + (back
-        ? 'The emfs add algebraically, so a cell put into an appliance backward takes its own emf away from the total instead of adding it. The internal resistances have no sense to them and add either way, which is the disadvantage of the series connection.'
-        : 'Cells are usually put in series exactly to get the larger total emf. The internal resistances add as well, which is why two six-volt batteries in place of one twelve-volt battery make an engine hard to start.');
+    note.textContent = back
+        ? 'A cell put into an appliance backward takes its own emf away from the total.'
+        : 'The added internal resistance is why two six-volt batteries in place of one twelve-volt battery make an engine hard to start.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -462,11 +462,9 @@ function bulb(ctx, x, y, frac, color) {
     text(ctx, 'V = ' + fmt(V2, 2) + ' V at its terminals', R - 60, 290, C('voltage'), { size: 21, weight: 600, align: 'right' });
     readout(d.readout,
       '\\kIcur = \\dfrac{\\kemfone - \\kemftwo}{\\krintone + \\krinttwo} = \\dfrac{' + volt(e1) + ' - ' + volt(e2) + '}{' + ohm(r1 + r2) + '} = ' + fmt(i, 2) + '\\ \\text{A}',
-      'The battery’s terminals read ' + fmt(V2, 2) + ' V. ' + (i > 0
-        ? 'Current flows in the direction of the greater emf and is limited by the sum of the two internal resistances. Because it enters the battery at the positive terminal, the current in the terminal voltage equation is negative for the battery, and its terminal voltage is ' + fmt(V2 - e2, 2) + ' V above its emf. That is what charging looks like from outside.'
-        : i < 0
-        ? 'With the battery’s emf the larger, the battery has become the source and the charger the load, so the current runs the wrong way for charging and the battery is being drained rather than filled. A charger must always have the greater emf.'
-        : 'With the two emfs equal there is nothing left to drive the loop, so no charge moves either way and neither source does anything to the other. A charger must always have the greater emf.'));
+      i > 0
+        ? 'The current enters the battery at its positive terminal, so for the battery it is negative in the terminal voltage equation.'
+        : 'A charger must always have the greater emf.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -506,11 +504,9 @@ function bulb(ctx, x, y, frac, color) {
     text(ctx, 'the two cells, one after the other', 670, B + 100, PAL.muted, { size: 19, align: 'center' });
     readout(d.readout,
       '\\kIcur = \\dfrac{\\kemfone + \\kemftwo}{\\krintone + \\krinttwo + \\kRload} = \\dfrac{' + volt(e1 + e2) + '}{' + ohm(r1 + r2 + rl) + '} = ' + fmt(i, 3) + '\\ \\text{A}',
-      'The bulb gives out ' + fmt(P, 2) + ' W. ' + ((r1 + r2) / rl > 0.25
-        ? (r1 + r2 > rl
-          ? 'The two internal resistances now come to more than the bulb’s own resistance, so most of what the cells produce is spent inside them and the bulb is dim. Old cells are old chiefly in this sense: their internal resistance has risen.'
-          : 'The two internal resistances now come to ' + fmt(100 * (r1 + r2) / rl, 0) + ' per cent of the bulb’s resistance, so a large part of what the cells produce is spent inside them and the bulb is dim. Old cells are old chiefly in this sense: their internal resistance has risen.')
-        : 'While the cells are fresh their internal resistances are small beside the bulb, almost the whole of the two emfs reaches the bulb, and the flashlight is bright. As either internal resistance rises, the light fades.'));
+      (r1 + r2) / rl > 0.25
+        ? 'Old cells are old chiefly in this sense: their internal resistance has risen.'
+        : 'While the cells are fresh their internal resistances are small beside the bulb.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -567,9 +563,9 @@ function bulb(ctx, x, y, frac, color) {
       ? '\\mk{r}{\\krinttot} = \\left(\\dfrac{1}{\\mk{a}{\\krintone}} + \\dfrac{1}{\\mk{b}{\\krinttwo}}\\right)^{-1} = \\mk{v}{' + ohm(rt) + '}'
       : '\\mk{r}{\\krinttot} = \\mk{a}{\\krintone} = \\mk{v}{' + ohm(rt) + '}', { force: was !== how.value });
     was = how.value;
-    note.textContent = 'The load gets ' + fmt(i, 1) + ' A. ' + (two
-        ? 'Each source has the same potential difference, so the total emf is the emf of one of them; only the internal resistance changes, and two resistances in parallel come to less than either. That is why some diesel cars carry two twelve-volt batteries side by side: twelve volts still, and enough current to turn a diesel engine.'
-        : 'Everything the source delivers passes through its own internal resistance, which takes ' + fmt(e - V, 2) + ' V of the emf for itself. A second source alongside cuts that share.');
+    note.textContent = two
+        ? 'Some diesel cars carry two twelve-volt batteries side by side for this extra current.'
+        : 'The internal resistance takes ' + fmt(e - V, 2) + ' V of the emf for itself.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
