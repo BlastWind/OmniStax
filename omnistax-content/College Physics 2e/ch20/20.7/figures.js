@@ -364,88 +364,181 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
 /* =====================================================================
    FIGURE 20.30 + 20.31: the depolarization wave crossing the heart, and
    the lead potential it writes. It moves because a heartbeat is a
-   period and the lesson is that each feature of the trace arrives as
-   the part of the heart that makes it depolarizes; one beat's window is
-   one cycle and it takes the app's transport.
+   period: the wave leaves the SA node across the atria, waits at the AV
+   node, runs down the septum and out through the ventricles, and the
+   trace is written beside the heart as it goes. One 1.5-s window is one
+   cycle of the app's transport, drawn at a quarter of the true speed.
 ===================================================================== */
 (function () {
-  const d = sim('sim-ecg', 820);
+  const d = sim('sim-ecg', 800);
   const WIN = 1.5;                                  /* the window both graphs show, 1.5 s, fixed */
+  const SLOW = 4;                                   /* the drawing runs this many times slower than the heart (rule 28.4) */
   const bpm = ctl(d.controls, { label: '\\text{heart rate}', cls: 'frequency', min: 40, max: 160, step: 5, value: 80, unit: 'beats/min', dec: 0, onInput: () => cy.reset(), aria: 'heart rate' });
   const lead = choice(d.controls, { label: '\\text{Lead}', value: 'II', aria: 'which lead is read', options: [{ value: 'I', label: 'I' }, { value: 'II', label: 'II' }, { value: 'III', label: 'III' }], onInput: () => cy.reset() });
   const cy = cycle(() => WIN, 0.8);
-  const gain = () => (lead.value === 'II' ? 1 : lead.value === 'I' ? 0.6 : 0.45);
-  const bump = (x, c, w) => Math.exp(-Math.pow((x - c) / w, 2));
-  /* one beat of the lead potential, in millivolts, as a fraction f of the beat */
-  const beat = (f) => gain() * (0.25 * bump(f, 0.14, 0.035) - 0.09 * bump(f, 0.255, 0.012) + 1.0 * bump(f, 0.285, 0.013) - 0.30 * bump(f, 0.315, 0.014) + 0.30 * bump(f, 0.50, 0.055));
-  const press = (f) => 80 + 42 * bump(f, 0.40, 0.10) + 6 * bump(f, 0.56, 0.06);
   const period = () => 60 / bpm.v;
-  const frac = (t) => ((t / period()) % 1 + 1) % 1;
+  /* the beat's timings stretch with the square root of the period, as the QT interval does; 1 at 80 beats/min */
+  const kq = () => Math.sqrt(period() / 0.75);
+  const bump = (x, c, w) => Math.exp(-Math.pow((x - c) / w, 2));
+  const deg = Math.PI / 180;
+  /* the depolarization vector, in millivolts, as the sum of the five features of the beat: each with its
+     direction on the page (0° toward LA, 90° straight down) and the size that gives the book's lead II
+     trace, P 0.25, Q −0.09, R 1.0, S −0.30 and T 0.30 mV; a lead reads the component along its own side */
+  const FEAT = [['P', 0.25, 50, 0.105, 0.026], ['Q', -0.09, 200, 0.191, 0.009], ['R', 1.0, 60, 0.214, 0.0098], ['S', -0.30, -100, 0.236, 0.0105], ['T', 0.30, 45, 0.375, 0.041]]
+    .map(([nm, a2, th, c, w]) => ({ nm, a: a2 / Math.cos((th - 60) * deg), th: th * deg, c, w }));
+  const LEADS = { I: ['RA', 'LA'], II: ['RA', 'LL'], III: ['LA', 'LL'] };
+  const UNIT = { I: [1, 0], II: [Math.cos(60 * deg), Math.sin(60 * deg)], III: [Math.cos(120 * deg), Math.sin(120 * deg)] };
+  const inBeat = (t) => ((t % period()) + period()) % period();
+  function vec(tb) {
+    const k = kq(); let x = 0, y = 0;
+    FEAT.forEach((f) => { const m = f.a * bump(tb, f.c * k, f.w * k); x += m * Math.cos(f.th); y += m * Math.sin(f.th); });
+    return [x, y];
+  }
+  const reading = (t, L) => { const v = vec(inBeat(t)), u = UNIT[L || lead.value]; return v[0] * u[0] + v[1] * u[1]; };
+  /* arterial pressure, 80 mm Hg diastolic to 122 systolic: a rise just after the QRS complex, a dicrotic
+     notch, and a fall that reaches the diastolic value as the next rise begins */
+  function press(t) {
+    const k = kq(), RR = period(), up = 0.23 * k, rise = 0.09 * k;
+    let s = inBeat(t) - up; if (s < 0) s += RR;
+    if (s < rise) return 80 + 42 * Math.pow(Math.sin((Math.PI / 2) * (s / rise)), 2);
+    const u = (s - rise) / (RR - rise), ue = (x) => (x * x) / (x + 0.06);   /* rounds the systolic peak */
+    const fall = (Math.exp(-2.4 * ue(u)) - Math.exp(-2.4 * ue(1))) / (1 - Math.exp(-2.4 * ue(1)));
+    return 80 + 42 * fall + 6 * bump(s, 0.23 * k, 0.035 * k) * (1 - u);
+  }
+  const mv = (x) => (Math.abs(x) < 0.005 ? 0 : x).toFixed(2).replace('-', '−');   /* a lead potential to the hundredth of a millivolt */
+  const ramp = (tb, a, b) => { const k = kq(); return Math.min(1, Math.max(0, (tb - a * k) / ((b - a) * k))); };
+
+  /* the four-chamber heart in front view, the patient's right on the reader's left, in a local frame about
+     260 by 300 units centred on the origin, y down: the atria above the atrioventricular plane at y = −38,
+     the ventricles below it, the two septa, the SA node high in the right atrium and the AV node at the
+     foot of the interatrial septum, the bundle of His and its two branches down the septum to the apex.
+     Drawn here because figlib has no heart; a candidate for figlib as F.heart. */
+  const AVY = -38, SA = [-92, -108], AV = [-6, -46], VC = [15, 55], VS = 1.6;   /* VC, VS: where the ventricles' wave starts and its stretch along the septum */
+  const outline = new Path2D();
+  outline.moveTo(0, -122);
+  outline.bezierCurveTo(40, -140, 100, -138, 118, -108);
+  outline.bezierCurveTo(132, -90, 128, -60, 122, -40);
+  outline.bezierCurveTo(140, 40, 90, 140, 28, 165);
+  outline.bezierCurveTo(-40, 180, -130, 60, -125, -30);
+  outline.bezierCurveTo(-138, -55, -136, -90, -118, -105);
+  outline.bezierCurveTo(-95, -135, -35, -140, 0, -122);
+  outline.closePath();
+  const septa = new Path2D();
+  septa.moveTo(0, -122); septa.bezierCurveTo(-6, -90, -4, -60, 2, AVY);
+  septa.moveTo(-127, AVY); septa.bezierCurveTo(-60, AVY - 6, 60, AVY - 6, 126, AVY);
+  septa.moveTo(2, AVY); septa.bezierCurveTo(10, 40, 30, 110, 34, 150);
+  const bundle = new Path2D();
+  bundle.moveTo(AV[0], AV[1]); bundle.lineTo(6, -20);
+  bundle.moveTo(6, -20); bundle.bezierCurveTo(24, 40, 42, 110, 44, 140); bundle.bezierCurveTo(70, 140, 108, 90, 112, 20);
+  bundle.moveTo(6, -20); bundle.bezierCurveTo(-6, 40, 12, 110, 22, 144); bundle.bezierCurveTo(-30, 150, -100, 90, -108, 10);
+  /* the sign of the outer surface at a grid of points inside the outline, as the book marks it */
+  const signs = (() => {
+    const g = document.createElement('canvas').getContext('2d'), out = [];
+    g.lineWidth = 40;
+    for (let y = -100; y <= 150; y += 46) for (let x = -110; x <= 120; x += 46) {
+      const p = [x + (((y + 100) / 46) % 2) * 23, y];
+      if (!g.isPointInPath(outline, p[0], p[1]) || g.isPointInStroke(outline, p[0], p[1]) || Math.abs(p[1] - AVY) < 16) continue;
+      if (p[1] < AVY && Math.abs(p[0]) < 16) continue;
+      out.push(p);
+    }
+    return out;
+  })();
+  /* the wave's reach at time tb into the beat: rA the atria's depolarized radius about the SA node and rAr
+     the radius they have repolarized within, rV the ventricles' depolarized radius about VC */
+  const reach = (tb) => ({ rA: 230 * ramp(tb, 0.06, 0.15), rAr: 230 * ramp(tb, 0.18, 0.25), rV: 165 * ramp(tb, 0.18, 0.25) * (1 - ramp(tb, 0.33, 0.43)) });
+  const depolarized = (p, r) => {
+    if (p[1] < AVY) { const q = Math.hypot(p[0] - SA[0], p[1] - SA[1]); return q < r.rA && q >= r.rAr; }
+    return Math.hypot(p[0] - VC[0], (p[1] - VC[1]) / VS) < r.rV;
+  };
+  const ROT = -22 * deg, SC = 1.15, G = { x: 380, y: 352 };
+  const toPage = (p) => ({ x: G.x + SC * (p[0] * Math.cos(ROT) - p[1] * Math.sin(ROT)), y: G.y + SC * (p[0] * Math.sin(ROT) + p[1] * Math.cos(ROT)) });
+  /* Einthoven's triangle, equilateral so that its sides run at 0°, 60° and 120°, centred on the heart */
+  const elec = { RA: { x: 30, y: 150 }, LA: { x: 730, y: 150 }, LL: { x: 380, y: 150 + 700 * Math.sqrt(3) / 2 } };
+  const VSCALE = 170;                               /* page units per millivolt of the depolarization vector */
+  let hits = [];
+  hover(d.stage, () => hits);
+
   function draw() {
     const { ctx } = begin(d.c);
-    const t = cy.now(), f = frac(t), lab = labeller(ctx, 820, { headline: 2 });
-    /* the heart, its sinoatrial node and the three electrodes on the patient */
-    const hx = 380, hy = 330, s = 1.5;
-    const heart = new Path2D();
-    heart.moveTo(hx, hy + 92 * s);
-    heart.bezierCurveTo(hx - 92 * s, hy + 18 * s, hx - 74 * s, hy - 78 * s, hx - 20 * s, hy - 52 * s);
-    heart.bezierCurveTo(hx - 6 * s, hy - 44 * s, hx + 4 * s, hy - 44 * s, hx + 18 * s, hy - 52 * s);
-    heart.bezierCurveTo(hx + 72 * s, hy - 78 * s, hx + 90 * s, hy + 18 * s, hx, hy + 92 * s);
-    heart.closePath();
-    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fill(heart); ctx.restore();
-    const sa = { x: hx + 38 * s, y: hy - 44 * s };
-    dot(ctx, sa.x, sa.y, PAL.ink, true, 9);
-    /* the depolarized part of the heart, and the vector that stands for the wave */
-    const atria = f > 0.06 && f < 0.20, vent = f > 0.22 && f < 0.36, repol = f > 0.44 && f < 0.58;
-    ctx.save(); ctx.clip(heart); ctx.fillStyle = alpha(C('charge'), 0.28);
-    if (atria) ctx.fillRect(hx - 100 * s, hy - 80 * s, 200 * s, 66 * s);
-    if (vent) ctx.fillRect(hx - 100 * s, hy - 14 * s, 200 * s, 110 * s);
-    if (repol) { ctx.fillStyle = alpha(C('voltage'), 0.2); ctx.fillRect(hx - 100 * s, hy - 14 * s, 200 * s, 110 * s); }
-    ctx.restore();
-    ctx.save(); ctx.strokeStyle = F.ref('heart'); ctx.lineWidth = 4; ctx.stroke(heart); ctx.restore();
-    line(ctx, hx - 74 * s, hy - 14 * s, hx + 78 * s, hy - 14 * s, alpha(PAL.ink, 0.4), 3, [8, 8]);
-    lab.add('atria', hx - 60 * s, hy - 40 * s, -1, -0.3, PAL.muted, 18, 40);
-    lab.add('ventricles', hx - 40 * s, hy + 40 * s, -1, 0.3, PAL.muted, 18, 60);
-    const mag = Math.min(1, Math.abs(beat(f)) / Math.max(0.2, gain()));
-    if (mag > 0.05) {
-      const ang = atria ? 2.6 : vent ? 2.35 : 5.6;
-      arrow(ctx, sa.x, sa.y, sa.x + Math.cos(ang) * 150 * mag, sa.y - Math.sin(ang) * 150 * mag, C('voltage'), 6);
-      lab.add('depolarization vector', sa.x + Math.cos(ang) * 150 * mag, sa.y - Math.sin(ang) * 150 * mag, -0.4, 0.8, C('voltage'), 20, 34);
+    const t = cy.now(), tb = inBeat(t), k = kq(), lab = labeller(ctx, 800, { headline: 2 });
+    const r = reach(tb), L = lead.value;
+    /* the heart: muscle, the depolarized parts clipped to their chambers, the septa and conduction paths, the outline */
+    ctx.save(); ctx.translate(G.x, G.y); ctx.rotate(ROT); ctx.scale(SC, SC);
+    ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fill(outline);
+    ctx.fillStyle = alpha(C('charge'), 0.3);
+    if (r.rA > r.rAr) {
+      ctx.save(); ctx.clip(outline); ctx.beginPath(); ctx.rect(-200, -200, 400, 200 + AVY); ctx.clip();
+      ctx.beginPath(); ctx.arc(SA[0], SA[1], r.rA, 0, TAU); if (r.rAr > 0) ctx.arc(SA[0], SA[1], r.rAr, 0, TAU, true); ctx.fill(); ctx.restore();
     }
-    lab.add('SA node', sa.x, sa.y, 0.8, -0.6, PAL.ink, 20, 34);
-    const elec = { RA: { x: 150, y: 140 }, LA: { x: 640, y: 140 }, LL: { x: 640, y: 600 } };
-    const pair = lead.value === 'I' ? ['RA', 'LA'] : lead.value === 'II' ? ['RA', 'LL'] : ['LA', 'LL'];
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.3); ctx.lineWidth = 3; ctx.setLineDash([9, 9]);
-    ctx.beginPath(); ctx.moveTo(elec.RA.x, elec.RA.y); ctx.lineTo(elec.LA.x, elec.LA.y); ctx.lineTo(elec.LL.x, elec.LL.y); ctx.closePath(); ctx.stroke(); ctx.restore();
-    line(ctx, elec[pair[0]].x, elec[pair[0]].y, elec[pair[1]].x, elec[pair[1]].y, C('voltage'), 5);
-    Object.keys(elec).forEach((k) => { const c = F.ref(k.toLowerCase()); dot(ctx, elec[k].x, elec[k].y, PAL.panel, true, 15); dot(ctx, elec[k].x, elec[k].y, c, false, 15); text(ctx, k, elec[k].x, elec[k].y, c, { size: 18, weight: 700, align: 'center' }); });
-    lab.add('lead ' + lead.value, (elec[pair[0]].x + elec[pair[1]].x) / 2, (elec[pair[0]].y + elec[pair[1]].y) / 2, -0.8, 0, C('voltage'), 21, 32);
-    /* the trace: 1.5 s across, −0.5 to 1.2 mV up, fixed, and the pressure beneath it */
-    const b1 = { l: 800, r: 1310, t: 146, b: 360 };
-    const a1 = axes(ctx, b1, [0, WIN], [-0.6, 1.2], { nx: 3, ny: 3, yl: 'lead potential (mV)', yc: C('voltage'), fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 1) });
-    line(ctx, b1.l, a1.Y(0), b1.r, a1.Y(0), alpha(PAL.ink, 0.3), 2, [6, 8]);
-    curve(ctx, (q) => beat(frac(q)), 0, WIN, a1.X, a1.Y, C('voltage'), 4, 420);
-    line(ctx, a1.X(t), b1.t, a1.X(t), b1.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    pinned(ctx, b1, a1.X, a1.Y, t, beat(f), C('voltage'));
-    /* the five features, named once on the first beat the window holds */
-    [['P', 0.14], ['Q', 0.255], ['R', 0.285], ['S', 0.315], ['T', 0.50]].forEach(([nm, ff]) => {
-      const q = ff * period(); if (q > WIN) return;
-      text(ctx, nm, a1.X(q), a1.Y(beat(ff)) + (nm === 'Q' || nm === 'S' ? 24 : -22), PAL.ink, { size: 20, weight: 700, align: 'center', bg: PAL.panel });
-    });
-    const b2 = { l: 800, r: 1310, t: 470, b: 690 };
-    const a2 = axes(ctx, b2, [0, WIN], [60, 140], { nx: 3, ny: 4, xl: 'time (s)', xc: C('time'), yl: 'arterial pressure (mm Hg)', yc: C('pressure'), fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
-    ctx.save(); ctx.setLineDash([10, 8]);
-    curve(ctx, (q) => press(frac(q)), 0, WIN, a2.X, a2.Y, C('pressure'), 4, 420);
+    if (r.rV > 0) {
+      ctx.save(); ctx.clip(outline); ctx.beginPath(); ctx.rect(-200, AVY, 400, 260); ctx.clip();
+      ctx.beginPath(); ctx.ellipse(VC[0], VC[1], r.rV, r.rV * VS, 0, 0, TAU); ctx.fill(); ctx.restore();
+    }
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 3 / SC; ctx.stroke(septa);
+    ctx.strokeStyle = alpha(PAL.ink, 0.6); ctx.lineWidth = 2 / SC; ctx.setLineDash([2 / SC, 5 / SC]); ctx.stroke(bundle); ctx.setLineDash([]);
+    ctx.strokeStyle = F.ref('heart'); ctx.lineWidth = 4 / SC; ctx.stroke(outline);
     ctx.restore();
+    const sa = toPage(SA), av = toPage(AV);
+    const avLive = tb > 0.14 * k && tb < 0.2 * k;
+    dot(ctx, sa.x, sa.y, PAL.ink, true, 8);
+    dot(ctx, av.x, av.y, avLive ? C('charge') : PAL.ink, true, avLive ? 11 : 8);
+    /* the triangle, each lead's component of the vector on its own side, and the chosen lead's drop lines */
+    const v = vec(tb), head = { x: G.x + v[0] * VSCALE, y: G.y + v[1] * VSCALE };
+    const offVector = (q) => { const dx = head.x - G.x, dy = head.y - G.y, L2 = dx * dx + dy * dy || 1, s = Math.min(1, Math.max(0, ((q.x - G.x) * dx + (q.y - G.y) * dy) / L2));
+      return Math.hypot(q.x - G.x - s * dx, q.y - G.y - s * dy) > 18; };
+    signs.forEach((p) => { const q = toPage(p); if (offVector(q)) text(ctx, depolarized(p, r) ? '−' : '+', q.x, q.y, PAL.ink, { size: 20, weight: 700, align: 'center' }); });
+    Object.keys(LEADS).forEach((nm) => {
+      const [a, b] = LEADS[nm].map((e) => elec[e]), on = nm === L;
+      line(ctx, a.x, a.y, b.x, b.y, on ? alpha(C('voltage'), 0.55) : alpha(PAL.ink, 0.3), 3);
+      const u = UNIT[nm], foot = (p) => { const s = (p.x - a.x) * u[0] + (p.y - a.y) * u[1]; return { x: a.x + s * u[0], y: a.y + s * u[1] }; };
+      const f0 = foot(G), f1 = foot(head);
+      if (on) { line(ctx, G.x, G.y, f0.x, f0.y, alpha(PAL.ink, 0.35), 2, [4, 8]); line(ctx, head.x, head.y, f1.x, f1.y, alpha(PAL.ink, 0.35), 2, [4, 8]); }
+      if (Math.hypot(f1.x - f0.x, f1.y - f0.y) > 8) arrow(ctx, f0.x, f0.y, f1.x, f1.y, on ? C('voltage') : alpha(PAL.ink, 0.5), on ? 6 : 4);
+      const out = nm === 'I' ? [0, -1] : nm === 'II' ? [-u[1], u[0]] : [u[1], -u[0]];
+      lab.add(nm, (a.x + b.x) / 2, (a.y + b.y) / 2, out[0], out[1], on ? C('voltage') : PAL.muted, 24, 30);
+    });
+    if (Math.hypot(head.x - G.x, head.y - G.y) > 10) arrow(ctx, G.x, G.y, head.x, head.y, C('voltage'), 6);
+    Object.keys(elec).forEach((e) => { const c = F.ref(e.toLowerCase()), p = elec[e]; dot(ctx, p.x, p.y, PAL.panel, true, 17); dot(ctx, p.x, p.y, c, false, 17); text(ctx, e, p.x, p.y, c, { size: 17, weight: 700, align: 'center' }); });
+    lab.add('SA node', sa.x, sa.y, -0.7, -0.7, PAL.ink, 20, 34);
+    lab.add('AV node', av.x, av.y, -0.99, 0.12, PAL.ink, 20, 250);
+    const atr = toPage([126, -80]), ven = toPage([118, 50]);
+    lab.add('atria', atr.x, atr.y, 1, -0.4, PAL.muted, 20, 26);
+    lab.add('ventricles', ven.x, ven.y, 0.958, 0.287, PAL.muted, 20, 150);
+    hits = [['right atrium', [-62, -84]], ['left atrium', [66, -92]], ['right ventricle', [-62, 50]], ['left ventricle', [78, 40]], ['septum and bundle branches', [18, 60]], ['SA node', SA], ['AV node', AV]]
+      .map(([name, p]) => { const q = toPage(p); return { x: q.x, y: q.y, r: name.endsWith('node') ? 16 : 34, name }; })
+      .concat(Math.hypot(head.x - G.x, head.y - G.y) > 10 ? [{ x: head.x, y: head.y, r: 20, name: 'depolarization vector' }] : []);
+    /* the trace, written up to now: 1.5 s across, −0.6 to 1.2 mV up, fixed; the pressure beneath, 60 to 140 mm Hg */
+    const b1 = { l: 840, r: 1320, t: 150, b: 380 };
+    const a1 = axes(ctx, b1, [0, WIN], [-0.6, 1.2], { nx: 3, ny: 3, yl: 'lead ' + L + ' potential (mV)', yc: C('voltage'), fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 1) });
+    line(ctx, b1.l, a1.Y(0), b1.r, a1.Y(0), alpha(PAL.ink, 0.3), 2, [6, 8]);
+    if (t > 0) curve(ctx, (q) => reading(q), 0, t, a1.X, a1.Y, C('voltage'), 4, Math.max(2, Math.round(480 * t / WIN)));
+    line(ctx, a1.X(t), b1.t, a1.X(t), b1.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    pinned(ctx, b1, a1.X, a1.Y, t, reading(t), C('voltage'));
+    /* the five features, named once, on the first beat, as the trace reaches them */
+    FEAT.forEach((f) => {
+      const q = f.c * k; if (q > t) return;
+      const y = reading(q), below = f.nm === 'Q' || f.nm === 'S';
+      text(ctx, f.nm, a1.X(q), a1.Y(y) + (below ? 24 : -22), PAL.ink, { size: 20, weight: 700, align: 'center', bg: PAL.panel });
+    });
+    const b2 = { l: 840, r: 1320, t: 480, b: 700 };
+    const a2 = axes(ctx, b2, [0, WIN], [60, 140], { nx: 3, ny: 4, xl: 'time (s)', xc: C('time'), yl: 'arterial pressure (mm Hg)', yc: C('pressure'), fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
+    if (t > 0) { ctx.save(); ctx.setLineDash([10, 8]); curve(ctx, press, 0, t, a2.X, a2.Y, C('pressure'), 4, Math.max(2, Math.round(480 * t / WIN))); ctx.restore(); }
     line(ctx, a2.X(t), b2.t, a2.X(t), b2.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
-    pinned(ctx, b2, a2.X, a2.Y, t, press(f), C('pressure'));
+    pinned(ctx, b2, a2.X, a2.Y, t, press(t), C('pressure'));
     lab.flush();
-    const what = atria ? 'crossing the atria, which writes the P wave' : vent ? 'crossing the ventricles, which writes the QRS complex' : repol ? 'leaving the ventricles as they repolarize, which writes the T wave' : 'between beats, with the heart at rest';
-    topline(ctx, 'At ' + fmt(t, 2) + ' s the wave is ' + what + ', and the lead ' + lead.value + ' potential reads ' + sig3(beat(f)) + ' mV.');
-    readout(d.readout, `\\kt_{\\text{beat}} = \\frac{60\\ \\text{s}}{${fmt(bpm.v, 0)}} = ${sig3(period())}\\ \\text{s}`,
-      'The lead ' + lead.value + ' potential now reads ' + sig3(beat(f)) + ' mV. The systolic pressure of ' + sig3(press(0.40)) + ' mm Hg follows the QRS complex, because the ventricles contract only after the wave that depolarizes them has crossed.');
+    const what = tb < 0.06 * k ? 'the heart rests between beats'
+      : tb < 0.15 * k ? 'the wave spreads from the SA node across the atria, writing the P wave'
+      : tb < 0.18 * k ? 'the wave waits at the AV node while the atria contract'
+      : tb < 0.25 * k ? 'the wave runs down the septum and out through the ventricles, writing the QRS complex'
+      : tb < 0.33 * k ? 'the ventricles stay depolarized while they contract'
+      : tb < 0.43 * k ? 'the ventricles repolarize, writing the T wave'
+      : 'the heart rests between beats';
+    topline(ctx, 'At ' + fmt(t, 2) + ' s ' + what + ', and the lead ' + L + ' potential reads ' + mv(reading(t)) + ' mV.');
+    readout(d.readout, `\\kt_{\\text{beat}} = \\frac{1}{\\kf} = \\frac{60\\ \\text{s}}{${fmt(bpm.v, 0)}} = ${sig3(period())}\\ \\text{s}`,
+      'The beat is drawn at a quarter of its true speed.');
   }
-  register(d.fig, { update: (dt) => cy.step(dt, () => 0.5), draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1 / SLOW), draw });
 })();
 
 /* =====================================================================
