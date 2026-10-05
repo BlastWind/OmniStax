@@ -1,0 +1,981 @@
+{
+  "id": "34.1",
+  "module": "m42686",
+  "chapter": "34",
+  "title": "Cosmology and Particle Physics",
+  "short": "Cosmology",
+  "lead": "Cosmology studies the character and evolution of the universe, and on the largest scale its explanations turn out to rest on the physics of the smallest. This section describes the galaxies and their distances, the expansion of the universe read from the red shifts of galaxies, the cosmic microwave background left from the Big Bang, and the epochs of the early universe, when the forces were unified.",
+  "objectives": [
+    "Discuss the expansion of the universe.",
+    "Explain the Big Bang."
+  ],
+  "summary_html": "<ul><li>Cosmology is the study of the character and evolution of the universe.</li><li>The two most important features of the universe are the cosmological red shifts of its galaxies being proportional to distance and its cosmic microwave background (CMBR). Both support the notion that there was a gigantic explosion, known as the Big Bang that created the universe.</li><li>Galaxies farther away than our local group have, on an average, a recessional velocity given by $$\\kv = H_{0}\\kd\\text{,}$$ where $\\kd$ is the distance to the galaxy and $H_{0}$ is the Hubble constant, taken to have the average value $H_{0} = 20\\;\\text{km/s}\\cdot\\text{Mly}\\text{.}$</li><li>Explanations of the large-scale characteristics of the universe are intimately tied to particle physics.</li><li>The dominance of matter over antimatter and the smoothness of the CMBR are two characteristics that are tied to particle physics.</li><li>The epochs of the universe are known back to very shortly after the Big Bang, based on known laws of physics.</li><li>The earliest epochs are tied to the unification of forces, with the electroweak epoch being partially understood, the GUT epoch being speculative, and the TOE epoch being highly speculative since it involves an unknown single superforce.</li><li>The transition from GUT to electroweak is called spontaneous symmetry breaking. It released energy that caused the inflationary scenario, which in turn explains the smoothness of the CMBR.</li></ul>",
+  "notes": "Slips are carried as the book prints them: “speed of 100,000 km/s” against the 10,000 km/s of the calculation that follows, the Hubble constant written km/s·Mly in the summary and in one problem’s key, “200 μk”, and Figure 34.7’s “10 to 20 billion years” against the text’s 13 to 15; the figure redrawing Figure 34.9 places Earth, life and the present at 1.0, 1.05 and 1.5 × 10¹⁰ y where the book’s image prints them ten times later.",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-05",
+  "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s own key; the parallax key, printed with º, is written with °. Ten unkeyed problems are left out (the mass of dark and luminous matter in the Milky Way, the speed of a galaxy 500 Mly away, the Sun’s period about the galaxy, the age of the universe from the Hubble constant, the pull of Andromeda on a person, the γ rays of proton-antiproton annihilation, the energy of the background’s photons, the orbital speed’s dependence on radius, the rotational energy of a collapsing core, and the energy uncertainty at 10⁻⁴³ s), as is the Construct Your Own Problem item on a galaxy’s mass. The neutron star problem is held for 34.2, where neutron stars are introduced, and the Critical Thinking problem on Hubble’s law printed in 34.6 is set here. The suggested approaches to the conceptual questions are AI-generated.",
+  "figures": [
+    {
+      "id": "photo-clusters",
+      "kind": "photo",
+      "number": "34.2",
+      "widths": [
+        300
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "photo-milky-way",
+      "kind": "photo",
+      "number": "34.3",
+      "widths": [
+        250
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "photo-andromeda",
+      "kind": "photo",
+      "number": "34.4",
+      "widths": [
+        250
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-hubble-expansion",
+      "kind": "sim",
+      "number": "34.5",
+      "folds": [
+        "34.6"
+      ],
+      "originals": [
+        "/media/ch34/Figure_35_01_04a.jpg",
+        "/media/ch34/Figure_35_01_05a.jpg"
+      ],
+      "original_caption": "(Figure 34.5) This graph of red shift versus distance for galaxies shows a linear relationship, with larger red shifts at greater distances, implying an expanding universe. The slope gives an approximate value for the expansion rate. (credit: John Cub). (Figure 34.6) Galaxies are flying apart from one another, with the more distant moving faster as if a primordial explosion expelled the matter from which they formed. The most distant known galaxies move nearly at the speed of light relative to us.",
+      "widths": [
+        250,
+        200
+      ],
+      "draws": [
+        "velocity",
+        "position",
+        "time"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-cmbr-stretch",
+      "kind": "sim",
+      "number": "34.7",
+      "originals": [
+        "/media/ch34/Figure_35_01_06a.jpg"
+      ],
+      "original_caption": "(a) The Big Bang is used to explain the present observed expansion of the universe. It was an incredibly energetic explosion some 10 to 20 billion years ago. After expanding and cooling, galaxies form inside the now-cold remnants of the primordial fireball. (b) The spectrum of cosmic microwave radiation is the most perfect blackbody spectrum ever detected. It is characteristic of a temperature of 2.725 K, the expansion-cooled temperature of the Big Bang’s remnant. This radiation can be measured coming from any direction in space not obscured by some other source. It is compelling evidence of the creation of the universe in a gigantic explosion, already indicated by galactic red shifts.",
+      "widths": [
+        275
+      ],
+      "draws": [
+        "intensity",
+        "position",
+        "temperature",
+        "velocity"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "photo-wmap",
+      "kind": "photo",
+      "number": "34.8",
+      "widths": [
+        250
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-epochs",
+      "kind": "sim",
+      "number": "34.9",
+      "originals": [
+        "/media/ch34/Figure_35_01_08a-03a9.jpg"
+      ],
+      "original_caption": "The evolution of the universe from the Big Bang onward is intimately tied to the laws of physics, especially those of particle physics at the earliest stages. The universe is relativistic throughout its history. Theories of the unification of forces at high energies may be verified by their shaping of the universe and its evolution.",
+      "widths": [],
+      "draws": [
+        "time",
+        "energy",
+        "temperature"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "referents": [
+    {
+      "id": "milky-way",
+      "label": "the Milky Way",
+      "figures": [
+        "sim-hubble-expansion"
+      ]
+    },
+    {
+      "id": "distant-galaxy",
+      "label": "the galaxy 100 Mly away",
+      "figures": [
+        "sim-hubble-expansion"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "large-and-small",
+      "concept": "four-basic-forces",
+      "verb": "uses"
+    },
+    {
+      "span": "large-and-small",
+      "concept": "universal-gravitation",
+      "verb": "uses"
+    },
+    {
+      "span": "galaxies",
+      "concept": "cosmology",
+      "verb": "introduces"
+    },
+    {
+      "span": "galaxies",
+      "concept": "look-back-time",
+      "verb": "introduces"
+    },
+    {
+      "span": "galaxies",
+      "concept": "speed-of-light-in-vacuum",
+      "verb": "uses"
+    },
+    {
+      "span": "galaxies",
+      "concept": "distance",
+      "verb": "uses"
+    },
+    {
+      "span": "expansion",
+      "concept": "big-bang",
+      "verb": "introduces"
+    },
+    {
+      "span": "expansion",
+      "concept": "cosmological-red-shift",
+      "verb": "introduces"
+    },
+    {
+      "span": "expansion",
+      "concept": "hubble-law",
+      "verb": "introduces"
+    },
+    {
+      "span": "expansion",
+      "concept": "hubble-constant",
+      "verb": "introduces"
+    },
+    {
+      "span": "expansion",
+      "concept": "recession-speed-and-distance",
+      "verb": "introduces"
+    },
+    {
+      "span": "expansion",
+      "concept": "look-back-time",
+      "verb": "uses"
+    },
+    {
+      "span": "expansion",
+      "concept": "relativistic-doppler-effect",
+      "verb": "uses"
+    },
+    {
+      "span": "expansion",
+      "concept": "velocity",
+      "verb": "uses"
+    },
+    {
+      "span": "expansion",
+      "concept": "distance",
+      "verb": "uses"
+    },
+    {
+      "span": "expansion",
+      "concept": "wavelength",
+      "verb": "uses"
+    },
+    {
+      "span": "cmbr",
+      "concept": "cosmic-microwave-background",
+      "verb": "introduces"
+    },
+    {
+      "span": "cmbr",
+      "concept": "big-bang",
+      "verb": "reinforces"
+    },
+    {
+      "span": "cmbr",
+      "concept": "blackbody-radiation",
+      "verb": "uses"
+    },
+    {
+      "span": "cmbr",
+      "concept": "wavelength",
+      "verb": "uses"
+    },
+    {
+      "span": "cmbr",
+      "concept": "temperature",
+      "verb": "uses"
+    },
+    {
+      "span": "matter-antimatter",
+      "concept": "matter-antimatter-asymmetry",
+      "verb": "introduces"
+    },
+    {
+      "span": "matter-antimatter",
+      "concept": "antimatter",
+      "verb": "uses"
+    },
+    {
+      "span": "matter-antimatter",
+      "concept": "antimatter-and-annihilation",
+      "verb": "uses"
+    },
+    {
+      "span": "wrinkles",
+      "concept": "cmbr-wrinkles",
+      "verb": "introduces"
+    },
+    {
+      "span": "wrinkles",
+      "concept": "cosmic-microwave-background",
+      "verb": "uses"
+    },
+    {
+      "span": "wrinkles",
+      "concept": "temperature",
+      "verb": "uses"
+    },
+    {
+      "span": "epochs",
+      "concept": "epochs-of-the-universe",
+      "verb": "introduces"
+    },
+    {
+      "span": "epochs",
+      "concept": "electroweak-epoch",
+      "verb": "introduces"
+    },
+    {
+      "span": "epochs",
+      "concept": "gut-epoch",
+      "verb": "introduces"
+    },
+    {
+      "span": "epochs",
+      "concept": "toe-epoch",
+      "verb": "introduces"
+    },
+    {
+      "span": "epochs",
+      "concept": "superforce",
+      "verb": "introduces"
+    },
+    {
+      "span": "epochs",
+      "concept": "grand-unified-theories",
+      "verb": "uses"
+    },
+    {
+      "span": "epochs",
+      "concept": "electroweak-unification",
+      "verb": "uses"
+    },
+    {
+      "span": "epochs",
+      "concept": "kinetic-energy",
+      "verb": "uses"
+    },
+    {
+      "span": "epochs",
+      "concept": "temperature",
+      "verb": "uses"
+    },
+    {
+      "span": "inflation",
+      "concept": "spontaneous-symmetry-breaking",
+      "verb": "introduces"
+    },
+    {
+      "span": "inflation",
+      "concept": "inflationary-scenario",
+      "verb": "introduces"
+    },
+    {
+      "span": "inflation",
+      "concept": "symmetry-breaking-and-inflation",
+      "verb": "introduces"
+    },
+    {
+      "span": "inflation",
+      "concept": "cmbr-wrinkles",
+      "verb": "uses"
+    },
+    {
+      "span": "inflation",
+      "concept": "four-basic-forces",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cq1",
+      "source_id": "fs-id1169737723323",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "Explain why it only <em>appears</em> that we are at the center of expansion of the universe and why an observer in another galaxy would see the same relative motion of all but the closest galaxies away from her.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The expansion is of space itself, so every separation between galaxies grows by the same factor in the same time. From any galaxy, a galaxy twice as far away has its separation grow twice as much and so recedes twice as fast: every observer finds $v = H_{0}d$ and sees all but the closest galaxies, which are bound to it by gravity or have local motions, moving away. We are not at a center; there is no center of expansion, and all observers see themselves as stationary."
+      }
+    },
+    {
+      "id": "cq2",
+      "source_id": "fs-id1169736809912",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "If there is no observable edge to the universe, can we determine where its center of expansion is? Explain.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "No. Since every observer sees the same pattern of recession, $v = H_{0}d$ about itself, the motions of the galaxies single out no point as special. A center could be located only by finding an edge or some direction in which the universe looks different, and with no observable edge the expansion has no observable center."
+      }
+    },
+    {
+      "id": "cq3",
+      "source_id": "fs-id1169738013588",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "If the universe is infinite, does it have a center? Discuss.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "An infinite universe has no center, since there is no edge from which a middle could be measured and every point is equally surrounded. This fits the observation that the expansion looks the same from every galaxy: the Big Bang is not an explosion from one point into empty space but the expansion of all of space, everywhere at once."
+      }
+    },
+    {
+      "id": "cq4",
+      "source_id": "fs-id1169737769843",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "Another known cause of red shift in light is the source being in a high gravitational field. Discuss how this can be eliminated as the source of galactic red shifts, given that the shifts are proportional to distance and not to the size of the galaxy.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "A gravitational red shift depends on the field at the source, so it would be larger for more massive, more compact galaxies and would not depend on how far away the galaxy is. The observed red shifts grow in proportion to distance, whatever the size or mass of the galaxy, so gravity at the source cannot be their cause. A shift that grows with the distance the light has traveled points to the stretching of space while the light is in transit, the cosmological red shift."
+      }
+    },
+    {
+      "id": "cq5",
+      "source_id": "fs-id1169738043146",
+      "kind": "conceptual-question",
+      "bloom": "Evaluate",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "If some unknown cause of red shift—such as light becoming “tired” from traveling long distances through empty space—is discovered, what effect would there be on cosmology?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The galactic red shifts are the main evidence that the universe is expanding, read as the cosmological red shift through $v = H_{0}d$. If light lost energy on its own over long distances, part or all of each red shift would come from that and not from expansion, so the recession velocities, the Hubble constant and the age of the universe drawn from them would all have to be revised, and the case for the Big Bang would rest more heavily on its other evidence, such as the cosmic microwave background."
+      }
+    },
+    {
+      "id": "cq6",
+      "source_id": "fs-id1169737825737",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "galaxies",
+      "prompt": "Olbers’s paradox poses an interesting question: If the universe is infinite, then any line of sight should eventually fall on a star’s surface. Why then is the sky dark at night? Discuss the commonly accepted evolution of the universe as a solution to this paradox.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "In the accepted picture the universe began in the Big Bang some 13 to 15 billion years ago, so stars and galaxies have existed only for a finite time. Light from beyond about 14 billion light years has not had time to reach us, so most lines of sight end on no star at all. The expansion also red shifts the light of distant galaxies, lowering its energy, and stretches the glow of the early universe into the faint microwave background. Both make the night sky dark."
+      }
+    },
+    {
+      "id": "cq7",
+      "source_id": "fs-id1169737756597",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "wrinkles",
+      "prompt": "If the cosmic microwave background radiation (CMBR) is the remnant of the Big Bang’s fireball, we expect to see hot and cold regions in it. What are two causes of these wrinkles in the CMBR? Are the observed temperature variations greater or less than originally expected?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The wrinkles correspond to dense and sparse regions of gas in the early universe, caused by turbulence or by early fluctuations; the dense regions later contracted under gravity to form stars and galaxies. The observed variations are much smaller than expected, only about 200 μK out of 2.7 K, better than one part in 1000, which the inflationary scenario explains by stretching the early wrinkles nearly flat."
+      }
+    },
+    {
+      "id": "cq8",
+      "source_id": "fs-id1169737812412",
+      "kind": "conceptual-question",
+      "bloom": "Evaluate",
+      "place": {
+        "at": "end"
+      },
+      "cite": "matter-antimatter",
+      "prompt": "The decay of one type of $K$-meson is cited as evidence that nature favors matter over antimatter. Since mesons are composed of a quark and an antiquark, is it surprising that they would preferentially decay to one type over another? Is this an asymmetry in nature? Is the predominance of matter over antimatter an asymmetry?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "It is surprising: a meson holds one quark and one antiquark, so a perfectly symmetric nature would give its decays no preference between matter and antimatter. The preference of the neutral $K$-meson is a small, real asymmetry in the basic forces. The predominance of matter in the universe is an asymmetry too, and the small one in particle physics can explain it: one part in $10^{9}$ more matter in the early universe leaves, after the rest annihilates pair for pair, the nearly pure matter of today’s stars and galaxies."
+      }
+    },
+    {
+      "id": "cq9",
+      "source_id": "fs-id1169737949974",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "galaxies",
+      "prompt": "Distances to local galaxies are determined by measuring the brightness of stars, called Cepheid variables, that can be observed individually and that have absolute brightnesses at a standard distance that are well known. Explain how the measured brightness would vary with distance as compared with the absolute brightness.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "A star’s light spreads out over a sphere whose area grows as the square of the distance, so the intensity received falls as $1/d^{2}$. A Cepheid twice as far away as the standard distance looks one quarter as bright as its absolute brightness, and comparing the measured brightness with the known absolute brightness gives the distance."
+      }
+    },
+    {
+      "id": "cq10",
+      "source_id": "fs-id1169737788808",
+      "kind": "conceptual-question",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "Distances to very remote galaxies are estimated based on their apparent type, which indicate the number of stars in the galaxy, and their measured brightness. Explain how the measured brightness would vary with distance. Would there be any correction necessary to compensate for the red shift of the galaxy (all distant galaxies have significant red shifts)? Discuss possible causes of uncertainties in these measurements.",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "As for a single star, the measured brightness falls as the inverse square of the distance. A correction is needed for the red shift: the stretched light carries less energy per photon and arrives at a lower rate, and part of it is shifted out of the band being measured, so an uncorrected galaxy would look dimmer and farther than it is. Uncertainties come from judging the number of stars from the galaxy’s type, from dust and gas that absorb light, and from galaxies seen as they were long ago, when they may have been brighter or younger-looking than galaxies near us."
+      }
+    },
+    {
+      "id": "cq11",
+      "source_id": "fs-id1169738166165",
+      "kind": "conceptual-question",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "epochs",
+      "prompt": "If the smallest meaningful time interval is greater than zero, will the lines in Figure 34.9 ever meet?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "No. On an exponential scale there is no zero, and the lines approach each other only as the time goes toward zero. If no time interval shorter than some smallest one has meaning, the scale stops there, before the lines can come together, and they never meet."
+      }
+    },
+    {
+      "id": "p1",
+      "source_id": "fs-id1169738060667",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "galaxies",
+      "prompt": "Find the approximate mass of the luminous matter in the Milky Way galaxy, given it has approximately $10^{11}$ stars of average mass 1.5 times that of our Sun.",
+      "answer": {
+        "type": "number",
+        "value": 3e+41,
+        "unit": "kg",
+        "generated_by": "source",
+        "hint": "Multiply the number of stars by 1.5 solar masses, with the Sun’s mass $1.99\\times 10^{30}\\;\\text{kg}$.",
+        "solution": "$3\\times 10^{41}\\;\\text{kg}$",
+        "tol": 0.1
+      }
+    },
+    {
+      "id": "p2",
+      "source_id": "fs-id1169738109498",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "galaxies",
+      "prompt": "(a) Estimate the mass of the luminous matter in the known universe, given there are $10^{11}$ galaxies, each containing $10^{11}$ stars of average mass 1.5 times that of our Sun. (b) How many protons (the most abundant nuclide) are there in this mass? (c) Estimate the total number of particles in the observable universe by multiplying the answer to (b) by two, since there is an electron for each proton, and then by $10^{9}$, since there are far more particles (such as photons and neutrinos) in space than in luminous matter.",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "solution": "(a) $3\\times 10^{52}\\;\\text{kg}$ (b) $2\\times 10^{79}$ (c) $4\\times 10^{88}$",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 3e+52,
+            "unit": "kg",
+            "tol": 0.1,
+            "hint": "Multiply the number of galaxies, the stars in each and the average stellar mass."
+          },
+          {
+            "part": "(b)",
+            "value": 2e+79,
+            "tol": 0.15,
+            "hint": "Divide the mass by the proton’s mass, $1.67\\times 10^{-27}\\;\\text{kg}$."
+          },
+          {
+            "part": "(c)",
+            "value": 4e+88,
+            "tol": 0.15,
+            "hint": "Multiply (b) by 2 and then by $10^{9}$."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "source_id": "fs-id1169738128083",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "On average, how far away are galaxies that are moving away from us at 2.0% of the speed of light?",
+      "answer": {
+        "type": "number",
+        "value": 0.3,
+        "unit": "Gly",
+        "generated_by": "source",
+        "hint": "Find the speed in km/s from $c = 3.00\\times 10^{5}\\;\\text{km/s}$, then use $d = v/H_{0}$ with $H_{0} = 20\\;\\text{(km/s)/Mly}$.",
+        "solution": "0.30 Gly"
+      }
+    },
+    {
+      "id": "p4",
+      "source_id": "fs-id1169737802923",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "(a) What is the approximate speed relative to us of a galaxy near the edge of the known universe, some 10 Gly away? (b) What fraction of the speed of light is this? Note that we have observed galaxies moving away from us at greater than $0.9c$.",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "solution": "(a) $2.0\\times 10^{5}\\;\\text{km/s}$ (b) $0.67c$",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 200000.0,
+            "unit": "km/s",
+            "hint": "Use $v = H_{0}d$ with $d = 10{,}000\\;\\text{Mly}$."
+          },
+          {
+            "part": "(b)",
+            "value": 0.67,
+            "unit": "c",
+            "hint": "Divide by $c = 3.00\\times 10^{5}\\;\\text{km/s}$."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p5",
+      "source_id": "fs-id1169737753519",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "galaxies",
+      "prompt": "Assuming a circular orbit for the Sun about the center of the Milky Way galaxy, calculate its orbital speed using the following information: The mass of the galaxy is equivalent to a single mass $1.5\\times 10^{11}$ times that of the Sun (or $3\\times 10^{41}\\;\\text{kg}$), located 30,000 ly away.",
+      "answer": {
+        "type": "number",
+        "value": 270000.0,
+        "unit": "m/s",
+        "generated_by": "source",
+        "hint": "Gravity supplies the centripetal force, so $v = \\sqrt{GM/r}$; convert 30,000 ly to meters with $1\\;\\text{ly} = 9.46\\times 10^{15}\\;\\text{m}$.",
+        "solution": "$2.7\\times 10^{5}\\;\\text{m/s}$"
+      }
+    },
+    {
+      "id": "p6",
+      "source_id": "fs-id1169738077849",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "galaxies",
+      "prompt": "Andromeda galaxy is the closest large galaxy and is visible to the naked eye. Estimate its brightness relative to the Sun, assuming it has luminosity $10^{12}$ times that of the Sun and lies 2 Mly away.",
+      "answer": {
+        "type": "number",
+        "value": 6e-11,
+        "generated_by": "source",
+        "hint": "Brightness goes as luminosity over distance squared; compare $10^{12}$ over $(2\\;\\text{Mly})^{2}$ with 1 over $(1.58\\times 10^{-5}\\;\\text{ly})^{2}$, the Sun’s distance.",
+        "solution": "$6\\times 10^{-11}$ (an overestimate, since some of the light from Andromeda is blocked by gas and dust within that galaxy)",
+        "tol": 0.1
+      }
+    },
+    {
+      "id": "p7",
+      "source_id": "fs-id1169737794400",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "epochs",
+      "prompt": "The average particle energy needed to observe unification of forces is estimated to be $10^{19}\\;\\text{GeV}$. (a) What is the rest mass in kilograms of a particle that has a rest mass of $10^{19}\\;\\text{GeV/}c^{2}$? (b) How many times the mass of a hydrogen atom is this?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "solution": "(a) $2\\times 10^{-8}\\;\\text{kg}$ (b) $1\\times 10^{19}$",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 2e-08,
+            "unit": "kg",
+            "tol": 0.15,
+            "hint": "Convert $10^{19}\\;\\text{GeV}$ to joules and divide by $c^{2}$."
+          },
+          {
+            "part": "(b)",
+            "value": 1e+19,
+            "tol": 0.15,
+            "hint": "Divide by the mass of a hydrogen atom, $1.67\\times 10^{-27}\\;\\text{kg}$."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p8",
+      "source_id": "fs-id1169737820271",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "(a) What Hubble constant corresponds to an approximate age of the universe of $10^{10}$ y? To get an approximate value, assume the expansion rate is constant and calculate the speed at which two galaxies must move apart to be separated by 1 Mly (present average galactic separation) in a time of $10^{10}$ y. (b) Similarly, what Hubble constant corresponds to a universe approximately $2\\times 10^{10}$-y old?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "solution": "(a) $30\\;\\text{km/s}\\cdot\\text{Mly}$ (b) $15\\;\\text{km/s}\\cdot\\text{Mly}$",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 30,
+            "unit": "km/s·Mly",
+            "hint": "The galaxies cover 1 Mly in $10^{10}$ y; that speed, in km/s, is $H_{0}$ for each Mly of separation."
+          },
+          {
+            "part": "(b)",
+            "value": 15,
+            "unit": "km/s·Mly",
+            "hint": "Twice the time means half the speed."
+          }
+        ]
+      }
+    },
+    {
+      "id": "p9",
+      "source_id": "fs-id1169737812426",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "galaxies",
+      "prompt": "Distances to the nearest stars (up to 500 ly away) can be measured by a technique called parallax, as shown in Figure 34.26. What are the angles $\\theta_{1}$ and $\\theta_{2}$ relative to the plane of the Earth’s orbit for a star 4.0 ly directly above the Sun?",
+      "answer": {
+        "type": "number",
+        "value": 89.999773,
+        "unit": "°",
+        "generated_by": "source",
+        "hint": "The star, the Sun and the Earth make a right triangle with the Earth–Sun distance, $1.50\\times 10^{11}\\;\\text{m}$, as one leg and 4.0 ly as the other; both angles are the same.",
+        "solution": "$89.999773^\\circ$ (many digits are used to show the difference between $90^\\circ$)",
+        "tol": 1e-07
+      },
+      "figure": {
+        "src": "/media/ch34/Figure_35_01_09a.jpg",
+        "alt": "The figure shows a conical shape with a star at the vertex, the Sun at the center of the circular base, and the Earth revolving around the Sun along the perimeter of the base. The star is 4 light years above the Earth-Sun plane. When the Earth is to the far left of the Sun, the angle between the line segment from the Earth to the Sun and the line segment from the Earth to the star is called theta one. When the Earth is in the diametrically opposite position (that is, the far right position) the angle between the same two lines is labeled theta two.",
+        "caption": "Figure 34.26. Distances to nearby stars are measured using triangulation, also called the parallax method. The angle of line of sight to the star is measured at intervals six months apart, and the distance is calculated by using the known diameter of the Earth’s orbit. This can be done for stars up to about 500 ly away."
+      }
+    },
+    {
+      "id": "p10",
+      "source_id": "exer-87234",
+      "source_section": "34.6",
+      "kind": "problem",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "expansion",
+      "prompt": "Assume two galaxies are $2.00\\times 10^{2}\\;\\text{Mly}$ apart. (a) How fast are they separating due to space expansion? (b) Now suppose a third galaxy is located $2.00\\times 10^{2}\\;\\text{Mly}$ along a line that is a perpendicular bisector of the line segment between the first two galaxies. How fast is this galaxy separating from either of the other two galaxies? (c) Why would the third galaxy appear to be receding from both of the initially mentioned galaxies at the same rate? (d) How would the apparent motion be detected?",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "solution": "(a) $v = H_{0}d = (20\\;\\text{km/s})/\\text{Mly}\\,(2.00\\times 10^{2}\\;\\text{Mly}) = 4.00\\times 10^{3}\\;\\text{km/s}$ (b) $d = \\sqrt{(1.00\\times 10^{2})^{2} + (2.00\\times 10^{2})^{2}}\\;\\text{Mly} = 2.24\\times 10^{2}\\;\\text{Mly}$, $v = (20\\;\\text{km/s})/\\text{Mly}\\,(2.24\\times 10^{2}\\;\\text{Mly}) = 4.48\\times 10^{3}\\;\\text{km/s}$ (c) The galaxies are separating mostly due to the expansion of space. (d) Light from the third galaxy would have a red shift when detected in either of the other galaxies.",
+        "parts": [
+          {
+            "part": "(a)",
+            "value": 4000.0,
+            "unit": "km/s",
+            "hint": "Use $v = H_{0}d$ with $H_{0} = 20\\;\\text{(km/s)/Mly}$."
+          },
+          {
+            "part": "(b)",
+            "value": 4480.0,
+            "unit": "km/s",
+            "hint": "The third galaxy is $\\sqrt{(1.00\\times 10^{2})^{2} + (2.00\\times 10^{2})^{2}}\\;\\text{Mly}$ from each of the others."
+          }
+        ]
+      },
+      "tag": "Critical Thinking"
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cq1",
+      "concept": "hubble-law"
+    },
+    {
+      "exercise": "cq1",
+      "concept": "cosmological-red-shift"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "hubble-law"
+    },
+    {
+      "exercise": "cq2",
+      "concept": "big-bang"
+    },
+    {
+      "exercise": "cq3",
+      "concept": "big-bang"
+    },
+    {
+      "exercise": "cq4",
+      "concept": "cosmological-red-shift"
+    },
+    {
+      "exercise": "cq4",
+      "concept": "hubble-law"
+    },
+    {
+      "exercise": "cq5",
+      "concept": "cosmological-red-shift"
+    },
+    {
+      "exercise": "cq5",
+      "concept": "big-bang"
+    },
+    {
+      "exercise": "cq6",
+      "concept": "big-bang"
+    },
+    {
+      "exercise": "cq6",
+      "concept": "look-back-time"
+    },
+    {
+      "exercise": "cq7",
+      "concept": "cmbr-wrinkles"
+    },
+    {
+      "exercise": "cq7",
+      "concept": "inflationary-scenario"
+    },
+    {
+      "exercise": "cq8",
+      "concept": "matter-antimatter-asymmetry"
+    },
+    {
+      "exercise": "cq9",
+      "concept": "intensity"
+    },
+    {
+      "exercise": "cq9",
+      "concept": "cosmology"
+    },
+    {
+      "exercise": "cq10",
+      "concept": "cosmological-red-shift"
+    },
+    {
+      "exercise": "cq10",
+      "concept": "intensity"
+    },
+    {
+      "exercise": "cq11",
+      "concept": "epochs-of-the-universe"
+    },
+    {
+      "exercise": "p1",
+      "concept": "cosmology"
+    },
+    {
+      "exercise": "p1",
+      "concept": "mass"
+    },
+    {
+      "exercise": "p2",
+      "concept": "cosmology"
+    },
+    {
+      "exercise": "p2",
+      "concept": "proton"
+    },
+    {
+      "exercise": "p3",
+      "concept": "recession-speed-and-distance"
+    },
+    {
+      "exercise": "p4",
+      "concept": "recession-speed-and-distance"
+    },
+    {
+      "exercise": "p4",
+      "concept": "speed-of-light-in-vacuum"
+    },
+    {
+      "exercise": "p5",
+      "concept": "orbital-speed"
+    },
+    {
+      "exercise": "p5",
+      "concept": "cosmology"
+    },
+    {
+      "exercise": "p6",
+      "concept": "intensity"
+    },
+    {
+      "exercise": "p6",
+      "concept": "look-back-time"
+    },
+    {
+      "exercise": "p7",
+      "concept": "epochs-of-the-universe"
+    },
+    {
+      "exercise": "p7",
+      "concept": "rest-energy"
+    },
+    {
+      "exercise": "p8",
+      "concept": "hubble-constant"
+    },
+    {
+      "exercise": "p8",
+      "concept": "big-bang"
+    },
+    {
+      "exercise": "p9",
+      "concept": "distance"
+    },
+    {
+      "exercise": "p10",
+      "concept": "hubble-law"
+    },
+    {
+      "exercise": "p10",
+      "concept": "recession-speed-and-distance"
+    }
+  ]
+}
