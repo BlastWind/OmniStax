@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, vbracket, axes, nice, curve, car, view, face, FONT, pinned, labeller, person } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- helpers shared by the figures ---------- */
 const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
@@ -11,6 +11,8 @@ const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 const sgn = (v) => (v < 0 ? '−' : '');
 /* a number as the book would print it: whole with thousands separated once it passes a thousand, three figures below that */
 const sig3 = (x) => { const a = Math.abs(x); return sgn(x) + (a >= 1000 ? commas(String(Math.round(a))) : a.toPrecision(3)); };
+/* the same, written for TeX, where a bare comma would open a space */
+const sig3t = (x) => sig3(x).replace('−', '-').replace(/,/g, '{,}');
 /* a label with subscripts, written the way the book writes them: F_c, μ_s, F_c' */
 function lab(ctx, s, x, y, color, o = {}) {
   text(ctx, s, x, y, color, { size: o.size ?? 21, weight: o.weight ?? 600, align: o.align ?? 'center', bg: o.bg });
@@ -119,8 +121,8 @@ function rider(ctx, x, y, color, s = 1) {
     one(1040, 340, r2, f2.v, "F_c'", "r'", 'object-2');
     L.flush();
     headline(ctx, 'At ' + fmt(v.v, 1) + ' m/s, ' + sig3(f1.v) + ' N bends the path into a circle of ' + fmt(r1, 2) + ' m and ' + sig3(f2.v) + ' N into one of ' + fmt(r2, 2) + ' m.');
-    readout(d.readout, `\\kr = \\frac{\\km\\kv^2}{\\kFc} = \\frac{(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})^2}{${sig3(f1.v)}\\ \\text{N}} = ${fmt(r1, 2)}\\ \\text{m}`,
-      'The two objects move at the same speed, so the one on the tighter circle sweeps round faster: its angular velocity is ω = v/r = ' + fmt(v.v / r2, 1) + ' rad/s against ' + fmt(v.v / r1, 1) + ' rad/s for the other, which is why the same force can also be written F_c = mrω².');
+    readout(d.readout, `\\kr = \\frac{\\km\\kv^2}{\\kFc} = \\frac{(${fmt(m.v, 1)}\\ \\text{kg})(${fmt(v.v, 1)}\\ \\text{m/s})^2}{${sig3t(f1.v)}\\ \\text{N}} = ${fmt(r1, 2)}\\ \\text{m}`,
+      'At one speed the tighter circle turns faster, $\\kw = \\kv/\\kr$ = ' + fmt(v.v / Math.min(r1, r2), 1) + ' rad/s against ' + fmt(v.v / Math.max(r1, r2), 1) + ' rad/s, which is why the force can also be written $\\kFc = \\km\\kr\\kw^2$.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 5), draw });
 })();
@@ -145,11 +147,12 @@ function rider(ctx, x, y, color, s = 1) {
     dot(ctx, cx, cyy, PAL.muted, true, 6);
     const a = 44 * RAD, px = cx + R * Math.cos(a), py = cyy - R * Math.sin(a);
     line(ctx, cx, cyy, px, py, C('position'), 3, [6, 8]);
-    lab(ctx, 'r = ' + sig3(r.v) + ' m', (cx + px) / 2 + 28 * Math.sin(a), (cyy + py) / 2 + 28 * Math.cos(a), C('position'), { size: 20, bg: alpha(PAL.panel, 0.8) });
+    /* r is named just below and right of the center, clear of the radius it names and of the force arrow along it */
+    lab(ctx, 'r = ' + sig3(r.v) + ' m', cx + 20, cyy + 26, C('position'), { size: 20, align: 'left', bg: alpha(PAL.panel, 0.8) });
     planCar(ctx, px, py, Math.PI / 2 - a, F.ref('flat-car'), 1.15);
     vecSide(ctx, px, py, -Math.cos(a), Math.sin(a), 104, C('force'), 'F_c', 1);
     vec(ctx, px, py, Math.sin(a), Math.cos(a), 84, C('velocity'), 'v', 22);
-    text(ctx, 'the curve seen from above', 290, 590, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the curve seen from above', 340, 590, PAL.muted, { size: 19, align: 'center' });
     /* in the middle, the car seen from behind with its three forces */
     const bx = 830, by = 400;
     ground(ctx, 640, 1030, by + 44);
@@ -166,8 +169,8 @@ function rider(ctx, x, y, color, s = 1) {
     vec(ctx, fx, fy, 0, 1, 92, C('force'), 'w');
     vec(ctx, fx, fy, -1, 0, 108, C('force'), 'f = F_c');
     headline(ctx, 'At ' + fmt(v.v, 1) + ' m/s a ' + sig3(r.v) + ' m curve needs ' + sig3(Fc) + ' N of friction, which a coefficient of ' + fmt(mu, 2) + ' supplies.');
-    readout(d.readout, `\\mu_{\\text{s}} = \\frac{\\kv^2}{\\kr\\kg} = \\frac{(${fmt(v.v, 1)}\\ \\text{m/s})^2}{(${sig3(r.v)}\\ \\text{m})(9.80\\ \\text{m/s}^2)} = ${fmt(mu, 2)}`,
-      'The friction the road must supply is F_c = mv²/r = ' + sig3(Fc) + ' N, and the most it can supply is μ_s N = μ_s mg, with N = ' + sig3(N) + ' N. The mass cancels between the two, so it does not matter how heavily the car is loaded.');
+    readout(d.readout, `\\mu_{\\text{s}} = \\frac{\\kv^2}{\\kr\\kg} = \\frac{(${fmt(v.v, 1)}\\ \\text{m/s})^2}{(${sig3t(r.v)}\\ \\text{m})(9.80\\ \\text{m/s}^2)} = ${fmt(mu, 2)}`,
+      'The road must supply $\\kFc = \\km\\kv^2/\\kr$ = ' + sig3(Fc) + ' N and can supply at most $\\mu_{\\text{s}}\\km\\kg$, so the mass cancels and the load does not matter.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -221,7 +224,8 @@ function rider(ctx, x, y, color, s = 1) {
     arrow(ctx, x0, y0, x0, hy, C('force'), 5);
     arrow(ctx, x0, y0, hx, hy, C('force'), 5);
     arrow(ctx, x0, y0, x0, y0 + 110, C('force'), 5);
-    LB.add('N = ' + sig3(N) + ' N', hx, hy, nx, ny, C('force'), 20, 24);
+    /* named to the left of its head, where nothing else is drawn, since straight beyond it lies the headline */
+    LB.add('N = ' + sig3(N) + ' N', hx, hy, -1, 0, C('force'), 20, 24);
     LB.add('w = ' + sig3(w) + ' N', x0, y0 + 110, 0, 1, C('force'), 20, 24);
     LB.add('N sin θ = ' + sig3(N * Math.sin(t)) + ' N', hx, y0, -1, 0.15, C('force'), 19, 22);
     LB.add('N cos θ = ' + sig3(N * Math.cos(t)) + ' N', x0, hy, 1, -0.2, C('force'), 19, 22);
@@ -243,8 +247,8 @@ function rider(ctx, x, y, color, s = 1) {
     pinned(ctx, box, X, Y, vi, th.v, C('velocity'), fmt(vi, 1) + ' m/s');
     text(ctx, 'the ideal angle for a ' + sig3(r.v) + ' m curve', box.l + 14, box.t + 26, PAL.muted, { size: 19 });
     headline(ctx, 'Banked at ' + fmt(th.v, 1) + '°, a curve of ' + sig3(r.v) + ' m is ideal for ' + fmt(vi, 1) + ' m/s, which is about ' + sig3(vi * 3.6) + ' km/h.');
-    readout(d.readout, `\\kv = (\\kr\\kg\\tan\\ktheta)^{1/2} = ((${sig3(r.v)}\\ \\text{m})(9.80\\ \\text{m/s}^2)(${fmt(Math.tan(t), 2)}))^{1/2} = ${fmt(vi, 1)}\\ \\text{m/s}`,
-      'Read the other way, the same relation gives the angle, θ = tan⁻¹(v²/rg) = ' + fmt(th.v, 1) + '°. The normal force is N = mg/cos θ = ' + sig3(N) + ' N, whose horizontal part supplies the whole centripetal force while its vertical part balances the weight, and neither the angle nor the ideal speed depends on the mass of the car.');
+    readout(d.readout, `\\kv = (\\kr\\kg\\tan\\ktheta)^{1/2} = ((${sig3t(r.v)}\\ \\text{m})(9.80\\ \\text{m/s}^2)(${fmt(Math.tan(t), 2)}))^{1/2} = ${fmt(vi, 1)}\\ \\text{m/s}`,
+      'Read the other way, $\\ktheta = \\tan^{-1}(\\kv^2/\\kr\\kg)$ = ' + fmt(th.v, 1) + '°, and neither the angle nor the ideal speed depends on the mass of the car.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -295,8 +299,10 @@ function rider(ctx, x, y, color, s = 1) {
     L.add('r = ' + fmt(r.v, 1) + ' m', cx + (px - cx) * 0.5, cyy + (py - cyy) * 0.5, -tx, -ty, C('position'), 20, 24);
     /* the stretch of the loop the car cannot keep contact along, drawn broken */
     if (phiLose < Math.PI) {
-      ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 9; ctx.setLineDash([12, 14]);
-      ctx.beginPath(); ctx.arc(cx, cyy, R, Math.PI / 2 - phiLose, Math.PI / 2 - (TAU - phiLose), true); ctx.stroke(); ctx.restore();
+      /* the rail is cleared along the stretch and redrawn there as a dashed line, so the break reads in either theme */
+      ctx.save(); ctx.beginPath(); ctx.arc(cx, cyy, R, Math.PI / 2 - phiLose, Math.PI / 2 - (TAU - phiLose), true);
+      ctx.strokeStyle = PAL.panel; ctx.lineWidth = 12; ctx.stroke();
+      ctx.strokeStyle = F.ref('track'); ctx.lineWidth = 4; ctx.setLineDash([12, 12]); ctx.stroke(); ctx.restore();
       text(ctx, 'The car cannot keep contact along the broken stretch of the loop.', cx, gy + 48, PAL.muted, { size: 17, align: 'center' });
     }
     /* the car rides on the inside of the rail, its wheels on the track, the forces drawn from its centre */
@@ -320,9 +326,11 @@ function rider(ctx, x, y, color, s = 1) {
     headline(ctx, inContact
       ? 'The car is ' + fmt((phi / TAU) * 360, 0) + '° round the loop, where the track pushes with ' + sig3(Nnow) + ' N.'
       : 'The track stops pushing ' + fmt((phiLose / TAU) * 360, 0) + '° round, so the car has already left it here.');
-    readout(d.readout, `\\kN = \\km\\frac{\\kv^2}{\\kr} + \\km\\kg\\cos\\phi = ${sig3((m.v * v.v * v.v) / r.v)}\\ \\text{N} + (${sig3(m.v * G)}\\ \\text{N})\\cos ${fmt((phi / TAU) * 360, 0)}^\\circ = ${sig3(Nnow)}\\ \\text{N}`,
-      Nt > 0 ? 'At the top the weight already points at the center, so the track has only ' + sig3(Nt) + ' N left to supply. Below ' + fmt(vmin, 1) + ' m/s the weight alone would be more than the circle needs there, and the car would leave the track.'
-        : 'At ' + fmt(v.v, 1) + ' m/s the weight is already more than the circle needs from ' + fmt((phiLose / TAU) * 360, 0) + '° round, so the track can push no harder than nothing and the car leaves it. The car would have to travel at least ' + fmt(vmin, 1) + ' m/s to hold the loop all the way round.');
+    /* where the sum falls below zero the track would have to pull, so the readout shows the sum and then the zero the track gives */
+    const Nask = asked(phi), tx3 = (x) => sig3(x).replace('−', '-').replace(/,/g, '{,}');
+    readout(d.readout, `\\kN = \\km\\frac{\\kv^2}{\\kr} + \\km\\kg\\cos\\phi = ${tx3((m.v * v.v * v.v) / r.v)}\\ \\text{N} + (${tx3(m.v * G)}\\ \\text{N})\\cos ${fmt((phi / TAU) * 360, 0)}^\\circ = ${tx3(Nask)}\\ \\text{N}` + (Nask < 0 ? `\\;\\Rightarrow\\; \\kN = 0` : ''),
+      Nt > 0 ? 'At the top the track supplies only ' + sig3(Nt) + ' N; below $\\kv = \\sqrt{\\kg\\kr}$ = ' + fmt(vmin, 1) + ' m/s it would supply none there.'
+        : 'The car needs at least $\\kv = \\sqrt{\\kg\\kr}$ = ' + fmt(vmin, 1) + ' m/s to hold the loop all the way round.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => period() / 5), draw });
 })();
@@ -343,13 +351,19 @@ function rider(ctx, x, y, color, s = 1) {
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.arc(cx, cyy, 750, -145 * RAD, -35 * RAD, false); ctx.arc(cx, cyy, 500, -35 * RAD, -145 * RAD, true); ctx.closePath(); ctx.fill(); ctx.restore();
     band(750, 5, PAL.muted); band(500, 5, PAL.muted);
     const inner = F.ref('inside-path'), outer = F.ref('outside-path');
-    band(690, 4, outer, [14, 12]); band(560, 4, inner, [14, 12]);
-    const [ix, iy] = at(560, 62); planCar(ctx, ix, iy, Math.PI / 2 - 62 * RAD, inner, 1.2);
-    const [ox, oy] = at(690, 88); planCar(ctx, ox, oy, Math.PI / 2 - 88 * RAD, outer, 1.2);
-    arrow(ctx, ...at(560, 44), ...at(560, 38), inner, 4);
-    arrow(ctx, ...at(690, 44), ...at(690, 38), outer, 4);
-    text(ctx, 'the inside path, which cuts the corner', ...at(560, 120), inner, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'the outside path', ...at(690, 112), outer, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* the path that follows the lane keeps to the middle of the track; the path that cuts the corner comes in
+       from the outside edge, touches the inside edge at the apex and runs out to the outside edge again, so it
+       is the arc of a much larger circle, through those three points, centred below the track's own center */
+    band(625, 4, outer, [14, 12]);
+    const RC = 3089, ccy = cyy + 2569, cut = (adeg) => [cx + RC * Math.cos(adeg * RAD), ccy - RC * Math.sin(adeg * RAD)];
+    const half = Math.asin(559 / RC) / RAD;      /* the entry and exit, on the outside edge at 140° and 40° of the track */
+    ctx.save(); ctx.strokeStyle = inner; ctx.lineWidth = 4; ctx.setLineDash([14, 12]); ctx.beginPath(); ctx.arc(cx, ccy, RC, -(90 + half) * RAD, -(90 - half) * RAD, false); ctx.stroke(); ctx.restore();
+    const [ox, oy] = at(625, 112); planCar(ctx, ox, oy, Math.PI / 2 - 112 * RAD, outer, 1.2);
+    const [ix, iy] = cut(90 + half * 0.35); planCar(ctx, ix, iy, Math.PI / 2 - (90 + half * 0.35) * RAD, inner, 1.2);
+    arrow(ctx, ...at(625, 46), ...at(625, 40), outer, 4);
+    arrow(ctx, ...cut(90 - half * 0.86), ...cut(90 - half * 0.98), inner, 4);
+    text(ctx, 'the path that cuts the corner', ...cut(90 + half * 0.72), inner, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'the path that follows the lane', ...at(625, 84), outer, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -385,7 +399,6 @@ function rider(ctx, x, y, color, s = 1) {
       coasterCar(ctx, bx - 8 * Math.cos(a), by - 8 * Math.sin(a), Math.sin(a), -Math.cos(a), F.ref('cars'), 0.85);
     }
     { const a = 6 * RAD, hx = cx + (R + 44) * Math.cos(a), hy = cyy + (R + 44) * Math.sin(a); arrow(ctx, hx, hy + 70, hx - 20, hy - 30, PAL.ink, 4); }
-    text(ctx, 'the cars are fastened to the rails so that they cannot fall off', 700, 566, PAL.muted, { size: 19, align: 'center' });
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -482,7 +495,6 @@ function rider(ctx, x, y, color, s = 1) {
     text(ctx, 'the nail', head[0] - 16, head[1] - 26, F.ref('nail'), { size: 20, align: 'right' });
     text(ctx, 'the string', (nail[0] + mb[0]) / 2, (nail[1] + mb[1]) / 2 + 30, F.ref('string'), { size: 20, align: 'center' });
     text(ctx, 'the mass', corner[0] + 22, corner[1] - 10, F.ref('body'), { size: 20 });
-    text(ctx, 'the table is frictionless, and the mass travels the circle at a constant speed', 700, 552, PAL.muted, { size: 19, align: 'center' });
   }
   register(d.fig, { update: () => {}, draw });
 })();

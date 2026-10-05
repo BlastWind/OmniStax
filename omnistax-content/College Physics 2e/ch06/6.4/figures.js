@@ -5,7 +5,7 @@ window.OMNISTAX_FIGURES['6.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI, DEG = 180 / Math.PI;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
@@ -109,7 +109,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     ctx.save(); ctx.strokeStyle = PAL.soft; ctx.lineWidth = 60; ctx.beginPath(); ctx.arc(OX, OY, Rp, Math.PI, Math.PI + SWEEP); ctx.stroke(); ctx.restore();
     for (const e of [-30, 30]) { ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(OX, OY, Rp + e, Math.PI, Math.PI + SWEEP); ctx.stroke(); ctx.restore(); }
     dot(ctx, OX, OY, PAL.muted, true, 7);
-    text(ctx, 'center of the bend', OX + 18, OY + 4, PAL.muted, { size: 17 });
+    text(ctx, 'center of the bend', OX + 18, OY + 4, PAL.muted, { size: 17 }); LB.block(OX + 8, OY - 14, OX + 190, OY + 18);
     const th = Math.PI + a, cxp = OX + Rp * Math.cos(th), cyp = OY + Rp * Math.sin(th);
     line(ctx, OX, OY, cxp, cyp, C('position'), 2, [10, 10]);
     const ux = -Math.sin(th), uy = Math.cos(th);
@@ -127,8 +127,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     LB.flush();
 
     headline(ctx, 'The car has come ' + fmt(a * DEG, 0) + '° round the bend, and the driver ' + fmt(V.v * t, 1) + ' m in a straight line.');
-    readout(d.readout, `\\kv = ${fmt(V.v, 0)}\\ \\text{m/s},\\quad \\kr = ${fmt(R.v, 0)}\\ \\text{m}\\ \\Rightarrow\\ \\text{the car has come } ${fmt(a * DEG, 0)}°\\ \\text{round the bend}`,
-      'There is no real force to the left on the driver. In Earth’s frame she keeps the straight line she was already traveling and the car is pushed to the right underneath her. In the car’s frame the same thing is felt as a push toward the door, a fictitious force with no physical origin.');
+    readout(d.readout, `\\kdtheta = \\frac{\\kv\\kt}{\\kr} = \\frac{(${fmt(V.v, 0)}\\ \\text{m/s})(${fmt(t, 2)}\\ \\text{s})}{${fmt(R.v, 0)}\\ \\text{m}} = ${fmt(a, 2)}\\ \\text{rad} = ${fmt(a * DEG, 0)}^\\circ`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
 })();
@@ -168,6 +167,8 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     const cap = Math.max(0, Math.min(1.2 * RP, (gy0 - 168) / c0, (gx0 - 70) / s0));
     const glen = Math.min(cap, rr * W.v * t), gx = gx0 - glen * s0, gy = gy0 - glen * c0;
     const LB = labeller(ctx, 800); LB.block(0, 0, 1400, 90);
+    /* the two centers and their A marks keep the labels off them */
+    for (const X of [LX, RX]) { LB.block(X - 40, CY - 12, X + 12, CY + 44); }
     line(ctx, gx0, gy0, gx, gy, PAL.muted, 2, [8, 8]);
     ctx.save(); ctx.globalAlpha = 0.45; personTop(ctx, gx, gy, -s0, -c0, F.ref('free-rider'), 0.7); ctx.restore();
     LB.add('F_net = 0', gx, gy, -c0, s0, F.ref('free-rider'), 17, 26);
@@ -210,8 +211,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     LB.flush();
 
     headline(ctx, 'In the ' + fmt(T(), 2) + ' s the ball takes to cross, the boards turn ' + fmt(W.v * T() * DEG, 0) + '° and its trail bends that far.');
-    readout(d.readout, `\\kt = \\frac{${fmt(RD, 2)}\\ \\text{m}}{\\kv} = \\frac{${fmt(RD, 2)}\\ \\text{m}}{${fmt(V.v, 2)}\\ \\text{m/s}} = ${fmt(T(), 2)}\\ \\text{s},\\qquad \\kw\\kt = ${fmt(W.v * T(), 2)}\\ \\text{rad} = ${fmt(W.v * T() * DEG, 0)}°`,
-      'Nothing pushes the ball sideways. It travels in a straight line over the ground, and the trail it leaves in the dust curves to the right only because the boards turn underneath it. In the merry-go-round’s own frame that curve is explained by the fictitious Coriolis force, and the rider is thrown outward by the fictitious centrifugal force. Neither force has a physical origin.');
+    readout(d.readout, `\\kt = \\frac{${fmt(RD, 2)}\\ \\text{m}}{\\kv} = \\frac{${fmt(RD, 2)}\\ \\text{m}}{${fmt(V.v, 2)}\\ \\text{m/s}} = ${fmt(T(), 2)}\\ \\text{s},\\qquad \\kw\\kt = ${fmt(W.v * T(), 2)}\\ \\text{rad} = ${fmt(W.v * T() * DEG, 0)}°`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 5), draw });
 })();
@@ -274,8 +274,7 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
     text(ctx, fmt(ratio, 0) + ' g', mark, LY - 28, C('acceleration'), { size: 18, weight: 600, align: 'center', bg: PAL.bg });
 
     headline(ctx, 'At ' + fmt(W.v, 0) + ' rad/s, ' + fmt(R.v, 3) + ' m from the axis, the tube’s contents are accelerated at ' + fmt(ratio, 0) + ' g.');
-    readout(d.readout, `\\kac = \\kr\\kw^2 = (${fmt(R.v, 3)}\\ \\text{m})(${fmt(W.v, 0)}\\ \\text{rad/s})^2 = ${sciTex(ac, 2)}\\ \\text{m/s}^2 = ${fmt(ratio, 0)}\\,\\kg`,
-      'The greater the angular velocity, the greater the fictitious centrifugal force in the tube’s frame and the quicker the particles settle. What really happens is that the inertia of each particle carries it along a line tangent to the circle while the wall of the tube forces it round a circle of constant radius.');
+    readout(d.readout, `\\kac = \\kr\\kw^2 = (${fmt(R.v, 3)}\\ \\text{m})(${fmt(W.v, 0)}\\ \\text{rad/s})^2 = ${sciTex(ac, 2)}\\ \\text{m/s}^2 = ${fmt(ratio, 0)}\\,\\kg`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -323,8 +322,9 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
       dot(ctx, cx + RP * Math.cos(a0), CY - RP * Math.sin(a0), PAL.muted, false, 8);
     }
     text(ctx, 'LOW', cx, CY, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.bg });
-    text(ctx, sgn > 0 ? 'Each parcel is turned to the right, so the inflow becomes a counterclockwise circulation.' : 'Each parcel is turned to the left, so the inflow becomes a clockwise circulation.',
-      cx, CY + RP + 60, PAL.muted, { size: 18, align: 'center' });
+    /* two lines under each panel, so the two panels' sentences never meet in the middle */
+    text(ctx, sgn > 0 ? 'Each parcel is turned to the right,' : 'Each parcel is turned to the left,', cx, CY + RP + 48, PAL.muted, { size: 18, align: 'center' });
+    text(ctx, sgn > 0 ? 'so the inflow becomes a counterclockwise circulation.' : 'so the inflow becomes a clockwise circulation.', cx, CY + RP + 72, PAL.muted, { size: 18, align: 'center' });
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -337,8 +337,8 @@ function tube(ctx, x, y, ux, uy, len, half, color) {
         : 'so it goes ' + fmt(turn / TAU, 1) + ' times round the low on the way in.';
     topline(ctx, 'The air takes ' + fmt(hours, 1) + ' h to reach the center, and Earth turns it through ' + fmt(turn, 1) + ' rad on the way, ' + clause
       + (turn > TURN_MAX ? ' The drawing holds four complete turns and no more.' : ''));
-    readout(d.readout, `\\kt = \\frac{\\kr}{\\kv} = \\frac{${sciTex(R.v * 1000, 2)}\\ \\text{m}}{${fmt(V.v, 0)}\\ \\text{m/s}} = ${sciTex(t, 1)}\\ \\text{s} = ${fmt(hours, 1)}\\ \\text{h}`,
-      'Earth’s rotation turns a moving parcel of air to the right in the northern hemisphere and to the left in the southern one, at about 10⁻⁴ radian each second. Over a street that is nothing, which is why the Coriolis force is usually negligible. Over the hours the air takes to cross a thousand kilometers it comes to more than a right angle, and the inward winds become a circulation, counterclockwise round a low in the north and clockwise round one in the south.');
+    readout(d.readout, `\\kt = \\frac{\\kr}{\\kv} = \\frac{${sciTex(R.v * 1000, 2)}\\ \\text{m}}{${fmt(V.v, 0)}\\ \\text{m/s}} = ${sciTex(t, 1)}\\ \\text{s} = ${fmt(hours, 1)}\\ \\text{h},\\quad (10^{-4}\\ \\text{rad/s})\\,\\kt = ${fmt(turn, 1)}\\ \\text{rad}`,
+      'Earth’s rotation turns a moving parcel at about $10^{-4}$ rad each second, which over a street is nothing.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
 })();

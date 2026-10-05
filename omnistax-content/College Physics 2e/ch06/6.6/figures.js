@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, axes, curve, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- numbers and helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI, RAD = Math.PI / 180;
@@ -126,8 +126,9 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     line(ctx, M.x, M.y, P2.x, P2.y, C('position'), 4);
     text(ctx, 'r = ' + fmt(d1, 2) + 'a', (M.x + P2.x) / 2, (M.y + P2.y) / 2 - 20, C('position'), { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     sun(ctx, M.x, M.y, 15, F.ref('sun'));
-    text(ctx, 'M', M.x, M.y + 44, C('mass'), { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'the Sun', M.x, M.y + 68, F.ref('sun'), { size: 17, align: 'center' });
+    /* on panels, since a focus near the end of a long ellipse puts the curve under them */
+    text(ctx, 'M', M.x, M.y + 44, C('mass'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'the Sun', M.x, M.y + 68, F.ref('sun'), { size: 17, align: 'center', bg: PAL.panel });
     planet(ctx, P2.x, P2.y, 24, F.ref('planet'));
     L.add('m, the planet', P2.x, P2.y, Math.cos(th), -Math.sin(th), F.ref('planet'), 18, 30);
     L.flush();
@@ -180,7 +181,8 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     const vrel = speedAt(p.r / A, 1), ux = pn.x - p.x, uy = pn.y - p.y, un = Math.hypot(ux, uy) || 1;
     line(ctx, CX - A * e, CY, p.x, p.y, C('position'), 4);
     const rl = beside(CX - A * e, CY, p.x, p.y, 20);
-    text(ctx, 'r = ' + fmt(p.r / A, 2) + 'a', rl.x, rl.y, C('position'), { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* named by its symbol alone, the headline giving its length, and not at all where the line is too short to hold it */
+    if (Math.hypot(p.x - CX + A * e, p.y - CY) > 90) text(ctx, 'r', rl.x, rl.y, C('position'), { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     const vl = clamp(48 * vrel, 24, 110);
     arrow(ctx, p.x, p.y, p.x + (ux / un) * vl, p.y + (uy / un) * vl, C('velocity'), 5);
     text(ctx, 'v', p.x + (ux / un) * (vl + 20), p.y + (uy / un) * (vl + 20), C('velocity'), { size: 22, weight: 600, align: 'center' });
@@ -196,9 +198,9 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     curve(ctx, (f) => speedAt(at(f, e).r / A, 1), 0, 1, X, Y, C('velocity'), 5, 140);
     dot(ctx, X(tau), Y(vrel), C('velocity'), true, 9);
     line(ctx, X(tau), Y(vrel), X(tau), box.b, C('velocity'), 2, [4, 8]);
-    headline(ctx, 'The planet is ' + fmt(p.r / A, 2) + 'a from M and moving at ' + fmt(vrel, 2) + ' times 2πa/T.');
+    headline(ctx, 'The planet is ' + fmt(p.r / A, 2) + 'a from M and moving at ' + fmt(vrel, 2) + ' times $2\\pi a/\\kT$.');
     readout(d.readout, `\\frac{\\kv_{\\text{near}}}{\\kv_{\\text{far}}} = \\frac{1+e}{1-e} = \\frac{1+${fmt(e, 2)}}{1-${fmt(e, 2)}} = ${fmt((1 + e) / (1 - e), 2)}`,
-      'Each of the three sectors is swept in ' + fmt(dt, 3) + ' of the period and each covers ' + fmt(dt, 3) + ' of the area inside the orbit, which is what Kepler’s second law says. The planet has to move fastest where it is nearest M. The speed is measured against 2πa/T, the speed a circular orbit of radius a would have, and the planet passes through that value twice in every orbit.');
+      'Each sector is swept in ' + fmt(dt, 3) + ' of the period and covers ' + fmt(dt, 3) + ' of the area inside the orbit.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
 })();
@@ -235,19 +237,24 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
       text(ctx, 'M', CX, CY + bodyR + 24, C('mass'), { size: 22, weight: 600, align: 'center' });
     }
     line(ctx, CX, CY, sx, sy, C('position'), 3, [6, 8]);
-    const rl = beside(CX, CY, sx, sy, 20, 0.76);
-    text(ctx, 'r', rl.x, rl.y, C('position'), { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the gravitational force toward the center and the velocity along the tangent */
     const fl = clamp(70 * Math.sqrt((mE / (rk * rk)) / (1 / (7.88 * 7.88))), 22, 120);
     const vl = clamp(70 * (v / orbitV(7.88, 1)), 26, 120);
-    const ir = Math.hypot(CX - sx, CY - sy) || 1;
-    arrow(ctx, sx, sy, sx + ((CX - sx) / ir) * fl, sy + ((CY - sy) / ir) * fl, C('force'), 5);
-    text(ctx, 'F', sx + ((CX - sx) / ir) * (fl + 22), sy + ((CY - sy) / ir) * (fl + 22), C('force'), { size: 22, weight: 600, align: 'center' });
+    const ir = Math.hypot(CX - sx, CY - sy) || 1, ix = (CX - sx) / ir, iy = (CY - sy) / ir;
+    arrow(ctx, sx, sy, sx + ix * fl, sy + iy * fl, C('force'), 5);
     arrow(ctx, sx, sy, sx - Math.sin(th) * vl, sy - Math.cos(th) * vl, C('velocity'), 5);
-    text(ctx, 'v', sx - Math.sin(th) * (vl + 22), sy - Math.cos(th) * (vl + 22), C('velocity'), { size: 22, weight: 600, align: 'center' });
+    /* r, F and v are placed by a labeller with the satellite, its panels and both arrows kept clear */
+    const LB = labeller(ctx, 690, { headline: true });
+    LB.block(sx - 34, sy - 34, sx + 34, sy + 34);
+    for (let k = 0; k <= fl; k += 14) LB.block(sx + ix * k - 6, sy + iy * k - 6, sx + ix * k + 6, sy + iy * k + 6);
+    for (let k = 0; k <= vl; k += 14) LB.block(sx - Math.sin(th) * k - 6, sy - Math.cos(th) * k - 6, sx - Math.sin(th) * k + 6, sy - Math.cos(th) * k + 6);
+    LB.add('F', sx + ix * fl, sy + iy * fl, -iy, ix, C('force'), 22, 22);
+    LB.add('v', sx - Math.sin(th) * vl, sy - Math.cos(th) * vl, -Math.sin(th), -Math.cos(th), C('velocity'), 22, 22);
+    LB.add('r', CX - ix * ir * 0.45, CY - iy * ir * 0.45, iy, -ix, C('position'), 24, 22);
     /* the satellite: a body with a panel on each side, set square to its radius */
     ctx.save(); ctx.translate(sx, sy); ctx.rotate(-th); ctx.fillStyle = F.ref('satellite'); ctx.fillRect(-8, -8, 16, 16); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('satellite'); ctx.lineWidth = 2;
     ctx.beginPath(); ctx.rect(-30, -5, 18, 10); ctx.rect(12, -5, 18, 10); ctx.fill(); ctx.stroke(); ctx.restore();
+    LB.flush();
     text(ctx, 'the satellite, of mass m', CX, CY + RDRAW + 62, F.ref('satellite'), { size: 17, align: 'center' });
     /* the graph: the period against the radius, where the third law is a straight line */
     const box = { l: 730, r: 1330, t: 150, b: 540 };
@@ -263,8 +270,8 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
     headline(ctx, 'At ' + fmt(rk, 2) + ' × 10³ km the satellite goes round in ' + sayT(T) + ' at ' + sig3(v) + ' km/s, whatever its mass.');
     readout(d.readout, `G\\frac{\\km\\kM}{\\kr^2} = \\km\\kac = \\km\\frac{\\kv^2}{\\kr} \\;\\Rightarrow\\; \\kv = \\sqrt{\\frac{G\\kM}{\\kr}} = ${sig3(v)}\\ \\text{km/s}, \\quad \\kac = \\frac{\\kv^2}{\\kr} = ${sig3(ac)}\\ \\text{m/s}^2`,
       Math.abs(moonOff - 1) < 0.02
-        ? 'The line runs through the Moon’s point, so a parent of ' + fmt(mE, 2) + ' Earth masses is what holds the Moon in an orbit of 384 × 10³ km and 27.3 d. That is how the mass of a parent body is found from a satellite.'
-        : 'The Moon takes 27.3 d over an orbit of 384 × 10³ km, and the line misses its point by a factor of ' + fmt(moonOff > 1 ? moonOff : 1 / moonOff, 2) + '. Slide the parent’s mass until the line runs through the Moon, and you have weighed the parent.');
+        ? 'The line runs through the Moon’s point: a parent of ' + fmt(mE, 2) + ' Earth masses holds the Moon at 384 × 10³ km and 27.3 d.'
+        : 'The line misses the Moon’s point, 384 × 10³ km and 27.3 d, by a factor of ' + fmt(moonOff > 1 ? moonOff : 1 / moonOff, 2) + ' in the period.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
 })();
@@ -333,7 +340,7 @@ function pencil(ctx, x, y, cx, cy, color, s = 1) {
       : 'After ' + fmt(t, 1) + ' y the planet, a plain circle from the Sun, has turned back on itself '
         + (loops === 0 ? 'not once' : loops === 1 ? 'once' : loops === 2 ? 'twice' : loops + ' times') + ' seen from Earth in the last ' + fmt(t - t0, 1) + ' y.');
     readout(d.readout, `\\kT = \\kr^{3/2} = (${fmt(r, 2)})^{3/2} = ${fmt(P, 2)}\\ \\text{y}`,
-      'Kepler’s third law fixes the planet’s period from its distance alone, and both pictures hold that one motion. Earth overtakes the planet once every ' + fmt(syn, 2) + ' y, and each time it does, the track on the left turns back on itself.');
+      'Earth overtakes the planet once every ' + fmt(syn, 2) + ' y, and each time it does, the track on the left turns back on itself.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 8 / 6), draw });
 })();

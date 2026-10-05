@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, axes, nice, curve, pinned, labeller, topline } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- numbers the section works with ---------- */
 /* The measured value the text quotes, and the three-figure value the text
@@ -125,7 +125,7 @@ function sun(ctx, x, y, r, color) {
     text(ctx, 'at r = 0.5 m the force is ' + sci(Fhi, 3) + ' N', box.r - 8, box.t + 26, PAL.muted, { size: 17, align: 'right' });
     headline(ctx, 'Masses of ' + fmt(m.v, 3) + ' kg and ' + fmt(M.v, 3) + ' kg, ' + fmt(r.v, 3) + ' m apart, attract each other with ' + sci(Fnow, 3) + ' N.');
     readout(d.readout, `\\kF = G\\frac{\\km\\kM}{\\kr^2} = \\frac{(${texSci(G_MEASURED, 3)})(${fmt(m.v, 3)}\\ \\text{kg})(${fmt(M.v, 3)}\\ \\text{kg})}{(${fmt(r.v, 3)}\\ \\text{m})^2} = ${texSci(Fnow, 3)}\\ \\text{N}`,
-      'The arrow drawn on each body is the same length, because the force the smaller mass feels is equal in magnitude to the force the larger one feels, as Newton\u2019s third law requires. Drawing the bodies twice as far apart leaves a quarter of the force, which is the curve below the scene.');
+      'The arrow on each body is the same length, as Newton\u2019s third law requires.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -191,11 +191,13 @@ function sun(ctx, x, y, r, color) {
     line(ctx, ix - 12, iy + 62, ix + 12, iy + 54, PAL.panel, 8); line(ctx, ix - 12, iy + 62, ix + 12, iy + 54, C('position'), 2);
     line(ctx, ix - 12, iy + 70, ix + 12, iy + 62, C('position'), 2);
     text(ctx, 'r', ix + 14, iy + 40, C('position'), { weight: 600, size: 20 });
-    text(ctx, 'the building, magnified: r reaches its center of mass', ix, iy + ir + 26, PAL.muted, { size: 15, align: 'center' });
+    text(ctx, 'the building, magnified:', ix, iy + ir + 24, PAL.muted, { size: 15, align: 'center' });
+    text(ctx, 'r reaches its center of mass', ix, iy + ir + 44, PAL.muted, { size: 15, align: 'center' });
     /* the acceleration at the surface, drawn beside the building, straight down toward the center */
     const tx = -Math.sin(a), ty = Math.cos(a), ox = hx + 46 * tx, oy = hy + 46 * ty;
     arrow(ctx, ox + 40 * Math.cos(a), oy + 40 * Math.sin(a), ox - 40 * Math.cos(a), oy - 40 * Math.sin(a), C('acceleration'), 5);
-    text(ctx, 'g = ' + fmt(gs, 2) + ' m/s\u00B2', ox + 52 * Math.cos(a) + 40 * tx, oy + 52 * Math.sin(a) + 40 * ty, C('acceleration'), { weight: 600, bg: alpha(PAL.panel, 0.85) });
+    /* named by its symbol alone: the headline carries its value, and a longer name would reach the magnified view */
+    text(ctx, 'g', ox + 52 * Math.cos(a) + 40 * tx, oy + 52 * Math.sin(a) + 40 * ty, C('acceleration'), { weight: 600, bg: alpha(PAL.panel, 0.85) });
     /* the graph beside the scene: how g falls away above the surface */
     const box = { l: 860, r: 1330, t: 150, b: 440 };
     /* fixed axes. The sliders reach 320 Earth masses at a tenth of an Earth radius, where g would be
@@ -208,13 +210,14 @@ function sun(ctx, x, y, r, color) {
     curve(ctx, (u) => Math.min(gs / (u * u), GR), 1, 4, ax.X, ax.Y, C('acceleration'), 5, 120);
     const gC = Math.min(gs, GR);
     line(ctx, ax.X(1), ax.Y(0), ax.X(1), ax.Y(gC), PAL.muted, 2, [4, 8]);
-    pinned(ctx, box, ax.X, ax.Y, 1, gs, C('acceleration'), fmt(gs, 2) + ' m/s\u00B2');
-    text(ctx, 'the surface', ax.X(1) + 16, ax.Y(gC) + 26, PAL.muted, { size: 17 });
+    pinned(ctx, box, ax.X, ax.Y, 1, gs, C('acceleration'));
+    /* named below the curve's start, above it near the base line; a value past the top of the axis is said in words */
+    text(ctx, gs > GR ? 'the surface, ' + fmt(gs, 2) + ' m/s\u00B2, off the top' : 'the surface', ax.X(1) + 16, ax.Y(gC) + (gC < 2 ? -24 : 26), PAL.muted, { size: 17 });
     headline(ctx, Math.abs(mass.v) < 1e-9 && Math.abs(rad.v) < 1e-9
-      ? 'With the mass and the radius of Earth, the surface acceleration is g = ' + fmt(gs, 2) + ' m/s\u00B2.'
-      : 'At ' + rat(Mr) + ' Earth masses and ' + rat(Rr) + ' Earth radii, g = ' + fmt(gs, 2) + ' m/s\u00B2 at the surface.');
+      ? 'With the mass and the radius of Earth, the surface acceleration is $\\kg = ' + fmt(gs, 2) + '$ m/s\u00B2.'
+      : 'At ' + rat(Mr) + ' Earth masses and ' + rat(Rr) + ' Earth radii, $\\kg = ' + fmt(gs, 2) + '$ m/s\u00B2 at the surface.');
     readout(d.readout, `\\kg = G\\frac{M}{\\kr^2} = \\frac{(${texSci(G_THREE, 2)})(${texSci(M, 2)}\\ \\text{kg})}{(${texSci(R, 2)}\\ \\text{m})^2} = ${fmt(gs, 2)}\\ \\text{m/s}^2`,
-      'Turned round, the same relation gives the mass of the body from a measurement of its surface gravity and its radius: M = gr\u00B2/G = ' + sci((gs * R * R) / G_THREE, 2) + ' kg. That is how an accurate value for Earth\u2019s mass was finally obtained.');
+      'Turned round, $M = \\kg\\kr^2/G$ = ' + sci((gs * R * R) / G_THREE, 2) + ' kg, which is how Earth\u2019s mass was first found.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -249,14 +252,20 @@ function sun(ctx, x, y, r, color) {
     const mx = cx + Rpx * Math.cos(th), my = cyy + ry * Math.sin(th);
     line(ctx, ex, ey, mx, my, PAL.rule, 2, [10, 10]);
     world(ctx, ex, ey, 54, F.ref('earth')); moon(ctx, mx, my, 22, F.ref('moon'));
-    text(ctx, 'Earth', ex, ey + 80, F.ref('earth'), { weight: 600, align: 'center' });
     /* the centripetal acceleration, drawn from the Moon toward Earth */
     const dx = ex - mx, dy = ey - my, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L;
     arrow(ctx, mx, my, mx + 82 * ux, my + 82 * uy, C('acceleration'), 5);
-    text(ctx, 'the Moon', mx - 64 * ux, my - 64 * uy, F.ref('moon'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'a\u1D04 = ' + sci(ac, 2) + ' m/s\u00B2', mx + 46 * ux - 46 * uy, my + 46 * uy + 46 * ux, C('acceleration'), { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     dot(ctx, cx, cyy, PAL.ink, false, 9);
     text(ctx, 'center of mass', cx, cyy - 26, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* the three names go through a labeller with both bodies, the arrow and the center kept clear, since the Moon
+       passes in front of Earth once an orbit */
+    const LB = labeller(ctx, 660, { headline: true });
+    LB.block(ex - 58, ey - 58, ex + 58, ey + 58); LB.block(mx - 26, my - 26, mx + 26, my + 26); LB.block(cx - 70, cyy - 40, cx + 70, cyy + 12);
+    for (let k = 0; k <= 82; k += 14) LB.block(mx + k * ux - 6, my + k * uy - 6, mx + k * ux + 6, my + k * uy + 6);
+    LB.add('Earth', ex, ey + 58, 0, 1, F.ref('earth'), 22, 22);
+    LB.add('the Moon', mx - 24 * ux, my - 24 * uy, -ux, -uy, F.ref('moon'), 20, 24);
+    LB.add('a_c = ' + sci(ac, 2) + ' m/s\u00B2', mx + 41 * ux, my + 41 * uy, -uy, ux, C('acceleration'), 20, 30);
+    LB.flush();
     /* the strip below: the center of mass travels on while Earth wiggles about it */
     const sy = 540, x0 = 200, x1 = 1240, X = (u) => x0 + u * (x1 - x0);
     line(ctx, x0, sy, x1, sy, PAL.rule, 2, [10, 10]);
@@ -272,9 +281,9 @@ function sun(ctx, x, y, r, color) {
     dot(ctx, X(u), sy, PAL.ink, false, 9); world(ctx, p.x, p.y, 15, F.ref('earth'));
     text(ctx, 'the center of mass travels on smoothly', x0, sy + 66, PAL.muted, { size: 17 });
     text(ctx, 'Earth wiggles about it', x1, sy + 66, F.ref('earth'), { size: 17, align: 'right' });
-    headline(ctx, 'At r = ' + sci(R, 2) + ' meters, gravity gives ' + sci(gm, 2) + ' m/s\u00B2 and the orbit needs ' + sci(ac, 2) + ' m/s\u00B2.');
+    headline(ctx, 'At $\\kr$ = ' + sci(R, 2) + ' meters, gravity gives ' + sci(gm, 2) + ' m/s\u00B2 and the orbit needs ' + sci(ac, 2) + ' m/s\u00B2.');
     readout(d.readout, `\\kac = \\kr\\kw^2 = (${texSci(R, 2)}\\ \\text{m})(${texSci(om, 2)}\\ \\text{rad/s})^2 = ${texSci(ac, 2)}\\ \\text{m/s}^2`,
-      'The acceleration due to Earth\u2019s gravity at that distance is g = GM/r\u00B2 = ' + sci(gm, 2) + ' m/s\u00B2, which differs from what the orbit needs by ' + fmt(Math.abs(100 * (ac - gm)) / gm, 1) + ' percent. Newton found that the two agreed pretty nearly, and concluded that Earth\u2019s gravitational force causes the Moon to orbit Earth.');
+      'Earth\u2019s gravity there, $\\kg = GM/\\kr^2$, differs from what the orbit needs by ' + fmt(Math.abs(100 * (ac - gm)) / gm, 1) + ' percent, which is Newton\u2019s own test of the law.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();
@@ -423,7 +432,7 @@ function sun(ctx, x, y, r, color) {
         : 'The Sun stands part way round from the Earth-Moon line, so its bulge adds to the Moon\u2019s only in part and the tides are middling.', 700, 680, PAL.muted, { size: 19, align: 'center' });
     L.flush();
     readout(d.readout, `\\kF = G\\frac{\\km\\kM}{\\kr^2}:\\quad ${texSci(force(rM.v * 1e8 - R_EARTH), 3)}\\;>\\;${texSci(force(rM.v * 1e8), 3)}\\;>\\;${texSci(force(rM.v * 1e8 + R_EARTH), 3)}\\ \\text{N}`,
-      'Those are the forces the Moon exerts on a parcel of water of mass m = 1.00 kg, held first at the near side of Earth, then at Earth\u2019s center and then at the far side. The Moon pulls the near water ' + fmt((100 * (near - mid)) / mid, 1) + ' percent harder than it pulls Earth, and Earth ' + fmt((100 * (mid - far)) / far, 1) + ' percent harder than the far water. Take away the pull on Earth\u2019s center and what is left pulls the near water away from Earth and Earth away from the far water, so the water stands high on both sides at once, and Earth turns under both bulges in a day. The drawing\u2019s distances are not to scale, so its arrows differ by more than these numbers do.');
+      'The pulls on 1.00 kg of water at the near side, at Earth\u2019s center and at the far side; the drawing\u2019s distances are not to scale, so its arrows differ by more than these numbers do.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 24 / 8), draw });
 })();
@@ -627,9 +636,10 @@ function sun(ctx, x, y, r, color) {
   const PATH = hasGL ? (() => {
     const n = 440, ang = [], s = [], pt = [];
     for (let k = 0; k <= n; k++) { const a = SCALE.a0 + ((SCALE.a1 - SCALE.a0) * k) / n; const l = reflect(a).land; ang.push(a); pt.push(l); s.push(k ? s[k - 1] + Math.hypot(l.x - pt[k - 1].x, l.z - pt[k - 1].z) : 0); }
-    const s0 = s.reduce((best, v, k) => (Math.abs(ang[k]) < Math.abs(ang[best]) ? k : best), 0);
-    const off = s[s0]; for (let k = 0; k <= n; k++) s[k] -= off;
     const interp = (xs, ys, x) => { let k = 1; while (k < n && xs[k] < x) k++; const t = (x - xs[k - 1]) / (xs[k] - xs[k - 1]); return ys[k - 1] + t * (ys[k] - ys[k - 1]); };
+    /* the zero mark is where an untwisted rod puts the spot, read between the samples rather than at the
+       nearest one, whose offset would outweigh a twist of a few thousandths of a degree */
+    const off = interp(ang, s, 0); for (let k = 0; k <= n; k++) s[k] -= off;
     return { along: (a) => interp(ang, s, a), turnFor: (q) => interp(s, ang, q), end: s[n], start: s[0] };
   })() : (() => {
     /* with no renderer there is no scene to trace, so the travel is taken from the geometry alone:
@@ -864,7 +874,7 @@ function sun(ctx, x, y, r, color) {
     if (S) apply3d(st);
     paint(st);
     readout(d.readout, `\\kF = G\\frac{\\km\\kM}{\\kr^2} = \\frac{(${texSci(G_MEASURED, 3)})(${fmt(m_S, 2)}\\ \\text{kg})(${fmt(M.v, 0)}\\ \\text{kg})}{(${fmt(r.v, 2)}\\ \\text{m})^2} = ${texSci(st.rest.F, 2)}\\ \\text{N}`,
-      'The fiber twists until the torque it resists balances the torque of the attraction, so the spot moves further along the scale the stronger the attraction is. Here a twist of ' + deg(st.rest.theta) + ' carries the spot ' + mm(travel(st.rest.theta)) + ', which the drawing shows ' + fmt(X.v, 0) + ' times larger than life' + (st.pinned ? ', or as large as it can before the spheres would touch' : '') + '. The balance swings freely once in seven minutes, as Cavendish’s did, and the scene runs that swing ' + fmt(TIME_X, 0) + ' times faster than life while the clock above it reads the true time. The suspended spheres have a mass of ' + fmt(m_S, 2) + ' kg.');
+      'A twist of ' + deg(st.rest.theta) + ' carries the spot ' + mm(travel(st.rest.theta)) + ', drawn ' + fmt(X.v, 0) + ' times larger than life' + (st.pinned ? ' or as large as it can before the spheres touch' : '') + '; the balance swings once in seven minutes, run here ' + fmt(TIME_X, 0) + ' times faster.');
   }
 
   if (hasGL) { try { build(); } catch (e) { console.error('sim-cavendish: falling back to the flat drawing', e); S = null; } }

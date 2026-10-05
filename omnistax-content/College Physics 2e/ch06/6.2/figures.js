@@ -44,6 +44,11 @@ function curl(ctx, cx, cy, R, color) {
   const a = 0.68 * Math.PI, tx = cxa(cx, R, a), ty = cya(cy, R, a);
   arrow(ctx, tx + 16 * Math.sin(a), ty + 16 * Math.cos(a), tx, ty, color, 3);
 }
+/* a line or an arrow kept clear of labels, all but the last `trim` units by its head, where its own label sits */
+function blockSeg(L, x1, y1, x2, y2, trim = 26) {
+  const len = Math.hypot(x2 - x1, y2 - y1), n = Math.floor(Math.max(0, len - trim) / 16);
+  for (let i = 0; i <= n; i++) { const k = len ? (i * 16) / len : 0, x = x1 + (x2 - x1) * k, y = y1 + (y2 - y1) * k; L.block(x - 6, y - 6, x + 6, y + 6); }
+}
 /* a label beside a radial arrow, pushed off the radius so the two never sit on each other */
 function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
   const t = tang(a);
@@ -80,6 +85,12 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     arcpath(ctx, cx, cyc, R, 0, TAU, PAL.muted, 3);
     dot(ctx, cx, cyc, PAL.muted, true, 6);
     const x1 = cxa(cx, R, a1), y1 = cya(cyc, R, a1), x2 = cxa(cx, R, th), y2 = cya(cyc, R, th);
+    /* every radius and arrow of the circle is kept clear of the labels before any label is placed */
+    { const La0 = Math.min(0.40 * R, Lv * 0.9), u1 = tang(a1), u2 = tang(th);
+      blockSeg(L, cx, cyc, x1, y1, 0); blockSeg(L, cx, cyc, x2, y2, 0);
+      blockSeg(L, x2, y2, x2 - Math.cos(am) * La0, y2 + Math.sin(am) * La0);
+      blockSeg(L, x1, y1, x1 + u1[0] * Lv, y1 + u1[1] * Lv); blockSeg(L, x2, y2, x2 + u2[0] * Lv, y2 + u2[1] * Lv);
+      L.block(x1 - 12, y1 - 12, x1 + 12, y1 + 12); L.block(x2 - 13, y2 - 13, x2 + 13, y2 + 13); }
     line(ctx, cx, cyc, x1, y1, pos, 3); line(ctx, cx, cyc, x2, y2, pos, 3);
     { const t = tang(a1); L.add('r = ' + fmt(r.v, 1) + ' m', cxa(cx, R * 0.6, a1), cya(cyc, R * 0.6, a1), -t[0], -t[1], pos, 20, 22); }
     line(ctx, x1, y1, x2, y2, PAL.muted, 2, [8, 8]);
@@ -88,14 +99,18 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     /* the angle at the center */
     const ra = Math.min(0.26 * R, 60);
     arcpath(ctx, cx, cyc, ra, a1, th, C('angle'), 2.5);
-    L.add('Δθ = ' + fmt(dth.v, 0) + '°', cxa(cx, ra, am), cya(cyc, ra, am), Math.cos(am), -Math.sin(am), C('angle'), 20, 24);
+    /* a narrow angle leaves no room between its radii, so its name stands just behind the center instead */
+    if (dth.v < 30) L.add('Δθ = ' + fmt(dth.v, 0) + '°', cx, cyc, -Math.cos(am), Math.sin(am), C('angle'), 20, 30);
+    else L.add('Δθ = ' + fmt(dth.v, 0) + '°', cxa(cx, ra, am), cya(cyc, ra, am), Math.cos(am), -Math.sin(am), C('angle'), 20, 24);
     /* the change of velocity, laid on the circle at the point the object has reached. It runs along
        the inward radius of the middle of the arc, so it stands at half of Δθ from the radius drawn to
        the object and swings onto that radius as Δθ is taken down toward zero, which is the book's
        argument that the acceleration is centripetal. */
     const La = Math.min(0.40 * R, Lv * 0.9), dvx = -Math.cos(am), dvy = Math.sin(am);
     arrow(ctx, x2, y2, x2 + dvx * La, y2 + dvy * La, vel, 5);
-    L.add('Δv', x2 + dvx * La, y2 + dvy * La, dvx, dvy, vel, 22, 24);
+    /* Δv is named beside its arrow, on the side away from the point the object left, since beyond its head lies the radius */
+    { let nx = dvy, ny = -dvx; if (nx * (x2 - x1) + ny * (y2 - y1) < 0) { nx = -nx; ny = -ny; }
+      L.add('Δv', x2 + dvx * La * 0.6, y2 + dvy * La * 0.6, nx, ny, vel, 22, 24); }
     /* the two velocities, along the tangents */
     const t1 = tang(a1), t2 = tang(th);
     arrow(ctx, x1, y1, x1 + t1[0] * Lv, y1 + t1[1] * Lv, alpha(vel, 0.55), 4);
@@ -107,6 +122,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const tx = 1060, ty = 430;
     text(ctx, 'the same two velocities, laid tail to tail', tx, 150, PAL.muted, { size: 19, align: 'center' });
     const e1 = [tx + t1[0] * Lv, ty + t1[1] * Lv], e2 = [tx + t2[0] * Lv, ty + t2[1] * Lv];
+    blockSeg(L, tx, ty, e1[0], e1[1]); blockSeg(L, tx, ty, e2[0], e2[1]); blockSeg(L, e1[0], e1[1], e2[0], e2[1], 0);
     ctx.save(); ctx.fillStyle = alpha(vel, 0.12); ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(e1[0], e1[1]); ctx.lineTo(e2[0], e2[1]); ctx.closePath(); ctx.fill(); ctx.restore();
     arrow(ctx, tx, ty, e1[0], e1[1], alpha(vel, 0.55), 4);
     L.add('v₁', e1[0], e1[1], t1[0], t1[1], vel, 22, 24);
@@ -114,12 +130,13 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     L.add('v₂', e2[0], e2[1], t2[0], t2[1], vel, 22, 24);
     arrow(ctx, e1[0], e1[1], e2[0], e2[1], vel, 5);
     const mx = (e1[0] + e2[0]) / 2, my = (e1[1] + e2[1]) / 2, mn = Math.hypot(mx - tx, my - ty) || 1;
-    L.add('Δv = ' + fmt(dv, 2) + ' m/s', mx, my, (mx - tx) / mn, (my - ty) / mn, vel, 20, 26);
+    /* named outward from the tail, and always toward the free right-hand side, away from the circle's labels */
+    L.add('Δv = ' + fmt(dv, 2) + ' m/s', mx, my, Math.abs(mx - tx) / mn, (my - ty) / mn, vel, 20, 26);
     dot(ctx, tx, ty, PAL.muted, true, 6);
     L.flush();
-    headline(ctx, 'Over Δθ = ' + fmt(dth.v, 0) + '° the velocity changes by Δv = ' + fmt(dv, 2) + ' m/s, standing ' + fmt(dth.v / 2, 0) + '° from the radius.');
+    headline(ctx, 'Over $\\kdtheta = ' + fmt(dth.v, 0) + '$° the velocity changes by $\\kdv = ' + fmt(dv, 2) + '$ m/s, standing ' + fmt(dth.v / 2, 0) + '° from the radius.');
     readout(d.readout, `\\frac{\\kdv}{\\kv} = \\frac{\\kds}{\\kr}\\quad\\Longrightarrow\\quad \\frac{${fmt(dv, 2)}}{${fmt(v.v, 1)}} = ${fmt(dv / v.v, 3)} \\quad\\text{and}\\quad \\frac{${fmt(ds, 2)}}{${fmt(r.v, 1)}} = ${fmt(ds / r.v, 3)}`,
-      'The triangle of the two velocities and the triangle of the two radii are similar, so Δv/v is exactly the chord, ' + fmt(chord, 2) + ' m, divided by r. The book puts the arc Δs in place of the chord, which at Δθ = ' + fmt(dth.v, 0) + '° is ' + fmt(100 * (ds / chord - 1), 1) + '% longer. Take Δθ down toward zero and the two agree, and Δv comes to point straight at the center.');
+      'The two triangles are similar, so Δv/v is exactly the chord, ' + fmt(chord, 2) + ' m, over r; the arc Δs is ' + fmt(100 * (ds / chord - 1), 1) + '% longer than the chord, and the two agree as Δθ goes to zero.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => per() / 5), draw });
 })();
@@ -158,6 +175,9 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     const tv = tang(th);
     ctx.save(); ctx.translate(bx, by); ctx.rotate(Math.atan2(tv[1], tv[0])); car(ctx, 0, 0, F.ref('car'), 1); ctx.restore();
     const Lv = 60 + 2.4 * v.v, La = Math.min(0.55 * R, 50 + 100 * Math.min(1, ac / 8));
+    /* the car and its two arrows are kept clear of the labels */
+    L.block(bx - 52, by - 52, bx + 52, by + 52);
+    blockSeg(L, bx, by, bx + tv[0] * Lv, by + tv[1] * Lv); blockSeg(L, bx, by, cxa(cx, R - La, th), cya(cyc, R - La, th));
     arrow(ctx, bx, by, bx + tv[0] * Lv, by + tv[1] * Lv, vel, 5);
     L.add('v = ' + fmt(v.v, 1) + ' m/s', bx + tv[0] * Lv, by + tv[1] * Lv, tv[0], tv[1], vel, 20, 24);
     arrow(ctx, bx, by, cxa(cx, R - La, th), cya(cyc, R - La, th), acc, 5);
@@ -179,10 +199,11 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     pinned(ctx, gbox, g.X, g.Y, v.v, ac, PAL.ink);
     const left = v.v < 26;
     text(ctx, fmt(ac, 2) + ' m/s² = ' + fmt(ratio, 3) + ' g', g.X(vC) + (left ? 18 : -18), g.Y(acC) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
-    text(ctx, 'the hollow point is half the speed and a quarter of the acceleration', 1110, 556, PAL.muted, { size: 17, align: 'center' });
-    headline(ctx, 'The car is ' + fmt(turned, 0) + '° round the curve, and a_c = ' + fmt(ac, 2) + ' m/s² still points at the center.');
+    text(ctx, 'the hollow point is half the speed', 1110, 548, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'and a quarter of the acceleration', 1110, 572, PAL.muted, { size: 17, align: 'center' });
+    headline(ctx, 'The car is ' + fmt(turned, 0) + '° round the curve, and $\\kac = ' + fmt(ac, 2) + '$ m/s² still points at the center.');
     readout(d.readout, `\\kac = \\frac{\\kv^2}{\\kr} = \\frac{(${fmt(v.v, 1)}\\ \\text{m/s})^2}{${fmt(r.v, 0)}\\ \\text{m}} = ${fmt(ac, 2)}\\ \\text{m/s}^2`,
-      'Compared with the acceleration due to gravity, a_c/g = ' + fmt(ac, 2) + '/9.80 = ' + fmt(ratio, 3) + ', so this curve asks ' + fmt(ratio, 3) + ' of what gravity asks of you standing still. One lap at this speed takes ' + fmt(T, 0) + ' s.');
+      'That is ' + fmt(ac, 2) + '/9.80 = ' + fmt(ratio, 3) + ' of the acceleration due to gravity, and one lap at this speed takes ' + fmt(T, 0) + ' s.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => per() / 5), draw });
 })();
@@ -242,7 +263,7 @@ function beside(ctx, s, cx, cy, R, a, off, color, size = 20) {
     text(ctx, count3(ratio) + ' g', g.X(rpm.v) + (left ? 18 : -18), g.Y(Math.min(ratio, RMAX)) - 28, acc, { size: 19, weight: 600, align: left ? 'left' : 'right', bg: PAL.panel });
     headline(ctx, 'At ' + fmt(rpm.v, 2) + ' × 10⁴ rev/min, a point ' + fmt(r.v, 2) + ' cm from the axis is accelerated at ' + count3(ratio) + ' g.');
     readout(d.readout, `\\kac = \\kr\\kw^2 = (${fmt(rm, 4)}\\ \\text{m})(${Math.round(w)}\\ \\text{rad/s})^2 = ${scitex(ac)}\\ \\text{m/s}^2`,
-      fmt(rpm.v, 2) + ' × 10⁴ rev/min is ' + Math.round(w) + ' rad/s, since one revolution is 2π rad and one minute is 60.0 s. The acceleration is ' + count3(ratio) + ' times g, and it grows with the square of the angular velocity but only in proportion to the radius, which is why a centrifuge is made to spin fast rather than made wide.');
+      fmt(rpm.v, 2) + ' × 10⁴ rev/min is ' + Math.round(w) + ' rad/s, since one revolution is 2π rad and one minute is 60.0 s.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

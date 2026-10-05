@@ -22,6 +22,8 @@ function curl(ctx, cx, cy, r, color, ccw) {
   arcAt(ctx, cx, cy, r, u0, u1, color, 3);
   arrow(ctx, ...at(cx, cy, r, u1 - (u1 - u0) * 0.1), ...at(cx, cy, r, u1), color, 3);
 }
+/* The band a curl arrow occupies, kept clear of labels. */
+function blockArc(L, cx, cy, r, u0, u1) { for (let k = 0; k <= 8; k++) { const [x, y] = at(cx, cy, r, u0 + ((u1 - u0) * k) / 8); L.block(x - 16, y - 16, x + 16, y + 16); } }
 /* The front of a car seen from the side, drawn about its front axle at (x, y) with a wheel of
    radius R, as the book crops its car: the body runs off the left edge of the drawing, since a
    whole car is fifteen tyre radii long and would leave the tyre too small to read. The body is
@@ -81,6 +83,7 @@ function fly(ctx, x, y, color) {
     dot(ctx, cx, cyc, PAL.muted, true, 5);
     L.add('O', cx, cyc, -Math.cos(th / 2), Math.sin(th / 2), PAL.muted, 18, 30);
     curl(ctx, cx, cyc, PX * R + 32, PAL.muted, true);
+    blockArc(L, cx, cyc, PX * R + 32, Math.PI * 0.28, Math.PI * 0.72);
     /* where the pits started, and the radius they ride on now */
     /* a radius stops at the rim's inner edge, a further half of its own width
        back for the round cap, so no spoke crosses the rim */
@@ -115,9 +118,9 @@ function fly(ctx, x, y, color) {
     }
     for (const [i, ln] of ['Each band is one radius long, so the', 'number of bands is the rotation angle', 'in radians, the same on both bars.'].entries()) text(ctx, ln, bx, 600 + 26 * i, PAL.muted, { size: 17 });
     L.flush();
-    headline(ctx, 'Turning through Δθ = ' + fmt(th, 2) + ' rad carries the outer pit ' + fmt(sOut, 1) + ' cm and the inner pit ' + fmt(sIn, 1) + ' cm.');
+    headline(ctx, 'Turning through $\\kdtheta = ' + fmt(th, 2) + '$ rad carries the outer pit ' + fmt(sOut, 1) + ' cm and the inner pit ' + fmt(sIn, 1) + ' cm.');
     readout(d.readout, `\\kdtheta = \\frac{\\kds}{\\kr} = \\frac{${fmt(sOut, 1)}\\ \\text{cm}}{${fmt(R, 1)}\\ \\text{cm}} = \\frac{${fmt(sIn, 1)}\\ \\text{cm}}{${fmt(r1, 1)}\\ \\text{cm}} = ${fmt(th, 2)}\\ \\text{rad}`,
-      'An arc as long as the radius subtends one radian, and the whole circumference subtends 2π rad, which is one revolution. The disc has turned through ' + fmt(turn, 2) + ' of a revolution, or ' + fmt(th * DEG, 0) + '°.');
+      'The disc has turned through ' + fmt(turn, 2) + ' of a revolution, or ' + fmt(th * DEG, 0) + '°.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
 })();
@@ -157,7 +160,7 @@ function fly(ctx, x, y, color) {
     dot(ctx, ...at(cx, cyc, RW, th), PAL.ink, true, 11);
     const rest = th - Math.floor(th / TAU) * TAU, aR = 62;
     arcAt(ctx, cx, cyc, aR, 0, rest, C('angle'), 2.5);
-    text(ctx, 'Δθ', ...at(cx, cyc, aR + 28, rest / 2), C('angle'), { weight: 600, align: 'center' });
+    text(ctx, 'Δθ', ...at(cx, cyc, aR + 28, rest / 2), C('angle'), { weight: 600, align: 'center', bg: PAL.panel });
     curl(ctx, cx, cyc, RW + 30, C('angular-rate'), true);
     text(ctx, 'ω', cx, cyc - RW - 58, C('angular-rate'), { weight: 600, align: 'center' });
     text(ctx, 'Δt = ' + fmt(t, 2) + ' s', cx, cyc + RW + 54, C('time'), { size: 24, weight: 600, align: 'center' });
@@ -180,9 +183,9 @@ function fly(ctx, x, y, color) {
     line(ctx, X(tNow), box.b, X(tNow), Y(om.v * tNow), PAL.muted, 2, [4, 8]);
     line(ctx, box.l, Y(om.v * tNow), X(tNow), Y(om.v * tNow), PAL.muted, 2, [4, 8]);
     pinned(ctx, box, X, Y, t, th, PAL.ink, fmt(th, 1) + ' rad at ' + fmt(t, 2) + ' s');
-    /* the slope is named below and to the right of the line, where nothing else is drawn */
-    text(ctx, 'the slope is ω = ' + fmt(om.v, 1) + ' rad/s', X(tEnd * 0.62) + 16, Y(om.v * tEnd * 0.62) + 30, C('angular-rate'), { size: 19, weight: 600, align: 'left', bg: PAL.panel });
-    headline(ctx, 'In ' + fmt(t, 2) + ' s the wheel turns through ' + fmt(th, 2) + ' rad, and Δθ/Δt is ' + fmt(om.v, 2) + ' rad/s throughout.');
+    /* the slope is named in the lower right corner, under the first revolution's level, which no line reaches */
+    text(ctx, 'the slope is ω = ' + fmt(om.v, 1) + ' rad/s', box.r - 12, Y(2.6), C('angular-rate'), { size: 19, weight: 600, align: 'right', bg: PAL.panel });
+    headline(ctx, 'In ' + fmt(t, 2) + ' s the wheel turns through ' + fmt(th, 2) + ' rad, and $\\kdtheta/\\kdt$ is ' + fmt(om.v, 2) + ' rad/s throughout.');
     readout(d.readout, `\\kw = \\frac{\\kdtheta}{\\kdt} = \\frac{${fmt(th, 2)}\\ \\text{rad}}{${fmt(t, 2)}\\ \\text{s}} = ${fmt(om.v, 2)}\\ \\text{rad/s}`,
       'One complete revolution is 2π = 6.28 rad, so at this angular velocity the wheel goes round once every ' + fmt(TAU / om.v, 2) + ' s and takes ' + fmt(T, 2) + ' s over the ' + fmt(N.v, 0) + ' revolutions of the run.');
   }
@@ -245,9 +248,13 @@ function fly(ctx, x, y, color) {
     const { X, Y } = axes(ctx, box, [0.2, 1.4], [0, WR], { xl: 'r (m)', xc: C('position'), yl: 'ω (rad/s)', yc: C('angular-rate'), nx: 6, ny: 5, fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 0) });
     curve(ctx, (q) => v.v / q, 0.2, 1.4, X, Y, C('angular-rate'), 5, 120);
     dot(ctx, X(1.2), Y(v.v / 1.2), F.ref('earth-mover'), true, 9);
-    text(ctx, 'an earth mover, ' + fmt(v.v / 1.2, 1) + ' rad/s', X(1.2) - 16, Y(v.v / 1.2) - 26, F.ref('earth-mover'), { size: 17, align: 'right' });
     pinned(ctx, box, X, Y, r.v, om, F.ref('tire'), fmt(om, 1) + ' rad/s');
-    text(ctx, 'this tire, ' + fmt(om, 1) + ' rad/s', Math.min(X(r.v) + 18, box.r - 210), Y(om) + (r.v > 1.0 ? 28 : -26), F.ref('tire'), { size: 17, bg: PAL.panel });
+    /* both points are named above the curve, the earth mover up and to the left and this tire up and to the right,
+       or straight up once it is near the earth mover, and the labeller steps it further up where the two would meet */
+    const GL = labeller(ctx, 850);
+    GL.add('an earth mover, ' + fmt(v.v / 1.2, 1) + ' rad/s', X(1.2), Y(v.v / 1.2), -0.5, -0.87, F.ref('earth-mover'), 17, 30);
+    GL.add('this tire, ' + fmt(om, 1) + ' rad/s', X(r.v), Y(om), r.v < 0.8 ? 0.5 : 0, r.v < 0.8 ? -0.87 : -1, F.ref('tire'), 17, 30);
+    GL.flush();
     headline(ctx, 'In ' + fmt(t, 3) + ' s the tire has turned through ' + fmt(th, 2) + ' rad and laid down ' + fmt(r.v * th, 2) + ' m of road.');
     readout(d.readout, `\\kw = \\frac{\\kv}{\\kr} = \\frac{${fmt(v.v, 1)}\\ \\text{m/s}}{${fmt(r.v, 3)}\\ \\text{m}} = ${fmt(om, 1)}\\ \\text{rad/s}`,
       'An earth mover with tires 1.20 m in radius, moving at the same ' + fmt(v.v, 1) + ' m/s, would turn them at only ' + fmt(v.v / 1.2, 1) + ' rad/s, because the same speed is spread round a longer rim.');
@@ -277,22 +284,28 @@ function fly(ctx, x, y, color) {
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cyc, RR * 0.33, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     dot(ctx, cx, cyc, PAL.muted, true, 6);
     curl(ctx, cx, cyc, RR + 20, C('angular-rate'), false);
-    text(ctx, 'ω', ...at(cx, cyc, RR + 48, Math.PI * 0.22), C('angular-rate'), { weight: 600, align: 'center' });
+    const L = labeller(ctx, 860, { headline: true });
+    blockArc(L, cx, cyc, RR + 20, Math.PI * 0.28, Math.PI * 0.72);
+    const [wx, wy] = at(cx, cyc, RR + 48, Math.PI * 0.22); L.block(wx - 16, wy - 16, wx + 16, wy + 16);
     /* both lines stop at the rim's inner edge, a half width back for the cap */
     const IN = RR - 1.5;
     line(ctx, ...at(cx, cyc, IN - 1, u + Math.PI), ...at(cx, cyc, IN - 1, u), PAL.muted, 2, [10, 10]);
     line(ctx, cx, cyc, ...at(cx, cyc, IN - 2, u), C('position'), 4);
-    { const [lx, ly] = at(cx, cyc, RR * 0.6, u); text(ctx, 'r = ' + fmt(r.v, 3) + ' m', lx - 26 * Math.sin(u), ly - 26 * Math.cos(u), C('position'), { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
-    const L = 90 + 120 * (sp / 1.28);
+    { const [lx, ly] = at(cx, cyc, RR * 0.6, u); text(ctx, 'r', lx - 18 * Math.sin(u), ly - 18 * Math.cos(u), C('position'), { weight: 600, align: 'center', bg: PAL.panel }); }
+    const LA = 90 + 120 * (sp / 1.28);
     for (const [s, who] of [[0, 'fly-1'], [Math.PI, 'fly-2']]) {
       const a = u + s, [px, py] = at(cx, cyc, RR, a);
-      arrow(ctx, px, py, px + L * Math.sin(a), py + L * Math.cos(a), C('velocity'), 5);
-      text(ctx, 'v = ' + fmt(sp, 2) + ' m/s', px + (L + 22) * Math.sin(a), py + (L + 22) * Math.cos(a), C('velocity'), { size: 19, weight: 600, align: 'center', bg: PAL.bg });
+      arrow(ctx, px, py, px + LA * Math.sin(a), py + LA * Math.cos(a), C('velocity'), 5);
+      L.block(px - 18, py - 22, px + 18, py + 12);
+      L.add('v = ' + fmt(sp, 2) + ' m/s', px + LA * Math.sin(a), py + LA * Math.cos(a), Math.sin(a), Math.cos(a), C('velocity'), 19, 22);
       fly(ctx, px, py, F.ref(who));
     }
-    headline(ctx, 'The record turns clockwise at ω = ' + fmt(om.v, 2) + ' rad/s, so each fly moves at v = rω = ' + fmt(sp, 2) + ' m/s.');
+    /* ω is set last, on a panel, since a velocity arrow sweeps past it once a turn */
+    text(ctx, 'ω', wx, wy, C('angular-rate'), { weight: 600, align: 'center', bg: PAL.panel });
+    L.flush();
+    headline(ctx, 'The record turns clockwise at $\\kw = ' + fmt(om.v, 2) + '$ rad/s, so each fly moves at $\\kv = \\kr\\kw = ' + fmt(sp, 2) + '$ m/s.');
     readout(d.readout, `\\kv = \\kr\\kw = (${fmt(r.v, 3)}\\ \\text{m})(${fmt(om.v, 2)}\\ \\text{rad/s}) = ${fmt(sp, 2)}\\ \\text{m/s}`,
-      'The two flies share the one angular velocity of the record and move at the same speed, but their velocities point opposite ways at every instant, since each is tangent to the circle where its fly is standing. The record goes round once every ' + fmt(T, 2) + ' s.');
+      'The record goes round once every ' + fmt(T, 2) + ' s.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => total() / 5), draw });
 })();
