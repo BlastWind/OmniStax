@@ -28,15 +28,6 @@ function bar(ctx, x0, y, wmax, v, full, h, color, label, value) {
   text(ctx, label, x0 - 16, y, color, { size: 20, weight: 600, align: 'right' });
   text(ctx, value, x0 + width + 16, y, PAL.muted, { size: 18, align: 'left' });
 }
-/* a hand closed round a bar at (x, y), seen from the side: a rounded palm with the fingers
-   curled over the bar, the wrist running off upward and away from the bar's free end */
-function grip(ctx, x, y, dir = 1, color = PAL.ink) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
-  ctx.beginPath(); ctx.roundRect(x - 22, y - 24, 44, 40, 12); ctx.fill(); ctx.stroke();
-  ctx.lineWidth = 2; ctx.beginPath(); for (const dx of [-10, 0, 10]) { ctx.moveTo(x + dx, y - 24); ctx.lineTo(x + dx, y + 8); } ctx.stroke();
-  ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(x - dir * 14, y - 22); ctx.lineTo(x - dir * 40, y - 70); ctx.stroke();   /* the wrist */
-  ctx.restore();
-}
 /* =====================================================================
    FIGURE 9.21: the nail puller. The hand presses down on the handle, the
    nail pulls back on the claw and the plank pushes up at the pivot. The
@@ -104,82 +95,143 @@ null);
 
 /* =====================================================================
    FIGURE 9.22: the wheelbarrow and the shovel. Both keep their pivot at
-   one end and both forces on the same side of it, so one skeleton draws
-   them both: slide the load's lever arm out past the hands and the
-   wheelbarrow becomes a shovel, whose mechanical advantage is less than
-   one. The barrow is held up and nothing travels, so the figure is
-   still.
+   one end and both forces on the same side of it: slide the load's lever
+   arm out past the hands and the wheelbarrow becomes a shovel, held by
+   the same person with the rear hand at the pivot, whose mechanical
+   advantage is less than one. The barrow is held up and nothing travels,
+   so the figure is still.
 ===================================================================== */
 (function () {
-  const d = sim('sim-wheelbarrow', 610);
+  const d = sim('sim-wheelbarrow', 760);
   const lo = ctl(d.controls, { label: '\\klo', cls: 'position', min: 0.05, max: 1.40, step: 0.005, value: 0.075, unit: 'm', dec: 3, aria: 'lever arm of the load',
     specials: [{ at: () => li.v, label: 'MA = 1' }] });
   const li = ctl(d.controls, { label: '\\kli', cls: 'position', min: 0.50, max: 1.50, step: 0.01, value: 1.02, unit: 'm', dec: 2, aria: 'lever arm of the hands',
     specials: [{ at: () => lo.v, label: 'MA = 1' }] });
   lo.refresh();
   const M = ctl(d.controls, { label: '\\km', cls: 'mass', min: 10, max: 100, step: 2.5, value: 45, unit: 'kg', dec: 1, aria: 'combined mass of the load and the machine' });
-  const SC = 600, PX = 1180, PY = 392, GY = 430;   /* units per metre, the pivot, and the ground */
+  /* One scale for the barrow, the shovel and the person: 260 units a metre, the person 1.75 m
+     tall, the wheel 0.20 m in radius, the handles held at 0.72 m and the shovel at 0.95 m. */
+  const SC = 260, PX = 1100, GY = 575, S = SC * 1.75 / 150, R = 0.20 * SC, HB = GY - 0.72 * SC, HS = GY - 0.95 * SC;
+  const B1 = 635, B2 = 705;   /* the two lever-arm brackets */
+  const texN = (x) => sig3(x).replace(/,/g, '{,}');
+  let hits = [];
+  F.hover(d.stage, () => hits);
 
-  /* the tray of a wheelbarrow, centred on x and standing on the frame */
-  function tray(ctx, x) {
-    ctx.save(); ctx.strokeStyle = F.ref('barrow'); ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.moveTo(x - 92, 268); ctx.lineTo(x + 92, 268); ctx.lineTo(x + 56, 344); ctx.lineTo(x - 56, 344); ctx.closePath();
-    ctx.fill(); ctx.stroke(); ctx.restore();
+  /* the silhouette's joints, in its own frame (feet at the origin, facing +x), for a canvas point */
+  const local = (x0, face) => (x, y) => ({ x: (x - x0) / (S * face), y: (y - GY) / S });
+  /* the boxes the head, the torso and the legs fill on the canvas; the arms are left out, since
+     the forces act at the hands and their labels belong beside them */
+  function bodyBoxes(x0, face, j) {
+    const box = (pts, m) => {
+      const xs = pts.map((q) => x0 + q.x * S * face), ys = pts.map((q) => GY + q.y * S);
+      return { l: Math.min(...xs) - m * S, r: Math.max(...xs) + m * S, t: Math.min(...ys) - m * S, b: Math.max(...ys) + m * S };
+    };
+    return [box([j.head], 13), box([j.shoulder, j.hip], 10), box([j.hip, ...j.feet], 6)];
   }
-  /* the blade of a shovel, centred on x */
-  function blade(ctx, x) {
-    ctx.save(); ctx.strokeStyle = F.ref('barrow'); ctx.fillStyle = PAL.soft; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.moveTo(x - 64, 296); ctx.lineTo(x + 60, 314); ctx.lineTo(x + 48, 356); ctx.lineTo(x - 60, 338); ctx.closePath();
-    ctx.fill(); ctx.stroke(); ctx.restore();
+  /* Behind the handles, upright with both hands on the grips. */
+  function wheelbarrowPerson(xi) {
+    const x0 = xi - 22 * S, at = local(x0, 1), h = at(xi, HB);
+    const j = { shoulder: { x: 6, y: -116 }, head: { x: 12, y: -137 }, hip: { x: 0, y: -72 }, feet: [{ x: 9, y: 0 }, { x: -11, y: 0 }], hands: [h, { x: h.x - 2, y: h.y - 3 }] };
+    return { x0, face: 1, j, boxes: bodyBoxes(x0, 1, j) };
   }
-  function wheel(ctx, x, y) {
-    ctx.save(); ctx.strokeStyle = F.ref('barrow'); ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(x, y, 38, 0, Math.PI * 2); ctx.stroke();
-    ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+  /* Facing the blade, the rear hand on the end of the handle and the front hand down the shaft.
+     The shoulder sits over the shaft between the hands, as near the front hand as the reach
+     allows, and stoops lower as the hands part, so that both arms always reach the shaft. */
+  function shovelPerson(xi) {
+    const x0 = PX, at = local(x0, -1), D = (PX - xi) / S, ys = (GY - HS) / S;
+    const sx = Math.min(D / 2, Math.max(0.3 * D, D - 54));
+    const v = 0.9 * Math.sqrt(Math.max(0, 59.5 ** 2 - Math.max(sx, D - sx) ** 2));
+    const sh = Math.min(116, ys + v), hh = Math.min(70, Math.max(46, sh - 12)), dy = sh - hh, dx = Math.sqrt(Math.max(0, 44 ** 2 - dy ** 2));
+    const shoulder = { x: sx, y: -sh }, hip = { x: sx - dx, y: -hh };
+    const ux = (shoulder.x - hip.x) / 44, uy = (shoulder.y - hip.y) / 44;
+    const j = { shoulder, hip, head: { x: shoulder.x + 22 * ux + 4, y: shoulder.y + 22 * uy - 6 },
+      feet: [{ x: hip.x + 16, y: 0 }, { x: hip.x - 22, y: 0 }], hands: [at(xi, HS), at(PX, HS)] };
+    return { x0, face: -1, j, boxes: bodyBoxes(x0, -1, j) };
   }
+
   function draw() {
     const { ctx } = begin(d.c);
-    const w = M.v * G, MA = li.v / lo.v, Fi = w / MA, N = w - Fi;
+    const w = M.v * G, MA = li.v / lo.v, Fi = w / MA, N = w - Fi, Frh = Fi - w;
     const xi = PX - SC * li.v, xo = PX - SC * lo.v, shovel = lo.v > li.v;
-    const left = Math.min(xi, xo) - 96;
+    const cb = F.ref('barrow'), cp = F.ref('lifter'), cf = C('force'), cpos = C('position');
 
-    ctx.save(); ctx.strokeStyle = F.ref('barrow'); ctx.lineWidth = 8; ctx.lineCap = 'round';   /* the frame of the barrow, or the shaft of the shovel */
-    ctx.beginPath(); ctx.moveTo(left, 296); ctx.lineTo(PX, PY); ctx.stroke(); ctx.restore();
-    if (shovel) { blade(ctx, xo); grip(ctx, PX - 10, PY - 6, -1); } else { tray(ctx, xo); wheel(ctx, PX, PY); line(ctx, 120, GY, 1360, GY, PAL.muted, 3); }
-    /* the person who lifts, standing behind the handles with both hands on them */
-    const ps = 1.6, px = xi - 30;
-    silhouette(ctx, { x: px, y: GY, s: ps, pose: 'lean', color: F.ref('lifter'), hands: [{ x: (xi - px) / ps, y: (300 - GY) / ps }, { x: (xi - px) / ps + 2, y: (300 - GY) / ps + 4 }] });
-    dot(ctx, xi, 300, F.ref('lifter'), true, 7);
-    dot(ctx, PX, PY, PAL.ink, false, 10);
-    text(ctx, shovel ? 'the pivot, at the rear hand' : 'the pivot, at the wheel’s axle', PX + 40, PY + 58, PAL.muted, { size: 17, align: 'right' });
-
-    /* Every arrow is drawn to a fixed 1,000 N, which is the heaviest barrow the mass slider
-       reaches, so that loading the barrow lengthens the weight arrow instead of leaving the
-       drawing exactly as it was. */
-    const FULL = 1000, alen = (f) => 26 + 110 * Math.min(1, Math.abs(f) / FULL);
-    dot(ctx, xo, 312, PAL.ink, true, 9);                                   /* the centre of gravity and the weight that acts there */
-    arrow(ctx, xo, 312, xo, 312 + alen(w), C('force'), 5);
-    label(ctx, 'w = ' + sig3(w) + ' N', xo, 312 + alen(w), { side: 'below', color: C('force'), gap: 20, size: 21 });
-    arrow(ctx, xi, 290, xi, 290 - alen(Fi), C('force'), 5);                /* the lift, from the hands */
-    label(ctx, 'Fᵢ = ' + sig3(Fi) + ' N', xi, 290 - alen(Fi), { side: 'right', color: C('force'), gap: 18, size: 21 });
-    if (!shovel) {                                                         /* the wheel carries the rest of the weight */
-      arrow(ctx, PX, PY, PX, PY - alen(N), C('force'), 5);
-      text(ctx, 'N = ' + sig3(N) + ' N', PX + 18, PY - alen(N) + 14, C('force'), { size: 21, weight: 600, align: 'left' });
-    }
-
-    hbracket(ctx, xi, PX, 488, C('position'), 'lᵢ = ' + fmt(li.v, 2) + ' m');
-    hbracket(ctx, xo, PX, 552, C('position'), 'lₒ = ' + fmt(lo.v, 3) + ' m');
-
-    head(ctx, shovel
-      ? 'The load now lies beyond the hand that lifts it, as it does on a shovel, so a lift of '
-        + sig3(Fi) + ' N is needed to hold ' + sig3(w) + ' N and the mechanical advantage is ' + fmt(MA, 2) + '.'
+    const rows = head(ctx, shovel
+      ? 'On a shovel the load lies beyond the lifting hand: a lift of ' + sig3(Fi) + ' N at ' + fmt(li.v, 2)
+        + ' m from the rear hand holds ' + sig3(w) + ' N acting at ' + fmt(lo.v, 3) + ' m, so the mechanical advantage is ' + sig3(MA) + '.'
       : 'A lift of ' + sig3(Fi) + ' N at ' + fmt(li.v, 2) + ' m from the axle holds ' + sig3(w) + ' N acting at '
-        + fmt(lo.v, 3) + ' m, so the mechanical advantage is ' + fmt(MA, 1) + '.');
-    readout(d.readout, `\\kFi = \\kFo\\frac{\\klo}{\\kli} = (${sig3(w)}\\ \\text{N})\\frac{${fmt(lo.v, 3)}\\ \\text{m}}{${fmt(li.v, 2)}\\ \\text{m}} = ${sig3(Fi)}\\ \\text{N}`,
+        + fmt(lo.v, 3) + ' m, so the mechanical advantage is ' + sig3(MA) + '.');
+    const lab = F.labeller(ctx, 760, { headline: rows });
+    line(ctx, 60, GY, 1340, GY, PAL.muted, 3);                            /* the ground */
+
+    let cgY, hy, person;
+    if (!shovel) {
+      const ay = GY - R, slope = (HB - ay) / (xi - PX), yF = (x) => ay + slope * (x - PX);
+      const ang = Math.atan2(HB - ay, xi - PX) + Math.PI;                  /* the frame's direction, axle toward handles, turned to read left to right */
+      ctx.save(); ctx.strokeStyle = cb; ctx.lineWidth = 7; ctx.lineCap = 'round';
+      const xl = xi - 0.10 * SC, xleg = PX + 0.6 * (xi - PX);
+      ctx.beginPath(); ctx.moveTo(xl, yF(xl)); ctx.lineTo(PX, ay);         /* the frame, out past the grips */
+      ctx.moveTo(xleg, yF(xleg)); ctx.lineTo(xleg + 6, yF(xleg) + 0.18 * SC); ctx.stroke(); ctx.restore();   /* the leg it rests on when set down */
+      ctx.save(); ctx.strokeStyle = cb; ctx.fillStyle = PAL.panel; ctx.lineWidth = 5;   /* the wheel, its rim and its hub */
+      ctx.beginPath(); ctx.arc(PX, ay, R - 3, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.arc(PX, ay, 9, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+      /* the tray, standing on the frame and centred over the center of gravity */
+      const hw = Math.min(0.42, Math.max(0.2, li.v - lo.v + 0.1)) * SC, dep = 0.28 * SC;
+      ctx.save(); ctx.translate(xo, yF(xo) - 6); ctx.rotate(ang);
+      ctx.strokeStyle = cb; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(-hw * 0.6, 0); ctx.lineTo(hw * 0.6, 0); ctx.lineTo(hw, -dep); ctx.lineTo(-hw, -dep); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+      cgY = yF(xo) - 6 - 0.45 * dep;
+      hy = HB;
+      person = wheelbarrowPerson(xi);
+      lab.block(PX - R, ay - R, PX + R, GY);
+      lab.block(xo - hw - 10, cgY - 0.6 * dep - 20, xo + hw + 10, yF(xo) + 10);
+      hits = [{ x: PX, y: ay, r: R, name: 'the wheel; its axle is the pivot' }];
+    } else {
+      ctx.save(); ctx.strokeStyle = cb; ctx.lineWidth = 7; ctx.lineCap = 'round';   /* the shaft */
+      ctx.beginPath(); ctx.moveTo(PX + 0.07 * SC, HS); ctx.lineTo(xo + 0.10 * SC, HS); ctx.stroke(); ctx.restore();
+      const bl = xo - 0.18 * SC, br = xo + 0.12 * SC, by = HS + 0.05 * SC;
+      ctx.save(); ctx.strokeStyle = cb; ctx.fillStyle = PAL.soft; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(br, HS); ctx.lineTo(br, by); ctx.lineTo(bl, by + 10); ctx.lineTo(bl - 8, by - 6); ctx.stroke();   /* the blade */
+      ctx.beginPath(); ctx.moveTo(bl + 4, by + 2); ctx.quadraticCurveTo(xo, HS - 0.22 * SC, br - 4, by - 2); ctx.closePath(); ctx.fill(); ctx.stroke();   /* the heap it carries */
+      ctx.restore();
+      cgY = HS - 0.02 * SC;
+      hy = HS;
+      person = shovelPerson(xi);
+      lab.block(bl - 12, HS - 0.14 * SC, br + 8, by + 14);
+      hits = [];
+    }
+    person.boxes.forEach((b) => lab.block(b.l, b.t, b.r, b.b));
+    silhouette(ctx, { x: person.x0, y: GY, s: S, face: person.face, color: cp, pose: 'stand', ...person.j });
+    dot(ctx, xo, cgY, PAL.ink, true, 8);                                   /* the center of gravity */
+    hits.push({ x: xo, y: cgY, r: 16, name: 'center of gravity of ' + (shovel ? 'the shovel and its load' : 'the barrow and its load') },
+      ...person.boxes.map((b) => ({ x: (b.l + b.r) / 2, y: (b.t + b.b) / 2, r: Math.max(b.r - b.l, b.b - b.t) / 2, name: 'you, lifting' })));
+
+    /* Every arrow is drawn to a fixed 1,000 N, the heaviest barrow the mass slider reaches, so
+       that loading the barrow lengthens the weight arrow; a longer force stops at that length
+       and its label goes on giving the true value. */
+    const alen = (f) => 20 + 100 * Math.min(1, Math.abs(f) / 1000);
+    const force = (x1, y1, x2, y2, s, ux, uy, gap) => {
+      lab.halo({ x1, y1, x2, y2 }, 12); arrow(ctx, x1, y1, x2, y2, cf, 5);
+      lab.block(Math.min(x1, x2) - 3, Math.min(y1, y2), Math.max(x1, x2) + 3, Math.max(y1, y2));
+      return () => lab.add(s, ux < 0 ? Math.min(x1, x2) : ux > 0 ? Math.max(x1, x2) : x1, uy < 0 ? Math.min(y1, y2) : uy > 0 ? Math.max(y1, y2) : (y1 + y2) / 2, ux, uy, cf, 21, gap);
+    };
+    const labels = [];
+    labels.push(force(xo, cgY - 14 - alen(w), xo, cgY - 14, 'w = ' + sig3(w) + ' N', shovel ? -1 : 1, -0.4, 22));
+    labels.push(force(xi, hy + 12 + alen(Fi), xi, hy + 12, 'Fᵢ = ' + sig3(Fi) + ' N', shovel ? -1 : 0.5, shovel ? 0 : 1, shovel ? 22 : 18));
+    if (!shovel) labels.push(force(PX, GY + alen(N), PX, GY + 2, 'N = ' + sig3(N) + ' N', 1, 0, 22));
+    else labels.push(force(PX, hy - 12 - alen(Frh), PX, hy - 12, 'rear hand ' + sig3(Frh) + ' N', 1, -0.4, 22));   /* the rear hand presses down on the end of the handle */
+    dot(ctx, PX, shovel ? HS : GY - R, PAL.ink, false, 10);                /* the pivot */
+
+    /* each bracket's name sits under it, centred, and the two rows are far enough apart that the names never meet */
+    hbracket(ctx, xi, PX, B1, cpos, 'lᵢ = ' + fmt(li.v, 2) + ' m', { side: 'below', size: 21, H: 760 }); lab.block(Math.min(xi, PX - 80), B1 - 12, PX + 80, B1 + 40);
+    hbracket(ctx, xo, PX, B2, cpos, 'lₒ = ' + fmt(lo.v, 3) + ' m', { side: 'below', size: 21, H: 760 }); lab.block(Math.min(xo, PX - 80), B2 - 12, PX + 80, B2 + 40);
+    labels.forEach((f) => f());
+    lab.add(shovel ? 'pivot, the rear hand' : 'pivot, the axle', PX, shovel ? HS : GY - R, shovel ? 0.6 : 1, -0.8, PAL.muted, 18, shovel ? 30 : R + 12);
+    lab.flush();
+
+    readout(d.readout, `\\kFi = \\kFo\\frac{\\klo}{\\kli} = (${texN(w)}\\ \\text{N})\\frac{${fmt(lo.v, 3)}\\ \\text{m}}{${fmt(li.v, 2)}\\ \\text{m}} = ${texN(Fi)}\\ \\text{N}`,
       shovel
-        ? 'The load is farther from the pivot than the hand that lifts it, so the mechanical advantage is ' + fmt(MA, 2)
-          + ', less than one, and the reach of the shovel is bought with a larger force.'
-        : 'The wheel carries what your hands do not, ' + sig3(N)
-          + ' N, and by Newton’s third law it presses on the ground with the same ' + sig3(N) + ' N.');
+        ? `The rear hand presses down with $\\kFi - \\kwgt = ${texN(Fi)}\\ \\text{N} - ${texN(w)}\\ \\text{N} = ${texN(Frh)}\\ \\text{N}$.`
+        : `The wheel carries the rest, $\\kN = \\kwgt - \\kFi = ${texN(w)}\\ \\text{N} - ${texN(Fi)}\\ \\text{N} = ${texN(N)}\\ \\text{N}$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

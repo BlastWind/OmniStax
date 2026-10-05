@@ -115,25 +115,7 @@ chapter config's reading of it).
    The book puts no numbers on this figure, so the defaults are round
    ones of the same size; problem 1's 45 cm and 1.8 cm are both on the
    sliders.
-2. `sim-wheelbarrow` · replaces Figure 9.22 (a) and (b) (the wheelbarrow
-   and the shovel, two panels under one number, so one row with one
-   original and no fold) · lever, lever-mechanical-advantage,
-   mechanical-advantage · **still**: the barrow is held up and nothing
-   travels · the output lever arm $\klo$ (0.05 to 1.40 m, position,
-   default 0.075), the input lever arm $\kli$ (0.50 to 1.50 m, position,
-   default 1.02), the combined mass $m$ (10 to 100 kg, ink, default 45.0)
-   · "A lift of 32.4 N at 1.02 m from the axle holds 441 N acting at
-   0.075 m, so the mechanical advantage is 13.6." The three force arrows are
-   drawn to a fixed 1,000 N, the heaviest barrow the mass slider reaches, so
-   that loading the barrow lengthens the weight arrow · none; beneath the wheelbarrow the same three forces are drawn
-   on a bare bar pivoted at one end, and sliding $\klo$ past $\kli$ carries
-   that bar from the wheelbarrow, whose load is nearer the pivot than the
-   hands, to the shovel, whose load is farther, where the mechanical
-   advantage falls below one · no. Readout: $\kFi = \kFo\klo/\kli$ with
-   the numbers; small line on the normal force at the wheel,
-   $\kN = \kwgt - \kFi$. Draws force, position. The defaults are the
-   worked example's, so the figure loads on 32.4 N and 409 N.
-   Manim pass, 2026-09-28: a dashed circle on each lever arm at the other's value marks MA = 1, where the wheelbarrow becomes the shovel.
+2. `sim-wheelbarrow` · replaces Figure 9.22 · mechanical-advantage, lever · variation by slider: slide the load's lever arm past the hands and the wheelbarrow becomes a shovel with MA below one · still, the barrow is held and nothing travels · l_o (position, detent at l_i, MA = 1), l_i (position), m (mass) · headline 'A lift of 32.4 N at 1.02 m from the axle holds 441 N acting at 0.075 m, so the mechanical advantage is 13.6' · no graph · 2D side view as the book draws it; one F.silhouette holds the shovel with both hands, the rear hand at the pivot and the front hand lifting (no hand of the figure's own), the barrow keeps its wheel; every label through the labeller with the tray, wheel, person and brackets blocked; thousands commas in the readout as {,}; no fold or split. Rebuilt 2026-10-05: one scale of 260 units a metre for barrow, shovel and a 1.75 m person; the rear hand presses down with $\kFi - \kwgt$, drawn and written in the readout's note.
 3. `sim-incline` · replaces nothing: a **Sim** · simple-machine,
    mechanical-advantage · **still**: the cart is pushed at constant
    velocity and the figure is about the force and the distance, not about
