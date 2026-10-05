@@ -143,33 +143,18 @@ headline · graph · 3D
    reader at it ("A damaged or arthritic joint can be replaced by an
    artificial joint"), and it shows the thing the passage is about. The
    book's caption and its credit clause are kept, and its width is 250.
-4. `sim-skier` · **replaces Figure 5.4** (the skier on the 25º slope and
-   the free-body diagram beside her) · friction-on-an-incline,
-   kinetic-friction-magnitude, coefficient-of-friction · **moves**: the
-   skier slides down the slope from rest and gains speed, since the
-   friction is less than the component of the weight along the slope, which
-   is what the book's caption says and what the Discussion generalises. One
-   run down the slope per loop, with the scrubber. When the angle is
-   lowered to $\tan^{-1}\mu_{\text{k}}$ the acceleration is zero and she
-   slides at a constant velocity, which is what the Take-Home Experiment
-   with the coin measures · the mass $m$ (40 to 120 kg, default 62, ink),
-   the slope angle $\theta$ (5º to 45º, default 25, ink) and the friction
-   $\kfk$ (0 to 200 N, default 45.0, force) · "on a 25º slope her 608 N
-   weight gives 257 N along the slope and 551 N into it, so μ_k = 0.082" ·
-   none: the free-body diagram
-   stands beside the slope, where the book puts it, and the scene wants the
-   width · no. Readout: $\mu_{\text{k}} = \kfk / (m\kg\cos\theta)$ with the
-   numbers; small line with the acceleration down the slope and the angle
-   at which it would be zero. Draws force, velocity, acceleration.
-   Revised in the figure-audit pass of 2026-09-12: labels once, on the free-
-   body diagram. She starts from rest only where the slope will accelerate
-   her; where the friction balances the weight along the slope she is
-   already gliding at 2.0 m/s, and where the friction is the larger she
-   slides to a stop rather than travelling down at a rate nothing accounts
-   for. The five value labels no longer ride the skier: the arrows on the
-   scene give their names under the pointer through F.hover, and the free-
-   body diagram beside the slope carries all five forces with their values.
-   The headline is one capitalized sentence.
+4. `sim-skier` · Figure 5.4 · friction-on-an-incline, kinetic-friction-
+   magnitude, coefficient-of-friction · variation by slider and flow by
+   animation: she slides and gains speed, the free-body diagram answers the
+   sliders · moving, one run down the slope per loop with the transport · m
+   (40 to 120 kg, mass), θ (5 to 45°, angle), f_k (0 to 200 N, force) · 'On
+   a 25° slope her 608 N weight gives 257 N along the slope and 551 N into
+   it, so $\mu_{\text{k}}$ = 0.082', typeset · free-body diagram beside the
+   slope · 2D, a relation between forces. The skier is F.silhouette in pose
+   'crouch', standing plumb over skis laid along the slope (not rotated with
+   it), poles in her hands; the weight leaves her hips through a
+   labeller.halo where it crosses her; the note goes through the macros. No
+   fold or split. Rebuilt 2026-10-05 (claude-opus-5-5, high).
 5. `sim-probe` · **replaces Figure 5.6** (the probe tip deformed as it is
    dragged) · atomic-origin-of-friction, kinetic-friction-magnitude ·
    **moves**: the probe is dragged across the substrate, so the idea has a
@@ -190,13 +175,17 @@ headline · graph · 3D
    the lean, and the headline and the small line say that the lean is drawn
    in proportion to the friction rather than measured. The headline is one
    capitalized sentence.
-6. `fig-ice` · **faithful copy** of the unnumbered figure inside the
-   problems, the contestant pushing and pulling the block of ice across a
-   frozen lake, both parts (a) and (b) as the book draws them. It serves
-   the keyed problem 18 (`fs-id1531145`), which names part (a); part (b)'s
-   problem (`fs-id1529666`) is unkeyed and left out, but the book's one
-   image carries both parts, so both are drawn. Eyebrow "Figure", no
-   number, no sliders, no motion. Draws nothing.
+6. `fig-ice` · faithful copy of the unnumbered figure of problem 18 (eyebrow
+   Figure) · kinetic-friction-magnitude · standardisation · still, a
+   faithful copy, no sliders · none · 'The same 45.0 kg block of ice is
+   pushed at 25° below the horizontal and pulled at 25° above it' · none ·
+   2D. The contestant is F.silhouette: (a) pose 'push', leaning in with his
+   hands on the block's upper face where the arrow begins; (b) pose 'walk'
+   or 'pull' striding away, the rope from the block over his shoulder to his
+   hands; the 25° angles drawn with F.angleArc so their names sit clear of
+   the arrows. No fold or split. The push begins at his hands on the top
+   face and runs into the block; (b) labels the pull F′ as the book does.
+   Rebuilt 2026-10-05 (claude-opus-5-5, high).
 
    Figure pass of 2026-09-14 (Claude Fable 5.1): the crate is now a framed box
    of planks rather than an X-braced square, and in both `sim-interface` and
