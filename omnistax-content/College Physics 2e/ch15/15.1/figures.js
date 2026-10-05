@@ -11,7 +11,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, strip, person } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -78,7 +78,7 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
   const qo = ctl(d.controls, { label: '\\kQout', cls: 'energy', min: 0, max: 100, step: 1, value: 25, unit: 'J', dec: 0, aria: 'the heat transfer out of the system' });
   const wo = ctl(d.controls, { label: '\\kWout', cls: 'energy', min: 0, max: 100, step: 1, value: 10, unit: 'J', dec: 0, aria: 'the work done by the system' });
   const wi = ctl(d.controls, { label: '\\kWin', cls: 'energy', min: 0, max: 100, step: 1, value: 4, unit: 'J', dec: 0, aria: 'the work done on the system' });
-  const CX = 700, CY = 330, RX = 210, RY = 150, K = 0.45, KG = 1.0;     /* the gauge holds −100 to +100 J, one unit a joule */
+  const CX = 700, CY = 330, RX = 250, RY = 150, K = 0.45, KG = 0.5;     /* the gauge holds −200 to +200 J, half a unit a joule */
   /* the x where the ellipse's edge sits at a height dy above or below its centre */
   const edge = (dy) => RX * Math.sqrt(Math.max(0, 1 - (dy / RY) * (dy / RY)));
   function draw() {
@@ -102,9 +102,9 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
       text(ctx, v > 0 ? how : none, mx, ly + side * 26, PAL.muted, { size: 17, align: 'center' });
     }
     /* the internal energy inside, the level at the start dashed and the change as a bar */
-    gauge(ctx, CX, CY - 100, 120, 206, CY + 3, dE * KG, ec);
+    gauge(ctx, CX, CY - 100, 90, 206, CY + 3, dE * KG, ec);
     text(ctx, 'E_int', CX, CY + 128, PAL.ink, { size: 21, weight: 600, align: 'center' });
-    text(ctx, 'ΔE_int = ' + plus(dE, 0) + ' J', CX + 74, CY + 3 - (dE * KG) / 2, ec, { size: 21, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'ΔE_int = ' + plus(dE, 0) + ' J', CX + 56, CY + 3 - (dE * KG) / 2, ec, { size: 19, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
     /* the two nets, summed beneath the system as the book sums them in its margin */
     const ys = 560;
     text(ctx, 'Q = Q_in − Q_out = ' + num(Q, 0) + ' J', 330, ys, ec, { size: 22, weight: 600, align: 'center' });
@@ -114,10 +114,7 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
     topline(ctx, 'Heat transfer of ' + fmt(Qin, 0) + ' J in and ' + fmt(Qout, 0) + ' J out, with ' + fmt(Wout, 0) + ' J of work done by the system and ' + fmt(Win, 0) + ' J done on it, '
       + rises(dE, 0) + ' the internal energy ' + (eps(dE, 0) === 0 ? 'unchanged.' : 'by ' + fmt(Math.abs(dE), 0) + ' J.'));
     readout(d.readout, `\\kdEint = \\kQh - \\kW = (\\kQin - \\kQout) - (\\kWout - \\kWin) = (${fmt(Qin, 0)} - ${fmt(Qout, 0)})\\ \\text{J} - (${fmt(Wout, 0)} - ${fmt(Win, 0)})\\ \\text{J} = ${texnum(dE, 0)}\\ \\text{J}`,
-      'Q is positive when the net heat transfer is into the system and W is positive when the net work is done by the system, so here Q = ' + num(Q, 0) + ' J and W = ' + num(W, 0) + ' J. '
-      + (eps(dE, 0) > 0 ? 'More energy comes in as heat than leaves as work, and the difference is stored as internal energy.'
-        : eps(dE, 0) < 0 ? 'More energy leaves than comes in, and the internal energy of the system falls by the difference.'
-          : 'What comes in as heat is exactly what leaves as work, and the internal energy does not change.'));
+      'Net heat transfer into the system makes $\\kQh$ positive, and net work done by the system makes $\\kW$ positive.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -149,12 +146,12 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
       if (wq > 0) { if (Q > 0) fatArrow(ctx, xl - LEN, y, xl - 4, y, wq, ec); else fatArrow(ctx, xl + 4, y, xl - LEN, y, wq, ec); }
       else line(ctx, xl - LEN, y, xl, y, alpha(ec, 0.35), 2, [6, 8]);
       text(ctx, 'Q = ' + plus(Q, 2) + ' J', xl - LEN / 2, y - wq / 2 - 34, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      text(ctx, Q > 0 ? 'heat into the system' : Q < 0 ? 'heat out of the system' : 'no net heat transfer', xl - LEN / 2, y + wq / 2 + 34, PAL.muted, { size: 17, align: 'center' });
+      text(ctx, Q > 0 ? 'heat in' : Q < 0 ? 'heat out' : 'no net heat', xl - LEN / 2, y + wq / 2 + 34, PAL.muted, { size: 17, align: 'center' });
       /* the net work on the right: out when W is positive, in when it is negative */
       if (ww > 0) { if (W > 0) fatArrow(ctx, xr + 4, y, xr + LEN, y, ww, ec); else fatArrow(ctx, xr + LEN, y, xr + 4, y, ww, ec); }
       else line(ctx, xr, y, xr + LEN, y, alpha(ec, 0.35), 2, [6, 8]);
       text(ctx, 'W = ' + num(W, 2) + ' J', xr + LEN / 2, y - ww / 2 - 34, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      text(ctx, W > 0 ? 'work by the system' : W < 0 ? 'work on the system' : 'no net work', xr + LEN / 2, y + ww / 2 + 34, PAL.muted, { size: 17, align: 'center' });
+      text(ctx, W > 0 ? 'work done by it' : W < 0 ? 'work done on it' : 'no net work', xr + LEN / 2, y + ww / 2 + 34, PAL.muted, { size: 17, align: 'center' });
       /* the internal energy inside, the same rise or fall in both */
       gauge(ctx, cx, CY - 60, 96, 160, CY + 20, dE * KG, ec);
       text(ctx, 'ΔE_int = ' + plus(dE, 2) + ' J', cx, CY + R + 36, ec, { size: 22, weight: 600, align: 'center' });
@@ -165,8 +162,7 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
     topline(ctx, 'Process (a) ' + gain(Qa) + ' and ' + works(Wa) + ', process (b) ' + gain(Qb) + ' and ' + works(Wb) + ', and both '
       + (eps(dE, 2) > 0 ? 'raise' : eps(dE, 2) < 0 ? 'lower' : 'leave') + ' the internal energy ' + (eps(dE, 2) === 0 ? 'unchanged.' : 'by ' + fmt(Math.abs(dE), 2) + ' J.'));
     const par = (v) => (eps(v, 2) < 0 ? `(${texnum(v, 2)}\\ \\text{J})` : `${texnum(v, 2)}\\ \\text{J}`);
-    readout(d.readout, `\\kdEint = \\kQh - \\kW = ${par(Qa)} - ${par(Wa)} = ${par(Qb)} - ${par(Wb)} = ${texnum(dE, 2)}\\ \\text{J}`,
-      'The heat transfer and the work are different in the two processes, and each depends on the path taken, but the change in internal energy depends only on the starting state and the final state. Whatever heat transfer you give a process, its work must make up the same difference, because the system ends in the same state either way.');
+    readout(d.readout, `\\kdEint = \\kQh - \\kW = ${par(Qa)} - ${par(Wa)} = ${par(Qb)} - ${par(Wb)} = ${texnum(dE, 2)}\\ \\text{J}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -218,7 +214,7 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
     strip(ctx, 120, 1280, GY + 12, 24);
     if (body) {
       const Fd = food.v, Qo = qout.v, Wo = work.v, dE = -Qo - (Wo - Fd), eff = Fd > 0 ? (100 * Wo) / Fd : 0;
-      const kw = (v) => wOf(v, 0.0035), KG = 0.026;                     /* the gauge holds −5,000 to +5,000 kJ */
+      const kw = (v) => wOf(v, 0.0035), KG = 0.005;                     /* the gauge holds the −20,000 to +15,000 kJ the sliders reach */
       const PX = 500; person(ctx, PX, GY, F.ref('body'), { s: 2.8 });
       text(ctx, 'the body', PX, GY + 52, F.ref('body'), { size: 20, align: 'center' });
       /* food comes in at the mouth, heat transfer leaves from the trunk, work leaves at the hands */
@@ -228,8 +224,8 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
       text(ctx, 'food = ' + kJ(Fd) + ' kJ', mouth.x - 150, mouth.y - 60 - wf / 2 - 34, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, Fd > 0 ? 'chemical potential energy in' : 'nothing eaten', mouth.x - 150, mouth.y - 60 - wf / 2 - 60, PAL.muted, { size: 17, align: 'center' });
       if (wq > 0) fatArrow(ctx, chest.x, chest.y, chest.x + 270, chest.y - 110, wq, ec); else line(ctx, chest.x, chest.y, chest.x + 270, chest.y - 110, alpha(ec, 0.35), 2, [6, 8]);
-      text(ctx, 'Q_out = ' + kJ(Qo) + ' kJ', chest.x + 160, chest.y - 55 - wq / 2 - 40, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      text(ctx, Qo > 0 ? 'heat transfer to the surroundings' : 'no heat transfer out', chest.x + 160, chest.y - 55 - wq / 2 - 66, PAL.muted, { size: 17, align: 'center' });
+      text(ctx, 'Q_out = ' + kJ(Qo) + ' kJ', chest.x + 80, chest.y - 55 - wq / 2 - 40, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, Qo > 0 ? 'heat transfer to the surroundings' : 'no heat transfer out', chest.x + 80, chest.y - 55 - wq / 2 - 66, PAL.muted, { size: 17, align: 'center' });
       if (ww > 0) fatArrow(ctx, hand.x, hand.y, hand.x - 270, hand.y + 50, ww, ec); else line(ctx, hand.x, hand.y, hand.x - 270, hand.y + 50, alpha(ec, 0.35), 2, [6, 8]);
       text(ctx, 'W_out = ' + kJ(Wo) + ' kJ', hand.x - 140, hand.y + 25 + ww / 2 + 38, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, Wo > 0 ? 'work done on the outside world' : 'no work done', hand.x - 140, hand.y + 25 + ww / 2 + 64, PAL.muted, { size: 17, align: 'center' });
@@ -241,22 +237,20 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
       topline(ctx, 'Food brings in ' + kJ(Fd) + ' kJ, heat transfer takes out ' + kJ(Qo) + ' kJ and work takes out ' + kJ(Wo) + ' kJ, so the internal energy of the body '
         + (eps(dE, 0) > 0 ? 'rises by ' + kJ(dE) + ' kJ over the day.' : eps(dE, 0) < 0 ? 'falls by ' + grp(dE) + ' kJ over the day.' : 'is unchanged over the day.'));
       readout(d.readout, `\\kdEint = \\kQh - \\kW = (${kJtex(-Qo)}\\ \\text{kJ}) - (${kJtex(Wo)}\\ \\text{kJ} - ${kJtex(Fd)}\\ \\text{kJ}) = ${kJtex(dE)}\\ \\text{kJ}`,
-        'Heat transfer out of the body makes Q negative and work done on the outside world makes W positive, and the food comes in as chemical potential energy, which counts as work done on the body, so W = W_out − food. '
-        + (Fd > 0 ? 'The body turns ' + fmt(eff, 1) + '% of its food energy into work; the rest leaves as heat transfer or stays. ' : '')
-        + (eps(dE, 0) > 0 ? 'The surplus is stored as fat.' : eps(dE, 0) < 0 ? 'The deficit is met by metabolizing fat, which is how dieting produces weight loss.' : 'The food exactly replaces what was lost, and the average internal energy stays constant.'));
+        'Food counts as work done on the body, so $\\kW = \\kWout - \\text{food}$.' + (Fd > 0 ? ' The body turns ' + fmt(eff, 1) + '% of its food energy into work.' : ''));
     } else {
       const Qi = sun.v, Qo = pout.v, dE = Qi - Qo;
-      const kw = (v) => wOf(v, 0.052), KG = 0.13;                        /* the gauge holds −1,000 to +1,000 kJ */
+      const kw = (v) => wOf(v, 0.052), KG = 0.1;                         /* the gauge holds the −1,000 to +1,000 kJ the sliders reach */
       sunSprite(ctx, 230, 200, 48); text(ctx, 'the Sun', 230, 296, PAL.ink, { size: 20, align: 'center' });
       const PX = 640; plantSprite(ctx, PX, GY, F.ref('plant'));
       text(ctx, 'the plant', PX, GY + 52, F.ref('plant'), { size: 20, align: 'center' });
       const wi = kw(Qi), wo = kw(Qo);
       if (wi > 0) fatArrow(ctx, 318, 226, PX - 76, GY - 214, wi, ec); else line(ctx, 318, 226, PX - 76, GY - 214, alpha(ec, 0.35), 2, [6, 8]);
-      text(ctx, 'Q_in = ' + kJ(Qi) + ' kJ', 440, 256 - wi / 2 - 46, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      text(ctx, Qi > 0 ? 'radiant heat transfer from sunlight' : 'no sunlight', 440, 256 - wi / 2 - 72, PAL.muted, { size: 17, align: 'center' });
-      if (wo > 0) fatArrow(ctx, PX + 70, GY - 206, PX + 280, GY - 164, wo, ec); else line(ctx, PX + 70, GY - 206, PX + 280, GY - 164, alpha(ec, 0.35), 2, [6, 8]);
-      text(ctx, 'Q_out = ' + kJ(Qo) + ' kJ', PX + 200, GY - 183 + wo / 2 + 44, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-      text(ctx, Qo > 0 ? 'heat transfer back to the surroundings' : 'no heat transfer out', PX + 200, GY - 183 + wo / 2 + 70, PAL.muted, { size: 17, align: 'center' });
+      text(ctx, 'Q_in = ' + kJ(Qi) + ' kJ', 480, 256 - wi / 2 - 46, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, Qi > 0 ? 'radiant heat transfer from sunlight' : 'no sunlight', 480, 256 - wi / 2 - 72, PAL.muted, { size: 17, align: 'center' });
+      if (wo > 0) fatArrow(ctx, PX + 70, GY - 206, PX + 240, GY - 310, wo, ec); else line(ctx, PX + 70, GY - 206, PX + 240, GY - 310, alpha(ec, 0.35), 2, [6, 8]);
+      text(ctx, 'Q_out = ' + kJ(Qo) + ' kJ', PX + 260, GY - 310, ec, { size: 21, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, Qo > 0 ? 'heat transfer back to the surroundings' : 'no heat transfer out', PX + 260, GY - 336, PAL.muted, { size: 17, align: 'left' });
       gauge(ctx, GX + 60, GT, GW, GH, GB, dE * KG, ec);
       text(ctx, 'E_int', GX + 60, GT + GH + 30, PAL.ink, { size: 21, weight: 600, align: 'center' });
       text(ctx, 'ΔE_int = ' + (eps(dE, 0) > 0 ? '+' : '') + kJ(dE) + ' kJ', GX + 60 + GW / 2 + 18, GB - (dE * KG) / 2, ec, { size: 21, weight: 600, align: 'left', bg: alpha(PAL.panel, 0.85) });
@@ -264,7 +258,7 @@ const rises = (v, d) => (eps(v, d) > 0 ? 'raises' : eps(v, d) < 0 ? 'lowers' : '
       topline(ctx, 'Sunlight brings ' + kJ(Qi) + ' kJ of radiant heat transfer to the plant and ' + kJ(Qo) + ' kJ leaves again, so '
         + (eps(dE, 0) > 0 ? kJ(dE) + ' kJ is stored as chemical energy by photosynthesis.' : eps(dE, 0) < 0 ? 'the plant loses ' + grp(dE) + ' kJ of its stored energy.' : 'the plant stores nothing.'));
       readout(d.readout, `\\kdEint = \\kQh - \\kW = (\\kQin - \\kQout) - 0 = (${kJtex(Qi)}\\ \\text{kJ} - ${kJtex(Qo)}\\ \\text{kJ}) - 0 = ${kJtex(dE)}\\ \\text{kJ}`,
-        'The plant is taken to do no work on its surroundings, so the part of the sunlight it does not send back as heat transfer is what it keeps, stored as chemical potential energy. This is photosynthesis, and like metabolism it runs one way only: the plant cannot turn its stores back into sunlight.');
+        'The plant is taken to do no work on its surroundings, so $\\kW = 0$.');
     }
   }
   register(d.fig, { update: () => {}, draw });

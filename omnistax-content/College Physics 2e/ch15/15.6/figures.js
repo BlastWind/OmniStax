@@ -14,7 +14,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, topline, axes } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -156,7 +156,7 @@ function earthSprite(ctx, x, y, r, color) {
     const verb = eps(dS, 2) > 0 ? 'raises the entropy by ' + sig3(dS) + ' J/K' : eps(dS, 2) < 0 ? 'lowers the entropy by ' + sig3(-dS) + ' J/K' : 'leaves the entropy unchanged';
     topline(ctx, (eps(Q, 0) === 0 ? 'No heat transfer along the reversible path at ' + fmt(T, 0) + ' K ' : 'A reversible heat transfer of ' + num(Q, 0) + ' J at ' + fmt(T, 0) + ' K ') + verb + ', and the irreversible path ends at the same entropy.');
     readout(d.readout, `\\kdS = \\left(\\frac{\\kQh}{\\kTemp}\\right)_{\\text{rev}} = \\frac{${texnum(Q, 0)}\\ \\text{J}}{${fmt(T, 0)}\\ \\text{K}} = ${sig3tex(dS)}\\ \\text{J/K} = S_2 - S_1`,
-      'Entropy is a property of state, like internal energy: the entropy of state 2 is what it is however the system got there. The irreversible path may have involved a quite different heat transfer along the way, but it ends at the same S<sub>2</sub>, so its change in entropy is the one the reversible path gives.');
+      '');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -177,7 +177,7 @@ function earthSprite(ctx, x, y, r, color) {
   const th = ctl(d.controls, { label: '\\kTemph', cls: 'temperature', min: 300, max: 1000, step: 10, value: 600, unit: 'K', dec: 0, aria: 'the temperature of the hot reservoir' });
   const tc = ctl(d.controls, { label: '\\kTempc', cls: 'temperature', min: 100, max: 1000, step: 10, value: 250, unit: 'K', dec: 0, aria: 'the temperature of the cold reservoir', specials: [{ at: () => th.v, label: 'reversible' }] });
   const BX1 = 170, BX2 = 560, HY1 = 110, HY2 = 220, CY1 = 440, CY2 = 550, MX = (BX1 + BX2) / 2, K = 0.0085;
-  const box = { l: 800, r: 1320, t: 135, b: 520 }, LO = -40, HI = 80;   /* the entropy axis is fixed at −40 to 80 J/K: 8000 J at 100 K is 80 J/K */
+  const box = { l: 800, r: 1320, t: 135, b: 520 }, LO = -40, HI = 100;   /* the entropy axis is fixed at −40 to 100 J/K: 8000 J at 100 K is 80 J/K, with room for its label */
   function draw() {
     const { ctx } = begin(d.c);
     const sc = C('entropy'), ec = C('energy');
@@ -215,7 +215,7 @@ function earthSprite(ctx, x, y, r, color) {
     how.only(ctx, 'rev', () => text(ctx, 'two reversible processes', MX, CY2 + 40, PAL.ink, { size: 20, align: 'center' }), [0, 10]);
     how.only(ctx, 'direct', () => text(ctx, 'irreversible', MX, CY2 + 40, PAL.ink, { size: 20, align: 'center' }), [0, 10]);
     /* the bars on a fixed axis */
-    const { Y } = axes(ctx, box, [0, 3], [LO, HI], { yl: 'ΔS (J/K)', yc: sc, nx: 3, ny: 6, fx: () => '' });
+    const { Y } = axes(ctx, box, [0, 3], [LO, HI], { yl: 'ΔS (J/K)', yc: sc, nx: 3, ny: 7, fx: () => '' });
     const cols = [['ΔS_h', dSh, 'hot reservoir', F.ref('hot-reservoir')], ['ΔS_c', dSc, 'cold reservoir', F.ref('cold-reservoir')], ['ΔS_tot', tot, 'total', PAL.muted]];
     cols.forEach(([nm, v, who, wc], i) => {
       const xc = box.l + ((i + 0.5) / 3) * (box.r - box.l), bw = 90;
@@ -230,11 +230,8 @@ function earthSprite(ctx, x, y, r, color) {
       : 'Heat transfer of ' + fmt(Q, 0) + ' J from ' + fmt(Th, 0) + ' K to ' + fmt(Tc, 0) + ' K takes ' + sig3(-dSh) + ' J/K from the hot reservoir and gives ' + sig3(dSc) + ' J/K to the cold one, '
         + (level ? 'and the total does not change.' : backwards ? 'a decrease of ' + sig3(-tot) + ' J/K, which the second law forbids.' : 'an increase of ' + sig3(tot) + ' J/K.'));
     readout(d.readout, `\\kdStot = -\\frac{\\kQH}{\\kTemph} + \\frac{\\kQC}{\\kTempc} = -\\frac{${fmt(Q, 0)}\\ \\text{J}}{${fmt(Th, 0)}\\ \\text{K}} + \\frac{${fmt(Q, 0)}\\ \\text{J}}{${fmt(Tc, 0)}\\ \\text{K}} = ${sig3tex(tot)}\\ \\text{J/K}`,
-      backwards ? 'The reservoir named hot is now the colder of the two, so this transfer would run from cold to hot and lower the total entropy. That never happens spontaneously, which is the second law stated in terms of entropy.'
-        : level ? 'With the two reservoirs at the same temperature the loss and the gain are equal and the total change is zero, as it is for every reversible process.'
-          : (rev ? 'Each reversible process changes one reservoir by Q/T at that reservoir\u2019s own temperature, and the two together leave the reservoirs exactly as the direct transfer does, so the entropy changes are the same. '
-            : 'The direct transfer is irreversible, but the same heat leaving the hot reservoir and entering the cold one by two reversible processes produces the same end states, so its change in entropy can be found from them. ')
-            + 'Because the same heat makes a larger change at the lower temperature, the cold reservoir gains more than the hot one loses; bring the temperatures together and the difference shrinks toward zero, the reversible limit.');
+      backwards ? 'Heat transfer from cold to hot would lower the total entropy, which never happens on its own.'
+        : level ? '' : 'The same heat makes the larger change at the lower temperature, so the cold reservoir gains more than the hot one loses.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -282,14 +279,14 @@ function earthSprite(ctx, x, y, r, color) {
     const wf = wOf(Qh, K), ym = (RY1 + RY2) / 2;
     if (falls) fatArrow(ctx, 862, ym, 938, ym, wf, ec); else line(ctx, 862, ym, 938, ym, alpha(ec, 0.35), 2, [6, 8]);
     text(ctx, fmt(Qh, 0) + ' J', 900, RY1 - 24, ec, { size: 21, weight: 600, align: 'center' });
-    text(ctx, falls ? 'entropy increases by ' + sig3(dS) + ' J/K' : 'no heat falls to a hotter reservoir', 760, RY2 + 28, falls ? sc : PAL.muted, { size: 18, weight: falls ? 600 : 400, align: 'center', bg: PAL.panel });
+    text(ctx, falls ? 'entropy increases by ' + sig3(dS) + ' J/K' : 'no heat falls to a hotter reservoir', 700, RY2 + 28, falls ? sc : PAL.muted, { size: 16, weight: falls ? 600 : 400, align: 'center', bg: PAL.panel });
     panel(ctx, 940, 1200, Qh, WB, Qh - WB, '(b) fed after the heat has fallen to ' + fmt(Tm, 0) + ' K', 'engine-b');
     const lost = WA - WB;
     topline(ctx, 'Fed directly from ' + fmt(Th, 0) + ' K the engine does ' + fmt(WA, 0) + ' J of work; fed after the ' + fmt(Qh, 0) + ' J has fallen to ' + fmt(Tm, 0) + ' K it does ' + fmt(WB, 0) + ' J, '
       + (falls ? 'and ' + fmt(lost, 0) + ' J can no longer be done.' : 'which is no less, because the heat has not fallen.'));
     readout(d.readout, `\\kWunavail = \\kdS \\cdot \\kTempo = (${sig3tex(dS)}\\ \\text{J/K})(${fmt(T0, 0)}\\ \\text{K}) = ${texnum(Wun, 0)}\\ \\text{J} = ${fmt(WA, 0)}\\ \\text{J} - ${fmt(WB, 0)}\\ \\text{J}`,
-      falls ? 'Engine (a) works at the Carnot efficiency 1 − ' + fmt(Tc, 0) + ' K/' + fmt(Th, 0) + ' K = ' + fmt(effA, 3) + ' and does ' + fmt(WA, 0) + ' J; engine (b), fed after the heat has fallen to ' + fmt(Tm, 0) + ' K, works at 1 − ' + fmt(Tc, 0) + ' K/' + fmt(Tm, 0) + ' K = ' + fmt(effB, 3) + ' and does ' + fmt(WB, 0) + ' J. The fall raised the entropy by ' + sig3(dS) + ' J/K, and the work lost is that increase times the lowest temperature used, ' + fmt(T0, 0) + ' K. The energy is not lost; it can no longer be turned into work.'
-        : 'Heat does not transfer spontaneously to a reservoir at the same or a higher temperature, so nothing falls, the entropy does not increase, and both engines are fed the same heat at the same temperature. Set T′<sub>h</sub> below T<sub>h</sub> to see the work the fall costs.');
+      falls ? 'Engine (a) runs at $1 - \\kTempc/\\kTemph = ' + fmt(effA, 3) + '$ and engine (b) at ' + fmt(effB, 3) + '; the energy is not lost, it can no longer be turned into work.'
+        : 'With nothing falling the entropy does not increase and both engines do the same work.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -362,7 +359,7 @@ function earthSprite(ctx, x, y, r, color) {
       : 'Melting ' + (fr === 1 ? '' : fmt(f.v, 0) + '% of ') + fmt(M, 2) + ' kg of ice at 0 °C takes ' + sci(Q) + ' J of heat transfer and raises its entropy by ' + sci(dS) + ' J/K.');
     const frac = fr === 1 ? '' : `(${fmt(fr, 2)})`;
     readout(d.readout, `\\kdS = \\frac{\\kQh}{\\kTemp} = \\frac{${frac}\\km\\kLf}{\\kTemp} = \\frac{${frac}(${fmt(M, 2)}\\ \\text{kg})(334\\ \\text{kJ/kg})}{273\\ \\text{K}} = ${scitex(dS)}\\ \\text{J/K}`,
-      'The heat transfer into the ice does not raise its temperature; it breaks the crystal, and each molecule that leaves it takes no fixed position or orientation. The entropy the water gains is the measure of that disorder.');
+      'The heat transfer breaks the crystal without raising its temperature; the entropy gained measures that disorder.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -394,7 +391,7 @@ function earthSprite(ctx, x, y, r, color) {
     text(ctx, 'Q = ' + fmt(Q, 0) + ' J', 430, SY - w / 2 - 26, ec, { size: 22, weight: 600, align: 'center' });
     /* the Earth, keeping a small part of it */
     fatArrow(ctx, EX - 150, SY + 6, EX - 46, SY + 6, 12, ec);
-    text(ctx, 'ΔE_int', EX - 100, SY - 26, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'ΔE_int', EX - 100, SY + 46, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     earthSprite(ctx, EX, SY, 42, F.ref('earth'));
     text(ctx, 'Earth', EX, SY + 72, F.ref('earth'), { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'ΔS_syst = ' + plus(dSs, 0) + ' J/K', EX, SY - 76, sc, { size: 22, weight: 600, align: 'center' });
@@ -413,7 +410,7 @@ function earthSprite(ctx, x, y, r, color) {
     topline(ctx, 'Of ' + fmt(Q, 0) + ' J leaving the Sun at ' + fmt(Th, 0) + ' K the Earth keeps a little and ' + (eps(dSs, 0) < 0 ? 'lowers its entropy by ' + fmt(-dSs, 0) : eps(dSs, 0) > 0 ? 'raises its entropy by ' + fmt(dSs, 0) : 'leaves its entropy unchanged at 0')
       + ' J/K, ' + (eps(dSs, 0) < 0 ? 'but' : 'and') + ' deep space gains ' + fmt(dSspace, 0) + ' J/K, so the total rises by ' + fmt(tot, 0) + ' J/K.');
     readout(d.readout, `\\kdStot = \\kdSsyst + \\kdSenvir = ${texnum(dSs, 0)}\\ \\text{J/K} + \\left(-\\frac{${fmt(Q, 0)}\\ \\text{J}}{${fmt(Th, 0)}\\ \\text{K}} + \\frac{${fmt(Q, 0)}\\ \\text{J}}{${fmt(TC, 0)}\\ \\text{K}}\\right) = ${texnum(tot, 0)}\\ \\text{J/K} > 0`,
-      'The Earth is a heat engine of high complexity between a hot reservoir supplied by the Sun and a cold reservoir supplied by dark outer space. It keeps only a small part of the heat transfer, so nearly all of it reaches deep space, where at 3 K it makes an enormous change in entropy; the Sun at ' + fmt(Th, 0) + ' K barely notices its loss. Whatever the Earth sheds locally is a small part of that gain, and the total never goes below zero.');
+      'Deep space at 3 K gains far more entropy than the Sun at ' + fmt(Th, 0) + ' K loses, so what the Earth sheds locally never brings the total below zero.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

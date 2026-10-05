@@ -13,7 +13,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, axes, nice, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI, KB = 1.38e-23;
@@ -77,7 +77,7 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
 ===================================================================== */
 (function () {
   const d = sim('sim-coin-tosses', 790);
-  const nc = ctl(d.controls, { label: '\\text{coins}', cls: '', min: 2, max: 100, step: 1, value: 5, unit: '', dec: 0, detents: [{ v: 5, label: '5' }, { v: 10, label: '10' }, { v: 100, label: '100' }], snap: true, onInput: reset, aria: 'the number of coins tossed' });
+  const nc = ctl(d.controls, { label: '\\text{coins}', cls: '', min: 2, max: 100, step: 1, value: 5, unit: '', dec: 0, detents: [5, { v: 10, label: '10' }, { v: 100, label: '100' }], snap: true, onInput: reset, aria: 'the number of coins tossed' });
   const ph = ctl(d.controls, { label: '\\text{chance of heads}', cls: '', min: 30, max: 70, step: 1, value: 50, unit: '%', dec: 0, detents: [{ v: 50, label: 'fair' }], snap: true, onInput: reset, aria: 'the chance that one coin lands heads' });
   const TOSSES = 300, RATE = 50, T = TOSSES / RATE;      /* 300 tosses in six seconds */
   const cy = cycle(() => T, 1.4);
@@ -89,7 +89,7 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
   }
   reset();
   /* the layout: the coins across the top, the tally in the middle, the entropy of each macrostate beneath */
-  const TB = { l: 150, r: 1250, t: 320, b: 510 }, SB = { l: 150, r: 1250, t: 578, b: 700 };
+  const TB = { l: 150, r: 1250, t: 320, b: 510 }, SB = { l: 150, r: 1250, t: 610, b: 720 };
   function draw() {
     const { ctx } = begin(d.c);
     const N = nc.v, p = ph.v / 100, fair = ph.v === 50, ec = C('entropy');
@@ -135,8 +135,7 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
     else topline(ctx, 'After ' + n + ' tosses of ' + nm + ', ' + macro(top, N) + ' ' + cameUp(tally[top]) + ' and ' + heads(N) + ' ' + cameUp(tally[N]) + '; the last toss gave ' + macro(last, N) + '.');
     const h = last === null ? top : last, lnW = lnC(N, h);
     readout(d.readout, `W = ${countTex(lnW)}\\ \\text{for ${macro(h, N)}, so}\\ \\kSent = k\\ln W = (1.38\\times10^{-23}\\ \\text{J/K})(${fmt(lnW, 2)}) = ${sJKtex(KB * lnW)}`,
-      fair ? 'Every microstate is equally probable when the coins are fair, so a macrostate comes up in proportion to its number of microstates: ' + heads(N) + ' in 1 toss of ' + countOf(lnTot) + ', ' + macro(top, N) + ' in ' + countOf(lnC(N, top)) + ' of them. The most orderly macrostates are the least likely, and with more coins they stop coming up at all.'
-        : 'With heads favored ' + ph.v + '% of the time the microstates are no longer equally probable, so the tally no longer follows the count of microstates and an analysis that assumed it would, as Table 15.3 does, would be erroneous. The entropy beneath still counts microstates and does not move.');
+      fair ? heads(N) + ' come up in 1 toss of ' + countOf(lnTot) + ' and ' + macro(top, N) + ' in ' + countOf(lnC(N, top)) + ' of them.' : '');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -150,14 +149,14 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
 ===================================================================== */
 (function () {
   const d = sim('sim-entropy-change', 640);
-  const nc = ctl(d.controls, { label: '\\text{coins}', cls: '', min: 2, max: 100, step: 1, value: 100, unit: '', dec: 0, detents: [{ v: 5, label: '5' }, 6, { v: 10, label: '10' }, { v: 100, label: '100' }], snap: true, aria: 'the number of coins' });
+  const nc = ctl(d.controls, { label: '\\text{coins}', cls: '', min: 2, max: 100, step: 1, value: 100, unit: '', dec: 0, detents: [5, 6, { v: 10, label: '10' }, { v: 100, label: '100' }], snap: true, aria: 'the number of coins' });
   const hi = ctl(d.controls, { label: '\\text{initial heads}', cls: '', min: 0, max: 100, step: 1, value: 60, unit: '', dec: 0, aria: 'the number of heads in the initial macrostate' });
   const hf = ctl(d.controls, { label: '\\text{final heads}', cls: '', min: 0, max: 100, step: 1, value: 50, unit: '', dec: 0, aria: 'the number of heads in the final macrostate' });
   /* the two head-count sliders run from 0 to the number of coins, and follow it */
   const [, inI, inF] = ranges(d.controls);
   const follow = () => { const N = nc.v; for (const [inp, c] of [[inI, hi], [inF, hf]]) { inp.max = String(N); if (c.v > N) c.set(N); } };
   follow(); d.fig.addEventListener('input', follow);
-  const GB = { l: 150, r: 1150, t: 130, b: 520 };
+  const GB = { l: 150, r: 1060, t: 130, b: 520 };
   function draw() {
     const { ctx } = begin(d.c);
     const N = nc.v, a = Math.min(hi.v, N), b = Math.min(hf.v, N), ec = C('entropy');
@@ -171,7 +170,7 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
     const ic = F.ref('initial'), fc = F.ref('final');
     column(ctx, g.X, g.Y, a, S23(a), 0, PAL.panel, ic, 3.5, [8, 6]);
     column(ctx, g.X, g.Y, b, S23(b), 0, alpha(ec, 0.9), fc, 3.5);
-    const lab = labeller(ctx, 640);
+    const lab = labeller(ctx, 640); lab.block(0, 0, GB.l + 4, 640);
     const sameCol = a === b;
     const nameI = sameCol ? 'initial and final, ' + heads(a) : 'initial, ' + heads(a), nameF = 'final, ' + heads(b);
     lab.add(nameI, cxOf(g.X, a), g.Y(S23(a)) - 6, 0, -1, ic, 19, 22);
@@ -181,7 +180,7 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
     if (Math.abs(yi - yf) >= 1) {
       line(ctx, cxOf(g.X, a), yi, bx, yi, alpha(ec, 0.5), 2, [6, 6]); line(ctx, cxOf(g.X, b), yf, bx, yf, alpha(ec, 0.5), 2, [6, 6]);
       arrow(ctx, bx, yi, bx, yf, ec, 4);
-      text(ctx, 'ΔS = ' + (dS > 0 ? '+' : '') + sci(dS, 2) + ' J/K', bx + 16, (yi + yf) / 2, ec, { size: 20, weight: 600, bg: PAL.panel });
+      text(ctx, 'ΔS = ' + (dS > 0 ? '+' : '') + sci(dS, 2) + ' J/K', bx + 14, (yi + yf) / 2, ec, { size: 18, weight: 600, bg: PAL.panel });
     } else {
       line(ctx, cxOf(g.X, Math.min(a, b)), yi, bx, yi, alpha(ec, 0.5), 2, [6, 6]);
       dot(ctx, bx, yi, ec, false, 8);
@@ -198,7 +197,7 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
     else if (dS > 0) topline(ctx, 'Going from ' + heads(a) + ' to ' + heads(b) + ' of ' + N + ' coins raises the entropy by ' + sci(dS, 2) + ' J/K; the final macrostate has ' + rtText + ' times as many microstates and is that much more likely.');
     else topline(ctx, 'Going from ' + heads(a) + ' to ' + heads(b) + ' of ' + N + ' coins lowers the entropy by ' + sci(-dS, 2) + ' J/K; the final macrostate has only 1/' + rtText + ' as many microstates and is that much less likely.');
     readout(d.readout, `\\kdS = \\kSf - \\kSi = k\\ln W_{\\text{f}} - k\\ln W_{\\text{i}} = (1.38\\times10^{-23}\\ \\text{J/K})[\\ln(${count2(lnWf)}) - \\ln(${count2(lnWi)})] = ${scitex(dS, 2)}\\ \\text{J/K}`,
-      'A toss of ' + N + ' fair coins lands on ' + heads(a) + ' ' + once(pI) + ' and on ' + heads(b) + ' ' + once(pF) + (sameCol ? '.' : ', so the final macrostate is ' + (ratio >= 1 ? rtText + ' times as likely as the initial one' : '1/' + rtText + ' as likely as the initial one') + ', and the reverse change, a decrease in entropy of ' + sci(Math.abs(dS), 2) + ' J/K, is that much ' + (ratio >= 1 ? 'less' : 'more') + ' likely than this one.'));
+      sameCol ? '' : 'A toss of ' + N + ' fair coins lands on ' + heads(a) + ' ' + once(pI) + ' and on ' + heads(b) + ' ' + once(pF) + '.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -300,7 +299,7 @@ const ranges = (host) => Array.from(host.querySelectorAll('input[type=range]'));
     else if (corner) topline(ctx, fmt(tau, 1) + ' s after the atoms were released from the corner, the four quarters hold ' + counts + ' atoms, and the entropy of the arrangement has risen to ' + sJK(S) + '.');
     else topline(ctx, 'The atoms are spread through the container from the start; at ' + fmt(tau, 1) + ' s the quarters hold ' + counts + ' atoms, and the entropy of the arrangement stays near its maximum of ' + sJK(Smax) + '.');
     readout(d.readout, `\\kSent = k\\ln W = (1.38\\times10^{-23}\\ \\text{J/K})\\ln(${countTex(lnW)}) = ${sJKtex(S)}`,
-      'W is the number of ways of assigning the ' + N + ' atoms to the four quarters with ' + counts + ' in them. The even split has the most ways, ' + countOf(lnMax) + ', and all ' + N + ' in one quarter has just one, so once the atoms have spread the entropy only flickers beneath its maximum and never returns to zero.');
+      'The even split has the most ways, ' + countOf(lnMax) + ', and all ' + N + ' in one quarter has just one.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

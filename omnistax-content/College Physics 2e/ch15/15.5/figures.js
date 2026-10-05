@@ -7,7 +7,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, topline, axes, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const K0 = 273.15;
@@ -143,7 +143,7 @@ function hatch(ctx, pathFn, color) {
   }
   let wasPump = mode.value === 'pump';
   const formula = el('div');
-  d.readout.append(formula, el('small', null, 'The Carnot cycle fixes Q_c/Q_h = T_c/T_h, and the area inside the loop is the work: the closer the two temperatures, the thinner the loop and the less work a cycle needs as a pump or gives as an engine. Run backward, every transfer keeps its size and turns about.'));
+  const note = el('small', null, 'The Carnot cycle fixes $\\kQC/\\kQH = \\kTempc/\\kTemph$.'); d.readout.append(formula, note); F.renderMath(note);
   register(d.fig, { update: () => {}, draw });
 })();
 
@@ -226,16 +226,16 @@ function hatch(ctx, pathFn, color) {
     const L0 = 120, L1 = OX - CW / 2 - 4, R0 = IX + CW / 2 + 4, R1 = 1300;
     turned(L0, CY, L1, CY, QC + (QH - QC) * k); turned(R0, CY, R1, CY, QH + (QC - QH) * k);
     two('Q_c', 'Q_h', (t) => text(ctx, t, L0, CY - 44 - 6 * k, ec, { size: 21, weight: 600 }));
-    two('from the cold outdoor air', 'into the outdoor air', (t) => text(ctx, t, L0, CY + 44 + 6 * k, PAL.muted, { size: 17 }));
+    two('from the outdoor air', 'into the outdoor air', (t) => text(ctx, t, L0, CY + 44 + 6 * k, PAL.muted, { size: 17 }));
     two('Q_h', 'Q_c', (t) => text(ctx, t, R0, CY - 50 + 6 * k, ec, { size: 21, weight: 600 }));
     two('into the room', 'from the room', (t) => text(ctx, t, R0, CY + 50 - 6 * k, PAL.muted, { size: 17 }));
     fat(ctx, WX, 612, WX, BOT + 38, WW, ec); text(ctx, 'W, electrical', WX + 22, 585, ec, { size: 19, weight: 600 });
     topline(ctx, heating
-      ? 'In heating mode the working fluid takes Q_c from the outdoor air and delivers Q_h = Q_c + W to the room.'
-      : 'In cooling mode the flow is reversed: the fluid takes Q_c from the room and delivers Q_h = Q_c + W to the outdoor air.');
+      ? 'In heating mode the working fluid takes $\\kQC$ from the outdoor air and delivers $\\kQH = \\kQC + \\kW$ to the room.'
+      : 'In cooling mode the flow is reversed: the fluid takes $\\kQC$ from the room and delivers $\\kQH = \\kQC + \\kW$ to the outdoor air.');
     readout(d.readout, '\\kQH = \\kQC + \\kW', heating
-      ? 'In heating mode the outdoor coil is the evaporator, where heat transfer Q_c occurs into the working fluid from the cold air and the fluid boils, and the indoor coil is the condenser, where the hot gas the compressor has made gives Q_h to the room as it condenses. The expansion valve drops the liquid’s pressure so that it is cold again when it reaches the outdoor coil.'
-      : 'In cooling mode the two coils exchange roles and the flow reverses: the indoor coil is the evaporator, where heat transfer Q_c occurs from the room into the working fluid, and the outdoor coil is the condenser, where the hot gas gives Q_h to the outdoor air. The compressor still supplies the work W, and the room is cooled by the same machine that warmed it.');
+      ? 'The expansion valve drops the liquid\u2019s pressure so that it reaches the outdoor coil cold.'
+      : 'The compressor still supplies the work $\\kW$, and the room is cooled by the same machine that warmed it.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -270,7 +270,6 @@ function hatch(ctx, pathFn, color) {
     text(ctx, 'Q_h = ' + fmt(Qh, 0) + ' J', MX - wOf(Qh) / 2 - 20, (top + MY - MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'Q_c = ' + fmt(Qc, 0) + ' J', MX - wOf(Qc) / 2 - 20, (bot + MY + MR) / 2, ec, { size: 21, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'W = ' + fmt(W, 0) + ' J', 700, MY - wOf(W) / 2 - 28, ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    if (Wp > 0.01) text(ctx, 'W′ = ' + fmt(Wp, 0) + ' J', (JX + MX + MR) / 2, MY - wOf(Wp) / 2 - 26, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     if (Qf > 0.01) text(ctx, 'Q_f = ' + fmt(Qf, 0) + ' J', JX + wOf(Qf) / 2 + 16, (MY + bot) / 2 + 20, ec, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
     if (Qf > 0.01) text(ctx, 'lost to the cold reservoir', JX + wOf(Qf) / 2 + 16, (MY + bot) / 2 + 50, PAL.muted, { size: 17 });
     /* what the pump makes of it, read at the right */
@@ -285,7 +284,7 @@ function hatch(ctx, pathFn, color) {
       ? 'All ' + fmt(W, 0) + ' J of work reaches the pump, which delivers ' + fmt(Qh, 0) + ' J to the hot reservoir, the best these two temperatures allow.'
       : 'Of ' + fmt(W, 0) + ' J of work put in, ' + fmt(Qf, 0) + ' J is lost to friction, and the ' + fmt(Wp, 0) + ' J that reaches the pump delivers ' + fmt(Qh, 0) + ' J to the hot reservoir instead of ' + fmt(cop0 * W, 0) + ' J.');
     readout(d.readout, `\\kQH = \\kQC + \\kWprime = ${fmt(Qc, 0)}\\ \\text{J} + ${fmt(Wp, 0)}\\ \\text{J} = ${fmt(Qh, 0)}\\ \\text{J}`,
-      'The coefficient of performance is judged on the work you pay for, COP_hp = Q_h/W = ' + fmt(cop, 2) + ', against the ' + fmt(cop0, 2) + ' a pump with no friction would give between ' + num(tc.v, 1) + ' °C and ' + num(th.v, 1) + ' °C. The pump itself is taken to be the best possible, so Q_c/Q_h = T_c/T_h in kelvins, and every joule lost to friction is a joule that never lifts anything from the cold reservoir.');
+      'The pump itself is taken to be the best possible, so $\\kQC/\\kQH = \\kTempc/\\kTemph$ in kelvins.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -347,13 +346,13 @@ function hatch(ctx, pathFn, color) {
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(X(OUT), box.t, X(15) - X(OUT), box.b - box.t); ctx.restore();
     ctx.restore();
     line(ctx, X(OUT), box.t, X(OUT), box.b, tcol, 2, [6, 8]);
-    text(ctx, 'outside air −5 °C: the fluid must be colder than this', X(OUT) + 10, box.b - 18, PAL.muted, { size: 17 });
+    text(ctx, 'outside air, −5 °C', X(OUT) + 10, box.b - 18, PAL.muted, { size: 17, bg: alpha(PAL.panel, 0.9) });
     line(ctx, X(Tc), Y(Math.min(cop, 12)), X(Tc), box.b, tcol, 2, [4, 8]);
     pinned(ctx, box, X, Y, Tc, cop, tcol, 'COP_hp = ' + fmt(cop, 2));
-    if (cop <= 12) text(ctx, 'COP_hp = ' + fmt(cop, 2), X(Tc) + 18, Y(cop) - 20, PAL.ink, { size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    if (cop <= 12) text(ctx, 'COP_hp = ' + fmt(cop, 2), X(Tc) - 16, Y(cop) - 24, PAL.ink, { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, 'Between ' + num(Tc, 1) + ' °C and ' + fmt(Th, 1) + ' °C the best coefficient of performance is ' + fmt(cop, 2) + ', so each joule from the outlet brings ' + fmt(cop - 1, 2) + ' J in from the cold air.');
     readout(d.readout, `\\text{COP}_{\\text{hp}} = \\frac{1}{\\text{Eff}_{\\text{C}}} = \\frac{1}{1 - \\kTempc/\\kTemph} = \\frac{1}{1 - ${fmt(TcK, 0)}\\ \\text{K}/${fmt(ThK, 0)}\\ \\text{K}} = ${fmt(cop, 2)}`,
-      'The heat transfer into the house is Q_h = COP_hp W = ' + fmt(cop, 2) + ' W, and Q_c = ' + fmt(cop - 1, 2) + ' W of it comes in from the cold air at no cost. In kelvins the temperatures are ' + fmt(TcK, 0) + ' K and ' + fmt(ThK, 0) + ' K. The curve shows the same pump in every climate: the colder the outdoor coil must be, the smaller the coefficient of performance.');
+      '');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -397,7 +396,7 @@ function hatch(ctx, pathFn, color) {
       const h = Math.min(v, 12) * PER, y = B0 - h, x = BX[i] - BW / 2;
       ctx.save(); ctx.fillStyle = alpha(ec, chosen ? 0.8 : 0.35); ctx.fillRect(x, y, BW, h); ctx.strokeStyle = ec; ctx.lineWidth = 2; ctx.strokeRect(x, y, BW, h); ctx.restore();
       if (v > 12) { ctx.save(); ctx.strokeStyle = PAL.panel; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(x - 6, y + 22); ctx.lineTo(x + BW / 3, y + 10); ctx.lineTo(x + 2 * BW / 3, y + 26); ctx.lineTo(x + BW + 6, y + 14); ctx.stroke(); ctx.restore(); }
-      text(ctx, nm + ' = ' + fmt(v, 2), BX[i], y - 22, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, nm + ' = ' + fmt(v, 2), BX[i], i === 1 ? y + 24 : y - 22, ec, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
       text(ctx, i === 0 ? 'COP_hp' : i === 1 ? 'COP_ref' : 'one unit', BX[i], B0 + 26, i === 2 ? PAL.muted : PAL.ink, { size: 19, weight: i === 2 ? 400 : 600, align: 'center' });
     });
     /* the difference between the two coefficients is the third bar */
@@ -413,7 +412,7 @@ function hatch(ctx, pathFn, color) {
     readout(d.readout, warm
       ? `\\text{COP}_{\\text{hp}} = \\frac{\\kQH}{\\kW} = \\frac{${fmt(cophp, 2)}\\ \\text{J}}{1.00\\ \\text{J}} = ${fmt(cophp, 2)}`
       : `\\text{COP}_{\\text{ref}} = \\frac{\\kQC}{\\kW} = \\frac{${fmt(copref, 2)}\\ \\text{J}}{1.00\\ \\text{J}} = ${fmt(copref, 2)}`,
-      'Because Q_h = Q_c + W, dividing through by W gives COP_hp = COP_ref + 1, so the two coefficients differ by exactly 1 whatever the temperatures: the work put in reaches the hot reservoir as well. The machine here is the best possible, with Q_c/Q_h = T_c/T_h in kelvins, so both coefficients climb as the two temperatures come together.');
+      'Dividing $\\kQH = \\kQC + \\kW$ through by $\\kW$ gives $\\text{COP}_{\\text{hp}} = \\text{COP}_{\\text{ref}} + 1$ whatever the temperatures.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

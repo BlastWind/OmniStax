@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, curve, labeller, car } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -91,7 +91,7 @@ function hatch(ctx, color) {
       ctx.save(); ctx.strokeStyle = PAL.panel; ctx.lineWidth = 3; const L = Math.abs(x2 - x1) - 40, dir = Math.sign(x2 - x1);
       for (let i = 0; i < 6; i++) { const s = ((i * L) / 6 + ((tau * 90) % (L / 6))) % L; const xx = x1 + dir * s; ctx.beginPath(); ctx.moveTo(xx, ym - w / 2 + 4); ctx.lineTo(xx, ym + w / 2 - 4); ctx.stroke(); }
       ctx.restore();
-      text(ctx, 'Q', (x1 + x2) / 2, ym - Math.max(w * 0.9, 12) - 20, cE, { size: 24, weight: 600, align: 'center' });
+      text(ctx, 'Q', (x1 + x2) / 2 + (dT > 0 ? 50 : -50), ym - Math.max(w * 0.9, 12) - 20, cE, { size: 24, weight: 600, align: 'center' });
     } else text(ctx, 'no heat transfer', (lx + rx + bw) / 2, by + bh / 2, PAL.muted, { size: 18, align: 'center', bg: PAL.panel });
     text(ctx, '(a)', ax + aw / 2, top + 336, PAL.ink, { size: 20, align: 'center' });
     /* ---- (b) the braking car ---- */
@@ -121,8 +121,7 @@ function hatch(ctx, color) {
     /* the readout: which way the heat transfer goes */
     readout(d.readout, same ? `\\kTemph = \\kTempc = ${hot}\\ \\text{K}: \\text{ no heat transfer crosses}`
       : dT > 0 ? `\\kQh \\text{ goes from } \\kTemph = ${hot}\\ \\text{K} \\text{ to } \\kTempc = ${cold}\\ \\text{K}`
-      : `\\kQh \\text{ goes from } \\kTempc = ${cold}\\ \\text{K} \\text{ to } \\kTemph = ${hot}\\ \\text{K}\\text{, since that body is the hotter one}`,
-      'Heat transfer never runs from the cooler body to the hotter, the brakes never cool and set the car moving, and the gas never regroups in the corner.');
+      : `\\kQh \\text{ goes from } \\kTempc = ${cold}\\ \\text{K} \\text{ to } \\kTemph = ${hot}\\ \\text{K}\\text{, since that body is the hotter one}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -164,10 +163,9 @@ function hatch(ctx, color) {
     text(ctx, 'W = ' + fmt(w, 1) + ' kJ', bx + er + 100, ey - Math.max(w * K * 0.9, 12) - 18, cE, { size: 22, weight: 600, align: 'center' });
     engineCircle(ctx, bx, ey, er, 'Heat engine');
     text(ctx, '(b)', bx, 628, PAL.ink, { size: 20, align: 'center' });
-    if (held) text(ctx, 'Q_c cannot exceed Q_h in an engine: it is held at ' + fmt(qh, 1) + ' kJ', bx + 60, 628, PAL.muted, { size: 17, align: 'left' });
+    if (held) text(ctx, 'Q_c held at Q_h', bx + 40, 628, PAL.muted, { size: 17, align: 'left' });
     readout(d.readout, `\\kW = \\kQH - \\kQC = ${fmt(qh, 1)}\\ \\text{kJ} - ${fmt(qc, 1)}\\ \\text{kJ} = ${fmt(w, 1)}\\ \\text{kJ}`,
-      qc < 1e-9 ? 'No heat transfer to the cold reservoir would mean every joule taken in becomes work; no cyclical engine can do this.'
-        : 'The work is ' + fmt((100 * w) / qh, 1) + '% of the heat transfer from the hot reservoir; the rest, ' + fmt(qc, 1) + ' kJ, goes to the cold reservoir.');
+      qc < 1e-9 ? '' : 'The work is ' + fmt((100 * w) / qh, 1) + '% of the heat transfer from the hot reservoir.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -267,14 +265,14 @@ function hatch(ctx, color) {
     text(ctx, 'B', g.X(vmin) - 16, g.Y(PB), PAL.ink, { size: 20, weight: 600, align: 'right' });
     text(ctx, 'C', g.X(vmin) - 16, g.Y(PC), PAL.ink, { size: 20, weight: 600, align: 'right' });
     text(ctx, 'D', g.X(vmax) + 16, g.Y(PD) - 12, PAL.ink, { size: 20, weight: 600 });
-    text(ctx, 'dashed: the intake and exhaust strokes, at the outside pressure', box.l, box.b + 58, PAL.muted, { size: 17 });
+    text(ctx, 'dashed: the intake and exhaust strokes', box.l, box.b + 58, PAL.muted, { size: 17 });
     text(ctx, 'the Otto cycle of Figure 15.18', box.r, box.t - 24, PAL.ink, { size: 20, weight: 600, align: 'right' });
     /* the state of the gas now */
     const P = k === 1 ? adia(P0, vmax)(vol) : k === 2 ? (ignition ? PB + (PC - PB) * clamp((th - 2 * TAU) / 0.22, 0, 1) : adia(PC, vmin)(vol)) : P0;
     dot(ctx, g.X(vol), g.Y(P), cP, true, 10);
     lab.flush();
     /* the readout: the relation on the current stroke */
-    const paths = ['the intake stroke, with the exhaust, takes the place of the return path DA at the lower temperature', 'work is done on the gas: this is path AB of the Otto cycle', 'heat transfer Q_h enters at nearly constant volume: path BC', 'the gas does work on the piston: path CD', 'the hot gas leaves and heat transfer Q_c goes with it: the cycle returns to A'];
+    const paths = ['the intake stroke, with the exhaust, takes the place of the return path DA at the lower temperature', 'work is done on the gas along path AB', 'heat transfer $\\kQH$ enters at nearly constant volume along path BC', 'the gas does work on the piston along path CD', 'the hot gas leaves and heat transfer $\\kQC$ goes with it, returning the cycle to A'];
     const i = ignition ? 2 : k === 2 ? 3 : k === 3 ? 4 : k;
     readout(d.readout, k === 0 ? '\\text{In the intake stroke air is mixed with fuel as the piston descends.}'
       : k === 1 ? '\\text{The compression stroke is nearly adiabatic, so } \\kQh = 0 \\text{ and } \\kdEint = -\\kW \\text{ with } \\kW < 0'
@@ -387,7 +385,7 @@ function hatch(ctx, color) {
     text(ctx, 'W = ' + sig3(W) + ' J', ex + er + 65, ey - Math.max(W * K2 * 0.9, 12) - 16, cE, { size: 20, weight: 600, align: 'center' });
     engineCircle(ctx, ex, ey, er, 'Heat engine');
     readout(d.readout, `\\kW = \\kQH - \\kQC = ${sig3(s.Qh)}\\ \\text{J} - ${sig3(s.Qc)}\\ \\text{J} = ${sig3(W)}\\ \\text{J}`,
-      'The area inside ABCDA is the net work: the area under CD is the ' + sig3(s.Wcd) + ' J the gas does, and the hatched area under AB is the ' + sig3(s.Wab) + ' J done on it.');
+      'The area under CD is the ' + sig3(s.Wcd) + ' J the gas does, and the hatched area under AB the ' + sig3(s.Wab) + ' J done on it.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

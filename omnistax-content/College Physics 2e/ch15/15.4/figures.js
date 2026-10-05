@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, hover, register, begin, line, arrow, dot, text, topline, axes, curve, pinned, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI, R_GAS = 8.314;
@@ -113,14 +113,14 @@ function engine(ctx, x, y, r, name, id) {
     /* the arrowheads that say which way the loop is walked, one per leg at its middle */
     for (let k = 0; k < 4; k++) { const a = P(legPoint(c, k, 0.5)), b = P(legPoint(c, k, 0.53)); arrow(ctx, a[0] - (b[0] - a[0]) * 6, a[1] - (b[1] - a[1]) * 6, b[0], b[1], k <= leg ? PAL.ink : alpha(PAL.ink, 0.3), 4); }
     /* the four corners, named, and the working point; the labels step out with a leader when the loop is small */
-    const L = labeller(ctx, 690); L.block(0, 0, 1400, 92); L.block(box.l, box.b + 12, box.r, 690); L.block(box.r - 260, box.t, box.r, box.t + 66);
+    const L = labeller(ctx, 690); L.block(0, 0, 1400, 92); L.block(0, 0, box.l, 690); L.block(box.l, box.b + 12, box.r, 690); L.block(box.r - 260, box.t, box.r, box.t + 66);
     const lab = [['A', c.A, -0.7, -0.7], ['B', c.B, 0.7, -0.7], ['C', c.C, 0.85, -0.5], ['D', c.D, -0.85, 0.5]];
     for (const [nm, p, ux, uy] of lab) { const q = P(p); dot(ctx, q[0], q[1], PAL.ink, false, 8); L.add(nm, q[0], q[1], ux, uy, PAL.ink, 22, 22); }
     const cur = P(legPoint(c, leg, s)); dot(ctx, cur[0], cur[1], PAL.ink, true, 10);
     /* each isotherm named once, at the middle of its leg, outside the loop */
-    const mAB = P(legPoint(c, 0, 0.5)), mCD = P(legPoint(c, 2, 0.5));
+    const mAB = P(legPoint(c, 0, 0.5)), mCD = P([31, onIso(c.tc, 31)]);
     L.add('isotherm, T_h = ' + K(c.th), mAB[0], mAB[1], 0.7, -0.7, tc, 19, 30);
-    L.add('isotherm, T_c = ' + K(c.tc), mCD[0], mCD[1], -0.7, 0.7, tc, 19, 36);
+    L.add('isotherm, T_c = ' + K(c.tc), mCD[0], mCD[1], 0, -1, tc, 19, 30);
     L.flush();
     /* the legend for the two kinds of leg */
     line(ctx, box.r - 250, box.t + 22, box.r - 200, box.t + 22, PAL.ink, 4); text(ctx, 'isotherm', box.r - 190, box.t + 22, PAL.ink, { size: 17 });
@@ -142,7 +142,7 @@ function engine(ctx, x, y, r, name, id) {
     text(ctx, doing, EX, 665, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, 'Between ' + K(c.th) + ' and ' + K(c.tc) + ' a Carnot engine turns ' + pct(eff) + ' of the heat transfer it takes in into work, whatever the size of the loop.');
     readout(d.readout, `\\frac{\\kQC}{\\kQH} = \\frac{\\kTempc}{\\kTemph} = \\frac{${fmt(c.tc, 0)}\\ \\text{K}}{${fmt(c.th, 0)}\\ \\text{K}} = ${fmt(c.tc / c.th, 3)},\\quad \\text{Eff}_{\\text{C}} = 1 - \\frac{\\kTempc}{\\kTemph} = ${fmt(eff, 3)}`,
-      'For one mole of a monatomic ideal gas expanding from ' + fmt(VA, 1) + ' L to ' + fmt(c.B[0], 1) + ' L along the hot isotherm, Q_h = ' + kJ(Qh) + ', Q_c = ' + kJ(Qc) + ' and W = Q_h − Q_c = ' + kJ(W) + ', the area inside the loop. The ratio Q_c/Q_h = ' + fmt(Qc / Qh, 3) + ' is the ratio of the two temperatures, which is why the efficiency depends on the temperatures alone: widening the expansion makes every energy larger and leaves the efficiency exactly where it was.');
+      'For one mole of a monatomic ideal gas, $\\kQH$ = ' + kJ(Qh) + ', $\\kQC$ = ' + kJ(Qc) + ' and $\\kW = \\kQH - \\kQC$ = ' + kJ(W) + ', the area inside the loop.');
     hits = [0, 1, 2, 3].map((k) => { const m = P(legPoint(c, k, 0.5)); return { x: m[0], y: m[1], r: 34, name: NAMES[k] }; })
       .concat([{ x: EX, y: 167, r: 60, name: 'the hot reservoir at T_h' }, { x: EX, y: 592, r: 60, name: 'the cold reservoir at T_c' }, { x: EX, y: 380, r: 92, name: 'the Carnot engine' }]);
   }
@@ -167,7 +167,7 @@ function engine(ctx, x, y, r, name, id) {
     const { X, Y } = axes(ctx, box, [0, 1000], [0, 100], { xl: 'hot reservoir temperature T_h (K)', xc: tc, yl: 'Carnot efficiency Eff_C (%)', yc: PAL.ink, nx: 10, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     /* the ceiling no engine passes, and the curve for the chosen cold reservoir */
     line(ctx, box.l, Y(100), box.r, Y(100), alpha(PAL.ink, 0.5), 2, [10, 10]);
-    text(ctx, '100%, reached only with the cold reservoir at absolute zero', box.r - 10, Y(100) + 20, PAL.muted, { size: 17, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, '100%: only with T_c = 0 K', box.r - 10, Y(100) + 20, PAL.muted, { size: 17, align: 'right', bg: alpha(PAL.panel, 0.85) });
     ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
     if (tcv === 0) line(ctx, X(0), Y(100), X(1000), Y(100), PAL.ink, 5);
     else curve(ctx, (T) => 100 * (1 - tcv / T), tcv, 1000, X, Y, PAL.ink, 5, 200);
@@ -179,12 +179,12 @@ function engine(ctx, x, y, r, name, id) {
     line(ctx, p.x, box.b, p.x, p.y, alpha(PAL.ink, 0.35), 2, [4, 8]);
     line(ctx, box.l, p.y, p.x, p.y, alpha(PAL.ink, 0.35), 2, [4, 8]);
     text(ctx, 'T_h = ' + K(th), p.x, box.b - 18, tc, { size: 19, weight: 600, align: th > 900 ? 'right' : 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'Eff_C = ' + pct(eff), p.x + 18, p.y - 24, PAL.ink, { size: 20, weight: 600, align: th > 900 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'Eff_C = ' + pct(eff), p.x + 18, eff > 0.85 ? p.y + 46 : p.y - 24, PAL.ink, { size: 20, weight: 600, align: th > 900 ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
     topline(ctx, tcv === 0 ? 'With the cold reservoir at absolute zero every hot reservoir temperature would give 100%, but no cold reservoir can be at 0 K.'
       : th <= tcv ? 'A hot reservoir at ' + K(th) + ' is no hotter than the cold reservoir at ' + K(tcv) + ', so no heat engine runs between them at all.'
       : 'With the cold reservoir at ' + K(tcv) + ', a hot reservoir at ' + K(th) + ' allows ' + pct(eff) + ' at most; only a cold reservoir at absolute zero would allow 100%.');
     readout(d.readout, `\\text{Eff}_{\\text{C}} = 1 - \\frac{\\kTempc}{\\kTemph} = 1 - \\frac{${fmt(tcv, 0)}\\ \\text{K}}{${fmt(th, 0)}\\ \\text{K}} = ${fmt(Math.max(0, eff), 3)}`,
-      'Raising T_h moves the point along the curve toward 100% without ever reaching it, and the gain from each further kelvin gets smaller. Lowering T_c lifts the whole curve, and the greatest efficiencies come when the ratio T_c/T_h is as small as possible.');
+      'Each further kelvin of $\\kTemph$ gains less; the greatest efficiencies come with $\\kTempc/\\kTemph$ as small as possible.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -217,7 +217,7 @@ function engine(ctx, x, y, r, name, id) {
   }
   hover(d.stage, () => [
     { x: 205, y: 365, r: 55, name: 'control rods' }, { x: 205, y: 450, r: 30, name: 'the reactor core' }, { x: 205, y: 420, r: 60, name: 'the pressure vessel, holding the pressurized water' },
-    { x: 395, y: 400, r: 50, name: 'the steam generator' }, { x: 305, y: 450, r: 40, name: 'heat transfer from the pressurized water into the steam loop' },
+    { x: 395, y: 400, r: 50, name: 'the steam generator' }, { x: 305, y: 450, r: 40, name: 'heat transfer from the pressurized water into the steam loop' }, { x: 305, y: 400, r: 16, name: 'the pressurized water, out to the steam generator' }, { x: 305, y: 500, r: 16, name: 'the pressurized water, back to the core' },
     { x: 680, y: 205, r: 45, name: 'the high-pressure turbine' }, { x: 815, y: 205, r: 60, name: 'the low-pressure turbine' }, { x: 960, y: 205, r: 45, name: 'the generator' },
     { x: 815, y: 400, r: 45, name: 'the condenser, where the steam becomes water again' }, { x: 1240, y: 380, r: 90, name: 'the cooling tower' },
   ]);
@@ -229,7 +229,7 @@ function engine(ctx, x, y, r, name, id) {
     line(ctx, 30, GY, 1370, GY, PAL.muted, 3);
     /* the containment dome around the vessel and the steam generator */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(300, GY, 275, Math.PI, TAU); ctx.stroke(); ctx.restore();
-    text(ctx, 'containment structure', 300, GY - 275 - 18, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'containment structure', 170, GY - 275 - 18, PAL.muted, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the pressure vessel, its core and control rods */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(150, GY); ctx.lineTo(150, 340); ctx.arc(205, 340, 55, Math.PI, TAU); ctx.lineTo(260, GY); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
@@ -237,7 +237,7 @@ function engine(ctx, x, y, r, name, id) {
     for (const x of [192, 205, 218]) line(ctx, x, 310, x, 424, PAL.ink, 3);
     text(ctx, 'core', 205, 450, PAL.ink, { size: 17, align: 'center' });
     text(ctx, 'pressure vessel', 205, GY + 24, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'T_h = ' + degC(Th.v), 205, 510, tc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, 'T_h = ' + degC(Th.v), 205, 510, tc, { size: 19, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the steam generator and the primary loop of pressurized water */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath();
     ctx.moveTo(350, GY); ctx.lineTo(350, 335); ctx.arc(395, 335, 45, Math.PI, TAU); ctx.lineTo(440, GY); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
@@ -245,7 +245,6 @@ function engine(ctx, x, y, r, name, id) {
     const pw = F.ref('pressurized-water'), st = F.ref('steam'), tb = F.ref('turbines'), ct = F.ref('cooling-tower');
     pipe(ctx, [[260, 400], [350, 400]], 5, pw);
     pipe(ctx, [[350, 500], [260, 500]], 5, pw);
-    text(ctx, 'pressurized water', 305, 380, pw, { size: 17, align: 'center', bg: alpha(PAL.panel, 0.85) });
     band(ctx, 262, 450, 350, 450, 26, ec);
     text(ctx, 'Q_h', 305, 450 - 30, ec, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the steam line to the turbines, the shaft to the generator, and the exhaust down to the condenser */
@@ -262,7 +261,7 @@ function engine(ctx, x, y, r, name, id) {
     text(ctx, 'generator', 960, SHAFT + 66, PAL.ink, { size: 17, align: 'center' });
     band(ctx, 1005, SHAFT, 1125, SHAFT, 26 * eff, ec);
     text(ctx, 'W', 1065, SHAFT - 13 * eff - 22, ec, { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'electrical energy', 1065, SHAFT + 13 * eff + 22, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'electrical energy', 1014, SHAFT + 13 * eff + 22, PAL.muted, { size: 17, align: 'left' });
     /* the condenser, the water back to the steam generator, and the heat carried off to the cooling tower */
     pipe(ctx, [[815, SHAFT + 85], [815, 360]], 5, st);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillRect(700, 360, 230, 80); ctx.strokeRect(700, 360, 230, 80); ctx.restore();
@@ -279,11 +278,11 @@ function engine(ctx, x, y, r, name, id) {
     ctx.arc(1215, 150, 22, Math.PI * 0.9, Math.PI * 1.9); ctx.moveTo(1290, 140); ctx.arc(1268, 140, 22, 0, Math.PI * 1.1, true); ctx.moveTo(1262, 105); ctx.arc(1242, 105, 20, 0, Math.PI, true);
     ctx.stroke(); ctx.restore();
     text(ctx, 'cooling tower', 1240, GY + 24, ct, { size: 17, align: 'center' });
-    text(ctx, 'water evaporates', 1240, 470, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'into the environment', 1240, 492, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'water evaporates', 1132, 470, PAL.muted, { size: 17, align: 'right' });
+    text(ctx, 'into the environment', 1132, 492, PAL.muted, { size: 17, align: 'right' });
     topline(ctx, 'Pressurized water at ' + degC(Th.v) + ' and condensed steam at ' + degC(Tc.v, 1) + ' allow a maximum efficiency of ' + pct(eff) + '; a real station reaches about 35%.');
     readout(d.readout, `\\text{Eff}_{\\text{C}} = 1 - \\frac{\\kTempc}{\\kTemph} = 1 - \\frac{${fmt(TcK, 0)}\\ \\text{K}}{${fmt(ThK, 0)}\\ \\text{K}} = ${fmt(eff, 3)}`,
-      'The temperatures are converted to kelvins first: ' + degC(Th.v) + ' is ' + K(ThK) + ' and ' + degC(Tc.v, 1) + ' is ' + K(TcK) + '. Of the heat transfer Q_h from the pressurized water, at most ' + pct(eff) + ' can come out of the generator as work, and the rest, Q_c, goes to the cooling tower; the water sent to the tower never touches the steam. A typical nuclear station actually reaches about 35%, which is ' + fmt(actual / eff, 2) + ' of this maximum.');
+      'The 35% a typical nuclear station reaches is ' + fmt(actual / eff, 2) + ' of this maximum.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -325,7 +324,7 @@ function engine(ctx, x, y, r, name, id) {
       ctx.save(); ctx.fillStyle = ec; ctx.fillRect(x1, y0, xb - x1, kW * W); ctx.restore();
       if (Qf > 0.05) band(ctx, xb - kW * Qf / 2, y0 + kW * W - 1, xb - kW * Qf / 2, 545, kW * Qf, ec);
       if (Wleft > 0.05) band(ctx, xb - 1, y0 + kW * Wleft / 2, 1010, y0 + kW * Wleft / 2, kW * Wleft, ec);
-      text(ctx, 'W = ' + kJ(W, 1), 710, EY - 30 - kW * Math.max(W, WC) / 2 - 22, ec, { size: 21, weight: 600, align: 'center' });
+      text(ctx, 'W = ' + kJ(W, 1), 710, EY - 30 - kW * Math.max(W, WC) / 2 - 34, ec, { size: 21, weight: 600, align: 'center' });
       if (Qf > 0.05) text(ctx, 'Q_f = ' + kJ(Qf, 1), xb + 16, 500, ec, { size: 21, weight: 600 });
       text(ctx, 'W − Q_f = ' + kJ(Wleft, 1), 1010, Math.max(y0 + kW * Wleft, EY - 30 + kW * WC / 2 + Math.max(0.9 * kW * WC, 12)) + 22, ec, { size: 21, weight: 600, align: 'right' });
     } else text(ctx, 'W = 0', 710, EY - 30 - kW * WC / 2 - 22, ec, { size: 21, weight: 600, align: 'center' });
@@ -345,7 +344,7 @@ function engine(ctx, x, y, r, name, id) {
     line(ctx, BX + BW * effC, 226, BX + BW * effC, 470, alpha(PAL.ink, 0.5), 2, [4, 8]);
     topline(ctx, 'A real engine reaching ' + fmt(sh.v, 2) + ' of the Carnot efficiency between ' + K(Th.v) + ' and ' + K(Tc.v) + ' delivers ' + kJ(W, 1) + ' of work from every 100 kJ, and friction in its output mechanisms returns ' + kJ(Qf, 1) + ' of that to the cold reservoir.');
     readout(d.readout, `\\text{Eff} = \\frac{\\kW}{\\kQH} = \\frac{${fmt(W, 1)}\\ \\text{kJ}}{${fmt(QH, 0)}\\ \\text{kJ}} = ${fmt(eff, 3)},\\quad \\text{Eff}_{\\text{C}} = 1 - \\frac{\\kTempc}{\\kTemph} = ${fmt(effC, 3)}`,
-      'A Carnot engine between the same reservoirs would deliver W = ' + kJ(WC, 1) + ' and send only Q_c = ' + kJ(QcC, 1) + ' to the cold reservoir. Friction in the output mechanisms turns Q_f = ' + kJ(Qf, 1) + ' of the real engine’s work back into heat transfer, so the work that is left is W − Q_f = ' + kJ(Wleft, 1) + ', an overall efficiency of ' + fmt(Wleft / QH, 3) + ', and the cold reservoir receives Q_c + Q_f = ' + kJ(Qc + Qf, 1) + ' in all.');
+      'A Carnot engine between the same reservoirs would deliver $\\kW$ = ' + kJ(WC, 1) + '; after friction the real engine is left with ' + kJ(Wleft, 1) + ', an overall efficiency of ' + fmt(Wleft / QH, 3) + '.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
