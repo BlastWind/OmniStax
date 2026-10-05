@@ -1,7 +1,7 @@
 /* Figures for section 15.3 Introduction to the Second Law of Thermodynamics: Heat Engines and Their Efficiency.
-   Boots against the section's text article. Three of the four figures have a clock in them, the
-   one-way processes, the four strokes of the engine and the Otto cycle walked round its loop, and
-   register a cycle; the heat engine of Figure 15.16 is a balance that answers its sliders and is still. */
+   Boots against the section's text article. Every figure has a clock in it, the one-way processes,
+   the heat transfer streaming through the engine, the four strokes and the Otto cycle walked round
+   its loop, and registers a cycle. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['15.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, curve, labeller, car } = F;
@@ -15,15 +15,19 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const sig3 = (x) => { const s = Math.abs(x).toPrecision(3); return (x < 0 ? '−' : '') + (Number(s) >= 1000 ? String(Math.round(Number(s))) : s); };
 /* a broad arrow from (x1, y1) to (x2, y2) whose shaft is w wide: the book draws heat transfer and
    work as arrows whose width is the energy they carry, and so does every figure here */
-function wide(ctx, x1, y1, x2, y2, w, color, fill = true) {
-  const L = Math.hypot(x2 - x1, y2 - y1); if (L < 4 || w < 1) return;
+function widePath(ctx, x1, y1, x2, y2, w) {
+  const L = Math.hypot(x2 - x1, y2 - y1); if (L < 4 || w < 1) return false;
   const ux = (x2 - x1) / L, uy = (y2 - y1) / L, nx = -uy, ny = ux;
   const hw = Math.max(w * 0.9, 12), hl = Math.min(L * 0.45, Math.max(hw * 0.9, 18)), bx = x2 - ux * hl, by = y2 - uy * hl, h = w / 2;
-  ctx.save(); ctx.fillStyle = fill ? color : PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
   ctx.beginPath();
   ctx.moveTo(x1 + nx * h, y1 + ny * h); ctx.lineTo(bx + nx * h, by + ny * h); ctx.lineTo(bx + nx * hw, by + ny * hw);
   ctx.lineTo(x2, y2); ctx.lineTo(bx - nx * hw, by - ny * hw); ctx.lineTo(bx - nx * h, by - ny * h); ctx.lineTo(x1 - nx * h, y1 - ny * h);
-  ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+  ctx.closePath(); return true;
+}
+function wide(ctx, x1, y1, x2, y2, w, color, fill = true) {
+  ctx.save(); ctx.fillStyle = fill === true ? color : fill || PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+  if (widePath(ctx, x1, y1, x2, y2, w)) { ctx.fill(); ctx.stroke(); }
+  ctx.restore();
 }
 /* a reservoir: a box outlined in its referent's hue, whose label wears the temperature hue */
 function reservoir(ctx, x, y, w, h, label, value, color = PAL.ink) {
@@ -129,17 +133,35 @@ function hatch(ctx, color) {
 /* =====================================================================
    FIGURE 15.16: (a) the spontaneous transfer and (b) the heat engine. The
    three arrows of the engine are drawn with widths proportional to Q_h, W
-   and Q_c, so the balance W = Q_h − Q_c is a picture. Nothing here has a
-   clock: it is a still figure that answers its two sliders.
+   and Q_c, so the balance W = Q_h − Q_c is a picture. The energy streams
+   along them as packets at one speed, so a stream's width is its rate and
+   what enters the engine leaves it as work and as Q_c.
 ===================================================================== */
 (function () {
   const d = sim('sim-heat-engine', 640);
-  const Qh = ctl(d.controls, { label: '\\kQH', cls: 'energy', min: 5, max: 50, step: 0.1, value: 25, unit: 'kJ', dec: 1, aria: 'heat transfer from the hot reservoir' });
-  const Qc = ctl(d.controls, { label: '\\kQC', cls: 'energy', min: 0, max: 50, step: 0.1, value: 14.8, unit: 'kJ', dec: 1, aria: 'heat transfer into the cold reservoir', specials: [{ at: 0, label: '100 %' }] });
+  const Qh = ctl(d.controls, { label: '\\kQH', cls: 'energy', min: 5, max: 50, step: 0.1, value: 25, unit: 'kJ', dec: 1, onInput: reset, aria: 'heat transfer from the hot reservoir' });
+  const Qc = ctl(d.controls, { label: '\\kQC', cls: 'energy', min: 0, max: 50, step: 0.1, value: 14.8, unit: 'kJ', dec: 1, onInput: reset, aria: 'heat transfer into the cold reservoir', specials: [{ at: 0, label: '100 %' }] });
   const K = 2.4;   /* arrow width per kilojoule: 50 kJ is 120 units wide */
+  /* the packets: emitted from the hot reservoir for TE seconds at speed V, one every P units, BAR long;
+     the stream through the engine re-emerges THRU later into both outgoing arrows */
+  const V = 200, TE = 2.6, P = 36, BAR = 14, THRU = 172 / V, T = TE + (82 + 172 + 200) / V;
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  function stream(ctx, x1, y1, x2, y2, w, delay, t, color) {
+    const L = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / L, uy = (y2 - y1) / L;
+    ctx.save(); if (!widePath(ctx, x1, y1, x2, y2, w)) { ctx.restore(); return; }
+    ctx.clip(); ctx.fillStyle = color;
+    for (let e = 0; e <= TE + 1e-9; e += P / V) {
+      const sv = (t - delay - e) * V; if (sv <= 0 || sv - BAR >= L) continue;
+      const cx = x1 + ux * (sv - BAR / 2), cyy = y1 + uy * (sv - BAR / 2);
+      ctx.save(); ctx.translate(cx, cyy); ctx.rotate(Math.atan2(uy, ux)); ctx.fillRect(-BAR / 2, -w / 2 + 3, BAR, Math.max(w - 6, 2)); ctx.restore();
+    }
+    ctx.restore();
+  }
   function draw() {
     const { ctx } = begin(d.c);
-    const qh = Qh.v, qc = Math.min(Qc.v, qh), w = qh - qc, cE = C('energy'), held = Qc.v > qh + 1e-9;
+    const qh = Qh.v, qc = Math.min(Qc.v, qh), w = qh - qc, cE = C('energy'), held = Qc.v > qh + 1e-9, t = cy.now();
+    const edge = alpha(cE, 0.85), bed = alpha(cE, 0.12);
     topline(ctx, qc >= qh - 1e-9 ? 'With Q_c equal to Q_h all ' + fmt(qh, 1) + ' kJ passes through to the cold reservoir and the engine does no work at all, as in (a).'
       : qc < 1e-9 ? 'With Q_c = 0 all ' + fmt(qh, 1) + ' kJ would become work: this is the engine the second law says cannot exist.'
       : 'The engine takes ' + fmt(qh, 1) + ' kJ from the hot reservoir, does ' + fmt(w, 1) + ' kJ of work and passes ' + fmt(qc, 1) + ' kJ to the cold reservoir.');
@@ -148,26 +170,28 @@ function hatch(ctx, color) {
     const ax = 330;
     reservoir(ctx, ax, hotY, rw, rh, 'T_h', undefined, F.ref('hot-reservoir'));
     reservoir(ctx, ax, coldY, rw, rh, 'T_c', undefined, F.ref('cold-reservoir'));
-    wide(ctx, ax, hotY + rh / 2, ax, coldY - rh / 2 - 4, Math.max(qh * K, 4), alpha(cE, 0.85));
+    wide(ctx, ax, hotY + rh / 2, ax, coldY - rh / 2 - 4, Math.max(qh * K, 4), edge, bed);
+    stream(ctx, ax, hotY + rh / 2, ax, coldY - rh / 2 - 4, Math.max(qh * K, 4), 0, t, cE);
     text(ctx, 'Q = ' + fmt(qh, 1) + ' kJ', ax + Math.max(qh * K * 0.9, 12) + 16, 350, cE, { size: 22, weight: 600 });
     text(ctx, '(a)', ax, 628, PAL.ink, { size: 20, align: 'center' });
     /* (b) */
     const bx = 900, ey = 350, er = 84;
     reservoir(ctx, bx, hotY, rw, rh, 'T_h', undefined, F.ref('hot-reservoir'));
     reservoir(ctx, bx, coldY, rw, rh, 'T_c', undefined, F.ref('cold-reservoir'));
-    wide(ctx, bx, hotY + rh / 2, bx, ey - er - 4, Math.max(qh * K, 4), alpha(cE, 0.85));
+    wide(ctx, bx, hotY + rh / 2, bx, ey - er - 4, Math.max(qh * K, 4), edge, bed);
+    stream(ctx, bx, hotY + rh / 2, bx, ey - er - 4, Math.max(qh * K, 4), 0, t, cE);
     text(ctx, 'Q_h = ' + fmt(qh, 1) + ' kJ', bx + Math.max(qh * K * 0.9, 12) + 16, (hotY + rh / 2 + ey - er) / 2, cE, { size: 22, weight: 600 });
-    if (qc > 0.05) wide(ctx, bx, ey + er, bx, coldY - rh / 2 - 4, qc * K, alpha(cE, 0.85));
+    if (qc > 0.05) { wide(ctx, bx, ey + er, bx, coldY - rh / 2 - 4, qc * K, edge, bed); stream(ctx, bx, ey + er, bx, coldY - rh / 2 - 4, qc * K, 82 / V + THRU, t, cE); }
     text(ctx, 'Q_c = ' + fmt(qc, 1) + ' kJ', bx + Math.max(qc * K * 0.9, 12) + 16, (ey + er + coldY - rh / 2) / 2, cE, { size: 22, weight: 600 });
-    if (w > 0.05) wide(ctx, bx + er, ey, bx + er + 200, ey, w * K, alpha(cE, 0.85));
-    text(ctx, 'W = ' + fmt(w, 1) + ' kJ', bx + er + 100, ey - Math.max(w * K * 0.9, 12) - 18, cE, { size: 22, weight: 600, align: 'center' });
+    if (w > 0.05) { wide(ctx, bx + er, ey, bx + er + 200, ey, w * K, edge, bed); stream(ctx, bx + er, ey, bx + er + 200, ey, w * K, 82 / V + THRU, t, cE); }
+    text(ctx, 'W = ' + fmt(w, 1) + ' kJ', bx + er + (w > 0.05 ? 216 : 16), ey, cE, { size: 22, weight: 600 });
     engineCircle(ctx, bx, ey, er, 'Heat engine');
     text(ctx, '(b)', bx, 628, PAL.ink, { size: 20, align: 'center' });
     if (held) text(ctx, 'Q_c held at Q_h', bx + 40, 628, PAL.muted, { size: 17, align: 'left' });
     readout(d.readout, `\\kW = \\kQH - \\kQC = ${fmt(qh, 1)}\\ \\text{kJ} - ${fmt(qc, 1)}\\ \\text{kJ} = ${fmt(w, 1)}\\ \\text{kJ}`,
       qc < 1e-9 ? '' : 'The work is ' + fmt((100 * w) / qh, 1) + '% of the heat transfer from the hot reservoir.');
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================

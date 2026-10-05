@@ -104,8 +104,14 @@ headline · graph · 3D
    \kQC$ is a picture, and the two slider extremes are the two limits the
    passage argues, all the heat passing through and doing no work as in
    (a), and no heat out at all, which the second expression forbids ·
-   **still**: nothing in the balance has a clock, the arrows answer the
-   sliders; no cycle, no transport · $\kQH$ (5.0 to 50.0 kJ, default 25.0,
+   arrows: kinematic (the heat transfer $\kQH$ leaving the hot reservoir,
+   $\kQC$ entering the cold one, and the work $\kW$ leaving the engine;
+   their widths are the balance) · **moving**: the energy streams as
+   packets at one speed along all three arrows, so a stream's width is its
+   rate; for 2.6 s the hot reservoir sends packets down, they pass through
+   the engine and leave as work and as $\kQC$, one loop of 4.9 s with a
+   1.2 s hold on the empty outlined arrows, which carry the still frame
+   under reduced motion; sliders restart the loop · $\kQH$ (5.0 to 50.0 kJ, default 25.0,
    energy), $\kQC$ (0 to 50.0 kJ, default 14.8, energy; the defaults are
    Example 15.3's two heat transfers in kilojoules, so the engine on load
    is the coal-fired station in miniature, and $\kQC$ above $\kQH$ is held
