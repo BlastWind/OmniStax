@@ -95,27 +95,8 @@ id · replaces · concepts · value add · motion · sliders · headline · grap
    line on $\kw = \kL/\kI$. Labels on: the tray, the hand and the arc are
    three things and none moves under a label. Draws torque, time,
    rotational-inertia, angular-momentum, angular-rate.
-2. `sim-kick` · replaces Figure 10.24 (the kicking leg) ·
-   torque-changes-angular-momentum, work-done-in-pulling-in (its energy
-   side), rotational-kinetic-energy (used) · value add: animation and
-   variation; the example adds the angular acceleration and the rotational
-   kinetic energy, which the lazy Susan does not show, and the reader
-   watches the leg swing through the angle while its kinetic energy climbs
-   · **moves**: the lower leg hangs from the knee and swings forward under a
-   constant torque through the set angle, then holds; one kick per loop,
-   with the scrubber · net torque $\ktau$ (10 to 80 N·m, default 44.0,
-   torque), the leg's moment of inertia $\kI$ (0.50 to 3.00 kg·m², default
-   1.25, rotational-inertia), the angle swung through $\theta$ (10° to 90°,
-   default 57.3°, ink, a detent at 57.3°, which is 1.00 rad) · "After 0.238
-   s the leg has swung through 57.3° and turns at 8.39 rad/s, carrying 44.0
-   J of rotational kinetic energy." · graph beside the tall scene:
-   $\kKErot$ against $\theta$, a straight line of slope net $\ktau$ with the
-   moving point, axes fixed at 0 to 90° and 0 to 140 J · 2D. Readout:
-   $\kKErot = \tfrac{1}{2}\kI\kw^2$ with the numbers; small line on
-   $\alpha = \text{net}\;\tau/I$ and $\omega^2 = 2\alpha\theta$ in plain
-   text, since angular acceleration is not a type this page binds. Labels
-   on: knee, leg and the two arcs. Draws torque, rotational-inertia,
-   angular-rate, energy.
+2. `sim-kick` · Figure 10.24 · torque-changes-angular-momentum, rotational-kinetic-energy · flow by animation: a seated person's lower leg swings forward from the knee under a constant torque while KE_rot climbs along θ on the graph beside · moving, one kick per loop with the scrubber, as now · net τ (10–80 N·m, torque), I (0.50–3.00 kg·m², rotational-inertia), θ (10°–90°, detent 57.3° = 1.00 rad) · headline as now · graph beside · 2D. The body is F.silhouette pose 'sit' facing right on a bench, the knee its pivot, the foot joint set each frame on the arc of the shank's length about the knee so the shank swings; the θ arc and its label, net τ and ω through the labeller with the shank blocked; 'slope = net τ' placed clear of the moving point. No fold or split.
+   Rebuilt 2026-10-05: the torque arc sits above the knee, clear of the swing; the lower leg wears its referent colour and is named by hover, as are the knee and the bench; 'slope = net τ' is a graph note in the clear corner.
 3. `fig-skater` · keeps Figure 10.25 (the skater's two poses) as a
    photograph · spin-rate-from-moment-of-inertia · the text points at it
    twice ("as seen in Figure 10.25", "such as the one in Figure 10.25") and
@@ -123,33 +104,8 @@ id · replaces · concepts · value add · motion · sliders · headline · grap
    275 px, kept with the book's caption. The chapter config expected two
    originals under one number, but the bundle prints both poses in one
    image, so the row has one.
-4. `sim-skater` · Sim (replaces nothing; the see-saw of two bars the
-   chapter's exploration asked for) · spin-rate-from-moment-of-inertia,
-   conservation-of-angular-momentum, work-done-in-pulling-in · value add:
-   intuition and variation; the photograph shows two poses and the reader
-   has to take the numbers on trust, while here the moment of inertia and
-   the angular velocity trade places under a bar that does not move ·
-   **moves**: the skater, seen from the front, spins at the angular
-   velocity conservation gives her, her arms foreshortening as she turns,
-   and speeds up as the slider brings them in (she is drawn as her own
-   front-on sprite rather than with the library's `person()`, which is a
-   side view whose two hands reach one point, because her arms spreading
-   symmetrically and closing is the idea of the figure); a spin has a clock but no end,
-   so the cycle is endless and the transport has play, stop and speed with
-   no scrubber · her moment of inertia $\kI$ (0.363 to 2.34 kg·m², default
-   2.34, rotational-inertia, detents at the book's 2.34 arms out and 0.363
-   arms in; the reader drags it and the arms follow), her angular velocity
-   with her arms out $\kwo$ (0.20 to 1.50 rev/s, default 0.800,
-   angular-rate) · "With her arms out she spins at 0.800 rev/s; pulled in to
-   0.363 kg·m² the same angular momentum spins her at 5.16 rev/s." · four
-   bars beneath the skater on fixed caps: $\kI$ to 2.5 kg·m², $\kw$ to 10
-   rev/s, $\kL$ to 25 kg·m²/s (this one does not move) and $\kKErot$ to
-   250 J, a value past a cap pinned at the cap with its number · 2D.
-   Readout: $\kI\kw = \kIprime\kwprime$ with the numbers; small line on the
-   rotational kinetic energy before and after and the work that made the
-   difference. Labels on: one skater, four named bars. Draws
-   rotational-inertia, angular-rate, angular-momentum, energy.
-   Manim pass, 2026-09-28: the arms-in and arms-out detents are dashed circles; the bar helper measures its text through `F.measure` rather than setting a font (rule 26.8).
+4. `sim-skater` · Sim · spin-rate-from-moment-of-inertia, conservation-of-angular-momentum, work-done-in-pulling-in · intuition and variation: as the moment-of-inertia slider pulls her arms in she spins faster under bars that show L standing still · moving, endless spin with play/stop and speed, no scrubber, as now · I (0.363–2.34 kg·m², detents at the book's two), ω₀ (0.20–1.50 rev/s) · headline as now · bars beside · 2D. The body is F.silhouette in the 'stand' pose seen from the front (front: true), on one skate with the free leg raised by joint, both hands set by joint from arms out (hands at the swept radius) to arms in (hands at the chest), the width foreshortened by the spin as now; the dashed circle the hands sweep stays. No fold or split.
+   Rebuilt 2026-10-05: the silhouette bends both elbows one way, so the body is drawn twice, mirrored, and the arms cross at the chest when in.
 5. `sim-cloud` · replaces Figure 10.26 (the Solar System coalescing) ·
    conservation-of-angular-momentum, spin-rate-from-moment-of-inertia ·
    value add: animation and variation; the book's three panels ask the

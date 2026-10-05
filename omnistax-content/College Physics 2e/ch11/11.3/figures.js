@@ -25,93 +25,148 @@ const sciTex = (v, sig) => { const { m, e } = sciParts(v, sig); return e === 0 ?
 const sig3 = (v) => Number(v.toPrecision(3)).toString();
 
 /* =====================================================================
-   FIGURE 11.5: the finger and the needle. One push against the skin, over
-   a round contact whose width slides from the pad of a fingertip to the
-   point of a needle, and a ruler of pressures below marked in powers of
-   ten. Still: a push held against the skin has no time in it, so the figure
-   answers its sliders and registers no cycle.
+   FIGURE 11.5: the finger and the needle. One push against the skin of an
+   arm, over a round contact whose width slides from the pad of a fingertip
+   to the point of a needle. The pusher is drawn at body scale, the library's
+   hand with its fingers straight onto the arm, or the same hand holding a
+   syringe below 4 mm; a magnified inset at 20 units/mm shows the pad or the
+   point denting the skin over the width d. A ruler of pressures below is
+   marked in powers of ten. Still: a push held against the skin has no time
+   in it, so the figure answers its sliders and registers no cycle.
 ===================================================================== */
 (function () {
-  const d = sim('sim-poke', 700);
+  const d = sim('sim-poke', 740);
   const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 20, step: 0.5, value: 5, unit: 'N', dec: 1, aria: 'the size of the push' });
   /* The width rather than the area is the slider: a width is what the picture shows, and the
      area, which goes as the square of the width, runs through four powers of ten. The two
-     detents are the book's two panels, the point of a needle and the pad of a fingertip. */
-  const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.1, max: 12, step: 0.1, value: 12, unit: 'mm', dec: 1, aria: 'the width of the contact', detents: [{ v: 0.3, label: 'needle' }, { v: 12, label: 'fingertip' }], snap: true });
-  /* the scene: 1 mm is 20 units; the skin stands at x = 900 with the body behind it, and the push
-     comes from the left. A finger 14 mm across pushes while the contact is 4 mm or wider, its pad
-     flattening against the skin to the width d; below that the pusher is a hypodermic needle on its
-     syringe, tapering to the point d across, and the skin dents under it, deeper as the pressure climbs. */
-  const MM = 20, SX = 900, CY = 300, FR = 7 * MM, X0 = 300;
+     detents are the book's two panels, the point of a needle and the pad of a fingertip; they are
+     ticks without the snap, whose reach of a third of the gap between them would take 0.1 to 4.3 mm
+     and 8 to 12 mm to the two ends. */
+  const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.1, max: 12, step: 0.1, value: 12, unit: 'mm', dec: 1, aria: 'the width of the contact', detents: [{ v: 0.3, label: 'needle' }, { v: 12, label: 'fingertip' }], snap: false });
+  /* Two scales of one push: the body at BS units/mm with the contact at (SX, CY), and the inset at
+     IS units/mm round (ICX, CY), radius IR. Lengths below are in millimetres, x into the skin from its
+     undented surface and u across the push. HMM is the library hand's frame unit in millimetres,
+     set so the middle fingertip (radius TIP.r in that frame, hand.ts) is 8.4 mm round. */
+  const BS = 4 / 3, IS = 20, SX = 560, CY = 340, ICX = 990, IR = 200;
+  const HMM = 465, TIP = { x: 0.4542, z: -0.004, r: 0.01806 }, RT = TIP.r * HMM;
   /* the ruler of pressures: fixed from the slider extremes, 20 N over the point at 0.1 mm is 2.5 × 10⁹ Pa, so the ruler runs 10² to 10¹⁰ Pa */
-  const RX0 = 150, RX1 = 1250, E0 = 2, E1 = 10, RY = 600;
+  const RX0 = 150, RX1 = 1250, E0 = 2, E1 = 10, RY = 670;
   const RX = (p) => RX0 + ((Math.log10(p) - E0) / (E1 - E0)) * (RX1 - RX0);
   const marks = [[1e4, '1 × 10⁴ Pa, which is 100 mb'], [6.9e6, 'the air tank of Example 11.2'], [3.0e9, 'a nail tip under a hammer']];
-  /* the skin's dent under the contact: a smooth bump of depth `dent` and half-width `hw` centred on CY */
-  const skinX = (y, dent, hw) => { const u = (y - CY) / hw; return Math.abs(u) >= 1 ? SX : SX + dent * 0.5 * (1 + Math.cos(Math.PI * u)); };
+  /* the pusher's face in mm, x as a function of u, -Infinity where it has none; the skin wraps whatever pushes past its surface */
+  function pusher(dw, P, finger) {
+    const a = dw / 2;
+    if (finger) { const xc = RT - Math.sqrt(RT * RT - a * a) - RT; return { xc, face: (u) => (Math.abs(u) < RT ? xc + Math.sqrt(RT * RT - u * u) : -Infinity), sag: () => 0 }; }
+    const xT = P > 0 ? Math.min(2.2, Math.max(0.3, 0.6 + 0.4 * Math.log10(P / 1e4))) : 0, sh = Math.max(0.4, a), Lt = 5.5, hw = Math.max(3, 2.2 * a);
+    return {
+      xT, sh, Lt, a,
+      face: (u) => { const v = Math.abs(u); return v <= a ? xT : v <= sh ? xT - (Lt * (v - a)) / (sh - a) : -Infinity; },
+      sag: (u) => (Math.abs(u) < hw ? xT * 0.5 * (1 + Math.cos((Math.PI * u) / hw)) : 0),
+    };
+  }
+  const skin = (p, u) => Math.max(0, p.sag(u), p.face(u));
+  /* the arm's outer edge at body scale bows gently out to the contact */
+  const bow = (y) => 0.0007 * (y - CY) * (y - CY);
+  function skinPath(ctx, p, S, ox, y0, y1, bowed) {
+    for (let y = y0; y <= y1; y += 1) { const x = ox + (bowed ? bow(y) : 0) + S * skin(p, (y - CY) / S); y === y0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+  }
+  /* the hand at scale S with its middle fingertip centred on (cx, CY): fingers straight along +x, seen from the side */
+  function fingerHand(ctx, S, cx, col) {
+    const k = S * HMM;
+    F.hand(ctx, cx - k * TIP.x, CY + k * TIP.z, { aim: [1, 0], view: 'side', curl: 0, thumb: 'along', s: k / 240, color: col, ink: col });
+  }
+  /* the needle's outline in mm from its face back to x0, drawn at scale S about (ox, CY) */
+  function needlePath(ctx, p, S, ox, x0) {
+    const X = (x) => ox + S * x, Y = (u) => CY + S * u;
+    ctx.moveTo(X(x0), Y(-p.sh)); if (p.sh > p.a) ctx.lineTo(X(p.xT - p.Lt), Y(-p.sh));
+    ctx.lineTo(X(p.xT), Y(-p.a)); ctx.lineTo(X(p.xT), Y(p.a));
+    if (p.sh > p.a) ctx.lineTo(X(p.xT - p.Lt), Y(p.sh)); ctx.lineTo(X(x0), Y(p.sh)); ctx.closePath();
+  }
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('force'), pc = C('pressure');
+    const fc = C('force'), pc = C('pressure'), posc = C('position'), sc = F.ref('skin');
     const Fv = Fs.v, dw = ds.v, A = Math.PI * (dw / 2) * (dw / 2) * 1e-6, P = Fv / A;
-    const half = dw * MM / 2, finger = dw >= 4;
-    const dent = Fv === 0 ? 0 : Math.min(44, Math.max(6, 12 + 8 * Math.log10(P / 1e4)));
-    const hw = Math.max(finger ? half + 70 : 60, 2.2 * half);
-    /* the body behind the skin, its surface dented where the push lands */
-    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.14); ctx.strokeStyle = F.ref('skin'); ctx.lineWidth = 4; ctx.lineJoin = 'round';
-    ctx.beginPath(); ctx.moveTo(SX, 100);
-    for (let y = 100; y <= 500; y += 4) ctx.lineTo(skinX(y, dent, hw), y);
-    ctx.lineTo(1300, 500); ctx.lineTo(1300, 100); ctx.closePath(); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(SX, 100); for (let y = 100; y <= 500; y += 4) ctx.lineTo(skinX(y, dent, hw), y); ctx.stroke(); ctx.restore();
-    text(ctx, 'the skin', SX + 120, 128, F.ref('skin'), { size: 19 });
-    const tipX = SX + dent;
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref(finger ? 'fingertip' : 'needle'); ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    const finger = dw > 3.95, who = F.ref(finger ? 'fingertip' : 'needle'), p = pusher(dw, P, finger), a = dw / 2;
+    const like = dw <= 0.5 ? ', about the point of a needle,' : dw >= 8 ? ', about the pad of a fingertip,' : '';
+    const rows = topline(ctx, Fv === 0 ? 'With no push against the skin there is no pressure on it, however narrow the contact.'
+      : 'A push of ' + fmt(Fv, 1) + ' N over a contact ' + fmt(dw, 1) + ' mm across' + like + ' makes a pressure of ' + sci(P, 3) + ' Pa.');
+    const lab = F.labeller(ctx, 740, { headline: rows });
+    /* ---- body scale: the arm, 112 mm thick, and the pusher ---- */
+    const AY0 = 130, AY1 = 545, AW = 150;
+    ctx.save(); ctx.fillStyle = alpha(PAL.muted, 0.14); ctx.beginPath(); skinPath(ctx, p, BS, SX, AY0, AY1, true);
+    ctx.lineTo(SX + AW + bow(AY1), AY1); for (let y = AY1; y >= AY0; y -= 4) ctx.lineTo(SX + AW + bow(y), y); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = sc; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    ctx.beginPath(); skinPath(ctx, p, BS, SX, AY0, AY1, true); ctx.stroke();
+    ctx.beginPath(); for (let y = AY0; y <= AY1; y += 4) y === AY0 ? ctx.moveTo(SX + AW + bow(y), y) : ctx.lineTo(SX + AW + bow(y), y); ctx.stroke(); ctx.restore();
+    let pushBox;
     if (finger) {
-      /* a finger: a rounded rod whose tip circle meets the skin along the chord d wide, so the pad flattens to the contact */
-      const cx = tipX - Math.sqrt(FR * FR - half * half), th = Math.asin(half / FR);
-      ctx.beginPath(); ctx.moveTo(X0, CY - FR); ctx.lineTo(cx, CY - FR); ctx.arc(cx, CY, FR, -Math.PI / 2, -th); ctx.lineTo(tipX, CY + half); ctx.arc(cx, CY, FR, th, Math.PI / 2); ctx.lineTo(X0, CY + FR); ctx.closePath(); ctx.fill(); ctx.stroke();
-      /* the nail, an oval on the upper side of the tip, and the knuckle crease */
-      ctx.lineWidth = 2.5; ctx.beginPath(); ctx.ellipse(cx - 30, CY - FR + 34, 62, 26, 0, 0, TAU); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(X0 + 200, CY - FR + 6); ctx.quadraticCurveTo(X0 + 214, CY - FR + 40, X0 + 200, CY - FR + 70); ctx.stroke();
-      text(ctx, 'a fingertip', (X0 + cx) / 2, CY - FR - 24, F.ref('fingertip'), { size: 19, align: 'center' });
+      const k = BS * HMM;
+      fingerHand(ctx, BS, SX + BS * p.xc, who);
+      pushBox = { l: SX + BS * p.xc - k * (TIP.x + 0.12), t: CY - 34, r: SX, b: CY + 34 };
     } else {
-      /* a hypodermic needle on its syringe: the barrel, its flange, the hub and a shaft that tapers to the point */
-      const barrelR = 36, hubX = X0 + 330, taper = 110, shaftR = 0.6 * MM;
-      ctx.fillRect(X0, CY - barrelR, hubX - X0, 2 * barrelR); ctx.strokeRect(X0, CY - barrelR, hubX - X0, 2 * barrelR);
-      ctx.fillRect(X0 - 10, CY - barrelR - 14, 14, 2 * barrelR + 28); ctx.strokeRect(X0 - 10, CY - barrelR - 14, 14, 2 * barrelR + 28);
-      ctx.beginPath(); ctx.moveTo(hubX, CY - barrelR); ctx.lineTo(hubX + 40, CY - shaftR - 6); ctx.lineTo(hubX + 40, CY + shaftR + 6); ctx.lineTo(hubX, CY + barrelR); ctx.closePath(); ctx.fill(); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(hubX + 40, CY - shaftR); ctx.lineTo(tipX - taper, CY - shaftR); ctx.lineTo(tipX, CY - half); ctx.lineTo(tipX, CY + half); ctx.lineTo(tipX - taper, CY + shaftR); ctx.lineTo(hubX + 40, CY + shaftR); ctx.closePath(); ctx.fill(); ctx.stroke();
-      text(ctx, 'a hypodermic needle', (X0 + hubX) / 2, CY - barrelR - 24, F.ref('needle'), { size: 19, align: 'center' });
+      /* a 10 mL syringe: needle 25 mm, hub 8 mm, barrel 75 mm by 16 mm, plunger 40 mm; the hand holds the barrel from above */
+      const X = (x) => SX + BS * x, br = 8 * BS, nb = p.xT - 25, hb = nb - 8, b0 = hb - 75, pl = b0 - 40;
+      ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = who; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+      ctx.fillRect(X(pl), CY - 3, X(b0) - X(pl), 6); ctx.strokeRect(X(pl), CY - 3, X(b0) - X(pl), 6);
+      ctx.fillRect(X(pl) - 5, CY - br + 2, 6, 2 * br - 4); ctx.strokeRect(X(pl) - 5, CY - br + 2, 6, 2 * br - 4);
+      ctx.fillRect(X(b0), CY - br, X(hb) - X(b0), 2 * br); ctx.strokeRect(X(b0), CY - br, X(hb) - X(b0), 2 * br);
+      ctx.fillRect(X(b0) - 4, CY - br - 9, 6, 2 * br + 18); ctx.strokeRect(X(b0) - 4, CY - br - 9, 6, 2 * br + 18);
+      ctx.beginPath(); ctx.moveTo(X(hb), CY - br); ctx.lineTo(X(nb), CY - 3); ctx.lineTo(X(nb), CY + 3); ctx.lineTo(X(hb), CY + br); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.restore();
+      line(ctx, X(nb), CY, X(p.xT), CY, who, Math.max(2.5, 2 * BS * p.sh));
+      const k = BS * HMM, gx = (X(b0) + X(hb)) / 2;
+      F.hand(ctx, gx, CY - 0.24 * k, { aim: [0, 1], view: 'back', curl: 0.8, thumb: 'along', s: k / 240, color: who, ink: who });
+      lab.place({ l: gx - 0.07 * k, t: CY - 0.36 * k, r: gx + 0.07 * k, b: CY + 0.06 * k });
+      pushBox = { l: X(pl) - 6, t: CY - br - 10, r: X(nb), b: CY + br + 10 };
     }
-    ctx.restore();
-    /* the contact, marked on the skin and bracketed */
-    line(ctx, tipX, CY - half, tipX, CY + half, pc, 8);
-    const posc = C('position');
-    if (half > 14) vbracket(ctx, tipX + 60, CY - half, CY + half, posc, 'd = ' + fmt(dw, 1) + ' mm', 1);
-    else { line(ctx, tipX + 40, CY, tipX + 60, CY, posc, 3); text(ctx, 'd = ' + fmt(dw, 1) + ' mm', tipX + 66, CY, posc, { weight: 600 }); }
-    /* the force, along the axis of the push, anchored on the pusher's end and drawn thicker than any body line */
+    lab.place(pushBox);
+    /* the force along the axis of the push, below the pusher and drawn heavier than any body line */
     if (Fv > 0) {
-      const la = 50 + Fv * 11, ax = X0 - (finger ? 0 : 10);
-      arrow(ctx, ax - la, CY, ax - 4, CY, fc, 7);
-      F.label(ctx, 'F = ' + fmt(Fv, 1) + ' N', ax - la / 2, CY, { side: 'below', color: fc, gap: 26, leader: false });
+      const la = 40 + Fv * 8, y = CY + 70, x1 = SX - 30;
+      arrow(ctx, x1 - la, y, x1, y, fc, 7);
+      lab.beside({ x1: x1 - la, y1: y, x2: x1, y2: y }, 'right', 'F = ' + fmt(Fv, 1) + ' N', fc, 22, { gap: 28 });
     }
-    hbracket(ctx, X0, X0 + 10 * MM, 522, PAL.muted, '10 mm');
+    if (finger) lab.add('a fingertip', SX - 40, CY - 12, -0.35, -1, who, 19, 70);
+    else lab.add('a hypodermic needle', pushBox.l, CY, -1, -0.4, who, 19, 30);
+    lab.add('the skin of an arm', SX + AW / 2 + 10, AY1 - 30, 0, 1, sc, 19, 50);
+    /* ---- the leaders from the patch the inset magnifies ---- */
+    const rb = (IR / IS) * BS, D = ICX - SX, ph = Math.acos((IR - rb) / D);
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.4); ctx.lineWidth = 2; ctx.setLineDash([6, 6]);
+    ctx.beginPath(); ctx.arc(SX, CY, rb, 0, TAU); ctx.stroke();
+    for (const sgn of [-1, 1]) { ctx.beginPath(); ctx.moveTo(SX - rb * Math.cos(ph), CY + sgn * rb * Math.sin(ph)); ctx.lineTo(ICX - IR * Math.cos(ph), CY + sgn * IR * Math.sin(ph)); ctx.stroke(); }
+    ctx.restore();
+    /* ---- the inset, 15 times the body scale: the skin wraps the pad or the point ---- */
+    const IX = ICX - 40;
+    ctx.save(); ctx.beginPath(); ctx.arc(ICX, CY, IR, 0, TAU); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.clip();
+    ctx.fillStyle = alpha(PAL.muted, 0.14); ctx.beginPath(); skinPath(ctx, p, IS, IX, CY - IR, CY + IR, false); ctx.lineTo(ICX + IR, CY + IR); ctx.lineTo(ICX + IR, CY - IR); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = sc; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath(); skinPath(ctx, p, IS, IX, CY - IR, CY + IR, false); ctx.stroke();
+    if (finger) fingerHand(ctx, IS, IX + IS * p.xc, who);
+    else { ctx.fillStyle = PAL.panel; ctx.strokeStyle = who; ctx.lineWidth = 3; ctx.beginPath(); needlePath(ctx, p, IS, IX, -20); ctx.fill(); ctx.stroke(); }
+    /* the contact in the pressure hue, along the pad's arc or the point's face */
+    ctx.strokeStyle = pc; ctx.lineWidth = 7; ctx.lineCap = 'round'; ctx.beginPath();
+    if (finger) { const t = Math.asin(a / RT); ctx.arc(IX + IS * p.xc, CY, IS * RT, -t, t); }
+    else { ctx.moveTo(IX + IS * p.xT, CY - IS * a); ctx.lineTo(IX + IS * p.xT, CY + IS * a); }
+    ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(ICX, CY, IR, 0, TAU); ctx.stroke(); ctx.restore();
+    /* d bracketed beside the inset, its ends carried out from the edges of the contact */
+    const bx = ICX + IR + 26, cx0 = IX + IS * (finger ? 0 : p.xT);
+    for (const sgn of [-1, 1]) line(ctx, cx0 + 8, CY + sgn * IS * a, bx - 6, CY + sgn * IS * a, alpha(posc, 0.5), 2, [4, 8]);
+    vbracket(ctx, bx, CY - IS * a, CY + IS * a, posc, 'd = ' + fmt(dw, 1) + ' mm', 1);
+    text(ctx, 'magnified ' + Math.round(IS / BS) + ' times', ICX, CY + IR + 26, PAL.muted, { size: 17, align: 'center' });
     /* the ruler of pressures */
     line(ctx, RX0, RY, RX1, RY, PAL.ink, 3);
     for (let e = E0; e <= E1; e++) { const x = RX(Math.pow(10, e)); line(ctx, x, RY - 8, x, RY + 8, PAL.ink, 2); text(ctx, '10' + sup(e) + (e === E1 ? ' Pa' : ''), x, RY + 30, PAL.muted, { size: 17, align: 'center' }); }
-    for (const [p, nm] of marks) { const x = RX(p); line(ctx, x, RY - 12, x, RY - 34, PAL.muted, 2); text(ctx, nm, x, RY - 48, PAL.muted, { size: 17, align: 'center' }); }
+    for (const [pm, nm] of marks) { const x = RX(pm); line(ctx, x, RY - 12, x, RY - 34, PAL.muted, 2); text(ctx, nm, x, RY - 48, PAL.muted, { size: 17, align: 'center' }); }
     if (Fv > 0) {
       const x = RX(P);
       ctx.save(); ctx.fillStyle = alpha(pc, 0.3); ctx.fillRect(RX0, RY - 9, x - RX0, 18); ctx.restore();
       dot(ctx, x, RY, pc, true, 9);
       const right = x > 980;
-      text(ctx, 'P = ' + sci(P, 3) + ' Pa', x + (right ? -18 : 18), RY + 62, pc, { weight: 600, align: right ? 'right' : 'left' });
+      text(ctx, 'P = ' + sci(P, 3) + ' Pa', x + (right ? -18 : 18), RY + 56, pc, { weight: 600, align: right ? 'right' : 'left' });
     }
-    const like = dw <= 0.5 ? ', about the point of a needle,' : dw >= 8 ? ', about the pad of a fingertip,' : '';
-    topline(ctx, Fv === 0 ? 'With no push against the skin there is no pressure on it, however narrow the contact.'
-      : 'A push of ' + fmt(Fv, 1) + ' N over a contact ' + fmt(dw, 1) + ' mm across' + like + ' makes a pressure of ' + sci(P, 3) + ' Pa.');
-    readout(d.readout, Fv === 0 ? `\\kPr = \\frac{\\kF}{\\karea} = \\frac{0\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = 0\\ \\text{Pa}`
-      : `\\kPr = \\frac{\\kF}{\\karea} = \\frac{${fmt(Fv, 1)}\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = ${sciTex(P, 3)}\\ \\text{Pa}`,
-      'The contact is a circle, so $\\karea = \\pi(\\kd/2)^2 = ' + sig3(A * 1e6) + '\\ \\text{mm}^2$; halving the width quarters the area and multiplies the pressure by four.');
+    const missed = lab.flush(); d.fig.dataset.missed = missed.join(' | ');
+    readout(d.readout, `\\kPr = \\frac{\\kF}{\\karea} = \\frac{${fmt(Fv, 1)}\\ \\text{N}}{${sciTex(A, 3)}\\ \\text{m}^2} = ${Fv === 0 ? '0' : sciTex(P, 3)}\\ \\text{Pa}`,
+      'The contact is a circle, so $\\karea = \\pi(\\kd/2)^2 = ' + sig3(A * 1e6) + '\\ \\text{mm}^2$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

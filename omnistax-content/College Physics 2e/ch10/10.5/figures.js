@@ -37,13 +37,6 @@ function bar(ctx, x1, x2, y, h, v, cap, color, name, value) {
   else if (xe + 12 + vw > 1385) text(ctx, value, xe, y - h / 2 - 16, color, { size: 19, weight: 600, align: 'right' });
   else text(ctx, value, xe + 12, y, color, { size: 19, weight: 600, align: 'left' });
 }
-/* an angle arc at (x, y) from the canvas angle a0 through `d` radians, its label beyond the middle */
-function angleArc(ctx, x, y, R, a0, d, color, label) {
-  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.5;
-  ctx.beginPath(); ctx.arc(x, y, R, a0, a0 + d, d < 0); ctx.stroke(); ctx.restore();
-  const m = a0 + d / 2;
-  if (label) text(ctx, label, x + (R + 36) * Math.cos(m), y + (R + 36) * Math.sin(m), color, { align: 'center', size: 20, weight: 600, bg: alpha(PAL.panel, 0.85) });
-}
 
 /* ---------- sprites, in ink ---------- */
 /* a plate of food seen from above, its centre at (x, y) */
@@ -129,13 +122,14 @@ function plate(ctx, x, y, r, color) {
 })();
 
 /* =====================================================================
-   FIGURE 10.24: the kick. The lower leg hangs from the knee and a constant
-   torque swings it forward through the set angle; the graph beside follows
-   its rotational kinetic energy against the angle turned. Moves: a leg
-   swinging under a torque is a clock, one kick per loop, with the scrubber.
+   FIGURE 10.24: the kick. A person sits on a bench with the lower leg
+   hanging from the knee, and a constant torque about the knee swings it
+   forward through the set angle; the graph beside follows its rotational
+   kinetic energy against the angle turned. Moves: a leg swinging under a
+   torque is a clock, one kick per loop, with the scrubber.
 ===================================================================== */
 (function () {
-  const d = sim('sim-kick', 640);
+  const d = sim('sim-kick', 680);
   const ts = ctl(d.controls, { label: '\\text{net}\\;\\ktau', cls: 'torque', min: 10, max: 80, step: 0.5, value: 44, unit: 'N·m', dec: 1, onInput: reset, aria: 'the net torque about the knee', detents: [{ v: 44, label: '44.0' }], snap: false });
   const Is = ctl(d.controls, { label: '\\kI', cls: 'rotational-inertia', min: 0.5, max: 3, step: 0.01, value: 1.25, unit: 'kg·m²', dec: 2, onInput: reset, aria: 'the moment of inertia of the lower leg', detents: [{ v: 1.25, label: '1.25' }], snap: false });
   const ths = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 10, max: 90, step: 0.1, value: 57.3, unit: '°', dec: 1, onInput: reset, aria: 'the angle the leg swings through', detents: [{ v: 57.3, label: '1.00 rad' }], snap: false });
@@ -143,50 +137,65 @@ function plate(ctx, x, y, r, color) {
   const T = () => Math.sqrt((2 * ths.v * RAD) / alphaOf());
   const cy = cycle(T, 1.4);
   function reset() { cy.reset(); }
-  const KX = 330, KY = 300, LEN = 230;                /* the knee and the length of the lower leg on the canvas; at 90° the foot is level with the knee, so the knee sits low enough that the spin arc ahead of it clears the headline */
-  const KEMAX = 140;                                  /* the graph's fixed axes: 0 to 90° and 0 to 140 J */
+  /* the seated body at scale SC: the knee at (KX, KY), the thigh level behind it, the shank SH long */
+  const SC = 3.5, KX = 380, KY = 380, SH = 38 * SC, OX = KX - 28 * SC, OY = KY + 46 * SC, FLOOR = 624;
+  let shin = { x: KX, y: KY + 0.6 * SH };             /* the middle of the lower leg, for its hover name */
+  const KEMAX = 140;                                  /* the graph's fixed axes: 0 to 90° and 0 to 140 J; the slider extremes reach 126 J */
   function draw() {
-    const { ctx } = begin(d.c);
+    const { ctx, H } = begin(d.c);
     const tau = ts.v, I = Is.v, thmax = ths.v * RAD, al = alphaOf(), t = Math.min(cy.now(), T()), done = t >= T() - 1e-9;
     const th = Math.min(thmax, 0.5 * al * t * t), w = al * t, KE = 0.5 * I * w * w;
-    const tc = C('torque'), wc = C('angular-rate'), ec = C('energy');
-    /* the thigh, the knee and the lower leg, which swings forward, to the right */
-    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineCap = 'round'; ctx.lineWidth = 26;
-    ctx.beginPath(); ctx.moveTo(90, KY - 10); ctx.lineTo(KX, KY); ctx.stroke();
-    const fx = KX + LEN * Math.sin(th), fy = KY + LEN * Math.cos(th), lgc = F.ref('leg');
-    ctx.strokeStyle = lgc; ctx.lineWidth = 20; ctx.beginPath(); ctx.moveTo(KX, KY); ctx.lineTo(fx, fy); ctx.stroke();
-    ctx.lineWidth = 14; ctx.beginPath(); ctx.moveTo(fx, fy); ctx.lineTo(fx + 44 * Math.cos(th), fy - 44 * Math.sin(th)); ctx.stroke();   /* the foot */
-    ctx.restore();
-    line(ctx, KX, KY, KX, KY + LEN + 30, alpha(PAL.ink, 0.35), 2, [4, 8]);                     /* where the leg hung */
-    dot(ctx, KX, KY, PAL.panel, true, 10); dot(ctx, KX, KY, PAL.ink, false, 10);
-    text(ctx, 'knee', KX - 26, KY - 30, PAL.ink, { size: 19, align: 'right' });
-    text(ctx, 'the lower leg', 40, KY + LEN + 44, lgc, { size: 19, align: 'left' });
-    /* the torque about the knee and the angle swung through */
-    turnArc(ctx, KX, KY, 110, true, tc, Math.PI / 2 + 0.6, 0.5);
-    text(ctx, 'net τ = ' + fmt(tau, 1) + ' N·m', KX - 70, KY + 180, tc, { size: 22, weight: 600, align: 'right' });
-    if (th > 0.03) angleArc(ctx, KX, KY, 170, Math.PI / 2, -th, C('angle'), 'θ = ' + fmt(th / RAD, 1) + '°');
-    /* the spin the leg has, as an arc just beyond the foot's path, ahead of the foot */
-    if (w > 0.05) {
-      const af = Math.PI / 2 - th, span = 0.16 + Math.min(0.2, 0.012 * w), RA = LEN + 30;
-      turnArc(ctx, KX, KY, RA, true, wc, af - span - 0.04, span, 5);
-      const al = af - span - 0.04;                      /* the label sits outside the middle of the arc */
-      text(ctx, 'ω = ' + fmt(w, 2) + ' rad/s', KX + (RA + 46) * Math.cos(al), KY + (RA + 46) * Math.sin(al), wc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    }
-    /* the graph beside: KE_rot against θ, a straight line of slope net τ */
-    const box = { l: 760, r: 1320, t: 150, b: 500 };
-    const g = axes(ctx, box, [0, 90], [0, KEMAX], { xl: 'θ (degrees)', xc: C('angle'), yl: 'KE_rot (J)', yc: ec, nx: 3, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
-    line(ctx, g.X(0), g.Y(0), g.X(ths.v), g.Y(tau * thmax), alpha(ec, 0.35), 3, [8, 8]);
-    line(ctx, g.X(0), g.Y(0), g.X(th / RAD), g.Y(KE), ec, 5);
-    line(ctx, g.X(th / RAD), box.b, g.X(th / RAD), g.Y(KE), PAL.ink, 2, [4, 8]);
-    text(ctx, 'slope = net τ', g.X(ths.v * 0.6) + 24, Math.min(box.b - 18, g.Y(tau * thmax * 0.6) + 30), tc, { size: 19, weight: 600, align: 'left' });   /* below and right of the line, which rises to the right, and inside the frame */
-    const pt = pinned(ctx, box, g.X, g.Y, th / RAD, KE, ec, 'KE_rot = ' + fmt(KE, 1) + ' J');
-    if (!pt.out) text(ctx, 'KE_rot = ' + fmt(KE, 1) + ' J', Math.min(box.r - 100, Math.max(box.l + 100, pt.x)), Math.max(box.t + 14, pt.y - 30), ec, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });   /* above the point, kept inside the frame */
-    topline(ctx, t < 1e-9 ? 'The leg hangs at rest from the knee, and a net torque of ' + fmt(tau, 1) + ' N·m is about to swing it through ' + fmt(ths.v, 1) + '°.'
+    const tc = C('torque'), wc = C('angular-rate'), ec = C('energy'), ac = C('angle'), lgc = F.ref('leg');
+    const lines = topline(ctx, t < 1e-9 ? 'The leg hangs at rest from the knee, and a net torque of ' + fmt(tau, 1) + ' N·m is about to swing it through ' + fmt(ths.v, 1) + '°.'
       : done ? 'After ' + fmt(T(), 3) + ' s the leg has swung through ' + fmt(ths.v, 1) + '° and turns at ' + fmt(w, 2) + ' rad/s, carrying ' + fmt(KE, 1) + ' J of rotational kinetic energy.'
       : 'After ' + fmt(t, 3) + ' s the leg has swung through ' + fmt(th / RAD, 1) + '° and turns at ' + fmt(w, 2) + ' rad/s, carrying ' + fmt(KE, 1) + ' J.');
+    const lab = F.labeller(ctx, H, { headline: lines });
+    /* the floor and the bench, the seat ending short of the knee */
+    line(ctx, 60, FLOOR, 700, FLOOR, PAL.muted, 3);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.rect(120, KY + 8, 190, 16); ctx.fill(); ctx.stroke(); ctx.restore();
+    line(ctx, 140, KY + 24, 140, FLOOR, PAL.muted, 3); line(ctx, 290, KY + 24, 290, FLOOR, PAL.muted, 3);
+    /* the library's seated body: the far leg hangs, the near foot rides the arc of the shank about the knee */
+    const sx = Math.sin(th), sy = Math.cos(th);
+    shin = { x: KX + 0.6 * SH * sx, y: KY + 0.6 * SH * sy };
+    const pose = { x: OX, y: OY, s: SC, pose: 'sit', hip: { x: -10, y: -46 }, feet: [{ x: 28 + 38 * sx, y: -46 + 38 * sy }, { x: 28, y: -8 }], kneeSide: -1 };
+    F.silhouette(ctx, { ...pose, color: PAL.ink });
+    /* the lower leg in its own colour: the body again, clipped to a band along the near shank */
+    ctx.save(); ctx.translate(KX, KY); ctx.rotate(-th); ctx.beginPath(); ctx.rect(-16, 12, 32, SH + 10); ctx.restore();
+    ctx.save(); ctx.clip(); F.silhouette(ctx, { ...pose, color: lgc }); ctx.restore();
+    dot(ctx, KX, KY, PAL.panel, true, 8); dot(ctx, KX, KY, PAL.ink, false, 8);
+    /* the torque about the knee, above it and clear of the swing, and the spin the leg has, just beyond the foot's path */
+    const TA = -Math.PI / 2, TR = 54, RA = SH + 30, span = 0.16 + Math.min(0.2, 0.012 * w), am = Math.PI / 2 - th - span - 0.04;
+    turnArc(ctx, KX, KY, TR, true, tc, TA, 0.45, 4);
+    if (w > 0.05) turnArc(ctx, KX, KY, RA, true, wc, am, span, 5);
+    const arcBlock = (R, a0, a1) => { for (let i = 0; i <= 6; i++) { const a = a0 + ((a1 - a0) * i) / 6; lab.block(KX + R * Math.cos(a) - 12, KY + R * Math.sin(a) - 12, KX + R * Math.cos(a) + 12, KY + R * Math.sin(a) + 12); } };
+    arcBlock(TR, TA - 0.45, TA + 0.45);
+    if (w > 0.05) arcBlock(RA, am - span, am + span);
+    for (let k = 0.15; k <= 1.01; k += 0.17) { lab.block(KX + SH * k * sx - 14, KY + SH * k * sy - 14, KX + SH * k * sx + 14, KY + SH * k * sy + 14); lab.block(KX - 14, KY + SH * k - 14, KX + 14, KY + SH * k + 14); }
+    lab.block(OX - 70, KY - 240, OX + 40, KY + 30);                                       /* the head, the back and the arm */
+    if (th > 0.03) F.angleArc(ctx, { x: KX, y: KY }, 86, -Math.PI / 2, -Math.PI / 2 + th, 'θ = ' + fmt(th / RAD, 1) + '°', lab, ac);
+    lab.add('net τ = ' + fmt(tau, 1) + ' N·m', KX, KY - TR, 0.35, -0.94, tc, 22, 100);
+    if (w > 0.05) lab.add('ω = ' + fmt(w, 2) + ' rad/s', KX + RA * Math.cos(am), KY + RA * Math.sin(am), Math.cos(am), Math.sin(am), wc, 21, 22);
+    /* the graph beside: KE_rot against θ, a straight line of slope net τ */
+    const box = { l: 780, r: 1320, t: 150, b: 500 };
+    const g = axes(ctx, box, [0, 90], [0, KEMAX], { xl: 'θ (degrees)', xc: ac, yl: 'KE_rot (J)', yc: ec, nx: 3, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const end = { x1: g.X(0), y1: g.Y(0), x2: g.X(ths.v), y2: g.Y(tau * thmax) };
+    line(ctx, end.x1, end.y1, end.x2, end.y2, alpha(ec, 0.4), 3, [8, 8]);
+    line(ctx, g.X(0), g.Y(0), g.X(th / RAD), g.Y(KE), ec, 5);
+    line(ctx, g.X(th / RAD), box.b, g.X(th / RAD), g.Y(KE), alpha(PAL.ink, 0.4), 2, [4, 8]);
+    const pt = pinned(ctx, box, g.X, g.Y, th / RAD, KE, ec);
+    lab.block(pt.x - 12, pt.y - 12, pt.x + 12, pt.y + 12);
+    lab.block(box.l - 70, box.b + 6, box.r + 10, box.b + 80);                            /* the tick labels and the axis title */
+    lab.block(box.l - 64, box.t - 12, box.l - 4, box.b + 12);                             /* the value ticks */
+    const along = Array.from({ length: 9 }, (_, i) => { const x = end.x1 + ((end.x2 - end.x1) * i) / 8, y = end.y1 + ((end.y2 - end.y1) * i) / 8; return { l: x - 20, r: x + 20, t: y - 20, b: y + 20 }; });
+    along.forEach((b) => lab.block(b.l + 8, b.t + 8, b.r - 8, b.b - 8));
+    lab.place(F.note(ctx, box, 'slope = net τ', [...along, { l: pt.x - 30, r: pt.x + 200, t: pt.y - 70, b: pt.y + 12 }]));
+    lab.add('KE_rot = ' + fmt(KE, 1) + ' J', pt.x, pt.y, 0.35, -0.94, ec, 21, 22);
+    lab.flush();
     readout(d.readout, `\\kKErot = \\tfrac{1}{2}\\kI\\kw^2 = \\tfrac{1}{2}(${fmt(I, 2)}\\ \\text{kg}\\cdot\\text{m}^2)(${fmt(w, 2)}\\ \\text{rad/s})^2 = ${fmt(KE, 1)}\\ \\text{J}`,
-      `The torque's work, $(\\text{net}\\;\\ktau)\\theta = ${fmt(tau * th, 1)}\\ \\text{J}$, is where the leg's kinetic energy comes from.`);
+      `The torque's work, $(\\text{net}\\;\\ktau)\\ktheta = ${fmt(tau * th, 1)}\\ \\text{J}$, is where the leg's kinetic energy comes from.`);
   }
+  F.hover(d.stage, () => [{ x: KX, y: KY, r: 22, name: 'the knee' }, { x: shin.x, y: shin.y, r: 50, name: 'the lower leg' }, { x: OX - 2 * SC, y: OY - 112 * SC, r: 46, name: 'the person kicking' }, { x: 215, y: KY + 16, r: 60, name: 'the bench' }]);
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / 4.5), draw });
 })();
 
@@ -205,37 +214,32 @@ function plate(ctx, x, y, r, color) {
   let phi = 0;                                        /* how far round she has turned */
   const L = () => IOUT * w0s.v * TAU;                 /* kg·m²/s, fixed by her arms-out state */
   const wNow = () => L() / Is.v / TAU;                /* rev/s at the current moment of inertia */
-  const SX = 380, ICE = 640;                          /* where she stands */
+  const SX = 380, ICE = 640, SC = 2.7;                /* where she stands, and the scale of the library's body */
   function draw() {
     const { ctx } = begin(d.c);
     const I = Is.v, w0 = w0s.v, w = wNow(), Lv = L(), KE0 = 0.5 * IOUT * (w0 * TAU) ** 2, KE = 0.5 * I * (w * TAU) ** 2;
     const s = (I - IIN) / (IOUT - IIN);               /* 0 arms in, 1 arms out */
     const k = Math.max(0.28, Math.abs(Math.cos(phi)));/* the body seen edge-on as she comes round */
-    const ic = C('rotational-inertia'), wc = C('angular-rate'), Lc = C('angular-momentum'), ec = C('energy');
-    /* the ice and the circle her hands sweep, seen edge-on */
+    const ic = C('rotational-inertia'), wc = C('angular-rate'), Lc = C('angular-momentum'), ec = C('energy'), skc = F.ref('skater');
+    /* the hands, from the chest (arms in) to the full reach at shoulder height (arms out), in the body's frame */
+    const hand = { x: 10 + 50 * s, y: -94 - 24 * s }, reach = hand.x * SC, handY = ICE + hand.y * SC, headY = ICE - 140 * SC;
     line(ctx, 120, ICE, 660, ICE, PAL.muted, 3);
     text(ctx, 'the ice', 120, ICE + 26, PAL.muted, { size: 19, align: 'left' });
-    const reach = 40 + 170 * s, handY = 330 - 50 * s;
-    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.3); ctx.lineWidth = 2; ctx.setLineDash([6, 8]);
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2; ctx.setLineDash([6, 8]);
     ctx.beginPath(); ctx.ellipse(SX, handY, reach, reach * 0.16, 0, 0, TAU); ctx.stroke(); ctx.restore();
-    /* the skater, front view, her width foreshortened by k */
-    const skc = F.ref('skater');
-    ctx.save(); ctx.translate(SX, 0); ctx.scale(k, 1); ctx.strokeStyle = skc; ctx.fillStyle = skc; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.beginPath(); ctx.arc(0, 235, 24, 0, TAU); ctx.fill();                                          /* head */
-    ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(0, 259); ctx.lineTo(0, 280); ctx.stroke();           /* neck */
-    ctx.beginPath(); ctx.moveTo(-34, 280); ctx.lineTo(34, 280); ctx.lineTo(24, 430); ctx.lineTo(-24, 430); ctx.closePath(); ctx.fill(); /* torso */
-    ctx.lineWidth = 12; ctx.beginPath(); ctx.moveTo(-12, 430); ctx.lineTo(-6, ICE - 8); ctx.stroke();   /* the standing leg */
-    ctx.beginPath(); ctx.moveTo(12, 430); ctx.lineTo(60, 500); ctx.lineTo(100, 470); ctx.stroke();      /* the raised leg */
-    ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(-26, ICE - 6); ctx.lineTo(14, ICE - 6); ctx.stroke(); /* the skate */
-    ctx.lineWidth = 10;                                                                                 /* the arms */
-    const hx = reach, ex = 34 + (reach - 34) * 0.5, ey = s > 0.5 ? handY + 10 : 330;
-    ctx.beginPath(); ctx.moveTo(-34, 286); ctx.lineTo(-ex, ey); ctx.lineTo(-hx, handY); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(34, 286); ctx.lineTo(ex, ey); ctx.lineTo(hx, handY); ctx.stroke();
+    /* the library's body seen from the front, on one skate with the free leg raised, its width foreshortened by k.
+       ponytail: the silhouette bends both elbows to one side, so the body is drawn twice, mirrored, each with
+       both hands on its own side (arms crossed when in, elbows low on the way out); the legs are given mirrored too, so the two drawings coincide below the arms */
+    const body = (face) => ({ x: 0, y: ICE, s: SC, face, pose: 'stand', front: true, color: skc, hip: { x: 0, y: -72 }, shoulder: { x: 0, y: -118 }, head: { x: 0, y: -140 },
+      feet: [{ x: 2 * face, y: -4 }, { x: -4 * face, y: -30 }], kneeSide: [face, face], hands: [hand, hand], elbowSide: 1 });
+    ctx.save(); ctx.translate(SX, 0); ctx.scale(k, 1);
+    F.silhouette(ctx, body(1)); F.silhouette(ctx, body(-1));
+    line(ctx, -24, ICE - 3, 30, ICE - 3, skc, 5);     /* the skate's blade */
     ctx.restore();
     text(ctx, 'the skater', SX, ICE + 26, skc, { size: 19, align: 'center' });
     /* her spin, as an arc over her head */
-    turnArc(ctx, SX, 235, 88, true, wc, -Math.PI / 2, 0.7, 5);
-    text(ctx, 'ω = ' + fmt(w, 3) + ' rev/s', SX, 118, wc, { size: 24, weight: 600, align: 'center' });
+    turnArc(ctx, SX, headY, 80, true, wc, -Math.PI / 2, 0.7, 5);
+    text(ctx, 'ω = ' + fmt(w, 3) + ' rev/s', SX, headY - 118, wc, { size: 24, weight: 600, align: 'center' });
     /* the four bars, on fixed caps */
     const bx1 = 900, bx2 = 1330;
     bar(ctx, bx1, bx2, 240, 40, I, 2.5, ic, 'I', fmt(I, 3) + ' kg·m²');

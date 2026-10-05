@@ -68,32 +68,23 @@ rows mark each as used where the text uses it.
 id · replaces or Sim · concepts · value add · what moves or still · sliders ·
 headline · graph · 3D
 
-1. `sim-poke` · replaces Figure 11.5 (a) and (b), the finger and the needle
-   on the same shoulder · pressure, pascal-unit · variation by slider: the
-   book draws two states of one scene, and the reader is left to imagine the
-   ten-thousandfold change in pressure between them; here the same force is
-   spread over a contact whose width slides from the point of a needle to the
-   pad of a fingertip, and a ruler of pressures shows where each lands ·
-   **still**: a push held against the skin has no time in it; the figure
-   answers its sliders and registers no cycle (rule 14; `ch11/config.md`
-   makes the same decision for every figure of the chapter) · $\kF$ (0 to
-   20 N, default 5.0, force); the width of the contact $d$ (0.1 to 12.0 mm,
-   default 12.0, ink, with soft detents at 0.3 mm for the point of a needle
-   and 12.0 mm for the pad of a fingertip, which are the book's two panels).
-   The width rather than the area is the slider because a width is what the
-   picture shows and because the area, which goes as the square of the width,
-   runs through four powers of ten that no linear slider of areas could carry
-   · "A push of 5.0 N over a contact 12.0 mm across, about the pad of a
-   fingertip, makes a pressure of 4.42 × 10⁴ Pa." · a ruler of pressures
-   below the scene, marked in powers of ten from 10² to 10¹⁰ Pa because the
-   slider extremes span that range, with three landmarks the page itself
-   gives: 1 × 10⁴ Pa, which is 100 mb; the 6.90 × 10⁶ Pa of the air tank in
-   Example 11.2; and the 3.00 × 10⁹ N/m² a nail tip reaches under a hammer in
-   the problems · 2D. Readout: $\kPr = \kF/A$ with the live numbers; small
-   line giving $A = \pi(d/2)^2$ and the fact that halving the width quarters
-   the area and multiplies the pressure by four. Labels on: three things
-   named (the skin, the push, the contact) and none of them move. Draws
-   force, pressure.
+1. `sim-poke` · Figure 11.5 (a)+(b) · pressure, pascal-unit · variation by
+   slider: one push spread from a fingertip's pad to a needle's point,
+   pressure through four powers of ten · still: a push held against the skin
+   has no time in it · $\kF$ (0 to 20 N, default 5.0, force); $\kd$ (0.1 to
+   12.0 mm, default 12.0, detents 0.3 needle and 12.0 fingertip as ticks
+   without the snap, whose reach would swallow 0.1 to 4.3 mm) · headline as
+   before, the push, the width and the pressure in numbers · ruler of
+   pressures below (10² to 10¹⁰ Pa, the 100 mb, air-tank and nail-tip
+   landmarks), beside none · 2D: the pusher at body scale (4/3 units/mm),
+   `F.hand` side view with the fingers along aim onto the skin of an arm,
+   swapping below 4 mm for the same hand holding a 10 mL syringe from above,
+   and a magnified inset (circle with leaders, 15 times, 20 units/mm) where
+   the pad or the point dents the skin, the contact in the pressure hue and
+   $d$ bracketed beside it; no fold, no split. Readout $\kPr = \kF/\karea$
+   with the live numbers, note $\karea = \pi(\kd/2)^2$ in mm². Labels: the
+   pusher, the skin of an arm and the force. Draws force, pressure,
+   position, area.
 2. `sim-tire` · replaces Figure 11.6, the tire with its field of arrows and
    the valve inset · pressure-is-scalar, force-from-pressure · variation by
    slider and intuition: the book draws representative arrows at one
@@ -247,3 +238,5 @@ names the iceberg and the glacier; no row was changed.
 Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-poke`: the push is now a thing the reader recognises. Above 4 mm it is a fingertip, a rounded finger with a nail whose pad flattens against the skin along a chord exactly d wide; below it is a hypodermic needle on its syringe, barrel, flange, hub and a shaft that tapers to the point d across. The skin dents under the contact, deeper as the pressure climbs, and the force arrow is anchored on the pusher's end, drawn heavier than any body line and labelled beneath it. The finger and the syringe are drawn in the figure, not in the library. `sim-tire`: the chosen patch is a solid arc of the wall in the force hue, wider with the area, and the force arrow leaves it outside the tread (or inward from the rim), clear of the arrow field, with its label beyond the tip; the three patch choices read tread, rim and valve so that they sit on one row. `sim-swimmer`: the stick person is replaced by `F.silhouette` in the reach pose, face down with arms forward, so that the body in the water reads as a swimmer at every tilt.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5). `sim-tire`: the patch and its force slide around the wall to the tread, the rim or the valve instead of jumping. `sim-swimmer`: the swimmer's outline holds its place while his body fades into the water that fills it, the pressure arrows unchanged, which is the substitution argument of the text. `sim-poke` unchanged.
+
+Rewrite, 2026-10-05 (Claude Opus 5.5, high). `sim-poke` rebuilt from the review's plan line: the library hand at body scale and a magnified inset of the contact.
