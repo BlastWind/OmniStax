@@ -81,3 +81,5 @@ None.
 - edge `probability-cloud` ← `position-momentum-uncertainty` (29.7)
 - `ch30/COLOR.md` 30.6 row stands: `position`, `angular-momentum`.
 - No concept or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): both forms and both rows anchored; the rows added as listed, with `r` besides, the summary's `ΔE`, `E_ini`, `E_fin`, `f` anchored at `orbit-condition`; edges `electron-standing-wave-orbit` ← `de-broglie-wavelength` (dropping `constructive-interference`) and `probability-cloud` ← `position-momentum-uncertainty`.

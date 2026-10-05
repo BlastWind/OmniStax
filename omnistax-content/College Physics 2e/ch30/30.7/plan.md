@@ -77,3 +77,5 @@ No problems or AP items in the module; none moved in or out (`ch30` notes).
 - variables `ΔE` → 30.7-zeeman-effect, meaning "the energy between neighbouring lines of a Zeeman triplet"; `θ` → 30.7-orbits-in-a-field, "the angle between an angular momentum or its field and the field it lies in"
 - `ch30/COLOR.md` 30.7 row: the page binds `magnetic-field`, `angular-momentum`, `angle`, `energy`
 - No concept or edge row needs changing.
+
+Applied by the chapter pass (2026-10-05): symbols `B_orb`, `B_int`, `B_ext`, `L_orb` with their macros and rows, the text's and figures' subscripted macros swapped for them; rows `S_spin` (typed angular-momentum), `ΔE` ("the energy between neighboring lines of a Zeeman triplet") and `θ`; `orbital-angular-momentum` now takes `L_orb` as its symbol, since 30.8's `L` names the magnitude; `COLOR.md` row as asked.

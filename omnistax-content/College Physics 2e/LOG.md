@@ -4416,3 +4416,76 @@ Review pass ch27 (2026-10-04, Claude Opus 5.5 high): 18 pass, 32 fixed (23 figur
 Review pass ch25 (2026-10-04, Claude Opus 5.5 high): 14 pass, 25 fixed (18 figures, 7 leads), 0 rewrite filed.
 Review pass ch26 (2026-10-04, Claude Opus 5.5 high): 11 pass, 19 fixed (14 figures, 5 leads), 0 rewrite filed.
 Review pass ch29 (2026-10-04, Claude Opus 5.5 high): 14 pass, 19 fixed (12 figures, 7 leads), 0 rewrite filed.
+
+
+### Pass 55 (2026-10-05): Chapter 30, Atomic Physics, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+nine sections, 30.1 to 30.9, by one agent each. It carries 71 concepts, 29
+equations, 102 variables, 39 glossary terms and 80 exercises (38 keyed
+problems, 26 conceptual questions and 16 AP items, 6 of them keyed). No new
+type is declared. Every electron, proton, alpha particle and atom is drawn
+through `F.el`, and visible photons and spectral lines wear the colour of
+their wavelength, with ultraviolet, infrared and x-ray photons in ink and
+their band named.
+
+The 58 book figures are 23 kept photographs and portraits, two faithful
+copies (the notation $2p^3$ and the $n = 2$ table printed as an image), and 21
+figures that move or answer their controls for the other 33 numbers, nine of
+them folds: Thomson's tube
+with its crossed fields (Figure 30.6 + 30.7), Rutherford's foil and its atoms
+(30.10 + 30.11), one hydrogen atom for its orbits, radii and level diagram
+(30.16 to 30.19), the x-ray spectrum with its levels (30.20 + 30.21), the
+laser's levels, cascade and cavity (30.34 to 30.36), recording and viewing a
+hologram (30.42 + 30.43), a wave around an orbit (30.44 + 30.45), the orbit
+in a field (30.48 + 30.49) and the spin doublet (30.50 + 30.51). Two Sims are
+added: fluorescence step by step in 30.5 and the capacity of each shell in
+30.9. Brownian motion, Thomson's beam, Rutherford's alphas, the planetary
+orbits, the light of a discharge tube, the Bohr atom's photon, the laser, the
+helium-neon transfer, the CD's beam, the hologram's waves, the probability
+clouds and the orbit and spin in their fields move on a clock; the rest are
+still. Figure 30.52 is the chapter's one 3D scene, mathematical, with the
+angular momentum on its cones about $z$.
+
+The chapter pass anchored all 29 equations and all 102 variables, added 61
+variables rows the sections' text and readouts wrote without one, and six
+symbols: $F_{\text{mag}}$ in 30.2, $B_{\text{orb}}$, $B_{\text{int}}$,
+$B_{\text{ext}}$ and $L_{\text{orb}}$ in 30.7, and $\theta_3$ in 30.8, with the
+subscripted macros the text had used swapped for them. Since the book types
+mass, every $m_{\text{e}}$, $m_{\text{p}}$, $m_{\text{drop}}$ and the $m$ of
+$L = mvr$ is now written with its macro, in the forms as in the text.
+`metastable-state-and-phosphorescence` is folded into the two definitions it
+repeated, and `spin-quantum-numbers` gives its two repeated forms to the spin
+definitions and keeps its statement, since Chapter 33 rests on it.
+`orbital-angular-momentum-magnitude` takes the symbol $L$ and the type
+angular momentum. Ten edges go into Chapters 27 and 29, now merged: the
+photon's energy under Bohr's transitions, the quantized atomic spectra of 29.1
+under discrete spectra, the x-ray tube's spectrum and maximum energy under
+30.4's, the photon energy from a wavelength under the level-spacing skill and
+x-ray diffraction, the Bragg equation under x-ray diffraction, the de Broglie
+wavelength under the standing-wave orbit, the uncertainty principle under the
+probability cloud, and the diffraction grating under holography. Eleven edges
+these made redundant and four the plans named are dropped; 32 redundant edges
+of the chapter remain for the Hasse script. The atomic number of
+Figure 30.55 is now a dropdown of the twenty elements, a discrete state, not a
+slider.
+
+Across the sections no exercise is kept twice, the twelve keyed problems and
+two conceptual questions that move carry their `source_section` and both
+notes agree, and Figures 30.1 to 30.58 and Tables 30.1 to 30.3 run in book
+order. The examples were numbered 30.1 and 30.3 to 30.6; the publisher prints
+30.1 to 30.5, with Characteristic X-Ray Energy as 30.2, and the pages now say
+so.
+
+The book's slips are kept as printed and gathered in `ch30/exploration.md`:
+the proton's ratio as 9.58 and 9.57 × 10⁷ C/kg, Bohr's $h/2, 2h/2, 3h/2$
+without the π, a potential energy without the square on $q_e$, 30.4's figure
+references for the teeth and the luggage, three slips in 30.8 ($l$ from 1, the
+"maximum value of $m_l = 0$", the ground state as (0, 0, 0)) and the $s$
+written for $S$, and in 30.9 a subshell of $2n^2$, the key's inequalities and
+the solution that labels both steps $E_3 - E_2$. The ion printed C1⁻ is set
+as Cl⁻, and every ordinal sign as a degree sign.
+
+Checks: `check:content` found no errors in the chapter. A headless pass over
+all ten pages in light and dark found no console error, blank figure, KaTeX
+error or missing image.

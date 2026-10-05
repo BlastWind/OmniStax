@@ -37,3 +37,19 @@ for review after. Each line is a setting and its value.
 | Concept nodes | 50 merged into `book.json` before the sections were built (3, 7, 9, 5, 8, 3, 4, 6 and 5 for 30.1 to 30.9) with 109 prerequisite edges |
 | Formulas | `ch30/chapter.json`: 29 equations with `ktex`, the stated and named ones important; no anchors, which the chapter pass writes |
 | Book manifest | `ch30` merged with `ost merge college-physics-2e 30` |
+
+## What the build changed
+
+Recorded by the chapter pass (2026-10-05); each line is a default above that the
+section builds or the pass changed.
+
+| Setting | As built |
+|---|---|
+| Folds | nine: 30.6 + 30.7, 30.10 + 30.11, 30.16 + 30.17 + 30.18 + 30.19, 30.20 + 30.21, 30.34 + 30.35 + 30.36, 30.42 + 30.43, 30.44 + 30.45, 30.48 + 30.49, 30.50 + 30.51 |
+| Extra simulations | two Sims: fluorescence step by step in 30.5, and each shell's capacity in 30.9 |
+| Motion | moving: Brownian motion, Thomson's beam, Rutherford's alphas, the planetary orbits, the light of Figure 30.14, the Bohr atom's photon, fluorescence, the laser, the helium-neon transfer, the CD's beam, the hologram's waves, the probability clouds of 30.46 and 30.53, the orbit and the spin in their fields; every other figure is still |
+| 3D | mathematical 3D for Figure 30.52 only (`F.view3d`, cones about $z$); 30.7's figures are flat with locked views of the orbit; Figure 30.53 builds its clouds flat; locked views (`F.view`) for 30.6's cloud and 30.7's orbit and spin, none for Millikan's plates, Rutherford's apparatus or the laser cavity |
+| Sim sliders | the atomic number of 30.55 is a dropdown of the twenty elements (rule 26.1), not a slider |
+| Examples | numbered as the publisher prints them, 30.1 to 30.5 (the prep had counted 30.1, 30.3 to 30.6) |
+| Concepts | 71 after the pass: `metastable-state-and-phosphorescence` folded into `metastable-state` and `phosphorescence`; `spin-quantum-numbers` keeps its statement and gives its two repeated forms to the spin definitions |
+| Symbols | six added: $F_{\text{mag}}$, $B_{\text{orb}}$, $B_{\text{int}}$, $B_{\text{ext}}$, $L_{\text{orb}}$, $\theta_3$; every mass now written with its macro |

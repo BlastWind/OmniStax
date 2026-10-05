@@ -56,7 +56,7 @@ edition's chapter number, 31 (`Figure_31_03_05a.jpg`).
 | 30.6 | 30.44 (a) string, (b) orbit that fits, (c) orbit that does not (450), 30.45 three and four wavelengths around $r_3$, $r_4$ (225), 30.46 hydrogen ground-state cloud (225); unnumbered, inside AP items: the wave functions of particles X and Y (`ch30_M6_wave.jpg`, no width) |
 | 30.7 | 30.47 Zeeman splitting at two fields (350), 30.48 orbit as a current loop, $B_{\text{orb}}$ and $L_{\text{orb}}$ (225), 30.49 allowed directions in a field (200), 30.50 fine-structure doublets (225), 30.51 spin up and down at 54.7° (200) |
 | 30.8 | 30.52 $L$ and $L_z$ for $l = 1$ (250), 30.53 hydrogen probability clouds (400); Table 30.1 Atomic Quantum Numbers |
-| 30.9 | 30.54 Wolfgang Pauli (portrait, 210), 30.55 allowed and forbidden electron arrangements (250), Table 30.2 Shell and Subshell Symbols, 30.56 the notation $2p^3$ (220, empty caption), 30.57 the $n = 2$ quantum numbers (a table printed as an image inside Example 30.5, 350, empty caption), Table 30.3 Electron Configurations H to Ca, 30.58 the periodic table (400) |
+| 30.9 | 30.54 Wolfgang Pauli (portrait, 210), 30.55 allowed and forbidden electron arrangements (250), Table 30.2 Shell and Subshell Symbols, 30.56 the notation $2p^3$ (220, empty caption), 30.57 the $n = 2$ quantum numbers (a table printed as an image inside Example 30.4, 350, empty caption), Table 30.3 Electron Configurations H to Ca, 30.58 the periodic table (400) |
 
 ## What is new, and types
 
@@ -206,6 +206,20 @@ Rule 12: each moved item carries `source_section` and a note in both sections.
 - Figures 30.56 and 30.57 have empty captions; the section writes a caption in the
   book's voice.
 
+Found while building, gathered by the chapter pass (2026-10-05), all kept as
+printed and named in the sections' `notes`:
+
+- 30.3: the electron's potential energy is written $-kZq_e/r_n$ without the square
+  on $q_e$.
+- 30.4: "as shown in Figure 30.22" for luggage, which is Figure 30.24.
+- 30.8: the text and the summary write $s$ for the magnitude of the spin angular
+  momentum, $S$.
+- 30.9: the key's "$7 > (2l + 1) = 2(2 + 1) = 6$" for the $p$ subshell, beside the
+  $s$ subshell's "$3 > (2l + 1) = 2$" above.
+- Not the book's slip: the prep counted Examples 30.1, 30.3, 30.4, 30.5 and 30.6;
+  the publisher prints 30.1 to 30.5 (30.2 is Characteristic X-Ray Energy), and the
+  pages now say so.
+
 ## Prerequisite edges
 
 Landed: Chapters 4, 6, 7, 10, 11, 13, 16, 18, 19, 22, 24 (for example
@@ -213,8 +227,11 @@ Landed: Chapters 4, 6, 7, 10, 11, 13, 16, 18, 19, 22, 24 (for example
 `voltage-across-uniform-field`, `elementary-charge`, `electron-volt`,
 `potential-of-point-charge`, `standing-wave`, `constructive-interference`,
 `torque-on-a-current-loop`, `electromagnetic-spectrum`, `c-equals-f-lambda`).
-Chapters 27 and 29 are not merged; the edges wanted from them are in the notes
-file.
+Chapters 27 and 29 were merged when the chapter pass ran (2026-10-05), and it
+added the edges into them: `photon-energy`, `atomic-spectra-quantized`,
+`x-ray-tube-spectrum`, `x-ray-tube-maximum-energy`,
+`photon-energy-from-wavelength`, `bragg-equation`, `de-broglie-wavelength`,
+`position-momentum-uncertainty` and 27.4's `diffraction-grating`.
 
 ## Wanted at chapter level
 

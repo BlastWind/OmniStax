@@ -11,7 +11,9 @@ uses the book's.
 | Angular momentum $L$, $L_z$, spin $S$, $S_z$ | `angular-momentum` | The vector and its component in one hue, the component dashed |
 | The angles $\theta_1$, $\theta_2$, $\theta_3$ that $L$ makes with the $z$-axis | `angle` | The arc, its label and the readout of 30.8 |
 | Charges $q_e$, $q_p$, $q$ | `charge` | Symbol and readout only |
-| Masses $m_{\text{e}}$, $m_{\text{p}}$, $m_{\text{drop}}$ | `mass` | Symbol, readout and the mass of Millikan's drop where a figure states it |
+| Masses $m_{\text{e}}$, $m_{\text{p}}$, $m_{\text{drop}}$, $m$ | `mass` | Symbol, readout and the mass of Millikan's drop where a figure states it |
+| Forces $F$, $F_{\text{mag}}$ on Thomson's electrons | `force` | 30.2's symbols and readout |
+| The external, orbital and intrinsic fields $B_{\text{ext}}$, $B_{\text{orb}}$, $B_{\text{int}}$; $L_{\text{orb}}$ | `magnetic-field`, `angular-momentum` | 30.7's symbols, arrows and readout |
 | The fields $E$ and $B$ of Thomson's tube, Millikan's plates, the Zeeman field | `electric-field`, `magnetic-field` | As in Chapters 18 and 22 |
 | Accelerating and plate voltages $V$ | `voltage` | Slider and readout |
 | Beam speed $v$, acceleration $a$ | `velocity`, `acceleration` | 30.2 only |
@@ -20,10 +22,28 @@ uses the book's.
 
 Every page colours each category wherever it names a particular one: the
 energy of this level or that photon, the radius of the third orbit, the mass
-of the drop. The figures draw velocity, the fields, charge, voltage and mass
-in 30.2, energy and position in 30.3, energy and voltage in 30.4, energy in
-30.5, position and angular momentum in 30.6, the magnetic field and angular
-momentum in 30.7, and angular momentum and angle in 30.8.
+of the drop.
+
+## As built (chapter pass, 2026-10-05)
+
+The sections bind these types through their variables rows, readouts and
+prose; the figures' own hues are in the last column.
+
+| Section | Types bound | Drawn in the figures |
+|---|---|---|
+| 30.1 | none; the prose colours the masses, lengths and densities it names | the element colours of O and H through `F.el`, the pollen grain's own yellow as a fact |
+| 30.2 | velocity, acceleration, electric-field, magnetic-field, charge, mass, voltage, force ($F$, $F_{\text{mag}}$), position | velocity, electric-field, magnetic-field, mass, voltage |
+| 30.3 | energy, position, angle (Example 30.1's $\theta$), angular-momentum, rotational-inertia, angular-rate, velocity, charge, mass ($m_{\text{e}}$ and $m$ of $L = mvr$), frequency, voltage | energy, position, angle |
+| 30.4 | energy, voltage, charge, position ($\lambda$ of an x ray), velocity ($c$) | energy, voltage |
+| 30.5 | energy, position, angle (the eye above a hologram), velocity ($c$) | energy, position, angle |
+| 30.6 | position, angular-momentum, mass, velocity, momentum, energy and frequency (the summary's $\Delta E = hf$) | position, angular-momentum |
+| 30.7 | magnetic-field ($B_{\text{ext}}$, $B_{\text{orb}}$, $B_{\text{int}}$), angular-momentum ($L_{\text{orb}}$, $S$), angle, energy | magnetic-field, angular-momentum, angle |
+| 30.8 | angular-momentum, angle ($\theta$ and $\theta_1$, $\theta_2$, $\theta_3$, whose subscripts wear the referents $m_l = +1, 0, -1$), energy (one $E_n$), position (the clouds' scale bar) | angular-momentum, angle, position |
+| 30.9 | none; $Z$, $n$, $l$, $m_l$, $s$, $m_s$ stay ink | the subshell referents as the prose names them, `F.cat` past them |
+
+Every mass is now written with its macro ($m_{\text{e}}$, $m_{\text{p}}$,
+$m_{\text{drop}}$, $m$), since the book types mass; the prep's untyped
+$m_{\text{p}}$ and $m_{\text{drop}}$ wear the mass hue.
 
 Canvas colours come in item 7's four ways, the earlier winning.
 

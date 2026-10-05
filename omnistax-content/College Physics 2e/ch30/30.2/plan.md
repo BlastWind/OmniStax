@@ -113,3 +113,5 @@ The proton’s ratio is printed $9.58 \times 10^{7}$ C/kg in the text and $9.57 
 - new symbol `F_mag` (latex `F_{\text{mag}}`, force) with a 30.2 variables row, the magnetic force on the electron in “$F_{\text{mag}} = q_e vB$”; the text writes it `\kF_{\text{mag}}` until the macro exists
 - `ch30/COLOR.md` 30.2 row: the page binds `velocity`, `acceleration`, `electric-field`, `magnetic-field`, `charge`, `mass`, `voltage`, `force` and `position`; `force` and `position` are new to the row.
 - No concept or edge row needs changing.
+
+Applied by the chapter pass (2026-10-05): the seven forms and twelve variables rows anchored as listed; new rows `F`, `g` (acceleration, the book's 9.80 m/s²) and `m` (concept `electron-mass`); symbol `F_mag` with macro `\kFmag` and its row, and the text's `\kF_{\text{mag}}` swapped for it; the forms' $m_{\text{e}}$, $m_{\text{p}}$ and $m_{\text{drop}}$ written with their macros, since the book types mass; `COLOR.md` row as asked.

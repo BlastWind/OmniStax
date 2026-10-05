@@ -122,3 +122,5 @@ shell). No AP items, no Check Your Understanding.
 - edge `x-ray-maximum-energy` ← `x-ray-tube-maximum-energy` (29.3): the two concepts state one result, $E_{\text{max}} = hf_{\text{max}} = q_{\text{e}}V$; the chapter pass may merge them instead
 - edge `x-ray-diffraction` ← `photon-energy-from-wavelength` (29.2), for $\lambda = hc/E$
 - variables rows in 30.4 for the symbols the text, figure and cards write that the prep pass gave no 30.4 row: `E_n`, `E_0bohr`, `ΔE`, `E_ini`, `E_fin`, `q_e`, `λ`, `c`, `E` (the checker does not ask for them)
+
+Applied by the chapter pass (2026-10-05): both forms and both rows anchored; the nine rows added as listed; edges `bremsstrahlung-and-characteristic-x-rays` ← `x-ray-tube-spectrum` (dropping `electromagnetic-spectrum`), `x-ray-maximum-energy` ← `x-ray-tube-maximum-energy` (dropping `electron-volt`; the two concepts are not merged, which waits on Chen), `x-ray-diffraction` ← `photon-energy-from-wavelength` and ← 29.6's `bragg-equation` (dropping `c-equals-f-lambda`). Example 30.3 is renumbered 30.2, as the publisher prints it.

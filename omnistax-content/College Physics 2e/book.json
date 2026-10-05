@@ -3536,6 +3536,36 @@
       "sym": "α_max",
       "latex": "\\alpha_{\\text{max}}",
       "macro": "\\kalphamax"
+    },
+    {
+      "sym": "F_mag",
+      "latex": "F_{\\text{mag}}",
+      "macro": "\\kFmag"
+    },
+    {
+      "sym": "B_orb",
+      "latex": "B_{\\text{orb}}",
+      "macro": "\\kBorb"
+    },
+    {
+      "sym": "B_int",
+      "latex": "B_{\\text{int}}",
+      "macro": "\\kBint"
+    },
+    {
+      "sym": "B_ext",
+      "latex": "B_{\\text{ext}}",
+      "macro": "\\kBext"
+    },
+    {
+      "sym": "L_orb",
+      "latex": "L_{\\text{orb}}",
+      "macro": "\\kLorb"
+    },
+    {
+      "sym": "θ_3",
+      "latex": "\\theta_3",
+      "macro": "\\kthetathree"
     }
   ],
   "exercise_kinds": [
@@ -5978,7 +6008,8 @@
           "id": "eq-average-power-32",
           "latex": "P = \\frac{E}{t}",
           "ktex": "\\kP = \\frac{\\kE}{\\kt}",
-          "section": "32.5"
+          "section": "32.5",
+          "anchor": "32.5-fusion-energy-and-power"
         }
       ]
     },
@@ -11847,7 +11878,8 @@
         {
           "id": "eq-proton-mass",
           "latex": "m_{\\text{p}} = 1.67 \\times 10^{-27}\\;\\text{kg}",
-          "section": "30.2"
+          "section": "30.2",
+          "anchor": "30.2-electron-mass"
         }
       ]
     },
@@ -19271,7 +19303,8 @@
       "kind": "definition",
       "section": "32.2",
       "name": "Dose equivalent",
-      "statement": "The dose equivalent is the absorbed dose multiplied by the RBE, a number proportional to the biological effect: $\\text{rem} = \\text{rad}\\times\\text{RBE}$ and $\\text{Sv} = \\text{Gy}\\times\\text{RBE}$. Dose limits and risks are stated in this quantity."
+      "statement": "The dose equivalent is the absorbed dose multiplied by the RBE, a number proportional to the biological effect: $\\text{rem} = \\text{rad}\\times\\text{RBE}$ and $\\text{Sv} = \\text{Gy}\\times\\text{RBE}$. Dose limits and risks are stated in this quantity.",
+      "type": "dose"
     },
     {
       "id": "dose-from-a-source",
@@ -19323,7 +19356,8 @@
       "forms": [
         {
           "id": "eq-rad",
-          "latex": "1\\;\\text{rad} = 0.01\\;\\text{J/kg}"
+          "latex": "1\\;\\text{rad} = 0.01\\;\\text{J/kg}",
+          "anchor": "32.2-dose-units"
         }
       ]
     },
@@ -19339,7 +19373,8 @@
       "forms": [
         {
           "id": "eq-gray",
-          "latex": "1\\;\\text{Gy} = 1\\;\\text{J/kg} = 100\\;\\text{rad}"
+          "latex": "1\\;\\text{Gy} = 1\\;\\text{J/kg} = 100\\;\\text{rad}",
+          "anchor": "32.2-dose-units"
         }
       ]
     },
@@ -19355,7 +19390,8 @@
       "forms": [
         {
           "id": "eq-rem",
-          "latex": "\\text{rem} = \\text{rad}\\times\\text{RBE}"
+          "latex": "\\text{rem} = \\text{rad}\\times\\text{RBE}",
+          "anchor": "32.2-rbe"
         }
       ]
     },
@@ -19371,7 +19407,8 @@
       "forms": [
         {
           "id": "eq-sievert",
-          "latex": "1\\;\\text{Sv} = 1\\;\\text{Gy}\\times\\text{RBE} = 100\\;\\text{rem}"
+          "latex": "1\\;\\text{Sv} = 1\\;\\text{Gy}\\times\\text{RBE} = 100\\;\\text{rem}",
+          "anchor": "32.2-rbe"
         }
       ]
     },
@@ -19467,7 +19504,7 @@
       "terms": [
         "food irradiation"
       ],
-      "statement": "Insects and bacteria are simpler organisms than people and tolerate much more radiation, so killing them takes doses of thousands of grays. A low dose in food irradiation is therefore far larger than a low dose to a person."
+      "statement": "Food irradiation is the treatment of food with ionizing radiation. It reduces pest infestation, delays spoilage and prevents illness caused by microorganisms, and because insects and bacteria tolerate far more radiation than people, it takes doses of thousands of grays."
     },
     {
       "id": "irradiated-food-is-not-radioactive",
@@ -19536,19 +19573,23 @@
       "forms": [
         {
           "id": "eq-pp-overall",
-          "latex": "2e^{-} + 4\\,{}^{1}\\text{H} \\to {}^{4}\\text{He} + 2v_{\\text{e}} + 6\\gamma\\;(26.7\\;\\text{MeV})"
+          "latex": "2e^{-} + 4\\,{}^{1}\\text{H} \\to {}^{4}\\text{He} + 2v_{\\text{e}} + 6\\gamma\\;(26.7\\;\\text{MeV})",
+          "anchor": "32.5-proton-proton-cycle"
         },
         {
           "id": "eq-pp-step-1",
-          "latex": "{}^{1}\\text{H} + {}^{1}\\text{H} \\to {}^{2}\\text{H} + e^{+} + v_{\\text{e}}\\;(0.42\\;\\text{MeV})"
+          "latex": "{}^{1}\\text{H} + {}^{1}\\text{H} \\to {}^{2}\\text{H} + e^{+} + v_{\\text{e}}\\;(0.42\\;\\text{MeV})",
+          "anchor": "32.5-proton-proton-cycle"
         },
         {
           "id": "eq-pp-step-2",
-          "latex": "{}^{1}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{He} + \\gamma\\;(5.49\\;\\text{MeV})"
+          "latex": "{}^{1}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{He} + \\gamma\\;(5.49\\;\\text{MeV})",
+          "anchor": "32.5-proton-proton-cycle"
         },
         {
           "id": "eq-pp-step-3",
-          "latex": "{}^{3}\\text{He} + {}^{3}\\text{He} \\to {}^{4}\\text{He} + {}^{1}\\text{H} + {}^{1}\\text{H}\\;(12.86\\;\\text{MeV})"
+          "latex": "{}^{3}\\text{He} + {}^{3}\\text{He} \\to {}^{4}\\text{He} + {}^{1}\\text{H} + {}^{1}\\text{H}\\;(12.86\\;\\text{MeV})",
+          "anchor": "32.5-proton-proton-cycle"
         }
       ]
     },
@@ -19568,19 +19609,23 @@
       "forms": [
         {
           "id": "eq-dt-fusion",
-          "latex": "{}^{2}\\text{H} + {}^{3}\\text{H} \\to {}^{4}\\text{He} + n\\;(17.59\\;\\text{MeV})"
+          "latex": "{}^{2}\\text{H} + {}^{3}\\text{H} \\to {}^{4}\\text{He} + n\\;(17.59\\;\\text{MeV})",
+          "anchor": "32.5-fusion-on-earth"
         },
         {
           "id": "eq-dd-tritium",
-          "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{H} + {}^{1}\\text{H}\\;(4.03\\;\\text{MeV})"
+          "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{H} + {}^{1}\\text{H}\\;(4.03\\;\\text{MeV})",
+          "anchor": "32.5-fusion-on-earth"
         },
         {
           "id": "eq-dd-helium-3",
-          "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{He} + n\\;(3.27\\;\\text{MeV})"
+          "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{3}\\text{He} + n\\;(3.27\\;\\text{MeV})",
+          "anchor": "32.5-fusion-on-earth"
         },
         {
           "id": "eq-dd-gamma",
-          "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{4}\\text{He} + \\gamma\\;(23.85\\;\\text{MeV})"
+          "latex": "{}^{2}\\text{H} + {}^{2}\\text{H} \\to {}^{4}\\text{He} + \\gamma\\;(23.85\\;\\text{MeV})",
+          "anchor": "32.5-fusion-on-earth"
         }
       ]
     },
@@ -19681,11 +19726,13 @@
       "forms": [
         {
           "id": "eq-neutron-induced-fission",
-          "latex": "n + {}^{A}\\text{X} \\to \\text{FF}_{1} + \\text{FF}_{2} + xn"
+          "latex": "n + {}^{A}\\text{X} \\to \\text{FF}_{1} + \\text{FF}_{2} + xn",
+          "anchor": "32.6-neutron-induced-fission"
         },
         {
           "id": "eq-uranium-235-fission",
-          "latex": "n + {}^{235}_{92}\\text{U} \\to {}^{142}_{56}\\text{Ba} + {}^{91}_{36}\\text{Kr} + 3n"
+          "latex": "n + {}^{235}_{92}\\text{U} \\to {}^{142}_{56}\\text{Ba} + {}^{91}_{36}\\text{Kr} + 3n",
+          "anchor": "32.6-neutron-induced-fission"
         }
       ]
     },
@@ -19729,17 +19776,20 @@
       "forms": [
         {
           "id": "eq-breeding-capture",
-          "latex": "{}^{238}\\text{U} + n \\to {}^{239}\\text{U} + \\gamma"
+          "latex": "{}^{238}\\text{U} + n \\to {}^{239}\\text{U} + \\gamma",
+          "anchor": "32.6-breeding"
         },
         {
           "id": "eq-breeding-uranium-decay",
           "latex": "{}^{239}\\text{U} \\to {}^{239}\\text{Np} + \\beta^{-} + v_{e}\\;(t_{1/2} = 23\\;\\text{min})",
-          "ktex": "{}^{239}\\text{U} \\to {}^{239}\\text{Np} + \\beta^{-} + v_{e}\\;(\\kthalf = 23\\;\\text{min})"
+          "ktex": "{}^{239}\\text{U} \\to {}^{239}\\text{Np} + \\beta^{-} + v_{e}\\;(\\kthalf = 23\\;\\text{min})",
+          "anchor": "32.6-breeding"
         },
         {
           "id": "eq-breeding-neptunium-decay",
           "latex": "{}^{239}\\text{Np} \\to {}^{239}\\text{Pu} + \\beta^{-} + v_{e}\\;(t_{1/2} = 2.4\\;\\text{d})",
-          "ktex": "{}^{239}\\text{Np} \\to {}^{239}\\text{Pu} + \\beta^{-} + v_{e}\\;(\\kthalf = 2.4\\;\\text{d})"
+          "ktex": "{}^{239}\\text{Np} \\to {}^{239}\\text{Pu} + \\beta^{-} + v_{e}\\;(\\kthalf = 2.4\\;\\text{d})",
+          "anchor": "32.6-breeding"
         }
       ]
     },
@@ -19830,7 +19880,8 @@
       "forms": [
         {
           "id": "eq-lithium-tritium",
-          "latex": "n + {}^{6}\\text{Li} \\to {}^{3}\\text{H} + {}^{4}\\text{He}"
+          "latex": "n + {}^{6}\\text{Li} \\to {}^{3}\\text{H} + {}^{4}\\text{He}",
+          "anchor": "32.7-thermonuclear-bombs"
         }
       ]
     },
@@ -22630,12 +22681,14 @@
         {
           "id": "eq-atomic-mass-unit",
           "latex": "1\\;\\text{u} = 1.6605\\times10^{-27}\\;\\text{kg} = 931.5\\;\\text{MeV}/c^{2}",
-          "ktex": "1\\;\\text{u} = 1.6605\\times10^{-27}\\;\\text{kg} = 931.5\\;\\text{MeV}/\\kc^{2}"
+          "ktex": "1\\;\\text{u} = 1.6605\\times10^{-27}\\;\\text{kg} = 931.5\\;\\text{MeV}/\\kc^{2}",
+          "anchor": "31.3-nucleons"
         },
         {
           "id": "eq-proton-rest-energy",
           "latex": "E = mc^{2} = (938.27\\;\\text{MeV}/c^{2})c^{2} = 938.27\\;\\text{MeV}",
-          "ktex": "\\kE = mc^{2} = (938.27\\;\\text{MeV}/\\kc^{2})\\kc^{2} = 938.27\\;\\text{MeV}"
+          "ktex": "\\kE = mc^{2} = (938.27\\;\\text{MeV}/\\kc^{2})\\kc^{2} = 938.27\\;\\text{MeV}",
+          "anchor": "31.3-nucleons"
         }
       ]
     },
@@ -22648,7 +22701,8 @@
       "forms": [
         {
           "id": "eq-nuclide-notation",
-          "latex": "{}^{A}_{Z}\\text{X}_{N}"
+          "latex": "{}^{A}_{Z}\\text{X}_{N}",
+          "anchor": "31.3-nuclides"
         }
       ]
     },
@@ -22675,7 +22729,8 @@
         {
           "id": "eq-nuclear-radius",
           "latex": "r = r_0 A^{1/3}",
-          "ktex": "\\krnuc = \\kronuc A^{1/3}"
+          "ktex": "\\krnuc = \\kronuc A^{1/3}",
+          "anchor": "31.3-nuclear-size"
         }
       ]
     },
@@ -22689,7 +22744,8 @@
         {
           "id": "eq-nuclear-density",
           "latex": "\\rho = \\frac{m}{V} = \\frac{m}{(4/3)\\pi r^{3}}",
-          "ktex": "\\krho = \\frac{m}{V} = \\frac{m}{(4/3)\\pi \\krnuc^{3}}"
+          "ktex": "\\krho = \\frac{m}{V} = \\frac{m}{(4/3)\\pi \\krnuc^{3}}",
+          "anchor": "31.3-nuclear-density"
         }
       ]
     },
@@ -22763,7 +22819,8 @@
       "forms": [
         {
           "id": "eq-mass-number",
-          "latex": "A = N + Z"
+          "latex": "A = N + Z",
+          "anchor": "31.3-nuclides"
         }
       ]
     },
@@ -22803,7 +22860,8 @@
       "forms": [
         {
           "id": "eq-alpha-decay",
-          "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A-4}_{Z-2}\\text{Y}_{N-2} + {}^{4}_{2}\\text{He}_{2}"
+          "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A-4}_{Z-2}\\text{Y}_{N-2} + {}^{4}_{2}\\text{He}_{2}",
+          "anchor": "31.4-alpha-decay"
         }
       ]
     },
@@ -22816,23 +22874,27 @@
         "nuclear reaction energy"
       ],
       "statement": "The energy released in a nuclear reaction comes from the mass destroyed in it, $E = (\\Delta m)c^{2}$. When the products have less total mass than the parent, the reaction releases energy and can happen spontaneously; when they have more, it needs an input of energy.",
+      "type": "energy",
       "forms": [
         {
           "id": "eq-nuclear-reaction-energy",
           "latex": "E = (\\Delta m)c^{2}",
-          "ktex": "\\kE = (\\Delta m)\\kc^{2}"
+          "ktex": "\\kE = (\\Delta m)\\kc^{2}",
+          "anchor": "31.4-decay-energy"
         },
         {
           "id": "eq-fusion-energy-from-masses",
           "latex": "E = (m_{\\text{i}} - m_{\\text{f}})c^{2}",
           "ktex": "\\kE = (m_{\\text{i}} - m_{\\text{f}})\\kc^{2}",
-          "section": "32.5"
+          "section": "32.5",
+          "anchor": "32.5-nuclear-fusion"
         },
         {
           "id": "eq-fission-energy",
           "latex": "E = (\\Delta m)c^{2}",
           "ktex": "\\kE = (\\Delta m)\\kc^{2}",
-          "section": "32.6"
+          "section": "32.6",
+          "anchor": "32.6-fission-energy-example"
         }
       ]
     },
@@ -22845,7 +22907,8 @@
       "forms": [
         {
           "id": "eq-beta-plus-mass-difference",
-          "latex": "\\Delta m = m(\\text{parent}) - [m(\\text{daughter}) + 2m_{\\text{e}}]"
+          "latex": "\\Delta m = m(\\text{parent}) - [m(\\text{daughter}) + 2m_{\\text{e}}]",
+          "anchor": "31.4-positron-decay"
         }
       ]
     },
@@ -22858,11 +22921,13 @@
       "forms": [
         {
           "id": "eq-beta-minus-decay",
-          "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z+1}\\text{Y}_{N-1} + \\beta^{-} + \\bar{\\nu}_{e}"
+          "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z+1}\\text{Y}_{N-1} + \\beta^{-} + \\bar{\\nu}_{e}",
+          "anchor": "31.4-beta-minus-decay"
         },
         {
           "id": "eq-neutron-decay",
-          "latex": "\\text{n} \\to \\text{p} + \\beta^{-} + \\bar{\\nu}_{e}"
+          "latex": "\\text{n} \\to \\text{p} + \\beta^{-} + \\bar{\\nu}_{e}",
+          "anchor": "31.4-beta-minus-decay"
         }
       ]
     },
@@ -22875,7 +22940,8 @@
       "forms": [
         {
           "id": "eq-beta-plus-decay",
-          "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\beta^{+} + \\nu_{e}"
+          "latex": "{}^{A}_{Z}\\text{X}_{N} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\beta^{+} + \\nu_{e}",
+          "anchor": "31.4-positron-decay"
         }
       ]
     },
@@ -22908,7 +22974,8 @@
       "forms": [
         {
           "id": "eq-gamma-decay",
-          "latex": "{}^{A}_{Z}\\text{X}^{*}_{N} \\to {}^{A}_{Z}\\text{X}_{N} + \\gamma_{1} + \\gamma_{2} + \\cdots"
+          "latex": "{}^{A}_{Z}\\text{X}^{*}_{N} \\to {}^{A}_{Z}\\text{X}_{N} + \\gamma_{1} + \\gamma_{2} + \\cdots",
+          "anchor": "31.4-gamma-decay"
         }
       ]
     },
@@ -22935,7 +23002,7 @@
     {
       "id": "nuclear-decay",
       "kind": "definition",
-      "section": "31.4",
+      "section": "31.1",
       "name": "Decay",
       "terms": [
         "decay"
@@ -23046,7 +23113,8 @@
       "forms": [
         {
           "id": "eq-electron-capture",
-          "latex": "{}^{A}_{Z}\\text{X}_{N} + e^{-} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\nu_{e}"
+          "latex": "{}^{A}_{Z}\\text{X}_{N} + e^{-} \\to {}^{A}_{Z-1}\\text{Y}_{N+1} + \\nu_{e}",
+          "anchor": "31.4-positron-decay"
         }
       ]
     },
@@ -23075,7 +23143,8 @@
         {
           "id": "eq-exponential-decay",
           "latex": "N = N_0 e^{-\\lambda t}",
-          "ktex": "N = N_0 e^{-\\klamdec \\kt}"
+          "ktex": "N = N_0 e^{-\\klamdec \\kt}",
+          "anchor": "31.5-half-life"
         }
       ]
     },
@@ -23093,7 +23162,8 @@
         {
           "id": "eq-decay-constant",
           "latex": "\\lambda = \\frac{\\ln 2}{t_{1/2}} \\approx \\frac{0.693}{t_{1/2}}",
-          "ktex": "\\klamdec = \\frac{\\ln 2}{\\kthalf} \\approx \\frac{0.693}{\\kthalf}"
+          "ktex": "\\klamdec = \\frac{\\ln 2}{\\kthalf} \\approx \\frac{0.693}{\\kthalf}",
+          "anchor": "31.5-half-life"
         }
       ]
     },
@@ -23120,7 +23190,8 @@
         {
           "id": "eq-activity-definition",
           "latex": "R = \\frac{\\Delta N}{\\Delta t}",
-          "ktex": "\\kRact = \\frac{\\Delta N}{\\kdt}"
+          "ktex": "\\kRact = \\frac{\\Delta N}{\\kdt}",
+          "anchor": "31.5-activity"
         }
       ]
     },
@@ -23134,7 +23205,8 @@
         {
           "id": "eq-activity-number-half-life",
           "latex": "R = \\frac{0.693N}{t_{1/2}}",
-          "ktex": "\\kRact = \\frac{0.693N}{\\kthalf}"
+          "ktex": "\\kRact = \\frac{0.693N}{\\kthalf}",
+          "anchor": "31.5-activity"
         }
       ]
     },
@@ -23148,7 +23220,8 @@
         {
           "id": "eq-activity-exponential",
           "latex": "R = R_0 e^{-\\lambda t}",
-          "ktex": "\\kRact = \\kRoact e^{-\\klamdec \\kt}"
+          "ktex": "\\kRact = \\kRoact e^{-\\klamdec \\kt}",
+          "anchor": "31.5-activity-decays"
         }
       ]
     },
@@ -23164,7 +23237,8 @@
       "forms": [
         {
           "id": "eq-becquerel",
-          "latex": "1\\;\\text{Bq} = 1\\;\\text{decay/s}"
+          "latex": "1\\;\\text{Bq} = 1\\;\\text{decay/s}",
+          "anchor": "31.5-activity"
         }
       ]
     },
@@ -23180,7 +23254,8 @@
       "forms": [
         {
           "id": "eq-curie",
-          "latex": "1\\;\\text{Ci} = 3.70\\times10^{10}\\;\\text{Bq}"
+          "latex": "1\\;\\text{Ci} = 3.70\\times10^{10}\\;\\text{Bq}",
+          "anchor": "31.5-activity"
         }
       ]
     },
@@ -23225,12 +23300,14 @@
       "forms": [
         {
           "id": "eq-mass-defect",
-          "latex": "\\Delta m = (Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}"
+          "latex": "\\Delta m = (Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}",
+          "anchor": "31.6-mass-defect"
         },
         {
           "id": "eq-binding-energy-nuclear",
           "latex": "\\text{BE} = (\\Delta m)c^{2} = [(Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}]c^{2}",
-          "ktex": "\\kBE = (\\Delta m)\\kc^{2} = [(Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}]\\kc^{2}"
+          "ktex": "\\kBE = (\\Delta m)\\kc^{2} = [(Zm_{\\text{p}} + Nm_{\\text{n}}) - m_{\\text{tot}}]\\kc^{2}",
+          "anchor": "31.6-mass-defect"
         }
       ]
     },
@@ -23244,7 +23321,8 @@
         {
           "id": "eq-binding-energy",
           "latex": "\\text{BE} = \\{[Zm({}^{1}\\text{H}) + Nm_{\\text{n}}] - m({}^{A}\\text{X})\\}c^{2}",
-          "ktex": "\\kBE = \\{[Zm({}^{1}\\text{H}) + Nm_{\\text{n}}] - m({}^{A}\\text{X})\\}\\kc^{2}"
+          "ktex": "\\kBE = \\{[Zm({}^{1}\\text{H}) + Nm_{\\text{n}}] - m({}^{A}\\text{X})\\}\\kc^{2}",
+          "anchor": "31.6-mass-defect"
         }
       ]
     },
@@ -23349,17 +23427,20 @@
         {
           "id": "eq-electron-charge-to-mass",
           "latex": "\\frac{q_{\\text{e}}}{m_{\\text{e}}} = \\frac{a}{E}",
-          "ktex": "\\frac{\\kqe}{m_{\\text{e}}} = \\frac{\\ka}{\\kEf}"
+          "ktex": "\\frac{\\kqe}{\\kme} = \\frac{\\ka}{\\kEf}",
+          "anchor": "30.2-thomson-charge-to-mass"
         },
         {
           "id": "eq-electron-charge-to-mass-value",
           "latex": "\\frac{q_{\\text{e}}}{m_{\\text{e}}} = -1.76 \\times 10^{11}\\;\\text{C/kg}",
-          "ktex": "\\frac{\\kqe}{m_{\\text{e}}} = -1.76 \\times 10^{11}\\;\\text{C/kg}"
+          "ktex": "\\frac{\\kqe}{\\kme} = -1.76 \\times 10^{11}\\;\\text{C/kg}",
+          "anchor": "30.2-thomson-charge-to-mass"
         },
         {
           "id": "eq-proton-charge-to-mass-value",
           "latex": "\\frac{q_{\\text{p}}}{m_{\\text{p}}} = 9.58 \\times 10^{7}\\;\\text{C/kg}",
-          "ktex": "\\frac{\\kqp}{m_{\\text{p}}} = 9.58 \\times 10^{7}\\;\\text{C/kg}"
+          "ktex": "\\frac{\\kqp}{\\kmp} = 9.58 \\times 10^{7}\\;\\text{C/kg}",
+          "anchor": "30.2-thomson-charge-to-mass"
         }
       ]
     },
@@ -23373,12 +23454,14 @@
         {
           "id": "eq-millikan-charge",
           "latex": "q = \\frac{m_{\\text{drop}}g}{E} = \\frac{m_{\\text{drop}}gd}{V}",
-          "ktex": "\\kq = \\frac{m_{\\text{drop}}\\kg}{\\kEf} = \\frac{m_{\\text{drop}}\\kg\\kd}{\\kV}"
+          "ktex": "\\kq = \\frac{\\kmdrop\\kg}{\\kEf} = \\frac{\\kmdrop\\kg\\kd}{\\kV}",
+          "anchor": "30.2-millikan-oil-drop"
         },
         {
           "id": "eq-millikan-balance",
           "latex": "m_{\\text{drop}}g = q_{\\text{e}}E",
-          "ktex": "m_{\\text{drop}}\\kg = \\kqe\\kEf"
+          "ktex": "\\kmdrop\\kg = \\kqe\\kEf",
+          "anchor": "30.2-millikan-oil-drop"
         }
       ]
     },
@@ -23392,7 +23475,8 @@
       "forms": [
         {
           "id": "eq-electron-mass",
-          "latex": "m_{\\text{e}} = 9.11 \\times 10^{-31}\\;\\text{kg}"
+          "latex": "m_{\\text{e}} = 9.11 \\times 10^{-31}\\;\\text{kg}",
+          "anchor": "30.2-electron-mass"
         }
       ]
     },
@@ -23450,7 +23534,8 @@
         {
           "id": "eq-hydrogen-wavelengths",
           "latex": "\\frac{1}{\\lambda} = R\\left(\\frac{1}{n_{\\text{f}}^2} - \\frac{1}{n_{\\text{i}}^2}\\right)",
-          "ktex": "\\frac{1}{\\klam} = R\\left(\\frac{1}{n_{\\text{f}}^2} - \\frac{1}{n_{\\text{i}}^2}\\right)"
+          "ktex": "\\frac{1}{\\klam} = R\\left(\\frac{1}{n_{\\text{f}}^2} - \\frac{1}{n_{\\text{i}}^2}\\right)",
+          "anchor": "30.3-mysteries-of-atomic-spectra"
         }
       ]
     },
@@ -23464,7 +23549,8 @@
         {
           "id": "eq-bohr-transition",
           "latex": "\\Delta E = hf = E_{\\text{i}} - E_{\\text{f}}",
-          "ktex": "\\kdE = h\\kf = \\kEini - \\kEfin"
+          "ktex": "\\kdE = h\\kf = \\kEini - \\kEfin",
+          "anchor": "30.3-bohr-solution"
         }
       ]
     },
@@ -23485,7 +23571,8 @@
         {
           "id": "eq-bohr-angular-momentum",
           "latex": "L = m_{\\text{e}}vr_n = n\\frac{h}{2\\pi}\\;(n = 1, 2, 3, \\ldots)",
-          "ktex": "\\kL = m_{\\text{e}}\\kv\\krn = n\\frac{h}{2\\pi}\\;(n = 1, 2, 3, \\ldots)"
+          "ktex": "\\kL = \\kme\\kv\\krn = n\\frac{h}{2\\pi}\\;(n = 1, 2, 3, \\ldots)",
+          "anchor": "30.3-quantized-angular-momentum"
         }
       ]
     },
@@ -23500,7 +23587,8 @@
         {
           "id": "eq-bohr-radii",
           "latex": "r_n = \\frac{n^2}{Z}a_{\\text{B}}",
-          "ktex": "\\krn = \\frac{n^2}{Z}\\kaB"
+          "ktex": "\\krn = \\frac{n^2}{Z}\\kaB",
+          "anchor": "30.3-orbit-radii"
         }
       ]
     },
@@ -23518,22 +23606,26 @@
         {
           "id": "eq-hydrogen-like-energies",
           "latex": "E_n = -\\frac{Z^2}{n^2}E_0\\;(n = 1, 2, 3, \\ldots)",
-          "ktex": "\\kEn = -\\frac{Z^2}{n^2}\\kEobohr\\;(n = 1, 2, 3, \\ldots)"
+          "ktex": "\\kEn = -\\frac{Z^2}{n^2}\\kEobohr\\;(n = 1, 2, 3, \\ldots)",
+          "anchor": "30.3-orbital-energies"
         },
         {
           "id": "eq-orbital-energy-sum",
           "latex": "E_n = \\frac{1}{2}m_{\\text{e}}v^2 - k\\frac{Zq_{\\text{e}}^2}{r_n}",
-          "ktex": "\\kEn = \\frac{1}{2}m_{\\text{e}}\\kv^2 - k\\frac{Z\\kqe^2}{\\krn}"
+          "ktex": "\\kEn = \\frac{1}{2}\\kme\\kv^2 - k\\frac{Z\\kqe^2}{\\krn}",
+          "anchor": "30.3-orbital-energies"
         },
         {
           "id": "eq-ground-state-energy",
           "latex": "E_0 = \\frac{2\\pi^2 q_{\\text{e}}^4 m_{\\text{e}} k^2}{h^2} = 13.6\\;\\text{eV}",
-          "ktex": "\\kEobohr = \\frac{2\\pi^2 \\kqe^4 m_{\\text{e}} k^2}{h^2} = 13.6\\;\\text{eV}"
+          "ktex": "\\kEobohr = \\frac{2\\pi^2 \\kqe^4 \\kme k^2}{h^2} = 13.6\\;\\text{eV}",
+          "anchor": "30.3-orbital-energies"
         },
         {
           "id": "eq-hydrogen-energies",
           "latex": "E_n = -\\frac{13.6\\;\\text{eV}}{n^2}",
-          "ktex": "\\kEn = -\\frac{13.6\\;\\text{eV}}{n^2}"
+          "ktex": "\\kEn = -\\frac{13.6\\;\\text{eV}}{n^2}",
+          "anchor": "30.3-orbital-energies"
         }
       ]
     },
@@ -23564,7 +23656,8 @@
       "forms": [
         {
           "id": "eq-rydberg-constant",
-          "latex": "R = 1.097 \\times 10^{7}\\;\\text{m}^{-1}"
+          "latex": "R = 1.097 \\times 10^{7}\\;\\text{m}^{-1}",
+          "anchor": "30.3-mysteries-of-atomic-spectra"
         }
       ]
     },
@@ -23593,7 +23686,8 @@
         {
           "id": "eq-bohr-radius",
           "latex": "a_{\\text{B}} = \\frac{h^2}{4\\pi^2 m_{\\text{e}} k q_{\\text{e}}^2} = 0.529 \\times 10^{-10}\\;\\text{m}",
-          "ktex": "\\kaB = \\frac{h^2}{4\\pi^2 m_{\\text{e}} k \\kqe^2} = 0.529 \\times 10^{-10}\\;\\text{m}"
+          "ktex": "\\kaB = \\frac{h^2}{4\\pi^2 \\kme k \\kqe^2} = 0.529 \\times 10^{-10}\\;\\text{m}",
+          "anchor": "30.3-orbit-radii"
         }
       ]
     },
@@ -23636,7 +23730,8 @@
         {
           "id": "eq-x-ray-maximum-energy-30",
           "latex": "E_{\\text{max}} = hf_{\\text{max}} = q_{\\text{e}}V",
-          "ktex": "\\kEmax = hf_{\\text{max}} = \\kqe\\kV"
+          "ktex": "\\kEmax = hf_{\\text{max}} = \\kqe\\kV",
+          "anchor": "30.4-x-ray-production"
         }
       ]
     },
@@ -23650,7 +23745,8 @@
         {
           "id": "eq-k-alpha-energy",
           "latex": "E_{K_\\alpha} = \\Delta E = E_{\\text{i}} - E_{\\text{f}} = E_2 - E_1",
-          "ktex": "E_{K_\\alpha} = \\kdE = \\kEini - \\kEfin = E_2 - E_1"
+          "ktex": "E_{K_\\alpha} = \\kdE = \\kEini - \\kEfin = E_2 - E_1",
+          "anchor": "30.4-characteristic-x-ray-energy"
         }
       ]
     },
@@ -23687,13 +23783,6 @@
         "fluorescence"
       ],
       "statement": "Fluorescence is the process in which an atom excited by a photon of a given energy comes down in smaller steps and emits photons of lower energy, some of them visible. Black lights, glowing minerals and the fluorescent tube work this way."
-    },
-    {
-      "id": "metastable-state-and-phosphorescence",
-      "kind": "idea",
-      "section": "30.5",
-      "name": "Metastable states and phosphorescence",
-      "statement": "Most excited states decay in about $10^{-8}$ s, but metastable states live for milliseconds to hours. Their slow decay is phosphorescence, the glow of a luminous dial, and the metastable state is also what makes a laser possible."
     },
     {
       "id": "population-inversion",
@@ -23802,7 +23891,8 @@
         {
           "id": "eq-standing-wave-orbit",
           "latex": "n\\lambda_n = 2\\pi r_n\\;(n = 1, 2, 3, \\ldots)",
-          "ktex": "n\\klamorb = 2\\pi\\krn\\;(n = 1, 2, 3, \\ldots)"
+          "ktex": "n\\klamorb = 2\\pi\\krn\\;(n = 1, 2, 3, \\ldots)",
+          "anchor": "30.6-orbit-condition"
         }
       ]
     },
@@ -23816,7 +23906,8 @@
         {
           "id": "eq-wave-orbit-substituted",
           "latex": "\\frac{nh}{m_{\\text{e}}v} = 2\\pi r_n",
-          "ktex": "\\frac{nh}{m_{\\text{e}}\\kv} = 2\\pi\\krn"
+          "ktex": "\\frac{nh}{\\kme\\kv} = 2\\pi\\krn",
+          "anchor": "30.6-orbit-condition"
         }
       ]
     },
@@ -23892,7 +23983,7 @@
       "kind": "definition",
       "section": "30.7",
       "name": "Orbital angular momentum",
-      "symbol": "L",
+      "symbol": "L_orb",
       "terms": [
         "orbital angular momentum"
       ],
@@ -23909,7 +24000,8 @@
       "forms": [
         {
           "id": "eq-principal-quantum-number",
-          "latex": "n = 1, 2, 3, \\ldots"
+          "latex": "n = 1, 2, 3, \\ldots",
+          "anchor": "30.8-quantum-numbers"
         }
       ]
     },
@@ -23919,11 +24011,14 @@
       "section": "30.8",
       "name": "Magnitude of orbital angular momentum",
       "statement": "The magnitude of an electron’s orbital angular momentum is $L = \\sqrt{l(l+1)}\\,h/2\\pi$, where the angular momentum quantum number $l$ runs from 0 to $n - 1$. In the ground state $l$ is zero, so the ground state of hydrogen has no angular momentum.",
+      "symbol": "L",
+      "type": "angular-momentum",
       "forms": [
         {
           "id": "eq-orbital-angular-momentum",
           "latex": "L = \\sqrt{l(l+1)}\\frac{h}{2\\pi}\\;(l = 0, 1, 2, \\ldots, n-1)",
-          "ktex": "\\kL = \\sqrt{l(l+1)}\\frac{h}{2\\pi}\\;(l = 0, 1, 2, \\ldots, n-1)"
+          "ktex": "\\kL = \\sqrt{l(l+1)}\\frac{h}{2\\pi}\\;(l = 0, 1, 2, \\ldots, n-1)",
+          "anchor": "30.8-magnitude-of-angular-momentum"
         }
       ]
     },
@@ -23941,7 +24036,8 @@
         {
           "id": "eq-z-component-angular-momentum",
           "latex": "L_z = m_l\\frac{h}{2\\pi}\\;(m_l = -l, -l+1, \\ldots, l-1, l)",
-          "ktex": "\\kLz = m_l\\frac{h}{2\\pi}\\;(m_l = -l, -l+1, \\ldots, l-1, l)"
+          "ktex": "\\kLz = m_l\\frac{h}{2\\pi}\\;(m_l = -l, -l+1, \\ldots, l-1, l)",
+          "anchor": "30.8-direction-of-angular-momentum"
         }
       ]
     },
@@ -23955,7 +24051,8 @@
         {
           "id": "eq-angle-of-angular-momentum",
           "latex": "\\cos\\theta = \\frac{L_z}{L}",
-          "ktex": "\\cos\\theta = \\frac{\\kLz}{\\kL}"
+          "ktex": "\\cos\\theta = \\frac{\\kLz}{\\kL}",
+          "anchor": "30.8-allowed-directions"
         }
       ]
     },
@@ -23964,19 +24061,7 @@
       "kind": "result",
       "section": "30.8",
       "name": "Spin angular momentum",
-      "statement": "The electron’s spin is quantized in magnitude and direction as its orbital angular momentum is, but with the one value $s = 1/2$: $S = \\sqrt{s(s+1)}\\,h/2\\pi$, and its $z$-component is $S_z = m_s h/2\\pi$ with $m_s = \\pm 1/2$. The state of an electron in an atom is fully given by $(n, l, m_l, m_s)$.",
-      "forms": [
-        {
-          "id": "eq-spin-magnitude",
-          "latex": "S = \\sqrt{s(s+1)}\\frac{h}{2\\pi}\\;(s = 1/2\\;\\text{for electrons})",
-          "ktex": "\\kSspin = \\sqrt{s(s+1)}\\frac{h}{2\\pi}\\;(s = 1/2\\;\\text{for electrons})"
-        },
-        {
-          "id": "eq-spin-projection",
-          "latex": "S_z = m_s\\frac{h}{2\\pi}\\;\\left(m_s = -\\frac{1}{2}, +\\frac{1}{2}\\right)",
-          "ktex": "\\kSz = m_s\\frac{h}{2\\pi}\\;\\left(m_s = -\\frac{1}{2}, +\\frac{1}{2}\\right)"
-        }
-      ]
+      "statement": "The electron’s spin is quantized in magnitude and direction as its orbital angular momentum is, but with the one value $s = 1/2$: $S = \\sqrt{s(s+1)}\\,h/2\\pi$, and its $z$-component is $S_z = m_s h/2\\pi$ with $m_s = \\pm 1/2$. The state of an electron in an atom is fully given by $(n, l, m_l, m_s)$."
     },
     {
       "id": "allowed-quantum-numbers",
@@ -24043,7 +24128,8 @@
         {
           "id": "eq-spin-angular-momentum-magnitude",
           "latex": "S = \\sqrt{s(s+1)}\\,h/2\\pi",
-          "ktex": "\\kSspin = \\sqrt{s(s+1)}\\,h/2\\pi"
+          "ktex": "\\kSspin = \\sqrt{s(s+1)}\\,h/2\\pi",
+          "anchor": "30.8-intrinsic-spin"
         }
       ]
     },
@@ -24062,7 +24148,8 @@
         {
           "id": "eq-spin-angular-momentum-z-component",
           "latex": "S_z = m_s h/2\\pi",
-          "ktex": "\\kSz = m_s h/2\\pi"
+          "ktex": "\\kSz = m_s h/2\\pi",
+          "anchor": "30.8-intrinsic-spin"
         }
       ]
     },
@@ -24092,7 +24179,8 @@
       "forms": [
         {
           "id": "eq-subshell-capacity",
-          "latex": "\\text{maximum number of electrons in a subshell} = 2(2l+1)"
+          "latex": "\\text{maximum number of electrons in a subshell} = 2(2l+1)",
+          "anchor": "30.9-shell-capacity"
         }
       ]
     },
@@ -24105,7 +24193,8 @@
       "forms": [
         {
           "id": "eq-shell-capacity",
-          "latex": "\\text{maximum number of electrons in a shell} = 2n^2"
+          "latex": "\\text{maximum number of electrons in a shell} = 2n^2",
+          "anchor": "30.9-shell-capacity"
         }
       ]
     },
@@ -39177,10 +39266,6 @@
     },
     {
       "concept": "nuclear-radioactivity",
-      "prereq": "conservation-of-energy"
-    },
-    {
-      "concept": "nuclear-radioactivity",
       "prereq": "forms-of-energy"
     },
     {
@@ -39188,16 +39273,8 @@
       "prereq": "nuclear-radioactivity"
     },
     {
-      "concept": "radiation-is-nuclear-in-origin",
-      "prereq": "electron-volt"
-    },
-    {
       "concept": "alpha-beta-gamma-rays",
       "prereq": "nuclear-radioactivity"
-    },
-    {
-      "concept": "alpha-beta-gamma-rays",
-      "prereq": "magnetic-force-on-a-moving-charge"
     },
     {
       "concept": "alpha-beta-gamma-rays",
@@ -39208,16 +39285,8 @@
       "prereq": "electromagnetic-spectrum"
     },
     {
-      "concept": "alpha-beta-gamma-rays",
-      "prereq": "charge-of-electron-and-proton"
-    },
-    {
       "concept": "ionizing-radiation",
       "prereq": "alpha-beta-gamma-rays"
-    },
-    {
-      "concept": "ionizing-radiation",
-      "prereq": "electron-volt"
     },
     {
       "concept": "ionizing-radiation",
@@ -39228,18 +39297,6 @@
       "prereq": "ionizing-radiation"
     },
     {
-      "concept": "range-of-radiation",
-      "prereq": "elastic-collision"
-    },
-    {
-      "concept": "range-of-radiation",
-      "prereq": "kinetic-energy"
-    },
-    {
-      "concept": "range-of-radiation",
-      "prereq": "impulse"
-    },
-    {
       "concept": "radiation-detection-by-ionization",
       "prereq": "ionizing-radiation"
     },
@@ -39248,27 +39305,11 @@
       "prereq": "radiation-detection-by-ionization"
     },
     {
-      "concept": "ionization-energy-to-count",
-      "prereq": "electron-volt"
-    },
-    {
       "concept": "geiger-tube",
       "prereq": "radiation-detection-by-ionization"
     },
     {
-      "concept": "geiger-tube",
-      "prereq": "potential-difference"
-    },
-    {
       "concept": "scintillator-and-photomultiplier",
-      "prereq": "radiation-detection-by-ionization"
-    },
-    {
-      "concept": "scintillator-and-photomultiplier",
-      "prereq": "energy-from-potential-difference"
-    },
-    {
-      "concept": "solid-state-detector",
       "prereq": "radiation-detection-by-ionization"
     },
     {
@@ -39280,15 +39321,7 @@
       "prereq": "alpha-beta-gamma-rays"
     },
     {
-      "concept": "nucleons",
-      "prereq": "charge-of-electron-and-proton"
-    },
-    {
       "concept": "atomic-mass-unit",
-      "prereq": "nucleons"
-    },
-    {
-      "concept": "nuclide-notation",
       "prereq": "nucleons"
     },
     {
@@ -39308,24 +39341,8 @@
       "prereq": "atomic-mass-unit"
     },
     {
-      "concept": "nuclear-density",
-      "prereq": "density"
-    },
-    {
       "concept": "strong-and-weak-nuclear-forces",
       "prereq": "nucleons"
-    },
-    {
-      "concept": "strong-and-weak-nuclear-forces",
-      "prereq": "coulombs-law"
-    },
-    {
-      "concept": "strong-and-weak-nuclear-forces",
-      "prereq": "four-basic-forces"
-    },
-    {
-      "concept": "strong-and-weak-nuclear-forces",
-      "prereq": "work"
     },
     {
       "concept": "chart-of-the-nuclides",
@@ -39341,10 +39358,6 @@
     },
     {
       "concept": "parent-daughter-decay-series",
-      "prereq": "nuclear-radioactivity"
-    },
-    {
-      "concept": "parent-daughter-decay-series",
       "prereq": "chart-of-the-nuclides"
     },
     {
@@ -39352,20 +39365,8 @@
       "prereq": "parent-daughter-decay-series"
     },
     {
-      "concept": "alpha-decay",
-      "prereq": "nuclide-notation"
-    },
-    {
-      "concept": "alpha-decay",
-      "prereq": "alpha-beta-gamma-rays"
-    },
-    {
       "concept": "nuclear-reaction-energy",
       "prereq": "atomic-mass-unit"
-    },
-    {
-      "concept": "nuclear-reaction-energy",
-      "prereq": "conservation-of-energy"
     },
     {
       "concept": "nuclear-reaction-energy",
@@ -39377,10 +39378,6 @@
     },
     {
       "concept": "decay-energy-from-atomic-masses",
-      "prereq": "beta-minus-decay-and-the-neutrino"
-    },
-    {
-      "concept": "decay-energy-from-atomic-masses",
       "prereq": "beta-plus-decay-and-electron-capture"
     },
     {
@@ -39389,19 +39386,7 @@
     },
     {
       "concept": "beta-minus-decay-and-the-neutrino",
-      "prereq": "nuclide-notation"
-    },
-    {
-      "concept": "beta-minus-decay-and-the-neutrino",
       "prereq": "conservation-of-momentum"
-    },
-    {
-      "concept": "beta-minus-decay-and-the-neutrino",
-      "prereq": "conservation-of-energy"
-    },
-    {
-      "concept": "beta-plus-decay-and-electron-capture",
-      "prereq": "beta-minus-decay-and-the-neutrino"
     },
     {
       "concept": "beta-plus-decay-and-electron-capture",
@@ -39412,24 +39397,12 @@
       "prereq": "beta-minus-decay-and-the-neutrino"
     },
     {
-      "concept": "conservation-of-electron-family-number",
-      "prereq": "conservation-of-charge"
-    },
-    {
       "concept": "conservation-of-nucleon-number",
       "prereq": "alpha-decay"
     },
     {
       "concept": "conservation-of-nucleon-number",
       "prereq": "beta-minus-decay-and-the-neutrino"
-    },
-    {
-      "concept": "conservation-of-nucleon-number",
-      "prereq": "conservation-of-charge"
-    },
-    {
-      "concept": "gamma-decay",
-      "prereq": "alpha-beta-gamma-rays"
     },
     {
       "concept": "gamma-decay",
@@ -39445,10 +39418,6 @@
     },
     {
       "concept": "decay-constant",
-      "prereq": "exponential-decay-law"
-    },
-    {
-      "concept": "radioactive-dating",
       "prereq": "exponential-decay-law"
     },
     {
@@ -39472,18 +39441,6 @@
       "prereq": "activity-from-number-and-half-life"
     },
     {
-      "concept": "activity-decays-exponentially",
-      "prereq": "exponential-decay-law"
-    },
-    {
-      "concept": "binding-energy",
-      "prereq": "strong-and-weak-nuclear-forces"
-    },
-    {
-      "concept": "binding-energy",
-      "prereq": "work"
-    },
-    {
       "concept": "binding-energy",
       "prereq": "nuclear-reaction-energy"
     },
@@ -39492,20 +39449,8 @@
       "prereq": "binding-energy"
     },
     {
-      "concept": "mass-defect",
-      "prereq": "nucleons"
-    },
-    {
       "concept": "binding-energy-from-atomic-masses",
       "prereq": "mass-defect"
-    },
-    {
-      "concept": "binding-energy-from-atomic-masses",
-      "prereq": "atomic-mass-unit"
-    },
-    {
-      "concept": "binding-energy-from-atomic-masses",
-      "prereq": "nuclide-notation"
     },
     {
       "concept": "binding-energy-per-nucleon-curve",
@@ -39520,28 +39465,8 @@
       "prereq": "binding-energy-per-nucleon-curve"
     },
     {
-      "concept": "short-range-nuclear-force-and-coulomb-repulsion",
-      "prereq": "strong-and-weak-nuclear-forces"
-    },
-    {
-      "concept": "short-range-nuclear-force-and-coulomb-repulsion",
-      "prereq": "coulombs-law"
-    },
-    {
-      "concept": "short-range-nuclear-force-and-coulomb-repulsion",
-      "prereq": "chart-of-the-nuclides"
-    },
-    {
       "concept": "bound-in-a-potential-well",
       "prereq": "binding-energy"
-    },
-    {
-      "concept": "bound-in-a-potential-well",
-      "prereq": "potential-energy"
-    },
-    {
-      "concept": "bound-in-a-potential-well",
-      "prereq": "electric-potential-energy"
     },
     {
       "concept": "quantum-tunneling",
@@ -39550,10 +39475,6 @@
     {
       "concept": "alpha-decay-by-tunneling",
       "prereq": "quantum-tunneling"
-    },
-    {
-      "concept": "alpha-decay-by-tunneling",
-      "prereq": "alpha-decay"
     },
     {
       "concept": "alpha-decay-by-tunneling",
@@ -39601,10 +39522,6 @@
     },
     {
       "concept": "nucleus",
-      "prereq": "atom"
-    },
-    {
-      "concept": "nucleus",
       "prereq": "proton"
     },
     {
@@ -39642,10 +39559,6 @@
     {
       "concept": "atomic-mass",
       "prereq": "atom"
-    },
-    {
-      "concept": "atomic-mass",
-      "prereq": "mass"
     },
     {
       "concept": "atomic-mass",
@@ -39689,10 +39602,6 @@
     },
     {
       "concept": "positron",
-      "prereq": "electron"
-    },
-    {
-      "concept": "positron",
       "prereq": "antimatter"
     },
     {
@@ -39729,10 +39638,6 @@
     },
     {
       "concept": "decay-series",
-      "prereq": "parent-nuclide"
-    },
-    {
-      "concept": "decay-series",
       "prereq": "daughter-nuclide"
     },
     {
@@ -39749,15 +39654,7 @@
     },
     {
       "concept": "curie",
-      "prereq": "activity"
-    },
-    {
-      "concept": "curie",
       "prereq": "becquerel"
-    },
-    {
-      "concept": "radioactive-dating-technique",
-      "prereq": "half-life"
     },
     {
       "concept": "radioactive-dating-technique",
@@ -39780,10 +39677,6 @@
       "prereq": "nuclide"
     },
     {
-      "concept": "chart-of-the-nuclides",
-      "prereq": "nuclide"
-    },
-    {
       "concept": "decay-energy-from-atomic-masses",
       "prereq": "atomic-mass"
     },
@@ -39797,10 +39690,6 @@
     },
     {
       "concept": "beta-minus-decay-and-the-neutrino",
-      "prereq": "beta-decay"
-    },
-    {
-      "concept": "beta-plus-decay-and-electron-capture",
       "prereq": "beta-decay"
     },
     {
@@ -39830,10 +39719,6 @@
     {
       "concept": "brownian-motion",
       "prereq": "atom"
-    },
-    {
-      "concept": "brownian-motion",
-      "prereq": "kinetic-theory"
     },
     {
       "concept": "size-of-atoms",
@@ -39917,10 +39802,6 @@
     },
     {
       "concept": "discrete-atomic-spectra",
-      "prereq": "electromagnetic-spectrum"
-    },
-    {
-      "concept": "discrete-atomic-spectra",
       "prereq": "planetary-model"
     },
     {
@@ -39938,10 +39819,6 @@
     {
       "concept": "bohr-transition-energy",
       "prereq": "planetary-model"
-    },
-    {
-      "concept": "bohr-transition-energy",
-      "prereq": "conservation-of-energy"
     },
     {
       "concept": "energy-level-diagram",
@@ -39993,10 +39870,6 @@
     },
     {
       "concept": "bremsstrahlung-and-characteristic-x-rays",
-      "prereq": "electromagnetic-spectrum"
-    },
-    {
-      "concept": "bremsstrahlung-and-characteristic-x-rays",
       "prereq": "cathode-ray-tube"
     },
     {
@@ -40010,10 +39883,6 @@
     {
       "concept": "x-ray-maximum-energy",
       "prereq": "energy-conservation-for-charges"
-    },
-    {
-      "concept": "x-ray-maximum-energy",
-      "prereq": "electron-volt"
     },
     {
       "concept": "characteristic-x-ray-energy",
@@ -40044,10 +39913,6 @@
       "prereq": "size-of-atoms"
     },
     {
-      "concept": "x-ray-diffraction",
-      "prereq": "c-equals-f-lambda"
-    },
-    {
       "concept": "color-from-energy-levels",
       "prereq": "energy-level-diagram"
     },
@@ -40062,14 +39927,6 @@
     {
       "concept": "fluorescence",
       "prereq": "color-from-energy-levels"
-    },
-    {
-      "concept": "metastable-state-and-phosphorescence",
-      "prereq": "fluorescence"
-    },
-    {
-      "concept": "population-inversion",
-      "prereq": "metastable-state-and-phosphorescence"
     },
     {
       "concept": "stimulated-emission",
@@ -40092,32 +39949,12 @@
       "prereq": "bohr-transition-energy"
     },
     {
-      "concept": "wavelength-from-a-level-spacing",
-      "prereq": "c-equals-f-lambda"
-    },
-    {
-      "concept": "wavelength-from-a-level-spacing",
-      "prereq": "electron-volt"
-    },
-    {
       "concept": "holography",
       "prereq": "laser"
     },
     {
-      "concept": "holography",
-      "prereq": "constructive-interference"
-    },
-    {
-      "concept": "holography",
-      "prereq": "destructive-interference"
-    },
-    {
       "concept": "electron-standing-wave-orbit",
       "prereq": "standing-wave"
-    },
-    {
-      "concept": "electron-standing-wave-orbit",
-      "prereq": "constructive-interference"
     },
     {
       "concept": "electron-standing-wave-orbit",
@@ -40209,10 +40046,6 @@
     },
     {
       "concept": "spin-quantum-numbers",
-      "prereq": "intrinsic-spin"
-    },
-    {
-      "concept": "spin-quantum-numbers",
       "prereq": "orbital-angular-momentum-magnitude"
     },
     {
@@ -40262,10 +40095,6 @@
     {
       "concept": "bremsstrahlung-and-characteristic-x-rays",
       "prereq": "characteristic-x-rays"
-    },
-    {
-      "concept": "discrete-atomic-spectra",
-      "prereq": "atomic-spectra"
     },
     {
       "concept": "cathode-ray-tube-device",
@@ -40373,10 +40202,6 @@
     },
     {
       "concept": "angular-momentum-quantum-number",
-      "prereq": "quantum-number"
-    },
-    {
-      "concept": "angular-momentum-quantum-number",
       "prereq": "orbital-angular-momentum"
     },
     {
@@ -40441,10 +40266,6 @@
     },
     {
       "concept": "principal-quantum-number",
-      "prereq": "quantum-number"
-    },
-    {
-      "concept": "allowed-quantum-numbers",
       "prereq": "quantum-number"
     },
     {
@@ -40806,6 +40627,82 @@
     {
       "concept": "free-body-diagram",
       "prereq": "free-body-diagram-def"
+    },
+    {
+      "concept": "bohr-transition-energy",
+      "prereq": "photon-energy"
+    },
+    {
+      "concept": "discrete-atomic-spectra",
+      "prereq": "atomic-spectra-quantized"
+    },
+    {
+      "concept": "bremsstrahlung-and-characteristic-x-rays",
+      "prereq": "x-ray-tube-spectrum"
+    },
+    {
+      "concept": "x-ray-maximum-energy",
+      "prereq": "x-ray-tube-maximum-energy"
+    },
+    {
+      "concept": "x-ray-diffraction",
+      "prereq": "photon-energy-from-wavelength"
+    },
+    {
+      "concept": "x-ray-diffraction",
+      "prereq": "bragg-equation"
+    },
+    {
+      "concept": "fluorescence",
+      "prereq": "atomic-de-excitation"
+    },
+    {
+      "concept": "population-inversion",
+      "prereq": "metastable-state"
+    },
+    {
+      "concept": "holography",
+      "prereq": "diffraction-grating"
+    },
+    {
+      "concept": "electron-standing-wave-orbit",
+      "prereq": "de-broglie-wavelength"
+    },
+    {
+      "concept": "probability-cloud",
+      "prereq": "position-momentum-uncertainty"
+    },
+    {
+      "concept": "wavelength-from-a-level-spacing",
+      "prereq": "photon-energy-from-wavelength"
+    },
+    {
+      "concept": "nuclear-radioactivity",
+      "prereq": "mass-energy-equivalence"
+    },
+    {
+      "concept": "alpha-beta-gamma-rays",
+      "prereq": "photon"
+    },
+    {
+      "concept": "gamma-decay",
+      "prereq": "photon-energy"
+    },
+    {
+      "concept": "radiation-is-nuclear-in-origin",
+      "prereq": "atomic-spectra"
+    },
+    {
+      "concept": "nucleus",
+      "prereq": "rutherford-scattering"
+    },
+    {
+      "concept": "quantum-tunneling",
+      "prereq": "probability-distribution"
+    },
+    {
+      "concept": "ionizing-radiation",
+      "prereq": "ionizing-photons"
     }
   ],
   "colours": {

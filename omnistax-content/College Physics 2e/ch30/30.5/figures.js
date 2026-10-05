@@ -1,7 +1,7 @@
 /* 30.5 Applications of Atomic Excitations and De-Excitations.
-   Colour: level energies and the energy axes wear the energy hue, wavelengths
+   Color: level energies and the energy axes wear the energy hue, wavelengths
    and lengths the position hue, the eye's direction the angle hue. A visible
-   photon is drawn in the colour of its wavelength through `wavelengthColor`
+   photon is drawn in the color of its wavelength through `wavelengthColor`
    and F.fact (the physical fact); an ultraviolet or infrared photon is ink.
    Electrons are F.el('e-'), helium and neon F.el('He') and F.el('Ne'). The
    lasing atoms of the cavity are of no named element and are ink. */
@@ -31,7 +31,7 @@ function wavelengthColor(nm) {
 const RED = 633;                                            /* the helium-neon line, nm */
 const bandOf = (nm) => nm < 380 ? 'ultraviolet' : nm > 700 ? 'infrared' : 'visible';
 
-/* a photon as a short wave packet centred on (x, y), running along (ux, uy); its
+/* a photon as a short wave packet centered on (x, y), running along (ux, uy); its
    crests sit at fixed places along its own path, so two packets side by side with
    the same phase are in step */
 function packet(ctx, x, y, ux, uy, color, o = {}) {
@@ -539,7 +539,7 @@ const wavesOf = (nm) => clamp(1.6 + 1300 / nm, 2, 7.5);
    10⁴ times longer than 633 nm so its fringes can be seen. Viewing: the same
    reference wave passes through the hologram; the diffracted light leaves as
    if from the objects (the virtual image) and converges on their mirror
-   positions (the real image). The eye sits on an arc about the film's centre
+   positions (the real image). The eye sits on an arc about the film's center
    at θ above its normal; the inset shows the two objects as seen from there.
    Crests move along every ray at a steady speed, so the clock is endless.
 ===================================================================== */

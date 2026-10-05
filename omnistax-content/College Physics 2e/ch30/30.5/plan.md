@@ -156,3 +156,5 @@ None.
 - edge `holography` <- `diffraction-grating` (27.4): the book says the film "acts much like a collection of diffraction gratings".
 - `ch30/COLOR.md` 30.5 row: the page binds `energy`, `position` and `angle`, not `energy` alone.
 - No symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): the rows `λ`, `E`, `ΔE` added as asked, with `c` and `θ` (the eye's angle in `sim-hologram`) besides; edges `fluorescence` ← `atomic-de-excitation` (which rests on `atomic-excitation`, so that one edge serves both), `population-inversion` ← `metastable-state`, `holography` ← `diffraction-grating` (dropping the two interference edges it reaches); `metastable-state-and-phosphorescence` folded into `metastable-state` and `phosphorescence`, its two coverage rows removed; `COLOR.md` row as asked.

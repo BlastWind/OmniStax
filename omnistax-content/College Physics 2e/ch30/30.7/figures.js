@@ -23,7 +23,7 @@ function energyAxis(ctx, x0, x1, y) { arrow(ctx, x0, y, x1, y, PAL.muted, 3); te
 ===================================================================== */
 (function () {
   const d = sim('sim-zeeman', 420);
-  const B = ctl(d.controls, { label: '\\kBmag_{\\text{ext}}', cls: 'magnetic-field', min: 0, max: 2, step: 0.01, value: 1, unit: 'T', dec: 2,
+  const B = ctl(d.controls, { label: '\\kBext', cls: 'magnetic-field', min: 0, max: 2, step: 0.01, value: 1, unit: 'T', dec: 2,
     aria: 'the external magnetic field', specials: [{ at: 0, label: 'no field' }] });
   const X0 = 150, X1 = 1150, XA = 420, XB = 880, PX = 40;
   const A0 = 100, A1 = 170, B0 = 240, B1 = 310;
@@ -52,7 +52,7 @@ function energyAxis(ctx, x0, x1, y) { arrow(ctx, x0, y, x1, y, PAL.muted, 3); te
 
     topline(ctx, b === 0 ? 'With no external field each line is single.'
       : 'In a ' + fmt(b, 2) + '-T field the left line splits into three lines and the right into five.');
-    ro.set('\\kdE = (5.79\\times 10^{-5}\\ \\text{eV/T})\\,\\kBmag_{\\text{ext}} = (5.79\\times 10^{-5}\\ \\text{eV/T})(' + fmt(b, 2) + '\\ \\text{T}) = ' + sciTex(MU_B * b) + '\\ \\text{eV}', '', { form: 'z' });
+    ro.set('\\kdE = (5.79\\times 10^{-5}\\ \\text{eV/T})\\,\\kBext = (5.79\\times 10^{-5}\\ \\text{eV/T})(' + fmt(b, 2) + '\\ \\text{T}) = ' + sciTex(MU_B * b) + '\\ \\text{eV}', '', { form: 'z' });
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -130,7 +130,7 @@ function energyAxis(ctx, x0, x1, y) { arrow(ctx, x0, y, x1, y, PAL.muted, 3); te
     energyAxis(ctx, SX0, SX1, SY1 + 76);
 
     lab.flush();
-    topline(ctx, 'With $\\kL_{\\text{orb}}$ at ' + th.value + '° to $\\kBmag_{\\text{ext}}$, the orbit has the ' + RANK[i] + ' of its five energies in the field.');
+    topline(ctx, 'With $\\kLorb$ at ' + th.value + '° to $\\kBext$, the orbit has the ' + RANK[i] + ' of its five energies in the field.');
     ro.set('\\ktheta = ' + th.value + '^\\circ', '', { form: 'a' });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -211,7 +211,7 @@ function energyAxis(ctx, x0, x1, y) { arrow(ctx, x0, y, x1, y, PAL.muted, 3); te
     hits.push({ x: MX - DS, y: MY, r: 10, name: 'the doublet line from spin up' }, { x: MX + DS, y: MY, r: 10, name: 'the doublet line from spin down' }, { x: LX, y: (SY0 + SY1) / 2, r: 12, name: 'a spectral line, a doublet at high resolution' }, { x: RX, y: (SY0 + SY1) / 2, r: 12, name: 'a spectral line, a doublet at high resolution' });
 
     lab.flush();
-    topline(ctx, 'Spin ' + sp.value + ': $\\kBmag_{\\text{int}}$ makes ' + (up ? '54.7' : '125.3') + '° with $\\kBmag_{\\text{orb}}$, and the level gives the ' + (up ? 'lower' : 'higher') + '-energy line of the doublet.');
+    topline(ctx, 'Spin ' + sp.value + ': $\\kBint$ makes ' + (up ? '54.7' : '125.3') + '° with $\\kBorb$, and the level gives the ' + (up ? 'lower' : 'higher') + '-energy line of the doublet.');
     ro.set(up ? '\\ktheta = 54.7^\\circ' : '\\ktheta = 180^\\circ - 54.7^\\circ = 125.3^\\circ', '', { form: sp.value });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });

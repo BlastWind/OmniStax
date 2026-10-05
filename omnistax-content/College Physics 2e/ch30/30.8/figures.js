@@ -58,7 +58,7 @@ const signedTex = (m) => (m > 0 ? '+' + m : String(m));
     return { l, m, L, th: l ? (Math.acos(m / L) * 180) / Math.PI : 0 };
   };
 
-  /* ---------- the scene, rebuilt when the state or a colour changes ---------- */
+  /* ---------- the scene, rebuilt when the state or a color changes ---------- */
   function dashes(g, a, b, r, col) {
     const n = Math.max(2, Math.round(Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]) / 0.11));
     for (let i = 0; i < n; i++) {

@@ -2,11 +2,11 @@
    The page's figures bind energy (every level and every transition), position
    (the wavelength, the radii of the orbits and the grating's spacing) and angle
    (the angle a line leaves the grating at). R, h, Z, n, the order m and every
-   count are ink. Light is drawn in the colour of its wavelength by spectral(),
+   count are ink. Light is drawn in the color of its wavelength by spectral(),
    the piecewise fit 27.4 uses, through F.fact; a UV or IR photon is ink. The
    electron is F.el('e-') and the hydrogen nucleus F.el('p+'). The Lyman, Balmer
    and Paschen series are the section's referents, drawn with F.ref, a visible
-   line keeping its own colour. The light of Figure 30.14 flows and the atom of
+   line keeping its own color. The light of Figure 30.14 flows and the atom of
    Figure 30.16 + 30.17 + 30.18 + 30.19 emits on a clock; Figure 30.15 is still. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['30.3'] = function (root, F) {
@@ -21,7 +21,7 @@ const lamNm = (nf, ni) => 1e9 / (RYD * (1 / (nf * nf) - (ni === Infinity ? 0 : 1
 const bandOf = (nm) => (nm < 380 ? 'ultraviolet' : nm <= 700 ? 'visible' : 'infrared');
 const nmText = (nm) => fmt(nm, nm < 100 ? 1 : 0);
 
-/* the colour a wavelength in nanometres is seen as, as sRGB components */
+/* the color a wavelength in nanometers is seen as, as sRGB components */
 function spectralRGB(lam) {
   let r = 0, g = 0, b = 0;
   if (lam < 440) { r = (440 - lam) / 60; b = 1; }
@@ -36,7 +36,7 @@ function spectralRGB(lam) {
 }
 const spectral = (lam, a = 1) => { const [r, g, b] = spectralRGB(lam); return F.fact(`rgba(${r}, ${g}, ${b}, ${a})`); };
 
-/* a photon as a short wave packet centred on (x, y), heading (ux, uy) */
+/* a photon as a short wave packet centered on (x, y), heading (ux, uy) */
 function packet(ctx, x, y, ux, uy, color, a = 1) {
   const px = -uy, py = ux, L = 46, N = 40;
   ctx.save(); ctx.globalAlpha *= a; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.beginPath();
@@ -78,7 +78,7 @@ function packet(ctx, x, y, ux, uy, color, a = 1) {
   let hits = [];
   hover(d.stage, () => hits);
 
-  /* the colour the tube glows, the mean of its lines */
+  /* the color the tube glows, the mean of its lines */
   function glow(E, a) {
     const s = E.lines.map(spectralRGB).reduce((p, q) => [p[0] + q[0], p[1] + q[1], p[2] + q[2]], [0, 0, 0]);
     const n = E.lines.length, top = Math.max(...s) / n || 1, k = 235 / top;
@@ -166,7 +166,7 @@ function packet(ctx, x, y, ux, uy, color, a = 1) {
    FIGURE 30.15 · sim-hydrogen-series · still · flat
    The lines of the first three series on one logarithmic wavelength scale,
    80 to 2000 nm, fixed; each series drawn from n_i = n_f + 1 to n_f + 40 and
-   its limit dashed. The visible band is drawn in its own colours above.
+   its limit dashed. The visible band is drawn in its own colors above.
 ===================================================================== */
 (function () {
   const SERIES = [
@@ -193,7 +193,7 @@ function packet(ctx, x, y, ux, uy, color, a = 1) {
     const ni = lim ? Infinity : nf + +li.value, nm = lamNm(nf, ni), band = bandOf(nm);
     hits = [];
 
-    /* the bands, the visible one in its colours */
+    /* the bands, the visible one in its colors */
     for (let k = 0; k < 40; k++) {
       const a = 380 + 8 * k;
       ctx.save(); ctx.fillStyle = spectral(a + 4); ctx.fillRect(X(a), 104, X(a + 8) - X(a) + 0.6, 14); ctx.restore();

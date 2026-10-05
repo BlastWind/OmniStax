@@ -102,3 +102,5 @@ None.
 - Edge `brownian-motion` ← `kinetic-theory` is redundant (reached through `atom` ← `kinetic-theory`); drop it for the Hasse reduction.
 - `ch30/COLOR.md`: 30.1 binds no type; its sim draws the element colours of O and H and the pollen grain's own colour as a fact.
 - No concept or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): the edge `brownian-motion` ← `kinetic-theory` is dropped; `COLOR.md` records the element and fact colours.

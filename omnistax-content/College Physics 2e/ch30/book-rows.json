@@ -98,6 +98,36 @@
   {
    "sym": "s_spin",
    "latex": "s"
+  },
+  {
+   "sym": "F_mag",
+   "latex": "F_{\\text{mag}}",
+   "macro": "\\kFmag"
+  },
+  {
+   "sym": "B_orb",
+   "latex": "B_{\\text{orb}}",
+   "macro": "\\kBorb"
+  },
+  {
+   "sym": "B_int",
+   "latex": "B_{\\text{int}}",
+   "macro": "\\kBint"
+  },
+  {
+   "sym": "B_ext",
+   "latex": "B_{\\text{ext}}",
+   "macro": "\\kBext"
+  },
+  {
+   "sym": "L_orb",
+   "latex": "L_{\\text{orb}}",
+   "macro": "\\kLorb"
+  },
+  {
+   "sym": "θ_3",
+   "latex": "\\theta_3",
+   "macro": "\\kthetathree"
   }
  ],
  "concepts": [
@@ -145,17 +175,20 @@
     {
      "id": "eq-electron-charge-to-mass",
      "latex": "\\frac{q_{\\text{e}}}{m_{\\text{e}}} = \\frac{a}{E}",
-     "ktex": "\\frac{\\kqe}{m_{\\text{e}}} = \\frac{\\ka}{\\kEf}"
+     "ktex": "\\frac{\\kqe}{\\kme} = \\frac{\\ka}{\\kEf}",
+     "anchor": "30.2-thomson-charge-to-mass"
     },
     {
      "id": "eq-electron-charge-to-mass-value",
      "latex": "\\frac{q_{\\text{e}}}{m_{\\text{e}}} = -1.76 \\times 10^{11}\\;\\text{C/kg}",
-     "ktex": "\\frac{\\kqe}{m_{\\text{e}}} = -1.76 \\times 10^{11}\\;\\text{C/kg}"
+     "ktex": "\\frac{\\kqe}{\\kme} = -1.76 \\times 10^{11}\\;\\text{C/kg}",
+     "anchor": "30.2-thomson-charge-to-mass"
     },
     {
      "id": "eq-proton-charge-to-mass-value",
      "latex": "\\frac{q_{\\text{p}}}{m_{\\text{p}}} = 9.58 \\times 10^{7}\\;\\text{C/kg}",
-     "ktex": "\\frac{\\kqp}{m_{\\text{p}}} = 9.58 \\times 10^{7}\\;\\text{C/kg}"
+     "ktex": "\\frac{\\kqp}{\\kmp} = 9.58 \\times 10^{7}\\;\\text{C/kg}",
+     "anchor": "30.2-thomson-charge-to-mass"
     }
    ]
   },
@@ -169,12 +202,14 @@
     {
      "id": "eq-millikan-charge",
      "latex": "q = \\frac{m_{\\text{drop}}g}{E} = \\frac{m_{\\text{drop}}gd}{V}",
-     "ktex": "\\kq = \\frac{m_{\\text{drop}}\\kg}{\\kEf} = \\frac{m_{\\text{drop}}\\kg\\kd}{\\kV}"
+     "ktex": "\\kq = \\frac{\\kmdrop\\kg}{\\kEf} = \\frac{\\kmdrop\\kg\\kd}{\\kV}",
+     "anchor": "30.2-millikan-oil-drop"
     },
     {
      "id": "eq-millikan-balance",
      "latex": "m_{\\text{drop}}g = q_{\\text{e}}E",
-     "ktex": "m_{\\text{drop}}\\kg = \\kqe\\kEf"
+     "ktex": "\\kmdrop\\kg = \\kqe\\kEf",
+     "anchor": "30.2-millikan-oil-drop"
     }
    ]
   },
@@ -188,7 +223,8 @@
    "forms": [
     {
      "id": "eq-electron-mass",
-     "latex": "m_{\\text{e}} = 9.11 \\times 10^{-31}\\;\\text{kg}"
+     "latex": "m_{\\text{e}} = 9.11 \\times 10^{-31}\\;\\text{kg}",
+     "anchor": "30.2-electron-mass"
     }
    ]
   },
@@ -246,7 +282,8 @@
     {
      "id": "eq-hydrogen-wavelengths",
      "latex": "\\frac{1}{\\lambda} = R\\left(\\frac{1}{n_{\\text{f}}^2} - \\frac{1}{n_{\\text{i}}^2}\\right)",
-     "ktex": "\\frac{1}{\\klam} = R\\left(\\frac{1}{n_{\\text{f}}^2} - \\frac{1}{n_{\\text{i}}^2}\\right)"
+     "ktex": "\\frac{1}{\\klam} = R\\left(\\frac{1}{n_{\\text{f}}^2} - \\frac{1}{n_{\\text{i}}^2}\\right)",
+     "anchor": "30.3-mysteries-of-atomic-spectra"
     }
    ]
   },
@@ -260,7 +297,8 @@
     {
      "id": "eq-bohr-transition",
      "latex": "\\Delta E = hf = E_{\\text{i}} - E_{\\text{f}}",
-     "ktex": "\\kdE = h\\kf = \\kEini - \\kEfin"
+     "ktex": "\\kdE = h\\kf = \\kEini - \\kEfin",
+     "anchor": "30.3-bohr-solution"
     }
    ]
   },
@@ -281,7 +319,8 @@
     {
      "id": "eq-bohr-angular-momentum",
      "latex": "L = m_{\\text{e}}vr_n = n\\frac{h}{2\\pi}\\;(n = 1, 2, 3, \\ldots)",
-     "ktex": "\\kL = m_{\\text{e}}\\kv\\krn = n\\frac{h}{2\\pi}\\;(n = 1, 2, 3, \\ldots)"
+     "ktex": "\\kL = \\kme\\kv\\krn = n\\frac{h}{2\\pi}\\;(n = 1, 2, 3, \\ldots)",
+     "anchor": "30.3-quantized-angular-momentum"
     }
    ]
   },
@@ -296,7 +335,8 @@
     {
      "id": "eq-bohr-radii",
      "latex": "r_n = \\frac{n^2}{Z}a_{\\text{B}}",
-     "ktex": "\\krn = \\frac{n^2}{Z}\\kaB"
+     "ktex": "\\krn = \\frac{n^2}{Z}\\kaB",
+     "anchor": "30.3-orbit-radii"
     }
    ]
   },
@@ -314,22 +354,26 @@
     {
      "id": "eq-hydrogen-like-energies",
      "latex": "E_n = -\\frac{Z^2}{n^2}E_0\\;(n = 1, 2, 3, \\ldots)",
-     "ktex": "\\kEn = -\\frac{Z^2}{n^2}\\kEobohr\\;(n = 1, 2, 3, \\ldots)"
+     "ktex": "\\kEn = -\\frac{Z^2}{n^2}\\kEobohr\\;(n = 1, 2, 3, \\ldots)",
+     "anchor": "30.3-orbital-energies"
     },
     {
      "id": "eq-orbital-energy-sum",
      "latex": "E_n = \\frac{1}{2}m_{\\text{e}}v^2 - k\\frac{Zq_{\\text{e}}^2}{r_n}",
-     "ktex": "\\kEn = \\frac{1}{2}m_{\\text{e}}\\kv^2 - k\\frac{Z\\kqe^2}{\\krn}"
+     "ktex": "\\kEn = \\frac{1}{2}\\kme\\kv^2 - k\\frac{Z\\kqe^2}{\\krn}",
+     "anchor": "30.3-orbital-energies"
     },
     {
      "id": "eq-ground-state-energy",
      "latex": "E_0 = \\frac{2\\pi^2 q_{\\text{e}}^4 m_{\\text{e}} k^2}{h^2} = 13.6\\;\\text{eV}",
-     "ktex": "\\kEobohr = \\frac{2\\pi^2 \\kqe^4 m_{\\text{e}} k^2}{h^2} = 13.6\\;\\text{eV}"
+     "ktex": "\\kEobohr = \\frac{2\\pi^2 \\kqe^4 \\kme k^2}{h^2} = 13.6\\;\\text{eV}",
+     "anchor": "30.3-orbital-energies"
     },
     {
      "id": "eq-hydrogen-energies",
      "latex": "E_n = -\\frac{13.6\\;\\text{eV}}{n^2}",
-     "ktex": "\\kEn = -\\frac{13.6\\;\\text{eV}}{n^2}"
+     "ktex": "\\kEn = -\\frac{13.6\\;\\text{eV}}{n^2}",
+     "anchor": "30.3-orbital-energies"
     }
    ]
   },
@@ -360,7 +404,8 @@
    "forms": [
     {
      "id": "eq-rydberg-constant",
-     "latex": "R = 1.097 \\times 10^{7}\\;\\text{m}^{-1}"
+     "latex": "R = 1.097 \\times 10^{7}\\;\\text{m}^{-1}",
+     "anchor": "30.3-mysteries-of-atomic-spectra"
     }
    ]
   },
@@ -389,7 +434,8 @@
     {
      "id": "eq-bohr-radius",
      "latex": "a_{\\text{B}} = \\frac{h^2}{4\\pi^2 m_{\\text{e}} k q_{\\text{e}}^2} = 0.529 \\times 10^{-10}\\;\\text{m}",
-     "ktex": "\\kaB = \\frac{h^2}{4\\pi^2 m_{\\text{e}} k \\kqe^2} = 0.529 \\times 10^{-10}\\;\\text{m}"
+     "ktex": "\\kaB = \\frac{h^2}{4\\pi^2 \\kme k \\kqe^2} = 0.529 \\times 10^{-10}\\;\\text{m}",
+     "anchor": "30.3-orbit-radii"
     }
    ]
   },
@@ -432,7 +478,8 @@
     {
      "id": "eq-x-ray-maximum-energy-30",
      "latex": "E_{\\text{max}} = hf_{\\text{max}} = q_{\\text{e}}V",
-     "ktex": "\\kEmax = hf_{\\text{max}} = \\kqe\\kV"
+     "ktex": "\\kEmax = hf_{\\text{max}} = \\kqe\\kV",
+     "anchor": "30.4-x-ray-production"
     }
    ]
   },
@@ -446,7 +493,8 @@
     {
      "id": "eq-k-alpha-energy",
      "latex": "E_{K_\\alpha} = \\Delta E = E_{\\text{i}} - E_{\\text{f}} = E_2 - E_1",
-     "ktex": "E_{K_\\alpha} = \\kdE = \\kEini - \\kEfin = E_2 - E_1"
+     "ktex": "E_{K_\\alpha} = \\kdE = \\kEini - \\kEfin = E_2 - E_1",
+     "anchor": "30.4-characteristic-x-ray-energy"
     }
    ]
   },
@@ -483,13 +531,6 @@
     "fluorescence"
    ],
    "statement": "Fluorescence is the process in which an atom excited by a photon of a given energy comes down in smaller steps and emits photons of lower energy, some of them visible. Black lights, glowing minerals and the fluorescent tube work this way."
-  },
-  {
-   "id": "metastable-state-and-phosphorescence",
-   "kind": "idea",
-   "section": "30.5",
-   "name": "Metastable states and phosphorescence",
-   "statement": "Most excited states decay in about $10^{-8}$ s, but metastable states live for milliseconds to hours. Their slow decay is phosphorescence, the glow of a luminous dial, and the metastable state is also what makes a laser possible."
   },
   {
    "id": "population-inversion",
@@ -598,7 +639,8 @@
     {
      "id": "eq-standing-wave-orbit",
      "latex": "n\\lambda_n = 2\\pi r_n\\;(n = 1, 2, 3, \\ldots)",
-     "ktex": "n\\klamorb = 2\\pi\\krn\\;(n = 1, 2, 3, \\ldots)"
+     "ktex": "n\\klamorb = 2\\pi\\krn\\;(n = 1, 2, 3, \\ldots)",
+     "anchor": "30.6-orbit-condition"
     }
    ]
   },
@@ -612,7 +654,8 @@
     {
      "id": "eq-wave-orbit-substituted",
      "latex": "\\frac{nh}{m_{\\text{e}}v} = 2\\pi r_n",
-     "ktex": "\\frac{nh}{m_{\\text{e}}\\kv} = 2\\pi\\krn"
+     "ktex": "\\frac{nh}{\\kme\\kv} = 2\\pi\\krn",
+     "anchor": "30.6-orbit-condition"
     }
    ]
   },
@@ -688,7 +731,7 @@
    "kind": "definition",
    "section": "30.7",
    "name": "Orbital angular momentum",
-   "symbol": "L",
+   "symbol": "L_orb",
    "terms": [
     "orbital angular momentum"
    ],
@@ -705,7 +748,8 @@
    "forms": [
     {
      "id": "eq-principal-quantum-number",
-     "latex": "n = 1, 2, 3, \\ldots"
+     "latex": "n = 1, 2, 3, \\ldots",
+     "anchor": "30.8-quantum-numbers"
     }
    ]
   },
@@ -715,11 +759,14 @@
    "section": "30.8",
    "name": "Magnitude of orbital angular momentum",
    "statement": "The magnitude of an electron’s orbital angular momentum is $L = \\sqrt{l(l+1)}\\,h/2\\pi$, where the angular momentum quantum number $l$ runs from 0 to $n - 1$. In the ground state $l$ is zero, so the ground state of hydrogen has no angular momentum.",
+   "symbol": "L",
+   "type": "angular-momentum",
    "forms": [
     {
      "id": "eq-orbital-angular-momentum",
      "latex": "L = \\sqrt{l(l+1)}\\frac{h}{2\\pi}\\;(l = 0, 1, 2, \\ldots, n-1)",
-     "ktex": "\\kL = \\sqrt{l(l+1)}\\frac{h}{2\\pi}\\;(l = 0, 1, 2, \\ldots, n-1)"
+     "ktex": "\\kL = \\sqrt{l(l+1)}\\frac{h}{2\\pi}\\;(l = 0, 1, 2, \\ldots, n-1)",
+     "anchor": "30.8-magnitude-of-angular-momentum"
     }
    ]
   },
@@ -737,7 +784,8 @@
     {
      "id": "eq-z-component-angular-momentum",
      "latex": "L_z = m_l\\frac{h}{2\\pi}\\;(m_l = -l, -l+1, \\ldots, l-1, l)",
-     "ktex": "\\kLz = m_l\\frac{h}{2\\pi}\\;(m_l = -l, -l+1, \\ldots, l-1, l)"
+     "ktex": "\\kLz = m_l\\frac{h}{2\\pi}\\;(m_l = -l, -l+1, \\ldots, l-1, l)",
+     "anchor": "30.8-direction-of-angular-momentum"
     }
    ]
   },
@@ -751,7 +799,8 @@
     {
      "id": "eq-angle-of-angular-momentum",
      "latex": "\\cos\\theta = \\frac{L_z}{L}",
-     "ktex": "\\cos\\theta = \\frac{\\kLz}{\\kL}"
+     "ktex": "\\cos\\theta = \\frac{\\kLz}{\\kL}",
+     "anchor": "30.8-allowed-directions"
     }
    ]
   },
@@ -760,19 +809,7 @@
    "kind": "result",
    "section": "30.8",
    "name": "Spin angular momentum",
-   "statement": "The electron’s spin is quantized in magnitude and direction as its orbital angular momentum is, but with the one value $s = 1/2$: $S = \\sqrt{s(s+1)}\\,h/2\\pi$, and its $z$-component is $S_z = m_s h/2\\pi$ with $m_s = \\pm 1/2$. The state of an electron in an atom is fully given by $(n, l, m_l, m_s)$.",
-   "forms": [
-    {
-     "id": "eq-spin-magnitude",
-     "latex": "S = \\sqrt{s(s+1)}\\frac{h}{2\\pi}\\;(s = 1/2\\;\\text{for electrons})",
-     "ktex": "\\kSspin = \\sqrt{s(s+1)}\\frac{h}{2\\pi}\\;(s = 1/2\\;\\text{for electrons})"
-    },
-    {
-     "id": "eq-spin-projection",
-     "latex": "S_z = m_s\\frac{h}{2\\pi}\\;\\left(m_s = -\\frac{1}{2}, +\\frac{1}{2}\\right)",
-     "ktex": "\\kSz = m_s\\frac{h}{2\\pi}\\;\\left(m_s = -\\frac{1}{2}, +\\frac{1}{2}\\right)"
-    }
-   ]
+   "statement": "The electron’s spin is quantized in magnitude and direction as its orbital angular momentum is, but with the one value $s = 1/2$: $S = \\sqrt{s(s+1)}\\,h/2\\pi$, and its $z$-component is $S_z = m_s h/2\\pi$ with $m_s = \\pm 1/2$. The state of an electron in an atom is fully given by $(n, l, m_l, m_s)$."
   },
   {
    "id": "allowed-quantum-numbers",
@@ -839,7 +876,8 @@
     {
      "id": "eq-spin-angular-momentum-magnitude",
      "latex": "S = \\sqrt{s(s+1)}\\,h/2\\pi",
-     "ktex": "\\kSspin = \\sqrt{s(s+1)}\\,h/2\\pi"
+     "ktex": "\\kSspin = \\sqrt{s(s+1)}\\,h/2\\pi",
+     "anchor": "30.8-intrinsic-spin"
     }
    ]
   },
@@ -858,7 +896,8 @@
     {
      "id": "eq-spin-angular-momentum-z-component",
      "latex": "S_z = m_s h/2\\pi",
-     "ktex": "\\kSz = m_s h/2\\pi"
+     "ktex": "\\kSz = m_s h/2\\pi",
+     "anchor": "30.8-intrinsic-spin"
     }
    ]
   },
@@ -888,7 +927,8 @@
    "forms": [
     {
      "id": "eq-subshell-capacity",
-     "latex": "\\text{maximum number of electrons in a subshell} = 2(2l+1)"
+     "latex": "\\text{maximum number of electrons in a subshell} = 2(2l+1)",
+     "anchor": "30.9-shell-capacity"
     }
    ]
   },
@@ -901,7 +941,8 @@
    "forms": [
     {
      "id": "eq-shell-capacity",
-     "latex": "\\text{maximum number of electrons in a shell} = 2n^2"
+     "latex": "\\text{maximum number of electrons in a shell} = 2n^2",
+     "anchor": "30.9-shell-capacity"
     }
    ]
   },
@@ -945,10 +986,6 @@
   {
    "concept": "brownian-motion",
    "prereq": "atom"
-  },
-  {
-   "concept": "brownian-motion",
-   "prereq": "kinetic-theory"
   },
   {
    "concept": "size-of-atoms",
@@ -1032,10 +1069,6 @@
   },
   {
    "concept": "discrete-atomic-spectra",
-   "prereq": "electromagnetic-spectrum"
-  },
-  {
-   "concept": "discrete-atomic-spectra",
    "prereq": "planetary-model"
   },
   {
@@ -1053,10 +1086,6 @@
   {
    "concept": "bohr-transition-energy",
    "prereq": "planetary-model"
-  },
-  {
-   "concept": "bohr-transition-energy",
-   "prereq": "conservation-of-energy"
   },
   {
    "concept": "energy-level-diagram",
@@ -1108,10 +1137,6 @@
   },
   {
    "concept": "bremsstrahlung-and-characteristic-x-rays",
-   "prereq": "electromagnetic-spectrum"
-  },
-  {
-   "concept": "bremsstrahlung-and-characteristic-x-rays",
    "prereq": "cathode-ray-tube"
   },
   {
@@ -1125,10 +1150,6 @@
   {
    "concept": "x-ray-maximum-energy",
    "prereq": "energy-conservation-for-charges"
-  },
-  {
-   "concept": "x-ray-maximum-energy",
-   "prereq": "electron-volt"
   },
   {
    "concept": "characteristic-x-ray-energy",
@@ -1159,10 +1180,6 @@
    "prereq": "size-of-atoms"
   },
   {
-   "concept": "x-ray-diffraction",
-   "prereq": "c-equals-f-lambda"
-  },
-  {
    "concept": "color-from-energy-levels",
    "prereq": "energy-level-diagram"
   },
@@ -1177,14 +1194,6 @@
   {
    "concept": "fluorescence",
    "prereq": "color-from-energy-levels"
-  },
-  {
-   "concept": "metastable-state-and-phosphorescence",
-   "prereq": "fluorescence"
-  },
-  {
-   "concept": "population-inversion",
-   "prereq": "metastable-state-and-phosphorescence"
   },
   {
    "concept": "stimulated-emission",
@@ -1207,32 +1216,12 @@
    "prereq": "bohr-transition-energy"
   },
   {
-   "concept": "wavelength-from-a-level-spacing",
-   "prereq": "c-equals-f-lambda"
-  },
-  {
-   "concept": "wavelength-from-a-level-spacing",
-   "prereq": "electron-volt"
-  },
-  {
    "concept": "holography",
    "prereq": "laser"
   },
   {
-   "concept": "holography",
-   "prereq": "constructive-interference"
-  },
-  {
-   "concept": "holography",
-   "prereq": "destructive-interference"
-  },
-  {
    "concept": "electron-standing-wave-orbit",
    "prereq": "standing-wave"
-  },
-  {
-   "concept": "electron-standing-wave-orbit",
-   "prereq": "constructive-interference"
   },
   {
    "concept": "electron-standing-wave-orbit",
@@ -1324,10 +1313,6 @@
   },
   {
    "concept": "spin-quantum-numbers",
-   "prereq": "intrinsic-spin"
-  },
-  {
-   "concept": "spin-quantum-numbers",
    "prereq": "orbital-angular-momentum-magnitude"
   },
   {
@@ -1377,10 +1362,6 @@
   {
    "concept": "bremsstrahlung-and-characteristic-x-rays",
    "prereq": "characteristic-x-rays"
-  },
-  {
-   "concept": "discrete-atomic-spectra",
-   "prereq": "atomic-spectra"
   },
   {
    "concept": "cathode-ray-tube-device",
@@ -1488,10 +1469,6 @@
   },
   {
    "concept": "angular-momentum-quantum-number",
-   "prereq": "quantum-number"
-  },
-  {
-   "concept": "angular-momentum-quantum-number",
    "prereq": "orbital-angular-momentum"
   },
   {
@@ -1559,10 +1536,6 @@
    "prereq": "quantum-number"
   },
   {
-   "concept": "allowed-quantum-numbers",
-   "prereq": "quantum-number"
-  },
-  {
    "concept": "spin-quantum-numbers",
    "prereq": "spin-quantum-number"
   },
@@ -1581,6 +1554,54 @@
   {
    "concept": "shell-filling-and-the-periodic-table",
    "prereq": "subshell"
+  },
+  {
+   "concept": "bohr-transition-energy",
+   "prereq": "photon-energy"
+  },
+  {
+   "concept": "discrete-atomic-spectra",
+   "prereq": "atomic-spectra-quantized"
+  },
+  {
+   "concept": "bremsstrahlung-and-characteristic-x-rays",
+   "prereq": "x-ray-tube-spectrum"
+  },
+  {
+   "concept": "x-ray-maximum-energy",
+   "prereq": "x-ray-tube-maximum-energy"
+  },
+  {
+   "concept": "x-ray-diffraction",
+   "prereq": "photon-energy-from-wavelength"
+  },
+  {
+   "concept": "x-ray-diffraction",
+   "prereq": "bragg-equation"
+  },
+  {
+   "concept": "fluorescence",
+   "prereq": "atomic-de-excitation"
+  },
+  {
+   "concept": "population-inversion",
+   "prereq": "metastable-state"
+  },
+  {
+   "concept": "holography",
+   "prereq": "diffraction-grating"
+  },
+  {
+   "concept": "electron-standing-wave-orbit",
+   "prereq": "de-broglie-wavelength"
+  },
+  {
+   "concept": "probability-cloud",
+   "prereq": "position-momentum-uncertainty"
+  },
+  {
+   "concept": "wavelength-from-a-level-spacing",
+   "prereq": "photon-energy-from-wavelength"
   }
  ],
  "types": []

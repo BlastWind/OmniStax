@@ -4,7 +4,7 @@
    (F.ref('sub-2p')), and 4p and 4f, which no sentence names, take F.cat. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['30.9'] = function (root, F) {
-const { PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hover, readout } = F;
+const { PAL, alpha, register, begin, line, arrow, dot, text, topline, hover, readout } = F;
 const sim = (id, H) => F.sim(root, id, H);
 
 const LETTER = ['s', 'p', 'd', 'f'];
@@ -42,9 +42,9 @@ function electron(ctx, x, y, ms, r = 12, reach = 28) {
   const states = [];
   ORDER.forEach(([n, l]) => [1, -1].forEach((ms) => { for (let ml = -l; ml <= l; ml++) states.push({ n, l, ml, ms }); }));
 
-  const z = ctl(d.controls, { label: 'Z', cls: '', min: 1, max: 20, step: 1, value: 3, unit: '', dec: 0, aria: 'the atomic number',
-    specials: [{ at: 2, label: 'He' }, { at: 10, label: 'Ne' }, { at: 18, label: 'Ar' }], onInput: () => grow.to(z.v, 320) });
-  const grow = F.tween(d, z.v);
+  const z = F.select(d.controls, { label: 'Z', key: 'Z', value: '3', aria: 'the element, by its atomic number',
+    options: NAMES.map((name, i) => ({ value: String(i + 1), label: (i + 1) + ' ' + name })), onInput: () => grow.to(Number(z.value), 320) });
+  const grow = F.tween(d, Number(z.value));
   const ro = readout(d);
   let hits = [];
   hover(d.stage, () => hits);
@@ -62,7 +62,7 @@ function electron(ctx, x, y, ms, r = 12, reach = 28) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const Z = Math.round(z.v), k = grow.v;
+    const Z = Number(z.value), k = grow.v;
     hits = [];
     const lines = topline(ctx, headlineFor(Z));
 
@@ -117,7 +117,7 @@ function electron(ctx, x, y, ms, r = 12, reach = 28) {
    per m_l in columns from −3 to 3, each box holding a spin-up and a
    spin-down electron. The layout is fixed for n = 4 so the rows two shells
    share stay put when n changes; the rows only one has fade, staggered.
-   Opens on n = 2, the shell of Example 30.5.
+   Opens on n = 2, the shell of Example 30.4.
 ===================================================================== */
 (function () {
   const H = 560;
@@ -214,7 +214,7 @@ function electron(ctx, x, y, ms, r = 12, reach = 28) {
 
 /* =====================================================================
    FIGURE 30.57 · fig-n2-states · faithful copy, still
-   The table of Example 30.5: the eight sets (n, l, m_l, m_s) of the n = 2
+   The table of Example 30.4: the eight sets (n, l, m_l, m_s) of the n = 2
    shell, braced by subshell and by shell, as the book sets it.
 ===================================================================== */
 (function () {
