@@ -39,15 +39,6 @@ function particle(ctx, x, y, kind, r) {
 }
 /* one row of a legend: a particle and its name */
 function legendRow(ctx, x, y, kind, name) { particle(ctx, x, y, kind, 10); text(ctx, name, x + 22, y, PAL.ink, { size: 18 }); }
-/* a turning arc about (cx, cy) from canvas angle a0 to a1, arrowhead at the a1 end */
-function turnArc(ctx, cx, cy, R, a0, a1, color) {
-  const ccw = a1 < a0;
-  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 3;
-  ctx.beginPath(); ctx.arc(cx, cy, R, a0, a1, ccw); ctx.stroke(); ctx.restore();
-  const t = ccw ? a1 + Math.PI / 2 : a1 - Math.PI / 2;
-  const hx = cx + R * Math.cos(a1), hy = cy + R * Math.sin(a1);
-  arrow(ctx, hx + 30 * Math.cos(t), hy + 30 * Math.sin(t), hx, hy, color, 4);
-}
 /* a body in ink: a closed path of the given points about (cx, cy), turned by `ang` */
 function body(ctx, cx, cy, pts, ang, fill, stroke = PAL.ink) {
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(ang); ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = 3;
@@ -55,8 +46,6 @@ function body(ctx, cx, cy, pts, ang, fill, stroke = PAL.ink) {
 }
 /* a point (x, y) about (cx, cy) turned by `ang` */
 const turned = (cx, cy, x, y, ang) => ({ x: cx + x * Math.cos(ang) - y * Math.sin(ang), y: cy + x * Math.sin(ang) + y * Math.cos(ang) });
-/* a rounded rod of length L and thickness T about its centre */
-const rodPts = (L, T) => { const p = [], n = 8; for (let i = 0; i <= n; i++) { const a = -Math.PI / 2 + (i / n) * Math.PI; p.push([L / 2 + (T / 2) * Math.cos(a), (T / 2) * Math.sin(a)]); } for (let i = 0; i <= n; i++) { const a = Math.PI / 2 + (i / n) * Math.PI; p.push([-L / 2 + (T / 2) * Math.cos(a), (T / 2) * Math.sin(a)]); } return p; };
 /* a hanging cloth, about 130 wide and 176 tall, about its centre: pinched at the
    top where it is held, widening as it drapes, with a scalloped hem */
 const CLOTH = [[0, -88], [26, -72], [52, -50], [62, -10], [58, 40], [64, 84], [44, 74], [22, 88], [0, 76], [-22, 88], [-44, 74], [-64, 84], [-58, 40], [-62, -10], [-52, -50], [-26, -72]];
@@ -67,95 +56,164 @@ function clothFolds(ctx, cx, cy, ang, sx = 1, sy = 1) {
   ctx.restore();
 }
 /* the slots the marks on a cloth sit in, about its centre */
-const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24, 30], [0, 60], [-46, 60], [30, -70], [-50, 20]];
+const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24, 30], [0, 60], [-46, 60], [40, 62], [-50, 20]];
 
 /* =====================================================================
    FIGURE 18.4: a charged body hangs by a thread and another is brought
-   near it, seen from above. Still: a hanging body has settled where the
-   force holds it, and the question is which way and how far it swung,
-   so the figure answers its controls and registers no cycle.
+   near it, in a locked perspective from the book's viewpoint, a little
+   above and in front. A rod hangs level by its middle and turns about
+   the thread in the horizontal plane; a cloth hangs from the thread's
+   end and swings with it as a pendulum. The body brought near is held
+   level by a hand. Still: a hanging body has settled where the force
+   holds it, so the figure answers its controls and registers no cycle.
 ===================================================================== */
 (function () {
-  const d = sim('sim-rods-and-silk', 560);
+  const d = sim('sim-rods-and-silk', 700);
   const pair = choice(d.controls, { label: '\\text{the pair}', options: [
     { value: 'glass-silk', label: 'glass rod and silk' }, { value: 'glass-glass', label: 'two glass rods' }, { value: 'silk-silk', label: 'two silk cloths' }], value: 'glass-silk', aria: 'which two charged bodies are brought together' });
   const qs = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 0.5, max: 5, step: 0.1, value: 3, unit: 'nC', dec: 1, aria: 'the size of the charge rubbing left on each body' });
   const rs = ctl(d.controls, { label: '\\text{distance}', cls: 'position', min: 2, max: 12, step: 0.5, value: 6, unit: 'cm', dec: 1, aria: 'the distance between the hanging body and the one brought near' });
-  const CX = 520, CY = 360, L = 340, S = 26, DIR = -18 * RAD;   /* the held body sits 18° above the rod's line, 26 units per centimeter */
-  const ux = Math.cos(DIR), uy = Math.sin(DIR);
-  const ROD = rodPts(L, 22);
-  /* marks, + or −, spaced along a rod or set in a cloth's slots */
-  function marks(ctx, cx, cy, ang, n, sign, cloth) {
-    for (let i = 0; i < n; i++) {
-      const [x, y] = cloth ? CLOTH_SLOTS[i] : [-L / 2 + 36 + (i / Math.max(1, n - 1)) * (L - 72), 0];
-      const p = turned(cx, cy, cloth ? x : (n === 1 ? 0 : x), y, ang);
-      text(ctx, sign, p.x, p.y + 1, PAL.ink, { size: 22, weight: 700, align: 'center' });
+  /* the world in centimetres, y up, z toward the reader, the rod's pivot at the origin; 40 units per cm.
+     A 9 cm rod rests 50° back from the line to the body brought near; the thread's top is 5.5 cm above
+     the pivot and a hanging cloth's top 1.5 cm above it; a cloth is 5.9 by 7.9 cm. */
+  const S = 40, R = 4.5, PHI = 50 * RAD, YS = 5.5, YC = 1.5, CW = 0.045, RHO = 0.35, NU = 58, NV = -25;
+  const V = F.view({ yaw: 0, pitch: 34 * RAD, dist: 3000, cx: 400, cy: 430 });
+  let OY = 0;   /* the rod scenes sit 60 units lower than the cloth scenes, which need the height */
+  const P = ([x, y, z]) => { const [u, v] = V.P([x * S, y * S, z * S]); return { x: u, y: v + OY }; };
+  const add = (a, b, k = 1) => [a[0] + b[0] * k, a[1] + b[1] * k, a[2] + b[2] * k];
+  const rodDir = (a) => [Math.cos(a), 0, -Math.sin(a)];
+  const E_ROD = rodDir(PHI).map((c) => c * R);                 /* the near end of the hanging rod at rest */
+  const E_CLOTH = [NU * CW, YC - (NV + 88) * CW, 0];          /* the near edge of the hanging cloth at rest */
+  const BOTTOM = Math.hypot(64 * CW, YS - YC + 172 * CW);               /* the support to the cloth's far hem corner */
+  /* a cloth point (u, v) of CLOTH, about a cloth whose top is at `top`, swung by `ph` about the support */
+  const clothPt = (top, u, v, ph = 0) => {
+    const p = [top[0] + u * CW, top[1] - (v + 88) * CW, top[2]];
+    if (!ph) return p;
+    const dx = p[0], dy = p[1] - YS;
+    return [dx * Math.cos(ph) - dy * Math.sin(ph), YS + dx * Math.sin(ph) + dy * Math.cos(ph), p[2]];
+  };
+  const path = (ctx, pts, close) => { ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y))); if (close) ctx.closePath(); };
+  /* a level glass rod from a to b in the world: an outline, a glass fill, a faint highlight along its top, its + marks */
+  function rod(ctx, a, b, color, n, ghost, hi = 0.92) {
+    const A = P(a), B = P(b), w = 2 * RHO * S;
+    ctx.save(); ctx.lineCap = 'round';
+    if (ghost) { ctx.globalAlpha *= 0.35; ctx.setLineDash([8, 8]); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; }
+    const stroke = (c, lw) => { ctx.strokeStyle = c; ctx.lineWidth = lw; ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke(); };
+    if (ghost) { const L = Math.hypot(B.x - A.x, B.y - A.y), nx = -(B.y - A.y) / L * w / 2, ny = (B.x - A.x) / L * w / 2;
+      ctx.beginPath(); ctx.moveTo(A.x + nx, A.y + ny); ctx.lineTo(B.x + nx, B.y + ny); ctx.moveTo(A.x - nx, A.y - ny); ctx.lineTo(B.x - nx, B.y - ny); ctx.stroke(); ctx.restore(); return; }
+    stroke(color, w + 6); stroke(PAL.soft, w);
+    ctx.translate(0, -w * 0.22); stroke(alpha(PAL.panel, 0.7), w * 0.18); ctx.restore();
+    for (let i = 0; i < n; i++) { let f = n === 1 ? 0.7 : 0.08 + (hi - 0.08) * i / (n - 1); if (Math.abs(f - 0.5) < 0.04) f = 0.5 + Math.sign(f - 0.5 || 1) * 0.04; const p = { x: A.x + (B.x - A.x) * f, y: A.y + (B.y - A.y) * f }; text(ctx, '+', p.x, p.y + 1, PAL.ink, { size: 20, weight: 700, align: 'center' }); }
+  }
+  /* a hanging cloth whose top is at `top`, swung by `ph`: the draped outline, three folds, its − marks */
+  function cloth(ctx, top, ph, color, n, ghost) {
+    const pts = CLOTH.map(([u, v]) => P(clothPt(top, u, v, ph)));
+    ctx.save(); ctx.lineJoin = 'round'; path(ctx, pts, true);
+    if (ghost) { ctx.globalAlpha *= 0.35; ctx.setLineDash([8, 8]); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.stroke(); ctx.restore(); return pts; }
+    ctx.fillStyle = PAL.soft; ctx.fill(); ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.stroke();
+    ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2;
+    for (const [x0, x1] of [[-6, -34], [2, 8], [8, 40]]) {
+      const a = P(clothPt(top, x0, -70, ph)), c = P(clothPt(top, x1 * 0.6, 10, ph)), b = P(clothPt(top, x1, 78, ph));
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.quadraticCurveTo(c.x, c.y, b.x, b.y); ctx.stroke();
     }
+    ctx.restore();
+    for (let i = 0; i < n; i++) { const [u, v] = CLOTH_SLOTS[i], p = P(clothPt(top, u, v, ph)); text(ctx, '−', p.x, p.y + 1, PAL.ink, { size: 22, weight: 700, align: 'center' }); }
+    return pts;
   }
-  /* what each pair makes of the scene: the swing, and which body hangs and which is held (1 a rod, 0 a cloth).
-     A change of pair blends these, so the hanging body swings over to its new angle and a body that
-     changes kind dissolves into the other in place. */
+  /* an arc of turn with its arrowhead, through world points */
+  function turn(ctx, pts) {
+    const s = pts.map(P), n = s.length;
+    if (Math.hypot(s[n - 1].x - s[0].x, s[n - 1].y - s[0].y) < 24) return [];
+    let k = n - 2; while (k > 0 && Math.hypot(s[n - 1].x - s[k].x, s[n - 1].y - s[k].y) < 20) k--;
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; path(ctx, s.slice(0, k + 1)); ctx.stroke(); ctx.restore();
+    arrow(ctx, s[k].x, s[k].y, s[n - 1].x, s[n - 1].y, PAL.ink, 4);
+    return s;
+  }
+  const arc = (f, a0, a1, m = 24) => Array.from({ length: m + 1 }, (_, i) => f(a0 + (a1 - a0) * i / m));
+  /* what each pair makes of the scene, blended on a change of pair so the hanging body swings over to its
+     new angle and a body that changes kind dissolves into the other in place. The near point moves
+     by up to 1.7 cm, always short of the 2 cm the nearest body can be: more with the charge, less with the distance. */
   function scene(kind) {
-    const q = qs.v, r = rs.v, hangGlass = kind !== 'silk-silk', heldGlass = kind === 'glass-glass';
-    const unlike = hangGlass !== heldGlass;
-    /* the swing: toward an unlike charge, away from a like one; larger with the charges and smaller with the distance, never a stated number */
-    const A = 40 * (1 - Math.exp(-2.77 * q * q / (r * r)));
-    return { ang: -(unlike ? A : -A) * RAD, A, hang: hangGlass ? 1 : 0, held: heldGlass ? 1 : 0, nx: hangGlass ? L / 2 : 66, ny: hangGlass ? 0 : 94 };
+    const q = qs.v, r = rs.v, hangGlass = kind !== 'silk-silk', heldGlass = kind === 'glass-glass', sgn = hangGlass !== heldGlass ? 1 : -1;
+    const dn = 1.7 * (1 - Math.exp(-5 * q * q / (r * r)));
+    return { th: sgn * Math.asin(dn / R), ph: sgn * Math.asin(dn / BOTTOM), hang: hangGlass ? 1 : 0, held: heldGlass ? 1 : 0 };
   }
+  const spots = [];
+  hover(d.stage, () => spots);
   function draw() {
     const { ctx, H } = begin(d.c);
-    const qc = C('charge'), pc = C('position');
+    const pc = C('position');
     const q = qs.v, r = rs.v, kind = pair.value;
     const hangGlass = kind !== 'silk-silk', heldGlass = kind === 'glass-glass';
-    const hangC = F.ref(hangGlass ? 'rod-1' : 'cloth-1'), heldC = F.ref(heldGlass ? 'rod-2' : hangGlass ? 'silk' : 'cloth-2');
     const qHang = hangGlass ? q : -q, qHeld = heldGlass ? q : -q, unlike = qHang * qHeld < 0;
-    const g = pair.mix(scene), ang = g.ang;
-    const nm = Math.max(1, Math.round(q * 2));
-    const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 96);
-    /* the body hangs from the thread at the pivot: a rod by its middle, a cloth by its top corner.
-       Its rest position and the point the second body is measured from follow from that. */
-    const ex = CX + g.nx, ey = CY + g.ny, Rn = Math.hypot(g.nx, g.ny), a0 = Math.atan2(g.ny, g.nx);
-    /* the rest position, faint, and the arc the near end swung through */
-    if (Math.abs(g.A) > 1) {
-      F.faded(ctx, g.hang, [0, 0], () => { ctx.globalAlpha *= 0.3; ctx.setLineDash([8, 8]); body(ctx, CX, CY, ROD, 0, 'transparent'); });
-      F.faded(ctx, 1 - g.hang, [0, 0], () => { ctx.globalAlpha *= 0.3; ctx.setLineDash([8, 8]); body(ctx, CX, CY + 94, CLOTH, 0, 'transparent'); });
-      turnArc(ctx, CX, CY, Rn + 34, a0, a0 + ang, PAL.ink);
-    }
-    /* the held body: its near point a distance r from the rest position's near end, along the 18° line */
-    const px = ex + r * S * ux, py = ey + r * S * uy;
-    line(ctx, ex, ey, px, py, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    text(ctx, fmt(r, 1) + ' cm', (ex + px) / 2 + 14, (ey + py) / 2 + 22, pc, { size: 18, align: 'left', bg: alpha(PAL.panel, 0.85) });
-    const rodAt = { x: px + (L / 2) * ux, y: py + (L / 2) * uy }, clothAt = { x: px + 70 * ux, y: py + 70 * uy };
-    F.faded(ctx, g.held, [0, 0], () => { body(ctx, rodAt.x, rodAt.y, ROD, DIR, PAL.soft, F.ref('rod-2')); marks(ctx, rodAt.x, rodAt.y, DIR, nm, '+', false); });
-    F.faded(ctx, 1 - g.held, [0, 0], () => { body(ctx, clothAt.x, clothAt.y, CLOTH, 0, PAL.soft, F.ref(hangGlass ? 'silk' : 'cloth-2')); clothFolds(ctx, clothAt.x, clothAt.y, 0); marks(ctx, clothAt.x, clothAt.y, 0, nm, '−', true); });
-    const hx = heldGlass ? rodAt.x : clothAt.x, hy = heldGlass ? rodAt.y : clothAt.y;
-    /* the hanging body, turned about the thread */
-    F.faded(ctx, g.hang, [0, 0], () => { body(ctx, CX, CY, ROD, ang, PAL.soft, F.ref('rod-1')); marks(ctx, CX, CY, ang, nm, '+', false); });
-    F.faded(ctx, 1 - g.hang, [0, 0], () => { const hc = turned(CX, CY, 0, 94, ang); body(ctx, hc.x, hc.y, CLOTH, ang, PAL.soft, F.ref('cloth-1')); clothFolds(ctx, hc.x, hc.y, ang); marks(ctx, hc.x, hc.y, ang, nm, '−', true); });
-    line(ctx, CX, CY - 190, CX, CY, PAL.ink, 2);
-    dot(ctx, CX, CY, PAL.ink, false, 8);
-    /* labels beside their things */
-    const off = hangGlass ? { x: 0, y: 0 } : { x: 0, y: 94 };
-    const far = turned(CX, CY, hangGlass ? -L / 2 : off.x - 66, off.y, ang);
-    Lb.add(hangGlass ? 'glass rod, hanging' : 'silk cloth, hanging', far.x, far.y, -1, 0, hangC, 20, 16);
-    Lb.add('thread', CX, CY - 150, -1, 0, PAL.ink, 18, 14);
-    const top = turned(CX, CY, off.x, off.y - (hangGlass ? 18 : 92), ang);
-    Lb.add('q = ' + plus(qHang, 1) + ' nC', top.x, top.y, 0, -1, qc, 21, 22);
-    const heldName = heldGlass ? 'glass rod, brought near' : hangGlass ? 'silk, brought near' : 'a second cloth, brought near';
-    const tip = heldGlass ? { x: px + L * ux, y: py + L * uy } : { x: hx, y: hy - 96 };
-    Lb.add(heldName, tip.x, tip.y, heldGlass ? 0.3 : 0, -1, heldC, 20, 22);
-    Lb.add('q = ' + plus(qHeld, 1) + ' nC', heldGlass ? hx : hx + 72, heldGlass ? hy + 20 : hy, heldGlass ? 0 : 1, heldGlass ? 1 : 0, qc, 21, 24);
-    text(ctx, 'seen from the front', 40, H - 30, PAL.muted, { size: 18 });
+    const g = pair.mix(scene), nm = Math.max(1, Math.round(q * 2));
+    OY = 60 * g.hang;
     const hang = hangGlass ? 'glass rod' : 'silk cloth', held = heldGlass ? 'a second rod' : hangGlass ? 'silk' : 'a second cloth';
     const swing = unlike ? 'toward the ' + (heldGlass ? 'second rod' : 'silk') : 'away';
-    topline(ctx, `A ${hang} holding ${plus(qHang, 1)} nC hangs by a thread, and ${held} holding ${plus(qHeld, 1)} nC is brought to ${fmt(r, 1)} cm: ${unlike ? 'unlike' : 'like'} charges, so the ${hangGlass ? 'rod' : 'cloth'} swings ${swing}.`);
+    const hl = topline(ctx, `A ${hang} holding ${plus(qHang, 1)} nC hangs by a thread, and ${held} holding ${plus(qHeld, 1)} nC is brought to ${fmt(r, 1)} cm: ${unlike ? 'unlike' : 'like'} charges, so the ${hangGlass ? 'rod' : 'cloth'} swings ${swing}.`);
+    const Lb = labeller(ctx, H, { headline: hl });
+    const blockPts = (pts, pad = 6) => Lb.block(Math.min(...pts.map((p) => p.x)) - pad, Math.min(...pts.map((p) => p.y)) - pad, Math.max(...pts.map((p) => p.x)) + pad, Math.max(...pts.map((p) => p.y)) + pad);
+    const blockSeg = (a, b, w) => { const n = Math.ceil(Math.hypot(b.x - a.x, b.y - a.y) / w); for (let i = 0; i <= n; i++) { const x = a.x + (b.x - a.x) * i / n, y = a.y + (b.y - a.y) * i / n; Lb.block(x - w / 2, y - w / 2, x + w / 2, y + w / 2); } };
+    spots.length = 0;
+    /* the near point of the hanging body at rest, and the near point of the body brought near, r along x from it */
+    const E = hangGlass ? E_ROD : E_CLOTH, Pn = add(E, [r, 0, 0]);
+    const rodAng = PHI - g.th, rodTip = rodDir(rodAng).map((c) => c * R);
+    const clothTop = (ph) => clothPt([0, YC, 0], 0, -88, ph);
+    /* the rest positions, faint */
+    F.faded(ctx, g.hang, [0, 0], () => rod(ctx, E_ROD.map((c) => -c), E_ROD, PAL.ink, 0, true));
+    F.faded(ctx, 1 - g.hang, [0, 0], () => cloth(ctx, [0, YC, 0], 0, PAL.ink, 0, true));
+    /* the distance, from the near point at rest to the body brought near */
+    const e = P(E), pn = P(Pn);
+    line(ctx, e.x, e.y, pn.x, pn.y, alpha(PAL.ink, 0.45), 2, [4, 8]);
+    /* the body brought near, held level by a hand */
+    const heldRodA = Pn, heldRodB = add(Pn, rodDir(PHI), 2 * R);
+    const heldTop = add(Pn, [NU * CW, (NV + 88) * CW, 0]);
+    let heldPts = null;
+    F.faded(ctx, g.held, [0, 0], () => {
+      rod(ctx, heldRodA, heldRodB, F.ref('rod-2'), nm, false, 0.74);
+      const a = P(heldRodA), b = P(heldRodB), L = Math.hypot(b.x - a.x, b.y - a.y), t = [(b.x - a.x) / L, (b.y - a.y) / L], gp = P(add(heldRodA, rodDir(PHI), 2 * R - 1.3));
+      const aim = [t[1], -t[0]];
+      F.hand(ctx, gp.x - aim[0] * HG.rod, gp.y - aim[1] * HG.rod, { aim, view: 'back', curl: 0.9, thumb: 'along', s: 0.9 });
+    });
+    F.faded(ctx, 1 - g.held, [0, 0], () => {
+      heldPts = cloth(ctx, heldTop, 0, F.ref(hangGlass ? 'silk' : 'cloth-2'), nm);
+      const tp = P(heldTop);
+      F.hand(ctx, tp.x, tp.y - HG.cloth, { aim: [0, 1], view: 'back', curl: 0.85, thumb: 'along', s: 0.9 });
+    });
+    /* the hanging body, and the thread from the support to it */
+    let hangPts = null;
+    F.faded(ctx, g.hang, [0, 0], () => rod(ctx, rodTip.map((c) => -c), rodTip, F.ref('rod-1'), nm));
+    F.faded(ctx, 1 - g.hang, [0, 0], () => { hangPts = cloth(ctx, [0, YC, 0], g.ph, F.ref('cloth-1'), nm); });
+    const ct = clothTop(g.ph), tEnd = [ct[0] * (1 - g.hang), ct[1] * (1 - g.hang), 0];
+    const sup = P([0, YS, 0]), te = P(tEnd);
+    line(ctx, sup.x, sup.y, te.x, te.y, PAL.ink, 2);
+    dot(ctx, te.x, te.y, PAL.ink, false, 5);
+    line(ctx, sup.x - 40, sup.y, sup.x + 40, sup.y, PAL.ink, 4);
+    /* the arcs the near point swung through */
+    const a0 = Math.atan2(64 * CW, BOTTOM), arcs = [];
+    F.faded(ctx, g.hang, [0, 0], () => arcs.push(...turn(ctx, arc((a) => rodDir(a).map((c) => c * (R + 1.3)), PHI, rodAng))));
+    F.faded(ctx, 1 - g.hang, [0, 0], () => arcs.push(...turn(ctx, arc((a) => [(BOTTOM + 0.5) * Math.sin(a), YS - (BOTTOM + 0.5) * Math.cos(a), 0], a0, a0 + g.ph))));
+    /* labels, stepped round the bodies */
+    const hangC = F.ref(hangGlass ? 'rod-1' : 'cloth-1'), heldC = F.ref(heldGlass ? 'rod-2' : hangGlass ? 'silk' : 'cloth-2');
+    if (hangGlass) blockSeg(P(rodTip.map((c) => -c)), P(rodTip), 2 * RHO * S + 10); else if (hangPts) blockPts(hangPts);
+    if (heldGlass) blockSeg(P(heldRodA), P(heldRodB), 2 * RHO * S + 10); else if (heldPts) blockPts(heldPts);
+    arcs.forEach((p) => Lb.block(p.x - 8, p.y - 8, p.x + 8, p.y + 8));
+    Lb.beside({ x1: e.x, y1: e.y, x2: pn.x, y2: pn.y }, 'right', fmt(r, 1) + ' cm', pc, 18, { gap: 18 });
+    const far = hangGlass ? P(rodTip.map((c) => -c)) : P(clothPt([0, YC, 0], -NU, NV, g.ph));
+    Lb.add(hangGlass ? 'glass rod, hanging' : 'silk cloth, hanging', far.x, far.y, -1, 0, hangC, 20, 24);
+    Lb.add('thread', (sup.x + te.x) / 2, (sup.y + te.y) / 2, -1, 0, PAL.ink, 18, 14);
+    const heldName = heldGlass ? 'glass rod, brought near' : hangGlass ? 'silk, brought near' : 'a second cloth, brought near';
+    /* a cloth's name goes to its right where it fits, under its hem where it does not */
+    const side = P(clothPt(heldTop, 62, 30)), roomy = side.x + 24 + F.measure(ctx, heldName, { size: 20, weight: 600 }) < F.LW - 20;
+    const tip = heldGlass ? P(add(heldRodA, rodDir(PHI), R)) : roomy ? side : P(clothPt(heldTop, 0, 84));
+    Lb.add(heldName, tip.x, tip.y, heldGlass ? 0.25 : roomy ? 1 : 0, heldGlass || !roomy ? 1 : 0, heldC, 20, 24);
+    const hp = heldGlass ? P(add(heldRodA, rodDir(PHI), 2 * R - 1.3)) : P(heldTop);
+    spots.push({ x: hp.x, y: hp.y - (heldGlass ? 0 : 40), r: 50, name: heldGlass ? 'a hand holding the second rod' : 'a hand holding the ' + (hangGlass ? 'silk' : 'second cloth') });
     Lb.flush();
     const n1 = heldGlass ? 'rod 1' : hangGlass ? 'glass' : 'cloth 1', n2 = heldGlass ? 'rod 2' : hangGlass ? 'silk' : 'cloth 2';
-    readout(d.readout, `\\kq_{\\text{${n1}}} = ${unlike ? '-' : ''}\\kq_{\\text{${n2}}} = ${texSign(qHang, 1)}\\ \\text{nC}`,
-      (unlike ? 'Unlike charges attract, so the hanging ' + (hangGlass ? 'rod' : 'cloth') + ' swings toward the ' + (heldGlass ? 'second rod' : 'silk') + '; '
-        : 'Like charges repel, so the hanging ' + (hangGlass ? 'rod' : 'cloth') + ' swings away from the ' + (heldGlass ? 'second rod' : 'second cloth') + '; ')
-      + 'bring the two closer and it swings farther, since the force between charges decreases with distance. Rubbing glass with silk leaves equal and opposite charges on the two, which is why one number sets both.');
+    tex(d.readout, `\\kq_{\\text{${n1}}} = ${unlike ? '-' : ''}\\kq_{\\text{${n2}}} = ${texSign(qHang, 1)}\\ \\text{nC}`);
   }
+  const HG = { rod: 60, cloth: 60 };
   register(d.fig, { update: () => {}, draw });
 })();
 

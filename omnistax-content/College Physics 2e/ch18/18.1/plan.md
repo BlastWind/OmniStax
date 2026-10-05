@@ -89,30 +89,27 @@ and choices · headline · graph · 3D
 2. `sim-rods-and-silk` · replaces Figure 18.4 (a)(b)(c), the glass rod on a
    thread with the silk, with a second rod, and the two cloths ·
    like-charges-repel, electric-charge, charge-separation-by-rubbing ·
-   value add: variation by choice and slider, the reader sees the hanging
-   body swing toward or away and by how much as the charge and the distance
-   change, which three still panels cannot show · **still**: a body hanging
-   from a thread has settled where the force holds it, and the question is
-   which way and how far, not how it got there, so the figure answers its
-   controls and registers no cycle (rule 14; `ch18/config.md` says most of
-   the chapter is still) · a choice of the pair, glass rod and silk, two
-   glass rods, two silk cloths, the book's three panels (rule 26.1); $\kq$,
-   the charge rubbed onto each body (0.5 to 5.0 nC, default 3.0, charge),
-   one slider because rubbing glass with silk gives the two equal and
-   opposite charges, and two rods each rubbed hold the same sign; the
-   separation between the hanging body and the one brought near (2 to 12 cm,
-   default 6, ink) · "A glass rod holding +3.0 nC hangs by a thread, and silk
-   holding −3.0 nC is brought to 6 cm: unlike charges, so the rod swings
-   toward the silk." · none · 2D. The scene is the book's, seen from
-   the front: the body hangs from a thread, a rod by its middle and a cloth
-   by its top, and swings about that point. The swing is drawn as an angle that grows
-   with the charges and shrinks with the distance and is never stated as a
-   number, since the section says only that the force decreases with
-   distance and Coulomb's law is 18.3's; the direction is the book's arc
-   arrow in ink. Readout: $\kq_{\text{glass}} = +3.0\ \text{nC}$,
-   $\kq_{\text{silk}} = -3.0\ \text{nC}$ and the words unlike or like, attract
-   or repel; small line on the distance. Labels: two bodies and a thread,
-   on. Draws charge.
+   value add: variation by choice and slider, the hanging body turns toward
+   or away and by how much as the charge and the distance change, which
+   three still panels cannot show · **still**: a hanging body has settled
+   where the force holds it, so the figure answers its controls and
+   registers no cycle (rule 14) · a choice of the pair, glass rod and silk,
+   two glass rods, two silk cloths (rule 26.1); $\kq$ 0.5 to 5.0 nC, default
+   3.0, charge; distance 2 to 12 cm, default 6, position · headline "A glass
+   rod holding +3.0 nC hangs by a thread, and silk holding −3.0 nC is
+   brought to 6.0 cm: unlike charges, so the rod swings toward the silk." ·
+   none · 2D locked view (`F.view`, yaw 0°, pitch 34°, no orbit), the
+   book's viewpoint a little above and in front: the rod hangs level by its
+   middle and turns about the thread in the horizontal plane; a cloth hangs
+   from the thread's end and swings with it as a pendulum; the body brought
+   near is held level by the library hand (`F.hand`), a fist round the
+   second rod or pinching the cloth's top. The near point moves at most
+   1.7 cm, more with the charge and less with the distance, so it never
+   reaches the body 2 cm away; the rest position is a dashed ghost and the
+   swing the book's arc arrow in ink. Readout $\kq_{\text{glass}} =
+   -\kq_{\text{silk}} = +3.0\ \text{nC}$, no note. Labels by the labeller,
+   stepped round the bodies: the two bodies, the thread, the distance; the
+   hands named by hover. Draws charge, position. No fold.
 3. `sim-atom` · replaces Figure 18.5, the planetary model ·
    charge-of-electron-and-proton, elementary-charge, electric-charge ·
    value add: variation by slider, the reader sets how many protons and how
