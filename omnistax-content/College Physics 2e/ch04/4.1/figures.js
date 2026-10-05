@@ -24,13 +24,6 @@ function skater(ctx, x, y, a, color) {
   ctx.beginPath(); ctx.arc(x, y, 12, 0, Math.PI * 2); ctx.fill();
   ctx.restore();
 }
-/* a hand gripping the end of a spring at (x, y), pulling to the right */
-function grip(ctx, x, y, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 4;
-  ctx.beginPath(); ctx.moveTo(x, y - 26); ctx.lineTo(x + 30, y - 26); ctx.lineTo(x + 44, y - 12);
-  ctx.lineTo(x + 44, y + 12); ctx.lineTo(x + 30, y + 26); ctx.lineTo(x, y + 26); ctx.closePath();
-  ctx.fill(); ctx.stroke(); ctx.restore();
-}
 /* the hook of a spring scale, hanging off the rod that ends at (x, y) */
 function hook(ctx, x, y, color) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.beginPath();
@@ -152,7 +145,7 @@ function hook(ctx, x, y, color) {
     fixed(ctx, WALL - 40, 318, 40, 90);
     spring(ctx, X0, 363, pulled, 363, 9, 20, F.ref('spring'), 4);
     line(ctx, pulled, 337, pulled, 389, F.ref('spring'), 5);
-    grip(ctx, pulled, 363, PAL.ink);
+    F.hand(ctx, pulled + 78, 363, { aim: [-1, 0], view: 'back', curl: 0.85, thumb: 'along', s: 0.85 });
     line(ctx, rest, 320, rest, 430, PAL.muted, 2, [8, 8]);
     if (DX.v > 0.0001) {
       const al = 40 + 1600 * DX.v;
@@ -178,8 +171,7 @@ function hook(ctx, x, y, color) {
     headline(ctx, DX.v < 0.0001
       ? 'The spring sits at its relaxed length of ' + fmt(X.v * 100, 0) + ' cm, so it exerts no restoring force and the scale reads nothing'
       : 'The spring is stretched ' + fmt(DX.v * 100, 1) + ' cm past its relaxed length of ' + fmt(X.v * 100, 0) + ' cm, and the scale reads ' + fmt(r, 1) + ' units of the standard force');
-    readout(d.readout, `\\kFres = \\frac{\\kdx}{\\htmlClass{kv-position}{\\Delta x_{\\text{std}}}}\\,\\htmlClass{kv-force}{F_{\\text{std}}} = \\frac{${fmt(DX.v * 100, 1)}\\ \\text{cm}}{1.0\\ \\text{cm}}\\,\\htmlClass{kv-force}{F_{\\text{std}}} = ${fmt(r, 1)}\\,\\htmlClass{kv-force}{F_{\\text{std}}}`,
-      'The standard here is the restoring force of this spring stretched one centimeter, and the spring scale is marked off in those units, so a reading of six means the pull on the hook is six times the standard force.');
+    readout(d.readout, `\\kFres = \\frac{\\kdx}{\\htmlClass{kv-position}{\\Delta x_{\\text{std}}}}\\,\\htmlClass{kv-force}{F_{\\text{std}}} = \\frac{${fmt(DX.v * 100, 1)}\\ \\text{cm}}{1.0\\ \\text{cm}}\\,\\htmlClass{kv-force}{F_{\\text{std}}} = ${fmt(r, 1)}\\,\\htmlClass{kv-force}{F_{\\text{std}}}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

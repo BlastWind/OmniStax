@@ -30,8 +30,8 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
   /* which two of the four forces are being compared is a choice among four named states, never a
      number on a slider, so each is a row of buttons naming the force it picks */
   const OPTS = FORCE.map((f, i) => ({ value: String(i), label: f.name }));
-  const A = choice(d.controls, { label: '\\text{force A}', aria: 'the first force', options: OPTS, value: '3' });
-  const B = choice(d.controls, { label: '\\text{force B}', aria: 'the second force', options: OPTS, value: '1' });
+  const A = F.select(d.controls, { label: '\\text{force A}', aria: 'the first force', options: OPTS, value: '3' });
+  const B = F.select(d.controls, { label: '\\text{force B}', aria: 'the second force', options: OPTS, value: '1' });
   const LO = -40, L = 340, R = 1330, X = (p) => L + ((R - L) * (p - LO)) / -LO;
   const rowY = (i) => 120 + i * 58;
   function draw() {
@@ -69,8 +69,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     headline(ctx, a === b ? 'The ' + fa.name + ' force is being compared with itself, so the ratio is 1'
       : e >= 0 ? 'The ' + fa.name + ' force is ' + pow10(e) + ' times the ' + fb.name + ' force'
         : 'The ' + fa.name + ' force is ' + pow10(e) + ' of the ' + fb.name + ' force');
-    readout(d.readout, `\\frac{\\text{${fa.name}}}{\\text{${fb.name}}} = \\frac{${fa.tex}}{${fb.tex}} = 10^{${e}}`,
-      'The gravitational force is the weakest of the four by a very long way, and it is only because gravity is always attractive, and never cancels as the electromagnetic force does for a macroscopic object, that we notice it at all.');
+    readout(d.readout, `\\frac{\\text{${fa.name}}}{\\text{${fb.name}}} = \\frac{${fa.tex}}{${fb.tex}} = 10^{${e}}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -157,7 +156,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
       : Math.abs(ang) < 1 ? 'The force on the test charge is ' + fmt(Fm, 2) + ' units and runs straight along the axis, following the field line through it'
         : 'The force on the test charge is ' + fmt(Fm, 2) + ' units and points ' + fmt(Math.abs(ang), 0) + '° ' + (ang > 0 ? 'above' : 'below') + ' the axis');
     readout(d.readout, `\\kF = \\kq\\kE = (${fmt(q, 1)}\\ \\text{units})(${fmt(E, 2)}\\ \\text{units}) = ${fmt(Fm, 2)}\\ \\text{units}`,
-      'The charges here carry no coulombs and the field no newtons per coulomb, so both are counted in units of their own: the charge in units of the charge that makes the field, and the field in units of its strength midway between the two charges. Raise q and the arrow grows with it, while the lines stay exactly where they are, because the field is a characteristic of the two charges that make it and not of the charge you place in it.');
+      'The charges here carry no coulombs and the field no newtons per coulomb, so both are counted in units of their own.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -198,7 +197,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     const u = flying ? (t - THROW) / (CATCH - THROW) : caught ? 1 : 0;
     const bx = hand1[0] + (hand2[0] - hand1[0]) * u, by = hand1[1] - 44 * Math.sin(Math.PI * u);
     /* the people, on their ground line */
-    text(ctx, 'a basketball passed between two people', 60, 96, PAL.muted, { size: 20, weight: 600 });
+    text(ctx, 'a basketball passed between two people', 60, 118, PAL.muted, { size: 20, weight: 600 });
     line(ctx, 120, yb, 1280, yb, PAL.rule, 3);
     F.person(ctx, xa, yb, F.ref('thrower'), !flying && !caught ? { reach: { x: hand1[0], y: hand1[1] } } : { lean: 0.1 });
     F.person(ctx, xb, yb, F.ref('catcher'), caught || (flying && u > 0.72) ? { face: -1, reach: { x: hand2[0], y: hand2[1] } } : { face: -1, lean: 0.1 });
@@ -228,8 +227,7 @@ const ease = (u) => 1 - Math.pow(1 - Math.max(0, Math.min(1, u)), 3);
     headline(ctx, !flying && !caught ? 'The thrower is about to pass the ball across the ' + fmt(sep, 1) + ' m between the two'
       : flying ? 'The ball is in flight, and the ' + fmt(f, 0) + ' N it carried away has pushed the thrower back from the catcher'
         : 'The catcher has taken the ball and been pushed back in turn, so one exchange has driven the pair apart');
-    readout(d.readout, `\\kFone = \\kFtwo = ${fmt(f, 0)}\\ \\text{N}`,
-      'The thrower is pushed back as the ball leaves and the catcher is pushed back as it arrives, so the exchange drives the two apart although neither of them touches the other. A meson exchanged between a proton and a neutron carries the strong nuclear force between them in the same way.');
+    readout(d.readout, `\\kFone = \\kFtwo = ${fmt(f, 0)}\\ \\text{N}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();

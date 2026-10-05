@@ -78,8 +78,8 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
       : r.a === 0 ? 'With the friction gone the block leaves the picture at ' + fmt(r.v0, 1) + ' m/s, and nothing will stop it'
       : 'The block leaves the picture still moving at ' + fmt(v, 1) + ' m/s, since stopping it would take ' + fmt(r.ds, 1) + ' m');
     ro.set(r.a === 0
-      ? `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} = \\mk{n0}{${fmt(r.v0, 1)}} = \\mk{nv}{${fmt(v, 2)}}\\ \\text{m/s}`
-      : `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} \\mk{at}{{}- \\ka\\kt} = \\mk{n0}{${fmt(r.v0, 1)}} \\mk{nat}{{}- ${fmt(r.a, 1)}(${fmt(t, 2)})} = \\mk{nv}{${fmt(v, 2)}}\\ \\text{m/s}`, r.a === 0 ? 'With the slowing set to zero the block never stops: the line of the speed is flat, and the distance it covers goes on growing with the time.'
+      ? `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} = \\mk{nv}{${fmt(r.v0, 1)}}\\ \\text{m/s}`
+      : `\\mk{v}{\\kv} = \\mk{v0}{\\kvo} \\mk{at}{{}- \\ka\\kt} = \\mk{n0}{${fmt(r.v0, 1)}} \\mk{nat}{{}- ${fmt(r.a, 1)}(${fmt(t, 2)})} = \\mk{nv}{${fmt(Math.max(0, r.v0 - r.a * +fmt(t, 2)), 2)}}\\ \\text{m/s}`, r.a === 0 ? ''
         : r.stops ? 'The block covers ' + fmt(r.ds, 1) + ' m before it stops, and halving the slowing would double that distance.'
         : 'Stopping the block would take ' + fmt(r.ds, 1) + ' m, which is more than the 60 m of surface drawn here.');
   }

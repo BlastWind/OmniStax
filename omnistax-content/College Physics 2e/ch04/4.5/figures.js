@@ -70,25 +70,6 @@ function sack(ctx, cx, base, color) {
   ctx.restore();
   text(ctx, 'DOG FOOD', cx, base - 44, color, { size: 19, weight: 600, align: 'center' });
 }
-/* a hand closed round a vertical rope, seen from the side: the forearm comes down from the top
-   of the picture to a fist whose bottom is at (x, y); the fingers are the three lines across it */
-function hand(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  ctx.beginPath(); ctx.moveTo(x - 20, 80); ctx.lineTo(x + 20, 80); ctx.lineTo(x + 24, y - 60); ctx.lineTo(x - 24, y - 60); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(x - 30, y - 62); ctx.lineTo(x + 34, y - 62); ctx.quadraticCurveTo(x + 46, y - 30, x + 34, y);
-  ctx.lineTo(x - 26, y); ctx.quadraticCurveTo(x - 42, y - 30, x - 30, y - 62); ctx.closePath(); ctx.fill(); ctx.stroke();
-  for (let i = 0; i < 3; i++) { const fy = y - 46 + i * 15; ctx.beginPath(); ctx.moveTo(x - 34, fy); ctx.quadraticCurveTo(x + 4, fy + 8, x + 40, fy); ctx.stroke(); }
-  ctx.restore();
-}
-/* a fist closed round a horizontal cable, pulling it to the left: the fist's left face is at (x, y)
-   on the cable and the forearm runs down and away to the left */
-function fistPull(ctx, x, y, color) {
-  ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  ctx.beginPath(); ctx.moveTo(x - 6, y + 14); ctx.lineTo(x - 96, y + 96); ctx.lineTo(x - 66, y + 118); ctx.lineTo(x + 24, y + 30); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(x, y - 26); ctx.lineTo(x + 70, y - 32); ctx.quadraticCurveTo(x + 84, y, x + 70, y + 30); ctx.lineTo(x, y + 26); ctx.closePath(); ctx.fill(); ctx.stroke();
-  for (let i = 0; i < 3; i++) { const fx = x + 14 + i * 17; ctx.beginPath(); ctx.moveTo(fx, y - 30); ctx.quadraticCurveTo(fx + 8, y, fx, y + 28); ctx.stroke(); }
-  ctx.restore();
-}
 /* a small pulley at (x, y) */
 function pulley(ctx, x, y) {
   ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4;
@@ -348,14 +329,15 @@ function walker(ctx, x, y, color) {
     });
     curve(ctx, (t) => w * Math.sin(t * RAD), 0, 90, X, Y, col, 5, 90);
     curve(ctx, (t) => w * Math.cos(t * RAD), 0, 90, X, Y, col, 5, 90);
-    text(ctx, 'w∥ = mg sin θ', X(70), Y(w * Math.sin(70 * RAD)) + 36, col, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'w⊥ = mg cos θ', X(22), Y(w * Math.cos(22 * RAD)) + 36, col, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    const off = (v) => (v > 300 ? 36 : -30);   /* under a curve high in the box, over one low in it, clear of the ticks */
+    text(ctx, 'w∥ = mg sin θ', X(70), Y(w * Math.sin(70 * RAD)) + off(w * Math.sin(70 * RAD)), col, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'w⊥ = mg cos θ', X(22), Y(w * Math.cos(22 * RAD)) + off(w * Math.cos(22 * RAD)), col, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, X(TH.v), box.b, X(TH.v), box.t, PAL.ink, 2, [4, 8]);
     dot(ctx, X(TH.v), Y(wpar), col, true, 9); dot(ctx, X(TH.v), Y(wperp), col, false, 9);
     headline(ctx, 'At ' + deg(TH.v, 1) + ' the weight of ' + num(w, 0) + ' N divides into ' + num(wpar, 0)
       + ' N down the slope and ' + num(wperp, 0) + ' N into it');
     readout(d.readout, `\\kwpar = \\kwgt\\sin\\ktheta = \\km\\kg\\sin\\ktheta = (${fmt(M.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\sin ${fmt(TH.v, 1)}^\\circ = ${num(wpar, 0)}\\ \\text{N}`,
-      'The other component, w⊥ = mg cos θ = ' + num(wperp, 0) + ' N, presses into the surface, and the normal force is equal in magnitude and opposite in direction to it. The angle between the weight and its perpendicular component is the angle of the incline itself, and at 45° the two components are equal.');
+      'The angle between the weight and its perpendicular component is the angle of the incline itself.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -379,8 +361,8 @@ function walker(ctx, x, y, color) {
     /* the hand that holds the rope, reaching down from the top of the picture: a forearm, a fist
        closed round the rope with its fingers drawn across the front, and the rope leaving the
        bottom of the fist with a spring cut into it above the mass */
-    hand(ctx, X, 232, F.ref('hand'));
-    line(ctx, X, 250, X, 300, PAL.ink, 5);
+    line(ctx, X, 170, X, 300, PAL.ink, 5);
+    F.hand(ctx, X, 120, { aim: [0, 1], view: 'back', curl: 0.85, thumb: 'along', s: 1.1, color: F.ref('hand') });
     spring(ctx, X, 300, X, 366 + stretch, 7, 18, PAL.ink, 4);
     line(ctx, X, 366 + stretch, X, 466, PAL.ink, 5);
     block(ctx, X, 524, 170, 116, F.ref('hanging-mass'));
@@ -398,9 +380,7 @@ function walker(ctx, x, y, color) {
     fvec(ctx, 1010, 390, 0, -130, col, 'T = ' + num(T, 1) + ' N');
     fvec(ctx, 1010, 410, 0, 130, col, 'w = ' + num(T, 1) + ' N');
     headline(ctx, 'A ' + fmt(M.v, 2) + ' kg mass hangs at rest, so the rope carries ' + num(T, 1) + ' N at every point along it');
-    readout(d.readout, `\\kTf = \\kwgt = \\km\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(${fmt(GG.v, 2)}\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`,
-      'The acceleration of the mass is zero, so the tension must balance the weight exactly. The rope pulls up on the mass and down on the hand with the same ' + num(T, 1)
-      + ' N, and once the tension is known at one place it is known all along the rope.');
+    readout(d.readout, `\\kTf = \\kwgt = \\km\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(${fmt(GG.v, 2)}\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -432,23 +412,24 @@ function walker(ctx, x, y, color) {
     ctx.arc(P2[0], P2[1], R, ph - Math.PI / 2, 0);
     ctx.lineTo(LX, LOADY - 46); ctx.stroke(); ctx.restore();
     pulley(ctx, P1[0], P1[1]); pulley(ctx, P2[0], P2[1]);
-    fistPull(ctx, 300, P1[1] - R, PAL.ink);
+    F.hand(ctx, 208, P1[1] - R, { aim: [1, 0], view: 'back', curl: 0.85, thumb: 'along', s: 1 });
     block(ctx, LX, LOADY, 140, 92, PAL.ink);
     text(ctx, 'm', LX, LOADY, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    fvec(ctx, LX, LOADY + 46, 0, 62, col, 'w = ' + num(T, 1) + ' N', 20);
+    fvec(ctx, LX, LOADY + 46, 0, 62, col, '');
+    text(ctx, 'w = ' + num(T, 1) + ' N', LX + 18, LOADY + 77, col, { weight: 600, size: 20, align: 'left', bg: PAL.panel });
     /* the same tension along all three segments, drawn at the same length beside the cable */
     tvec(ctx, 380, P1[1] - R, 1, 0, 100, col, 'T = ' + num(T, 1) + ' N', -1, 21, 22);
     const m2 = [P1[0] + R * n2[0] + 270 * Math.cos(ph), P1[1] + R * n2[1] + 270 * Math.sin(ph)];
-    tvec(ctx, m2[0], m2[1], -Math.cos(ph), -Math.sin(ph), 100, col, 'T = ' + num(T, 1) + ' N', 1, 21, 22);
+    tvec(ctx, m2[0], m2[1], -Math.cos(ph), -Math.sin(ph), 100, col, '', 1, 21, 22);
+    /* named to the right of its arrow, which stays clear of the label however steep the cable */
+    text(ctx, 'T = ' + num(T, 1) + ' N', m2[0] - 50 * Math.cos(ph) + 36 * Math.sin(ph), m2[1] - 50 * Math.sin(ph) - 36 * Math.cos(ph), col, { weight: 600, size: 21, align: 'left', bg: PAL.panel });
     tvec(ctx, LX, LOADY - 62, 0, -1, 76, col, '', -1, 21, 22);
     text(ctx, 'T = ' + num(T, 1) + ' N', LX - 40, LOADY - 100, col, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
     angleArc(ctx, P1[0], P1[1], 64, 0, PH.v, deg(PH.v, 0));
     text(ctx, 'the cable is pulled here', 250, P1[1] + 150, PAL.muted, { size: 19, align: 'center' });
-    text(ctx, 'the same corner carries a finger tendon and a bicycle brake cable', 120, 744, PAL.muted, { size: 18 });
     headline(ctx, 'The ' + fmt(M.v, 2) + ' kg load makes a tension of ' + num(T, 1)
       + ' N, and the same ' + num(T, 1) + ' N is carried round both corners to the hand');
-    readout(d.readout, `\\kTf = \\km\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`,
-      'Where there is no friction the tension is transmitted undiminished: a corner changes the direction of the pull and not its size, so the three arrows are the same length however far the cable is bent.');
+    readout(d.readout, `\\kTf = \\km\\kg = (${fmt(M.v, 2)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${num(T, 1)}\\ \\text{N}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -556,7 +537,7 @@ function walker(ctx, x, y, color) {
     arrow(ctx, MIDX, MIDY - 130, MIDX, MIDY - 16, col, 5);
     text(ctx, 'F⊥ = ' + num(FP.v, 0) + ' N', MIDX + 20, MIDY - 82, col, { weight: 600, size: 21 });
     tvec(ctx, MIDX + (LX - MIDX) * 0.5, MIDY + (CY - MIDY) * 0.5, -Math.cos(th), -Math.sin(th), 150, col, 'T = ' + num(T, 0) + ' N', 1);
-    tvec(ctx, MIDX + (RX - MIDX) * 0.5, MIDY + (CY - MIDY) * 0.5, Math.cos(th), -Math.sin(th), 150, col, 'T = ' + num(T, 0) + ' N', -1);
+    tvec(ctx, MIDX + (RX - MIDX) * 0.5, MIDY + (CY - MIDY) * 0.5, Math.cos(th), -Math.sin(th), 150, col, 'T = ' + num(T, 0) + ' N', 1);
     angleArc(ctx, RX, CY, 112, 180 - TH.v, 180, deg(TH.v, 2), 19);
     /* the graph: the tension against the angle, for the push that is set */
     /* fixed axes: the angle slider covers 0.5° to 15°, so the angle runs 0 to 15°. The tension grows
@@ -577,8 +558,8 @@ function walker(ctx, x, y, color) {
     pinned(ctx, box, g.X, g.Y, TH.v, T, col, num(T, 0) + ' N');
     headline(ctx, 'A push of ' + num(FP.v, 0) + ' N at ' + deg(TH.v, 2) + ' puts ' + num(T, 0) + ' N on the car, '
       + fmt(T / FP.v, 1) + ' times the push');
-    readout(d.readout, `\\kTf = \\frac{\\kFperp}{2\\sin\\ktheta} = \\frac{${num(FP.v, 0)}\\ \\text{N}}{2\\sin ${fmt(TH.v, 2)}^\\circ} = ${num(T, 0)}\\ \\text{N}`,
-      'Only the small component of each half of the chain that points across its length answers the push, so the tension grows without limit as the chain is pulled straight. At θ = 0 the equation has no answer, which is why no connector is ever exactly straight.');
+    readout(d.readout, `\\kTf = \\frac{\\kFperp}{2\\sin\\ktheta} = \\frac{${num(FP.v, 0).replace(/,/g, '{,}')}\\ \\text{N}}{2\\sin ${fmt(TH.v, 2)}^\\circ} = ${num(T, 0).replace(/,/g, '{,}')}\\ \\text{N}`,
+      'At θ = 0 the equation has no answer, which is why no connector is ever exactly straight.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

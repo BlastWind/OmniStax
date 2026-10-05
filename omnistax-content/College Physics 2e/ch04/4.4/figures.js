@@ -226,7 +226,7 @@ function plume(ctx, x, y, color, f) {
     fbd(ctx, 740, 470, 1300, 'System 2: the cart and the equipment', r.Fprof, 'F_prof', r.Fnet2, mc.v, r.a, cf, F.ref('cart'));
     topline(ctx, 'After ' + fmt(tau, 2) + ' s System 1 is still pushed forward with ' + fmt(Ff.v, 0) + ' N and held back by ' + fmt(fr.v, 1) + ' N, so its ' + fmt(r.M, 1) + ' kg accelerates at ' + fmt(r.a, 2) + ' m/s²');
     readout(d.readout, `\\ka = \\frac{\\kFfloor - \\kff}{\\km} = \\frac{${fmt(Ff.v, 0)}\\ \\text{N} - ${fmt(fr.v, 1)}\\ \\text{N}}{${fmt(r.M, 1)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
-      'The force the professor exerts on the cart is ' + fmt(r.Fnet2, 1) + ' N + ' + fmt(fr.v, 1) + ' N = ' + fmt(r.Fprof, 1) + ' N. It is internal to System 1, where it cancels against the force the cart exerts back on her, so it never enters the first calculation; taking the cart alone as System 2 makes it external, and then it is the force that accelerates the cart.');
+      'The professor’s push on the cart, ' + fmt(r.Fprof, 1) + ' N, is internal to System 1 and drops out there; only System 2, the cart alone, counts it as external.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: (dt) => cy.step(dt, () => run().T / 4.5), draw });
@@ -258,7 +258,6 @@ function plume(ctx, x, y, color, f) {
     const XMAX = 80, RX = (mtr) => 430 + mtr * (720 / XMAX);
     const past = s > XMAX, rx = RX(Math.min(s, XMAX));
     STARS.forEach(([sx, sy]) => dot(ctx, sx, sy, PAL.rule, true, 3));
-    text(ctx, 'empty space: no ground below, no air behind', 700, 86, PAL.muted, { size: 18, align: 'center' });
     /* the exhaust gas is a body, not a force, so it wears its referent colour and never the force hue */
     plume(ctx, rx - 48, 214, alpha(F.ref('gas'), 0.7), tau);
     rocketSprite(ctx, rx, 214, F.ref('rocket'));
@@ -270,7 +269,8 @@ function plume(ctx, x, y, color, f) {
     if (v > 0.2) {
       const Lv = Math.min(230, v * 5);
       arrow(ctx, rx, 342, rx + Lv, 342, C('velocity'), 5);
-      text(ctx, 'v = ' + fmt(v, 1) + ' m/s', rx + Lv + 12, 342, C('velocity'), { size: 20, weight: 600 });
+      const room = rx + Lv + 140 < 1390;   /* the label goes behind the tail once the arrow nears the edge */
+      text(ctx, 'v = ' + fmt(v, 1) + ' m/s', room ? rx + Lv + 12 : rx - 12, 342, C('velocity'), { size: 20, weight: 600, align: room ? 'left' : 'right' });
     }
     scale(ctx, RX, 0, XMAX, 20, 386, 'm', 1);
     /* fixed axes: the burn always lasts 4 s, and the largest thrust the sliders allow on the least
@@ -283,7 +283,7 @@ function plume(ctx, x, y, color, f) {
       line(ctx, g.X(tau), g.Y(0), g.X(tau), g.Y(v), C('time'), 2, [4, 8]);
     });
     pinned(ctx, gbox, g.X, g.Y, tau, v, PAL.ink, fmt(v, 1) + ' m/s');
-    text(ctx, 'the slope is the acceleration, ' + fmt(r.a, 2) + ' m/s²', g.X(BURN * 0.44), g.Y(Math.min(r.ve, VR) * 0.82), C('acceleration'), { size: 18, weight: 600, align: 'center' });
+    text(ctx, 'the slope is the acceleration, ' + fmt(r.a, 2) + ' m/s²', g.X(BURN * 0.44), Math.min(g.Y(Math.min(r.ve, VR) * 0.82), g.Y(Math.min(r.ve, VR) * 0.44) - 32), C('acceleration'), { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     topline(ctx, 'After ' + fmt(tau, 2) + ' s the gas has pushed the rocket forward with ' + fmt(Fk.v, 1) + ' kN, and its ' + fmt(mm.v, 0) + ' kg has reached ' + fmt(v, 1) + ' m/s' + (past ? ', ' + fmt(s, 0) + ' m from where it started and past the 80 m drawn here' : ''));
     readout(d.readout, `\\ka = \\frac{\\kF}{\\km} = \\frac{${fmt(Fk.v * 1000, 0)}\\ \\text{N}}{${fmt(mm.v, 0)}\\ \\text{kg}} = ${fmt(r.a, 2)}\\ \\text{m/s}^2`,
       'The rocket has nothing to push on but its own exhaust gas, and that is enough: it exerts a large backward force on the gas, and by Newton’s third law the gas exerts an equal forward force on the rocket, which is its thrust.');

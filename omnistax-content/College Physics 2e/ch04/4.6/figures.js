@@ -147,7 +147,7 @@ const RAD = Math.PI / 180;
     line(ctx, X0 - 20, GY, xR + 40, GY, PAL.muted, 3);
     ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(xR, GY, 52, Math.PI, Math.PI + th); ctx.stroke(); ctx.restore();
     const wide = TH.v >= 12;                  /* a narrow wedge has no room for the label inside it */
-    text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', wide ? xR - 92 * Math.cos(th / 2) : xR + 18, wide ? GY - 92 * Math.sin(th / 2) : GY - 18, C('angle'), { size: 17, align: wide ? 'center' : 'left' });
+    text(ctx, 'θ = ' + fmt(TH.v, 0) + '°', wide ? xR - 92 * Math.cos(th / 2) : xR + 18, wide ? GY - 92 * Math.sin(th / 2) : GY - 18, C('angle'), { size: 17, align: wide ? 'center' : 'left', bg: PAL.panel });
     const P = [X0 + 0.45 * L * Math.cos(th), yTop + 0.45 * L * Math.sin(th)], B = at(P, nrm, 24);
     ctx.save(); ctx.translate(B[0], B[1]); ctx.rotate(th); ctx.fillStyle = PAL.panel; ctx.strokeStyle = F.ref('block'); ctx.lineWidth = 4;
     ctx.fillRect(-22, -22, 44, 44); ctx.strokeRect(-22, -22, 44, 44); ctx.restore();
@@ -201,10 +201,7 @@ const RAD = Math.PI / 180;
     headline(ctx, along
       ? 'With one axis along the slope the block accelerates at ' + num(ax, 2) + ' m/s² along it and not at all across it'
       : 'Turned ' + fmt(Math.abs(TH.v - PH.v), 0) + '° from the slope, the axes split the acceleration into ' + num(ax, 2) + ' and ' + num(ay, 2) + ' m/s²');
-    readout(d.readout, `\\kFnety = \\km\\ka_{y'} = ${num(wy + ny, 0)}\\ \\text{N}`,
-      along
-        ? 'With one axis along the slope the block accelerates along x′ alone, with a net force of ' + num(wx + nx, 0) + ' N, and only the weight is left to resolve.'
-        : 'The net force along x′ is ' + num(wx + nx, 0) + ' N. These axes leave the block accelerating along both of them, so both the weight and the normal force have to be resolved; with the axes at ' + fmt(TH.v, 0) + '°, the angle of the slope, the net force across it is zero.');
+    readout(d.readout, `\\kFnety = \\km\\ka_{y'} = ${num(wy + ny, 0)}\\ \\text{N}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

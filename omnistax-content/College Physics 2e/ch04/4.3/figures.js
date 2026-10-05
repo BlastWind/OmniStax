@@ -261,12 +261,12 @@ function bathScale(ctx, x, y, w, color) {
        pinned at that edge with its value beside it rather than drawn outside the frame */
     [[mb.v, ab, 'the ball', cb], [ms.v, as, 'the SUV', cs]].forEach(([m, a, name, cr]) => {
       const p = pinned(ctx, gbox, g.X, g.Y, Math.log10(m) + MX, Math.log10(a) + MY, ca, sig3(a) + ' m/s²');
-      text(ctx, name, p.x + 16, p.y + 24, cr, { size: 18, weight: 600 });
+      text(ctx, name, p.x + 16, p.y + 24, cr, { size: 18, weight: 600, bg: PAL.panel });
     });
     text(ctx, 'every step of ten in the mass is a step of a tenth in the acceleration', g.X(2.6), g.Y(5.5), PAL.muted, { size: 17, align: 'center' });
     headline(ctx, 'The same ' + fmt(Fp.v, 0) + ' N gives the ' + fmt(mb.v, 3) + ' kg ball ' + sig3(ab) + ' m/s² and the ' + commas(fmt(ms.v, 0)) + ' kg SUV ' + sig3(as) + ' m/s²');
-    readout(d.readout, `\\ka = \\frac{\\kF}{\\km} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mb.v, 3)}\\ \\text{kg}} = ${sig3(ab)}\\ \\text{m/s}^2`,
-      'The same force on the SUV gives ' + sig3(as) + ' m/s². It is the same in both cases, so the only thing that sets the two accelerations apart is the mass: the SUV is ' + sig3(ms.v / mb.v) + ' times as massive as the ball and accelerates at ' + sig3(ms.v / mb.v) + ' times less.');
+    readout(d.readout, `\\ka = \\frac{\\kF}{\\km} = \\frac{${fmt(Fp.v, 0)}\\ \\text{N}}{${fmt(mb.v, 3)}\\ \\text{kg}} = ${sig3(ab).replace(/,/g, '{,}')}\\ \\text{m/s}^2`,
+      'The SUV is ' + sig3(ms.v / mb.v) + ' times as massive as the ball, and its acceleration is ' + sig3(ms.v / mb.v) + ' times smaller.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -291,13 +291,13 @@ function bathScale(ctx, x, y, w, color) {
     /* fixed scene scale: the lawn is ruled 0 to 12 m and never rescales. Example 4.1 covers 9.6 m in
        its three seconds and so fills it, and a harder push on a lighter mower runs past the end,
        where the mower is held at the last meter mark and the headline says how far it has gone. */
-    const gy = 300, x0 = 330, XMAX = 12, SC = 1000 / XMAX, SX = (mtr) => x0 + mtr * SC;
+    const gy = 300, x0 = 200, XMAX = 12, SC = 600 / XMAX, SX = (mtr) => x0 + mtr * SC;
     strip(ctx, 60, 1340, gy + 22, 44);
     const past = x > XMAX;
     const px = SX(Math.min(x, XMAX)), py = gy - 26, cf = C('force');
     F.person(ctx, px - 156, gy, F.ref('pusher'), { lean: 0.22, reach: { x: px - 116, y: py - 78 }, phase: tau > 0 && tau < T ? tau * 6 : 0 });
     mower(ctx, px, py, F.ref('mower'));
-    const La = Math.min(230, 30 + a * 48), LF = Fn.v * 3.2, Lv = Math.min(240, v * 22);
+    const La = Math.min(230, 30 + a * 48), LF = Fn.v * 2.8, Lv = Math.min(240, v * 22);
     /* the net force is drawn from the deck it acts on, the acceleration and the velocity above it */
     arrow(ctx, px + 20, py - 96, px + 20 + La, py - 96, C('acceleration'), 5);
     headLabel(ctx, 'a = ' + fmt(a, 2) + ' m/s²', px + 20, px + 20 + La, py - 96, C('acceleration'), 21);
@@ -316,8 +316,7 @@ function bathScale(ctx, x, y, w, color) {
     topline(ctx, past
       ? 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(Fn.v, 0) + ' N on ' + fmt(mm.v, 1) + ' kg has carried the mower ' + fmt(x, 2) + ' m, past the end of the ' + XMAX + ' m of lawn drawn here, at ' + fmt(v, 2) + ' m/s'
       : 'After ' + fmt(tau, 2) + ' s a net force of ' + fmt(Fn.v, 0) + ' N on ' + fmt(mm.v, 1) + ' kg has given the mower ' + fmt(a, 2) + ' m/s², so it has reached ' + fmt(v, 2) + ' m/s and gone ' + fmt(x, 2) + ' m');
-    readout(d.readout, `\\ka = \\frac{\\kFnet}{\\km} = \\frac{${fmt(Fn.v, 0)}\\ \\text{kg}\\cdot\\text{m/s}^2}{${fmt(mm.v, 1)}\\ \\text{kg}} = ${fmt(a, 2)}\\ \\text{m/s}^2`,
-      'One newton is one kilogram meter per second squared, so substituting the units for N leaves the kilograms to cancel and an answer in meters per second squared. The acceleration points the same way as the net force, which is parallel to the ground.');
+    readout(d.readout, `\\ka = \\frac{\\kFnet}{\\km} = \\frac{${fmt(Fn.v, 0)}\\ \\text{kg}\\cdot\\text{m/s}^2}{${fmt(mm.v, 1)}\\ \\text{kg}} = ${fmt(a, 2)}\\ \\text{m/s}^2`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
@@ -517,7 +516,8 @@ function bathScale(ctx, x, y, w, color) {
       [[1.625, 'the Moon', 1], [9.8, 'Earth', -1]].forEach(([gv, name, side]) => {
         line(ctx, g.X(gv), g.Y(0), g.X(gv), g.Y(mm.v * gv), PAL.muted, 2, [4, 8]);
         dot(ctx, g.X(gv), g.Y(mm.v * gv), cf, true, 9);
-        text(ctx, name, g.X(gv) + side * 22, g.Y(mm.v * gv) + 34, PAL.ink, { size: 18, weight: 600, align: side > 0 ? 'left' : 'right' });
+        const low = side > 0 && mm.v < 0.6;   /* a nearly flat line leaves no room under the Moon's point, so its name goes above */
+        text(ctx, name, g.X(gv) + (low ? 0 : side * 18), g.Y(mm.v * gv) + (low ? -28 : side > 0 ? 12 : -24), PAL.ink, { size: 18, weight: 600, align: low ? 'center' : side > 0 ? 'left' : 'right', bg: PAL.panel });
       });
       line(ctx, g.X(gg.v), g.Y(0), g.X(gg.v), g.Y(w), ca, 3, [10, 10]);
       line(ctx, g.X(0), g.Y(w), g.X(gg.v), g.Y(w), cf, 2, [10, 10]);
@@ -525,7 +525,7 @@ function bathScale(ctx, x, y, w, color) {
     pinned(ctx, gbox, g.X, g.Y, gg.v, w, ca, sig3(w) + ' N');
     headline(ctx, place(gg.v) + ' g = ' + gtxt(gg.v) + ' m/s², a mass of ' + fmt(mm.v, 1) + ' kg weighs ' + sig3(w) + ' N');
     readout(d.readout, `\\kwgt = \\km\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${gtxt(gg.v)}\\ \\text{m/s}^2) = ${sig3(w)}\\ \\text{N}`,
-      'The mass is the same wherever the scale is carried, but the weight is not: the same ' + fmt(mm.v, 1) + ' kg weighs ' + sig3(mm.v * G) + ' N on Earth and ' + sig3(mm.v * 1.625) + ' N on the Moon. A bathroom scale measures the force and divides it by 9.80 to print a mass, so here it would read ' + sig3(w / G) + ' kg.');
+      'A bathroom scale measures the force and divides it by 9.80 m/s² to print a mass.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
