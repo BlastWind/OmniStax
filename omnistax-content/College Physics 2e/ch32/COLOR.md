@@ -43,7 +43,7 @@ fireball drawn in its own colour goes through `F.fact`.
 Each section lists its own when it is built. Things the text and a figure both
 point at take `F.ref`: the two nuclei of a fusion reaction, the fission
 fragments FF₁ and FF₂ (whose subscripts name them, so their variables rows take
-`ref`), the patient and source of a scan, the tumour and the beams of a
+`ref`), the patient and source of a scan, the tumor and the beams of a
 crossfire. Kinds with no physical type that the text never names one by one
 (the radiations of the RBE table, the blast, thermal and radiation shares of
 Figure 32.29, the three dose levels) take `F.cat(i)` with a label, offset by the
@@ -51,3 +51,19 @@ figure's referent count.
 
 The frame of a figure and its labels stay in ink, and with colour coding off
 every figure stays legible from its labels.
+
+## Bindings as built
+
+| Section | Types bound | Referents |
+|---|---|---|
+| 32.1 | activity, time, energy, position, velocity ($c$ in the PET timing) | the tumor |
+| 32.2 | dose, energy, mass, activity, time, decay constant (Example 32.1), position | none; the radiation kinds and dose bands are `F.cat` |
+| 32.3 | dose, angle (the source's arc), position | the tumor |
+| 32.4 | dose, time, energy ($E_\gamma$) | none; the dose bands are `F.cat` |
+| 32.5 | energy, position (the separation of two nuclei), temperature, power, time, mass ($m_\text{i}$, $m_\text{f}$), velocity ($c$) | none |
+| 32.6 | energy, power, mass, velocity, time | the fission fragments `ff-1` and `ff-2`, whose rows give $\text{FF}_1$ and $\text{FF}_2$ their `ref` |
+| 32.7 | energy, mass, velocity | none; the energy shares of Figure 32.29 are `F.cat` |
+
+`magnetic-field` is unbound: the tokamak appears only in the ITER photograph.
+The H-bomb's fireball is the one fact the chapter paints, `#FFF1B8` to
+`#F08A24` through `F.fact`.

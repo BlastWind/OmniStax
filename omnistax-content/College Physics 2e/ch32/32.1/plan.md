@@ -112,3 +112,5 @@ No AP items, no Check Your Understanding box.
 - variables row `c` for 32.1 (velocity: the speed of light, at which both γ rays travel) → 32.1-pet; the readout writes `\kc`
 - `ch32/COLOR.md`: 32.1 binds `velocity` as well as energy, activity, time and position, through $c$ in the PET readout
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): `R_act`, `t_half` and `E` anchored at `32.1-medical-application`; rows added for `d` (`distance`, at `32.1-anger-camera`), `x` (`position`), `r_1`, `r_2` (`distance`), `Δt` (`time`) and `c` (`speed-of-light-in-vacuum`), all at `32.1-pet`; `ch32/COLOR.md` records `velocity` among 32.1's bindings.

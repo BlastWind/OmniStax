@@ -129,3 +129,5 @@ there.
 - anchors: `eq-pp-step-1`, `eq-pp-step-2`, `eq-pp-step-3`, `eq-pp-overall` → 32.5-proton-proton-cycle; `eq-dd-tritium`, `eq-dd-helium-3`, `eq-dt-fusion`, `eq-dd-gamma` → 32.5-fusion-on-earth; `eq-average-power-32` → 32.5-fusion-energy-and-power; `eq-fusion-energy-from-masses` → 32.5-nuclear-fusion (the form is `nuclear-reaction-energy`'s; the text states no such equation, the figure's readout does)
 - `ch32/COLOR.md`: 32.5 binds `position` (the separation of two nuclei) and `velocity` ($c$) besides the chapter's list
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): every existing row anchored (`BE`, `A_nuc`, `m_i`, `m_f`, `c` at `32.5-nuclear-fusion`, `E_gamma` at `32.5-proton-proton-cycle`, `T_temp` at `32.5-fusion-by-tunneling`, `P`, `t` at `32.5-fusion-energy-and-power`); rows added for `E` at `32.5-nuclear-fusion` and `KE`, `PE` (`electric-potential-energy`), `r` (`distance`) at `32.5-coulomb-barrier`; the ten forms anchored as asked; `ch32/COLOR.md` records `position` and `velocity` among 32.5's bindings.

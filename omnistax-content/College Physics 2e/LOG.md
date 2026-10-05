@@ -4489,3 +4489,114 @@ as Cl⁻, and every ordinal sign as a degree sign.
 Checks: `check:content` found no errors in the chapter. A headless pass over
 all ten pages in light and dark found no console error, blank figure, KaTeX
 error or missing image.
+
+
+### Pass 56 (2026-10-05): Chapter 32, Medical Applications of Nuclear Physics, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+seven sections, 32.1 to 32.7, by one agent each. It carries 66 concepts, 21
+equations, 54 variables, 38 glossary terms and 72 exercises (33 keyed
+problems, 29 conceptual questions and 10 AP items, 5 of them keyed). One type
+is declared, `dose` (Gy), for the absorbed dose and the dose equivalent alike:
+a dose is energy divided by the mass of tissue, not an energy. Every proton,
+neutron, electron, positron, neutrino and $\gamma$ ray is drawn through
+`F.el`, and every named element by its symbol; the H-bomb's fireball is the
+one fact painted.
+
+The 28 numbered figures of the sections are 11 kept photographs, one faithful
+copy (the energy pies of Figure 32.29) and 13 figures for the other 16
+numbers, three of them folds: the Coulomb barrier with the two nuclei over it
+(Figure 32.13 + 32.14), one fission close up beside the chain it starts
+(32.21 + 32.22), and the gun and implosion designs as a choice
+(32.24 + 32.25). Two Sims are added: the same energy as a dose to a whole body
+or a forearm in 32.2, and a ruler of weapon yields in 32.7. The Anger camera,
+the PET ring, the ionization tracks, the dental shielding, the crossfire, the
+barrier, the chain, the reactor and the bomb's chain move on a clock; the
+Sun's cycle and the H-bomb are told on story sliders; the rest are still. The
+PET ring and the crossfire, the chapter's two 3D candidates, are flat cuts,
+since every line of a pair and every beam lies in the cut.
+
+The chapter pass anchored all 21 equations and all 54 variables, and added 35
+variables rows the sections' text and readouts wrote without one, among them
+$t_{1/2}$ and $\lambda$ in Example 32.1 and an $x$ for the line 32.3's graph
+reads the dose along. Example 32.3's given masses now write $m$ with its
+macro. `dose-equivalent-rem-and-sievert` takes the type `dose`, so the
+sievert and the rem wear the hue the gray does, and `food-irradiation` opens
+on the book's definition. The fission fragments' rows name their referents.
+No edge was wanted: every prerequisite was merged at prep. Two captions were
+mended: Figure 32.6's no longer names the book, and Figure 32.9's ends on a
+whole sentence.
+
+Across the sections no exercise is kept twice; the picowave photon (32.2 to
+32.4) and the Critical Thinking problem on a $\beta^{+}$ target (32.7 to 32.1)
+carry their `source_section` and both notes agree. Figures 32.1 to 32.29,
+Tables 32.1 to 32.7 and Examples 32.1 to 32.4 run in book order.
+
+The book's slips are kept as printed and gathered in `ch32/exploration.md`:
+¹³⁵I with a 6-month half-life and a stray N in 32.3; the second neutron
+reaction of 32.5 with the ³He reaction's 20.68 MeV, ITER's 2018 and Figure
+32.18's lone "(a)"; in 32.6 the figure of neutron-induced fission cited for
+the $\text{BE}/A$ graph, plutonium as P, "a daughter nuclei" and a key of
+$Z = 92 = 38 + 53$; and in 32.7 Seaborg's prize in physics and "overheads"
+for warheads.
+
+Checks: `check:content` found no errors and no warnings in the chapter. A
+headless pass over all eight pages in light and dark found no console error,
+blank figure, KaTeX error or missing image; the chapter prints no Check Your
+Understanding box, so no inline card is expected.
+
+
+### Pass 57 (2026-10-05): Chapter 31, Radioactivity and Nuclear Physics, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+seven sections, 31.1 to 31.7, by one agent each. It carries 75 concepts, 24
+equations, 75 variables, 54 glossary terms and 82 exercises (43 keyed problems,
+27 conceptual questions and 12 AP items, 6 of them keyed). Two types are
+declared, `activity` and `decay-constant`. Every particle with an identity is
+drawn from the element palette: the proton, the neutron and the electron, and
+the positron, the neutrino and the γ photon, which the palette gained during the
+build, so an α is two protons and two neutrons and no ray wears a spectral
+colour.
+
+Three figures fold book figures: the decay modes, one scene with a choice of α,
+β⁻, β⁺, electron capture and γ (Figure 31.15 + 31.17 + 31.18), the
+binding-energy curve beside a packed nucleus that shows the force's range
+(31.24 + 31.25), and the α's barrier with its wave function (31.27 + 31.28).
+Three Sims are added: the Geiger tube in 31.2, carbon dating read off the decay
+curve in 31.5 and the scanning tunneling probe in 31.7. Ten figures move, since
+their rays, particles or decays fly or fall on a clock; the packed nucleus of
+Figure 31.11 is the chapter's one 3D scene, with a bounded pitch and a flat
+fallback, and the charts, curves and carbon dating are still. All twelve
+photographs are kept, since the text points at each.
+
+The chapter pass anchored all 24 equation rows and all 75 variable rows, 51 of
+them added here for symbols the text, figures and hints wrote without a row of
+their section. The range of radiation is $R$, as the range of a projectile in
+3.4, and the tunneling current of 31.7 is written with the current's own
+symbol rather than the moment of inertia's $I$. "Decay" is now introduced in
+31.1, where the book first defines it, and the nuclear reaction energy is typed
+an energy. Seven edges join the chapter to the ones before it: radioactivity to
+mass-energy equivalence, the three rays to the photon, γ decay to the photon's
+energy, the nuclear origin of radiation to atomic spectra, the nucleus to
+Rutherford scattering, ionizing radiation to ionizing photons and tunneling to
+29.7's probability distribution. The chapter's edges were then Hasse-reduced
+against the book: 50 that another path already reached were dropped, leaving
+118.
+
+Across the sections no exercise lands twice, and the ten held items (from 31.1,
+31.5 and 31.7) carry `source_section` with both sections' notes agreeing.
+Figures 31.1 to 31.29, Tables 31.1 and 31.2 and Examples 31.1 to 31.7 run in
+book order without gaps.
+
+The errata are kept as printed and gathered in `ch31/exploration.md`: an AP item
+of 31.4 that opens with another item's answer, another whose (c) and (d) are
+the same nuclide, a key that writes M for Mn and one that says "conversation
+laws"; a key in 31.5 that uses 0.00173 s for 1.78 ms, "solar neutrinos" for
+the neutrons that make carbon-14, and a key priced "＄2.9 × 10³"; a key in 31.3
+that takes barium as 142 where the prompt prints ¹⁴¹Ba; and in 31.6 a key with
+no part (d) and a question that prints $ZM({}^{1}\text{H})$.
+
+Checks: `check:content` found no errors or warnings in the chapter.
+A headless pass over all eight pages in light and dark on the shared server
+found no console error, blank figure, KaTeX error or missing image; every eyebrow
+reads as its row says, and the ten moving figures alone carry a transport.

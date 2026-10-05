@@ -38,3 +38,14 @@ setting and its value.
 | Errata | carried as printed and named in `notes`, as `exploration.md` lists |
 | Credit | `ai` is `{"text": "Claude Opus 5.5", "figures": "Claude Opus 5.5"}`, `built` 2026-09-28 |
 | Book manifest | `ch32` in `book.json` chapters, merged with `ost merge college-physics-2e 32` |
+
+## What the build changed
+
+| Setting | As built |
+|---|---|
+| Folds | Figure 32.13 + 32.14 (the Coulomb barrier and the two nuclei over it, with a $\text{KE}$ slider), 32.21 + 32.22 (one fission close up beside the chain, with $x$ a choice and the share of neutrons sent on a slider) and 32.24 + 32.25 (gun and implosion, a choice of design) are one figure each; two Sims are added: the same energy as a dose to a body or a forearm in 32.2 and a log ruler of weapon yields in 32.7 |
+| 3D | none: the PET ring (32.5) and the crossfire (32.9) are flat cuts, since every line of a pair and every beam lies in the cut; no PET/SPECT toggle |
+| Motion | the Anger camera and the PET ring (32.1), the ionization tracks and the dental shielding (32.2), the crossfire (32.3), the barrier (32.5), the chain and the reactor (32.6) and the bomb's chain (32.7) register a cycle; the Sun's cycle (32.15) and the H-bomb (32.28) are story sliders; the irradiation plant, the BE/$A$ curve, the dose Sim, the energy pies and the yield ruler are still. The ionization tracks move, against the prep's proposal, because the book's arrows are rays crossing the cells (rule 24.1) |
+| Colour coding | as `ch32/COLOR.md` § Bindings as built: 32.1, 32.5, 32.6 and 32.7 bind `velocity` through $c$; 32.2, 32.5, 32.6 and 32.7 bind `mass`; 32.2 binds `decay-constant` in Example 32.1; 32.3 binds `angle` for the source's arc; `dose-equivalent-rem-and-sievert` carries `type: dose`; no figure draws the tokamak's field, so `magnetic-field` is unbound |
+| Formulas | every form and every variables row anchored by the chapter pass |
+| Credit | `ai` is `{"text":[{"model":"claude-opus-5-5","effort":"high"}],"figures":[{"model":"claude-opus-5-5","effort":"high"}]}`, `built` 2026-10-05 |

@@ -104,3 +104,5 @@ Errata kept as printed and named in `notes`: "¹³⁵I (6-month half life)" in
 - variables row `32.3/θ` (type `angle`, concept `angle`): the arc the ⁶⁰Co source sweeps about the patient
 - variables row `32.3/Δθ` (type `angle`, concept `angle`): the arc of the source's path from which the beam crosses a patch of skin
 - variables row `32.3/d` (type `position`, concept `position`): the width of the tumor, and of the beam collimated to it
+
+Applied by the chapter pass (2026-10-05): rows added at `32.3-crossfire` for `dose` (`dose-equivalent-rem-and-sievert`, with `redefines`), `θ` and `Δθ` (`angle`), `d` (`distance`, with `redefines`) and `x` (`position`, the line the graph reads the dose along); the caption's closing fragment became the sentence "The graph beside it gives the dose along the line $\kx$ through the tumor."

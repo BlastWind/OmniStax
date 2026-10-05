@@ -114,6 +114,7 @@ is unkeyed and left out, named in 32.3's `exercise_notes`.
 - 32.5 and 32.6 both carry an exercise `fs-id1586899`; 32.6's is unkeyed and left out, so no id collides.
 - 32.6: ${}^{239}_{94}\text{P}_{145}$ for plutonium in the text, "²³⁹P" in `fs-id3008175` (unkeyed); `fs-id1151311`'s key (c) prints $Z = 92 = 38 + 53$ (xenon is 54).
 - 32.6: glossary "fission fragments: a daughter nuclei".
+- 32.6: the text cites the figure of neutron-induced fission (Figure 32.21) for the graph of $\text{BE}/A$, which is Figure 32.12 in 32.5; kept and named in `notes`.
 - 32.7: `fs-id1596002`'s key "10 overheads" for warheads; Seaborg's Nobel Prize given as physics.
 - The converter flattens MathML `mmultiscripts` in 32.6: the pre-scripted nuclides (${}^{235}_{92}\text{U}_{143}$ and the rest) must be rebuilt from the CNXML as `{}^{A}_{Z}\text{X}_{N}`. It also leaves stray `****` after "Anger camera" (32.1), "quality factor" and "gray" (32.2).
 

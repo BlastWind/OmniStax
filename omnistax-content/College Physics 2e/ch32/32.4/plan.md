@@ -89,3 +89,5 @@ named there, not here. No Check Your Understanding box, so nothing inline.
 - variables row `32.4/t` (min, `time`): the exposure time of a package in the irradiation room
 - variables row `32.4/E_gamma` (MeV, `energy`): the energy of a γ ray from the plant's source, 1.25 MeV for ⁶⁰Co and 0.67 MeV for ¹³⁷Cs
 - concept `food-irradiation`: its statement says why food doses are large rather than what food irradiation is; the book's definition is "the treatment of food with ionizing radiation"
+
+Applied by the chapter pass (2026-10-05): rows added at `32.4-irradiation-sources` for `dose` (`absorbed-dose-rad-and-gray`, with `redefines`), `t` and `E_gamma`; `food-irradiation`'s statement now opens on the book's definition, the treatment of food with ionizing radiation.

@@ -124,3 +124,5 @@ No Check Your Understanding box. No exercise moves in or out.
 - variables row `t_half` for 32.6 (time: the half-lives of ²³⁹U, ²³⁹Np and ²³⁹Pu) → 32.6-breeding
 - `ch32/COLOR.md`: 32.6 binds `mass`, `velocity` and `time` as well as `energy` and `power`
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): the five rows and five forms anchored as listed, `FF_1` and `FF_2` given `ref` `ff-1` and `ff-2`; rows added for `P` at `32.6-reactors`, `E`, `c`, `m` at `32.6-fission-energy-example`, `BE` at `32.6-fission` and `t_half` at `32.6-breeding`; Example 32.3's four given masses now write `\km` so the row has its uses; `ch32/COLOR.md` records `mass`, `velocity` and `time`.

@@ -95,3 +95,5 @@ printed. No Check Your Understanding box and no AP items, so nothing inline. No 
 - variables row `32.7/E` (energy, `energy`): the energy released by a nuclear weapon, its yield, in the readouts of `sim-fission-chain` and `sim-weapon-yield`
 - variables row `32.7/Δm` (mass, `mass`, as 32.6's row): the mass destroyed in the explosion, in the readout of `sim-weapon-yield`
 - variables row `32.7/c` (`speed-of-light-in-vacuum`): in the readout of `sim-weapon-yield`
+
+Applied by the chapter pass (2026-10-05): rows added for `E`, `Δm` and `c` at `32.7-energy-output`; the form `eq-lithium-tritium` anchored at `32.7-thermonuclear-bombs`.
