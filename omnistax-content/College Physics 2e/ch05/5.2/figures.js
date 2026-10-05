@@ -33,30 +33,48 @@ const partOf = (x) => { const n = 1 / x; return '1 part in ' + fmt(n, n >= 20 ||
 /* a skydiver spread-eagled, belly to the earth and seen from below, centred on (x, y): a round head,
    a solid torso, and arms and legs thrown out as thick rounded strokes bent at the elbow and knee */
 const skydiver = (ctx, x, y, color, s = 1) => F.skydiver(ctx, x, y, s, color);
-/* The body the drag coefficient belongs to, drawn at (x, y) in its referent colour; it returns the half-width the
-   arrows are set beyond, so a skydiver is never drawn as a car and a plate is never drawn as one. */
+/* The body the drag coefficient belongs to, in its referent colour. A car, a cyclist, a sphere, a plate or an
+   airfoil travels to the right along the road, (x, y) on the road line; a skydiver falls down the page, (x, y) her
+   centre. It returns the box the body fills and the height its arrows act at. */
 function bluff(ctx, x, y, name, col) {
-  if (name && name.indexOf('skydiver') >= 0) { skydiver(ctx, x, y, col, 1.3); return 72; }
-  if (name === 'a sphere') { dot(ctx, x, y, col, true, 44); return 50; }
-  if (name === 'a circular flat plate') { ctx.save(); ctx.fillStyle = col; ctx.fillRect(x - 9, y - 56, 18, 112); ctx.restore(); return 22; }
+  if (name === 'a skydiver lying horizontal') { F.skydiver(ctx, x, y, 1, col); return { l: x - 50, r: x + 50, t: y - 58, b: y + 60 }; }
+  if (name === 'a skydiver feet first') { F.silhouette(ctx, { x, y: y + 66, s: 0.9, pose: 'stand', color: col, hip: { x: 0, y: -77 }, feet: [{ x: 4, y: 0 }, { x: -4, y: 0 }], hands: [{ x: 8, y: -60 }, { x: 2, y: -60 }] }); return { l: x - 22, r: x + 22, t: y - 72, b: y + 68 }; }
+  const cy = y - 26, at = (l, r, t, b, ay) => ({ l, r, t, b, ay });
+  if (name === 'a sphere') { dot(ctx, x, cy, col, true, 44); return at(x - 44, x + 44, cy - 44, cy + 44, cy); }
+  if (name === 'a circular flat plate') { ctx.save(); ctx.fillStyle = col; ctx.fillRect(x - 9, cy - 56, 18, 112); ctx.restore(); return at(x - 9, x + 9, cy - 56, cy + 56, cy); }
   if (name === 'an airfoil') {
     ctx.save(); ctx.fillStyle = col; ctx.beginPath();
-    ctx.moveTo(x - 94, y + 4); ctx.quadraticCurveTo(x - 10, y - 36, x + 94, y - 2);
-    ctx.quadraticCurveTo(x - 20, y + 18, x - 94, y + 4); ctx.closePath(); ctx.fill(); ctx.restore(); return 100;
+    ctx.moveTo(x - 94, cy + 4); ctx.quadraticCurveTo(x - 10, cy - 36, x + 94, cy - 2);
+    ctx.quadraticCurveTo(x - 20, cy + 18, x - 94, cy + 4); ctx.closePath(); ctx.fill(); ctx.restore();
+    return at(x - 94, x + 94, cy - 18, cy + 12, cy);
   }
   if (name === 'a bicycle') {
-    ctx.save(); ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 5;
-    ctx.beginPath(); ctx.arc(x - 52, y + 26, 30, 0, TAU); ctx.moveTo(x + 82, y + 26); ctx.arc(x + 52, y + 26, 30, 0, TAU); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(x - 52, y + 26); ctx.lineTo(x - 4, y + 26); ctx.lineTo(x + 16, y - 18); ctx.lineTo(x + 52, y + 26);
-    ctx.moveTo(x + 16, y - 18); ctx.lineTo(x - 34, y - 14); ctx.stroke();
-    ctx.beginPath(); ctx.arc(x - 4, y - 62, 13, 0, TAU); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(x - 4, y - 49); ctx.lineTo(x + 8, y - 20); ctx.moveTo(x - 4, y - 44); ctx.lineTo(x - 36, y - 16); ctx.stroke();
-    ctx.restore(); return 88;
+    /* the frame round the bottom bracket B, the wheels standing on the road; the rider sits on the saddle with her
+       feet on the pedals and her hands on the bars, joints given in the silhouette's frame from B */
+    const bx = x, by = y - 30, P = (u, v) => [bx + u, by + v];
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.arc(...P(-50, 0), 30, 0, TAU); ctx.moveTo(...P(88, 0)); ctx.arc(...P(58, 0), 30, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(...P(-50, 0)); ctx.lineTo(...P(0, 0)); ctx.lineTo(...P(-18, -54)); ctx.lineTo(...P(-50, 0));
+    ctx.moveTo(...P(-18, -54)); ctx.lineTo(...P(44, -50)); ctx.lineTo(...P(0, 0)); ctx.moveTo(...P(44, -50)); ctx.lineTo(...P(58, 0));
+    ctx.moveTo(...P(44, -50)); ctx.lineTo(...P(42, -64)); ctx.lineTo(...P(54, -66)); ctx.stroke();
+    ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(...P(-30, -58)); ctx.lineTo(...P(-10, -58)); ctx.stroke();
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(...P(10, 4)); ctx.lineTo(...P(-10, -4)); ctx.stroke();
+    ctx.restore();
+    F.silhouette(ctx, { x: bx, y: by, s: 1, pose: 'sit', color: col, hip: { x: -20, y: -64 }, shoulder: { x: 10, y: -102 }, head: { x: 24, y: -120 },
+      feet: [{ x: 10, y: 4 }, { x: -10, y: -4 }], hands: [{ x: 52, y: -66 }, { x: 48, y: -64 }] });
+    return at(x - 80, x + 88, by - 132, y, by - 40);
   }
-  if (name) { car(ctx, x, y, col, 1.6); return 74; }
+  if (name) { car(ctx, x, cy, col, 1.6); return at(x - 64, x + 67, cy - 38, cy + 26, cy - 13); }
   ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = col; ctx.lineWidth = 4;
-  ctx.fillRect(x - 80, y - 40, 160, 80); ctx.strokeRect(x - 80, y - 40, 160, 80); ctx.restore();
-  return 86;
+  ctx.fillRect(x - 80, cy - 40, 160, 80); ctx.strokeRect(x - 80, cy - 40, 160, 80); ctx.restore();
+  return at(x - 82, x + 82, cy - 42, cy + 42, cy);
+}
+/* two slashes across an arrow cut short of its length, at (x, y) on the shaft running along (ux, uy) */
+function cut(ctx, x, y, ux, uy, col) {
+  for (const o of [-7, 7]) {
+    const cx = x + ux * o, cy = y + uy * o, ex = -uy * 13 + ux * 6, ey = ux * 13 + uy * 6;
+    line(ctx, cx - ex, cy - ey, cx + ex, cy + ey, PAL.panel, 7); line(ctx, cx - ex, cy - ey, cx + ex, cy + ey, col, 2.5);
+  }
 }
 /* a jar of fluid: the glass from (x1, top) to (x2, bottom), filled from the surface down */
 function jar(ctx, x1, x2, top, bottom, surface, col) {
@@ -66,16 +84,17 @@ function jar(ctx, x1, x2, top, bottom, surface, col) {
   line(ctx, x2, top, x2, bottom, PAL.muted, 3);
   line(ctx, x1, bottom, x2, bottom, PAL.muted, 3);
 }
-
 /* =====================================================================
-   SIM: the drag force against the speed. A body travels through air at
-   the speed you set and the drag behind it is drawn to scale, with the
-   curve below showing that the force goes as the square of the speed.
-   The idea answers its sliders and no clock runs in it, so the figure is
-   still and carries no transport.
+   SIM: the drag force against the speed. A body moves through air at
+   the speed you set with its drag drawn to scale, and the curve below
+   shows that the force goes as the square of the speed. Each value of
+   Table 5.2 draws the body it belongs to, moving the way it really
+   moves: the cars, the cyclist and the shapes along a road, the two
+   skydivers down a column of air. The idea answers its sliders and no
+   clock runs in it, so the figure is still and carries no transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-drag', 740);
+  const d = sim('sim-drag', 850);
   const TABLE = [['an airfoil', 0.05], ['a Toyota Camry', 0.28], ['a Ford Focus', 0.32], ['a Honda Civic', 0.36], ['a Ferrari Testarossa', 0.37],
     ['a Dodge Ram pickup', 0.43], ['a sphere', 0.45], ['a Hummer H2 SUV', 0.64], ['a skydiver feet first', 0.70], ['a bicycle', 0.90],
     ['a skydiver lying horizontal', 1.0], ['a circular flat plate', 1.12]];
@@ -87,45 +106,69 @@ function jar(ctx, x1, x2, top, bottom, surface, col) {
   const VMAX = 150;
   const drag = (kmh) => 0.5 * Cd.v * RHO_AIR * Ar.v * Math.pow(kmh / 3.6, 2);
   const named = () => { const m = TABLE.reduce((a, b) => (Math.abs(b[1] - Cd.v) < Math.abs(a[1] - Cd.v) ? b : a)); return Math.abs(m[1] - Cd.v) <= 0.015 ? m[0] : null; };
+  let hits = [];
+  F.hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
-    const cf = C('force'), cv = C('velocity');
-    const Fnow = drag(V.v), Ftop = drag(VMAX), Fhalf = drag(V.v / 2);
-    /* the scene: the body on a strip, its drag behind it and its velocity in front */
-    const yline = 250, cx = 760, cy = yline - 26;
-    strip(ctx, 90, 1340, yline, 50);
-    const who = named();
-    const cb = F.ref('body'), hw = bluff(ctx, cx, cy, who, cb);
-    const Ld = 380 * (Fnow / Ftop), Lv = 380 * (V.v / VMAX);
-    arrow(ctx, cx - hw, cy, cx - hw - Ld, cy, cf, 5);
-    text(ctx, 'F_D = ' + sig3(Fnow) + ' N', cx - hw - Ld / 2, 164, cf, { weight: 600, align: 'center' });
-    arrow(ctx, cx + hw, cy, cx + hw + Lv, cy, cv, 5);
-    text(ctx, 'v = ' + fmt(V.v, 0) + ' km/h', cx + hw + Lv / 2, 164, cv, { weight: 600, align: 'center' });
-    text(ctx, who === null ? 'a bluff body with C = ' + fmt(Cd.v, 2) + ' and A = ' + fmt(Ar.v, 2) + ' m²'
-      : who + ', for which Table 5.2 gives C = ' + fmt(Cd.v, 2), cx, yline + 58, cb, { size: 17, align: 'center' });
-    /* the graph: the drag against the speed, with the current speed and half of it marked */
+    const cf = C('force'), cv = C('velocity'), cb = F.ref('body');
+    const Fnow = drag(V.v), Fhalf = drag(V.v / 2), who = named();
+    const n = headline(ctx, 'At ' + fmt(V.v, 0) + ' km/h the drag is ' + sig3(Fnow) + ' N, four times the ' + sig3(Fhalf) + ' N it would be at half that speed');
+    const lab = F.labeller(ctx, 850, { headline: n }), top = n === 2 ? 106 : 80;
+    const name = who === null ? 'a bluff body with C = ' + fmt(Cd.v, 2) : who + ', C = ' + fmt(Cd.v, 2) + ' in Table 5.2';
+    /* the scene. Arrows are to one scale within each scene: along the road 1.2 units a newton and 380 units for
+       150 km/h, down the column of air, which is shorter, 0.45 units a newton and 115 units for 150 km/h. A drag
+       longer than the room left is cut short with two slashes, and its label still gives its size. */
+    let dseg, vseg, box, cutD = false;
+    if (who && who.indexOf('skydiver') >= 0) {
+      const cx = 820, cy = 300;
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(cx - 25, top, 50, 490 - top); ctx.restore();
+      line(ctx, cx, top, cx, 490, PAL.panel, 3, [22, 18]);
+      box = bluff(ctx, cx, cy, who, cb);
+      const room = box.t - 6 - top, Ld = Math.min(0.45 * Fnow, room);
+      cutD = 0.45 * Fnow > room;
+      dseg = { x1: cx, y1: box.t - 6, x2: cx, y2: box.t - 6 - Ld };
+      vseg = { x1: cx, y1: box.b + 6, x2: cx, y2: box.b + 6 + (115 * V.v) / VMAX };
+      lab.place(box); lab.place({ l: cx - 25, r: cx + 25, t: top, b: 490 });
+      lab.add(name, box.l - 30, cy, -1, 0, cb, 17, 10);
+    } else {
+      const yl = 300, cx = 820;
+      strip(ctx, 90, 1340, yl, 50);
+      box = bluff(ctx, cx, yl, who, cb);
+      const room = box.l - 6 - 100, Ld = Math.min(1.2 * Fnow, room);
+      cutD = 1.2 * Fnow > room;
+      dseg = { x1: box.l - 6, y1: box.ay, x2: box.l - 6 - Ld, y2: box.ay };
+      vseg = { x1: box.r + 6, y1: box.ay, x2: box.r + 6 + (380 * V.v) / VMAX, y2: box.ay };
+      lab.place(box);
+      lab.add(name, cx, yl + 30, 0, 1, cb, 17, 26);
+    }
+    arrow(ctx, dseg.x1, dseg.y1, dseg.x2, dseg.y2, cf, 5);
+    if (cutD) { const L = Math.hypot(dseg.x2 - dseg.x1, dseg.y2 - dseg.y1); cut(ctx, (dseg.x1 + dseg.x2) / 2, (dseg.y1 + dseg.y2) / 2, (dseg.x2 - dseg.x1) / L, (dseg.y2 - dseg.y1) / L, cf); }
+    arrow(ctx, vseg.x1, vseg.y1, vseg.x2, vseg.y2, cv, 5);
+    lab.beside(dseg, 'right', 'F_D = ' + sig3(Fnow) + ' N', cf, 22);
+    lab.beside(vseg, 'left', 'v = ' + fmt(V.v, 0) + ' km/h', cv, 22);
+    /* the graph: the drag against the speed, the current speed filled and half of it hollow */
     /* fixed axes: the speed slider stops at 150 km/h, so the speed axis is always 0 to 150. The
        bluntest, largest body the sliders allow, C = 1.12 and A = 3 m², would meet 3,530 N of drag at
        that speed, and an axis that tall would leave the Camry the figure opens with, which meets
        206 N, in a seventeenth of the height. So the drag axis is fixed at 0 to 250 N, which holds
        that car comfortably, and a bluffer body climbs off the top as a pinned marker. Neither range
        changes as a slider moves. */
-    const FR = 250, box = { l: 200, r: 1300, t: 400, b: 650 };
-    const g = axes(ctx, box, [0, VMAX], [0, FR],
+    const FR = 250, g0 = { l: 200, r: 1300, t: 556, b: 776 };
+    const g = axes(ctx, g0, [0, VMAX], [0, FR],
       { xl: 'v (km/h)', xc: cv, yl: 'F_D (N)', yc: cf, nx: 5, ny: 5, fy: (y) => fmt(y, 0) });
-    inbox(ctx, box, () => {
+    inbox(ctx, g0, () => {
       curve(ctx, drag, 0, VMAX, g.X, g.Y, cf, 5, 90);
       line(ctx, g.X(V.v), g.Y(0), g.X(V.v), g.Y(Fnow), cv, 2, [4, 8]);
       line(ctx, g.X(0), g.Y(Fnow), g.X(V.v), g.Y(Fnow), cf, 2, [4, 8]);
       line(ctx, g.X(V.v / 2), g.Y(0), g.X(V.v / 2), g.Y(Fhalf), cv, 2, [4, 8]);
+      line(ctx, g.X(0), g.Y(Fhalf), g.X(V.v / 2), g.Y(Fhalf), cf, 2, [4, 8]);
     });
-    pinned(ctx, box, g.X, g.Y, V.v / 2, Fhalf, cf, sig3(Fhalf) + ' N');
-    pinned(ctx, box, g.X, g.Y, V.v, Fnow, cf, sig3(Fnow) + ' N');
-    /* the note keeps clear of the value a pinned marker writes along the top edge */
-    text(ctx, 'half the speed, a quarter of the drag', g.X(V.v / 2) + 18, Math.min(box.b - 24, g.Y(Fhalf) + 34), PAL.muted, { size: 17, bg: PAL.panel });
-    headline(ctx, 'At ' + fmt(V.v, 0) + ' km/h the drag is ' + sig3(Fnow) + ' N, four times the ' + sig3(Fhalf) + ' N it would be at half that speed');
-    readout(d.readout, `\\kFD = \\tfrac{1}{2}C\\krhomat\\karea\\kv^2 = \\tfrac{1}{2}(${fmt(Cd.v, 2)})(1.21\\ \\text{kg/m}^3)(${fmt(Ar.v, 2)}\\ \\text{m}^2)(${fmt(V.v / 3.6, 1)}\\ \\text{m/s})^2 = ${sig3(Fnow)}\\ \\text{N}`,
-      'The speed enters as its square, so the drag at ' + fmt(V.v, 0) + ' km/h is four times the drag at ' + fmt(V.v / 2, 0) + ' km/h and nine times the drag at ' + fmt(V.v / 3, 0) + ' km/h.');
+    const ph = Fhalf <= FR ? (dot(ctx, g.X(V.v / 2), g.Y(Fhalf), cf, false, 10), { x: g.X(V.v / 2), y: g.Y(Fhalf) }) : pinned(ctx, g0, g.X, g.Y, V.v / 2, Fhalf, cf, sig3(Fhalf) + ' N');
+    const pn = pinned(ctx, g0, g.X, g.Y, V.v, Fnow, cf, sig3(Fnow) + ' N');
+    lab.flush();
+    hits = [{ x: pn.x, y: pn.y, r: 18, name: 'the drag at ' + fmt(V.v, 0) + ' km/h' }, { x: ph.x, y: ph.y, r: 18, name: 'the drag at half the speed, ' + fmt(V.v / 2, 1) + ' km/h' },
+      { x: (box.l + box.r) / 2, y: (box.t + box.b) / 2, r: Math.max(box.r - box.l, box.b - box.t) / 2, name: name }];
+    tex(d.readout, `\\kFD = \\tfrac{1}{2}C\\krhomat\\karea\\kv^2 = \\tfrac{1}{2}(${fmt(Cd.v, 2)})(1.21\\ \\text{kg/m}^3)(${fmt(Ar.v, 2)}\\ \\text{m}^2)(${fmt(V.v / 3.6, 1)}\\ \\text{m/s})^2 = ${sig3(Fnow)}\\ \\text{N}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

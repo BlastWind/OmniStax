@@ -101,28 +101,24 @@ sliders with their types · headline · graph · 3D
    No photograph of this section is a splash image and none is decoration,
    so none is dropped, which is what the chapter's exploration expected.
 
-5. `sim-drag` · **Sim** (the book draws no sketch of the drag force) ·
-   drag-force-equation, drag-coefficient, drag-force · **still**: the idea
-   is that the drag force answers the speed, the shape and the frontal area,
-   and no clock runs in it; a car travelling at a steady speed with a steady
-   drag would be a loop that shows nothing changing, so the figure answers
-   its sliders and carries no transport · speed $\kv$ (20 to 150 km/h, step
-   5, default 100, velocity), drag coefficient $C$ (0.05 to 1.12, step 0.01,
-   default 0.28, ink, and the label names the body of Table 5.2 whose
-   coefficient it matches), frontal area $A$ (0.20 to 3.00 m², step 0.05,
-   default 0.70, ink) · "At 100 km/h a body with C = 0.28 and A = 0.70 m²
-   feels a drag of 91.5 N, four times the 22.9 N it feels at half that
-   speed" · graph below the strip: $\kFD$ against $\kv$ from rest to 150
-   km/h, the parabola, with the current speed filled and half that speed
-   hollow so the factor of four can be read off the curve · no.
-   Readout: $\kFD = \tfrac12 C\rho A\kv^2$ with the numbers put in; small
-   line on the square dependence. Draws force, velocity.
-   Revised in the figure-audit pass of 2026-09-12: the body drawn is the one
-   the drag coefficient belongs to — a skydiver, a sphere, a circular flat
-   plate, an airfoil, a bicycle or a road vehicle — so a skydiver is never
-   drawn as a car, and the drag-coefficient slider carries a tick at every
-   value Table 5.2 prints, each of which the hundredth it steps by lands on
-   exactly.
+5. `sim-drag` · **Sim** · drag-force-equation, drag-coefficient, drag-force ·
+   variation by slider: the drag arrow and the parabola answer speed,
+   coefficient and area · still, no clock in the idea · v (20 to 150 km/h,
+   velocity), C (0.05 to 1.12 with a detent at every Table 5.2 value,
+   untyped), A (0.20 to 3.00 m², area) · "At 100 km/h the drag is 91.5 N,
+   four times the 22.9 N it would be at half that speed" · graph below the
+   strip, the half-speed point hollow as the caption says · 2D. Each body of
+   Table 5.2 is a library body moving the way it really moves: F.car for the
+   cars, F.skydiver turned to fall down a vertical strip (feet first drawn
+   from F.silhouette "stand" falling) with the velocity down and the drag
+   up, F.silhouette "sit" on the bicycle for the cyclist; the sphere, plate
+   and airfoil stay as shapes. Note dropped. No fold or split.
+   Readout: $\kFD = \tfrac12 C\rho A\kv^2$ with the numbers put in, and no
+   small line. The arrows keep one scale within each scene (1.2 units a
+   newton along the road, 0.45 down the shorter column of air), and a drag
+   longer than the room is cut with two slashes. Draws force, velocity,
+   area, density. Rewritten 2026-10-05 after the review of Chapter 5.
+
 6. `sim-terminal` · **Sim** (the book draws no sketch of the falling
    skydiver) · terminal-velocity, terminal-velocity-magnitude,
    drag-force-equation · **moves**: a skydiver is released and falls, and
