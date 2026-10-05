@@ -115,7 +115,7 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     for (const dy of [-7, 7]) { line(ctx, 268, 300 + dy, 290, 300 + dy * 0.4, PAL.ink, 3.5); line(ctx, 300, 300 + dy * 0.4, 322, 300 + dy, PAL.ink, 3.5); }
     line(ctx, 290, 297, 300, 297, sc, 3.5); line(ctx, 290, 303, 300, 303, sc, 3.5);
     spark(ctx, 295, 300, 30, sc);
-    label(ctx, 'the insulation has worn through', 295, 248, { side: 'above', gap: 8, size: 19, color: PAL.ink });
+    label(ctx, 'insulation worn through', 280, 318, { side: 'below', gap: 34, size: 18, color: PAL.ink });
 
     /* ---- the schematic, at the right ---- */
     text(ctx, 'the circuit it has made', 1000, 118, PAL.muted, { size: 19, align: 'center' });
@@ -154,8 +154,7 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     const times = Pr > 0 ? Ps / Pr : 0;
     headline(ctx, V === 0 ? 'With the source turned off nothing is dissipated anywhere, and the worn cord is harmless.'
       : 'A short of r = ' + fmt(r, 3) + ' Ω across ' + fmt(V, 0) + ' V dissipates ' + watts(Ps) + ', about ' + fmt(times, 0) + ' times what the toaster itself draws.');
-    readout(d.readout, `\\kP = \\frac{\\kV^2}{\\krshort} = \\frac{(${fmt(V, 0)}\\ \\text{V})^2}{${fmt(r, 3)}\\ \\Omega} = ${watts(Ps).replace(/ (\w+)$/, '\\ \\text{$1}')}`,
-      'The toaster, on its ' + fmt(R, 0) + ' Ω, draws ' + amps(Ir) + ' and dissipates ' + watts(Pr) + ', which is what the appliance is built for. The short draws ' + amps(Is) + ' through the same cord and dissipates ' + watts(Ps) + ' in a few centimeters of wire, and thermal energy delivered at that rate very quickly melts or ignites the materials around it. Should the heating ionize what is there, the resistance of the short falls further and the power rises again.');
+    readout(d.readout, `\\kP = \\frac{\\kV^2}{\\krshort} = \\frac{(${fmt(V, 0)}\\ \\text{V})^2}{${fmt(r, 3)}\\ \\Omega} = ${watts(Ps).replace(/ (\w+)$/, '\\ \\text{$1}')}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -264,9 +263,7 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     headline(ctx, open
       ? fmt(I, 1) + ' A is more than the ' + rate + '-A rating, so the ' + (fuse ? 'fuse has melted through' : 'breaker has tripped') + ' and the circuit is open.'
       : fmt(I, 1) + ' A through supply wires of ' + fmt(Rww, 3) + ' Ω dissipates ' + watts(P) + ' in the wires alone, and the ' + rate + '-A ' + (fuse ? 'fuse' : 'breaker') + ' still holds.');
-    readout(d.readout, `\\kP = \\kIcur^2\\kRw = (${fmt(I, 1)}\\ \\text{A})^2(${fmt(Rww, 3)}\\ \\Omega) = ${watts(P).replace(/ (\w+)$/, '\\ \\text{$1}')}`,
-      'A sound cord of 0.100 Ω carrying 10.0 A dissipates only 10.0 W, but a worn cord whose braided wires have broken may have 2.00 Ω, and the same 10.0 A then dissipates 200 W in the cord itself, which is far more than is safe. '
-      + (fuse ? 'A fuse holds a metal strip of low melting point across the circuit; an excessive current melts it and breaks the connection permanently, so a blown fuse is replaced.' : 'A circuit breaker is restorable: the bimetallic strip bends as it heats, and at the rated current it reaches the notch, whereupon the spring pulls the movable strip down and parts the contacts. The breaker is then reset by hand.'));
+    readout(d.readout, `\\kP = \\kIcur^2\\kRw = (${open ? '0' : fmt(I, 1)}\\ \\text{A})^2(${fmt(Rww, 3)}\\ \\Omega) = ${open ? '0\\ \\text{W}' : watts(P).replace(/ (\w+)$/, '\\ \\text{$1}')}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -315,7 +312,7 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     /* ---- the person, the wire and the path to earth ---- */
     const GY = 470, PX = 520, S = 2, WX = 637, WY = 187;
     strip(ctx, 140, 1000, GY + 10, 44);
-    text(ctx, 'the earth, a natural electron sink', 880, GY + 64, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'the earth, a natural electron sink', 880, GY - 26, PAL.muted, { size: 19, align: 'center' });
     /* the live wire, on two insulators */
     line(ctx, WX - 36, WY, 1000, WY, wc, 6);
     for (const x of [860, 980]) { line(ctx, x, WY, x, WY - 44, PAL.muted, 4); dot(ctx, x, WY - 50, PAL.muted, true, 8); }
@@ -366,15 +363,14 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     for (let k = D0; k <= D1; k++) { const x = XI(Math.pow(10, k)); line(ctx, x, SC.y + 22, x, SC.y + 34, PAL.muted, 2); text(ctx, (k < 0 ? Math.pow(10, k).toFixed(-k) : fmt(Math.pow(10, k), 0)) + ' mA', x, SC.y + 68, PAL.muted, { size: 17, align: 'center' }); }
     if (I > 0) {
       const xm = Math.min(Math.max(XI(mA), SC.l), SC.r);
-      line(ctx, xm, SC.y - 74, xm, SC.y + 22, ic, 4);
+      line(ctx, xm, SC.y - 22, xm, SC.y + 22, ic, 4);
       dot(ctx, xm, SC.y, ic, true, 11);
       text(ctx, amps(I), xm, SC.y - 94, ic, { size: 22, weight: 600, align: xm > SC.r - 120 ? 'right' : xm < SC.l + 120 ? 'left' : 'center', bg: PAL.panel });
     }
 
     headline(ctx, V === 0 ? 'With nothing across the person no current passes at all, and the wire is safe to hold.'
       : fmt(V, 0) + ' V through ' + fmt(Rk, 1) + ' kΩ sends ' + amps(I) + ' through the trunk, a current that ' + effect(mA) + '.');
-    readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 0)}\\ \\text{V}}{${fmt(Rk, 1)}\\ \\text{k}\\Omega} = ${amps(I).replace(/ (\w+)$/, '\\ \\text{$1}')}`,
-      'A larger voltage is more hazardous, but the severity of a shock depends on the combination of voltage and resistance, so no voltage can be called hazardous without knowing the resistance. Most of the body’s resistance is in its dry skin, about 200 kΩ, and 120 V then passes 0.6 mA harmlessly; the same person soaking wet may have 10.0 kΩ and take 12 mA, which is above the can’t-let-go threshold. A person whose skin has been bypassed by an infusion, a catheter or a pacemaker lead is microshock sensitive, and currents about a thousandth of those on this scale produce the same effects.');
+    readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 0)}\\ \\text{V}}{${fmt(Rk, 1)}\\ \\text{k}\\Omega} = ${amps(I).replace(/ (\w+)$/, '\\ \\text{$1}')}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -417,12 +413,11 @@ function amps(I) { return I >= 1 ? fmt(I, I >= 100 ? 0 : 2) + ' A' : fmt(I * 100
     else text(ctx, name, X(u), BOX.t - 24, fc, { size: 20, weight: 600, align: X(u) > BOX.r - 120 ? 'right' : 'center', bg: PAL.panel });
     dot(ctx, X(u), Y(lg), ic, true, 10); dot(ctx, X(u), Y(sn), ic, false, 10);
     line(ctx, BOX.l, Y(I), BOX.r, Y(I), ic, 4);
-    text(ctx, fmt(I, 1) + ' mA', BOX.r - 12, Y(I) + (Y(I) < BOX.t + 40 ? 24 : -22), ic, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, fmt(I, 1) + ' mA', BOX.r + 12, Y(I), ic, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
     const felt = I >= sn, stuck = I >= lg;
     headline(ctx, I === 0 ? 'With no current through the person there is nothing to feel at any frequency.'
       : 'At ' + name + ', ' + fmt(I, 1) + ' mA is ' + (stuck ? 'above the can’t-let-go current of ' + fmt(lg, 1) + ' mA, so the hand closes on the wire' : felt ? 'above the ' + fmt(sn, 1) + ' mA that can be felt but below the ' + fmt(lg, 1) + ' mA that closes the hand' : 'below the ' + fmt(sn, 1) + ' mA needed to feel anything at all') + '.');
-    readout(d.readout, `\\kIcur = ${fmt(I, 1)}\\ \\text{mA} ${stuck ? '\\geq' : '<'} ${fmt(lg, 1)}\\ \\text{mA}`,
-      'At ' + name + ' the can’t-let-go current is ' + fmt(lg, 1) + ' mA and the threshold of sensation ' + fmt(sn, 1) + ' mA. The lower a curve runs, the more sensitive the body is at that frequency, and both curves reach their lowest values near the 50 and 60 Hz in common use, so the frequencies carried by household wiring are the ones the body feels most readily. The body is slightly less sensitive at direct current, which mildly confirms Edison’s claims that alternating current presents the greater hazard, and it becomes progressively less sensitive at higher frequencies, because nerves can only fire so fast. At very high frequencies the current travels only on the surface of a person, which is why a wart can be burned off without stopping the heart.');
+    readout(d.readout, `\\kIcur = ${fmt(I, 1)}\\ \\text{mA} ${stuck ? '\\geq' : '<'} ${fmt(lg, 1)}\\ \\text{mA}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

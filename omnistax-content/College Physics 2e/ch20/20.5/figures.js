@@ -56,7 +56,7 @@ function electrons(ctx, x1, x2, y, off, gap) {
 (function () {
   const d = sim('sim-ac-versus-dc', 800);
   const WIN = 0.05;                       /* the window the graph shows, 50 ms, fixed */
-  const kind = choice(d.controls, { label: 'Source', options: [{ value: 'dc', label: 'DC' }, { value: 'ac', label: 'AC' }], value: 'ac', aria: 'kind of source', onInput: () => reset() });
+  const kind = choice(d.controls, { label: '\\text{Source}', options: [{ value: 'dc', label: 'DC' }, { value: 'ac', label: 'AC' }], value: 'ac', aria: 'kind of source', onInput: () => reset() });
   const V0 = ctl(d.controls, { label: '\\kVo', cls: 'voltage', min: 60, max: 200, step: 5, value: 170, unit: 'V', dec: 0, onInput: reset, aria: 'peak voltage' });
   const fq = ctl(d.controls, { label: '\\kf', cls: 'frequency', min: 20, max: 120, step: 5, value: 60, unit: 'Hz', dec: 0, onInput: reset, aria: 'frequency' });
   const Rr = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 20, max: 100, step: 5, value: 40, unit: 'Ω', dec: 0, onInput: reset, aria: 'resistance' });
@@ -116,7 +116,7 @@ function electrons(ctx, x1, x2, y, off, gap) {
       ? `\\kV = \\kVo\\sin 2\\pi \\kf\\kt = ${fmt(V0.v, 0)}\\ \\text{V}\\sin\\!\\big(2\\pi(${fmt(fq.v, 0)}\\ \\text{Hz})(${fmt(t * 1000, 1)}\\ \\text{ms})\\big) = ${sig3(V)}\\ \\text{V}`
       : `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V0.v, 0)}\\ \\text{V}}{${fmt(Rr.v, 0)}\\ \\Omega} = ${sig3(I)}\\ \\text{A}`,
       ac ? 'The peak current is ' + sig3(i0) + ' A, and the current reaches it at the same instant as the voltage reaches its own peak, since the two are in phase.'
-         : 'The battery holds its ' + fmt(V0.v, 0) + ' V at every instant, and nothing in the circuit changes with time, which is what makes this direct current.');
+         : '');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.01), draw });
 })();
@@ -168,7 +168,7 @@ function electrons(ctx, x1, x2, y, off, gap) {
     line(ctx, lo.l, a2.Y(pave), lo.r, a2.Y(pave), C('power'), 3, [10, 10]);
     line(ctx, a2.X(t * 1000), lo.t, a2.X(t * 1000), lo.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
     pinned(ctx, lo, a2.X, a2.Y, t * 1000, P, C('power'));
-    lab.add('average ' + sig3(pave) + ' W', lo.r - 150, a2.Y(pave), 0, -1, C('power'), 20, 26);
+    text(ctx, 'dashed: the average, ' + sig3(pave) + ' W', lo.r, lo.t - 24, C('power'), { size: 20, weight: 600, align: 'right' });
     lab.add('peak ' + sig3(p0) + ' W', lo.l + 210, a2.Y(p0), 0, -1, C('power'), 20, 26);
     lab.flush();
     topline(ctx, 'At ' + fmt(t * 1000, 1) + ' ms the voltage is ' + sig3(V) + ' V and the current ' + sig3(I) + ' A, and their product is ' + sig3(P) + ' W, which is never negative because the two change sign together.');
@@ -234,9 +234,9 @@ function electrons(ctx, x1, x2, y, off, gap) {
     ctx.beginPath(); ctx.moveTo(x1 + 20, y - 72); ctx.lineTo(x2 - 20, y - 72); ctx.stroke(); ctx.restore();
     lab.add('the plant, ' + fmt(Pw.v, 0) + ' MW sent', 160, y + 70, 0, 1, C('power'), 20, 30);
     lab.add('the city', 1240, y + 76, 0, 1, ctc, 20, 34);
-    lab.add(sig3(I) + ' A in the line', 790, y - 72, 0, 1, C('current'), 22, 34 + band);
+    lab.add(sig3(I) + ' A in the line', 850, y - 72, 0, 1, C('current'), 22, 34 + band);
     lab.add(sig3(lw / 1e6) + ' MW lost as heat', 600, y - 72 - band, 0, -1, C('power'), 22, 28);
-    lab.add(fmt(Rl.v, 1) + ' Ω of line', 400, y - 72, 0, 1, C('resistance'), 20, 34 + band);
+    lab.add(fmt(Rl.v, 1) + ' Ω of line', 590, y - 72, 0, 1, C('resistance'), 20, 34 + band);
     /* the graph: the loss against the voltage it is sent at, 25 to 400 kV across and 0 to 20 per cent up,
        which is what 100 MW down a 1.0 Ω line loses at the lowest voltage the slider reaches */
     const box = { l: 190, r: 1240, t: 510, b: 730 };
@@ -249,8 +249,7 @@ function electrons(ctx, x1, x2, y, off, gap) {
     line(ctx, X(Vt.v), box.b, X(Vt.v), Y(Math.min(20, fr)), alpha(PAL.ink, 0.35), 2, [4, 8]);
     lab.flush();
     topline(ctx, 'Sending ' + fmt(Pw.v, 0) + ' MW at ' + fmt(Vt.v, 0) + ' kV needs a current of ' + sig3(I) + ' A, and a line of ' + fmt(Rl.v, 1) + ' Ω turns ' + sig3(lw / 1e6) + ' MW of that power into heat, which is ' + sig3(fr) + ' per cent of it.');
-    readout(d.readout, `\\kPave = \\kIrms^{2}\\kRes = (${sigM(I)}\\ \\text{A})^{2}(${fmt(Rl.v, 1)}\\ \\Omega) = ${sigM(lw / 1e6)}\\ \\text{MW}`,
-      'The line carries ' + sig3(I) + ' A. Doubling the voltage halves the current, and since the loss goes as the square of the current it falls to a quarter of what it was.');
+    readout(d.readout, `\\kIrms = \\frac{\\kPave}{\\kVrms} = \\frac{${fmt(Pw.v, 0)}\\ \\text{MW}}{${fmt(Vt.v, 0)}\\ \\text{kV}} = ${sigM(I)}\\ \\text{A}, \\quad \\kP_{\\text{lost}} = \\kIrms^{2}\\kRes = (${sigM(I)}\\ \\text{A})^{2}(${fmt(Rl.v, 1)}\\ \\Omega) = ${sigM(lw / 1e6)}\\ \\text{MW}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

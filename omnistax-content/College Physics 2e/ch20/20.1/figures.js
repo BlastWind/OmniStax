@@ -122,7 +122,7 @@ function panel(ctx, x, y, w, h) {
     ctx.save(); ctx.fillStyle = alpha(qc, 0.22); ctx.fillRect(bx, 540, bw * u, 30); ctx.strokeStyle = qc; ctx.lineWidth = 2.5; ctx.strokeRect(bx, 540, bw, 30); ctx.restore();
     headline(ctx, fmt(dQ.v, 0) + ' C crossing the marked area in ' + fmt(dT.v, 2) + ' s is a current of ' + fmt(I, I < 10 ? 2 : 0) + ' A.');
     readout(d.readout, `\\kIcur = \\frac{\\kdQch}{\\kdt} = \\frac{${fmt(dQ.v, 0)}\\ \\text{C}}{${fmt(dT.v, 2)}\\ \\text{s}} = ${fmt(I, I < 10 ? 2 : 0)}\\ \\text{A}`,
-      'An ampere is one coulomb per second, so this current would be written ' + fmt(I, I < 10 ? 2 : 0) + ' A on a fuse or an appliance. The carriers each pass ' + sci(dQ.v / QE, 2) + ' fundamental charges across the area in that time, and whether they are positive charges moving with the field, electrons moving against it, or both signs moving at once, the conventional current is the same.');
+      'That is ' + sci(dQ.v / QE, 2) + ' fundamental charges across the area.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -211,7 +211,7 @@ function panel(ctx, x, y, w, h) {
     line(ctx, lx - R - 6, ly - 12, bx - bR * 1.2, ly - 6, PAL.ink, 3);
     line(ctx, lx - R - 6, ly + 12, bx - bR * 1.2, ly + 6, PAL.ink, 3);
     /* the beam: a soft wedge whose reach grows with the current, drawn as the fact it is */
-    const rl = 70 + 210 * (I / 12), x0 = lx + R + 22;
+    const x0 = lx + R + 22, rl = (785 - x0) * (0.3 + 0.7 * I / 12);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.beginPath(); ctx.moveTo(x0, ly - R * 1.35); ctx.lineTo(x0 + rl, ly - R * 1.35 - rl * 0.28); ctx.lineTo(x0 + rl, ly + R * 1.35 + rl * 0.28); ctx.lineTo(x0, ly + R * 1.35); ctx.closePath(); ctx.fill(); ctx.restore();
     for (let i = 0; i < 5; i++) {
       const a = -0.26 + (0.52 * i) / 4, y0 = ly + R * 1.2 * Math.sin(a * 2.2);
@@ -236,8 +236,7 @@ function panel(ctx, x, y, w, h) {
     text(ctx, 'the load', (zl + zr) / 2, st - 44, PAL.muted, { size: 18, align: 'center' });
     label(ctx, 'I = ' + fmt(I, 1) + ' A', sr, (st + sb) / 2, { side: 'left', color: cc, size: 22, gap: 26 });
     headline(ctx, 'A current of ' + fmt(I, 1) + ' A runs out of the positive terminal, through ' + lamp + ' and back, and its schematic is the same whatever the source and the lamp.');
-    readout(d.readout, `\\kdQch = \\kIcur\\kdt = (${fmt(I, 1)}\\ \\text{A})(1.00\\ \\text{s}) = ${fmt(I, 1)}\\ \\text{C}`,
-      'A current of ' + fmt(I, 1) + ' A carries ' + fmt(I, 1) + ' C of charge past every point of the loop each second, since an ampere is one coulomb per second. The schematic draws the source as two parallel lines, the conducting wires as straight lines and the load as a zigzag, and the analysis is the same whether the source is a truck battery and the load a headlight or the source is a small battery and the load a penlight bulb.');
+    readout(d.readout, `\\kdQch = \\kIcur\\kdt = (${fmt(I, 1)}\\ \\text{A})(1.00\\ \\text{s}) = ${fmt(I, 1)}\\ \\text{C}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -328,19 +327,19 @@ function panel(ctx, x, y, w, h) {
       }
       const ix = WR + 60 - 100 * Math.min(1, t / 0.5);
       carrier(ctx, ix, cyc, F.el('e-'), 13);
-      label(ctx, 'one electron pushed in here', ix, cyc + 14, { side: 'below', gap: 40, size: 19, color: PAL.ink });
+      label(ctx, 'one electron pushed in here', ix, cyc + 14, { side: 'below', gap: 106, size: 19, color: PAL.ink });
       if (front >= 1) {
         const ox = WL - 6 - 70 * Math.min(1, (t - 0.18) / 0.5);
         carrier(ctx, ox, cyc, F.el('e-'), 13);
-        label(ctx, 'and one leaves here, at once', ox, cyc + 14, { side: 'below', gap: 40, size: 19, color: PAL.ink });
+        label(ctx, 'and one leaves here, at once', ox, cyc + 14, { side: 'below', gap: 106, size: 19, color: PAL.ink });
       }
       text(ctx, 'The push travels at about ' + sci(VSIG, 0) + ' m/s, so the far end answers at once though no electron has gone anywhere.', WL, 530, PAL.muted, { size: 19 });
     });
-    text(ctx, 'copper atoms of the lattice', WL, 570, PAL.muted, { size: 19 });
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(WL + 260, 564, 13, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, 'copper atoms of the lattice', WL + 24, 570, PAL.muted, { size: 19 });
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(WL + 2, 570, 13, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
     headline(ctx, 'The crowd drifts at ' + sci(vd, 2) + ' m/s, drawn ' + fmt(fac.v, 0) + ' times faster than it is, while the signal crosses the wire at about ' + sci(VSIG, 0) + ' m/s.');
     readout(d.readout, `\\kvd = \\frac{\\kIcur}{n\\kq\\karea} = \\frac{${fmt(I, 1)}\\ \\text{A}}{(${sciTex(NDEN, 3)}\\ \\text{/m}^3)(${sciTex(QE, 2)}\\ \\text{C})(${sciTex(AREA, 3)}\\ \\text{m}^2)} = ${sciTex(vd, 2)}\\ \\text{m/s}`,
-      'The wire is the 12-gauge copper wire of Example 20.3, with one free electron per copper atom. At this drift velocity an electron takes ' + fmt(1 / vd / 3600, 1) + ' hours to travel one meter, while the signal covers that meter in about ' + sci(1 / VSIG, 0) + ' s, which is why the light comes on as soon as the switch is flicked. The drift is drawn ' + fmt(fac.v, 0) + ' times faster than it is, or nothing would appear to move at all.');
+      'At this drift an electron takes ' + fmt(1 / vd / 3600, 1) + ' hours to travel one meter, which the signal covers in about ' + sci(1 / VSIG, 0) + ' s.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -365,7 +364,7 @@ function panel(ctx, x, y, w, h) {
   const ns = ctl(d.controls, { label: 'n', cls: '', min: 5, max: 12, step: 0.001, value: 8.342, unit: '× 10²⁸ /m³', dec: 3, aria: 'the number of free charges in each cubic meter' });
   const DT = 1.00;                    /* the time the segment empties in, held at one second so the picture keeps its scales */
   const KX = 220, KY = 62;            /* units per millimetre along the wire and across it */
-  const XL = 190, XR = 1270, CY = 300, XMAX = 4.8;
+  const XL = 190, XR = 1150, CY = 300, XMAX = 4.2;
   const BMAX = CY + (4 * KY) / 2;     /* where the widest wire the slider reaches has its lower edge */
   function draw() {
     const { ctx } = begin(d.c);
@@ -390,7 +389,7 @@ function panel(ctx, x, y, w, h) {
     const ay = CY - (4 * KY) / 2 - 36;
     arrow(ctx, XL, ay, XL + 190, ay, vc, 6);
     text(ctx, 'v_d = ' + sci(vd, 2) + ' m/s, the drift velocity', XL + 206, ay, vc, { size: 21, weight: 600, base: 'middle' });
-    F.vbracket(ctx, XR + 44, t, b, xc, 'D = ' + fmt(D, 3) + ' mm', 1);
+    F.vbracket(ctx, XR + 44, t, b, xc, 'D = ' + fmt(D, 3) + ' mm', 1, { side: 'right' });
     /* the segment's length, and the area it crosses, below the wire */
     hbracket(ctx, XL, sx, BMAX + 46, xc, 'x = v_d Δt = ' + fmt(xm, 3) + ' mm');
     text(ctx, 'A = ' + sci(A, 3) + ' m², the area of the cross-section', XL, BMAX + 128, ac, { size: 21, weight: 600 });
@@ -399,8 +398,7 @@ function panel(ctx, x, y, w, h) {
     arrow(ctx, 1000, BMAX + 128, 1200, BMAX + 128, cc, 6);
     text(ctx, 'I = ' + fmt(I, 1) + ' A', 986, BMAX + 128, cc, { size: 21, weight: 600, align: 'right', base: 'middle' });
     headline(ctx, 'A current of ' + fmt(I, 1) + ' A in a wire ' + fmt(D, 3) + ' mm across, with ' + fmt(ns.v, 3) + ' × 10²⁸ free charges in each cubic meter, drifts at ' + sci(vd, 2) + ' m/s.');
-    readout(d.readout, `\\kIcur = n\\kq\\karea\\kvd = (${sciTex(n, 3)}\\ \\text{/m}^3)(${sciTex(QE, 2)}\\ \\text{C})(${sciTex(A, 3)}\\ \\text{m}^2)(${sciTex(vd, 2)}\\ \\text{m/s}) = ${fmt(I, 1)}\\ \\text{A}`,
-      'The shaded segment holds nAx carriers of charge q each, and if they all leave it in the time Δt then the current is that charge divided by that time. Rearranged, v_d = I/(nqA) = ' + sci(vd, 2) + ' m/s, so in one second the carriers move ' + fmt(xm, 3) + ' mm, which is how long the shaded segment is. On the book\u2019s own numbers, a 20.0 A current in a 2.053 mm copper wire with 8.342 \u00d7 10\u00b2\u2078 free electrons in each cubic meter, the drift velocity is 4.53 \u00d7 10\u207b\u2074 m/s.');
+    readout(d.readout, `\\kIcur = n\\kq\\karea\\kvd = (${sciTex(n, 3)}\\ \\text{/m}^3)(${sciTex(QE, 2)}\\ \\text{C})(${sciTex(A, 3)}\\ \\text{m}^2)(${sciTex(vd, 2)}\\ \\text{m/s}) = ${fmt(I, 1)}\\ \\text{A}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

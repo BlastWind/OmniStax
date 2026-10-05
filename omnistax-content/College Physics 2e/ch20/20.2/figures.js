@@ -138,8 +138,7 @@ function loop(pts) {
     headline(ctx, view.value === 'meter'
       ? 'The voltmeter across the resistor reads ' + fmt(I * Rv, 1) + ' V, the whole voltage of the source, because the resistor converts all the energy the source supplies.'
       : fmt(V, 1) + ' V across ' + fmt(Rv, 2) + ' Ω drives ' + fmt(I, 2) + ' A round the loop, and the electrons carrying it drift the other way.');
-    readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(Rv, 2)}\\ \\Omega} = ${fmt(I, 2)}\\ \\text{A}`,
-      'Raise the voltage and the current rises in the same proportion, which is Ohm’s law; raise the resistance and the current falls, so that doubling the resistance cuts the current in half. The voltage drop across the resistor is V = IR = ' + fmt(I * Rv, 1) + ' V, equal to the voltage of the source, since there is nothing else in the loop for the energy to go into.');
+    readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(Rv, 2)}\\ \\Omega} = ${fmt(I, 2)}\\ \\text{A}`);
   }
   /* the pump and the narrow pipe the text compares the circuit with: the two
      referents in their own colours, the rest of the pipe and the water in ink,
@@ -184,8 +183,7 @@ function loop(pts) {
     text(ctx, 'as the same current I = ' + fmt(I, 2) + ' A passes every point of the circuit', 700, T - 80, ic, { size: 19, weight: 600, align: 'center' });
     if (view.value !== 'pipe') return;
     headline(ctx, 'A pump driving water round a loop through one narrow section is the circuit in another material: pressure for voltage, flow for current, and the narrow pipe for the resistor.');
-    readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(Rv, 2)}\\ \\Omega} = ${fmt(I, 2)}\\ \\text{A}`,
-      'The pump does not make the water; it raises the pressure that drives water already in the pipe, and the voltage source does the same for the charge already in the wire. Narrowing the pipe slows the flow without changing the pump, which is what raising the resistance does to the current.');
+    readout(d.readout, `\\kIcur = \\frac{\\kV}{\\kRes} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(Rv, 2)}\\ \\Omega} = ${fmt(I, 2)}\\ \\text{A}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -235,14 +233,11 @@ function loop(pts) {
     text(ctx, fmt(I, 2) + ' A', BOX.l + 16, Y(I) - 24, ic, { size: 20, weight: 600, bg: PAL.panel });
     /* the resistance read at the point: below it and to the side where the point rides high, above it where it sits near the axis */
     const low = Y(I) > BOX.b - 80;
-    text(ctx, 'R = V/I = ' + fmt(Rread, 2) + ' Ω', V > 10 ? X(V) - 18 : X(V) + 18, low ? Y(I) - 46 : Y(I) + 46, rc, { size: 22, weight: 600, align: V > 10 ? 'right' : 'left', bg: PAL.panel });
+    text(ctx, 'R = V/I = ' + fmt(Rread, 2) + ' Ω', V > 10 ? X(V) - 18 : X(V) + 18, low ? Y(I) - 80 : Y(I) + 46, rc, { size: 22, weight: 600, align: V > 10 ? 'right' : 'left', bg: PAL.panel });
     headline(ctx, hot
       ? 'At ' + fmt(V, 1) + ' V the filament carries ' + fmt(I, 2) + ' A, and the resistance read off the graph has risen from ' + fmt(R0, 2) + ' Ω to ' + fmt(Rread, 2) + ' Ω, so the material is not ohmic.'
       : 'At ' + fmt(V, 1) + ' V the ohmic resistor carries ' + fmt(I, 2) + ' A, and every other voltage lands on the same straight line of resistance ' + fmt(R0, 2) + ' Ω.');
-    readout(d.readout, `\\kRes = \\frac{\\kV}{\\kIcur} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(I, 2)}\\ \\text{A}} = ${fmt(Rread, 2)}\\ \\Omega`,
-      hot
-        ? 'The filament grows hotter as more current passes through it, and a hotter filament has a greater resistance, so the graph bends away from the straight line and the ratio of voltage to current is different at every point. Ohm’s law, like Hooke’s law, is not universally valid.'
-        : 'An ohmic material has a resistance that does not depend on the voltage across it or the current through it, so every measurement gives the same ratio and the graph is a straight line through the origin. Good conductors such as copper and aluminum are ohmic over a wide range.');
+    readout(d.readout, `\\kRes = \\frac{\\kV}{\\kIcur} = \\frac{${fmt(V, 1)}\\ \\text{V}}{${fmt(I, 2)}\\ \\text{A}} = ${fmt(Rread, 2)}\\ \\Omega`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

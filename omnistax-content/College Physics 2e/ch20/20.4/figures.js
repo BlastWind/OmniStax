@@ -18,7 +18,7 @@ window.OMNISTAX_FIGURES['20.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, axes, curve, pinned, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
-const money = (v) => '$' + v.toFixed(2);
+const money = (v) => '＄' + v.toFixed(2);   /* the fullwidth sign, since two plain ones in a headline would open a TeX run */
 
 /* =====================================================================
    SIM: the three expressions for electric power. One source, one
@@ -76,15 +76,12 @@ const money = (v) => '$' + v.toFixed(2);
     curve(ctx, (v) => (v * v) / R.v, 0, Math.min(24, Math.sqrt(PMAX * R.v)), a1.X, a1.Y, C('power'), 5, 160);
     pinned(ctx, gV, a1.X, a1.Y, V.v, P, C('power'));
     /* the power against the resistance at the voltage now set: a hyperbola */
-    const a2 = axes(ctx, gR, [0, 12], [0, PMAX], { nx: 4, ny: 4, xl: 'resistance R (Ω)', xc: C('resistance'), yl: 'P (W)', yc: C('power') });
+    const a2 = axes(ctx, gR, [0, 12], [0, PMAX], { nx: 4, ny: 4, xl: 'resistance R (Ω)', xc: C('resistance'), yl: '', yc: C('power') });
+    text(ctx, 'P (W)', gR.l + 34, gR.t - 24, C('power'), { align: 'left', weight: 600, size: 20 });
     curve(ctx, (r) => (V.v * V.v) / r, Math.max(0.35, (V.v * V.v) / PMAX), 12, a2.X, a2.Y, C('power'), 5, 200);
     pinned(ctx, gR, a2.X, a2.Y, R.v, P, C('power'));
     topline(ctx, 'A ' + fmt(V.v, 1) + ' V source across a ' + fmt(R.v, 3) + ' Ω resistance drives ' + fmt(I, 2) + ' A and delivers ' + fmt(P, 1) + ' W.');
-    readout(d.readout, `\\kP = \\kIcur\\kV = (${fmt(I, 2)}\\ \\text{A})(${fmt(V.v, 1)}\\ \\text{V}) = ${fmt(P, 1)}\\ \\text{W}`,
-      'The same two numbers read the other two ways give P = V²/R = ' + fmt((V.v * V.v) / R.v, 1) + ' W and P = I²R = ' + fmt(I * I * R.v, 1) + ' W, which is the same power. '
-      + 'The source supplies it and the resistor dissipates it, and in a circuit with one source and one resistor those are always the same number. '
-      + (R.v <= 1 ? 'At this resistance the headlight is as it is switched on cold, when it briefly takes far more power than it does hot.'
-        : 'Bring the resistance down and the power rises, because the voltage is being held fixed; hold the current fixed instead and the same resistance would raise the power rather than lower it.'));
+    readout(d.readout, `\\kP = \\kIcur\\kV = \\frac{\\kV^2}{\\kRes} = \\kIcur^2\\kRes = (${fmt(I, 2)}\\ \\text{A})(${fmt(V.v, 1)}\\ \\text{V}) = ${fmt(P, 1)}\\ \\text{W}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -163,7 +160,7 @@ const money = (v) => '$' + v.toFixed(2);
     const ti = lamp(ctx, 430, 'incandescent bulb', Pi.v, BULB, BULB_LIFE, incandescent, bc);
     const tc = lamp(ctx, 1010, 'compact fluorescent lamp', Pc.v, CFL, CFL_LIFE, compactFluorescent, fc);
     /* both running totals against the hours, one curve per lamp in the lamp's own colour; the CFL's dashed as well */
-    const a = axes(ctx, g, [0, 4000], [0, CMAX], { nx: 4, ny: 4, xl: 'hours burned t (h)', xc: C('time'), yl: 'total cost ($)', yc: PAL.ink, fy: (v) => '$' + v.toFixed(0) });
+    const a = axes(ctx, g, [0, 4000], [0, CMAX], { nx: 4, ny: 4, xl: 'hours burned t (h)', xc: C('time'), yl: 'total cost (＄)', yc: PAL.ink, fy: (v) => '＄' + v.toFixed(0) });
     const capI = 4000 * Math.min(1, CMAX / Math.max(CMAX, cost(Pi.v, 4000, BULB, BULB_LIFE)));
     curve(ctx, (h) => cost(Pi.v, h, BULB, BULB_LIFE), 0, capI, a.X, a.Y, bc, 5, 120);
     ctx.save(); ctx.setLineDash([10, 10]);
@@ -178,15 +175,12 @@ const money = (v) => '$' + v.toFixed(2);
     const endI = Math.min(capI, 3400), endC = Math.min(capC, 3400);
     /* the bulb's name sits above its line, or below and to the right of it where the line has run off the top of the frame */
     if (capI < 4000) lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0.7, 1, bc, 20, 30);
-    else lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0, -1, bc, 20, 26);
+    else lab.add('incandescent bulb', a.X(endI), a.Y(Math.min(CMAX, cost(Pi.v, endI, BULB, BULB_LIFE))), 0, 1, bc, 20, 46);
     lab.add('compact fluorescent lamp', a.X(endC), a.Y(Math.min(CMAX, cost(Pc.v, endC, CFL, CFL_LIFE))), 0, 1, fc, 20, 26);
     lab.flush();
     topline(ctx, 'Over ' + fmt(H.v, 0) + ' hours the ' + fmt(Pi.v, 0) + '-W bulb uses ' + fmt(kwh(Pi.v, H.v), 1) + ' kW·h and costs ' + money(ti)
       + ', while the ' + fmt(Pc.v, 0) + '-W CFL uses ' + fmt(kwh(Pc.v, H.v), 1) + ' kW·h and costs ' + money(tc) + '.');
-    readout(d.readout, `\\kE = \\kP\\kt = (${fmt(Pi.v, 0)}\\ \\text{W})(${fmt(H.v, 0)}\\ \\text{h}) = ${fmt(kwh(Pi.v, H.v), 1)}\\ \\text{kW}\\cdot\\text{h}`,
-      'The compact fluorescent lamp uses E = Pt = ' + fmt(kwh(Pc.v, H.v), 1) + ' kW·h over the same hours, so at ' + fmt(PR.v, 0) + ' cents a kilowatt-hour the two lamps have cost '
-      + money(ti) + ' and ' + money(tc) + ', the price of each lamp included. Over the ten thousand hours the CFL lasts, the difference comes to '
-      + money((cost(Pi.v, CFL_LIFE, BULB, BULB_LIFE) - cost(Pc.v, CFL_LIFE, CFL, CFL_LIFE))) + '.');
+    readout(d.readout, `\\kE = \\kP\\kt = (${fmt(Pi.v, 0)}\\ \\text{W})(${fmt(H.v, 0)}\\ \\text{h}) = ${fmt(kwh(Pi.v, H.v), 1)}\\ \\text{kW}\\cdot\\text{h}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

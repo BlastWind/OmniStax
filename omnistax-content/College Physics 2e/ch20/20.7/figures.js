@@ -127,7 +127,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
       .concat(Array.from({ length: nSh - 1 }, (_, i) => hit(ax0 + (AL * (i + 1)) / nSh, soma.y, 16, 'a node of Ranvier')));
     const tt = len.v / 100 / SPEED;
     topline(ctx, 'A signal crossing a ' + fmt(len.v, 0) + '-cm axon at about 1 m/s takes ' + sig3(tt) + ' s, which is why a reflex is quick but not instant.');
-    readout(d.readout, `\\kt = \\frac{\\kd}{v} = \\frac{${fmt(len.v, 0)}\\ \\text{cm}}{1.0\\ \\text{m/s}} = ${sig3(tt * 1000)}\\ \\text{ms}`,
+    readout(d.readout, `\\kt = \\frac{\\kd}{\\kv} = \\frac{${fmt(len.v, 0)}\\ \\text{cm}}{1.0\\ \\text{m/s}} = ${sig3(tt * 1000)}\\ \\text{ms}`,
       'Each sheath along this axon is about a millimeter long and the node between two of them about a thousandth of that, so a real axon carries far more of them than one drawing can show.');
   }
   register(d.fig, { update: () => {}, draw });
@@ -144,8 +144,8 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
   const d = sim('sim-membrane', 760);
   const dV = ctl(d.controls, { label: '\\kdV', cls: 'voltage', min: 70, max: 90, step: 1, value: 90, unit: 'mV', dec: 0, aria: 'potential difference across the membrane' });
   const th = ctl(d.controls, { label: '\\kd', cls: 'position', min: 4, max: 12, step: 0.5, value: 8, unit: 'nm', dec: 1, aria: 'thickness of the membrane' });
-  const st = choice(d.controls, {
-    label: 'Membrane passes', value: 'rest', aria: 'which ions the membrane passes',
+  const st = F.select(d.controls, {
+    label: '\\text{Membrane passes}', value: 'rest', aria: 'which ions the membrane passes',
     options: [{ value: 'rest', label: 'K+ and Cl− (resting)' }, { value: 'k', label: 'K+ only' }, { value: 'cl', label: 'Cl− only' }, { value: 'na', label: 'Na+ (stimulated)' }],
   });
   const cy = cycle(() => 1, 1.6);
@@ -250,7 +250,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
       chargeLayer(ctx, XL, XR, BOT + 16, 10, 1, inPos);
       if (ph === 'depolarizing') { for (let i = 0; i < 3; i++) { const x = XL + 120 + i * 140; arrow(ctx, x, TOP - 54, x, BOT + 54, alpha(PAL.ink, 0.45), 4); ion(ctx, x, TOP + (BOT - TOP) / 2, 'Na', 15); } lab.add('sodium rushing in', XR, (TOP + BOT) / 2, 1, 0, PAL.ink, 21, 40); }
       else if (ph === 'repolarizing') { for (let i = 0; i < 3; i++) { const x = XL + 120 + i * 140; arrow(ctx, x, BOT + 54, x, TOP - 54, alpha(PAL.ink, 0.45), 4); ion(ctx, x, TOP + (BOT - TOP) / 2, 'K', 15); } lab.add('potassium leaving', XR, (TOP + BOT) / 2, 1, 0, PAL.ink, 21, 40); }
-      else lab.add(ph === 'resting' ? 'no ions crossing' : 'active transport restoring the concentrations', XR, (TOP + BOT) / 2, 1, 0, PAL.ink, 21, 40);
+      else lab.add(ph === 'resting' ? 'no ions crossing' : 'the pump restoring the ions', XR, (TOP + BOT) / 2, 1, 0, PAL.ink, 21, 40);
       lab.add('outside', XL, TOP - 16, -1, 0, PAL.ink, 19, 26);
       lab.add('inside', XL, BOT + 16, -1, 0, PAL.ink, 19, 26);
     }
@@ -267,7 +267,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     lab.flush();
     topline(ctx, 'At ' + fmt(t, 1) + ' ms the membrane is ' + ph + ' and the inside of the cell stands at ' + sig3(v) + ' mV.');
     readout(d.readout, `\\kdV = ${sig3(v)}\\ \\text{mV}\\quad\\text{at}\\quad \\kt = ${fmt(t, 1)}\\ \\text{ms}`,
-      'The pulse peaks at ' + fmt(pk.v, 0) + ' mV. Only small fractions of the ions move in one pulse, so the cell can fire many hundreds of times before the sodium-potassium pump has to restore the concentration differences.');
+      'Only small fractions of the ions move in one pulse, so the cell can fire many hundreds of times before the sodium-potassium pump has to restore the concentration differences.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 2.6), draw });
 })();
@@ -282,7 +282,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
 (function () {
   const d = sim('sim-impulse', 600);
   const STRIP_MM = 20;                             /* the length of axon the strip stands for */
-  const kind = choice(d.controls, { label: 'Axon', value: 'myelin', aria: 'kind of axon', options: [{ value: 'bare', label: 'Bare membrane' }, { value: 'myelin', label: 'Myelinated' }], onInput: () => sync() });
+  const kind = choice(d.controls, { label: '\\text{Axon}', value: 'myelin', aria: 'kind of axon', options: [{ value: 'bare', label: 'Bare membrane' }, { value: 'myelin', label: 'Myelinated' }], onInput: () => sync() });
   const sh = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.2, max: 2, step: 0.1, value: 1, unit: 'mm', dec: 1, onInput: () => cy.reset(), aria: 'length of one myelin sheath' });
   const speed = () => (kind.value === 'bare' ? 1.0 : 20 * sh.v);          /* m/s */
   const T = () => STRIP_MM / 1000 / speed();                              /* the true time of one crossing, in seconds */
@@ -355,7 +355,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     topline(ctx, my
       ? 'On the myelinated axon the pulse runs through each ' + fmt(sh.v, 1) + '-mm sheath losing voltage and is regenerated at full height in the node, so it crosses at about ' + sig3(v) + ' m/s.'
       : 'On the bare membrane every patch has to depolarize in its turn, so the impulse crawls along at about 1 m/s.');
-    readout(d.readout, `v = \\frac{\\kd}{\\kt} = \\frac{${fmt(STRIP_MM, 0)}\\ \\text{mm}}{${sig3(T() * 1000)}\\ \\text{ms}} = ${sig3(v)}\\ \\text{m/s}`,
+    readout(d.readout, `\\kv = \\frac{\\kd}{\\kt} = \\frac{${fmt(STRIP_MM, 0)}\\ \\text{mm}}{${sig3(T() * 1000)}\\ \\text{ms}} = ${sig3(v)}\\ \\text{m/s}`,
       'The drawing takes ' + sig3(wall()) + ' s over a crossing that really takes ' + sig3(T() * 1000) + ' ms, and it slows the fast axon more than the slow one so that both can be watched; the speeds in the readout are the true ones.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T() / wall()), draw });
@@ -372,7 +372,7 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
   const d = sim('sim-ecg', 820);
   const WIN = 1.5;                                  /* the window both graphs show, 1.5 s, fixed */
   const bpm = ctl(d.controls, { label: '\\text{heart rate}', cls: 'frequency', min: 40, max: 160, step: 5, value: 80, unit: 'beats/min', dec: 0, onInput: () => cy.reset(), aria: 'heart rate' });
-  const lead = choice(d.controls, { label: 'Lead', value: 'II', aria: 'which lead is read', options: [{ value: 'I', label: 'I' }, { value: 'II', label: 'II' }, { value: 'III', label: 'III' }], onInput: () => cy.reset() });
+  const lead = choice(d.controls, { label: '\\text{Lead}', value: 'II', aria: 'which lead is read', options: [{ value: 'I', label: 'I' }, { value: 'II', label: 'II' }, { value: 'III', label: 'III' }], onInput: () => cy.reset() });
   const cy = cycle(() => WIN, 0.8);
   const gain = () => (lead.value === 'II' ? 1 : lead.value === 'I' ? 0.6 : 0.45);
   const bump = (x, c, w) => Math.exp(-Math.pow((x - c) / w, 2));
@@ -421,8 +421,8 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
     Object.keys(elec).forEach((k) => { const c = F.ref(k.toLowerCase()); dot(ctx, elec[k].x, elec[k].y, PAL.panel, true, 15); dot(ctx, elec[k].x, elec[k].y, c, false, 15); text(ctx, k, elec[k].x, elec[k].y, c, { size: 18, weight: 700, align: 'center' }); });
     lab.add('lead ' + lead.value, (elec[pair[0]].x + elec[pair[1]].x) / 2, (elec[pair[0]].y + elec[pair[1]].y) / 2, -0.8, 0, C('voltage'), 21, 32);
     /* the trace: 1.5 s across, −0.5 to 1.2 mV up, fixed, and the pressure beneath it */
-    const b1 = { l: 800, r: 1310, t: 120, b: 360 };
-    const a1 = axes(ctx, b1, [0, WIN], [-0.5, 1.2], { nx: 3, ny: 4, yl: 'lead potential (mV)', yc: C('voltage'), fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 1) });
+    const b1 = { l: 800, r: 1310, t: 146, b: 360 };
+    const a1 = axes(ctx, b1, [0, WIN], [-0.6, 1.2], { nx: 3, ny: 3, yl: 'lead potential (mV)', yc: C('voltage'), fx: (q) => fmt(q, 1), fy: (q) => fmt(q, 1) });
     line(ctx, b1.l, a1.Y(0), b1.r, a1.Y(0), alpha(PAL.ink, 0.3), 2, [6, 8]);
     curve(ctx, (q) => beat(frac(q)), 0, WIN, a1.X, a1.Y, C('voltage'), 4, 420);
     line(ctx, a1.X(t), b1.t, a1.X(t), b1.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
@@ -455,8 +455,8 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
 ===================================================================== */
 (function () {
   const d = sim('sim-electrodes', 700);
-  const set = choice(d.controls, { label: 'Placement', value: 'twelve', aria: 'placement', options: [{ value: 'three', label: 'Three electrodes' }, { value: 'twelve', label: 'Twelve leads' }] });
-  const lead = choice(d.controls, { label: 'Lead drawn', value: 'II', aria: 'which lead is drawn', options: [{ value: 'I', label: 'I' }, { value: 'II', label: 'II' }, { value: 'III', label: 'III' }] });
+  const set = choice(d.controls, { label: '\\text{Placement}', value: 'twelve', aria: 'placement', options: [{ value: 'three', label: 'Three electrodes' }, { value: 'twelve', label: 'Twelve leads' }] });
+  const lead = choice(d.controls, { label: '\\text{Lead drawn}', value: 'II', aria: 'which lead is drawn', options: [{ value: 'I', label: 'I' }, { value: 'II', label: 'II' }, { value: 'III', label: 'III' }] });
   function draw() {
     const { ctx } = begin(d.c);
     const lab = labeller(ctx, 700, { headline: 2 });
@@ -490,8 +490,8 @@ function chargeLayer(ctx, x1, x2, y, n, p, positive) {
       ? `\\kdV_{\\text{lead ${lead.value}}} = \\kV_{\\text{${pair[1]}}} - \\kV_{\\text{${pair[0]}}}`
       : `\\text{10 electrodes} \\rightarrow \\text{12 leads}`,
       set.value === 'three'
-        ? 'Three electrodes give three leads. Each pair of electrodes reads the component of the depolarization vector along the line between them, which is why three pairs give three different traces of one heartbeat.'
-        : 'Ten electrodes, six on the chest and four on the limbs, give twelve leads, because a lead is a potential difference read between electrodes or combinations of them, and the same electrode serves in several. The three limb pairs of the older machines are still among the twelve, so lead II is read from this placement as well.');
+        ? 'Each pair of electrodes reads the component of the depolarization vector along the line between them, which is why three pairs give three different traces of one heartbeat.'
+        : 'Ten electrodes give twelve leads, because a lead is a potential difference read between electrodes or combinations of them.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
