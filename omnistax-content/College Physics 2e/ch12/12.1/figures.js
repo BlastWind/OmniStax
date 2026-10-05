@@ -1,9 +1,7 @@
 /* Figures for section 12.1 Flow Rate and Its Relation to Velocity. Boots against the section's text article.
-   Continuity has no clock the reader must watch: each figure here is a still
-   picture that answers its sliders, registers no cycle and carries no
-   transport, as the chapter's config decides for everything before the onset
-   of turbulence. The shaded cylinder's one transport is its story slider,
-   the book's derivation of Q = Av̄, not a clock. */
+   The shaded cylinder's one transport is its story slider, the book's
+   derivation of Q = Av̄, not a clock; the branching vessel answers its sliders.
+   The narrowing tube moves, because the book's figure draws the flow along it. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['12.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, curve, pinned } = F;
@@ -149,20 +147,55 @@ function bar(ctx, x0, y, w, share, color, label, value) {
    FIGURE 12.3: the tube that narrows from point 1 to point 2. The same
    2.00 cm³ of fluid is drawn to scale in both parts, so the slab in the
    wide part becomes a long cylinder in the narrow one, and the speeds and
-   the graph beneath show the inverse square. Still: two shaded volumes and
-   a pair of speeds have no time in them, and dragging a radius is the
-   reader's choice of tube.
+   the graph beneath show the inverse square. Moving: the book draws the
+   fluid flowing along the tube, so the fluid, ruled into 2.00 cm³ parcels,
+   is carried from point 1 to point 2 at a constant flow rate, slowed down,
+   and the shaded parcel stretches as it enters the narrow part.
 ===================================================================== */
 (function () {
   const d = sim('sim-continuity', 810);
   const Qs = ctl(d.controls, { label: '\\kQ', cls: 'flow-rate', min: 0.05, max: 1, step: 0.005, value: 0.5, unit: 'L/s', dec: 3, aria: 'the flow rate through the tube',
-    detents: [{ v: 0.0833, label: 'heart' }, { v: 0.5, label: 'hose' }], snap: true });
-  const r1s = ctl(d.controls, { label: '\\krone', cls: 'position', min: 0.5, max: 1.2, step: 0.01, value: 0.9, unit: 'cm', dec: 3, aria: 'the radius of the tube at point 1' });
-  const r2s = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 0.25, max: 1.2, step: 0.01, value: 0.25, unit: 'cm', dec: 3, aria: 'the radius of the tube at point 2' });
+    detents: [{ v: 0.0833, label: 'heart' }, { v: 0.5, label: 'hose' }], snap: true, onInput: reset });
+  const r1s = ctl(d.controls, { label: '\\krone', cls: 'position', min: 0.5, max: 1.2, step: 0.01, value: 0.9, unit: 'cm', dec: 3, onInput: reset, aria: 'the radius of the tube at point 1' });
+  const r2s = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 0.25, max: 1.2, step: 0.01, value: 0.25, unit: 'cm', dec: 3, onInput: reset, aria: 'the radius of the tube at point 2' });
   /* one scale for radii and lengths, 60 units to the centimeter, so a 2.00 cm³ volume in a 0.25 cm tube is 611 units long and
      fits the narrow part; the speed arrows are at 12 units per m/s, and the largest speed the sliders reach, 50.9 m/s, still fits */
   const K = 60, KV = 12, VOL = 2, CY = 250, XA = 60, XT = 520, XN = 640, XB = 1340, P1 = 240, P2 = 700;
   const box = { l: 200, r: 1300, t: 460, b: 710 };     /* v̄ against r: 0 to 1.20 cm across, 0 to 60 m/s up, never rescaled */
+  /* the shaded parcel's back face goes from point 1 to point 2 in T seconds at a constant flow rate */
+  const T = 6, cy = F.cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  /* the tube's radius in cm at x, and the volume in cm³ from XA to x on a 2-unit table, so a face at volume s sits at xAt(s) */
+  function flow(r1, r2) {
+    const rAt = (x) => (x <= XT ? r1 : x >= XN ? r2 : r1 + ((r2 - r1) * (x - XT)) / (XN - XT));
+    const n = (XB - XA) / 2, cum = [0];
+    for (let i = 1; i <= n; i++) { const r = rAt(XA + 2 * i - 1); cum.push(cum[i - 1] + (Math.PI * r * r * 2) / K); }
+    const xAt = (s) => { let lo = 0, hi = n; while (hi - lo > 1) { const m = (lo + hi) >> 1; if (cum[m] <= s) lo = m; else hi = m; } return XA + 2 * (lo + (s - cum[lo]) / (cum[hi] - cum[lo])); };
+    return { rAt, xAt, at: (x) => cum[Math.round((x - XA) / 2)], total: cum[n] };
+  }
+  /* the parcel between two faces, following the wall through the taper */
+  function parcel(ctx, fl, xb, xf, fc) {
+    const R = (x) => fl.rAt(x) * K - 2, rx = (x) => Math.max(8, R(x) * 0.32), xs = [];
+    for (let x = xb; x < xf; x += 4) xs.push(x);
+    xs.push(xf);
+    ctx.save(); ctx.fillStyle = alpha(fc, 0.42); ctx.beginPath();
+    xs.forEach((x, i) => (i ? ctx.lineTo(x, CY - R(x)) : ctx.moveTo(x, CY - R(x))));
+    xs.slice().reverse().forEach((x) => ctx.lineTo(x, CY + R(x)));
+    ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(xf, CY, rx(xf), R(xf), 0, -Math.PI / 2, Math.PI / 2); ctx.fill();
+    ctx.fillStyle = alpha(fc, 0.55); ctx.beginPath(); ctx.ellipse(xb, CY, rx(xb), R(xb), 0, 0, 2 * Math.PI); ctx.fill();
+    ctx.strokeStyle = fc; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(xb, CY, rx(xb), R(xb), 0, 0, 2 * Math.PI); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(xf, CY, rx(xf), R(xf), 0, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+    ctx.restore();
+  }
+  /* where the parcel starts and where it ends, dashed */
+  function ghost(ctx, x, L, R, fc) {
+    const rx = Math.max(8, R * 0.32);
+    ctx.save(); ctx.strokeStyle = alpha(fc, 0.7); ctx.lineWidth = 2; ctx.setLineDash([6, 6]); ctx.beginPath();
+    ctx.ellipse(x, CY, rx, R - 2, 0, 0, 2 * Math.PI); ctx.moveTo(x, CY - R + 2); ctx.lineTo(x + L, CY - R + 2); ctx.moveTo(x, CY + R - 2); ctx.lineTo(x + L, CY + R - 2);
+    ctx.moveTo(x + L, CY - R + 2); ctx.ellipse(x + L, CY, rx, R - 2, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke(); ctx.restore();
+  }
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('flow-rate'), vc = C('velocity'), pc = C('position'), oc = C('volume'), c1 = F.ref('point-1'), c2 = F.ref('point-2');
@@ -180,9 +213,16 @@ function bar(ctx, x0, y, w, share, color, label, value) {
       for (const s of [1, -1]) { ctx.moveTo(pts[0][0], CY + s * pts[0][1]); ctx.lineTo(pts[1][0], CY + s * pts[1][1]); }
       ctx.stroke(); ctx.restore();
     }
-    /* the same volume at the two points, and the speed at each */
-    slug(ctx, P1, d1 * K, CY, R1, fc);
-    slug(ctx, P2, d2 * K, CY, R2, fc);
+    /* the fluid ruled into 2.00 cm³ parcels, carried along; the shaded one starts at point 1 and ends at point 2 */
+    const fl = flow(r1, r2), s1 = fl.at(P1), sb = s1 + (fl.at(P2) - s1) * (cy.now() / T);
+    for (let s = sb - Math.ceil(sb / VOL) * VOL; s < fl.total; s += VOL) {
+      if (s <= 0 || Math.abs(s - sb) < 1e-9 || Math.abs(s - sb - VOL) < 1e-9) continue;
+      const x = fl.xAt(s), R = fl.rAt(x) * K - 2;
+      ctx.save(); ctx.strokeStyle = alpha(fc, 0.45); ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(x, CY, Math.max(8, R * 0.32), R, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke(); ctx.restore();
+    }
+    ghost(ctx, P1, d1 * K, R1, fc);
+    ghost(ctx, P2, d2 * K, R2, fc);
+    parcel(ctx, fl, fl.xAt(sb), Math.min(XB, fl.xAt(sb + VOL)), fc);
     arrow(ctx, P1, CY, P1 + v1 * KV, CY, vc, 5);
     arrow(ctx, P2, CY, P2 + v2 * KV, CY, vc, 5);
     text(ctx, 'v̄_1 = ' + sf(v1) + ' m/s', P1, CY - R1 - 26, vc, { size: 21, weight: 600 });
@@ -208,9 +248,9 @@ function bar(ctx, x0, y, w, share, color, label, value) {
       ? 'The tube has the same radius, ' + fmt(r1, 3) + ' cm, at both points, so the ' + fmt(Q, 3) + ' L/s moves at ' + sf(v1) + ' m/s at both.'
       : 'The same ' + fmt(Q, 3) + ' L/s passes both points, so fluid moving at ' + sf(v1) + ' m/s where the radius is ' + fmt(r1, 3) + ' cm moves at ' + sf(v2) + ' m/s where it is ' + fmt(r2, 3) + ' cm.');
     readout(d.readout, `\\kQone = \\kQtwo:\\quad \\kareaone\\kvbone = \\kareatwo\\kvbtwo:\\quad (${sf(A1)}\\ \\text{cm}^2)(${sf(v1)}\\ \\text{m/s}) = (${sf(A2)}\\ \\text{cm}^2)(${sf(v2)}\\ \\text{m/s}) = ${fmt(Q, 3)}\\ \\text{L/s}`,
-      'The two shaded cylinders are the same 2.00 cm³ of fluid, drawn to scale, and each passes its point in ' + sf(tpass) + ' ms. The speeds stand in the ratio $\\kvbtwo/\\kvbone = (\\krone/\\krtwo)^2 = ' + sf(v2 / v1) + '$, which is why the graph climbs so steeply as the radius shrinks.');
+      'The shaded cylinder is 2.00 cm³ of fluid, drawn to scale, and passes either point in ' + sf(tpass) + ' ms; the flow is shown ' + sf(T / ((fl.at(P2) - s1) / (Q * 1000)), 2) + ' times slower. The speeds stand in the ratio $\\kvbtwo/\\kvbone = (\\krone/\\krtwo)^2 = ' + sf(v2 / v1) + '$, which is why the graph climbs so steeply as the radius shrinks.');
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================

@@ -110,10 +110,14 @@ reason · sliders and choices with their types · headline · graph · 3D
    same 2.00 cm³ of fluid is drawn to scale in both parts of the tube, so
    the reader sees the slab in the wide part stretch into a long cylinder in
    the narrow one, and the speed arrows and the graph beneath show the
-   inverse square the text ends on · **still**: the picture is two shaded
-   volumes that are the same volume and a pair of speeds, and dragging a
-   radius is the reader's choice of tube, not the passage of time
-   (rule 14; the chapter's config makes this decision for continuity) ·
+   inverse square the text ends on, and flow by animation · arrows:
+   kinematic (the fluid flowing along the tube's axis), symbolic (the speed
+   vectors $\kvbone$ and $\kvbtwo$, kept as drawn) · **moving**, with the
+   fluid, ruled into 2.00 cm³ parcels, carried from point 1 to point 2 at a
+   constant flow rate in a 6 s loop with a 1.2 s hold, slowed by the factor
+   the small line states; the shaded parcel stretches through the taper
+   into the long cylinder, and dashed outlines mark where it starts and
+   ends (rule 24.1 sets the floor; reduced motion starts at point 2) ·
    $\kQ$ (0.05 to 1.00 L/s, default 0.500, flow-rate, with soft detents at
    the heart's 5.00 L/min and the hose's 0.500 L/s), $r_1$ (0.50 to 1.20 cm,
    default 0.900, ink), $r_2$ (0.25 to 1.20 cm, default 0.250, ink). The
@@ -132,7 +136,7 @@ reason · sliders and choices with their types · headline · graph · 3D
    would overrun its part of the tube is pinned at the end with a hollow
    head. Readout: $\kQone = \kQtwo$, $A_1\kvbone = A_2\kvbtwo$ with the
    numbers; small line saying how long the 2.00 cm³ takes to pass either
-   point and that $\kvbtwo/\kvbone = (r_1/r_2)^2$. Draws flow-rate, velocity.
+   point, how many times the flow is slowed, and that $\kvbtwo/\kvbone = (r_1/r_2)^2$. Draws flow-rate, velocity.
 3. `sim-branching` · Sim (the book draws no figure for the branching form
    of continuity) · continuity-branching, equation-of-continuity,
    flow-rate-velocity · variation by slider: the reader changes how many
