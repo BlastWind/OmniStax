@@ -312,8 +312,8 @@ function ball(ctx, x, y, r, color, a = 1) {
    BE/A 0 to 10 MeV. Beside it the nucleus at the slider's A, its nucleons
    drawn from the cluster above at 15 px/fm, with the range of the nuclear
    force a dashed circle about the leftmost nucleon: the diameter of an A = 60
-   nucleus, which the book's problem on this curve names, taken centre to
-   centre across the A = 60 cluster (8.96 fm). Nucleons farther than that from
+   nucleus, which the book's problem on this curve names, taken center to
+   center across the A = 60 cluster (8.96 fm). Nucleons farther than that from
    the marked one in three dimensions are drawn faint; the first is at A = 72.
 ===================================================================== */
 (function () {

@@ -139,3 +139,9 @@ absorbing γ rays, the density independent of $A$, and the β ray at $0.998c$.
 - `ch31/COLOR.md` 31.3 row: the page binds `position`, `density`, `mass`, `volume`, `energy`, `velocity`, `force`, `charge`, `angle`; conventions `p+`, `n0`.
 - `source_section` "31.7" on `p7` and `p8` is an error in `ost check` until 31.7 is built.
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05):
+
+- All six forms anchored as listed; the existing variables rows anchored.
+- Variables rows `E` (`rest-energy`), `m`, `q`, `V`, `W`, `F`, `d`, `θ`, `r` added as listed, and `KE`, `v`, `λ` for the exercise hints.
+- `ch31/COLOR.md` records the bindings as built; the `source_section` "31.7" rows resolve now that 31.7 is built.

@@ -146,6 +146,15 @@ as problems of kind `ap-test-prep` with the key as the solution.
   pre-scripted nuclide there (`ZA{\text{X}}_{N}`, `\text{N}714`) must be rebuilt
   from the CNXML as `{}^{A}_{Z}\text{X}_{N}`.
 
+Found while building the sections (2026-10-05), also kept as printed and named in
+`notes`:
+
+- 31.4 `fs-id2670256`: the key prints M where the nuclide is Mn.
+- 31.3 `exer-00001` (held from 31.7): the key takes barium's mass number as 142
+  where the prompt prints ¹⁴¹Ba.
+- 31.6 `fs-id2621402` (held from 31.5): the question prints $ZM({}^{1}\text{H})$
+  for $Zm({}^{1}\text{H})$.
+
 ## Flat, locked or 3D (root rule 28)
 
 - Physical 3D candidate: the nucleus as a packed ball of protons and neutrons

@@ -1,6 +1,6 @@
 /* Figures for section 31.3 Substructure of the Nucleus.
    The page binds position (a nuclear radius), density, mass, energy, velocity
-   and force; the figures colour position, and density through the readout's
+   and force; the figures color position, and density through the readout's
    note. Z, N and A are counts and stay in ink. Protons and neutrons are
    F.el('p+') and F.el('n0'). On the chart of the nuclides a stable nuclide is a
    filled ink dot and the band of unstable ones a hollow outline, never a hue.
@@ -36,9 +36,9 @@ function zOf(A) {
 
 /* =====================================================================
    FIGURE 31.11 · sim-nucleus-model · still · physical 3D (rule 28.3)
-   A nucleons of radius a = r₀(π/(3√2))^{1/3} = 1.09 fm on a face-centred
+   A nucleons of radius a = r₀(π/(3√2))^{1/3} = 1.09 fm on a face-centered
    cubic lattice, whose volume per site is (4/3)πr₀³, so the A sites nearest
-   the centre fill a ball of radius r₀A^{1/3}. A ring in the position hue marks
+   the center fill a ball of radius r₀A^{1/3}. A ring in the position hue marks
    that radius. Yaw free, pitch within ±70°: a ball has no ground and no
    privileged side, and the bound keeps the ring from closing to a line.
    Graph below: r from 0 to 8 fm (7.4 at A = 238) against A from 0 to 250.
@@ -64,7 +64,7 @@ function zOf(A) {
     SITES.push({ p, key: Math.hypot(p[0], p[1], p[2]) + 1e-3 * hash(i, j, k, 1), u: hash(i, j, k, 2) });
   }
   SITES.sort((a, b) => a.key - b.key);
-  /* the first A sites about their own centre, and which of them are protons */
+  /* the first A sites about their own center, and which of them are protons */
   function packing(A, Z) {
     const s = SITES.slice(0, A), c = [0, 1, 2].map((q) => s.reduce((t, x) => t + x.p[q], 0) / A);
     const order = s.map((x, i) => [x.u, i]).sort((a, b) => a[0] - b[0]);
@@ -136,7 +136,7 @@ function zOf(A) {
    fixed, so the sliders' extremes (110, 160) stay inside. The 251 stable
    nuclides are filled ink dots; the band of unstable nuclides is a hollow
    outline round the valley, as simplified as the book's. Diagonals of
-   constant A every 10, labelled every 20 above the band.
+   constant A every 10, labeled every 20 above the band.
 ===================================================================== */
 (function () {
   const d = sim('sim-nuclide-chart', 780);

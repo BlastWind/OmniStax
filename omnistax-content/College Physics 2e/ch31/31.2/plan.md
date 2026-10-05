@@ -102,3 +102,8 @@ No AP items, no Check Your Understanding box, no exercise moves in or out.
 - variables row `V_volt` → 31.2-geiger-counters, if the chapter pass gives the Sim's choice a symbol row
 - `ch31/COLOR.md` 31.2 row: the page binds `energy`, `voltage`, `current`, as given
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05):
+
+- Variables rows `E` and `V_volt` added at `geiger-counters`, and `f` (the photon of a conceptual answer) at `scintillators`.
+- `ch31/COLOR.md` records the bindings as built.

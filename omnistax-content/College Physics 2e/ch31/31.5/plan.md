@@ -101,3 +101,10 @@ the 1.78-ms half-life (its result, 4.1 × 10¹¹, is that of 1.78 ms); "solar ne
 - the term "rate of decay" (31.5 glossary) as a term of `activity`; the term "lifetime" names no concept and stays ink
 - concepts `radioactive-dating-technique` and `radioactive-dating` are near twins (a definition and a skill); the chapter pass may keep both or fold the definition into the skill
 - edge `half-life` → `probability` or the 29.7 probability concept, if the chapter pass wants the 50% chance tied to the book's first probability idea
+
+Applied by the chapter pass (2026-10-05):
+
+- Variables rows `m` (mass) and `A_nuc` added at `chernobyl-example`; the mass in Example 31.6 is now written $\km$. Every form and existing row anchored.
+- "rate of decay" is already a term of `activity`; "lifetime" stays ink.
+- `radioactive-dating-technique` and `radioactive-dating` both kept: one is the definition, the other the skill of Example 31.4.
+- No edge from `half-life` to a probability concept: 29.7's `probability-distribution` is the wave's intensity, not a chance of decay.

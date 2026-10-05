@@ -26,15 +26,30 @@ in ink.
 
 Of item 7's four ways this chapter leans on the element palette more than any
 before it. Every particle with an identity is `F.el`: the proton `F.el('p+')`, the
-neutron `F.el('n0')` and the electron and β⁻ `F.el('e-')`, so an α is drawn as two
-protons and two neutrons, never a coloured dot, and a nucleus is a packing of the
-two nucleon colours. The palette has no positron, neutrino or photon; until it
-does, a β⁺, a neutrino and a γ that the text names are referents of their section,
-drawn with `F.ref` and named by a label or hover. A γ ray is not visible light and
-is never painted in a spectral colour. Each section's `referents` names the
-particular things its figures draw and its text points at (a source, a detector,
-the parent and daughter of a decay), and a symbol whose subscript names one is
-split by its variables row's `ref`. A nuclide on the chart of the nuclides is a
-place, not a quantity, and its stable or unstable state is told by fill (solid or
-hollow), never by a hue. With every colour switch off each figure stays legible
-from its labels.
+neutron `F.el('n0')`, the electron and β⁻ `F.el('e-')`, and, since the palette
+gained them during the build, the positron `F.el('e+')`, the neutrino `F.el('nu')`
+and the γ photon `F.el('gamma')`. An α is drawn as two protons and two neutrons,
+never a coloured dot, and a nucleus is a packing of the two nucleon colours. A γ
+ray is not visible light and is never painted in a spectral colour. A nuclide on
+the chart of the nuclides is a place, not a quantity, and its stable or unstable
+state is told by fill (solid or hollow), never by a hue; so is a nucleus of 31.5's
+decaying sample. With every colour switch off each figure stays legible from its
+labels.
+
+## Bindings as built
+
+| Section | Types its figures and readouts draw | Conventions | Referents |
+|---|---|---|---|
+| 31.1 | energy, position (the radius of a ray's path, the range $R$), velocity, charge, magnetic-field, time | `p+`, `n0`, `e-`, `gamma` | none |
+| 31.2 | energy, voltage, current | `e-`, `gamma` | the wire and the cylinder of the Geiger tube |
+| 31.3 | position, density | `p+`, `n0` | none; the chart of the nuclides draws no type |
+| 31.4 | momentum, energy, mass, velocity; the decay series draws no type | `p+`, `n0`, `e-`, `e+`, `nu`, `gamma` | the parent and daughter of each decay: ²³⁹Pu and ²³⁵U, ⁶⁰Co and ⁶⁰Ni, ²²Na and ²²Ne |
+| 31.5 | time, decay-constant, activity | none | none |
+| 31.6 | energy, mass, velocity, position, and time and activity in Figure 31.23 | `p+`, `n0`, `e-`, `gamma` | none |
+| 31.7 | energy, position, time, current | `p+`, `n0` | the marble in the bowl |
+
+The text colours more than the figures: 31.1 also binds `force` and `momentum` in
+the prose of range, 31.3 `mass`, `volume`, `energy`, `velocity`, `force`, `charge`
+and `angle`, and 31.5 `mass` in Example 31.6.
+No section binds a referent to a particle: a referent is a nucleus of an example,
+and its body keeps the nucleon colours while its name wears the referent's hue.

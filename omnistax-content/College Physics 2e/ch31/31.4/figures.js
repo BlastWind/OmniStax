@@ -3,7 +3,7 @@
    stay ink. Protons, neutrons, electrons, positrons, neutrinos and γ rays wear
    the particle convention of F.el; the parents and daughters of the decay
    figure are the section's referents, their bodies in that convention and
-   their names in the referent colour. On the chart of the series a nuclide is
+   their names in the referent color. On the chart of the series a nuclide is
    hollow when unstable and filled when stable, and the two kinds of decay
    arrow are ink (α) and F.cat(1) (β⁻), named by a legend. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
@@ -160,7 +160,7 @@ const nucTex = (A, Z, s, star) => '{}^{' + A + '}_{' + Z + '}\\text{' + s + '}' 
   let hits = [];
   hover(d.stage, () => hits);
 
-  /* hexagonal packing, nearest the centre first */
+  /* hexagonal packing, nearest the center first */
   const LATTICE = [];
   for (let j = -12; j <= 12; j++) for (let i = -12; i <= 12; i++) {
     const x = (i + (j & 1) * 0.5) * SP, y = j * SP * 0.866;

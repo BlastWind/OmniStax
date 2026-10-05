@@ -38,3 +38,15 @@ setting and its value.
 | Errata | carried as printed and named in `notes`, as `exploration.md` lists |
 | Credit | `ai` is `{"text": "Claude Opus 5.5", "figures": "Claude Opus 5.5"}`, `built` 2026-09-28 |
 | Book manifest | `ch31` in `book.json` chapters, merged with `ost merge college-physics-2e 31` |
+
+## What the build changed
+
+| Setting | As built |
+|---|---|
+| Folds | Figure 31.15 + 31.17 + 31.18 is one scene with a choice of five modes (α, β⁻, β⁺, electron capture, γ); 31.24 + 31.25 (the binding-energy curve and the packed nucleus showing the force's range) and 31.27 + 31.28 (the barrier and the wave function) are one figure each; three Sims are added: the Geiger tube in 31.2, carbon dating read off the decay curve in 31.5 and the scanning tunneling probe in 31.7 |
+| Motion | the rays of 31.3 and 31.5, the Geiger tube Sim, the photomultiplier of 31.9, the decay modes, the decaying sample of 31.19, the Earth's interior of 31.23, the marble of 31.26, the α of 31.27 + 31.28 and the probe Sim register a cycle; 31.11, 31.12, 31.14, 31.22, 31.24 + 31.25 and the carbon-dating Sim are still |
+| 3D | the packed nucleus of Figure 31.11 is built in 3D through `F.view3d` (yaw free, pitch within ±70°, idle spin, a flat fallback); everything else is flat |
+| Colour coding | the positron, the neutrino and the γ photon are `F.el('e+')`, `F.el('nu')` and `F.el('gamma')`, which the palette gained during the build, and not `F.cat` or referents; the range of radiation in 31.1 is $R$ (`\kR`, position, as the range of a projectile in 3.4); the tunneling current of 31.7 is `I_curr` (`\kIcur`), not the moment of inertia's `\kI` |
+| Concepts | `decay` (`nuclear-decay`) is introduced in 31.1, where the book first defines it, rather than 31.4; `nuclear-reaction-energy` is typed energy |
+| Formulas | every equation and variable row anchored by the chapter pass |
+| Credit | `ai` is Claude Opus 5.5 at high effort for text and figures on every section page; `built` 2026-10-05; the introduction keeps its 2026-09-28 credit |

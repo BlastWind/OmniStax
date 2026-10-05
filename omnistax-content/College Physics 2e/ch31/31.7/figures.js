@@ -14,9 +14,9 @@ const sig2 = (x) => x >= 10 ? fmt(x, 1) : x >= 1 ? fmt(x, 1) : x >= 0.1 ? fmt(x,
 
 /* =====================================================================
    FIGURE 31.26 · sim-marble-bowl · moving · flat (rule 28.1)
-   A section through the volcano, 900 px to the metre: a circular bowl of
+   A section through the volcano, 900 px to the meter: a circular bowl of
    radius 0.16 m, 0.100 m deep, between two sharp peaks, and flanks falling
-   1.2 m per metre to a base 0.25 m below the bowl's floor. A 20-g marble
+   1.2 m per meter to a base 0.25 m below the bowl's floor. A 20-g marble
    starts at the floor with kinetic energy KE and slides along the profile
    (s'' = −g dy/ds, rolling ignored), slowed four times. It reaches
    h = KE/mg; trapped, it swings twice and loops with no hold; over the rim
@@ -128,7 +128,7 @@ const sig2 = (x) => x >= 10 ? fmt(x, 1) : x >= 1 ? fmt(x, 1) : x >= 0.1 ? fmt(x,
 
 /* =====================================================================
    FIGURE 31.27 + 31.28 · sim-alpha-tunneling · moving · flat (rule 28.1)
-   The potential energy of an α at distance r from the centre of ²³⁵U, the
+   The potential energy of an α at distance r from the center of ²³⁵U, the
    daughter of Example 31.2's ²³⁹Pu: a well of −30 MeV inside
    R = 1.2 fm (235^{1/3} + 4^{1/3}) = 9.3 fm, edge 0.2 fm wide, joined to the
    Coulomb energy (1.44 MeV·fm)(2)(92)/r outside. Axes fixed: r 0 to 70 fm
@@ -303,8 +303,8 @@ const sig2 = (x) => x >= 10 ? fmt(x, 1) : x >= 1 ? fmt(x, 1) : x >= 0.1 ? fmt(x,
     curve(ctx, I, 0, xt, X, Y, CU, 4, Math.max(2, Math.round(360 * xt / 3.6)));
     pinned(ctx, BOX, X, Y, xt, I(xt), CU);
 
-    ro.set('\\kI = I_0\\,e^{-2\\kappa \\kd} = (5.5\\ \\mu\\text{A})\\,e^{-(20\\ \\text{nm}^{-1})(' + fmt(dv, 2) + '\\ \\text{nm})} = ' + sig2(I0 * Math.exp(-K2 * dv)) + '\\ \\text{nA}',
-      'Between atoms the gap is 0.10 nm wider and $\\kI$ is $e^{2} = 7.4$ times smaller.', { form: 'i' });
+    ro.set('\\kIcur = I_0\\,e^{-2\\kappa \\kd} = (5.5\\ \\mu\\text{A})\\,e^{-(20\\ \\text{nm}^{-1})(' + fmt(dv, 2) + '\\ \\text{nm})} = ' + sig2(I0 * Math.exp(-K2 * dv)) + '\\ \\text{nA}',
+      'Between atoms the gap is 0.10 nm wider and $\\kIcur$ is $e^{2} = 7.4$ times smaller.', { form: 'i' });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

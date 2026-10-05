@@ -149,3 +149,10 @@ No Check Your Understanding box, so nothing inline.
 - `eq-gamma-decay` → 31.4-gamma-decay
 - `ch31/COLOR.md` 31.4 row: the page binds `energy`, `mass`, `momentum`, `velocity`; no `charge` quantity is drawn
 - No edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05):
+
+- Variables rows `E`, `c`, `m_e`, `Z`, `A_nuc`, `N_neut` and `f` (a γ ray's frequency in an AP approach) added; `Δm` anchored.
+- `nuclear-reaction-energy` is typed `energy`.
+- All eight forms anchored as listed.
+- `nuclear-decay` is introduced in 31.1, where the book first defines "decay"; its span here is now a use.

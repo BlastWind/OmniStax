@@ -290,7 +290,7 @@ const NAME = { a: 'α', b: 'β', g: 'γ' };
     });
     lab.flush();
 
-    ro.set('R_{\\alpha} = ' + lenTex(Ra) + ' < R_{\\beta} = ' + lenTex(Rb), 'Each ' + len(x10) + ' of ' + M.name + ' absorbs nine tenths of the γ rays that reach it.');
+    ro.set('\\kR_{\\alpha} = ' + lenTex(Ra) + ' < \\kR_{\\beta} = ' + lenTex(Rb), 'Each ' + len(x10) + ' of ' + M.name + ' absorbs nine tenths of the γ rays that reach it.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

@@ -117,3 +117,8 @@ ${}^{4}_{2}\text{He}$.
 - form anchors: `eq-mass-defect` → 31.6-mass-defect, `eq-binding-energy-nuclear` → 31.6-mass-defect, `eq-binding-energy` → 31.6-mass-defect
 - `ch31/COLOR.md` 31.6 row: the page binds `energy`, `position`, `mass`, `velocity`, and `time` and `activity` in Figure 31.23
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05):
+
+- Variables rows `Δm` (`mass-defect`, typed mass), `m_p`, `m_n`, `Z`, `N_neut`, `A_nuc`, `c` at `mass-defect`; `E` at `binding-energy`; `t`, `t_half`, `R_act`, `R_0act` at `earths-hot-interior`. `BE` and `m_tot` anchored.
+- The three forms anchored at `mass-defect`.

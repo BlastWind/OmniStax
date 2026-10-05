@@ -101,3 +101,9 @@ Your Understanding box.
 - variables row `I` → 31.7-tunneling-in-solids (current, nA, "the tunneling current between the probe and the surface", concept `electric-current`)
 - edge `quantum-tunneling` ← `probability-distribution` (29.7)
 - `ch31/COLOR.md` 31.7 row: the page binds `energy`, `position`, `time`, `current`; conventions `p+`, `n0`.
+
+Applied by the chapter pass (2026-10-05):
+
+- Variables rows `KE`, `PE_g`, `E`, `d`, `t_half` added as listed; the current is `I_curr` (`\kIcur`, `electric-current`) rather than `I`, whose macro is the moment of inertia's, and the text and Sim now write `\kIcur`.
+- Edge `quantum-tunneling` → `probability-distribution` added.
+- `ch31/COLOR.md` records the bindings as built.

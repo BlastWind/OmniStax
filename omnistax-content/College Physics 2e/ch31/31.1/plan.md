@@ -100,3 +100,11 @@ Table 31.1 stays in the text as a `div.book-table`.
 - the term "decay" (31.1 `discovery`) names no concept; `nuclear-radioactivity` could carry it
 - edge `ionizing-radiation` ← `ionizing-photons` (29.3), as the ch29 pass asked
 - edges `nuclear-radioactivity` → `mass-energy-equivalence` (28.6), `alpha-beta-gamma-rays` → `photon` (29.2), `radiation-is-nuclear-in-origin` → `atomic-spectra` (29.1), as the chapter notes ask
+
+Applied by the chapter pass (2026-10-05):
+
+- Variables rows `c`, `B_mag`, `r_curv`, `q`, `Δp`, `F`, `Δt`, `v` added with anchors; `E` and `q_e` anchored.
+- The range of radiation is `R` (`\kR`, position, `redefines`, concept `range-of-radiation`), anchored at `ionization-and-range`; the readout of `sim-range` now writes $\kR_{\alpha} < \kR_{\beta}$.
+- "gamma rays" is already a term of `gamma-ray-radiation` (24.3); left as it stands.
+- "decay" is first defined here, so `nuclear-decay` is now introduced in 31.1 at `discovery` and only used in 31.4.
+- Edges added: `ionizing-radiation` → `ionizing-photons`, `nuclear-radioactivity` → `mass-energy-equivalence`, `alpha-beta-gamma-rays` → `photon`, `radiation-is-nuclear-in-origin` → `atomic-spectra`; the edges they made redundant were dropped in the chapter's Hasse reduction.
