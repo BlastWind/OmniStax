@@ -111,18 +111,30 @@ headline · graph · 3D
    frictionless table · torque-on-a-point-mass · variation by slider: the
    derivation is three equalities, $a = F/m$, $a = r\alpha$ and
    $\tau = mr^2\alpha$, and the reader sees all three numbers change together
-   when any one input moves, which the still cannot show · **still**: the
-   figure is the free-body picture the derivation reads its quantities from,
-   a relation between quantities (rule 28.1); the mass's motion is 10.1's
-   matter and the book's picture is a snapshot, so it answers its sliders and
-   registers no cycle · $\kF$ (0 to 10 N, default 4.0, force), $m$ (0.10 to
+   when any one input moves, which the still cannot show, and flow by
+   animation · arrows: kinematic (the arrowheads on the circular path, the
+   mass going round counterclockwise) and symbolic (the force $\kF$, the
+   acceleration $\ka$ and the turn $\kalpha$ stay drawn as vectors) ·
+   **moving**, with the mass going round its circle: from rest it spins up
+   under the force for 1.00 s, $\theta = \frac{1}{2}\kalpha t^2$, the force
+   and its acceleration turning with it so they stay perpendicular to the
+   cord, then holds; the loop plays at a fifth of real time, 5 s, and the
+   right-hand column adds the time and $\omega = \kalpha t$ · $\kF$ (0 to 10 N, default 4.0, force), $m$ (0.10 to
    2.00 kg, default 0.50, ink), $\kr$ (0.20 to 1.00 m, default 0.60,
    position) · "A force of 4.0 N on a 0.50 kg mass 0.60 m from the pivot
-   gives it 8.0 m/s² along the force and 13.3 rad/s² about the pivot." ·
-   none · 2D, the table seen from above, the plane of rotation as the canvas.
+   gives it 8.0 m/s² along the force and 13.3 rad/s² about the pivot, so
+   from rest it goes round faster and faster." · none · 2D, the table seen
+   from above, the plane of rotation as the canvas.
    Readout: $\ktau = \kr\kF = m\kr^2\kalpha$ with the live numbers; small line
    on $\ka = \kF/m$ and $\ka = \kr\kalpha$ agreeing. Draws force, position,
-   acceleration, angular-acceleration, torque. Labels on: four, none moving.
+   acceleration, angular-acceleration, torque, rotational-inertia, mass,
+   angular-rate, time. Labels: the cord sweeps the disc and the arrows the
+   ring round it, so the mass, the pivot, the cord, the two arrows and the
+   turn carry hover names and no labels (rule 26.7); the path is named in a
+   legend in the table's corner, clear of the sweep at every single slider
+   extreme.
+   Animated 2026-10-05 (rule 24.1): the figure was still and the book's
+   path arrows were not drawn; it now moves as above.
 3. `sim-inertias` · replaces Figure 10.12, the artwork of ten shapes and
    their moments of inertia · moment-of-inertia, choosing-a-moment-of-inertia,
    mass-distribution-and-inertia · standardisation and variation by slider:

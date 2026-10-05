@@ -1,9 +1,9 @@
 /* Figures for section 10.3 Dynamics of Rotational Motion: Rotational Inertia. Boots against the section's text article.
-   Two of the four figures have a clock in them: a force changes an angular velocity, and the change
-   takes time, so the bike wheel and the merry-go-round start from rest and spin up while the push
-   lasts, register a cycle and get the app's transport. The free-body picture of the point mass and
-   the table of moments of inertia are relations between quantities, so they answer their sliders,
-   register no cycle and carry no transport. */
+   Three of the four figures have a clock in them: a force changes an angular velocity, and the change
+   takes time, so the bike wheel, the point mass and the merry-go-round start from rest and spin up
+   while the push lasts, register a cycle and get the app's transport. The table of moments of inertia
+   is a relation between quantities, so it answers its sliders, registers no cycle and carries no
+   transport. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['10.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, hover, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, axes, curve, pinned, view, face, labeller } = F;
@@ -92,69 +92,73 @@ function reading(ctx, x, y, label, value, color) {
 
 /* =====================================================================
    FIGURE 10.11: the point mass on a frictionless table, tethered to a
-   pivot and pushed perpendicular to the cord. Still: it is the free-body
-   picture the derivation reads its three equalities from, a relation
-   between quantities, so it answers its sliders and registers no cycle.
+   pivot and pushed perpendicular to the cord. Moving: the book's arrows on
+   the circular path say the mass goes round, so it starts from rest and
+   goes round faster and faster for 1.00 s, the force and its acceleration
+   turning with it, then holds. The cord sweeps the disc and the arrows the
+   ring round it, so a label there would sit on things that move: hover
+   names carry the mass, the pivot, the cord and the arrows (rule 26.7).
 ===================================================================== */
 (function () {
   const d = sim('sim-point-mass', 620);
-  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 10, step: 0.1, value: 4, unit: 'N', dec: 1, aria: 'the force on the mass' });
-  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 0.5, unit: 'kg', dec: 2, aria: 'the mass' });
-  const rs = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.6, unit: 'm', dec: 2, aria: 'the length of the cord, the distance from the pivot to the mass' });
-  const PXV = 440, PY = 350, S = 190, KF = 22, KA = 10, AMAX = 200, ANG = 0.75, PX = 980;   /* the mass sits at the lower right and the force runs up and to the right, inside the table at every radius */
+  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 10, step: 0.1, value: 4, unit: 'N', dec: 1, onInput: reset, aria: 'the force on the mass' });
+  const ms = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 0.5, unit: 'kg', dec: 2, onInput: reset, aria: 'the mass' });
+  const rs = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.2, max: 1, step: 0.05, value: 0.6, unit: 'm', dec: 2, onInput: reset, aria: 'the length of the cord, the distance from the pivot to the mass' });
+  const PXV = 440, PY = 350, S = 190, KF = 22, KA = 10, AMAX = 200, ANG = 0.75, PX = 980, T = 1;   /* the mass starts at the lower right with the force running up and to the right */
+  const cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  let hits = [];
+  hover(d.stage, () => hits);
   function draw() {
-    const { ctx, H } = begin(d.c);
-    const fc = C('force'), pc = C('position'), ac = C('acceleration'), gc = C('angular-acceleration'), qc = C('torque');
-    const Fv = Fs.v, m = ms.v, r = rs.v, a = Fv / m, al = a / r, tau = r * Fv;
-    const rp = r * S, mx = PXV + rp * Math.cos(ANG), my = PY + rp * Math.sin(ANG);
-    const ux = Math.sin(ANG), uy = -Math.cos(ANG);                       /* the tangent, counterclockwise on the screen */
-    const rx = Math.cos(ANG), ry = Math.sin(ANG);                        /* outward along the cord */
-    /* every label goes through the labeller, the arrows, the cord, the arc and the bodies blocked, so none lands on another */
-    const L = labeller(ctx, H); L.block(0, 0, 1400, 96); L.block(PX - 30, 96, 1400, H);
-    const seg = (x1, y1, x2, y2, w = 8) => { const n = Math.max(1, Math.ceil(Math.hypot(x2 - x1, y2 - y1) / 16)); for (let i = 0; i <= n; i++) { const x = x1 + ((x2 - x1) * i) / n, y = y1 + ((y2 - y1) * i) / n; L.block(x - w, y - w, x + w, y + w); } };
+    const { ctx } = begin(d.c);
+    const fc = C('force'), ac = C('acceleration'), gc = C('angular-acceleration'), qc = C('torque');
+    const Fv = Fs.v, m = ms.v, r = rs.v, a = Fv / m, al = a / r, tau = r * Fv, t = cy.now(), w = al * t;
+    const th = ANG - 0.5 * al * t * t;                                   /* counterclockwise on the screen is the canvas angle falling */
+    const rp = r * S, mx = PXV + rp * Math.cos(th), my = PY + rp * Math.sin(th);
+    const ux = Math.sin(th), uy = -Math.cos(th);                         /* the tangent, counterclockwise on the screen */
+    const rx = Math.cos(th), ry = Math.sin(th);                          /* outward along the cord */
+    const mid = (x1, y1, x2, y2) => [(x1 + x2) / 2, (y1 + y2) / 2];
+    hits = [{ x: mx, y: my, r: 22, name: 'the point mass, m = ' + fmt(m, 2) + ' kg' }, { x: PXV, y: PY, r: 16, name: 'the pivot' },
+      { x: (PXV + mx) / 2, y: (PY + my) / 2, r: 18, name: 'the cord, r = ' + fmt(r, 2) + ' m' }];
     /* the table top seen from above, the circular path and the cord */
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(120, 92, 700, 516, 26); ctx.fill(); ctx.stroke(); ctx.restore();
     text(ctx, 'frictionless tabletop', 150, 128, PAL.muted, { size: 18 });
-    L.block(140, 110, 360, 146);
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.setLineDash([8, 10]); ctx.beginPath(); ctx.arc(PXV, PY, rp, 0, TAU); ctx.stroke(); ctx.restore();
     const pmr = F.ref('point-mass'), pvr = F.ref('pivot'), cdr = F.ref('cord');
-    line(ctx, PXV, PY, mx, my, cdr, 3); seg(PXV, PY, mx, my, 5);
-    dot(ctx, PXV, PY, pvr, false, 10); L.block(PXV - 14, PY - 14, PXV + 14, PY + 14); L.block(mx - 22, my - 22, mx + 22, my + 22);
+    line(ctx, PXV, PY, mx, my, cdr, 3);
+    dot(ctx, PXV, PY, pvr, false, 10);
     /* the force on the mass and the acceleration it produces, both along the tangent */
-    const queue = [];
     if (Fv > 0) {
       const LF = Fv * KF;
-      arrow(ctx, mx, my, mx + LF * ux, my + LF * uy, fc, 5); seg(mx, my, mx + LF * ux, my + LF * uy);
+      arrow(ctx, mx, my, mx + LF * ux, my + LF * uy, fc, 5);
       const La = Math.min(a * KA, AMAX), ox = rx * 34, oy = ry * 34;     /* the acceleration arrow sits just outside the path, parallel to the force */
       if (a * KA > AMAX) line(ctx, mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy, ac, 3, [8, 8]);
-      arrow(ctx, mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy, ac, a * KA > AMAX ? 2 : 4); seg(mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy);
+      arrow(ctx, mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy, ac, a * KA > AMAX ? 2 : 4);
       turnArc(ctx, PXV, PY, 62, gc, 4.0, 4);                                    /* the turn about the pivot, drawn above and to its left */
-      for (let k = 0; k <= 8; k++) { const q = 3.3 + (1.4 * k) / 8; L.block(PXV + 62 * Math.cos(q) - 8, PY + 62 * Math.sin(q) - 8, PXV + 62 * Math.cos(q) + 8, PY + 62 * Math.sin(q) + 8); }
-      queue.push(() => L.add('F = ' + fmt(Fv, 1) + ' N', mx + LF * ux, my + LF * uy, -rx * 0.6 + ux * 0.8, -ry * 0.6 + uy * 0.8, fc, 21, 20));
-      queue.push(() => L.add('a = F/m = ' + fmt(a, 1) + ' m/s²', mx + ox + La * 0.6 * ux, my + oy + La * 0.6 * uy, rx, ry, ac, 20, 22));
-      queue.push(() => L.add('α = ' + fmt(al, 1) + ' rad/s²', PXV + 62 * Math.cos(3.6), PY + 62 * Math.sin(3.6), -1, -0.3, gc, 20, 22));
+      const fm = mid(mx, my, mx + LF * ux, my + LF * uy), am = mid(mx + ox, my + oy, mx + ox + La * ux, my + oy + La * uy);
+      hits.unshift({ x: fm[0], y: fm[1], r: 20, name: 'the force, F = ' + fmt(Fv, 1) + ' N' }, { x: am[0], y: am[1], r: 20, name: 'the acceleration along the force, a = ' + fmt(a, 1) + ' m/s²' },
+        { x: PXV + 62 * Math.cos(4), y: PY + 62 * Math.sin(4), r: 22, name: 'the angular acceleration about the pivot, α = ' + fmt(al, 1) + ' rad/s²' });
     }
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = pmr; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(mx, my, 16, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    queue.forEach((f) => f());
-    L.add('pivot', PXV, PY, -0.9, 0.45, pvr, 19, 22);
-    L.add('r = ' + fmt(r, 2) + ' m', (PXV + mx) / 2, (PY + my) / 2, ry, -rx, pc, 20, 20);
-    L.add('m = ' + fmt(m, 2) + ' kg', mx, my, -0.5, 0.86, C('mass'), 20, 26);
-    L.add('circular path of radius r', PXV, PY + rp, 0, 1, PAL.muted, 17, 24);
-    L.flush();
+    /* the path is named in the table's corner, where neither the mass nor its arrows reach at any one slider's extreme */
+    line(ctx, 520, 590, 564, 590, PAL.muted, 2, [8, 10]);
+    text(ctx, 'circular path of radius r', 576, 590, PAL.muted, { size: 17, base: 'middle' });
     /* the three equalities of the derivation, with the live numbers */
-    text(ctx, 'the same force, read three ways', PX, 130, PAL.muted, { size: 18 });
-    reading(ctx, PX, 176, 'Newton’s second law along the force', 'a = F/m = ' + fmt(a, 1) + ' m/s²', ac);
-    reading(ctx, PX, 250, 'the tangential acceleration is rα', 'α = a/r = ' + fmt(al, 1) + ' rad/s²', gc);
-    reading(ctx, PX, 324, 'the torque about the pivot', 'τ = rF = ' + fmt(tau, 2) + ' N·m', qc);
-    reading(ctx, PX, 398, 'and the same torque as mr²α', 'mr²α = ' + fmt(m * r * r * al, 2) + ' N·m', qc);
-    reading(ctx, PX, 472, 'moment of inertia of the mass', 'mr² = ' + fmt(m * r * r, 3) + ' kg·m²', C('rotational-inertia'));
-    topline(ctx, Fv === 0 ? 'With no force on the mass there is no acceleration, no angular acceleration and no torque.'
-      : 'A force of ' + fmt(Fv, 1) + ' N on a ' + fmt(m, 2) + ' kg mass ' + fmt(r, 2) + ' m from the pivot gives it ' + fmt(a, 1) + ' m/s² along the force and ' + fmt(al, 1) + ' rad/s² about the pivot.');
+    text(ctx, 'the same force, read three ways', PX, 124, PAL.muted, { size: 18 });
+    reading(ctx, PX, 160, 'Newton’s second law along the force', 'a = F/m = ' + fmt(a, 1) + ' m/s²', ac);
+    reading(ctx, PX, 224, 'the tangential acceleration is rα', 'α = a/r = ' + fmt(al, 1) + ' rad/s²', gc);
+    reading(ctx, PX, 288, 'the torque about the pivot', 'τ = rF = ' + fmt(tau, 2) + ' N·m', qc);
+    reading(ctx, PX, 352, 'and the same torque as mr²α', 'mr²α = ' + fmt(m * r * r * al, 2) + ' N·m', qc);
+    reading(ctx, PX, 416, 'moment of inertia of the mass', 'mr² = ' + fmt(m * r * r, 3) + ' kg·m²', C('rotational-inertia'));
+    reading(ctx, PX, 480, 'time the force has acted', 't = ' + fmt(t, 2) + ' s', C('time'));
+    reading(ctx, PX, 544, 'angular velocity from rest', 'ω = αt = ' + fmt(w, 1) + ' rad/s', C('angular-rate'));
+    topline(ctx, Fv === 0 ? 'With no force on the mass there is no acceleration, no angular acceleration and no torque, so it stays where it is.'
+      : 'A force of ' + fmt(Fv, 1) + ' N on a ' + fmt(m, 2) + ' kg mass ' + fmt(r, 2) + ' m from the pivot gives it ' + fmt(a, 1) + ' m/s² along the force and ' + fmt(al, 1) + ' rad/s² about the pivot, so from rest it goes round faster and faster.');
     readout(d.readout, `\\ktau = \\kr\\kF = \\km\\kr^2\\kalpha = (${fmt(m, 2)}\\ \\text{kg})(${fmt(r, 2)}\\ \\text{m})^2(${fmt(al, 1)}\\ \\text{rad/s}^2) = ${fmt(tau, 2)}\\ \\text{N}\\cdot\\text{m}`,
       Fv === 0 ? '' : `$\\km\\kr^2 = ${fmt(m * r * r, 3)}\\ \\text{kg}\\cdot\\text{m}^2$ stands where $\\km$ stands in $\\kF = \\km\\ka$.`);
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
 
 /* =====================================================================
