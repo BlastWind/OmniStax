@@ -5,7 +5,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, ctl, register, begin, line, arrow, dot, text, topline } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = host.appendChild(el('small', null, small)); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const RAD = Math.PI / 180;
@@ -143,96 +143,105 @@ function sideLabel(ctx, s, x1, y1, x2, y2, color, off = 26, size = 24) {
 })();
 
 /* =====================================================================
-   FIGURES 3.28 and 3.33: two legs of a walk and their resultant, added by
+   FIGURES 3.28 to 3.33: two legs of a walk and their resultant, added by
    components. One drawing serves both: `sign` is +1 for A + B and -1 for
-   A - B, where the second leg is taken in the opposite direction. The
-   scale follows the sliders so that the whole walk stays in the frame.
+   A - B, where the second leg is taken in the opposite direction. The scale
+   is fixed once from the longest walk the sliders allow, two 60 m legs that
+   reach 120 m from the origin, so a leg dragged longer is drawn longer; the
+   component rows sit below that disc and the columns to its left.
    Still: a sum of displacements has no time in it.
 ===================================================================== */
 function walk(id, sign) {
-  const d = sim(id, 760);
-  const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 80, step: 0.5, value: 53, unit: 'm', dec: 1, aria: 'magnitude of A' });
-  const TA = ctl(d.controls, { label: '\\kthetaA', cls: 'angle', min: -180, max: 180, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'angle of A' });
-  const B = ctl(d.controls, { label: '\\kB', cls: 'position', min: 5, max: 80, step: 0.5, value: 34, unit: 'm', dec: 1, aria: 'magnitude of B' });
-  const TB = ctl(d.controls, { label: '\\kthetaB', cls: 'angle', min: -180, max: 180, step: 0.5, value: 63, unit: '°', dec: 1, aria: 'angle of B' });
-  const bl = sign > 0 ? 'B' : '−B';
-  /* a label written upward along a vertical component */
-  function vlabel(s, x, y, color) { ctx_.save(); ctx_.translate(x, y); ctx_.rotate(-Math.PI / 2); text(ctx_, s, 0, 0, color, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); ctx_.restore(); }
-  let ctx_;
+  const H = 1020, S = 3, REACH = 120, OX = 700, OY = 475;   /* 3 units a metre: the 120 m disc spans x 340 to 1060, y 115 to 835 */
+  const d = sim(id, H);
+  const A = ctl(d.controls, { label: '\\kA', cls: 'position', min: 5, max: 60, step: 0.5, value: 53, unit: 'm', dec: 1, aria: 'magnitude of A' });
+  const TA = ctl(d.controls, { label: '\\kthetaA', cls: 'angle', min: -180, max: 180, step: 0.5, value: 20, unit: '°', dec: 1, aria: 'angle of A', detents: [-90, 0, 90] });
+  const B = ctl(d.controls, { label: '\\kB', cls: 'position', min: 5, max: 60, step: 0.5, value: 34, unit: 'm', dec: 1, aria: 'magnitude of B' });
+  const TB = ctl(d.controls, { label: '\\kthetaB', cls: 'angle', min: -180, max: 180, step: 0.5, value: 63, unit: '°', dec: 1, aria: 'angle of B', detents: [-90, 0, 90] });
+  const X = (m) => OX + m * S, Y = (m) => OY - m * S;
+  const r1 = Y(-REACH) + 32, r2 = r1 + 50, r3 = r2 + 50;      /* the rows of the x-components */
+  const c1 = X(-REACH) - 32, c2 = c1 - 72, c3 = c2 - 72;      /* the columns of the y-components */
+  const nb = sign > 0 ? 'B' : '−B';
+  const round = (v) => Math.round(v * 10) / 10;
+  const f1 = (v) => fmt(Math.abs(v) < 0.05 ? 0 : v, 1);       /* a value that rounds to zero is printed without a sign */
+  const n1 = (v) => (v <= -0.05 ? `(${fmt(v, 1)})` : f1(v));
+  const m1 = (v) => f1(v).replace('-', '−') + ' m';           /* a component as its label prints it */
+  const seg = (p, q) => ({ x1: p.x, y1: p.y, x2: q.x, y2: q.y });
+  /* the side of the segment p to q away from the point t, as labeller.beside counts sides */
+  const away = (p, q, t) => (-(q.y - p.y) * (t.x - (p.x + q.x) / 2) + (q.x - p.x) * (t.y - (p.y + q.y) / 2) > 0 ? -1 : 1);
   function draw() {
-    const { ctx } = begin(d.c); ctx_ = ctx;
-    /* The names of the three arrows ride the arrows themselves, and at θ_B = θ_A the three lie along
-       one line and their labels would land on one another. They go through a labeller instead, which
-       steps a label out and leaders it when the slot beside its arrow is already taken (rule 26.7). */
-    const lab = F.labeller(ctx, 760);
-    lab.block(900, 160, 1400, 520);   /* the table on the right is not a place for a stepped-out label */
-    const side = (s, x1, y1, x2, y2, color, sgn2, size) => {
-      const L = Math.hypot(x2 - x1, y2 - y1) || 1, nx = ((y2 - y1) / L) * sgn2, ny = (-(x2 - x1) / L) * sgn2;
-      lab.add(s, (x1 + x2) / 2, (y1 + y2) / 2, nx, ny, color, size || 24, 26);
-    };
-    const a = A.v, ta = TA.v, b = B.v, tb = TB.v, pos = C('position');
+    const { ctx } = begin(d.c);
+    const pos = C('position'), angc = C('angle'), guide = F.alpha(PAL.ink, 0.3);
+    const a = A.v, ta = TA.v, b = B.v, tb = TB.v;
     const ax = a * cos(ta), ay = a * sin(ta), bx0 = b * cos(tb), by0 = b * sin(tb), bx = sign * bx0, by = sign * by0;
-    const rx = ax + bx, ry = ay + by, r = Math.hypot(rx, ry), th = r > 0.05 ? angleOf(rx, ry) : 0, atn = rx !== 0 ? Math.atan(ry / rx) / RAD : (ry >= 0 ? 90 : -90);
-    /* the frame: a scale that keeps the origin, the corner and the end of the walk inside the box; the component rows go below
-       the lowest point and the component columns left of the leftmost one, so they never cross the drawing */
-    const xs = [0, ax, rx, ax + (sign < 0 ? bx0 : 0)], ys = [0, ay, ry, ay + (sign < 0 ? by0 : 0)];
-    const xmin = Math.min(...xs), xmax = Math.max(...xs), ymin = Math.min(...ys), ymax = Math.max(...ys);
-    const dx = Math.max(xmax - xmin, 20), dy = Math.max(ymax - ymin, 20);
-    const L = 290, R = 880, T = 115, Bt = 460, W = R - L, Hh = Bt - T;
-    const S = Math.min(W / dx, Hh / dy, 7.5);
-    const OX = L + (W - dx * S) / 2 - xmin * S, OY = T + (Hh - dy * S) / 2 + ymax * S;
-    const X = (m) => OX + m * S, Y = (m) => OY - m * S;
-    const yRow = Y(ymin), xCol = X(xmin);            /* the lowest and the leftmost point of the drawing */
-    frame(ctx, OX, OY, Math.min(xCol - 170, OX - 60), R + 30, T - 30, Math.max(yRow + 170, OY + 40));
-    compass(ctx, 70, 640, 26);
-    /* the x-components, on rows below the drawing: A's, then B's from where A's ends, then the resultant's as a bracket */
-    const r1 = yRow + 30, r2 = yRow + 82, r3 = yRow + 134;
-    line(ctx, X(ax), Y(ay), X(ax), r2, PAL.rule, 1.5, [4, 8]); line(ctx, X(rx), Y(ry), X(rx), r3, PAL.rule, 1.5, [4, 8]); line(ctx, OX, OY, OX, r3, PAL.rule, 1.5, [4, 8]);
-    if (Math.abs(ax) > 0.3) { darrow(ctx, X(0), r1, X(ax), r1, pos, 3); text(ctx, 'Ax = ' + fmt(ax, 1) + ' m', X(ax / 2), r1 + 22, pos, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
-    if (Math.abs(bx) > 0.3) { darrow(ctx, X(ax), r2, X(rx), r2, pos, 3); text(ctx, bl + 'x = ' + fmt(bx, 1) + ' m', X(ax + bx / 2), r2 + 22, pos, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
-    if (Math.abs(rx) > 0.3) { arrow(ctx, X(0), r3, X(rx), r3, PAL.ink, 3); text(ctx, 'Rx = Ax + ' + (sign > 0 ? 'Bx' : '(−Bx)') + ' = ' + fmt(rx, 1) + ' m', X(rx / 2), r3 + 24, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); }
-    /* the y-components, on columns left of the drawing, the same way */
-    const c1 = xCol - 30, c2 = xCol - 82, c3 = xCol - 134;
-    line(ctx, X(ax), Y(ay), c2, Y(ay), PAL.rule, 1.5, [4, 8]); line(ctx, X(rx), Y(ry), c3, Y(ry), PAL.rule, 1.5, [4, 8]); line(ctx, OX, OY, c3, OY, PAL.rule, 1.5, [4, 8]);
-    if (Math.abs(ay) > 0.3) { darrow(ctx, c1, Y(0), c1, Y(ay), pos, 3); vlabel('Ay = ' + fmt(ay, 1) + ' m', c1 - 22, Y(ay / 2), pos); }
-    if (Math.abs(by) > 0.3) { darrow(ctx, c2, Y(ay), c2, Y(ry), pos, 3); vlabel(bl + 'y = ' + fmt(by, 1) + ' m', c2 - 22, Y(ay + by / 2), pos); }
-    if (Math.abs(ry) > 0.3) { arrow(ctx, c3, Y(0), c3, Y(ry), PAL.ink, 3); vlabel('Ry = Ay + ' + (sign > 0 ? 'By' : '(−By)') + ' = ' + fmt(ry, 1) + ' m', c3 - 24, Y(ry / 2), PAL.ink); }
-    /* the ghost of B when the walk subtracts it */
-    if (sign < 0) { line(ctx, X(ax), Y(ay), X(ax + bx0), Y(ay + by0), PAL.muted, 3, [10, 10]); side('B', X(ax), Y(ay), X(ax + bx0), Y(ay + by0), PAL.muted, -1, 22); }
-    /* the legs and the resultant */
-    arrow(ctx, X(0), Y(0), X(ax), Y(ay), pos, 4.5); side('A', X(0), Y(0), X(ax), Y(ay), pos, -1);
-    arrow(ctx, X(ax), Y(ay), X(rx), Y(ry), pos, 4.5); side(bl, X(ax), Y(ay), X(rx), Y(ry), pos, 1);
-    if (r > 0.3) { arrow(ctx, X(0), Y(0), X(rx), Y(ry), pos, 6.5); side('R', X(0), Y(0), X(rx), Y(ry), pos, rx * ay - ry * ax > 0 ? -1 : 1); }
-    /* the angles: each leg from a horizontal through its tail, the resultant from the +x axis on a wider arc */
-    angleArc(ctx, X(0), Y(0), ta, Math.min(50, a * S * 0.5), 'θA', C('angle'));
-    if (sign > 0) { line(ctx, X(ax), Y(ay), X(ax) + 64, Y(ay), PAL.rule, 1.5, [4, 8]); angleArc(ctx, X(ax), Y(ay), tb, Math.min(40, b * S * 0.5), 'θB', C('angle')); }
-    if (r > 0.3) angleArc(ctx, X(0), Y(0), th, Math.min(110, r * S * 0.6), 'θ', C('angle'));
-    dot(ctx, X(0), Y(0), PAL.ink, true, 5);
-    /* the components as a table at the right: along one axis they add like ordinary numbers */
+    /* the resultant from the components as the readout prints them, so its sums hold as written */
+    const rx = round(round(ax) + round(bx)), ry = round(round(ay) + round(by)), r = Math.hypot(rx, ry), none = r < 0.05;
+    const th = none ? 0 : angleOf(rx, ry), atn = rx !== 0 ? Math.atan(ry / rx) / RAD : 0;
+    const O = { x: X(0), y: Y(0) }, P = { x: X(ax), y: Y(ay) }, Q = { x: X(ax + bx), y: Y(ay + by) };
+    const lines = topline(ctx, none ? 'The two legs cancel, so the walk ends where it began and $\\kR = 0$.'
+      : (sign > 0 ? '$\\mathbf{A}$ and $\\mathbf{B}$ add to' : '$\\mathbf{A} - \\mathbf{B}$ gives') + ' $\\kR = ' + f1(r) + '$ m, ' + bearing(th) + '.');
+    const lab = F.labeller(ctx, H, { headline: lines });
+    /* a segment joins the collision set, so a name queued after it steps off the line, not onto it */
+    const block = (p, q) => { const n = Math.ceil(Math.hypot(q.x - p.x, q.y - p.y) / 14); for (let i = 1; i < n; i++) { const x = p.x + ((q.x - p.x) * i) / n, y = p.y + ((q.y - p.y) * i) / n; lab.block(x - 2, y - 2, x + 2, y + 2); } };
+    frame(ctx, OX, OY, X(-REACH - 5), X(REACH + 5), Y(REACH + 5), Y(-REACH - 5));
+    compass(ctx, 100, H - 90, 26); lab.block(40, H - 150, 160, H - 30);
+    /* faint guides from the points of the walk to the rows and columns that carry their components */
+    [[O, r3, c3], [P, r2, c2], [Q, r3, c3]].forEach(([p, row, col]) => { line(ctx, p.x, p.y, p.x, row, guide, 2, [4, 8]); line(ctx, p.x, p.y, col, p.y, guide, 2, [4, 8]); });
+    /* the names of the legs and the resultant, queued first so they have the first pick of the slots */
+    lab.beside(seg(O, P), away(O, P, Q), 'A', pos, 24);
+    lab.beside(seg(P, Q), away(P, Q, O), nb, pos, 24);
+    if (!none) lab.beside(seg(O, Q), away(O, Q, P), 'R', pos, 24);
+    /* the components, the legs' dashed and the resultant's solid: a row's name goes under it through the labeller,
+       a column's is set upright beside it, where nothing else lands */
+    const comp = (x1, y1, x2, y2, solid, name, ux, uy, gap) => {
+      if (Math.hypot(x2 - x1, y2 - y1) < 2) return;
+      if (solid) arrow(ctx, x1, y1, x2, y2, pos, 4); else darrow(ctx, x1, y1, x2, y2, pos, 3);
+      if (uy) { lab.add(name, (x1 + x2) / 2, (y1 + y2) / 2, ux, uy, pos, 20, gap); return; }
+      ctx.save(); ctx.translate(x1 - 22, (y1 + y2) / 2); ctx.rotate(-Math.PI / 2);
+      text(ctx, name, 0, 0, pos, { size: 20, weight: 600, align: 'center', bg: PAL.panel }); ctx.restore();
+    };
+    comp(X(0), r1, X(ax), r1, false, 'A_x = ' + m1(ax), 0, 1, 22);
+    comp(X(ax), r2, Q.x, r2, false, nb + '_x = ' + m1(bx), 0, 1, 22);
+    comp(X(0), r3, Q.x, r3, true, 'R_x = ' + m1(rx), 0, 1, 22);
+    comp(c1, Y(0), c1, Y(ay), false, 'A_y = ' + m1(ay), -1, 0, 0);
+    comp(c2, Y(ay), c2, Q.y, false, nb + '_y = ' + m1(by), -1, 0, 0);
+    comp(c3, Y(0), c3, Q.y, true, 'R_y = ' + m1(ry), -1, 0, 0);
+    /* B itself, as a muted ghost from the head of A, when the walk takes it the other way */
+    if (sign < 0) {
+      const G = { x: X(ax + bx0), y: Y(ay + by0) };
+      darrow(ctx, P.x, P.y, G.x, G.y, PAL.muted, 3); lab.beside(seg(P, G), away(P, G, Q), 'B', PAL.muted, 22); block(P, G);
+    }
+    /* the angles, each from a horizontal through its tail and drawn under the arrows; a name goes in the widest gap
+       the other directions leave inside its arc */
+    const arc = (p, deg, rad, name, cuts) => {
+      if (Math.abs(deg) < 0.5 || rad < 8) return;
+      F.angleArc(ctx, p, rad, 0, deg * RAD, undefined, undefined, angc);
+      const e = [0, deg, ...cuts.filter((c) => c * (deg - c) > 0)].sort((u, v) => u - v);
+      const m = e.slice(1).map((v, i) => [v - e[i], (v + e[i]) / 2]).reduce((u, v) => (v[0] > u[0] ? v : u))[1] * RAD;
+      lab.add(name, p.x + rad * Math.cos(m), p.y - rad * Math.sin(m), Math.cos(m), -Math.sin(m), angc, 20, 16);
+    };
+    block(O, P); block(P, Q); block(O, Q);
+    const rA = Math.min(110, Math.max(30, a * S * 0.55)), rR = Math.min(60, Math.max(22, Math.min(a, r) * S * 0.3));
+    if (sign > 0) arc(P, tb, Math.min(48, b * S * 0.4), 'θ_B', []);
+    arc(O, ta, rA, 'θ_A', none ? [] : [th]);
+    if (!none) arc(O, th, rR, 'θ', [ta]);
+    arrow(ctx, O.x, O.y, P.x, P.y, pos, 4.5);
+    arrow(ctx, P.x, P.y, Q.x, Q.y, pos, 4.5);
+    if (Math.hypot(Q.x - O.x, Q.y - O.y) > 4) arrow(ctx, O.x, O.y, Q.x, Q.y, pos, 5.5);
+    dot(ctx, O.x, O.y, PAL.ink, true, 5);
     lab.flush();
-    const px = 960, py = 200, k1 = px + 60, k2 = px + 230, k3 = px + 390;
-    text(ctx, 'x-component', k2, py, PAL.muted, { size: 17, align: 'right' }); text(ctx, 'y-component', k3, py, PAL.muted, { size: 17, align: 'right' });
-    const row = (lab, x, y, yy, col) => { text(ctx, lab, k1 - 20, yy, col, { size: 24, weight: 600, align: 'right' }); text(ctx, fmt(x, 1) + ' m', k2, yy, col, { size: 22, weight: 600, align: 'right' }); text(ctx, fmt(y, 1) + ' m', k3, yy, col, { size: 22, weight: 600, align: 'right' }); };
-    row('A', ax, ay, py + 40, pos); row(bl, bx, by, py + 80, pos);
-    line(ctx, k1 - 70, py + 104, k3 + 8, py + 104, PAL.muted, 2); row('R', rx, ry, py + 132, pos);
-    text(ctx, 'magnitude and direction of R', px - 20, py + 200, PAL.muted, { size: 17 });
-    text(ctx, 'R = ' + fmt(r, 1) + ' m', px - 20, py + 232, pos, { size: 24, weight: 600 });
-    if (r > 0.05) { text(ctx, 'θ = ' + fmt(th, 1) + '°', px - 20, py + 266, C('angle'), { size: 24, weight: 600 }); text(ctx, bearing(th), px - 20, py + 298, C('angle'), { size: 20 }); }
     /* the readout: the four steps with the numbers as they stand */
-    const op = sign > 0 ? '+ ' : '+ (-', cl = sign > 0 ? '' : ')';
-    const bxs = sign > 0 ? num(bx, 1) : `(-${num(bx0, 1)})`, bys = sign > 0 ? num(by, 1) : `(-${num(by0, 1)})`;
-    let dir;
-    if (r <= 0.05) dir = `\\ktheta &\\ \\text{is undefined: the walk ends where it began}`;
-    else if (rx === 0) dir = `\\kRx &= 0,\\ \\text{so}\\ \\ktheta = ${fmt(th, 1)}^\\circ`;
-    else dir = `\\ktheta &= \\tan^{-1}(\\kRy / \\kRx) = \\tan^{-1}(${fmt(ry, 1)} / ${num(rx, 1)}) = ${fmt(atn, 1)}^\\circ`;
-    const eq = `\\begin{aligned}\\kRx &= \\kAx ${op}\\kBx${cl} = ${num(ax, 1)} + ${bxs} = ${fmt(rx, 1)}\\ \\text{m}\\\\ \\kRy &= \\kAy ${op}\\kBy${cl} = ${num(ay, 1)} + ${bys} = ${fmt(ry, 1)}\\ \\text{m}\\\\ \\kR &= \\sqrt{\\kRx^2 + \\kRy^2} = \\sqrt{${num(rx, 1)}^2 + ${num(ry, 1)}^2} = ${fmt(r, 1)}\\ \\text{m}\\\\ ${dir}\\end{aligned}`;
-    const small = r <= 0.05 ? 'The two legs cancel, so the resultant has no length and no direction.'
-      : rx < 0 ? 'The inverse tangent gives the angle of the line the resultant lies along; the arrow points the other way along it, at ' + fmt(th, 1) + '° from the +x axis, which is ' + bearing(th) + '.'
-      : sign > 0 ? 'The components of A and B along each axis add like ordinary numbers, and the resultant is ' + bearing(th) + '.'
-      : 'The components of −B are the negatives of the components of B, and the resultant A − B is ' + bearing(th) + '.';
-    topline(ctx, r > 0.05 ? 'A vector of ' + fmt(a, 1) + ' m at ' + fmt(ta, 1) + '° and ' + bl + ' = ' + fmt(b, 1) + ' m at ' + fmt(sign > 0 ? tb : angleOf(bx, by), 1) + '° ' + (sign > 0 ? 'add to' : 'give') + ' R = ' + fmt(r, 1) + ' m at ' + fmt(th, 1) + '°, which is ' + bearing(th) + '.'
-      : 'The two legs cancel, so the walk ends where it began and R is zero.');
-    readout(d.readout, eq, small);
+    const bterm = (c) => (sign > 0 ? `\\k${'B' + c}` : `(-\\k${'B' + c})`);
+    let dir, small;
+    if (none) dir = `\\ktheta &\\ \\text{is undefined, since}\\ \\kR = 0`;
+    else if (rx === 0) dir = `\\kRx &= 0,\\ \\text{so}\\ \\ktheta = ${f1(th)}^\\circ`;
+    else if (rx > 0) dir = `\\ktheta &= \\tan^{-1}(\\kRy / \\kRx) = \\tan^{-1}(${f1(ry)} / ${n1(rx)}) = ${f1(atn)}^\\circ`;
+    else {
+      const pm = th > atn ? '+' : '-';
+      dir = `\\ktheta &= \\tan^{-1}(\\kRy / \\kRx) ${pm} 180^\\circ = ${f1(atn)}^\\circ ${pm} 180^\\circ = ${f1(th)}^\\circ`;
+      small = 'With $\\kRx$ negative, $\\mathbf{R}$ points back along the line the inverse tangent gives, so 180° is added or taken away.';
+    }
+    readout(d.readout, `\\begin{aligned}\\kRx &= \\kAx + ${bterm('x')} = ${f1(ax)} + ${n1(bx)} = ${f1(rx)}\\ \\text{m}\\\\ \\kRy &= \\kAy + ${bterm('y')} = ${f1(ay)} + ${n1(by)} = ${f1(ry)}\\ \\text{m}\\\\ \\kR &= \\sqrt{\\kRx^2 + \\kRy^2} = \\sqrt{${n1(rx)}^2 + ${n1(ry)}^2} = ${f1(r)}\\ \\text{m}\\\\ ${dir}\\end{aligned}`, small);
   }
   register(d.fig, { update: () => {}, draw });
 }

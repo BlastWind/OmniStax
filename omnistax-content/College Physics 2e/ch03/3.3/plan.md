@@ -128,49 +128,33 @@ id · replaces · concepts · what moves · sliders · headline · graph · 3D
    says that the inverse tangent gives the angle of the line and the arrow
    points the other way along it, so the compass direction is the one to
    read off the drawing. Draws position.
-3. `sim-add` · replaces Figures 3.28, 3.29, 3.30, 3.31 and 3.32 (one
-   run: the two legs and the resultant, the components of each, the
-   components summed, and the example's figure with and without its
-   numbers) · analytical-vector-addition, components-from-magnitude-angle,
-   magnitude-direction-from-components · **still** · the legs
-   $\mathbf{A}$ and $\mathbf{B}$ head to tail from the origin, the
-   resultant $\mathbf{R}$ from the origin to the head of $\mathbf{B}$, the
-   components of each leg dashed head to tail on rows below the drawing
-   and on columns to its left, and the components of the resultant as
-   solid ink arrows on a further row and column, as Figure 3.32 draws
-   them, so that a leg pointing back along an axis never draws over the
-   other; the scale follows the sliders so the whole walk stays in the
-   frame · $\kA$ (5 to 80 m, step 0.5, default 53.0, position), $\theta_A$
-   (−180º to 180º, step 0.5, default 20.0, ink), $\kB$ (5 to 80 m, step
-   0.5, default 34.0, position), $\theta_B$ (−180º to 180º, step 0.5,
-   default 63.0, ink) · "A vector of 53.0 m at 20.0º and B = 34.0 m at
-   63.0º add to R = 81.2 m at 36.6º, which is 36.6º north of east." ·
-   none · 2D. The names A, B and R ride the arrows themselves, and at
-   θ_B = θ_A the three lie along one line, so those labels go through a
-   labeller that steps one out and leaders it when the slot beside its
-   arrow is already taken (rule 26.7); the component labels sit on rows
-   below the drawing and columns to its left, where nothing else lands.
-   Readout, two lines of one aligned equation, the four steps with the
-   live numbers: $\kRx = \kAx + \kBx = 49.8 + 15.4 = 65.2\ \text{m}$,
-   $\kRy = \kAy + \kBy = 18.1 + 30.3 = 48.4\ \text{m}$; $\kR =
-   \sqrt{\kRx^2 + \kRy^2} = 81.2\ \text{m}$, $\theta = \tan^{-1}(\kRy/\kRx)
-   = 36.6º$. The example's numbers are the defaults, so the figure
-   reproduces Example 3.3 on load and is placed before the four steps,
-   where the book prints Figure 3.28; the example follows with its own
-   numbers on the page. Draws position.
-4. `sim-subtract` · replaces Figure 3.33 · analytical-vector-addition,
-   vector-subtraction · **still** · the same drawing with $-\mathbf{B}$
-   in place of $\mathbf{B}$, the leg $\mathbf{B}$ itself as a muted ghost
-   from the head of $\mathbf{A}$ so that the reversal is seen, the
-   components of $-\mathbf{B}$ dashed along the axes and pointing the
-   other way · the same four sliders with the same defaults, since Figure
-   3.33 is the subtraction of the vectors of Figure 3.28 · "A vector of
-   53.0 m at 20.0º and −B = 34.0 m at −117.0º give R = 36.5 m at −19.5º,
-   which is 19.5º south of east." · none · 2D, with the same labeller on
-   the names of the arrows. Readout:
-   $\kRx = \kAx + (-\kBx) = 49.8 + (-15.4) = 34.4\ \text{m}$,
-   $\kRy = \kAy + (-\kBy) = 18.1 + (-30.3) = -12.2\ \text{m}$; $\kR =
-   36.5\ \text{m}$, $\theta = -19.5º$. Draws position.
+3. `sim-add` · Figure 3.28 + 3.29 + 3.30 + 3.31 + 3.32 ·
+   analytical-vector-addition, components-from-magnitude-angle,
+   magnitude-direction-from-components · variation by slider: the reader
+   sees each component grow on a fixed scale as a leg is dragged · still,
+   no time in a sum · $\kA$ and $\kB$ 5 to 60 m (step 0.5, defaults 53.0
+   and 34.0, position), $\kthetaA$ and $\kthetaB$ −180° to 180° (defaults
+   20.0° and 63.0°, angle, ticks at 0 and ±90°) · headline "A and B add to
+   R = 81.2 m, 36.6° north of east" with symbols typeset · graph none · 2D.
+   One scale, 3 units a metre, fixed from the 120 m reach of two 60 m legs
+   (origin centred, canvas 1020 tall to hold ±120 m); the component rows
+   below that disc and the columns to its left, dashed for the legs and
+   solid for the resultant, each named with its value as Figure 3.32 does;
+   A, B, R and the three angles named through `F.labeller` with the
+   headline band and the three arrows blocked, so a name steps off a line
+   rather than onto it; no side table (the readout carries the four steps,
+   computed from the rounded components so its sums hold as written);
+   θ written as tan⁻¹(Ry/Rx) ± 180° when Rx < 0, with a one-line note.
+   Shares its code with sim-subtract; rewritten 2026-10-05 on the review's
+   filing.
+4. `sim-subtract` · Figure 3.33 · analytical-vector-addition,
+   vector-subtraction · variation by slider: the reversed components of
+   −B seen against A's on one fixed scale · still · the same four sliders,
+   defaults and fixed scale as `sim-add`, B kept as a muted dashed ghost
+   from the head of A · headline "A − B gives R = 36.5 m, 19.5° south of
+   east" typeset · graph none · 2D. Built from the same function as
+   `sim-add` with sign −1; zero printed without a sign; θ with ± 180° when
+   Rx < 0. Rewritten 2026-10-05 with `sim-add`.
 5. `fig-paths` · Figure (unnumbered, inside problem 1) · the map of the
    city with paths A to D, blocks 120 m on a side · a figure that serves
    exercises, copied over as it is: the book's image
@@ -213,7 +197,7 @@ Extra simulations (rule 15), thought about and left:
   components. The two-leg sim already shows that components along one
   axis add like numbers; a seventh slider adds nothing to the idea. Left.
 
-Figure pass (2026-09-14, Claude Fable 5.1): in `sim-components` and `sim-resultant` the $A_y$ label sits outside the triangle beside the dashed component at every angle, and the numbers panel moved right to make room. In `sim-add` and `sim-subtract` the component rows and columns are spaced 52 units apart with each label beside its dashed arrow rather than on it, and the canvas grew to 760; the scale of these two still follows the sliders, because the two legs may point anywhere and a scale fixed from the 160 m reach would draw the book's walk at a third of the frame. Headlines wrap through `topline()`.
+Figure pass (2026-09-14, Claude Fable 5.1): in `sim-components` and `sim-resultant` the $A_y$ label sits outside the triangle beside the dashed component at every angle, and the numbers panel moved right to make room. In `sim-add` and `sim-subtract` the component rows and columns are spaced 52 units apart with each label beside its dashed arrow rather than on it, and the canvas grew to 760; the scale of these two still follows the sliders, because the two legs may point anywhere and a scale fixed from the 160 m reach would draw the book's walk at a third of the frame. Headlines wrap through `topline()`. (Superseded 2026-10-05: both now take the fixed 120 m scale of their plan lines.)
 
 ## Exercises
 
