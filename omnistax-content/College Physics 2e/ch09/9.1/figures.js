@@ -1,7 +1,8 @@
 /* Figures for section 9.1 The First Condition for Equilibrium.
-   Boots against the section's text article. Every figure here is a still
-   picture: a body in equilibrium has no time in it, so nothing registers a
-   cycle and nothing carries a transport. */
+   Boots against the section's text article. A body in equilibrium has no time
+   in it, so the person, the car and the crate are still pictures with no
+   transport. The hockey stick moves: the book's curved arrows are the sense
+   it turns, so it turns on a clock once its forces leave one line. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['9.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, vbracket, car, fixed, silhouette, crate, label } = F;
@@ -70,13 +71,6 @@ function hockeyStick(ctx, ax, ay, bx, by, color) {
   ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(bx + 6, by - 14); ctx.stroke();       /* the tape at the grip */
   ctx.beginPath(); ctx.moveTo(ax - 4, ay - 12); ctx.lineTo(ax - 150, ay + 26); ctx.lineTo(ax - 158, ay + 50); ctx.lineTo(ax - 8, ay + 12); ctx.closePath(); ctx.fill();
   ctx.restore();
-}
-/* an arc about (cx, cy) turning from a0 to a1, with an arrowhead where it ends */
-function turn(ctx, cx, cy, r, a0, a1, color) {
-  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 5;
-  ctx.beginPath(); ctx.arc(cx, cy, r, a0, a1); ctx.stroke(); ctx.restore();
-  const hx = cx + r * Math.cos(a1), hy = cy + r * Math.sin(a1), t = a1 + Math.PI / 2;
-  arrow(ctx, hx - 16 * Math.cos(t), hy - 16 * Math.sin(t), hx, hy, color, 5);
 }
 
 /* =====================================================================
@@ -187,34 +181,43 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
    FIGURE 9.4 + 9.5: the ice hockey stick, with the two equal and opposite
    forces first along one line and then applied at different places. The
    book draws the scene twice because print cannot slide the forces along
-   the stick; one slider walks from the first drawing to the second. The
-   idea is where the forces act, not how the stick turns, so the figure is
-   still and the rotation is drawn as the book draws it, with two curved
-   arrows.
+   the stick; one slider walks from the first drawing to the second. Moving:
+   the book's curved arrows are the sense the stick turns, so once the lines
+   of action part it turns that way, faster and faster, from a faint copy of
+   where it lay; on one line it stays where it is. The forces stay
+   horizontal at the points where they act.
 ===================================================================== */
 (function () {
   const d = sim('sim-stick', 720);
-  const Fm = ctl(d.controls, { label: '\\kF', cls: 'force', min: 5, max: 60, step: 0.5, value: 30, unit: 'N', dec: 1, aria: 'size of each of the two forces' });
+  const Fm = ctl(d.controls, { label: '\\kF', cls: 'force', min: 5, max: 60, step: 0.5, value: 30, unit: 'N', dec: 1, aria: 'size of each of the two forces', onInput: reset });
   const dd = ctl(d.controls, { label: 'd', cls: 'position', min: 0, max: 0.6, step: 0.02, value: 0, unit: 'm', dec: 2, aria: 'distance between the two lines of action',
-    specials: [{ at: 0, label: 'one line' }] });
+    specials: [{ at: 0, label: 'one line' }], onInput: reset });
   const SC = 300;                                          /* logical units to the metre */
+  /* the turn grows as t² over the 5 s loop (an accelerated rotation from rest) to an angle proportional to F d,
+     36° at the slider maxima (60 N, 0.60 m), so 7.5° at 30 N and 0.30 m */
+  const T = 5, TURN = (36 * Math.PI / 180) / (60 * 0.6), cy = F.cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
   function draw() {
     const { ctx } = begin(d.c);
     const cf = C('force'), off = dd.v * SC / 2, L = cap(Fm.v * (190 / 60), 190);
-    const ax = 620, ay = 600, bx = 780, by = 230, mid = 415;
+    const ax = 620, ay = 600, bx = 780, by = 230, mid = 415, ox = 700;
     const xOf = (y) => ax + (ay - y) * (bx - ax) / (ay - by);
     const yA = mid - off, yB = mid + off, xA = xOf(yA), xB = xOf(yB);
+    const k = cy.now() / T, th = off > 4 ? TURN * Fm.v * dd.v * k * k : 0, co = Math.cos(th), si = Math.sin(th);
+    const rot = (x, y) => [ox + (x - ox) * co - (y - mid) * si, mid + (x - ox) * si + (y - mid) * co];
+    const [pAx, pAy] = rot(xA, yA), [pBx, pBy] = rot(xB, yB);
     line(ctx, 250, yA, 1000, yA, alpha(PAL.ink, 0.35), 2.5, [10, 10]);
     if (off > 0) line(ctx, 250, yB, 1000, yB, alpha(PAL.ink, 0.35), 2.5, [10, 10]);
+    if (th > 0.004) F.faded(ctx, 0.22, [0, 0], () => hockeyStick(ctx, ax, ay, bx, by, F.ref('stick')));
+    ctx.save(); ctx.translate(ox, mid); ctx.rotate(th); ctx.translate(-ox, -mid);
     hockeyStick(ctx, ax, ay, bx, by, F.ref('stick'));
-    arrow(ctx, xA - L - 10, yA, xA - 10, yA, cf, 5);
-    label(ctx, 'F = ' + fmt(Fm.v, 1) + ' N', xA - L - 10, yA, { side: 'left', color: cf, gap: 14, size: 21 });
-    arrow(ctx, xB + L + 10, yB, xB + 10, yB, cf, 5);
-    label(ctx, 'F = ' + fmt(Fm.v, 1) + ' N', xB + L + 10, yB, { side: 'right', color: cf, gap: 14, size: 21 });
+    ctx.restore();
+    arrow(ctx, pAx - L - 10, pAy, pAx - 10, pAy, cf, 5);
+    label(ctx, 'F = ' + fmt(Fm.v, 1) + ' N', pAx - L - 10, pAy, { side: 'left', color: cf, gap: 14, size: 21 });
+    arrow(ctx, pBx + L + 10, pBy, pBx + 10, pBy, cf, 5);
+    label(ctx, 'F = ' + fmt(Fm.v, 1) + ' N', pBx + L + 10, pBy, { side: 'right', color: cf, gap: 14, size: 21 });
     if (off > 4) {
       vbracket(ctx, 310, yA, yB, C('position'), 'd = ' + fmt(dd.v, 2) + ' m', -1);
-      turn(ctx, 700, mid, 236, -2.3, -1.0, PAL.muted);
-      turn(ctx, 700, mid, 236, 0.84, 2.14, PAL.muted);
       text(ctx, 'The stick turns.', 700, 130, PAL.muted, { size: 19, align: 'center' });
     }
     fbd(ctx, 1220, 415, [
@@ -227,7 +230,7 @@ function turn(ctx, cx, cy, r, a0, a1, color) {
       : 'The two forces of ' + fmt(Fm.v, 1) + ' N act along one line, and the net external force is zero.');
     readout(d.readout, `\\text{net}\\;\\kF = \\kF - \\kF = ${fmt(Fm.v, 1)}\\ \\text{N} - ${fmt(Fm.v, 1)}\\ \\text{N} = 0`);
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================

@@ -95,10 +95,15 @@ sliders with their types · headline · graph or none · 3D or not
 3. `sim-stick` · replaces Figure 9.4 and folds Figure 9.5 (the same ice
    hockey stick, the same two forces, applied first along one line and then
    at different places) · point-of-application, first-condition-equilibrium
-   · **still**: the idea is where the two forces act, not how the stick
-   turns; the book draws the rotation as two curved arrows and so does the
-   figure, and the chapter config asks a section that wants a body to move
-   to argue for it, which nothing here does · the size of the two equal and
+   · arrows: kinematic (Figure 9.5's two curved arrows, the sense the stick
+   turns) and symbolic (the two forces $\kF$, in the scene and the free-body
+   diagram) · **moving**, with the stick turning: once the lines of action
+   part, the stick turns clockwise about its middle from rest, the angle
+   growing as $t^2$ to one proportional to $\kF d$ (36° at the slider
+   maxima) over a 5 s loop with a 1.2 s hold, a faint copy left where it lay;
+   the forces stay horizontal at their points and the curved arrows are gone,
+   the motion carrying them; at $d = 0$ nothing turns, which is Figure 9.4
+   (rule 24.1, 2026-10-05) · the size of the two equal and
    opposite forces $\kF$ (5 to 60 N, default 30.0, force) and the distance
    $d$ between their two lines of action (0 to 0.60 m, default 0.00, ink,
    since 9.1 names no symbol for it and the perpendicular lever arm is
@@ -168,6 +173,9 @@ Extra simulations (rule 15), thought through and judged:
   the rotation is next section's subject, the chapter config makes every
   figure of Chapter 9 a still one, and an accelerating rotation drawn here
   would promise a quantity (torque) that 9.1 does not yet have.
+  Overtaken 2026-10-05: rule 24.1 makes the book's curved arrows kinematic,
+  so `sim-stick` itself turns; it names no torque and writes none in its
+  readout, so 9.2 still introduces the quantity.
 
 **Figure pass (2026-09-14, Claude Fable 5.1).** `sim-person` now draws the library's silhouette (`F.silhouette`, stand) with a pack strapped to the back, the weight from a center-of-gravity dot and both force labels set beside their arrows through `label()`. `sim-car` draws the car larger, the weight from its center of gravity, the tires' drive anchored where the rear tire meets the road and the air's drag at the nose, and its free-body title just above the longest arrow. `sim-equilibrium` draws `F.crate` with a silhouette in the push pose, hands on the crate's face, the push anchored at the hands, the friction along the floor and the mass named above the crate. `sim-stick` draws the stick as one filled shape with a blade and stops each arrow at the shaft's edge.
 
