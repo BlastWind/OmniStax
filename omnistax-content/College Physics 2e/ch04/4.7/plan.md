@@ -78,26 +78,18 @@ The section leans on `net-external-force`, `newtons-second-law`,
 id · replaces or Sim · concepts · what moves or still · sliders · headline ·
 graph · 3D
 
-1. `sim-barge` · replaces Figure 4.21 (a) and (b) (the two tugboats seen
-   from above and the free-body diagram of the barge) · drag-force,
-   net-external-force, newtons-second-law · **still**: the question the
-   example asks is what the water drags back with, and the answer follows
-   from the two pushes, the mass and the observed acceleration; nothing in
-   it runs on a clock, and a barge creeping across the canvas would say
-   nothing the arrows do not, so the figure answers its sliders and carries
-   no transport (rule 14) · $\kFx$ (1.0 to 5.0 × 10⁵ N, default 2.7, force),
-   $\kFy$ (1.0 to 5.0 × 10⁵ N, default 3.6, force), $m$ (2.0 to 8.0 × 10⁶
-   kg, default 5.0, ink), $\ka$ (0 to 0.20 m/s², default 0.075,
-   acceleration) · "the tugs push with 4.5 × 10⁵ N together, the barge takes
-   3.75 × 10⁵ N of it, and the water drags back with 0.75 × 10⁵ N" · none:
-   the scene from above, the free-body diagram beside it and the bar
-   beneath that takes the drag out of the applied force are the picture · no. Readout: $\kFD = \kFa - m\ka$ with the
-   live numbers; small line comparing the drag with the weight of the ship,
-   as the book's discussion does. Draws force and acceleration.
-   Revised in the figure-audit pass of 2026-09-12: the bracket that measures
-   the net force out of the applied force is drawn in the force hue rather
-   than the acceleration hue, and is told from the drag beside it by the row
-   it stands on. The headline is one capitalized sentence.
+1. `sim-barge` · Figure 4.21 · drag-force, vector-addition, newtons-second-law · variation by slider:
+   the applied force swings and grows, the drag is what remains after $\km\ka$ · **still**: nothing in
+   the question runs on a clock (rule 14) · $\kFx$, $\kFy$ (1.0 to 5.0 × 10⁵ N, defaults 2.7 and 3.6,
+   force), $m$ (2.0 to 8.0 × 10⁶ kg, default 5.0, mass), $\ka$ (0 to 0.200 m/s², default 0.075,
+   acceleration) · "The tugs push with 4.50 × 10⁵ N together, the barge takes 3.75 × 10⁵ N of it, and
+   the water drags back with 0.75 × 10⁵ N" · bar below the scene, free-body diagram beside · 2D: the
+   tugs are hulls seen from above with a fender on the bow and a wheelhouse, bow on the barge's stern
+   and side, the barge a hull with four hatches; the acceleration arrow capped at 140 units so it and
+   its name stay inside panel (a); $F_x$, $F_y$, the barge's name and the angle in both panels placed
+   by the labeller; readout on one line in scientific form, $\kFD = \kFa - \km\ka$, or
+   $\kFa - \km\ka < 0$ when the pushes cannot give the acceleration. No note, no fold or split.
+   Rebuilt in the review of 2026-10-05.
 2. `sim-traffic-light` · replaces Figure 4.22 (a) to (e) (the light hung
    from two poles, the forces, the free-body diagram, the components and the
    two axes) · unequal-tensions, net-force-by-axis, tension · **still**: a
@@ -113,28 +105,17 @@ graph · 3D
    pulled toward the horizontal, which is the book's discussion. Draws force.
    Revised in the figure-audit pass of 2026-09-12: the headline is one
    capitalized sentence.
-3. `sim-elevator-scale` · replaces Figure 4.23 (a) and (b) (the forces on
-   the person, the scale and the elevator, and the free-body diagram of the
-   person) · apparent-weight, newtons-second-law, newtons-third-law ·
-   **moves**: the idea is a ride, and the reading changes as the ride does,
-   so the lift starts from rest, speeds up for three seconds, cruises for
-   four at constant velocity and slows to a stop in the last three, and the
-   dial follows it; the loop is ten seconds of model time run in about five
-   real seconds, with the scrubber · $m$ (40.0 to 120.0 kg, default 75.0,
-   ink), $\ka$ (0.20 to 3.00 m/s², default 1.20, acceleration; the
-   magnitude of the acceleration while the lift is speeding up and while it
-   is slowing down) · "t = 1.8 s · the lift is speeding up at 1.20 m/s², and
-   the scale reads 825 N rather than his 735 N weight" · graph beside the
-   vertical scene, two panels: the scale reading against time with the
-   weight drawn as a dashed level, and the velocity of the lift against time
-   · no. Readout: $\kFs = m\ka + m\kg$ with the live numbers; small line on
-   what the dial would read in free fall, which is the paragraph after the
-   example. Draws force, acceleration, velocity and time.
-   Revised in the figure-audit pass of 2026-09-12: the book's two parts are
-   both drawn: the person alone is ringed in a dashed boundary on the scene
-   as the system of interest, and a free-body diagram panel beside the shaft
-   carries the two forces that are left on him, his weight and the push of
-   the scale. The headline is one capitalized sentence.
+3. `sim-elevator-scale` · Figure 4.23 · apparent-weight, newtons-second-law, system-of-interest ·
+   flow by animation: the dial follows the ride · **moves**: speeds up for 3 s, cruises for 4 s, slows
+   for 3 s, ten seconds of ride in about five real seconds, with the scrubber · $m$ (40.0 to 120.0 kg,
+   default 75.0, mass), $\ka$ (0.20 to 3.00 m/s², default 1.20, acceleration) · "After 7.6 s the lift
+   is slowing to a stop, and the dial reads only 645 N against his 735 N weight" · graphs beside (the
+   scale reading and v against t, fixed at 0 to 1,600 N and 0 to 9 m/s) · 2D: the shaft and the lift
+   in the left third, the man a library silhouette on the scale, ringed by a dashed box named "system
+   of interest" inside it (hover names for the box, scale, lift and dial); $F_s$ and $w$ on one fixed
+   scale in the car and named outside its walls by the labeller; the dial and the free-body diagram
+   (weight drawn at a fixed length, so it shows the ratio) under the shaft, out of the lift's travel.
+   Readout $\kFs = \km\ka + \km\kg$; no note. No fold or split. Rebuilt in the review of 2026-10-05.
 4. `sim-soccer` · Sim (the book draws no figure for Example 4.10, and the
    skill this block introduces has none) · integrated-kinematics-dynamics,
    newtons-second-law, average-acceleration · **moves**: the player starts

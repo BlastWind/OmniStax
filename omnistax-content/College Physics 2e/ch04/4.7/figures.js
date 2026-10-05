@@ -2,7 +2,7 @@
    Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.7'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, strip, axes, block, fixed } = F;
+const { el, fmt, tex, C, PAL, alpha, measure, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, labeller, hbracket, strip, axes, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const RAD = Math.PI / 180;
 const cos = (deg) => Math.cos(deg * RAD), sin = (deg) => Math.sin(deg * RAD);
@@ -10,19 +10,41 @@ const G = 9.80;
 function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
 /* a number in scientific notation for a readout, 4.5 \times 10^{5} */
 function sci(v, d = 1) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times 10^{${e}}`; }
-/* the same, for a headline written in plain text */
-const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
-function sciP(v, d = 1) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return fmt(m, d) + ' × 10' + String(e).split('').map((c) => SUP[c] ?? c).join(''); }
 /* an arc between two directions at a point, the angles measured above the horizontal */
 function angleArc(ctx, x, y, a0, a1, r, color) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath();
   ctx.arc(x, y, r, -Math.max(a0, a1) * RAD, -Math.min(a0, a1) * RAD); ctx.stroke(); ctx.restore();
 }
-/* a tugboat seen from above, its bow along the direction (ux, uy) */
-function tug(ctx, x, y, ux, uy, color) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(Math.atan2(uy, ux)); ctx.fillStyle = color;
-  ctx.beginPath(); ctx.moveTo(-46, -20); ctx.lineTo(18, -20); ctx.lineTo(48, 0); ctx.lineTo(18, 20); ctx.lineTo(-46, 20); ctx.closePath(); ctx.fill();
-  ctx.fillStyle = PAL.panel; ctx.fillRect(-30, -11, 26, 22); ctx.restore();
+/* a tugboat seen from above, its bow at (x, y) and pointing `heading` degrees
+   counterclockwise from +x: the hull with its rubber fender round the bow, and the
+   wheelhouse; about 106 by 36 */
+function tug(ctx, x, y, heading, color) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(-heading * RAD); ctx.lineJoin = 'round';
+  ctx.fillStyle = alpha(color, 0.3); ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(-100, -18); ctx.lineTo(-18, -18); ctx.arc(-18, 0, 18, -Math.PI / 2, Math.PI / 2); ctx.lineTo(-100, 18); ctx.quadraticCurveTo(-108, 0, -100, -18); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = color; ctx.fillRect(-68, -11, 30, 22);
+  ctx.strokeStyle = PAL.ink; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(-18, 0, 16, -1.2, 1.2); ctx.stroke();
+  ctx.restore();
+}
+/* the angle th (radians) above the horizontal at (x, y), between arms at least len long: its name
+   centred on the bisector inside the wedge where the wedge is wide and long enough to hold it, and
+   otherwise set below the horizontal arm, leadered, by the labeller */
+function angleMark(ctx, x, y, r0, th, len, lab, color) {
+  const r = Math.min(r0, 0.55 * len);
+  F.angleArc(ctx, { x, y }, r, 0, th, '', null, color);
+  const m = th / 2, s = fmt(th / RAD, 1) + '°';
+  if (th < 30 * RAD || r + 30 > len) { lab.add(s, x + r * Math.cos(m), y - r * Math.sin(m), 0.45, 0.9, color, 20, 30); return; }
+  const cx = x + (r + 30) * Math.cos(m), cy = y - (r + 30) * Math.sin(m), hw = measure(ctx, s, { size: 20, weight: 600 }) / 2 + 7;
+  lab.place({ l: cx - hw, t: cy - 14, r: cx + hw, b: cy + 14 });
+  text(ctx, s, cx, cy, color, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+}
+/* a cargo barge seen from above, centred on (x, y), w long and h wide, with four hatches */
+function barge(ctx, x, y, w, h, color) {
+  ctx.save(); ctx.fillStyle = alpha(color, 0.14); ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 10); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = alpha(color, 0.3);
+  for (let i = 0; i < 4; i++) ctx.fillRect(x - w / 2 + 18 + i * (w - 36) / 4 + 6, y - h / 2 + 16, (w - 36) / 4 - 12, h - 32);
+  ctx.restore();
 }
 /* a traffic light hanging from (x, y) */
 function trafficLight(ctx, x, y, color) {
@@ -41,73 +63,89 @@ function trafficLight(ctx, x, y, color) {
    nothing in the idea runs on a clock.
 ===================================================================== */
 (function () {
-  const d = sim('sim-barge', 800);
+  const H = 860;
+  const d = sim('sim-barge', H);
   const fx = ctl(d.controls, { label: '\\kFx', cls: 'force', min: 1, max: 5, step: 0.1, value: 2.7, unit: '×10⁵ N', dec: 1, aria: 'force of the first tugboat' });
   const fy = ctl(d.controls, { label: '\\kFy', cls: 'force', min: 1, max: 5, step: 0.1, value: 3.6, unit: '×10⁵ N', dec: 1, aria: 'force of the second tugboat' });
   const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 2, max: 8, step: 0.1, value: 5, unit: '×10⁶ kg', dec: 1, aria: 'mass of the barge' });
   const ac = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0, max: 0.2, step: 0.005, value: 0.075, unit: 'm/s²', dec: 3, aria: 'acceleration of the barge' });
+  /* one scale for every force arrow: 40 units to 10⁵ N in the scene, 36 in the free-body
+     diagram, so the largest push (5 × 10⁵ N) stays on its panel and the largest resultant
+     (7.1 × 10⁵ N) stays clear of the bar */
+  const K = 40, K2 = 36, BW = 100;
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('force'), acc = C('acceleration');
-    const app = Math.hypot(fx.v, fy.v), th = Math.atan2(fy.v, fx.v) / RAD;   /* forces in units of 10⁵ N */
-    const ma = 10 * mm.v * ac.v, drag = app - ma, ok = drag > 0.004;
-    /* (a) the scene from above: the barge, the two tugs and the acceleration */
-    const bx = 440, by = 330, S = 22;
-    text(ctx, '(a) seen from above', 110, 116, PAL.muted, { size: 19 });
-    block(ctx, bx, by, 250, 104, F.ref('barge'));
-    text(ctx, 'the barge', bx + 110, by + 34, F.ref('barge'), { size: 19, weight: 600, align: 'right' });
-    /* each tug has its bow against the hull, and its push is drawn from that point of contact
-       on into the barge, so the arrow lies on the body it pushes */
-    tug(ctx, bx - 125 - 48, by, 1, 0, F.ref('tug-1'));
-    tug(ctx, bx, by + 52 + 48, 0, -1, F.ref('tug-2'));
-    const Lx = 60 + fx.v * 30, Ly = 60 + fy.v * 30;
-    arrow(ctx, bx - 125, by, bx - 125 + Lx, by, fc, 5);
-    text(ctx, 'F_x = ' + fmt(fx.v, 1) + ' × 10⁵ N', bx - 190, by + 78, fc, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
-    arrow(ctx, bx, by + 52, bx, by + 52 - Ly, fc, 5);
-    text(ctx, 'F_y = ' + fmt(fy.v, 1) + ' × 10⁵ N', bx, by + 52 - Ly - 22, fc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    const fc = C('force'), acc = C('acceleration'), ang = C('angle');
+    /* forces in units of 10⁵ N, each rounded to 10³ N so the readout's numbers add up as shown */
+    const app = Math.round(100 * Math.hypot(fx.v, fy.v)) / 100, th = Math.atan2(fy.v, fx.v);
+    const ma = Math.round(1000 * mm.v * ac.v) / 100, drag = Math.round(100 * (app - ma)) / 100, ok = drag > 0;
+    const rows = topline(ctx, ok && ma === 0
+      ? 'The barge is not accelerating, so the water drags back with all $' + fmt(app, 2) + ' \\times 10^{5}$ N the tugs push with'
+      : ok
+      ? 'The tugs push with $' + fmt(app, 2) + ' \\times 10^{5}$ N together, the barge takes $' + fmt(ma, 2) + ' \\times 10^{5}$ N of it, and the water drags back with $' + fmt(drag, 2) + ' \\times 10^{5}$ N'
+      : 'These pushes cannot accelerate $' + fmt(mm.v, 1) + ' \\times 10^{6}$ kg at $' + fmt(ac.v, 3) + '$ m/s², so no drag force is left to find');
+    const lab = labeller(ctx, H, { headline: rows });
+    text(ctx, '(a) seen from above', 60, 126, PAL.muted, { size: 19 });
+    text(ctx, '(b) the free-body diagram of the barge', 860, 126, PAL.muted, { size: 19 });
+    lab.block(50, 112, 260, 140); lab.block(850, 112, 1220, 140);
+    /* (a) the scene: the barge, the first tug's bow on its stern, the second's on its side */
+    const bx = 380, by = 380, BL = 320, BH = 100;
+    barge(ctx, bx, by, BL, BH, F.ref('barge'));
+    tug(ctx, bx - BL / 2, by, 0, F.ref('tug-1'));
+    tug(ctx, bx + 60, by + BH / 2, 90, F.ref('tug-2'));
+    lab.place({ l: bx - BL / 2, t: by - BH / 2, r: bx + BL / 2, b: by + BH / 2 });
+    lab.place({ l: bx - BL / 2 - 108, t: by - 20, r: bx - BL / 2, b: by + 20 });
+    lab.place({ l: bx + 40, t: by + BH / 2, r: bx + 80, b: by + BH / 2 + 108 });
+    /* each push is drawn from the bow it leaves, on into the hull it pushes */
+    const sx = bx - BL / 2, sy = by + BH / 2, ex = sx + fx.v * K, ey = sy - fy.v * K;
+    lab.halo({ x1: sx, y1: by, x2: ex, y2: by }); arrow(ctx, sx, by, ex, by, fc, 5);
+    lab.halo({ x1: bx + 60, y1: sy, x2: bx + 60, y2: ey }); arrow(ctx, bx + 60, sy, bx + 60, ey, fc, 5);
+    lab.place({ l: sx, t: by - 8, r: ex + 4, b: by + 8 }); lab.place({ l: bx + 52, t: ey - 4, r: bx + 68, b: sy });
+    lab.add('F_x = ' + fmt(fx.v, 1) + ' × 10⁵ N', sx - 50, by + 20, 0, 1, fc, 20, 28);
+    lab.add('F_y = ' + fmt(fy.v, 1) + ' × 10⁵ N', bx + 80, by + BH / 2 + 70, 1, 0, fc, 20, 26);
+    lab.add('the barge', bx - 70, by - BH / 2, 0, -1, F.ref('barge'), 19, 22);
+    /* the acceleration leaves the top of the hull along the resultant, at most 140 units long
+       so its head and its name stay inside panel (a) */
     if (ac.v > 0.0001) {
-      const al = 56 + 620 * ac.v, cx0 = bx + 125, cy0 = by - 52;
-      arrow(ctx, cx0, cy0, cx0 + al * cos(th), cy0 - al * sin(th), acc, 5);
-      text(ctx, 'a = ' + fmt(ac.v, 3) + ' m/s²', cx0 + (al + 12) * cos(th), cy0 - (al + 12) * sin(th) - 16, acc, { size: 20, weight: 600 });
+      const al = 40 + 500 * ac.v, ax0 = bx + 120, ay0 = by - BH / 2;
+      const ahx = ax0 + al * Math.cos(th), ahy = ay0 - al * Math.sin(th);
+      arrow(ctx, ax0, ay0, ahx, ahy, acc, 5);
+      angleMark(ctx, ax0, ay0, 34, th, al, lab, ang);
+      lab.add('a = ' + fmt(ac.v, 3) + ' m/s²', ahx, ahy, 0, -1, acc, 20, 16);
     }
-    /* (b) the free-body diagram: the two pushes, their resultant and the drag back along it */
-    const ox = 1010, oy = 360, S2 = 36;
-    text(ctx, '(b) the free-body diagram of the barge', 790, 116, PAL.muted, { size: 19 });
-    const hx = ox + fx.v * S2, hy = oy - fy.v * S2;
+    /* (b) the free-body diagram: the two pushes as components, their resultant and the drag back along it */
+    const ox = 1010, oy = 400, hx = ox + fx.v * K2, hy = oy - fy.v * K2;
     line(ctx, ox, oy, hx, oy, fc, 2.5, [10, 10]); line(ctx, hx, oy, hx, hy, fc, 2.5, [10, 10]);
-    text(ctx, 'F_x', (ox + hx) / 2, oy + 26, fc, { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'F_y', hx + 30, (oy + hy) / 2, fc, { size: 20, weight: 600 });
     arrow(ctx, ox, oy, hx, hy, fc, 5);
-    text(ctx, 'F_app = ' + fmt(app, 1) + ' × 10⁵ N', hx, hy - 28, fc, { size: 20, weight: 600, align: 'center' });
-    angleArc(ctx, ox, oy, 0, th, 56, C('angle'));
-    text(ctx, fmt(th, 1) + '°', ox + 96 * cos(th / 2), oy - 96 * sin(th / 2) + 4, C('angle'), { size: 19, align: 'center' });
+    angleMark(ctx, ox, oy, 56, th, Math.min(fx.v, app) * K2, lab, ang);
     if (ok) {
-      const dl = drag * S2;
-      arrow(ctx, ox, oy, ox - dl * cos(th), oy + dl * sin(th), fc, 5);
-      text(ctx, 'F_D = ' + fmt(drag, 2) + ' × 10⁵ N', ox - dl * cos(th) - 14, oy + dl * sin(th) + 26, fc, { size: 20, weight: 600, align: 'right' });
+      const dl = drag * K2, dx = ox - dl * Math.cos(th), dy = oy + dl * Math.sin(th);
+      arrow(ctx, ox, oy, dx, dy, fc, 5);
+      lab.add('F_D = ' + fmt(drag, 2) + ' × 10⁵ N', dx, dy, -1, 0, fc, 20, 18);
     }
     dot(ctx, ox, oy, F.ref('barge'), true, 8);
-    /* the subtraction, as one bar along the direction of the applied force */
-    const l = 200, bw = 120, ybar = 630;
-    text(ctx, 'along the direction of the applied force', l, ybar - 54, PAL.muted, { size: 19 });
-    ctx.save(); ctx.fillStyle = alpha(fc, 0.22); ctx.fillRect(l, ybar - 20, app * bw, 40); ctx.restore();
-    if (ok) { ctx.save(); ctx.fillStyle = alpha(fc, 0.55); ctx.fillRect(l, ybar - 20, ma * bw, 40); ctx.restore(); }
-    line(ctx, l, ybar - 20, l + app * bw, ybar - 20, fc, 2); line(ctx, l, ybar + 20, l + app * bw, ybar + 20, fc, 2);
-    line(ctx, l, ybar - 20, l, ybar + 20, fc, 2); line(ctx, l + app * bw, ybar - 20, l + app * bw, ybar + 20, fc, 2);
-    text(ctx, 'F_app = ' + fmt(app, 1) + ' × 10⁵ N', l + app * bw + 16, ybar, fc, { size: 20, weight: 600 });
-    if (ok) {
-      line(ctx, l + ma * bw, ybar - 20, l + ma * bw, ybar + 20, PAL.ink, 3);
-      /* the net force is a force and takes the force hue; it is told from the drag beside it by the
-         row it sits on and by its name */
-      hbracket(ctx, l, l + ma * bw, ybar + 64, fc, 'F_net = ma = ' + fmt(ma, 2) + ' × 10⁵ N');
-      hbracket(ctx, l + ma * bw, l + app * bw, ybar + 126, fc, 'F_D = ' + fmt(drag, 2) + ' × 10⁵ N');
+    lab.add('F_app = ' + fmt(app, 2) + ' × 10⁵ N', hx, hy, 0, -1, fc, 20, 18);
+    lab.beside({ x1: ox, y1: oy, x2: hx, y2: oy }, 'right', 'F_x', fc, 20, { gap: 18, offset: 0.75 });
+    lab.beside({ x1: hx, y1: oy, x2: hx, y2: hy }, 'right', 'F_y', fc, 20, { gap: 18 });
+    /* the subtraction, as one bar along the direction of the applied force, 100 units to 10⁵ N */
+    const l = 100, yb = 690;
+    text(ctx, 'along the direction of the applied force', l, yb - 50, PAL.muted, { size: 19 });
+    ctx.save(); ctx.fillStyle = alpha(fc, 0.22); ctx.fillRect(l, yb - 20, app * BW, 40);
+    if (ok) { ctx.fillStyle = alpha(fc, 0.55); ctx.fillRect(l, yb - 20, ma * BW, 40); }
+    ctx.strokeStyle = fc; ctx.lineWidth = 2; ctx.strokeRect(l, yb - 20, app * BW, 40); ctx.restore();
+    text(ctx, 'F_app = ' + fmt(app, 2) + ' × 10⁵ N', l + app * BW + 16, yb, fc, { size: 20, weight: 600 });
+    if (ok && ma > 0) {
+      line(ctx, l + ma * BW, yb - 20, l + ma * BW, yb + 20, PAL.ink, 3);
+      hbracket(ctx, l, l + ma * BW, yb + 64, fc, 'F_net = ma = ' + fmt(ma, 2) + ' × 10⁵ N', { size: 20 });
     }
-    headline(ctx, ok
-      ? 'The tugs push with ' + fmt(app, 1) + ' × 10⁵ N together, the barge takes ' + fmt(ma, 2) + ' × 10⁵ N of it, and the water drags back with ' + fmt(drag, 2) + ' × 10⁵ N'
-      : 'These pushes cannot accelerate ' + fmt(mm.v, 1) + ' × 10⁶ kg at ' + fmt(ac.v, 3) + ' m/s², so no drag force is left to find');
-    readout(d.readout, `\\kFD = \\kFa - \\km\\ka = ${sci(app * 1e5)}\\ \\text{N} - (${sci(mm.v * 1e6)}\\ \\text{kg})(${fmt(ac.v, 3)}\\ \\text{m/s}^2) = ${ok ? sci(drag * 1e5, 2) : '-\\,' + sci(Math.abs(drag) * 1e5 + 1e-9, 2)}\\ \\text{N}`,
-      ok ? 'The barge weighs ' + sciP(mm.v * 1e6 * G) + ' N, about ' + fmt(mm.v * 1e6 * G / (drag * 1e5), 0) + ' times the drag on it.'
-        : 'The drag opposes the motion, so it cannot be negative: the applied force has to be at least as large as the mass times the acceleration. Lower the acceleration, or have the tugs push harder.');
+    if (ok) {
+      hbracket(ctx, l + ma * BW, l + app * BW, yb + 126, fc, 'F_D = ' + fmt(drag, 2) + ' × 10⁵ N', { size: 20 });
+    }
+    lab.flush();
+    const A = sci(app * 1e5, 2), B = ma > 0 ? sci(ma * 1e5, 2) : '0';
+    tex(d.readout, ok
+      ? `\\kFD = \\kFa - \\km\\ka = ${A}\\ \\text{N} - ${B}\\ \\text{N} = ${sci(drag * 1e5, 2)}\\ \\text{N}`
+      : `\\kFa - \\km\\ka = ${A}\\ \\text{N} - ${B}\\ \\text{N} < 0`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -170,10 +208,13 @@ function trafficLight(ctx, x, y, color) {
    speeds up for three seconds, rides four at a constant velocity and
    slows to a stop in the last three, and the dial follows it. Moves:
    the reading changes as the ride does, so the ten seconds of the ride
-   run in about five real seconds, with the scrubber.
+   run in about five real seconds, with the scrubber. The shaft keeps to
+   the left third; the dial and the free-body diagram sit under it, out
+   of the lift's travel, and the graphs beside it.
 ===================================================================== */
 (function () {
-  const d = sim('sim-elevator-scale', 800);
+  const H = 820;
+  const d = sim('sim-elevator-scale', H);
   const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 0.5, value: 75, unit: 'kg', dec: 1, onInput: reset, aria: 'mass of the person' });
   const ac = ctl(d.controls, { label: '\\ka', cls: 'acceleration', min: 0.2, max: 3, step: 0.05, value: 1.2, unit: 'm/s²', dec: 2, onInput: reset, aria: 'acceleration of the lift' });
   const T = 10, TA = 3, TB = 7;
@@ -184,74 +225,87 @@ function trafficLight(ctx, x, y, color) {
   const sAt = (t) => (t < TA ? 0.5 * ac.v * t * t
     : t < TB ? 0.5 * ac.v * TA * TA + ac.v * TA * (t - TA)
       : 0.5 * ac.v * TA * TA + ac.v * TA * (TB - TA) + ac.v * TA * (t - TB) - 0.5 * ac.v * (t - TB) * (t - TB));
+  /* the shaft, the car and the man on his scale; the car rises 160 units over the ride whatever
+     the sliders, and every force arrow is drawn on one fixed scale, the largest reading the sliders
+     allow (120 × (9.80 + 3.00) = 1,536 N) being 115 units in the car */
+  const SL = 110, SR = 370, PX = 240, PS = 1.35, KS = 120 / 1600;
+  let hits = [];
+  F.hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('force'), acc = C('acceleration'), vc = C('velocity');
     const t = REDUCED ? T : cy.now();
-    const w = mm.v * G, Fs = mm.v * (G + aAt(t)), top = mm.v * (G + ac.v);
-    /* the scene: the shaft, the car, the person on the scale */
-    const sl = 140, sr = 500, floor = 560 - 170 * (sAt(t) / sAt(T));
-    fixed(ctx, sl - 34, 60, 34, 540); fixed(ctx, sr, 60, 34, 540);
-    const carT = floor - 300;
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(sl, carT, sr - sl, 300); ctx.restore();
-    ctx.save(); ctx.strokeStyle = F.ref('elevator'); ctx.lineWidth = 4; ctx.strokeRect(sl, carT, sr - sl, 300); ctx.restore();
-    line(ctx, (sl + sr) / 2, 60, (sl + sr) / 2, carT, PAL.muted, 5);
-    block(ctx, 320, floor - 16, 150, 32, F.ref('scale'));
-    F.person(ctx, 320, floor - 32, F.ref('man'), { s: 1.65 });
-    /* the book's part (a) draws every force on the lift, the scale and the person; its part (b)
-       takes the person alone as the system of interest and draws the two forces that are left */
+    const w = mm.v * G, Fs = mm.v * (G + aAt(t)), KF = 56 / w;
+    const phase = t < TA ? 'speeding up at ' + fmt(ac.v, 2) + ' m/s², and the dial reads ' + fmt(Fs, 0) + ' N against his ' + fmt(w, 0) + ' N weight'
+      : t < TB ? 'riding at a constant ' + fmt(ac.v * TA, 2) + ' m/s, and the dial reads his weight of ' + fmt(w, 0) + ' N exactly'
+        : 'slowing to a stop, and the dial reads only ' + fmt(Fs, 0) + ' N against his ' + fmt(w, 0) + ' N weight';
+    const rows = topline(ctx, 'After ' + fmt(t, 1) + ' s the lift is ' + phase);
+    const lab = labeller(ctx, H, { headline: rows });
+    const floor = 600 - 160 * (sAt(t) / sAt(T)), carT = floor - 300, feet = floor - 32;
+    line(ctx, SL - 12, 104, SL - 12, 612, PAL.muted, 3); line(ctx, SR + 12, 104, SR + 12, 612, PAL.muted, 3);
+    line(ctx, (SL + SR) / 2, 104, (SL + SR) / 2, carT, PAL.muted, 5);
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(SL, carT, SR - SL, 300);
+    ctx.strokeStyle = F.ref('elevator'); ctx.lineWidth = 4; ctx.strokeRect(SL, carT, SR - SL, 300); ctx.restore();
+    block(ctx, PX, floor - 16, 150, 32, F.ref('scale'));
+    F.silhouette(ctx, { x: PX, y: feet, s: PS, pose: 'stand', color: F.ref('man') });
+    /* the book's part (b): the person alone is the system of interest, ringed in a dashed box */
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2.5; ctx.setLineDash([12, 10]);
-    ctx.strokeRect(248, floor - 292, 144, 266); ctx.restore();
-    text(ctx, 'the system of interest: the person alone', 320, floor + 34, PAL.muted, { size: 17, align: 'center', bg: PAL.panel });
-    arrow(ctx, 400, floor - 170, 400, floor - 170 - 92 * (Fs / top), fc, 5);
-    text(ctx, 'F_s = ' + fmt(Fs, 0) + ' N', 412, floor - 178 - 92 * (Fs / top), fc, { size: 20, weight: 600, bg: PAL.panel });
-    arrow(ctx, 240, floor - 170, 240, floor - 170 + 92 * (w / top), fc, 5);
-    text(ctx, 'w = ' + fmt(w, 0) + ' N', 228, floor - 162 + 92 * (w / top), fc, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
-    if (vAt(t) > 0.01) { const vl = 26 + 58 * (vAt(t) / (ac.v * TA)); arrow(ctx, sr + 86, floor - 130, sr + 86, floor - 130 - vl, vc, 4); text(ctx, 'v', sr + 100, floor - 138 - vl, vc, { size: 20, weight: 600 }); }
-    if (Math.abs(aAt(t)) > 0.01) { const sgn = aAt(t) > 0 ? -1 : 1; arrow(ctx, sr + 86, floor - 262, sr + 86, floor - 262 + sgn * 66, acc, 4); text(ctx, 'a', sr + 100, floor - 262 + sgn * 82, acc, { size: 20, weight: 600 }); }
+    ctx.strokeRect(PX - 92, feet - 258, 184, 262); ctx.restore();
+    text(ctx, 'system of interest', PX, feet - 240, PAL.muted, { size: 17, align: 'center' });
+    /* the two forces on him, named outside the car's walls */
+    const Lw = w * KS, Ls = Fs * KS, wy = feet - 110;
+    arrow(ctx, PX - 34, wy, PX - 34, wy + Lw, fc, 5);
+    arrow(ctx, PX + 34, feet, PX + 34, feet - Ls, fc, 5);
+    lab.add('w', PX - 34, wy + Lw, -1, 0, fc, 22, PX - 34 - (SL - 24));
+    lab.add('F_s', PX + 34, feet - Ls, 1, 0, fc, 22, SR + 24 - (PX + 34));
+    /* the lift's velocity and acceleration, beside the shaft */
+    if (vAt(t) > 0.01) { const vl = 20 + 50 * (vAt(t) / 9); arrow(ctx, 450, floor - 120, 450, floor - 120 - vl, vc, 4); lab.add('v', 450, floor - 120 - vl, 1, 0, vc, 22, 14); }
+    if (Math.abs(aAt(t)) > 0.01) { const sg = aAt(t) > 0 ? -1 : 1; arrow(ctx, 450, floor - 250 - sg * 33, 450, floor - 250 + sg * 33, acc, 4); lab.add('a', 450, floor - 250 + sg * 33, 1, 0, acc, 22, 14); }
     /* the dial of the scale, under the shaft */
-    const dx = 320, dy = 700, r = 58;
+    const dx = 160, dy = 712, r = 52;
     ctx.save(); ctx.strokeStyle = F.ref('scale'); ctx.fillStyle = PAL.panel; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(dx, dy, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
     for (let i = 0; i <= 8; i++) { const g = (-210 + 30 * i) * RAD; line(ctx, dx + (r - 12) * Math.cos(g), dy + (r - 12) * Math.sin(g), dx + (r - 3) * Math.cos(g), dy + (r - 3) * Math.sin(g), PAL.muted, 2); }
     const ang = (-210 + 240 * Math.min(1, Fs / (2 * w))) * RAD;
-    line(ctx, dx, dy, dx + (r - 16) * Math.cos(ang), dy + (r - 16) * Math.sin(ang), fc, 5); dot(ctx, dx, dy, fc, true, 6);
-    text(ctx, 'the dial reads ' + fmt(Fs, 0) + ' N', dx, dy + r + 26, fc, { size: 20, weight: 600, align: 'center' });
-    /* the free-body diagram of the system of interest: only his weight and the push of the scale */
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.strokeRect(566, 442, 184, 258); ctx.restore();
-    text(ctx, 'the free-body diagram', 598, 470, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, 'of the person alone', 598, 492, PAL.muted, { size: 17, align: 'center' });
-    const fby = 580;
-    arrow(ctx, 658, fby, 658, fby - 58 * (Fs / top), fc, 5);
-    text(ctx, 'F_s', 672, fby - 58 * (Fs / top) - 2, fc, { size: 20, weight: 600 });
-    arrow(ctx, 658, fby, 658, fby + 58 * (w / top), fc, 5);
-    text(ctx, 'w', 672, fby + 58 * (w / top) + 2, fc, { size: 20, weight: 600 });
-    dot(ctx, 658, fby, F.ref('man'), true, 9);
+    line(ctx, dx, dy, dx + (r - 14) * Math.cos(ang), dy + (r - 14) * Math.sin(ang), fc, 5); dot(ctx, dx, dy, fc, true, 6);
+    text(ctx, 'the dial reads ' + fmt(Fs, 0) + ' N', dx, dy + r + 24, fc, { size: 20, weight: 600, align: 'center' });
+    /* the free-body diagram of the system of interest, beside the dial: his weight and the push of the scale */
+    const fx0 = 430, fy0 = 712;
+    text(ctx, 'free-body diagram', fx0 - 26, fy0, PAL.muted, { size: 17, align: 'right' });
+    lab.block(fx0 - 170, fy0 - 14, fx0 - 18, fy0 + 14);
+    arrow(ctx, fx0, fy0, fx0, fy0 - Fs * KF, fc, 5);
+    arrow(ctx, fx0, fy0, fx0, fy0 + w * KF, fc, 5);   /* his weight is always 56 units here, so the diagram shows the ratio of the reading to it */
+    dot(ctx, fx0, fy0, F.ref('man'), true, 9);
+    lab.add('F_s', fx0, fy0 - Fs * KF, 1, 0, fc, 22, 14);
+    lab.add('w', fx0, fy0 + w * KF, 1, 0, fc, 22, 14);
     /* the two graphs, beside the vertical scene */
     /* fixed axes: the ride always lasts 10 s, and the largest reading the sliders allow is the
        heaviest person under the hardest acceleration, 120 × (9.80 + 3) = 1,536 N, so the reading axis
        is always 0 to 1,600 N, ticked every 400 N, and neither range changes as a slider moves */
-    const FR = 1600, b1 = { l: 760, r: 1330, t: 140, b: 350 };
-    const g1 = axes(ctx, b1, [0, T], [0, FR], { yl: 'the scale reading Fs (N)', yc: fc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const FR = 1600, b1 = { l: 610, r: 1340, t: 150, b: 380 };
+    const g1 = axes(ctx, b1, [0, T], [0, FR], { yl: 'the scale reading F_s (N)', yc: fc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, b1.l, g1.Y(w), b1.r, g1.Y(w), fc, 2, [10, 10]);
-    text(ctx, 'his weight, ' + fmt(w, 0) + ' N', b1.r - 8, g1.Y(w) - 20, fc, { size: 18, align: 'right' });
+    text(ctx, 'his weight, ' + fmt(w, 0) + ' N', b1.r - 8, g1.Y(w) - 20, fc, { size: 18, align: 'right', bg: PAL.panel });
     [[0, TA], [TA, TB], [TB, T]].forEach(([p, q]) => { const y = g1.Y(mm.v * (G + aAt((p + q) / 2))); line(ctx, g1.X(p), y, g1.X(q), y, fc, 5); });
     line(ctx, g1.X(TA), g1.Y(mm.v * (G + ac.v)), g1.X(TA), g1.Y(w), fc, 5);
     line(ctx, g1.X(TB), g1.Y(w), g1.X(TB), g1.Y(mm.v * (G - ac.v)), fc, 5);
     dot(ctx, g1.X(t), g1.Y(Fs), fc, true, 9);
     /* fixed axes: the lift speeds up for the first 3 s, so the hardest acceleration the slider allows
        gives it 3 × 3 = 9 m/s, and the velocity axis is always 0 to 9 m/s, ticked every 3 m/s */
-    const VR = 9, b2 = { l: 760, r: 1330, t: 470, b: 660 };
+    const VR = 9, b2 = { l: 610, r: 1340, t: 480, b: 710 };
     const g2 = axes(ctx, b2, [0, T], [0, VR], { xl: 'time t (s)', xc: C('time'), yl: 'the velocity of the lift v (m/s)', yc: vc, nx: 5, ny: 3, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, g2.X(0), g2.Y(0), g2.X(TA), g2.Y(ac.v * TA), vc, 5);
     line(ctx, g2.X(TA), g2.Y(ac.v * TA), g2.X(TB), g2.Y(ac.v * TA), vc, 5);
     line(ctx, g2.X(TB), g2.Y(ac.v * TA), g2.X(T), g2.Y(0), vc, 5);
     dot(ctx, g2.X(t), g2.Y(vAt(t)), vc, true, 9);
-    const phase = t < TA ? 'speeding up at ' + fmt(ac.v, 2) + ' m/s², and the dial reads ' + fmt(Fs, 0) + ' N against his ' + fmt(w, 0) + ' N weight'
-      : t < TB ? 'riding at a constant ' + fmt(ac.v * TA, 2) + ' m/s, and the dial reads his weight of ' + fmt(w, 0) + ' N exactly'
-        : 'slowing to a stop, and the dial reads only ' + fmt(Fs, 0) + ' N against his ' + fmt(w, 0) + ' N weight';
-    headline(ctx, 'After ' + fmt(t, 1) + ' s the lift is ' + phase);
-    readout(d.readout, `\\kFs = \\km\\ka + \\km\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${fmt(aAt(t), 2)}\\ \\text{m/s}^2) + (${fmt(mm.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(Fs, 0)}\\ \\text{N}`);
+    lab.flush();
+    hits = [
+      { x: PX, y: feet - 130, r: 90, name: 'the system of interest: the man alone' },
+      { x: PX, y: floor - 16, r: 70, name: 'the bathroom scale' },
+      { x: (SL + SR) / 2, y: floor - 150, r: 150, name: 'the lift' },
+      { x: dx, y: dy, r: r, name: 'the dial of the scale' },
+    ];
+    tex(d.readout, `\\kFs = \\km\\ka + \\km\\kg = (${fmt(mm.v, 1)}\\ \\text{kg})(${fmt(aAt(t), 2)}\\ \\text{m/s}^2) + (${fmt(mm.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(Fs, 0)}\\ \\text{N}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T / 5), draw });
 })();
