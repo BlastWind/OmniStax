@@ -6,15 +6,44 @@ const sim = (id, H) => F.sim(root, id, H);
 function twoLine(host, a, b) { if (!host._a) { host._a = document.createElement('div'); host._b = document.createElement('small'); host.replaceChildren(host._a, host._b); } tex(host._a, a); tex(host._b, b); }
 const sgn = (n, d) => (n > 0 ? '+' : n < 0 ? '−' : '') + fmt(Math.abs(n), d);
 
-/* a bicycle and its rider, about 90 units long */
-function bike(ctx, x, y, color, dir, phase) {
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 4; ctx.lineCap = 'round';
-  const r = 15, w = 46 * dir;
-  [x - w / 2, x + w / 2].forEach((cx) => { ctx.beginPath(); ctx.arc(cx, y, r, 0, Math.PI * 2); ctx.stroke(); ctx.beginPath(); ctx.moveTo(cx, y); ctx.lineTo(cx + r * Math.cos(phase), y + r * Math.sin(phase)); ctx.stroke(); });
-  ctx.beginPath(); ctx.moveTo(x - w / 2, y); ctx.lineTo(x - w * 0.1, y - 26); ctx.lineTo(x + w * 0.35, y - 26); ctx.lineTo(x + w / 2, y); ctx.moveTo(x - w * 0.1, y - 26); ctx.lineTo(x + w * 0.05, y); ctx.lineTo(x + w * 0.35, y - 26); ctx.stroke();
-  // rider
-  ctx.beginPath(); ctx.moveTo(x + w * 0.05, y - 4); ctx.lineTo(x - w * 0.05, y - 40); ctx.lineTo(x + w * 0.4, y - 36); ctx.stroke();
-  ctx.beginPath(); ctx.arc(x - w * 0.02, y - 54, 9, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+/* A bicycle in side view, facing dir (+1 right, -1 left), its wheels on the ground line y, and its
+   rider, F.silhouette in the sit pose with the hips on the saddle, the hands on the bars and the
+   feet on the pedals. Both are set in the silhouette's own 150-unit frame scaled by s, with the
+   bottom bracket at the origin, so the body and the machine keep one proportion: wheels of
+   radius 30, a wheelbase of 88 and cranks of 15, a 1.75 m rider against a 1 m wheelbase. crank
+   is the pedals' angle; the wheels turn 2.2 times as fast. Its footprint at s = 1 is about 150
+   long and 147 tall. A candidate for figlib as F.bicycle, beside F.motorcycle. */
+const BIKE = { r: 30, rear: [-36, -6], front: [52, -6], seat: [-14, -48], head: [40, -50], low: [44, -34], saddle: [-17, -57], bar: [48, -60], crank: 15 };
+function bicycle(ctx, x, y, s, dir, crank, frame, rider) {
+  const B = BIKE, oy = y - (B.r + B.rear[1]) * s, wheel = crank * 2.2;
+  const pedal = (a) => ({ x: B.crank * Math.cos(a), y: B.crank * Math.sin(a) });
+  ctx.save(); ctx.translate(x, oy); ctx.scale(s * dir, s); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = frame;
+  /* the wheels: a rim over three spokes that end inside it, and a hub */
+  for (const [hx, hy] of [B.rear, B.front]) {
+    ctx.lineWidth = 1.5; ctx.beginPath();
+    for (let k = 0; k < 3; k++) { const t = wheel + (k * 2 * Math.PI) / 3; ctx.moveTo(hx - (B.r - 3) * Math.cos(t), hy - (B.r - 3) * Math.sin(t)); ctx.lineTo(hx + (B.r - 3) * Math.cos(t), hy + (B.r - 3) * Math.sin(t)); }
+    ctx.stroke(); ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(hx, hy, B.r, 0, 2 * Math.PI); ctx.stroke();
+  }
+  /* the far pedal and its crank sit behind the frame */
+  const p0 = pedal(crank), p1 = pedal(crank + Math.PI);
+  ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(p1.x, p1.y); ctx.moveTo(p1.x - 5, p1.y); ctx.lineTo(p1.x + 5, p1.y); ctx.stroke();
+  /* the frame: chain and seat stays to the rear hub, the seat, top and down tubes, the fork */
+  ctx.lineWidth = 3.5; ctx.beginPath();
+  ctx.moveTo(...B.rear); ctx.lineTo(0, 0); ctx.lineTo(...B.seat); ctx.lineTo(...B.rear);
+  ctx.moveTo(0, 0); ctx.lineTo(...B.low); ctx.lineTo(...B.head); ctx.lineTo(...B.seat); ctx.lineTo(B.saddle[0], B.saddle[1] + 4);
+  ctx.moveTo(...B.low); ctx.lineTo(...B.front); ctx.moveTo(...B.head); ctx.lineTo(B.head[0] + 2, B.bar[1]); ctx.lineTo(...B.bar);
+  ctx.stroke();
+  /* the saddle */
+  ctx.fillStyle = frame; ctx.beginPath(); ctx.moveTo(B.saddle[0] - 9, B.saddle[1] + 1); ctx.quadraticCurveTo(B.saddle[0], B.saddle[1] - 4, B.saddle[0] + 9, B.saddle[1] + 2); ctx.lineTo(B.saddle[0] - 9, B.saddle[1] + 4); ctx.closePath(); ctx.fill();
+  ctx.restore();
+  F.silhouette(ctx, { x, y: oy, s, face: dir, pose: 'sit', color: rider,
+    hip: { x: B.saddle[0], y: B.saddle[1] - 2 }, shoulder: { x: 6, y: -98 }, head: { x: 16, y: -117 },
+    feet: [p0, p1], hands: [{ x: B.bar[0], y: B.bar[1] }, { x: B.bar[0] - 2, y: B.bar[1] + 1 }], kneeSide: -1, elbowSide: 1 });
+  /* the near crank and pedal, over the near foot's heel */
+  ctx.save(); ctx.translate(x, oy); ctx.scale(s * dir, s); ctx.lineCap = 'round'; ctx.strokeStyle = frame; ctx.fillStyle = frame;
+  ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(p0.x, p0.y); ctx.moveTo(p0.x - 5, p0.y); ctx.lineTo(p0.x + 5, p0.y); ctx.stroke();
+  ctx.beginPath(); ctx.arc(0, 0, 4.5, 0, 2 * Math.PI); ctx.fill();
+  ctx.restore();
 }
 
 /* =====================================================================
@@ -91,10 +120,12 @@ function bike(ctx, x, y, color, dir, phase) {
 
 /* =====================================================================
    SIM 2: distance traveled vs displacement. The cyclist from Check Your
-   Understanding: 0 → −3 → −1 km.
+   Understanding: 0 → −3 → −1 km. The cyclist rides a road above the
+   path; leg 1 and leg 2 stack below it in the book's order; the axis is a
+   fixed −5 to 5 km, the range of the three sliders.
 ===================================================================== */
 (function () {
-  const d = sim('sim-path', 540);
+  const d = sim('sim-path', 600);
   const x0 = ctl(d.controls, { label: '\\kxo', cls: 'position', min: -5, max: 5, step: 0.5, value: 0, unit: 'km', dec: 1, onInput: reset });
   const xt = ctl(d.controls, { label: '\\kx_{\\text{turn}}', cls: 'position', min: -5, max: 5, step: 0.5, value: -3, unit: 'km', dec: 1, onInput: reset, aria: 'turning point' });
   const xf = ctl(d.controls, { label: '\\kxf', cls: 'position', min: -5, max: 5, step: 0.5, value: -1, unit: 'km', dec: 1, onInput: reset, aria: 'final position' });
@@ -102,34 +133,40 @@ function bike(ctx, x, y, color, dir, phase) {
   const T = () => Math.max(1.5, total() * 0.8);
   const cy = cycle(T, 1.6);
   function reset() { cy.reset(); }
+  const L = 110, R = 1090, y = 410, road = 250, X = (m) => L + (R - L) * (m + 5) / 10;
+  let at = { x: X(0), y: road - 60 };
+  F.hover(d.stage, () => [{ x: at.x, y: at.y, r: 60, name: 'the cyclist' }]);
   function draw() {
     const { ctx } = begin(d.c);
     const dx = xf.v - x0.v, s = total() * cy.now() / T();   // s = path length covered so far
-    const L = 110, R = 1090, y = 350; const X = (m) => L + (R - L) * (m + 5) / 10;
     line(ctx, L - 30, y, R + 30, y, PAL.muted, 3); scale(ctx, X, -5, 5, 1, y, 'km', 1);
     text(ctx, 'west', L - 30, y - 30, PAL.muted, { size: 17 }); text(ctx, 'east (+)', R + 30, y - 30, PAL.muted, { size: 17, align: 'right' });
-    // the path: leg 1 on one row, leg 2 on the row above, like the book's paths figure
-    const y1 = y - 90, y2 = y - 150;
+    line(ctx, L - 30, road, R + 30, road, PAL.muted, 3);
+    // leg 1 on the upper row, leg 2 on the row below it, as the book stacks them
+    const y1 = road + 52, y2 = road + 96;
     const s1 = Math.min(s, leg1()), s2 = Math.max(0, s - leg1());
     const p1 = x0.v + Math.sign(xt.v - x0.v) * s1, p2 = xt.v + Math.sign(xf.v - xt.v) * s2;
     if (leg1() > 0) { line(ctx, X(x0.v), y1, X(xt.v), y1, PAL.rule, 4); if (s1 > 0.05) arrow(ctx, X(x0.v), y1, X(p1), y1, PAL.ink, 5); }
     if (leg2() > 0) { line(ctx, X(xt.v), y2, X(xf.v), y2, PAL.rule, 4); line(ctx, X(xt.v), y1, X(xt.v), y2, PAL.rule, 4); if (s2 > 0.05) arrow(ctx, X(xt.v), y2, X(p2), y2, PAL.ink, 5); }
-    const onLeg2 = s > leg1() + 1e-6, px = onLeg2 ? p2 : p1, py = onLeg2 ? y2 : y1, dir = onLeg2 ? Math.sign(xf.v - xt.v) || 1 : Math.sign(xt.v - x0.v) || 1;
-    bike(ctx, X(px), py - 22, F.ref('cyclist'), dir, s * 4);
+    const onLeg2 = s > leg1() + 1e-6, px = onLeg2 ? p2 : p1, dir = onLeg2 ? Math.sign(xf.v - xt.v) || 1 : Math.sign(xt.v - x0.v) || 1;
+    bicycle(ctx, X(px), road, 0.85, dir, s * 15, PAL.ink, F.ref('cyclist'));
+    at = { x: X(px), y: road - 60 };
     // displacement bracket below the axis, start and end markers on it
     dot(ctx, X(x0.v), y, C('position'), false, 11); dot(ctx, X(xf.v), y, C('position'), true, 11);
     const apart = Math.abs(X(xf.v) - X(x0.v)) > 60;
     text(ctx, 'x_0', X(x0.v) + (apart ? 0 : -22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 }); text(ctx, 'x_f', X(xf.v) + (apart ? 0 : 22), y + 66, C('position'), { align: 'center', weight: 600, size: 24 });
     if (Math.abs(dx) >= 0.25) hbracket(ctx, X(x0.v), X(xf.v), y + 150, C('position'), 'displacement Δx = ' + sgn(dx, 1) + ' km');
-    else text(ctx, 'displacement Δx = 0', X(x0.v), y + 130, C('position'), { align: 'center', weight: 600 });
-    // odometer
-    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.fillRect(1130, 150, 200, 96); ctx.strokeRect(1130, 150, 200, 96); ctx.restore();
-    text(ctx, 'distance traveled', 1230, 176, PAL.muted, { size: 17, align: 'center' });
-    text(ctx, fmt(s, 1) + ' km', 1230, 214, PAL.ink, { size: 30, weight: 600, align: 'center' });
+    else text(ctx, 'displacement Δx = 0', Math.min(Math.max(X(x0.v), L + 60), R - 60), y + 130, C('position'), { align: 'center', weight: 600 });
+    // odometer, right of the path rows
+    ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 3; ctx.fillRect(1130, 276, 200, 96); ctx.strokeRect(1130, 276, 200, 96); ctx.restore();
+    text(ctx, 'distance traveled', 1230, 302, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, fmt(s, 1) + ' km', 1230, 340, PAL.ink, { size: 30, weight: 600, align: 'center' });
     /* A ride that never doubles back is a straight run, so the path length and the magnitude of
        the displacement are the same number and the headline says why. */
     const straight = (xt.v - x0.v) * (xf.v - xt.v) >= 0;
-    topline(ctx, straight
+    topline(ctx, total() < 0.25
+      ? 'The cyclist never leaves the start, so the distance traveled and the displacement are both zero.'
+      : straight
       ? 'The cyclist rides straight through without turning back, so the ' + fmt(total(), 1) + ' km traveled is also the magnitude of the ' + sgn(dx, 1) + ' km displacement.'
       : 'The cyclist travels ' + fmt(total(), 1) + ' km along the path, but the displacement is only ' + sgn(dx, 1) + ' km, whose magnitude is ' + fmt(Math.abs(dx), 1) + ' km.');
     const pv = (v) => (v < 0 ? `(${fmt(v, 1)})` : fmt(v, 1));
