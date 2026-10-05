@@ -1,7 +1,7 @@
 /* Figures for section 8.3 Conservation of Momentum. Boots against the section's text article. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['8.3'] = function (root, F) {
-const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, nice, curve, car, block, strip, scale, pinned } = F;
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, nice, curve, car, block, strip, scale, pinned, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 /* the hollow companion marker: an ordinary hollow dot while it is inside the box, and the
    library's pinned marker once the fixed range can no longer hold it */
@@ -25,11 +25,20 @@ function cross(ctx, x, y, color, r) {
   line(ctx, x - r, y, x + r, y, color, 3); line(ctx, x, y - r, x, y + r, color, 3);
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r * 0.55, 0, TAU); ctx.stroke(); ctx.restore();
 }
-/* a rocket pointing along the angle a, centered on (x, y) */
-function rocket(ctx, x, y, a, color, s) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(s, s); ctx.fillStyle = color;
-  ctx.beginPath(); ctx.moveTo(34, 0); ctx.lineTo(8, -10); ctx.lineTo(-24, -10); ctx.lineTo(-34, -21);
-  ctx.lineTo(-28, 0); ctx.lineTo(-34, 21); ctx.lineTo(-24, 10); ctx.lineTo(8, 10); ctx.closePath(); ctx.fill(); ctx.restore();
+/* one half of a probe split across its middle, the joint at (x, y), pointing along a: the front half
+   carries the nose, the rear half the fins */
+function probeHalf(ctx, x, y, a, color, front, s) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(s, s); ctx.fillStyle = color; ctx.beginPath();
+  if (front) { ctx.moveTo(0, -8); ctx.lineTo(16, -8); ctx.lineTo(34, 0); ctx.lineTo(16, 8); ctx.lineTo(0, 8); }
+  else { ctx.moveTo(0, -8); ctx.lineTo(-26, -8); ctx.lineTo(-38, -17); ctx.lineTo(-33, 0); ctx.lineTo(-38, 17); ctx.lineTo(-26, 8); ctx.lineTo(0, 8); }
+  ctx.closePath(); ctx.fill(); ctx.restore();
+}
+/* a path given by its two coordinates in time, from t0 to t1 */
+function curveXY(ctx, fx, fy, t0, t1, color, w, dash) {
+  if (!(t1 > t0)) return;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.beginPath();
+  for (let i = 0; i <= 90; i++) { const t = t0 + ((t1 - t0) * i) / 90; if (i) ctx.lineTo(fx(t), fy(t)); else ctx.moveTo(fx(t), fy(t)); }
+  ctx.stroke(); ctx.restore();
 }
 /* a target particle: a soft disc with a firm edge */
 function particle(ctx, x, y, r, color) {
@@ -138,92 +147,106 @@ function bar(ctx, x1, x2, y, color, h) {
    figure loops once per flight and takes the scrubber.
 ===================================================================== */
 (function () {
-  const d = sim('sim-probe', 800);
-  const M = 1000;                                   /* the mass of the whole probe, in kilograms */
+  const d = sim('sim-probe', 820);
+  const M = 1000, LEN = 4;                          /* the whole probe: 1000 kg and about 4 m long */
   const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 200, max: 800, step: 10, value: 500, unit: 'm/s', dec: 0, onInput: reset, aria: 'launch speed' });
-  const th = ctl(d.controls, { label: '\\kthetao', cls: 'angle', min: 30, max: 80, step: 1, value: 60, unit: '°', dec: 0, onInput: reset, aria: 'launch angle' });
+  const th = ctl(d.controls, { label: '\\kthetao', cls: 'angle', min: 30, max: 80, step: 1, value: 60, unit: '°', dec: 0, detents: [{ v: 60, label: '60°' }], snap: true, onInput: reset, aria: 'launch angle' });
   const dp = ctl(d.controls, { label: '\\kdp', cls: 'momentum', min: 0, max: 100000, step: 5000, value: 50000, unit: 'kg·m/s', dec: 0, onInput: reset, aria: 'impulse of the separation' });
   function model() {
     const vx = v0.v * Math.cos(th.v * RAD), vy = v0.v * Math.sin(th.v * RAD);
-    const T = (2 * vy) / G, ts = T / 2, h = (vy * vy) / (2 * G), dv = dp.v / (M / 2);
+    const T = (2 * vy) / G, ts = T / 2, dv = dp.v / (M / 2);
+    const half = Math.round((M / 2) * vx);          /* each half's share of the horizontal momentum, so the parts add to the whole as written */
     return {
-      vx, vy, T, ts, h, dv, R: vx * T,
+      vx, vy, T, ts, dv, half, px: 2 * half,
       x: (t) => vx * t, y: (t) => Math.max(0, vy * t - 0.5 * G * t * t),
-      xf: (t) => (t < ts ? vx * t : vx * ts + (vx + dv) * (t - ts)),
-      xr: (t) => (t < ts ? vx * t : vx * ts + (vx - dv) * (t - ts)),
-      px: M * vx, py: (t) => M * (vy - G * t),
+      gap: (t) => (t < ts ? 0 : dv * (t - ts)),
+      py: (t) => M * (vy - G * t),
     };
   }
   const cy = cycle(() => model().T, 1.2);
   function reset() { cy.reset(); }
+  let hits = [];
+  hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
-    const f = model(), tau = cy.now(), after = tau >= f.ts;
-    /* the sky is drawn at one true scale, 0.0182 units to the meter, sixty kilometers across and
-       seventeen high. That holds the flight of the example twice over; a faster or steeper launch
-       than the picture holds is clipped at its edge, where the center of mass is pinned with its
-       reading, rather than shrinking the picture the example is drawn in. */
-    const box = { l: 150, r: 1244, t: 130, b: 440 }, xhi = 60000, yhi = 17000;
-    const SK = (box.r - box.l) / xhi;
+    const f = model(), tau = cy.now(), after = tau > f.ts;
+    /* the sky at one true scale fitted to the book's flight with headroom: 35 km across and 11 km
+       high on 1000 by 320 units. The default flight rises 9.6 km and its forward half lands at 26.5 km;
+       a flight the sky cannot hold is clipped at its edge and its center of mass pinned with its reading. */
+    const box = { l: 110, r: 1110, t: 120, b: 440 }, SK = (box.r - box.l) / 35000;
     const X = (m) => box.l + m * SK, Y = (m) => box.b - m * SK;
-    line(ctx, box.l - 70, box.b, box.r + 60, box.b, PAL.muted, 3);
-    scale(ctx, (km) => X(km * 1000), 0, 60, 10, box.b + 26, 'km', 1);
-    ctx.save(); ctx.beginPath(); ctx.rect(box.l - 60, box.t - 40, box.r - box.l + 120, box.b - box.t + 40); ctx.clip();
+    const PS = 1.4, PROBE = 72 * PS, factor = Math.round(PROBE / (LEN * SK) / 10) * 10;
+    line(ctx, box.l - 60, box.b, box.r + 20, box.b, PAL.muted, 3);
+    scale(ctx, (km) => X(km * 1000), 0, 35, 5, box.b + 20, 'km', 1);
+    const cpr = F.ref('probe'), cm = { x: X(f.x(tau)), y: Y(f.y(tau)) };
+    const gx = f.gap(tau) * SK, ang = Math.atan2(-(f.vy - G * Math.min(tau, f.T)), f.vx);
+    const front = { x: cm.x + gx, y: cm.y }, rear = { x: cm.x - gx, y: cm.y };
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l - 60, box.t - 20, box.r - box.l + 80, box.b - box.t + 20); ctx.clip();
     /* the parabola the whole probe would have followed, which is the path of the center of mass */
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.setLineDash([9, 9]); ctx.beginPath();
-    for (let i = 0; i <= 90; i++) { const t = (f.T * i) / 90; if (i) ctx.lineTo(X(f.x(t)), Y(f.y(t))); else ctx.moveTo(X(f.x(t)), Y(f.y(t))); }
-    ctx.stroke(); ctx.restore();
-    const trail = (xp, t0, t1, color, w) => {
-      ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath();
-      for (let i = 0; i <= 70; i++) { const t = t0 + ((t1 - t0) * i) / 70; if (i) ctx.lineTo(X(xp(t)), Y(f.y(t))); else ctx.moveTo(X(xp(t)), Y(f.y(t))); }
-      ctx.stroke(); ctx.restore();
-    };
-    const cpr = F.ref('probe');
-    trail(f.x, 0, Math.min(tau, f.ts), cpr, 4);
-    if (after) { trail(f.xf, f.ts, tau, cpr, 3); trail(f.xr, f.ts, tau, cpr, 3); }
-    const ang = Math.atan2(-(f.vy - G * tau), f.vx);
-    if (!after) rocket(ctx, X(f.x(tau)), Y(f.y(tau)), ang, cpr, 1.5);
-    else { rocket(ctx, X(f.xf(tau)), Y(f.y(tau)), ang, cpr, 1.1); rocket(ctx, X(f.xr(tau)), Y(f.y(tau)), ang, cpr, 1.1); }
-    /* the momentum of the whole system, drawn from its center of mass: the horizontal part is the same
-       arrow all flight long and the vertical part shrinks, reverses and grows. Both are on a scale fixed
-       from the maxima, 260 units at 800,000 kg·m/s. */
-    const cmx = X(f.x(tau)), cmy = Y(f.y(tau)), LP = 260 / 800000;
-    const inSky = cmx <= box.r && cmy >= box.t;
-    cross(ctx, cmx, cmy, C('position'), 15);
-    /* a vertical arrow that would run into the ground is held at the ground line */
-    const pyL = f.py(tau) * LP, pyDrawn = pyL < 0 ? Math.max(pyL, -(box.b - cmy) + 4) : pyL;
-    arrow(ctx, cmx, cmy, cmx + f.px * LP, cmy, C('momentum'), 5);
-    if (Math.abs(pyDrawn) > 6) arrow(ctx, cmx, cmy, cmx, cmy - pyDrawn, C('momentum'), 5);
-    ctx.restore();
-    const lab = F.labeller(ctx, 800);
-    lab.block(0, 0, 1400, 100);                     /* the headline's rows are never written over */
-    if (inSky) {
-      lab.add('center of mass', cmx, cmy, -0.7, -0.7, C('position'), 18, 26);
-      lab.add('pₓ = ' + whole(f.px) + ' kg·m/s', cmx + f.px * LP, cmy, 0.6, -0.8, C('momentum'), 19, 22);
-      if (Math.abs(pyDrawn) > 6) lab.add('pᵧ = ' + whole(f.py(tau)) + ' kg·m/s', cmx, cmy - pyDrawn / 2, 1, 0, C('momentum'), 19, 22);
-      lab.flush();
+    curveXY(ctx, (t) => X(f.x(t)), (t) => Y(f.y(t)), 0, f.T, PAL.muted, 3, [10, 10]);
+    curveXY(ctx, (t) => X(f.x(t)), (t) => Y(f.y(t)), 0, Math.min(tau, f.ts), cpr, 4);
+    if (after) {
+      curveXY(ctx, (t) => X(f.x(t)) + f.gap(t) * SK, (t) => Y(f.y(t)), f.ts, tau, cpr, 3);
+      curveXY(ctx, (t) => X(f.x(t)) - f.gap(t) * SK, (t) => Y(f.y(t)), f.ts, tau, cpr, 3);
     }
-    if (!inSky) pinned(ctx, box, X, Y, f.x(tau), f.y(tau), C('position'), 'center of mass, ' + fmt(f.x(tau) / 1000, 1) + ' km out, ' + fmt(f.y(tau) / 1000, 1) + ' km up');
+    const inSky = cm.x <= box.r && cm.y >= box.t;
+    if (inSky) { probeHalf(ctx, front.x, front.y, ang, cpr, true, PS); probeHalf(ctx, rear.x, rear.y, ang, cpr, false, PS); }
+    ctx.restore();
+    if (inSky) { cross(ctx, cm.x, cm.y, PAL.panel, 17); cross(ctx, cm.x, cm.y, C('position'), 14); }
+    else pinned(ctx, box, X, Y, f.x(tau), f.y(tau), C('position'), 'center of mass, ' + fmt(f.x(tau) / 1000, 1) + ' km out, ' + fmt(f.y(tau) / 1000, 1) + ' km up');
+    /* the momentum of the system in a corner panel, as the book draws it, on one scale fixed from the
+       maxima: 160 units at 800,000 kg·m/s, which neither component passes */
+    const pb = { l: 1130, r: 1385, t: 108, b: 456 }, tail = { x: 1170, y: 282 }, LP = 160 / 800000;
+    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.roundRect(pb.l, pb.t, pb.r - pb.l, pb.b - pb.t, 6); ctx.stroke(); ctx.restore();
+    text(ctx, 'the whole system', pb.r - 12, pb.b - 18, PAL.muted, { size: 17, align: 'right' });
+    const pxEnd = { x: tail.x + f.px * LP, y: tail.y }, pyNow = f.py(Math.min(tau, f.T)), pyEnd = { x: tail.x, y: tail.y - pyNow * LP };
+    arrow(ctx, tail.x, tail.y, pxEnd.x, pxEnd.y, C('momentum'), 5);
+    if (Math.abs(pyNow * LP) > 6) arrow(ctx, tail.x, tail.y, pyEnd.x, pyEnd.y, C('momentum'), 5);
+    const lab = F.labeller(ctx, 820, { headline: 2 });
+    lab.block(pb.r - 150, pb.b - 32, pb.r, pb.b);
+    /* the probe's halves are bodies the labels step round */
+    for (const [p, k] of [[front, 1], [rear, -1]]) { const c = { x: p.x + k * 18 * PS * Math.cos(ang), y: p.y + k * 18 * PS * Math.sin(ang) }; lab.place({ l: c.x - 26, r: c.x + 26, t: c.y - 26, b: c.y + 26 }); }
+    lab.add('pₓ', pxEnd.x, pxEnd.y, 0.8, 0.6, C('momentum'), 22, 18);
+    if (Math.abs(pyNow * LP) > 6) lab.add('pᵧ', pyEnd.x, pyEnd.y, 0.8, pyNow > 0 ? -0.6 : 0.6, C('momentum'), 22, 18);
+    if (inSky) lab.add('center of mass', cm.x, cm.y, -0.7, -0.75, C('position'), 19, 34);
     /* the graph: the two components of the system's momentum against time */
     /* fixed axes: the probe masses 1000 kg and is launched at no more than 800 m/s, so neither
        component of its momentum passes 800,000 kg·m/s, and the longest flight, 2 × 800 × sin 80° /
        9.80, is 161 s. The graph is therefore always 0 to 200 s by −800,000 to 800,000 kg·m/s,
-       ticked every 50 s and every 200,000 kg·m/s, and neither range moves with the sliders. */
-    const gb = { l: 200, r: 1280, t: 530, b: 715 }, TR = 200, PR = 800000;
-    const { X: GX, Y: GY } = axes(ctx, gb, [0, TR], [-PR, PR], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: 8, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
+       ticked every 50 s and every 400,000 kg·m/s, and neither range moves with the sliders. */
+    const gb = { l: 200, r: 1280, t: 556, b: 736 }, TR = 200, PR = 800000;
+    const { X: GX, Y: GY } = axes(ctx, gb, [0, TR], [-PR, PR], { xl: 't (s)', yl: 'p (kg·m/s)', xc: C('time'), yc: C('momentum'), nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => whole(v) });
     line(ctx, GX(f.ts), gb.t, GX(f.ts), gb.b, PAL.muted, 2, [4, 8]);
-    text(ctx, 'the probe separates', GX(f.ts) + 10, gb.t + 18, PAL.muted, { size: 17 });
+    const sepX = GX(f.ts) + 10, sepW = F.measure(ctx, 'the probe separates', { size: 17 });
+    text(ctx, 'the probe separates', sepX, gb.b - 16, PAL.muted, { size: 17 });
+    lab.place({ l: sepX - 4, r: sepX + sepW + 4, t: gb.b - 28, b: gb.b - 4 });
     line(ctx, gb.l, GY(f.px), gb.r, GY(f.px), C('momentum'), 5);
     curve(ctx, (t) => f.py(t), 0, f.T, GX, GY, C('momentum'), 4, 120);
-    text(ctx, 'the horizontal momentum', gb.r - 10, GY(f.px) - 24, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, 'the vertical momentum', gb.r - 10, GY(f.py(f.T)) + 26, C('momentum'), { size: 19, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
-    pinned(ctx, gb, GX, GY, tau, f.px, C('momentum'), whole(f.px) + ' kg·m/s');
+    lab.add('the horizontal momentum', gb.r - 10, GY(f.px), -0.3, -1, C('momentum'), 19, 22);
+    lab.block(gb.l - 130, gb.b + 10, gb.r + 40, gb.b + 72);
+    lab.add('the vertical momentum', GX(f.T), GY(f.py(f.T)), 0.9, -0.5, C('momentum'), 19, 18);
+    pinned(ctx, gb, GX, GY, tau, f.px, C('momentum'));
     hollowOrPinned(ctx, gb, GX, GY, tau, f.py(tau), C('momentum'), whole(f.py(tau)) + ' kg·m/s');
+    lab.flush();
+    const pyR = Math.round(pyNow / 100) * 100;
     topline(ctx, !after
-      ? 'The whole probe is climbing, and its horizontal momentum is ' + whole(f.px) + ' kg·m/s.'
-      : 'The horizontal momentum is still ' + whole(f.px) + ' kg·m/s, and the vertical momentum has fallen to ' + whole(f.py(tau)) + ' kg·m/s.');
-    readout(d.readout, `\\kpx = ${tnum(f.px)}\\ \\text{kg·m/s} = \\text{constant}`,
-      'The vertical momentum is ' + whole(f.py(tau)) + ' kg·m/s now and is not constant. The two halves push each other apart with ' + whole(dp.v) + ' kg·m/s, one forward and one backward, so the horizontal momentum of the pair is the momentum the whole probe had. Gravity is an external force and takes ' + whole(M * G) + ' kg·m/s from the vertical momentum every second.');
+      ? 'The whole probe climbs with $\\kpx$ = ' + whole(f.px) + ' kg·m/s while $\\kpy$ falls, now ' + whole(pyR) + ' kg·m/s.'
+      : 'The horizontal momentum $\\kpx$ is still ' + whole(f.px) + ' kg·m/s; the vertical $\\kpy$ has fallen to ' + whole(pyR) + ' kg·m/s.');
+    const hf = f.half + dp.v, hr = f.half - dp.v;
+    readout(d.readout, after
+      ? `\\kpx = ${tnum(hf)} ${hr < 0 ? '-' : '+'} ${tnum(Math.abs(hr))} = ${tnum(f.px)}\\ \\text{kg·m/s}`
+      : `\\kpx = ${tnum(f.px)}\\ \\text{kg·m/s}`,
+      `The probe is drawn ${groups(factor)} times its size; the sky and the gap between the halves are to scale.`);
+    const pts = [];
+    for (let i = 1; i < 12; i++) { const t = (f.T * i) / 12; pts.push({ x: X(f.x(t)), y: Y(f.y(t)), r: 12, name: 'the path of the center of mass' }); }
+    hits = [
+      { x: cm.x, y: cm.y, r: 16, name: 'the center of mass' },
+      after ? { x: front.x + 17 * PS * Math.cos(ang), y: front.y + 17 * PS * Math.sin(ang), r: 26, name: 'the front half, ' + whole(hf) + ' kg·m/s forward' } : { x: cm.x, y: cm.y, r: 36, name: 'the whole probe, 1000 kg' },
+      ...(after ? [{ x: rear.x - 19 * PS * Math.cos(ang), y: rear.y - 19 * PS * Math.sin(ang), r: 26, name: 'the rear half, ' + whole(hr) + ' kg·m/s forward' }] : []),
+      { x: (tail.x + pxEnd.x) / 2, y: tail.y, r: 18, name: 'the horizontal momentum of the system' },
+      { x: tail.x, y: (tail.y + pyEnd.y) / 2, r: 18, name: 'the vertical momentum of the system' },
+      ...pts,
+    ];
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => model().T / 5), draw });
 })();

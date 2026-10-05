@@ -103,26 +103,24 @@ with their types · headline · graph or none · 3D or not
    $\kpone + \kptwo = \kponeprime + \kptwoprime$ with the live numbers;
    small line on $\Delta \kpone = -\Delta \kptwo$. Draws momentum,
    velocity, force and time.
-2. `sim-probe` · replaces **Figure 8.4** (the space probe separating in
-   flight) · momentum-conserved-by-direction, conservation-of-momentum ·
-   **moves**: the probe climbs its parabola, splits into two equal halves
-   at the top, and the halves fly on while the center of mass keeps the
-   parabola the whole probe would have followed; the flight has a time in
-   it, so it loops once per flight with the scrubber · $\kvo$ (200 to 800
-   m/s, default 500, velocity), the launch angle $\theta_0$ (30º to 80º,
-   default 60º, ink) and the separation impulse $\Delta \kp$ (0 to 100,000
-   kg·m/s, default 50,000, momentum) · "The horizontal momentum is still
-   250,000 kg·m/s, and the vertical momentum has fallen to −186,000 kg·m/s."
-   · the sky is a fixed eighty kilometers across by thirty-four high, with a
-   scale along the ground, so that a faster launch draws a longer arc rather
-   than the same one over again, and the momentum arrows in the corner are
-   on a fixed scale of 200 units at 800,000 kg·m/s · graph below: the
-   horizontal and the vertical momentum of the system against time, the
-   first a flat line through the separation and the second a straight fall
-   of slope $-M\kg$ · no 3D. Readout: $\kpx = \text{constant}$ beside
-   $\kpy \neq \text{constant}$ with the numbers. Draws momentum, velocity
-   and time.
-   Manim pass, 2026-09-28: the readout is the one equation $\kpx = \text{constant}$; the vertical momentum is stated in the small line.
+2. `sim-probe` · replaces **Figure 8.4** · momentum-conserved-by-direction,
+   conservation-of-momentum · variation by slider, flow by animation: the two
+   halves visibly part while the cross keeps the parabola · **moves**, the
+   flight with the scrubber · $\kvo$ (200 to 800 m/s, default 500, velocity),
+   $\theta_0$ (30° to 80°, detent at the default 60°, angle), $\Delta \kp$
+   (0 to 100,000 kg·m/s, default 50,000, momentum) · headline "The horizontal
+   momentum $\kpx$ is still 250,000 kg·m/s; the vertical $\kpy$ has fallen to
+   −54,800 kg·m/s." · graph below, $p$ against $t$ fixed at 0 to 200 s by
+   ±800,000 kg·m/s every 400,000, its axis title clear of the ground scale ·
+   2D; the sky on one true scale fitted to the default flight with headroom
+   (35 km by 11 km), a flight past it pinned at its edge; the probe is two
+   halves of one sprite split at the middle, drawn 880 times its size, the
+   factor in the readout's note, and the gap between the halves opens at the
+   sky's scale; $\kpx$ and $\kpy$ of the system in a corner panel on a fixed
+   scale (160 units at 800,000 kg·m/s), labelled through the labeller, which
+   steps round the halves; halves, path and arrows named on hover. Readout:
+   $\kpx = 250{,}000$ before the separation and $\kpx = 175{,}000 + 75{,}000 =
+   250{,}000$ after, the halves' shares adding to the whole.
 3. `sim-scatter` · replaces **Figure 8.5** (a particle scattering straight
    backward from a target) · subatomic-momentum, conservation-of-momentum
    · **moves**: the electron runs in from the left, meets the target and
