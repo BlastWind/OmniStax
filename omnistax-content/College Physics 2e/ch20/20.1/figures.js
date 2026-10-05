@@ -1,10 +1,8 @@
 /* Figures for section 20.1 Current. Boots against the section's text article.
-   Four figures carry the section's six drawings. Two of them move, because
-   the section's two ideas are rates: a current is a charge crossing an area
-   in a time, and a drift velocity is a crawl that has to be told apart from
-   a signal running at nearly the speed of light. The other two are still,
-   because a closed circuit carrying a steady current and a shaded segment of
-   wire are states rather than motions. The figures colour current, charge,
+   Four figures carry the section's six drawings, and all four move, because
+   each book figure draws charge on the move: crossing an area, going round a
+   circuit, creeping down a wire while a signal outruns it, and leaving a
+   shaded segment in the time Δt. The figures colour current, charge,
    time, velocity, electric-field, area and position; the free-charge density
    n and the factor the drift is drawn at are untyped and stay in ink. The
    batteries and lamps of 20.3 and the segment and wire of 20.7 are referents,
@@ -131,38 +129,41 @@ function panel(ctx, x, y, w, h) {
    FIGURE 20.3: the simple circuit and its schematic. The picture is on the
    left and the standard schematic on the right, and the situation the
    picture draws can be changed while the schematic stays exactly as it was,
-   which is the reason the book gives for learning to read one. Still: a
-   closed path carrying a steady current has no clock in it, and the arrows
-   round the loop are notation for a direction rather than a flow the reader
-   has to imagine, so the figure answers its slider and registers no cycle.
+   which is the reason the book gives for learning to read one. The book's
+   arrows round the loop are a flow, so charge runs round both loops at a
+   pace set by the current, out of the positive terminal and back into the
+   negative one; one faint arrow on the schematic keeps the direction in a
+   still frame.
 ===================================================================== */
 (function () {
   const d = sim('sim-simple-circuit', 640);
-  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0.1, max: 12, step: 0.1, value: 3, unit: 'A', dec: 1, aria: 'the current round the circuit' });
+  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 0.1, max: 12, step: 0.1, value: 3, unit: 'A', dec: 1, onInput: () => cy.reset(), aria: 'the current round the circuit' });
   const what = choice(d.controls, {
     label: '\\text{the situation}',
     options: [{ value: 'truck', label: 'a truck battery and a headlight' }, { value: 'pen', label: 'a small battery and a penlight' }],
     value: 'truck', aria: 'what the schematic stands for',
   });
-  /* the loop of the picture and the loop of the schematic, each a closed rectangle walked clockwise */
-  const loop = (l, r, t, b) => [[l, b], [l, t], [r, t], [r, b]];
-  /* an arrowhead every `step` units along a closed path, pointing the way the current runs */
-  function currentRound(ctx, pts, color) {
-    const n = pts.length;
-    for (let i = 0; i < n; i++) {
-      const a = pts[i], b = pts[(i + 1) % n];
-      line(ctx, a[0], a[1], b[0], b[1], PAL.ink, 5);
-    }
-    for (let i = 0; i < n; i++) {
-      const a = pts[i], b = pts[(i + 1) % n], f = i % 2 ? 0.26 : 0.5;     /* the load and the source sit at the middle of the two horizontal sides */
-      const mx = a[0] + (b[0] - a[0]) * f, my = a[1] + (b[1] - a[1]) * f;
-      const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy);
-      arrow(ctx, mx - (dx / L) * 26, my - (dy / L) * 26, mx + (dx / L) * 26, my + (dy / L) * 26, color, 6);
+  const T = 5, cy = cycle(() => T, 1.2);
+  /* Charge round a closed path, which starts inside the source so that the
+     battery or the source symbol hides where the loop closes. The charges sit
+     a whole number of even spacings apart and move a whole number of spacings
+     each loop, so the loop has no seam; a larger current moves more spacings. */
+  function flow(ctx, pts, color) {
+    const segs = pts.map((a, i) => { const b = pts[(i + 1) % pts.length]; return [a, b, Math.hypot(b[0] - a[0], b[1] - a[1])]; });
+    const L = segs.reduce((s, g) => s + g[2], 0), n = Math.max(1, Math.round(L / 60)), sp = L / n;
+    const off = Math.max(1, Math.round(2 * Is.v)) * cy.now() / T;
+    for (let k = 0; k < n; k++) {
+      let s = ((k + off) % n) * sp;
+      for (const [a, b, l] of segs) {
+        if (s > l) { s -= l; continue; }
+        dot(ctx, a[0] + (b[0] - a[0]) * s / l, a[1] + (b[1] - a[1]) * s / l, color, true, 7);
+        break;
+      }
     }
   }
   function draw() {
     const { ctx } = begin(d.c);
-    const cc = C('current'), I = Is.v, big = what.value === 'truck';
+    const cc = C('current'), qc = C('charge'), I = Is.v, big = what.value === 'truck';
     const lamp = big ? 'the headlight' : 'the penlight bulb';
     const cell = big ? 'the truck battery' : 'the small battery';
     const cellC = what.mixColor((v) => F.ref(v === 'truck' ? 'truck-battery' : 'small-battery'));
@@ -171,24 +172,20 @@ function panel(ctx, x, y, w, h) {
        the battery and the lamp grow or shrink into the other situation's */
     text(ctx, '(a) ' + cell + ' and ' + lamp, 90, 122, PAL.ink, { size: 22, weight: 600 });
     const [bl, br, bb, R] = what.mix((v) => (v === 'truck' ? [110, 300, 470, 66] : [150, 260, 420, 38])), bt = 330;
+    const pA = bl + 34, pB = br - 34, lx = 560, ly = 246;
+    const wires = [[[pA, bt - 18], [pA, 170], [lx - R - 36, 170], [lx - R - 6, ly - 12]], [[lx - R - 6, ly + 12], [lx - R - 36, 318], [pB, 318], [pB, bt - 18]]];
+    wires.forEach((w) => { for (let i = 0; i < w.length - 1; i++) line(ctx, w[i][0], w[i][1], w[i + 1][0], w[i + 1][1], PAL.ink, 5); });
+    flow(ctx, [[pB, bt + 40], [pA, bt + 40], ...wires[0], ...wires[1]], qc);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = cellC; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.roundRect(bl, bt, br - bl, bb - bt, 6); ctx.fill(); ctx.stroke();
     ctx.fillStyle = alpha(PAL.ink, 0.08); ctx.fillRect(bl, bt, br - bl, 22); ctx.strokeRect(bl, bt, br - bl, 22);   /* the lid */
     ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.fillRect(bl + 12, bt + 40, br - bl - 24, (bb - bt) * 0.28);       /* the label band */
     ctx.restore();
     text(ctx, cell, (bl + br) / 2, bb + 30, cellC, { size: 18, weight: 600, align: 'center' });
-    const pA = bl + 34, pB = br - 34;
     [[pA, '+'], [pB, '−']].forEach(([x, s]) => {
       ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.roundRect(x - 13, bt - 18, 26, 20, 4); ctx.fill(); ctx.stroke(); ctx.restore();
       text(ctx, s, x, bt - 8, PAL.ink, { size: 22, weight: 600, align: 'center', base: 'middle' });
-    });
-    const lx = 560, ly = 246;
-    const wires = [[[pA, bt - 18], [pA, 170], [lx - R - 36, 170], [lx - R - 6, ly - 12]], [[lx - R - 6, ly + 12], [lx - R - 36, 318], [pB, 318], [pB, bt - 18]]];
-    wires.forEach((w) => {
-      for (let i = 0; i < w.length - 1; i++) line(ctx, w[i][0], w[i][1], w[i + 1][0], w[i + 1][1], PAL.ink, 5);
-      const a = w[1], b = w[2], mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy);
-      arrow(ctx, mx - (dx / L) * 28, my - (dy / L) * 28, mx + (dx / L) * 28, my + (dy / L) * 28, cc, 6);
     });
     /* the lamp: a parabolic reflector open to the right, its lens across the mouth, a bulb at
        the focus on the two leads, and a beam that widens and lengthens with the current */
@@ -221,7 +218,10 @@ function panel(ctx, x, y, w, h) {
     /* (b) the schematic: the same circuit in the standard symbols */
     text(ctx, '(b) the schematic, which is the same for both', 800, 122, PAL.ink, { size: 22, weight: 600 });
     const sl = 830, sr = 1290, st = 200, sb = 470;
-    currentRound(ctx, loop(sl, sr, st, sb), cc);
+    const sq = [[(sl + sr) / 2, sb], [sl, sb], [sl, st], [sr, st], [sr, sb]];
+    sq.forEach((a, i) => { const b = sq[(i + 1) % sq.length]; line(ctx, a[0], a[1], b[0], b[1], PAL.ink, 5); });
+    arrow(ctx, sr - 34, (st + sb) / 2 - 30, sr - 34, (st + sb) / 2 + 30, alpha(cc, 0.55), 5);
+    flow(ctx, sq, qc);
     /* the source at the bottom: a long line for the positive terminal and a short one for the negative */
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.fillRect((sl + sr) / 2 - 44, sb - 40, 88, 80); ctx.restore();
     line(ctx, (sl + sr) / 2 - 16, sb - 34, (sl + sr) / 2 - 16, sb + 34, PAL.ink, 5);
@@ -234,11 +234,13 @@ function panel(ctx, x, y, w, h) {
     for (let i = 0; i < 6; i++) ctx.lineTo(zl + (i + 0.5) * ((zr - zl) / 6), st + (i % 2 ? 20 : -20));
     ctx.lineTo(zr, st); ctx.stroke(); ctx.restore();
     text(ctx, 'the load', (zl + zr) / 2, st - 44, PAL.muted, { size: 18, align: 'center' });
-    label(ctx, 'I = ' + fmt(I, 1) + ' A', sr, (st + sb) / 2, { side: 'left', color: cc, size: 22, gap: 26 });
+    text(ctx, 'I = ' + fmt(I, 1) + ' A', sr - 50, (st + sb) / 2, cc, { size: 22, weight: 600, align: 'right' });
+    dot(ctx, 98, 604, qc, true, 7);
+    text(ctx, 'charge, carried round the way the current runs', 116, 604, PAL.muted, { size: 19 });
     headline(ctx, 'A current of ' + fmt(I, 1) + ' A runs out of the positive terminal, through ' + lamp + ' and back, and its schematic is the same whatever the source and the lamp.');
     readout(d.readout, `\\kdQch = \\kIcur\\kdt = (${fmt(I, 1)}\\ \\text{A})(1.00\\ \\text{s}) = ${fmt(I, 1)}\\ \\text{C}`);
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================
@@ -347,10 +349,11 @@ function panel(ctx, x, y, w, h) {
 /* =====================================================================
    FIGURE 20.7: counting the carriers. A segment of the wire is shaded, and
    every free charge in it leaves the segment in the time Δt, so the segment
-   is as long as the drift velocity carries a charge in that time. Still:
-   the segment's length is a statement about a time rather than a motion in
-   one, the drifting itself has just been animated in the figure above, and
-   the figure answers its three sliders. Two fixed scales, both set once from
+   is as long as the drift velocity carries a charge in that time. One loop
+   is that time: every charge drifts the segment's length, so the ones that
+   began inside it have all crossed the dashed cross-section when the loop
+   ends, and the ones behind them, drawn faint, have taken their place. The
+   v_d arrow is the velocity vector and stays drawn. Two fixed scales, both set once from
    the greatest extents the sliders reach and neither ever changed: 220 units
    to the millimetre along the wire, which is what makes the thinnest segment
    the sliders can ask for still visible, and 62 units to the millimetre
@@ -359,9 +362,10 @@ function panel(ctx, x, y, w, h) {
 ===================================================================== */
 (function () {
   const d = sim('sim-drift-count', 700);
-  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 5, max: 25, step: 0.5, value: 20, unit: 'A', dec: 1, aria: 'the current in the wire' });
-  const Ds = ctl(d.controls, { label: 'D', cls: 'position', min: 1.2, max: 4, step: 0.001, value: 2.053, unit: 'mm', dec: 3, aria: 'the diameter of the wire' });
-  const ns = ctl(d.controls, { label: 'n', cls: '', min: 5, max: 12, step: 0.001, value: 8.342, unit: '× 10²⁸ /m³', dec: 3, aria: 'the number of free charges in each cubic meter' });
+  const Is = ctl(d.controls, { label: '\\kIcur', cls: 'current', min: 5, max: 25, step: 0.5, value: 20, unit: 'A', dec: 1, onInput: () => cy.reset(), aria: 'the current in the wire' });
+  const Ds = ctl(d.controls, { label: 'D', cls: 'position', min: 1.2, max: 4, step: 0.001, value: 2.053, unit: 'mm', dec: 3, onInput: () => cy.reset(), aria: 'the diameter of the wire' });
+  const ns = ctl(d.controls, { label: 'n', cls: '', min: 5, max: 12, step: 0.001, value: 8.342, unit: '× 10²⁸ /m³', dec: 3, onInput: () => cy.reset(), aria: 'the number of free charges in each cubic meter' });
+  const T = 5, cy = cycle(() => T, 1.2);
   const DT = 1.00;                    /* the time the segment empties in, held at one second so the picture keeps its scales */
   const KX = 220, KY = 62;            /* units per millimetre along the wire and across it */
   const XL = 190, XR = 1150, CY = 300, XMAX = 4.2;
@@ -378,13 +382,17 @@ function panel(ctx, x, y, w, h) {
     /* the shaded segment, whose charges all leave it in the time Δt */
     ctx.save(); ctx.fillStyle = alpha(sg, 0.22); ctx.beginPath(); ctx.rect(XL, t, sx - XL, b - t); ctx.fill();
     ctx.strokeStyle = sg; ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
-    crossSection(ctx, sx, t, b, PAL.ink);
-    /* the carriers inside the shaded segment, where there is room to draw any */
-    const cols = Math.max(1, Math.min(7, Math.round((sx - XL) / 36))), rows = Math.max(1, Math.min(4, Math.round((b - t) / 40)));
-    for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
-      const x = XL + ((i + 0.5) * (sx - XL)) / cols, y = t + ((j + 0.5) * (b - t)) / rows;
-      if (sx - XL > 30) carrier(ctx, x, y, F.el('e-'), 8);
+    /* the carriers along the whole wire, a whole number of spacings to the segment, all drifting the
+       segment's length in one loop; those that began inside it are drawn full, the rest faint */
+    const len = sx - XL, k = Math.min(7, Math.round(len / 48)), dx = k ? len / k : 48, ph = Math.min(dx, len) / 2;
+    const shift = len * cy.now() / T, rows = Math.max(1, Math.min(4, Math.round((b - t) / 40)));
+    ctx.save(); ctx.beginPath(); ctx.rect(XL, t, XR - XL, b - t); ctx.clip();
+    for (let i = -Math.ceil(len / dx) - 1; XL + ph + i * dx + shift < XR + 10; i++) for (let j = 0; j < rows; j++) {
+      const x0 = XL + ph + i * dx, inside = x0 >= XL && x0 < sx;
+      ctx.save(); ctx.globalAlpha = inside ? 1 : 0.3; carrier(ctx, x0 + shift, t + ((j + 0.5) * (b - t)) / rows, F.el('e-'), 8); ctx.restore();
     }
+    ctx.restore();
+    crossSection(ctx, sx, t, b, PAL.ink);
     /* the drift, as an arrow above the wire starting over the segment, its name beside it */
     const ay = CY - (4 * KY) / 2 - 36;
     arrow(ctx, XL, ay, XL + 190, ay, vc, 6);
@@ -393,13 +401,14 @@ function panel(ctx, x, y, w, h) {
     /* the segment's length, and the area it crosses, below the wire */
     hbracket(ctx, XL, sx, BMAX + 46, xc, 'x = v_d Δt = ' + fmt(xm, 3) + ' mm');
     text(ctx, 'A = ' + sci(A, 3) + ' m², the area of the cross-section', XL, BMAX + 128, ac, { size: 21, weight: 600 });
-    text(ctx, 'Every free charge in the shaded volume Ax leaves it in Δt = 1.00 s.', XL, BMAX + 166, PAL.muted, { size: 19 });
+    carrier(ctx, XL + 8, BMAX + 166, F.el('e-'), 8);
+    text(ctx, 'Every free charge that begins in the shaded volume Ax has left it when Δt = 1.00 s is up.', XL + 26, BMAX + 166, PAL.muted, { size: 19 });
     text(ctx, 'The length along the wire is drawn at 3.5 times the scale of its diameter, so the segment reads longer than it is.', XL, BMAX + 200, PAL.muted, { size: 19 });
     arrow(ctx, 1000, BMAX + 128, 1200, BMAX + 128, cc, 6);
     text(ctx, 'I = ' + fmt(I, 1) + ' A', 986, BMAX + 128, cc, { size: 21, weight: 600, align: 'right', base: 'middle' });
-    headline(ctx, 'A current of ' + fmt(I, 1) + ' A in a wire ' + fmt(D, 3) + ' mm across, with ' + fmt(ns.v, 3) + ' × 10²⁸ free charges in each cubic meter, drifts at ' + sci(vd, 2) + ' m/s.');
+    headline(ctx, 'A current of ' + fmt(I, 1) + ' A in a wire ' + fmt(D, 3) + ' mm across, with ' + fmt(ns.v, 3) + ' × 10²⁸ free charges in each cubic meter, drifts at ' + sci(vd, 2) + ' m/s and empties the shaded segment in 1.00 s.');
     readout(d.readout, `\\kIcur = n\\kq\\karea\\kvd = (${sciTex(n, 3)}\\ \\text{/m}^3)(${sciTex(QE, 2)}\\ \\text{C})(${sciTex(A, 3)}\\ \\text{m}^2)(${sciTex(vd, 2)}\\ \\text{m/s}) = ${fmt(I, 1)}\\ \\text{A}`);
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 };
