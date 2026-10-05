@@ -41,14 +41,104 @@
   },
   "exercise_notes": "Bloom levels, concept tags, weights and hints are AI-generated. Answers come from the book’s answer key. Problems 2, 4, 6, 8 and 10 have no keyed answer and are left out: the parked car whose temperature rises from 35.0 °C to 45.0 °C, the meat pie whose entropy rises by 480 J/K, the 1.00 kg of water at 40.0 °C placed in contact with 1.00 kg at 20.0 °C, the liquid nitrogen that boils and warms to 20.0 °C, and the 20.0 kg of water at 90.0 °C mixed with 20.0 kg at 10.0 °C. Problem 1 keys only part (a), so the card checks that number and carries the book’s own answer to part (b) in its solution. Of the section’s two AP items, the one on steam and ice brought together is keyed and set as a graded choice; the one asking why a transfer between two reservoirs is irreversible has no key and is kept as an open item with an AI-written suggested approach, marked as such. The suggested approaches to the nine conceptual questions are AI-written and marked; the last of them, the bricks and the pile, is printed again word for word as 15.7’s one conceptual question, and both are kept since the book prints both. The chapter has no Check Your Understanding box, so nothing is set inline. Nothing is taken from another section and nothing is held for a later one. Numeric answers accept 2% tolerance.",
   "figures": [
-    { "id": "sim-state-paths", "kind": "sim", "number": "15.32", "originals": ["/media/ch15/Figure_16_06_02.jpg"], "original_caption": "When a system goes from state 1 to state 2, its entropy changes by the same amount ΔS, whether a hypothetical reversible path is followed or a real irreversible path is taken.", "widths": [300], "draws": ["entropy", "energy", "temperature"] },
-    { "id": "sim-irreversible-transfer", "kind": "sim", "number": "15.33", "originals": ["/media/ch15/Figure_16_06_03.jpg"], "original_caption": "(a) Heat transfer from a hot object to a cold one is an irreversible process that produces an overall increase in entropy. (b) The same final state and, thus, the same change in entropy is achieved for the objects if reversible heat transfer processes occur between the two objects whose temperatures are the same as the temperatures of the corresponding objects in the irreversible process.", "widths": [350], "draws": ["entropy", "energy", "temperature"] },
-    { "id": "sim-two-engines", "kind": "sim", "number": "15.34", "originals": ["/media/ch15/Figure_16_06_04.jpg"], "original_caption": "(a) A Carnot engine working at between 600 K and 100 K has 4000 J of heat transfer and performs 3333 J of work. (b) The 4000 J of heat transfer occurs first irreversibly to a 250 K reservoir and then goes into a Carnot engine. The increase in entropy caused by the heat transfer to a colder reservoir results in a smaller work output of 2400 J. There is a permanent loss of 933 J of energy for the purpose of doing work.", "widths": [400], "draws": ["entropy", "energy", "temperature"] },
-    { "id": "sim-melting-ice", "kind": "sim", "number": "15.35", "originals": ["/media/ch15/Figure_16_06_06.jpg"], "original_caption": "When ice melts, it becomes more disordered and less structured. The systematic arrangement of molecules in a crystal structure is replaced by a more random and less orderly movement of molecules without fixed locations or orientations. Its entropy increases because heat transfer occurs into it. Entropy is a measure of disorder.", "widths": [400], "draws": ["entropy", "energy", "temperature", "mass", "latent-heat"], "conventions": [
-  "H",
-  "O"
+    { "id": "sim-state-paths", "kind": "sim", "number": "15.32", "originals": ["/media/ch15/Figure_16_06_02.jpg"], "original_caption": "When a system goes from state 1 to state 2, its entropy changes by the same amount ΔS, whether a hypothetical reversible path is followed or a real irreversible path is taken.", "widths": [300], "draws": ["entropy", "energy", "temperature"], "ai": [
+  {
+    "model": "claude-opus-5",
+    "effort": "high",
+    "part": "built"
+  },
+  {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "part": "built"
+  },
+  {
+    "model": "claude-opus-5-5",
+    "effort": "low",
+    "part": "built"
+  }
 ] },
-    { "id": "sim-sun-earth", "kind": "sim", "number": "15.36", "originals": ["/media/ch15/Figure_16_06_07.jpg"], "original_caption": "Earth’s entropy may decrease in the process of intercepting a small part of the heat transfer from the Sun into deep space. Entropy for the entire process increases greatly while Earth becomes more structured with living systems and stored energy in various forms.", "widths": [400], "draws": ["entropy", "energy", "temperature"] }
+    { "id": "sim-irreversible-transfer", "kind": "sim", "number": "15.33", "originals": ["/media/ch15/Figure_16_06_03.jpg"], "original_caption": "(a) Heat transfer from a hot object to a cold one is an irreversible process that produces an overall increase in entropy. (b) The same final state and, thus, the same change in entropy is achieved for the objects if reversible heat transfer processes occur between the two objects whose temperatures are the same as the temperatures of the corresponding objects in the irreversible process.", "widths": [350], "draws": ["entropy", "energy", "temperature"], "ai": [
+  {
+    "model": "claude-opus-5",
+    "effort": "high",
+    "part": "built"
+  },
+  {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "part": "built"
+  },
+  {
+    "model": "claude-opus-5-5",
+    "effort": "low",
+    "part": "built"
+  }
+] },
+    { "id": "sim-two-engines", "kind": "sim", "number": "15.34", "originals": ["/media/ch15/Figure_16_06_04.jpg"], "original_caption": "(a) A Carnot engine working at between 600 K and 100 K has 4000 J of heat transfer and performs 3333 J of work. (b) The 4000 J of heat transfer occurs first irreversibly to a 250 K reservoir and then goes into a Carnot engine. The increase in entropy caused by the heat transfer to a colder reservoir results in a smaller work output of 2400 J. There is a permanent loss of 933 J of energy for the purpose of doing work.", "widths": [400], "draws": ["entropy", "energy", "temperature"], "ai": [
+  {
+    "model": "claude-opus-5",
+    "effort": "high",
+    "part": "built"
+  },
+  {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "part": "built"
+  },
+  {
+    "model": "claude-opus-5-5",
+    "effort": "low",
+    "part": "built"
+  }
+] },
+    {
+      "id": "sim-melting-ice",
+      "kind": "sim",
+      "number": "15.35",
+      "originals": ["/media/ch15/Figure_16_06_06.jpg"],
+      "original_caption": "When ice melts, it becomes more disordered and less structured. The systematic arrangement of molecules in a crystal structure is replaced by a more random and less orderly movement of molecules without fixed locations or orientations. Its entropy increases because heat transfer occurs into it. Entropy is a measure of disorder.",
+      "widths": [400],
+      "draws": ["entropy", "energy", "temperature", "mass", "latent-heat"],
+      "conventions": [
+        "H",
+        "O"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5",
+          "effort": "high",
+          "part": "built"
+        },
+        {
+          "model": "claude-fable-5-1",
+          "effort": "low",
+          "part": "built"
+        },
+        {
+          "model": "claude-opus-5-5",
+          "effort": "low",
+          "part": "built"
+        }
+      ]
+    },
+    { "id": "sim-sun-earth", "kind": "sim", "number": "15.36", "originals": ["/media/ch15/Figure_16_06_07.jpg"], "original_caption": "Earth’s entropy may decrease in the process of intercepting a small part of the heat transfer from the Sun into deep space. Entropy for the entire process increases greatly while Earth becomes more structured with living systems and stored energy in various forms.", "widths": [400], "draws": ["entropy", "energy", "temperature"], "ai": [
+  {
+    "model": "claude-opus-5",
+    "effort": "high",
+    "part": "built"
+  },
+  {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "part": "built"
+  },
+  {
+    "model": "claude-opus-5-5",
+    "effort": "low",
+    "part": "built"
+  }
+] }
   ],
   "coverage": [
     { "span": "entropy-defined", "concept": "entropy", "verb": "introduces" },
