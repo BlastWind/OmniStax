@@ -1,0 +1,882 @@
+{
+ "id": "33.4",
+ "module": "m42674",
+ "chapter": "33",
+ "title": "Particles, Patterns, and Conservation Laws",
+ "short": "Particles and conservation laws",
+ "lead": "Particles are sorted into matter and <span data-concept=\"antimatter\">antimatter</span>, into <span data-concept=\"hadron\">hadrons</span> and <span data-concept=\"lepton\">leptons</span>, and into <span data-concept=\"meson\">mesons</span> and <span data-concept=\"baryon\">baryons</span>. This section introduces the quantum numbers, <span data-concept=\"baryon-number\">baryon number</span>, the <span data-concept=\"lepton-family-numbers\">lepton family numbers</span> and <span data-concept=\"strangeness\">strangeness</span>, that are added up before and after a decay, and shows how a particle’s lifetime points to the <span data-concept=\"strong-and-weak-nuclear-forces\">force</span> that makes it decay.",
+ "objectives": [
+  "Define matter and antimatter.",
+  "Outline the differences between hadrons and leptons.",
+  "State the differences between mesons and baryons."
+ ],
+ "summary_html": "<ul><li>All particles of matter have an <span data-concept=\"antimatter\">antimatter</span> counterpart that has the opposite <span data-concept=\"electric-charge\">charge</span> and certain other quantum numbers as seen in Table 33.2. These matter-<span data-concept=\"antimatter\">antimatter</span> pairs are otherwise very similar but will <span data-concept=\"antimatter-and-annihilation\">annihilate</span> when brought together. Known particles can be divided into three major groups—<span data-concept=\"lepton\">leptons</span>, <span data-concept=\"hadron\">hadrons</span>, and <span data-concept=\"carrier-particle\">carrier particles (gauge bosons)</span>.</li><li><span data-concept=\"lepton\">Leptons</span> do not feel the <span data-concept=\"strong-and-weak-nuclear-forces\">strong nuclear force</span> and are further divided into three groups—electron family designated by <span data-concept=\"electron-family-number\">electron family number</span> $L_{e}$; muon family designated by <span data-concept=\"muon-family-number\">muon family number</span> $L_{\\mu}$; and tau family designated by <span data-concept=\"tau-family-number\">tau family number</span> $L_{\\tau}$. The family numbers are not universally conserved due to <span data-concept=\"neutrino\">neutrino</span> oscillations.</li><li><span data-concept=\"hadron\">Hadrons</span> are particles that feel the <span data-concept=\"strong-and-weak-nuclear-forces\">strong nuclear force</span> and are divided into <span data-concept=\"baryon\">baryons</span>, with the <span data-concept=\"baryon-number\">baryon family number</span> $B$ being conserved, and <span data-concept=\"meson\">mesons</span>.</li></ul>",
+ "notes": "The four problems the book leaves unkeyed are left out, and three things are kept as the book prints them: Example 33.3(b) says that charge is conserved “as $s \\to d$,” the key to the problem on the positive tau writes the negative tau’s decay with its two neutrinos the other way round from the text, and that problem shares its source id with Example 33.1.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-05",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s own key. Four of the eight problems have no keyed answer and are left out: the energy released when the negative pion decays, the energy released and the conservation laws in the negative muon’s decay, the sigma zero’s decay, and the energy uncertainty of the negative tau. The problem on the positive tau shares its source id with Example 33.1 in The Yukawa Particle and the Heisenberg Uncertainty Principle Revisited and is set under a card id of its own. The AP item on the kinetic energy a $K^{-}$ needs to make an $\\Omega$ is printed in Accelerators Create Matter from Energy and is set here, beside Table 33.2, which it uses; the AP item on a free neutron’s decay products is unkeyed and kept as an open item with an AI-marked suggested approach. The nine conceptual questions are unkeyed and carry AI-marked suggested approaches. No Check Your Understanding box is printed, so nothing is set inline.",
+ "figures": [
+  {
+   "id": "photo-dirac",
+   "kind": "photo",
+   "number": "33.12",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-annihilation",
+   "kind": "sim",
+   "number": "33.13",
+   "originals": [
+    "/media/ch33/Figure_34_04_02.jpg"
+   ],
+   "original_caption": "When a particle encounters its antiparticle, they annihilate, often producing pure energy in the form of photons. In this case, an electron and a positron convert all their mass into two identical energy rays, which move away in opposite directions to keep total momentum zero as it was before. Similar annihilations occur for other combinations of a particle with its antiparticle, sometimes producing more particles while obeying all conservation laws.",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "energy"
+   ],
+   "conventions": [
+    "e-",
+    "e+",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-decay-checker",
+   "kind": "sim",
+   "draws": [
+    "charge",
+    "time"
+   ],
+   "conventions": [
+    "e-",
+    "nu",
+    "p+",
+    "n0",
+    "Be",
+    "He"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-gell-mann",
+   "kind": "photo",
+   "number": "33.14",
+   "widths": [
+    200
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "xi-minus",
+   "label": "the Ξ⁻",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  },
+  {
+   "id": "lambda-zero",
+   "label": "the Λ⁰",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  },
+  {
+   "id": "pi-minus",
+   "label": "the π⁻",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  },
+  {
+   "id": "k-plus",
+   "label": "the K⁺",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  },
+  {
+   "id": "mu-plus",
+   "label": "the μ⁺",
+   "figures": [
+    "sim-decay-checker"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "particle-zoo",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "quantum-electrodynamics",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "positron",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "antimatter",
+   "verb": "uses"
+  },
+  {
+   "span": "particle-zoo",
+   "concept": "pion",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "antimatter-and-annihilation",
+   "verb": "introduces"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "antimatter",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "positron",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "electric-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "intrinsic-spin",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "photon",
+   "verb": "uses"
+  },
+  {
+   "span": "matter-and-antimatter",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "hadrons-and-leptons",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "hadron",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "lepton",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "bosons-and-fermions",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "boson",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "fermion",
+   "verb": "introduces"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "electromagnetic-force",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "carrier-particle",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "four-basic-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "intrinsic-spin",
+   "verb": "uses"
+  },
+  {
+   "span": "hadrons-and-leptons",
+   "concept": "pauli-exclusion-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "electron-family-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "muon-family-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "tau-family-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "lepton-family-numbers",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "muon-family-number-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "lepton",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "conservation-of-electron-family-number",
+   "verb": "uses"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "beta-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "lepton-families",
+   "concept": "neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "mesons-and-baryons",
+   "verb": "introduces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "baryon",
+   "verb": "introduces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "baryon-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "baryon-number-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "hadron",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "meson",
+   "verb": "uses"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "conservation-of-nucleon-number",
+   "verb": "uses"
+  },
+  {
+   "span": "mesons-and-baryons",
+   "concept": "nucleons",
+   "verb": "uses"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "particle-lifetime-and-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "strangeness",
+   "verb": "introduces"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "strangeness-conservation",
+   "verb": "introduces"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "hadrons-and-leptons",
+   "verb": "reinforces"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "strong-and-weak-nuclear-forces",
+   "verb": "uses"
+  },
+  {
+   "span": "forces-reactions",
+   "concept": "beta-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "check-conservation-in-decays",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "strangeness-conservation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "baryon-number-conservation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "lepton-family-numbers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "particle-lifetime-and-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-numbers-in-two-decays",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "substructure",
+   "concept": "hadrons-and-leptons",
+   "verb": "reinforces"
+  },
+  {
+   "span": "substructure",
+   "concept": "quark",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1858217",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lepton-families",
+   "prompt": "When a $\\pi^{-}$ decays, the products may include:",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A positron.",
+     "A muon.",
+     "A proton.",
+     "All of the above."
+    ],
+    "correct": 1,
+    "hint": "Add up the charge, the baryon number and the lepton family numbers of each possible product, using Table 33.2, and compare them with the $\\pi^{-}$’s.",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3217300",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forces-reactions",
+   "prompt": "Notice in Table 33.2 that the neutron has a half-life of 882 seconds. This is only for a free neutron, not bound with other neutrons and protons in a nucleus. Given the other particles in the table, and using both their charge and masses, what do you think the most likely decay products for a neutron are? Justify your answer.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A proton, an electron and an electron’s antineutrino, $n \\to p + e^{-} + \\bar{\\nu}_{e}$. The products must be lighter in total than the neutron, 939.6 MeV/$c^{2}$, which leaves only the proton (938.3), the electron (0.511) and the neutrinos among the particles of Table 33.2. Baryon number must stay $+1$, so the proton must be one of them; charge must stay 0, so a negative particle must go with it, and the electron is the only one light enough. The electron has $L_{e} = +1$, so an antineutrino with $L_{e} = -1$ must be created to keep the electron family number 0. The mass left over, about 0.8 MeV/$c^{2}$, becomes the kinetic energy of the products."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2783273",
+   "source_section": "33.3",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hadrons-and-leptons",
+   "prompt": "Use the information in Table 33.2 to answer the following questions. Taking only energy and mass into consideration, what is the minimum amount of kinetic energy a $K^{-}$ must have when colliding with a stationary proton to produce an $\\Omega$?",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "240.5 MeV",
+     "120.0 MeV",
+     "15.5 MeV",
+     "57.6 GeV"
+    ],
+    "correct": 0,
+    "hint": "The kinetic energy must make up the difference between the rest energy of the $\\Omega$ and the rest energies of the $K^{-}$ and the proton, from Table 33.2.",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738093112",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "Large quantities of antimatter isolated from normal matter should behave exactly like normal matter. An antiatom, for example, composed of positrons, antiprotons, and antineutrons should have the same atomic spectrum as its matter counterpart. Would you be able to tell it is antimatter by its emission of antiphotons? Explain briefly.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The photon is its own antiparticle, so there is no such thing as an antiphoton that differs from a photon. An antiatom emits ordinary photons of the same energies as its matter counterpart, so its light cannot tell you it is antimatter. Only its annihilation on meeting normal matter would."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738138014",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hadrons-and-leptons",
+   "prompt": "Massless particles are not only neutral, they are chargeless (unlike the neutron). Why is this so?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The neutron is neutral overall but has charge distributed inside it, which gives it a magnetic moment, and that needs parts that can move relative to one another. A massless particle always travels at the speed of light, so no time passes for it and it can have no internal motion or structure, and so no inner distribution of charge. Nor can it carry a net charge: every charged particle known has mass, and a charge is surrounded by an electric field that holds energy, which would itself give the particle mass."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169737778376",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "Massless particles must travel at the speed of light, while others cannot reach this speed. Why are all massless particles stable? If evidence is found that neutrinos spontaneously decay into other particles, would this imply they have mass?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A particle moving at the speed of light has an infinite time dilation: for it no time passes, so it cannot change, and a decay is a change that takes time. Put another way, a massless particle has no rest frame in which it could decay. So a neutrino that decays must travel slower than light and must have mass, and evidence of neutrino decay would imply a nonzero neutrino mass."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169738178590",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lepton-families",
+   "prompt": "When a star erupts in a supernova explosion, huge numbers of electron neutrinos are formed in nuclear reactions. Such neutrinos from the 1987A supernova in the relatively nearby Magellanic Cloud were observed within hours of the initial brightening, indicating they traveled to earth at approximately the speed of light. Explain how this data can be used to set an upper limit on the mass of the neutrino, noting that if the mass is small the neutrinos could travel very close to the speed of light and have a reasonable energy (on the order of MeV).",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Light and neutrinos left the supernova at nearly the same time and traveled about 160,000 light years. A neutrino of mass $m$ and total energy $E$ moves at a speed set by $E = \\gamma m c^{2}$, so the larger its mass for a given energy of a few MeV, the more it lags behind light. Over 160,000 years even a tiny fractional lag adds up to a long delay. Since the neutrinos arrived within hours of the light, the fraction by which their speed falls short of $c$ must be smaller than a few hours divided by 160,000 years, and that sets a large lower limit on $\\gamma = E/mc^{2}$ and so an upper limit on $m$. The spread in arrival times of neutrinos with different energies gives a limit in the same way."
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737918057",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "particle-zoo",
+   "prompt": "Theorists have had spectacular success in predicting previously unknown particles. Considering past theoretical triumphs, why should we bother to perform experiments?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A theory is accepted only after its predictions are confirmed, and the predictions that succeeded were known to succeed only because experiments found the particles. Experiments also find what no theory predicted: the muon, the strange particles and the particle zoo itself were surprises, and they forced new quantum numbers and the quark model. Experiments decide between rival theories, measure the masses, lifetimes and other numbers that theories cannot yet calculate, and test where a successful theory fails, as with neutrino oscillations."
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169737713897",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "What lifetime do you expect for an antineutron isolated from normal matter?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The same as the neutron’s, 882 s. Antimatter has the same mass, intrinsic spin and half-life as its matter counterpart, so an isolated antineutron decays as a free neutron does, into an antiproton, a positron and an electron’s neutrino."
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169737802989",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "Why does the $\\eta^{0}$ meson have such a short lifetime compared to most other mesons?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Table 33.2 lists the $\\eta^{0}$ as its own antiparticle. Like the $\\pi^{0}$, a neutral particle that is its own antiparticle can annihilate itself, turning its mass into photons through the electromagnetic force, and such particles live correspondingly short lives. Mesons that are not their own antiparticles, such as the $\\pi^{\\pm}$ and $K^{\\pm}$, must decay through the much weaker weak force and live far longer."
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id1169737710722",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mesons-and-baryons",
+   "prompt": "(a) Is a hadron always a baryon? (b) Is a baryon always a hadron? (c) Can an unstable baryon decay into a meson, leaving no other baryon?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) No. Hadrons are divided into mesons and baryons, so a hadron may be a meson. (b) Yes. Baryons are one of the two subgroups of hadrons. (c) No. A baryon has $B = +1$ and a meson $B = 0$, so a decay that left no baryon would change the total baryon number, which is always conserved; a baryon always decays to another baryon."
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id1169738086422",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mesons-and-baryons",
+   "prompt": "Explain how conservation of baryon number is responsible for conservation of total atomic mass (total number of nucleons) in nuclear decay and reactions.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Protons and neutrons are the only baryons found in nuclei, and each has $B = +1$, so the total baryon number of a set of nuclei equals the total number of nucleons in them. Nuclear decays and reactions create no other baryons, so conservation of total baryon number means the total number of nucleons, the total mass number, is the same before and after."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169737757656",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "matter-and-antimatter",
+   "prompt": "The $\\pi^{0}$ is its own antiparticle and decays in the following manner: $\\pi^{0} \\to \\gamma + \\gamma$. What is the energy of each $\\gamma$ ray if the $\\pi^{0}$ is at rest when it decays?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 67.5,
+    "unit": "MeV",
+    "hint": "With no momentum before the decay, the two photons leave back to back with equal energies, and together they carry the $\\pi^{0}$’s rest energy from Table 33.2.",
+    "solution": "67.5 MeV"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1169738110551",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hadrons-and-leptons",
+   "prompt": "The mass of a theoretical particle that may be associated with the unification of the electroweak and strong forces is $10^{14}\\;\\text{GeV}/c^{2}$. (a) How many proton masses is this? (b) How many electron masses is this? (This indicates how extremely relativistic the accelerator would have to be in order to make the particle, and how large the relativistic quantity $\\gamma$ would have to be.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the mass in proton masses",
+      "value": 100000000000000.0,
+      "tol": 0.1,
+      "hint": "Divide by the proton’s rest mass from Table 33.2, $938.3\\;\\text{MeV}/c^{2}$, in the same units."
+     },
+     {
+      "part": "(b) the mass in electron masses",
+      "value": 2e+17,
+      "tol": 0.05,
+      "hint": "Divide by the electron’s rest mass, $0.511\\;\\text{MeV}/c^{2}$."
+     }
+    ],
+    "solution": "(a) $1\\times 10^{14}$ (b) $2\\times 10^{17}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738123938",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lepton-families",
+   "prompt": "The decay mode of the positive tau is $\\tau^{+} \\to \\mu^{+} + \\nu_{\\mu} + \\bar{\\nu}_{\\tau}$. (a) What energy is released? (b) Verify that charge and lepton family numbers are conserved. (c) The $\\tau^{+}$ is the antiparticle of the $\\tau^{-}$. Verify that all the decay products of the $\\tau^{+}$ are the antiparticles of those in the decay of the $\\tau^{-}$ given in the text.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a) the energy released",
+    "value": 1671,
+    "unit": "MeV",
+    "hint": "The energy released is the rest energy lost: the $\\tau^{+}$’s rest energy less the products’, from Table 33.2, with the neutrinos’ masses taken as zero.",
+    "solution": "(a) 1671 MeV (b) $Q = 1,\\; Q' = 1 + 0 + 0 = 1.\\; L_{\\tau} = -1;\\; L'_{\\tau} = -1;\\; L_{\\mu} = 0;\\; L'_{\\mu} = -1 + 1 = 0$ (c) $\\tau^{-} \\to \\mu^{-} + \\nu_{\\mu} + \\bar{\\nu}_{\\tau} \\Rightarrow \\mu^{-}$ antiparticle of $\\mu^{+}$; $\\nu_{\\mu}$ of $\\bar{\\nu}_{\\mu}$; $\\bar{\\nu}_{\\tau}$ of $\\nu_{\\tau}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1169737817502",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forces-reactions",
+   "prompt": "(a) What is the uncertainty in the energy released in the decay of a $\\pi^{0}$ due to its short lifetime? (b) What fraction of the decay energy is this, noting that the decay mode is $\\pi^{0} \\to \\gamma + \\gamma$ (so that all the $\\pi^{0}$ mass is destroyed)?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the uncertainty in the energy, in eV",
+      "value": 3.9,
+      "unit": "eV",
+      "tol": 0.05,
+      "hint": "Take the lifetime from Table 33.2 as $\\kdt$ and use $\\kdE\\,\\kdt \\approx h/4\\pi$."
+     },
+     {
+      "part": "(b) the fraction of the decay energy",
+      "value": 2.9e-08,
+      "tol": 0.05,
+      "hint": "Divide by the $\\pi^{0}$’s whole rest energy, 135.0 MeV."
+     }
+    ],
+    "solution": "(a) 3.9 eV (b) $2.9\\times 10^{-8}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "check-conservation-in-decays"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "lepton-family-numbers"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "baryon-number-conservation"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "check-conservation-in-decays"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "baryon-number-conservation"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "lepton-family-numbers"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "accelerators-create-matter"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "hadrons-and-leptons"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "bosons-and-fermions"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "lepton"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "lepton"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "hadrons-and-leptons"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "hadrons-and-leptons"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "particle-lifetime-and-force"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "particle-lifetime-and-force"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "mesons-and-baryons"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "baryon-number-conservation"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "baryon-number-conservation"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "baryon-number"
+  },
+  {
+   "exercise": "p1",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "p2",
+   "concept": "hadrons-and-leptons"
+  },
+  {
+   "exercise": "p2",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "p3",
+   "concept": "lepton-family-numbers"
+  },
+  {
+   "exercise": "p3",
+   "concept": "antimatter-and-annihilation"
+  },
+  {
+   "exercise": "p3",
+   "concept": "check-conservation-in-decays"
+  },
+  {
+   "exercise": "p4",
+   "concept": "particle-lifetime-and-force"
+  },
+  {
+   "exercise": "p4",
+   "concept": "energy-time-uncertainty"
+  }
+ ]
+}
