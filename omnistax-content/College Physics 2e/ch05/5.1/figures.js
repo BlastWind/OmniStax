@@ -27,32 +27,43 @@ function crate(ctx, x, y, w, h, col) {
    with the push and the friction on it, and the interface under one
    corner magnified, where the two surfaces touch only at their high
    spots and touch over more of themselves as they are pressed together.
-   Still: the picture answers its sliders and no clock runs in the idea.
+   Moving: below the breakaway the crate's underside creeps and checks
+   against the floor's peaks; past it the crate slides, its underside
+   lifted so that only the tips skip along.
 ===================================================================== */
 (function () {
   const d = sim('sim-interface', 720);
   const MU_S = 0.45, MU_K = 0.30;
-  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 200, step: 5, value: 100, unit: 'kg', dec: 0, aria: 'mass of the crate' });
-  const Fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 800, step: 10, value: 300, unit: 'N', dec: 0, aria: 'applied force',
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 200, step: 5, value: 100, unit: 'kg', dec: 0, onInput: reset, aria: 'mass of the crate' });
+  const Fp = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 800, step: 10, value: 300, unit: 'N', dec: 0, onInput: reset, aria: 'applied force',
     specials: [{ at: () => MU_S * m.v * G, label: 'breakaway' }] });
-  /* the asperities: one fixed profile for each surface, so the picture is the same every frame */
+  const T = 5, cy = cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  /* the asperities: one fixed profile for each surface, periodic so the crate's can slide past the floor's */
   const LOW = [0.42, 0.78, 0.30, 0.95, 0.55, 0.22, 0.70, 0.38, 0.88, 0.48, 0.26, 0.66, 0.34, 0.80];
   const UP = [0.60, 0.28, 0.84, 0.40, 0.72, 0.34, 0.50, 0.92, 0.24, 0.62, 0.44, 0.86, 0.32, 0.56];
   const bumpy = (hs, u) => {                       /* u runs 0..1 across the panel; a run of rounded peaks */
-    const s = u * hs.length - 0.5; let v = 0;
-    for (let i = 0; i < hs.length; i++) { const q = (s - i) / 0.95; if (Math.abs(q) < 1) v = Math.max(v, hs[i] * (1 - q * q)); }
+    const n = hs.length, s = u * n - 0.5; let v = 0;
+    for (let i = 0; i < n; i++) { const q = ((((s - i) % n) + 1.5 * n) % n - n / 2) / 0.95; if (Math.abs(q) < 1) v = Math.max(v, hs[i] * (1 - q * q)); }
     return v;
   };
   const A = 84, NX = 280;
-  const low = [], up = [];
-  for (let i = 0; i <= NX; i++) { low.push(bumpy(LOW, i / NX) * A); up.push(bumpy(UP, i / NX) * A); }
-  let SMAX = 0; for (let i = 0; i <= NX; i++) SMAX = Math.max(SMAX, low[i] + up[i]);
+  const low = [];
+  for (let i = 0; i <= NX; i++) low.push(bumpy(LOW, i / NX) * A);
   function draw() {
     const { ctx } = begin(d.c);
     const N = m.v * G, fmax = MU_S * N, fk = MU_K * N;
     const sliding = Fp.v > fmax, fr = sliding ? fk : Fp.v;
+    const k = (REDUCED ? T : cy.now()) / T;
+    /* sliding, it starts from rest and gains speed, farther the larger (F − f_k)/m; held, the
+       underside creeps up to 28 units, in proportion to the push, and checks */
+    const slid = sliding ? (30 + 50 * Math.min(1, (Fp.v - fk) / m.v / 10)) * k * k : 0;
+    const sh = sliding ? 5 * slid : 28 * (Fp.v / fmax) * F.ease.smooth(Math.min(1, k / 0.6));
+    const up = [];
+    for (let i = 0; i <= NX; i++) up.push(bumpy(UP, i / NX - sh / 1040) * A);
+    let SMAX = 0; for (let i = 0; i <= NX; i++) SMAX = Math.max(SMAX, low[i] + up[i]);
     /* the crate on the floor */
-    const floorY = 300, cx = 430, cw = 220, ch = 140;
+    const floorY = 300, cx0 = 430, cx = cx0 + slid, cw = 220, ch = 140;
     strip(ctx, 110, 1290, floorY + 16, 30);
     const cc = F.ref('crate'), cfl = F.ref('floor'), car = C('area');
     crate(ctx, cx, floorY - ch / 2, cw, ch, cc);
@@ -65,19 +76,22 @@ function crate(ctx, x, y, w, h, col) {
     text(ctx, 'f = ' + fmt(fr, 0) + ' N', cx - cw / 2 - 10, floorY - 32, C('force'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
     arrow(ctx, cx + 70, floorY - 2, cx + 70, floorY - 110, C('force'), 5);
     text(ctx, 'N = ' + fmt(N, 0) + ' N', cx + cw / 2 + 12, floorY - 20, C('force'), { size: 20, weight: 600 });
-    arrow(ctx, cx + cw / 2 + 40, floorY - ch + 20, cx + cw / 2 + 250, floorY - ch + 20, PAL.muted, 3);
-    text(ctx, sliding ? 'direction of motion' : 'direction of attempted motion', cx + cw / 2 + 40, floorY - ch - 12, PAL.muted, { size: 17 });
+    if (REDUCED) F.faded(ctx, 0.45, [0, 0], () => {
+      arrow(ctx, cx + cw / 2 + 40, floorY - ch + 20, cx + cw / 2 + 250, floorY - ch + 20, PAL.muted, 3);
+      text(ctx, sliding ? 'direction of motion' : 'direction of attempted motion', cx + cw / 2 + 40, floorY - ch - 12, PAL.muted, { size: 17 });
+    });
     /* the coefficients the section's own passage gives for this crate on this floor, named on the
        drawing so that the branch between holding and sliding is never decided by a hidden number */
     text(ctx, 'this crate on this concrete floor: μ_s = ' + fmt(MU_S, 2) + ', μ_k = ' + fmt(MU_K, 2), cx + cw / 2 + 40, floorY - 52, PAL.ink, { size: 19, weight: 600 });
     /* the magnified interface under the near corner of the crate */
     const L = 190, R = 1230, top = 450, bot = 690, LOWBASE = 630;
-    const corner = cx - cw / 2 + 12;
+    const corner = cx0 + 10;               /* a spot of floor the crate covers however far it slides */
     ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([8, 8]);
     ctx.beginPath(); ctx.arc(corner, floorY, 40, 0, Math.PI * 2); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(corner - 34, floorY + 24); ctx.lineTo(L, top); ctx.moveTo(corner + 34, floorY + 24); ctx.lineTo(R, top); ctx.stroke();
     ctx.setLineDash([]); ctx.strokeRect(L, top, R - L, bot - top); ctx.restore();
-    const delta = 36 * (N / (200 * G));              /* pressed harder, the two bodies settle closer together */
+    /* pressed harder, the two bodies settle closer together; set sliding, the crate rises until only the tips skip along */
+    const delta = 36 * (N / (200 * G)) * (sliding ? 1 - 0.65 * F.ease.smooth(Math.min(1, k / 0.2)) : 1);
     const UPBASE = LOWBASE - SMAX + delta;
     const xAt = (i) => L + ((R - L) * i) / NX;
     const yLow = (i) => LOWBASE - low[i];
@@ -111,7 +125,7 @@ function crate(ctx, x, y, w, h, col) {
     readout(d.readout, `\\kfsmax = \\mu_{\\text{s}}\\kN = \\mu_{\\text{s}} \\km\\kg = (${fmt(MU_S, 2)})(${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${fmt(fmax, 0)}\\ \\text{N}`,
       'Once it slides, the friction drops to $\\kfk = \\mu_{\\text{k}}\\kN = ' + fmt(fk, 0) + '\\ \\text{N}$.');
   }
-  register(d.fig, { update: () => {}, draw });
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
 
 /* =====================================================================

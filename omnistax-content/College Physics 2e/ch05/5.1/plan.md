@@ -97,9 +97,13 @@ headline · graph · 3D
    The eyebrow reads "Figure 5.2 + 5.5", both images are its `originals`,
    and the reference to Figure 5.5 in `atomic` links back to it ·
    kinetic-friction, static-friction, atomic-origin-of-friction ·
-   **still**: the idea has no time in it, since the picture answers the
-   mass on the crate and the push on it and nothing accumulates as a clock
-   runs · the mass $m$ on the crate (20 to 200 kg, default 100, ink, since
+   arrows: kinematic (the book's "direction of motion or attempted
+   motion"), symbolic (F, f and N) · **moving**, a 5 s loop with a 1.2 s
+   hold: below the breakaway the crate's underside creeps a little against
+   the floor's peaks in the magnified view and checks, with no motion of
+   the crate itself; past it the crate slides off from rest, its underside
+   rising until only the tips skip along, so fewer high spots touch. The
+   static direction arrow is drawn faint only under reduced motion · the mass $m$ on the crate (20 to 200 kg, default 100, ink, since
    a mass is untyped) and the applied force $\kF$ (0 to 800 N, default 300,
    force) · "N = 980 N presses the surfaces together, and your 300 N push
    is answered by 300 N of friction" · none: the magnified interface is the
