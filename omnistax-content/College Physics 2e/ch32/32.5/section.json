@@ -1,0 +1,884 @@
+{
+ "id": "32.5",
+ "module": "m42659",
+ "chapter": "32",
+ "title": "Fusion",
+ "short": "Fusion",
+ "lead": "<span data-concept=\"nuclear-fusion\">Nuclear fusion</span> joins light nuclei into a larger one. This section reads fusion off the curve of <span data-concept=\"binding-energy-per-nucleon\">binding energy per nucleon</span>, shows why the Coulomb repulsion of two nuclei stands in the way and how tunneling gets past it in the Sun, follows the proton-proton cycle that powers the Sun, and describes the reactions and techniques pursued for fusion power on Earth.",
+ "objectives": [
+  "Define nuclear fusion.",
+  "Discuss processes to achieve practical fusion energy generation."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"nuclear-fusion\">Nuclear fusion</span> is a reaction in which two nuclei are combined to form a larger nucleus. It releases <span data-concept=\"energy\">energy</span> when light nuclei are fused to form medium-mass nuclei.</li><li>Fusion is the source of <span data-concept=\"energy\">energy</span> in stars, with the <span data-concept=\"proton-proton-cycle\">proton-proton cycle</span>, $${}^{1}\\text{H}+{}^{1}\\text{H}\\to {}^{2}\\text{H}+e^{+}+v_{\\text{e}}\\;(0.42\\;\\text{MeV})$$ $${}^{1}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+\\gamma\\;(5.49\\;\\text{MeV})$$ $${}^{3}\\text{He}+{}^{3}\\text{He}\\to {}^{4}\\text{He}+{}^{1}\\text{H}+{}^{1}\\text{H}\\;(12.86\\;\\text{MeV})$$ being the principal sequence of <span data-concept=\"energy\">energy</span>-producing reactions in our Sun.</li><li>The overall effect of the <span data-concept=\"proton-proton-cycle\">proton-proton cycle</span> is $$2e^{-}+4\\,{}^{1}\\text{H}\\to {}^{4}\\text{He}+2v_{\\text{e}}+6\\gamma\\;(26.7\\;\\text{MeV}),$$ where <span data-type=\"energy\">the 26.7 MeV</span> includes the <span data-concept=\"energy\">energy</span> of the <span data-concept=\"positron\">positrons</span> emitted and annihilated.</li><li>Attempts to utilize controlled fusion as an <span data-concept=\"energy\">energy</span> source on Earth are related to deuterium and tritium, and the reactions play important roles.</li><li><span data-concept=\"ignition\">Ignition</span> is the condition under which controlled fusion is self-sustaining; it has not yet been achieved. <span data-concept=\"break-even\">Break-even</span>, in which the fusion <span data-concept=\"energy\">energy</span> output is as great as the external <span data-concept=\"energy\">energy</span> input, has nearly been achieved.</li><li><span data-concept=\"magnetic-confinement-fusion\">Magnetic confinement</span> and <span data-concept=\"inertial-confinement\">inertial confinement</span> are the two methods being developed for heating fuel to sufficiently high <span data-concept=\"temperature\">temperatures</span>, at sufficient <span data-concept=\"density\">density</span>, and for sufficiently long <span data-concept=\"time\">times</span> to achieve ignition. The first method uses magnetic fields and the second method uses the <span data-concept=\"linear-momentum\">momentum</span> of impinging laser beams for confinement.</li></ul>",
+ "notes": "The book’s slips are kept as printed: the second neutron reaction appears as n + ¹H → ²H + γ with 20.68 MeV, the energy of n + ³He → ⁴He + γ (20.58 MeV); ITER’s completion is given as scheduled for 2018; and the caption of Figure 32.18 opens with (a) and has no (b).",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-05",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s own key. Eight unkeyed problems are left out: the energies of the three proton-proton reactions; the conservation of nucleons, charge and electron family number over the whole cycle; the energy of the neutron capture that makes tritium; the deuterium in a swimming pool and the energy it could give; the protons the Sun consumes and the neutrinos reaching the Earth each second; the energy of the carbon cycle; the power, photons and momentum of an inertial-confinement laser pulse; and the temperature that brings two ³He nuclei into contact. The four conceptual questions and two AP items have no key, so their approaches are AI suggestions; the AP item on 2 g of hydrogen becoming 1.985 g of helium is kept with its options and is not graded. Section 32.6 prints an unkeyed exercise under the same source id as this section’s problem on the n + ³He and n + ¹H reactions; it is left out there.",
+ "figures": [
+  {
+   "id": "photo-sun",
+   "kind": "photo",
+   "number": "32.11",
+   "widths": [
+    275
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-fusion-curve",
+   "kind": "sim",
+   "number": "32.12",
+   "originals": [
+    "/media/ch32/Figure_33_05_02a.jpg"
+   ],
+   "original_caption": "Fusion of light nuclei to form medium-mass nuclei destroys mass, because BE/A is greater for the product nuclei. The larger BE/A is, the less mass per nucleon, and so mass is converted to energy and released in these fusion reactions.",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "energy",
+    "mass",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-coulomb-barrier",
+   "kind": "sim",
+   "number": "32.13",
+   "folds": [
+    "32.14"
+   ],
+   "originals": [
+    "/media/ch32/Figure_33_05_03a.jpg",
+    "/media/ch32/Figure_33_05_04a.jpg"
+   ],
+   "original_caption": "(Figure 32.13) Potential energy between two light nuclei graphed as a function of distance between them. If the nuclei have enough kinetic energy to get over the Coulomb repulsion hump, they combine, release energy, and drop into a deep attractive well. Tunneling through the barrier is important in practice. The greater the kinetic energy and the higher the particles get up the barrier (or the lower the barrier), the more likely the tunneling. (Figure 32.14) (a) Two nuclei heading toward each other slow down, then stop, and then fly away without touching or fusing. (b) At higher energies, the two nuclei approach close enough for fusion via tunneling. The probability of tunneling increases as they approach, but they do not have to touch for the reaction to occur.",
+   "widths": [
+    275,
+    350
+   ],
+   "draws": [
+    "energy",
+    "position"
+   ],
+   "conventions": [
+    "p+",
+    "n0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-sun-fusion",
+   "kind": "sim",
+   "number": "32.15",
+   "originals": [
+    "/media/ch32/Figure_33_05_05a.jpg"
+   ],
+   "original_caption": "Nuclear fusion in the Sun converts hydrogen nuclei into helium; fusion occurs primarily at the boundary of the helium core, where temperature is highest and sufficient hydrogen remains. Energy released diffuses slowly to the surface, with the exception of neutrinos, which escape immediately. Energy production remains stable because of negative feedback effects.",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "energy"
+   ],
+   "conventions": [
+    "p+",
+    "n0",
+    "e-",
+    "e+",
+    "nu",
+    "gamma"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-neutrino-detector",
+   "kind": "photo",
+   "number": "32.16",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-supernova",
+   "kind": "photo",
+   "number": "32.17",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-iter",
+   "kind": "photo",
+   "number": "32.18",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-nif",
+   "kind": "photo",
+   "number": "32.19",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "nuclear-fusion",
+   "concept": "nuclear-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "fusion-releases-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "binding-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "binding-energy-per-nucleon",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "binding-energy-per-nucleon-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "mass-energy-equivalence",
+   "verb": "uses"
+  },
+  {
+   "span": "nuclear-fusion",
+   "concept": "mass-defect",
+   "verb": "uses"
+  },
+  {
+   "span": "coulomb-barrier",
+   "concept": "coulomb-barrier-to-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "coulomb-barrier",
+   "concept": "electric-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coulomb-barrier",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "coulomb-barrier",
+   "concept": "short-range-nuclear-force-and-coulomb-repulsion",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-by-tunneling",
+   "concept": "fusion-by-tunneling-and-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "fusion-by-tunneling",
+   "concept": "coulomb-barrier-to-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-by-tunneling",
+   "concept": "quantum-tunneling",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-by-tunneling",
+   "concept": "temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "proton-proton-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "fusion-releases-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "nuclear-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "positron",
+   "verb": "uses"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "electron-neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "proton-proton-cycle",
+   "concept": "nuclear-reaction-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "solar-neutrinos",
+   "concept": "solar-neutrinos",
+   "verb": "introduces"
+  },
+  {
+   "span": "solar-neutrinos",
+   "concept": "proton-proton-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "solar-neutrinos",
+   "concept": "neutrino",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-on-earth",
+   "concept": "deuterium-tritium-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "fusion-on-earth",
+   "concept": "fusion-releases-energy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fusion-on-earth",
+   "concept": "proton-proton-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-on-earth",
+   "concept": "isotopes",
+   "verb": "uses"
+  },
+  {
+   "span": "ignition-and-break-even",
+   "concept": "ignition-and-break-even",
+   "verb": "introduces"
+  },
+  {
+   "span": "ignition-and-break-even",
+   "concept": "ignition",
+   "verb": "introduces"
+  },
+  {
+   "span": "ignition-and-break-even",
+   "concept": "break-even",
+   "verb": "introduces"
+  },
+  {
+   "span": "ignition-and-break-even",
+   "concept": "fusion-by-tunneling-and-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "magnetic-confinement",
+   "concept": "magnetic-and-inertial-confinement",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnetic-confinement",
+   "concept": "magnetic-confinement-fusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnetic-confinement",
+   "concept": "ignition-and-break-even",
+   "verb": "uses"
+  },
+  {
+   "span": "inertial-confinement",
+   "concept": "inertial-confinement",
+   "verb": "introduces"
+  },
+  {
+   "span": "inertial-confinement",
+   "concept": "magnetic-and-inertial-confinement",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inertial-confinement",
+   "concept": "deuterium-tritium-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "fusion-energy-from-a-mass-of-fuel",
+   "verb": "introduces"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "deuterium-tritium-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "atomic-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "fusion-energy-and-power",
+   "concept": "power",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id2720847",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coulomb-barrier",
+   "figure": {
+    "src": "/media/ch32/CNX_APPhysics_32_M5_S01_img.jpg",
+    "alt": "A graph of the total potential energy of two light nuclei against the distance r between them. The curve starts low at small r, labeled attractive nuclear, rises steeply above zero to a peak, then falls more slowly toward zero, labeled repulsive Coulomb. A nucleus on the steep inner slope is labeled pulled together, and one on the outer slope is labeled repelled."
+   },
+   "prompt": "This figure shows a graph of the potential energy between two light nuclei as a function of the distance between them. Fusion can occur between the nuclei if the distance is",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "large so that kinetic energy is low.",
+     "large so that potential energy is low.",
+     "small so that nuclear attractive force can overcome Coulombs repulsion.",
+     "small so that nuclear attractive force cannot overcome Coulombs repulsion."
+    ],
+    "correct": 2,
+    "generated_by": "source",
+    "hint": "Find on the graph where the curve turns down into the well, and ask which force wins there.",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2380256",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-fusion",
+   "prompt": "In a nuclear fusion reaction, 2 g of hydrogen is converted into 1.985 g of helium. What is the energy released? (a) $4.5\\times10^{3}$ J (b) $4.5\\times10^{6}$ J (c) $1.35\\times10^{12}$ J (d) $1.35\\times10^{15}$ J",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The energy released comes from the mass destroyed. Subtract the mass of the helium from the mass of the hydrogen, convert the difference from grams to kilograms, and multiply by $c^{2}$, with $c=3.00\\times10^{8}\\;\\text{m/s}$. Compare your result with the four options; a slip of a factor of 1000 in the units would land on a neighboring option."
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1860061",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "When deuterium and tritium nuclei fuse to produce helium, what else is produced?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "positron",
+     "proton",
+     "α-particle",
+     "neutron"
+    ],
+    "correct": 3,
+    "generated_by": "source",
+    "hint": "Count the protons and neutrons in ${}^{2}\\text{H}+{}^{3}\\text{H}$ and in ${}^{4}\\text{He}$; what is left over?",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id3172212",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "Suppose two deuterium nuclei are fused to produce helium. (a) Write the equation for the fusion reaction. (b) Calculate the difference between the masses of reactants and products. (c) Using the result calculated in (b), find the energy produced in the fusion reaction. Assume that the mass of deuterium is 2.014102 u, the mass of helium is 4.002603 u and 1 u = $1.66\\times10^{-27}$ kg.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "(a) Two deuterium nuclei hold two protons and two neutrons, exactly the nucleons of ${}^{4}\\text{He}$, so the only other product is a $\\gamma$ ray: ${}^{2}\\text{H}+{}^{2}\\text{H}\\to{}^{4}\\text{He}+\\gamma$. (b) The mass of the reactants is twice the mass of deuterium; subtract the mass of helium to find the difference in u. (c) Convert that difference to kilograms with the given value of 1 u and multiply by $c^{2}$ to find the energy in joules; dividing by $1.602\\times10^{-13}\\;\\text{J/MeV}$ lets you compare it with the value the text gives for this reaction."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3229632",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-fusion",
+   "prompt": "Why does the fusion of light nuclei into heavier nuclei release energy?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The binding energy per nucleon rises steeply from the lightest nuclei toward iron. When two light nuclei fuse, the product has a greater binding energy per nucleon than they had, so its nucleons are more tightly bound and the product has less mass than the nuclei that formed it. That missing mass, times $c^{2}$, is the energy released."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1349762",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nuclear-fusion",
+   "prompt": "Energy input is required to fuse medium-mass nuclei, such as iron or cobalt, into more massive nuclei. Explain why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The binding energy per nucleon has its maximum near iron and falls slowly for heavier nuclei. A nucleus made by fusing two medium-mass nuclei would lie past the peak, with less binding energy per nucleon than the nuclei that formed it, so it would have more mass than they had. That mass must be supplied as energy, so the reaction absorbs energy instead of releasing it. The same curve explains why heavy nuclei release energy by splitting."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2991423",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "In considering potential fusion reactions, what is the advantage of the reaction ${}^{2}\\text{H}+{}^{3}\\text{H}\\to {}^{4}\\text{He}+n$ over the reaction ${}^{2}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+n?$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Compare the energies the text gives in parentheses: the deuterium-tritium reaction releases 17.59 MeV, more than five times the 3.27 MeV of the deuterium-deuterium reaction, because its product, ${}^{4}\\text{He}$, is very tightly bound. Both have the same small charges to bring together, so the larger energy per reaction is the advantage, and the tritium it consumes is radioactive waste that is used up as fuel."
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3286002",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "Give reasons justifying the contention made in the text that energy from the fusion reaction ${}^{2}\\text{H}+{}^{2}\\text{H}\\to {}^{4}\\text{He}+\\gamma$ is relatively difficult to capture and utilize.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Momentum is conserved, and the reactants start nearly at rest, so the ${}^{4}\\text{He}$ and the $\\gamma$ ray leave with equal and opposite momenta. The massive helium nucleus moves slowly with that momentum and so carries little kinetic energy, and most of the energy goes to the $\\gamma$ ray. A $\\gamma$ ray is uncharged and very penetrating, so it is hard to stop in a small region and turn into heat, unlike a charged particle that deposits its energy where it is made."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1909383",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proton-proton-cycle",
+   "prompt": "Verify that the total number of nucleons, total charge, and electron family number are conserved for each of the fusion reactions in the proton-proton cycle in ${}^{1}\\text{H}+{}^{1}\\text{H}\\to {}^{2}\\text{H}+e^{+}+v_{\\text{e}}$, ${}^{1}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+\\gamma$, and ${}^{3}\\text{He}+{}^{3}\\text{He}\\to {}^{4}\\text{He}+{}^{1}\\text{H}+{}^{1}\\text{H}$. (List the value of each of the conserved quantities before and after each of the reactions.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $A=1+1=2$, $Z=1+1=1+1$, $\\text{efn}=0=-1+1$ (b) $A=1+2=3$, $Z=1+1=2$, $\\text{efn}=0=0$ (c) $A=3+3=4+1+1$, $Z=2+2=2+1+1$, $\\text{efn}=0=0$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1403001",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proton-proton-cycle",
+   "prompt": "Show that the total energy released in the proton-proton cycle is 26.7 MeV, considering the overall effect in ${}^{1}\\text{H}+{}^{1}\\text{H}\\to {}^{2}\\text{H}+e^{+}+v_{\\text{e}}$, ${}^{1}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+\\gamma$, and ${}^{3}\\text{He}+{}^{3}\\text{He}\\to {}^{4}\\text{He}+{}^{1}\\text{H}+{}^{1}\\text{H}$ and being certain to include the annihilation energy.",
+   "answer": {
+    "type": "number",
+    "value": 26.73,
+    "unit": "MeV",
+    "generated_by": "source",
+    "hint": "The overall effect turns four ${}^{1}\\text{H}$ atoms into one ${}^{4}\\text{He}$ atom; the two electrons that annihilate are already counted in the atomic masses.",
+    "solution": "$E=(m_{\\text{i}}-m_{\\text{f}})c^{2}=[4m({}^{1}\\text{H})-m({}^{4}\\text{He})]c^{2}=[4(1.007825)-4.002603](931.5\\;\\text{MeV})=26.73\\;\\text{MeV}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2447454",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-energy-and-power",
+   "prompt": "The energy produced by the fusion of a 1.00-kg mixture of deuterium and tritium was found in Example 32.2 Calculating Energy and Power from Fusion. Approximately how many kilograms would be required to supply the annual energy use in the United States?",
+   "answer": {
+    "type": "number",
+    "value": 312000.0,
+    "unit": "kg",
+    "tol": 0.1,
+    "generated_by": "source",
+    "hint": "Divide the annual energy use of the United States by the $3.37\\times10^{14}$ J that each kilogram releases.",
+    "solution": "$3.12\\times10^{5}\\;\\text{kg}$ (about 200 tons)"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1586899",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "Two fusion reactions mentioned in the text are $n+{}^{3}\\text{He}\\to {}^{4}\\text{He}+\\gamma$ and $n+{}^{1}\\text{H}\\to {}^{2}\\text{H}+\\gamma$. Both reactions release energy, but the second also creates more fuel. Confirm that the energies produced in the reactions are 20.58 and 2.22 MeV, respectively. Comment on which product nuclide is most tightly bound, ${}^{4}\\text{He}$ or ${}^{2}\\text{H}$.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$n+{}^{3}\\text{He}$",
+      "value": 20.58,
+      "unit": "MeV",
+      "tol": 0.005,
+      "hint": "Use $E=(m_{\\text{i}}-m_{\\text{f}})c^{2}$ with the atomic masses of ${}^{3}\\text{He}$ and ${}^{4}\\text{He}$ and the mass of the neutron."
+     },
+     {
+      "part": "$n+{}^{1}\\text{H}$",
+      "value": 2.224,
+      "unit": "MeV",
+      "tol": 0.005,
+      "hint": "Use the atomic masses of ${}^{1}\\text{H}$ and ${}^{2}\\text{H}$ and the mass of the neutron."
+     }
+    ],
+    "solution": "$E_{1}=(1.008665+3.016030-4.002603)(931.5\\;\\text{MeV})=20.58\\;\\text{MeV}$; $E_{2}=(1.008665+1.007825-2.014102)(931.5\\;\\text{MeV})=2.224\\;\\text{MeV}$. ${}^{4}\\text{He}$ is more tightly bound, since this reaction gives off more energy per nucleon."
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3094380",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-energy-and-power",
+   "prompt": "How many kilograms of water are needed to obtain the 198.8 mol of deuterium, assuming that deuterium is 0.01500% (by number) of natural hydrogen?",
+   "answer": {
+    "type": "number",
+    "value": 11900.0,
+    "unit": "kg",
+    "generated_by": "source",
+    "hint": "Find the moles of hydrogen that hold 198.8 mol of deuterium; each mole of water holds two moles of hydrogen and has a mass of 18.0 g.",
+    "solution": "$1.19\\times10^{4}\\;\\text{kg}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1514231",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proton-proton-cycle",
+   "prompt": "Another set of reactions that result in the fusing of hydrogen into helium in the Sun and especially in hotter stars is called the carbon cycle. It is ${}^{12}\\text{C}+{}^{1}\\text{H}\\to{}^{13}\\text{N}+\\gamma$, ${}^{13}\\text{N}\\to{}^{13}\\text{C}+e^{+}+v_{e}$, ${}^{13}\\text{C}+{}^{1}\\text{H}\\to{}^{14}\\text{N}+\\gamma$, ${}^{14}\\text{N}+{}^{1}\\text{H}\\to{}^{15}\\text{O}+\\gamma$, ${}^{15}\\text{O}\\to{}^{15}\\text{N}+e^{+}+v_{e}$, ${}^{15}\\text{N}+{}^{1}\\text{H}\\to{}^{12}\\text{C}+{}^{4}\\text{He}$. Write down the overall effect of the carbon cycle (as was done for the proton-proton cycle in $2e^{-}+4\\,{}^{1}\\text{H}\\to {}^{4}\\text{He}+2v_{e}+6\\gamma$). Note the number of protons (${}^{1}\\text{H}$) required and assume that the positrons ($e^{+}$) annihilate electrons to form more $\\gamma$ rays.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2e^{-}+4\\,{}^{1}\\text{H}\\to{}^{4}\\text{He}+7\\gamma+2v_{e}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1517224",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "proton-proton-cycle",
+   "prompt": "Verify that the total number of nucleons, total charge, and electron family number are conserved for each of the fusion reactions in the carbon cycle given in the above problem. (List the value of each of the conserved quantities before and after each of the reactions.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(a) $A=12+1=13$, $Z=6+1=7$, $\\text{efn}=0=0$ (b) $A=13=13$, $Z=7=6+1$, $\\text{efn}=0=-1+1$ (c) $A=13+1=14$, $Z=6+1=7$, $\\text{efn}=0=0$ (d) $A=14+1=15$, $Z=7+1=8$, $\\text{efn}=0=0$ (e) $A=15=15$, $Z=8=7+1$, $\\text{efn}=0=-1+1$ (f) $A=15+1=12+4$, $Z=7+1=6+2$, $\\text{efn}=0=0$"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id3154583",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-on-earth",
+   "prompt": "Integrated Concepts: Find the amount of energy given to the ${}^{4}\\text{He}$ nucleus and to the $\\gamma$ ray in the reaction $n+{}^{3}\\text{He}\\to{}^{4}\\text{He}+\\gamma$, using the conservation of momentum principle and taking the reactants to be initially at rest. This should confirm the contention that most of the energy goes to the $\\gamma$ ray.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$\\gamma$ ray",
+      "value": 20.6,
+      "unit": "MeV",
+      "hint": "The $\\gamma$ ray and the ${}^{4}\\text{He}$ nucleus have equal and opposite momenta; a photon's energy is $pc$."
+     },
+     {
+      "part": "${}^{4}\\text{He}$",
+      "value": 0.0568,
+      "unit": "MeV",
+      "hint": "With the momentum $p$ found from the $\\gamma$ ray, the nucleus has kinetic energy $p^{2}/2m$."
+     }
+    ],
+    "solution": "$E_{\\gamma}=20.6\\;\\text{MeV}$; $E_{{}^{4}\\text{He}}=5.68\\times10^{-2}\\;\\text{MeV}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3043838",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fusion-energy-and-power",
+   "prompt": "Integrated Concepts: (a) Estimate the years that the deuterium fuel in the oceans could supply the energy needs of the world. Assume world energy consumption to be ten times that of the United States which is $8\\times10^{19}$ J/y and that the deuterium in the oceans could be converted to energy with an efficiency of 32%. You must estimate or look up the amount of water in the oceans and take the deuterium content to be 0.015% of natural hydrogen to find the mass of deuterium available. Note that approximate energy yield of deuterium is $3.37\\times10^{14}$ J/kg. (b) Comment on how much time this is by any human measure. (It is not an unreasonable result, only an impressive one.)",
+   "answer": {
+    "type": "number",
+    "part": "(a)",
+    "value": 3000000000.0,
+    "unit": "y",
+    "tol": 0.5,
+    "generated_by": "source",
+    "hint": "Estimate the mass of the oceans from their area and average depth, find the mass of deuterium in it, and divide the useful energy it yields by the world's use per year.",
+    "solution": "(a) $3\\times10^{9}\\;\\text{y}$ (b) This is approximately half the lifetime of the Earth."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "coulomb-barrier-to-fusion"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "nuclear-fusion"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "fusion-releases-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "mass-energy-equivalence"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "fusion-releases-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "fusion-releases-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "fusion-releases-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "binding-energy-per-nucleon-curve"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "p1",
+   "concept": "proton-proton-cycle"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p1",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p2",
+   "concept": "proton-proton-cycle"
+  },
+  {
+   "exercise": "p2",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p3",
+   "concept": "fusion-energy-from-a-mass-of-fuel"
+  },
+  {
+   "exercise": "p4",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p4",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "p4",
+   "concept": "binding-energy-per-nucleon"
+  },
+  {
+   "exercise": "p5",
+   "concept": "fusion-energy-from-a-mass-of-fuel"
+  },
+  {
+   "exercise": "p5",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p6",
+   "concept": "proton-proton-cycle"
+  },
+  {
+   "exercise": "p6",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conservation-of-nucleon-number"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conservation-of-electron-family-number"
+  },
+  {
+   "exercise": "p8",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p8",
+   "concept": "deuterium-tritium-fusion"
+  },
+  {
+   "exercise": "p9",
+   "concept": "fusion-energy-from-a-mass-of-fuel"
+  },
+  {
+   "exercise": "p9",
+   "concept": "deuterium-tritium-fusion"
+  }
+ ]
+}
