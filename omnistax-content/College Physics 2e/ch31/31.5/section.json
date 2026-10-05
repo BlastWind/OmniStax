@@ -1,0 +1,812 @@
+{
+ "id": "31.5",
+ "module": "m42636",
+ "chapter": "31",
+ "title": "Half-Life and Activity",
+ "short": "Half-life and activity",
+ "lead": "Each radioactive nucleus decays at random, yet a sample of many loses its nuclei on a steady schedule. This section measures that schedule by the <span data-concept=\"half-life\">half-life</span> and the <span data-concept=\"decay-constant\">decay constant</span>, uses it to find the age of old objects from the carbon-14 they keep, and defines the <span data-concept=\"activity\">activity</span> of a source, its rate of decay.",
+ "objectives": [
+  "Define half-life.",
+  "Define dating.",
+  "Calculate age of old objects by radioactive dating."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"half-life\">Half-life</span> $\\kthalf$ is the <span data-concept=\"time\">time</span> in which there is a 50% chance that a nucleus will decay. The number of nuclei $N$ as a function of <span data-concept=\"time\">time</span> is $$N = N_0e^{-\\klamdec\\kt},$$ where $N_0$ is the number present at $\\kt = 0$, and $\\klamdec$ is the <span data-concept=\"decay-constant\">decay constant</span>, related to the <span data-concept=\"half-life\">half-life</span> by $$\\klamdec = \\frac{0.693}{\\kthalf}.$$</li><li>One of the applications of radioactive decay is radioactive dating, in which the age of a material is determined by the amount of radioactive decay that occurs. The <span data-concept=\"activity\">rate of decay</span> is called the <span data-concept=\"activity\">activity</span> $\\kRact$: $$\\kRact = \\frac{\\Delta N}{\\kdt}.$$</li><li>The SI unit for $\\kRact$ is the becquerel (Bq), defined by $$1\\;\\text{Bq} = 1\\;\\text{decay/s}.$$</li><li>$\\kRact$ is also expressed in terms of curies (Ci), where $$1\\;\\text{Ci} = 3.70\\times 10^{10}\\;\\text{Bq}.$$</li><li>The <span data-concept=\"activity\">activity</span> $\\kRact$ of a source is related to $N$ and $\\kthalf$ by $$\\kRact = \\frac{0.693N}{\\kthalf}.$$</li><li>Since $N$ has an exponential behavior as in the equation $N = N_0e^{-\\klamdec\\kt}$, the <span data-concept=\"activity\">activity</span> also has an exponential behavior, given by $$\\kRact = \\kRoact e^{-\\klamdec\\kt},$$ where $\\kRoact$ is the <span data-concept=\"activity\">activity</span> at $\\kt = 0$.</li></ul>",
+ "notes": "The PhET link Alpha Decay is left out; kept as printed are carbon-14 produced when solar neutrinos (not neutrons) strike nitrogen-14, the key to the AP item on polonium-215 dividing by 0.00173 s for the 1.78-ms half-life although its result is that of 1.78 ms, and the key to the Fiestaware problem's part (c) written as a bare sum of money.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-05",
+ "exercises_lead": "Data from the appendices and the periodic table may be needed for these problems.",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s own key. The AP item on the atoms left after three half-lives has its key commented out of the book’s source, so it is set as an open item with its options and an AI-marked suggested approach. The four conceptual questions on binding energy printed here (a bound system’s smaller mass, decay toward tighter binding, the electrons’ binding energy in BE, and the range of the nuclear force) are set in 31.6, which introduces binding energy. The three conceptual questions kept are unkeyed and carry AI-marked suggested approaches. The thirteen problems the book leaves unkeyed are left out: the ⁶⁰Co source labeled 4.00 mCi, the activity of a gram of living carbon, the ¹³¹I in cow’s milk, the half-life of ²³⁵U, the uranium-glass vase, the ⁴⁰K left since Earth formed, natural uranium when Earth formed, the radium-painted dial, the depleted-uranium shells, the 4000-kg block of ²³⁸U, the Construct Your Own Problem on a space probe’s power, and the Unreasonable Results problems on primordial ²³⁶U and ²³⁴U. No Check Your Understanding box is printed, so nothing is set inline.",
+ "figures": [
+  {
+   "id": "sim-decay-curve",
+   "kind": "sim",
+   "number": "31.19",
+   "originals": [
+    "/media/ch31/Figure_32_05_01a.jpg"
+   ],
+   "original_caption": "Radioactive decay reduces the number of radioactive nuclei over time. In one half-life t½, the number decreases to half of its original value. Half of what remains decay in the next half-life, and half of those in the next, and so on. This is an exponential decay, as seen in the graph of the number of nuclei present as a function of time.",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "time",
+    "decay-constant"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-shroud",
+   "kind": "photo",
+   "number": "31.20",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "photo-chernobyl",
+   "kind": "photo",
+   "number": "31.21",
+   "widths": [
+    250
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-carbon-dating",
+   "kind": "sim",
+   "draws": [
+    "time",
+    "decay-constant",
+    "activity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "lifetimes",
+   "concept": "nuclear-radioactivity",
+   "verb": "uses"
+  },
+  {
+   "span": "half-life",
+   "concept": "half-life",
+   "verb": "introduces"
+  },
+  {
+   "span": "half-life",
+   "concept": "exponential-decay-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "half-life",
+   "concept": "decay-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "half-life",
+   "concept": "nucleus",
+   "verb": "uses"
+  },
+  {
+   "span": "half-life",
+   "concept": "time",
+   "verb": "uses"
+  },
+  {
+   "span": "radioactive-dating",
+   "concept": "radioactive-dating-technique",
+   "verb": "introduces"
+  },
+  {
+   "span": "radioactive-dating",
+   "concept": "carbon-14-dating",
+   "verb": "introduces"
+  },
+  {
+   "span": "radioactive-dating",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "shroud-example",
+   "concept": "radioactive-dating",
+   "verb": "introduces"
+  },
+  {
+   "span": "shroud-example",
+   "concept": "exponential-decay-law",
+   "verb": "uses"
+  },
+  {
+   "span": "shroud-example",
+   "concept": "decay-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "rock-dating",
+   "concept": "radioactive-dating-technique",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rock-dating",
+   "concept": "parent-daughter-decay-series",
+   "verb": "uses"
+  },
+  {
+   "span": "activity",
+   "concept": "activity",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity",
+   "concept": "becquerel",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity",
+   "concept": "curie",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity",
+   "concept": "half-life",
+   "verb": "uses"
+  },
+  {
+   "span": "carbon-activity-example",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "reinforces"
+  },
+  {
+   "span": "carbon-activity-example",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "carbon-activity-example",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "carbon-activity-example",
+   "concept": "carbon-14-dating",
+   "verb": "uses"
+  },
+  {
+   "span": "artificial-radioactivity",
+   "concept": "radioactive",
+   "verb": "uses"
+  },
+  {
+   "span": "artificial-radioactivity",
+   "concept": "curie",
+   "verb": "uses"
+  },
+  {
+   "span": "chernobyl-example",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "reinforces"
+  },
+  {
+   "span": "chernobyl-example",
+   "concept": "mole",
+   "verb": "uses"
+  },
+  {
+   "span": "chernobyl-example",
+   "concept": "avogadros-number",
+   "verb": "uses"
+  },
+  {
+   "span": "chernobyl-example",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "activity-decays",
+   "concept": "activity-decays-exponentially",
+   "verb": "introduces"
+  },
+  {
+   "span": "activity-decays",
+   "concept": "exponential-decay-law",
+   "verb": "uses"
+  },
+  {
+   "span": "activity-decays",
+   "concept": "activity-from-number-and-half-life",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1705205",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "half-life",
+   "prompt": "A radioactive sample has N atoms initially. After 3 half-lives have elapsed, how many atoms remain? (a) N/3 (b) N/6 (c) N/8 (d) N/27",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The book prints no answer for this item, so work it through for yourself. Each half-life leaves half of what was there when it began, so follow the count one half-life at a time: $N$ becomes $N/2$ after the first, half of that after the second, and half again after the third. Then see which option you have reached. Dividing by 3, 6 or 27 would treat the three half-lives as if each took away a third or a fixed amount, which is not how decay works."
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1400928",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "half-life",
+   "prompt": "When ${}^{215}_{84}\\text{Po}$ decays, the product is ${}^{211}_{82}\\text{Pb}$. The half-life of this decay process is 1.78 ms. If the initial sample contains $3.4\\times 10^{17}$ parent nuclei, how many are remaining after 35 ms have elapsed? What kind of decay process is this (alpha, beta, or gamma)?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 410000000000.0,
+    "part": "number remaining",
+    "hint": "Use $N = N_0e^{-\\klamdec\\kt}$ with $\\klamdec = 0.693/\\kthalf$, and compare the mass and atomic numbers of the parent and the daughter to name the decay.",
+    "solution": "This must be alpha decay since 4 nucleons (2 positive charges) are lost from the parent nucleus. The number remaining is found from: $N(\\kt) = N_0e^{-0.693\\kt/\\kthalf} = 3.4\\times 10^{17}e^{-(0.693)(0.035)/0.00173}$, so $N(\\kt) = 4.1\\times 10^{11}$ nuclei."
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2655147",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rock-dating",
+   "prompt": "In a $3\\times 10^{9}$-year-old rock that originally contained some ${}^{238}\\text{U}$, which has a half-life of $4.5\\times 10^{9}$ years, we expect to find some ${}^{238}\\text{U}$ remaining in it. Why are ${}^{226}\\text{Ra}$, ${}^{222}\\text{Rn}$, and ${}^{210}\\text{Po}$ also found in such a rock, even though they have much shorter half-lives (1600 years, 3.8 days, and 138 days, respectively)?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Radium, radon and polonium are members of the decay series of ${}^{238}\\text{U}$, which runs through them on its way to ${}^{206}\\text{Pb}$. Any of them present when the rock formed is long gone, but the uranium is still decaying, so each of them is made afresh all the time. A short-lived member decays about as fast as it is made, so a small, steady amount of it stays in the rock for as long as the uranium lasts."
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2404373",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "half-life",
+   "prompt": "Does the number of radioactive nuclei in a sample decrease to <em>exactly</em> half its original value in one half-life? Explain in terms of the statistical nature of radioactive decay.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The half-life is the time in which each nucleus has a 50% chance of decaying, and each nucleus decays at random, independently of the others, like a coin coming up heads. The number that decay in one half-life is therefore close to half only on average; in any one sample it scatters about half, by an amount near $\\sqrt{N}$. For a very large $N$ that scatter is a tiny fraction of the whole, so the count is very nearly half, while for a small sample it can be noticeably more or less."
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1439074",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "Radioactivity depends on the nucleus and not the atom or its chemical state. Why, then, is one kilogram of uranium more radioactive than one kilogram of uranium hexafluoride?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The activity of a source is proportional to the number of radioactive nuclei in it, $\\kRact = 0.693N/\\kthalf$. In a kilogram of uranium hexafluoride, $\\text{UF}_6$, part of the mass is fluorine, which is not radioactive: each molecule has a mass of about 352 u, of which only about 238 u is uranium. So a kilogram of the compound holds only about two thirds as many uranium nuclei as a kilogram of uranium, and it has about two thirds of the activity, although each uranium nucleus decays just as it would in the metal."
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2391582",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radioactive-dating",
+   "prompt": "An old campfire is uncovered during an archaeological dig. Its charcoal is found to contain less than 1/1000 the normal amount of ${}^{14}\\text{C}$. Estimate the minimum age of the charcoal, noting that $2^{10} = 1024$.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 57300,
+    "unit": "y",
+    "hint": "Each half-life halves the ${}^{14}\\text{C}$ left, so count how many half-lives of 5730 y bring it below 1/1000.",
+    "solution": "57,300 y"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2392383",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "(a) Calculate the activity $\\kRact$ in curies of 1.00 g of ${}^{226}\\text{Ra}$. (b) Discuss why your answer is not exactly 1.00 Ci, given that the curie was originally supposed to be exactly the activity of a gram of radium.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.988,
+    "unit": "Ci",
+    "part": "(a)",
+    "hint": "Find the number of nuclei in 1.00 g from the molar mass, 226 g/mol, then use $\\kRact = 0.693N/\\kthalf$ with the half-life of ${}^{226}\\text{Ra}$, 1600 y, and convert to curies.",
+    "solution": "(a) 0.988 Ci (b) The half-life of ${}^{226}\\text{Ra}$ is now better known."
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3408229",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "Mantles for gas lanterns contain thorium, because it forms an oxide that can survive being heated to incandescence for long periods of time. Natural thorium is almost 100% ${}^{232}\\text{Th}$, with a half-life of $1.405\\times 10^{10}\\;\\text{y}$. If an average lantern mantle contains 300 mg of thorium, what is its activity?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1220.0,
+    "unit": "Bq",
+    "hint": "Find the number of ${}^{232}\\text{Th}$ nuclei in 300 mg, then use $\\kRact = 0.693N/\\kthalf$ with the half-life in seconds.",
+    "solution": "$1.22\\times 10^{3}\\;\\text{Bq}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2070004",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "(a) Natural potassium contains ${}^{40}\\text{K}$, which has a half-life of $1.277\\times 10^{9}$ y. What mass of ${}^{40}\\text{K}$ in a person would have a decay rate of 4140 Bq? (b) What is the fraction of ${}^{40}\\text{K}$ in natural potassium, given that the person has 140 g in his body? (These numbers are typical for a 70-kg adult.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 16.0,
+      "unit": "mg",
+      "hint": "Solve $\\kRact = 0.693N/\\kthalf$ for $N$, then turn the number of nuclei into a mass with the molar mass, 40 g/mol."
+     },
+     {
+      "part": "(b)",
+      "value": 0.0114,
+      "unit": "%"
+     }
+    ],
+    "solution": "(a) 16.0 mg (b) 0.0114%"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2011543",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "${}^{50}\\text{V}$ has one of the longest known radioactive half-lives. In a difficult experiment, a researcher found that the activity of 1.00 kg of ${}^{50}\\text{V}$ is 1.75 Bq. What is the half-life in years?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.48e+17,
+    "unit": "y",
+    "hint": "Find the number of nuclei in 1.00 kg, then solve $\\kRact = 0.693N/\\kthalf$ for $\\kthalf$ and convert seconds to years.",
+    "solution": "$1.48\\times 10^{17}\\;\\text{y}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2440734",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity-decays",
+   "prompt": "A tree falls in a forest. How many years must pass before the ${}^{14}\\text{C}$ activity in 1.00 g of the tree’s carbon drops to 1.00 decay per hour?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 56000.0,
+    "unit": "y",
+    "hint": "A gram of living carbon gives 0.250 Bq. Solve $\\kRact = \\kRoact e^{-\\klamdec\\kt}$ for $\\kt$, with both activities in the same unit.",
+    "solution": "$5.6\\times 10^{4}\\;\\text{y}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1935760",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity-decays",
+   "prompt": "A 5000-Ci ${}^{60}\\text{Co}$ source used for cancer therapy is considered too weak to be useful when its activity falls to 3500 Ci. How long after its manufacture does this happen?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.71,
+    "unit": "y",
+    "hint": "Solve $\\kRact = \\kRoact e^{-\\klamdec\\kt}$ for $\\kt$, with $\\klamdec = 0.693/\\kthalf$ and the half-life of ${}^{60}\\text{Co}$, 5.27 y.",
+    "solution": "2.71 y"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id2681183",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "The $\\beta^{-}$ particles emitted in the decay of ${}^{3}\\text{H}$ (tritium) interact with matter to create light in a glow-in-the-dark exit sign. At the time of manufacture, such a sign contains 15.0 Ci of ${}^{3}\\text{H}$. (a) What is the mass of the tritium? (b) What is its activity 5.00 y after manufacture?",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.56,
+      "unit": "mg",
+      "hint": "Solve $\\kRact = 0.693N/\\kthalf$ for $N$ with the half-life of tritium, 12.33 y, then use its molar mass, 3.02 g/mol."
+     },
+     {
+      "part": "(b)",
+      "value": 11.3,
+      "unit": "Ci",
+      "hint": "Use $\\kRact = \\kRoact e^{-\\klamdec\\kt}$."
+     }
+    ],
+    "solution": "(a) 1.56 mg (b) 11.3 Ci"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2935919",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity-decays",
+   "prompt": "(a) The ${}^{210}\\text{Po}$ source used in a physics laboratory is labeled as having an activity of $1.0\\;\\mu\\text{Ci}$ on the date it was prepared. A student measures the radioactivity of this source with a Geiger counter and observes 1500 counts per minute. She notices that the source was prepared 120 days before her lab. What fraction of the decays is she observing with her apparatus? (b) Identify some of the reasons that only a fraction of the $\\alpha$ s emitted are observed by the detector.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.00123,
+    "part": "(a)",
+    "hint": "Find the activity 120 days on from $\\kRact = \\kRoact e^{-\\klamdec\\kt}$ with the half-life of ${}^{210}\\text{Po}$, 138 days, and compare it with the counts per second.",
+    "solution": "(a) $1.23\\times 10^{-3}$ (b) Only part of the emitted radiation goes in the direction of the detector. Only a fraction of that causes a response in the detector. Some of the emitted radiation (mostly $\\alpha$ particles) is observed within the source. Some is absorbed within the source, some is absorbed by the detector, and some does not penetrate the detector."
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "eip-525",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "The ceramic glaze on a red-orange Fiestaware plate is $\\text{U}_2\\text{O}_3$ and contains 50.0 grams of ${}^{238}\\text{U}$, but very little ${}^{235}\\text{U}$. (a) What is the activity of the plate? (b) Calculate the total energy that will be released by the ${}^{238}\\text{U}$ decay. (c) If energy is worth 12.0 cents per $\\text{kW}\\cdot\\text{h}$, what is the monetary value of the energy emitted? (These plates went out of production some 30 years ago, but are still available as collectibles.)",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.68e-05,
+      "unit": "Ci",
+      "hint": "Use $\\kRact = 0.693N/\\kthalf$ with the half-life of ${}^{238}\\text{U}$, $4.468\\times 10^{9}$ y."
+     },
+     {
+      "part": "(b)",
+      "value": 86500000000.0,
+      "unit": "J",
+      "hint": "Every nucleus eventually decays; multiply their number by the energy of one $\\alpha$ decay of ${}^{238}\\text{U}$, 4.27 MeV."
+     },
+     {
+      "part": "(c)",
+      "value": 2900.0,
+      "unit": "dollars"
+     }
+    ],
+    "solution": "(a) $1.68\\times 10^{-5}\\;\\text{Ci}$ (b) $8.65\\times 10^{10}\\;\\text{J}$ (c) ＄2.9 × 10³"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "eip-660",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity-decays",
+   "prompt": "The <em>Galileo</em> space probe was launched on its long journey past several planets in 1989, with an ultimate goal of Jupiter. Its power source is 11.0 kg of ${}^{238}\\text{Pu}$, a by-product of nuclear weapons plutonium production. Electrical energy is generated thermoelectrically from the heat produced when the 5.59-MeV $\\alpha$ particles emitted in each decay crash to a halt inside the plutonium and its shielding. The half-life of ${}^{238}\\text{Pu}$ is 87.7 years. (a) What was the original activity of the ${}^{238}\\text{Pu}$ in becquerel? (b) What power was emitted in kilowatts? (c) What power was emitted 12.0 y after launch? You may neglect any extra energy from daughter nuclides and any losses from escaping $\\gamma$ rays.",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 6970000000000000.0,
+      "unit": "Bq",
+      "hint": "Use $\\kRact = 0.693N/\\kthalf$ for the number of nuclei in 11.0 kg."
+     },
+     {
+      "part": "(b)",
+      "value": 6.24,
+      "unit": "kW",
+      "hint": "The power is the number of decays per second times the energy of each."
+     },
+     {
+      "part": "(c)",
+      "value": 5.67,
+      "unit": "kW",
+      "hint": "The power falls with the activity, $\\kRact = \\kRoact e^{-\\klamdec\\kt}$."
+     }
+    ],
+    "solution": "(a) $6.97\\times 10^{15}\\;\\text{Bq}$ (b) 6.24 kW (c) 5.67 kW"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "eip-68",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "activity",
+   "prompt": "Unreasonable Results. The manufacturer of a smoke alarm decides that the smallest current of $\\alpha$ radiation he can detect is $1.00\\;\\mu\\text{A}$. (a) Find the activity in curies of an $\\alpha$ emitter that produces a $1.00\\;\\mu\\text{A}$ current of $\\alpha$ particles. (b) What is unreasonable about this result? (c) What assumption is responsible?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 84.5,
+    "unit": "Ci",
+    "part": "(a)",
+    "hint": "Each $\\alpha$ carries a charge of $2(1.60\\times 10^{-19}\\;\\text{C})$, so the number of decays per second is the current divided by that charge.",
+    "solution": "(a) 84.5 Ci (b) An extremely large activity, many orders of magnitude greater than permitted for home use. (c) The assumption of $1.00\\;\\mu\\text{A}$ is unreasonably large. Other methods can detect much smaller decay rates."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "exponential-decay-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "exponential-decay-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "decay-constant"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "alpha-decay"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "parent-daughter-decay-series"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "exponential-decay-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p1",
+   "concept": "radioactive-dating"
+  },
+  {
+   "exercise": "p1",
+   "concept": "carbon-14-dating"
+  },
+  {
+   "exercise": "p1",
+   "concept": "half-life"
+  },
+  {
+   "exercise": "p2",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p2",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p2",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p3",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p3",
+   "concept": "becquerel"
+  },
+  {
+   "exercise": "p3",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p4",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p4",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p5",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p5",
+   "concept": "becquerel"
+  },
+  {
+   "exercise": "p5",
+   "concept": "mole"
+  },
+  {
+   "exercise": "p6",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p6",
+   "concept": "radioactive-dating"
+  },
+  {
+   "exercise": "p6",
+   "concept": "carbon-14-dating"
+  },
+  {
+   "exercise": "p7",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p7",
+   "concept": "decay-constant"
+  },
+  {
+   "exercise": "p8",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p8",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p8",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p9",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p9",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p10",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p10",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p10",
+   "concept": "nuclear-reaction-energy"
+  },
+  {
+   "exercise": "p11",
+   "concept": "activity-from-number-and-half-life"
+  },
+  {
+   "exercise": "p11",
+   "concept": "activity-decays-exponentially"
+  },
+  {
+   "exercise": "p11",
+   "concept": "power"
+  },
+  {
+   "exercise": "p12",
+   "concept": "activity"
+  },
+  {
+   "exercise": "p12",
+   "concept": "curie"
+  },
+  {
+   "exercise": "p12",
+   "concept": "electric-current"
+  }
+ ]
+}
