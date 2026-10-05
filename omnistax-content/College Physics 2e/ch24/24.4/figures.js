@@ -11,7 +11,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['24.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, label, hbracket, vbracket, axes, curve, pinned, fitScale } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 const TAU = Math.PI * 2;
 const CLIGHT = 3.00e8;                   /* the speed of light, in metres per second */
@@ -21,7 +21,7 @@ const MU0 = 4 * Math.PI * 1e-7;          /* the permeability of free space */
 const iave = (E0) => (CLIGHT * EPS0 * E0 * E0) / 2;
 
 const SUPS = '\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079';
-const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => SUPS[+c]);
+const supOf = (e) => String(e).replace(/-/g, '\u207B').replace(/[0-9]/g, (c) => SUPS[+c]);
 /* a number as a × 10^b for the canvas, and the same for KaTeX */
 function sci(x, dp) {
   if (!(Math.abs(x) > 0)) return '0';
@@ -110,7 +110,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     const uc = 1 / (4 * CYCLES);                        /* the first crest */
     const ec = PT(uc, E0 * UPV, 0), bc = PT(uc, 0, B0 * UPB);
     text(ctx, 'E', ec[0] - 16, ec[1] - 16, C('electric-field'), { size: 24, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'B', bc[0] - 16, bc[1] + 4, C('magnetic-field'), { size: 24, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'B', bc[0], bc[1] + 26, C('magnetic-field'), { size: 24, weight: 600, align: 'center', bg: PAL.panel });
   }
 
   function drawBars(ctx, st) {
@@ -135,7 +135,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     drawFlat(ctx, st);
     readout(d.readout,
       `\\frac{{\\kIave}'}{\\kIave} = \\left(\\frac{{\\kEfo}'}{\\kEfo}\\right)^2 = \\left(\\frac{${fmt(st.E2, 0)}\\ \\text{V/m}}{${fmt(st.E1, 0)}\\ \\text{V/m}}\\right)^2 = ${fmt(st.k * st.k, 2)}`,
-      `A wave\u2019s energy is proportional to its amplitude squared, and for an electromagnetic wave the amplitude is the maximum field strength, so multiplying both fields by ${fmt(st.k, 2)} multiplies the energy the wave carries by ${fmt(st.k * st.k, 2)}. The magnetic amplitude follows the electric one, ${sci(st.B1, 2)} T on the first wave and ${sci(st.B2, 2)} T on the second, since each is its electric field divided by the speed of light.`);
+      `$\\kBmago$ follows $\\kEfo$: $${sciTex(st.B1, 2)}\\ \\text{T}$ on the first wave and $${sciTex(st.B2, 2)}\\ \\text{T}$ on the second.`);
   }
 
   register(d.fig, { update: () => {}, draw });
@@ -206,8 +206,15 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     const pa = pinned(ctx, box, X, Y, st.E0, st.I, IC, fmt(st.I / 1000, 2) + ' kW/m\u00B2');
     const pp = pinned(ctx, box, X, Y, st.E0, 2 * st.I, IC, fmt(st.I / 500, 2) + ' kW/m\u00B2');
     line(ctx, pa.x, pa.y, pa.x, box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    label(ctx, 'I_ave', pa.x, pa.y, { side: 'right', color: IC, size: 20, gap: 26 });
-    label(ctx, 'I_0, twice the average', pp.x, pp.y, { side: 'left', color: IC, size: 20, gap: 26 });
+    if (pa.y - pp.y < 44) {
+      /* near the origin the two points sit together, so both names go up and to the right, clear of the axis */
+      line(ctx, pp.x + 6, pp.y - 6, pp.x + 24, pp.y - 56, alpha(IC, 0.5), 1.5, [5, 6]);
+      text(ctx, 'I_0, twice the average', pp.x + 30, pp.y - 64, IC, { size: 20, weight: 600, bg: PAL.panel });
+      text(ctx, 'I_ave', pa.x + 30, pa.y - 28, IC, { size: 20, weight: 600, bg: PAL.panel });
+    } else {
+      label(ctx, 'I_ave', pa.x, pa.y, { side: 'right', color: IC, size: 20, gap: 26 });
+      label(ctx, 'I_0, twice the average', pp.x, pp.y, { side: 'left', color: IC, size: 20, gap: 26 });
+    }
 
     const mk = (k, x) => `\\mk{${k}}{${x}}`;
     const res = mk('res', `${sciTex(st.I, 2)}\\ \\text{W/m}^2`), I = mk('I', '\\kIave'), two = mk('two', '2'), mu = mk('mu', '\\mu_0'), c = mk('c', '\\kc');
@@ -219,7 +226,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     };
     const f = F3[st.mode];
     if (f !== shown) { const km = SWAP[form + '>' + st.mode]; shown = f; F.morph(fx, f, km ? { keyMap: km } : {}); form = st.mode; }
-    note.textContent = `The three expressions are different versions of one principle, that the energy in a wave is related to amplitude squared, and on this wave all three come to ${sci(st.I, 2)} W/m\u00B2. Because the expressions assume the wave is sinusoidal, the intensity at the crest is twice the average, which here is ${fmt(st.I / 500, 2)} kW/m\u00B2.`;
+    note.textContent = '';
   }
 
   register(d.fig, { update: () => {}, draw });
@@ -252,7 +259,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
   const S = fitScale(BOX, { w: 0.72, h: 0.72 });        /* 500 units to the metre, fixed so the cavity is wider than the greatest patch the sliders reach */
   const CX = (BOX.l + BOX.r) / 2, CY = (BOX.t + BOX.b) / 2;
   const I_TOP = 25000, E_TOP = 5000, B_TOP = 5000 / CLIGHT;
-  const BARX = 830, BARLEN = 420;
+  const BARX = 830, BARLEN = 340;
   const state = () => {
     const P = pS.v, w = wS.v, h = hS.v, A = w * h, I = P / A;
     return { P, w, h, A, I, E0: Math.sqrt((2 * I) / (CLIGHT * EPS0)), B0: Math.sqrt((2 * I) / (CLIGHT * EPS0)) / CLIGHT };
@@ -277,12 +284,16 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     text(ctx, fmt(st.P, 0) + ' W', CX + 0.36 * S + 43, CY - 28, PC, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     const iTxt = fmt(st.I, 0) + ' W/m\u00B2';
     const iW = F.measure(ctx, iTxt, { size: 21, weight: 600 });
-    hbracket(ctx, CX - pw / 2, CX + pw / 2, CY + ph / 2 + 26, XC, fmt(st.w, 2) + ' m', { side: 'below', size: 19 });
+    /* the two sides are measured outside the cavity walls, so neither bracket nor its number crosses a wall */
+    const yb = CY + 0.36 * S + 20, xb = CX - 0.36 * S - 20;
+    line(ctx, CX - pw / 2, CY + ph / 2, CX - pw / 2, yb, alpha(XC, 0.4), 2, [4, 8]); line(ctx, CX + pw / 2, CY + ph / 2, CX + pw / 2, yb, alpha(XC, 0.4), 2, [4, 8]);
+    line(ctx, CX - pw / 2, CY - ph / 2, xb, CY - ph / 2, alpha(XC, 0.4), 2, [4, 8]); line(ctx, CX - pw / 2, CY + ph / 2, xb, CY + ph / 2, alpha(XC, 0.4), 2, [4, 8]);
+    hbracket(ctx, CX - pw / 2, CX + pw / 2, yb, XC, fmt(st.w, 2) + ' m', { side: 'below', size: 19 });
     /* the intensity sits in the patch where the patch is wide enough to hold it, and below the
        width bracket where it is not, so that it never runs over the depth bracket's number */
     if (pw > iW + 28) text(ctx, iTxt, CX, CY, IC, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
     else text(ctx, iTxt, CX + pw / 2 + 12, CY, IC, { size: 21, weight: 600, align: 'left', bg: PAL.panel });
-    vbracket(ctx, CX - pw / 2 - 26, CY - ph / 2, CY + ph / 2, XC, fmt(st.h, 2) + ' m', -1, { side: 'left', size: 19 });
+    vbracket(ctx, xb, CY - ph / 2, CY + ph / 2, XC, fmt(st.h, 2) + ' m', -1, { side: 'left', size: 19 });
     text(ctx, 'the oven floor, seen from above', CX, BOX.b + 74, OC, { size: 17, align: 'center' });
   }
 
@@ -302,8 +313,8 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     /* the tick stands above the track rather than across it, so it never runs
        through the number written at the end of the bar */
     const px = BARX + (Math.min(2 * st.I, I_TOP) / I_TOP) * BARLEN;
-    line(ctx, px, 200 - 24, px, 200 - 8, alpha(IC, 0.75), 3, [6, 6]);
-    text(ctx, 'I_0', px, 200 - 40, IC, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    line(ctx, px, 200 - 34, px, 200 - 18, alpha(IC, 0.75), 3, [6, 6]);
+    text(ctx, 'I_0', px, 200 - 50, IC, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
   }
 
   function draw() {
@@ -314,7 +325,7 @@ function bar(ctx, x, y, len, v, vmax, color, valueText, valueColor) {
     drawBars(ctx, st);
     readout(d.readout,
       `\\kIntens = \\frac{\\kP}{\\karea} = \\frac{${fmt(st.P, 0)}\\ \\text{W}}{${fmt(st.A, 3)}\\ \\text{m}^2} = ${sciTex(st.I, 2)}\\ \\text{W/m}^2`,
-      `Taking this as the average intensity and rearranging the first expression gives the electric amplitude, ${sci(st.E0, 2)} V/m, and dividing that by the speed of light gives the magnetic amplitude, ${sci(st.B0, 2)} T. The peak intensity is twice the average, ${sci(2 * st.I, 2)} W/m\u00B2. As always, a relatively strong electric field is accompanied by a relatively weak magnetic field, because the speed of light is a large number.`);
+      `The peak intensity is twice the average, $${sciTex(2 * st.I, 2)}\\ \\text{W/m}^2$.`);
   }
 
   register(d.fig, { update: () => {}, draw });

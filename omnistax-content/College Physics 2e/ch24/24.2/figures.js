@@ -13,7 +13,8 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['24.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, register, cycle, begin, line, arrow, dot, text, topline, label, hbracket, scale, axes, curve, pinned, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+const minus = (s) => String(s).replace(/^-/, '\u2212');
 
 const TAU = Math.PI * 2;
 const CLIGHT = 3.00e8;                   /* the speed of light, in metres per second */
@@ -21,7 +22,7 @@ const MU0 = 4 * Math.PI * 1e-7;          /* the permeability of free space */
 const B_EARTH = 5e-5;                    /* the Earth's field at its surface, which the worked example measures against */
 
 const SUPS = '\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079';
-const supOf = (e) => String(e).replace(/-/g, '\u2212').replace(/[0-9]/g, (c) => SUPS[+c]);
+const supOf = (e) => String(e).replace(/-/g, '\u207B').replace(/[0-9]/g, (c) => SUPS[+c]);
 /* a number as a × 10^b for the canvas, and the same for KaTeX */
 function sci(x, dp) {
   if (!(Math.abs(x) > 0)) return '0';
@@ -94,13 +95,13 @@ function sciTex(x, dp) {
       dot(ctx, AX, yy, QC, true, r);
       text(ctx, s > 0 ? '+' : '\u2212', AX, yy - 1, PAL.panel, { size: Math.round(r * 1.7), weight: 700, align: 'center' });
     }
-    text(ctx, 'the charge on the wire', AX, ABOT + 56, QC, { size: 19, align: 'center', weight: 600 });
+    text(ctx, 'the charge on the wire', AX + 56, ABOT + 56, QC, { size: 19, align: 'right', weight: 600 });
 
     /* the field beside the antenna, which is the wave's amplitude as it leaves */
     const h = (AMP * Ehere) / 2000;
     if (Math.abs(h) > 3) {
       arrow(ctx, AX - 48, MID, AX - 48, MID - h, EC, 5);
-      text(ctx, 'E = ' + fmt(Ehere, 0) + ' V/m', AX - 62, MID - h / 2, EC, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
+      text(ctx, 'E = ' + minus(fmt(Ehere, 0)) + ' V/m', AX - 62, MID - h / 2, EC, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
     } else text(ctx, 'E = 0 just now', AX - 62, MID, EC, { size: 21, weight: 600, align: 'right', bg: PAL.panel });
 
     /* the wave that has already left, drawn only as far as it has travelled */
@@ -151,10 +152,9 @@ function sciTex(x, dp) {
     dot(ctx, PT(st.tau), PY, TC, true, 10);
     text(ctx, 'time, t', PX0 - 16, PY, TC, { size: 19, weight: 600, align: 'right' });
 
-    topline(ctx, `The antenna stands ${fmt(st.tau, 2)} periods into its cycle, the field beside it is ${fmt(Ehere, 0)} V/m, and the wave has reached ${fmt(st.front, 2)} m from the source.`);
+    topline(ctx, `The antenna stands ${fmt(st.tau, 2)} periods into its cycle, the field beside it is ${minus(fmt(Ehere, 0))} V/m, and the wave has reached ${fmt(st.front, 2)} m from the source.`);
     readout(d.readout,
-      `\\klam = \\kc\\kT = \\frac{\\kc}{\\kf} = \\frac{3.00 \\times 10^{8}\\ \\text{m/s}}{${fmt(fS.v, 0)} \\times 10^{6}\\ \\text{Hz}} = ${fmt(st.lam, 2)}\\ \\text{m}`,
-      `In one period the field that left the antenna first travels one wavelength, so a faster oscillation makes a shorter wave: at ${fmt(fS.v, 0)} MHz the period is ${sci(st.T, 2)} s and the wave is ${fmt(st.lam, 2)} m long. The amplitude is set by how far the charges separate, and nothing else: raising the field beside the antenna makes every crest taller and leaves the spacing alone. At t = 0 the top of the antenna is positive and the field beside it is greatest; at T/4 the charges pass through zero and so does the field; at T/2 the separation and the field are reversed.`);
+      `\\klam = \\kc\\kT = \\frac{\\kc}{\\kf} = \\frac{3.00 \\times 10^{8}\\ \\text{m/s}}{${fmt(fS.v, 0)} \\times 10^{6}\\ \\text{Hz}} = ${fmt(st.lam, 2)}\\ \\text{m}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
 })();
@@ -186,7 +186,7 @@ function sciTex(x, dp) {
   const cy = cycle(() => 2, 1.2);
   const state = () => {
     const f = fS.v * 1e6, lam = CLIGHT / f;
-    const tau = cy.now(), I = iS.v * Math.sin(TAU * tau), E = Math.cos(TAU * tau);
+    const tau = cy.now(), I0 = iS.v * Math.sin(TAU * tau), I = Math.abs(I0) < 0.05 ? 0 : I0, E = Math.cos(TAU * tau);
     return { f, lam, tau, I, E, front: Math.min(RUN, tau * lam) };
   };
   const Bring = (I) => (MU0 * Math.abs(I)) / (TAU * (R_RING / UPM));   /* the field one metre from the wire */
@@ -268,16 +268,14 @@ function sciTex(x, dp) {
       const h = 120 * st.E;
       arrow3(ctx, [R_RING, 0, 0], [R_RING, h, 0], EC, 5);
       const q = P([R_RING, h, 0]);
-      text(ctx, 'E', q[0] + 14, q[1] - 6, EC, { size: 24, weight: 600, align: 'left', bg: PAL.panel });
+      if (Math.abs(st.E) > 0.3) text(ctx, 'E', q[0] + 14, q[1] - 6, EC, { size: 24, weight: 600, align: 'left', bg: PAL.panel });
     }
     if (Math.abs(st.I) > 0.5) {
       const t = 118 * str * sign;
       arrow3(ctx, [R_RING, 0, 0], [R_RING, 0, -t], BC, 5);
       const q = P([R_RING, 0, -t]);
-      text(ctx, 'B', q[0] + 12, q[1] + 12, BC, { size: 24, weight: 600, align: 'left', bg: PAL.panel });
+      if (str > 0.3) text(ctx, 'B', q[0] + 12, q[1] + 12, BC, { size: 24, weight: 600, align: 'left', bg: PAL.panel });
     }
-    const rq = P([R_RING / 2, -52, 0]);
-    text(ctx, 'r = 1.00 m', rq[0], rq[1], XC, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
 
     /* the magnetic wave that has already left, in the horizontal plane */
     const pts = [];
@@ -296,10 +294,10 @@ function sciTex(x, dp) {
       text(ctx, 'c', b[0] + 14, b[1], VC, { size: 24, weight: 600, align: 'left', bg: PAL.panel });
     }
 
-    topline(ctx, `The current in the antenna is ${fmt(Math.abs(st.I), 1)} A ${st.I >= 0 ? 'upward' : 'downward'}, the field one meter out is ${sci(Bring(st.I), 2)} T, and the magnetic wave has reached ${fmt(st.front, 2)} m.`);
+    topline(ctx, `The current in the antenna is ${fmt(Math.abs(st.I), 1)} A${st.I > 0 ? ' upward' : st.I < 0 ? ' downward' : ''}, the field one meter out is $${sciTex(Bring(st.I), 2)}\\ \\text{T}$, and the magnetic wave has reached ${fmt(st.front, 2)} m.`);
     readout(d.readout,
       `\\kBmag = \\frac{\\mu_0\\kIcur}{2\\pi\\kr} = \\frac{(4\\pi \\times 10^{-7}\\ \\text{T}\\cdot\\text{m/A})(${fmt(Math.abs(st.I), 1)}\\ \\text{A})}{2\\pi(1.00\\ \\text{m})} = ${sciTex(Bring(st.I), 2)}\\ \\text{T}`,
-      `The rings are the field of a long straight wire, so they grow and shrink with the current and turn the other way when it reverses; point the thumb of your right hand the way the current runs and your fingers curl the way they go. The current is greatest when the charge separation is zero, a quarter of a cycle after the separation is greatest, so beside the wire the electric field and the magnetic field never reach their greatest values together. Once the field has left, though, it travels as the electric part does, at ${fmt(st.lam, 2)} m to the cycle and at the speed of light, so the magnetic wave has the same period and the same wavelength as the electric one.`);
+      `The current is greatest a quarter of a cycle after the charge separation is, so beside the wire $\\kEf$ and $\\kBmag$ never peak together.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
 })();
@@ -344,8 +342,8 @@ function sciTex(x, dp) {
       { value: 'none', label: 'none' },
       { value: 'wire-e', label: 'a wire along E' },
       { value: 'wire-b', label: 'a wire along B' },
-      { value: 'loop-b', label: 'a loop the field goes through' },
-      { value: 'loop-edge', label: 'a loop edge-on to the field' },
+      { value: 'loop-b', label: 'a loop across B' },
+      { value: 'loop-edge', label: 'a loop edge-on to B' },
     ],
     value: 'wire-e', aria: 'what is held in the path of the wave',
   });
@@ -493,7 +491,7 @@ function sciTex(x, dp) {
     S.loopXY.rotation.x = ph;
     S.lab.rec.textContent = st.rec === 'none' ? '' : RECNAME[st.rec];
     S.lab.rec.hidden = st.rec === 'none';
-    V.headline(`The wave travels to the right at the speed of light, ${fmt(st.lam, 2)} m to the cycle, its crests ${fmt(st.E0, 0)} V/m and ${sci(st.B0, 2)} T.`);
+    V.headline(`The wave travels to the right at the speed of light, ${fmt(st.lam, 2)} m to the cycle, its crests ${fmt(st.E0, 0)} V/m and $${sciTex(st.B0, 2)}\\ \\text{T}$.`);
     V.invalidate();
   }
 
@@ -554,12 +552,12 @@ function sciTex(x, dp) {
   function draw() {
     const st = state();
     const { ctx } = begin(d.c);
-    if (!V) { drawFlat(ctx, st); topline(ctx, `The wave travels to the right at the speed of light, ${fmt(st.lam, 2)} m to the cycle, its crests ${fmt(st.E0, 0)} V/m and ${sci(st.B0, 2)} T.`); }
+    if (!V) { drawFlat(ctx, st); topline(ctx, `The wave travels to the right at the speed of light, ${fmt(st.lam, 2)} m to the cycle, its crests ${fmt(st.E0, 0)} V/m and $${sciTex(st.B0, 2)}\\ \\text{T}$.`); }
     else apply(st);
     drawGraph(ctx, st, V ? 24 : 520);
     readout(d.readout,
       `\\frac{\\kEf}{\\kBmag} = \\frac{${fmt(st.E0, 0)}\\ \\text{V/m}}{${sciTex(st.B0, 2)}\\ \\text{T}} = 3.00 \\times 10^{8}\\ \\text{m/s} = \\kc`,
-      `The two fields are exactly in phase and stand at right angles to one another and to the line of travel, which is what makes an electromagnetic wave a transverse wave. The magnetic field is the electric field divided by the speed of light at every point, so on the left and right scales of the graph the two curves fall on the same line. ${st.rec === 'none' ? 'Nothing is held in the beam just now, so' : RECNAME[st.rec].charAt(0).toUpperCase() + RECNAME[st.rec].slice(1) + ' stands ' + fmt(REC_M, 2) + ' m down the beam, and'} ${verdict(st)}.`);
+      st.rec === 'none' ? '' : `${RECNAME[st.rec].charAt(0).toUpperCase() + RECNAME[st.rec].slice(1)} stands ${fmt(REC_M, 2)} m down the beam: ${verdict(st)}.`);
   }
 
   if (hasGL) {
@@ -652,10 +650,9 @@ function sciTex(x, dp) {
     const compare = times >= 1
       ? `about ${times >= 10 ? fmt(times, 0) : fmt(times, 1)} times weaker than the Earth\u2019s own field`
       : `about ${fmt(1 / times, 1)} times the Earth\u2019s own field`;
-    topline(ctx, `An electric field of ${fmt(eS.v, 0)} V/m goes with a magnetic field of ${sci(st.B, 2)} T, ${compare}.`);
+    topline(ctx, `An electric field of ${fmt(eS.v, 0)} V/m goes with a magnetic field of $${sciTex(st.B, 2)}\\ \\text{T}$, ${compare}.`);
     readout(d.readout,
-      `\\kBmag = \\frac{\\kEf}{\\kc / n} = \\frac{(${fmt(eS.v, 0)}\\ \\text{V/m})(${fmt(nS.v, 2)})}{3.00 \\times 10^{8}\\ \\text{m/s}} = ${sciTex(st.B, 2)}\\ \\text{T}`,
-      `In Example 24.1 a wave in a vacuum whose electric field reaches 1000 V/m carries a magnetic field of only 3.33 \u00D7 10\u207B\u2076 T, which is less than a tenth of the Earth\u2019s admittedly weak field, and that is the concrete form of the statement that the magnetic part of a wave is small beside the electric part. Raise the index of refraction and the wave slows to ${sci(st.v, 2)} m/s; the ratio of the two field strengths falls with the speed, so the same electric field now goes with a larger magnetic one.`);
+      `\\kBmag = \\frac{\\kEf}{\\kc / n} = \\frac{(${fmt(eS.v, 0)}\\ \\text{V/m})(${fmt(nS.v, 2)})}{3.00 \\times 10^{8}\\ \\text{m/s}} = ${sciTex(st.B, 2)}\\ \\text{T}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

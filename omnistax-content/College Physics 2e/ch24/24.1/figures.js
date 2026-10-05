@@ -9,7 +9,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['24.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, register, begin, line, arrow, dot, text, headline, hbracket, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- helpers shared by the two figures ---------- */
 const TAU = 2 * Math.PI;
@@ -70,7 +70,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
       { value: 'e', label: '1. Gauss’s law for electricity' },
       { value: 'b', label: '2. Gauss’s law for magnetism' },
       { value: 'f', label: '3. Faraday’s law of induction' },
-      { value: 'a', label: '4. Ampere’s law, with Maxwell’s addition' },
+      { value: 'a', label: '4. Ampere–Maxwell law' },
     ],
     value: 'e', aria: 'which of Maxwell’s four equations the figure draws',
   });
@@ -142,7 +142,7 @@ function spark(ctx, x1, y1, x2, y2, color) {
     ctx.beginPath(); ctx.rect(CX - HW, CY - HH, 2 * HW, 2 * HH); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(CX, CY - HH); ctx.lineTo(CX, CY + HH); ctx.stroke(); ctx.restore();
     for (let k = 0; k < levels; k++) {
-      const ext = 44 + k * 46, bh = 60 + k * 42, yin = ((k + 0.5) / levels) * (HH - 10);
+      const ext = 60 + k * 46, bh = 80 + k * 42, yin = ((k + 0.5) / levels) * (HH - 10);
       for (const sgn of [-1, 1]) {
         const y0 = CY + sgn * yin, yb = y0 + sgn * bh;
         ctx.save(); ctx.strokeStyle = bc; ctx.lineWidth = 3; ctx.beginPath();
@@ -159,8 +159,9 @@ function spark(ctx, x1, y1, x2, y2, color) {
     }
     text(ctx, northRight ? 'S' : 'N', CX - HW / 2, CY, PAL.ink, { size: 30, weight: 600, align: 'center', bg: PAL.panel });
     text(ctx, northRight ? 'N' : 'S', CX + HW / 2, CY, PAL.ink, { size: 30, weight: 600, align: 'center', bg: PAL.panel });
-    label(ctx, 'the magnet', CX - HW, CY + HH, { side: 'left', gap: 34, color: F.ref('magnet'), size: 20 });
-    const extMax = 44 + (levels - 1) * 46, bhMax = 60 + (levels - 1) * 42;
+    const extMax = 60 + (levels - 1) * 46, bhMax = 80 + (levels - 1) * 42;
+    /* named out past the widest loop, level with the magnet's middle, where no line runs */
+    label(ctx, 'the magnet', CX - HW, CY, { side: 'left', gap: 0.75 * extMax + 44, color: F.ref('magnet'), size: 20 });
     label(ctx, 'the magnetic field lines', CX - HW - extMax + 26, CY - bhMax * 0.55, { side: 'left', gap: 24, color: bc, size: 20 });
   }
 
@@ -228,17 +229,13 @@ function spark(ctx, x1, y1, x2, y2, color) {
       head = s === 0 ? 'With no charge anywhere there is no electric field to draw.'
         : 'Every one of the ' + 2 * n + ' lines begins on the positive charge and ends on the negative one.';
       main = `\\text{lines of }\\kEf\\text{ out of }+q\\ \\rightarrow\\ \\text{into }-q\\qquad ${s === 0 ? 0 : 2 * n}\\ \\text{drawn}`;
-      small = s === 0
-        ? 'The electric field is defined as the force per unit charge on a test charge, so where there is no charge to be the source there is no field. The strength of the force is related to the permittivity of free space ε₀, and the first of Maxwell’s equations is the one from which Gauss’s law for electricity follows.'
-        : 'Follow any line and it begins on the positive charge and ends on the negative one; none of them stops in the middle of the picture and none of them closes on itself. Reverse the source and the two charges change places, so the lines run the other way; add to it and there are more of them, because the number of lines standing for a charge is what says how strong its field is.';
+      small = s === 0 ? '' : 'The number of lines drawn for a charge stands for the strength of its field, so a larger charge sends out more of them.';
     } else if (k === 'b') {
       if (s !== 0) drawGaussB(ctx, s);
       head = s === 0 ? 'With no magnet there is no magnetic field to draw.'
         : 'Each of the ' + 2 * n + ' lines leaves the north pole, arcs round to the south pole and returns through the magnet to where it started.';
       main = `\\text{lines of }\\kBmag\\text{ close on themselves}\\qquad ${s === 0 ? 0 : 2 * n}\\ \\text{drawn, no beginning and no end}`;
-      small = s === 0
-        ? 'The strength of the magnetic force is related to the permeability of free space μ₀, and the second of Maxwell’s equations is Gauss’s law for magnetism.'
-        : 'This is what marks the magnetic field off from the electric one. No line begins anywhere and no line ends anywhere, because no magnetic monopoles are known to exist: there is no magnetic charge for a line to start on. Turn the magnet end for end and every line runs the other way round, but each is still a closed loop.';
+      small = s === 0 ? '' : 'No magnetic monopoles are known to exist, so there is no magnetic charge for a line to start or end on.';
     } else if (k === 'f') {
       drawFaraday(ctx, s);
       head = s === 0 ? 'The magnetic field through the loop is steady, so no electric field is induced round it.'
@@ -246,16 +243,14 @@ function spark(ctx, x1, y1, x2, y2, color) {
           : 'The magnetic field into the page is dying away, so the induced electric field drives charge clockwise, which opposes the loss.';
       main = `\\text{a changing }\\kBmag\\ \\rightarrow\\ \\kEf\\text{ round the loop, opposing the change}`;
       small = s === 0
-        ? 'A magnetic field that does not change induces nothing, however strong it is. It is the changing of the field, and not the field itself, that is the source here.'
-        : 'The induced electric field drives a current round the loop, and that current makes a magnetic field of its own that points ' + (s > 0 ? 'out of the page, against the growth of the field through the loop' : 'into the page, keeping up the field that is dying away') + '. That is what it means to say that the direction of the emf opposes the change, which is Lenz’s law. A change in the other direction reverses the whole arrangement.';
+        ? 'However strong a steady field is, it induces nothing: the change is the source.'
+        : 'The current it drives makes a magnetic field of its own ' + (s > 0 ? 'out of the page, against the growth' : 'into the page, keeping up the field that is dying away') + ', which is Lenz’s law.';
     } else {
       drawAmpere(ctx, s);
       head = s === 0 ? 'A charge at rest and a steady electric field make no magnetic field at all.'
         : 'A charge moving to the ' + (s > 0 ? 'right' : 'left') + ' and an electric field that is ' + (s > 0 ? 'growing' : 'dying away') + ' both make a magnetic field that is ' + (s > 0 ? 'out of the page above them and into it below' : 'into the page above them and out of it below') + '.';
       main = `\\text{a moving charge, or a changing }\\kEf\\ \\rightarrow\\ \\kBmag`;
-      small = s === 0
-        ? 'Neither a charge that stays where it is nor an electric field that holds steady is a source of magnetism. It is motion on the one hand and change on the other that make the field.'
-        : 'That a moving charge makes a magnetic field was Ampere’s law, and it is the half of this equation that was already known. The other half is Maxwell’s: a changing electric field is a source of magnetism in its own right, with no charge moving anywhere at all. It is this addition, symmetric with Faraday’s law, that lets each field make the other and so lets a wave travel.';
+      small = s === 0 ? '' : 'The moving charge is Ampere’s law; the changing electric field, with no charge moving, is Maxwell’s addition, and it is what lets a wave travel.';
     }
     headline(ctx, head);
     readout(d.readout, main, small);
@@ -368,9 +363,9 @@ function spark(ctx, x1, y1, x2, y2, color) {
       if (k % 2 === 0) outOfPage(ctx, x, Y0, 11, bc); else intoPage(ctx, x, Y0, 11, bc);
     }
     /* one whole wavelength, measured from one upward crossing of the axis to the next */
-    line(ctx, XA, Y0, XA, 416, alpha(pc, 0.5), 2, [6, 8]);
-    line(ctx, XA + lpx, Y0, XA + lpx, 416, alpha(pc, 0.5), 2, [6, 8]);
-    hbracket(ctx, XA, XA + lpx, 424, pc, 'λ = ' + fmt(lam, 2) + ' m');
+    line(ctx, XA, Y0, XA, 410, alpha(pc, 0.5), 2, [6, 8]);
+    line(ctx, XA + lpx, Y0, XA + lpx, 410, alpha(pc, 0.5), 2, [6, 8]);
+    hbracket(ctx, XA, XA + lpx, 410, pc, 'λ = ' + fmt(lam, 2) + ' m', { side: 'below' });
     /* the way the wave travels, and how fast */
     arrow(ctx, 540, 152, 760, 152, vc, 5);
     text(ctx, 'c = 3.00 × 10⁸ m/s', 772, 152, vc, { size: 21, weight: 600 });
@@ -382,12 +377,11 @@ function spark(ctx, x1, y1, x2, y2, color) {
     text(ctx, 'the electric field of the wave', (XA + XB) / 2, 466, ec, { size: 20, align: 'center' });
     text(ctx, 'the magnetic field is out of the page at each crest and into it at each trough', (XA + XB) / 2, 496, bc, { size: 19, align: 'center' });
     text(ctx, 'the two loops stand ' + fmt(LAB, 1) + ' m apart', 700, 526, PAL.muted, { size: 18, align: 'center' });
-    headline(ctx, 'The circuit resonates at ' + fmt(fMHz, 1) + ' MHz, so the wave that leaves the first loop is ' + fmt(lam, 2) + ' m long, and the second loop, tuned '
+    headline(ctx, 'The circuit resonates at $' + fmt(fMHz, 1) + '\\ \\text{MHz}$, so the wave that leaves the first loop is $' + fmt(lam, 2) + '\\ \\text{m}$ long, and the second loop, tuned '
       + (tuned ? 'to the same frequency, sparks in step with it.' : 'elsewhere, stays silent.'));
     readout(d.readout,
       `\\kc = \\kfo\\klam = (${fmt(fMHz, 1)}\\times 10^{6}\\;\\text{Hz})(${fmt(lam, 2)}\\;\\text{m}) = 3.00\\times 10^{8}\\;\\text{m/s}`,
-      'With L = ' + fmt(Ls.v, 0) + ' nH and C = ' + fmt(Cs.v, 0) + ' pF the circuit resonates at f₀ = 1/(2π√(LC)) = ' + fmt(fMHz, 1) + ' MHz. Hertz knew that frequency from the circuit and measured the wavelength from the interference patterns his waves made, and the product of the two came out at the speed of light, which is how he showed that the waves Maxwell had predicted were real and were of the same kind as light. '
-      + (tuned ? 'The second circuit is tuned to the same frequency as the first, so the wave drives it and sparks jump its gap as well.' : 'The second circuit is tuned to some other frequency, so the wave passes it by and its gap stays dark, exactly as the dial on a radio picks out one station and leaves the rest.'));
+      `$\\kfo = 1/(2\\pi\\sqrt{\\kLind\\kCap}) = ${fmt(fMHz, 1)}\\ \\text{MHz}$ comes from the circuit and $\\klam$ from the interference pattern, which is how Hertz measured the speed of his waves.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

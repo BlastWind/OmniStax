@@ -24,7 +24,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['24.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, cycle, begin, line, arrow, dot, text, topline, hbracket, label, labeller, axes, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI, CLIGHT = 3.00e8;
@@ -152,8 +152,8 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     lab.flush();
     topline(ctx, 'A wave of frequency ' + sciTxt(f, 2) + ' Hz has a wavelength of ' + lamText(lam) + ', which puts it among the ' + band.name + ', and no detail much smaller than ' + lamText(lam) + ' can be resolved with it.');
     readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}`,
-      vis ? 'Here the wave is visible light, and each wavelength in the band has the color the eye sees at it. The whole visible band is three tenths of one power of ten wide, which is why it is a sliver among the twenty-one powers of ten of the spectrum.'
-        : 'The two scales run opposite ways because the product of the frequency and the wavelength is always the same number, the speed of light. The bands overlap rather than meet at sharp boundaries, between microwaves and infrared, ultraviolet and X-rays, and X-rays and gamma rays.');
+      vis ? 'The whole visible band is three tenths of one power of ten wide, a sliver of the spectrum.'
+        : 'The hatching marks where bands overlap rather than meet at a sharp boundary.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -223,7 +223,7 @@ const colourName = (nm) => (COLOURS.find(([a, b]) => nm >= a && nm < b) ?? [0, 0
     topline(ctx, e <= 3.2 ? 'At ' + sciTxt(f, 2) + ' Hz one wavelength is ' + lamText(lam) + ', and waves this long are the ones used to reach a submarine under the surface.'
       : 'At ' + sciTxt(f, 2) + ' Hz one wavelength is ' + lamText(lam) + ', and salt water absorbs a wave this short before it has gone far below the surface.');
     readout(d.readout, `\\klam = \\frac{\\kc}{\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(f, 2)}\\ \\text{Hz}} = ${sciTex(lam, 2)}\\ \\text{m}`,
-      'The wave above the surface is drawn ' + sciTxt(lam / (W / 260), 1) + ' times shorter than it is, because five powers of ten of wavelength will not fit in one picture at one scale. The longer the wavelength, the deeper the wave reaches, and the depth shown has no scale.');
+      (() => { const k = (lam * 2.64) / W; return 'Against a submarine taken as 100 m long, the wave above is drawn ' + (k >= 1 ? sciTxt(k, 1) + ' times shorter' : fmt(1 / k, 0) + ' times longer') + ' than it is; the depth shown has no scale.'; })());
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -279,10 +279,10 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     curve(ctx, env, 0, 2, G.X, G.Y, aud, 3, 400);
     curve(ctx, (t) => -env(t), 0, 2, G.X, G.Y, aud, 3, 400);
     cursorOn(ctx, PANELS[2], G.X, G.Y, u, env(u) * carr(u), wav);
-    label(ctx, 'the envelope is the audio signal', G.X(0.45), G.Y(env(0.45)), { side: 'above', color: aud, gap: 18, size: 19 });
+    text(ctx, 'the envelope is the audio signal', G.X(0.75), G.Y(-1.55), aud, { size: 19, align: 'center', bg: PAL.panel });
     topline(ctx, 'A carrier of ' + fmt(fcar.v, 0) + ' kHz is modulated in amplitude by an audio signal of ' + fmt(faud.v, 0) + ' Hz to a depth of ' + fmt(m, 2) + ', so the height of the wave rises and falls with the sound while its frequency never changes at all.');
     readout(d.readout, `\\kEf(\\kt) = \\kEfo\\left[1 + m\\sin(2\\pi \\kf_{\\text{a}}\\kt)\\right]\\cos(2\\pi \\kf_{\\text{c}}\\kt) = \\kEfo\\left[1 + ${fmt(m, 2)}\\sin(2\\pi (${fmt(faud.v, 0)}\\ \\text{Hz})\\kt)\\right]\\cos(2\\pi (${fmt(fcar.v, 0)}\\ \\text{kHz})\\kt)`,
-      'The carrier is drawn with ' + NCAR + ' cycles for every cycle of the audio signal so that both can be seen at once; at these settings the true ratio is ' + fmt((fcar.v * 1000) / faud.v, 0) + ' to 1. A receiver tuned to ' + fmt(fcar.v, 0) + ' kHz follows the height of the wave and gets the audio signal of panel (b) back.');
+      'The carrier is drawn with ' + NCAR + ' cycles to each audio cycle; the true ratio here is ' + fmt((fcar.v * 1000) / faud.v, 0) + ' to 1.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
 })();
@@ -317,8 +317,8 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     cursorOn(ctx, PANELS[2], G.X, G.Y, u, fmw(u), wav);
     topline(ctx, 'A carrier of ' + fmt(fcar.v, 1) + ' MHz is swung by ' + fmt(dfs.v, 1) + ' kHz either way by an audio signal of ' + fmt(faud.v, 0) + ' Hz, so the wave runs between ' + fmt(fcar.v - dfs.v / 1000, 3) + ' and ' + fmt(fcar.v + dfs.v / 1000, 3) + ' MHz while its height never changes.');
     readout(d.readout, `\\kf(\\kt) = \\kf_{\\text{c}} + \\Delta \\kf \\sin(2\\pi \\kf_{\\text{a}}\\kt) = ${fmt(fcar.v, 1)}\\ \\text{MHz} \\pm ${fmt(dfs.v, 1)}\\ \\text{kHz}`,
-      dfs.v === 0 ? 'The amplitude E₀ never changes. With no swing at all the station sends out its bare carrier and carries no sound, and a receiver that looks only for changes of frequency hears nothing.'
-        : 'The amplitude E₀ never changes. The swing is drawn ' + fmt(A / (dfs.v / (fcar.v * 1000)), 0) + ' times larger than it is, so that the crowding can be seen at all: the true swing is ' + fmt(dfs.v, 1) + ' kHz on a carrier of ' + fmt(fcar.v, 1) + ' MHz, a change of ' + fmt((100 * dfs.v) / (fcar.v * 1000), 4) + ' percent. Two stations cannot sit closer than 0.020 MHz for this reason.');
+      dfs.v === 0 ? 'With no swing the station sends its bare carrier and carries no sound.'
+        : 'The swing is drawn ' + fmt(A / (dfs.v / (fcar.v * 1000)), 0) + ' times larger than it is: ' + fmt(dfs.v, 1) + ' kHz on ' + fmt(fcar.v, 1) + ' MHz is a change of ' + fmt((100 * dfs.v) / (fcar.v * 1000), 4) + ' percent.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 5), draw });
 })();
@@ -368,7 +368,7 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     topline(ctx, name ? 'Light of wavelength ' + fmt(nm, 0) + ' nm has a frequency of ' + sciTxt(f, 2) + ' Hz, and the eye sees it as ' + name + '.'
       : 'A wave of wavelength ' + fmt(nm, 0) + ' nm has a frequency of ' + sciTxt(f, 2) + ' Hz, which lies ' + (nm > 750 ? 'below the red end of the strip, in the infrared' : 'above the violet end of the strip, in the ultraviolet') + ', and no eye sees it.');
     readout(d.readout, `\\kf = \\frac{\\kc}{\\klam} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${sciTex(lam, 2)}\\ \\text{m}} = ${sciTex(f, 2)}\\ \\text{Hz}`,
-      'Red light has the lowest frequencies and the longest wavelengths of the strip, and violet the highest frequencies and the shortest, so the frequency rises from red to violet exactly as it rises across the whole electromagnetic spectrum.');
+      'The frequency rises from red to violet, as it rises across the whole spectrum.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -422,11 +422,11 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
       atom(ctx, 380, 340, 140, false);
       arrow(ctx, 404, 332, 548, 252, PAL.ink, 4);
       dot(ctx, 556, 248, e0, true, 10);
-      label(ctx, 'an inner electron is knocked out', 556, 242, { side: 'above', gap: 14, size: 19 });
+      label(ctx, 'an inner electron is knocked out', 556, 248, { side: 'right', gap: 18, size: 19 });
       atom(ctx, 1010, 340, 140, true);
       arrow(ctx, 1146, 250, 1036, 324, PAL.ink, 4);
       dot(ctx, 1154, 246, e0, true, 10);
-      label(ctx, 'another electron falls into the empty orbit', 1154, 240, { side: 'above', gap: 14, size: 19 });
+      label(ctx, 'another electron falls into the empty orbit', 1154, 240, { side: 'above', gap: 40, size: 19 });
       xray(ctx, 1010, 360, 1010, 494, xr);
       label(ctx, 'the X-ray', 1010, 498, { side: 'below', color: xr, gap: 12, size: 20 });
       text(ctx, 'the nucleus and the orbits around it belong to the atom', 1300, 542, F.ref('atom'), { size: 17, align: 'right' });
@@ -461,14 +461,14 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     });
     scene('brake', () => {
       text(ctx, 'the X-rays carry anything up to ' + fmt(E, 0) + ' keV', BL - 18, BY + 68, brake, { size: 19, weight: 600, align: 'right' });
-      text(ctx, 'many low energies and few high ones, because the collisions are random', Math.min(KX(E) + 16, 900), BY + 68, PAL.muted, { size: 17 });
+      text(ctx, 'few high energies, many low: the collisions are random', BL, BY + 176, PAL.muted, { size: 17 });
     });
     topline(ctx, chosen ? 'An electron arriving with ' + fmt(E, 0) + ' keV knocks an inner electron out, and the X-ray that follows carries the energy another electron loses falling into the empty orbit, which is the atom’s own and not the striking electron’s.'
       : 'An electron arriving with ' + fmt(E, 0) + ' keV is slowed by one collision after another, and each of those decelerations radiates, so the X-rays that leave the material carry anything from almost nothing up to ' + fmt(E, 0) + ' keV.');
     readout(d.readout, chosen ? `\\kE_{\\text{X-ray}} = \\kE_{\\text{outer}} - \\kE_{\\text{inner}}`
       : `\\kE_{\\text{X-ray}} \\le \\kE = ${fmt(E, 0)}\\ \\text{keV}`,
-      chosen ? 'The striking electron arrives with ' + fmt(E, 0) + ' keV. Since the orbits of the atom are unique to the type of atom, the energy of this X-ray is characteristic of the atom, which is why it is called a characteristic X-ray. Raising the energy of the striking electron sends out more of them and does not change the energy of any one of them.'
-        : 'Since the process is random, a broad spectrum of X-ray energy is emitted that is more characteristic of the electron energy than of the material the electron encounters. Such radiation is called bremsstrahlung, German for braking radiation.');
+      chosen ? 'Since the orbits are unique to the type of atom, this is called a characteristic X-ray.'
+        : 'Such radiation is called bremsstrahlung, German for braking radiation.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -510,10 +510,12 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     });
     /* the height of a person, the one length the reader already has */
     line(ctx, box.l, Y(Math.log10(1.7)), box.r, Y(Math.log10(1.7)), alpha(PAL.ink, 0.4), 2, [10, 10]);
-    text(ctx, 'the height of a person, 1.7 m', box.r - 10, Y(Math.log10(1.7)) - 16, PAL.muted, { size: 17, align: 'right' });
+    { const s = 'the height of a person, 1.7 m', w = F.measure(ctx, s, { size: 17 }), y = Y(Math.log10(1.7)) - 16;
+      lab.place({ l: box.l + 10, r: box.l + 14 + w, t: y - 13, b: y + 13 });
+      text(ctx, s, box.l + 12, y, PAL.muted, { size: 17, bg: PAL.panel }); }
     /* the three frequencies of Example 24.2 */
     MARKS.forEach(([ee, name, id]) => { const yy = Math.log10(CLIGHT / (km * Math.pow(10, ee))), rc = F.ref(id); dot(ctx, X(ee), Y(yy), rc, false, 10); lab.add(name, X(ee), Y(yy), 0.4, -0.9, rc, 17, 16); });
-    pinned(ctx, box, X, Y, e, Math.log10(Lm), fc, lamText(L));
+    pinned(ctx, box, X, Y, e, Math.log10(Lm), fc);
     /* the length's name goes below the point, and above it near the bottom of the graph */
     if (Math.log10(Lm) < -1.3) lab.add('L = ' + lamText(L), X(e), Y(Math.log10(Lm)), -0.6, -0.8, pc, 21, 20);
     else lab.add('L = ' + lamText(L), X(e), Y(Math.log10(Lm)), -0.5, 0.9, pc, 21, 20);
@@ -521,8 +523,7 @@ const plainTick = (v) => (v === 0 ? '0' : v === 1 ? '+1' : v === -1 ? '−1' : '
     text(ctx, 'c = 3.00 × 10⁸ m/s', box.r, box.t - 24, vc, { size: 18, weight: 600, align: 'right' });
     topline(ctx, 'At ' + sciTxt(f, 2) + ' Hz the wavelength is ' + lamText(lam) + ', so the most efficient antenna is ' + lamText(L) + ' long, which is ' + (L >= 1.7 ? fmt(L / 1.7, L / 1.7 >= 10 ? 0 : 1) + ' times the height of a person' : 'one part in ' + fmt(1.7 / L, 0) + ' of the height of a person') + '.');
     readout(d.readout, `L = \\frac{\\klam}{${k}} = \\frac{\\kc}{${k}\\kf} = \\frac{3.00\\times 10^{8}\\ \\text{m/s}}{${k}(${sciTex(f, 2)}\\ \\text{Hz})} = ${sciTex(L, 2)}\\ \\text{m}`,
-      k === 2 ? 'A linear antenna radiates best when it is half a wavelength long, so the length it wants falls away as the frequency rises; the wavelength here is ' + lamText(lam) + '. Length and frequency are inversely proportional, a straight line when both are counted in powers of ten.'
-        : 'An antenna with one end on the ground wants a quarter of a wavelength, in the same way that an air column closed at one end resonates at four times its own length, so every length on this line is half what a free-standing antenna would need; the wavelength here is ' + lamText(lam) + '.');
+      k === 2 ? '' : 'An air column closed at one end resonates the same way, at four times its own length.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
