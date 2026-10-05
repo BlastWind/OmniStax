@@ -66,30 +66,19 @@ coverage rows mark each as used where the text uses it.
 
 id · replaces · concepts · what moves · sliders · headline · graph · 3D
 
-1. `sim-swimmer` · replaces Figure 4.9 (the swimmer pushing off the pool wall) ·
-   newtons-third-law, action-reaction-pairs · **moves**: the swimmer’s feet are
-   against the wall for a short push, during which the two forces of the pair
-   are drawn where each one acts — $\kF_{\text{feet on wall}}$ on the wall and
-   $\kF_{\text{wall on feet}}$ on her feet — and she accelerates away from the
-   wall; when her feet leave the wall both forces go and she glides at constant
-   velocity. The idea has a time in it, since she is accelerated for as long as
-   she pushes and no longer, so the figure loops once per push and glide and
-   gets the scrubber · the force of the push $\kF$ (100 to 600 N, default 350,
-   force), her mass $m$ (40 to 90 kg, default 60, ink), the length of the push
-   $\kt$ (0.20 to 0.80 s, default 0.40, time) · “t = 0.25 s · the wall pushes
-   back with 350 N, which accelerates her 60.0 kg at 5.83 m/s² away from the
-   wall” · graph below: the swimmer’s speed against time, rising while her feet
-   are on the wall and flat afterwards · no. The dashed line around the swimmer
-   is the system of interest, and her free-body diagram is drawn beside the
-   graph with $\kF_{\text{wall on feet}}$, the weight $\kwgt$ and the buoyant
-   force, so the reader sees that only one force of the pair is on the diagram.
-   Readout: $\ka = \kFnet/m$ with the numbers. Draws force, acceleration,
-   velocity, time.
-   Revised in the figure-audit pass of 2026-09-12: the pool is ruled 0 to 5
-   m from the wall at a fixed scale with a meter scale along it, so a harder
-   push really does carry her farther; the push slider is labeled Δt, since
-   it is the length of the push and not the clock, and the headline is one
-   capitalized sentence.
+1. `sim-swimmer` · Figure 4.9 · newtons-third-law, system-of-interest, external-force · flow by
+   animation: the push, the release and the glide · moving, she pushes for $\Delta\kt$ then glides ·
+   $\kF$ (force, 100 to 600 N, default 350), $\km$ (mass, 40 to 90 kg, default 60), $\Delta\kt$
+   (time, 0.20 to 0.80 s, default 0.40) · "After 0.13 s the wall still pushes back on her feet with
+   350 N, so her 60 kg accelerate at 5.83 m/s² away from it" · graph below (v against t, axis 0 to
+   15 m/s, above the 12 m/s the sliders reach), free-body diagram beside it on its own 0.1 unit/N
+   scale · 2D: the swimmer drawn with F.silhouette posed lying (legs straightening through the push,
+   streamlined in the glide, feet to the wall), the pair of forces labelled through F.labeller on the
+   pool side of the wall with the wall's own arrow inside the hatch band, the system box sized to the
+   body. No fold or split.
+   Rewritten in the review pass of 2026-10-05 (Claude Opus 5.5): the drawn ball-and-stick swimmer
+   became the library silhouette, the labels moved off the wall and off one another, and the speed
+   axis now holds every release the sliders reach.
 2. `sim-cart` · replaces Figure 4.10 (the professor, the cart and the two
    systems) · internal-forces-cancel, action-reaction-pairs · **moves**: the
    professor pushes the cart across the lecture room from rest, and the loop
