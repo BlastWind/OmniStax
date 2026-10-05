@@ -56,8 +56,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     text(ctx, 'The last ' + fmt(W.v, 1) + ' s hold ' + fmt(W.v / T.v, 2) + ' cycles', Math.min(X(-W.v / 2), box.r - 150), box.t - 16, C('time'), { weight: 600, size: 20, align: 'center', bg: PAL.panel });
     dot(ctx, X(0), Y(x), PAL.ink, true, 9);
     headline(ctx, 'Each cycle takes ' + fmt(T.v, 2) + ' s, so ' + fmt(f, 2) + ' cycles fit in every second');
-    readout(d.readout, `\\kf = \\frac{1}{\\kT} = \\frac{1}{${fmt(T.v, 2)}\\ \\text{s}} = ${fmt(f, 2)}\\ \\text{Hz}`,
-      'A window of ' + fmt(W.v, 1) + ' s holds ' + fmt(W.v / T.v, 2) + ' cycles, and ' + fmt(W.v / T.v, 2) + ' cycles in ' + fmt(W.v, 1) + ' s is again ' + fmt(f, 2) + ' cycles per second. The frequency does not depend on how long you count for.');
+    readout(d.readout, `\\kf = \\frac{1}{\\kT} = \\frac{1}{${fmt(T.v, 2)}\\ \\text{s}} = ${fmt(f, 2)}\\ \\text{Hz}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -110,8 +109,7 @@ function readout(host, main, small) { tex(host, main); if (small) host.appendChi
     text(ctx, 'One mark for each completed cycle', tl, ty - 58, PAL.muted, { size: 17 });
     headline(ctx, done ? N.v + ' cycles in ' + fmt(tt.v, 1) + ' s is a frequency of ' + fmt(N.v / tt.v, 2) + ' cycles per second'
       : n + (n === 1 ? ' cycle has' : ' cycles have') + ' been completed so far, in ' + fmt(tau, 1) + ' s');
-    readout(d.readout, `\\kf = \\frac{N}{\\kt} = \\frac{${N.v}}{${fmt(tt.v, 1)}\\ \\text{s}} = ${fmt(N.v / tt.v, 2)}\\ \\text{Hz}`,
-      'Each cycle takes T = t/N = ' + fmt(T(), 3) + ' s, and 1/T gives the same ' + fmt(1 / T(), 2) + ' Hz.');
+    readout(d.readout, `\\kf = \\frac{N}{\\kt} = \\frac{${N.v}}{${fmt(tt.v, 1)}\\ \\text{s}} = ${fmt(N.v / tt.v, 2)}\\ \\text{Hz}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.max(1, tt.v / 6)), draw });
 })();

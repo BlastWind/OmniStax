@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES['16.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, axes, pinned, curve, spring, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
 const sgn = (v) => (v < 0 ? '−' : '+');
 function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times10^{${e}}`; }
 /* The marks x = −X, 0, +X under a floor at y. When the amplitude is small the outer two labels
@@ -18,7 +18,7 @@ function marks(ctx, eq, SC, X, y, tick, dy) {
   });
 }
 /* one entry of a legend: a stroke of the curve's own colour and its name */
-function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color, dash ? 2 : 4, dash); text(ctx, name, x + 46, y, color, { size: 17, weight: 600 }); }
+function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color, dash ? 2 : 4, dash); text(ctx, name, x + 46, y, color, { size: 17, weight: 600, tex: true }); }
 
 /* =====================================================================
    SIM 1: energy going back and forth. The block on a spring, two energy
@@ -42,9 +42,9 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
     strip(ctx, 100, 1040, floorY + 12, 24);
     fixed(ctx, 156, floorY - 116, 44, 116);
     const bx = eq + x * SC, by = floorY - 40;
+    line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     spring(ctx, 200, by, bx - 48, by, 12, 22, PAL.ink, 4); block(ctx, bx, by, 96, 80, F.ref('object'));
     text(ctx, 'm = ' + fmt(m.v, 1) + ' kg', bx, by - 104, C('mass'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     marks(ctx, eq, SC, X.v, floorY + 24, 16, 38);
     if (Math.abs(v) > 0.02 * X.v * w()) { const al = 40 + 160 * Math.abs(v) / (X.v * w()), s = v < 0 ? -1 : 1; arrow(ctx, bx, by - 70, bx + s * al, by - 70, C('velocity'), 5); text(ctx, 'v', bx + s * (al + 16), by - 70, C('velocity'), { weight: 600, align: s < 0 ? 'right' : 'left' }); }
     /* The bars and the graph share one fixed energy scale, 0 to 1.00 J, and one fixed position
@@ -58,7 +58,7 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
     const b0 = 320, bh = 200, bw = 70, bxs = [1130, 1240];
     const yTot = b0 - bh * Math.min(1, E / EM);
     /* the total's name sits above the pair of bars, never across them, and its dashed level runs between them */
-    line(ctx, bxs[0] - 8, yTot, bxs[1] + bw + 8, yTot, C('energy'), 2, [8, 6]); text(ctx, 'total ½kX² = ' + fmt(E, 3) + ' J', (bxs[0] + bxs[1] + bw) / 2, b0 - bh - 26, C('energy'), { size: 18, weight: 600, align: 'center' });
+    line(ctx, bxs[0] - 8, yTot, bxs[1] + bw + 8, yTot, C('energy'), 2, [8, 6]); text(ctx, 'total $\\tfrac{1}{2}\\kk\\kX^2$ = ' + fmt(E, 3) + ' J', (bxs[0] + bxs[1] + bw) / 2, b0 - bh - 26, C('energy'), { size: 18, weight: 600, align: 'center', tex: true });
     for (const [i, val, lab] of [[0, KE, 'KE'], [1, PE, 'PE_el']]) {
       const h = bh * Math.min(1, val / EM); ctx.save(); ctx.fillStyle = alpha(C('energy'), i ? 0.35 : 0.8); ctx.fillRect(bxs[i], b0 - h, bw, h); ctx.restore();
       ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 2; ctx.strokeRect(bxs[i], b0 - bh, bw, bh); ctx.restore();
@@ -75,14 +75,14 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
     ctx.restore();
     const inBox = (y) => Math.min(box.b - 18, Math.max(box.t + 18, y));
     /* the three curves are named in a legend row above the box, clear of the axis title on the left, so no name sits on a curve at any setting */
-    legend(ctx, 560, box.t - 16, alpha(C('energy'), 0.55), 'PE_el = ½kx²'); legend(ctx, 760, box.t - 16, C('energy'), 'KE = ½kX² − ½kx²'); legend(ctx, 1000, box.t - 16, C('energy'), 'total ½kX²', [8, 6]);
+    legend(ctx, 470, box.t - 16, alpha(C('energy'), 0.55), '$\\kPE = \\tfrac{1}{2}\\kk\\kx^2$'); legend(ctx, 700, box.t - 16, C('energy'), '$\\kKE = \\tfrac{1}{2}\\kk\\kX^2 - \\tfrac{1}{2}\\kk\\kx^2$'); legend(ctx, 1060, box.t - 16, C('energy'), 'total', [8, 6]);
     line(ctx, gx(x), box.b, gx(x), inBox(gy(E)), C('position'), 2, [4, 8]);
     pinned(ctx, box, gx, gy, x, PE, alpha(C('energy'), 0.7), fmt(PE, 3) + ' J'); pinned(ctx, box, gx, gy, x, KE, C('energy'), fmt(KE, 3) + ' J');
     headline(ctx, KE < 0.02 * E ? 'At x = ' + sgn(x) + 'X the block is momentarily at rest, and all ' + fmt(E, 3) + ' J of the energy is stored in the spring'
       : PE < 0.02 * E ? 'The block is passing through equilibrium, where the spring is unstretched and all ' + fmt(E, 3) + ' J is kinetic energy'
       : 'At x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m the spring holds ' + fmt(PE, 3) + ' J and the block carries ' + fmt(KE, 3) + ' J, and the total stays ' + fmt(E, 3) + ' J throughout');
     readout(d.readout, `\\tfrac{1}{2}\\km\\kv^2 + \\tfrac{1}{2}\\kk\\kx^2 = ${fmt(KE, 3)}\\ \\text{J} + ${fmt(PE, 3)}\\ \\text{J} = ${fmt(E, 3)}\\ \\text{J} = \\tfrac{1}{2}\\kk\\kX^2`,
-      'With k = ' + fmt(k.v, 0) + ' N/m and X = ' + fmt(X.v, 2) + ' m the total is ½kX² = ' + fmt(E, 3) + ' J. The mass sets how fast the energy changes hands, not how much there is.');
+      'The mass sets how fast the energy changes hands, not how much there is.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
 })();
@@ -129,12 +129,12 @@ function legend(ctx, x, y, color, name, dash) { line(ctx, x, y, x + 36, y, color
     pinned(ctx, box, gx, gy, 0, vmax(), C('velocity'), 'v_max = ' + fmt(vmax(), 3) + ' m/s');
     pinned(ctx, box, gx, gy, 0, -vmax(), C('velocity'), '');
     line(ctx, gx(x), box.b, gx(x), Math.min(box.b, Math.max(box.t, gy(v))), C('position'), 2, [4, 8]);
-    pinned(ctx, box, gx, gy, x, v, C('velocity'), fmt(v, 2) + ' m/s');
-    headline(ctx, Math.abs(x) < 0.03 * X.v ? 'Passing through x = 0 the car moves at its greatest speed, v_max = X√(k/m) = ' + fmt(vmax(), 3) + ' m/s'
+    pinned(ctx, box, gx, gy, x, v, C('velocity'), vmax() > VM ? '' : fmt(v, 2) + ' m/s');   /* clipped, the v_max label speaks for the curve */
+    headline(ctx, Math.abs(x) < 0.03 * X.v ? 'Passing through $\\kx$ = 0 the car moves at its greatest speed, $\\kvmax = \\kX\\sqrt{\\kk/\\km}$ = ' + fmt(vmax(), 3) + ' m/s'
       : Math.abs(x) > 0.97 * X.v ? 'At x = ' + sgn(x) + 'X the car is momentarily at rest and turns back'
       : 'At x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m the car moves at ' + fmt(Math.abs(v), 2) + ' m/s, and its greatest speed of ' + fmt(vmax(), 3) + ' m/s comes at x = 0');
     readout(d.readout, `\\kvmax = \\kX\\sqrt{\\frac{\\kk}{\\km}} = (${fmt(X.v, 3)}\\ \\text{m})\\sqrt{\\frac{${sci(k.v)}\\ \\text{N/m}}{${fmt(m.v, 0)}\\ \\text{kg}}} = ${fmt(vmax(), 3)}\\ \\text{m/s}`,
-      'The angular frequency is ω = 2π/T = √(k/m) = ' + fmt(w(), 2) + ' rad/s, and v_max = Xω. Doubling the amplitude to ' + fmt(2 * X.v, 3) + ' m would double v_max to ' + fmt(2 * vmax(), 2) + ' m/s; four times the force constant would double it too; four times the mass would halve it.');
+      'Twice $\\kX$ doubles $\\kvmax$, four times $\\kk$ doubles it too, and four times $\\km$ halves it.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
 })();

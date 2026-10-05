@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES['16.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, curve, spring, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
 /* a number in scientific notation for the readout, 6.53 × 10⁴ */
 function sci(v, d = 2) { const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times10^{${e}}`; }
 const sgn = (v) => (v < 0 ? '−' : '+');
@@ -49,10 +49,10 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label, color) {
     const x = X.v * Math.cos(w() * tau), v = -X.v * w() * Math.sin(w() * tau), Fn = -k.v * x, vmax = X.v * w();
     const floorY = 330, eq = 760, SC = 1500;
     strip(ctx, 100, 1300, floorY + 12, 24);
+    line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     const { bx, by } = oscillator(ctx, 200, eq, floorY, x, SC, 'm = ' + fmt(m.v, 1) + ' kg', F.ref('object'));
     /* the marks x = -X, 0, +X on the floor */
     marks(ctx, eq, SC, X.v, floorY + 24, 20, 44);
-    line(ctx, eq, floorY - 130, eq, floorY + 24, PAL.muted, 2, [8, 8]);
     /* the arrows: restoring force on the block, velocity above it */
     if (Math.abs(Fn) > 0.02 * k.v * X.v) {
       const al = 60 + 200 * Math.abs(x) / X.v, s = Fn < 0 ? -1 : 1;
@@ -68,8 +68,9 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label, color) {
     headline(ctx, Math.abs(x) > 0.97 * X.v ? 'At x = ' + sgn(x) + 'X the block is momentarily at rest, and the restoring force is at its greatest, pointing back toward equilibrium'
       : Math.abs(x) < 0.03 * X.v ? 'The block is passing through equilibrium, where the net force is zero and the speed is greatest, v_max = ' + fmt(vmax, 2) + ' m/s'
       : 'At x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m the force of ' + fmt(Math.abs(Fn), 1) + ' N points ' + (Fn < 0 ? 'left' : 'right') + ' and the block moves ' + (v < 0 ? 'left' : 'right') + ' at ' + fmt(Math.abs(v), 2) + ' m/s');
-    readout(d.readout, `\\kF = -\\kk\\kx = -(${fmt(k.v, 0)}\\ \\text{N/m})(${sgn(x)}${fmt(Math.abs(x), 3)}\\ \\text{m}) = ${sgn(Fn)}${fmt(Math.abs(Fn), 2)}\\ \\text{N}`,
-      'The period is T = 2π√(m/k) = ' + fmt(T(), 2) + ' s, and in one full period the block covers 4X = ' + fmt(4 * X.v, 2) + ' m of ground.');
+    const xr = Math.round(x * 1000) / 1000, Fr = -k.v * xr;   /* the force from x as printed */
+    readout(d.readout, `\\kF = -\\kk\\kx = -(${fmt(k.v, 0)}\\ \\text{N/m})(${sgn(xr)}${fmt(Math.abs(xr), 3)}\\ \\text{m}) = ${sgn(Fr)}${fmt(Math.abs(Fr), 2)}\\ \\text{N}`,
+      'The period is $\\kT = 2\\pi\\sqrt{\\km/\\kk}$ = ' + fmt(T(), 2) + ' s, and in one full period the block covers $4\\kX$ = ' + fmt(4 * X.v, 2) + ' m of ground.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
 })();
@@ -107,12 +108,12 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label, color) {
     curve(ctx, Tof, 0, 2000, gx, gy, C('time'), 4, 100);
     /* the curve's name sits in the top left corner of the box, which the curve never reaches: at
        the left the period is small at every setting of the sliders */
-    text(ctx, 'T = 2π√(m/k)', box.l + 16, box.t + 22, C('time'), { weight: 600, size: 20 });
+    text(ctx, '$\\kT = 2\\pi\\sqrt{\\km/\\kk}$', box.l + 16, box.t + 24, C('time'), { weight: 600, size: 20, tex: true });
     line(ctx, gx(m.v), box.b, gx(m.v), gy(T()), C('mass'), 2, [4, 8]); line(ctx, box.l, gy(T()), gx(m.v), gy(T()), C('time'), 2, [4, 8]);
     dot(ctx, gx(m.v), gy(T()), C('time'), true, 9);
-    headline(ctx, 'A mass of ' + fmt(m.v, 0) + ' kg on a suspension of ' + fmt(k.v / 1000, 1) + '×10³ N/m gives T = ' + fmt(T(), 3) + ' s, and both amplitudes share it');
+    headline(ctx, 'A mass of ' + fmt(m.v, 0) + ' kg on a suspension of ' + fmt(k.v / 1000, 1) + '×10³ N/m gives $\\kT$ = ' + fmt(T(), 3) + ' s, and both amplitudes share it');
     readout(d.readout, `\\kT = 2\\pi\\sqrt{\\frac{\\km}{\\kk}} = 2\\pi\\sqrt{\\frac{${fmt(m.v, 0)}\\ \\text{kg}}{${sci(k.v)}\\ \\text{N/m}}} = ${fmt(T(), 3)}\\ \\text{s}`,
-      'The frequency is f = 1/T = ' + fmt(1 / T(), 2) + ' Hz. The two blocks were released together and stay in step: the period does not depend on the amplitude.');
+      'The frequency is $\\kf = 1/\\kT$ = ' + fmt(1 / T(), 2) + ' Hz.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
 })();
@@ -123,7 +124,7 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label, color) {
    scene, so the paper is beside it. Endless.
 ===================================================================== */
 (function () {
-  const d = sim('sim-paper-strip', 640);
+  const d = sim('sim-paper-strip', 690);
   const X = ctl(d.controls, { label: '\\kX', cls: 'position', min: 0.02, max: 0.1, step: 0.005, value: 0.05, unit: 'm', dec: 3, onInput: reset, aria: 'amplitude' });
   const T = ctl(d.controls, { label: '\\kT', cls: 'time', min: 0.5, max: 3, step: 0.1, value: 1, unit: 's', dec: 2, onInput: reset, aria: 'period' });
   const cy = cycle(() => Infinity, 0);
@@ -160,9 +161,9 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label, color) {
     block(ctx, cx, by, 80, 56, F.ref('trace-object')); text(ctx, 'm', cx, by + 46, C('mass'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     line(ctx, cx + 40, by, pl, by, PAL.ink, 4); dot(ctx, pl, by, C('position'), true, 8);
     if (Math.abs(x) > 0.004) vbracket(ctx, cx - 64, y0, by, C('position'), 'x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m', -1, { size: 20 });
-    headline(ctx, 'At ' + fmt(tc, 2) + ' s into a cycle of ' + fmt(T.v, 2) + ' s the mass is at x = X cos(2πt/T) = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m');
+    headline(ctx, 'At ' + fmt(tc, 2) + ' s into a cycle of ' + fmt(T.v, 2) + ' s the mass is at $\\kx = \\kX\\cos(2\\pi\\kt/\\kT)$ = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m');
     readout(d.readout, `\\kx(\\kt) = \\kX\\cos\\frac{2\\pi\\kt}{\\kT} = (${fmt(X.v, 3)}\\ \\text{m})\\cos\\frac{2\\pi(${fmt(tc, 2)}\\ \\text{s})}{${fmt(T.v, 2)}\\ \\text{s}} = ${sgn(x)}${fmt(Math.abs(x), 3)}\\ \\text{m}`,
-      'At t = 0 the mass is at x = X, and at t = T it is back there again, because cos 2π = 1. The paper moves at a steady speed, so equal distances along it are equal times.');
+      'The paper moves at a steady speed, so equal distances along it are equal times.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -206,18 +207,18 @@ function oscillator(ctx, wall, eq, floorY, x, SC, label, color) {
     const rows = [['x (m)', C('position'), XM, xOf, 3], ['v (m/s)', C('velocity'), VM, vOf, 2], ['a (m/s²)', C('acceleration'), AM, aOf, 0]];
     const l = 620, r = 1300, t0 = Math.max(0, tau - S);
     rows.forEach(([yl, col, top, f, dec], i) => {
-      const box = { l, r, t: 100 + i * 225, b: 250 + i * 225 };
+      const box = { l, r, t: 132 + i * 215, b: 267 + i * 215 };
       const { X: gx, Y: gy } = axes(ctx, box, [-S, 0], [-top, top], { xl: i === 2 ? 'time before now (s)' : '', xc: C('time'), yl, yc: col, nx: NS, ny: 2, fx: (val) => (Math.abs(val) < 1e-9 ? 'now' : fmt(-val, 1)), fy: (val) => fmt(val, dec) });
       ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
       if (tau > 0) curve(ctx, (s) => f(tau + s), t0 - tau, 0, gx, gy, col, 4, Math.min(3000, Math.ceil(40 * (tau - t0) / T()) + 20));
       ctx.restore();
       pinned(ctx, box, gx, gy, 0, f(tau), col, fmt(f(tau), dec));
     });
-    headline(ctx, Math.abs(x) > 0.97 * X.v ? 'At x = ' + sgn(x) + 'X the velocity is zero and the acceleration is ' + sgn(a) + 'a_max, directed back toward equilibrium'
+    headline(ctx, Math.abs(x) > 0.97 * X.v ? 'At x = ' + sgn(x) + 'X the velocity is zero and the acceleration is ' + sgn(a) + '$\\ka_{\\text{max}}$, directed back toward equilibrium'
       : Math.abs(x) < 0.03 * X.v ? 'The object is passing through equilibrium, where the acceleration is zero and the velocity has its greatest size, ' + fmt(vmax, 2) + ' m/s'
       : 'At x = ' + sgn(x) + fmt(Math.abs(x), 3) + ' m the velocity is ' + sgn(v) + fmt(Math.abs(v), 2) + ' m/s and the acceleration is ' + sgn(a) + fmt(Math.abs(a), 1) + ' m/s², always opposite to the position');
     readout(d.readout, `\\kx = ${sgn(x)}${fmt(Math.abs(x), 3)}\\ \\text{m},\\quad \\kv = ${sgn(v)}${fmt(Math.abs(v), 2)}\\ \\text{m/s},\\quad \\ka = ${sgn(a)}${fmt(Math.abs(a), 1)}\\ \\text{m/s}^2 \\quad\\text{at } \\kt = ${fmt(tc, 2)}\\ \\text{s}`,
-      'T = 2π√(m/k) = ' + fmt(T(), 3) + ' s, v_max = X√(k/m) = ' + fmt(vmax, 2) + ' m/s, and a_max = kX/m = ' + fmt(amax, 1) + ' m/s². The acceleration is always opposite to the position.');
+      '$\\kT = 2\\pi\\sqrt{\\km/\\kk}$ = ' + fmt(T(), 3) + ' s, $\\kv_{\\text{max}} = \\kX\\sqrt{\\kk/\\km}$ = ' + fmt(vmax, 2) + ' m/s, and $\\ka_{\\text{max}} = \\kk\\kX/\\km$ = ' + fmt(amax, 1) + ' m/s².');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, T() / 1.2)), draw });
 })();

@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES['16.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, strip, spring, block, fixed, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI, DEG = 180 / Math.PI;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
 const sgn = (v) => (v < 0 ? '−' : '+');
 /* a curved arrow round the top of a circle, counterclockwise, for ω */
 function curl(ctx, cx, cy, r, color) {
@@ -32,11 +32,11 @@ function curl(ctx, cx, cy, r, color) {
     const { ctx } = begin(d.c);
     const tau = REDUCED ? T.v / 5 : cy.now(), th = w() * tau, x = X.v * Math.cos(th);
     const sq = view.mix((v) => (v === 'above' ? 1 : 0));     /* how much of its depth the circle shows: 1 from above, 0 edge-on */
-    /* 8 units to the centimetre, so the widest turntable the slider reaches stays clear of the lights above it */
-    const U = 8, cx = 700, cyc = 300, R = U * X.v, yL = 520;
+    /* 7 units to the centimetre, so the widest turntable the slider reaches, its ω arrow and name stay clear of the lights above it */
+    const U = 7, cx = 700, cyc = 320, R = U * X.v, yL = 520;
     /* the lights and the turntable */
     fixed(ctx, cx - 420, 84, 840, 22);
-    for (let i = -3; i <= 3; i++) line(ctx, cx + i * 120, 106, cx + i * 120, 122, PAL.muted, 3);
+    for (let i = -3; i < 3; i++) line(ctx, cx + (i + 0.5) * 120, 106, cx + (i + 0.5) * 120, 122, PAL.muted, 3);   /* none over the centre, where ω is named */
     text(ctx, 'light from above', cx + 416, 142, PAL.muted, { size: 18, align: 'right' });
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(cx, cyc, R, Math.max(R * sq, 0.5), 0, 0, TAU); ctx.stroke(); ctx.restore();
     dot(ctx, cx, cyc, PAL.muted, true, 5);
@@ -74,10 +74,10 @@ function curl(ctx, cx, cy, r, color) {
     if (tau > 0) ctx.stroke(); ctx.restore();
     dot(ctx, bx, pt, C('position'), true, 8);
     const deg = ((th * DEG) % 360 + 360) % 360;
-    headline(ctx, sq < 0.01 ? 'Seen edge-on, the ball moves back and forth exactly above its shadow, at x = X cos θ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm'
-      : 'At θ = ωt = ' + fmt(deg, 0) + '° the shadow stands at x = X cos θ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm');
+    headline(ctx, sq < 0.01 ? 'Seen edge-on, the ball moves back and forth exactly above its shadow, at $\\kx = \\kX\\cos\\ktheta$ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm'
+      : 'At $\\ktheta = \\kw\\kt$ = ' + fmt(deg, 0) + '° the shadow stands at $\\kx = \\kX\\cos\\ktheta$ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm');
     readout(d.readout, `\\kx = \\kX\\cos\\kw\\kt = (${fmt(X.v, 0)}\\ \\text{cm})\\cos(${fmt(deg, 0)}°) = ${sgn(x)}${fmt(Math.abs(x), 1)}\\ \\text{cm}`,
-      'ω = 2π/T = ' + fmt(w(), 2) + ' rad/s. The ball goes round once every T = ' + fmt(T.v, 2) + ' s, and the shadow goes back and forth once in the same time.');
+      '$\\kw = 2\\pi/\\kT$ = ' + fmt(w(), 2) + ' rad/s, and the shadow goes back and forth once for each turn of the ball.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -96,9 +96,9 @@ function curl(ctx, cx, cy, r, color) {
     const { ctx } = begin(d.c);
     const tau = REDUCED ? 1.1 / om.v : cy.now(), th = om.v * tau, x = X.v * Math.cos(th);
     const vmax = (X.v / 100) * om.v, v = -vmax * Math.sin(th), T = TAU / om.v;
-    /* 14 units to the centimeter, fixed from the widest radius the slider reaches, so the circle
+    /* 12 units to the centimeter, fixed from the widest radius the slider reaches, so the circle
        grows with the radius all the way instead of stopping at a cap partway along the slider */
-    const cx = 700, cyc = 370, R = 14 * X.v;
+    const cx = 700, cyc = 400, R = 12 * X.v;
     /* seven names ride the two triangles as P goes round, so they are placed against one another
        by the labeller and step out with a leader where a slot is taken (rule 26.7) */
     const lab = labeller(ctx, 700); lab.block(0, 0, 1400, 96);
@@ -127,9 +127,9 @@ function curl(ctx, cx, cy, r, color) {
     if (Math.abs(v) > 0.03 * vmax) { arrow(ctx, px, py, ex, py, C('velocity'), 5); lab.add('v', (px + ex) / 2, py, 0, ey < py ? 1 : -1, C('velocity'), 20, 14); }
     line(ctx, ex, py, ex, ey, PAL.muted, 2, [6, 6]);
     lab.flush();
-    headline(ctx, 'At θ = ' + fmt(((th * DEG) % 360 + 360) % 360, 0) + '° the projection stands at x = X cos θ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm and moves at ' + fmt(Math.abs(v), 2) + ' m/s, because the two triangles are similar');
+    headline(ctx, 'At $\\ktheta$ = ' + fmt(((th * DEG) % 360 + 360) % 360, 0) + '° the projection stands at $\\kx = \\kX\\cos\\ktheta$ = ' + sgn(x) + fmt(Math.abs(x), 1) + ' cm and moves at ' + fmt(Math.abs(v), 2) + ' m/s, because the two triangles are similar');
     readout(d.readout, `\\kv = \\kvmax\\sqrt{1 - \\frac{\\kx^2}{\\kX^2}} = (${fmt(vmax, 3)}\\ \\text{m/s})\\sqrt{1 - \\frac{(${fmt(Math.abs(x), 1)})^2}{(${fmt(X.v, 0)})^2}} = ${fmt(Math.abs(v), 2)}\\ \\text{m/s}`,
-      'v_max = Xω = (' + fmt(X.v / 100, 2) + ' m)(' + fmt(om.v, 1) + ' rad/s) = ' + fmt(vmax, 3) + ' m/s, and the period is T = 2πX/v_max = 2π/ω = ' + fmt(T, 2) + ' s.');
+      '$\\kvmax = \\kX\\kw$ = (' + fmt(X.v / 100, 2) + ' m)(' + fmt(om.v, 1) + ' rad/s) = ' + fmt(vmax, 3) + ' m/s, and the period is $\\kT = 2\\pi/\\kw$ = ' + fmt(T, 2) + ' s.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

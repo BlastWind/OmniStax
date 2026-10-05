@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES['16.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, hbracket, vbracket, strip, axes, pinned, spring, block, fixed, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const G = 9.80;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
 /* a toy dart lying along the line y with its point at x: a shaft, a pointed tip and two fins at the tail, about 90 units long */
 function dart(ctx, x, y, color) {
   ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = 'round';
@@ -41,7 +41,7 @@ function dart(ctx, x, y, color) {
     const lines = headline(ctx, atRest ? 'The ruler has come to rest at its equilibrium position, where the net force on it is zero'
       : Math.abs(x) < 0.15 ? 'The tip is passing through equilibrium, where the net force is zero, but the ruler has momentum and keeps moving'
       : 'The tip is ' + fmt(Math.abs(x), 1) + ' cm to the ' + (x < 0 ? 'left' : 'right') + ', so the restoring force points to the ' + (x < 0 ? 'right' : 'left'));
-    fixed(ctx, cx - 130, yb, 260, 44); text(ctx, 'clamped here', cx, yb + 24, PAL.muted, { size: 17, align: 'center', base: 'middle', bg: PAL.soft });
+    fixed(ctx, cx - 130, yb, 260, 44); text(ctx, 'clamped here', cx + 146, yb + 22, PAL.muted, { size: 17, base: 'middle' });
     line(ctx, cx, 96, cx, yb, PAL.muted, 3, [10, 10]); text(ctx, 'equilibrium position', cx - 22, yb - 40, PAL.muted, { size: 17, align: 'right', bg: PAL.panel });
     /* The ruler bends as the square of the distance from the clamp. It is drawn as a ruler: a pale
        strip with an ink edge and graduations down its left side, every fifth one longer. */
@@ -62,9 +62,10 @@ function dart(ctx, x, y, color) {
       label(ctx, 'restoring force F', tip + s * (al + 4), yt + 8, { side: x > 0 ? 'left' : 'right', color: C('force'), size: 22, gap: 10 });
     }
     dot(ctx, tip, yt, cr, true, 7);
-    const Fn = -k() * x / 100;
-    readout(d.readout, `\\kF = -\\kk\\kx = -(${fmt(k(), 0)}\\ \\text{N/m})(${x < 0 ? '-' : '+'}${fmt(Math.abs(x) / 100, 3)}\\ \\text{m}) = ${Fn < 0 ? '-' : '+'}${fmt(Math.abs(Fn), 2)}\\ \\text{N}`,
-      'A ' + Lr.v + ' cm length of this ruler has a force constant of about ' + fmt(k(), 0) + ' N/m and swings back and forth ' + fmt(freq(), 1) + ' times each second. A shorter length is stiffer and oscillates faster.');
+    /* the force from the two numbers as printed, so the line adds up as written */
+    const kr = Math.round(k()), xr = Math.round(Math.abs(x) * 100) / 1e4, Fn = -Math.sign(x) * kr * xr;
+    readout(d.readout, `\\kF = -\\kk\\kx = -(${kr}\\ \\text{N/m})(${x < 0 ? '-' : '+'}${fmt(xr, 4)}\\ \\text{m}) = ${Fn < 0 ? '-' : '+'}${fmt(Math.abs(Fn), 2)}\\ \\text{N}`,
+      'A ' + Lr.v + ' cm length of this ruler has a force constant of about ' + kr + ' N/m and swings back and forth ' + fmt(freq(), 1) + ' times each second.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => Math.min(1, 4 / freq())), draw });
 })();
@@ -95,17 +96,17 @@ function dart(ctx, x, y, color) {
     const mNow = done ? m.v : Math.min(m.v, 0.1 * (i + ease)), hung = done ? n : i;
     const x = xOf(mNow), w = mNow * G;
     /* the scene: beam, spring, block */
-    const cx = 330, yBeam = 100, y0 = yBeam + 130, yEnd = y0 + x * SC;
+    const cx = 330, yBeam = 140, y0 = yBeam + 130, yEnd = y0 + x * SC;
     fixed(ctx, cx - 150, yBeam - 44, 300, 44);
     spring(ctx, cx, yBeam, cx, yEnd, 9, 26, F.ref('scale-spring'), 4);
     block(ctx, cx, yEnd + 32, 96, 64, PAL.ink);
     if (mNow > 0.001) text(ctx, fmt(mNow, 1) + ' kg', cx + 62, yEnd + 32, C('mass'), { size: 20, weight: 600, base: 'middle' });
-    line(ctx, cx - 150, y0, cx + 190, y0, PAL.muted, 2, [10, 10]); text(ctx, 'x = 0', cx - 160, y0, C('position'), { align: 'right', base: 'middle', weight: 600, size: 22 });
+    line(ctx, cx - 220, y0, cx + 140, y0, PAL.muted, 2, [10, 10]); text(ctx, 'x = 0', cx - 230, y0, C('position'), { align: 'right', base: 'middle', weight: 600, size: 22 });
     if (x > 0.004) vbracket(ctx, cx + 150, y0, yEnd, C('position'), 'x = ' + fmt(x, 3) + ' m', 1);
     if (mNow > 0.001) {
       const al = 30 + 16 * w;
       arrow(ctx, cx + 30, yEnd + 64, cx + 30, yEnd + 64 + al, C('force'), 5); text(ctx, 'w = ' + fmt(w, 2) + ' N', cx + 46, yEnd + 64 + al - 4, C('force'), { weight: 600, size: 20 });
-      arrow(ctx, cx - 30, yEnd, cx - 30, yEnd - al, C('force'), 5); text(ctx, 'F = ' + fmt(w, 2) + ' N', cx - 46, yEnd - al + 2, C('force'), { weight: 600, size: 20, align: 'right', base: 'bottom' });
+      arrow(ctx, cx - 30, yEnd, cx - 30, yEnd - al, C('force'), 5); text(ctx, 'F = ' + fmt(w, 2) + ' N', cx - 46, yEnd - al / 2, C('force'), { weight: 600, size: 20, align: 'right', base: 'middle' });
     }
     /* the graph beside a vertical scene: F against x, one dot per weight hung */
     const box = { l: 760, r: 1320, t: 150, b: 610 };
@@ -117,8 +118,8 @@ function dart(ctx, x, y, color) {
     if (mNow > 0.001) { line(ctx, X(x), box.b, X(x), Y(w), C('position'), 2, [4, 8]); line(ctx, box.l, Y(w), X(x), Y(w), C('force'), 2, [4, 8]); dot(ctx, X(x), Y(w), PAL.ink, true, 9); }
     headline(ctx, mNow < 0.001 ? 'With no load the spring hangs at its unstretched length, x = 0'
       : 'A ' + fmt(mNow, 1) + ' kg load weighs ' + fmt(w, 2) + ' N and stretches the spring ' + fmt(x, 3) + ' m');
-    readout(d.readout, `\\kF = \\kk\\kx = (${fmt(k.v, 0)}\\ \\text{N/m})(${fmt(x, 3)}\\ \\text{m}) = ${fmt(w, 2)}\\ \\text{N} = w = \\km g`,
-      'Each dot is one weight hung on the spring. The restoring force equals the weight supported while the mass hangs still, and the slope of the line through the dots is the force constant.');
+    readout(d.readout, `\\kF = \\kk\\kx = (${fmt(k.v, 0)}\\ \\text{N/m})(${fmt(x, 4)}\\ \\text{m}) = ${fmt(w, 2)}\\ \\text{N} = w = \\km g`,
+      'Each dot is one weight hung on the spring.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -154,7 +155,7 @@ function dart(ctx, x, y, color) {
     spring(ctx, wall, y, plate, y, 12, 22, F.ref('gun-spring'), 4);
     line(ctx, plate, y - 36, plate, y + 36, PAL.ink, 8);
     /* the dart flies as far as the strip allows and no farther, so it and its label never leave the canvas */
-    const vv = vOut(), dartX = plate + 40 + (phase === 'flight' ? fly * Math.min(R - 60 - plate - 40, 14 * vv) : 0);
+    const vv = vOut(), dartX = plate + 100 + (phase === 'flight' ? fly * Math.min(R - 160 - plate - 100, 14 * vv) : 0);
     dart(ctx, dartX, y, F.ref('dart'));
     line(ctx, wall + nat, y - 44, wall + nat, y + 44, PAL.muted, 2, [6, 6]); text(ctx, 'x = 0', wall + nat, y - 58, C('position'), { size: 18, align: 'center', weight: 600 });
     if (xc > 0.003) hbracket(ctx, plate, wall + nat, y + 80, C('position'), 'x = ' + fmt(xc, 3) + ' m');
@@ -180,11 +181,11 @@ function dart(ctx, x, y, color) {
     if (xc > 0.001) { line(ctx, X(xc), box.b, X(xc), Y(Math.min(FMAX, k.v * xc)), C('position'), 2, [4, 8]); pinned(ctx, box, X, Y, xc, k.v * xc, C('force'), fmt(k.v * xc, 1) + ' N'); }
     const W = 0.5 * k.v * xs * xs;
     text(ctx, (phase === 'compress' ? 'work done so far = area = ' : phase === 'hold' ? 'work done = area = ½kx² = ' : 'energy released = ') + fmt(W, 3) + ' J', box.l + 24, box.t + 26, C('energy'), { weight: 600 });
-    headline(ctx, phase === 'compress' ? 'The spring has been pushed in ' + fmt(xc, 3) + ' m, so the applied force is kx = ' + fmt(k.v * xc, 2) + ' N and the work done so far is ' + fmt(W, 3) + ' J'
-      : phase === 'hold' ? 'Held compressed by ' + fmt(x.v, 3) + ' m, the spring stores the work done on it, ½kx² = ' + fmt(pe(), 3) + ' J, as elastic potential energy'
+    headline(ctx, phase === 'compress' ? 'The spring has been pushed in ' + fmt(xc, 3) + ' m, so the applied force is $\\kk\\kx$ = ' + fmt(k.v * xc, 2) + ' N and the work done so far is ' + fmt(W, 3) + ' J'
+      : phase === 'hold' ? 'Held compressed by ' + fmt(x.v, 3) + ' m, the spring stores the work done on it, $\\tfrac{1}{2}\\kk\\kx^2$ = ' + fmt(pe(), 3) + ' J, as elastic potential energy'
       : 'Released, the ' + fmt(pe(), 3) + ' J of elastic potential energy becomes kinetic energy, and the dart leaves at ' + fmt(vv, 1) + ' m/s');
     readout(d.readout, `\\kPE = \\tfrac{1}{2}\\kk\\kx^2 = \\tfrac{1}{2}(${fmt(k.v, 1)}\\ \\text{N/m})(${fmt(x.v, 3)}\\ \\text{m})^2 = ${fmt(pe(), 3)}\\ \\text{J}`,
-      'Method B gives the same answer: the average force is ½kx = ' + fmt(0.5 * k.v * x.v, 2) + ' N, and (' + fmt(0.5 * k.v * x.v, 2) + ' N)(' + fmt(x.v, 3) + ' m) = ' + fmt(pe(), 3) + ' J. With no friction, ½mv² = PE_el gives v = ' + fmt(vv, 1) + ' m/s.');
+      'With no friction, $\\tfrac{1}{2}\\km\\kv^2 = \\kPE$ gives $\\kv$ = ' + fmt(vv, 1) + ' m/s.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES['16.11'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, strip, axes, pinned, curve, block, fixed } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
 /* a number in scientific notation for a readout, 5.04 × 10⁶ */
 function sci(v, d = 2) { if (v === 0) return '0'; const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times10^{${e}}`; }
 const SUP = { '-': '\u207b', 0: '\u2070', 1: '\u00b9', 2: '\u00b2', 3: '\u00b3', 4: '\u2074', 5: '\u2075', 6: '\u2076', 7: '\u2077', 8: '\u2078', 9: '\u2079' };
@@ -30,7 +30,7 @@ function bar(ctx, cx, base, w, h, color) {
     /* Both axes are fixed and never rescaled: the displacement axis is the amplitude slider's own
        0 to 0.20 m, and the force axis runs to 40 N, which is the stiffest spring at the largest
        amplitude the sliders allow. The bars are scaled to the same largest state. */
-    const XM = 0.2, FM = 40, SC = 600;
+    const XM = 0.2, FM = 40, SC = 500;
     const wl = 480, y0 = 240, l = 130, r = 1300;
     /* the wave, drawn at the amplitude set, with the reference amplitude dashed behind it */
     line(ctx, l, y0, r, y0, PAL.muted, 2, [10, 10]);
@@ -38,7 +38,7 @@ function bar(ctx, cx, base, w, h, color) {
     curve(ctx, (s) => X.v * Math.cos(TAU * s / wl), 0, r - l, (s) => l + s, (v) => y0 - v * SC, C('position'), 5, 240);
     vbracket(ctx, l + wl, y0, y0 - X.v * SC, C('position'));
     text(ctx, 'X = ' + fmt(X.v, 3) + ' m', l + wl + 18, y0 - X.v * SC - 26, C('position'), { size: 20, weight: 600, bg: PAL.panel });
-    text(ctx, 'the reference wave, X = ' + fmt(XR, 3) + ' m', l, y0 + 96, PAL.muted, { size: 18 });
+    text(ctx, 'the reference wave, X = ' + fmt(XR, 3) + ' m', l, y0 + 114, PAL.muted, { size: 18, bg: PAL.panel });   /* under the largest swing */
     /* the force against the displacement, with the work shaded under it */
     const box = { l: 190, r: 790, t: 400, b: 620 };
     const { X: gx, Y: gy } = axes(ctx, box, [0, XM], [0, FM], { xl: 'displacement x (m)', xc: C('position'), yl: 'F (N)', yc: C('force'), nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
@@ -61,7 +61,7 @@ function bar(ctx, cx, base, w, h, color) {
     const ratio = (X.v * X.v) / (XR * XR);
     topline(ctx, 'An amplitude of ' + fmt(X.v, 3) + ' m is ' + fmt(X.v / XR, 2) + ' times the reference amplitude, and it carries ' + fmt(ratio, 2) + ' times the energy');
     readout(d.readout, `\\kW \\propto \\kF\\kx = \\kk\\kx^{2}:\\quad \\kk\\kX^{2} = (${fmt(k.v, 0)}\\ \\text{N/m})(${fmt(X.v, 3)}\\ \\text{m})^{2} = ${fmt(k.v * X.v * X.v, 3)}\\ \\text{N}\\cdot\\text{m}`,
-      'The shaded triangle is the work done to pull the displacement out to the amplitude, ½kX² = ' + fmt(0.5 * k.v * X.v * X.v, 3) + ' J. Because the energy goes as the amplitude squared, doubling the amplitude gives four times the energy, and the intensity rises with it.');
+      'The shaded triangle is the work done, $\\tfrac{1}{2}\\kk\\kX^2$ = ' + fmt(0.5 * k.v * X.v * X.v, 3) + ' J.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -92,12 +92,12 @@ function bar(ctx, cx, base, w, h, color) {
     const wide = mode.mix((v) => (v === 'focused' ? wf : w)), Adraw = Math.exp(mode.mix((v) => Math.log(v === 'focused' ? A.v / 200 : A.v)));
     for (let i = -3; i <= 3; i++) {
       const sx = cx + (i * w) / 7, ex = cx + (i * wide) / 7;
-      arrow(ctx, sx, 110, ex, cy - 26, C('power'), 4);
+      arrow(ctx, sx, 130, ex, cy - 26, C('power'), 4);
     }
     if (mode.a('focused') > 0) { ctx.save(); ctx.globalAlpha = mode.a('focused'); ctx.strokeStyle = F.ref('lens'); ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(cx, 185, w / 2, 16, 0, 0, TAU); ctx.stroke(); text(ctx, 'the magnifying glass', cx - w / 2 - 16, 185, F.ref('lens'), { size: 18, align: 'right' }); ctx.restore(); }
     block(ctx, cx, cy, Math.max(24, wide), 30, F.ref('collector'));
     hbracket(ctx, cx - Math.max(24, wide) / 2, cx + Math.max(24, wide) / 2, cy + 74, C('area'), 'A = ' + (focused ? sciPlain(Ause, 2) : fmt(Ause, 3)) + ' m²');
-    text(ctx, 'P = ' + fmt(P.v, 0) + ' W through the beam', cx, 90, C('power'), { size: 20, weight: 600, align: 'center' });
+    text(ctx, 'P = ' + fmt(P.v, 0) + ' W through the beam', cx, 112, C('power'), { size: 20, weight: 600, align: 'center' });   /* under a two-line headline */
     /* the curve I = P/A, with the state on it */
     const box = { l: 220, r: 1240, t: 350, b: 560 };
     const { X: gx, Y: gy } = axes(ctx, box, [0, AM], [0, IM], { xl: 'area A (m²)', xc: C('area'), yc: C('intensity'), nx: 4, ny: 4, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
@@ -106,12 +106,13 @@ function bar(ctx, cx, base, w, h, color) {
     curve(ctx, (a) => P.v / a, P.v / IM, AM, gx, gy, C('intensity'), 5, 220);
     ctx.restore();
     text(ctx, 'I = P/A', gx(AM * 0.62), gy(P.v / (AM * 0.62)) - 30, C('intensity'), { size: 20, weight: 600, bg: PAL.panel });
-    pinned(ctx, box, gx, gy, Adraw, P.v / Adraw, C('intensity'), (I >= 10000 ? sciPlain(I, 2) : fmt(I, 0)) + ' W/m²');
+    const ilab = (I >= 10000 ? sciPlain(I, 2) : fmt(I, 0)) + ' W/m²', pp = pinned(ctx, box, gx, gy, Adraw, P.v / Adraw, C('intensity'), P.v / Adraw > IM ? '' : ilab);
+    if (pp.out) text(ctx, ilab, pp.x + 20, pp.y + 24, C('intensity'), { size: 19, weight: 600, bg: PAL.panel });   /* off the top: named right of its pin, clear of the tick labels */
     topline(ctx, fmt(P.v, 0) + ' W through ' + (focused ? sciPlain(Ause, 2) : fmt(Ause, 3)) + ' m² is an intensity of ' + (I >= 10000 ? sciPlain(I, 2) : fmt(I, 0)) + ' W/m², and in ' + fmt(t.v, 2) + ' h it delivers ' + sciPlain(E, 2) + ' J');
     readout(d.readout, `\\kIntens = \\frac{\\kP}{\\karea} = \\frac{${fmt(P.v, 0)}\\ \\text{W}}{${focused ? sci(Ause, 2) : fmt(Ause, 3)}\\ \\text{m}^{2}} = ${I >= 10000 ? sci(I, 2) : fmt(I, 0)}\\ \\text{W/m}^{2}`,
       focused
-        ? 'The same power through an area 200 times smaller is 200 times as intense: I′/I = A/A′ = 200. In ' + fmt(t.v, 2) + ' h the energy that falls on the smaller area is E = IAt = ' + sciPlain(E, 2) + ' J, the same energy as before, gathered into a smaller patch.'
-        : 'The energy that falls on the collector is E = IAt = (' + fmt(I, 0) + ' W/m²)(' + fmt(Ause, 3) + ' m²)(' + fmt(t.v, 2) + ' h × 3600 s/h) = ' + sciPlain(E, 2) + ' J. Halving the area doubles the intensity, because the same power crosses it.');
+        ? 'The same power through an area 200 times smaller is 200 times as intense, and it delivers the same energy.'
+        : 'The energy delivered is $\\kE = \\kIntens\\karea\\kt$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -141,7 +142,7 @@ function bar(ctx, cx, base, w, h, color) {
       const c = Math.cos(Math.PI * (r1 - r2) / lam.v);
       return { r1, r2, amp: 2 * Math.abs(c), I: 4 * c * c };
     };
-    const STEP = 12;
+    const STEP = lam.v < 0.4 ? 4 : lam.v < 0.8 ? 8 : 12;   /* fine enough that a short wavelength's fringes do not alias into a checkerboard */
     ctx.save();
     for (let X0 = L; X0 < R; X0 += STEP) for (let Y0 = TOP; Y0 < BOT; Y0 += STEP) {
       const x = (X0 + STEP / 2 - (L + R) / 2) / SX, y = (Y0 + STEP / 2 - TOP) / SY;
@@ -178,7 +179,7 @@ function bar(ctx, cx, base, w, h, color) {
       : q.I < 0.1 ? 'At x = ' + fmt(post.v, 2) + ' m the two paths differ by ' + fmt(Math.abs(q.r1 - q.r2), 2) + ' m, half a wavelength more than a whole number, so the waves cancel and the intensity is very nearly zero'
       : 'At x = ' + fmt(post.v, 2) + ' m the two paths differ by ' + fmt(Math.abs(q.r1 - q.r2), 2) + ' m, and the two waves of 1.00 W/m² each give ' + fmt(q.I, 2) + ' W/m² together');
     readout(d.readout, `\\frac{\\kIntensprime}{\\kIntens} = \\left(\\frac{\\kXprime}{\\kX}\\right)^{2} = (${fmt(q.amp, 2)})^{2} = ${fmt(4 * ratio, 2)},\\quad \\kIntensprime = ${fmt(q.I, 2)}\\ \\text{W/m}^{2}`,
-      'Each speaker alone gives I = 1.00 W/m² at the post. Where the two waves arrive in step the amplitude is X′ = 2X and the intensity is 4.00 W/m², four times either wave alone; where they arrive out of step the amplitude is zero and so is the intensity. The energy is not created at the loud places, it is gathered there from the silent ones.');
+      'Where the waves arrive in step $\\kXprime = 2\\kX$ and the intensity is four times either wave alone; the energy is gathered there from the silent places.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

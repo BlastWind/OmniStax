@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES['16.9'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, scale, curve, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
 const sgn = (v) => (v < 0 ? '−' : '+');
 
 /* =====================================================================
@@ -45,7 +45,7 @@ const sgn = (v) => (v < 0 ? '−' : '+');
   function draw() {
     const { ctx } = begin(d.c);
     const t = REDUCED ? T.v / 8 : cy.now();
-    const lab = labeller(ctx, 560); lab.block(0, 0, 1400, 92);
+    const lab = labeller(ctx, 560); lab.block(0, 0, 1400, 92); lab.block(0, 474, 1400, 560);   /* the headline band and the distance scale */
     const vw = lam.v / T.v, f = 1 / T.v;
     const u = (m) => X.v * Math.cos(TAU * (m / lam.v - t / T.v));
     /* the water: the medium is ink and its surface is an ink line; the quantities
@@ -72,8 +72,9 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     /* the gull: it rides the surface and moves up and down only */
     const gy = Ys(u(XG)) - 12, vg = X.v * (TAU / T.v) * Math.sin(TAU * (XG / lam.v - t / T.v)), vmax = TAU * X.v / T.v;
     gull(ctx, Xs(XG), gy, F.ref('gull'));
+    lab.place({ l: Xs(XG) - 70, r: Xs(XG) + 70, t: gy - 50, b: gy + 20 });   /* no label lands on the bird */
     if (Math.abs(vg) > 0.04 * vmax) {
-      const al = 34 + 70 * Math.abs(vg) / vmax, s = vg > 0 ? -1 : 1;
+      const al = 30 + 46 * Math.abs(vg) / vmax, s = vg > 0 ? -1 : 1;
       arrow(ctx, Xs(XG) - 56, gy, Xs(XG) - 56, gy + s * al, C('velocity'), 5);
       lab.add(sgn(vg) + fmt(Math.abs(vg), 2) + ' m/s', Xs(XG) - 56, gy + s * al, -0.6, s, C('velocity'), 20);
     }
@@ -91,7 +92,7 @@ const sgn = (v) => (v < 0 ? '−' : '+');
     lab.flush();
     topline(ctx, 'The crests are ' + fmt(lam.v, 1) + ' m apart and pass the gull every ' + fmt(T.v, 2) + ' s, so the wave travels at ' + fmt(vw, 2) + ' m/s while the gull only moves up and down');
     readout(d.readout, `\\kvw = \\frac{\\klam}{\\kT} = \\frac{${fmt(lam.v, 1)}\\ \\text{m}}{${fmt(T.v, 2)}\\ \\text{s}} = ${fmt(vw, 2)}\\ \\text{m/s}`,
-      'The frequency is f = 1/T = ' + fmt(f, 3) + ' Hz, so v_w = fλ gives the same ' + fmt(vw, 2) + ' m/s. What travels to the right is the disturbance, not the water: the gull and the marked particle both stay where they are.');
+      'The frequency is $\\kf = 1/\\kT$ = ' + fmt(f, 3) + ' Hz, so $\\kvw = \\kf\\klam$ gives the same ' + fmt(vw, 2) + ' m/s.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();
@@ -177,9 +178,7 @@ const sgn = (v) => (v < 0 ? '−' : '+');
       ? 'The hand moves up and down across the cord while the wave travels along it to the right at ' + fmt(vw, 2) + ' m/s: the disturbance is perpendicular to the direction of propagation'
       : 'The hand pushes and pulls along the cord while the wave travels to the right at ' + fmt(vw, 2) + ' m/s: the disturbance is parallel to the direction of propagation');
     readout(d.readout, `\\kvw = \\frac{\\klam}{\\kT} = \\frac{${fmt(lam.v, 1)}\\ \\text{m}}{${fmt(T.v, 2)}\\ \\text{s}} = ${fmt(vw, 2)}\\ \\text{m/s}`,
-      (tr ? 'The disturbance is perpendicular to the direction of propagation, which is what makes this a transverse, or shear, wave. '
-          : 'The disturbance is parallel to the direction of propagation, which is what makes this a longitudinal, or compressional, wave. ')
-      + 'The size of the disturbance is its amplitude X = ' + fmt(X.v, 2) + ' m, and it is completely independent of the speed of propagation.');
+      'The amplitude $\\kX$ = ' + fmt(X.v, 2) + ' m is independent of the speed of propagation.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => T.v / 5), draw });
 })();

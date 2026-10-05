@@ -5,7 +5,7 @@ const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, cycle, register, begi
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
 const G = 9.80;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
 const sgn = (v) => (v < 0 ? '−' : '+');
 /* a horizontal oscillator: wall, spring and block on a floor, the block at x meters from equilibrium */
 function oscillator(ctx, wall, eq, floorY, x, SC, color) {
@@ -76,7 +76,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
     text(ctx, fmt(100 * frac, 0) + '%', 1237, box.b + 28, C('energy'), { size: 20, weight: 600, align: 'center' });
     topline(ctx, 'After ' + fmt(tau, 1) + ' s, which is ' + fmt(tau / T.v, 1) + ' cycles, the amplitude has fallen from ' + fmt(X.v, 3) + ' m to ' + fmt(amp, 3) + ' m, while the time from one crest to the next is still ' + fmt(T.v, 1) + ' s');
     readout(d.readout, `\\kWnc = \\Delta(\\kKE + \\kPEtot) = -${fmt(1 - frac, 2)}\\,\\kE_0`,
-      'The energy of an oscillation goes as the square of its amplitude, so ' + fmt(100 * (1 - frac), 0) + ' percent of the mechanical energy the oscillator started with has now been carried off by the damping force, most of it as thermal energy.');
+      'The energy goes as the square of the amplitude, and the damping force carries it off, most of it as thermal energy.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -142,8 +142,8 @@ function energyBar(ctx, x, top, bot, frac, label) {
     const here = xOf(FOCUS, tau), tc = settleTime('critical'), to = settleTime('over');
     const name = CURVES.find((c) => c.key === FOCUS).name;
     topline(ctx, 'At ' + fmt(tau, 2) + ' s the ' + name + ' system is ' + fmt(Math.abs(here), 3) + ' m from equilibrium, and the critically damped one is the first of the three to settle there, after ' + (tc < SPAN ? fmt(tc, 2) + ' s' : 'more than ' + fmt(SPAN, 0) + ' s'));
-    readout(d.readout, `\\kx = ${fmt(xOf('critical', tau), 3)}\\ \\text{m (A)},\\quad ${fmt(xOf('over', tau), 3)}\\ \\text{m (B)},\\quad ${fmt(xOf('under', tau), 3)}\\ \\text{m at } \\kt = ${fmt(tau, 2)}\\ \\text{s}`,
-      'The overdamped system B needs ' + (to < SPAN ? fmt(to, 2) + ' s' : 'more than ' + fmt(SPAN, 0) + ' s') + ' to settle, and the underdamped one crosses the equilibrium position on the way rather than creeping up to it.');
+    readout(d.readout, `\\kx = ${fmt(xOf('critical', tau), 3)}\\ \\text{m (A)},\\quad ${fmt(xOf('over', tau), 3)}\\ \\text{m (B)},\\quad ${fmt(xOf('under', tau), 3)}\\ \\text{m (under) at } \\kt = ${fmt(tau, 2)}\\ \\text{s}`,
+      'The overdamped system B needs ' + (to < SPAN ? fmt(to, 2) + ' s' : 'more than ' + fmt(SPAN, 0) + ' s') + ' to settle.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -215,7 +215,7 @@ function energyBar(ctx, x, top, bot, frac, label) {
       arrow(ctx, bx, by - 62, bx + s * 150, by - 62, C('force'), 5);
       text(ctx, 'f = \u03bc_kmg = ' + fmt(fric(), 3) + ' N', bx + s * 164, by - 62, C('force'), { weight: 600, size: 20, align: s < 0 ? 'right' : 'left' });
     } else if (tau >= stop) {
-      text(ctx, 'at rest: the spring can no longer overcome the friction', eq, floorY - 172, PAL.ink, { size: 20, weight: 600, align: 'center' });
+      text(ctx, 'at rest: the spring can no longer overcome the friction', 1280, floorY - 178, PAL.ink, { size: 20, weight: 600, align: 'right' });
     }
     text(ctx, 'distance covered d = ' + fmt(path, 2) + ' m', 140, floorY - 178, C('position'), { size: 22, weight: 600, align: 'left' });
     /* the graph */
@@ -233,9 +233,9 @@ function energyBar(ctx, x, top, bot, frac, label) {
     text(ctx, fmt(100 * E / E0, 0) + '%', 1237, box.b + 28, C('energy'), { size: 20, weight: 600, align: 'center' });
     topline(ctx, tau >= stop
       ? 'The object has come to rest ' + fmt(Math.abs(xAt(stop)), 3) + ' m from equilibrium after ' + fmt(stop, 2) + ' s, having covered ' + fmt(path, 2) + ' m of ground'
-      : 'At ' + fmt(tau, 2) + ' s the object is ' + fmt(Math.abs(x), 3) + ' m from equilibrium and has covered ' + fmt(path, 2) + ' m of the ' + fmt(dBook(), 2) + ' m it will travel');
+      : 'At ' + fmt(tau, 2) + ' s the object is ' + fmt(Math.abs(x), 3) + ' m from equilibrium and has covered ' + fmt(path, 2) + ' m of the ' + fmt(pathAt(stop), 2) + ' m it will travel');
     readout(d.readout, `\\kd = \\frac{\\kk}{2\\mu_{\\text{k}} \\km\\kg}\\left(\\kX^2 - \\left(\\frac{\\mu_{\\text{k}} \\km\\kg}{\\kk}\\right)^2\\right) = ${fmt(dBook(), 2)}\\ \\text{m}`,
-      'The friction is ' + fmt(fric(), 3) + ' N, and once the object turns within x = ±' + fmt(band(), 4) + ' m of equilibrium the spring can no longer overcome it, so the object comes to rest at the first turning point inside that band, and the distance it travels can differ from the energy estimate in the last digit.');
+      'Within $\\kx = \\pm$' + fmt(band(), 4) + ' m of equilibrium the spring cannot overcome the friction, so the object stops at its first turning point there, after ' + fmt(pathAt(stop), 2) + ' m.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

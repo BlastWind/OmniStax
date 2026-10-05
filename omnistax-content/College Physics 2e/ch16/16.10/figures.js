@@ -4,7 +4,7 @@ window.OMNISTAX_FIGURES['16.10'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes, pinned, curve } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const TAU = 2 * Math.PI;
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const s = el('small', null, small); host.appendChild(s); F.renderMath(s); } }
 const sgn = (v) => (v < 0 ? '−' : '+');
 /* a legend entry: a stroke of the curve's own colour with its name beside it */
 function legend(ctx, x, y, color, name, dash) {
@@ -38,8 +38,8 @@ function legend(ctx, x, y, color, name, dash) {
     const A = axes(ctx, boxA, [0, XM], [-YM, YM], { xl: '', yl: 'the two waves (m)', yc: PAL.ink, nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     curve(ctx, w1, 0, XM, A.X, A.Y, F.ref('wave-1'), 4, 600);
     curve(ctx, w2, 0, XM, A.X, A.Y, F.ref('wave-2'), 4, 800);
-    legend(ctx, 240, 108, F.ref('wave-1'), 'wave 1, wavelength 4.00 m');
-    legend(ctx, 700, 108, F.ref('wave-2'), 'wave 2, wavelength ' + fmt(L2.v, 2) + ' m, shifted ' + fmt(ph.v, 0) + '°');
+    legend(ctx, 240, 124, F.ref('wave-1'), 'wave 1, wavelength 4.00 m');
+    legend(ctx, 700, 124, F.ref('wave-2'), 'wave 2, wavelength ' + fmt(L2.v, 2) + ' m, shifted ' + fmt(ph.v, 0) + '°');
     const B = axes(ctx, boxB, [0, XM], [-YM, YM], { xl: 'distance along the wave (m)', xc: C('position'), yl: 'their sum (m)', yc: C('position'), nx: 8, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     curve(ctx, sum, 0, XM, B.X, B.Y, C('position'), 5, 1200);
     if (peak > 0.02) {
@@ -53,7 +53,7 @@ function legend(ctx, x, y, color, name, dash) {
       : same ? 'The second wave is shifted by ' + fmt(ph.v, 0) + '°, so the two add partly and subtract partly, and the sum reaches ' + fmt(peak, 2) + ' m'
       : 'The two wavelengths differ, so the waves fall in and out of step along the cord and the sum is constructive in some places and destructive in others, reaching ' + fmt(peak, 2) + ' m');
     readout(d.readout, `\\kx = \\kxone + \\kxtwo,\\quad \\kX = ${fmt(X.v, 2)}\\ \\text{m},\\quad \\klam = ${fmt(L1, 2)}\\ \\text{m},\\quad \\klamtwo = ${fmt(L2.v, 2)}\\ \\text{m}`,
-      'Each disturbance corresponds to a force, and forces add, so where the disturbances lie along the same line their amplitudes simply add. The largest displacement of the sum is ' + fmt(peak, 2) + ' m, against ' + fmt(X.v, 2) + ' m for either wave alone.');
+      'Each disturbance corresponds to a force, and forces add, so disturbances along the same line simply add.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -102,15 +102,14 @@ function legend(ctx, x, y, color, name, dash) {
     let namedA = false;
     for (let x = 0; x <= XM + 1e-9; x += lam.v / 2) {
       line(ctx, B.X(x), B.Y(2 * X.v) - 10, B.X(x), B.Y(-2 * X.v) + 10, alpha(PAL.ink, 0.35), 2, [4, 8]);
-      if (!namedA && x > 0) { text(ctx, 'antinode', B.X(x), B.Y(2 * X.v) - 26, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); namedA = true; }
+      if (!namedA && x > 0) { text(ctx, 'antinode', B.X(x), Math.max(B.Y(2 * X.v) - 26, boxB.t + 14), PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel }); namedA = true; }
     }
     hbracket(ctx, B.X(lam.v / 4), B.X(3 * lam.v / 4), boxB.b + 100, C('position'), 'half a wavelength, ' + fmt(lam.v / 2, 2) + ' m');
     const frac = ph < 0.02 || ph > 0.98 ? '0' : Math.abs(ph - 0.25) < 0.02 ? 'T/4' : Math.abs(ph - 0.5) < 0.02 ? 'T/2' : Math.abs(ph - 0.75) < 0.02 ? '3T/4' : fmt(tau, 2) + ' s';
     topline(ctx, env < 0.06 * X.v ? 'At t = ' + frac + ' the two waves are exactly out of phase and the whole cord is momentarily flat, although neither wave has stopped'
       : env > 1.94 * X.v ? 'At t = ' + frac + ' the two waves are exactly in phase and every antinode is at its full ' + fmt(env, 2) + ' m, while the nodes have not moved at all'
       : 'At t = ' + frac + ' the antinodes reach ' + fmt(env, 2) + ' m, and the nodes stay where they are: the sum swells and fades in place instead of travelling');
-    readout(d.readout, `\\kx = \\kxone + \\kxtwo = 2\\kX\\cos\\frac{2\\pi\\kx}{\\klam}\\cos\\frac{2\\pi\\kt}{\\kT} = ${fmt(env, 2)}\\ \\text{m at an antinode}`,
-      'The two waves have the same amplitude and wavelength, so they alternate between constructive and destructive interference. The nodes are half a wavelength, ' + fmt(lam.v / 2, 2) + ' m, apart, and an antinode sits midway between each pair.');
+    readout(d.readout, `\\kx = \\kxone + \\kxtwo = 2\\kX\\cos\\frac{2\\pi\\kx}{\\klam}\\cos\\frac{2\\pi\\kt}{\\kT} = ${fmt(env, 2)}\\ \\text{m at an antinode}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -169,11 +168,11 @@ function legend(ctx, x, y, color, name, dash) {
     text(ctx, 'antinode', ax, y0 - amp - 30, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     hbracket(ctx, xa, xb, y0 - 176, C('position'), 'L = ' + fmt(L.v, 2) + ' m');
     hbracket(ctx, xa, Math.min(xa + (2 * L.v / nm) * SC, xEnd), y0 + 128, C('position'), 'wavelength ' + fmt(lamN, 2) + ' m');
-    topline(ctx, n === 1 ? 'The fundamental has one loop: the longest wavelength the string can carry is 2L = ' + fmt(lamN, 2) + ' m, and the frequency is ' + fmt(fN, 0) + ' Hz'
-      : 'The ' + (n === 2 ? 'first' : 'second') + ' overtone has ' + n + ' loops: the wavelength is 2L/' + n + ' = ' + fmt(lamN, 2) + ' m and the frequency is ' + n + ' times the fundamental, ' + fmt(fN, 0) + ' Hz');
+    topline(ctx, n === 1 ? 'The fundamental has one loop: the longest wavelength the string can carry is $2\\kLlen$ = ' + fmt(lamN, 2) + ' m, and the frequency is ' + fmt(fN, 0) + ' Hz'
+      : 'The ' + (n === 2 ? 'first' : 'second') + ' overtone has ' + n + ' loops: the wavelength is $2\\kLlen/' + n + '$ = ' + fmt(lamN, 2) + ' m and the frequency is ' + n + ' times the fundamental, ' + fmt(fN, 0) + ' Hz');
     const mac = n === 1 ? '\\kfone' : n === 2 ? '\\kftwo' : '\\kfthree';
     readout(d.readout, `${mac} = \\frac{\\kvw}{\\klam} = \\frac{${n}(${fmt(vw.v, 0)}\\ \\text{m/s})}{2(${fmt(L.v, 2)}\\ \\text{m})} = ${fmt(fN, 0)}\\ \\text{Hz}`,
-      'The fundamental of this string is ' + fmt(vw.v / (2 * L.v), 0) + ' Hz, and the overtones are multiples of it. At ' + fmt(fN, 0) + ' Hz the string completes ' + fmt(fN, 0) + ' cycles each second.');
+      'The fundamental is ' + fmt(vw.v / (2 * L.v), 0) + ' Hz and the overtones are multiples of it; the picture runs ' + fmt(fN * SHOW, 0) + ' times slower than the string.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -222,7 +221,7 @@ function legend(ctx, x, y, color, name, dash) {
     topline(ctx, fB < 0.05 ? 'The two frequencies are equal, so the waves never fall out of step: the sum keeps a steady amplitude of ' + fmt(2 * X.v, 2) + ' m and there are no beats at all'
       : 'The two frequencies differ by ' + fmt(fB, 2) + ' Hz, so the sum swells and fades ' + fmt(fB, 2) + ' times a second while the wave itself runs at the average, ' + fmt(fav, 2) + ' Hz');
     readout(d.readout, `\\kfB = \\lvert\\kfone - \\kftwo\\rvert = \\lvert${fmt(f1.v, 2)} - ${fmt(f2.v, 2)}\\rvert\\ \\text{Hz} = ${fmt(fB, 2)}\\ \\text{Hz},\\quad \\kfave = ${fmt(fav, 2)}\\ \\text{Hz}`,
-      'In the product form of the resultant the first cosine carries the amplitude up and down at the beat frequency, and the second is the wave itself, running at the average frequency. At ' + fmt(now, 2) + ' s the amplitude of the moment is ' + fmt(envOf(now), 2) + ' m.');
+      'At ' + fmt(now, 2) + ' s the amplitude of the moment is ' + fmt(envOf(now), 2) + ' m.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
 })();
