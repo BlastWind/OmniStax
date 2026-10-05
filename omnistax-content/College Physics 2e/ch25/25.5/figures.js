@@ -102,7 +102,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
     ctx.save(); ctx.lineWidth = 3; ctx.strokeStyle = PAL.ink; ctx.beginPath(); ctx.arc(p.x, p.y, 9, 0, 2 * Math.PI); ctx.stroke(); ctx.restore();
     line(ctx, XB(L), BAND.t - 4, XB(L), BAND.b + 4, PAL.ink, 3);
     line(ctx, p.x, BAND.b + 62, p.x, p.y - 12, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    label(ctx, `n = ${fmt(n, 3)}`, p.x, p.y, { side: L < 540 ? 'right' : 'left', size: 20, color: PAL.ink, gap: 22 });
+    label(ctx, `n = ${fmt(n, 3)}`, p.x, p.y - 26, { side: 'right', size: 20, color: PAL.ink, gap: 14 });   /* above right, clear of a curve that falls to the right */
     text(ctx, `${m.label}, the six points of Table 25.2 joined by straight lines`, box.r, box.b + 58, PAL.muted, { size: 17, align: 'right' });
 
     readout(d.readout, `n\\,(\\klam = ${fmt(L, 0)}\\ \\text{nm}) = ${fmt(n, 3)}`,
@@ -202,8 +202,8 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
     }
     label(ctx, white ? 'white light' : `${fmt(lam.v, 0)} nm`, P.x - uIn.x * 380, P.y - uIn.y * 380, { side: 'above', size: 20, color: PAL.ink });
     if (white && red?.end && vio?.end) {
-      label(ctx, 'red, 660 nm', red.end.x - red.u.x * 60, red.end.y - red.u.y * 60, { side: 'above', size: 20, color: PAL.ink });
-      label(ctx, 'violet, 410 nm', vio.end.x - vio.u.x * 60, vio.end.y - vio.u.y * 60, { side: 'below', size: 20, color: PAL.ink });
+      label(ctx, 'red, 660 nm', red.end.x, red.end.y, { side: 'right', size: 20, gap: 14, color: PAL.ink });
+      label(ctx, 'violet, 410 nm', vio.end.x, vio.end.y, { side: 'right', size: 20, gap: 14, color: PAL.ink });
     } else if (!white && chosen?.end) {
       label(ctx, `${fmt(chosen.tr.out < 0 ? -chosen.tr.out : chosen.tr.out, 1)}° from the normal`, chosen.end.x - chosen.u.x * 120, chosen.end.y - chosen.u.y * 120, { side: 'above', size: 20, color: C('angle') });
     }
@@ -222,7 +222,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
     const note = white
       ? (trR.out === null || trV.out === null
         ? `The critical angle of ${m.name} is ${fmt(Math.asin(1 / nOf(key, lam.v)) / RAD, 1)}° at ${fmt(lam.v, 0)} nm; a larger angle of incidence at the first face brings the light to the second face more squarely.`
-        : `The fan is drawn ${FAN} times as wide as it is. The ${fmt(lam.v, 0)} nm ray, drawn heavier, leaves at ${fmt(outAbs ?? 0, 1)}° from the normal.`)
+        : `The ${fmt(lam.v, 0)} nm ray, drawn heavier, leaves at ${fmt(outAbs ?? 0, 1)}° from the normal.`)
       : `At ${fmt(lam.v, 0)} nm, ${m.name} has an index of ${fmt(nT, 3)}; a shorter wavelength has a larger index and is bent more.`;
     readout(d.readout, `\\sin\\kthetaone = n\\sin\\kthetatwo:\\quad \\sin ${fmt(t1, 1)}^\\circ = ${fmt(nT, 3)}\\,\\sin ${fmt(cur.t2, 1)}^\\circ`, note);
   }
@@ -274,7 +274,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
     const e = tr.pts[0];
     line(ctx, 30, e.y, e.x, e.y, F.fact(SUN), 5);
     arrow(ctx, 60, e.y, 130, e.y, F.fact(SUN), 4);
-    label(ctx, 'sunlight', 70, e.y, { side: s > 0 ? 'above' : 'below', size: 20, color: PAL.ink });
+    label(ctx, 'sunlight', k === 1 ? 70 : Math.max(70, e.x - 90), e.y, { side: s > 0 ? 'above' : 'below', size: 20, color: PAL.ink });
     [[tv, vio], [tr, red]].forEach(([t, c]) => {
       for (let j = 0; j < t.pts.length - 1; j++) line(ctx, t.pts[j].x, t.pts[j].y, t.pts[j + 1].x, t.pts[j + 1].y, c, 3);
       const q = t.pts[t.pts.length - 1];
@@ -286,8 +286,10 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
       angleArc(ctx, { x: q.x, y: q.y }, 90, Math.PI, (180 + (k === 1 ? thR : -thR)) * RAD, `θ = ${fmt(thR, 1)}°`, undefined, C('angle'));
     }
     const qv = tv.pts[tv.pts.length - 1];
-    label(ctx, 'red', q.x + tr.u.x * OUT, q.y + tr.u.y * OUT, { side: 'left', size: 20, color: PAL.ink });
-    label(ctx, 'violet', qv.x + tv.u.x * OUT, qv.y + tv.u.y * OUT, { side: 'right', size: 20, color: PAL.ink });
+    if (b > 0.05) {          /* at the center red and violet run back along the sunlight as one ray */
+      label(ctx, 'red', q.x + tr.u.x * OUT, q.y + tr.u.y * OUT, { side: 'left', size: 20, color: PAL.ink });
+      label(ctx, 'violet', qv.x + tv.u.x * OUT, qv.y + tv.u.y * OUT, { side: 'right', size: 20, color: PAL.ink });
+    }
 
     const box = { l: 860, r: 1320, t: 130, b: 500 };
     const { X, Y } = axes(ctx, box, [0, 1], [0, 90], { nx: 5, ny: 6, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) + '°', xl: 'entry height, b (× radius)', xc: C('position'), yl: 'angle to the sunlight, θ', yc: C('angle') });

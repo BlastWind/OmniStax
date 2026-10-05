@@ -176,7 +176,7 @@ function drawTrace(ctx, tr) {
       topline(ctx, `At ${fmt(th.v, 1)}° the ray in ${P.m1} refracts into ${P.m2} at ${fmt(deg(t2), 1)}°, and ${fmt(R * 100, 0)}% of the light is reflected.`);
       ro.set(`\\mk{s}{\\sin\\kthetatwo} = \\mk{q}{\\frac{n_1\\sin\\kthetaone}{n_2}} = \\mk{v}{\\frac{(${n1s})\\sin ${fmt(th.v, 1)}^\\circ}{${n2s}}} = \\mk{r}{${fmt(s2, 3)}}`,
         tc === null ? `Light going into a medium of larger index bends toward the perpendicular, so the angle of refraction never reaches 90° and there is no critical angle.`
-          : `The angle of refraction is ${fmt(deg(t2), 1)}°, larger than the angle of incidence, and it reaches 90° when the angle of incidence reaches ${fmt(tc, 1)}°.`, { form: 'refr' });
+          : `The angle of refraction $\\kthetatwo$ reaches 90° when $\\kthetaone$ reaches the critical angle, ${fmt(tc, 1)}°.`, { form: 'refr' });
     }
   }
   register(d.fig, { update: () => {}, draw });
@@ -228,13 +228,15 @@ function drawTrace(ctx, tr) {
     const polys = [{ pts: core.pts, tags: core.tags, n: NC }];
     const nb = [[X0, Y0 + W / 2], [X0 + L1, Y0 + W / 2], [X0 + L1, Y0 + 1.5 * W], [X0, Y0 + 1.5 * W]];
     if (m === 'touch') polys.push({ pts: nb, tags: ['wall', 'end', 'wall', 'start'], n: NC });
+    const cb = m === 'clad' ? band(cl, W / 2 + 18) : null;      /* listed after the core, so a point in the core is in the core */
+    if (cb) polys.push({ pts: cb.pts, tags: cb.tags, n: IDX.crown });
     const { ctx } = begin(d.c);
     const cFib = F.ref('fiber'), cClad = F.ref('cladding'), cNb = F.ref('second-fiber');
-    if (m === 'clad') { const cb = band(cl, W / 2 + 18); fillPoly(ctx, cb.pts, alpha(PAL.ink, 0.04), cClad, 2); }
+    if (cb) fillPoly(ctx, cb.pts, alpha(PAL.ink, 0.04), cClad, 2);
     fillPoly(ctx, core.pts, alpha(PAL.ink, 0.08), cFib, 2.5);
     if (m === 'touch') fillPoly(ctx, nb, alpha(PAL.ink, 0.08), cNb, 2.5);
     const a = al.v * RAD, dir = [Math.cos(a), Math.sin(a)], aim = [X0, Y0 - 8], L0 = 140;
-    const tr = trace(polys, n2, [aim[0] - dir[0] * L0, aim[1] - dir[1] * L0], dir, 200);
+    const tr = trace(polys, N_AIR, [aim[0] - dir[0] * L0, aim[1] - dir[1] * L0], dir, 200);
     drawTrace(ctx, tr);
     const walls = tr.hits.filter((h) => h.main && h.tag === 'wall' && h.from === 0);
     const low = walls.reduce((b, h) => (!b || h.theta < b.theta ? h : b), null);
@@ -256,7 +258,8 @@ function drawTrace(ctx, tr) {
       return;
     }
     const lowS = low ? `${fmt(low.theta, 1)}°` : '';
-    topline(ctx, leak ? `A reflection at ${fmt(leak.theta, 1)}° is less than the critical angle of ${fmt(tc, 1)}°, so light leaks out of the fiber there.`
+    const dp = leak && fmt(leak.theta, 1) === fmt(tc, 1) ? 2 : 1;
+    topline(ctx, leak ? `A reflection at ${fmt(leak.theta, dp)}° is less than the critical angle of ${fmt(tc, dp)}°, so light leaks out of the fiber there.`
       : `The smallest angle of reflection is ${lowS}, more than the critical angle of ${fmt(tc, 1)}°, so every reflection is total.`);
     ro.set(`\\mk{tc}{\\kthetac} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v}{${fmt(n2, 2)}/${fmt(NC, 2)}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
       `The ray enters the end at ${fmt(al.v, 0)}° and refracts to ${fmt(deg(nIn), 1)}° inside the core, and ${walls.length} reflections carry it ${leak ? 'until one of them fails' : 'to the far end'}.`, { form: 'tc' });
@@ -314,8 +317,7 @@ function drawTrace(ctx, tr) {
     const kept = cells.filter((_, i) => lit[i] && (fixed || lit[perm[i]])).length;
     topline(ctx, fixed ? 'Every fiber keeps its place, so the letter arrives as it left.' : 'Every fiber still carries its light, but the pieces arrive in the wrong places.');
     ro.set(`\\text{lit fibers} = \\mk{n}{${nLit}},\\quad \\text{landing on the letter} = \\mk{k}{${fixed ? nLit : kept}}`,
-      fixed ? 'Each lit fiber delivers its light to the same place in the far face, which is what lets a bundle carry an image without a lens.'
-        : `Only ${kept} of the ${nLit} lit fibers happen to end inside the letter, and the rest light spots scattered over the face.`, { form: mode.value });
+      '', { form: mode.value });
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -365,7 +367,8 @@ function drawTrace(ctx, tr) {
     topline(ctx, fail ? `At ${fmt(fail.theta, 1)}° a reflection is not total, since the critical angle is ${fmt(tc, 1)}°, and light leaks out of the prism.`
       : `The ray meets the faces at ${angs.length > 1 ? angs.slice(0, -1).join(', ') + ' and ' + angs[angs.length - 1] : angs.join('')}, each more than the critical angle of ${fmt(tc, 1)}°.`);
     ro.set(`\\mk{tc}{\\kthetac} = \\sin^{-1}(\\mk{n2}{n_2}/\\mk{n1}{n_1}) = \\sin^{-1}(\\mk{v}{1.00/${fmt(n, 3)}}) = \\mk{r}{${fmt(tc, 1)}^\\circ}`,
-      fail ? 'Below an index of 1.414 the critical angle is more than 45°, and a ray meeting a face near 45° is only partly reflected.'
+      fail ? (n < Math.SQRT2 ? 'Below an index of 1.414 the critical angle is more than 45°, and a ray meeting a face near 45° is only partly reflected.'
+        : 'The tilt brings one face below 45° by more than the glass allows, so the ray is only partly reflected there.')
         : `Every reflection is total, and the ray leaves the eyepiece tilted ${fmt(Math.abs(tS.v), 1)}°, parallel to the ray that entered.`, { form: 'tc' });
   }
   register(d.fig, { update: () => {}, draw });

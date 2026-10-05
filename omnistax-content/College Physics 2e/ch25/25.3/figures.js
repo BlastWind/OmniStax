@@ -111,14 +111,15 @@ function eye(ctx, x, y, a, s, color) {
     label(ctx, 'fish', F0[0], F0[1] - 30, { side: 'above', size: 20, gap: 14, color: cFish });
     eye(ctx, E[0], E[1], -Math.PI / 2, 1.1, cEye);
     label(ctx, 'observer', E[0] + 24, E[1], { side: 'right', size: 20, gap: 12, color: cEye });
-    label(ctx, 'tank', PL[0] + 10, MID - 90, { side: 'left', size: 20, gap: 30, color: cTank });
-    text(ctx, 'water, n = 1.333', PR[0] + 20, TOP + 90, PAL.muted, { size: 19, align: 'left' });
+    label(ctx, 'tank of water, n = 1.333', PL[0], MID, { side: 'left', size: 20, gap: 24, color: cTank });
     text(ctx, 'air, n = 1.00', 180, 620, PAL.muted, { size: 19, align: 'left' });
-    topline(ctx, 'Light from the fish leaves through both front faces and bends away from the perpendicular at each, so the observer sees the fish in two places.');
-    const a = paths[0], b = paths[1];
-    if (!a || !b) return;
-    tex(d.readout, `n_1\\sin\\kthetaone = (1.333)\\sin ${fmt(a.tw, 1)}^\\circ = ${fmt(NW * Math.sin(a.tw * DEG), 3)} = (1.00)\\sin ${fmt(a.ta, 1)}^\\circ = n_2\\sin\\kthetatwo`);
-    d.readout.appendChild(F.el('small', null, `That is the path through the left face. Through the right face the ray meets the perpendicular at ${fmt(b.tw, 1)}° in the water and leaves at ${fmt(b.ta, 1)}° in the air.`));
+    const a = paths[0], b = paths[1], one = a || b, side = a ? 'left' : 'right';
+    topline(ctx, a && b
+      ? 'Light from the fish leaves through both front faces and bends away from the perpendicular at each, so the observer sees the fish in two places.'
+      : `Light from the fish reaches the observer through the ${side} face alone, so the observer sees the fish in one place.`);
+    if (!one) return;
+    tex(d.readout, `n_1\\sin\\kthetaone = (1.333)\\sin ${fmt(one.tw, 1)}^\\circ = ${fmt(NW * Math.sin(one.tw * DEG), 3)} = (1.00)\\sin ${fmt(one.ta, 1)}^\\circ = n_2\\sin\\kthetatwo`);
+    if (a && b) d.readout.appendChild(F.el('small', null, `That is the path through the left face. Through the right face the ray meets the perpendicular at ${fmt(b.tw, 1)}° in the water and leaves at ${fmt(b.ta, 1)}° in the air.`));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -328,10 +329,10 @@ function eye(ctx, x, y, a, s, color) {
     const lhs = n1 * Math.sin(t1);
     if (crosses) {
       tex(d.readout, `n_1\\sin\\kthetaone = (${nStr(n1)})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(lhs, 3)} = (${nStr(n2)})\\sin ${fmt(t2 / DEG, 1)}^\\circ = n_2\\sin\\kthetatwo`);
-      d.readout.appendChild(F.el('small', null, `In ${A.label} light travels at v₁ = c/n₁ = ${sci(v1, 2)} m/s and in ${B.label} at v₂ = c/n₂ = ${sci(v2, 2)} m/s; the refracted angle is ${fmt(t2 / DEG, 1)}°.`));
     } else {
       tex(d.readout, `n_1\\sin\\kthetaone = (${nStr(n1)})\\sin ${fmt(th.v, 1)}^\\circ = ${fmt(lhs, 3)} > n_2 = ${nStr(n2)}`);
-      d.readout.appendChild(F.el('small', null, `Since sin θ₂ can be no greater than 1, the right side of the law of refraction can be no greater than ${nStr(n2)}.`));
+      const nb = F.el('small', null, `Since $\\sin\\kthetatwo$ can be no greater than 1, the right side of the law of refraction can be no greater than $n_2 = ${nStr(n2)}$.`);
+      d.readout.appendChild(nb); F.renderMath(nb);
     }
   }
   register(d.fig, { update: () => {}, draw });

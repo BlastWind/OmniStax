@@ -12,7 +12,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['25.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, register, begin, line, arrow, dot, text, topline, label, hbracket, vbracket } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 const MINUS = '−';
 const sgn = (x, dp) => (x < 0 ? MINUS : '') + fmt(Math.abs(x), dp);
 
@@ -66,7 +66,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow, color) {
 (function () {
   const d = sim('sim-flat-mirror', 560);
   const doS = ctl(d.controls, { label: '\\kdobj', cls: 'position', min: 20, max: 100, step: 1, value: 50, unit: 'cm', dec: 0, aria: 'the distance of the bottle from the mirror' });
-  const eyS = ctl(d.controls, { label: '\\text{eye height}', cls: 'position', min: -20, max: 60, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'the height of the eye above the floor line' });
+  const eyS = ctl(d.controls, { label: '\\text{eye height}', cls: 'position', min: 25, max: 60, step: 1, value: 30, unit: 'cm', dec: 0, aria: 'the height of the eye above the floor line' });
   const S = 5, MX = 700, AY = 430, HB = 24;           /* the bottle is 24 cm tall */
   const EX = MX - 600;                                 /* the eye stands 120 cm in front of the glass */
 
@@ -127,7 +127,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow, color) {
     vbracket(ctx, xi + 50, AY - HB * S, AY, XC, 'h_i', 1);
     readout(d.readout,
       `\\kdimg = -\\kdobj = -${fmt(dO, 0)}\\text{ cm},\\quad \\khimg = \\khobj = ${fmt(HB, 0)}\\text{ cm}`,
-      `The image distance is negative because the image is behind the mirror, where the rays do not go, so it is a virtual image. Moving the eye changes where the rays strike the glass but not where their extensions meet.`);
+      `The image distance is negative because the image is behind the mirror, where the rays do not go, so it is a virtual image.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -188,10 +188,13 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow, color) {
     else topline(ctx, `The rays at the edge of the mirror cross ${fmt(spread, 1)} cm nearer the mirror than F, so there is no single focal point.`);
 
     line(ctx, X0 - 10, AY, 1380, AY, alpha(PAL.ink, 0.35), 2);
-    ctx.save(); ctx.beginPath(); ctx.rect(0, 100, 1400, 680); ctx.clip(); ctx.globalAlpha = k;
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 112, 1400, 668); ctx.clip(); ctx.globalAlpha = k;
     rays.forEach((r) => {
       ray(ctx, [X0, r.py], [r.px, r.py], PAL.ink, { at: 0.35, w: 2.5 });
-      const L = (r.px - X0) / Math.max(-r.rx, 0.2);
+      let L = (r.px - X0) / Math.max(-r.rx, 0.2);
+      /* a ray from near the rim of a deep concave mirror meets the glass again, and stops there */
+      const t2 = -2 * ((r.px - cx) * r.rx + r.y * r.ry);
+      if (!convex && t2 > 1 && Math.abs(r.y + r.ry * t2) <= half) L = Math.min(L, t2);
       const end = [r.px + r.rx * L, r.py + r.ry * L];
       ray(ctx, [r.px, r.py], end, PAL.ink, { at: convex ? 0.3 : 0.25, w: 2.5 });
       if (convex && r.cross !== null) ray(ctx, [r.px, r.py], [r.cross, AY], PAL.ink, { dash: true });
@@ -209,7 +212,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow, color) {
     const yb = AY + Math.max(half, 60) + 50;
     if (yb < 750) {
       hbracket(ctx, Math.min(fx, MX), Math.max(fx, MX), yb, XC, 'f');
-      if (yb + 44 < 760) hbracket(ctx, Math.min(cx, MX), Math.max(cx, MX), yb + 44, XC, 'R');
+      if (yb + 60 < 760) hbracket(ctx, Math.min(cx, MX), Math.max(cx, MX), yb + 60, XC, 'R');
     }
     ctx.restore();
 
@@ -217,8 +220,8 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow, color) {
     readout(d.readout,
       convex ? `\\kffoc = -\\frac{\\kRcur}{2} = -\\frac{${fmt(Rcm, 0)}\\text{ cm}}{2} = -${fmt(Rcm / 2, 1)}\\text{ cm}`
              : `\\kffoc = \\frac{\\kRcur}{2} = \\frac{${fmt(Rcm, 0)}\\text{ cm}}{2} = ${fmt(Rcm / 2, 1)}\\text{ cm}`,
-      convex ? `A convex mirror is a diverging mirror, so its focal length and its power are negative: P = 1/f = ${MINUS}${fmt(P, 2)} D.`
-             : `A concave mirror is a converging mirror, with a positive focal length and a power P = 1/f = ${fmt(P, 2)} D. The relation holds only while the mirror is small compared with its radius of curvature.`);
+      convex ? `A convex mirror is a diverging mirror, so its focal length and its power are negative: $P = 1/\\kffoc$ = ${MINUS}${fmt(P, 2)} D.`
+             : `A concave mirror is a converging mirror, with a positive focal length and a power $P = 1/\\kffoc$ = ${fmt(P, 2)} D. The relation holds only while the mirror is small compared with its radius of curvature.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -322,9 +325,9 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow, color) {
 
     const ray1y = yt;
     [0, 1, 2].forEach((i) => {
-      const yy = i === 0 ? ray1y : i === 1 ? yt + (AY - yt) * 0.55 : (h3 ? yt + (h3[1] - yt) * 0.55 : null);
+      const yy = i === 0 ? ray1y : i === 1 ? yt + (AY - yt) * 0.55 : (h3 ? yt + (h3[1] - yt) * 0.8 : null);
       if (yy === null || s.atF && i === 2) return;
-      const xx = i === 1 ? xo + (MX - xo) * 0.55 : i === 2 ? xo + (MX - xo) * 0.55 : xo + (MX - xo) * 0.3;
+      const xx = i === 1 ? xo + (MX - xo) * 0.55 : i === 2 ? xo + (MX - xo) * 0.8 : xo + (MX - xo) * 0.3;   /* rays 2 and 3 named at different points, so they never share a slot */
       text(ctx, String(i + 1), xx, yy - 18, RC[i], { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     });
 
@@ -345,7 +348,7 @@ function mirrorArc(ctx, vx, y0, half, Rd, bow, color) {
     const fT = s.f < 0 ? `-${fmt(-s.f, 1)}` : fmt(s.f, 1), dT = s.dI < 0 ? `-${fmt(-s.dI, 1)}` : fmt(s.dI, 1);
     readout(d.readout,
       `\\frac{1}{\\kdobj} + \\frac{1}{\\kdimg} = \\frac{1}{\\kffoc}: \\quad \\frac{1}{${fmt(s.dO, 1)}\\text{ cm}} + \\frac{1}{${dT}\\text{ cm}} = \\frac{1}{${fT}\\text{ cm}}`,
-      `The magnification is m = ${MINUS}d_i/d_o = ${sgn(s.m, 2)}, so the image is ${fmt(Math.abs(s.hI), 1)} cm tall and ${s.m < 0 ? 'inverted' : 'upright'}; ${s.dI > 0 ? 'the image distance is positive, so the image is real and in front of the mirror.' : 'the image distance is negative, so the image is virtual and behind the mirror.'}`);
+      `The magnification is $m = -\\kdimg/\\kdobj$ = ${sgn(s.m, 2)}, so the image is ${fmt(Math.abs(s.hI), 1)} cm tall and ${s.m < 0 ? 'inverted' : 'upright'}; ${s.dI > 0 ? 'the image distance is positive, so the image is real and in front of the mirror.' : 'the image distance is negative, so the image is virtual and behind the mirror.'}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

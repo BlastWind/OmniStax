@@ -116,7 +116,7 @@ function hatch(ctx, pts, depth, color) {
     ctx.beginPath(); ctx.moveTo(-22, 0); ctx.quadraticCurveTo(0, -18, 22, 0); ctx.quadraticCurveTo(0, 18, -22, 0); ctx.fill(); ctx.stroke();
     ctx.fillStyle = seen ? color : alpha(color, 0.35); ctx.beginPath(); ctx.arc(0, 0, 8, 0, 2 * Math.PI); ctx.fill();
     ctx.restore();
-    text(ctx, name, x, y - 40, color, { size: 19, align: 'center', bg: PAL.panel });
+    text(ctx, name, x + 32, y, color, { size: 19, align: 'left', base: 'middle', bg: PAL.panel });
   }
   /* a flashlight whose lens spans the beam, at (x, y) and pointing along the beam */
   function flashlight(ctx, x, y, t, half, color) {
@@ -129,7 +129,7 @@ function hatch(ctx, pts, depth, color) {
 
   function draw() {
     const { ctx } = begin(d.c);
-    const st = state(), t = th.v * RAD, L = 250 + 150 * Math.sin(th.v * RAD), C0 = X0 + 4 * DX;
+    const st = state(), t = th.v * RAD, L = 210 + 190 * Math.sin(th.v * RAD), C0 = X0 + 4 * DX;
     const mirror = rough.v === 0;
     const cFl = F.ref('flashlight'), cSf = F.ref('surface'), cA = F.ref('observer-a'), cB = F.ref('observer-b');
     const who = st.seenA && st.seenB ? 'both observers see the lit spot'
@@ -153,7 +153,8 @@ function hatch(ctx, pts, depth, color) {
     st.patches.forEach((p) => {
       const back = L + (p.x - C0) * st.dv[0], sx = p.x - back * st.dv[0], sy = Y0 - back * st.dv[1];
       ray(ctx, sx, sy, p.x, Y0, alpha(PAL.ink, 0.8), 3, 0.5);
-      const ex = p.x + 230 * p.r[0], ey = Y0 + 230 * p.r[1];
+      const len = p.r[1] < -0.12 ? 230 : 45;          /* a ray grazing or heading into the surface strikes the next bump */
+      const ex = p.x + len * p.r[0], ey = Y0 + len * p.r[1];
       const hit = Math.abs(p.out - th.v) < CATCH || Math.abs(p.out - B_DIR) < CATCH;
       ray(ctx, p.x, Y0, ex, ey, hit ? PAL.ink : alpha(PAL.ink, 0.55), 3, 0.6);
     });
@@ -165,8 +166,9 @@ function hatch(ctx, pts, depth, color) {
     const [ax, ay] = place(th.v), [bx, by] = place(B_DIR);
     eye(ctx, ax, ay, th.v * RAD, `observer at ${fmt(th.v, 0)}°`, st.seenA > 0, cA);
     eye(ctx, bx, by, B_DIR * RAD, `observer at ${B_DIR}°`, st.seenB > 0, cB);
-    tex(d.readout, `\\kthetar = \\kthetai = ${fmt(mid.local, 0)}^\\circ \\text{ at the middle patch}`);
-    d.readout.appendChild(F.el('small', null, `Measured from the perpendicular to the patch each ray strikes, every ray obeys the law of reflection. ${st.seenA} of the nine rays reach the observer at ${fmt(th.v, 0)}°, and ${st.seenB} reach the observer at ${B_DIR}°.`));
+    const tilt = Math.abs(mid.a / RAD);
+    tex(d.readout, `\\kthetar = \\kthetai = ${fmt(mid.local, 0)}^\\circ \\text{ at the middle patch${tilt >= 0.5 ? `, tilted ${fmt(tilt, 0)}°` : ''}}`);
+    d.readout.appendChild(F.el('small', null, `${st.seenA} of the nine rays ${st.seenA === 1 ? 'reaches' : 'reach'} the observer at ${fmt(th.v, 0)}°, and ${st.seenB} ${st.seenB === 1 ? 'reaches' : 'reach'} the observer at ${B_DIR}°.`));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -177,11 +179,12 @@ function hatch(ctx, pts, depth, color) {
    reflection; traced back, they meet at the image, as far behind the mirror as
    the person stands in front. The mirror is drawn only over the stretch the
    two rays use, which is half her height wherever she stands.
-   Scale: 180 units per meter, fixed, from 3.0 m either side of the mirror.
+   Scale: 180 units per meter, fixed, from 3.0 m either side of the mirror; below 0.8 m
+   she and her image crowd the mirror and its angles.
 ===================================================================== */
 (function () {
   const d = sim('sim-image-in-mirror', 660);
-  const dist = ctl(d.controls, { label: '\\text{distance from the mirror}', cls: 'position', min: 0.5, max: 3, step: 0.05, value: 1.2, unit: 'm', dec: 2, aria: 'the distance from the person to the mirror' });
+  const dist = ctl(d.controls, { label: '\\text{distance from the mirror}', cls: 'position', min: 0.8, max: 3, step: 0.05, value: 1.2, unit: 'm', dec: 2, aria: 'the distance from the person to the mirror' });
   const hgt = ctl(d.controls, { label: '\\text{height}', cls: 'position', min: 1.4, max: 1.9, step: 0.01, value: 1.7, unit: 'm', dec: 2, aria: 'the height of the person' });
   const MX = 700, FLOOR = 590, S = 180, EYE = 1.65 / 1.78;
 
@@ -220,7 +223,7 @@ function hatch(ctx, pts, depth, color) {
     hbracket(ctx, MX, ix, FLOOR + 30, alpha(XC, 0.6), `${fmt(D, 2)} m`, { side: 'below' });
     const deg = Math.atan2(FLOOR - mBot, MX - px) / RAD;
     tex(d.readout, `\\kthetar = \\kthetai = ${fmt(deg, 1)}^\\circ`);
-    d.readout.appendChild(F.el('small', null, `The ray from her feet meets the mirror at ${fmt(deg, 1)}° to the perpendicular and leaves at the same angle, so traced back it reaches the floor ${fmt(D, 2)} m behind the mirror. The top of the mirror sits ${fmt((FLOOR - mTop) / S, 3)} m above the floor and the bottom ${fmt((FLOOR - mBot) / S, 3)} m, a stretch of ${fmt(h / 2, 3)} m, which is half her height.`));
+    d.readout.appendChild(F.el('small', null, `The mirror runs from ${fmt((FLOOR - mBot) / S, 2)} m to ${fmt((FLOOR - mTop) / S, 2)} m above the floor, ${fmt(h / 2, 2)} m, half her height.`));
   }
   register(d.fig, { update: () => {}, draw });
 })();

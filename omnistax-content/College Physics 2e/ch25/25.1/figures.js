@@ -122,8 +122,8 @@ function ray(ctx, pts, color, w) {
     label(ctx, 'Sun', SUN.x, SUN.y - SUN.r - 14, { side: 'above', H, color: cSun });
     label(ctx, 'upper atmosphere', EARTH.x - ATM * 0.8, EARTH.y - ATM * 0.6, { side: 'left', gap: 12, H, color: cEarth });
     label(ctx, 'sunlight', LEFT, P.media[0].y, { side: 'above', H });
-    label(ctx, 'window glass', GL, GT, { side: 'above', gap: 40, H, color: cWin });
-    label(ctx, 'car', CAR.x - 60, CAR.y + 20, { side: 'left', H, color: cCar });
+    label(ctx, 'window glass', GR, GB - 24, { side: 'right', H, color: cWin });
+    label(ctx, 'car', CAR.x, GROUND + 4, { side: 'below', H, color: cCar });
 
     topline(ctx, HEAD[path.value]);
     tex(d.readout, CHAIN[path.value]);

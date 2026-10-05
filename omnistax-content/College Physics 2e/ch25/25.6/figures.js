@@ -13,7 +13,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['25.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, cat, ctl, choice, register, begin, line, dot, text, topline, hbracket, vbracket, hover, silhouette, angleArc } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* three significant figures, as the book writes its answers */
 function sig3(x) {
@@ -78,7 +78,7 @@ function focus(ctx, x, y, name) {
      each is its incoming segment and its outgoing one, and the dashed lines the
      book draws where a ray only seems to come from, or head for, a focal point */
   function rays(conv, mode, f) {
-    const fx = f * U, out = [];
+    const fx = Math.abs(f) * U, out = [];          /* the branches below carry the sign of a diverging lens themselves */
     [H3, 0, -H3].forEach((h, i) => {
       const r = { i, segs: [], dash: [] };
       if (mode === 'ctr') {
@@ -179,7 +179,10 @@ function focus(ctx, x, y, name) {
     lens(ctx, LX, Y, HL, conv, F.ref('lens'));
     focus(ctx, LX - fa * U, Y); focus(ctx, LX + fa * U, Y);
 
-    const rs = rays(conv, mode, f);
+    /* a steep ray is cut where it leaves the band between the headline and the focal-length bracket */
+    const YM = 215, end = (xa, ya, xb, yb) => (Math.abs(yb) <= YM ? [xb, yb] : [xa + (xb - xa) * ((Math.sign(yb) * YM - ya) / (yb - ya)), Math.sign(yb) * YM]);
+    const cut = ([x0, y0, x1, y1]) => [...end(x1, y1, x0, y0), ...end(x0, y0, x1, y1)];
+    const rs = rays(conv, mode, f).map((r) => ({ ...r, segs: r.segs.map(cut) }));
     rs.forEach((r) => {
       const col = F.ref(['ray-1', 'ray-2', 'ray-3'][r.i]);
       r.segs.forEach((g) => ray(ctx, X(g[0]), Y + g[1], X(g[2]), Y + g[3], col, 4));
@@ -300,7 +303,8 @@ function focus(ctx, x, y, name) {
        converging lens, toward the far one for a diverging lens; out parallel */
     const p3 = LX - fx, y3ok = Math.abs(p3 - xo) > 4;
     const y3 = y3ok ? yt + ((Y - yt) * (LX - xo)) / (p3 - xo) : 0;
-    if (y3ok && Math.abs(y3 - Y) < HL) {
+    const y3in = y3ok && Math.abs(y3 - Y) < HL;
+    if (y3in) {
       ray(ctx, xo, yt, LX, y3, c3, 4);
       ray(ctx, LX, y3, XE, y3, c3, 4);
       if (!st.conv) line(ctx, LX, y3, p3, Y, alpha(c3, 0.8), 2.5, [8, 8]);
@@ -311,7 +315,7 @@ function focus(ctx, x, y, name) {
       const xb = Math.max(XB, xi);
       line(ctx, LX, yt, xb, atX(LX, yt, ux, uy, xb), alpha(c1, 0.8), 2.5, [8, 8]);
       line(ctx, LX, Y, xb, atX(LX, Y, LX - xo, Y - yt, xb), alpha(c2, 0.8), 2.5, [8, 8]);
-      if (y3ok && Math.abs(y3 - Y) < HL) line(ctx, LX, y3, xb, y3, alpha(c3, 0.8), 2.5, [8, 8]);
+      if (y3in) line(ctx, LX, y3, xb, y3, alpha(c3, 0.8), 2.5, [8, 8]);
     }
     dot(ctx, xo, yt, cP, true, 6);
     const inFrame = isFinite(st.dI) && xi > FR.l + 10 && xi < FR.r - 10 && yi > FR.t && yi < FR.b;
@@ -320,7 +324,7 @@ function focus(ctx, x, y, name) {
 
     /* the brackets: d_o below the axis on the object's side; d_i above the axis for a
        real image and below it, one row lower, for a virtual one */
-    hbracket(ctx, xo, LX, Y + 60, PC(), 'd_o', { side: 'below' });
+    if (LX - xo > 24) hbracket(ctx, xo, LX, Y + 60, PC(), 'd_o', { side: 'below' });
     if (inFrame && Math.abs(xi - LX) > 24) {
       if (virt) hbracket(ctx, xi, LX, Y + 130, PC(), 'd_i', { side: 'below' });
       else hbracket(ctx, LX, xi, Y - HL - 20, PC(), 'd_i');
@@ -342,7 +346,7 @@ function focus(ctx, x, y, name) {
     const fN = sig3(st.f) + '\\ \\text{cm}', fT = par(st.f, fN), oT = sig3(st.dO) + '\\ \\text{cm}';
     if (st.atF) {
       readout(d.readout, `\\frac{1}{\\kdimg} = \\frac{1}{\\kffoc} - \\frac{1}{\\kdobj} = \\frac{1}{${fT}} - \\frac{1}{${oT}} = 0`,
-        'With 1/dᵢ equal to zero the image distance is infinite, and no image is formed at any finite distance.');
+        'With $1/\\kdimg$ equal to zero the image distance is infinite, and no image is formed at any finite distance.');
     } else {
       const iT = sig3(st.dI) + '\\ \\text{cm}';
       readout(d.readout, `\\kdimg = \\frac{\\kffoc\\kdobj}{\\kdobj - \\kffoc} = \\frac{(${fN})(${oT})}{${oT} - ${fT}} = ${iT},\\quad m = -\\frac{\\kdimg}{\\kdobj} = ${sig3(st.m)}`,
@@ -365,8 +369,9 @@ function focus(ctx, x, y, name) {
    FIGURE 25.32 · sim-projected-image · still · flat, not to scale
    A camera and an eye, each forming a real image of the same person. The
    drawing places the person on a logarithmic run of distances, 0.25 m at
-   x = 560 and 10.0 m at x = 90, and exaggerates the lens's travel in the camera
-   (40 units per millimeter beyond 50.0 mm) and the swelling of the eye's lens,
+   x = 420 and 10.0 m at x = 60, and exaggerates the lens's travel in the camera
+   (32 ln(1 + mm) units beyond 50.0 mm, so that at 0.25 m the image still fits
+   the film) and the swelling of the eye's lens,
    since both are too small to see; the readout gives the true numbers.
 ===================================================================== */
 (function () {
@@ -375,21 +380,21 @@ function focus(ctx, x, y, name) {
   const doS = ctl(d.controls, { label: '\\kdobj', cls: 'position', min: 0.25, max: 10, step: 0.05, value: 3, unit: 'm', dec: 2, aria: 'the distance of the person from the lens' });
 
   const Y = 330, FCAM = 0.05, DEYE = 0.02, FILM = 1250;
-  const px = (dO) => 560 - (Math.log(dO / 0.25) / Math.log(40)) * 470;
+  const px = (dO) => 420 - (Math.log(dO / 0.25) / Math.log(40)) * 360;
 
   function draw() {
     const { ctx } = begin(d.c);
     const cam = what.value === 'cam', dO = doS.v;
     const dI = cam ? (FCAM * dO) / (dO - FCAM) : DEYE;
     const P = 1 / dO + 1 / dI;
-    const xo = px(dO), HO = 150, yt = Y - HO;
+    const xo = px(dO), HO = 110, yt = Y - HO;
     let xl;
     line(ctx, 40, Y, 1340, Y, alpha(PAL.ink, 0.4), 2);
     const cSub = F.ref('subject'), cImg = F.ref('projected-image'), cFilm = F.ref('film'), cRet = F.ref('retina');
     silhouette(ctx, { x: xo, y: Y, s: HO / silhouette.height(1), face: 1, pose: 'stand', color: alpha(cSub, 0.8) });
 
     if (cam) {
-      xl = FILM - 330 - (dI - FCAM) * 1000 * 40;
+      xl = FILM - 330 - 32 * Math.log(1 + (dI - FCAM) * 1000);
       /* the body of the camera, and the bellows that let the lens move out */
       ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.7); ctx.lineWidth = 2.5; ctx.fillStyle = alpha(PAL.ink, 0.05);
       ctx.beginPath(); ctx.rect(FILM - 250, Y - 130, 270, 260); ctx.fill(); ctx.stroke();
@@ -423,7 +428,7 @@ function focus(ctx, x, y, name) {
 
     const PC = C('position');
     hbracket(ctx, xo, xl, Y + 150, PC, 'd_o', { side: 'below' });
-    hbracket(ctx, xl, FILM, Y + 150, PC, 'd_i', { side: 'below' });
+    hbracket(ctx, xl, FILM, Y + 150, PC, 'd_i', { side: cam ? 'below' : 'above' });   /* inside the eyeball, off its outline */
     text(ctx, 'not to scale', 40, 520, PAL.muted, { size: 17, align: 'left' });
 
     const m2 = (x) => sig3(x) + '\\ \\text{m}';
