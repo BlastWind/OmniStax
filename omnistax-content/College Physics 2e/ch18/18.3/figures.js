@@ -9,7 +9,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['18.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, axes, pinned, curve } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* the constants this section uses, in SI units */
 const K = 8.99e9, QE = 1.60e-19, GRAV = 6.67e-11, ME = 9.11e-31, MP = 1.67e-27;
@@ -60,9 +60,6 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
       arrow(ctx, x2, CY, x2 + away * L, CY, fc, 5);
       /* each label sits over the middle of its own arrow; when the charges attract the
          two arrows share the gap, so the second label goes under its arrow instead */
-      const Fs = 'F = ' + fmt(Fv, Fv < 10 ? 2 : 1) + ' N';
-      text(ctx, Fs, x1 - away * L / 2, CY - 36, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
-      text(ctx, Fs, x2 + away * L / 2, away > 0 ? CY - 36 : CY + 40, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
     }
     /* the charges themselves, outlined in their referent colours, their signs written on them */
     /* the two labels are stepped apart in height, and leadered back to their own
@@ -74,6 +71,13 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
       text(ctx, q > 0 ? '+' : q < 0 ? '−' : '0', x, CY, PAL.ink, { size: 24, weight: 600, align: 'center' });
       line(ctx, x, CY - 24, x, CY - up + 14, alpha(PAL.ink, 0.35), 2, [4, 8]);
       text(ctx, nm + ' = ' + signed(q, 2) + ' μC', x, CY - up, qc, { size: 22, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    }
+    /* the force labels go on after the leaders, so their panels cover the leaders and not the other way round */
+    if (Fv > 0) {
+      const L = Math.min(300, 40 + 26 * Math.sqrt(Fv));
+      const Fs = 'F = ' + fmt(Fv, Fv < 10 ? 2 : 1) + ' N';
+      text(ctx, Fs, x1 - away * L / 2, CY - 36, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
+      text(ctx, Fs, x2 + away * L / 2, away > 0 ? CY - 36 : CY + 40, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.9) });
     }
     /* the same force plotted against the separation, for the charges as they stand */
     const { X, Y } = axes(ctx, BOX, XR, YR, { xl: 'r (cm)', xc: pc, nx: 6, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
@@ -88,9 +92,9 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     text(ctx, 'the force between the two charges you have set', BOX.l, BOX.t - 56, PAL.muted, { size: 19 });
     topline(ctx, Fv === 0 ? 'With one of the charges set to zero there is no force between them at all.'
       : 'Charges of ' + signed(q1, 2) + ' μC and ' + signed(q2, 2) + ' μC, ' + fmt(r, 1) + ' cm apart, ' + (prod > 0 ? 'repel' : 'attract') + ' one another with ' + fmt(Fv, Fv < 10 ? 2 : 1) + ' N on each.');
-    readout(d.readout, `\\kF = k\\frac{|\\kqone\\kqtwo|}{\\krad^2} = (8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)\\frac{|(${sci(q1 * 1e-6, 2)}\\ \\text{C})(${sci(q2 * 1e-6, 2)}\\ \\text{C})|}{(${fmt(r / 100, 3)}\\ \\text{m})^2} = ${Fv === 0 ? '0' : sci(Fv, 2)}\\ \\text{N}`,
+    readout(d.readout, `\\kF = k\\frac{|\\kqone\\kqtwo|}{\\krad^2} = (8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)\\frac{|(${sci(q1 * 1e-6, 2)}\\ \\text{C})(${sci(q2 * 1e-6, 2)}\\ \\text{C})|}{(${fmt(r / 100, 3)}\\ \\text{m})^2} = ${Fv === 0 ? '0' : Fv < 1000 && Fv >= 0.01 ? fmt(Fv, Fv < 10 ? 2 : 1) : sci(Fv, 2)}\\ \\text{N}`,
       Fv === 0 ? 'A charge of zero exerts no force and feels none, and the graph has nothing to draw.'
-        : 'The two arrows are equal in length and opposite in direction whatever the two charges are, since Newton’s third law holds here as it does everywhere else. On the drawing an arrow’s length follows the square root of the force, so that a force of a fraction of a newton and one of several hundred newtons both fit the same picture; the numbers above and on the arrows are the true ones.');
+        : 'An arrow’s length follows the square root of the force, so a fraction of a newton and several hundred newtons both fit; the numbers are the true ones.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -124,7 +128,7 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     text(ctx, '+q_e', PX, CY - 58, qc, { size: 22, weight: 600, align: 'center' });
     text(ctx, '−q_e', ex, CY - 58, qc, { size: 22, weight: 600, align: 'center' });
     text(ctx, 'F = ' + sciText(Fc, 2) + ' N', (PX + ex) / 2, CY + 48, fc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    hbracket(ctx, PX, ex, CY + 116, pc, 'r = ' + fmt(rs.v, 3) + ' × 10⁻¹⁰ m');
+    hbracket(ctx, PX, ex, CY + 100, pc, 'r = ' + fmt(rs.v, 3) + ' × 10⁻¹⁰ m');
     /* the two forces set side by side on an axis laid out by powers of ten */
     line(ctx, AL, AY, AR, AY, PAL.muted, 2);
     for (let lv = LO; lv <= HI; lv += 5) {
@@ -142,10 +146,10 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     };
     const xg = mark(Fg, false, 96, 'F_G');
     const xc = mark(Fc, true, 96, 'F');
-    hbracket(ctx, xg, xc, AY - 178, PAL.ink, 'a factor of ' + sciText(ratio, 2));
+    hbracket(ctx, xg, xc, AY - 150, PAL.ink, 'a factor of ' + sciText(ratio, 2));
     topline(ctx, 'At a separation of ' + fmt(rs.v, 3) + ' × 10⁻¹⁰ m the Coulomb attraction is ' + sciText(Fc, 2) + ' N and the gravitational attraction is ' + sciText(Fg, 2) + ' N, so the first is ' + sciText(ratio, 2) + ' times the second.');
     readout(d.readout, `\\frac{\\kF}{\\kFG} = \\frac{k\\kqe^2/\\krad^2}{G\\km\\kM/\\krad^2} = \\frac{${sci(Fc, 2)}\\ \\text{N}}{${sci(Fg, 2)}\\ \\text{N}} = ${sci(ratio, 2)}`,
-      'Both forces fall off as the inverse square of the separation, so moving the electron out weakens each of them by the same factor and their ratio never changes. At the scale of the Coulomb force, the gravitational attraction would be shorter than an atomic nucleus: gravity plays no part in holding the atom together.');
+      'Drawn at the Coulomb force’s scale, the gravitational arrow would be shorter than an atomic nucleus: gravity plays no part in holding the atom together.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

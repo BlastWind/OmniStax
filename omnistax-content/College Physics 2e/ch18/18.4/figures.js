@@ -9,7 +9,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['18.4'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, axes, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the two figures ---------- */
 const TAU = 2 * Math.PI;
@@ -102,8 +102,8 @@ function span(ctx, x1, x2, y, label) {
       ? 'A test charge of nothing feels no force, however much charge Q carries, because the Coulomb force is proportional to both charges.'
       : 'At the same distance from the same charge Q, the force on q₂ is ' + fmt(ratio, 2) + ' times the force on q₁, and the two point '
         + (Math.sign(q1s.v) === Math.sign(q2s.v) ? 'the same way' : 'opposite ways') + '.');
-    readout(d.readout, `\\kFone = k\\frac{|\\kqone\\kQch|}{\\krad^2} = ${fmt(Fv[0], 2)}\\ \\text{N}`,
-      'The same law gives F₂ = ' + fmt(Fv[1], 2) + ' N on q₂. The longer of the two arrows is drawn at a fixed length and the shorter in proportion to it, so that the two forces can be compared however large or small they are; the newtons beside each arrow are the true values. Both arrows change when a test charge changes, although the charge that creates the field and the distance from it have not moved, and that is why the Coulomb force field is not unique at a point in space.');
+    readout(d.readout, `\\kFone = k\\frac{|\\kqone\\kQch|}{\\krad^2} = (8.99 \\times 10^{9})\\frac{(${fmt(Math.abs(q1s.v), 1)} \\times 10^{-6})(${fmt(Qs.v, 1)} \\times 10^{-6})}{(${fmt(rs.v / 100, 3)})^2}\\ \\text{N} = ${fmt(Fv[0], 2)}\\ \\text{N}`,
+      `The same law gives $\\kFtwo = ${fmt(Fv[1], 2)}\\ \\text{N}$ on $\\kqtwo$. The longer arrow is drawn at a fixed length and the shorter in proportion to it.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -138,7 +138,7 @@ function span(ctx, x1, x2, y, label) {
     pointCharge(ctx, QX, YS, Q, 32, F.ref('point-charge'));
     text(ctx, 'Q = ' + plus(Q, 2) + ' nC', QX - 44, YS, qc, { size: 22, weight: 600, align: 'right' });
     span(ctx, QX + 32, px, YS - 110, 'r = ' + fmt(r, 2) + ' mm');
-    line(ctx, px, YS - 96, px, YS + 96, prc, 2, [4, 8]);
+    line(ctx, px, YS - 56, px, YS + 20, prc, 2, [4, 8]);
     text(ctx, 'the probe', px, YS + 180, prc, { size: 19, align: 'center' });
     /* the field at the probe: away from a positive charge, towards a negative one */
     const eDir = Q >= 0 ? 1 : -1;
@@ -167,7 +167,7 @@ function span(ctx, x1, x2, y, label) {
       : 'A charge of ' + plus(Q, 2) + ' nC makes a field of ' + sci(E, 2) + ' N/C at ' + fmt(r, 2) + ' mm, pointing '
         + (Q > 0 ? 'away from it' : 'towards it') + ', and that field pushes the ' + (q === 0 ? 'test charge' : q > 0 ? 'positive test charge along itself' : 'negative test charge against itself') + '.');
     readout(d.readout, `\\kF = |\\kq|\\kEf = (${fmt(Math.abs(q), 2)} \\times 10^{-6}\\ \\text{C})(${sciTex(E, 2)}\\ \\text{N/C}) = ${fmt(Fv, 3)}\\ \\text{N}`,
-      'The field arrow depends on the charge Q and the distance r alone: drag the test charge through zero and across sign and it does not move, while the force arrow shrinks to nothing and turns about. Set Q to 2.00 nC and r to 5.00 mm, as Example 18.2 does, and the field reads 7.19 × 10⁵ N/C; set the test charge to −0.250 μC, as Example 18.3 does, and the force reads 0.180 N towards the positive charge. The arrows are drawn shorter than in proportion so that both the small and the large readings can be seen, and the numbers beside them are the true values.');
+      'The arrows are drawn shorter than in proportion so that small and large readings both show; the numbers beside them are the true values.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

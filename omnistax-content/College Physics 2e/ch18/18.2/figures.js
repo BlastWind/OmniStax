@@ -13,7 +13,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['18.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, cycle, line, arrow, dot, text, topline, labeller, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI, RAD = Math.PI / 180;
@@ -143,10 +143,9 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
     };
     topline(ctx, lines[kind]);
     Lb.flush();
-    readout(d.readout, `\\kq = ${texSign(-q, 0)}\\ \\text{nC} \\ \\text{placed on the left end}`,
-      kind === 'glass'
-        ? 'Electrons and ions in an insulator are bound in the structure and move as much as 10²³ times more slowly than in a conductor. That factor is far too large to draw, so the charge here is shown creeping at a speed anyone can see; in a real piece of glass it would not have moved at all.'
-        : 'Charge moves freely through a conductor, so a charge placed at one point does not stay there: in copper it is carried by electrons that are not bound to any one atom, and in salty water by ions that are free to drift. The total charge is the same wherever it sits.');
+    const qL = -q * (1 - share / 2), qF = -q * (share / 2);
+    readout(d.readout, `\\kq_{\\text{left}} + \\kq_{\\text{far}} = (${texSign(qL, 1)}\\ \\text{nC}) + (${texSign(qF, 1)}\\ \\text{nC}) = ${texSign(-q, 0)}\\ \\text{nC}`,
+      kind === 'glass' ? 'In real glass the charge would not visibly move at all: the drift drawn is about $10^{23}$ times too fast.' : undefined);
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -196,11 +195,11 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
       }
     });
     /* the electrons drawn up to the top of the ball */
-    const nE = Math.max(1, Math.round(q / 2));
-    for (let i = 0; i < nE; i++) {
-      const a = 202 * RAD + (i / Math.max(1, nE - 1 || 1)) * 76 * RAD;
-      particle(ctx, CX + RB * Math.cos(a), BALL + RB * Math.sin(a), 'e-', 11);
-    }
+    const nE = Math.max(1, Math.round(q / 2) - (u > 0.5 ? Math.max(1, Math.round(q / 4)) : 0)), span = Math.min(150, (nE - 1) * 30) * RAD;
+    F.faded(ctx, 1 - gone, [0, 0], () => { for (let i = 0; i < nE; i++) {
+      const a = 270 * RAD - span / 2 + (nE > 1 ? (i / (nE - 1)) * span : 0);
+      particle(ctx, CX + RB * Math.cos(a), BALL + RB * Math.sin(a), 'e-', 10);
+    } });
     /* the rod, held to the right of the ball: it closes the gap, touches, and is carried off to the right */
     const gap = 110 * (1 - sm(clamp(s / 0.75))) + 900 * gone;
     if (gone < 1) {
@@ -217,11 +216,7 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
     if (gone < 0.5) Lb.add('the glass rod, an insulator', CX + 330 + gap, BALL, 0.3, 1, grc, 20, 34);
     /* the tally at the right */
     const TX = 1010;
-    text(ctx, 'charge on the rod', TX, 256, PAL.ink, { size: 20 });
-    text(ctx, plus(qRod, 1) + ' nC', TX, 292, qc, { size: 24, weight: 600 });
-    text(ctx, 'net charge on the electroscope', TX, 356, PAL.ink, { size: 20 });
-    text(ctx, qScope < 0.05 ? '0 nC' : plus(qScope, 1) + ' nC', TX, 392, qc, { size: 24, weight: 600 });
-    text(ctx, 'the leaves stand ' + fmt(2 * ang / RAD, 0) + '° apart', TX, 456, C('angle'), { size: 20 });
+    text(ctx, 'the leaves stand ' + fmt(2 * ang / RAD, 0) + '° apart', TX, 300, C('angle'), { size: 20 });
     const lines = {
       near: `A glass rod holding ${plus(q, 1)} nC is brought near the ball: electrons are attracted to the top of the electroscope, the leaves are left with ${plus(qLeaves, 1)} nC between them, and like charges repel, so they stand ${fmt(2 * ang / RAD, 0)}° apart.`,
       touch: `The rod is touched against the ball: because glass is an insulator it must touch to transfer charge, and some of the electrons drawn to the top pass to the rod, leaving the electroscope itself with ${plus(qScope, 1)} nC.`,
@@ -230,11 +225,8 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
     topline(ctx, lines[st]);
     Lb.flush();
     readout(d.readout, `\\kq_{\\text{electroscope}} = \\kq - \\kq_{\\text{rod}} = ${fmt(q, 1)}\\ \\text{nC} - ${fmt(qRod, 1)}\\ \\text{nC} = ${qScope < 0.05 ? '0' : texSign(qScope, 1) + '\\ \\text{nC}'}`,
-      st === 'near'
-        ? 'Bringing the rod near moves charge about inside the electroscope but adds none to it: the whole instrument is still neutral, and it is the leaves alone that are left positive and repel. The electrostatic force has a horizontal component that separates them and a vertical one that the gravitational force balances.'
-        : st === 'touch'
-          ? 'Touching transfers charge. Only electrons move in a metal, so it is electrons that go to the rod, which reduces the rod’s net charge and leaves the electroscope positive. Charge is moved, not made: what the electroscope gained the rod lost.'
-          : 'The electroscope keeps the charge it was given. Excess charge on a conductor spreads evenly through it, so stem and leaves share it, and the leaves stay apart for as long as the charge remains.');
+      st === 'near' ? 'The rod only moves the charge about: the instrument as a whole is still neutral.'
+        : st === 'touch' ? 'Charge is moved, not made: what the electroscope gained the rod lost.' : undefined);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -295,7 +287,6 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
     if (gap > 8) text(ctx, 'separated while the rod is still there', (AX + BX) / 2, YC + R + 116, PAL.muted, { size: 18, align: 'center' });
     text(ctx, held === 0 ? '0 nC' : plus(-held, 1) + ' nC', AX, YC + R + 56, qc, { size: 22, weight: 600, align: 'center' });
     text(ctx, held === 0 ? '0 nC' : plus(held, 1) + ' nC', BX, YC + R + 56, qc, { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'the two spheres together: 0 nC', 1400 - 40, H - 40, qc, { size: 21, weight: 600, align: 'right' });
     const lines = {
       a: 'Two neutral metal spheres touch one another and are insulated from everything else, and a positively charged rod is brought up to the left one.',
       b: `The rod is near, and the electrons of both spheres run to the near one: the left sphere is left with ${plus(-held, 1)} nC and the right one with ${plus(held, 1)} nC, though the two together are still neutral.`,
@@ -306,7 +297,7 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
     Lb.flush();
     readout(d.readout, held === 0 ? `\\kq_{\\text{near}} + \\kq_{\\text{far}} = 0 + 0 = 0`
       : `\\kq_{\\text{near}} + \\kq_{\\text{far}} = (${texSign(-held, 1)}\\ \\text{nC}) + (${texSign(held, 1)}\\ \\text{nC}) = 0`,
-      'The object closest to the charged rod receives the opposite charge when it is charged by induction, and no charge is removed from the rod, so the whole process can be repeated without depleting its supply. The spheres must be parted before the rod is pulled away; let the rod go first and the electrons run back and both spheres are neutral again.');
+      'Let the rod go before the spheres part and the electrons run back, leaving both neutral again.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -381,8 +372,6 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
     const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 150);
     Lb.add('the metal sphere', CX, YC - R, 0, -1, spc, 20, 24);
     if (rodA > 0.5) Lb.add('the charged rod', 300 - 260 * (1 - rodA), YC, 0, 1, rdc, 20, 32);
-    text(ctx, 'net charge on the sphere', 1010, 186, PAL.ink, { size: 20 });
-    text(ctx, held < 0.05 ? '0 nC' : plus(-held, 1) + ' nC', 1010, 224, qc, { size: 24, weight: 600 });
     const lines = {
       a: `A rod holding ${plus(q, 1)} nC is brought near the neutral metal sphere and polarizes it: negative charge is drawn to the near side and positive charge is left on the far side, and the sphere itself still holds no net charge.`,
       b: `The sphere is grounded while the rod is near: electrons are attracted up out of the earth’s ample supply through the ground wire, and the sphere now holds ${plus(-held, 1)} nC.`,
@@ -396,9 +385,7 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
     topline(ctx, lines[st]);
     Lb.flush();
     readout(d.readout, `\\kq_{\\text{sphere}} = ${held < 0.05 ? '0' : texSign(-held, 1) + '\\ \\text{nC}'}`,
-      `The rod holds ${plus(q, 1)} nC throughout and gives none of it away. ` + (bookOrder
-        ? 'The earth is large and most ground is a good conductor, so it can supply or accept excess charge easily. Break the ground connection before the rod is removed and the sphere is left with an excess charge opposite to the rod’s.'
-        : 'Take the rod away while the wire is still attached and the electrons it drew up from the earth simply run back down, since nothing holds them on the sphere. The order of the two steps is what decides whether the sphere ends charged or neutral.'));
+      'The earth is large and most ground is a good conductor, so it can supply or accept excess charge easily.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -418,7 +405,8 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
   const RX = 250, YC = 330, OBW = 460, OBH = 250, S = 26;   /* 26 units to the centimetre */
   /* a molecule: two lobes, its negative end turned by the angle th (0 toward the rod on the left, π away) and pulled apart by the fraction f */
   function molecule(ctx, x, y, r, th, f) {
-    const sep = 14 + 12 * f, cx = Math.cos(th) * sep, cy = Math.sin(th) * sep * 0.6;
+    const sep = 13 + 7 * f, cx = Math.cos(th) * sep, cy = Math.sin(th) * sep * 0.6;
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(x, y, sep + r + 6, r + 7, Math.atan2(cy, cx), 0, TAU); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5;
     ctx.beginPath(); ctx.arc(x - cx, y - cy, r, 0, TAU); ctx.fill(); ctx.stroke();
     ctx.beginPath(); ctx.arc(x + cx, y + cy, r * 0.86, 0, TAU); ctx.fill(); ctx.stroke();
@@ -476,12 +464,10 @@ function rod(ctx, x, y, L, T, sign, n, stroke = PAL.ink) {
     line(ctx, RX + 40, DY, OX, DY, PAL.muted, 2);
     line(ctx, RX + 40, DY - 10, RX + 40, DY + 10, PAL.muted, 2); line(ctx, OX, DY - 10, OX, DY + 10, PAL.muted, 2);
     text(ctx, fmt(dist, 1) + ' cm', (RX + 40 + OX) / 2, DY - 22, pc, { size: 19, align: 'center', bg: alpha(PAL.panel, 0.9) });
-    text(ctx, 'net charge on the object  q = 0', 1400 - 40, 190, qc, { size: 21, weight: 600, align: 'right' });
     const what = cse === 'cond' ? 'conductor' : 'insulator';
     topline(ctx, `A rod holding ${plus(positive ? q : -q, 1)} nC is held ${fmt(dist, 1)} cm from a neutral ${what}: ${cse === 'cond' ? 'its free charges gather, unlike on the near face and like on the far one' : 'every molecule turns its unlike end toward the rod'}, and because the unlike charges are nearer, the object is attracted.`);
     Lb.flush();
-    readout(d.readout, `\\kq_{\\text{object}} = 0`,
-      `The rod holds ${plus(positive ? q : -q, 1)} nC, and the object remains neutral: nothing is added to it and nothing is taken away, and only the places its charges sit have changed. Since the electrostatic force decreases with distance, the attraction of the unlike charges, which are nearer, beats the repulsion of the like charges, which are farther, and the net effect is a pull toward the rod. Bring the rod closer and both the shift and the attraction grow.`);
+    readout(d.readout, `\\kq_{\\text{object}} = 0`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

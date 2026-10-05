@@ -9,7 +9,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['18.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, cycle, line, arrow, dot, text, topline, labeller, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI, RAD = Math.PI / 180;
@@ -191,6 +191,7 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     /* the electrons, spread over the three orbits */
     for (let i = 0; i < Ne; i++) { const o = ORBITS[i % 3], t = o.t0 + Math.floor(i / 3) * (TAU / 4); const p = onOrbit(o, t); particle(ctx, p.x, p.y, 'e-', 11); hits.push({ x: p.x, y: p.y, r: 14, name: 'an electron, charge −|qₑ|' }); }
     const Lb = labeller(ctx, H); Lb.block(0, 0, 1400, 96);
+    hits.forEach((h) => Lb.block(h.x - h.r, h.y - h.r, h.x + h.r, h.y + h.r));
     Lb.add('nucleus', CX + 13 * Math.sqrt(Math.max(0, nucleons.length - 1)) + 4, CY + 30, 0.7, 0.7, F.ref('nucleus'), 19, 40);
     /* the legend and the tally at the right */
     const LX = 1010, LY = 140;
@@ -200,11 +201,10 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     text(ctx, 'net charge  q = ' + (net === 0 ? '0' : plus(net, 0) + ' |q_e|'), LX - 10, LY + 240, qc, { size: 24, weight: 600 });
     text(ctx, net === 0 ? 'a neutral atom' : 'an ion', LX - 10, LY + 276, PAL.ink, { size: 20 });
     topline(ctx, net === 0 ? `${cap(wd(Np))} proton${Np === 1 ? '' : 's'} and ${wd(Ne)} electron${Ne === 1 ? '' : 's'}: the charges cancel and the atom is neutral.`
-      : `${cap(wd(Np))} proton${Np === 1 ? '' : 's'} and ${wd(Ne)} electron${Ne === 1 ? '' : 's'} leave a net charge of ${plus(net, 0)} |q_e|: the atom is an ion.`);
+      : `${cap(wd(Np))} proton${Np === 1 ? '' : 's'} and ${wd(Ne)} electron${Ne === 1 ? '' : 's'} leave a net charge of $${texSign(net, 0)}\\,|\\kqe|$: the atom is an ion.`);
     Lb.flush();
     readout(d.readout, `\\kq = N_{\\text{p}}|\\kqe| - N_{\\text{e}}|\\kqe| = (${Np} - ${Ne})(1.60 \\times 10^{-19}\\ \\text{C}) = ${net === 0 ? '0' : sciTex(net * QE) + '\\ \\text{C}'}`,
-      net === 0 ? 'Every charge in nature is a whole number of the basic charge |q_e|, since it is some number of protons less some number of electrons; the neutrons of the nucleus add mass and no charge.'
-        : `An atom with unequal numbers of protons and electrons is an ion. This one has ${Math.abs(net)} electron${Math.abs(net) === 1 ? '' : 's'} too ${net > 0 ? 'few' : 'many'}, so its net charge is ${Math.abs(net)} |q_e|, ${net > 0 ? 'positive' : 'negative'}, and it is still a whole number of the basic charge.`);
+      'The neutrons of the nucleus add mass and no charge.');
   }
   hover(d.stage, () => hits);
   register(d.fig, { update: () => {}, draw });
@@ -235,17 +235,15 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
       Lb.add('quark, ' + (up ? '+⅔' : '−⅓') + ' q_e', x + 38 * lx, y + 38 * ly, lx, ly, qc, 20, 26);
     });
     Lb.add(n === 2 ? 'the proton' : 'three quarks', CX + R * Math.cos(-135 * RAD), CY + R * Math.sin(-135 * RAD), -0.7, -0.7, PAL.ink, 20, 22);
-    text(ctx, 'q_tot = ' + (whole === 0 ? '0' : plus(whole, 0) + ' q_e'), 1000, 250, qc, { size: 26, weight: 600 });
-    text(ctx, n === 2 ? 'the charge of the proton' : n === 1 ? 'the total charge the neutron has' : 'a whole number of the basic charge', 1000, 288, PAL.ink, { size: 19 });
-    topline(ctx, n === 2 ? 'Two quarks of +2/3 and one of −1/3 add to +1 q_e, the charge of the proton.'
-      : n === 1 ? 'One quark of +2/3 and two of −1/3 add to 0, which is the total charge the neutron has.'
-      : n === 3 ? 'All three quarks at +2/3 add to +2 q_e, still a whole number of the basic charge.'
-      : 'No quark at +2/3 and three at −1/3 add to −1 q_e, still a whole number of the basic charge.');
+    const UP = '$+\\tfrac{2}{3}\\kqe$', DN = '$-\\tfrac{1}{3}\\kqe$';
+    topline(ctx, n === 2 ? `Two quarks of ${UP} and one of ${DN} add to $+1\\kqe$, the charge of the proton.`
+      : n === 1 ? `One quark of ${UP} and two of ${DN} add to 0, which is the total charge the neutron has.`
+      : n === 3 ? `All three quarks at ${UP} add to $+2\\kqe$, still a whole number of the basic charge.`
+      : `No quark at ${UP} and three at ${DN} add to $-1\\kqe$, still a whole number of the basic charge.`);
     Lb.flush();
     const terms = [...Array(3 - n).fill('-\\tfrac{1}{3}\\kqe'), ...Array(n).fill('+\\tfrac{2}{3}\\kqe')];
     const sum = terms.map((t, i) => (i === 0 && t.startsWith('+') ? t.slice(1) : t)).join(' ');
-    readout(d.readout, `\\kqtot = ${sum} = ${whole === 0 ? '0' : texSign(whole, 0) + '\\,\\kqe'}`,
-      'Three thirds always add to a whole number of the basic charge: with no quark, one, two or three at +2/3 the total is −1, 0, +1 or +2 times q_e, and no fraction of q_e is left over to be observed on its own.');
+    readout(d.readout, `\\kqtot = ${sum} = ${whole === 0 ? '0' : texSign(whole, 0) + '\\,\\kqe'}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -282,12 +280,9 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     };
     tally(AX, 120, 2, 2 + n); tally(KX, 110, 3, 3 - n);
     legendRow(ctx, 60, H - 60, 'p+', 'proton'); legendRow(ctx, 60, H - 28, 'e-', 'electron');
-    text(ctx, 'q_tot = ' + (n ? '(−' + n + ' |q_e|) + (+' + n + ' |q_e|) = 0' : '0 + 0 = 0'), 1400 - 40, H - 40, qc, { size: 22, weight: 600, align: 'right' });
     topline(ctx, n === 0 ? 'The amber holds two protons and two electrons and the cloth three and three: both are neutral, and the total charge is zero.'
-      : `${cap(WORDS[n])} electron${n === 1 ? ' has' : 's have'} moved from the cloth to the amber: the amber holds −${n} |q_e|, the cloth +${n} |q_e|, and the total is still zero.`);
-    readout(d.readout, `\\kqtot = \\kq_{\\text{amber}} + \\kq_{\\text{cloth}} = (${n ? '-' + n + '\\,|\\kqe|' : '0'}) + (${n ? '+' + n + '\\,|\\kqe|' : '0'}) = 0`,
-      n === 0 ? 'Before any rubbing each body holds as many electrons as protons, and only a few of its charges are drawn. Move electrons across and watch what each body holds and what the two hold together.'
-        : 'Rubbing moved the electrons; it made none. Whatever the amber gained the cloth lost, so the two net charges are equal and opposite and their sum is what it was before, zero.');
+      : `${cap(WORDS[n])} electron${n === 1 ? ' has' : 's have'} moved from the cloth to the amber: the amber holds $-${n}\\,|\\kqe|$, the cloth $+${n}\\,|\\kqe|$, and the total is still zero.`);
+    readout(d.readout, `\\kqtot = \\kq_{\\text{amber}} + \\kq_{\\text{cloth}} = (${n ? '-' + n + '\\,|\\kqe|' : '0'}) + (${n ? '+' + n + '\\,|\\kqe|' : '0'}) = 0`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -351,8 +346,7 @@ const CLOTH_SLOTS = [[-20, -50], [24, -40], [-36, -10], [14, 0], [36, 30], [-24,
     if (key !== lastKey) {
       lastKey = key;
       const pair = '(-1)\\,\\kqe + (+1)\\,\\kqe = 0';
-      readout(d.readout, `\\kqtot = ${pair}`,
-        (create ? 'Zero before the event, and the pair after it. ' : 'The pair before the event, and zero after it. ') + 'The mass that appears or vanishes is Δm = 2mₑ = E/c², and since the two particles carry equal and opposite charges, the total charge is the same before and after: charge is conserved even where matter is made or unmade.');
+      readout(d.readout, `\\kqtot = ${pair}`);
     }
   }
   hover(d.stage, () => hits);

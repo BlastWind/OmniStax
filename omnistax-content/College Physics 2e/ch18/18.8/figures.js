@@ -106,7 +106,7 @@ function ground(ctx, x, y) {
       if (t > 0.3) mark(ctx, '+', BX2 + 1, BTOP + f * span, 13);
     }
     arrow(ctx, BX1 - 36, BBOT - 30, BX1 - 36, BTOP + 80, PAL.ink, 4);
-    text(ctx, 'the belt carries the charge up', BX1 - 52, 600, bc, { size: 19, align: 'right' });
+    text(ctx, 'the belt carries the charge up', BX1 - 52, 690, bc, { size: 19, align: 'right' });   /* below the largest sphere */
     /* the ring of the sphere, stroked over the belt, so the drawing reads as a cutaway */
     ctx.save(); ctx.strokeStyle = sc; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(CX, SY, Rpx, 0, TAU); ctx.stroke(); ctx.restore();
@@ -132,8 +132,9 @@ function ground(ctx, x, y) {
     /* the field the charged sphere makes outside itself, drawn where the drawing has room */
     if (q > 0) {
       const L = 40 + 110 * (E / EAIR);
-      for (let i = 0; i < 7; i++) {
-        const a = (118 + i * 21) * (Math.PI / 180);
+      /* kept to the upper left, clear of the ion source's and the belt's names and of the headline */
+      for (let i = 0; i < 5; i++) {
+        const a = (172 + i * 13.5) * (Math.PI / 180);
         const x0 = CX + (Rpx + 8) * Math.cos(a), y0 = SY + (Rpx + 8) * Math.sin(a);
         arrow(ctx, x0, y0, x0 + L * Math.cos(a), y0 + L * Math.sin(a), ec, 4);
       }
@@ -141,10 +142,6 @@ function ground(ctx, x, y) {
     }
     /* what the sphere holds, and the field at its surface */
     const RX = 1070;
-    text(ctx, 'on the sphere', RX, 220, PAL.muted, { size: 19 });
-    text(ctx, 'q = ' + fmt(q * 1e6, 1) + ' µC', RX, 262, qc, { size: 24, weight: 600 });
-    text(ctx, 'at its surface', RX, 324, PAL.muted, { size: 19 });
-    text(ctx, 'E = ' + sci(E, 2) + ' N/C', RX, 366, ec, { size: 24, weight: 600 });
     text(ctx, 'air gives way at ' + sci(EAIR, 2) + ' N/C', RX, 406, PAL.muted, { size: 18 });
     text(ctx, 'the most this sphere can hold', RX, 466, PAL.muted, { size: 19 });
     text(ctx, fmt(qMax * 1e6, 1) + ' µC', RX, 508, qc, { size: 24, weight: 600 });
@@ -152,7 +149,7 @@ function ground(ctx, x, y) {
       ? `The sphere is holding all it can: ${fmt(q * 1e6, 1)} µC on a sphere of radius ${fmt(R, 2)} m brings the field at the surface to ${sci(E, 2)} N/C, and the air around it ionizes and carries off whatever the belt brings up.`
       : `The belt has delivered ${fmt(q * 1e6, 1)} µC to the sphere, all of it on the outside surface, where it makes a field of ${sci(E, 2)} N/C.`);
     readout(d.readout, `\\kEf = k\\frac{|\\kq|}{\\krad^2} = (8.99 \\times 10^{9}\\ \\text{N}\\cdot\\text{m}^2\\text{/C}^2)\\frac{${sciTex(q, 2)}\\ \\text{C}}{(${fmt(R, 2)}\\ \\text{m})^2} = ${sciTex(E, 2)}\\ \\text{N/C}`,
-      'A very large excess charge can be deposited on the sphere because it moves quickly to the outer surface, so the sphere fills from the outside and none of the charge sits inside it. The practical limit is the air: enlarge the sphere and the same charge makes a smaller field at its surface, so a larger sphere holds more charge before the surrounding material polarizes, ionizes and lets the excess escape.');
+      'Enlarge the sphere and the same charge makes a smaller field at its surface, so a larger sphere holds more before the air gives way.');
   }
   hover(d.stage, () => [
     { x: CX, y: SY, r: Rof(rad.v), name: 'the conducting sphere, whose excess charge lies on its outside surface' },
@@ -271,9 +268,7 @@ function ground(ctx, x, y) {
     topline(ctx, lines[st]);
     readout(d.readout, `\\kq_{\\text{drum}} = (${fmt(frac, 2)})\\,\\kq = (${fmt(frac, 2)})(${fmt(q, 1)}\\ \\text{nC/cm}^2) = ${fmt(dens, 1)}\\ \\text{nC/cm}^2`,
       'That is the drum’s charge on average: the dark regions hold the full ' + fmt(q, 1) + ' nC/cm² and the lit ones ' + (light > 0.99 ? 'none' : 'what the light has not yet taken') + '. '
-      + (writer.value === 'laser'
-        ? 'The laser printer uses the xerographic process, and only the writing of the image differs: it is written by a beam whose position is controlled with great precision rather than thrown from an original, which is why the printed characters are as sharp as the beam is narrow.'
-        : 'Selenium is an insulator in the dark and a conductor in the light, and that one property does the whole of the work: the drum keeps its charge exactly where no light reached it. The charge on the paper must exceed the charge on the drum or the toner will not leave the drum at all.'));
+      + (writer.value === 'laser' ? 'The beam is steered with great precision, which is why the printed characters are as sharp as the beam is narrow.' : ''));
   }
   hover(d.stage, () => [
     { x: CX, y: CY, r: 160, name: 'the aluminum drum, grounded under the selenium' },
@@ -320,7 +315,7 @@ function ground(ctx, x, y) {
     panel(ctx, PL1, YC - 150, PL2 - PL1, 26, 4, PAL.panel, plc); panel(ctx, PL1, YC + 124, PL2 - PL1, 26, 4, PAL.panel, plc);
     for (let i = 0; i < 6; i++) { mark(ctx, '+', PL1 + 34 + i * 58, YC - 137, 20); mark(ctx, '−', PL1 + 34 + i * 58, YC + 137, 20); }
     text(ctx, 'deflection plates', (PL1 + PL2) / 2, YC - 178, plc, { size: 19, align: 'center' });
-    for (let i = 0; i < 6; i++) arrow(ctx, PL1 + 34 + i * 58, YC - 112, PL1 + 34 + i * 58, YC + 112, ec, 3);
+    if (Es.v > 0) for (let i = 0; i < 6; i++) arrow(ctx, PL1 + 34 + i * 58, YC - 112, PL1 + 34 + i * 58, YC + 112, ec, 3);   /* no field, no lines */
     text(ctx, 'E = ' + fmt(Es.v, 0) + ' kN/C', PL2 + 12, YC - 100, ec, { size: 21, weight: 600 });
     panel(ctx, PAPER, 90, 130, 460, 6, PAL.soft, ppc);
     text(ctx, 'the paper', PAPER + 65, 66, ppc, { size: 19, align: 'center' });
@@ -329,7 +324,7 @@ function ground(ctx, x, y) {
       line(ctx, PAPER, y, PAPER + 14, y, PAL.muted, 2);
       if (k !== 0) text(ctx, num(k, 0), PAPER + 20, y, PAL.muted, { size: 16 });
     }
-    text(ctx, 'cm', PAPER + 20, 106, PAL.muted, { size: 16 });
+    text(ctx, 'cm', PAPER + 65, 106, PAL.muted, { size: 16, align: 'center' });   /* beside the scale's ticks, not on them */
     line(ctx, NOZ, YC, PAPER, YC, PAL.rule, 2, [10, 10]);
     /* the droplets, five of them strung along the stream */
     for (let i = 0; i < 5; i++) {
@@ -339,7 +334,7 @@ function ground(ctx, x, y) {
       const y = yOf(drop(q, E, u, v));
       dot(ctx, x, y, dpc, true, 9);
       if (x > 306) mark(ctx, q > 0 ? '+' : q < 0 ? '−' : '', x, y - 22, 18);
-      if (i === 0 && x > PL1 && x < PL2 && q !== 0) {
+      if (i === 0 && x > PL1 && x < PL2 && q * E !== 0) {
         arrow(ctx, x, y, x, y + Math.max(-90, Math.min(90, (q * E) / 4e-6 * 60)), fc, 5);
         text(ctx, 'F = qE', x + 14, y + 42, fc, { size: 20, weight: 600 });
       }
@@ -353,7 +348,7 @@ function ground(ctx, x, y) {
       ? 'The droplets carry no charge, or the plates make no field, so no force acts on them between the plates and the stream flies straight on to the middle of the page.'
       : `Each droplet leaves the electrodes with ${plus(qs.v, 0)} pC, and the field of ${fmt(Es.v, 0)} kN/C pushes it ${q > 0 ? 'toward the negative plate' : 'toward the positive plate'}, so the stream lands ${fmt(Math.abs(yEnd) * 100, 2)} cm ${yEnd > 0 ? 'below' : 'above'} the axis.`);
     readout(d.readout, `\\kF = \\kq\\kEf = (${sciTex(q, 2)}\\ \\text{C})(${sciTex(E, 2)}\\ \\text{N/C}) = ${sciTex(q * E, 2)}\\ \\text{N}`,
-      'The nozzle never moves: what decides where a droplet lands is the charge it was given and the field it crosses, and both are set electrically, which is why an ink jet printer can place a droplet with great precision. A droplet given the opposite charge is steered the other way, and one given none is not steered at all. Colour is made by four such jets, one black and three of the primary colours.');
+      'The charge and the field are both set electrically, which is why an ink jet printer can place a droplet so precisely; colour takes four such jets.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -390,11 +385,11 @@ function ground(ctx, x, y) {
       for (let i = 0; i < 6; i++) mark(ctx, sign, x + off, YT + 34 + i * ((YB - YT - 68) / 5), 22);
       text(ctx, name, x, YB + 34, F.ref(id), { size: 19, align: 'center' });
     }
-    for (let i = 0; i < 5; i++) arrow(ctx, X1 + 24, YT + 40 + i * 70, X2 - 12, YT + 40 + i * 70, ec, 3);
-    text(ctx, 'E = ' + fmt(Es.v, 0) + ' kN/C', (X1 + X2) / 2, YT - 28, ec, { size: 21, weight: 600, align: 'center' });
+    if (Es.v > 0) for (let i = 0; i < 5; i++) arrow(ctx, X1 + 24, YT + 40 + i * 70, X2 - 12, YT + 40 + i * 70, ec, 3);   /* no field, no lines */
+    text(ctx, 'E = ' + fmt(Es.v, 0) + ' kN/C', X1 + 40, YT - 28, ec, { size: 21, weight: 600 });
     arrow(ctx, X0 - 58, (YT + YB) / 2, X0 - 6, (YT + YB) / 2, PAL.ink, 4);
-    text(ctx, 'dirty air', X0 - 56, (YT + YB) / 2 - 34, PAL.ink, { size: 19, align: 'left' });
-    text(ctx, pull > 0.5 ? 'clean air' : 'still dirty', X3 + 10, (YT + YB) / 2 - 34, PAL.ink, { size: 19 });
+    text(ctx, 'dirty air', X0 - 6, (YT + YB) / 2 - 34, PAL.ink, { size: 19, align: 'right' });
+    text(ctx, pull > 0.5 ? 'clean air leaves' : 'still dirty air leaves', X3 - 20, YT - 28, PAL.ink, { size: 19, align: 'right' });
     /* the particles: charged at the first grid, and held on the second where the field is strong enough */
     let caught = 0, through = 0;
     for (let i = 0; i < N; i++) {
@@ -417,13 +412,13 @@ function ground(ctx, x, y) {
     /* what the second grid is holding */
     for (let i = 0; i < Math.min(12, Math.round(pull * 12)); i++) dot(ctx, X2 + 20, YT + 26 + i * ((YB - YT - 52) / 11), ptc, true, 8);
     const pct = pull * 100;
-    text(ctx, 'q on each particle = ' + fmt(qs.v, 1) + ' nC', X1, YT - 28, qc, { size: 21, weight: 600, align: 'center' });
+    text(ctx, 'q on each particle = ' + fmt(qs.v, 1) + ' nC', X1 - 20, YT - 28, qc, { size: 21, weight: 600, align: 'right' });
     text(ctx, fmt(pct, 0) + '% collected', X3 - 20, YB + 34, PAL.ink, { size: 21, weight: 600, align: 'right' });
     topline(ctx, qs.v === 0
       ? 'The charging grid is off, so the particles cross the precipitator uncharged. The field at the second grid exerts no force on an uncharged particle, and the dirty air leaves as dirty as it came in.'
       : `Each particle is given ${fmt(qs.v, 1)} nC at the first grid, and the field of ${fmt(Es.v, 0)} kN/C at the second draws ${fmt(pct, 0)}% of them out of the stream and holds them there.`);
     readout(d.readout, `\\kF = \\kq\\kEf = (${sciTex(q, 2)}\\ \\text{C})(${sciTex(E, 2)}\\ \\text{N/C}) = ${sciTex(q * E, 2)}\\ \\text{N}\\ \\text{on each particle}`,
-      'The two grids do two different things and both are needed: the first places excess charge on the smoke, dust and pollen, and the second, held at the opposite sign, attracts and retains what the first has charged. Industrial precipitators built this way remove over 99% of the particles from the stack gas of coal- and oil-fired plants.');
+      'Industrial precipitators built this way remove over 99% of the particles from the stack gas of coal- and oil-fired plants.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -463,7 +458,7 @@ function ground(ctx, x, y) {
     /* the drop, with the sign the book gives it */
     circle(ctx, DX, DY, 34, PAL.panel, 3, drc);
     mark(ctx, '+', DX, DY, 26);
-    const bg = alpha(PAL.panel, 0.9);
+    const bg = alpha(PAL.panel, 0.97);   /* the field lines run behind the drop's names */
     text(ctx, 'a drop of gasoline', DX - 52, DY - 26, drc, { size: 19, align: 'right', bg });
     text(ctx, 'm = ' + sci(m, 2) + ' kg', DX - 52, DY + 4, mc, { size: 19, weight: 600, align: 'right', bg });
     text(ctx, 'q = ' + sci(q, 2) + ' C', DX - 52, DY + 34, qc, { size: 19, weight: 600, align: 'right', bg });
@@ -478,7 +473,7 @@ function ground(ctx, x, y) {
     text(ctx, 'F − w = ' + (net < 0 ? '−' : '') + sci(Math.abs(net), 2) + ' N', FX, 224, fc, { size: 23, weight: 600 });
     text(ctx, 'a = ' + num(a, 1) + ' m/s²', FX, 274, ac, { size: 23, weight: 600 });
     text(ctx, a > 0 ? 'upward' : a < 0 ? 'downward' : 'the drop hangs', FX, 314, PAL.muted, { size: 19 });
-    if (a !== 0) arrow(ctx, FX + 250, a > 0 ? 300 : 200, FX + 250, a > 0 ? 200 : 300, ac, 5);
+    if (a !== 0) arrow(ctx, FX + 300, a > 0 ? 300 : 200, FX + 300, a > 0 ? 200 : 300, ac, 5);
     text(ctx, 'the field that would just support it', FX, 386, PAL.muted, { size: 19 });
     text(ctx, q > 0 ? sci((m * G) / q, 2) + ' N/C' : 'no field can, with no charge on the drop', FX, 430, ec, { size: 21, weight: 600 });
     topline(ctx, q === 0 || E === 0
@@ -494,7 +489,7 @@ function ground(ctx, x, y) {
       { force: wasHung !== null && hung !== wasHung });
     wasHung = hung;
     note.textContent = (hung ? 'The electric force holds up the whole weight, so the drop neither rises nor falls. ' : '')
-      + 'An integrated problem is solved a part at a time, each part with the strategy of the chapter it belongs to: the weight from w = mg, the electric force from F = qE, and the acceleration from Newton’s second law with the net force. The two forces are of the same order here, which is why the answer depends on all three of the charge, the field and the mass, and why static electricity on gasoline is worth taking trouble over.';
+      + 'The two forces are of the same order here, so the answer depends on the charge, the field and the mass alike.';
   }
   register(d.fig, { update: () => {}, draw });
 })();
