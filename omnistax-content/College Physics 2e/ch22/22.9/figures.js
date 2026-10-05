@@ -159,45 +159,16 @@ function oval(c, A, B, u, v, n = 72) {
   const scale3 = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
   const circle = (c, q, u, v, n = 72) => { const pts = []; for (let i = 0; i <= n; i++) { const t = (i / n) * TAU; pts.push(add3(add3(c, u, q * Math.cos(t)), v, q * Math.sin(t))); } return pts; };
 
-  /* The right hand of rule 2, in a frame with the wire along y and the forearm leaving along +x:
-     the thumb lies along the wire the way the current runs, and the four fingers leave the palm and
-     curl round the far side of the wire, which for a right hand is the way the field goes. Parts
-     are ellipsoids (c, radii) and round-ended segments (a, b, r); lengths in scene units. */
-  const HAND = (() => {
-    const P = [], RG = 0.056, zP = -RG - 0.004;
-    const E = (c, r, n) => P.push({ c, r, n }), K = (a, b, r, n) => P.push({ a, b, r, n });
-    E([0.115, -0.090, zP], [0.125, 0.098, 0.030], 'the palm of the right hand');
-    E([0.130, -0.012, zP + 0.016], [0.062, 0.050, 0.032], 'the palm of the right hand');
-    K([0.225, -0.088, zP], [0.34, -0.090, zP - 0.002], 0.056, 'the wrist');
-    [[-0.024, 0.020, 1.0], [-0.068, 0.021, 1.08], [-0.112, 0.020, 1.02], [-0.152, 0.017, 0.84]].forEach(([y, r, len]) => {
-      const q = [0, 1.7, 2.9, 3.9].map((t) => -Math.PI / 2 - t * len).map((t) => [RG * Math.cos(t), y, RG * Math.sin(t)]);
-      for (let i = 0; i < 3; i++) K(q[i], q[i + 1], r * (1 - 0.07 * i), 'the fingers, curling the way the magnetic field goes');
-    });
-    const th = [[0.140, -0.035, zP + 0.016], [0.074, 0.030, -0.036], [0.050, 0.098, -0.030], [0.042, 0.160, -0.026]];
-    [0.026, 0.024, 0.022].forEach((r, i) => K(th[i], th[i + 1], r, 'the thumb, pointing the way the current runs'));
-    return P;
-  })();
-  /* Drawn after the field: a depth pass, then an ink outline from the back faces of a slightly
-     larger hand, then the half-opacity fill, so the field behind shows through the fill and the
-     overlapping parts read as one hand rather than a stack. */
-  function buildHand(g, grip, iDir, outDir, hs, op) {
+  /* The right hand of rule 2 (F.mesh.hand), gripping the wire at grip: the thumb along the wire the
+     way the current runs, the forearm leaving along outDir, and the four fingers closing round the
+     far side of the wire, which for a right hand is the way the field goes. */
+  const HAND_NAMES = { palm: 'the palm of the right hand', wrist: 'the wrist', thumb: 'the thumb, pointing the way the current runs' };
+  const FINGERS_NAME = 'the fingers, curling the way the magnetic field goes';
+  function buildHand(g, grip, iDir, outDir, hs, op, curl = 1) {
     if (op <= 0.01) return;
-    const h = new THREE.Group(), G = F.mesh.geo(), D = 0.0065;
-    const pre = new THREE.MeshBasicMaterial({ colorWrite: false, transparent: true, depthWrite: true });
-    const hull = new THREE.MeshBasicMaterial({ color: new THREE.Color(HC()), side: THREE.BackSide, transparent: true, opacity: op, depthWrite: false });
-    const fill = new THREE.MeshBasicMaterial({ color: new THREE.Color(PAL.muted), transparent: true, opacity: 0.5 * op, depthWrite: false });
-    paint.push({ m: hull, col: HC }, { m: fill, col: MUT });
-    const add = (geo, mat, order, name, place) => { const m = new THREE.Mesh(geo, mat); m.renderOrder = order; place(m); h.add(m); if (name) V.pickable(m, name); };
-    [[pre, 10, 0], [hull, 11, D], [fill, 12, 0]].forEach(([mat, order, dd]) => HAND.forEach((p) => {
-      const name = mat === fill ? p.n : null;
-      if (p.c) { add(G.sphere, mat, order, name, (m) => { m.position.set(p.c[0], p.c[1], p.c[2]); m.scale.set(p.r[0] + dd, p.r[1] + dd, p.r[2] + dd); }); return; }
-      add(G.cyl, mat, order, name, (m) => { m.scale.set(p.r + dd, 1, p.r + dd); F.mesh.setStick(m, p.a, p.b); });
-      [p.a, p.b].forEach((q) => add(G.sphere, mat, order, name, (m) => { m.position.set(q[0], q[1], q[2]); m.scale.setScalar(p.r + dd); }));
-    }));
-    const u = new THREE.Vector3(...unit3(outDir)), t = new THREE.Vector3(...unit3(iDir));
-    const w = new THREE.Vector3().crossVectors(u, t);
-    h.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, t, w));
-    h.position.set(grip[0], grip[1], grip[2]); h.scale.setScalar(hs);
+    const h = F.mesh.hand({ curl, thumb: 'up', aim: scale3(outDir, -1), palm: cross3(outDir, iDir), grip, scale: hs, ink: HC(), color: MUT(), opacity: op });
+    paint.push({ m: h.userData.ink, col: HC }, { m: h.userData.fill, col: MUT });
+    h.children.forEach((m) => { if (m.material === h.userData.fill) V.pickable(m, HAND_NAMES[m.userData.part] ?? FINGERS_NAME); });
     g.add(h);
   }
 
@@ -280,7 +251,7 @@ function oval(c, A, B, u, v, n = 72) {
       keep(lab('B = ' + sci(st.B, 2) + ' T', p, g3, -30, C('magnetic-field'), ow), BC);
       keep(lab('r = ' + fmt(rS.v, 1) + ' cm', add3(add3(lerp3(c0, p, 0.55), fld(tP), -0.42), W.T(0), -0.3), g3, 0, C('position'), ow), PC);
       const sh = -2.6;
-      buildHand(g3, W.P(sh), W.T(sh), scale3(UP, -1), HS_WIRE, ow * ramp(s, 0.25, 0.75));
+      buildHand(g3, W.P(sh), W.T(sh), scale3(UP, -1), HS_WIRE, ow * ramp(s, 0.25, 0.75), ramp(s, 0.25, 0.95));
     }
     /* the loop's own parts, round the centre of the arc as it closes: R, the value at the centre, and the hand */
     const ol = A.loop;
@@ -291,7 +262,7 @@ function oval(c, A, B, u, v, n = 72) {
       keep(lab('B = ' + sci(st.B, 2) + ' T', add3(add3(cc, UP, 0.75 * rhoL), [Math.sin(TH_L), 0, Math.cos(TH_L)], 0.56 * rhoL), g3, 0, C('magnetic-field'), ol), BC);
       keep(lab('R = ' + fmt(RS.v, 1) + ' cm', lerp3(cc, pR, 0.8), g3, 12, C('position'), ol), PC);
       const sh = (HAND_AZ * rhoL) / b;
-      buildHand(g3, W.P(sh), W.T(sh), W.Out(sh), loopHand(rhoL), ramp(s, 1.6, 1.85));
+      buildHand(g3, W.P(sh), W.T(sh), W.Out(sh), loopHand(rhoL), ramp(s, 1.6, 1.85), ramp(s, 1.6, 1.95));
     }
   }
 
