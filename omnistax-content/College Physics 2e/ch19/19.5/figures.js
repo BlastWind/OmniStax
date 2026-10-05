@@ -8,7 +8,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['19.5'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, register, cycle, begin, line, arrow, dot, text, topline, hbracket, vbracket, label } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- constants and small helpers ---------- */
 const EPS0 = 8.85e-12;                       /* F/m, the permittivity of free space */
@@ -86,11 +86,11 @@ function fieldLine(ctx, x0, x1, y, color) {
   });
   const Qs = ctl(d.controls, { label: '\\kQch', cls: 'charge', min: 0, max: 60, step: 0.2, value: 26.6, unit: 'µC', dec: 1, aria: 'the charge the capacitor stores' });
   const BX = 210, BY = 300, PL = 640, PR = 900, PT = 150, PB = 430;
-  /* the roll: two sheets wound half a turn apart. The positive plate becomes the outer sheet, read
-     from its outer end where its wire joins, and the negative plate the inner one, read from its start. */
-  const CX = 770, CY = 290, R0 = 34, KR = 15.5, TURNS = 4.2;
+  /* the roll: two sheets wound half a turn apart, each read from its outer end where its wire joins,
+     the positive one ending at the top of the roll and the negative one at the bottom, so neither lead crosses a turn */
+  const CX = 770, CY = 304, R0 = 34, KR = 17.3, TURNS = 3.75;
   const spiral = (phase) => { const p = []; for (let t = 0; t <= TURNS * Math.PI * 2; t += 0.12) { const r = R0 + KR * (t / (Math.PI * 2)) * 2; p.push([CX + r * Math.cos(t + phase), CY + r * Math.sin(t + phase)]); } return p; };
-  const OUTER = spiral(0).reverse(), INNER = spiral(Math.PI);
+  const OUTER = spiral(0).reverse(), INNER = spiral(Math.PI).reverse();
   const PLUS = [[PL, PT], [PL, PB]], MINUS = [[PR, PB], [PR, PT]];
   const lerp2 = (a, b, u) => a.map((p, i) => [p[0] + (b[i][0] - p[0]) * u, p[1] + (b[i][1] - p[1]) * u]);
   function draw() {
@@ -108,26 +108,25 @@ function fieldLine(ctx, x0, x1, y, color) {
     if (u > 0.01) { strip(pos, 13, alpha(PAL.ink, 0.35 * u)); strip(neg, 13, alpha(PAL.ink, 0.35 * u)); }
     strip(pos, 12 - 5 * u, PAL.ink); strip(neg, 12 - 5 * u, PAL.ink);
     const e = pos[0], s = neg[0];
-    wire(ctx, lerp2([[BX, BY - 16], [BX, PT - 40], [PL, PT - 40], [PL, PT]], [[BX, BY - 16], [BX, 110], [e[0], 110], [e[0], e[1]]], u).map((p, i) => (i === 3 ? e : p)));
-    wire(ctx, lerp2([[BX, BY + 16], [BX, PB + 40], [PR, PB + 40], [PR, PB], [PR, PB]], [[BX, BY + 16], [BX, 470], [s[0] - 140, 470], [s[0] - 140, s[1]], [s[0], s[1]]], u).map((p, i) => (i === 4 ? s : p)));
+    wire(ctx, lerp2([[BX, BY - 16], [BX, PT - 40], [PL, PT - 40], [PL, PT]], [[BX, BY - 16], [BX, 100], [e[0], 100], [e[0], e[1]]], u).map((p, i) => (i === 3 ? e : p)));
+    wire(ctx, lerp2([[BX, BY + 16], [BX, PB + 40], [PR, PB + 40], [PR, PB], [PR, PB]], [[BX, BY + 16], [BX, 486], [s[0], 486], [s[0], s[1]], [s[0], s[1]]], u).map((p, i) => (i === 4 ? s : p)));
     ctx.save(); ctx.globalAlpha = kind.a('plates');
     marks(ctx, PL + 32, PT, PB, n, '+', qc);
     marks(ctx, PR - 32, PT, PB, n, '−', qc);
     text(ctx, 'two conducting plates, not touching', (PL + PR) / 2, PB + 96, PAL.muted, { size: 19, align: 'center' });
     ctx.globalAlpha = kind.a('rolled');
-    text(ctx, 'two conducting sheets rolled up with an insulator between them', CX, 512, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'two conducting sheets rolled up with an insulator between them', CX, 540, PAL.muted, { size: 19, align: 'center' });
     ctx.restore();
     if (kind.k >= 1) {
       if (rolled) {
-        label(ctx, '+Q = ' + plus + ' µC', e[0], e[1] - 10, { side: 'above', color: qc, gap: 18, size: 21 });
-        label(ctx, '−Q = ' + minus + ' µC', s[0] - 140, s[1] - 10, { side: 'left', color: qc, gap: 14, size: 21 });
+        label(ctx, '+Q = ' + plus + ' µC', e[0], e[1] - 20, { side: 'right', color: qc, gap: 12, size: 21 });
+        label(ctx, '−Q = ' + minus + ' µC', s[0], 486, { side: 'below', color: qc, gap: 10, size: 21 });
       } else {
-        label(ctx, '+Q = ' + plus + ' µC', PL, PT - 8, { side: 'above', color: qc, gap: 16, size: 21 });
-        label(ctx, '−Q = ' + minus + ' µC', PR, PB + 8, { side: 'below', color: qc, gap: 16, size: 21 });
+        label(ctx, '+Q = ' + plus + ' µC', PL - 8, PT + 24, { side: 'left', color: qc, gap: 12, size: 21 });
+        label(ctx, '−Q = ' + minus + ' µC', PR + 8, PB - 24, { side: 'right', color: qc, gap: 12, size: 21 });
       }
     }
-    readout(d.readout, '\\kQch = ' + fmt(Q, 1) + '\\ \\mu\\text{C}',
-      'The capacitor stores a charge Q, which is the charge separated onto each of its two conductors, and not the total charge it carries, which is zero.');
+    readout(d.readout, '\\kQch = ' + fmt(Q, 1) + '\\ \\mu\\text{C}');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -148,11 +147,11 @@ function fieldLine(ctx, x0, x1, y, color) {
     const qc = C('charge'), ec = C('electric-field'), vc = C('voltage');
     const Q = Qs.v, Cv = Cs.v, V = (Q * 1e-6) / (Cv * 1e-9);     /* volts */
     const n = Math.min(16, Math.round(Q / 3.75));
-    topline(ctx, 'A charge of ' + fmt(Q, 1) + ' µC on a capacitance of ' + fmt(Cv, 2) + ' nF needs ' + fmt(V / 1000, 2) + ' kV across the plates, because Q = CV.');
+    topline(ctx, 'A charge of ' + fmt(Q, 1) + ' µC on a capacitance of ' + fmt(Cv, 2) + ' nF needs ' + fmt(V / 1000, 2) + ' kV across the plates, because $\\kQch = \\kCap\\kV$.');
     battery(ctx, 200, 290, 150);
     text(ctx, 'the battery', 214, 348, PAL.muted, { size: 19 });
     wire(ctx, [[200, 274], [200, 100], [PL, 100], [PL, PT]]);
-    wire(ctx, [[200, 306], [200, 470], [PR, 470], [PR, PB]]);
+    wire(ctx, [[200, 306], [200, 516], [PR, 516], [PR, PB]]);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
     ctx.beginPath(); ctx.moveTo(PL, PT); ctx.lineTo(PL, PB); ctx.moveTo(PR, PT); ctx.lineTo(PR, PB); ctx.stroke(); ctx.restore();
     for (let i = 0; i < n; i++) {
@@ -166,8 +165,7 @@ function fieldLine(ctx, x0, x1, y, color) {
     label(ctx, '+Q = ' + (Q > 0 ? '+' + fmt(Q, 1) : '0.0') + ' µC', PL - 30, PB + 14, { side: 'below', color: qc, gap: 12, size: 21 });
     label(ctx, '−Q = ' + (Q > 0 ? '−' + fmt(Q, 1) : '0.0') + ' µC', PR + 30, PB + 14, { side: 'below', color: qc, gap: 12, size: 21 });
     vbracket(ctx, PR + 120, PT, PB, vc, 'V = ' + fmt(V / 1000, 2) + ' kV', 1);
-    readout(d.readout, '\\kQch = \\kCap\\kV = (' + fmt(Cv, 2) + '\\ \\text{nF})(' + fmt(V / 1000, 2) + '\\ \\text{kV}) = ' + fmt(Q, 1) + '\\ \\mu\\text{C}',
-      'The number of field lines, and with it the field strength and the voltage across the plates, is proportional to the charge the capacitor holds.');
+    readout(d.readout, '\\kQch = \\kCap\\kV = (' + fmt(Cv, 2) + '\\ \\text{nF})(' + fmt(V / 1000, 2) + '\\ \\text{kV}) = ' + fmt(Q, 1) + '\\ \\mu\\text{C}');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -199,19 +197,23 @@ function fieldLine(ctx, x0, x1, y, color) {
     battery(ctx, 190, CY, 150);
     text(ctx, 'the battery', 204, CY + 58, PAL.muted, { size: 19 });
     wire(ctx, [[190, CY - 16], [190, 130], [xl, 130], [xl, CY - h]]);
-    wire(ctx, [[190, CY + 16], [190, 500], [xr, 500], [xr, CY + h]]);
+    wire(ctx, [[190, CY + 16], [190, 550], [xr, 550], [xr, CY + h]]);
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
     ctx.beginPath(); ctx.moveTo(xl, CY - h); ctx.lineTo(xl, CY + h); ctx.moveTo(xr, CY - h); ctx.lineTo(xr, CY + h); ctx.stroke(); ctx.restore();
     const n = Math.max(1, Math.min(8, Math.round(h / 22)));
-    marks(ctx, xl + 22, CY - h, CY + h, n, '+', qc);
-    marks(ctx, xr - 22, CY - h, CY + h, n, '−', qc);
-    hbracket(ctx, xl, xr, CY + h + 54, pc, 'd = ' + fmt(mm, 2) + ' mm');
-    vbracket(ctx, xl - 42, CY - h, CY + h, C('area'), 'each plate has A = ' + fmt(A, 2) + ' m²', -1);
+    const mk = Math.min(22, g / 4);
+    marks(ctx, xl + mk, CY - h, CY + h, n, '+', qc);
+    marks(ctx, xr - mk, CY - h, CY + h, n, '−', qc);
+    /* the gap's label sits under its bracket, kept left of plate B's lead where the gap is narrow */
+    hbracket(ctx, xl, xr, CY + h + 36, pc);
+    const dl = 'd = ' + fmt(mm, 2) + ' mm', narrow = g < 220;
+    text(ctx, dl, narrow ? xr - 14 : CXC, CY + h + 66, pc, { size: 21, weight: 600, align: narrow ? 'right' : 'center', bg: PAL.panel });
+    vbracket(ctx, xl - 42, CY - h, CY + h, C('area'), 'A = ' + fmt(A, 2) + ' m²', -1);
     label(ctx, 'V = ' + fmt(kV, 2) + ' kV', CXC, CY - h - 10, { side: 'above', color: vc, gap: 18, size: 21 });
     label(ctx, 'Q = ' + fmt(Q, 1) + ' µC', xr + 20, CY - h + 10, { side: 'right', color: qc, gap: 14, size: 21 });
-    label(ctx, 'C = ' + fmt(Cn, 2) + ' nF', CXC, CY + h + 120, { side: 'below', color: cc, gap: 8, size: 22 });
+    label(ctx, 'C = ' + fmt(Cn, 2) + ' nF', xr + 20, CY - h + 50, { side: 'right', color: cc, gap: 14, size: 21 });
     readout(d.readout, '\\kCap = \\varepsilon_0\\frac{\\karea}{\\kd} = ' + sci(EPS0, 2) + '\\ \\frac{\\text{F}}{\\text{m}} \\cdot \\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cn, 2) + '\\ \\text{nF}',
-      'The bigger the plates, the more charge they hold, because the charges can spread out more; the closer the plates, the greater the attraction between the opposite charges on them. The charge stored is Q = CV = ' + fmt(Q, 1) + ' µC.');
+      'The bigger the plates, the more room the charges have to spread out; the closer the plates, the greater the attraction between the opposite charges on them.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -287,7 +289,7 @@ function fieldLine(ctx, x0, x1, y, color) {
     const limit = m.strength === null ? 'The book gives ' + m.label.toLowerCase() + ' no dielectric strength, so no voltage limit is quoted for it.'
       : 'Its dielectric strength of ' + (m.strength / 1e6) + ' × 10⁶ V/m allows at most ' + fmt((m.strength * mm * 1e-3) / 1000, 1) + ' kV across a separation of ' + fmt(mm, 2) + ' mm.';
     readout(d.readout, '\\kCap = \\kappa\\varepsilon_0\\frac{\\karea}{\\kd} = (' + fmt(k, k < 10 ? 2 : 0) + ')(' + sci(EPS0, 2) + '\\ \\text{F/m})\\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cf * 1e9, 2) + '\\ \\text{nF}',
-      'The field between the plates is E = E₀/κ = ' + sciText(E, 2) + ' V/m. ' + limit);
+      limit);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -331,7 +333,7 @@ function fieldLine(ctx, x0, x1, y, color) {
     label(ctx, 'an external positive charge', RX + 270, CY - 18, { side: 'above', color: qc, gap: 14, size: 20 });
     line(ctx, RX - 240, CY, RX - 160, CY, alpha(PAL.ink, 0.3), 2, [6, 8]);
     line(ctx, RX + 160, CY, RX + 240, CY, alpha(PAL.ink, 0.3), 2, [6, 8]);
-    d.readout.textContent = 'The atom stays neutral, but its charge is now separated, so it can be the source of a Coulomb force. The shift is drawn far larger than it is.';
+    d.readout.hidden = true;
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -440,7 +442,7 @@ function fieldLine(ctx, x0, x1, y, color) {
     });
     /* the two directions diffusion carries the ions, as the book draws them */
     arrow(ctx, MX - 130, MT - 76, MX + 130, MT - 76, alpha(PAL.ink, 0.45), 4);
-    text(ctx, 'potassium out', MX, MT - 102, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, 'potassium out', MX, MT - 50, PAL.muted, { size: 19, align: 'center' });
     arrow(ctx, MX + 130, MB + 44, MX - 130, MB + 44, alpha(PAL.ink, 0.45), 4);
     text(ctx, 'chloride in', MX, MB + 70, PAL.muted, { size: 19, align: 'center' });
     text(ctx, 'sodium is held outside: the membrane is impermeable to it', 1090, MB + 70, PAL.muted, { size: 19, align: 'center' });

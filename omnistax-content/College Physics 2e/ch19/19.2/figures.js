@@ -14,7 +14,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['19.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the two figures ---------- */
 const TAU = 2 * Math.PI;
@@ -61,7 +61,7 @@ function plate(ctx, x, y1, y2, w, sign, n, color) {
     const n = Math.max(5, Math.min(12, Math.round(4 + (8 * E) / E_BREAKDOWN)));
     for (let i = 0; i < n; i++) {
       const y = pT + 24 + ((pB - pT - 48) * i) / (n - 1);
-      if (y > yq - 30 && y < yq + 62) continue;
+      if ((y > yq - 30 && y < yq + 62) || (broken && y > yq + 76)) continue;
       arrow(ctx, xA + 20, y, xB - 20, y, C('electric-field'), 4);
     }
     text(ctx, 'E = ' + sci(E, 2) + ' V/m', (xA + xB) / 2, pT - 34, C('electric-field'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
@@ -90,8 +90,8 @@ function plate(ctx, x, y1, y2, w, sign, n, color) {
     topline(ctx, 'Across ' + fmt(D.v, 2) + ' cm, ' + fmt(V.v, 1) + ' kV makes a field of ' + sci(E, 2) + ' V/m, and the field pushes the ' + fmt(Q.v, 3) + ' µC charge toward plate B with ' + fmt(Fq, 3) + ' N.'
       + (broken ? ' That is more than dry air will support, so the gap sparks over.' : ''));
     readout(d.readout, `\\kEf = \\frac{\\kVAB}{\\kd} = \\frac{${sciTex(Vv, 2)}\\ \\text{V}}{${fmt(dm, 4)}\\ \\text{m}} = ${sciTex(E, 2)}\\ \\text{V/m}`,
-      'The force on the ' + fmt(Q.v, 3) + ' µC charge is F = qE = ' + fmt(Fq, 3) + ' N, and it is the same wherever the charge sits between the plates, because the field is uniform. The answer comes out in newtons although the field is in volts per meter, because 1 N/C = 1 V/m. '
-      + (broken ? 'At ' + sci(E, 2) + ' V/m the field has passed the ' + sci(E_BREAKDOWN, 1) + ' V/m that dry air will support: the air is ionized enough to conduct, and a spark discharges the plates.' : 'Dry air will support about ' + sci(E_BREAKDOWN, 1) + ' V/m, so this gap holds at most ' + fmt((E_BREAKDOWN * dm) / 1000, 0) + ' kV before it sparks over.'));
+      '$\\kF = \\kq\\kEf$ is the same wherever the charge sits, because the field is uniform, and it comes out in newtons because 1 N/C = 1 V/m.'
+      + (broken ? '' : ' This gap holds at most ' + fmt((E_BREAKDOWN * dm) / 1000, 0) + ' kV before it sparks over.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -130,7 +130,10 @@ function plate(ctx, x, y1, y2, w, sign, n, color) {
     dot(ctx, X(s1), Y(W1), C('voltage'), false, 10); dot(ctx, X(s2), Y(W2), C('voltage'), true, 10);
     text(ctx, 'the chord across the window', Math.max(X((s1 + s2) / 2), gx.l + 230), gx.t - 26, C('electric-field'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     hbracket(ctx, X(s1), X(s2), gx.b + 132, C('position'), 'Δs = ' + fmt(DS.v, 2) + ' cm');
-    vbracket(ctx, X(s2) + 34, Y(W1), Y(W2), C('voltage'), 'ΔV = ' + num(dV, 1) + ' V', 1);
+    /* a short bracket sets its label below its foot, clear of a potential that runs on nearly flat */
+    vbracket(ctx, X(s2) + 34, Y(W1), Y(W2), C('voltage'));
+    const ly = Y(W2) - Y(W1) < 44 ? Y(W2) + 30 : (Y(W1) + Y(W2)) / 2;
+    text(ctx, 'ΔV = ' + num(dV, 1) + ' V', X(s2) + 50, ly, C('voltage'), { size: 22, weight: 600, bg: PAL.panel });
     /* the field at each place along the way, drawn to the same scale */
 
     for (let i = 0; i < 10; i++) {
@@ -145,8 +148,8 @@ function plate(ctx, x, y1, y2, w, sign, n, color) {
     topline(ctx, 'Over the ' + fmt(DS.v, 2) + ' cm window centered ' + fmt((s1 + s2) / 2, 2) + ' cm along, the potential falls ' + fmt(-dV, 1) + ' V, so the average field there is ' + sci(E, 2) + ' V/m.');
     readout(d.readout, `\\kEf = -\\frac{\\kdV}{\\kds} = -\\frac{${(dV < 0 ? '-' : '') + fmt(Math.abs(dV), 1)}\\ \\text{V}}{${fmt(DS.v / 100, 4)}\\ \\text{m}} = ${sciTex(E, 2)}\\ \\text{V/m}`,
       kind === 'even'
-        ? 'The potential falls evenly here, as it does between two parallel plates, so every window of every width gives the same field, and the field is the same everywhere along the way. That is the uniform field of Figure 19.5 again, read as a slope.'
-        : 'Here the potential falls slowly at first and then steeply, so the window reads a small field near s = 0 and a field several times larger near s = 10 cm. The minus sign puts the field along the direction in which the potential falls, which is to the right in both graphs.');
+        ? 'Every window reads the same field: the uniform field of Figure 19.5, read as a slope.'
+        : 'The minus sign points the field the way the potential falls, to the right.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

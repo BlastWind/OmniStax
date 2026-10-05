@@ -17,7 +17,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['19.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- helpers shared by the three figures ---------- */
 const K = 8.99e9;                                        /* Coulomb's constant, as the examples of this section use it */
@@ -65,7 +65,7 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     /* the charge itself */
     dot(ctx, cx, cy, C('charge'), true, 16);
     text(ctx, s < 0 ? '−' : '+', cx, cy, PAL.panel, { size: 22, weight: 600, align: 'center', base: 'middle' });
-    text(ctx, 'Q = ' + num(s * Qm.v, 2) + ' nC', cx, cy + 42, C('charge'), { size: 24, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'Q = ' + num(s * Qm.v, 2) + ' nC', cx + 20, cy + 44, C('charge'), { size: 24, weight: 600, align: 'right', bg: PAL.panel });
     /* the marker at the distance r, with the radius and the field arrow */
     const ang = -32 * (Math.PI / 180), px = cx + R.v * PPC * Math.cos(ang), py = cy - R.v * PPC * Math.sin(ang);
     line(ctx, cx, cy, px, py, C('position'), 3, [10, 10]);
@@ -89,10 +89,7 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     pinned(ctx, gE, a2.X, a2.Y, R.v, E, C('electric-field'));
     topline(ctx, fmt(R.v, 2) + ' cm from a ' + num(s * Qm.v, 2) + ' nC charge the potential is ' + num(V, 0) + ' V and the field is ' + sci(E, 2) + ' N/C.');
     readout(d.readout, `\\kV = \\frac{k\\kQch}{\\kr} = \\frac{(${sciTex(K, 2)}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2)(${sciTex(Q, 2)}\\ \\text{C})}{${fmt(rm, 4)}\\ \\text{m}} = ${num(V, 0)}\\ \\text{V}`,
-      'The field of the same charge at the same place is E = kQ/r² = ' + sci(E, 2) + ' N/C. '
-      + (R.v <= 10 ? 'Move the marker to twice the distance, ' + fmt(R.v * 2, 2) + ' cm, and the potential falls to half of what it is here while the field falls to a quarter of it.'
-        : 'Move the marker in to half the distance, ' + fmt(R.v / 2, 2) + ' cm, and the potential doubles while the field goes up four times.')
-      + ' That is why the equipotential circles are far apart out here and crowd together near the charge.');
+      'The field at the same place is $\\kEf = k|\\kQch|/\\kr^2 = ' + sciTex(E, 2) + '\\ \\text{N/C}$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -111,9 +108,8 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
   const Q1 = 2e-6, YP = 0.35;                             /* the first charge is held at +2.00 µC; the point runs 0.35 m above the line */
   const y0 = 430, PPM = 300, X = (m) => 200 + PPM * (m + 1);   /* −1.00 m at x = 200, 2.50 m at x = 1250 */
   /* The graph stands under the scene at the same scale across, so a place on the line and a place on
-     the curve are the same place. The potential range is set from the default pair, and a larger
-     second charge runs off the top and is pinned there. */
-  const gx = { l: 200, r: 1250, t: 620, b: 840 };         /* −1.00 to 2.50 m across, −80 to 80 kV up, both fixed */
+     the curve are the same place. */
+  const gx = { l: 200, r: 1250, t: 620, b: 840 };         /* −1.00 to 2.50 m across, −160 to 160 kV up, the slider extremes' peaks, both fixed */
   let hits = [];
   F.hover(d.stage, () => hits);
   function draw() {
@@ -130,8 +126,9 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     const x1 = X(0), x2 = X(D.v);
     dot(ctx, x1, y0, F.ref('charge-1'), true, 15); text(ctx, '+', x1, y0, PAL.panel, { size: 21, weight: 600, align: 'center', base: 'middle' });
     dot(ctx, x2, y0, F.ref('charge-2'), true, 15); text(ctx, q2 < 0 ? '−' : '+', x2, y0, PAL.panel, { size: 21, weight: 600, align: 'center', base: 'middle' });
-    text(ctx, 'Q₁ = +2.00 µC', x1, y0 + 42, C('charge'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    text(ctx, 'Q₂ = ' + signed(q2 * 1e6, 2) + ' µC', x2, y0 + (x2 - x1 < 300 ? 84 : 42), C('charge'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    const near = x2 - x1 < 300;
+    text(ctx, 'Q₁ = +2.00 µC', near ? x1 + 20 : x1, y0 + 42, C('charge'), { size: 22, weight: 600, align: near ? 'right' : 'center', bg: PAL.panel });
+    text(ctx, 'Q₂ = ' + signed(q2 * 1e6, 2) + ' µC', near ? x2 - 20 : x2, y0 + 42, C('charge'), { size: 22, weight: 600, align: near ? 'left' : 'center', bg: PAL.panel });
     hbracket(ctx, x1, x2, y0 + 120, C('position'), 'd = ' + fmt(D.v, 2) + ' m');
     /* the marked point, its two field arrows and their resultant */
     const scale = 110 / 6e4;
@@ -153,18 +150,18 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     ];
     dot(ctx, px, py, PAL.ink, false, 10);
     text(ctx, 'P', px - 20, py - 14, PAL.ink, { size: 22, weight: 600, align: 'right' });
-    const lx = Math.min(Math.max(px, 300), 1120);
-    text(ctx, 'V = ' + num(Vp / 1000, 1) + ' kV', lx, py - 44, C('voltage'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-    if (Em > 0) text(ctx, 'the resultant field, ' + sci(Em, 2) + ' N/C', lx, py - 80, C('electric-field'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    /* the two readings stand on whichever side of P fewer of its arrows point to */
+    const lx = Math.min(Math.max(px, 300), 1120), below = [u1[1], u2[1], Ey].filter((v) => v < 0).length >= 2, ly = (k) => (below ? py + 40 + 34 * k : py - 44 - 36 * k);
+    text(ctx, 'V = ' + num(Vp / 1000, 1) + ' kV', lx, ly(0), C('voltage'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    if (Em > 0) text(ctx, 'the resultant field, ' + sci(Em, 2) + ' N/C', lx, ly(1), C('electric-field'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
     /* the potential along the line the point runs on */
-    const a = axes(ctx, gx, [-1, 2.5], [-80, 80], { nx: 7, ny: 4, xl: 'position along the line (m)', xc: C('position'), yl: 'V (kV)', yc: C('voltage'), fx: (v) => fmt(v, 1) });
+    const a = axes(ctx, gx, [-1, 2.5], [-160, 160], { nx: 7, ny: 4, xl: 'position along the line (m)', xc: C('position'), yl: 'V (kV)', yc: C('voltage'), fx: (v) => fmt(v, 1) });
     line(ctx, a.X(-1), a.Y(0), a.X(2.5), a.Y(0), alpha(PAL.ink, 0.35), 2);
-    curve(ctx, (x) => { const w = Vat(x); return Math.max(-80, Math.min(80, (w.v1 + w.v2) / 1000)); }, -1, 2.5, a.X, a.Y, C('voltage'), 5, 200);
+    curve(ctx, (x) => { const w = Vat(x); return Math.max(-160, Math.min(160, (w.v1 + w.v2) / 1000)); }, -1, 2.5, a.X, a.Y, C('voltage'), 5, 200);
     pinned(ctx, gx, a.X, a.Y, XP.v, Vp / 1000, C('voltage'));
     topline(ctx, 'At the marked point the two charges contribute ' + num(v1 / 1000, 1) + ' kV and ' + num(v2 / 1000, 1) + ' kV, so the potential there is ' + num(Vp / 1000, 1) + ' kV.');
     readout(d.readout, `\\kV = \\frac{k\\kQch_1}{\\kr_1} + \\frac{k\\kQch_2}{\\kr_2} = ${num(v1 / 1000, 1)}\\ \\text{kV} + (${num(v2 / 1000, 1)}\\ \\text{kV}) = ${num(Vp / 1000, 1)}\\ \\text{kV}`,
-      'The two fields do not add that way. At the same point they are ' + sci(e1, 2) + ' N/C and ' + sci(e2, 2) + ' N/C, and because they point in different directions their resultant is '
-      + sci(Em, 2) + ' N/C rather than the sum of the two numbers. The energy stored in the pair of charges is PE = kQ₁Q₂/d = ' + sci((K * Q1 * q2) / D.v, 2) + ' J.');
+      'The fields there, ' + sci(e1, 2) + ' and ' + sci(e2, 2) + ' N/C, point different ways, so their resultant is ' + sci(Em, 2) + ' N/C, not their sum. The pair stores $\\kPEtot = k\\kQch_1\\kQch_2/\\kd = ' + sciTex((K * Q1 * q2) / D.v, 2) + '\\ \\text{J}$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -187,18 +184,20 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     const rad = (DIA.v / 2) * PPC, broken = E >= E_BREAKDOWN;
     /* the belt over its two pulleys, the motor and the stand: the frame, in ink */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
-    ctx.fillRect(cx - 44, cy, 88, base - cy); ctx.strokeRect(cx - 44, cy, 88, base - cy);   /* the insulating column the sphere stands on */
+    /* the column is never wider than the sphere it carries */
+    const hw = Math.min(44, rad * 0.7), bw = hw * 0.6;
+    ctx.fillRect(cx - hw, cy, 2 * hw, base - cy); ctx.strokeRect(cx - hw, cy, 2 * hw, base - cy);   /* the insulating column the sphere stands on */
     ctx.restore();
-    line(ctx, cx - 26, cy, cx - 26, lower, PAL.ink, 4);                                        /* the belt, up one side and down the other */
-    line(ctx, cx + 26, cy, cx + 26, lower, PAL.ink, 4);
-    for (let y = cy + 30; y < lower - 20; y += 40) { arrow(ctx, cx - 26, y + 14, cx - 26, y - 14, PAL.muted, 3); arrow(ctx, cx + 26, y - 14, cx + 26, y + 14, PAL.muted, 3); }
+    line(ctx, cx - bw, cy, cx - bw, lower, PAL.ink, 4);                                        /* the belt, up one side and down the other */
+    line(ctx, cx + bw, cy, cx + bw, lower, PAL.ink, 4);
+    for (let y = cy + 30; y < lower - 20; y += 40) { arrow(ctx, cx - bw, y + 14, cx - bw, y - 14, PAL.muted, 3); arrow(ctx, cx + bw, y - 14, cx + bw, y + 14, PAL.muted, 3); }
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.fillStyle = PAL.soft;
-    ctx.beginPath(); ctx.arc(cx, cy, 26, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx, lower, 26, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, bw, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, lower, bw, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.fillStyle = PAL.panel; ctx.fillRect(cx - 120, base, 240, 46); ctx.strokeRect(cx - 120, base, 240, 46);
     ctx.restore();
     text(ctx, 'motor', cx, base + 23, PAL.ink, { size: 20, align: 'center', base: 'middle' });
-    text(ctx, 'the belt, in its insulating column', cx - 60, (cy + lower) / 2 + 60, PAL.muted, { size: 19, align: 'right' });
+    text(ctx, 'the belt, in its insulating column', cx - 60, lower, PAL.muted, { size: 19, align: 'right' });
     /* the sphere, its excess charge and the field at its surface */
     const cSph = F.ref('sphere'), cMeter = F.ref('voltmeter');
     ctx.save(); ctx.strokeStyle = cSph; ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.soft, 0.6);
@@ -218,7 +217,7 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     line(ctx, mx - 90, cy, mx - 90, my - 60, PAL.ink, 3);
     ctx.save(); ctx.strokeStyle = cMeter; ctx.lineWidth = 3; ctx.fillStyle = PAL.panel;
     ctx.beginPath(); ctx.arc(mx, my, 92, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
-    const sweep = -Math.PI * 0.75 + (Math.PI * 1.5 * V.v) / 300;
+    const sweep = -Math.PI / 3 + ((2 * Math.PI) / 3) * (V.v / 300);
     line(ctx, mx, my + 34, mx + 64 * Math.cos(sweep - Math.PI / 2), my + 34 + 64 * Math.sin(sweep - Math.PI / 2), C('voltage'), 4);
     dot(ctx, mx, my + 34, PAL.ink, true, 7);
     text(ctx, fmt(V.v, 0) + ' kV', mx, my + 70, C('voltage'), { size: 24, weight: 600, align: 'center' });
@@ -227,11 +226,10 @@ const signed = (v, d) => (v < 0 ? '−' : '+') + fmt(Math.abs(v), d);
     line(ctx, mx, my + 148, mx, base + 10, PAL.ink, 3);
     for (let i = 0; i < 3; i++) line(ctx, mx - 44 + 12 * i, base + 10 + 14 * i, mx + 44 - 12 * i, base + 10 + 14 * i, PAL.ink, 3);
     text(ctx, 'ground, taken as zero', mx + 62, base + 22, PAL.muted, { size: 19 });
-    topline(ctx, 'A ' + fmt(DIA.v, 1) + ' cm sphere held at ' + fmt(V.v, 0) + ' kV carries an excess charge of ' + fmt(Q * 1e6, Q * 1e6 < 0.5 ? 3 : 2) + ' µC.');
+    topline(ctx, 'A ' + fmt(DIA.v, 1) + ' cm sphere held at ' + fmt(V.v, 0) + ' kV carries an excess charge of ' + fmt(Q * 1e6, Q * 1e6 < 0.5 ? 3 : 2) + ' µC' + (broken ? ', but the field at its surface breaks down the air and the charge leaks away.' : '.'));
     readout(d.readout, `\\kQch = \\frac{\\kr\\kV}{k} = \\frac{(${fmt(rm, 4)}\\ \\text{m})(${sciTex(Vv, 2)}\\ \\text{V})}{${sciTex(K, 2)}\\ \\text{N}\\cdot\\text{m}^2/\\text{C}^2} = ${sciTex(Q, 2)}\\ \\text{C} = ${fmt(Q * 1e6, Q * 1e6 < 0.5 ? 3 : 2)}\\ \\mu\\text{C}`,
-      'At the surface the field is E = V/r = ' + sci(E, 2) + ' N/C. '
-      + (broken ? 'Dry air will support only about ' + sci(E_BREAKDOWN, 1) + ' N/C, so a sphere this small held at this voltage ionizes the air around it and leaks its charge away as fast as the belt brings it up.'
-        : 'Dry air will support about ' + sci(E_BREAKDOWN, 1) + ' N/C, so this sphere holds its charge; at ' + fmt((E_BREAKDOWN * rm) / 1000, 0) + ' kV the air around it would begin to break down.'));
+      'At the surface $\\kEf = \\kV/\\kr = ' + sciTex(E, 2) + '\\ \\text{N/C}$, against the $3.0 \\times 10^{6}\\ \\text{N/C}$ dry air supports'
+      + (broken ? '.' : ', so the air would break down at ' + fmt((E_BREAKDOWN * rm) / 1000, 0) + ' kV.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();

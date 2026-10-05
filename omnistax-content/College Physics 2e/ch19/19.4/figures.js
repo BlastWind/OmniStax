@@ -35,7 +35,7 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
    answers its choices and its sliders and registers no cycle.
 ===================================================================== */
 (function () {
-  const d = sim('sim-equipotential-map', 880);
+  const d = sim('sim-equipotential-map', 770);
   const arr = choice(d.controls, {
     label: '\\text{The charges are}',
     options: [{ value: 'one', label: 'One charge' }, { value: 'pair', label: 'Opposite pair' }, { value: 'neg', label: 'Two negative' }],
@@ -207,10 +207,9 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     const named = arr.value === 'one' ? 'An isolated +' + fmt(Qm.v, 2) + ' nC charge'
       : arr.value === 'pair' ? 'A +' + fmt(Qm.v, 2) + ' nC charge and a −' + fmt(Qm.v, 2) + ' nC charge ' + fmt(SEP, 0) + ' cm apart'
         : 'Two −' + fmt(Qm.v, 2) + ' nC charges ' + fmt(SEP, 0) + ' cm apart';
-    topline(ctx, named + ', with equipotential lines drawn every ' + fmt(stepV, 0) + ' V, the outermost at ' + fmt(stepV, 0) + ' V and the innermost at ' + fmt(stepV * NL.v, 0) + ' V.');
-    const near = lv.reduce((a, b) => (Math.abs(b) > Math.abs(a) ? b : a), lv[0]);
-    readout(d.readout, `\\kW = -\\kq\\kdV = -\\kq(0) = 0`,
-      'The innermost equipotential stands at ' + num(near, 0) + ' V. A charge carried along any equipotential has no work done on it, and so the field lines cross every equipotential at a right angle. Where the lines crowd together the potential changes quickly over a short distance and the field is strong, and where they spread apart the field is weak.');
+    const sg = arr.value === 'one' ? '' : arr.value === 'pair' ? '±' : '−';
+    topline(ctx, named + ', with equipotential lines drawn every ' + fmt(stepV, 0) + ' V, the outermost at ' + sg + fmt(stepV, 0) + ' V and the innermost at ' + sg + fmt(stepV * NL.v, 0) + ' V.');
+    readout(d.readout, `\\kW = -\\kq\\kdV = -\\kq(0) = 0`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -279,8 +278,7 @@ const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
     const spacing = dV / E * 100;
     topline(ctx, 'Across a ' + fmt(gap.v, 1) + ' cm gap held at ' + fmt(V, 0) + ' V the field is ' + sci(E, 2) + ' V/m, and equipotentials drawn every ' + fmt(dV, 0) + ' V stand ' + fmt(spacing, 2) + ' cm apart.');
     readout(d.readout, `\\kEf = \\frac{\\kVAB}{\\kd} = \\frac{${fmt(V, 0)}\\ \\text{V}}{${fmt(dm, 3)}\\ \\text{m}} = ${sciTex(E, 2)}\\ \\text{V/m}`,
-      'One step of ' + fmt(dV, 0) + ' V is taken over Δs = ΔV/E = ' + fmt(spacing, 2) + ' cm, the same step everywhere between the plates, which is why the lines are evenly spaced and parallel. '
-      + 'The plates themselves are conductors and so are equipotentials too, at ' + fmt(V, 0) + ' V and 0 V, and the same field could be maintained by standing conducting plates at any of the lines drawn between them.');
+      'The plates are conductors and so equipotentials too, at ' + fmt(V, 0) + ' V and 0 V.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

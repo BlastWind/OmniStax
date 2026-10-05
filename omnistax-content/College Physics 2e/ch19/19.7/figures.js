@@ -54,7 +54,7 @@ const energyOf = (Cuf, Vkv) => 0.5 * Cuf * Vkv * Vkv;     /* J  */
     /* a triangle too narrow to write inside has its two names set beside its
        apex instead, which is where there is room at every slider setting */
     const narrow = Q < 36;
-    label(ctx, 'V = Q/C, of slope 1/C', narrow ? X(Q) : X(Q * 0.72), narrow ? Y(Vk) : Y((Q * 0.72) / Cu), { side: narrow ? 'right' : 'left', color: cc, gap: 26, size: 20 });
+    label(ctx, 'V = Q/C, of slope 1/C', narrow ? X(Q) : X(Q * 0.72), narrow ? Y(Vk) - (Vk < 2 ? 88 : 0) : Y((Q * 0.72) / Cu), { side: narrow ? 'right' : 'left', color: cc, gap: 26, size: 20 });
     /* the state the sliders ask for, and the charge it puts on the plates */
     pinned(ctx, BOX, X, Y, Q, Vk, vc, fmt(Vk, 2) + ' kV');
     line(ctx, X(Q), Y(0), X(Q), Y(Vk), alpha(PAL.ink, 0.35), 2, [4, 8]);
@@ -65,8 +65,7 @@ const energyOf = (Cuf, Vkv) => 0.5 * Cuf * Vkv * Vkv;     /* J  */
     if (narrow) label(ctx, eLabel, X(Q), Y(Vk) + 40 + 16 < BOX.b - 4 ? Y(Vk) + 40 : Y(Vk) - 40, { side: 'right', color: ec, gap: 26, size: 24 });
     else text(ctx, eLabel, (X(0) + X(Q)) / 2, Y(Vk * 0.28), ec, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     headline(ctx, 'A capacitor of ' + fmt(Cu, 2) + ' µF charged to ' + fmt(Vk, 2) + ' kV holds ' + fmt(Q, 1) + ' mC of separated charge and stores ' + fmt(E, E < 10 ? 2 : 0) + ' J.');
-    readout(d.readout, `\\kEcap = \\frac{\\kQch\\kV}{2} = \\frac{\\kCap\\kV^2}{2} = \\frac{\\kQch^2}{2\\kCap} = ${fmt(E, E < 10 ? 2 : 0)}\\ \\text{J}`,
-      'The voltage rises in step with the charge, so the first charge placed on the capacitor arrives at no voltage and the last arrives at ' + fmt(Vk, 2) + ' kV, and the whole charge passes through the average of the two, ' + fmt(Vk / 2, 2) + ' kV. That is why the energy is the triangle and not the rectangle: it is half of QV, which here would be ' + fmt(2 * E, 2 * E < 10 ? 2 : 0) + ' J.');
+    readout(d.readout, `\\kEcap = \\frac{\\kQch\\kV}{2} = \\frac{\\kCap\\kV^2}{2} = \\frac{\\kQch^2}{2\\kCap} = ${fmt(E, E < 10 ? 2 : 0)}\\ \\text{J}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -131,10 +130,10 @@ const energyOf = (Cuf, Vkv) => 0.5 * Cuf * Vkv * Vkv;     /* J  */
     /* the curve's name, anchored where the curve runs through the middle of
        the frame at whatever energy has been asked for */
     const va = Math.min(9, Math.max(3.2, Math.sqrt((2 * E) / 90)));
-    label(ctx, 'C = 2E/V², so it falls as the square of the voltage', X(va), Y(capOf(E, va)), { side: 'right', color: cc, gap: 26, size: 20 });
+    label(ctx, 'C = 2E/V², so it falls as the square of the voltage', X(va), Y(capOf(E, va)) - 36, { side: 'right', color: cc, gap: 26, size: 20 });
     headline(ctx, 'Delivering ' + fmt(E, 0) + ' J from a capacitor charged to ' + fmt(Vk, 2) + ' kV takes a capacitance of ' + fmt(Cu, 2) + ' µF, holding ' + fmt(Q, 1) + ' mC.');
     readout(d.readout, `\\kCap = \\frac{2\\kEcap}{\\kV^2} = \\frac{2(${fmt(E, 0)}\\ \\text{J})}{(${fmt(Vk * 1000, 0)}\\ \\text{V})^2} = ${fmt(Cu, 2)}\\ \\mu\\text{F}`,
-      'Halving the voltage asks for four times the capacitance, which is why a defibrillator charges its capacitor to thousands of volts: the same ' + fmt(E, 0) + ' J at a tenth of this voltage would need ' + fmt(capOf(E, Vk / 10), 0) + ' µF, a capacitor far too large to carry to a patient.');
+      'At a tenth of this voltage the same ' + fmt(E, 0) + ' J would need ' + fmt(capOf(E, Vk / 10), 0) + ' µF, a capacitor far too large to carry to a patient.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

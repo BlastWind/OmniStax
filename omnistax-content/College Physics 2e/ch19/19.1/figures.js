@@ -13,7 +13,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['19.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, cycle, register, begin, line, arrow, dot, text, topline } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -124,15 +124,15 @@ function particle(ctx, x, y, color, r) {
     const uJ = fmt(Math.abs(dPE), 0);
     topline(ctx, start
       ? (pos ? 'The positive charge is at rest at plate A, ' + uJ + ' µJ of potential energy above what it would have at plate B.'
-        : 'The negative charge is at rest at plate B, where its potential energy is zero because V_B = 0.')
+        : 'The negative charge is at rest at plate B, where its potential energy is zero because $\\kVB = 0$.')
       : done
-        ? (pos ? 'At plate B the whole ' + uJ + ' µJ has become kinetic energy: the work done on the charge is W = −ΔPE = ' + uJ + ' µJ.'
+        ? (pos ? 'At plate B the whole ' + uJ + ' µJ has become kinetic energy: the work done on the charge is $\\kW = -\\kdPE$ = ' + uJ + ' µJ.'
           : 'At plate A its potential energy is −' + uJ + ' µJ and its kinetic energy ' + uJ + ' µJ: uphill in potential is downhill in energy for a negative charge.')
         : (pos ? 'Released at A, the positive charge has crossed ' + pct(s) + '% of the gap, and ' + pct(s) + '% of its ' + uJ + ' µJ of potential energy has become kinetic energy.'
           : 'Released at B, the negative charge climbs the hill toward A: ' + pct(s) + '% of the way, its potential energy has fallen by ' + fmt(KE, 0) + ' µJ and its kinetic energy has risen by the same.'));
     readout(d.readout, `\\kdPE = \\kq\\kdV = (${signed(q, 2)}\\ \\mu\\text{C})(${signed(dV, 1)}\\ \\text{V}) = ${texnum(dPE, 0)}\\ \\mu\\text{J}`,
-      (pos ? 'The potential difference the charge moves through is ΔV = V_B − V_A = ' + num(dV, 1) + ' V. ' : 'The potential difference the charge moves through is ΔV = V_A − V_B = +' + fmt(dV, 1) + ' V, and the charge is negative, so ΔPE is negative all the same. ')
-      + 'The work the field does is W = −ΔPE = ' + uJ + ' µJ, and by conservation of energy that is the kinetic energy the charge arrives with. Change the charge and the hill stays as it is; only the energy changes.');
+      pos ? 'The charge moves through $\\kdV = \\kVB - \\kVA$, which is negative.'
+        : 'The charge moves through $\\kdV = \\kVA - \\kVB$, which is positive, and the charge is negative, so $\\kdPE$ is negative all the same.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -150,8 +150,8 @@ function particle(ctx, x, y, color, r) {
   const cy = cycle(() => Infinity, 0);
   /* the circuit: terminal A at the battery's left, B at its right, the wires up and across to the headlight */
   const bat = { l: 200, r: 620, t: 340, b: 520 }, tA = { x: 270, y: bat.t }, tB = { x: 550, y: bat.t };
-  const lamp = { x: 1010, y: 150 };
-  const path = [[tA.x, tA.y - 10], [tA.x, 110], [lamp.x - 40, 110], [lamp.x, lamp.y], [lamp.x - 40, 190], [tB.x, 190], [tB.x, tB.y - 10]];
+  const lamp = { x: 1010, y: 170 };
+  const path = [[tA.x, tA.y - 10], [tA.x, 130], [lamp.x - 40, 130], [lamp.x, lamp.y], [lamp.x - 40, 210], [tB.x, 210], [tB.x, tB.y - 10]];
   const segs = path.slice(1).map((p, i) => { const a = path[i]; return { a, b: p, L: Math.hypot(p[0] - a[0], p[1] - a[1]) }; });
   const total = segs.reduce((s, g) => s + g.L, 0);
   const along = (t) => { let r = t; for (const g of segs) { if (r <= g.L) { const k = r / g.L; return [g.a[0] + (g.b[0] - g.a[0]) * k, g.a[1] + (g.b[1] - g.a[1]) * k]; } r -= g.L; } return path[path.length - 1]; };
@@ -178,18 +178,18 @@ function particle(ctx, x, y, color, r) {
     /* the wires, then the headlight: a reflector opening to the right with a filament at the wire's end */
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 5; ctx.beginPath(); path.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = cLamp; ctx.lineWidth = 4; ctx.beginPath();
-    ctx.moveTo(lamp.x + 20, lamp.y - 60); ctx.quadraticCurveTo(lamp.x - 50, lamp.y, lamp.x + 20, lamp.y + 60); ctx.lineTo(lamp.x + 150, lamp.y + 96); ctx.quadraticCurveTo(lamp.x + 190, lamp.y, lamp.x + 150, lamp.y - 96); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.moveTo(lamp.x + 20, lamp.y - 46); ctx.quadraticCurveTo(lamp.x - 40, lamp.y, lamp.x + 20, lamp.y + 46); ctx.lineTo(lamp.x + 140, lamp.y + 74); ctx.quadraticCurveTo(lamp.x + 176, lamp.y, lamp.x + 140, lamp.y - 74); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(lamp.x + 4, lamp.y - 10); for (let i = 0; i < 4; i++) ctx.lineTo(lamp.x + 12 + (i % 2 ? 0 : 14), lamp.y - 10 + i * 7); ctx.stroke(); ctx.restore();
     const rays = 7, rl = 40 + 110 * (P.v / 60);
-    for (let i = 0; i < rays; i++) { const a = -0.55 + (1.1 * i) / (rays - 1), x0 = lamp.x + 172, y0 = lamp.y + 78 * Math.sin(a); line(ctx, x0 + 8 * Math.cos(a), y0, x0 + rl * Math.cos(a), y0 + rl * 0.55 * Math.sin(a), alpha(PAL.ink, 0.4), 3); }
-    text(ctx, 'Headlight', lamp.x + 90, lamp.y + 126, cLamp, { size: 22, weight: 600, align: 'center' });
+    for (let i = 0; i < rays; i++) { const a = -0.55 + (1.1 * i) / (rays - 1), x0 = lamp.x + 158, y0 = lamp.y + 60 * Math.sin(a); line(ctx, x0 + 8 * Math.cos(a), y0, x0 + rl * Math.cos(a), y0 + rl * 0.55 * Math.sin(a), alpha(PAL.ink, 0.4), 3); }
+    text(ctx, 'Headlight', lamp.x + 80, lamp.y + 104, cLamp, { size: 22, weight: 600, align: 'center' });
     /* the stream of electrons along the wires, spaced by the charge moved each second and moving at the same rate */
     const gap = Math.max(30, Math.min(150, 90 / k)), speed = 40 + 130 * k, shift = (tau * speed) % gap, n = Math.floor((total - shift) / gap) + 1;
     for (let i = 0; i < n; i++) { const p = along(Math.min(total, shift + i * gap)); particle(ctx, p[0], p[1], F.el('e-'), 8); }
-    text(ctx, '−q', tA.x + 30, 160, C('charge'), { size: 22, weight: 600, bg: PAL.panel });
-    arrow(ctx, tA.x + 34, 240, tA.x + 34, 200, PAL.ink, 3);
-    arrow(ctx, tB.x + 34, 230, tB.x + 34, 270, PAL.ink, 3);
-    text(ctx, '−q', tB.x + 30, 210, C('charge'), { size: 22, weight: 600, bg: PAL.panel });
+    text(ctx, '−q', tA.x + 30, 168, C('charge'), { size: 22, weight: 600, bg: PAL.panel });
+    arrow(ctx, tA.x + 34, 250, tA.x + 34, 210, PAL.ink, 3);
+    arrow(ctx, tB.x - 34, 258, tB.x - 34, 298, PAL.ink, 3);
+    text(ctx, '−q', tB.x - 30, 236, C('charge'), { size: 22, weight: 600, align: 'right', bg: PAL.panel });
     /* the count each second, on a panel to the right of the battery */
     const px = 760, py = 350;
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = PAL.rule; ctx.lineWidth = 1.5; ctx.fillRect(px, py, 600, 170); ctx.strokeRect(px, py, 600, 170); ctx.restore();
@@ -199,7 +199,7 @@ function particle(ctx, x, y, color, r) {
     text(ctx, 'n_e = ' + sci(ne, 2) + ' electrons', px + 20, py + 142, PAL.ink, { size: 21, weight: 600 });
     topline(ctx, 'Each second the battery moves ' + num(q, 2) + ' C, which is ' + sci(ne, 2) + ' electrons, through the headlight, and its potential energy falls by ' + fmt(P.v, 1) + ' J.');
     readout(d.readout, `\\kq = \\frac{\\kdPE}{\\kdV} = \\frac{-${fmt(P.v, 1)}\\ \\text{J}}{+${fmt(dV.v, 1)}\\ \\text{V}} = ${texnum(q, 2)}\\ \\text{C}`,
-      'The number of electrons is the charge divided by the charge per electron, n_e = (' + num(q, 2) + ' C)/(−1.60 × 10⁻¹⁹ C) = ' + sci(ne, 2) + ' each second. The electrons go from the negative terminal to the positive one, so ΔV = V_B − V_A is positive and the charge is negative, which makes ΔPE negative: the battery loses the energy the headlight uses.');
+      'The electrons go from A to B, so $\\kdV = \\kVB - \\kVA$ is positive while $\\kq$ is negative, and $\\kdPE$ is the energy the battery loses.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
@@ -264,8 +264,8 @@ function particle(ctx, x, y, color, r) {
     const qTex = (neg ? '-' : '+') + (Math.abs(p.z) === 1 ? '1.60' : '3.20') + ' \\times 10^{-19}';
     const VTex = (neg ? '-' : '+') + fmt(V.v, 0);
     readout(d.readout, `\\kKEf = \\kq\\kV = (${qTex}\\ \\text{C})(${VTex}\\ \\text{V}) = ${fmt(KEeV, 0)}\\ \\text{eV} = ${sciTex(KEJ, 2)}\\ \\text{J}`,
-      'Here V is the potential of the plate the ' + p.name + ' leaves relative to the plate it reaches, so the product is positive. Its final speed is v = √(2qV/m) = ' + sci(v, 2) + ' m/s for m = ' + sci(p.m, 2) + ' kg'
-      + (v > 0.1 * c ? ', which is ' + Math.round((100 * v) / c) + '% of the speed of light, where relativistic effects begin to matter, as the discussion of Example 19.3 warns.' : '.'));
+      'Its final speed is $\\kv = \\sqrt{2\\kq\\kV/m} = ' + sciTex(v, 2) + '\\ \\text{m/s}$ for $m = ' + sciTex(p.m, 2) + '\\ \\text{kg}$'
+      + (v > 0.1 * c ? ', ' + Math.round((100 * v) / c) + '% of the speed of light, where relativistic effects begin to matter.' : '.'));
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
