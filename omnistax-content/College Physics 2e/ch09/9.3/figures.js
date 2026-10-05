@@ -63,7 +63,7 @@ function leanForces(ctx, o) {
 /* The torque range is fixed by the caller from the sliders' own limits, never from the curve as
    it stands, so the axis never rescales under a slider; the curve is clipped where it leaves the
    box and the current lean is drawn through pinned(). */
-function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel, lo, hi, ny, dec, key) {
+function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel, lo, hi, ny, dec, key, yNow = null) {
   const { X, Y } = axes(ctx, box, [0, thMax], [lo, hi], { xl: 'lean θ (°)', xc: C('angle'), yl: yLabel, yc: C('torque'), nx: 5, ny, fy: (v) => fmt(v, dec) });
   /* The readout prints the size of the torque and the axis prints its sign, so the axis says
      which sign means which turn (rule 26.5). */
@@ -74,7 +74,8 @@ function tauGraph(ctx, box, thMax, f, thNow, crit, yLabel, lo, hi, ny, dec, key)
     dot(ctx, X(crit), Y(0), C('torque'), false, 10);
     text(ctx, fmt(crit, 1) + '°', X(crit) + 10, box.t + 20, PAL.muted, { size: 17 });
   }
-  pinned(ctx, box, X, Y, thNow, f(thNow), C('torque'), fmt(f(thNow), dec));
+  const yv = yNow ?? f(thNow);   /* standing exactly upright the whole base carries the weight and the torque is zero */
+  pinned(ctx, box, X, Y, thNow, yv, C('torque'), fmt(yv, dec));
 }
 
 /* ---------- sprites, drawn here because the layer has none of them ---------- */
@@ -116,24 +117,40 @@ function person(ctx, d, h, SC, color) {
     feet: [{ x: foot, y: 0 }, { x: -foot, y: 0 }], hip: { x: 0, y: -hip * k }, shoulder: { x: 0, y: -(hip + 50) * k }, head: { x: 0, y: -(hip + 68) * k },
     hands: [{ x: 24, y: -(hip - 22) * k }, { x: -24, y: -(hip - 22) * k }], kneeSide: [-1, 1], front: true, elbowSide: -1 });
 }
-/* A chicken standing on two broad feet, the middle of the base on the ground
-   at the origin; the body hangs from the hips, which sit above its cg. */
-function chicken(ctx, d, h, SC, color) {
-  const foot = (d / 2) * SC, hipY = -(h + 5) * SC, cy = -h * SC, bw = 14 * SC, bh = 9 * SC;
-  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 6;
-  ctx.beginPath();
-  ctx.moveTo(-foot - 18, 0); ctx.lineTo(-foot + 24, 0);
-  ctx.moveTo(foot - 24, 0); ctx.lineTo(foot + 18, 0);
-  ctx.moveTo(-foot, 0); ctx.lineTo(0, hipY);
-  ctx.moveTo(foot, 0); ctx.lineTo(0, hipY);
+/* A chicken seen from the front, as the book draws it, the middle of its base on the ground at the
+   origin and every length in centimeters, scaled by SC here. The body hangs below the two hip
+   joints with its center of gravity h up; the legs splay down to two broad feet whose outer toes
+   are a either side of the middle, so the base of support is 2a; the head is turned to show the
+   comb, beak and wattle, and the tail rises behind. Ten paths. A candidate for figlib as F.chicken:
+   the library has no bird, and this one is drawn only from its own paths and the referent colour. */
+const CHICKEN = { rx: 10.5, ry: 8.5, hipX: 4.5, hipUp: 4 };
+function chicken(ctx, h, a, SC, color) {
+  const c = color, cy = -h, hy = cy - CHICKEN.hipUp, hx = CHICKEN.hipX, fx = a - 2.6, u = (n) => n / SC;
+  const fillBody = () => { ctx.fillStyle = PAL.panel; ctx.fill(); ctx.fillStyle = alpha(c, 0.2); ctx.fill(); ctx.stroke(); };
+  ctx.save(); ctx.scale(SC, SC); ctx.strokeStyle = c; ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.lineWidth = u(3);
+  ctx.beginPath(); ctx.moveTo(-7.5, cy - 4); ctx.quadraticCurveTo(-10, cy - 12, -5.5, cy - 17.5); ctx.quadraticCurveTo(-4.5, cy - 11, 0, cy - 6.5); ctx.closePath(); fillBody();   /* the tail */
+  ctx.lineWidth = u(5); ctx.beginPath();                                                     /* the legs and the toes */
+  for (const s of [-1, 1]) {
+    ctx.moveTo(s * hx, hy); ctx.lineTo(s * fx, -1.4);
+    ctx.moveTo(s * fx, -1.4); ctx.lineTo(s * a, 0); ctx.moveTo(s * fx, -1.4); ctx.lineTo(s * (fx - 3.4), 0); ctx.moveTo(s * fx, -1.4); ctx.lineTo(s * (fx - 0.8), 0);
+  }
   ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(-bw * 0.8, cy - bh * 0.3); ctx.lineTo(-bw * 1.8, cy - bh * 1.3); ctx.lineTo(-bw * 1.5, cy + bh * 0.4); ctx.closePath(); ctx.fill();
-  ctx.fillStyle = PAL.panel; ctx.lineWidth = 4;
-  ctx.beginPath(); ctx.ellipse(0, cy, bw, bh, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(bw * 0.45, cy - bh * 0.6); ctx.lineTo(bw * 1.15, cy - bh * 1.7); ctx.lineTo(bw * 0.1, cy - bh * 0.95); ctx.closePath(); ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.arc(bw * 0.95, cy - bh * 1.9, bh * 0.45, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-  ctx.fillStyle = color;
-  ctx.beginPath(); ctx.moveTo(bw * 1.35, cy - bh * 1.95); ctx.lineTo(bw * 1.85, cy - bh * 1.7); ctx.lineTo(bw * 1.35, cy - bh * 1.5); ctx.closePath(); ctx.fill();
+  ctx.lineWidth = u(3.5); ctx.beginPath(); ctx.ellipse(0, cy, CHICKEN.rx, CHICKEN.ry, 0, 0, Math.PI * 2); fillBody();          /* the body */
+  ctx.save(); ctx.strokeStyle = alpha(c, 0.55); ctx.lineWidth = u(2.5); ctx.beginPath();                                     /* the folded wings */
+  for (const s of [-1, 1]) { ctx.moveTo(s * 8.6, cy - 4.5); ctx.quadraticCurveTo(s * 6.2, cy + 1, s * 7.6, cy + 5.6); }
+  ctx.stroke();
+  ctx.strokeStyle = alpha(c, 0.45); ctx.lineWidth = u(4); ctx.beginPath();                                                   /* the thighs, inside the body */
+  for (const s of [-1, 1]) { ctx.moveTo(s * hx, hy); ctx.lineTo(s * (hx + (fx - hx) * (CHICKEN.ry + CHICKEN.hipUp) / (h + CHICKEN.hipUp - 1.4)), cy + CHICKEN.ry); }
+  ctx.stroke(); ctx.restore();
+  ctx.lineWidth = u(3); ctx.beginPath();                                                     /* the neck, then the head over it */
+  ctx.moveTo(-3.4, cy - 6.4); ctx.quadraticCurveTo(-1.4, cy - 9, -1.6, cy - 12.6); ctx.lineTo(3.4, cy - 12.6); ctx.quadraticCurveTo(3, cy - 9, 4.4, cy - 6.4); ctx.closePath(); fillBody();
+  ctx.beginPath(); ctx.arc(1.2, cy - 14, 3.3, 0, Math.PI * 2); fillBody();
+  ctx.fillStyle = c; ctx.beginPath();                                                        /* the comb, the beak and the wattle */
+  ctx.moveTo(-1.6, cy - 16.4); ctx.quadraticCurveTo(-1.8, cy - 19.8, 0.3, cy - 17.6); ctx.quadraticCurveTo(1, cy - 20.6, 2.2, cy - 17.4); ctx.quadraticCurveTo(3.8, cy - 19.8, 3.9, cy - 16); ctx.closePath();
+  ctx.moveTo(4.3, cy - 14.9); ctx.lineTo(7.4, cy - 13.7); ctx.lineTo(4.3, cy - 12.6); ctx.closePath();
+  ctx.moveTo(4.6, cy - 11.2); ctx.arc(3.5, cy - 11.2, 1.1, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = PAL.ink; ctx.beginPath(); ctx.arc(2.3, cy - 14.8, 0.6, 0, Math.PI * 2); ctx.fill();                       /* the eye */
+  for (const s of [-1, 1]) { ctx.beginPath(); ctx.arc(s * hx, hy, 0.9, 0, Math.PI * 2); ctx.fill(); }                        /* the hip joints */
   ctx.restore();
 }
 
@@ -344,39 +361,81 @@ null);
 })();
 
 /* =====================================================================
-   FIGURE 9.17: the chicken, whose center of gravity hangs below the hips
-   and between two broad feet. The reading is the person's, with the lean a
-   person can take marked on the graph beside it for comparison. Still.
+   FIGURE 9.17: the chicken seen from the front, its center of gravity hung
+   below the hips and between two broad feet 18 cm apart. Lean it and it
+   pivots on the outer toes of one foot; the weight stays inside that edge
+   for far longer than a person's does, whose 7.1° is marked on the graph.
+   Still: a lean is a displacement, not a time.
 ===================================================================== */
 (function () {
-  const d = sim('sim-chicken', 660);
+  const d = sim('sim-chicken', 680);
   const TH = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 45, step: 0.5, value: 10, unit: '°', dec: 1, aria: 'the lean of the chicken',
     specials: [{ at: () => Math.atan2(9, HG.v) / RAD, label: 'critical lean' }] });
-  const HG = ctl(d.controls, { label: 'h', cls: 'position', min: 5, max: 28, step: 1, value: 15, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
+  const HG = ctl(d.controls, { label: 'h', cls: 'position', min: 12, max: 28, step: 1, value: 15, unit: 'cm', dec: 0, aria: 'height of the center of gravity' });
   TH.refresh();
-  const SC = 6.5, GY = 470, BX = 330, W = 24.5, D = 18;            /* a 2.50 kg chicken on feet 18 cm apart */
+  const SC = 8, GY = 510, BX = 340, W = 24.5, D = 18, FN = 3.6;   /* a 2.50 kg chicken on feet 18 cm apart; 3.6 units of arrow per newton keeps w off the ground at h = 12 cm */
+  const box = { l: 830, r: 1340, t: 130, b: 470 };
   function draw() {
     const { ctx } = begin(d.c);
-    const a = D / 2, g = lean(HG.v, a, TH.v), topple = g.rp > 0;
-    const px = BX + g.px * SC, cgx = BX + g.cx * SC, cgy = GY - g.cy * SC, tau = (W * g.rp) / 100;
-    fixed(ctx, 70, GY, 560, 28);
-    ctx.save(); ctx.translate(px, GY); ctx.rotate(g.th); ctx.translate(-a * SC, 0);
-    chicken(ctx, D, HG.v, SC, F.ref('chicken')); ctx.restore();
-    leanForces(ctx, { px, cgx, cgy, gy: GY, rpU: (g.cx - g.px) * SC, topple, rLabel: 'r⊥ = ' + fmt(Math.abs(g.rp), 1) + ' cm', side: 1, arcR: 235, arc: !g.up });
-    hbracket(ctx, BX - a * SC, BX + a * SC, GY + 152, C('position'), 'base of support, ' + fmt(D, 0) + ' cm');
-    const box = { l: 820, r: 1340, t: 130, b: 460 };
-    /* with feet 18 cm apart the sliders reach 0.245 × (28 − 9) sin 45° = 3.29 N·m one way and
-       0.245 × 9 = 2.21 N·m the other, so the torque axis is fixed at −4 to 4 N·m, ticked every 1 */
-    tauGraph(ctx, box, 45, (t) => (W * (HG.v * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100, TH.v, g.crit, 'τ (N·m)', -4, 4, 8, 1,
-      'τ > 0 takes the chicken over, τ < 0 brings it back');
-    const xp = box.l + ((box.r - box.l) * 7.1) / 45;
-    line(ctx, xp, box.t, xp, box.b, PAL.rule, 2, [6, 8]);
-    text(ctx, 'A person is over by here.', xp + 10, box.b - 54, PAL.muted, { size: 17 });
-    headline(ctx, g.up ? 'Standing straight, the chicken has its weight through the middle of a base of support two broad feet wide.'
-      : topple ? 'Leaned ' + fmt(TH.v, 1) + '°, the chicken has its weight outside the base of support at last and goes over.'
+    const a = D / 2, g = lean(HG.v, a, TH.v), topple = g.rp > 0.05, h = HG.v;
+    const cs = Math.cos(g.th), sn = Math.sin(g.th), ox = BX + a * SC;
+    const P = (x, y) => [ox + (x - a) * SC * cs - y * SC * sn, GY + (x - a) * SC * sn + y * SC * cs];   /* the chicken's own frame, in cm, onto the canvas */
+    const rectOf = (l, t, r, b) => { const q = [P(l, t), P(r, t), P(l, b), P(r, b)], xs = q.map((p) => p[0]), ys = q.map((p) => p[1]); return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)]; };
+    const lines = headline(ctx, g.up ? 'Standing straight, the chicken has its weight through the middle of a base of support two broad feet wide.'
+      : topple ? 'Leaned ' + fmt(TH.v, 1) + '°, the chicken has its weight ' + fmt(g.rp, 1) + ' cm outside the edge of its base, so the torque carries it over.'
         : 'Leaned ' + fmt(TH.v, 1) + '°, the chicken still has its weight ' + fmt(-g.rp, 1) + ' cm inside the edge of its base, so the torque returns it.');
-    readout(d.readout, `\\ktau = \\krperp\\kwgt = (${fmt(Math.abs(g.rp) / 100, 3)}\\ \\text{m})(${fmt(W, 1)}\\ \\text{N}) = ${fmt(Math.abs(tau), 2)}\\ \\text{N·m}`,
-      'With its center of gravity ' + fmt(HG.v, 0) + ' cm up and its feet ' + fmt(D, 0) + ' cm apart, the chicken can lean ' + fmt(g.crit, 1) + '° before its weight leaves the base of support, where an adult standing with the feet close together is over at about seven degrees.');
+    const lab = F.labeller(ctx, 680, { headline: lines });
+    const [bcx, bcy] = P(0, -h), ex = Math.hypot(CHICKEN.rx * cs, CHICKEN.ry * sn) * SC, ey = Math.hypot(CHICKEN.rx * sn, CHICKEN.ry * cs) * SC;
+    lab.block(bcx - ex, bcy - ey, bcx + ex, bcy + ey);
+    lab.block(...rectOf(-3, -h - 21, 7.6, -h - 6.6));
+    lab.block(box.l - 70, box.t - 30, F.LW, box.b + 110);
+    fixed(ctx, 70, GY, 640, 28);
+    ctx.save(); ctx.translate(...P(0, 0)); ctx.rotate(g.th); chicken(ctx, h, a, SC, F.ref('chicken')); ctx.restore();
+    const [cgx, cgy] = P(0, -h), fc = C('force'), px = g.up ? BX : ox;
+    line(ctx, cgx, cgy, cgx, GY + 34, alpha(PAL.ink, 0.4), 2, [4, 8]);
+    const wSeg = { x1: cgx, y1: cgy, x2: cgx, y2: cgy + W * FN };
+    lab.halo(wSeg); arrow(ctx, wSeg.x1, wSeg.y1, wSeg.x2, wSeg.y2, fc, 5); lab.block(cgx - 4, cgy, cgx + 4, wSeg.y2);
+    for (const sx of [-1, 1]) {                    /* each leg in four short pieces, so a slanted leg blocks only the strip it covers */
+      const [ax, ay] = P(sx * CHICKEN.hipX, -h - CHICKEN.hipUp), [bx, by] = P(sx * (a - 2.6), -1.4);
+      for (let k = 0; k < 4; k++) { const x1 = ax + (bx - ax) * k / 4, y1 = ay + (by - ay) * k / 4, x2 = ax + (bx - ax) * (k + 1) / 4, y2 = ay + (by - ay) * (k + 1) / 4; lab.block(Math.min(x1, x2) - 3, Math.min(y1, y2) - 3, Math.max(x1, x2) + 3, Math.max(y1, y2) + 3); }
+      lab.block(...rectOf(sx * (a - 6), -2, sx * a, 0));
+    }
+    const feet = g.up ? [[BX - (a - 2.6) * SC, W / 2, 'N/2', 'left'], [BX + (a - 2.6) * SC, W / 2, 'N/2', 'right']] : [[ox, W, 'N', topple ? 'left' : 'right']];
+    for (const [x, n, s, side] of feet) {
+      const seg = { x1: x, y1: GY, x2: x, y2: GY - n * FN };
+      arrow(ctx, seg.x1, seg.y1, seg.x2, seg.y2, fc, 5); lab.block(x - 4, seg.y2, x + 4, GY);
+      lab.add(s, x, GY - n * FN * 0.4, side === 'left' ? -1 : 1, 0, fc, 24, 18);   /* the side away from the weight's label */
+    }
+    lab.add('w', cgx, wSeg.y2 - 24, topple ? 1 : -1, 0, fc, 24, 18);
+    dot(ctx, cgx, cgy, PAL.ink, true, 9);
+    const [hx, hy] = P(-CHICKEN.hipX, -h - CHICKEN.hipUp);
+    lab.add('hip joint', hx, hy, -1, -0.2, PAL.muted, 17, 58);
+    lab.add('cg', cgx, cgy, -1, 0.1, PAL.ink, 18, 58);
+    dot(ctx, px, GY, PAL.ink, true, 7);
+    if (!g.up) {
+      const mid = -22 * RAD, half = 18 * RAD, R = 290;   /* wide enough to pass outside the weight's label at the steepest lean */
+      turn(ctx, ox, GY, R, topple ? mid - half : mid + half, topple ? mid + half : mid - half, C('torque'));
+      lab.add('τ', ox + R * Math.cos(mid), GY + R * Math.sin(mid), Math.cos(mid), Math.sin(mid), C('torque'), 26, 22);
+      if (Math.abs(g.rp) > 0.4) {
+        const x1 = Math.min(ox, cgx), x2 = Math.max(ox, cgx), yb = GY + 54;
+        hbracket(ctx, x1, x2, yb, C('position'));
+        lab.add('r_{⊥} = ' + fmt(Math.abs(g.rp), 1) + ' cm', (x1 + x2) / 2, yb, 0, 1, C('position'), 20, 22);
+      }
+    }
+    hbracket(ctx, BX - a * SC, BX + a * SC, GY + 112, C('position'));
+    lab.add('base of support, ' + fmt(D, 0) + ' cm', BX, GY + 112, 0, 1, C('position'), 20, 22);
+    /* with feet 18 cm apart the sliders reach 0.245 × (28 sin 45° − 9 cos 45°) = 3.29 N·m one way and
+       0.245 × 9 = 2.21 N·m the other, so the torque axis is fixed at −4 to 4 N·m, ticked every 1 */
+    const f = (t) => (W * (h * Math.sin(t * RAD) - a * Math.cos(t * RAD))) / 100;
+    tauGraph(ctx, box, 45, f, TH.v, g.crit, 'τ (N·m)', -4, 4, 8, 1, 'τ > 0 takes the chicken over, τ < 0 brings it back', g.up ? 0 : null);
+    const xp = box.l + ((box.r - box.l) * 7.1) / 45;
+    line(ctx, xp, box.t, xp, box.b, alpha(PAL.ink, 0.35), 2.5, [6, 8]);
+    text(ctx, 'a person, 7.1°', xp + 10, box.b - 22, PAL.muted, { size: 17, bg: PAL.panel });
+    const missed = lab.flush();
+    if (missed.length) d.fig.dataset.missed = missed.join(' | '); else delete d.fig.dataset.missed;
+    const sg = g.rp < -0.05 ? '-' : '';     /* the axis counts a turn back upright as negative, and so does the readout */
+    readout(d.readout, `\\ktau = ${sg}\\krperp\\kwgt = ${sg}(${fmt(Math.abs(g.rp) / 100, 3)}\\ \\text{m})(${fmt(W, 1)}\\ \\text{N}) = ${sg}${fmt(Math.abs(g.rp) * W / 100, 2)}\\ \\text{N·m}`,
+      'The weight leaves the base of support at a lean of ' + fmt(g.crit, 1) + '°.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

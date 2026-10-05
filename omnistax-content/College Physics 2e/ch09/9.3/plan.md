@@ -142,16 +142,22 @@ id · replaces · concepts · still or moving · sliders · headline · graph ·
    spreading the feet and bending the knees each do to the critical lean.
    Draws force, position, torque.
    Manim pass, 2026-09-28: a dashed circle on the lean at the critical lean, recomputed from $d$ and $h$.
-7. `sim-chicken` · replaces Figure 9.17 (the chicken, cg below the hips and
-   between two broad feet) · base-of-support · **still** · the lean $\theta$
-   (0º to 45º, ink) and the height $h$ of the center of gravity above the
-   ground (5 to 40 cm, ink) · "the chicken's center of gravity is 15 cm up and
-   its feet are 18 cm apart, so it can lean 31º before its weight leaves the
-   base of support" · none: the scene carries the reading · no. Readout:
-   $\ktau = \krperp\kwgt$ with the live numbers; small line comparing the
-   chicken's critical lean with the person's few degrees. Draws force,
-   position, torque.
-   Manim pass, 2026-09-28: a dashed circle on the lean at the critical lean, recomputed from $h$.
+7. `sim-chicken` · replaces Figure 9.17 · base-of-support, stable-equilibrium ·
+   variation by slider: the lean the chicken can take against a person's 7°,
+   as its center of gravity is raised · still, a lean is a displacement not a
+   time · $\theta$ (angle, 0° to 45°, detent at the critical lean), $h$
+   (position, 12 to 28 cm, default 15) · headline "Leaned 10.0°, the chicken
+   still has its weight 6.3 cm inside the edge of its base, so the torque
+   returns it" · graph beside, $\tau$ against $\theta$, axis −4 to 4 N·m
+   fixed, the person's 7.1° marked at ink 0.35 · 2D, seen from the front as
+   the book draws it; the chicken is a local sprite in `figures.js` (body hung
+   below the hips, two legs splayed to two broad feet whose outer toes are
+   18 cm apart, head, comb, beak, wattle and tail, ten paths), a candidate for
+   figlib as `F.chicken`; it pivots on the outer toes of one foot; labels
+   through the labeller, readout signed as the graph ($\ktau = -\krperp\kwgt$
+   inside the edge), note the critical lean; no fold or split.
+   Rewritten 2026-10-05 after the review: the old chicken of ellipses and
+   stick legs did not read as a bird, and its readout lost the graph's sign.
 
 Photographs: the section has one, Figure 9.9, and it is kept for the reason
 given above. Nothing else in the section is a photograph, so nothing is
