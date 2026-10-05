@@ -156,42 +156,18 @@ graph · 3D
    and the chosen bar's shade blends, through the choice's `mix` (manim 16).
    `BLOOD` and `BLOOD_DARK` stay hex constants: they are the physical fact. Draws
    pressure.
-3. `sim-blood-column` · Sim (it replaces no figure of the book) ·
-   blood-pressure-and-height, pressure-from-weight-of-fluid · value add:
-   variation and intuition, the 1.4 m of the book's one calculation put on a
-   slider so the reader sees the pressure in a standing person's arteries
-   rise below the heart and fall above it by the weight of the column of
-   blood, and vanish when the person lies down · **still**: a person
-   standing or lying still is a static column of blood, which is exactly what
-   the text says it calculates, so the figure answers its slider and its
-   choice and registers no cycle (rule 14) · $\kdh$, the depth of a point on
-   the body below the heart (−0.40 to 1.40 m, default 1.40, position, the
-   feet of the book's calculation; negative values are above the heart, up
-   to the top of the head), and a choice of posture (standing, lying down;
-   default standing), a posture being a state (rule 26.1); lying down puts
-   every point at the heart's level, so the marked point still travels along
-   the body while $\kdh$ and $\kdPr$ read zero, which is the consequence the
-   text names · "Standing, the feet are 1.40 m below the heart, and the
-   pressure of the blood there is 108 mm Hg higher than at the heart." ·
-   graph beside, because the scene is a standing person: $\kdPr$ in mm Hg
-   against $\kdh$ in m, fixed axes −0.4 to 1.4 m and −40 to 120 mm Hg (from
-   the slider range), the line $\kdPr = \kdh\krho\kg$ and the current point ·
-   2D. Readout: $\kdPr = \kdh\krho\kg = (1.40\ \text{m})(1050\
-   \text{kg/m}^3)(9.80\ \text{m/s}^2) = 1.44\times 10^{4}\ \text{Pa} = 108\
-   \text{mm Hg}$ with the live numbers; small line on the column being a
-   static one. The person is drawn by the figure itself in ink, 1.80 m tall
-   with the heart 1.40 m above the feet, rather than with the library's
-   person sprite: the sprite is built for a body 80 to 120 units long and
-   its head is a quarter of its height, so scaled to a metre rule with the
-   heart 1.40 m up it would stand 2.2 m tall and the scale beside it would
-   say so. The same drawing is turned through a right angle to lie on the
-   bed, and the change of posture is a turn, not a cut: the body rotates
-   about its feet through the choice's `mix`, the column of blood fading as
-   its height goes to nothing, the floor giving way to the bed. A dashed
-   circle marks $\kdh = 0$, the heart's level (26.1). The heart is
-   a small mark in blood red (the physical fact, `#C93A2E`); the density of
-   blood and $\kg$ are stated and untyped on this page (`ch11/COLOR.md` binds
-   only pressure, position and force here). Draws pressure, position.
+3. `sim-blood-column` · Sim · blood-pressure-and-height,
+   pressure-from-weight-of-fluid · variation: the column of blood between
+   the heart and a chosen point · still · $\kdh$ (position, −0.40 to 1.40 m,
+   default 1.40, the book's feet), choice standing / lying down · headline as
+   before, one sentence on the point and its pressure · graph beside, fixed
+   axes −0.4 to 1.4 m and −40 to 120 mm Hg · 2D: `F.silhouette` in the stand
+   pose, legs and arms straight, scaled so the heart high on its chest is the
+   book's 1.40 m above the feet (the person then stands 1.88 m; at 1.70 m the
+   heart would sit above the shoulders), the heart a blood-red dot and the
+   column of blood over the body; lying down, the same silhouette turns about
+   its feet onto a bed drawn in side view, the column fading as its height
+   goes; labels through `F.labeller`; no fold.
 4. `sim-eye-force` · Sim (it replaces no figure of the book) ·
    intraocular-pressure, force-from-pressure · value add: variation and
    intuition, the text's one calculation ($6.8\ \text{N}$ at 85.0 mm Hg on
