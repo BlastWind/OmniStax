@@ -224,7 +224,6 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
     for (const f of [[P([xh, h, -h]), P([xc, h, -h]), P([xc, h, h]), P([xh, h, h])], [P([xh, -h, h]), P([xc, -h, h]), P([xc, h, h]), P([xh, h, h])]]) {
       ctx.save(); ctx.beginPath(); f.forEach((q, i) => (i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]))); ctx.closePath(); ctx.strokeStyle = rs; ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.stroke(); ctx.restore();
     }
-    box(ctx, xc, xc + BW, -BH, BH, -BH, BH, 1);                            /* the cold body */
     /* the current of heat through the bar: packets in four lanes, spaced 30 apart, running from the hot face to the cold face */
     const SP = 34, ph = ((run % SP) + SP) % SP;
     for (const [ly, lz] of [[-h / 2.4, -h / 2.4], [h / 2.4, -h / 2.4], [-h / 2.4, h / 2.4], [h / 2.4, h / 2.4], [0, 0]]) {
@@ -234,22 +233,21 @@ function column(ctx, x, yb, yt, lo, hi, T, label, color) {
     const a0 = P([xh + 6, 0, 0]), a1 = P([xc - 6, 0, 0]);
     heatArrow(ctx, a0[0], a1[0], (a0[1] + a1[1]) / 2, ec, 3);
     text(ctx, 'Q', a0[0] + 36, (a0[1] + a1[1]) / 2 - 30, ec, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.7) });
+    box(ctx, xc, xc + BW, -BH, BH, -BH, BH, 1);                            /* the cold body, over the current's far end */
     /* labels: the two temperatures on the bodies, the section, the thickness and the material */
-    const hf = P([xh - BW / 2, -BH + 60, BH]), cf = P([xc + BW / 2, -BH + 60, BH]);
+    const hf = P([xh - BW / 2, BH - 70, BH]), cf = P([xc + BW / 2, BH - 70, BH]);   /* high on the faces, clear of the thickness bracket */
     text(ctx, 'T_2', hf[0], hf[1] - 18, tc, { size: 26, weight: 600, align: 'center' });
-    text(ctx, degC(T2.v) + ' °C', hf[0], hf[1] + 16, tc, { size: 17, weight: 600, align: 'center' });
+    text(ctx, degC(T2.v) + ' °C', hf[0], hf[1] + 16, tc, { size: 17, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, 'T_1', cf[0], cf[1] - 18, tc, { size: 26, weight: 600, align: 'center' });
-    text(ctx, degC(T1.v) + ' °C', cf[0], cf[1] + 16, tc, { size: 17, weight: 600, align: 'center' });
+    text(ctx, degC(T1.v) + ' °C', cf[0], cf[1] + 16, tc, { size: 17, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     const sec = P([0, h, h]);
-    line(ctx, sec[0], sec[1] - 6, sec[0] + 40, sec[1] - 70, C('area'), 1.5, [4, 6]);
-    text(ctx, 'area A = ' + sig(A.v) + ' m²', sec[0] + 48, sec[1] - 78, C('area'), { size: 20, weight: 600, bg: PAL.panel });
+    /* the area beside the section, held below the headline; the material is named by the headline and its k by the readout */
+    const ly = Math.max(112, sec[1] - 78);
+    line(ctx, sec[0], sec[1] - 6, sec[0] + 40, ly + 8, C('area'), 1.5, [4, 6]);
+    text(ctx, 'area A = ' + sig(A.v) + ' m²', sec[0] + 48, ly, C('area'), { size: 20, weight: 600, bg: PAL.panel });
     const q0 = P([xh, -h, h]), q1 = P([xc, -h, h]);
     hbracket(ctx, q0[0], q1[0], Math.max(q0[1], q1[1]) + 36, C('position'));
     text(ctx, 'd = ' + fmt(D.v, 2) + ' cm', (q0[0] + q1[0]) / 2, Math.max(q0[1], q1[1]) + 62, C('position'), { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-    const qm = P([xh + len * 0.3, h, -h]);
-    const my = Math.max(126, qm[1] - 36);
-    text(ctx, mat.value.replace(/ \(.*\)$/, ''), qm[0], my - 26, rs, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'k = ' + sig(k, 2) + ' J/(s·m·°C)', qm[0], my, C('thermal-conductivity'), { size: 20, weight: 600, align: 'right', bg: PAL.panel });
     /* the gauge */
     text(ctx, 'rate of heat transfer Q/t', GL, GY - 44, pc, { size: 20, weight: 600 });
     line(ctx, GL, GY, GR, GY, PAL.muted, 2);

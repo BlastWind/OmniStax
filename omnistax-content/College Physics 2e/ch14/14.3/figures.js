@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['14.3'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, register, begin, line, arrow, dot, text, headline, topline, axes, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -25,7 +25,8 @@ function heatBar(ctx, x0, x1, y, h, frac, color, label, fill) {   /* fill 'none'
   if (fill !== 'none') { ctx.save(); ctx.fillStyle = alpha(color, 0.35); ctx.fillRect(x0, y - h / 2, w, h); ctx.restore(); }
   if (w > 0) line(ctx, x0 + w, y - h / 2, x0 + w, y + h / 2, color, 3);
   if (over) { arrow(ctx, x1 - 30, y, x1 - 4, y, color, 3); dot(ctx, x1, y, color, false, 8); }
-  text(ctx, label, over ? x1 - 66 : x0 + w + 14, y, color, { size: 20, weight: 600, align: over ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
+  const inside = over || x0 + w + 14 + F.measure(ctx, label, { size: 20, weight: 600 }) > 1385;   /* a label that would run past the stage sits inside the bar's end */
+  text(ctx, label, over ? x1 - 66 : inside ? x0 + w - 14 : x0 + w + 14, y, color, { size: 20, weight: 600, align: inside ? 'right' : 'left', bg: alpha(PAL.panel, 0.85) });
 }
 /* a scale under the bars: ticks every `step` from 0 to `max`, labelled in kJ */
 function kjScale(ctx, x0, x1, y, max, step) {
@@ -251,9 +252,9 @@ function curl(ctx, x, y, R, a0, ang, w) {
       : s1 === s0 - 1 ? (s1 === 0 ? { b: 't0', bv: 'tv0' } : { b: ['b', 't' + s1], bv: ['bv', 'tv' + s1] }) : undefined;
     const smalls = [
       'The ice warms at 0.50 cal/g·°C, which is ' + fmt(C_ICE, 2) + ' kJ/kg·°C, so the first segment of the curve is steep: only ' + fmt(Q1, 1) + ' kJ/kg carries the ice from −20 °C to 0 °C.',
-      'Every joule now goes into breaking the bonds of the ice rather than into its temperature. Melting the ice takes 79.8 cal/g, which is ' + fmt(L_F, 0) + ' kJ for every kilogram, eight times what warming it through 20 °C took, and the temperature stays at 0 °C until the last of the ice is gone.',
+      'Melting the ice takes 79.8 cal/g, which is ' + fmt(L_F, 0) + ' kJ for every kilogram, eight times what warming it through 20 °C took.',
       'The ' + kJ(m * Q2) + ' kJ is what warming and melting the ice took. Water warms at 1.00 cal/g·°C, which is ' + fmt(C_W, 2) + ' kJ/kg·°C, twice the specific heat of ice, so this segment climbs half as steeply as the first.',
-      'The ' + kJ(m * Q3) + ' kJ is what it took to bring the sample to water at 100 °C. Boiling the water takes 539 cal/g, which is ' + fmt(L_V, 0) + ' kJ for every kilogram, nearly seven times the heat of melting and more than everything that came before it together.',
+      'Boiling the water takes 539 cal/g, which is ' + fmt(L_V, 0) + ' kJ for every kilogram, nearly seven times the heat of melting.',
       'The ' + kJ(m * Q4) + ' kJ is what it took to bring the sample to steam at 100 °C. Steam warms at 0.482 cal/g·°C, which is ' + fmt(C_STEAM, 2) + ' kJ/kg·°C, so the last segment climbs nearly as steeply as the ice did.',
     ];
     ro.set(form[st.stage](), smalls[st.stage], keyMap ? { keyMap } : undefined);
@@ -327,8 +328,8 @@ function curl(ctx, x, y, R, a0, ang, w) {
     else if (allMelts) F.morph(formula, `${mk('Tf', '\\kTempf')} = \\frac{${soda} - ${mk('n', '\\kmice\\kLf')}}{${mk('dn', '(\\kmsoda + \\kmice)\\kcW')}} = \\frac{${sodaV} - ${mk('nv', `${fmt(need, 0)}\\ \\text{J}`)}}{${mk('dv', `${fmt((mS + mIce) * CW, 0)}\\ \\text{J/}{}^\\circ\\text{C}`)}} = ${mk('Tv', fmt(Tf, 1))}^\\circ\\text{C}`);
     else F.morph(formula, `${mk('Tf', '\\kTempf')} = ${mk('Tv', '0')}^\\circ\\text{C}, \\qquad ${mk('mm', '\\km_{\\text{melted}}')} = \\frac{${soda}}{${mk('n', '\\kLf')}} = \\frac{${sodaV}}{${mk('nv', `${fmt(LF, 0)}\\ \\text{J/kg}`)}} = ${mk('mv', fmt(melted, 3))}\\ \\text{kg}`);
     note.textContent = cubes === 0 ? 'There is no ice to melt, so no heat leaves the soda and its temperature does not change.'
-      : allMelts ? 'The soda gives up ' + fmt(Qsoda / 1000, 1) + ' kJ in cooling from ' + fmt(T, 0) + ' °C to ' + fmt(Tf, 1) + ' °C. Of that, ' + fmt(Qmelt / 1000, 1) + ' kJ melts the ice at 0 °C and the remaining ' + fmt(Qwarm / 1000, 1) + ' kJ warms the meltwater from 0 °C to ' + fmt(Tf, 1) + ' °C, so the two sides of the budget are equal.'
-      : 'Cooling all the way to 0 °C the soda can give up only ' + fmt(avail / 1000, 1) + ' kJ, and melting all the ice would take ' + fmt(need / 1000, 1) + ' kJ. The soda reaches 0 °C first, ' + fmt((mIce - melted) * 1000, 0) + ' g of ice is left, and with nothing warmer than 0 °C in the cup no more heat flows.';
+      : allMelts ? 'Of the ' + fmt(Qsoda / 1000, 1) + ' kJ the soda gives up, ' + fmt(Qmelt / 1000, 1) + ' kJ melts the ice and ' + fmt(Qwarm / 1000, 1) + ' kJ warms the meltwater to ' + fmt(Tf, 1) + ' °C.'
+      : 'Melting all the ice would take ' + fmt(need / 1000, 1) + ' kJ, more than the ' + fmt(avail / 1000, 1) + ' kJ the soda can give before it reaches 0 °C.';
   }
   register(d.fig, { update: () => {}, draw });
 })();

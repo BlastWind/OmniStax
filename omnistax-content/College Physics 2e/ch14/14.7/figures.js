@@ -8,7 +8,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['14.7'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, cat, ctl, register, begin, line, arrow, dot, text, topline, hbracket, axes, curve, labeller, silhouette, view } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const SIGMA = 5.67e-8;                        /* the Stefan-Boltzmann constant, J/(s·m²·K⁴) */
@@ -87,7 +87,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     text(ctx, 'infrared', X(1500), BOX.t + 18, PAL.muted, { size: 17, align: 'center' });
     line(ctx, X(700), BOX.t + 34, X(2300), BOX.t + 34, PAL.muted, 1.5, [4, 8]);
     /* the book's three curves, faint, told apart by the categorical palette and named at their peaks */
-    const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 88); lab.block(BOX.l, BOX.t, BOX.r, BOX.t + 46);
+    const lab = labeller(ctx, 620); lab.block(0, 0, 1400, 88); lab.block(BOX.l, BOX.t, BOX.r, BOX.t + 46); lab.block(BOX.l - 30, BOX.b, BOX.r + 30, BOX.b + 70);
     REFS.forEach((R, i) => {
       const cc = cat(i); curve(ctx, (l) => planck(Math.max(l, 1), R), 1, 3000, X, Y, alpha(cc, 0.6), 3, 160);
       const lt = 1.7 * peakAt(R); lab.add(R + ' K', X(lt), Y(planck(lt, R)), 0.7, -0.7, cc, 18, 14);
@@ -96,7 +96,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     curve(ctx, (l) => planck(Math.max(l, 1), T), 1, 3000, X, Y, PAL.ink, 5, 200);
     line(ctx, X(lam), Y(planck(lam, T)), X(lam), BOX.b, alpha(tc, 0.6), 2, [4, 8]);
     dot(ctx, X(lam), Y(planck(lam, T)), tc, true, 9);
-    lab.add('T = ' + T + ' K, peak at ' + fmt(lam, 0) + ' nm', X(lam), Y(planck(lam, T)), 1, 0.35, tc, 20, 22);
+    lab.add('T = ' + T + ' K, peak at ' + fmt(lam, 0) + ' nm', X(lam), Y(planck(lam, T)), 1, T < 4500 ? -0.8 : 0.35, tc, 20, 22);
     lab.flush();
     /* the glow: a swatch of the colour the radiator shows the eye */
     const sx = 1110, sy = 170, sw = 230, sh = 150;
@@ -107,7 +107,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     text(ctx, 'falls in the visible band', sx + sw / 2, sy + sh + 96, PAL.ink, { size: 19, align: 'center' });
     topline(ctx, 'At ' + T + ' K an ideal radiator sends out ' + watts(P) + ' from each square meter, and its spectrum peaks at ' + fmt(lam, 0) + ' nm, in the ' + (lam <= 700 ? 'visible' : 'infrared') + '.');
     readout(d.readout, `\\frac{\\kQh}{\\kt} = \\sigma e \\karea \\kTemp^4 = (${SIGTEX})(1)(1.00\\ \\text{m}^2)(${T}\\ \\text{K})^4 = ${wattsTex(P)}`,
-      'The curve peaks at ' + fmt(lam, 0) + ' nm and ' + percent(share) + ' of the radiation is visible; the rate is for 1.00 m² of an ideal radiator, whose emissivity is 1. At 3000 K the peak lies at ' + fmt(peakAt(3000), 0) + ' nm in the infrared and the rate is ' + watts(SIGMA * 3000 ** 4) + '; at 6000 K it lies at ' + fmt(peakAt(6000), 0) + ' nm in the visible and the rate is ' + watts(SIGMA * 6000 ** 4) + ', sixteen times as much.');
+      percent(share) + ' of this radiation falls in the visible band; doubling the temperature from 3000 K to 6000 K multiplies the rate by sixteen.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -154,7 +154,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     beam(ctx, A.hit[0] - 210, A.hit[1] - 170, A.hit[0], A.hit[1], inW, pc);
     beam(ctx, A.hit[0], A.hit[1], A.hit[0] + 150, A.hit[1] + 150, inW * e, pc, 0.55);
     beam(ctx, A.hit[0], A.hit[1], A.hit[0] + 210, A.hit[1] - 160, inW * (1 - e), pc);
-    lab.add('incident radiant energy', A.hit[0] - 210, A.hit[1] - 170, -0.35, 1, pc, 19, 30);
+    lab.add('incident radiant energy', A.hit[0] - 105, A.hit[1] - 85, -0.75, 0.65, pc, 19, 26);   /* beside the beam's middle, on the side away from the reflected beam */
     lab.add('reflected ' + percent(1 - e), A.hit[0] + 210, A.hit[1] - 160, 1, 0.2, pc, 19, 22);
     lab.add('absorbed ' + percent(e), A.hit[0] + 150, A.hit[1] + 150, 0.3, 1, pc, 19, 24);
     /* Radiate: from inside the block a beam rises to the top face; a share e leaves and 1 − e turns back down */
@@ -173,8 +173,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
       : e <= 0.005 ? 'A perfect reflector, with an emissivity of 0, absorbs none of the radiation that falls on it and emits nothing at all.'
         : 'A block with an emissivity of ' + fmt(e, 2) + ' absorbs ' + percent(e) + ' of the radiation that falls on it and emits ' + percent(e) + ' of what a black body at its temperature would.');
     readout(d.readout, `\\frac{\\text{absorbed}}{\\text{incident}} = e = ${fmt(e, 2)},\\qquad \\frac{\\text{reflected}}{\\text{incident}} = 1 - e = ${fmt(1 - e, 2)},\\qquad \\frac{\\text{emitted}}{\\text{emitted by a black body}} = e = ${fmt(e, 2)}`,
-      who ? 'This is the emissivity of ' + who + '. The same number sets the absorbed beam on the left and the emitted beam on the right, which is why a good absorber is a good emitter and a poor absorber a poor emitter.'
-        : 'The same number sets the absorbed beam on the left and the emitted beam on the right, which is why a good absorber is a good emitter and a poor absorber a poor emitter; the detents mark a perfect reflector, tungsten, skin and a black body.');
+      (who ? 'This is the emissivity of ' + who + '. ' : '') + 'One $e$ sets both beams, so a good absorber is a good emitter.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -189,7 +188,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
   const d = sim('sim-fourth-power', 620);
   const T1 = ctl(d.controls, { label: '\\kTempone', cls: 'temperature', min: 100, max: 1500, step: 1, value: 275, unit: 'K', dec: 0, aria: 'the first temperature, in kelvin' });
   const T2 = ctl(d.controls, { label: '\\kTemptwo', cls: 'temperature', min: 100, max: 1500, step: 1, value: 1100, unit: 'K', dec: 0, aria: 'the second temperature, in kelvin' });
-  const es = ctl(d.controls, { label: 'e', cls: '', min: 0, max: 1, step: 0.01, value: 1, unit: '', dec: 2, aria: 'the emissivity of the radiator' });
+  const es = ctl(d.controls, { label: 'e', cls: '', min: 0.05, max: 1, step: 0.01, value: 1, unit: '', dec: 2, aria: 'the emissivity of the radiator' });
   /* Axes fixed: 0 to 1500 K, and 0 to 300 kW, since 1.00 m² of black body at 1500 K radiates 287 kW. */
   const BOX = { l: 150, r: 980, t: 100, b: 520 }, AREA = 1;
   const rate = (T, e) => SIGMA * e * AREA * T ** 4;
@@ -226,7 +225,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
         : ratio >= 2 ? 'At ' + b + ' K the radiator emits ' + sig(ratio) + ' times what it does at ' + a + ' K, because (' + b + '/' + a + ')⁴ = ' + sig(ratio) + '.'
           : 'At ' + b + ' K the radiator emits only ' + sig(ratio) + ' of what it does at ' + a + ' K, because (' + b + '/' + a + ')⁴ = ' + sig(ratio) + '.');
     readout(d.readout, `\\frac{\\kQh}{\\kt} = \\sigma e \\karea \\kTemp^4:\\quad ${wattsTex(Pa)}\\ \\text{at}\\ \\kTempone = ${a}\\ \\text{K},\\qquad ${wattsTex(Pb)}\\ \\text{at}\\ \\kTemptwo = ${b}\\ \\text{K},\\qquad \\left(\\frac{\\kTemptwo}{\\kTempone}\\right)^{\\!4} = ${sig(ratio)}`,
-      'The rates are for A = 1.00 m² with the emissivity ' + fmt(e, 2) + '; the emissivity scales both rates alike and leaves their ratio alone. The law takes the absolute temperature: ' + a + ' K is ' + degS(a - 273.15) + ' °C and ' + b + ' K is ' + degS(b - 273.15) + ' °C, and the ratio of the Celsius values would give the wrong answer.');
+      'The law takes the absolute temperature: ' + a + ' K is ' + degS(a - 273.15) + ' °C and ' + b + ' K is ' + degS(b - 273.15) + ' °C, and the ratio of the Celsius values would be wrong.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -262,7 +261,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     [mid - 90, mid, mid + 90].forEach((y) => wavy(ctx, ROOM.r - 40, y + (y - mid) * 0.35, px + 120, y, wOf(Pin), pc));
     text(ctx, 'emitted by the person, ' + watts(Pout), (px - 120 + ROOM.l + 40) / 2, mid - 45, pc, { size: 19, weight: 600, align: 'center', bg: PAL.soft });
     text(ctx, 'absorbed from the walls, ' + watts(Pin), (px + 120 + ROOM.r - 40) / 2, mid - 45, pc, { size: 19, weight: 600, align: 'center', bg: PAL.soft });
-    text(ctx, 'walls at T_2 = ' + degS(tb) + ' °C', px, ROOM.t, tc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, 'walls at T_2 = ' + degS(tb) + ' °C', ROOM.r - 6, ROOM.b + 26, tc, { size: 20, weight: 600, align: 'right', bg: PAL.panel });   /* below the floor at the right, clear of the wavy arrows along the top wall */
     text(ctx, 'skin at T_1 = ' + degS(ta) + ' °C', px, ROOM.b + 26, tc, { size: 20, weight: 600, align: 'center', bg: PAL.panel });   /* under the person's feet, below the floor line */
     /* the two bars, and the net rate as a bracket between their ends */
     const bar = (y, P, label) => {
@@ -286,7 +285,7 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
       : net < 0 ? 'A person at ' + degS(ta) + ' °C in a room at ' + degS(tb) + ' °C loses ' + watts(-net) + ' by radiation.'
         : 'A person at ' + degS(ta) + ' °C in a room at ' + degS(tb) + ' °C gains ' + watts(net) + ' by radiation.');
     readout(d.readout, `\\frac{\\kQnet}{\\kt} = \\sigma e \\karea\\left(\\kTemptwo^4 - \\kTempone^4\\right) = (${SIGTEX})(${fmt(e, 2)})(${fmt(A, 2)}\\ \\text{m}^2)\\left[(${fmt(Kb, 0)}\\ \\text{K})^4 - (${fmt(Ka, 0)}\\ \\text{K})^4\\right] = ${net < 0 ? '-' : ''}${wattsTex(Math.abs(net))}`,
-      'The person emits ' + watts(Pout) + ' and absorbs ' + watts(Pin) + ' from the walls, so ' + (sameT ? 'the net rate is zero and the person neither warms nor cools by radiation.' : net < 0 ? watts(-net) + ' leaves the person; the minus sign says the net transfer is out of the person, from hot to cold.' : watts(net) + ' enters the person; the positive sign says the net transfer is into the person, from the hotter walls.') + ' The emissivity is the person’s alone, whatever the walls are made of.');
+      'The person emits ' + watts(Pout) + ' and absorbs ' + watts(Pin) + (sameT ? '.' : net < 0 ? '; the minus sign says the net transfer is out of the person.' : '; the positive sign says the net transfer is into the person.'));
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -328,19 +327,19 @@ function wavy(ctx, x1, y1, x2, y2, w, color, amp = 9, wave = 30) {
     const xs = 400, xr = 800, xb = 1040;
     beam(ctx, 150, 160, xs, yOn(xs, RE) - 6, wOf(S), pc);
     wavy(ctx, xr, yOn(xr, RE) - 6, xr, yOn(xr, RA) + 22, wIR(E), pc, 13, 44);
-    wavy(ctx, xr + 24, yOn(xr, RA) - 22, xr + 24, 70, wIR(out), pc, 13, 44);
-    wavy(ctx, xr + 60, yOn(xr, RA) - 4, xb, yOn(xb, RE) - 6, wIR(back), pc, 13, 44);
+    wavy(ctx, xr + 24, yOn(xr, RA) - 22, xr + 24, 108, wIR(out), pc, 13, 44);   /* stops below the headline band */
+    if (back >= 0.5) wavy(ctx, xr + 60, yOn(xr, RA) - 4, xb, yOn(xb, RE) - 6, wIR(back), pc, 13, 44);
     const lab = labeller(ctx, 640); lab.block(0, 0, 1400, 88);
     lab.add('sunlight absorbed, S = ' + fmt(S, 0) + ' W/m²', 290, 290, 1, -0.2, pc, 19, 40);
     lab.add('infrared from the surface, σT⁴ = ' + fmt(E, 0) + ' W/m²', xr, yOn(xr, RA) + 100, -1, 0, pc, 19, 30);
-    lab.add('escapes to space, (1 − f)σT⁴ = ' + fmt(out, 0) + ' W/m²', xr + 24, 130, 1, 0, pc, 19, 40);
-    lab.add('returned by the atmosphere, fσT⁴ = ' + fmt(back, 0) + ' W/m²', (xr + 60 + xb) / 2 + 40, (yOn(xr, RA) + yOn(xb, RE)) / 2 + 30, 1, 0.2, pc, 19, 40);
+    lab.add('escapes to space, (1 − f)σT⁴ = ' + fmt(out, 0) + ' W/m²', xr + 24, 150, 1, 0, pc, 19, 40);
+    if (back >= 0.5) lab.add('returned, fσT⁴ = ' + fmt(back, 0) + ' W/m²', (xr + 60 + xb) / 2 + 40, (yOn(xr, RA) + yOn(xb, RE)) / 2 + 30, 1, 0.2, pc, 19, 40);
     lab.add('surface at T = ' + fmt(T, 0) + ' K, which is ' + degS(T - 273.15) + ' °C', 700, yOn(700, RE) + 60, 0, 1, tc, 21, 18);
     lab.flush();
     topline(ctx, f < 0.005 ? 'With nothing returned by the atmosphere the surface settles at ' + degS(T - 273.15) + ' °C, the temperature of an Earth with no atmosphere under this sunlight.'
       : 'With the atmosphere returning ' + percent(f) + ' of the surface’s infrared, the surface settles at ' + degS(T - 273.15) + ' °C, ' + fmt(T - T0, 0) + ' °C warmer than it would be with no atmosphere.');
     readout(d.readout, `\\sigma\\kTemp^4 = S + f\\,\\sigma\\kTemp^4 \\;\\Rightarrow\\; \\kTemp = \\left(\\frac{S}{\\sigma(1 - f)}\\right)^{1/4} = \\left(\\frac{${fmt(S, 0)}\\ \\text{W/m}^2}{(${SIGTEX})(${fmt(1 - f, 2)})}\\right)^{1/4} = ${fmt(T, 0)}\\ \\text{K} = ${degC(T - 273.15)}^\\circ\\text{C}`,
-      'With no infrared returned the same sunlight would hold the surface at ' + fmt(T0, 0) + ' K, which is ' + degS(T0 - 273.15) + ' °C, so the atmosphere is worth ' + fmt(T - T0, 0) + ' °C here. The infrared that escapes to space, ' + fmt(out, 0) + ' W/m², equals the sunlight absorbed, as a steady balance requires; the surface is taken as an ideal radiator in the infrared, and the 1.00 m² is averaged over the globe and over day and night.');
+      'The infrared that escapes to space, ' + fmt(out, 0) + ' W/m², equals the sunlight absorbed, as a steady balance requires.');
   }
   register(d.fig, { update: () => {}, draw });
 })();

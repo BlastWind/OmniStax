@@ -54,10 +54,6 @@ function poly(ctx, pts, fill, stroke, w) {
     on: 'In a fireplace, heat is transferred into the room by all three methods, and most of it by radiation.',
     off: 'With the fire out and the room at the temperature of the outdoors, there is no temperature difference and no heat is transferred by any method.',
   };
-  const READS = {
-    on: 'Conduction carries heat from the hearth into the floor through matter that stays where it is; convection carries it by moving the air itself, hot air up the chimney and cold air in around the window; radiation, most of it, crosses from the flames to the couch and the walls with nothing to carry it.',
-    off: 'The fire, the room, the floor and the outdoors are at one temperature, so nothing drives a transfer by any of the three methods.',
-  };
   function flame(ctx, x, y, s, outer, inner) {
     ctx.save();
     ctx.fillStyle = outer; ctx.beginPath(); ctx.moveTo(x - 46 * s, y);
@@ -137,7 +133,7 @@ function poly(ctx, pts, fill, stroke, w) {
       ctx.restore();
     }
     topline(ctx, HEADS[fire.value]);
-    d.readout.replaceChildren(el('small', null, READS[fire.value]));
+    d.readout.replaceChildren();
   }
   hover(d.stage, () => [
     { x: 1182, y: 356, r: 60, name: 'the window, where cold air enters the room' },

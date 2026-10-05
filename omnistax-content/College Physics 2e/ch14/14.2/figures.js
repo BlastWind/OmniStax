@@ -6,7 +6,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['14.2'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, select, register, begin, line, arrow, dot, text, topline, hbracket, axes, labeller } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -110,8 +110,7 @@ function cylinder(ctx, x, yb, w, h, liquid, color) {
       : fmt(m, 2) + ' kg of ' + lower(r.n) + ' warmed by ' + fmt(dT, 1) + ' °C takes ' + sig(Q / 1000) + ' kJ, which is ' + sig(ratio) + ' times the ' + sig(QREF / 1000) + ' kJ that 1.00 kg of copper warmed by 10.0 °C takes.');
     const factors = [fmt(m / REF.m, 2), fmt(dT / REF.dT, 2), sig(r.c / REF.c)];
     readout(d.readout, `\\kQh' = \\km\\kcspec\\kdTemp = (${fmt(m, 2)}\\ \\text{kg})(${r.c}${JKGC})(${degTex(dT)}) = ${sig(Q / 1000)}\\ \\text{kJ}`,
-      same ? 'This is the copper cylinder above, the same mass through the same temperature change, so it takes the same heat. Double the mass, double the temperature change or pick another substance from the table, and the bar answers.'
-        : 'Against the copper cylinder above, which takes Q = ' + sig(QREF / 1000) + ' kJ, this one has ' + parts.join(', ') + ', and the three factors multiply: Q′ = ' + factors.join(' × ') + ' Q = ' + sig(ratio) + ' Q.');
+      same ? '' : 'The mass, the temperature change and the specific heat multiply: $\\kQh\' = ' + factors.join(' \\times ') + '\\,\\kQh$.');
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -176,13 +175,13 @@ function cylinder(ctx, x, yb, w, h, liquid, color) {
     dot(ctx, X0 - 1, Y(Tp), tc, false, 9); dot(ctx, x2 + 1, Y(Tw), tc, false, 9);
     /* the readings, in a panel at the left above the drawing of the pan */
     const bx = RX;
-    L.block(bx - 10, 118, bx + 200, 364);
+    L.block(bx - 10, 118, bx + 200, 364); L.block(BOX.l - 70, BOX.t - 10, BOX.l - 2, BOX.b + 10);
     const panHot = Tp >= Tw;                                        /* the book's names follow the bodies: the hotter one's heat is Q_hot */
     const lines = [['the pan', F.ref('pan'), 600, 19], ['m c = ' + fmt(a, 0) + ' J/°C', PAL.ink, 400, 17], [degC(Tp) + ' °C → ' + degC(Tf) + ' °C', tc, 600, 19], [(panHot ? 'Q_hot = ' : 'Q_cold = ') + signed(Qp) + ' kJ', ec, 600, 19],
       ['the water', F.ref('water'), 600, 19], ['m c = ' + fmt(b, 0) + ' J/°C', PAL.ink, 400, 17], [degC(Tw) + ' °C → ' + degC(Tf) + ' °C', tc, 600, 19], [(panHot ? 'Q_cold = ' : 'Q_hot = ') + signed(Qw) + ' kJ', ec, 600, 19]];
     lines.forEach(([s, c, w, sz], i) => text(ctx, s, bx, 132 + i * 29 + (i > 3 ? 14 : 0), c, { size: sz, weight: w, bg: alpha(PAL.panel, 0.85) }));
     L.add('T_f = ' + degC(Tf) + ' °C', BOX.l + 6, Y(Tf), 1, -0.5, tc, 19, 24);
-    L.add(degC(Tp) + ' °C', X0 - 6, Y(Tp), -1, 0, tc, 19, 20);
+    L.add(degC(Tp) + ' °C', X0 - 6, Y(Tp), -0.7, panHot ? -0.7 : 0.7, tc, 19, 20);
     if (x2 < 1240) L.add(degC(Tw) + ' °C', x2 + 6, Y(Tw), 1, 0.6, tc, 19, 20);
     else L.add(degC(Tw) + ' °C', x2, Y(Tw), -0.5, panHot ? 1 : -1, tc, 19, 24);   /* near the box's edge the label steps under or over the column's corner instead */
     L.flush();
@@ -192,10 +191,10 @@ function cylinder(ctx, x, yb, w, h, liquid, color) {
       ? 'The pan and the water both start at ' + degC(Tp) + ' °C, so no heat passes between them and nothing changes.'
       : 'The ' + hot + ' at ' + degC(Th) + ' °C and the ' + cold + ' at ' + degC(Tc) + ' °C meet at ' + degC(Tf) + ' °C, '
         + (even ? 'halfway between, because the two have the same mass times specific heat.' : (k > 2 ? 'much nearer the ' : 'nearer the ') + wide + ', whose mass times specific heat is the larger.'));
-    const boil = Tf > 100 ? ' The water would boil before it reached ' + degC(Tf) + ' °C; the calculation assumes no phase change, which the next section takes up.' : '';
+    const boil = Tf > 100 ? ' The water would boil first; the calculation assumes no phase change.' : '';
     readout(d.readout, `\\kTempf = \\frac{\\kmAl\\kcAl(${degTex(Tp)}) + \\kmW\\kcW(${degTex(Tw)})}{\\kmAl\\kcAl + \\kmW\\kcW} = \\frac{${fmt(a * Tp + b * Tw, 0)}\\ \\text{J}}{${fmt(a + b, 1)}\\ \\text{J/}^\\circ\\text{C}} = ${degTex(Tf)}`,
-      Math.abs(Tp - Tw) < 0.5 ? 'Two bodies at the same temperature are already in thermal equilibrium, so the heat lost and the heat gained are both zero and the two columns have no area.' + boil
-        : 'The ' + hot + ' loses ' + sig(Qx) + ' kJ and the ' + cold + ' gains the same ' + sig(Qx) + ' kJ, so the two shaded areas are equal' + (even ? '.' : '. The ' + wide + '’s mass times specific heat is ' + sig(k) + ' times the other’s, so the final temperature lies ' + sig(k) + ' times nearer the ' + wide + '’s starting temperature than the other’s.') + boil);
+      Math.abs(Tp - Tw) < 0.5 ? 'Both columns have no area: the heat lost and the heat gained are zero.' + boil
+        : '$|\\kQhot| = \\kQcold = ' + sig(Qx) + '\\ \\text{kJ}$, so the shaded areas are equal' + (even ? '.' : ', and $\\kTempf$ lies ' + sig(k) + ' times nearer the ' + wide + '’s starting temperature.') + boil);
   }
   register(d.fig, { update: () => {}, draw });
 })();

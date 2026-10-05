@@ -7,7 +7,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['14.6'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, choice, hover, cycle, register, begin, line, arrow, dot, text, topline, hbracket, axes, pinned, curve, labeller, silhouette } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const G = 9.80, TAU = 2 * Math.PI;
@@ -157,8 +157,8 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
       ? `Air ${fmt(dT.v, 0)} °C warmer than the room's is ${fmt(pct, 1)}% lighter, so the room's air lifts it: it rises up the wall, cools along the ceiling and sinks down the far side.`
       : `Water ${fmt(dT.v, 0)} °C warmer than the rest is ${fmt(pct, 2)}% lighter, so it rises through the middle of the pot, cools at the surface and the walls, and sinks.`);
     readout(d.readout, rhoReadout(f, dT.v),
-      isRoom ? `The warmed air is ${fmt(pct, 1)}% lighter than the room's air, so the buoyant force on it, the weight of the room air it displaces, is greater than its own weight and it rises; cooled at the ceiling and the outside walls, it contracts, becomes denser than the air around it, and sinks to the floor.`
-        : `Water expands far less than air, so the warmed water is only ${fmt(pct, 2)}% lighter than the rest, but that is enough: the buoyant force on it exceeds its weight and it rises, while the water cooled at the surface and the walls sinks to the bottom, and the process keeps repeating.`);
+      isRoom ? 'The buoyant force on the warmed air, the weight of the room air it displaces, is greater than its own weight.'
+        : 'Water expands far less than air, yet the buoyant force on the warmed water still exceeds its weight.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, rate), draw });
 })();
@@ -197,7 +197,8 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     house(ctx);
     text(ctx, `V = ${fmt(Vs.v, 0)} m³ of air`, 380, 240, C('volume'), { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     text(ctx, `m = ρV = ${fmt(m, 0)} kg`, 380, 264, C('mass'), { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    text(ctx, `replaced once every ${fmt(ts.v, 2)} h, warmed by ${fmt(dT.v, 1)} °C`, 420, 425, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, `replaced once every ${fmt(ts.v, 2)} h,`, 430, 408, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    text(ctx, `warmed by ${fmt(dT.v, 1)} °C`, 430, 434, PAL.ink, { size: 20, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the bar of watts */
     text(ctx, 'rate of heat transfer Q/t (kW)', BAR.l, BAR.y - 34, pc, { size: 20, weight: 600 });
     ctx.save(); ctx.fillStyle = alpha(pc, 0.15); ctx.fillRect(BAR.l, BAR.y - BAR.h / 2, BAR.r - BAR.l, BAR.h);
@@ -212,7 +213,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     topline(ctx, bulbs === 0 ? `With no temperature change the incoming air needs no warming and the heater does no work.`
       : `Warming ${fmt(m, 0)} kg of air by ${fmt(dT.v, 1)} °C every ${fmt(ts.v, 2)} h takes ${fmt(kW, 2)} kW, the power of ${bulbs} bulb${bulbs === 1 ? '' : 's'} of 100 W.`);
     readout(d.readout, `\\frac{\\kQh}{\\kt} = \\frac{\\km\\,\\kcspec\\,\\kdTemp}{\\kt} = \\frac{(${fmt(m, 0)}\\ \\text{kg})(1000\\ \\text{J/kg}\\cdot{}^\\circ\\text{C})(${fmt(dT.v, 1)}^\\circ\\text{C})}{${fmt(tsec, 0)}\\ \\text{s}} = \\htmlClass{kv-power}{${fmt(kW, 2)}\\ \\text{kW}}`,
-      `The mass of air is m = ρV = (1.29 kg/m³)(${fmt(Vs.v, 0)} m³) = ${fmt(m, 0)} kg, and it is replaced once every ${fmt(ts.v, 2)} h = ${fmt(tsec, 0)} s, so the heat of ${sig3(Q / 1e6)} × 10⁶ J is needed that often.`);
+      `The mass of air is $\\km = \\krho\\kvol = (1.29\\ \\text{kg/m}^3)(${fmt(Vs.v, 0)}\\ \\text{m}^3) = ${fmt(m, 0)}\\ \\text{kg}$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -265,7 +266,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     line(ctx, 60, 520, 470, 520, PAL.muted, 3);
     silhouette(ctx, { x: 300, y: 520, s: 2.4, face: -1, pose: 'lean', color: F.ref('person-wind') });   /* leaning into the wind, which comes from the left */
     if (v > 0) [230, 300, 370].forEach((y, i) => { const L = 40 + v * 7; arrow(ctx, 60 + (i % 2) * 20, y, 60 + (i % 2) * 20 + L, y, vc, 4); });
-    text(ctx, v > 0 ? `wind ${fmt(v, 1)} m/s` : 'still air', 70, 190, vc, { size: 20, weight: 600 });
+    text(ctx, v > 0 ? `wind ${fmt(v, 1)} m/s` : 'still air', 70, 440, vc, { size: 20, weight: 600 });
     thermometer(ctx, 570, T, 'moving air', tc, F.ref('air-thermometer'));
     thermometer(ctx, 720, W, ['still air that', 'chills the same'], tc, F.ref('chill-thermometer'));
     /* the table as one curve per row, the current row picked out, the reader's point on it */
@@ -340,7 +341,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
       : st === 'creep' ? `In a ${fmt(ds.v, 0)} mm gap the warmed air barely creeps, so convection is all but stopped and the gap insulates by the low conductivity of air.`
         : `In a ${fmt(ds.v, 0)} mm cavity the warmed air rises freely and a loop carries heat across it: convection works, and insulation is needed to stop it.`);
     readout(d.readout, rhoReadout(f, dT.v),
-      `The air next to the warm side is ${fmt(pct, 1)}% lighter than the air next to the cold side. The buoyant force that lifts it grows with the volume of the pocket, as d³, while the viscous drag that resists the motion grows only with the width d, so ${st === 'still' ? 'a pocket this small holds still' : st === 'creep' ? 'a pocket this size lets the air move only just' : 'a pocket this large lets a loop turn freely'}.`);
+      `The air at the warm side is ${fmt(pct, 1)}% lighter; its lift grows as $d^3$ and the viscous drag only as $d$, so ${st === 'still' ? 'a pocket this small holds still' : st === 'creep' ? 'a pocket this size lets the air move only just' : 'a pocket this large lets a loop turn freely'}.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, rate), draw });
 })();
@@ -377,7 +378,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 2; ctx.setLineDash([4, 7]);
     for (let i = 0; i < 4; i++) { const x = 180 + i * 34, y = 300 - (i % 2) * 20; ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x - 10, y - 30, x + 4, y - 55); ctx.quadraticCurveTo(x + 14, y - 75, x, y - 95); ctx.stroke(); }
     ctx.restore();
-    text(ctx, 'sweat evaporating', 60, 180, PAL.ink, { size: 20, weight: 600 });
+    text(ctx, 'sweat evaporating', 40, 120, PAL.ink, { size: 20, weight: 600 });
     text(ctx, `the body sheds ${fmt(P, 0)} W`, 250, 515, pc, { size: 20, weight: 600, align: 'center' });
     /* the bar of grams a minute, in ink since a mass per time carries no type */
     text(ctx, 'water evaporated each minute (g/min)', BAR.l, BAR.y - 34, PAL.ink, { size: 20, weight: 600 });
@@ -385,7 +386,6 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     for (let k = 0; k <= BAR.max; k += 2) { const x = BAR.l + (k / BAR.max) * (BAR.r - BAR.l); line(ctx, x, BAR.y + BAR.h / 2, x, BAR.y + BAR.h / 2 + 8, PAL.muted, 2); text(ctx, String(k), x, BAR.y + BAR.h / 2 + 24, PAL.muted, { size: 17, align: 'center' }); }
     const bx = BAR.l + Math.min(1, gpm / BAR.max) * (BAR.r - BAR.l);
     text(ctx, fmt(gpm, 2) + ' g/min', Math.min(bx + 12, BAR.r - 110), BAR.y, PAL.ink, { size: 22, weight: 600, bg: PAL.panel });
-    text(ctx, `at ${fmt(P, 0)} W and L_v = 2430 J/g, that is ${fmt(gps, 4)} g each second`, BAR.l, BAR.y + 80, PAL.muted, { size: 18 });
     /* the jug that collects the water evaporated in the time chosen */
     const level = JUG.b - Math.min(1, m / JUG.max) * (JUG.b - JUG.t);
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fillRect(JUG.l, level, JUG.r - JUG.l, JUG.b - level); ctx.restore();
@@ -396,7 +396,7 @@ function densityBars(ctx, x, yb, f, dT, unitTop = 250) {
     text(ctx, 'the water evaporated', (JUG.l + JUG.r) / 2, JUG.b + 30, PAL.muted, { size: 17, align: 'center' });
     topline(ctx, `To shed ${fmt(P, 0)} W by sweat alone, ${fmt(gpm, 2)} g of water must evaporate every minute, ${fmt(m, 0)} g in ${fmt(tmin, 0)} min.`);
     readout(d.readout, `\\frac{\\km}{\\kt} = \\frac{\\kQh/\\kt}{\\kLv} = \\frac{${fmt(P, 0)}\\ \\text{J/s}}{2430\\ \\text{J/g}} = ${fmt(gps, 4)}\\ \\text{g/s} = ${fmt(gpm, 2)}\\ \\text{g/min}`,
-      `In ${fmt(tmin, 0)} min that is ${fmt(m, 0)} g of water${tmin === 60 && P === 120 ? ', about 7 oz, the amount the example finds reasonable for an hour at rest' : ''}. The air must keep moving, since without it the air next to the skin saturates and evaporation stops.`);
+      `${tmin === 60 && P === 120 ? 'About 7 oz in an hour at rest, which the example finds reasonable. ' : ''}The air must keep moving, since without it the air next to the skin saturates and evaporation stops.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();

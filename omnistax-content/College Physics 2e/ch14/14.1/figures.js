@@ -3,7 +3,7 @@ window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['14.1'] = function (root, F) {
 const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, topline, axes, curve, fixed, view } = F;
 const sim = (id, H) => F.sim(root, id, H);
-function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
 
 /* ---------- small helpers shared by the figures ---------- */
 const TAU = 2 * Math.PI;
@@ -107,9 +107,9 @@ function cube(ctx, xl, yb, color) {
       const k = Math.min(1, Math.abs(diff) / 40), hot = diff > 0;
       const a0 = CANX + CANW / 2 - 70, a1 = cb.fx + 30, x1 = hot ? a0 : a1, x2 = hot ? a1 : a0, y = BENCH - 60;
       wavy(ctx, x1, x2, y, C('energy'), 3 + 4 * k, 4 + 5 * k, t * 6);
-      text(ctx, 'Q', (a0 + a1) / 2, y - 26 - 5 * k, C('energy'), { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+      text(ctx, 'Q', CANX + CANW / 2 - 28, y - 26 - 5 * k, C('energy'), { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
     }
-    if (settled) text(ctx, 'no heat transfer', cb.fx, BENCH - 60, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (settled) text(ctx, 'no heat transfer', cb.fx, cb.t - 30, PAL.muted, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) });
     /* the heat transferred so far, a bar whose full length is the largest transfer the sliders allow */
     const BX = 1090, BW = 250, BY = 250, moved = Math.abs(T1.v - a);
     text(ctx, 'heat transferred so far', BX, BY - 34, PAL.ink, { size: 18, align: 'left' });
@@ -141,8 +141,8 @@ function cube(ctx, xl, yb, color) {
       : settled ? 'After ' + fmt(t, 1) + ' min both are at T′ = ' + deg(Tp) + ': with no temperature difference, the transfer has stopped.'
       : 'After ' + fmt(t, 1) + ' min the drink is at ' + deg(a) + ' and the ice at ' + deg(b) + ', and heat still flows ' + who + '.');
     if (same || settled) readout(d.readout, `\\kTempone = \\kTemptwo = \\kTemppr = ${degTex(Tp)}`, 'There is no temperature difference, so there is no heat transfer; the energy each body gained or lost is now part of its internal energy, not a heat it holds.');
-    else if (!touching) readout(d.readout, `\\kTempone = ${degTex(a)},\\quad \\kTemptwo = ${degTex(b)},\\quad \\kTempone \\neq \\kTemptwo`, 'The two bodies are not yet in contact. Once they touch, the temperature difference will drive energy from the hotter to the colder one.');
-    else readout(d.readout, `\\kTempone = ${degTex(a)},\\quad \\kTemptwo = ${degTex(b)},\\quad \\kTempone - \\kTemptwo = ${degTex(diff)}`, 'Heat flows ' + who + ', and the rate falls as the difference closes.');
+    else if (!touching) readout(d.readout, `\\kTempone = ${degTex(a)},\\quad \\kTemptwo = ${degTex(b)},\\quad \\kTempone \\neq \\kTemptwo`, 'Once they touch, the temperature difference drives energy from the hotter body to the colder one.');
+    else readout(d.readout, `\\kTempone = ${degTex(a)},\\quad \\kTemptwo = ${degTex(b)},\\quad \\kTempone - \\kTemptwo = ${degTex(diff)}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => PERIOD / 6), draw });
 })();
@@ -205,7 +205,7 @@ function cube(ctx, xl, yb, color) {
     ctx.save(); ctx.fillStyle = PAL.panel; ctx.strokeStyle = oc; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.roundRect(THX - 9, ytop, 18, yb - ytop, 9); ctx.fill(); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.fillStyle = C('temperature'); ctx.fillRect(THX - 5, yb - 20 - colH, 10, colH + 20); ctx.restore();
     dot(ctx, THX, yb, C('temperature'), true, 13); ctx.save(); ctx.strokeStyle = oc; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(THX, yb, 13, 0, TAU); ctx.stroke(); ctx.restore();
-    for (let v = 0; v <= 0.4 + 1e-9; v += 0.1) { const yy = yb - 20 - (v / 0.4) * tube; line(ctx, THX + 9, yy, THX + 16, yy, PAL.muted, 1.5); text(ctx, fmt(v, 1), THX + 22, yy, PAL.muted, { size: 14, align: 'left' }); }
+    for (let v = 0; v <= 0.4 + 1e-9; v += 0.1) { const yy = yb - 20 - (v / 0.4) * tube; line(ctx, THX + 9, yy, THX + 16, yy, PAL.muted, 1.5); }
   }
   function draw() {
     const { ctx } = begin(d.c);
@@ -247,8 +247,7 @@ function cube(ctx, xl, yb, color) {
       : t < 0.01 ? 'The weights hang ' + fmt(h.v, 2) + ' m above their lowest point, about to fall and turn the paddles in ' + fmt(mw.v, 2) + ' kg of water.'
       : 'The weights have fallen ' + fmt(fallen, 2) + ' m of ' + fmt(h.v, 2) + ' m and done ' + sig3(W) + ' J of work on the water, which has warmed by ' + fmt(rise, 3) + ' °C.');
     readout(d.readout, `\\kW = 2\\km gh = 2(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${sig3(Wfull)}\\ \\text{J} = ${sig3(Wfull / KCAL)}\\ \\text{kcal}`,
-      done ? 'One kilocalorie warms 1.00 kg of water by 1.00 °C, so ' + sig3(Wfull / KCAL) + ' kcal warms the ' + fmt(mw.v, 2) + ' kg in the can by ' + fmt(rise, 3) + ' °C, which is what the thermometer shows.'
-      : 'So far the weights have fallen ' + fmt(fallen, 2) + ' m and done ' + sig3(W) + ' J = ' + sig3(kcal) + ' kcal of work, which has warmed the ' + fmt(mw.v, 2) + ' kg of water by ' + fmt(rise, 3) + ' °C, since one kilocalorie warms 1.00 kg of water by 1.00 °C.');
+      'One kilocalorie warms 1.00 kg of water by 1.00 °C, so the full descent warms the ' + fmt(mw.v, 2) + ' kg in the can by $\\kdTemp = ' + fmt(Wfull / KCAL / mw.v, 3) + '^\\circ\\text{C}$.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
