@@ -89,3 +89,5 @@ researchers feel that the universe should be just barely open"; named in
 - variable `T_c` for 34.7 (temperature, `\kTempc`, the 34.6 meaning "the critical temperature, at and below which a material is a superconductor", concept `superconducting-critical-temperature`) → 34.7-intermediate-scale; the text writes `\kTempc`.
 - `ch34/COLOR.md` 34.7 row: binds `temperature` (high-$T_\text{c}$) and, by concept in prose, `mass`, `energy`, `charge`, `specific-heat`, `magnetic-flux`; no figure, no referents.
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): `T_c` added at 34.7-intermediate-scale with the 34.6 meaning and concept. `ch34/COLOR.md` records temperature alone, since the page draws nothing.

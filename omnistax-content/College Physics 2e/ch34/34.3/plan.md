@@ -67,3 +67,5 @@ None in the module.
 - variable `D` (position, "the size of a thing across, on the scale from a superstring to the edge of the known universe", concept `length`, `redefines: true`) → 34.3-smallest-size; the Sim's slider, caption and readout write `\kD`.
 - `ch34/COLOR.md` 34.3 row: the page binds `position` only; no `energy` drawn (the prose's "energies" wear it by concept).
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): `D` added at 34.3-smallest-size, concept `length`, `redefines: true`. `ch34/COLOR.md` records position alone.

@@ -34,7 +34,8 @@ its definition stay ink.
 
 ## Facts and conventions
 
-The element palette carries every atom of 34.25(b)'s lattice (Tl, Ca, Ba, Cu, O)
+The element palette carries every atom of 34.25(b)'s lattice (Y, Ba, Cu, O; the book draws
+YBa₂Cu₃O₇, not the thallium ceramic)
 and the particles of 34.17's pairs and 34.4's neutrinos: `F.el('e-')`,
 `F.el('e+')`, `F.el('p+')`, `F.el('gamma')`, `F.el('nu')`. Through `F.fact`: the
 red and blue shift of a galaxy's two sides in 34.18(a), a star's glow; the WMAP
@@ -64,3 +65,15 @@ subscript the referent, and its variables row names it in `ref`.
 
 The frame of a figure and its labels stay in ink, and with colour coding off
 every figure stays legible from its labels.
+
+## As built (2026-10-05)
+
+| Section | Types bound | Referents | Facts, conventions, categories |
+|---|---|---|---|
+| 34.1 | velocity, position, time, temperature, energy, intensity | `milky-way`, `distant-galaxy` | none |
+| 34.2 | acceleration, position, time, angle, mass, velocity | `elevator-accelerated`, `elevator-at-rest`, `sun`, `star` | light, Earth, Sun, star and the black hole through `F.fact`; the particles through `F.el`; the lensing galaxy, quasar and companion star are kept as the book's images, not referents |
+| 34.3 | position | none | none; the prose's energies wear theirs by concept |
+| 34.4 | velocity, position, mass, time, density, angle | `luminous-curve`, `rotation-curve` | red and blue shift, `#d8473b` and `#3b6fd8`, through `F.fact` |
+| 34.5 | angle, position, time | `pendulum-1`, `pendulum-2` | none |
+| 34.6 | temperature, resistivity | none | Y, Ba, Cu, O through `F.el`; the three trials of 34.25(a) as `F.cat(0..2)` |
+| 34.7 | temperature (in prose; no figure) | none | none |

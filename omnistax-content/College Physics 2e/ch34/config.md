@@ -38,3 +38,16 @@ setting and its value.
 | Errata | carried as printed and named in `notes`, as `exploration.md` lists |
 | Credit | `ai` is `{"text": "Claude Opus 5.5", "figures": "Claude Opus 5.5"}`, `built` 2026-09-28 |
 | Book manifest | `ch34` in `book.json` chapters, merged with `ost merge college-physics-2e 34` |
+
+## What the build changed
+
+| Setting | As built (2026-10-05) |
+|---|---|
+| Folds | 34.5 + 34.6 in 34.1 (the Hubble graph beside the galaxies flying apart), in place of the proposed 34.6 + 34.7(a); 34.7 (a) and (b) one figure |
+| Motion | moving: the 34.5 fold, 34.7, 34.10, 34.17, 34.18 and the double pendulums of 34.5; still: 34.9, 34.11, 34.23, 34.25, the size scale of 34.3 and the curvature of 34.4 |
+| 3D | the curvature of the universe (34.4, mathematical) and the YBa₂Cu₃O₇ lattice of 34.25(b) (34.6, physical); the Milky Way stays the book's two photographs |
+| Sims | three: the size scale of 34.3, the curvature of 34.4, the double pendulums of 34.5 |
+| Photographs | 34.13, the artist's rendition, kept; 34.17 a figure |
+| Formulas | all three forms anchored by the chapter pass |
+| Credit | `ai` is `{"text": [{"model": "claude-opus-5-5", "effort": "high"}], "figures": [{"model": "claude-opus-5-5", "effort": "high"}]}`, `built` 2026-10-05; the intro keeps its prep-pass credit |
+| Colour | the lattice of 34.25(b) is YBa₂Cu₃O₇, four elements, not the thallium ceramic `COLOR.md` first expected; bindings as built in `COLOR.md` |

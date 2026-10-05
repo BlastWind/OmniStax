@@ -152,7 +152,7 @@ const glOk = () => { try { const c = document.createElement('canvas'); return !!
   let V = null, grp = null, sig = '';
   if (hasGL) {
     V = F.view3d(d.stage, { h: 460, dist: 6.6, tilt: 0.45, spin: 'idle', pitch: [-1.4, 1.4], yaw: 'free', zoomMin: 0.6, zoomMax: 2.4,
-      views: [{ label: 'as the book', yaw: -0.35, pitch: 0.45 }, { label: 'along the layers', yaw: 0, pitch: 0 }, { label: 'down the long axis', yaw: Math.PI / 2, pitch: 0 }] });
+      views: [{ label: 'the book’s view', yaw: -0.35, pitch: 0.45 }, { label: 'along the layers', yaw: 0, pitch: 0 }, { label: 'down the long axis', yaw: Math.PI / 2, pitch: 0 }] });
     if (!V.scene) V = null; else { grp = V.part(0); V.setView(-0.35, 0.45); }
   }
 

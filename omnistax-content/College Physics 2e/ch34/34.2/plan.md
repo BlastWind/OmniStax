@@ -143,3 +143,5 @@ gravitational waves "not yet observed" against the text's LIGO detection; "Steph
 - `ch34/COLOR.md` 34.2 binds: add `angle` (the bend of 34.11), `mass` (the slider of 34.17) and `time` stays; the lensing galaxy, quasar and companion star are not referents, since 34.12 and 34.13 are kept as the book's images
 - anchor `eq-schwarzschild-radius` → 34.2-black-holes
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): `eq-schwarzschild-radius` and the rows `R_S`, `G`, `M`, `c` anchored to 34.2-black-holes. Added: `a`, `g` (concept `acceleration-due-to-gravity`) and `t` at 34.2-general-relativity; `θ` and `r` (concept `distance`) at 34.2-light-bent-by-the-sun. `Δy` is not added: the figure writes the drops as $\tfrac{1}{2}\ka\kt^{2}$ and $\tfrac{1}{2}\kg\kt^{2}$ and never writes $\Delta y$. `ch34/COLOR.md` records angle, mass, velocity and time with the four referents.

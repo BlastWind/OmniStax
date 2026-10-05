@@ -116,3 +116,5 @@ the book prints them.
 - new variables rows for 34.4: `v` (velocity, the orbital speed of a star at distance r from the galaxy's center), `r` (position, `\krad`, the star's distance from the galactic center), `M` (mass, the mass inside the star's orbit), `ρ_bar` (density, `\krhobar`, the average density of the universe), all four drawn by the page's figures and readouts
 - `ch34/COLOR.md` 34.4 row: binds velocity, position, density, mass, time and angle; facts `#d8473b` and `#3b6fd8` (red and blue shift); referents `luminous-curve`, `rotation-curve`
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): `eq-critical-density` and `ρ_c` anchored to 34.4-closure. Added: `v` (velocity), `r` (concept `distance`, in ly) and `M` (mass) at 34.4-evidence; `ρ_bar` (density) at 34.4-closure. `ch34/COLOR.md` records the bindings, the two shift facts and the two referents.

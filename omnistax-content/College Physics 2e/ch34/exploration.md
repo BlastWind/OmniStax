@@ -113,6 +113,12 @@ Each moved item carries `source_section` and a note in both sections.
 - 34.6: prose dollar signs (`&#36;`); the summary's "as high as 250 K" against the text's 270 K; "Problem Exercises" header.
 - 34.7: "Theorists would like it to be just barely closed" against 34.4's "just barely open".
 
+Found while the sections were built (2026-10-05):
+
+- 34.1: Figure 34.9's times are ten times too large against the text's epochs.
+- 34.4: the CNXML writes the muon and tau neutrinos with a Latin v; the page sets ν, as the book prints them.
+- 34.6: Figure 34.23 plots resistance $R$ in ohms under a caption about resistivity.
+
 ## 3D, locked views (root rule 28)
 
 - 34.3 the Milky Way, side view and view from above: physical 3D candidate, a

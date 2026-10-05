@@ -75,3 +75,5 @@ The summary's "as high as 250 K" where the text gives reports in the vicinity of
 - new variables rows for 34.6: `T_temp` (temperature, `\kTemp`, the temperature of the sample), `ρ` (resistivity, `\krhomat`, the resistivity of the sample), both written by the figure's readout and slider
 - `ch34/COLOR.md` 34.6 row: binds temperature and resistivity; conventions Cu, O, Ba, Y (the lattice of 34.25(b) is YBa₂Cu₃O₇, not the thallium ceramic); no referents, the trials of 34.25(a) as `F.cat`
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): `T_c` anchored to 34.6-critical-temperature; `T_temp` and `ρ` (resistivity) added there. `ch34/COLOR.md` records Y, Ba, Cu and O, and the trials as `F.cat`. The 3D view once called "as the book" is now "the book’s view", as the book's other lattices name it.

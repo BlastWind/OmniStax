@@ -4657,3 +4657,56 @@ Checks: `check:content` found no errors. A headless pass over all seven pages
 in light and dark found no page error, blank figure, KaTeX error or missing
 image; the one console error is the dev server's missing
 `offline-catalog.json`.
+
+
+### Pass 59 (2026-10-05): Chapter 34, Frontiers of Physics, is built and passed
+
+The chapter was built in one wave: the introduction in the prep pass, and the
+seven sections, 34.1 to 34.7, by one agent each. It is the book's last chapter,
+and with it every physics section is built. It carries 61 concepts, 3 forms,
+30 variables, 37 glossary terms and 45 exercises (17 keyed problems and 28
+conceptual questions, each with an AI-marked approach); 15 unkeyed problems are
+left out and named in `exercise_notes`. No new type is declared. The electrons,
+positrons, protons and photons of 34.17 and the four elements of the 34.25(b)
+lattice are drawn through `F.el`; the red and blue shift of 34.18(a) are the
+two facts painted.
+
+The 25 numbered figures are 15 kept photographs and book images, among them
+the artist's rendition of 34.13, and nine figures for the rest, one of them a
+fold: the Hubble graph beside the galaxies flying apart (Figure 34.5 + 34.6),
+in place of the 34.6 + 34.7(a) fold the prep pass proposed. Figure 34.26, the
+parallax cone, travels on its problem's card. Three Sims are added: 34.3's
+scale from a superstring to the edge of the known universe, 34.4's curvature of
+a closed, flat or open universe in 3D, and 34.5's two double pendulums released
+a whisker apart. The expanding galaxies, the background radiation's stretch,
+the elevator's beam, the pairs at a black hole's horizon, the galaxy's rotation
+and the pendulums move on a clock; the rest are still. The YBa₂Cu₃O₇ lattice of
+34.25(b) turns in 3D; the Milky Way stays the book's two photographs.
+
+The chapter pass anchored all 3 forms and the 9 variables the sections wrote,
+and added 21 rows the figures and readouts wrote without one, among them the
+$\kt$, $\kTemp$, $\kKEbar$ and $\klam$ of 34.1's epochs and background
+radiation, the $\ka$, $\kg$, $\ktheta$ and $\krad$ of 34.2's elevator and
+starlight, 34.4's $\kv$, $\krad$, $\kM$ and $\krhobar$, the pendulums'
+$\ktheta_{0}$, $\Delta\ktheta_{0}$, $\kx$ and $\kt$, and 34.6's $\kTemp$ and
+$\krhomat$. One symbol is added, $\Delta\theta_{0}$. 34.2's $\Delta y$ is not,
+since the elevator writes its drops as $\tfrac{1}{2}\ka\kt^{2}$. No concept,
+edge or existing symbol row changed; superstring theory, which Chapter 33 also
+staged, is this chapter's row.
+
+Across the sections no exercise is kept twice. The Critical Thinking problem on
+Hubble's law goes from 34.6 to 34.1, and the neutron star's spin from 34.1 to
+34.2; each carries its `source_section` and both notes agree. Figures 34.1 to
+34.26 run in book order. The lattice's view "as the book" became "the book's
+view", as the book's other 3D scenes name it.
+
+The book's slips are kept as printed and gathered in `ch34/exploration.md`: in
+34.1 "100,000 km/s" against the 10,000 km/s of the calculation, $H_{0}$ as
+km/s·Mly, "200 μk", Figure 34.7's "10 to 20 billion years", Figure 34.9's times
+ten times too large, the glossary's epochs without "s" and inflation's
+$10^{-50}$; in 34.2 "Discuss black hole.", the M87 disk citing 34.13, gravitational
+waves "not yet observed", "Stephen Hawking (b. 1942)" and "about eight solar
+masses"; in 34.4 speeds that "decrease as the square root" and WIMPs called
+leptons; in 34.6 the summary's 250 K against 270 K and Figure 34.23's resistance
+under a caption on resistivity; in 34.7 a universe "just barely closed" against
+34.4's "just barely open".

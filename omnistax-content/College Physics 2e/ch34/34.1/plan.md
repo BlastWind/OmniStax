@@ -134,3 +134,5 @@ not this page); the parallax key's º written °.
 - form `eq-hubble-law` → 34.1-expansion
 - variables rows in 34.1 for the symbols the figures write, none of which has a 34.1 row: `t` (`\kt`, time, the time after the Big Bang), `T_temp` (`\kTemp`, temperature, the temperature of the universe or of its background radiation), `KE_bar` (`\kKEbar`, energy, the average kinetic energy of a particle at that temperature), `λ` (`\klam`, position, the wavelength of the background radiation, on the axis of Figure 34.7)
 - `ch34/COLOR.md` 34.1 row: the page binds velocity, position, time, temperature, energy and intensity, as planned; referents `milky-way` and `distant-galaxy`
+
+Applied by the chapter pass (2026-10-05): `eq-hubble-law` and the rows `v`, `d`, `H_0` anchored to 34.1-expansion. Added: `t` (time, the time after the Big Bang) and `KE_bar` (concept `thermal-energy`, which wears energy) at 34.1-epochs; `T_temp` (the temperature of the universe, or of its background radiation) and `λ` (wavelength) at 34.1-cmbr. `ch34/COLOR.md` records the bindings and the two referents as built.

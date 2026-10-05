@@ -71,3 +71,5 @@ Neither is keyed; both carry AI-marked suggested approaches. No problems, AP ite
 - variable `t` (time, "the time since the two double pendulums were released") → 34.5-chaos.
 - `ch34/COLOR.md` 34.5 row: the page binds `angle`, `position` and `time`, and draws the two pendulums as referents.
 - No concept, edge or symbol row needs changing.
+
+Applied by the chapter pass (2026-10-05): `θ_0`, `Δθ_0`, `x` and `t` added at 34.5-chaos. `Δθ_0` had no symbol row: one is staged in `ch34/book-rows.json` (`\Delta\theta_{0}`, no macro, since the figure writes `\Delta\ktheta_{0}`) and merged. One `x` row only, with no `ref`: a row names one referent, and the readout already sets each subscript in its pendulum's colour through `\htmlData`. `ch34/COLOR.md` records the bindings and both pendulums.
