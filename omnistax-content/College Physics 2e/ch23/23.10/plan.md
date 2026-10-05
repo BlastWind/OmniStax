@@ -113,38 +113,30 @@ headline · graph · 3D
    voltage and time.
 2. `sim-counting-time-constants` · Sim (it replaces no figure of the book) ·
    fraction-per-time-constant-rl, rl-time-constant · value add:
-   standardisation and intuition (rule 24.4). The section's method is to
-   count rather than to solve: 0.632 of what is left in every $\tau$ going
-   up, 0.368 of what is there in every $\tau$ coming down. The book states
-   the rule, works two steps of it in Example 23.6 and then sets a problem
-   asking how far the counting is from the exponential, and nothing in it
-   draws the two against each other. Here the ladder of counted values stands
-   as bars on the exact curve, so the reader sees the counting land on the
-   curve at every whole $\tau$ and drift from it in between · **still**: a
-   ladder of values at whole time constants is a table of states and not a
-   process, the reader steps along it with the slider, and no dummy loop is
-   added to earn a transport (rule 14) · $\kLind$ (1.00 to 20.0 mH, step
-   0.25, default 7.50, inductance) and $\kRes$ (1.00 to 10.0 Ω, step 0.25,
-   default 3.00, resistance), which set $\tau$ between them, and the target
-   fraction the circuit is to reach (50 to 99.9 percent of the final current
-   going up, or 50 to 99.9 percent of the way down, untyped and in ink, step
-   0.1, default 99.0, the figure of the section's ninth problem), with the
-   direction as a choice, a dropdown for the same reason (rule 26.1), default
-   turning on · "Counting in whole
-   time constants puts the circuit past 99.0 percent after 5 of them, at
-   12.50 ms, where the exponential gets there at 11.51 ms." · graph alone:
-   the graph is the idea, the bars standing on it at $0, \tau, 2\tau \ldots$
-   with the percentage of $I_0$ written above each and the target level
-   dashed across. Fixed ranges: 0 to 6 time constants on the horizontal axis,
-   written in $\tau$ and in milliseconds together, and 0 to 100 percent of
-   $I_0$ on the vertical · 2D. Readout: the target fraction solved exactly,
-   $\kt = -\ktauRL\ln(1 - f)$ turning on and $\kt = -\ktauRL\ln f$ turning
-   off, with a small line giving the counted answer and the percentage
-   difference between the two, which is the comparison the ninth and tenth
-   problems ask for. Six bars stand on one axis and each carries its own
-   percentage; the individual names are the numbers themselves, so the frame
-   is labelled and nothing else needs a label (rule 26.7). Draws inductance,
-   resistance, current and time.
+   standardisation and intuition (rule 24.4): the counted ladder stands as
+   bars on the exact exponential, landing on it at every whole $\tau$ ·
+   **still**: a ladder of values at whole time constants is a table of
+   states with no clock, so no cycle and no transport (rule 14) · $\kLind$
+   (1.00 to 20.0 mH, step 0.25, default 7.50, inductance), $\kRes$ (1.00 to
+   10.0 Ω, step 0.25, default 3.00, resistance) and the target (50 to 99.9
+   percent, step 0.1, default 99.0, the ninth problem's figure, untyped and in
+   ink); turning on / turning off as a segmented choice on its own row
+   (rule 26.1), default turning on · "Counting in whole time constants puts
+   the current past 99.0 percent of its final value after 5 of them, at
+   12.50 ms, where the exponential gets there at 11.51 ms." · graph alone on
+   a fixed 0 to 7 $\tau$ axis, half a time constant of margin either side,
+   so 99.9 percent (6.9 $\tau$, counted 7) stays on it, and 0 to 100 percent
+   of $I_0$ up the side; the exact and counted times are short tags
+   ("exact 11.51 ms", "counted 12.50 ms") on their own lines in a band above
+   the plot, keyed by the exact time's drop line and dot and by the deeper bar
+   the count stops at, whose $n\tau$ mark on the axis wears the time hue; the
+   target named at the right end of its line, clear of the bars; bar values
+   set through `F.labeller` with the curve, bars, drop line, target and tags
+   placed, nothing over a bar or the curve in either direction · 2D, no fold
+   or split. Readout: $\kt = -\ktauRL\ln(1 - f)$ turning on and
+   $\kt = -\ktauRL\ln f$ turning off with the live numbers; the small line
+   gives the counted $\kt = n\ktauRL$ and how much longer it runs than the
+   exact time. Draws inductance, resistance, current and time.
 
 Photographs: the section prints none, so none is kept and none is dropped.
 

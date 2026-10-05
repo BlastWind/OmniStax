@@ -185,80 +185,108 @@ function flow(ctx, x, y, dx, dy, L) {
    states, so there is no cycle and no transport.
 ===================================================================== */
 (function () {
-  const H = 780;
+  const H = 730;
   const d = sim('sim-counting-time-constants', H);
   const lS = ctl(d.controls, { label: '\\kLind', cls: 'inductance', min: 1, max: 20, step: 0.25, value: 7.5, unit: 'mH', dec: 2, aria: 'the inductance of the coil' });
   const rS = ctl(d.controls, { label: '\\kRes', cls: 'resistance', min: 1, max: 10, step: 0.25, value: 3, unit: 'Ω', dec: 2, aria: 'the total resistance of the circuit' });
   const fS = ctl(d.controls, { label: '\\text{target}', cls: '', min: 50, max: 99.9, step: 0.1, value: 99, unit: '%', dec: 1, aria: 'the fraction of the final current the circuit is asked to reach' });
-  const dir = select(d.controls, {
+  const dir = F.choice(d.controls, {
     label: '\\text{the circuit is}',
     options: [{ value: 'on', label: 'turning on' }, { value: 'off', label: 'turning off' }],
     value: 'on', aria: 'whether the current is growing toward its final value or dying away from it',
   });
+  d.controls.lastElementChild.style.gridColumn = '1 / -1';
 
-  /* Fixed ranges: seven time constants across, written in τ and in milliseconds
-     together, and 0 to 100 percent of the final current up the side. Neither
-     depends on a slider, since the horizontal axis is counted in time constants. */
-  const NMAX = 6, BOX = { l: 230, r: 1250, t: 196, b: 636 };
+  /* Fixed ranges: half a time constant either side of 0 and 7, so 99.9 percent (6.9 τ,
+     counted 7) stays on the axis and no bar straddles the frame, and 0 to 100 percent of
+     the final current up the side. Neither depends on a slider, since the horizontal axis
+     is counted in time constants. The band above the plot holds the two time tags. */
+  const NMAX = 7, BOX = { l: 230, r: 1180, t: 250, b: 640 }, ROW1 = 124, ROW2 = 156;
   const { formula: eqHost, note: small } = F.readout(d);
 
   function draw() {
     const { ctx } = begin(d.c);
     const L = lS.v / 1000, R = rS.v, tau = L / R, on = dir.value === 'on';
     const frac = fS.v / 100;
-    /* the exact answer, and the whole number of time constants the counting needs
-       before it first passes the target */
     /* the same count either way: turning on, 1 - e^-n = f; turning off, e^-n = 1 - f */
     const nExact = -Math.log(1 - frac);
     const nCount = Math.ceil(nExact - 1e-9);
     const tExact = nExact * tau * 1000, tCount = nCount * tau * 1000;
-    const cI = C('current'), cT = C('time'), cL = C('inductance'), cR = C('resistance');
+    const cI = C('current'), cT = C('time');
     const kOn = dir.mix((v) => (v === 'on' ? 1 : 0));   /* turning round, every bar and the curve bend from the climb into the decay */
     const up = (x) => kOn * (1 - x) + (1 - kOn) * x;     /* x is what is left, e^-n */
-    const level = up(1 - frac);                  /* where the target sits up the side */
+    const level = 100 * up(1 - frac);                    /* where the target sits up the side */
 
-    const { X, Y } = axes(ctx, BOX, [0, NMAX], [0, 100], {
-      xl: 'time, counted in time constants τ = ' + fmt(tau * 1000, 2) + ' ms', xc: cT,
-      yl: 'current (% of I₀)', yc: cI, nx: 6, ny: 4,
-      fx: (u) => (Math.abs(u - Math.round(u)) < 0.01 ? String(Math.round(u)) : fmt(u, 1)), fy: (u) => fmt(u, 0),
-    });
-    /* the bars: the value the counting lands on at every whole time constant */
-    const bw = (X(1) - X(0)) * 0.26;
-    for (let n = 0; n <= 5; n++) {
-      const pc = 100 * up(Math.pow(Math.exp(-1), n));
-      const x = X(n), yTop = Y(pc), yBot = Y(0);
-      if (pc > 0.4) {
-        ctx.save(); ctx.fillStyle = alpha(cI, 0.28); ctx.strokeStyle = cI; ctx.lineWidth = 3;
-        ctx.beginPath(); ctx.rect(x - bw / 2, yTop, bw, yBot - yTop); ctx.fill(); ctx.stroke(); ctx.restore();
-      }
-      /* a bar that reaches near the top of the frame would carry its label on the
-         curve and the axis title, so those are written inside the bar */
-      if (pc > 0.4) text(ctx, fmt(pc, 1) + '%', x, yTop + (pc > 90 ? 26 : -20), cI, { size: 17, align: 'center', bg: PAL.panel });
-    }
-    /* the exact exponential drawn through them */
-    curve(ctx, (n) => 100 * up(Math.exp(-n)), 0, NMAX, X, Y, cI, 5, 120);
-    /* the target the reader asks for, and the two times that reach it */
-    line(ctx, BOX.l, Y(100 * level), BOX.r, Y(100 * level), alpha(PAL.ink, 0.45), 3, [10, 10]);
-    /* the target's name sits at the empty end of its line: the left when the current
-       is climbing, where the curve has not yet risen, the right when it is decaying */
-    text(ctx, 'the target, ' + fmt(fS.v, 1) + '%', on ? BOX.l + 14 : BOX.r - 12, Y(100 * level) + (on ? 26 : -18), PAL.ink, { size: 19, align: on ? 'left' : 'right', bg: PAL.panel });
-    if (nExact <= NMAX) {
-      line(ctx, X(nExact), BOX.t, X(nExact), BOX.b, cT, 3);
-      text(ctx, 'the exponential gets there at ' + fmt(tExact, 2) + ' ms', on ? BOX.l + 14 : BOX.r - 14, BOX.b - 26, cT, { size: 18, align: on ? 'left' : 'right', bg: PAL.panel });
-    }
-    if (nCount <= NMAX) {
-      line(ctx, X(nCount), BOX.t, X(nCount), BOX.b, alpha(cT, 0.5), 3, [10, 10]);
-      text(ctx, 'counting needs ' + nCount + ' of them, ' + fmt(tCount, 2) + ' ms', on ? BOX.l + 14 : BOX.r - 14, BOX.b - 60, cT, { size: 18, align: on ? 'left' : 'right', bg: PAL.panel });
-    }
-
-    topline(ctx, on
+    const lines = topline(ctx, on
       ? 'Counting in whole time constants puts the current past ' + fmt(fS.v, 1) + ' percent of its final value after ' + nCount + ' of them, at ' + fmt(tCount, 2) + ' ms, where the exponential gets there at ' + fmt(tExact, 2) + ' ms.'
       : 'Counting in whole time constants puts the current down past ' + fmt(fS.v, 1) + ' percent of the way to zero after ' + nCount + ' of them, at ' + fmt(tCount, 2) + ' ms, where the exponential gets there at ' + fmt(tExact, 2) + ' ms.');
+    const lab = F.labeller(ctx, H, { headline: lines });
+    const yl = 'current (% of I₀)';
+    /* the gridlines fall between the bars, and the whole time constants are written under them */
+    const { X: X0, Y } = axes(ctx, BOX, [0, NMAX + 1], [0, 100], {
+      xl: 'time, counted in time constants τ = ' + fmt(tau * 1000, 2) + ' ms', xc: cT,
+      yl, yc: cI, nx: NMAX + 1, ny: 4, fx: () => '', fy: (u) => fmt(u, 0),
+    });
+    const X = (n) => X0(n + 0.5);
+    for (let n = 0; n <= NMAX; n++) {
+      const c = n === nCount;   /* the count's own mark wears the time hue, so a bar too short to see still says where it stops */
+      text(ctx, n === 0 ? '0' : n === 1 ? 'τ' : n + 'τ', X(n), BOX.b + 26, c ? cT : PAL.muted, { size: c ? 19 : 17, weight: c ? 600 : 400, align: 'center' });
+    }
+    lab.place({ l: BOX.l - 7, r: BOX.l + F.measure(ctx, yl, { size: 20, weight: 600 }) + 7, t: BOX.t - 38, b: BOX.t - 10 });
+
+    /* the bars: the value the counting lands on at every whole time constant, the one
+       the count stops at filled deeper */
+    const bw = (X(1) - X(0)) * 0.3;
+    const bars = [];
+    for (let n = 0; n <= NMAX; n++) {
+      const pc = 100 * up(Math.exp(-n)), x = X(n), yTop = Math.min(Y(pc), Y(0) - 2);
+      if (pc < 0.05) continue;
+      bars.push({ n, pc, x, yTop });
+      const strong = n === nCount;
+      ctx.save(); ctx.fillStyle = alpha(cI, strong ? 0.5 : 0.2); ctx.strokeStyle = cI; ctx.lineWidth = strong ? 4 : 3;
+      ctx.beginPath(); ctx.rect(x - bw / 2, yTop, bw, Y(0) - yTop); ctx.fill(); ctx.stroke(); ctx.restore();
+      lab.place({ l: x - bw / 2, r: x + bw / 2, t: yTop, b: Y(0) });
+    }
+    /* the target, named at the right end of its line */
+    line(ctx, BOX.l, Y(level), BOX.r + 4, Y(level), alpha(PAL.ink, 0.45), 3, [10, 10]);
+    lab.place({ l: BOX.l, r: BOX.r, t: Y(level) - 2, b: Y(level) + 2 });
+    text(ctx, 'target ' + fmt(level, 1) + '%', BOX.r + 12, Math.min(Y(level), BOX.b - 12), PAL.ink, { size: 19, align: 'left', bg: PAL.panel });
+    /* the exact exponential drawn through the bars, its path held clear of the labels,
+       and the time it reaches the target dropped to the axis */
+    curve(ctx, (u) => 100 * up(Math.exp(-(u - 0.5))), 0.5, NMAX + 1, X0, Y, cI, 5, 150);
+    for (let n = 0; n <= NMAX + 0.5; n += 0.04) { const x = X(n), y = Y(100 * up(Math.exp(-n))); lab.place({ l: x - 3, r: x + 3, t: y - 3, b: y + 3 }); }
+    line(ctx, X(nExact), Y(level), X(nExact), BOX.b, cT, 3);
+    dot(ctx, X(nExact), Y(level), cT, true, 8);
+    lab.place({ l: X(nExact) - 2, r: X(nExact) + 2, t: Y(level) - 8, b: BOX.b });
+
+    /* the two times as tags in the band, each on its own line behind a key: the drop
+       line for the exponential, the deeper bar and its mark on the axis for the count */
+    const tagL = BOX.r - 260;
+    const tag = (row, s, key) => {
+      key(tagL, row);
+      text(ctx, s, tagL + 50, row, cT, { size: 19, weight: 600, align: 'left', bg: PAL.panel });
+      lab.place({ l: tagL - 4, r: tagL + 57 + F.measure(ctx, s, { size: 19, weight: 600 }), t: row - 15, b: row + 15 });
+    };
+    tag(ROW1, 'exact ' + fmt(tExact, 2) + ' ms', (x, y) => { line(ctx, x, y, x + 36, y, cT, 3); dot(ctx, x + 36, y, cT, true, 6); });
+    tag(ROW2, 'counted ' + fmt(tCount, 2) + ' ms', (x, y) => {
+      ctx.save(); ctx.fillStyle = alpha(cI, 0.5); ctx.strokeStyle = cI; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.rect(x + 10, y - 12, 18, 24); ctx.fill(); ctx.stroke(); ctx.restore();
+    });
+
+    /* every bar's value above it, stepped up and leadered where the curve or the target is in
+       the way; where the climb is steep, up and to the left, the side the curve lies below */
+    bars.forEach((b) => {
+      const ux = kOn >= 0.5 && 100 * Math.exp(-b.n) > 20 ? -0.6 : 0;
+      lab.add(fmt(b.pc, 1) + '%', b.x, b.yTop, ux, ux ? -0.8 : -1, cI, 17, 22);
+    });
+    lab.flush();
+
     const tv = `(\\mk{tv}{${fmt(tau * 1000, 2)}}\\ \\text{ms})`, res = `\\mk{r}{${fmt(tExact, 2)}}\\ \\text{ms}`;
     F.morph(eqHost, on
       ? `\\mk{t}{\\kt} = -\\mk{tau}{\\ktauRL}\\ln(\\mk{o}{1 - }\\mk{f}{${fmt(frac, 3)}}) = -${tv}\\ln(\\mk{o2}{1 - }\\mk{f2}{${fmt(frac, 3)}}) = ${res}`
       : `\\mk{t}{\\kt} = -\\mk{tau}{\\ktauRL}\\ln(\\mk{f}{${fmt(1 - frac, 3)}}) = -${tv}\\ln(\\mk{f2}{${fmt(1 - frac, 3)}}) = ${res}`);
-    small.textContent = 'Counting ' + nCount + ' whole time constants gives ' + fmt(tCount, 2) + ' ms, which is ' + fmt(100 * (tCount - tExact) / tExact, 1) + ' percent longer than the exact answer; the two agree exactly at every whole time constant and part company in between.';
+    const said = 'Counting gives $\\kt = ' + nCount + '\\ktauRL$, ' + fmt(100 * (tCount - tExact) / tExact, 1) + ' percent longer than the exact time.';
+    if (small.dataset.said !== said) { small.dataset.said = said; small.textContent = said; F.renderMath(small); }
   }
   register(d.fig, { update: () => {}, draw });
 })();
