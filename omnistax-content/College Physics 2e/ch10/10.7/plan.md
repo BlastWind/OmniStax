@@ -63,73 +63,11 @@ The section leans on `angular-momentum` and `torque-changes-angular-momentum`
 
 id · replaces · concepts · value add · motion · sliders and choices · headline · graph · depth
 
-1. `sim-right-hand-rule` · replaces Figure 10.37 (the turning disk and the
-   right hand) · right-hand-rule · **variation**: the reader flips the sense
-   of the turn and watches both arrows reverse together, and sets the spin
-   and sees $\kL = I\kw$ grow along the same axis, which the still cannot show
-   · **still**: the rule is a correspondence, not a process; no cycle, no
-   transport · a choice of the sense of rotation seen from above
-   (counterclockwise, the book's, or clockwise; rule 26.1), the angular
-   velocity $\kw$ (2 to 20 rad/s, default 10, angular-rate); the disk is a
-   fixed 2.0 kg, 0.25 m one, so $I = \tfrac{1}{2}MR^2 = 0.0625$ kg·m² in ink,
-   since the page binds no rotational inertia · "Seen from above the disk
-   turns counterclockwise, so the thumb, ω and L all point up along the
-   axis." · none · **2D, a locked view** (rule 28.2): the book prints the
-   disk in perspective, so it is projected from the book's own viewpoint
-   with `view()`/`face()`, no orbit; the right hand is drawn beside it in ink
-   with its fingers curled the way the rim moves and its thumb along the
-   axis. Labels ω, L and the sense of the turn are three and static, so on
-   (rule 26.7). Readout: $\kL = I\kw$ with the numbers; small line that the
-   two point the same way because $I$ is positive. Draws angular-rate,
-   angular-momentum.
+1. Rebuilt 2026-10-05: sim-right-hand-rule · Figure 10.37 · right-hand-rule · variation: flip the sense and the thumb, ω and L reverse together · still, as now · choice ccw / cw, ω (2–20 rad/s) · headline as now · none · 2D, locked view of the disk as now. The hand is the library's F.hand (view 'palm', curl 0.8, thumb 'up', right: the book's thumbs-up seen from the fingers' side, since 'side' with the thumb 'out' curls the fingers about an axis across the thumb) beside the disk, its fingers curling the way the rim moves and its thumb along the axis and a turning arrow round the fist, turned through 180° in the page on a change of sense as now; labels through the labeller inside the canvas. No fold or split.
    Manim pass, 2026-09-28: a change of sense no longer cuts: $\kw$ and $\kL$ run down through nothing and out the other way, the hand turns through 180° in the page, and the turning arrow on the disk fades to its reverse.
-2. `sim-torque-direction` · replaces Figure 10.38 (a) and (b) (the torque
-   perpendicular to the plane of $r$ and $F$, and the merry-go-round) ·
-   torque-sets-the-direction-of-angular-momentum, right-hand-rule,
-   torque (9.2) · **variation**: a push at the rim of a merry-go-round, the
-   torque standing up out of the platform, and the reader moves the point of
-   application in and out, changes the force and reverses the push to see
-   the torque and the angular momentum it produces flip together · **still**:
-   the direction of a torque is a rule, not a motion; no transport · the
-   force $\kF$ (10 to 100 N, default 50, force), the distance $\kr$ from the
-   axis to the push (0.5 to 2.5 m, default 2.0, position), a choice of the
-   sense of the push (counterclockwise seen from above, the book's, or
-   clockwise), as a dropdown because the row of two sliders leaves no room
-   for a segmented control (rule 26.1) · "A 50 N push 2.0 m from the axis makes a torque of 100 N·m
-   pointing up out of the platform, and the angular momentum it produces
-   points the same way." · none · **2D, a locked view** (rule 28.2): the
-   platform in perspective from the book's viewpoint, a person sprite at the
-   rim pushing, $\kr$ drawn from the axis to the hands, $\kF$ along the rim,
-   $\ktau$ and $\kdLang$ standing along the axis. Four static labels, on.
-   Readout: $\ktau = \kr\kF$ with the numbers; small line that $\kdLang =
-   \ktau\,\Delta t$ points the way the torque points. Draws torque, force,
-   position, angular-momentum.
+2. Rebuilt 2026-10-05: sim-torque-direction · Figure 10.38 · torque-sets-the-direction-of-angular-momentum, right-hand-rule · variation: the push's size and sense, the torque and ΔL standing up or down the axis together · still, as now · F (10–100 N, force), the platform's radius R (1.0–2.5 m, position; the push is at the rim, so r = R), push sense as a choice · headline as now · none · 2D, locked view as now. The person is F.silhouette in the 'push' pose standing on the ground outside the rim, hands on a handle at the rim, placed from the rim each frame (0.9 m behind the handle along her push, 0.25 m out) so she never stands on the platform, the handle on the near rim mirrored for a clockwise push; r drawn from the axis to the handle; labels through the labeller. No fold or split.
    Manim pass, 2026-09-28: a change of push no longer cuts: $\kF$, $\ktau$ and $\kdLang$ run through nothing to the other side, and the turning arrow fades to its reverse.
-3. `sim-bike-wheel` · replaces Figure 10.39 (a) and (b) (the woman and the
-   spinning wheel, and the vector sum) · torque-sets-the-direction-of-
-   angular-momentum, right-hand-rule, head-to-tail-method (3.2) ·
-   **motion**: the idea has a time in it, since the wheel's axis swings
-   while she pushes, so the scene runs one push of 1.5 s and the reader
-   watches the axis turn toward her rather than tip, with the vector diagram
-   beside it growing $\kdLang$ head to tail on $\kL$ · **moving**, one loop
-   of 1.5 s of pushing then a 1.2 s hold, with the transport · the spin
-   $\kw$ (10 to 60 rad/s, default 30, angular-rate), the force of each hand
-   $\kF$ (0.5 to 10 N, default 2, force); the wheel's moment of inertia is a
-   fixed 0.15 kg·m² and the handles are 0.50 m apart, both in ink · "After
-   1.50 s of pushing the axis has swung 18° toward her, and the wheel has
-   not tipped." · the vector diagram beside the scene, seen from above
-   as the book's (b) is · **2D, a locked view** (rule 28.2) for the wheel
-   seen from her right and a little above, so that the axle's swing toward
-   her turns the wheel toward the reader rather than edge-on, its ring
-   projected as it turns about the vertical, the woman a person sprite
-   holding the handles; the diagram is flat. The model is exact for a constant torque: $\kL(t) =
-   \kL_0 + \ktau t$, so the direction tilts by $\tan^{-1}(\kdLang/\kL)$ and
-   the magnitude grows only slightly, which is what the book says for a
-   small change. Labels $\kL$, $\kdLang$, $\kL + \kdLang$, $\ktau$ and the
-   two $\kF$ on things that move and turn, so in the scene they are hover
-   names and the diagram beside it names each kind (rule 26.7). Readout:
-   $\kdLang = \ktau\,\Delta t$ with the numbers; small line with $\kL = I\kw$
-   and the angle. Draws angular-momentum, torque, angular-rate, force.
+3. Rebuilt 2026-10-05: sim-bike-wheel · Figure 10.39 · torque-sets-the-direction-of-angular-momentum, right-hand-rule, head-to-tail-method · motion: the axle swings toward her instead of tipping, ΔL growing head to tail on L in the diagram beside · moving, one push of 1.5 s then hold, as now · ω (10–60 rad/s), F (0.5–10 N) · headline as now · diagram beside · 2D locked view as now. The woman is F.silhouette scaled to stand below the headline band, seen from the side the view looks along, both hands set by joint on the two handles (one lifting, one pressing, the two F arrows at them) and kept in front of the rim; the wheel and axle drawn after her body and far arm and before her near arm; the hub 1.2 m up and 0.62 m in front of her, so both hands hold at the widest swing (79°). No fold or split.
    Manim pass, 2026-09-28: the Labels button was removed (rule 26.7); the scene's arrows are named under the pointer and the diagram beside it names each kind; the readout is the one equation $\kdLang = \ktau\,\Delta t$, $\kL$ in the small line.
 4. `sim-gyroscope` · replaces Figure 10.40 (a) and (b) (the forces on a
    spinning gyroscope and the cone its angular momentum sweeps) ·

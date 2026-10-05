@@ -67,42 +67,17 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
    the axis in the direction of the thumb; the sense of the turn is a choice
    and the angular velocity a slider. The disk is 2.0 kg and 0.25 m, so
    I = ½MR² = 0.0625 kg·m², in ink. The arrows are scaled from the slider's
-   maximum: ω = 20 rad/s and L = 1.25 kg·m²/s both reach 200 units.
+   maximum: ω = 20 rad/s and L = 1.25 kg·m²/s both reach 170 units.
 ===================================================================== */
 (function () {
-  const H = 520;
+  const H = 600;
   const d = sim('sim-right-hand-rule', H);
   const sense = choice(d.controls, { label: '\\text{Seen from above}', options: [{ value: 'ccw', label: 'counterclockwise' }, { value: 'cw', label: 'clockwise' }], value: 'ccw', aria: 'the sense of the rotation seen from above' });
   const w = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 2, max: 20, step: 0.5, value: 10, unit: 'rad/s', dec: 1, aria: 'the angular velocity of the disk' });
   const M = 2.0, R = 0.25, I = 0.5 * M * R * R;
   const V = view({ yaw: 0.28, pitch: 0.42, dist: 1500, cx: 430, cy: 330 });
   const E = [Math.sin(0.28), 0, Math.cos(0.28)];
-  const RD = 190, HD = 34, ARROW = 200;
-  /* a right hand, drawn about the point (0, 0) of its own frame: the thumb up
-     along the axis, four fingers curled across the front of the axis toward
-     the right, which is the way the near rim moves when the turn is
-     counterclockwise seen from above. The clockwise hand is this one turned
-     through 180° in the plane of the page, which is still a right hand. */
-  function hand(ctx, x, y, turn, col) {
-    ctx.save(); ctx.translate(x, y); ctx.rotate(turn);
-    ctx.strokeStyle = col; ctx.fillStyle = PAL.soft2; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-    /* the palm, a rounded slab to the left of the axis */
-    ctx.lineWidth = 3; ctx.beginPath();
-    ctx.moveTo(-92, -40); ctx.lineTo(-30, -52); ctx.quadraticCurveTo(-8, -52, -6, -30); ctx.lineTo(-6, 90); ctx.quadraticCurveTo(-8, 112, -30, 114); ctx.lineTo(-96, 108); ctx.quadraticCurveTo(-118, 100, -118, 70); ctx.lineTo(-118, -10); ctx.quadraticCurveTo(-116, -38, -92, -40);
-    ctx.closePath(); ctx.fill(); ctx.stroke();
-    /* four fingers, each an arc round the front of the axis, wrapping from the palm to the right */
-    for (let k = 0; k < 4; k++) {
-      const cy = -26 + k * 40, a = 58 - k * 3, b = 22;
-      ctx.lineWidth = 26; ctx.strokeStyle = PAL.soft2; ctx.beginPath(); ctx.ellipse(-6, cy, a, b, 0, 0.62 * Math.PI, 2.02 * Math.PI, false); ctx.stroke();
-      ctx.lineWidth = 3; ctx.strokeStyle = col; ctx.beginPath(); ctx.ellipse(-6, cy, a, b + 13, 0, 0.6 * Math.PI, 2.02 * Math.PI, false); ctx.stroke();
-      ctx.beginPath(); ctx.ellipse(-6, cy, a, b - 13, 0, 0.66 * Math.PI, 2.0 * Math.PI, false); ctx.stroke();
-      ctx.beginPath(); ctx.arc(-6 + a, cy, 13, -Math.PI / 2, Math.PI / 2); ctx.stroke();
-    }
-    /* the thumb, up along the axis from the top of the palm */
-    ctx.lineWidth = 30; ctx.strokeStyle = PAL.soft2; ctx.beginPath(); ctx.moveTo(-40, -44); ctx.lineTo(-22, -136); ctx.stroke();
-    ctx.lineWidth = 3; ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(-56, -42); ctx.lineTo(-38, -138); ctx.arc(-22, -136, 16, Math.PI, 0); ctx.lineTo(-7, -50); ctx.stroke();
-    ctx.restore();
-  }
+  const RD = 190, HD = 34, ARROW = 170;
   function draw() {
     const { ctx } = begin(d.c);
     const ccw = sense.value === 'ccw', up = ccw ? 1 : -1;
@@ -131,100 +106,123 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     lab.add('L = Iω', tl[0], tl[1], 1, 0, C('angular-momentum'), 24, 26);
     const rim = V.P([RD * 0.55, HD / 2 + 4, RD * 0.55]);
     lab.add(ccw ? 'the rim turns counterclockwise seen from above' : 'the rim turns clockwise seen from above', rim[0], rim[1], 0.2, 1, PAL.ink, 18, 40);
-    /* the hand beside the disk, with its own axis and thumb arrow */
-    const hx = 1010, hy = 300;
-    line(ctx, hx, 110, hx, 500, alpha(PAL.ink, 0.3), 2, [6, 8]);
+    /* the library's right hand beside the disk, a thumbs-up seen from the fingers' side as the book draws it:
+       the fingers curl toward the reader the way the near rim moves and the thumb stands along the axis, with
+       a turning arrow round the fist in the rim's sense. A clockwise turn is the same hand turned through 180°
+       in the page, which is still a right hand; it turns about the middle of the hand and its arrow. */
     const turn = (Math.PI * (1 - s)) / 2, ct = Math.cos(turn), st = Math.sin(turn);
-    const rot = (x, y) => [hx + x * ct - y * st, hy + x * st + y * ct];
-    hand(ctx, hx, hy, turn, hc);
-    const thumbTip = rot(-22, -156), thumbFoot = rot(-22, -152), thumbHead = rot(-22, -226);
-    arrow(ctx, thumbFoot[0], thumbFoot[1], thumbHead[0], thumbHead[1], hc, 4);
-    lab.add('thumb: along ω and L', thumbHead[0], thumbHead[1], 1, 0, hc, 18, 30);
-    lab.add('fingers curl with the rim', hx + 60, hy + (ccw ? 70 : -70), 1, 0.2, hc, 18, 40);
+    const HS = 2.1, GX = -55 * HS, TX = -47 * HS, TY = -62 * HS, AL = 70, yc = (TY - AL + 52 * HS) / 2, hx = 1010, hy = 334;
+    const rot = (x, y) => [hx + x * ct - (y - yc) * st, hy + x * st + (y - yc) * ct];
+    const wrist = rot(0, 0), thumbTip = rot(TX, TY), thumbHead = rot(TX, TY - AL);
+    const ax0 = rot(TX, TY - AL - 30), ax1 = rot(TX, 60 * HS);
+    line(ctx, ax0[0], ax0[1], ax1[0], ax1[1], alpha(PAL.ink, 0.3), 2, [6, 8]);
+    F.hand(ctx, wrist[0], wrist[1], { aim: [-ct, -st], view: 'palm', curl: 0.8, thumb: 'up', right: true, s: HS, color: hc, ink: hc });
+    arrow(ctx, thumbTip[0], thumbTip[1], thumbHead[0], thumbHead[1], hc, 4);
+    const ring2 = [];
+    for (let i = 0; i <= 24; i++) { const q = Math.PI * (0.18 + (0.64 * i) / 24); ring2.push(rot(GX - 78 * Math.cos(q), 42 * HS + 16 * Math.sin(q))); }
+    poly(ctx, ring2.slice(0, -2), PAL.ink, 3);
+    arrow(ctx, ring2[22][0], ring2[22][1], ring2[24][0], ring2[24][1], PAL.ink, 3);
+    if (Math.abs(s) > 0.85) {
+      const under = rot(GX, 42 * HS + 16);
+      lab.add('thumb: along ω and L', thumbHead[0], thumbHead[1], ct >= 0 ? 1 : -1, 0, hc, 18, 14);
+      lab.add('fingers curl with the rim', under[0], under[1], 0, ct >= 0 ? 1 : -1, hc, 18, 18);
+    }
     lab.flush();
-    topline(ctx, `Seen from above the disk turns ${ccw ? 'counterclockwise' : 'clockwise'}, so the thumb, ω and L all point ${up > 0 ? 'up' : 'down'} along the axis.`);
+    topline(ctx, `Seen from above the disk turns ${ccw ? 'counterclockwise' : 'clockwise'}, so the thumb, $\\kw$ and $\\kL$ all point ${up > 0 ? 'up' : 'down'} along the axis.`);
     readout(d.readout, `\\kL = \\kI\\kw = (${fmt(I, 4)}\\ \\text{kg}\\cdot\\text{m}^2)(${fmt(w.v, 1)}\\ \\text{rad/s}) = ${fmt(L, 3)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`,
-      `The disk is 2.0 kg and 0.25 m, so $\\kI = \\tfrac{1}{2}MR^2 = ${fmt(I, 4)}\\ \\text{kg}\\cdot\\text{m}^2$, a positive number that keeps $\\kL$ along $\\kw$.`);
+      `$\\kI = \\tfrac{1}{2}MR^2$ is positive, so $\\kL$ never points against $\\kw$.`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
 
 /* =====================================================================
    Figure 10.38 · sim-torque-direction · still · locked view
-   A merry-go-round pushed at its rim. The torque τ = rF stands along the
-   axis, out of the platform for a counterclockwise push seen from above,
+   A merry-go-round pushed at its rim by a person standing on the ground
+   beside it, so the push is an outside force. The torque τ = rF stands along
+   the axis, out of the platform for a counterclockwise push seen from above,
    and the change in angular momentum it produces stands the same way. The
-   platform is 2.5 m across its radius, the slider's maximum, drawn at 300
-   units; the force arrow reaches 200 units at 100 N and the torque arrow
-   170 units at 250 N·m. The push is to the right of the near point of the
-   rim so that r is seen beside the post and not behind the person.
+   push is at the rim, so r is the platform's radius, 1.0 to 2.5 m, drawn at
+   120 units a metre; the force arrow reaches 200 units at 100 N and the
+   torque arrow 170 units at 250 N·m. The handle is on the near rim, to the
+   right of the near point for a counterclockwise push and mirrored to the
+   left for a clockwise one, so the person always stands in front of the
+   platform; she is placed from the rim each frame, 0.9 m behind the handle
+   along the line of her push and 0.25 m out, which keeps her off the platform.
 ===================================================================== */
 (function () {
-  const H = 580;
+  const H = 600;
   const d = sim('sim-torque-direction', H);
   const Fv = ctl(d.controls, { label: '\\kF', cls: 'force', min: 10, max: 100, step: 1, value: 50, unit: 'N', dec: 0, aria: 'the force of the push' });
-  const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 0.5, max: 2.5, step: 0.1, value: 2.0, unit: 'm', dec: 1, aria: 'the distance from the axis to the push' });
+  const r = ctl(d.controls, { label: '\\kr', cls: 'position', min: 1.0, max: 2.5, step: 0.1, value: 2.0, unit: 'm', dec: 1, aria: 'the radius of the merry-go-round, where the push is applied' });
   const sense = select(d.controls, { label: '\\text{Push}', options: [{ value: 'ccw', label: 'counterclockwise' }, { value: 'cw', label: 'clockwise' }], value: 'ccw', aria: 'the sense of the push seen from above' });
   const YAW = 0.34, V = view({ yaw: YAW, pitch: 0.5, dist: 1700, cx: 640, cy: 360 });
   const E = [Math.sin(YAW), 0, Math.cos(YAW)];
-  const S = 120;                                  /* canvas units per metre: the 2.5 m platform is 300 units */
-  const HP = 24;
+  const S = 120;                                  /* canvas units per metre */
+  const HP = 24, HANDLE = 0.65 * S, BACK = 0.9 * S, OUT = 0.25 * S, TALL = 1.7 * S;
+  const phiE = Math.atan2(E[2], E[0]);
+  /* the handle, the line of the push and where the person stands, for one sense of push */
+  const rig = (v) => {
+    const cc = v === 'ccw', phi = phiE + (cc ? -0.7 : 0.7), R = r.v * S;
+    const hp = [R * Math.cos(phi), 0, R * Math.sin(phi)];
+    const tangent = cc ? unit([Math.sin(phi), 0, -Math.cos(phi)]) : unit([-Math.sin(phi), 0, Math.cos(phi)]);
+    const stand = [hp[0] - tangent[0] * BACK + Math.cos(phi) * OUT, -HP, hp[2] - tangent[2] * BACK + Math.sin(phi) * OUT];
+    return { hp, tangent, stand, top: add(hp, [0, 1, 0], HANDLE) };
+  };
+  function person(ctx, g, col) {
+    const feet = V.P(g.stand), head = V.P(add(g.stand, [0, 1, 0], TALL)), q1 = V.P(g.top);
+    const ps = (feet[1] - head[1]) / F.silhouette.height(1), pf = q1[0] >= feet[0] ? 1 : -1;
+    const hx = (q1[0] - feet[0]) / (ps * pf), hy = (q1[1] - feet[1]) / ps;
+    face(ctx, ring(g.stand, 0.3 * S, [1, 0, 0], [0, 0, 1], 24).map(V.P), 0.08, 0);
+    silhouette(ctx, { x: feet[0], y: feet[1], s: ps, face: pf, pose: 'push', color: col, hands: [{ x: hx, y: hy }, { x: hx - 2, y: hy + 4 }] });
+    return { l: Math.min(feet[0], q1[0]) - 40 * ps, r: Math.max(feet[0], q1[0]) + 40 * ps, t: head[1] - 14 * ps, b: feet[1] };
+  }
   function draw() {
     const { ctx } = begin(d.c);
     const ccw = sense.value === 'ccw', up = ccw ? 1 : -1;
-    /* a change of push runs F, τ and ΔL down through nothing and out the other way */
+    /* a change of push runs F, τ and ΔL down through nothing and out the other way, and the person crossfades to the other side */
     const s = sense.mix((v) => (v === 'ccw' ? 1 : -1)), sg = s >= 0 ? 1 : -1;
-    const tau = r.v * Fv.v;
-    const lab = labeller(ctx, H); lab.block(0, 0, 1400, 110);
+    const tau = r.v * Fv.v, R = r.v * S;
+    const lab = labeller(ctx, H, { headline: 2 });
     /* the ground shadow and the platform */
     const c = [0, -HP, 0];
-    face(ctx, ring([0, -HP - 2, 0], 2.55 * S, [1, 0, 0], [0, 0, 1]).map(V.P), 0.08, 0);
-    const mgc = F.ref('merry-go-round');
-    drum(ctx, V, c, 2.5 * S, HP, E, mgc);
-    /* the central post */
+    face(ctx, ring([0, -HP - 2, 0], R + 6, [1, 0, 0], [0, 0, 1]).map(V.P), 0.08, 0);
+    const mgc = F.ref('merry-go-round'), pc = F.ref('person');
+    drum(ctx, V, c, R, HP, E, mgc);
+    /* the central post and the axis, faint, through the platform */
     const pB = V.P([0, 0, 0]), pT = V.P([0, 1.1 * S, 0]);
     line(ctx, pB[0], pB[1], pT[0], pT[1], PAL.muted, 10);
-    /* the axis, faint, through the platform */
     const aT = V.P([0, 3.4 * S, 0]), aB = V.P([0, -1.6 * S, 0]);
     line(ctx, aT[0], aT[1], aB[0], aB[1], alpha(PAL.ink, 0.3), 2, [6, 8]);
-    /* the push at the near point of the rim, a distance r from the axis, on a handle the person leans on */
-    const phi = Math.atan2(E[2], E[0]) - 0.7;
-    const hp = [r.v * S * Math.cos(phi), 0, r.v * S * Math.sin(phi)];
-    const tangent = sg > 0 ? unit([Math.sin(phi), 0, -Math.cos(phi)]) : unit([-Math.sin(phi), 0, Math.cos(phi)]);
-    const handleTop = add(hp, [0, 1, 0], 0.9 * S);
-    const q0 = V.P(hp), q1 = V.P(handleTop), o = V.P([0, 0, 0]);
-    /* the person stands a step behind the handle, against the push, and reaches to it */
-    const stand = add(hp, tangent, -0.42 * S);
-    const feet = V.P(stand);
-    const pf = tangent[0] >= 0 ? 1 : -1, PS = 2.0, phx = (q1[0] - feet[0]) / (PS * pf), phy = (q1[1] - feet[1]) / PS;
-    silhouette(ctx, { x: feet[0], y: feet[1], s: PS, face: pf, pose: 'push', color: F.ref('person'), hands: [{ x: phx, y: phy }, { x: phx - 3, y: phy + 5 }] });
-    line(ctx, q0[0], q0[1], q1[0], q1[1], mgc, 8);
-    /* r from the axis to the handle, along the platform */
+    for (const v of ['ccw', 'cw']) {
+      const a = sense.from === sense.value ? (v === sense.value ? 1 : 0) : sense.a(v);
+      if (a <= 0) continue;
+      ctx.save(); ctx.globalAlpha = a; turnArrow(ctx, V, [0, 4, 0], 0.76 * R, E, v === 'ccw', PAL.ink, 4, true); ctx.restore();
+    }
+    /* r from the axis to the foot of the handle, along the platform */
+    const g = rig(sg > 0 ? 'ccw' : 'cw'), o = V.P([0, 0, 0]), q0 = V.P(g.hp), q1 = V.P(g.top);
     arrow(ctx, o[0], o[1], q0[0], q0[1], C('position'), 4);
-    lab.add('r', (o[0] + q0[0]) / 2, (o[1] + q0[1]) / 2, 0.4, 1, C('position'), 24, 22);
-    /* F along the rim at the handle */
+    /* the handle at the rim and the person on the ground pushing it */
+    for (const v of ['ccw', 'cw']) {
+      const a = sense.from === sense.value ? (v === sense.value ? 1 : 0) : sense.a(v);
+      if (a <= 0) continue;
+      const gv = rig(v), h0 = V.P(gv.hp), h1 = V.P(gv.top);
+      ctx.save(); ctx.globalAlpha = a; line(ctx, h0[0], h0[1], h1[0], h1[1], mgc, 8); const box = person(ctx, gv, pc); ctx.restore();
+      if (v === sense.value) lab.place(box);
+    }
+    lab.beside({ x1: o[0], y1: o[1], x2: q0[0], y2: q0[1] }, sg > 0 ? 'right' : 'left', 'r', C('position'), 24, { gap: 18 });
+    /* F along the rim's tangent from her hands, named on the side away from the axis */
     const fl = 200 * (Fv.v / 100) * Math.abs(s);
-    const ft = arrowTo(ctx, V, handleTop, tangent, fl, C('force'), 5);
-    /* F is named beside its shaft, on the side away from the platform's axis, so the name never lands on τ */
-    const fd = [ft[0] - q1[0], ft[1] - q1[1]], fq = Math.hypot(fd[0], fd[1]) || 1, fn = [-fd[1] / fq, fd[0] / fq];
-    const fs = fn[0] * (q1[0] - o[0]) + fn[1] * (q1[1] - o[1]) >= 0 ? 1 : -1;
-    lab.add('F', (q1[0] + ft[0]) / 2, (q1[1] + ft[1]) / 2, fs * fn[0], fs * fn[1], C('force'), 24, 22);
+    const ft = arrowTo(ctx, V, g.top, g.tangent, fl, C('force'), 5);
+    if (fl > 20) lab.add('F', ft[0], ft[1], ft[0] >= q1[0] ? 1 : -1, -0.4, C('force'), 24, 16);
     /* the torque and the change in angular momentum, along the axis in the direction of the thumb */
     const tl = 170 * (tau / 250) * Math.abs(s);
     const from = [0, sg > 0 ? 1.1 * S : -HP, 0];
     const tt = arrowTo(ctx, V, add(from, [1, 0, 0], -16), [0, sg, 0], tl, C('torque'), 5);
     const dl = arrowTo(ctx, V, add(from, [1, 0, 0], 16), [0, sg, 0], tl * 0.7, C('angular-momentum'), 5);
-    lab.add('τ', tt[0], tt[1], -1, 0, C('torque'), 24, 26);
-    lab.add('ΔL', dl[0], dl[1], 1, 0, C('angular-momentum'), 24, 26);
-    for (const v of ['ccw', 'cw']) {
-      const a = sense.from === sense.value ? (v === sense.value ? 1 : 0) : sense.a(v);
-      if (a <= 0) continue;
-      ctx.save(); ctx.globalAlpha = a; turnArrow(ctx, V, [0, 4, 0], 1.9 * S, E, v === 'ccw', PAL.ink, 4, true); ctx.restore();
-    }
+    if (tl > 20) { lab.add('τ', tt[0], tt[1], sg > 0 ? -1 : 0, sg > 0 ? 0 : 1, C('torque'), 24, 22); lab.add('ΔL', dl[0], dl[1], 1, 0, C('angular-momentum'), 24, 22); }
     lab.flush();
-    topline(ctx, `A ${fmt(Fv.v, 0)} N push ${fmt(r.v, 1)} m from the axis makes a torque of ${fmt(tau, 0)} N·m pointing ${up > 0 ? 'up out of' : 'down through'} the platform, and the angular momentum it produces points the same way.`);
-    readout(d.readout, `\\ktau = \\kr\\kF = (${fmt(r.v, 1)}\\ \\text{m})(${fmt(Fv.v, 0)}\\ \\text{N}) = ${fmt(tau, 0)}\\ \\text{N}\\cdot\\text{m}`,
-      `$\\kdLang = \\ktau\\,\\Delta t$ points along the torque, ${up > 0 ? 'up out of' : 'down through'} the platform.`);
+    topline(ctx, `A ${fmt(Fv.v, 0)} N push at the rim, ${fmt(r.v, 1)} m from the axis, makes a torque of ${fmt(tau, 0)} N·m pointing ${up > 0 ? 'up out of' : 'down through'} the platform, and the angular momentum it produces points the same way.`);
+    tex(d.readout, `\\ktau = \\kr\\kF = (${fmt(r.v, 1)}\\ \\text{m})(${fmt(Fv.v, 0)}\\ \\text{N}) = ${fmt(tau, 0)}\\ \\text{N}\\cdot\\text{m}`);
   }
   register(d.fig, { update: () => {}, draw });
 })();
@@ -238,19 +236,25 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
    torque, L(t) = L₀ + τt, so the direction tilts by tan⁻¹(ΔL/L₀) and the
    magnitude grows a little. The vector diagram beside her is the book's (b),
    seen from above. The wheel is 0.33 m in radius with I = 0.15 kg·m², the
-   handles 0.50 m apart, both in ink. The diagram's scale is 30 units per
-   kg·m²/s, fixed from the sliders' maxima (L up to 9, ΔL up to 7.5). The
-   view is from her right and above, so the axle's swing toward her turns
-   the wheel toward the reader rather than edge-on.
+   handles 0.50 m apart, both in ink, the hub 1.2 m above the floor and
+   0.62 m in front of her, which keeps both hands on the handles at the
+   widest swing the sliders reach (79°). The diagram's scale is 30 units per kg·m²/s,
+   fixed from the sliders' maxima (L up to 9, ΔL up to 7.5). The view is
+   from her right, in front and a little above, so she is seen in profile
+   and the axle's swing toward her turns the wheel toward the reader; her
+   right arm is the near one, drawn over the wheel, and her left the far
+   one, drawn under it.
 ===================================================================== */
 (function () {
-  const H = 580;
+  const H = 650;
   const d = sim('sim-bike-wheel', H);
   const w = ctl(d.controls, { label: '\\kw', cls: 'angular-rate', min: 10, max: 60, step: 1, value: 30, unit: 'rad/s', dec: 0, aria: 'the spin of the wheel', onInput: reset });
   const Fv = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0.5, max: 10, step: 0.5, value: 2, unit: 'N', dec: 1, aria: 'the force of each hand', onInput: reset });
   const I = 0.15, RW = 0.33, DH = 0.25, T = 1.5;
-  const YAW = -0.55, V = view({ yaw: YAW, pitch: 0.42, dist: 2200, cx: 430, cy: 290 });
-  const S = 300;                                  /* canvas units per metre */
+  const V = view({ yaw: -0.8, pitch: 0.3, dist: 3000, cx: 420, cy: 305 });
+  const S = 320;                                  /* canvas units per metre */
+  const FLOOR = -1.2 * S, ZW = -0.62 * S, TALL = 1.65 * S;
+  const SH = { x: 4, y: -118 }, HEAD = { x: 8, y: -140 };   /* the stand pose leaning a little toward the wheel */
   const cy = cycle(() => T, 1.2);
   function reset() { cy.reset(); }
   const state = (t) => {
@@ -264,24 +268,20 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     const { ctx } = begin(d.c);
     const st = state(cy.now());
     hits = [];
-    const lab = labeller(ctx, H); lab.block(0, 0, 1400, 100);
-    /* the scene: the woman behind the wheel, the wheel on its axle */
+    const lab = labeller(ctx, H, { headline: 1 });
     const hub = [0, 0, 0], a = st.a;
-    const floorY = -0.84 * S;
-    const near = add(hub, a, DH * S), far = add(hub, a, -DH * S);
-    const pn = V.P(near), pf = V.P(far), ph = V.P(hub);
-    const stand = V.P([0, floorY, -0.42 * S]);
-    /* her right arm goes to the far handle and her left to the near one: the sprite is
-       drawn twice, each half clipped at her midline, so each arm reaches its own handle */
-    const WS = 2.7;
-    const drawHalf = (side, reach) => {
-      const lh = { x: (reach[0] - stand[0]) / WS, y: (reach[1] - stand[1]) / WS };
-      ctx.save(); ctx.beginPath(); ctx.rect(side < 0 ? 0 : stand[0], 0, side < 0 ? stand[0] : 1400 - stand[0], H); ctx.clip();
-      silhouette(ctx, { x: stand[0], y: stand[1], s: WS, pose: 'stand', color: F.ref('woman'), hands: [lh, lh], elbowSide: side });
-      ctx.restore();
-    };
-    drawHalf(-1, pf[0] < stand[0] ? pf : pn); drawHalf(1, pf[0] < stand[0] ? pn : pf);
-    /* the wheel: the rim in the plane perpendicular to the axle, the spokes turning at a fifth of the true rate */
+    /* her right hand on the handle toward the reader, her left on the far one */
+    const right = add(hub, a, -DH * S), left = add(hub, a, DH * S);
+    const pr = V.P(right), pl = V.P(left), ph = V.P(hub);
+    /* the woman in profile, feet on the floor, scaled from the scene so she stands below the headline */
+    const feet = V.P([0, FLOOR, ZW]), top = V.P([0, FLOOR + TALL, ZW]);
+    const ws = (feet[1] - top[1]) / F.silhouette.height(1), wc = F.ref('woman');
+    const loc = (p) => ({ x: (p[0] - feet[0]) / ws, y: (p[1] - feet[1]) / ws });
+    const hr = loc(pr), hl = loc(pl);
+    const her = { x: feet[0], y: feet[1], s: ws, pose: 'stand', shoulder: SH, head: HEAD, color: wc, hands: [hr, hl] };
+    face(ctx, ring([0, FLOOR, ZW], 0.3 * S, [1, 0, 0], [0, 0, 1], 24).map(V.P), 0.08, 0);
+    silhouette(ctx, her);
+    /* the wheel over her body and far arm: the rim in the plane perpendicular to the axle, the spokes at a fifth of the true rate */
     const u = [0, 1, 0], v = cross(a, u);
     const rim = ring(hub, RW * S, u, v, 72).map(V.P);
     const whc = F.ref('wheel');
@@ -292,24 +292,31 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
       const t = psi + (k * TAU) / 8, p = V.P(add(add(hub, u, RW * S * 0.94 * Math.cos(t)), v, RW * S * 0.94 * Math.sin(t)));
       line(ctx, ph[0], ph[1], p[0], p[1], PAL.muted, 2.5);
     }
-    line(ctx, pf[0], pf[1], pn[0], pn[1], whc, 10);
+    line(ctx, pl[0], pl[1], pr[0], pr[1], whc, 10);
     dot(ctx, ph[0], ph[1], whc, true, 8);
-    hits.push({ x: ph[0], y: ph[1], r: RW * S * 0.5, name: 'the spinning bicycle wheel, seen from her side' }, { x: pn[0], y: pn[1], r: 18, name: 'the handle her left hand pushes down' }, { x: pf[0], y: pf[1], r: 18, name: 'the handle her right hand lifts' });
+    /* her near arm again over the wheel: the same body redrawn inside a band round that arm alone */
+    const sh = SH, reach = F.silhouette.reach(1);
+    const dx = hr.x - sh.x, dy = hr.y - sh.y, D = Math.min(Math.hypot(dx, dy), reach) || 1, ux = dx / Math.hypot(dx, dy || 1e-9), uy = dy / Math.hypot(dx, dy || 1e-9);
+    const bow = Math.sqrt(Math.max(0, 30 * 30 - (D / 2) ** 2)) + 10, nx = -uy, ny = ux;
+    const band = [[sh.x + nx * bow, sh.y + ny * bow], [sh.x + ux * (D + 10) + nx * bow, sh.y + uy * (D + 10) + ny * bow], [sh.x + ux * (D + 10) - nx * 10, sh.y + uy * (D + 10) - ny * 10], [sh.x + ux * 12 - nx * 10, sh.y + uy * 12 - ny * 10]];
+    ctx.save(); ctx.beginPath(); band.forEach(([x, y], i) => (i ? ctx.lineTo(feet[0] + x * ws, feet[1] + y * ws) : ctx.moveTo(feet[0] + x * ws, feet[1] + y * ws))); ctx.closePath(); ctx.clip();
+    silhouette(ctx, her); ctx.restore();
+    hits.push({ x: ph[0], y: ph[1], r: RW * S * 0.5, name: 'the spinning bicycle wheel' }, { x: pl[0], y: pl[1], r: 18, name: 'the handle her left hand pushes down' }, { x: pr[0], y: pr[1], r: 18, name: 'the handle her right hand lifts' });
     /* the two forces at the handles and the torque they make, toward her */
     const fl2 = 150 * (Fv.v / 10);
-    const tn = arrowTo(ctx, V, near, [0, -1, 0], fl2, C('force'), 5);
-    const tf = arrowTo(ctx, V, far, [0, 1, 0], fl2, C('force'), 5);
-    hits.push({ x: (pn[0] + tn[0]) / 2, y: (pn[1] + tn[1]) / 2, r: 24, name: 'F, the push of her left hand, down' }, { x: (pf[0] + tf[0]) / 2, y: (pf[1] + tf[1]) / 2, r: 24, name: 'F, the lift of her right hand, up' });
+    const tl_ = arrowTo(ctx, V, left, [0, -1, 0], fl2, C('force'), 5);
+    const tr_ = arrowTo(ctx, V, right, [0, 1, 0], fl2, C('force'), 5);
+    hits.push({ x: (pl[0] + tl_[0]) / 2, y: (pl[1] + tl_[1]) / 2, r: 24, name: 'F, the push of her left hand, down' }, { x: (pr[0] + tr_[0]) / 2, y: (pr[1] + tr_[1]) / 2, r: 24, name: 'F, the lift of her right hand, up' });
     const tl = 200 * (st.tau / 10);
     const tt = arrowTo(ctx, V, hub, [0, 0, -1], tl, C('torque'), 5);
     hits.push({ x: (ph[0] + tt[0]) / 2, y: (ph[1] + tt[1]) / 2, r: 24, name: 'τ, the torque of her two hands, toward her' });
     /* L along the axle, out of her left side */
     const ll = 200 * (st.L / 12);
-    const tL = arrowTo(ctx, V, near, a, ll, C('angular-momentum'), 5);
-    hits.push({ x: (pn[0] + tL[0]) / 2, y: (pn[1] + tL[1]) / 2, r: 24, name: 'L, the angular momentum of the wheel, along its axle' });
+    const tL = arrowTo(ctx, V, left, a, ll, C('angular-momentum'), 5);
+    hits.push({ x: (pl[0] + tL[0]) / 2, y: (pl[1] + tL[1]) / 2, r: 24, name: 'L, the angular momentum of the wheel, along its axle' });
     /* the arrows in the scene turn with the axle, so they are named under the pointer; the diagram beside it names each kind (rule 26.7) */
     /* the vector diagram, seen from above: L to her left, ΔL toward her */
-    const ox = 1010, oy = 470, K = 30;
+    const ox = 1010, oy = 540, K = 30;
     line(ctx, ox - 40, oy, ox + 280, oy, alpha(PAL.ink, 0.3), 2, [6, 8]);
     line(ctx, ox, oy + 40, ox, oy - 380, alpha(PAL.ink, 0.3), 2, [6, 8]);
     text(ctx, 'seen from above', ox + 120, 130, PAL.muted, { size: 17, align: 'center' });
@@ -327,7 +334,7 @@ function turnArrow(ctx, V, c, R, e, ccw, color, w = 4, far = false) {
     lab.flush();
     topline(ctx, `After ${fmt(st.t, 2)} s of pushing the axis has swung ${fmt(st.phi / RAD, 0)}° toward her, and the wheel has not tipped.`);
     readout(d.readout, `\\kdLang = \\ktau\\,\\Delta t = (${fmt(st.tau, 1)}\\ \\text{N}\\cdot\\text{m})(${fmt(st.t, 2)}\\ \\text{s}) = ${fmt(st.dL, 2)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}`,
-      `With $\\kL = \\kI\\kw = ${fmt(st.L0, 2)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$ the axis has swung $\\tan^{-1}(\\kdLang/\\kL) = ${fmt(st.phi / RAD, 0)}^\\circ$ toward her. The spin is drawn at one fifth of its true rate.`);
+      `With $\\kL = \\kI\\kw = ${fmt(st.L0, 2)}\\ \\text{kg}\\cdot\\text{m}^2\\text{/s}$ the swing is $\\tan^{-1}(\\kdLang/\\kL)$, and the spokes turn at one fifth of their true rate.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();
