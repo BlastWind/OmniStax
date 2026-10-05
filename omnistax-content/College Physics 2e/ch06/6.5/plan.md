@@ -159,31 +159,23 @@ graph · 3D
    law. The sizes and the offset of the center of mass are drawn larger
    than they are, as the book’s figure draws them. Draws position, time,
    acceleration, angular-rate.
-4. `sim-tides` · replaces Figure 6.21 and folds Figure 6.22, whose three
-   panels draw the same Earth and the same bulges with the Sun added ·
-   tides, universal-gravitation · **moves**: Earth turns under the tidal
-   bulge once a day, which is why a coast passes through two high and two
-   low tides, so the figure runs a cycle of one day and gets the transport
-   · the distance to the Moon $\kr$ (3.00 to 5.00 × 10⁸ m, default 3.84,
-   position) and the angle of the Sun from the Earth-Moon line (0º to 90º,
-   default 0º, ink) · “After 6.2 h Earth has turned 93° under the bulges,
-   and the marked coast is running toward low tide.” · a trace of the tide
-   at the marked coast beside the scene, on fixed axes of one day by the
-   largest tide the Sun can add · 2D, the plane of the Moon’s orbit being
-   the canvas · labels on, the three pulls, the two tidal forces and the
-   coast being placed by the labeller, which steps a label out and leaders
-   it when its slot is taken. Three arrows show the Moon’s pull on the near
-   water, on Earth and on the far water, longest on the near side and
-   shortest on the far one, which is the whole argument for two bulges. The
-   Sun is 390 times as far away as the Moon and cannot stand on the Moon’s
-   scale, so it is drawn at the edge of the picture along its true
-   direction, on a line with a break cut out of it, and the note beside it
-   says that this one distance is not to scale.
-   Readout: $\kF = G\,mM/\kr^2$, the force the Moon exerts on a parcel of
-   water of mass 1.00 kg at the near side, at Earth’s center and at the far
-   side, so that the readout states the same quantity the force-hued arrows
-   draw; small line on the spring tides at 0º and the neap tides at
-   90º. Draws force, position.
+4. `sim-tides` · Figure 6.21 + 6.22 (fold kept) · tides, universal-gravitation ·
+   flow by animation (Earth turns under two bulges once a day) and variation
+   (spring to neap as the Sun moves round) · moving: Earth turns, one day per
+   loop, transport kept · $\kr$ (3.00 to 5.00 × 10⁸ m, position) and the Sun's
+   angle $\ktheta$ (0° to 90°, angle, dashed detents on 0° spring and 90° neap) ·
+   headline: hours turned and whether the marked coast runs to high or low
+   tide · tide-at-the-coast graph beside the scene as now · 2D. The scene keeps
+   only the bodies and the two tidal-force arrows on the bulge; the three Moon
+   pulls move entirely to the bar panel below, on the same scale as those two
+   arrows, the Sun stands on a broken line at the scene's edge along its true
+   direction with its not-to-scale clause moved into the readout note, and
+   labels are limited to Earth, the Moon, the Sun, the coast and the two tidal
+   forces, placed by labeller() with every body and arrow blocked; water, r
+   and the orbit step go to F.hover names. The Moon's bulge grows as $1/\kr^3$
+   and the Sun's adds along or across it. No split. Readout:
+   $\kF = G\,mM/\kr^2$ on 1.00 kg of water at the near side, the center and
+   the far side. Draws force, position, angle.
 5. `sim-cavendish` · replaces Figure 6.25 (the torsion balance, the
    mirror, the light source and the scale) · cavendish-experiment,
    gravitational-constant, universal-gravitation · **moving**: the large

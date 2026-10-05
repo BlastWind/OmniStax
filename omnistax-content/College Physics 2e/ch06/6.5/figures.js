@@ -289,150 +289,163 @@ function sun(ctx, x, y, r, color) {
 })();
 
 /* =====================================================================
-   FIGURE 6.21 + 6.22: the tides as a day's motion. The Moon pulls the
-   near water hardest, Earth less and the far water least, and what is
-   left of each pull once the pull on Earth's center is taken away is the
-   tidal force that stands the water up on both sides. Earth turns under
-   those two bulges once a day while the Moon creeps along its orbit, so
-   a marked coast passes high, low, high, low and its second high tide
-   comes a little after twelve hours. The Sun's bulge adds along or across
-   the Moon's, which is the spring and the neap tide. Runs a day, so it
-   gets the transport.
+   FIGURE 6.21 + 6.22: the tides as a day's motion. Earth turns under two
+   bulges once a day while the Moon creeps along its orbit, so a marked
+   coast passes high, low, high, low. The scene carries only the bodies and
+   the two tidal forces; the Moon's three pulls, and the subtraction that
+   leaves those two forces, are the panel below it on the same scale. The
+   Moon's bulge grows as 1/r cubed and the Sun's adds along or across it,
+   which is the spring and the neap tide. Runs a day, so it gets the
+   transport.
 ===================================================================== */
 (function () {
-  const d = sim('sim-tides', 700);
-  const rM = ctl(d.controls, { label: '\\kr', cls: 'position', min: 3, max: 5, step: 0.01, value: 3.84, unit: '\u00D7 10\u2078 m', dec: 2, aria: 'the distance from Earth to the Moon' });
+  const H = 760;
+  const d = sim('sim-tides', H);
+  const rM = ctl(d.controls, { label: '\\kr', cls: 'position', min: 3, max: 5, step: 0.01, value: 3.84, unit: '× 10⁸ m', dec: 2, aria: 'the distance from Earth to the Moon' });
   const phi = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 90, step: 1, value: 0, unit: '°', dec: 0, aria: 'the angle of the Sun from the Earth-Moon line, zero for a spring tide and ninety for a neap tide', specials: [{ at: 0, label: 'spring' }, { at: 90, label: 'neap' }] });
   const cy = cycle(() => 24, 1.2);
   const pull = (dist) => (G_MEASURED * M_MOON) / (dist * dist);
-  /* the arrows are forces, so the readout writes the force the Moon exerts on a named parcel of
-     water rather than the acceleration it would give it */
+  /* the readout writes the force the Moon exerts on a named parcel of water, the quantity the bars draw */
   const M_WATER = 1.00;
   const force = (dist) => M_WATER * pull(dist);
-  const cx = 680, cyy = 320, R = 100, D0 = 400;        /* Earth, and the Moon's drawn distance at 3.84 */
-  /* a point at drawn distance q from Earth's center along the direction th (counterclockwise, as on the page) */
+  /* Earth, and the Moon's drawn distance at 3.84. At 3.00 the Moon stands 359 out, which leaves room
+     for the longest near tidal force (151) between the highest water (145) and the Moon. */
+  const cx = 720, cyy = 290, R = 100, D0 = 460;
   const at = (q, th) => ({ x: cx + q * Math.cos(th), y: cyy - q * Math.sin(th) });
-  /* the trace of the tide at the coast: a fixed frame of one day and of the
-     largest tide the Sun can add to the Moon's, so the curve never rescales */
-  const box = { l: 985, t: 500, r: 1340, b: 640 };
+  /* the Moon's tide at r relative to its tide at 3.84, and the Sun's, which is 0.46 of that */
+  const B = 0.46, moonTide = () => Math.pow(3.84 / rM.v, 3);
+  /* the trace's frame: one day by the largest joint tide the sliders reach, 2.10 + 0.46 at 3.00 */
+  const box = { l: 985, t: 570, r: 1340, b: 705 }, YMAX = 2.6;
+  const SB = { l: 60, r: 1340, t: 110, b: 545 };                 /* the scene's edge, where the Sun stands */
+  const drawn = (q) => 50 * (D0 / q) * (D0 / q);                 /* a pull's length at drawn distance q: 50 at Earth's center at 3.84 */
+  let hits = [];
+  F.hover(d.stage, () => hits);
+  /* the rows a body spans, as boxes, so the labels step round an oval rather than its bounding square */
+  function blockPts(L, pts, n = 6) {
+    const ys = pts.map((p) => p.y), t = Math.min(...ys), h = (Math.max(...ys) - t) / n;
+    for (let k = 0; k < n; k++) {
+      const y0 = t + k * h, xs = pts.filter((p) => p.y >= y0 - 2 && p.y <= y0 + h + 2).map((p) => p.x);
+      if (xs.length) L.block(Math.min(...xs), y0, Math.max(...xs), y0 + h);
+    }
+  }
+  const segBox = (L, s, pad = 4) => L.block(Math.min(s.x1, s.x2) - pad, Math.min(s.y1, s.y2) - pad, Math.max(s.x1, s.x2) + pad, Math.max(s.y1, s.y2) + pad);
   function draw() {
     const { ctx } = begin(d.c);
-    const L = labeller(ctx, 700); L.block(0, 0, 1400, 90);
     const tau = cy.now();
     const a = (TAU * tau) / 24;                        /* Earth has turned this far */
     const lineA = (TAU * tau) / (24 * T_MOON);         /* and the Moon has moved this far along its orbit */
     const D = D0 * (rM.v / 3.84);
-    /* The Moon raises a bulge along its own line and the Sun along its own, and
-       the two add as tidal bulges do: the Sun's is about half the Moon's, and the
-       water stands highest when the Sun is in line with the Moon and lowest when
-       it stands at ninety degrees to it. psi is where the joint bulge points,
-       measured from the Moon's line. */
-    const p = phi.v * RAD, A = 1, B = 0.46;
+    /* The two bulges add as tides do: the water stands highest when the Sun is in line with the Moon
+       and lowest when it stands at ninety degrees. psi is where the joint bulge points, measured from
+       the Moon's line; where the Sun's tide is the larger, at a neap with the Moon far, it is the Sun's. */
+    const p = phi.v * RAD, A = moonTide();
     const amp = Math.sqrt(A * A + B * B + 2 * A * B * Math.cos(2 * p));
     const psi = 0.5 * Math.atan2(B * Math.sin(2 * p), A + B * Math.cos(2 * p));
     const bulgeA = lineA + psi;
-    const sa = R * (1.14 + 0.36 * amp), sb = R * (1.08 - 0.02 * amp);
-    /* the water: a body of ocean all round Earth, drawn as an ellipse stretched along
-       the joint bulge, so that it stands high on two sides and low on the other two */
-    ctx.save(); ctx.translate(cx, cyy); ctx.rotate(-bulgeA);
-    ctx.fillStyle = alpha(F.ref('water'), 0.18); ctx.strokeStyle = F.ref('water'); ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.ellipse(0, 0, sa, sb, 0, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('earth'); ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.arc(cx, cyy, R, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
-    text(ctx, 'Earth', cx, cyy - 64, F.ref('earth'), { weight: 600, align: 'center' });
-    const wl = at(sa - 22, bulgeA + 0.5 * Math.PI + 0.9);
-    text(ctx, 'water', wl.x, wl.y, F.ref('water'), { size: 16, align: 'center', weight: 600 });
-    /* Earth turns: a curved arrow inside it, running the way the coast goes */
-    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cyy, R * 0.55, 0.2 * Math.PI, 0.6 * Math.PI); ctx.stroke(); ctx.restore();
-    const ta = at(R * 0.55, -0.2 * Math.PI), tb = at(R * 0.55, -0.12 * Math.PI);
-    arrow(ctx, ta.x, ta.y, tb.x, tb.y, PAL.muted, 3);
-    text(ctx, 'Earth turns', cx, cyy + 14, PAL.muted, { size: 15, align: 'center' });
-    /* the Moon on its line, the line itself, and the orbit it creeps along */
-    const m = at(D, lineA);
-    line(ctx, cx + R * Math.cos(lineA), cyy - R * Math.sin(lineA), m.x - 40 * Math.cos(lineA), m.y + 40 * Math.sin(lineA), alpha(PAL.ink, 0.35), 2, [10, 10]);
-    const rl = at(D * 0.72, lineA - 0.09);
-    text(ctx, 'r = ' + fmt(rM.v, 2) + ' \u00D7 10\u2078 m', rl.x, rl.y + 26, C('position'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
-    ctx.save(); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([4, 8]); ctx.beginPath(); ctx.arc(cx, cyy, D, -lineA - 0.5, -lineA + 0.34); ctx.stroke(); ctx.restore();
-    const oa = at(D, lineA + 0.14), ob = at(D, lineA + 0.24);
+    const sa = R * (1.12 + 0.13 * amp), sb = R * (1.08 - 0.06 * amp / YMAX);
+    const rho = (th) => { const q = th - bulgeA; return (sa * sb) / Math.hypot(sb * Math.cos(q), sa * Math.sin(q)); };
+    const height = (t) => amp * Math.cos(2 * ((TAU * t) / 24 - (TAU * t) / (24 * T_MOON) - psi));
+    const h = height(tau), rel = amp > 1e-6 ? h / amp : 0, ahead = amp > 1e-6 ? height(tau + 0.3) / amp : 0;
+    const stateOf = amp < 0.12 ? 'the two bulges all but cancel, so the marked coast barely rises or falls'
+      : 'the marked coast ' + (rel > 0.92 ? 'stands at high tide' : rel < -0.92 ? 'stands at low tide' : ahead > rel ? 'is running toward high tide' : 'is running toward low tide');
+    const lines = topline(ctx, 'After ' + fmt(tau, 1) + ' h Earth has turned ' + fmt((tau / 24) * 360, 0) + '° under the bulges, and ' + stateOf + '.');
+    const L = labeller(ctx, H, { headline: lines });
+    L.block(0, box.t - 40, 1400, H);                   /* the bar panel and the trace */
+
+    /* the Moon's orbit, kept below the headline, and an arrow on it behind the Moon saying which way it goes */
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 100, 1400, H); ctx.clip();
+    ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2; ctx.setLineDash([4, 8]); ctx.beginPath(); ctx.arc(cx, cyy, D, -lineA - 0.5, -lineA + 0.34); ctx.stroke(); ctx.restore();
+    const oa = at(D, lineA - 0.21), ob = at(D, lineA - 0.125);
     arrow(ctx, oa.x, oa.y, ob.x, ob.y, PAL.ink, 3);
-    moon(ctx, m.x, m.y, 34, F.ref('moon'));
-    text(ctx, 'the Moon', m.x, m.y + 62, F.ref('moon'), { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'moves ' + fmt((lineA / RAD), 1) + '° along its orbit', m.x, m.y + 88, PAL.muted, { size: 15, align: 'center' });
-    /* the Sun, swung round from the far end of the Earth-Moon line by theta. It is 390 times as far
-       away as the Moon, so it cannot stand on the Moon's own scale: it is drawn at the edge of the
-       picture along its true direction, on a line with a break cut out of it, and the note beside it
-       says that this one distance is not to scale. */
+    segBox(L, { x1: oa.x, y1: oa.y, x2: ob.x, y2: ob.y }, 10);
+
+    /* the two tidal forces: each pull less the pull on Earth's center, on the panel's scale */
+    const Ln = drawn(D - R), Lm = drawn(D), Lf = drawn(D + R);
+    const kt = 2, tn = kt * (Ln - Lm), tf = kt * (Lm - Lf);
+    const ux = Math.cos(lineA), uy = -Math.sin(lineA);
+    const w0 = rho(lineA) + 8;
+    const segN = { x1: cx + w0 * ux, y1: cyy + w0 * uy, x2: cx + (w0 + tn) * ux, y2: cyy + (w0 + tn) * uy };
+    const segF = { x1: cx - w0 * ux, y1: cyy - w0 * uy, x2: cx - (w0 + tf) * ux, y2: cyy - (w0 + tf) * uy };
+
+    /* The Sun, swung round from the far end of the Earth-Moon line by theta. It is 390 times as far
+       away as the Moon and cannot stand on the Moon's scale, so it stands at the scene's edge along its
+       true direction, on a line with a break cut out of it; the readout's note says so. */
     const sunA = lineA + Math.PI + p;
-    const SB = { l: 70, r: 1320, t: 130, b: 478 };
     const cS = Math.cos(sunA), sS = -Math.sin(sunA);
     let kEdge = Infinity;
     if (cS > 1e-6) kEdge = Math.min(kEdge, (SB.r - cx) / cS); else if (cS < -1e-6) kEdge = Math.min(kEdge, (SB.l - cx) / cS);
     if (sS > 1e-6) kEdge = Math.min(kEdge, (SB.b - cyy) / sS); else if (sS < -1e-6) kEdge = Math.min(kEdge, (SB.t - cyy) / sS);
-    const kSun = Math.max(140, kEdge - 40), s = { x: cx + kSun * cS, y: cyy + kSun * sS };
-    const sA = { x: cx + R * cS, y: cyy + R * sS }, sB2 = { x: s.x - 44 * cS, y: s.y - 44 * sS };
-    const bkx = sA.x + (sB2.x - sA.x) * 0.55, bky = sA.y + (sB2.y - sA.y) * 0.55;
-    line(ctx, sA.x, sA.y, bkx - 10 * cS, bky - 10 * sS, alpha(PAL.ink, 0.35), 2, [10, 10]);
-    line(ctx, bkx + 10 * cS, bky + 10 * sS, sB2.x, sB2.y, alpha(PAL.ink, 0.35), 2, [10, 10]);
-    [-1, 1].forEach((q) => line(ctx, bkx + q * 5 * cS - 9 * sS + 5 * cS, bky + q * 5 * sS + 9 * cS + 5 * sS, bkx + q * 5 * cS + 9 * sS - 5 * cS, bky + q * 5 * sS - 9 * cS - 5 * sS, PAL.muted, 2));
+    const kSun = kEdge - 44, s = { x: cx + kSun * cS, y: cyy + kSun * sS };
+    const k0 = rho(sunA) + 10 + tf * Math.max(0, Math.cos(p)) + 6, k1 = kSun - 46, kb = k0 + (k1 - k0) * 0.55;
+    const P = (k) => ({ x: cx + k * cS, y: cyy + k * sS });
+    const b0 = P(kb - 10), b1 = P(kb + 10), s0 = P(k0), s1 = P(k1);
+    line(ctx, s0.x, s0.y, b0.x, b0.y, alpha(PAL.ink, 0.35), 2, [10, 10]);
+    line(ctx, b1.x, b1.y, s1.x, s1.y, alpha(PAL.ink, 0.35), 2, [10, 10]);
+    [b0, b1].forEach((q) => line(ctx, q.x - 9 * sS + 5 * cS, q.y + 9 * cS + 5 * sS, q.x + 9 * sS - 5 * cS, q.y - 9 * cS - 5 * sS, PAL.muted, 2));
     sun(ctx, s.x, s.y, 26, F.ref('sun'));
-    /* the note is long, so near an edge it is set against that edge rather than centered on the Sun */
-    const al = s.x < 340 ? 'left' : s.x > 1060 ? 'right' : 'center';
-    const nx = al === 'left' ? Math.max(24, s.x - 46) : al === 'right' ? Math.min(1376, s.x + 46) : s.x;
-    text(ctx, 'the Sun', s.x, s.y + 62, F.ref('sun'), { size: 20, weight: 600, align: 'center' });
-    text(ctx, 'The Sun is 390 times as far away as the Moon, so this distance is not to scale.', nx, s.y + 88, PAL.muted, { size: 15, align: al });
-    /* the three pulls the Moon exerts, drawn at the near side, the center and the
-       far side along the Moon's line with lengths that follow 1/r squared in the
-       drawing's own distances, so the near arrow is longest and the far one shortest */
-    const near = pull(rM.v * 1e8 - R_EARTH), mid = pull(rM.v * 1e8), far = pull(rM.v * 1e8 + R_EARTH);
-    const drawn = (q) => 55 * (D0 / q) * (D0 / q);   /* 55 units at the default distance, so the near arrow stops short of the Moon at 3 */
-    const Ln = drawn(D - R), Lm = drawn(D), Lf = drawn(D + R);
-    const ux = Math.cos(lineA), uy = -Math.sin(lineA), vx = -uy, vy = ux;
-    const raw = [[R, Ln, 'pull on the near water'], [0, Lm, 'pull on Earth'], [-R, Lf, 'pull on the far water']];
-    raw.forEach(([q, len, lab]) => {
-      const x0 = cx + q * ux, y0 = cyy + q * uy;
-      arrow(ctx, x0, y0, x0 + len * ux, y0 + len * uy, C('force'), 4);
-      L.add(lab, x0 + len * ux, y0 + len * uy, q > 0 ? vx : -vx, q > 0 ? vy : -vy, C('force'), 16, q === 0 ? 34 : 24);
-    });
-    /* what is left of each once the pull on Earth's center is taken away: the
-       tidal force, outward on both sides, which is what stands the water up */
-    const kt = 2, tn = kt * (Ln - Lm), tf = kt * (Lm - Lf);
-    [[1, tn], [-1, tf]].forEach(([sg, len]) => {
-      const x0 = cx + sg * sa * ux + 24 * vx * sg, y0 = cyy + sg * sa * uy + 24 * vy * sg;
-      arrow(ctx, x0, y0, x0 + sg * len * ux, y0 + sg * len * uy, C('force'), 6);
-      L.add('tidal force', x0 + sg * len * ux, y0 + sg * len * uy, sg * ux, sg * uy, C('force'), 17, 22);
-    });
-    /* the coast that Earth carries round under the bulge, and its tide */
+    L.block(s.x - 44, s.y - 44, s.x + 44, s.y + 44);
+
+    /* the water, a body of ocean all round Earth stretched along the joint bulge, then Earth turning under it */
+    ctx.save(); ctx.translate(cx, cyy); ctx.rotate(-bulgeA);
+    ctx.fillStyle = alpha(F.ref('water'), 0.18); ctx.strokeStyle = F.ref('water'); ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(0, 0, sa, sb, 0, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    const oval = []; for (let i = 0; i < 96; i++) { const th = (i * TAU) / 96; oval.push(at(rho(th), th)); }
+    blockPts(L, oval, 12);
+    world(ctx, cx, cyy, R, F.ref('earth'));
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cyy, R * 0.55, 0.2 * Math.PI, 0.6 * Math.PI); ctx.stroke(); ctx.restore();
+    const ta = at(R * 0.55, -0.2 * Math.PI), tb = at(R * 0.55, -0.12 * Math.PI);
+    arrow(ctx, ta.x, ta.y, tb.x, tb.y, PAL.muted, 3);
     const k = at(R, a);
     dot(ctx, k.x, k.y, F.ref('coast'), true, 10);
-    L.add('a coast', k.x, k.y, Math.cos(a), -Math.sin(a), F.ref('coast'), 17, 22);
-    const height = (t) => amp * Math.cos(2 * ((TAU * t) / 24 - (TAU * t) / (24 * T_MOON) - psi));
-    const h = height(tau);
-    /* the ledger: the subtraction, arrow by arrow */
-    const lx = 70, ly = 505;
+
+    /* the Moon */
+    const m = at(D, lineA);
+    moon(ctx, m.x, m.y, 34, F.ref('moon'));
+    L.block(m.x - 36, m.y - 36, m.x + 36, m.y + 36);
+
+    [segN, segF].forEach((sg) => { arrow(ctx, sg.x1, sg.y1, sg.x2, sg.y2, C('force'), 5); segBox(L, sg); });
+
+    /* the labels. Earth's sits up and to the left, the one quarter neither the Moon nor the Sun reaches;
+       each tidal force's sits up and outward from its head, clear of the water; the coast's last, since it moves */
+    const eA = 2 * Math.PI / 3;
+    L.add('Earth', cx + R * Math.cos(eA), cyy - R * Math.sin(eA), Math.cos(eA), -Math.sin(eA), F.ref('earth'), 20, rho(eA) - R + 20);
+    [segN, segF].forEach((sg) => L.add('tidal force', sg.x2, sg.y2, 0.6 * Math.sign(sg.x2 - sg.x1), -0.8, C('force'), 17, 40));
+    L.add('the Moon', m.x - 20, m.y + 30, -0.6, 0.8, F.ref('moon'), 20, 24);
+    const pu = cS <= 0 ? [-sS, cS] : [sS, -cS];      /* the side of the Sun's line that faces up */
+    L.add('the Sun', s.x + pu[0] * 44, s.y + pu[1] * 44, pu[0], pu[1], F.ref('sun'), 20, 14);
+    L.add('a coast', k.x, k.y, Math.cos(a), -Math.sin(a), F.ref('coast'), 17, rho(a) - R + 18);
+
+    /* the panel: the Moon's three pulls, and what is left of each once the pull on Earth's center is taken away */
+    const lx = 70, ly = 572;
     text(ctx, "the Moon's pull", lx + 120, ly, PAL.muted, { size: 16 });
-    text(ctx, "what is left once the pull on Earth's center is taken away", lx + 300, ly, PAL.muted, { size: 16 });
+    text(ctx, "less the pull on Earth's center", lx + 330, ly, PAL.muted, { size: 16 });
     [['near water', Ln, tn], ['Earth', Lm, 0], ['far water', Lf, -tf]].forEach(([lab, len, tid], i) => {
-      const y = ly + 40 + i * 44;
+      const y = ly + 42 + i * 44;
       text(ctx, lab, lx, y, PAL.muted, { size: 17 });
       arrow(ctx, lx + 120, y, lx + 120 + len, y, C('force'), 4);
-      if (tid === 0) { dot(ctx, lx + 400, y, C('force'), false, 6); text(ctx, 'nothing', lx + 416, y, PAL.muted, { size: 15 }); }
-      else arrow(ctx, lx + 400, y, lx + 400 + tid, y, C('force'), 6);
+      if (tid === 0) { dot(ctx, lx + 330, y, C('force'), false, 6); text(ctx, 'nothing', lx + 346, y, PAL.muted, { size: 15 }); }
+      else arrow(ctx, lx + 330, y, lx + 330 + tid, y, C('force'), 5);
     });
-    /* the tide-height trace: axes fixed once from the largest spring tide */
+
+    /* the tide at the coast: axes fixed once from the largest tide the sliders reach */
     text(ctx, 'the tide at the coast', box.l, box.t - 24, PAL.muted, { size: 17 });
-    const { X, Y } = axes(ctx, box, [0, 24], [-1.6, 1.6], { nx: 4, ny: 2, fx: (v) => fmt(v, 0) + ' h', fy: (v) => (v > 0 ? 'high' : v < 0 ? 'low' : '') });
+    const { X, Y } = axes(ctx, box, [0, 24], [-YMAX, YMAX], { nx: 4, ny: 2, fx: (v) => fmt(v, 0) + ' h', fy: (v) => (v > 0 ? 'high' : v < 0 ? 'low' : '') });
     if (tau > 0.05) curve(ctx, height, 0, tau, X, Y, F.ref('coast'), 3);
     pinned(ctx, box, X, Y, tau, h, F.ref('coast'));
-    /* the state of the marked coast, read off the water above it */
-    const rel = h / amp, ahead = height(tau + 0.3) / amp;
-    const stateOf = rel > 0.92 ? 'stands at high tide' : rel < -0.92 ? 'stands at low tide' : ahead > rel ? 'is running toward high tide' : 'is running toward low tide';
-    topline(ctx, 'After ' + fmt(tau, 1) + ' h Earth has turned ' + fmt((tau / 24) * 360, 0) + '° under the bulges, and the marked coast ' + stateOf + '.');
-    text(ctx, phi.v < 15 ? 'The Sun is in line with the Moon, so its bulge adds to the Moon\u2019s and these are the largest tides of the month, the spring tides.'
-      : phi.v > 75 ? 'The Sun stands at right angles to the Earth-Moon line, so its bulge works against the Moon\u2019s and these are the smallest tides, the neap tides.'
-        : 'The Sun stands part way round from the Earth-Moon line, so its bulge adds to the Moon\u2019s only in part and the tides are middling.', 700, 680, PAL.muted, { size: 19, align: 'center' });
     L.flush();
+
+    const near = rho(lineA);
+    hits = [
+      { x: m.x, y: m.y, r: 40, name: 'the Moon, r = ' + fmt(rM.v, 2) + ' × 10⁸ m from Earth’s center' },
+      { x: (oa.x + ob.x) / 2, y: (oa.y + ob.y) / 2, r: 22, name: 'the Moon has moved ' + fmt(lineA / RAD, 1) + '° along its orbit' },
+      { x: s.x, y: s.y, r: 44, name: 'the Sun' },
+      { x: k.x, y: k.y, r: 16, name: 'the marked coast' },
+      { x: cx, y: cyy, r: R * 0.65, name: 'Earth, turning once a day' },
+      { x: cx, y: cyy, r: R, name: 'Earth' },
+      { x: cx, y: cyy, r: Math.max(sa, near), name: 'the ocean water, standing in two bulges' },
+    ];
     readout(d.readout, `\\kF = G\\frac{\\km\\kM}{\\kr^2}:\\quad ${texSci(force(rM.v * 1e8 - R_EARTH), 3)}\\;>\\;${texSci(force(rM.v * 1e8), 3)}\\;>\\;${texSci(force(rM.v * 1e8 + R_EARTH), 3)}\\ \\text{N}`,
-      'The pulls on 1.00 kg of water at the near side, at Earth\u2019s center and at the far side; the drawing\u2019s distances are not to scale, so its arrows differ by more than these numbers do.');
+      'Neither the Sun’s distance, 390 times the Moon’s, nor Earth’s size beside the Moon’s distance is drawn to scale, so the drawn pulls differ by more than these numbers do.');
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 24 / 8), draw });
 })();
