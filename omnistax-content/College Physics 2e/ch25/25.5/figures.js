@@ -458,7 +458,7 @@ const LAM_DETENTS = LAMS.map((v) => (v === 410 || v === 580 || v === 660 ? { v, 
 
   if (hasGL) {
     V = F.view3d(d.stage, {
-      h: 620, dist: 26, tilt: 0.12, spin: 'none',
+      h: 620, dist: 26, tilt: 0.12, spin: 'off',
       views: [{ label: 'behind you', yaw: 0, pitch: 0.12 }, { label: 'from the side', yaw: -1.5, pitch: 0.1 }],
       pitch: [4 * RAD, 70 * RAD], yaw: [-100 * RAD, 100 * RAD], zoomMin: 0.7, zoomMax: 2.4,
     });

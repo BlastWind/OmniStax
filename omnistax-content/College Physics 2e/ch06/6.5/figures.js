@@ -676,7 +676,7 @@ function sun(ctx, x, y, r, color) {
 
   function build() {
     V3D = F.view3d(d.stage, {
-      h: 620, dist: 4.35, tilt: 20 * RAD, spin: 'none', views: VIEWS,
+      h: 620, dist: 4.35, tilt: 20 * RAD, spin: 'off', views: VIEWS,
       pitch: [8 * RAD, 70 * RAD], yaw: [-92 * RAD, 92 * RAD], zoomMin: 0.7, zoomMax: 2.4,
       onRender: () => { if (last && frame3) paint(last); },
     });
