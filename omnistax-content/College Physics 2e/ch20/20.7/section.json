@@ -11,7 +11,7 @@
     "Explain what the features of an ECG signal indicate."
   ],
   "summary_html": "<ul><li><span data-concept=\"electric-potential\">Electric potentials</span> in neurons and other cells are created by ionic concentration differences across semipermeable membranes.</li><li>Stimuli change the permeability and create action potentials that propagate along neurons.</li><li>Myelin sheaths speed this process and reduce the needed <span data-concept=\"energy\">energy</span> input.</li><li>This process in the heart can be measured with an electrocardiogram (ECG).</li></ul>",
-  "notes": "The link to the PhET simulation Neuron is left out, and so is the one problem the book prints no answer for, which asks for the time systolic pressure lags behind the middle of the QRS complex and for the reasons behind the lag. The book's key for the Critical Thinking problem is kept as the book prints it, including its slip of writing an energy loss of $3.25\\times 10^{-3}$ J/s in part (a) for a problem whose stem gives 3.25 MJ in the first second, and its writing of joules as j.",
+  "notes": "The link to the PhET simulation Neuron is left out, and so is the one problem the book prints no answer for, which asks for the time systolic pressure lags behind the middle of the QRS complex and for the reasons behind the lag. The book's key for the Critical Thinking problem is printed as the book prints it, with corrections on the stem and on part (b), whose checked value is $3.3\\times 10^{-3}$ J/s, including its slip of writing an energy loss of $3.25\\times 10^{-3}$ J/s in part (a) for a problem whose stem gives 3.25 MJ in the first second, and its writing of joules as j.",
   "ai": {
     "text": [
       {
@@ -508,7 +508,7 @@
       },
       "cite": "myelin",
       "tag": "Critical Thinking",
-      "prompt": "A copper wire of length 1.25 m is in a circuit. A current of 2.50 A flows through the wire. (a) Initially, the circuit is at $20.0\\text{°}\\text{C}$. If there is an energy loss of 3.25 MJ in the first second caused by the wire as soon as the circuit is turned on, what is the radius of the wire? (b) After the wire heats $3.000\\text{°}\\text{C}$, how much energy is being dissipated by the circuit per second? Neglect the effects of thermal expansion since the wire is considered to be physically constrained from expanding. Assume the current is maintained. (c) At what temperature will the energy dissipation be 1.00% higher than it was at the beginning of the experiment?",
+      "prompt": "A copper wire of length 1.25 m is in a circuit. A current of 2.50 A flows through the wire. (a) Initially, the circuit is at $20.0\\text{°}\\text{C}$. If there is an energy loss of 3.25 MJ<sup class=\"fn\" data-note=\"c-p2-mj\"></sup> in the first second caused by the wire as soon as the circuit is turned on, what is the radius of the wire? (b) After the wire heats $3.000\\text{°}\\text{C}$, how much energy is being dissipated by the circuit per second? Neglect the effects of thermal expansion since the wire is considered to be physically constrained from expanding. Assume the current is maintained. (c) At what temperature will the energy dissipation be 1.00% higher than it was at the beginning of the experiment?",
       "answer": {
         "type": "multi",
         "generated_by": "source",
@@ -521,7 +521,7 @@
           },
           {
             "part": "b",
-            "value": 3.3,
+            "value": 0.0033,
             "unit": "J/s",
             "hint": "A rise in temperature raises the resistivity through $\\rho = \\rho_0(1 + \\alpha \\Delta T)$, and the power follows it."
           },
@@ -532,7 +532,7 @@
             "hint": "The dissipation is proportional to the resistivity, so ask what temperature change raises the resistivity by one per cent."
           }
         ],
-        "solution": "(a) $\\begin{array}{l}\\frac{3.25\\times {10}^{-3}}{1}\\text{j/s}=Power={I}^{2}R=\\frac{1}{{r}^{2}}\\frac{{(2.50)}^{2}(1.72\\times {10}^{-8})(1.25)}{\\pi}{\\text{jm}}^{2}\\text{/s} \\\\ r=\\sqrt{\\frac{{(2.50)}^{2}(1.72\\times {10}^{-8})(1.25)}{0.00325\\pi}}=3.63\\text{mm}\\end{array}$\n\n(b) $Power=\\frac{{(2.50)}^{2}(1.74\\times {10}^{-8})(1.25)}{{(3.63\\times {10}^{-3})}^{2}\\pi}\\text{j/s}$, so 3.28 j of energy is expended in 1 s. Since $\\alpha$ is specified in the chart to only two significant figures, round to 3.3 j.\n\n(c) Since the energy dissipation is directly proportional to the resistivity, the increase of 0.01% in energy dissipation is when the resistivity increases 1%. Or, $1.01=1+0.0039\\Delta T$. $T=23{}^{\\circ}\\text{C}$."
+        "solution": "(a) $\\begin{array}{l}\\frac{3.25\\times {10}^{-3}}{1}\\text{j/s}=Power={I}^{2}R=\\frac{1}{{r}^{2}}\\frac{{(2.50)}^{2}(1.72\\times {10}^{-8})(1.25)}{\\pi}{\\text{jm}}^{2}\\text{/s} \\\\ r=\\sqrt{\\frac{{(2.50)}^{2}(1.72\\times {10}^{-8})(1.25)}{0.00325\\pi}}=3.63\\text{mm}\\end{array}$\n\n(b) $Power=\\frac{{(2.50)}^{2}(1.74\\times {10}^{-8})(1.25)}{{(3.63\\times {10}^{-3})}^{2}\\pi}\\text{j/s}$, so 3.28 j of energy is expended in 1 s. Since $\\alpha$ is specified in the chart to only two significant figures, round to 3.3 j.<sup class=\"fn\" data-note=\"c-p2-b\"></sup>\n\n(c) Since the energy dissipation is directly proportional to the resistivity, the increase of 0.01% in energy dissipation is when the resistivity increases 1%. Or, $1.01=1+0.0039\\Delta T$. $T=23{}^{\\circ}\\text{C}$."
       }
     }
   ],
@@ -662,6 +662,18 @@
       "figures": [
         "sim-ecg"
       ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "c-p2-mj",
+      "kind": "correction",
+      "html": "The book prints 3.25 MJ. The key works with $3.25\\times 10^{-3}$ J in the first second, 3.25 mJ, and that is the loss that gives a radius of 3.63 mm."
+    },
+    {
+      "id": "c-p2-b",
+      "kind": "correction",
+      "html": "The book’s key gives 3.28 J in (b). The power it writes, scaled from the $3.25\\times 10^{-3}$ J/s of (a) by $1.74/1.72$, is $3.3\\times 10^{-3}$ J/s, the value the card checks; in (c) the 1% rise is meant, not 0.01%."
     }
   ]
 }

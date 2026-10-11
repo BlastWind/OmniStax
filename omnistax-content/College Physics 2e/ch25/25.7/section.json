@@ -31,7 +31,7 @@
   ]
  },
  "built": "2026-09-28",
- "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s own key. Six of the thirteen problems have no keyed answer and are left out, and they are named in the section’s notes; the Critical Thinking problem, which tests the index of refraction and dispersion rather than mirrors, is set with 25.5. The second AP item of 25.2, which compares a flat mirror with a convex one, is set here. All twelve conceptual questions and the second and fourth AP items are unkeyed and carry an AI-suggested approach. The third AP item is keyed (b), 10 cm, in the book, but an upright image twice the size of an object 10 cm away gives a focal length of 20 cm, so it is set as an open item with its options and an AI-suggested approach rather than graded against that key. The spoon problem carries no type in the source and is classed as a problem by its header.",
+ "exercise_notes": "Bloom levels, concept tags and hints are AI-generated. Answers come from the book’s own key. Six of the thirteen problems have no keyed answer and are left out, and they are named in the section’s notes; the Critical Thinking problem, which tests the index of refraction and dispersion rather than mirrors, is set with 25.5. The second AP item of 25.2, which compares a flat mirror with a convex one, is set here. All twelve conceptual questions and the second and fourth AP items are unkeyed and carry an AI-suggested approach. The third AP item is keyed (b), 10 cm, in the book, but an upright image twice the size of an object 10 cm away gives a focal length of 20 cm, so the card checks (c) and a correction on the solution names the book’s key. The spoon problem carries no type in the source and is classed as a problem by its header.",
  "figures": [
   {
    "id": "sim-flat-mirror",
@@ -299,11 +299,19 @@
     "at": "end"
    },
    "cite": "mirror-cases",
-   "prompt": "A mirror shows an upright image twice as large as the object when the object is 10 cm away from the mirror. What is the focal length of the mirror? (a) −10 cm (b) 10 cm (c) 20 cm (d) 40 cm",
+   "prompt": "A mirror shows an upright image twice as large as the object when the object is 10 cm away from the mirror. What is the focal length of the mirror?",
    "answer": {
-    "type": "open",
-    "generated_by": "ai",
-    "solution": "The focal length is $+20$ cm, choice (c). An upright image larger than the object comes only from a concave mirror with the object inside its focal length, a case 2 image, so the focal length is positive and greater than 10 cm. The magnification is $m = +2$, and since $m = -\\kdimg/\\kdobj$, the image distance is $\\kdimg = -m\\kdobj = -(2)(10\\text{ cm}) = -20\\text{ cm}$, negative because the virtual image is behind the mirror. The thin lens equation then gives $1/\\kffoc = 1/\\kdobj + 1/\\kdimg = 1/(10\\text{ cm}) - 1/(20\\text{ cm}) = 1/(20\\text{ cm})$, so $\\kffoc = +20$ cm. A focal length of 10 cm, choice (b), would put the object at the focal point, where no image is formed."
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "−10 cm",
+     "10 cm",
+     "20 cm",
+     "40 cm"
+    ],
+    "correct": 2,
+    "hint": "An upright, enlarged image means a concave mirror with the object inside its focal length; find the image distance from the magnification first.",
+    "solution": "(b)<sup class=\"fn\" data-note=\"c-ap3-key\"></sup>"
    }
   },
   {
@@ -958,6 +966,11 @@
    "id": "c-focal-length",
    "kind": "correction",
    "html": "The book prints &ldquo;Image length&rdquo;. The quantity that is half the radius of curvature is the focal length, $\\kffoc = \\kRcur/2$."
+  },
+  {
+   "id": "c-ap3-key",
+   "kind": "correction",
+   "html": "The book’s key is (b), 10 cm. An upright image twice the size of the object needs $\\kdimg = -20$ cm, and $1/\\kffoc = 1/(10\\ \\text{cm}) - 1/(20\\ \\text{cm})$ gives $\\kffoc = +20$ cm, choice (c), the answer the card checks."
   }
  ]
 }

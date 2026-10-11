@@ -11,7 +11,7 @@
   "Explain the significance of the resonant frequency."
  ],
  "summary_html": "<ul><li>The AC analogy to <span data-concept=\"resistance\">resistance</span> is <span data-concept=\"impedance\">impedance</span> $\\kZimp$, the combined effect of resistors, inductors, and capacitors, defined by the AC version of Ohm’s law: $\\kIocur = \\frac{\\kVo}{\\kZimp}\\;\\text{or}\\;\\kIrms = \\frac{\\kVrms}{\\kZimp},$ where $\\kIocur$ is the peak <span data-concept=\"electric-current\">current</span> and $\\kVo$ is the peak source <span data-concept=\"potential-difference\">voltage</span>.</li><li><span data-concept=\"impedance\">Impedance</span> has units of ohms and is given by $\\kZimp = \\sqrt{\\kRes^{2} + (\\kXL - \\kXC)^{2}}$.</li><li>The <span data-concept=\"resonant-frequency-of-an-rlc-circuit\">resonant frequency</span> $\\kfo$, at which $\\kXL = \\kXC$, is $\\kfo = \\frac{1}{2\\pi\\sqrt{\\kLind\\kCap}}.$</li><li>In an AC circuit, there is a phase angle $\\phi$ between source <span data-concept=\"potential-difference\">voltage</span> $\\kV$ and the <span data-concept=\"electric-current\">current</span> $\\kIcur$, which can be found from $\\cos\\;\\phi = \\frac{\\kRes}{\\kZimp},$</li><li>$\\phi = 0^\\circ$ for a purely resistive circuit or an <em>RLC</em> circuit at resonance.</li><li>The average <span data-concept=\"power\">power</span> delivered to an <em>RLC</em> circuit is affected by the phase angle and is given by $\\kPave = \\kIrms\\kVrms\\;\\cos\\;\\phi,$ $\\cos\\;\\phi$ is called the power factor, which ranges from 0 to 1.</li></ul>",
- "notes": "The seven problems the book leaves unkeyed are left out: the impedance of an RC circuit at two frequencies, the resonant frequency of a 0.500 mH inductor with a 40.0 µF capacitor, the range of resonant frequencies a supply of inductors and capacitors can reach, the inductance that resonates at 60.0 Hz with a 2.00 µF capacitor, the impedance and currents of the 2.50 Ω circuit, that same circuit’s power factor and average power, and the 200 Ω circuit whose phase angle is 45.0° at 8000 Hz. The last problem of the module, the Critical Thinking item on the wire bent into one loop, two loops and a figure eight, is left untyped in the CNXML and is classed by the header it sits under, a problem. Its answer is set exactly as the book prints it, including the arithmetic there: part (a) divides by 100 and comes to 0.0002000 V, and part (b) comes to 0.0001000 V although the reasoning printed with it says two loops should give the larger emf. Nothing is computed in the book’s place. The link at the end of the module to the PhET Circuit Construction Kit (AC+DC) is left out. Nothing else in the module is left out; its five drawings are redrawn as three interactive figures, since the circuit and the curves of its voltages are one machine seen twice and the car on the corrugated road and the mass on the spring are one analogy told twice, once driven and once free.",
+ "notes": "The seven problems the book leaves unkeyed are left out: the impedance of an RC circuit at two frequencies, the resonant frequency of a 0.500 mH inductor with a 40.0 µF capacitor, the range of resonant frequencies a supply of inductors and capacitors can reach, the inductance that resonates at 60.0 Hz with a 2.00 µF capacitor, the impedance and currents of the 2.50 Ω circuit, that same circuit’s power factor and average power, and the 200 Ω circuit whose phase angle is 45.0° at 8000 Hz. The last problem of the module, the Critical Thinking item on the wire bent into one loop, two loops and a figure eight, is left untyped in the CNXML and is classed by the header it sits under, a problem. Its key divides by 100 where a quarter cycle lasts 1/1600 s; the solution is printed as the book prints it, with a correction, and the card checks 32.0 V and 16.0 V. Nothing is computed in the book’s place. The link at the end of the module to the PhET Circuit Construction Kit (AC+DC) is left out. Nothing else in the module is left out; its five drawings are redrawn as three interactive figures, since the circuit and the curves of its voltages are one machine seen twice and the car on the corrugated road and the mass on the spring are one analogy told twice, once driven and once free.",
  "ai": {
   "text": [
    {
@@ -43,7 +43,7 @@
   ]
  },
  "built": "2026-09-15",
- "exercise_notes": "Bloom levels, concept tags and weights are AI-generated. Answers come from the book’s answer key: nine of the sixteen problems are keyed and are set here, and the seven that are not are left out and named in the section’s notes. The last of the nine is the Critical Thinking item, which the CNXML leaves untyped and which is classed as a problem by the header it sits under; its key is set as the book prints it, and the section’s notes say what the book printed. Where the book keys only the numerical part of a problem that also asks for a comparison, the keyed part is set and the book’s comparison is kept in the worked solution. Both conceptual questions carry an AI-marked suggested approach rather than a graded answer, since the book keys neither. The section carries no AP test prep item and no Check Your Understanding box, so everything is set at the end. Numeric answers accept 2% tolerance.",
+ "exercise_notes": "Bloom levels, concept tags and weights are AI-generated. Answers come from the book’s answer key: nine of the sixteen problems are keyed and are set here, and the seven that are not are left out and named in the section’s notes. The last of the nine is the Critical Thinking item, which the CNXML leaves untyped and which is classed as a problem by the header it sits under; its key is printed as the book prints it with a correction, and the card checks the corrected values. Where the book keys only the numerical part of a problem that also asks for a comparison, the keyed part is set and the book’s comparison is kept in the worked solution. Both conceptual questions carry an AI-marked suggested approach rather than a graded answer, since the book keys neither. The section carries no AP test prep item and no Check Your Understanding box, so everything is set at the end. Numeric answers accept 2% tolerance.",
  "figures": [
   {
    "id": "sim-rlc-voltages",
@@ -683,13 +683,13 @@
     "parts": [
      {
       "part": "(a)",
-      "value": 0.0002,
+      "value": 32.0,
       "unit": "V",
       "hint": "One square loop of 4.000 m of wire has sides of 1.000 m, and the flux falls from its greatest value to zero over the quarter cycle."
      },
      {
       "part": "(b)",
-      "value": 0.0001,
+      "value": 16.0,
       "unit": "V",
       "hint": "Two square loops from the same wire have sides of 0.5000 m each, so each encloses a quarter of the area, and there are two of them."
      },
@@ -700,7 +700,7 @@
       "hint": "The wire crosses itself, so the two halves of the figure eight are wound in opposite senses."
      }
     ],
-    "solution": "(a) $|\\text{emf}| = 1\\frac{\\Delta\\phi}{\\Delta t} = \\frac{1.000(0.02000)}{100}\\text{V} = 0.0002000\\text{V}$ (b) $|\\text{emf}| = 2\\frac{\\Delta\\phi}{\\Delta t} = \\frac{2(0.2500)(0.02000)}{100}\\text{V} = 0.0001000\\text{V}$ (c) The average emf is 0 since the loops are made by a wire that crosses, so the voltage from each loop cancels the emf from the other. (d) No."
+    "solution": "(a) $|\\text{emf}| = 1\\frac{\\Delta\\phi}{\\Delta t} = \\frac{1.000(0.02000)}{100}\\text{V} = 0.0002000\\text{V}$ (b) $|\\text{emf}| = 2\\frac{\\Delta\\phi}{\\Delta t} = \\frac{2(0.2500)(0.02000)}{100}\\text{V} = 0.0001000\\text{V}$<sup class=\"fn\" data-note=\"c-p16-quarter\"></sup> (c) The average emf is 0 since the loops are made by a wire that crosses, so the voltage from each loop cancels the emf from the other. (d) No."
    }
   }
  ],
@@ -890,6 +890,13 @@
    "figures": [
     "sim-resonance"
    ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p16-quarter",
+   "kind": "correction",
+   "html": "The book’s key divides by 100 for the quarter cycle. At 400 cycles per second a quarter cycle lasts $\\Delta t = 1/1600\\ \\text{s}$, so the average emf is $32.0\\ \\text{V}$ for one loop in (a) and $16.0\\ \\text{V}$ for two in (b), the values the card checks."
   }
  ]
 }
