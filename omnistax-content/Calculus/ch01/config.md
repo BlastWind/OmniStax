@@ -26,4 +26,4 @@ Status: agreed 2026-10-12 (Chen accepted the proposed list as a whole).
 22. Sims (rule 15): from 1.2 on the plan decides and builds its picks (Chen, 2026-10-12), all reported afterwards. Seeds: line tests, a·f(b(x−c))+d, inverse as reflection, unit circle unrolling into sine, exponential base slider.
 23. 3D: none.
 24. Reference sheets: Grapher, Unit Circle, Integral Calculator (CAS with steps), Appendices A, B, C and Common Maclaurin Series built now; convergence-test chooser and coordinate converter wait for their chapters.
-25. Recolour: rerun `colours:default -- calculus` after Chapter 1's pages exist.
+25. Recolour: rerun `colours:default -- calculus` after Chapter 1's pages exist.  Done in the chapter pass, 2026-10-12.

@@ -27,3 +27,4 @@ None here; the earthquake comparison the opener promises is 1.5's, where a magni
 ## Wanted at chapter level
 
 - Nothing: no variables, forms or concepts.
+- Applied in the chapter pass (2026-10-12): the Richter link names the qualified id, `/calculus/ch01/1.5/#1.5-ex-richter-scale`, which is the id the app's jump finds.

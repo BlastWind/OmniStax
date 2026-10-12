@@ -110,3 +110,19 @@ and intercepts with `data-type`, and its figures draw the ovals of the
 maps and the bands of the domain finder in `set`, the marked and dragged
 points in `point` and the vertical line test's line in `line`.
 `npm run colours:default -- calculus` was rerun with 1.1 built.
+
+
+## Pass 3 (2026-10-12): Chapter 1 pass
+
+Every section's "Wanted at chapter level" was applied: the anchors of all
+81 forms of the chapter and of every variables row, two new forms of
+`trigonometric-functions` (`eq-trig-radius-r`, `eq-trig-right-triangle`),
+and new variables rows for h and t in 1.3 and f, D, g, h and θ in 1.4.
+The chapter review exercises held in 1.5 landed with the section that
+introduces what each tests: 311 in 1.1; 319 and 331 in 1.2; 321, 323 and
+333 in 1.3; 310, 312 (AI-marked), 313, 327 and 329 in 1.4; 315, 317, 325
+and 335 stay in 1.5. Three corrections were added as notes: Example
+1.38's "e = 3" where b = e is meant, and the keys to 327 and 329, which
+write y where x is meant. The chapter opener's link to Example 1.39 names
+the qualified id. `npm run colours:default -- calculus` was rerun with the
+chapter built.

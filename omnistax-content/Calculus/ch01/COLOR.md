@@ -13,7 +13,7 @@ Prepared 2026-10-12 with `config.md`. It refines the book's `COLOR.md` for what 
 | 1.2 | `function`, `set`, `point`, `line`; `derivative` for slope; `limit` for f(x) → 2 | the curves the text names apart on one graph: the two of each power-function pair (1.18), the parabolas and cubics of 1.19, y = f(x) and its transform in each of 1.23–1.27 |
 | 1.3 | `function`, `angle`, `point` | none: each trigonometric graph stands on its own panel; a single curve keeps its category |
 | 1.4 | `function`, `set`, `line` (the horizontal line test, y = x) | f and f⁻¹ on one graph (1.39, Example 1.30), g and h of the restricted squares (1.40), each trigonometric function and its inverse (1.41) |
-| 1.5 | `function`, `point`; `derivative` for the slope at 0, `line` for the tangent | 2ˣ and x² (1.43), eˣ and ln x (1.46), log₂, ln and log₁₀ (1.47) |
+| 1.5 | `function`, `set`, `point`; `derivative` for the slope at 0, `line` for the tangent and the asymptotes y = ±1; `limit` for the level e of the compounding sim | 2ˣ and x² (1.43), eˣ and ln x (1.46), log₂, ln and log₁₀ (1.47), the two earthquakes of Example 1.39 |
 
 ## Rules the sections keep
 

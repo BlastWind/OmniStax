@@ -30,7 +30,7 @@
  },
  "built": "2026-10-12",
  "exercises_lead": "",
- "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but one. The 22 even-numbered section exercises 184 to 226 have no answer in the book’s key and are computational, so they are left out: 184, 186 and 188 (horizontal line tests), 190, 192 and 194 (inverses), 196 and 198 (sketches of inverses), 200, 202, 204 and 206 (compositions), 208, 210, 212 and 214 (exact values), 216 (the Fahrenheit conversion), 218 (dress sizes), 220 (the race car), 222 (Mach numbers), 224 (the tides) and 226 (the viewing angle). Exercise 228 asks for an explanation the key does not give, and keeps an AI-suggested approach.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but one. The 22 even-numbered section exercises 184 to 226 have no answer in the book’s key and are computational, so they are left out: 184, 186 and 188 (horizontal line tests), 190, 192 and 194 (inverses), 196 and 198 (sketches of inverses), 200, 202, 204 and 206 (compositions), 208, 210, 212 and 214 (exact values), 216 (the Fahrenheit conversion), 218 (dress sizes), 220 (the race car), 222 (Mach numbers), 224 (the tides) and 226 (the viewing angle). Exercise 228 asks for an explanation the key does not give, and keeps an AI-suggested approach. Review exercises 310, 312, 313, 327 and 329 are held here from the chapter review; 310 and 312 keep an AI-suggested justification, and 326, 328 and 332, which have no answer in the key, are left out. The keys to 327 and 329 write $y$ where $x$ is meant; each is kept as printed, with a correction under its card.",
  "figures": [
   {
    "id": "sim-inverse-map",
@@ -965,6 +965,101 @@
     "generated_by": "ai",
     "solution": "$\\sin(\\sin^{-1}(-2))$ is not defined, and a calculator reports an error: the domain of $\\sin^{-1}$ is $[-1,1],$ and $-2$ is not in it, since no angle has sine $-2.$ $\\tan(\\tan^{-1}(-2))=-2:$ the domain of $\\tan^{-1}$ is all real numbers, $\\tan^{-1}(-2)\\approx -1.107$ is the angle in $\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)$ whose tangent is $-2,$ and $\\tan(\\tan^{-1}y)=y$ for every real $y.$"
    }
+  },
+  {
+   "id": "r310",
+   "source_id": "fs-id1170572213080",
+   "source_section": "1.5",
+   "source_number": "310",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "existence",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>A function is always one-to-one.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "False. A counterexample is $f(x)=x^{2}$: $f(-1)=f(1)=1$ although $-1\\ne 1,$ so two inputs are sent to the same output, and the horizontal line $y=1$ meets its graph twice."
+   }
+  },
+  {
+   "id": "r312",
+   "source_id": "fs-id1170572213142",
+   "source_section": "1.5",
+   "source_number": "312",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "existence",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>A relation that passes the horizontal and vertical line tests is a one-to-one function.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "True. Passing the vertical line test, the relation sends each input to exactly one output, so it is a function. Passing the horizontal line test, no output comes from two different inputs, so $f(x_{1})\\ne f(x_{2})$ whenever $x_{1}\\ne x_{2},$ which is what it means to be one-to-one."
+   }
+  },
+  {
+   "id": "r313",
+   "source_id": "fs-id1170572237255",
+   "source_section": "1.5",
+   "source_number": "313",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "existence",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>A relation passing the horizontal line test is a function.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False"
+   }
+  },
+  {
+   "id": "r327",
+   "source_id": "fs-id1170572139116",
+   "source_section": "1.5",
+   "source_number": "327",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p>Are the following functions one-to-one over their domain of existence? Does the function have an inverse? If so, find the inverse $f^{-1}(x)$ of the function. Justify your answer.</p><p>$f(x)=\\frac{1}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "One-to-one; yes, the function has an inverse; inverse: $f^{-1}(x)=\\frac{1}{y}$<sup class=\"fn\" data-note=\"c-r327-variable\"></sup>"
+   }
+  },
+  {
+   "id": "r329",
+   "source_id": "fs-id1170572139263",
+   "source_section": "1.5",
+   "source_number": "329",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "restricting-domains",
+   "prompt": "<p>For the following problems, determine the largest domain on which the function is one-to-one and find the inverse on that domain.</p><p>$f(x)=x^{2}+3x+4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x\\ge -\\frac{3}{2},f^{-1}(x)=-\\frac{3}{2}+\\frac{1}{2}\\sqrt{4y-7}$<sup class=\"fn\" data-note=\"c-r329-variable\"></sup>"
+   }
   }
  ],
  "exercise_concepts": [
@@ -1155,6 +1250,62 @@
   {
    "exercise": "e228",
    "concept": "domain"
+  },
+  {
+   "exercise": "r310",
+   "concept": "one-to-one-function"
+  },
+  {
+   "exercise": "r310",
+   "concept": "horizontal-line-test"
+  },
+  {
+   "exercise": "r312",
+   "concept": "one-to-one-function"
+  },
+  {
+   "exercise": "r312",
+   "concept": "horizontal-line-test"
+  },
+  {
+   "exercise": "r312",
+   "concept": "vertical-line-test"
+  },
+  {
+   "exercise": "r313",
+   "concept": "horizontal-line-test"
+  },
+  {
+   "exercise": "r313",
+   "concept": "vertical-line-test"
+  },
+  {
+   "exercise": "r327",
+   "concept": "one-to-one-function"
+  },
+  {
+   "exercise": "r327",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "r327",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "r329",
+   "concept": "restricted-domain"
+  },
+  {
+   "exercise": "r329",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "r329",
+   "concept": "one-to-one-function"
+  },
+  {
+   "exercise": "r329",
+   "concept": "inverse-function"
   }
  ],
  "referents": [
@@ -1268,6 +1419,16 @@
    "kind": "correction",
    "figure": "sim-inverse-trig",
    "html": "The book’s panel for $\\sin^{-1}$ draws the curve flat at the origin. Its slope there is $1,$ the reflection of the slope of $\\sin x$ at $0,$ and the curve turns vertical at $x=\\pm 1.$"
+  },
+  {
+   "id": "c-r327-variable",
+   "kind": "correction",
+   "html": "The key writes the inverse in $y$; with the variables interchanged, as the strategy’s second step does, it is $f^{-1}(x)=\\frac{1}{x}.$"
+  },
+  {
+   "id": "c-r329-variable",
+   "kind": "correction",
+   "html": "The key writes the radicand in $y$; in the variable of $f^{-1}(x)$ it is $f^{-1}(x)=-\\frac{3}{2}+\\frac{1}{2}\\sqrt{4x-7}.$"
   }
  ]
 }
