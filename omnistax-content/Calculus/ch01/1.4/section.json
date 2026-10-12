@@ -1,0 +1,1273 @@
+{
+ "id": "1.4",
+ "module": "m53480",
+ "chapter": "1",
+ "title": "Inverse Functions",
+ "short": "Inverse Functions",
+ "lead": "An <span data-concept=\"inverse-function\">inverse function</span> undoes what a <span data-concept=\"function\">function</span> does. This section asks which functions have one, through the <span data-concept=\"one-to-one-function\">one-to-one</span> property and the <span data-concept=\"horizontal-line-test\">horizontal line test</span>; finds an inverse from a formula and draws its graph from the graph of the function; restricts a domain where a function is not one-to-one; and defines the <span data-concept=\"inverse-trigonometric-functions\">inverse trigonometric functions</span> that way.",
+ "objectives": [
+  "Determine the conditions for when a function has an inverse.",
+  "Use the horizontal line test to recognize when a function is one-to-one.",
+  "Find the inverse of a given function.",
+  "Draw the graph of an inverse function.",
+  "Evaluate inverse trigonometric functions."
+ ],
+ "summary_html": "<ul><li>For a <span data-concept=\"function\">function</span> to have an inverse, the <span data-concept=\"function\">function</span> must be <span data-concept=\"one-to-one-function\">one-to-one</span>. Given the graph of a <span data-concept=\"function\">function</span>, we can determine whether the <span data-concept=\"function\">function</span> is <span data-concept=\"one-to-one-function\">one-to-one</span> by using the <span data-concept=\"horizontal-line-test\">horizontal line test</span>.</li><li>If a <span data-concept=\"function\">function</span> is not <span data-concept=\"one-to-one-function\">one-to-one</span>, we can restrict the <span data-concept=\"domain\">domain</span> to a smaller <span data-concept=\"domain\">domain</span> where the <span data-concept=\"function\">function</span> is <span data-concept=\"one-to-one-function\">one-to-one</span> and then define the inverse of the <span data-concept=\"function\">function</span> on the smaller <span data-concept=\"domain\">domain</span>.</li><li>For a <span data-concept=\"function\">function</span> $\\kf$ and its inverse $\\kfinv,\\ \\kf(\\kfinv(x))=x$ for all $x$ in the <span data-concept=\"domain\">domain</span> of $\\kfinv$ and $\\kfinv(\\kf(x))=x$ for all $x$ in the <span data-concept=\"domain\">domain</span> of $\\kf.$</li><li>Since the <span data-concept=\"trigonometric-functions\">trigonometric functions</span> are <span data-concept=\"periodic-function\">periodic</span>, we need to restrict their <span data-concept=\"domain\">domains</span> to define the <span data-concept=\"inverse-trigonometric-functions\">inverse trigonometric functions</span>.</li><li><span data-concept=\"graph-of-an-inverse-function\">The graph of a function $\\kf$ and its inverse $\\kfinv$ are symmetric about the line $y=x.$</span></li></ul>",
+ "notes": "The book’s link to a site comparing functions and their inverses is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but one. The 22 even-numbered section exercises 184 to 226 have no answer in the book’s key and are computational, so they are left out: 184, 186 and 188 (horizontal line tests), 190, 192 and 194 (inverses), 196 and 198 (sketches of inverses), 200, 202, 204 and 206 (compositions), 208, 210, 212 and 214 (exact values), 216 (the Fahrenheit conversion), 218 (dress sizes), 220 (the race car), 222 (Mach numbers), 224 (the tides) and 226 (the viewing angle). Exercise 228 asks for an explanation the key does not give, and keeps an AI-suggested approach.",
+ "figures": [
+  {
+   "id": "sim-inverse-map",
+   "kind": "sim",
+   "number": "1.37",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_001.jpg"
+   ],
+   "original_caption": "Given a function f and its inverse f⁻¹, f⁻¹(y) = x if and only if f(x) = y. The range of f becomes the domain of f⁻¹ and the domain of f becomes the range of f⁻¹.",
+   "draws": [
+    "function",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-horizontal-line",
+   "kind": "sim",
+   "number": "1.38",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_002.jpg"
+   ],
+   "original_caption": "(a) The function f(x) = x² is not one-to-one because it fails the horizontal line test. (b) The function f(x) = x³ is one-to-one because it passes the horizontal line test.",
+   "draws": [
+    "function",
+    "line",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-one-to-one-example",
+   "kind": "sim",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_003.jpg",
+    "/media/ch01/CNX_Calc_Figure_01_04_004.jpg",
+    "/media/ch01/CNX_Calc_Figure_01_04_005.jpg",
+    "/media/ch01/CNX_Calc_Figure_01_04_006.jpg"
+   ],
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-inverse-steps",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "line",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-inverse-graph",
+   "kind": "sim",
+   "number": "1.39",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_017.jpg"
+   ],
+   "original_caption": "(a) The graph of this function f shows point (a, b) on the graph of f. (b) Since (a, b) is on the graph of f, the point (b, a) is on the graph of f⁻¹. The graph of f⁻¹ is a reflection of the graph of f about the line y = x.",
+   "draws": [
+    "function",
+    "line",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-sketch-inverse",
+   "kind": "sim",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_009.jpg",
+    "/media/ch01/CNX_Calc_Figure_01_04_010.jpg"
+   ],
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-restricted",
+   "kind": "sim",
+   "number": "1.40",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_012.jpg"
+   ],
+   "original_caption": "(a) For g(x) = x² restricted to [0, ∞), g⁻¹(x) = √x. (b) For h(x) = x² restricted to (−∞, 0], h⁻¹(x) = −√x.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-restrict-example",
+   "kind": "sim",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_013.jpg",
+    "/media/ch01/CNX_Calc_Figure_01_04_014.jpg"
+   ],
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-inverse-trig",
+   "kind": "sim",
+   "number": "1.41",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_018.jpg"
+   ],
+   "original_caption": "The graph of each of the inverse trigonometric functions is a reflection about the line y = x of the corresponding restricted trigonometric function.",
+   "draws": [
+    "line",
+    "point",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-undo-sine",
+   "kind": "sim",
+   "draws": [
+    "angle",
+    "function",
+    "line",
+    "point",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sin-plus-cos",
+   "kind": "figure",
+   "number": "1.42",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_04_016.jpg"
+   ],
+   "original_caption": "The graph of y = sin x + cos x.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "inverse-definition",
+   "concept": "inverse-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-to-one-definition",
+   "concept": "one-to-one-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "horizontal-line-test",
+   "concept": "horizontal-line-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "finding-an-inverse-strategy",
+   "concept": "finding-an-inverse-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "graphing-inverse-functions",
+   "concept": "graph-of-an-inverse-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "restricting-domains",
+   "concept": "restricted-domain",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-trig-definition",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "existence",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "existence",
+   "concept": "range",
+   "verb": "uses"
+  },
+  {
+   "span": "existence",
+   "concept": "vertical-line-test",
+   "verb": "uses"
+  },
+  {
+   "span": "existence",
+   "concept": "graph-of-a-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572228079",
+   "concept": "horizontal-line-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572228079",
+   "concept": "one-to-one-function",
+   "verb": "uses"
+  },
+  {
+   "span": "finding-inverse",
+   "concept": "one-to-one-function",
+   "verb": "uses"
+  },
+  {
+   "span": "finding-inverse",
+   "concept": "independent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "finding-inverse",
+   "concept": "dependent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572208522",
+   "concept": "finding-an-inverse-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572208522",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572208522",
+   "concept": "range",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572213184",
+   "concept": "graph-of-an-inverse-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572213184",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572213184",
+   "concept": "range",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572551599",
+   "concept": "restricted-domain",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572551599",
+   "concept": "horizontal-line-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572551599",
+   "concept": "finding-an-inverse-function",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-trigonometric-functions",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-trigonometric-functions",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-trigonometric-functions",
+   "concept": "restricted-domain",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inverse-trigonometric-functions",
+   "concept": "graph-of-an-inverse-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572549634",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572549634",
+   "concept": "composite-function",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp23",
+   "source_id": "fs-id1170572141532",
+   "source_number": "Checkpoint 1.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572228079"
+   },
+   "cite": "existence",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_04_007.jpg",
+    "alt": "The graph of f(x) = x³ − x on a grid from −3 to 4: it increases, decreases, then increases again, with x-intercepts at (−1, 0), (0, 0) and (1, 0)."
+   },
+   "prompt": "Is the function $f$ graphed in the following image one-to-one?",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "Yes",
+     "No"
+    ],
+    "correct": 1,
+    "hint": "Use the horizontal line test.",
+    "solution": "No.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp24",
+   "source_id": "fs-id1170572478772",
+   "source_number": "Checkpoint 1.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572208522"
+   },
+   "cite": "finding-inverse",
+   "prompt": "Find the inverse of the function $f(x)=3x/(x-2).$ State the domain and range of the inverse function.",
+   "answer": {
+    "type": "open",
+    "solution": "Use the Problem-Solving Strategy for finding inverse functions. $f^{-1}(x)=\\frac{2x}{x-3}.$ The domain of $f^{-1}$ is $\\{x\\mid x\\ne 3\\}.$ The range of $f^{-1}$ is $\\{y\\mid y\\ne 2\\}.$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp25",
+   "source_id": "fs-id1170572480267",
+   "source_number": "Checkpoint 1.25",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572213184"
+   },
+   "cite": "graphing-inverse-functions",
+   "prompt": "Sketch the graph of $f(x)=2x+3$ and the graph of its inverse using the symmetry property of inverse functions.",
+   "answer": {
+    "type": "open",
+    "solution": "The graphs are symmetric about the line $y=x.$<img src=\"/media/ch01/CNX_Calc_Figure_01_04_011.jpg\" alt=\"The lines f(x) = 2x + 3, with intercepts (−1.5, 0) and (0, 3), and f⁻¹(x) = (x − 3)/2, with intercepts (3, 0) and (0, −1.5), mirror images about the dashed line y = x.\">",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp26",
+   "source_id": "fs-id1170572551769",
+   "source_number": "Checkpoint 1.26",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572551599"
+   },
+   "cite": "restricting-domains",
+   "prompt": "Consider $f(x)=1/x^{2}$ restricted to the domain $(-\\infty,0).$ Verify that $f$ is one-to-one on this domain. Determine the domain and range of the inverse of $f$ and find a formula for $f^{-1}.$",
+   "answer": {
+    "type": "open",
+    "solution": "The domain and range of $f^{-1}$ is given by the range and domain of $f,$ respectively. To find $f^{-1},$ solve $y=1/x^{2}$ for $x.$ The domain of $f^{-1}$ is $(0,\\infty).$ The range of $f^{-1}$ is $(-\\infty,0).$ The inverse function is given by the formula $f^{-1}(x)=-1/\\sqrt{x}.$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1170572547969",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "existence",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_04_201.jpg",
+    "alt": "A graph on a grid from −4 to 4 that decreases in a straight line to the origin, then increases in a straight line."
+   },
+   "prompt": "<p>For the following exercises, use the horizontal line test to determine whether each of the given graphs is one-to-one.</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "One-to-one",
+     "Not one-to-one"
+    ],
+    "correct": 1,
+    "solution": "Not one-to-one",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1170572548022",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "existence",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_04_203.jpg",
+    "alt": "The upper half of a circle on a grid from −4 to 4, from (−3, 0) up to (0, 3) and down to (3, 0)."
+   },
+   "prompt": "<p>For the following exercises, use the horizontal line test to determine whether each of the given graphs is one-to-one.</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "One-to-one",
+     "Not one-to-one"
+    ],
+    "correct": 1,
+    "solution": "Not one-to-one",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1170572548077",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "existence",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_04_205.jpg",
+    "alt": "A curve on a grid from −4 to 4 that is always increasing, with both intercepts at the origin."
+   },
+   "prompt": "<p>For the following exercises, use the horizontal line test to determine whether each of the given graphs is one-to-one.</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "One-to-one",
+     "Not one-to-one"
+    ],
+    "correct": 0,
+    "solution": "One-to-one",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1170572452128",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p>For the following exercises, a. find the inverse function, and b. find the domain and range of the inverse function.</p><p>$f(x)=x^{2}-4,x\\ge 0$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $f^{-1}(x)=\\sqrt{x+4}$ b. Domain$:\\;x\\ge -4,$ range$:\\;y\\ge 0$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1170572176863",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p>For the following exercises, a. find the inverse function, and b. find the domain and range of the inverse function.</p><p>$f(x)=x^{3}+1$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $f^{-1}(x)=\\sqrt[3]{x-1}$ b. Domain: all real numbers, range: all real numbers",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1170572549738",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p>For the following exercises, a. find the inverse function, and b. find the domain and range of the inverse function.</p><p>$f(x)=\\sqrt{x-1}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $f^{-1}(x)=x^{2}+1,$ b. Domain: $x\\ge 0,$ range: $y\\ge 1$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1170572451526",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphing-inverse-functions",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_04_207.jpg",
+    "alt": "An increasing straight line labeled f on a grid from −4 to 4, with x-intercept (−2, 0) and y-intercept (0, 1)."
+   },
+   "prompt": "<p>For the following exercises, use the graph of $f$ to sketch the graph of its inverse function.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch01/CNX_Calc_Figure_01_04_208.jpg\" alt=\"The line f with x-intercept (−2, 0) and y-intercept (0, 1), and the line f⁻¹ with x-intercept (1, 0) and y-intercept (0, −2).\">",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1170572451569",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphing-inverse-functions",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_04_211.jpg",
+    "alt": "A graph labeled f on a grid from −8 to 8: a straight line from (0, 1) to (4, 6), then rising more slowly toward (8, 8)."
+   },
+   "prompt": "<p>For the following exercises, use the graph of $f$ to sketch the graph of its inverse function.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch01/CNX_Calc_Figure_01_04_212.jpg\" alt=\"The graph f, a straight line from (0, 1) to (4, 6) that then rises more slowly toward (8, 8), and f⁻¹, a straight line from (1, 0) to (6, 4) that then rises faster toward (8, 8).\">",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1170572452575",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p>For the following exercises, use composition to determine which pairs of functions are inverses.</p><p>$f(x)=8x,g(x)=\\frac{x}{8}$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "These are inverses.",
+     "These are not inverses."
+    ],
+    "correct": 0,
+    "solution": "These are inverses.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1170572449207",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p>For the following exercises, use composition to determine which pairs of functions are inverses.</p><p>$f(x)=5x-7,g(x)=\\frac{x+5}{7}$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "These are inverses.",
+     "These are not inverses."
+    ],
+    "correct": 1,
+    "solution": "These are not inverses.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1170572548356",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p>For the following exercises, use composition to determine which pairs of functions are inverses.</p><p>$f(x)=\\frac{1}{x-1},x\\ne 1,g(x)=\\frac{1}{x}+1,x\\ne 0$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "These are inverses.",
+     "These are not inverses."
+    ],
+    "correct": 0,
+    "solution": "These are inverses.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1170572548511",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p>For the following exercises, use composition to determine which pairs of functions are inverses.</p><p>$f(x)=x^{2}+2x+1,x\\ge -1,\\;g(x)=-1+\\sqrt{x},x\\ge 0$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "These are inverses.",
+     "These are not inverses."
+    ],
+    "correct": 0,
+    "solution": "These are inverses.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1170572451288",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p>For the following exercises, evaluate the functions. Give the exact value.</p><p>$\\tan^{-1}\\left(\\frac{\\sqrt{3}}{3}\\right)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{\\pi}{6}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1170572451384",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p>For the following exercises, evaluate the functions. Give the exact value.</p><p>$\\cot^{-1}(1)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{\\pi}{4}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1170572142146",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p>For the following exercises, evaluate the functions. Give the exact value.</p><p>$\\cos^{-1}\\left(\\frac{\\sqrt{3}}{2}\\right)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{\\pi}{6}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1170572142240",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p>For the following exercises, evaluate the functions. Give the exact value.</p><p>$\\sin\\left(\\cos^{-1}\\left(\\frac{\\sqrt{2}}{2}\\right)\\right)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{\\sqrt{2}}{2}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1170572549009",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p>For the following exercises, evaluate the functions. Give the exact value.</p><p>$\\tan^{-1}\\left(\\tan\\left(-\\frac{\\pi}{6}\\right)\\right)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$-\\frac{\\pi}{6}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1170572451744",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p><strong>[T]</strong> The velocity <em>V</em> (in centimeters per second) of blood in an artery at a distance <em>x</em> cm from the center of the artery can be modeled by the function $V=f(x)=500(0.04-x^{2})$ for $0\\le x\\le 0.2.$ a. Find $x=f^{-1}(V).$ b. Interpret what the inverse function is used for. c. Find the distance from the center of an artery with a velocity of 15 cm/sec, 10 cm/sec, and 5 cm/sec.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $x=f^{-1}(V)=\\sqrt{0.04-\\frac{V}{500}}$ b. The inverse function determines the distance from the center of the artery at which blood is flowing with velocity <em>V</em>. c. 0.1 cm; 0.14 cm; 0.17 cm",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1170572547878",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finding-inverse",
+   "prompt": "<p><strong>[T]</strong> The cost to remove a toxin from a lake is modeled by the function $C(p)=75p/(85-p),$ where $C$ is the cost (in thousands of dollars) and $p$ is the amount of toxin in a small lake (measured in parts per billion [ppb]). This model is valid only when the amount of toxin is less than 85 ppb. a. Find the cost to remove 25 ppb, 40 ppb, and 50 ppb of the toxin from the lake. b. Find the inverse function. c. Use part b. to determine how much of the toxin is removed for ＄50,000.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. ＄31,250, ＄66,667, ＄107,143 b. $\\left(p=\\frac{85C}{C+75}\\right)$ c. 34 ppb",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1170572543027",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_04_215.jpg",
+    "alt": "An airplane seen from above flying into the opening of a sideways V labeled mach wave; an arrow from the nose to the V’s corner is labeled velocity = v, an arrow from the nose to the V’s edge is labeled speed of sound = a, the angle between them is labeled Mach angle, and the text reads mach = M > 1.0."
+   },
+   "prompt": "<p><strong>[T]</strong> An airplane’s Mach number <em>M</em> is the ratio of its speed to the speed of sound. When a plane is flying at a constant altitude, then its Mach angle is given by $\\mu=2\\sin^{-1}\\left(\\frac{1}{M}\\right).$ Find the Mach angle (to the nearest degree) for the following Mach numbers.</p><p>a. $M=1.4$ b. $M=2.8$ c. $M=4.3$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\sim 92^{\\circ}$<sup class=\"fn\" data-note=\"c-e221-mach\"></sup> b. $\\sim 42^{\\circ}$ c. $\\sim 27^{\\circ}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1170572551494",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p><strong>[T]</strong> The average temperature (in degrees Celsius) of a city in the northern United States can be modeled by the function $T(x)=5+18\\sin\\left[\\frac{\\pi}{6}(x-4.6)\\right],$ where $x$ is time in months and $x=1.00$ corresponds to January 1. Determine the day(s) (month and day) when the average temperature is $21^{\\circ}\\text{C}.$ Use the integer portion of your answer(s) as the month and calculate the day of the month from the decimal portion.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$x\\approx 6.69,8.51;$ so, the temperature occurs on June 21 and August 15",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1170572545202",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p><strong>[T]</strong> An object moving in simple harmonic motion is modeled by the function $s(t)=-6\\cos\\left(\\frac{\\pi t}{2}\\right),$ where $s$ is measured in inches and $t$ is measured in seconds. Determine the first time when the distance moved is 4.5 in.</p>",
+   "answer": {
+    "type": "number",
+    "value": 1.5,
+    "unit": "sec",
+    "tol": 0.04,
+    "solution": "$\\sim 1.5\\;\\text{sec}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1170572169169",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p><strong>[T]</strong> Use a calculator to evaluate $\\tan^{-1}(\\tan(2.1))$ and $\\cos^{-1}(\\cos(2.1)).$ Explain the results of each.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\tan^{-1}(\\tan(2.1))\\approx -1.0416;$ the expression does not equal 2.1 since $2.1\\gt 1.57=\\frac{\\pi}{2}$—in other words, it is not in the restricted domain of $\\tan x.\\;\\cos^{-1}(\\cos(2.1))=2.1,$ since 2.1 is in the restricted domain of $\\cos x.$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e228",
+   "source_id": "fs-id1170572243833",
+   "source_number": "228",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trigonometric-functions",
+   "prompt": "<p><strong>[T]</strong> Use a calculator to evaluate $\\sin(\\sin^{-1}(-2))$ and $\\tan(\\tan^{-1}(-2)).$ Explain the results of each.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\sin(\\sin^{-1}(-2))$ is not defined, and a calculator reports an error: the domain of $\\sin^{-1}$ is $[-1,1],$ and $-2$ is not in it, since no angle has sine $-2.$ $\\tan(\\tan^{-1}(-2))=-2:$ the domain of $\\tan^{-1}$ is all real numbers, $\\tan^{-1}(-2)\\approx -1.107$ is the angle in $\\left(-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right)$ whose tangent is $-2,$ and $\\tan(\\tan^{-1}y)=y$ for every real $y.$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp23",
+   "concept": "horizontal-line-test"
+  },
+  {
+   "exercise": "cp23",
+   "concept": "one-to-one-function"
+  },
+  {
+   "exercise": "cp24",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "cp24",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "cp25",
+   "concept": "graph-of-an-inverse-function"
+  },
+  {
+   "exercise": "cp26",
+   "concept": "restricted-domain"
+  },
+  {
+   "exercise": "cp26",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "e183",
+   "concept": "horizontal-line-test"
+  },
+  {
+   "exercise": "e183",
+   "concept": "one-to-one-function"
+  },
+  {
+   "exercise": "e185",
+   "concept": "horizontal-line-test"
+  },
+  {
+   "exercise": "e185",
+   "concept": "one-to-one-function"
+  },
+  {
+   "exercise": "e187",
+   "concept": "horizontal-line-test"
+  },
+  {
+   "exercise": "e187",
+   "concept": "one-to-one-function"
+  },
+  {
+   "exercise": "e189",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "e189",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e189",
+   "concept": "restricted-domain"
+  },
+  {
+   "exercise": "e191",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "e191",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e193",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "e193",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e195",
+   "concept": "graph-of-an-inverse-function"
+  },
+  {
+   "exercise": "e197",
+   "concept": "graph-of-an-inverse-function"
+  },
+  {
+   "exercise": "e199",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e199",
+   "concept": "composite-function"
+  },
+  {
+   "exercise": "e201",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e201",
+   "concept": "composite-function"
+  },
+  {
+   "exercise": "e203",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e203",
+   "concept": "composite-function"
+  },
+  {
+   "exercise": "e205",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e205",
+   "concept": "composite-function"
+  },
+  {
+   "exercise": "e207",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e209",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e211",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e213",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e213",
+   "concept": "composite-function"
+  },
+  {
+   "exercise": "e215",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e215",
+   "concept": "restricted-domain"
+  },
+  {
+   "exercise": "e217",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "e217",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e219",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "e221",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e223",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e225",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e227",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e227",
+   "concept": "restricted-domain"
+  },
+  {
+   "exercise": "e228",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e228",
+   "concept": "domain"
+  }
+ ],
+ "referents": [
+  {
+   "id": "map-f",
+   "label": "the function f",
+   "figures": [
+    "sim-inverse-map"
+   ]
+  },
+  {
+   "id": "map-finv",
+   "label": "the inverse f⁻¹",
+   "figures": [
+    "sim-inverse-map"
+   ]
+  },
+  {
+   "id": "steps-f",
+   "label": "the line y = 3x − 4",
+   "figures": [
+    "sim-inverse-steps"
+   ]
+  },
+  {
+   "id": "steps-finv",
+   "label": "the inverse f⁻¹(x) = x/3 + 4/3",
+   "figures": [
+    "sim-inverse-steps"
+   ]
+  },
+  {
+   "id": "graph-f",
+   "label": "the graph of f",
+   "figures": [
+    "sim-inverse-graph"
+   ]
+  },
+  {
+   "id": "graph-finv",
+   "label": "the graph of f⁻¹",
+   "figures": [
+    "sim-inverse-graph"
+   ]
+  },
+  {
+   "id": "root-f",
+   "label": "f(x) = √(x + 2)",
+   "figures": [
+    "sim-sketch-inverse"
+   ]
+  },
+  {
+   "id": "root-finv",
+   "label": "f⁻¹(x) = x² − 2",
+   "figures": [
+    "sim-sketch-inverse"
+   ]
+  },
+  {
+   "id": "sq-g",
+   "label": "g(x) = x² on [0, ∞)",
+   "figures": [
+    "sim-restricted"
+   ]
+  },
+  {
+   "id": "sq-g-inv",
+   "label": "g⁻¹(x) = √x",
+   "figures": [
+    "sim-restricted"
+   ]
+  },
+  {
+   "id": "sq-h",
+   "label": "h(x) = x² on (−∞, 0]",
+   "figures": [
+    "sim-restricted"
+   ]
+  },
+  {
+   "id": "sq-h-inv",
+   "label": "h⁻¹(x) = −√x",
+   "figures": [
+    "sim-restricted"
+   ]
+  },
+  {
+   "id": "trig",
+   "label": "the restricted trigonometric function",
+   "figures": [
+    "sim-inverse-trig"
+   ]
+  },
+  {
+   "id": "trig-inv",
+   "label": "its inverse",
+   "figures": [
+    "sim-inverse-trig"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-e221-mach",
+   "kind": "correction",
+   "html": "The key gives about $92^{\\circ}$ for $M=1.4;$ $2\\sin^{-1}(1/1.4)\\approx 2(45.58^{\\circ})=91.17^{\\circ},$ which is $91^{\\circ}$ to the nearest degree."
+  },
+  {
+   "id": "c-fig141-arcsin",
+   "kind": "correction",
+   "figure": "sim-inverse-trig",
+   "html": "The book’s panel for $\\sin^{-1}$ draws the curve flat at the origin. Its slope there is $1,$ the reflection of the slope of $\\sin x$ at $0,$ and the curve turns vertical at $x=\\pm 1.$"
+  }
+ ]
+}
