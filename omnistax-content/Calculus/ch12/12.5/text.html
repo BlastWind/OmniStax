@@ -1,0 +1,290 @@
+<p id="lines-planes-intro">By now, we are familiar with writing equations that describe a line in two dimensions. To write an equation for a line, we must know two points on the line, or we must know the direction of the line and at least one point through which the line passes. In two dimensions, we use the concept of slope to describe the orientation, or direction, of a line. In three dimensions, we describe the direction of a line using a <span data-concept="vector">vector</span> parallel to the line. In this section, we examine how to use equations to describe lines and planes in space.</p>
+
+<section id="line">
+<h2>Equations for a Line in Space</h2>
+<p class="cite-target" id="parallel-term">Let’s first explore what it means for two <span data-concept="vector">vectors</span> to be parallel. Recall that <span data-concept="parallel-vectors">parallel vectors</span> must have the same or opposite directions. If two nonzero <span data-concept="vector">vectors</span>, $\kvecu $ and $\kvecv,$ are parallel, we claim there must be a scalar, $k,$ such that $\kvecu=k\kvecv.$ If $\kvecu $ and $\kvecv $ have the same direction, simply choose $k=\frac{\| \kvecu\|}{\| \kvecv\|}.$ If $\kvecu $ and $\kvecv $ have opposite directions, choose $k=-\frac{\| \kvecu\|}{\| \kvecv\|}.$ Note that the converse holds as well. If $\kvecu=k\kvecv $ for some scalar $\kveck,$ then either $\kvecu $ and $\kvecv $ have the same direction $(k\gt 0)$ or opposite directions $(k\lt 0),$ so $\kvecu $ and $\kvecv $ are parallel. Therefore, two nonzero <span data-concept="vector">vectors</span> $\kvecu $ and $\kvecv $ are parallel if and only if $\kvecu=k\kvecv $ for some scalar $\kveck.$ By convention, the zero <span data-concept="vector">vector</span> $\kveczero$ is considered to be parallel to all <span data-concept="vector">vectors</span>.</p>
+<p id="direction-term">As in two dimensions, we can describe a line in space using a point on the line and the direction of the line, or a parallel <span data-concept="vector">vector</span>, which we call the <strong><span data-concept="direction-vector">direction vector</span></strong> (Figure 12.63). Let $L$ be a line in space passing through point $P(x_{0},y_{0},z_{0}).$ Let $\kvecv=\langle a,b,c\rangle$ be a <span data-concept="vector">vector</span> parallel to $L.$ Then, for any point $Q(x,y,z)$ on line $L$, we know that $\kPQ $ is parallel to $\kvecv.$ Thus, as we just discussed, there is a scalar, $t,$ such that $\kPQ =t\kvecv,$ which gives</p>
+<div class="equation" id="fs-id1163723690717">$$\begin{array}{rll}\kPQ  & = & t\kvecv \\ \langle x-x_{0},y-y_{0},z-z_{0}\rangle & = & t\langle a,b,c\rangle \\ \langle x-x_{0},y-y_{0},z-z_{0}\rangle & = & \langle ta,tb,tc\rangle .\end{array}\tag{12.11}$$</div>
+<figure class="sim" id="sim-line-in-space" data-figure="12.63" data-original="/media/ch12/CNX_Calc_Figure_12_05_001.jpg" data-original-caption="Vector v is the direction vector for PQ⃗.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.63</span><span><span data-concept="vector">Vector</span> $\kvecv$ is the <span data-concept="direction-vector">direction vector</span> for $\kPQ:$ for every point $Q$ on the line, $\kPQ=t\kvecv,$ so $\kvecr=\kvecr_{0}+t\kvecv.$ Slide $t$ along the line of Example 12.45 through $(1,4,-2)$ and $(-3,5,0);$ the values $0\le t\le 1$ trace the line segment between them.</span></div>
+</figure>
+<p>Using <span data-concept="vector">vector</span> operations, we can rewrite <a href="#fs-id1163723690717">Equation 12.11</a> as</p>
+$$\begin{array}{rll}\langle x-x_{0},y-y_{0},z-z_{0}\rangle & = & \langle ta,tb,tc\rangle \\ \langle x,y,z\rangle -\langle x_{0},y_{0},z_{0}\rangle & = & t\langle a,b,c\rangle \\ \langle x,y,z\rangle & = & \langle x_{0},y_{0},z_{0}\rangle +t\langle a,b,c\rangle .\end{array}$$
+<p id="vector-line-term">Setting $\kvecr=\langle x,y,z\rangle$ and $\kvecr_{0}=\langle x_{0},y_{0},z_{0}\rangle ,$ we now have the <strong><span data-concept="vector-equation-of-a-line">vector equation of a line</span></strong>:</p>
+<div class="equation" id="fs-id1163724080297">$$\kvecr=\kvecr_{0}+t\kvecv.\tag{12.12}$$</div>
+<p id="parametric-term">Equating components, <a href="#fs-id1163723690717">Equation 12.11</a> shows that the following equations are simultaneously true: $x-x_{0}=ta,$ $y-y_{0}=tb,$ and $z-z_{0}=tc.$ If we solve each of these equations for the component variables $x,y,\;\text{and}\;z,$ we get a set of equations in which each variable is defined in terms of the parameter <em>t</em> and that, together, describe the line. This set of three equations forms a set of <strong><span data-concept="parametric-equations-of-a-line">parametric equations of a line</span></strong>:</p>
+$$x=x_{0}+ta\;y=y_{0}+tb\;z=z_{0}+tc.$$
+<p>If we solve each of the equations for $t$ assuming $a,b,\;\text{and}\;c$ are nonzero, we get a different description of the same line:</p>
+$$\frac{x-x_{0}}{a}=t\;\frac{y-y_{0}}{b}=t\;\frac{z-z_{0}}{c}=t.$$
+<p id="symmetric-term">Because each expression equals <em>t</em>, they all have the same value. We can set them equal to each other to create <strong><span data-concept="symmetric-equations-of-a-line">symmetric equations of a line</span></strong>:</p>
+$$\frac{x-x_{0}}{a}=\frac{y-y_{0}}{b}=\frac{z-z_{0}}{c}.$$
+<p>We summarize the results in the following theorem.</p>
+<div class="note" id="fs-id1163724039121">
+<div class="eyebrow">Theorem</div>
+<h3>Parametric and Symmetric Equations of a Line</h3>
+<p>A line $L$ parallel to <span data-concept="vector">vector</span> $\kvecv=\langle a,b,c\rangle$ and passing through point $P(x_{0},y_{0},z_{0})$ can be described by the following <span data-concept="parametric-equations-of-a-line">parametric equations</span>:</p>
+<div class="equation" id="fs-id1163723684994">$$x=x_{0}+ta,y=y_{0}+tb,\;\text{and}\;z=z_{0}+tc.\tag{12.13}$$</div>
+<p>If the constants $a,b,\;\text{and}\;c$ are all nonzero, then $L$ can be described by the <span data-concept="symmetric-equations-of-a-line">symmetric equation of the line</span>:</p>
+<div class="equation" id="fs-id1163724037306">$$\frac{x-x_{0}}{a}=\frac{y-y_{0}}{b}=\frac{z-z_{0}}{c}.\tag{12.14}$$</div>
+</div>
+<p>The <span data-concept="parametric-equations-of-a-line">parametric equations of a line</span> are not unique. Using a different parallel <span data-concept="vector">vector</span> or a different point on the line leads to a different, equivalent representation. Each set of <span data-concept="parametric-equations-of-a-line">parametric equations</span> leads to a related set of <span data-concept="symmetric-equations-of-a-line">symmetric equations</span>, so it follows that a <span data-concept="symmetric-equations-of-a-line">symmetric equation of a line</span> is not unique either.</p>
+<div class="example" id="fs-id1163723137804">
+<h3>Example 12.45 · Equations of a Line in Space</h3>
+<p>Find parametric and <span data-concept="symmetric-equations-of-a-line">symmetric equations of the line</span> passing through points $(1,4,-2)$ and $(-3,5,0).$</p>
+<h4>Solution</h4>
+<p>First, identify a <span data-concept="vector">vector</span> parallel to the line:</p>
+$$\kvecv=\langle -3-1,5-4,0-(-2)\rangle =\langle -4,1,2\rangle .$$
+<p>Use either of the given points on the line to complete the <span data-concept="parametric-equations-of-a-line">parametric equations</span>:</p>
+$$x=1-4t,y=4+t,\;\text{and}\;z=-2+2t.$$
+<p>Solve each equation for $t$ to create the <span data-concept="symmetric-equations-of-a-line">symmetric equation of the line</span>:</p>
+$$\frac{x-1}{-4}=y-4=\frac{z+2}{2}.$$
+</div>
+<div class="exercises" data-place="fs-id1163723137804"></div>
+<p id="segment">Sometimes we don’t want the equation of a whole line, just a line segment. In this case, we limit the values of our parameter $t.$ For example, let $P(x_{0},y_{0},z_{0})$ and $Q(x_{1},y_{1},z_{1})$ be points on a line, and let $\kvecp=\langle x_{0},y_{0},z_{0}\rangle$ and $\kvecq=\langle x_{1},y_{1},z_{1}\rangle$ be the associated position <span data-concept="vector">vectors</span>. In addition, let $\kvecr=\langle x,y,z\rangle .$ We want to find a <span data-concept="vector">vector</span> equation for the line segment between $P$ and $Q.$ Using $P$ as our known point on the line, and $\kPQ =\langle x_{1}-x_{0},y_{1}-y_{0},z_{1}-z_{0}\rangle$ as the <span data-concept="direction-vector">direction vector</span> equation, <a href="#fs-id1163724080297">Equation 12.12</a> gives</p>
+$$\kvecr=\kvecp+t(\kPQ ).$$
+<p>Using properties of <span data-concept="vector">vectors</span>, then</p>
+$$\begin{array}{rl}\kvecr & =\kvecp+t(\kPQ ) \\ & =\langle x_{0},y_{0},z_{0}\rangle +t\langle x_{1}-x_{0},y_{1}-y_{0},z_{1}-z_{0}\rangle \\ & =\langle x_{0},y_{0},z_{0}\rangle +t(\langle x_{1},y_{1},z_{1}\rangle -\langle x_{0},y_{0},z_{0}\rangle ) \\ & =\langle x_{0},y_{0},z_{0}\rangle +t\langle x_{1},y_{1},z_{1}\rangle -t\langle x_{0},y_{0},z_{0}\rangle \\ & =(1-t)\langle x_{0},y_{0},z_{0}\rangle +t\langle x_{1},y_{1},z_{1}\rangle \\ & =(1-t)\kvecp+t\kvecq.\end{array}$$
+<p>Thus, the <span data-concept="vector">vector</span> equation of the line passing through $P$ and $Q$ is</p>
+$$\kvecr=(1-t)\kvecp+t\kvecq.$$
+<p>Remember that we didn’t want the equation of the whole line, just the line segment between $P$ and $Q.$ Notice that when $t=0,$ we have $\kvecr=\kvecp,$ and when $t=1,$ we have $\kvecr=\kvecq.$ Therefore, the <span data-concept="vector">vector</span> equation of the line segment between $P$ and $Q$ is</p>
+<div class="equation" id="fs-id1163723311060">$$\kvecr=(1-t)\kvecp+t\kvecq,0\le t\le 1.\tag{12.15}$$</div>
+<p>Going back to <a href="#fs-id1163724080297">Equation 12.12</a>, we can also find <span data-concept="parametric-equations-of-a-line">parametric equations</span> for this line segment. We have</p>
+$$\begin{array}{rll}\kvecr & = & \kvecp+t(\kPQ ) \\ \langle x,y,z\rangle & = & \langle x_{0},y_{0},z_{0}\rangle +t\langle x_{1}-x_{0},y_{1}-y_{0},z_{1}-z_{0}\rangle \\ & = & \langle x_{0}+t(x_{1}-x_{0}),y_{0}+t(y_{1}-y_{0}),z_{0}+t(z_{1}-z_{0})\rangle .\end{array}$$
+<p>Then, the <span data-concept="parametric-equations-of-a-line">parametric equations</span> are</p>
+<div class="equation" id="fs-id1163723756804">$$x=x_{0}+t(x_{1}-x_{0}),y=y_{0}+t(y_{1}-y_{0}),z=z_{0}+t(z_{1}-z_{0}),0\le t\le 1.\tag{12.16}$$</div>
+<div class="example" id="fs-id1163724049760">
+<h3>Example 12.46 · Parametric Equations of a Line Segment</h3>
+<p>Find <span data-concept="parametric-equations-of-a-line">parametric equations</span> of the line segment between the points $P(2,1,4)$ and $Q(3,-1,3).$</p>
+<h4>Solution</h4>
+<p>By <a href="#fs-id1163723756804">Equation 12.16</a>, we have</p>
+$$x=x_{0}+t(x_{1}-x_{0}),y=y_{0}+t(y_{1}-y_{0}),z=z_{0}+t(z_{1}-z_{0}),0\le t\le 1.$$
+<p>Working with each component separately, we get</p>
+$$\begin{array}{rl}x & =x_{0}+t(x_{1}-x_{0}) \\ & =2+t(3-2) \\ & =2+t,\end{array}$$
+$$\begin{array}{rl}y & =y_{0}+t(y_{1}-y_{0}) \\ & =1+t(-1-1) \\ & =1-2t,\end{array}$$
+<p>and</p>
+$$\begin{array}{rl}z & =z_{0}+t(z_{1}-z_{0}) \\ & =4+t(3-4) \\ & =4-t.\end{array}$$
+<p>Therefore, the <span data-concept="parametric-equations-of-a-line">parametric equations</span> for the line segment are</p>
+$$x=2+t,y=1-2t,z=4-t,0\le t\le 1.$$
+</div>
+<div class="exercises" data-place="fs-id1163724049760"></div>
+</section>
+
+<section id="point-line">
+<h2>Distance between a Point and a Line</h2>
+<p class="cite-target">We already know how to calculate the distance between two points in space. We now expand this definition to describe the distance between a point and a line in space. Several real-world contexts exist when it is important to be able to calculate these distances. When building a home, for example, builders must consider “setback” requirements, when structures or fixtures have to be a certain distance from the property line. Air travel offers another example. Airlines are concerned about the distances between populated areas and proposed flight paths.</p>
+<p>Let $L$ be a line in the plane and let $M$ be any point not on the line. Then, we define distance $d$ from $M$ to $L$ as the length of line segment $\bar{MP},$ where $P$ is a point on $L$ such that $\bar{MP}$ is perpendicular to $L$ (Figure 12.64).</p>
+<figure class="sim" id="sim-point-line-distance" data-figure="12.64 + 12.65" data-original="/media/ch12/CNX_Calc_Figure_12_05_002.jpg,/media/ch12/CNX_Calc_Figure_12_05_003.jpg" data-original-caption="(Figure 12.64) The distance from point M to line L is the length of MP. (Figure 12.65) Vectors PM⃗ and v form two sides of a parallelogram with base ‖ v‖ and height d, which is the distance between a line and a point in space.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.64 + 12.65</span><span>The distance from point $M$ to line $L$ is the length of the segment from $M$ perpendicular to $L.$ <span data-concept="vector">Vectors</span> $\vec{PM}$ and $\kvecv$ form two sides of a parallelogram with base $\|\kvecv\|$ and height $d.$ Slide $P$ along $L:$ the parallelogram leans and changes shape, but its area and its height stay the same, so $d=\|\vec{PM}\times\kvecv\|/\|\kvecv\|$ whichever point of the line is chosen.</span></div>
+</figure>
+<p>When we’re looking for the distance between a line and a point in space, Figure 12.64 still applies. We still define the distance as the length of the perpendicular line segment connecting the point to the line. In space, however, there is no clear way to know which point on the line creates such a perpendicular line segment, so we select an arbitrary point on the line and use properties of <span data-concept="vector">vectors</span> to calculate the distance. Therefore, let $P$ be an arbitrary point on line $L$ and let $\kvecv $ be a <span data-concept="direction-vector">direction vector</span> for $L$ (Figure 12.65).</p>
+<p>By <a href="/calculus/ch12/12.4/#12.4-fs-id1163723995104">Area of a Parallelogram</a>, <span data-concept="vector">vectors</span> $\vec{PM}$ and $\kvecv $ form two sides of a parallelogram with area $\| \vec{PM}\;\times \;\kvecv\| .$ Using a formula from geometry, the area of this parallelogram can also be calculated as the product of its base and height:</p>
+$$\| \vec{PM}\;\times \;\kvecv\| =\| \kvecv\| d.$$
+<p>We can use this formula to find a general formula for the distance between a line in space and any point not on the line.</p>
+<div class="note" id="fs-id1163723987369">
+<div class="eyebrow">Theorem</div>
+<h3>Distance from a Point to a Line</h3>
+<p>Let $L$ be a line in space passing through point $P$ with <span data-concept="direction-vector">direction vector</span> $\kvecv.$ If $M$ is any point not on $L,$ then the distance from $M$ to $L$ is</p>
+$$d=\frac{\| \vec{PM}\;\times \;\kvecv\|}{\| \kvecv\|}.$$
+</div>
+<div class="example" id="fs-id1163723384017">
+<h3>Example 12.47 · Calculating the Distance from a Point to a Line</h3>
+<p>Find the distance between the point $M=(1,1,3)$ and line $\frac{x-3}{4}=\frac{y+1}{2}=z-3.$</p>
+<h4>Solution</h4>
+<p>From the <span data-concept="symmetric-equations-of-a-line">symmetric equations of the line</span>, we know that <span data-concept="vector">vector</span> $\kvecv=\langle 4,2,1\rangle$ is a <span data-concept="direction-vector">direction vector</span> for the line. Setting the <span data-concept="symmetric-equations-of-a-line">symmetric equations of the line</span> equal to zero, we see that point $P(3,-1,3)$ lies on the line. Then,</p>
+$$\vec{PM}=\langle 1-3,1-(-1),3-3\rangle =\langle -2,2,0\rangle .$$
+<p>To calculate the distance, we need to find $\vec{PM}\;\times \;\kvecv\text{:}$</p>
+$$\begin{array}{rl}\vec{PM}\;\times \;\kvecv & =|\begin{array}{rcc}\kveci & \kvecj & \kveck \\ -2 & 2 & 0 \\ 4 & 2 & 1\end{array}| \\ & =(2-0)\kveci-(-2-0)\kvecj+(-4-8)\kveck \\ & =2\kveci+2\kvecj-12\kveck.\end{array}$$
+<p>Therefore, the distance between the point and the line is (Figure 12.66)</p>
+$$\begin{array}{rl}d & =\frac{\| \vec{PM}\;\times \;\kvecv\|}{\| \kvecv\|} \\ & =\frac{\sqrt{2^{2}+2^{2}+{12}^{2}}}{\sqrt{4^{2}+2^{2}+1^{2}}} \\ & =\frac{2\sqrt{38}}{\sqrt{21}}.\end{array}$$
+<figure class="sim" id="fig-point-line-box" data-figure="12.66" data-original="/media/ch12/CNX_Calc_Figure_12_05_004.jpg" data-original-caption="Point (1,1,3) is approximately 2.7 units from the line with symmetric equations x−3/4=y+1/2=z−3.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.66</span><span>Point $(1,1,3)$ is approximately $2.7$ units from the line with <span data-concept="symmetric-equations-of-a-line">symmetric equations</span> $\frac{x-3}{4}=\frac{y+1}{2}=z-3.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1163723384017"></div>
+</section>
+
+<section id="relationships">
+<h2>Relationships between Lines</h2>
+<p class="cite-target" id="skew-term">Given two lines in the two-dimensional plane, the lines are equal, they are parallel but not equal, or they intersect in a single point. In three dimensions, a fourth case is possible. If two lines in space are not parallel, but do not intersect, then the lines are said to be <strong><span data-concept="skew-lines">skew lines</span></strong> (Figure 12.67).</p>
+<figure class="sim" id="sim-line-pairs" data-figure="12.67" data-original="/media/ch12/CNX_Calc_Figure_12_05_005.jpg" data-original-caption="In three dimensions, it is possible that two lines do not cross, even when they have different directions.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.67</span><span>In three dimensions, it is possible that two lines do not cross, even when they have different directions: <span data-concept="skew-lines">skew lines</span> seem to cross from most views, and turning the scene shows the gap between them. Choose a pair from Example 12.48 to see lines that are skew, that intersect at $(1,-1,1),$ or that are parallel.</span></div>
+</figure>
+<p id="classify">To classify lines as parallel but not equal, equal, intersecting, or <span data-concept="skew-lines">skew</span>, we need to know two things: whether the <span data-concept="direction-vector">direction vectors</span> are parallel and whether the lines share a point (Figure 12.68).</p>
+<figure class="sim" id="fig-line-table" data-figure="12.68" data-original="/media/ch12/CNX_Calc_Figure_12_05_006.jpg" data-original-caption="Determine the relationship between two lines based on whether their direction vectors are parallel and whether they share a point.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.68</span><span>Determine the relationship between two lines based on whether their <span data-concept="direction-vector">direction vectors</span> are parallel and whether they share a point.</span></div>
+</figure>
+<div class="example" id="fs-id1163723283990">
+<h3>Example 12.48 · Classifying Lines in Space</h3>
+<p>For each pair of lines, determine whether the lines are equal, parallel but not equal, <span data-concept="skew-lines">skew</span>, or intersecting.</p>
+<p>a. $L_{1}:x=2s-1,y=s-1,z=s-4$</p>
+<p>$L_{2}:x=t-3,y=3t+8,z=5-2t$</p>
+<p>b. $L_{1}\text{:}$ $x=-y=z$</p>
+<p>$L_{2}:\frac{x-3}{2}=y=z-2$</p>
+<p>c. $L_{1}:x=6s-1,y=-2s,z=3s+1;s\ne 0$</p>
+<p>$L_{2}:\frac{x-4}{6}=\frac{y+3}{-2}=\frac{z-1}{3}$</p>
+<h4>Solution</h4>
+<p>a. Line $L_{1}$ has <span data-concept="direction-vector">direction vector</span> $\kvecv_{1}=\langle 2,1,1\rangle ;$ line $L_{2}$ has <span data-concept="direction-vector">direction vector</span> $\kvecv_{2}=\langle 1,3,-2\rangle .$ Because the <span data-concept="direction-vector">direction vectors</span> are not <span data-concept="parallel-vectors">parallel vectors</span>, the lines are either intersecting or <span data-concept="skew-lines">skew</span>. To determine whether the lines intersect, we see if there is a point, $(x,y,z),$ that lies on both lines. To find this point, we use the <span data-concept="parametric-equations-of-a-line">parametric equations</span> to create a system of equalities:</p>
+$$2s-1=t-3;\;s-1=3t+8;\;s-4=5-2t.$$
+<p>By the first equation, $t=2s+2.$ Substituting into the second equation yields</p>
+$$\begin{array}{rll}s-1 & = & 3(2s+2)+8 \\ s-1 & = & 6s+6+8 \\ 5s & = & -15 \\ s & = & -3.\end{array}$$
+<p>Substitution into the third equation, however, yields a contradiction:</p>
+$$\begin{array}{rll}s-4 & = & 5-2(2s+2) \\ s-4 & = & 5-4s-4 \\ 5s & = & 5 \\ s & = & 1.\end{array}$$
+<p>There is no single point that satisfies the <span data-concept="parametric-equations-of-a-line">parametric equations</span> for $L_{1}\;\text{and}\;L_{2}$ simultaneously. These lines do not intersect, so they are <span data-concept="skew-lines">skew</span> (see the following figure).</p>
+<img src="/media/ch12/CNX_Calc_Figure_12_05_011.jpg" alt="This figure is the 3-dimensional coordinate system. There are two skew lines drawn. They do not intersect and are not parallel.">
+<p>b. Line <em>L<sub>1</sub></em> has <span data-concept="direction-vector">direction vector</span> $\kvecv_{1}=\langle 1,-1,1\rangle$ and passes through the origin, $(0,0,0).$ Line $L_{2}$ has a different <span data-concept="direction-vector">direction vector</span>, $\kvecv_{2}=\langle 2,1,1\rangle ,$ so these lines are not parallel or equal. Let $r$ represent the parameter for line $L_{1}$ and let $s$ represent the parameter for $L_{2}\text{:}$</p>
+$$\begin{array}{llll}\begin{array}{ll}x & =r \\ y & =-r \\ z & =r\end{array} & & & \begin{array}{ll}x & =2s+3 \\ y & =s \\ z & =s+2.\end{array}\end{array}$$
+<p>Solve the system of equations to find $r=1$ and $s=-1.$ If we need to find the point of intersection, we can substitute these parameters into the original equations to get $(1,-1,1)$ (see the following figure).</p>
+<img src="/media/ch12/CNX_Calc_Figure_12_05_012.jpg" alt="This figure is the 3-dimensional coordinate system. There are two skew lines drawn. They do not intersect and are not parallel.">
+<p>c. Lines $L_{1}$ and $L_{2}$ have equivalent <span data-concept="direction-vector">direction vectors</span>: $\kvecv=\langle 6,-2,3\rangle .$ These two lines are parallel (see the following figure).</p>
+<img src="/media/ch12/CNX_Calc_Figure_12_05_013.jpg" alt="This figure is the 3-dimensional coordinate system. There are two skew lines drawn. They do not intersect and are not parallel.">
+</div>
+<div class="exercises" data-place="fs-id1163723283990"></div>
+</section>
+
+<section id="plane">
+<h2>Equations for a Plane</h2>
+<p class="cite-target">We know that a line is determined by two points. In other words, for any two distinct points, there is exactly one line that passes through those points, whether in two dimensions or three. Similarly, given any three points that do not all lie on the same line, there is a unique plane that passes through these points. Just as a line is determined by two points, a plane is determined by three.</p>
+<p>This may be the simplest way to characterize a plane, but we can use other descriptions as well. For example, given two distinct, intersecting lines, there is exactly one plane containing both lines. A plane is also determined by a line and any point that does not lie on the line. These characterizations arise naturally from the idea that a plane is determined by three points. Perhaps the most surprising characterization of a plane is actually the most useful.</p>
+<p id="normal-term">Imagine a pair of <span data-concept="orthogonal-vectors">orthogonal</span> <span data-concept="vector">vectors</span> that share an initial point. Visualize grabbing one of the <span data-concept="vector">vectors</span> and twisting it. As you twist, the other <span data-concept="vector">vector</span> spins around and sweeps out a plane. Here, we describe that concept mathematically. Let $\kvecn=\langle a,b,c\rangle$ be a <span data-concept="vector">vector</span> and $P=(x_{0},y_{0},z_{0})$ be a point. Then the set of all points $Q=(x,y,z)$ such that $\kPQ $ is <span data-concept="orthogonal-vectors">orthogonal</span> to $\kvecn $ forms a plane (Figure 12.69). We say that $\kvecn $ is a <strong><span data-concept="normal-vector">normal vector</span></strong>, or perpendicular to the plane. Remember, the <span data-concept="dot-product">dot product</span> of <span data-concept="orthogonal-vectors">orthogonal</span> <span data-concept="vector">vectors</span> is zero. This fact generates the <strong><span data-concept="vector-equation-of-a-plane">vector equation of a plane</span></strong>: $\kvecn\cdot \kPQ =0.$ Rewriting this equation provides additional ways to describe the plane:</p>
+$$\begin{array}{rll} \\ \kvecn\cdot \kPQ  & = & 0 \\ \langle a,b,c\rangle \cdot \langle x-x_{0},y-y_{0},z-z_{0}\rangle & = & 0 \\ a(x-x_{0})+b(y-y_{0})+c(z-z_{0}) & = & 0.\end{array}$$
+<figure class="sim" id="sim-plane-normal" data-figure="12.69" data-original="/media/ch12/CNX_Calc_Figure_12_05_007.jpg" data-original-caption="Given a point P and vector n, the set of all points Q with PQ⃗ orthogonal to n forms a plane.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.69</span><span>Given a point $P$ and <span data-concept="vector">vector</span> $\kvecn,$ the set of all points $Q$ with $\kPQ$ orthogonal to $\kvecn$ forms a plane. Drag $Q$ across the plane of Example 12.49, through $P=(1,1,-2)$ with $\kvecn=\langle 8,-4,4\rangle:$ $\kPQ$ turns within the plane and $\kvecn\cdot\kPQ$ stays 0.</span></div>
+</figure>
+<div class="note" id="fs-id1163723211066">
+<div class="eyebrow">Definition</div>
+<p>Given a point $P$ and <span data-concept="vector">vector</span> $\kvecn,$ the set of all points $Q$ satisfying the equation $\kvecn\cdot \kPQ =0$ forms a plane. The equation</p>
+<div class="equation" id="fs-id1163724147330">$$\kvecn\cdot \kPQ =0\tag{12.17}$$</div>
+<p>is known as the <span data-concept="vector-equation-of-a-plane">vector equation of a plane</span>.</p>
+<p>The <strong><span data-concept="scalar-equation-of-a-plane">scalar equation of a plane</span></strong> containing point $P=(x_{0},y_{0},z_{0})$ with <span data-concept="normal-vector">normal vector</span> $\kvecn=\langle a,b,c\rangle$ is</p>
+<div class="equation" id="fs-id1163723154554">$$a(x-x_{0})+b(y-y_{0})+c(z-z_{0})=0.\tag{12.18}$$</div>
+<p>This equation can be expressed as $ax+by+cz+d=0,$ where $d=-ax_{0}-by_{0}-cz_{0}.$ This form of the equation is sometimes called the <strong><span data-concept="scalar-equation-of-a-plane">general form of the equation of a plane</span></strong>.</p>
+</div>
+<p>As described earlier in this section, any three points that do not all lie on the same line determine a plane. Given three such points, we can find an equation for the plane containing these points.</p>
+<div class="example" id="fs-id1163724085704">
+<h3>Example 12.49 · Writing an Equation of a Plane Given Three Points in the Plane</h3>
+<p>Write an equation for the plane containing points $P=(1,1,-2),$ $Q=(0,2,1),$ and $R=(-1,-1,0)$ in both standard and general forms.</p>
+<h4>Solution</h4>
+<p>To write an equation for a plane, we must find a <span data-concept="normal-vector">normal vector</span> for the plane. We start by identifying two <span data-concept="vector">vectors</span> in the plane:</p>
+$$\begin{array}{rll}\kPQ  & = & \langle 0-1,2-1,1-(-2)\rangle =\langle -1,1,3\rangle \\ \vec{QR} & = & \langle -1-0,-1-2,0-1\rangle =\langle -1,-3,-1\rangle .\end{array}$$
+<p>The <span data-concept="cross-product">cross product</span> $\kPQ \;\times \;\vec{QR}$ is <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kPQ $ and $\vec{QR},$ so it is normal to the plane that contains these two <span data-concept="vector">vectors</span>:</p>
+$$\begin{array}{rl}\kvecn & =\kPQ \;\times \;\vec{QR} \\ & =|\begin{array}{rrr}\kveci & \kvecj & \kveck \\ -1 & 1 & 3 \\ -1 & -3 & -1\end{array}| \\ & =(-1+9)\kveci-(1+3)\kvecj+(3+1)\kveck \\ & =8\kveci-4\kvecj+4\kveck.\end{array}$$
+<p>Thus, $\kvecn=\langle 8,-4,4\rangle ,$ and we can choose any of the three given points to write an equation of the plane:</p>
+$$\begin{array}{rll}8(x-1)-4(y-1)+4(z+2) & = & 0 \\ 8x-4y+4z+4 & = & 0.\end{array}$$
+</div>
+<p>The <span data-concept="scalar-equation-of-a-plane">scalar equations of a plane</span> vary depending on the <span data-concept="normal-vector">normal vector</span> and point chosen.</p>
+<div class="example" id="fs-id1163724087411">
+<h3>Example 12.50 · Writing an Equation for a Plane Given a Point and a Line</h3>
+<p>Find an equation of the plane that passes through point $(1,4,3)$ and contains the line given by $x=\frac{y-1}{2}=z+1.$</p>
+<h4>Solution</h4>
+<p><span data-concept="symmetric-equations-of-a-line">Symmetric equations</span> describe the line that passes through point $(0,1,-1)$ parallel to <span data-concept="vector">vector</span> $\kvecv_{1}=\langle 1,2,1\rangle$ (see the following figure). Use this point and the given point, $(1,4,3),$ to identify a second <span data-concept="vector">vector</span> parallel to the plane:</p>
+$$\kvecv_{2}=\langle 1-0,4-1,3-(-1)\rangle =\langle 1,3,4\rangle .$$
+<p>Use the <span data-concept="cross-product">cross product</span> of these <span data-concept="vector">vectors</span> to identify a <span data-concept="normal-vector">normal vector</span> for the plane:</p>
+$$\begin{array}{rl}\kvecn & =\kvecv_{1}\;\times \;\kvecv_{2} \\ & =|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ 1 & 2 & 1 \\ 1 & 3 & 4\end{array}| \\ & =(8-3)\kveci-(4-1)\kvecj+(3-2)\kveck \\ & =5\kveci-3\kvecj+\kveck.\end{array}$$
+<p>The scalar equations for the plane are $5x-3(y-1)+(z+1)=0$ and $5x-3y+z+4=0.$</p>
+<img src="/media/ch12/CNX_Calc_Figure_12_05_014.jpg" alt="This figure is the 3-dimensional coordinate system. There is a plane sketched. It is vertical, but skew to the z-axis.">
+</div>
+<div class="exercises" data-place="fs-id1163724087411"></div>
+<p>Now that we can write an equation for a plane, we can use the equation to find the distance $d$ between a point $P$ and the plane. It is defined as the shortest possible distance from $P$ to a point on the plane.</p>
+<figure class="sim" id="sim-point-plane-distance" data-figure="12.70" data-original="/media/ch12/CNX_Calc_Figure_12_05_008.jpg" data-original-caption="We want to find the shortest distance from point P to the plane. Let point R be the point in the plane such that, for any other point in the plane Q, ‖ RP⃗‖ &lt;‖ QP⃗‖ .">
+  <div class="sim-head"><span class="eyebrow">Figure 12.70</span><span>The shortest distance from point $P$ to the plane is the length of $\vec{RP},$ where $R$ is the point of the plane with $\vec{RP}$ orthogonal to it. Slide $Q$ over the plane $x-2y+z=5$ of Example 12.51: $\vec{QP}$ changes, but its projection onto $\kvecn$ is always $\vec{RP},$ of length $\frac{2}{\sqrt{6}}.$</span></div>
+</figure>
+<p>Just as we find the two-dimensional distance between a point and a line by calculating the length of a line segment perpendicular to the line, we find the three-dimensional distance between a point and a plane by calculating the length of a line segment perpendicular to the plane. Let $R$ be the point in the plane such that $\vec{RP}$ is <span data-concept="orthogonal-vectors">orthogonal</span> to the plane, and let $Q$ be an arbitrary point in the plane. Then the projection of <span data-concept="vector">vector</span> $\vec{QP}$ onto the <span data-concept="normal-vector">normal vector</span> describes <span data-concept="vector">vector</span> $\vec{RP},$ as shown in Figure 12.70.</p>
+<div class="note" id="fs-id1163723334705">
+<div class="eyebrow">Theorem</div>
+<h3>The Distance between a Plane and a Point</h3>
+<p>Suppose a plane with <span data-concept="normal-vector">normal vector</span> $\kvecn $ passes through point $Q.$ The distance $d$ from the plane to a point $P$ not in the plane is given by</p>
+<div class="equation" id="fs-id1163724183136">$$d=\| {\text{proj}}_{\kvecn}\vec{QP}\| =|{\text{comp}}_{\kvecn}\vec{QP}|=\frac{|\vec{QP}\cdot \kvecn |}{\| \kvecn\|}.\tag{12.19}$$</div>
+</div>
+<div class="example" id="fs-id1163724065493">
+<h3>Example 12.51 · Distance between a Point and a Plane</h3>
+<p>Find the distance between point $P=(3,1,2)$ and the plane given by $x-2y+z=5$ (see the following figure).</p>
+<img src="/media/ch12/CNX_Calc_Figure_12_05_015.jpg" alt="This figure is the 3-dimensional coordinate system. There is a point drawn at (3, 1, 2). The point is labeled “P(3, 1, 2).” There is a plane drawn. There is a perpendicular line from the plane to point P(3, 1, 2).">
+<h4>Solution</h4>
+<p>The coefficients of the plane’s equation provide a <span data-concept="normal-vector">normal vector</span> for the plane: $\kvecn=\langle 1,-2,1\rangle .$ To find <span data-concept="vector">vector</span> $\vec{QP},$ we need a point in the plane. Any point will work, so set $y=z=0$ to see that point $Q=(5,0,0)$ lies in the plane. Find the component form of the <span data-concept="vector">vector</span> from $Q\;\text{to}\;P\text{:}$</p>
+$$\vec{QP}=\langle 3-5,1-0,2-0\rangle =\langle -2,1,2\rangle .$$
+<p>Apply the distance formula from <a href="#fs-id1163724183136">Equation 12.19</a>:</p>
+$$\begin{array}{rl}d & =\frac{|\vec{QP}\cdot \kvecn |}{\| \kvecn\|} \\ & =\frac{|\langle -2,1,2\rangle \cdot \langle 1,-2,1\rangle |}{\sqrt{1^{2}+{(-2)}^{2}+1^{2}}} \\ & =\frac{|-2-2+2|}{\sqrt{6}} \\ & =\frac{2}{\sqrt{6}}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1163724065493"></div>
+</section>
+
+<section id="planes">
+<h2>Parallel and Intersecting Planes</h2>
+<p class="cite-target" id="planes-term">We have discussed the various possible relationships between two lines in two dimensions and three dimensions. When we describe the relationship between two planes in space, we have only two possibilities: the two distinct planes are parallel or they intersect. When two planes are parallel, their <span data-concept="normal-vector">normal vectors</span> are parallel. When two planes intersect, the intersection is a line (Figure 12.71).</p>
+<figure class="sim" id="sim-two-planes" data-figure="12.71 + 12.72" data-original="/media/ch12/CNX_Calc_Figure_12_05_009.jpg,/media/ch12/CNX_Calc_Figure_12_05_010.jpg" data-original-caption="(Figure 12.71) The intersection of two nonparallel planes is always a line. (Figure 12.72) The angle between two planes has the same measure as the angle between the normal vectors for the planes.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.71 + 12.72</span><span>The intersection of two nonparallel planes is always a line, and the angle between the planes has the measure of the angle between their <span data-concept="normal-vector">normal vectors</span>. Choose a pair of Example 12.53: (a) parallel, (b) orthogonal, (c) meeting at 1.27 rad.</span></div>
+</figure>
+<p>We can use the equations of the two planes to find <span data-concept="parametric-equations-of-a-line">parametric equations</span> for the <span data-concept="parallel-and-intersecting-planes">line of intersection</span>.</p>
+<div class="example" id="fs-id1163724138390">
+<h3>Example 12.52 · Finding the Line of Intersection for Two Planes</h3>
+<p>Find parametric and <span data-concept="symmetric-equations-of-a-line">symmetric equations</span> for the line formed by the intersection of the planes given by $x+y+z=0$ and $2x-y+z=0$ (see the following figure).</p>
+<img src="/media/ch12/CNX_Calc_Figure_12_05_016.jpg" alt="This figure is two planes intersecting in the 3-dimensional coordinate system.">
+<h4>Solution</h4>
+<p>Note that the two planes have nonparallel normals, so the planes intersect. Further, the origin satisfies each equation, so we know the <span data-concept="parallel-and-intersecting-planes">line of intersection</span> passes through the origin. Add the plane equations so we can eliminate the one of the variables, in this case, $y\text{:}$</p>
+$$\begin{array}{l}\underset{\text{\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}}{\begin{array}{rllllll}x & + & y & + & z & = & 0 \\ 2x & - & y & + & z & = & 0\end{array}} \\ \\ \;3x\hspace{3.15em}+2z\;=\;0.\end{array}$$
+<p>This gives us $x=-\frac{2}{3}z.$ We substitute this value into the first equation to express $y$ in terms of $z\text{:}$</p>
+$$\begin{array}{rll}x+y+z & = & 0 \\ -\frac{2}{3}z+y+z & = & 0 \\ y+\frac{1}{3}z & = & 0 \\ y & = & -\frac{1}{3}z.\end{array}$$
+<p>We now have the first two variables, $x$ and $y,$ in terms of the third variable, $z.$ Now we define $z$ in terms of $t.$ To eliminate the need for fractions, we choose to define the parameter $t$ as $t=-\frac{1}{3}z.$ Then, $z=-3t.$ Substituting the parametric representation of $z$ back into the other two equations, we see that the <span data-concept="parametric-equations-of-a-line">parametric equations</span> for the <span data-concept="parallel-and-intersecting-planes">line of intersection</span> are $x=2t,y=t,z=-3t.$ The <span data-concept="symmetric-equations-of-a-line">symmetric equations</span> for the line are $\frac{x}{2}=y=\frac{z}{-3}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1163724138390"></div>
+<p id="angle-planes">In addition to finding the equation of the <span data-concept="parallel-and-intersecting-planes">line of intersection</span> between two planes, we may need to find the angle formed by the intersection of two planes. For example, builders constructing a house need to know the angle where different sections of the roof meet to know whether the roof will look good and drain properly. We can use <span data-concept="normal-vector">normal vectors</span> to calculate the angle between the two planes. We can do this because the angle between the <span data-concept="normal-vector">normal vectors</span> is the same as the angle between the planes. Figure 12.72 shows why this is true.</p>
+<p>We can find the measure of the angle <em>θ</em> between two intersecting planes by first finding the cosine of the angle, using the following equation:</p>
+$$\cos \ktheta =\frac{|\kvecn_{1}\cdot \kvecn_{2}|}{\| \kvecn_{1}\| \| \kvecn_{2}\|}.$$
+<p>We can then use the angle to determine whether two planes are parallel or <span data-concept="orthogonal-vectors">orthogonal</span> or if they intersect at some other angle.</p>
+<div class="example" id="fs-id1163724078754">
+<h3>Example 12.53 · Finding the Angle between Two Planes</h3>
+<p>Determine whether each pair of planes is parallel, <span data-concept="orthogonal-vectors">orthogonal</span>, or neither. If the planes are intersecting, but not <span data-concept="orthogonal-vectors">orthogonal</span>, find the measure of the angle between them. Give the answer in radians and round to two decimal places.</p>
+<p>a. $x+2y-z=8\;\text{and}\;2x+4y-2z=10$</p>
+<p>b. $2x-3y+2z=3\;\text{and}\;6x+2y-3z=1$</p>
+<p>c. $x+y+z=4\;\text{and}\;x-3y+5z=1$</p>
+<h4>Solution</h4>
+<p>a. The <span data-concept="normal-vector">normal vectors</span> for these planes are $\kvecn_{1}=\langle 1,2,-1\rangle$ and $\kvecn_{2}=\langle 2,4,-2\rangle .$ These two <span data-concept="vector">vectors</span> are scalar multiples of each other. The <span data-concept="normal-vector">normal vectors</span> are parallel, so the planes are parallel.</p>
+<p>b. The <span data-concept="normal-vector">normal vectors</span> for these planes are $\kvecn_{1}=\langle 2,-3,2\rangle$ and $\kvecn_{2}=\langle 6,2,-3\rangle .$ Taking the <span data-concept="dot-product">dot product</span> of these <span data-concept="vector">vectors</span>, we have</p>
+$$\kvecn_{1}\cdot \kvecn_{2}=\langle 2,-3,2\rangle \cdot \langle 6,2,-3\rangle =2(6)-3(2)+2(-3)=0.$$
+<p>The <span data-concept="normal-vector">normal vectors</span> are <span data-concept="orthogonal-vectors">orthogonal</span>, so the corresponding planes are <span data-concept="orthogonal-vectors">orthogonal</span> as well.</p>
+<p>c. The <span data-concept="normal-vector">normal vectors</span> for these planes are $\kvecn_{1}=\langle 1,1,1\rangle$ and $\kvecn_{2}=\langle 1,-3,5\rangle \text{:}$</p>
+$$\begin{array}{rl}\cos \ktheta & =\frac{|\kvecn_{1}\cdot \kvecn_{2}|}{\| \kvecn_{1}\| \| \kvecn_{2}\|} \\ & =\frac{|\langle 1,1,1\rangle \cdot \langle 1,-3,5\rangle |}{\sqrt{1^{2}+1^{2}+1^{2}}\;\sqrt{1^{2}+{(-3)}^{2}+5^{2}}} \\ & =\frac{3}{\sqrt{105}}.\end{array}$$
+<p>The angle between the two planes is $1.27$ rad, or approximately $73^{\circ}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1163724078754"></div>
+<p>When we find that two planes are parallel, we may need to find the distance between them. To find this distance, we simply select a point in one of the planes. The distance from this point to the other plane is the distance between the planes.</p>
+<p>Previously, we introduced the formula for calculating this distance in <a href="#fs-id1163724183136">Equation 12.19</a>:</p>
+$$d=\frac{\vec{QP}\cdot \kvecn}{\| \kvecn\|},$$
+<p>where $Q$ is a point on the plane, $P$ is a point not on the plane, and $\kvecn $ is the <span data-concept="normal-vector">normal vector</span> that passes through point $Q.$ Consider the distance from point $(x_{0},y_{0},z_{0})$ to plane $ax+by+cz+k=0.$ Let $(x_{1},y_{1},z_{1})$ be any point in the plane. Substituting into the formula yields</p>
+$$\begin{array}{rl}d & =\frac{|a(x_{0}-x_{1})+b(y_{0}-y_{1})+c(z_{0}-z_{1})|}{\sqrt{a^{2}+b^{2}+c^{2}}} \\ & =\frac{|ax_{0}+by_{0}+cz_{0}+k|}{\sqrt{a^{2}+b^{2}+c^{2}}}.\end{array}$$
+<p>We state this result formally in the following theorem.</p>
+<div class="note" id="fs-id1163723268191">
+<div class="eyebrow">Theorem</div>
+<h3>Distance from a Point to a Plane</h3>
+<p>Let $P(x_{0},y_{0},z_{0})$ be a point. The distance from $P$ to plane $ax+by+cz+k=0$ is given by</p>
+$$d=\frac{|ax_{0}+by_{0}+cz_{0}+k|}{\sqrt{a^{2}+b^{2}+c^{2}}}.$$
+</div>
+<div class="example" id="fs-id1163723268344">
+<h3>Example 12.54 · Finding the Distance between Parallel Planes</h3>
+<p>Find the distance between the two parallel planes given by $2x+y-z=2$ and $2x+y-z=8.$</p>
+<h4>Solution</h4>
+<p>Point $(1,0,0)$ lies in the first plane. The desired distance, then, is</p>
+$$\begin{array}{rl}d & =\frac{|ax_{0}+by_{0}+cz_{0}+k|}{\sqrt{a^{2}+b^{2}+c^{2}}} \\ & =\frac{|2(1)+1(0)+(-1)(0)+(-8)|}{\sqrt{2^{2}+1^{2}+{(-1)}^{2}}} \\ & =\frac{6}{\sqrt{6}}=\sqrt{6}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1163723268344"></div>
+<div class="note" id="fs-id1163723325367">
+<div class="eyebrow">Student Project</div>
+<h3>Distance between Two Skew Lines</h3>
+<figure class="photo" id="fig-pipes" data-figure="12.73">
+  <img src="/media/ch12/CNX_Calc_Figure_12_05_017.jpg" alt="This figure shows a system of pipes running in different directions in an industrial plant. Two skew pipes are highlighted in red.">
+  <figcaption><span class="eyebrow">Figure 12.73</span><span>Industrial pipe installations often feature pipes running in different directions. How can we find the distance between two skew pipes?</span></figcaption>
+</figure>
+<p>Finding the distance from a point to a line or from a line to a plane seems like a pretty abstract procedure. But, if the lines represent pipes in a chemical plant or tubes in an oil refinery or roads at an intersection of highways, confirming that the distance between them meets specifications can be both important and awkward to measure. One way is to model the two pipes as lines, using the techniques in this chapter, and then calculate the distance between them. The calculation involves forming <span data-concept="vector">vectors</span> along the directions of the lines and using both the <span data-concept="cross-product">cross product</span> and the <span data-concept="dot-product">dot product</span>.</p>
+<p>The symmetric forms of two lines, $L_{1}$ and $L_{2},$ are</p>
+$$\begin{array}{l} \\ \\ L_{1}:\frac{x-x_{1}}{a_{1}}=\frac{y-y_{1}}{b_{1}}=\frac{z-z_{1}}{c_{1}} \\ L_{2}:\frac{x-x_{2}}{a_{2}}=\frac{y-y_{2}}{b_{2}}=\frac{z-z_{2}}{c_{2}}.\end{array}$$
+<p>You are to develop a formula for the distance $d$ between these two lines, in terms of the values $a_{1},b_{1},c_{1};a_{2},b_{2},c_{2};x_{1},y_{1},z_{1};\;\text{and}\;x_{2},y_{2},z_{2}.$ The distance between two lines is usually taken to mean the minimum distance, so this is the length of a line segment or the length of a <span data-concept="vector">vector</span> that is perpendicular to both lines and intersects both lines.</p>
+<ol><li>First, write down two <span data-concept="vector">vectors</span>, $\kvecv_{1}$ and $\kvecv_{2},$ that lie along $L_{1}$ and $L_{2},$ respectively.</li><li>Find the <span data-concept="cross-product">cross product</span> of these two <span data-concept="vector">vectors</span> and call it $\textbf{N}.$ This <span data-concept="vector">vector</span> is perpendicular to $\kvecv_{1}\;\text{and}\;\kvecv_{2},$ and hence is perpendicular to both lines.</li><li>From <span data-concept="vector">vector</span> $\textbf{N},$ form a unit <span data-concept="vector">vector</span> $\kvecn $ in the same direction.</li><li>Use <span data-concept="symmetric-equations-of-a-line">symmetric equations</span> to find a convenient <span data-concept="vector">vector</span> $\kvecv_{12}$ that lies between any two points, one on each line. Again, this can be done directly from the <span data-concept="symmetric-equations-of-a-line">symmetric equations</span>.</li><li>The <span data-concept="dot-product">dot product</span> of two <span data-concept="vector">vectors</span> is the magnitude of the projection of one <span data-concept="vector">vector</span> onto the other times the magnitude of the other <span data-concept="vector">vector</span>—that is, $\textbf{A}\cdot \textbf{B}=\| \textbf{A}\| \| \textbf{B}\| \cos \ktheta ,$ where $\ktheta$ is the angle between the <span data-concept="vector">vectors</span>. Using the <span data-concept="dot-product">dot product</span>, find the projection of <span data-concept="vector">vector</span> $\kvecv_{12}$ found in step $4$ onto unit <span data-concept="vector">vector</span> $\kvecn $ found in step 3. This projection is perpendicular to both lines, and hence its length must be the perpendicular distance $d$ between them. Note that the value of $d$ may be negative, depending on your choice of <span data-concept="vector">vector</span> $\kvecv_{12}$ or the order of the <span data-concept="cross-product">cross product</span>, so use absolute value signs around the numerator.</li><li>Check that your formula gives the correct distance of $|-25|/\sqrt{198}\approx 1.78$ between the following two lines:</li></ol>
+$$\begin{array}{l} \\ \\ L_{1}:\frac{x-5}{2}=\frac{y-3}{4}=\frac{z-1}{3} \\ L_{2}:\frac{x-6}{3}=\frac{y-1}{5}=\frac{z}{7}.\end{array}$$
+<ol start="7"><li>Is your general expression valid when the lines are parallel? If not, why not? (<em>Hint:</em> What do you know about the value of the <span data-concept="cross-product">cross product</span> of two <span data-concept="parallel-vectors">parallel vectors</span>? Where would that result show up in your expression for $d?)$</li><li>Demonstrate that your expression for the distance is zero when the lines intersect. Recall that two lines intersect if they are not parallel and they are in the same plane. Hence, consider the direction of $\kvecn $ and $\kvecv_{12}.$ What is the result of their <span data-concept="dot-product">dot product</span>?</li><li>Consider the following application. Engineers at a refinery have determined they need to install support struts between many of the gas pipes to reduce damaging vibrations. To minimize cost, they plan to install these struts at the closest points between adjacent skewed pipes. Because they have detailed schematics of the structure, they are able to determine the correct lengths of the struts needed, and hence manufacture and distribute them to the installation crews without spending valuable time making measurements.</li></ol>
+<p>The rectangular frame structure has the dimensions $4.0\;\times \;15.0\;\times \;10.0\;\text{m}$ (height, width, and depth). One sector has a pipe entering the lower corner of the standard frame unit and exiting at the diametrically opposed corner (the one farthest away at the top); call this $L_{1}.$ A second pipe enters and exits at the two different opposite lower corners; call this $L_{2}$ (Figure 12.74).</p>
+<figure class="sim" id="fig-frame-unit" data-figure="12.74" data-original="/media/ch12/CNX_Calc_Figure_12_05_018.jpg" data-original-caption="Two pipes cross through a standard frame unit.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.74</span><span>Two pipes cross through a standard frame unit.</span></div>
+</figure>
+<p>Write down the <span data-concept="vector">vectors</span> along the lines representing those pipes, find the <span data-concept="cross-product">cross product</span> between them from which to create the unit <span data-concept="vector">vector</span> $\kvecn,$ define a <span data-concept="vector">vector</span> that spans two points on each line, and finally determine the minimum distance between the lines. (Take the origin to be at the lower corner of the first pipe.) Similarly, you may also develop the <span data-concept="symmetric-equations-of-a-line">symmetric equations</span> for each line and substitute directly into your formula.</p>
+</div>
+</section>

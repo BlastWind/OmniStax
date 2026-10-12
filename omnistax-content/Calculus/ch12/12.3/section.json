@@ -1,0 +1,1393 @@
+{
+ "id": "12.3",
+ "module": "m53902",
+ "chapter": "12",
+ "title": "The Dot Product",
+ "short": "The Dot Product",
+ "lead": "The <span data-concept=\"dot-product\">dot product</span> multiplies two <span data-concept=\"vector\">vectors</span> to give a scalar. This section computes it from components and from the angle between the vectors, uses it to test orthogonality and find direction angles, projects one vector onto another, and calculates the work a constant force does.",
+ "objectives": [
+  "Calculate the dot product of two given vectors.",
+  "Determine whether two given vectors are perpendicular.",
+  "Find the direction cosines of a given vector.",
+  "Explain what is meant by the vector projection of one vector onto another vector, and describe how to compute it.",
+  "Calculate the work done by a given force."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"dot-product\">dot product</span>, or <span data-concept=\"dot-product\">scalar product</span>, of two <span data-concept=\"vector\">vectors</span> $\\kvecu=\\langle u_{1},u_{2},u_{3}\\rangle$ and $\\kvecv=\\langle v_{1},v_{2},v_{3}\\rangle$ is $\\kvecu\\cdot \\kvecv=u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}.$</li><li>The <span data-concept=\"dot-product\">dot product</span> satisfies the following properties:</li><li>$\\kvecu\\cdot \\kvecv=\\kvecv\\cdot \\kvecu $</li><li>$\\kvecu\\cdot (\\kvecv+\\kvecw)=\\kvecu\\cdot \\kvecv+\\kvecu\\cdot \\kvecw $</li><li>$c(\\kvecu\\cdot \\kvecv)=(c\\kvecu)\\cdot \\kvecv=\\kvecu\\cdot (c\\kvecv)$</li><li>$\\kvecv\\cdot \\kvecv={\\| \\kvecv\\|}^{2}$</li><li>The <span data-concept=\"dot-product\">dot product</span> of two <span data-concept=\"vector\">vectors</span> can be expressed, alternatively, as $\\kvecu\\cdot \\kvecv=\\| \\kvecu\\| \\| \\kvecv\\| \\cos \\ktheta .$ This form of the <span data-concept=\"dot-product\">dot product</span> is useful for finding the measure of the angle formed by two <span data-concept=\"vector\">vectors</span>.</li><li><span data-concept=\"vector\">Vectors</span> $\\kvecu $ and $\\kvecv $ are orthogonal if $\\kvecu\\cdot \\kvecv=0.$</li><li>The angles formed by a nonzero <span data-concept=\"vector\">vector</span> and the coordinate axes are called the <em><span data-concept=\"direction-angles\">direction angles</span></em> for the <span data-concept=\"vector\">vector</span>. The cosines of these angles are known as the <em><span data-concept=\"direction-cosines\">direction cosines</span></em>.</li><li>The <span data-concept=\"vector-projection\">vector projection</span> of $\\kvecv $ onto $\\kvecu $ is the <span data-concept=\"vector\">vector</span> ${\\text{proj}}_{\\kvecu}\\kvecv=\\frac{\\kvecu\\cdot \\kvecv}{{\\| \\kvecu\\|}^{2}}\\kvecu.$ The <span data-concept=\"magnitude-of-a-vector\">magnitude</span> of this <span data-concept=\"vector\">vector</span> is known as the <em><span data-concept=\"scalar-projection\">scalar projection</span></em> of $\\kvecv $ onto $\\kvecu $, given by ${\\text{comp}}_{\\kvecu}\\kvecv=\\frac{\\kvecu\\cdot \\kvecv}{\\| \\kvecu\\|}.$</li><li>Work is done when a force is applied to an object, causing displacement. When the force is represented by the <span data-concept=\"vector\">vector</span> $\\kvecF$ and the displacement is represented by the <span data-concept=\"vector\">vector</span> $\\kvecs$, then the work done <em>W</em> is given by the formula $W=\\kvecF\\cdot s=\\| \\kvecF\\| \\| \\kvecs\\| \\cos \\ktheta .$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the solutions marked as suggestions. The 30 even-numbered section exercises have no answer in the book’s key. Exercises 158 (the diagonals of a rhombus) and 166 (direction cosines that satisfy an identity) are kept with AI-written solutions; the other 28 are computational and are left out: 124–130 even (dot products), 132–140 even (angles), 142–156 even (orthogonality and angles from points), 160 (verifying an identity numerically), 162 and 164 (direction cosines), 168–172 even (projections) and 174–182 even (applications). Exercises 157, 159 and 165 (odd, unkeyed proofs) are kept with AI-written solutions. Review exercises 423, 426 (true or false, unkeyed, with an AI-written answer), 429 and 447 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-dot-angle",
+   "kind": "sim",
+   "number": "12.44",
+   "folds": [
+    "12.45",
+    "12.46"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_03_001.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_03_002.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_03_009.jpg"
+   ],
+   "original_caption": "(Figure 12.44) Let θ be the angle between two nonzero vectors u and v such that 0≤ θ ≤ π . (Figure 12.45) The lengths of the sides of the triangle are given by the magnitudes of the vectors that form the triangle. (Figure 12.46) (a) An acute angle has 0<cos θ <1. (b) An obtuse angle has −1<cos θ <0. (c) A straight line has cos θ =−1. (d) If the vectors have the same direction, cos θ =1. (e) If the vectors are orthogonal (perpendicular), cos θ =0.",
+   "draws": [
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-orthogonal-pq",
+   "kind": "sim",
+   "number": "12.47",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_03_003.jpg"
+   ],
+   "original_caption": "Vectors p and q form a right angle when their initial points are aligned.",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-direction-angles",
+   "kind": "sim",
+   "number": "12.48",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_03_004_new.jpg"
+   ],
+   "original_caption": "Angle α is formed by vector v and unit vector i. Angle β is formed by vector v and unit vector j. Angle γ is formed by vector v and unit vector k.",
+   "draws": [
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-wagon",
+   "kind": "sim",
+   "number": "12.49",
+   "folds": [
+    "12.51"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_03_005.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_03_007.jpg"
+   ],
+   "original_caption": "(Figure 12.49) When a child pulls a wagon, only the horizontal component of the force propels the wagon forward. (Figure 12.51) The horizontal component of the force is the projection of F onto the positive x-axis.",
+   "draws": [
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-projection",
+   "kind": "sim",
+   "number": "12.50",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_03_006.jpg"
+   ],
+   "original_caption": "The projection of v onto u shows the component of vector v in the direction of u.",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-handcart",
+   "kind": "figure",
+   "number": "12.52",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_03_008.jpg"
+   ],
+   "draws": [
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "dot-intro",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723701422",
+   "concept": "dot-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723341367",
+   "concept": "dot-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724074875",
+   "concept": "properties-of-the-dot-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723089891",
+   "concept": "properties-of-the-dot-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "angle-term",
+   "concept": "angle-between-two-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724054264",
+   "concept": "evaluating-a-dot-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724054264",
+   "concept": "vector-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724080388",
+   "concept": "evaluating-a-dot-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724080388",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724069465",
+   "concept": "orthogonal-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724056700",
+   "concept": "orthogonal-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723093504",
+   "concept": "evaluating-a-dot-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723093504",
+   "concept": "standard-unit-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724049113",
+   "concept": "direction-angles",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724049113",
+   "concept": "direction-cosines",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724036556",
+   "concept": "dot-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724097629",
+   "concept": "vector-projection",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724097629",
+   "concept": "scalar-projection",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724097629",
+   "concept": "unit-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724035299",
+   "concept": "vector-projection",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resolution",
+   "concept": "resolution-into-orthogonal-components",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724138271",
+   "concept": "resolution-into-orthogonal-components",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724164466",
+   "concept": "scalar-projection",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724120295",
+   "concept": "work-done-by-a-constant-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723110347",
+   "concept": "work-done-by-a-constant-force",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1163723961258",
+   "source_number": "Checkpoint 12.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723341367"
+   },
+   "cite": "fs-id1163723701422",
+   "prompt": "Find $\\textbf{u}\\cdot \\textbf{v},$ where $\\textbf{u}=\\langle 2,9,-1\\rangle$ and $\\textbf{v}=\\langle -3,1,-4\\rangle .$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7,
+    "solution": "7",
+    "hint": "Multiply corresponding components and then add their products."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1163723289021",
+   "source_number": "Checkpoint 12.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723089891"
+   },
+   "cite": "fs-id1163724074875",
+   "prompt": "Find the following products for $\\textbf{p}=\\langle 7,0,2\\rangle ,$ $\\textbf{q}=\\langle -2,2,-2\\rangle ,$ and $\\textbf{r}=\\langle 0,2,-3\\rangle .$ a. $(\\textbf{r}\\cdot \\textbf{p})\\textbf{q}$ b. ${\\| \\textbf{p}\\|}^{2}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $(\\textbf{r}\\cdot \\textbf{p})\\textbf{q}=\\langle 12,-12,12\\rangle ;$ b. ${\\| \\textbf{p}\\|}^{2}=53$",
+    "hint": "$\\textbf{r}\\cdot \\textbf{p}$ is a scalar."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1163723077684",
+   "source_number": "Checkpoint 12.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724080388"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "Find the measure of the angle, in radians, formed by vectors $\\textbf{a}=\\langle 1,2,0\\rangle$ and $\\textbf{b}=\\langle 2,4,1\\rangle .$ Round to the nearest hundredth.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\theta \\approx 0.22$ rad",
+    "hint": "Use the equation $\\cos \\theta =\\frac{\\textbf{u}\\cdot \\textbf{v}}{\\| \\textbf{u}\\| \\cdot \\| \\textbf{v}\\|}.$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1163723145068",
+   "source_number": "Checkpoint 12.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724056700"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "For which value of <em>x</em> is $\\textbf{p}=\\langle 2,8,-1\\rangle$ orthogonal to $\\textbf{q}=\\langle x,-1,2\\rangle ?$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=5$",
+    "hint": "Vectors <strong>p</strong> and $\\text{q}$ are orthogonal if and only if $\\textbf{p}\\cdot \\textbf{q}=0.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1163724081639",
+   "source_number": "Checkpoint 12.25",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723093504"
+   },
+   "cite": "fs-id1163724049113",
+   "prompt": "Let $\\textbf{v}=\\langle 3,-5,1\\rangle .$ Find the measure of the angles formed by each pair of vectors. a. $\\text{v}$ and <strong>i</strong> b. $\\text{v}$ and <strong>j</strong> c. $\\text{v}$ and <strong>k</strong>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\alpha \\approx 1.04$ rad; b. $β\\approx 2.58$ rad; c. $γ\\approx 1.40$ rad",
+    "hint": "$\\textbf{i}=\\langle 1,0,0\\rangle ,$ $\\textbf{j}=\\langle 0,1,0\\rangle ,$ and $\\textbf{k}=\\langle 0,0,1\\rangle$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1163723326741",
+   "source_number": "Checkpoint 12.26",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724036556"
+   },
+   "cite": "fs-id1163724036556",
+   "prompt": "On June 1, AAA Party Supply Store decided to increase the price they charge for party favors to ＄2 per package. They also changed suppliers for their invitations, and are now able to purchase invitations for only 10¢ per package. All their other costs and prices remain the same. If AAA sells 1408 invitations, 147 party favors, 2112 decorations, and 1894 food service items in the month of June, use vectors and dot products to calculate their total sales and profit for June.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Sales = ＄15,685.50; profit = ＄14,073.15",
+    "hint": "Use four-dimensional vectors for cost, price, and quantity sold."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1163723128139",
+   "source_number": "Checkpoint 12.27",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724138271"
+   },
+   "cite": "resolution",
+   "prompt": "Express $\\textbf{v}=5\\textbf{i}-\\textbf{j}$ as a sum of orthogonal vectors such that one of the vectors has the same direction as $\\textbf{u}=4\\textbf{i}+2\\textbf{j}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}=\\textbf{p}+\\textbf{q},$ where $\\textbf{p}=\\frac{18}{5}\\textbf{i}+\\frac{9}{5}\\textbf{j}$ and $\\textbf{q}=\\frac{7}{5}\\textbf{i}-\\frac{14}{5}\\textbf{j}$",
+    "hint": "Start by finding the projection of $\\text{v}$ onto $\\text{u}$."
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1163724087494",
+   "source_number": "Checkpoint 12.28",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724164466"
+   },
+   "cite": "fs-id1163724097629",
+   "prompt": "<p>Repeat the previous example, but assume the ocean current is moving southeast instead of northeast, as shown in the following figure.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_03_011.jpg\" alt=\"This figure is an image of a ship. The ship is at the origin of two perpendicular axes. The horizontal axis is labeled “east.” The second axis is vertical and labeled “north.” From the ship there are two vectors. The first is labeled “v” and has an angle of 15 degrees between the East axis and the vector v. The second vector is labeled “w” and has an angle of 45 degrees between the East axis and the vector w. Vector w is below the East axis in the fourth quadrant.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "21 knots",
+    "hint": "Compute the scalar projection of $\\text{w}$ onto $\\text{v}$."
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1163723268298",
+   "source_number": "Checkpoint 12.29",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723110347"
+   },
+   "cite": "fs-id1163724120295",
+   "prompt": "<p>A constant force of 30 lb is applied at an angle of 60° to pull a handcart 10 ft across the ground (Figure 12.52). What is the work done by this force?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "150 ft-lb",
+    "hint": "Use the definition of work as the dot product of force and distance."
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1163723222093",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723701422",
+   "prompt": "<p>For the following exercises, the vectors $\\text{u}$ and $\\text{v}$ are given. Calculate the dot product $\\textbf{u}\\cdot \\textbf{v}.$</p><p>$\\textbf{u}=\\langle 3,0\\rangle ,$ $\\textbf{v}=\\langle 2,2\\rangle$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6,
+    "solution": "6"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1163723222206",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723701422",
+   "prompt": "<p>For the following exercises, the vectors $\\text{u}$ and $\\text{v}$ are given. Calculate the dot product $\\textbf{u}\\cdot \\textbf{v}.$</p><p>$\\textbf{u}=\\langle 2,2,-1\\rangle ,$ $\\textbf{v}=\\langle -1,2,2\\rangle$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "0"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1163723981530",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724074875",
+   "prompt": "<p>For the following exercises, the vectors <strong>a</strong>, <strong>b</strong>, and <strong>c</strong> are given. Determine the vectors $(\\textbf{a}\\cdot \\text{b})\\text{c}$ and $(\\textbf{a}\\cdot \\text{c})\\text{b}.$ Express the vectors in component form.</p><p>$\\textbf{a}=\\langle 2,0,-3\\rangle ,$ $\\text{b}=\\langle -4,-7,1\\rangle ,$ $\\text{c}=\\langle 1,1,-1\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\textbf{a}\\cdot \\text{b})\\text{c}=\\langle -11,-11,11\\rangle ;$ $(\\textbf{a}\\cdot \\text{c})\\text{b}=\\langle -20,-35,5\\rangle$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1163724072554",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724074875",
+   "prompt": "<p>For the following exercises, the vectors <strong>a</strong>, <strong>b</strong>, and <strong>c</strong> are given. Determine the vectors $(\\textbf{a}\\cdot \\text{b})\\text{c}$ and $(\\textbf{a}\\cdot \\text{c})\\text{b}.$ Express the vectors in component form.</p><p>$\\textbf{a}=\\textbf{i}+\\textbf{j},$ $\\text{b}=\\textbf{i}-\\textbf{k},$ $\\text{c}=\\textbf{i}-2\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\textbf{a}\\cdot \\text{b})\\text{c}=\\langle 1,0,-2\\rangle ;$ $(\\textbf{a}\\cdot \\text{c})\\text{b}=\\langle 1,0,-1\\rangle$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1163723236608",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "<p>For the following exercises, the two-dimensional vectors <strong>a</strong> and <strong>b</strong> are given.</p><p>a. Find the measure of the angle $\\theta$ between <strong>a</strong> and <strong>b</strong>. Express the answer in radians rounded to two decimal places, if it is not possible to express it exactly.</p><p>b. Is $\\theta$ an acute angle?</p><p><strong>[T]</strong> $\\textbf{a}=\\langle 3,-1\\rangle ,$ $\\text{b}=\\langle -4,0\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\theta =2.82$ rad; b. $\\theta$ is not acute."
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1163724018983",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "<p>For the following exercises, the two-dimensional vectors <strong>a</strong> and <strong>b</strong> are given.</p><p>a. Find the measure of the angle $\\theta$ between <strong>a</strong> and <strong>b</strong>. Express the answer in radians rounded to two decimal places, if it is not possible to express it exactly.</p><p>b. Is $\\theta$ an acute angle?</p><p>$\\textbf{u}=3\\textbf{i},$ $\\textbf{v}=4\\textbf{i}+4\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\theta =\\frac{\\pi}{4}$ rad; b. $\\theta$ is acute."
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1163724081966",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "<p>For the following exercises, find the measure of the angle between the three-dimensional vectors <strong>a</strong> and <strong>b</strong>. Express the answer in radians rounded to two decimal places, if it is not possible to express it exactly.</p><p>$\\textbf{a}=\\langle 3,-1,2\\rangle ,$ $\\text{b}=\\langle 1,-1,-2\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\theta =\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1163723295767",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "<p>For the following exercises, find the measure of the angle between the three-dimensional vectors <strong>a</strong> and <strong>b</strong>. Express the answer in radians rounded to two decimal places, if it is not possible to express it exactly.</p><p>$\\textbf{a}=\\textbf{i}+\\textbf{j},$ $\\text{b}=\\textbf{j}-\\text{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\theta =\\frac{\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1163723295888",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "<p>For the following exercises, find the measure of the angle between the three-dimensional vectors <strong>a</strong> and <strong>b</strong>. Express the answer in radians rounded to two decimal places, if it is not possible to express it exactly.</p><p><strong>[T]</strong> $\\textbf{a}=3\\textbf{i}-\\textbf{j}-2\\textbf{k},$ $\\text{b}=\\textbf{v}+\\text{w},$ where $\\textbf{v}=-2\\textbf{i}-3\\textbf{j}+2\\textbf{k}$ and $\\textbf{w}=\\textbf{i}+2\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\theta =2$ rad"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1163724043502",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>For the following exercises determine whether the given vectors are orthogonal.</p><p>$\\textbf{a}=\\langle x,y\\rangle ,$ $\\text{b}=\\langle -y,x\\rangle ,$ where <em>x</em> and <em>y</em> are nonzero real numbers</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Orthogonal"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1163724074641",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>For the following exercises determine whether the given vectors are orthogonal.</p><p>$\\textbf{a}=3\\textbf{i}-\\textbf{j}-2\\textbf{k},$ $\\text{b}=-2\\textbf{i}-3\\text{j}+\\text{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Not orthogonal"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1163724074750",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>Find all two-dimensional vectors <strong>a</strong> orthogonal to vector $\\text{b}=\\langle 3,4\\rangle .$ Express the answer in component form.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}=\\langle -\\frac{4\\alpha}{3},\\alpha \\rangle ,$ where $\\alpha \\ne 0$ is a real number"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1163724049590",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>Determine all three-dimensional vectors $\\text{u}$ orthogonal to vector $\\textbf{v}=\\langle 1,1,0\\rangle .$ Express the answer by using standard unit vectors.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{u}=-\\alpha \\textbf{i}+\\alpha \\text{j}+β\\textbf{k},$ where $\\alpha$ and $β$ are real numbers such that ${\\alpha}^{2}+{β}^{2}\\ne 0$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1163723295563",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>Determine the real number $\\alpha$ such that vectors $\\textbf{a}=2\\textbf{i}+3\\text{j}$ and $\\text{b}=9\\textbf{i}+\\alpha \\text{j}$ are orthogonal.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -6,
+    "solution": "$\\alpha =-6$"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1163723295694",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "<p><strong>[T]</strong> Consider the points $P(4,5)$ and $Q(5,-7).$</p><p>a. Determine vectors $\\vec{OP}$ and $\\vec{OQ}.$ Express the answer by using standard unit vectors.</p><p>b. Determine the measure of angle <em>O</em> in triangle <em>OPQ</em>. Express the answer in degrees rounded to two decimal places.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\vec{OP}=4\\textbf{i}+5\\textbf{j},$ $\\vec{OQ}=5\\textbf{i}-7\\text{j};$ b. $105.8^{\\circ}$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1163724066122",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "<p>Determine the measure of angle <em>A</em> in triangle <em>ABC</em>, where $A(1,1,8),$ $B(4,-3,-4),$ and $C(-3,1,5).$ Express your answer in degrees rounded to two decimal places.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$68.33^{\\circ}$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1163724050364",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>For the following exercises, determine which (if any) pairs of the following vectors are orthogonal.</p><p>$\\textbf{u}=\\langle 3,7,-2\\rangle ,$ $\\textbf{v}=\\langle 5,-3,-3\\rangle ,$ $\\textbf{w}=\\langle 0,1,-1\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{u}$ and $\\text{v}$ are orthogonal; $\\text{v}$ and $\\text{w}$ are orthogonal."
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1163723183834",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>Use vectors to show that a parallelogram with equal diagonals is a rectangle.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let the parallelogram have sides $\\mathbf{u}$ and $\\mathbf{v}$ from one vertex; its diagonals are $\\mathbf{u}+\\mathbf{v}$ and $\\mathbf{u}-\\mathbf{v}.$ By the properties of the dot product, $\\|\\mathbf{u}+\\mathbf{v}\\|^{2}=(\\mathbf{u}+\\mathbf{v})\\cdot(\\mathbf{u}+\\mathbf{v})=\\|\\mathbf{u}\\|^{2}+2\\mathbf{u}\\cdot\\mathbf{v}+\\|\\mathbf{v}\\|^{2}$ and $\\|\\mathbf{u}-\\mathbf{v}\\|^{2}=\\|\\mathbf{u}\\|^{2}-2\\mathbf{u}\\cdot\\mathbf{v}+\\|\\mathbf{v}\\|^{2}.$ If the diagonals are equal, subtracting gives $4\\mathbf{u}\\cdot\\mathbf{v}=0,$ so $\\mathbf{u}\\cdot\\mathbf{v}=0:$ the adjacent sides are orthogonal, every angle of the parallelogram is a right angle, and it is a rectangle.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e158",
+   "source_id": "fs-id1163723183843",
+   "source_number": "158",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>Use vectors to show that the diagonals of a rhombus are perpendicular.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let the rhombus have sides $\\mathbf{u}$ and $\\mathbf{v}$ from one vertex, with $\\|\\mathbf{u}\\|=\\|\\mathbf{v}\\|$ since its sides are equal. Its diagonals are $\\mathbf{u}+\\mathbf{v}$ and $\\mathbf{u}-\\mathbf{v},$ and $(\\mathbf{u}+\\mathbf{v})\\cdot(\\mathbf{u}-\\mathbf{v})=\\mathbf{u}\\cdot\\mathbf{u}-\\mathbf{u}\\cdot\\mathbf{v}+\\mathbf{v}\\cdot\\mathbf{u}-\\mathbf{v}\\cdot\\mathbf{v}=\\|\\mathbf{u}\\|^{2}-\\|\\mathbf{v}\\|^{2}=0.$ Two nonzero vectors with dot product zero are orthogonal, so the diagonals are perpendicular.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1163723183853",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724074875",
+   "prompt": "<p>Show that $\\textbf{u}\\cdot (\\textbf{v}+\\textbf{w})=\\textbf{u}\\cdot \\textbf{v}+\\textbf{u}\\cdot \\textbf{w}$ is true for any vectors $\\text{u}$, $\\text{v}$, and $\\text{w}$.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let $\\mathbf{u}=\\langle u_{1},u_{2},u_{3}\\rangle,$ $\\mathbf{v}=\\langle v_{1},v_{2},v_{3}\\rangle$ and $\\mathbf{w}=\\langle w_{1},w_{2},w_{3}\\rangle.$ Then $\\mathbf{v}+\\mathbf{w}=\\langle v_{1}+w_{1},v_{2}+w_{2},v_{3}+w_{3}\\rangle$ and, by the distributive property of real numbers, $\\mathbf{u}\\cdot(\\mathbf{v}+\\mathbf{w})=u_{1}(v_{1}+w_{1})+u_{2}(v_{2}+w_{2})+u_{3}(v_{3}+w_{3})=(u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3})+(u_{1}w_{1}+u_{2}w_{2}+u_{3}w_{3})=\\mathbf{u}\\cdot\\mathbf{v}+\\mathbf{u}\\cdot\\mathbf{w}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1163723298913",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724049113",
+   "prompt": "<p>For the following problems, the vector $\\text{u}$ is given.</p><p>a. Find the direction cosines for the vector $\\text{u}$.</p><p>b. Find the direction angles for the vector $\\text{u}$ expressed in degrees. (Round the answer to the nearest integer.)</p><p>$\\textbf{u}=\\langle 2,2,1\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\cos \\alpha =\\frac{2}{3},\\cos β=\\frac{2}{3},$ and $\\cos γ=\\frac{1}{3};$ b. $\\alpha =48^{\\circ},$ $β=48^{\\circ},$ and $γ=71^{\\circ}$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1163723279490",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724049113",
+   "prompt": "<p>For the following problems, the vector $\\text{u}$ is given.</p><p>a. Find the direction cosines for the vector $\\text{u}$.</p><p>b. Find the direction angles for the vector $\\text{u}$ expressed in degrees. (Round the answer to the nearest integer.)</p><p>$\\textbf{u}=\\langle -1,5,2\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\cos \\alpha =-\\frac{1}{\\sqrt{30}},\\cos β=\\frac{5}{\\sqrt{30}},$ and $\\cos γ=\\frac{2}{\\sqrt{30}};$ b. $\\alpha =101^{\\circ},$ $β=24^{\\circ},$ and $γ=69^{\\circ}$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1163724057804",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724049113",
+   "prompt": "<p>Consider $\\textbf{u}=\\langle a,b,c\\rangle$ a nonzero three-dimensional vector. Let $\\cos \\alpha ,$ $\\cos β,$ and $\\cos γ$ be the direction cosines of $\\text{u}$. Show that ${\\cos }^{2}\\alpha +{\\cos }^{2}β+{\\cos }^{2}γ=1.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The direction cosines of $\\mathbf{u}=\\langle a,b,c\\rangle$ are $\\cos\\alpha=\\frac{\\mathbf{u}\\cdot\\mathbf{i}}{\\|\\mathbf{u}\\|}=\\frac{a}{\\|\\mathbf{u}\\|},$ $\\cos\\beta=\\frac{b}{\\|\\mathbf{u}\\|}$ and $\\cos\\gamma=\\frac{c}{\\|\\mathbf{u}\\|}.$ So $\\cos^{2}\\alpha+\\cos^{2}\\beta+\\cos^{2}\\gamma=\\frac{a^{2}+b^{2}+c^{2}}{\\|\\mathbf{u}\\|^{2}}=\\frac{a^{2}+b^{2}+c^{2}}{a^{2}+b^{2}+c^{2}}=1.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e166",
+   "source_id": "fs-id1163723073050",
+   "source_number": "166",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724049113",
+   "prompt": "<p>Determine the direction cosines of vector $\\textbf{u}=\\textbf{i}+2\\textbf{j}+2\\textbf{k}$ and show they satisfy ${\\cos }^{2}\\alpha +{\\cos }^{2}β+{\\cos }^{2}γ=1.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>$\\|\\mathbf{u}\\|=\\sqrt{1^{2}+2^{2}+2^{2}}=3,$ so $\\cos\\alpha=\\frac{1}{3},$ $\\cos\\beta=\\frac{2}{3}$ and $\\cos\\gamma=\\frac{2}{3}.$ Then $\\cos^{2}\\alpha+\\cos^{2}\\beta+\\cos^{2}\\gamma=\\frac{1}{9}+\\frac{4}{9}+\\frac{4}{9}=1.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1163723339482",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724097629",
+   "prompt": "<p>For the following exercises, the vectors $\\text{u}$ and $\\text{v}$ are given.</p><p>a. Find the vector projection $\\text{w}={\\text{proj}}_{\\textbf{u}}\\textbf{v}$ of vector $\\text{v}$ onto vector $\\text{u}$. Express your answer in component form.</p><p>b. Find the scalar projection ${\\text{comp}}_{\\text{u}}\\text{v}$ of vector $\\text{v}$ onto vector <strong>u.</strong></p><p>$\\textbf{u}=5\\textbf{i}+2\\textbf{j},$ $\\textbf{v}=2\\textbf{i}+3\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\textbf{w}=\\langle \\frac{80}{29},\\frac{32}{29}\\rangle ;$ b. ${\\text{comp}}_{\\text{u}}\\text{v}=\\frac{16}{\\sqrt{29}}$"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1163724138634",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724097629",
+   "prompt": "<p>For the following exercises, the vectors $\\text{u}$ and $\\text{v}$ are given.</p><p>a. Find the vector projection $\\text{w}={\\text{proj}}_{\\textbf{u}}\\textbf{v}$ of vector $\\text{v}$ onto vector $\\text{u}$. Express your answer in component form.</p><p>b. Find the scalar projection ${\\text{comp}}_{\\text{u}}\\text{v}$ of vector $\\text{v}$ onto vector <strong>u.</strong></p><p>$\\textbf{u}=3\\textbf{i}+2\\textbf{k},$ $\\textbf{v}=2\\text{j}+4\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\textbf{w}=\\langle \\frac{24}{13},0,\\frac{16}{13}\\rangle ;$ b. ${\\text{comp}}_{\\text{u}}\\text{v}=\\frac{8}{\\sqrt{13}}$"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1163723171424",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "resolution",
+   "prompt": "<p>Consider the vectors $\\textbf{u}=4\\textbf{i}-3\\textbf{j}$ and $\\textbf{v}=3\\textbf{i}+2\\textbf{j}.$</p><p>a. Find the component form of vector $\\textbf{w}={\\text{proj}}_{\\text{u}}\\text{v}$ that represents the projection of $\\text{v}$ onto $\\text{u}$.</p><p>b. Write the decomposition $\\textbf{v}=\\text{w}+\\text{q}$ of vector $\\text{v}$ into the orthogonal components $\\text{w}$ and $\\text{q}$, where $\\text{w}$ is the projection of $\\text{v}$ onto $\\text{u}$ and $\\text{q}$ is a vector orthogonal to the direction of $\\text{u}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\textbf{w}=\\langle \\frac{24}{25},-\\frac{18}{25}\\rangle ;$ b. $\\text{q}=\\langle \\frac{51}{25},\\frac{68}{25}\\rangle ,$ $\\textbf{v}=\\text{w}+\\text{q}=\\langle \\frac{24}{25},-\\frac{18}{25}\\rangle +\\langle \\frac{51}{25},\\frac{68}{25}\\rangle$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1163723113251",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723122506",
+   "prompt": "<p>A methane molecule has a carbon atom situated at the origin and four hydrogen atoms located at points $P(1,1,-1),Q(1,-1,1),R(-1,1,1),\\;\\text{and}\\;S(-1,-1,-1)$ (see figure).</p><p>a. Find the distance between the hydrogen atoms located at <em>P</em> and <em>R</em>.</p><p>b. Find the angle between vectors $\\vec{OS}$ and $\\vec{OR}$ that connect the carbon atom with the hydrogen atoms located at <em>S</em> and <em>R</em>, which is also called the <em>bond angle</em>. Express the answer in degrees rounded to two decimal places.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_03_012.jpg\" alt=\"This figure is the 3-dimensional coordinate system. There are four points plotted. The first point is labeled “P(1, 1, -1),” the second point is labeled “Q(1, -1, 1),” the third point is labeled “R(-1, 1, 1),” and the fourth point is labeled “S(-1, -1, -1).” There are line segments from Q to P, P to R and R to P. There are also two vectors in standard position. The first has terminal point of R and the second has terminal point of S. The angle between them is represented with an arc.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $2\\sqrt{2};$ b. $109.47^{\\circ}$"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1163723140007",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724120295",
+   "prompt": "<p>Find the work done by force $\\textbf{F}=\\langle 5,6,-2\\rangle$ (measured in Newtons) that moves a particle from point $P(3,-1,0)$ to point $Q(2,3,1)$ along a straight line (the distance is measured in meters).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$17\\text{N}\\cdot \\text{m}$"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1163723326842",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724120295",
+   "prompt": "<p><strong>[T]</strong> A father is pulling his son on a sled at an angle of $20^{\\circ}$ with the horizontal with a force of 25 lb (see the following image). He pulls the sled in a straight path of 50 ft. How much work was done by the man pulling the sled? (Round the answer to the nearest integer.)</p><img src=\"/media/ch12/CNX_Calc_Figure_12_03_204.jpg\" alt=\"This figure is an image of a person pulling a child on a sled. The rope for pulling the sled is represented by a vector and labeled “25 lb.” There is an angle between the rope vector and the horizontal ground of 20 degrees.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "1175 $\\text{ft}\\cdot \\text{lb}$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1163723326938",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724120295",
+   "prompt": "<p><strong>[T]</strong> A boat sails north aided by a wind blowing in a direction of $\\text{N3}0^{\\circ}\\text{E}$ with a magnitude of 500 lb. How much work is performed by the wind as the boat moves 100 ft? (Round the answer to two decimal places.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "W = 43301.27 $\\text{ft-lb}$"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1163724053972",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724049113",
+   "prompt": "<p><strong>[T]</strong> Two forces ${\\textbf{F}}_{1}$ and ${\\textbf{F}}_{2}$ are represented by vectors with initial points that are at the origin. The first force has a magnitude of 20 lb and the terminal point of the vector is point $P(1,1,0).$ The second force has a magnitude of 40 lb and the terminal point of its vector is point $Q(0,1,1).$ Let <strong>F</strong> be the resultant force of forces ${\\textbf{F}}_{1}$ and ${\\textbf{F}}_{2}.$</p><p>a. Find the magnitude of <strong>F</strong>. (Round the answer to one decimal place.)</p><p>b. Find the direction angles of <strong>F</strong>. (Express the answer in degrees rounded to one decimal place.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\| {\\textbf{F}}_{1}+{\\text{F}}_{2}\\| =52.9$ lb; b. The direction angles are $\\alpha =74.5^{\\circ},$ $β=36.7^{\\circ},$ and $γ=57.7^{\\circ}.$"
+   }
+  },
+  {
+   "id": "r423",
+   "source_id": "fs-id1163723139824",
+   "source_section": "12.7",
+   "source_number": "423",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724074875",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>. Justify the answer with a proof or a counterexample.</p><p>For vectors $\\textbf{a}$ and $\\textbf{b}$ and any given scalar $c,$ $c(\\textbf{a}\\cdot \\textbf{b})=(c\\textbf{a})\\cdot \\textbf{b}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True"
+   }
+  },
+  {
+   "id": "r426",
+   "source_id": "fs-id1163723995134",
+   "source_section": "12.7",
+   "source_number": "426",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>. Justify the answer with a proof or a counterexample.</p><p>If $\\textbf{a}\\cdot \\textbf{b}=0,$ then $\\textbf{a}$ is perpendicular to $\\textbf{b}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True for nonzero vectors: by the theorem on orthogonal vectors, nonzero vectors $\\mathbf{a}$ and $\\mathbf{b}$ with $\\mathbf{a}\\cdot\\mathbf{b}=0$ meet at a right angle, since $\\|\\mathbf{a}\\|\\|\\mathbf{b}\\|\\cos\\theta=0$ forces $\\cos\\theta=0.$ If either vector is the zero vector, $\\mathbf{a}\\cdot\\mathbf{b}=0$ always, and the zero vector has no direction of its own, so the statement needs $\\mathbf{a}$ and $\\mathbf{b}$ to be nonzero.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r429",
+   "source_id": "fs-id1163724053929",
+   "source_section": "12.7",
+   "source_number": "429",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069465",
+   "prompt": "<p>Find the values of $a$ such that vectors $\\langle 2,4,a\\rangle$ and $\\langle 0,-1,a\\rangle$ are orthogonal.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a=\\text{±}2$"
+   }
+  },
+  {
+   "id": "r447",
+   "source_id": "fs-id1163724042043",
+   "source_section": "12.7",
+   "source_number": "447",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724120295",
+   "prompt": "<p>For the following exercises, consider a small boat crossing a river.</p><p>Calculate the work done by moving a particle from position $(1,2,0)$ to $(8,4,5)$ along a straight line with a force $\\textbf{F}=2\\textbf{i}+3\\textbf{j}-\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$15\\;\\text{J}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "properties-of-the-dot-product"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "direction-angles"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "resolution-into-orthogonal-components"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "vector-projection"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "scalar-projection"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "work-done-by-a-constant-force"
+  },
+  {
+   "exercise": "e123",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "e125",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "e127",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "e127",
+   "concept": "properties-of-the-dot-product"
+  },
+  {
+   "exercise": "e127",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e129",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "e129",
+   "concept": "properties-of-the-dot-product"
+  },
+  {
+   "exercise": "e129",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e131",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e131",
+   "concept": "angle-between-two-vectors"
+  },
+  {
+   "exercise": "e133",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e133",
+   "concept": "angle-between-two-vectors"
+  },
+  {
+   "exercise": "e135",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e135",
+   "concept": "angle-between-two-vectors"
+  },
+  {
+   "exercise": "e137",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e137",
+   "concept": "angle-between-two-vectors"
+  },
+  {
+   "exercise": "e139",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e139",
+   "concept": "angle-between-two-vectors"
+  },
+  {
+   "exercise": "e139",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e141",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e141",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "e143",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e143",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "e145",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e147",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e149",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e151",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e153",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e153",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e155",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e157",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e157",
+   "concept": "properties-of-the-dot-product"
+  },
+  {
+   "exercise": "e157",
+   "concept": "parallelogram-method"
+  },
+  {
+   "exercise": "e158",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e158",
+   "concept": "properties-of-the-dot-product"
+  },
+  {
+   "exercise": "e159",
+   "concept": "properties-of-the-dot-product"
+  },
+  {
+   "exercise": "e159",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "e161",
+   "concept": "direction-cosines"
+  },
+  {
+   "exercise": "e161",
+   "concept": "direction-angles"
+  },
+  {
+   "exercise": "e163",
+   "concept": "direction-cosines"
+  },
+  {
+   "exercise": "e163",
+   "concept": "direction-angles"
+  },
+  {
+   "exercise": "e165",
+   "concept": "direction-cosines"
+  },
+  {
+   "exercise": "e165",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e166",
+   "concept": "direction-cosines"
+  },
+  {
+   "exercise": "e167",
+   "concept": "vector-projection"
+  },
+  {
+   "exercise": "e167",
+   "concept": "scalar-projection"
+  },
+  {
+   "exercise": "e169",
+   "concept": "vector-projection"
+  },
+  {
+   "exercise": "e169",
+   "concept": "scalar-projection"
+  },
+  {
+   "exercise": "e171",
+   "concept": "vector-projection"
+  },
+  {
+   "exercise": "e171",
+   "concept": "resolution-into-orthogonal-components"
+  },
+  {
+   "exercise": "e173",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e173",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "e175",
+   "concept": "work-done-by-a-constant-force"
+  },
+  {
+   "exercise": "e177",
+   "concept": "work-done-by-a-constant-force"
+  },
+  {
+   "exercise": "e179",
+   "concept": "work-done-by-a-constant-force"
+  },
+  {
+   "exercise": "e181",
+   "concept": "direction-angles"
+  },
+  {
+   "exercise": "e181",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e181",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "r423",
+   "concept": "properties-of-the-dot-product"
+  },
+  {
+   "exercise": "r426",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "r429",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "r447",
+   "concept": "work-done-by-a-constant-force"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-rearranges",
+   "kind": "correction",
+   "html": "The book cites Equation 12.3 here, the dot product in components; the equation that follows rearranges Equation 12.4, $\\mathbf{u}\\cdot\\mathbf{v}=\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\cos\\theta.$"
+  }
+ ]
+}

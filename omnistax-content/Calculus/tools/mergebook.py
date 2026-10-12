@@ -217,7 +217,7 @@ def log(ch):
     text = open(staged_path, encoding="utf-8").read().strip("\n")
     title, _, body = text.partition("\n")
     title = re.sub(r"^#+\s*", "", title).strip()
-    title = re.sub(r"^Pass \d+ \([^)]*\):\s*", "", title)
+    title = re.sub(r"^Pass( \d+)? \([^)]*\):\s*", "", title)
     logp = os.path.join(BOOK, "LOG.md")
     existing = open(logp, encoding="utf-8").read()
     nums = [int(m) for m in re.findall(r"^#{2,3} Pass (\d+)", existing, re.M)]

@@ -1,0 +1,1607 @@
+{
+ "id": "12.2",
+ "module": "m53897",
+ "chapter": "12",
+ "title": "Vectors in Three Dimensions",
+ "short": "Vectors in Three Dimensions",
+ "lead": "Adding a third axis by the <span data-concept=\"right-hand-rule\">right-hand rule</span> gives <span data-concept=\"three-dimensional-rectangular-coordinate-system\">a coordinate system for space</span>. This section locates points in space, measures the distance between them, writes equations of simple planes, <span data-concept=\"sphere\">spheres</span> and cylinders, and carries <span data-concept=\"vector\">vectors</span> and their operations into three dimensions.",
+ "objectives": [
+  "Describe three-dimensional space mathematically.",
+  "Locate points in space using coordinates.",
+  "Write the distance formula in three dimensions.",
+  "Write the equations for simple planes and spheres.",
+  "Perform vector operations in ${\\mathbb{R}}^{3}.$"
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"three-dimensional-rectangular-coordinate-system\">three-dimensional coordinate system</span> is built around a set of three axes that intersect at right angles at a single point, the origin. Ordered triples $(x,y,z)$ are used to describe the location of a point in space.</li><li>The distance $d$ between points $(x_{1},y_{1},z_{1})$ and $(x_{2},y_{2},z_{2})$ is given by the formula $$d=\\sqrt{{(x_{2}-x_{1})}^{2}+{(y_{2}-y_{1})}^{2}+{(z_{2}-z_{1})}^{2}}.$$</li><li>In three dimensions, the equations $x=a,y=b,\\text{and}\\;z=c$ describe planes that are parallel to the <span data-concept=\"coordinate-planes\">coordinate planes</span>.</li><li>The <span data-concept=\"standard-equation-of-a-sphere\">standard equation of a sphere</span> with center $(a,b,c)$ and radius $r$ is $${(x-a)}^{2}+{(y-b)}^{2}+{(z-c)}^{2}=r^{2}.$$</li><li>In three dimensions, as in two, <span data-concept=\"vector\">vectors</span> are commonly expressed in <span data-concept=\"component-form-of-a-vector\">component form</span>, $\\kvecv=\\langle x,y,z\\rangle ,$ or in terms of the <span data-concept=\"standard-unit-vectors\">standard unit vectors</span>, $x\\kveci+y\\kvecj+z\\kveck.$</li><li>Properties of <span data-concept=\"vector\">vectors</span> in space are a natural extension of the properties for <span data-concept=\"vector\">vectors</span> in a plane. Let $\\kvecv=\\langle x_{1},y_{1},z_{1}\\rangle$ and $\\kvecw=\\langle x_{2},y_{2},z_{2}\\rangle$ be <span data-concept=\"vector\">vectors</span>, and let $k$ be a scalar.</li><li><strong><span data-concept=\"scalar-multiplication\">Scalar multiplication</span>:</strong> $k\\kvecv=\\langle kx_{1},ky_{1},kz_{1}\\rangle$</li><li><strong><span data-concept=\"vector-addition\">Vector addition</span>:</strong> $\\kvecv+\\kvecw=\\langle x_{1},y_{1},z_{1}\\rangle +\\langle x_{2},y_{2},z_{2}\\rangle =\\langle x_{1}+x_{2},y_{1}+y_{2},z_{1}+z_{2}\\rangle$</li><li><strong><span data-concept=\"vector-difference\">Vector subtraction</span>:</strong> $\\kvecv-\\kvecw=\\langle x_{1},y_{1},z_{1}\\rangle -\\langle x_{2},y_{2},z_{2}\\rangle =\\langle x_{1}-x_{2},y_{1}-y_{2},z_{1}-z_{2}\\rangle$</li><li><strong><span data-concept=\"vector\">Vector</span> <span data-concept=\"magnitude-of-a-vector\">magnitude</span>:</strong> $\\| \\kvecv\\| =\\sqrt{x_{1}{}^{2}+y_{1}{}^{2}+z_{1}{}^{2}}$</li><li><strong><span data-concept=\"unit-vector\">Unit vector</span> in the direction of v:</strong> $\\frac{\\kvecv}{\\| \\kvecv\\|}=\\frac{1}{\\| \\kvecv\\|}\\langle x_{1},y_{1},z_{1}\\rangle =\\langle \\frac{x_{1}}{\\| \\kvecv\\|},\\frac{y_{1}}{\\| \\kvecv\\|},\\frac{z_{1}}{\\| \\kvecv\\|}\\rangle ,$ $\\kvecv\\ne \\kveczero$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the solutions marked as suggestions. The 31 even-numbered section exercises have no answer in the book’s key. Exercises 108 and 110 (show an equation, show points are not collinear) are kept with AI-written solutions; the other 29 are computational and are left out: 62 (a point and its distance), 64 and 66 (sets of points), 68 and 70 (planes), 72 and 74 (spheres), 76 (a center and radius), 78–82 even (vectors from points), 84 and 86 (vector operations), 88 and 90 (magnitudes), 92–96 even (unit vectors), 98 (equivalent vectors), 100–106 even (vectors of given length), 112–122 even (applications). Exercises 107 and 109 (odd, unkeyed proofs) are kept with AI-written solutions. Review exercise 431 from the end of the chapter is held here.",
+ "figures": [
+  {
+   "id": "sim-axes",
+   "kind": "sim",
+   "number": "12.23",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_001.jpg"
+   ],
+   "original_caption": "(a) We can extend the two-dimensional rectangular coordinate system by adding a third axis, the z-axis, that is perpendicular to both the x-axis and the y-axis. (b) The right-hand rule is used to determine the placement of the coordinate axes in the standard Cartesian plane.",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-point-in-space",
+   "kind": "sim",
+   "number": "12.24",
+   "folds": [
+    "12.25"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_002.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_02_003.jpg"
+   ],
+   "original_caption": "(Figure 12.24) To plot the point (x,y,z) go x units along the x-axis, then y units in the direction of the y-axis, then z units in the direction of the z-axis. (Figure 12.25) Sketching the point (1,−2,3).",
+   "draws": [
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-octants",
+   "kind": "figure",
+   "number": "12.26",
+   "folds": [
+    "12.27"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_005.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_02_006.jpg"
+   ],
+   "original_caption": "(Figure 12.26) The plane containing the x- and y-axes is called the xy-plane. The plane containing the x- and z-axes is called the xz-plane, and the y- and z-axes define the yz-plane. (Figure 12.27) Points that lie in octants have three nonzero coordinates.",
+   "draws": [
+    "plane",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-distance",
+   "kind": "sim",
+   "number": "12.28",
+   "folds": [
+    "12.29"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_007.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_02_012.jpg"
+   ],
+   "original_caption": "(Figure 12.28) The distance between P_1 and P_2 is the length of the diagonal of the rectangular prism having P_1 and P_2 as opposite corners. (Figure 12.29) Find the distance between the two points.",
+   "draws": [
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-lines-not-meeting",
+   "kind": "figure",
+   "number": "12.30",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_013.jpg"
+   ],
+   "original_caption": "These two lines are not parallel, but still do not intersect.",
+   "draws": [
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-linked-circles",
+   "kind": "figure",
+   "number": "12.31",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_014.jpg"
+   ],
+   "original_caption": "These circles are interconnected, but have no points in common.",
+   "draws": [
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-x-equals-zero",
+   "kind": "figure",
+   "number": "12.32",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_008.jpg"
+   ],
+   "original_caption": "(a) In ℝ, the equation x=0 describes a single point. (b) In ℝ², the equation x=0 describes a line, the y-axis. (c) In ℝ³, the equation x=0 describes a plane, the yz-plane.",
+   "draws": [
+    "point",
+    "line",
+    "plane"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-plane-x-equals-c",
+   "kind": "sim",
+   "number": "12.33",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_009.jpg"
+   ],
+   "original_caption": "(a) In space, the equation z=0 describes the xy-plane. (b) All points in the xz-plane satisfy the equation y=0.",
+   "draws": [
+    "plane"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-sphere",
+   "kind": "sim",
+   "number": "12.34",
+   "folds": [
+    "12.35"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_010.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_02_015.jpg"
+   ],
+   "original_caption": "(Figure 12.34) Each point (x,y,z) on the surface of a sphere is r units away from the center (a,b,c). (Figure 12.35) The sphere centered at (10,7,4) containing point (−1,3,−2).",
+   "draws": [
+    "surface",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-diameter",
+   "kind": "figure",
+   "number": "12.36",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_016.jpg"
+   ],
+   "original_caption": "Line segment PQ.",
+   "draws": [
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-two-planes",
+   "kind": "figure",
+   "number": "12.37",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_017.jpg"
+   ],
+   "original_caption": "The set of points satisfying (x−4)(z−2)=0 forms the two planes x=4 and z=2.",
+   "draws": [
+    "plane"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cylinder-21",
+   "kind": "figure",
+   "number": "12.38",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_019.jpg"
+   ],
+   "original_caption": "The set of points satisfying (x−2)²+(y−1)²=4. This is a cylinder of radius 2 centered on the line with x=2 and y=1.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-vector-in-space",
+   "kind": "sim",
+   "number": "12.39",
+   "folds": [
+    "12.41"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_021.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_02_011.jpg"
+   ],
+   "original_caption": "(Figure 12.39) Vector v=⟨ 2,4,1⟩ is represented by a directed line segment from point (0,0,0) to point (2,4,1). (Figure 12.41) To add vectors in three dimensions, we follow the same procedures we learned for two dimensions.",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-pq-space",
+   "kind": "figure",
+   "number": "12.40",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_022.jpg"
+   ],
+   "original_caption": "The vector with initial point P=(3,12,6) and terminal point Q=(−4,−3,2).",
+   "draws": [
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-v-w-space",
+   "kind": "figure",
+   "number": "12.42",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_023.jpg"
+   ],
+   "original_caption": "The vectors v=⟨ −2,9,5⟩ and w=⟨ 1,−1,0⟩ .",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-forward-pass",
+   "kind": "sim",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_02_024.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_02_025.jpg"
+   ],
+   "original_caption": "Consider the vector w extending from the quarterback’s arm to a point directly above the receiver’s head at an angle of 30°.",
+   "draws": [
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "space-intro",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723873271",
+   "concept": "three-dimensional-rectangular-coordinate-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "right-hand-term",
+   "concept": "right-hand-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723995023",
+   "concept": "three-dimensional-rectangular-coordinate-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "coordinate-planes-term",
+   "concept": "coordinate-planes",
+   "verb": "introduces"
+  },
+  {
+   "span": "octants-term",
+   "concept": "octants",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723755453",
+   "concept": "distance-between-two-points-in-space",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723659743",
+   "concept": "distance-between-two-points-in-space",
+   "verb": "reinforces"
+  },
+  {
+   "span": "plane-equations",
+   "concept": "graphing-equations-in-space",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724073648",
+   "concept": "planes-parallel-to-coordinate-planes",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723342445",
+   "concept": "planes-parallel-to-coordinate-planes",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723705382",
+   "concept": "sphere",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723840265",
+   "concept": "standard-equation-of-a-sphere",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724037242",
+   "concept": "standard-equation-of-a-sphere",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724058873",
+   "concept": "standard-equation-of-a-sphere",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724073516",
+   "concept": "graphing-equations-in-space",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724072108",
+   "concept": "graphing-equations-in-space",
+   "verb": "reinforces"
+  },
+  {
+   "span": "space-components",
+   "concept": "vectors-in-three-dimensions",
+   "verb": "introduces"
+  },
+  {
+   "span": "space-components",
+   "concept": "zero-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "ijk",
+   "concept": "standard-unit-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723893588",
+   "concept": "component-form-from-points",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723996007",
+   "concept": "properties-of-vectors-in-space",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723996007",
+   "concept": "unit-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724069611",
+   "concept": "properties-of-vectors-in-space",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723995817",
+   "concept": "unit-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723995817",
+   "concept": "scalar-multiplication",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1163724072483",
+   "source_number": "Checkpoint 12.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723995023"
+   },
+   "cite": "coordinates",
+   "prompt": "Sketch the point $(-2,3,-1)$ in three-dimensional space.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch12/CNX_Calc_Figure_12_02_004.jpg\" alt=\"This figure is the 3-dimensional coordinate system. In the first octant there is a rectangular solid drawn. One corner is labeled (-2, 3, -1).\">",
+    "hint": "Start by sketching the coordinate axes. Then sketch a rectangular prism to help find the point in space."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1163723719539",
+   "source_number": "Checkpoint 12.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723659743"
+   },
+   "cite": "fs-id1163723755453",
+   "prompt": "Find the distance between points $P_{1}=(1,-5,4)$ and $P_{2}=(4,-1,-1).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$5\\sqrt{2}$",
+    "hint": "$d=\\sqrt{{(x_{2}-x_{1})}^{2}+{(y_{2}-y_{1})}^{2}+{(z_{2}-z_{1})}^{2}}$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1163723988324",
+   "source_number": "Checkpoint 12.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723342445"
+   },
+   "cite": "fs-id1163724073648",
+   "prompt": "Write an equation of the plane passing through point $(1,-6,-4)$ that is parallel to the <em>xy</em>-plane.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z=-4$",
+    "hint": "If a plane is parallel to the <em>xy</em>-plane, the <em>z</em>-coordinates of the points in that plane do not vary."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1163723757409",
+   "source_number": "Checkpoint 12.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724037242"
+   },
+   "cite": "fs-id1163723840265",
+   "prompt": "Find the standard equation of the sphere with center $(-2,4,-5)$ containing point $(4,4,-1).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(x+2)}^{2}+{(y-4)}^{2}+{(z+5)}^{2}=52$",
+    "hint": "First use the distance formula to find the radius of the sphere."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1163723281632",
+   "source_number": "Checkpoint 12.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724058873"
+   },
+   "cite": "fs-id1163723840265",
+   "prompt": "Find an equation of the sphere with diameter $PQ,$ where $P=(2,-1,-3)$ and $Q=(-2,5,-1).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x^{2}+{(y-2)}^{2}+{(z+2)}^{2}=14$",
+    "hint": "Find the midpoint of the diameter first."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1163723739278",
+   "source_number": "Checkpoint 12.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724073516"
+   },
+   "cite": "plane-equations",
+   "prompt": "Describe the set of points that satisfies $(y+2)(z-3)=0,$ and graph the set.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The set of points forms the two planes $y=-2$ and $z=3.$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_02_018.jpg\" alt=\"This figure is the 3-dimensional coordinate system. It has two intersecting planes drawn. The first is the x z-plane. The second is parallel to the y z-plane at the value of z = 3. They are perpendicular to each other.\">",
+    "hint": "One of the factors must be zero."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1163723891510",
+   "source_number": "Checkpoint 12.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724072108"
+   },
+   "cite": "plane-equations",
+   "prompt": "Describe the set of points in three dimensional space that satisfies $x^{2}+{(z-2)}^{2}=16,$ and graph the surface.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>A cylinder of radius 4 centered on the line with $x=0\\;\\text{and}\\;z=2.$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_02_020.jpg\" alt=\"This figure is the 3-dimensional coordinate system. It has a cylinder parallel to the y-axis and centered around the y-axis.\">",
+    "hint": "Think about what happens if you plot this equation in two dimensions in the <em>xz</em>-plane."
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1163723281642",
+   "source_number": "Checkpoint 12.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723893588"
+   },
+   "cite": "space-components",
+   "prompt": "Let $S=(3,8,2)$ and $T=(2,-1,3).$ Express $\\vec{ST}$ in component form and in standard unit form.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\vec{ST}=\\langle -1,-9,1\\rangle =-\\textbf{i}-9\\textbf{j}+\\textbf{k}$",
+    "hint": "Write $\\vec{ST}$ in component form first. $T$ is the terminal point of $\\vec{ST}.$"
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1163724048162",
+   "source_number": "Checkpoint 12.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724069611"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "Let $\\textbf{v}=\\langle -1,-1,1\\rangle$ and $\\textbf{w}=\\langle 2,0,1\\rangle .$ Find a unit vector in the direction of $5\\textbf{v}+3\\textbf{w}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle \\frac{1}{3\\sqrt{10}},-\\frac{5}{3\\sqrt{10}},\\frac{8}{3\\sqrt{10}}\\rangle$",
+    "hint": "Start by writing $5\\textbf{v}+3\\textbf{w}$ in component form."
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1163723752792",
+   "source_number": "Checkpoint 12.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723995817"
+   },
+   "cite": "fs-id1163723995817",
+   "prompt": "Assume the quarterback and the receiver are in the same place as in the previous example. This time, however, the quarterback throws the ball at velocity of $40$ mph and an angle of $45^{\\circ}.$ Write the initial velocity vector of the ball, $\\textbf{v},$ in component form.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}=\\langle 16\\sqrt{2},12\\sqrt{2},20\\sqrt{2}\\rangle$",
+    "hint": "Follow the process used in the previous example."
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1163723140872",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723755453",
+   "prompt": "<p>Consider a rectangular box with one of the vertices at the origin, as shown in the following figure. If point $A(2,3,5)$ is the opposite vertex to the origin, then find</p><p>a. the coordinates of the other six vertices of the box and</p><p>b. the length of the diagonal of the box determined by the vertices $O$ and $A.$</p><img src=\"/media/ch12/CNX_Calc_Figure_12_02_201.jpg\" alt=\"This figure is the first octant of the 3-dimensional coordinate system. It has a point labeled “A(2, 3, 5)” drawn.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $(2,0,5),(2,0,0),(2,3,0),(0,3,0),(0,3,5),(0,0,5);$ b. $\\sqrt{38}$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1163723183650",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-equations",
+   "prompt": "<p>For the following exercises, describe and graph the set of points that satisfies the given equation.</p><p>$(y-5)(z-6)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>A union of two planes: $y=5$ (a plane parallel to the <em>xz</em>-plane) and $z=6$ (a plane parallel to the <em>xy</em>-plane)</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_02_026.jpg\" alt=\"This figure is the first octant of the 3-dimensional coordinate system. It has two planes drawn. The first plane is parallel to the x y-plane and is at z = 6. The second plane is parallel to the x z-plane and is at y = 5. The planes are perpendicular.\">"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1163724092626",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-equations",
+   "prompt": "<p>For the following exercises, describe and graph the set of points that satisfies the given equation.</p><p>${(y-1)}^{2}+{(z-1)}^{2}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>A cylinder of radius $1$ centered on the line $y=1,z=1$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_02_028.jpg\" alt=\"This figure is the first octant of the 3-dimensional coordinate system. It has a cylinder drawn. The axis of the cylinder is parallel to the x-axis.\">"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1163724037628",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724073648",
+   "prompt": "<p>Write the equation of the plane passing through point $(1,1,1)$ that is parallel to the <em>xy</em>-plane.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z=1$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1163723748556",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724073648",
+   "prompt": "<p>Find an equation of the plane passing through points $(1,-3,-2),$ $(0,3,-2),$ and $(1,0,-2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z=-2$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1163724059330",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723840265",
+   "prompt": "<p>For the following exercises, find an equation of the sphere in standard form that satisfies the given conditions.</p><p>Center $C(-1,7,4)$ and radius $4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(x+1)}^{2}+{(y-7)}^{2}+{(z-4)}^{2}=16$"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1163723344937",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723840265",
+   "prompt": "<p>For the following exercises, find an equation of the sphere in standard form that satisfies the given conditions.</p><p>Diameter $PQ,$ where $P(-1,5,7)$ and $Q(-5,2,9)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(x+3)}^{2}+{(y-3.5)}^{2}+{(z-8)}^{2}=\\frac{29}{4}$"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1163723094167",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723840265",
+   "prompt": "<p>For the following exercises, find the center and radius of the sphere with an equation in general form that is given.</p><p>$x^{2}+y^{2}+z^{2}-4z+3=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Center $C(0,0,2)$ and radius $1$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1163724054910",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "space-components",
+   "prompt": "<p>For the following exercises, express vector $\\vec{PQ}$ with the initial point at $P$ and the terminal point at $Q$</p><p>a. in component form and</p><p>b. by using standard unit vectors.</p><p>$P(3,0,2)$ and $Q(-1,-1,4)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\vec{PQ}=\\langle -4,-1,2\\rangle ;$ b. $\\vec{PQ}=-4\\textbf{i}-\\textbf{j}+2\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1163724178192",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "space-components",
+   "prompt": "<p>For the following exercises, express vector $\\vec{PQ}$ with the initial point at $P$ and the terminal point at $Q$</p><p>a. in component form and</p><p>b. by using standard unit vectors.</p><p>$P(-2,5,-8)$ and $M(1,-7,4),$ where $M$ is the midpoint of the line segment $PQ$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\vec{PQ}=\\langle 6,-24,24\\rangle ;$ b. $\\vec{PQ}=6\\textbf{i}-24\\text{j}+24\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1163724048218",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "space-components",
+   "prompt": "<p>Find terminal point $Q$ of vector $\\vec{PQ}=\\langle 7,-1,3\\rangle$ with the initial point at $P(-2,3,5).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$Q(5,2,8)$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1163724048870",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, use the given vectors $\\textbf{a}$ and $\\textbf{b}$ to find and express the vectors $\\textbf{a}+\\text{b},$ $4\\textbf{a},$ and $-5\\textbf{a}+3\\textbf{b}$ in component form.</p><p>$\\textbf{a}=\\langle -1,-2,4\\rangle ,$ $\\textbf{b}=\\langle -5,6,-7\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}+\\text{b}=\\langle -6,4,-3\\rangle ,$ $4\\textbf{a}=\\langle -4,-8,16\\rangle ,$ $-5\\textbf{a}+3\\textbf{b}=\\langle -10,28,-41\\rangle$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1163723645187",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, use the given vectors $\\textbf{a}$ and $\\textbf{b}$ to find and express the vectors $\\textbf{a}+\\text{b},$ $4\\textbf{a},$ and $-5\\textbf{a}+3\\textbf{b}$ in component form.</p><p>$\\textbf{a}=-\\textbf{k},$ $\\textbf{b}=-\\text{i}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}+\\text{b}=\\langle -1,0,-1\\rangle ,$ $4\\textbf{a}=\\langle 0,0,-4\\rangle ,$ $-5\\textbf{a}+3\\textbf{b}=\\langle -3,0,5\\rangle$"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1163723927343",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, vectors <strong>u</strong> and <strong>v</strong> are given. Find the magnitudes of vectors $\\textbf{u}-\\textbf{v}$ and $-2\\textbf{u}.$</p><p>$\\textbf{u}=2\\textbf{i}+3\\textbf{j}+4\\textbf{k},$ $\\textbf{v}=-\\textbf{i}+5\\textbf{j}-\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\| \\textbf{u}-\\textbf{v}\\| =\\sqrt{38},$ $\\| -2\\textbf{u}\\| =2\\sqrt{29}$"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1163724074598",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, vectors <strong>u</strong> and <strong>v</strong> are given. Find the magnitudes of vectors $\\textbf{u}-\\textbf{v}$ and $-2\\textbf{u}.$</p><p>$\\textbf{u}=\\langle 2\\;\\cos t,-2\\;\\sin t,3\\rangle ,$ $\\textbf{v}=\\langle 0,0,3\\rangle ,$ where $t$ is a real number.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\| \\textbf{u}-\\textbf{v}\\| =2,$ $\\| -2\\textbf{u}\\| =2\\sqrt{13}$"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1163724076331",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, find the unit vector in the direction of the given vector $\\textbf{a}$ and express it using standard unit vectors.</p><p>$\\textbf{a}=3\\textbf{i}-4\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}=\\frac{3}{5}\\textbf{i}-\\frac{4}{5}\\textbf{j}$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1163724138209",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, find the unit vector in the direction of the given vector $\\textbf{a}$ and express it using standard unit vectors.</p><p>$\\textbf{a}=\\vec{PQ},$ where $P(-2,3,1)$ and $Q(0,-4,4)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle \\frac{2}{\\sqrt{62}},\\frac{7}{\\sqrt{62}},\\frac{3}{\\sqrt{62}}\\rangle$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1163723120767",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, find the unit vector in the direction of the given vector $\\textbf{a}$ and express it using standard unit vectors.</p><p>$\\textbf{a}=\\textbf{u}-\\textbf{v}+\\text{w},$ where $\\textbf{u}=\\textbf{i}-\\textbf{j}-\\textbf{k},$ $\\textbf{v}=2\\textbf{i}-\\textbf{j}+\\textbf{k},$ and $\\textbf{w}=-\\textbf{i}+\\textbf{j}+3\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle -\\frac{2}{\\sqrt{6}},\\frac{1}{\\sqrt{6}},\\frac{1}{\\sqrt{6}}\\rangle$"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1163723239424",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "space-components",
+   "prompt": "<p>Determine whether $\\vec{AB}$ and $\\vec{PQ}$ are equivalent vectors, where $A(1,1,1),B(3,3,3),P(1,4,5),$ and $Q(3,6,7).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Equivalent vectors"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1163723140969",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, find vector $\\textbf{u}$ with a magnitude that is given and satisfies the given conditions.</p><p>$\\textbf{v}=\\langle 7,-1,3\\rangle ,$ $\\| \\textbf{u}\\| =10,$ $\\textbf{u}$ and $\\textbf{v}$ have the same direction</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{u}=\\langle \\frac{70}{\\sqrt{59}},-\\frac{10}{\\sqrt{59}},\\frac{30}{\\sqrt{59}}\\rangle$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1163723243381",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>For the following exercises, find vector $\\textbf{u}$ with a magnitude that is given and satisfies the given conditions.</p><p>$\\textbf{v}=\\langle 2\\;\\sin t,2\\;\\cos t,1\\rangle ,$ $\\| \\textbf{u}\\| =2,$ $\\textbf{u}$ and $\\textbf{v}$ have opposite directions for any $t,$ where $t$ is a real number</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{u}=\\langle -\\frac{4}{\\sqrt{5}}\\sin t,-\\frac{4}{\\sqrt{5}}\\cos t,-\\frac{2}{\\sqrt{5}}\\rangle$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1163724037681",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>Determine a vector of magnitude $5$ in the direction of vector $\\vec{AB},$ where $A(2,1,5)$ and $B(3,4,-7).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle \\frac{5}{\\sqrt{154}},\\frac{15}{\\sqrt{154}},-\\frac{60}{\\sqrt{154}}\\rangle$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1163724037798",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>Consider the points $A(2,\\alpha ,0),B(0,1,β),$ and $C(1,1,β),$ where $\\alpha$ and $β$ are negative real numbers. Find $\\alpha$ and $β$ such that $\\| \\vec{OA}-\\vec{OB}+\\vec{OC}\\| =\\| \\vec{OB}\\| =4.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\alpha =-\\sqrt{7},$ $β=-\\sqrt{15}$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1163724027815",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723755453",
+   "prompt": "<p>Let $P(x,y,z)$ be a point situated at an equal distance from points $A(1,-1,0)$ and $B(-1,2,1).$ Show that point $P$ lies on the plane of equation $-2x+3y+z=2.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>$P$ is as far from $A$ as from $B,$ so the squares of the distances are equal: $(x-1)^{2}+(y+1)^{2}+z^{2}=(x+1)^{2}+(y-2)^{2}+(z-1)^{2}.$ Expanding, $x^{2}-2x+1+y^{2}+2y+1+z^{2}=x^{2}+2x+1+y^{2}-4y+4+z^{2}-2z+1.$ The squares cancel, leaving $-2x+2y+2=2x-4y-2z+6,$ that is, $-4x+6y+2z=4.$ Dividing by 2 gives $-2x+3y+z=2,$ so $P$ lies on that plane.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e108",
+   "source_id": "fs-id1163724083502",
+   "source_number": "108",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723755453",
+   "prompt": "<p>Let $P(x,y,z)$ be a point situated at an equal distance from the origin and point $A(4,1,2).$ Show that the coordinates of point $P$ satisfy the equation $8x+2y+4z=21.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The distance from $P$ to the origin equals the distance from $P$ to $A,$ so $x^{2}+y^{2}+z^{2}=(x-4)^{2}+(y-1)^{2}+(z-2)^{2}.$ Expanding the right side, $x^{2}+y^{2}+z^{2}=x^{2}-8x+16+y^{2}-2y+1+z^{2}-4z+4.$ The squares cancel, leaving $0=-8x-2y-4z+21,$ that is, $8x+2y+4z=21.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1163724043366",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723755453",
+   "prompt": "<p>The points $A,B,$ and $C$ are collinear (in this order) if the relation $\\| \\vec{AB}\\| +\\| \\vec{BC}\\| =\\| \\vec{AC}\\|$ is satisfied. Show that $A(5,3,-1),$ $B(-5,-3,1),$ and $C(-15,-9,3)$ are collinear points.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>By the distance formula, $\\|\\vec{AB}\\|=\\sqrt{(-10)^{2}+(-6)^{2}+2^{2}}=\\sqrt{140}=2\\sqrt{35},$ $\\|\\vec{BC}\\|=\\sqrt{(-10)^{2}+(-6)^{2}+2^{2}}=2\\sqrt{35},$ and $\\|\\vec{AC}\\|=\\sqrt{(-20)^{2}+(-12)^{2}+4^{2}}=\\sqrt{560}=4\\sqrt{35}.$ So $\\|\\vec{AB}\\|+\\|\\vec{BC}\\|=4\\sqrt{35}=\\|\\vec{AC}\\|,$ and $A,$ $B$ and $C$ are collinear, in this order.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e110",
+   "source_id": "fs-id1163724079502",
+   "source_number": "110",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723755453",
+   "prompt": "<p>Show that points $A(1,0,1),$ $B(0,1,1),$ and $C(1,1,1)$ are not collinear.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The three distances are $\\|\\vec{AB}\\|=\\sqrt{(-1)^{2}+1^{2}+0^{2}}=\\sqrt{2},$ $\\|\\vec{BC}\\|=\\sqrt{1^{2}+0^{2}+0^{2}}=1$ and $\\|\\vec{AC}\\|=\\sqrt{0^{2}+1^{2}+0^{2}}=1.$ Three points are collinear, in some order, only if the two shorter distances add up to the longest; here $1+1=2\\ne\\sqrt{2},$ so no order of $A,$ $B$ and $C$ satisfies the relation, and the points are not collinear.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1163724037997",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723995817",
+   "prompt": "<p><strong>[T]</strong> A force $\\textbf{F}$ of $50\\;\\text{N}$ acts on a particle in the direction of the vector $\\vec{OP},$ where $P(3,4,0).$</p><p>a. Express the force as a vector in component form.</p><p>b. Find the angle between force $\\textbf{F}$ and the positive direction of the <em>x</em>-axis. Express the answer in degrees rounded to the nearest integer.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\textbf{F}=\\langle 30,40,0\\rangle ;$ b. $53^{\\circ}$"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1163723293920",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "space-components",
+   "prompt": "<p>If $\\textbf{F}$ is a force that moves an object from point $P_{1}(x_{1},y_{1},z_{1})$ to another point $P_{2}(x_{2},y_{2},z_{2}),$ then the displacement vector is defined as $\\text{D}=(x_{2}-x_{1})\\textbf{i}+(y_{2}-y_{1})\\text{j}+(z_{2}-z_{1})\\text{k}.$ A metal container is lifted $10$ m vertically by a constant force $\\textbf{F}.$ Express the displacement vector $\\textbf{D}$ by using standard unit vectors.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{D}=10\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1163724065391",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>The sum of the forces acting on an object is called the <em>resultant</em> or <em>net force</em>. An object is said to be in static equilibrium if the resultant force of the forces that act on it is zero. Let ${\\textbf{F}}_{1}=\\langle 10,6,3\\rangle ,$ ${\\textbf{F}}_{2}=\\langle 0,4,9\\rangle ,$ and ${\\textbf{F}}_{3}=\\langle 10,-3,-9\\rangle$ be three forces acting on a box. Find the force ${\\textbf{F}}_{4}$ acting on the box such that the box is in static equilibrium. Express the answer in component form.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${\\textbf{F}}_{4}=\\langle -20,-7,-3\\rangle$"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1163724077343",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>The force of gravity $\\textbf{F}$ acting on an object is given by $\\textbf{F}=m\\textbf{g},$ where <em>m</em> is the mass of the object (expressed in kilograms) and $\\textbf{g}$ is acceleration resulting from gravity, with $\\| \\text{g}\\| =9.8$ $\\text{N/kg}.$ A 2-kg disco ball hangs by a chain from the ceiling of a room.</p><p>a. Find the force of gravity $\\textbf{F}$ acting on the disco ball and find its magnitude.</p><p>b. Find the force of tension $\\textbf{T}$ in the chain and its magnitude.</p><p>Express the answers using standard unit vectors.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_02_030.jpg\" alt=\"This figure shows a disco ball suspended from a ceiling.\"><p>(credit: modification of work by Kenneth Lu, Flickr)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\textbf{F}=-19.6\\textbf{k},$ $\\| \\text{F}\\| =19.6$ N; b. $\\text{T}=19.6\\textbf{k},$ $\\| \\text{T}\\| =19.6$ N"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1163724047781",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p><strong>[T]</strong> A 30-kg block of cement is suspended by three cables of equal length that are anchored at points $P(-2,0,0),$ $Q(1,\\sqrt{3},0),$ and $R(1,-\\sqrt{3},0).$ The load is located at $S(0,0,-2\\sqrt{3}),$ as shown in the following figure. Let ${\\textbf{F}}_{1},$ ${\\textbf{F}}_{2},$ and ${\\textbf{F}}_{3}$ be the forces of tension resulting from the load in cables $RS,QS,$ and $PS,$ respectively.</p><p>a. Find the gravitational force $\\textbf{F}$ acting on the block of cement that counterbalances the sum ${\\textbf{F}}_{1}+{\\text{F}}_{2}+{\\text{F}}_{3}$ of the forces of tension in the cables.</p><p>b. Find forces ${\\textbf{F}}_{1},$ ${\\textbf{F}}_{2},$ and ${\\textbf{F}}_{3}.$ Express the answer in component form.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_02_204.jpg\" alt=\"This figure is the 3-dimensional coordinate system. It has 4 points drawn. The first point is labeled “P(-2, 0, 0).” The second point is labeled “R(1, -squareroot of 3, 0).” The third point is labeled “S(0, 0, -2squareroots of 3).” The fourth point is labeled “Q(1, squareroot of 3, 0).” There are line segments from P to S, from R to S, and from Q to S. At point S there is a box labeled “30 k g.”\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\textbf{F}=-294\\textbf{k}$ N; b. ${\\textbf{F}}_{1}=\\langle -\\frac{49\\sqrt{3}}{3},49,-98\\rangle ,$ ${\\textbf{F}}_{2}=\\langle -\\frac{49\\sqrt{3}}{3},-49,-98\\rangle ,$ and ${\\textbf{F}}_{3}=\\langle \\frac{98\\sqrt{3}}{3},0,-98\\rangle$ (each component is expressed in newtons)"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1163724048942",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>Let $\\text{r}(t)=\\langle x(t),y(t),z(t)\\rangle$ be the position vector of a particle at the time $t\\in [0,T],$ where $x,y,$ and $z$ are smooth functions on $[0,T].$ The instantaneous velocity of the particle at time $t$ is defined by vector $\\textbf{v}(t)=\\langle x\\text{′}(t),y\\text{′}(t),z\\text{′}(t)\\rangle ,$ with components that are the derivatives with respect to $t,$ of the functions <em>x</em>, <em>y</em>, and <em>z</em>, respectively. The magnitude $\\| \\textbf{v}(t)\\|$ of the instantaneous velocity vector is called the <em>speed of the particle at time</em> t. Vector $\\textbf{a}(t)=\\langle x^{\\prime\\prime}(t),y^{\\prime\\prime}(t),z^{\\prime\\prime}(t)\\rangle ,$ with components that are the second derivatives with respect to $t,$ of the functions $x,y,$ and $z,$ respectively, gives the acceleration of the particle at time $t.$ Consider $\\text{r}(t)=\\langle \\cos t,\\sin t,2t\\rangle$ the position vector of a particle at time $t\\in [0,30],$ where the components of $\\textbf{r}$ are expressed in centimeters and time is expressed in seconds.</p><p>a. Find the instantaneous velocity, speed, and acceleration of the particle after the first second. Round your answer to two decimal places.</p><p>b. Use a CAS to visualize the path of the particle—that is, the set of all points of coordinates $(\\cos t,\\sin t,2t),$ where $t\\in [0,30].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\textbf{v}(1)=\\langle -0.84,0.54,2\\rangle$ (each component is expressed in centimeters per second); $\\| \\textbf{v}(1)\\| =2.24$ (expressed in centimeters per second); $\\textbf{a}(1)=\\langle -0.54,-0.84,0\\rangle$ (each component expressed in centimeters per second squared);</p>\n<p>b.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_02_033.jpg\" alt=\"This figure is of the 3-dimensional coordinate system above the xy-plane. It has a spiral drawn resembling a spring. The spiral is around the z-axis. The spiral starts on the x-axis at x = 1.\">"
+   }
+  },
+  {
+   "id": "r431",
+   "source_id": "fs-id1163723326762",
+   "source_section": "12.7",
+   "source_number": "431",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723996007",
+   "prompt": "<p>Find the unit vector that has the same direction as vector $\\textbf{v}$ that begins at $(1,4,10)$ and ends at $(3,0,4).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle \\frac{1}{\\sqrt{14}},-\\frac{2}{\\sqrt{14}},-\\frac{3}{\\sqrt{14}}\\rangle$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "three-dimensional-rectangular-coordinate-system"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "planes-parallel-to-coordinate-planes"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "standard-equation-of-a-sphere"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "standard-equation-of-a-sphere"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "graphing-equations-in-space"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "planes-parallel-to-coordinate-planes"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "graphing-equations-in-space"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "vectors-in-three-dimensions"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "vectors-in-three-dimensions"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e61",
+   "concept": "three-dimensional-rectangular-coordinate-system"
+  },
+  {
+   "exercise": "e61",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "e63",
+   "concept": "graphing-equations-in-space"
+  },
+  {
+   "exercise": "e63",
+   "concept": "planes-parallel-to-coordinate-planes"
+  },
+  {
+   "exercise": "e65",
+   "concept": "graphing-equations-in-space"
+  },
+  {
+   "exercise": "e67",
+   "concept": "planes-parallel-to-coordinate-planes"
+  },
+  {
+   "exercise": "e69",
+   "concept": "planes-parallel-to-coordinate-planes"
+  },
+  {
+   "exercise": "e71",
+   "concept": "standard-equation-of-a-sphere"
+  },
+  {
+   "exercise": "e73",
+   "concept": "standard-equation-of-a-sphere"
+  },
+  {
+   "exercise": "e73",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "e75",
+   "concept": "standard-equation-of-a-sphere"
+  },
+  {
+   "exercise": "e77",
+   "concept": "vectors-in-three-dimensions"
+  },
+  {
+   "exercise": "e77",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e79",
+   "concept": "vectors-in-three-dimensions"
+  },
+  {
+   "exercise": "e79",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e81",
+   "concept": "vectors-in-three-dimensions"
+  },
+  {
+   "exercise": "e81",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e83",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e83",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e83",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e85",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e85",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e85",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e87",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e89",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e91",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e91",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e93",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e93",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e93",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e95",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e95",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e97",
+   "concept": "vectors-in-three-dimensions"
+  },
+  {
+   "exercise": "e97",
+   "concept": "equivalent-vectors"
+  },
+  {
+   "exercise": "e99",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e99",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e99",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e101",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e101",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e101",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e103",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e103",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e103",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e105",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e107",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "e108",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "e109",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "e109",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e110",
+   "concept": "distance-between-two-points-in-space"
+  },
+  {
+   "exercise": "e110",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e111",
+   "concept": "vectors-in-three-dimensions"
+  },
+  {
+   "exercise": "e111",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e111",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e113",
+   "concept": "vectors-in-three-dimensions"
+  },
+  {
+   "exercise": "e113",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e115",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e115",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e117",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e117",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e119",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e119",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e119",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e121",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "e121",
+   "concept": "derivative-function"
+  },
+  {
+   "exercise": "r431",
+   "concept": "properties-of-vectors-in-space"
+  },
+  {
+   "exercise": "r431",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "r431",
+   "concept": "component-form-from-points"
+  }
+ ],
+ "referents": []
+}

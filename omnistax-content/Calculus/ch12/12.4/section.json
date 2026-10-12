@@ -1,0 +1,1597 @@
+{
+ "id": "12.4",
+ "module": "m53903",
+ "chapter": "12",
+ "title": "The Cross Product",
+ "short": "The Cross Product",
+ "lead": "The <span data-concept=\"cross-product\">cross product</span> of two <span data-concept=\"vector\">vectors</span> in space is a third vector orthogonal to both. This section computes it from components and by a <span data-concept=\"determinant\">determinant</span>, finds its direction by the right-hand rule and its length from the angle between the factors, and uses it for areas, volumes of <span data-concept=\"parallelepiped\">parallelepipeds</span> and <span data-concept=\"torque\">torque</span>.",
+ "objectives": [
+  "Calculate the cross product of two given vectors.",
+  "Use determinants to calculate a cross product.",
+  "Find a vector orthogonal to two given vectors.",
+  "Determine areas and volumes by using the cross product.",
+  "Calculate the torque of a given force and position vector."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"cross-product\">cross product</span> $\\kvecu\\;\\times \\;\\kvecv $ of two <span data-concept=\"vector\">vectors</span> $\\kvecu=\\langle u_{1},u_{2},u_{3}\\rangle$ and $\\kvecv=\\langle v_{1},v_{2},v_{3}\\rangle$ is a <span data-concept=\"vector\">vector</span> <span data-concept=\"orthogonal-vectors\">orthogonal</span> to both $\\kvecu $ and $\\kvecv.$ Its length is given by $\\| \\kvecu\\;\\times \\;\\kvecv\\| =\\| \\kvecu\\| \\cdot \\| \\kvecv\\| \\cdot \\sin \\ktheta ,$ where $\\ktheta$ is the angle between $\\kvecu $ and $\\kvecv.$ Its direction is given by the <span data-concept=\"right-hand-rule\">right-hand rule</span>.</li><li>The algebraic formula for calculating the <span data-concept=\"cross-product\">cross product</span> of two <span data-concept=\"vector\">vectors</span>, $\\kvecu=\\langle u_{1},u_{2},u_{3}\\rangle \\;\\text{and}\\;\\kvecv=\\langle v_{1},v_{2},v_{3}\\rangle ,$ is $\\kvecu\\;\\times \\;\\kvecv=(u_{2}v_{3}-u_{3}v_{2})\\kveci-(u_{1}v_{3}-u_{3}v_{1})\\kvecj+(u_{1}v_{2}-u_{2}v_{1})\\kveck.$</li><li>The <span data-concept=\"cross-product\">cross product</span> satisfies the following properties for <span data-concept=\"vector\">vectors</span> $\\kvecu,\\kvecv,\\;\\text{and}\\;\\kvecw,$ and scalar $c\\text{:}$</li><li>$\\kvecu\\;\\times \\;\\kvecv=-(\\kvecv\\;\\times \\;\\kvecu)$</li><li>$\\kvecu\\;\\times \\;(\\kvecv+\\kvecw)=\\kvecu\\;\\times \\;\\kvecv+\\kvecu\\;\\times \\;\\kvecw $</li><li>$c(\\kvecu\\;\\times \\;\\kvecv)=(c\\kvecu)\\;\\times \\;\\kvecv=\\kvecu\\;\\times \\;(c\\kvecv)$</li><li>$\\kvecu\\;\\times \\;\\kveczero=\\kveczero\\;\\times \\;\\kvecu=\\kveczero$</li><li>$\\kvecv\\;\\times \\;\\kvecv=0$</li><li>$\\kvecu\\cdot (\\kvecv\\;\\times \\;\\kvecw)=(\\kvecu\\;\\times \\;\\kvecv)\\cdot \\kvecw $</li><li>The <span data-concept=\"cross-product\">cross product</span> of <span data-concept=\"vector\">vectors</span> $\\kvecu=\\langle u_{1},u_{2},u_{3}\\rangle$ and $\\kvecv=\\langle v_{1},v_{2},v_{3}\\rangle$ is the <span data-concept=\"determinant\">determinant</span> $|\\begin{array}{lll}\\kveci & \\kvecj & \\kveck \\\\ u_{1} & u_{2} & u_{3} \\\\ v_{1} & v_{2} & v_{3}\\end{array}|.$</li><li>If <span data-concept=\"vector\">vectors</span> $\\kvecu $ and $\\kvecv $ form adjacent sides of a parallelogram, then the area of the parallelogram is given by $\\| \\kvecu\\;\\times \\;\\kvecv\\| .$</li><li>The <span data-concept=\"triple-scalar-product\">triple scalar product</span> of <span data-concept=\"vector\">vectors</span> $\\kvecu,$ $\\kvecv,$ and $\\kvecw $ is $\\kvecu\\cdot (\\kvecv\\;\\times \\;\\kvecw).$</li><li>The volume of a <span data-concept=\"parallelepiped\">parallelepiped</span> with adjacent edges given by <span data-concept=\"vector\">vectors</span> $\\kvecu,\\kvecv,\\;\\text{and}\\;\\kvecw $ is $V=|\\kvecu\\cdot (\\kvecv\\;\\times \\;\\kvecw)|.$</li><li>If the <span data-concept=\"triple-scalar-product\">triple scalar product</span> of <span data-concept=\"vector\">vectors</span> $\\kvecu,\\kvecv,\\;\\text{and}\\;\\kvecw $ is zero, then the <span data-concept=\"vector\">vectors</span> are <span data-concept=\"volume-of-a-parallelepiped\">coplanar</span>. The converse is also true: If the <span data-concept=\"vector\">vectors</span> are <span data-concept=\"volume-of-a-parallelepiped\">coplanar</span>, then their <span data-concept=\"triple-scalar-product\">triple scalar product</span> is zero.</li><li>The <span data-concept=\"cross-product\">cross product</span> can be used to identify a <span data-concept=\"vector\">vector</span> <span data-concept=\"orthogonal-vectors\">orthogonal</span> to two given <span data-concept=\"vector\">vectors</span> or to a plane.</li><li><span data-concept=\"torque\">Torque</span> $\\ktau$ measures the tendency of a force to produce rotation about an axis of rotation. If force $\\kvecF $ is acting at a distance $\\kvecr $ from the axis, then <span data-concept=\"torque\">torque</span> is equal to the <span data-concept=\"cross-product\">cross product</span> of $\\kvecr $ and $\\kvecF\\text{:}$ $\\ktau=\\kvecr\\;\\times \\;\\kvecF.$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the solutions marked as suggestions. The 30 even-numbered section exercises have no answer in the book’s key. Exercises 194, 196, 208 and 226 (show a property of given vectors) are kept with AI-written solutions; the other 26 are computational and are left out: 184 and 186 (cross products), 188 (a simplification), 190 and 192 (unit vectors), 198 (a determinant), 200 and 202 (orthogonal vectors), 204 (an obtuse angle), 206 and 222 (verifying identities numerically), 210 and 212 (areas), 214–220 even (triple scalar products and volumes), 224 (linear dependence), 228–234 even (areas, distances and equations), and 236–242 even (applications). Exercises 195, 205, 207, 221, 223 and 231 (odd, unkeyed proofs) are kept with AI-written solutions. Review exercises 424 (true or false, unkeyed, with an AI-written answer), 427, 433 and 449 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "fig-pq-cross",
+   "kind": "figure",
+   "number": "12.53",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_04_011.jpg"
+   ],
+   "original_caption": "Finding a cross product to two given vectors.",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-cross-product",
+   "kind": "sim",
+   "number": "12.54",
+   "folds": [
+    "12.55",
+    "12.56"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_04_001.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_04_012.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_04_013.jpg"
+   ],
+   "original_caption": "(Figure 12.54) The direction of u ×  v is determined by the right-hand rule. (Figure 12.55) Are the cross products u ×  v and v ×  u in the same direction? (Figure 12.56) The cross products u ×  v and v ×  u are both orthogonal to u and v, but in opposite directions.",
+   "draws": [
+    "vector",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-parallelogram-area",
+   "kind": "sim",
+   "number": "12.57",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_04_005.jpg"
+   ],
+   "original_caption": "The parallelogram with adjacent sides u and v has base ‖ u‖ and height ‖ v‖ sin θ .",
+   "draws": [
+    "vector",
+    "region",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-triangle-pqr",
+   "kind": "figure",
+   "number": "12.58",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_04_014.jpg"
+   ],
+   "original_caption": "Finding the area of a triangle by using the cross product.",
+   "draws": [
+    "point",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-parallelepiped",
+   "kind": "sim",
+   "number": "12.59",
+   "folds": [
+    "12.60"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_04_008.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_04_015.jpg"
+   ],
+   "original_caption": "(Figure 12.59) The height of the parallelepiped is given by ‖ proj_v×wu‖ . (Figure 12.60) ",
+   "draws": [
+    "vector",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-torque",
+   "kind": "sim",
+   "number": "12.61",
+   "folds": [
+    "12.62"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_04_009.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_04_010.jpg"
+   ],
+   "original_caption": "(Figure 12.61) Torque measures how a force causes an object to rotate. (Figure 12.62) Torque describes the twisting action of the wrench.",
+   "draws": [
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-minors",
+   "kind": "sim",
+   "draws": [
+    "matrix"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "cross-intro",
+   "concept": "cross-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723831482",
+   "concept": "cross-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723831482",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723497714",
+   "concept": "cross-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "direction-term",
+   "concept": "direction-of-the-cross-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "direction-term",
+   "concept": "right-hand-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723957910",
+   "concept": "direction-of-the-cross-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ijk-cross",
+   "concept": "cross-products-of-standard-unit-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723519217",
+   "concept": "cross-products-of-standard-unit-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724130388",
+   "concept": "properties-of-the-cross-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723500201",
+   "concept": "properties-of-the-cross-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723522571",
+   "concept": "magnitude-of-the-cross-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723522571",
+   "concept": "pythagorean-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724074775",
+   "concept": "magnitude-of-the-cross-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "determinant-2",
+   "concept": "determinant",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723183796",
+   "concept": "determinant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723299001",
+   "concept": "cross-product-by-determinant",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724057695",
+   "concept": "cross-product-by-determinant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723339486",
+   "concept": "unit-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723995104",
+   "concept": "area-of-a-parallelogram",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723362004",
+   "concept": "area-of-a-parallelogram",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723326764",
+   "concept": "triple-scalar-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723326854",
+   "concept": "triple-scalar-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724066224",
+   "concept": "triple-scalar-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "parallelepiped-term",
+   "concept": "parallelepiped",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724035005",
+   "concept": "volume-of-a-parallelepiped",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724035005",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724066558",
+   "concept": "volume-of-a-parallelepiped",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724163707",
+   "concept": "volume-of-a-parallelepiped",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723475127",
+   "concept": "cross-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723336026",
+   "concept": "torque",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723149246",
+   "concept": "torque",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1163723757318",
+   "source_number": "Checkpoint 12.30",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723497714"
+   },
+   "cite": "fs-id1163723831482",
+   "prompt": "Find $\\textbf{p}\\;\\times \\;\\textbf{q}$ for $\\textbf{p}=\\langle 5,1,2\\rangle$ and $\\textbf{q}=\\langle -2,0,1\\rangle .$ Express the answer using standard unit vectors.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{i}-9\\textbf{j}+2\\textbf{k}$",
+    "hint": "Use the formula $\\textbf{u}\\;\\times \\;\\textbf{v}=(u_{2}v_{3}-u_{3}v_{2})\\textbf{i}-(u_{1}v_{3}-u_{3}v_{1})\\textbf{j}+(u_{1}v_{2}-u_{2}v_{1})\\textbf{k}.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1163723145015",
+   "source_number": "Checkpoint 12.31",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723957910"
+   },
+   "cite": "direction-term",
+   "prompt": "Suppose vectors $\\textbf{u}$ and $\\textbf{v}$ lie in the <em>xy</em>-plane (the <em>z</em>-component of each vector is zero). Now suppose the <em>x</em>- and <em>y</em>-components of $\\textbf{u}$ and the <em>y</em>-component of $\\textbf{v}$ are all positive, whereas the <em>x</em>-component of $\\textbf{v}$ is negative. Assuming the coordinate axes are oriented in the usual positions, in which direction does $\\textbf{u}\\;\\times \\;\\textbf{v}$ point?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Up (the positive <em>z</em>-direction)",
+    "hint": "Remember the right-hand rule."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1163724116747",
+   "source_number": "Checkpoint 12.32",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723519217"
+   },
+   "cite": "ijk-cross",
+   "prompt": "Find $(\\textbf{i}\\;\\times \\;\\textbf{j})\\;\\times \\;(\\textbf{k}\\;\\times \\;\\textbf{i}).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\textbf{i}$",
+    "hint": "Remember the right-hand rule."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1163723522640",
+   "source_number": "Checkpoint 12.33",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723500201"
+   },
+   "cite": "fs-id1163724130388",
+   "prompt": "Use the properties of the cross product to calculate $(\\textbf{i}\\;\\times \\;\\textbf{k})\\;\\times \\;(\\textbf{k}\\;\\times \\;\\textbf{j}).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\textbf{k}$",
+    "hint": "$\\textbf{u}\\;\\times \\;\\textbf{v}=-(\\textbf{v}\\;\\times \\;\\textbf{u})$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1163724049727",
+   "source_number": "Checkpoint 12.34",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724074775"
+   },
+   "cite": "fs-id1163723522571",
+   "prompt": "Use <a href=\"#fs-id1163724130388\">Properties of the Cross Product</a><sup class=\"fn\" data-note=\"c-cp-magnitude\"></sup> to find the magnitude of $\\textbf{u}\\;\\times \\;\\textbf{v},$ where $\\textbf{u}=\\langle -8,0,0\\rangle$ and $\\textbf{v}=\\langle 0,2,0\\rangle .$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 16,
+    "solution": "$16$",
+    "hint": "Vectors $\\textbf{u}$ and $\\textbf{v}$ are orthogonal."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1163723298916",
+   "source_number": "Checkpoint 12.35",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723183796"
+   },
+   "cite": "fs-id1163724066100",
+   "prompt": "Evaluate the determinant $|\\begin{array}{rrr}1 & -2 & -1 \\\\ 3 & 2 & -3 \\\\ 1 & 5 & 4\\end{array}|.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 40,
+    "solution": "$40$",
+    "hint": "Expand along the first row. Don’t forget the second term is negative!"
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1163723314887",
+   "source_number": "Checkpoint 12.36",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724057695"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "Use determinant notation to find $\\textbf{a}\\;\\times \\;\\textbf{b},$ where $\\textbf{a}=\\langle 8,2,3\\rangle$ and $\\textbf{b}=\\langle -1,0,4\\rangle .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$8\\textbf{i}-35\\textbf{j}+2\\textbf{k}$",
+    "hint": "Calculate the determinant $|\\begin{array}{rrr}\\textbf{i} & \\textbf{j} & \\textbf{k} \\\\ 8 & 2 & 3 \\\\ -1 & 0 & 4\\end{array}|.$"
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1163723171375",
+   "source_number": "Checkpoint 12.37",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723339486"
+   },
+   "cite": "using",
+   "prompt": "Find a unit vector orthogonal to both $\\textbf{a}$ and $\\textbf{b},$ where $\\textbf{a}=\\langle 4,0,3\\rangle$ and $\\textbf{b}=\\langle 1,1,4\\rangle .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle \\frac{-3}{\\sqrt{194}},\\frac{-13}{\\sqrt{194}},\\frac{4}{\\sqrt{194}}\\rangle$",
+    "hint": "Normalize the cross product."
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1163723499917",
+   "source_number": "Checkpoint 12.38",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723362004"
+   },
+   "cite": "fs-id1163723995104",
+   "prompt": "Find the area of the parallelogram $PQRS$ with vertices $P(1,1,0),Q(7,1,0),R(9,4,2),$ and $S(3,4,2).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$6\\sqrt{13}$",
+    "hint": "Sketch the parallelogram and identify two vectors that form adjacent sides of the parallelogram."
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1163723312433",
+   "source_number": "Checkpoint 12.39",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724066224"
+   },
+   "cite": "fs-id1163723326854",
+   "prompt": "Calculate the triple scalar product $\\textbf{a}\\cdot (\\textbf{b}\\;\\times \\;\\textbf{c}),$ where $\\textbf{a}=\\langle 2,-4,1\\rangle ,$ $\\textbf{b}=\\langle 0,3,-1\\rangle ,$ and $\\textbf{c}=\\langle 5,-3,3\\rangle .$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 17,
+    "solution": "$17$",
+    "hint": "Place the vectors as the rows of a $3\\;\\times \\;3$ matrix, then calculate the determinant."
+   }
+  },
+  {
+   "id": "cp11",
+   "source_id": "fs-id1163723286889",
+   "source_number": "Checkpoint 12.40",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724066558"
+   },
+   "cite": "fs-id1163724035005",
+   "prompt": "Find the volume of the parallelepiped formed by the vectors $\\textbf{a}=3\\textbf{i}+4\\textbf{j}-\\textbf{k},$ $\\textbf{b}=2\\textbf{i}-\\textbf{j}-\\textbf{k},$ and $\\textbf{c}=3\\textbf{j}+\\textbf{k}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$8$ units<sup>3</sup>",
+    "hint": "Calculate the triple scalar product by finding a determinant."
+   }
+  },
+  {
+   "id": "cp12",
+   "source_id": "fs-id1163724130677",
+   "source_number": "Checkpoint 12.41",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724163707"
+   },
+   "cite": "fs-id1163724035005",
+   "prompt": "Are the vectors $\\textbf{a}=\\textbf{i}+\\textbf{j}-\\textbf{k},$ $\\textbf{b}=\\textbf{i}-\\textbf{j}+\\textbf{k},$ and $\\textbf{c}=\\textbf{i}+\\textbf{j}+\\textbf{k}$ coplanar?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No, the triple scalar product is $-4\\ne 0,$ so the three vectors form the adjacent edges of a parallelepiped. They are not coplanar.",
+    "hint": "Calculate the triple scalar product."
+   }
+  },
+  {
+   "id": "cp13",
+   "source_id": "fs-id1163723342520",
+   "source_number": "Checkpoint 12.42",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723149246"
+   },
+   "cite": "fs-id1163723336026",
+   "prompt": "Calculate the force required to produce $15\\;\\text{N}\\cdot \\text{m}$ torque at an angle of $30°$ from a 150-cm rod.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$20$ N",
+    "hint": "$\\| \\mathbf{τ}\\| =15\\text{N}\\cdot \\text{m}$ and $\\| \\textbf{r}\\| =1.5\\text{m}$"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1163723360056",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723831482",
+   "prompt": "<p>For the following exercises, the vectors $\\textbf{u}$ and $\\textbf{v}$ are given.</p><p>a. Find the cross product $\\textbf{u}\\;\\times \\;\\textbf{v}$ of the vectors $\\textbf{u}$ and $\\textbf{v}.$ Express the answer in component form.</p><p>b. Sketch the vectors $\\textbf{u},\\textbf{v},$ and $\\textbf{u}\\;\\times \\;\\textbf{v}.$</p><p>$\\textbf{u}=\\langle 2,0,0\\rangle ,$ $\\textbf{v}=\\langle 2,2,0\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\textbf{u}\\;\\times \\;\\textbf{v}=\\langle 0,0,4\\rangle ;$</p>\n<p>b.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_04_206.jpg\" alt=\"This figure is the first octant of the 3-dimensional coordinate system. On the x-axis there is a vector labeled “u.” In the x y-plane there is a vector labeled “v.” On the z-axis there is the vector labeled “u cross v.”\">"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1163723348509",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723831482",
+   "prompt": "<p>For the following exercises, the vectors $\\textbf{u}$ and $\\textbf{v}$ are given.</p><p>a. Find the cross product $\\textbf{u}\\;\\times \\;\\textbf{v}$ of the vectors $\\textbf{u}$ and $\\textbf{v}.$ Express the answer in component form.</p><p>b. Sketch the vectors $\\textbf{u},\\textbf{v},$ and $\\textbf{u}\\;\\times \\;\\textbf{v}.$</p><p>$\\textbf{u}=2\\textbf{i}+3\\textbf{j},$ $\\textbf{v}=\\textbf{j}+2\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\textbf{u}\\;\\times \\;\\textbf{v}=\\langle 6,-4,2\\rangle ;$</p>\n<p>b.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_04_208.jpg\" alt=\"This figure is the first octant of the 3-dimensional coordinate system and shows three vectors. The first vector is labeled u and has components &lt;2, 3, 0&gt;. The second vector is labeled v and has components &lt;0, 1, 2&gt;.” The third vector is labeled u cross v and has components &lt;6, -4, 2&gt;.”\">"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1163723477690",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ijk-cross",
+   "prompt": "<p>Simplify $(\\textbf{i}\\;\\times \\;\\textbf{i}-2\\textbf{i}\\;\\times \\;\\textbf{j}-4\\textbf{i}\\;\\times \\;\\textbf{k}+3\\textbf{j}\\;\\times \\;\\textbf{k})\\;\\times \\;\\textbf{i}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-2\\textbf{j}-4\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1163723473848",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "<p>In the following exercises, vectors $\\textbf{u}$ and $\\textbf{v}$ are given. Find unit vector $\\textbf{w}$ in the direction of the cross product vector $\\textbf{u}\\;\\times \\;\\textbf{v}.$ Express your answer using standard unit vectors.</p><p>$\\textbf{u}=\\langle 3,-1,2\\rangle ,$ $\\textbf{v}=\\langle -2,0,1\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{w}=-\\frac{1}{3\\sqrt{6}}\\textbf{i}-\\frac{7}{3\\sqrt{6}}\\textbf{j}-\\frac{2}{3\\sqrt{6}}\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1163724155426",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "<p>In the following exercises, vectors $\\textbf{u}$ and $\\textbf{v}$ are given. Find unit vector $\\textbf{w}$ in the direction of the cross product vector $\\textbf{u}\\;\\times \\;\\textbf{v}.$ Express your answer using standard unit vectors.</p><p>$\\textbf{u}=\\vec{AB},$ $\\textbf{v}=\\vec{AC},$ where $A(1,0,1),$ $B(1,-1,3),$ and $C(0,0,5)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{w}=-\\frac{4}{\\sqrt{21}}\\textbf{i}-\\frac{2}{\\sqrt{21}}\\textbf{j}-\\frac{1}{\\sqrt{21}}\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1163724161871",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723831482",
+   "prompt": "<p>Determine the real number $\\alpha$ such that $\\textbf{u}\\;\\times \\;\\textbf{v}$ and $\\textbf{i}$ are orthogonal, where $\\textbf{u}=3\\textbf{i}+\\textbf{j}-5\\textbf{k}$ and $\\textbf{v}=4\\textbf{i}-2\\textbf{j}+\\alpha \\textbf{k}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 10,
+    "solution": "$\\alpha =10$"
+   }
+  },
+  {
+   "id": "e194",
+   "source_id": "fs-id1163724162022",
+   "source_number": "194",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723831482",
+   "prompt": "<p>Show that $\\textbf{u}\\;\\times \\;\\textbf{v}$ and $2\\textbf{i}-14\\textbf{j}+2\\textbf{k}$ cannot be orthogonal for any $\\alpha$ real number, where $\\textbf{u}=\\textbf{i}+7\\textbf{j}-\\textbf{k}$ and $\\textbf{v}=\\alpha \\textbf{i}+5\\textbf{j}+\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>By the definition of the cross product, $\\mathbf{u}\\times\\mathbf{v}=\\langle 7(1)-(-1)(5),\\,-(1(1)-(-1)\\alpha),\\,1(5)-7\\alpha\\rangle=\\langle 12,\\,-1-\\alpha,\\,5-7\\alpha\\rangle.$ Its dot product with $\\langle 2,-14,2\\rangle$ is $24+14(1+\\alpha)+10-14\\alpha=48,$ which is never 0. So for no real $\\alpha$ are the two vectors orthogonal.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1163723331453",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724130388",
+   "prompt": "<p>Show that $\\textbf{u}\\;\\times \\;\\textbf{v}$ is orthogonal to $\\textbf{u}+\\textbf{v}$ and $\\textbf{u}-\\textbf{v},$ where $\\textbf{u}$ and $\\textbf{v}$ are nonzero vectors.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The cross product $\\mathbf{u}\\times\\mathbf{v}$ is orthogonal to both $\\mathbf{u}$ and $\\mathbf{v},$ so $(\\mathbf{u}\\times\\mathbf{v})\\cdot\\mathbf{u}=0$ and $(\\mathbf{u}\\times\\mathbf{v})\\cdot\\mathbf{v}=0.$ By the distributive property of the dot product, $(\\mathbf{u}\\times\\mathbf{v})\\cdot(\\mathbf{u}+\\mathbf{v})=0+0=0$ and $(\\mathbf{u}\\times\\mathbf{v})\\cdot(\\mathbf{u}-\\mathbf{v})=0-0=0,$ so $\\mathbf{u}\\times\\mathbf{v}$ is orthogonal to $\\mathbf{u}+\\mathbf{v}$ and to $\\mathbf{u}-\\mathbf{v}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e196",
+   "source_id": "fs-id1163723331548",
+   "source_number": "196",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724130388",
+   "prompt": "<p>Show that $\\textbf{v}\\;\\times \\;\\textbf{u}$ is orthogonal to $(\\textbf{u}\\cdot \\textbf{v})(\\textbf{u}+\\textbf{v})+\\text{u},$ where $\\textbf{u}$ and $\\textbf{v}$ are nonzero vectors.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>$\\mathbf{v}\\times\\mathbf{u}$ is orthogonal to $\\mathbf{u}$ and to $\\mathbf{v},$ so its dot product with each is 0. Writing $c=\\mathbf{u}\\cdot\\mathbf{v},$ a scalar, $(\\mathbf{v}\\times\\mathbf{u})\\cdot(c(\\mathbf{u}+\\mathbf{v})+\\mathbf{u})=c\\,(\\mathbf{v}\\times\\mathbf{u})\\cdot\\mathbf{u}+c\\,(\\mathbf{v}\\times\\mathbf{u})\\cdot\\mathbf{v}+(\\mathbf{v}\\times\\mathbf{u})\\cdot\\mathbf{u}=0+0+0=0,$ so the two vectors are orthogonal.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1163723246484",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "<p>Calculate the determinant $|\\begin{array}{lrr}\\textbf{i} & \\textbf{j} & \\textbf{k} \\\\ 1 & -1 & 7 \\\\ 2 & 0 & 3\\end{array}|.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-3\\textbf{i}+11\\textbf{j}+2\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1163723317190",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "<p>For the following exercises, the vectors $\\textbf{u}$ and $\\textbf{v}$ are given. Use determinant notation to find vector $\\textbf{w}$ orthogonal to vectors $\\textbf{u}$ and $\\textbf{v}.$</p><p>$\\textbf{u}=\\langle -1,0,e^{t}\\rangle ,$ $\\textbf{v}=\\langle 1,e^{-t},0\\rangle ,$ where $t$ is a real number</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{w}=\\langle -1,e^{t},-e^{-t}\\rangle$"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1163723315218",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "<p>Find vector $(\\textbf{a}-2\\text{b})\\;\\times \\;\\text{c},$ where $\\textbf{a}=|\\begin{array}{lrr}\\textbf{i} & \\textbf{j} & \\textbf{k} \\\\ 2 & -1 & 5 \\\\ 0 & 1 & 8\\end{array}|,$ $\\text{b}=|\\begin{array}{lrr}\\text{i} & \\text{j} & \\text{k} \\\\ 0 & 1 & 1 \\\\ 2 & -1 & -2\\end{array}|,$ and $\\text{c}=\\textbf{i}+\\textbf{j}+\\text{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-26\\textbf{i}+17\\textbf{j}+9\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1163724077712",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723522571",
+   "prompt": "<p><strong>[T]</strong> Use the cross product $\\textbf{u}\\;\\times \\;\\textbf{v}$ to find the acute angle between vectors $\\textbf{u}$ and $\\textbf{v},$ where $\\textbf{u}=\\textbf{i}+2\\textbf{j}$ and $\\textbf{v}=\\textbf{i}+\\textbf{k}.$ Express the answer in degrees rounded to the nearest integer.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$72^{\\circ}$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1163723332340",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723522571",
+   "prompt": "<p>Use the sine and cosine of the angle between two nonzero vectors $\\textbf{u}$ and $\\textbf{v}$ to prove Lagrange’s identity: ${\\| \\textbf{u}\\;\\times \\;\\textbf{v}\\|}^{2}={\\| \\textbf{u}\\|}^{2}{\\| \\textbf{v}\\|}^{2}-{(\\textbf{u}\\cdot \\textbf{v})}^{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let $\\theta$ be the angle between $\\mathbf{u}$ and $\\mathbf{v}.$ Then $\\|\\mathbf{u}\\times\\mathbf{v}\\|=\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\sin\\theta$ and $\\mathbf{u}\\cdot\\mathbf{v}=\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\cos\\theta.$ Squaring the first and using $\\sin^{2}\\theta=1-\\cos^{2}\\theta,$ $\\|\\mathbf{u}\\times\\mathbf{v}\\|^{2}=\\|\\mathbf{u}\\|^{2}\\|\\mathbf{v}\\|^{2}(1-\\cos^{2}\\theta)=\\|\\mathbf{u}\\|^{2}\\|\\mathbf{v}\\|^{2}-(\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\cos\\theta)^{2}=\\|\\mathbf{u}\\|^{2}\\|\\mathbf{v}\\|^{2}-(\\mathbf{u}\\cdot\\mathbf{v})^{2}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1163723228411",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723522571",
+   "prompt": "<p>Nonzero vectors $\\textbf{u}$ and $\\textbf{v}$ are called <em>collinear</em> if there exists a nonzero scalar $\\alpha$ such that $\\textbf{v}=\\alpha \\textbf{u}.$ Show that $\\textbf{u}$ and $\\textbf{v}$ are collinear if and only if $\\textbf{u}\\;\\times \\;\\textbf{v}=\\mathbf{0}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>If $\\mathbf{v}=\\alpha\\mathbf{u},$ then $\\mathbf{u}\\times\\mathbf{v}=\\alpha(\\mathbf{u}\\times\\mathbf{u})=\\alpha\\mathbf{0}=\\mathbf{0}.$ Conversely, if $\\mathbf{u}\\times\\mathbf{v}=\\mathbf{0},$ then $\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\sin\\theta=0;$ the vectors are nonzero, so $\\sin\\theta=0$ and $\\theta=0$ or $\\pi:$ $\\mathbf{v}$ has the same or the opposite direction as $\\mathbf{u},$ so $\\mathbf{v}=\\alpha\\mathbf{u}$ with $\\alpha=\\pm\\frac{\\|\\mathbf{v}\\|}{\\|\\mathbf{u}\\|}\\ne 0,$ and the vectors are collinear.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e208",
+   "source_id": "fs-id1163723479284",
+   "source_number": "208",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723522571",
+   "prompt": "<p>Nonzero vectors $\\textbf{u}$ and $\\textbf{v}$ are called <em>collinear</em> if there exists a nonzero scalar $\\alpha$ such that $\\textbf{v}=\\alpha \\textbf{u}.$ Show that vectors $\\vec{AB}$ and $\\vec{AC}$ are collinear, where $A(4,1,0),$ $B(6,5,-2),$ and $C(5,3,-1).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>$\\vec{AB}=\\langle 6-4,5-1,-2-0\\rangle=\\langle 2,4,-2\\rangle$ and $\\vec{AC}=\\langle 5-4,3-1,-1-0\\rangle=\\langle 1,2,-1\\rangle.$ So $\\vec{AB}=2\\vec{AC}$ with the nonzero scalar 2, and the vectors are collinear; equivalently $\\vec{AB}\\times\\vec{AC}=\\langle 4(-1)-(-2)(2),\\,-(2(-1)-(-2)(1)),\\,2(2)-4(1)\\rangle=\\mathbf{0}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1163723479450",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723995104",
+   "prompt": "<p>Find the area of the parallelogram with adjacent sides $\\textbf{u}=\\langle 3,2,0\\rangle$ and $\\textbf{v}=\\langle 0,2,1\\rangle .$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7,
+    "solution": "$7$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1163723307470",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723995104",
+   "prompt": "<p>Consider points $A(3,-1,2),B(2,1,5),$ and $C(1,-2,-2).$</p><p>a. Find the area of parallelogram $ABCD$ with adjacent sides $\\vec{AB}$ and $\\vec{AC}.$</p><p>b. Find the area of triangle $ABC.$</p><p>c. Find the distance from point $A$ to line $BC.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $5\\sqrt{6};$ b. $\\frac{5\\sqrt{6}}{2};$ c. $\\frac{5\\sqrt{6}}{\\sqrt{59}}$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1163724154423",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724035005",
+   "prompt": "<p>In the following exercises, vectors $\\textbf{u},\\textbf{v},\\text{and}\\;\\textbf{w}$ are given.</p><p>a. Find the triple scalar product $\\textbf{u}\\cdot (\\textbf{v}\\;\\times \\;\\text{w}).$</p><p>b. Find the volume of the parallelepiped with the adjacent edges $\\textbf{u},\\textbf{v},\\text{and}\\;\\textbf{w}.$</p><p>$\\textbf{u}=\\textbf{i}+\\textbf{j},$ $\\textbf{v}=\\textbf{j}+\\textbf{k},$ and $\\textbf{w}=\\textbf{i}+\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $2;$ b. $2$"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1163724096619",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723326854",
+   "prompt": "<p>Calculate the triple scalar products $\\textbf{v}\\cdot (\\textbf{u}\\;\\times \\;\\text{w})$ and $\\textbf{w}\\cdot (\\textbf{u}\\;\\times \\;\\textbf{v}),$ where $\\textbf{u}=\\langle 1,1,1\\rangle ,$ $\\textbf{v}=\\langle 7,6,9\\rangle ,$ and $\\textbf{w}=\\langle 4,2,7\\rangle .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}\\cdot (\\textbf{u}\\;\\times \\;\\text{w})=-1,$ $\\textbf{w}\\cdot (\\textbf{u}\\;\\times \\;\\textbf{v})=1$"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1163724066849",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723326854",
+   "prompt": "<p>Find vectors $\\textbf{a},\\textbf{b},\\;\\text{and}\\;\\textbf{c}$ with a triple scalar product given by the determinant</p><p>$|\\begin{array}{lll}1 & 2 & 3 \\\\ 0 & 2 & 5 \\\\ 8 & 9 & 2\\end{array}|.$ Determine their triple scalar product.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}=\\langle 1,2,3\\rangle ,$ $\\text{b}=\\langle 0,2,5\\rangle ,$ $\\text{c}=\\langle 8,9,2\\rangle ;$ $\\textbf{a}\\cdot (\\text{b}\\;\\times \\;\\text{c})=-9$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1163724075847",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724035005",
+   "prompt": "<p>Consider the parallelepiped with edges $OA,OB,$ and $OC,$ where $A(2,1,0),B(1,2,0),$ and $C(0,1,\\alpha ).$</p><p>a. Find the real number $\\alpha \\gt 0$ such that the volume of the parallelepiped is $3$ units<sup>3</sup>.</p><p>b. For $\\alpha =1,$ find the height $h$ from vertex $C$ of the parallelepiped to the plane formed by the edges $OA$ and $OB$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\alpha =1;$ b. $h=1,$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_04_210.jpg\" alt=\"This figure is the first octant of the 3-dimensional coordinate system. There is a parallelepided drawn. From the origin there are three vectors to vertices on the parallelepiped. They are vectors to the points A (2, 1, 0); B (1, 2, 0); and C (0, 1, alpha).\">"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1163724115401",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724130388",
+   "prompt": "<p>Let $\\textbf{u},\\textbf{v},\\;\\text{and}\\;\\textbf{w}$ be three-dimensional vectors and $c$ be a real number. Prove the following properties of the cross product.</p><p>a. $\\textbf{u}\\;\\times \\;\\textbf{u}=\\mathbf{0}$</p><p>b. $\\textbf{u}\\;\\times \\;(\\textbf{v}+\\textbf{w})=(\\textbf{u}\\;\\times \\;\\textbf{v})+(\\textbf{u}\\;\\times \\;\\textbf{w})$</p><p>c. $c(\\textbf{u}\\;\\times \\;\\textbf{v})=(c\\textbf{u})\\;\\times \\;\\textbf{v}=\\textbf{u}\\;\\times \\;(c\\textbf{v})$</p><p>d. $\\textbf{u}\\cdot \\mathbf{(}\\textbf{u}\\;\\times \\;\\textbf{v}\\mathbf{)=0}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let $\\mathbf{u}=\\langle u_{1},u_{2},u_{3}\\rangle,$ $\\mathbf{v}=\\langle v_{1},v_{2},v_{3}\\rangle,$ $\\mathbf{w}=\\langle w_{1},w_{2},w_{3}\\rangle.$</p><p>a. $\\mathbf{u}\\times\\mathbf{u}=\\langle u_{2}u_{3}-u_{3}u_{2},\\,-(u_{1}u_{3}-u_{3}u_{1}),\\,u_{1}u_{2}-u_{2}u_{1}\\rangle=\\langle 0,0,0\\rangle=\\mathbf{0}.$</p><p>b. The first component of $\\mathbf{u}\\times(\\mathbf{v}+\\mathbf{w})$ is $u_{2}(v_{3}+w_{3})-u_{3}(v_{2}+w_{2})=(u_{2}v_{3}-u_{3}v_{2})+(u_{2}w_{3}-u_{3}w_{2}),$ the sum of the first components of $\\mathbf{u}\\times\\mathbf{v}$ and $\\mathbf{u}\\times\\mathbf{w};$ the second and third components split the same way.</p><p>c. Each component of $\\mathbf{u}\\times\\mathbf{v}$ is a difference of products with one factor from $\\mathbf{u}$ and one from $\\mathbf{v};$ replacing $\\mathbf{u}$ by $c\\mathbf{u},$ or $\\mathbf{v}$ by $c\\mathbf{v},$ multiplies every such product, and so every component, by $c.$ Hence $c(\\mathbf{u}\\times\\mathbf{v})=(c\\mathbf{u})\\times\\mathbf{v}=\\mathbf{u}\\times(c\\mathbf{v}).$</p><p>d. $\\mathbf{u}\\cdot(\\mathbf{u}\\times\\mathbf{v})=u_{1}(u_{2}v_{3}-u_{3}v_{2})+u_{2}(u_{3}v_{1}-u_{1}v_{3})+u_{3}(u_{1}v_{2}-u_{2}v_{1}),$ and the six terms cancel in pairs, leaving 0.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1163723344490",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724035005",
+   "prompt": "<p>Nonzero vectors $\\textbf{u},\\textbf{v},\\;\\text{and}\\;\\textbf{w}$ are said to be <em>linearly dependent</em> if one of the vectors is a linear combination of the other two. For instance, there exist two nonzero real numbers $\\alpha$ and $β$ such that $\\textbf{w}=\\alpha \\textbf{u}+β\\textbf{v}.$ Otherwise, the vectors are called <em>linearly independent</em>. Show that $\\textbf{u},\\textbf{v},\\;\\text{and}\\;\\textbf{w}$ are coplanar if and only if they are linear dependent.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The vectors are coplanar exactly when the parallelepiped they span has volume 0, that is, when $\\mathbf{u}\\cdot(\\mathbf{v}\\times\\mathbf{w})=0.$ If $\\mathbf{w}=\\alpha\\mathbf{u}+\\beta\\mathbf{v},$ then $\\mathbf{v}\\times\\mathbf{w}=\\alpha(\\mathbf{v}\\times\\mathbf{u})+\\beta(\\mathbf{v}\\times\\mathbf{v})=\\alpha(\\mathbf{v}\\times\\mathbf{u}),$ which is orthogonal to $\\mathbf{u},$ so the triple scalar product is 0 and the vectors are coplanar. Conversely, suppose they are coplanar. If $\\mathbf{u}$ and $\\mathbf{v}$ are parallel, $\\mathbf{v}=\\lambda\\mathbf{u}$ is already a linear combination of the others. Otherwise $\\mathbf{u}$ and $\\mathbf{v}$ are adjacent sides of a parallelogram in their plane, and $\\mathbf{w},$ lying in that plane, is the diagonal of the parallelogram with sides along $\\mathbf{u}$ and $\\mathbf{v}$ that reaches its head: $\\mathbf{w}=\\alpha\\mathbf{u}+\\beta\\mathbf{v}.$ Either way the vectors are linearly dependent.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1163723323772",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724035005",
+   "prompt": "<p>Consider points $A(0,0,2),$ $B(1,0,2),$ $C(1,1,2),$ and $D(0,1,2).$ Are vectors $\\vec{AB},$ $\\vec{AC},$ and $\\vec{AD}$ linearly dependent (that is, one of the vectors is a linear combination of the other two)?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes, $\\vec{AD}=\\alpha \\vec{AB}+β\\vec{AC},$ where $\\alpha =-1$ and $β=1.$"
+   }
+  },
+  {
+   "id": "e226",
+   "source_id": "fs-id1163724043045",
+   "source_number": "226",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724035005",
+   "prompt": "<p>Show that vectors $\\textbf{i}+\\textbf{j},$ $\\textbf{i}-\\textbf{j},$ and $\\textbf{i}+\\textbf{j}+\\textbf{k}$ are linearly independent—that is, there do not exist two nonzero real numbers $\\alpha$ and $β$ such that $\\textbf{i}+\\textbf{j}+\\textbf{k}=\\alpha (\\textbf{i}+\\textbf{j})+β(\\textbf{i}-\\textbf{j}).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Any combination $\\alpha(\\mathbf{i}+\\mathbf{j})+\\beta(\\mathbf{i}-\\mathbf{j})=(\\alpha+\\beta)\\mathbf{i}+(\\alpha-\\beta)\\mathbf{j}$ has $\\mathbf{k}$-component 0, while $\\mathbf{i}+\\mathbf{j}+\\mathbf{k}$ has $\\mathbf{k}$-component 1. So no real $\\alpha$ and $\\beta$ give $\\mathbf{i}+\\mathbf{j}+\\mathbf{k},$ and the three vectors are linearly independent. Equivalently, their triple scalar product $\\begin{vmatrix}1&1&0\\\\1&-1&0\\\\1&1&1\\end{vmatrix}=-2\\ne 0.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1163724043208",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723831482",
+   "prompt": "<p>Let $\\textbf{u}=\\langle u_{1},u_{2}\\rangle$ and $\\textbf{v}=\\langle v_{1},v_{2}\\rangle$ be two-dimensional vectors. The cross product of vectors $\\textbf{u}$ and $\\textbf{v}$ is not defined. However, if the vectors are regarded as the three-dimensional vectors $\\tilde{\\textbf{u}}=\\langle u_{1},u_{2},0\\rangle$ and $\\tilde{\\textbf{v}}=\\langle v_{1},v_{2},0\\rangle ,$ respectively, then, in this case, we can define the cross product of $\\tilde{\\textbf{u}}$ and $\\tilde{\\textbf{v}}.$ In particular, in determinant notation, the cross product of $\\tilde{\\textbf{u}}$ and $\\tilde{\\textbf{v}}$ is given by</p>$$\\tilde{\\textbf{u}}\\;\\times \\;\\tilde{\\textbf{v}}=|\\begin{array}{lll}\\textbf{i} & \\textbf{j} & \\textbf{k} \\\\ u_{1} & u_{2} & 0 \\\\ v_{1} & v_{2} & 0\\end{array}|.$$<p>Use this result to compute $(\\textbf{i}\\cos \\theta +\\textbf{j}\\sin \\theta )\\;\\times \\;(\\textbf{i}\\sin\\theta -\\textbf{j}\\cos\\theta ),$ where $\\theta$ is a real number.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1163724084114",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>Determine a vector of magnitude $10$ perpendicular to the plane passing through the <em>x</em>-axis and point $P(1,2,4).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 0,\\text{±}4\\sqrt{5},∓2\\sqrt{5}\\rangle$"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1163724084276",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723522571",
+   "prompt": "<p>Consider $\\textbf{u}$ and $\\textbf{v}$ two three-dimensional vectors. If the magnitude of the cross product vector $\\textbf{u}\\;\\times \\;\\textbf{v}$ is $k$ times larger than the magnitude of vector $\\textbf{u},$ show that the magnitude of $\\textbf{v}$ is greater than or equal to $k,$ where $k$ is a natural number.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let $\\theta$ be the angle between $\\mathbf{u}$ and $\\mathbf{v}$ (with $\\mathbf{u}\\ne\\mathbf{0}$). From $\\|\\mathbf{u}\\times\\mathbf{v}\\|=k\\|\\mathbf{u}\\|$ and $\\|\\mathbf{u}\\times\\mathbf{v}\\|=\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\sin\\theta$ we get $\\|\\mathbf{v}\\|\\sin\\theta=k.$ Since $0\\le\\sin\\theta\\le 1,$ $\\|\\mathbf{v}\\|\\ge\\|\\mathbf{v}\\|\\sin\\theta=k.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1163724065789",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723831482",
+   "prompt": "<p>Find all vectors $\\textbf{w}=\\langle w_{1},w_{2},w_{3}\\rangle$ that satisfy the equation $\\langle 1,1,1\\rangle \\;\\times \\;\\textbf{w}=\\langle -1,-1,2\\rangle .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{w}=\\langle w_{3}-1,w_{3}+1,w_{3}\\rangle ,$ where $w_{3}$ is any real number"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1163724068087",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723336026",
+   "prompt": "<p><strong>[T]</strong> A mechanic uses a 12-in. wrench to turn a bolt. The wrench makes a $30^{\\circ}$ angle with the horizontal. If the mechanic applies a vertical force of $10$ lb on the wrench handle, what is the magnitude of the torque at point $P$ (see the following figure)? Express the answer in foot-pounds rounded to two decimal places.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_04_203.jpg\" alt=\"This figure is the image of an open-end wrench. The lower portion of the wrench is at point P. The wrench has a length of “12 I n.” The angle the wrench makes with a horizontal line from P is 30 degrees. At the top of the wrench is a downward vertical vector labeled “10 l b.”\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "8.66 ft-lb"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1163723085773",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723336026",
+   "prompt": "<p><strong>[T]</strong> Find the magnitude of the force that needs to be applied to the end of a 20-cm wrench located on the positive direction of the <em>y</em>-axis if the force is applied in the direction $\\langle 0,1,-2\\rangle$ and it produces a $100$ N·m torque to the bolt located at the origin.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "559 N"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1163723085877",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "<p><strong>[T]</strong> The force vector $\\textbf{F}$ acting on a proton with an electric charge of $1.6\\;\\times \\;{10}^{-19}\\text{C}$ (in coulombs) moving in a magnetic field $\\textbf{B}$ where the velocity vector $\\textbf{v}$ is given by $\\textbf{F}=1.6\\;\\times \\;{10}^{-19}(\\textbf{v}\\;\\times \\;\\text{B})$ (here, $\\textbf{v}$ is expressed in meters per second, $\\textbf{B}$ is in tesla [T], and $\\textbf{F}$ is in newtons [N]). Find the force that acts on a proton that moves in the <em>xy</em>-plane at velocity $\\textbf{v}={10}^{5}\\textbf{i}+{10}^{5}\\textbf{j}$ (in meters per second) in a magnetic field given by $\\text{B}=0.3\\textbf{j}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}=4.8\\;\\times \\;{10}^{-15}\\textbf{k}\\;\\text{N}$"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1163723072215",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "<p><strong>[T]</strong> Consider $\\text{r}(t)=\\langle \\cos t,\\sin t,2t\\rangle$ the position vector of a particle at time $t\\in [0,30],$ where the components of $\\textbf{r}$ are expressed in centimeters and time in seconds. Let $\\vec{OP}$ be the position vector of the particle after $1$ sec.</p><p>a. Determine unit vector $\\text{B}(t)$ (called the <em>binormal unit vector</em>) that has the direction of cross product vector $\\textbf{v}(t)\\;\\times \\;\\text{a}(t),$ where $\\textbf{v}(t)$ and $\\textbf{a}(t)$ are the instantaneous velocity vector and, respectively, the acceleration vector of the particle after $t$ seconds.</p><p>b. Use a CAS to visualize vectors $\\textbf{v}(1),$ $\\textbf{a}(1),$ and $\\text{B}(1)$ as vectors starting at point $P$ along with the path of the particle.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\text{B}(t)=\\langle \\frac{2\\;\\sin t}{\\sqrt{5}},-\\frac{2\\;\\cos t}{\\sqrt{5}},\\frac{1}{\\sqrt{5}}\\rangle ;$</p>\n<p>b.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_04_213.jpg\" alt=\"This figure is the first octant of the 3-dimensional coordinate system. There is a curve sketched that is increasing. On the curve is a point labeled “P.” At P there is a tangent vector to the curve labeled “v(1).” Also from P there is a vector towards the inside of the curve labeled “a(1).” Finally, there is a vector from P labeled “B(1)” pointing towards the z-axis.\">"
+   }
+  },
+  {
+   "id": "r424",
+   "source_id": "fs-id1163723139923",
+   "source_section": "12.7",
+   "source_number": "424",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724130388",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>. Justify the answer with a proof or a counterexample.</p><p>For vectors $\\textbf{a}$ and $\\textbf{b}$ and any given scalar $c,$ $c(\\textbf{a}\\;\\times \\;\\textbf{b})=(c\\textbf{a})\\;\\times \\;\\textbf{b}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True. With $\\mathbf{a}=\\langle a_{1},a_{2},a_{3}\\rangle$ and $\\mathbf{b}=\\langle b_{1},b_{2},b_{3}\\rangle,$ each component of $(c\\mathbf{a})\\times\\mathbf{b}$ is a difference of two products, each with one factor $ca_{i},$ for instance $(ca_{2})b_{3}-(ca_{3})b_{2}=c(a_{2}b_{3}-a_{3}b_{2}),$ which is $c$ times the corresponding component of $\\mathbf{a}\\times\\mathbf{b}.$ So $(c\\mathbf{a})\\times\\mathbf{b}=c(\\mathbf{a}\\times\\mathbf{b}),$ as property iii. of the cross product states.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r427",
+   "source_id": "fs-id1163723995200",
+   "source_section": "12.7",
+   "source_number": "427",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723299001",
+   "prompt": "<p>For the following exercises, use the given vectors to find the quantities.</p><p>$\\textbf{a}=9\\textbf{i}-2\\textbf{j},\\textbf{b}=-3\\textbf{i}+\\textbf{j}$</p><p>a. $3\\textbf{a}+\\textbf{b}$</p><p>b. $\\| \\textbf{a}\\|$</p><p>c. $\\textbf{a}\\;\\times \\;\\| \\textbf{b}\\;\\times \\;\\textbf{c}\\|$</p><p>d. $\\textbf{b}\\;\\cdot \\;\\textbf{a}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\langle 24,-5\\rangle ;$ b. $\\sqrt{85};$ c. Can’t cross a vector with a scalar; d. $-29$"
+   }
+  },
+  {
+   "id": "r433",
+   "source_id": "fs-id1163723326948",
+   "source_section": "12.7",
+   "source_number": "433",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724035005",
+   "prompt": "<p>The parallelepiped formed by $\\textbf{a}=\\langle 1,4,1\\rangle \\;\\text{and}\\;\\textbf{b}=\\langle 3,6,2\\rangle ,$ and $\\textbf{c}=\\langle -2,1,-5\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$27$"
+   }
+  },
+  {
+   "id": "r449",
+   "source_id": "fs-id1163724042202",
+   "source_section": "12.7",
+   "source_number": "449",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723336026",
+   "prompt": "<p>The following problems consider your unsuccessful attempt to take the tire off your car using a wrench to loosen the bolts. Assume the wrench is $0.3$ m long and you are able to apply a 200-N force.</p><p>Someone lends you a tire jack and you are now able to apply a 200-N force at an $80^{\\circ}$ angle. Is your resulting torque going to be more or less? What is the new resulting torque at the center of the bolt? Assume this force is not enough to loosen the bolt.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "More, $59.09$ J<sup class=\"fn\" data-note=\"c-r449-units\"></sup>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "direction-of-the-cross-product"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "cross-products-of-standard-unit-vectors"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "properties-of-the-cross-product"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "cross-products-of-standard-unit-vectors"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "determinant"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "cross-product-by-determinant"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "area-of-a-parallelogram"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "triple-scalar-product"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "volume-of-a-parallelepiped"
+  },
+  {
+   "exercise": "cp12",
+   "concept": "volume-of-a-parallelepiped"
+  },
+  {
+   "exercise": "cp12",
+   "concept": "triple-scalar-product"
+  },
+  {
+   "exercise": "cp13",
+   "concept": "torque"
+  },
+  {
+   "exercise": "cp13",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e183",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e183",
+   "concept": "direction-of-the-cross-product"
+  },
+  {
+   "exercise": "e185",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e185",
+   "concept": "direction-of-the-cross-product"
+  },
+  {
+   "exercise": "e187",
+   "concept": "cross-products-of-standard-unit-vectors"
+  },
+  {
+   "exercise": "e187",
+   "concept": "properties-of-the-cross-product"
+  },
+  {
+   "exercise": "e189",
+   "concept": "cross-product-by-determinant"
+  },
+  {
+   "exercise": "e189",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e191",
+   "concept": "cross-product-by-determinant"
+  },
+  {
+   "exercise": "e191",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e191",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e193",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e193",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e194",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e194",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e195",
+   "concept": "properties-of-the-cross-product"
+  },
+  {
+   "exercise": "e195",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e196",
+   "concept": "properties-of-the-cross-product"
+  },
+  {
+   "exercise": "e196",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e197",
+   "concept": "cross-product-by-determinant"
+  },
+  {
+   "exercise": "e199",
+   "concept": "cross-product-by-determinant"
+  },
+  {
+   "exercise": "e201",
+   "concept": "cross-product-by-determinant"
+  },
+  {
+   "exercise": "e201",
+   "concept": "properties-of-the-cross-product"
+  },
+  {
+   "exercise": "e203",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e205",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e205",
+   "concept": "evaluating-a-dot-product"
+  },
+  {
+   "exercise": "e207",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e207",
+   "concept": "parallel-vectors"
+  },
+  {
+   "exercise": "e208",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e208",
+   "concept": "parallel-vectors"
+  },
+  {
+   "exercise": "e209",
+   "concept": "area-of-a-parallelogram"
+  },
+  {
+   "exercise": "e211",
+   "concept": "area-of-a-parallelogram"
+  },
+  {
+   "exercise": "e211",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e213",
+   "concept": "triple-scalar-product"
+  },
+  {
+   "exercise": "e213",
+   "concept": "volume-of-a-parallelepiped"
+  },
+  {
+   "exercise": "e215",
+   "concept": "triple-scalar-product"
+  },
+  {
+   "exercise": "e217",
+   "concept": "triple-scalar-product"
+  },
+  {
+   "exercise": "e217",
+   "concept": "determinant"
+  },
+  {
+   "exercise": "e219",
+   "concept": "volume-of-a-parallelepiped"
+  },
+  {
+   "exercise": "e219",
+   "concept": "triple-scalar-product"
+  },
+  {
+   "exercise": "e221",
+   "concept": "properties-of-the-cross-product"
+  },
+  {
+   "exercise": "e223",
+   "concept": "volume-of-a-parallelepiped"
+  },
+  {
+   "exercise": "e223",
+   "concept": "triple-scalar-product"
+  },
+  {
+   "exercise": "e225",
+   "concept": "volume-of-a-parallelepiped"
+  },
+  {
+   "exercise": "e225",
+   "concept": "triple-scalar-product"
+  },
+  {
+   "exercise": "e226",
+   "concept": "volume-of-a-parallelepiped"
+  },
+  {
+   "exercise": "e227",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e229",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e229",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e231",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e233",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e235",
+   "concept": "torque"
+  },
+  {
+   "exercise": "e235",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e237",
+   "concept": "torque"
+  },
+  {
+   "exercise": "e237",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e239",
+   "concept": "cross-product-by-determinant"
+  },
+  {
+   "exercise": "e241",
+   "concept": "cross-product-by-determinant"
+  },
+  {
+   "exercise": "e241",
+   "concept": "magnitude-of-the-cross-product"
+  },
+  {
+   "exercise": "e241",
+   "concept": "derivative-function"
+  },
+  {
+   "exercise": "r424",
+   "concept": "properties-of-the-cross-product"
+  },
+  {
+   "exercise": "r427",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "r427",
+   "concept": "dot-product"
+  },
+  {
+   "exercise": "r427",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "r433",
+   "concept": "volume-of-a-parallelepiped"
+  },
+  {
+   "exercise": "r449",
+   "concept": "torque"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-magnitude-ref",
+   "kind": "correction",
+   "html": "The book links Properties of the Cross Product here; the magnitude $\\|\\mathbf{u}\\times\\mathbf{v}\\|=\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\sin\\theta$ used in the solution is the theorem Magnitude of the Cross Product."
+  },
+  {
+   "id": "c-cp-magnitude",
+   "kind": "correction",
+   "html": "The book links Properties of the Cross Product here; the theorem that gives the magnitude is Magnitude of the Cross Product."
+  },
+  {
+   "id": "c-r449-units",
+   "kind": "correction",
+   "html": "A torque is measured in newton-meters, not joules: the torque is $0.3(200)\\sin 80^{\\circ}\\approx 59.09\\;\\text{N}\\cdot\\text{m}.$ The section notes that torque and work share units but are distinct."
+  }
+ ]
+}

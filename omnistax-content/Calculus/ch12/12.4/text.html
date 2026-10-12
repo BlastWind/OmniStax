@@ -1,0 +1,294 @@
+<p id="cross-intro">Imagine a mechanic turning a wrench to tighten a bolt. The mechanic applies a force at the end of the wrench. This creates rotation, or <span data-concept="torque">torque</span>, which tightens the bolt. We can use <span data-concept="vector">vectors</span> to represent the force applied by the mechanic, and the distance (radius) from the bolt to the end of the wrench. Then, we can represent <span data-concept="torque">torque</span> by a <span data-concept="vector">vector</span> oriented along the axis of rotation. Note that the <span data-concept="torque">torque</span> <span data-concept="vector">vector</span> is <span data-concept="orthogonal-vectors">orthogonal</span> to both the force <span data-concept="vector">vector</span> and the radius <span data-concept="vector">vector</span>.</p>
+<p>In this section, we develop an operation called the <em><span data-concept="cross-product">cross product</span>,</em> which allows us to find a <span data-concept="vector">vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to two given <span data-concept="vector">vectors</span>. Calculating <span data-concept="torque">torque</span> is an important application of <span data-concept="cross-product">cross products</span>, and we examine <span data-concept="torque">torque</span> in more detail later in the section. This material uses a 3 × 3 <span data-concept="determinant">determinant</span> of the form $|\begin{array}{lll}a & b & c \\ d & e & f \\ g & h & i\end{array}|$, which expands by minors to $a|\begin{array}{ll}e & f \\ h & i\end{array}|-b|\begin{array}{ll}d & f \\ g & i\end{array}|+c|\begin{array}{ll}d & e \\ g & h\end{array}|=a(ei-fh)–b(di-fg)+c(dh-eg).$</p>
+
+<section id="cross-product">
+<h2>The Cross Product and Its Properties</h2>
+<p class="cite-target">The <span data-concept="dot-product">dot product</span> is a multiplication of two <span data-concept="vector">vectors</span> that results in a scalar. In this section, we introduce a product of two <span data-concept="vector">vectors</span> that generates a third <span data-concept="vector">vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to the first two. Consider how we might find such a <span data-concept="vector">vector</span>. Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle$ be nonzero <span data-concept="vector">vectors</span>. We want to find a <span data-concept="vector">vector</span> $\kvecw=\langle w_{1},w_{2},w_{3}\rangle$ <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kvecu $ and $\kvecv $—that is, we want to find $\kvecw $ such that $\kvecu\cdot \kvecw=0$ and $\kvecv\cdot \kvecw=0.$ Therefore, $w_{1},$ $w_{2},$ and $w_{3}$ must satisfy</p>
+$$\begin{array}{rll}u_{1}w_{1}+u_{2}w_{2}+u_{3}w_{3} & = & 0 \\ v_{1}w_{1}+v_{2}w_{2}+v_{3}w_{3} & = & 0.\end{array}$$
+<p>If we multiply the top equation by $v_{3}$ and the bottom equation by $u_{3}$ and subtract, we can eliminate the variable $w_{3},$ which gives</p>
+$$(u_{1}v_{3}-v_{1}u_{3})w_{1}+(u_{2}v_{3}-v_{2}u_{3})w_{2}=0.$$
+<p>If we select</p>
+$$\begin{array}{rll}w_{1} & = & u_{2}v_{3}-u_{3}v_{2} \\ w_{2} & = & -(u_{1}v_{3}-u_{3}v_{1}),\end{array}$$
+<p>we get a possible solution <span data-concept="vector">vector</span>. Substituting these values back into the original equations gives</p>
+$$w_{3}=u_{1}v_{2}-u_{2}v_{1}.$$
+<p>That is, <span data-concept="vector">vector</span></p>
+$$\kvecw=\langle u_{2}v_{3}-u_{3}v_{2},-(u_{1}v_{3}-u_{3}v_{1}),u_{1}v_{2}-u_{2}v_{1}\rangle$$
+<p>is <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kvecu $ and $\kvecv,$ which leads us to define the following operation, called the <span data-concept="cross-product">cross product</span>.</p>
+<div class="note" id="fs-id1163723831482">
+<div class="eyebrow">Definition</div>
+<p>Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle \;\text{and}\;\kvecv=\langle v_{1},v_{2},v_{3}\rangle .$ Then, the <strong><span data-concept="cross-product">cross product</span></strong> $\kvecu\;\times \;\kvecv $ is <span data-concept="vector">vector</span></p>
+<div class="equation" id="fs-id1163723754200">$$\begin{array}{rl}\kvecu\;\times \;\kvecv & =(u_{2}v_{3}-u_{3}v_{2})\kveci-(u_{1}v_{3}-u_{3}v_{1})\kvecj+(u_{1}v_{2}-u_{2}v_{1})\kveck \\ & =\langle u_{2}v_{3}-u_{3}v_{2},-(u_{1}v_{3}-u_{3}v_{1}),u_{1}v_{2}-u_{2}v_{1}\rangle .\end{array}\tag{12.9}$$</div>
+</div>
+<p>From the way we have developed $\kvecu\;\times \;\kvecv,$ it should be clear that the <span data-concept="cross-product">cross product</span> is <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kvecu $ and $\kvecv.$ However, it never hurts to check. To show that $\kvecu\;\times \;\kvecv $ is <span data-concept="orthogonal-vectors">orthogonal</span> to $\kvecu,$ we calculate the <span data-concept="dot-product">dot product</span> of $\kvecu $ and $\kvecu\;\times \;\kvecv.$</p>
+$$\begin{array}{rl}\kvecu\cdot (\kvecu\;\times \;\kvecv) & =\langle u_{1},u_{2},u_{3}\rangle \cdot \langle u_{2}v_{3}-u_{3}v_{2},-u_{1}v_{3}+u_{3}v_{1},u_{1}v_{2}-u_{2}v_{1}\rangle \\ & =u_{1}(u_{2}v_{3}-u_{3}v_{2})+u_{2}(-u_{1}v_{3}+u_{3}v_{1})+u_{3}(u_{1}v_{2}-u_{2}v_{1}) \\ & =u_{1}u_{2}v_{3}-u_{1}u_{3}v_{2}-u_{1}u_{2}v_{3}+u_{2}u_{3}v_{1}+u_{1}u_{3}v_{2}-u_{2}u_{3}v_{1} \\ & =(u_{1}u_{2}v_{3}-u_{1}u_{2}v_{3})+(-u_{1}u_{3}v_{2}+u_{1}u_{3}v_{2})+(u_{2}u_{3}v_{1}-u_{2}u_{3}v_{1}) \\ & =0\end{array}$$
+<p>In a similar manner, we can show that the <span data-concept="cross-product">cross product</span> is also <span data-concept="orthogonal-vectors">orthogonal</span> to $\kvecv.$</p>
+<div class="example" id="fs-id1163723497714">
+<h3>Example 12.31 · Finding a Cross Product</h3>
+<p>Let $\kvecp=\langle -1,2,5\rangle \;\text{and}\;\kvecq=\langle 4,0,-3\rangle$ (Figure 12.53). Find $\kvecp\;\times \;\kvecq.$</p>
+<figure class="sim" id="fig-pq-cross" data-figure="12.53" data-original="/media/ch12/CNX_Calc_Figure_12_04_011.jpg" data-original-caption="Finding a cross product to two given vectors.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.53</span><span>Finding a <span data-concept="cross-product">cross product</span> to two given <span data-concept="vector">vectors</span>.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>Substitute the components of the <span data-concept="vector">vectors</span> into <a href="#fs-id1163723754200">Equation 12.9</a>:</p>
+$$\begin{array}{ll}\kvecp\;\times \;\kvecq & =\langle -1,2,5\rangle \;\times \;\langle 4,0,-3\rangle \\ & =\langle p_{2}q_{3}-p_{3}q_{2},-(p_{1}q_{3}-p_{3}q_{1}),p_{1}q_{2}-p_{2}q_{1}\rangle \\ & =\langle p_{2}q_{3}-p_{3}q_{2},p_{3}q_{1}-p_{1}q_{3},p_{1}q_{2}-p_{2}q_{1}\rangle \\ & =\langle 2(-3)-5(0),5(4)-(-1)(-3),(-1)0-2(4)\rangle \\ & =\langle -6,17,-8\rangle .\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1163723497714"></div>
+<p id="direction-term">Although it may not be obvious from <a href="#fs-id1163723754200">Equation 12.9</a>, the direction of $\kvecu\;\times \;\kvecv $ is given by the <span data-concept="right-hand-rule">right-hand rule</span>. If we hold the right hand out with the fingers pointing in the direction of $\kvecu,$ then curl the fingers toward <span data-concept="vector">vector</span> $\kvecv,$ the thumb points in the direction of the <span data-concept="cross-product">cross product</span>, as shown.</p>
+<figure class="sim" id="sim-cross-product" data-figure="12.54 + 12.55 + 12.56" data-original="/media/ch12/CNX_Calc_Figure_12_04_001.jpg,/media/ch12/CNX_Calc_Figure_12_04_012.jpg,/media/ch12/CNX_Calc_Figure_12_04_013.jpg" data-original-caption="(Figure 12.54) The direction of u ×  v is determined by the right-hand rule. (Figure 12.55) Are the cross products u ×  v and v ×  u in the same direction? (Figure 12.56) The cross products u ×  v and v ×  u are both orthogonal to u and v, but in opposite directions.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.54 + 12.55 + 12.56</span><span>The direction of $\kvecu\times\kvecv$ is determined by the <span data-concept="right-hand-rule">right-hand rule</span>: fingers along the first factor curl toward the second, and the thumb points along the <span data-concept="cross-product">cross product</span>, which is orthogonal to both and as long as the area of the parallelogram they span. Swap the order and the <span data-concept="cross-product">cross products</span> $\kvecu\times\kvecv$ and $\kvecv\times\kvecu$ point in opposite directions. Here $\kvecu=\langle 0,2,1\rangle$ and $\kvecv=\langle 3,-1,0\rangle$ of Example 12.32; turn the scene to see the product stand square to their plane.</span></div>
+</figure>
+<p>Notice what this means for the direction of $\kvecv\;\times \;\kvecu.$ If we apply the <span data-concept="right-hand-rule">right-hand rule</span> to $\kvecv\;\times \;\kvecu,$ we start with our fingers pointed in the direction of $\kvecv,$ then curl our fingers toward the <span data-concept="vector">vector</span> $\kvecu.$ In this case, the thumb points in the opposite direction of $\kvecu\;\times \;\kvecv.$ (Try it!)</p>
+<div class="example" id="fs-id1163723957910">
+<h3>Example 12.32 · Anticommutativity of the Cross Product</h3>
+<p>Let $\kvecu=\langle 0,2,1\rangle$ and $\kvecv=\langle 3,-1,0\rangle .$ Calculate $\kvecu\;\times \;\kvecv $ and $\kvecv\;\times \;\kvecu $ and graph them.</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\begin{array}{rll}\kvecu\;\times \;\kvecv & = & \langle (0+1),-(0-3),(0-6)\rangle =\langle 1,3,-6\rangle \\ \kvecv\;\times \;\kvecu & = & \langle (-1-0),-(3-0),(6-0)\rangle =\langle -1,-3,6\rangle .\end{array}$$
+<p>We see that, in this case, $\kvecu\;\times \;\kvecv=-(\kvecv\;\times \;\kvecu)$ (Figure 12.56). We prove this in general later in this section.</p>
+</div>
+<div class="exercises" data-place="fs-id1163723957910"></div>
+<p id="ijk-cross">The <span data-concept="cross-product">cross products</span> of the <span data-concept="standard-unit-vectors">standard unit vectors</span> $\kveci,\kvecj,$ and $\kveck $ can be useful for simplifying some calculations, so let’s consider these <span data-concept="cross-product">cross products</span>. A straightforward application of the definition shows that</p>
+$$\kveci\;\times \;\kveci=\kvecj\;\times \;\kvecj=\kveck\;\times \;\kveck=\kveczero.$$
+<p>(The <span data-concept="cross-product">cross product</span> of two <span data-concept="vector">vectors</span> is a <span data-concept="vector">vector</span>, so each of these products results in the <span data-concept="zero-vector">zero vector</span>, not the scalar $0.)$ It’s up to you to verify the calculations on your own.</p>
+<p>Furthermore, because the <span data-concept="cross-product">cross product</span> of two <span data-concept="vector">vectors</span> is <span data-concept="orthogonal-vectors">orthogonal</span> to each of these <span data-concept="vector">vectors</span>, we know that the <span data-concept="cross-product">cross product</span> of $\kveci $ and $\kvecj $ is parallel to $\kveck.$ Similarly, the <span data-concept="cross-product">vector product</span> of $\kveci $ and $\kveck $ is parallel to $\kvecj,$ and the <span data-concept="cross-product">vector product</span> of $\kvecj $ and $\kveck $ is parallel to $\kveci.$ We can use the <span data-concept="right-hand-rule">right-hand rule</span> to determine the direction of each product. Then we have</p>
+$$\begin{array}{rllllrll}\kveci\;\times \;\kvecj & = & \kveck & & & \kvecj\;\times \;\kveci & = & -\kveck \\ \kvecj\;\times \;\kveck & = & \kveci & & & \kveck\;\times \;\kvecj & = & -\kveci \\ \kveck\;\times \;\kveci & = & \kvecj & & & \kveci\;\times \;\kveck & = & -\kvecj.\end{array}$$
+<p>These formulas come in handy later.</p>
+<div class="example" id="fs-id1163723519217">
+<h3>Example 12.33 · Cross Product of Standard Unit Vectors</h3>
+<p>Find $\kveci\;\times \;(\kvecj\;\times \;\kveck).$</p>
+<h4>Solution</h4>
+<p>We know that $\kvecj\;\times \;\kveck=\kveci.$ Therefore, $\kveci\;\times \;(\kvecj\;\times \;\kveck)=\kveci\;\times \;\kveci=\kveczero.$</p>
+</div>
+<div class="exercises" data-place="fs-id1163723519217"></div>
+<p id="vector-product-term">As we have seen, the <span data-concept="dot-product">dot product</span> is often called the <em><span data-concept="dot-product">scalar product</span></em> because it results in a scalar. The <span data-concept="cross-product">cross product</span> results in a <span data-concept="vector">vector</span>, so it is sometimes called the <strong><span data-concept="cross-product">vector product</span></strong>. These operations are both versions of <span data-concept="vector">vector</span> multiplication, but they have very different properties and applications. Let’s explore some properties of the <span data-concept="cross-product">cross product</span>. We prove only a few of them. Proofs of the other properties are left as exercises.</p>
+<div class="note" id="fs-id1163724130388">
+<div class="eyebrow">Theorem</div>
+<h3>Properties of the Cross Product</h3>
+<p>Let $\kvecu,\kvecv,$ and $\kvecw $ be <span data-concept="vector">vectors</span> in space, and let $c$ be a scalar.</p>
+$$\begin{array}{lllrllll}\text{i.} & & & \kvecu\;\times \;\kvecv & = & -(\kvecv\;\times \;\kvecu) & & \text{Anticommutative property} \\ \text{ii.} & & & \kvecu\;\times \;(\kvecv+\kvecw) & = & \kvecu\;\times \;\kvecv+\kvecu\;\times \;\kvecw & & \text{Distributive property} \\ \text{iii.} & & & c(\kvecu\;\times \;\kvecv) & = & (c\kvecu)\;\times \;\kvecv=\kvecu\;\times \;(c\kvecv) & & \text{Multiplication by a constant} \\ \text{iv.} & & & \kvecu\;\times \;\kveczero & = & \kveczero\;\times \;\kvecu=\kveczero & & \text{Cross product of the zero vector} \\ \text{v.} & & & \kvecv\;\times \;\kvecv & = & \kveczero & & \text{Cross product of a vector with itself} \\ \text{vi.} & & & \kvecu\cdot (\kvecv\;\times \;\kvecw) & = & (\kvecu\;\times \;\kvecv)\cdot \kvecw & & \text{Scalar triple product}\end{array}$$
+</div>
+<h3>Proof</h3>
+<p>For property $\kveci.,$ we want to show $\kvecu\;\times \;\kvecv=-(\kvecv\;\times \;\kvecu).$ We have</p>
+$$\begin{array}{rl}\kvecu\;\times \;\kvecv & =\langle u_{1},u_{2},u_{3}\rangle \;\times \;\langle v_{1},v_{2},v_{3}\rangle \\ & =\langle u_{2}v_{3}-u_{3}v_{2},-u_{1}v_{3}+u_{3}v_{1},u_{1}v_{2}-u_{2}v_{1}\rangle \\ & =-\langle u_{3}v_{2}-u_{2}v_{3},-u_{3}v_{1}+u_{1}v_{3},u_{2}v_{1}-u_{1}v_{2}\rangle \\ & =-\langle v_{1},v_{2},v_{3}\rangle \;\times \;\langle u_{1},u_{2},u_{3}\rangle \\ & =-(\kvecv\;\times \;\kvecu).\end{array}$$
+<p>Unlike most operations we’ve seen, the <span data-concept="cross-product">cross product</span> is not commutative. This makes sense if we think about the <span data-concept="right-hand-rule">right-hand rule</span>.</p>
+<p>For property $\text{iv}.,$ this follows directly from the definition of the <span data-concept="cross-product">cross product</span>. We have</p>
+$$\begin{array}{rl}\kvecu\;\times \;\kveczero & =\langle u_{2}(0)-u_{3}(0),-(u_{2}(0)-u_{3}(0)),u_{1}(0)-u_{2}(0)\rangle \\ & =\langle 0,0,0\rangle =\kveczero.\end{array}$$
+<p>Then, by property i., $\kveczero\;\times \;\kvecu=\kveczero$ as well. Remember that the <span data-concept="dot-product">dot product</span> of a <span data-concept="vector">vector</span> and the <span data-concept="zero-vector">zero vector</span> is the <em>scalar</em> $0,$ whereas the <span data-concept="cross-product">cross product</span> of a <span data-concept="vector">vector</span> with the <span data-concept="zero-vector">zero vector</span> is the <em><span data-concept="vector">vector</span></em> $\kveczero.$</p>
+<p>Property $\text{vi}.$ looks like the associative property, but note the change in operations:</p>
+$$\begin{array}{rl}\kvecu\cdot (\kvecv\;\times \;\kvecw) & =\kvecu\cdot \langle v_{2}w_{3}-v_{3}w_{2},-v_{1}w_{3}+v_{3}w_{1},v_{1}w_{2}-v_{2}w_{1}\rangle \\ & =u_{1}(v_{2}w_{3}-v_{3}w_{2})+u_{2}(-v_{1}w_{3}+v_{3}w_{1})+u_{3}(v_{1}w_{2}-v_{2}w_{1}) \\ & =u_{1}v_{2}w_{3}-u_{1}v_{3}w_{2}-u_{2}v_{1}w_{3}+u_{2}v_{3}w_{1}+u_{3}v_{1}w_{2}-u_{3}v_{2}w_{1} \\ & =(u_{2}v_{3}-u_{3}v_{2})w_{1}+(u_{3}v_{1}-u_{1}v_{3})w_{2}+(u_{1}v_{2}-u_{2}v_{1})w_{3} \\ & =\langle u_{2}v_{3}-u_{3}v_{2},u_{3}v_{1}-u_{1}v_{3},u_{1}v_{2}-u_{2}v_{1}\rangle \cdot \langle w_{1},w_{2},w_{3}\rangle \\ & =(\kvecu\;\times \;\kvecv)\cdot \kvecw.\end{array}$$
+<p>□</p>
+<div class="example" id="fs-id1163723500201">
+<h3>Example 12.34 · Using the Properties of the Cross Product</h3>
+<p>Use the <span data-concept="cross-product">cross product</span> properties to calculate $(2\kveci\;\times \;3\kvecj)\;\times \;\kvecj.$</p>
+<h4>Solution</h4>
+$$\begin{array}{rl}(2\kveci\;\times \;3\kvecj)\;\times \;\kvecj & =2(\kveci\;\times \;3\kvecj)\;\times \;\kvecj \\ & =2(3)(\kveci\;\times \;\kvecj)\;\times \;\kvecj \\ & =(6\kveck)\;\times \;\kvecj \\ & =6(\kveck\;\times \;\kvecj) \\ & =6(-\kveci)=-6\kveci.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1163723500201"></div>
+<p>So far in this section, we have been concerned with the direction of the <span data-concept="vector">vector</span> $\kvecu\;\times \;\kvecv,$ but we have not discussed its <span data-concept="magnitude-of-a-vector">magnitude</span>. It turns out there is a simple expression for the <span data-concept="magnitude-of-a-vector">magnitude</span> of $\kvecu\;\times \;\kvecv $ involving the <span data-concept="magnitude-of-a-vector">magnitudes</span> of $\kvecu $ and $\kvecv,$ and the sine of the angle between them.</p>
+<div class="note" id="fs-id1163723522571">
+<div class="eyebrow">Theorem</div>
+<h3>Magnitude of the Cross Product</h3>
+<p>Let $\kvecu $ and $\kvecv $ be <span data-concept="vector">vectors</span>, and let $\ktheta$ be the angle between them. Then, $\| \kvecu\;\times \;\kvecv\| =\| \kvecu\| \cdot \| \kvecv\| \cdot \sin \ktheta .$</p>
+</div>
+<h3>Proof</h3>
+<p>Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle$ be <span data-concept="vector">vectors</span>, and let $\ktheta$ denote the angle between them. Then</p>
+$$\begin{array}{rl}{\| \kvecu\;\times \;\kvecv\|}^{2} & ={(u_{2}v_{3}-u_{3}v_{2})}^{2}+{(u_{3}v_{1}-u_{1}v_{3})}^{2}+{(u_{1}v_{2}-u_{2}v_{1})}^{2} \\ & =u_2^{2}v_3^{2}-2u_{2}u_{3}v_{2}v_{3}+u_3^{2}v_2^{2}+u_3^{2}v_1^{2}-2u_{1}u_{3}v_{1}v_{3}+u_1^{2}v_3^{2}+u_1^{2}v_2^{2}-2u_{1}u_{2}v_{1}v_{2}+u_2^{2}v_1^{2} \\ & =u_1^{2}v_1^{2}+u_1^{2}v_2^{2}+u_1^{2}v_3^{2}+u_2^{2}v_1^{2}+u_2^{2}v_2^{2}+u_2^{2}v_3^{2}+u_3^{2}v_1^{2}+u_3^{2}v_2^{2}+u_3^{2}v_3^{2} \\ & \hspace{2em}-(u_1^{2}v_1^{2}+u_2^{2}v_2^{2}+u_3^{2}v_3^{2}+2u_{1}u_{2}v_{1}v_{2}+2u_{1}u_{3}v_{1}v_{3}+2u_{2}u_{3}v_{2}v_{3}) \\ & =(u_1^{2}+u_2^{2}+u_3^{2})(v_1^{2}+v_2^{2}+v_3^{2})-{(u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3})}^{2} \\ & ={\| \kvecu\|}^{2}{\| \kvecv\|}^{2}-{(\kvecu\cdot \kvecv)}^{2} \\ & ={\| \kvecu\|}^{2}{\| \kvecv\|}^{2}-{\| \kvecu\|}^{2}{\| \kvecv\|}^{2}{\cos }^{2}\ktheta \\ & ={\| \kvecu\|}^{2}{\| \kvecv\|}^{2}(1-{\cos }^{2}\ktheta ) \\ & ={\| \kvecu\|}^{2}{\| \kvecv\|}^{2}({\sin }^{2}\ktheta ).\end{array}$$
+<p>Taking square roots and noting that $\sqrt{{\sin }^{2}\ktheta}=\sin \ktheta$ for $0\le \ktheta \le 180^{\circ},$ we have the desired result:</p>
+$$\| \kvecu\;\times \;\kvecv\| =\| \kvecu\| \| \kvecv\| \sin \ktheta .$$
+<p>□</p>
+<p>This definition of the <span data-concept="cross-product">cross product</span> allows us to visualize or interpret the product geometrically. It is clear, for example, that the <span data-concept="cross-product">cross product</span> is defined only for <span data-concept="vector">vectors</span> in three dimensions, not for <span data-concept="vector">vectors</span> in two dimensions. In two dimensions, it is impossible to generate a <span data-concept="vector">vector</span> simultaneously <span data-concept="orthogonal-vectors">orthogonal</span> to two nonparallel <span data-concept="vector">vectors</span>.</p>
+<div class="example" id="fs-id1163724074775">
+<h3>Example 12.35 · Calculating the Cross Product</h3>
+<p>Use <a href="#fs-id1163724130388">Properties of the Cross Product</a><sup class="fn" data-note="c-magnitude-ref"></sup> to find the <span data-concept="magnitude-of-a-vector">magnitude</span> of the <span data-concept="cross-product">cross product</span> of $\kvecu=\langle 0,4,0\rangle$ and $\kvecv=\langle 0,0,-3\rangle .$</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\begin{array}{rl}\| \kvecu\;\times \;\kvecv\| & =\| \kvecu\| \cdot \| \kvecv\| \cdot \sin \ktheta \\ & =\sqrt{0^{2}+4^{2}+0^{2}}\cdot \sqrt{0^{2}+0^{2}+{(-3)}^{2}}\cdot \sin \frac{\pi}{2} \\ & =4(3)(1)=12.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1163724074775"></div>
+</section>
+
+<section id="determinants">
+<h2>Determinants and the Cross Product</h2>
+<p class="cite-target">Using <a href="#fs-id1163723754200">Equation 12.9</a> to find the <span data-concept="cross-product">cross product</span> of two <span data-concept="vector">vectors</span> is straightforward, and it presents the <span data-concept="cross-product">cross product</span> in the useful component form. The formula, however, is complicated and difficult to remember. Fortunately, we have an alternative. We can calculate the <span data-concept="cross-product">cross product</span> of two <span data-concept="vector">vectors</span> using <strong><span data-concept="determinant">determinant</span></strong> notation.</p>
+<p id="determinant-2">A $2\;\times \;2$ <span data-concept="determinant">determinant</span> is defined by</p>
+$$|\begin{array}{ll}a_{1} & a_{2} \\ b_{1} & b_{2}\end{array}|=a_{1}b_{2}-b_{1}a_{2}.$$
+<p>For example,</p>
+$$|\begin{array}{lr}3 & -2 \\ 5 & 1\end{array}|=3(1)-5(-2)=3+10=13.$$
+<p>A $3\;\times \;3$ <span data-concept="determinant">determinant</span> is defined in terms of $2\;\times \;2$ <span data-concept="determinant">determinants</span> as follows:</p>
+<div class="equation" id="fs-id1163724066100">$$|\begin{array}{lll}a_{1} & a_{2} & a_{3} \\ b_{1} & b_{2} & b_{3} \\ c_{1} & c_{2} & c_{3}\end{array}|=a_{1}|\begin{array}{ll}b_{2} & b_{3} \\ c_{2} & c_{3}\end{array}|-a_{2}|\begin{array}{ll}b_{1} & b_{3} \\ c_{1} & c_{3}\end{array}|+a_{3}|\begin{array}{ll}b_{1} & b_{2} \\ c_{1} & c_{2}\end{array}|.\tag{12.10}$$</div>
+<p><a href="#fs-id1163724066100">Equation 12.10</a> is referred to as the <em>expansion of the <span data-concept="determinant">determinant</span> along the first row</em>. Notice that the multipliers of each of the $2\;\times \;2$ <span data-concept="determinant">determinants</span> on the right side of this expression are the entries in the first row of the $3\;\times \;3$ <span data-concept="determinant">determinant</span>. Furthermore, each of the $2\;\times \;2$ <span data-concept="determinant">determinants</span> contains the entries from the $3\;\times \;3$ <span data-concept="determinant">determinant</span> that would remain if you crossed out the row and column containing the multiplier. Thus, for the first term on the right, $a_{1}$ is the multiplier, and the $2\;\times \;2$ <span data-concept="determinant">determinant</span> contains the entries that remain if you cross out the first row and first column of the $3\;\times \;3$ <span data-concept="determinant">determinant</span>. Similarly, for the second term, the multiplier is $a_{2},$ and the $2\;\times \;2$ <span data-concept="determinant">determinant</span> contains the entries that remain if you cross out the first row and second column of the $3\;\times \;3$ <span data-concept="determinant">determinant</span>. Notice, however, that the coefficient of the second term is negative. The third term can be calculated in similar fashion.</p>
+<figure class="sim" id="sim-minors">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Expansion along the first row of Example 12.36’s <span data-concept="determinant">determinant</span>: choose an entry of the first row, cross out its row and column, and the $2\times 2$ <span data-concept="determinant">determinant</span> left is the one it multiplies, with signs $+,-,+$ across the row. The three terms add up to $-19.$</span></div>
+</figure>
+<div class="example" id="fs-id1163723183796">
+<h3>Example 12.36 · Using Expansion Along the First Row to Compute a $3\;\times \;3$ Determinant</h3>
+<p>Evaluate the <span data-concept="determinant">determinant</span> $|\begin{array}{rrr}2 & 5 & -1 \\ -1 & 1 & 3 \\ -2 & 3 & 4\end{array}|.$</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\begin{array}{rl}|\begin{array}{rrr}2 & 5 & -1 \\ -1 & 1 & 3 \\ -2 & 3 & 4\end{array}| & =2|\begin{array}{ll}1 & 3 \\ 3 & 4\end{array}|-5|\begin{array}{ll}-1 & 3 \\ -2 & 4\end{array}|-1|\begin{array}{ll}-1 & 1 \\ -2 & 3\end{array}| \\ & =2(4-9)-5(-4+6)-1(-3+2) \\ & =2(-5)-5(2)-1(-1)=-10-10+1 \\ & =-19.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1163723183796"></div>
+<p>Technically, <span data-concept="determinant">determinants</span> are defined only in terms of arrays of real numbers. However, the <span data-concept="determinant">determinant</span> notation provides a useful mnemonic device for the <span data-concept="cross-product">cross product</span> formula.</p>
+<div class="note" id="fs-id1163723299001">
+<div class="eyebrow">Rule</div>
+<h3>Cross Product Calculated by a Determinant</h3>
+<p>Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle$ be <span data-concept="vector">vectors</span>. Then the <span data-concept="cross-product">cross product</span> $\kvecu\;\times \;\kvecv $ is given by</p>
+$$\kvecu\;\times \;\kvecv=|\begin{array}{lll}\kveci & \kvecj & \kveck \\ u_{1} & u_{2} & u_{3} \\ v_{1} & v_{2} & v_{3}\end{array}|=|\begin{array}{ll}u_{2} & u_{3} \\ v_{2} & v_{3}\end{array}|\kveci-|\begin{array}{ll}u_{1} & u_{3} \\ v_{1} & v_{3}\end{array}|\kvecj+|\begin{array}{ll}u_{1} & u_{2} \\ v_{1} & v_{2}\end{array}|\kveck.$$
+</div>
+<div class="example" id="fs-id1163724057695">
+<h3>Example 12.37 · Using Determinant Notation to find $\kvecp\;\times \;\kvecq $</h3>
+<p>Let $\kvecp=\langle -1,2,5\rangle$ and $\kvecq=\langle 4,0,-3\rangle .$ Find $\kvecp\;\times \;\kvecq.$</p>
+<h4>Solution</h4>
+<p>We set up our <span data-concept="determinant">determinant</span> by putting the <span data-concept="standard-unit-vectors">standard unit vectors</span> across the first row, the components of $\kvecu $ in the second row, and the components of $\kvecv $ in the third row. Then, we have</p>
+$$\begin{array}{rl}\kvecp\;\times \;\kvecq & =|\begin{array}{rrr}\kveci & \kvecj & \kveck \\ -1 & 2 & 5 \\ 4 & 0 & -3\end{array}|=|\begin{array}{rr}2 & 5 \\ 0 & -3\end{array}|\kveci-|\begin{array}{rr}-1 & 5 \\ 4 & -3\end{array}|\kvecj+|\begin{array}{rr}-1 & 2 \\ 4 & 0\end{array}|\kveck \\ & =(-6-0)\kveci-(3-20)\kvecj+(0-8)\kveck \\ & =-6\kveci+17\kvecj-8\kveck.\end{array}$$
+<p>Notice that this answer confirms the calculation of the <span data-concept="cross-product">cross product</span> in <a href="#fs-id1163723497714">Example 12.31</a>.</p>
+</div>
+<div class="exercises" data-place="fs-id1163724057695"></div>
+</section>
+
+<section id="using">
+<h2>Using the Cross Product</h2>
+<p class="cite-target">The <span data-concept="cross-product">cross product</span> is very useful for several types of calculations, including finding a <span data-concept="vector">vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to two given <span data-concept="vector">vectors</span>, computing areas of triangles and parallelograms, and even determining the volume of the three-dimensional geometric shape made of parallelograms known as a <em><span data-concept="parallelepiped">parallelepiped</span></em>. The following examples illustrate these calculations.</p>
+<div class="example" id="fs-id1163723339486">
+<h3>Example 12.38 · Finding a Unit Vector Orthogonal to Two Given Vectors</h3>
+<p>Let $\kveca=\langle 5,2,-1\rangle$ and $\kvecb=\langle 0,-1,4\rangle .$ Find a <span data-concept="unit-vector">unit vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kveca $ and $\kvecb.$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="cross-product">cross product</span> $\kveca\;\times \;\kvecb $ is <span data-concept="orthogonal-vectors">orthogonal</span> to both <span data-concept="vector">vectors</span> $\kveca $ and $\kvecb.$ We can calculate it with a <span data-concept="determinant">determinant</span>:</p>
+$$\begin{array}{rl}\kveca\;\times \;\kvecb & =|\begin{array}{rrr}\kveci & \kvecj & \kveck \\ 5 & 2 & -1 \\ 0 & -1 & 4\end{array}|=|\begin{array}{rr}2 & -1 \\ -1 & 4\end{array}|\kveci-|\begin{array}{rr}5 & -1 \\ 0 & 4\end{array}|\kvecj+|\begin{array}{rr}5 & 2 \\ 0 & -1\end{array}|\kveck \\ & =(8-1)\kveci-(20-0)\kvecj+(-5-0)\kveck \\ & =7\kveci-20\kvecj-5\kveck.\end{array}$$
+<p>Normalize this <span data-concept="vector">vector</span> to find a <span data-concept="unit-vector">unit vector</span> in the same direction:</p>
+$$\| \kveca\;\times \;\kvecb\| =\sqrt{{(7)}^{2}+{(-20)}^{2}+{(-5)}^{2}}=\sqrt{474}.$$
+<p>Thus, $\langle \frac{7}{\sqrt{474}},\frac{-20}{\sqrt{474}},\frac{-5}{\sqrt{474}}\rangle$ is a <span data-concept="unit-vector">unit vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to $\kveca $ and $\kvecb.$</p>
+</div>
+<div class="exercises" data-place="fs-id1163723339486"></div>
+<p>To use the <span data-concept="cross-product">cross product</span> for calculating areas, we state and prove the following theorem.</p>
+<div class="note" id="fs-id1163723995104">
+<div class="eyebrow">Theorem</div>
+<h3>Area of a Parallelogram</h3>
+<p>If we locate <span data-concept="vector">vectors</span> $\kvecu $ and $\kvecv $ such that they form adjacent sides of a parallelogram, then the area of the parallelogram is given by $\| \kvecu\;\times \;\kvecv\|$ (Figure 12.57).</p>
+</div>
+<figure class="sim" id="sim-parallelogram-area" data-figure="12.57" data-original="/media/ch12/CNX_Calc_Figure_12_04_005.jpg" data-original-caption="The parallelogram with adjacent sides u and v has base ‖ u‖ and height ‖ v‖ sin θ .">
+  <div class="sim-head"><span class="eyebrow">Figure 12.57</span><span>The parallelogram with adjacent sides $\kvecu$ and $\kvecv$ has base $\|\kvecu\|$ and height $\|\kvecv\|\sin\ktheta.$ Slide the angle and the two lengths: the area $\|\kvecu\|\|\kvecv\|\sin\ktheta=\|\kvecu\times\kvecv\|$ is greatest when the sides are orthogonal and shrinks to 0 as they line up.</span></div>
+</figure>
+<h3>Proof</h3>
+<p>We show that the <span data-concept="magnitude-of-a-vector">magnitude</span> of the <span data-concept="cross-product">cross product</span> is equal to the base times height of the parallelogram.</p>
+$$\begin{array}{rl}\text{Area of a parallelogram} & =\text{base}\;\times \;\text{height} \\ & =\| \kvecu\| (\| \kvecv\| \sin \ktheta ) \\ & =\| \kvecu\;\times \;\kvecv\| \end{array}$$
+<p>□</p>
+<div class="example" id="fs-id1163723362004">
+<h3>Example 12.39 · Finding the Area of a Triangle</h3>
+<p>Let $P=(1,0,0),Q=(0,1,0),\;\text{and}\;R=(0,0,1)$ be the vertices of a triangle (Figure 12.58). Find its area.</p>
+<figure class="sim" id="fig-triangle-pqr" data-figure="12.58" data-original="/media/ch12/CNX_Calc_Figure_12_04_014.jpg" data-original-caption="Finding the area of a triangle by using the cross product.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.58</span><span>Finding the area of a triangle by using the <span data-concept="cross-product">cross product</span>.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>We have $\kPQ =\langle 0-1,1-0,0-0\rangle =\langle -1,1,0\rangle$ and $\vec{PR}=\langle 0-1,0-0,1-0\rangle =\langle -1,0,1\rangle .$ The area of the parallelogram with adjacent sides $\kPQ $ and $\vec{PR}$ is given by $\| \kPQ \;\times \;\vec{PR}\| \text{:}$</p>
+$$\begin{array}{rll}\kPQ \;\times \;\vec{PR} & = & |\begin{array}{rrr}\kveci & \kvecj & \kveck \\ -1 & 1 & 0 \\ -1 & 0 & 1\end{array}|=(1-0)\kveci-(-1-0)\kvecj+(0-(-1))\kveck=\kveci+\kvecj+\kveck \\ \| \kPQ \;\times \;\vec{PR}\| & = & \| \langle 1,1,1\rangle \| =\sqrt{1^{2}+1^{2}+1^{2}}=\sqrt{3}.\end{array}$$
+<p>The area of $\Delta PQR$ is half the area of the parallelogram, or $\sqrt{3}/2.$</p>
+</div>
+<div class="exercises" data-place="fs-id1163723362004"></div>
+</section>
+
+<section id="triple">
+<h2>The Triple Scalar Product</h2>
+<p class="cite-target">Because the <span data-concept="cross-product">cross product</span> of two <span data-concept="vector">vectors</span> is a <span data-concept="vector">vector</span>, it is possible to combine the <span data-concept="dot-product">dot product</span> and the <span data-concept="cross-product">cross product</span>. The <span data-concept="dot-product">dot product</span> of a <span data-concept="vector">vector</span> with the <span data-concept="cross-product">cross product</span> of two other <span data-concept="vector">vectors</span> is called the <span data-concept="triple-scalar-product">triple scalar product</span> because the result is a scalar.</p>
+<div class="note" id="fs-id1163723326764">
+<div class="eyebrow">Definition</div>
+<p>The <strong><span data-concept="triple-scalar-product">triple scalar product</span></strong> of <span data-concept="vector">vectors</span> $\kvecu,$ $\kvecv,$ and $\kvecw $ is $\kvecu\cdot (\kvecv\;\times \;\kvecw).$</p>
+</div>
+<div class="note" id="fs-id1163723326854">
+<div class="eyebrow">Theorem</div>
+<h3>Calculating a Triple Scalar Product</h3>
+<p>The <span data-concept="triple-scalar-product">triple scalar product</span> of <span data-concept="vector">vectors</span> $\kvecu=u_{1}\kveci+u_{2}\kvecj+u_{3}\kveck,$ $\kvecv=v_{1}\kveci+v_{2}\kvecj+v_{3}\kveck,$ and $\kvecw=w_{1}\kveci+w_{2}\kvecj+w_{3}\kveck $ is the <span data-concept="determinant">determinant</span> of the $3\;\times \;3$ matrix formed by the components of the <span data-concept="vector">vectors</span>:</p>
+$$\kvecu\cdot (\kvecv\;\times \;\kvecw)=|\begin{array}{lll}u_{1} & u_{2} & u_{3} \\ v_{1} & v_{2} & v_{3} \\ w_{1} & w_{2} & w_{3}\end{array}|.$$
+</div>
+<h3>Proof</h3>
+<p>The calculation is straightforward.</p>
+$$\begin{array}{rl}\kvecu\cdot (\kvecv\;\times \;\kvecw) & =\langle u_{1},u_{2},u_{3}\rangle \cdot \langle v_{2}w_{3}-v_{3}w_{2},-v_{1}w_{3}+v_{3}w_{1},v_{1}w_{2}-v_{2}w_{1}\rangle \\ & =u_{1}(v_{2}w_{3}-v_{3}w_{2})+u_{2}(-v_{1}w_{3}+v_{3}w_{1})+u_{3}(v_{1}w_{2}-v_{2}w_{1}) \\ & =u_{1}(v_{2}w_{3}-v_{3}w_{2})-u_{2}(v_{1}w_{3}-v_{3}w_{1})+u_{3}(v_{1}w_{2}-v_{2}w_{1}) \\ & =|\begin{array}{lll}u_{1} & u_{2} & u_{3} \\ v_{1} & v_{2} & v_{3} \\ w_{1} & w_{2} & w_{3}\end{array}|\end{array}$$
+<p>□</p>
+<div class="example" id="fs-id1163724066224">
+<h3>Example 12.40 · Calculating the Triple Scalar Product</h3>
+<p>Let $\kvecu=\langle 1,3,5\rangle ,\kvecv=\langle 2,-1,0\rangle \;\text{and}\;\kvecw=\langle -3,0,-1\rangle .$ Calculate the <span data-concept="triple-scalar-product">triple scalar product</span> $\kvecu\cdot (\kvecv\;\times \;\kvecw).$</p>
+<h4>Solution</h4>
+<p>Apply <a href="#fs-id1163723326854">Calculating a Triple Scalar Product</a> directly:</p>
+$$\begin{array}{rl}\kvecu\cdot (\kvecv\;\times \;\kvecw) & =|\begin{array}{rrr}1 & 3 & 5 \\ 2 & -1 & 0 \\ -3 & 0 & -1\end{array}| \\ & =1|\begin{array}{rr}-1 & 0 \\ 0 & -1\end{array}|-3|\begin{array}{rr}2 & 0 \\ -3 & -1\end{array}|+5|\begin{array}{rr}2 & -1 \\ -3 & 0\end{array}| \\ & =(1-0)-3(-2-0)+5(0-3) \\ & =1+6-15=-8.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1163724066224"></div>
+<p>When we create a matrix from three <span data-concept="vector">vectors</span>, we must be careful about the order in which we list the <span data-concept="vector">vectors</span>. If we list them in a matrix in one order and then rearrange the rows, the absolute value of the <span data-concept="determinant">determinant</span> remains unchanged. However, each time two rows switch places, the <span data-concept="determinant">determinant</span> changes sign:</p>
+$$|\begin{array}{lll}a_{1} & a_{2} & a_{3} \\ b_{1} & b_{2} & b_{3} \\ c_{1} & c_{2} & c_{3}\end{array}|=d\hspace{2em}|\begin{array}{lll}b_{1} & b_{2} & b_{3} \\ a_{1} & a_{2} & a_{3} \\ c_{1} & c_{2} & c_{3}\end{array}|=-d\hspace{2em}|\begin{array}{lll}b_{1} & b_{2} & b_{3} \\ c_{1} & c_{2} & c_{3} \\ a_{1} & a_{2} & a_{3}\end{array}|=d\hspace{2em}|\begin{array}{lll}c_{1} & c_{2} & c_{3} \\ b_{1} & b_{2} & b_{3} \\ a_{1} & a_{2} & a_{3}\end{array}|=-d.$$
+<p>Verifying this fact is straightforward, but rather messy. Let’s take a look at this with an example:</p>
+$$\begin{array}{rl}|\begin{array}{rlr}1 & 2 & 1 \\ -2 & 0 & 3 \\ 4 & 1 & -1\end{array}| & =|\begin{array}{lr}0 & 3 \\ 1 & -1\end{array}|-2|\begin{array}{rr}-2 & 3 \\ 4 & -1\end{array}|+|\begin{array}{rl}-2 & 0 \\ 4 & 1\end{array}| \\ & =(0-3)-2(2-12)+(-2-0)=-3+20-2=15.\end{array}$$
+<p>Switching the top two rows we have</p>
+$$|\begin{array}{rlr}-2 & 0 & 3 \\ 1 & 2 & 1 \\ 4 & 1 & -1\end{array}|=-2|\begin{array}{lr}2 & 1 \\ 1 & -1\end{array}|+3|\begin{array}{ll}1 & 2 \\ 4 & 1\end{array}|=-2(-2-1)+3(1-8)=6-21=-15.$$
+<p>Rearranging <span data-concept="vector">vectors</span> in the triple products is equivalent to reordering the rows in the matrix of the <span data-concept="determinant">determinant</span>. Let $\kvecu=u_{1}\kveci+u_{2}\kvecj+u_{3}\kveck,$ $\kvecv=v_{1}\kveci+v_{2}\kvecj+v_{3}\kveck,$ and $\kvecw=w_{1}\kveci+w_{2}\kvecj+w_{3}\kveck.$ Applying <a href="#fs-id1163723326854">Calculating a Triple Scalar Product</a>, we have</p>
+$$\kvecu\cdot (\kvecv\;\times \;\kvecw)=|\begin{array}{lll}u_{1} & u_{2} & u_{3} \\ v_{1} & v_{2} & v_{3} \\ w_{1} & w_{2} & w_{3}\end{array}|\;\text{and}\;\kvecu\cdot (\kvecw\;\times \;\kvecv)=|\begin{array}{lll}u_{1} & u_{2} & u_{3} \\ w_{1} & w_{2} & w_{3} \\ v_{1} & v_{2} & v_{3}\end{array}|.$$
+<p>We can obtain the <span data-concept="determinant">determinant</span> for calculating $\kvecu\cdot (\kvecw\;\times \;\kvecv)$ by switching the bottom two rows of $\kvecu\cdot (\kvecv\;\times \;\kvecw).$ Therefore, $\kvecu\cdot (\kvecv\;\times \;\kvecw)=-\kvecu\cdot (\kvecw\;\times \;\kvecv).$</p>
+<p>Following this reasoning and exploring the different ways we can interchange variables in the <span data-concept="triple-scalar-product">triple scalar product</span> lead to the following identities:</p>
+$$\begin{array}{rll}\kvecu\cdot (\kvecv\;\times \;\kvecw) & = & -\kvecu\cdot (\kvecw\;\times \;\kvecv) \\ \kvecu\cdot (\kvecv\;\times \;\kvecw) & = & \kvecv\cdot (\kvecw\;\times \;\kvecu)=\kvecw\cdot (\kvecu\;\times \;\kvecv).\end{array}$$
+<p id="parallelepiped-term">Let $\kvecu $ and $\kvecv $ be two <span data-concept="vector">vectors</span> in standard position. If $\kvecu $ and $\kvecv $ are not scalar multiples of each other, then these <span data-concept="vector">vectors</span> form adjacent sides of a parallelogram. We saw in <a href="#fs-id1163723995104">Area of a Parallelogram</a> that the area of this parallelogram is $\| \kvecu\;\times \;\kvecv\| .$ Now suppose we add a third <span data-concept="vector">vector</span> $\kvecw $ that does not lie in the same plane as $\kvecu $ and $\kvecv $ but still shares the same initial point. Then these <span data-concept="vector">vectors</span> form three edges of a <strong><span data-concept="parallelepiped">parallelepiped</span></strong>, a three-dimensional prism with six faces that are each parallelograms, as shown in Figure 12.59. The volume of this prism is the product of the figure’s height and the area of its base. The <span data-concept="triple-scalar-product">triple scalar product</span> of $\kvecu,\kvecv,$ and $\kvecw $ provides a simple method for calculating the volume of the <span data-concept="parallelepiped">parallelepiped</span> defined by these <span data-concept="vector">vectors</span>.</p>
+<div class="note" id="fs-id1163724035005">
+<div class="eyebrow">Theorem</div>
+<h3>Volume of a Parallelepiped</h3>
+<p>The volume of a <span data-concept="parallelepiped">parallelepiped</span> with adjacent edges given by the <span data-concept="vector">vectors</span> $\kvecu,\kvecv,\;\text{and}\;\kvecw $ is the absolute value of the <span data-concept="triple-scalar-product">triple scalar product</span>:</p>
+$$V=|\kvecu\cdot (\kvecv\;\times \;\kvecw)|.$$
+<p>See Figure 12.59.</p>
+</div>
+<p>Note that, as the name indicates, the <span data-concept="triple-scalar-product">triple scalar product</span> produces a scalar. The volume formula just presented uses the absolute value of a scalar quantity.</p>
+<figure class="sim" id="sim-parallelepiped" data-figure="12.59 + 12.60" data-original="/media/ch12/CNX_Calc_Figure_12_04_008.jpg,/media/ch12/CNX_Calc_Figure_12_04_015.jpg" data-original-caption="(Figure 12.59) The height of the parallelepiped is given by ‖ proj_v×wu‖ . (Figure 12.60) ">
+  <div class="sim-head"><span class="eyebrow">Figure 12.59 + 12.60</span><span>The height of the <span data-concept="parallelepiped">parallelepiped</span> is given by $\|\text{proj}_{\kvecv\times\kvecw}\kvecu\|,$ and its base has area $\|\kvecv\times\kvecw\|,$ so its volume is $|\kvecu\cdot(\kvecv\times\kvecw)|.$ Example 12.41’s edges give 40 cubic units; choose Example 12.42’s and the solid flattens into one plane, its volume 0.</span></div>
+</figure>
+<h3>Proof</h3>
+<p>The area of the base of the <span data-concept="parallelepiped">parallelepiped</span> is given by $\| \kvecv\;\times \;\kvecw\| .$ The height of the figure is given by $\| {\text{proj}}_{\text{v×w}}\kvecu\| .$ The volume of the <span data-concept="parallelepiped">parallelepiped</span> is the product of the height and the area of the base, so we have</p>
+$$\begin{array}{rl}V & =\| {\text{proj}}_{\kvecv\;\times \;\kvecw}\kvecu\| \| \kvecv\;\times \;\kvecw\| \\ & =|\frac{\kvecu\cdot (\kvecv\;\times \;\kvecw)}{\| \kvecv\;\times \;\kvecw\|}|\| \kvecv\;\times \;\kvecw\| \\ & =|\kvecu\cdot (\kvecv\;\times \;\kvecw)|.\end{array}$$
+<p>□</p>
+<div class="example" id="fs-id1163724066558">
+<h3>Example 12.41 · Calculating the Volume of a Parallelepiped</h3>
+<p>Let $\kvecu=\langle -1,-2,1\rangle ,\kvecv=\langle 4,3,2\rangle ,\;\text{and}\;\kvecw=\langle 0,-5,-2\rangle .$ Find the volume of the <span data-concept="parallelepiped">parallelepiped</span> with adjacent edges $\kvecu,\kvecv,\;\text{and}\;\kvecw $ (Figure 12.60).</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\begin{array}{rl}\kvecu\cdot (\kvecv\;\times \;\kvecw) & =|\begin{array}{rrr}-1 & -2 & 1 \\ 4 & 3 & 2 \\ 0 & -5 & -2\end{array}|=(-1)|\begin{array}{rr}3 & 2 \\ -5 & -2\end{array}|+2|\begin{array}{rr}4 & 2 \\ 0 & -2\end{array}|+|\begin{array}{rr}4 & 3 \\ 0 & -5\end{array}| \\ & =(-1)(-6+10)+2(-8-0)+(-20-0) \\ & =-4-16-20 \\ & =-40.\end{array}$$
+<p>Thus, the volume of the <span data-concept="parallelepiped">parallelepiped</span> is $|-40|=40$ units<sup>3</sup>.</p>
+</div>
+<div class="exercises" data-place="fs-id1163724066558"></div>
+</section>
+
+<section id="applications">
+<h2>Applications of the Cross Product</h2>
+<p class="cite-target">The <span data-concept="cross-product">cross product</span> appears in many practical applications in mathematics, physics, and engineering. Let’s examine some of these applications here, including the idea of <span data-concept="torque">torque</span>, with which we began this section. Other applications show up in later chapters, particularly in our study of <span data-concept="vector">vector</span> fields such as gravitational and electromagnetic fields (<a href="/calculus/ch16/intro/">Introduction to Vector Calculus</a>).</p>
+<div class="example" id="fs-id1163724163707">
+<h3>Example 12.42 · Using the Triple Scalar Product</h3>
+<p>Use the <span data-concept="triple-scalar-product">triple scalar product</span> to show that <span data-concept="vector">vectors</span> $\kvecu=\langle 2,0,5\rangle ,\kvecv=\langle 2,2,4\rangle ,\;\text{and}\;\kvecw=\langle 1,-1,3\rangle$ are <span data-concept="volume-of-a-parallelepiped">coplanar</span>—that is, show that these <span data-concept="vector">vectors</span> lie in the same plane.</p>
+<h4>Solution</h4>
+<p>Start by calculating the <span data-concept="triple-scalar-product">triple scalar product</span> to find the volume of the <span data-concept="parallelepiped">parallelepiped</span> defined by $\kvecu,\kvecv,\;\text{and}\;\kvecw\text{:}$</p>
+$$\begin{array}{rl}\kvecu\cdot (\kvecv\;\times \;\kvecw) & =|\begin{array}{rrr}2 & 0 & 5 \\ 2 & 2 & 4 \\ 1 & -1 & 3\end{array}| \\ & =[2(2)(3)+(0)(4)(1)+5(2)(-1)]-[5(2)(1)+(2)(4)(-1)+(0)(2)(3)] \\ & =2-2 \\ & =0.\end{array}$$
+<p>The volume of the <span data-concept="parallelepiped">parallelepiped</span> is $0$ units<sup>3</sup>, so one of the dimensions must be zero. Therefore, the three <span data-concept="vector">vectors</span> all lie in the same plane.</p>
+</div>
+<div class="exercises" data-place="fs-id1163724163707"></div>
+<div class="example" id="fs-id1163723475127">
+<h3>Example 12.43 · Finding an Orthogonal Vector</h3>
+<p>Only a single plane can pass through any set of three noncolinear points. Find a <span data-concept="vector">vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to the plane containing points $P=(9,-3,-2),Q=(1,3,0),$ and $R=(-2,5,0).$</p>
+<h4>Solution</h4>
+<p>The plane must contain <span data-concept="vector">vectors</span> $\kPQ $ and $\vec{QR}\text{:}$</p>
+$$\begin{array}{l}\kPQ =\langle 1-9,3-(-3),0-(-2)\rangle =\langle -8,6,2\rangle \\ \vec{QR}=\langle -2-1,5-3,0-0\rangle =\langle -3,2,0\rangle .\end{array}$$
+<p>The <span data-concept="cross-product">cross product</span> $\kPQ \;\times \;\vec{QR}$ produces a <span data-concept="vector">vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kPQ $ and $\vec{QR}.$ Therefore, the <span data-concept="cross-product">cross product</span> is <span data-concept="orthogonal-vectors">orthogonal</span> to the plane that contains these two <span data-concept="vector">vectors</span>:</p>
+$$\begin{array}{rl}\kPQ \;\times \;\vec{QR} & =|\begin{array}{rrr}\kveci & \kvecj & \kveck \\ -8 & 6 & 2 \\ -3 & 2 & 0\end{array}| \\ & =0\kveci-6\kvecj-16\kveck-(-18\kveck+4\kveci+0\kvecj) \\ & =-4\kveci-6\kvecj+2\kveck.\end{array}$$
+</div>
+<p>We have seen how to use the <span data-concept="triple-scalar-product">triple scalar product</span> and how to find a <span data-concept="vector">vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to a plane. Now we apply the <span data-concept="cross-product">cross product</span> to real-world situations.</p>
+<p>Sometimes a force causes an object to rotate. For example, turning a screwdriver or a wrench creates this kind of rotational effect, called <span data-concept="torque">torque</span>.</p>
+<div class="note" id="fs-id1163723336026">
+<div class="eyebrow">Definition</div>
+<p><strong><span data-concept="torque">Torque</span></strong>, $\ktau$ (the Greek letter <em>tau</em>), measures the tendency of a force to produce rotation about an axis of rotation. Let $\kvecr $ be a <span data-concept="vector">vector</span> with an initial point located on the axis of rotation and with a terminal point located at the point where the force is applied, and let <span data-concept="vector">vector</span> $\kvecF $ represent the force. Then <span data-concept="torque">torque</span> is equal to the <span data-concept="cross-product">cross product</span> of $\kvecr $ and $\kvecF\text{:}$</p>
+$$\ktau=\kvecr\;\times \;\kvecF.$$
+<p>See Figure 12.61.</p>
+</div>
+<figure class="sim" id="sim-torque" data-figure="12.61 + 12.62" data-original="/media/ch12/CNX_Calc_Figure_12_04_009.jpg,/media/ch12/CNX_Calc_Figure_12_04_010.jpg" data-original-caption="(Figure 12.61) Torque measures how a force causes an object to rotate. (Figure 12.62) Torque describes the twisting action of the wrench.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.61 + 12.62</span><span><span data-concept="torque">Torque</span> measures how a force causes an object to rotate: $\ktau=\kvecr\times\kvecF$ points along the axis of rotation, orthogonal to the wrench and the force. Slide the force, its angle with the wrench and the wrench’s length; Example 12.44’s 6 N at $40^{\circ}$ on a 0.15-m wrench gives about 0.58 N·m, and the <span data-concept="torque">torque</span> is greatest when the force is square to the wrench.</span></div>
+</figure>
+<p>Think about using a wrench to tighten a bolt. The <span data-concept="torque">torque</span> $\ktau$ applied to the bolt depends on how hard we push the wrench (force) and how far up the handle we apply the force (distance). The <span data-concept="torque">torque</span> increases with a greater force on the wrench at a greater distance from the bolt. Common units of <span data-concept="torque">torque</span> are the newton-meter or foot-pound. Although <span data-concept="torque">torque</span> is dimensionally equivalent to work (it has the same units), the two concepts are distinct. <span data-concept="torque">Torque</span> is used specifically in the context of rotation, whereas work typically involves motion along a line.</p>
+<div class="example" id="fs-id1163723149246">
+<h3>Example 12.44 · Evaluating Torque</h3>
+<p>A bolt is tightened by applying a force of $6$ N to a 0.15-m wrench (Figure 12.62). The angle between the wrench and the force <span data-concept="vector">vector</span> is $40^{\circ}.$ Find the <span data-concept="magnitude-of-a-vector">magnitude</span> of the <span data-concept="torque">torque</span> about the center of the bolt. Round the answer to two decimal places.</p>
+<h4>Solution</h4>
+<p>Substitute the given information into the equation defining <span data-concept="torque">torque</span>:</p>
+$$\| \ktau\| =\| \kvecr\;\times \;\kvecF\| =\| \kvecr\| \| \kvecF\| \sin \ktheta =(0.15\;\text{m})(6\;\text{N})\sin 40^{\circ}\approx 0.58\;\text{N}\cdot \text{m}.$$
+</div>
+<div class="exercises" data-place="fs-id1163723149246"></div>
+</section>

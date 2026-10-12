@@ -1,0 +1,1221 @@
+{
+ "id": "12.6",
+ "module": "m53874",
+ "chapter": "12",
+ "title": "Quadric Surfaces",
+ "short": "Quadric Surfaces",
+ "lead": "Beyond planes and <span data-concept=\"sphere\">spheres</span>, space holds <span data-concept=\"cylindrical-surface\">cylinders</span>, built from lines through a curve, and the <span data-concept=\"quadric-surface\">quadric surfaces</span> of second-degree equations. This section reads each surface from its <span data-concept=\"trace\">traces</span>, its slices by planes parallel to the coordinate planes, and names the six common quadric surfaces.",
+ "objectives": [
+  "Identify a cylinder as a type of three-dimensional surface.",
+  "Recognize the main features of ellipsoids, paraboloids, and hyperboloids.",
+  "Use traces to draw the intersections of quadric surfaces with the coordinate planes."
+ ],
+ "summary_html": "<ul><li>A set of lines parallel to a given line passing through a given curve is called a <em><span data-concept=\"cylindrical-surface\">cylinder</span></em>, or a <em><span data-concept=\"cylindrical-surface\">cylindrical surface</span></em>. The parallel lines are called <em><span data-concept=\"rulings\">rulings</span></em>.</li><li>The intersection of a three-dimensional surface and a plane is called a <em><span data-concept=\"trace\">trace</span></em>. To find the <span data-concept=\"trace\">trace</span> in the <em>xy</em>-, <em>yz</em>-, or <em>xz</em>-planes, set $z=0,x=0,\\;\\text{or}\\;y=0,$ respectively.</li><li><span data-concept=\"quadric-surface\">Quadric surfaces</span> are three-dimensional <span data-concept=\"surface\">surfaces</span> with <span data-concept=\"trace\">traces</span> composed of <span data-concept=\"conic-section\">conic sections</span>. Every <span data-concept=\"quadric-surface\">quadric surface</span> can be expressed with an equation of the form $Ax^{2}+By^{2}+Cz^{2}+Dxy+Exz+Fyz+Gx+Hy+Jz+K=0.$</li><li>To sketch the graph of a <span data-concept=\"quadric-surface\">quadric surface</span>, start by sketching the <span data-concept=\"trace\">traces</span> to understand the framework of the surface.</li><li>Important <span data-concept=\"quadric-surface\">quadric surfaces</span> are summarized in Figure 12.87 and Figure 12.88.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the solutions marked as suggestions. The 30 even-numbered section exercises have no answer in the book’s key. Exercise 354 (show a surface is two parallel planes) is kept with an AI-written solution; the other 29 are computational and are left out: 304–308 even (cylinders), 310 and 312 (naming surfaces from graphs), 314–318 even (matching), 320–330 even (standard forms), 332–336 even (traces), 338 (a surface from its graph), 340–344 even (completing the square), 346–352 even (ellipsoids, intersections, reflectors) and 356–362 even (technology). Exercise 353 (odd, unkeyed) is kept with an AI-written solution. Review exercise 439 from the end of the chapter is held here.",
+ "figures": [
+  {
+   "id": "sim-cylinder",
+   "kind": "sim",
+   "number": "12.75",
+   "folds": [
+    "12.76"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_06_001.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_06_002.jpg"
+   ],
+   "original_caption": "(Figure 12.75) In three-dimensional space, the graph of equation x²+y²=9 is a cylinder with radius 3 centered on the z-axis. It continues indefinitely in the positive and negative directions. (Figure 12.76) In three-dimensional space, the graph of equation z=x³ is a cylinder, or a cylindrical surface with rulings parallel to the y-axis.",
+   "draws": [
+    "surface",
+    "curve",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cylinder-xz",
+   "kind": "figure",
+   "number": "12.77",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_06_003.jpg"
+   ],
+   "original_caption": "The graph of equation x²+z²=25 is a cylinder with radius 5 centered on the y-axis.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-surface-2x2-y",
+   "kind": "figure",
+   "number": "12.78",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_06_006.jpg"
+   ],
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sine-cylinder",
+   "kind": "figure",
+   "number": "12.79",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_06_005.jpg"
+   ],
+   "original_caption": "The graph of equation y=sin x is formed by a set of lines parallel to the z-axis passing through curve y=sin x in the xy-plane.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-trace-sine",
+   "kind": "sim",
+   "number": "12.80",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_06_007.jpg"
+   ],
+   "original_caption": "(a) This is one view of the graph of equation z=sin x. (b) To find the trace of the graph in the xz-plane, set y=0. The trace is simply a two-dimensional sine wave.",
+   "draws": [
+    "surface",
+    "plane",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-ellipsoid-traces",
+   "kind": "sim",
+   "number": "12.81",
+   "folds": [
+    "12.82"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_06_008.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_06_009.jpg"
+   ],
+   "original_caption": "(Figure 12.81) (a) This graph represents the trace of equation fracx²2²+fracy²3²+fracz²5²=1 in the xy-plane, when we set z=0. (b) When we set y=0, we get the trace of the ellipsoid in the xz-plane, which is an ellipse. (c) When we set x=0, we get the trace of the ellipsoid in the yz-plane, which is also an ellipse. (Figure 12.82) (a) The traces provide a framework for the surface. (b) The center of this ellipsoid is the origin.",
+   "draws": [
+    "surface",
+    "plane",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-paraboloid-traces",
+   "kind": "sim",
+   "number": "12.83",
+   "folds": [
+    "12.84"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_06_010.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_06_011.jpg"
+   ],
+   "original_caption": "(Figure 12.83) This quadric surface is called an elliptic paraboloid. (Figure 12.84) (a) The paraboloid x²+fracy²2²=z/5. (b) The trace in plane z=5. (c) The trace in the xz-plane. (d) The trace in the yz-plane.",
+   "draws": [
+    "surface",
+    "plane",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-hyperboloid-photos",
+   "kind": "photo",
+   "number": "12.85",
+   "draws": []
+  },
+  {
+   "id": "fig-reflector-photo",
+   "kind": "photo",
+   "number": "12.86",
+   "draws": []
+  },
+  {
+   "id": "sim-quadrics",
+   "kind": "sim",
+   "number": "12.87",
+   "folds": [
+    "12.88"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_06_022.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_06_023.jpg"
+   ],
+   "original_caption": "(Figure 12.87) Characteristics of Common Quadratic Surfaces: Ellipsoid, Hyperboloid of One Sheet, Hyperboloid of Two Sheets. (Figure 12.88) Characteristics of Common Quadratic Surfaces: Elliptic Cone, Elliptic Paraboloid, Hyperbolic Paraboloid.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-reflector",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "surfaces-intro",
+   "concept": "surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "surfaces-intro",
+   "concept": "sphere",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724018283",
+   "concept": "cylindrical-surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724018283",
+   "concept": "rulings",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723172006",
+   "concept": "cylindrical-surface",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723674486",
+   "concept": "trace",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723281295",
+   "concept": "quadric-surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723281295",
+   "concept": "conic-section",
+   "verb": "uses"
+  },
+  {
+   "span": "ellipsoid-term",
+   "concept": "ellipsoid",
+   "verb": "introduces"
+  },
+  {
+   "span": "ellipsoid-term",
+   "concept": "ellipse",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723094633",
+   "concept": "sketching-a-surface-from-its-traces",
+   "verb": "introduces"
+  },
+  {
+   "span": "paraboloid-term",
+   "concept": "elliptic-paraboloid",
+   "verb": "introduces"
+  },
+  {
+   "span": "paraboloid-term",
+   "concept": "parabola",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724066636",
+   "concept": "trace",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ruled-hyperboloid",
+   "concept": "hyperboloid-of-one-sheet",
+   "verb": "introduces"
+  },
+  {
+   "span": "ruled-hyperboloid",
+   "concept": "hyperbola",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723955608",
+   "concept": "elliptic-paraboloid",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723955608",
+   "concept": "focus",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723955608",
+   "concept": "standard-form-of-a-parabola",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-reflector",
+   "concept": "reflective-properties-of-conics",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-quadrics",
+   "concept": "hyperboloid-of-two-sheets",
+   "verb": "introduces"
+  },
+  {
+   "span": "sim-quadrics",
+   "concept": "elliptic-cone",
+   "verb": "introduces"
+  },
+  {
+   "span": "sim-quadrics",
+   "concept": "hyperbolic-paraboloid",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724069408",
+   "concept": "identifying-quadric-surfaces",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724069408",
+   "concept": "converting-a-conic-to-standard-form",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1163723686564",
+   "source_number": "Checkpoint 12.52",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723172006"
+   },
+   "cite": "fs-id1163724018283",
+   "prompt": "Sketch or use a graphing tool to view the graph of the cylindrical surface defined by equation $z=y^{2}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch12/CNX_Calc_Figure_12_06_004.jpg\" alt=\"This figure is a surface above the x y plane. A cross section of this surface parallel to the y z plane would be a parabola. The surface sits on top of the x y plane.\">",
+    "hint": "The variable $x$ can take on any value without limit."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1163724017684",
+   "source_number": "Checkpoint 12.53",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724066636"
+   },
+   "cite": "ruled-hyperboloid",
+   "prompt": "A hyperboloid of one sheet is any surface that can be described with an equation of the form $\\frac{x^{2}}{a^{2}}+\\frac{y^{2}}{b^{2}}-\\frac{z^{2}}{c^{2}}=1.$ Describe the traces of the hyperboloid of one sheet given by equation $\\frac{x^{2}}{3^{2}}+\\frac{y^{2}}{2^{2}}-\\frac{z^{2}}{5^{2}}=1.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The traces parallel to the <em>xy</em>-plane are ellipses and the traces parallel to the <em>xz</em>- and <em>yz</em>-planes are hyperbolas. Specifically, the trace in the <em>xy</em>-plane is ellipse $\\frac{x^{2}}{3^{2}}+\\frac{y^{2}}{2^{2}}=1,$ the trace in the <em>xz</em>-plane is hyperbola $\\frac{x^{2}}{3^{2}}-\\frac{z^{2}}{5^{2}}=1,$ and the trace in the <em>yz</em>-plane is hyperbola $\\frac{y^{2}}{2^{2}}-\\frac{z^{2}}{5^{2}}=1$ (see the following figure).</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_012.jpg\" alt=\"This figure has four images. The first image is an ellipse centered at the origin of a rectangular coordinate system. It intersects the x axis at -3 and 3. It intersects the y axis at -2 and 2. The second image is the graph of a hyperbola. It is two curves one opening in the negative x direction and a symmetric one in the positive x direction. The third image is the graph of a hyperbola in the y z plane. It is opening in the negative y direction and a symmetric curve opening in the positive y direction. The fourth image is a 3-dimensional surface. It top and bottom cross sections would be circular. A vertical intersection would be a hyperbola.\">",
+    "hint": "To find the traces in the coordinate planes, set each variable to zero individually."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1163723712166",
+   "source_number": "Checkpoint 12.54",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724069408"
+   },
+   "cite": "seventeen",
+   "prompt": "Identify the surface represented by equation $9x^{2}+y^{2}-z^{2}+2z-10=0.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Hyperboloid of one sheet, centered at $(0,0,1)$",
+    "hint": "Look at the signs and powers of the $x,y,\\;\\text{and}\\;z$ terms."
+   }
+  },
+  {
+   "id": "e303",
+   "source_id": "fs-id1163723474587",
+   "source_number": "303",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724018283",
+   "prompt": "<p>For the following exercises, sketch and describe the cylindrical surface of the given equation.</p><p><strong>[T]</strong> $x^{2}+z^{2}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The surface is a cylinder with the rulings parallel to the <em>y</em>-axis.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_219.jpg\" alt=\"This figure is a circular cylinder inside of a box. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\">"
+   }
+  },
+  {
+   "id": "e305",
+   "source_id": "fs-id1163724059935",
+   "source_number": "305",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724018283",
+   "prompt": "<p>For the following exercises, sketch and describe the cylindrical surface of the given equation.</p><p><strong>[T]</strong> $z=\\cos (\\frac{\\pi}{2}+x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The surface is a cylinder with rulings parallel to the <em>y</em>-axis.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_202.jpg\" alt=\"This figure is a surface inside of a box. Its cross section parallel to the x z plane would be a cosine curve. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\">"
+   }
+  },
+  {
+   "id": "e307",
+   "source_id": "fs-id1163723168688",
+   "source_number": "307",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724018283",
+   "prompt": "<p>For the following exercises, sketch and describe the cylindrical surface of the given equation.</p><p><strong>[T]</strong> $z=9-y^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The surface is a cylinder with rulings parallel to the <em>x</em>-axis.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_207.jpg\" alt=\"This figure is a surface inside of a box. Its cross section parallel to the y z plane would be an upside down parabola. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\">"
+   }
+  },
+  {
+   "id": "e309",
+   "source_id": "fs-id1163723216727",
+   "source_number": "309",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p>For the following exercises, the graph of a quadric surface is given.</p><p>a. Specify the name of the quadric surface.</p><p>b. Determine the axis of the quadric surface.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_06_215.jpg\" alt=\"This figure is a surface inside of a box. Its cross section parallel to the y z plane would be an upside down parabola. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. Cylinder; b. The <em>x</em>-axis"
+   }
+  },
+  {
+   "id": "e311",
+   "source_id": "fs-id1163724069517",
+   "source_number": "311",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p>For the following exercises, the graph of a quadric surface is given.</p><p>a. Specify the name of the quadric surface.</p><p>b. Determine the axis of the quadric surface.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_06_221.jpg\" alt=\"This figure is a surface in the 3-dimensional coordinate system. There are two conical shapes facing away from each other. They have the x axis through the center.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. Hyperboloid of two sheets; b. The <em>x</em>-axis"
+   }
+  },
+  {
+   "id": "e313",
+   "source_id": "fs-id1163723752009",
+   "source_number": "313",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p>For the following exercises, match the given quadric surface with its corresponding equation in standard form.</p><p>a. $\\frac{x^{2}}{4}+\\frac{y^{2}}{9}-\\frac{z^{2}}{12}=1$</p><p>b. $\\frac{x^{2}}{4}-\\frac{y^{2}}{9}-\\frac{z^{2}}{12}=1$</p><p>c. $\\frac{x^{2}}{4}+\\frac{y^{2}}{9}+\\frac{z^{2}}{12}=1$</p><p>d. $z=4x^{2}+3y^{2}$</p><p>e. $z=4x^{2}-y^{2}$</p><p>f. $4x^{2}+y^{2}-z^{2}=0$</p><p>Hyperboloid of two sheets</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "b."
+   }
+  },
+  {
+   "id": "e315",
+   "source_id": "fs-id1163724047772",
+   "source_number": "315",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p>For the following exercises, match the given quadric surface with its corresponding equation in standard form.</p><p>a. $\\frac{x^{2}}{4}+\\frac{y^{2}}{9}-\\frac{z^{2}}{12}=1$</p><p>b. $\\frac{x^{2}}{4}-\\frac{y^{2}}{9}-\\frac{z^{2}}{12}=1$</p><p>c. $\\frac{x^{2}}{4}+\\frac{y^{2}}{9}+\\frac{z^{2}}{12}=1$</p><p>d. $z=4x^{2}+3y^{2}$</p><p>e. $z=4x^{2}-y^{2}$</p><p>f. $4x^{2}+y^{2}-z^{2}=0$</p><p>Elliptic paraboloid</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "d."
+   }
+  },
+  {
+   "id": "e317",
+   "source_id": "fs-id1163723474947",
+   "source_number": "317",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p>For the following exercises, match the given quadric surface with its corresponding equation in standard form.</p><p>a. $\\frac{x^{2}}{4}+\\frac{y^{2}}{9}-\\frac{z^{2}}{12}=1$</p><p>b. $\\frac{x^{2}}{4}-\\frac{y^{2}}{9}-\\frac{z^{2}}{12}=1$</p><p>c. $\\frac{x^{2}}{4}+\\frac{y^{2}}{9}+\\frac{z^{2}}{12}=1$</p><p>d. $z=4x^{2}+3y^{2}$</p><p>e. $z=4x^{2}-y^{2}$</p><p>f. $4x^{2}+y^{2}-z^{2}=0$</p><p>Hyperboloid of one sheet</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a."
+   }
+  },
+  {
+   "id": "e319",
+   "source_id": "fs-id1163724130325",
+   "source_number": "319",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seventeen",
+   "prompt": "<p>For the following exercises, rewrite the given equation of the quadric surface in standard form. Identify the surface.</p><p>$-x^{2}+36y^{2}+36z^{2}=9$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{x^{2}}{9}+\\frac{y^{2}}{\\frac{1}{4}}+\\frac{z^{2}}{\\frac{1}{4}}=1,$ hyperboloid of one sheet with the <em>x</em>-axis as its axis of symmetry"
+   }
+  },
+  {
+   "id": "e321",
+   "source_id": "fs-id1163724130345",
+   "source_number": "321",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seventeen",
+   "prompt": "<p>For the following exercises, rewrite the given equation of the quadric surface in standard form. Identify the surface.</p><p>$-3x^{2}+5y^{2}-z^{2}=10$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{x^{2}}{\\frac{10}{3}}+\\frac{y^{2}}{2}-\\frac{z^{2}}{10}=1,$ hyperboloid of two sheets with the <em>y</em>-axis as its axis of symmetry"
+   }
+  },
+  {
+   "id": "e323",
+   "source_id": "fs-id1163723140518",
+   "source_number": "323",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seventeen",
+   "prompt": "<p>For the following exercises, rewrite the given equation of the quadric surface in standard form. Identify the surface.</p><p>$5y=x^{2}-z^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=-\\frac{z^{2}}{5}+\\frac{x^{2}}{5},$ hyperbolic paraboloid with the <em>y</em>-axis as its axis of symmetry"
+   }
+  },
+  {
+   "id": "e325",
+   "source_id": "fs-id1163723959366",
+   "source_number": "325",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seventeen",
+   "prompt": "<p>For the following exercises, rewrite the given equation of the quadric surface in standard form. Identify the surface.</p><p>$x^{2}+5y^{2}+3z^{2}-15=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x^{2}}{15}+\\frac{y^{2}}{3}+\\frac{z^{2}}{5}=1,$ ellipsoid"
+   }
+  },
+  {
+   "id": "e327",
+   "source_id": "fs-id1163723268256",
+   "source_number": "327",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seventeen",
+   "prompt": "<p>For the following exercises, rewrite the given equation of the quadric surface in standard form. Identify the surface.</p><p>$x^{2}+5y^{2}-8z^{2}=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x^{2}}{40}+\\frac{y^{2}}{8}-\\frac{z^{2}}{5}=0,$ elliptic cone with the <em>z</em>-axis as its axis of symmetry"
+   }
+  },
+  {
+   "id": "e329",
+   "source_id": "fs-id1163723094496",
+   "source_number": "329",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "seventeen",
+   "prompt": "<p>For the following exercises, rewrite the given equation of the quadric surface in standard form. Identify the surface.</p><p>$6x=3y^{2}+2z^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=\\frac{y^{2}}{2}+\\frac{z^{2}}{3},$ elliptic paraboloid with the <em>x</em>-axis as its axis of symmetry"
+   }
+  },
+  {
+   "id": "e331",
+   "source_id": "fs-id1163723200811",
+   "source_number": "331",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723674486",
+   "prompt": "<p>For the following exercises, find the trace of the given quadric surface in the specified plane of coordinates and sketch it.</p><p><strong>[T]</strong> $x^{2}+z^{2}+4y=0,z=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Parabola $y=-\\frac{x^{2}}{4},$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_223.jpg\" alt=\"This figure is the graph of an upside down parabola with its highest point at the origin of a rectangular coordinate system.\">"
+   }
+  },
+  {
+   "id": "e333",
+   "source_id": "fs-id1163723334535",
+   "source_number": "333",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723674486",
+   "prompt": "<p>For the following exercises, find the trace of the given quadric surface in the specified plane of coordinates and sketch it.</p><p><strong>[T]</strong> $-4x^{2}+25y^{2}+z^{2}=100,x=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Ellipse $\\frac{y^{2}}{4}+\\frac{z^{2}}{100}=1,$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_206.jpg\" alt=\"This figure is the graph of an ellipse centered at the origin of a rectangular coordinate system.\">"
+   }
+  },
+  {
+   "id": "e335",
+   "source_id": "fs-id1163724069302",
+   "source_number": "335",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723674486",
+   "prompt": "<p>For the following exercises, find the trace of the given quadric surface in the specified plane of coordinates and sketch it.</p><p><strong>[T]</strong> $x^{2}+\\frac{y^{2}}{4}+\\frac{z^{2}}{100}=1,x=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Ellipse $\\frac{y^{2}}{4}+\\frac{z^{2}}{100}=1,$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_209.jpg\" alt=\"This figure is the graph of an ellipse centered at the origin of a rectangular coordinate system.\">"
+   }
+  },
+  {
+   "id": "e337",
+   "source_id": "fs-id1163724147260",
+   "source_number": "337",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p>Use the graph of the given quadric surface to answer the questions.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_06_226.jpg\" alt=\"This figure is a surface inside of a box. It is an oval solid on its side. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\"><p>a. Specify the name of the quadric surface.</p><p>b. Which of the equations—$16x^{2}+9y^{2}+36z^{2}=3600,9x^{2}+36y^{2}+16z^{2}=3600,$ or $36x^{2}+9y^{2}+16z^{2}=3600$—corresponds to the graph?</p><p>c. Use b. to write the equation of the quadric surface in standard form.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. Ellipsoid; b. The third equation; c. $\\frac{x^{2}}{100}+\\frac{y^{2}}{400}+\\frac{z^{2}}{225}=1$"
+   }
+  },
+  {
+   "id": "e339",
+   "source_id": "fs-id1163723277869",
+   "source_number": "339",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069408",
+   "prompt": "<p>For the following exercises, the equation of a quadric surface is given.</p><p>a. Use the method of completing the square to write the equation in standard form.</p><p>b. Identify the surface.</p><p>$x^{2}+2z^{2}+6x-8z+1=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\frac{{(x+3)}^{2}}{16}+\\frac{{(z-2)}^{2}}{8}=1;$ b. Cylinder centered at $(-3,2)$ with rulings parallel to the <em>y</em>-axis"
+   }
+  },
+  {
+   "id": "e341",
+   "source_id": "fs-id1163723494800",
+   "source_number": "341",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069408",
+   "prompt": "<p>For the following exercises, the equation of a quadric surface is given.</p><p>a. Use the method of completing the square to write the equation in standard form.</p><p>b. Identify the surface.</p><p>$x^{2}+4y^{2}-4z^{2}-6x-16y-16z+5=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\frac{{(x-3)}^{2}}{4}+{(y-2)}^{2}-{(z+2)}^{2}=1;$ b. Hyperboloid of one sheet centered at $(3,2,-2),$ with the <em>z</em>-axis as its axis of symmetry"
+   }
+  },
+  {
+   "id": "e343",
+   "source_id": "fs-id1163724105823",
+   "source_number": "343",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724069408",
+   "prompt": "<p>For the following exercises, the equation of a quadric surface is given.</p><p>a. Use the method of completing the square to write the equation in standard form.</p><p>b. Identify the surface.</p><p>$x^{2}+\\frac{y^{2}}{4}-\\frac{z^{2}}{3}+6x+9=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. ${(x+3)}^{2}+\\frac{y^{2}}{4}-\\frac{z^{2}}{3}=0;$ b. Elliptic cone centered at $(-3,0,0),$ with the <em>z</em>-axis as its axis of symmetry"
+   }
+  },
+  {
+   "id": "e345",
+   "source_id": "fs-id1163723210201",
+   "source_number": "345",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ellipsoid-term",
+   "prompt": "<p>Write the standard form of the equation of the ellipsoid centered at the origin that passes through points $A(2,0,0),B(0,0,1),$ and $C(\\frac{1}{2},\\sqrt{11},\\frac{1}{2}).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x^{2}}{4}+\\frac{y^{2}}{16}+z^{2}=1$"
+   }
+  },
+  {
+   "id": "e347",
+   "source_id": "fs-id1163723328216",
+   "source_number": "347",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p>Determine the intersection points of elliptic cone $x^{2}-y^{2}-z^{2}=0$ with the line of symmetric equations $\\frac{x-1}{2}=\\frac{y+1}{3}=z.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(1,-1,0)$ and $(\\frac{13}{3},4,\\frac{5}{3})$"
+   }
+  },
+  {
+   "id": "e349",
+   "source_id": "fs-id1163723171158",
+   "source_number": "349",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723955608",
+   "prompt": "<p>Find an equation of the quadric surface with points $P(x,y,z)$ that are equidistant from point $Q(0,-1,0)$ and plane of equation $y=1.$ Identify the surface.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x^{2}+z^{2}+4y=0,$ elliptic paraboloid"
+   }
+  },
+  {
+   "id": "e351",
+   "source_id": "fs-id1163724026997",
+   "source_number": "351",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723955608",
+   "prompt": "<p>If the surface of a parabolic reflector is described by equation $400z=x^{2}+y^{2},$ find the focal point of the reflector.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(0,0,100)$"
+   }
+  },
+  {
+   "id": "e353",
+   "source_id": "fs-id1163723348442",
+   "source_number": "353",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723281295",
+   "prompt": "<p>Show that quadric surface $x^{2}+y^{2}+z^{2}+2xy+2xz+2yz+x+y+z=0$ reduces to two parallel planes.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The quadratic terms form a perfect square: $x^{2}+y^{2}+z^{2}+2xy+2xz+2yz=(x+y+z)^{2}.$ So the equation is $(x+y+z)^{2}+(x+y+z)=0,$ that is, $(x+y+z)(x+y+z+1)=0.$ A product is zero exactly when a factor is, so the surface is the union of the planes $x+y+z=0$ and $x+y+z=-1.$ Both have normal vector $\\langle 1,1,1\\rangle,$ so they are parallel.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e354",
+   "source_id": "fs-id1163724054232",
+   "source_number": "354",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723281295",
+   "prompt": "<p>Show that quadric surface $x^{2}+y^{2}+z^{2}-2xy-2xz+2yz-1=0$ reduces to two parallel planes passing.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The quadratic terms form a perfect square: $x^{2}+y^{2}+z^{2}-2xy-2xz+2yz=(x-y-z)^{2}.$ So the equation is $(x-y-z)^{2}=1,$ that is, $x-y-z=1$ or $x-y-z=-1.$ These two planes both have normal vector $\\langle 1,-1,-1\\rangle,$ so the surface reduces to two parallel planes.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e355",
+   "source_id": "fs-id1163723474847",
+   "source_number": "355",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p><strong>[T]</strong> The intersection between cylinder ${(x-1)}^{2}+y^{2}=1$ and sphere $x^{2}+y^{2}+z^{2}=4$ is called a <em>Viviani curve</em>.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_06_228.jpg\" alt=\"This figure is a surface inside of a box. It is a sphere with a right circular cylinder through the sphere vertically. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\"><p>a. Solve the system consisting of the equations of the surfaces to find the equations of the intersection curve. (<em>Hint:</em> Find $x$ and $y$ in terms of $z.)$</p><p>b. Use a computer algebra system (CAS) to visualize the intersection curve on sphere $x^{2}+y^{2}+z^{2}=4.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $x=2-\\frac{z^{2}}{2},y=\\pm \\frac{z}{2}\\sqrt{4-z^{2}},$ where $z\\in [-2,2];$</p>\n<p>b.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_229.jpg\" alt=\"This figure is a surface inside of a box. It is a sphere with a figure eight curve on the side of the sphere. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\">"
+   }
+  },
+  {
+   "id": "e357",
+   "source_id": "fs-id1163723211079",
+   "source_number": "357",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-quadrics",
+   "prompt": "<p><strong>[T]</strong> Use a CAS to create the intersection between cylinder $9x^{2}+4y^{2}=18$ and ellipsoid $36x^{2}+16y^{2}+9z^{2}=144,$ and find the equations of the intersection curves.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch12/CNX_Calc_Figure_12_06_231.jpg\" alt=\"This figure is a surface inside of a box. It is a solid oval with an elliptical cylinder vertically intersecting. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\">\n<p>two ellipses of equations $\\frac{x^{2}}{2}+\\frac{y^{2}}{\\frac{9}{2}}=1$ in planes $z=\\text{±}2\\sqrt{2}$</p>"
+   }
+  },
+  {
+   "id": "e359",
+   "source_id": "fs-id1163723498077",
+   "source_number": "359",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ellipsoid-term",
+   "prompt": "<p><strong>[T]</strong> In cartography, Earth is approximated by an oblate spheroid rather than a sphere. The radii at the equator and poles are approximately $3963$ mi and $3950$ mi, respectively.</p><p>a. Write the equation in standard form of the ellipsoid that represents the shape of Earth. Assume the center of Earth is at the origin and that the trace formed by plane $z=0$ corresponds to the equator.</p><p>b. Sketch the graph.</p><p>c. Find an equation of the intersection curve of the surface with plane $z=1000$ that is parallel to the <em>xy</em>-plane. The intersection curve is called a <em>parallel</em>.</p><p>d. Find an equation of the intersection curve of the surface with plane $x+y=0$ that passes through the <em>z</em>-axis. The intersection curve is called a <em>meridian</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\frac{x^{2}}{{3963}^{2}}+\\frac{y^{2}}{{3963}^{2}}+\\frac{z^{2}}{{3950}^{2}}=1;$</p>\n<p>b.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_233.jpg\" alt=\"This figure is a surface inside of a box. It is a sphere. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\">\n<p> ;</p>\n<p>c. The intersection curve is the ellipse of equation $\\frac{x^{2}}{{3963}^{2}}+\\frac{y^{2}}{{3963}^{2}}=\\frac{(2950)(4950)}{{3950}^{2}},$ and the intersection is an ellipse.; d. The intersection curve is the ellipse of equation $\\frac{2y^{2}}{{3963}^{2}}+\\frac{z^{2}}{{3950}^{2}}=1.$</p>"
+   }
+  },
+  {
+   "id": "e361",
+   "source_id": "fs-id1163723089980",
+   "source_number": "361",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723281295",
+   "prompt": "<p><strong>[T]</strong> A heart-shaped surface is given by equation ${(x^{2}+\\frac{9}{4}y^{2}+z^{2}-1)}^{3}-x^{2}z^{3}-\\frac{9}{80}y^{2}z^{3}=0.$</p><p>a. Use a CAS to graph the surface that models this shape.</p><p>b. Determine and sketch the trace of the heart-shaped surface on the <em>xz</em>-plane.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_237.jpg\" alt=\"This figure is a surface inside of a box. It is a heart. The outside edges of the 3-dimensional box are scaled to represent the 3-dimensional coordinate system.\">\n<p>b. The intersection curve is ${(x^{2}+z^{2}-1)}^{3}-x^{2}z^{3}=0.$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_06_238.jpg\" alt=\"This figure is a curve on a rectangular coordinate system. It is the shape of a heart centered about the y-axis.\">"
+   }
+  },
+  {
+   "id": "r439",
+   "source_id": "fs-id1163724060998",
+   "source_section": "12.7",
+   "source_number": "439",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723674486",
+   "prompt": "<p>For the following exercises, find the traces for the surfaces in planes $x=k,y=k,\\;\\text{and}\\;z=k.$ Then, describe and draw the surfaces.</p><p>$x^{2}=y^{2}+z^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$x=k$ trace: $k^{2}=y^{2}+z^{2}$ is a circle, $y=k$ trace: $x^{2}-z^{2}=k^{2}$ is a hyperbola (or a pair of lines if $k=0),$ $z=k$ trace: $x^{2}-y^{2}=k^{2}$ is a hyperbola (or a pair of lines if $k=0).$ The surface is a cone.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_218.jpg\" alt=\"This figure is an elliptical cone on its side. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "cylindrical-surface"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "rulings"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "hyperboloid-of-one-sheet"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "trace"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "hyperboloid-of-one-sheet"
+  },
+  {
+   "exercise": "e303",
+   "concept": "cylindrical-surface"
+  },
+  {
+   "exercise": "e303",
+   "concept": "rulings"
+  },
+  {
+   "exercise": "e305",
+   "concept": "cylindrical-surface"
+  },
+  {
+   "exercise": "e305",
+   "concept": "rulings"
+  },
+  {
+   "exercise": "e307",
+   "concept": "cylindrical-surface"
+  },
+  {
+   "exercise": "e307",
+   "concept": "rulings"
+  },
+  {
+   "exercise": "e309",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e309",
+   "concept": "cylindrical-surface"
+  },
+  {
+   "exercise": "e311",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e311",
+   "concept": "hyperboloid-of-two-sheets"
+  },
+  {
+   "exercise": "e313",
+   "concept": "hyperboloid-of-two-sheets"
+  },
+  {
+   "exercise": "e315",
+   "concept": "elliptic-paraboloid"
+  },
+  {
+   "exercise": "e317",
+   "concept": "hyperboloid-of-one-sheet"
+  },
+  {
+   "exercise": "e319",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e319",
+   "concept": "hyperboloid-of-one-sheet"
+  },
+  {
+   "exercise": "e321",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e321",
+   "concept": "hyperboloid-of-two-sheets"
+  },
+  {
+   "exercise": "e323",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e323",
+   "concept": "hyperbolic-paraboloid"
+  },
+  {
+   "exercise": "e325",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e325",
+   "concept": "ellipsoid"
+  },
+  {
+   "exercise": "e327",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e327",
+   "concept": "elliptic-cone"
+  },
+  {
+   "exercise": "e329",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e329",
+   "concept": "elliptic-paraboloid"
+  },
+  {
+   "exercise": "e331",
+   "concept": "trace"
+  },
+  {
+   "exercise": "e333",
+   "concept": "trace"
+  },
+  {
+   "exercise": "e335",
+   "concept": "trace"
+  },
+  {
+   "exercise": "e335",
+   "concept": "ellipsoid"
+  },
+  {
+   "exercise": "e337",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e337",
+   "concept": "ellipsoid"
+  },
+  {
+   "exercise": "e339",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e339",
+   "concept": "cylindrical-surface"
+  },
+  {
+   "exercise": "e341",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e341",
+   "concept": "hyperboloid-of-one-sheet"
+  },
+  {
+   "exercise": "e343",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e343",
+   "concept": "elliptic-cone"
+  },
+  {
+   "exercise": "e345",
+   "concept": "ellipsoid"
+  },
+  {
+   "exercise": "e347",
+   "concept": "elliptic-cone"
+  },
+  {
+   "exercise": "e347",
+   "concept": "parametric-equations-of-a-line"
+  },
+  {
+   "exercise": "e349",
+   "concept": "elliptic-paraboloid"
+  },
+  {
+   "exercise": "e349",
+   "concept": "distance-from-a-point-to-a-plane"
+  },
+  {
+   "exercise": "e351",
+   "concept": "elliptic-paraboloid"
+  },
+  {
+   "exercise": "e351",
+   "concept": "focus"
+  },
+  {
+   "exercise": "e353",
+   "concept": "quadric-surface"
+  },
+  {
+   "exercise": "e353",
+   "concept": "planes-parallel-to-coordinate-planes"
+  },
+  {
+   "exercise": "e354",
+   "concept": "quadric-surface"
+  },
+  {
+   "exercise": "e355",
+   "concept": "cylindrical-surface"
+  },
+  {
+   "exercise": "e355",
+   "concept": "sphere"
+  },
+  {
+   "exercise": "e355",
+   "concept": "trace"
+  },
+  {
+   "exercise": "e357",
+   "concept": "ellipsoid"
+  },
+  {
+   "exercise": "e357",
+   "concept": "cylindrical-surface"
+  },
+  {
+   "exercise": "e359",
+   "concept": "ellipsoid"
+  },
+  {
+   "exercise": "e361",
+   "concept": "quadric-surface"
+  },
+  {
+   "exercise": "e361",
+   "concept": "trace"
+  },
+  {
+   "exercise": "r439",
+   "concept": "trace"
+  },
+  {
+   "exercise": "r439",
+   "concept": "elliptic-cone"
+  }
+ ],
+ "referents": []
+}

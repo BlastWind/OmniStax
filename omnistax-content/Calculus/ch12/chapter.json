@@ -1,0 +1,515 @@
+{
+ "id": "12",
+ "dir": "ch12",
+ "title": "Vectors in Space",
+ "intro": {
+  "module": "m53906",
+  "slug": "calculus-volume-3/pages/2-introduction"
+ },
+ "sections": [
+  {
+   "id": "12.1",
+   "module": "m53900",
+   "title": "Vectors in the Plane",
+   "slug": "calculus-volume-3/pages/2-1-vectors-in-the-plane"
+  },
+  {
+   "id": "12.2",
+   "module": "m53897",
+   "title": "Vectors in Three Dimensions",
+   "slug": "calculus-volume-3/pages/2-2-vectors-in-three-dimensions"
+  },
+  {
+   "id": "12.3",
+   "module": "m53902",
+   "title": "The Dot Product",
+   "slug": "calculus-volume-3/pages/2-3-the-dot-product"
+  },
+  {
+   "id": "12.4",
+   "module": "m53903",
+   "title": "The Cross Product",
+   "slug": "calculus-volume-3/pages/2-4-the-cross-product"
+  },
+  {
+   "id": "12.5",
+   "module": "m53870",
+   "title": "Equations of Lines and Planes in Space",
+   "slug": "calculus-volume-3/pages/2-5-equations-of-lines-and-planes-in-space"
+  },
+  {
+   "id": "12.6",
+   "module": "m53874",
+   "title": "Quadric Surfaces",
+   "slug": "calculus-volume-3/pages/2-6-quadric-surfaces"
+  },
+  {
+   "id": "12.7",
+   "module": "m53875",
+   "title": "Cylindrical and Spherical Coordinates",
+   "slug": "calculus-volume-3/pages/2-7-cylindrical-and-spherical-coordinates"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "v_vec",
+   "section": "12.1",
+   "concept": "vector",
+   "meaning": "a vector, a quantity with magnitude and direction, drawn as an arrow from its initial point to its terminal point",
+   "anchor": "12.1-representation"
+  },
+  {
+   "sym": "w_vec",
+   "section": "12.1",
+   "concept": "vector",
+   "meaning": "a second vector, added to or subtracted from v",
+   "anchor": "12.1-representation"
+  },
+  {
+   "sym": "u_vec",
+   "section": "12.1",
+   "concept": "vector",
+   "meaning": "a vector; in the unit vectors, the unit vector u = v/‖v‖ in the direction of v",
+   "anchor": "12.1-unit-vector-term"
+  },
+  {
+   "sym": "a_vec",
+   "section": "12.1",
+   "concept": "vector",
+   "meaning": "a vector of a checkpoint, given in component form or by its points",
+   "anchor": "12.1-components"
+  },
+  {
+   "sym": "b_vec",
+   "section": "12.1",
+   "concept": "vector",
+   "meaning": "a second vector of a checkpoint, given by its points or by its angle",
+   "anchor": "12.1-components"
+  },
+  {
+   "sym": "zero_vec",
+   "section": "12.1",
+   "concept": "zero-vector",
+   "meaning": "the zero vector, whose initial and terminal points are the same",
+   "anchor": "12.1-representation"
+  },
+  {
+   "sym": "i_vec",
+   "section": "12.1",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0⟩ along the positive x-axis",
+   "anchor": "12.1-standard-unit-term"
+  },
+  {
+   "sym": "j_vec",
+   "section": "12.1",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1⟩ along the positive y-axis",
+   "anchor": "12.1-standard-unit-term"
+  },
+  {
+   "sym": "PQ_vec",
+   "section": "12.1",
+   "concept": "vector",
+   "meaning": "the vector with initial point P and terminal point Q",
+   "anchor": "12.1-representation"
+  },
+  {
+   "sym": "r_vec",
+   "section": "12.1",
+   "concept": "vector-addition",
+   "meaning": "the resultant force on Jane’s car, the vector sum of the truck’s pull and the push",
+   "anchor": "12.1-fs-id1167793562339"
+  },
+  {
+   "sym": "p_vec",
+   "section": "12.1",
+   "concept": "vector",
+   "meaning": "the airplane’s velocity vector, its airspeed in its heading",
+   "anchor": "12.1-fs-id1167793590635"
+  },
+  {
+   "sym": "θ",
+   "section": "12.1",
+   "type": "angle",
+   "meaning": "the angle a vector forms with the positive x-axis, its direction",
+   "redefines": true,
+   "anchor": "12.1-trig-components"
+  },
+  {
+   "sym": "v_vec",
+   "section": "12.2",
+   "concept": "vector",
+   "meaning": "a vector, a quantity with magnitude and direction, drawn as an arrow from its initial point to its terminal point",
+   "anchor": "12.2-space-components"
+  },
+  {
+   "sym": "w_vec",
+   "section": "12.2",
+   "concept": "vector",
+   "meaning": "a second vector, added to or subtracted from v",
+   "anchor": "12.2-space-components"
+  },
+  {
+   "sym": "i_vec",
+   "section": "12.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩ along the positive x-axis",
+   "redefines": true,
+   "anchor": "12.2-ijk"
+  },
+  {
+   "sym": "j_vec",
+   "section": "12.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩ along the positive y-axis",
+   "redefines": true,
+   "anchor": "12.2-ijk"
+  },
+  {
+   "sym": "k_vec",
+   "section": "12.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩ along the positive z-axis",
+   "anchor": "12.2-ijk"
+  },
+  {
+   "sym": "zero_vec",
+   "section": "12.2",
+   "concept": "zero-vector",
+   "meaning": "the zero vector 0 = ⟨0, 0, 0⟩",
+   "anchor": "12.2-space-components"
+  },
+  {
+   "sym": "PQ_vec",
+   "section": "12.2",
+   "concept": "vector",
+   "meaning": "the vector with initial point P and terminal point Q",
+   "anchor": "12.2-fs-id1163723893588"
+  },
+  {
+   "sym": "u_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "a vector, the first factor of a dot product; the vector projected onto",
+   "anchor": "12.3-dot-product"
+  },
+  {
+   "sym": "v_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "a vector, the second factor of a dot product; the vector projected",
+   "anchor": "12.3-dot-product"
+  },
+  {
+   "sym": "w_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "a third vector of the distributive property; the ocean current’s velocity",
+   "anchor": "12.3-fs-id1163724074875"
+  },
+  {
+   "sym": "θ",
+   "section": "12.3",
+   "concept": "angle-between-two-vectors",
+   "meaning": "the angle between two nonzero vectors placed in standard position, 0 ≤ θ ≤ π",
+   "redefines": true,
+   "anchor": "12.3-angle-term"
+  },
+  {
+   "sym": "F_vec",
+   "section": "12.3",
+   "type": "vector",
+   "meaning": "a constant force applied to an object, a vector",
+   "anchor": "12.3-work"
+  },
+  {
+   "sym": "s_vec",
+   "section": "12.3",
+   "type": "vector",
+   "meaning": "the displacement of an object, a vector",
+   "anchor": "12.3-work"
+  },
+  {
+   "sym": "PQ_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "the vector with initial point P and terminal point Q",
+   "anchor": "12.3-fs-id1163724120295"
+  },
+  {
+   "sym": "p_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "a vector of an example; in the decomposition, p is the projection and q = v − p",
+   "redefines": true,
+   "anchor": "12.3-fs-id1163723341367"
+  },
+  {
+   "sym": "q_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "a vector of an example; in the decomposition, p is the projection and q = v − p",
+   "anchor": "12.3-fs-id1163723341367"
+  },
+  {
+   "sym": "a_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "a vector of an example or checkpoint",
+   "anchor": "12.3-fs-id1163723089891"
+  },
+  {
+   "sym": "b_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "a vector of an example or checkpoint",
+   "anchor": "12.3-fs-id1163723089891"
+  },
+  {
+   "sym": "c_vec",
+   "section": "12.3",
+   "concept": "vector",
+   "meaning": "a vector of an example or checkpoint",
+   "anchor": "12.3-fs-id1163723089891"
+  },
+  {
+   "sym": "i_vec",
+   "section": "12.3",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "12.3-fs-id1163723093504"
+  },
+  {
+   "sym": "j_vec",
+   "section": "12.3",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "12.3-fs-id1163723093504"
+  },
+  {
+   "sym": "k_vec",
+   "section": "12.3",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "12.3-fs-id1163723093504"
+  },
+  {
+   "sym": "u_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "a vector, the first factor of a cross product",
+   "anchor": "12.4-cross-product"
+  },
+  {
+   "sym": "v_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "a vector, the second factor of a cross product",
+   "anchor": "12.4-cross-product"
+  },
+  {
+   "sym": "w_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "a third vector, of a triple scalar product",
+   "anchor": "12.4-fs-id1163723326764"
+  },
+  {
+   "sym": "a_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "a vector of an example or checkpoint",
+   "anchor": "12.4-fs-id1163723339486"
+  },
+  {
+   "sym": "b_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "a vector of an example or checkpoint",
+   "anchor": "12.4-fs-id1163723339486"
+  },
+  {
+   "sym": "c_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "a vector of an example or checkpoint",
+   "anchor": "12.4-triple"
+  },
+  {
+   "sym": "p_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "a vector of an example or checkpoint",
+   "anchor": "12.4-fs-id1163723497714"
+  },
+  {
+   "sym": "q_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "a vector of an example or checkpoint",
+   "anchor": "12.4-fs-id1163723497714"
+  },
+  {
+   "sym": "i_vec",
+   "section": "12.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "12.4-ijk-cross"
+  },
+  {
+   "sym": "j_vec",
+   "section": "12.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "12.4-ijk-cross"
+  },
+  {
+   "sym": "k_vec",
+   "section": "12.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "12.4-ijk-cross"
+  },
+  {
+   "sym": "zero_vec",
+   "section": "12.4",
+   "concept": "zero-vector",
+   "meaning": "the zero vector 0 = ⟨0, 0, 0⟩",
+   "anchor": "12.4-ijk-cross"
+  },
+  {
+   "sym": "θ",
+   "section": "12.4",
+   "concept": "angle-between-two-vectors",
+   "meaning": "the angle between two vectors, 0 ≤ θ ≤ π",
+   "anchor": "12.4-fs-id1163723522571"
+  },
+  {
+   "sym": "τ",
+   "section": "12.4",
+   "concept": "torque",
+   "meaning": "the torque of a force about an axis of rotation, τ = r × F",
+   "anchor": "12.4-fs-id1163723336026"
+  },
+  {
+   "sym": "r_vec",
+   "section": "12.4",
+   "type": "vector",
+   "meaning": "the vector from a point on the axis of rotation to the point where a force is applied",
+   "redefines": true,
+   "anchor": "12.4-fs-id1163723336026"
+  },
+  {
+   "sym": "F_vec",
+   "section": "12.4",
+   "type": "vector",
+   "meaning": "a force applied at the end of r, a vector",
+   "anchor": "12.4-fs-id1163723336026"
+  },
+  {
+   "sym": "PQ_vec",
+   "section": "12.4",
+   "concept": "vector",
+   "meaning": "the vector with initial point P and terminal point Q",
+   "anchor": "12.4-fs-id1163723362004"
+  },
+  {
+   "sym": "v_vec",
+   "section": "12.5",
+   "concept": "direction-vector",
+   "meaning": "a direction vector of a line, parallel to it",
+   "redefines": true,
+   "anchor": "12.5-direction-term"
+  },
+  {
+   "sym": "u_vec",
+   "section": "12.5",
+   "concept": "vector",
+   "meaning": "a vector parallel to v, u = kv",
+   "anchor": "12.5-parallel-term"
+  },
+  {
+   "sym": "r_vec",
+   "section": "12.5",
+   "type": "vector",
+   "meaning": "the position vector ⟨x, y, z⟩ of a point on a line, r = r₀ + tv",
+   "redefines": true,
+   "anchor": "12.5-vector-line-term"
+  },
+  {
+   "sym": "p_vec",
+   "section": "12.5",
+   "concept": "vector",
+   "meaning": "the position vector of the point P",
+   "redefines": true,
+   "anchor": "12.5-segment"
+  },
+  {
+   "sym": "q_vec",
+   "section": "12.5",
+   "concept": "vector",
+   "meaning": "the position vector of the point Q",
+   "redefines": true,
+   "anchor": "12.5-segment"
+  },
+  {
+   "sym": "n_vec",
+   "section": "12.5",
+   "concept": "normal-vector",
+   "meaning": "a normal vector of a plane, perpendicular to it",
+   "anchor": "12.5-normal-term"
+  },
+  {
+   "sym": "PQ_vec",
+   "section": "12.5",
+   "concept": "vector",
+   "meaning": "the vector with initial point P and terminal point Q",
+   "anchor": "12.5-direction-term"
+  },
+  {
+   "sym": "θ",
+   "section": "12.5",
+   "type": "angle",
+   "meaning": "the angle between two intersecting planes, the angle between their normal vectors",
+   "redefines": true,
+   "anchor": "12.5-angle-planes"
+  },
+  {
+   "sym": "i_vec",
+   "section": "12.5",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector along the x-axis",
+   "anchor": "12.5-fs-id1163724085704"
+  },
+  {
+   "sym": "j_vec",
+   "section": "12.5",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector along the y-axis",
+   "anchor": "12.5-fs-id1163724085704"
+  },
+  {
+   "sym": "k_vec",
+   "section": "12.5",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector along the z-axis",
+   "anchor": "12.5-fs-id1163724085704"
+  },
+  {
+   "sym": "θ",
+   "section": "12.7",
+   "concept": "angular-coordinate",
+   "meaning": "the angle of cylindrical and spherical coordinates, the polar angle of the point’s projection in the xy-plane",
+   "redefines": true,
+   "anchor": "12.7-fs-id1163723948419"
+  },
+  {
+   "sym": "φ",
+   "section": "12.7",
+   "type": "angle",
+   "meaning": "the angle between the positive z-axis and the segment from the origin to the point, 0 ≤ φ ≤ π",
+   "anchor": "12.7-fs-id1163724078135"
+  }
+ ]
+}

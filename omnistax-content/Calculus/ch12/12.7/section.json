@@ -1,0 +1,1276 @@
+{
+ "id": "12.7",
+ "module": "m53875",
+ "chapter": "12",
+ "title": "Cylindrical and Spherical Coordinates",
+ "short": "Cylindrical and Spherical Coordinates",
+ "lead": "Polar coordinates extend into space in two ways: <span data-concept=\"cylindrical-coordinate-system\">cylindrical coordinates</span> add the height <em>z</em>, and <span data-concept=\"spherical-coordinate-system\">spherical coordinates</span> use a distance and two angles. This section converts points and equations among the three systems, names the surfaces each coordinate sweeps out when held constant, and chooses the system that suits a problem.",
+ "objectives": [
+  "Convert from cylindrical to rectangular coordinates.",
+  "Convert from rectangular to cylindrical coordinates.",
+  "Convert from spherical to rectangular coordinates.",
+  "Convert from rectangular to spherical coordinates."
+ ],
+ "summary_html": "<ul><li>In the <span data-concept=\"cylindrical-coordinate-system\">cylindrical coordinate system</span>, a point in space is represented by the ordered triple $(r,\\ktheta ,z),$ where $(r,\\ktheta )$ represents the <span data-concept=\"polar-coordinate-system\">polar coordinates</span> of the point’s projection in the <em>xy</em>-plane and $z$ represents the point’s projection onto the <em>z</em>-axis.</li><li>To convert a point from <span data-concept=\"cylindrical-coordinate-system\">cylindrical coordinates</span> to Cartesian coordinates, use equations $x=r\\;\\cos \\ktheta ,$ $y=r\\;\\sin \\ktheta ,$ and $z=z.$</li><li>To convert a point from Cartesian coordinates to <span data-concept=\"cylindrical-coordinate-system\">cylindrical coordinates</span>, use equations $r^{2}=x^{2}+y^{2},$ $\\tan \\ktheta =\\frac{y}{x},$ and $z=z.$</li><li>In the <span data-concept=\"spherical-coordinate-system\">spherical coordinate system</span>, a point $P$ in space is represented by the ordered triple $(ρ,\\ktheta ,\\kphi),$ where $ρ$ is the distance between $P$ and the origin $(ρ\\ne 0),$ $\\ktheta$ is the same angle used to describe the location in <span data-concept=\"cylindrical-coordinate-system\">cylindrical coordinates</span>, and $\\kphi$ is the angle formed by the positive <em>z</em>-axis and line segment $\\bar{OP},$ where $O$ is the origin and $0\\le \\kphi\\le \\pi .$</li><li>To convert a point from <span data-concept=\"spherical-coordinate-system\">spherical coordinates</span> to Cartesian coordinates, use equations $x=ρ\\;\\sin \\kphi\\;\\cos \\ktheta ,$ $y=ρ\\;\\sin \\kphi\\;\\sin \\ktheta ,$ and $z=ρ\\;\\cos \\kphi.$</li><li>To convert a point from Cartesian coordinates to <span data-concept=\"spherical-coordinate-system\">spherical coordinates</span>, use equations ${ρ}^{2}=x^{2}+y^{2}+z^{2},$ $\\tan \\ktheta =\\frac{y}{x},$ and $\\kphi=\\operatorname{arccos}(\\frac{z}{\\sqrt{x^{2}+y^{2}+z^{2}}}).$</li><li>To convert a point from <span data-concept=\"spherical-coordinate-system\">spherical coordinates</span> to <span data-concept=\"cylindrical-coordinate-system\">cylindrical coordinates</span>, use equations $r=ρ\\;\\sin \\kphi,$ $\\ktheta =\\ktheta ,$ and $z=ρ\\;\\cos \\kphi.$</li><li>To convert a point from <span data-concept=\"cylindrical-coordinate-system\">cylindrical coordinates</span> to <span data-concept=\"spherical-coordinate-system\">spherical coordinates</span>, use equations $ρ=\\sqrt{r^{2}+z^{2}},$ $\\ktheta =\\ktheta ,$ and $\\kphi=\\operatorname{arccos}(\\frac{z}{\\sqrt{r^{2}+z^{2}}}).$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 30 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: 364–370 even (conversions of points), 372–378 even (surfaces from cylindrical equations), 380–384 even (cylindrical equations), 386–392 even (conversions of points), 394–398 even (surfaces from spherical equations), 400 and 402 (spherical equations), 404–410 even (conversions between the two systems), 412 and 414 (choosing a system), 416 (technology), 418 and 420 (latitude and longitude) and 422 (technology). The Chapter Review Exercises printed at the end of this section are placed with the sections that teach what they test: 445 in 12.1, 431 in 12.2, 423, 426, 429 and 447 in 12.3, 424, 427, 433 and 449 in 12.4, 425, 435 and 437 in 12.5, 439 in 12.6, and 441 and 443 here; 428, 430, 432, 434, 436, 438, 440, 442, 444, 446 and 448 have no answer in the key and are computational, so they are left out.",
+ "figures": [
+  {
+   "id": "sim-cylindrical",
+   "kind": "sim",
+   "number": "12.89",
+   "folds": [
+    "12.90",
+    "12.93"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_001.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_07_002.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_07_003.jpg"
+   ],
+   "original_caption": "(Figure 12.89) The right triangle lies in the xy-plane. The length of the hypotenuse is r and θ is the measure of the angle formed by the positive x-axis and the hypotenuse. The (Figure 12.90) The Pythagorean theorem provides equation r²=x²+y². Right-triangle relationships tell us that x=r cos θ , y=r sin θ , and tan θ =y/x. (Figure 12.93) The projection of the point in the xy-plane is 4 units from the origin. The line from the origin to the point’s projection forms an angle of 2π/3 with the positive x-axis. The point lies 2 units below the xy-plane.",
+   "draws": [
+    "point",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-coordinate-surfaces",
+   "kind": "sim",
+   "number": "12.91",
+   "folds": [
+    "12.92",
+    "12.99"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_017.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_07_018.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_07_019.jpg"
+   ],
+   "original_caption": "(Figure 12.91) In rectangular coordinates, (a) surfaces of the form x=c are planes parallel to the yz-plane, (b) surfaces of the form y=c are planes parallel to the xz-plane, and (c) surfaces of the form z=c are planes parallel to the xy-plane. (Figure 12.92) In cylindrical coordinates, (a) surfaces of the form r=c are vertical cylinders of radius c, (b) surfaces of the form θ =c are half-planes at angle c from the x-axis, and (c) surfaces of the form z=c are planes parallel to the xy-plane. (Figure 12.99) In spherical coordinates, surfaces of the form ρ=c are spheres of radius ρ (a), surfaces of the form θ =c are half-planes at an angle θ from the x-axis (b), and surfaces of the form ϕ=c are half-cones at an angle ϕ from the z-axis (c).",
+   "draws": [
+    "plane",
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-half-plane-quarter",
+   "kind": "figure",
+   "number": "12.94",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_005.jpg"
+   ],
+   "original_caption": "In polar coordinates, the equation θ =π /4 describes the ray extending diagonally through the first quadrant. In three dimensions, this same equation describes a half-plane.",
+   "draws": [
+    "plane"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sphere-3",
+   "kind": "figure",
+   "number": "12.95",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_006.jpg"
+   ],
+   "original_caption": "The sphere centered at the origin with radius 3 can be described by the cylindrical equation r²+z²=9.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cone-z-r",
+   "kind": "figure",
+   "number": "12.96",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_007.jpg"
+   ],
+   "original_caption": "The traces in planes parallel to the xy-plane are circles. The radius of the circles increases as z increases.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-spherical",
+   "kind": "sim",
+   "number": "12.97",
+   "folds": [
+    "12.98",
+    "12.100"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_009.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_07_010.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_07_011.jpg"
+   ],
+   "original_caption": "(Figure 12.97) The relationship among spherical, rectangular, and cylindrical coordinates. (Figure 12.98) The equations that convert from one system to another are derived from right-triangle relationships. (Figure 12.100) The projection of the point in the xy-plane is 4 units from the origin. The line from the origin to the point’s projection forms an angle of π /3 with the positive x-axis. The point lies 4√3 units above the xy-plane.",
+   "draws": [
+    "point",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-half-plane-third",
+   "kind": "figure",
+   "number": "12.101",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_020.jpg"
+   ],
+   "original_caption": "The surface described by equation θ =π/3 is a half-plane.",
+   "draws": [
+    "plane"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-half-cone",
+   "kind": "figure",
+   "number": "12.102",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_014.jpg"
+   ],
+   "original_caption": "The equation φ=5π/6 describes a cone.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sphere-6",
+   "kind": "figure",
+   "number": "12.103",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_015.jpg"
+   ],
+   "original_caption": "Equation ρ=6 describes a sphere with radius 6.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-latitude-longitude",
+   "kind": "sim",
+   "number": "12.104",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_07_016.jpg"
+   ],
+   "original_caption": "In the latitude–longitude system, angles describe the location of a point on Earth relative to the equator and the prime meridian.",
+   "draws": [
+    "point",
+    "angle",
+    "curve",
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-objects",
+   "kind": "photo",
+   "number": "12.105",
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "coordinates-intro",
+   "concept": "polar-coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723948419",
+   "concept": "cylindrical-coordinate-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723500624",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723500624",
+   "concept": "converting-points-between-coordinate-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-surfaces",
+   "concept": "surfaces-of-constant-coordinate",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-surfaces",
+   "concept": "cylindrical-surface",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-surfaces",
+   "concept": "planes-parallel-to-coordinate-planes",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723767231",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polar-link",
+   "concept": "angular-coordinate",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163723335773",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723093082",
+   "concept": "surfaces-of-constant-coordinate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163723093082",
+   "concept": "sphere",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1163724078135",
+   "concept": "spherical-coordinate-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723844895",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163723844895",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "spherical-surfaces",
+   "concept": "surfaces-of-constant-coordinate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724074684",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724042585",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724018907",
+   "concept": "surfaces-of-constant-coordinate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1163724018907",
+   "concept": "elliptic-cone",
+   "verb": "uses"
+  },
+  {
+   "span": "latlong",
+   "concept": "latitude-and-longitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724072588",
+   "concept": "latitude-and-longitude",
+   "verb": "reinforces"
+  },
+  {
+   "span": "choosing",
+   "concept": "choosing-a-coordinate-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1163724119534",
+   "concept": "choosing-a-coordinate-system",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1163724045592",
+   "source_number": "Checkpoint 12.55",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723767231"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "Point $R$ has cylindrical coordinates $(5,\\frac{\\pi}{6},4)$. Plot $R$ and describe its location in space using rectangular, or Cartesian, coordinates.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The rectangular coordinates of the point are $(\\frac{5\\sqrt{3}}{2},\\frac{5}{2},4).$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_004.jpg\" alt=\"This figure is the 3-dimensional coordinate system. There is a point labeled “(5, pi/6, 4).” The point is located above a line segment in the x y-plane labeled r = 5 that is pi/6 degrees from the x-axis. The distance from the x y-plane to the point is labeled “z = 4.”\">",
+    "hint": "The first two components match the polar coordinates of the point in the <em>xy</em>-plane."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1163723693689",
+   "source_number": "Checkpoint 12.56",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723335773"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "Convert point $(-8,8,-7)$ from Cartesian coordinates to cylindrical coordinates.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(8\\sqrt{2},\\frac{3\\pi}{4},-7)$",
+    "hint": "$r^{2}=x^{2}+y^{2}$ and $\\tan \\theta =\\frac{y}{x}$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1163724017856",
+   "source_number": "Checkpoint 12.57",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163723093082"
+   },
+   "cite": "constant-surfaces",
+   "prompt": "Describe the surface with cylindrical equation $r=6.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>This surface is a cylinder with radius $6.$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_008.jpg\" alt=\"This figure is a right circular cylinder. It is upright with the z-axis through the center. It is on top of the x y plane.\">",
+    "hint": "The $\\theta$ and $z$ components of points on the surface can take any value."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1163723967968",
+   "source_number": "Checkpoint 12.58",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724074684"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "Plot the point with spherical coordinates $(2,-\\frac{5\\pi}{6},\\frac{\\pi}{6})$ and describe its location in both rectangular and cylindrical coordinates.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch12/CNX_Calc_Figure_12_07_012.jpg\" alt=\"This figure is of the 3-dimensional coordinate system. It has a point. There is a line segment from the origin to the point. The angle between this line segment and the z-axis is phi. There is a line segment in the x y-plane from the origin to the shadow of the point.The angle between the x-axis and rho is theta.\">\n<p>Cartesian: $(-\\frac{\\sqrt{3}}{2},-\\frac{1}{2},\\sqrt{3}),$ cylindrical: $(1,-\\frac{5\\pi}{6},\\sqrt{3})$</p>",
+    "hint": "Converting the coordinates first may help to find the location of the point in space more easily."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1163723523033",
+   "source_number": "Checkpoint 12.59",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724018907"
+   },
+   "cite": "spherical-surfaces",
+   "prompt": "Describe the surfaces defined by the following equations. a. $ρ=13$ b. $\\theta =\\frac{2\\pi}{3}$ c. $φ=\\frac{\\pi}{4}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. This is the set of all points $13$ units from the origin. This set forms a sphere with radius $13.$ b. This set of points forms a half plane. The angle between the half plane and the positive <em>x</em>-axis is $\\theta =\\frac{2\\pi}{3}.$ c. Let $P$ be a point on this surface. The position vector of this point forms an angle of $φ=\\frac{\\pi}{4}$ with the positive <em>z</em>-axis, which means that points closer to the origin are closer to the axis. These points form a half-cone.",
+    "hint": "Think about what each component represents and what it means to hold that component constant."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1163723183896",
+   "source_number": "Checkpoint 12.60",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724072588"
+   },
+   "cite": "latlong",
+   "prompt": "Sydney, Australia is at $34^{\\circ}\\text{S}$ and $151^{\\circ}\\text{E}.$ Express Sydney’s location in spherical coordinates.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(4000,151^{\\circ},124^{\\circ})$",
+    "hint": "Because Sydney lies south of the equator, we need to add $90^{\\circ}$ to find the angle measured from the positive <em>z</em>-axis."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1163723566663",
+   "source_number": "Checkpoint 12.61",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1163724119534"
+   },
+   "cite": "choosing",
+   "prompt": "<p>Which coordinate system is most appropriate for creating a star map, as viewed from Earth (see the following figure)?</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_022.jpg\" alt=\"This figure is a circle with a star chart in the middle.\">\n<p>How should we orient the coordinate axes?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Spherical coordinates with the origin located at the center of the earth, the <em>z</em>-axis aligned with the North Pole, and the <em>x</em>-axis aligned with the prime meridian",
+    "hint": "What kinds of symmetry are present in this situation?"
+   }
+  },
+  {
+   "id": "e363",
+   "source_id": "fs-id1163723560107",
+   "source_number": "363",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "<p>For the following exercises, the cylindrical coordinates $(r,\\theta ,z)$ of a point are given. Find the rectangular coordinates $(x,y,z)$ of the point.</p><p>$(4,\\frac{\\pi}{6},3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(2\\sqrt{3},2,3)$"
+   }
+  },
+  {
+   "id": "e365",
+   "source_id": "fs-id1163723330516",
+   "source_number": "365",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "<p>For the following exercises, the cylindrical coordinates $(r,\\theta ,z)$ of a point are given. Find the rectangular coordinates $(x,y,z)$ of the point.</p><p>$(4,\\frac{7\\pi}{6},3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(-2\\sqrt{3},-2,3)$"
+   }
+  },
+  {
+   "id": "e367",
+   "source_id": "fs-id1163723561014",
+   "source_number": "367",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "<p>For the following exercises, the rectangular coordinates $(x,y,z)$ of a point are given. Find the cylindrical coordinates $(r,\\theta ,z)$ of the point.</p><p>$(1,\\sqrt{3},2)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(2,\\frac{\\pi}{3},2)$"
+   }
+  },
+  {
+   "id": "e369",
+   "source_id": "fs-id1163723186992",
+   "source_number": "369",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "<p>For the following exercises, the rectangular coordinates $(x,y,z)$ of a point are given. Find the cylindrical coordinates $(r,\\theta ,z)$ of the point.</p><p>$(3,-3,7)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(3\\sqrt{2},-\\frac{\\pi}{4},7)$<sup class=\"fn\" data-note=\"c-e369-theta\"></sup>"
+   }
+  },
+  {
+   "id": "e371",
+   "source_id": "fs-id1163723187112",
+   "source_number": "371",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723093082",
+   "prompt": "<p>Find an equation of the surface in rectangular coordinates. Identify and graph the surface.</p><p><strong>[T]</strong> $r=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>A cylinder of equation $x^{2}+y^{2}=16,$ with its center at the origin and rulings parallel to the <em>z</em>-axis,</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_221.jpg\" alt=\"This figure is a right circular cylinder, vertical. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  },
+  {
+   "id": "e373",
+   "source_id": "fs-id1163723248454",
+   "source_number": "373",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723093082",
+   "prompt": "<p>Find an equation of the surface in rectangular coordinates. Identify and graph the surface.</p><p><strong>[T]</strong> $r^{2}\\cos (2\\theta )+z^{2}+1=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Hyperboloid of two sheets of equation $-x^{2}+y^{2}-z^{2}=1,$ with the <em>y</em>-axis as the axis of symmetry,</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_223.jpg\" alt=\"This figure is a elliptic cone surface that is horizontal. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  },
+  {
+   "id": "e375",
+   "source_id": "fs-id1163723103383",
+   "source_number": "375",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723093082",
+   "prompt": "<p>Find an equation of the surface in rectangular coordinates. Identify and graph the surface.</p><p><strong>[T]</strong> $r=2\\;\\cos \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Cylinder of equation $x^{2}-2x+y^{2}=0,$ with a center at $(1,0,0)$ and radius $1,$ with rulings parallel to the <em>z</em>-axis,</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_225.jpg\" alt=\"This figure is a right circular cylinder, vertical. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  },
+  {
+   "id": "e377",
+   "source_id": "fs-id1163723571904",
+   "source_number": "377",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723093082",
+   "prompt": "<p>Find an equation of the surface in rectangular coordinates. Identify and graph the surface.</p><p><strong>[T]</strong> $r=2\\;\\sec \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Plane of equation $x=2,$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_227.jpg\" alt=\"This figure is a vertical parallelogram where x = 2 and parallel to the y z-plane. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  },
+  {
+   "id": "e379",
+   "source_id": "fs-id1163724081932",
+   "source_number": "379",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "<p>For the following exercises, the equation of a surface in rectangular coordinates is given. Find an equation of the surface in cylindrical coordinates.</p><p>$z=3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z=3$"
+   }
+  },
+  {
+   "id": "e381",
+   "source_id": "fs-id1163724081999",
+   "source_number": "381",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "<p>For the following exercises, the equation of a surface in rectangular coordinates is given. Find an equation of the surface in cylindrical coordinates.</p><p>$x^{2}+y^{2}+z^{2}=9$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$r^{2}+z^{2}=9$"
+   }
+  },
+  {
+   "id": "e383",
+   "source_id": "fs-id1163724019018",
+   "source_number": "383",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "<p>For the following exercises, the equation of a surface in rectangular coordinates is given. Find an equation of the surface in cylindrical coordinates.</p><p>$x^{2}+y^{2}-16x=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$r=16\\;\\cos \\theta ,r=0$"
+   }
+  },
+  {
+   "id": "e385",
+   "source_id": "fs-id1163724074697",
+   "source_number": "385",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, the spherical coordinates $(ρ,\\theta ,φ)$ of a point are given. Find the rectangular coordinates $(x,y,z)$ of the point.</p><p>$(3,0,\\pi )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(0,0,-3)$"
+   }
+  },
+  {
+   "id": "e387",
+   "source_id": "fs-id1163724074822",
+   "source_number": "387",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, the spherical coordinates $(ρ,\\theta ,φ)$ of a point are given. Find the rectangular coordinates $(x,y,z)$ of the point.</p><p>$(12,-\\frac{\\pi}{4},\\frac{\\pi}{4})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(6,-6,6\\sqrt{2})$"
+   }
+  },
+  {
+   "id": "e389",
+   "source_id": "fs-id1163723572648",
+   "source_number": "389",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, the rectangular coordinates $(x,y,z)$ of a point are given. Find the spherical coordinates $(ρ,\\theta ,φ)$ of the point. Express the measure of the angles in degrees rounded to the nearest integer.</p><p>$(4,0,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(4,0,90^{\\circ})$"
+   }
+  },
+  {
+   "id": "e391",
+   "source_id": "fs-id1163723183788",
+   "source_number": "391",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, the rectangular coordinates $(x,y,z)$ of a point are given. Find the spherical coordinates $(ρ,\\theta ,φ)$ of the point. Express the measure of the angles in degrees rounded to the nearest integer.</p><p>$(0,3,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(3,90^{\\circ},90^{\\circ})$"
+   }
+  },
+  {
+   "id": "e393",
+   "source_id": "fs-id1163723573545",
+   "source_number": "393",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724018907",
+   "prompt": "<p>For the following exercises, the equation of a surface in spherical coordinates is given. Find an equation of the surface in rectangular coordinates. Identify and graph the surface.</p><p><strong>[T]</strong> $ρ=3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Sphere of equation $x^{2}+y^{2}+z^{2}=9$ centered at the origin with radius $3,$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_229.jpg\" alt=\"This figure is a sphere. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  },
+  {
+   "id": "e395",
+   "source_id": "fs-id1163724049525",
+   "source_number": "395",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724018907",
+   "prompt": "<p>For the following exercises, the equation of a surface in spherical coordinates is given. Find an equation of the surface in rectangular coordinates. Identify and graph the surface.</p><p><strong>[T]</strong> $ρ=2\\;\\cos φ$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Sphere of equation $x^{2}+y^{2}+{(z-1)}^{2}=1$ centered at $(0,0,1)$ with radius $1,$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_031.jpg\" alt=\"This figure is a sphere of radius 1 centered in a box. The center of the sphere is the point (0, 0, 1).\">"
+   }
+  },
+  {
+   "id": "e397",
+   "source_id": "fs-id1163724049712",
+   "source_number": "397",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724018907",
+   "prompt": "<p>For the following exercises, the equation of a surface in spherical coordinates is given. Find an equation of the surface in rectangular coordinates. Identify and graph the surface.</p><p><strong>[T]</strong> $φ=\\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The <em>xy</em>-plane of equation $z=0,$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_233.jpg\" alt=\"This figure is a parallelogram representing a plane. It is parallel to the x y-plane at z = 0. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  },
+  {
+   "id": "e399",
+   "source_id": "fs-id1163724066058",
+   "source_number": "399",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724018907",
+   "prompt": "<p>For the following exercises, the equation of a surface in rectangular coordinates is given. Find an equation of the surface in spherical coordinates. Identify the surface.</p><p>$x^{2}+y^{2}-3z^{2}=0,$ $z\\ne 0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$φ=\\frac{\\pi}{3}$ or $φ=\\frac{2\\pi}{3};$ Elliptic cone"
+   }
+  },
+  {
+   "id": "e401",
+   "source_id": "fs-id1163723566851",
+   "source_number": "401",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163724018907",
+   "prompt": "<p>For the following exercises, the equation of a surface in rectangular coordinates is given. Find an equation of the surface in spherical coordinates. Identify the surface.</p><p>$z=6$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$ρ\\;\\cos φ=6;$ Plane at $z=6$"
+   }
+  },
+  {
+   "id": "e403",
+   "source_id": "fs-id1163723566962",
+   "source_number": "403",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, the cylindrical coordinates of a point are given. Find its associated spherical coordinates, with the measure of the angle $φ$ in radians rounded to four decimal places.</p><p><strong>[T]</strong> $(1,\\frac{\\pi}{4},3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\sqrt{10},\\frac{\\pi}{4},0.3218)$"
+   }
+  },
+  {
+   "id": "e405",
+   "source_id": "fs-id1163724050254",
+   "source_number": "405",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, the cylindrical coordinates of a point are given. Find its associated spherical coordinates, with the measure of the angle $φ$ in radians rounded to four decimal places.</p><p>$(3,\\frac{\\pi}{2},3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(3\\sqrt{2},\\frac{\\pi}{2},\\frac{\\pi}{4})$"
+   }
+  },
+  {
+   "id": "e407",
+   "source_id": "fs-id1163724050393",
+   "source_number": "407",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, the spherical coordinates of a point are given. Find its associated cylindrical coordinates.</p><p>$(2,-\\frac{\\pi}{4},\\frac{\\pi}{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(2,-\\frac{\\pi}{4},0)$"
+   }
+  },
+  {
+   "id": "e409",
+   "source_id": "fs-id1163723299013",
+   "source_number": "409",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, the spherical coordinates of a point are given. Find its associated cylindrical coordinates.</p><p>$(8,\\frac{\\pi}{3},\\frac{\\pi}{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(8,\\frac{\\pi}{3},0)$"
+   }
+  },
+  {
+   "id": "e411",
+   "source_id": "fs-id1163724057692",
+   "source_number": "411",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>For the following exercises, find the most suitable system of coordinates to describe the solids.</p><p>The solid situated in the first octant with a vertex at the origin and enclosed by a cube of edge length $a,$ where $a\\gt 0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Cartesian system, $\\{(x,y,z)|0\\le x\\le a,0\\le y\\le a,0\\le z\\le a\\}$"
+   }
+  },
+  {
+   "id": "e413",
+   "source_id": "fs-id1163723073046",
+   "source_number": "413",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>For the following exercises, find the most suitable system of coordinates to describe the solids.</p><p>A solid inside sphere $x^{2}+y^{2}+z^{2}=9$ and outside cylinder ${(x-\\frac{3}{2})}^{2}+y^{2}=\\frac{9}{4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Cylindrical system, $\\{\\begin{array}{l}(r,\\theta ,z)|r^{2}+z^{2}\\le 9,r\\ge 0,\\frac{\\pi}{2}\\le \\theta \\le \\frac{3\\pi}{2} \\\\ ,(r\\ge 3\\cos\\theta ,-\\frac{\\pi}{2}\\le \\theta \\le \\frac{\\pi}{2})\\end{array}\\}$"
+   }
+  },
+  {
+   "id": "e415",
+   "source_id": "fs-id1163723314891",
+   "source_number": "415",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p><strong>[T]</strong> Use a CAS to graph the region between elliptic paraboloid $z=x^{2}+y^{2}$ and cone $x^{2}+y^{2}-z^{2}=0.$  Then describe the region in cylindrical coordinates.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The region is described by the set of points $\\{(r,\\theta ,z)|0\\le r\\le 1,0\\le \\theta \\le 2\\pi ,r^{2}\\le z\\le r\\}.$</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_235.jpg\" alt=\"This figure is a paraboloid, vertical. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  },
+  {
+   "id": "e417",
+   "source_id": "fs-id1163723339550",
+   "source_number": "417",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "latlong",
+   "prompt": "<p>Washington, DC, is located at $39^{\\circ}$ N and $77^{\\circ}$ W (see the following figure). Assume the radius of Earth is $4000$ mi. Express the location of Washington, DC, in spherical coordinates.</p><img src=\"/media/ch12/CNX_Calc_Figure_12_07_237.jpg\" alt=\"This figure is an image of a globe. On the globe there is a point labeled where Washington, DC is located. It is labeled with 39 degrees north latitude and 77 degrees west longitude.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(4000,-77^{\\circ},51^{\\circ})$"
+   }
+  },
+  {
+   "id": "e419",
+   "source_id": "fs-id1163724138611",
+   "source_number": "419",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "latlong",
+   "prompt": "<p>Find the latitude and longitude of Rio de Janeiro if its spherical coordinates are $(4000,-43.17^{\\circ},102.91^{\\circ}).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$43.17^{\\circ}\\text{W},$ $22.91^{\\circ}\\text{S}$"
+   }
+  },
+  {
+   "id": "e421",
+   "source_id": "fs-id1163723341675",
+   "source_number": "421",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p><strong>[T]</strong> Consider the torus of equation ${(x^{2}+y^{2}+z^{2}+R^{2}-r^{2})}^{2}=4R^{2}(x^{2}+y^{2}),$ where $R\\ge r\\gt 0.$</p><p>a. Write the equation of the torus in spherical coordinates.</p><p>b. If $R=r,$ the surface is called a <em>horn torus</em>. Show that the equation of a horn torus in spherical coordinates is $ρ=2R\\;\\sin φ.$</p><p>c. Use a CAS to graph the horn torus with $R=r=2$ in spherical coordinates.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. ${ρ}^{2}=0,$ $ρ+R^{2}-r^{2}-2R\\;\\sin φ=0;$</p>\n<p>c.</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_07_238.jpg\" alt=\"This figure is a torus. It is inside of a box. The edges of the box represent the x, y, and z axes.\">"
+   }
+  },
+  {
+   "id": "r441",
+   "source_id": "fs-id1163724055534",
+   "source_section": "12.7",
+   "source_number": "441",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723844895",
+   "prompt": "<p>For the following exercises, write the given equation in cylindrical coordinates and spherical coordinates.</p><p>$z=x^{2}+y^{2}-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Cylindrical: $z=r^{2}-1,$ spherical: $\\cos φ=ρ\\;{\\sin }^{2}φ-\\frac{1}{ρ}$"
+   }
+  },
+  {
+   "id": "r443",
+   "source_id": "fs-id1163724034883",
+   "source_section": "12.7",
+   "source_number": "443",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1163723500624",
+   "prompt": "<p>For the following exercises, convert the given equations from cylindrical or spherical coordinates to rectangular coordinates. Identify the given surface.</p><p>$r^{2}-2r\\;\\cos (\\theta )+z^{2}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x^{2}-2x+y^{2}+z^{2}=1,$ sphere"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "surfaces-of-constant-coordinate"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "surfaces-of-constant-coordinate"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "latitude-and-longitude"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "choosing-a-coordinate-system"
+  },
+  {
+   "exercise": "e363",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e365",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e367",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e369",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e371",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e371",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e373",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e373",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e375",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e375",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e377",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e377",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e379",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e381",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e383",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e385",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e387",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e389",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e391",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e393",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e393",
+   "concept": "surfaces-of-constant-coordinate"
+  },
+  {
+   "exercise": "e395",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e395",
+   "concept": "surfaces-of-constant-coordinate"
+  },
+  {
+   "exercise": "e397",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e397",
+   "concept": "surfaces-of-constant-coordinate"
+  },
+  {
+   "exercise": "e399",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e399",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e401",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e401",
+   "concept": "identifying-quadric-surfaces"
+  },
+  {
+   "exercise": "e403",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e405",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e407",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e409",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "e411",
+   "concept": "choosing-a-coordinate-system"
+  },
+  {
+   "exercise": "e413",
+   "concept": "choosing-a-coordinate-system"
+  },
+  {
+   "exercise": "e415",
+   "concept": "choosing-a-coordinate-system"
+  },
+  {
+   "exercise": "e415",
+   "concept": "cylindrical-coordinate-system"
+  },
+  {
+   "exercise": "e417",
+   "concept": "latitude-and-longitude"
+  },
+  {
+   "exercise": "e419",
+   "concept": "latitude-and-longitude"
+  },
+  {
+   "exercise": "e421",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "r441",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "r441",
+   "concept": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "r443",
+   "concept": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "exercise": "r443",
+   "concept": "sphere"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-figure-1298",
+   "kind": "correction",
+   "html": "The book cites Figure 12.96, the cone of Example 12.62; the triangles that show $\\rho^{2}=r^{2}+z^{2}$ and $z=\\rho\\cos\\varphi$ are those of Figure 12.98."
+  },
+  {
+   "id": "c-e369-theta",
+   "kind": "correction",
+   "html": "With $\\theta$ restricted to $[0,2\\pi),$ as this section does, the angle is $\\theta=\\frac{7\\pi}{4};$ $-\\frac{\\pi}{4}$ names the same angle."
+  }
+ ]
+}

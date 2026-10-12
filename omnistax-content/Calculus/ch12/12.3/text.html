@@ -1,0 +1,262 @@
+<p id="dot-intro">If we apply a force to an object so that the object moves, we say that <em>work</em> is done by the force. In <a href="/calculus/ch06/intro/">Introduction to Applications of Integration</a> on integration applications, we looked at a constant force and we assumed the force was applied in the direction of motion of the object. Under those conditions, work can be expressed as the product of the force acting on an object and the distance the object moves. In this chapter, however, we have seen that both force and the motion of an object can be represented by <span data-concept="vector">vectors</span>.</p>
+<p>In this section, we develop an operation called the <em><span data-concept="dot-product">dot product</span></em>, which allows us to calculate work in the case when the force <span data-concept="vector">vector</span> and the motion <span data-concept="vector">vector</span> have different directions. The <span data-concept="dot-product">dot product</span> essentially tells us how much of the force <span data-concept="vector">vector</span> is applied in the direction of the motion <span data-concept="vector">vector</span>. The <span data-concept="dot-product">dot product</span> can also help us measure the angle formed by a pair of <span data-concept="vector">vectors</span> and the position of a <span data-concept="vector">vector</span> relative to the coordinate axes. It even provides a simple test to determine whether two <span data-concept="vector">vectors</span> meet at a right angle.</p>
+
+<section id="dot-product">
+<h2>The Dot Product and Its Properties</h2>
+<p class="cite-target">We have already learned how to add and subtract <span data-concept="vector">vectors</span>. In this chapter, we investigate two types of <span data-concept="vector">vector</span> multiplication. The first type of <span data-concept="vector">vector</span> multiplication is called the <span data-concept="dot-product">dot product</span>, based on the notation we use for it, and it is defined as follows:</p>
+<div class="note" id="fs-id1163723701422">
+<div class="eyebrow">Definition</div>
+<p>The <strong><span data-concept="dot-product">dot product</span></strong> of <span data-concept="vector">vectors</span> $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle$ is given by the sum of the products of the components</p>
+<div class="equation" id="fs-id1163723335787">$$\kvecu\cdot \kvecv=u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}.\tag{12.3}$$</div>
+</div>
+<p>Note that if $\kvecu $ and $\kvecv $ are two-dimensional <span data-concept="vector">vectors</span>, we calculate the <span data-concept="dot-product">dot product</span> in a similar fashion. Thus, if $\kvecu=\langle u_{1},u_{2}\rangle$ and $\kvecv=\langle v_{1},v_{2}\rangle ,$ then</p>
+$$\kvecu\cdot \kvecv=u_{1}v_{1}+u_{2}v_{2}.$$
+<p>When two <span data-concept="vector">vectors</span> are combined under addition or subtraction, the result is a <span data-concept="vector">vector</span>. When two <span data-concept="vector">vectors</span> are combined using the <span data-concept="dot-product">dot product</span>, the result is a scalar. For this reason, the <span data-concept="dot-product">dot product</span> is often called the <em><span data-concept="dot-product">scalar product</span></em>. It may also be called the <em><span data-concept="dot-product">inner product</span></em>.</p>
+<div class="example" id="fs-id1163723341367">
+<h3>Example 12.21 · Calculating Dot Products</h3>
+<p>a. Find the <span data-concept="dot-product">dot product</span> of $\kvecu=\langle 3,5,2\rangle$ and $\kvecv=\langle -1,3,0\rangle .$</p>
+<p>b. Find the <span data-concept="dot-product">scalar product</span> of $\kvecp=10\kveci-4\kvecj+7\kveck $ and $\kvecq=-2\kveci+\kvecj+6\kveck.$</p>
+<h4>Solution</h4>
+<p>a. Substitute the <span data-concept="vector">vector</span> components into the formula for the <span data-concept="dot-product">dot product</span>:</p>
+$$\begin{array}{rl}\kvecu\cdot \kvecv & =u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3} \\ & =3(-1)+5(3)+2(0)=-3+15+0=12.\end{array}$$
+<p>b. The calculation is the same if the <span data-concept="vector">vectors</span> are written using <span data-concept="standard-unit-vectors">standard unit vectors</span>. We still have three components for each <span data-concept="vector">vector</span> to substitute into the formula for the <span data-concept="dot-product">dot product</span>:</p>
+$$\begin{array}{rl}\kvecp\cdot \kvecq & =u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3} \\ & =10(-2)+(-4)(1)+(7)(6)=-20-4+42=18.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1163723341367"></div>
+<p>Like <span data-concept="vector">vector</span> addition and subtraction, the <span data-concept="dot-product">dot product</span> has several algebraic properties. We prove three of these properties and leave the rest as exercises.</p>
+<div class="note" id="fs-id1163724074875">
+<div class="eyebrow">Theorem</div>
+<h3>Properties of the Dot Product</h3>
+<p>Let $\kvecu,$ $\kvecv,$ and $\kvecw $ be <span data-concept="vector">vectors</span>, and let <em>c</em> be a scalar.</p>
+$$\begin{array}{lllrlllll}\text{i.} & & & \kvecu\cdot \kvecv & = & \kvecv\cdot \kvecu & & & \text{Commutative property} \\ \text{ii.} & & & \kvecu\cdot (\kvecv+\kvecw) & = & \kvecu\cdot \kvecv+\kvecu\cdot \kvecw & & & \text{Distributive property} \\ \text{iii.} & & & c(\kvecu\cdot \kvecv) & = & (c\kvecu)\cdot \kvecv=\kvecu\cdot (c\kvecv) & & & \text{Associative property} \\ \text{iv.} & & & \kvecv\cdot \kvecv & = & {\| \kvecv\|}^{2} & & & \text{Property of magnitude}\end{array}$$
+</div>
+<h3>Proof</h3>
+<p>Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle .$ Then</p>
+$$\begin{array}{rl}\kvecu\cdot \kvecv & =\langle u_{1},u_{2},u_{3}\rangle \cdot \langle v_{1},v_{2},v_{3}\rangle \\ & =u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3} \\ & =v_{1}u_{1}+v_{2}u_{2}+v_{3}u_{3} \\ & =\langle v_{1},v_{2},v_{3}\rangle \cdot \langle u_{1},u_{2},u_{3}\rangle \\ & =\kvecv\cdot \kvecu.\end{array}$$
+<p>The associative property looks like the associative property for real-number multiplication, but pay close attention to the difference between scalar and <span data-concept="vector">vector</span> objects:</p>
+$$\begin{array}{rl}c(\kvecu\cdot \kvecv) & =c(u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}) \\ & =c(u_{1}v_{1})+c(u_{2}v_{2})+c(u_{3}v_{3}) \\ & =(cu_{1})v_{1}+(cu_{2})v_{2}+(cu_{3})v_{3} \\ & =\langle cu_{1},cu_{2},cu_{3}\rangle \cdot \langle v_{1},v_{2},v_{3}\rangle \\ & =c\langle u_{1},u_{2},u_{3}\rangle \cdot \langle v_{1},v_{2},v_{3}\rangle \\ & =(c\kvecu)\cdot \kvecv.\end{array}$$
+<p>The proof that $c(\kvecu\cdot \kvecv)=\kvecu\cdot (c\kvecv)$ is similar.</p>
+<p>The fourth property shows the relationship between the <span data-concept="magnitude-of-a-vector">magnitude</span> of a <span data-concept="vector">vector</span> and its <span data-concept="dot-product">dot product</span> with itself:</p>
+$$\begin{array}{rl}\kvecv\cdot \kvecv & =\langle v_{1},v_{2},v_{3}\rangle \cdot \langle v_{1},v_{2},v_{3}\rangle \\ & ={(v_{1})}^{2}+{(v_{2})}^{2}+{(v_{3})}^{2} \\ & ={[\sqrt{{(v_{1})}^{2}+{(v_{2})}^{2}+{(v_{3})}^{2}}]}^{2} \\ & ={\| \kvecv\|}^{2}.\end{array}$$
+<p>□</p>
+<p>Note that the definition of the <span data-concept="dot-product">dot product</span> yields $\kveczero\cdot \kvecv=0.$ By property iv., if $\kvecv\cdot \kvecv=0,$ then $\kvecv=\kveczero.$</p>
+<div class="example" id="fs-id1163723089891">
+<h3>Example 12.22 · Using Properties of the Dot Product</h3>
+<p>Let $\kveca=\langle 1,2,-3\rangle ,$ $\kvecb=\langle 0,2,4\rangle ,$ and $\kvecc=\langle 5,-1,3\rangle .$ Find each of the following products.</p>
+<p>a. $(\kveca\cdot \kvecb)\kvecc $</p>
+<p>b. $\kveca\cdot (2\kvecc)$</p>
+<p>c. ${\| \kvecb\|}^{2}$</p>
+<h4>Solution</h4>
+<p>a. Note that this expression asks for the scalar multiple of $\kvecc$ by $\kveca\cdot \kvecb\text{:}$</p>
+$$\begin{array}{rl}(\kveca\cdot \kvecb)\kvecc & =(\langle 1,2,-3\rangle \cdot \langle 0,2,4\rangle )\langle 5,-1,3\rangle \\ & =(1(0)+2(2)+(-3)(4))\langle 5,-1,3\rangle \\ & =-8\langle 5,-1,3\rangle \\ & =\langle -40,8,-24\rangle .\end{array}$$
+<p>b. This expression is a <span data-concept="dot-product">dot product</span> of <span data-concept="vector">vector</span> $\kveca$ and scalar multiple 2$\kvecc$:</p>
+$$\begin{array}{rl}\kveca\cdot (2\kvecc) & =2(\kveca\cdot \kvecc) \\ & =2(\langle 1,2,-3\rangle \cdot \langle 5,-1,3\rangle ) \\ & =2(1(5)+2(-1)+(-3)(3)) \\ & =2(-6)=-12.\end{array}$$
+<p>c. Simplifying this expression is a straightforward application of the <span data-concept="dot-product">dot product</span>:</p>
+$${\| \kvecb\|}^{2}=\kvecb\cdot \kvecb=\langle 0,2,4\rangle \cdot \langle 0,2,4\rangle =0^{2}+2^{2}+4^{2}=0+4+16=20.$$
+</div>
+<div class="exercises" data-place="fs-id1163723089891"></div>
+</section>
+
+<section id="angle">
+<h2>Using the Dot Product to Find the Angle between Two Vectors</h2>
+<p class="cite-target" id="angle-term">When two nonzero <span data-concept="vector">vectors</span> are placed in <span data-concept="standard-position-vector">standard position</span>, whether in two dimensions or three dimensions, they form an angle between them (Figure 12.44). The <span data-concept="dot-product">dot product</span> provides a way to find the measure of this angle. This property is a result of the fact that we can express the <span data-concept="dot-product">dot product</span> in terms of the cosine of the angle formed by two <span data-concept="vector">vectors</span>.</p>
+<figure class="sim" id="sim-dot-angle" data-figure="12.44 + 12.45 + 12.46" data-original="/media/ch12/CNX_Calc_Figure_12_03_001.jpg,/media/ch12/CNX_Calc_Figure_12_03_002.jpg,/media/ch12/CNX_Calc_Figure_12_03_009.jpg" data-original-caption="(Figure 12.44) Let θ be the angle between two nonzero vectors u and v such that 0≤ θ ≤ π . (Figure 12.45) The lengths of the sides of the triangle are given by the magnitudes of the vectors that form the triangle. (Figure 12.46) (a) An acute angle has 0&lt;cos θ &lt;1. (b) An obtuse angle has −1&lt;cos θ &lt;0. (c) A straight line has cos θ =−1. (d) If the vectors have the same direction, cos θ =1. (e) If the vectors are orthogonal (perpendicular), cos θ =0.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.44 + 12.45 + 12.46</span><span>Let $\ktheta$ be the angle between two nonzero <span data-concept="vector">vectors</span> $\kvecu$ and $\kvecv$ such that $0\le\ktheta\le\pi;$ with $\kvecv-\kvecu$ they form the triangle of the proof, whose sides are $\|\kvecu\|,$ $\|\kvecv\|$ and $\|\kvecv-\kvecu\|.$ Turn either <span data-concept="vector">vector</span>: the angle is acute where $0\lt\cos\ktheta\lt 1,$ obtuse where $-1\lt\cos\ktheta\lt 0,$ and at the dashed circles on the second slider the <span data-concept="vector">vectors</span> point the same way $(\cos\ktheta=1),$ are orthogonal $(\cos\ktheta=0)$ or form a straight line $(\cos\ktheta=-1).$</span></div>
+</figure>
+<div class="note" id="fs-id1163724054264">
+<div class="eyebrow">Theorem</div>
+<h3>Evaluating a Dot Product</h3>
+<p>The <span data-concept="dot-product">dot product</span> of two <span data-concept="vector">vectors</span> is the product of the <span data-concept="magnitude-of-a-vector">magnitude</span> of each <span data-concept="vector">vector</span> and the cosine of the angle between them:</p>
+<div class="equation" id="fs-id1163724054275">$$\kvecu\cdot \kvecv=\| \kvecu\| \| \kvecv\| \cos \ktheta .\tag{12.4}$$</div>
+</div>
+<h3>Proof</h3>
+<p>Place <span data-concept="vector">vectors</span> $\kvecu $ and $\kvecv $ in <span data-concept="standard-position-vector">standard position</span> and consider the <span data-concept="vector">vector</span> $\kvecv-\kvecu $ (Figure 12.45). These three <span data-concept="vector">vectors</span> form a triangle with side lengths $\| \kvecu\| ,\| \kvecv\| ,\;\text{and}\;\| \kvecv-\kvecu\| .$</p>
+<p>Recall from trigonometry that the law of cosines describes the relationship among the side lengths of the triangle and the angle <em>θ</em>. Applying the law of cosines here gives</p>
+$${\| \kvecv-\kvecu\|}^{2}={\| \kvecu\|}^{2}+{\| \kvecv\|}^{2}-2\| \kvecu\| \| \kvecv\| \cos \ktheta .$$
+<p>The <span data-concept="dot-product">dot product</span> provides a way to rewrite the left side of this equation:</p>
+$$\begin{array}{rl}{\| \kvecv-\kvecu\|}^{2} & =(\kvecv-\kvecu)\cdot (\kvecv-\kvecu) \\ & =(\kvecv-\kvecu)\cdot \kvecv-(\kvecv-\kvecu)\cdot \kvecu \\ & =\kvecv\cdot \kvecv-\kvecu\cdot \kvecv-\kvecv\cdot \kvecu+\kvecu\cdot \kvecu \\ & =\kvecv\cdot \kvecv-\kvecu\cdot \kvecv-\kvecu\cdot \kvecv+\kvecu\cdot \kvecu \\ & ={\| \kvecv\|}^{2}-2\kvecu\cdot \kvecv+{\| \kvecu\|}^{2}.\end{array}$$
+<p>Substituting into the law of cosines yields</p>
+$$\begin{array}{rll}{\| \kvecv-\kvecu\|}^{2} & = & {\| \kvecu\|}^{2}+{\| \kvecv\|}^{2}-2\| \kvecu\| \| \kvecv\| \cos \ktheta \\ {\| \kvecv\|}^{2}-2\kvecu\cdot \kvecv+{\| \kvecu\|}^{2} & = & {\| \kvecu\|}^{2}+{\| \kvecv\|}^{2}-2\| \kvecu\| \| \kvecv\| \cos \ktheta \\ -2\kvecu\cdot \kvecv & = & -2\| \kvecu\| \| \kvecv\| \cos \ktheta \\ \kvecu\cdot \kvecv & = & \| \kvecu\| \| \kvecv\| \cos \ktheta .\end{array}$$
+<p>□</p>
+<p>We can use this form of the <span data-concept="dot-product">dot product</span> to find the measure of the angle between two nonzero <span data-concept="vector">vectors</span>. The following equation rearranges <a href="#fs-id1163723335787">Equation 12.3</a><sup class="fn" data-note="c-rearranges"></sup> to solve for the cosine of the angle:</p>
+<div class="equation" id="fs-id1163723122506">$$\cos \ktheta =\frac{\kvecu\cdot \kvecv}{\| \kvecu\| \| \kvecv\|}.\tag{12.5}$$</div>
+<p>Using this equation, we can find the cosine of the angle between two nonzero <span data-concept="vector">vectors</span>. Since we are considering the smallest angle between the <span data-concept="vector">vectors</span>, we assume $0^{\circ}\le \ktheta \le 180^{\circ}$ (or $0\le \ktheta \le \pi$ if we are working in radians). The inverse cosine is unique over this range, so we are then able to determine the measure of the angle $\ktheta .$</p>
+<div class="example" id="fs-id1163724080388">
+<h3>Example 12.23 · Finding the Angle between Two Vectors</h3>
+<p>Find the measure of the angle between each pair of <span data-concept="vector">vectors</span>.</p>
+<p>a. $\kveci$ + $\kvecj$ + $\kveck$ and 2$\kveci$ – $\kvecj$ – 3$\kveck$</p>
+<p>b. $\langle 2,5,6\rangle$ and $\langle -2,-4,4\rangle$</p>
+<h4>Solution</h4>
+<p>a. To find the cosine of the angle formed by the two <span data-concept="vector">vectors</span>, substitute the components of the <span data-concept="vector">vectors</span> into <a href="#fs-id1163723122506">Equation 12.5</a>:</p>
+$$\begin{array}{rl}\cos \ktheta & =\frac{(\kveci+\kvecj+\kveck)\cdot (2\kveci-\kvecj-3\kveck)}{\| \kveci+\kvecj+\kveck\| \cdot \| 2\kveci-\kvecj-3\kveck\|} \\ & =\frac{1(2)+(1)(-1)+(1)(-3)}{\sqrt{1^{2}+1^{2}+1^{2}}\;\sqrt{2^{2}+{(-1)}^{2}+{(-3)}^{2}}} \\ & =\frac{-2}{\sqrt{3}\;\sqrt{14}}=\frac{-2}{\sqrt{42}}.\end{array}$$
+<p>Therefore, $\ktheta =\operatorname{arccos}\;\frac{-2}{\sqrt{42}}$.</p>
+<p>b. Start by finding the value of the cosine of the angle between the <span data-concept="vector">vectors</span>:</p>
+$$\begin{array}{rl}\cos \ktheta & =\frac{\langle 2,5,6\rangle \cdot \langle -2,-4,4\rangle}{\| \langle 2,5,6\rangle \| \cdot \| \langle -2,-4,4\rangle \|} \\ & =\frac{2(-2)+(5)(-4)+(6)(4)}{\sqrt{2^{2}+5^{2}+6^{2}}\;\sqrt{{(-2)}^{2}+{(-4)}^{2}+4^{2}}} \\ & =\frac{0}{\sqrt{65}\;\sqrt{36}}=0.\end{array}$$
+<p>Now, $\cos \ktheta =0$ and $0\le \ktheta \le \pi ,$ so $\ktheta =\pi /2.$</p>
+</div>
+<div class="exercises" data-place="fs-id1163724080388"></div>
+<p>The angle between two <span data-concept="vector">vectors</span> can be acute $(0\lt \cos \ktheta \lt 1),$ obtuse $(-1\lt \cos \ktheta \lt 0),$ or straight $(\cos \ktheta =-1).$ If $\cos \ktheta =1,$ then both <span data-concept="vector">vectors</span> have the same direction. If $\cos \ktheta =0,$ then the <span data-concept="vector">vectors</span>, when placed in <span data-concept="standard-position-vector">standard position</span>, form a right angle (Figure 12.46). We can formalize this result into a theorem regarding orthogonal (perpendicular) <span data-concept="vector">vectors</span>.</p>
+<div class="note" id="fs-id1163724069465">
+<div class="eyebrow">Theorem</div>
+<h3>Orthogonal Vectors</h3>
+<p>The nonzero <span data-concept="vector">vectors</span> $\kvecu $ and $\kvecv $ are <strong><span data-concept="orthogonal-vectors">orthogonal vectors</span></strong> if and only if $\kvecu\cdot \kvecv=0.$</p>
+</div>
+<h3>Proof</h3>
+<p>Let $\kvecu $ and $\kvecv $ be nonzero <span data-concept="vector">vectors</span>, and let $\ktheta$ denote the angle between them. First, assume $\kvecu\cdot \kvecv=0.$ Then</p>
+$$\| \kvecu\| \| \kvecv\| \cos \ktheta =0.$$
+<p>However, $\| \kvecu\| \ne 0$ and $\| \kvecv\| \ne 0,$ so we must have $\cos \ktheta =0.$ Hence, $\ktheta =90^{\circ},$ and the <span data-concept="vector">vectors</span> are orthogonal.</p>
+<p>Now assume $\kvecu $ and $\kvecv $ are orthogonal. Then $\ktheta =90^{\circ}$ and we have</p>
+$$\kvecu\cdot \kvecv=\| \kvecu\| \| \kvecv\| \cos \ktheta =\| \kvecu\| \| \kvecv\| \cos 90^{\circ}=\| \kvecu\| \| \kvecv\| (0)=0.$$
+<p>□</p>
+<p id="orthogonal-words">The terms <em>orthogonal</em>, <em>perpendicular</em>, and <em>normal</em> each indicate that mathematical objects are intersecting at right angles. The use of each term is determined mainly by its context. We say that <span data-concept="vector">vectors</span> are orthogonal and lines are perpendicular. The term <em>normal</em> is used most often when measuring the angle made with a plane or other surface.</p>
+<div class="example" id="fs-id1163724056700">
+<h3>Example 12.24 · Identifying Orthogonal Vectors</h3>
+<p>Determine whether $\kvecp=\langle 1,0,5\rangle$ and $\kvecq=\langle 10,3,-2\rangle$ are <span data-concept="orthogonal-vectors">orthogonal vectors</span>.</p>
+<h4>Solution</h4>
+<p>Using the definition, we need only check the <span data-concept="dot-product">dot product</span> of the <span data-concept="vector">vectors</span>:</p>
+$$\kvecp\cdot \kvecq=1(10)+(0)(3)+(5)(-2)=10+0-10=0.$$
+<p>Because $\kvecp\cdot \kvecq=0,$ the <span data-concept="vector">vectors</span> are orthogonal (Figure 12.47).</p>
+<figure class="sim" id="sim-orthogonal-pq" data-figure="12.47" data-original="/media/ch12/CNX_Calc_Figure_12_03_003.jpg" data-original-caption="Vectors p and q form a right angle when their initial points are aligned.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.47</span><span><span data-concept="vector">Vectors</span> $\kvecp$ and $\kvecq$ form a right angle when their <span data-concept="initial-point">initial points</span> are aligned. Turn the scene: the corner marked between them looks square only from views across their plane.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1163724056700"></div>
+<div class="example" id="fs-id1163723093504">
+<h3>Example 12.25 · Measuring the Angle Formed by Two Vectors</h3>
+<p>Let $\kvecv=\langle 2,3,3\rangle .$ Find the measures of the angles formed by the following <span data-concept="vector">vectors</span>.</p>
+<p>a. $\kvecv $ and $\kveci$</p>
+<p>b. $\kvecv $ and $\kvecj$</p>
+<p>c. $\kvecv $ and $\kveck$</p>
+<h4>Solution</h4>
+<p>a. Let <em>α</em> be the angle formed by $\kvecv $ and <strong>i:</strong></p>
+$$\begin{array}{rl}\cos \alpha & =\frac{\kvecv\cdot \kveci}{\| \kvecv\| \cdot \| \kveci\|} \\ & =\frac{\langle 2,3,3\rangle \cdot \langle 1,0,0\rangle}{\sqrt{2^{2}+3^{2}+3^{2}}\;\sqrt{1}} \\ & =\frac{2}{\sqrt{22}}.\end{array}$$
+$$\alpha =\operatorname{arccos}\;\frac{2}{\sqrt{22}}\approx 1.130\;\text{rad}.$$
+<p>b. Let <em>β</em> represent the angle formed by $\kvecv $ and $\kvecj$:</p>
+$$\begin{array}{rl}\cos β & =\frac{\kvecv\cdot \kvecj}{\| \kvecv\| \cdot \| \kvecj\|} \\ & =\frac{\langle 2,3,3\rangle \cdot \langle 0,1,0\rangle}{\sqrt{2^{2}+3^{2}+3^{2}}\;\sqrt{1}} \\ & =\frac{3}{\sqrt{22}}.\end{array}$$
+$$β=\operatorname{arccos}\;\frac{3}{\sqrt{22}}\approx 0.877\;\text{rad.}$$
+<p>c. Let <em>γ</em> represent the angle formed by $\kvecv $ and $\kveck$:</p>
+$$\begin{array}{rl}\cos γ & =\frac{\kvecv\cdot \kveck}{\| \kvecv\| \cdot \| \kveck\|} \\ & =\frac{\langle 2,3,3\rangle \cdot \langle 0,0,1\rangle}{\sqrt{2^{2}+3^{2}+3^{2}}\;\sqrt{1}} \\ & =\frac{3}{\sqrt{22}}.\end{array}$$
+$$γ=\operatorname{arccos}\;\frac{3}{\sqrt{22}}\approx 0.877\;\text{rad.}$$
+</div>
+<div class="exercises" data-place="fs-id1163723093504"></div>
+<p>The angle a <span data-concept="vector">vector</span> makes with each of the coordinate axes, called a <span data-concept="direction-angles">direction angle</span>, is very important in practical computations, especially in a field such as engineering. For example, in astronautical engineering, the angle at which a rocket is launched must be determined very precisely. A very small error in the angle can lead to the rocket going hundreds of miles off course. <span data-concept="direction-angles">Direction angles</span> are often calculated by using the <span data-concept="dot-product">dot product</span> and the cosines of the angles, called the <span data-concept="direction-cosines">direction cosines</span>. Therefore, we define both these angles and their cosines.</p>
+<div class="note" id="fs-id1163724049113">
+<div class="eyebrow">Definition</div>
+<p>The angles formed by a nonzero <span data-concept="vector">vector</span> and the coordinate axes are called the <strong><span data-concept="direction-angles">direction angles</span></strong> for the <span data-concept="vector">vector</span> (Figure 12.48). The cosines for these angles are called the <strong><span data-concept="direction-cosines">direction cosines</span></strong>.</p>
+</div>
+<figure class="sim" id="sim-direction-angles" data-figure="12.48" data-original="/media/ch12/CNX_Calc_Figure_12_03_004_new.jpg" data-original-caption="Angle α is formed by vector v and unit vector i. Angle β is formed by vector v and unit vector j. Angle γ is formed by vector v and unit vector k.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.48</span><span>Angle $\alpha$ is formed by <span data-concept="vector">vector</span> $\kvecv$ and <span data-concept="unit-vector">unit vector</span> $\kveci.$ Angle $\beta$ is formed by $\kvecv$ and $\kvecj.$ Angle $\gamma$ is formed by $\kvecv$ and $\kveck.$ Slide the <span data-concept="component-form-of-a-vector">components</span> of $\kvecv;$ the default is Example 12.25’s $\langle 2,3,3\rangle.$</span></div>
+</figure>
+<p>In <a href="#fs-id1163723093504">Example 12.25</a>, the <span data-concept="direction-cosines">direction cosines</span> of $\kvecv=\langle 2,3,3\rangle$ are $\cos \alpha =\frac{2}{\sqrt{22}},$ $\cos β=\frac{3}{\sqrt{22}},$ and $\cos γ=\frac{3}{\sqrt{22}}.$ The <span data-concept="direction-angles">direction angles</span> of $\kvecv $ are $\alpha =1.130\;\text{rad},$ $β=0.877\;\text{rad},$ and $γ=0.877\;\text{rad}.$</p>
+<p>So far, we have focused mainly on <span data-concept="vector">vectors</span> related to force, movement, and position in three-dimensional physical space. However, <span data-concept="vector">vectors</span> are often used in more abstract ways. For example, suppose a fruit vendor sells apples, bananas, and oranges. On a given day, he sells 30 apples, 12 bananas, and 18 oranges. He might use a quantity <span data-concept="vector">vector</span>, $\kvecq=\langle 30,12,18\rangle ,$ to represent the quantity of fruit he sold that day. Similarly, he might want to use a price <span data-concept="vector">vector</span>, $\kvecp=\langle 0.50,0.25,1\rangle ,$ to indicate that he sells his apples for 50¢ each, bananas for 25¢ each, and oranges for &#36;1 apiece. In this example, although we could still graph these <span data-concept="vector">vectors</span>, we do not interpret them as literal representations of position in the physical world. We are simply using <span data-concept="vector">vectors</span> to keep track of particular pieces of information about apples, bananas, and oranges.</p>
+<p>This idea might seem a little strange, but if we simply regard <span data-concept="vector">vectors</span> as a way to order and store data, we find they can be quite a powerful tool. Going back to the fruit vendor, let’s think about the <span data-concept="dot-product">dot product</span>, $\kvecq\cdot \kvecp.$ We compute it by multiplying the number of apples sold (30) by the price per apple (50¢), the number of bananas sold by the price per banana, and the number of oranges sold by the price per orange. We then add all these values together. So, in this example, the <span data-concept="dot-product">dot product</span> tells us how much money the fruit vendor had in sales on that particular day.</p>
+<p>When we use <span data-concept="vector">vectors</span> in this more general way, there is no reason to limit the number of components to three. What if the fruit vendor decides to start selling grapefruit? In that case, he would want to use four-dimensional quantity and price <span data-concept="vector">vectors</span> to represent the number of apples, bananas, oranges, and grapefruit sold, and their unit prices. As you might expect, to calculate the <span data-concept="dot-product">dot product</span> of four-dimensional <span data-concept="vector">vectors</span>, we simply add the products of the components as before, but the sum has four terms instead of three.</p>
+<div class="example" id="fs-id1163724036556">
+<h3>Example 12.26 · Using Vectors in an Economic Context</h3>
+<p>AAA Party Supply Store sells invitations, party favors, decorations, and food service items such as paper plates and napkins. When AAA buys its inventory, it pays 25¢ per package for invitations and party favors. Decorations cost AAA 50¢ each, and food service items cost 20¢ per package. AAA sells invitations for &#36;2.50 per package and party favors for &#36;1.50 per package. Decorations sell for &#36;4.50 each and food service items for &#36;1.25 per package.</p>
+<p>During the month of May, AAA Party Supply Store sells 1258 invitations, 342 party favors, 2426 decorations, and 1354 food service items. Use <span data-concept="vector">vectors</span> and <span data-concept="dot-product">dot products</span> to calculate how much money AAA made in sales during the month of May. How much did the store make in profit?</p>
+<h4>Solution</h4>
+<p>The cost, price, and quantity <span data-concept="vector">vectors</span> are</p>
+$$\begin{array}{l}\kvecc=\langle 0.25,0.25,0.50,0.20\rangle \\ \kvecp=\langle 2.50,1.50,4.50,1.25\rangle \\ \kvecq=\langle 1258,342,2426,1354\rangle .\end{array}$$
+<p>AAA sales for the month of May can be calculated using the <span data-concept="dot-product">dot product</span> $\kvecp\cdot \kvecq.$ We have</p>
+$$\begin{array}{rl}\kvecp\cdot \kvecq & =\langle 2.50,1.50,4.50,1.25\rangle \cdot \langle 1258,342,2426,1354\rangle \\ & =3145+513+10917+1692.5 \\ & =16267.5.\end{array}$$
+<p>So, AAA took in &#36;16,267.50 during the month of May.</p>
+<p>To calculate the profit, we must first calculate how much AAA paid for the items sold. We use the <span data-concept="dot-product">dot product</span> $\kvecc\cdot \kvecq $ to get</p>
+$$\begin{array}{rl}\kvecc\cdot \kvecq & =\langle 0.25,0.25,0.50,0.20\rangle \cdot \langle 1258,342,2426,1354\rangle \\ & =314.5+85.5+1213+270.8 \\ & =1883.8.\end{array}$$
+<p>So, AAA paid &#36;1,883.80 for the items they sold. Their profit, then, is given by</p>
+$$\begin{array}{rl}\kvecp\cdot \kvecq-\kvecc\cdot \kvecq & =16267.5-1883.8 \\ & =14383.7.\end{array}$$
+<p>Therefore, AAA Party Supply Store made &#36;14,383.70 in May.</p>
+</div>
+<div class="exercises" data-place="fs-id1163724036556"></div>
+</section>
+
+<section id="projections">
+<h2>Projections</h2>
+<p class="cite-target">As we have seen, addition combines two <span data-concept="vector">vectors</span> to create a resultant <span data-concept="vector">vector</span>. But what if we are given a <span data-concept="vector">vector</span> and we need to find its component parts? We use <span data-concept="vector-projection">vector projections</span> to perform the opposite process; they can break down a <span data-concept="vector">vector</span> into its components. The <span data-concept="magnitude-of-a-vector">magnitude</span> of a <span data-concept="vector-projection">vector projection</span> is a <span data-concept="scalar-projection">scalar projection</span>. For example, if a child is pulling the handle of a wagon at a 55° angle, we can use projections to determine how much of the force on the handle is actually moving the wagon forward (Figure 12.49). We return to this example and learn how to solve it after we see how to calculate projections.</p>
+<figure class="sim" id="sim-wagon" data-figure="12.49 + 12.51" data-original="/media/ch12/CNX_Calc_Figure_12_03_005.jpg,/media/ch12/CNX_Calc_Figure_12_03_007.jpg" data-original-caption="(Figure 12.49) When a child pulls a wagon, only the horizontal component of the force propels the wagon forward. (Figure 12.51) The horizontal component of the force is the projection of F onto the positive x-axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.49 + 12.51</span><span>When a child pulls a wagon, only the horizontal component of the force propels the wagon forward; that component is the projection of $\kvecF$ onto the positive <em>x</em>-axis. Slide the pull, its angle and the distance: 8 lb at $55^{\circ}$ over 50 ft does about 229 ft·lb of work, and a pull straight up does none.</span></div>
+</figure>
+<div class="note" id="fs-id1163724097629">
+<div class="eyebrow">Definition</div>
+<p>The <strong><span data-concept="vector-projection">vector projection</span></strong> of $\kvecv $ onto $\kvecu $ is the <span data-concept="vector">vector</span> labeled $\text{proj}_{\kvecu}\kvecv$ in Figure 12.50. It has the same <span data-concept="initial-point">initial point</span> as $\kvecu $ and $\kvecv $ and the same direction as $\kvecu $, and represents the component of $\kvecv $ that acts in the direction of $\kvecu $. If $\ktheta$ represents the angle between $\kvecu $ and $\kvecv $, then, by properties of triangles, we know the length of ${\text{proj}}_{\kvecu}\kvecv $ is $\| {\text{proj}}_{\kvecu}\kvecv\| =\| \kvecv\| \cdot |\cos |\;\ktheta .$ Note that when the angle $\ktheta$ between $\kvecu $ and $\kvecv $ is an obtuse angle, the projection will be in the opposite direction of $\kvecu $.  When expressing $\cos \ktheta$ in terms of the <span data-concept="dot-product">dot product</span>, this becomes</p>
+$$\begin{array}{ll}\| {\text{proj}}_{\kvecu}\kvecv\| & =\| \kvecv\| \cdot |\cos |\;\ktheta \\ & =\| \kvecv\| (\frac{|\kvecu\cdot \kvecv |}{\| \kvecu\| \| \kvecv\|}) \\ & =\frac{|\kvecu\cdot \kvecv |}{\| \kvecu\|}.\end{array}$$
+<p>We now multiply by a <span data-concept="unit-vector">unit vector</span> in the direction of $\kvecu $ to get ${\text{proj}}_{\kvecu}\kvecv\text{:}$</p>
+<div class="equation" id="fs-id1163724077546">$${\text{proj}}_{\kvecu}\kvecv=\frac{\kvecu\cdot \kvecv}{\| \kvecu\|}(\frac{1}{\| \kvecu\|}\kvecu)=\frac{\kvecu\cdot \kvecv}{{\| \kvecu\|}^{2}}\kvecu.\tag{12.6}$$</div>
+<p>The length of this <span data-concept="vector">vector</span> is also known as the <strong><span data-concept="scalar-projection">scalar projection</span></strong> of $\kvecv $ onto $\kvecu $ and is denoted by</p>
+<div class="equation" id="fs-id1163723141410">$${\text{comp}}_{\kvecu}\kvecv=\frac{\kvecu\cdot \kvecv}{\| \kvecu\|}.\tag{12.7}$$</div>
+</div>
+<figure class="sim" id="sim-projection" data-figure="12.50" data-original="/media/ch12/CNX_Calc_Figure_12_03_006.jpg" data-original-caption="The projection of v onto u shows the component of vector v in the direction of u.">
+  <div class="sim-head"><span class="eyebrow">Figure 12.50</span><span>The projection of $\kvecv$ onto $\kvecu$ shows the component of <span data-concept="vector">vector</span> $\kvecv$ in the direction of $\kvecu.$ Drag the heads of $\kvecu$ and $\kvecv:$ $\kvecq=\kvecv-\text{proj}_{\kvecu}\kvecv$ meets $\kvecu$’s line at a right angle, and when the angle between them is obtuse the projection points the opposite way to $\kvecu.$ The defaults are the text’s $\kvecv=\langle 6,-4\rangle$ and $\kvecu=\langle 3,1\rangle.$</span></div>
+</figure>
+<div class="example" id="fs-id1163724035299">
+<h3>Example 12.27 · Finding Projections</h3>
+<p>Find the projection of $\kvecv $ onto <strong>u.</strong></p>
+<p>a. $\kvecv=\langle 3,5,1\rangle$ and $\kvecu=\langle -1,4,3\rangle$</p>
+<p>b. $\kvecv=3\kveci-2\kvecj $ and $\kvecu=\kveci+6\kvecj $</p>
+<h4>Solution</h4>
+<p>a. Substitute the components of $\kvecv $ and $\kvecu $ into the formula for the projection:</p>
+$$\begin{array}{rl}{\text{proj}}_{\kvecu}\kvecv & =\frac{\kvecu\cdot \kvecv}{{\| \kvecu\|}^{2}}\kvecu \\ & =\frac{\langle -1,4,3\rangle \cdot \langle 3,5,1\rangle}{{\| \langle -1,4,3\rangle \|}^{2}}\langle -1,4,3\rangle \\ & =\frac{-3+20+3}{{(-1)}^{2}+4^{2}+3^{2}}\langle -1,4,3\rangle \\ & =\frac{20}{26}\langle -1,4,3\rangle \\ & =\langle -\frac{10}{13},\frac{40}{13},\frac{30}{13}\rangle .\end{array}$$
+<p>b. To find the two-dimensional projection, simply adapt the formula to the two-dimensional case:</p>
+$$\begin{array}{rl}{\text{proj}}_{\kvecu}\kvecv & =\frac{\kvecu\cdot \kvecv}{{\| \kvecu\|}^{2}}\kvecu \\ & =\frac{(\kveci+6\kvecj)\cdot (3\kveci-2\kvecj)}{{\| \kveci+6\kvecj\|}^{2}}(\kveci+6\kvecj) \\ & =\frac{1(3)+6(-2)}{1^{2}+6^{2}}(\kveci+6\kvecj) \\ & =-\frac{9}{37}(\kveci+6\kvecj) \\ & =-\frac{9}{37}\kveci-\frac{54}{37}\kvecj.\end{array}$$
+</div>
+<p id="resolution">Sometimes it is useful to decompose <span data-concept="vector">vectors</span>—that is, to break a <span data-concept="vector">vector</span> apart into a sum. This process is called the <em>resolution of a <span data-concept="vector">vector</span> into components</em>. Projections allow us to identify two <span data-concept="orthogonal-vectors">orthogonal vectors</span> having a desired sum. For example, let $\kvecv=\langle 6,-4\rangle$ and let $\kvecu=\langle 3,1\rangle .$ We want to decompose the <span data-concept="vector">vector</span> $\kvecv $ into orthogonal components such that one of the component <span data-concept="vector">vectors</span> has the same direction as $\kvecu $.</p>
+<p>We first find the component that has the same direction as $\kvecu $ by projecting $\kvecv $ onto $\kvecu $. Let $\kvecp={\text{proj}}_{\kvecu}\kvecv.$ Then, we have</p>
+$$\begin{array}{rl}\kvecp & =\frac{\kvecu\cdot \kvecv}{{\| \kvecu\|}^{2}}\kvecu \\ & =\frac{18-4}{9+1}\kvecu \\ & =\frac{7}{5}\kvecu=\frac{7}{5}\langle 3,1\rangle =\langle \frac{21}{5},\frac{7}{5}\rangle .\end{array}$$
+<p>Now consider the <span data-concept="vector">vector</span> $\kvecq=\kvecv-\kvecp.$ We have</p>
+$$\begin{array}{rl}\kvecq & =\kvecv-\kvecp \\ & =\langle 6,-4\rangle -\langle \frac{21}{5},\frac{7}{5}\rangle \\ & =\langle \frac{9}{5},-\frac{27}{5}\rangle .\end{array}$$
+<p>Clearly, by the way we defined $\kvecq $, we have $\kvecv=\kvecq+\kvecp,$ and</p>
+$$\begin{array}{rl}\kvecq\cdot \kvecp & =\langle \frac{9}{5},-\frac{27}{5}\rangle \cdot \langle \frac{21}{5},\frac{7}{5}\rangle \\ & =\frac{9(21)}{25}+\frac{-27(7)}{25} \\ & =\frac{189}{25}-\frac{189}{25}=0.\end{array}$$
+<p>Therefore, $\kvecq $ and $\kvecp$ are orthogonal.</p>
+<div class="example" id="fs-id1163724138271">
+<h3>Example 12.28 · Resolving Vectors into Components</h3>
+<p>Express $\kvecv=\langle 8,-3,-3\rangle$ as a sum of <span data-concept="orthogonal-vectors">orthogonal vectors</span> such that one of the <span data-concept="vector">vectors</span> has the same direction as $\kvecu=\langle 2,3,2\rangle .$</p>
+<h4>Solution</h4>
+<p>Let $\kvecp$ represent the projection of $\kvecv $ onto $\kvecu $:</p>
+$$\begin{array}{rl}\kvecp & ={\text{proj}}_{\kvecu}\kvecv \\ & =\frac{\kvecu\cdot \kvecv}{{\| \kvecu\|}^{2}}\kvecu \\ & =\frac{\langle 2,3,2\rangle \cdot \langle 8,-3,-3\rangle}{{\| \langle 2,3,2\rangle \|}^{2}}\langle 2,3,2\rangle \\ & =\frac{16-9-6}{2^{2}+3^{2}+2^{2}}\langle 2,3,2\rangle \\ & =\frac{1}{17}\langle 2,3,2\rangle \\ & =\langle \frac{2}{17},\frac{3}{17},\frac{2}{17}\rangle .\end{array}$$
+<p>Then,</p>
+$$\kvecq=\kvecv-\kvecp=\langle 8,-3,-3\rangle -\langle \frac{2}{17},\frac{3}{17},\frac{2}{17}\rangle =\langle \frac{134}{17},-\frac{54}{17},-\frac{53}{17}\rangle .$$
+<p>To check our work, we can use the <span data-concept="dot-product">dot product</span> to verify that $\kvecp$ and $\kvecq $ are <span data-concept="orthogonal-vectors">orthogonal vectors</span>:</p>
+$$\kvecp\cdot \kvecq=\langle \frac{2}{17},\frac{3}{17},\frac{2}{17}\rangle \cdot \langle \frac{134}{17},-\frac{54}{17},-\frac{53}{17}\rangle =\frac{268}{289}-\frac{162}{289}-\frac{106}{289}=0.$$
+<p>Then,</p>
+$$\kvecv=\kvecp+\kvecq=\langle \frac{2}{17},\frac{3}{17},\frac{2}{17}\rangle +\langle \frac{134}{17},-\frac{54}{17},-\frac{53}{17}\rangle .$$
+</div>
+<div class="exercises" data-place="fs-id1163724138271"></div>
+<div class="example" id="fs-id1163724164466">
+<h3>Example 12.29 · Scalar Projection of Velocity</h3>
+<p>A container ship leaves port traveling $15^{\circ}$ north of east. Its engine generates a speed of 20 knots along that path (see the following figure). In addition, the ocean current moves the ship northeast at a speed of 2 knots. Considering both the engine and the current, how fast is the ship moving in the direction $15^{\circ}$ north of east? Round the answer to two decimal places.</p>
+<img src="/media/ch12/CNX_Calc_Figure_12_03_010.jpg" alt="This figure is an image of a ship. The ship is at the origin of two perpendicular axes. The horizontal axis is labeled “east.” The second axis is vertical and labeled “north.” From the ship there are two vectors. The first is labeled “v” and has an angle of 15 degrees between the East axis and the vector v. The second vector is labeled “w” and has an angle of 45 degrees between the East axis and the vector w.">
+<h4>Solution</h4>
+<p>Let $\kvecv $ be the velocity <span data-concept="vector">vector</span> generated by the engine, and let $\kvecw $ be the velocity <span data-concept="vector">vector</span> of the current. We already know $\| \kvecv\| =20$ along the desired route. We just need to add in the <span data-concept="scalar-projection">scalar projection</span> of $\kvecw $ onto $\kvecv $. We get</p>
+$$\begin{array}{rl}{\text{comp}}_{\kvecv}\kvecw & =\frac{\kvecv\cdot \kvecw}{\| \kvecv\|} \\ & =\frac{\| \kvecv\| \| \kvecw\| \cos (30^{\circ})}{\| \kvecv\|} \\ & =\| \kvecw\| \cos (30^{\circ}) \\ & =2\frac{\sqrt{3}}{2}=\sqrt{3}\approx 1.73\;\text{knots}.\end{array}$$
+<p>The ship is moving at 21.73 knots in the direction $15^{\circ}$ north of east.</p>
+</div>
+<div class="exercises" data-place="fs-id1163724164466"></div>
+</section>
+
+<section id="work">
+<h2>Work</h2>
+<p class="cite-target">Now that we understand <span data-concept="dot-product">dot products</span>, we can see how to apply them to real-life situations. The most common application of the <span data-concept="dot-product">dot product</span> of two <span data-concept="vector">vectors</span> is in the calculation of work.</p>
+<p>From physics, we know that work is done when an object is moved by a force. When the force is constant and applied in the same direction the object moves, then we define the work done as the product of the force and the distance the object travels: $W=Fd.$ We saw several examples of this type in earlier chapters. Now imagine the direction of the force is different from the direction of motion, as with the example of a child pulling a wagon. To find the work done, we need to multiply the component of the force that acts in the direction of the motion by the <span data-concept="magnitude-of-a-vector">magnitude</span> of the displacement. The <span data-concept="dot-product">dot product</span> allows us to do just that. If we represent an applied force by a <span data-concept="vector">vector</span> $\kvecF$ and the displacement of an object by a <span data-concept="vector">vector</span> $\kvecs$, then the <strong><span data-concept="work-done-by-a-constant-force">work done by the force</span></strong> is the <span data-concept="dot-product">dot product</span> of $\kvecF$ and $\kvecs$.</p>
+<div class="note" id="fs-id1163724120295">
+<div class="eyebrow">Definition</div>
+<p>When a constant force is applied to an object so the object moves in a straight line from point <em>P</em> to point <em>Q</em>, the work <em>W</em> done by the force $\kvecF$, acting at an angle <em>θ</em> from the line of motion, is given by</p>
+<div class="equation" id="fs-id1163724120330">$$W=\kvecF\cdot \kPQ =\| \kvecF\| \| \kPQ \| \cos \ktheta .\tag{12.8}$$</div>
+</div>
+<p>Let’s revisit the problem of the child’s wagon introduced earlier. Suppose a child is pulling a wagon with a force having a <span data-concept="magnitude-of-a-vector">magnitude</span> of 8 lb on the handle at an angle of 55°. If the child pulls the wagon 50 ft, find the <span data-concept="work-done-by-a-constant-force">work done by the force</span> (Figure 12.51).</p>
+<p>We have</p>
+$$W=\| \kvecF\| \| \kPQ \| \cos \ktheta =8(50)(\cos (55^{\circ}))\approx 229\;\text{ft}\cdot \text{lb}.$$
+<p>In U.S. standard units, we measure the <span data-concept="magnitude-of-a-vector">magnitude</span> of force $\| \kvecF\|$ in pounds. The <span data-concept="magnitude-of-a-vector">magnitude</span> of the displacement <span data-concept="vector">vector</span> $\| \kPQ \|$ tells us how far the object moved, and it is measured in feet. The customary unit of measure for work, then, is the foot-pound. One foot-pound is the amount of work required to move an object weighing 1 lb a distance of 1 ft straight up. In the metric system, the unit of measure for force is the newton (N), and the unit of measure of <span data-concept="magnitude-of-a-vector">magnitude</span> for work is a newton-meter (N·m), or a joule (J).</p>
+<div class="example" id="fs-id1163723110347">
+<h3>Example 12.30 · Calculating Work</h3>
+<p>A conveyor belt generates a force $\kvecF=5\kveci-3\kvecj+\kveck $ that moves a suitcase from point $(1,1,1)$ to point $(9,4,7)$ along a straight line. Find the work done by the conveyor belt. The distance is measured in meters and the force is measured in newtons.</p>
+<h4>Solution</h4>
+<p>The displacement <span data-concept="vector">vector</span> $\kPQ $ has <span data-concept="initial-point">initial point</span> $(1,1,1)$ and <span data-concept="terminal-point">terminal point</span> $(9,4,7)\text{:}$</p>
+$$\kPQ =\langle 9-1,4-1,7-1\rangle =\langle 8,3,6\rangle =8\kveci+3\kvecj+6\kveck.$$
+<p>Work is the <span data-concept="dot-product">dot product</span> of force and displacement:</p>
+$$\begin{array}{rl}W & =\kvecF\cdot \kPQ  \\ & =(5\kveci-3\kvecj+\kveck)\cdot (8\kveci+3\kvecj+6\kveck) \\ & =5(8)+(-3)(3)+1(6) \\ & =37\text{N}\cdot \text{m} \\ & =37\;\text{J}.\end{array}$$
+</div>
+<figure class="sim" id="fig-handcart" data-figure="12.52" data-original="/media/ch12/CNX_Calc_Figure_12_03_008.jpg" data-original-caption="">
+  <div class="sim-head"><span class="eyebrow">Figure 12.52</span><span></span></div>
+</figure>
+<div class="exercises" data-place="fs-id1163723110347"></div>
+</section>

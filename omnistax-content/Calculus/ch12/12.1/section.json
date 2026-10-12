@@ -1,0 +1,1650 @@
+{
+ "id": "12.1",
+ "module": "m53900",
+ "chapter": "12",
+ "title": "Vectors in the Plane",
+ "short": "Vectors in the Plane",
+ "lead": "A <span data-concept=\"vector\">vector</span> is a quantity with both <span data-concept=\"magnitude-of-a-vector\">magnitude</span> and direction, drawn as an arrow. This section combines vectors by <span data-concept=\"scalar-multiplication\">scalar multiplication</span>, addition and subtraction, writes them in <span data-concept=\"component-form-of-a-vector\">component form</span> and through <span data-concept=\"unit-vector\">unit vectors</span>, and uses them to find resultant forces and velocities.",
+ "objectives": [
+  "Describe a plane vector, using correct notation.",
+  "Perform basic vector operations (scalar multiplication, addition, subtraction).",
+  "Express a vector in component form.",
+  "Explain the formula for the magnitude of a vector.",
+  "Express a vector in terms of unit vectors.",
+  "Give two examples of vector quantities."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"vector\">Vectors</span> are used to represent quantities that have both <span data-concept=\"magnitude-of-a-vector\">magnitude</span> and direction.</li><li>We can add <span data-concept=\"vector\">vectors</span> by using the <span data-concept=\"parallelogram-method\">parallelogram method</span> or the <span data-concept=\"triangle-method\">triangle method</span> to find the sum. We can multiply a <span data-concept=\"vector\">vector</span> by a <span data-concept=\"scalar\">scalar</span> to change its length or give it the opposite direction.</li><li>Subtraction of <span data-concept=\"vector\">vectors</span> is defined in terms of adding the negative of the <span data-concept=\"vector\">vector</span>.</li><li>A <span data-concept=\"vector\">vector</span> is written in <span data-concept=\"component-form-of-a-vector\">component form</span> as $\\kvecv=\\langle x,y\\rangle .$</li><li>The <span data-concept=\"magnitude-of-a-vector\">magnitude</span> of a <span data-concept=\"vector\">vector</span> is a <span data-concept=\"scalar\">scalar</span>: $\\| \\kvecv\\| =\\sqrt{x^{2}+y^{2}}.$</li><li>A <span data-concept=\"unit-vector\">unit vector</span> $\\kvecu $ has <span data-concept=\"magnitude-of-a-vector\">magnitude</span> $1$ and can be found by dividing a <span data-concept=\"vector\">vector</span> by its <span data-concept=\"magnitude-of-a-vector\">magnitude</span>: $\\kvecu=\\frac{1}{\\| \\kvecv\\|}\\kvecv.$ The <span data-concept=\"standard-unit-vectors\">standard unit vectors</span> are $\\kveci=\\langle 1,0\\rangle \\;\\text{and}\\;\\kvecj=\\langle 0,1\\rangle .$ A <span data-concept=\"vector\">vector</span> $\\kvecv=\\langle x,y\\rangle$ can be expressed in terms of the <span data-concept=\"standard-unit-vectors\">standard unit vectors</span> as $\\kvecv=x\\kveci+y\\kvecj.$</li><li><span data-concept=\"vector\">Vectors</span> are often used in physics and engineering to represent forces and velocities, among other quantities.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the solutions marked as suggestions. The 30 even-numbered section exercises have no answer in the book’s key. Exercise 24 (show two vectors are opposite) is kept with an AI-written solution; the other 29 are computational and are left out: 2–10 even (vectors from P, Q, R), 12 and 14 (unit vector, terminal point), 16 (sum and difference), 18 (a magnitude), 20 (a scalar λ), 22 (the vector a(x)), 26 and 28 (a vector of given length), 30–34 even (components from an angle), 36 (an angle), 38 (scalars α and β), 40 (a tangent’s unit vector), 42 (equivalent vectors), 44 (a component form) and 46–60 even (applications). Exercise 41 (odd, unkeyed) is kept with an AI-written solution, and the key’s “Answers may vary” for 21, 23 and 37 is replaced by an AI-written solution (21 keeps the key’s part a). Checkpoint 12.6 has no answer in the book and carries an AI-written proof. Review exercise 445 from the end of the chapter is held here.",
+ "figures": [
+  {
+   "id": "fig-vector",
+   "kind": "figure",
+   "number": "12.2",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_001.jpg"
+   ],
+   "original_caption": "(a) A vector is represented by a directed line segment from its initial point to its terminal point. (b) Vectors v₁ through v₅ are equivalent.",
+   "draws": [
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-pq",
+   "kind": "figure",
+   "number": "12.3",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_002.jpg"
+   ],
+   "original_caption": "The vector with initial point (1,1) and terminal point (8,5) is named PQ⃗.",
+   "draws": [
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-scalar-multiple",
+   "kind": "sim",
+   "number": "12.4",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_004.jpg"
+   ],
+   "original_caption": "(a) The original vector v has length n units. (b) The length of 2v equals 2n units. (c) The length of v/2 is n/2 units. (d) The vectors v and −v have the same length but opposite directions.",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-vector-sum",
+   "kind": "sim",
+   "number": "12.5",
+   "folds": [
+    "12.6"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_005.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_01_006.jpg"
+   ],
+   "original_caption": "(Figure 12.5) (a) When adding vectors by the triangle method, the initial point of w is the terminal point of v. (b) When adding vectors by the parallelogram method, the vectors v and w have the same initial point. (Figure 12.6) (a) The vector difference v−w is depicted by drawing a vector from the terminal point of w to the terminal point of v. (b) The vector v−w is equivalent to the vector v+(−w).",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-combining",
+   "kind": "figure",
+   "number": "12.7",
+   "folds": [
+    "12.8",
+    "12.9"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_025.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_01_008.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_01_009.jpg"
+   ],
+   "original_caption": "(Figure 12.7) Vectors v and w lie in the same plane. (Figure 12.8) To find v+w, align the vectors at their initial points or place the initial point of one vector at the terminal point of the other. (a) The vector v+w is the diagonal of the parallelogram with sides v and w (b) The vector v+w is the third side of a triangle formed with w placed at the terminal point of v. (Figure 12.9) To find 2v−w, simply add 2v+(−w).",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-not-equivalent",
+   "kind": "figure",
+   "number": "12.10",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_011.jpg"
+   ],
+   "original_caption": "These vectors are not equivalent.",
+   "draws": [
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-equivalent",
+   "kind": "figure",
+   "number": "12.11",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_012.jpg"
+   ],
+   "original_caption": "These vectors are equivalent.",
+   "draws": [
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-component-form",
+   "kind": "sim",
+   "number": "12.12",
+   "folds": [
+    "12.14"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_014.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_01_016.jpg"
+   ],
+   "original_caption": "(Figure 12.12) These vectors are equivalent. (Figure 12.14) In component form, v=⟨ 6,8⟩ .",
+   "draws": [
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-magnitude-direction",
+   "kind": "sim",
+   "number": "12.13",
+   "folds": [
+    "12.15",
+    "12.16"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_015.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_01_017.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_01_018.jpg"
+   ],
+   "original_caption": "(Figure 12.13) If you use the components of a vector to define a right triangle, the magnitude of the vector is the length of the triangle’s hypotenuse. (Figure 12.15) The components of a vector form the legs of a right triangle, with the vector as the hypotenuse. (Figure 12.16) Use trigonometric ratios, x=‖ v‖ cos θ and y=‖ v‖ sin θ , to identify the components of the vector.",
+   "draws": [
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-unit-vector",
+   "kind": "sim",
+   "number": "12.17",
+   "folds": [
+    "12.20"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_022.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_01_019.jpg"
+   ],
+   "original_caption": "(Figure 12.17) The vector v and associated unit vector u=1/‖ v‖v. In this case, ‖ v‖ >1. (Figure 12.20) The terminal point of u lies on the unit circle (cos θ ,sin θ ).",
+   "draws": [
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-standard-unit",
+   "kind": "sim",
+   "number": "12.18",
+   "folds": [
+    "12.19"
+   ],
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_023.jpg",
+    "/media/ch12/CNX_Calc_Figure_12_01_024.jpg"
+   ],
+   "original_caption": "(Figure 12.18) The standard unit vectors i and j. (Figure 12.19) The vector v is the sum of xi and yj.",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-resultant-force",
+   "kind": "sim",
+   "number": "12.21",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_020.jpg"
+   ],
+   "original_caption": "Two forces acting on a car in different directions.",
+   "draws": [
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-ground-speed",
+   "kind": "sim",
+   "number": "12.22",
+   "originals": [
+    "/media/ch12/CNX_Calc_Figure_12_01_021.jpg"
+   ],
+   "original_caption": "Initially, the plane travels due west. The wind is from the northeast, so it is blowing to the southwest. The angle between the plane’s course and the wind is 45°. (Figure not drawn to scale.)",
+   "draws": [
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "fs-id1167793957113",
+   "concept": "vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors-intro",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "representation",
+   "concept": "initial-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "representation",
+   "concept": "terminal-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "representation",
+   "concept": "magnitude-of-a-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "representation",
+   "concept": "zero-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794027893",
+   "concept": "equivalent-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel-term",
+   "concept": "parallel-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "scalar-term",
+   "concept": "scalar",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794334726",
+   "concept": "scalar-multiplication",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793541135",
+   "concept": "vector-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "addition-methods",
+   "concept": "triangle-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallelogram-term",
+   "concept": "parallelogram-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "difference-term",
+   "concept": "vector-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "triangle-inequality",
+   "concept": "triangle-inequality-for-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "triangle-inequality",
+   "concept": "triangle-inequality",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793948832",
+   "concept": "vector-addition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793971723",
+   "concept": "equivalent-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "standard-position-term",
+   "concept": "standard-position-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793662636",
+   "concept": "component-form-of-a-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793918192",
+   "concept": "component-form-from-points",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793384623",
+   "concept": "component-form-from-points",
+   "verb": "reinforces"
+  },
+  {
+   "span": "magnitude-term",
+   "concept": "magnitude-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793370875",
+   "concept": "scalar-multiplication",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793370875",
+   "concept": "vector-addition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793819414",
+   "concept": "magnitude-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794139081",
+   "concept": "properties-of-vector-operations",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-components",
+   "concept": "components-from-magnitude-and-direction",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-components",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794135664",
+   "concept": "components-from-magnitude-and-direction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unit-vector-term",
+   "concept": "unit-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "unit-vector-term",
+   "concept": "normalization",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793950842",
+   "concept": "unit-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "standard-unit-term",
+   "concept": "standard-unit-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-combination",
+   "concept": "standard-unit-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794138316",
+   "concept": "standard-unit-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793562339",
+   "concept": "vector-addition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793562339",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793590635",
+   "concept": "vector-addition",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794147220",
+   "source_number": "Checkpoint 12.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794177131"
+   },
+   "cite": "representation",
+   "prompt": "Sketch the vector $\\vec{ST}$ where $S$ is point $(3,-1)$ and $T$ is point $(-2,3).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch12/CNX_Calc_Figure_12_01_003.jpg\" alt=\"This figure is a graph of the coordinate system. There is a line segment beginning at the ordered pair (3, -1). Also, this point is labeled “S.” The line segment ends at the ordered pair (-2, 3) and is labeled “T.” There is an arrowhead at point “T,” representing a vector. The line segment is labeled “ST.”\">",
+    "hint": "The first point listed in the name of the vector is the initial point of the vector."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794055611",
+   "source_number": "Checkpoint 12.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793948832"
+   },
+   "cite": "combining",
+   "prompt": "Using vectors $\\textbf{v}$ and $\\textbf{w}$ from <a href=\"#fs-id1167793948832\">Example 12.2</a>, sketch the vector $2\\textbf{w}-\\textbf{v}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch12/CNX_Calc_Figure_12_01_010.jpg\" alt=\"This figure is a triangle formed by having vector 2w on one side and vector -v adjacent to 2w. The terminal point of 2w is the initial point of -v. The third side is labeled “2w – v.”\">",
+    "hint": "First sketch vectors $2\\textbf{w}$ and $-\\textbf{v}.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167794117852",
+   "source_number": "Checkpoint 12.3",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793971723"
+   },
+   "cite": "components",
+   "prompt": "<p>Which of the following vectors are equivalent?</p>\n<img src=\"/media/ch12/CNX_Calc_Figure_12_01_013.jpg\" alt=\"This figure is a coordinate system with 6 vectors, each labeled a through f. Three of the vectors, “a,” “b,” and “e” have the same length and are pointing in the same direction.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Vectors $\\textbf{a},$ $\\textbf{b},$ and $\\textbf{e}$ are equivalent.",
+    "hint": "Equivalent vectors have both the same magnitude and the same direction."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793544500",
+   "source_number": "Checkpoint 12.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793384623"
+   },
+   "cite": "fs-id1167793918192",
+   "prompt": "Vector $\\textbf{w}$ has initial point $(-4,-5)$ and terminal point $(-1,2).$ Express $\\textbf{w}$ in component form.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 3,7\\rangle$",
+    "hint": "You may use either geometric or algebraic method."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793776055",
+   "source_number": "Checkpoint 12.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793819414"
+   },
+   "cite": "fs-id1167793370875",
+   "prompt": "Let $\\textbf{a}=\\langle 7,1\\rangle$ and let $\\textbf{b}$ be the vector with initial point $(3,2)$ and terminal point $(-1,-1).$ a. Find $\\| \\textbf{a}\\| .$ b. Express $\\textbf{b}$ in component form. c. Find $3\\textbf{a}-4\\textbf{b}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\| \\textbf{a}\\| =5\\sqrt{2},$ b. $\\textbf{b}=\\langle -4,-3\\rangle ,$ c. $3\\textbf{a}-4\\textbf{b}=\\langle 37,15\\rangle$",
+    "hint": "Use the Pythagorean Theorem to find $\\| \\textbf{a}\\| .$ To find $3\\textbf{a}-4\\textbf{b},$ start by finding the scalar multiples $3\\textbf{a}$ and $-4\\textbf{b}.$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793959946",
+   "source_number": "Checkpoint 12.6",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "proof-distributive"
+   },
+   "cite": "fs-id1167794139081",
+   "prompt": "Prove the additive inverse property.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $\\mathbf{u}=\\langle x_{1},y_{1}\\rangle.$ By the definition of scalar multiplication, $-\\mathbf{u}=(-1)\\mathbf{u}=\\langle -x_{1},-y_{1}\\rangle.$ Adding in components and applying the additive inverse property of real numbers, $\\mathbf{u}+(-\\mathbf{u})=\\langle x_{1}+(-x_{1}),y_{1}+(-y_{1})\\rangle=\\langle 0,0\\rangle=\\mathbf{0}.$ □",
+    "hint": "Use the component form of the vectors."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167793245548",
+   "source_number": "Checkpoint 12.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794135664"
+   },
+   "cite": "trig-components",
+   "prompt": "Find the component form of vector $\\textbf{v}$ with magnitude $10$ that forms an angle of $120^{\\circ}$ with the positive <em>x</em>-axis.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}=\\langle -5,5\\sqrt{3}\\rangle$",
+    "hint": "$x=\\| \\textbf{v}\\| \\cos \\theta$ and $y=\\| \\textbf{v}\\| \\sin \\theta$"
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1167794074288",
+   "source_number": "Checkpoint 12.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793950842"
+   },
+   "cite": "unit-vector-term",
+   "prompt": "Let $\\textbf{v}=\\langle 9,2\\rangle .$ Find a vector with magnitude $5$ in the opposite direction as $\\textbf{v}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle -\\frac{45}{\\sqrt{85}},-\\frac{10}{\\sqrt{85}}\\rangle$",
+    "hint": "First, find a unit vector in the same direction as $\\textbf{v}.$"
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1167793416660",
+   "source_number": "Checkpoint 12.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794138316"
+   },
+   "cite": "linear-combination",
+   "prompt": "Let $\\textbf{a}=\\langle 16,-11\\rangle$ and let $\\textbf{b}$ be a unit vector that forms an angle of $225^{\\circ}$ with the positive <em>x</em>-axis. Express $\\textbf{a}$ and $\\textbf{b}$ in terms of the standard unit vectors.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}=16\\textbf{i}-11\\textbf{j},$ $\\textbf{b}=-\\frac{\\sqrt{2}}{2}\\textbf{i}-\\frac{\\sqrt{2}}{2}\\textbf{j}$",
+    "hint": "Use sine and cosine to find the components of $\\textbf{b}.$"
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1167793371467",
+   "source_number": "Checkpoint 12.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793590635"
+   },
+   "cite": "applications",
+   "prompt": "An airplane flies due north at an airspeed of $550$ mph. The wind is blowing from the northwest at $50$ mph. What is the ground speed of the airplane?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Approximately $516$ mph",
+    "hint": "Sketch the vectors with the same initial point and find their sum."
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1167794059494",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793918192",
+   "prompt": "<p>For the following exercises, consider points $P(-1,3),$ $Q(1,5),$ and $R(-3,7).$ Determine the requested vectors and express each of them a. in component form and b. by using the standard unit vectors.</p><p>$\\vec{PQ}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\vec{PQ}=\\langle 2,2\\rangle ;$ b. $\\vec{PQ}=2\\text{i}+2\\text{j}$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1167793301149",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793918192",
+   "prompt": "<p>For the following exercises, consider points $P(-1,3),$ $Q(1,5),$ and $R(-3,7).$ Determine the requested vectors and express each of them a. in component form and b. by using the standard unit vectors.</p><p>$\\vec{QP}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\vec{QP}=\\langle -2,-2\\rangle ;$ b. $\\vec{QP}=-2\\text{i}-2\\text{j}$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1167793771062",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793370875",
+   "prompt": "<p>For the following exercises, consider points $P(-1,3),$ $Q(1,5),$ and $R(-3,7).$ Determine the requested vectors and express each of them a. in component form and b. by using the standard unit vectors.</p><p>$\\vec{PQ}+\\vec{PR}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\vec{PQ}+\\vec{PR}=\\langle 0,6\\rangle ;$ b. $\\vec{PQ}+\\vec{PR}=6\\text{j}$"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1167793912933",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793370875",
+   "prompt": "<p>For the following exercises, consider points $P(-1,3),$ $Q(1,5),$ and $R(-3,7).$ Determine the requested vectors and express each of them a. in component form and b. by using the standard unit vectors.</p><p>$2\\vec{PQ}-2\\vec{PR}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $2\\vec{PQ}-2\\vec{PR}=\\langle 8,-4\\rangle ;$ b. $2\\vec{PQ}-2\\vec{PR}=8\\text{i}-4\\text{j}$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1167793516171",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unit-vector-term",
+   "prompt": "<p>For the following exercises, consider points $P(-1,3),$ $Q(1,5),$ and $R(-3,7).$ Determine the requested vectors and express each of them a. in component form and b. by using the standard unit vectors.</p><p>The unit vector in the direction of $\\vec{PQ}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\langle \\frac{1}{\\sqrt{2}},\\frac{1}{\\sqrt{2}}\\rangle ;$ b. $\\frac{1}{\\sqrt{2}}\\text{i}+\\frac{1}{\\sqrt{2}}\\text{j}$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1167793948426",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unit-vector-term",
+   "prompt": "<p>A vector $\\textbf{v}$ has initial point $(-1,-3)$ and terminal point $(2,1).$ Find the unit vector in the direction of $\\textbf{v}.$ Express the answer in component form.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle \\frac{3}{5},\\frac{4}{5}\\rangle$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1167793886473",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude-term",
+   "prompt": "<p>The vector $\\textbf{v}$ has initial point $P(1,0)$ and terminal point $Q$ that is on the <em>y</em>-axis and above the initial point. Find the coordinates of terminal point $Q$ such that the magnitude of the vector $\\textbf{v}$ is $\\sqrt{5}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$Q(0,2)$"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1167793547109",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793370875",
+   "prompt": "<p>For the following exercises, use the given vectors $\\text{a}$ and $\\text{b}.$</p><p>a. Determine the vector sum $\\text{a}+\\text{b}$ and express it in both the component form and by using the standard unit vectors.</p><p>b. Find the vector difference $\\text{a}-\\text{b}$ and express it in both the component form and by using the standard unit vectors.</p><p>c. Verify that the vectors $\\text{a},$ $\\text{b},$ and $\\text{a}+\\text{b},$ and, respectively, $\\text{a},$ $\\text{b},$ and $\\text{a}-\\text{b}$ satisfy the triangle inequality.</p><p>d. Determine the vectors $2\\text{a},$ $-\\text{b},$ and $2\\text{a}-\\text{b}.$ Express the vectors in both the component form and by using standard unit vectors.</p><p>$\\text{a}=2\\text{i}+\\text{j},$ $\\text{b}=\\text{i}+3\\text{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\text{a}+\\text{b}=3\\text{i}+4\\text{j},$ $\\text{a}+\\text{b}=\\langle 3,4\\rangle ;$ b. $\\text{a}-\\text{b}=\\text{i}-2\\text{j},$ $\\text{a}-\\text{b}=\\langle 1,-2\\rangle ;$ c. Answers will vary; d. $2\\text{a}=4\\text{i}+2\\text{j},$ $2\\text{a}=\\langle 4,2\\rangle ,$ $-\\text{b}=-\\text{i}-3\\text{j},$ $-\\text{b}=\\langle -1,-3\\rangle ,$ $2\\text{a}-\\text{b}=3\\text{i}-\\text{j},$ $2\\text{a}-\\text{b}=\\langle 3,-1\\rangle$"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1167793409053",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude-term",
+   "prompt": "<p>Let $\\text{a}$ be a standard-position vector with terminal point $(-2,-4).$ Let $\\text{b}$ be a vector with initial point $(1,2)$ and terminal point $(-1,4).$ Find the magnitude of vector $-3\\text{a}+\\text{b}-4\\text{i}+\\text{j}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 15,
+    "solution": "$15$"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1167793418646",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794139081",
+   "prompt": "<p>Let $\\text{u}$ and $\\text{v}$ be two nonzero vectors that are nonequivalent. Consider the vectors $\\text{a}=4\\text{u}+5\\text{v}$ and $\\text{b}=\\text{u}+2\\text{v}$ defined in terms of $\\text{u}$ and $\\text{v}.$ Find the scalar $\\lambda$ such that vectors $\\text{a}+\\lambda \\text{b}$ and $\\text{u}-\\text{v}$ are equivalent.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -3,
+    "solution": "$\\lambda =-3$"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1167793936876",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude-term",
+   "prompt": "<p>Consider the vector $\\text{a}(t)=\\langle \\cos t,\\sin t\\rangle$ with components that depend on a real number $t.$ As the number $t$ varies, the components of $\\text{a}(t)$ change as well, depending on the functions that define them.</p><p>a. Write the vectors $\\text{a}(0)$ and $\\text{a}(\\pi )$ in component form.</p><p>b. Show that the magnitude $\\| \\text{a}(t)\\|$ of vector $\\text{a}(t)$ remains constant for any real number $t.$</p><p>c. As $t$ varies, show that the terminal point of vector $\\text{a}(t)$ describes a circle centered at the origin of radius $1.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>a. $\\mathbf{a}(0)=\\langle\\cos 0,\\sin 0\\rangle=\\langle 1,0\\rangle$ and $\\mathbf{a}(\\pi)=\\langle\\cos\\pi,\\sin\\pi\\rangle=\\langle -1,0\\rangle.$</p><p>b. $\\|\\mathbf{a}(t)\\|=\\sqrt{\\cos^{2}t+\\sin^{2}t}=\\sqrt{1}=1$ for every real number $t,$ by the Pythagorean identity.</p><p>c. In standard position the terminal point of $\\mathbf{a}(t)$ is $(x,y)=(\\cos t,\\sin t),$ so $x^{2}+y^{2}=\\cos^{2}t+\\sin^{2}t=1:$ every terminal point lies on the circle of radius 1 centered at the origin, and as $t$ runs over $[0,2\\pi)$ the point $(\\cos t,\\sin t)$ reaches every point of that circle.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1167793502521",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "components",
+   "prompt": "<p>Show that vectors $\\text{a}(t)=\\langle \\cos t,\\sin t\\rangle$ and $\\text{a}(x)=\\langle x,\\sqrt{1-x^{2}}\\rangle$ are equivalent for $x=1$ and $t=2k\\pi ,$ where $k$ is an integer.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>For $x=1,$ $\\mathbf{a}(1)=\\langle 1,\\sqrt{1-1^{2}}\\rangle=\\langle 1,0\\rangle.$ For $t=2k\\pi$ with $k$ an integer, $\\cos 2k\\pi=1$ and $\\sin 2k\\pi=0,$ so $\\mathbf{a}(2k\\pi)=\\langle 1,0\\rangle.$ The two vectors have the same components, so they have the same magnitude, 1, and the same direction, and they are equivalent.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e24",
+   "source_id": "fs-id1167793245011",
+   "source_number": "24",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "components",
+   "prompt": "<p>Show that vectors $\\text{a}(t)=\\langle \\cos t,\\sin t\\rangle$ and $\\text{a}(x)=\\langle x,\\sqrt{1-x^{2}}\\rangle$ are opposite for $x=1$ and $t=\\pi +2k\\pi ,$ where $k$ is an integer.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>For $x=1,$ $\\mathbf{a}(1)=\\langle 1,0\\rangle.$ For $t=\\pi+2k\\pi,$ $\\cos t=-1$ and $\\sin t=0,$ so $\\mathbf{a}(\\pi+2k\\pi)=\\langle -1,0\\rangle=-\\langle 1,0\\rangle.$ One vector is $(-1)$ times the other: they have the same magnitude, 1, and opposite directions, so they are opposite.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1167793504508",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unit-vector-term",
+   "prompt": "<p>For the following exercises, find vector $\\textbf{v}$ with the given magnitude and in the same direction as vector $\\textbf{u}.$</p><p>$\\| \\textbf{v}\\| =7,\\textbf{u}=\\langle 3,4\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{v}=\\langle \\frac{21}{5},\\frac{28}{5}\\rangle$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1167793941410",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unit-vector-term",
+   "prompt": "<p>For the following exercises, find vector $\\textbf{v}$ with the given magnitude and in the same direction as vector $\\textbf{u}.$</p><p>$\\| \\textbf{v}\\| =7,\\textbf{u}=\\langle 3,-5\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{v}=\\langle \\frac{21\\sqrt{34}}{34},-\\frac{35\\sqrt{34}}{34}\\rangle$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1167793557782",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-components",
+   "prompt": "<p>For the following exercises, find the component form of vector $\\textbf{u},$ given its magnitude and the angle the vector makes with the positive <em>x</em>-axis. Give exact answers when possible.</p><p>$\\| \\text{u}\\| =2,$ $\\theta =30^{\\circ}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{u}=\\langle \\sqrt{3},1\\rangle$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1167793569298",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-components",
+   "prompt": "<p>For the following exercises, find the component form of vector $\\textbf{u},$ given its magnitude and the angle the vector makes with the positive <em>x</em>-axis. Give exact answers when possible.</p><p>$\\| \\text{u}\\| =5,$ $\\theta =\\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{u}=\\langle 0,5\\rangle$"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1167793544443",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-components",
+   "prompt": "<p>For the following exercises, find the component form of vector $\\textbf{u},$ given its magnitude and the angle the vector makes with the positive <em>x</em>-axis. Give exact answers when possible.</p><p>$\\| \\textbf{u}\\| =10,$ $\\theta =\\frac{5\\pi}{6}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{u}=\\langle -5\\sqrt{3},5\\rangle$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1167794054292",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-components",
+   "prompt": "<p>For the following exercises, vector $\\text{u}$ is given. Find the angle $\\theta \\in [0,2\\pi )$ that vector $\\text{u}$ makes with the positive direction of the <em>x</em>-axis, in a counter-clockwise direction.</p><p>$\\text{u}=5\\sqrt{2}\\text{i}-5\\sqrt{2}\\text{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\theta =\\frac{7\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1167794056741",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793370875",
+   "prompt": "<p>Let $\\text{a}=\\langle a_{1},a_{2}\\rangle ,$ $\\text{b}=\\langle b_{1},b_{2}\\rangle ,$ and $\\text{c}=\\langle c_{1},c_{2}\\rangle$ be three nonzero vectors. If $a_{1}b_{2}-a_{2}b_{1}\\ne 0,$ then show there are two scalars, $\\alpha$ and $β,$ such that $\\text{c}=\\alpha \\text{a}+β\\text{b}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Writing $\\mathbf{c}=\\alpha\\mathbf{a}+\\beta\\mathbf{b}$ in components gives the system $\\alpha a_{1}+\\beta b_{1}=c_{1}$ and $\\alpha a_{2}+\\beta b_{2}=c_{2}.$ Multiplying the first equation by $b_{2},$ the second by $b_{1},$ and subtracting eliminates $\\beta:$ $\\alpha(a_{1}b_{2}-a_{2}b_{1})=c_{1}b_{2}-c_{2}b_{1}.$ Eliminating $\\alpha$ the same way gives $\\beta(a_{1}b_{2}-a_{2}b_{1})=a_{1}c_{2}-a_{2}c_{1}.$ Since $a_{1}b_{2}-a_{2}b_{1}\\ne 0,$ we can divide: $\\alpha=\\frac{c_{1}b_{2}-c_{2}b_{1}}{a_{1}b_{2}-a_{2}b_{1}}$ and $\\beta=\\frac{a_{1}c_{2}-a_{2}c_{1}}{a_{1}b_{2}-a_{2}b_{1}},$ and these two scalars satisfy $\\mathbf{c}=\\alpha\\mathbf{a}+\\beta\\mathbf{b}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1167793522408",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unit-vector-term",
+   "prompt": "<p>Let $P(x_{0},f(x_{0}))$ be a fixed point on the graph of the differentiable function $f$ with a domain that is the set of real numbers.</p><p>a. Determine the real number $z_{0}$ such that point $Q(x_{0}+1,z_{0})$ is situated on the line tangent to the graph of $f$ at point $P.$</p><p>b. Determine the unit vector $\\textbf{u}$ with initial point $P$ in the direction of vector $PQ.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $z_{0}=f(x_{0})+f^{\\prime}(x_{0});$ b. $\\text{u}=\\frac{1}{\\sqrt{1+{[f^{\\prime}(x_{0})]}^{2}}}\\langle 1,f^{\\prime}(x_{0})\\rangle$"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1167793501933",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "components",
+   "prompt": "<p>Consider $f$ and $g$ two functions defined on the same set of real numbers $D.$ Let $\\text{a}=\\langle x,f(x)\\rangle$ and $\\text{b}=\\langle x,g(x)\\rangle$ be two vectors that describe the graphs of the functions, where $x\\in D.$ Show that if the graphs of the functions $f$ and $g$ do not intersect, then the vectors $\\textbf{a}$ and $\\textbf{b}$ are not equivalent.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Two vectors written in component form are equivalent exactly when their components are equal. Here $\\mathbf{a}=\\langle x,f(x)\\rangle$ and $\\mathbf{b}=\\langle x,g(x)\\rangle$ have the same first component, so they would be equivalent only if $f(x)=g(x).$ If the graphs of $f$ and $g$ do not intersect, there is no $x$ in $D$ with $f(x)=g(x),$ so the second components always differ, and for every $x$ in $D$ the vectors $\\mathbf{a}$ and $\\mathbf{b}$ are not equivalent.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1167794012836",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793918192",
+   "prompt": "<p>Calculate the coordinates of point $D$ such that $ABCD$ is a parallelogram, with $A(1,1),$ $B(2,4),$ and $C(7,4).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$D(6,1)$"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1167793892953",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-components",
+   "prompt": "<p>The speed of an object is the magnitude of its related velocity vector. A football thrown by a quarterback has an initial speed of $70$ mph and an angle of elevation of $30^{\\circ}.$ Determine the velocity vector in mph and express it in component form. (Round to two decimal places.)</p><img src=\"/media/ch12/CNX_Calc_Figure_12_01_207.jpg\" alt=\"This figure shows a football being thrown. The path of the football is represented by an arcing curve. At the beginning of the curve is a vector indicating the initial velocity.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 60.62,35\\rangle$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1167793626543",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-components",
+   "prompt": "<p>A bullet is fired with an initial velocity of $1500$ ft/sec at an angle of $60^{\\circ}$ with the horizontal. Find the horizontal and vertical components of the velocity vector of the bullet. (Round to two decimal places.)</p><img src=\"/media/ch12/CNX_Calc_Figure_12_01_208.jpg\" alt=\"This figure is the first quadrant of a coordinate system. There is a vector from the origin that is labeled “v sub 0 = 1500 feet per second.” The angle between the x-axis and the vector is 60 degrees.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The horizontal and vertical components are $750$ ft/sec and $1299.04$ ft/sec, respectively."
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1167794200370",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p><strong>[T]</strong> Two forces, a horizontal force of $45$ lb and another of $52$ lb, act on the same object. The angle between these forces is $25^{\\circ}.$ Find the magnitude and direction angle from the positive <em>x</em>-axis of the resultant force that acts on the object. (Round to two decimal places.)</p><img src=\"/media/ch12/CNX_Calc_Figure_12_01_202.jpg\" alt=\"This figure has two vectors with the same initial point. The first vector is labeled “52 lb” and the second vector is labeled “45 lb.” The angle between the vectors is 25 degrees.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The magnitude of resultant force is $94.71$ lb; the direction angle is $13.42^{\\circ}.$"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1167793582477",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p><strong>[T]</strong> Three forces act on object. Two of the forces have the magnitudes $58$ N and $27$ N, and make angles $53^{\\circ}$ and $152^{\\circ},$ respectively, with the positive <em>x</em>-axis. Find the magnitude and the direction angle from the positive <em>x</em>-axis of the third force such that the resultant force acting on the object is zero. (Round to two decimal places.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The magnitude of the third vector is $60.03$ N; the direction angle is $259.38^{\\circ}.$"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1167793628636",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p><strong>[T]</strong> An airplane is flying in the direction of $43^{\\circ}$ east of north (also abbreviated as $\\text{N}43\\text{E})$ at a speed of $550$ mph. A wind with speed $25$ mph comes from the southwest at a bearing of $\\text{N}15\\text{E}.$ What are the ground speed and new direction of the airplane?</p><img src=\"/media/ch12/CNX_Calc_Figure_12_01_204.jpg\" alt=\"This figure is the first quadrant of a coordinate system. There are two vectors both of which have the origin as the initial point. The first vector is labeled “550 miles per hour” and has an angle of 43 degrees from the y-axis. There is also an image of an airplane at the end of the vector. The second vector is labeled “25 miles per hour” and has an angle of 15 degrees from the y-axis.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The new ground speed of the airplane is $572.19$ mph; the new direction is $\\text{N}41.82\\text{E}.$"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1167794098521",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p><strong>[T]</strong> A 50-lb weight is hung by a cable so that the two portions of the cable make angles of $40^{\\circ}$ and $53^{\\circ},$ respectively, with the horizontal. Find the magnitudes of the forces of tension ${\\text{T}}_{1}$ and ${\\text{T}}_{2}$ in the cables if the resultant force acting on the object is zero. (Round to two decimal places.)</p><img src=\"/media/ch12/CNX_Calc_Figure_12_01_206.jpg\" alt=\"This figure is a horizontal line with two vectors below the line formina a triangle with the line. The vectors point toward the ends of the line. The angle between the horizontal line and the first vector is 40 degrees. The angle between the horizontal line and the second vector is 53 degrees. At the point where the two vectors meet is a rectangle labeled “50 lb.”\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\| {\\textbf{T}}_{1}\\| =30.13\\;\\text{lb},$ $\\| {\\textbf{T}}_{2}\\| =38.35\\;\\text{lb}$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1167793546872",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p><strong>[T]</strong> A 1500-lb boat is parked on a ramp that makes an angle of $30^{\\circ}$ with the horizontal. The boat’s weight vector points downward and is a sum of two vectors: a horizontal vector ${\\text{v}}_{1}$ that is parallel to the ramp and a vertical vector ${\\text{v}}_{2}$ that is perpendicular to the inclined surface. The magnitudes of vectors ${\\text{v}}_{1}$ and ${\\text{v}}_{2}$ are the horizontal and vertical component, respectively, of the boat’s weight vector. Find the magnitudes of ${\\text{v}}_{1}$ and ${\\text{v}}_{2}.$ (Round to the nearest integer.)</p><img src=\"/media/ch12/CNX_Calc_Figure_12_01_209.jpg\" alt=\"This figure shows a right triangle. The angle between the horizontal base and the hypotenuse is 30 degrees. On the hypotenuse is the image of a boat. From center of the boat there are three vectors. Two of the vectors are orthogonal with one in the direction of the boat and the other below the boat. The third vector is down, perpendicular to the vertical side.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\| {\\text{v}}_{1}\\| =750$ lb, $\\| {\\text{v}}_{2}\\| =1299$ lb"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1167793445740",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>A guy-wire supports a pole that is $75$ ft high. One end of the wire is attached to the top of the pole and the other end is anchored to the ground $50$ ft from the base of the pole. Determine the horizontal and vertical components of the force of tension in the wire if its magnitude is $50$ lb. (Round to the nearest integer.)</p><img src=\"/media/ch12/CNX_Calc_Figure_12_01_210.jpg\" alt=\"This figure is a tower with a guy wire from the top to the ground. The tower, guy wire, and the ground form a right triangle. The base is labeled “50 feet” and is horizontal. The other side is labeled “75 feet” and is vertical. This side is the tower.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The two horizontal and vertical components of the force of tension are $28$ lb and $42$ lb, respectively."
+   }
+  },
+  {
+   "id": "r445",
+   "source_id": "fs-id1163724035036",
+   "source_section": "12.7",
+   "source_number": "445",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>For the following exercises, consider a small boat crossing a river.</p><p>When the boat reaches the shore, two ropes are thrown to people to help pull the boat ashore. One rope is at an angle of $25^{\\circ}$ and the other is at $35^{\\circ}.$ If the boat must be pulled straight and at a force of $500\\text{N},$ find the magnitude of force for each rope (see the following figure).</p><img src=\"/media/ch12/CNX_Calc_Figure_12_07_220.jpg\" alt=\"This figure is overtop of a boat. From the front of the boat is a horizontal vector. It is labeled “500 N.” There are two other line segments from the boat. The first one forms an angle with the horizontal vector of 35 degrees above the vector. The second line segment forms an angle of 25 degrees below the vector.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "331 N, and 244 N"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "initial-point"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "terminal-point"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "vector-difference"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "equivalent-vectors"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "properties-of-vector-operations"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "normalization"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "standard-unit-vectors"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e1",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e1",
+   "concept": "standard-unit-vectors"
+  },
+  {
+   "exercise": "e3",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e3",
+   "concept": "standard-unit-vectors"
+  },
+  {
+   "exercise": "e5",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e5",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e5",
+   "concept": "standard-unit-vectors"
+  },
+  {
+   "exercise": "e7",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e7",
+   "concept": "vector-difference"
+  },
+  {
+   "exercise": "e7",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e9",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e9",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e11",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e11",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e13",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e13",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e15",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e15",
+   "concept": "vector-difference"
+  },
+  {
+   "exercise": "e15",
+   "concept": "triangle-inequality-for-vectors"
+  },
+  {
+   "exercise": "e15",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e15",
+   "concept": "standard-unit-vectors"
+  },
+  {
+   "exercise": "e17",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e17",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e17",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e17",
+   "concept": "standard-unit-vectors"
+  },
+  {
+   "exercise": "e19",
+   "concept": "properties-of-vector-operations"
+  },
+  {
+   "exercise": "e19",
+   "concept": "equivalent-vectors"
+  },
+  {
+   "exercise": "e19",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e21",
+   "concept": "component-form-of-a-vector"
+  },
+  {
+   "exercise": "e21",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e23",
+   "concept": "equivalent-vectors"
+  },
+  {
+   "exercise": "e23",
+   "concept": "component-form-of-a-vector"
+  },
+  {
+   "exercise": "e24",
+   "concept": "equivalent-vectors"
+  },
+  {
+   "exercise": "e24",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e24",
+   "concept": "component-form-of-a-vector"
+  },
+  {
+   "exercise": "e25",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e25",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e25",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e27",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e27",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e27",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e29",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e31",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e33",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e35",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e35",
+   "concept": "standard-unit-vectors"
+  },
+  {
+   "exercise": "e37",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e37",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e37",
+   "concept": "component-form-of-a-vector"
+  },
+  {
+   "exercise": "e39",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e39",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e39",
+   "concept": "tangent-line"
+  },
+  {
+   "exercise": "e41",
+   "concept": "equivalent-vectors"
+  },
+  {
+   "exercise": "e41",
+   "concept": "component-form-of-a-vector"
+  },
+  {
+   "exercise": "e43",
+   "concept": "component-form-from-points"
+  },
+  {
+   "exercise": "e43",
+   "concept": "equivalent-vectors"
+  },
+  {
+   "exercise": "e45",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e47",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e49",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e49",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e49",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e51",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e51",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e51",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e53",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e53",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e53",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e55",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e55",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e57",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e57",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e59",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "e59",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "r445",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "r445",
+   "concept": "components-from-magnitude-and-direction"
+  },
+  {
+   "exercise": "r445",
+   "concept": "magnitude-of-a-vector"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-figure-1214",
+   "kind": "correction",
+   "html": "The book cites Figure 12.15 here, the right triangle of the components; the vector $\\langle 6,8\\rangle$ moved to the origin is drawn in Figure 12.14."
+  }
+ ]
+}
