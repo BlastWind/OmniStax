@@ -1,0 +1,1088 @@
+{
+ "id": "14.7",
+ "module": "m53942",
+ "chapter": "14",
+ "title": "Maxima/Minima Problems",
+ "short": "Maxima/Minima Problems",
+ "lead": "Finding where a function of two variables is largest or smallest starts, as in one variable, from its <span data-concept=\"critical-point-of-a-function-of-two-variables\">critical points</span>. This section defines local and global extrema and <span data-concept=\"saddle-point\">saddle points</span>, classifies critical points with the <span data-concept=\"second-derivative-test-for-functions-of-two-variables\">second derivative test</span> and its <span data-concept=\"discriminant\">discriminant</span>, and finds absolute extrema on closed, bounded sets, ending on the golf-ball profit model of the chapter opener.",
+ "objectives": [
+  "Use partial derivatives to locate critical points for a function of two variables.",
+  "Apply a second derivative test to identify a critical point as a local maximum, local minimum, or saddle point for a function of two variables.",
+  "Examine critical points and boundary points to find absolute maximum and minimum values for a function of two variables."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"critical-point-of-a-function-of-two-variables\">critical point</span> of the function $\\kf(x,y)$ is any point $(x_{0},y_{0})$ where either $\\kfx(x_{0},y_{0})=\\kfy(x_{0},y_{0})=0,$ or at least one of $\\kfx(x_{0},y_{0})$ and $\\kfy(x_{0},y_{0})$ do not exist.</li><li>A <span data-concept=\"saddle-point\">saddle point</span> is a point $(x_{0},y_{0})$ where $\\kfx(x_{0},y_{0})=\\kfy(x_{0},y_{0})=0,$ but $(x_{0},y_{0})$ is neither a maximum nor a minimum at that point.</li><li>To find extrema of <span data-concept=\"function-of-two-variables\">functions of two variables</span>, first find the <span data-concept=\"critical-point-of-a-function-of-two-variables\">critical points</span>, then calculate the <span data-concept=\"discriminant\">discriminant</span> and apply the <span data-concept=\"second-derivative-test-for-functions-of-two-variables\">second derivative test</span>.</li></ul>",
+ "notes": "The photograph of golf balls inside Example 14.41 (Figure 14.56) repeats the chapter opener and is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The even-numbered exercises have no answer in the key and are left out: 310–318 even (critical points), 320–340 even (the second derivative test), 342 and 344–346 (extreme values and absolute extrema) and 348–356 even (applications). Review exercise 397 from the end of the chapter is held here.",
+ "figures": [
+  {
+   "id": "sim-critical-g",
+   "kind": "sim",
+   "number": "14.46",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_07_006.jpg"
+   ],
+   "original_caption": "The function g(x,y) has a critical point at (−1,−1,5).",
+   "draws": [
+    "surface",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-hemisphere-extrema",
+   "kind": "sim",
+   "number": "14.47",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_07_001.jpg"
+   ],
+   "original_caption": "The graph of z = √(16 − x² − y²) has a maximum value when (x,y) = (0,0). It attains its minimum value at the boundary of its domain, which is the circle x² + y² = 16.",
+   "draws": [
+    "surface",
+    "point",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-second-derivative-test",
+   "kind": "sim",
+   "number": "14.48",
+   "folds": [
+    "14.49"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_07_002.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_07_007.jpg"
+   ],
+   "original_caption": "(Figure 14.48) Graph of the function z = x² − y². This graph has a saddle point at the origin. (Figure 14.49) The second derivative test can often determine whether a function of two variables has a local minima (a), a local maxima (b), or a saddle point (c).",
+   "draws": [
+    "surface",
+    "curve",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-local-extrema",
+   "kind": "sim",
+   "number": "14.50",
+   "folds": [
+    "14.51"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_07_008.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_07_009.jpg"
+   ],
+   "original_caption": "(Figure 14.50) The function f(x,y) has a local minimum at (−1,2,−16). (Figure 14.51) The function g(x,y) has a local minimum and a saddle point.",
+   "draws": [
+    "surface",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-extrema-rectangle",
+   "kind": "sim",
+   "number": "14.52",
+   "folds": [
+    "14.53"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_07_003.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_07_010.jpg"
+   ],
+   "original_caption": "(Figure 14.52) Graph of the domain of the function f(x,y) = x² − 2xy + 4y² − 4x − 2y + 24. (Figure 14.53) The function f(x,y) has one global minimum and one global maximum over its domain.",
+   "draws": [
+    "surface",
+    "point",
+    "region",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-extrema-disk",
+   "kind": "sim",
+   "number": "14.54",
+   "folds": [
+    "14.55"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_07_004.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_07_011.jpg"
+   ],
+   "original_caption": "(Figure 14.54) Graph of the domain of the function g(x,y) = x² + y² + 4x − 6y. (Figure 14.55) The function f(x,y) has a local minimum and a local maximum.",
+   "draws": [
+    "surface",
+    "point",
+    "region",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-golf-profit",
+   "kind": "sim",
+   "number": "14.57",
+   "folds": [
+    "14.58"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_07_005.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_07_012.jpg"
+   ],
+   "original_caption": "(Figure 14.57) Graph of the domain of the function f(x,y) = 48x + 96y − x² − 2xy − 9y². (Figure 14.58) The profit function f(x,y) has a maximum at (21,3,648).",
+   "draws": [
+    "surface",
+    "point",
+    "region",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "extrema-intro",
+   "concept": "critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "critical-points",
+   "concept": "critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793937740",
+   "concept": "critical-point-of-a-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793263462",
+   "concept": "critical-point-of-a-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "local-intro",
+   "concept": "local-extremum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793831578",
+   "concept": "local-extremum-of-a-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fermat-intro",
+   "concept": "fermats-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793617977",
+   "concept": "fermats-theorem-for-functions-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-derivative-test",
+   "concept": "saddle-point",
+   "verb": "uses"
+  },
+  {
+   "span": "saddle-traces",
+   "concept": "vertical-trace",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793951036",
+   "concept": "saddle-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "discriminant-term",
+   "concept": "discriminant",
+   "verb": "introduces"
+  },
+  {
+   "span": "discriminant-term",
+   "concept": "second-derivative-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793873509",
+   "concept": "second-derivative-test-for-functions-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794188100",
+   "concept": "using-the-second-derivative-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793524729",
+   "concept": "second-derivative-test-for-functions-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "absolute-extrema",
+   "concept": "bounded-set",
+   "verb": "introduces"
+  },
+  {
+   "span": "absolute-extrema",
+   "concept": "closed-set",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794284782",
+   "concept": "extreme-value-theorem-for-functions-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794284782",
+   "concept": "extreme-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793579953",
+   "concept": "finding-extreme-values-of-a-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "extremes-proof",
+   "concept": "fermats-theorem-for-functions-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793937391",
+   "concept": "finding-absolute-maximum-and-minimum-values",
+   "verb": "introduces"
+  },
+  {
+   "span": "boundary-methods",
+   "concept": "finding-absolute-maximum-and-minimum-values",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793637901",
+   "concept": "finding-absolute-maximum-and-minimum-values",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793423548",
+   "concept": "finding-absolute-maximum-and-minimum-values",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793944014",
+   "source_number": "Checkpoint 14.34",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793263462"
+   },
+   "cite": "fs-id1167793937740",
+   "prompt": "Find the critical point of the function $f(x,y)=x^{3}+2xy-2x-4y.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(2,-5)$",
+    "hint": "Calculate $f_{x}(x,y)$ and $f_{y}(x,y),$ then set them equal to zero."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793294164",
+   "source_number": "Checkpoint 14.35",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793524729"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>Use the second derivative to find the local extrema of the function</p>\n$$f(x,y)=x^{3}+2xy-6x-4y^{2}.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{4}{3},\\frac{1}{3})$ is a saddle point, $(-\\frac{3}{2},-\\frac{3}{8})$ is a local maximum.",
+    "hint": "Follow the problem-solving strategy for applying the second derivative test."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793930151",
+   "source_number": "Checkpoint 14.36",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793637901"
+   },
+   "cite": "fs-id1167793937391",
+   "prompt": "<p>Use the problem-solving strategy for finding absolute extrema of a function to find the absolute extrema of the function</p>\n$$f(x,y)=4x^{2}-2xy+6y^{2}-8x+2y+3$$\n<p>on the domain defined by $0\\le x\\le 2$ and $-1\\le y\\le 3.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The absolute minimum occurs at $(1,0)\\text{:}$ $f(1,0)=-1.$ The absolute maximum occurs at $(0,3)\\text{:}$ $f(0,3)=63.$",
+    "hint": "Calculate $f_{x}(x,y)$ and $f_{y}(x,y),$ and set them equal to zero. Then, calculate $f$ for each critical point and find the extrema of $f$ on the boundary of $D.$"
+   }
+  },
+  {
+   "id": "e311",
+   "source_id": "fs-id1167793383328",
+   "source_number": "311",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937740",
+   "prompt": "<p>For the following exercises, find all critical points.</p><p>$f(x,y)={(3x-2)}^{2}+{(y-4)}^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{2}{3},4)$"
+   }
+  },
+  {
+   "id": "e313",
+   "source_id": "fs-id1167793609417",
+   "source_number": "313",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937740",
+   "prompt": "<p>For the following exercises, find all critical points.</p><p>$f(x,y)=15x^{3}-3xy+15y^{3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(0,0)$ $(\\frac{1}{15},\\frac{1}{15})$"
+   }
+  },
+  {
+   "id": "e315",
+   "source_id": "fs-id1167794140003",
+   "source_number": "315",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937740",
+   "prompt": "<p>For the following exercises, find the critical points of the function by using algebraic techniques (completing the square) or by examining the form of the equation. Verify your results using the partial derivatives test.</p><p>$f(x,y)=-x^{2}-5y^{2}+8x-10y-13$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Maximum at $(4,-1,8)$"
+   }
+  },
+  {
+   "id": "e317",
+   "source_id": "fs-id1167793423588",
+   "source_number": "317",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937740",
+   "prompt": "<p>For the following exercises, find the critical points of the function by using algebraic techniques (completing the square) or by examining the form of the equation. Verify your results using the partial derivatives test.</p><p>$f(x,y)=\\sqrt{x^{2}+y^{2}}+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Relative minimum at $(0,0,1)$"
+   }
+  },
+  {
+   "id": "e319",
+   "source_id": "fs-id1167793927459",
+   "source_number": "319",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=x^{2}y^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The second derivative test fails. Since $x^{2}y^{2}\\gt 0$ for all <em>x</em> and <em>y</em> different from zero, and $x^{2}y^{2}=0$ when either <em>x</em> or <em>y</em> equals zero (or both), then the absolute minimum occurs at $(0,0).$"
+   }
+  },
+  {
+   "id": "e321",
+   "source_id": "fs-id1167794328278",
+   "source_number": "321",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=2xy+3x+4y$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(-2,-\\frac{3}{2})=-6$ is a saddle point."
+   }
+  },
+  {
+   "id": "e323",
+   "source_id": "fs-id1167793928564",
+   "source_number": "323",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=x^{2}+4xy+y^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(0,0)=0;$ $(0,0,0)$ is a saddle point."
+   }
+  },
+  {
+   "id": "e325",
+   "source_id": "fs-id1167793420334",
+   "source_number": "325",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=9-x^{4}y^{4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The only critical point(s) are where both $f_{x}=0$ and $f_{y}=0$ and that is $f(0,0)=9$. However, since $f_{xx}f_{xy}-{(f_{xy})}^{2}=0$ at the critical point, the Second Derivative Test fails. By graphing, we can see that this point is a local maximum."
+   }
+  },
+  {
+   "id": "e327",
+   "source_id": "fs-id1167793610972",
+   "source_number": "327",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=3x^{2}-2xy+y^{2}-8y$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Relative minimum located at $(2,6).$"
+   }
+  },
+  {
+   "id": "e329",
+   "source_id": "fs-id1167793363154",
+   "source_number": "329",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=y^{2}+xy+3y+2x+3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(1,-2)$ is a saddle point."
+   }
+  },
+  {
+   "id": "e331",
+   "source_id": "fs-id1167793618199",
+   "source_number": "331",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=x^{2}+2y^{2}-x^{2}y$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(2,1)$ and $(-2,1)$ are saddle points; $(0,0)$ is a relative minimum."
+   }
+  },
+  {
+   "id": "e333",
+   "source_id": "fs-id1167793641933",
+   "source_number": "333",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=e^{-(x^{2}+y^{2}+2x)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(-1,0)$ is a relative maximum."
+   }
+  },
+  {
+   "id": "e335",
+   "source_id": "fs-id1167793568877",
+   "source_number": "335",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=x^{2}+10xy+y^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(0,0)$ is a saddle point."
+   }
+  },
+  {
+   "id": "e337",
+   "source_id": "fs-id1167793577818",
+   "source_number": "337",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=120x+120y-xy-x^{2}-y^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The relative maximum is at $(40,40).$"
+   }
+  },
+  {
+   "id": "e339",
+   "source_id": "fs-id1167793958630",
+   "source_number": "339",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, use the second derivative test to classify any critical points and determine whether each critical point is a maximum, minimum, saddle point, or none of these.</p><p>$f(x,y)=x^{2}+x-3xy+y^{3}-5$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{1}{4},\\frac{1}{2})$ is a saddle point and $(1,1)$ is the relative minimum."
+   }
+  },
+  {
+   "id": "e341",
+   "source_id": "fs-id1167794172444",
+   "source_number": "341",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, determine the extreme values and the saddle points. Use a CAS to graph the function.</p><p><strong>[T]</strong> $f(x,y)=ye^{x}-e^{y}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>A saddle point is located at $(0,0).$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_07_201.jpg\" alt=\"A complicated graph that starts near (1, 1, 1), and decreases significantly along the x and y axes, so much so along the y axis that it is cut off. The rest of the graph stays near 0.\">"
+   }
+  },
+  {
+   "id": "e343",
+   "source_id": "fs-id1167793421227",
+   "source_number": "343",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794188100",
+   "prompt": "<p>For the following exercises, determine the extreme values and the saddle points. Use a CAS to graph the function.</p><p><strong>[T]</strong> $f(x,y)=\\sin (x)\\sin (y),x\\in (0,2\\pi ),y\\in (0,2\\pi )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>There is a saddle point at $(\\pi ,\\pi ),$ local maxima at $(\\frac{\\pi}{2},\\frac{\\pi}{2})\\;\\text{and}\\;(\\frac{3\\pi}{2},\\frac{3\\pi}{2}),$ and local minima at $(\\frac{\\pi}{2},\\frac{3\\pi}{2})\\;\\text{and}\\;(\\frac{3\\pi}{2},\\frac{\\pi}{2}).$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_07_203.jpg\" alt=\"A series of hills and holes alternating through a space with amplitude 1.\">"
+   }
+  },
+  {
+   "id": "e345",
+   "source_id": "fs-id1167793423045",
+   "source_number": "345",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937391",
+   "prompt": "<p>Find the absolute maximum and minimum values of $f(x,y)=x^{2}+y^{2}-2y+1$ on the region $R=\\{(x,y)|x^{2}+y^{2}\\le 4\\}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(0,1,0)$ is the absolute minimum and $(0,-2,9)$ is the absolute maximum."
+   }
+  },
+  {
+   "id": "e347",
+   "source_id": "fs-id1167793430995",
+   "source_number": "347",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937391",
+   "prompt": "<p>Find the absolute extrema of the given function on the indicated closed and bounded set $R.$</p><p>$f(x,y)=\\frac{-2y}{x^{2}+y^{2}+1}$ on $R=\\{(x,y)\\text{:}\\;x^{2}+y^{2}\\le 4\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "There is an absolute minimum at $(0,1,-1)$ and an absolute maximum at $(0,-1,1).$"
+   }
+  },
+  {
+   "id": "e349",
+   "source_id": "fs-id1167793495983",
+   "source_number": "349",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937391",
+   "prompt": "<p>Find the points on the surface $x^{2}-yz=5$ that are closest to the origin.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\sqrt{5},0,0),(-\\sqrt{5},0,0)$"
+   }
+  },
+  {
+   "id": "e351",
+   "source_id": "fs-id1167794222510",
+   "source_number": "351",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937391",
+   "prompt": "<p>The sum of the length and the girth (perimeter of a cross-section) of a package carried by a delivery service cannot exceed $108$ in. Find the dimensions of the rectangular package of largest volume that can be sent.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{18 by 36 by 18 in}.$"
+   }
+  },
+  {
+   "id": "e353",
+   "source_id": "fs-id1167793502481",
+   "source_number": "353",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937391",
+   "prompt": "<p>Find the point on the surface $f(x,y)=x^{2}+y^{2}+10$ nearest the plane $x+2y-z=0.$ Identify the point on the plane.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{1}{2},1,\\frac{45}{4})$"
+   }
+  },
+  {
+   "id": "e355",
+   "source_id": "fs-id1167793929637",
+   "source_number": "355",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937391",
+   "prompt": "<p>A company manufactures two types of athletic shoes: jogging shoes and cross-trainers. The total revenue from $x$ jogging shoes and $y$ cross-trainers is given by $R(x,y)=-5x^{2}-8y^{2}-2xy+42x+102y,$ where $x$ and $y$ are in thousands of units. Find the values of <em>x</em> and <em>y</em> to maximize the total revenue.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=3$ and $y=6$"
+   }
+  },
+  {
+   "id": "e357",
+   "source_id": "fs-id1167793929176",
+   "source_number": "357",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937391",
+   "prompt": "<p>Find the maximum volume of a cylindrical soda can such that the sum of its height and circumference is $120$ cm.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$V=\\frac{64,000}{\\pi}\\approx 20,372$ cm<sup>3</sup>"
+   }
+  },
+  {
+   "id": "r397",
+   "source_id": "fs-id1167793255949",
+   "source_section": "14.8",
+   "source_number": "397",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793937740",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>. Justify your answer with a proof or a counterexample.</p><p>$(\\frac{3}{4},\\frac{9}{16})$ is a critical point of $g(x,y)=4x^{3}-2x^{2}y+y^{2}-2.$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "finding-absolute-maximum-and-minimum-values"
+  },
+  {
+   "exercise": "e311",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e313",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e315",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e315",
+   "concept": "local-extremum-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e317",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e317",
+   "concept": "local-extremum-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e319",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e319",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e319",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e321",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e321",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e321",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e323",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e323",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e323",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e325",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e325",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e325",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e327",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e327",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e327",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e329",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e329",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e329",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e331",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e331",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e331",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e333",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e333",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e333",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e335",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e335",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e335",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e337",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e337",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e337",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e339",
+   "concept": "using-the-second-derivative-test"
+  },
+  {
+   "exercise": "e339",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e339",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e341",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e341",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e343",
+   "concept": "second-derivative-test-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e343",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e345",
+   "concept": "finding-absolute-maximum-and-minimum-values"
+  },
+  {
+   "exercise": "e347",
+   "concept": "finding-absolute-maximum-and-minimum-values"
+  },
+  {
+   "exercise": "e349",
+   "concept": "local-extremum-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e349",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e351",
+   "concept": "local-extremum-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e351",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e353",
+   "concept": "local-extremum-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e353",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e355",
+   "concept": "local-extremum-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e355",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e357",
+   "concept": "local-extremum-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e357",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "r397",
+   "concept": "critical-point-of-a-function-of-two-variables"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-step3",
+   "kind": "correction",
+   "html": "The book links this step, here and in part b, to <a href=\"#fs-id1167793617977\">Fermat’s Theorem for Functions of Two Variables</a>; the theorem applied is the <a href=\"#fs-id1167793873509\">Second Derivative Test</a>."
+  },
+  {
+   "id": "c-empty-t",
+   "kind": "correction",
+   "html": "The book prints no value here; $g^{\\prime}(t)=2t-8=0$ at $t=4,$ which corresponds to the point $(4,2).$"
+  },
+  {
+   "id": "c-empty-point",
+   "kind": "correction",
+   "html": "The book prints no point here; $L_{2}$ runs from $(50,0)$ to $(50,25).$"
+  }
+ ]
+}

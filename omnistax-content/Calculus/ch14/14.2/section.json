@@ -1,0 +1,1152 @@
+{
+ "id": "14.2",
+ "module": "m53933",
+ "chapter": "14",
+ "title": "Limits and Continuity",
+ "short": "Limits and Continuity",
+ "lead": "A <span data-concept=\"limit-of-a-function-of-two-variables\">limit of a function of two variables</span> asks what happens as a point of the plane approaches another from every direction at once, inside a <span data-concept=\"delta-disk\">δ disk</span>. This section states the limit laws, shows how a limit can depend on the path taken, names <span data-concept=\"interior-point\">interior</span> and <span data-concept=\"boundary-point\">boundary points</span> and <span data-concept=\"open-set\">open</span> and <span data-concept=\"closed-set\">closed sets</span>, and defines <span data-concept=\"continuity-of-a-function-of-two-variables\">continuity</span> for two and more variables.",
+ "objectives": [
+  "Calculate the limit of a function of two variables.",
+  "Learn how a function of two variables can approach different values at a boundary point, depending on the path of approach.",
+  "State the conditions for continuity of a function of two variables.",
+  "Verify the continuity of a function of two variables at a point.",
+  "Calculate the limit of a function of three or more variables and verify the continuity of the function at a point."
+ ],
+ "summary_html": "<ul><li>To study limits and continuity for <span data-concept=\"function-of-two-variables\">functions of two variables</span>, we use a $δ$ disk centered around a given point.</li><li>A function of several variables has a limit if for any point in a $δ$ ball centered at a point $P,$ the value of the function at that point is arbitrarily close to a fixed value (the limit value).</li><li>The <span data-concept=\"limit-laws-for-functions-of-two-variables\">limit laws</span> established for a <span data-concept=\"function\">function of one variable</span> have natural extensions to functions of more than one variable.</li><li>A <span data-concept=\"function-of-two-variables\">function of two variables</span> is continuous at a point if the limit exists at that point, the function exists at that point, and the limit and function are equal at that point.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Exercises 62 (show that a limit exists along three paths), 78 (complete the definition of an interior point) and 106 (true or false) have no answer in the book’s key and are kept with AI-written suggested approaches. Exercises 87 and 89 evaluate a limit \"using the results of previous problem\", 86 and 88, which have no answer in the key; all four are left out. The other even-numbered exercises have no answer in the key and are left out: 60–76 even and 80–84 even (limits), 90–104 even (continuity, including 98, which asks for a plot), 108 and 110. Review exercises 401 and 403 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-delta-disk",
+   "kind": "sim",
+   "number": "14.14",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_02_001.jpg"
+   ],
+   "original_caption": "A δ disk centered around the point (2,1).",
+   "draws": [
+    "set",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-limit-eps-delta",
+   "kind": "sim",
+   "number": "14.15",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_02_002.jpg"
+   ],
+   "original_caption": "The limit of a function involving two variables requires that f(x,y) be within ε of L whenever (x,y) is within δ of (a,b). The smaller the value of ε, the smaller the value of δ.",
+   "draws": [
+    "surface",
+    "limit",
+    "set",
+    "point",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-path-limits",
+   "kind": "sim",
+   "number": "14.16",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_02_003.jpg"
+   ],
+   "original_caption": "Graph of the function f(x,y) = (2xy)/(3x² + y²). Along the line y = 0, the function is equal to zero; along the line y = x, the function is equal to 1/2.",
+   "draws": [
+    "surface",
+    "line",
+    "limit",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-interior-boundary",
+   "kind": "sim",
+   "number": "14.17",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_02_004.jpg"
+   ],
+   "original_caption": "In the set S shown, (−1,1) is an interior point and (2,3) is a boundary point.",
+   "draws": [
+    "set",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-boundary-limit",
+   "kind": "sim",
+   "number": "14.18",
+   "folds": [
+    "14.19"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_02_005.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_02_006.jpg"
+   ],
+   "original_caption": "(Figure 14.18) Domain of the function f(x,y) = √(25 − x² − y²). (Figure 14.19) Graph of the function f(x,y) = √(25 − x² − y²).",
+   "draws": [
+    "surface",
+    "set",
+    "point",
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-composition",
+   "kind": "figure",
+   "number": "14.20",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_02_007.jpg"
+   ],
+   "original_caption": "The composition of two continuous functions is continuous.",
+   "draws": [
+    "set",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "limits-intro",
+   "concept": "limit-of-a-function-of-two-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "limits",
+   "concept": "epsilon-delta-definition-of-the-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793269223",
+   "concept": "delta-disk",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793965522",
+   "concept": "limit-of-a-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793882997",
+   "concept": "limit-laws-for-functions-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793882997",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794101556",
+   "concept": "limit-laws-for-functions-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "paths-intro",
+   "concept": "path-dependence-of-a-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794293308",
+   "concept": "path-dependence-of-a-limit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794068954",
+   "concept": "interior-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794068954",
+   "concept": "boundary-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793371585",
+   "concept": "open-set",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793371585",
+   "concept": "closed-set",
+   "verb": "introduces"
+  },
+  {
+   "span": "open-closed-examples",
+   "concept": "open-set",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793258190",
+   "concept": "connected-set",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793258190",
+   "concept": "region",
+   "verb": "introduces"
+  },
+  {
+   "span": "boundary-limit-intro",
+   "concept": "boundary-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793618085",
+   "concept": "limit-at-a-boundary-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793277600",
+   "concept": "limit-at-a-boundary-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "continuity",
+   "concept": "continuity-at-a-point",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793504466",
+   "concept": "continuity-of-a-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794091703",
+   "concept": "continuity-of-a-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "continuity-epsilon-delta",
+   "concept": "continuity-of-a-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793285170",
+   "concept": "sum-of-continuous-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793580579",
+   "concept": "product-of-continuous-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794181227",
+   "concept": "composition-of-continuous-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794181227",
+   "concept": "composite-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793510063",
+   "concept": "composition-of-continuous-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793420694",
+   "concept": "delta-ball",
+   "verb": "introduces"
+  },
+  {
+   "span": "delta-ball-limit",
+   "concept": "delta-ball",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793445843",
+   "concept": "limit-laws-for-functions-of-two-variables",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793240800",
+   "source_number": "Checkpoint 14.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794101556"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>Evaluate the following limit:</p>\n$$\\lim_{(x,y)\\to (5,-2)}\\sqrt[3]{\\frac{x^{2}-y}{y^{2}+x-1}}.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{(x,y)\\to (5,-2)}\\sqrt[3]{\\frac{x^{2}-y}{y^{2}+x-1}}=\\frac{3}{2}$",
+    "hint": "Use the limit laws."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794176310",
+   "source_number": "Checkpoint 14.7",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794293308"
+   },
+   "cite": "paths-intro",
+   "prompt": "<p>Show that</p>\n$$\\lim_{(x,y)\\to (2,1)}\\frac{(x-2)(y-1)}{{(x-2)}^{2}+{(y-1)}^{2}}$$\n<p>does not exist.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "If $y=k(x-2)+1,$ then $\\lim_{(x,y)\\to (2,1)}\\frac{(x-2)(y-1)}{{(x-2)}^{2}+{(y-1)}^{2}}=\\frac{k}{1+k^{2}}.$ Since the answer depends on $k,$ the limit fails to exist.",
+    "hint": "Pick a line with slope $k$ passing through point $(2,1).$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793928006",
+   "source_number": "Checkpoint 14.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793277600"
+   },
+   "cite": "fs-id1167793618085",
+   "prompt": "<p>Evaluate the following limit:</p>\n$$\\lim_{(x,y)\\to (5,-2)}\\sqrt{29-x^{2}-y^{2}}.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{(x,y)\\to (5,-2)}\\sqrt{29-x^{2}-y^{2}}=0$",
+    "hint": "Determine the domain of $f(x,y)=\\sqrt{29-x^{2}-y^{2}}.$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793632752",
+   "source_number": "Checkpoint 14.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794091703"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "Show that the function $f(x,y)=\\sqrt{26-2x^{2}-y^{2}}$ is continuous at point $(2,-3).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol><li>The domain of $f$ contains the ordered pair $(2,-3)$ because $f(a,b)=f(2,-3)=\\sqrt{16-2{(2)}^{2}-{(-3)}^{2}}=3$<sup class=\"fn\" data-note=\"c-cp-continuity\"></sup></li><li>$\\lim_{(x,y)\\to (a,b)}f(x,y)=3$</li><li>$\\lim_{(x,y)\\to (a,b)}f(x,y)=f(a,b)=3$</li></ol>",
+    "hint": "Use the three-part definition of continuity."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793443487",
+   "source_number": "Checkpoint 14.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793510063"
+   },
+   "cite": "fs-id1167794181227",
+   "prompt": "Show that the functions $f(x,y)=2x^{2}y^{3}+3$ and $g(x,y)={(2x^{2}y^{3}+3)}^{4}$ are continuous everywhere.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The polynomials $g(x)=2x^{2}$ and $h(y)=y^{3}$ are continuous at every real number; therefore, by the product of continuous functions theorem, $f(x,y)=2x^{2}y^{3}$ is continuous at every point $(x,y)$ in the $xy\\text{-plane.}$ Furthermore, any constant function is continuous everywhere, so $g(x,y)=3$ is continuous at every point $(x,y)$ in the $xy\\text{-plane.}$ Therefore, $f(x,y)=2x^{2}y^{3}+3$ is continuous at every point $(x,y)$ in the $xy\\text{-plane.}$ Last, $h(x)=x^{4}$ is continuous at every real number $x,$ so by the continuity of composite functions theorem $g(x,y)={(2x^{2}y^{3}+3)}^{4}$ is continuous at every point $(x,y)$ in the $xy\\text{-plane.}$",
+    "hint": "Use the continuity of the sum, product, and composition of two functions."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793545605",
+   "source_number": "Checkpoint 14.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793445843"
+   },
+   "cite": "delta-ball-limit",
+   "prompt": "Find $\\lim_{(x,y,z)\\to (4,-1,3)}\\sqrt{13-x^{2}-2y^{2}+z^{2}}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{(x,y,z)\\to (4,-1,3)}\\sqrt{13-x^{2}-2y^{2}+z^{2}}=2$",
+    "hint": "Use the limit laws and the continuity of the composition of functions."
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1167794051779",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, find the limit of the function.</p><p>$\\lim_{(x,y)\\to (1,2)}\\frac{5x^{2}y}{x^{2}+y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "2.0"
+   }
+  },
+  {
+   "id": "e62",
+   "source_id": "fs-id1167793629272",
+   "source_number": "62",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "paths-intro",
+   "prompt": "<p>Show that the limit $\\lim_{(x,y)\\to (0,0)}\\frac{5x^{2}y}{x^{2}+y^{2}}$ exists and is the same along the paths: $y\\text{-axis}$ and $x\\text{-axis,}$ and along $y=x.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Along the $x$-axis, $y=0$ and $\\frac{5x^{2}(0)}{x^{2}+0}=0$ for every $x\\ne 0,$ so the values approach $0.$ Along the $y$-axis, $x=0$ and $\\frac{0}{0+y^{2}}=0$ for every $y\\ne 0.$ Along $y=x,$ $\\frac{5x^{2}\\cdot x}{x^{2}+x^{2}}=\\frac{5x}{2},$ which approaches $0$ as $x\\to 0.$ The three paths agree. In fact the limit is $0$ along every path: since $x^{2}\\le x^{2}+y^{2},$ we have $\\left|\\frac{5x^{2}y}{x^{2}+y^{2}}\\right|\\le 5|y|\\le 5\\sqrt{x^{2}+y^{2}},$ so the values are within $\\varepsilon$ of $0$ whenever $\\sqrt{x^{2}+y^{2}}\\lt \\delta =\\varepsilon /5,$ and $\\lim_{(x,y)\\to (0,0)}\\frac{5x^{2}y}{x^{2}+y^{2}}=0.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1167793401408",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, evaluate the limits at the indicated values of $x\\;\\text{and}\\;y.$ If the limit does not exist, state this and explain why the limit does not exist.</p><p>$\\lim_{(x,y)\\to (0,0)}\\frac{4x^{2}+10y^{2}+4}{4x^{2}-10y^{2}+6}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2}{3}$"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1167793420492",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, evaluate the limits at the indicated values of $x\\;\\text{and}\\;y.$ If the limit does not exist, state this and explain why the limit does not exist.</p><p>$\\lim_{(x,y)\\to (0,1)}\\frac{y^{2}\\sin x}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1167794173094",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, evaluate the limits at the indicated values of $x\\;\\text{and}\\;y.$ If the limit does not exist, state this and explain why the limit does not exist.</p><p>$\\lim_{(x,y)\\to (\\pi /4,1)}\\frac{y\\;\\tan x}{y+1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1167793278147",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, evaluate the limits at the indicated values of $x\\;\\text{and}\\;y.$ If the limit does not exist, state this and explain why the limit does not exist.</p><p>$\\lim_{(x,y)\\to (2,5)}(\\frac{1}{x}-\\frac{5}{y})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1167793465558",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, evaluate the limits at the indicated values of $x\\;\\text{and}\\;y.$ If the limit does not exist, state this and explain why the limit does not exist.</p><p>$\\lim_{(x,y)\\to (4,4)}e^{-x^{2}-y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{-32}$"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1167793442738",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, evaluate the limits at the indicated values of $x\\;\\text{and}\\;y.$ If the limit does not exist, state this and explain why the limit does not exist.</p><p>$\\lim_{(x,y)\\to (1,2)}(x^{2}y^{3}-x^{3}y^{2}+3x+2y)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$11.0$"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1167794284760",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, evaluate the limits at the indicated values of $x\\;\\text{and}\\;y.$ If the limit does not exist, state this and explain why the limit does not exist.</p><p>$\\lim_{(x,y)\\to (0,0)}\\frac{xy+1}{x^{2}+y^{2}+1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1.0$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1167793279398",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, evaluate the limits at the indicated values of $x\\;\\text{and}\\;y.$ If the limit does not exist, state this and explain why the limit does not exist.</p><p>$\\lim_{(x,y)\\to (0,0)}\\ln (x^{2}+y^{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The limit does not exist because when $x$ and $y$ both approach zero, the function approaches $\\ln 0,$ which is undefined (approaches negative infinity)."
+   }
+  },
+  {
+   "id": "e78",
+   "source_id": "fs-id1167793932216",
+   "source_number": "78",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794068954",
+   "prompt": "<p>For the following exercises, complete the statement.</p><p>A point $(x_{0},y_{0})$ in a plane region $R$ is an interior point of $R$ if _________________.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "there is a $\\delta$ disk centered around $(x_{0},y_{0})$ contained completely in $R$: some open disk $(x-x_{0})^{2}+(y-y_{0})^{2}\\lt \\delta^{2}$ about the point has all its points in $R.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1167793586347",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794068954",
+   "prompt": "<p>For the following exercises, complete the statement.</p><p>A point $(x_{0},y_{0})$ in a plane region $R$ is called a boundary point of $R$ if ___________.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "every open disk centered at $(x_{0},y_{0})$ contains points inside $R$ and outside $R$"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1167794176166",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, use algebraic techniques to evaluate the limit.</p><p>$\\lim_{(x,y)\\to (0,0)}\\frac{x^{4}-4y^{4}}{x^{2}+2y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0.0$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1167793543831",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>For the following exercises, use algebraic techniques to evaluate the limit.</p><p>$\\lim_{(x,y)\\to (0,0)}\\frac{x^{2}-xy}{\\sqrt{x}-\\sqrt{y}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0.00$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1167793978789",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "delta-ball-limit",
+   "prompt": "<p>For the following exercises, evaluate the limits of the functions of three variables.</p><p>$\\lim_{(x,y,z)\\to (0,0,0)}\\frac{x^{2}-y^{2}-z^{2}}{x^{2}+y^{2}-z^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The limit does not exist."
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1167794155244",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "<p>Discuss the continuity of the following functions. Find the largest region in the $xy\\text{-plane}$ in which the following functions are continuous.</p><p>$f(x,y)=\\ln (x+y)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The function $f$ is continuous in the region $y\\gt -x.$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1167793219336",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "<p>Discuss the continuity of the following functions. Find the largest region in the $xy\\text{-plane}$ in which the following functions are continuous.</p><p>$f(x,y)=\\frac{1}{xy}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The function $f$ is continuous on the set $R={(x,y)|x\\ne 0,y\\ne 0}$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1167793957313",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "<p>For the following two exercises, determine the region in which the function is continuous. Explain your answer.</p><p>$f(x,y)=\\frac{\\sin (x^{2}+y^{2})}{x^{2}+y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The function is discontinuous at $(0,0)$ since $(0,0)$ is not in the domain."
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1167793432455",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "<p>Determine whether $g(x,y)=\\frac{x^{2}-y^{2}}{x^{2}+y^{2}}$ is continuous at $(0,0).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The function is discontinuous at $(0,0).$ The limit at $(0,0)$ fails to exist and $g(0,0)$ does not exist."
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1167793589645",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "<p>Determine the region of the $xy\\text{-plane}$ in which the function $g(x,y)=\\operatorname{arctan}(\\frac{xy^{2}}{x+y})$ is continuous. Use technology to support your conclusion.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Since the function $\\operatorname{arctan}\\;x$ is continuous over $(-\\infty ,\\infty ),$ $g(x,y)=\\operatorname{arctan}(\\frac{xy^{2}}{x+y})$ is continuous where $z=\\frac{xy^{2}}{x+y}$ is continuous. The inner function $z$ is continuous on all points of the $xy\\text{-plane}$ except where $y=-x.$ Thus, $g(x,y)=\\operatorname{arctan}(\\frac{xy^{2}}{x+y})$ is continuous on all points of the coordinate plane <em>except</em> at points at which $y=-x.$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1167793605306",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "<p>At what points in space is $g(x,y,z)=x^{2}+y^{2}-2z^{2}$ continuous?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "All points $P(x,y,z)$ in space"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1167793285307",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "paths-intro",
+   "prompt": "<p>Show that $\\lim_{(x,y)\\to (0,0)}\\frac{1}{x^{2}+y^{2}}$ does not exist at $(0,0)$ by plotting the graph of the function.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The graph increases without bound as $x\\;\\text{and}\\;y$ both approach zero.</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_02_201.jpg\" alt=\"On xyz space, there is a shape drawn that decreases to 0 as x and y increase or decrease but that increases greatly closer to the origin. It increases to such an extent that the graph is cut off above z = 10, which coincides with a circle of radius 0.6 around (0, 0, 10).\">"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1167794172816",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "<p><strong>[T]</strong></p><p>a. Use a CAS to draw a contour map of $z=\\sqrt{9-x^{2}-y^{2}}.$</p><p>b. What is the name of the geometric shape of the level curves?</p><p>c. Give the general equation of the level curves.</p><p>d. What is the maximum value of $z?$</p><p>e. What is the domain of the function?</p><p>f. What is the range of the function?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a.</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_02_203.jpg\" alt=\"A series of five concentric circles, with radii 3, 2.75, 2.5, 2.2, and 1.75. The areas between the circles are colored, with the darkest color between the circles of radii 3 and 2.75.\">\n<p>b. The level curves are circles centered at $(0,0)$ with radius $9-c.$ c. $x^{2}+y^{2}=9-c$ d. $z=3$ e. $\\{(x,y)\\in {\\mathbb{R}}^{2}|x^{2}+y^{2}\\le 9\\}$ f. $\\{z|0\\le z\\le 3\\}$</p>"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "fs-id1167793543617",
+   "source_number": "106",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "paths-intro",
+   "prompt": "<p><em>True or False</em>: If we evaluate $\\lim_{(x,y)\\to (0,0)}f(x)$ along several paths and each time the limit is $1,$ we can conclude that $\\lim_{(x,y)\\to (0,0)}f(x)=1.$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. Agreement along several paths does not prove the limit exists, because $(0,0)$ can be approached along infinitely many paths, and the limit must be the same along every one. In Example 14.9b, $\\frac{4xy^{2}}{x^{2}+3y^{4}}$ approaches $0$ along every straight line through the origin, yet along the parabola $x=y^{2}$ it equals $1,$ so the limit does not exist. A limit is shown to exist from the definition (or the limit laws and continuity), not from a list of paths.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1167793617809",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>Use polar coordinates to find $\\lim_{(x,y)\\to (0,0)}\\frac{\\sin \\sqrt{x^{2}+y^{2}}}{\\sqrt{x^{2}+y^{2}}}.$ You can also find the limit using L’Hôpital’s rule.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1.0$"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1167793927715",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794181227",
+   "prompt": "<p>Discuss the continuity of $f(g(x,y))$ where $f(t)=1/t$ and $g(x,y)=2x-5y.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(g(x,y))$ is continuous at all points $(x,y)$ that are not on the line $2x-5y=0.$"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1167793615277",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882997",
+   "prompt": "<p>Given $f(x,y)=x^{2}-4y,$ find $\\lim_{h\\to 0}\\frac{f(1+h,y)-f(1,y)}{h}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2.0$"
+   }
+  },
+  {
+   "id": "r401",
+   "source_id": "fs-id1167793584554",
+   "source_section": "14.8",
+   "source_number": "401",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "paths-intro",
+   "prompt": "<p>For the following exercises, evaluate the following limits, if they exist. If they do not exist, prove it.</p><p>$\\lim_{(x,y)\\to (0,0)}\\frac{4xy}{x-2y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Does not exist"
+   }
+  },
+  {
+   "id": "r403",
+   "source_id": "fs-id1167793514908",
+   "source_section": "14.8",
+   "source_number": "403",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793504466",
+   "prompt": "<p>For the following exercises, find the largest region of continuity for the function.</p><p>$g(x,y)=\\ln (4-x^{2}-y^{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Continuous at all points on the $x,y\\text{-plane,}$ except where $x^{2}+y^{2}\\gt 4.$<sup class=\"fn\" data-note=\"c-r403-circle\"></sup>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "path-dependence-of-a-limit"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "limit-at-a-boundary-point"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "sum-of-continuous-functions"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "product-of-continuous-functions"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "composition-of-continuous-functions"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "delta-ball"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e61",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e62",
+   "concept": "path-dependence-of-a-limit"
+  },
+  {
+   "exercise": "e62",
+   "concept": "limit-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e63",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e65",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e67",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e69",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e71",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e73",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e75",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e77",
+   "concept": "limit-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e78",
+   "concept": "interior-point"
+  },
+  {
+   "exercise": "e79",
+   "concept": "boundary-point"
+  },
+  {
+   "exercise": "e81",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e83",
+   "concept": "limit-laws-for-functions-of-two-variables"
+  },
+  {
+   "exercise": "e85",
+   "concept": "path-dependence-of-a-limit"
+  },
+  {
+   "exercise": "e85",
+   "concept": "delta-ball"
+  },
+  {
+   "exercise": "e91",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e91",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e93",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e93",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e95",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e95",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e97",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e97",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e99",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e99",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e101",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e101",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e103",
+   "concept": "limit-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e105",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e105",
+   "concept": "contour-map"
+  },
+  {
+   "exercise": "e106",
+   "concept": "path-dependence-of-a-limit"
+  },
+  {
+   "exercise": "e107",
+   "concept": "limit-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e109",
+   "concept": "composition-of-continuous-functions"
+  },
+  {
+   "exercise": "e111",
+   "concept": "limit-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "r401",
+   "concept": "path-dependence-of-a-limit"
+  },
+  {
+   "exercise": "r403",
+   "concept": "continuity-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "r403",
+   "concept": "domain"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-cp-continuity",
+   "kind": "correction",
+   "html": "The key prints $16$ under the root; with $f(x,y)=\\sqrt{26-2x^{2}-y^{2}},$ $f(2,-3)=\\sqrt{26-2(2)^{2}-(-3)^{2}}=\\sqrt{9}=3.$"
+  },
+  {
+   "id": "c-r403-circle",
+   "kind": "correction",
+   "html": "The logarithm needs $4-x^{2}-y^{2}\\gt 0,$ so $g$ is also undefined on the circle $x^{2}+y^{2}=4$: it is continuous exactly where $x^{2}+y^{2}\\lt 4,$ the open disk of radius $2.$"
+  }
+ ]
+}

@@ -1,0 +1,751 @@
+{
+ "id": "14",
+ "dir": "ch14",
+ "title": "Differentiation of Functions of Several Variables",
+ "intro": {
+  "module": "m53929",
+  "slug": "calculus-volume-3/pages/4-introduction"
+ },
+ "sections": [
+  {
+   "id": "14.1",
+   "module": "m53946",
+   "title": "Functions of Several Variables",
+   "slug": "calculus-volume-3/pages/4-1-functions-of-several-variables"
+  },
+  {
+   "id": "14.2",
+   "module": "m53933",
+   "title": "Limits and Continuity",
+   "slug": "calculus-volume-3/pages/4-2-limits-and-continuity"
+  },
+  {
+   "id": "14.3",
+   "module": "m53934",
+   "title": "Partial Derivatives",
+   "slug": "calculus-volume-3/pages/4-3-partial-derivatives"
+  },
+  {
+   "id": "14.4",
+   "module": "m53937",
+   "title": "Tangent Planes and Linear Approximations",
+   "slug": "calculus-volume-3/pages/4-4-tangent-planes-and-linear-approximations"
+  },
+  {
+   "id": "14.5",
+   "module": "m53938",
+   "title": "The Chain Rule",
+   "slug": "calculus-volume-3/pages/4-5-the-chain-rule"
+  },
+  {
+   "id": "14.6",
+   "module": "m53940",
+   "title": "Directional Derivatives and the Gradient",
+   "slug": "calculus-volume-3/pages/4-6-directional-derivatives-and-the-gradient"
+  },
+  {
+   "id": "14.7",
+   "module": "m53942",
+   "title": "Maxima/Minima Problems",
+   "slug": "calculus-volume-3/pages/4-7-maximaminima-problems"
+  },
+  {
+   "id": "14.8",
+   "module": "m53943",
+   "title": "Lagrange Multipliers",
+   "slug": "calculus-volume-3/pages/4-8-lagrange-multipliers"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "f",
+   "section": "14.1",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, mapping each ordered pair (x, y) of its domain to a real number z; in Example 14.6, a function f(x, y, z) of three variables",
+   "redefines": true,
+   "anchor": "14.1-fs-id1167794040017"
+  },
+  {
+   "sym": "g",
+   "section": "14.1",
+   "concept": "function-of-two-variables",
+   "meaning": "a second function g(x, y) of two variables; in Example 14.6, a function g(x, y, t) of three variables",
+   "redefines": true,
+   "anchor": "14.1-sim-domain-map"
+  },
+  {
+   "sym": "D",
+   "section": "14.1",
+   "concept": "domain",
+   "meaning": "the domain of a function, its set of inputs",
+   "anchor": "14.1-fs-id1167794040017"
+  },
+  {
+   "sym": "f",
+   "section": "14.2",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, mapping each ordered pair (x, y) of its domain to a real number z",
+   "anchor": "14.2-limits"
+  },
+  {
+   "sym": "g",
+   "section": "14.2",
+   "concept": "function-of-two-variables",
+   "meaning": "a second function g(x, y) of two variables; in the composition theorem, a function of two variables from D ⊆ ℝ² to R ⊆ ℝ",
+   "anchor": "14.2-fs-id1167793882997"
+  },
+  {
+   "sym": "L",
+   "section": "14.2",
+   "concept": "limit-of-a-function-of-two-variables",
+   "meaning": "the limit L of f(x, y) as (x, y) approaches (a, b), the number its values come within any ε of",
+   "redefines": true,
+   "anchor": "14.2-limits"
+  },
+  {
+   "sym": "M",
+   "section": "14.2",
+   "concept": "limit-of-a-function-of-two-variables",
+   "meaning": "the limit M of a second function g(x, y) as (x, y) approaches (a, b), in the limit laws",
+   "redefines": true,
+   "anchor": "14.2-fs-id1167793882997"
+  },
+  {
+   "sym": "D",
+   "section": "14.2",
+   "concept": "domain",
+   "meaning": "the domain of a function, its set of inputs",
+   "anchor": "14.2-fs-id1167794181227"
+  },
+  {
+   "sym": "f",
+   "section": "14.3",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, mapping each ordered pair (x, y) of its domain to a real number z, or f(x, y, z) of three",
+   "anchor": "14.3-two-variables"
+  },
+  {
+   "sym": "g",
+   "section": "14.3",
+   "concept": "function-of-two-variables",
+   "meaning": "a second function g(x, y) of two variables",
+   "anchor": "14.3-holding-constant"
+  },
+  {
+   "sym": "f_x",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_x of f with respect to x, its other variables held constant",
+   "anchor": "14.3-fs-id1167793902985"
+  },
+  {
+   "sym": "f_y",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_y of f with respect to y, its other variables held constant",
+   "anchor": "14.3-fs-id1167793902985"
+  },
+  {
+   "sym": "f_z",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_z of f with respect to z, its other variables held constant (a function of three variables)",
+   "anchor": "14.3-fs-id1167793607547"
+  },
+  {
+   "sym": "f_xx",
+   "section": "14.3",
+   "concept": "higher-order-partial-derivatives",
+   "meaning": "the second partial derivative f_xx of f, the partial derivative of f_x with respect to x",
+   "anchor": "14.3-higher-order"
+  },
+  {
+   "sym": "f_xy",
+   "section": "14.3",
+   "concept": "mixed-partial-derivatives",
+   "meaning": "the mixed partial derivative f_xy of f, the partial derivative of f_x with respect to y",
+   "anchor": "14.3-higher-order"
+  },
+  {
+   "sym": "f_yx",
+   "section": "14.3",
+   "concept": "mixed-partial-derivatives",
+   "meaning": "the mixed partial derivative f_yx of f, the partial derivative of f_y with respect to x",
+   "anchor": "14.3-higher-order"
+  },
+  {
+   "sym": "f_yy",
+   "section": "14.3",
+   "concept": "higher-order-partial-derivatives",
+   "meaning": "the second partial derivative f_yy of f, the partial derivative of f_y with respect to y",
+   "anchor": "14.3-higher-order"
+  },
+  {
+   "sym": "∂f/∂x",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂x of f with respect to x, written as a fraction",
+   "anchor": "14.3-fs-id1167794136460"
+  },
+  {
+   "sym": "∂f/∂y",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂y of f with respect to y, written as a fraction",
+   "anchor": "14.3-fs-id1167793263380"
+  },
+  {
+   "sym": "∂f/∂z",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂z of f with respect to z, written as a fraction",
+   "anchor": "14.3-fs-id1167793488609"
+  },
+  {
+   "sym": "∂f/∂x_in",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂x of f with respect to x, written inline",
+   "anchor": "14.3-fs-id1167793902985"
+  },
+  {
+   "sym": "∂f/∂y_in",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂y of f with respect to y, written inline",
+   "anchor": "14.3-fs-id1167793902985"
+  },
+  {
+   "sym": "∂f/∂z_in",
+   "section": "14.3",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂z of f with respect to z, written inline",
+   "anchor": "14.3-fs-id1167793607547"
+  },
+  {
+   "sym": "u_fn",
+   "section": "14.3",
+   "concept": "partial-differential-equation",
+   "type": "function",
+   "meaning": "the unknown function u of a partial differential equation, u(x, y, t) in the heat and wave equations and u(x, y) in Laplace's equation",
+   "redefines": true,
+   "anchor": "14.3-pde-term"
+  },
+  {
+   "sym": "f",
+   "section": "14.4",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, mapping each ordered pair (x, y) of its domain to a real number z whose graph is the surface S",
+   "anchor": "14.4-planes-intro"
+  },
+  {
+   "sym": "f_x",
+   "section": "14.4",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_x of f with respect to x, its other variables held constant",
+   "anchor": "14.4-fs-id1167794069619"
+  },
+  {
+   "sym": "f_y",
+   "section": "14.4",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_y of f with respect to y, its other variables held constant",
+   "anchor": "14.4-fs-id1167794069619"
+  },
+  {
+   "sym": "f_z",
+   "section": "14.4",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_z of f with respect to z, its other variables held constant (a function of three variables)",
+   "anchor": "14.4-fs-id1167793416701"
+  },
+  {
+   "sym": "∂f/∂x",
+   "section": "14.4",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂x of f with respect to x, written as a fraction",
+   "anchor": "14.4-differentiability"
+  },
+  {
+   "sym": "∂f/∂y",
+   "section": "14.4",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂y of f with respect to y, written as a fraction",
+   "anchor": "14.4-differentiability"
+  },
+  {
+   "sym": "L",
+   "section": "14.4",
+   "concept": "linear-approximation-of-a-function-of-two-variables",
+   "meaning": "the linear approximation L(x, y) of f at (x₀, y₀), the function whose graph is the tangent plane there",
+   "redefines": true,
+   "anchor": "14.4-fs-id1167793882150"
+  },
+  {
+   "sym": "E",
+   "section": "14.4",
+   "type": "error",
+   "meaning": "the error term E(x, y) of differentiability, how far the surface lies from its tangent plane near (x₀, y₀)",
+   "redefines": true,
+   "anchor": "14.4-fs-id1167793514508"
+  },
+  {
+   "sym": "a_vec",
+   "section": "14.4",
+   "concept": "vector",
+   "meaning": "a vector a = j + f_y(x₀, y₀) k parallel to the tangent line to the trace x = x₀",
+   "redefines": true,
+   "anchor": "14.4-plane-derivation"
+  },
+  {
+   "sym": "b_vec",
+   "section": "14.4",
+   "concept": "vector",
+   "meaning": "a vector b = i + f_x(x₀, y₀) k parallel to the tangent line to the trace y = y₀",
+   "redefines": true,
+   "anchor": "14.4-plane-derivation"
+  },
+  {
+   "sym": "n_vec",
+   "section": "14.4",
+   "concept": "normal-vector",
+   "meaning": "a normal vector of a plane, perpendicular to it",
+   "anchor": "14.4-tangent-planes"
+  },
+  {
+   "sym": "i_vec",
+   "section": "14.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "14.4-plane-derivation"
+  },
+  {
+   "sym": "j_vec",
+   "section": "14.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "14.4-plane-derivation"
+  },
+  {
+   "sym": "k_vec",
+   "section": "14.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "14.4-plane-derivation"
+  },
+  {
+   "sym": "f",
+   "section": "14.5",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, mapping each ordered pair (x, y) of its domain to a real number z; in the generalized chain rule a function of m variables",
+   "anchor": "14.5-chain-rules"
+  },
+  {
+   "sym": "g",
+   "section": "14.5",
+   "concept": "function",
+   "meaning": "the function x = g(t), or x = g(u, v), that an intermediate variable is of the independent variables",
+   "redefines": true,
+   "anchor": "14.5-chain-rules"
+  },
+  {
+   "sym": "h",
+   "section": "14.5",
+   "concept": "function",
+   "meaning": "the function y = h(t), or y = h(u, v), that an intermediate variable is of the independent variables",
+   "redefines": true,
+   "anchor": "14.5-fs-id1167793362088"
+  },
+  {
+   "sym": "w",
+   "section": "14.5",
+   "concept": "function-of-more-than-two-variables",
+   "meaning": "a function w = f(x, y, z) of three variables, each of them depending on other variables",
+   "redefines": true,
+   "anchor": "14.5-fs-id1167793261542"
+  },
+  {
+   "sym": "f_x",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_x of f with respect to x, its other variables held constant",
+   "anchor": "14.5-fs-id1167793966705"
+  },
+  {
+   "sym": "f_y",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_y of f with respect to y, its other variables held constant",
+   "anchor": "14.5-fs-id1167793966705"
+  },
+  {
+   "sym": "f_z",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_z of f with respect to z, its other variables held constant",
+   "anchor": "14.5-fs-id1167793376409"
+  },
+  {
+   "sym": "∂f/∂x",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂x of f with respect to x, written as a fraction",
+   "anchor": "14.5-intermediate-term"
+  },
+  {
+   "sym": "∂f/∂y",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂y of f with respect to y, written as a fraction",
+   "anchor": "14.5-intermediate-term"
+  },
+  {
+   "sym": "∂f/∂z",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂z of f with respect to z, written as a fraction",
+   "anchor": "14.5-fs-id1167793420880"
+  },
+  {
+   "sym": "∂f/∂x_in",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂x of f with respect to x, written inline",
+   "anchor": "14.5-fs-id1167793547437"
+  },
+  {
+   "sym": "∂f/∂y_in",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂y of f with respect to y, written inline",
+   "anchor": "14.5-fs-id1167793547437"
+  },
+  {
+   "sym": "∂f/∂z_in",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂f/∂z of f with respect to z, written inline",
+   "anchor": "14.5-fs-id1167794214311"
+  },
+  {
+   "sym": "∂z/∂x",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂z/∂x of z = f(x, y) with respect to the intermediate variable x",
+   "anchor": "14.5-fs-id1167794005848"
+  },
+  {
+   "sym": "∂z/∂y",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂z/∂y of z = f(x, y) with respect to the intermediate variable y",
+   "anchor": "14.5-fs-id1167794005848"
+  },
+  {
+   "sym": "∂z/∂x_in",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂z/∂x of z with respect to x, written inline",
+   "anchor": "14.5-fs-id1167793221931"
+  },
+  {
+   "sym": "∂z/∂y_in",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂z/∂y of z with respect to y, written inline",
+   "anchor": "14.5-fs-id1167793221931"
+  },
+  {
+   "sym": "∂z/∂u",
+   "section": "14.5",
+   "concept": "chain-rule-for-two-independent-variables",
+   "meaning": "the partial derivative ∂z/∂u of z = f(g(u, v), h(u, v)) with respect to the independent variable u",
+   "anchor": "14.5-fs-id1167793501898"
+  },
+  {
+   "sym": "∂z/∂v",
+   "section": "14.5",
+   "concept": "chain-rule-for-two-independent-variables",
+   "meaning": "the partial derivative ∂z/∂v of z = f(g(u, v), h(u, v)) with respect to the independent variable v",
+   "anchor": "14.5-fs-id1167794173384"
+  },
+  {
+   "sym": "∂x/∂u",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂x/∂u of the intermediate variable x = g(u, v) with respect to u",
+   "anchor": "14.5-fs-id1167793501898"
+  },
+  {
+   "sym": "∂x/∂v",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂x/∂v of the intermediate variable x = g(u, v) with respect to v",
+   "anchor": "14.5-fs-id1167794173384"
+  },
+  {
+   "sym": "∂y/∂u",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂y/∂u of the intermediate variable y = h(u, v) with respect to u",
+   "anchor": "14.5-fs-id1167793501898"
+  },
+  {
+   "sym": "∂y/∂v",
+   "section": "14.5",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative ∂y/∂v of the intermediate variable y = h(u, v) with respect to v",
+   "anchor": "14.5-fs-id1167794173384"
+  },
+  {
+   "sym": "dz/dt",
+   "section": "14.5",
+   "concept": "chain-rule-for-one-independent-variable",
+   "meaning": "the derivative dz/dt of z = f(x(t), y(t)) with respect to t",
+   "anchor": "14.5-fs-id1167794005848"
+  },
+  {
+   "sym": "dx/dt",
+   "section": "14.5",
+   "concept": "derivative",
+   "meaning": "the derivative dx/dt of the intermediate variable x = g(t) with respect to t",
+   "redefines": true,
+   "anchor": "14.5-fs-id1167794005848"
+  },
+  {
+   "sym": "dy/dt",
+   "section": "14.5",
+   "concept": "derivative",
+   "meaning": "the derivative dy/dt of the intermediate variable y = h(t) with respect to t",
+   "redefines": true,
+   "anchor": "14.5-fs-id1167794005848"
+  },
+  {
+   "sym": "f",
+   "section": "14.6",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, mapping each ordered pair (x, y) of its domain to a real number z, or f(x, y, z) of three",
+   "anchor": "14.6-directional-intro"
+  },
+  {
+   "sym": "f_x",
+   "section": "14.6",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_x of f with respect to x, its other variables held constant",
+   "anchor": "14.6-fs-id1167793882858"
+  },
+  {
+   "sym": "f_y",
+   "section": "14.6",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_y of f with respect to y, its other variables held constant",
+   "anchor": "14.6-fs-id1167793882858"
+  },
+  {
+   "sym": "f_z",
+   "section": "14.6",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_z of f with respect to z, its other variables held constant (a function of three variables)",
+   "anchor": "14.6-fs-id1167793932636"
+  },
+  {
+   "sym": "∇f",
+   "section": "14.6",
+   "concept": "gradient",
+   "meaning": "the gradient ∇f = f_x i + f_y j (+ f_z k) of f, the vector of its partial derivatives",
+   "anchor": "14.6-gradient"
+  },
+  {
+   "sym": "D_u_f",
+   "section": "14.6",
+   "concept": "directional-derivative",
+   "meaning": "the directional derivative D_u f of f in the direction of the unit vector u",
+   "anchor": "14.6-sim-directional"
+  },
+  {
+   "sym": "u_vec",
+   "section": "14.6",
+   "concept": "unit-vector",
+   "meaning": "the unit vector u = cos θ i + sin θ j (or cos α i + cos β j + cos γ k) giving the direction of a directional derivative",
+   "redefines": true,
+   "anchor": "14.6-directional"
+  },
+  {
+   "sym": "v_vec",
+   "section": "14.6",
+   "concept": "vector",
+   "meaning": "a nonunit direction vector, divided by its magnitude to give u",
+   "redefines": true,
+   "anchor": "14.6-fs-id1167793928778"
+  },
+  {
+   "sym": "θ",
+   "section": "14.6",
+   "type": "angle",
+   "meaning": "the angle of the direction u, measured counterclockwise from the positive x-axis",
+   "redefines": true,
+   "anchor": "14.6-directional"
+  },
+  {
+   "sym": "φ",
+   "section": "14.6",
+   "concept": "angle-between-two-vectors",
+   "meaning": "the angle φ between the gradient ∇f(x₀, y₀) and the unit vector u",
+   "redefines": true,
+   "anchor": "14.6-gradient-angle"
+  },
+  {
+   "sym": "i_vec",
+   "section": "14.6",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "14.6-directional"
+  },
+  {
+   "sym": "j_vec",
+   "section": "14.6",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "14.6-directional"
+  },
+  {
+   "sym": "k_vec",
+   "section": "14.6",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "14.6-fs-id1167793443483"
+  },
+  {
+   "sym": "f",
+   "section": "14.7",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, mapping each ordered pair (x, y) of its domain to a real number z whose extrema are sought",
+   "anchor": "14.7-fs-id1167793937740"
+  },
+  {
+   "sym": "g",
+   "section": "14.7",
+   "concept": "function-of-two-variables",
+   "meaning": "a second function g(x, y) of two variables whose extrema are sought",
+   "anchor": "14.7-fs-id1167793263462"
+  },
+  {
+   "sym": "f_x",
+   "section": "14.7",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_x of f with respect to x, its other variables held constant",
+   "anchor": "14.7-fs-id1167793937740"
+  },
+  {
+   "sym": "f_y",
+   "section": "14.7",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative f_y of f with respect to y, its other variables held constant",
+   "anchor": "14.7-fs-id1167793937740"
+  },
+  {
+   "sym": "f_xx",
+   "section": "14.7",
+   "concept": "higher-order-partial-derivatives",
+   "meaning": "the second partial derivative f_xx of f, the partial derivative of f_x with respect to x",
+   "anchor": "14.7-sim-second-derivative-test"
+  },
+  {
+   "sym": "f_xy",
+   "section": "14.7",
+   "concept": "mixed-partial-derivatives",
+   "meaning": "the mixed partial derivative f_xy of f, the partial derivative of f_x with respect to y",
+   "anchor": "14.7-sim-second-derivative-test"
+  },
+  {
+   "sym": "f_yy",
+   "section": "14.7",
+   "concept": "higher-order-partial-derivatives",
+   "meaning": "the second partial derivative f_yy of f, the partial derivative of f_y with respect to y",
+   "anchor": "14.7-sim-second-derivative-test"
+  },
+  {
+   "sym": "g_x",
+   "section": "14.7",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative g_x of g with respect to x",
+   "anchor": "14.7-fs-id1167793263462"
+  },
+  {
+   "sym": "g_y",
+   "section": "14.7",
+   "concept": "partial-derivative",
+   "meaning": "the partial derivative g_y of g with respect to y",
+   "anchor": "14.7-fs-id1167793263462"
+  },
+  {
+   "sym": "g_xx",
+   "section": "14.7",
+   "concept": "higher-order-partial-derivatives",
+   "meaning": "the second partial derivative g_xx of g",
+   "anchor": "14.7-fs-id1167793524729"
+  },
+  {
+   "sym": "g_xy",
+   "section": "14.7",
+   "concept": "mixed-partial-derivatives",
+   "meaning": "the mixed partial derivative g_xy of g",
+   "anchor": "14.7-fs-id1167793524729"
+  },
+  {
+   "sym": "g_yy",
+   "section": "14.7",
+   "concept": "higher-order-partial-derivatives",
+   "meaning": "the second partial derivative g_yy of g",
+   "anchor": "14.7-fs-id1167793524729"
+  },
+  {
+   "sym": "D",
+   "section": "14.7",
+   "concept": "discriminant",
+   "meaning": "the discriminant D = f_xx f_yy − (f_xy)² of the second derivative test at a critical point",
+   "redefines": true,
+   "anchor": "14.7-discriminant-term"
+  },
+  {
+   "sym": "f",
+   "section": "14.8",
+   "concept": "objective-function",
+   "meaning": "the objective function f(x, y), or f(x, y, z), to be maximized or minimized",
+   "redefines": true,
+   "anchor": "14.8-lagrange"
+  },
+  {
+   "sym": "g",
+   "section": "14.8",
+   "concept": "constraint",
+   "type": "function",
+   "meaning": "the constraint function g(x, y), the constraint written g(x, y) = 0",
+   "redefines": true,
+   "anchor": "14.8-fs-id1167794055797"
+  },
+  {
+   "sym": "h",
+   "section": "14.8",
+   "concept": "constraint",
+   "type": "function",
+   "meaning": "a second constraint function h(x, y, z), the constraint written h(x, y, z) = 0",
+   "redefines": true,
+   "anchor": "14.8-two-constraints"
+  },
+  {
+   "sym": "∇f",
+   "section": "14.8",
+   "concept": "gradient",
+   "meaning": "the gradient ∇f of the objective function f",
+   "anchor": "14.8-sim-lagrange-golf"
+  },
+  {
+   "sym": "∇g",
+   "section": "14.8",
+   "concept": "gradient",
+   "meaning": "the gradient ∇g of the constraint function g, normal to the constraint curve g = 0",
+   "anchor": "14.8-sim-lagrange-golf"
+  }
+ ]
+}

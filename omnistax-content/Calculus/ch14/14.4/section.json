@@ -1,0 +1,1096 @@
+{
+ "id": "14.4",
+ "module": "m53937",
+ "chapter": "14",
+ "title": "Tangent Planes and Linear Approximations",
+ "short": "Tangent Planes and Linear Approximations",
+ "lead": "The <span data-concept=\"tangent-plane\">tangent plane</span> to a surface plays the part the tangent line played for a curve. This section finds its equation from the partial derivatives, uses it as a <span data-concept=\"linear-approximation-of-a-function-of-two-variables\">linear approximation</span>, defines when a function of two or three variables is <span data-concept=\"differentiable-function-of-two-variables\">differentiable</span>, and estimates changes and errors with the <span data-concept=\"total-differential\">total differential</span>.",
+ "objectives": [
+  "Determine the equation of a plane tangent to a given surface at a point.",
+  "Use the tangent plane to approximate a function of two variables at a point.",
+  "Explain when a function of two variables is differentiable.",
+  "Use the total differential to approximate the change in a function of two variables."
+ ],
+ "summary_html": "<ul><li>The analog of a <span data-concept=\"tangent-line\">tangent line</span> to a curve is a <span data-concept=\"tangent-plane\">tangent plane</span> to a <span data-concept=\"surface\">surface</span> for <span data-concept=\"function-of-two-variables\">functions of two variables</span>.</li><li><span data-concept=\"tangent-plane\">Tangent planes</span> can be used to approximate values of functions near known values.</li><li>A function is differentiable at a point if it is ”smooth” at that point (i.e., no corners or discontinuities exist at that point).</li><li>The <span data-concept=\"total-differential\">total differential</span> can be used to approximate the change in a function $z=\\kf(x_{0},y_{0})$ at the point $(x_{0},y_{0})$ for given values of $\\Delta x$ and $\\Delta y.$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Exercise 190 (explain what a segment of the figure represents) has no answer in the book’s key and is kept with an AI-written suggested approach. The other even-numbered exercises have no answer in the key and are left out: 164–186 even (normal and tangent vectors, tangent planes and normal lines), 188 (a segment of the figure), 192–206 even (differentials and errors) and 208–214 even (linear approximations and tangent planes). Review exercises 396 (true or false, with an AI-written suggested approach), 409, 411 and 419 from the end of the chapter are held here; 419 is set under Lagrange multipliers in the book but is solved with differentials.",
+ "figures": [
+  {
+   "id": "sim-tangent-plane",
+   "kind": "sim",
+   "number": "14.27",
+   "folds": [
+    "14.28"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_04_004.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_04_005.jpg"
+   ],
+   "original_caption": "(Figure 14.27) The tangent plane to a surface S at a point P₀ contains all the tangent lines to curves in S that pass through P₀. (Figure 14.28) Calculating the equation of a tangent plane to a given surface at a given point.",
+   "draws": [
+    "surface",
+    "plane",
+    "curve",
+    "line",
+    "point",
+    "angle",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-no-tangent-plane",
+   "kind": "sim",
+   "number": "14.29",
+   "folds": [
+    "14.32"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_04_001.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_04_007.jpg"
+   ],
+   "original_caption": "(Figure 14.29) Graph of a function that does not have a tangent plane at the origin. (Figure 14.32) This function f(x,y) is not differentiable at the origin.",
+   "draws": [
+    "surface",
+    "plane",
+    "curve",
+    "line",
+    "point",
+    "angle",
+    "derivative",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-tangent-line-approximation",
+   "kind": "sim",
+   "number": "14.30",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_04_002.jpg"
+   ],
+   "original_caption": "Linear approximation of a function in one variable.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-plane-approximation",
+   "kind": "sim",
+   "number": "14.31",
+   "folds": [
+    "14.33"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_04_006.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_04_008.jpg"
+   ],
+   "original_caption": "(Figure 14.31) Using a tangent plane for linear approximation at a point. (Figure 14.33) The linear approximation is calculated via the formula f(x + Δx, y + Δy) ≈ f(x,y) + f_x(x₀,y₀)Δx + f_y(x₀,y₀)Δy.",
+   "draws": [
+    "surface",
+    "plane",
+    "point",
+    "function",
+    "error",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "planes-intro",
+   "concept": "tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "planes-intro",
+   "concept": "scalar-equation-of-a-plane",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793401426",
+   "concept": "tangent-plane",
+   "verb": "introduces"
+  },
+  {
+   "span": "plane-exists",
+   "concept": "tangent-plane",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793903025",
+   "concept": "tangent-plane",
+   "verb": "reinforces"
+  },
+  {
+   "span": "plane-derivation",
+   "concept": "partial-derivative-as-a-slope",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-derivation",
+   "concept": "cross-product",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-derivation",
+   "concept": "normal-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793879740",
+   "concept": "tangent-plane",
+   "verb": "reinforces"
+  },
+  {
+   "span": "no-plane",
+   "concept": "tangent-plane",
+   "verb": "reinforces"
+  },
+  {
+   "span": "linear-approximations",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793928374",
+   "concept": "linear-approximation-of-a-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "approximation-idea",
+   "concept": "linear-approximation-of-a-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793478127",
+   "concept": "linear-approximation-of-a-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794136381",
+   "concept": "differentiable-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "error-term",
+   "concept": "differentiable-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794147270",
+   "concept": "differentiable-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793618110",
+   "concept": "differentiability-implies-continuity-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793960614",
+   "concept": "continuity-of-first-partials-implies-differentiability",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuity-link",
+   "concept": "differentiability-implies-continuity",
+   "verb": "uses"
+  },
+  {
+   "span": "differentials",
+   "concept": "differential",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793951229",
+   "concept": "total-differential",
+   "verb": "introduces"
+  },
+  {
+   "span": "error-propagation",
+   "concept": "propagated-error",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793299665",
+   "concept": "total-differential",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793219325",
+   "concept": "differentiability-of-a-function-of-three-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "three-variables-continuity",
+   "concept": "differentiability-of-a-function-of-three-variables",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793886872",
+   "source_number": "Checkpoint 14.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793879740"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "Find an equation of the tangent plane to the surface defined by the function $f(x,y)=x^{3}-x^{2}y+y^{2}-2x+3y-2$ at point $(-1,3).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z=7x+8y-3$",
+    "hint": "First, calculate $f_{x}(x,y)$ and $f_{y}(x,y),$ then use <a href=\"#fs-id1167794069619\">Equation 14.24</a>."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793386145",
+   "source_number": "Checkpoint 14.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793478127"
+   },
+   "cite": "fs-id1167793928374",
+   "prompt": "Given the function $f(x,y)=e^{5-2x+3y},$ approximate $f(4.1,0.9)$ using point $(4,1)$ for $(x_{0},y_{0}).$ What is the approximate value of $f(4.1,0.9)$ to four decimal places?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L(x,y)=6-2x+3y,$ so $L(4.1,0.9)=6-2(4.1)+3(0.9)=0.5$ $f(4.1,0.9)=e^{5-2(4.1)+3(0.9)}=e^{-0.5}\\approx 0.6065.$",
+    "hint": "First calculate $f(x_{0},y_{0}),f_{x}(x_{0},y_{0}),\\;\\text{and}\\;f_{y}(x_{0},y_{0})$ using $x_{0}=4$ and $y_{0}=1,$ then use <a href=\"#fs-id1167793882150\">Equation 14.25</a>."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793514522",
+   "source_number": "Checkpoint 14.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794147270"
+   },
+   "cite": "fs-id1167794136381",
+   "prompt": "Show that the function $f(x,y)=3x-4y^{2}$ is differentiable at point $(-1,2).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(-1,2)=-19,\\;f_{x}(-1,2)=3,f_{y}(-1,2)=-16,E(x,y)=-4{(y-2)}^{2}.$ $\\begin{array}{rl}\\lim_{(x,y)\\to (x_{0},y_{0})}\\frac{E(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}} & =\\lim_{(x,y)\\to (-1,2)}\\frac{-4{(y-2)}^{2}}{\\sqrt{{(x+1)}^{2}+{(y-2)}^{2}}} \\\\ & \\le \\lim_{(x,y)\\to (-1,2)}\\frac{-4({(x+1)}^{2}+{(y-2)}^{2})}{\\sqrt{{(x+1)}^{2}+{(y-2)}^{2}}} \\\\ & =\\lim_{(x,y)\\to (–1,2)}-4\\sqrt{{(x+1)}^{2}+{(y-2)}^{2}} \\\\ & =0.\\end{array}$",
+    "hint": "First, calculate $f(x_{0},y_{0}),f_{x}(x_{0},y_{0}),\\;\\text{and}\\;f_{y}(x_{0},y_{0})$ using $x_{0}=-1$ and $y_{0}=2,$ then use <a href=\"#fs-id1167793514508\">Equation 14.26</a> to find $E(x,y).$ Last, calculate the limit."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793617980",
+   "source_number": "Checkpoint 14.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793299665"
+   },
+   "cite": "fs-id1167793951229",
+   "prompt": "Find the differential $dz$ of the function $f(x,y)=4y^{2}+x^{2}y-2xy$ and use it to approximate $\\Delta z$ at point $(1,-1).$ Use $\\Delta x=0.03$ and $\\Delta y=-0.02.$ What is the exact value of $\\Delta z?$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{rll}dz & = & 0.18 \\\\ \\Delta z & = & f(1.03,-1.02)-f(1,-1)=0.180682\\end{array}$",
+    "hint": "First, calculate $f_{x}(x_{0},y_{0})$ and $f_{y}(x_{0},y_{0})$ using $x_{0}=1$ and $y_{0}=-1,$ then use <a href=\"#fs-id1167793465538\">Equation 14.27</a>."
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1167794200501",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-derivation",
+   "prompt": "<p>For the following exercises, find a unit normal vector to the surface at the indicated point.</p><p>$z=f(x,y)=x^{3},(2,-1,8)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{\\sqrt{145}}{145})(12\\mathbf{i}-\\mathbf{k})$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1167793453315",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-derivation",
+   "prompt": "<p>For the following exercises, as a useful review for techniques used in this section, find a normal vector and a tangent vector at point $P.$</p><p>$x^{2}+xy+y^{2}=3,P(-1,-1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Normal vector: $\\mathbf{i}+\\mathbf{j},$ tangent vector: $\\mathbf{i}-\\mathbf{j}$"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1167793638130",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-derivation",
+   "prompt": "<p>For the following exercises, as a useful review for techniques used in this section, find a normal vector and a tangent vector at point $P.$</p><p>$xy^{2}-2x^{2}+y+5x=6,P(4,2)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Normal vector: $7\\mathbf{i}-17\\mathbf{j},$ tangent vector: $17\\mathbf{i}+7\\mathbf{j}$"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1167793251263",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-derivation",
+   "prompt": "<p>For the following exercises, as a useful review for techniques used in this section, find a normal vector and a tangent vector at point $P.$</p><p>$ze^{x^{2}-y^{2}}-3=0,$ $P(2,2,3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{ll}\\text{Normal vector} & -12i+12j-k \\\\ \\text{Tangent vector} & 0i+j+12k\\text{or}0i+j-12k\\end{array}$"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1167794213138",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "<p>For the following exercises, find the equation for the tangent plane to the surface at the indicated point. (<em>Hint:</em> Solve for $z$ in terms of $x$ and $y.)$</p><p>$z=-9x^{2}-3y^{2},P(2,1,-39)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-36x-6y-z=-39$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1167794143686",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "<p>For the following exercises, find the equation for the tangent plane to the surface at the indicated point. (<em>Hint:</em> Solve for $z$ in terms of $x$ and $y.)$</p><p>$z=\\ln (10x^{2}+2y^{2}+1),P(0,0,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z=0$"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1167794327673",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "<p>For the following exercises, find the equation for the tangent plane to the surface at the indicated point. (<em>Hint:</em> Solve for $z$ in terms of $x$ and $y.)$</p><p>$xy+yz+zx=11,P(1,2,3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$5x+4y+3z-22=0$"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1167793992278",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "<p>For the following exercises, find the equation for the tangent plane to the surface at the indicated point. (<em>Hint:</em> Solve for $z$ in terms of $x$ and $y.)$</p><p>$x^{3}+y^{3}=3xyz,P(1,2,\\frac{3}{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4x-5y+4z=0$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1167793638298",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "<p>For the following exercises, find the equation for the tangent plane to the surface at the indicated point. (<em>Hint:</em> Solve for $z$ in terms of $x$ and $y.)$</p><p>$z=\\sin x+\\sin y+\\sin (x+y),P(0,0,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2x+2y-z=0$"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1167794324402",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "<p>For the following exercises, find the equation for the tangent plane to the surface at the indicated point. (<em>Hint:</em> Solve for $z$ in terms of $x$ and $y.)$</p><p>$z=x^{2}-2xy+y^{2},P(1,2,1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-2(x-1)+2(y-2)-(z-1)=0$"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1167793930127",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-derivation",
+   "prompt": "<p>For the following exercises, find parametric equations for the normal line to the surface at the indicated point. (Recall that to find the equation of a line in space, you need a point on the line, $P_{0}(x_{0,}y_{0},z_{0}),$ and a vector $\\mathbf{n}=\\langle a,b,c\\rangle$ that is parallel to the line. Then the equation of the line is $x-x_{0}=at,y-y_{0}=bt,z-z_{0}=ct.)$</p><p>$z=5x^{2}-2y^{2},P(2,1,18)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=20t+2,y=-4t+1,z=-t+18$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1167793887479",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-derivation",
+   "prompt": "<p>For the following exercises, find parametric equations for the normal line to the surface at the indicated point. (Recall that to find the equation of a line in space, you need a point on the line, $P_{0}(x_{0,}y_{0},z_{0}),$ and a vector $\\mathbf{n}=\\langle a,b,c\\rangle$ that is parallel to the line. Then the equation of the line is $x-x_{0}=at,y-y_{0}=bt,z-z_{0}=ct.)$</p><p>$z=\\ln (3x^{2}+7y^{2}+1),P(0,0,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=0,y=0,z=t$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1167793423533",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-derivation",
+   "prompt": "<p>For the following exercises, find parametric equations for the normal line to the surface at the indicated point. (Recall that to find the equation of a line in space, you need a point on the line, $P_{0}(x_{0,}y_{0},z_{0}),$ and a vector $\\mathbf{n}=\\langle a,b,c\\rangle$ that is parallel to the line. Then the equation of the line is $x-x_{0}=at,y-y_{0}=bt,z-z_{0}=ct.)$</p><p>$z=x^{2}-2xy+y^{2}$ at point $P(1,2,1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x-1=2t;\\;y-2=-2t;\\;z-1=t$"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1167793638236",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793951229",
+   "prompt": "<p>For the following exercises, use the figure shown here.</p><img src=\"/media/ch14/CNX_Calc_Figure_14_04_201.jpg\" alt=\"A surface in the xyz plane is marked as z = f(x, y). This surface has a tangent plane at (x0, y0, z0), with the corresponding point (x0, y0) marked on the xy plane. Also marked on the xy plane is the point (x0 + Δx, y0 + Δy). From this point, a line is drawn to the surface and three points are marked. The first point is C, which is (x0 + Δx, y0 + Δy, z0), then there is B, which is on the tangent plane, and then there is A, which is on the surface. The distance between B and C is marked df(x0, y0).\"><p>The length of line segment $BC$ is equal to what mathematical expression?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The differential of the function $z(x,y)=dz=f_{x}dx+f_{y}dy$"
+   }
+  },
+  {
+   "id": "e190",
+   "source_id": "fs-id1167793611461",
+   "source_number": "190",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793951229",
+   "prompt": "<p>For the following exercises, use the figure shown here.</p><img src=\"/media/ch14/CNX_Calc_Figure_14_04_201.jpg\" alt=\"A surface in the xyz plane is marked as z = f(x, y). This surface has a tangent plane at (x0, y0, z0), with the corresponding point (x0, y0) marked on the xy plane. Also marked on the xy plane is the point (x0 + Δx, y0 + Δy). From this point, a line is drawn to the surface and three points are marked. The first point is C, which is (x0 + Δx, y0 + Δy, z0), then there is B, which is on the tangent plane, and then there is A, which is on the surface. The distance between B and C is marked df(x0, y0).\"><p>Using the figure, explain what the length of line segment $AB$ represents.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "In the figure, $C$ is level with $(x_{0},y_{0},z_{0}),$ $B$ is on the tangent plane and $A$ on the surface, all above $(x_{0}+\\Delta x,y_{0}+\\Delta y).$ So $AC$ is the actual change $\\Delta z=f(x_{0}+\\Delta x,y_{0}+\\Delta y)-f(x_{0},y_{0}),$ $BC$ is the differential $dz=f_{x}(x_{0},y_{0})\\Delta x+f_{y}(x_{0},y_{0})\\Delta y,$ and $AB=\\Delta z-dz$ is the error of the linear approximation: how far the surface lies from its tangent plane there. For a differentiable function this error shrinks faster than the distance $\\sqrt{(\\Delta x)^{2}+(\\Delta y)^{2}}.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1167793929242",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794136381",
+   "prompt": "<p>Show that $f(x,y)=e^{xy}x$ is differentiable at point $(1,0).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Using the definition of differentiability, we have $e^{xy}x\\approx x+y.$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1167794046716",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794136381",
+   "prompt": "<p>Show that $f(x,y)=x^{2}+3y$ is differentiable at every point. In other words, show that $\\Delta z=f(x+\\Delta x,y+\\Delta y)-f(x,y)=f_{x}\\Delta x+f_{y}\\Delta y+{ε}_{1}\\Delta x+{ε}_{2}\\Delta y,$ where both ${ε}_{1}$ and ${ε}_{2}$ approach zero as $(\\Delta x,\\Delta y)$ approaches $(0,0).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\Delta z=2x\\Delta x+3\\Delta y+{(\\Delta x)}^{2}.$ ${(\\Delta x)}^{2}\\to 0$ for small $\\Delta x$ and $z$ satisfies the definition of differentiability."
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1167793448986",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793951229",
+   "prompt": "<p>For the following exercises, complete each task.</p><p>Let $z=f(x,y)=xe^{y}.$ Compute $\\Delta z$ from $P(1,2)$ to $Q(1.05,2.1)$ and then find the approximate change in $z$ from point $P$ to point $Q.$ Recall $\\Delta z=f(x+\\Delta x,y+\\Delta y)-f(x,y),$ and $dz$ and $\\Delta z$ are approximately equal.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\Delta z\\approx 1.185422$ and $dz\\approx 1.108.$ They are relatively close."
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1167794076142",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793951229",
+   "prompt": "<p>For the following exercises, complete each task.</p><p>See the preceding problem. Use differentials to estimate the volume of aluminum in an enclosed aluminum can with diameter $8.0\\;\\text{cm}$ and height $12\\;\\text{cm}$ if the aluminum is $0.04$ cm thick.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$16$ cm<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1167794145889",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793951229",
+   "prompt": "<p>For the following exercises, complete each task.</p><p>Let $z=f(x,y)=x^{2}+3xy-y^{2}.$ Find the exact change in the function and the approximate change in the function as $x$ changes from $2.00\\;\\text{to}\\;2.05$ and $y$ changes from $3.00\\;\\text{to}\\;2.96.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\Delta z=$ exact change $=0.6449,$ approximate change is $dz=0.65.$ The two values are close."
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1167793939910",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "error-propagation",
+   "prompt": "<p>The radius $r$ and height $h$ of a right circular cylinder are measured with possible errors of $4\\%\\;\\text{and}\\;5\\%,$ respectively. Approximate the maximum possible percentage error in measuring the volume (Recall that the percentage error is the ratio of the amount of error over the original amount. So, in this case, the percentage error in $V$ is given by $\\frac{dV}{V}.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$13\\%\\;\\text{or}\\;0.13$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1167794314927",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "error-propagation",
+   "prompt": "<p>The electrical resistance $R$ produced by wiring resistors $R_{1}$ and $R_{2}$ in parallel can be calculated from the formula $\\frac{1}{R}=\\frac{1}{R_{1}}+\\frac{1}{R_{2}}.$ If $R_{1}$ and $R_{2}$ are measured to be $7\\text{Ω}$ and $6\\text{Ω},$ respectively, and if these measurements are accurate to within $0.05\\text{Ω},$ estimate the maximum possible error in computing $R.$ (The symbol $\\text{Ω}$ represents an ohm, the unit of electrical resistance.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0.025$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1167793507396",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "error-propagation",
+   "prompt": "<p>The period $T$ of a simple pendulum with small oscillations is calculated from the formula $T=2\\pi \\sqrt{\\frac{L}{g}},$ where $L$ is the length of the pendulum and $g$ is the acceleration resulting from gravity. Suppose that $L$ and $g$ have errors of, at most, $0.5\\%$ and $0.1\\%,$ respectively. Use differentials to approximate the maximum percentage error in the calculated value of $T.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0.3\\%$"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1167794058932",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793928374",
+   "prompt": "<p>For the following exercises, find the linear approximation of each function at the indicated point.</p><p>$f(x,y)=x\\sqrt{y},\\;P(1,4)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2x+\\frac{1}{4}y-1$"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1167793371607",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793928374",
+   "prompt": "<p>For the following exercises, find the linear approximation of each function at the indicated point.</p><p>$f(x,y)=\\operatorname{arctan}(x+2y),P(1,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}x+y+\\frac{1}{4}\\pi -\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1167793400771",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793928374",
+   "prompt": "<p>For the following exercises, find the linear approximation of each function at the indicated point.</p><p>$f(x,y,z)=\\sqrt{x^{2}+y^{2}+z^{2}},\\;P(3,2,6)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3}{7}x+\\frac{2}{7}y+\\frac{6}{7}z$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1167794292149",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "<p><strong>[T]</strong> Find the equation for the tangent plane to the surface at the indicated point, and graph the surface and the tangent plane: $z=\\ln (10x^{2}+2y^{2}+1),P(0,0,0).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$z=0$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_04_203.jpg\" alt=\"A curved surface is shown with tangent plane at (0, 0, 0). The curved surface looks like the middle part of the bottom of a boat, and the tangent plane is z = 0.\">"
+   }
+  },
+  {
+   "id": "r396",
+   "source_id": "fs-id1167793499060",
+   "source_section": "14.8",
+   "source_number": "396",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793928374",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>. Justify your answer with a proof or a counterexample.</p><p>The linear approximation to the function of $f(x,y)=5x^{2}+x\\;\\tan (y)$ at $(2,\\pi )$ is given by $L(x,y)=22+21(x-2)+(y-\\pi ).$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. At $(2,\\pi ),$ $f(2,\\pi )=5(4)+2\\tan \\pi =20,$ $f_{x}=10x+\\tan y=20$ and $f_{y}=x\\sec^{2}y=2.$ The linear approximation is $L(x,y)=20+20(x-2)+2(y-\\pi ),$ not $22+21(x-2)+(y-\\pi ).$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r409",
+   "source_id": "fs-id1167793377749",
+   "source_section": "14.8",
+   "source_number": "409",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793903025",
+   "prompt": "<p>For the following exercises, find an equation of the tangent plane to the specified surface at the given point.</p><p>$z=e^{x}+\\frac{2}{y}$ at point $(0,1,3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z=x-2y+5$"
+   }
+  },
+  {
+   "id": "r411",
+   "source_id": "fs-id1167793637887",
+   "source_section": "14.8",
+   "source_number": "411",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793951229",
+   "prompt": "<p>Find the differential $dz$ of $h(x,y)=4x^{2}+2xy-3y$ and approximate $\\Delta z$ at the point $(1,-2).$ Let $\\Delta x=0.1$ and $\\Delta y=0.01.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$dz=4dx-dy,$ $dz(0.1,0.01)=0.39,$ $\\Delta z=0.432$"
+   }
+  },
+  {
+   "id": "r419",
+   "source_id": "fs-id1167793571536",
+   "source_section": "14.8",
+   "source_number": "419",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "error-propagation",
+   "prompt": "<p>A machinist is constructing a right circular cone out of a block of aluminum. The machine gives an error of $5\\%$ in height and $2\\%$ in radius. Find the maximum error in the volume of the cone if the machinist creates a cone of height $6$ cm and radius $2$ cm.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2.3228$ cm<sup>3</sup>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "partial-derivative"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "linear-approximation-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "differentiable-function-of-two-variables"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e163",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e163",
+   "concept": "normal-vector"
+  },
+  {
+   "exercise": "e163",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e165",
+   "concept": "normal-vector"
+  },
+  {
+   "exercise": "e165",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e167",
+   "concept": "normal-vector"
+  },
+  {
+   "exercise": "e167",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e169",
+   "concept": "normal-vector"
+  },
+  {
+   "exercise": "e169",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e171",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e173",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e175",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e177",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e179",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e181",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e183",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e183",
+   "concept": "normal-vector"
+  },
+  {
+   "exercise": "e183",
+   "concept": "parametric-equations-of-a-line"
+  },
+  {
+   "exercise": "e185",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e185",
+   "concept": "normal-vector"
+  },
+  {
+   "exercise": "e185",
+   "concept": "parametric-equations-of-a-line"
+  },
+  {
+   "exercise": "e187",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "e187",
+   "concept": "normal-vector"
+  },
+  {
+   "exercise": "e187",
+   "concept": "parametric-equations-of-a-line"
+  },
+  {
+   "exercise": "e189",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e190",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e191",
+   "concept": "differentiable-function-of-two-variables"
+  },
+  {
+   "exercise": "e193",
+   "concept": "differentiable-function-of-two-variables"
+  },
+  {
+   "exercise": "e195",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e197",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e199",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e201",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e201",
+   "concept": "relative-error"
+  },
+  {
+   "exercise": "e203",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e203",
+   "concept": "relative-error"
+  },
+  {
+   "exercise": "e205",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "e205",
+   "concept": "relative-error"
+  },
+  {
+   "exercise": "e207",
+   "concept": "linear-approximation-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e209",
+   "concept": "linear-approximation-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e211",
+   "concept": "linear-approximation-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e213",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "r396",
+   "concept": "linear-approximation-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "r409",
+   "concept": "tangent-plane"
+  },
+  {
+   "exercise": "r411",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "r419",
+   "concept": "total-differential"
+  },
+  {
+   "exercise": "r419",
+   "concept": "propagated-error"
+  }
+ ],
+ "referents": []
+}

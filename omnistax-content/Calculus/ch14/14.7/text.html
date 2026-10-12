@@ -1,0 +1,227 @@
+<p id="extrema-intro">One of the most useful applications for derivatives of a <span data-concept="function">function of one variable</span> is the determination of maximum and/or minimum values. This application is also important for functions of two or more variables, but as we have seen in earlier sections of this chapter, the introduction of more independent variables leads to more possible outcomes for the calculations. The main ideas of finding <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> and using derivative tests are still valid, but new wrinkles appear when assessing the results.</p>
+<section id="critical-points">
+<h2>Critical Points</h2>
+<p class="cite-target">For functions of a single variable, we defined <span data-concept="critical-point">critical points</span> as the values of the function when the derivative equals zero or does not exist. For functions of two or more variables, the concept is essentially the same, except for the fact that we are now working with <span data-concept="partial-derivative">partial derivatives</span>.</p>
+<div class="note" id="fs-id1167793937740">
+<div class="eyebrow">Definition</div>
+<p>Let $z=\kf(x,y)$ be a <span data-concept="function-of-two-variables">function of two variables</span> that is defined on an open set containing the point $(x_{0},y_{0}).$ The point $(x_{0},y_{0})$ is called a <strong><span data-concept="critical-point-of-a-function-of-two-variables">critical point of a function of two variables</span></strong> $\kf$ if one of the two following conditions holds:</p>
+<ol><li>$\kfx(x_{0},y_{0})=\kfy(x_{0},y_{0})=0$</li><li>Either $\kfx(x_{0},y_{0})\;\text{or}\;\kfy(x_{0},y_{0})$ does not exist.</li></ol>
+</div>
+<div class="example" id="fs-id1167793263462">
+<h3>Example 14.38 · Finding Critical Points</h3>
+<p>Find the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> of each of the following functions:</p>
+<p>a. $\kf(x,y)=\sqrt{4y^{2}-9x^{2}+24y+36x+36}$</p>
+<p>b. $\kg(x,y)=x^{2}+2xy-4y^{2}+4x-6y+4$</p>
+<h4>Solution</h4>
+<p>a. First, we calculate $\kfx(x,y)\;\text{and}\;\kfy(x,y)\text{:}$</p>
+$$\begin{array}{rll}\kfx(x,y) & = & \frac{1}{2}(-18x+36){(4y^{2}-9x^{2}+24y+36x+36)}^{-1/2} \\ & = & \frac{-9x+18}{\sqrt{4y^{2}-9x^{2}+24y+36x+36}} \\ \kfy(x,y) & = & \frac{1}{2}(8y+24){(4y^{2}-9x^{2}+24y+36x+36)}^{-1/2} \\ & = & \frac{4y+12}{\sqrt{4y^{2}-9x^{2}+24y+36x+36}}.\end{array}$$
+<p>Next, we set each of these expressions equal to zero:</p>
+$$\begin{array}{rll}\frac{-9x+18}{\sqrt{4y^{2}-9x^{2}+24y+36x+36}} & = & 0 \\ \frac{4y+12}{\sqrt{4y^{2}-9x^{2}+24y+36x+36}} & = & 0.\end{array}$$
+<p>Then, multiply each equation by its common denominator:</p>
+$$\begin{array}{rll}-9x+18 & = & 0 \\ 4y+12 & = & 0.\end{array}$$
+<p>Therefore, $x=2$ and $y=-3,$ so $(2,-3)$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kf.$</p>
+<p>We must also check for the possibility that the denominator of each <span data-concept="partial-derivative">partial derivative</span> can equal zero, thus causing the <span data-concept="partial-derivative">partial derivative</span> not to exist. Since the denominator is the same in each <span data-concept="partial-derivative">partial derivative</span>, we need only do this once:</p>
+$$4y^{2}-9x^{2}+24y+36x+36=0.$$
+<p>This equation represents a <span data-concept="hyperbola">hyperbola</span>. We should also note that the domain of $\kf$ consists of points satisfying the inequality</p>
+$$4y^{2}-9x^{2}+24y+36x+36\ge 0.$$
+<p>Therefore, any points on the <span data-concept="hyperbola">hyperbola</span> are not only <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span>, they are also on the boundary of the domain. To put the <span data-concept="hyperbola">hyperbola</span> in standard form, we use the method of completing the square:</p>
+$$\begin{array}{rll}4y^{2}-9x^{2}+24y+36x+36 & = & 0 \\ 4y^{2}-9x^{2}+24y+36x & = & -36 \\ 4y^{2}+24y-9x^{2}+36x & = & -36 \\ 4(y^{2}+6y)-9(x^{2}-4x) & = & -36 \\ 4(y^{2}+6y+9)-9(x^{2}-4x+4) & = & -36+36-36 \\ 4{(y+3)}^{2}-9{(x-2)}^{2} & = & -36.\end{array}$$
+<p>Dividing both sides by $-36$ puts the equation in standard form:</p>
+$$\begin{array}{rll}\frac{4{(y+3)}^{2}}{-36}-\frac{9{(x-2)}^{2}}{-36} & = & 1 \\ \frac{{(x-2)}^{2}}{4}-\frac{{(y+3)}^{2}}{9} & = & 1.\end{array}$$
+<p>Notice that point $(2,-3)$ is the center of the <span data-concept="hyperbola">hyperbola</span>.</p>
+<p>b. First, we calculate $\kgx(x,y)\;\text{and}\;\kgy(x,y)\text{:}$</p>
+$$\begin{array}{rll}\kgx(x,y) & = & 2x+2y+4 \\ \kgy(x,y) & = & 2x-8y-6.\end{array}$$
+<p>Next, we set each of these expressions equal to zero, which gives a system of equations in $x\;\text{and}\;y\text{:}$</p>
+$$\begin{array}{rll}2x+2y+4 & = & 0 \\ 2x-8y-6 & = & 0.\end{array}$$
+<p>Subtracting the second equation from the first gives $10y+10=0,\;\text{so}\;y=-1.$ Substituting this into the first equation gives $2x+2(-1)+4=0,$ so $x=-1.$ Therefore $(-1,-1)$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kg$ (Figure 14.46). There are no points in ${\mathbb{R}}^{2}$ that make either <span data-concept="partial-derivative">partial derivative</span> not exist.</p>
+<figure class="sim" id="sim-critical-g" data-figure="14.46" data-original="/media/ch14/CNX_Calc_Figure_14_07_006.jpg" data-original-caption="The function g(x,y) has a critical point at (−1,−1,5).">
+  <div class="sim-head"><span class="eyebrow">Figure 14.46</span><span>The function $\kg(x,y)=x^{2}+2xy-4y^{2}+4x-6y+4$ has a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> at $(-1,-1,5),$ where both partial derivatives are zero; heights are drawn at a tenth of the scale of $x$ and $y.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1167793263462"></div>
+<p id="local-intro">The main purpose for determining <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> is to locate relative maxima and minima, as in single-variable calculus. When working with a <span data-concept="function">function of one variable</span>, the definition of a <span data-concept="local-extremum-of-a-function-of-two-variables">local extremum</span> involves finding an interval around the <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> such that the function value is either greater than or less than all the other function values in that interval. When working with a function of two or more variables, we work with an open disk around the point.</p>
+<div class="note" id="fs-id1167793831578">
+<div class="eyebrow">Definition</div>
+<p>Let $z=\kf(x,y)$ be a <span data-concept="function-of-two-variables">function of two variables</span> that is defined and continuous on an open set containing the point $(x_{0},y_{0}).$ Then <em>f</em> has a <em><span data-concept="local-extremum-of-a-function-of-two-variables">local maximum</span></em> at $(x_{0},y_{0})$ if</p>
+$$\kf(x_{0},y_{0})\ge \kf(x,y)$$
+<p>for all points $(x,y)$ within some disk centered at $(x_{0},y_{0}).$ The number $\kf(x_{0},y_{0})$ is called a <em><span data-concept="local-extremum-of-a-function-of-two-variables">local maximum value</span></em>. If the preceding inequality holds for every point $(x,y)$ in the domain of $\kf,$ then $\kf$ has a <em><span data-concept="local-extremum-of-a-function-of-two-variables">global maximum</span></em> (also called an <em><span data-concept="local-extremum-of-a-function-of-two-variables">absolute maximum</span></em>) at $(x_{0},y_{0}).$</p>
+<p>The function $\kf$ has a <em><span data-concept="local-extremum-of-a-function-of-two-variables">local minimum</span></em> at $(x_{0},y_{0})$ if</p>
+$$\kf(x_{0},y_{0})\le \kf(x,y)$$
+<p>for all points $(x,y)$ within some disk centered at $(x_{0},y_{0}).$ The number $\kf(x_{0},y_{0})$ is called a <em><span data-concept="local-extremum-of-a-function-of-two-variables">local minimum value</span></em>. If the preceding inequality holds for every point $(x,y)$ in the domain of $\kf,$ then $\kf$ has a <em><span data-concept="local-extremum-of-a-function-of-two-variables">global minimum</span></em> (also called an <em><span data-concept="local-extremum-of-a-function-of-two-variables">absolute minimum</span></em>) at $(x_{0},y_{0}).$</p>
+<p>If $\kf(x_{0},y_{0})$ is either a <span data-concept="local-extremum-of-a-function-of-two-variables">local maximum</span> or <span data-concept="local-extremum-of-a-function-of-two-variables">local minimum value</span>, then it is called a <em><span data-concept="local-extremum-of-a-function-of-two-variables">local extremum</span></em> (see the following figure).</p>
+</div>
+<figure class="sim" id="sim-hemisphere-extrema" data-figure="14.47" data-original="/media/ch14/CNX_Calc_Figure_14_07_001.jpg" data-original-caption="The graph of z=sqrt16−x²−y² has a maximum value when (x,y)=(0,0). It attains its minimum value at the boundary of its domain, which is the circle x²+y²=16.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.47</span><span>The graph of $z=\sqrt{16-x^{2}-y^{2}}$ has a maximum value when $(x,y)=(0,0).$ It attains its minimum value at the boundary of its domain, which is the circle $x^{2}+y^{2}=16.$</span></div>
+</figure>
+<p id="fermat-intro">In <a href="/calculus/ch04/4.3/">Maxima and Minima</a>, we showed that extrema of <span data-concept="function">functions of one variable</span> occur at <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span>. The same is true for functions of more than one variable, as stated in the following theorem.</p>
+<div class="note" id="fs-id1167793617977">
+<div class="eyebrow">Theorem</div>
+<h3>Fermat’s Theorem for Functions of Two Variables</h3>
+<p>Let $z=\kf(x,y)$ be a <span data-concept="function-of-two-variables">function of two variables</span> that is defined and continuous on an open set containing the point $(x_{0},y_{0}).$ Suppose $\kfx$ and $\kfy$ each exists at $(x_{0},y_{0}).$ If $\kf$ has a <span data-concept="local-extremum-of-a-function-of-two-variables">local extremum</span> at $(x_{0},y_{0}),$ then $(x_{0},y_{0})$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kf.$</p>
+</div>
+</section>
+<section id="second-derivative-test">
+<h2>Second Derivative Test</h2>
+<p class="cite-target">Consider the function $\kf(x)=x^{3}.$ This function has a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> at $x=0,$ since $\kf'(0)=3{(0)}^{2}=0.$ However, $\kf$ does not have an extreme value at $x=0.$ Therefore, the existence of a critical value at $x=x_{0}$ does not guarantee a <span data-concept="local-extremum-of-a-function-of-two-variables">local extremum</span> at $x=x_{0}.$ The same is true for a function of two or more variables. One way this can happen is at a <strong><span data-concept="saddle-point">saddle point</span></strong>. An example of a <span data-concept="saddle-point">saddle point</span> appears in the following figure.</p>
+<figure class="sim" id="sim-second-derivative-test" data-figure="14.48 + 14.49" data-original="/media/ch14/CNX_Calc_Figure_14_07_002.jpg,/media/ch14/CNX_Calc_Figure_14_07_007.jpg" data-original-caption="(Figure 14.48) Graph of the function z = x² − y². This graph has a saddle point at the origin. (Figure 14.49) The second derivative test can often determine whether a function of two variables has a local minima (a), a local maxima (b), or a saddle point (c).">
+  <div class="sim-head"><span class="eyebrow">Figure 14.48 + 14.49</span><span>Graph of $z=\kf(x,y)=\frac{1}{2}(Ax^{2}+2Bxy+Cy^{2}),$ whose second partial derivatives are $\kfxx=A,$ $\kfxy=B$ and $\kfyy=C$ at its <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span>, the origin. With $A=2,$ $B=0,$ $C=-2$ it is $z=x^{2}-y^{2},$ which has a <span data-concept="saddle-point">saddle point</span> at the origin. Slide $A,$ $B$ and $C$: the sign of the <span data-concept="discriminant">discriminant</span> $D=AC-B^{2}$ and of $A$ decide whether the surface has a local minimum, a local maximum or a saddle point, and on the dashed circles $D=0$ and the test is inconclusive.</span></div>
+</figure>
+<p id="saddle-traces">In this graph, the origin is a <span data-concept="saddle-point">saddle point</span>. This is because the first <span data-concept="partial-derivative">partial derivatives</span> of $\kf(x,y)=x^{2}-y^{2}$ are both equal to zero at this point, but it is neither a maximum nor a minimum for the function. Furthermore the <span data-concept="vertical-trace">vertical trace</span> corresponding to $y=0$ is $z=x^{2}$ (a parabola opening upward), but the <span data-concept="vertical-trace">vertical trace</span> corresponding to $x=0$ is $z=-y^{2}$ (a parabola opening downward). Therefore, it is both a <span data-concept="local-extremum-of-a-function-of-two-variables">global maximum</span> for one trace and a <span data-concept="local-extremum-of-a-function-of-two-variables">global minimum</span> for another.</p>
+<div class="note" id="fs-id1167793951036">
+<div class="eyebrow">Definition</div>
+<p>Given the function $z=\kf(x,y),$ the point $(x_{0},y_{0},\kf(x_{0},y_{0}))$ is a <span data-concept="saddle-point">saddle point</span> if both $\kfx(x_{0},y_{0})=0$ and $\kfy(x_{0},y_{0})=0,$ but $\kf$ does not have a <span data-concept="local-extremum-of-a-function-of-two-variables">local extremum</span> at $(x_{0},y_{0}).$</p>
+</div>
+<p id="discriminant-term">The <span data-concept="second-derivative-test">second derivative test for a function of one variable</span> provides a method for determining whether an extremum occurs at a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of a function. When extending this result to a <span data-concept="function-of-two-variables">function of two variables</span>, an issue arises related to the fact that there are, in fact, four different second-order <span data-concept="partial-derivative">partial derivatives</span>, although equality of mixed partials reduces this to three. The <span data-concept="second-derivative-test-for-functions-of-two-variables">second derivative test for a function of two variables</span>, stated in the following theorem, uses a <strong><span data-concept="discriminant">discriminant</span></strong> $D$ that replaces $\kf^{\prime\prime}(x_{0})$ in the <span data-concept="second-derivative-test">second derivative test for a function of one variable</span>.</p>
+<div class="note" id="fs-id1167793873509">
+<div class="eyebrow">Theorem</div>
+<h3>Second Derivative Test</h3>
+<p>Let $z=\kf(x,y)$ be a <span data-concept="function-of-two-variables">function of two variables</span> for which the first- and second-order <span data-concept="partial-derivative">partial derivatives</span> are continuous on some disk containing the point $(x_{0},y_{0}).$ Suppose $\kfx(x_{0},y_{0})=0$ and $\kfy(x_{0},y_{0})=0.$ Define the quantity</p>
+<div class="equation" id="fs-id1167793628274">$$D=\kfxx(x_{0},y_{0})\kfyy(x_{0},y_{0})-{(\kfxy(x_{0},y_{0}))}^{2}.\tag{14.43}$$</div>
+<ol><li>If $D\gt 0$ and $\kfxx(x_{0},y_{0})\gt 0,$ then $\kf$ has a <span data-concept="local-extremum-of-a-function-of-two-variables">local minimum</span> at $(x_{0},y_{0}).$</li><li>If $D\gt 0$ and $\kfxx(x_{0},y_{0})\lt 0,$ then $\kf$ has a <span data-concept="local-extremum-of-a-function-of-two-variables">local maximum</span> at $(x_{0},y_{0}).$</li><li>If $D\lt 0,$ then $\kf$ has a <span data-concept="saddle-point">saddle point</span> at $(x_{0},y_{0}).$</li><li>If $D=0,$ then the test is inconclusive.</li></ol>
+<p>See Figure 14.49.</p>
+</div>
+<p>To apply the <span data-concept="second-derivative-test-for-functions-of-two-variables">second derivative test</span>, it is necessary that we first find the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> of the function. There are several steps involved in the entire procedure, which are outlined in a problem-solving strategy.</p>
+<div class="note" id="fs-id1167794188100">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Using the Second Derivative Test for Functions of Two Variables</h3>
+<p>Let $z=\kf(x,y)$ be a <span data-concept="function-of-two-variables">function of two variables</span> for which the first- and second-order <span data-concept="partial-derivative">partial derivatives</span> are continuous on some disk containing the point $(x_{0},y_{0}).$ To apply the <span data-concept="second-derivative-test-for-functions-of-two-variables">second derivative test</span> to find <span data-concept="local-extremum-of-a-function-of-two-variables">local extrema</span>, use the following steps:</p>
+<ol><li>Determine the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> $(x_{0},y_{0})$ of the function $\kf$ where $\kfx(x_{0},y_{0})=\kfy(x_{0},y_{0})=0.$ Discard any points where at least one of the <span data-concept="partial-derivative">partial derivatives</span> does not exist.</li><li>Calculate the <span data-concept="discriminant">discriminant</span> $D=\kfxx(x_{0},y_{0})\kfyy(x_{0},y_{0})-{(\kfxy(x_{0},y_{0}))}^{2}$ for each <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kf.$</li><li>Apply <a href="#fs-id1167793873509">Second Derivative Test</a> to determine whether each <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> is a <span data-concept="local-extremum-of-a-function-of-two-variables">local maximum</span>, <span data-concept="local-extremum-of-a-function-of-two-variables">local minimum</span>, or <span data-concept="saddle-point">saddle point</span>, or whether the theorem is inconclusive.</li></ol>
+</div>
+<div class="example" id="fs-id1167793524729">
+<h3>Example 14.39 · Using the Second Derivative Test</h3>
+<p>Find the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> for each of the following functions, and use the <span data-concept="second-derivative-test-for-functions-of-two-variables">second derivative test</span> to find the <span data-concept="local-extremum-of-a-function-of-two-variables">local extrema</span>:</p>
+<p>a. $\kf(x,y)=4x^{2}+9y^{2}+8x-36y+24$</p>
+<p>b. $\kg(x,y)=\frac{1}{3}x^{3}+y^{2}+2xy-6x-3y+4$</p>
+<h4>Solution</h4>
+<p>a. Step $1$ of the problem-solving strategy involves finding the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> of $\kf.$ To do this, we first calculate $\kfx(x,y)$ and $\kfy(x,y),$ then set each of them equal to zero:</p>
+$$\begin{array}{rll}\kfx(x,y) & = & 8x+8 \\ \kfy(x,y) & = & 18y-36.\end{array}$$
+<p>Setting them equal to zero yields the system of equations</p>
+$$\begin{array}{rll}8x+8 & = & 0 \\ 18y-36 & = & 0.\end{array}$$
+<p>The solution to this system is $x=-1$ and $y=2.$ Therefore $(-1,2)$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kf.$</p>
+<p>Step 2 of the problem-solving strategy involves calculating $D.$ To do this, we first calculate the second <span data-concept="partial-derivative">partial derivatives</span> of $\kf\text{:}$</p>
+$$\begin{array}{rll}\kfxx(x,y) & = & 8 \\ \kfxy(x,y) & = & 0 \\ \kfyy(x,y) & = & 18.\end{array}$$
+<p>Therefore, $D=\kfxx(-1,2)\kfyy(-1,2)-{(\kfxy(-1,2))}^{2}=(8)(18)-{(0)}^{2}=144.$</p>
+<p>Step 3 states to check the <a href="#fs-id1167793873509"><span data-concept="second-derivative-test-for-functions-of-two-variables">Second Derivative Test</span> for <span data-concept="function-of-two-variables">Functions of Two Variables</span></a><sup class="fn" data-note="c-step3"></sup>.. Since $D\gt 0$ and $\kfxx(-1,2)\gt 0,$ this corresponds to case 1. Therefore, $\kf$ has a <span data-concept="local-extremum-of-a-function-of-two-variables">local minimum</span> at $(-1,2)$ as shown in the following figure.</p>
+<figure class="sim" id="sim-local-extrema" data-figure="14.50 + 14.51" data-original="/media/ch14/CNX_Calc_Figure_14_07_008.jpg,/media/ch14/CNX_Calc_Figure_14_07_009.jpg" data-original-caption="(Figure 14.50) The function f(x,y) has a local minimum at (−1,2,−16). (Figure 14.51) The function g(x,y) has a local minimum and a saddle point.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.50 + 14.51</span><span>The functions of Example 14.39: $\kf(x,y)=4x^{2}+9y^{2}+8x-36y+24$ has a <span data-concept="local-extremum-of-a-function-of-two-variables">local minimum</span> at $(-1,2,-16),$ and $\kg(x,y)=\frac{1}{3}x^{3}+y^{2}+2xy-6x-3y+4$ has a local minimum at $(3,-\frac{3}{2},-\frac{29}{4})$ and a <span data-concept="saddle-point">saddle point</span> at $(-1,\frac{5}{2},\frac{41}{12}).$ Choose the function and turn the surface; heights are drawn at a tenth of the scale of $x$ and $y.$</span></div>
+</figure>
+<p>b. For step 1, we first calculate $\kgx(x,y)$ and $\kgy(x,y),$ then set each of them equal to zero:</p>
+$$\begin{array}{rll}\kgx(x,y) & = & x^{2}+2y-6 \\ \kgy(x,y) & = & 2y+2x-3.\end{array}$$
+<p>Setting them equal to zero yields the system of equations</p>
+$$\begin{array}{rll}x^{2}+2y-6 & = & 0 \\ 2y+2x-3 & = & 0.\end{array}$$
+<p>To solve this system, first solve the second equation for <em>y.</em> This gives $y=\frac{3-2x}{2}.$ Substituting this into the first equation gives</p>
+$$\begin{array}{rll}x^{2}+3-2x-6 & = & 0 \\ x^{2}-2x-3 & = & 0 \\ (x-3)(x+1) & = & 0.\end{array}$$
+<p>Therefore, $x=-1$ or $x=3.$ Substituting these values into the equation $y=\frac{3-2x}{2}$ yields the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> $(-1,\frac{5}{2})$ and $(3,-\frac{3}{2}).$</p>
+<p>Step 2 involves calculating the second <span data-concept="partial-derivative">partial derivatives</span> of $\kg\text{:}$</p>
+$$\begin{array}{rll}\kgxx(x,y) & = & 2x \\ \kgxy(x,y) & = & 2 \\ \kgyy(x,y) & = & 2.\end{array}$$
+<p>Then, we find a general formula for $D\text{:}$</p>
+$$\begin{array}{rl}D & =\kgxx(x_{0},y_{0})\kgyy(x_{0},y_{0})-{(\kgxy(x_{0},y_{0}))}^{2} \\ & =(2x_{0})(2)-2^{2} \\ & =4x_{0}-4.\end{array}$$
+<p>Next, we substitute each <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> into this formula:</p>
+$$\begin{array}{rll}D(-1,\frac{5}{2}) & = & (2(-1))(2)-{(2)}^{2}=-4-4=-8 \\ D(3,-\frac{3}{2}) & = & (2(3))(2)-{(2)}^{2}=12-4=8.\end{array}$$
+<p>In step 3, we note that, applying the <a href="#fs-id1167793873509"><span data-concept="second-derivative-test-for-functions-of-two-variables">Second Derivative Test</span> for <span data-concept="function-of-two-variables">Functions of Two Variables</span></a>. to point $(-1,\frac{5}{2})$ leads to case $3,$ which means that $(-1,\frac{5}{2})$ is a <span data-concept="saddle-point">saddle point</span>. Applying the theorem to point $(3,-\frac{3}{2})$ leads to case 1, which means that $(3,-\frac{3}{2})$ corresponds to a <span data-concept="local-extremum-of-a-function-of-two-variables">local minimum</span> as shown in the following figure.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793524729"></div>
+</section>
+<section id="absolute-extrema">
+<h2>Absolute Maxima and Minima</h2>
+<p class="cite-target">When finding <span data-concept="local-extremum-of-a-function-of-two-variables">global extrema</span> of <span data-concept="function">functions of one variable</span> on a closed interval, we start by checking the critical values over that interval and then evaluate the function at the endpoints of the interval. When working with a <span data-concept="function-of-two-variables">function of two variables</span>, the closed interval is replaced by a closed, bounded set. A set is <em><span data-concept="bounded-set">bounded</span></em> if all the points in that set can be contained within a ball (or disk) of finite radius. First, we need to find the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> inside the set and calculate the corresponding critical values. Then, it is necessary to find the maximum and minimum value of the function on the boundary of the set. When we have all these values, the largest function value corresponds to the <span data-concept="local-extremum-of-a-function-of-two-variables">global maximum</span> and the smallest function value corresponds to the <span data-concept="local-extremum-of-a-function-of-two-variables">absolute minimum</span>. First, however, we need to be assured that such values exist. The following theorem does this.</p>
+<div class="note" id="fs-id1167794284782">
+<div class="eyebrow">Theorem</div>
+<h3>Extreme Value Theorem</h3>
+<p>A continuous function $\kf(x,y)$ on a closed and bounded set $D$ in the plane attains an <span data-concept="local-extremum-of-a-function-of-two-variables">absolute maximum value</span> at some point of $D$ and an <span data-concept="local-extremum-of-a-function-of-two-variables">absolute minimum value</span> at some point of $D.$</p>
+</div>
+<p id="find-extremes">Now that we know any continuous function $\kf$ defined on a closed, bounded set attains its extreme values, we need to know how to find them.</p>
+<div class="note" id="fs-id1167793579953">
+<div class="eyebrow">Theorem</div>
+<h3>Finding Extreme Values of a Function of Two Variables</h3>
+<p>Assume $z=\kf(x,y)$ is a differentiable <span data-concept="function-of-two-variables">function of two variables</span> defined on a closed, bounded set $D.$ Then $\kf$ will attain the <span data-concept="local-extremum-of-a-function-of-two-variables">absolute maximum value</span> and the <span data-concept="local-extremum-of-a-function-of-two-variables">absolute minimum value</span>, which are, respectively, the largest and smallest values found among the following:</p>
+<ol><li>The values of $\kf$ at the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> of $\kf$ in $D.$</li><li>The values of $\kf$ on the boundary of $D.$</li></ol>
+</div>
+<p id="extremes-proof">The proof of this theorem is a direct consequence of the <span data-concept="extreme-value-theorem-for-functions-of-two-variables">extreme value theorem</span> and <span data-concept="fermats-theorem-for-functions-of-two-variables">Fermat’s theorem</span>. In particular, if either extremum is not located on the boundary of $D,$ then it is located at an interior point of $D.$ But an interior point $(x_{0},y_{0})$ of $D$ that’s an absolute extremum is also a <span data-concept="local-extremum-of-a-function-of-two-variables">local extremum</span>; hence, $(x_{0},y_{0})$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kf$ by <span data-concept="fermats-theorem-for-functions-of-two-variables">Fermat’s theorem</span>. Therefore the only possible values for the <span data-concept="local-extremum-of-a-function-of-two-variables">global extrema</span> of $\kf$ on $D$ are the extreme values of $\kf$ on the interior or boundary of $D.$</p>
+<div class="note" id="fs-id1167793937391">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Finding Absolute Maximum and Minimum Values</h3>
+<p>Let $z=\kf(x,y)$ be a continuous <span data-concept="function-of-two-variables">function of two variables</span> defined on a closed, bounded set $D,$ and assume $\kf$ is differentiable on $D.$ To find the <span data-concept="local-extremum-of-a-function-of-two-variables">absolute maximum</span> and minimum values of $\kf$ on $D,$ do the following:</p>
+<ol><li>Determine the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> of $\kf$ in $D.$</li><li>Calculate $\kf$ at each of these <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span>.</li><li>Determine the maximum and minimum values of $\kf$ on the boundary of its domain.</li><li>The maximum and minimum values of $\kf$ will occur at one of the values obtained in steps $2\;\text{and}\;3.$</li></ol>
+</div>
+<p id="boundary-methods">Finding the maximum and minimum values of $\kf$ on the boundary of $D$ can be challenging. If the boundary is a rectangle or set of straight lines, then it is possible to parameterize the line segments and determine the maxima on each of these segments, as seen in <a href="#fs-id1167793637901">Example 14.40</a>. The same approach can be used for other shapes such as circles and ellipses.</p>
+<p>If the boundary of the set $D$ is a more complicated curve defined by a function $\kg(x,y)=c$ for some constant $c,$ and the first-order <span data-concept="partial-derivative">partial derivatives</span> of $\kg$ exist, then the <span data-concept="method-of-lagrange-multipliers">method of Lagrange multipliers</span> can prove useful for determining the extrema of $\kf$ on the boundary. The <span data-concept="method-of-lagrange-multipliers">method of Lagrange multipliers</span> is introduced in <a href="/calculus/ch14/14.8/">Lagrange Multipliers</a>.</p>
+<div class="example" id="fs-id1167793637901">
+<h3>Example 14.40 · Finding Absolute Extrema</h3>
+<p>Use the problem-solving strategy for finding <span data-concept="local-extremum-of-a-function-of-two-variables">absolute extrema</span> of a function to determine the <span data-concept="local-extremum-of-a-function-of-two-variables">absolute extrema</span> of each of the following functions:</p>
+<p>a. $\kf(x,y)=x^{2}-2xy+4y^{2}-4x-2y+24$ on the domain defined by $0\le x\le 4$ and $0\le y\le 2$</p>
+<p>b. $\kg(x,y)=x^{2}+y^{2}+4x-6y$ on the domain defined by $x^{2}+y^{2}\le 16$</p>
+<h4>Solution</h4>
+<p>a. Using the problem-solving strategy, step $1$ involves finding the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> of $\kf$ on its domain. Therefore, we first calculate $\kfx(x,y)$ and $\kfy(x,y),$ then set them each equal to zero:</p>
+$$\begin{array}{rll}\kfx(x,y) & = & 2x-2y-4 \\ \kfy(x,y) & = & -2x+8y-2.\end{array}$$
+<p>Setting them equal to zero yields the system of equations</p>
+$$\begin{array}{rll}2x-2y-4 & = & 0 \\ -2x+8y-2 & = & 0.\end{array}$$
+<p>The solution to this system is $x=3$ and $y=1.$ Therefore $(3,1)$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kf.$ Calculating $\kf(3,1)$ gives $\kf(3,1)=17.$</p>
+<p>The next step involves finding the extrema of $\kf$ on the boundary of its domain. The boundary of its domain consists of four line segments as shown in the following graph:</p>
+<figure class="sim" id="sim-extrema-rectangle" data-figure="14.52 + 14.53" data-original="/media/ch14/CNX_Calc_Figure_14_07_003.jpg,/media/ch14/CNX_Calc_Figure_14_07_010.jpg" data-original-caption="(Figure 14.52) Graph of the domain of the function f(x,y) = x² − 2xy + 4y² − 4x − 2y + 24. (Figure 14.53) The function f(x,y) has one global minimum and one global maximum over its domain.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.52 + 14.53</span><span>The domain $0\le x\le 4,$ $0\le y\le 2$ of $\kf(x,y)=x^{2}-2xy+4y^{2}-4x-2y+24,$ its four boundary segments $L_{1}$ to $L_{4},$ and the graph of $\kf$ above it. The function has one global minimum, $17$ at the <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> $(3,1),$ and one global maximum, $36$ at the corner $(0,2)$; the other candidates on the boundary are marked. Heights are drawn at a tenth of the scale of $x$ and $y.$</span></div>
+</figure>
+<p>$L_{1}$ is the line segment connecting $(0,0)$ and $(4,0),$ and it can be parameterized by the equations $x(t)=t,y(t)=0$ for $0\le t\le 4.$ Define $\kg(t)=\kf(x(t),y(t)).$ This gives $\kg(t)=t^{2}-4t+24.$ Differentiating <em>g</em> leads to $\kg^{\prime}(t)=2t-4.$ Therefore, $\kg$ has a critical value at $t=2,$ which corresponds to the point $(2,0).$ Calculating $\kf(2,0)$ gives the *z-*value $20.$</p>
+<p>$L_{2}$ is the line segment connecting $(4,0)$ and $(4,2),$ and it can be parameterized by the equations $x(t)=4,y(t)=t$ for $0\le t\le 2.$ Again, define $\kg(t)=\kf(x(t),y(t)).$ This gives $\kg(t)=4t^{2}-10t+24.$ Then, $\kg^{\prime}(t)=8t-10.$ $\kg$ has a critical value at $t=\frac{5}{4},$ which corresponds to the point $(4,\frac{5}{4}).$ Calculating $\kf(4,\frac{5}{4})$ gives the *z-*value $17.75.$</p>
+<p>$L_{3}$ is the line segment connecting $(0,2)$ and $(4,2),$ and it can be parameterized by the equations $x(t)=t,y(t)=2$ for $0\le t\le 4.$ Again, define $\kg(t)=\kf(x(t),y(t)).$ This gives $\kg(t)=t^{2}-8t+36.$ The critical value <sup class="fn" data-note="c-empty-t"></sup> corresponds to the point $(4,2).$ So, calculating $\kf(4,2)$ gives the *z-*value $20.$</p>
+<p>$L_{4}$ is the line segment connecting $(0,0)$ and $(0,2),$ and it can be parameterized by the equations $x(t)=0,y(t)=t$ for $0\le t\le 2.$ This time, $\kg(t)=4t^{2}-2t+24$ and the critical value $t=\frac{1}{4}$ correspond to the point $(0,\frac{1}{4}).$ Calculating $\kf(0,\frac{1}{4})$ gives the *z-*value $23.75.$</p>
+<p>We also need to find the values of $\kf(x,y)$ at the corners of its domain. These corners are located at $(0,0),(4,0),(4,2)\;\text{and}\;(0,2)\text{:}$</p>
+$$\begin{array}{rllll} \\ \kf(0,0) & = & {(0)}^{2}-2(0)(0)+4{(0)}^{2}-4(0)-2(0)+24 & = & 24 \\ \kf(4,0) & = & {(4)}^{2}-2(4)(0)+4{(0)}^{2}-4(4)-2(0)+24 & = & 24 \\ \kf(4,2) & = & {(4)}^{2}-2(4)(2)+4{(2)}^{2}-4(4)-2(2)+24 & = & 20 \\ \kf(0,2) & = & {(0)}^{2}-2(0)(2)+4{(2)}^{2}-4(0)-2(2)+24 & = & 36.\end{array}$$
+<p>The <span data-concept="local-extremum-of-a-function-of-two-variables">absolute maximum value</span> is $36,$ which occurs at $(0,2),$ and the <span data-concept="local-extremum-of-a-function-of-two-variables">global minimum value</span> is $17,$ which occurs at $(3,1)$ as shown in the following figure.</p>
+<p>b. Using the problem-solving strategy, step $1$ involves finding the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> of $\kg$ on its domain. Therefore, we first calculate $\kgx(x,y)$ and $\kgy(x,y),$ then set them each equal to zero:</p>
+$$\begin{array}{rll}\kgx(x,y) & = & 2x+4 \\ \kgy(x,y) & = & 2y-6.\end{array}$$
+<p>Setting them equal to zero yields the system of equations</p>
+$$\begin{array}{rll}2x+4 & = & 0 \\ 2y-6 & = & 0.\end{array}$$
+<p>The solution to this system is $x=-2$ and $y=3.$ Therefore, $(-2,3)$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kg.$ Calculating $\kg(-2,3),$ we get</p>
+$$\kg(-2,3)={(-2)}^{2}+3^{2}+4(-2)-6(3)=4+9-8-18=-13.$$
+<p>The next step involves finding the extrema of <em>g</em> on the boundary of its domain. The boundary of its domain consists of a circle of radius $4$ centered at the origin as shown in the following graph.</p>
+<figure class="sim" id="sim-extrema-disk" data-figure="14.54 + 14.55" data-original="/media/ch14/CNX_Calc_Figure_14_07_004.jpg,/media/ch14/CNX_Calc_Figure_14_07_011.jpg" data-original-caption="(Figure 14.54) Graph of the domain of the function g(x,y) = x² + y² + 4x − 6y. (Figure 14.55) The function f(x,y) has a local minimum and a local maximum.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.54 + 14.55</span><span>The domain $x^{2}+y^{2}\le 16$ of $\kg(x,y)=x^{2}+y^{2}+4x-6y,$ bounded by the circle of radius $4,$ and the graph of $\kg$ above it: the absolute minimum $-13$ at the interior <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> $(-2,3)$ and the absolute maximum $\approx 44.844$ at the boundary point $(\frac{8\sqrt{13}}{13},-\frac{12\sqrt{13}}{13}).$ Heights are drawn at a sixth of the scale of $x$ and $y.$</span></div>
+</figure>
+<p>The boundary of the domain of $\kg$ can be parameterized using the functions $x(t)=4\;\cos t,y(t)=4\;\sin t$ for $0\le t\le 2\pi .$ Define $h(t)=\kg(x(t),y(t))\text{:}$</p>
+$$\begin{array}{rl}h(t) & =\kg(x(t),y(t)) \\ & ={(4\;\cos t)}^{2}+{(4\;\sin t)}^{2}+4(4\;\cos t)-6(4\;\sin t) \\ & =16{\cos }^{2}\;t+16{\sin }^{2}\;t+16\;\cos t-24\;\sin t \\ & =16+16\;\cos t-24\;\sin t.\end{array}$$
+<p>Setting $h^{\prime}(t)=0$ leads to</p>
+$$\begin{array}{rll}-16\;\sin t-24\;\cos t & = & 0 \\ -16\;\sin t & = & 24\;\cos t \\ \frac{-16\;\sin t}{-16\;\cos t} & = & \frac{24\;\cos t}{-16\;\cos t} \\ \tan t & = & -\frac{3}{2}.\end{array}$$
+<p>This equation has two solutions over the interval $0\le t\le 2\pi .$ One is $t=\pi -\operatorname{arctan}(\frac{3}{2})$ and the other is $t=2\pi -\operatorname{arctan}(\frac{3}{2}).$ For the first angle,</p>
+$$\begin{array}{rll}\sin t & = & \sin (\pi -\operatorname{arctan}(\frac{3}{2}))=\sin (\operatorname{arctan}(\frac{3}{2}))=\frac{3\sqrt{13}}{13} \\ \cos t & = & \cos (\pi -\operatorname{arctan}(\frac{3}{2}))=-\cos (\operatorname{arctan}(\frac{3}{2}))=-\frac{2\sqrt{13}}{13}.\end{array}$$
+<p>Therefore, $x(t)=4\;\cos t=-\frac{8\sqrt{13}}{13}$ and $y(t)=4\;\sin t=\frac{12\sqrt{13}}{13},$ so $(-\frac{8\sqrt{13}}{13},\frac{12\sqrt{13}}{13})$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> on the boundary and</p>
+$$\begin{array}{rl}\kg(-\frac{8\sqrt{13}}{13},\frac{12\sqrt{13}}{13}) & ={(-\frac{8\sqrt{13}}{13})}^{2}+{(\frac{12\sqrt{13}}{13})}^{2}+4(-\frac{8\sqrt{13}}{13})-6(\frac{12\sqrt{13}}{13}) \\ & =\frac{144}{13}+\frac{64}{13}-\frac{32\sqrt{13}}{13}-\frac{72\sqrt{13}}{13} \\ & =\frac{208-104\sqrt{13}}{13}\approx -12.844.\end{array}$$
+<p>For the second angle,</p>
+$$\begin{array}{rll}\sin t & = & \sin (2\pi -\operatorname{arctan}(\frac{3}{2}))=-\sin (\operatorname{arctan}(\frac{3}{2}))=-\frac{3\sqrt{13}}{13} \\ \cos t & = & \cos (2\pi -\operatorname{arctan}(\frac{3}{2}))=\cos (\operatorname{arctan}(\frac{3}{2}))=\frac{2\sqrt{13}}{13}.\end{array}$$
+<p>Therefore, $x(t)=4\;\cos t=\frac{8\sqrt{13}}{13}$ and $y(t)=4\;\sin t=-\frac{12\sqrt{13}}{13},$ so $(\frac{8\sqrt{13}}{13},-\frac{12\sqrt{13}}{13})$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> on the boundary and</p>
+$$\begin{array}{rl}\kg(\frac{8\sqrt{13}}{13},-\frac{12\sqrt{13}}{13}) & ={(\frac{8\sqrt{13}}{13})}^{2}+{(-\frac{12\sqrt{13}}{13})}^{2}+4(\frac{8\sqrt{13}}{13})-6(-\frac{12\sqrt{13}}{13}) \\ & =\frac{144}{13}+\frac{64}{13}+\frac{32\sqrt{13}}{13}+\frac{72\sqrt{13}}{13} \\ & =\frac{208+104\sqrt{13}}{13}\approx 44.844.\end{array}$$
+<p>The <span data-concept="local-extremum-of-a-function-of-two-variables">absolute minimum</span> of <em>g</em> is $-13,$ which is attained at the point $(-2,3),$ which is an interior point of <em>D</em>. The <span data-concept="local-extremum-of-a-function-of-two-variables">absolute maximum</span> of <em>g</em> is approximately equal to 44.844, which is attained at the boundary point $(\frac{8\sqrt{13}}{13},-\frac{12\sqrt{13}}{13}).$ These are the <span data-concept="local-extremum-of-a-function-of-two-variables">absolute extrema</span> of <em>g</em> on <em>D</em> as shown in the following figure.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793637901"></div>
+<div class="example" id="fs-id1167793423548">
+<h3>Example 14.41 · Chapter Opener: Profitable Golf Balls</h3>
+<p>Pro-$\text{T}$ company has developed a profit model that depends on the number <em>x</em> of golf balls sold per month (measured in thousands), and the number of hours per month of advertising <em>y</em>, according to the function</p>
+$$z=\kf(x,y)=48x+96y-x^{2}-2xy-9y^{2},$$
+<p>where $z$ is measured in thousands of dollars. The maximum number of golf balls that can be produced and sold is $50,000,$ and the maximum number of hours of advertising that can be purchased is $25.$ Find the values of $x$ and $y$ that maximize profit, and find the maximum profit.</p>
+<h4>Solution</h4>
+<p>Using the problem-solving strategy, step $1$ involves finding the <span data-concept="critical-point-of-a-function-of-two-variables">critical points</span> of $\kf$ on its domain. Therefore, we first calculate $\kfx(x,y)$ and $\kfy(x,y),$ then set them each equal to zero:</p>
+$$\begin{array}{rll}\kfx(x,y) & = & 48-2x-2y \\ \kfy(x,y) & = & 96-2x-18y.\end{array}$$
+<p>Setting them equal to zero yields the system of equations</p>
+$$\begin{array}{rll}48-2x-2y & = & 0 \\ 96-2x-18y & = & 0.\end{array}$$
+<p>The solution to this system is $x=21$ and $y=3.$ Therefore $(21,3)$ is a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> of $\kf.$ Calculating $\kf(21,3)$ gives $\kf(21,3)=48(21)+96(3)-{21}^{2}-2(21)(3)-9{(3)}^{2}=648.$</p>
+<p>The domain of this function is $0\le x\le 50$ and $0\le y\le 25$ as shown in the following graph.</p>
+<figure class="sim" id="sim-golf-profit" data-figure="14.57 + 14.58" data-original="/media/ch14/CNX_Calc_Figure_14_07_005.jpg,/media/ch14/CNX_Calc_Figure_14_07_012.jpg" data-original-caption="(Figure 14.57) Graph of the domain of the function f(x,y) = 48x + 96y − x² − 2xy − 9y². (Figure 14.58) The profit function f(x,y) has a maximum at (21,3,648).">
+  <div class="sim-head"><span class="eyebrow">Figure 14.57 + 14.58</span><span>The domain $0\le x\le 50,$ $0\le y\le 25$ of the profit function $\kf(x,y)=48x+96y-x^{2}-2xy-9y^{2}$ and its graph, which has a maximum at $(21,3,648)$: $\text{＄}648{,}000$ of profit for $21{,}000$ golf balls and $3$ hours of advertising a month. Heights are drawn at a hundred-fiftieth of the scale of $x$ and $y,$ in thousands of dollars.</span></div>
+</figure>
+<p>$L_{1}$ is the line segment connecting $(0,0)$ and $(50,0),$ and it can be parameterized by the equations $x(t)=t,y(t)=0$ for $0\le t\le 50.$ We then define $\kg(t)=\kf(x(t),y(t))\text{:}$</p>
+$$\begin{array}{rl}\kg(t) & =\kf(x(t),y(t)) \\ & =\kf(t,0) \\ & =48t+96(0)-t^{2}-2(t)(0)-9{(0)}^{2} \\ & =48t-t^{2}.\end{array}$$
+<p>Setting $\kg^{\prime}(t)=0$ yields the <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> $t=24,$ which corresponds to the point $(24,0)$ in the domain of $\kf.$ Calculating $\kf(24,0)$ gives $576.$</p>
+<p>$L_{2}$ is the line segment connecting <sup class="fn" data-note="c-empty-point"></sup> and $(50,25),$ and it can be parameterized by the equations $x(t)=50,y(t)=t$ for $0\le t\le 25.$ Once again, we define $\kg(t)=\kf(x(t),y(t))\text{:}$</p>
+$$\begin{array}{rl}\kg(t) & =\kf(x(t),y(t)) \\ & =\kf(50,t) \\ & =48(50)+96t-{50}^{2}-2(50)t-9t^{2} \\ & =-9t^{2}-4t-100.\end{array}$$
+<p>This function has a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> at $t=-\frac{2}{9},$ which corresponds to the point $(50,-\frac{2}{9}).$ This point is not in the domain of $\kf.$</p>
+<p>$L_{3}$ is the line segment connecting $(0,25)\;\text{and}\;(50,25),$ and it can be parameterized by the equations $x(t)=t,y(t)=25$ for $0\le t\le 50.$ We define $\kg(t)=\kf(x(t),y(t))\text{:}$</p>
+$$\begin{array}{rl}\kg(t) & =\kf(x(t),y(t)) \\ & =\kf(t,25) \\ & =48t+96(25)-t^{2}-2t(25)-9({25}^{2}) \\ & =-t^{2}-2t-3225.\end{array}$$
+<p>This function has a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> at $t=-1,$ which corresponds to the point $(-1,25),$ which is not in the domain.</p>
+<p>$L_{4}$ is the line segment connecting $(0,0)\;\text{to}\;(0,25),$ and it can be parameterized by the equations $x(t)=0,y(t)=t$ for $0\le t\le 25.$ We define $\kg(t)=\kf(x(t),y(t))\text{:}$</p>
+$$\begin{array}{rl}\kg(t) & =\kf(x(t),y(t)) \\ & =\kf(0,t) \\ & =48(0)+96t-{(0)}^{2}-2(0)t-9t^{2} \\ & =96t-t^{2}.\end{array}$$
+<p>This function has a <span data-concept="critical-point-of-a-function-of-two-variables">critical point</span> at $t=\frac{16}{3},$ which corresponds to the point $(0,\frac{16}{3}),$ which is on the boundary of the domain. Calculating $\kf(0,\frac{16}{3})$ gives $256.$</p>
+<p>We also need to find the values of $\kf(x,y)$ at the corners of its domain. These corners are located at $(0,0),(50,0),(50,25)\;\text{and}\;(0,25)\text{:}$</p>
+$$\begin{array}{rll}\kf(0,0) & = & 48(0)+96(0)-{(0)}^{2}-2(0)(0)-9{(0)}^{2}=0 \\ \kf(50,0) & = & 48(50)+96(0)-{(50)}^{2}-2(50)(0)-9{(0)}^{2}=-100 \\ \kf(50,25) & = & 48(50)+96(25)-{(50)}^{2}-2(50)(25)-9{(25)}^{2}=-5825 \\ \kf(0,25) & = & 48(0)+96(25)-{(0)}^{2}-2(0)(25)-9{(25)}^{2}=-3225.\end{array}$$
+<p>The maximum critical value is $648,$ which occurs at $(21,3).$ Therefore, a maximum profit of $\text{＄}648,000$ is realized when $21,000$ golf balls are sold and $3$ hours of advertising are purchased per month as shown in the following figure.</p>
+</div>
+</section>

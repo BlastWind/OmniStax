@@ -1,0 +1,225 @@
+<p id="limits-intro">We have now examined functions of more than one variable and seen how to graph them. In this section, we see how to take the limit of a function of more than one variable, and what it means for a function of more than one variable to be continuous at a point in its <span data-concept="domain">domain</span>. It turns out these concepts have aspects that just don’t occur with <span data-concept="function">functions of one variable</span>.</p>
+<section id="limits">
+<h2>Limit of a Function of Two Variables</h2>
+<p class="cite-target">Recall from <a href="/calculus/ch02/2.2/">The Limit of a Function</a> the definition of a limit of a <span data-concept="function">function of one variable</span>:</p>
+<p>Let $\kf(x)$ be defined for all $x\ne a$ in an open interval containing $a.$ Let $\kL$ be a real number. Then</p>
+$$\lim_{x\to a}\kf(x)=\kL$$
+<p>if for every $\varepsilon \gt 0,$ there exists a $\delta \gt 0,$ such that if $0\lt |x-a|\lt \delta $ for all $x$ in the <span data-concept="domain">domain</span> of $\kf,$ then</p>
+$$|\kf(x)-\kL|\lt \varepsilon .$$
+<p>Before we can adapt this definition to define a <span data-concept="limit-of-a-function-of-two-variables">limit of a function of two variables</span>, we first need to see how to extend the idea of an open interval in one variable to an open interval in two variables.</p>
+<div class="note" id="fs-id1167793269223">
+<div class="eyebrow">Definition</div>
+<p>Consider a point $(a,b)\in {\mathbb{R}}^{2}.$ A <strong><span data-concept="delta-disk">$\delta$ disk</span></strong> centered at point $(a,b)$ is defined to be an open disk of radius $\delta $ centered at point $(a,b)$—that is,</p>
+$$\{(x,y)\in {\mathbb{R}}^{2}|{(x-a)}^{2}+{(y-b)}^{2}\lt {\delta }^{2}\}$$
+<p>as shown in the following graph.</p>
+</div>
+<figure class="sim" id="sim-delta-disk" data-figure="14.14" data-original="/media/ch14/CNX_Calc_Figure_14_02_001.jpg" data-original-caption="A δ disk centered around the point (2,1).">
+  <div class="sim-head"><span class="eyebrow">Figure 14.14</span><span>A <span data-concept="delta-disk">$\delta$ disk</span> centered around the point $(2,1)$: every point $(x,y)$ with $(x-2)^{2}+(y-1)^{2}\lt \delta^{2}.$ Slide $\delta$ to grow or shrink the disk, and drag the point to see whether it lies inside.</span></div>
+</figure>
+<p>The idea of a $\delta $ disk appears in the definition of the <span data-concept="limit-of-a-function-of-two-variables">limit of a function of two variables</span>. If $\delta $ is small, then all the points $(x,y)$ in the $\delta $ disk are close to $(a,b).$ This is completely analogous to $x$ being close to $a$ in the definition of a limit of a <span data-concept="function">function of one variable</span>. In one dimension, we express this restriction as</p>
+$$a-\delta \lt x\lt a+\delta .$$
+<p>In more than one dimension, we use a $\delta $ disk.</p>
+<div class="note" id="fs-id1167793965522">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf$ be a <span data-concept="function-of-two-variables">function of two variables</span>, $x$ and $y.$ The limit of $\kf(x,y)$ as $(x,y)$ approaches $(a,b)$ is $\kL,$ written</p>
+$$\lim_{(x,y)\to (a,b)}\kf(x,y)=\kL$$
+<p>if for each $\varepsilon \gt 0$ there exists a small enough $\delta \gt 0$ such that for all points $(x,y)$ in a $\delta $ disk around $(a,b),$ except possibly for $(a,b)$ itself, the value of $\kf(x,y)$ is no more than $\varepsilon $ away from $\kL$ (Figure 14.15). Using symbols, we write the following: For any $\varepsilon \gt 0,$ there exists a number $\delta \gt 0$ such that</p>
+$$|\kf(x,y)-\kL|\lt \varepsilon \;\text{whenever}\;0\lt \sqrt{{(x-a)}^{2}+{(y-b)}^{2}}\lt \delta .$$
+</div>
+<figure class="sim" id="sim-limit-eps-delta" data-figure="14.15" data-original="/media/ch14/CNX_Calc_Figure_14_02_002.jpg" data-original-caption="The limit of a function involving two variables requires that f(x,y) be within ε of L whenever (x,y) is within δ of (a,b). The smaller the value of ε, the smaller the value of δ.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.15</span><span>The <span data-concept="limit-of-a-function-of-two-variables">limit of a function involving two variables</span> requires that $\kf(x,y)$ be within $\varepsilon$ of $\kL$ whenever $(x,y)$ is within $\delta$ of $(a,b).$ Choose $\varepsilon$, the half-height of the slab about $\kL$, then $\delta$, the radius of the disk about $(a,b)$: the image of the <span data-concept="delta-disk">$\delta$ disk</span> on the surface must stay inside the slab. The smaller the value of $\varepsilon,$ the smaller the value of $\delta.$</span></div>
+</figure>
+<p>Proving that a limit exists using the definition of a <span data-concept="limit-of-a-function-of-two-variables">limit of a function of two variables</span> can be challenging. Instead, we use the following theorem, which gives us shortcuts to finding limits. The formulas in this theorem are an extension of the formulas in the <span data-concept="limit-laws-for-functions-of-two-variables">limit laws</span> theorem in <a href="/calculus/ch02/2.3/">The Limit Laws</a>.</p>
+<div class="note" id="fs-id1167793882997">
+<div class="eyebrow">Theorem</div>
+<h3>Limit laws for functions of two variables</h3>
+<p>Let $\kf(x,y)$ and $\kg(x,y)$ be defined for all $(x,y)\ne (a,b)$ in a neighborhood around $(a,b),$ and assume the neighborhood is contained completely inside the <span data-concept="domain">domain</span> of $\kf.$ Assume that $\kL$ and $\kM$ are real numbers such that $\lim_{(x,y)\to (a,b)}\kf(x,y)=\kL$ and $\lim_{(x,y)\to (a,b)}\kg(x,y)=\kM,$ and let $c$ be a constant. Then each of the following statements holds:</p>
+<p><strong>Constant Law:</strong></p>
+<div class="equation" id="fs-id1167793828158">$$\lim_{(x,y)\to (a,b)}c=c\tag{14.2}$$</div>
+<p><strong>Identity Laws:</strong></p>
+<div class="equation" id="fs-id1167794097907">$$\lim_{(x,y)\to (a,b)}x=a\tag{14.3}$$</div>
+<div class="equation" id="fs-id1167793629016">$$\lim_{(x,y)\to (a,b)}y=b\tag{14.4}$$</div>
+<p><strong>Sum Law:</strong></p>
+<div class="equation" id="fs-id1167794069530">$$\lim_{(x,y)\to (a,b)}(\kf(x,y)+\kg(x,y))=\kL+\kM\tag{14.5}$$</div>
+<p><strong>Difference Law:</strong></p>
+<div class="equation" id="fs-id1167793848760">$$\lim_{(x,y)\to (a,b)}(\kf(x,y)-\kg(x,y))=\kL-\kM\tag{14.6}$$</div>
+<p><strong>Constant Multiple Law:</strong></p>
+<div class="equation" id="fs-id1167793444617">$$\lim_{(x,y)\to (a,b)}(cf(x,y))=cL\tag{14.7}$$</div>
+<p><strong>Product Law:</strong></p>
+<div class="equation" id="fs-id1167793380201">$$\lim_{(x,y)\to (a,b)}(\kf(x,y)\kg(x,y))=LM\tag{14.8}$$</div>
+<p><strong>Quotient Law:</strong></p>
+<div class="equation" id="fs-id1167794039759">$$\lim_{(x,y)\to (a,b)}\frac{\kf(x,y)}{\kg(x,y)}=\frac{\kL}{\kM}\;\text{for}\;\kM\ne 0\tag{14.9}$$</div>
+<p><strong>Power Law:</strong></p>
+<div class="equation" id="fs-id1167794039674">$$\lim_{(x,y)\to (a,b)}{(\kf(x,y))}^{n}=\kL^{n}\tag{14.10}$$</div>
+<p>for any positive integer $n.$</p>
+<p><strong>Root Law:</strong></p>
+<div class="equation" id="fs-id1167794046214">$$\lim_{(x,y)\to (a,b)}\sqrt[n]{\kf(x,y)}=\sqrt[n]{\kL}\tag{14.11}$$</div>
+<p>for all $\kL$ if $n$ is odd and positive, and for $\kL\ge 0$ if $n$ is even and positive provided that $\kf(x,y)\ge 0$ for all $(x,y)\ne (a,b)$ in neighborhood of $(a,b)$.</p>
+</div>
+<p>The proofs of these properties are similar to those for the limits of <span data-concept="function">functions of one variable</span>. We can apply these laws to finding limits of various functions.</p>
+<div class="example" id="fs-id1167794101556">
+<h3>Example 14.8 · Finding the Limit of a Function of Two Variables</h3>
+<p>Find each of the following limits:</p>
+<p>a. $\lim_{(x,y)\to (2,-1)}(x^{2}-2xy+3y^{2}-4x+3y-6)$</p>
+<p>b. $\lim_{(x,y)\to (2,-1)}\frac{2x+3y}{4x-3y}$</p>
+<h4>Solution</h4>
+<p>a. First use the sum and difference laws to separate the terms:</p>
+$$\begin{array}{l} \\ \lim_{(x,y)\to (2,-1)}(x^{2}-2xy+3y^{2}-4x+3y-6) \\ =(\lim_{(x,y)\to (2,-1)}x^{2})-(\lim_{(x,y)\to (2,-1)}2xy)+(\lim_{(x,y)\to (2,-1)}3y^{2})-(\lim_{(x,y)\to (2,-1)}4x) \\ \;+(\lim_{(x,y)\to (2,-1)}3y)-(\lim_{(x,y)\to (2,-1)}6).\end{array}$$
+<p>                Next, use the constant multiple law on the second, third, fourth, and fifth limits:</p>
+$$\begin{array}{l} \\ \\ =(\lim_{(x,y)\to (2,-1)}x^{2})-2(\lim_{(x,y)\to (2,-1)}xy)+3(\lim_{(x,y)\to (2,-1)}y^{2})-4(\lim_{(x,y)\to (2,-1)}x) \\ \;+3(\lim_{(x,y)\to (2,-1)}y)-\lim_{(x,y)\to (2,-1)}6.\end{array}$$
+<p>                Now, use the power law on the first and third limits, and the product law on the second limit:</p>
+$$\begin{array}{l} \\ \\ \\ ={(\lim_{(x,y)\to (2,-1)}x)}^{2}-2(\lim_{(x,y)\to (2,-1)}x)(\lim_{(x,y)\to (2,-1)}y)+3{(\lim_{(x,y)\to (2,-1)}y)}^{2} \\ \;-4(\lim_{(x,y)\to (2,-1)}x)+3(\lim_{(x,y)\to (2,-1)}y)-\lim_{(x,y)\to (2,-1)}6.\end{array}$$
+<p>                Last, use the identity laws on the first six limits and the constant law on the last limit:</p>
+<p>                $\begin{array}{ll}\lim_{(x,y)\to (2,-1)}(x^{2}-2xy+3y^{2}-4x+3y-6) & ={(2)}^{2}-2(2)(-1)+3{(-1)}^{2}-4(2)+3(-1)-6 \\ & =-6.\end{array}$</p>
+<p>b. Before applying the quotient law, we need to verify that the limit of the denominator is nonzero. Using the difference law, constant multiple law, and identity law,</p>
+$$\begin{array}{rl}\lim_{(x,y)\to (2,-1)}(4x-3y) & =\lim_{(x,y)\to (2,-1)}4x-\lim_{(x,y)\to (2,-1)}3y \\ & =4(\lim_{(x,y)\to (2,-1)}x)-3(\lim_{(x,y)\to (2,-1)}y) \\ & =4(2)-3(-1)=11.\end{array}$$
+<p>                Since the limit of the denominator is nonzero, the quotient law applies. We now calculate the limit of the numerator using the difference law, constant multiple law, and identity law:</p>
+$$\begin{array}{rl}\lim_{(x,y)\to (2,-1)}(2x+3y) & =\lim_{(x,y)\to (2,-1)}2x+\lim_{(x,y)\to (2,-1)}3y \\ & =2(\lim_{(x,y)\to (2,-1)}x)+3(\lim_{(x,y)\to (2,-1)}y) \\ & =2(2)+3(-1) \\ & =1.\end{array}$$
+<p>                Therefore, according to the quotient law we have</p>
+$$\lim_{(x,y)\to (2,-1)}\frac{2x+3y}{4x-3y}=\frac{\lim_{(x,y)\to (2,-1)}(2x+3y)}{\lim_{(x,y)\to (2,-1)}(4x-3y)}=\frac{1}{11}.$$
+</div>
+<div class="exercises" data-place="fs-id1167794101556"></div>
+<p id="paths-intro">Since we are taking the <span data-concept="limit-of-a-function-of-two-variables">limit of a function of two variables</span>, the point $(a,b)$ is in ${\mathbb{R}}^{2},$ and it is possible to approach this point from an infinite number of directions. Sometimes when calculating a limit, the answer varies depending on the path taken toward $(a,b).$ If this is the case, then the limit fails to exist. In other words, the limit must be unique, regardless of path taken.</p>
+<div class="example" id="fs-id1167794293308">
+<h3>Example 14.9 · Limits That Fail to Exist</h3>
+<p>Show that neither of the following limits exist:</p>
+<p>a. $\lim_{(x,y)\to (0,0)}\frac{2xy}{3x^{2}+y^{2}}$</p>
+<p>b. $\lim_{(x,y)\to (0,0)}\frac{4xy^{2}}{x^{2}+3y^{4}}$</p>
+<h4>Solution</h4>
+<p>a. The <span data-concept="domain">domain</span> of the function $\kf(x,y)=\frac{2xy}{3x^{2}+y^{2}}$ consists of all points in the $xy\text{-plane}$ except for the point $(0,0)$ (Figure 14.16). To show that the limit does not exist as $(x,y)$ approaches $(0,0),$ we note that it is impossible to satisfy the definition of a <span data-concept="limit-of-a-function-of-two-variables">limit of a function of two variables</span> because of the fact that the function takes different values along different lines passing through point $(0,0).$ First, consider the line $y=0$ in the $xy\text{-plane.}$ Substituting $y=0$ into $\kf(x,y)$ gives</p>
+$$\kf(x,0)=\frac{2x(0)}{3x^{2}+0^{2}}=0$$
+<p>                for any value of $x.$ Therefore the value of $\kf$ remains constant for any point on the $x\text{-axis,}$ and as $y$ approaches zero, the function remains fixed at zero.</p>
+<p>                Next, consider the line $y=x.$ Substituting $y=x$ into $\kf(x,y)$ gives</p>
+$$\kf(x,x)=\frac{2x(x)}{3x^{2}+x^{2}}=\frac{2x^{2}}{4x^{2}}=\frac{1}{2}.$$
+<p>                This is true for any point on the line $y=x.$ If we let $x$ approach zero while staying on this line, the value of the function remains fixed at $\frac{1}{2},$ regardless of how small $x$ is.</p>
+<p>                Choose a value for $\varepsilon $ that is less than $1/2$—say, $1/4.$ Then, no matter how small a $\delta $ disk we draw around $(0,0),$ the values of $\kf(x,y)$ for points inside that $\delta $ disk will include both $0$ and $\frac{1}{2}.$ Therefore, the definition of limit at a point is never satisfied and the limit fails to exist.</p>
+<figure class="sim" id="sim-path-limits" data-figure="14.16" data-original="/media/ch14/CNX_Calc_Figure_14_02_003.jpg" data-original-caption="Graph of the function f(x,y)=(2xy)/(3x²+y²). Along the line y=0, the function is equal to zero; along the line y=x, the function is equal to 1/2.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.16</span><span>Graphs of the two functions of Example 14.9 near the origin, where neither is defined. Choose a path into $(0,0)$ and its slope $k$: along each path the surface keeps one height, but the height changes from path to path, so the limit at the origin does not exist. Along the line $y=0$ the first function is equal to zero; along the line $y=x$ it is equal to $\frac{1}{2}.$</span></div>
+</figure>
+<p>                In a similar fashion to a., we can approach the origin along any straight line passing through the origin. If we try the $x\text{-axis}$ (i.e., $y=0),$ then the function remains fixed at zero. The same is true for the $y\text{-axis.}$ Suppose we approach the origin along a straight line of slope $k.$ The equation of this line is $y=kx.$ Then the limit becomes</p>
+$$\begin{array}{rl}\lim_{(x,y)\to (0,0)}\frac{4xy^{2}}{x^{2}+3y^{4}} & =\lim_{(x,y)\to (0,0)}\frac{4x{(kx)}^{2}}{x^{2}+3{(kx)}^{4}} \\ & =\lim_{(x,y)\to (0,0)}\frac{4k^{2}x^{3}}{x^{2}+3k^{4}x^{4}} \\ & =\lim_{(x,y)\to (0,0)}\frac{4k^{2}x}{1+3k^{4}x^{2}} \\ & =\frac{\lim_{(x,y)\to (0,0)}(4k^{2}x)}{\lim_{(x,y)\to (0,0)}(1+3k^{4}x^{2})} \\ & =0\end{array}$$
+<p>                regardless of the value of $k.$ It would seem that the limit is equal to zero. What if we chose a curve passing through the origin instead? For example, we can consider the parabola given by the equation $x=y^{2}.$ Substituting $y^{2}$ in place of $x$ in $\kf(x,y)$ gives</p>
+$$\begin{array}{rl}\lim_{(x,y)\to (0,0)}\frac{4xy^{2}}{x^{2}+3y^{4}} & =\lim_{(x,y)\to (0,0)}\frac{4(y^{2})y^{2}}{{(y^{2})}^{2}+3y^{4}} \\ & =\lim_{(x,y)\to (0,0)}\frac{4y^{4}}{y^{4}+3y^{4}} \\ & =\lim_{(x,y)\to (0,0)}1 \\ & =1.\end{array}$$
+<p>                By the same logic in a., it is impossible to find a $\delta $ disk around the origin that satisfies the definition of the limit for any value of $\varepsilon \lt 1.$ Therefore, $\lim_{(x,y)\to (0,0)}\frac{4xy^{2}}{x^{2}+3y^{4}}$ does not exist.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794293308"></div>
+</section>
+<section id="interior-boundary">
+<h2>Interior Points and Boundary Points</h2>
+<p class="cite-target">To study continuity and differentiability of a function of two or more variables, we first need to learn some new terminology.</p>
+<div class="note" id="fs-id1167794068954">
+<div class="eyebrow">Definition</div>
+<p>Let <em>S</em> be a subset of ${\mathbb{R}}^{2}$ (Figure 14.17).</p>
+<ol><li>A point $P_{0}$ is called an <strong><span data-concept="interior-point">interior point</span></strong> of $S$ if there is a $\delta $ disk centered around $P_{0}$ contained completely in $S.$</li><li>A point $P_{0}$ is called a <strong><span data-concept="boundary-point">boundary point</span></strong> of $S$ if every $\delta $ disk centered around $P_{0}$ contains points both inside and outside $S.$</li></ol>
+</div>
+<figure class="sim" id="sim-interior-boundary" data-figure="14.17" data-original="/media/ch14/CNX_Calc_Figure_14_02_004.jpg" data-original-caption="In the set S shown, (−1,1) is an interior point and (2,3) is a boundary point.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.17</span><span>In the set $S$ shown, $(-1,1)$ is an <span data-concept="interior-point">interior point</span> and $(2,3)$ is a <span data-concept="boundary-point">boundary point</span>. Drag the point $P_{0}$ and slide $\delta$: a $\delta$ disk about an interior point fits inside $S,$ while every disk about a boundary point reaches outside. Choose whether $S$ holds its boundary, to make it an <span data-concept="open-set">open set</span>, a <span data-concept="closed-set">closed set</span>, or neither.</span></div>
+</figure>
+<div class="note" id="fs-id1167793371585">
+<div class="eyebrow">Definition</div>
+<p>Let <em>S</em> be a subset of ${\mathbb{R}}^{2}$ (Figure 14.17).</p>
+<ol><li>$S$ is called an <strong><span data-concept="open-set">open set</span></strong> if every point of $S$ is an <span data-concept="interior-point">interior point</span>.</li><li>$S$ is called a <strong><span data-concept="closed-set">closed set</span></strong> if it contains all its <span data-concept="boundary-point">boundary points</span>.</li></ol>
+</div>
+<p id="open-closed-examples">An example of an <span data-concept="open-set">open set</span> is a $\delta $ disk. If we include the boundary of the disk, then it becomes a <span data-concept="closed-set">closed set</span>. A set that contains some, but not all, of its <span data-concept="boundary-point">boundary points</span> is neither open nor closed. For example if we include half the boundary of a $\delta $ disk but not the other half, then the set is neither open nor closed.</p>
+<div class="note" id="fs-id1167793258190">
+<div class="eyebrow">Definition</div>
+<p>Let <em>S</em> be a subset of ${\mathbb{R}}^{2}$ (Figure 14.17).</p>
+<ol><li>An <span data-concept="open-set">open set</span> $S$ is a <strong><span data-concept="connected-set">connected set</span></strong> if it cannot be represented as the union of two or more disjoint, nonempty open subsets.</li><li>A set $S$ is a <strong><span data-concept="region">region</span></strong> if it is open, connected, and nonempty.</li></ol>
+</div>
+<p id="boundary-limit-intro">The definition of a <span data-concept="limit-of-a-function-of-two-variables">limit of a function of two variables</span> requires the $\delta $ disk to be contained inside the <span data-concept="domain">domain</span> of the function. However, if we wish to find the <span data-concept="limit-at-a-boundary-point">limit of a function at a boundary point</span> of the <span data-concept="domain">domain</span>, the $\delta \;\text{disk}$ is not contained inside the <span data-concept="domain">domain</span>. By definition, some of the points of the $\delta \;\text{disk}$ are inside the <span data-concept="domain">domain</span> and some are outside. Therefore, we need only consider points that are inside both the $\delta $ disk and the <span data-concept="domain">domain</span> of the function. This leads to the definition of the <span data-concept="limit-at-a-boundary-point">limit of a function at a boundary point</span>.</p>
+<div class="note" id="fs-id1167793618085">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf$ be a <span data-concept="function-of-two-variables">function of two variables</span>, $x$ and $y,$ and suppose $(a,b)$ is on the boundary of the <span data-concept="domain">domain</span> of $\kf.$ Then, the limit of $\kf(x,y)$ as $(x,y)$ approaches $(a,b)$ is $\kL,$ written</p>
+$$\lim_{(x,y)\to (a,b)}\kf(x,y)=\kL,$$
+<p>if for any $\varepsilon \gt 0,$ there exists a number $\delta \gt 0$ such that for any point $(x,y)$ inside the <span data-concept="domain">domain</span> of $\kf$ and within a suitably small distance positive $\delta $ of $(a,b),$ the value of $\kf(x,y)$ is no more than $\varepsilon $ away from $\kL$ (Figure 14.15). Using symbols, we can write: For any $\varepsilon \gt 0,$ there exists a number $\delta \gt 0$ such that</p>
+$$|\kf(x,y)-\kL|\lt \varepsilon \;\text{whenever}\;0\lt \sqrt{{(x-a)}^{2}+{(y-b)}^{2}}\lt \delta .$$
+</div>
+<div class="example" id="fs-id1167793277600">
+<h3>Example 14.10 · Limit of a Function at a Boundary Point</h3>
+<p>Prove $\lim_{(x,y)\to (4,3)}\sqrt{25-x^{2}-y^{2}}=0.$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="domain">domain</span> of the function $\kf(x,y)=\sqrt{25-x^{2}-y^{2}}$ is $\{(x,y)\in {\mathbb{R}}^{2}|x^{2}+y^{2}\le 25\},$ which is a circle of radius $5$ centered at the origin, along with its interior as shown in the following graph.</p>
+<figure class="sim" id="sim-boundary-limit" data-figure="14.18 + 14.19" data-original="/media/ch14/CNX_Calc_Figure_14_02_005.jpg,/media/ch14/CNX_Calc_Figure_14_02_006.jpg" data-original-caption="(Figure 14.18) Domain of the function f(x,y) = √(25 − x² − y²). (Figure 14.19) Graph of the function f(x,y) = √(25 − x² − y²).">
+  <div class="sim-head"><span class="eyebrow">Figure 14.18 + 14.19</span><span>The <span data-concept="domain">domain</span> of $\kf(x,y)=\sqrt{25-x^{2}-y^{2}},$ the circle of radius $5$ centered at the origin with its interior, and the graph of $\kf$ above it. Slide the point toward the <span data-concept="boundary-point">boundary point</span> $(4,3)$ from inside the domain: the height $\kf(x,y)$ falls to $0.$</span></div>
+</figure>
+<p>We can use the <span data-concept="limit-laws-for-functions-of-two-variables">limit laws</span>, which apply to limits at the boundary of domains as well as <span data-concept="interior-point">interior points</span>:</p>
+$$\begin{array}{rl}\lim_{(x,y)\to (4,3)}\sqrt{25-x^{2}-y^{2}} & =\sqrt{\lim_{(x,y)\to (4,3)}(25-x^{2}-y^{2})} \\ & =\sqrt{\lim_{(x,y)\to (4,3)}25-\lim_{(x,y)\to (4,3)}x^{2}-\lim_{(x,y)\to (4,3)}y^{2}} \\ & =\sqrt{25-4^{2}-3^{2}} \\ & =0.\end{array}$$
+<p>See the following graph.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793277600"></div>
+</section>
+<section id="continuity">
+<h2>Continuity of Functions of Two Variables</h2>
+<p class="cite-target">In <a href="/calculus/ch02/2.4/">Continuity</a>, we defined the continuity of a <span data-concept="function">function of one variable</span> and saw how it relied on the limit of a <span data-concept="function">function of one variable</span>. In particular, three conditions are necessary for $\kf(x)$ to be continuous at point $x=a\text{:}$</p>
+<ol><li>$\kf(a)$ exists.</li><li>$\lim_{x\to a}\kf(x)$ exists.</li><li>$\lim_{x\to a}\kf(x)=\kf(a).$</li></ol>
+<p>These three conditions are necessary for continuity of a <span data-concept="function-of-two-variables">function of two variables</span> as well.</p>
+<div class="note" id="fs-id1167793504466">
+<div class="eyebrow">Definition</div>
+<p>A function $\kf(x,y)$ is <span data-concept="continuity-of-a-function-of-two-variables">continuous</span> at a point $(a,b)$ in its <span data-concept="domain">domain</span> if the following conditions are satisfied:</p>
+<ol><li>$\kf(a,b)$ exists.</li><li>$\lim_{(x,y)\to (a,b)}\kf(x,y)$ exists.</li><li>$\lim_{(x,y)\to (a,b)}\kf(x,y)=\kf(a,b).$</li></ol>
+</div>
+<div class="example" id="fs-id1167794091703">
+<h3>Example 14.11 · Demonstrating Continuity for a Function of Two Variables</h3>
+<p>Show that the function $\kf(x,y)=\frac{3x+2y}{x+y+1}$ is continuous at point $(5,-3).$</p>
+<h4>Solution</h4>
+<p>There are three conditions to be satisfied, per the definition of continuity. In this example, $a=5$ and $b=-3.$</p>
+<ol><li>$\kf(a,b)$ exists. This is true because the <span data-concept="domain">domain</span> of the function $\kf$ consists of those ordered pairs for which the denominator is nonzero (i.e., $x+y+1\ne 0).$ Point $(5,-3)$ satisfies this condition. Furthermore,</li></ol>
+$$\kf(a,b)=\kf(5,-3)=\frac{3(5)+2(-3)}{5+(-3)+1}=\frac{15-6}{2+1}=3.$$
+<ol start="2"><li>$\lim_{(x,y)\to (a,b)}\kf(x,y)$ exists. This is also true:</li></ol>
+$$\begin{array}{rl}\lim_{(x,y)\to (a,b)}\kf(x,y) & =\lim_{(x,y)\to (5,-3)}\frac{3x+2y}{x+y+1} \\ & =\frac{\lim_{(x,y)\to (5,-3)}(3x+2y)}{\lim_{(x,y)\to (5,-3)}(x+y+1)} \\ & =\frac{15-6}{5-3+1} \\ & =3.\end{array}$$
+<ol start="3"><li>$\lim_{(x,y)\to (a,b)}\kf(x,y)=\kf(a,b).$ This is true because we have just shown that both sides of this equation equal three.</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1167794091703"></div>
+<p id="continuity-epsilon-delta">Continuity of a function of any number of variables can also be defined in terms of delta and epsilon. A <span data-concept="function-of-two-variables">function of two variables</span> is continuous at a point $(x_{0},y_{0})$ in its <span data-concept="domain">domain</span> if for every $\varepsilon \gt 0$ there exists a $\delta \gt 0$ such that, whenever $\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}\lt \delta $ it is true, $|\kf(x,y)-\kf(a,b)|\lt \varepsilon .$ This definition can be combined with the formal definition (that is, the <em><span data-concept="epsilon-delta-definition-of-the-limit">epsilon–delta definition</span></em>) of continuity of a <span data-concept="function">function of one variable</span> to prove the following theorems:</p>
+<div class="note" id="fs-id1167793285170">
+<div class="eyebrow">Theorem</div>
+<h3>The Sum of Continuous Functions Is Continuous</h3>
+<p>If $\kf(x,y)$ is continuous at $(x_{0},y_{0}),$ and $\kg(x,y)$ is continuous at $(x_{0},y_{0}),$ then $\kf(x,y)+\kg(x,y)$ is continuous at $(x_{0},y_{0}).$</p>
+</div>
+<div class="note" id="fs-id1167793580579">
+<div class="eyebrow">Theorem</div>
+<h3>The Product of Continuous Functions Is Continuous</h3>
+<p>If $\kg(x)$ is continuous at $x_{0}$ and $h(y)$ is continuous at $y_{0},$ then $\kf(x,y)=\kg(x)h(y)$ is continuous at $(x_{0},y_{0}).$</p>
+</div>
+<div class="note" id="fs-id1167794181227">
+<div class="eyebrow">Theorem</div>
+<h3>The Composition of Continuous Functions Is Continuous</h3>
+<p>Let $\kg$ be a <span data-concept="function-of-two-variables">function of two variables</span> from a <span data-concept="domain">domain</span> $\kD\subseteq {\mathbb{R}}^{2}$ to a <span data-concept="range">range</span> $R\subseteq \mathbb{R}.$ Suppose $\kg$ is continuous at some point $(x_{0},y_{0})\in \kD$ and define $z_{0}=\kg(x_{0},y_{0}).$ Let $\kf$ be a function that maps $\mathbb{R}$ to $\mathbb{R}$ such that $z_{0}$ is in the <span data-concept="domain">domain</span> of $\kf.$ Last, assume $\kf$ is continuous at $z_{0}.$ Then $\kf\circ \kg$ is continuous at $(x_{0},y_{0})$ as shown in the following figure.</p>
+</div>
+<figure class="sim" id="fig-composition" data-figure="14.20" data-original="/media/ch14/CNX_Calc_Figure_14_02_007.jpg" data-original-caption="The composition of two continuous functions is continuous.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.20</span><span>The composition of two continuous functions is continuous: $\kg$ carries $(x,y)$ in its domain to $z=\kg(x,y)$ in its range, the domain of $\kf,$ and $\kf$ carries $z$ to $\kf(z)$ in the range of $\kf.$</span></div>
+</figure>
+<p>Let’s now use the previous theorems to show continuity of functions in the following examples.</p>
+<div class="example" id="fs-id1167793510063">
+<h3>Example 14.12 · More Examples of Continuity of a Function of Two Variables</h3>
+<p>Show that the functions $\kf(x,y)=4x^{3}y^{2}$ and $\kg(x,y)=\cos (4x^{3}y^{2})$ are continuous everywhere.</p>
+<h4>Solution</h4>
+<p>The polynomials $\kg(x)=4x^{3}$ and $h(y)=y^{2}$ are continuous at every real number, and therefore by the product of continuous functions theorem, $\kf(x,y)=4x^{3}y^{2}$ is continuous at every point $(x,y)$ in the $xy\text{-plane.}$ Since $\kf(x,y)=4x^{3}y^{2}$ is continuous at every point $(x,y)$ in the $xy\text{-plane}$ and $\kg(x)=\cos x$ is continuous at every real number $x,$ the continuity of the composition of functions tells us that $\kg(x,y)=\cos (4x^{3}y^{2})$ is continuous at every point $(x,y)$ in the $xy\text{-plane.}$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793510063"></div>
+</section>
+<section id="three-variables">
+<h2>Functions of Three or More Variables</h2>
+<p class="cite-target">The limit of a <span data-concept="function-of-more-than-two-variables">function of three or more variables</span> occurs readily in applications. For example, suppose we have a function $\kf(x,y,z)$ that gives the temperature at a physical location $(x,y,z)$ in three dimensions. Or perhaps a function $\kg(x,y,z,t)$ can indicate air pressure at a location $(x,y,z)$ at time $t.$ How can we take a limit at a point in ${\mathbb{R}}^{3}?$ What does it mean to be continuous at a point in four dimensions?</p>
+<p>The answers to these questions rely on extending the concept of a $\delta $ disk into more than two dimensions. Then, the ideas of the limit of a <span data-concept="function-of-more-than-two-variables">function of three or more variables</span> and the continuity of a <span data-concept="function-of-more-than-two-variables">function of three or more variables</span> are very similar to the definitions given earlier for a <span data-concept="function-of-two-variables">function of two variables</span>.</p>
+<div class="note" id="fs-id1167793420694">
+<div class="eyebrow">Definition</div>
+<p>Let $(x_{0},y_{0},z_{0})$ be a point in ${\mathbb{R}}^{3}.$ Then, a <strong><span data-concept="delta-ball">$\delta$ ball</span></strong> in three dimensions consists of all points in ${\mathbb{R}}^{3}$ lying at a distance of less than $\delta $ from $(x_{0},y_{0},z_{0})$—that is,</p>
+$$\{(x,y,z)\in {\mathbb{R}}^{3}|\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}+{(z-z_{0})}^{2}}\lt \delta \}.$$
+<p>To define a $\delta $ ball in higher dimensions, add additional terms under the radical to correspond to each additional dimension. For example, given a point $P=(w_{0},x_{0},y_{0},z_{0})$ in ${\mathbb{R}}^{4},$ a $\delta $ ball around $P$ can be described by</p>
+$$\{(w,x,y,z)\in {\mathbb{R}}^{4}|\sqrt{{(w-w_{0})}^{2}+{(x-x_{0})}^{2}+{(y-y_{0})}^{2}+{(z-z_{0})}^{2}}\lt \delta \}.$$
+</div>
+<p id="delta-ball-limit">To show that a limit of a function of three variables exists at a point $(x_{0},y_{0},z_{0}),$ it suffices to show that for any point in a $\delta $ ball centered at $(x_{0},y_{0},z_{0}),$ the value of the function at that point is arbitrarily close to a fixed value (the limit value). All the <span data-concept="limit-laws-for-functions-of-two-variables">limit laws</span> for <span data-concept="function-of-two-variables">functions of two variables</span> hold for functions of more than two variables as well.</p>
+<div class="example" id="fs-id1167793445843">
+<h3>Example 14.13 · Finding the Limit of a Function of Three Variables</h3>
+<p>Find $\lim_{(x,y,z)\to (4,1,-3)}\frac{x^{2}y-3z}{2x+5y-z}.$</p>
+<h4>Solution</h4>
+<p>Before we can apply the quotient law, we need to verify that the limit of the denominator is nonzero. Using the difference law, the identity law, and the constant law,</p>
+$$\begin{array}{rl}\lim_{(x,y,z)\to (4,1,-3)}(2x+5y-z) & =2(\lim_{(x,y,z)\to (4,1,-3)}x)+5(\lim_{(x,y,z)\to (4,1,-3)}y)-(\lim_{(x,y,z)\to (4,1,-3)}z) \\ & =2(4)+5(1)-(-3) \\ & =16.\end{array}$$
+<p>Since this is nonzero, we next find the limit of the numerator. Using the product law, difference law, constant multiple law, and identity law,</p>
+$$\begin{array}{rl}\lim_{(x,y,z)\to (4,1,-3)}(x^{2}y-3z) & ={(\lim_{(x,y,z)\to (4,1,-3)}x)}^{2}(\lim_{(x,y,z)\to (4,1,-3)}y)-3\lim_{(x,y,z)\to (4,1,-3)}z \\ & =(4^{2})(1)-3(-3) \\ & =16+9 \\ & =25.\end{array}$$
+<p>Last, applying the quotient law:</p>
+$$\begin{array}{rl}\lim_{(x,y,z)\to (4,1,-3)}\frac{x^{2}y-3z}{2x+5y-z} & =\frac{\lim_{(x,y,z)\to (4,1,-3)}(x^{2}y-3z)}{\lim_{(x,y,z)\to (4,1,-3)}(2x+5y-z)} \\ & =\frac{25}{16}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793445843"></div>
+</section>

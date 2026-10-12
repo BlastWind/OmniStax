@@ -1,0 +1,212 @@
+<p id="directional-intro">In <a href="/calculus/ch14/14.3/">Partial Derivatives</a> we introduced the <span data-concept="partial-derivative">partial derivative</span>. A function $z=\kf(x,y)$ has two <span data-concept="partial-derivative">partial derivatives</span>: $\partial z/\partial x$ and $\partial z/\partial y.$ These derivatives correspond to each of the independent variables and can be interpreted as instantaneous rates of change (that is, as slopes of a <span data-concept="tangent-line">tangent line</span>). For example, $\partial z/\partial x$ represents the slope of a <span data-concept="tangent-line">tangent line</span> passing through a given point on the <span data-concept="surface">surface</span> defined by $z=\kf(x,y),$ assuming the <span data-concept="tangent-line">tangent line</span> is parallel to the <em>x</em>-axis. Similarly, $\partial z/\partial y$ represents the slope of the <span data-concept="tangent-line">tangent line</span> parallel to the $y\text{-axis.}$ Now we consider the possibility of a <span data-concept="tangent-line">tangent line</span> parallel to neither axis.</p>
+<section id="directional">
+<h2>Directional Derivatives</h2>
+<p class="cite-target">We start with the graph of a <span data-concept="surface">surface</span> defined by the equation $z=\kf(x,y).$ Given a point $(a,b)$ in the domain of $\kf,$ we choose a direction to travel from that point. We measure the direction using an angle $\ktheta ,$ which is measured counterclockwise in the <em>x</em>, <em>y</em>-plane, starting at zero from the positive <em>x</em>-axis (Figure 14.39). The distance we travel is $h$ and the direction we travel is given by the <span data-concept="unit-vector">unit vector</span> $\kvecu=(\cos \ktheta )\kveci+(\sin \ktheta )\kvecj.$ Therefore, the <em>z</em>-coordinate of the second point on the graph is given by $z=\kf(a+h\;\cos \ktheta ,b+h\;\sin \ktheta ).$</p>
+<figure class="sim" id="sim-directional" data-figure="14.39 + 14.40" data-original="/media/ch14/CNX_Calc_Figure_14_06_001.jpg,/media/ch14/CNX_Calc_Figure_14_06_006.jpg" data-original-caption="(Figure 14.39) Finding the directional derivative at a point on the graph of z = f(x,y). The slope of the blue arrow on the graph indicates the value of the directional derivative at that point. (Figure 14.40) Finding the directional derivative in a given direction u at a given point on a surface. The plane is tangent to the surface at the given point (−1,2,15).">
+  <div class="sim-head"><span class="eyebrow">Figure 14.39 + 14.40</span><span>Finding the <span data-concept="directional-derivative">directional derivative</span> at a point on the graph of $z=\kf(x,y)=x^{2}-xy+3y^{2},$ the surface of Example 14.31, at $(a,b)=(-1,2)$ where the plane is tangent to it at $(-1,2,15).$ Turn the direction $\kvecu=\cos \ktheta \,\kveci+\sin \ktheta \,\kvecj$ in the $xy$-plane: the arrow on the surface heads that way along the tangent plane, and its slope is $\kDuf(-1,2).$ At $\ktheta =\operatorname{arccos}(3/5)$ the slope is $8.$ Heights are drawn at a twelfth of the scale of $x$ and $y.$</span></div>
+</figure>
+<p id="secant-slope">We can calculate the slope of the <span data-concept="secant">secant line</span> by dividing the difference in $z\text{-values}$ by the length of the line segment connecting the two points in the domain. The length of the line segment is $h.$ Therefore, the slope of the <span data-concept="secant">secant line</span> is</p>
+$$m_{\sec }=\frac{\kf(a+h\;\cos \ktheta ,b+h\;\sin \ktheta )-\kf(a,b)}{h}.$$
+<p>To find the slope of the <span data-concept="tangent-line">tangent line</span> in the same direction, we take the limit as $h$ approaches zero.</p>
+<div class="note" id="fs-id1167794159722">
+<div class="eyebrow">Definition</div>
+<p>Suppose $z=\kf(x,y)$ is a <span data-concept="function-of-two-variables">function of two variables</span> with a domain of $D.$ Let $(a,b)\in D$ and define $\text{u}=\cos \ktheta \kveci+\sin \ktheta \kvecj.$ Then the <strong><span data-concept="directional-derivative">directional derivative</span></strong> of $\kf$ in the direction of $\kvecu$ is given by</p>
+<div class="equation" id="fs-id1167794091761">$$\kDuf(a,b)=\lim_{h\to 0}\frac{\kf(a+h\;\cos \ktheta ,b+h\;\sin \ktheta )-\kf(a,b)}{h},\tag{14.36}$$</div>
+<p>provided the limit exists.</p>
+</div>
+<p><a href="#fs-id1167794091761">Equation 14.36</a> provides a formal definition of the <span data-concept="directional-derivative">directional derivative</span> that can be used in many cases to calculate a <span data-concept="directional-derivative">directional derivative</span>.</p>
+<div class="example" id="fs-id1167793895979">
+<h3>Example 14.31 · Finding a Directional Derivative from the Definition</h3>
+<p>Let $\ktheta =\operatorname{arccos}(3/5).$ Find the <span data-concept="directional-derivative">directional derivative</span> $\kDuf(x,y)$ of $\kf(x,y)=x^{2}-xy+3y^{2}$ in the direction of $\text{u}=(\cos \ktheta )\kveci+(\sin \ktheta )\kvecj.$ What is $\kDuf(-1,2)?$</p>
+<h4>Solution</h4>
+<p>First of all, since $\cos \ktheta =3/5$ and $\ktheta$ is acute, this implies</p>
+$$\sin \ktheta =\sqrt{1-{(\frac{3}{5})}^{2}}=\sqrt{\frac{16}{25}}=\frac{4}{5}.$$
+<p>Using $\kf(x,y)=x^{2}-xy+3y^{2},$ we first calculate $\kf(x+h\;\cos \ktheta ,y+h\;\sin \ktheta )\text{:}$</p>
+$$\begin{array}{rl}\kf(x+h\;\cos \ktheta ,y+h\;\sin \ktheta ) & ={(x+h\;\cos \ktheta )}^{2}-(x+h\;\cos \ktheta )(y+h\;\sin \ktheta )+3{(y+h\;\sin \ktheta )}^{2} \\ & =x^{2}+2xh\;\cos \ktheta +h^{2}{\cos }^{2}\ktheta -xy-xh\;\sin \ktheta -yh\;\cos \ktheta \\ & \;{\text{-h}}^{2}\sin \ktheta \;\cos \ktheta +3y^{2}+6yh\;\sin \ktheta +3h^{2}{\sin }^{2}\ktheta \\ & =x^{2}+2xh(\frac{3}{5})+\frac{9h^{2}}{25}-xy-\frac{4xh}{5}-\frac{3yh}{5}-\frac{12h^{2}}{25}+3y^{2} \\ & \;+6yh(\frac{4}{5})+3h^{2}(\frac{16}{25}) \\ & =x^{2}-xy+3y^{2}+\frac{2xh}{5}+\frac{9h^{2}}{5}+\frac{21yh}{5}.\end{array}$$
+<p>We substitute this expression into <a href="#fs-id1167794091761">Equation 14.36</a>:</p>
+$$\begin{array}{rl}\kDuf(a,b) & =\lim_{h\to 0}\frac{\kf(a+h\;\cos \ktheta ,b+h\;\sin \ktheta )-\kf(a,b)}{h} \\ & =\lim_{h\to 0}\frac{(x^{2}-xy+3y^{2}+\frac{2xh}{5}+\frac{9h^{2}}{5}+\frac{21yh}{5})-(x^{2}-xy+3y^{2})}{h} \\ & =\lim_{h\to 0}\frac{\frac{2xh}{5}+\frac{9h^{2}}{5}+\frac{21yh}{5}}{h} \\ & =\lim_{h\to 0}\frac{2x}{5}+\frac{9h}{5}+\frac{21y}{5} \\ & =\frac{2x+21y}{5}.\end{array}$$
+<p>To calculate $\kDuf(-1,2),$ we substitute $x=-1$ and $y=2$ into this answer:</p>
+$$\begin{array}{rl}\kDuf(-1,2) & =\frac{2(-1)+21(2)}{5} \\ & =\frac{-2+42}{5} \\ & =8.\end{array}$$
+<p>(See the following figure.)</p>
+</div>
+<p id="partials-method">Another approach to calculating a <span data-concept="directional-derivative">directional derivative</span> involves <span data-concept="partial-derivative">partial derivatives</span>, as outlined in the following theorem.</p>
+<div class="note" id="fs-id1167793882858">
+<div class="eyebrow">Theorem</div>
+<h3>Directional Derivative of a Function of Two Variables</h3>
+<p>Let $z=\kf(x,y)$ be a <span data-concept="function-of-two-variables">function of two variables</span> $x\;\text{and}\;y,$ and assume that $\kfx$ and $\kfy$ exist and $\kf(x,y)$ is differentiable everywhere. Then the <span data-concept="directional-derivative">directional derivative</span> of $\kf$ in the direction of $\text{u}=\cos \ktheta \text{i}+\sin \ktheta \text{j}$ is given by</p>
+<div class="equation" id="fs-id1167794071305">$$\kDuf(x,y)=\kfx(x,y)\cos \ktheta +\kfy(x,y)\sin \ktheta .\tag{14.37}$$</div>
+</div>
+<h3>Proof</h3>
+<p><a href="#fs-id1167794091761">Equation 14.36</a> states that the <span data-concept="directional-derivative">directional derivative</span> of <em>f</em> in the direction of $\kvecu=\cos \ktheta \kveci+\sin \ktheta \kvecj$ is given by</p>
+$$\kDuf(a,b)=\lim_{t\to 0}\frac{\kf(a+t\;\cos \ktheta ,b+t\;\sin \ktheta )-\kf(a,b)}{t}.$$
+<p>Let $x=a+t\;\cos \ktheta$ and $y=b+t\;\sin \ktheta ,$ and define $g(t)=\kf(x,y).$ Since $\kfx$ and $\kfy$ both exist, and therefore $\kf$ is differentiable, we can use the <span data-concept="chain-rule-for-one-independent-variable">chain rule for functions of two variables</span> to calculate $g^{\prime}(t)\text{:}$</p>
+$$\begin{array}{rl}g^{\prime}(t) & =\frac{\partial \text{\kf}}{\partial \text{x}}\;\frac{dx}{dt}+\frac{\partial \text{\kf}}{\partial \text{y}}\;\frac{dy}{dt} \\ & =\kfx(x,y)\cos \ktheta +\kfy(x,y)\sin \ktheta .\end{array}$$
+<p>If $t=0,$ then $x=x_{0}(=a)$ and $y=y_{0}(=b),$ so</p>
+$$g^{\prime}(0)=\kfx(x_{0},y_{0})\cos \ktheta +\kfy(x_{0},y_{0})\sin \ktheta .$$
+<p>By the definition of $g^{\prime}(t),$ it is also true that</p>
+$$\begin{array}{rl}g^{\prime}(0) & =\lim_{t\to 0}\frac{g(t)-g(0)}{t} \\ & =\lim_{t\to 0}\frac{\kf(x_{0}+t\;\cos \ktheta ,y_{0}+t\;\sin \ktheta )-\kf(x_{0},y_{0})}{t}.\end{array}$$
+<p>Therefore, $\kDuf(x_{0},y_{0})=\kfx(x,y)\cos \ktheta +\kfy(x,y)\sin \ktheta .$</p>
+<p>□</p>
+<div class="example" id="fs-id1167793638600">
+<h3>Example 14.32 · Finding a Directional Derivative: Alternative Method</h3>
+<p>Let $\ktheta =\operatorname{arccos}(3/5).$ Find the <span data-concept="directional-derivative">directional derivative</span> $\kDuf(x,y)$ of $\kf(x,y)=x^{2}-xy+3y^{2}$ in the direction of $\kvecu=(\cos \ktheta )\kveci+(\sin \ktheta )\kvecj.$ What is $\kDuf(-1,2)?$</p>
+<h4>Solution</h4>
+<p>First, we must calculate the <span data-concept="partial-derivative">partial derivatives</span> of $\kf\text{:}$</p>
+$$\begin{array}{l}\kfx=2x-y \\ \kfy=-x+6y,\end{array}$$
+<p>Then we use <a href="#fs-id1167794071305">Equation 14.37</a> with $\ktheta =\operatorname{arccos}(3/5)\text{:}$</p>
+$$\begin{array}{rl}\kDuf(x,y) & =\kfx(x,y)\cos \ktheta +\kfy(x,y)\sin \ktheta \\ & =(2x-y)\frac{3}{5}+(-x+6y)\frac{4}{5} \\ & =\frac{6x}{5}-\frac{3y}{5}-\frac{4x}{5}+\frac{24y}{5} \\ & =\frac{2x+21y}{5}.\end{array}$$
+<p>To calculate $\kDuf(-1,2),$ let $x=-1$ and $y=2\text{:}$</p>
+$$\kDuf(-1,2)=\frac{2(-1)+21(2)}{5}=\frac{-2+42}{5}=8.$$
+<p>This is the same answer obtained in <a href="#fs-id1167793895979">Example 14.31</a>.</p>
+</div>
+</section>
+<section id="gradient">
+<h2>Gradient</h2>
+<p class="cite-target">The right-hand side of <a href="#fs-id1167794071305">Equation 14.37</a> is equal to $\kfx(x,y)\cos \ktheta +\kfy(x,y)\sin \ktheta ,$ which can be written as the <span data-concept="dot-product">dot product</span> of two vectors. Define the first vector as $\kgradf(x,y)=\kfx(x,y)\text{i}+\kfy(x,y)\text{j}$ and the second vector as $\kvecu=(\cos \ktheta )\kveci+(\sin \ktheta )\kvecj.$ Then the right-hand side of the equation can be written as the <span data-concept="dot-product">dot product</span> of these two vectors:</p>
+<div class="equation" id="fs-id1167794125596">$$\kDuf(x,y)=\kgradf(x,y)\cdot \kvecu.\tag{14.38}$$</div>
+<p>The first vector in <a href="#fs-id1167794125596">Equation 14.38</a> has a special name: the <span data-concept="gradient">gradient</span> of the function $\kf.$ The symbol $\nabla$ is called <em>nabla</em> and the vector $\kgradf$ is read $\text{“del}\;\kf\text{.”}$</p>
+<div class="note" id="fs-id1167794122930">
+<div class="eyebrow">Definition</div>
+<p>Let $z=\kf(x,y)$ be a function of $x\;\text{and}\;y$ such that $\kfx$ and $\kfy$ exist. The vector $\kgradf(x,y)$ is called the <strong><span data-concept="gradient">gradient</span></strong> of $\kf$ and is defined as</p>
+<div class="equation" id="fs-id1167793931842">$$\kgradf(x,y)=\kfx(x,y)\kveci+\kfy(x,y)\kvecj.\tag{14.39}$$</div>
+<p>The vector $\kgradf(x,y)$ is also written as $\text{“grad}\;\kf\text{.”}$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793638600"></div>
+<p id="nonunit">If the vector that is given for the direction of the derivative is not a <span data-concept="unit-vector">unit vector</span>, then it is only necessary to divide by the norm of the vector. For example, if we wished to find the <span data-concept="directional-derivative">directional derivative</span> of the function in <a href="#fs-id1167793638600">Example 14.32</a> in the direction of the vector $\langle -5,12\rangle ,$ we would first divide by its magnitude to get $\kvecu.$ This gives us $\kvecu=\langle -(5/13),12/13\rangle .$ Then<sup class="fn" data-note="c-nonunit"></sup></p>
+$$\begin{array}{rl}\kDuf(x,y) & =\kgradf(x,y)\cdot \kvecu \\ & =-\frac{5}{13}(2x-\frac{77}{12}y)+\frac{12}{13}(-x+6y) \\ & =-\frac{22}{13}x+\frac{17}{13}y.\end{array}$$
+<div class="example" id="fs-id1167793990054">
+<h3>Example 14.33 · Finding Gradients</h3>
+<p>Find the <span data-concept="gradient">gradient</span> $\kgradf(x,y)$ of each of the following functions:</p>
+<p>a. $\kf(x,y)=x^{2}-xy+3y^{2}$</p>
+<p>b. $\kf(x,y)=\sin 3x\;\cos 3y$</p>
+<h4>Solution</h4>
+<p>For both parts a. and b., we first calculate the <span data-concept="partial-derivative">partial derivatives</span> $\kfx$ and $\kfy,$ then use <a href="#fs-id1167793931842">Equation 14.39</a>.</p>
+<p>a. </p>
+<p>$\begin{array}{rll}\kfx(x,y) & = & 2x-y\;\text{and}\;\kfy(x,y)=-x+6y,\;\text{so} \\ \kgradf(x,y) & = & \kfx(x,y)\kveci+\kfy(x,y)\kvecj \\ & = & (2x-y)\kveci+(-x+6y)\mathbf{j.}\end{array}$</p>
+<p>b. </p>
+<p>$\begin{array}{rll}\kfx(x,y) & = & 3\;\cos 3x\;\cos 3y\;\text{and}\;\kfy(x,y)=-3\;\sin 3x\;\sin 3y,\;\text{so} \\ \kgradf(x,y) & = & \kfx(x,y)\kveci+\kfy(x,y)\kvecj \\ & = & (3\;\cos 3x\;\cos 3y)\kveci-(3\;\sin 3x\;\sin 3y)\kvecj.\end{array}$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793990054"></div>
+<p id="gradient-angle">The <span data-concept="gradient">gradient</span> has some important properties. We have already seen one formula that uses the <span data-concept="gradient">gradient</span>: the formula for the <span data-concept="directional-derivative">directional derivative</span>. Recall from <a href="/calculus/ch12/12.3/">The Dot Product</a> that if the angle between two vectors $\mathbf{a}$ and $\mathbf{b}$ is $\kphi ,$ then $\mathbf{a}\cdot \text{b}=\| \mathbf{a}\| \| \text{b}\| \cos \kphi .$ Therefore, if the angle between $\kgradf(x_{0},y_{0})$ and $\kvecu=(\cos \ktheta )\kveci+(\sin \ktheta )\kvecj$ is $\kphi ,$ we have</p>
+$$\kDuf(x_{0},y_{0})=\kgradf(x_{0},y_{0})\cdot \kvecu=\| \kgradf(x_{0},y_{0})\| \| \kvecu\| \cos \kphi =\| \kgradf(x_{0},y_{0})\| \cos \kphi .$$
+<p>The $\| \kvecu\|$ disappears because $\kvecu$ is a <span data-concept="unit-vector">unit vector</span>. Therefore, the <span data-concept="directional-derivative">directional derivative</span> is equal to the magnitude of the <span data-concept="gradient">gradient</span> evaluated at $(x_{0},y_{0})$ multiplied by $\cos \kphi .$ Recall that $\cos \kphi $ ranges from $-1$ to $1.$ If $\kphi =0,$ then $\cos \kphi =1$ and $\kgradf(x_{0},y_{0})$ and $\kvecu$ both point in the same direction. If $\kphi =\pi ,$ then $\cos \kphi =-1$ and $\kgradf(x_{0},y_{0})$ and $\kvecu$ point in opposite directions. In the first case, the value of $D_{\text{u}}\kf(x_{0},y_{0})$ is maximized; in the second case, the value of $D_{\text{u}}\kf(x_{0},y_{0})$ is minimized. If $\kgradf(x_{0},y_{0})=0,$ then $\kDuf(x_{0},y_{0})=\kgradf(x_{0},y_{0})\cdot \kvecu=0$ for any vector $\kvecu.$ These three cases are outlined in the following theorem.</p>
+<div class="note" id="fs-id1167794067004">
+<div class="eyebrow">Theorem</div>
+<h3>Properties of the Gradient</h3>
+<p>Suppose the function $z=\kf(x,y)$ is differentiable at $(x_{0},y_{0})$ (Figure 14.41).</p>
+<ol><li>If $\kgradf(x_{0},y_{0})=\mathbf{0},$ then $\kDuf(x_{0},y_{0})=0$ for any <span data-concept="unit-vector">unit vector</span> $\kvecu.$</li><li>If $\kgradf(x_{0},y_{0})\ne \mathbf{0},$ then $\kDuf(x_{0},y_{0})$ is maximized when $\kvecu$ points in the same direction as $\kgradf(x_{0},y_{0}).$ The maximum value of $\kDuf(x_{0},y_{0})$ is $\| \kgradf(x_{0},y_{0})\| \text{.}$</li><li>If $\kgradf(x_{0},y_{0})\ne \mathbf{0},$ then $\kDuf(x_{0},y_{0})$ is minimized when $\kvecu$ points in the opposite direction from $\kgradf(x_{0},y_{0}).$ The minimum value of $\kDuf(x_{0},y_{0})$ is $-\| \kgradf(x_{0},y_{0})\| \text{.}$</li></ol>
+</div>
+<figure class="sim" id="sim-gradient-max" data-figure="14.41 + 14.42" data-original="/media/ch14/CNX_Calc_Figure_14_06_007.jpg,/media/ch14/CNX_Calc_Figure_14_06_008.jpg" data-original-caption="(Figure 14.41) The gradient indicates the maximum and minimum values of the directional derivative at a point. (Figure 14.42) The maximum value of the directional derivative at (−2,3) is in the direction of the gradient.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.41 + 14.42</span><span>The <span data-concept="gradient">gradient</span> indicates the maximum and minimum values of the <span data-concept="directional-derivative">directional derivative</span> at a point: for Example 14.34’s $\kf(x,y)=3x^{2}-4xy+2y^{2}$ at $(-2,3),$ turn $\kvecu$ on the contour map and watch $\kDuf(-2,3)=\|\kgradf\|\cos \kphi$ on the graph beside. It is largest, $4\sqrt{61},$ when $\kvecu$ points along $\kgradf,$ smallest when it points the opposite way, and zero along the level curve.</span></div>
+</figure>
+<div class="example" id="fs-id1167793931193">
+<h3>Example 14.34 · Finding a Maximum Directional Derivative</h3>
+<p>Find the direction for which the <span data-concept="directional-derivative">directional derivative</span> of $\kf(x,y)=3x^{2}-4xy+2y^{2}$ at $(-2,3)$ is a maximum. What is the maximum value?</p>
+<h4>Solution</h4>
+<p>The maximum value of the <span data-concept="directional-derivative">directional derivative</span> occurs when $\kgradf$ and the <span data-concept="unit-vector">unit vector</span> point in the same direction. Therefore, we start by calculating $\kgradf(x,y)\text{:}$</p>
+$$\begin{array}{rll}\kfx(x,y) & = & 6x-4y\;\text{and}\;\kfy(x,y)=-4x+4y,\;\text{so} \\ \kgradf(x,y) & = & \kfx(x,y)\kveci+\kfy(x,y)\kvecj=(6x-4y)\kveci+(-4x+4y)\kvecj.\end{array}$$
+<p>Next, we evaluate the <span data-concept="gradient">gradient</span> at $(-2,3)\text{:}$</p>
+$$\kgradf(-2,3)=(6(-2)-4(3))\kveci+(-4(-2)+4(3))\kvecj=-24\kveci+20\kvecj.$$
+<p>We need to find a <span data-concept="unit-vector">unit vector</span> that points in the same direction as $\kgradf(-2,3),$ so the next step is to divide $\kgradf(-2,3)$ by its magnitude, which is $\sqrt{{(-24)}^{2}+{(20)}^{2}}=\sqrt{976}=4\sqrt{61}.$ Therefore,</p>
+$$\frac{\kgradf(-2,3)}{\| \kgradf(-2,3)\|}=\frac{-24}{4\sqrt{61}}\kveci+\frac{20}{4\sqrt{61}}\kvecj=\frac{-6\sqrt{61}}{61}\kveci+\frac{5\sqrt{61}}{61}\kvecj.$$
+<p>This is the <span data-concept="unit-vector">unit vector</span> that points in the same direction as $\kgradf(-2,3).$ To find the angle corresponding to this <span data-concept="unit-vector">unit vector</span>, we solve the equations</p>
+$$\cos \ktheta =\frac{-6\sqrt{61}}{61}\;\text{and}\;\sin \ktheta =\frac{5\sqrt{61}}{61}$$
+<p>for $\ktheta .$ Since cosine is negative and sine is positive, the angle must be in the second quadrant. Therefore, $\ktheta =\pi -\operatorname{arcsin}((5\sqrt{61})/61)\approx 2.45\;\text{rad.}$</p>
+<p>The maximum value of the <span data-concept="directional-derivative">directional derivative</span> at $(-2,3)$ is $\| \kgradf(-2,3)\| =4\sqrt{61}$ (see the following figure).</p>
+</div>
+<div class="exercises" data-place="fs-id1167793931193"></div>
+<p id="steepest-ascent">Figure 14.43 shows a portion of the graph of the function $\kf(x,y)=3+\sin x\;\sin y.$ Given a point $(a,b)$ in the domain of $\kf,$ the maximum value of the <span data-concept="gradient">gradient</span> at that point is given by $\| \kgradf(a,b)\| .$ This would equal the rate of greatest ascent if the <span data-concept="surface">surface</span> represented a topographical map. If we went in the opposite direction, it would be the rate of greatest descent.</p>
+<figure class="sim" id="sim-steepest" data-figure="14.43" data-original="/media/ch14/CNX_Calc_Figure_14_06_002.jpg" data-original-caption="A typical surface in mathbbR³. Given a point on the surface, the directional derivative can be calculated using the gradient.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.43</span><span>A typical <span data-concept="surface">surface</span> in $\mathbb{R}^{3},$ the graph of $\kf(x,y)=3+\sin x\sin y.$ Given a point on the surface, the <span data-concept="directional-derivative">directional derivative</span> can be calculated using the <span data-concept="gradient">gradient</span>: drag the point, and the arrow on the surface climbs in the direction of $\kgradf$ at the rate $\|\kgradf\|,$ the greatest ascent from there.</span></div>
+</figure>
+<p id="contour-steepness">When using a topographical map, the steepest slope is always in the direction where the <span data-concept="level-curve">contour lines</span> are closest together (see Figure 14.44). This is analogous to the <span data-concept="contour-map">contour map</span> of a function, assuming the <span data-concept="level-curve">level curves</span> are obtained for equally spaced values throughout the range of that function.</p>
+<figure class="sim" id="sim-gradient-normal" data-figure="14.44" data-original="/media/ch14/CNX_Calc_Figure_14_06_003.jpg" data-original-caption="Contour map for the function f(x,y)=x²−y² using level values between −5 and 5.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.44</span><span><span data-concept="contour-map">Contour map</span> for the function $\kf(x,y)=x^{2}-y^{2}$ using level values between $-5$ and $5.$ Drag the point: $\kgradf$ crosses the <span data-concept="level-curve">level curve</span> through it at a right angle, and it is longest where the curves crowd together.</span></div>
+</figure>
+</section>
+<section id="level-curves">
+<h2>Gradients and Level Curves</h2>
+<p class="cite-target">Recall that if a curve is defined parametrically by the function pair $(x(t),y(t)),$ then the vector $x^{\prime}(t)\kveci+y^{\prime}(t)\kvecj$ is tangent to the curve for every value of $t$ in the domain. Now let’s assume $z=\kf(x,y)$ is a differentiable function of $x\;\text{and}\;y,$ and $(x_{0},y_{0})$ is in its domain. Let’s suppose further that $x_{0}=x(t_{0})$ and $y_{0}=y(t_{0})$ for some value of $t,$ and consider the <span data-concept="level-curve">level curve</span> $\kf(x,y)=k.$ Define $g(t)=\kf(x(t),y(t))$ and calculate $g^{\prime}(t)$ on the <span data-concept="level-curve">level curve</span>. By the <span data-concept="chain-rule-for-one-independent-variable">chain Rule</span>,</p>
+$$g^{\prime}(t)=\kfx(x(t),y(t))x^{\prime}(t)+\kfy(x(t),y(t))y^{\prime}(t).$$
+<p>But $g^{\prime}(t)=0$ because $g(t)=k$ for all $t.$ Therefore, on the one hand,</p>
+$$\kfx(x(t),y(t))x^{\prime}(t)+\kfy(x(t),y(t))y^{\prime}(t)=0;$$
+<p>on the other hand,</p>
+$$\kfx(x(t),y(t))x^{\prime}(t)+\kfy(x(t),y(t))y^{\prime}(t)=\kgradf(x,y)\cdot \langle x^{\prime}(t),y^{\prime}(t)\rangle \text{.}$$
+<p>Therefore,</p>
+$$\kgradf(x,y)\cdot \langle x^{\prime}(t),y^{\prime}(t)\rangle =0.$$
+<p>Thus, the <span data-concept="dot-product">dot product</span> of these vectors is equal to zero, which implies they are orthogonal. However, the second vector is tangent to the <span data-concept="level-curve">level curve</span>, which implies the <span data-concept="gradient">gradient</span> must be normal to the <span data-concept="level-curve">level curve</span>, which gives rise to the following theorem.</p>
+<div class="note" id="fs-id1167793628079">
+<div class="eyebrow">Theorem</div>
+<h3>Gradient Is Normal to the Level Curve</h3>
+<p>Suppose the function $z=\kf(x,y)$ has continuous first-order <span data-concept="partial-derivative">partial derivatives</span> in an open disk centered at a point $(x_{0},y_{0}).$ If $\kgradf(x_{0},y_{0})\ne \mathbf{0},$ then $\kgradf(x_{0},y_{0})$ is normal to the <span data-concept="level-curve">level curve</span> of $\kf$ at $(x_{0},y_{0}).$</p>
+</div>
+<p id="use-normal">We can use this theorem to find tangent and normal vectors to <span data-concept="level-curve">level curves</span> of a function.</p>
+<div class="example" id="fs-id1167793956566">
+<h3>Example 14.35 · Finding Tangents to Level Curves</h3>
+<p>For the function $\kf(x,y)=2x^{2}-3xy+8y^{2}+2x-4y+4,$ find a tangent vector to the <span data-concept="level-curve">level curve</span> at point $(-2,1).$ Graph the <span data-concept="level-curve">level curve</span> corresponding to $\kf(x,y)=18$ and draw in $\kgradf(-2,1)$ and a tangent vector.</p>
+<h4>Solution</h4>
+<p>First, we must calculate $\kgradf(x,y)\text{:}$</p>
+$$\kfx(x,y)=4x-3y+2\;\text{and}\;\kfy=-3x+16y-4\;\text{so}\;\kgradf(x,y)=(4x-3y+2)\kveci+(-3x+16y-4)\kvecj.$$
+<p>Next, we evaluate $\kgradf(x,y)$ at $(-2,1)\text{:}$</p>
+$$\kgradf(-2,1)=(4(-2)-3(1)+2)\kveci+(-3(-2)+16(1)-4)\kvecj=-9\kveci+18\kvecj.$$
+<p>This vector is orthogonal to the curve at point $(-2,1).$ We can obtain a tangent vector by reversing the components and multiplying either one by $-1.$ Thus, for example, $-18\kveci-9\kvecj$ is a tangent vector (see the following graph).</p>
+<figure class="sim" id="sim-level-gradient" data-figure="14.45" data-original="/media/ch14/CNX_Calc_Figure_14_06_004.jpg" data-original-caption="A rotated ellipse with equation f(x, y) = 18. At the point (–2, 1) on the ellipse, there are drawn two arrows, one tangent vector and one normal vector. The normal vector is marked ∇f(–2, 1) and is perpendicular to the tangent vector. Note that the tangent vector is drawn much shorter than it actually is to fit in the figure. The direction is correct, however.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.45</span><span>A rotated ellipse with equation $\kf(x,y)=18$ for Example 14.35’s $\kf(x,y)=2x^{2}-3xy+8y^{2}+2x-4y+4.$ At the point $(-2,1)$ on the ellipse the normal vector $\kgradf(-2,1)=-9\kveci+18\kvecj$ is perpendicular to the tangent vector $-18\kveci-9\kvecj$; move the point around the ellipse and the two stay perpendicular. Both arrows are drawn at a ninth of their length.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1167793956566"></div>
+</section>
+<section id="three-dimensions">
+<h2>Three-Dimensional Gradients and Directional Derivatives</h2>
+<p class="cite-target">The definition of a <span data-concept="gradient">gradient</span> can be extended to functions of more than two variables.</p>
+<div class="note" id="fs-id1167793932636">
+<div class="eyebrow">Definition</div>
+<p>Let $w=\kf(x,y,z)$ be a <span data-concept="function-of-more-than-two-variables">function of three variables</span> such that $\kfx,\kfy,\text{and}\;\kfz$ exist. The vector $\kgradf(x,y,z)$ is called the <span data-concept="gradient">gradient</span> of $\kf$ and is defined as</p>
+<div class="equation" id="fs-id1167793443483">$$\kgradf(x,y,z)=\kfx(x,y,z)\kveci+\kfy(x,y,z)\kvecj+\kfz(x,y,z)\kveck.\tag{14.40}$$</div>
+<p>$\kgradf(x,y,z)$ can also be written as $\text{grad}\;\kf(x,y,z).$</p>
+</div>
+<p id="gradient-3d-calc">Calculating the <span data-concept="gradient">gradient</span> of a function in three variables is very similar to calculating the <span data-concept="gradient">gradient</span> of a function in two variables. First, we calculate the <span data-concept="partial-derivative">partial derivatives</span> $\kfx,\kfy,$ and $\kfz,$ and then we use <a href="#fs-id1167793443483">Equation 14.40</a>.</p>
+<div class="example" id="fs-id1167794091697">
+<h3>Example 14.36 · Finding Gradients in Three Dimensions</h3>
+<p>Find the <span data-concept="gradient">gradient</span> $\kgradf(x,y,z)$ of each of the following functions:</p>
+<p>a. $\kf(x,y,z)=5x^{2}-2xy+y^{2}-4yz+z^{2}+3xz$</p>
+<p>b. $\kf(x,y,z)=e^{-2z}\sin 2x\;\cos 2y$</p>
+<h4>Solution</h4>
+<p>For both parts a. and b., we first calculate the <span data-concept="partial-derivative">partial derivatives</span> $\kfx,\kfy,$ and $\kfz,$ then use <a href="#fs-id1167793443483">Equation 14.40</a>.</p>
+<p>a. </p>
+<p>$\begin{array}{lll}\kfx(x,y,z) & = & 10x-2y+3z,\;\kfy(x,y,z)=-2x+2y-4z\;\text{and}\;\kfz(x,y,z)=3x-4y+2z,\;\text{so} \\ \kgradf(x,y,z) & = & \kfx(x,y,z)i+\kfy(x,y,z)j+\kfz(x,y,z)k \\ & = & (10x-2y+3z)i+(-2x+2y-4z)j+(3x-4y+2z)k.\end{array}$</p>
+<p>b. </p>
+<p>$\begin{array}{lll}\kfx(x,y,z) & = & 2e^{-2z}\cos 2x\;\cos 2y,\;\kfy(x,y,z)=-2e^{-2z}\sin 2x\;\sin 2y\;\text{and} \\ \kfz(x,y,z) & = & -2e^{-2z}\sin 2x\;\cos 2y,\;\text{so} \\ \kgradf(x,y,z) & = & \kfx(x,y,z)i+\kfy(x,y,z)j+\kfz(x,y,z)k \\ & = & (2e^{-2z}\cos 2x\;\cos 2y)i+(-2e^{-2z}\sin2xsin2y)j+(-2e^{-2z}\sin2xcos2y)k \\ & = & 2e^{-2z}(\cos 2x\;\cos 2y\;\text{i}-\sin 2x\;\sin 2y\;\text{j}-\sin 2x\;\cos 2y\;\text{k}).\end{array}$</p>
+</div>
+<div class="exercises" data-place="fs-id1167794091697"></div>
+<p id="direction-cosines">The <span data-concept="directional-derivative">directional derivative</span> can also be generalized to <span data-concept="function-of-more-than-two-variables">functions of three variables</span>. To determine a direction in three dimensions, a vector with three components is needed. This vector is a <span data-concept="unit-vector">unit vector</span>, and the components of the <span data-concept="unit-vector">unit vector</span> are called <em><span data-concept="direction-angles">directional cosines</span></em>. Given a three-dimensional <span data-concept="unit-vector">unit vector</span> $\kvecu$ in standard form (i.e., the initial point is at the origin), this vector forms three different angles with the positive $x-,y-,$ and *z-*axes. Let’s call these angles $\alpha ,\beta ,$ and $\gamma .$ Then the <span data-concept="direction-angles">directional cosines</span> are given by $\cos \alpha ,\cos \beta ,$ and $\cos \gamma .$ These are the components of the <span data-concept="unit-vector">unit vector</span> $\kvecu;$ since $\kvecu$ is a <span data-concept="unit-vector">unit vector</span>, it is true that ${\cos }^{2}\alpha +{\cos }^{2}\beta +{\cos }^{2}\gamma =1.$</p>
+<div class="note" id="fs-id1167793277385">
+<div class="eyebrow">Definition</div>
+<p>Suppose $w=\kf(x,y,z)$ is a <span data-concept="function-of-more-than-two-variables">function of three variables</span> with a domain of $D.$ Let $(x_{0},y_{0},z_{0})\in D$ and let $\text{u}=\cos \alpha \kveci+\cos \beta \kvecj+\cos \gamma \kveck$ be a <span data-concept="unit-vector">unit vector</span>. Then, the <span data-concept="directional-derivative">directional derivative</span> of $\kf$ in the direction of $u$ is given by</p>
+<div class="equation" id="fs-id1167793642065">$$\kDuf(x_{0},y_{0},z_{0})=\lim_{t\to 0}\frac{\kf(x_{0}+t\;\cos \alpha ,y_{0}+t\;\cos \beta ,z_{0}+t\;\cos \gamma )-\kf(x_{0},y_{0},z_{0})}{t},\tag{14.41}$$</div>
+<p>provided the limit exists.</p>
+</div>
+<p>We can calculate the <span data-concept="directional-derivative">directional derivative</span> of a <span data-concept="function-of-more-than-two-variables">function of three variables</span> by using the <span data-concept="gradient">gradient</span>, leading to a formula that is analogous to <a href="#fs-id1167794125596">Equation 14.38</a>.</p>
+<div class="note" id="fs-id1167793412203">
+<div class="eyebrow">Theorem</div>
+<h3>Directional Derivative of a Function of Three Variables</h3>
+<p>Let $\kf(x,y,z)$ be a differentiable <span data-concept="function-of-more-than-two-variables">function of three variables</span> and let $\kvecu=\cos \alpha \kveci+\cos \beta \kvecj+\cos \gamma \kveck$ be a <span data-concept="unit-vector">unit vector</span>. Then, the <span data-concept="directional-derivative">directional derivative</span> of $\kf$ in the direction of $\kvecu$ is given by</p>
+<div class="equation" id="fs-id1167794172303">$$\begin{array}{rl}\kDuf(x,y,z) & =\kgradf(x,y,z)\cdot \kvecu \\ & =\kfx(x,y,z)\cos \alpha +\kfy(x,y,z)\cos \beta +\kfz(x,y,z)\cos \gamma .\end{array}\tag{14.42}$$</div>
+</div>
+<p>The three angles $\alpha ,\beta ,\;\text{and}\;\gamma $ determine the <span data-concept="unit-vector">unit vector</span> $\kvecu.$ In practice, we can use an arbitrary (nonunit) vector, then divide by its magnitude to obtain a <span data-concept="unit-vector">unit vector</span> in the desired direction.</p>
+<div class="example" id="fs-id1167793928778">
+<h3>Example 14.37 · Finding a Directional Derivative in Three Dimensions</h3>
+<p>Calculate $\kDuf(1,-2,3)$ in the direction of $\text{v}=-\kveci+2\kvecj+2\kveck$ for the function</p>
+$$\kf(x,y,z)=5x^{2}-2xy+y^{2}-4yz+z^{2}+3xz.$$
+<h4>Solution</h4>
+<p>First, we find the magnitude of $\kvecv\text{:}$</p>
+$$\| \kvecv\| =\sqrt{{(-1)}^{2}+{(2)}^{2}+{(2)}^{2}}=3.$$
+<p>Therefore, $\frac{\kvecv}{\| \kvecv\|}=\frac{-\kveci+2\kvecj+2\kveck}{3}=-\frac{1}{3}\kveci+\frac{2}{3}\kvecj+\frac{2}{3}\kveck$ is a <span data-concept="unit-vector">unit vector</span> in the direction of $\kvecv,$ so $\cos \alpha =-\frac{1}{3},\cos \beta =\frac{2}{3},\;\text{and}\;\cos \gamma =\frac{2}{3}.$ Next, we calculate the <span data-concept="partial-derivative">partial derivatives</span> of $\kf\text{:}$</p>
+$$\begin{array}{rll}\kfx(x,y,z) & = & 10x-2y+3z \\ \kfy(x,y,z) & = & -2x+2y-4z \\ \kfz(x,y,z) & = & -4y+2z+3x,\end{array}$$
+<p>then substitute them into <a href="#fs-id1167794172303">Equation 14.42</a>:</p>
+$$\begin{array}{rl}\kDuf(x,y,z) & =\kfx(x,y,z)\cos \alpha +\kfy(x,y,z)\cos \beta +\kfz(x,y,z)\cos \gamma  \\ & =(10x-2y+3z)(-\frac{1}{3})+(-2x+2y-4z)(\frac{2}{3})+(-4y+2z+3x)(\frac{2}{3}) \\ & =-\frac{10x}{3}+\frac{2y}{3}-\frac{3z}{3}-\frac{4x}{3}+\frac{4y}{3}-\frac{8z}{3}-\frac{8y}{3}+\frac{4z}{3}+\frac{6x}{3} \\ & =-\frac{8x}{3}-\frac{2y}{3}-\frac{7z}{3}.\end{array}$$
+<p>Last, to find $\kDuf(1,-2,3),$ we substitute $x=1,y=-2,\;\text{and}\;z=3\text{:}$</p>
+$$\begin{array}{rl}\kDuf(1,-2,3) & =-\frac{8(1)}{3}-\frac{2(-2)}{3}-\frac{7(3)}{3} \\ & =-\frac{8}{3}+\frac{4}{3}-\frac{21}{3} \\ & =-\frac{25}{3}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793928778"></div>
+</section>

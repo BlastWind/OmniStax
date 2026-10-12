@@ -41,7 +41,8 @@
     "ch13",
     "ch14",
     "ch15",
-    "ch16"
+    "ch16",
+    "ch17"
   ],
   "intro": {
     "module": "m60027",
@@ -1120,6 +1121,66 @@
       "sym": "curl_F",
       "latex": "\\operatorname{curl}\\mathbf{F}",
       "macro": "\\kcurlF"
+    },
+    {
+      "sym": "y_1",
+      "latex": "y_{1}",
+      "macro": "\\kyone"
+    },
+    {
+      "sym": "y_2",
+      "latex": "y_{2}",
+      "macro": "\\kytwo"
+    },
+    {
+      "sym": "y_p",
+      "latex": "y_{p}",
+      "macro": "\\kyp"
+    },
+    {
+      "sym": "y_1_prime",
+      "latex": "y_{1}'",
+      "macro": "\\kyoneprime"
+    },
+    {
+      "sym": "y_2_prime",
+      "latex": "y_{2}'",
+      "macro": "\\kytwoprime"
+    },
+    {
+      "sym": "y_p_prime",
+      "latex": "y_{p}'",
+      "macro": "\\kypprime"
+    },
+    {
+      "sym": "y_p_dprime",
+      "latex": "y_{p}''",
+      "macro": "\\kypdprime"
+    },
+    {
+      "sym": "r_fn",
+      "latex": "r",
+      "macro": "\\krfn"
+    },
+    {
+      "sym": "u_prime",
+      "latex": "u'",
+      "macro": "\\kuprime"
+    },
+    {
+      "sym": "x_fn",
+      "latex": "x",
+      "macro": "\\kxfn"
+    },
+    {
+      "sym": "x_dprime",
+      "latex": "x''",
+      "macro": "\\kxdprime"
+    },
+    {
+      "sym": "x_p",
+      "latex": "x_{p}",
+      "macro": "\\kxp"
     }
   ],
   "exercise_kinds": [
@@ -4786,7 +4847,10 @@
       "kind": "definition",
       "section": "4.10",
       "name": "Differential equation",
-      "statement": "A differential equation is an equation that relates an unknown function and one or more of its derivatives; the solutions of dy/dx = f(x) are the antiderivatives of f."
+      "statement": "A differential equation is an equation that relates an unknown function and one or more of its derivatives; the solutions of dy/dx = f(x) are the antiderivatives of f.",
+      "terms": [
+        "differential equation"
+      ]
     },
     {
       "id": "initial-value-problem",
@@ -6352,6 +6416,12 @@
           "id": "eq-newtons-law-of-cooling-rate",
           "latex": "T'=-k(T-T_{a})",
           "anchor": "6.8-decay"
+        },
+        {
+          "id": "eq-newtons-law-of-cooling-ambient",
+          "latex": "\\frac{dT}{dt}=k(T-T_{s})",
+          "anchor": "8.3-newtons-law",
+          "section": "8.3"
         }
       ]
     },
@@ -12999,7 +13069,8 @@
       "forms": [
         {
           "id": "eq-double-riemann-sum",
-          "latex": "V\\approx\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A"
+          "latex": "V\\approx\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A",
+          "anchor": "15.1-riemann-sum-term"
         }
       ]
     },
@@ -13017,7 +13088,8 @@
       "forms": [
         {
           "id": "eq-double-integral",
-          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\lim_{m,n\\to\\infty}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A"
+          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\lim_{m,n\\to\\infty}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A",
+          "anchor": "15.1-fs-id1167793950178"
         }
       ]
     },
@@ -13041,27 +13113,33 @@
       "forms": [
         {
           "id": "eq-double-integral-sum",
-          "latex": "\\iint\\limits_{R}[f(x,y)+g(x,y)]\\,dA=\\iint\\limits_{R}f(x,y)\\,dA+\\iint\\limits_{R}g(x,y)\\,dA"
+          "latex": "\\iint\\limits_{R}[f(x,y)+g(x,y)]\\,dA=\\iint\\limits_{R}f(x,y)\\,dA+\\iint\\limits_{R}g(x,y)\\,dA",
+          "anchor": "15.1-fs-id1167794188051"
         },
         {
           "id": "eq-double-integral-constant",
-          "latex": "\\iint\\limits_{R}cf(x,y)\\,dA=c\\iint\\limits_{R}f(x,y)\\,dA"
+          "latex": "\\iint\\limits_{R}cf(x,y)\\,dA=c\\iint\\limits_{R}f(x,y)\\,dA",
+          "anchor": "15.1-fs-id1167794188051"
         },
         {
           "id": "eq-double-integral-additivity",
-          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{S}f(x,y)\\,dA+\\iint\\limits_{T}f(x,y)\\,dA"
+          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{S}f(x,y)\\,dA+\\iint\\limits_{T}f(x,y)\\,dA",
+          "anchor": "15.1-fs-id1167794188051"
         },
         {
           "id": "eq-double-integral-monotonicity",
-          "latex": "\\iint\\limits_{R}f(x,y)\\,dA\\ge\\iint\\limits_{R}g(x,y)\\,dA"
+          "latex": "\\iint\\limits_{R}f(x,y)\\,dA\\ge\\iint\\limits_{R}g(x,y)\\,dA",
+          "anchor": "15.1-fs-id1167794188051"
         },
         {
           "id": "eq-double-integral-bounds",
-          "latex": "m\\times A(R)\\le\\iint\\limits_{R}f(x,y)\\,dA\\le M\\times A(R)"
+          "latex": "m\\times A(R)\\le\\iint\\limits_{R}f(x,y)\\,dA\\le M\\times A(R)",
+          "anchor": "15.1-fs-id1167794188051"
         },
         {
           "id": "eq-double-integral-product",
-          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\left(\\int_{a}^{b}g(x)\\,dx\\right)\\left(\\int_{c}^{d}h(y)\\,dy\\right)"
+          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\left(\\int_{a}^{b}g(x)\\,dx\\right)\\left(\\int_{c}^{d}h(y)\\,dy\\right)",
+          "anchor": "15.1-fs-id1167794188051"
         }
       ]
     },
@@ -13079,11 +13157,13 @@
       "forms": [
         {
           "id": "eq-iterated-integral-dy-dx",
-          "latex": "\\int_{a}^{b}\\int_{c}^{d}f(x,y)\\,dy\\,dx=\\int_{a}^{b}\\left[\\int_{c}^{d}f(x,y)\\,dy\\right]dx"
+          "latex": "\\int_{a}^{b}\\int_{c}^{d}f(x,y)\\,dy\\,dx=\\int_{a}^{b}\\left[\\int_{c}^{d}f(x,y)\\,dy\\right]dx",
+          "anchor": "15.1-fs-id1167793432466"
         },
         {
           "id": "eq-iterated-integral-dx-dy",
-          "latex": "\\int_{c}^{d}\\int_{a}^{b}f(x,y)\\,dx\\,dy=\\int_{c}^{d}\\left[\\int_{a}^{b}f(x,y)\\,dx\\right]dy"
+          "latex": "\\int_{c}^{d}\\int_{a}^{b}f(x,y)\\,dx\\,dy=\\int_{c}^{d}\\left[\\int_{a}^{b}f(x,y)\\,dx\\right]dy",
+          "anchor": "15.1-fs-id1167793424345"
         }
       ]
     },
@@ -13101,7 +13181,8 @@
       "forms": [
         {
           "id": "eq-fubini-rectangle",
-          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\int_{a}^{b}\\int_{c}^{d}f(x,y)\\,dy\\,dx=\\int_{c}^{d}\\int_{a}^{b}f(x,y)\\,dx\\,dy"
+          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\int_{a}^{b}\\int_{c}^{d}f(x,y)\\,dy\\,dx=\\int_{c}^{d}\\int_{a}^{b}f(x,y)\\,dx\\,dy",
+          "anchor": "15.1-fs-id1167793423558"
         }
       ]
     },
@@ -13116,12 +13197,14 @@
       "forms": [
         {
           "id": "eq-area-double-integral",
-          "latex": "A(R)=\\iint\\limits_{R}1\\,dA"
+          "latex": "A(R)=\\iint\\limits_{R}1\\,dA",
+          "anchor": "15.1-fs-id1167793508032"
         },
         {
           "id": "eq-area-double-integral-general",
           "latex": "A(D)=\\iint\\limits_{D}1\\,dA",
-          "section": "15.2"
+          "section": "15.2",
+          "anchor": "15.2-fs-id1167793287011"
         }
       ]
     },
@@ -13136,12 +13219,14 @@
       "forms": [
         {
           "id": "eq-average-value-two-variables",
-          "latex": "f_{\\text{ave}}=\\frac{1}{\\text{Area}\\;R}\\iint\\limits_{R}f(x,y)\\,dA"
+          "latex": "f_{\\text{ave}}=\\frac{1}{\\text{Area}\\;R}\\iint\\limits_{R}f(x,y)\\,dA",
+          "anchor": "15.1-fs-id1167794076409"
         },
         {
           "id": "eq-average-value-general-region",
           "latex": "f_{\\text{ave}}=\\frac{1}{A(D)}\\iint\\limits_{D}f(x,y)\\,dA",
-          "section": "15.2"
+          "section": "15.2",
+          "anchor": "15.2-fs-id1167793540298"
         }
       ]
     },
@@ -13158,7 +13243,8 @@
       "forms": [
         {
           "id": "eq-type-i-region",
-          "latex": "D=\\{(x,y)\\mid a\\le x\\le b,\\;g_{1}(x)\\le y\\le g_{2}(x)\\}"
+          "latex": "D=\\{(x,y)\\mid a\\le x\\le b,\\;g_{1}(x)\\le y\\le g_{2}(x)\\}",
+          "anchor": "15.2-fs-id1167793857192"
         }
       ]
     },
@@ -13175,7 +13261,8 @@
       "forms": [
         {
           "id": "eq-type-ii-region",
-          "latex": "D=\\{(x,y)\\mid c\\le y\\le d,\\;h_{1}(y)\\le x\\le h_{2}(y)\\}"
+          "latex": "D=\\{(x,y)\\mid c\\le y\\le d,\\;h_{1}(y)\\le x\\le h_{2}(y)\\}",
+          "anchor": "15.2-fs-id1167793857192"
         }
       ]
     },
@@ -13189,7 +13276,8 @@
       "forms": [
         {
           "id": "eq-double-integral-over-d",
-          "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\iint\\limits_{R}g(x,y)\\,dA"
+          "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\iint\\limits_{R}g(x,y)\\,dA",
+          "anchor": "15.2-fs-id1167793952017"
         }
       ]
     },
@@ -13203,11 +13291,13 @@
       "forms": [
         {
           "id": "eq-fubini-type-i",
-          "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\int_{a}^{b}\\left[\\int_{g_{1}(x)}^{g_{2}(x)}f(x,y)\\,dy\\right]dx"
+          "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\int_{a}^{b}\\left[\\int_{g_{1}(x)}^{g_{2}(x)}f(x,y)\\,dy\\right]dx",
+          "anchor": "15.2-fs-id1167793268925"
         },
         {
           "id": "eq-fubini-type-ii",
-          "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\int_{c}^{d}\\left[\\int_{h_{1}(y)}^{h_{2}(y)}f(x,y)\\,dx\\right]dy"
+          "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\int_{c}^{d}\\left[\\int_{h_{1}(y)}^{h_{2}(y)}f(x,y)\\,dx\\right]dy",
+          "anchor": "15.2-fs-id1167793944833"
         }
       ]
     },
@@ -13221,7 +13311,8 @@
       "forms": [
         {
           "id": "eq-decomposing-regions",
-          "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\iint\\limits_{D_{1}}f(x,y)\\,dA+\\iint\\limits_{D_{2}}f(x,y)\\,dA"
+          "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\iint\\limits_{D_{1}}f(x,y)\\,dA+\\iint\\limits_{D_{2}}f(x,y)\\,dA",
+          "anchor": "15.2-fs-id1167793373592"
         }
       ]
     },
@@ -13253,7 +13344,8 @@
       "forms": [
         {
           "id": "eq-fubini-improper",
-          "latex": "\\iint\\limits_{D}f\\,dA=\\int_{x=a}^{x=b}\\int_{y=g(x)}^{y=h(x)}f(x,y)\\,dy\\,dx=\\int_{y=c}^{y=d}\\int_{x=j(y)}^{x=k(y)}f(x,y)\\,dx\\,dy"
+          "latex": "\\iint\\limits_{D}f\\,dA=\\int_{x=a}^{x=b}\\int_{y=g(x)}^{y=h(x)}f(x,y)\\,dy\\,dx=\\int_{y=c}^{y=d}\\int_{x=j(y)}^{x=k(y)}f(x,y)\\,dx\\,dy",
+          "anchor": "15.2-fs-id1167793450004"
         }
       ]
     },
@@ -13267,7 +13359,8 @@
       "forms": [
         {
           "id": "eq-improper-unbounded-region",
-          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\lim_{(b,d)\\to(\\infty,\\infty)}\\int_{a}^{b}\\left(\\int_{c}^{d}f(x,y)\\,dy\\right)dx"
+          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\lim_{(b,d)\\to(\\infty,\\infty)}\\int_{a}^{b}\\left(\\int_{c}^{d}f(x,y)\\,dy\\right)dx",
+          "anchor": "15.2-fs-id1167793473260"
         }
       ]
     },
@@ -13284,11 +13377,13 @@
       "forms": [
         {
           "id": "eq-joint-density-probability",
-          "latex": "P((X,Y)\\in D)=\\iint\\limits_{D}f(x,y)\\,dA"
+          "latex": "P((X,Y)\\in D)=\\iint\\limits_{D}f(x,y)\\,dA",
+          "anchor": "15.2-fs-id1167793246020"
         },
         {
           "id": "eq-joint-density-total",
-          "latex": "f(x,y)\\ge 0\\;\\text{and}\\;\\iint\\limits_{\\mathbb{R}^{2}}f(x,y)\\,dA=1"
+          "latex": "f(x,y)\\ge 0\\;\\text{and}\\;\\iint\\limits_{\\mathbb{R}^{2}}f(x,y)\\,dA=1",
+          "anchor": "15.2-fs-id1167793246020"
         }
       ]
     },
@@ -13304,7 +13399,8 @@
       "forms": [
         {
           "id": "eq-independent-random-variables",
-          "latex": "f(x,y)=f_{1}(x)f_{2}(y)"
+          "latex": "f(x,y)=f_{1}(x)f_{2}(y)",
+          "anchor": "15.2-fs-id1167793618923"
         }
       ]
     },
@@ -13321,7 +13417,8 @@
       "forms": [
         {
           "id": "eq-expected-values",
-          "latex": "E(X)=\\iint\\limits_{S}xf(x,y)\\,dA\\;\\text{and}\\;E(Y)=\\iint\\limits_{S}yf(x,y)\\,dA"
+          "latex": "E(X)=\\iint\\limits_{S}xf(x,y)\\,dA\\;\\text{and}\\;E(Y)=\\iint\\limits_{S}yf(x,y)\\,dA",
+          "anchor": "15.2-fs-id1167793377822"
         }
       ]
     },
@@ -13339,7 +13436,8 @@
       "forms": [
         {
           "id": "eq-polar-subrectangle-area",
-          "latex": "\\Delta A=r_{ij}^{*}\\,\\Delta r\\,\\Delta\\theta"
+          "latex": "\\Delta A=r_{ij}^{*}\\,\\Delta r\\,\\Delta\\theta",
+          "anchor": "15.3-subrectangle-area"
         }
       ]
     },
@@ -13353,7 +13451,8 @@
       "forms": [
         {
           "id": "eq-double-integral-polar-rectangle",
-          "latex": "\\iint\\limits_{R}f(r,\\theta)\\,dA=\\lim_{m,n\\to\\infty}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(r_{ij}^{*},\\theta_{ij}^{*})\\,r_{ij}^{*}\\,\\Delta r\\,\\Delta\\theta"
+          "latex": "\\iint\\limits_{R}f(r,\\theta)\\,dA=\\lim_{m,n\\to\\infty}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(r_{ij}^{*},\\theta_{ij}^{*})\\,r_{ij}^{*}\\,\\Delta r\\,\\Delta\\theta",
+          "anchor": "15.3-fs-id1167793944942"
         }
       ]
     },
@@ -13367,11 +13466,13 @@
       "forms": [
         {
           "id": "eq-polar-iterated-integral",
-          "latex": "\\iint\\limits_{R}f(r,\\theta)\\,dA=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=a}^{r=b}f(r,\\theta)\\,r\\,dr\\,d\\theta"
+          "latex": "\\iint\\limits_{R}f(r,\\theta)\\,dA=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=a}^{r=b}f(r,\\theta)\\,r\\,dr\\,d\\theta",
+          "anchor": "15.3-polar-iterated"
         },
         {
           "id": "eq-polar-double-integral-conversion",
-          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{R}f(r\\cos\\theta,r\\sin\\theta)\\,r\\,dr\\,d\\theta"
+          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{R}f(r\\cos\\theta,r\\sin\\theta)\\,r\\,dr\\,d\\theta",
+          "anchor": "15.3-polar-iterated"
         }
       ]
     },
@@ -13385,7 +13486,8 @@
       "forms": [
         {
           "id": "eq-general-polar-region",
-          "latex": "\\iint\\limits_{D}f(r,\\theta)\\,r\\,dr\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=h_{1}(\\theta)}^{r=h_{2}(\\theta)}f(r,\\theta)\\,r\\,dr\\,d\\theta"
+          "latex": "\\iint\\limits_{D}f(r,\\theta)\\,r\\,dr\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=h_{1}(\\theta)}^{r=h_{2}(\\theta)}f(r,\\theta)\\,r\\,dr\\,d\\theta",
+          "anchor": "15.3-fs-id1167793261457"
         }
       ]
     },
@@ -13399,11 +13501,13 @@
       "forms": [
         {
           "id": "eq-polar-volume",
-          "latex": "V=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=h_{1}(\\theta)}^{r=h_{2}(\\theta)}f(r,\\theta)\\,r\\,dr\\,d\\theta"
+          "latex": "V=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=h_{1}(\\theta)}^{r=h_{2}(\\theta)}f(r,\\theta)\\,r\\,dr\\,d\\theta",
+          "anchor": "15.3-polar-areas-volumes"
         },
         {
           "id": "eq-polar-area-double",
-          "latex": "A=\\int_{\\alpha}^{\\beta}\\int_{h_{1}(\\theta)}^{h_{2}(\\theta)}1\\,r\\,dr\\,d\\theta"
+          "latex": "A=\\int_{\\alpha}^{\\beta}\\int_{h_{1}(\\theta)}^{h_{2}(\\theta)}1\\,r\\,dr\\,d\\theta",
+          "anchor": "15.3-polar-areas-volumes"
         }
       ]
     },
@@ -13417,7 +13521,8 @@
       "forms": [
         {
           "id": "eq-triple-riemann-sum",
-          "latex": "\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})\\,\\Delta x\\,\\Delta y\\,\\Delta z"
+          "latex": "\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})\\,\\Delta x\\,\\Delta y\\,\\Delta z",
+          "anchor": "15.4-riemann-sum-term"
         }
       ]
     },
@@ -13435,7 +13540,8 @@
       "forms": [
         {
           "id": "eq-triple-integral",
-          "latex": "\\iiint\\limits_{B}f(x,y,z)\\,dV=\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})\\,\\Delta x\\,\\Delta y\\,\\Delta z"
+          "latex": "\\iiint\\limits_{B}f(x,y,z)\\,dV=\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})\\,\\Delta x\\,\\Delta y\\,\\Delta z",
+          "anchor": "15.4-fs-id1167794023665"
         }
       ]
     },
@@ -13449,7 +13555,8 @@
       "forms": [
         {
           "id": "eq-fubini-triple",
-          "latex": "\\iiint\\limits_{B}f(x,y,z)\\,dV=\\int_{r}^{s}\\int_{c}^{d}\\int_{a}^{b}f(x,y,z)\\,dx\\,dy\\,dz"
+          "latex": "\\iiint\\limits_{B}f(x,y,z)\\,dV=\\int_{r}^{s}\\int_{c}^{d}\\int_{a}^{b}f(x,y,z)\\,dx\\,dy\\,dz",
+          "anchor": "15.4-fs-id1167794125564"
         }
       ]
     },
@@ -13463,15 +13570,18 @@
       "forms": [
         {
           "id": "eq-triple-general-region",
-          "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\iint\\limits_{D}\\left[\\int_{u_{1}(x,y)}^{u_{2}(x,y)}f(x,y,z)\\,dz\\right]dA"
+          "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\iint\\limits_{D}\\left[\\int_{u_{1}(x,y)}^{u_{2}(x,y)}f(x,y,z)\\,dz\\right]dA",
+          "anchor": "15.4-fs-id1167794284188"
         },
         {
           "id": "eq-triple-type-i",
-          "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\int_{a}^{b}\\int_{g_{1}(x)}^{g_{2}(x)}\\int_{u_{1}(x,y)}^{u_{2}(x,y)}f(x,y,z)\\,dz\\,dy\\,dx"
+          "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\int_{a}^{b}\\int_{g_{1}(x)}^{g_{2}(x)}\\int_{u_{1}(x,y)}^{u_{2}(x,y)}f(x,y,z)\\,dz\\,dy\\,dx",
+          "anchor": "15.4-general-bounded"
         },
         {
           "id": "eq-triple-type-ii",
-          "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\int_{y=c}^{y=d}\\int_{x=h_{1}(y)}^{x=h_{2}(y)}\\int_{z=u_{1}(x,y)}^{z=u_{2}(x,y)}f(x,y,z)\\,dz\\,dx\\,dy"
+          "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\int_{y=c}^{y=d}\\int_{x=h_{1}(y)}^{x=h_{2}(y)}\\int_{z=u_{1}(x,y)}^{z=u_{2}(x,y)}f(x,y,z)\\,dz\\,dx\\,dy",
+          "anchor": "15.4-general-bounded"
         }
       ]
     },
@@ -13486,7 +13596,8 @@
       "forms": [
         {
           "id": "eq-volume-triple-integral",
-          "latex": "V(E)=\\iiint\\limits_{E}1\\,dV"
+          "latex": "V(E)=\\iiint\\limits_{E}1\\,dV",
+          "anchor": "15.4-volume-term"
         }
       ]
     },
@@ -13501,7 +13612,8 @@
       "forms": [
         {
           "id": "eq-average-value-three-variables",
-          "latex": "f_{\\text{ave}}=\\frac{1}{V(E)}\\iiint\\limits_{E}f(x,y,z)\\,dV"
+          "latex": "f_{\\text{ave}}=\\frac{1}{V(E)}\\iiint\\limits_{E}f(x,y,z)\\,dV",
+          "anchor": "15.4-fs-id1167793311695"
         }
       ]
     },
@@ -13518,11 +13630,13 @@
       "forms": [
         {
           "id": "eq-cylindrical-riemann",
-          "latex": "\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(r_{ijk}^{*},\\theta_{ijk}^{*},z_{ijk}^{*})\\,r_{ijk}^{*}\\,\\Delta r\\,\\Delta\\theta\\,\\Delta z"
+          "latex": "\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(r_{ijk}^{*},\\theta_{ijk}^{*},z_{ijk}^{*})\\,r_{ijk}^{*}\\,\\Delta r\\,\\Delta\\theta\\,\\Delta z",
+          "anchor": "15.5-fs-id1167793784735"
         },
         {
           "id": "eq-cylindrical-conversion",
-          "latex": "\\iiint\\limits_{B}g(x,y,z)\\,dV=\\iiint\\limits_{B}g(r\\cos\\theta,r\\sin\\theta,z)\\,r\\,dr\\,d\\theta\\,dz"
+          "latex": "\\iiint\\limits_{B}g(x,y,z)\\,dV=\\iiint\\limits_{B}g(r\\cos\\theta,r\\sin\\theta,z)\\,r\\,dr\\,d\\theta\\,dz",
+          "anchor": "15.5-fs-id1167793951843"
         }
       ]
     },
@@ -13536,11 +13650,13 @@
       "forms": [
         {
           "id": "eq-fubini-cylindrical",
-          "latex": "\\iiint\\limits_{B}g(x,y,z)\\,dV=\\int_{c}^{d}\\int_{\\alpha}^{\\beta}\\int_{a}^{b}f(r,\\theta,z)\\,r\\,dr\\,d\\theta\\,dz"
+          "latex": "\\iiint\\limits_{B}g(x,y,z)\\,dV=\\int_{c}^{d}\\int_{\\alpha}^{\\beta}\\int_{a}^{b}f(r,\\theta,z)\\,r\\,dr\\,d\\theta\\,dz",
+          "anchor": "15.5-fs-id1167794226649"
         },
         {
           "id": "eq-cylindrical-general-region",
-          "latex": "\\iiint\\limits_{E}f(r,\\theta,z)\\,r\\,dr\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=g_{1}(\\theta)}^{r=g_{2}(\\theta)}\\int_{z=u_{1}(r,\\theta)}^{z=u_{2}(r,\\theta)}f(r,\\theta,z)\\,r\\,dz\\,dr\\,d\\theta"
+          "latex": "\\iiint\\limits_{E}f(r,\\theta,z)\\,r\\,dr\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=g_{1}(\\theta)}^{r=g_{2}(\\theta)}\\int_{z=u_{1}(r,\\theta)}^{z=u_{2}(r,\\theta)}f(r,\\theta,z)\\,r\\,dz\\,dr\\,d\\theta",
+          "anchor": "15.5-cylindrical-general"
         }
       ]
     },
@@ -13553,7 +13669,8 @@
       "forms": [
         {
           "id": "eq-spherical-volume-element",
-          "latex": "\\Delta V=(\\Delta\\rho)(\\rho\\,\\Delta\\varphi)(\\rho\\sin\\varphi\\,\\Delta\\theta)"
+          "latex": "\\Delta V=(\\Delta\\rho)(\\rho\\,\\Delta\\varphi)(\\rho\\sin\\varphi\\,\\Delta\\theta)",
+          "anchor": "15.5-integration-spherical"
         }
       ]
     },
@@ -13570,7 +13687,8 @@
       "forms": [
         {
           "id": "eq-spherical-riemann",
-          "latex": "\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(\\rho_{ijk}^{*},\\theta_{ijk}^{*},\\varphi_{ijk}^{*})(\\rho_{ijk}^{*})^{2}\\sin\\varphi_{ijk}^{*}\\,\\Delta\\rho\\,\\Delta\\theta\\,\\Delta\\varphi"
+          "latex": "\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(\\rho_{ijk}^{*},\\theta_{ijk}^{*},\\varphi_{ijk}^{*})(\\rho_{ijk}^{*})^{2}\\sin\\varphi_{ijk}^{*}\\,\\Delta\\rho\\,\\Delta\\theta\\,\\Delta\\varphi",
+          "anchor": "15.5-fs-id1167793456296"
         }
       ]
     },
@@ -13584,11 +13702,13 @@
       "forms": [
         {
           "id": "eq-fubini-spherical",
-          "latex": "\\iiint\\limits_{B}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{\\varphi=\\gamma}^{\\varphi=\\psi}\\int_{\\rho=a}^{\\rho=b}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta"
+          "latex": "\\iiint\\limits_{B}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{\\varphi=\\gamma}^{\\varphi=\\psi}\\int_{\\rho=a}^{\\rho=b}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta",
+          "anchor": "15.5-fs-id1167793280690"
         },
         {
           "id": "eq-spherical-general-region",
-          "latex": "\\iiint\\limits_{E}f(\\rho,\\theta,\\varphi)\\,dV=\\int_{\\alpha}^{\\beta}\\int_{g_{1}(\\theta)}^{g_{2}(\\theta)}\\int_{u_{1}(\\rho,\\theta)}^{u_{2}(\\rho,\\theta)}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\varphi\\,d\\rho\\,d\\theta"
+          "latex": "\\iiint\\limits_{E}f(\\rho,\\theta,\\varphi)\\,dV=\\int_{\\alpha}^{\\beta}\\int_{g_{1}(\\theta)}^{g_{2}(\\theta)}\\int_{u_{1}(\\rho,\\theta)}^{u_{2}(\\rho,\\theta)}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\varphi\\,d\\rho\\,d\\theta",
+          "anchor": "15.5-spherical-general"
         }
       ]
     },
@@ -13603,7 +13723,8 @@
       "forms": [
         {
           "id": "eq-lamina-density",
-          "latex": "\\rho(x,y)=\\lim_{\\Delta A\\to 0}\\frac{\\Delta m}{\\Delta A}"
+          "latex": "\\rho(x,y)=\\lim_{\\Delta A\\to 0}\\frac{\\Delta m}{\\Delta A}",
+          "anchor": "15.6-density-term"
         }
       ]
     },
@@ -13618,7 +13739,8 @@
       "forms": [
         {
           "id": "eq-lamina-mass",
-          "latex": "m=\\lim_{k,l\\to\\infty}\\sum_{i=1}^{k}\\sum_{j=1}^{l}\\rho(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A=\\iint\\limits_{R}\\rho(x,y)\\,dA"
+          "latex": "m=\\lim_{k,l\\to\\infty}\\sum_{i=1}^{k}\\sum_{j=1}^{l}\\rho(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A=\\iint\\limits_{R}\\rho(x,y)\\,dA",
+          "anchor": "15.6-fs-id1167793844477"
         }
       ]
     },
@@ -13633,11 +13755,13 @@
       "forms": [
         {
           "id": "eq-lamina-moment-x",
-          "latex": "M_{x}=\\iint\\limits_{R}y\\rho(x,y)\\,dA"
+          "latex": "M_{x}=\\iint\\limits_{R}y\\rho(x,y)\\,dA",
+          "anchor": "15.6-fs-id1167793972894"
         },
         {
           "id": "eq-lamina-moment-y",
-          "latex": "M_{y}=\\iint\\limits_{R}x\\rho(x,y)\\,dA"
+          "latex": "M_{y}=\\iint\\limits_{R}x\\rho(x,y)\\,dA",
+          "anchor": "15.6-fs-id1167793956495"
         }
       ]
     },
@@ -13652,7 +13776,8 @@
       "forms": [
         {
           "id": "eq-lamina-center-of-mass",
-          "latex": "\\bar{x}=\\frac{M_{y}}{m}=\\frac{\\iint\\limits_{R}x\\rho(x,y)\\,dA}{\\iint\\limits_{R}\\rho(x,y)\\,dA},\\;\\bar{y}=\\frac{M_{x}}{m}=\\frac{\\iint\\limits_{R}y\\rho(x,y)\\,dA}{\\iint\\limits_{R}\\rho(x,y)\\,dA}"
+          "latex": "\\bar{x}=\\frac{M_{y}}{m}=\\frac{\\iint\\limits_{R}x\\rho(x,y)\\,dA}{\\iint\\limits_{R}\\rho(x,y)\\,dA},\\;\\bar{y}=\\frac{M_{x}}{m}=\\frac{\\iint\\limits_{R}y\\rho(x,y)\\,dA}{\\iint\\limits_{R}\\rho(x,y)\\,dA}",
+          "anchor": "15.6-fs-id1167793828955"
         }
       ]
     },
@@ -13667,7 +13792,8 @@
       "forms": [
         {
           "id": "eq-centroid-plane-region",
-          "latex": "x_{c}=\\frac{\\iint\\limits_{R}x\\,dA}{\\iint\\limits_{R}dA},\\;y_{c}=\\frac{\\iint\\limits_{R}y\\,dA}{\\iint\\limits_{R}dA}"
+          "latex": "x_{c}=\\frac{\\iint\\limits_{R}x\\,dA}{\\iint\\limits_{R}dA},\\;y_{c}=\\frac{\\iint\\limits_{R}y\\,dA}{\\iint\\limits_{R}dA}",
+          "anchor": "15.6-centroid-term"
         }
       ]
     },
@@ -13682,11 +13808,13 @@
       "forms": [
         {
           "id": "eq-lamina-inertia-x",
-          "latex": "I_{x}=\\iint\\limits_{R}y^{2}\\rho(x,y)\\,dA"
+          "latex": "I_{x}=\\iint\\limits_{R}y^{2}\\rho(x,y)\\,dA",
+          "anchor": "15.6-moments-of-inertia"
         },
         {
           "id": "eq-lamina-inertia-y",
-          "latex": "I_{y}=\\iint\\limits_{R}x^{2}\\rho(x,y)\\,dA"
+          "latex": "I_{y}=\\iint\\limits_{R}x^{2}\\rho(x,y)\\,dA",
+          "anchor": "15.6-moments-of-inertia"
         }
       ]
     },
@@ -13701,7 +13829,8 @@
       "forms": [
         {
           "id": "eq-polar-moment-of-inertia",
-          "latex": "I_{0}=I_{x}+I_{y}=\\iint\\limits_{R}(x^{2}+y^{2})\\rho(x,y)\\,dA"
+          "latex": "I_{0}=I_{x}+I_{y}=\\iint\\limits_{R}(x^{2}+y^{2})\\rho(x,y)\\,dA",
+          "anchor": "15.6-polar-moment-term"
         }
       ]
     },
@@ -13718,7 +13847,8 @@
       "forms": [
         {
           "id": "eq-radius-of-gyration",
-          "latex": "R_{x}=\\sqrt{\\frac{I_{x}}{m}},\\;R_{y}=\\sqrt{\\frac{I_{y}}{m}},\\;R_{0}=\\sqrt{\\frac{I_{0}}{m}}"
+          "latex": "R_{x}=\\sqrt{\\frac{I_{x}}{m}},\\;R_{y}=\\sqrt{\\frac{I_{y}}{m}},\\;R_{0}=\\sqrt{\\frac{I_{0}}{m}}",
+          "anchor": "15.6-gyration-term"
         }
       ]
     },
@@ -13733,11 +13863,13 @@
       "forms": [
         {
           "id": "eq-solid-mass",
-          "latex": "m=\\iiint\\limits_{Q}\\rho(x,y,z)\\,dV"
+          "latex": "m=\\iiint\\limits_{Q}\\rho(x,y,z)\\,dV",
+          "anchor": "15.6-fs-id1167793294163"
         },
         {
           "id": "eq-solid-moments",
-          "latex": "M_{xy}=\\iiint\\limits_{Q}z\\rho\\,dV,\\;M_{xz}=\\iiint\\limits_{Q}y\\rho\\,dV,\\;M_{yz}=\\iiint\\limits_{Q}x\\rho\\,dV"
+          "latex": "M_{xy}=\\iiint\\limits_{Q}z\\rho\\,dV,\\;M_{xz}=\\iiint\\limits_{Q}y\\rho\\,dV,\\;M_{yz}=\\iiint\\limits_{Q}x\\rho\\,dV",
+          "anchor": "15.6-fs-id1167793294163"
         }
       ]
     },
@@ -13752,7 +13884,8 @@
       "forms": [
         {
           "id": "eq-solid-center-of-mass",
-          "latex": "\\bar{x}=\\frac{M_{yz}}{m},\\;\\bar{y}=\\frac{M_{xz}}{m},\\;\\bar{z}=\\frac{M_{xy}}{m}"
+          "latex": "\\bar{x}=\\frac{M_{yz}}{m},\\;\\bar{y}=\\frac{M_{xz}}{m},\\;\\bar{z}=\\frac{M_{xy}}{m}",
+          "anchor": "15.6-fs-id1167793294163"
         }
       ]
     },
@@ -13767,7 +13900,8 @@
       "forms": [
         {
           "id": "eq-solid-moments-of-inertia",
-          "latex": "I_{x}=\\iiint\\limits_{Q}(y^{2}+z^{2})\\rho\\,dV,\\;I_{y}=\\iiint\\limits_{Q}(x^{2}+z^{2})\\rho\\,dV,\\;I_{z}=\\iiint\\limits_{Q}(x^{2}+y^{2})\\rho\\,dV"
+          "latex": "I_{x}=\\iiint\\limits_{Q}(y^{2}+z^{2})\\rho\\,dV,\\;I_{y}=\\iiint\\limits_{Q}(x^{2}+z^{2})\\rho\\,dV,\\;I_{z}=\\iiint\\limits_{Q}(x^{2}+y^{2})\\rho\\,dV",
+          "anchor": "15.6-fs-id1167793294163"
         }
       ]
     },
@@ -13831,11 +13965,13 @@
       "forms": [
         {
           "id": "eq-jacobian-two-variables",
-          "latex": "J(u,v)=\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|=\\begin{vmatrix}\\frac{\\partial x}{\\partial u}&\\frac{\\partial y}{\\partial u}\\\\\\frac{\\partial x}{\\partial v}&\\frac{\\partial y}{\\partial v}\\end{vmatrix}=\\frac{\\partial x}{\\partial u}\\frac{\\partial y}{\\partial v}-\\frac{\\partial x}{\\partial v}\\frac{\\partial y}{\\partial u}"
+          "latex": "J(u,v)=\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|=\\begin{vmatrix}\\frac{\\partial x}{\\partial u}&\\frac{\\partial y}{\\partial u}\\\\\\frac{\\partial x}{\\partial v}&\\frac{\\partial y}{\\partial v}\\end{vmatrix}=\\frac{\\partial x}{\\partial u}\\frac{\\partial y}{\\partial v}-\\frac{\\partial x}{\\partial v}\\frac{\\partial y}{\\partial u}",
+          "anchor": "15.7-fs-id1167793642159"
         },
         {
           "id": "eq-jacobian-area",
-          "latex": "\\Delta A\\approx J(u,v)\\,\\Delta u\\,\\Delta v"
+          "latex": "\\Delta A\\approx J(u,v)\\,\\Delta u\\,\\Delta v",
+          "anchor": "15.7-jacobians"
         }
       ]
     },
@@ -13849,11 +13985,13 @@
       "forms": [
         {
           "id": "eq-change-of-variables-double",
-          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{S}f(g(u,v),h(u,v))\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|du\\,dv"
+          "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{S}f(g(u,v),h(u,v))\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|du\\,dv",
+          "anchor": "15.7-fs-id1167793925892"
         },
         {
           "id": "eq-change-of-variables-da",
-          "latex": "dA=dx\\,dy=\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|du\\,dv"
+          "latex": "dA=dx\\,dy=\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|du\\,dv",
+          "anchor": "15.7-cov-double"
         }
       ]
     },
@@ -13874,7 +14012,8 @@
       "forms": [
         {
           "id": "eq-jacobian-three-variables",
-          "latex": "J(u,v,w)=\\begin{vmatrix}\\frac{\\partial x}{\\partial u}&\\frac{\\partial x}{\\partial v}&\\frac{\\partial x}{\\partial w}\\\\\\frac{\\partial y}{\\partial u}&\\frac{\\partial y}{\\partial v}&\\frac{\\partial y}{\\partial w}\\\\\\frac{\\partial z}{\\partial u}&\\frac{\\partial z}{\\partial v}&\\frac{\\partial z}{\\partial w}\\end{vmatrix}"
+          "latex": "J(u,v,w)=\\begin{vmatrix}\\frac{\\partial x}{\\partial u}&\\frac{\\partial x}{\\partial v}&\\frac{\\partial x}{\\partial w}\\\\\\frac{\\partial y}{\\partial u}&\\frac{\\partial y}{\\partial v}&\\frac{\\partial y}{\\partial w}\\\\\\frac{\\partial z}{\\partial u}&\\frac{\\partial z}{\\partial v}&\\frac{\\partial z}{\\partial w}\\end{vmatrix}",
+          "anchor": "15.7-fs-id1167793957157"
         }
       ]
     },
@@ -13888,7 +14027,8 @@
       "forms": [
         {
           "id": "eq-change-of-variables-triple",
-          "latex": "\\iiint\\limits_{R}F(x,y,z)\\,dV=\\iiint\\limits_{G}F(g(u,v,w),h(u,v,w),k(u,v,w))\\left|\\frac{\\partial(x,y,z)}{\\partial(u,v,w)}\\right|du\\,dv\\,dw"
+          "latex": "\\iiint\\limits_{R}F(x,y,z)\\,dV=\\iiint\\limits_{G}F(g(u,v,w),h(u,v,w),k(u,v,w))\\left|\\frac{\\partial(x,y,z)}{\\partial(u,v,w)}\\right|du\\,dv\\,dw",
+          "anchor": "15.7-fs-id1167793285192"
         }
       ]
     },
@@ -14887,6 +15027,531 @@
         {
           "id": "eq-gauss-law",
           "latex": "\\iint_{S}\\mathbf{E}\\cdot d\\mathbf{S}=\\frac{Q}{\\varepsilon_{0}}"
+        }
+      ]
+    },
+    {
+      "id": "second-order-linear-differential-equation",
+      "kind": "definition",
+      "section": "17.1",
+      "name": "Second-order linear differential equation",
+      "terms": [
+        "linear second-order differential equation",
+        "second-order linear differential equation"
+      ],
+      "statement": "A second-order differential equation is linear if it can be written in the form a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x), where a₂(x), a₁(x), a₀(x) and r(x) are real-valued functions and a₂(x) is not identically zero; y and its derivatives are raised only to the first power and are not multiplied by one another.",
+      "forms": [
+        {
+          "id": "eq-second-order-linear",
+          "latex": "a_{2}(x)y''+a_{1}(x)y'+a_{0}(x)y=r(x)"
+        }
+      ]
+    },
+    {
+      "id": "homogeneous-linear-equation",
+      "kind": "definition",
+      "section": "17.1",
+      "name": "Homogeneous linear equation",
+      "terms": [
+        "homogeneous linear equation",
+        "homogeneous"
+      ],
+      "statement": "A second-order linear differential equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x) is a homogeneous linear equation if r(x) = 0 for every value of x: every term contains y or one of its derivatives."
+    },
+    {
+      "id": "nonhomogeneous-linear-equation",
+      "kind": "definition",
+      "section": "17.1",
+      "name": "Nonhomogeneous linear equation",
+      "terms": [
+        "nonhomogeneous linear equation",
+        "nonhomogeneous"
+      ],
+      "statement": "A second-order linear differential equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x) is a nonhomogeneous linear equation if r(x) ≠ 0 for some value of x."
+    },
+    {
+      "id": "superposition-principle",
+      "kind": "result",
+      "section": "17.1",
+      "name": "Superposition principle",
+      "terms": [
+        "superposition principle",
+        "principle of superposition"
+      ],
+      "statement": "If y₁(x) and y₂(x) are solutions to a linear homogeneous differential equation, then the function y(x) = c₁y₁(x) + c₂y₂(x), where c₁ and c₂ are constants, is also a solution.",
+      "forms": [
+        {
+          "id": "eq-superposition",
+          "latex": "y(x)=c_{1}y_{1}(x)+c_{2}y_{2}(x)"
+        }
+      ]
+    },
+    {
+      "id": "linear-independence",
+      "kind": "definition",
+      "section": "17.1",
+      "name": "Linear independence",
+      "terms": [
+        "linearly dependent",
+        "linearly independent",
+        "linear independence"
+      ],
+      "statement": "A set of functions f₁(x), f₂(x), …, fₙ(x) is linearly dependent if there are constants c₁, c₂, …, cₙ, not all zero, such that c₁f₁(x) + c₂f₂(x) + ⋯ + cₙfₙ(x) = 0 for all x over the interval of interest; a set of functions that is not linearly dependent is linearly independent."
+    },
+    {
+      "id": "linear-dependence-of-two-functions",
+      "kind": "result",
+      "section": "17.1",
+      "name": "Linear dependence of two functions",
+      "statement": "Two functions f₁(x) and f₂(x) are linearly dependent if either one of them is identically zero or if f₁(x) = Cf₂(x) for some constant C and for all x over the interval of interest; functions that are not linearly dependent are linearly independent."
+    },
+    {
+      "id": "general-solution-to-a-homogeneous-equation",
+      "kind": "result",
+      "section": "17.1",
+      "name": "General solution to a homogeneous equation",
+      "type": "function",
+      "statement": "If y₁(x) and y₂(x) are linearly independent solutions to a second-order, linear, homogeneous differential equation, then the general solution is given by y(x) = c₁y₁(x) + c₂y₂(x), where c₁ and c₂ are constants: every expression of that form is a solution, and every solution can be written in that form.",
+      "forms": [
+        {
+          "id": "eq-general-solution-homogeneous",
+          "latex": "y(x)=c_{1}y_{1}(x)+c_{2}y_{2}(x)"
+        }
+      ]
+    },
+    {
+      "id": "second-order-equation-with-constant-coefficients",
+      "kind": "definition",
+      "section": "17.1",
+      "name": "Second-order equation with constant coefficients",
+      "terms": [
+        "second-order equation with constant coefficients",
+        "constant coefficients",
+        "constant-coefficient differential equation"
+      ],
+      "statement": "A second-order linear homogeneous differential equation with constant coefficients has the form ay″ + by′ + cy = 0, where a, b and c are constants.",
+      "forms": [
+        {
+          "id": "eq-constant-coefficients",
+          "latex": "ay''+by'+cy=0"
+        }
+      ]
+    },
+    {
+      "id": "characteristic-equation",
+      "kind": "definition",
+      "section": "17.1",
+      "name": "Characteristic equation",
+      "terms": [
+        "characteristic equation"
+      ],
+      "statement": "The characteristic equation of the differential equation ay″ + by′ + cy = 0 is aλ² + bλ + c = 0; y(x) = e^{λx} is a solution exactly when λ is a root of it, and the roots are found by factoring or by the quadratic formula λ = (−b ± √(b² − 4ac))/(2a).",
+      "forms": [
+        {
+          "id": "eq-characteristic-equation",
+          "latex": "a\\lambda^{2}+b\\lambda+c=0"
+        },
+        {
+          "id": "eq-characteristic-roots",
+          "latex": "\\lambda=\\frac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}"
+        }
+      ]
+    },
+    {
+      "id": "solution-for-distinct-real-roots",
+      "kind": "result",
+      "section": "17.1",
+      "name": "Solution for distinct real roots",
+      "type": "function",
+      "statement": "If the characteristic equation has distinct real roots λ₁ and λ₂, then e^{λ₁x} and e^{λ₂x} are linearly independent solutions to ay″ + by′ + cy = 0, and the general solution is y(x) = c₁e^{λ₁x} + c₂e^{λ₂x}.",
+      "forms": [
+        {
+          "id": "eq-distinct-real-roots",
+          "latex": "y(x)=c_{1}e^{\\lambda_{1}x}+c_{2}e^{\\lambda_{2}x}"
+        }
+      ]
+    },
+    {
+      "id": "solution-for-a-repeated-real-root",
+      "kind": "result",
+      "section": "17.1",
+      "name": "Solution for a repeated real root",
+      "type": "function",
+      "statement": "If the characteristic equation has a repeated real root λ, then b² − 4ac = 0, e^{λx} and xe^{λx} are linearly independent solutions, and the general solution to ay″ + by′ + cy = 0 is y(x) = c₁e^{λx} + c₂xe^{λx}.",
+      "forms": [
+        {
+          "id": "eq-repeated-real-root",
+          "latex": "y(x)=c_{1}e^{\\lambda x}+c_{2}xe^{\\lambda x}"
+        }
+      ]
+    },
+    {
+      "id": "eulers-formula",
+      "kind": "result",
+      "section": "17.1",
+      "name": "Euler’s formula",
+      "terms": [
+        "Euler’s formula"
+      ],
+      "statement": "Euler’s formula expresses an exponential function with an imaginary exponent through sines and cosines: e^{iθ} = cos θ + i sin θ for all real numbers θ.",
+      "forms": [
+        {
+          "id": "eq-eulers-formula",
+          "latex": "e^{i\\theta}=\\cos\\theta+i\\sin\\theta"
+        }
+      ]
+    },
+    {
+      "id": "solution-for-complex-conjugate-roots",
+      "kind": "result",
+      "section": "17.1",
+      "name": "Solution for complex conjugate roots",
+      "type": "function",
+      "statement": "If b² − 4ac < 0, the characteristic equation has complex conjugate roots α ± βi, and the general solution to ay″ + by′ + cy = 0 is y(x) = e^{αx}(c₁ cos βx + c₂ sin βx), built from the two linearly independent real-value solutions e^{αx} cos βx and e^{αx} sin βx.",
+      "forms": [
+        {
+          "id": "eq-complex-conjugate-roots",
+          "latex": "y(x)=e^{\\alpha x}(c_{1}\\cos\\beta x+c_{2}\\sin\\beta x)"
+        }
+      ]
+    },
+    {
+      "id": "solving-with-the-characteristic-equation",
+      "kind": "skill",
+      "section": "17.1",
+      "name": "Solving with the characteristic equation",
+      "statement": "To solve a second-order differential equation with constant coefficients: write it in the form ay″ + by′ + cy = 0; find the corresponding characteristic equation aλ² + bλ + c = 0; factor it or use the quadratic formula to find the roots; and write the general solution by whether the roots are distinct and real, a single repeated real root, or complex conjugates."
+    },
+    {
+      "id": "boundary-conditions",
+      "kind": "definition",
+      "section": "17.1",
+      "name": "Boundary conditions",
+      "terms": [
+        "boundary conditions",
+        "boundary condition"
+      ],
+      "statement": "Boundary conditions give the state of a system at two different times, such as y(t₀) = y₀ and y(t₁) = y₁ for the position of a spring-mass system."
+    },
+    {
+      "id": "boundary-value-problem",
+      "kind": "definition",
+      "section": "17.1",
+      "name": "Boundary-value problem",
+      "terms": [
+        "boundary-value problem",
+        "boundary-value problems",
+        "boundary value problem"
+      ],
+      "statement": "A boundary-value problem is a differential equation with associated boundary conditions; solving it means finding the solution of the differential equation that satisfies the boundary conditions."
+    },
+    {
+      "id": "uniqueness-of-solutions-to-second-order-problems",
+      "kind": "result",
+      "section": "17.1",
+      "name": "Uniqueness of solutions to initial-value and boundary-value problems",
+      "statement": "For constant-coefficient, second-order equations, an initial-value problem with two initial conditions is guaranteed to have a unique solution, while a boundary-value problem with two boundary conditions may have a unique solution, many solutions, or no solution at all."
+    },
+    {
+      "id": "complementary-equation",
+      "kind": "definition",
+      "section": "17.2",
+      "name": "Complementary equation",
+      "terms": [
+        "complementary equation"
+      ],
+      "statement": "For the nonhomogeneous linear differential equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x), the associated homogeneous equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = 0 is called the complementary equation.",
+      "forms": [
+        {
+          "id": "eq-complementary-equation",
+          "latex": "a_{2}(x)y''+a_{1}(x)y'+a_{0}(x)y=0"
+        }
+      ]
+    },
+    {
+      "id": "general-solution-to-a-nonhomogeneous-equation",
+      "kind": "result",
+      "section": "17.2",
+      "name": "General solution to a nonhomogeneous equation",
+      "type": "function",
+      "statement": "Let y_p(x) be any particular solution to the nonhomogeneous linear differential equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x), and let c₁y₁(x) + c₂y₂(x) denote the general solution to the complementary equation. Then the general solution to the nonhomogeneous equation is y(x) = c₁y₁(x) + c₂y₂(x) + y_p(x).",
+      "forms": [
+        {
+          "id": "eq-general-solution-nonhomogeneous",
+          "latex": "y(x)=c_{1}y_{1}(x)+c_{2}y_{2}(x)+y_{p}(x)"
+        }
+      ]
+    },
+    {
+      "id": "method-of-undetermined-coefficients",
+      "kind": "skill",
+      "section": "17.2",
+      "name": "Method of undetermined coefficients",
+      "terms": [
+        "method of undetermined coefficients",
+        "undetermined coefficients"
+      ],
+      "statement": "The method of undetermined coefficients finds a particular solution of ay″ + by′ + cy = r(x) when r(x) is a combination of polynomials, exponentials, sines and cosines: solve the complementary equation; guess y_p(x) of the same form as r(x), with every lower-order term; multiply the guess by x until no term of it solves the complementary equation; substitute it into the equation and equate like terms to find its coefficients; and add it to the general solution of the complementary equation."
+    },
+    {
+      "id": "cramers-rule",
+      "kind": "result",
+      "section": "17.2",
+      "name": "Cramer’s rule",
+      "terms": [
+        "Cramer’s rule"
+      ],
+      "statement": "The system a₁z₁ + b₁z₂ = r₁, a₂z₁ + b₂z₂ = r₂ has a unique solution if and only if the determinant of the coefficients is not zero; then z₁ and z₂ are the quotients of the determinants with the r column in place of the z₁ or z₂ column by the determinant of the coefficients.",
+      "forms": [
+        {
+          "id": "eq-cramers-rule",
+          "latex": "z_{1}=\\frac{\\begin{vmatrix}r_{1}&b_{1}\\\\r_{2}&b_{2}\\end{vmatrix}}{\\begin{vmatrix}a_{1}&b_{1}\\\\a_{2}&b_{2}\\end{vmatrix}},\\quad z_{2}=\\frac{\\begin{vmatrix}a_{1}&r_{1}\\\\a_{2}&r_{2}\\end{vmatrix}}{\\begin{vmatrix}a_{1}&b_{1}\\\\a_{2}&b_{2}\\end{vmatrix}}"
+        }
+      ]
+    },
+    {
+      "id": "method-of-variation-of-parameters",
+      "kind": "skill",
+      "section": "17.2",
+      "name": "Method of variation of parameters",
+      "terms": [
+        "method of variation of parameters",
+        "variation of parameters"
+      ],
+      "statement": "The method of variation of parameters finds a particular solution of y″ + py′ + qy = r(x) for any r(x): solve the complementary equation for c₁y₁(x) + c₂y₂(x); find u′(x) and v′(x) with u′y₁ + v′y₂ = 0 and u′y₁′ + v′y₂′ = r(x), by Cramer’s rule or another technique; integrate to find u(x) and v(x), so that y_p(x) = u(x)y₁(x) + v(x)y₂(x); and add y_p to the general solution of the complementary equation.",
+      "forms": [
+        {
+          "id": "eq-variation-of-parameters",
+          "latex": "\\begin{array}{rll}u'y_{1}+v'y_{2}&=&0\\\\u'y_{1}'+v'y_{2}'&=&r(x)\\end{array}"
+        },
+        {
+          "id": "eq-variation-particular",
+          "latex": "y_{p}(x)=u(x)y_{1}(x)+v(x)y_{2}(x)"
+        }
+      ]
+    },
+    {
+      "id": "simple-harmonic-motion",
+      "kind": "result",
+      "section": "17.3",
+      "name": "Simple harmonic motion",
+      "terms": [
+        "simple harmonic motion",
+        "spring-mass system",
+        "angular frequency"
+      ],
+      "statement": "A mass m on a spring with spring constant k, displaced x(t) from equilibrium with down positive, satisfies mx″ + kx = 0 by Hooke’s law and Newton’s second law, or x″ + ω²x = 0 with the angular frequency ω = √(k/m); its general solution x(t) = c₁ cos ωt + c₂ sin ωt is simple harmonic motion, with period T = 2π/ω and frequency f = 1/T = ω/2π.",
+      "forms": [
+        {
+          "id": "eq-simple-harmonic-motion",
+          "latex": "x''+\\omega^{2}x=0"
+        },
+        {
+          "id": "eq-simple-harmonic-solution",
+          "latex": "x(t)=c_{1}\\cos(\\omega t)+c_{2}\\sin(\\omega t)"
+        },
+        {
+          "id": "eq-simple-harmonic-period",
+          "latex": "T=\\frac{2\\pi}{\\omega},\\quad f=\\frac{1}{T}=\\frac{\\omega}{2\\pi}"
+        }
+      ]
+    },
+    {
+      "id": "amplitude-and-phase-shift-form",
+      "kind": "result",
+      "section": "17.3",
+      "name": "Solution to the equation for simple harmonic motion",
+      "terms": [
+        "phase shift"
+      ],
+      "statement": "The function x(t) = c₁ cos(ωt) + c₂ sin(ωt) can be written in the form x(t) = A sin(ωt + ϕ), where the amplitude is A = √(c₁² + c₂²) and the phase shift ϕ satisfies tan ϕ = c₁/c₂, with ϕ taken in the quadrant the signs of c₁ and c₂ give.",
+      "forms": [
+        {
+          "id": "eq-amplitude-phase-form",
+          "latex": "x(t)=A\\sin(\\omega t+\\phi)"
+        },
+        {
+          "id": "eq-amplitude-phase-constants",
+          "latex": "A=\\sqrt{c_{1}^{2}+c_{2}^{2}},\\quad\\tan\\phi=\\frac{c_{1}}{c_{2}}"
+        }
+      ]
+    },
+    {
+      "id": "damped-spring-mass-system",
+      "kind": "result",
+      "section": "17.3",
+      "name": "Damped spring-mass system",
+      "terms": [
+        "damping",
+        "damped",
+        "dashpot"
+      ],
+      "statement": "With a damping force −bx′ proportional to the velocity, for some constant b > 0, a spring-mass system satisfies mx″ + bx′ + kx = 0, whose characteristic equation mλ² + bλ + k = 0 has roots λ = (−b ± √(b² − 4mk))/(2m); for every damped system, lim_{t→∞} x(t) = 0.",
+      "forms": [
+        {
+          "id": "eq-damped-spring-mass",
+          "latex": "mx''+bx'+kx=0"
+        },
+        {
+          "id": "eq-damped-roots",
+          "latex": "\\lambda=\\frac{-b\\pm\\sqrt{b^{2}-4mk}}{2m}"
+        }
+      ]
+    },
+    {
+      "id": "overdamped-system",
+      "kind": "definition",
+      "section": "17.3",
+      "name": "Overdamped system",
+      "terms": [
+        "overdamped"
+      ],
+      "statement": "A damped spring-mass system is overdamped when b² > 4mk: the general solution x(t) = c₁e^{λ₁t} + c₂e^{λ₂t} has λ₁ and λ₂ both less than zero, and the mass moves back toward equilibrium with no more than one change of direction, without oscillating.",
+      "forms": [
+        {
+          "id": "eq-overdamped",
+          "latex": "x(t)=c_{1}e^{\\lambda_{1}t}+c_{2}e^{\\lambda_{2}t}"
+        }
+      ]
+    },
+    {
+      "id": "critically-damped-system",
+      "kind": "definition",
+      "section": "17.3",
+      "name": "Critically damped system",
+      "terms": [
+        "critically damped"
+      ],
+      "statement": "A damped spring-mass system is critically damped when b² = 4mk: the general solution x(t) = c₁e^{λ₁t} + c₂te^{λ₁t} has λ₁ less than zero; the mass does not oscillate, but any slight reduction in the damping would make it oscillate.",
+      "forms": [
+        {
+          "id": "eq-critically-damped",
+          "latex": "x(t)=c_{1}e^{\\lambda_{1}t}+c_{2}te^{\\lambda_{1}t}"
+        }
+      ]
+    },
+    {
+      "id": "underdamped-system",
+      "kind": "definition",
+      "section": "17.3",
+      "name": "Underdamped system",
+      "terms": [
+        "underdamped"
+      ],
+      "statement": "A damped spring-mass system is underdamped when b² < 4mk: the general solution x(t) = e^{αt}(c₁ cos(βt) + c₂ sin(βt)) has α less than zero, so the mass oscillates while the amplitude of its oscillations decreases over time.",
+      "forms": [
+        {
+          "id": "eq-underdamped",
+          "latex": "x(t)=e^{\\alpha t}(c_{1}\\cos(\\beta t)+c_{2}\\sin(\\beta t))"
+        }
+      ]
+    },
+    {
+      "id": "forced-vibrations",
+      "kind": "result",
+      "section": "17.3",
+      "name": "Forced vibrations",
+      "terms": [
+        "forced vibrations",
+        "external force"
+      ],
+      "statement": "A spring-mass system acted on by an external force f(t) satisfies the nonhomogeneous equation mx″ + bx′ + kx = f(t), whose solutions have the form x(t) = c₁x₁(t) + c₂x₂(t) + x_p(t): the general solution to the complementary equation plus a particular solution.",
+      "forms": [
+        {
+          "id": "eq-forced-vibrations",
+          "latex": "mx''+bx'+kx=f(t)"
+        },
+        {
+          "id": "eq-forced-solution",
+          "latex": "x(t)=c_{1}x_{1}(t)+c_{2}x_{2}(t)+x_{p}(t)"
+        }
+      ]
+    },
+    {
+      "id": "transient-solution",
+      "kind": "definition",
+      "section": "17.3",
+      "name": "Transient solution",
+      "terms": [
+        "transient solution"
+      ],
+      "type": "function",
+      "statement": "In a damped forced system, the part c₁x₁(t) + c₂x₂(t) of the solution that solves the complementary equation tends to zero as t → ∞ and does not affect the long-term behavior of the system; it is called the transient solution."
+    },
+    {
+      "id": "steady-state-solution",
+      "kind": "definition",
+      "section": "17.3",
+      "name": "Steady-state solution",
+      "terms": [
+        "steady-state solution"
+      ],
+      "type": "function",
+      "statement": "The steady-state solution of a nonhomogeneous differential equation is the particular solution x_p(t), which determines the long-term behavior of the system once the transient solution has died away."
+    },
+    {
+      "id": "resonance",
+      "kind": "idea",
+      "section": "17.3",
+      "name": "Resonance",
+      "terms": [
+        "resonance",
+        "natural frequency of the system",
+        "natural frequency"
+      ],
+      "statement": "The frequency f = ω/2π of an undamped system is its natural frequency; if an external force acting on the system has a frequency close to the natural frequency, resonance results: the external force reinforces and amplifies the natural motion of the system."
+    },
+    {
+      "id": "rlc-series-circuit",
+      "kind": "result",
+      "section": "17.3",
+      "name": "RLC series circuit",
+      "terms": [
+        "RLC series circuit",
+        "RLC circuit",
+        "RLC circuits"
+      ],
+      "statement": "In an RLC series circuit with inductance L, resistance R, capacitance C and voltage source E(t), the voltage drops E_L = L dI/dt, E_R = RI and E_C = q/C sum to E(t) by Kirchhoff’s voltage rule; with I = dq/dt the charge q(t) on the capacitor satisfies L d²q/dt² + R dq/dt + q/C = E(t), an equation analogous to that of a spring-mass system.",
+      "forms": [
+        {
+          "id": "eq-rlc-circuit",
+          "latex": "L\\frac{d^{2}q}{dt^{2}}+R\\frac{dq}{dt}+\\frac{1}{C}q=E(t)"
+        },
+        {
+          "id": "eq-rlc-voltage-drops",
+          "latex": "E_{L}=L\\frac{dI}{dt},\\quad E_{R}=RI,\\quad E_{C}=\\frac{1}{C}q"
+        }
+      ]
+    },
+    {
+      "id": "bessel-equation",
+      "kind": "definition",
+      "section": "17.4",
+      "name": "Bessel equation",
+      "terms": [
+        "Bessel equation",
+        "Bessel functions",
+        "Bessel equation of order n"
+      ],
+      "statement": "The Bessel equation of order n is x²y″ + xy′ + (x² − n²)y = 0; it arises in physical applications involving cylindrical coordinates, such as the vibration of a circular drum head and the transient heating or cooling of a cylinder, and its solutions are Bessel functions.",
+      "forms": [
+        {
+          "id": "eq-bessel-equation",
+          "latex": "x^{2}y''+xy'+(x^{2}-n^{2})y=0"
+        }
+      ]
+    },
+    {
+      "id": "series-solution-of-the-bessel-equation-of-order-0",
+      "kind": "result",
+      "section": "17.4",
+      "name": "Series solution of the Bessel equation of order 0",
+      "type": "series",
+      "statement": "A power series solution to the Bessel equation of order 0, x²y″ + xy′ + x²y = 0, is y(x) = a₀ Σ_{k=0}^{∞} (−1)ᵏ x²ᵏ / (2²ᵏ (k!)²): its odd coefficients are zero and aₙ = −aₙ₋₂/n² for n ≥ 2.",
+      "forms": [
+        {
+          "id": "eq-bessel-order-zero",
+          "latex": "y(x)=a_{0}\\sum_{k=0}^{\\infty}\\frac{(-1)^{k}}{(2)^{2k}(k!)^{2}}x^{2k}"
         }
       ]
     }
@@ -20967,6 +21632,282 @@
     {
       "concept": "gauss-law",
       "prereq": "flux-across-a-smooth-surface"
+    },
+    {
+      "concept": "second-order-linear-differential-equation",
+      "prereq": "first-order-linear-differential-equation"
+    },
+    {
+      "concept": "homogeneous-linear-equation",
+      "prereq": "second-order-linear-differential-equation"
+    },
+    {
+      "concept": "nonhomogeneous-linear-equation",
+      "prereq": "second-order-linear-differential-equation"
+    },
+    {
+      "concept": "superposition-principle",
+      "prereq": "homogeneous-linear-equation"
+    },
+    {
+      "concept": "superposition-principle",
+      "prereq": "solution-to-a-differential-equation"
+    },
+    {
+      "concept": "linear-independence",
+      "prereq": "function"
+    },
+    {
+      "concept": "linear-dependence-of-two-functions",
+      "prereq": "linear-independence"
+    },
+    {
+      "concept": "general-solution-to-a-homogeneous-equation",
+      "prereq": "superposition-principle"
+    },
+    {
+      "concept": "general-solution-to-a-homogeneous-equation",
+      "prereq": "linear-independence"
+    },
+    {
+      "concept": "general-solution-to-a-homogeneous-equation",
+      "prereq": "general-solution"
+    },
+    {
+      "concept": "second-order-equation-with-constant-coefficients",
+      "prereq": "homogeneous-linear-equation"
+    },
+    {
+      "concept": "characteristic-equation",
+      "prereq": "second-order-equation-with-constant-coefficients"
+    },
+    {
+      "concept": "characteristic-equation",
+      "prereq": "derivative-of-the-natural-exponential-function"
+    },
+    {
+      "concept": "solution-for-distinct-real-roots",
+      "prereq": "characteristic-equation"
+    },
+    {
+      "concept": "solution-for-distinct-real-roots",
+      "prereq": "general-solution-to-a-homogeneous-equation"
+    },
+    {
+      "concept": "solution-for-distinct-real-roots",
+      "prereq": "quadratic-formula"
+    },
+    {
+      "concept": "solution-for-a-repeated-real-root",
+      "prereq": "characteristic-equation"
+    },
+    {
+      "concept": "solution-for-a-repeated-real-root",
+      "prereq": "general-solution-to-a-homogeneous-equation"
+    },
+    {
+      "concept": "solution-for-a-repeated-real-root",
+      "prereq": "quadratic-formula"
+    },
+    {
+      "concept": "eulers-formula",
+      "prereq": "maclaurin-series-of-common-functions"
+    },
+    {
+      "concept": "solution-for-complex-conjugate-roots",
+      "prereq": "characteristic-equation"
+    },
+    {
+      "concept": "solution-for-complex-conjugate-roots",
+      "prereq": "general-solution-to-a-homogeneous-equation"
+    },
+    {
+      "concept": "solution-for-complex-conjugate-roots",
+      "prereq": "quadratic-formula"
+    },
+    {
+      "concept": "solution-for-complex-conjugate-roots",
+      "prereq": "eulers-formula"
+    },
+    {
+      "concept": "solving-with-the-characteristic-equation",
+      "prereq": "solution-for-distinct-real-roots"
+    },
+    {
+      "concept": "solving-with-the-characteristic-equation",
+      "prereq": "solution-for-a-repeated-real-root"
+    },
+    {
+      "concept": "solving-with-the-characteristic-equation",
+      "prereq": "solution-for-complex-conjugate-roots"
+    },
+    {
+      "concept": "boundary-conditions",
+      "prereq": "solution-to-a-differential-equation"
+    },
+    {
+      "concept": "boundary-value-problem",
+      "prereq": "boundary-conditions"
+    },
+    {
+      "concept": "uniqueness-of-solutions-to-second-order-problems",
+      "prereq": "boundary-value-problem"
+    },
+    {
+      "concept": "uniqueness-of-solutions-to-second-order-problems",
+      "prereq": "initial-value-problem"
+    },
+    {
+      "concept": "uniqueness-of-solutions-to-second-order-problems",
+      "prereq": "second-order-equation-with-constant-coefficients"
+    },
+    {
+      "concept": "complementary-equation",
+      "prereq": "nonhomogeneous-linear-equation"
+    },
+    {
+      "concept": "complementary-equation",
+      "prereq": "homogeneous-linear-equation"
+    },
+    {
+      "concept": "general-solution-to-a-nonhomogeneous-equation",
+      "prereq": "complementary-equation"
+    },
+    {
+      "concept": "general-solution-to-a-nonhomogeneous-equation",
+      "prereq": "particular-solution"
+    },
+    {
+      "concept": "general-solution-to-a-nonhomogeneous-equation",
+      "prereq": "general-solution-to-a-homogeneous-equation"
+    },
+    {
+      "concept": "method-of-undetermined-coefficients",
+      "prereq": "general-solution-to-a-nonhomogeneous-equation"
+    },
+    {
+      "concept": "method-of-undetermined-coefficients",
+      "prereq": "solving-with-the-characteristic-equation"
+    },
+    {
+      "concept": "method-of-undetermined-coefficients",
+      "prereq": "method-of-equating-coefficients"
+    },
+    {
+      "concept": "cramers-rule",
+      "prereq": "determinant"
+    },
+    {
+      "concept": "method-of-variation-of-parameters",
+      "prereq": "general-solution-to-a-nonhomogeneous-equation"
+    },
+    {
+      "concept": "method-of-variation-of-parameters",
+      "prereq": "cramers-rule"
+    },
+    {
+      "concept": "method-of-variation-of-parameters",
+      "prereq": "indefinite-integral"
+    },
+    {
+      "concept": "simple-harmonic-motion",
+      "prereq": "hookes-law"
+    },
+    {
+      "concept": "simple-harmonic-motion",
+      "prereq": "solution-for-complex-conjugate-roots"
+    },
+    {
+      "concept": "simple-harmonic-motion",
+      "prereq": "acceleration"
+    },
+    {
+      "concept": "simple-harmonic-motion",
+      "prereq": "period"
+    },
+    {
+      "concept": "amplitude-and-phase-shift-form",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "amplitude-and-phase-shift-form",
+      "prereq": "trigonometric-identity"
+    },
+    {
+      "concept": "amplitude-and-phase-shift-form",
+      "prereq": "amplitude"
+    },
+    {
+      "concept": "damped-spring-mass-system",
+      "prereq": "simple-harmonic-motion"
+    },
+    {
+      "concept": "damped-spring-mass-system",
+      "prereq": "limit-at-infinity"
+    },
+    {
+      "concept": "overdamped-system",
+      "prereq": "damped-spring-mass-system"
+    },
+    {
+      "concept": "overdamped-system",
+      "prereq": "solution-for-distinct-real-roots"
+    },
+    {
+      "concept": "critically-damped-system",
+      "prereq": "damped-spring-mass-system"
+    },
+    {
+      "concept": "critically-damped-system",
+      "prereq": "solution-for-a-repeated-real-root"
+    },
+    {
+      "concept": "underdamped-system",
+      "prereq": "damped-spring-mass-system"
+    },
+    {
+      "concept": "forced-vibrations",
+      "prereq": "damped-spring-mass-system"
+    },
+    {
+      "concept": "forced-vibrations",
+      "prereq": "general-solution-to-a-nonhomogeneous-equation"
+    },
+    {
+      "concept": "transient-solution",
+      "prereq": "forced-vibrations"
+    },
+    {
+      "concept": "steady-state-solution",
+      "prereq": "forced-vibrations"
+    },
+    {
+      "concept": "resonance",
+      "prereq": "forced-vibrations"
+    },
+    {
+      "concept": "rlc-series-circuit",
+      "prereq": "kirchhoffs-loop-rule"
+    },
+    {
+      "concept": "rlc-series-circuit",
+      "prereq": "forced-vibrations"
+    },
+    {
+      "concept": "bessel-equation",
+      "prereq": "second-order-linear-differential-equation"
+    },
+    {
+      "concept": "series-solution-of-the-bessel-equation-of-order-0",
+      "prereq": "bessel-equation"
+    },
+    {
+      "concept": "series-solution-of-the-bessel-equation-of-order-0",
+      "prereq": "power-series-solution-of-a-differential-equation"
+    },
+    {
+      "concept": "series-solution-of-the-bessel-equation-of-order-0",
+      "prereq": "recurrence-relation"
     }
   ],
   "colours": {

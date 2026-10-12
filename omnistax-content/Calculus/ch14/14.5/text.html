@@ -1,0 +1,199 @@
+<p id="chain-intro">In single-variable calculus, we found that one of the most useful differentiation rules is the <span data-concept="chain-rule">chain rule</span>, which allows us to find the derivative of the composition of two functions. The same thing is true for multivariable calculus, but this time we have to deal with more than one form of the <span data-concept="chain-rule">chain rule</span>. In this section, we study extensions of the <span data-concept="chain-rule">chain rule</span> and learn how to take derivatives of compositions of functions of more than one variable.</p>
+<section id="chain-rules">
+<h2>Chain Rules for One or Two Independent Variables</h2>
+<p class="cite-target">Recall that the <span data-concept="chain-rule">chain rule</span> for the derivative of a composite of two functions can be written in the form</p>
+$$\frac{d}{dx}(\kf(\kg(x)))=\kf'(\kg(x))\kg'(x).$$
+<p>In this equation, both $\kf(x)$ and $\kg(x)$ are functions of one variable. Now suppose that $\kf$ is a <span data-concept="function-of-two-variables">function of two variables</span> and $\kg$ is a function of one variable. Or perhaps they are both <span data-concept="function-of-two-variables">functions of two variables</span>, or even more. How would we calculate the derivative in these cases? The following theorem gives us the answer for the case of one independent variable.</p>
+<div class="note" id="fs-id1167793362088">
+<div class="eyebrow">Theorem</div>
+<h3>Chain Rule for One Independent Variable</h3>
+<p>Suppose that $x=\kg(t)$ and $y=\kh(t)$ are differentiable functions of $t$ and $z=\kf(x,y)$ is a differentiable function of $x\;\text{and}\;y.$ Then $z=\kf(x(t),y(t))$ is a differentiable function of $t$ and</p>
+<div class="equation" id="fs-id1167794005848">$$\kdzdt=\kdzdx\cdot \kdxdt+\kdzdy\cdot \kdydt,\tag{14.29}$$</div>
+<p>where the ordinary derivatives are evaluated at $t$ and the <span data-concept="partial-derivative">partial derivatives</span> are evaluated at $(x,y).$</p>
+</div>
+<h3>Proof</h3>
+<p>The proof of this theorem uses the definition of <span data-concept="differentiable-function-of-two-variables">differentiability</span> of a <span data-concept="function-of-two-variables">function of two variables</span>. Suppose that <em>f</em> is differentiable at the point $P(x_{0},y_{0}),$ where $x_{0}=\kg(t_{0})$ and $y_{0}=\kh(t_{0})$ for a fixed value of $t_{0}.$ We wish to prove that $z=\kf(x(t),y(t))$ is differentiable at $t=t_{0}$ and that <a href="#fs-id1167794005848">Equation 14.29</a> holds at that point as well.</p>
+<p>Since $\kf$ is differentiable at $P,$ we know that</p>
+<div class="equation" id="fs-id1167793966705">$$z(t)=\kf(x,y)=\kf(x_{0},y_{0})+\kfx(x_{0},y_{0})(x-x_{0})+\kfy(x_{0},y_{0})(y-y_{0})+E(x,y),\tag{14.30}$$</div>
+<p>where $\lim_{(x,y)\to (x_{0},y_{0})}\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}=0.$ We then subtract $z_{0}=\kf(x_{0},y_{0})$ from both sides of this equation:</p>
+$$\begin{array}{rl}z(t)-z(t_{0}) & =\kf(x(t),y(t))-\kf(x(t_{0}),y(t_{0})) \\ & =\kfx(x_{0},y_{0})(x(t)-x(t_{0}))+\kfy(x_{0},y_{0})(y(t)-y(t_{0}))+E(x(t),y(t)).\end{array}$$
+<p>Next, we divide both sides by $t-t_{0}\text{:}$</p>
+$$\frac{z(t)-z(t_{0})}{t-t_{0}}=\kfx(x_{0},y_{0})(\frac{x(t)-x(t_{0})}{t-t_{0}})+\kfy(x_{0},y_{0})(\frac{y(t)-y(t_{0})}{t-t_{0}})+\frac{E(x(t),y(t))}{t-t_{0}}.$$
+<p>Then we take the limit as $t$ approaches $t_{0}\text{:}$</p>
+$$\begin{array}{rl}\lim_{t\to t_{0}}\frac{z(t)-z(t_{0})}{t-t_{0}} & =\kfx(x_{0},y_{0})\lim_{t\to t_{0}}(\frac{x(t)-x(t_{0})}{t-t_{0}})+\kfy(x_{0},y_{0})\lim_{t\to t_{0}}(\frac{y(t)-y(t_{0})}{t-t_{0}}) \\ & \;+\lim_{t\to t_{0}}\frac{E(x(t),y(t))}{t-t_{0}}.\end{array}$$
+<p>The left-hand side of this equation is equal to $dz/dt,$ which leads to</p>
+$$\kdzdt=\kfx(x_{0},y_{0})\kdxdt+\kfy(x_{0},y_{0})\kdydt+\lim_{t\to t_{0}}\frac{E(x(t),y(t))}{t-t_{0}}.$$
+<p>The last term can be rewritten as</p>
+$$\begin{array}{rl}\lim_{t\to t_{0}}\frac{E(x(t),y(t))}{t-t_{0}} & =\lim_{t\to t_{0}}(\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}\;\frac{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{t-t_{0}}) \\ & =\lim_{t\to t_{0}}(\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}})\lim_{t\to t_{0}}(\frac{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{t-t_{0}}).\end{array}$$
+<p>As $t$ approaches $t_{0},$ $(x(t),y(t))$ approaches $(x(t_{0}),y(t_{0})),$ so we can rewrite the last product as</p>
+$$\lim_{(x,y)\to (x_{0},y_{0})}(\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}})\lim_{(x,y)\to (x_{0},y_{0})}(\frac{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{t-t_{0}}).$$
+<p>Since the first limit is equal to zero, we need only show that the second limit is finite:</p>
+$$\begin{array}{rl}\lim_{(x,y)\to (x_{0},y_{0})}(\frac{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{t-t_{0}}) & =\lim_{(x,y)\to (x_{0},y_{0})}(\sqrt{\frac{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}{{(t-t_{0})}^{2}}}) \\ & =\lim_{(x,y)\to (x_{0},y_{0})}(\sqrt{{(\frac{x-x_{0}}{t-t_{0}})}^{2}+{(\frac{y-y_{0}}{t-t_{0}})}^{2}}) \\ & =\sqrt{{(\lim_{(x,y)\to (x_{0},y_{0})}(\frac{x-x_{0}}{t-t_{0}}))}^{2}+{(\lim_{(x,y)\to (x_{0},y_{0})}(\frac{y-y_{0}}{t-t_{0}}))}^{2}}.\end{array}$$
+<p>Since $x(t)$ and $y(t)$ are both differentiable functions of $t,$ both limits inside the last radical exist. Therefore, this value is finite. This proves the <span data-concept="chain-rule">chain rule</span> at $t=t_{0};$ the rest of the theorem follows from the assumption that all functions are differentiable over their entire domains.</p>
+<p>□</p>
+<p id="intermediate-term">Closer examination of <a href="#fs-id1167794005848">Equation 14.29</a> reveals an interesting pattern. The first term in the equation is $\kdfdx\cdot \kdxdt$ and the second term is $\kdfdy\cdot \kdydt.$ Recall that when multiplying fractions, cancelation can be used. If we treat these derivatives as fractions, then each product “simplifies” to something resembling $\partial \kf/dt.$ The variables $x\;\text{and}\;y$ that disappear in this simplification are often called <strong><span data-concept="intermediate-variable">intermediate variables</span></strong>: they are independent variables for the function $\kf,$ but are dependent variables for the variable $t.$ Two terms appear on the right-hand side of the formula, and $\kf$ is a <span data-concept="function-of-two-variables">function of two variables</span>. This pattern works with functions of more than two variables as well, as we see later in this section.</p>
+<div class="example" id="fs-id1167793221931">
+<h3>Example 14.26 · Using the Chain Rule</h3>
+<p>Calculate $dz/dt$ for each of the following functions:</p>
+<p>a. $z=\kf(x,y)=4x^{2}+3y^{2},x=x(t)=\sin t,y=y(t)=\cos t$</p>
+<p>b. $z=\kf(x,y)=\sqrt{x^{2}-y^{2}},x=x(t)=e^{2t},y=y(t)=e^{-t}$</p>
+<h4>Solution</h4>
+<p>a. To use the <span data-concept="chain-rule">chain rule</span>, we need four quantities—$\kdzdxin,\kdzdyin,dx/dt,$ and $dy/dt\text{:}$</p>
+$$\begin{array}{llll}\kdzdx=8x & & & \kdzdy=6y \\ \kdxdt=\cos t & & & \kdydt=-\sin t\end{array}$$
+<p>Now, we substitute each of these into <a href="#fs-id1167794005848">Equation 14.29</a>:</p>
+$$\begin{array}{rl}\kdzdt & =\kdzdx\cdot \kdxdt+\kdzdy\cdot \kdydt \\ & =(8x)(\cos t)+(6y)(-\sin t) \\ & =8x\;\cos t-6y\;\sin t.\end{array}$$
+<p>This answer has three variables in it. To reduce it to one variable, use the fact that $x(t)=\sin t\;\text{and}\;y(t)=\cos t.$ We obtain</p>
+$$\begin{array}{rl}\kdzdt & =8x\;\cos t-6y\;\sin t \\ & =8(\sin t)\cos t-6(\cos t)\sin t \\ & =2\;\sin t\;\cos t.\end{array}$$
+<p>This derivative can also be calculated by first substituting $x(t)$ and $y(t)$ into $\kf(x,y),$ then differentiating with respect to $t\text{:}$</p>
+$$\begin{array}{rl}z & =\kf(x,y) \\ & =\kf(x(t),y(t)) \\ & =4{(x(t))}^{2}+3{(y(t))}^{2} \\ & =4{\sin }^{2}t+3{\cos }^{2}t.\end{array}$$
+<p>Then</p>
+$$\begin{array}{rl}\kdzdt & =2(4\;\sin t)(\cos t)+2(3\;\cos t)(-\sin t) \\ & =8\;\sin t\;\cos t-6\;\sin t\;\cos t \\ & =2\;\sin t\;\cos t,\end{array}$$
+<p>which is the same solution. However, it may not always be this easy to differentiate in this form.</p>
+<p>b. To use the <span data-concept="chain-rule">chain rule</span>, we again need four quantities—$\kdzdxin,\partial z/dy,dx/dt,$ and $dy/dt\text{:}$</p>
+$$\begin{array}{llll}\kdzdx=\frac{x}{\sqrt{x^{2}-y^{2}}} & & & \kdzdy=\frac{-y}{\sqrt{x^{2}-y^{2}}} \\ \kdxdt=2e^{2t} & & & \kdydt=-e^{-t}.\end{array}$$
+<p>We substitute each of these into <a href="#fs-id1167794005848">Equation 14.29</a>:</p>
+$$\begin{array}{rl}\kdzdt & =\kdzdx\cdot \kdxdt+\kdzdy\cdot \kdydt \\ & =(\frac{x}{\sqrt{x^{2}-y^{2}}})(2e^{2t})+(\frac{-y}{\sqrt{x^{2}-y^{2}}})(-e^{-t}) \\ & =\frac{2xe^{2t}+ye^{-t}}{\sqrt{x^{2}-y^{2}}}.\end{array}$$
+<p>To reduce this to one variable, we use the fact that $x(t)=e^{2t}$ and $y(t)=e^{-t}.$ Therefore,</p>
+$$\begin{array}{rl}\kdzdt & =\frac{2xe^{2t}+ye^{-t}}{\sqrt{x^{2}-y^{2}}} \\ & =\frac{2(e^{2t})e^{2t}+(e^{-t})e^{-t}}{\sqrt{e^{4t}-e^{-2t}}} \\ & =\frac{2e^{4t}+e^{-2t}}{\sqrt{e^{4t}-e^{-2t}}}.\end{array}$$
+<p>To eliminate negative exponents, we multiply the top by $e^{2t}$ and the bottom by $\sqrt{e^{4t}}\text{:}$</p>
+$$\begin{array}{rl}\kdzdt & =\frac{2e^{4t}+e^{-2t}}{\sqrt{e^{4t}-e^{-2t}}}\cdot \frac{e^{2t}}{\sqrt{e^{4t}}} \\ & =\frac{2e^{6t}+1}{\sqrt{e^{8t}-e^{2t}}} \\ & =\frac{2e^{6t}+1}{\sqrt{e^{2t}(e^{6t}-1)}} \\ & =\frac{2e^{6t}+1}{e^{t}\sqrt{e^{6t}-1}}.\end{array}$$
+<p>Again, this derivative can also be calculated by first substituting $x(t)$ and $y(t)$ into $\kf(x,y),$ then differentiating with respect to $t\text{:}$</p>
+$$\begin{array}{rl}z & =\kf(x,y) \\ & =\kf(x(t),y(t)) \\ & =\sqrt{{(x(t))}^{2}-{(y(t))}^{2}} \\ & =\sqrt{e^{4t}-e^{-2t}} \\ & ={(e^{4t}-e^{-2t})}^{1/2}.\end{array}$$
+<p>Then</p>
+$$\begin{array}{rl}\kdzdt & =\frac{1}{2}{(e^{4t}-e^{-2t})}^{-1/2}(4e^{4t}+2e^{-2t}) \\ & =\frac{2e^{4t}+e^{-2t}}{\sqrt{e^{4t}-e^{-2t}}}.\end{array}$$
+<p>This is the same solution.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793221931"></div>
+<figure class="sim" id="sim-chain-path">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The <span data-concept="chain-rule">chain rule</span> for one independent variable on part a of Example 14.26: the point $(x(t),y(t))=(\sin t,\cos t)$ runs around the unit circle across the level curves of $z=\kf(x,y)=4x^{2}+3y^{2},$ and the graph below plots $z$ against $t.$ The slope of that graph at each moment is $\kdzdt,$ the sum of the two contributions $\kdzdx\,\kdxdt$ and $\kdzdy\,\kdydt.$</span></div>
+</figure>
+<p id="tree-term">It is often useful to create a visual representation of <a href="#fs-id1167794005848">Equation 14.29</a> for the <span data-concept="chain-rule">chain rule</span>. This is called a <strong><span data-concept="tree-diagram">tree diagram</span></strong> for the <span data-concept="chain-rule">chain rule</span> for functions of one variable and it provides a way to remember the formula (Figure 14.34). This diagram can be expanded for functions of more than one variable, as we shall see very shortly.</p>
+<figure class="sim" id="fig-tree-one" data-figure="14.34" data-original="/media/ch14/CNX_Calc_Figure_14_05_001.jpg" data-original-caption="Tree diagram for the case dz/dt=partial z/partial x· dx/dt+partial z/partial y· dy/dt.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.34</span><span><span data-concept="tree-diagram">Tree diagram</span> for the case $\kdzdt=\kdzdx\cdot \kdxdt+\kdzdy\cdot \kdydt.$</span></div>
+</figure>
+<p id="tree-reading">In this diagram, the leftmost corner corresponds to $z=\kf(x,y).$ Since $\kf$ has two independent variables, there are two lines coming from this corner. The upper branch corresponds to the variable $x$ and the lower branch corresponds to the variable $y.$ Since each of these variables is then dependent on one variable $t,$ one branch then comes from $x$ and one branch comes from $y.$ Last, each of the branches on the far right has a label that represents the path traveled to reach that branch. The top branch is reached by following the $x$ branch, then the $t$ branch; therefore, it is labeled $(\kdzdxin)\;\times \;(dx/dt).$ The bottom branch is similar: first the $y$ branch, then the $t$ branch. This branch is labeled $(\kdzdyin)\;\times \;(dy/dt).$ To get the formula for $dz/dt,$ add all the terms that appear on the rightmost side of the diagram. This gives us <a href="#fs-id1167794005848">Equation 14.29</a>.</p>
+<p>In <a href="#fs-id1167794044156">Chain Rule for Two Independent Variables</a>, $z=\kf(x,y)$ is a function of $x\;\text{and}\;y,$ and both $x=\kg(u,v)$ and $y=\kh(u,v)$ are functions of the independent variables $u\;\text{and}\;v.$</p>
+<div class="note" id="fs-id1167794044156">
+<div class="eyebrow">Theorem</div>
+<h3>Chain Rule for Two Independent Variables</h3>
+<p>Suppose $x=\kg(u,v)$ and $y=\kh(u,v)$ are differentiable functions of $u$ and $v,$ and $z=\kf(x,y)$ is a differentiable function of $x\;\text{and}\;y.$ Then, $z=\kf(\kg(u,v),\kh(u,v))$ is a differentiable function of $u\;\text{and}\;v,$ and</p>
+<div class="equation" id="fs-id1167793501898">$$\kdzdu=\kdzdx\;\kpxpu+\kdzdy\;\kpypu\tag{14.31}$$</div>
+<p>and</p>
+<div class="equation" id="fs-id1167794173384">$$\kdzdv=\kdzdx\;\kpxpv+\kdzdy\;\kpypv.\tag{14.32}$$</div>
+</div>
+<p>We can draw a <span data-concept="tree-diagram">tree diagram</span> for each of these formulas as well as follows.</p>
+<figure class="sim" id="fig-tree-two" data-figure="14.35" data-original="/media/ch14/CNX_Calc_Figure_14_05_002.jpg" data-original-caption="Tree diagram for partial z/partial u=partial z/partial x· partial x/partial u+partial z/partial y· partial y/partial u and partial z/partial v=partial z/partial x· partial x/partial v+partial z/partial y· partial y/partial v.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.35</span><span><span data-concept="tree-diagram">Tree diagram</span> for $\kdzdu=\kdzdx\cdot \kpxpu+\kdzdy\cdot \kpypu$ and $\kdzdv=\kdzdx\cdot \kpxpv+\kdzdy\cdot \kpypv.$</span></div>
+</figure>
+<p id="tree-two">To derive the formula for $\partial z/\partial u,$ start from the left side of the diagram, then follow only the branches that end with $u$ and add the terms that appear at the end of those branches. For the formula for $\partial z/\partial v,$ follow only the branches that end with $v$ and add the terms that appear at the end of those branches.</p>
+<p id="partial-or-ordinary">There is an important difference between these two <span data-concept="chain-rule">chain rule</span> theorems. In <a href="#fs-id1167793362088">Chain Rule for One Independent Variable</a>, the left-hand side of the formula for the derivative is not a <span data-concept="partial-derivative">partial derivative</span>, but in <a href="#fs-id1167794044156">Chain Rule for Two Independent Variables</a> it is. The reason is that, in <a href="#fs-id1167793362088">Chain Rule for One Independent Variable</a>, $z$ is ultimately a function of $t$ alone, whereas in <a href="#fs-id1167794044156">Chain Rule for Two Independent Variables</a>, $z$ is a function of both $u\;\text{and}\;v.$</p>
+<div class="example" id="fs-id1167794337339">
+<h3>Example 14.27 · Using the Chain Rule for Two Variables</h3>
+<p>Calculate $\partial z/\partial u$ and $\partial z/\partial v$ using the following functions:</p>
+$$z=\kf(x,y)=3x^{2}-2xy+y^{2},x=x(u,v)=3u+2v,y=y(u,v)=4u-v.$$
+<h4>Solution</h4>
+<p>To implement the <span data-concept="chain-rule">chain rule</span> for two variables, we need six <span data-concept="partial-derivative">partial derivatives</span>—$\kdzdxin,\kdzdyin,\partial x/\partial u,\partial x/\partial v,\partial y/\partial u,$ and $\partial y/\partial v\text{:}$</p>
+$$\begin{array}{llll}\kdzdx=6x-2y & & & \kdzdy=-2x+2y \\ \kpxpu=3 & & & \kpxpv=2 \\ \kpypu=4 & & & \kpypv=-1.\end{array}$$
+<p>To find $\partial z/\partial u,$ we use <a href="#fs-id1167793501898">Equation 14.31</a>:</p>
+$$\begin{array}{rl}\kdzdu & =\kdzdx\frac{\partial x}{\partial u}+\kdzdy\frac{\partial y}{\partial u} \\ & =3(6x-2y)+4(-2x+2y) \\ & =10x+2y.\end{array}$$
+<p>Next, we substitute $x(u,v)=3u+2v$ and $y(u,v)=4u-v\text{:}$</p>
+$$\begin{array}{rl}\kdzdu & =10x+2y \\ & =10(3u+2v)+2(4u-v) \\ & =38u+18v.\end{array}$$
+<p>To find $\partial z/\partial v,$ we use <a href="#fs-id1167794173384">Equation 14.32</a>:</p>
+$$\begin{array}{rl}\kdzdv & =\kdzdx\;\kpxpv+\kdzdy\;\kpypv \\ & =2(6x-2y)+(-1)(-2x+2y) \\ & =14x-6y.\end{array}$$
+<p>Then we substitute $x(u,v)=3u+2v$ and $y(u,v)=4u-v\text{:}$</p>
+$$\begin{array}{rl}\kdzdv & =14x-6y \\ & =14(3u+2v)-6(4u-v) \\ & =18u+34v.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794337339"></div>
+</section>
+<section id="generalized">
+<h2>The Generalized Chain Rule</h2>
+<p class="cite-target">Now that we’ve see how to extend the original <span data-concept="chain-rule">chain rule</span> to <span data-concept="function-of-two-variables">functions of two variables</span>, it is natural to ask: Can we extend the rule to more than two variables? The answer is yes, as the <strong><span data-concept="generalized-chain-rule">generalized chain rule</span></strong> states.</p>
+<div class="note" id="fs-id1167793261542">
+<div class="eyebrow">Theorem</div>
+<h3>Generalized Chain Rule</h3>
+<p>Let $\kw=\kf(x_{1},x_{2}\text{,…,}\;x_{m})$ be a differentiable function of $m$ independent variables, and for each $i\in \{1\text{,…,}\;m\},$ let $x_{i}=x_{i}(t_{1},t_{2}\text{,…,}\;t_{n})$ be a differentiable function of $n$ independent variables. Then</p>
+<div class="equation" id="fs-id1167794334635">$$\frac{\partial \kw}{\partial t_{j}}=\frac{\partial \kw}{\partial x_{1}}\;\frac{\partial x_{1}}{\partial t_{j}}+\frac{\partial \kw}{\partial x_{2}}\;\frac{\partial x_{2}}{\partial t_{j}}+\cdots +\frac{\partial \kw}{\partial x_{m}}\;\frac{\partial x_{m}}{\partial t_{j}}\tag{14.33}$$</div>
+<p>for any $j\in \{1,2\text{,…,}\;n\}.$</p>
+</div>
+<p id="generalized-example-intro">In the next example we calculate the derivative of a function of three independent variables in which each of the three variables is dependent on two other variables.</p>
+<div class="example" id="fs-id1167794061796">
+<h3>Example 14.28 · Using the Generalized Chain Rule</h3>
+<p>Calculate $\partial \kw/\partial u$ and $\partial \kw/\partial v$ using the following functions:</p>
+$$\begin{array}{rll} \\ \kw & = & \kf(x,y,z)=3x^{2}-2xy+4z^{2} \\ x & = & x(u,v)=e^{u}\sin v \\ y & = & y(u,v)=e^{u}\cos v \\ z & = & z(u,v)=e^{u}.\end{array}$$
+<h4>Solution</h4>
+<p>The formulas for $\partial \kw/\partial u$ and $\partial \kw/\partial v$ are</p>
+$$\begin{array}{l}\frac{\partial \kw}{\partial u}=\frac{\partial \kw}{\partial x}\cdot \kpxpu+\frac{\partial \kw}{\partial y}\cdot \kpypu+\frac{\partial \kw}{\partial z}\cdot \kdzdu \\ \frac{\partial \kw}{\partial v}=\frac{\partial \kw}{\partial x}\cdot \kpxpv+\frac{\partial \kw}{\partial y}\cdot \kpypv+\frac{\partial \kw}{\partial z}\cdot \kdzdv.\end{array}$$
+<p>Therefore, there are nine different <span data-concept="partial-derivative">partial derivatives</span> that need to be calculated and substituted. We need to calculate each of them:</p>
+$$\begin{array}{rllllrllllrll}\frac{\partial \kw}{\partial x} & = & 6x-2y & & & \frac{\partial \kw}{\partial y} & = & -2x & & & \frac{\partial \kw}{\partial z} & = & 8z \\ \kpxpu & = & e^{u}\sin v & & & \kpypu & = & e^{u}\cos v & & & \kdzdu & = & e^{u} \\ \kpxpv & = & e^{u}\cos v & & & \kpypv & = & -e^{u}\sin v & & & \kdzdv & = & 0.\end{array}$$
+<p>Now, we substitute each of them into the first formula to calculate $\partial \kw/\partial u\text{:}$</p>
+$$\begin{array}{rl}\frac{\partial \kw}{\partial u} & =\frac{\partial \kw}{\partial x}\cdot \kpxpu+\frac{\partial \kw}{\partial y}\cdot \kpypu+\frac{\partial \kw}{\partial z}\cdot \kdzdu \\ & =(6x-2y)e^{u}\sin v-2xe^{u}\cos v+8ze^{u},\end{array}$$
+<p>then substitute $x(u,v)=e^{u}\sin v,y(u,v)=e^{u}\cos v,$ and $z(u,v)=e^{u}$ into this equation:</p>
+$$\begin{array}{rl}\frac{\partial \kw}{\partial u} & =(6x-2y)e^{u}\sin v-2xe^{u}\cos v+8ze^{u} \\ & =(6e^{u}\sin v-2e^{u}\cos v)e^{u}\sin v-2(e^{u}\sin v)e^{u}\cos v+8e^{2u} \\ & =6e^{2u}{\sin }^{2}v-4e^{2u}\sin v\;\cos v+8e^{2u} \\ & =2e^{2u}(3\;{\sin }^{2}v-2\;\sin v\;\cos v+4).\end{array}$$
+<p>Next, we calculate $\partial \kw/\partial v\text{:}$</p>
+$$\begin{array}{rl}\frac{\partial \kw}{\partial v} & =\frac{\partial \kw}{\partial x}\cdot \kpxpv+\frac{\partial \kw}{\partial y}\cdot \kpypv+\frac{\partial \kw}{\partial z}\cdot \kdzdv \\ & =(6x-2y)e^{u}\cos v-2x(-e^{u}\sin v)+8z(0),\end{array}$$
+<p>then we substitute $x(u,v)=e^{u}\sin v,y(u,v)=e^{u}\cos v,$ and $z(u,v)=e^{u}$ into this equation:<sup class="fn" data-note="c-ex28-last"></sup></p>
+$$\begin{array}{ll}\frac{\partial \kw}{\partial v} & =(6x-2y)e^{u}\cos v-2x(-e^{u}\sin v) \\ & =(6e^{u}\sin v-2e^{u}\cos v)e^{u}\cos v+2(e^{u}\sin v)(e^{u}\sin v) \\ & =2e^{2u}{\sin }^{2}v+6e^{2u}\sin v\;\cos v-2e^{2u}{\cos }^{2}v \\ & =2e^{2u}(v+3\sin \sin v\cos \cos v-v).\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794061796"></div>
+<div class="example" id="fs-id1167794061358">
+<h3>Example 14.29 · Drawing a Tree Diagram</h3>
+<p>Create a <span data-concept="tree-diagram">tree diagram</span> for the case when</p>
+$$\kw=\kf(x,y,z),x=x(t,u,v),y=y(t,u,v),z=z(t,u,v)$$
+<p>and write out the formulas for the three <span data-concept="partial-derivative">partial derivatives</span> of $\kw.$</p>
+<h4>Solution</h4>
+<p>Starting from the left, the function $\kf$ has three independent variables: $x,y,\text{and}\;z.$ Therefore, three branches must be emanating from the first node. Each of these three branches also has three branches, for each of the variables $t,u,\;\text{and}\;v.$</p>
+<figure class="sim" id="fig-tree-three" data-figure="14.36" data-original="/media/ch14/CNX_Calc_Figure_14_05_003.jpg" data-original-caption="Tree diagram for a function of three variables, each of which is a function of three independent variables.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.36</span><span><span data-concept="tree-diagram">Tree diagram</span> for a function of three variables, each of which is a function of three independent variables.</span></div>
+</figure>
+<p>The three formulas are</p>
+$$\begin{array}{l}\frac{\partial \kw}{\partial t}=\frac{\partial \kw}{\partial x}\;\frac{\partial x}{\partial t}+\frac{\partial \kw}{\partial y}\;\frac{\partial y}{\partial t}+\frac{\partial \kw}{\partial z}\;\frac{\partial z}{\partial t} \\ \frac{\partial \kw}{\partial u}=\frac{\partial \kw}{\partial x}\;\kpxpu+\frac{\partial \kw}{\partial y}\;\kpypu+\frac{\partial \kw}{\partial z}\;\kdzdu \\ \frac{\partial \kw}{\partial v}=\frac{\partial \kw}{\partial x}\;\kpxpv+\frac{\partial \kw}{\partial y}\;\kpypv+\frac{\partial \kw}{\partial z}\;\kdzdv.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794061358"></div>
+</section>
+<section id="implicit">
+<h2>Implicit Differentiation</h2>
+<p class="cite-target">Recall from <a href="/calculus/ch03/3.8/">Implicit Differentiation</a> that <span data-concept="implicit-differentiation">implicit differentiation</span> provides a method for finding $dy/dx$ when $y$ is defined implicitly as a function of $x.$ The method involves differentiating both sides of the equation defining the function with respect to $x,$ then solving for $dy/dx.$ <span data-concept="partial-derivative">Partial derivatives</span> provide an alternative to this method.</p>
+<p id="implicit-ellipse">Consider the <span data-concept="ellipse">ellipse</span> defined by the equation $x^{2}+3y^{2}+4y-4=0$ as follows.</p>
+<figure class="sim" id="sim-implicit-tangent" data-figure="14.37 + 14.38" data-original="/media/ch14/CNX_Calc_Figure_14_05_005.jpg,/media/ch14/CNX_Calc_Figure_14_05_006.jpg" data-original-caption="(Figure 14.37) Graph of the ellipse defined by x² + 3y² + 4y − 4 = 0. (Figure 14.38) Graph of the rotated ellipse defined by 3x² − 2xy + y² + 4x − 6y − 11 = 0.">
+  <div class="sim-head"><span class="eyebrow">Figure 14.37 + 14.38</span><span>Graph of the <span data-concept="ellipse">ellipse</span> defined by $x^{2}+3y^{2}+4y-4=0,$ or of the rotated ellipse $3x^{2}-2xy+y^{2}+4x-6y-11=0$ of Example 14.30. Move the point around the curve: the <span data-concept="tangent-line">tangent line</span> there has the slope $\frac{dy}{dx}=-\frac{\partial f/\partial x}{\partial f/\partial y},$ which the readout computes from the partial derivatives of $\kf(x,y),$ the left-hand side of the equation.</span></div>
+</figure>
+<p>This equation implicitly defines $y$ as a function of $x.$ As such, we can find the derivative $dy/dx$ using the method of <span data-concept="implicit-differentiation">implicit differentiation</span>:</p>
+$$\begin{array}{rll}\frac{d}{dx}(x^{2}+3y^{2}+4y-4) & = & \frac{d}{dx}(0) \\ 2x+6y\frac{dy}{dx}+4\frac{dy}{dx} & = & 0 \\ (6y+4)\frac{dy}{dx} & = & -2x \\ \frac{dy}{dx} & = & -\frac{x}{3y+2}.\end{array}$$
+<p id="implicit-function">We can also define a function $z=\kf(x,y)$ by using the left-hand side of the equation defining the <span data-concept="ellipse">ellipse</span>. Then $\kf(x,y)=x^{2}+3y^{2}+4y-4.$ The <span data-concept="ellipse">ellipse</span> $x^{2}+3y^{2}+4y-4=0$ can then be described by the equation $\kf(x,y)=0.$ Using this function and the following theorem gives us an alternative approach to calculating $dy/dx.$</p>
+<div class="note" id="fs-id1167793376409">
+<div class="eyebrow">Theorem</div>
+<h3>Implicit Differentiation of a Function of Two or More Variables</h3>
+<p>Suppose the function $z=\kf(x,y)$ defines $y$ implicitly as a function $y=\kg(x)$ of $x$ via the equation $\kf(x,y)=0.$ Then</p>
+<div class="equation" id="fs-id1167793547437">$$\frac{dy}{dx}=-\frac{\kdfdxin}{\kdfdyin}\tag{14.34}$$</div>
+<p>provided $\kfy(x,y)\ne 0.$</p>
+<p>If the equation $\kf(x,y,z)=0$ defines $z$ implicitly as a differentiable function of $x\;\text{and}\;y,$ then</p>
+<div class="equation" id="fs-id1167794214311">$$\kdzdx=-\frac{\kdfdxin}{\kdfdzin}\;\text{and}\;\kdzdy=-\frac{\kdfdyin}{\kdfdzin}\tag{14.35}$$</div>
+<p>as long as $\kfz(x,y,z)\ne 0.$</p>
+</div>
+<p id="implicit-derivation"><a href="#fs-id1167793547437">Equation 14.34</a> is a direct consequence of <a href="#fs-id1167793501898">Equation 14.31</a>. In particular, if we assume that $y$ is defined implicitly as a function of $x$ via the equation $\kf(x,y)=0,$ we can apply the <span data-concept="chain-rule">chain rule</span> to find $dy/dx\text{:}$</p>
+$$\begin{array}{rll}\frac{d}{dx}\kf(x,y) & = & \frac{d}{dx}(0) \\ \kdfdx\cdot \frac{dx}{dx}+\kdfdy\cdot \frac{dy}{dx} & = & 0 \\ \kdfdx+\kdfdy\cdot \frac{dy}{dx} & = & 0.\end{array}$$
+<p>Solving this equation for $dy/dx$ gives <a href="#fs-id1167793547437">Equation 14.34</a>. <a href="#fs-id1167794214311">Equation 14.35</a> can be derived in a similar fashion.</p>
+<p>Let’s now return to the problem that we started before the previous theorem. Using <a href="#fs-id1167793376409">Implicit Differentiation of a Function of Two or More Variables</a> and the function $\kf(x,y)=x^{2}+3y^{2}+4y-4,$ we obtain</p>
+$$\begin{array}{l}\kdfdx=2x \\ \kdfdy=6y+4.\end{array}$$
+<p>Then <a href="#fs-id1167793547437">Equation 14.34</a> gives</p>
+$$\frac{dy}{dx}=-\frac{\kdfdxin}{\kdfdyin}=-\frac{2x}{6y+4}=-\frac{x}{3y+2},$$
+<p>which is the same result obtained by the earlier use of <span data-concept="implicit-differentiation">implicit differentiation</span>.</p>
+<div class="example" id="fs-id1167793420880">
+<h3>Example 14.30 · Implicit Differentiation by Partial Derivatives</h3>
+<p>a. Calculate $dy/dx$ if $y$ is defined implicitly as a function of $x$ via the equation $3x^{2}-2xy+y^{2}+4x-6y-11=0.$ What is the equation of the <span data-concept="tangent-line">tangent line</span> to the graph of this curve at point $(2,1)?$</p>
+<p>b. Calculate $\kdzdxin$ and $\kdzdyin,$ given $x^{2}e^{y}-yze^{x}=0.$</p>
+<h4>Solution</h4>
+<p>a. Set $\kf(x,y)=3x^{2}-2xy+y^{2}+4x-6y-11=0,$ then calculate $\kfx$ and $\kfy\text{:}$ $\begin{array}{l}\kfx=6x-2y+4 \\ \kfy=-2x+2y-6.\end{array}$</p>
+<p>The derivative is given by</p>
+$$\frac{dy}{dx}=-\frac{\kdfdxin}{\kdfdyin}=-\frac{6x-2y+4}{-2x+2y-6}=\frac{3x-y+2}{x-y+3}.$$
+<p>The slope of the <span data-concept="tangent-line">tangent line</span> at point $(2,1)$ is given by</p>
+$${\frac{dy}{dx}|}_{(x,y)=(2,1)}=\frac{3(2)-1+2}{2-1+3}=\frac{7}{4}.$$
+<p>To find an equation of the <span data-concept="tangent-line">tangent line</span>, we use the point-slope form (Figure 14.38):</p>
+$$\begin{array}{rll}y-y_{0} & = & m(x-x_{0}) \\ y-1 & = & \frac{7}{4}(x-2) \\ y & = & \frac{7}{4}x-\frac{7}{2}+1 \\ y & = & \frac{7}{4}x-\frac{5}{2}.\end{array}$$
+<p>b. We have $\kf(x,y,z)=x^{2}e^{y}-yze^{x}.$ Therefore,</p>
+$$\begin{array}{l}\kdfdx=2xe^{y}-yze^{x} \\ \kdfdy=x^{2}e^{y}-ze^{x} \\ \kdfdz=-ye^{x}.\end{array}$$
+<p>Using <a href="#fs-id1167794214311">Equation 14.35</a>,</p>
+$$\begin{array}{lllllll}\begin{array}{ll}\kdzdx & =-\frac{\kdfdxin}{\kdfdzin} \\ & =-\frac{2xe^{y}-yze^{x}}{-ye^{x}} \\ & =\frac{2xe^{y}-yze^{x}}{ye^{x}}\end{array} & & & \text{and} & & & \begin{array}{ll}\kdzdy & =-\frac{\kdfdyin}{\kdfdzin} \\ & =-\frac{x^{2}e^{y}-ze^{x}}{-ye^{x}} \\ & =\frac{x^{2}e^{y}-ze^{x}}{ye^{x}}.\end{array}\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793420880"></div>
+</section>

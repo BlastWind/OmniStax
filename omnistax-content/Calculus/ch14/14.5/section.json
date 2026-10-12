@@ -1,0 +1,896 @@
+{
+ "id": "14.5",
+ "module": "m53938",
+ "chapter": "14",
+ "title": "The Chain Rule",
+ "short": "The Chain Rule",
+ "lead": "When the variables of a function depend on other variables, the <span data-concept=\"chain-rule\">chain rule</span> grows a term for each path from the function to the variable we differentiate by. This section states the chain rule for one and for two independent variables, draws <span data-concept=\"tree-diagram\">tree diagrams</span> to read the formulas, extends them to the <span data-concept=\"generalized-chain-rule\">generalized chain rule</span>, and uses partial derivatives for <span data-concept=\"implicit-differentiation\">implicit differentiation</span>.",
+ "objectives": [
+  "State the chain rules for one or two independent variables.",
+  "Use tree diagrams as an aid to understanding the chain rule for several independent and intermediate variables.",
+  "Perform implicit differentiation of a function of two or more variables."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"chain-rule\">chain rule</span> for functions of more than one variable involves the <span data-concept=\"partial-derivative\">partial derivatives</span> with respect to all the independent variables.</li><li><span data-concept=\"tree-diagram\">Tree diagrams</span> are useful for deriving formulas for the <span data-concept=\"chain-rule\">chain rule</span> for functions of more than one variable, where each independent variable also depends on other variables.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The even-numbered exercises have no answer in the key and are left out: 216–228 even, 230–238 even (implicit differentiation), 240–248 even and 250–258 even (applications). Review exercise 405 from the end of the chapter is held here.",
+ "figures": [
+  {
+   "id": "sim-chain-path",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "point",
+    "function",
+    "line",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tree-one",
+   "kind": "figure",
+   "number": "14.34",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_05_001.jpg"
+   ],
+   "original_caption": "Tree diagram for the case dz/dt = ∂z/∂x · dx/dt + ∂z/∂y · dy/dt.",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tree-two",
+   "kind": "figure",
+   "number": "14.35",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_05_002.jpg"
+   ],
+   "original_caption": "Tree diagram for ∂z/∂u = ∂z/∂x · ∂x/∂u + ∂z/∂y · ∂y/∂u and ∂z/∂v = ∂z/∂x · ∂x/∂v + ∂z/∂y · ∂y/∂v.",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tree-three",
+   "kind": "figure",
+   "number": "14.36",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_05_003.jpg"
+   ],
+   "original_caption": "Tree diagram for a function of three variables, each of which is a function of three independent variables.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-implicit-tangent",
+   "kind": "sim",
+   "number": "14.37",
+   "folds": [
+    "14.38"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_05_005.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_05_006.jpg"
+   ],
+   "original_caption": "(Figure 14.37) Graph of the ellipse defined by x² + 3y² + 4y − 4 = 0. (Figure 14.38) Graph of the rotated ellipse defined by 3x² − 2xy + y² + 4x − 6y − 11 = 0.",
+   "draws": [
+    "curve",
+    "line",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "chain-intro",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "chain-rules",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793362088",
+   "concept": "chain-rule-for-one-independent-variable",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793362088",
+   "concept": "differentiable-function-of-two-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "intermediate-term",
+   "concept": "intermediate-variable",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793221931",
+   "concept": "chain-rule-for-one-independent-variable",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tree-term",
+   "concept": "tree-diagram",
+   "verb": "introduces"
+  },
+  {
+   "span": "tree-reading",
+   "concept": "tree-diagram",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794044156",
+   "concept": "chain-rule-for-two-independent-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "tree-two",
+   "concept": "tree-diagram",
+   "verb": "reinforces"
+  },
+  {
+   "span": "partial-or-ordinary",
+   "concept": "chain-rule-for-two-independent-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794337339",
+   "concept": "chain-rule-for-two-independent-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793261542",
+   "concept": "generalized-chain-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794061796",
+   "concept": "generalized-chain-rule",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794061358",
+   "concept": "tree-diagram",
+   "verb": "reinforces"
+  },
+  {
+   "span": "implicit",
+   "concept": "implicit-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "implicit-ellipse",
+   "concept": "ellipse",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793376409",
+   "concept": "implicit-differentiation-by-partial-derivatives",
+   "verb": "introduces"
+  },
+  {
+   "span": "implicit-derivation",
+   "concept": "implicit-differentiation-by-partial-derivatives",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793420880",
+   "concept": "implicit-differentiation-by-partial-derivatives",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794290552",
+   "source_number": "Checkpoint 14.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793221931"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>Calculate $dz/dt$ given the following functions. Express the final answer in terms of $t.$</p>\n$$z=f(x,y)=x^{2}-3xy+2y^{2},x=x(t)=3\\;\\sin 2t,y=y(t)=4\\;\\cos 2t$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{rl}\\frac{dz}{dt} & =\\frac{\\partial f}{\\partial x}\\;\\frac{dx}{dt}+\\frac{\\partial f}{\\partial y}\\;\\frac{dy}{dt} \\\\ & =(2x-3y)(6\\;\\cos 2t)+(-3x+4y)(-8\\;\\sin 2t) \\\\ & =-92\\;\\sin 2t\\;\\cos 2t-72({\\cos }^{2}2t-{\\sin }^{2}2t) \\\\ & =-46\\;\\sin 4t-72\\;\\cos 4t.\\end{array}$",
+    "hint": "Calculate $\\partial z/\\partial x,\\partial z/dy,dx/dt,$ and $dy/dt,$ then use <a href=\"#fs-id1167794005848\">Equation 14.29</a>."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794003174",
+   "source_number": "Checkpoint 14.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794337339"
+   },
+   "cite": "fs-id1167794044156",
+   "prompt": "<p>Calculate $\\partial z/\\partial u$ and $\\partial z/\\partial v$ given the following functions:</p>\n$$z=f(x,y)=\\frac{2x-y}{x+3y},x(u,v)=e^{2u}\\cos 3v,y(u,v)=e^{2u}\\sin 3v.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial u}=0,\\;\\frac{\\partial z}{\\partial v}=\\frac{-21}{{(3\\;\\sin 3v+\\cos 3v)}^{2}}$",
+    "hint": "Calculate $\\partial z/\\partial x,\\partial z/\\partial y,\\partial x/\\partial u,\\partial x/\\partial v,\\partial y/\\partial u,$ and $\\partial y/\\partial v,$ then use <a href=\"#fs-id1167793501898\">Equation 14.31</a> and <a href=\"#fs-id1167794173384\">Equation 14.32</a>."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793420518",
+   "source_number": "Checkpoint 14.25",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794061796"
+   },
+   "cite": "fs-id1167793261542",
+   "prompt": "<p>Calculate $\\partial w/\\partial u$ and $\\partial w/\\partial v$ given the following functions:</p>\n$$\\begin{array}{rll} \\\\ \\\\ w & = & f(x,y,z)=\\frac{x+2y-4z}{2x-y+3z} \\\\ x & = & x(u,v)=e^{2u}\\cos 3v \\\\ y & = & y(u,v)=e^{2u}\\sin 3v \\\\ z & = & z(u,v)=e^{2u}.\\end{array}$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{l}\\frac{\\partial w}{\\partial u}=0 \\\\ \\frac{\\partial w}{\\partial v}=\\frac{15-33\\;\\sin 3v+6\\;\\cos 3v}{{(3+2\\;\\cos 3v-\\sin 3v)}^{2}}\\end{array}$",
+    "hint": "Calculate nine partial derivatives, then use the same formulas from <a href=\"#fs-id1167794061796\">Example 14.28</a>."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793630197",
+   "source_number": "Checkpoint 14.26",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794061358"
+   },
+   "cite": "tree-term",
+   "prompt": "<p>Create a tree diagram for the case when</p>\n$$w=f(x,y),x=x(t,u,v),y=y(t,u,v)$$\n<p>and write out the formulas for the three partial derivatives of $w.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\begin{array}{l}\\frac{\\partial w}{\\partial t}=\\frac{\\partial w}{\\partial x}\\;\\frac{\\partial x}{\\partial t}+\\frac{\\partial w}{\\partial y}\\;\\frac{\\partial y}{\\partial t} \\\\ \\frac{\\partial w}{\\partial u}=\\frac{\\partial w}{\\partial x}\\;\\frac{\\partial x}{\\partial u}+\\frac{\\partial w}{\\partial y}\\;\\frac{\\partial y}{\\partial u} \\\\ \\frac{\\partial w}{\\partial v}=\\frac{\\partial w}{\\partial x}\\;\\frac{\\partial x}{\\partial v}+\\frac{\\partial w}{\\partial y}\\;\\frac{\\partial y}{\\partial v}\\end{array}$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_05_004.jpg\" alt=\"A diagram that starts with w = f(x, y). Along the first branch, it is written ∂w/∂x, then x = x(t, u, v), at which point it breaks into another three subbranches: the first subbranch says t and then ∂w/∂x ∂x/∂t; the second subbranch says u and then ∂w/∂x ∂x/∂u; and the third subbranch says v and then ∂w/∂x ∂x/∂v. Along the second branch, it is written ∂w/∂y, then y = y(t, u, v), at which point it breaks into another three subbranches: the first subbranch says t and then ∂w/∂y ∂y/∂t; the second subbranch says u and then ∂w/∂y ∂y/∂u; and the third subbranch says v and then ∂w/∂y ∂y/∂v.\">",
+    "hint": "Determine the number of branches that emanate from each node in the tree."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793948132",
+   "source_number": "Checkpoint 14.27",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793420880"
+   },
+   "cite": "fs-id1167793376409",
+   "prompt": "Find $dy/dx$ if $y$ is defined implicitly as a function of $x$ by the equation $x^{2}+xy-y^{2}+7x-3y-26=0.$ What is the equation of the tangent line to the graph of this curve at point $(3,-2)?$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dy}{dx}={\\frac{2x+y+7}{2y-x+3}|}_{(3,-2)}=\\frac{2(3)+(-2)+7}{2(-2)-(3)+3}=-\\frac{11}{4}$ Equation of the tangent line: $y=-\\frac{11}{4}x+\\frac{25}{4}$",
+    "hint": "Calculate $\\partial f/dx$ and $\\partial f/dy,$ then use <a href=\"#fs-id1167793547437\">Equation 14.34</a>."
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1167793510314",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793261542",
+   "prompt": "<p>For the following exercises, use the information provided to solve the problem.</p><p>Let $w(x,y,z)=xy\\;\\cos z,$ where $x=t,y=t^{2},$ and $z=\\operatorname{arcsin}\\;t.$ Find $\\frac{dw}{dt}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dw}{dt}=\\frac{3t^{2}-4t^{2}}{\\sqrt{1-t^{2}}}$<sup class=\"fn\" data-note=\"c-e215\"></sup>"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1167793952838",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794044156",
+   "prompt": "<p>For the following exercises, use the information provided to solve the problem.</p><p>If $w=5x^{2}+2y^{2},x=-3s+t,$ and $y=s-4t,$ find $\\frac{\\partial w}{\\partial s}$ and $\\frac{\\partial w}{\\partial t}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial w}{\\partial s}=94s-46t,$ $\\frac{\\partial w}{\\partial t}=–46s+74t$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1167793267247",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794044156",
+   "prompt": "<p>For the following exercises, use the information provided to solve the problem.</p><p>If $f(x,y)=xy,x=r\\;\\cos \\theta ,$ and $y=r\\;\\sin \\theta ,$ find $\\frac{\\partial f}{\\partial r}$ and express the answer in terms of $r$ and $\\theta .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial f}{\\partial r}=r\\;\\sin (2\\theta )$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1167794176177",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, find $\\frac{df}{dt}$ using the chain rule and direct substitution.</p><p>$f(x,y)=x^{2}+y^{2},$ $x=t,y=t^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{df}{dt}=2t+4t^{3}$"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1167793618049",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, find $\\frac{df}{dt}$ using the chain rule and direct substitution.</p><p>$f(x,y)=xy,x=1-\\sqrt{t},y=1+\\sqrt{t}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{df}{dt}=-1$"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1167793419012",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, find $\\frac{df}{dt}$ using the chain rule and direct substitution.</p><p>$f(x,y)=\\ln (x+y),$ $x=e^{t},y=e^{t}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{df}{dt}=1$"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1167794212884",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, find $\\frac{df}{dt}$ using the chain rule and direct substitution.</p><p>Let $w(x,y,z)=x^{2}+y^{2}+z^{2},$ $x=\\cos t,y=\\sin t,$ and $z=e^{t}.$ Express $w$ as a function of $t$ and find $\\frac{dw}{dt}$ directly. Then, find $\\frac{dw}{dt}$ using the chain rule.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dw}{dt}=2e^{2t}$ in both cases"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1167794226521",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, find $\\frac{df}{dt}$ using the chain rule and direct substitution.</p><p>Let $u=e^{x}\\sin y,$ where $x=-\\ln2t$ and $y=\\pi t.$ Find $\\frac{du}{dt}$ when $x=\\ln 2$ and $y=\\frac{\\pi}{4}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{du}{dt}=\\sqrt{2}(\\pi -4)$"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1167793617968",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793376409",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ using partial derivatives.</p><p>$x^{3}+y^{2}x-3=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dy}{dx}=-\\frac{3x^{2}+y^{2}}{2xy}$"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1167793280708",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793376409",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ using partial derivatives.</p><p>$x^{2}-2xy+y^{4}=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dy}{dx}=\\frac{y-x}{-x+2y^{3}}$"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1167793498214",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793376409",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ using partial derivatives.</p><p>$x^{2/3}+y^{2/3}=a^{2/3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dy}{dx}=-\\sqrt[3]{\\frac{y}{x}}$"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1167793393729",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793376409",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ using partial derivatives.</p><p>$e^{xy}+ye^{y}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dy}{dx}=-\\frac{ye^{xy}}{xe^{xy}+e^{y}(1+y)}$"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1167793450523",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>Find $\\frac{dz}{dt}$ using the chain rule where $z=3x^{2}y^{3},x=t^{4},$ and $y=t^{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dz}{dt}=42t^{13}$"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1167794137106",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>Let $z=e^{1-xy},x=t^{1/3},$ and $y=t^{3}.$ Find $\\frac{dz}{dt}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dz}{dt}=-\\frac{10}{3}t^{7/3}\\;\\times \\;e^{1-t^{10/3}}$"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1167793607615",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794044156",
+   "prompt": "<p>Let $z=\\frac{x}{y},x=2\\;\\cos u,$ and $y=3\\;\\sin v.$ Find $\\frac{\\partial z}{\\partial u}$ and $\\frac{\\partial z}{\\partial v}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial u}=\\frac{-2\\;\\sin u}{3\\;\\sin v}$ and $\\frac{\\partial z}{\\partial v}=\\frac{-2\\;\\cos u\\;\\cos v}{3\\;{\\sin }^{2}v}$"
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1167794201107",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794044156",
+   "prompt": "<p>If $z=xye^{x/y},$ $x=r\\;\\cos \\theta ,$ and $y=r\\;\\sin \\theta ,$ find $\\frac{\\partial z}{\\partial r}$ and $\\frac{\\partial z}{\\partial \\theta}$ when $r=2$ and $\\theta =\\frac{\\pi}{6}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial r}=\\sqrt{3}e^{\\sqrt{3}},$ $\\frac{\\partial z}{\\partial \\theta}=(2-4\\sqrt{3})e^{\\sqrt{3}}$"
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1167794177140",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793261542",
+   "prompt": "<p>If $w=\\sin (xyz),x=1-3t,y=e^{1-t},$ and $z=4t,$ find $\\frac{\\partial w}{\\partial t}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial w}{\\partial t}=(-12te^{1-t}\\cos((1-3t)e^{1-t}(-4t))+4t(1-3t)e^{1-t}\\cos((1-3t)e^{1-t}(-4t))-4(1-3t)e^{1-t}\\cos((1-3t)e^{1-t}(-4t))$<sup class=\"fn\" data-note=\"c-e247\"></sup>"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1167794213127",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793261542",
+   "prompt": "<p>For the following exercises, use this information: A function $f(x,y)$ is said to be homogeneous of degree $n$ if $f(tx,ty)=t^{n}f(x,y).$ For all homogeneous functions of degree $n,$ the following equation is true: $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$ Show that the given function is homogeneous and verify that $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$</p><p>$f(x,y)=\\sqrt{x^{2}+y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(tx,ty)=\\sqrt{t^{2}x^{2}+t^{2}y^{2}}=t^{1}f(x,y),$ $\\frac{\\partial f}{\\partial y}=x\\frac{1}{2}{(x^{2}+y^{2})}^{-1/2}\\;\\times \\;2x+y\\frac{1}{2}{(x^{2}+y^{2})}^{-1/2}\\;\\times \\;2y=1f(x,y)$"
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1167793992274",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, use this information: A function $f(x,y)$ is said to be homogeneous of degree $n$ if $f(tx,ty)=t^{n}f(x,y).$ For all homogeneous functions of degree $n,$ the following equation is true: $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$ Show that the given function is homogeneous and verify that $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$</p><p>The volume of a right circular cylinder is given by $V(x,y)=\\pi x^{2}y,$ where $x$ is the radius of the cylinder and <em>y</em> is the cylinder height. Suppose $x$ and $y$ are functions of $t$ given by $x=\\frac{1}{2}t$ and $y=\\frac{1}{3}t$ so that $x\\;\\text{and}\\;y$ are both increasing with time. How fast is the volume increasing when $x=2$ and $y=\\frac{4}{3}?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$V'=4\\pi$"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1167793544558",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, use this information: A function $f(x,y)$ is said to be homogeneous of degree $n$ if $f(tx,ty)=t^{n}f(x,y).$ For all homogeneous functions of degree $n,$ the following equation is true: $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$ Show that the given function is homogeneous and verify that $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$</p><p>The radius of a right circular cone is increasing at $3$ cm/min whereas the height of the cone is decreasing at $2$ cm/min. Find the rate of change of the volume of the cone when the radius is $13$ cm and the height is $18$ cm.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dV}{dt}=\\frac{1066\\pi}{3}{\\text{cm}}^{3}/\\text{min}$"
+   }
+  },
+  {
+   "id": "e255",
+   "source_id": "fs-id1167793503445",
+   "source_number": "255",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, use this information: A function $f(x,y)$ is said to be homogeneous of degree $n$ if $f(tx,ty)=t^{n}f(x,y).$ For all homogeneous functions of degree $n,$ the following equation is true: $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$ Show that the given function is homogeneous and verify that $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$</p><p>A closed box is in the shape of a rectangular solid with dimensions $x,y,\\;\\text{and}\\;z.$ (Dimensions are in inches.) Suppose each dimension is changing at the rate of $0.5$ in./min. Find the rate of change of the total surface area of the box when $x=2\\;\\text{in}\\text{.,}\\;y=3\\;\\text{in.,}\\;\\text{and}\\;z=1\\;\\text{in}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dA}{dt}=12\\;\\text{in}{.}^{2}/\\text{min}$"
+   }
+  },
+  {
+   "id": "e257",
+   "source_id": "fs-id1167793887463",
+   "source_number": "257",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, use this information: A function $f(x,y)$ is said to be homogeneous of degree $n$ if $f(tx,ty)=t^{n}f(x,y).$ For all homogeneous functions of degree $n,$ the following equation is true: $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$ Show that the given function is homogeneous and verify that $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$</p><p>The temperature $T$ at a point $(x,y)$ is $T(x,y)$ and is measured using the Celsius scale. A fly crawls so that its position after $t$ seconds is given by $x=\\sqrt{1+t}$ and $y=2+\\frac{1}{3}t,$ where $x\\;\\text{and}\\;y$ are measured in centimeters. The temperature function satisfies $T_{x}(2,3)=4$ and $T_{y}(2,3)=3.$ How fast is the temperature increasing on the fly’s path after $3$ sec?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2^{\\circ}\\text{C/\\sec}$"
+   }
+  },
+  {
+   "id": "e259",
+   "source_id": "fs-id1167793638236",
+   "source_number": "259",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tree-term",
+   "prompt": "<p>For the following exercises, use this information: A function $f(x,y)$ is said to be homogeneous of degree $n$ if $f(tx,ty)=t^{n}f(x,y).$ For all homogeneous functions of degree $n,$ the following equation is true: $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$ Show that the given function is homogeneous and verify that $x\\frac{\\partial f}{\\partial x}+y\\frac{\\partial f}{\\partial y}=nf(x,y).$</p><p>Let $u=u(x,y,z),$ where $x=x(w,t),y=y(w,t),z=z(w,t),w=w(r,s),\\text{and}\\;t=t(r,s).$ Use a tree diagram and the chain rule to find an expression for $\\frac{\\partial u}{\\partial r}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{ll}\\frac{\\partial u}{\\partial r} & =\\frac{\\partial u}{\\partial x}(\\frac{\\partial x}{\\partial w}\\;\\frac{\\partial w}{\\partial r}+\\frac{\\partial x}{\\partial t}\\;\\frac{\\partial t}{\\partial r})+\\frac{\\partial u}{\\partial y}(\\frac{\\partial y}{\\partial w}\\;\\frac{\\partial w}{\\partial r}+\\frac{\\partial y}{\\partial t}\\;\\frac{\\partial t}{\\partial r}) \\\\ & \\;+\\frac{\\partial u}{\\partial z}(\\frac{\\partial z}{\\partial w}\\;\\frac{\\partial w}{\\partial r}+\\frac{\\partial z}{\\partial t}\\;\\frac{\\partial t}{\\partial r})\\end{array}$"
+   }
+  },
+  {
+   "id": "r405",
+   "source_id": "fs-id1167793423286",
+   "source_section": "14.8",
+   "source_number": "405",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793362088",
+   "prompt": "<p>For the following exercises, find all first derivatives, full or partial, as appropriate.</p><p>$u(x,y)=x^{4}-3xy+1,x=2t,y=t^{3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial u}{\\partial x}=4x^{3}-3y,\\frac{\\partial u}{\\partial y}=-3x,\\frac{dx}{dt}=2,\\frac{dy}{dt}=3t^{2},\\frac{du}{dt}=40t^{3}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "chain-rule-for-two-independent-variables"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "generalized-chain-rule"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "tree-diagram"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "generalized-chain-rule"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "implicit-differentiation-by-partial-derivatives"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "tangent-line"
+  },
+  {
+   "exercise": "e215",
+   "concept": "generalized-chain-rule"
+  },
+  {
+   "exercise": "e217",
+   "concept": "chain-rule-for-two-independent-variables"
+  },
+  {
+   "exercise": "e219",
+   "concept": "chain-rule-for-two-independent-variables"
+  },
+  {
+   "exercise": "e221",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e223",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e225",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e227",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e229",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e231",
+   "concept": "implicit-differentiation-by-partial-derivatives"
+  },
+  {
+   "exercise": "e233",
+   "concept": "implicit-differentiation-by-partial-derivatives"
+  },
+  {
+   "exercise": "e235",
+   "concept": "implicit-differentiation-by-partial-derivatives"
+  },
+  {
+   "exercise": "e237",
+   "concept": "implicit-differentiation-by-partial-derivatives"
+  },
+  {
+   "exercise": "e239",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e241",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e243",
+   "concept": "chain-rule-for-two-independent-variables"
+  },
+  {
+   "exercise": "e245",
+   "concept": "chain-rule-for-two-independent-variables"
+  },
+  {
+   "exercise": "e247",
+   "concept": "generalized-chain-rule"
+  },
+  {
+   "exercise": "e249",
+   "concept": "chain-rule-for-two-independent-variables"
+  },
+  {
+   "exercise": "e249",
+   "concept": "partial-derivative"
+  },
+  {
+   "exercise": "e251",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e253",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e255",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e257",
+   "concept": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "exercise": "e259",
+   "concept": "tree-diagram"
+  },
+  {
+   "exercise": "e259",
+   "concept": "generalized-chain-rule"
+  },
+  {
+   "exercise": "r405",
+   "concept": "chain-rule-for-one-independent-variable"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-ex28-last",
+   "kind": "correction",
+   "html": "The last line of the display that follows is printed $2e^{2u}(v+3\\sin \\sin v\\cos \\cos v-v)$; factoring $2e^{2u}$ from the line before it gives $2e^{2u}(\\sin^{2}v+3\\sin v\\cos v-\\cos^{2}v).$"
+  },
+  {
+   "id": "c-e215",
+   "kind": "correction",
+   "html": "The second term of the numerator is $4t^{4}$: $\\frac{dw}{dt}=\\frac{3t^{2}-4t^{4}}{\\sqrt{1-t^{2}}}.$"
+  },
+  {
+   "id": "c-e247",
+   "kind": "correction",
+   "html": "With $xyz=4t(1-3t)e^{1-t},$ the chain rule gives $\\frac{dw}{dt}=\\cos (xyz)\\,(-3yz-xze^{1-t}+4xy)=\\left(-12te^{1-t}-4t(1-3t)e^{1-t}+4(1-3t)e^{1-t}\\right)\\cos \\left(4t(1-3t)e^{1-t}\\right)$: the key’s second and third terms carry the wrong signs."
+  }
+ ]
+}

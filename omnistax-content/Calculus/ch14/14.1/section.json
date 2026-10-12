@@ -1,0 +1,1199 @@
+{
+ "id": "14.1",
+ "module": "m53946",
+ "chapter": "14",
+ "title": "Functions of Several Variables",
+ "short": "Functions of Several Variables",
+ "lead": "A <span data-concept=\"function-of-two-variables\">function of two variables</span> assigns a number to each point of a set in the plane, and its graph is a <span data-concept=\"surface\">surface</span> in space. This section finds domains and ranges, graphs such functions, reads them from above through <span data-concept=\"level-curve\">level curves</span> and a <span data-concept=\"contour-map\">contour map</span> and from the side through <span data-concept=\"vertical-trace\">vertical traces</span>, and meets functions of three variables with their <span data-concept=\"level-surface\">level surfaces</span>.",
+ "objectives": [
+  "Recognize a function of two variables and identify its domain and range.",
+  "Sketch a graph of a function of two variables.",
+  "Sketch several traces or level curves of a function of two variables.",
+  "Recognize a function of three or more variables and identify its level surfaces."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"graph-of-a-function-of-two-variables\">graph of a function of two variables</span> is a <span data-concept=\"surface\">surface</span> in ${\\mathbb{R}}^{3}$ and can be studied using <span data-concept=\"level-curve\">level curves</span> and <span data-concept=\"vertical-trace\">vertical traces</span>.</li><li>A set of <span data-concept=\"level-curve\">level curves</span> is called a <span data-concept=\"contour-map\">contour map</span>.</li></ul>",
+ "notes": "The book’s Figure 14.12 prints two surfaces without their functions and is kept as its image.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approach marked as such. The 29 even-numbered exercises have no answer in the key and are left out: 2 and 4 (evaluate and model), 6–12 even (domains and ranges), 14–28 even (level curves), 30 and 32 (vertical traces), 34–38 even (domains), 40–46 even (graphs and level curves), 48–52 even (level surfaces), 54, 56 and 58 (level curves through a point and models). Review exercise 394 from the end of the chapter is held here, a true-or-false statement with no answer in the key, with an AI-written suggested approach.",
+ "figures": [
+  {
+   "id": "sim-domain-map",
+   "kind": "sim",
+   "number": "14.2",
+   "folds": [
+    "14.3"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_01_001.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_01_002.jpg"
+   ],
+   "original_caption": "(Figure 14.2) The domain of a function of two variables consists of ordered pairs (x,y). (Figure 14.3) The domain of the function g(x,y) = √(9 − x² − y²) is a closed disk of radius 3.",
+   "draws": [
+    "set",
+    "point",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-graph-surfaces",
+   "kind": "sim",
+   "number": "14.4",
+   "folds": [
+    "14.5"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_01_004.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_01_005.jpg"
+   ],
+   "original_caption": "(Figure 14.4) Graph of the hemisphere represented by the given function of two variables. (Figure 14.5) A paraboloid is the graph of the given function of two variables.",
+   "draws": [
+    "surface",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-profit-surface",
+   "kind": "sim",
+   "number": "14.6",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_01_006.jpg"
+   ],
+   "original_caption": "The graph of the given function of two variables is also a paraboloid.",
+   "draws": [
+    "surface",
+    "point",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-devils-tower",
+   "kind": "photo",
+   "number": "14.7",
+   "draws": []
+  },
+  {
+   "id": "sim-level-slice",
+   "kind": "sim",
+   "number": "14.8",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_01_008.jpg"
+   ],
+   "original_caption": "Level curves of the function g(x,y) = √(9 − x² − y²), using c = 0, 1, 2, and 3 (c = 3 corresponds to the origin).",
+   "draws": [
+    "surface",
+    "plane",
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-contour-ellipses",
+   "kind": "sim",
+   "number": "14.9",
+   "folds": [
+    "14.10"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_01_009.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_01_010.jpg"
+   ],
+   "original_caption": "(Figure 14.9) Level curve of the function f(x,y) = √(8 + 8x − 4y − 4x² − y²) corresponding to c = 0. (Figure 14.10) Contour map for the function f(x,y) = √(8 + 8x − 4y − 4x² − y²) using the values c = 0, 1, 2, 3, and 4.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-vertical-traces",
+   "kind": "sim",
+   "number": "14.11",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_01_014.jpg"
+   ],
+   "original_caption": "Vertical traces of the function f(x,y) are cosine curves in the xz-planes (a) and sine curves in the yz-planes (b).",
+   "draws": [
+    "surface",
+    "plane",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-striking-surfaces",
+   "kind": "photo",
+   "number": "14.12",
+   "draws": []
+  },
+  {
+   "id": "sim-level-surfaces",
+   "kind": "sim",
+   "number": "14.13",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_01_013.jpg"
+   ],
+   "original_caption": "A hyperboloid of one sheet with some of its level surfaces.",
+   "draws": [
+    "surface",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "fsv-intro",
+   "concept": "function-of-two-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794040017",
+   "concept": "function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794040017",
+   "concept": "domain",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794040017",
+   "concept": "range",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793371525",
+   "concept": "function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "surface-term",
+   "concept": "graph-of-a-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "surface-term",
+   "concept": "surface",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793887390",
+   "concept": "elliptic-paraboloid",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793390029",
+   "concept": "graph-of-a-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "contour-lines",
+   "concept": "level-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793882806",
+   "concept": "level-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "g-level-curves",
+   "concept": "level-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "contour-map-term",
+   "concept": "contour-map",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793961239",
+   "concept": "contour-map",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793961239",
+   "concept": "ellipse",
+   "verb": "uses"
+  },
+  {
+   "span": "vertical-trace-intro",
+   "concept": "graph-of-a-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793285160",
+   "concept": "vertical-trace",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793285160",
+   "concept": "trace",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793291691",
+   "concept": "vertical-trace",
+   "verb": "reinforces"
+  },
+  {
+   "span": "more-variables-intro",
+   "concept": "function-of-more-than-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793385918",
+   "concept": "domain",
+   "verb": "reinforces"
+  },
+  {
+   "span": "level-surface-intro",
+   "concept": "level-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793631584",
+   "concept": "level-surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793478778",
+   "concept": "hyperboloid-of-one-sheet",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793983759",
+   "source_number": "Checkpoint 14.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793371525"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "Find the domain and range of the function $f(x,y)=\\sqrt{36-9x^{2}-9y^{2}}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The domain is the shaded circle defined by the inequality $9x^{2}+9y^{2}\\le 36,$ which has a circle of radius $2$ as its boundary. The range is $[0,6].$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_01_003.jpg\" alt=\"A circle of radius two with center at the origin. The equation x2 + y2 ≤ 4 is given.\">",
+    "hint": "Determine the set of ordered pairs that do not make the radicand negative."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793964400",
+   "source_number": "Checkpoint 14.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793961239"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "Find and graph the level curve of the function $g(x,y)=x^{2}+y^{2}-6x+2y$ corresponding to $c=15.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The equation of the level curve can be written as ${(x-3)}^{2}+{(y+1)}^{2}=25,$ which is a circle with radius $5$ centered at $(3,-1).$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_01_011.jpg\" alt=\"An circle of radius 5 with center (3, –1).\">",
+    "hint": "First, set $g(x,y)=15$ and then complete the square."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793638040",
+   "source_number": "Checkpoint 14.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793291691"
+   },
+   "cite": "fs-id1167793285160",
+   "prompt": "Determine the equation of the vertical trace of the function $g(x,y)=-x^{2}-y^{2}+2x+4y-1$ corresponding to $y=3,$ and describe its graph.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z=3-{(x-1)}^{2}.$ This function describes a parabola opening downward in the plane $y=3.$",
+    "hint": "Set $y=3$ in the equation $z=-x^{2}-y^{2}+2x+4y-1$ and complete the square."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793498998",
+   "source_number": "Checkpoint 14.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793385918"
+   },
+   "cite": "more-variables-intro",
+   "prompt": "Find the domain of the function $h(x,y,t)=(3t-6)\\sqrt{y-4x^{2}+4}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{domain}(h)=\\{(x,y,t)\\in {\\mathbb{R}}^{3}|y\\ge 4x^{2}-4\\}$",
+    "hint": "Check for values that make radicands negative or denominators equal to zero."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793960628",
+   "source_number": "Checkpoint 14.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793478778"
+   },
+   "cite": "fs-id1167793631584",
+   "prompt": "<p>Find an equation of the level surface of the function</p>\n$$g(x,y,z)=x^{2}+y^{2}+z^{2}-2x+4y-6z$$\n<p>corresponding to $c=2,$ and describe the surface, if possible.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(x-1)}^{2}+{(y+2)}^{2}+{(z-3)}^{2}=16$ describes a sphere of radius $4$ centered at the point $(1,-2,3).$",
+    "hint": "Set $g(x,y,z)=c$ and complete the square."
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1167794067623",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>For the following exercises, evaluate each function at the indicated values.</p><p>$W(x,y)=4x^{2}+y^{2}.$ Find $W(2,-1),$ $W(-3,6).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$17,72$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1167793452862",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>The volume of a right circular cylinder is calculated by a function of two variables, $V(x,y)=\\pi x^{2}y,$ where $x$ is the radius of the right circular cylinder and $y$ represents the height of the cylinder. Evaluate $V(2,5)$ and explain what this means.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$20\\pi .$ This is the volume when the radius is $2$ and the height is $5.$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1167793514515",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>For the following exercises, find the domain of the function.</p><p>$V(x,y)=4x^{2}+y^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "All points in the $xy\\text{-plane}$"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1167793420489",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>For the following exercises, find the domain of the function.</p><p>$f(x,y)=4\\;\\ln (y^{2}-x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x\\lt y^{2}$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1167793369344",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>For the following exercises, find the domain of the function.</p><p>$z(x,y)=y^{2}-x^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "All real ordered pairs in the $xy\\text{-plane}$ of the form $(a,b)$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1167793940810",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>Find the range of the functions.</p><p>$g(x,y)=\\sqrt{16-4x^{2}-y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\{z|0\\le z\\le 4\\}$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1167793514716",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>Find the range of the functions.</p><p>$z=y^{2}-x^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The set $\\mathbb{R}$"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1167793830464",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find the level curves of each function at the indicated value of $c$ to visualize the given function.</p><p>$z(x,y)=y^{2}-x^{2},$ $c=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y^{2}-x^{2}=4,$ a hyperbola"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1167794097359",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find the level curves of each function at the indicated value of $c$ to visualize the given function.</p><p>$g(x,y)=4-x-y;c=0,4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4=x+y,$ a line; $x+y=0,$ line through the origin"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1167793637956",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find the level curves of each function at the indicated value of $c$ to visualize the given function.</p><p>$h(x,y)=2x-y;c=0,-2,2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{ll}2x-y=0, & 2x-y=-2\\end{array},2x-y=2;$ three lines"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1167794176162",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find the level curves of each function at the indicated value of $c$ to visualize the given function.</p><p>$g(x,y)=\\frac{x}{x+y};c=-1,0,2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x}{x+y}=-1,\\frac{x}{x+y}=0,\\frac{x}{x+y}=2$"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1167793299682",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find the level curves of each function at the indicated value of $c$ to visualize the given function.</p><p>$g(x,y)=e_{}^{xy};c=\\frac{1}{2},3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{ll}e^{xy}=\\frac{1}{2}, & e^{xy}=3\\end{array}$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1167793419036",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find the level curves of each function at the indicated value of $c$ to visualize the given function.</p><p>$f(x,y)=xy-x;c=-2,0,2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{ll}xy-x=-2, & xy-x=0,\\end{array}xy-x=2$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1167793571189",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find the level curves of each function at the indicated value of $c$ to visualize the given function.</p><p>$g(x,y)=\\ln (\\frac{y}{x^{2}});c=-2,0,2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{ll}e^{-2}x^{2}=y, & y=x^{2},y=e^{2}x^{2}\\end{array}$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1167793418297",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find the level curves of each function at the indicated value of $c$ to visualize the given function.</p><p>$f(x,y)=\\frac{y+2}{x^{2}},$ $c=$ any constant</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The level curves are parabolas of the form $y=cx^{2}-2.$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1167793617968",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793285160",
+   "prompt": "<p>For the following exercises, find the vertical traces of the functions at the indicated values of $x$ and <em>y</em>, and plot the traces.</p><p>$f(x,y)=3x+y^{3},x=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$z=3+y^{3},$ a curve in the $zy\\text{-plane}$ with rulings parallel to the $x\\text{-axis}$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_01_202.jpg\" alt=\"A planar version of the function y3 + 3 with results in the z axis and nothing mattering from the x axis.\">"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1167793631490",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>Find the domain of the following functions.</p><p>$z=\\sqrt{100-4x^{2}-25y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x^{2}}{25}+\\frac{y^{2}}{4}\\le 1$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1167793219328",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "more-variables-intro",
+   "prompt": "<p>Find the domain of the following functions.</p><p>$f(x,y,z)=\\frac{1}{\\sqrt{36-4x^{2}-9y^{2}-z^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x^{2}}{9}+\\frac{y^{2}}{4}+\\frac{z^{2}}{36}\\lt 1$"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1167793498236",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "more-variables-intro",
+   "prompt": "<p>Find the domain of the following functions.</p><p>$f(x,y,z)=\\sqrt[3]{16-x^{2}-y^{2}-z^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "All points in $xyz\\text{-space}$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1167793886682",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "surface-term",
+   "prompt": "<p>For the following exercises, plot a graph of the function.</p><p>$z=f(x,y)=\\sqrt{x^{2}+y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch14/CNX_Calc_Figure_14_01_204.jpg\" alt=\"An upward facing, gently increasing paraboloid.\">"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1167793432478",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "surface-term",
+   "prompt": "<p>Use technology to graph $z=x^{2}y.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch14/CNX_Calc_Figure_14_01_206.jpg\" alt=\"A twisted plane with corners at (1, –1, –1), (–1, –1, –1), (–1, 1, 0.5), and (1, 1, 0.5).\">"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1167793957972",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "contour-map-term",
+   "prompt": "<p>Sketch the following by finding the level curves. Verify the graph using technology.</p><p>$f(x,y)=2-\\sqrt{x^{2}+y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch14/CNX_Calc_Figure_14_01_208.jpg\" alt=\"A downward facing, gently decreasing paraboloid.\">"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1167793556981",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "contour-map-term",
+   "prompt": "<p>Sketch the following by finding the level curves. Verify the graph using technology.</p><p>$z=\\cos \\sqrt{x^{2}+y^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch14/CNX_Calc_Figure_14_01_210.jpg\" alt=\"A hemisphere in the center with edges then swooping up at the four corners.\">"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1167793589669",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "contour-map-term",
+   "prompt": "<p>Sketch the following by finding the level curves. Verify the graph using technology.</p><p>Describe the contour lines for several values of $c$ for $z=x^{2}+y^{2}-2x-2y.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The contour lines are circles."
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1167793411172",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793631584",
+   "prompt": "<p>Find the level surface for the functions of three variables and describe it.</p><p>$w(x,y,z)=x^{2}+y^{2}+z^{2},c=9$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x^{2}+y^{2}+z^{2}=9,$ a sphere of radius $3$"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1167793641999",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793631584",
+   "prompt": "<p>Find the level surface for the functions of three variables and describe it.</p><p>$w(x,y,z)=x^{2}+y^{2}-z^{2},c=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x^{2}+y^{2}-z^{2}=4,$ a hyperboloid of one sheet"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1167793294163",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find an equation of the level curve of $f$ that contains the point $P.$</p><p>$f(x,y)=1-4x^{2}-y^{2},P(0,1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4x^{2}+y^{2}=1,$"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1167793627414",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find an equation of the level curve of $f$ that contains the point $P.$</p><p>$g(x,y)=e^{xy}(x^{2}+y^{2}),P(1,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1=e^{xy}(x^{2}+y^{2})$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1167794291672",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "more-variables-intro",
+   "prompt": "<p>A thin plate made of iron is located in the $xy\\text{-plane.}$ The temperature $T$ in degrees Celsius at a point $P(x,y)$ is inversely proportional to the square of its distance from the origin. Express $T$ as a function of $x\\;\\text{and}\\;y.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$T(x,y)=\\frac{k}{x^{2}+y^{2}}$"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1167793638113",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793882806",
+   "prompt": "<p>For the following exercises, find an equation of the level curve of $f$ that contains the point $P.$</p><p>Refer to the preceding problem. Find the level curves for $T=40^{\\circ}\\text{C and}\\;T=100^{\\circ}\\text{C},$ and describe what the level curves represent.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x^{2}+y^{2}=\\frac{k}{40},$ $x^{2}+y^{2}=\\frac{k}{100}.$ The level curves represent circles of radii $\\sqrt{10k}/20$ and $\\sqrt{k}/10$"
+   }
+  },
+  {
+   "id": "r394",
+   "source_id": "fs-id1167793378469",
+   "source_section": "14.8",
+   "source_number": "394",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794040017",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>. Justify your answer with a proof or a counterexample.</p><p>The domain of $f(x,y)=x^{3}{\\sin }^{-1}(y)$ is $x=$ all real numbers, and $-\\pi \\le y\\le \\pi .$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. The factor $x^{3}$ is defined for all real numbers, so $x$ is unrestricted, but $\\sin^{-1}(y)$ is defined only for $-1\\le y\\le 1,$ the range of the sine function. The domain is $\\{(x,y)\\in \\mathbb{R}^{2}\\mid -1\\le y\\le 1\\},$ not $-\\pi \\le y\\le \\pi$: for example, $y=2$ lies in $[-\\pi ,\\pi ]$ but $\\sin^{-1}(2)$ does not exist.",
+    "generated_by": "ai"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "domain"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "range"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "vertical-trace"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "function-of-more-than-two-variables"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "domain"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "level-surface"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "sphere"
+  },
+  {
+   "exercise": "e1",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e3",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e5",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e5",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e7",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e7",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e9",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e9",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e11",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e11",
+   "concept": "range"
+  },
+  {
+   "exercise": "e13",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e13",
+   "concept": "range"
+  },
+  {
+   "exercise": "e15",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e17",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e19",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e21",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e23",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e25",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e27",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e29",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e31",
+   "concept": "vertical-trace"
+  },
+  {
+   "exercise": "e33",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e33",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e35",
+   "concept": "function-of-more-than-two-variables"
+  },
+  {
+   "exercise": "e35",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e37",
+   "concept": "function-of-more-than-two-variables"
+  },
+  {
+   "exercise": "e37",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e39",
+   "concept": "graph-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e39",
+   "concept": "surface"
+  },
+  {
+   "exercise": "e41",
+   "concept": "graph-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e41",
+   "concept": "surface"
+  },
+  {
+   "exercise": "e43",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e43",
+   "concept": "contour-map"
+  },
+  {
+   "exercise": "e43",
+   "concept": "graph-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e45",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e45",
+   "concept": "contour-map"
+  },
+  {
+   "exercise": "e45",
+   "concept": "graph-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e47",
+   "concept": "contour-map"
+  },
+  {
+   "exercise": "e47",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e49",
+   "concept": "level-surface"
+  },
+  {
+   "exercise": "e51",
+   "concept": "level-surface"
+  },
+  {
+   "exercise": "e53",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e55",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e57",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "e59",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "r394",
+   "concept": "function-of-two-variables"
+  },
+  {
+   "exercise": "r394",
+   "concept": "domain"
+  },
+  {
+   "exercise": "r394",
+   "concept": "inverse-trigonometric-functions"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-graph-z",
+   "kind": "correction",
+   "html": "The book prints $z=(x,y)$ for the function; it is $z=f(x,y).$"
+  },
+  {
+   "id": "c-trace-planes",
+   "kind": "correction",
+   "html": "A trace for $x=c$ lies in the plane $x=c,$ which is parallel to the $yz$-plane, and a trace for $y=d$ in a plane parallel to the $xz$-plane: the titles of Tables 14.1 and 14.2, the sentence after them and the caption of Figure 14.11 exchange the two planes."
+  }
+ ]
+}

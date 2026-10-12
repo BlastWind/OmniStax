@@ -1,0 +1,814 @@
+{
+ "id": "14.8",
+ "module": "m53943",
+ "chapter": "14",
+ "title": "Lagrange Multipliers",
+ "short": "Lagrange Multipliers",
+ "lead": "An optimization problem often limits its variables by a <span data-concept=\"constraint\">constraint</span>, such as a budget. The <span data-concept=\"method-of-lagrange-multipliers\">method of Lagrange multipliers</span> finds the extreme values of an <span data-concept=\"objective-function\">objective function</span> on a constraint curve or surface by comparing the gradients of the two functions. This section proves the method for one constraint, applies it to the golf-ball manufacturer of the chapter opener and to three variables, and extends it to two constraints.",
+ "objectives": [
+  "Use the method of Lagrange multipliers to solve optimization problems with one constraint.",
+  "Use the method of Lagrange multipliers to solve optimization problems with two constraints."
+ ],
+ "summary_html": "<ul><li>An <span data-concept=\"objective-function\">objective function</span> combined with one or more <span data-concept=\"constraint\">constraints</span> is an example of an <span data-concept=\"optimization-problem\">optimization problem</span>.</li><li>To solve <span data-concept=\"optimization-problem\">optimization problems</span>, we apply the <span data-concept=\"method-of-lagrange-multipliers\">method of Lagrange multipliers</span> using a four-step problem-solving strategy.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approach marked as such. Exercise 384 (show that the equilateral triangle has the largest perimeter) has no answer in the book’s key and is kept with an AI-written suggested approach. The other even-numbered exercises have no answer in the key and are left out: 358–378 even (extreme values under constraints), 380, 382 and 386–392 even (applications). The Chapter Review Exercises printed at the end of this section (394–420) are held with the sections that introduce what each tests; 417 stays here. Those with no answer in the key are left out except the true-or-false statements, kept with suggested approaches, and 399, a sketch keyed only “Answers may vary”, is left out.",
+ "figures": [
+  {
+   "id": "sim-lagrange-golf",
+   "kind": "sim",
+   "number": "14.59",
+   "folds": [
+    "14.60"
+   ],
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_08_001.jpg",
+    "/media/ch14/CNX_Calc_Figure_14_08_002.jpg"
+   ],
+   "original_caption": "(Figure 14.59) Graph of level curves of the function f(x,y) = 48x + 96y − x² − 2xy − 9y² corresponding to c = 150, 250, 350, and 400. (Figure 14.60) Graph of level curves of the function f(x,y) = 48x + 96y − x² − 2xy − 9y² corresponding to c = 150, 250, 350, and 395. The red graph is the constraint function.",
+   "draws": [
+    "curve",
+    "line",
+    "point",
+    "vector",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-lagrange-min",
+   "kind": "sim",
+   "number": "14.61",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_08_003.jpg"
+   ],
+   "original_caption": "Graph of level curves of the function f(x,y) = x² + 4y² − 2x + 8y corresponding to c = 10 and 26. The red graph is the constraint function.",
+   "draws": [
+    "curve",
+    "line",
+    "point",
+    "vector",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-constraints",
+   "kind": "sim",
+   "draws": [
+    "surface",
+    "plane",
+    "curve",
+    "point",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "lagrange-intro",
+   "concept": "optimization-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lagrange",
+   "concept": "constraint",
+   "verb": "introduces"
+  },
+  {
+   "span": "lagrange",
+   "concept": "objective-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "profit-levels",
+   "concept": "level-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "tangency-idea",
+   "concept": "gradient-normal-to-the-level-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "tangency-idea",
+   "concept": "method-of-lagrange-multipliers",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794055797",
+   "concept": "method-of-lagrange-multipliers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794055797",
+   "concept": "lagrange-multiplier",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793879387",
+   "concept": "steps-for-using-lagrange-multipliers",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794212629",
+   "concept": "steps-for-using-lagrange-multipliers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793299657",
+   "concept": "method-of-lagrange-multipliers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "three-variables",
+   "concept": "method-of-lagrange-multipliers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793618990",
+   "concept": "method-of-lagrange-multipliers",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-constraints",
+   "concept": "lagrange-multipliers-with-two-constraints",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794324570",
+   "concept": "lagrange-multipliers-with-two-constraints",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793932189",
+   "source_number": "Checkpoint 14.37",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794212629"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "Use the method of Lagrange multipliers to find the maximum value of $f(x,y)=9x^{2}+36xy-4y^{2}-18x-8y$ subject to the constraint $3x+4y=32.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f$ has a maximum value of $976$ at the point $(8,2).$",
+    "hint": "Use the problem-solving strategy for the method of Lagrange multipliers."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793925849",
+   "source_number": "Checkpoint 14.38",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793299657"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "A company has determined that its production level is given by the Cobb-Douglas function $f(x,y)=2.5x^{0.45}y^{0.55}$ where <em>x</em> represents the total number of labor hours in $1$ year and <em>y</em> represents the total capital input for the company. Suppose $1$ unit of labor costs $\\text{＄}40$ and $1$ unit of capital costs $\\text{＄}50.$ Use the method of Lagrange multipliers to find the maximum value of $f(x,y)=2.5x^{0.45}y^{0.55}$ subject to a budgetary constraint of $\\text{＄}500,000$ per year.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "A maximum production level of $13890$ occurs with $5625$ labor hours and $\\text{＄}5500$ of total capital input.",
+    "hint": "Use the problem-solving strategy for the method of Lagrange multipliers."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167794177140",
+   "source_number": "Checkpoint 14.39",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793618990"
+   },
+   "cite": "three-variables",
+   "prompt": "<p>Use the method of Lagrange multipliers to find the minimum value of the function</p>\n$$f(x,y,z)=x+y+z$$\n<p>subject to the constraint $x^{2}+y^{2}+z^{2}=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{rll}f(\\frac{\\sqrt{3}}{3},\\frac{\\sqrt{3}}{3},\\frac{\\sqrt{3}}{3}) & = & \\frac{\\sqrt{3}}{3}+\\frac{\\sqrt{3}}{3}+\\frac{\\sqrt{3}}{3}=\\sqrt{3} \\\\ f(-\\frac{\\sqrt{3}}{3},-\\frac{\\sqrt{3}}{3},-\\frac{\\sqrt{3}}{3}) & = & -\\frac{\\sqrt{3}}{3}-\\frac{\\sqrt{3}}{3}-\\frac{\\sqrt{3}}{3}=-\\sqrt{3}.\\end{array}$",
+    "hint": "Use the problem-solving strategy for the method of Lagrange multipliers with an optimization function of three variables."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167794314950",
+   "source_number": "Checkpoint 14.40",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794324570"
+   },
+   "cite": "two-constraints",
+   "prompt": "<p>Use the method of Lagrange multipliers to find the minimum value of the function</p>\n$$f(x,y,z)=x^{2}+y^{2}+z^{2}$$\n<p>subject to the constraints $2x+y+2z=9$ and $5x+5y+7z=29.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(2,1,2)=9$ is a minimum.",
+    "hint": "Use the problem-solving strategy for the method of Lagrange multipliers with two constraints."
+   }
+  },
+  {
+   "id": "e359",
+   "source_id": "fs-id1167794160233",
+   "source_number": "359",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>$f(x,y,z)=xyz,x^{2}+2y^{2}+3z^{2}=6$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "maximum: $2\\frac{\\sqrt{3}}{3},$ minimum: $\\frac{-2\\sqrt{3}}{3}$"
+   }
+  },
+  {
+   "id": "e361",
+   "source_id": "fs-id1167794051632",
+   "source_number": "361",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>$f(x,y)=4x^{3}+y^{2};2x^{2}+y^{2}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "maximum: $(\\frac{\\sqrt{2}}{2},0,\\sqrt{2}),$ minimum: $(\\frac{-\\sqrt{2}}{2},0,-\\sqrt{2})$"
+   }
+  },
+  {
+   "id": "e363",
+   "source_id": "fs-id1167793631556",
+   "source_number": "363",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>$f(x,y,z)=yz+xy,xy=1,y^{2}+z^{2}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "maximum: $\\frac{3}{2},$ minimum = $\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e365",
+   "source_id": "fs-id1167793609406",
+   "source_number": "365",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>$f(x,y)=4xy,\\frac{x^{2}}{9}+\\frac{y^{2}}{16}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "maxima: $f(\\frac{3\\sqrt{2}}{2},2\\sqrt{2})=24,$ $f(-\\frac{3\\sqrt{2}}{2},-2\\sqrt{2})=24;$ minima: $f(-\\frac{3\\sqrt{2}}{2},2\\sqrt{2})=-24,$ $f(\\frac{3\\sqrt{2}}{2},-2\\sqrt{2})=-24$"
+   }
+  },
+  {
+   "id": "e367",
+   "source_id": "fs-id1167793233837",
+   "source_number": "367",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>$f(x,y,z)=x+3y-z,x^{2}+y^{2}+z^{2}=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "maximum: $2\\sqrt{11}$ at $f(\\frac{2}{\\sqrt{11}},\\frac{6}{\\sqrt{11}},\\frac{-2}{\\sqrt{11}});$ minimum: $-2\\sqrt{11}$ at $f(\\frac{-2}{\\sqrt{11}},\\frac{-6}{\\sqrt{11}},\\frac{2}{\\sqrt{11}})$"
+   }
+  },
+  {
+   "id": "e369",
+   "source_id": "fs-id1167793618923",
+   "source_number": "369",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>Minimize $f(x,y)=x^{2}+y^{2}$ on the hyperbola $xy=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2.0$"
+   }
+  },
+  {
+   "id": "e371",
+   "source_id": "fs-id1167793928536",
+   "source_number": "371",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>Maximize $f(x,y,z)=2x+3y+5z$ on the sphere $x^{2}+y^{2}+z^{2}=19.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$19\\sqrt{2}$"
+   }
+  },
+  {
+   "id": "e373",
+   "source_id": "fs-id1167793363126",
+   "source_number": "373",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>The curve $x^{3}-y^{3}=1$ is asymptotic to the line $y=x.$ Find the point(s) on the curve $x^{3}-y^{3}=1$ farthest from the line $y=x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{1}{\\sqrt[3]{2}},\\frac{-1}{\\sqrt[3]{2}})$"
+   }
+  },
+  {
+   "id": "e375",
+   "source_id": "fs-id1167793409892",
+   "source_number": "375",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>Minimize $f(x,y)=x^{2}+y^{2},x+2y-5=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(1,2)=5$"
+   }
+  },
+  {
+   "id": "e377",
+   "source_id": "fs-id1167794095053",
+   "source_number": "377",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>Minimize $f(x,y,z)=x^{2}+y^{2}+z^{2},x+y+z=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(\\frac{1}{3},\\frac{1}{3},\\frac{1}{3})=\\frac{1}{3}$"
+   }
+  },
+  {
+   "id": "e379",
+   "source_id": "fs-id1167793610968",
+   "source_number": "379",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-constraints",
+   "prompt": "<p>For the following exercises, use the method of Lagrange multipliers to find the maximum and minimum values of the function subject to the given constraints.</p><p>Minimize $f(x,y,z)=x^{2}+y^{2}+z^{2}$ when $x+y+z=9$ and $x+2y+3z=20.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "minimum: $f(2,3,4)=29$"
+   }
+  },
+  {
+   "id": "e381",
+   "source_id": "fs-id1167793641973",
+   "source_number": "381",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>A rectangular box without a top (a topless box) is to be made from $12$ ft<sup>2</sup> of cardboard. Find the maximum volume of such a box.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The maximum volume is $4$ ft<sup>3</sup>. The dimensions are $1\\;\\times \\;2\\;\\times \\;2$ ft."
+   }
+  },
+  {
+   "id": "e383",
+   "source_id": "fs-id1167793501794",
+   "source_number": "383",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>Find the point on the surface $x^{2}-2xy+y^{2}-x+y=0$ closest to the point $(1,2,-3).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The point on the surface $x^{2}-2xy+y^{2}-x+y=0$ closest to the point $(1,2,-3)$ is $(\\frac{3}{2},\\frac{3}{2},-3)$."
+   }
+  },
+  {
+   "id": "e384",
+   "source_id": "fs-id1167793298519",
+   "source_number": "384",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>Show that, of all the triangles inscribed in a circle of radius $R$ (see diagram), the equilateral triangle has the largest perimeter.</p><img src=\"/media/ch14/CNX_Calc_Figure_14_08_202.jpg\" alt=\"A circle with an equilateral triangle drawn inside of it such that each vertex of the triangle touches the circle.\">",
+   "answer": {
+    "type": "open",
+    "solution": "Let the triangle’s sides subtend central angles $\\alpha ,$ $\\beta $ and $\\gamma $ at the center of the circle, so $\\alpha +\\beta +\\gamma =2\\pi $ and the sides are $2R\\sin \\frac{\\alpha }{2},$ $2R\\sin \\frac{\\beta }{2}$ and $2R\\sin \\frac{\\gamma }{2}.$ Maximize the perimeter $f(\\alpha ,\\beta ,\\gamma )=2R(\\sin \\frac{\\alpha }{2}+\\sin \\frac{\\beta }{2}+\\sin \\frac{\\gamma }{2})$ subject to $g(\\alpha ,\\beta ,\\gamma )=\\alpha +\\beta +\\gamma -2\\pi =0.$ The equations $\\nabla f=\\lambda \\nabla g$ give $R\\cos \\frac{\\alpha }{2}=R\\cos \\frac{\\beta }{2}=R\\cos \\frac{\\gamma }{2}=\\lambda .$ Since each half-angle lies in $(0,\\pi ),$ where cosine is one-to-one, $\\alpha =\\beta =\\gamma =\\frac{2\\pi }{3}$: the equilateral triangle, with perimeter $6R\\sin \\frac{\\pi }{3}=3\\sqrt{3}R\\approx 5.196R.$ At the edge of the domain, where one angle shrinks to $0,$ the triangle flattens toward a diameter traced twice and the perimeter approaches $4R,$ which is smaller, so the equilateral triangle gives the largest perimeter.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e385",
+   "source_id": "fs-id1167793925038",
+   "source_number": "385",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>Find the minimum distance from point $(0,1)$ to the parabola $x^{2}=4y.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1.0$"
+   }
+  },
+  {
+   "id": "e387",
+   "source_id": "fs-id1167793577801",
+   "source_number": "387",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>Find the minimum distance from the plane $x+y+z=1$ to point $(2,1,1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{3}$"
+   }
+  },
+  {
+   "id": "e389",
+   "source_id": "fs-id1167793618148",
+   "source_number": "389",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>Find the point on the line $y=2x+3$ that is closest to point $(4,2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{2}{5},\\frac{19}{5})$"
+   }
+  },
+  {
+   "id": "e391",
+   "source_id": "fs-id1167793455554",
+   "source_number": "391",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>Find the maximum value of $f(x,y)=\\sin x\\;\\sin y,$ where $x\\;\\text{and}\\;y$ denote the acute angles of a right triangle. Draw the contours of the function using a CAS.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\frac{1}{2}$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_08_203.jpg\" alt=\"An alternating series of hills and holes of amplitude 1 across xyz space.\">"
+   }
+  },
+  {
+   "id": "e393",
+   "source_id": "fs-id1167793589592",
+   "source_number": "393",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the next group of exercises, use the method of Lagrange multipliers to solve the following applied problems.</p><p><strong>[T]</strong> By investing <em>x</em> units of labor and <em>y</em> units of capital, a watch manufacturer can produce $P(x,y)=50x^{0.4}y^{0.6}$ watches. Find the maximum number of watches that can be produced on a budget of $\\text{＄}20,000$ if labor costs $100/unit and capital costs$200/unit. Use a CAS to sketch a contour plot of the function.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Roughly 3365 watches at the critical point $(80,60)$</p>\n<img src=\"/media/ch14/CNX_Calc_Figure_14_08_204.jpg\" alt=\"A series of curves in the first quadrant, with the first starting near (2, 120), decreasing sharply to near (20, 20), and then decreasing slowly to (120, 5). The next curve starts near (10, 120), decreases sharply to near (40, 40), and then decreases slowly to (120, 20). The next curve starts near (20, 120), decreases sharply to near (60, 60), and then decreases slowly to (120, 40). The next curve starts near (40, 120), decreases to near (80, 80), and then decreases a little slowly to (120, 60). The last curve starts near (60, 120) and decreases rather evenly through (100, 100) to (120, 90).\">"
+   }
+  },
+  {
+   "id": "r417",
+   "source_id": "fs-id1167793425931",
+   "source_section": "14.8",
+   "source_number": "417",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793879387",
+   "prompt": "<p>For the following exercises, use Lagrange multipliers to find the maximum and minimum values for the functions with the given constraints.</p><p>$f(x,y)=x^{2}y,x^{2}+y^{2}=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "maximum: $\\frac{16}{3\\sqrt{3}},$ minimum: $-\\frac{16}{3\\sqrt{3}}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "objective-function"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "lagrange-multipliers-with-two-constraints"
+  },
+  {
+   "exercise": "e359",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e359",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e361",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e361",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e363",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e363",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e365",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e365",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e367",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e367",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e369",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e369",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e371",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e371",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e373",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e373",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e375",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e375",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e377",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e377",
+   "concept": "steps-for-using-lagrange-multipliers"
+  },
+  {
+   "exercise": "e379",
+   "concept": "lagrange-multipliers-with-two-constraints"
+  },
+  {
+   "exercise": "e381",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e381",
+   "concept": "constraint"
+  },
+  {
+   "exercise": "e381",
+   "concept": "objective-function"
+  },
+  {
+   "exercise": "e383",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e383",
+   "concept": "constraint"
+  },
+  {
+   "exercise": "e383",
+   "concept": "objective-function"
+  },
+  {
+   "exercise": "e384",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e384",
+   "concept": "constraint"
+  },
+  {
+   "exercise": "e385",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e385",
+   "concept": "constraint"
+  },
+  {
+   "exercise": "e385",
+   "concept": "objective-function"
+  },
+  {
+   "exercise": "e387",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e387",
+   "concept": "constraint"
+  },
+  {
+   "exercise": "e387",
+   "concept": "objective-function"
+  },
+  {
+   "exercise": "e389",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e389",
+   "concept": "constraint"
+  },
+  {
+   "exercise": "e389",
+   "concept": "objective-function"
+  },
+  {
+   "exercise": "e391",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e391",
+   "concept": "constraint"
+  },
+  {
+   "exercise": "e391",
+   "concept": "objective-function"
+  },
+  {
+   "exercise": "e393",
+   "concept": "method-of-lagrange-multipliers"
+  },
+  {
+   "exercise": "e393",
+   "concept": "constraint"
+  },
+  {
+   "exercise": "e393",
+   "concept": "objective-function"
+  },
+  {
+   "exercise": "r417",
+   "concept": "method-of-lagrange-multipliers"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-395",
+   "kind": "correction",
+   "html": "The level curve that touches the budget line is $\\kf(x,y)=540,$ at $(10,4),$ as Example 14.43 finds: along the line $y=54-5x$ the profit is $-216x^{2}+4320x-21{,}060,$ largest at $x=10.$ The value $395$ and the point with both coordinates just under $5$ do not satisfy $20x+4y=216$ at a tangency, and the book’s Figure 14.60 is drawn for them."
+  }
+ ]
+}

@@ -1,0 +1,1156 @@
+{
+ "id": "14.3",
+ "module": "m53934",
+ "chapter": "14",
+ "title": "Partial Derivatives",
+ "short": "Partial Derivatives",
+ "lead": "A <span data-concept=\"partial-derivative\">partial derivative</span> differentiates a function of several variables with respect to one of them while the others are held constant, and on a graph it is the slope of a tangent line parallel to an axis. This section computes partial derivatives from the definition and by the rules, goes on to <span data-concept=\"higher-order-partial-derivatives\">higher-order</span> and <span data-concept=\"mixed-partial-derivatives\">mixed partial derivatives</span>, and meets the <span data-concept=\"partial-differential-equation\">partial differential equations</span> of heat, waves and Laplace.",
+ "objectives": [
+  "Calculate the partial derivatives of a function of two variables.",
+  "Calculate the partial derivatives of a function of more than two variables.",
+  "Determine the higher-order derivatives of a function of two variables.",
+  "Explain the meaning of a partial differential equation and give an example."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"partial-derivative\">partial derivative</span> is a derivative involving a function of more than one independent variable.</li><li>To calculate a <span data-concept=\"partial-derivative\">partial derivative</span> with respect to a given variable, treat all the other variables as constants and use the usual differentiation rules.</li><li><span data-concept=\"higher-order-partial-derivatives\">Higher-order partial derivatives</span> can be calculated in the same way as higher-order derivatives.</li></ul>",
+ "notes": "A link to Kelvin’s paper on the age of the Earth inside the Student Project is left out. Figure 14.26 is kept as the book’s image, since the project does not state the constants it is plotted from.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Checkpoint 14.18 and exercises 140, 150, 157 and 158 (show or verify) have no answer in the book’s key and are kept with AI-written suggested approaches. The other even-numbered exercises have no answer in the key and are left out: 112–138 even (first and second partial derivatives and signs read from a graph), 142–148 even, 152–156 even and 160–162 (models). Review exercises 395 and 407 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-partial-secant",
+   "kind": "sim",
+   "number": "14.21",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_03_001.jpg"
+   ],
+   "original_caption": "Secant line passing through the points (x,y,f(x,y)) and (x+h,y,f(x+h,y)).",
+   "draws": [
+    "surface",
+    "curve",
+    "line",
+    "point",
+    "plane",
+    "derivative",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-contour-g",
+   "kind": "figure",
+   "number": "14.22",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_03_002.jpg"
+   ],
+   "original_caption": "Contour map for the function g(x,y) = √(9 − x² − y²), using c = 0, 1, 2, and 3 (c = 3 corresponds to the origin).",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-heat-snapshot",
+   "kind": "sim",
+   "number": "14.23",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_03_003.jpg"
+   ],
+   "draws": [
+    "surface",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-heat-wire",
+   "kind": "sim",
+   "number": "14.24",
+   "originals": [
+    "/media/ch14/CNX_Calc_Figure_14_03_004.jpg"
+   ],
+   "original_caption": "Graph of a solution of the heat equation in one dimension over time.",
+   "draws": [
+    "surface",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-kelvin",
+   "kind": "photo",
+   "number": "14.25",
+   "draws": []
+  },
+  {
+   "id": "fig-kelvin-curves",
+   "kind": "photo",
+   "number": "14.26",
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "partials-intro",
+   "concept": "partial-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "two-variables",
+   "concept": "leibniz-notation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793902985",
+   "concept": "partial-derivative",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793858583",
+   "concept": "partial-derivative",
+   "verb": "reinforces"
+  },
+  {
+   "span": "holding-constant",
+   "concept": "calculating-partial-derivatives",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793627691",
+   "concept": "calculating-partial-derivatives",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793627691",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "secant-interpretation",
+   "concept": "partial-derivative-as-a-slope",
+   "verb": "introduces"
+  },
+  {
+   "span": "secant-interpretation",
+   "concept": "secant",
+   "verb": "uses"
+  },
+  {
+   "span": "secant-interpretation",
+   "concept": "tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "contour-estimate",
+   "concept": "contour-map",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794324455",
+   "concept": "partial-derivative-as-a-slope",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793607547",
+   "concept": "partial-derivatives-of-a-function-of-three-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794138813",
+   "concept": "partial-derivatives-of-a-function-of-three-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793267254",
+   "concept": "calculating-partial-derivatives",
+   "verb": "reinforces"
+  },
+  {
+   "span": "second-partials",
+   "concept": "higher-order-partial-derivatives",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-partials",
+   "concept": "mixed-partial-derivatives",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794200489",
+   "concept": "higher-order-partial-derivatives",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793605902",
+   "concept": "clairauts-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "pde-term",
+   "concept": "partial-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "pde-term",
+   "concept": "heat-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "pde-term",
+   "concept": "wave-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "pde-term",
+   "concept": "laplaces-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "pde-term",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794122405",
+   "concept": "wave-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-1d",
+   "concept": "heat-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-1d",
+   "concept": "solution-of-the-heat-equation-in-one-dimension",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793449011",
+   "concept": "heat-equation",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794046971",
+   "source_number": "Checkpoint 14.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793858583"
+   },
+   "cite": "fs-id1167793902985",
+   "prompt": "<p>Use the definition of the partial derivative as a limit to calculate $\\partial f/\\partial x$ and $\\partial f/\\partial y$ for the function</p>\n$$f(x,y)=4x^{2}+2xy-y^{2}+3x-2y+5.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial f}{\\partial x}=8x+2y+3,\\;\\frac{\\partial f}{\\partial y}=2x-2y-2$",
+    "hint": "Use <a href=\"#fs-id1167794136460\">Equation 14.12</a> and <a href=\"#fs-id1167793263380\">Equation 14.13</a> from the definition of partial derivatives."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794077062",
+   "source_number": "Checkpoint 14.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793627691"
+   },
+   "cite": "holding-constant",
+   "prompt": "Calculate $\\partial f/\\partial x$ and $\\partial f/\\partial y$ for the function $f(x,y)=\\tan (x^{3}-3x^{2}y^{2}+2y^{4})$ by holding the opposite variable constant, then differentiating.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{l}\\frac{\\partial f}{\\partial x}=(3x^{2}-6xy^{2}){\\sec }^{2}(x^{3}-3x^{2}y^{2}+2y^{4}) \\\\ \\frac{\\partial f}{\\partial y}=(-6x^{2}y+8y^{3}){\\sec }^{2}(x^{3}-3x^{2}y^{2}+2y^{4})\\end{array}$",
+    "hint": "Use <a href=\"#fs-id1167794136460\">Equation 14.12</a> and <a href=\"#fs-id1167793263380\">Equation 14.13</a> from the definition of partial derivatives."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793638347",
+   "source_number": "Checkpoint 14.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794324455"
+   },
+   "cite": "contour-estimate",
+   "prompt": "<p>Use a contour map to estimate $\\partial f/\\partial y$ at point $(0,\\sqrt{2})$ for the function</p>\n$$f(x,y)=x^{2}-y^{2}.$$\n<p>Compare this with the exact answer.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Using the curves corresponding to $c=-2\\;\\text{and}\\;c=-3,$ we obtain ${\\frac{\\partial f}{\\partial y}|}_{(x,y)=(0,\\sqrt{2})}\\approx \\frac{f(0,\\sqrt{3})-f(0,\\sqrt{2})}{\\sqrt{3}-\\sqrt{2}}=\\frac{-3-(-2)}{\\sqrt{3}-\\sqrt{2}}\\cdot \\frac{\\sqrt{3}+\\sqrt{2}}{\\sqrt{3}+\\sqrt{2}}=-\\sqrt{3}-\\sqrt{2}\\approx -3.146.$ The exact answer is ${\\frac{\\partial f}{\\partial y}|}_{(x,y)=(0,\\sqrt{2})}=({-2y|}_{(x,y)=(0,\\sqrt{2})}=-2\\sqrt{2}\\approx -2.828.$",
+    "hint": "Create a contour map for $f$ using values of $c$ from $-3\\;\\text{to}\\;3.$ Which of these curves passes through point $(0,\\sqrt{2})?$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793830458",
+   "source_number": "Checkpoint 14.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794138813"
+   },
+   "cite": "fs-id1167793607547",
+   "prompt": "<p>Use the limit definition of partial derivatives to calculate $\\partial f/\\partial x$ for the function</p>\n$$f(x,y,z)=2x^{2}-4x^{2}y+2y^{2}+5xz^{2}-6x+3z-8.$$\n<p>Then find $\\partial f/\\partial y$ and $\\partial f/\\partial z$ by setting the other two variables constant and differentiating accordingly.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial f}{\\partial x}=4x-8xy+5z^{2}-6,\\;\\frac{\\partial f}{\\partial y}=-4x^{2}+4y,\\;\\frac{\\partial f}{\\partial z}=10xz+3$",
+    "hint": "Use the strategy in the preceding example."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793589668",
+   "source_number": "Checkpoint 14.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793267254"
+   },
+   "cite": "fs-id1167793607547",
+   "prompt": "Calculate $\\partial f/\\partial x,$ $\\partial f/\\partial y,$ and $\\partial f/\\partial z$ for the function $f(x,y,z)=\\sec (x^{2}y)-\\tan (x^{3}yz^{2}).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{l}\\frac{\\partial f}{\\partial x}=2xy\\;\\sec (x^{2}y)\\tan (x^{2}y)-3x^{2}yz^{2}{\\sec }^{2}(x^{3}yz^{2}) \\\\ \\frac{\\partial f}{\\partial y}=x^{2}\\sec (x^{2}y)\\tan (x^{2}y)-x^{3}z^{2}{\\sec }^{2}(x^{3}yz^{2}) \\\\ \\frac{\\partial f}{\\partial z}=-2x^{3}yz\\;{\\sec }^{2}(x^{3}yz^{2})\\end{array}$",
+    "hint": "Use the strategy in the preceding example."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167794327634",
+   "source_number": "Checkpoint 14.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794200489"
+   },
+   "cite": "second-partials",
+   "prompt": "<p>Calculate all four second partial derivatives for the function</p>\n$$f(x,y)=\\sin (3x-2y)+\\cos (x+4y).$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{l}\\frac{{\\partial}^{2}f}{\\partial x^{2}}=-9\\;\\sin (3x-2y)-\\cos (x+4y) \\\\ \\frac{{\\partial}^{2}f}{\\partial x\\partial y}=6\\;\\sin (3x-2y)-4\\;\\cos (x+4y) \\\\ \\frac{{\\partial}^{2}f}{\\partial y\\partial x}=6\\;\\sin (3x-2y)-4\\;\\cos (x+4y) \\\\ \\frac{{\\partial}^{2}f}{\\partial y^{2}}=-4\\;\\sin (3x-2y)-16\\;\\cos (x+4y)\\end{array}$",
+    "hint": "Follow the same steps as in the previous example."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167793489568",
+   "source_number": "Checkpoint 14.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794122405"
+   },
+   "cite": "pde-term",
+   "prompt": "<p>Verify that $u(x,y,t)=2\\;\\sin (\\frac{x}{3})\\sin (\\frac{y}{4})e^{-25t/16}$ is a solution to the heat equation</p>\n<div class=\"equation\" id=\"fs-id1167793256001\">$$u_{t}=9(u_{xx}+u_{yy}).\\tag{14.21}$$</div>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate $u=2\\sin (\\frac{x}{3})\\sin (\\frac{y}{4})e^{-25t/16}$ one variable at a time, holding the others constant. With respect to $t$: $u_{t}=-\\frac{25}{16}\\cdot 2\\sin (\\frac{x}{3})\\sin (\\frac{y}{4})e^{-25t/16}=-\\frac{25}{16}u.$ With respect to $x$ twice: $u_{x}=\\frac{2}{3}\\cos (\\frac{x}{3})\\sin (\\frac{y}{4})e^{-25t/16}$ and $u_{xx}=-\\frac{2}{9}\\sin (\\frac{x}{3})\\sin (\\frac{y}{4})e^{-25t/16}=-\\frac{1}{9}u.$ With respect to $y$ twice: $u_{yy}=-\\frac{1}{16}u.$ Then $9(u_{xx}+u_{yy})=9(-\\frac{1}{9}-\\frac{1}{16})u=9\\cdot (-\\frac{25}{144})u=-\\frac{25}{16}u=u_{t},$ so $u$ satisfies Equation 14.21.",
+    "hint": "Calculate the partial derivatives and substitute into the right-hand side."
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1167793504331",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>For the following exercises, calculate the partial derivative using the limit definitions only.</p><p>$\\frac{\\partial z}{\\partial y}$ for $z=x^{2}-3xy+y^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial y}=-3x+2y$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1167793515331",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "secant-interpretation",
+   "prompt": "<p>For the following exercises, calculate the sign of the partial derivative using the graph of the surface.</p><img src=\"/media/ch14/CNX_Calc_Figure_14_03_201.jpg\" alt=\"A partial paraboloid with vertex at the origin and pointing up.\"><p>$f_{x}(-1,1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The sign is negative."
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1167793941283",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "secant-interpretation",
+   "prompt": "<p>For the following exercises, calculate the sign of the partial derivative using the graph of the surface.</p><img src=\"/media/ch14/CNX_Calc_Figure_14_03_201.jpg\" alt=\"A partial paraboloid with vertex at the origin and pointing up.\"><p>$f_{x}(0,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The partial derivative is zero at the origin."
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1167793409781",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>For the following exercises, calculate the partial derivatives.</p><p>$\\frac{\\partial z}{\\partial y}$ for $z=\\sin (3x)\\cos (3y)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial y}=-3\\;\\sin (3x)\\sin (3y)$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1167793427472",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>For the following exercises, calculate the partial derivatives.</p><p>$\\frac{\\partial z}{\\partial x}$ and $\\frac{\\partial z}{\\partial y}$ for $z=\\ln (x^{6}+y^{4})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial x}=\\frac{6x^{5}}{x^{6}+y^{4}};\\frac{\\partial z}{\\partial y}=\\frac{4y^{3}}{x^{6}+y^{4}}$"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1167793233852",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>For the following exercises, calculate the partial derivatives.</p><p>Let $z=e^{xy}.$ Find $\\frac{\\partial z}{\\partial x}$ and $\\frac{\\partial z}{\\partial y}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial x}=ye^{xy};\\frac{\\partial z}{\\partial y}=xe^{xy}$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1167793627865",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>For the following exercises, calculate the partial derivatives.</p><p>Let $z=\\tan (2x-y).$ Find $\\frac{\\partial z}{\\partial x}$ and $\\frac{\\partial z}{\\partial y}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial x}=2\\;{\\sec }^{2}(2x-y),\\frac{\\partial z}{\\partial y}=-{\\sec }^{2}(2x-y)$"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1167794292460",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>For the following exercises, calculate the partial derivatives.</p><p>Let $f(x,y)=\\operatorname{arctan}(\\frac{y}{x}).$ Evaluate $f_{x}(2,-2)$ and $f_{y}(2,-2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f_{x}(2,-2)=\\frac{1}{4}=f_{y}(2,-2)$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1167793409875",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>Find $\\frac{\\partial z}{\\partial x}$ at $(0,1)$ for $z=e^{-x}\\cos (y).$ Evaluate the partial derivatives at point $P(0,1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial z}{\\partial x}=-\\cos (1)$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1167793618212",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>Given $f(x,y,z)=2\\;\\sin (x+y),$ find $f_{x}(0,\\frac{\\pi}{2},-4),$ $f_{y}(0,\\frac{\\pi}{2},-4),$ and $f_{z}(0,\\frac{\\pi}{2},-4).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{lll}f_{x}=0, & f_{y}=0, & f_{z}=0\\end{array}$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1167793925055",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>For the following exercises, calculate the partial derivatives.</p><p>Express the volume of a right circular cylinder as a function of two variables:</p><p>a. its radius $r$ and its height $h.$</p><p>b. Show that the rate of change of the volume of the cylinder with respect to its radius is the product of its circumference multiplied by its height.</p><p>c. Show that the rate of change of the volume of the cylinder with respect to its height is equal to the area of the circular base.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $V(r,h)=\\pi r^{2}h$ b. $\\frac{\\partial V}{\\partial r}=2\\pi rh$ c. $\\frac{\\partial V}{\\partial h}=\\pi r^{2}$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1167793631830",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-partials",
+   "prompt": "<p>Find the indicated higher-order partial derivatives.</p><p>$f_{xy}$ for $z=\\ln (x-y)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f_{xy}=\\frac{1}{{(x-y)}^{2}}$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1167793958656",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-partials",
+   "prompt": "<p>Find the indicated higher-order partial derivatives.</p><p>Let $z=x^{2}+3xy+2y^{2}.$ Find $\\frac{{\\partial}^{2}z}{\\partial x^{2}}$ and $\\frac{{\\partial}^{2}z}{\\partial y^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{{\\partial}^{2}z}{\\partial x^{2}}=2,\\frac{{\\partial}^{2}z}{\\partial y^{2}}=4$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1167793589587",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-partials",
+   "prompt": "<p>Given $f(x,y,z)=xyz,$ find $f_{xyy},f_{yxy},$ and $f_{yyx}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f_{xyy}=f_{yxy}=f_{yyx}=0$"
+   }
+  },
+  {
+   "id": "e140",
+   "source_id": "fs-id1167793378473",
+   "source_number": "140",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-partials",
+   "prompt": "<p>Given $f(x,y,z)=e^{-2x}\\sin (z^{2}y),$ show that $f_{xyy}=f_{yxy}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Hold the other variables constant one at a time. $f_{x}=-2e^{-2x}\\sin (z^{2}y),$ so $f_{xy}=-2z^{2}e^{-2x}\\cos (z^{2}y)$ and $f_{xyy}=2z^{4}e^{-2x}\\sin (z^{2}y).$ In the other order, $f_{y}=z^{2}e^{-2x}\\cos (z^{2}y),$ $f_{yx}=-2z^{2}e^{-2x}\\cos (z^{2}y)$ and $f_{yxy}=2z^{4}e^{-2x}\\sin (z^{2}y).$ The two are equal, $f_{xyy}=f_{yxy}=2z^{4}e^{-2x}\\sin (z^{2}y),$ as Clairaut’s theorem extended to higher-order derivatives predicts, since all these partial derivatives are continuous.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1167793499067",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pde-term",
+   "prompt": "<p>Show that $z=\\frac{1}{2}(e^{y}-e^{-y})\\sin x$ is a solution of the differential equation $\\frac{{\\partial}^{2}z}{\\partial x^{2}}+\\frac{{\\partial}^{2}z}{\\partial y^{2}}=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{rll}\\frac{d^{2}z}{dx^{2}} & = & -\\frac{1}{2}(e^{y}-e^{-y})\\sin x \\\\ \\frac{d^{2}z}{dy^{2}} & = & \\frac{1}{2}(e^{y}-e^{-y})\\sin x \\\\ \\frac{d^{2}z}{dx^{2}}+\\frac{d^{2}z}{dy^{2}} & = & 0\\end{array}$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1167794212677",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-partials",
+   "prompt": "<p>Find the indicated higher-order partial derivatives.</p><p>Let $f(x,y,z)=x^{2}y^{3}z-3xy^{2}z^{3}+5x^{2}z-y^{3}z.$ Find $f_{xyz}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f_{xyz}=6y^{2}x-18yz^{2}$"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1167793423260",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>Given $f(x,y)=x^{2}+x-3xy+y^{3}-5,$ find all points at which $f_{x}=f_{y}=0$ simultaneously.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{1}{4},\\frac{1}{2}),(1,1)$"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1167793929685",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>Given $f(x,y)=y^{3}-3yx^{2}-3y^{2}-3x^{2}+1,$ find all points on $f$ at which $f_{x}=f_{y}=0$ simultaneously.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(0,0),(0,2),(\\sqrt{3},-1),(-\\sqrt{3},-1)$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1167793929166",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pde-term",
+   "prompt": "<p>Show that $z=e^{x}\\sin y$ satisfies the equation $\\frac{{\\partial}^{2}z}{\\partial x^{2}}+\\frac{{\\partial}^{2}z}{\\partial y^{2}}=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{{\\partial}^{2}z}{\\partial x^{2}}+\\frac{{\\partial}^{2}z}{\\partial y^{2}}=e^{x}\\sin (y)-e^{x}\\sin y=0$"
+   }
+  },
+  {
+   "id": "e150",
+   "source_id": "fs-id1167793401330",
+   "source_number": "150",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pde-term",
+   "prompt": "<p>Show that $f(x,y)=\\ln (x^{2}+y^{2})$ solves Laplace’s equation $\\frac{{\\partial}^{2}z}{\\partial x^{2}}+\\frac{{\\partial}^{2}z}{\\partial y^{2}}=0.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "For $f(x,y)=\\ln (x^{2}+y^{2}),$ $f_{x}=\\frac{2x}{x^{2}+y^{2}}$ and, by the quotient rule, $f_{xx}=\\frac{2(x^{2}+y^{2})-2x(2x)}{(x^{2}+y^{2})^{2}}=\\frac{2y^{2}-2x^{2}}{(x^{2}+y^{2})^{2}}.$ In the same way $f_{y}=\\frac{2y}{x^{2}+y^{2}}$ and $f_{yy}=\\frac{2x^{2}-2y^{2}}{(x^{2}+y^{2})^{2}}.$ Adding, $f_{xx}+f_{yy}=\\frac{2y^{2}-2x^{2}+2x^{2}-2y^{2}}{(x^{2}+y^{2})^{2}}=0$ for every $(x,y)\\ne (0,0),$ so $f$ solves Laplace’s equation there.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1167793397561",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-1d",
+   "prompt": "<p>Show that $z=e^{-t}\\cos (\\frac{x}{c})$ satisfies the heat equation $\\frac{\\partial z}{\\partial t}=c^{2}(\\frac{{\\partial}^{2}z}{\\partial x^{2}})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$c^{2}\\frac{{\\partial}^{2}z}{\\partial x^{2}}=e^{-t}\\cos (\\frac{x}{c})$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1167793245581",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793902985",
+   "prompt": "<p>Find $\\lim_{\\Delta y\\to 0}\\frac{f(x,y+\\Delta y)-f(x,y)}{\\Delta y}$ for $f(x,y)=-7x-2xy+7y.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial f}{\\partial y}=-2x+7$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1167793829194",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793902985",
+   "prompt": "<p>Find $\\lim_{\\Delta x\\to 0}\\frac{\\Delta f}{\\Delta x}=\\lim_{\\Delta x\\to 0}\\frac{f(x+\\Delta x,y)-f(x,y)}{\\Delta x}$ for $f(x,y)=\\sin (xy).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial f}{\\partial x}=y\\;\\cos xy$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1167793571237",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pde-term",
+   "prompt": "<p>The equation for heat flow in the $xy\\text{-plane}$ is $\\frac{\\partial f}{\\partial t}=\\frac{{\\partial}^{2}f}{\\partial x^{2}}+\\frac{{\\partial}^{2}f}{\\partial y^{2}}.$ Show that $f(x,y,t)=e^{-2t}\\sin x\\;\\sin y$ is a solution.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "With $f(x,y,t)=e^{-2t}\\sin x\\sin y$: $\\frac{\\partial f}{\\partial t}=-2e^{-2t}\\sin x\\sin y.$ Holding $y$ and $t$ constant, $\\frac{\\partial^{2}f}{\\partial x^{2}}=-e^{-2t}\\sin x\\sin y,$ and holding $x$ and $t$ constant, $\\frac{\\partial^{2}f}{\\partial y^{2}}=-e^{-2t}\\sin x\\sin y.$ Their sum is $-2e^{-2t}\\sin x\\sin y=\\frac{\\partial f}{\\partial t},$ so $f$ is a solution of the heat flow equation.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e158",
+   "source_id": "fs-id1167793395488",
+   "source_number": "158",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pde-term",
+   "prompt": "<p>The basic wave equation is $f_{tt}=f_{xx}.$ Verify that $f(x,t)=\\sin (x+t)$ and $f(x,t)=\\sin (x-t)$ are solutions.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "For $f(x,t)=\\sin (x+t),$ $f_{t}=\\cos (x+t)$ and $f_{tt}=-\\sin (x+t),$ while $f_{x}=\\cos (x+t)$ and $f_{xx}=-\\sin (x+t),$ so $f_{tt}=f_{xx}.$ For $f(x,t)=\\sin (x-t),$ $f_{t}=-\\cos (x-t)$ and $f_{tt}=-\\sin (x-t),$ while $f_{xx}=-\\sin (x-t),$ so again $f_{tt}=f_{xx}.$ Both are solutions of the wave equation.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1167793943774",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>The law of cosines can be thought of as a function of three variables. Let $x,y,$ and $\\theta$ be two sides of any triangle where the angle $\\theta$ is the included angle between the two sides. Then, $F(x,y,\\theta )=x^{2}+y^{2}-2xy\\;\\cos \\theta$ gives the square of the third side of the triangle. Find $\\frac{\\partial F}{\\partial \\theta}$ and $\\frac{\\partial F}{\\partial x}$ when $x=2,y=3,$ and $\\theta =\\frac{\\pi}{6}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial F}{\\partial \\theta}=6,\\frac{\\partial F}{\\partial x}=4-3\\sqrt{3}$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1167793638408",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "holding-constant",
+   "prompt": "<p>A Cobb-Douglas production function is $f(x,y)=200x^{0.7}y^{0.3},$ where $x\\;\\text{and}\\;y$ represent the amount of labor and capital available. Let $x=500$ and $y=1000.$ Find $\\frac{\\partial f}{\\partial x}$ and $\\frac{\\partial f}{\\partial y}$ at these values, which represent the marginal productivity of labor and capital, respectively.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\partial f}{\\partial x}$ at $(500,1000)=172.36,$ $\\frac{\\partial f}{\\partial y}$ at $(500,1000)=36.93$"
+   }
+  },
+  {
+   "id": "r395",
+   "source_id": "fs-id1167793443560",
+   "source_section": "14.8",
+   "source_number": "395",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793605902",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>. Justify your answer with a proof or a counterexample.</p><p>If the function $f(x,y)$ and all its second derivatives are continuous everywhere, then $f_{xy}=f_{yx}.$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True, by Clairaut’s theorem"
+   }
+  },
+  {
+   "id": "r407",
+   "source_id": "fs-id1167793929129",
+   "source_section": "14.8",
+   "source_number": "407",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "second-partials",
+   "prompt": "<p>For the following exercises, find all second partial derivatives.</p><p>$h(x,y,z)=\\frac{x^{3}e^{2y}}{z}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$h_{xx}(x,y,z)=\\frac{6xe^{2y}}{z},$ $h_{xy}(x,y,z)=\\frac{6x^{2}e^{2y}}{z},$ $h_{xz}(x,y,z)=-\\frac{3x^{2}e^{2y}}{z^{2}},$ $h_{yx}(x,y,z)=\\frac{6x^{2}e^{2y}}{z},$ $h_{yy}(x,y,z)=\\frac{4x^{3}e^{2y}}{z},$ $h_{yz}(x,y,z)=-\\frac{2x^{3}e^{2y}}{z^{2}},$ $h_{zx}(x,y,z)=-\\frac{3x^{2}e^{2y}}{z^{2}},$ $h_{zy}(x,y,z)=-\\frac{2x^{3}e^{2y}}{z^{2}},$ $h_{zz}(x,y,z)=\\frac{2x^{3}e^{2y}}{z^{3}}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "partial-derivative"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "partial-derivative-as-a-slope"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "contour-map"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "partial-derivatives-of-a-function-of-three-variables"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "partial-derivatives-of-a-function-of-three-variables"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "mixed-partial-derivatives"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "heat-equation"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e113",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e115",
+   "concept": "partial-derivative-as-a-slope"
+  },
+  {
+   "exercise": "e117",
+   "concept": "partial-derivative-as-a-slope"
+  },
+  {
+   "exercise": "e119",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e121",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e123",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e125",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e127",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e129",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e131",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e133",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e135",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e135",
+   "concept": "mixed-partial-derivatives"
+  },
+  {
+   "exercise": "e137",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e137",
+   "concept": "mixed-partial-derivatives"
+  },
+  {
+   "exercise": "e139",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e139",
+   "concept": "mixed-partial-derivatives"
+  },
+  {
+   "exercise": "e140",
+   "concept": "mixed-partial-derivatives"
+  },
+  {
+   "exercise": "e140",
+   "concept": "clairauts-theorem"
+  },
+  {
+   "exercise": "e141",
+   "concept": "laplaces-equation"
+  },
+  {
+   "exercise": "e141",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e143",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e143",
+   "concept": "mixed-partial-derivatives"
+  },
+  {
+   "exercise": "e145",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e147",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e149",
+   "concept": "laplaces-equation"
+  },
+  {
+   "exercise": "e149",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e150",
+   "concept": "laplaces-equation"
+  },
+  {
+   "exercise": "e150",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e151",
+   "concept": "heat-equation"
+  },
+  {
+   "exercise": "e151",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e153",
+   "concept": "partial-derivative"
+  },
+  {
+   "exercise": "e155",
+   "concept": "partial-derivative"
+  },
+  {
+   "exercise": "e157",
+   "concept": "heat-equation"
+  },
+  {
+   "exercise": "e157",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e158",
+   "concept": "wave-equation"
+  },
+  {
+   "exercise": "e158",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "e159",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "e161",
+   "concept": "calculating-partial-derivatives"
+  },
+  {
+   "exercise": "r395",
+   "concept": "clairauts-theorem"
+  },
+  {
+   "exercise": "r407",
+   "concept": "higher-order-partial-derivatives"
+  },
+  {
+   "exercise": "r407",
+   "concept": "mixed-partial-derivatives"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-ex14-h",
+   "kind": "correction",
+   "html": "In the fifth line of the display that follows, the numerator is printed $h(-3x+4y+2k+5)$; factoring $k$ from $-3xk+4yk+2k^{2}+5k$ gives $k(-3x+4y+2k+5).$"
+  },
+  {
+   "id": "c-project-equation",
+   "kind": "correction",
+   "html": "Equation 14.13 is the definition of $\\partial f/\\partial y$; the form $T(r,t)=R(r)f(t)$ is substituted into the radial diffusion equation, <a href=\"#fs-id1167794139867\">Equation 14.23</a>."
+  }
+ ]
+}

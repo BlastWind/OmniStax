@@ -1,0 +1,74 @@
+# Exploration: Calculus, Chapter 14 Differentiation of Functions of Several Variables
+
+Written 2026-10-13, before the chapter's sections were built. The nine modules (Volume 3, Chapter 4) were converted with `python3 tools/convert.py 14` and read; the book's organization and apparatus are as `RULES.md` records them. `config.md` beside this file is the agreed list.
+
+## Why this chapter
+
+Calculus of one variable grows a second input. 14.1 defines a function of two variables by its domain and range, graphs it as a surface (a hemisphere, two paraboloids, a profit model), slices it into level curves and a contour map and into vertical traces, and meets functions of three variables with their level surfaces. 14.2 takes limits through δ disks, states the limit laws, shows limits that depend on the path, names interior and boundary points, open, closed and connected sets and regions, and defines continuity with the sum, product and composition theorems. 14.3 defines the partial derivatives as limits and as slopes of tangent lines parallel to the axes, estimates one from a contour map, takes higher-order and mixed partials with Clairaut's theorem, and meets the heat, wave and Laplace equations with a Student Project on Lord Kelvin's age of Earth. 14.4 builds the tangent plane, the linear approximation, differentiability with its error term, and the total differential. 14.5 extends the chain rule to one, two and many independent variables with tree diagrams, and differentiates implicitly by partial derivatives. 14.6 defines the directional derivative and the gradient, reads the gradient as the direction of steepest ascent and the normal to a level curve, and goes to three dimensions. 14.7 finds critical points, local and absolute extrema, saddle points and the second derivative test with its discriminant, ending on the golf-ball profit model of the opener. 14.8 maximizes that profit under a budget by Lagrange multipliers, with one and two constraints.
+
+## Modules
+
+Ex. = worked examples, Fig. = numbered figures, CP = checkpoints, Exer. = section exercises (chapter-wide numbers), Keyed = those carrying the book's solution, Gl. = glossary entries, KE = Key Equations rows, Eq. = equations the book numbers.
+
+| Section | Module | Ex. | Fig. | Notes | CP | Exer. | Keyed | Gl. | KE | Eq. |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Intro | m53929 | 0 | 1 photo | — | 0 | — | — | 0 | 0 | 0 |
+| 14.1 Functions of Several Variables | m53946 | 7 | 12 | 4 definitions | 5 | 1–59 | 30 | 7 | 2 | 1 (14.1) |
+| 14.2 Limits and Continuity | m53933 | 6 | 7 | 8 definitions, 4 theorems | 6 | 60–111 | 26 | 8 | 0 | 10 (14.2–14.11) |
+| 14.3 Partial Derivatives | m53934 | 7 | 6 | 2 definitions, 1 theorem, 1 Student Project | 7 | 112–162 | 24 | 4 | 2 | 12 (14.12–14.23) |
+| 14.4 Tangent Planes and Linear Approximations | m53937 | 5 | 7 | 6 definitions, 2 theorems | 4 | 163–214 | 26 | 4 | 5 | 5 (14.24–14.28) |
+| 14.5 The Chain Rule | m53938 | 5 | 5 | 4 theorems, 1 proof | 5 | 215–259 | 23 | 3 | 3 | 7 (14.29–14.35) |
+| 14.6 Directional Derivatives and the Gradient | m53940 | 7 | 7 | 4 definitions, 4 theorems, 1 proof | 6 | 260–309 | 25 | 2 | 4 | 7 (14.36–14.42) |
+| 14.7 Maxima/Minima Problems | m53942 | 4 | 13 | 3 definitions, 4 theorems, 2 strategies | 3 | 310–357 | 24 | 3 | 1 | 1 (14.43) |
+| 14.8 Lagrange Multipliers | m53943 | 4 | 3 | 1 theorem, 1 proof, 1 strategy | 4 | 358–393 | 18 | 5 | 2 | 0 |
+| Review (in 14.8) | m53943 | — | — | — | — | 394–420 | 13 | — | — | — |
+
+393 section exercises, 196 keyed (the odd ones but 157); 27 review exercises, 13 keyed; 40 checkpoints (14.1–14.40); 45 worked examples (14.1–14.45); 36 glossary entries; 2 tables (14.1, 14.2 in Example 14.5).
+
+## Figure, table, example and equation numbers
+
+Counted from the CNXML in book order, the opener as Figure 14.1.
+
+| Section | Figures | Examples | Equations |
+|---|---|---|---|
+| intro | 14.1 golf balls (splash photo) | — | — |
+| 14.1 | 14.2 the domain mapped to z; 14.3 the domain of g, a closed disk; 14.4 the hemisphere; 14.5 the paraboloid; 14.6 the profit paraboloid; 14.7 Devil's Tower, map and photo; 14.8 level curves of g; 14.9 the level curve c = 0 of Example 14.4; 14.10 its contour map; 14.11 vertical traces of sin x cos y; 14.12 two striking surfaces; 14.13 a hyperboloid of one sheet with level surfaces | 14.1–14.7 | 14.1 the ellipse of Example 14.4 |
+| 14.2 | 14.14 a δ disk about (2, 1); 14.15 the limit's ε and δ; 14.16 the graph of 2xy/(3x² + y²); 14.17 interior and boundary points of S; 14.18 the domain of √(25 − x² − y²); 14.19 its graph; 14.20 the composition of continuous functions | 14.8–14.13 | 14.2–14.11 the limit laws |
+| 14.3 | 14.21 the secant through (x, y, f(x, y)) and (x + h, y, f(x + h, y)); 14.22 the contour map of g; 14.23 the heat solution at t = 0 (no caption); 14.24 the one-dimensional heat solution over time; 14.25 Lord Kelvin and Earth (photos, project); 14.26 Kelvin's temperature against radius (project) | 14.14–14.20 | 14.12–14.16 the partial derivatives; 14.17–14.19 heat, wave and Laplace equations; 14.20 Example 14.20's wave equation; 14.21 Checkpoint 14.18's heat equation; 14.22 the one-dimensional solution; 14.23 the radial diffusion equation |
+| 14.4 | 14.27 the tangent plane holding tangent lines; 14.28 Example 14.21's plane; 14.29 a surface with no tangent plane at the origin; 14.30 linear approximation in one variable; 14.31 the tangent plane as an approximation; 14.32 the same function, not differentiable; 14.33 the differential's approximation | 14.21–14.25 | 14.24 the tangent plane; 14.25 L(x, y); 14.26 differentiability; 14.27 dz; 14.28 differentiability in three variables |
+| 14.5 | 14.34, 14.35, 14.36 tree diagrams; 14.37 the ellipse x² + 3y² + 4y − 4 = 0; 14.38 the rotated ellipse of Example 14.30 | 14.26–14.30 | 14.29 one independent variable; 14.30 in the proof; 14.31, 14.32 two independent variables; 14.33 generalized; 14.34, 14.35 implicit differentiation |
+| 14.6 | 14.39 the directional derivative on a graph; 14.40 Example 14.31's surface and plane; 14.41 the gradient and the extreme directional derivatives; 14.42 Example 14.34's maximum; 14.43 3 + sin x sin y; 14.44 the contour map of x² − y²; 14.45 the rotated ellipse f = 18 with ∇f and a tangent vector | 14.31–14.37 | 14.36 D_u f by definition; 14.37 by partials; 14.38 ∇f · u; 14.39 ∇f; 14.40 ∇f in space; 14.41, 14.42 D_u f in space |
+| 14.7 | 14.46 g's critical point; 14.47 the hemisphere's maximum and boundary minimum; 14.48 the saddle z = x² − y²; 14.49 minimum, maximum and saddle; 14.50 Example 14.39a's minimum; 14.51 Example 14.39b's minimum and saddle; 14.52 the rectangle of Example 14.40a; 14.53 its surface; 14.54 the disk of Example 14.40b; 14.55 its surface; 14.56 golf balls (repeat of the opener); 14.57 the golf domain; 14.58 the profit's maximum | 14.38–14.41 | 14.43 the discriminant |
+| 14.8 | 14.59 the profit's level curves; 14.60 the same with the budget line; 14.61 Example 14.42's level curves and constraint | 14.42–14.45 | — |
+
+The book numbers 43 equations (every `<equation>` not classed unnumbered, checked against openstax.org for 4.2 and 4.3), including 14.21 inside Checkpoint 14.18; every reference reads "Equation 14.N", linked, and each carries `\tag{14.N}`. A reference to a theorem or rule note reads as the note's title, linked.
+
+## What is new
+
+- `function` for f(x, y) and every function of two or three variables (an objective function, a profit, a temperature); its graph, a hemisphere or paraboloid or saddle, wears `surface`. `curve` for level curves, contour maps, vertical traces and a parameterized boundary; `surface` for level surfaces. `set` for domains, ranges, δ disks and δ balls, open, closed, connected and bounded sets; `region` for a region (open, connected, nonempty), the word Chapter 15 integrates over. `limit` for L. `point` for interior and boundary points, critical points, saddle points, local and absolute extrema. `derivative` for every partial derivative f_x, ∂f/∂x, f_xx, f_xy and the directional derivative D_u f; `vector` for the gradient ∇f, the unit direction u and normals; `plane` for the tangent plane and the linear approximation L(x, y); `line` for tangent lines and secants on traces, and the constraint lines of 14.8; `error` for the error term E. In ink: x, y, z, t, u, v as variables, the discriminant D, the total differential dz, the multiplier λ, ε and δ.
+- New symbols: the partial derivatives f_x, f_y, f_z, f_xx, f_xy, f_yx, f_yy and the Leibniz forms ∂f/∂x, ∂f/∂y, ∂f/∂z, ∂z/∂x, ∂z/∂y (macros `\kfx` …, `\kdfdx` …), the gradient ∇f (`\kgradf`) and the directional derivative D_u f (`\kDuf`); the text's math writes them through the macros, exercises stay plain LaTeX.
+- Graphs z = f(x, y) are mathematical 3D (root rule 28.3) through `F.space3d`; contour maps, domains, level curves, tree diagrams, the δ disk, the implicit curves of 14.5 and the Lagrange pictures of 14.8 are 2D. A surface read from its level curves is built both ways (book `RULES.md`): the slicing plane z = c on the surface beside the flat contour map.
+- Prerequisites: 1.1 functions, domains and ranges; 2.3–2.5 limit laws, continuity, ε–δ; 3.1–3.8 derivatives, the chain rule and implicit differentiation; 4.2 linear approximation and differentials; 4.3, 4.5 extrema, critical points, Fermat's theorem, the second derivative test, the extreme value theorem; 4.7 optimization; 8.1 differential equations; 12.3 the dot product and direction angles; 12.5 planes and normals; 12.6 surfaces, traces, quadric surfaces; 13.2–13.3 tangent vectors and unit tangents.
+- Concepts: about 70, every glossary word among their `terms`; "surface" (14.1's glossary) stays 12.6's `surface`, reinforced; "optimization problem" stays 4.7's, reinforced.
+
+## Sketches to replace and photographs
+
+Every graph is drawn live from the book's function and numbers. Folds, where the book draws one scene again: 14.2 + 14.3 (a point of the domain of g mapped to its z); 14.4 + 14.5 (Example 14.2's two graphs, a choice); 14.9 + 14.10 (Example 14.4's level curve and contour map, c a slider); 14.15 into its own Sim with the δ disk of 14.14 kept separate; 14.18 + 14.19 (Example 14.10's domain and graph); 14.27 + 14.28 (tangent lines in the tangent plane of Example 14.21); 14.29 + 14.32 (the function with no tangent plane at the origin); 14.31 + 14.33 (the tangent plane as the approximation, dz beside Δz); 14.37 + 14.38 (an implicit curve and its tangent, a choice); 14.39 + 14.40 (the directional derivative on Example 14.31's surface); 14.41 + 14.42 (D_u f against the angle, peaking along ∇f); 14.48 + 14.49 (the second derivative test's three cases on one quadratic); 14.50 + 14.51 (Example 14.39's two parts, a choice); 14.52 + 14.53, 14.54 + 14.55, 14.57 + 14.58 (each domain with its surface and candidates); 14.59 + 14.60 (the profit's level curves rising to the budget line). Stand-ins where the book prints no function: 14.17's set S (a disk about (0, 1) of radius √8, so (2, 3) is on its boundary and (−1, 1) inside), 14.27's surface (Example 14.21's, which 14.28 draws), 14.30's curve (the trace of Example 14.23's surface along y = 3, f(x) = √(32 − 4x²) at a = 2), 14.39's surface (Example 14.31's, which 14.40 draws), 14.41's (Example 14.34's).
+
+Kept as images: Figure 14.7 (Devil's Tower, map and photo, the text points at it); Figure 14.12 (two striking surfaces whose functions the book does not give); Figure 14.25 (Lord Kelvin and Earth, the project's, credit kept); Figure 14.26 (Kelvin's curves, plotted from constants the project does not state). Figure 14.56, the golf balls inside Example 14.41, repeats the opener and is dropped. Faithful still copies: 14.20 (the composition), 14.22 (Example 14.16's contour map), 14.34, 14.35, 14.36 (tree diagrams). Checkpoint answer images and exercise images stay in their cards.
+
+## Notes and media
+
+One media note, the link to Kelvin's paper inside the 14.3 project, dropped and named in `notes`. One Student Project (14.3, Lord Kelvin and the Age of Earth) is a note with its numbered questions. Proofs stay under their theorems (14.5 chain rule, 14.6 directional derivative, 14.8 Lagrange). Problem-Solving Strategies: two in 14.7, one in 14.8.
+
+## Exercises that belong to another section
+
+The review exercises (394–420, printed in 14.8) go to the section that introduces what each tests. Kept (keyed, or unkeyed true-or-false with an approach): 394 (domain, true or false) to 14.1; 401, 403 to 14.2; 395 (Clairaut), 407 to 14.3; 396 (true or false), 409, 411, 419 (the cone's volume error by differentials, though its stem names Lagrange multipliers) to 14.4; 405 to 14.5; 413, 415 to 14.6; 397 to 14.7; 417 to 14.8. Left out: the unkeyed computations 398, 400, 402, 404, 406, 408, 410, 412, 414, 416, 418, 420 and 399 (a sketch keyed "Answers may vary").
+
+## Book slips found in reading
+
+To be corrected under book-corrections-as-notes, the words kept as printed: 14.1 "the graph of a function z = (x, y)" (z = f(x, y)); 14.2's glossary calls an interior point "a boundary point" (statement only); 14.3 Example 14.14's h(−3x + 4y + 2k + 5)/k (k); the project's "Substitute this form into Equation 14.13" (the radial diffusion equation, 14.23); 14.5 Example 14.28's last line, printed 2e^{2u}(v + 3 sin sin v cos cos v − v) by a typesetting slip (sin²v + 3 sin v cos v − cos²v), a conversion fix with a note; 14.6's −(5/13)(2x − (77/12)y) + (12/13)(−x + 6y) = −(22/13)x + (17/13)y (−(5/13)(2x − y) …, = −(22/13)x + (77/13)y); 14.7 Example 14.40's "The critical value corresponds to the point (4, 2)" printed with an empty value (t = 4) and Example 14.41's "L₂ is the line segment connecting and (50, 25)" with an empty point ((50, 0)); 14.7's "Step 3 states to check the …" linked to Fermat's theorem where the second derivative test is meant; 14.8's trial-and-error reading of Figure 14.60 ("around 395, when x and y are both just less than 5") against the example's solution (540 at (10, 4)). Keys and further slips are checked as each section is built.
+
+## Rule 23: what would make this chapter stunning
+
+The chapter is about surfaces seen from above and from the side. The reader should slide a plane z = c down a hemisphere and watch the circle it cuts drop flat onto the contour map, drag a point toward the origin along lines of different slopes and see the surface give a different height each way, shrink h until the secant on a trace becomes the tangent whose slope is ∂f/∂x, watch the heat solution's hills sink, tilt the tangent plane under a dragged point and see every curve's tangent lie in it, turn the direction u around a point and see D_u f peak along the gradient, morph one quadratic from bowl to saddle as the discriminant changes sign, and raise a profit's level curve until it just kisses the budget line where ∇f and ∇g line up.
