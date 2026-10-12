@@ -1,0 +1,907 @@
+{
+ "id": "16",
+ "dir": "ch16",
+ "title": "Vector Calculus",
+ "intro": {
+  "module": "m54017",
+  "slug": "calculus-volume-3/pages/6-introduction"
+ },
+ "sections": [
+  {
+   "id": "16.1",
+   "module": "m53989",
+   "title": "Vector Fields",
+   "slug": "calculus-volume-3/pages/6-1-vector-fields"
+  },
+  {
+   "id": "16.2",
+   "module": "m54012",
+   "title": "Line Integrals",
+   "slug": "calculus-volume-3/pages/6-2-line-integrals"
+  },
+  {
+   "id": "16.3",
+   "module": "m53987",
+   "title": "Conservative Vector Fields",
+   "slug": "calculus-volume-3/pages/6-3-conservative-vector-fields"
+  },
+  {
+   "id": "16.4",
+   "module": "m53982",
+   "title": "Green’s Theorem",
+   "slug": "calculus-volume-3/pages/6-4-greens-theorem"
+  },
+  {
+   "id": "16.5",
+   "module": "m53986",
+   "title": "Divergence and Curl",
+   "slug": "calculus-volume-3/pages/6-5-divergence-and-curl"
+  },
+  {
+   "id": "16.6",
+   "module": "m54004",
+   "title": "Surface Integrals",
+   "slug": "calculus-volume-3/pages/6-6-surface-integrals"
+  },
+  {
+   "id": "16.7",
+   "module": "m54009",
+   "title": "Stokes’ Theorem",
+   "slug": "calculus-volume-3/pages/6-7-stokes-theorem"
+  },
+  {
+   "id": "16.8",
+   "module": "m54001",
+   "title": "The Divergence Theorem",
+   "slug": "calculus-volume-3/pages/6-8-the-divergence-theorem"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "F_vec",
+   "section": "16.1",
+   "concept": "vector-field",
+   "meaning": "a vector field F, assigning a vector F(x, y) to each point of a region of the plane or F(x, y, z) to each point of a region of space",
+   "redefines": true,
+   "anchor": "16.1-fs-id1167793270756"
+  },
+  {
+   "sym": "G_vec",
+   "section": "16.1",
+   "concept": "vector-field",
+   "meaning": "a second vector field G, beside F",
+   "anchor": "16.1-fs-id1167793940891"
+  },
+  {
+   "sym": "v_vec",
+   "section": "16.1",
+   "concept": "vector-field",
+   "meaning": "the velocity field v of a fluid, the velocity of the fluid at each point, a vector field",
+   "redefines": true,
+   "anchor": "16.1-fs-id1167793363040"
+  },
+  {
+   "sym": "P",
+   "section": "16.1",
+   "type": "function",
+   "meaning": "the first component function P of a vector field F = ⟨P, Q, R⟩, the coefficient of i",
+   "redefines": true,
+   "anchor": "16.1-fs-id1167793951458"
+  },
+  {
+   "sym": "Q",
+   "section": "16.1",
+   "type": "function",
+   "meaning": "the second component function Q of a vector field F = ⟨P, Q, R⟩, the coefficient of j",
+   "redefines": true,
+   "anchor": "16.1-fs-id1167793951458"
+  },
+  {
+   "sym": "R",
+   "section": "16.1",
+   "type": "function",
+   "meaning": "the third component function R of a vector field F = ⟨P, Q, R⟩ in space, the coefficient of k",
+   "redefines": true,
+   "anchor": "16.1-unit-field"
+  },
+  {
+   "sym": "D",
+   "section": "16.1",
+   "concept": "domain",
+   "meaning": "the domain D of a vector field, the subset of ℝ² or ℝ³ on whose points it is defined",
+   "redefines": true,
+   "anchor": "16.1-fs-id1167793270756"
+  },
+  {
+   "sym": "f",
+   "section": "16.1",
+   "concept": "potential-function",
+   "meaning": "a scalar function f with ∇f = F, a potential function of the conservative field F",
+   "redefines": true,
+   "anchor": "16.1-gradient-fields"
+  },
+  {
+   "sym": "g",
+   "section": "16.1",
+   "concept": "potential-function",
+   "meaning": "a second potential function g of the same conservative field, ∇g = F",
+   "redefines": true,
+   "anchor": "16.1-fig-velocity-potential"
+  },
+  {
+   "sym": "∇f",
+   "section": "16.1",
+   "concept": "conservative-vector-field",
+   "meaning": "the gradient field ∇f = f_x i + f_y j (+ f_z k) of a scalar function f, a vector field",
+   "redefines": true,
+   "anchor": "16.1-gradient-fields"
+  },
+  {
+   "sym": "i_vec",
+   "section": "16.1",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "16.1-fs-id1167793252274"
+  },
+  {
+   "sym": "j_vec",
+   "section": "16.1",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "16.1-fs-id1167793252274"
+  },
+  {
+   "sym": "k_vec",
+   "section": "16.1",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "16.1-fs-id1167793977405"
+  },
+  {
+   "sym": "f",
+   "section": "16.2",
+   "concept": "function-of-more-than-two-variables",
+   "meaning": "a function f(x, y) or f(x, y, z) whose domain includes the curve C, the integrand of a scalar line integral",
+   "redefines": true,
+   "anchor": "16.2-li-intro"
+  },
+  {
+   "sym": "C",
+   "section": "16.2",
+   "concept": "parametric-curve",
+   "meaning": "an oriented curve C in a plane or in space, the curve of a line integral, with −C the same curve oppositely oriented",
+   "redefines": true,
+   "anchor": "16.2-scalar"
+  },
+  {
+   "sym": "r_vec",
+   "section": "16.2",
+   "concept": "vector-parameterization",
+   "meaning": "a parameterization r(t) = ⟨x(t), y(t), z(t)⟩, a ≤ t ≤ b, of a curve C, traversing it once",
+   "redefines": true,
+   "anchor": "16.2-scalar"
+  },
+  {
+   "sym": "r_vec_prime",
+   "section": "16.2",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the derivative r′(t) of a vector-valued function, a tangent vector to its curve at r(t)",
+   "anchor": "16.2-fs-id1167793501665"
+  },
+  {
+   "sym": "T_vec",
+   "section": "16.2",
+   "concept": "principal-unit-tangent-vector",
+   "meaning": "the principal unit tangent vector T(t) = r′(t)/‖r′(t)‖",
+   "anchor": "16.2-fig-oriented-curves"
+  },
+  {
+   "sym": "F_vec",
+   "section": "16.2",
+   "concept": "vector-field",
+   "meaning": "a vector field F, assigning a vector F(x, y) to each point of a region of the plane or F(x, y, z) to each point of a region of space",
+   "anchor": "16.2-vector"
+  },
+  {
+   "sym": "G_vec",
+   "section": "16.2",
+   "concept": "vector-field",
+   "meaning": "a second vector field G, beside F",
+   "anchor": "16.2-fs-id1167793559384"
+  },
+  {
+   "sym": "P",
+   "section": "16.2",
+   "type": "function",
+   "meaning": "the first component function P of a vector field F = ⟨P, Q, R⟩, the coefficient of i",
+   "anchor": "16.2-scalar"
+  },
+  {
+   "sym": "Q",
+   "section": "16.2",
+   "type": "function",
+   "meaning": "the second component function Q of a vector field F = ⟨P, Q, R⟩, the coefficient of j",
+   "anchor": "16.2-vector"
+  },
+  {
+   "sym": "R",
+   "section": "16.2",
+   "type": "function",
+   "meaning": "the third component function R of a vector field F = ⟨P, Q, R⟩ in space, the coefficient of k",
+   "anchor": "16.2-vector"
+  },
+  {
+   "sym": "W",
+   "section": "16.2",
+   "concept": "work-done-by-a-vector-field",
+   "meaning": "the work W done by a force field F in moving a particle along an oriented curve C, the line integral of F · T",
+   "redefines": true,
+   "anchor": "16.2-work-term"
+  },
+  {
+   "sym": "ρ",
+   "section": "16.2",
+   "concept": "density-function",
+   "meaning": "the density ρ(x, y, z) of a wire, its mass per unit length at a point of the curve",
+   "redefines": true,
+   "anchor": "16.2-wire-term"
+  },
+  {
+   "sym": "n_vec",
+   "section": "16.2",
+   "concept": "normal-vector",
+   "meaning": "the normal vector n(t) = ⟨y′(t), −x′(t)⟩ of a plane curve r(t), pointing to its right as t increases",
+   "redefines": true,
+   "anchor": "16.2-flux"
+  },
+  {
+   "sym": "N_vec",
+   "section": "16.2",
+   "concept": "flux-across-a-curve",
+   "meaning": "the unit normal vector N = n(t)/‖n(t)‖ of a plane curve, whose dot product with F is the normal component in a flux integral",
+   "redefines": true,
+   "anchor": "16.2-flux"
+  },
+  {
+   "sym": "i_vec",
+   "section": "16.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "16.2-vector"
+  },
+  {
+   "sym": "j_vec",
+   "section": "16.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "16.2-vector"
+  },
+  {
+   "sym": "k_vec",
+   "section": "16.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "16.2-vector"
+  },
+  {
+   "sym": "v_vec",
+   "section": "16.2",
+   "concept": "vector-field",
+   "meaning": "the velocity field v of a fluid, the velocity of the fluid at each point, a vector field",
+   "anchor": "16.2-circulation-term"
+  },
+  {
+   "sym": "C",
+   "section": "16.3",
+   "concept": "parametric-curve",
+   "meaning": "a curve C, closed if it begins and ends at the same point and simple if it does not cross itself; with a subscript, two paths C₁ and C₂ between the same points",
+   "anchor": "16.3-fs-id1167793928878"
+  },
+  {
+   "sym": "r_vec",
+   "section": "16.3",
+   "concept": "vector-parameterization",
+   "meaning": "a parameterization r(t) = ⟨x(t), y(t), z(t)⟩, a ≤ t ≤ b, of a curve C, traversing it once",
+   "anchor": "16.3-fs-id1167793928878"
+  },
+  {
+   "sym": "D",
+   "section": "16.3",
+   "concept": "connected-region",
+   "meaning": "a region D of the plane or of space, connected or simply connected, the domain of a vector field",
+   "redefines": true,
+   "anchor": "16.3-fs-id1167793847738"
+  },
+  {
+   "sym": "F_vec",
+   "section": "16.3",
+   "concept": "vector-field",
+   "meaning": "a vector field F, assigning a vector F(x, y) to each point of a region of the plane or F(x, y, z) to each point of a region of space",
+   "anchor": "16.3-fundamental"
+  },
+  {
+   "sym": "P",
+   "section": "16.3",
+   "type": "function",
+   "meaning": "the first component function P of a vector field F = ⟨P, Q, R⟩, the coefficient of i",
+   "anchor": "16.3-fs-id1167793924910"
+  },
+  {
+   "sym": "Q",
+   "section": "16.3",
+   "type": "function",
+   "meaning": "the second component function Q of a vector field F = ⟨P, Q, R⟩, the coefficient of j",
+   "anchor": "16.3-fs-id1167793924910"
+  },
+  {
+   "sym": "R",
+   "section": "16.3",
+   "type": "function",
+   "meaning": "the third component function R of a vector field F = ⟨P, Q, R⟩ in space, the coefficient of k",
+   "anchor": "16.3-testing"
+  },
+  {
+   "sym": "f",
+   "section": "16.3",
+   "concept": "potential-function",
+   "meaning": "a potential function f of a conservative field F, with ∇f = F",
+   "redefines": true,
+   "anchor": "16.3-fundamental"
+  },
+  {
+   "sym": "∇f",
+   "section": "16.3",
+   "concept": "conservative-vector-field",
+   "meaning": "the gradient field ∇f of a function f, a conservative vector field",
+   "anchor": "16.3-sim-path-independence"
+  },
+  {
+   "sym": "i_vec",
+   "section": "16.3",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "16.3-fs-id1167793705635"
+  },
+  {
+   "sym": "j_vec",
+   "section": "16.3",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "16.3-fs-id1167793705635"
+  },
+  {
+   "sym": "F_vec",
+   "section": "16.4",
+   "concept": "vector-field",
+   "meaning": "a vector field F, assigning a vector F(x, y) to each point of a region of the plane or F(x, y, z) to each point of a region of space",
+   "anchor": "16.4-fs-id1167793298232"
+  },
+  {
+   "sym": "P",
+   "section": "16.4",
+   "type": "function",
+   "meaning": "the first component function P of a vector field F = ⟨P, Q, R⟩, the coefficient of i",
+   "anchor": "16.4-fs-id1167793298232"
+  },
+  {
+   "sym": "Q",
+   "section": "16.4",
+   "type": "function",
+   "meaning": "the second component function Q of a vector field F = ⟨P, Q, R⟩, the coefficient of j",
+   "anchor": "16.4-fs-id1167793298232"
+  },
+  {
+   "sym": "C",
+   "section": "16.4",
+   "concept": "closed-curve",
+   "meaning": "the boundary curve C of a region D, a piecewise smooth, simple closed curve oriented counterclockwise",
+   "redefines": true,
+   "anchor": "16.4-gt-intro"
+  },
+  {
+   "sym": "D",
+   "section": "16.4",
+   "concept": "region",
+   "meaning": "an open region D of the plane bounded by a closed curve C, simply connected or with holes",
+   "redefines": true,
+   "anchor": "16.4-gt-intro"
+  },
+  {
+   "sym": "N_vec",
+   "section": "16.4",
+   "concept": "flux-across-a-curve",
+   "meaning": "the outward unit normal vector N of the boundary curve C, in the flux form of Green's theorem",
+   "redefines": true,
+   "anchor": "16.4-fs-id1167793796153"
+  },
+  {
+   "sym": "g",
+   "section": "16.4",
+   "concept": "stream-function",
+   "meaning": "a stream function g of a source-free field F = ⟨P, Q⟩, with P = g_y and Q = −g_x",
+   "redefines": true,
+   "anchor": "16.4-source-free-term"
+  },
+  {
+   "sym": "f",
+   "section": "16.4",
+   "concept": "potential-function",
+   "meaning": "a potential function f of a conservative field F, with ∇f = F",
+   "anchor": "16.4-extending"
+  },
+  {
+   "sym": "W",
+   "section": "16.4",
+   "concept": "work-done-by-a-vector-field",
+   "meaning": "the work W done by a force field F in moving a particle along an oriented curve C, the line integral of F · T",
+   "anchor": "16.4-fs-id1167794127694"
+  },
+  {
+   "sym": "r_vec",
+   "section": "16.4",
+   "concept": "vector-parameterization",
+   "meaning": "a parameterization r(t) = ⟨x(t), y(t), z(t)⟩, a ≤ t ≤ b, of a curve C, traversing it once",
+   "anchor": "16.4-extending"
+  },
+  {
+   "sym": "v_vec",
+   "section": "16.4",
+   "concept": "vector-field",
+   "meaning": "the velocity field v of a fluid, the velocity of the fluid at each point, a vector field",
+   "anchor": "16.4-fs-id1167793293486"
+  },
+  {
+   "sym": "∇f",
+   "section": "16.4",
+   "concept": "conservative-vector-field",
+   "meaning": "the gradient field ∇f of a function f, a conservative vector field",
+   "anchor": "16.4-extending"
+  },
+  {
+   "sym": "T_vec",
+   "section": "16.4",
+   "concept": "principal-unit-tangent-vector",
+   "meaning": "the principal unit tangent vector T(t) = r′(t)/‖r′(t)‖",
+   "anchor": "16.4-sim-greens-circulation"
+  },
+  {
+   "sym": "F_vec",
+   "section": "16.5",
+   "concept": "vector-field",
+   "meaning": "a vector field F, assigning a vector F(x, y) to each point of a region of the plane or F(x, y, z) to each point of a region of space",
+   "anchor": "16.5-divergence"
+  },
+  {
+   "sym": "P",
+   "section": "16.5",
+   "type": "function",
+   "meaning": "the first component function P of a vector field F = ⟨P, Q, R⟩, the coefficient of i",
+   "anchor": "16.5-fs-id1167793442187"
+  },
+  {
+   "sym": "Q",
+   "section": "16.5",
+   "type": "function",
+   "meaning": "the second component function Q of a vector field F = ⟨P, Q, R⟩, the coefficient of j",
+   "anchor": "16.5-fs-id1167793442187"
+  },
+  {
+   "sym": "R",
+   "section": "16.5",
+   "type": "function",
+   "meaning": "the third component function R of a vector field F = ⟨P, Q, R⟩ in space, the coefficient of k",
+   "anchor": "16.5-fs-id1167793442187"
+  },
+  {
+   "sym": "div_F",
+   "section": "16.5",
+   "concept": "divergence",
+   "meaning": "the divergence div F = ∇ · F = P_x + Q_y + R_z of a vector field F, a scalar function",
+   "anchor": "16.5-fs-id1167794139077"
+  },
+  {
+   "sym": "curl_F",
+   "section": "16.5",
+   "concept": "curl",
+   "meaning": "the curl curl F = ∇ × F of a vector field F, a vector field",
+   "anchor": "16.5-fs-id1167793965993"
+  },
+  {
+   "sym": "v_vec",
+   "section": "16.5",
+   "concept": "vector-field",
+   "meaning": "the velocity field v of a fluid, the velocity of the fluid at each point, a vector field",
+   "anchor": "16.5-fs-id1167794173556"
+  },
+  {
+   "sym": "f",
+   "section": "16.5",
+   "concept": "function-of-more-than-two-variables",
+   "meaning": "a scalar function f of two or three variables, whose gradient field ∇f is conservative",
+   "redefines": true,
+   "anchor": "16.5-fs-id1167794173556"
+  },
+  {
+   "sym": "∇f",
+   "section": "16.5",
+   "concept": "conservative-vector-field",
+   "meaning": "the gradient field ∇f of a function f, a conservative vector field",
+   "anchor": "16.5-fs-id1167793635932"
+  },
+  {
+   "sym": "i_vec",
+   "section": "16.5",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "16.5-fs-id1167794061260"
+  },
+  {
+   "sym": "j_vec",
+   "section": "16.5",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "16.5-fs-id1167794061260"
+  },
+  {
+   "sym": "k_vec",
+   "section": "16.5",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "16.5-fs-id1167794061260"
+  },
+  {
+   "sym": "G_vec",
+   "section": "16.5",
+   "concept": "vector-field",
+   "meaning": "a second vector field G, beside F",
+   "anchor": "16.5-fs-id1167793568775"
+  },
+  {
+   "sym": "C",
+   "section": "16.5",
+   "concept": "closed-curve",
+   "meaning": "the boundary curve C of a region D, a piecewise smooth, simple closed curve oriented counterclockwise",
+   "anchor": "16.5-fs-id1167794173556"
+  },
+  {
+   "sym": "D",
+   "section": "16.5",
+   "concept": "region",
+   "meaning": "an open region D of the plane bounded by a closed curve C, simply connected or with holes",
+   "redefines": true,
+   "anchor": "16.5-fs-id1167794173556"
+  },
+  {
+   "sym": "g",
+   "section": "16.5",
+   "concept": "stream-function",
+   "meaning": "a stream function g of a source-free field F = ⟨P, Q⟩, with P = g_y and Q = −g_x",
+   "anchor": "16.5-fs-id1167793397658"
+  },
+  {
+   "sym": "N_vec",
+   "section": "16.5",
+   "concept": "flux-across-a-curve",
+   "meaning": "the outward unit normal vector N of the boundary curve C, in the flux form of Green's theorem",
+   "redefines": true,
+   "anchor": "16.5-fs-id1167794173556"
+  },
+  {
+   "sym": "r_vec",
+   "section": "16.6",
+   "concept": "parametric-surface",
+   "meaning": "a parameterization r(u, v) = ⟨x(u, v), y(u, v), z(u, v)⟩ of a surface, (u, v) in its parameter domain",
+   "redefines": true,
+   "anchor": "16.6-parametric"
+  },
+  {
+   "sym": "D",
+   "section": "16.6",
+   "concept": "parameter-domain",
+   "meaning": "the parameter domain D of a parameterization r(u, v), the region of the uv-plane over which u and v vary",
+   "redefines": true,
+   "anchor": "16.6-sim-param-surfaces"
+  },
+  {
+   "sym": "S",
+   "section": "16.6",
+   "concept": "surface",
+   "meaning": "a piecewise smooth surface S, the surface of a surface integral, oriented by a unit normal N for a flux integral",
+   "redefines": true,
+   "anchor": "16.6-parametric"
+  },
+  {
+   "sym": "t_u_vec",
+   "section": "16.6",
+   "concept": "grid-curves",
+   "meaning": "the tangent vector t_u = r_u = ⟨∂x/∂u, ∂y/∂u, ∂z/∂u⟩ to the grid curve on which v is constant",
+   "anchor": "16.6-sim-surface-patch"
+  },
+  {
+   "sym": "t_v_vec",
+   "section": "16.6",
+   "concept": "grid-curves",
+   "meaning": "the tangent vector t_v = r_v = ⟨∂x/∂v, ∂y/∂v, ∂z/∂v⟩ to the grid curve on which u is constant",
+   "anchor": "16.6-sim-surface-patch"
+  },
+  {
+   "sym": "N_vec",
+   "section": "16.6",
+   "concept": "orientation-of-a-surface",
+   "meaning": "the unit normal vector N of an oriented surface, (t_u × t_v)/‖t_u × t_v‖ or its negative",
+   "redefines": true,
+   "anchor": "16.6-sim-surface-patch"
+  },
+  {
+   "sym": "f",
+   "section": "16.6",
+   "concept": "function-of-more-than-two-variables",
+   "meaning": "a function f(x, y, z) whose domain includes the surface S, the integrand of a scalar surface integral",
+   "redefines": true,
+   "anchor": "16.6-fs-id1167793689559"
+  },
+  {
+   "sym": "F_vec",
+   "section": "16.6",
+   "concept": "vector-field",
+   "meaning": "a vector field F, assigning a vector F(x, y) to each point of a region of the plane or F(x, y, z) to each point of a region of space",
+   "anchor": "16.6-vector"
+  },
+  {
+   "sym": "v_vec",
+   "section": "16.6",
+   "concept": "vector-field",
+   "meaning": "the velocity field v of a fluid, the velocity of the fluid at each point, a vector field",
+   "anchor": "16.6-mass-flux-term"
+  },
+  {
+   "sym": "i_vec",
+   "section": "16.6",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "16.6-fig-smooth-surfaces"
+  },
+  {
+   "sym": "j_vec",
+   "section": "16.6",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "16.6-fig-smooth-surfaces"
+  },
+  {
+   "sym": "k_vec",
+   "section": "16.6",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "16.6-fig-smooth-surfaces"
+  },
+  {
+   "sym": "r_vec_prime",
+   "section": "16.6",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the derivative r′(t) of a vector-valued function, a tangent vector to its curve at r(t)",
+   "anchor": "16.6-fs-id1167793757749"
+  },
+  {
+   "sym": "F_vec",
+   "section": "16.7",
+   "concept": "vector-field",
+   "meaning": "a vector field F, assigning a vector F(x, y) to each point of a region of the plane or F(x, y, z) to each point of a region of space",
+   "anchor": "16.7-stokes-term"
+  },
+  {
+   "sym": "P",
+   "section": "16.7",
+   "type": "function",
+   "meaning": "the first component function P of a vector field F = ⟨P, Q, R⟩, the coefficient of i",
+   "anchor": "16.7-fig-shadow"
+  },
+  {
+   "sym": "Q",
+   "section": "16.7",
+   "type": "function",
+   "meaning": "the second component function Q of a vector field F = ⟨P, Q, R⟩, the coefficient of j",
+   "anchor": "16.7-fig-shadow"
+  },
+  {
+   "sym": "R",
+   "section": "16.7",
+   "type": "function",
+   "meaning": "the third component function R of a vector field F = ⟨P, Q, R⟩ in space, the coefficient of k",
+   "anchor": "16.7-fig-shadow"
+  },
+  {
+   "sym": "S",
+   "section": "16.7",
+   "concept": "surface",
+   "meaning": "a piecewise smooth oriented surface S whose boundary is the simple closed curve C",
+   "redefines": true,
+   "anchor": "16.7-st-intro"
+  },
+  {
+   "sym": "C",
+   "section": "16.7",
+   "concept": "closed-curve",
+   "meaning": "the boundary curve C of an oriented surface S, a simple closed curve with positive orientation",
+   "redefines": true,
+   "anchor": "16.7-stokes-term"
+  },
+  {
+   "sym": "D",
+   "section": "16.7",
+   "concept": "region",
+   "meaning": "the shadow D of a surface S, its projection onto a coordinate plane, or a surface D(t) through which a magnetic field passes",
+   "redefines": true,
+   "anchor": "16.7-sim-stokes"
+  },
+  {
+   "sym": "curl_F",
+   "section": "16.7",
+   "concept": "curl",
+   "meaning": "the curl curl F = ∇ × F of a vector field F, a vector field",
+   "anchor": "16.7-fs-id1167793603786"
+  },
+  {
+   "sym": "N_vec",
+   "section": "16.7",
+   "concept": "orientation-of-a-surface",
+   "meaning": "the unit normal vector N of an oriented surface, (t_u × t_v)/‖t_u × t_v‖ or its negative",
+   "redefines": true,
+   "anchor": "16.7-stokes-term"
+  },
+  {
+   "sym": "E_vec",
+   "section": "16.7",
+   "concept": "vector-field",
+   "meaning": "an electric field E(x, y, z), induced by a changing magnetic field",
+   "anchor": "16.7-faraday-term"
+  },
+  {
+   "sym": "B_vec",
+   "section": "16.7",
+   "concept": "vector-field",
+   "meaning": "a magnetic field B(t) = ⟨P(x, y, z), Q(x, y, z), R(x, y, z)⟩ that varies with time",
+   "redefines": true,
+   "anchor": "16.7-faraday-term"
+  },
+  {
+   "sym": "i_vec",
+   "section": "16.7",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "16.7-fs-id1167793984743"
+  },
+  {
+   "sym": "j_vec",
+   "section": "16.7",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "16.7-fs-id1167793984743"
+  },
+  {
+   "sym": "k_vec",
+   "section": "16.7",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "16.7-sim-stokes"
+  },
+  {
+   "sym": "G_vec",
+   "section": "16.7",
+   "concept": "vector-field",
+   "meaning": "a second vector field G, beside F",
+   "anchor": "16.7-surface-independent-term"
+  },
+  {
+   "sym": "T_vec",
+   "section": "16.7",
+   "concept": "principal-unit-tangent-vector",
+   "meaning": "the principal unit tangent vector T(t) = r′(t)/‖r′(t)‖",
+   "anchor": "16.7-curl-circulation"
+  },
+  {
+   "sym": "r_vec",
+   "section": "16.7",
+   "concept": "vector-parameterization",
+   "meaning": "a parameterization r(t) = ⟨x(t), y(t), z(t)⟩, a ≤ t ≤ b, of a curve C, traversing it once",
+   "redefines": true,
+   "anchor": "16.7-fs-id1167793984743"
+  },
+  {
+   "sym": "F_vec",
+   "section": "16.8",
+   "concept": "vector-field",
+   "meaning": "a vector field F, assigning a vector F(x, y) to each point of a region of the plane or F(x, y, z) to each point of a region of space",
+   "anchor": "16.8-overview"
+  },
+  {
+   "sym": "E",
+   "section": "16.8",
+   "concept": "region",
+   "meaning": "a solid E in space enclosed by a closed surface S",
+   "redefines": true,
+   "anchor": "16.8-fs-id1167793372757"
+  },
+  {
+   "sym": "S",
+   "section": "16.8",
+   "concept": "surface",
+   "meaning": "a piecewise smooth closed surface S enclosing a solid E, oriented outward",
+   "redefines": true,
+   "anchor": "16.8-overview"
+  },
+  {
+   "sym": "div_F",
+   "section": "16.8",
+   "concept": "divergence",
+   "meaning": "the divergence div F = ∇ · F = P_x + Q_y + R_z of a vector field F, a scalar function",
+   "anchor": "16.8-fs-id1167794295927"
+  },
+  {
+   "sym": "F_r_vec",
+   "section": "16.8",
+   "concept": "inverse-square-law",
+   "meaning": "the radial field F_r = (1/r²)⟨x/r, y/r, z/r⟩, of magnitude 1/r² at distance r from the origin",
+   "anchor": "16.8-sim-divergence-theorem"
+  },
+  {
+   "sym": "E_vec",
+   "section": "16.8",
+   "concept": "vector-field",
+   "meaning": "the electrostatic field E of stationary charges, for a point charge q at the origin E = (q/(4πε₀)) F_r",
+   "redefines": true,
+   "anchor": "16.8-gauss-term"
+  },
+  {
+   "sym": "v_vec",
+   "section": "16.8",
+   "concept": "vector-field",
+   "meaning": "the velocity field v of a fluid, the velocity of the fluid at each point, a vector field",
+   "anchor": "16.8-fs-id1167793999995"
+  },
+  {
+   "sym": "k_vec",
+   "section": "16.8",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "16.8-overview"
+  },
+  {
+   "sym": "N_vec",
+   "section": "16.8",
+   "concept": "orientation-of-a-surface",
+   "meaning": "the unit normal vector N of an oriented surface, (t_u × t_v)/‖t_u × t_v‖ or its negative",
+   "redefines": true,
+   "anchor": "16.8-overview"
+  },
+  {
+   "sym": "r_vec",
+   "section": "16.8",
+   "concept": "parametric-surface",
+   "meaning": "a parameterization r(u, v) = ⟨x(u, v), y(u, v), z(u, v)⟩ of a surface, (u, v) in its parameter domain",
+   "redefines": true,
+   "anchor": "16.8-fs-id1167793931713"
+  },
+  {
+   "sym": "t_u_vec",
+   "section": "16.8",
+   "concept": "grid-curves",
+   "meaning": "the tangent vector t_u = r_u = ⟨∂x/∂u, ∂y/∂u, ∂z/∂u⟩ to the grid curve on which v is constant",
+   "anchor": "16.8-fs-id1167793931713"
+  },
+  {
+   "sym": "t_v_vec",
+   "section": "16.8",
+   "concept": "grid-curves",
+   "meaning": "the tangent vector t_v = r_v = ⟨∂x/∂v, ∂y/∂v, ∂z/∂v⟩ to the grid curve on which u is constant",
+   "anchor": "16.8-fs-id1167793931713"
+  },
+  {
+   "sym": "∇f",
+   "section": "16.8",
+   "concept": "conservative-vector-field",
+   "meaning": "the gradient field ∇f of a function f, a conservative vector field",
+   "anchor": "16.8-overview"
+  }
+ ]
+}

@@ -1,0 +1,207 @@
+<p id="dc-intro">In this section, we examine two important operations on a <span data-concept="vector-field">vector field</span>: <span data-concept="divergence">divergence</span> and <span data-concept="curl">curl</span>. They are important to the field of calculus for several reasons, including the use of <span data-concept="curl">curl</span> and <span data-concept="divergence">divergence</span> to develop some higher-dimensional versions of the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span>. In addition, <span data-concept="curl">curl</span> and <span data-concept="divergence">divergence</span> appear in mathematical descriptions of fluid mechanics, electromagnetism, and elasticity theory, which are important concepts in physics and engineering. We can also apply <span data-concept="curl">curl</span> and <span data-concept="divergence">divergence</span> to other concepts we already explored. For example, under certain conditions, a <span data-concept="vector-field">vector field</span> is conservative if and only if its <span data-concept="curl">curl</span> is zero.</p>
+<p>In addition to defining <span data-concept="curl">curl</span> and <span data-concept="divergence">divergence</span>, we look at some physical interpretations of them, and show their relationship to conservative and <span data-concept="source-free-vector-field">source-free vector fields</span>.</p>
+
+<section id="divergence">
+<h2>Divergence</h2>
+<p class="cite-target"><span data-concept="divergence">Divergence</span> is an operation on a <span data-concept="vector-field">vector field</span> that tells us how the field behaves toward or away from a point. Locally, the <span data-concept="divergence">divergence</span> of a <span data-concept="vector-field">vector field</span> $\kvecF$ in ${\mathbb{R}}^{2}$ or ${\mathbb{R}}^{3}$ at a particular point $P$ is a measure of the “outflowing-ness” of the <span data-concept="vector-field">vector field</span> at $P$. If $\kvecF$ represents the velocity of a fluid, then the <span data-concept="divergence">divergence</span> of $\kvecF$ at $P$ measures the net rate of change with respect to time of the amount of fluid flowing away from $P$ (the tendency of the fluid to flow “out of” $P$). In particular, if the amount of fluid flowing into $P$ is the same as the amount flowing out, then the <span data-concept="divergence">divergence</span> at $P$ is zero.</p>
+<div class="note" id="fs-id1167793442187">
+<div class="eyebrow">Definition</div>
+<p>If $\kvecF=\langle \kP,\kQ,\kR\rangle$ is a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{3}$ and $P_{x},Q_{y},$ and $R_{z}$ all exist, then the <strong><span data-concept="divergence">divergence</span></strong> of $\kvecF$ is defined by</p>
+<div class="equation" id="fs-id1167794139077">$$\kdivF=P_{x}+Q_{y}+R_{z}=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}.\tag{16.16}$$</div>
+</div>
+<p>Note the <span data-concept="divergence">divergence</span> of a <span data-concept="vector-field">vector field</span> is not a <span data-concept="vector-field">vector field</span>, but a scalar function. In terms of the <span data-concept="gradient">gradient operator</span> $\nabla =\langle \frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}\rangle ,$ <span data-concept="divergence">divergence</span> can be written symbolically as the <span data-concept="dot-product">dot product</span></p>
+$$\kdivF=\nabla \cdot \kvecF.$$
+<p>Note this is merely helpful notation, because the <span data-concept="dot-product">dot product</span> of a vector of operators and a vector of functions is not meaningfully defined given our current definition of <span data-concept="dot-product">dot product</span>.</p>
+<p>If $\kvecF=\langle \kP,\kQ\rangle$ is a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{2},$ and $P_{x}$ and $Q_{y}$ both exist, then the <span data-concept="divergence">divergence</span> of $\kvecF$ is defined similarly as</p>
+$$\kdivF=P_{x}+Q_{y}=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}=\nabla \cdot \kvecF.$$
+<p>To illustrate this point, consider the two <span data-concept="vector-field">vector fields</span> in Figure 16.50. At any particular point, the amount flowing in is the same as the amount flowing out, so at every point the “outflowing-ness” of the field is zero. Therefore, we expect the <span data-concept="divergence">divergence</span> of both fields to be zero, and this is indeed the case, as</p>
+$$\text{div}(\langle 1,2\rangle )=\frac{\partial}{\partial x}(1)+\frac{\partial}{\partial y}(2)=0\;\text{and}\;\text{div}(\langle -y,x\rangle )=\frac{\partial}{\partial x}(-y)+\frac{\partial}{\partial y}(x)=0.$$
+<figure class="sim" id="sim-elastic-circle" data-figure="16.50 + 16.51 + 16.52 + 16.53" data-original="/media/ch16/CNX_Calc_Figure_16_05_001.jpg,/media/ch16/CNX_Calc_Figure_16_05_002.jpg,/media/ch16/CNX_Calc_Figure_16_05_003.jpg,/media/ch16/CNX_Calc_Figure_16_05_004.jpg" data-original-caption="(Figure 16.50) (a) Vector field ⟨1,2⟩ has zero divergence. (b) Vector field ⟨−y,x⟩ also has zero divergence. (Figure 16.51) This vector field has negative divergence. (Figure 16.52) The divergence of vector field F(x,y)=⟨x²y,y−xy²⟩ is one, so it cannot model a magnetic field. (Figure 16.53) Vector field v(x,y)=⟨−xy,y⟩ has negative divergence at (1,4).">
+  <div class="sim-head"><span class="eyebrow">Figure 16.50 + 16.51 + 16.52 + 16.53</span><span>An elastic circle dropped into a fluid flows with it. Where the <span data-concept="divergence">divergence</span> is zero, as for $\langle 1,2\rangle$ and $\langle -y,x\rangle,$ it keeps its area however it is carried; in the radial field $\langle -x,-y\rangle,$ dropped at $(3,3),$ it scrunches as it flows to the origin, and in $\langle x^{2}y,y-xy^{2}\rangle$ (Example 16.49) it grows. Choose a field and watch the area against its start.</span></div>
+</figure>
+<p>By contrast, consider radial <span data-concept="vector-field">vector field</span> $\mathbf{R}(x,y)=\langle -x,-y\rangle$ in Figure 16.51. At any given point, more fluid is flowing in than is flowing out, and therefore the “outgoingness” of the field is negative. We expect the <span data-concept="divergence">divergence</span> of this field to be negative, and this is indeed the case, as $\text{div}(\mathbf{R})=\frac{\partial}{\partial x}(-x)+\frac{\partial}{\partial y}(-y)=-2.$</p>
+
+<p>To get a global sense of what <span data-concept="divergence">divergence</span> is telling us, suppose that a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{2}$ represents the velocity of a fluid. Imagine taking an elastic circle (a circle with a shape that can be changed by the <span data-concept="vector-field">vector field</span>) and dropping it into a fluid. If the circle maintains its exact area as it flows through the fluid, then the <span data-concept="divergence">divergence</span> is zero. This would occur for both <span data-concept="vector-field">vector fields</span> in Figure 16.50. On the other hand, if the circle’s shape is distorted so that its area shrinks or expands, then the <span data-concept="divergence">divergence</span> is not zero. Imagine dropping such an elastic circle into the radial <span data-concept="vector-field">vector field</span> in Figure 16.51 so that the center of the circle lands at point (3, 3). The circle would flow toward the origin, and as it did so the front of the circle would travel more slowly than the back, causing the circle to “scrunch” and lose area. This is how you can see a negative <span data-concept="divergence">divergence</span>.</p>
+<div class="example" id="fs-id1167794061260">
+<h3>Example 16.48 · Calculating Divergence at a Point</h3>
+<p>If $\kvecF(x,y,z)=e^{x}\kveci+yz{\kvecj}-yz^{2}\kveck,$ then find the <span data-concept="divergence">divergence</span> of $\kvecF$ at $(0,2,-1).$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="divergence">divergence</span> of $\kvecF$ is</p>
+$$\frac{\partial}{\partial x}(e^{x})+\frac{\partial}{\partial y}(yz)-\frac{\partial}{\partial z}(yz^{2})=e^{x}+z-2yz.$$
+<p>Therefore, the <span data-concept="divergence">divergence</span> at $(0,2,-1)$ is $e^{0}-1+4=4.$ If $\kvecF$ represents the velocity of a fluid, then more fluid is flowing out than flowing in at point $(0,2,-1).$</p>
+</div>
+<div class="exercises" data-place="fs-id1167794061260"></div>
+<p>One application for <span data-concept="divergence">divergence</span> occurs in physics, when working with magnetic fields. A magnetic field is a <span data-concept="vector-field">vector field</span> that models the influence of electric currents and magnetic materials. Physicists use <span data-concept="divergence">divergence</span> in Gauss’s law for magnetism, which states that if $\mathbf{B}$ is a magnetic field, then $\nabla \cdot \mathbf{B}=0;$ in other words, the <span data-concept="divergence">divergence</span> of a magnetic field is zero.</p>
+<div class="example" id="fs-id1167793958418">
+<h3>Example 16.49 · Determining Whether a Field Is Magnetic</h3>
+<p>Is it possible for $\kvecF(x,y)=\langle x^{2}y,y-xy^{2}\rangle$ to be a magnetic field?</p>
+<h4>Solution</h4>
+<p>If $\kvecF$ were magnetic, then its <span data-concept="divergence">divergence</span> would be zero. The <span data-concept="divergence">divergence</span> of $\kvecF$ is</p>
+$$\frac{\partial}{\partial x}(x^{2}y)+\frac{\partial}{\partial y}(y-xy^{2})=2xy+1-2xy=1$$
+<p>and therefore $\kvecF$ cannot model a magnetic field (Figure 16.52).</p>
+
+</div>
+<p>Another application for <span data-concept="divergence">divergence</span> is detecting whether a field is <span data-concept="source-free-vector-field">source free</span>. Recall that a <span data-concept="source-free-vector-field">source-free field</span> is a <span data-concept="vector-field">vector field</span> that has a <span data-concept="stream-function">stream function</span>; equivalently, a <span data-concept="source-free-vector-field">source-free field</span> is a field with a <span data-concept="flux-across-a-curve">flux</span> that is zero along any closed curve. The next two theorems say that, under certain conditions, <span data-concept="source-free-vector-field">source-free vector fields</span> are precisely the <span data-concept="vector-field">vector fields</span> with zero <span data-concept="divergence">divergence</span>.</p>
+<div class="note" id="fs-id1167793397658">
+<div class="eyebrow">Theorem</div>
+<h3>Divergence of a Source-Free Vector Field</h3>
+<p>If $\kvecF=\langle \kP,\kQ\rangle$ is a <span data-concept="source-free-vector-field">source-free continuous vector field</span> with differentiable component functions, then $\kdivF=0.$</p>
+</div>
+<h3>Proof</h3>
+<p>Since $\kvecF$ is <span data-concept="source-free-vector-field">source free</span>, there is a function $\kg(x,y)$ with $g_{y}=\kP$ and $-g_{x}=\kQ.$ Therefore, $\kvecF=\langle g_{y},-g_{x}\rangle$ and $\kdivF=g_{yx}-g_{xy}=0$ by <span data-concept="clairauts-theorem">Clairaut’s theorem</span>.</p>
+<p>□</p>
+<p>The converse of <a href="#fs-id1167793397658">Divergence of a Source-Free Vector Field</a> is true on <span data-concept="simply-connected-region">simply connected</span> regions, but the proof is too technical to include here. Thus, we have the following theorem, which can test whether a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{2}$ is <span data-concept="source-free-vector-field">source free</span>.</p>
+<div class="note" id="fs-id1167794127411">
+<div class="eyebrow">Theorem</div>
+<h3>Divergence Test for Source-Free Vector Fields</h3>
+<p>Let $\kvecF=\langle \kP,\kQ\rangle$ be a continuous <span data-concept="vector-field">vector field</span> with differentiable component functions with a domain that is <span data-concept="simply-connected-region">simply connected</span>. Then, $\kdivF=0$ if and only if $\kvecF$ is <span data-concept="source-free-vector-field">source free</span>.</p>
+</div>
+<div class="example" id="fs-id1167794173556">
+<h3>Example 16.50 · Determining Whether a Field Is Source Free</h3>
+<p>Is field $\kvecF(x,y)=\langle x^{2}y,5-xy^{2}\rangle$ <span data-concept="source-free-vector-field">source free</span>?</p>
+<h4>Solution</h4>
+<p>Note the domain of $\kvecF$ is ${\mathbb{R}}^{2},$ which is <span data-concept="simply-connected-region">simply connected</span>. Furthermore, $\kvecF$ is continuous with differentiable component functions. Therefore, we can use <a href="#fs-id1167794127411">Divergence Test for Source-Free Vector Fields</a> to analyze $\kvecF$. The <span data-concept="divergence">divergence</span> of $\kvecF$ is</p>
+$$\frac{\partial}{\partial x}(x^{2}y)+\frac{\partial}{\partial y}(5-xy^{2})=2xy-2xy=0.$$
+<p>Therefore, $\kvecF$ is <span data-concept="source-free-vector-field">source free</span> by <a href="#fs-id1167794127411">Divergence Test for Source-Free Vector Fields</a>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794173556"></div>
+<p>Recall that the <span data-concept="greens-theorem-flux-form">flux form of Green’s theorem</span> says that</p>
+$$\int_{C}\kvecF\cdot {\kvecN}ds=\iint_{D}P_{x}+Q_{y}dA ,$$
+<p>where $\kC$ is a simple closed curve and $\kD$ is the region enclosed by $\kC$. Since $P_{x}+Q_{y}=\kdivF,$ <span data-concept="greens-theorem">Green’s theorem</span> is sometimes written as</p>
+$$\int_{C}\kvecF\cdot {\kvecN}ds=\iint_{D}{\kdivF}dA.$$
+<p>Therefore, <span data-concept="greens-theorem">Green’s theorem</span> can be written in terms of <span data-concept="divergence">divergence</span>. If we think of <span data-concept="divergence">divergence</span> as a derivative of sorts, then <span data-concept="greens-theorem">Green’s theorem</span> says the “derivative” of $\kvecF$ on a region can be translated into a line integral of $\kvecF$ along the boundary of the region. This is analogous to the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span>, in which the derivative of a function $\kf$ on a line segment $[a,b]$ can be translated into a statement about $\kf$ on the boundary of $[a,b].$ Using <span data-concept="divergence">divergence</span>, we can see that <span data-concept="greens-theorem">Green’s theorem</span> is a higher-dimensional analog of the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span>.</p>
+<p>We can use all of what we have learned in the application of <span data-concept="divergence">divergence</span>. Let $\kvecv$ be a <span data-concept="vector-field">vector field</span> modeling the velocity of a fluid. Since the <span data-concept="divergence">divergence</span> of $\kvecv$ at point $P$ measures the “outflowing-ness” of the fluid at $P$, $\text{div}\;\kvecv(\kP)\gt 0$ implies that more fluid is flowing out of $P$ than flowing in. Similarly, $\text{div}\;\kvecv(\kP)\lt 0$ implies the more fluid is flowing in to $P$ than is flowing out, and $\text{div}\;\kvecv(\kP)=0$ implies the same amount of fluid is flowing in as flowing out.</p>
+<div class="example" id="fs-id1167793508391">
+<h3>Example 16.51 · Determining Flow of a Fluid</h3>
+<p>Suppose $\kvecv(x,y)=\langle -xy,y\rangle ,y\gt 0$ models the flow of a fluid. Is more fluid flowing into point $(1,4)$ than flowing out?</p>
+<h4>Solution</h4>
+<p>To determine whether more fluid is flowing into $(1,4)$ than is flowing out, we calculate the <span data-concept="divergence">divergence</span> of $\kvecv$ at $(1,4)\text{:}$</p>
+$$\text{div}(\kvecv)=\frac{\partial}{\partial x}(-xy)+\frac{\partial}{\partial y}(y)=-y+1.$$
+<p>To find the <span data-concept="divergence">divergence</span> at $(1,4),$ substitute the point into the <span data-concept="divergence">divergence</span>: $-4+1=-3.$ Since the <span data-concept="divergence">divergence</span> of $\kvecv$ at $(1,4)$ is negative, more fluid is flowing in than flowing out (Figure 16.53).</p>
+
+</div>
+<div class="exercises" data-place="fs-id1167793508391"></div>
+</section>
+
+<section id="curl">
+<h2>Curl</h2>
+<p class="cite-target">The second operation on a <span data-concept="vector-field">vector field</span> that we examine is the <span data-concept="curl">curl</span>, which measures the extent of rotation of the field about a point. Suppose that $\kvecF$ represents the velocity field of a fluid. Then, the <span data-concept="curl">curl</span> of $\kvecF$ at point $P$ is a vector that measures the tendency of particles near $P$ to rotate about the axis that points in the direction of this vector. The magnitude of the <span data-concept="curl">curl</span> vector at $P$ measures how quickly the particles rotate around this axis. In other words, the <span data-concept="curl">curl</span> at a point is a measure of the <span data-concept="vector-field">vector field</span>’s “spin” at that point. Visually, imagine placing a paddlewheel into a fluid at $P$, with the axis of the paddlewheel aligned with the <span data-concept="curl">curl</span> vector (Figure 16.54). The <span data-concept="curl">curl</span> measures the tendency of the paddlewheel to rotate.</p>
+<figure class="sim" id="sim-paddlewheel" data-figure="16.54 + 16.55" data-original="/media/ch16/CNX_Calc_Figure_16_05_005.jpg,/media/ch16/CNX_Calc_Figure_16_05_006.jpg" data-original-caption="(Figure 16.54) To visualize curl at a point, imagine placing a small paddlewheel into the vector field at a point. (Figure 16.55) Vector field F(x,y)=⟨y,0⟩ consists of vectors that are all parallel.">
+  <div class="sim-head"><span class="eyebrow">Figure 16.54 + 16.55</span><span>A small paddlewheel placed in a plane field turns at half the $\kveck$-component of the <span data-concept="curl">curl</span>. Drag it about $\langle y,0\rangle$ (Example 16.54): although the vectors are parallel, the faster flow on top turns it clockwise everywhere; it turns counterclockwise in $\langle -y,x\rangle,$ and not at all in a constant field or in the whirlpool $\langle -y,x\rangle/(x^{2}+y^{2}),$ away from the origin.</span></div>
+</figure>
+<p>Consider the <span data-concept="vector-field">vector fields</span> in Figure 16.50. In part (a), the <span data-concept="vector-field">vector field</span> is constant and there is no spin at any point. Therefore, we expect the <span data-concept="curl">curl</span> of the field to be zero, and this is indeed the case. Part (b) shows a rotational field, so the field has spin. In particular, if you place a paddlewheel into a field at any point so that the axis of the wheel is perpendicular to a plane, the wheel rotates counterclockwise. Therefore, we expect the <span data-concept="curl">curl</span> of the field to be nonzero, and this is indeed the case (the <span data-concept="curl">curl</span> is $2\kveck).$</p>
+<p>To see what <span data-concept="curl">curl</span> is measuring globally, imagine dropping a leaf into the fluid. As the leaf moves along with the fluid flow, the <span data-concept="curl">curl</span> measures the tendency of the leaf to rotate. If the <span data-concept="curl">curl</span> is zero, then the leaf doesn’t rotate as it moves through the fluid.</p>
+<div class="note" id="fs-id1167793959741">
+<div class="eyebrow">Definition</div>
+<p>If $\kvecF=\langle \kP,\kQ,\kR\rangle$ is a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{3},$ and $P_{x},P_{y},P_{z},Q_{y},Q_{x},Q_{z},R_{z},R_{x},andR_{y}$ all exist, then the <strong><span data-concept="curl">curl</span></strong> of $\kvecF$ is defined by</p>
+<div class="equation" id="fs-id1167793965993">$$\begin{array}{rl}\kcurlF & =(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck \\ & =(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z})\kveci+(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x})\kvecj+(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})\kveck.\end{array}\tag{16.17}$$</div>
+<p>Note that the <span data-concept="curl">curl</span> of a <span data-concept="vector-field">vector field</span> is a <span data-concept="vector-field">vector field</span>, in contrast to <span data-concept="divergence">divergence</span>.</p>
+</div>
+<p>The definition of <span data-concept="curl">curl</span> can be difficult to remember. To help with remembering, we use the notation $\nabla \;\times \;\kvecF$ to stand for a “determinant” that gives the <span data-concept="curl">curl</span> formula:</p>
+$$|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ \kP & \kQ & \kR\end{array}|.$$
+<p>The determinant of this matrix is</p>
+$$(R_{y}-Q_{z})\kveci-(R_{x}-P_{z})\kvecj+(Q_{x}-P_{y})\kveck=(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck=\kcurlF.$$
+<p>Thus, this matrix is a way to help remember the formula for <span data-concept="curl">curl</span>. Keep in mind, though, that the word <em>determinant</em> is used very loosely. A determinant is not really defined on a matrix with entries that are three vectors, three operators, and three functions.</p>
+<p>If $\kvecF=\langle \kP,\kQ\rangle$ is a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{2},$ then the <span data-concept="curl">curl</span> of $\kvecF$, by definition, is</p>
+$$\kcurlF=(Q_{x}-P_{y})\kveck=(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})\kveck.$$
+<div class="example" id="fs-id1167794026966">
+<h3>Example 16.52 · Finding the Curl of a Three-Dimensional Vector Field</h3>
+<p>Find the <span data-concept="curl">curl</span> of $\kvecF(\kP,\kQ,\kR)=\langle x^{2}z,e^{y}+xz,xyz\rangle .$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="curl">curl</span> is</p>
+$$\begin{array}{rl}\kcurlF & =\nabla \;\times \;\kvecF \\ & =|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ \partial /\partial x & \partial /\partial y & \partial /\partial z \\ \kP & \kQ & \kR\end{array}| \\ & =(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck \\ & =(xz-x)\kveci+(x^{2}-yz)\kvecj+z{\kveck}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794026966"></div>
+<div class="example" id="fs-id1167794046590">
+<h3>Example 16.53 · Finding the Curl of a Two-Dimensional Vector Field</h3>
+<p>Find the <span data-concept="curl">curl</span> of $\kvecF=\langle \kP,\kQ\rangle =\langle y,0\rangle .$</p>
+<h4>Solution</h4>
+<p>Notice that this <span data-concept="vector-field">vector field</span> consists of vectors that are all parallel. In fact, each vector in the field is parallel to the $x$-axis. This fact might lead us to the conclusion that the field has no spin and that the <span data-concept="curl">curl</span> is zero. To test this theory, note that</p>
+$$\kcurlF=(Q_{x}-P_{y})\kveck=-\kveck\ne 0.$$
+<p>Therefore, this <span data-concept="vector-field">vector field</span> does have spin. To see why, imagine placing a paddlewheel at any point in the first quadrant (Figure 16.55). The larger magnitudes of the vectors at the top of the wheel cause the wheel to rotate. The wheel rotates in the clockwise (negative) direction, causing the coefficient of the <span data-concept="curl">curl</span> to be negative.</p>
+
+</div>
+<p>Note that if $\kvecF=\langle \kP,\kQ\rangle$ is a <span data-concept="vector-field">vector field</span> in a plane, then $\kcurlF\cdot \kveck=(Q_{x}-P_{y})\kveck\cdot \kveck=Q_{x}-P_{y}.$ Therefore, the <span data-concept="greens-theorem">circulation form of Green’s theorem</span> is sometimes written as</p>
+$$\int_{C}\kvecF\cdot d\mathbf{r}= \iint_{D}\kcurlF\cdot {\kveck}dA ,$$
+<p>where $\kC$ is a simple closed curve and $\kD$ is the region enclosed by $\kC$. Therefore, the <span data-concept="greens-theorem">circulation form of Green’s theorem</span> can be written in terms of the <span data-concept="curl">curl</span>. If we think of <span data-concept="curl">curl</span> as a derivative of sorts, then <span data-concept="greens-theorem">Green’s theorem</span> says that the “derivative” of $\kvecF$ on a region can be translated into a line integral of $\kvecF$ along the boundary of the region. This is analogous to the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span>, in which the derivative of a function $\kf$ on line segment $[a,b]$ can be translated into a statement about $\kf$ on the boundary of $[a,b].$ Using <span data-concept="curl">curl</span>, we can see the <span data-concept="greens-theorem">circulation form of Green’s theorem</span> is a higher-dimensional analog of the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span>.</p>
+<p>We can now use what we have learned about <span data-concept="curl">curl</span> to show that gravitational fields have no “spin.” Suppose there is an object at the origin with mass $m_{1}$ at the origin and an object with mass $m_{2}.$ Recall that the gravitational force that object 1 exerts on object 2 is given by field</p>
+$$\kvecF(x,y,z)=-Gm_{1}m_{2}\langle \frac{x}{{(x^{2}+y^{2}+z^{2})}^{3/2}},\frac{y}{{(x^{2}+y^{2}+z^{2})}^{3/2}},\frac{z}{{(x^{2}+y^{2}+z^{2})}^{3/2}}\rangle .$$
+<div class="example" id="fs-id1167793505725">
+<h3>Example 16.54 · Determining the Spin of a Gravitational Field</h3>
+<p>Show that a gravitational field has no spin.</p>
+<h4>Solution</h4>
+<p>To show that $\kvecF$ has no spin, we calculate its <span data-concept="curl">curl</span>. Let $\kP(x,y,z)=\frac{x}{{(x^{2}+y^{2}+z^{2})}^{3/2}},$ $\kQ(x,y,z)=\frac{y}{{(x^{2}+y^{2}+z^{2})}^{3/2}},$ and $\kR(x,y,z)=\frac{z}{{(x^{2}+y^{2}+z^{2})}^{3/2}}.$ Then,</p>
+$$\begin{array}{rl}\kcurlF & =-Gm_{1}m_{2}[(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck] \\ & =-Gm_{1}m_{2}[\begin{array}{l}(\frac{-3yz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3yz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kveci \\ +(\frac{-3xz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3xz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kvecj \\ +(\frac{-3xy}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3xy}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kveck\end{array}] \\ & =0.\end{array}$$
+<p>Since the <span data-concept="curl">curl</span> of the gravitational field is zero, the field has no spin.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793505725"></div>
+</section>
+
+<section id="using">
+<h2>Using Divergence and Curl</h2>
+<p class="cite-target">Now that we understand the basic concepts of <span data-concept="divergence">divergence</span> and <span data-concept="curl">curl</span>, we can discuss their properties and establish relationships between them and <span data-concept="conservative-vector-field">conservative vector fields</span>.</p>
+<p>If $\kvecF$ is a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{3},$ then the <span data-concept="curl">curl</span> of $\kvecF$ is also a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{3}.$ Therefore, we can take the <span data-concept="divergence">divergence</span> of a <span data-concept="curl">curl</span>. The next theorem says that the result is always zero. This result is useful because it gives us a way to show that some <span data-concept="vector-field">vector fields</span> are not the <span data-concept="curl">curl</span> of any other field. To give this result a physical interpretation, recall that <span data-concept="divergence">divergence</span> of a velocity field $\kvecv$ at point $P$ measures the tendency of the corresponding fluid to flow out of $P$. Since $\text{div}\;\text{curl}\;(\kvecv)=0,$ the net rate of flow in <span data-concept="vector-field">vector field</span> <span data-concept="curl">curl</span>($\kvecv$) at any point is zero. Taking the <span data-concept="curl">curl</span> of <span data-concept="vector-field">vector field</span> $\kvecF$ eliminates whatever <span data-concept="divergence">divergence</span> was present in $\kvecF$.</p>
+<div class="note" id="fs-id1167794029307">
+<div class="eyebrow">Theorem</div>
+<h3>Divergence of the Curl</h3>
+<p>Let $\kvecF=\langle \kP,\kQ,\kR\rangle$ be a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{3}$ such that the component functions all have continuous second-order partial derivatives. Then, $\text{div}\;\text{curl}\;(\kvecF)=\nabla \cdot (\nabla \;\times \;\kvecF)=0.$</p>
+</div>
+<h3>Proof</h3>
+<p>By the definitions of <span data-concept="divergence">divergence</span> and <span data-concept="curl">curl</span>, and by <span data-concept="clairauts-theorem">Clairaut’s theorem</span>,</p>
+$$\begin{array}{rl}\text{div curl}\;\kvecF & =\text{div}[(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck] \\ & =R_{yx}-Q_{xz}+P_{yz}-R_{yx}+Q_{zx}-P_{zy} \\ & =0.\end{array}$$
+<p>□</p>
+<div class="example" id="fs-id1167793568775">
+<h3>Example 16.55 · Showing That a Vector Field Is Not the Curl of Another</h3>
+<p>Show that $\kvecF(x,y,z)=e^{x}\kveci+yz{\kvecj}+xz^{2}\kveck$ is not the <span data-concept="curl">curl</span> of another <span data-concept="vector-field">vector field</span>. That is, show that there is no other vector $\kvecG$ with $\text{curl}\;\kvecG=\kvecF.$</p>
+<h4>Solution</h4>
+<p>Notice that the domain of $\kvecF$ is all of ${\mathbb{R}}^{3}$ and the second-order partials of $\kvecF$ are all continuous. Therefore, we can apply the previous theorem to $\kvecF$.</p>
+<p>The <span data-concept="divergence">divergence</span> of $\kvecF$ is $e^{x}+z+2xz.$ If $\kvecF$ were the <span data-concept="curl">curl</span> of <span data-concept="vector-field">vector field</span> $\kvecG$, then $\kdivF=\text{div curl}\;\kvecG=0.$ But, the <span data-concept="divergence">divergence</span> of $\kvecF$ is not zero, and therefore $\kvecF$ is not the <span data-concept="curl">curl</span> of any other <span data-concept="vector-field">vector field</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793568775"></div>
+<p>With the next two theorems, we show that if $\kvecF$ is a <span data-concept="conservative-vector-field">conservative vector field</span> then its <span data-concept="curl">curl</span> is zero, and if the domain of $\kvecF$ is <span data-concept="simply-connected-region">simply connected</span> then the converse is also true. This gives us another way to test whether a <span data-concept="vector-field">vector field</span> is conservative.</p>
+<div class="note" id="fs-id1167793635932">
+<div class="eyebrow">Theorem</div>
+<h3>Curl of a Conservative Vector Field</h3>
+<p>If $\kvecF=\langle \kP,\kQ,\kR\rangle$ is conservative, then $\kcurlF=0.$</p>
+</div>
+<h3>Proof</h3>
+<p>Since <span data-concept="conservative-vector-field">conservative vector fields</span> satisfy the <span data-concept="cross-partial-property">cross-partials property</span>, all the cross-partials of $\kvecF$ are equal. Therefore,</p>
+$$\begin{array}{rl}\kcurlF & =(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck \\ & =0.\end{array}$$
+<p>□</p>
+<p>The same theorem is true for <span data-concept="vector-field">vector fields</span> in a plane.</p>
+<p>Since a <span data-concept="conservative-vector-field">conservative vector field</span> is the <span data-concept="gradient">gradient</span> of a scalar function, the previous theorem says that $\text{curl}\;(\kgradf)=0$ for any scalar function $\kf.$ In terms of our <span data-concept="curl">curl</span> notation, $\nabla \;\times \;\nabla (f)=0.$ This equation makes sense because the <span data-concept="cross-product">cross product</span> of a vector with itself is always the zero vector. Sometimes equation $\nabla \;\times \;\nabla (f)=0$ is simplified as $\nabla \;\times \;\nabla =0.$</p>
+<div class="note" id="fs-id1167793495816">
+<div class="eyebrow">Theorem</div>
+<h3>Curl Test for a Conservative Field</h3>
+<p>Let $\kvecF=\langle \kP,\kQ,\kR\rangle$ be a <span data-concept="vector-field">vector field</span> in space on a <span data-concept="simply-connected-region">simply connected</span> domain. If $\kcurlF=0,$ then $\kvecF$ is conservative.</p>
+</div>
+<h3>Proof</h3>
+<p>Since $\kcurlF=0,$ we have that $R_{y}=Q_{z},P_{z}=R_{x},$ and $Q_{x}=P_{y}.$ Therefore, $\kvecF$ satisfies the <span data-concept="cross-partial-property">cross-partials property</span> on a <span data-concept="simply-connected-region">simply connected</span> domain, and <a href="/calculus/ch16/16.3/#16.3-fs-id1167793945282">Cross-Partial Property of Conservative Fields</a> implies that $\kvecF$ is conservative.</p>
+<p>□</p>
+<p>The same theorem is also true in a plane. Therefore, if $\kvecF$ is a <span data-concept="vector-field">vector field</span> in a plane or in space and the domain is <span data-concept="simply-connected-region">simply connected</span>, then $\kvecF$ is conservative if and only if $\kcurlF=0.$</p>
+<div class="example" id="fs-id1167793502584">
+<h3>Example 16.56 · Testing Whether a Vector Field Is Conservative</h3>
+<p>Use the <span data-concept="curl">curl</span> to determine whether $\kvecF(x,y,z)=\langle yz,xz,xy\rangle$ is conservative.</p>
+<h4>Solution</h4>
+<p>Note that the domain of $\kvecF$ is all of ${\mathbb{R}}^{3},$ which is <span data-concept="simply-connected-region">simply connected</span> (Figure 16.56). Therefore, we can test whether $\kvecF$ is conservative by calculating its <span data-concept="curl">curl</span>.</p>
+<figure class="sim" id="sim-curl-free-field" data-figure="16.56" data-original="/media/ch16/CNX_Calc_Figure_16_05_007.jpg" data-original-caption="The curl of vector field F(x,y,z)=⟨yz,xz,xy⟩ is zero.">
+  <div class="sim-head"><span class="eyebrow">Figure 16.56</span><span>The <span data-concept="curl">curl</span> of <span data-concept="vector-field">vector field</span> $\kvecF(x,y,z)=\langle yz,xz,xy\rangle$ is zero. Turn the box: the arrows swirl nowhere.</span></div>
+</figure>
+<p>The <span data-concept="curl">curl</span> of $\kvecF$ is</p>
+$$(\frac{\partial}{\partial y}xy-\frac{\partial}{\partial z}xz)\kveci+(\frac{\partial}{\partial y}yz-\frac{\partial}{\partial z}xy)\kvecj+(\frac{\partial}{\partial y}xz-\frac{\partial}{\partial z}yz)\kveck=(x-x)\kveci+(y-y)\kvecj+(z-z)\kveck=0.$$<sup class="fn" data-note="c-curl-derivatives"></sup>
+<p>Thus, $\kvecF$ is conservative.</p>
+</div>
+<p id="laplace-term">We have seen that the <span data-concept="curl">curl</span> of a <span data-concept="gradient">gradient</span> is zero. What is the <span data-concept="divergence">divergence</span> of a <span data-concept="gradient">gradient</span>? If $\kf$ is a function of two variables, then $\text{div}(\kgradf)=\nabla \cdot (\kgradf)=f_{xx}+f_{yy}.$ We abbreviate this “double <span data-concept="dot-product">dot product</span>” as ${\nabla}^{2}.$ This operator is called the <em><span data-concept="laplace-operator">Laplace operator</span></em><em>,</em> and in this notation <span data-concept="laplaces-equation">Laplace’s equation</span> becomes ${\nabla}^{2}\kf=0.$ Therefore, a <span data-concept="harmonic-function">harmonic function</span> is a function that becomes zero after taking the <span data-concept="divergence">divergence</span> of a <span data-concept="gradient">gradient</span>.</p>
+<p>Similarly, if $\kf$ is a function of three variables then</p>
+$$\text{div}(\kgradf)=\nabla \cdot (\kgradf)=f_{xx}+f_{yy}+f_{zz}.$$
+<p>Using this notation we get <span data-concept="laplaces-equation">Laplace’s equation</span> for <span data-concept="harmonic-function">harmonic functions</span> of three variables:</p>
+$${\nabla}^{2}\kf=0.$$
+<p><span data-concept="harmonic-function">Harmonic functions</span> arise in many applications. For example, the <span data-concept="potential-function">potential function</span> of an electrostatic field in a region of space that has no static charge is <span data-concept="harmonic-function">harmonic</span>.</p>
+<div class="example" id="fs-id1167793829629">
+<h3>Example 16.57 · Analyzing a Function</h3>
+<p>Is it possible for $\kf(x,y)=x^{2}+x-y$ to be the <span data-concept="potential-function">potential function</span> of an electrostatic field that is located in a region of ${\mathbb{R}}^{2}$ free of static charge?</p>
+<h4>Solution</h4>
+<p>If $\kf$ were such a <span data-concept="potential-function">potential function</span>, then $\kf$ would be <span data-concept="harmonic-function">harmonic</span>. Note that $f_{xx}=2$ and $f_{yy}=0,$ and so $f_{xx}+f_{yy}\ne 0.$ Therefore, $\kf$ is not <span data-concept="harmonic-function">harmonic</span> and $\kf$ cannot represent an electrostatic potential.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793829629"></div>
+</section>

@@ -1,0 +1,1283 @@
+{
+ "id": "16.1",
+ "module": "m53989",
+ "chapter": "16",
+ "title": "Vector Fields",
+ "short": "Vector Fields",
+ "lead": "A <span data-concept=\"vector-field\">vector field</span> attaches a vector to every point of a region of the plane or of space, the way a wind map attaches a wind to every place. This section draws such fields, from <span data-concept=\"radial-field\">radial</span> and <span data-concept=\"rotational-field\">rotational</span> fields in the plane to a gravitational field in space, and meets the fields that are the gradient of a function: <span data-concept=\"conservative-vector-field\">conservative fields</span> and their <span data-concept=\"potential-function\">potential functions</span>.",
+ "objectives": [
+  "Recognize a vector field in a plane or in space.",
+  "Sketch a vector field from a given equation.",
+  "Identify a conservative field and its associated potential function."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"vector-field\">vector field</span> assigns a vector $\\kvecF(x,y)$ to each point $(x,y)$ in a subset $\\kD$ of ${\\mathbb{R}}^{2}\\;\\text{or}\\;{\\mathbb{R}}^{3}.$ $\\kvecF(x,y,z)$ to each point $(x,y,z)$ in a subset $\\kD$ of ${\\mathbb{R}}^{3}.$<sup class=\"fn\" data-note=\"c-summary-field\"></sup></li><li><span data-concept=\"vector-field\">Vector fields</span> can describe the distribution of vector quantities such as forces or velocities over a region of the plane or of space. They are in common use in such areas as physics, engineering, meteorology, oceanography.</li><li>We can sketch a <span data-concept=\"vector-field\">vector field</span> by examining its defining equation to determine relative magnitudes in various locations and then drawing enough vectors to determine a pattern.</li><li>A <span data-concept=\"vector-field\">vector field</span> $\\kvecF$ is called conservative if there exists a scalar function $\\kf$ such that $\\kgradf=\\kvecF.$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Of the unkeyed section exercises, the true-or-false exercises 2 and 4 and the flow-line exercise 30 are kept with AI-written suggested approaches; the other 16 are sketches, computations or matchings with no key and are left out: exercises 6–14 even (sketches), 16–20 even (gradients), 22–28 even (formulas and an electric field) and 32–38 even (matching graphs). Review exercises 427 and 431 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "fig-two-fields",
+   "kind": "photo",
+   "number": "16.2",
+   "draws": []
+  },
+  {
+   "id": "sim-radial-field",
+   "kind": "sim",
+   "number": "16.3",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_01_003.jpg"
+   ],
+   "original_caption": "(a) A visual representation of the radial vector field F(x,y)=x/2 i+y/2 j. (b) The radial vector field F(x,y)=x/2 i+y/2 j with overlaid circles. Notice that each vector is perpendicular to the circle on which it is located.",
+   "draws": [
+    "vector-field",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-hurricane",
+   "kind": "photo",
+   "number": "16.4",
+   "draws": []
+  },
+  {
+   "id": "sim-rotational-field",
+   "kind": "sim",
+   "number": "16.5",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_01_006.jpg"
+   ],
+   "original_caption": "(a) A visual representation of vector field F(x,y)=⟨y,−x⟩. (b) Vector field F(x,y)=⟨y,−x⟩ with circles centered at the origin. (c) Vector F(a,b) is perpendicular to radial vector ⟨a,b⟩ at point (a,b).",
+   "draws": [
+    "vector-field",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-whirlpool-field",
+   "kind": "sim",
+   "number": "16.6",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_01_007.jpg"
+   ],
+   "original_caption": "A visual representation of vector field F(x,y)=y/(x²+y²) i−x/(x²+y²) j. This vector field could be used to model whirlpool motion of a fluid.",
+   "draws": [
+    "vector-field",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-field-1-1-z",
+   "kind": "sim",
+   "number": "16.7",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_01_009.jpg"
+   ],
+   "original_caption": "A visual representation of vector field F(x,y,z)=⟨1,1,z⟩.",
+   "draws": [
+    "vector-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-gravity-field",
+   "kind": "sim",
+   "number": "16.8",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_01_011.jpg"
+   ],
+   "original_caption": "A visual representation of gravitational vector field F=−Gm₁m₂⟨x/(r³),y/(r³),z/(r³)⟩ for a large mass at the origin.",
+   "draws": [
+    "vector-field",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-gradient-field",
+   "kind": "sim",
+   "number": "16.9",
+   "folds": [
+    "16.10"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_01_012.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_01_014.jpg"
+   ],
+   "original_caption": "(Figure 16.9) The gradient vector field is ∇f, where f(x,y)=x²y². (Figure 16.10) The gradient field of f(x,y)=x²y² and several level curves of f. Notice that as the level curves get closer together, the magnitude of the gradient vectors increases.",
+   "draws": [
+    "vector-field",
+    "point",
+    "curve",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-velocity-potential",
+   "kind": "figure",
+   "number": "16.11",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_01_015.jpg"
+   ],
+   "original_caption": "Velocity field v(x,y) has a potential function and is a conservative field.",
+   "draws": [
+    "vector-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "vf-intro",
+   "concept": "vector-field",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793270756",
+   "concept": "vector-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793270756",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "examples",
+   "concept": "component-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "examples",
+   "concept": "standard-unit-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794027862",
+   "concept": "vector-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "radial-term",
+   "concept": "radial-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794336014",
+   "concept": "radial-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rotational-term",
+   "concept": "rotational-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793958705",
+   "concept": "rotational-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793958705",
+   "concept": "dot-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794216020",
+   "concept": "rotational-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793363040",
+   "concept": "vector-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793363040",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "unit-term",
+   "concept": "unit-vector-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "unit-term",
+   "concept": "unit-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793940891",
+   "concept": "unit-vector-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unit-field",
+   "concept": "normalization",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793404656",
+   "concept": "vector-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793354224",
+   "concept": "radial-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "gradient-fields",
+   "concept": "gradient",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793266865",
+   "concept": "conservative-vector-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793374719",
+   "concept": "conservative-vector-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-gradient-field",
+   "concept": "level-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-gradient-field",
+   "concept": "directional-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-term",
+   "concept": "potential-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793619914",
+   "concept": "potential-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793355046",
+   "concept": "potential-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794097175",
+   "concept": "uniqueness-of-potential-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794097175",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794327427",
+   "concept": "cross-partial-property",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794327427",
+   "concept": "clairauts-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793541431",
+   "concept": "cross-partial-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793495830",
+   "concept": "cross-partial-property",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793363371",
+   "source_number": "Checkpoint 16.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794027862"
+   },
+   "cite": "examples",
+   "prompt": "Let $\\textbf{G}(x,y)=x^{2}y\\textbf{i}-(x+y)\\textbf{j}$ be a vector field in ${\\mathbb{R}}^{2}.$ What vector is associated with the point $(-2,3)?$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$12\\textbf{i}-\\textbf{j}$",
+    "hint": "Substitute the point values into the vector function."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794188677",
+   "source_number": "Checkpoint 16.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794336014"
+   },
+   "cite": "drawing",
+   "prompt": "Draw the radial field $\\textbf{F}(x,y)=-\\frac{x}{3}\\;\\textbf{i}-\\frac{y}{3}\\;\\textbf{j}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_01_004.jpg\" alt=\"A visual representation of the given radial field in a coordinate plane. The magnitudes increase further from the origin. The arrow seem to be stretching away from the origin in a rectangular shape.\">",
+    "hint": "Sketch enough vectors to get an idea of the shape."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793445715",
+   "source_number": "Checkpoint 16.3",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794216020"
+   },
+   "cite": "drawing",
+   "prompt": "Sketch vector field $\\textbf{F}(x,y)=\\langle -2y,2x\\rangle .$ Is the vector field radial, rotational, or neither?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Rotational</p>\n<img src=\"/media/ch16/CNX_Calc_Figure_16_01_008.jpg\" alt=\"A visual representation of a rotational vector field in a coordinate plane. The arrows circle the origin in a counterclockwise manner.\">",
+    "hint": "Substitute enough points into <strong>F</strong> to get an idea of the shape."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167794136726",
+   "source_number": "Checkpoint 16.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793363040"
+   },
+   "cite": "drawing",
+   "prompt": "Vector field $v(x,y)=\\langle 4|x|,1\\rangle$ models the velocity of water on the surface of a river. What is the speed of the water at point $(2,3)?$ Use meters per second as the units.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{65}$ m/sec",
+    "hint": "Remember, speed is the magnitude of velocity."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793950928",
+   "source_number": "Checkpoint 16.5",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793940891"
+   },
+   "cite": "drawing",
+   "prompt": "Is vector field $\\textbf{F}(x,y)=\\langle -y,x\\rangle$ a unit vector field?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No.",
+    "hint": "Calculate the magnitude of <strong>F</strong> at an arbitrary point $(x,y).$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167794226031",
+   "source_number": "Checkpoint 16.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793404656"
+   },
+   "cite": "drawing",
+   "prompt": "Sketch vector field $\\textbf{G}(x,y,z)=\\langle 2,\\frac{z}{2},1\\rangle .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_01_010.jpg\" alt=\"A visual representation of the given vector field in three dimensions. The x and z components are always 2 and 1, respectively. The y component is z/2. The closer z comes to zero, the smaller the y component is, and the further away z is from zero, the larger the y component is.\">",
+    "hint": "Substitute enough points into the vector field to get an idea of the general shape."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167793522405",
+   "source_number": "Checkpoint 16.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793354224"
+   },
+   "cite": "drawing",
+   "prompt": "The mass of asteroid 1 is 750,000 kg and the mass of asteroid 2 is 130,000 kg. Assume asteroid 1 is located at the origin, and asteroid 2 is located at $(15,-5,10),$ measured in units of 10 to the eighth power kilometers. Given that the universal gravitational constant is $G=6.67384\\;\\times \\;{10}^{-11}{\\;\\text{m}}^{3}{\\text{kg}}^{-1}{\\text{s}}^{-2},$ find the gravitational force vector that asteroid 1 exerts on asteroid 2.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$–1.49063\\;\\times \\;{10}^{-18},4.96876\\;\\times \\;{10}^{-19},–9.93752\\;\\times \\;{10}^{-19}\\text{N}$",
+    "hint": "Follow <a href=\"#fs-id1167793354224\">Example 16.8</a> and first compute the distance between the asteroids."
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1167793941510",
+   "source_number": "Checkpoint 16.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793374719"
+   },
+   "cite": "gradient-fields",
+   "prompt": "Use technology to plot the gradient vector field of $f(x,y)=\\sin x\\;\\cos y.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_01_013.jpg\" alt=\"A visual representation of the given given vector in two dimensions. The arrows seem to be forming several ovals. The first is around the origin, where the arrows curve to the right above and below the x axis. The closer the arrows are to the x axis, the flatter they are. There appear to be six other ovals, three on either side of the central one. The vectors get longer as they get farther from the origin, and then they start to get shorter again.\">",
+    "hint": "Find the gradient of $f.$"
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1167793568779",
+   "source_number": "Checkpoint 16.9",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793619914"
+   },
+   "cite": "gradient-fields",
+   "prompt": "Is $f(x,y,z)=x^{2}\\cos (yz)+y^{2}z^{2}$ a potential function for $\\textbf{F}(x,y,z)=\\langle 2x\\;\\cos (yz),-x^{2}z\\;\\sin (yz)+2yz^{2},y^{2}\\rangle ?$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No",
+    "hint": "Compute the gradient of $f.$"
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1167793725925",
+   "source_number": "Checkpoint 16.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793355046"
+   },
+   "cite": "gradient-fields",
+   "prompt": "Verify that $f(x,y)=x^{3}y^{2}+1$ is a potential function for velocity field $\\text{v}(x,y)=\\langle 3x^{2}y^{2},2x^{3}y\\rangle .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{∇}f=\\textbf{v}$",
+    "hint": "Calculate the gradient."
+   }
+  },
+  {
+   "id": "cp11",
+   "source_id": "fs-id1167793609897",
+   "source_number": "Checkpoint 16.11",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793541431"
+   },
+   "cite": "gradient-fields",
+   "prompt": "Show that the vector field $\\textbf{F}(x,y)=y\\textbf{i}-x^{2}xy\\textbf{j}$<sup class=\"fn\" data-note=\"c-cp11-field\"></sup> is not conservative.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$P_{y}=x\\ne Q_{x}=-2xy$",
+    "hint": "Check the cross-partials."
+   }
+  },
+  {
+   "id": "cp12",
+   "source_id": "fs-id1167793514867",
+   "source_number": "Checkpoint 16.12",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793495830"
+   },
+   "cite": "gradient-fields",
+   "prompt": "Is vector field $G(x,y,z)=\\langle y,x,xyz\\rangle$ conservative?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No",
+    "hint": "Check the cross-partials."
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1167793754000",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples",
+   "prompt": "<p>The domain of vector field $\\textbf{F}=\\textbf{F}(x,y)$ is a set of points $(x,y)$ in a plane, and the range of <strong>F</strong> is a set of <em>what</em> in the plane?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Vectors"
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "fs-id1167793570059",
+   "source_number": "2",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gradient-fields",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>Vector field $\\textbf{F}=\\langle 3x^{2},1\\rangle$ is a gradient field for both ${\\varphi }_{1}(x,y)=x^{3}+y$ and ${\\varphi }_{2}(x,y)=y+x^{3}+100.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True. The gradient of $\\varphi_{1}=x^{3}+y$ is $\\langle 3x^{2},1\\rangle,$ and the gradient of $\\varphi_{2}=y+x^{3}+100$ is also $\\langle 3x^{2},1\\rangle,$ since the constant $100$ has zero partial derivatives. Both are potential functions for $\\textbf{F},$ and they differ by the constant $100,$ as the uniqueness of potential functions allows.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1167793325793",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>Vector field $\\textbf{F}=\\frac{\\langle y,x\\rangle}{\\sqrt{x^{2}+y^{2}}}$ is constant in direction and magnitude on a unit circle.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "False"
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "fs-id1167794121973",
+   "source_number": "4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>Vector field $\\textbf{F}=\\frac{\\langle y,x\\rangle}{\\sqrt{x^{2}+y^{2}}}$ is neither a radial field nor a rotation.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True. At $(x,y)$ the field is $\\textbf{F}=\\langle y,x\\rangle/r$ with $r=\\sqrt{x^{2}+y^{2}}.$ Its dot product with the radial vector $\\langle x,y\\rangle$ is $2xy/r,$ which is not zero off the axes, so $\\textbf{F}$ is not tangent to the circles and the field is not rotational; its dot product with the tangent vector $\\langle -y,x\\rangle$ is $(x^{2}-y^{2})/r,$ which is not zero off the lines $y=\\pm x,$ so $\\textbf{F}$ does not point along the radius and the field is not radial. At $(1,0),$ for instance, $\\textbf{F}=\\langle 0,1\\rangle$ is tangent to the unit circle, but at $(1,1)$ it is $\\langle 1,1\\rangle/\\sqrt{2},$ pointing straight away from the origin.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1167793977440",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, describe each vector field by drawing some of its vectors.</p><p><strong>[T]</strong> $\\textbf{F}(x,y)=x\\textbf{i}+y\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_01_201.jpg\" alt=\"A visual representation of a vector field in two dimensions. The arrows are larger the further they are from the origin. They stretch away from the origin in a radial pattern.\">"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1167793567017",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, describe each vector field by drawing some of its vectors.</p><p><strong>[T]</strong> $\\textbf{F}(x,y)=x\\textbf{i}-y\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_01_203.jpg\" alt=\"A visual representation of a vector field in two dimensions. The arrows are larger the further they are from the origin and the further to the left and right they are from the y axis. The arrows asymptotically curve down and to the right in quadrant 1, down and to the left in quadrant 2, up and to the left in quadrant 3, and up and to the right in quadrant four.\">"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1167793279191",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, describe each vector field by drawing some of its vectors.</p><p><strong>[T]</strong> $\\textbf{F}(x,y)=2x\\textbf{i}+3y\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_01_205.jpg\" alt=\"A visual representation of a vector field in two dimensions. The arrows are larger the further away from the origin they are and, even more so, the further away from the y axis they are. They stretch out away from the origin in a radial manner.\">"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1167793335528",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, describe each vector field by drawing some of its vectors.</p><p><strong>[T]</strong> $\\textbf{F}(x,y)=y\\textbf{i}+\\sin x\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_01_207.jpg\" alt=\"A visual representation of a vector field in two dimensions. The arrows are larger the further away they are from the x axis. The arrows form two radial patterns, one on each side of the y axis. The patterns are clockwise.\">"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1167794145816",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, describe each vector field by drawing some of its vectors.</p><p><strong>[T]</strong> $\\textbf{F}(x,y,z)=2x\\textbf{i}-2y\\textbf{j}-2z\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_01_209.jpg\" alt=\"A visual representation of a vector field in three dimensions. The arrows seem to get smaller as both the z component gest close to zero and the x component gets larger, and as both the y and z components get larger. The arrows seem to converge in both of those directions as well.\">"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1167793401870",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gradient-fields",
+   "prompt": "<p>For the following exercises, find the gradient vector field of each function $f.$</p><p>$f(x,y)=x\\;\\sin y+\\cos y$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}(x,y)=\\sin (y)\\textbf{i}+(x\\;\\cos y-\\sin y)\\textbf{j}$"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1167793447627",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gradient-fields",
+   "prompt": "<p>For the following exercises, find the gradient vector field of each function $f.$</p><p>$f(x,y,z)=x^{2}y+xy+y^{2}z$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}(x,y,z)=(2xy+y)\\textbf{i}+(x^{2}+x+2yz)\\textbf{j}+y^{2}\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1167793925436",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gradient-fields",
+   "prompt": "<p>For the following exercises, find the gradient vector field of each function $f.$</p><p>$f(x,y)=\\ln (1+x^{2}+2y^{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}(x,y)=(\\frac{2x}{1+x^{2}+2y^{2}})\\textbf{i}+(\\frac{4y}{1+x^{2}+2y^{2}})\\textbf{j}$"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1167793480301",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, find the gradient vector field of each function $f.$</p><p>What is vector field $\\textbf{F}(x,y)$ with a value at $(x,y)$ that is of unit length and points toward $(1,0)?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}(x,y)=\\frac{(1-x)\\textbf{i}-y\\textbf{j}}{\\sqrt{{(1-x)}^{2}+y^{2}}}$"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1167793501918",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, write formulas for the vector fields with the given properties.</p><p>All vectors point toward the origin and have constant length.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}(x,y)=\\frac{-x\\textbf{i}-y\\textbf{j}}{\\sqrt{x^{2}+y^{2}}}$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1167793451716",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, write formulas for the vector fields with the given properties.</p><p>Give a formula $\\textbf{F}(x,y)=M(x,y)\\textbf{i}+N(x,y)\\textbf{j}$ for the vector field in a plane that has the properties that $\\textbf{F}=0$ at $(0,0)$ and that at any other point $(a,b),$ <strong>F</strong> is tangent to circle $x^{2}+y^{2}=a^{2}+b^{2}$ and points in the clockwise direction with magnitude $||F||=\\sqrt{a^{2}+b^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}(x,y)=y\\textbf{i}-x\\textbf{j}$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1167793607382",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>Find a formula for vector field $\\textbf{F}(x,y)=M(x,y)\\textbf{i}+N(x,y)\\textbf{j}$ given the fact that for all points $(x,y),$ <strong>F</strong> points toward the origin and $||F||=\\frac{10}{x^{2}+y^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}(x,y)=\\frac{-10}{{(x^{2}+y^{2})}^{3/2}}(x\\textbf{i}+y\\textbf{j})$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1167793500831",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gradient-fields",
+   "prompt": "<p>For the following exercises, assume that an electric field in the <em>xy</em>-plane caused by an infinite line of charge along the <em>x</em>-axis is a gradient field with potential function $V(x,y)=c\\;\\ln (\\frac{r_{0}}{\\sqrt{x^{2}+y^{2}}}),$ where $c\\gt 0$ is a constant and $r_{0}$ is a reference distance at which the potential is assumed to be zero.</p><p>Show that the electric field at a point in the <em>xy</em>-plane is directed outward from the origin and has magnitude $||E||=\\frac{c}{r}$, where $r=\\sqrt{x^{2}+y^{2}}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$||E||=\\frac{c}{x^{2}+y^{2}}\\sqrt{x^{2}+y^{2}}=\\frac{c}{\\sqrt{x^{2}+y^{2}}}=\\frac{c}{r}$"
+   }
+  },
+  {
+   "id": "e30",
+   "source_id": "fs-id1167793277912",
+   "source_number": "30",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>A <em>flow line</em> (or <em>streamline</em>) of a vector field $\\textbf{F}$ is a curve $\\textbf{r}(t)$ such that $d\\textbf{r}/dt=\\textbf{F}(\\textbf{r}(t)).$ If $\\textbf{F}$ represents the velocity field of a moving particle, then the flow lines are paths taken by the particle. Therefore, flow lines are tangent to the vector field. For the following exercises, show that the given curve $\\textbf{c}(t)$ is a flow line of the given velocity vector field $\\textbf{F}(x,y,z).$</p><p>$\\text{c}(t)=\\lt e^{2t},\\ln |t|,\\frac{1}{t}\\gt ,t\\ne 0;\\text{F}(x,y,z)=\\langle 2x,z,-z^{2}\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>With $\\textbf{c}(t)=\\langle e^{2t},\\ln |t|,\\frac{1}{t}\\rangle,$ we have $x=e^{2t},$ $y=\\ln |t|$ and $z=\\frac{1}{t},$ so $\\textbf{F}(\\textbf{c}(t))=\\langle 2x,z,-z^{2}\\rangle=\\langle 2e^{2t},\\frac{1}{t},-\\frac{1}{t^{2}}\\rangle.$ Differentiating each component, $\\textbf{c}'(t)=\\langle 2e^{2t},\\frac{1}{t},-\\frac{1}{t^{2}}\\rangle$ (for $t\\ne 0,$ the derivative of $\\ln |t|$ is $\\frac{1}{t}$). Since $\\textbf{c}'(t)=\\textbf{F}(\\textbf{c}(t)),$ the curve is a flow line of $\\textbf{F}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1167793419108",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>A <em>flow line</em> (or <em>streamline</em>) of a vector field $\\textbf{F}$ is a curve $\\textbf{r}(t)$ such that $d\\textbf{r}/dt=\\textbf{F}(\\textbf{r}(t)).$ If $\\textbf{F}$ represents the velocity field of a moving particle, then the flow lines are paths taken by the particle. Therefore, flow lines are tangent to the vector field. For the following exercises, show that the given curve $\\textbf{c}(t)$ is a flow line of the given velocity vector field $\\textbf{F}(x,y,z).$</p><p>$\\text{c}(t)=\\lt \\sin t,\\cos t,e^{t}\\gt ;\\text{F}(x,y,z)=\\langle y,-x,z\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{c}\\text{′}(t)=(\\cos t,-\\sin t,e^{-t})=\\textbf{F}(\\textbf{c}(t))$<sup class=\"fn\" data-note=\"c-e31-exp\"></sup>"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1167793584520",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, let $\\textbf{F}=x\\textbf{i}+y\\textbf{j},$ $\\textbf{G}=-y\\textbf{i}+x\\textbf{j},$ and $\\textbf{H}=x\\textbf{i}-y\\textbf{j}.$ Match <strong>F</strong>, <strong>G</strong>, and <strong>H</strong> with their graphs.</p><img src=\"/media/ch16/CNX_Calc_Figure_16_01_213.jpg\" alt=\"A visual representation of a vector field in two dimensions. The arrows are larger the further away from the origin they are, particularly to the left and right of the y axis. They point to the left and to the right on the left and right sides of the y axis, respectively. They point down above the x axis and up below the x axis. The closer to the x axis, the flatter they are. The closer to the y axis they are, the more vertical they are.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<strong>H</strong>"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1167793568655",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, let $\\textbf{F}=x\\textbf{i}+y\\textbf{j},$ $\\textbf{G}=-y\\textbf{i}+x\\textbf{j},$ and $\\textbf{H}=x\\textbf{i}-y\\textbf{j}.$ Match the vector fields in a through d with their graphs.</p><p>a. $\\textbf{F}+\\textbf{G}$</p><p>b. $\\textbf{F}+\\textbf{H}$</p><p>c. $\\textbf{G}+\\textbf{H}$</p><p>d. $-\\textbf{F}+\\textbf{G}$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_01_215.jpg\" alt=\"A visual representation of a vector field in two dimensions. The arrows are larger the further away they are from the y axis. They curve in towards the orgin in a spiral pattern, with the arrows curving in from the right to the right of the y axis and curving in from the left to the left of the y axis. The arrows in quadrants 1 and 3 are flatter, and the arrows in quadrants 2 and 4 are more vertical.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "d. $-\\textbf{F}+\\textbf{G}$"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1167794076400",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>For the following exercises, let $\\textbf{F}=x\\textbf{i}+y\\textbf{j},$ $\\textbf{G}=-y\\textbf{i}+x\\textbf{j},$ and $\\textbf{H}=x\\textbf{i}-y\\textbf{j}.$ Match the vector fields in a through d with their graphs.</p><p>a. $\\textbf{F}+\\textbf{G}$</p><p>b. $\\textbf{F}+\\textbf{H}$</p><p>c. $\\textbf{G}+\\textbf{H}$</p><p>d. $-\\textbf{F}+\\textbf{G}$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_01_217.jpg\" alt=\"A visual representation of a vector field in two dimensions. The arrows are larger the further away from y axis they are. The arrows are pointing out from the origin in a spiral shape. In quadrant 1, the arrows are more vertical and curve up. In quadrant 2, the arrows are more horizontal and curve down. In quadrant 3, the arrows are more vertical and curve down. In quadrant 4, the arrows are more horizontal and curve up. Each quadrant’s arrows merge into the two on either side of it.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\textbf{F}+\\textbf{G}$"
+   }
+  },
+  {
+   "id": "r427",
+   "source_id": "fs-id1167793355024",
+   "source_section": "16.8",
+   "source_number": "427",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gradient-fields",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>Vector field $\\textbf{F}(x,y)=x^{2}y\\textbf{i}+y^{2}x\\textbf{j}$ is conservative.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "False"
+   }
+  },
+  {
+   "id": "r431",
+   "source_id": "fs-id1167793551421",
+   "source_section": "16.8",
+   "source_number": "431",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drawing",
+   "prompt": "<p>Draw the following vector fields.</p><p>$\\textbf{F}(x,y)=\\frac{1}{2}\\textbf{i}+2x\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch16/CNX_Calc_Figure_16_08_207.jpg\" alt=\"A vector field in two dimensions. All quadrants are shown. The arrows are larger the further from the y axis they become. They point up and to the right for positive x values and down and to the right for negative x values. The further from the y axis they are, the steeper the slope they have.\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "rotational-field"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "unit-vector-field"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "gradient"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "potential-function"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "gradient"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "potential-function"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "gradient"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "cross-partial-property"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "cp12",
+   "concept": "cross-partial-property"
+  },
+  {
+   "exercise": "cp12",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "e1",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e2",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "e2",
+   "concept": "potential-function"
+  },
+  {
+   "exercise": "e2",
+   "concept": "uniqueness-of-potential-functions"
+  },
+  {
+   "exercise": "e3",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e3",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e4",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "e4",
+   "concept": "rotational-field"
+  },
+  {
+   "exercise": "e5",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e5",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "e7",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e9",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e9",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "e11",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e13",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e13",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "e15",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "e15",
+   "concept": "gradient"
+  },
+  {
+   "exercise": "e17",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "e17",
+   "concept": "gradient"
+  },
+  {
+   "exercise": "e19",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "e19",
+   "concept": "gradient"
+  },
+  {
+   "exercise": "e21",
+   "concept": "unit-vector-field"
+  },
+  {
+   "exercise": "e23",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "e23",
+   "concept": "unit-vector-field"
+  },
+  {
+   "exercise": "e25",
+   "concept": "rotational-field"
+  },
+  {
+   "exercise": "e27",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "e29",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "e29",
+   "concept": "potential-function"
+  },
+  {
+   "exercise": "e29",
+   "concept": "radial-field"
+  },
+  {
+   "exercise": "e30",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e30",
+   "concept": "derivative-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e31",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e31",
+   "concept": "derivative-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e33",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e35",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e35",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e37",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e37",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "r427",
+   "concept": "cross-partial-property"
+  },
+  {
+   "exercise": "r427",
+   "concept": "conservative-vector-field"
+  },
+  {
+   "exercise": "r431",
+   "concept": "vector-field"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-fig-rotational",
+   "kind": "correction",
+   "html": "The book cites Figure 16.6, the whirlpool field of Example 16.4, here and in the Analysis below; the field $\\kvecF(x,y)=\\langle y,-x\\rangle$ of this example is drawn in Figure 16.5."
+  },
+  {
+   "id": "c-fig-level-curves",
+   "kind": "correction",
+   "html": "The book cites Figure 16.11, the velocity field of Example 16.11; the level curves of $\\kf(x,y)=x^{2}y^{2}$ over its gradient field are Figure 16.10."
+  },
+  {
+   "id": "c-cp11-field",
+   "kind": "correction",
+   "html": "The field is printed $y\\mathbf{i}-x^{2}xy\\mathbf{j};$ the answer’s $P_{y}=x$ and $Q_{x}=-2xy$ are those of $\\mathbf{F}(x,y)=xy\\mathbf{i}-x^{2}y\\mathbf{j}.$"
+  },
+  {
+   "id": "c-e31-exp",
+   "kind": "correction",
+   "html": "The third component is printed $e^{-t};$ the derivative of $e^{t}$ is $e^{t},$ the third component of $\\mathbf{F}(\\mathbf{c}(t))=\\langle \\cos t,-\\sin t,e^{t}\\rangle.$"
+  },
+  {
+   "id": "c-summary-field",
+   "kind": "correction",
+   "html": "The book’s sentence joins two: a vector field assigns a vector $\\kvecF(x,y)$ to each point $(x,y)$ in a subset $\\kD$ of $\\mathbb{R}^{2},$ or a vector $\\kvecF(x,y,z)$ to each point $(x,y,z)$ in a subset $\\kD$ of $\\mathbb{R}^{3}.$"
+  }
+ ]
+}

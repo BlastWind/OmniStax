@@ -1,0 +1,1624 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "G_vec",
+   "latex": "\\mathbf{G}",
+   "macro": "\\kvecG"
+  },
+  {
+   "sym": "E_vec",
+   "latex": "\\mathbf{E}",
+   "macro": "\\kvecE"
+  },
+  {
+   "sym": "F_r_vec",
+   "latex": "\\mathbf{F}_{r}",
+   "macro": "\\kvecFr"
+  },
+  {
+   "sym": "t_u_vec",
+   "latex": "\\mathbf{t}_{u}",
+   "macro": "\\kvectu"
+  },
+  {
+   "sym": "t_v_vec",
+   "latex": "\\mathbf{t}_{v}",
+   "macro": "\\kvectv"
+  },
+  {
+   "sym": "div_F",
+   "latex": "\\operatorname{div}\\mathbf{F}",
+   "macro": "\\kdivF"
+  },
+  {
+   "sym": "curl_F",
+   "latex": "\\operatorname{curl}\\mathbf{F}",
+   "macro": "\\kcurlF"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "vector-field",
+   "kind": "definition",
+   "section": "16.1",
+   "name": "Vector field",
+   "terms": [
+    "vector field",
+    "vector fields"
+   ],
+   "type": "vector-field",
+   "symbol": "F_vec",
+   "statement": "A vector field F in ℝ² is an assignment of a two-dimensional vector F(x, y) to each point (x, y) of a subset D of ℝ², the domain of the vector field; a vector field in ℝ³ assigns a three-dimensional vector F(x, y, z) to each point (x, y, z) of a subset D of ℝ³. It is written with component functions, F(x, y) = ⟨P(x, y), Q(x, y)⟩ = P i + Q j, or F(x, y, z) = ⟨P, Q, R⟩ = P i + Q j + R k, and it is continuous if its component functions are continuous.",
+   "forms": [
+    {
+     "id": "eq-vector-field-plane",
+     "latex": "\\mathbf{F}(x,y)=\\langle P(x,y),Q(x,y)\\rangle",
+     "anchor": "16.1-fs-id1167793951458"
+    },
+    {
+     "id": "eq-vector-field-plane-ij",
+     "latex": "\\mathbf{F}(x,y)=P(x,y)\\mathbf{i}+Q(x,y)\\mathbf{j}",
+     "anchor": "16.1-fs-id1167793252274"
+    },
+    {
+     "id": "eq-vector-field-space",
+     "latex": "\\mathbf{F}(x,y,z)=\\langle P(x,y,z),Q(x,y,z),R(x,y,z)\\rangle",
+     "anchor": "16.1-fs-id1167793948412"
+    },
+    {
+     "id": "eq-vector-field-space-ijk",
+     "latex": "\\mathbf{F}(x,y,z)=P(x,y,z)\\mathbf{i}+Q(x,y,z)\\mathbf{j}+R(x,y,z)\\mathbf{k}",
+     "anchor": "16.1-fs-id1167793977405"
+    }
+   ]
+  },
+  {
+   "id": "radial-field",
+   "kind": "definition",
+   "section": "16.1",
+   "name": "Radial field",
+   "terms": [
+    "radial field",
+    "radial fields",
+    "radial vector field"
+   ],
+   "type": "vector-field",
+   "statement": "In a radial field, all vectors either point directly toward or directly away from the origin, and the magnitude of any vector depends only on its distance from the origin; the vector at (x, y) is perpendicular to the circle centered at the origin through (x, y)."
+  },
+  {
+   "id": "rotational-field",
+   "kind": "definition",
+   "section": "16.1",
+   "name": "Rotational field",
+   "terms": [
+    "rotational field",
+    "rotational fields",
+    "rotational vector field"
+   ],
+   "type": "vector-field",
+   "statement": "In a rotational field, the vector at point (x, y) is tangent to the circle with radius r = √(x² + y²); in a standard rotational field all vectors point clockwise or all counterclockwise, and the magnitude of a vector depends only on its distance from the origin."
+  },
+  {
+   "id": "unit-vector-field",
+   "kind": "definition",
+   "section": "16.1",
+   "name": "Unit vector field",
+   "terms": [
+    "unit vector field"
+   ],
+   "type": "vector-field",
+   "statement": "A vector field F is a unit vector field if the magnitude of each vector in the field is 1; dividing F by its magnitude to form the unit vector field F/‖F‖ = ⟨P/‖F‖, Q/‖F‖, R/‖F‖⟩ is called normalizing F.",
+   "forms": [
+    {
+     "id": "eq-unit-vector-field",
+     "latex": "\\frac{\\mathbf{F}}{\\|\\mathbf{F}\\|}=\\left\\langle \\frac{P}{\\|\\mathbf{F}\\|},\\frac{Q}{\\|\\mathbf{F}\\|},\\frac{R}{\\|\\mathbf{F}\\|}\\right\\rangle",
+     "anchor": "16.1-unit-field"
+    }
+   ]
+  },
+  {
+   "id": "conservative-vector-field",
+   "kind": "definition",
+   "section": "16.1",
+   "name": "Conservative vector field",
+   "terms": [
+    "gradient field",
+    "conservative field",
+    "conservative vector field",
+    "conservative"
+   ],
+   "type": "vector-field",
+   "statement": "A vector field F in ℝ² or in ℝ³ is a gradient field, or conservative field, if there exists a scalar function f such that ∇f = F; such fields model physical systems in which energy is conserved.",
+   "forms": [
+    {
+     "id": "eq-gradient-field",
+     "latex": "\\nabla f=\\mathbf{F}",
+     "anchor": "16.1-fs-id1167793266865"
+    }
+   ]
+  },
+  {
+   "id": "potential-function",
+   "kind": "definition",
+   "section": "16.1",
+   "name": "Potential function",
+   "terms": [
+    "potential function"
+   ],
+   "type": "function",
+   "statement": "If F is a conservative vector field, a scalar function f such that ∇f = F is called a potential function for F."
+  },
+  {
+   "id": "uniqueness-of-potential-functions",
+   "kind": "result",
+   "section": "16.1",
+   "name": "Uniqueness of potential functions",
+   "statement": "Let F be a conservative vector field on an open and connected domain and let f and g be functions such that ∇f = F and ∇g = F. Then there is a constant C such that f = g + C.",
+   "forms": [
+    {
+     "id": "eq-uniqueness-of-potential-functions",
+     "latex": "f=g+C",
+     "anchor": "16.1-fs-id1167794097175"
+    }
+   ]
+  },
+  {
+   "id": "cross-partial-property",
+   "kind": "result",
+   "section": "16.1",
+   "name": "Cross-partial property of conservative vector fields",
+   "terms": [
+    "cross-partial property"
+   ],
+   "statement": "Let F be a vector field whose component functions have continuous first-order partial derivatives. If F = ⟨P, Q⟩ is conservative in ℝ², then ∂P/∂y = ∂Q/∂x; if F = ⟨P, Q, R⟩ is conservative in ℝ³, then ∂P/∂y = ∂Q/∂x, ∂Q/∂z = ∂R/∂y and ∂R/∂x = ∂P/∂z. The converse does not follow, so the property shows a field is not conservative but cannot show that it is.",
+   "forms": [
+    {
+     "id": "eq-cross-partial-plane",
+     "latex": "\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x}",
+     "anchor": "16.1-fs-id1167794327427"
+    },
+    {
+     "id": "eq-cross-partial-space",
+     "latex": "\\frac{\\partial P}{\\partial y}=\\frac{\\partial Q}{\\partial x},\\;\\frac{\\partial Q}{\\partial z}=\\frac{\\partial R}{\\partial y},\\;\\frac{\\partial R}{\\partial x}=\\frac{\\partial P}{\\partial z}",
+     "anchor": "16.1-fs-id1167794327427"
+    }
+   ]
+  },
+  {
+   "id": "line-integral",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Line integral",
+   "terms": [
+    "line integral",
+    "line integrals"
+   ],
+   "type": "integral",
+   "statement": "A line integral is the integral of a function along a curve in a plane or in space: a scalar line integral integrates a scalar function, and a vector line integral a vector field."
+  },
+  {
+   "id": "scalar-line-integral",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Scalar line integral",
+   "terms": [
+    "scalar line integral"
+   ],
+   "type": "integral",
+   "statement": "Let f be a function with a domain that includes the smooth curve C parameterized by r(t), a ≤ t ≤ b. Chop C into n pieces of lengths Δsᵢ and choose a point Pᵢ* in each; the scalar line integral of f along C is the limit of the sums Σ f(Pᵢ*) Δsᵢ as n → ∞, if it exists. If f ≥ 0, it is the area of the sheet dropped from the curve on the graph of f down to C, and it does not depend on the parameterization.",
+   "forms": [
+    {
+     "id": "eq-scalar-line-integral",
+     "latex": "\\int_{C}f(x,y,z)\\,ds=\\lim_{n\\to\\infty}\\sum_{i=1}^{n}f(P_{i}^{*})\\,\\Delta s_{i}",
+     "anchor": "16.2-fs-id1167793929737"
+    }
+   ]
+  },
+  {
+   "id": "scalar-line-integral-calculation",
+   "kind": "result",
+   "section": "16.2",
+   "name": "Scalar line integral calculation",
+   "type": "integral",
+   "statement": "Let f be a continuous function with a domain that includes the smooth curve C with parameterization r(t) = ⟨x(t), y(t), z(t)⟩, a ≤ t ≤ b. Then ∫_C f ds = ∫ₐᵇ f(r(t)) ‖r′(t)‖ dt, so ds = ‖r′(t)‖ dt.",
+   "forms": [
+    {
+     "id": "eq-scalar-line-integral-calculation",
+     "latex": "\\int_{C}f(x,y,z)\\,ds=\\int_{a}^{b}f(\\mathbf{r}(t))\\sqrt{(x'(t))^{2}+(y'(t))^{2}+(z'(t))^{2}}\\,dt",
+     "anchor": "16.2-fs-id1167793952322"
+    },
+    {
+     "id": "eq-scalar-line-integral-r-prime",
+     "latex": "\\int_{C}f\\,ds=\\int_{a}^{b}f(\\mathbf{r}(t))\\,\\|\\mathbf{r}'(t)\\|\\,dt",
+     "anchor": "16.2-fs-id1167793886491"
+    },
+    {
+     "id": "eq-scalar-line-integral-plane",
+     "latex": "\\int_{C}f(x,y)\\,ds=\\int_{a}^{b}f(\\mathbf{r}(t))\\sqrt{(x'(t))^{2}+(y'(t))^{2}}\\,dt",
+     "anchor": "16.2-fs-id1167793380173"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-as-a-line-integral",
+   "kind": "result",
+   "section": "16.2",
+   "name": "Arc length as a line integral",
+   "type": "integral",
+   "statement": "If f(x, y, z) = 1, the scalar line integral ∫_C 1 ds is the arc length of C.",
+   "forms": [
+    {
+     "id": "eq-arc-length-line-integral",
+     "latex": "\\int_{C}1\\,ds=\\text{length}(C)",
+     "anchor": "16.2-arc-length-term"
+    }
+   ]
+  },
+  {
+   "id": "orientation-of-a-curve",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Orientation of a curve",
+   "terms": [
+    "orientation of a curve",
+    "oriented curve"
+   ],
+   "statement": "An orientation of a curve C is a specified direction along it, its positive direction, the opposite being the negative direction; an oriented curve is a curve with an orientation, and −C is the same curve with the opposite orientation."
+  },
+  {
+   "id": "closed-curve",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Closed curve",
+   "terms": [
+    "closed curve"
+   ],
+   "type": "curve",
+   "statement": "A closed curve is one for which there exists a parameterization r(t), a ≤ t ≤ b, such that r(a) = r(b) and the curve is traversed exactly once: it begins and ends at the same point."
+  },
+  {
+   "id": "vector-line-integral",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Vector line integral",
+   "terms": [
+    "vector line integral"
+   ],
+   "type": "integral",
+   "statement": "The vector line integral of a vector field F along an oriented smooth curve C is the integral of the dot product of F with the unit tangent vector T of C with respect to arc length, the limit of the sums Σ F(Pᵢ*) · T(Pᵢ*) Δsᵢ, if it exists; it is written ∫_C F · dr and is computed from a parameterization as ∫ₐᵇ F(r(t)) · r′(t) dt, or in the form ∫_C P dx + Q dy + R dz.",
+   "forms": [
+    {
+     "id": "eq-vector-line-integral",
+     "latex": "\\int_{C}\\mathbf{F}\\cdot\\mathbf{T}\\,ds=\\lim_{n\\to\\infty}\\sum_{i=1}^{n}\\mathbf{F}(P_{i}^{*})\\cdot\\mathbf{T}(P_{i}^{*})\\,\\Delta s_{i}",
+     "anchor": "16.2-fs-id1167794097258"
+    },
+    {
+     "id": "eq-vector-line-integral-calculation",
+     "latex": "\\int_{C}\\mathbf{F}\\cdot d\\mathbf{r}=\\int_{C}\\mathbf{F}\\cdot\\mathbf{T}\\,ds=\\int_{a}^{b}\\mathbf{F}(\\mathbf{r}(t))\\cdot\\mathbf{r}'(t)\\,dt",
+     "anchor": "16.2-fs-id1167793635294"
+    },
+    {
+     "id": "eq-vector-line-integral-differential",
+     "latex": "\\int_{C}\\mathbf{F}\\cdot d\\mathbf{r}=\\int_{C}P\\,dx+Q\\,dy+R\\,dz",
+     "anchor": "16.2-fs-id1167794127155"
+    }
+   ]
+  },
+  {
+   "id": "work-done-by-a-vector-field",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Work done by a force field",
+   "type": "integral",
+   "statement": "The work done by a force field F in moving a particle in the positive direction along an oriented curve C is the vector line integral W = ∫_C F · T ds.",
+   "forms": [
+    {
+     "id": "eq-work-line-integral",
+     "latex": "W=\\int_{C}\\mathbf{F}\\cdot\\mathbf{T}\\,ds",
+     "anchor": "16.2-work-term"
+    }
+   ]
+  },
+  {
+   "id": "piecewise-smooth-curve",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Piecewise smooth curve",
+   "terms": [
+    "piecewise smooth curve",
+    "piecewise smooth"
+   ],
+   "type": "curve",
+   "statement": "A piecewise smooth curve is an oriented curve that is not smooth but can be written as the union C = C₁ + C₂ + ⋯ + Cₙ of finitely many smooth curves, the endpoint of each the starting point of the next."
+  },
+  {
+   "id": "properties-of-vector-line-integrals",
+   "kind": "result",
+   "section": "16.2",
+   "name": "Properties of vector line integrals",
+   "type": "integral",
+   "statement": "For continuous vector fields F and G whose domains include the oriented smooth curve C and a constant k: the line integral of F + G is the sum of the line integrals; ∫_C kF · dr = k ∫_C F · dr; reversing the orientation changes the sign, ∫_{−C} F · dr = −∫_C F · dr; and over a piecewise smooth curve C = C₁ + ⋯ + Cₙ the line integral is the sum of the line integrals over the pieces.",
+   "forms": [
+    {
+     "id": "eq-line-integral-sum",
+     "latex": "\\int_{C}(\\mathbf{F}+\\mathbf{G})\\cdot d\\mathbf{r}=\\int_{C}\\mathbf{F}\\cdot d\\mathbf{r}+\\int_{C}\\mathbf{G}\\cdot d\\mathbf{r}",
+     "anchor": "16.2-fs-id1167793559384"
+    },
+    {
+     "id": "eq-line-integral-constant",
+     "latex": "\\int_{C}k\\mathbf{F}\\cdot d\\mathbf{r}=k\\int_{C}\\mathbf{F}\\cdot d\\mathbf{r}",
+     "anchor": "16.2-fs-id1167793559384"
+    },
+    {
+     "id": "eq-line-integral-reversed",
+     "latex": "\\int_{-C}\\mathbf{F}\\cdot d\\mathbf{r}=-\\int_{C}\\mathbf{F}\\cdot d\\mathbf{r}",
+     "anchor": "16.2-fs-id1167793559384"
+    },
+    {
+     "id": "eq-line-integral-pieces",
+     "latex": "\\int_{C}\\mathbf{F}\\cdot d\\mathbf{r}=\\int_{C_{1}}\\mathbf{F}\\cdot d\\mathbf{r}+\\int_{C_{2}}\\mathbf{F}\\cdot d\\mathbf{r}+\\cdots+\\int_{C_{n}}\\mathbf{F}\\cdot d\\mathbf{r}",
+     "anchor": "16.2-fs-id1167793559384"
+    }
+   ]
+  },
+  {
+   "id": "mass-of-a-wire",
+   "kind": "result",
+   "section": "16.2",
+   "name": "Mass of a wire",
+   "type": "integral",
+   "statement": "If a thin wire has the shape of a curve C and density ρ(x, y, z) per unit length, its mass is the scalar line integral m = ∫_C ρ(x, y, z) ds.",
+   "forms": [
+    {
+     "id": "eq-mass-of-a-wire",
+     "latex": "m=\\int_{C}\\rho(x,y,z)\\,ds",
+     "anchor": "16.2-wire-term"
+    }
+   ]
+  },
+  {
+   "id": "flux-across-a-curve",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Flux across a curve",
+   "terms": [
+    "flux"
+   ],
+   "type": "integral",
+   "statement": "The flux of a vector field F across a plane curve C, the rate at which a fluid flows across C, is the line integral ∫_C F · (n(t)/‖n(t)‖) ds of the normal component of F; for r(t) = ⟨x(t), y(t)⟩, a ≤ t ≤ b, and n(t) = ⟨y′(t), −x′(t)⟩ it is ∫_C F · N ds = ∫ₐᵇ F(r(t)) · n(t) dt.",
+   "forms": [
+    {
+     "id": "eq-flux-across-a-curve",
+     "latex": "\\int_{C}\\mathbf{F}\\cdot\\frac{\\mathbf{n}(t)}{\\|\\mathbf{n}(t)\\|}\\,ds",
+     "anchor": "16.2-fs-id1167793460505"
+    },
+    {
+     "id": "eq-flux-calculation",
+     "latex": "\\int_{C}\\mathbf{F}\\cdot\\mathbf{N}\\,ds=\\int_{a}^{b}\\mathbf{F}(\\mathbf{r}(t))\\cdot\\mathbf{n}(t)\\,dt",
+     "anchor": "16.2-fs-id1167793671510"
+    }
+   ]
+  },
+  {
+   "id": "circulation",
+   "kind": "definition",
+   "section": "16.2",
+   "name": "Circulation",
+   "terms": [
+    "circulation"
+   ],
+   "type": "integral",
+   "statement": "The circulation of a vector field F along an oriented closed curve C is the line integral ∮_C F · T ds, the tendency of a fluid to move in the direction of C.",
+   "forms": [
+    {
+     "id": "eq-circulation",
+     "latex": "\\oint_{C}\\mathbf{F}\\cdot\\mathbf{T}\\,ds",
+     "anchor": "16.2-circulation-term"
+    }
+   ]
+  },
+  {
+   "id": "simple-curve",
+   "kind": "definition",
+   "section": "16.3",
+   "name": "Simple curve",
+   "terms": [
+    "simple curve"
+   ],
+   "type": "curve",
+   "statement": "A curve C is simple if it does not cross itself: there is a parameterization r(t), a ≤ t ≤ b, that is one-to-one over (a, b). A simple curve may also be closed, with r(a) = r(b)."
+  },
+  {
+   "id": "connected-region",
+   "kind": "definition",
+   "section": "16.3",
+   "name": "Connected region",
+   "terms": [
+    "connected region",
+    "connected"
+   ],
+   "type": "region",
+   "statement": "A region D is connected if, for any two points P₁ and P₂ in it, there is a path from P₁ to P₂ with a trace contained entirely inside D."
+  },
+  {
+   "id": "simply-connected-region",
+   "kind": "definition",
+   "section": "16.3",
+   "name": "Simply connected region",
+   "terms": [
+    "simply connected region",
+    "simply connected"
+   ],
+   "type": "region",
+   "statement": "A region D is simply connected if it is connected and any simple closed curve C inside D can be shrunk continuously to a point while staying entirely inside D; in two dimensions, a connected region with no holes."
+  },
+  {
+   "id": "fundamental-theorem-for-line-integrals",
+   "kind": "result",
+   "section": "16.3",
+   "name": "Fundamental Theorem for Line Integrals",
+   "terms": [
+    "Fundamental Theorem for Line Integrals"
+   ],
+   "type": "integral",
+   "statement": "Let C be a piecewise smooth curve with parameterization r(t), a ≤ t ≤ b, and let f be a function of two or three variables with continuous first-order partial derivatives on C. Then the line integral of ∇f along C depends only on the values of f at the endpoints: ∫_C ∇f · dr = f(r(b)) − f(r(a)).",
+   "forms": [
+    {
+     "id": "eq-fundamental-theorem-for-line-integrals",
+     "latex": "\\int_{C}\\nabla f\\cdot d\\mathbf{r}=f(\\mathbf{r}(b))-f(\\mathbf{r}(a))",
+     "anchor": "16.3-fs-id1167794058636"
+    }
+   ]
+  },
+  {
+   "id": "path-independence",
+   "kind": "definition",
+   "section": "16.3",
+   "name": "Path independence",
+   "terms": [
+    "independent of path",
+    "path independent",
+    "independence of path",
+    "path independence"
+   ],
+   "statement": "A vector field F with domain D is independent of path (path independent) if ∫_{C₁} F · dr = ∫_{C₂} F · dr for any paths C₁ and C₂ in D with the same initial and terminal points."
+  },
+  {
+   "id": "path-independence-of-conservative-fields",
+   "kind": "result",
+   "section": "16.3",
+   "name": "Path independence of conservative fields",
+   "statement": "If F is a conservative vector field, then F is independent of path; in particular the circulation of a conservative field around any closed curve is zero.",
+   "forms": [
+    {
+     "id": "eq-circulation-of-a-conservative-field",
+     "latex": "\\oint_{C}\\nabla f\\cdot d\\mathbf{r}=0",
+     "anchor": "16.3-zero-circulation"
+    }
+   ]
+  },
+  {
+   "id": "path-independence-test",
+   "kind": "result",
+   "section": "16.3",
+   "name": "Path independence test for conservative fields",
+   "statement": "If F is a continuous vector field that is independent of path and the domain D of F is open and connected, then F is conservative."
+  },
+  {
+   "id": "finding-a-potential-function",
+   "kind": "skill",
+   "section": "16.3",
+   "name": "Finding a potential function",
+   "statement": "To find a potential function for a conservative field F = ⟨P, Q⟩: integrate P with respect to x to get g(x, y) + h(y) with h unknown; take the partial derivative with respect to y; use g_y(x, y) + h′(y) = Q(x, y) to find h′(y); integrate h′(y) to find h(y); then f(x, y) = g(x, y) + h(y) + C for any constant C. In space the same steps add one more unknown function."
+  },
+  {
+   "id": "cross-partial-test",
+   "kind": "result",
+   "section": "16.3",
+   "name": "Cross-partial test for conservative fields",
+   "statement": "If F = ⟨P, Q, R⟩ is a vector field on an open, simply connected region D, then P_y = Q_x, P_z = R_x and Q_z = R_y throughout D if and only if F is conservative (in two dimensions, P_y = Q_x).",
+   "forms": [
+    {
+     "id": "eq-cross-partial-test",
+     "latex": "P_{y}=Q_{x},\\;P_{z}=R_{x},\\;Q_{z}=R_{y}",
+     "anchor": "16.3-fs-id1167793927474"
+    }
+   ]
+  },
+  {
+   "id": "greens-theorem",
+   "kind": "result",
+   "section": "16.4",
+   "name": "Green's theorem, circulation form",
+   "terms": [
+    "Green’s theorem"
+   ],
+   "type": "integral",
+   "statement": "Green's theorem relates an integral over a region to an integral over its boundary. Let D be an open, simply connected region whose boundary C is a piecewise smooth, simple closed curve oriented counterclockwise, and let F = ⟨P, Q⟩ have component functions with continuous partial derivatives on D. Then the circulation of F around C equals the double integral of Q_x − P_y over D.",
+   "forms": [
+    {
+     "id": "eq-greens-theorem-circulation",
+     "latex": "\\oint_{C}\\mathbf{F}\\cdot d\\mathbf{r}=\\oint_{C}P\\,dx+Q\\,dy=\\iint_{D}(Q_{x}-P_{y})\\,dA",
+     "anchor": "16.4-fs-id1167793370454"
+    }
+   ]
+  },
+  {
+   "id": "area-by-greens-theorem",
+   "kind": "result",
+   "section": "16.4",
+   "name": "Area by Green's theorem",
+   "type": "integral",
+   "statement": "If D is a region whose boundary is a simple closed curve C oriented counterclockwise, Green's theorem with F = ⟨−y/2, x/2⟩ gives its area as a line integral around its boundary: area of D = ½ ∮_C −y dx + x dy.",
+   "forms": [
+    {
+     "id": "eq-area-by-greens-theorem",
+     "latex": "\\text{area of }D=\\iint_{D}dA=\\frac{1}{2}\\oint_{C}-y\\,dx+x\\,dy",
+     "anchor": "16.4-fs-id1167793965702"
+    }
+   ]
+  },
+  {
+   "id": "greens-theorem-flux-form",
+   "kind": "result",
+   "section": "16.4",
+   "name": "Green's theorem, flux form",
+   "type": "integral",
+   "statement": "Let D be an open, simply connected region whose boundary C is a piecewise smooth, simple closed curve oriented counterclockwise, and let F = ⟨P, Q⟩ have component functions with continuous partial derivatives on an open region containing D. Then the flux of F across C equals the double integral of P_x + Q_y over D.",
+   "forms": [
+    {
+     "id": "eq-greens-theorem-flux",
+     "latex": "\\oint_{C}\\mathbf{F}\\cdot\\mathbf{N}\\,ds=\\iint_{D}(P_{x}+Q_{y})\\,dA",
+     "anchor": "16.4-fs-id1167793796153"
+    }
+   ]
+  },
+  {
+   "id": "source-free-vector-field",
+   "kind": "definition",
+   "section": "16.4",
+   "name": "Source-free vector field",
+   "terms": [
+    "source free",
+    "source-free"
+   ],
+   "type": "vector-field",
+   "statement": "A vector field F = ⟨P, Q⟩ on a simply connected domain is source free when any one of these equivalent statements holds: the flux of F across any closed curve is zero; flux is independent of path; F has a stream function; P_x + Q_y = 0."
+  },
+  {
+   "id": "stream-function",
+   "kind": "definition",
+   "section": "16.4",
+   "name": "Stream function",
+   "terms": [
+    "stream function"
+   ],
+   "type": "function",
+   "statement": "A stream function for a source-free vector field F = ⟨P, Q⟩ is a function g such that P = g_y and Q = −g_x; F is tangent to the level curves of g, so F · ∇g = 0. Stream functions play the same role for source-free fields that potential functions play for conservative fields.",
+   "forms": [
+    {
+     "id": "eq-stream-function",
+     "latex": "P=g_{y},\\;Q=-g_{x}",
+     "anchor": "16.4-source-free-term"
+    }
+   ]
+  },
+  {
+   "id": "harmonic-function",
+   "kind": "definition",
+   "section": "16.4",
+   "name": "Harmonic function",
+   "terms": [
+    "harmonic",
+    "harmonic function"
+   ],
+   "type": "function",
+   "statement": "A function f is harmonic if it satisfies Laplace's equation, f_xx + f_yy = 0 (f_xx + f_yy + f_zz = 0 in three variables). A potential function of a vector field that is conservative and source free on a simply connected domain is harmonic.",
+   "forms": [
+    {
+     "id": "eq-harmonic-function",
+     "latex": "f_{xx}+f_{yy}=0",
+     "anchor": "16.4-harmonic-term"
+    }
+   ]
+  },
+  {
+   "id": "greens-theorem-on-general-regions",
+   "kind": "result",
+   "section": "16.4",
+   "name": "Green's theorem on general regions",
+   "type": "integral",
+   "statement": "Green's theorem extends to a region D with finitely many holes: cut D into simply connected pieces, whose line integrals over the common boundaries cancel, and the circulation of F around the oriented boundary ∂D of D equals ∬_D (Q_x − P_y) dA; the flux form extends the same way.",
+   "forms": [
+    {
+     "id": "eq-greens-theorem-extended",
+     "latex": "\\oint_{\\partial D}\\mathbf{F}\\cdot d\\mathbf{r}=\\iint_{D}(Q_{x}-P_{y})\\,dA",
+     "anchor": "16.4-general"
+    },
+    {
+     "id": "eq-greens-theorem-extended-flux",
+     "latex": "\\oint_{C}\\mathbf{F}\\cdot\\mathbf{N}\\,ds=\\iint_{D}(P_{x}+Q_{y})\\,dA",
+     "anchor": "16.4-general"
+    }
+   ]
+  },
+  {
+   "id": "divergence",
+   "kind": "definition",
+   "section": "16.5",
+   "name": "Divergence",
+   "terms": [
+    "divergence"
+   ],
+   "type": "function",
+   "symbol": "div_F",
+   "statement": "If F = ⟨P, Q, R⟩ is a vector field in ℝ³ and P_x, Q_y and R_z all exist, the divergence of F is the scalar function div F = ∇ · F = P_x + Q_y + R_z (in ℝ², P_x + Q_y). It measures the tendency of the fluid to flow out of a point: positive where the point is a source, negative where it is a sink.",
+   "forms": [
+    {
+     "id": "eq-divergence",
+     "latex": "\\operatorname{div}\\mathbf{F}=P_{x}+Q_{y}+R_{z}=\\frac{\\partial P}{\\partial x}+\\frac{\\partial Q}{\\partial y}+\\frac{\\partial R}{\\partial z}",
+     "anchor": "16.5-fs-id1167794139077"
+    },
+    {
+     "id": "eq-divergence-nabla",
+     "latex": "\\nabla\\cdot\\mathbf{F}=P_{x}+Q_{y}+R_{z}",
+     "anchor": "16.5-divergence"
+    }
+   ]
+  },
+  {
+   "id": "divergence-test-for-source-free-fields",
+   "kind": "result",
+   "section": "16.5",
+   "name": "Divergence test for source-free vector fields",
+   "statement": "If F = ⟨P, Q⟩ is a source-free continuous vector field with differentiable component functions, then div F = 0; on a simply connected domain the converse holds too, so div F = 0 if and only if F is source free."
+  },
+  {
+   "id": "curl",
+   "kind": "definition",
+   "section": "16.5",
+   "name": "Curl",
+   "terms": [
+    "curl"
+   ],
+   "type": "vector-field",
+   "symbol": "curl_F",
+   "statement": "If F = ⟨P, Q, R⟩ is a vector field in ℝ³ whose first partial derivatives all exist, the curl of F is the vector field curl F = ∇ × F = (R_y − Q_z) i + (P_z − R_x) j + (Q_x − P_y) k, the “determinant” of the matrix with rows i, j, k; ∂/∂x, ∂/∂y, ∂/∂z; and P, Q, R. It measures the tendency of particles at a point to rotate about the axis that points in its direction, as a small paddlewheel would.",
+   "forms": [
+    {
+     "id": "eq-curl",
+     "latex": "\\operatorname{curl}\\mathbf{F}=(R_{y}-Q_{z})\\mathbf{i}+(P_{z}-R_{x})\\mathbf{j}+(Q_{x}-P_{y})\\mathbf{k}",
+     "anchor": "16.5-fs-id1167793965993"
+    },
+    {
+     "id": "eq-curl-nabla",
+     "latex": "\\nabla\\times\\mathbf{F}=(R_{y}-Q_{z})\\mathbf{i}+(P_{z}-R_{x})\\mathbf{j}+(Q_{x}-P_{y})\\mathbf{k}",
+     "anchor": "16.5-curl"
+    }
+   ]
+  },
+  {
+   "id": "divergence-of-the-curl",
+   "kind": "result",
+   "section": "16.5",
+   "name": "Divergence of the curl",
+   "statement": "If F = ⟨P, Q, R⟩ is a vector field in ℝ³ whose component functions have continuous second-order partial derivatives, then div curl F = ∇ · (∇ × F) = 0.",
+   "forms": [
+    {
+     "id": "eq-divergence-of-curl",
+     "latex": "\\nabla\\cdot(\\nabla\\times\\mathbf{F})=0",
+     "anchor": "16.5-fs-id1167794029307"
+    }
+   ]
+  },
+  {
+   "id": "curl-of-a-conservative-field",
+   "kind": "result",
+   "section": "16.5",
+   "name": "Curl of a conservative vector field",
+   "statement": "If F = ⟨P, Q, R⟩ is conservative, then curl F = 0: the curl of a gradient is the zero vector.",
+   "forms": [
+    {
+     "id": "eq-curl-of-gradient",
+     "latex": "\\nabla\\times(\\nabla f)=\\mathbf{0}",
+     "anchor": "16.5-fs-id1167793635932"
+    }
+   ]
+  },
+  {
+   "id": "curl-test-for-a-conservative-field",
+   "kind": "result",
+   "section": "16.5",
+   "name": "Curl test for a conservative field",
+   "statement": "Let F = ⟨P, Q, R⟩ be a vector field in space on a simply connected domain. If curl F = 0, then F is conservative."
+  },
+  {
+   "id": "laplace-operator",
+   "kind": "definition",
+   "section": "16.5",
+   "name": "Laplace operator",
+   "terms": [
+    "Laplace operator"
+   ],
+   "statement": "The divergence of a gradient, div(∇f) = ∇ · (∇f) = f_xx + f_yy + f_zz, is written ∇²f; ∇² is the Laplace operator, and Laplace's equation becomes ∇²f = 0, so a harmonic function is one whose divergence of its gradient is zero.",
+   "forms": [
+    {
+     "id": "eq-laplace-operator",
+     "latex": "\\nabla^{2}f=\\nabla\\cdot(\\nabla f)=f_{xx}+f_{yy}+f_{zz}",
+     "anchor": "16.5-laplace-term"
+    }
+   ]
+  },
+  {
+   "id": "parametric-surface",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Parametric surface",
+   "terms": [
+    "parameterized surface",
+    "parametric surface",
+    "parameterization of a surface"
+   ],
+   "type": "surface",
+   "statement": "A parameterized (or parametric) surface is a surface given by a description r(u, v) = ⟨x(u, v), y(u, v), z(u, v)⟩, where the parameters u and v vary over a region of the uv-plane.",
+   "forms": [
+    {
+     "id": "eq-parametric-surface",
+     "latex": "\\mathbf{r}(u,v)=\\langle x(u,v),y(u,v),z(u,v)\\rangle",
+     "anchor": "16.6-parametric"
+    }
+   ]
+  },
+  {
+   "id": "parameter-domain",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Parameter domain",
+   "terms": [
+    "parameter domain",
+    "parameter space"
+   ],
+   "type": "region",
+   "statement": "The parameter domain, or parameter space, of a parameterization r(u, v) of a surface is the set of points in the uv-plane that can be substituted into r."
+  },
+  {
+   "id": "regular-parameterization",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Regular parameterization",
+   "terms": [
+    "regular parameterization",
+    "smooth surface",
+    "piecewise smooth surface"
+   ],
+   "statement": "A parameterization r(u, v) is regular, or smooth, if r_u × r_v is not zero for any point (u, v) in the parameter domain; a surface with a regular parameterization is smooth, and one made of finitely many smooth pieces is piecewise smooth."
+  },
+  {
+   "id": "grid-curves",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Grid curves",
+   "terms": [
+    "grid curves",
+    "grid curve"
+   ],
+   "type": "curve",
+   "statement": "The images under r(u, v) of the grid lines u = constant and v = constant of the parameter domain are the grid curves of the surface, curves on the surface parallel to grid lines in a coordinate plane; their tangent vectors are t_u = r_u and t_v = r_v, and where t_u × t_v ≠ 0 they span the tangent plane.",
+   "forms": [
+    {
+     "id": "eq-tangent-vectors-of-a-surface",
+     "latex": "\\mathbf{t}_{u}=\\left\\langle \\frac{\\partial x}{\\partial u},\\frac{\\partial y}{\\partial u},\\frac{\\partial z}{\\partial u}\\right\\rangle,\\;\\mathbf{t}_{v}=\\left\\langle \\frac{\\partial x}{\\partial v},\\frac{\\partial y}{\\partial v},\\frac{\\partial z}{\\partial v}\\right\\rangle",
+     "anchor": "16.6-grid-term"
+    }
+   ]
+  },
+  {
+   "id": "surface-area-of-a-parametric-surface",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Surface area of a parametric surface",
+   "terms": [
+    "surface area"
+   ],
+   "type": "integral",
+   "statement": "Let r(u, v) with parameter domain D be a smooth parameterization of a surface S traced out once. The surface area of S is ∬_D ‖t_u × t_v‖ dA, the limit of the sums of the areas ‖t_u × t_v‖ Δu Δv of the parallelograms that approximate its pieces; it equals the surface integral ∬_S dS.",
+   "forms": [
+    {
+     "id": "eq-surface-area-parametric",
+     "latex": "\\iint_{D}\\|\\mathbf{t}_{u}\\times\\mathbf{t}_{v}\\|\\,dA",
+     "anchor": "16.6-fs-id1167793991244"
+    }
+   ]
+  },
+  {
+   "id": "surface-integral",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Surface integral",
+   "terms": [
+    "surface integral",
+    "surface integrals"
+   ],
+   "type": "integral",
+   "statement": "A surface integral is an integral of a function over a surface: of a scalar function, or of a vector field across an oriented surface."
+  },
+  {
+   "id": "surface-integral-of-a-scalar-valued-function",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Surface integral of a scalar-valued function",
+   "terms": [
+    "surface integral of a scalar-valued function",
+    "scalar surface integral"
+   ],
+   "type": "integral",
+   "statement": "The surface integral of a scalar function f over a piecewise smooth surface S is the limit of the sums ΣΣ f(P_ij) ΔS_ij over pieces S_ij of area ΔS_ij; for a smooth parameterization r(u, v) over D it is ∬_D f(r(u, v)) ‖t_u × t_v‖ dA.",
+   "forms": [
+    {
+     "id": "eq-scalar-surface-integral",
+     "latex": "\\iint_{S}f(x,y,z)\\,dS=\\lim_{m,n\\to\\infty}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(P_{ij})\\,\\Delta S_{ij}",
+     "anchor": "16.6-fs-id1167794160159"
+    },
+    {
+     "id": "eq-scalar-surface-integral-calculation",
+     "latex": "\\iint_{S}f(x,y,z)\\,dS=\\iint_{D}f(\\mathbf{r}(u,v))\\,\\|\\mathbf{t}_{u}\\times\\mathbf{t}_{v}\\|\\,dA",
+     "anchor": "16.6-fs-id1167793757749"
+    }
+   ]
+  },
+  {
+   "id": "orientation-of-a-surface",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Orientation of a surface",
+   "terms": [
+    "orientation of a surface",
+    "orientable",
+    "oriented surface"
+   ],
+   "type": "vector",
+   "statement": "A surface is orientable if it has an “inner” side and an “outer” side; an orientation is a choice of unit normal vector N at each point that varies continuously, pointing to one side. A closed surface is positively oriented when N points outward; the Möbius strip has only one side and cannot be oriented.",
+   "forms": [
+    {
+     "id": "eq-orientation-normal",
+     "latex": "\\mathbf{N}=\\frac{\\mathbf{t}_{u}\\times\\mathbf{t}_{v}}{\\|\\mathbf{t}_{u}\\times\\mathbf{t}_{v}\\|}",
+     "anchor": "16.6-orientation-term"
+    }
+   ]
+  },
+  {
+   "id": "surface-integral-of-a-vector-field",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Surface integral of a vector field",
+   "terms": [
+    "surface integral of a vector field",
+    "flux integral"
+   ],
+   "type": "integral",
+   "statement": "Let F be a continuous vector field with a domain that contains the oriented surface S with unit normal vector N. The surface integral of F over S, or flux integral, is ∬_S F · dS = ∬_S F · N dS, the flux of F across S; for a parameterization r(u, v) over D it is ∬_D F(r(u, v)) · (t_u × t_v) dA.",
+   "forms": [
+    {
+     "id": "eq-flux-integral",
+     "latex": "\\iint_{S}\\mathbf{F}\\cdot d\\mathbf{S}=\\iint_{S}\\mathbf{F}\\cdot\\mathbf{N}\\,dS",
+     "anchor": "16.6-fs-id1167793385095"
+    },
+    {
+     "id": "eq-flux-integral-calculation",
+     "latex": "\\iint_{S}\\mathbf{F}\\cdot\\mathbf{N}\\,dS=\\iint_{D}\\mathbf{F}(\\mathbf{r}(u,v))\\cdot(\\mathbf{t}_{u}\\times\\mathbf{t}_{v})\\,dA",
+     "anchor": "16.6-fs-id1167793617076"
+    }
+   ]
+  },
+  {
+   "id": "mass-flux",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Mass flux",
+   "terms": [
+    "mass flux"
+   ],
+   "type": "integral",
+   "statement": "The mass flux of a fluid of density ρ and velocity field v is the rate of mass flow per unit area; the mass of fluid flowing across a surface S per unit time is the flux integral ∬_S ρv · N dS.",
+   "forms": [
+    {
+     "id": "eq-mass-flow-rate",
+     "latex": "\\iint_{S}\\rho\\mathbf{v}\\cdot\\mathbf{N}\\,dS",
+     "anchor": "16.6-mass-flux-term"
+    }
+   ]
+  },
+  {
+   "id": "heat-flow",
+   "kind": "definition",
+   "section": "16.6",
+   "name": "Heat flow",
+   "terms": [
+    "heat flow"
+   ],
+   "type": "vector-field",
+   "statement": "If T(x, y, z) is the temperature in an object, the heat flow is the vector field F = −k∇T, proportional to the negative temperature gradient, where k is the object's thermal conductivity; the rate of heat flow across a surface S is its flux ∬_S −k∇T · dS.",
+   "forms": [
+    {
+     "id": "eq-heat-flow",
+     "latex": "\\mathbf{F}=-k\\nabla T",
+     "anchor": "16.6-heat-flow-term"
+    }
+   ]
+  },
+  {
+   "id": "stokes-theorem",
+   "kind": "result",
+   "section": "16.7",
+   "name": "Stokes' theorem",
+   "terms": [
+    "Stokes’ theorem"
+   ],
+   "type": "integral",
+   "statement": "Let S be a piecewise smooth oriented surface whose boundary is a simple closed curve C with positive orientation, and let F have component functions with continuous partial derivatives on an open region containing S. Then the line integral of F around C equals the flux of curl F across S.",
+   "forms": [
+    {
+     "id": "eq-stokes-theorem",
+     "latex": "\\oint_{C}\\mathbf{F}\\cdot d\\mathbf{r}=\\iint_{S}\\operatorname{curl}\\mathbf{F}\\cdot d\\mathbf{S}",
+     "anchor": "16.7-fs-id1167793603786"
+    }
+   ]
+  },
+  {
+   "id": "surface-independence",
+   "kind": "result",
+   "section": "16.7",
+   "name": "Surface independence of flux integrals of curl fields",
+   "terms": [
+    "surface independent",
+    "surface independence"
+   ],
+   "type": "integral",
+   "statement": "If S₁ and S₂ are two surfaces with the same boundary curve C, oriented compatibly, then by Stokes' theorem ∬_{S₁} curl F · dS = ∮_C F · dr = ∬_{S₂} curl F · dS: flux integrals of curl fields are surface independent, as line integrals of gradient fields are path independent.",
+   "forms": [
+    {
+     "id": "eq-surface-independence",
+     "latex": "\\iint_{S_{1}}\\operatorname{curl}\\mathbf{F}\\cdot d\\mathbf{S}=\\oint_{C}\\mathbf{F}\\cdot d\\mathbf{r}=\\iint_{S_{2}}\\operatorname{curl}\\mathbf{F}\\cdot d\\mathbf{S}",
+     "anchor": "16.7-fs-id1167793856659"
+    }
+   ]
+  },
+  {
+   "id": "curl-as-circulation-per-area",
+   "kind": "result",
+   "section": "16.7",
+   "name": "Curl as circulation per unit area",
+   "statement": "If D_r is a small disk of radius r centered at P with normal N and boundary C_r, then curl F(P) · N = lim_{r→0} (1/(πr²)) ∮_{C_r} F · dr: the component of curl F along N is the circulation of F per unit area about N, the spin a small paddlewheel at P with its axis along N would show.",
+   "forms": [
+    {
+     "id": "eq-curl-as-circulation",
+     "latex": "\\operatorname{curl}\\mathbf{F}(P)\\cdot\\mathbf{N}(P)=\\lim_{r\\to 0^{+}}\\frac{1}{\\pi r^{2}}\\oint_{C_{r}}\\mathbf{F}\\cdot d\\mathbf{r}",
+     "anchor": "16.7-curl-circulation"
+    }
+   ]
+  },
+  {
+   "id": "faradays-law",
+   "kind": "result",
+   "section": "16.7",
+   "name": "Faraday's law",
+   "terms": [
+    "Faraday’s law"
+   ],
+   "statement": "Faraday's law states that a changing magnetic field B induces an electric field E: in integral form, the work done by E around the boundary C of a surface D equals minus the rate of change of the flux of B across D, ∮_C E · dr = −∂Φ/∂t; by Stokes' theorem this is equivalent to the differential form curl E = −∂B/∂t.",
+   "forms": [
+    {
+     "id": "eq-faradays-law-differential",
+     "latex": "\\operatorname{curl}\\mathbf{E}=-\\frac{\\partial\\mathbf{B}}{\\partial t}",
+     "anchor": "16.7-faraday-term"
+    }
+   ]
+  },
+  {
+   "id": "divergence-theorem",
+   "kind": "result",
+   "section": "16.8",
+   "name": "Divergence theorem",
+   "terms": [
+    "divergence theorem"
+   ],
+   "type": "integral",
+   "statement": "Let S be a piecewise smooth closed surface that encloses a solid E in space, oriented outward, and let F have continuous partial derivatives on an open region containing E. Then the triple integral of div F over E equals the flux of F across S.",
+   "forms": [
+    {
+     "id": "eq-divergence-theorem",
+     "latex": "\\iiint_{E}\\operatorname{div}\\mathbf{F}\\,dV=\\iint_{S}\\mathbf{F}\\cdot d\\mathbf{S}",
+     "anchor": "16.8-fs-id1167794295927"
+    }
+   ]
+  },
+  {
+   "id": "divergence-as-flux-per-volume",
+   "kind": "result",
+   "section": "16.8",
+   "name": "Divergence as flux per unit volume",
+   "statement": "If B_r is a small ball of radius r centered at P with boundary sphere S_r, then div F(P) = lim_{r→0} (1/vol(B_r)) ∬_{S_r} F · dS: the divergence at P is the flux out of P per unit volume, positive at a source and negative at a sink.",
+   "forms": [
+    {
+     "id": "eq-divergence-as-flux",
+     "latex": "\\operatorname{div}\\mathbf{F}(P)=\\lim_{r\\to 0}\\frac{1}{\\operatorname{vol}(B_{r})}\\iint_{S_{r}}\\mathbf{F}\\cdot d\\mathbf{S}",
+     "anchor": "16.8-div-flux"
+    }
+   ]
+  },
+  {
+   "id": "inverse-square-law",
+   "kind": "definition",
+   "section": "16.8",
+   "name": "Inverse-square law",
+   "terms": [
+    "inverse-square law"
+   ],
+   "type": "vector-field",
+   "statement": "The electrostatic field of a point charge q at the origin is E = (q/(4πε₀)) F_r, where F_r = (1/r²)⟨x/r, y/r, z/r⟩; the force at a point is inversely proportional to the square of its distance from the charge, so electrostatic fields obey an inverse-square law.",
+   "forms": [
+    {
+     "id": "eq-inverse-square-field",
+     "latex": "\\mathbf{F}_{r}=\\frac{1}{r^{2}}\\left\\langle \\frac{x}{r},\\frac{y}{r},\\frac{z}{r}\\right\\rangle",
+     "anchor": "16.8-inverse-square-term"
+    }
+   ]
+  },
+  {
+   "id": "flux-across-a-smooth-surface",
+   "kind": "result",
+   "section": "16.8",
+   "name": "Flux of the inverse-square field across a closed surface",
+   "type": "integral",
+   "statement": "Let S be a connected, piecewise smooth closed surface. The flux of F_r = (1/r²)⟨x/r, y/r, z/r⟩ across S is 0 if S does not encompass the origin and 4π if it does, since div F_r = 0 away from the origin.",
+   "forms": [
+    {
+     "id": "eq-flux-inverse-square",
+     "latex": "\\iint_{S}\\mathbf{F}_{r}\\cdot d\\mathbf{S}=\\begin{cases}0&S\\text{ does not encompass the origin}\\\\4\\pi&S\\text{ encompasses the origin}\\end{cases}",
+     "anchor": "16.8-fs-id1167794029720"
+    }
+   ]
+  },
+  {
+   "id": "gauss-law",
+   "kind": "result",
+   "section": "16.8",
+   "name": "Gauss' law",
+   "terms": [
+    "Gauss’ law"
+   ],
+   "type": "integral",
+   "statement": "If S is a piecewise smooth closed surface in a vacuum and Q is the total stationary charge inside S, then the flux of the electrostatic field E across S is Q/ε₀.",
+   "forms": [
+    {
+     "id": "eq-gauss-law",
+     "latex": "\\iint_{S}\\mathbf{E}\\cdot d\\mathbf{S}=\\frac{Q}{\\varepsilon_{0}}",
+     "anchor": "16.8-gauss-term"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "vector-field",
+   "prereq": "vector"
+  },
+  {
+   "concept": "vector-field",
+   "prereq": "function-of-two-variables"
+  },
+  {
+   "concept": "radial-field",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "rotational-field",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "unit-vector-field",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "unit-vector-field",
+   "prereq": "normalization"
+  },
+  {
+   "concept": "conservative-vector-field",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "conservative-vector-field",
+   "prereq": "gradient"
+  },
+  {
+   "concept": "potential-function",
+   "prereq": "conservative-vector-field"
+  },
+  {
+   "concept": "uniqueness-of-potential-functions",
+   "prereq": "potential-function"
+  },
+  {
+   "concept": "cross-partial-property",
+   "prereq": "potential-function"
+  },
+  {
+   "concept": "cross-partial-property",
+   "prereq": "clairauts-theorem"
+  },
+  {
+   "concept": "line-integral",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "line-integral",
+   "prereq": "parametric-curve"
+  },
+  {
+   "concept": "scalar-line-integral",
+   "prereq": "line-integral"
+  },
+  {
+   "concept": "scalar-line-integral",
+   "prereq": "smooth-curve"
+  },
+  {
+   "concept": "scalar-line-integral-calculation",
+   "prereq": "scalar-line-integral"
+  },
+  {
+   "concept": "scalar-line-integral-calculation",
+   "prereq": "arc-length-of-a-space-curve"
+  },
+  {
+   "concept": "arc-length-as-a-line-integral",
+   "prereq": "scalar-line-integral-calculation"
+  },
+  {
+   "concept": "orientation-of-a-curve",
+   "prereq": "orientation"
+  },
+  {
+   "concept": "closed-curve",
+   "prereq": "vector-parameterization"
+  },
+  {
+   "concept": "vector-line-integral",
+   "prereq": "scalar-line-integral-calculation"
+  },
+  {
+   "concept": "vector-line-integral",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "vector-line-integral",
+   "prereq": "orientation-of-a-curve"
+  },
+  {
+   "concept": "vector-line-integral",
+   "prereq": "principal-unit-tangent-vector"
+  },
+  {
+   "concept": "vector-line-integral",
+   "prereq": "dot-product"
+  },
+  {
+   "concept": "work-done-by-a-vector-field",
+   "prereq": "vector-line-integral"
+  },
+  {
+   "concept": "work-done-by-a-vector-field",
+   "prereq": "work"
+  },
+  {
+   "concept": "piecewise-smooth-curve",
+   "prereq": "smooth-curve"
+  },
+  {
+   "concept": "piecewise-smooth-curve",
+   "prereq": "orientation-of-a-curve"
+  },
+  {
+   "concept": "properties-of-vector-line-integrals",
+   "prereq": "vector-line-integral"
+  },
+  {
+   "concept": "properties-of-vector-line-integrals",
+   "prereq": "piecewise-smooth-curve"
+  },
+  {
+   "concept": "mass-of-a-wire",
+   "prereq": "scalar-line-integral-calculation"
+  },
+  {
+   "concept": "mass-of-a-wire",
+   "prereq": "density-function"
+  },
+  {
+   "concept": "flux-across-a-curve",
+   "prereq": "vector-line-integral"
+  },
+  {
+   "concept": "circulation",
+   "prereq": "vector-line-integral"
+  },
+  {
+   "concept": "circulation",
+   "prereq": "closed-curve"
+  },
+  {
+   "concept": "simple-curve",
+   "prereq": "closed-curve"
+  },
+  {
+   "concept": "connected-region",
+   "prereq": "region"
+  },
+  {
+   "concept": "simply-connected-region",
+   "prereq": "connected-region"
+  },
+  {
+   "concept": "simply-connected-region",
+   "prereq": "simple-curve"
+  },
+  {
+   "concept": "fundamental-theorem-for-line-integrals",
+   "prereq": "vector-line-integral"
+  },
+  {
+   "concept": "fundamental-theorem-for-line-integrals",
+   "prereq": "conservative-vector-field"
+  },
+  {
+   "concept": "fundamental-theorem-for-line-integrals",
+   "prereq": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "concept": "fundamental-theorem-for-line-integrals",
+   "prereq": "chain-rule-for-one-independent-variable"
+  },
+  {
+   "concept": "fundamental-theorem-for-line-integrals",
+   "prereq": "piecewise-smooth-curve"
+  },
+  {
+   "concept": "path-independence",
+   "prereq": "vector-line-integral"
+  },
+  {
+   "concept": "path-independence-of-conservative-fields",
+   "prereq": "fundamental-theorem-for-line-integrals"
+  },
+  {
+   "concept": "path-independence-of-conservative-fields",
+   "prereq": "path-independence"
+  },
+  {
+   "concept": "path-independence-of-conservative-fields",
+   "prereq": "circulation"
+  },
+  {
+   "concept": "path-independence-test",
+   "prereq": "path-independence"
+  },
+  {
+   "concept": "path-independence-test",
+   "prereq": "connected-region"
+  },
+  {
+   "concept": "path-independence-test",
+   "prereq": "potential-function"
+  },
+  {
+   "concept": "finding-a-potential-function",
+   "prereq": "potential-function"
+  },
+  {
+   "concept": "cross-partial-test",
+   "prereq": "cross-partial-property"
+  },
+  {
+   "concept": "cross-partial-test",
+   "prereq": "simply-connected-region"
+  },
+  {
+   "concept": "greens-theorem",
+   "prereq": "circulation"
+  },
+  {
+   "concept": "greens-theorem",
+   "prereq": "simply-connected-region"
+  },
+  {
+   "concept": "greens-theorem",
+   "prereq": "double-integral-over-a-nonrectangular-region"
+  },
+  {
+   "concept": "greens-theorem",
+   "prereq": "fundamental-theorem-of-calculus"
+  },
+  {
+   "concept": "area-by-greens-theorem",
+   "prereq": "greens-theorem"
+  },
+  {
+   "concept": "area-by-greens-theorem",
+   "prereq": "area-of-a-region-by-double-integral"
+  },
+  {
+   "concept": "greens-theorem-flux-form",
+   "prereq": "greens-theorem"
+  },
+  {
+   "concept": "greens-theorem-flux-form",
+   "prereq": "flux-across-a-curve"
+  },
+  {
+   "concept": "source-free-vector-field",
+   "prereq": "flux-across-a-curve"
+  },
+  {
+   "concept": "source-free-vector-field",
+   "prereq": "simply-connected-region"
+  },
+  {
+   "concept": "stream-function",
+   "prereq": "source-free-vector-field"
+  },
+  {
+   "concept": "stream-function",
+   "prereq": "level-curve"
+  },
+  {
+   "concept": "harmonic-function",
+   "prereq": "source-free-vector-field"
+  },
+  {
+   "concept": "harmonic-function",
+   "prereq": "potential-function"
+  },
+  {
+   "concept": "harmonic-function",
+   "prereq": "laplaces-equation"
+  },
+  {
+   "concept": "greens-theorem-on-general-regions",
+   "prereq": "greens-theorem-flux-form"
+  },
+  {
+   "concept": "divergence",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "divergence",
+   "prereq": "partial-derivative"
+  },
+  {
+   "concept": "divergence-test-for-source-free-fields",
+   "prereq": "divergence"
+  },
+  {
+   "concept": "divergence-test-for-source-free-fields",
+   "prereq": "source-free-vector-field"
+  },
+  {
+   "concept": "curl",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "curl",
+   "prereq": "cross-product-by-determinant"
+  },
+  {
+   "concept": "curl",
+   "prereq": "partial-derivative"
+  },
+  {
+   "concept": "divergence-of-the-curl",
+   "prereq": "divergence"
+  },
+  {
+   "concept": "divergence-of-the-curl",
+   "prereq": "curl"
+  },
+  {
+   "concept": "divergence-of-the-curl",
+   "prereq": "clairauts-theorem"
+  },
+  {
+   "concept": "curl-of-a-conservative-field",
+   "prereq": "curl"
+  },
+  {
+   "concept": "curl-of-a-conservative-field",
+   "prereq": "conservative-vector-field"
+  },
+  {
+   "concept": "curl-of-a-conservative-field",
+   "prereq": "clairauts-theorem"
+  },
+  {
+   "concept": "curl-test-for-a-conservative-field",
+   "prereq": "curl-of-a-conservative-field"
+  },
+  {
+   "concept": "curl-test-for-a-conservative-field",
+   "prereq": "cross-partial-test"
+  },
+  {
+   "concept": "laplace-operator",
+   "prereq": "divergence"
+  },
+  {
+   "concept": "laplace-operator",
+   "prereq": "harmonic-function"
+  },
+  {
+   "concept": "parametric-surface",
+   "prereq": "surface"
+  },
+  {
+   "concept": "parametric-surface",
+   "prereq": "vector-valued-function"
+  },
+  {
+   "concept": "parametric-surface",
+   "prereq": "function-of-two-variables"
+  },
+  {
+   "concept": "parameter-domain",
+   "prereq": "parametric-surface"
+  },
+  {
+   "concept": "parameter-domain",
+   "prereq": "region"
+  },
+  {
+   "concept": "regular-parameterization",
+   "prereq": "parameter-domain"
+  },
+  {
+   "concept": "regular-parameterization",
+   "prereq": "cross-product"
+  },
+  {
+   "concept": "grid-curves",
+   "prereq": "parameter-domain"
+  },
+  {
+   "concept": "grid-curves",
+   "prereq": "tangent-plane"
+  },
+  {
+   "concept": "surface-area-of-a-parametric-surface",
+   "prereq": "grid-curves"
+  },
+  {
+   "concept": "surface-area-of-a-parametric-surface",
+   "prereq": "regular-parameterization"
+  },
+  {
+   "concept": "surface-area-of-a-parametric-surface",
+   "prereq": "magnitude-of-the-cross-product"
+  },
+  {
+   "concept": "surface-area-of-a-parametric-surface",
+   "prereq": "double-integral-over-a-nonrectangular-region"
+  },
+  {
+   "concept": "surface-integral",
+   "prereq": "parametric-surface"
+  },
+  {
+   "concept": "surface-integral",
+   "prereq": "double-integral"
+  },
+  {
+   "concept": "surface-integral-of-a-scalar-valued-function",
+   "prereq": "surface-integral"
+  },
+  {
+   "concept": "surface-integral-of-a-scalar-valued-function",
+   "prereq": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "concept": "orientation-of-a-surface",
+   "prereq": "regular-parameterization"
+  },
+  {
+   "concept": "orientation-of-a-surface",
+   "prereq": "normal-vector"
+  },
+  {
+   "concept": "surface-integral-of-a-vector-field",
+   "prereq": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "concept": "surface-integral-of-a-vector-field",
+   "prereq": "orientation-of-a-surface"
+  },
+  {
+   "concept": "surface-integral-of-a-vector-field",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "mass-flux",
+   "prereq": "surface-integral-of-a-vector-field"
+  },
+  {
+   "concept": "mass-flux",
+   "prereq": "density-function"
+  },
+  {
+   "concept": "heat-flow",
+   "prereq": "surface-integral-of-a-vector-field"
+  },
+  {
+   "concept": "heat-flow",
+   "prereq": "gradient-in-three-dimensions"
+  },
+  {
+   "concept": "stokes-theorem",
+   "prereq": "greens-theorem"
+  },
+  {
+   "concept": "stokes-theorem",
+   "prereq": "curl"
+  },
+  {
+   "concept": "stokes-theorem",
+   "prereq": "surface-integral-of-a-vector-field"
+  },
+  {
+   "concept": "surface-independence",
+   "prereq": "stokes-theorem"
+  },
+  {
+   "concept": "curl-as-circulation-per-area",
+   "prereq": "stokes-theorem"
+  },
+  {
+   "concept": "faradays-law",
+   "prereq": "stokes-theorem"
+  },
+  {
+   "concept": "divergence-theorem",
+   "prereq": "divergence"
+  },
+  {
+   "concept": "divergence-theorem",
+   "prereq": "surface-integral-of-a-vector-field"
+  },
+  {
+   "concept": "divergence-theorem",
+   "prereq": "triple-integral-over-a-general-region"
+  },
+  {
+   "concept": "divergence-theorem",
+   "prereq": "greens-theorem-flux-form"
+  },
+  {
+   "concept": "divergence-as-flux-per-volume",
+   "prereq": "divergence-theorem"
+  },
+  {
+   "concept": "inverse-square-law",
+   "prereq": "vector-field"
+  },
+  {
+   "concept": "flux-across-a-smooth-surface",
+   "prereq": "divergence-theorem"
+  },
+  {
+   "concept": "flux-across-a-smooth-surface",
+   "prereq": "inverse-square-law"
+  },
+  {
+   "concept": "gauss-law",
+   "prereq": "flux-across-a-smooth-surface"
+  }
+ ]
+}

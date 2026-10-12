@@ -1,0 +1,1292 @@
+{
+ "id": "16.5",
+ "module": "m53986",
+ "chapter": "16",
+ "title": "Divergence and Curl",
+ "short": "Divergence and Curl",
+ "lead": "Two operations measure what a <span data-concept=\"vector-field\">vector field</span> does near a point: its <span data-concept=\"divergence\">divergence</span>, a scalar function, measures how much it flows out of the point, and its <span data-concept=\"curl\">curl</span>, a vector field, measures how it spins there. This section computes both, ties them to source-free and conservative fields, and proves the identities that relate them.",
+ "objectives": [
+  "Determine divergence from the formula for a given vector field.",
+  "Determine curl from the formula for a given vector field.",
+  "Use the properties of curl and divergence to determine whether a vector field is conservative."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"divergence\">divergence</span> of a <span data-concept=\"vector-field\">vector field</span> is a scalar function. <span data-concept=\"divergence\">Divergence</span> measures the “outflowing-ness” of a <span data-concept=\"vector-field\">vector field</span>. If <strong>v</strong> is the velocity field of a fluid, then the <span data-concept=\"divergence\">divergence</span> of <strong>v</strong> at a point is the outflow of the fluid less the inflow at the point.</li><li>The <span data-concept=\"curl\">curl</span> of a <span data-concept=\"vector-field\">vector field</span> is a <span data-concept=\"vector-field\">vector field</span>. The <span data-concept=\"curl\">curl</span> of a <span data-concept=\"vector-field\">vector field</span> at point <em>P</em> measures the tendency of particles at <em>P</em> to rotate about the axis that points in the direction of the <span data-concept=\"curl\">curl</span> at <em>P</em>.</li><li>A <span data-concept=\"vector-field\">vector field</span> with a <span data-concept=\"simply-connected-region\">simply connected</span> domain is conservative if and only if its <span data-concept=\"curl\">curl</span> is zero.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Of the unkeyed section exercises, the true-or-false exercises 206, 208 and 210 and the question 264 are kept with AI-written suggested approaches; the other 28 are computations with no key and are left out: exercises 212–268 even except 264. Review exercises 429, 430 (with a suggested approach) and 441 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-elastic-circle",
+   "kind": "sim",
+   "number": "16.50",
+   "folds": [
+    "16.51",
+    "16.52",
+    "16.53"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_05_001.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_05_002.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_05_003.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_05_004.jpg"
+   ],
+   "original_caption": "(Figure 16.50) (a) Vector field ⟨1,2⟩ has zero divergence. (b) Vector field ⟨−y,x⟩ also has zero divergence. (Figure 16.51) This vector field has negative divergence. (Figure 16.52) The divergence of vector field F(x,y)=⟨x²y,y−xy²⟩ is one, so it cannot model a magnetic field. (Figure 16.53) Vector field v(x,y)=⟨−xy,y⟩ has negative divergence at (1,4).",
+   "draws": [
+    "vector-field",
+    "region",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-paddlewheel",
+   "kind": "sim",
+   "number": "16.54",
+   "folds": [
+    "16.55"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_05_005.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_05_006.jpg"
+   ],
+   "original_caption": "(Figure 16.54) To visualize curl at a point, imagine placing a small paddlewheel into the vector field at a point. (Figure 16.55) Vector field F(x,y)=⟨y,0⟩ consists of vectors that are all parallel.",
+   "draws": [
+    "vector-field",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-curl-free-field",
+   "kind": "sim",
+   "number": "16.56",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_05_007.jpg"
+   ],
+   "original_caption": "The curl of vector field F(x,y,z)=⟨yz,xz,xy⟩ is zero.",
+   "draws": [
+    "vector-field",
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "dc-intro",
+   "concept": "divergence",
+   "verb": "uses"
+  },
+  {
+   "span": "dc-intro",
+   "concept": "curl",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793442187",
+   "concept": "divergence",
+   "verb": "introduces"
+  },
+  {
+   "span": "divergence",
+   "concept": "gradient",
+   "verb": "uses"
+  },
+  {
+   "span": "divergence",
+   "concept": "dot-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794061260",
+   "concept": "divergence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793397658",
+   "concept": "divergence-test-for-source-free-fields",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793397658",
+   "concept": "source-free-vector-field",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793397658",
+   "concept": "clairauts-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794127411",
+   "concept": "divergence-test-for-source-free-fields",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794173556",
+   "concept": "divergence-test-for-source-free-fields",
+   "verb": "reinforces"
+  },
+  {
+   "span": "divergence",
+   "concept": "greens-theorem-flux-form",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793508391",
+   "concept": "divergence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793959741",
+   "concept": "curl",
+   "verb": "introduces"
+  },
+  {
+   "span": "curl",
+   "concept": "cross-product-by-determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "curl",
+   "concept": "greens-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794026966",
+   "concept": "curl",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794046590",
+   "concept": "curl",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793505725",
+   "concept": "curl",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794029307",
+   "concept": "divergence-of-the-curl",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793568775",
+   "concept": "divergence-of-the-curl",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793635932",
+   "concept": "curl-of-a-conservative-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793635932",
+   "concept": "cross-partial-property",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793495816",
+   "concept": "curl-test-for-a-conservative-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793495816",
+   "concept": "cross-partial-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793502584",
+   "concept": "curl-test-for-a-conservative-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "laplace-term",
+   "concept": "laplace-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "laplace-term",
+   "concept": "harmonic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "laplace-term",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793829629",
+   "concept": "harmonic-function",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793425907",
+   "source_number": "Checkpoint 16.40",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794061260"
+   },
+   "cite": "divergence",
+   "prompt": "Find $\\text{div}\\;\\textbf{F}$ for $\\textbf{F}(x,y,z)=\\langle xy,5-z^{2}y,x^{2}+y^{2}\\rangle .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y-z^{2}$",
+    "hint": "Follow <a href=\"#fs-id1167794061260\">Example 16.48</a>."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793433681",
+   "source_number": "Checkpoint 16.41",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794173556"
+   },
+   "cite": "divergence",
+   "prompt": "Let $\\textbf{F}(x,y)=\\langle -ay,bx\\rangle$ be a rotational field where <em>a</em> and <em>b</em> are positive constants. Is <strong>F</strong> source free?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes",
+    "hint": "Calculate the divergence."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793915603",
+   "source_number": "Checkpoint 16.42",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793508391"
+   },
+   "cite": "divergence",
+   "prompt": "For vector field $\\textbf{v}(x,y)=\\langle -xy,y\\rangle ,y\\gt 0,$ find all points <em>P</em> such that the amount of fluid flowing in to <em>P</em> equals the amount of fluid flowing out of <em>P</em>.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "All points on line $y=1.$",
+    "hint": "Find where the divergence is zero."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167794058816",
+   "source_number": "Checkpoint 16.43",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794026966"
+   },
+   "cite": "curl",
+   "prompt": "Find the curl of $\\textbf{F}=\\langle \\sin x\\;\\cos z,\\sin y\\;\\sin z,\\cos x\\;\\cos y\\rangle$ at point $(0,\\frac{\\pi}{2},\\frac{\\pi}{2}).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\textbf{i}$",
+    "hint": "Find the determinant of matrix $\\nabla \\;\\times \\;\\textbf{F}.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793371812",
+   "source_number": "Checkpoint 16.44",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793505725"
+   },
+   "cite": "curl",
+   "prompt": "Field $\\textbf{v}(x,y)=\\langle -\\frac{y}{x^{2}+y^{2}},\\frac{x}{x^{2}+y^{2}}\\rangle$ models the flow of a fluid. Show that if you drop a leaf into this fluid, as the leaf moves over time, the leaf does not rotate.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{v}=\\mathbf{0}$",
+    "hint": "Calculate the curl."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167794314573",
+   "source_number": "Checkpoint 16.45",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793568775"
+   },
+   "cite": "using",
+   "prompt": "Is it possible for $\\textbf{G}(x,y,z)=\\langle \\sin x,\\cos y,\\sin (xyz)\\rangle$ to be the curl of a vector field?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No",
+    "hint": "Find the divergence of <strong>G</strong>."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167793941520",
+   "source_number": "Checkpoint 16.46",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793829629"
+   },
+   "cite": "using",
+   "prompt": "Is it possible for function $f(x,y)=x^{2}-y^{2}+x$ to be the potential function of an electrostatic field located in a region of ${\\mathbb{R}}^{2}$ free of static charge?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes",
+    "hint": "Determine whether the function is harmonic."
+   }
+  },
+  {
+   "id": "e206",
+   "source_id": "fs-id1167794023969",
+   "source_number": "206",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>If the coordinate functions of $\\textbf{F}:{\\mathbb{R}}^{3}\\to {\\mathbb{R}}^{3}$ have continuous second partial derivatives, then $\\text{curl}\\;(\\text{div}(\\textbf{F}))$ equals zero.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>False. The divergence of $\\textbf{F}$ is a scalar function, and curl is defined only for a vector field, so $\\text{curl}(\\text{div}(\\textbf{F}))$ has no meaning. The identity that holds under these hypotheses is the other order: $\\text{div}(\\text{curl}\\;\\textbf{F})=\\nabla\\cdot(\\nabla\\times\\textbf{F})=0.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1167793960943",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>$\\nabla \\cdot (x\\textbf{i}+y\\textbf{j}+z\\textbf{k})=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "False"
+   }
+  },
+  {
+   "id": "e208",
+   "source_id": "fs-id1167793524568",
+   "source_number": "208",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>All vector fields of the form $\\textbf{F}(x,y,z)=f(x)\\textbf{i}+g(y)\\textbf{j}+h(z)\\textbf{k}$ are conservative.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True, for continuous $f,$ $g$ and $h.$ The cross-partials of $\\textbf{F}=\\langle f(x),g(y),h(z)\\rangle$ are all zero, since each component depends only on its own variable: $P_{y}=Q_{x}=0,$ $P_{z}=R_{x}=0$ and $Q_{z}=R_{y}=0,$ so $\\text{curl}\\;\\textbf{F}=\\mathbf{0}$ on the simply connected domain $\\mathbb{R}^{3}.$ A potential function is $\\varphi(x,y,z)=\\int f(x)\\,dx+\\int g(y)\\,dy+\\int h(z)\\,dz,$ whose gradient is $\\textbf{F}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1167794169123",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>If $\\text{curl}\\;\\textbf{F}=0,$ then <strong>F</strong> is conservative.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True"
+   }
+  },
+  {
+   "id": "e210",
+   "source_id": "fs-id1167793892959",
+   "source_number": "210",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>If <strong>F</strong> is a constant vector field then $\\text{div}\\;\\textbf{F}=0.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True. If $\\textbf{F}=\\langle a,b,c\\rangle$ with constants $a,$ $b$ and $c,$ then $P_{x}=Q_{y}=R_{z}=0,$ so $\\text{div}\\;\\textbf{F}=0.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1167794186719",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, determine whether the statement is <em>true or false</em>.</p><p>If <strong>F</strong> is a constant vector field then $\\text{curl}\\;\\textbf{F}=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1167793591316",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, find the curl of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=x^{2}z\\textbf{i}+y^{2}x\\textbf{j}+(y+2z)\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=\\textbf{i}+x^{2}\\textbf{j}+y^{2}\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1167791724501",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, find the curl of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=x^{2}yz\\textbf{i}+xy^{2}z\\textbf{j}+xyz^{2}\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=(xz^{2}-xy^{2})\\textbf{i}+(x^{2}y-yz^{2})\\textbf{j}+(y^{2}z-x^{2}z)\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1167793951798",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, find the curl of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=(x-y)\\textbf{i}+(y-z)\\textbf{j}+(z-x)\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=\\textbf{i}+\\textbf{j}+\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1167793482845",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, find the curl of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=xy\\textbf{i}+yz\\textbf{j}+xz\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=-y\\textbf{i}-z\\textbf{j}-x\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1167793618709",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, find the curl of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=ax\\textbf{i}+by\\textbf{j}+c\\textbf{k}$ for constants <em>a</em>, <em>b</em>, <em>c</em></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=0$"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1167793927452",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, find the divergence of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=3xyz^{2}\\textbf{i}+y^{2}\\sin z\\textbf{j}+xe^{2z}\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=3yz^{2}+2y\\;\\sin z+2xe^{2z}$"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1167793245127",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, find the divergence of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=x^{2}\\textbf{i}+y^{2}\\textbf{j}+z^{2}\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=2(x+y+z)$"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1167793641859",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, find the divergence of <strong>F</strong>.</p><p>$\\textbf{F}(x,y)=\\frac{x}{\\sqrt{x^{2}+y^{2}}}\\textbf{i}+\\frac{y}{\\sqrt{x^{2}+y^{2}}}\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=\\frac{1}{\\sqrt{x^{2}+y^{2}}}$"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1167793554496",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, find the divergence of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=ax\\textbf{i}+by\\textbf{j}+c\\textbf{k}$ for constants <em>a</em>, <em>b</em>, <em>c</em></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=a+b$"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1167793498676",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, find the divergence of <strong>F</strong>.</p><p>$\\textbf{F}(x,y,z)=xy\\textbf{i}+yz\\textbf{j}+xz\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=x+y+z$"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1167794005201",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, determine whether each of the given scalar functions is harmonic.</p><p>$w(x,y,z)={(x^{2}+y^{2}+z^{2})}^{-1/2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Harmonic"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1167793699419",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, determine whether each of the given scalar functions is harmonic.</p><p>If $\\textbf{F}(x,y,z)=2\\textbf{i}+2x\\textbf{j}+3y\\textbf{k}$ and $\\textbf{G}(x,y,z)=x\\textbf{i}-y\\textbf{j}+z\\textbf{k},$ find $\\text{div}\\;(\\textbf{F}\\;\\times \\;\\textbf{G}).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;(\\textbf{F}\\;\\times \\;\\textbf{G})=2z+3x$"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1167794006368",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>Find the divergence of <strong>F</strong> for vector field $\\textbf{F}(x,y,z)=(y^{2}+z^{2})(x+y)\\textbf{i}+(z^{2}+x^{2})(y+z)\\textbf{j}+(x^{2}+y^{2})(z+x)\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=2(x^{2}+y^{2}+z^{2})$"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1167793691577",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>Find $\\text{curl}\\;\\textbf{r}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{r}=0$"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1167793754021",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>Find $\\text{curl}\\;\\frac{\\textbf{r}}{r^{3}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\frac{\\textbf{r}}{r^{3}}=0$"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1167793929637",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, use a computer algebra system to find the curl of the given vector fields.</p><p><strong>[T]</strong> $\\textbf{F}(x,y,z)=\\operatorname{arctan}(\\frac{x}{y})\\textbf{i}+\\ln \\sqrt{x^{2}+y^{2}}\\textbf{j}+\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=\\frac{2x}{x^{2}+y^{2}}\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1167793597218",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, find the divergence of <strong>F</strong> at the given point.</p><p>$\\textbf{F}(x,y,z)=\\textbf{i}+\\textbf{j}+\\textbf{k}$ at $(2,-1,3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=0$"
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1167793584431",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, find the divergence of <strong>F</strong> at the given point.</p><p>$\\textbf{F}(x,y,z)=e^{-xy}\\textbf{i}+e^{xz}\\textbf{j}+e^{yz}\\textbf{k}$ at $(3,2,0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=2-2e^{-6}$"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1167794200333",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>For the following exercises, find the divergence of <strong>F</strong> at the given point.</p><p>$\\textbf{F}(x,y,z)=e^{x}\\sin y\\textbf{i}-e^{x}\\cos y\\textbf{j}$ at (0, 0, 3)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=0$"
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1167793931558",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, find the curl of <strong>F</strong> at the given point.</p><p>$\\textbf{F}(x,y,z)=xyz\\textbf{i}+y\\textbf{j}+x\\textbf{k}$ at $(1,2,3)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=\\textbf{j}-3\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1167794143317",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, find the curl of <strong>F</strong> at the given point.</p><p>$\\textbf{F}(x,y,z)=xyz\\textbf{i}+y\\textbf{j}+z\\textbf{k}$ at (1, 2, 1)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=2\\textbf{j}-\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e255",
+   "source_id": "fs-id1167794056666",
+   "source_number": "255",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, find the curl of <strong>F</strong> at the given point.</p><p>Let $\\textbf{F}(x,y,z)=(3x^{2}y+az)\\textbf{i}+x^{3}\\textbf{j}+(3x+3z^{2})\\textbf{k}.$ For what value of <em>a</em> is <strong>F</strong> conservative?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a=3$"
+   }
+  },
+  {
+   "id": "e257",
+   "source_id": "fs-id1167794199129",
+   "source_number": "257",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>Given vector field $\\text{F}(x,y)=\\frac{1}{x^{2}+y^{2}}\\lt x,y\\gt$ on domain $D={\\mathbb{R}}^{2}-\\{(0,0)\\}=\\{(x,y)\\in {\\mathbb{R}}^{2}|(x,y)\\ne (0,0)\\},$ is <strong>F</strong> conservative?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<strong>F</strong> is conservative."
+   }
+  },
+  {
+   "id": "e259",
+   "source_id": "fs-id1167794024141",
+   "source_number": "259",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>Compute the divergence of $\\textbf{F}=(\\operatorname{sinh}\\;x)\\textbf{i}+(\\operatorname{cosh}\\;y)\\textbf{j}-xyz\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{div}\\;\\textbf{F}=\\operatorname{cosh}\\;x+\\operatorname{sinh}\\;y-xy$"
+   }
+  },
+  {
+   "id": "e261",
+   "source_id": "fs-id1167793480293",
+   "source_number": "261",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, consider a rigid body that is rotating about the <em>x</em>-axis counterclockwise with constant angular velocity $\\omega =\\langle a,b,c\\rangle .$ If <em>P</em> is a point in the body located at $\\textbf{r}=x\\textbf{i}+y\\textbf{j}+z\\textbf{k}\\text{,}$ the velocity at <em>P</em> is given by vector field $\\textbf{F}=\\omega \\;\\times \\;\\textbf{r}.$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_05_201.jpg\" alt=\"A three dimensional diagram of an object rotating about the x axis in a counterclockwise manner with constant angular velocity w = &lt;a,b,c&gt;. The object is roughly a sphere with pointed ends on the x axis, which cuts it in half. An arrow r is drawn from (0,0,0) to P(x,y,z) and down from P(x,y,z) to the x axis.\"><p>Express <strong>F</strong> in terms of <strong>i</strong>, <strong>j</strong>, and <strong>k</strong> vectors.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(bz-cy)\\textbf{i}+(cx-az)\\textbf{j}+(ay-bx)\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e263",
+   "source_id": "fs-id1167794212788",
+   "source_number": "263",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>For the following exercises, consider a rigid body that is rotating about the <em>x</em>-axis counterclockwise with constant angular velocity $\\omega =\\langle a,b,c\\rangle .$ If <em>P</em> is a point in the body located at $\\textbf{r}=x\\textbf{i}+y\\textbf{j}+z\\textbf{k}\\text{,}$ the velocity at <em>P</em> is given by vector field $\\textbf{F}=\\omega \\;\\times \\;\\textbf{r}.$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_05_201.jpg\" alt=\"A three dimensional diagram of an object rotating about the x axis in a counterclockwise manner with constant angular velocity w = &lt;a,b,c&gt;. The object is roughly a sphere with pointed ends on the x axis, which cuts it in half. An arrow r is drawn from (0,0,0) to P(x,y,z) and down from P(x,y,z) to the x axis.\"><p>Find $\\text{the curl of}\\;\\textbf{F}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{F}=2\\omega$"
+   }
+  },
+  {
+   "id": "e264",
+   "source_id": "fs-id1167793501880",
+   "source_number": "264",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>In the following exercises, suppose that $\\nabla \\cdot \\textbf{F}=0$ and $\\nabla \\cdot \\textbf{G}=0.$</p><p>Does $\\textbf{F}+\\textbf{G}$ necessarily have zero divergence?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Yes. Divergence is linear: $\\nabla\\cdot(\\textbf{F}+\\textbf{G})=(P_{1}+P_{2})_{x}+(Q_{1}+Q_{2})_{y}+(R_{1}+R_{2})_{z}=\\nabla\\cdot\\textbf{F}+\\nabla\\cdot\\textbf{G}=0+0=0.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e265",
+   "source_id": "fs-id1167794122868",
+   "source_number": "265",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>In the following exercises, suppose that $\\nabla \\cdot \\textbf{F}=0$ and $\\nabla \\cdot \\textbf{G}=0.$</p><p>Does $\\textbf{F}\\;\\times \\;\\textbf{G}$ necessarily have zero divergence?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{F}\\;\\times \\;\\textbf{G}$ does not have zero divergence."
+   }
+  },
+  {
+   "id": "e267",
+   "source_id": "fs-id1167793638510",
+   "source_number": "267",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p>Compute the divergence.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\nabla \\cdot \\textbf{F}=-200k[1+2(x^{2}+y^{2}+z^{2})]e^{-x^{2}+y^{2}+z^{2}}$"
+   }
+  },
+  {
+   "id": "r429",
+   "source_id": "fs-id1167794144431",
+   "source_section": "16.8",
+   "source_number": "429",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>The divergence of a vector field is a vector field.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "False"
+   }
+  },
+  {
+   "id": "r430",
+   "source_id": "fs-id1167794021062",
+   "source_section": "16.8",
+   "source_number": "430",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>If $\\text{curl}\\;\\textbf{F}=0,$ then $\\textbf{F}$ is a conservative vector field.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>False. The curl test needs a simply connected domain. The field $\\textbf{F}=\\langle -\\frac{y}{x^{2}+y^{2}},\\frac{x}{x^{2}+y^{2}},0\\rangle,$ defined everywhere except on the $z$-axis, has $\\text{curl}\\;\\textbf{F}=\\mathbf{0},$ yet its line integral around the unit circle in the $xy$-plane, counterclockwise, is $\\int_{0}^{2\\pi}(\\sin^{2}t+\\cos^{2}t)\\,dt=2\\pi\\ne 0,$ so it is not conservative.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r441",
+   "source_id": "fs-id1167793554495",
+   "source_section": "16.8",
+   "source_number": "441",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curl",
+   "prompt": "<p>Find the divergence and curl for the following vector fields.</p><p>$\\textbf{F}(x,y,z)=e^{x}\\textbf{i}+e^{xy}\\textbf{j}+e^{xyz}\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Divergence: $e^{x}+xe^{xy}+xye^{xyz},$ curl: $xze^{xyz}\\textbf{i}-yze^{xyz}\\textbf{j}+ye^{xy}\\textbf{k}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "divergence-test-for-source-free-fields"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "curl"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "curl"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "divergence-of-the-curl"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "laplace-operator"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "harmonic-function"
+  },
+  {
+   "exercise": "e206",
+   "concept": "divergence-of-the-curl"
+  },
+  {
+   "exercise": "e206",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e207",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e208",
+   "concept": "curl-test-for-a-conservative-field"
+  },
+  {
+   "exercise": "e208",
+   "concept": "curl-of-a-conservative-field"
+  },
+  {
+   "exercise": "e209",
+   "concept": "curl-test-for-a-conservative-field"
+  },
+  {
+   "exercise": "e209",
+   "concept": "simply-connected-region"
+  },
+  {
+   "exercise": "e210",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e211",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e213",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e215",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e217",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e219",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e221",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e223",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e225",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e227",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e229",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e231",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e233",
+   "concept": "laplace-operator"
+  },
+  {
+   "exercise": "e233",
+   "concept": "harmonic-function"
+  },
+  {
+   "exercise": "e235",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e235",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e237",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e239",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e241",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e243",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e243",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e245",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e247",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e249",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e251",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e253",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e255",
+   "concept": "curl-test-for-a-conservative-field"
+  },
+  {
+   "exercise": "e255",
+   "concept": "curl-of-a-conservative-field"
+  },
+  {
+   "exercise": "e257",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e257",
+   "concept": "divergence-test-for-source-free-fields"
+  },
+  {
+   "exercise": "e259",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e261",
+   "concept": "vector-field"
+  },
+  {
+   "exercise": "e261",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e263",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e264",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e265",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e265",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "e267",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e267",
+   "concept": "heat-flow"
+  },
+  {
+   "exercise": "r429",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "r430",
+   "concept": "curl-test-for-a-conservative-field"
+  },
+  {
+   "exercise": "r430",
+   "concept": "simply-connected-region"
+  },
+  {
+   "exercise": "r441",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "r441",
+   "concept": "curl"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-curl-derivatives",
+   "kind": "correction",
+   "html": "The $\\mathbf{j}$ and $\\mathbf{k}$ components are printed with the derivatives of the $\\mathbf{i}$ component, $\\frac{\\partial}{\\partial y}$ and $\\frac{\\partial}{\\partial z};$ by the definition of curl they are $\\frac{\\partial}{\\partial z}yz-\\frac{\\partial}{\\partial x}xy=y-y$ and $\\frac{\\partial}{\\partial x}xz-\\frac{\\partial}{\\partial y}yz=z-z,$ the values the line gives."
+  }
+ ]
+}

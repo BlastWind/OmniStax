@@ -1,0 +1,1200 @@
+{
+ "id": "16.4",
+ "module": "m53982",
+ "chapter": "16",
+ "title": "Green’s Theorem",
+ "short": "Green’s Theorem",
+ "lead": "<span data-concept=\"greens-theorem\">Green’s theorem</span> is the Fundamental Theorem of Calculus one dimension up: a line integral around the boundary of a plane region equals a double integral over the region. This section states its circulation and flux forms, uses them for work, flux and the area enclosed by a curve, meets <span data-concept=\"source-free-vector-field\">source-free fields</span> and their <span data-concept=\"stream-function\">stream functions</span>, and extends the theorem to regions with holes.",
+ "objectives": [
+  "Apply the circulation form of Green’s theorem.",
+  "Apply the flux form of Green’s theorem.",
+  "Calculate circulation and flux on more general regions."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"greens-theorem\">Green’s theorem</span> relates the integral over a connected region to an integral over the boundary of the region. <span data-concept=\"greens-theorem\">Green’s theorem</span> is a version of the <span data-concept=\"fundamental-theorem-of-calculus\">Fundamental Theorem of Calculus</span> in one higher dimension.</li><li><span data-concept=\"greens-theorem\">Green’s Theorem</span> comes in two forms: a <span data-concept=\"circulation\">circulation</span> form and a <span data-concept=\"flux-across-a-curve\">flux</span> form. In the <span data-concept=\"circulation\">circulation</span> form, the integrand is $\\kvecF\\cdot \\kvecT.$ In the <span data-concept=\"flux-across-a-curve\">flux</span> form, the integrand is $\\kvecF\\cdot \\kvecN.$</li><li><span data-concept=\"greens-theorem\">Green’s theorem</span> can be used to transform a difficult <span data-concept=\"line-integral\">line integral</span> into an easier <span data-concept=\"double-integral\">double integral</span>, or to transform a difficult <span data-concept=\"double-integral\">double integral</span> into an easier <span data-concept=\"line-integral\">line integral</span>.</li><li>A <span data-concept=\"vector-field\">vector field</span> is <span data-concept=\"source-free-vector-field\">source free</span> if it has a <span data-concept=\"stream-function\">stream function</span>. The <span data-concept=\"flux-across-a-curve\">flux</span> of a <span data-concept=\"source-free-vector-field\">source-free vector field</span> across a closed curve is zero, just as the <span data-concept=\"circulation\">circulation</span> of a <span data-concept=\"conservative-vector-field\">conservative vector field</span> across a closed curve is zero.</li></ul>",
+ "notes": "The media link to an animation of a planimeter is left out; the page draws one tracing a boundary.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approach marked as such. Of the unkeyed section exercises, the proof 166 is kept with an AI-written suggested approach; the other 29 are computations with no key and are left out: exercises 146–204 even except 166. Review exercise 443 from the end of the chapter is held here.",
+ "figures": [
+  {
+   "id": "fig-ftc-segment",
+   "kind": "photo",
+   "number": "16.32",
+   "draws": []
+  },
+  {
+   "id": "sim-greens-circulation",
+   "kind": "sim",
+   "number": "16.33",
+   "folds": [
+    "16.35",
+    "16.36",
+    "16.37"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_04_002.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_04_004.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_04_005.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_04_006.jpg"
+   ],
+   "original_caption": "(Figure 16.33) The circulation form of Green’s theorem relates a line integral over curve C to a double integral over region D. (Figure 16.35) The line integral over the boundary of the rectangle can be transformed into a double integral over the rectangle. (Figure 16.36) The line integral over the boundary circle can be transformed into a double integral over the disk enclosed by the circle. (Figure 16.37) Ellipse (x²)/(a²)+(y²)/(b²)=1 is denoted by C.",
+   "draws": [
+    "vector-field",
+    "curve",
+    "region",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-proof-rectangle",
+   "kind": "photo",
+   "number": "16.34",
+   "draws": []
+  },
+  {
+   "id": "sim-greens-flux",
+   "kind": "sim",
+   "number": "16.38",
+   "folds": [
+    "16.39",
+    "16.40",
+    "16.41"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_04_008.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_04_009.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_04_010.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_04_011.jpg"
+   ],
+   "original_caption": "(Figure 16.38) The flux form of Green’s theorem relates a double integral over region D to the flux across curve C. (Figure 16.39) Curve C is a circle of radius r centered at the origin. (Figure 16.40) Curve S is a triangle with vertices (0,0), (1,0), and (0,3) oriented clockwise. (Figure 16.41) Water flows across the rectangle with vertices (−1,−2),(1,−2),(1,3), and (−1,3), oriented counterclockwise.",
+   "draws": [
+    "vector-field",
+    "curve",
+    "region",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-stream-function",
+   "kind": "sim",
+   "number": "16.42",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_04_012.jpg"
+   ],
+   "original_caption": "(a) In this image, we see the three-level curves of g and vector field F. Note that the F vectors on a given level curve are tangent to the level curve. (b) In this image, we see the three-level curves of g and vector field ∇g. The gradient vectors are perpendicular to the corresponding level curve. Therefore, F(a,b)· ∇g(a,b)=0 for any point in the domain of g.",
+   "draws": [
+    "vector-field",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-three-holes",
+   "kind": "photo",
+   "number": "16.43",
+   "draws": []
+  },
+  {
+   "id": "fig-holes-split",
+   "kind": "photo",
+   "number": "16.44",
+   "draws": []
+  },
+  {
+   "id": "fig-annulus-split",
+   "kind": "photo",
+   "number": "16.45",
+   "draws": []
+  },
+  {
+   "id": "fig-circle-inside",
+   "kind": "photo",
+   "number": "16.46",
+   "draws": []
+  },
+  {
+   "id": "fig-tumor",
+   "kind": "photo",
+   "number": "16.47",
+   "draws": []
+  },
+  {
+   "id": "fig-planimeter",
+   "kind": "photo",
+   "number": "16.48",
+   "draws": []
+  },
+  {
+   "id": "fig-planimeter-analysis",
+   "kind": "photo",
+   "number": "16.49",
+   "draws": []
+  },
+  {
+   "id": "sim-planimeter",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "region",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "gt-intro",
+   "concept": "greens-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "extending",
+   "concept": "fundamental-theorem-of-calculus",
+   "verb": "uses"
+  },
+  {
+   "span": "extending",
+   "concept": "fundamental-theorem-for-line-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "greens-term",
+   "concept": "greens-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793298232",
+   "concept": "greens-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793298232",
+   "concept": "simply-connected-region",
+   "verb": "uses"
+  },
+  {
+   "span": "circulation",
+   "concept": "circulation",
+   "verb": "uses"
+  },
+  {
+   "span": "circulation",
+   "concept": "cross-partial-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793881250",
+   "concept": "greens-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794127694",
+   "concept": "work-done-by-a-vector-field",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794000435",
+   "concept": "area-by-greens-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793965702",
+   "concept": "area-by-greens-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793944640",
+   "concept": "greens-theorem-flux-form",
+   "verb": "introduces"
+  },
+  {
+   "span": "flux",
+   "concept": "flux-across-a-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793705200",
+   "concept": "greens-theorem-flux-form",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793255700",
+   "concept": "greens-theorem-flux-form",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793293486",
+   "concept": "greens-theorem-flux-form",
+   "verb": "reinforces"
+  },
+  {
+   "span": "source-free-term",
+   "concept": "source-free-vector-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "source-free-term",
+   "concept": "stream-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "source-free-term",
+   "concept": "level-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794173036",
+   "concept": "stream-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "harmonic-term",
+   "concept": "harmonic-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "harmonic-term",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793953529",
+   "concept": "harmonic-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "general",
+   "concept": "greens-theorem-on-general-regions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793931838",
+   "concept": "greens-theorem-on-general-regions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793505989",
+   "concept": "greens-theorem-on-general-regions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793632701",
+   "concept": "area-by-greens-theorem",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793959379",
+   "source_number": "Checkpoint 16.34",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794127694"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to calculate line integral</p>\n$$\\int_{C}\\sin (x^{2})dx+(3x-y)dy ,$$\n<p>where <em>C</em> is a right triangle with vertices $(-1,2),$ $(4,2),$ and $(4,5)$ oriented counterclockwise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{45}{2}$",
+    "hint": "Transform the line integral into a double integral."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794249986",
+   "source_number": "Checkpoint 16.35",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794000435"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Find the area of the region enclosed by the curve with parameterization $\\textbf{r}(t)=\\langle \\sin t\\;\\cos t,\\sin t\\rangle ,0\\le t\\le \\pi .$</p>\n<img src=\"/media/ch16/CNX_Calc_Figure_16_04_007.jpg\" alt=\"An image of a curve in quadrants 1 and 2. The curve begins at the origin, curves up and to the right until about (.5, 1), turns left to go through (0, 1), and curves down going through (-.5, 1) and then goes down and right until it hits the origin again.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2}{3}$",
+    "hint": "Use <a href=\"#fs-id1167793965702\">Equation 16.14</a>."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793927008",
+   "source_number": "Checkpoint 16.36",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793255700"
+   },
+   "cite": "flux",
+   "prompt": "Calculate the flux of $\\textbf{F}(x,y)=\\langle x^{3},y^{3}\\rangle$ across a unit circle oriented counterclockwise.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3\\pi}{2}$",
+    "hint": "Apply Green’s theorem and use polar coordinates."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793505730",
+   "source_number": "Checkpoint 16.37",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794173036"
+   },
+   "cite": "flux",
+   "prompt": "Find a stream function for vector field $\\textbf{F}(x,y)=\\langle x\\;\\sin y,\\cos y\\rangle .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$g(x,y)=-x\\;\\cos y$",
+    "hint": "Follow the outline provided in the previous example."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793464354",
+   "source_number": "Checkpoint 16.38",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793953529"
+   },
+   "cite": "flux",
+   "prompt": "Is the function $f(x,y)=e^{x+5y}$ harmonic?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No",
+    "hint": "Determine whether the function satisfies Laplace’s equation."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167794187613",
+   "source_number": "Checkpoint 16.39",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793505989"
+   },
+   "cite": "general",
+   "prompt": "Calculate integral $\\int_{\\partial D}\\textbf{F}\\cdot d\\textbf{r},$ where <em>D</em> is the annulus given by the polar inequalities $2\\le r\\le 5,0\\le \\theta \\le 2\\pi ,$ and $\\textbf{F}(x,y)=\\langle x^{3},5x+e^{y}\\sin y\\rangle .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$105\\pi$",
+    "hint": "Use the extended version of Green’s theorem."
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1167793468339",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, evaluate the line integrals by applying Green’s theorem.</p><p>$\\int_C^{}2xydx+(x+y)dy ,$ where <em>C</em> is the boundary of the region lying between the graphs of $y=0$ and $y=4-x^{2}$ oriented in the counterclockwise direction</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}2xydx+(x+y)dy =\\frac{32}{3}$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1167793554059",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, evaluate the line integrals by applying Green’s theorem.</p><p>$\\int_C^{}\\sin x\\;\\cos ydx+(xy+\\cos x\\;\\sin y)dy \\text{,}$ where <em>C</em> is the boundary of the region lying between the graphs of $y=x$ and $y=\\sqrt{x}$ oriented in the counterclockwise direction</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}\\sin x\\;\\cos ydx+(xy+\\cos x\\;\\sin y)dy =\\frac{1}{12}$"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1167793275441",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, evaluate the line integrals by applying Green’s theorem.</p><p>$\\int_{C}(-ydx+xdy) ,$ where <em>C</em> consists of line segment <em>C</em><sub>1</sub> from $(-1,0)$ to (1, 0), followed by the semicircular arc <em>C</em><sub>2</sub> from (1, 0) back to (–1, 0)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}(-ydx+xdy) =\\pi$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1167793597265",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Evaluate line integral $\\int_{C}xe^{-2x}dx+(x^{4}+2x^{2}y^{2})dy,$ where <em>C</em> is the boundary of the region between circles $x^{2}+y^{2}=1$ and $x^{2}+y^{2}=4,$ and is a positively oriented curve.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}xe^{-2x}dx+(x^{4}+2x^{2}y^{2})dy=0$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1167794011994",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Evaluate $\\int_{C}y^{3}dx-x^{3}y^{2}dy ,$ where <em>C</em> is the positively oriented circle of radius 2 centered at the origin.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}y^{3}dx-x^{3}ydy=-20\\pi$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1167794006336",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, use Green’s theorem.</p><p>Calculate $\\int_{C}-x^{2}ydx+xy^{2}dy ,$ where <em>C</em> is a circle of radius 2 centered at the origin and oriented in the counterclockwise direction.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}-x^{2}ydx+xy^{2}dy =8\\pi$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1167793313184",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Evaluate integral $\\int_{C}(x^{2}+y^{2})dx+2xydy ,$ where <em>C</em> is the curve that follows parabola $y=x^{2}\\;\\text{from}\\;(0,0)\\text{to}(2,4),$ then the line from (2, 4) to (2, 0), and finally the line from (2, 0) to (0, 0).</p><img src=\"/media/ch16/CNX_Calc_Figure_16_04_203.jpg\" alt=\"A vector field in quadrant 1. The arrows are much smaller closer to the origin. They point up and away from the origin, with increasing slope the further they are to the right. The curve follows the parabola y=x^2 from the origin to (2,4), the line from (2,4) to (2,0), and the line from (2,0) to (0,0). The area under y=x^2 and below the parabola is shaded.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}(x^{2}+y^{2})dx+2xydy =0$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1167793570088",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Find the area between ellipse $\\frac{x^{2}}{9}+\\frac{y^{2}}{4}=1$ and circle $x^{2}+y^{2}=25.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$A=19\\pi$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1167793535017",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Find the area of the region bounded by hypocycloid $\\textbf{r}(t)={\\cos }^{3}(t)\\textbf{i}+{\\sin }^{3}(t)\\textbf{j}.$ The curve is parameterized by $t\\in [0,2\\pi ].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$A=\\frac{3\\pi}{8}$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1167793597229",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to evaluate $\\int_{C^{+}}(y^{2}+x^{3})dx+x^{4}dy,$ where $C^{+}$ is the perimeter of square $[0,1]\\;\\times \\;[0,1]$ oriented counterclockwise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C+}(y^{2}+x^{3})dx+x^{4}dy=0$"
+   }
+  },
+  {
+   "id": "e166",
+   "source_id": "fs-id1167793584472",
+   "source_number": "166",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to prove the area of a disk with radius $a$ is $A=\\pi a^{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let $D$ be the disk of radius $a$ about the origin and $C$ its boundary circle, oriented counterclockwise and parameterized by $x=a\\cos t,$ $y=a\\sin t,$ $0\\le t\\le 2\\pi.$ The field $\\textbf{F}=\\langle -\\frac{y}{2},\\frac{x}{2}\\rangle$ has $Q_{x}-P_{y}=\\frac{1}{2}+\\frac{1}{2}=1,$ so by Green’s theorem $A=\\iint_{D}dA=\\frac{1}{2}\\int_{C}-y\\,dx+x\\,dy=\\frac{1}{2}\\int_{0}^{2\\pi}(a^{2}\\sin^{2}t+a^{2}\\cos^{2}t)\\,dt=\\frac{1}{2}\\int_{0}^{2\\pi}a^{2}\\,dt=\\pi a^{2}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1167793931565",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to find the area of one loop of a four-leaf rose $r=3\\;\\sin 2\\theta .$ (<em>Hint</em>: $xdy-ydx=r^{2}d\\theta ).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$A=\\frac{9\\pi}{8}$"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1167794145810",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to find the area of the region enclosed by curve</p>$$\\textbf{r}(t)=t^{2}\\textbf{i}+(\\frac{t^{3}}{3}-t)\\textbf{j}\\text{,}\\;-\\sqrt{3}\\le t\\le \\sqrt{3}.$$<img src=\"/media/ch16/CNX_Calc_Figure_16_04_206.jpg\" alt=\"A horizontal teardrop-shaped region symmetric about the x axis and a-intercepts at the origin and (3,0). The larger, curved end is at the origin, and the pointed end is at (3,0).\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$A=\\frac{8\\sqrt{3}}{5}$"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1167793423616",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Evaluate $\\int_{C}(x^{2}y-2xy+y^{2})ds,$ where <em>C</em> is the boundary of the unit square $0\\le x\\le 1\\text{,}\\;0\\le y\\le 1\\text{,}$ traversed counterclockwise. Use $ds=dx+dy$ for this exercise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}(x^{2}y-2xy+y^{2})ds=\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1167794056647",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Evaluate $\\int_C^{}\\frac{xdx+ydy}{x^{2}+y^{2}} ,$ where <em>C</em> is any piecewise, smooth simple closed curve enclosing the origin, traversed counterclockwise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}\\frac{xdx+ydy}{x^{2}+y^{2}} =0$"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1167794199135",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, use Green’s theorem to calculate the work done by force <strong>F</strong> on a particle that is moving counterclockwise around closed path <em>C</em>.</p><p>$\\textbf{F}(x,y)=(x^{3/2}-3y)\\textbf{i}+(6x+5\\sqrt{y})\\textbf{j},$ <em>C</em> : boundary of a triangle with vertices (0, 0), (5, 0), and (0, 5)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=\\frac{225}{2}$"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1167793315585",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>A particle starts at point $(-2,0),$ moves along the <em>x</em>-axis to (2, 0), and then travels along semicircle $y=\\sqrt{4-x^{2}}$ to the starting point. Use Green’s theorem to find the work done on this particle by force field $\\textbf{F}(x,y)=x\\textbf{i}+(x^{3}+3xy^{2})\\textbf{j}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=12\\pi$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1167793245898",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to find the work done by force field $\\textbf{F}(x,y)=(3y-4x)\\textbf{i}+(4x-y)\\textbf{j}$ when an object moves once counterclockwise around ellipse $4x^{2}+y^{2}=4.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=2\\pi$"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1167794101707",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Evaluate line integral $\\int_{C}y^{2}dx+x^{2}dy,$ where <em>C</em> is the boundary of a triangle with vertices $(0,0),(1,1),\\;\\text{and}\\;(1,0),$ with the counterclockwise orientation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}y^{2}dx+x^{2}dy=\\frac{1}{3}$"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1167793254694",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to evaluate line integral $\\int_C^{}\\sqrt{1+x^{3}}dx+2xydy$ where <em>C</em> is a triangle with vertices (0, 0), (1, 0), and (1, 3) oriented clockwise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}\\sqrt{1+x^{3}}dx+2xydy =-3$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1167793432362",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to evaluate line integral $\\int_C^{}(3y-e^{\\sin x})dx +(7x+\\sqrt{y^{4}+1})dy$ where <em>C</em> is circle $x^{2}+y^{2}=9$ oriented in the counterclockwise direction.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}(3y-e^{\\sin x})dx +(7x+\\sqrt{y^{4}+1})dy=36\\pi$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1167793277924",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, use Green’s theorem to calculate the work done by force <strong>F</strong> on a particle that is moving counterclockwise around closed path <em>C</em>.</p><p>Let <em>C</em> be a triangular closed curve from (0, 0) to (1, 0) to (1, 1) and finally back to (0, 0). Let $\\textbf{F}(x,y)=4y\\textbf{i}+6x^{2}\\textbf{j}.$ Use Green’s theorem to evaluate $\\int_{C}\\textbf{F}\\cdot d\\textbf{r} .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\textbf{F}\\cdot d\\textbf{r} =2$"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1167794054209",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to evaluate line integral $\\int_{C}(y+x)dx+(x+\\sin y)dy \\text{,}$ where <em>C</em> is any smooth simple closed curve joining the origin to itself oriented in the counterclockwise direction.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}(y+x)dx+(x+\\sin y)dy =0$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1167793631729",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to evaluate $\\int_{C}xydx+x^{3}y^{3}dy,$ where <em>C</em> is a triangle with vertices (0, 0), (1, 0), and (1, 2) with positive orientation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}xydx+x^{3}y^{3}dy=\\frac{22}{21}$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1167793545015",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, use Green’s theorem to calculate the work done by force <strong>F</strong> on a particle that is moving counterclockwise around closed path <em>C</em>.</p><p>Let $\\textbf{F}(x,y)=(\\cos (x^{5}))-\\frac{1}{3}y^{3}\\textbf{i}+\\frac{1}{3}x^{3}\\textbf{j}.$ Find the counterclockwise circulation $\\int_{C}\\textbf{F}\\cdot d\\textbf{r} ,$ where <em>C</em> is a curve consisting of the line segment joining $(-2,0)\\;\\text{and}\\;(-1,0)\\text{,}$ half circle $y=\\sqrt{1-x^{2}},$ the line segment joining (1, 0) and (2, 0), and half circle $y=\\sqrt{4-x^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\textbf{F}\\cdot d\\textbf{r} =\\frac{15\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1167794291697",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, use Green’s theorem to calculate the work done by force <strong>F</strong> on a particle that is moving counterclockwise around closed path <em>C</em>.</p><p>Let <em>C</em> be the boundary of square $0\\le x\\le \\pi \\text{,}\\;0\\le y\\le \\pi \\text{,}$ traversed counterclockwise. Use Green’s theorem to find $\\int_C^{}\\sin (x+y)dx+\\cos (x+y)dy .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}\\sin (x+y)dx+\\cos (x+y)dy =4$"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1167793617097",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s Theorem to evaluate integral $\\int_C^{}\\textbf{F}\\cdot d\\textbf{r} ,$ where $\\textbf{F}(x,y)=(xy^{2})\\textbf{i}+x\\textbf{j},$ and <em>C</em> is a unit circle oriented in the counterclockwise direction.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}\\textbf{F}\\cdot d\\textbf{r} =\\pi$"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1167794287534",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>For the following exercises, use Green’s theorem to calculate the work done by force <strong>F</strong> on a particle that is moving counterclockwise around closed path <em>C</em>.</p><p>Calculate the outward flux of $\\textbf{F}=-x\\textbf{i}+2y\\textbf{j}$ over a square with corners $(±1,±1),$ where the unit normal is outward pointing and oriented in the counterclockwise direction.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\textbf{F}\\cdot \\mathbf{\\overset{\\wedge}{N}}ds=4$"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1167794287650",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux",
+   "prompt": "<p>Find the flux of field $\\textbf{F}=-x\\textbf{i}+y\\textbf{j}$ across $x^{2}+y^{2}=16$ oriented in the counterclockwise direction.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\textbf{F}\\cdot \\textbf{N}ds =0$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1167793482759",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux",
+   "prompt": "<p>For the following exercises, use Green’s theorem to calculate the work done by force <strong>F</strong> on a particle that is moving counterclockwise around closed path <em>C</em>.</p><p><strong>[T]</strong> Let <em>C</em> be unit circle $x^{2}+y^{2}=1$ traversed once counterclockwise. Evaluate $\\int_{C}[-y^{3}+\\sin (xy)+xy\\;\\cos (xy)]dx+[x^{3}+x^{2}\\cos (xy)]dy$ by using a computer algebra system.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}[-y^{3}+\\sin (xy)+xy\\;\\cos (xy)]dx+[x^{3}+x^{2}\\cos (xy)]dy =4.7124$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1167793376099",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux",
+   "prompt": "<p>For the following exercises, use Green’s theorem to calculate the work done by force <strong>F</strong> on a particle that is moving counterclockwise around closed path <em>C</em>.</p><p>Consider region <em>R</em> bounded by parabolas $y=x^{2}\\;\\text{and}\\;x=y^{2}.$ Let <em>C</em> be the boundary of <em>R</em> oriented counterclockwise. Use Green’s theorem to evaluate $\\int_{C}(y+e^{\\sqrt{x}})dx+(2x+\\cos (y^{2}))dy.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}(y+e^{\\sqrt{x}})dx+(2x+\\cos (y^{2}))dy=\\frac{1}{3}$"
+   }
+  },
+  {
+   "id": "r443",
+   "source_id": "fs-id1167793686562",
+   "source_section": "16.8",
+   "source_number": "443",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "circulation",
+   "prompt": "<p>Use Green’s theorem to evaluate the following integrals.</p><p>$\\int_{C}3ydx+(x+e^{y})dy,$ where <em>C</em> is a circle centered at the origin with radius 3</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-18\\pi$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "area-by-greens-theorem"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "greens-theorem-flux-form"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "stream-function"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "harmonic-function"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "greens-theorem-on-general-regions"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e147",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e149",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e151",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e153",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e153",
+   "concept": "circulation"
+  },
+  {
+   "exercise": "e155",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e155",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e157",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e157",
+   "concept": "greens-theorem-on-general-regions"
+  },
+  {
+   "exercise": "e159",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e161",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e163",
+   "concept": "area-by-greens-theorem"
+  },
+  {
+   "exercise": "e165",
+   "concept": "area-by-greens-theorem"
+  },
+  {
+   "exercise": "e166",
+   "concept": "area-by-greens-theorem"
+  },
+  {
+   "exercise": "e167",
+   "concept": "area-by-greens-theorem"
+  },
+  {
+   "exercise": "e169",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e171",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e171",
+   "concept": "greens-theorem-on-general-regions"
+  },
+  {
+   "exercise": "e173",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e175",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e177",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e177",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e179",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e179",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e181",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e183",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e185",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e187",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e189",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e191",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e193",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e195",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e197",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e199",
+   "concept": "greens-theorem"
+  },
+  {
+   "exercise": "e201",
+   "concept": "greens-theorem-flux-form"
+  },
+  {
+   "exercise": "e203",
+   "concept": "greens-theorem-flux-form"
+  },
+  {
+   "exercise": "e205",
+   "concept": "greens-theorem-flux-form"
+  },
+  {
+   "exercise": "r443",
+   "concept": "greens-theorem"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-fy",
+   "kind": "correction",
+   "html": "The second equation is printed $f_{x}=Q;$ since $\\nabla f=\\mathbf{F},$ it is $f_{y}=Q,$ which gives $f_{yy}=Q_{y}$ below."
+  },
+  {
+   "id": "c-for-f",
+   "kind": "correction",
+   "html": "The book prints “a potential function for $f$”; $f$ is a potential function for the field $\\mathbf{F}.$"
+  },
+  {
+   "id": "c-partial-y",
+   "kind": "correction",
+   "html": "The derivative is printed $\\frac{\\partial}{\\partial x};$ $f_{yy}$ is $\\frac{\\partial}{\\partial y}(e^{x}\\cos y)=-e^{x}\\sin y.$"
+  },
+  {
+   "id": "c-triangle",
+   "kind": "correction",
+   "html": "Here and in the computation below, $\\int_{C}$ stands for the flux across the clockwise triangle $S,$ and the computation’s first line is printed without its minus sign: $\\int_{S}\\mathbf{F}\\cdot\\mathbf{N}\\,ds=-\\int_{-S}\\mathbf{F}\\cdot\\mathbf{N}\\,ds=-\\iint_{D}(P_{x}+Q_{y})\\,dA,$ as the next line has it."
+  }
+ ]
+}

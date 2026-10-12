@@ -1,0 +1,1523 @@
+{
+ "id": "16.6",
+ "module": "m54004",
+ "chapter": "16",
+ "title": "Surface Integrals",
+ "short": "Surface Integrals",
+ "lead": "A <span data-concept=\"surface-integral\">surface integral</span> is a line integral one dimension up: it integrates over a surface described by two parameters. This section parameterizes cylinders, cones, spheres and graphs, finds <span data-concept=\"surface-area-of-a-parametric-surface\">surface area</span> from the tangent vectors of a parameterization, integrates scalar functions over surfaces, chooses an <span data-concept=\"orientation-of-a-surface\">orientation</span>, and defines the flux of a vector field across a surface, with mass flow and heat flow.",
+ "objectives": [
+  "Find the parametric representations of a cylinder, a cone, and a sphere.",
+  "Describe the surface integral of a scalar-valued function over a parametric surface.",
+  "Use a surface integral to calculate the area of a given surface.",
+  "Explain the meaning of an oriented surface, giving an example.",
+  "Describe the surface integral of a vector field.",
+  "Use surface integrals to solve applied problems."
+ ],
+ "summary_html": "<ul><li>Surfaces can be parameterized, just as curves can be parameterized. In general, surfaces must be parameterized with two parameters.</li><li>Surfaces can sometimes be oriented, just as curves can be oriented. Some surfaces, such as a Möbius strip, cannot be oriented.</li><li>A <span data-concept=\"surface-integral\">surface integral</span> is like a <span data-concept=\"line-integral\">line integral</span> in one higher dimension. The domain of integration of a <span data-concept=\"surface-integral\">surface integral</span> is a surface in a plane or space, rather than a curve in a plane or space.</li><li>The integrand of a <span data-concept=\"surface-integral\">surface integral</span> can be a scalar function or a <span data-concept=\"vector-field\">vector field</span>. To calculate a <span data-concept=\"surface-integral\">surface integral</span> with an integrand that is a function, use <a href=\"#fs-id1167793757749\">Equation 16.19</a>. To calculate a <span data-concept=\"surface-integral\">surface integral</span> with an integrand that is a <span data-concept=\"vector-field\">vector field</span>, use <a href=\"#fs-id1167793385095\">Equation 16.20</a>.</li><li>If <em>S</em> is a surface, then the area of <em>S</em> is $\\int \\int_{S}dS .$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Of the unkeyed section exercises, the true-or-false exercises 270 and 272 are kept with AI-written suggested approaches; the other 26 are computations with no key and are left out: exercises 274–324 even. Exercises 306–309 are the book’s four material-set exercises, counted in its numbering. Review exercise 439 from the end of the chapter is held here.",
+ "figures": [
+  {
+   "id": "sim-param-surfaces",
+   "kind": "sim",
+   "number": "16.57",
+   "folds": [
+    "16.58",
+    "16.59",
+    "16.60",
+    "16.61",
+    "16.62"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_001.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_002.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_003.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_004.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_005.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_006.jpg"
+   ],
+   "original_caption": "(Figure 16.57) (a) Lines ⟨cos K,sin K,v⟩ for K=0,π/2,π, and (3π)/2. (b) Circles ⟨cos u,sin u,K⟩ for K=−2,−1,1, and 2. (c) The lines and circles together. As u and v vary, they describe a cylinder. (Figure 16.58) Cylinder x²+y²=r² has parameterization r(u,v)=⟨r cos u,r sin u,v⟩, 0≤ u≤ 2π,−∞ <v<∞. (Figure 16.59) (a) Circles arise from holding u constant; the vertical parabolas arise from holding v constant. (b) An elliptic paraboloid results from all choices of u and v in the parameter domain. (Figure 16.60) Cone x²+y²=z² has parameterization r(u,v)=⟨u cos v,u sin v,u⟩, −∞<u<∞, 0≤v≤2π. (Figure 16.61) The sphere of radius ρ has parameterization r(ϕ,θ )=⟨ρ cos θ  sin ϕ,ρ sin θ  sin ϕ,ρ cos ϕ⟩, 0≤ θ ≤ 2π,0≤ ϕ≤ π. (Figure 16.62) The simplest parameterization of the graph of a function is r(x,y)=⟨x,y,f(x,y)⟩.",
+   "draws": [
+    "surface",
+    "curve",
+    "region",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-degenerate",
+   "kind": "figure",
+   "number": "16.63",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_007.jpg"
+   ],
+   "original_caption": "The image of parameterization r(u,v)=⟨0,cos v,1⟩,0≤ u≤ 1,0≤ v≤ π is a line.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-smooth-surfaces",
+   "kind": "photo",
+   "number": "16.64",
+   "draws": []
+  },
+  {
+   "id": "sim-surface-patch",
+   "kind": "sim",
+   "number": "16.65",
+   "folds": [
+    "16.66",
+    "16.67"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_009.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_010.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_011.jpg"
+   ],
+   "original_caption": "(Figure 16.65) Grid lines on a parameter domain correspond to grid curves on a surface. (Figure 16.66) If the cross product of vectors t_u and t_v exists, then there is a tangent plane. (Figure 16.67) The parallelogram spanned by t_u and t_v approximates the piece of surface Sᵢⱼ.",
+   "draws": [
+    "surface",
+    "integral",
+    "vector",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-cone-area",
+   "kind": "sim",
+   "number": "16.68",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_012.jpg"
+   ],
+   "original_caption": "The right circular cone with radius r = kh and height h has parameterization s(u,v)=⟨kv cos u,kv sin u,v⟩,0≤ u<2π,0≤ v≤ h.",
+   "draws": [
+    "surface",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-revolution-sketch",
+   "kind": "photo",
+   "number": "16.69",
+   "draws": []
+  },
+  {
+   "id": "fig-revolution-x2",
+   "kind": "figure",
+   "number": "16.70",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_014.jpg"
+   ],
+   "original_caption": "A surface integral can be used to calculate the surface area of this solid of revolution.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cylinder-integral",
+   "kind": "figure",
+   "number": "16.71",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_015.jpg"
+   ],
+   "original_caption": "Integrating function f(x,y,z)=x+y² over a cylinder.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sphere-cap",
+   "kind": "figure",
+   "number": "16.72",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_016.jpg"
+   ],
+   "original_caption": "Calculating a surface integral over surface S.",
+   "draws": [
+    "surface"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cap-angle",
+   "kind": "photo",
+   "number": "16.73",
+   "draws": []
+  },
+  {
+   "id": "sim-orientation",
+   "kind": "sim",
+   "number": "16.74",
+   "folds": [
+    "16.75",
+    "16.76"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_018.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_019.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_020.jpg"
+   ],
+   "original_caption": "(Figure 16.74) An oriented sphere with positive orientation. (Figure 16.75) If all the vectors normal to a cylinder point outward, then this is an outward orientation of the cylinder. (Figure 16.76) The construction of a Möbius strip.",
+   "draws": [
+    "surface",
+    "vector",
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-flux-surface",
+   "kind": "sim",
+   "number": "16.77",
+   "folds": [
+    "16.78"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_06_021.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_06_022.jpg"
+   ],
+   "original_caption": "(Figure 16.77) Fluid flows across a completely permeable surface S. (Figure 16.78) The mass of fluid per unit time flowing across Sᵢⱼ in the direction of N can be approximated by (ρv· N)ΔSᵢⱼ.",
+   "draws": [
+    "surface",
+    "vector-field",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "si-intro",
+   "concept": "line-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "parametric",
+   "concept": "parametric-surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793443578",
+   "concept": "parameter-domain",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793711076",
+   "concept": "parametric-surface",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794199424",
+   "concept": "elliptic-paraboloid",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793689559",
+   "concept": "parametric-surface",
+   "verb": "reinforces"
+  },
+  {
+   "span": "parametric",
+   "concept": "spherical-coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794137355",
+   "concept": "regular-parameterization",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793940709",
+   "concept": "regular-parameterization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794031907",
+   "concept": "regular-parameterization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "grid-term",
+   "concept": "grid-curves",
+   "verb": "introduces"
+  },
+  {
+   "span": "area",
+   "concept": "tangent-plane",
+   "verb": "uses"
+  },
+  {
+   "span": "area",
+   "concept": "cross-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793961743",
+   "concept": "surface-area-of-a-parametric-surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793383116",
+   "concept": "surface-area-of-a-parametric-surface",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794069998",
+   "concept": "surface-area-of-a-parametric-surface",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793561618",
+   "concept": "surface-of-revolution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794160159",
+   "concept": "surface-integral-of-a-scalar-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "scalar",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar",
+   "concept": "scalar-line-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793829672",
+   "concept": "surface-integral-of-a-scalar-valued-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794214134",
+   "concept": "surface-integral-of-a-scalar-valued-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793498684",
+   "concept": "surface-integral-of-a-scalar-valued-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793446102",
+   "concept": "density-function",
+   "verb": "uses"
+  },
+  {
+   "span": "orientation-term",
+   "concept": "orientation-of-a-surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793638498",
+   "concept": "orientation-of-a-surface",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vector",
+   "concept": "flux-across-a-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-flux-term",
+   "concept": "mass-flux",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793385060",
+   "concept": "surface-integral-of-a-vector-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793385060",
+   "concept": "surface-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794163736",
+   "concept": "surface-integral-of-a-vector-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793628126",
+   "concept": "mass-flux",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-flow-term",
+   "concept": "heat-flow",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-flow-term",
+   "concept": "gradient-in-three-dimensions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793551234",
+   "concept": "heat-flow",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794020307",
+   "source_number": "Checkpoint 16.47",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793711076"
+   },
+   "cite": "parametric",
+   "prompt": "Describe the surface with parameterization $\\textbf{r}(u,v)=\\langle 2\\;\\cos u,2\\;\\sin u,v\\rangle ,0\\le u\\lt 2\\pi ,-\\infty \\lt v\\lt \\infty .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Cylinder $x^{2}+y^{2}=4$",
+    "hint": "Hold <em>u</em> and <em>v</em> constant, and see what kind of curves result."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793844682",
+   "source_number": "Checkpoint 16.48",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794199424"
+   },
+   "cite": "parametric",
+   "prompt": "Describe the surface parameterized by $\\textbf{r}(u,v)=\\langle u\\;\\cos v,u\\;\\sin v,u\\rangle ,-\\infty \\lt u\\lt \\infty ,0\\le v\\lt 2\\pi .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Cone $x^{2}+y^{2}=z^{2}$",
+    "hint": "Hold <em>u</em> constant and see what kind of curves result. Imagine what happens as <em>u</em> increases or decreases."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793432395",
+   "source_number": "Checkpoint 16.49",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793689559"
+   },
+   "cite": "parametric",
+   "prompt": "Give a parameterization for the portion of cone $x^{2}+y^{2}=z^{2}$ lying in the first octant.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(u,v)=\\langle u\\;\\cos v,u\\;\\sin v,u\\rangle ,$ $0\\lt u\\lt \\infty ,0\\le v\\lt \\frac{\\pi}{2}$",
+    "hint": "Consider the parameter domain for this surface."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793641895",
+   "source_number": "Checkpoint 16.50",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794031907"
+   },
+   "cite": "parametric",
+   "prompt": "Is the surface parameterization $\\textbf{r}(u,v)=\\langle u^{2v},v+1,\\sin u\\rangle ,0\\le u\\le 2,0\\le v\\le 3$ smooth?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes",
+    "hint": "Investigate the cross product ${\\textbf{r}}_{u}\\;\\times \\;{\\textbf{r}}_{v}.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793619916",
+   "source_number": "Checkpoint 16.51",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793383116"
+   },
+   "cite": "area",
+   "prompt": "Find the surface area of the surface with parameterization $\\textbf{r}(u,v)=\\langle u+v,u^{2},2v\\rangle ,0\\le u\\le 3,0\\le v\\le 2.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\approx 43.02$",
+    "hint": "Use <a href=\"#fs-id1167793991244\">Equation 16.18</a>."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167794054399",
+   "source_number": "Checkpoint 16.52",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794069998"
+   },
+   "cite": "area",
+   "prompt": "Show that the surface area of cylinder $x^{2}+y^{2}=r^{2},0\\le z\\le h$ is $2\\pi rh.$ Notice that this cylinder does not include the top and bottom circles.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "With the standard parameterization of a cylinder, <a href=\"#fs-id1167793991244\">Equation 16.18</a> shows that the surface area is $2\\pi rh.$",
+    "hint": "Use the standard parameterization of a cylinder and follow the previous example."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167793430752",
+   "source_number": "Checkpoint 16.53",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793561618"
+   },
+   "cite": "area",
+   "prompt": "Use <a href=\"#fs-id1167793991244\">Equation 16.18</a> to find the area of the surface of revolution obtained by rotating curve $y=\\sin x,0\\le x\\le \\pi$ about the <em>x</em>-axis.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\pi (\\sqrt{2}+{\\operatorname{sinh}}^{-1}(1))$",
+    "hint": "Use the parameterization of surfaces of revolution given before <a href=\"#fs-id1167794069998\">Example 16.63</a>."
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1167793939823",
+   "source_number": "Checkpoint 16.54",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794214134"
+   },
+   "cite": "scalar",
+   "prompt": "Calculate $\\iint_{S}(x^{2}-z) dS,$ where <em>S</em> is the surface with parameterization $\\textbf{r}(u,v)=\\langle v,u^{2}+v^{2},1\\rangle ,0\\le u\\le 2,0\\le v\\le 3.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "24",
+    "hint": "Use <a href=\"#fs-id1167793757749\">Equation 16.19</a>."
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1167793398461",
+   "source_number": "Checkpoint 16.55",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793498684"
+   },
+   "cite": "scalar",
+   "prompt": "Calculate surface integral $\\iint_{S}(x-y)dS ,$ where <em>S</em> is cylinder $x^{2}+y^{2}=1,0\\le z\\le 2,$ including the circular top and bottom.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0",
+    "hint": "Break the integral into three separate surface integrals."
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1167793245896",
+   "source_number": "Checkpoint 16.56",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793446102"
+   },
+   "cite": "scalar",
+   "prompt": "A piece of metal has a shape that is modeled by paraboloid $z=x^{2}+y^{2},0\\le z\\le 4,$ and the density of the metal is given by $\\rho (x,y,z)=z+1.$ Find the mass of the piece of metal.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$38.401\\pi \\approx 120.640$",
+    "hint": "The mass of a sheet is given by $m=\\iint_{S}\\rho (x,y,z)dS .$ A useful parameterization of a paraboloid was given in a previous example."
+   }
+  },
+  {
+   "id": "cp11",
+   "source_id": "fs-id1167794200695",
+   "source_number": "Checkpoint 16.57",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793638498"
+   },
+   "cite": "orientation",
+   "prompt": "Give the “upward” orientation of the graph of $f(x,y)=xy.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{N}(x,y)=\\langle \\frac{-y}{\\sqrt{1+x^{2}+y^{2}}},\\frac{-x}{\\sqrt{1+x^{2}+y^{2}}},\\frac{1}{\\sqrt{1+x^{2}+y^{2}}}\\rangle$",
+    "hint": "Parameterize the surface and use the fact that the surface is the graph of a function."
+   }
+  },
+  {
+   "id": "cp12",
+   "source_id": "fs-id1167793460456",
+   "source_number": "Checkpoint 16.58",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794163736"
+   },
+   "cite": "vector",
+   "prompt": "Calculate surface integral $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}=\\langle 0,-z,y\\rangle$ and <em>S</em> is the portion of the unit sphere in the first octant with outward orientation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0",
+    "hint": "Use <a href=\"#fs-id1167793617076\">Equation 16.21</a>."
+   }
+  },
+  {
+   "id": "cp13",
+   "source_id": "fs-id1167793706030",
+   "source_number": "Checkpoint 16.59",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793628126"
+   },
+   "cite": "vector",
+   "prompt": "Let $\\textbf{v}(x,y,z)=\\langle x^{2}+y^{2},z,4y\\rangle$ m/sec represent a velocity field of a fluid with constant density 100 kg/m<sup>3</sup>. Let <em>S</em> be the half-cylinder $\\textbf{r}(u,v)=\\langle \\cos u,\\sin u,v\\rangle ,0\\le u\\le \\pi ,0\\le v\\le 2$ oriented outward. Calculate the mass flux of the fluid across <em>S</em>.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "400 kg/sec/m",
+    "hint": "Use <a href=\"#fs-id1167793385095\">Equation 16.20</a>."
+   }
+  },
+  {
+   "id": "cp14",
+   "source_id": "fs-id1167793776876",
+   "source_number": "Checkpoint 16.60",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793551234"
+   },
+   "cite": "vector",
+   "prompt": "A cast-iron solid ball is given by inequality $x^{2}+y^{2}+z^{2}\\le 1.$ The temperature at a point in a region containing the ball is $T(x,y,z)=\\frac{1}{3}(x^{2}+y^{2}+z^{2}).$ Find the heat flow across the boundary of the solid if this boundary is oriented outward.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{440\\pi}{3}$",
+    "hint": "Follow the steps of <a href=\"#fs-id1167794163736\">Example 16.70</a>."
+   }
+  },
+  {
+   "id": "e269",
+   "source_id": "fs-id1167794221059",
+   "source_number": "269",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, determine whether the statements are <em>true or false</em>.</p><p>If surface <em>S</em> is given by $\\{(x,y,z):0\\le x\\le 1,0\\le y\\le 1,z=10\\},$ then $\\iint_{S}f(x,y,z) dS=\\int_0^{1}\\int_0^{1}f(x,y,10) dxdy.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True"
+   }
+  },
+  {
+   "id": "e270",
+   "source_id": "fs-id1167793490667",
+   "source_number": "270",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, determine whether the statements are <em>true or false</em>.</p><p>If surface <em>S</em> is given by $\\{(x,y,z):0\\le x\\le 1,0\\le y\\le 1,z=x\\},$ then $\\iint_{S}f(x,y,z) dS=\\int_0^{1}\\int_0^{1}f(x,y,x) dxdy.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>False. Parameterize $S$ by $\\textbf{r}(x,y)=\\langle x,y,x\\rangle,$ $0\\le x\\le 1,$ $0\\le y\\le 1.$ Then $\\textbf{t}_{x}=\\langle 1,0,1\\rangle$ and $\\textbf{t}_{y}=\\langle 0,1,0\\rangle,$ so $\\textbf{t}_{x}\\times\\textbf{t}_{y}=\\langle -1,0,1\\rangle$ and $\\|\\textbf{t}_{x}\\times\\textbf{t}_{y}\\|=\\sqrt{2}.$ Hence $\\iint_{S}f\\,dS=\\sqrt{2}\\int_{0}^{1}\\int_{0}^{1}f(x,y,x)\\,dx\\,dy,$ which differs from the stated integral by the factor $\\sqrt{2}$ whenever that integral is not zero.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e271",
+   "source_id": "fs-id1167794214059",
+   "source_number": "271",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "orientation",
+   "prompt": "<p>For the following exercises, determine whether the statements are <em>true or false</em>.</p><p>Surface $\\textbf{r}=\\langle v\\;\\cos u,v\\;\\sin u,v^{2}\\rangle ,\\;\\text{for}\\;0\\le u\\le \\pi ,0\\le v\\le 2,$ is the same as surface $\\textbf{r}=\\langle \\sqrt{v}\\;\\cos 2u,\\sqrt{v}\\;\\sin 2u,v\\rangle ,$ for $0\\le u\\le \\frac{\\pi}{2},0\\le v\\le 4.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True"
+   }
+  },
+  {
+   "id": "e272",
+   "source_id": "fs-id1167793392783",
+   "source_number": "272",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "orientation",
+   "prompt": "<p>For the following exercises, determine whether the statements are <em>true or false</em>.</p><p>Given the standard parameterization of a sphere, normal vectors ${\\text{t}}_u^{}\\;\\times \\;{\\text{t}}_{v}$ are outward normal vectors.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True, when $u=\\varphi$ and $v=\\theta$ in the standard parameterization $\\textbf{r}(\\varphi,\\theta)=\\langle \\rho\\cos\\theta\\sin\\varphi,\\rho\\sin\\theta\\sin\\varphi,\\rho\\cos\\varphi\\rangle:$ as computed for the sphere’s surface area, $\\textbf{t}_{\\varphi}\\times\\textbf{t}_{\\theta}=\\rho^{2}\\sin\\varphi\\,\\langle \\cos\\theta\\sin\\varphi,\\sin\\theta\\sin\\varphi,\\cos\\varphi\\rangle=\\rho\\sin\\varphi\\,\\textbf{r},$ a nonnegative multiple of the position vector, which points outward. Taking the parameters in the other order reverses the cross product and gives the inward normals.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e273",
+   "source_id": "fs-id1167793401623",
+   "source_number": "273",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area",
+   "prompt": "<p>For the following exercises, find parametric descriptions for the following surfaces.</p><p>Plane $3x-2y+z=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(u,v)=\\langle u,v,2-3u+2v\\rangle$ for $-\\infty \\le u\\lt \\infty$ and $-\\infty \\le v\\lt \\infty .$"
+   }
+  },
+  {
+   "id": "e275",
+   "source_id": "fs-id1167794138250",
+   "source_number": "275",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area",
+   "prompt": "<p>For the following exercises, find parametric descriptions for the following surfaces.</p><p>Plane $2x-4y+3z=16$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(u,v)=\\langle u,v,\\frac{1}{3}(16-2u+4v)\\rangle$ for $|u|\\lt \\infty$ and $|v|\\lt \\infty .$"
+   }
+  },
+  {
+   "id": "e277",
+   "source_id": "fs-id1167793612973",
+   "source_number": "277",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area",
+   "prompt": "<p>The portion of cylinder $x^{2}+y^{2}=9$ in the first octant, for $0\\le z\\le 3$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_06_201.jpg\" alt=\"A diagram in three dimensions of a section of a cylinder with radius 3. The center of its circular top is (0,0,3). The section exists for x, y, and z between 0 and 3.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(u,v)=\\langle 3\\;\\cos u,3\\;\\sin u,v\\rangle$ for $0\\le u\\le \\frac{\\pi}{2},0\\le v\\le 3$"
+   }
+  },
+  {
+   "id": "e279",
+   "source_id": "fs-id1167794210185",
+   "source_number": "279",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area",
+   "prompt": "<p>For the following exercises, use a computer algebra system to approximate the area of the following surfaces using a parametric description of the surface.</p><p><strong>[T]</strong> Half cylinder $\\{(r,\\theta ,z):r=4,0\\le \\theta \\le \\pi ,0\\le z\\le 7\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$A=28\\pi =87.9646$"
+   }
+  },
+  {
+   "id": "e281",
+   "source_id": "fs-id1167794121580",
+   "source_number": "281",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, let <em>S</em> be the hemisphere $x^{2}+y^{2}+z^{2}=4,$ with $z\\ge 0,$ and evaluate each surface integral.</p><p>$\\iint_{S}zdS$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}zdS =8\\pi$"
+   }
+  },
+  {
+   "id": "e283",
+   "source_id": "fs-id1167793775678",
+   "source_number": "283",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, let <em>S</em> be the hemisphere $x^{2}+y^{2}+z^{2}=4,$ with $z\\ge 0,$ and evaluate each surface integral.</p><p>$\\iint_{S}(x^{2}+y^{2})zdS$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(x^{2}+y^{2})zdS =16\\pi$"
+   }
+  },
+  {
+   "id": "e285",
+   "source_id": "fs-id1167794169198",
+   "source_number": "285",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>For the following exercises, evaluate $\\int \\int_{S}\\textbf{F}\\cdot \\textbf{N}dS$ for vector field <strong>F</strong>, where <strong>N</strong> is an upward pointing normal vector to surface <em>S.</em></p><p>$\\textbf{F}(x,y,z)=x\\textbf{i}+y\\textbf{j},$ and <em>S</em> is hemisphere $z=\\sqrt{1-x^{2}-y^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot \\textbf{N}dS=\\frac{4\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e287",
+   "source_id": "fs-id1167791543254",
+   "source_number": "287",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, approximate the mass of the lamina that has the shape of given surface <em>S.</em> Round to four decimal places.</p><p><strong>[T]</strong> <em>S</em> is surface $z=4-x-2y,\\;\\text{with}\\;z\\ge 0\\text{,}\\;x\\ge 0\\text{,}\\;y\\ge 0\\text{;}\\;\\rho =x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$m\\approx 13.0639$"
+   }
+  },
+  {
+   "id": "e289",
+   "source_id": "fs-id1167793480985",
+   "source_number": "289",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, approximate the mass of the lamina that has the shape of given surface <em>S.</em> Round to four decimal places.</p><p><strong>[T]</strong> <em>S</em> is surface $x^{2}+y^{2}+z^{2}=5,\\;\\text{with}\\;z\\ge 1\\text{;}\\;\\rho ={\\theta}^{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$m\\approx 228.5313$"
+   }
+  },
+  {
+   "id": "e291",
+   "source_id": "fs-id1167794284374",
+   "source_number": "291",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>Evaluate surface integral $\\iint_{S}gdS ,$ where $g(x,y,z)=xz+2x^{2}-3xy$ and <em>S</em> is the portion of plane $2x-3y+z=6$ that lies over unit square <em>R</em>: $0\\le x\\le 1\\text{,}\\;0\\le y\\le 1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}gdS =3\\sqrt{14}$"
+   }
+  },
+  {
+   "id": "e293",
+   "source_id": "fs-id1167791542840",
+   "source_number": "293",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><strong>[T]</strong> Evaluate $\\iint_{S}(x-y^{2}+z)dS \\text{,}$ where <em>S</em> is the surface defined by $\\textbf{r}(u,v)=u^{2}\\textbf{i}+v\\textbf{j}+u\\textbf{k}\\text{,}\\;0\\le u\\le 1\\text{,}\\;0\\le v\\le 1.$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_06_204.jpg\" alt=\"A three-dimensional diagram of the given surface, which appears to be a curve with edges parallel to the y-axis. It increases in x components and decreases in z components the further it is from the y axis.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(x-y^{2}+z) dS\\approx 0.9617$"
+   }
+  },
+  {
+   "id": "e295",
+   "source_id": "fs-id1167793427585",
+   "source_number": "295",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>Evaluate $\\iint_{S}(x^{2}+y^{2})dS ,$ where <em>S</em> is the surface of hemisphere $z=\\sqrt{1-x^{2}-y^{2}},$ and above the plane $z=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(x^{2}+y^{2})dS =\\frac{4\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e297",
+   "source_id": "fs-id1167793298599",
+   "source_number": "297",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><strong>[T]</strong> Evaluate $\\iint_{S}x^{2}zdS,$ where <em>S</em> is the portion of cone $z^{2}=x^{2}+y^{2}$ that lies between planes $z=1$ and $z=4.$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_06_205.jpg\" alt=\"A diagram of the given upward opening cone in three dimensions. The cone is cut by planes z=1 and z=4.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}x^{2}zdS =\\frac{1023\\pi \\sqrt{2}}{5}$"
+   }
+  },
+  {
+   "id": "e299",
+   "source_id": "fs-id1167794296829",
+   "source_number": "299",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><strong>[T]</strong> Evaluate $\\iint_{S}(z+y)dS ,$ where <em>S</em> is the part of the graph of $z=\\sqrt{1-x^{2}}$ in the first octant between the <em>xz</em>-plane and plane $y=3.$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_06_207.jpg\" alt=\"A diagram of the given surface in three dimensions in the first octant between the xz-plane and plane y=3. The given graph of z= the square root of (1-x^2) stretches down in a concave down curve from along (0,y,1) to along (1,y,0). It looks like a portion of a horizontal cylinder with base along the xz-plane and height along the y axis.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(z+y)dS \\approx 10.1$"
+   }
+  },
+  {
+   "id": "e301",
+   "source_id": "fs-id1167793498738",
+   "source_number": "301",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>Find the mass of a lamina of density $\\rho (x,y,z)=z$ in the shape of hemisphere $z={(a^{2}-x^{2}-y^{2})}^{1/2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$m=\\pi a^{3}$"
+   }
+  },
+  {
+   "id": "e303",
+   "source_id": "fs-id1167794138080",
+   "source_number": "303",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>Compute $\\iint_{S}\\textbf{F}\\cdot \\textbf{N}dS,$ where $\\textbf{F}(x,y,z)=xy\\textbf{i}+z\\textbf{j}+(x+y)\\textbf{k}$ and <strong>N</strong> is an upward pointing normal vector $S$, where <em>S</em> is the triangular region of the plane $x+y+z=1$ in the first octant.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot \\textbf{N}dS=\\frac{13}{24}$"
+   }
+  },
+  {
+   "id": "e305",
+   "source_id": "fs-id1167794021153",
+   "source_number": "305",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>Compute $\\iint_{S}\\textbf{F}\\cdot \\textbf{N}dS,$ where $\\textbf{F}(x,y,z)=xyz\\textbf{i}+xyz\\textbf{j}+xyz\\textbf{k}$ and <strong>N</strong> is an outward normal vector <em>S</em>, where <em>S</em> is the surface of the five faces of the unit cube $0\\le x\\le 1\\text{,}\\;0\\le y\\le 1\\text{,}\\;0\\le z\\le 1$ missing $z=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot \\textbf{N}dS=\\frac{3}{4}$"
+   }
+  },
+  {
+   "id": "e307",
+   "source_id": "fs-id1167794067738",
+   "source_number": "307",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, express the surface integral as an iterated double integral by using a projection on <em>S</em> on the <em>yz</em>-plane.</p><p>$\\iint_{S}(x^{2}-2y+z)dS;$ <em>S</em> is the portion of the graph of $4x+y=8$ bounded by the coordinate planes and plane $z=6.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{8} \\int_0^{6} (4-3y+\\frac{1}{16}y^{2}+z)(\\frac{1}{4}\\sqrt{17})dzdy$"
+   }
+  },
+  {
+   "id": "e309",
+   "source_id": "fs-id1167793486275",
+   "source_number": "309",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, express the surface integral as an iterated double integral by using a projection on <em>S</em> on the <em>xz</em>-plane</p><p>$\\iint_{S}(x^{2}-2y+z)dS;$ <em>S</em> is the portion of the graph of $4x+y=8$ bounded by the coordinate planes and plane $z=6.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{2} \\int_0^{6} [x^{2}-2(8-4x)+z]\\sqrt{17}dzdx$"
+   }
+  },
+  {
+   "id": "e311",
+   "source_id": "fs-id1167793611134",
+   "source_number": "311",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>Evaluate surface integral $\\iint_{S}(x^{2}z+y^{2}z)dS ,$ where <em>S</em> is hemisphere $x^{2}+y^{2}+z^{2}=a^{2},z\\ge 0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(x^{2}z+y^{2}z)dS =\\frac{\\pi a^{5}}{2}$"
+   }
+  },
+  {
+   "id": "e313",
+   "source_id": "fs-id1167793279308",
+   "source_number": "313",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>Evaluate surface integral $\\iint_{S}x^{2}yzdS ,$ where <em>S</em> is the part of plane $z=1+2x+3y$ that lies above rectangle $0\\le x\\le 3\\;\\text{and}\\;0\\le y\\le 2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}x^{2}yzdS =171\\sqrt{14}$"
+   }
+  },
+  {
+   "id": "e315",
+   "source_id": "fs-id1167793570610",
+   "source_number": "315",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>Evaluate surface integral $\\iint_{S}yzdS ,$ where <em>S</em> is the part of plane $z=y+3$ that lies inside cylinder $x^{2}+y^{2}=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}yzdS =\\frac{\\sqrt{2}\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e317",
+   "source_id": "fs-id1167793696726",
+   "source_number": "317",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>For the following exercises, use geometric reasoning to evaluate the given surface integrals.</p><p>$\\iint_{S}(x\\textbf{i}+y\\textbf{j})\\cdot dS ,$ where <em>S</em> is surface $x^{2}+y^{2}=4,1\\le z\\le 3,$ oriented with unit normal vectors pointing outward</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(x\\textbf{i}+y\\textbf{j})\\cdot dS =16\\pi$"
+   }
+  },
+  {
+   "id": "e319",
+   "source_id": "fs-id1167793697714",
+   "source_number": "319",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>A lamina has the shape of a portion of sphere $x^{2}+y^{2}+z^{2}=a^{2}$ that lies within cone $z=\\sqrt{x^{2}+y^{2}}.$ Let <em>S</em> be the spherical shell centered at the origin with radius <em>a</em>, and let <em>C</em> be the right circular cone with a vertex at the origin and an axis of symmetry that coincides with the <em>z</em>-axis. Determine the mass of the lamina if $\\rho (x,y,z)=x^{2}y^{2}z.$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_06_209.jpg\" alt=\"A diagram in three dimensions. A cone opens upward with point at the origin and an asic of symmetry that coincides with the z-axis. The upper half of a hemisphere with center at the origin opens downward and is cut off by the xy-plane.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$m=\\frac{\\pi a^{7}}{192}$"
+   }
+  },
+  {
+   "id": "e321",
+   "source_id": "fs-id1167793254823",
+   "source_number": "321",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>A paper cup has the shape of an inverted right circular cone of height 6 in. and radius of top 3 in. If the cup is full of water weighing $62.5\\;\\text{lb}/{\\text{ft}}^{3},$ find the total force exerted by the water on the inside surface of the cup.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F\\approx 4.57\\;\\text{lb}.$"
+   }
+  },
+  {
+   "id": "e323",
+   "source_id": "fs-id1167794267610",
+   "source_number": "323",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>For the following exercises, the heat flow vector field for conducting objects is $\\textbf{F}=-k\\nabla T,\\;\\text{where}\\;T(x,y,z)$ is the temperature in the object and $k\\gt 0$ is a constant that depends on the material. Find the outward flux of <strong>F</strong> across the following surfaces <em>S</em> for the given temperature distributions and assume $k=1.$</p><p>$T(x,y,z)=-\\ln (x^{2}+y^{2}+z^{2});$ <em>S</em> is sphere $x^{2}+y^{2}+z^{2}=a^{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$8\\pi a$"
+   }
+  },
+  {
+   "id": "e325",
+   "source_id": "fs-id1167793569480",
+   "source_number": "325",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>For the following exercises, consider the radial fields $\\text{F}=\\frac{\\langle x,y,z\\rangle}{{(x^{2}+y^{2}+z^{2})}^{\\frac{p}{2}}}=\\frac{\\textbf{r}}{{||\\text{r}||}^{p}},$ where <em>p</em> is a real number. Let <em>S</em> consist of spheres <em>A</em> and <em>B</em> centered at the origin with radii $0\\lt a\\lt b.$ The total outward flux across <em>S</em> consists of the outward flux across the outer sphere <em>B</em> less the flux into <em>S</em> across inner sphere <em>A</em>.</p><img src=\"/media/ch16/CNX_Calc_Figure_16_06_211.jpg\" alt=\"A diagram in three dimensions of two spheres, one contained completely inside the other. Their centers are both at the origin. Arrows point in toward the origin from outside both spheres.\"><p>Show that for $p=3$ the flux across <em>S</em> is independent of <em>a</em> and <em>b</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The net flux is zero."
+   }
+  },
+  {
+   "id": "r439",
+   "source_id": "fs-id1167793502677",
+   "source_section": "16.8",
+   "source_number": "439",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>Evaluate the following integrals.</p><p>$\\iint_{S}xy^{2}dS ,$ where <em>S</em> is surface $z=x^{2}-y,0\\le x\\le 1,0\\le y\\le 4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{32\\sqrt{2}}{9}(3\\sqrt{3}-1)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "parametric-surface"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "grid-curves"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "parametric-surface"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "grid-curves"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "parametric-surface"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "parameter-domain"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "regular-parameterization"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "surface-of-revolution"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "mass-of-a-wire"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "orientation-of-a-surface"
+  },
+  {
+   "exercise": "cp12",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "cp13",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "cp13",
+   "concept": "mass-flux"
+  },
+  {
+   "exercise": "cp14",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "cp14",
+   "concept": "heat-flow"
+  },
+  {
+   "exercise": "e269",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e270",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e270",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "e271",
+   "concept": "orientation-of-a-surface"
+  },
+  {
+   "exercise": "e271",
+   "concept": "parametric-surface"
+  },
+  {
+   "exercise": "e272",
+   "concept": "orientation-of-a-surface"
+  },
+  {
+   "exercise": "e273",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "e275",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "e277",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "e279",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "e281",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e283",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e285",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "e287",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e289",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e291",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e293",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e295",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e297",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e299",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e301",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e303",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "e305",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "e307",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e309",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e311",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e313",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e315",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e317",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "e319",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e321",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  },
+  {
+   "exercise": "e321",
+   "concept": "surface-area-of-a-parametric-surface"
+  },
+  {
+   "exercise": "e323",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "e323",
+   "concept": "heat-flow"
+  },
+  {
+   "exercise": "e325",
+   "concept": "surface-integral-of-a-vector-field"
+  },
+  {
+   "exercise": "r439",
+   "concept": "surface-integral-of-a-scalar-valued-function"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-rev-bound",
+   "kind": "correction",
+   "html": "The inner integral’s upper limit is printed $\\pi;$ the angle runs over $0\\le\\theta\\le 2\\pi,$ which gives the factor $2\\pi$ on the next line."
+  },
+  {
+   "id": "c-line-for-surface",
+   "kind": "correction",
+   "html": "The book prints “scalar line integral”; the definition extended here is that of the scalar surface integral."
+  },
+  {
+   "id": "c-sphere-piece",
+   "kind": "correction",
+   "html": "In this part the integrand is printed as $1$ (“$\\iint_{S_{2}}dS$”) and as $z$ (“$\\iint_{S_{2}}z\\,dS$”); it is $z^{2}$ throughout, as the computation uses. $\\mathbf{t}_{\\theta}$’s second component is printed $u\\cos\\theta\\sin\\varphi$ for $2\\cos\\theta\\sin\\varphi,$ and the last bracket $[\\frac{1}{3}-\\frac{\\sqrt{3}}{8}]$ for $[\\frac{1}{3}-\\frac{1}{24}]=\\frac{7}{24},$ which gives $\\frac{28\\pi}{3}.$"
+  },
+  {
+   "id": "c-sheet",
+   "kind": "correction",
+   "html": "The tangent vector $\\mathbf{t}_{y}$ is printed $\\langle 1,0,2\\rangle;$ it is $\\langle 0,1,2\\rangle,$ with the same cross product $\\langle -1,-2,1\\rangle.$ The link names Equation 16.5, the scalar line integral; the computation uses Equation 16.19, the scalar surface integral."
+  },
+  {
+   "id": "c-rho-v",
+   "kind": "correction",
+   "html": "The rate of flow per unit area is printed $\\rho\\mathbf{N};$ it is $\\rho\\mathbf{v},$ whose component along $\\mathbf{N}$ the next sentences use."
+  },
+  {
+   "id": "c-link",
+   "kind": "correction",
+   "html": "The book prints this reference as “[link]”; it points to the unnumbered computation before Equation 16.21."
+  },
+  {
+   "id": "c-rev-caption",
+   "kind": "correction",
+   "html": "The caption’s second bound is printed $0\\le x\\lt 2\\pi;$ it is $0\\le\\theta\\lt 2\\pi.$"
+  }
+ ]
+}

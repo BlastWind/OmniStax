@@ -1,0 +1,905 @@
+{
+ "id": "16.7",
+ "module": "m53990",
+ "chapter": "16",
+ "title": "Stokes’ Theorem",
+ "short": "Stokes’ Theorem",
+ "lead": "<span data-concept=\"stokes-theorem\">Stokes’ theorem</span> carries Green’s theorem from a plane region to a surface in space: the circulation of a field around the boundary of a surface equals the flux of its <span data-concept=\"curl\">curl</span> across the surface. This section states and proves it, uses it to evaluate line and surface integrals each through the other, reads curl as circulation per unit area, and derives Faraday’s law.",
+ "objectives": [
+  "Explain the meaning of Stokes’ theorem.",
+  "Use Stokes’ theorem to evaluate a line integral.",
+  "Use Stokes’ theorem to calculate a surface integral.",
+  "Use Stokes’ theorem to calculate a curl."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"stokes-theorem\">Stokes’ theorem</span> relates a <span data-concept=\"surface-integral-of-a-vector-field\">flux integral</span> over a surface to a <span data-concept=\"line-integral\">line integral</span> around the boundary of the surface. <span data-concept=\"stokes-theorem\">Stokes’ theorem</span> is a higher dimensional version of <span data-concept=\"greens-theorem\">Green’s theorem</span>, and therefore is another version of the <span data-concept=\"fundamental-theorem-of-calculus\">Fundamental Theorem of Calculus</span> in higher dimensions.</li><li><span data-concept=\"stokes-theorem\">Stokes’ theorem</span> can be used to transform a difficult <span data-concept=\"surface-integral\">surface integral</span> into an easier <span data-concept=\"line-integral\">line integral</span>, or a difficult <span data-concept=\"line-integral\">line integral</span> into an easier <span data-concept=\"surface-integral\">surface integral</span>.</li><li>Through <span data-concept=\"stokes-theorem\">Stokes’ theorem</span>, <span data-concept=\"line-integral\">line integrals</span> can be evaluated using the simplest surface with boundary <em>C</em>.</li><li><span data-concept=\"faradays-law\">Faraday’s law</span> relates the <span data-concept=\"curl\">curl</span> of an electric field to the rate of change of the corresponding magnetic field. <span data-concept=\"stokes-theorem\">Stokes’ theorem</span> can be used to derive <span data-concept=\"faradays-law\">Faraday’s law</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 25 unkeyed section exercises, computations and CAS approximations, are left out: exercises 326–374 even. Review exercise 445 from the end of the chapter is held here.",
+ "figures": [
+  {
+   "id": "sim-stokes",
+   "kind": "sim",
+   "number": "16.79",
+   "folds": [
+    "16.83"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_07_001.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_07_005_new.jpg"
+   ],
+   "original_caption": "(Figure 16.79) Stokes’ theorem relates the flux integral over the surface to a line integral around the boundary of the surface. Note that the orientation of the curve is positive. (Figure 16.83) Verifying Stokes’ theorem for a hemisphere in a vector field.",
+   "draws": [
+    "surface",
+    "curve",
+    "vector-field",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-chopped-surface",
+   "kind": "photo",
+   "number": "16.80",
+   "draws": []
+  },
+  {
+   "id": "fig-cancelling-edges",
+   "kind": "photo",
+   "number": "16.81",
+   "draws": []
+  },
+  {
+   "id": "fig-shadow",
+   "kind": "photo",
+   "number": "16.82",
+   "draws": []
+  },
+  {
+   "id": "fig-complicated-surface",
+   "kind": "photo",
+   "number": "16.84",
+   "draws": []
+  },
+  {
+   "id": "sim-curl-circulation",
+   "kind": "sim",
+   "number": "16.85",
+   "folds": [
+    "16.86"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_07_009.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_07_010.jpg"
+   ],
+   "original_caption": "(Figure 16.85) Disk D_r is a small disk in a continuous vector field. (Figure 16.86) To visualize curl at a point, imagine placing a tiny paddlewheel at that point in the vector field.",
+   "draws": [
+    "vector-field",
+    "surface",
+    "curve",
+    "vector",
+    "integral",
+    "function",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "st-intro",
+   "concept": "stokes-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "st-intro",
+   "concept": "greens-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "stokes-term",
+   "concept": "stokes-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "stokes",
+   "concept": "orientation-of-a-surface",
+   "verb": "uses"
+  },
+  {
+   "span": "stokes",
+   "concept": "surface-integral-of-a-vector-field",
+   "verb": "uses"
+  },
+  {
+   "span": "stokes",
+   "concept": "curl",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793603786",
+   "concept": "stokes-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "stokes",
+   "concept": "clairauts-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793984743",
+   "concept": "stokes-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794059657",
+   "concept": "stokes-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "surface-independent-term",
+   "concept": "surface-independence",
+   "verb": "introduces"
+  },
+  {
+   "span": "surface-independent-term",
+   "concept": "path-independence",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794095762",
+   "concept": "stokes-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "interpretation",
+   "concept": "circulation",
+   "verb": "uses"
+  },
+  {
+   "span": "curl-circulation",
+   "concept": "curl-as-circulation-per-area",
+   "verb": "introduces"
+  },
+  {
+   "span": "faraday-term",
+   "concept": "faradays-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794163639",
+   "concept": "faradays-law",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793887856",
+   "source_number": "Checkpoint 16.61",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793984743"
+   },
+   "cite": "stokes",
+   "prompt": "Verify that Stokes’ theorem is true for vector field $\\textbf{F}(x,y,z)=\\langle y,x,-z\\rangle$ and surface <em>S</em>, where <em>S</em> is the upwardly oriented portion of the graph of $f(x,y)=x^{2}y$ over a triangle in the <em>xy</em>-plane with vertices $(0,0),$ $(2,0),$ and $(0,2).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Both integrals give $0$",
+    "hint": "Calculate the double integral and line integral separately."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794049318",
+   "source_number": "Checkpoint 16.62",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794059657"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to calculate surface integral $\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}=\\langle z,x,y\\rangle$ and <em>S</em> is the surface as shown in the following figure. The boundary curve, <em>C</em>, is oriented clockwise when looking along the positive y-axis.</p>\n<img src=\"/media/ch16/CNX_Calc_Figure_16_07_007.jpg\" alt=\"A three-dimensional diagram of a surface. One end is an open circle with radius 1 and centered at the origin. It is on the (x, z) plane. The rest of the surface stretches back symmetrically over the y axis. The surface narrows slightly, opens up into a sphere, narrows again, and then ends in another sphere. It looks like a vase lying on its side with an open circular end, a large, spherical body, and a medium sized spherical base.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\pi$",
+    "hint": "Parameterize the boundary of <em>S</em> and translate to a line integral."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793887193",
+   "source_number": "Checkpoint 16.63",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794095762"
+   },
+   "cite": "applying",
+   "prompt": "Use Stokes’ theorem to calculate line integral $\\int_{C}\\textbf{F}\\cdot d\\textbf{r} ,$ where $\\textbf{F}=\\langle z,x,y\\rangle$ and <em>C</em> is oriented clockwise and is the boundary of a triangle with vertices $(0,0,1),(3,0,-2),$ and $(0,1,2).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3}{2}$",
+    "hint": "This triangle lies in plane $z=1-x+y.$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793511934",
+   "source_number": "Checkpoint 16.64",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794163639"
+   },
+   "cite": "interpretation",
+   "prompt": "Calculate the curl of electric field <strong>E</strong> if the corresponding magnetic field is $\\textbf{B}(t)=\\langle tx,ty,-2tz\\rangle ,0\\le t\\lt \\infty .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{curl}\\;\\textbf{E}=\\langle x,y,-2z\\rangle$<sup class=\"fn\" data-note=\"c-cp64-sign\"></sup>",
+    "hint": "Use the differential form of Faraday’s law."
+   }
+  },
+  {
+   "id": "e327",
+   "source_id": "fs-id1167793566815",
+   "source_number": "327",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>For the following exercises, without using Stokes’ theorem, calculate directly both the flux of $\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N}$ over the given surface and the circulation integral around its boundary, assuming all boundaries have positive orientation.</p><p>$\\textbf{F}(x,y,z)=z\\textbf{i}+x\\textbf{j}+y\\textbf{k}\\text{;}$ <em>S</em> is hemisphere $z={(a^{2}-x^{2}-y^{2})}^{1/2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS =\\pi a^{2}$"
+   }
+  },
+  {
+   "id": "e329",
+   "source_id": "fs-id1167793369094",
+   "source_number": "329",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>For the following exercises, without using Stokes’ theorem, calculate directly both the flux of $\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N}$ over the given surface and the circulation integral around its boundary, assuming all boundaries have positive orientation.</p><p>$\\textbf{F}(x,y,z)=z\\textbf{i}+2x\\textbf{j}+3y\\textbf{k}\\text{;}$ <em>S</em> is upper hemisphere $z=\\sqrt{9-x^{2}-y^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS =18\\pi$"
+   }
+  },
+  {
+   "id": "e331",
+   "source_id": "fs-id1167793848457",
+   "source_number": "331",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>For the following exercises, without using Stokes’ theorem, calculate directly both the flux of $\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N}$ over the given surface and the circulation integral around its boundary, assuming all boundaries have positive orientation.</p><p>$\\textbf{F}(x,y,z)=2y\\textbf{i}-6z\\textbf{j}+3x\\textbf{k}\\text{;}$ <em>S</em> is a portion of paraboloid $z=4-x^{2}-y^{2}$ and is above the <em>xy</em>-plane.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS =-8\\pi$"
+   }
+  },
+  {
+   "id": "e333",
+   "source_id": "fs-id1167793267449",
+   "source_number": "333",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>For the following exercises, use Stokes’ theorem to evaluate $\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS$ for the vector fields and surface.</p><p>$\\textbf{F}(x,y,z)=xy\\textbf{i}+x^{2}\\textbf{j}+z^{2}\\textbf{k}\\text{;}$ and <em>S</em> is the part of paraboloid $z=x^{2}+y^{2}$ below plane $z=y,$ and using the outward normal vector.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS =0$"
+   }
+  },
+  {
+   "id": "e335",
+   "source_id": "fs-id1167794058162",
+   "source_number": "335",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to evaluate $\\int\\limits_{C}[2xy^{2}zdx+2x^{2}yzdy+(x^{2}y^{2}-2z)dz] ,$ where <em>C</em> is the curve given by $x=\\cos t,y=\\sin t,z=\\sin t,0\\le t\\le 2\\pi ,$ traversed in the direction of increasing <em>t</em>.</p><img src=\"/media/ch16/CNX_Calc_Figure_16_07_201.jpg\" alt=\"A vector field in three dimensional space. The arrows are larger the further they are from the x, y plane. The arrows curve up from below the x, y plane and slightly above it. The rest tend to curve down and horizontally. An oval-shaped curve is drawn through the middle of the space.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\text{F}\\cdot dr=0$"
+   }
+  },
+  {
+   "id": "e337",
+   "source_id": "fs-id1167793830701",
+   "source_number": "337",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p><strong>[T]</strong> Use a CAS and Stokes’ theorem to approximate line integral $\\int\\limits_{C}(3ydx+2zdy-5xdz) ,$ where <em>C</em> is the intersection of the <em>xy</em>-plane and hemisphere $z=\\sqrt{1-x^{2}-y^{2}},$ traversed counterclockwise viewed from the top—that is, from the positive <em>z</em>-axis toward the <em>xy</em>-plane.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{s}\\text{F}\\cdot dr=-3\\pi \\approx -9 .4248$"
+   }
+  },
+  {
+   "id": "e339",
+   "source_id": "fs-id1167793396465",
+   "source_number": "339",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to evaluate $\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}(x,y,z)=e^{xy}\\cos z\\textbf{i}+x^{2}z\\textbf{j}+xy\\textbf{k},$ and <em>S</em> is half of sphere $x=\\sqrt{1-y^{2}-z^{2}},$ oriented out toward the positive <em>x</em>-axis.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint\\limits_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S}=0$"
+   }
+  },
+  {
+   "id": "e341",
+   "source_id": "fs-id1167794140127",
+   "source_number": "341",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p><strong>[T]</strong> Use a CAS and Stokes’ theorem to evaluate $\\iint\\limits_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S},$ where $\\textbf{F}(x,y,z)=(\\sin (y+z)-yx^{2}-\\frac{y^{3}}{3})\\textbf{i}+x\\;\\cos (y+z)\\textbf{j}+\\cos (2y)\\textbf{k}$ and <em>S</em> consists of the top and the four sides but not the bottom of the cube with vertices $(±1,±1,±1),$ oriented outward.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S} =2.6667$"
+   }
+  },
+  {
+   "id": "e343",
+   "source_id": "fs-id1167793589774",
+   "source_number": "343",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to evaluate $\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS ,$ where $\\textbf{F}(x,y,z)=z^{2}\\textbf{i}+y^{2}\\textbf{j}+x\\textbf{k}$ and <em>S</em> is a triangle with vertices (1, 0, 0), (0, 1, 0) and (0, 0, 1) with upward orientation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS =-\\frac{1}{6}$"
+   }
+  },
+  {
+   "id": "e345",
+   "source_id": "fs-id1167794024998",
+   "source_number": "345",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to evaluate $\\int\\limits_{C}(\\frac{1}{2}y^{2}dx+zdy+xdz) ,$ where <em>C</em> is the curve of intersection of plane $x+z=1$ and ellipsoid $x^{2}+2y^{2}+z^{2}=1,$ oriented clockwise from the origin.</p><img src=\"/media/ch16/CNX_Calc_Figure_16_07_202.jpg\" alt=\"A diagram of an intersecting plane and ellipsoid in three dimensional space. There is an orange curve drawn to show the intersection.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int\\limits_{C}(\\frac{1}{2}y^{2}dx+zdy+xdz) =-\\frac{\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e347",
+   "source_id": "fs-id1167793508314",
+   "source_number": "347",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to evaluate $\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS ,$ for vector field $\\textbf{F}(x,y,z)=z\\textbf{i}+3x\\textbf{j}+2z\\textbf{k}$ where <em>S</em> is surface $z=1-x^{2}-y^{2},z\\ge 0,$ <em>C</em> is boundary circle $x^{2}+y^{2}=1,$ and <em>S</em> is oriented in the positive <em>z</em>-direction.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS =3\\pi$"
+   }
+  },
+  {
+   "id": "e349",
+   "source_id": "fs-id1167793525035",
+   "source_number": "349",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>A certain closed path <em>C</em> in plane $2x+2y+z=1$ is known to project onto unit circle $x^{2}+y^{2}=1$ in the <em>xy</em>-plane. Let <em>c</em> be a constant and let $\\textbf{R}(x,y,z)=x\\textbf{i}+y\\textbf{j}+z\\textbf{k}.$ Use Stokes’ theorem to evaluate $\\int_C^{}(c\\textbf{k}\\;\\times \\;\\textbf{R})\\cdot d\\textbf{r} .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}(c\\textbf{k}\\;\\times \\;\\textbf{R})\\cdot d\\text{r} =2\\pi c$"
+   }
+  },
+  {
+   "id": "e351",
+   "source_id": "fs-id1167793624469",
+   "source_number": "351",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>For the following exercises, use Stokes’ theorem to evaluate $\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS$ for the vector fields and surface.</p><p>Let <em>S</em> be hemisphere $x^{2}+y^{2}+z^{2}=4$ with $z\\ge 0,$ oriented upward. Let $\\textbf{F}(x,y,z)=x^{2}e^{yz}\\textbf{i}+y^{2}e^{xz}\\textbf{j}+z^{2}e^{xy}\\textbf{k}$ be a vector field. Use Stokes’ theorem to evaluate $\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S} .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S} =0$"
+   }
+  },
+  {
+   "id": "e353",
+   "source_id": "fs-id1167793693311",
+   "source_number": "353",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to evaluate $\\int_{C}F\\cdot dr$ where $\\textbf{F}(x,y,z)=y\\textbf{i}+z\\textbf{j}+x\\textbf{k}$ and <em>C</em> is a triangle with vertices (0, 0, 0), (2, 0, 0) and $(0,-2,2)$ oriented counterclockwise when viewed from above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}F\\cdot dr=-4$"
+   }
+  },
+  {
+   "id": "e355",
+   "source_id": "fs-id1167793464358",
+   "source_number": "355",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to compute $\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}(x,y,z)=\\textbf{i}+xy^{2}\\textbf{j}+xy^{2}\\textbf{k}$ and <em>S</em> is a part of plane $y+z=2$ inside cylinder $x^{2}+y^{2}=1$ and oriented upward.</p><img src=\"/media/ch16/CNX_Calc_Figure_16_07_204.jpg\" alt=\"A diagram of a vector field in three dimensional space showing the intersection of a plane and a cylinder. The curve where the plane and cylinder intersect is drawn in blue.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S} =0$"
+   }
+  },
+  {
+   "id": "e357",
+   "source_id": "fs-id1167793948418",
+   "source_number": "357",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>For the following exercises, use Stokes’ theorem to evaluate $\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS$ for the vector fields and surface.</p><p>Let $\\textbf{F}(x,y,z)=xy\\textbf{i}+2z\\textbf{j}-2y\\textbf{k}$ and let <em>C</em> be the intersection of plane $x+z=5$ and cylinder $x^{2}+y^{2}=9,$ which is oriented counterclockwise when viewed from the top. Compute the line integral of <strong>F</strong> over <em>C</em> using Stokes’ theorem.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot d\\textbf{S} =-36\\pi$"
+   }
+  },
+  {
+   "id": "e359",
+   "source_id": "fs-id1167793394721",
+   "source_number": "359",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>For the following exercises, use Stokes’ theorem to evaluate $\\iint_{S}(\\text{curl}\\;\\textbf{F}\\cdot \\textbf{N})dS$ for the vector fields and surface.</p><p>Let <em>S</em> be ellipsoid $\\frac{x^{2}}{4}+\\frac{y^{2}}{9}+z^{2}=1$ oriented outward and let <strong>F</strong> be a vector field with component functions that have continuous partial derivatives. Compute $\\iint_{s}\\text{curl}F\\cdot dS$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\text{curl}\\;\\text{F}\\cdot d\\text{S}=0$"
+   }
+  },
+  {
+   "id": "e361",
+   "source_id": "fs-id1167793933282",
+   "source_number": "361",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p><strong>[T]</strong> Use a CAS and Stokes’ theorem to evaluate $\\int_{C}F\\cdot dr$ if $\\textbf{F}(x,y,z)=(3z-\\sin x)\\textbf{i}+(x^{2}+e^{y})\\textbf{j}+(y^{3}-\\cos z)\\textbf{k}\\text{,}$ where <em>C</em> is the curve given by $x=\\cos t,y=\\sin t,z=1;0\\le t\\le 2\\pi .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}F\\cdot dr=0$"
+   }
+  },
+  {
+   "id": "e363",
+   "source_id": "fs-id1167794051257",
+   "source_number": "363",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p><strong>[T]</strong> Use a CAS to evaluate $\\iint_{S}\\text{curl}\\textbf{F}\\cdot d\\textbf{S}\\text{,}$ where $\\textbf{F}(x,y,z)=2z\\textbf{i}+3x\\textbf{j}+5y\\textbf{k}$ and <strong><em>S</strong></em> is the surface parametrically by $\\textbf{r}(r,\\theta )=r\\;\\cos \\theta \\textbf{i}+r\\;\\sin \\theta \\textbf{j}+(4-r^{2})\\textbf{k}$ $(0\\le \\theta \\le 2\\pi \\text{,}\\;0\\le r\\le 3).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\text{curl}(\\textbf{F})\\cdot d\\textbf{S}=84.8230$"
+   }
+  },
+  {
+   "id": "e365",
+   "source_id": "fs-id1167793633031",
+   "source_number": "365",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interpretation",
+   "prompt": "<p>Evaluate a surface integral over a more convenient surface to find the value of <em>A</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$A=\\iint_{S} \\text{curl}\\text{F}\\cdot dS=0$"
+   }
+  },
+  {
+   "id": "e367",
+   "source_id": "fs-id1167793925124",
+   "source_number": "367",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interpretation",
+   "prompt": "<p>For the following application exercises, the goal is to evaluate $A=\\iint_{S} \\text{curl}\\text{F}\\cdot dS$ where $\\textbf{F}=\\langle xz,-xz,xy\\rangle$ and <em>S</em> is the upper half of ellipsoid $x^{2}+y^{2}+8z^{2}=1,\\;\\text{where}\\;z\\ge 0.$</p><p>Take paraboloid $z=x^{2}+y^{2},$ for $0\\le z\\le 4,$ and slice it with plane $y=0.$ Let <em>S</em> be the surface that remains for $y\\ge 0,$ including the planar surface in the <em>xz</em>-plane. Let <em>C</em> be the semicircle and line segment that bounded the cap of <em>S</em> in plane $z=4$ with counterclockwise orientation. Let $\\textbf{F}=\\langle 2z+y,2x+z,2y+x\\rangle .$ Evaluate $\\iint_{S} \\text{curl}\\text{F}\\cdot dS$</p><img src=\"/media/ch16/CNX_Calc_Figure_16_07_206.jpg\" alt=\"A diagram of a vector field in three dimensional space where a paraboloid with vertex at the origin, plane at y=0, and plane at z=4 intersect. The remaining surface is the half of a paraboloid under z=4 and above y=0.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S} \\text{curl}\\text{F}\\cdot dS=2\\pi$"
+   }
+  },
+  {
+   "id": "e369",
+   "source_id": "fs-id1167793960039",
+   "source_number": "369",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interpretation",
+   "prompt": "<p>For the following exercises, let <em>S</em> be the disk enclosed by curve</p><p>$C:\\textbf{r}(t)=\\langle \\cos \\varphi \\;\\cos t,\\sin t,\\sin \\varphi \\;\\cos t\\rangle ,$ for $0\\le t\\le 2\\pi ,$ where $0\\le \\varphi \\le \\frac{\\pi}{2}$ is a fixed angle.</p><p>What is the circulation of <em>C</em> of vector field $\\textbf{F}=\\langle -y,-z,x\\rangle$ as a function of $\\varphi ?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$C=\\pi (\\cos \\varphi -\\sin \\varphi )$"
+   }
+  },
+  {
+   "id": "e371",
+   "source_id": "fs-id1167793510179",
+   "source_number": "371",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interpretation",
+   "prompt": "<p>For the following exercises, let <em>S</em> be the disk enclosed by curve</p><p>$C:\\textbf{r}(t)=\\langle \\cos \\varphi \\;\\cos t,\\sin t,\\sin \\varphi \\;\\cos t\\rangle ,$ for $0\\le t\\le 2\\pi ,$ where $0\\le \\varphi \\le \\frac{\\pi}{2}$ is a fixed angle.</p><p>Circle <em>C</em> in plane $x+y+z=8$ has radius 4 and center (2, 3, 3). Evaluate $\\int_{C}\\textbf{F}\\cdot d\\textbf{r}$ for $F=\\langle 0,-z,2y\\rangle ,$ where <em>C</em> has a counterclockwise orientation when viewed from above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\textbf{F}\\cdot d\\textbf{r} =48\\pi$"
+   }
+  },
+  {
+   "id": "e373",
+   "source_id": "fs-id1167793249185",
+   "source_number": "373",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interpretation",
+   "prompt": "<p>Evaluate integral $\\iint_{S} \\text{curl}\\text{F}\\cdot dS$ where $\\textbf{F}=-xz\\textbf{i}+yz\\textbf{j}+xye^{z}\\textbf{k}$ and <em>S</em> is the cap of paraboloid $z=5-x^{2}-y^{2}$ above plane $z=3,$ and <strong>n</strong> points in the positive <em>z</em>-direction on <em>S</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S} \\text{curl}\\text{F}\\cdot dS=0$"
+   }
+  },
+  {
+   "id": "e375",
+   "source_id": "fs-id1167793945527",
+   "source_number": "375",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interpretation",
+   "prompt": "<p>For the following exercises, use Stokes’ theorem to find the circulation of the following vector fields around any smooth, simple closed curve C.</p><p>$\\textbf{F}=\\langle y^{2}z^{3},2xyz^{3},3xy^{2}z^{2}\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0"
+   }
+  },
+  {
+   "id": "r445",
+   "source_id": "fs-id1167794005232",
+   "source_section": "16.8",
+   "source_number": "445",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying",
+   "prompt": "<p>Use Stokes’ theorem to evaluate $\\iint_{S}\\text{curl}\\;\\textbf{F}\\cdot dS .$</p><p>$\\textbf{F}(x,y,z)=y\\textbf{i}+xyz\\textbf{j}-2zx\\textbf{k},$ where $S$ is the upward-facing paraboloid $z=x^{2}+y^{2}$ lying in cylinder $x^{2}+y^{2}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\pi$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "surface-independence"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "faradays-law"
+  },
+  {
+   "exercise": "e327",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e329",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e331",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e333",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e335",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e337",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e339",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e341",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e343",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e345",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e347",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e349",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e351",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e353",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e355",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e357",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e359",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e361",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e363",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e365",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e365",
+   "concept": "curl-as-circulation-per-area"
+  },
+  {
+   "exercise": "e367",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e367",
+   "concept": "curl-as-circulation-per-area"
+  },
+  {
+   "exercise": "e369",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e369",
+   "concept": "curl-as-circulation-per-area"
+  },
+  {
+   "exercise": "e371",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e371",
+   "concept": "curl-as-circulation-per-area"
+  },
+  {
+   "exercise": "e373",
+   "concept": "curl-as-circulation-per-area"
+  },
+  {
+   "exercise": "e373",
+   "concept": "curl"
+  },
+  {
+   "exercise": "e375",
+   "concept": "stokes-theorem"
+  },
+  {
+   "exercise": "e375",
+   "concept": "curl-of-a-conservative-field"
+  },
+  {
+   "exercise": "r445",
+   "concept": "stokes-theorem"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-circulation-form",
+   "kind": "correction",
+   "html": "The book prints “flux form”; the equation that follows, $\\oint\\mathbf{F}\\cdot d\\mathbf{r}=\\iint\\operatorname{curl}\\mathbf{F}\\cdot\\mathbf{N}\\,dS,$ is the circulation form of Green’s theorem."
+  },
+  {
+   "id": "c-example-73",
+   "kind": "correction",
+   "html": "In this example the inner integral’s lower limit is printed $\\sqrt{4-x^{2}}$ for $-\\sqrt{4-x^{2}},$ and both integrals cite Equation 16.19, the scalar surface integral; the flux integral is computed by Equation 16.21 and the line integral by Equation 16.9. The figure’s caption calls the paraboloid a hemisphere."
+  },
+  {
+   "id": "c-example-74",
+   "kind": "correction",
+   "html": "The tangent vector is printed $\\langle -\\sin t,0,\\cos t\\rangle;$ for $\\mathbf{r}(t)=\\langle \\sin t,0,1-\\cos t\\rangle$ it is $\\langle \\cos t,0,\\sin t\\rangle,$ so the integrand is $\\cos t-\\cos 2t$ and the integral is again $0.$"
+  },
+  {
+   "id": "c-eq-1619",
+   "kind": "correction",
+   "html": "The link names Equation 16.19, the scalar surface integral; the flux of $\\operatorname{curl}\\mathbf{F}$ is computed by Equation 16.21."
+  },
+  {
+   "id": "c-cp64-sign",
+   "kind": "correction",
+   "html": "By Faraday’s law $\\operatorname{curl}\\mathbf{E}=-\\frac{\\partial\\mathbf{B}}{\\partial t}=-\\langle x,y,-2z\\rangle=\\langle -x,-y,2z\\rangle;$ the key prints it without the minus sign."
+  },
+  {
+   "id": "c-fig-hemisphere",
+   "kind": "correction",
+   "figure": "sim-stokes",
+   "html": "Figure 16.83’s caption calls the surface a hemisphere; it is the paraboloid $z=4-x^{2}-y^{2},$ $z\\ge 0.$"
+  }
+ ]
+}

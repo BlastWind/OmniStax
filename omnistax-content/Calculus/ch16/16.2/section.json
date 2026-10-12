@@ -1,0 +1,1502 @@
+{
+ "id": "16.2",
+ "module": "m54012",
+ "chapter": "16",
+ "title": "Line Integrals",
+ "short": "Line Integrals",
+ "lead": "A <span data-concept=\"line-integral\">line integral</span> integrates along a curve instead of along an interval. This section defines the <span data-concept=\"scalar-line-integral\">scalar line integral</span> of a function, the area of a sheet standing on the curve, and the <span data-concept=\"vector-line-integral\">vector line integral</span> of a field along an oriented curve, then uses them for the mass of a wire, the <span data-concept=\"work-done-by-a-vector-field\">work</span> done by a force, and the <span data-concept=\"flux-across-a-curve\">flux</span> and <span data-concept=\"circulation\">circulation</span> of a field.",
+ "objectives": [
+  "Calculate a scalar line integral along a curve.",
+  "Calculate a vector line integral along an oriented curve in space.",
+  "Use a line integral to compute the work done in moving an object along a curve in a vector field.",
+  "Describe the flux and circulation of a vector field."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"line-integral\">Line integrals</span> generalize the notion of a <span data-concept=\"definite-integral\">single-variable integral</span> to higher dimensions. The domain of integration in a <span data-concept=\"definite-integral\">single-variable integral</span> is a line segment along the <em>x</em>-axis, but the domain of integration in a <span data-concept=\"line-integral\">line integral</span> is a curve in a plane or in space.</li><li>If <em>C</em> is a curve, then the length of <em>C</em> is $\\int_{C}ds .$</li><li>There are two kinds of <span data-concept=\"line-integral\">line integral</span>: <span data-concept=\"scalar-line-integral\">scalar line integrals</span> and <span data-concept=\"vector-line-integral\">vector line integrals</span>. <span data-concept=\"scalar-line-integral\">Scalar line integrals</span> can be used to calculate the <span data-concept=\"mass-of-a-wire\">mass of a wire</span>; <span data-concept=\"vector-line-integral\">vector line integrals</span> can be used to calculate the work done on a particle traveling through a field.</li><li><span data-concept=\"scalar-line-integral\">Scalar line integrals</span> can be calculated using <a href=\"#fs-id1167793952322\">Equation 16.8</a>; <span data-concept=\"vector-line-integral\">vector line integrals</span> can be calculated using <a href=\"#fs-id1167793635294\">Equation 16.9</a>.</li><li>Two key concepts expressed in terms of <span data-concept=\"line-integral\">line integrals</span> are <span data-concept=\"flux-across-a-curve\">flux</span> and <span data-concept=\"circulation\">circulation</span>. <span data-concept=\"flux-across-a-curve\">Flux</span> measures the rate that a field crosses a given line; <span data-concept=\"circulation\">circulation</span> measures the tendency of a field to move in the same direction as a given <span data-concept=\"closed-curve\">closed curve</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Of the unkeyed section exercises, the true-or-false exercises 40 and 42 are kept with AI-written suggested approaches; the other 28 are computations with no key and are left out: exercises 44–98 even. Review exercises 437 and 449 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-scalar-sheet",
+   "kind": "sim",
+   "number": "16.12",
+   "folds": [
+    "16.13",
+    "16.14"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_02_001.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_02_002.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_02_003.jpg"
+   ],
+   "original_caption": "(Figure 16.12) Curve C has been divided into n pieces, and a point inside each piece has been chosen. (Figure 16.13) The area of the blue sheet is ∫_Cf(x,y)ds.  (Figure 16.14) The sheet that is formed by the upper half of the unit circle in a plane and the graph of f(x,y)=2.",
+   "draws": [
+    "integral",
+    "curve",
+    "surface",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-arc-piece",
+   "kind": "sim",
+   "number": "16.15",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_02_004.jpg"
+   ],
+   "original_caption": "If we zoom in on the curve enough by making Δtᵢ very small, then the corresponding piece of the curve is approximately linear.",
+   "draws": [
+    "curve",
+    "vector",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-oriented-curves",
+   "kind": "photo",
+   "number": "16.16",
+   "draws": []
+  },
+  {
+   "id": "sim-work-sum",
+   "kind": "sim",
+   "number": "16.17",
+   "folds": [
+    "16.18"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_02_006.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_02_007.jpg"
+   ],
+   "original_caption": "(Figure 16.17) Curve C is divided into n pieces, and a point inside each piece is chosen. The dot product of any tangent vector in the ith piece with the corresponding vector F is approximated by F(Pᵢ*)· T(Pᵢ*). (Figure 16.18) This figure shows curve r(t)=⟨cos t,sin t⟩,0≤ t≤ π in vector field F=⟨−y,x⟩.",
+   "draws": [
+    "vector-field",
+    "curve",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-piecewise-curve",
+   "kind": "photo",
+   "number": "16.19",
+   "draws": []
+  },
+  {
+   "id": "fig-rectangle-field",
+   "kind": "figure",
+   "number": "16.20",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_02_009.jpg"
+   ],
+   "original_caption": "Rectangle and vector field for Example 16.21.",
+   "draws": [
+    "vector-field",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-spring-wire",
+   "kind": "figure",
+   "number": "16.21",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_02_010.jpg"
+   ],
+   "original_caption": "The wire from Example 16.22.",
+   "draws": [
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-work-path",
+   "kind": "sim",
+   "number": "16.22",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_02_011.jpg"
+   ],
+   "original_caption": "The curve and vector field for Example 16.23.",
+   "draws": [
+    "vector-field",
+    "curve",
+    "vector",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-flux-circulation",
+   "kind": "sim",
+   "number": "16.23",
+   "folds": [
+    "16.24"
+   ],
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_02_012.jpg",
+    "/media/ch16/CNX_Calc_Figure_16_02_013.jpg"
+   ],
+   "original_caption": "(Figure 16.23) The flux of vector field F across curve C is computed by an integral similar to a vector line integral. (Figure 16.24) A unit circle in vector field F=⟨2x,2y⟩.",
+   "draws": [
+    "vector-field",
+    "curve",
+    "vector",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "li-intro",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar",
+   "concept": "line-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794136507",
+   "concept": "scalar-line-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794136507",
+   "concept": "smooth-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "scalar",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793501665",
+   "concept": "scalar-line-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794058922",
+   "concept": "scalar-line-integral-calculation",
+   "verb": "introduces"
+  },
+  {
+   "span": "scalar",
+   "concept": "arc-length-of-a-space-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793380173",
+   "concept": "scalar-line-integral-calculation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793276927",
+   "concept": "scalar-line-integral-calculation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793925140",
+   "concept": "scalar-line-integral-calculation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793925140",
+   "concept": "reparameterization",
+   "verb": "uses"
+  },
+  {
+   "span": "arc-length-term",
+   "concept": "arc-length-as-a-line-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793951920",
+   "concept": "arc-length-as-a-line-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vector",
+   "concept": "vector-field",
+   "verb": "uses"
+  },
+  {
+   "span": "orientation-term",
+   "concept": "orientation-of-a-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "orientation-term",
+   "concept": "orientation",
+   "verb": "uses"
+  },
+  {
+   "span": "closed-term",
+   "concept": "closed-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "work-term",
+   "concept": "work-done-by-a-vector-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "work-term",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "vector",
+   "concept": "principal-unit-tangent-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794097258",
+   "concept": "vector-line-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "vector",
+   "concept": "dot-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794097200",
+   "concept": "vector-line-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793234102",
+   "concept": "properties-of-vector-line-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793719891",
+   "concept": "vector-line-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "piecewise-term",
+   "concept": "piecewise-smooth-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793559384",
+   "concept": "properties-of-vector-line-integrals",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794143327",
+   "concept": "properties-of-vector-line-integrals",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wire-term",
+   "concept": "mass-of-a-wire",
+   "verb": "introduces"
+  },
+  {
+   "span": "wire-term",
+   "concept": "density-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793978384",
+   "concept": "mass-of-a-wire",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793979078",
+   "concept": "work-done-by-a-vector-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793460505",
+   "concept": "flux-across-a-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793662610",
+   "concept": "flux-across-a-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793385066",
+   "concept": "flux-across-a-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "circulation-term",
+   "concept": "circulation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794212210",
+   "concept": "circulation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793401584",
+   "concept": "circulation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793401584",
+   "concept": "conservative-vector-field",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793881276",
+   "source_number": "Checkpoint 16.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793501665"
+   },
+   "cite": "scalar",
+   "prompt": "Find the value of $\\int_{C}(x+y)ds,$ where $C$ is the curve parameterized by $x=t,$ $y=t,$ $0\\le t\\le 1.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{2}$",
+    "hint": "Find the shape formed by <em>C</em> and the graph of function $f(x,y)=x+y.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794126213",
+   "source_number": "Checkpoint 16.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793276927"
+   },
+   "cite": "scalar",
+   "prompt": "Evaluate $\\int_{C}(x^{2}+y^{2}+z)ds,$ where <em>C</em> is the curve with parameterization $\\text{r}(t)=\\langle \\sin (3t),\\cos (3t)\\text{,t}\\rangle ,0\\le t\\le 2\\pi .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\sqrt{10}\\pi +2\\sqrt{10}{\\pi}^{2}$",
+    "hint": "Use the two-variable version of <a href=\"#fs-id1167793886491\">Equation 16.7</a>."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793270490",
+   "source_number": "Checkpoint 16.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793925140"
+   },
+   "cite": "scalar",
+   "prompt": "Evaluate line integral $\\int_{C}(x^{2}+yz)ds ,$ where $C$ is the line with parameterization $\\textbf{r}(t)=\\langle 2t,5t,-t\\rangle ,0\\le t\\le 10.$ Reparameterize <em>C</em> with parameterization $\\textbf{s}(t)=\\langle 4t,10t,-2t\\rangle ,0\\le t\\le 5,$ recalculate line integral $\\int_{C}(x^{2}+yz)ds ,$ and notice that the change of parameterization had no effect on the value of the integral.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Both line integrals equal $-\\frac{1000\\sqrt{30}}{3}.$",
+    "hint": "Use <a href=\"#fs-id1167793886491\">Equation 16.7</a>."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793526724",
+   "source_number": "Checkpoint 16.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793951920"
+   },
+   "cite": "scalar",
+   "prompt": "Find the length of a wire with parameterization $\\textbf{r}(t)=\\langle 3t+1,4-2t,5+2t\\rangle ,0\\le t\\le 4.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4\\sqrt{17}$",
+    "hint": "Find the line integral of one over the corresponding curve."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793402045",
+   "source_number": "Checkpoint 16.17",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793234102"
+   },
+   "cite": "vector",
+   "prompt": "Let $\\textbf{F}=x\\textbf{i}+y\\textbf{j}$ be a vector field and let <em>C</em> be the curve with parameterization $\\langle t,t^{2}\\rangle$ for $0\\le t\\le 2.$ Which is greater: $\\int_{C}\\textbf{F}\\cdot \\textbf{T}ds$ or $\\int_{-C}\\textbf{F}\\cdot \\textbf{T}ds ?$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\textbf{F}\\cdot \\textbf{T} ds$",
+    "hint": "Imagine moving along the path and computing the dot product $\\textbf{F}\\cdot \\textbf{T}$ as you go."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793423597",
+   "source_number": "Checkpoint 16.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793719891"
+   },
+   "cite": "vector",
+   "prompt": "Find the value of $\\int_{C}4xdx+zdy+4y^{2}dz,$ where $C$ is the curve parameterized by $\\textbf{r}(t)=\\langle 4\\;\\cos (2t),2\\;\\sin (2t),3\\rangle ,0\\le t\\le \\frac{\\pi}{4}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-26$",
+    "hint": "Write the integral in terms of <em>t</em> using <a href=\"#fs-id1167793635294\">Equation 16.9</a>."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167793375472",
+   "source_number": "Checkpoint 16.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794143327"
+   },
+   "cite": "vector",
+   "prompt": "Calculate line integral $\\int_{C}\\textbf{F} \\cdot d\\textbf{r},$ where <strong>F</strong> is vector field $\\langle y^{2},2xy+1\\rangle$ and <em>C</em> is a triangle with vertices $(0,0),$ $(4,0),$ and $(0,5),$ oriented counterclockwise.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0",
+    "hint": "Write the triangle as a union of its three sides, then calculate three separate line integrals."
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1167793568657",
+   "source_number": "Checkpoint 16.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793978384"
+   },
+   "cite": "applications",
+   "prompt": "Calculate the mass of a spring in the shape of a helix parameterized by $\\textbf{r}(t)=\\langle \\cos t,\\sin t,t\\rangle ,0\\le t\\le 6\\pi ,$ with a density function given by $\\rho (x,y,z)=x+y+z$ kg/m.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$18\\sqrt{2}{\\pi}^{2}$ kg",
+    "hint": "Calculate the line integral of $\\rho$ over the curve with parameterization <strong>r</strong>."
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1167794287652",
+   "source_number": "Checkpoint 16.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793385066"
+   },
+   "cite": "flux",
+   "prompt": "Calculate the flux of $\\textbf{F}=\\langle x+y,2y\\rangle$ across the line segment from $(0,0)$ to $(2,3),$ where the curve is oriented from left to right.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "3/2",
+    "hint": "Use <a href=\"#fs-id1167793671510\">Equation 16.11</a>."
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1167793491066",
+   "source_number": "Checkpoint 16.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794212210"
+   },
+   "cite": "flux",
+   "prompt": "Calculate the circulation of $\\textbf{F}(x,y)=\\langle -\\frac{y}{x^{2}+y^{2}},\\frac{x}{x^{2}+y^{2}}\\rangle$ along a unit circle oriented counterclockwise.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\pi$",
+    "hint": "Use <a href=\"#fs-id1167793635294\">Equation 16.9</a>."
+   }
+  },
+  {
+   "id": "cp11",
+   "source_id": "fs-id1167793722684",
+   "source_number": "Checkpoint 16.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793401584"
+   },
+   "cite": "flux",
+   "prompt": "Calculate the work done by field $\\textbf{F}(x,y)=\\langle 2x,3y\\rangle$ on a particle that traverses the unit circle. Assume the particle begins its movement at $(-1,0).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0",
+    "hint": "Use <a href=\"#fs-id1167793635294\">Equation 16.9</a>."
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1167793234249",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><em>True or False?</em> Line integral $\\int_C^{}f(x,y)ds$ is equal to a definite integral if <em>C</em> is a smooth curve defined on $[a,b]$ and if function $f$ is continuous on some region that contains curve <em>C</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True"
+   }
+  },
+  {
+   "id": "e40",
+   "source_id": "fs-id1167793452354",
+   "source_number": "40",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p><em>True or False?</em> Vector functions ${\\textbf{r}}_{1}=t\\textbf{i}+t^{2}\\textbf{j},$ $0\\le t\\le 1,$ and ${\\textbf{r}}_{2}=(1-t)\\textbf{i}+{(1-t)}^{2}\\textbf{j},$ $0\\le t\\le 1,$ define the same oriented curve.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>False. Both functions trace the arc of the parabola $y=x^{2}$ between $(0,0)$ and $(1,1),$ but $\\textbf{r}_{1}$ starts at $\\textbf{r}_{1}(0)=(0,0)$ and ends at $(1,1),$ while $\\textbf{r}_{2}$ starts at $\\textbf{r}_{2}(0)=(1,1)$ and ends at $(0,0).$ They define the same curve with opposite orientations, $C$ and $-C.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1167793688256",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p><em>True or False?</em> $\\int_{-C}^{}(Pdx+Qdy)=\\int_C^{}(Pdx-Qdy)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "False"
+   }
+  },
+  {
+   "id": "e42",
+   "source_id": "fs-id1167793566587",
+   "source_number": "42",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p><em>True or False?</em> A piecewise smooth curve <em>C</em> consists of a finite number of smooth curves that are joined together end to end.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True. A piecewise smooth curve is one that can be written as a union $C_{1}+C_{2}+\\cdots+C_{n}$ of finitely many smooth curves in which the endpoint of each $C_{i}$ is the starting point of $C_{i+1},$ which is what “joined together end to end” says.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1167793490620",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><em>True or False?</em> If <em>C</em> is given by $x(t)=t\\text{,}\\;y(t)=t\\text{, 0}\\le \\text{t}\\le 1,$ then $\\int_C^{}xyds=\\int_0^{1}t^{2}dt .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "False"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1167793246898",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>For the following exercises, use a computer algebra system (CAS) to evaluate the line integrals over the indicated path.</p><p><strong>[T]</strong> $\\int_C^{}(x-y)ds$</p><p>$C\\text{:}\\;\\textbf{r}(t)=4t\\textbf{i}+3t\\textbf{j}$ when $0\\le t\\le 2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}(x-y)ds =10$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1167793750231",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><strong>[T]</strong> Evaluate $\\int_C^{}xy^{4}ds ,$ where <em>C</em> is the right half of circle $x^{2}+y^{2}=16$ and is traversed in the clockwise direction.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}xy^{4}ds =\\frac{8192}{5}$"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1167793613000",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>Find the work done by vector field $\\textbf{F}(x,y,z)=x\\textbf{i}+3xy\\textbf{j}-(x+z)\\textbf{k}$ on a particle moving along a line segment that goes from $(1,4,2)$ to $(0,5,1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=8$"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1167793640233",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>Find the work done by force field $\\textbf{F}(x,y,z)=-\\frac{1}{2}x\\textbf{i}-\\frac{1}{2}y\\textbf{j}+\\frac{1}{4}\\textbf{k}$ on a particle as it moves along the helix $\\textbf{r}(t)=\\cos t\\textbf{i}+\\sin t\\textbf{j}+t\\textbf{k}$ from point $(1,0,0)$ to point $(-1,0,3\\pi ).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=\\frac{3\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1167793451270",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>Find the work done by force $\\textbf{F}(x,y)=2y\\textbf{i}+3x\\textbf{j}+(x+y)\\textbf{k}$ in moving an object along curve $\\textbf{r}(t)=\\cos (t)\\textbf{i}+\\sin (t)\\textbf{j}+\\frac{1}{6}\\textbf{k},$ where $0\\le t\\le 2\\pi .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=\\pi$"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1167793705676",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>Evaluate $\\int_{C}\\textbf{F}\\cdot d\\textbf{r} ,$ where $\\textbf{F}(x,y)=-1\\textbf{j},$ and <em>C</em> is the part of the graph of $y=\\frac{1}{2}x^{3}-x$ from $(2,2)$ to $(-2,-2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\textbf{F}\\cdot d\\textbf{r} =4$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1167793400578",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>Evaluate $\\int_C^{}yz\\;dx+xz\\;dy+xy\\;dz$ over the line segment from $(1,1,1)$ to $(3,2,0).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}yzdx+xzdy+xydz =-1$"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1167793544911",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p><strong>[T]</strong> Use a computer algebra system to evaluate the line integral $\\int_{C}y^{2}dx+xdy ,$ where <em>C</em> is the arc of the parabola $x=4-y^{2}$ from (−5, −3) to (0, 2).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}(y^{2})dx+(x)dy =\\frac{245}{6}$"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1167793590154",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p><strong>[T]</strong> Use a CAS to evaluate line integral $\\int_C^{}xydx+ydy$ over path <em>C</em> given by $x=2t\\text{,}\\;y=10t\\text{,}$ where $0\\le t\\le 1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}xydx+ydy=\\frac{190}{3}$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1167793938055",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><strong>[T]</strong> Use a CAS to evaluate $\\int_C^{}\\frac{y}{2x^{2}-y^{2}}ds ,$ where <em>C</em> is $x=t\\text{,}\\;y=t\\text{,}\\;1\\le t\\le 5.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{C}\\frac{y}{2x^{2}-y^{2}}ds=\\sqrt{2}\\;\\ln 5$"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1167794296818",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>In the following exercises, find the work done by force field <strong>F</strong> on an object moving along the indicated path.</p><p>$\\textbf{F}(x,y)=-x\\textbf{i}-2y\\textbf{j}$</p><p>$C\\text{:}\\;y=x^{3}\\;\\text{from (0, 0) to (2, 8)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=-66$"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1167793451632",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>In the following exercises, find the work done by force field <strong>F</strong> on an object moving along the indicated path.</p><p>$\\textbf{F}(x\\text{,}\\;y\\text{,}\\;z)=x\\textbf{i}+y\\textbf{j}-5z\\textbf{k}$</p><p>$\\text{C}\\text{:}\\;\\textbf{r}(t)=2\\;\\cos t\\textbf{i}+2\\;\\sin t\\textbf{j}+t\\textbf{k}\\text{,}\\;0\\le t\\le 2\\pi$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=-10{\\pi}^{2}$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1167793515633",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>Compute the work done by force $\\textbf{F}(x,y,z)=2x\\textbf{i}+3y\\textbf{j}-z\\textbf{k}$ along path $\\textbf{r}(t)=t\\textbf{i}+t^{2}\\textbf{j}+t^{3}\\textbf{k},$ where $0\\le t\\le 1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=2$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1167794054390",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>In the following exercises, find the work done by force field <strong>F</strong> on an object moving along the indicated path.</p><p>Force $\\textbf{F}(x,y,z)=zy\\textbf{i}+x\\textbf{j}+z^{2}x\\textbf{k}$ acts on a particle that travels from the origin to point (1, 2, 3). Calculate the work done if the particle travels:</p><p>a. along the path $(0,0,0)\\to (1,0,0)\\to (1,2,0)\\to (1,2,3)$ along straight-line segments joining each pair of endpoints;</p><p>b. along the straight line joining the initial and final points.</p><p>c. Is the work the same along the two paths?</p><img src=\"/media/ch16/CNX_Calc_Figure_16_02_201.jpg\" alt=\"A curve and vector field in three dimensions. The curve segments go from (1,2,3) to (0,0,0) to (1,0,0) to (1,2,0), and the arrowheads point to (0,0,0), (1,0,0), and (1,2,0). The surrounding vectors are larger the more the z component increases.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $W=11;$ b. $W=\\frac{39}{4};$ c. No"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1167793401442",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>In the following exercises, find the work done by force field <strong>F</strong> on an object moving along the indicated path.</p><p>How much work is required to move an object in vector field $\\textbf{F}(x,y)=y\\textbf{i}+3x\\textbf{j}$ along the upper part of ellipse $\\frac{x^{2}}{4}+y^{2}=1$ from (2, 0) to $(-2,0)?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=2\\pi$"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1167793267536",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p>Evaluate the line integral of scalar function $xy$ along parabolic path $y=x^{2}$ connecting the origin to point (1, 1).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}xyds=\\frac{25\\sqrt{5}+1}{120}$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1167793513199",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>Find $\\int_C^{}y^{2}dx+(xy-x^{2})dy$ along <em>C</em>: $y^{2}=9x$ from (0, 0) to (1, 3).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}y^{2}dx+(xy-x^{2})dy =6.15$"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1167793547321",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><strong>[T]</strong> Evaluate line integral $\\int_{\\gamma }^{}xe^{y}ds$ where, $\\gamma$ is the arc of curve $x=e^{y}$ from $(1,0)$ to $(e,1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{\\gamma }^{}xe^{y}ds\\approx 7.157$"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1167793545835",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scalar",
+   "prompt": "<p><strong>[T]</strong> Evaluate line integral $\\int_{\\gamma }^{}(y^{2}-xy)ds ,$ where $\\gamma$ is curve $y=\\ln x$ from (1, 0) toward $(e\\text{,}\\;1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{\\gamma }^{}(y^{2}-xy)dx\\approx -1.379$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1167794223657",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p><strong>[T]</strong> Evaluate $\\int_C^{}\\textbf{F}\\cdot d\\textbf{r} ,$ where $\\textbf{F}(x,y,z)=x^{2}y\\textbf{i}+(x-z)\\textbf{j}+xyz\\textbf{k}$ and</p><p><em>C</em>: $\\textbf{r}(t)=t\\textbf{i}+t^{2}\\textbf{j}+2\\textbf{k}\\text{,}\\;0\\le t\\le 1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}\\textbf{F}\\cdot d\\textbf{r} \\approx -1.133$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1167793442525",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>Find the line integral of $\\textbf{F}(x,y,z)=12x^{2}\\textbf{i}-5xy\\textbf{j}+xz\\textbf{k}$ over path <em>C</em> defined by $y=x^{2},$ $z=x^{3}$ from point (0, 0, 0) to point (2, 4, 8).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_C^{}\\textbf{F}\\cdot d\\textbf{r}\\approx 22.857$"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1167793545723",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux",
+   "prompt": "<p>Compute the flux of $\\textbf{F}=x^{2}\\textbf{i}+y\\textbf{j}$ across a line segment from (0, 0) to (1, 2).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{flux}=-\\frac{1}{3}$"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1167793553836",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux",
+   "prompt": "<p>For the following exercises, find the flux.</p><p>Let $\\textbf{F}=5\\textbf{j}$ and let <em>C</em> be curve $y=0,0\\le x\\le 4.$ Find the flux across <em>C</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{flux}=-20$"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1167794124182",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "flux",
+   "prompt": "<p>For the following exercises, find the flux.</p><p>Let $\\textbf{F}=(x^{2}+y^{3})\\textbf{i}+(2xy)\\textbf{j}.$ Calculate flux <strong>F</strong> orientated counterclockwise across curve <em>C</em>: $x^{2}+y^{2}=9.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{flux}=0$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1167793637435",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>A spring is made of a thin wire twisted into the shape of a circular helix $x=2\\;\\cos t\\text{,}\\;y=2\\;\\sin t\\text{,}\\;z=t.$ Find the mass of two turns of the spring if the wire has constant mass density.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$m=4\\pi \\rho \\sqrt{5}$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1167793957759",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>An object moves in force field $\\textbf{F}(x,y,z)=y^{2}\\textbf{i}+2(x+1)y\\textbf{j}$ counterclockwise from point (2, 0) along elliptical path $x^{2}+4y^{2}=4$ to $(-2,0),$ and back to point (2, 0) along the <em>x</em>-axis. How much work is done by the force field on the object?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=0$"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1167793315974",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>For the following exercises, find the flux.</p><p>If an inverse force field <strong>F</strong> is given by $\\textbf{F}(x,y,z)=\\frac{k}{{\\| \\textbf{r}\\|}^{3}}\\textbf{r},$ where <em>k</em> is a constant, find the work done by <strong>F</strong> as its point of application moves along the <em>x</em>-axis from $A(1,0,0)\\;\\text{to}\\;B(2,0,0).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$W=\\frac{k}{2}$"
+   }
+  },
+  {
+   "id": "r437",
+   "source_id": "fs-id1167793945275",
+   "source_section": "16.8",
+   "source_number": "437",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vector",
+   "prompt": "<p>Evaluate the following integrals.</p><p>$\\int\\limits_{C}x^{2}dy+(2x-3xy)dx,$ along $C:y=\\frac{1}{2}x$ from (0, 0) to (4, 2)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{16}{3}$"
+   }
+  },
+  {
+   "id": "r449",
+   "source_id": "fs-id1167794200433",
+   "source_section": "16.8",
+   "source_number": "449",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>Find the total mass of a thin wire in the shape of an upper semicircle with radius $\\sqrt{2,}$ and a density function of $\\rho (x,y)=y+x^{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{2}(2\\sqrt{2}+\\pi )=4+\\pi \\sqrt{2}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "scalar-line-integral"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "reparameterization"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "arc-length-as-a-line-integral"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "properties-of-vector-line-integrals"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "orientation-of-a-curve"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "properties-of-vector-line-integrals"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "piecewise-smooth-curve"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "mass-of-a-wire"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "flux-across-a-curve"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "circulation"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "circulation"
+  },
+  {
+   "exercise": "e39",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e40",
+   "concept": "orientation-of-a-curve"
+  },
+  {
+   "exercise": "e40",
+   "concept": "vector-parameterization"
+  },
+  {
+   "exercise": "e41",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e41",
+   "concept": "properties-of-vector-line-integrals"
+  },
+  {
+   "exercise": "e42",
+   "concept": "piecewise-smooth-curve"
+  },
+  {
+   "exercise": "e43",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e45",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e47",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e49",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e49",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e51",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e51",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e53",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e53",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e55",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e57",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e59",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e61",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e63",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e65",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e65",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e67",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e67",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e69",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e69",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e71",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e71",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e73",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e73",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e75",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e77",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e79",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e81",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e83",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e83",
+   "concept": "properties-of-vector-line-integrals"
+  },
+  {
+   "exercise": "e83",
+   "concept": "piecewise-smooth-curve"
+  },
+  {
+   "exercise": "e85",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e87",
+   "concept": "flux-across-a-curve"
+  },
+  {
+   "exercise": "e89",
+   "concept": "flux-across-a-curve"
+  },
+  {
+   "exercise": "e91",
+   "concept": "flux-across-a-curve"
+  },
+  {
+   "exercise": "e93",
+   "concept": "mass-of-a-wire"
+  },
+  {
+   "exercise": "e93",
+   "concept": "scalar-line-integral-calculation"
+  },
+  {
+   "exercise": "e95",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e95",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "e95",
+   "concept": "circulation"
+  },
+  {
+   "exercise": "e97",
+   "concept": "work-done-by-a-vector-field"
+  },
+  {
+   "exercise": "e97",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "r437",
+   "concept": "vector-line-integral"
+  },
+  {
+   "exercise": "r449",
+   "concept": "mass-of-a-wire"
+  },
+  {
+   "exercise": "r449",
+   "concept": "scalar-line-integral-calculation"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-index-l",
+   "kind": "correction",
+   "html": "The index is printed with the letter l, “l ≤ i ≤ n” and “$t_{i-\\text{l}}$”; it runs $1\\le i\\le n.$"
+  },
+  {
+   "id": "c-oint",
+   "kind": "correction",
+   "html": "The book prints the integral sign without its circle, which the next sentence describes: the notation is $\\oint_{C}\\mathbf{F}\\cdot\\mathbf{T}\\,ds.$"
+  }
+ ]
+}

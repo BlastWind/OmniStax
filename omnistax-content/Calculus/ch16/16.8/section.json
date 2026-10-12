@@ -1,0 +1,893 @@
+{
+ "id": "16.8",
+ "module": "m53991",
+ "chapter": "16",
+ "title": "The Divergence Theorem",
+ "short": "The Divergence Theorem",
+ "lead": "The <span data-concept=\"divergence-theorem\">divergence theorem</span> is the last of the chapter’s Fundamental Theorems: the flux of a field out of a closed surface equals the triple integral of its <span data-concept=\"divergence\">divergence</span> over the solid inside. This section sets it beside the theorems before it, states and explains it, uses it to compute flux integrals, reads divergence as flux per unit volume, and derives <span data-concept=\"gauss-law\">Gauss’ law</span> for electrostatic fields.",
+ "objectives": [
+  "Explain the meaning of the divergence theorem.",
+  "Use the divergence theorem to calculate the flux of a vector field.",
+  "Apply the divergence theorem to an electrostatic field."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"divergence-theorem\">divergence theorem</span> relates a <span data-concept=\"surface-integral\">surface integral</span> across closed surface <em>S</em> to a <span data-concept=\"triple-integral\">triple integral</span> over the solid enclosed by <em>S</em>. The <span data-concept=\"divergence-theorem\">divergence theorem</span> is a higher dimensional version of the <span data-concept=\"greens-theorem-flux-form\">flux form of Green’s theorem</span>, and is therefore a higher dimensional version of the <span data-concept=\"fundamental-theorem-of-calculus\">Fundamental Theorem of Calculus</span>.</li><li>The <span data-concept=\"divergence-theorem\">divergence theorem</span> can be used to transform a difficult <span data-concept=\"surface-integral-of-a-vector-field\">flux integral</span> into an easier <span data-concept=\"triple-integral\">triple integral</span> and vice versa.</li><li>The <span data-concept=\"divergence-theorem\">divergence theorem</span> can be used to derive <span data-concept=\"gauss-law\">Gauss’ law</span>, a fundamental law in electrostatics.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 26 unkeyed section exercises, computations and CAS evaluations, are left out: exercises 376–426 even. The chapter review exercises 427–451, printed here, are placed with the sections that introduce what they test: 427 and 431 in 16.1, 437 and 449 in 16.2, 428, 433 and 435 in 16.3, 443 in 16.4, 429, 430 and 441 in 16.5, 439 in 16.6, 445 in 16.7, and 447 and 451 here; the ten unkeyed computations 432, 434, 436, 438, 440, 442, 444, 446, 448 and 450 are left out.",
+ "figures": [
+  {
+   "id": "sim-divergence-theorem",
+   "kind": "sim",
+   "number": "16.87",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_08_001.jpg"
+   ],
+   "original_caption": "The divergence theorem relates a flux integral across a closed surface S to a triple integral over solid E enclosed by the surface.",
+   "draws": [
+    "surface",
+    "vector-field",
+    "integral",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-small-box",
+   "kind": "photo",
+   "number": "16.88",
+   "draws": []
+  },
+  {
+   "id": "sim-div-ball",
+   "kind": "sim",
+   "number": "16.89",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_08_004.jpg"
+   ],
+   "original_caption": "Ball B_r of small radius r centered at P.",
+   "draws": [
+    "surface",
+    "vector-field",
+    "integral",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-swirl-cube",
+   "kind": "sim",
+   "number": "16.90",
+   "originals": [
+    "/media/ch16/CNX_Calc_Figure_16_08_007.jpg"
+   ],
+   "original_caption": "Vector field v=⟨−y/z,x/z,0⟩.",
+   "draws": [
+    "surface",
+    "vector-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "overview",
+   "concept": "fundamental-theorem-of-calculus",
+   "verb": "uses"
+  },
+  {
+   "span": "overview",
+   "concept": "fundamental-theorem-for-line-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "overview",
+   "concept": "greens-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "overview",
+   "concept": "greens-theorem-flux-form",
+   "verb": "uses"
+  },
+  {
+   "span": "overview",
+   "concept": "stokes-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "divergence-term",
+   "concept": "divergence-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793372757",
+   "concept": "divergence-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "stating",
+   "concept": "triple-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "stating",
+   "concept": "surface-integral-of-a-vector-field",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793931713",
+   "concept": "divergence-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "div-flux",
+   "concept": "divergence-as-flux-per-volume",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793423720",
+   "concept": "divergence-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793999995",
+   "concept": "divergence-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "using",
+   "concept": "divergence",
+   "verb": "uses"
+  },
+  {
+   "span": "gauss-term",
+   "concept": "gauss-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-square-term",
+   "concept": "inverse-square-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793293486",
+   "concept": "inverse-square-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794029720",
+   "concept": "flux-across-a-smooth-surface",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793379049",
+   "concept": "gauss-law",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793984961",
+   "source_number": "Checkpoint 16.65",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793931713"
+   },
+   "cite": "stating",
+   "prompt": "Verify the divergence theorem for vector field $\\textbf{F}(x,y,z)=\\langle x+y+z,y,2x-y\\rangle$ and surface <em>S</em> given by the cylinder $x^{2}+y^{2}=1,0\\le z\\le 3$ plus the circular top and bottom of the cylinder. Assume that <em>S</em> is oriented outward.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Both integrals equal $6\\pi .$",
+    "hint": "Calculate both the flux integral and the triple integral with the divergence theorem and verify they are equal."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793929707",
+   "source_number": "Checkpoint 16.66",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793423720"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to calculate flux integral $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} ,$ where <em>S</em> is the boundary of the box given by $0\\le x\\le 2,1\\le y\\le 4,0\\le z\\le 1,$ and $\\textbf{F}=\\langle x^{2}+yz,y-z,2x+2y+2z\\rangle$ (see the following figure).</p>\n<img src=\"/media/ch16/CNX_Calc_Figure_16_08_006.jpg\" alt=\"This figure is a vector diagram in three dimensions. The box of the figure spans x from 0 to 2; y from 0 to 4; and z from 0 to 1. The vectors point up increasingly with distance from the origin; toward larger x with increasing distance from the origin; and toward smaller y values with increasing height.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "30",
+    "hint": "Calculate the corresponding triple integral."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793668612",
+   "source_number": "Checkpoint 16.67",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793999995"
+   },
+   "cite": "using",
+   "prompt": "<p>Let $\\textbf{v}=\\langle \\frac{x}{z},\\frac{y}{z},0\\rangle$ be the velocity field of a fluid. Let <em>C</em> be the solid cube given by $1\\le x\\le 4,2\\le y\\le 5,1\\le z\\le 4,$ and let <em>S</em> be the boundary of this cube (see the following figure). Find the flow rate of the fluid across <em>S</em>.</p>\n<img src=\"/media/ch16/CNX_Calc_Figure_16_08_008.jpg\" alt=\"This is a figure of a diagram of the given vector field in three dimensions. The x components are x/z, the y components are y/z, and the z components are 0.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$9\\;\\ln (16)$",
+    "hint": "Use the divergence theorem and calculate a triple integral."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793491436",
+   "source_number": "Checkpoint 16.68",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793379049"
+   },
+   "cite": "electrostatic",
+   "prompt": "Work the previous example for surface <em>S</em> that is a sphere of radius 4 centered at the origin, oriented outward.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\approx 6.777\\;\\times \\;{10}^{9}$<sup class=\"fn\" data-note=\"c-cp68-power\"></sup>",
+    "hint": "Use Gauss’ law."
+   }
+  },
+  {
+   "id": "e377",
+   "source_id": "fs-id1167793460609",
+   "source_number": "377",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a computer algebraic system (CAS) and the divergence theorem to evaluate surface integral $\\iint_S^{}\\textbf{F}\\cdot \\textbf{N}ds$ for the given choice of <strong>F</strong> and the boundary surface <em>S.</em> For each closed surface, assume <strong>N</strong> is the outward unit normal vector.</p><p><strong>[T]</strong> $\\textbf{F}(x,y,z)=(\\cos yz)\\textbf{i}+e^{xz}\\textbf{j}+3z^{2}\\textbf{k}\\text{;}$ <em>S</em> is the surface of hemisphere $z=\\sqrt{4-x^{2}-y^{2}}$ together with disk $x^{2}+y^{2}\\le 4$ in the <em>xy</em>-plane.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_S^{}\\textbf{F}\\cdot \\textbf{N}ds =24\\pi \\approx 75.3982$"
+   }
+  },
+  {
+   "id": "e379",
+   "source_id": "fs-id1167794006422",
+   "source_number": "379",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a computer algebraic system (CAS) and the divergence theorem to evaluate surface integral $\\iint_S^{}\\textbf{F}\\cdot \\textbf{N}ds$ for the given choice of <strong>F</strong> and the boundary surface <em>S.</em> For each closed surface, assume <strong>N</strong> is the outward unit normal vector.</p><p><strong>[T]</strong> $\\textbf{F}(x,y,z)=x\\textbf{i}+y\\textbf{j}+z\\textbf{k}\\text{;}$ <em>S</em> is the surface of the solid bounded by the parabola $z=x^{2}+y^{2}\\;$ and the plane $z=9$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_S^{}\\textbf{F}\\cdot \\textbf{N}ds =\\frac{243\\pi}{2}\\approx 381.704$"
+   }
+  },
+  {
+   "id": "e381",
+   "source_id": "fs-id1167794119134",
+   "source_number": "381",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a computer algebraic system (CAS) and the divergence theorem to evaluate surface integral $\\iint_S^{}\\textbf{F}\\cdot \\textbf{N}ds$ for the given choice of <strong>F</strong> and the boundary surface <em>S.</em> For each closed surface, assume <strong>N</strong> is the outward unit normal vector.</p><p><strong>[T]</strong> $\\textbf{F}(x,y,z)=x\\textbf{i}+y\\textbf{j}+(z^{2}-1)\\textbf{k}\\text{;}$ <em>S</em> is the surface of the solid bounded by cylinder $x^{2}+y^{2}=4$ and planes $z=0\\;\\text{and}\\;z=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_S^{}\\textbf{F}\\cdot \\textbf{N}ds =12\\pi \\approx 37.6991$"
+   }
+  },
+  {
+   "id": "e383",
+   "source_id": "fs-id1167793418311",
+   "source_number": "383",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a computer algebraic system (CAS) and the divergence theorem to evaluate surface integral $\\iint_S^{}\\textbf{F}\\cdot \\textbf{N}ds$ for the given choice of <strong>F</strong> and the boundary surface <em>S.</em> For each closed surface, assume <strong>N</strong> is the outward unit normal vector.</p><p><strong>[T]</strong> $\\textbf{F}(x,y,z)=x^{3}\\textbf{i}+y^{3}\\textbf{j}+3a^{2}z\\textbf{k}\\;\\text{(constant}\\;a\\gt 0)\\text{;}$ <em>S</em> is the surface of the solid bounded by cylinder $x^{2}+y^{2}=a^{2}$ and planes $z=0\\;\\text{and}\\;z=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_S^{}\\textbf{F}\\cdot \\textbf{N}ds =\\frac{9\\pi a^{4}}{2}$"
+   }
+  },
+  {
+   "id": "e385",
+   "source_id": "fs-id1167794168038",
+   "source_number": "385",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to calculate surface integral $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S},$ where $\\textbf{F}(x,y,z)=(e^{y^{2}})\\textbf{i}+(y+\\sin (z^{2}))\\textbf{j}+(z-1)\\textbf{k}$ and <em>S</em> is the surface of the solid bounded by the sphere $x^{2}+y^{2}+z^{2}=1\\text{,}$ and below by the plane $z=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S}=\\frac{4\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e387",
+   "source_id": "fs-id1167794100849",
+   "source_number": "387",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to calculate surface integral $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S}$ when $\\textbf{F}(x,y,z)=x^{2}z^{3}\\textbf{i}+2xyz^{3}\\textbf{j}+xz^{4}\\textbf{k}$ and <em>S</em> is the surface of the box with vertices $(±1,±2,±3).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =0$"
+   }
+  },
+  {
+   "id": "e389",
+   "source_id": "fs-id1167793419912",
+   "source_number": "389",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p><strong>[T]</strong> Use a CAS and the divergence theorem to calculate flux $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}(x,y,z)=(x^{3}+y^{3})\\textbf{i}+(y^{3}+z^{3})\\textbf{j}+(z^{3}+x^{3})\\textbf{k}$ and <em>S</em> is a sphere with center (0, 0, 0) and radius 2.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =\\frac{384\\pi}{5}\\approx 241.2743$"
+   }
+  },
+  {
+   "id": "e391",
+   "source_id": "fs-id1167794218624",
+   "source_number": "391",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to compute flux integral $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}(x,y,z)=y\\textbf{j}-z\\textbf{k}$ and <em>S</em> consists of the union of paraboloid $y=x^{2}+z^{2},0\\le y\\le 1,$ and disk $x^{2}+z^{2}\\le 1,y=1,$ oriented outward. What is the flux through just the paraboloid?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{D}\\textbf{F}\\cdot d\\textbf{S} =$ Net flux $=0$; flux through the paraboloid $=-\\pi$"
+   }
+  },
+  {
+   "id": "e393",
+   "source_id": "fs-id1167793958103",
+   "source_number": "393",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to calculate surface integral $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S}$ for $\\textbf{F}(x,y,z)=x^{4}\\textbf{i}-x^{3}z^{2}\\textbf{j}+4xy^{2}z\\textbf{k},$ where <em>S</em> is the surface inside the cylinder $x^{2}+y^{2}=1$ between the planes $z=x+2\\;\\text{and}\\;z=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =\\frac{2\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e395",
+   "source_id": "fs-id1167793316082",
+   "source_number": "395",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a CAS along with the divergence theorem to compute the net outward flux for the fields across the given surfaces <em>S</em>.</p><p><strong>[T]</strong> $\\textbf{F}=\\langle x,-2y,3z\\rangle ;$ <em>S</em> is sphere $\\{(x,y,z):x^{2}+y^{2}+z^{2}=6\\}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$16\\sqrt{6}\\pi$"
+   }
+  },
+  {
+   "id": "e397",
+   "source_id": "fs-id1167793497281",
+   "source_number": "397",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a CAS along with the divergence theorem to compute the net outward flux for the fields across the given surfaces <em>S</em>.</p><p><strong>[T]</strong> $\\textbf{F}=\\langle y-2x,x^{3}-y,y^{2}-z\\rangle ;$ <em>S</em> is sphere $\\{(x,y,z):x^{2}+y^{2}+z^{2}=4\\}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{128\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e399",
+   "source_id": "fs-id1167793977402",
+   "source_number": "399",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a CAS and the divergence theorem to compute the net outward flux for the vector fields across the boundary of the given regions <em>D</em>.</p><p><strong>[T]</strong> $\\textbf{F}=\\langle z-x,x-y,2y-z\\rangle ;$ <em>D</em> is the region between spheres of radius 2 and 4 centered at the origin.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-224\\pi \\approx -703.7168$"
+   }
+  },
+  {
+   "id": "e401",
+   "source_id": "fs-id1167794206293",
+   "source_number": "401",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a CAS and the divergence theorem to compute the net outward flux for the vector fields across the boundary of the given regions <em>D</em>.</p><p><strong>[T]</strong> $\\textbf{F}=\\langle x^{2},-y^{2},z^{2}\\rangle ;$ <em>D</em> is the region in the first octant between planes $z=4-x-y$ and $z=2-x-y.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "20"
+   }
+  },
+  {
+   "id": "e403",
+   "source_id": "fs-id1167793503235",
+   "source_number": "403",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to find the outward flux of field $\\textbf{F}(x,y,z)=(x^{3}-3y)\\textbf{i}+(2yz+1)\\textbf{j}+xyz\\textbf{k}$ through the cube bounded by planes $x=±1,y=±1,\\;\\text{and}\\;z=±1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =8$"
+   }
+  },
+  {
+   "id": "e405",
+   "source_id": "fs-id1167793492771",
+   "source_number": "405",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Evaluate $\\iint_{S}\\textbf{F}\\cdot \\textbf{N}dS ,$ where $\\textbf{F}(x,y,z)=x^{2}\\textbf{i}+xy\\textbf{j}+x^{3}y^{3}\\textbf{k}$ and <em>S</em> is the surface consisting of all faces of the tetrahedron bounded by plane $x+y+z=1$ and the coordinate planes, with outward unit normal vector <strong>N</strong>.</p><img src=\"/media/ch16/CNX_Calc_Figure_16_08_204.jpg\" alt=\"A vector field in three dimensions, with arrows becoming larger the further away from the origin they are, especially in their x components. S is the surface consisting of all faces of the tetrahedron bounded by the plane x + y + z = 1. As such, a portion of the given plane, the (x, y) plane, the (x, z) plane, and the (y, z) plane are shown. The arrows point towards the origin for negative x components, away from the origin for positive x components, down for positive x and negative y components, as well as positive y and negative x components, and for positive x and y components, as well as negative x and negative y components.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot \\textbf{N}dS =\\frac{1}{8}$"
+   }
+  },
+  {
+   "id": "e407",
+   "source_id": "fs-id1167793892962",
+   "source_number": "407",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to evaluate $\\iint_{S}\\| \\text{R}\\| \\text{R}\\cdot ndS,$ where $\\textbf{R}(x,y,z)=x\\textbf{i}+y\\textbf{j}+z\\textbf{k}$ and <em>S</em> is sphere $x^{2}+y^{2}+z^{2}=a^{2},$ with constant $a\\gt 0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\| \\text{R}\\| \\text{R}\\cdot ndS=4\\pi a^{4}$"
+   }
+  },
+  {
+   "id": "e409",
+   "source_id": "fs-id1167793930476",
+   "source_number": "409",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a CAS and the divergence theorem to compute the net outward flux for the vector fields across the boundary of the given regions <em>D</em>.</p><p>Let <em>R</em> be the region defined by $x^{2}+y^{2}+z^{2}\\le 1.$ Use the divergence theorem to find $\\iiint_{R}z^{2}dV .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iiint_{R}z^{2}dV =\\frac{4\\pi}{15}$"
+   }
+  },
+  {
+   "id": "e411",
+   "source_id": "fs-id1167793453070",
+   "source_number": "411",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, use a CAS and the divergence theorem to compute the net outward flux for the vector fields across the boundary of the given regions <em>D</em>.</p><p>Let <em>E</em> be the solid unit cube with diagonally opposite corners at the origin and (1, 1, 1), and faces parallel to the coordinate planes. Let <em>S</em> be the surface of <em>E</em>, oriented with the outward-pointing normal. Use a CAS to find $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S}$ using the divergence theorem if $\\textbf{F}(x,y,z)=2xy\\textbf{i}+3ye^{z}\\textbf{j}+x\\;\\sin z\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =3e-2+\\frac{1}{2}\\sin 1\\approx 6.5759$"
+   }
+  },
+  {
+   "id": "e413",
+   "source_id": "fs-id1167793936524",
+   "source_number": "413",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Find $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}(x,y,z)=x\\textbf{i}+y\\textbf{j}+z\\textbf{k}$ and <em>S</em> is the outwardly oriented surface obtained by removing cube $[1,2]\\;\\times \\;[1,2]\\;\\times \\;[1,2]$ from cube $[0,2]\\;\\times \\;[0,2]\\;\\times \\;[0,2].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =21$"
+   }
+  },
+  {
+   "id": "e415",
+   "source_id": "fs-id1167793513143",
+   "source_number": "415",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Compute the flux of water through parabolic cylinder $S:y=x^{2},$ from $0\\le x\\le 2,0\\le z\\le 3,$ if the velocity vector is $\\textbf{F}(x,y,z)=3z^{2}\\textbf{i}+6\\textbf{j}+6xz\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =72$"
+   }
+  },
+  {
+   "id": "e417",
+   "source_id": "fs-id1167793562352",
+   "source_number": "417",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p><strong>[T]</strong> Use a CAS to find the flux of vector field $\\textbf{F}(x,y,z)=(e^{y}+x)\\textbf{i}+(3\\;\\cos (xz)-y)\\textbf{j}+z\\textbf{k}$ through surface <em>S</em>, where <em>S</em> is given by $z^{2}=4x^{2}+4y^{2}$ from $0\\le z\\le 4,$ oriented so the unit normal vector points downward.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =-\\frac{32\\pi}{3}\\approx -33.5103$"
+   }
+  },
+  {
+   "id": "e419",
+   "source_id": "fs-id1167793472895",
+   "source_number": "419",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Evaluate $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}(x,y,z)=bxy^{2}\\textbf{i}+bx^{2}y\\textbf{j}+(x^{2}+y^{2})z^{2}\\textbf{k}$ and <em>S</em> is the boundary of the solid cylinder $x^{2}+y^{2}\\le a^{2}$ and $0\\le z\\le b.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =\\pi a^{4}b^{2}$"
+   }
+  },
+  {
+   "id": "e421",
+   "source_id": "fs-id1167793948236",
+   "source_number": "421",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to evaluate $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}(x,y,z)=xy\\textbf{i}-\\frac{1}{2}y^{2}\\textbf{j}+z\\textbf{k}$ and <em>S</em> is the surface consisting of three pieces: $z=4-3x^{2}-3y^{2},1\\le z\\le 4$ on the top; $x^{2}+y^{2}=1,0\\le z\\le 1$ on the sides; and $z=0$ on the bottom.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =\\frac{5\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e423",
+   "source_id": "fs-id1167793315682",
+   "source_number": "423",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to evaluate $\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} ,$ where $\\textbf{F}(x,y,z)=x\\textbf{i}+y\\textbf{j}+z\\textbf{k}$ and <em>S</em> is the boundary of the solid enclosed by paraboloid $y=x^{2}+z^{2}-2,$ cylinder $x^{2}+z^{2}=1,$ and plane $x+y=2,$ and <em>S</em> is oriented outward.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint_{S}\\textbf{F}\\cdot d\\textbf{S} =\\frac{21\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e425",
+   "source_id": "fs-id1167793584419",
+   "source_number": "425",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>For the following exercises, Fourier’s law of heat transfer states that the heat flow vector <strong>F</strong> at a point is proportional to the negative gradient of the temperature; that is, $\\textbf{F}=-k\\nabla T,$ which means that heat energy flows hot regions to cold regions. The constant $k\\gt 0$ is called the <em>conductivity</em>, which has metric units of joules per meter per second-kelvin or watts per meter-kelvin. A temperature function for region <em>D</em> is given. Use the divergence theorem to find net outward heat flux $\\iint_{S}\\textbf{F}\\cdot \\textbf{N}dS =-k\\iint_{S}\\nabla T\\cdot \\textbf{N}dS$ across the boundary <em>S</em> of <em>D</em>, where $k=1.$</p><p>$T(x,y,z)=100+e^{-z};$ $D=\\{(x,y,z):0\\le x\\le 1,0\\le y\\le 1,0\\le z\\le 1\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{-1}-1$"
+   }
+  },
+  {
+   "id": "r447",
+   "source_id": "fs-id1167793318541",
+   "source_section": "16.8",
+   "source_number": "447",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to evaluate $\\iint_{S}\\textbf{F}\\cdot dS .$</p><p>$\\textbf{F}(x,y,z)=(2xy)\\textbf{i}+(-y^{2})\\textbf{j}+(2z^{3})\\textbf{k},$ where $S$ is bounded by paraboloid $z=x^{2}+y^{2}$ and plane $z=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$24\\pi$"
+   }
+  },
+  {
+   "id": "r451",
+   "source_id": "fs-id1167794006347",
+   "source_section": "16.8",
+   "source_number": "451",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p>Use the divergence theorem to compute the value of the flux integral over the unit sphere with $\\textbf{F}(x,y,z)=3z\\textbf{i}+2y\\textbf{j}+2x\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$8\\pi /3$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "gauss-law"
+  },
+  {
+   "exercise": "e377",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e379",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e381",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e383",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e385",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e387",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e389",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e391",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e393",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e395",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e397",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e399",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e401",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e403",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e405",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e407",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e409",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e411",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e413",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e415",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e417",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e419",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e421",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e423",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e425",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "e425",
+   "concept": "heat-flow"
+  },
+  {
+   "exercise": "r447",
+   "concept": "divergence-theorem"
+  },
+  {
+   "exercise": "r451",
+   "concept": "divergence-theorem"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-example-77",
+   "kind": "correction",
+   "html": "The tangent vector is printed $\\langle -u\\cos v,u\\sin v,0\\rangle;$ it is $\\langle -u\\sin v,u\\cos v,0\\rangle,$ which gives the cross product $\\langle 0,0,u\\rangle$ used. Below, the third component of $\\mathbf{F}$ on $S_{2}$ is printed $u-\\sin v$ for $u-u\\sin v,$ and the total flux across $S$ is written $\\iint_{S_{2}}.$"
+  },
+  {
+   "id": "c-gauss-power",
+   "kind": "correction",
+   "html": "The power of ten is printed $10^{9};$ $\\frac{0.004}{8.854\\times 10^{-12}}\\approx 4.518\\times 10^{8}.$"
+  },
+  {
+   "id": "c-cp68-power",
+   "kind": "correction",
+   "html": "Three charges lie inside the sphere of radius 4, so the flux is $\\frac{0.006}{8.854\\times 10^{-12}}\\approx 6.777\\times 10^{8};$ the key prints $10^{9}.$"
+  },
+  {
+   "id": "c-example-ref",
+   "kind": "correction",
+   "html": "The link names Example 16.6, a unit vector field; the gravitational field is described in Example 16.8."
+  }
+ ]
+}
