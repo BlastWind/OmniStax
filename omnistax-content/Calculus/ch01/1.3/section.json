@@ -1,0 +1,1553 @@
+{
+ "id": "1.3",
+ "module": "m53479",
+ "chapter": "1",
+ "title": "Trigonometric Functions",
+ "short": "Trigonometric Functions",
+ "lead": "<span data-concept=\"radian\">Radians</span> measure an angle by the arc it cuts off on the unit circle. From a point on that circle, and from the sides of a right triangle, the six <span data-concept=\"trigonometric-functions\">trigonometric functions</span> are defined; their main <span data-concept=\"trigonometric-identity\">identities</span> are listed and used to solve equations; and their graphs are read for <span data-concept=\"period\">period</span>, <span data-concept=\"amplitude\">amplitude</span> and shift.",
+ "objectives": [
+  "Convert angle measures between degrees and radians.",
+  "Recognize the triangular and circular definitions of the basic trigonometric functions.",
+  "Write the basic trigonometric identities.",
+  "Identify the graphs and periods of the trigonometric functions.",
+  "Describe the shift of a sine or cosine graph from the equation of the function."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"radian\">Radian measure</span> is defined such that the angle associated with the arc of length 1 on the unit circle has <span data-concept=\"radian\">radian measure</span> 1. An angle with a degree measure of $180^{\\circ}$ has a <span data-concept=\"radian\">radian measure</span> of $\\pi$ rad.</li><li>For acute angles $\\ktheta,$ the values of the <span data-concept=\"trigonometric-functions\">trigonometric functions</span> are defined as ratios of two sides of a right triangle in which one of the acute angles is $\\ktheta.$</li><li>For a general angle $\\ktheta,$ let $(x,y)$ be a point on a circle of radius $r$ corresponding to this angle $\\ktheta.$ The <span data-concept=\"trigonometric-functions\">trigonometric functions</span> can be written as ratios involving $x,y,$ and $r.$</li><li>The <span data-concept=\"trigonometric-functions\">trigonometric functions</span> are <span data-concept=\"periodic-function\">periodic</span>. The <span data-concept=\"trigonometric-functions\">sine, cosine, secant, and cosecant functions</span> have <span data-concept=\"period\">period</span> $2\\pi.$ The <span data-concept=\"trigonometric-functions\">tangent and cotangent functions</span> have <span data-concept=\"period\">period</span> $\\pi.$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer but those of the eight identity proofs is the book’s. The eight verify-an-identity exercises, 147 to 154, have no answer in the book’s key, so each carries an AI-written proof, marked as such. The 31 other exercises without a key are computational and are left out: 114 and 116 (degrees to radians), 118, 120 and 122 (radians to degrees), 124, 126 and 128 (values), 130, 132 and 134 (triangles), 136 and 138 (points on the unit circle), 140, 142, 144 and 146 (simplifying), 156, 158, 160 and 162 (equations), 164 and 166 (equations from graphs), 168, 170 and 172 (amplitude, period and shift), and 174, 176, 178, 180 and 182 (the [T] applications). A checkpoint answered in words keeps the book’s hint at the head of its answer.",
+ "figures": [
+  {
+   "id": "sim-radian",
+   "kind": "sim",
+   "number": "1.30",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_001.jpg"
+   ],
+   "original_caption": "The radian measure of an angle θ is the arc length s of the associated arc on the unit circle.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-standard-position",
+   "kind": "sim",
+   "number": "1.31",
+   "folds": [
+    "1.32"
+   ],
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_002.jpg",
+    "/media/ch01/CNX_Calc_Figure_01_03_003.jpg"
+   ],
+   "original_caption": "(Figure 1.31) The angle θ is in standard position. The values of the trigonometric functions for θ are defined in terms of the coordinates x and y. (Figure 1.32) For a point P=(x,y) on a circle of radius r, the coordinates x and y satisfy x=r cos θ and y=r sin θ.",
+   "draws": [
+    "angle",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-evaluate-angles",
+   "kind": "sim",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_004.jpg",
+    "/media/ch01/CNX_Calc_Figure_01_03_005.jpg",
+    "/media/ch01/CNX_Calc_Figure_01_03_006.jpg"
+   ],
+   "draws": [
+    "angle",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-inscribed-triangle",
+   "kind": "figure",
+   "number": "1.33",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_007.jpg"
+   ],
+   "original_caption": "By inscribing a right triangle in a circle, we can express the ratios of the side lengths in terms of the trigonometric functions evaluated at θ.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-ramp",
+   "kind": "sim",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_008.jpg"
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-trig-equation",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "point",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-periodic",
+   "kind": "sim",
+   "number": "1.34",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_013.jpg"
+   ],
+   "original_caption": "The six trigonometric functions are periodic.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-general-cosine",
+   "kind": "sim",
+   "number": "1.35",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_010.jpg"
+   ],
+   "original_caption": "A graph of a general cosine function.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-daylight",
+   "kind": "sim",
+   "number": "1.36",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_011.jpg"
+   ],
+   "original_caption": "The hours of daylight as a function of day of the year can be modeled by a shifted sine curve.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-transformed-sine",
+   "kind": "sim",
+   "originals": [
+    "/media/ch01/CNX_Calc_Figure_01_03_012.jpg"
+   ],
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "radian-measure",
+   "concept": "radian",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-definition",
+   "concept": "trigonometric-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "six-functions",
+   "concept": "radian",
+   "verb": "uses"
+  },
+  {
+   "span": "identities",
+   "concept": "trigonometric-identity",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-identities",
+   "concept": "reciprocal-and-ratio-identities",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-identities",
+   "concept": "pythagorean-identities",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-identities",
+   "concept": "addition-and-subtraction-formulas",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-identities",
+   "concept": "double-angle-formulas",
+   "verb": "introduces"
+  },
+  {
+   "span": "graphs-periods",
+   "concept": "periodic-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "graphs-periods",
+   "concept": "period",
+   "verb": "introduces"
+  },
+  {
+   "span": "graphs-periods",
+   "concept": "amplitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "graphs-periods",
+   "concept": "generalized-sine-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "graphs-periods",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "graphs-periods",
+   "concept": "function",
+   "verb": "uses"
+  },
+  {
+   "span": "graphs-periods",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572139592",
+   "concept": "radian",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572205827",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572205827",
+   "concept": "radian",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572203718",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572455784",
+   "concept": "double-angle-formulas",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572455784",
+   "concept": "reciprocal-and-ratio-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572455784",
+   "concept": "trigonometric-identity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572111814",
+   "concept": "pythagorean-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572111814",
+   "concept": "reciprocal-and-ratio-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572111814",
+   "concept": "trigonometric-identity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572449639",
+   "concept": "generalized-sine-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572449639",
+   "concept": "period",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572449639",
+   "concept": "amplitude",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp17",
+   "source_id": "fs-id1170572226063",
+   "source_number": "Checkpoint 1.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572139592"
+   },
+   "cite": "radian-measure",
+   "prompt": "Express $210^{\\circ}$ using radians. Express $11\\pi/6$ rad using degrees.",
+   "answer": {
+    "generated_by": "source",
+    "type": "number",
+    "value": 330,
+    "unit": "°",
+    "part": "$11\\pi/6$ rad in degrees",
+    "hint": "$\\pi$ radians is equal to $180^{\\circ}.$",
+    "solution": "$7\\pi/6;$ $330^{\\circ}$"
+   }
+  },
+  {
+   "id": "cp18",
+   "source_id": "fs-id1170572450618",
+   "source_number": "Checkpoint 1.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572205827"
+   },
+   "cite": "six-functions",
+   "prompt": "Evaluate $\\cos(3\\pi/4)$ and $\\sin(-\\pi/6).$",
+   "answer": {
+    "generated_by": "source",
+    "type": "number",
+    "value": -0.5,
+    "part": "$\\sin(-\\pi/6)$",
+    "hint": "Look at angles on the unit circle.",
+    "solution": "$\\cos(3\\pi/4)=-\\sqrt{2}/2;\\;\\sin(-\\pi/6)=-1/2$"
+   }
+  },
+  {
+   "id": "cp19",
+   "source_id": "fs-id1170572224048",
+   "source_number": "Checkpoint 1.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572203718"
+   },
+   "cite": "six-functions",
+   "prompt": "A house painter wants to lean a $20$-ft ladder against a house. If the angle between the base of the ladder and the ground is to be $60^{\\circ},$ how far from the house should she place the base of the ladder?",
+   "answer": {
+    "generated_by": "source",
+    "type": "number",
+    "value": 10,
+    "unit": "ft",
+    "hint": "Draw a right triangle with hypotenuse $20.$",
+    "solution": "$10$ ft"
+   }
+  },
+  {
+   "id": "cp20",
+   "source_id": "fs-id1170572151034",
+   "source_number": "Checkpoint 1.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572455784"
+   },
+   "cite": "identities",
+   "prompt": "Find all solutions to the equation $\\cos(2\\theta)=\\sin\\theta.$",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "Use the double-angle formula for cosine. $\\theta=\\frac{3\\pi}{2}+2n\\pi,\\ \\frac{\\pi}{6}+2n\\pi,\\ \\frac{5\\pi}{6}+2n\\pi$ for $n=0,\\pm 1,\\pm 2,\\ldots$"
+   }
+  },
+  {
+   "id": "cp21",
+   "source_id": "fs-id1170572171308",
+   "source_number": "Checkpoint 1.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572111814"
+   },
+   "cite": "identities",
+   "prompt": "Prove the trigonometric identity $1+\\cot^{2}\\theta=\\csc^{2}\\theta.$",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "Divide both sides of the identity $\\sin^{2}\\theta+\\cos^{2}\\theta=1$ by $\\sin^{2}\\theta.$ $\\begin{array}{lll}1+\\theta & = & 1+\\frac{\\theta}{\\theta}\\\\ & = & \\frac{\\theta}{\\theta}+\\frac{\\theta}{\\theta}\\\\ & = & \\frac{\\theta+\\theta}{\\theta}\\\\ & = & \\frac{1}{\\theta}\\\\ & = & \\theta\\end{array}$<sup class=\"fn\" data-note=\"c-cp21\"></sup>"
+   }
+  },
+  {
+   "id": "cp22",
+   "source_id": "fs-id1170572167444",
+   "source_number": "Checkpoint 1.22",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572449639"
+   },
+   "cite": "graphs-periods",
+   "prompt": "Describe the relationship between the graph of $f(x)=3\\sin(4x)-5$ and the graph of $y=\\sin(x).$",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "The graph of $f$ can be sketched using the graph of $y=\\sin(x)$ and a sequence of three transformations. To graph $f(x)=3\\sin(4x)-5,$ the graph of $y=\\sin(x)$ needs to be compressed horizontally by a factor of 4, then stretched vertically by a factor of 3, then shifted down 5 units. The function $f$ will have a period of $\\pi/2$ and an amplitude of 3."
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1170572135605",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radian-measure",
+   "prompt": "<p>For the following exercises, convert each angle in degrees to radians. Write the answer as a multiple of $\\pi.$</p><p>$240^{\\circ}$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\frac{4\\pi}{3}\\;\\text{rad}$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1170572482559",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radian-measure",
+   "prompt": "<p>For the following exercises, convert each angle in degrees to radians. Write the answer as a multiple of $\\pi.$</p><p>$-60^{\\circ}$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$-\\frac{\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1170572479016",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radian-measure",
+   "prompt": "<p>For the following exercises, convert each angle in degrees to radians. Write the answer as a multiple of $\\pi.$</p><p>$330^{\\circ}$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\frac{11\\pi}{6}\\;\\text{rad}$"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1170572483752",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radian-measure",
+   "prompt": "<p>For the following exercises, convert each angle in radians to degrees.</p><p>$\\frac{7\\pi}{6}\\;\\text{rad}$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "number",
+    "value": 210,
+    "unit": "°",
+    "solution": "$210^{\\circ}$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1170572242837",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radian-measure",
+   "prompt": "<p>For the following exercises, convert each angle in radians to degrees.</p><p>$-3\\pi\\;\\text{rad}$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "number",
+    "value": -540,
+    "unit": "°",
+    "solution": "$-540^{\\circ}$"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1170572213256",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "six-functions",
+   "prompt": "<p>Evaluate the following functional values.</p><p>$\\cos\\left(\\frac{4\\pi}{3}\\right)$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "number",
+    "value": -0.5,
+    "solution": "$-0.5$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1170572548544",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "six-functions",
+   "prompt": "<p>Evaluate the following functional values.</p><p>$\\sin\\left(-\\frac{3\\pi}{4}\\right)$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$-\\frac{\\sqrt{2}}{2}$"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1170572552426",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "identities",
+   "prompt": "<p>Evaluate the following functional values.</p><p>$\\sin\\left(\\frac{\\pi}{12}\\right)$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\frac{\\sqrt{3}-1}{2\\sqrt{2}}$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1170572546980",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "six-functions",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_03_201.jpg",
+    "alt": "A right triangle with corners A, B and C and a right angle at C; the side a joins C and B, the side b joins A and C, and the hypotenuse c joins B and A."
+   },
+   "prompt": "<p>For the following exercises, consider triangle <em>ABC</em>, a right triangle with a right angle at <em>C.</em> a. Find the missing side of the triangle. b. Find the six trigonometric function values for the angle at <em>A</em>. Where necessary, simplify to a fraction or round to three decimal places.</p><p>$a=4,c=7$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. $b=5.7$ b. $\\sin A=\\frac{4}{7},\\cos A=\\frac{5.7}{7},\\tan A=\\frac{4}{5.7},\\csc A=\\frac{7}{4},\\sec A=\\frac{7}{5.7},\\cot A=\\frac{5.7}{4}$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1170572242177",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "six-functions",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_03_201.jpg",
+    "alt": "A right triangle with corners A, B and C and a right angle at C; the side a joins C and B, the side b joins A and C, and the hypotenuse c joins B and A."
+   },
+   "prompt": "<p>For the following exercises, consider triangle <em>ABC</em>, a right triangle with a right angle at <em>C.</em> a. Find the missing side of the triangle. b. Find the six trigonometric function values for the angle at <em>A</em>. Where necessary, simplify to a fraction or round to three decimal places.</p><p>$a=85.3,b=125.5$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. $c=151.7$ b. $\\sin A=0.5623,\\cos A=0.8273,\\tan A=0.6797,\\csc A=1.778,\\sec A=1.209,\\cot A=1.471$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1170572134816",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "six-functions",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_03_201.jpg",
+    "alt": "A right triangle with corners A, B and C and a right angle at C; the side a joins C and B, the side b joins A and C, and the hypotenuse c joins B and A."
+   },
+   "prompt": "<p>For the following exercises, consider triangle <em>ABC</em>, a right triangle with a right angle at <em>C.</em> a. Find the missing side of the triangle. b. Find the six trigonometric function values for the angle at <em>A</em>. Where necessary, simplify to a fraction or round to three decimal places.</p><p>$a=84,b=13$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. $c=85$ b. $\\sin A=\\frac{84}{85},\\cos A=\\frac{13}{85},\\tan A=\\frac{84}{13},\\csc A=\\frac{85}{84},\\sec A=\\frac{85}{13},\\cot A=\\frac{13}{84}$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1170572452051",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-definition",
+   "prompt": "<p>For the following exercises, $P$ is a point on the unit circle. a. Find the (exact) missing coordinate value of each point and b. find the values of the six trigonometric functions for the angle $\\theta$ with a terminal side that passes through point $P.$ Rationalize denominators.</p><p>$P\\left(\\frac{7}{25},y\\right),\\ y\\gt 0$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. $y=\\frac{24}{25}$ b. $\\sin\\theta=\\frac{24}{25},\\cos\\theta=\\frac{7}{25},\\tan\\theta=\\frac{24}{7},\\csc\\theta=\\frac{25}{24},\\sec\\theta=\\frac{25}{7},\\cot\\theta=\\frac{7}{24}$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1170572552413",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-definition",
+   "prompt": "<p>For the following exercises, $P$ is a point on the unit circle. a. Find the (exact) missing coordinate value of each point and b. find the values of the six trigonometric functions for the angle $\\theta$ with a terminal side that passes through point $P.$ Rationalize denominators.</p><p>$P\\left(x,\\frac{\\sqrt{7}}{3}\\right),\\ x\\lt 0$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. $x=\\frac{-\\sqrt{2}}{3}$ b. $\\sin\\theta=\\frac{\\sqrt{7}}{3},\\cos\\theta=\\frac{-\\sqrt{2}}{3},\\tan\\theta=\\frac{-\\sqrt{14}}{2},\\csc\\theta=\\frac{3\\sqrt{7}}{7},\\sec\\theta=\\frac{-3\\sqrt{2}}{2},\\cot\\theta=\\frac{-\\sqrt{14}}{7}$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1170572551228",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, simplify each expression by writing it in terms of sines and cosines, then simplify. The final answer does not have to be in terms of sine and cosine only.</p><p>$\\tan^{2}x+\\sin x\\csc x$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\sec^{2}x$"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1170572479527",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, simplify each expression by writing it in terms of sines and cosines, then simplify. The final answer does not have to be in terms of sine and cosine only.</p><p>$\\frac{\\tan^{2}x}{\\sec^{2}x}$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\sin^{2}x$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1170572546085",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, simplify each expression by writing it in terms of sines and cosines, then simplify. The final answer does not have to be in terms of sine and cosine only.</p><p>$(1+\\tan\\theta)^{2}-2\\tan\\theta$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\sec^{2}\\theta$"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1170572244458",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, simplify each expression by writing it in terms of sines and cosines, then simplify. The final answer does not have to be in terms of sine and cosine only.</p><p>$\\frac{\\cos t}{\\sin t}+\\frac{\\sin t}{1+\\cos t}$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\frac{1}{\\sin t}\\;(=\\csc t)$"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1170572434030",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, verify that each equation is an identity.</p><p>$\\frac{\\tan\\theta\\cot\\theta}{\\csc\\theta}=\\sin\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the ratio identities, $\\tan\\theta\\cot\\theta=\\frac{\\sin\\theta}{\\cos\\theta}\\cdot\\frac{\\cos\\theta}{\\sin\\theta}=1,$ so the left-hand side is $\\frac{1}{\\csc\\theta}.$ By the reciprocal identity $\\csc\\theta=\\frac{1}{\\sin\\theta},$ $\\frac{1}{\\csc\\theta}=\\sin\\theta,$ the right-hand side. The identity holds for every $\\theta$ at which $\\tan\\theta,$ $\\cot\\theta$ and $\\csc\\theta$ are defined."
+   }
+  },
+  {
+   "id": "e148",
+   "source_id": "fs-id1170572434063",
+   "source_number": "148",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, verify that each equation is an identity.</p><p>$\\frac{\\sec^{2}\\theta}{\\tan\\theta}=\\sec\\theta\\csc\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write both sides in sines and cosines. The left-hand side is $\\frac{\\sec^{2}\\theta}{\\tan\\theta}=\\frac{1}{\\cos^{2}\\theta}\\cdot\\frac{\\cos\\theta}{\\sin\\theta}=\\frac{1}{\\cos\\theta\\sin\\theta}.$ The right-hand side is $\\sec\\theta\\csc\\theta=\\frac{1}{\\cos\\theta}\\cdot\\frac{1}{\\sin\\theta}=\\frac{1}{\\cos\\theta\\sin\\theta}.$ The two sides are equal wherever both are defined."
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1170572479565",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, verify that each equation is an identity.</p><p>$\\frac{\\sin t}{\\csc t}+\\frac{\\cos t}{\\sec t}=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $\\csc t=\\frac{1}{\\sin t}$ and $\\sec t=\\frac{1}{\\cos t},$ $\\frac{\\sin t}{\\csc t}=\\sin^{2}t$ and $\\frac{\\cos t}{\\sec t}=\\cos^{2}t.$ The left-hand side is therefore $\\sin^{2}t+\\cos^{2}t,$ which equals $1$ by the Pythagorean identity."
+   }
+  },
+  {
+   "id": "e150",
+   "source_id": "fs-id1170572451036",
+   "source_number": "150",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, verify that each equation is an identity.</p><p>$\\frac{\\sin x}{\\cos x+1}+\\frac{\\cos x-1}{\\sin x}=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Put the two fractions over the common denominator $\\sin x(\\cos x+1)$: $\\frac{\\sin x}{\\cos x+1}+\\frac{\\cos x-1}{\\sin x}=\\frac{\\sin^{2}x+(\\cos x-1)(\\cos x+1)}{\\sin x(\\cos x+1)}=\\frac{\\sin^{2}x+\\cos^{2}x-1}{\\sin x(\\cos x+1)}.$ By the Pythagorean identity $\\sin^{2}x+\\cos^{2}x=1,$ the numerator is $0,$ so the left-hand side is $0$ wherever it is defined."
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1170572481640",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, verify that each equation is an identity.</p><p>$\\cot\\gamma+\\tan\\gamma=\\sec\\gamma\\csc\\gamma$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the ratio identities, $\\cot\\gamma+\\tan\\gamma=\\frac{\\cos\\gamma}{\\sin\\gamma}+\\frac{\\sin\\gamma}{\\cos\\gamma}=\\frac{\\cos^{2}\\gamma+\\sin^{2}\\gamma}{\\sin\\gamma\\cos\\gamma}=\\frac{1}{\\sin\\gamma\\cos\\gamma},$ since $\\sin^{2}\\gamma+\\cos^{2}\\gamma=1.$ By the reciprocal identities this is $\\frac{1}{\\cos\\gamma}\\cdot\\frac{1}{\\sin\\gamma}=\\sec\\gamma\\csc\\gamma.$"
+   }
+  },
+  {
+   "id": "e152",
+   "source_id": "fs-id1170572479067",
+   "source_number": "152",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, verify that each equation is an identity.</p><p>$\\sin^{2}\\beta+\\tan^{2}\\beta+\\cos^{2}\\beta=\\sec^{2}\\beta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Group the first and third terms: $\\sin^{2}\\beta+\\cos^{2}\\beta=1,$ so the left-hand side is $1+\\tan^{2}\\beta,$ which equals $\\sec^{2}\\beta$ by the Pythagorean identity $1+\\tan^{2}\\theta=\\sec^{2}\\theta.$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1170572479426",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, verify that each equation is an identity.</p><p>$\\frac{1}{1-\\sin\\alpha}+\\frac{1}{1+\\sin\\alpha}=2\\sec^{2}\\alpha$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Over the common denominator $(1-\\sin\\alpha)(1+\\sin\\alpha)=1-\\sin^{2}\\alpha,$ the left-hand side is $\\frac{(1+\\sin\\alpha)+(1-\\sin\\alpha)}{1-\\sin^{2}\\alpha}=\\frac{2}{1-\\sin^{2}\\alpha}.$ By the Pythagorean identity, $1-\\sin^{2}\\alpha=\\cos^{2}\\alpha,$ so this is $\\frac{2}{\\cos^{2}\\alpha}=2\\sec^{2}\\alpha.$"
+   }
+  },
+  {
+   "id": "e154",
+   "source_id": "fs-id1170572481902",
+   "source_number": "154",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trig-identities",
+   "prompt": "<p>For the following exercises, verify that each equation is an identity.</p><p>$\\frac{\\tan\\theta-\\cot\\theta}{\\sin\\theta\\cos\\theta}=\\sec^{2}\\theta-\\csc^{2}\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write the numerator in sines and cosines: $\\tan\\theta-\\cot\\theta=\\frac{\\sin\\theta}{\\cos\\theta}-\\frac{\\cos\\theta}{\\sin\\theta}=\\frac{\\sin^{2}\\theta-\\cos^{2}\\theta}{\\sin\\theta\\cos\\theta}.$ Dividing by $\\sin\\theta\\cos\\theta$ gives $\\frac{\\sin^{2}\\theta-\\cos^{2}\\theta}{\\sin^{2}\\theta\\cos^{2}\\theta}=\\frac{\\sin^{2}\\theta}{\\sin^{2}\\theta\\cos^{2}\\theta}-\\frac{\\cos^{2}\\theta}{\\sin^{2}\\theta\\cos^{2}\\theta}=\\frac{1}{\\cos^{2}\\theta}-\\frac{1}{\\sin^{2}\\theta}=\\sec^{2}\\theta-\\csc^{2}\\theta.$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1170572229620",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "identities",
+   "prompt": "<p>For the following exercises, solve the trigonometric equations on the interval $0\\le\\theta\\lt 2\\pi.$</p><p>$2\\sin\\theta-1=0$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\left\\{\\frac{\\pi}{6},\\frac{5\\pi}{6}\\right\\}$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1170572141256",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "identities",
+   "prompt": "<p>For the following exercises, solve the trigonometric equations on the interval $0\\le\\theta\\lt 2\\pi.$</p><p>$2\\tan^{2}\\theta=2$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\left\\{\\frac{\\pi}{4},\\frac{3\\pi}{4},\\frac{5\\pi}{4},\\frac{7\\pi}{4}\\right\\}$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1170572141717",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "identities",
+   "prompt": "<p>For the following exercises, solve the trigonometric equations on the interval $0\\le\\theta\\lt 2\\pi.$</p><p>$\\sqrt{3}\\cot\\theta+1=0$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\left\\{\\frac{2\\pi}{3},\\frac{5\\pi}{3}\\right\\}$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1170572130737",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "identities",
+   "prompt": "<p>For the following exercises, solve the trigonometric equations on the interval $0\\le\\theta\\lt 2\\pi.$</p><p>$2\\cos\\theta\\sin\\theta=\\sin\\theta$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$\\left\\{0,\\pi,\\frac{\\pi}{3},\\frac{5\\pi}{3}\\right\\}$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1170572147899",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs-periods",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_03_202.jpg",
+    "alt": "A wave on a grid from −4 to 4 across and −5 to 5 up, through the origin, falling to −4 at x = −2, rising to 4 at x = 2 and back to zero at x = ±4."
+   },
+   "prompt": "<p>For the following exercises, each graph is of the form $y=A\\sin Bx$ or $y=A\\cos Bx,$ where $B\\gt 0.$ Write the equation of the graph.</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$y=4\\sin\\left(\\frac{\\pi}{4}x\\right)$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1170572367561",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs-periods",
+   "figure": {
+    "src": "/media/ch01/CNX_Calc_Figure_01_03_204.jpg",
+    "alt": "A wave on a grid from −4 to 4 across and −5 to 5 up, with height 1 at x = 0 and at every whole number, −1 at every half, crossing zero at ±0.25 and ±0.75."
+   },
+   "prompt": "<p>For the following exercises, each graph is of the form $y=A\\sin Bx$ or $y=A\\cos Bx,$ where $B\\gt 0.$ Write the equation of the graph.</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "$y=\\cos(2\\pi x)$"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1170572242235",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs-periods",
+   "prompt": "<p>For the following exercises, find a. the amplitude, b. the period, and c. the phase shift with direction for each function.</p><p>$y=\\sin\\left(x-\\frac{\\pi}{4}\\right)$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. 1 b. $2\\pi$ c. $\\frac{\\pi}{4}$ units to the right"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1170572141216",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs-periods",
+   "prompt": "<p>For the following exercises, find a. the amplitude, b. the period, and c. the phase shift with direction for each function.</p><p>$y=\\frac{-1}{2}\\sin\\left(\\frac{1}{4}x\\right)$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. $\\frac{1}{2}$ b. $8\\pi$ c. No phase shift"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1170572552175",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs-periods",
+   "prompt": "<p>For the following exercises, find a. the amplitude, b. the period, and c. the phase shift with direction for each function.</p><p>$y=-3\\sin(\\pi x+2)$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. 3 b. $2$ c. $\\frac{2}{\\pi}$ units to the left"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1170572481411",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radian-measure",
+   "prompt": "<p><strong>[T]</strong> The diameter of a wheel rolling on the ground is 40 in. If the wheel rotates through an angle of $120^{\\circ},$ how many inches does it move? Approximate to the nearest whole inch.</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "number",
+    "value": 42,
+    "unit": "in",
+    "solution": "Approximately 42 in."
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1170572433987",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "radian-measure",
+   "prompt": "<p><strong>[T]</strong> As a point <em>P</em> moves around a circle, the measure of the angle changes. The measure of how fast the angle is changing is called <em>angular speed</em>, $\\omega,$ and is given by $\\omega=\\theta/t,$ where $\\theta$ is in radians and <em>t</em> is time. Find the angular speed for the given data. Round to the nearest thousandth. a. $\\theta=\\frac{7\\pi}{4}\\;\\text{rad},\\ t=10$ sec b. $\\theta=\\frac{3\\pi}{5}\\;\\text{rad},\\ t=8$ sec c. $\\theta=\\frac{2\\pi}{9}\\;\\text{rad},\\ t=1$ min d. $\\theta=23.76\\;\\text{rad},\\ t=14$ min</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0.55,
+      "unit": "rad/sec"
+     },
+     {
+      "part": "b",
+      "value": 0.236,
+      "unit": "rad/sec"
+     },
+     {
+      "part": "c",
+      "value": 0.698,
+      "unit": "rad/min"
+     },
+     {
+      "part": "d",
+      "value": 1.697,
+      "unit": "rad/min"
+     }
+    ],
+    "solution": "a. 0.550 rad/sec b. 0.236 rad/sec c. 0.698 rad/min d. 1.697 rad/min"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1170572482018",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "six-functions",
+   "prompt": "<p><strong>[T]</strong> The area of an isosceles triangle with equal sides of length <em>x</em> is $\\frac{1}{2}x^{2}\\sin\\theta,$ where $\\theta$ is the angle formed by the two sides. Find the area of an isosceles triangle with equal sides of length 8 in. and angle $\\theta=5\\pi/12$ rad.</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "number",
+    "value": 30.9,
+    "unit": "in²",
+    "solution": "$\\approx 30.9\\;\\text{in}^{2}$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1170572546454",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs-periods",
+   "prompt": "<p><strong>[T]</strong> An alternating current for outlets in a home has voltage given by the function $V(t)=150\\cos 368t,$ where <em>V</em> is the voltage in volts at time <em>t</em> in seconds. a. Find the period of the function and interpret its meaning. b. Determine the number of periods that occur when 1 sec has passed.</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. $\\pi/184;$ the voltage repeats every $\\pi/184$ sec b. Approximately 59 periods"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1170572480235",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs-periods",
+   "prompt": "<p><strong>[T]</strong> Suppose that $T=50+10\\sin\\left[\\frac{\\pi}{12}(t-8)\\right]$ is a mathematical model of the temperature (in degrees Fahrenheit) at <em>t</em> hours after midnight on a certain day of the week. a. Determine the amplitude and period. b. Find the temperature 7 hours after midnight. c. At what time does $T=60^{\\circ}?$ d. Sketch the graph of $T$ over $0\\le t\\le 24.$</p>",
+   "answer": {
+    "generated_by": "source",
+    "type": "open",
+    "solution": "a. Amplitude $=10;$ period $=24$ b. $47.4^{\\circ}$F c. 14 hours later, or 2 p.m. d. <img src=\"/media/ch01/CNX_Calc_Figure_01_03_207.jpg\" alt=\"The graph of T over 0 to 24 hours, a wave that dips to about 41 °F near t = 2, rises to about 59 °F near t = 13 and falls back to about 42 °F at t = 24.\">"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp17",
+   "concept": "radian"
+  },
+  {
+   "exercise": "cp18",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "cp18",
+   "concept": "radian"
+  },
+  {
+   "exercise": "cp19",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "cp20",
+   "concept": "double-angle-formulas"
+  },
+  {
+   "exercise": "cp20",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "cp21",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "cp21",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "cp21",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "cp22",
+   "concept": "generalized-sine-function"
+  },
+  {
+   "exercise": "cp22",
+   "concept": "period"
+  },
+  {
+   "exercise": "cp22",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "e113",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e115",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e117",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e119",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e121",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e123",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e123",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e125",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e125",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e127",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e127",
+   "concept": "addition-and-subtraction-formulas"
+  },
+  {
+   "exercise": "e129",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e131",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e133",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e135",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e135",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e137",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e137",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e139",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e139",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e141",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e143",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e145",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e145",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e147",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "e147",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e148",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "e148",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e149",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "e149",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e149",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e150",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "e150",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e151",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "e151",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e151",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e152",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "e152",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e153",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "e153",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e153",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e154",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "e154",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e155",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e157",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e159",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e159",
+   "concept": "reciprocal-and-ratio-identities"
+  },
+  {
+   "exercise": "e161",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e161",
+   "concept": "double-angle-formulas"
+  },
+  {
+   "exercise": "e163",
+   "concept": "generalized-sine-function"
+  },
+  {
+   "exercise": "e163",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "e163",
+   "concept": "period"
+  },
+  {
+   "exercise": "e165",
+   "concept": "generalized-sine-function"
+  },
+  {
+   "exercise": "e165",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "e165",
+   "concept": "period"
+  },
+  {
+   "exercise": "e167",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "e167",
+   "concept": "period"
+  },
+  {
+   "exercise": "e167",
+   "concept": "generalized-sine-function"
+  },
+  {
+   "exercise": "e169",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "e169",
+   "concept": "period"
+  },
+  {
+   "exercise": "e169",
+   "concept": "generalized-sine-function"
+  },
+  {
+   "exercise": "e171",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "e171",
+   "concept": "period"
+  },
+  {
+   "exercise": "e171",
+   "concept": "generalized-sine-function"
+  },
+  {
+   "exercise": "e173",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e175",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e177",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e177",
+   "concept": "radian"
+  },
+  {
+   "exercise": "e179",
+   "concept": "period"
+  },
+  {
+   "exercise": "e179",
+   "concept": "generalized-sine-function"
+  },
+  {
+   "exercise": "e181",
+   "concept": "amplitude"
+  },
+  {
+   "exercise": "e181",
+   "concept": "period"
+  },
+  {
+   "exercise": "e181",
+   "concept": "generalized-sine-function"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-cp21",
+   "kind": "correction",
+   "html": "The book’s answer prints $\\theta$ in place of every function in the chain. It reads $1+\\cot^{2}\\theta=1+\\frac{\\cos^{2}\\theta}{\\sin^{2}\\theta}=\\frac{\\sin^{2}\\theta}{\\sin^{2}\\theta}+\\frac{\\cos^{2}\\theta}{\\sin^{2}\\theta}=\\frac{\\sin^{2}\\theta+\\cos^{2}\\theta}{\\sin^{2}\\theta}=\\frac{1}{\\sin^{2}\\theta}=\\csc^{2}\\theta.$"
+  }
+ ]
+}
