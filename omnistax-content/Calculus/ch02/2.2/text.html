@@ -1,0 +1,367 @@
+<p>The concept of a <span data-concept="limit">limit</span> or limiting process, essential to the understanding of calculus, has been around for thousands of years. In fact, early mathematicians used a limiting process to obtain better and better approximations of areas of circles. Yet, the formal definition of a <span data-concept="limit">limit</span>—as we know and understand it today—did not appear until the late 19th century. We therefore begin our quest to understand <span data-concept="limit">limits</span>, as our mathematical ancestors did, by using an intuitive approach. At the end of this chapter, armed with a conceptual understanding of <span data-concept="limit">limits</span>, we examine the formal definition of a <span data-concept="limit">limit</span>.</p>
+<p id="three-functions">We begin our exploration of <span data-concept="limit">limits</span> by taking a look at the <span data-concept="graph-of-a-function">graphs</span> of the <span data-concept="function">functions</span></p>
+$$\kf(x)=\frac{x^{2}-4}{x-2},\;\kg(x)=\frac{|x-2|}{x-2},\;\text{and}\;\kh(x)=\frac{1}{(x-2)^{2}},$$
+<p>which are shown in Figure 2.12. In particular, let’s focus our attention on the behavior of each graph at and around $x=2.$</p>
+<figure class="sim" id="sim-three-functions" data-figure="2.12" data-original="/media/ch02/CNX_Calc_Figure_02_02_001.jpg" data-original-caption="These graphs show the behavior of three different functions around x=2.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.12</span><span>The <span data-concept="graph-of-a-function">graphs</span> of $\kf,$ $\kg$ and $\kh$ side by side, with one $x$ for all three. Drag $x$ toward $2$ from either side and watch the three values: $\kf(x)$ closes in on $4,$ $\kg(x)$ stays at $-1$ on the left and $1$ on the right, and $\kh(x)$ grows past the top of its graph. At $x=2$ itself none of the three has a value.</span></div>
+</figure>
+<p>Each of the three <span data-concept="function">functions</span> is undefined at $x=2,$ but if we make this statement and no other, we give a very incomplete picture of how each <span data-concept="function">function</span> behaves in the vicinity of $x=2.$ To express the behavior of each graph in the vicinity of 2 more completely, we need to introduce the concept of a <span data-concept="limit">limit</span>.</p>
+
+<section id="intuitive-definition">
+<h2>Intuitive Definition of a Limit</h2>
+<p class="cite-target">Let’s first take a closer look at how the <span data-concept="function">function</span> <span data-fn="(x^2-4)/(x-2)">$\kf(x)=(x^{2}-4)/(x-2)$</span> behaves around $x=2$ in Figure 2.12. As the values of <em>x</em> approach 2 from either side of 2, the values of $y=\kf(x)$ approach 4. Mathematically, we say that the <span data-concept="limit">limit of $\kf(x)$ as <em>x</em> approaches 2</span> is 4. Symbolically, we express this <span data-concept="limit">limit</span> as</p>
+$$\lim_{x\to 2}\kf(x)=4.$$
+<p>From this very brief informal look at one <span data-concept="limit">limit</span>, let’s start to develop an <strong><span data-concept="intuitive-definition-of-the-limit">intuitive definition of the limit</span></strong>. We can think of the <span data-concept="limit">limit of a function</span> at a number <em>a</em> as being the one real number $\kL$ that the functional values approach as the <em>x</em>-values approach <em>a,</em> provided such a real number $\kL$ exists. Stated more carefully, we have the following definition:</p>
+<div class="note" id="limit-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf(x)$ be a <span data-concept="function">function</span> defined at all values in an <span data-concept="interval-notation">open interval</span> containing <em>a</em>, with the possible exception of <em>a</em> itself, and let $\kL$ be a real number. If <em>all</em> values of the <span data-concept="function">function</span> $\kf(x)$ approach the real number $\kL$ as the values of $x(\ne a)$ approach the number <em>a</em>, then we say that the <span data-concept="limit">limit of $\kf(x)$ as <em>x</em> approaches <em>a</em> is $\kL$</span>. (More succinct, as <em>x</em> gets closer to <em>a</em>, $\kf(x)$ gets closer and stays close to $\kL$.) Symbolically, we express this idea as</p>
+$$\lim_{x\to a}\kf(x)=\kL.$$
+</div>
+<p>We can estimate <span data-concept="limit">limits</span> by constructing <span data-concept="table-of-values">tables of functional values</span> and by looking at their graphs. This process is described in the following Problem-Solving Strategy.</p>
+<div class="note" id="table-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3><span data-concept="evaluating-a-limit-with-a-table">Evaluating a Limit Using a Table of Functional Values</span></h3>
+<ol>
+<li><p>To evaluate $\lim_{x\to a}\kf(x),$ we begin by completing a <span data-concept="table-of-values">table of functional values</span>. We should choose two sets of <em>x</em>-values—one set of values approaching <em>a</em> and less than <em>a</em>, and another set of values approaching <em>a</em> and greater than <em>a</em>. Table 2.1 demonstrates what your tables might look like.</p>
+<div class="book-table" id="fs-id1170572204940">
+  <div class="tcap"><span class="eyebrow">Table 2.1</span><span>Table of Functional Values for $\lim_{x\to a}\kf(x)$</span></div>
+  <table>
+    <thead><tr><th><em>x</em></th><th>$\kf(x)$</th><th><em>x</em></th><th>$\kf(x)$</th></tr></thead>
+    <tbody>
+      <tr><td>$a-0.1$</td><td>$\kf(a-0.1)$</td><td>$a+0.1$</td><td>$\kf(a+0.1)$</td></tr>
+      <tr><td>$a-0.01$</td><td>$\kf(a-0.01)$</td><td>$a+0.01$</td><td>$\kf(a+0.01)$</td></tr>
+      <tr><td>$a-0.001$</td><td>$\kf(a-0.001)$</td><td>$a+0.001$</td><td>$\kf(a+0.001)$</td></tr>
+      <tr><td>$a-0.0001$</td><td>$\kf(a-0.0001)$</td><td>$a+0.0001$</td><td>$\kf(a+0.0001)$</td></tr>
+      <tr><td colspan="2">Use additional values as necessary.</td><td colspan="2">Use additional values as necessary.</td></tr>
+    </tbody>
+  </table>
+</div></li>
+<li><p>Next, let’s look at the values in each of the $\kf(x)$ columns and determine whether the values seem to be approaching a single value as we move down each column. In our columns, we look at the sequence $\kf(a-0.1),\kf(a-0.01),\kf(a-0.001).,\kf(a-0.0001),$ and so on, and $\kf(a+0.1),\kf(a+0.01),\kf(a+0.001),\kf(a+0.0001),$ and so on. (<em>Note</em>: Although we have chosen the <em>x</em>-values $a\pm 0.1,a\pm 0.01,a\pm 0.001,a\pm 0.0001,$ and so forth, and these values will probably work nearly every time, on very rare occasions we may need to modify our choices.)</p></li>
+<li><p>If both columns approach a common <em>y</em>-value $\kL$, we state $\lim_{x\to a}\kf(x)=\kL.$ We can use the following strategy to confirm the result obtained from the table or as an alternative method for estimating a <span data-concept="limit">limit</span>.</p></li>
+<li><p>Using a graphing calculator or computer software that allows us to graph <span data-concept="function">functions</span>, we can plot the <span data-concept="function">function</span> $\kf(x),$ making sure the functional values of $\kf(x)$ for <em>x</em>-values near <em>a</em> are in our window. We can use the trace feature to move along the <span data-concept="graph-of-a-function">graph of the function</span> and watch the <em>y</em>-value readout as the <em>x</em>-values approach <em>a</em>. If the <em>y</em>-values approach $\kL$ as our <em>x</em>-values approach <em>a</em> from both directions, then $\lim_{x\to a}\kf(x)=\kL.$ We may need to zoom in on our graph and repeat this process several times.</p></li>
+</ol>
+</div>
+<p>We apply this Problem-Solving Strategy to compute a <span data-concept="limit">limit</span> in Example 2.4.</p>
+<div class="example" id="fs-id1170572561451">
+<h3>Example 2.4 · Evaluating a Limit Using a Table of Functional Values 1</h3>
+<p>Evaluate <span data-fn="sin(x)/x">$\lim_{x\to 0}\frac{\sin x}{x}$</span> using a <span data-concept="table-of-values">table of functional values</span>.</p>
+<h4>Solution</h4>
+<p>We have calculated the values of <span data-fn="sin(x)/x">$\kf(x)=(\sin x)/x$</span> for the values of <em>x</em> listed in Table 2.2.</p>
+<div class="book-table" id="fs-id1170572208852">
+  <div class="tcap"><span class="eyebrow">Table 2.2</span><span>Table of Functional Values for $\lim_{x\to 0}\frac{\sin x}{x}$</span></div>
+  <table>
+    <thead><tr><th><em>x</em></th><th>$\frac{\sin x}{x}$</th><th><em>x</em></th><th>$\frac{\sin x}{x}$</th></tr></thead>
+    <tbody>
+      <tr><td class="num">−0.1</td><td class="num">0.998334166468</td><td class="num">0.1</td><td class="num">0.998334166468</td></tr>
+      <tr><td class="num">−0.01</td><td class="num">0.999983333417</td><td class="num">0.01</td><td class="num">0.999983333417</td></tr>
+      <tr><td class="num">−0.001</td><td class="num">0.999999833333</td><td class="num">0.001</td><td class="num">0.999999833333</td></tr>
+      <tr><td class="num">−0.0001</td><td class="num">0.999999998333</td><td class="num">0.0001</td><td class="num">0.999999998333</td></tr>
+    </tbody>
+  </table>
+</div>
+<p><em>Note</em>: The values in this table were obtained using a calculator and using all the places given in the calculator output.</p>
+<p>As we read down each $\frac{(\sin x)}{x}$ column, we see that the values in each column appear to be approaching one. Thus, it is fairly reasonable to conclude that $\lim_{x\to 0}\frac{\sin x}{x}=1.$ A calculator or computer-generated graph of <span data-fn="sin(x)/x">$\kf(x)=\frac{(\sin x)}{x}$</span> would be similar to that shown in Figure 2.13, and it confirms our estimate.</p>
+<figure class="sim" id="sim-sinc-table" data-figure="2.13" data-original="/media/ch02/CNX_Calc_Figure_02_02_003.jpg" data-original-caption="The graph of f(x)=(sin x)/x confirms the estimate from Table 2.2.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.13</span><span>The <span data-concept="graph-of-a-function">graph of</span> $\kf(x)=(\sin x)/x,$ with each row of Table 2.2 as a pair of points, one on each side of $0.$ Zoom in on the hole at $(0,1)$: each step narrows the window tenfold, brings the next row into view, and the ticks on the $y$-axis read its value. Both points of every row sit just below the dashed line $y=1,$ closer at each step.</span></div>
+</figure>
+</div>
+<div class="example" id="fs-id1170571656691">
+<h3>Example 2.5 · Evaluating a Limit Using a Table of Functional Values 2</h3>
+<p>Evaluate <span data-fn="(sqrt(x)-2)/(x-4)">$\lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}$</span> using a <span data-concept="table-of-values">table of functional values</span>.</p>
+<h4>Solution</h4>
+<p>As before, we use a table—in this case, Table 2.3—to list the values of the <span data-concept="function">function</span> for the given values of <em>x</em>.</p>
+<div class="book-table" id="fs-id1170571595483">
+  <div class="tcap"><span class="eyebrow">Table 2.3</span><span>Table of Functional Values for $\lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}$</span></div>
+  <table>
+    <thead><tr><th><em>x</em></th><th>$\frac{\sqrt{x}-2}{x-4}$</th><th><em>x</em></th><th>$\frac{\sqrt{x}-2}{x-4}$</th></tr></thead>
+    <tbody>
+      <tr><td class="num">3.9</td><td class="num">0.251582341869</td><td class="num">4.1</td><td class="num">0.248456731317</td></tr>
+      <tr><td class="num">3.99</td><td class="num">0.25015644562</td><td class="num">4.01</td><td class="num">0.24984394501</td></tr>
+      <tr><td class="num">3.999</td><td class="num">0.250015627</td><td class="num">4.001</td><td class="num">0.249984377</td></tr>
+      <tr><td class="num">3.9999</td><td class="num">0.250001563</td><td class="num">4.0001</td><td class="num">0.249998438</td></tr>
+      <tr><td class="num">3.99999</td><td class="num">0.25000016</td><td class="num">4.00001</td><td class="num">0.24999984</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>After inspecting this table, we see that the functional values less than 4 appear to be decreasing toward 0.25 whereas the functional values greater than 4 appear to be increasing toward 0.25. We conclude that $\lim_{x\to 4}\frac{\sqrt{x}-2}{x-4}=0.25.$ We confirm this estimate using the graph of <span data-fn="(sqrt(x)-2)/(x-4)">$\kf(x)=\frac{\sqrt{x}-2}{x-4}$</span> shown in Figure 2.14.</p>
+<figure class="sim" id="sim-root-table" data-figure="2.14" data-original="/media/ch02/CNX_Calc_Figure_02_02_004.jpg" data-original-caption="The graph of f(x)=(√x−2)/(x−4) confirms the estimate from Table 2.3.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.14</span><span>The <span data-concept="graph-of-a-function">graph of</span> $\kf(x)=\frac{\sqrt{x}-2}{x-4},$ with each row of Table 2.3 as a pair of points, one on each side of $4.$ Zoom in on the hole at $(4,0.25)$: the point on the left always sits above the dashed line $y=0.25$ and the point on the right below it, and at each step both are closer.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571656691"></div>
+<p>At this point, we see from Example 2.4 and Example 2.5 that it may be just as easy, if not easier, to estimate a <span data-concept="limit">limit of a function</span> by inspecting its graph as it is to estimate the <span data-concept="limit">limit</span> by using a <span data-concept="table-of-values">table of functional values</span>. In Example 2.6, we evaluate a <span data-concept="limit">limit</span> exclusively by looking at a graph rather than by using a <span data-concept="table-of-values">table of functional values</span>.</p>
+<div class="example" id="fs-id1170572337207">
+<h3>Example 2.6 · Evaluating a Limit Using a Graph</h3>
+<p>For $\kg(x)$ shown in Figure 2.15, evaluate $\lim_{x\to -1}\kg(x).$</p>
+<figure class="sim" id="fig-graph-limit" data-figure="2.15" data-original="/media/ch02/CNX_Calc_Figure_02_02_006.jpg" data-original-caption="The graph of g(x) includes one value not on a smooth curve.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.15</span><span>The <span data-concept="graph-of-a-function">graph of</span> $\kg(x)$ includes one value not on a smooth curve.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>Despite the fact that $\kg(-1)=4,$ as the <em>x</em>-values approach −1 from either side, the $\kg(x)$ values approach 3. Therefore, $\lim_{x\to -1}\kg(x)=3.$ Note that we can determine this <span data-concept="limit">limit</span> without even knowing the algebraic expression of the <span data-concept="function">function</span>.</p>
+</div>
+<p id="limit-not-value">Based on Example 2.6, we make the following observation: It is possible for the <span data-concept="limit">limit of a function</span> to exist at a point, and for the <span data-concept="function">function</span> to be defined at this point, but the <span data-concept="limit">limit of the function</span> and the value of the <span data-concept="function">function</span> at the point may be different.</p>
+<figure class="sim" id="fig-checkpoint-h" data-figure="2.16" data-original="/media/ch02/CNX_Calc_Figure_02_02_007.jpg" data-original-caption="">
+  <div class="sim-head"><span class="eyebrow">Figure 2.16</span></div>
+</figure>
+<div class="exercises" data-place="limit-not-value"></div>
+<p>Looking at a <span data-concept="table-of-values">table of functional values</span> or looking at the <span data-concept="graph-of-a-function">graph of a function</span> provides us with useful insight into the value of the <span data-concept="limit">limit of a function</span> at a given point. However, these techniques rely too much on guesswork. We eventually need to develop alternative methods of evaluating <span data-concept="limit">limits</span>. These new methods are more algebraic in nature and we explore them in the next section; however, at this point we introduce two special <span data-concept="limit">limits</span> that are foundational to the techniques to come.</p>
+<div class="note" id="two-important-limits-note">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="two-important-limits">Two Important Limits</span></h3>
+<p>Let <em>a</em> be a real number and <em>c</em> be a constant.</p>
+<ol>
+<li>$$\lim_{x\to a}x=a$$</li>
+<li>$$\lim_{x\to a}c=c$$</li>
+</ol>
+</div>
+<p>We can make the following observations about these two <span data-concept="limit">limits</span>.</p>
+<ol>
+<li><p>For the first <span data-concept="limit">limit</span>, observe that as <em>x</em> approaches <em>a</em>, so does $\kf(x),$ because $\kf(x)=x.$ Consequently, $\lim_{x\to a}x=a.$</p></li>
+<li><p>For the second <span data-concept="limit">limit</span>, consider Table 2.4.</p>
+<div class="book-table" id="fs-id1170571613026">
+  <div class="tcap"><span class="eyebrow">Table 2.4</span><span>Table of Functional Values for $\lim_{x\to a}c=c$</span></div>
+  <table>
+    <thead><tr><th><em>x</em></th><th>$\kf(x)=c$</th><th><em>x</em></th><th>$\kf(x)=c$</th></tr></thead>
+    <tbody>
+      <tr><td>$a-0.1$</td><td><em>c</em></td><td>$a+0.1$</td><td><em>c</em></td></tr>
+      <tr><td>$a-0.01$</td><td><em>c</em></td><td>$a+0.01$</td><td><em>c</em></td></tr>
+      <tr><td>$a-0.001$</td><td><em>c</em></td><td>$a+0.001$</td><td><em>c</em></td></tr>
+      <tr><td>$a-0.0001$</td><td><em>c</em></td><td>$a+0.0001$</td><td><em>c</em></td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Observe that for all values of <em>x</em> (regardless of whether they are approaching <em>a</em>), the values $\kf(x)$ remain constant at <em>c</em>. We have no choice but to conclude $\lim_{x\to a}c=c.$</p></li>
+</ol>
+</section>
+
+<section id="existence">
+<h2>The Existence of a Limit</h2>
+<p class="cite-target">As we consider the <span data-concept="limit">limit</span> in the next example, keep in mind that for the <span data-concept="existence-of-a-limit">limit of a function to exist</span> at a point, the functional values must approach a single real-number value at that point. If the functional values do not approach a single value, then the <span data-concept="existence-of-a-limit">limit does not exist</span>.</p>
+<div class="example" id="fs-id1170571656076">
+<h3>Example 2.7 · Evaluating a Limit That Fails to Exist</h3>
+<p>Evaluate <span data-fn="sin(1/x)">$\lim_{x\to 0}\sin(1/x)$</span> using a <span data-concept="table-of-values">table of values</span>.</p>
+<h4>Solution</h4>
+<p>Table 2.5 lists values for the <span data-concept="function">function</span> <span data-fn="sin(1/x)">$\sin(1/x)$</span> for the given values of <em>x</em>.</p>
+<div class="book-table" id="fs-id1170572233784">
+  <div class="tcap"><span class="eyebrow">Table 2.5</span><span>Table of Functional Values for $\lim_{x\to 0}\sin(\frac{1}{x})$</span></div>
+  <table>
+    <thead><tr><th><em>x</em></th><th>$\sin(\frac{1}{x})$</th><th><em>x</em></th><th>$\sin(\frac{1}{x})$</th></tr></thead>
+    <tbody>
+      <tr><td class="num">−0.1</td><td class="num">0.544021110889</td><td class="num">0.1</td><td class="num">−0.544021110889</td></tr>
+      <tr><td class="num">−0.01</td><td class="num">0.50636564111</td><td class="num">0.01</td><td class="num">−0.50636564111</td></tr>
+      <tr><td class="num">−0.001</td><td class="num">−0.8268795405312<sup class="fn" data-note="table-2-5-value"></sup></td><td class="num">0.001</td><td class="num">0.826879540532</td></tr>
+      <tr><td class="num">−0.0001</td><td class="num">0.305614388888</td><td class="num">0.0001</td><td class="num">−0.305614388888</td></tr>
+      <tr><td class="num">−0.00001</td><td class="num">−0.035748797987</td><td class="num">0.00001</td><td class="num">0.035748797987</td></tr>
+      <tr><td class="num">−0.000001</td><td class="num">0.349993504187</td><td class="num">0.000001</td><td class="num">−0.349993504187</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>After examining the <span data-concept="table-of-values">table of functional values</span>, we can see that the <em>y</em>-values do not seem to approach any one single value. It appears the <span data-concept="existence-of-a-limit">limit does not exist</span>. Before drawing this conclusion, let’s take a more systematic approach. Take the following sequence of <em>x</em>-values approaching 0:</p>
+$$\frac{2}{\pi},\frac{2}{3\pi},\frac{2}{5\pi},\frac{2}{7\pi},\frac{2}{9\pi},\frac{2}{11\pi},\ldots.$$
+<p>The corresponding <em>y</em>-values are</p>
+$$1,-1,1,-1,1,-1,\ldots.$$
+<p>At this point we can indeed conclude that $\lim_{x\to 0}\sin(1/x)$ <span data-concept="existence-of-a-limit">does not exist</span>. (Mathematicians frequently abbreviate “does not exist” as <span data-concept="existence-of-a-limit">DNE</span>. Thus, we would write $\lim_{x\to 0}\sin(1/x)$ <span data-concept="existence-of-a-limit">DNE</span>.) The graph of <span data-fn="sin(1/x)">$\kf(x)=\sin(1/x)$</span> is shown in Figure 2.17 and it gives a clearer picture of the behavior of $\sin(1/x)$ as <em>x</em> approaches 0. You can see that $\sin(1/x)$ oscillates ever more wildly between −1 and 1 as <em>x</em> approaches 0.</p>
+<figure class="sim" id="sim-oscillation" data-figure="2.17" data-original="/media/ch02/CNX_Calc_Figure_02_02_008.jpg" data-original-caption="The graph of f(x)=sin(1/x) oscillates rapidly between −1 and 1 as x approaches 0.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.17</span><span>The <span data-concept="graph-of-a-function">graph of</span> $\kf(x)=\sin(1/x)$ near $0,$ with the points of the sequence $x=\frac{2}{\pi},\frac{2}{3\pi},\frac{2}{5\pi},\ldots$ marked at heights $1,-1,1,\ldots.$ Zoom in on $x=0$ as far as you like: the window narrows a thousandfold, and the graph still swings all the way between −1 and 1, faster and faster toward $0,$ until its swings fill a solid band. No single value is ever approached.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571656076"></div>
+</section>
+
+<section id="one-sided">
+<h2>One-Sided Limits</h2>
+<p class="cite-target">Sometimes indicating that the <span data-concept="existence-of-a-limit">limit of a function fails to exist</span> at a point does not provide us with enough information about the behavior of the <span data-concept="function">function</span> at that particular point. To see this, we now revisit the <span data-concept="function">function</span> <span data-fn="abs(x-2)/(x-2)">$\kg(x)=|x-2|/(x-2)$</span> introduced at the beginning of the section (see Figure 2.12(b)). As we pick values of <em>x</em> close to 2, $\kg(x)$ does not approach a single value, so the <span data-concept="limit">limit as <em>x</em> approaches 2</span> <span data-concept="existence-of-a-limit">does not exist</span>—that is, $\lim_{x\to 2}\kg(x)$ <span data-concept="existence-of-a-limit">DNE</span>. However, this statement alone does not give us a complete picture of the behavior of the <span data-concept="function">function</span> around the <em>x</em>-value 2. To provide a more accurate description, we introduce the idea of a <strong><span data-concept="one-sided-limit">one-sided limit</span></strong>. For all values to the left of 2 (or <em>the negative side of</em> 2), $\kg(x)=-1.$ Thus, as <em>x</em> approaches 2 from the left, $\kg(x)$ approaches −1. Mathematically, we say that the <span data-concept="one-sided-limit">limit as <em>x</em> approaches 2 from the left</span> is −1. Symbolically, we express this idea as</p>
+$$\lim_{x\to 2^{-}}\kg(x)=-1.$$
+<p>Similarly, as <em>x</em> approaches 2 from the right (or <em>from the positive side</em>), $\kg(x)$ approaches 1. Symbolically, we express this idea as</p>
+$$\lim_{x\to 2^{+}}\kg(x)=1.$$
+<p>We can now present an informal definition of <span data-concept="one-sided-limit">one-sided limits</span>.</p>
+<div class="note" id="one-sided-definition">
+<div class="eyebrow">Definition</div>
+<p>We define two types of <strong><span data-concept="one-sided-limit">one-sided limits</span></strong>.</p>
+<p><em><span data-concept="one-sided-limit">Limit from the left</span>:</em> Let $\kf(x)$ be a <span data-concept="function">function</span> defined at all values in an <span data-concept="interval-notation">open interval</span> of the form (<em>c</em>, <em>a</em>), and let $\kL$ be a real number. If the values of the <span data-concept="function">function</span> $\kf(x)$ approach the real number $\kL$ as the values of <em>x</em> (where $x\lt a)$ approach the number <em>a</em>, then we say that $\kL$ is the <span data-concept="one-sided-limit">limit of $\kf(x)$ as <em>x</em> approaches a from the left</span>. Symbolically, we express this idea as</p>
+$$\lim_{x\to a^{-}}\kf(x)=\kL.$$
+<p><em><span data-concept="one-sided-limit">Limit from the right</span>:</em> Let $\kf(x)$ be a <span data-concept="function">function</span> defined at all values in an <span data-concept="interval-notation">open interval</span> of the form $(a,c),$ and let $\kL$ be a real number. If the values of the <span data-concept="function">function</span> $\kf(x)$ approach the real number $\kL$ as the values of <em>x</em> (where $x\gt a)$ approach the number <em>a</em>, then we say that $\kL$ is the <span data-concept="one-sided-limit">limit of $\kf(x)$ as <em>x</em> approaches <em>a</em> from the right</span>. Symbolically, we express this idea as</p>
+$$\lim_{x\to a^{+}}\kf(x)=\kL.$$
+</div>
+<div class="example" id="fs-id1170571614880">
+<h3>Example 2.8 · Evaluating One-Sided Limits</h3>
+<p>For the <span data-concept="function">function</span> <span data-fn="{x&lt;2: x+1, x^2-4}">$\kf(x)=\begin{cases}x+1 & \text{if}\;x\lt 2\\ x^{2}-4 & \text{if}\;x\ge 2\end{cases},$</span> evaluate each of the following <span data-concept="one-sided-limit">limits</span>.</p>
+<ol type="a"><li>$\lim_{x\to 2^{-}}\kf(x)$</li><li>$\lim_{x\to 2^{+}}\kf(x)$</li></ol>
+<h4>Solution</h4>
+<p>We can use <span data-concept="table-of-values">tables of functional values</span> again Table 2.6. Observe that for values of <em>x</em> less than 2, we use $\kf(x)=x+1$ and for values of <em>x</em> greater than 2, we use $\kf(x)=x^{2}-4.$</p>
+<div class="book-table" id="fs-id1170572347185">
+  <div class="tcap"><span class="eyebrow">Table 2.6</span><span>Table of Functional Values for $\kf(x)=\begin{cases}x+1\;\text{if}\;x\lt 2\\ x^{2}-4\;\text{if}\;x\ge 2\end{cases}$</span></div>
+  <table>
+    <thead><tr><th><em>x</em></th><th>$\kf(x)=x+1$</th><th><em>x</em></th><th>$\kf(x)=x^{2}-4$</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1.9</td><td class="num">2.9</td><td class="num">2.1</td><td class="num">0.41</td></tr>
+      <tr><td class="num">1.99</td><td class="num">2.99</td><td class="num">2.01</td><td class="num">0.0401</td></tr>
+      <tr><td class="num">1.999</td><td class="num">2.999</td><td class="num">2.001</td><td class="num">0.004001</td></tr>
+      <tr><td class="num">1.9999</td><td class="num">2.9999</td><td class="num">2.0001</td><td class="num">0.00040001</td></tr>
+      <tr><td class="num">1.99999</td><td class="num">2.99999</td><td class="num">2.00001</td><td class="num">0.0000400001</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Based on this table, we can conclude that a. $\lim_{x\to 2^{-}}\kf(x)=3$ and b. $\lim_{x\to 2^{+}}\kf(x)=0.$ Therefore, the (two-sided) <span data-concept="limit">limit of $\kf(x)$</span> <span data-concept="existence-of-a-limit">does not exist</span> at $x=2.$ Figure 2.18 shows a graph of $\kf(x)$ and reinforces our conclusion about these <span data-concept="one-sided-limit">limits</span>.</p>
+<figure class="sim" id="sim-one-sided" data-figure="2.18" data-original="/media/ch02/CNX_Calc_Figure_02_02_010.jpg" data-original-caption="The graph of f(x) = {x+1 if x&lt;2; x²−4 if x≥2} has a break at x=2.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.18</span><span>The <span data-concept="graph-of-a-function">graph of</span> $\kf(x)$ has a break at $x=2.$ Drag one point toward $2$ along $x+1$ from the left and the other along $x^{2}-4$ from the right. The left point heads for the open circle at $(2,3)$ and the right one for the filled point $(2,0)$: the <span data-concept="one-sided-limit">limit from the left</span> is 3, the <span data-concept="one-sided-limit">limit from the right</span> is 0, and since they differ, the two-sided <span data-concept="limit">limit</span> <span data-concept="existence-of-a-limit">does not exist</span>.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571614880"></div>
+<p>Let us now consider the relationship between the <span data-concept="limit">limit of a function</span> at a point and the <span data-concept="one-sided-limit">limits from the right and left</span> at that point. It seems clear that if the <span data-concept="one-sided-limit">limit from the right</span> and the <span data-concept="one-sided-limit">limit from the left</span> have a common value, then that common value is the <span data-concept="limit">limit of the function</span> at that point. Similarly, if the <span data-concept="one-sided-limit">limit from the left</span> and the <span data-concept="one-sided-limit">limit from the right</span> take on different values, the <span data-concept="limit">limit of the function</span> <span data-concept="existence-of-a-limit">does not exist</span>. These conclusions are summarized in Relating One-Sided and Two-Sided Limits.</p>
+<div class="note" id="one-and-two-sided-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="one-sided-and-two-sided-limits">Relating One-Sided and Two-Sided Limits</span></h3>
+<p>Let $\kf(x)$ be a <span data-concept="function">function</span> defined at all values in an <span data-concept="interval-notation">open interval</span> containing <em>a</em>, with the possible exception of <em>a</em> itself, and let $\kL$ be a real number. Then,</p>
+$$\lim_{x\to a}\kf(x)=\kL\;\text{if and only if}\;\lim_{x\to a^{-}}\kf(x)=\kL\;\text{and}\;\lim_{x\to a^{+}}\kf(x)=\kL.$$
+</div>
+</section>
+
+<section id="infinite-limits">
+<h2>Infinite Limits</h2>
+<p class="cite-target">Evaluating the <span data-concept="limit">limit of a function</span> at a point or evaluating the <span data-concept="one-sided-limit">limit of a function from the right and left</span> at a point helps us to characterize the behavior of a <span data-concept="function">function</span> around a given value. As we shall see, we can also describe the behavior of <span data-concept="function">functions</span> that do not have finite <span data-concept="limit">limits</span>.</p>
+<p>We now turn our attention to <span data-fn="1/(x-2)^2">$\kh(x)=1/(x-2)^{2},$</span> the third and final <span data-concept="function">function</span> introduced at the beginning of this section (see Figure 2.12(c)). From its graph we see that as the values of <em>x</em> approach 2, the values of <span data-fn="1/(x-2)^2">$\kh(x)=1/(x-2)^{2}$</span> become larger and larger and, in fact, become infinite. Mathematically, we say that the <span data-concept="infinite-limit">limit of $\kh(x)$ as <em>x</em> approaches 2 is positive infinity</span>. Symbolically, we express this idea as</p>
+$$\lim_{x\to 2}\kh(x)=+\infty.$$
+<p>More generally, we define <strong><span data-concept="infinite-limit">infinite limits</span></strong> as follows:</p>
+<div class="note" id="infinite-limit-definition">
+<div class="eyebrow">Definition</div>
+<p>We define three types of <strong><span data-concept="infinite-limit">infinite limits</span></strong>.</p>
+<p><em><span data-concept="infinite-limit">Infinite limits from the left</span>:</em> Let $\kf(x)$ be a <span data-concept="function">function</span> defined at all values in an <span data-concept="interval-notation">open interval</span> of the form $(b,a).$</p>
+<ol>
+<li><p>If the values of $\kf(x)$ increase without bound as the values of <em>x</em> (where $x\lt a)$ approach the number <em>a</em>, then we say that the <span data-concept="infinite-limit">limit as <em>x</em> approaches <em>a</em> from the left is positive infinity</span> and we write</p>
+$$\lim_{x\to a^{-}}\kf(x)=+\infty.$$</li>
+<li><p>If the values of $\kf(x)$ decrease without bound as the values of <em>x</em> (where $x\lt a)$ approach the number <em>a</em>, then we say that the <span data-concept="infinite-limit">limit as <em>x</em> approaches <em>a</em> from the left is negative infinity</span> and we write</p>
+$$\lim_{x\to a^{-}}\kf(x)=-\infty.$$</li>
+</ol>
+<p><em><span data-concept="infinite-limit">Infinite limits from the right</span></em>: Let $\kf(x)$ be a <span data-concept="function">function</span> defined at all values in an <span data-concept="interval-notation">open interval</span> of the form $(a,c).$</p>
+<ol>
+<li><p>If the values of $\kf(x)$ increase without bound as the values of <em>x</em> (where $x\gt a)$ approach the number <em>a</em>, then we say that the <span data-concept="infinite-limit">limit as <em>x</em> approaches <em>a</em> from the right is positive infinity</span> and we write</p>
+$$\lim_{x\to a^{+}}\kf(x)=+\infty.$$</li>
+<li><p>If the values of $\kf(x)$ decrease without bound as the values of <em>x</em> (where $x\gt a)$ approach the number <em>a</em>, then we say that the <span data-concept="infinite-limit">limit as <em>x</em> approaches <em>a</em> from the right is negative infinity</span> and we write</p>
+$$\lim_{x\to a^{+}}\kf(x)=-\infty.$$</li>
+</ol>
+<p><em><span data-concept="infinite-limit">Two-sided infinite limit</span>:</em> Let $\kf(x)$ be defined for all $x\ne a$ in an <span data-concept="interval-notation">open interval</span> containing <em>a</em>.</p>
+<ol>
+<li><p>If the values of $\kf(x)$ increase without bound as the values of <em>x</em> (where $x\ne a)$ approach the number <em>a</em>, then we say that the <span data-concept="infinite-limit">limit as <em>x</em> approaches <em>a</em> is positive infinity</span> and we write</p>
+$$\lim_{x\to a}\kf(x)=+\infty.$$</li>
+<li><p>If the values of $\kf(x)$ decrease without bound as the values of <em>x</em> (where $x\ne a)$ approach the number <em>a</em>, then we say that the <span data-concept="infinite-limit">limit as <em>x</em> approaches <em>a</em> is negative infinity</span> and we write</p>
+$$\lim_{x\to a}\kf(x)=-\infty.$$</li>
+</ol>
+</div>
+<p>It is important to understand that when we write statements such as $\lim_{x\to a}\kf(x)=+\infty$ or $\lim_{x\to a}\kf(x)=-\infty$ we are describing the behavior of the <span data-concept="function">function</span>, as we have just defined it. We are not asserting that a <span data-concept="existence-of-a-limit">limit exists</span>. For the <span data-concept="existence-of-a-limit">limit of a function $\kf(x)$ to exist</span> at <em>a</em>, it must approach a real number $\kL$ as <em>x</em> approaches <em>a</em>. That said, if, for example, $\lim_{x\to a}\kf(x)=+\infty,$ we always write $\lim_{x\to a}\kf(x)=+\infty$ rather than $\lim_{x\to a}\kf(x)$ <span data-concept="existence-of-a-limit">DNE</span>.</p>
+<div class="example" id="fs-id1170571611150">
+<h3>Example 2.9 · Recognizing an Infinite Limit</h3>
+<p>Evaluate each of the following <span data-concept="limit">limits</span>, if possible. Use a <span data-concept="table-of-values">table of functional values</span> and graph <span data-fn="1/x">$\kf(x)=1/x$</span> to confirm your conclusion.</p>
+<ol type="a"><li>$\lim_{x\to 0^{-}}\frac{1}{x}$</li><li>$\lim_{x\to 0^{+}}\frac{1}{x}$</li><li>$\lim_{x\to 0}\frac{1}{x}$</li></ol>
+<h4>Solution</h4>
+<p>Begin by constructing a <span data-concept="table-of-values">table of functional values</span>.</p>
+<div class="book-table" id="fs-id1170572346981">
+  <div class="tcap"><span class="eyebrow">Table 2.7</span><span>Table of Functional Values for $\kf(x)=\frac{1}{x}$</span></div>
+  <table>
+    <thead><tr><th><em>x</em></th><th>$\frac{1}{x}$</th><th><em>x</em></th><th>$\frac{1}{x}$</th></tr></thead>
+    <tbody>
+      <tr><td class="num">−0.1</td><td class="num">−10</td><td class="num">0.1</td><td class="num">10</td></tr>
+      <tr><td class="num">−0.01</td><td class="num">−100</td><td class="num">0.01</td><td class="num">100</td></tr>
+      <tr><td class="num">−0.001</td><td class="num">−1000</td><td class="num">0.001</td><td class="num">1000</td></tr>
+      <tr><td class="num">−0.0001</td><td class="num">−10,000</td><td class="num">0.0001</td><td class="num">10,000</td></tr>
+      <tr><td class="num">−0.00001</td><td class="num">−100,000</td><td class="num">0.00001</td><td class="num">100,000</td></tr>
+      <tr><td class="num">−0.000001</td><td class="num">−1,000,000</td><td class="num">0.000001</td><td class="num">1,000,000</td></tr>
+    </tbody>
+  </table>
+</div>
+<ol type="a">
+<li><p>The values of $1/x$ decrease without bound as <em>x</em> approaches 0 from the left. We conclude that</p>
+$$\lim_{x\to 0^{-}}\frac{1}{x}=-\infty.$$</li>
+<li><p>The values of $1/x$ increase without bound as <em>x</em> approaches 0 from the right. We conclude that</p>
+$$\lim_{x\to 0^{+}}\frac{1}{x}=+\infty.$$</li>
+<li><p>Since $\lim_{x\to 0^{-}}\frac{1}{x}=-\infty$ and $\lim_{x\to 0^{+}}\frac{1}{x}=+\infty$ have different values, we conclude that</p>
+$$\lim_{x\to 0}\frac{1}{x}\;\text{DNE.}$$</li>
+</ol>
+<p>The graph of <span data-fn="1/x">$\kf(x)=1/x$</span> in Figure 2.19 confirms these conclusions.</p>
+<figure class="sim" id="fig-reciprocal" data-figure="2.19" data-original="/media/ch02/CNX_Calc_Figure_02_02_012.jpg" data-original-caption="The graph of f(x)=1/x confirms that the limit as x approaches 0 does not exist.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.19</span><span>The graph of $\kf(x)=1/x$ confirms that the <span data-concept="limit">limit as <em>x</em> approaches 0</span> <span data-concept="existence-of-a-limit">does not exist</span>.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571611150"></div>
+<p>It is useful to point out that <span data-concept="function">functions</span> of the form $\kf(x)=1/(x-a)^{n},$ where <em>n</em> is a positive integer, have <span data-concept="infinite-limit">infinite limits</span> as <em>x</em> approaches <em>a</em> from either the left or right (Figure 2.20). These <span data-concept="limit">limits</span> are summarized in Infinite Limits from Positive Integers.</p>
+<figure class="sim" id="sim-power-poles" data-figure="2.20" data-original="/media/ch02/CNX_Calc_Figure_02_02_014.jpg" data-original-caption="The function f(x)=1/(x−a)ⁿ has infinite limits at a.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.20</span><span>The <span data-concept="function">function</span> $\kf(x)=1/(x-a)^{n}$ has <span data-concept="infinite-limit">infinite limits</span> at <em>a</em>. Step <em>n</em> from 1 to 4: on the right of the dashed line $x=a$ the graph always climbs without bound, while on the left it falls for odd <em>n</em> and climbs for even <em>n</em>, so only an even power has the same <span data-concept="infinite-limit">infinite limit</span> from both sides.</span></div>
+</figure>
+<div class="note" id="power-poles-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="infinite-limits-from-positive-integers">Infinite Limits from Positive Integers</span></h3>
+<p>If <em>n</em> is a positive even integer, then</p>
+$$\lim_{x\to a}\frac{1}{(x-a)^{n}}=+\infty.$$
+<p>If <em>n</em> is a positive odd integer, then</p>
+$$\lim_{x\to a^{+}}\frac{1}{(x-a)^{n}}=+\infty$$
+<p>and</p>
+$$\lim_{x\to a^{-}}\frac{1}{(x-a)^{n}}=-\infty.$$
+</div>
+<p>We should also point out that in the graphs of $\kf(x)=1/(x-a)^{n},$ points on the graph having <em>x</em>-coordinates very near to <em>a</em> are very close to the vertical line $x=a.$ That is, as <em>x</em> approaches <em>a</em>, the points on the graph of $\kf(x)$ are closer to the line $x=a.$ The line $x=a$ is called a <strong><span data-concept="vertical-asymptote">vertical asymptote</span></strong> of the graph. We formally define a <span data-concept="vertical-asymptote">vertical asymptote</span> as follows:</p>
+<div class="note" id="vertical-asymptote-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf(x)$ be a <span data-concept="function">function</span>. If any of the following conditions hold, then the line $x=a$ is a <strong><span data-concept="vertical-asymptote">vertical asymptote</span></strong> of $\kf(x).$</p>
+$$\begin{array}{rll}\lim_{x\to a^{-}}\kf(x) & = & +\infty\;\text{or}\;-\infty\\ \lim_{x\to a^{+}}\kf(x) & = & +\infty\;\text{or}\;-\infty\\ & \;\text{or} & \\ \lim_{x\to a}\kf(x) & = & +\infty\;\text{or}\;-\infty\end{array}$$
+</div>
+<div class="example" id="fs-id1170571656614">
+<h3>Example 2.10 · Finding a Vertical Asymptote</h3>
+<p>Evaluate each of the following <span data-concept="limit">limits</span> using Infinite Limits from Positive Integers. Identify any <span data-concept="vertical-asymptote">vertical asymptotes</span> of the <span data-concept="function">function</span> <span data-fn="1/(x+3)^4">$\kf(x)=1/(x+3)^{4}.$</span></p>
+<ol type="a"><li>$\lim_{x\to -3^{-}}\frac{1}{(x+3)^{4}}$</li><li>$\lim_{x\to -3^{+}}\frac{1}{(x+3)^{4}}$</li><li>$\lim_{x\to -3}\frac{1}{(x+3)^{4}}$</li></ol>
+<h4>Solution</h4>
+<p>We can use Infinite Limits from Positive Integers directly.</p>
+<ol type="a"><li>$\lim_{x\to -3^{-}}\frac{1}{(x+3)^{4}}=+\infty$</li><li>$\lim_{x\to -3^{+}}\frac{1}{(x+3)^{4}}=+\infty$</li><li>$\lim_{x\to -3}\frac{1}{(x+3)^{4}}=+\infty$</li></ol>
+<p>The <span data-concept="function">function</span> <span data-fn="1/(x+3)^4">$\kf(x)=1/(x+3)^{4}$</span> has a <span data-concept="vertical-asymptote">vertical asymptote</span> of $x=-3.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170571656614"></div>
+<p>In the next example we put our knowledge of various types of <span data-concept="limit">limits</span> to use to analyze the behavior of a <span data-concept="function">function</span> at several different points.</p>
+<div class="example" id="fs-id1170572642384">
+<h3>Example 2.11 · Behavior of a Function at Different Points</h3>
+<p>Use the graph of $\kf(x)$ in Figure 2.21 to determine each of the following values:</p>
+<ol type="a">
+<li>$\lim_{x\to -4^{-}}\kf(x);\lim_{x\to -4^{+}}\kf(x);\lim_{x\to -4}\kf(x);\kf(-4)$</li>
+<li>$\lim_{x\to -2^{-}}\kf(x);\lim_{x\to -2^{+}}\kf(x);\lim_{x\to -2}\kf(x);\kf(-2)$</li>
+<li>$\lim_{x\to 1^{-}}\kf(x);\lim_{x\to 1^{+}}\kf(x);\lim_{x\to 1}\kf(x);\kf(1)$</li>
+<li>$\lim_{x\to 3^{-}}\kf(x);\lim_{x\to 3^{+}}\kf(x);\lim_{x\to 3}\kf(x);\kf(3)$</li>
+</ol>
+<figure class="sim" id="fig-four-points" data-figure="2.21" data-original="/media/ch02/CNX_Calc_Figure_02_02_015.jpg" data-original-caption="The graph shows f(x).">
+  <div class="sim-head"><span class="eyebrow">Figure 2.21</span><span>The graph shows $\kf(x).$</span></div>
+</figure>
+<h4>Solution</h4>
+<p>Using Infinite Limits from Positive Integers and the graph for reference, we arrive at the following values:</p>
+<ol type="a">
+<li>$\lim_{x\to -4^{-}}\kf(x)=0;\lim_{x\to -4^{+}}\kf(x)=0;\lim_{x\to -4}\kf(x)=0;\kf(-4)=0$</li>
+<li>$\lim_{x\to -2^{-}}\kf(x)=3.;\lim_{x\to -2^{+}}\kf(x)=3;\lim_{x\to -2}\kf(x)=3;\kf(-2)$ is undefined</li>
+<li>$\lim_{x\to 1^{-}}\kf(x)=6;\lim_{x\to 1^{+}}\kf(x)=3;\lim_{x\to 1}\kf(x)$ <span data-concept="existence-of-a-limit">DNE</span>; $\kf(1)=6$</li>
+<li>$\lim_{x\to 3^{-}}\kf(x)=-\infty;\lim_{x\to 3^{+}}\kf(x)=-\infty;\lim_{x\to 3}\kf(x)=-\infty;\kf(3)$ is undefined</li>
+</ol>
+</div>
+<div class="exercises" data-place="fs-id1170572642384"></div>
+<div class="example" id="ex-einstein">
+<h3>Example 2.12 · Chapter Opener: Einstein’s Equation</h3>
+<figure class="photo" id="fig-spaceship" data-figure="2.22">
+  <img src="/media/ch02/CNX_Calc_Figure_02_02_018.jpg" alt="A picture of a futuristic spaceship speeding through deep space.">
+  <figcaption><span class="eyebrow">Figure 2.22</span><span>(credit: NASA)</span></figcaption>
+</figure>
+<p>In the chapter opener we mentioned briefly how Albert Einstein showed that a <span data-concept="limit">limit</span> exists to how fast any object can travel. Given Einstein’s equation for the mass of a moving object, what is the value of this bound?</p>
+<h4>Solution</h4>
+<p>Our starting point is Einstein’s equation for the mass of a moving object,</p>
+$$m=\frac{m_{0}}{\sqrt{1-\frac{v^{2}}{c^{2}}}},$$
+<p>where $m_{0}$ is the object’s mass at rest, <em>v</em> is its speed, and <em>c</em> is the speed of light. To see how the mass changes at high speeds, we can graph the ratio of masses $m/m_{0}$ as a <span data-concept="function">function</span> of the ratio of speeds, $v/c$ (Figure 2.23).</p>
+<figure class="sim" id="sim-einstein" data-figure="2.23" data-original="/media/ch02/CNX_Calc_Figure_02_02_017.jpg" data-original-caption="This graph shows the ratio of masses as a function of the ratio of speeds in Einstein’s equation for the mass of a moving object.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.23</span><span>The ratio of masses $m/m_{0}$ as a <span data-concept="function">function</span> of the ratio of speeds $v/c.$ Drag $v/c$ toward 1: the ratio stays near 1 for most of the way, then climbs without bound as the curve runs up beside the dashed line $v/c=1,$ the <span data-concept="vertical-asymptote">vertical asymptote</span>. The three rows of Table 2.8 are marked on the curve, and the axis stretches to keep the point in view.</span></div>
+</figure>
+<p>We can see that as the ratio of speeds approaches 1—that is, as the speed of the object approaches the speed of light—the ratio of masses increases without bound. In other words, the <span data-concept="function">function</span> has a <span data-concept="vertical-asymptote">vertical asymptote</span> at $v/c=1.$ We can try a few values of this ratio to test this idea.</p>
+<div class="book-table" id="fs-id1170572597937">
+  <div class="tcap"><span class="eyebrow">Table 2.8</span><span>Ratio of Masses and Speeds for a Moving Object</span></div>
+  <table>
+    <thead><tr><th>$\frac{v}{c}$</th><th>$\sqrt{1-\frac{v^{2}}{c^{2}}}$</th><th>$\frac{m}{m_{0}}$</th></tr></thead>
+    <tbody>
+      <tr><td class="num">0.99</td><td class="num">0.1411</td><td class="num">7.089</td></tr>
+      <tr><td class="num">0.999</td><td class="num">0.0447</td><td class="num">22.37</td></tr>
+      <tr><td class="num">0.9999</td><td class="num">0.0141</td><td class="num">70.71</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Thus, according to Table 2.8, if an object with mass 100 kg is traveling at 0.9999<em>c</em>, its mass becomes 7071 kg. Since no object can have an infinite mass, we conclude that no object can travel at or more than the speed of light.</p>
+</div>
+</section>
