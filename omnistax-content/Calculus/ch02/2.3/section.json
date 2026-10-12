@@ -1,0 +1,1389 @@
+{
+ "id": "2.3",
+ "module": "m53492",
+ "chapter": "2",
+ "title": "The Limit Laws",
+ "short": "The Limit Laws",
+ "lead": "Here <span data-concept=\"limit\">limits</span> are calculated by laws rather than read from tables and graphs: the <span data-concept=\"limit-laws\">limit laws</span> for sums, products, quotients, powers and roots, the <span data-concept=\"limit\">limits</span> of <span data-concept=\"polynomial-function\">polynomial</span> and <span data-concept=\"rational-function\">rational functions</span>, the techniques for the <span data-concept=\"indeterminate-form\">indeterminate form</span> 0/0 and the form <em>K</em>/0, and the <span data-concept=\"squeeze-theorem\">squeeze theorem</span>, which traps a <span data-concept=\"function\">function</span> between two others and leads to the basic trigonometric <span data-concept=\"limit\">limits</span>.",
+ "objectives": [
+  "Recognize the basic limit laws.",
+  "Use the limit laws to evaluate the limit of a function.",
+  "Evaluate the limit of a function by factoring.",
+  "Use the limit laws to evaluate the limit of a polynomial or rational function.",
+  "Evaluate the limit of a function by factoring or by using conjugates.",
+  "Evaluate the limit of a function by using the squeeze theorem."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"limit-laws\">limit laws</span> allow us to evaluate <span data-concept=\"limit\">limits</span> of <span data-concept=\"function\">functions</span> without having to go through step-by-step processes each time.</li><li>For <span data-concept=\"polynomial-function\">polynomials</span> and <span data-concept=\"rational-function\">rational functions</span>, $\\lim_{x\\to a}\\kf(x)=\\kf(a).$</li><li>You can evaluate the <span data-concept=\"limit\">limit</span> of a <span data-concept=\"function\">function</span> by factoring and canceling, by multiplying by a conjugate, or by simplifying a complex fraction.</li><li>The <span data-concept=\"squeeze-theorem\">squeeze theorem</span> allows you to find the <span data-concept=\"limit\">limit</span> of a <span data-concept=\"function\">function</span> if the <span data-concept=\"function\">function</span> is always greater than one <span data-concept=\"function\">function</span> and less than another <span data-concept=\"function\">function</span> with <span data-concept=\"limit\">limits</span> that are known.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but one. A checkpoint answered in words keeps the book’s hint at the head of its answer. The 24 even-numbered section exercises have no answer in the book’s key. Exercise 126, a true-or-false question about the squeeze theorem, is kept with an AI-written suggested approach; the other 23 are computational and are left out: exercises 84 and 86 (the limit laws), 88, 90 and 92 (direct substitution), 94, 96, 98, 100 and 102 (the form 0/0), 104 and 106 (the form K/0), 108, 110, 112 and 114 (limits of f, g and h at 6), 116 (a piecewise function), 118, 120, 122 and 124 (limits read from the graphs), 128 (the rational and irrational piecewise function) and 130 (the volume as density goes to 0). The review exercises printed at the end of Section 2.5 that test this section are added here once that section is built.",
+ "figures": [
+  {
+   "id": "sim-equal-except-at-one",
+   "kind": "sim",
+   "number": "2.24",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_03_001.jpg"
+   ],
+   "original_caption": "The graphs of f(x) and g(x) are identical for all x≠1. Their limits at 1 are equal.",
+   "draws": [
+    "function",
+    "point",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-root-one-sided",
+   "kind": "figure",
+   "number": "2.25",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_03_002.jpg"
+   ],
+   "original_caption": "The graph shows the function f(x)=√(x−3).",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-piecewise-two-sided",
+   "kind": "figure",
+   "number": "2.26",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_03_003.jpg"
+   ],
+   "original_caption": "This graph shows a function f(x).",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-squeeze",
+   "kind": "sim",
+   "number": "2.27",
+   "folds": [
+    "2.28"
+   ],
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_03_005.jpg",
+    "/media/ch02/CNX_Calc_Figure_02_03_006.jpg"
+   ],
+   "original_caption": "(Figure 2.27) The Squeeze Theorem applies when f(x)≤g(x)≤h(x) and lim_{x→a} f(x)=lim_{x→a} h(x). (Figure 2.28) The graphs of f(x), g(x), and h(x) are shown around the point x=0.",
+   "draws": [
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-unit-circle-squeeze",
+   "kind": "sim",
+   "number": "2.29",
+   "folds": [
+    "2.30"
+   ],
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_03_007.jpg",
+    "/media/ch02/CNX_Calc_Figure_02_03_008.jpg"
+   ],
+   "original_caption": "(Figure 2.29) The sine function is shown as a line on the unit circle. (Figure 2.30) The sine and tangent functions are shown as lines on the unit circle.",
+   "draws": [
+    "angle",
+    "function",
+    "limit",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-inscribed-triangle",
+   "kind": "figure",
+   "number": "2.31",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_03_009.jpg"
+   ],
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "limit-laws",
+   "concept": "limit-laws",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-laws-note",
+   "concept": "sum-law-for-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-laws-note",
+   "concept": "difference-law-for-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-laws-note",
+   "concept": "constant-multiple-law-for-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-laws-note",
+   "concept": "product-law-for-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-laws-note",
+   "concept": "quotient-law-for-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-laws-note",
+   "concept": "power-law-for-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-laws-note",
+   "concept": "root-law-for-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "polynomial-rational-theorem",
+   "concept": "limits-of-polynomial-and-rational-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "techniques",
+   "concept": "limits-of-equal-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "indeterminate-form-paragraph",
+   "concept": "indeterminate-form",
+   "verb": "introduces"
+  },
+  {
+   "span": "zero-over-zero-strategy",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "verb": "introduces"
+  },
+  {
+   "span": "squeeze",
+   "concept": "squeeze-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-limits",
+   "concept": "important-trigonometric-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "basic-limit-results",
+   "concept": "two-important-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572451489",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572509954",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572305829",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571679268",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571558882",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571611196",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572305829",
+   "concept": "limits-of-polynomial-and-rational-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572305829",
+   "concept": "rational-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571669713",
+   "concept": "indeterminate-form",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571669713",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572307613",
+   "concept": "indeterminate-form",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572307613",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571612021",
+   "concept": "indeterminate-form",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571612021",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571648139",
+   "concept": "indeterminate-form",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571648139",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571679268",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571558882",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571611196",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571558882",
+   "concept": "piecewise-defined-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571611196",
+   "concept": "infinite-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571654228",
+   "concept": "squeeze-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572243714",
+   "concept": "important-trigonometric-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "area-of-a-circle-project",
+   "concept": "important-trigonometric-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "trig-limits",
+   "concept": "squeeze-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "trig-limits",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "trig-limits",
+   "concept": "radian",
+   "verb": "uses"
+  },
+  {
+   "span": "polynomial-rational",
+   "concept": "polynomial-function",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170571655298",
+   "source_number": "Checkpoint 2.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572509954"
+   },
+   "cite": "limit-laws",
+   "prompt": "Use the limit laws to evaluate $\\lim_{x\\to 6}(2x-1)\\sqrt{x+4}.$ In each step, indicate the limit law applied.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 34.785054261852174,
+    "tol": 0.001,
+    "hint": "Begin by applying the product law.",
+    "solution": "$11\\sqrt{10}$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170571675273",
+   "source_number": "Checkpoint 2.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572305829"
+   },
+   "cite": "polynomial-rational",
+   "prompt": "Evaluate $\\lim_{x\\to -2}(3{x}^{3}-2x+7).$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -13,
+    "hint": "Use Limits of Polynomial and Rational Functions.",
+    "solution": "$-13$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170571598002",
+   "source_number": "Checkpoint 2.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571669713"
+   },
+   "cite": "techniques",
+   "prompt": "Evaluate $\\lim_{x\\to -3}\\frac{{x}^{2}+4x+3}{{x}^{2}-9}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.3333333333333333,
+    "tol": 0.001,
+    "hint": "Follow the steps in the Problem-Solving Strategy and Example 2.17.",
+    "solution": "$\\frac{1}{3}$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170571611952",
+   "source_number": "Checkpoint 2.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572307613"
+   },
+   "cite": "techniques",
+   "prompt": "Evaluate $\\lim_{x\\to 5}\\frac{\\sqrt{x-1}-2}{x-5}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.25,
+    "hint": "Follow the steps in the Problem-Solving Strategy and Example 2.18.",
+    "solution": "$\\frac{1}{4}$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170572394356",
+   "source_number": "Checkpoint 2.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571612021"
+   },
+   "cite": "techniques",
+   "prompt": "Evaluate $\\lim_{x\\to -3}\\frac{\\frac{1}{x+2}+1}{x+3}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1,
+    "hint": "Follow the steps in the Problem-Solving Strategy and Example 2.19.",
+    "solution": "$-1$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1170571681425",
+   "source_number": "Checkpoint 2.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571648139"
+   },
+   "cite": "techniques",
+   "prompt": "Evaluate $\\lim_{x\\to 3}(\\frac{1}{x-3}-\\frac{4}{{x}^{2}-2x-3}).$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.25,
+    "hint": "Use the same technique as Example 2.20. Don’t forget to factor $x^{2}-2x-3$ before getting a common denominator.",
+    "solution": "$\\frac{1}{4}$"
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1170572235173",
+   "source_number": "Checkpoint 2.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571558882"
+   },
+   "cite": "techniques",
+   "prompt": "Graph $f(x)=\\begin{cases}-x-2\\;\\text{if}\\;x<-1 \\\\ 2\\;\\text{if}\\;x=-1 \\\\ {x}^{3}\\;\\text{if}\\;x>-1\\end{cases}$ and evaluate $\\lim_{x\\to {-1}^{-}}f(x).$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1,
+    "part": "$\\lim_{x\\to -1^{-}}f(x)$",
+    "hint": "Use the method in Example 2.22 to evaluate the limit.",
+    "solution": "<img src=\"/media/ch02/CNX_Calc_Figure_02_03_004.jpg\" alt=\"The graph of a piecewise function with three segments. The first is a linear function, -x-2, for x<-1. The x intercept is at (-2,0), and there is an open circle at (-1,-1). The next segment is simply the point (-1, 2). The third segment is the function x^3 for x > -1, which crossed the x axis and y axis at the origin.\"> $\\lim_{x\\to {-1}^{-}}f(x)=-1$"
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1170571650521",
+   "source_number": "Checkpoint 2.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571611196"
+   },
+   "cite": "techniques",
+   "prompt": "Evaluate $\\lim_{x\\to 1}\\frac{x+2}{{(x-1)}^{2}}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Use the methods from Example 2.23. $+\\infty$"
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1170572633051",
+   "source_number": "Checkpoint 2.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571654228"
+   },
+   "cite": "squeeze",
+   "prompt": "Use the squeeze theorem to evaluate $\\lim_{x\\to 0}{x}^{2}\\sin \\frac{1}{x}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "hint": "Use the fact that $-{x}^{2}\\le {x}^{2}\\sin \\;(1/x)\\le {x}^{2}$ to help you find two functions such that ${x}^{2}\\sin \\;(1/x)$ is squeezed between them.",
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1170571610220",
+   "source_number": "Checkpoint 2.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572243714"
+   },
+   "cite": "squeeze",
+   "prompt": "Evaluate $\\lim_{\\theta \\to 0}\\frac{1-\\cos \\;\\theta}{\\sin \\;\\theta}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "hint": "Multiply numerator and denominator by $1+\\cos\\theta.$",
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1170572597924",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>In the following exercises, use the limit laws to evaluate each limit. Justify each step by indicating the appropriate limit law(s).</p><p>$\\lim_{x\\to 0}(4{x}^{2}-2x+3)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3,
+    "solution": "Use constant multiple law and difference law: $\\lim_{x\\to 0}(4{x}^{2}-2x+3)=4\\lim_{x\\to 0}{x}^{2}-2\\lim_{x\\to 0}x+\\lim_{x\\to 0}3=3$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1170571574688",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>In the following exercises, use the limit laws to evaluate each limit. Justify each step by indicating the appropriate limit law(s).</p><p>$\\lim_{x\\to -2}\\sqrt{{x}^{2}-6x+3}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.358898943540674,
+    "tol": 0.001,
+    "solution": "Use root law: $\\lim_{x\\to -2}\\sqrt{{x}^{2}-6x+3}=\\sqrt{\\lim_{x\\to -2}({x}^{2}-6x+3)}=\\sqrt{19}$"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1170572229204",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polynomial-rational",
+   "prompt": "<p>In the following exercises, use direct substitution to evaluate each limit.</p><p>$\\lim_{x\\to 7}{x}^{2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 49,
+    "solution": "49"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1170571654878",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polynomial-rational",
+   "prompt": "<p>In the following exercises, use direct substitution to evaluate each limit.</p><p>$\\lim_{x\\to 0}\\frac{1}{1+\\sin \\;x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "1"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1170571654968",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polynomial-rational",
+   "prompt": "<p>In the following exercises, use direct substitution to evaluate each limit.</p><p>$\\lim_{x\\to 1}\\frac{2-7x}{x+6}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.7142857142857143,
+    "tol": 0.001,
+    "solution": "$-\\frac{5}{7}$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1170572482649",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p>In the following exercises, use direct substitution to show that each limit leads to the indeterminate form $0/0.$ Then, evaluate the limit.</p><p>$\\lim_{x\\to 4}\\frac{{x}^{2}-16}{x-4}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8,
+    "solution": "$\\lim_{x\\to 4}\\frac{{x}^{2}-16}{x-4}=\\frac{16-16}{4-4}=\\frac{0}{0};$ then, $\\lim_{x\\to 4}\\frac{{x}^{2}-16}{x-4}=\\lim_{x\\to 4}\\frac{(x+4)(x-4)}{x-4}=8$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1170571586166",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p>In the following exercises, use direct substitution to show that each limit leads to the indeterminate form $0/0.$ Then, evaluate the limit.</p><p>$\\lim_{x\\to 6}\\frac{3x-18}{2x-12}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5,
+    "solution": "$\\lim_{x\\to 6}\\frac{3x-18}{2x-12}=\\frac{18-18}{12-12}=\\frac{0}{0};$ then, $\\lim_{x\\to 6}\\frac{3x-18}{2x-12}=\\lim_{x\\to 6}\\frac{3(x-6)}{2(x-6)}=\\frac{3}{2}$"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1170572499899",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p>In the following exercises, use direct substitution to show that each limit leads to the indeterminate form $0/0.$ Then, evaluate the limit.</p><p>$\\lim_{t\\to 9}\\frac{t-9}{\\sqrt{t}-3}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6,
+    "solution": "$\\lim_{x\\to 9}\\frac{t-9}{\\sqrt{t}-3}=\\frac{9-9}{3-3}=\\frac{0}{0};$ then, $\\lim_{t\\to 9}\\frac{t-9}{\\sqrt{t}-3}=\\lim_{t\\to 9}\\frac{t-9}{\\sqrt{t}-3}\\frac{\\sqrt{t}+3}{\\sqrt{t}+3}=\\lim_{t\\to 9}(\\sqrt{t}+3)=6$"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1170571657390",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p>In the following exercises, use direct substitution to show that each limit leads to the indeterminate form $0/0.$ Then, evaluate the limit.</p><p>$\\lim_{\\theta \\to \\pi}\\frac{\\sin \\;\\theta}{\\tan \\;\\theta}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1,
+    "solution": "$\\lim_{\\theta \\to \\pi}\\frac{\\sin \\;\\theta}{\\tan \\;\\theta}=\\frac{\\sin \\;\\pi}{\\tan \\;\\pi}=\\frac{0}{0};$ then, $\\lim_{\\theta \\to \\pi}\\frac{\\sin \\;\\theta}{\\tan \\;\\theta}=\\lim_{\\theta \\to \\pi}\\frac{\\sin \\;\\theta}{\\frac{\\sin \\;\\theta}{\\cos \\;\\theta}}=\\lim_{\\theta \\to \\pi}\\cos \\;\\theta =-1$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1170572551466",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p>In the following exercises, use direct substitution to show that each limit leads to the indeterminate form $0/0.$ Then, evaluate the limit.</p><p>$\\lim_{x\\to 1/2}\\frac{2{x}^{2}+3x-2}{2x-1}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.5,
+    "solution": "$\\lim_{x\\to 1/2}\\frac{2{x}^{2}+3x-2}{2x-1}=\\frac{\\frac{1}{2}+\\frac{3}{2}-2}{1-1}=\\frac{0}{0};$ then, $\\lim_{x\\to 1/2}\\frac{2{x}^{2}+3x-2}{2x-1}=\\lim_{x\\to 1/2}\\frac{(2x-1)(x+2)}{2x-1}=\\frac{5}{2}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1170572174658",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p>In the following exercises, use direct substitution to obtain an undefined expression. Then, use the method of Example 2.23 to simplify the function to help determine the limit.</p><p>$\\lim_{x\\to {-2}^{-}}\\frac{2{x}^{2}+7x-4}{{x}^{2}+x-2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\infty$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1170572174801",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p>In the following exercises, use direct substitution to obtain an undefined expression. Then, use the method of Example 2.23 to simplify the function to help determine the limit.</p><p>$\\lim_{x\\to {1}^{-}}\\frac{2{x}^{2}+7x-4}{{x}^{2}+x-2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\infty$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1170571610978",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>In the following exercises, assume that $\\lim_{x\\to 6}f(x)=4,\\lim_{x\\to 6}g(x)=9,$ and $\\lim_{x\\to 6}h(x)=6.$ Use these three facts and the limit laws to evaluate each limit.</p><p>$\\lim_{x\\to 6}2f(x)g(x)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 72,
+    "solution": "$\\lim_{x\\to 6}2f(x)g(x)=2\\lim_{x\\to 6}f(x)\\lim_{x\\to 6}g(x)=72$"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1170572480473",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>In the following exercises, assume that $\\lim_{x\\to 6}f(x)=4,\\lim_{x\\to 6}g(x)=9,$ and $\\lim_{x\\to 6}h(x)=6.$ Use these three facts and the limit laws to evaluate each limit.</p><p>$\\lim_{x\\to 6}(f(x)+\\frac{1}{3}g(x))$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7,
+    "solution": "$\\lim_{x\\to 6}(f(x)+\\frac{1}{3}g(x))=\\lim_{x\\to 6}f(x)+\\frac{1}{3}\\lim_{x\\to 6}g(x)=7$"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1170572243346",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>In the following exercises, assume that $\\lim_{x\\to 6}f(x)=4,\\lim_{x\\to 6}g(x)=9,$ and $\\lim_{x\\to 6}h(x)=6.$ Use these three facts and the limit laws to evaluate each limit.</p><p>$\\lim_{x\\to 6}\\sqrt{g(x)-f(x)}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.23606797749979,
+    "tol": 0.001,
+    "solution": "$\\lim_{x\\to 6}\\sqrt{g(x)-f(x)}=\\sqrt{\\lim_{x\\to 6}g(x)-\\lim_{x\\to 6}f(x)}=\\sqrt{5}$"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1170572549028",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>In the following exercises, assume that $\\lim_{x\\to 6}f(x)=4,\\lim_{x\\to 6}g(x)=9,$ and $\\lim_{x\\to 6}h(x)=6.$ Use these three facts and the limit laws to evaluate each limit.</p><p>$\\lim_{x\\to 6}[(x+1)\\cdot f(x)]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 28,
+    "solution": "$\\lim_{x\\to 6}[(x+1)f(x)]=(\\lim_{x\\to 6}(x+1))(\\lim_{x\\to 6}f(x))=28$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1170572624112",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p><strong>[T]</strong> In the following exercises, use a calculator to draw the graph of each piecewise-defined function and study the graph to evaluate the given limits.</p><p>$f(x)=\\begin{cases}{x}^{2}, & x\\le 3 \\\\ x+4, & x>3\\end{cases}$ a. $\\lim_{x\\to {3}^{-}}f(x)$ b. $\\lim_{x\\to {3}^{+}}f(x)$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 9
+     },
+     {
+      "part": "b",
+      "value": 7
+     }
+    ],
+    "solution": "<img src=\"/media/ch02/CNX_Calc_Figure_02_03_202.jpg\" alt=\"The graph of a piecewise function with two segments. The first is the parabola x^2, which exists for x<=3. The vertex is at the origin, it opens upward, and there is a closed circle at the endpoint (3,9). The second segment is the line x+4, which is a linear function existing for x > 3. There is an open circle at (3, 7), and the slope is 1.\"> a. 9; b. 7"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1170572381069",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p><strong>[T]</strong> In the following exercises, use a calculator to draw the graph of each piecewise-defined function and study the graph to evaluate the given limits.</p><p>$h(x)=\\begin{cases}{x}^{2}-2x+1, & x<2 \\\\ 3-x, & x\\ge 2\\end{cases}$ a. $\\lim_{x\\to {2}^{-}}h(x)$ b. $\\lim_{x\\to {2}^{+}}h(x)$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 1
+     },
+     {
+      "part": "b",
+      "value": 1
+     }
+    ],
+    "solution": "<img src=\"/media/ch02/CNX_Calc_Figure_02_03_204.jpg\" alt=\"The graph of a piecewise function with two segments. The first segment is the parabola x^2 – 2x + 1, for x < 2. It opens upward and has a vertex at (1,0). The second segment is the line 3-x for x>= 2. It has a slope of -1 and an x intercept at (3,0).\"> a. 1; b. 1"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1170571690335",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "figure": {
+    "src": "/media/ch02/CNX_Calc_Figure_02_03_201.jpg",
+    "alt": "Two graphs of piecewise functions. The upper is f(x), which has two linear segments. The first is a line with negative slope existing for x < -3. It goes toward the point (-3,0) at x= -3. The next has increasing slope and goes to the point (-3,-2) at x=-3. It exists for x > -3. Other key points are (0, 1), (-5,2), (1,2), (-7, 4), and (-9,6). The lower piecewise function has a linear segment and a curved segment. The linear segment exists for x < -3 and has decreasing slope. It goes to (-3,-2) at x=-3. The curved segment appears to be the right half of a downward opening parabola. It goes to the vertex point (-3,2) at x=-3. It crosses the y axis a little below y=-2. Other key points are (0, -7/3), (-5,0), (1,-5), (-7, 2), and (-9, 4)."
+   },
+   "prompt": "<p>In the following exercises, use the following graphs and the limit laws to evaluate each limit.</p><p>$\\lim_{x\\to {-3}^{-}}(f(x)-3g(x))$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6,
+    "solution": "$\\lim_{x\\to {-3}^{-}}(f(x)-3g(x))=\\lim_{x\\to {-3}^{-}}f(x)-3\\lim_{x\\to {-3}^{-}}g(x)=0+6=6$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1170572219518",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "figure": {
+    "src": "/media/ch02/CNX_Calc_Figure_02_03_201.jpg",
+    "alt": "Two graphs of piecewise functions. The upper is f(x), which has two linear segments. The first is a line with negative slope existing for x < -3. It goes toward the point (-3,0) at x= -3. The next has increasing slope and goes to the point (-3,-2) at x=-3. It exists for x > -3. Other key points are (0, 1), (-5,2), (1,2), (-7, 4), and (-9,6). The lower piecewise function has a linear segment and a curved segment. The linear segment exists for x < -3 and has decreasing slope. It goes to (-3,-2) at x=-3. The curved segment appears to be the right half of a downward opening parabola. It goes to the vertex point (-3,2) at x=-3. It crosses the y axis a little below y=-2. Other key points are (0, -7/3), (-5,0), (1,-5), (-7, 2), and (-9, 4)."
+   },
+   "prompt": "<p>In the following exercises, use the following graphs and the limit laws to evaluate each limit.</p><p>$\\lim_{x\\to -5}\\frac{2+g(x)}{f(x)}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$\\lim_{x\\to -5}\\frac{2+g(x)}{f(x)}=\\frac{2+(\\lim_{x\\to -5}g(x))}{\\lim_{x\\to -5}f(x)}=\\frac{2+0}{2}=1$"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1170572552593",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "figure": {
+    "src": "/media/ch02/CNX_Calc_Figure_02_03_201.jpg",
+    "alt": "Two graphs of piecewise functions. The upper is f(x), which has two linear segments. The first is a line with negative slope existing for x < -3. It goes toward the point (-3,0) at x= -3. The next has increasing slope and goes to the point (-3,-2) at x=-3. It exists for x > -3. Other key points are (0, 1), (-5,2), (1,2), (-7, 4), and (-9,6). The lower piecewise function has a linear segment and a curved segment. The linear segment exists for x < -3 and has decreasing slope. It goes to (-3,-2) at x=-3. The curved segment appears to be the right half of a downward opening parabola. It goes to the vertex point (-3,2) at x=-3. It crosses the y axis a little below y=-2. Other key points are (0, -7/3), (-5,0), (1,-5), (-7, 2), and (-9, 4)."
+   },
+   "prompt": "<p>In the following exercises, use the following graphs and the limit laws to evaluate each limit.</p><p>$\\lim_{x\\to 1}\\sqrt[3]{f(x)-g(x)}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.912931182772389,
+    "tol": 0.001,
+    "solution": "$\\lim_{x\\to 1}\\sqrt[3]{f(x)-g(x)}=\\sqrt[3]{\\lim_{x\\to 1}f(x)-\\lim_{x\\to 1}g(x)}=\\sqrt[3]{2+5}=\\sqrt[3]{7}$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1170572128832",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "figure": {
+    "src": "/media/ch02/CNX_Calc_Figure_02_03_201.jpg",
+    "alt": "Two graphs of piecewise functions. The upper is f(x), which has two linear segments. The first is a line with negative slope existing for x < -3. It goes toward the point (-3,0) at x= -3. The next has increasing slope and goes to the point (-3,-2) at x=-3. It exists for x > -3. Other key points are (0, 1), (-5,2), (1,2), (-7, 4), and (-9,6). The lower piecewise function has a linear segment and a curved segment. The linear segment exists for x < -3 and has decreasing slope. It goes to (-3,-2) at x=-3. The curved segment appears to be the right half of a downward opening parabola. It goes to the vertex point (-3,2) at x=-3. It crosses the y axis a little below y=-2. Other key points are (0, -7/3), (-5,0), (1,-5), (-7, 2), and (-9, 4)."
+   },
+   "prompt": "<p>In the following exercises, use the following graphs and the limit laws to evaluate each limit.</p><p>$\\lim_{x\\to -9}[x\\cdot f(x)+2\\cdot g(x)]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -46,
+    "solution": "$\\lim_{x\\to -9}(xf(x)+2g(x))=(\\lim_{x\\to -9}x)(\\lim_{x\\to -9}f(x))+2\\lim_{x\\to -9}(g(x))=(-9)(6)+2(4)=-46$"
+   }
+  },
+  {
+   "id": "e126",
+   "source_id": "fs-id1170572511282",
+   "source_number": "126",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeeze",
+   "prompt": "<p>For the following problems, evaluate the limit using the squeeze theorem. Use a calculator to graph the functions $f(x),g(x),$ and $h(x)$ when possible.</p><p><strong>[T]</strong> True or False? If $2x-1\\le g(x)\\le {x}^{2}-2x+3,$ then $\\lim_{x\\to 2}g(x)=0.$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. Both bounds are polynomials, so their limits at 2 come by direct substitution: $\\lim_{x\\to 2}(2x-1)=3$ and $\\lim_{x\\to 2}(x^{2}-2x+3)=4-4+3=3.$ The two bounds share the limit 3, so the squeeze theorem gives $\\lim_{x\\to 2}g(x)=3,$ not 0."
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1170572511389",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeeze",
+   "prompt": "<p>For the following problems, evaluate the limit using the squeeze theorem. Use a calculator to graph the functions $f(x),g(x),$ and $h(x)$ when possible.</p><p><strong>[T]</strong> $\\lim_{\\theta \\to 0}{\\theta}^{2}\\cos \\;(\\frac{1}{\\theta})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "The limit is zero. <img src=\"/media/ch02/CNX_Calc_Figure_02_03_206.jpg\" alt=\"The graph of three functions over the domain [-1,1], colored red, green, and blue as follows: red: theta^2, green: theta^2 * cos (1/theta), and blue: - (theta^2). The red and blue functions open upwards and downwards respectively as parabolas with vertices at the origin. The green function is trapped between the two.\">"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1170571626094",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "techniques",
+   "prompt": "<p>For the following problems, evaluate the limit using the squeeze theorem. Use a calculator to graph the functions $f(x),g(x),$ and $h(x)$ when possible.</p><p><strong>[T]</strong> In physics, the magnitude of an electric field generated by a point charge at a distance <em>r</em> in vacuum is governed by Coulomb’s law: $E(r)=\\frac{q}{4\\pi \\varepsilon_{0}{r}^{2}},$ where <em>E</em> represents the magnitude of the electric field, <em>q</em> is the charge of the particle, <em>r</em> is the distance between the particle and where the strength of the field is measured, and $\\frac{1}{4\\pi \\varepsilon_{0}}$ is Coulomb’s constant: $8.988\\;\\times \\;{10}^{9}\\;\\text{N}\\cdot {\\text{m}}^{2}/{\\text{C}}^{2}.$ a. Use a graphing calculator to graph $E(r)$ given that the charge of the particle is $q={10}^{-10}.$ b. Evaluate $\\lim_{r\\to {0}^{+}}E(r).$ What is the physical meaning of this quantity? Is it physically relevant? Why are you evaluating from the right?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. <img src=\"/media/ch02/CNX_Calc_Figure_02_03_207.jpg\" alt=\"A graph of a function with two curves. The first is in quadrant two and curves asymptotically to infinity along the y axis and to 0 along the x axis as x goes to negative infinity. The second is in quadrant one and curves asymptotically to infinity along the y axis and to 0 along the x axis as x goes to infinity.\"> b. ∞. The magnitude of the electric field as you approach the particle <em>q</em> becomes infinite. It does not make physical sense to evaluate negative distance."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "product-law-for-limits"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "root-law-for-limits"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "limit-laws"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "limits-of-polynomial-and-rational-functions"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "indeterminate-form"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "indeterminate-form"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "indeterminate-form"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "limit-laws"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "piecewise-defined-function"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "infinite-limit"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "limit-laws"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "squeeze-theorem"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "important-trigonometric-limits"
+  },
+  {
+   "exercise": "e83",
+   "concept": "constant-multiple-law-for-limits"
+  },
+  {
+   "exercise": "e83",
+   "concept": "difference-law-for-limits"
+  },
+  {
+   "exercise": "e83",
+   "concept": "sum-law-for-limits"
+  },
+  {
+   "exercise": "e85",
+   "concept": "root-law-for-limits"
+  },
+  {
+   "exercise": "e87",
+   "concept": "limits-of-polynomial-and-rational-functions"
+  },
+  {
+   "exercise": "e89",
+   "concept": "quotient-law-for-limits"
+  },
+  {
+   "exercise": "e89",
+   "concept": "important-trigonometric-limits"
+  },
+  {
+   "exercise": "e91",
+   "concept": "limits-of-polynomial-and-rational-functions"
+  },
+  {
+   "exercise": "e93",
+   "concept": "indeterminate-form"
+  },
+  {
+   "exercise": "e93",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "e95",
+   "concept": "indeterminate-form"
+  },
+  {
+   "exercise": "e95",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "e97",
+   "concept": "indeterminate-form"
+  },
+  {
+   "exercise": "e97",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "e99",
+   "concept": "indeterminate-form"
+  },
+  {
+   "exercise": "e99",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "e99",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e101",
+   "concept": "indeterminate-form"
+  },
+  {
+   "exercise": "e101",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero"
+  },
+  {
+   "exercise": "e103",
+   "concept": "infinite-limit"
+  },
+  {
+   "exercise": "e103",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e105",
+   "concept": "infinite-limit"
+  },
+  {
+   "exercise": "e105",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e107",
+   "concept": "constant-multiple-law-for-limits"
+  },
+  {
+   "exercise": "e107",
+   "concept": "product-law-for-limits"
+  },
+  {
+   "exercise": "e109",
+   "concept": "sum-law-for-limits"
+  },
+  {
+   "exercise": "e109",
+   "concept": "constant-multiple-law-for-limits"
+  },
+  {
+   "exercise": "e111",
+   "concept": "root-law-for-limits"
+  },
+  {
+   "exercise": "e111",
+   "concept": "difference-law-for-limits"
+  },
+  {
+   "exercise": "e113",
+   "concept": "product-law-for-limits"
+  },
+  {
+   "exercise": "e113",
+   "concept": "sum-law-for-limits"
+  },
+  {
+   "exercise": "e115",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e115",
+   "concept": "piecewise-defined-function"
+  },
+  {
+   "exercise": "e117",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e117",
+   "concept": "piecewise-defined-function"
+  },
+  {
+   "exercise": "e119",
+   "concept": "difference-law-for-limits"
+  },
+  {
+   "exercise": "e119",
+   "concept": "constant-multiple-law-for-limits"
+  },
+  {
+   "exercise": "e119",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e121",
+   "concept": "quotient-law-for-limits"
+  },
+  {
+   "exercise": "e121",
+   "concept": "sum-law-for-limits"
+  },
+  {
+   "exercise": "e123",
+   "concept": "root-law-for-limits"
+  },
+  {
+   "exercise": "e123",
+   "concept": "difference-law-for-limits"
+  },
+  {
+   "exercise": "e125",
+   "concept": "sum-law-for-limits"
+  },
+  {
+   "exercise": "e125",
+   "concept": "product-law-for-limits"
+  },
+  {
+   "exercise": "e125",
+   "concept": "constant-multiple-law-for-limits"
+  },
+  {
+   "exercise": "e126",
+   "concept": "squeeze-theorem"
+  },
+  {
+   "exercise": "e126",
+   "concept": "limits-of-polynomial-and-rational-functions"
+  },
+  {
+   "exercise": "e127",
+   "concept": "squeeze-theorem"
+  },
+  {
+   "exercise": "e129",
+   "concept": "infinite-limit"
+  },
+  {
+   "exercise": "e129",
+   "concept": "one-sided-limit"
+  }
+ ],
+ "referents": [
+  {
+   "id": "bound-f",
+   "label": "f(x), the lower bound",
+   "figures": [
+    "sim-squeeze"
+   ]
+  },
+  {
+   "id": "squeezed-g",
+   "label": "g(x), the function squeezed",
+   "figures": [
+    "sim-squeeze"
+   ]
+  },
+  {
+   "id": "bound-h",
+   "label": "h(x), the upper bound",
+   "figures": [
+    "sim-squeeze"
+   ]
+  },
+  {
+   "id": "sine-segment",
+   "label": "the segment sin θ",
+   "figures": [
+    "sim-unit-circle-squeeze"
+   ]
+  },
+  {
+   "id": "tangent-segment",
+   "label": "the segment tan θ",
+   "figures": [
+    "sim-unit-circle-squeeze"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "added-triangle",
+   "kind": "correction",
+   "html": "The book prints “this figure adds one additional triangle to Figure 2.30”; the triangle is added to Figure 2.29, the unit circle with $\\sin\\theta$ alone."
+  }
+ ]
+}

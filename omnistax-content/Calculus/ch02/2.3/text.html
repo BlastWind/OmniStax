@@ -1,0 +1,283 @@
+<p>In the previous section, we evaluated <span data-concept="limit">limits</span> by looking at graphs or by constructing a table of values. In this section, we establish laws for calculating <span data-concept="limit">limits</span> and learn how to apply these laws. In the Student Project at the end of this section, you have the opportunity to apply these <span data-concept="limit-laws">limit laws</span> to derive the formula for the area of a circle by adapting a method devised by the Greek mathematician Archimedes. We begin by restating two useful <span data-concept="limit">limit</span> results from the previous section. These two results, together with the <span data-concept="limit-laws">limit laws</span>, serve as a foundation for calculating many <span data-concept="limit">limits</span>.</p>
+
+<section id="limit-laws">
+<h2>Evaluating Limits with the Limit Laws</h2>
+<p class="cite-target">The first two <span data-concept="limit-laws">limit laws</span> were stated in Two Important Limits and we repeat them here. These basic results, together with the other <span data-concept="limit-laws">limit laws</span>, allow us to evaluate <span data-concept="limit">limits</span> of many <span data-concept="algebraic-function">algebraic functions</span>.</p>
+<div class="note" id="basic-limit-results">
+<div class="eyebrow">Theorem</div>
+<h3>Basic Limit Results</h3>
+<p>For any real number <em>a</em> and any constant <em>c</em>,</p>
+<ol>
+<li>$$\lim_{x\to a}x=a$$</li>
+<li>$$\lim_{x\to a}c=c$$</li>
+</ol>
+</div>
+<div class="example" id="fs-id1170572111463">
+<h3>Example 2.13 · Evaluating a Basic Limit</h3>
+<p>Evaluate each of the following <span data-concept="limit">limits</span> using Basic Limit Results.</p>
+<ol type="a"><li><span data-fn="x">$\lim_{x\to 2}x$</span></li><li><span data-fn="5">$\lim_{x\to 2}5$</span></li></ol>
+<h4>Solution</h4>
+<ol type="a">
+<li>The <span data-concept="limit">limit</span> of <em>x</em> as <em>x</em> approaches <em>a</em> is <em>a</em>: $\lim_{x\to 2}x=2.$</li>
+<li>The <span data-concept="limit">limit</span> of a constant is that constant: $\lim_{x\to 2}5=5.$</li>
+</ol>
+</div>
+<p>We now take a look at the <strong><span data-concept="limit-laws">limit laws</span></strong>, the individual properties of <span data-concept="limit">limits</span>. The proofs that these laws hold are omitted here.</p>
+<div class="note" id="limit-laws-note">
+<div class="eyebrow">Theorem</div>
+<h3>Limit Laws</h3>
+<p>Let $\kf(x)$ and $\kg(x)$ be defined for all $x\ne a$ over some open interval containing <em>a</em>. Assume that $\kL$ and $\kM$ are real numbers such that $\lim_{x\to a}\kf(x)=\kL$ and $\lim_{x\to a}\kg(x)=\kM.$ Let <em>c</em> be a constant. Then, each of the following statements holds:</p>
+<p><strong><span data-concept="sum-law-for-limits">Sum law for limits</span></strong>: $\lim_{x\to a}(\kf(x)+\kg(x))=\lim_{x\to a}\kf(x)+\lim_{x\to a}\kg(x)=\kL+\kM$</p>
+<p><strong><span data-concept="difference-law-for-limits">Difference law for limits</span></strong>: $\lim_{x\to a}(\kf(x)-\kg(x))=\lim_{x\to a}\kf(x)-\lim_{x\to a}\kg(x)=\kL-\kM$</p>
+<p><strong><span data-concept="constant-multiple-law-for-limits">Constant multiple law for limits</span></strong>: $\lim_{x\to a}c\kf(x)=c\cdot\lim_{x\to a}\kf(x)=c\kL$</p>
+<p><strong><span data-concept="product-law-for-limits">Product law for limits</span></strong>: $\lim_{x\to a}(\kf(x)\cdot\kg(x))=\lim_{x\to a}\kf(x)\cdot\lim_{x\to a}\kg(x)=\kL\cdot\kM$</p>
+<p><strong><span data-concept="quotient-law-for-limits">Quotient law for limits</span></strong>: $\lim_{x\to a}\dfrac{\kf(x)}{\kg(x)}=\dfrac{\lim_{x\to a}\kf(x)}{\lim_{x\to a}\kg(x)}=\dfrac{\kL}{\kM}$ for $\kM\ne 0$</p>
+<p><strong><span data-concept="power-law-for-limits">Power law for limits</span></strong>: $\lim_{x\to a}(\kf(x))^{n}=\left(\lim_{x\to a}\kf(x)\right)^{n}=\kL^{n}$ for every positive integer <em>n</em>.</p>
+<p><strong><span data-concept="root-law-for-limits">Root law for limits</span></strong>: $\lim_{x\to a}\sqrt[n]{\kf(x)}=\sqrt[n]{\lim_{x\to a}\kf(x)}=\sqrt[n]{\kL}$ for all $\kL$ if <em>n</em> is odd and for $\kL\ge 0$ if <em>n</em> is even and $\kf(x)\ge 0$.</p>
+</div>
+<p>We now practice applying these <span data-concept="limit-laws">limit laws</span> to evaluate a <span data-concept="limit">limit</span>.</p>
+<div class="example" id="fs-id1170572451489">
+<h3>Example 2.14 · Evaluating a Limit Using Limit Laws</h3>
+<p>Use the <span data-concept="limit-laws">limit laws</span> to evaluate <span data-fn="4x+2">$\lim_{x\to -3}(4x+2).$</span></p>
+<h4>Solution</h4>
+<p>Let’s apply the <span data-concept="limit-laws">limit laws</span> one step at a time to be sure we understand how they work. We need to keep in mind the requirement that, at each application of a <span data-concept="limit-laws">limit law</span>, the new <span data-concept="limit">limits</span> must exist for the <span data-concept="limit-laws">limit law</span> to be applied.</p>
+$$\begin{aligned}\lim_{x\to -3}(4x+2)&=\lim_{x\to -3}4x+\lim_{x\to -3}2 &&\text{Apply the sum law.}\\&=4\cdot\lim_{x\to -3}x+\lim_{x\to -3}2 &&\text{Apply the constant multiple law.}\\&=4\cdot(-3)+2=-10. &&\text{Apply the basic limit results and simplify.}\end{aligned}$$
+</div>
+<div class="example" id="fs-id1170572509954">
+<h3>Example 2.15 · Using Limit Laws Repeatedly</h3>
+<p>Use the <span data-concept="limit-laws">limit laws</span> to evaluate <span data-fn="(2x^2-3x+1)/(x^3+4)">$\lim_{x\to 2}\dfrac{2x^{2}-3x+1}{x^{3}+4}.$</span></p>
+<h4>Solution</h4>
+<p>To find this <span data-concept="limit">limit</span>, we need to apply the <span data-concept="limit-laws">limit laws</span> several times. Again, we need to keep in mind that as we rewrite the <span data-concept="limit">limit</span> in terms of other <span data-concept="limit">limits</span>, each new <span data-concept="limit">limit</span> must exist for the <span data-concept="limit-laws">limit law</span> to be applied.</p>
+$$\begin{aligned}\lim_{x\to 2}\frac{2x^{2}-3x+1}{x^{3}+4}&=\frac{\lim_{x\to 2}(2x^{2}-3x+1)}{\lim_{x\to 2}(x^{3}+4)} &&\text{Apply the quotient law, making sure that } (2)^{3}+4\ne 0.\\&=\frac{2\cdot\lim_{x\to 2}x^{2}-3\cdot\lim_{x\to 2}x+\lim_{x\to 2}1}{\lim_{x\to 2}x^{3}+\lim_{x\to 2}4} &&\text{Apply the sum law and constant multiple law.}\\&=\frac{2\cdot\left(\lim_{x\to 2}x\right)^{2}-3\cdot\lim_{x\to 2}x+\lim_{x\to 2}1}{\left(\lim_{x\to 2}x\right)^{3}+\lim_{x\to 2}4} &&\text{Apply the power law.}\\&=\frac{2(4)-3(2)+1}{(2)^{3}+4}=\frac{1}{4}. &&\text{Apply the basic limit laws and simplify.}\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170572509954"></div>
+</section>
+
+<section id="polynomial-rational">
+<h2>Limits of Polynomial and Rational Functions</h2>
+<p class="cite-target">By now you have probably noticed that, in each of the previous examples, it has been the case that $\lim_{x\to a}\kf(x)=\kf(a).$ This is not always true, but it does hold for all <span data-concept="polynomial-function">polynomials</span> for any choice of <em>a</em> and for all <span data-concept="rational-function">rational functions</span> at all values of <em>a</em> for which the <span data-concept="rational-function">rational function</span> is defined.</p>
+<div class="note" id="polynomial-rational-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Limits of Polynomial and Rational Functions</h3>
+<p>Let $p(x)$ and $\kq(x)$ be <span data-concept="polynomial-function">polynomial functions</span>. Let <em>a</em> be a real number. Then,</p>
+$$\lim_{x\to a}p(x)=p(a)$$
+$$\lim_{x\to a}\frac{p(x)}{\kq(x)}=\frac{p(a)}{\kq(a)}\;\text{when}\;\kq(a)\ne 0.$$
+</div>
+<p>To see that this theorem holds, consider the <span data-concept="polynomial-function">polynomial</span> $p(x)=c_{n}x^{n}+c_{n-1}x^{n-1}+\cdots+c_{1}x+c_{0}.$ By applying the <span data-concept="sum-law-for-limits">sum</span>, <span data-concept="constant-multiple-law-for-limits">constant multiple</span>, and <span data-concept="power-law-for-limits">power laws</span>, we end up with</p>
+$$\begin{aligned}\lim_{x\to a}p(x)&=\lim_{x\to a}(c_{n}x^{n}+c_{n-1}x^{n-1}+\cdots+c_{1}x+c_{0})\\&=c_{n}\left(\lim_{x\to a}x\right)^{n}+c_{n-1}\left(\lim_{x\to a}x\right)^{n-1}+\cdots+c_{1}\left(\lim_{x\to a}x\right)+\lim_{x\to a}c_{0}\\&=c_{n}a^{n}+c_{n-1}a^{n-1}+\cdots+c_{1}a+c_{0}\\&=p(a).\end{aligned}$$
+<p>It now follows from the <span data-concept="quotient-law-for-limits">quotient law</span> that if $p(x)$ and $\kq(x)$ are <span data-concept="polynomial-function">polynomials</span> for which $\kq(a)\ne 0,$ then</p>
+$$\lim_{x\to a}\frac{p(x)}{\kq(x)}=\frac{p(a)}{\kq(a)}.$$
+<p>Example 2.16 applies this result.</p>
+<div class="example" id="fs-id1170572305829">
+<h3>Example 2.16 · Evaluating a Limit of a Rational Function</h3>
+<p>Evaluate the <span data-fn="(2x^2-3x+1)/(5x+4)">$\lim_{x\to 3}\dfrac{2x^{2}-3x+1}{5x+4}.$</span></p>
+<h4>Solution</h4>
+<p>Since 3 is in the <span data-concept="domain">domain</span> of the <span data-concept="rational-function">rational function</span> <span data-fn="(2x^2-3x+1)/(5x+4)">$\kf(x)=\dfrac{2x^{2}-3x+1}{5x+4},$</span> we can calculate the <span data-concept="limit">limit</span> by substituting 3 for <em>x</em> into the <span data-concept="function">function</span>. Thus,</p>
+$$\lim_{x\to 3}\frac{2x^{2}-3x+1}{5x+4}=\frac{10}{19}.$$
+</div>
+<div class="exercises" data-place="fs-id1170572305829"></div>
+</section>
+
+<section id="techniques">
+<h2>Additional Limit Evaluation Techniques</h2>
+<p class="cite-target">As we have seen, we may evaluate easily the <span data-concept="limit">limits</span> of <span data-concept="polynomial-function">polynomials</span> and <span data-concept="limit">limits</span> of some (but not all) <span data-concept="rational-function">rational functions</span> by direct substitution. However, as we saw in the introductory section on <span data-concept="limit">limits</span>, it is certainly possible for $\lim_{x\to a}\kf(x)$ to exist when $\kf(a)$ is undefined. The following observation allows us to evaluate many <span data-concept="limit">limits</span> of this type:</p>
+<p>If for all $x\ne a,\ \kf(x)=\kg(x)$ over some open interval containing <em>a</em>, then $\lim_{x\to a}\kf(x)=\lim_{x\to a}\kg(x).$</p>
+<p>To understand this idea better, consider the <span data-concept="limit">limit</span> <span data-fn="(x^2-1)/(x-1)">$\lim_{x\to 1}\dfrac{x^{2}-1}{x-1}.$</span></p>
+<p>The <span data-concept="function">function</span></p>
+$$\begin{aligned}\kf(x)&=\frac{x^{2}-1}{x-1}\\&=\frac{(x-1)(x+1)}{x-1}\end{aligned}$$
+<p>and the <span data-concept="function">function</span> <span data-fn="x+1">$\kg(x)=x+1$</span> are identical for all values of $x\ne 1.$ The <span data-concept="graph-of-a-function">graphs of these two functions</span> are shown in Figure 2.24.</p>
+<figure class="sim" id="sim-equal-except-at-one" data-figure="2.24" data-original="/media/ch02/CNX_Calc_Figure_02_03_001.jpg" data-original-caption="The graphs of f(x) and g(x) are identical for all x≠1. Their limits at 1 are equal.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.24</span><span>The graphs of <span data-fn="x+1">$\kg(x)=x+1$</span> and <span data-fn="(x^2-1)/(x-1)">$\kf(x)=\dfrac{x^{2}-1}{x-1}$</span> side by side, with one $x$ marked on both. Drag $x$: the two points stand at the same height for every $x\ne 1$, since $\kf(x)=\dfrac{(x-1)(x+1)}{x-1}=x+1$ there. At $x=1$ only $\kg$ has a value; $\kf$ has a hole at <span data-type="point">$(1,2)$</span>, and both <span data-concept="limit">limits</span> at 1 are 2.</span></div>
+</figure>
+<p>We see that</p>
+$$\begin{aligned}\lim_{x\to 1}\frac{x^{2}-1}{x-1}&=\lim_{x\to 1}\frac{(x-1)(x+1)}{x-1}\\&=\lim_{x\to 1}(x+1)\\&=2.\end{aligned}$$
+<p id="indeterminate-form-paragraph">The <span data-concept="limit">limit</span> has the form $\lim_{x\to a}\dfrac{\kf(x)}{\kg(x)},$ where $\lim_{x\to a}\kf(x)=0$ and $\lim_{x\to a}\kg(x)=0.$ (In this case, we say that $\kf(x)/\kg(x)$ has the <strong><span data-concept="indeterminate-form">indeterminate form</span></strong> $0/0.$) The following Problem-Solving Strategy provides a general outline for evaluating <span data-concept="limit">limits</span> of this type.</p>
+<div class="note" id="zero-over-zero-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3><span data-concept="evaluating-a-limit-of-the-form-zero-over-zero">Calculating a Limit When $\kf(x)/\kg(x)$ has the Indeterminate Form 0/0</span></h3>
+<ol>
+<li>First, we need to make sure that our <span data-concept="function">function</span> has the appropriate form and cannot be evaluated immediately using the <span data-concept="limit-laws">limit laws</span>.</li>
+<li>We then need to find a <span data-concept="function">function</span> that is equal to $\kh(x)=\kf(x)/\kg(x)$ for all $x\ne a$ over some interval containing <em>a</em>. To do this, we may need to try one or more of the following steps:
+<ol type="a">
+<li>If $\kf(x)$ and $\kg(x)$ are <span data-concept="polynomial-function">polynomials</span>, we should factor each <span data-concept="function">function</span> and cancel out any common factors.</li>
+<li>If the numerator or denominator contains a difference involving a square root, we should try multiplying the numerator and denominator by the conjugate of the expression involving the square root.</li>
+<li>If $\kf(x)/\kg(x)$ is a complex fraction, we begin by simplifying it.</li>
+</ol></li>
+<li>Last, we apply the <span data-concept="limit-laws">limit laws</span>.</li>
+</ol>
+</div>
+<p>The next examples demonstrate the use of this Problem-Solving Strategy. Example 2.17 illustrates the factor-and-cancel technique; Example 2.18 shows multiplying by a conjugate. In Example 2.19, we look at simplifying a complex fraction.</p>
+<div class="example" id="fs-id1170571669713">
+<h3>Example 2.17 · Evaluating a Limit by Factoring and Canceling</h3>
+<p>Evaluate <span data-fn="(x^2-3x)/(2x^2-5x-3)">$\lim_{x\to 3}\dfrac{x^{2}-3x}{2x^{2}-5x-3}.$</span></p>
+<h4>Solution</h4>
+<p><strong>Step 1.</strong> The <span data-concept="function">function</span> <span data-fn="(x^2-3x)/(2x^2-5x-3)">$\kf(x)=\dfrac{x^{2}-3x}{2x^{2}-5x-3}$</span> is undefined for $x=3.$ In fact, if we substitute 3 into the <span data-concept="function">function</span> we get $0/0,$ which is <span data-concept="indeterminate-form">indeterminate</span>. Factoring and canceling is a good strategy:</p>
+$$\lim_{x\to 3}\frac{x^{2}-3x}{2x^{2}-5x-3}=\lim_{x\to 3}\frac{x(x-3)}{(x-3)(2x+1)}$$
+<p><strong>Step 2.</strong> For all $x\ne 3,\ \dfrac{x^{2}-3x}{2x^{2}-5x-3}=\dfrac{x}{2x+1}.$ Therefore,</p>
+$$\lim_{x\to 3}\frac{x(x-3)}{(x-3)(2x+1)}=\lim_{x\to 3}\frac{x}{2x+1}.$$
+<p><strong>Step 3.</strong> Evaluate using the <span data-concept="limit-laws">limit laws</span>:</p>
+$$\lim_{x\to 3}\frac{x}{2x+1}=\frac{3}{7}.$$
+</div>
+<div class="exercises" data-place="fs-id1170571669713"></div>
+<div class="example" id="fs-id1170572307613">
+<h3>Example 2.18 · Evaluating a Limit by Multiplying by a Conjugate</h3>
+<p>Evaluate <span data-fn="(sqrt(x+2)-1)/(x+1)">$\lim_{x\to -1}\dfrac{\sqrt{x+2}-1}{x+1}.$</span></p>
+<h4>Solution</h4>
+<p><strong>Step 1.</strong> $\dfrac{\sqrt{x+2}-1}{x+1}$ has the form $0/0$ at −1. Let’s begin by multiplying by $\sqrt{x+2}+1,$ the conjugate of $\sqrt{x+2}-1,$ on the numerator and denominator:</p>
+$$\lim_{x\to -1}\frac{\sqrt{x+2}-1}{x+1}=\lim_{x\to -1}\frac{\sqrt{x+2}-1}{x+1}\cdot\frac{\sqrt{x+2}+1}{\sqrt{x+2}+1}.$$
+<p><strong>Step 2.</strong> We then multiply out the numerator. We don’t multiply out the denominator because we are hoping that the $(x+1)$ in the denominator cancels out in the end:</p>
+$$=\lim_{x\to -1}\frac{x+1}{(x+1)(\sqrt{x+2}+1)}.$$
+<p><strong>Step 3.</strong> Then we cancel:</p>
+$$=\lim_{x\to -1}\frac{1}{\sqrt{x+2}+1}.$$
+<p><strong>Step 4.</strong> Last, we apply the <span data-concept="limit-laws">limit laws</span>:</p>
+$$\lim_{x\to -1}\frac{1}{\sqrt{x+2}+1}=\frac{1}{2}.$$
+</div>
+<div class="exercises" data-place="fs-id1170572307613"></div>
+<div class="example" id="fs-id1170571612021">
+<h3>Example 2.19 · Evaluating a Limit by Simplifying a Complex Fraction</h3>
+<p>Evaluate <span data-fn="(1/(x+1)-1/2)/(x-1)">$\lim_{x\to 1}\dfrac{\frac{1}{x+1}-\frac{1}{2}}{x-1}.$</span></p>
+<h4>Solution</h4>
+<p><strong>Step 1.</strong> $\dfrac{\frac{1}{x+1}-\frac{1}{2}}{x-1}$ has the form $0/0$ at 1. We simplify the algebraic fraction by multiplying by $2(x+1)/2(x+1){:}$</p>
+$$\lim_{x\to 1}\frac{\frac{1}{x+1}-\frac{1}{2}}{x-1}=\lim_{x\to 1}\frac{\frac{1}{x+1}-\frac{1}{2}}{x-1}\cdot\frac{2(x+1)}{2(x+1)}.$$
+<p><strong>Step 2.</strong> Next, we multiply through the numerators. Do not multiply the denominators because we want to be able to cancel the factor $(x-1){:}$</p>
+$$=\lim_{x\to 1}\frac{2-(x+1)}{2(x-1)(x+1)}.$$
+<p><strong>Step 3.</strong> Then, we simplify the numerator:</p>
+$$=\lim_{x\to 1}\frac{-x+1}{2(x-1)(x+1)}.$$
+<p><strong>Step 4.</strong> Now we factor out −1 from the numerator:</p>
+$$=\lim_{x\to 1}\frac{-(x-1)}{2(x-1)(x+1)}.$$
+<p><strong>Step 5.</strong> Then, we cancel the common factors of $(x-1){:}$</p>
+$$=\lim_{x\to 1}\frac{-1}{2(x+1)}.$$
+<p><strong>Step 6.</strong> Last, we evaluate using the <span data-concept="limit-laws">limit laws</span>:</p>
+$$\lim_{x\to 1}\frac{-1}{2(x+1)}=-\frac{1}{4}.$$
+</div>
+<div class="exercises" data-place="fs-id1170571612021"></div>
+<p>Example 2.20 does not fall neatly into any of the patterns established in the previous examples. However, with a little creativity, we can still use these same techniques.</p>
+<div class="example" id="fs-id1170571648139">
+<h3>Example 2.20 · Evaluating a Limit When the Limit Laws Do Not Apply</h3>
+<p>Evaluate <span data-fn="1/x+5/(x(x-5))">$\lim_{x\to 0}\left(\dfrac{1}{x}+\dfrac{5}{x(x-5)}\right).$</span></p>
+<h4>Solution</h4>
+<p>Both $1/x$ and $5/x(x-5)$ fail to have a <span data-concept="limit">limit</span> at zero. Since neither of the two <span data-concept="function">functions</span> has a <span data-concept="limit">limit</span> at zero, we cannot apply the <span data-concept="sum-law-for-limits">sum law for limits</span>; we must use a different strategy. In this case, we find the <span data-concept="limit">limit</span> by performing addition and then applying one of our previous strategies. Observe that</p>
+$$\begin{aligned}\frac{1}{x}+\frac{5}{x(x-5)}&=\frac{x-5+5}{x(x-5)}\\&=\frac{x}{x(x-5)}.\end{aligned}$$
+<p>Thus,</p>
+$$\begin{aligned}\lim_{x\to 0}\left(\frac{1}{x}+\frac{5}{x(x-5)}\right)&=\lim_{x\to 0}\frac{x}{x(x-5)}\\&=\lim_{x\to 0}\frac{1}{x-5}\\&=-\frac{1}{5}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170571648139"></div>
+<p>Let’s now revisit <span data-concept="one-sided-limit">one-sided limits</span>. Simple modifications in the <span data-concept="limit-laws">limit laws</span> allow us to apply them to <span data-concept="one-sided-limit">one-sided limits</span>. For example, to apply the <span data-concept="limit-laws">limit laws</span> to a <span data-concept="one-sided-limit">limit</span> of the form $\lim_{x\to a^{-}}\kh(x),$ we require the <span data-concept="function">function</span> $\kh(x)$ to be defined over an open interval of the form <span data-type="set">$(b,a);$</span> for a <span data-concept="one-sided-limit">limit</span> of the form $\lim_{x\to a^{+}}\kh(x),$ we require the <span data-concept="function">function</span> $\kh(x)$ to be defined over an open interval of the form <span data-type="set">$(a,c).$</span> Example 2.21 illustrates this point.</p>
+<div class="example" id="fs-id1170571679268">
+<h3>Example 2.21 · Evaluating a One-Sided Limit Using the Limit Laws</h3>
+<p>Evaluate each of the following <span data-concept="limit">limits</span>, if possible.</p>
+<ol type="a"><li><span data-fn="sqrt(x-3)">$\lim_{x\to 3^{-}}\sqrt{x-3}$</span></li><li><span data-fn="sqrt(x-3)">$\lim_{x\to 3^{+}}\sqrt{x-3}$</span></li></ol>
+<h4>Solution</h4>
+<p>Figure 2.25 illustrates the <span data-concept="function">function</span> <span data-fn="sqrt(x-3)">$\kf(x)=\sqrt{x-3}$</span> and aids in our understanding of these <span data-concept="limit">limits</span>.</p>
+<figure class="sim" id="fig-root-one-sided" data-figure="2.25" data-original="/media/ch02/CNX_Calc_Figure_02_03_002.jpg" data-original-caption="The graph shows the function f(x)=√(x−3).">
+  <div class="sim-head"><span class="eyebrow">Figure 2.25</span><span>The graph shows the <span data-concept="function">function</span> $\kf(x)=\sqrt{x-3}.$</span></div>
+</figure>
+<ol type="a">
+<li>The <span data-concept="function">function</span> $\kf(x)=\sqrt{x-3}$ is defined over the interval <span data-type="set">$[3,+\infty).$</span> Since this <span data-concept="function">function</span> is not defined to the left of 3, we cannot apply the <span data-concept="limit-laws">limit laws</span> to compute $\lim_{x\to 3^{-}}\sqrt{x-3}.$ In fact, since $\kf(x)=\sqrt{x-3}$ is undefined to the left of 3, $\lim_{x\to 3^{-}}\sqrt{x-3}$ does not exist.</li>
+<li>Since $\kf(x)=\sqrt{x-3}$ is defined to the right of 3, the <span data-concept="limit-laws">limit laws</span> do apply to $\lim_{x\to 3^{+}}\sqrt{x-3}.$ By applying these <span data-concept="limit-laws">limit laws</span> we obtain $\lim_{x\to 3^{+}}\sqrt{x-3}=0.$</li>
+</ol>
+</div>
+<p>In Example 2.22 we look at <span data-concept="one-sided-limit">one-sided limits</span> of a <span data-concept="piecewise-defined-function">piecewise-defined function</span> and use these <span data-concept="limit">limits</span> to draw a conclusion about a two-sided <span data-concept="limit">limit</span> of the same <span data-concept="function">function</span>.</p>
+<div class="example" id="fs-id1170571558882">
+<h3>Example 2.22 · Evaluating a Two-Sided Limit Using the Limit Laws</h3>
+<p>For <span data-fn="{x&lt;2: 4x-3, (x-3)^2}">$\kf(x)=\begin{cases}4x-3 & \text{if}\;x\lt 2\\(x-3)^{2} & \text{if}\;x\ge 2\end{cases},$</span> evaluate each of the following <span data-concept="limit">limits</span>:</p>
+<ol type="a"><li>$\lim_{x\to 2^{-}}\kf(x)$</li><li>$\lim_{x\to 2^{+}}\kf(x)$</li><li>$\lim_{x\to 2}\kf(x)$</li></ol>
+<h4>Solution</h4>
+<p>Figure 2.26 illustrates the <span data-concept="function">function</span> $\kf(x)$ and aids in our understanding of these <span data-concept="limit">limits</span>.</p>
+<figure class="sim" id="fig-piecewise-two-sided" data-figure="2.26" data-original="/media/ch02/CNX_Calc_Figure_02_03_003.jpg" data-original-caption="This graph shows a function f(x).">
+  <div class="sim-head"><span class="eyebrow">Figure 2.26</span><span>This graph shows a <span data-concept="function">function</span> $\kf(x).$</span></div>
+</figure>
+<ol type="a">
+<li>Since $\kf(x)=4x-3$ for all <em>x</em> in <span data-type="set">$(-\infty,2),$</span> replace $\kf(x)$ in the <span data-concept="limit">limit</span> with $4x-3$ and apply the <span data-concept="limit-laws">limit laws</span>:
+$$\lim_{x\to 2^{-}}\kf(x)=\lim_{x\to 2^{-}}(4x-3)=5.$$</li>
+<li>Since $\kf(x)=(x-3)^{2}$ for all <em>x</em> in <span data-type="set">$(2,+\infty),$</span> replace $\kf(x)$ in the <span data-concept="limit">limit</span> with $(x-3)^{2}$ and apply the <span data-concept="limit-laws">limit laws</span>:
+$$\lim_{x\to 2^{+}}\kf(x)=\lim_{x\to 2^{+}}(x-3)^{2}=1.$$</li>
+<li>Since $\lim_{x\to 2^{-}}\kf(x)=5$ and $\lim_{x\to 2^{+}}\kf(x)=1,$ we conclude that $\lim_{x\to 2}\kf(x)$ does not exist.</li>
+</ol>
+</div>
+<div class="exercises" data-place="fs-id1170571558882"></div>
+<p>We now turn our attention to evaluating a <span data-concept="limit">limit</span> of the form $\lim_{x\to a}\dfrac{\kf(x)}{\kg(x)},$ where $\lim_{x\to a}\kf(x)=K,$ where $K\ne 0$ and $\lim_{x\to a}\kg(x)=0.$ That is, $\kf(x)/\kg(x)$ has the form $K/0,\ K\ne 0$ at <em>a</em>.</p>
+<div class="example" id="fs-id1170571611196">
+<h3>Example 2.23 · Evaluating a Limit of the Form $K/0,\ K\ne 0$ Using the Limit Laws</h3>
+<p>Evaluate <span data-fn="(x-3)/(x^2-2x)">$\lim_{x\to 2^{-}}\dfrac{x-3}{x^{2}-2x}.$</span></p>
+<h4>Solution</h4>
+<p><strong>Step 1.</strong> After substituting in $x=2,$ we see that this <span data-concept="limit">limit</span> has the form $-1/0.$ That is, as <em>x</em> approaches 2 from the left, the numerator approaches −1; and the denominator approaches 0. Consequently, the magnitude of $\dfrac{x-3}{x(x-2)}$ becomes infinite. To get a better idea of what the <span data-concept="limit">limit</span> is, we need to factor the denominator:</p>
+$$\lim_{x\to 2^{-}}\frac{x-3}{x^{2}-2x}=\lim_{x\to 2^{-}}\frac{x-3}{x(x-2)}.$$
+<p><strong>Step 2.</strong> Since $x-2$ is the only part of the denominator that is zero when 2 is substituted, we then separate $1/(x-2)$ from the rest of the <span data-concept="function">function</span>:</p>
+$$=\lim_{x\to 2^{-}}\frac{x-3}{x}\cdot\frac{1}{x-2}.$$
+<p><strong>Step 3.</strong> $\lim_{x\to 2^{-}}\dfrac{x-3}{x}=-\dfrac{1}{2}$ and $\lim_{x\to 2^{-}}\dfrac{1}{x-2}=-\infty.$ Therefore, the product of $(x-3)/x$ and $1/(x-2)$ has a <span data-concept="infinite-limit">limit of $+\infty{:}$</span></p>
+$$\lim_{x\to 2^{-}}\frac{x-3}{x^{2}-2x}=+\infty.$$
+</div>
+<div class="exercises" data-place="fs-id1170571611196"></div>
+</section>
+
+<section id="squeeze">
+<h2>The Squeeze Theorem</h2>
+<p class="cite-target">The techniques we have developed thus far work very well for <span data-concept="algebraic-function">algebraic functions</span>, but we are still unable to evaluate <span data-concept="limit">limits</span> of very basic <span data-concept="trigonometric-functions">trigonometric functions</span>. The next theorem, called the <strong><span data-concept="squeeze-theorem">squeeze theorem</span></strong>, proves very useful for establishing basic trigonometric <span data-concept="limit">limits</span>. This theorem allows us to calculate <span data-concept="limit">limits</span> by “squeezing” <span data-ref="squeezed-g">a <span data-concept="function">function</span>, with a <span data-concept="limit">limit</span> at a point <em>a</em> that is unknown,</span> between <span data-ref="bound-f bound-h">two <span data-concept="function">functions</span> having a common known <span data-concept="limit">limit</span> at <em>a</em></span>. Figure 2.27 illustrates this idea.</p>
+<figure class="sim" id="sim-squeeze" data-figure="2.27 + 2.28" data-original="/media/ch02/CNX_Calc_Figure_02_03_005.jpg,/media/ch02/CNX_Calc_Figure_02_03_006.jpg" data-original-caption="(Figure 2.27) The Squeeze Theorem applies when f(x)≤g(x)≤h(x) and lim_{x→a} f(x)=lim_{x→a} h(x). (Figure 2.28) The graphs of f(x), g(x), and h(x) are shown around the point x=0.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.27 + 2.28</span><span>Three <span data-concept="function">functions</span> with <span data-ref="bound-f">$\kf(x)$</span> $\le$ <span data-ref="squeezed-g">$\kg(x)$</span> $\le$ <span data-ref="bound-h">$\kh(x)$</span> near $a$, drawn as the theorem pictures them and as Example 2.24 has them, <span data-ref="bound-f">$\kf(x)=-|x|$</span>, <span data-ref="squeezed-g">$\kg(x)=x\cos x$</span> and <span data-ref="bound-h">$\kh(x)=|x|$</span> around $x=0$. Drag $x$ toward $a$: the bracket from $\kf(x)$ up to $\kh(x)$ closes on the common <span data-concept="limit">limit</span> $\kL$, and $\kg(x)$, held inside it, is taken there too.</span></div>
+</figure>
+<div class="note" id="squeeze-theorem-note">
+<div class="eyebrow">Theorem</div>
+<h3>The Squeeze Theorem</h3>
+<p>Let <span data-ref="bound-f">$\kf(x),$</span> <span data-ref="squeezed-g">$\kg(x),$</span> and <span data-ref="bound-h">$\kh(x)$</span> be defined for all $x\ne a$ over an open interval containing <em>a</em>. If</p>
+$$\kf(x)\le\kg(x)\le\kh(x)$$
+<p>for all $x\ne a$ in an open interval containing <em>a</em> and</p>
+$$\lim_{x\to a}\kf(x)=\kL=\lim_{x\to a}\kh(x)$$
+<p>where $\kL$ is a real number, then $\lim_{x\to a}\kg(x)=\kL.$</p>
+</div>
+<div class="example" id="fs-id1170571654228">
+<h3>Example 2.24 · Applying the Squeeze Theorem</h3>
+<p>Apply the <span data-concept="squeeze-theorem">squeeze theorem</span> to evaluate <span data-fn="x*cos(x)">$\lim_{x\to 0}x\cos x.$</span></p>
+<h4>Solution</h4>
+<p>Because $-1\le\cos x\le 1$ for all <em>x</em>, we have <span data-ref="bound-f">$-|x|$</span> $\le$ <span data-ref="squeezed-g">$x\cos x$</span> $\le$ <span data-ref="bound-h">$|x|$</span>. Since $\lim_{x\to 0}(-|x|)=0=\lim_{x\to 0}|x|,$ from the <span data-concept="squeeze-theorem">squeeze theorem</span>, we obtain $\lim_{x\to 0}x\cos x=0.$ The graphs of <span data-ref="bound-f"><span data-fn="-abs(x)">$\kf(x)=-|x|,$</span></span> <span data-ref="squeezed-g"><span data-fn="x*cos(x)">$\kg(x)=x\cos x,$</span></span> and <span data-ref="bound-h"><span data-fn="abs(x)">$\kh(x)=|x|$</span></span> are shown in Figure 2.28.</p>
+</div>
+<div class="exercises" data-place="fs-id1170571654228"></div>
+<p id="trig-limits">We now use the <span data-concept="squeeze-theorem">squeeze theorem</span> to tackle several very important <span data-concept="limit">limits</span>. Although this discussion is somewhat lengthy, these <span data-concept="limit">limits</span> prove invaluable for the development of the material in both the next section and the next chapter. The first of these <span data-concept="limit">limits</span> is $\lim_{\ktheta\to 0}\sin\ktheta.$ Consider the unit circle shown in Figure 2.29. In the figure, we see that $\sin\ktheta$ is the <em>y</em>-coordinate on the unit circle and it corresponds to <span data-ref="sine-segment">the line segment shown in blue</span>. The <span data-concept="radian">radian measure</span> of angle $\ktheta$ is the length of the arc it subtends on the unit circle. Therefore, we see that for $0\lt\ktheta\lt\dfrac{\pi}{2},\ 0\lt\sin\ktheta\lt\ktheta.$</p>
+<figure class="sim" id="sim-unit-circle-squeeze" data-figure="2.29 + 2.30" data-original="/media/ch02/CNX_Calc_Figure_02_03_007.jpg,/media/ch02/CNX_Calc_Figure_02_03_008.jpg" data-original-caption="(Figure 2.29) The sine function is shown as a line on the unit circle. (Figure 2.30) The sine and tangent functions are shown as lines on the unit circle.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.29 + 2.30</span><span>On the unit circle, <span data-ref="sine-segment">the segment $\sin\ktheta$</span> rises from the $x$-axis to the circle, the arc of length $\ktheta$ runs from <span data-type="point">$(1,0)$</span> to the same point, and <span data-ref="tangent-segment">the segment $\tan\ktheta$</span> stands at <span data-type="point">$(1,0)$</span> up to the extended radius, so $\sin\ktheta\lt\ktheta\lt\tan\ktheta$ for $0\lt\ktheta\lt\pi/2$. Beside it, $\sin\ktheta/\ktheta$ is held between $\cos\ktheta$ and 1. Slide $\ktheta$ toward 0: the three lengths shrink together, and $\sin\ktheta/\ktheta$ climbs to its <span data-concept="limit">limit</span>, 1.</span></div>
+</figure>
+<p>Because $\lim_{\ktheta\to 0^{+}}0=0$ and $\lim_{\ktheta\to 0^{+}}\ktheta=0,$ by using the <span data-concept="squeeze-theorem">squeeze theorem</span> we conclude that</p>
+$$\lim_{\ktheta\to 0^{+}}\sin\ktheta=0.$$
+<p>To see that $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0$ as well, observe that for $-\dfrac{\pi}{2}\lt\ktheta\lt 0,\ 0\lt-\ktheta\lt\dfrac{\pi}{2}$ and hence, $0\lt\sin(-\ktheta)\lt-\ktheta.$ Consequently, $0\lt-\sin\ktheta\lt-\ktheta.$ It follows that $0\gt\sin\ktheta\gt\ktheta.$ An application of the <span data-concept="squeeze-theorem">squeeze theorem</span> produces the desired <span data-concept="limit">limit</span>. Thus, since $\lim_{\ktheta\to 0^{+}}\sin\ktheta=0$ and $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0,$</p>
+$$\lim_{\ktheta\to 0}\sin\ktheta=0.$$
+<p>Next, using the identity $\cos\ktheta=\sqrt{1-\sin^{2}\ktheta}$ for $-\dfrac{\pi}{2}\lt\ktheta\lt\dfrac{\pi}{2},$ we see that</p>
+$$\lim_{\ktheta\to 0}\cos\ktheta=\lim_{\ktheta\to 0}\sqrt{1-\sin^{2}\ktheta}=1.$$
+<p>We now take a look at a <span data-concept="limit">limit</span> that plays an important role in later chapters—namely, <span data-fn="sin(x)/x">$\lim_{\ktheta\to 0}\dfrac{\sin\ktheta}{\ktheta}.$</span> To evaluate this <span data-concept="limit">limit</span>, we use the unit circle in Figure 2.30. Notice that this figure adds one additional triangle to Figure 2.30.<sup class="fn" data-note="added-triangle"></sup> We see that the length of <span data-ref="tangent-segment">the side opposite angle $\ktheta$ in this new triangle</span> is $\tan\ktheta.$ Thus, we see that for $0\lt\ktheta\lt\dfrac{\pi}{2},\ \sin\ktheta\lt\ktheta\lt\tan\ktheta.$</p>
+<p>By dividing by $\sin\ktheta$ in all parts of the inequality, we obtain</p>
+$$1\lt\frac{\ktheta}{\sin\ktheta}\lt\frac{1}{\cos\ktheta}.$$
+<p>Equivalently, we have</p>
+$$1\gt\frac{\sin\ktheta}{\ktheta}\gt\cos\ktheta.$$
+<p>Since $\lim_{\ktheta\to 0^{+}}1=1=\lim_{\ktheta\to 0^{+}}\cos\ktheta,$ we conclude that $\lim_{\ktheta\to 0^{+}}\dfrac{\sin\ktheta}{\ktheta}=1.$ By applying a manipulation similar to that used in demonstrating that $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0,$ we can show that $\lim_{\ktheta\to 0^{-}}\dfrac{\sin\ktheta}{\ktheta}=1.$ Thus,</p>
+$$\lim_{\ktheta\to 0}\frac{\sin\ktheta}{\ktheta}=1.$$
+<p>In Example 2.25 we use this <span data-concept="limit">limit</span> to establish <span data-fn="(1-cos(x))/x">$\lim_{\ktheta\to 0}\dfrac{1-\cos\ktheta}{\ktheta}=0.$</span> This <span data-concept="limit">limit</span> also proves useful in later chapters.</p>
+<div class="example" id="fs-id1170572243714">
+<h3>Example 2.25 · Evaluating an Important Trigonometric Limit</h3>
+<p>Evaluate <span data-fn="(1-cos(x))/x">$\lim_{\ktheta\to 0}\dfrac{1-\cos\ktheta}{\ktheta}.$</span></p>
+<h4>Solution</h4>
+<p>In the first step, we multiply by the conjugate so that we can use a <span data-concept="trigonometric-identity">trigonometric identity</span> to convert the cosine in the numerator to a sine:</p>
+$$\begin{aligned}\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}&=\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}\cdot\frac{1+\cos\ktheta}{1+\cos\ktheta}\\&=\lim_{\ktheta\to 0}\frac{1-\cos^{2}\ktheta}{\ktheta(1+\cos\ktheta)}\\&=\lim_{\ktheta\to 0}\frac{\sin^{2}\ktheta}{\ktheta(1+\cos\ktheta)}\\&=\lim_{\ktheta\to 0}\frac{\sin\ktheta}{\ktheta}\cdot\frac{\sin\ktheta}{1+\cos\ktheta}\\&=1\cdot\frac{0}{2}=0.\end{aligned}$$
+<p>Therefore,</p>
+$$\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}=0.$$
+</div>
+<div class="exercises" data-place="fs-id1170572243714"></div>
+<div class="note" id="area-of-a-circle-project">
+<div class="eyebrow">Student Project</div>
+<h3>Deriving the Formula for the Area of a Circle</h3>
+<p>Some of the geometric formulas we take for granted today were first derived by methods that anticipate some of the methods of calculus. The Greek mathematician Archimedes (ca. 287−212; BCE) was particularly inventive, using polygons inscribed within circles to approximate the area of the circle as the number of sides of the polygon increased. He never came up with the idea of a <span data-concept="limit">limit</span>, but we can use this idea to see what his geometric constructions could have predicted about the <span data-concept="limit">limit</span>.</p>
+<p>We can estimate the area of a circle by computing the area of an inscribed regular polygon. Think of the regular polygon as being made up of <em>n</em> triangles. By taking the <span data-concept="limit">limit</span> as the vertex angle of these triangles goes to zero, you can obtain the area of the circle. To see this, carry out the following steps:</p>
+<ol>
+<li>Express the height <em>h</em> and the base <em>b</em> of the isosceles triangle in Figure 2.31 in terms of $\ktheta$ and <em>r</em>.</li>
+</ol>
+<figure class="sim" id="fig-inscribed-triangle" data-figure="2.31" data-original="/media/ch02/CNX_Calc_Figure_02_03_009.jpg">
+  <div class="sim-head"><span class="eyebrow">Figure 2.31</span><span>A regular polygon inscribed in a circle of radius <em>r</em>, and one of its isosceles triangles drawn again beside it: legs <em>r</em>, base <em>b</em>, height <em>h</em> and vertex angle $\ktheta$.</span></div>
+</figure>
+<ol start="2">
+<li>Using the expressions that you obtained in step 1, express the area of the isosceles triangle in terms of $\ktheta$ and <em>r</em>.<br>(Substitute $(1/2)\sin\ktheta$ for $\sin(\ktheta/2)\cos(\ktheta/2)$ in your expression.)</li>
+<li>If an <em>n</em>-sided regular polygon is inscribed in a circle of radius <em>r</em>, find a relationship between $\ktheta$ and <em>n</em>. Solve this for <em>n</em>. Keep in mind there are 2<em>π</em> radians in a circle. (Use <span data-concept="radian">radians</span>, not degrees.)</li>
+<li>Find an expression for the area of the <em>n</em>-sided polygon in terms of <em>r</em> and $\ktheta$.</li>
+<li>To find a formula for the area of the circle, find the <span data-concept="limit">limit</span> of the expression in step 4 as $\ktheta$ goes to zero. (<em>Hint:</em> $\lim_{\ktheta\to 0}\dfrac{(\sin\ktheta)}{\ktheta}=1$).</li>
+</ol>
+<p>The technique of estimating areas of regions by using polygons is revisited in Introduction to Integration.</p>
+</div>
+</section>
