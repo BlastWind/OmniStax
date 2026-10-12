@@ -1,0 +1,1682 @@
+{
+  "id": "1.1",
+  "module": "m53477",
+  "chapter": "1",
+  "title": "Review of Functions",
+  "short": "Review of Functions",
+  "lead": "A <span data-concept=\"function\">function</span> assigns each input exactly one output. Here a function is given by a table, a graph or a formula; its <span data-concept=\"domain\">domain</span>, <span data-concept=\"range\">range</span>, zeros and intercepts are read from each; two functions are combined by arithmetic and by composition; and the graph of a function can be symmetric about the <em>y</em>-axis or the origin.",
+  "objectives": [
+    "Use functional notation to evaluate a function.",
+    "Determine the domain and range of a function.",
+    "Draw the graph of a function.",
+    "Find the zeros of a function.",
+    "Recognize a function from a table of values.",
+    "Make new functions from two or more given functions.",
+    "Describe the symmetry properties of a function."
+  ],
+  "summary_html": "<ul><li>A <span data-concept=\"function\">function</span> is a mapping from a set of inputs to a set of outputs with exactly one output for each input.</li><li>If no <span data-concept=\"domain\">domain</span> is stated for a <span data-concept=\"function\">function</span> $y=\\kf(x),$ the <span data-concept=\"domain\">domain</span> is considered to be the set of all real numbers $x$ for which the <span data-concept=\"function\">function</span> is defined.</li><li>When sketching the <span data-concept=\"graph-of-a-function\">graph of a function</span> $\\kf,$ each vertical line may intersect the graph, at most, once.</li><li>A <span data-concept=\"function\">function</span> may have any number of <span data-concept=\"zeros-of-a-function\">zeros</span>, but it has, at most, one <em>y</em>-intercept.</li><li>To define the composition $\\kg\\circ\\kf,$ the <span data-concept=\"range\">range</span> of $\\kf$ must be contained in the <span data-concept=\"domain\">domain</span> of $\\kg.$</li><li><span data-concept=\"even-function\">Even functions</span> are <span data-concept=\"symmetry-about-the-y-axis\">symmetric about the $y$-axis</span> whereas <span data-concept=\"odd-function\">odd functions</span> are <span data-concept=\"symmetry-about-the-origin\">symmetric about the origin</span>.</li></ul>",
+  "notes": "The book’s link to an applet on graphs of functions is left out.",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-12",
+  "exercises_lead": "",
+  "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 29 even-numbered section exercises have no answer in the book’s key and are all computational, so they are left out: exercises 2, 4 and 6 (relations from tables), 8, 10 and 12 (evaluation), 14, 16, 18 and 20 (domain, range and intercepts), 22, 24 and 26 (sketches from tables), 28, 30, 32 and 34 (vertical line tests), 36, 38 and 40 (combinations), 42, 44, 46 and 48 (compositions), and 50, 52, 54, 56 and 58 (the [T] applications). Review exercise 316, on h ∘ f, has no answer in the key and is left out. A checkpoint answered in words keeps the book’s hint at the head of its answer.",
+  "figures": [
+    {
+      "id": "fig-function-machine",
+      "kind": "figure",
+      "number": "1.2",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_001.jpg"
+      ],
+      "original_caption": "A function can be visualized as an input/output device.",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-function-views",
+      "kind": "sim",
+      "number": "1.3",
+      "folds": [
+        "1.4",
+        "1.5"
+      ],
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_002.jpg",
+        "/media/ch01/CNX_Calc_Figure_01_01_003.jpg",
+        "/media/ch01/CNX_Calc_Figure_01_01_004.jpg"
+      ],
+      "original_caption": "(Figure 1.3) A function maps every element in the domain to exactly one element in the range. Although each input can be sent to only one output, two different inputs can be sent to the same output. (Figure 1.4) In this case, a graph of a function f has a domain of {1,2,3} and a range of {1,2}. The independent variable is x and the dependent variable is y. (Figure 1.5) Here we see a graph of the function f with domain {1,2,3} and rule f(x)=3−x. The graph consists of the points (x,f(x)) for all x in the domain.",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-domain-finder",
+      "kind": "sim",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-temperature",
+      "kind": "sim",
+      "number": "1.6",
+      "folds": [
+        "1.7"
+      ],
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_005.jpg",
+        "/media/ch01/CNX_Calc_Figure_01_01_014.jpg"
+      ],
+      "original_caption": "(Figure 1.6) The graph of the data from Table 1.1 shows temperature as a function of time. (Figure 1.7) Connecting the dots in Figure 1.6 shows the general pattern of the data.",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-vertical-line",
+      "kind": "sim",
+      "number": "1.8",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_006.jpg"
+      ],
+      "original_caption": "(a) The set of plotted points represents the graph of a function because every vertical line intersects the set of points, at most, once. (b) The set of plotted points does not represent the graph of a function because some vertical lines intersect the set of points more than once.",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "fig-line-intercepts",
+      "kind": "figure",
+      "number": "1.9",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_007.jpg"
+      ],
+      "original_caption": "The function f(x)=−4x+2 is a line with x-intercept (1/2,0) and y-intercept (0,2).",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "fig-root-graph",
+      "kind": "figure",
+      "number": "1.10",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_008.jpg"
+      ],
+      "original_caption": "The graph of f(x)=√(x+3)+1 has a y-intercept but no x-intercepts.",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-falling-ball",
+      "kind": "sim",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_009.jpg"
+      ],
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-increasing",
+      "kind": "sim",
+      "number": "1.11",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_010.jpg"
+      ],
+      "original_caption": "(a) The function f(x)=3x is increasing on the interval (−∞,∞). (b) The function f(x)=−x³ is decreasing on the interval (−∞,∞).",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-composite-map",
+      "kind": "sim",
+      "number": "1.12",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_011.jpg"
+      ],
+      "original_caption": "For the composite function g∘f, we have (g∘f)(1)=4, (g∘f)(2)=5, and (g∘f)(3)=4.",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-discount-pipeline",
+      "kind": "sim",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-symmetry",
+      "kind": "sim",
+      "number": "1.13",
+      "folds": [
+        "1.14"
+      ],
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_01_012.jpg",
+        "/media/ch01/CNX_Calc_Figure_01_01_013.jpg"
+      ],
+      "original_caption": "(Figure 1.13) (a) A graph that is symmetric about the y-axis. (b) A graph that is symmetric about the origin. (Figure 1.14) The graph of f(x)=|x| is symmetric about the y-axis.",
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "functions",
+      "concept": "function",
+      "verb": "introduces"
+    },
+    {
+      "span": "functions",
+      "concept": "domain",
+      "verb": "introduces"
+    },
+    {
+      "span": "functions",
+      "concept": "range",
+      "verb": "introduces"
+    },
+    {
+      "span": "functions",
+      "concept": "independent-variable",
+      "verb": "introduces"
+    },
+    {
+      "span": "functions",
+      "concept": "dependent-variable",
+      "verb": "introduces"
+    },
+    {
+      "span": "functions",
+      "concept": "graph-of-a-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "functions",
+      "concept": "natural-domain",
+      "verb": "introduces"
+    },
+    {
+      "span": "functions",
+      "concept": "interval-notation",
+      "verb": "introduces"
+    },
+    {
+      "span": "functions",
+      "concept": "piecewise-defined-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "tables",
+      "concept": "table-of-values",
+      "verb": "introduces"
+    },
+    {
+      "span": "algebraic-formulas",
+      "concept": "zeros-of-a-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "algebraic-formulas",
+      "concept": "y-intercept",
+      "verb": "introduces"
+    },
+    {
+      "span": "vertical-line-test",
+      "concept": "vertical-line-test",
+      "verb": "introduces"
+    },
+    {
+      "span": "increasing-decreasing",
+      "concept": "increasing-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "increasing-decreasing",
+      "concept": "decreasing-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "combining-functions",
+      "concept": "combinations-of-functions",
+      "verb": "introduces"
+    },
+    {
+      "span": "composite-definition",
+      "concept": "composite-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "symmetry",
+      "concept": "symmetry-about-the-y-axis",
+      "verb": "introduces"
+    },
+    {
+      "span": "symmetry",
+      "concept": "symmetry-about-the-origin",
+      "verb": "introduces"
+    },
+    {
+      "span": "symmetry",
+      "concept": "even-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "symmetry",
+      "concept": "odd-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "symmetry",
+      "concept": "absolute-value-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "fs-id1170572455414",
+      "concept": "function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572482440",
+      "concept": "domain",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572482440",
+      "concept": "range",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572482440",
+      "concept": "natural-domain",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572169516",
+      "concept": "zeros-of-a-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572169516",
+      "concept": "y-intercept",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572169516",
+      "concept": "graph-of-a-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572141676",
+      "concept": "zeros-of-a-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572141676",
+      "concept": "y-intercept",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572141676",
+      "concept": "table-of-values",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572175021",
+      "concept": "domain",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572175021",
+      "concept": "table-of-values",
+      "verb": "uses"
+    },
+    {
+      "span": "graphs",
+      "concept": "graph-of-a-function",
+      "verb": "uses"
+    },
+    {
+      "span": "graphs",
+      "concept": "table-of-values",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572549843",
+      "concept": "combinations-of-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572549843",
+      "concept": "domain",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572481349",
+      "concept": "composite-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572481349",
+      "concept": "domain",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572481349",
+      "concept": "range",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572173789",
+      "concept": "composite-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572173789",
+      "concept": "domain",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572173789",
+      "concept": "range",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572173789",
+      "concept": "table-of-values",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572173737",
+      "concept": "composite-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572169671",
+      "concept": "even-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572169671",
+      "concept": "odd-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572551051",
+      "concept": "absolute-value-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572551051",
+      "concept": "domain",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572551051",
+      "concept": "range",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cp1",
+      "source_id": "fs-id1170572295325",
+      "source_number": "Checkpoint 1.1",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572455414"
+      },
+      "cite": "functions",
+      "prompt": "For $f(x)=x^{2}-3x+5,$ evaluate $f(1)$ and $f(a+h).$",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 3,
+        "part": "$f(1)$",
+        "hint": "Substitute $1$ and $a+h$ for $x$ in the formula for $f(x).$",
+        "solution": "$f(1)=3$ and $f(a+h)=a^{2}+2ah+h^{2}-3a-3h+5$"
+      }
+    },
+    {
+      "id": "cp2",
+      "source_id": "fs-id1170572140702",
+      "source_number": "Checkpoint 1.2",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572482440"
+      },
+      "cite": "functions",
+      "prompt": "Find the domain and range for $f(x)=\\sqrt{4-2x}+5.$",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Use $4-2x\\ge 0.$ Domain $=\\{x\\mid x\\le 2\\},$ range $=\\{y\\mid y\\ge 5\\}$"
+      }
+    },
+    {
+      "id": "cp3",
+      "source_id": "fs-id1170572241309",
+      "source_number": "Checkpoint 1.3",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572141676"
+      },
+      "cite": "algebraic-formulas",
+      "prompt": "Find the zeros of $f(x)=x^{3}-5x^{2}+6x.$",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Factor the polynomial. $x=0,2,3$"
+      }
+    },
+    {
+      "id": "cp4",
+      "source_id": "fs-id1170572548533",
+      "source_number": "Checkpoint 1.4",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572549843"
+      },
+      "cite": "operators",
+      "prompt": "For $f(x)=x^{2}+3$ and $g(x)=2x-5,$ find $(f/g)(x)$ and state its domain.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "The new function $(f/g)(x)$ is a quotient of two functions; its domain leaves out the values of $x$ where the denominator is zero. $\\left(\\dfrac{f}{g}\\right)(x)=\\dfrac{x^{2}+3}{2x-5}.$ The domain is $\\{x\\mid x\\ne\\frac{5}{2}\\}.$"
+      }
+    },
+    {
+      "id": "cp5",
+      "source_id": "fs-id1170572483661",
+      "source_number": "Checkpoint 1.5",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572481349"
+      },
+      "cite": "function-composition",
+      "prompt": "Let $f(x)=2-5x.$ Let $g(x)=\\sqrt{x}.$ Find $(f\\circ g)(x).$",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$(f\\circ g)(x)=2-5\\sqrt{x}.$"
+      }
+    },
+    {
+      "id": "cp6",
+      "source_id": "fs-id1170572480214",
+      "source_number": "Checkpoint 1.6",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572173737"
+      },
+      "cite": "function-composition",
+      "prompt": "If items are on sale for $10\\%$ off their original price, and a customer has a coupon for an additional $30\\%$ off, what will be the final price for an item that is originally $x$ dollars, after applying the coupon to the sale price?",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "The sale price of an item with an original price of $x$ dollars is $f(x)=0.90x.$ The coupon price for an item that is $y$ dollars is $g(y)=0.70y.$ $(g\\circ f)(x)=0.63x$"
+      }
+    },
+    {
+      "id": "cp7",
+      "source_id": "fs-id1170572478820",
+      "source_number": "Checkpoint 1.7",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572169671"
+      },
+      "cite": "symmetry",
+      "prompt": "Determine whether $f(x)=4x^{3}-5x$ is even, odd, or neither.",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "even",
+          "odd",
+          "neither"
+        ],
+        "correct": 1,
+        "hint": "Compare $f(-x)$ with $f(x)$ and $-f(x).$",
+        "solution": "$f(x)$ is odd."
+      }
+    },
+    {
+      "id": "cp8",
+      "source_id": "fs-id1170572548618",
+      "source_number": "Checkpoint 1.8",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572551051"
+      },
+      "cite": "symmetry",
+      "prompt": "For the function $f(x)=|x+2|-4,$ find the domain and range.",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$|x+2|\\ge 0$ for all real numbers $x.$ Domain $=(-\\infty,\\infty),$ range $=\\{y\\mid y\\ge -4\\}.$"
+      }
+    },
+    {
+      "id": "e1",
+      "source_id": "fs-id1170572554559",
+      "source_number": "1",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "functions",
+      "prompt": "<p>For the following exercises, (a) determine the domain and the range of each relation, and (b) state whether the relation is a function.</p><table><tr><th>$x$</th><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr><tr><th>$y$</th><td>$9$</td><td>$4$</td><td>$1$</td><td>$0$</td><td>$1$</td><td>$4$</td><td>$9$</td></tr></table>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. Domain $=\\{-3,-2,-1,0,1,2,3\\},$ range $=\\{0,1,4,9\\}$ b. Yes, a function"
+      }
+    },
+    {
+      "id": "e3",
+      "source_id": "fs-id1170572549262",
+      "source_number": "3",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "functions",
+      "prompt": "<p>For the following exercises, (a) determine the domain and the range of each relation, and (b) state whether the relation is a function.</p><table><tr><th>$x$</th><td>$1$</td><td>$2$</td><td>$3$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr><tr><th>$y$</th><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr></table>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. Domain $=\\{0,1,2,3\\},$ range $=\\{-3,-2,-1,0,1,2,3\\}$ b. No, not a function"
+      }
+    },
+    {
+      "id": "e5",
+      "source_id": "fs-id1170572203528",
+      "source_number": "5",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "functions",
+      "prompt": "<p>For the following exercises, (a) determine the domain and the range of each relation, and (b) state whether the relation is a function.</p><table><tr><th>$x$</th><td>$3$</td><td>$5$</td><td>$8$</td><td>$10$</td><td>$15$</td><td>$21$</td><td>$33$</td></tr><tr><th>$y$</th><td>$3$</td><td>$2$</td><td>$1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr></table>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. Domain $=\\{3,5,8,10,15,21,33\\},$ range $=\\{0,1,2,3\\}$ b. Yes, a function"
+      }
+    },
+    {
+      "id": "e7",
+      "source_id": "fs-id1170572452196",
+      "source_number": "7",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "functions",
+      "prompt": "<p>For the following exercises, find the values for each function, if they exist, then simplify. a. $f(0)$ b. $f(1)$ c. $f(3)$ d. $f(-x)$ e. $f(a)$ f. $f(a+h)$</p><p>$f(x)=5x-2$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $-2$ b. $3$ c. $13$ d. $-5x-2$ e. $5a-2$ f. $5a+5h-2$"
+      }
+    },
+    {
+      "id": "e9",
+      "source_id": "fs-id1170572549684",
+      "source_number": "9",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "functions",
+      "prompt": "<p>For the following exercises, find the values for each function, if they exist, then simplify. a. $f(0)$ b. $f(1)$ c. $f(3)$ d. $f(-x)$ e. $f(a)$ f. $f(a+h)$</p><p>$f(x)=\\dfrac{2}{x}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. Undefined b. $2$ c. $\\frac{2}{3}$ d. $-\\frac{2}{x}$ e. $\\frac{2}{a}$ f. $\\frac{2}{a+h}$"
+      }
+    },
+    {
+      "id": "e11",
+      "source_id": "fs-id1170572451476",
+      "source_number": "11",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "functions",
+      "prompt": "<p>For the following exercises, find the values for each function, if they exist, then simplify. a. $f(0)$ b. $f(1)$ c. $f(3)$ d. $f(-x)$ e. $f(a)$ f. $f(a+h)$</p><p>$f(x)=\\sqrt{6x+5}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $\\sqrt{5}$ b. $\\sqrt{11}$ c. $\\sqrt{23}$ d. $\\sqrt{-6x+5}$ e. $\\sqrt{6a+5}$ f. $\\sqrt{6a+6h+5}$"
+      }
+    },
+    {
+      "id": "e13",
+      "source_id": "fs-id1170572452605",
+      "source_number": "13",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "functions",
+      "prompt": "<p>For the following exercises, find the values for each function, if they exist, then simplify. a. $f(0)$ b. $f(1)$ c. $f(3)$ d. $f(-x)$ e. $f(a)$ f. $f(a+h)$</p><p>$f(x)=9$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $9$ b. $9$ c. $9$ d. $9$ e. $9$ f. $9$"
+      }
+    },
+    {
+      "id": "e15",
+      "source_id": "fs-id1170572449228",
+      "source_number": "15",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "algebraic-formulas",
+      "prompt": "<p>For the following exercises, find the domain, range, and all zeros/intercepts, if any, of the functions.</p><p>$g(x)=\\sqrt{8x-1}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$x\\ge\\frac{1}{8};\\ y\\ge 0;\\ x=\\frac{1}{8};$ no <em>y</em>-intercept"
+      }
+    },
+    {
+      "id": "e17",
+      "source_id": "fs-id1170572548401",
+      "source_number": "17",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "algebraic-formulas",
+      "prompt": "<p>For the following exercises, find the domain, range, and all zeros/intercepts, if any, of the functions.</p><p>$f(x)=-1+\\sqrt{x+2}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$x\\ge -2;\\ y\\ge -1;\\ x=-1;\\ y=-1+\\sqrt{2}$"
+      }
+    },
+    {
+      "id": "e19",
+      "source_id": "fs-id1170572229270",
+      "source_number": "19",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "algebraic-formulas",
+      "prompt": "<p>For the following exercises, find the domain, range, and all zeros/intercepts, if any, of the functions.</p><p>$g(x)=\\dfrac{3}{x-4}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$x\\ne 4;\\ y\\ne 0;$ no <em>x</em>-intercept; $y=-\\frac{3}{4}$"
+      }
+    },
+    {
+      "id": "e21",
+      "source_id": "fs-id1170572451278",
+      "source_number": "21",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "algebraic-formulas",
+      "prompt": "<p>For the following exercises, find the domain, range, and all zeros/intercepts, if any, of the functions.</p><p>$g(x)=\\sqrt{\\dfrac{7}{x-5}}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$x\\gt 5;\\ y\\gt 0;$ no intercepts"
+      }
+    },
+    {
+      "id": "e23",
+      "source_id": "fs-id1170572142280",
+      "source_number": "23",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "tables",
+      "prompt": "<p>For the following exercises, sketch the graph with the aid of the tables given:</p><p>$f(x)=3x-6$</p><table><tr><th>$x$</th><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr><tr><th>$y$</th><td>$-15$</td><td>$-12$</td><td>$-9$</td><td>$-6$</td><td>$-3$</td><td>$0$</td><td>$3$</td></tr></table>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "<img src=\"/media/ch01/CNX_Calc_Figure_01_01_202.jpg\" alt=\"The graph of f(x) = 3x − 6, an increasing straight line with x-intercept (2, 0); the y-intercept lies below the grid.\">"
+      }
+    },
+    {
+      "id": "e25",
+      "source_id": "fs-id1170572547833",
+      "source_number": "25",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "tables",
+      "prompt": "<p>For the following exercises, sketch the graph with the aid of the tables given:</p><p>$f(x)=2|x|$</p><table><tr><th>$x$</th><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr><tr><th>$y$</th><td>$6$</td><td>$4$</td><td>$2$</td><td>$0$</td><td>$2$</td><td>$4$</td><td>$6$</td></tr></table>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "<img src=\"/media/ch01/CNX_Calc_Figure_01_01_204.jpg\" alt=\"The graph of f(x) = 2|x|, a straight line decreasing to the origin and then increasing; both intercepts are at the origin.\">"
+      }
+    },
+    {
+      "id": "e27",
+      "source_id": "fs-id1170572551561",
+      "source_number": "27",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "tables",
+      "prompt": "<p>For the following exercises, sketch the graph with the aid of the tables given:</p><p>$f(x)=x^{3}$</p><table><tr><th>$x$</th><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr><tr><th>$y$</th><td>$-27$</td><td>$-8$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$8$</td><td>$27$</td></tr></table>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "<img src=\"/media/ch01/CNX_Calc_Figure_01_01_206.jpg\" alt=\"The graph of f(x) = x³, increasing, level for an instant at the origin, then increasing again; both intercepts are at the origin.\">"
+      }
+    },
+    {
+      "id": "e29",
+      "source_id": "fs-id1170572169146",
+      "source_number": "29",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "vertical-line-test",
+      "figure": {
+        "src": "/media/ch01/CNX_Calc_Figure_01_01_208.jpg",
+        "alt": "A curve on a grid from −5 to 5 that decreases to the point (−1, 0), increases to the point (0, 1), decreases to the point (1, 0), then increases again."
+      },
+      "prompt": "<p>For the following exercises, use the vertical line test to determine whether each of the given graphs represents a function. <strong>Assume that a graph continues at both ends if it extends beyond the given grid.</strong> If the graph represents a function, then determine the following for each graph: a. Domain and range b. $x$-intercept, if any (estimate where necessary) c. $y$-intercept, if any (estimate where necessary) d. The intervals for which the function is increasing e. The intervals for which the function is decreasing f. The intervals for which the function is constant g. Symmetry about any axis and/or the origin h. Whether the function is even, odd, or neither</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Function; a. Domain: all real numbers, range: $y\\ge 0$ b. $x=\\pm 1$ c. $y=1$ d. $-1\\lt x\\lt 0$ and $1\\lt x\\lt\\infty$ e. $-\\infty\\lt x\\lt -1$ and $0\\lt x\\lt 1$ f. Not constant g. <em>y</em>-axis h. Even"
+      }
+    },
+    {
+      "id": "e31",
+      "source_id": "fs-id1170572243837",
+      "source_number": "31",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "vertical-line-test",
+      "figure": {
+        "src": "/media/ch01/CNX_Calc_Figure_01_01_217.jpg",
+        "alt": "A curve on a grid from −5 to 5 that increases the entire time, with both intercepts at the origin."
+      },
+      "prompt": "<p>For the following exercises, use the vertical line test to determine whether each of the given graphs represents a function. <strong>Assume that a graph continues at both ends if it extends beyond the given grid.</strong> If the graph represents a function, then determine the following for each graph: a. Domain and range b. $x$-intercept, if any (estimate where necessary) c. $y$-intercept, if any (estimate where necessary) d. The intervals for which the function is increasing e. The intervals for which the function is decreasing f. The intervals for which the function is constant g. Symmetry about any axis and/or the origin h. Whether the function is even, odd, or neither</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Function; a. Domain: all real numbers, range: $-1.5\\le y\\le 1.5$ b. $x=0$ c. $y=0$ d. all real numbers e. None f. Not constant g. Origin h. Odd"
+      }
+    },
+    {
+      "id": "e33",
+      "source_id": "fs-id1170572482605",
+      "source_number": "33",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "vertical-line-test",
+      "figure": {
+        "src": "/media/ch01/CNX_Calc_Figure_01_01_212.jpg",
+        "alt": "A graph on a grid from −5 to 5 that is a horizontal line until the point (−2, −2), a straight line increasing to the point (2, 2), and a horizontal line after it; both intercepts are at the origin."
+      },
+      "prompt": "<p>For the following exercises, use the vertical line test to determine whether each of the given graphs represents a function. <strong>Assume that a graph continues at both ends if it extends beyond the given grid.</strong> If the graph represents a function, then determine the following for each graph: a. Domain and range b. $x$-intercept, if any (estimate where necessary) c. $y$-intercept, if any (estimate where necessary) d. The intervals for which the function is increasing e. The intervals for which the function is decreasing f. The intervals for which the function is constant g. Symmetry about any axis and/or the origin h. Whether the function is even, odd, or neither</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Function; a. Domain: $-\\infty\\lt x\\lt\\infty,$ range: $-2\\le y\\le 2$ b. $x=0$ c. $y=0$ d. $-2\\lt x\\lt 2$ e. Not decreasing f. $-\\infty\\lt x\\lt -2$ and $2\\lt x\\lt\\infty$ g. Origin h. Odd"
+      }
+    },
+    {
+      "id": "e35",
+      "source_id": "fs-id1170572229080",
+      "source_number": "35",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "vertical-line-test",
+      "figure": {
+        "src": "/media/ch01/CNX_Calc_Figure_01_01_214.jpg",
+        "alt": "A graph on a grid from −5 to 5 that starts at the point (−4, 4), is horizontal until the point (0, 4), then decreases in a curve to the point (4, −4), where it ends; the x-intercept is near (1.2, 0) and the y-intercept is (0, 4)."
+      },
+      "prompt": "<p>For the following exercises, use the vertical line test to determine whether each of the given graphs represents a function. <strong>Assume that a graph continues at both ends if it extends beyond the given grid.</strong> If the graph represents a function, then determine the following for each graph: a. Domain and range b. $x$-intercept, if any (estimate where necessary) c. $y$-intercept, if any (estimate where necessary) d. The intervals for which the function is increasing e. The intervals for which the function is decreasing f. The intervals for which the function is constant g. Symmetry about any axis and/or the origin h. Whether the function is even, odd, or neither</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Function; a. Domain: $-4\\le x\\le 4,$ range: $-4\\le y\\le 4$ b. $x=1.2$ c. $y=4$ d. Not increasing e. $0\\lt x\\lt 4$ f. $-4\\lt x\\lt 0$ g. No Symmetry h. Neither"
+      }
+    },
+    {
+      "id": "e37",
+      "source_id": "fs-id1170572551945",
+      "source_number": "37",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "operators",
+      "prompt": "<p>For the following exercises, for each pair of functions, find a. $f+g$ b. $f-g$ c. $f\\cdot g$ d. $f/g.$ Determine the domain of each of these new functions.</p><p>$f(x)=x-8,\\ g(x)=5x^{2}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $5x^{2}+x-8;$ all real numbers b. $-5x^{2}+x-8;$ all real numbers c. $5x^{3}-40x^{2};$ all real numbers d. $\\dfrac{x-8}{5x^{2}};\\ x\\ne 0$"
+      }
+    },
+    {
+      "id": "e39",
+      "source_id": "fs-id1170572231974",
+      "source_number": "39",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "operators",
+      "prompt": "<p>For the following exercises, for each pair of functions, find a. $f+g$ b. $f-g$ c. $f\\cdot g$ d. $f/g.$ Determine the domain of each of these new functions.</p><p>$f(x)=9-x^{2},\\ g(x)=x^{2}-2x-3$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $-2x+6;$ all real numbers b. $-2x^{2}+2x+12;$ all real numbers c. $-x^{4}+2x^{3}+12x^{2}-18x-27;$ all real numbers d. $-\\dfrac{x+3}{x+1};\\ x\\ne -1,3$"
+      }
+    },
+    {
+      "id": "e41",
+      "source_id": "fs-id1170572174661",
+      "source_number": "41",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "operators",
+      "prompt": "<p>For the following exercises, for each pair of functions, find a. $f+g$ b. $f-g$ c. $f\\cdot g$ d. $f/g.$ Determine the domain of each of these new functions.</p><p>$f(x)=6+\\dfrac{1}{x},\\ g(x)=\\dfrac{1}{x}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $6+\\dfrac{2}{x};\\ x\\ne 0$ b. $6;\\ x\\ne 0$ c. $\\dfrac{6}{x}+\\dfrac{1}{x^{2}};\\ x\\ne 0$ d. $6x+1;\\ x\\ne 0$"
+      }
+    },
+    {
+      "id": "e43",
+      "source_id": "fs-id1170572268008",
+      "source_number": "43",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "function-composition",
+      "prompt": "<p>For the following exercises, for each pair of functions, find a. $(f\\circ g)(x)$ and b. $(g\\circ f)(x)$ Simplify the results. Find the domain of each of the results.</p><p>$f(x)=x+4,\\ g(x)=4x-1$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $4x+3;$ all real numbers b. $4x+15;$ all real numbers"
+      }
+    },
+    {
+      "id": "e45",
+      "source_id": "fs-id1170572219452",
+      "source_number": "45",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "function-composition",
+      "prompt": "<p>For the following exercises, for each pair of functions, find a. $(f\\circ g)(x)$ and b. $(g\\circ f)(x)$ Simplify the results. Find the domain of each of the results.</p><p>$f(x)=x^{2}+7,\\ g(x)=x^{2}-3$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $x^{4}-6x^{2}+16;$ all real numbers b. $x^{4}+14x^{2}+46;$ all real numbers"
+      }
+    },
+    {
+      "id": "e47",
+      "source_id": "fs-id1170572309929",
+      "source_number": "47",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "function-composition",
+      "prompt": "<p>For the following exercises, for each pair of functions, find a. $(f\\circ g)(x)$ and b. $(g\\circ f)(x)$ Simplify the results. Find the domain of each of the results.</p><p>$f(x)=\\dfrac{3}{2x+1},\\ g(x)=\\dfrac{2}{x}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $\\dfrac{3x}{4+x};\\ x\\ne 0,-4$ b. $\\dfrac{4x+2}{3};\\ x\\ne -\\frac{1}{2}$"
+      }
+    },
+    {
+      "id": "e49",
+      "source_id": "fs-id1170572128767",
+      "source_number": "49",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "functions",
+      "prompt": "<p>The table below lists the NBA championship winners for the years 2001 to 2012.</p><table><tr><th>Year</th><th>Winner</th></tr><tr><td>2001</td><td>LA Lakers</td></tr><tr><td>2002</td><td>LA Lakers</td></tr><tr><td>2003</td><td>San Antonio Spurs</td></tr><tr><td>2004</td><td>Detroit Pistons</td></tr><tr><td>2005</td><td>San Antonio Spurs</td></tr><tr><td>2006</td><td>Miami Heat</td></tr><tr><td>2007</td><td>San Antonio Spurs</td></tr><tr><td>2008</td><td>Boston Celtics</td></tr><tr><td>2009</td><td>LA Lakers</td></tr><tr><td>2010</td><td>LA Lakers</td></tr><tr><td>2011</td><td>Dallas Mavericks</td></tr><tr><td>2012</td><td>Miami Heat</td></tr></table><p>a. Consider the relation in which the domain values are the years 2001 to 2012 and the range is the corresponding winner. Is this relation a function? Explain why or why not. b. Consider the relation where the domain values are the winners and the range is the corresponding years. Is this relation a function? Explain why or why not.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. Yes, because there is only one winner for each year. b. No, because there are three teams that won more than once during the years 2001 to 2012."
+      }
+    },
+    {
+      "id": "e51",
+      "source_id": "fs-id1170572478068",
+      "source_number": "51",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "algebraic-formulas",
+      "prompt": "<p><strong>[T]</strong> The volume of a cube depends on the length of the sides $s.$ a. Write a function $V(s)$ for the volume of a cube. b. Find and interpret $V(11.8).$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $V(s)=s^{3}$ b. $V(11.8)\\approx 1643;$ a cube of side length 11.8 each has a volume of approximately 1643 cubic units."
+      }
+    },
+    {
+      "id": "e53",
+      "source_id": "fs-id1170572431519",
+      "source_number": "53",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "algebraic-formulas",
+      "prompt": "<p><strong>[T]</strong> A vehicle has a 20-gal tank and gets 15 mpg. The number of miles <em>N</em> that can be driven depends on the amount of gas <em>x</em> in the tank. a. Write a formula that models this situation. b. Determine the number of miles the vehicle can travel on (i) a full tank of gas and (ii) 3/4 of a tank of gas. c. Determine the domain and range of the function. d. Determine how many times the driver had to stop for gas if she has driven a total of 578 mi.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $N(x)=15x$ b. i. $N(20)=15(20)=300;$ therefore, the vehicle can travel 300 mi on a full tank of gas. ii. $N(15)=225;$ therefore, the vehicle can travel 225 mi on 3/4 of a tank of gas. c. Domain: $0\\le x\\le 20;$ range: $[0,300]$ d. The driver had to stop at least once, given that it takes approximately 39 gal of gas to drive a total of 578 mi."
+      }
+    },
+    {
+      "id": "e55",
+      "source_id": "fs-id1170572171742",
+      "source_number": "55",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "function-composition",
+      "prompt": "<p><strong>[T]</strong> A certain bacterium grows in culture in a circular region. The radius of the circle, measured in centimeters, is given by $r(t)=6-[5/(t^{2}+1)],$ where <em>t</em> is time measured in hours since a circle of a 1-cm radius of the bacterium was put into the culture. a. Express the area of the bacteria as a function of time. b. Find the exact and approximate area of the bacterial culture in 3 hours. c. Express the circumference of the bacteria as a function of time. d. Find the exact and approximate circumference of the bacteria in 3 hours.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $A(t)=A(r(t))=\\pi\\cdot\\left(6-\\dfrac{5}{t^{2}+1}\\right)^{2}$ b. Exact: $\\dfrac{121\\pi}{4};$ approximately 95 cm<sup>2</sup> c. $C(t)=C(r(t))=2\\pi\\left(6-\\dfrac{5}{t^{2}+1}\\right)$ d. Exact: $11\\pi;$ approximately 35 cm"
+      }
+    },
+    {
+      "id": "e57",
+      "source_id": "fs-id1170572425343",
+      "source_number": "57",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "algebraic-formulas",
+      "figure": {
+        "src": "/media/ch01/CNX_Calc_Figure_01_01_215.jpg",
+        "alt": "The graph of y = S(x), an increasing straight line with y-intercept (0, 750), on axes from 0 to 100 skateboards and 0 to 1800 dollars."
+      },
+      "prompt": "<p><strong>[T]</strong> The manager at a skateboard shop pays his workers a monthly salary <em>S</em> of ＄750 plus a commission of ＄8.50 for each skateboard they sell. a. Write a function $y=S(x)$ that models a worker’s monthly salary based on the number of skateboards <em>x</em> he or she sells. b. Find the monthly salary when a worker sells 25, 40, or 55 skateboards. c. Use the INTERSECT feature on a graphing calculator to determine the number of skateboards that must be sold for a worker to earn a monthly income of ＄1400. (<em>Hint</em>: Find the intersection of the function and the line $y=1400.$)</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $S(x)=8.5x+750$ b. ＄962.50, ＄1090, ＄1217.50 c. 77 skateboards"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cp1",
+      "concept": "function"
+    },
+    {
+      "exercise": "cp2",
+      "concept": "domain"
+    },
+    {
+      "exercise": "cp2",
+      "concept": "range"
+    },
+    {
+      "exercise": "cp3",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "cp4",
+      "concept": "combinations-of-functions"
+    },
+    {
+      "exercise": "cp4",
+      "concept": "domain"
+    },
+    {
+      "exercise": "cp5",
+      "concept": "composite-function"
+    },
+    {
+      "exercise": "cp6",
+      "concept": "composite-function"
+    },
+    {
+      "exercise": "cp7",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "cp7",
+      "concept": "odd-function"
+    },
+    {
+      "exercise": "cp8",
+      "concept": "absolute-value-function"
+    },
+    {
+      "exercise": "cp8",
+      "concept": "domain"
+    },
+    {
+      "exercise": "cp8",
+      "concept": "range"
+    },
+    {
+      "exercise": "e1",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e1",
+      "concept": "range"
+    },
+    {
+      "exercise": "e1",
+      "concept": "function"
+    },
+    {
+      "exercise": "e3",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e3",
+      "concept": "range"
+    },
+    {
+      "exercise": "e3",
+      "concept": "function"
+    },
+    {
+      "exercise": "e5",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e5",
+      "concept": "range"
+    },
+    {
+      "exercise": "e5",
+      "concept": "function"
+    },
+    {
+      "exercise": "e7",
+      "concept": "function"
+    },
+    {
+      "exercise": "e9",
+      "concept": "function"
+    },
+    {
+      "exercise": "e9",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e11",
+      "concept": "function"
+    },
+    {
+      "exercise": "e13",
+      "concept": "function"
+    },
+    {
+      "exercise": "e15",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e15",
+      "concept": "range"
+    },
+    {
+      "exercise": "e15",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "e15",
+      "concept": "y-intercept"
+    },
+    {
+      "exercise": "e15",
+      "concept": "natural-domain"
+    },
+    {
+      "exercise": "e17",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e17",
+      "concept": "range"
+    },
+    {
+      "exercise": "e17",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "e17",
+      "concept": "y-intercept"
+    },
+    {
+      "exercise": "e17",
+      "concept": "natural-domain"
+    },
+    {
+      "exercise": "e19",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e19",
+      "concept": "range"
+    },
+    {
+      "exercise": "e19",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "e19",
+      "concept": "y-intercept"
+    },
+    {
+      "exercise": "e19",
+      "concept": "natural-domain"
+    },
+    {
+      "exercise": "e21",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e21",
+      "concept": "range"
+    },
+    {
+      "exercise": "e21",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "e21",
+      "concept": "y-intercept"
+    },
+    {
+      "exercise": "e21",
+      "concept": "natural-domain"
+    },
+    {
+      "exercise": "e23",
+      "concept": "table-of-values"
+    },
+    {
+      "exercise": "e23",
+      "concept": "graph-of-a-function"
+    },
+    {
+      "exercise": "e25",
+      "concept": "table-of-values"
+    },
+    {
+      "exercise": "e25",
+      "concept": "graph-of-a-function"
+    },
+    {
+      "exercise": "e25",
+      "concept": "absolute-value-function"
+    },
+    {
+      "exercise": "e27",
+      "concept": "table-of-values"
+    },
+    {
+      "exercise": "e27",
+      "concept": "graph-of-a-function"
+    },
+    {
+      "exercise": "e29",
+      "concept": "vertical-line-test"
+    },
+    {
+      "exercise": "e29",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e29",
+      "concept": "range"
+    },
+    {
+      "exercise": "e29",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "e29",
+      "concept": "y-intercept"
+    },
+    {
+      "exercise": "e29",
+      "concept": "increasing-function"
+    },
+    {
+      "exercise": "e29",
+      "concept": "decreasing-function"
+    },
+    {
+      "exercise": "e29",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "e29",
+      "concept": "odd-function"
+    },
+    {
+      "exercise": "e29",
+      "concept": "symmetry-about-the-y-axis"
+    },
+    {
+      "exercise": "e31",
+      "concept": "vertical-line-test"
+    },
+    {
+      "exercise": "e31",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e31",
+      "concept": "range"
+    },
+    {
+      "exercise": "e31",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "e31",
+      "concept": "y-intercept"
+    },
+    {
+      "exercise": "e31",
+      "concept": "increasing-function"
+    },
+    {
+      "exercise": "e31",
+      "concept": "decreasing-function"
+    },
+    {
+      "exercise": "e31",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "e31",
+      "concept": "odd-function"
+    },
+    {
+      "exercise": "e31",
+      "concept": "symmetry-about-the-origin"
+    },
+    {
+      "exercise": "e33",
+      "concept": "vertical-line-test"
+    },
+    {
+      "exercise": "e33",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e33",
+      "concept": "range"
+    },
+    {
+      "exercise": "e33",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "e33",
+      "concept": "y-intercept"
+    },
+    {
+      "exercise": "e33",
+      "concept": "increasing-function"
+    },
+    {
+      "exercise": "e33",
+      "concept": "decreasing-function"
+    },
+    {
+      "exercise": "e33",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "e33",
+      "concept": "odd-function"
+    },
+    {
+      "exercise": "e33",
+      "concept": "symmetry-about-the-origin"
+    },
+    {
+      "exercise": "e35",
+      "concept": "vertical-line-test"
+    },
+    {
+      "exercise": "e35",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e35",
+      "concept": "range"
+    },
+    {
+      "exercise": "e35",
+      "concept": "zeros-of-a-function"
+    },
+    {
+      "exercise": "e35",
+      "concept": "y-intercept"
+    },
+    {
+      "exercise": "e35",
+      "concept": "increasing-function"
+    },
+    {
+      "exercise": "e35",
+      "concept": "decreasing-function"
+    },
+    {
+      "exercise": "e35",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "e35",
+      "concept": "odd-function"
+    },
+    {
+      "exercise": "e37",
+      "concept": "combinations-of-functions"
+    },
+    {
+      "exercise": "e37",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e39",
+      "concept": "combinations-of-functions"
+    },
+    {
+      "exercise": "e39",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e41",
+      "concept": "combinations-of-functions"
+    },
+    {
+      "exercise": "e41",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e43",
+      "concept": "composite-function"
+    },
+    {
+      "exercise": "e43",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e45",
+      "concept": "composite-function"
+    },
+    {
+      "exercise": "e45",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e47",
+      "concept": "composite-function"
+    },
+    {
+      "exercise": "e47",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e49",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e49",
+      "concept": "range"
+    },
+    {
+      "exercise": "e49",
+      "concept": "function"
+    },
+    {
+      "exercise": "e51",
+      "concept": "function"
+    },
+    {
+      "exercise": "e53",
+      "concept": "function"
+    },
+    {
+      "exercise": "e53",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e53",
+      "concept": "range"
+    },
+    {
+      "exercise": "e55",
+      "concept": "composite-function"
+    },
+    {
+      "exercise": "e57",
+      "concept": "function"
+    }
+  ],
+  "referents": [
+    {
+      "id": "map-f",
+      "label": "the map f",
+      "figures": [
+        "sim-composite-map"
+      ]
+    },
+    {
+      "id": "map-g",
+      "label": "the map g",
+      "figures": [
+        "sim-composite-map"
+      ]
+    },
+    {
+      "id": "sale",
+      "label": "the sale",
+      "figures": [
+        "sim-discount-pipeline"
+      ]
+    },
+    {
+      "id": "coupon",
+      "label": "the coupon",
+      "figures": [
+        "sim-discount-pipeline"
+      ]
+    }
+  ]
+}
