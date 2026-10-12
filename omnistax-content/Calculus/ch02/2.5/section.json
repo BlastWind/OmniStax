@@ -1,0 +1,1061 @@
+{
+ "id": "2.5",
+ "module": "m53493",
+ "chapter": "2",
+ "title": "The Precise Definition of a Limit",
+ "short": "The Precise Definition of a Limit",
+ "lead": "The intuitive idea of a <span data-concept=\"limit\">limit</span> is made precise: a distance ε from the <span data-concept=\"limit\">limit</span> and a distance δ from the point approached say exactly how close is close. The definition is put to work proving statements about <span data-concept=\"limit\">limits</span>, proving a <span data-concept=\"limit-laws\">limit law</span>, showing that a <span data-concept=\"limit\">limit</span> does not exist, and defining <span data-concept=\"one-sided-limit\">one-sided</span> and <span data-concept=\"infinite-limit\">infinite limits</span>.",
+ "objectives": [
+  "Describe the epsilon-delta definition of a limit.",
+  "Apply the epsilon-delta definition to find the limit of a function.",
+  "Describe the epsilon-delta definitions of one-sided limits and infinite limits.",
+  "Use the epsilon-delta definition to prove the limit laws."
+ ],
+ "summary_html": "<ul><li>The intuitive notion of a <span data-concept=\"limit\">limit</span> may be converted into a rigorous mathematical definition known as the <em><span data-concept=\"epsilon-delta-definition-of-the-limit\">epsilon-delta definition of the limit</span></em>.</li><li>The <span data-concept=\"epsilon-delta-definition-of-the-limit\">epsilon-delta definition</span> may be used to prove statements about <span data-concept=\"limit\">limits</span>.</li><li>The <span data-concept=\"epsilon-delta-definition-of-the-limit\">epsilon-delta definition of a limit</span> may be modified to define <span data-concept=\"epsilon-delta-one-sided-limits\">one-sided limits</span>.</li></ul>",
+ "notes": "The book’s link to an applet on the epsilon-delta definition of limit is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. The odd-numbered exercises carry the book’s answers, except 201 and 207, where the key says only “Answers may vary.” and an AI-written proof stands instead, marked as such. The even-numbered exercises have no answer in the key: the ten proofs (188, 190, 192, 194, 196, 198, 200, 202, 204 and 206) carry AI-written proofs, marked as such, and the computational ones are left out: 176 and 178 (writing a definition), 180, 182 and 184 (δ read from a graph) and 186 (a [T] δ by calculator). Of the Chapter Review Exercises printed at the end of this section, 228 and 229 are set here, 228 with an AI-written proof; the rest are set with the sections that introduce what they test: 231 in 2.1, 210 in 2.2, 209, 213, 215, 217, 219, 221, 223 and 224 in 2.3, and 208, 211, 225, 227 and 230 in 2.4. Review exercises 212, 214, 216, 218, 220, 222, 226 and 232 have no answer in the key and are computational, so they are left out.",
+ "figures": [
+  {
+   "id": "sim-epsilon-delta",
+   "kind": "sim",
+   "number": "2.39",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_05_001.jpg"
+   ],
+   "original_caption": "These graphs show possible values of δ, given successively smaller choices of ε.",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-delta-linear",
+   "kind": "sim",
+   "number": "2.40",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_05_002.jpg"
+   ],
+   "original_caption": "This graph shows how we find δ geometrically.",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-delta-square",
+   "kind": "sim",
+   "number": "2.41",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_05_003.jpg"
+   ],
+   "original_caption": "This graph shows how we find δ geometrically for a given ε for the proof in Example 2.41.",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-delta-algebraic",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-no-limit",
+   "kind": "sim",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_05_006.jpg"
+   ],
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-one-sided-delta",
+   "kind": "sim",
+   "number": "2.42",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_05_004.jpg"
+   ],
+   "original_caption": "This graph shows how we find δ for the proof in Example 2.44.",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-infinite-delta",
+   "kind": "sim",
+   "number": "2.43",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_05_005.jpg"
+   ],
+   "original_caption": "These graphs plot values of δ for M to show that lim_(x→a) f(x) = +∞.",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "quantifying-closeness",
+   "concept": "intuitive-definition-of-the-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "epsilon-delta-definition",
+   "concept": "epsilon-delta-definition-of-the-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantifying-closeness",
+   "concept": "limit",
+   "verb": "uses"
+  },
+  {
+   "span": "quantifying-closeness",
+   "concept": "function",
+   "verb": "uses"
+  },
+  {
+   "span": "epsilon-delta-strategy",
+   "concept": "proving-a-limit-with-epsilon-delta",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572333023",
+   "concept": "proving-a-limit-with-epsilon-delta",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571597356",
+   "concept": "proving-a-limit-with-epsilon-delta",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571657118",
+   "concept": "proving-a-limit-with-epsilon-delta",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571690430",
+   "concept": "proving-a-limit-with-epsilon-delta",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572333023",
+   "concept": "epsilon-delta-definition-of-the-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "proving-limit-laws",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "triangle-inequality-definition",
+   "concept": "triangle-inequality",
+   "verb": "introduces"
+  },
+  {
+   "span": "sum-law-proof",
+   "concept": "sum-law-for-limits",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sum-law-proof",
+   "concept": "triangle-inequality",
+   "verb": "uses"
+  },
+  {
+   "span": "sum-law-proof",
+   "concept": "epsilon-delta-definition-of-the-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "limit-does-not-exist",
+   "concept": "existence-of-a-limit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "proving-limit-laws",
+   "concept": "limit-that-does-not-exist",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572550055",
+   "concept": "limit-that-does-not-exist",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572550055",
+   "concept": "absolute-value-function",
+   "verb": "uses"
+  },
+  {
+   "span": "one-sided-infinite",
+   "concept": "one-sided-limit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "one-sided-definition",
+   "concept": "epsilon-delta-one-sided-limits",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572330921",
+   "concept": "epsilon-delta-one-sided-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "one-sided-infinite",
+   "concept": "infinite-limit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "infinite-definition",
+   "concept": "epsilon-delta-infinite-limits",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170571712678",
+   "source_number": "Checkpoint 2.27",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571597356"
+   },
+   "cite": "epsilon-delta-strategy",
+   "prompt": "<p>Complete the proof that $\\lim_{x\\to 2}(3x-2)=4$ by filling in the blanks.</p><p>Let _______.</p><p>Choose $\\delta=\\text{\\_\\_\\_\\_\\_\\_\\_}.$</p><p>Assume $0\\lt|x-\\text{\\_\\_\\_\\_}|\\lt\\text{\\_\\_\\_\\_}.$</p><p>Thus, $|\\text{\\_\\_\\_\\_\\_\\_\\_}-\\text{\\_\\_\\_\\_}|=\\text{\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_}\\varepsilon.$</p><p>Therefore, $\\lim_{x\\to 2}3x-2=4.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Follow the outline in the Problem-Solving Strategy that we worked out in full in Example 2.40. Let $\\varepsilon\\gt 0;$ choose $\\delta=\\frac{\\varepsilon}{3};$ assume $0\\lt|x-2|\\lt\\delta.$ Thus, $|(3x-2)-4|=|3x-6|=|3|\\cdot|x-2|\\lt 3\\cdot\\delta=3\\cdot(\\varepsilon/3)=\\varepsilon.$ Therefore, $\\lim_{x\\to 2}3x-2=4.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170572332177",
+   "source_number": "Checkpoint 2.28",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571657118"
+   },
+   "cite": "fs-id1170571657118",
+   "prompt": "<p>Find $\\delta$ corresponding to $\\varepsilon\\gt 0$ for a proof that $\\lim_{x\\to 9}\\sqrt{x}=3.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Draw a graph similar to the one in Example 2.41. Choose $\\delta=\\min\\{9-(3-\\varepsilon)^{2},(3+\\varepsilon)^{2}-9\\}.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572243116",
+   "source_number": "Checkpoint 2.29",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571690430"
+   },
+   "cite": "fs-id1170571690430",
+   "prompt": "<p>Complete the proof that $\\lim_{x\\to 1}x^{2}=1.$</p><p>Let $\\varepsilon\\gt 0;$ choose $\\delta=\\min\\{1,\\varepsilon/3\\};$ assume $0\\lt|x-1|\\lt\\delta.$</p><p>Since $|x-1|\\lt 1,$ we may conclude that $-1\\lt x-1\\lt 1.$ Thus, $1\\lt x+1\\lt 3.$ Hence, $|x+1|\\lt 3.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Use Example 2.42 as a guide. $|x^{2}-1|=|x-1|\\cdot|x+1|\\lt\\varepsilon/3\\cdot 3=\\varepsilon$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170571711158",
+   "source_number": "Checkpoint 2.30",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572330921"
+   },
+   "cite": "one-sided-definition",
+   "prompt": "<p>Find $\\delta$ corresponding to $\\varepsilon$ for a proof that $\\lim_{x\\to 1^{-}}\\sqrt{1-x}=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Sketch the graph and use Example 2.44 as a solving guide. $\\delta=\\varepsilon^{2}$"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1170572233832",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-definition",
+   "prompt": "<p>In the following exercises, write the appropriate $\\varepsilon$-$\\delta$ definition for each of the given statements.</p><p>$\\lim_{t\\to b}g(t)=M$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "For every $\\varepsilon\\gt 0,$ there exists a $\\delta\\gt 0,$ so that if $0\\lt|t-b|\\lt\\delta,$ then $|g(t)-M|\\lt\\varepsilon$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1170572294410",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-definition",
+   "prompt": "<p>In the following exercises, write the appropriate $\\varepsilon$-$\\delta$ definition for each of the given statements.</p><p>$\\lim_{x\\to a}\\varphi(x)=A$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "For every $\\varepsilon\\gt 0,$ there exists a $\\delta\\gt 0,$ so that if $0\\lt|x-a|\\lt\\delta,$ then $|\\varphi(x)-A|\\lt\\varepsilon$"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1170572338483",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quantifying-closeness",
+   "figure": {
+    "src": "/media/ch02/CNX_Calc_Figure_02_05_204.jpg",
+    "alt": "A function drawn in quadrant one for x > 0. It is an increasing concave up function, with points approximately (0,0), (1, .5), (2,2), and (3,4)."
+   },
+   "prompt": "<p>The following graph of the function <em>f</em> satisfies $\\lim_{x\\to 2}f(x)=2.$ In the following exercises, determine a value of $\\delta\\gt 0$ that satisfies each statement.</p><p>If $0\\lt|x-2|\\lt\\delta,$ then $|f(x)-2|\\lt 0.5.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\delta\\le 0.25$"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1170571637496",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quantifying-closeness",
+   "figure": {
+    "src": "/media/ch02/CNX_Calc_Figure_02_05_205.jpg",
+    "alt": "A graph of a decreasing linear function, with points (0,2), (1,1), (2,0), (3,-1), (4,-2), and so on for x >= 0."
+   },
+   "prompt": "<p>The following graph of the function <em>f</em> satisfies $\\lim_{x\\to 3}f(x)=-1.$ In the following exercises, determine a value of $\\delta\\gt 0$ that satisfies each statement.</p><p>If $0\\lt|x-3|\\lt\\delta,$ then $|f(x)+1|\\lt 2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\delta\\le 2$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1170572618102",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quantifying-closeness",
+   "figure": {
+    "src": "/media/ch02/CNX_Calc_Figure_02_05_206.jpg",
+    "alt": "A graph of an increasing linear function intersecting the x axis at about (2.25, 0) and going through the points (3,2) and, approximately, (1,-5) and (4,5)."
+   },
+   "prompt": "<p>The following graph of the function <em>f</em> satisfies $\\lim_{x\\to 3}f(x)=2.$ In the following exercises, for each value of $\\varepsilon$, find a value of $\\delta\\gt 0$ such that the precise definition of limit holds true.</p><p>$\\varepsilon=3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\delta\\le 1$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1170571599654",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quantifying-closeness",
+   "prompt": "<p><strong>[T]</strong> In the following exercises, use a graphing calculator to find a number $\\delta$ such that the statements hold true.</p><p>$|\\sqrt{x-4}-2|\\lt 0.1,\\;\\text{whenever}\\;|x-8|\\lt\\delta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\delta\\lt 0.3900$"
+   }
+  },
+  {
+   "id": "e188",
+   "source_id": "fs-id1170572551803",
+   "source_number": "188",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-strategy",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given limits.</p><p>$\\lim_{x\\to 2}(5x+8)=18$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $\\varepsilon\\gt 0.$ Choose $\\delta=\\varepsilon/5.$ Assume $0\\lt|x-2|\\lt\\delta.$ Then $|(5x+8)-18|=|5x-10|=5|x-2|\\lt 5\\delta=5\\cdot\\frac{\\varepsilon}{5}=\\varepsilon.$ Therefore, $\\lim_{x\\to 2}(5x+8)=18.$"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1170572448375",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-strategy",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given limits.</p><p>$\\lim_{x\\to 3}\\frac{x^{2}-9}{x-3}=6$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\delta=\\varepsilon.$ If $0\\lt|x-3|\\lt\\varepsilon,$ then $|x+3-6|=|x-3|\\lt\\varepsilon.$"
+   }
+  },
+  {
+   "id": "e190",
+   "source_id": "fs-id1170571610972",
+   "source_number": "190",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-strategy",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given limits.</p><p>$\\lim_{x\\to 2}\\frac{2x^{2}-3x-2}{x-2}=5$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $x\\ne 2,$ $\\frac{2x^{2}-3x-2}{x-2}=\\frac{(2x+1)(x-2)}{x-2}=2x+1.$ Let $\\varepsilon\\gt 0.$ Choose $\\delta=\\varepsilon/2.$ Assume $0\\lt|x-2|\\lt\\delta;$ then $x\\ne 2,$ so $\\left|\\frac{2x^{2}-3x-2}{x-2}-5\\right|=|2x+1-5|=2|x-2|\\lt 2\\delta=\\varepsilon.$ Therefore, $\\lim_{x\\to 2}\\frac{2x^{2}-3x-2}{x-2}=5.$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1170572337116",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-strategy",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given limits.</p><p>$\\lim_{x\\to 0}x^{4}=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\delta=\\sqrt[4]{\\varepsilon}.$ If $0\\lt|x|\\lt\\sqrt[4]{\\varepsilon},$ then $|x^{4}|=x^{4}\\lt\\varepsilon.$"
+   }
+  },
+  {
+   "id": "e192",
+   "source_id": "fs-id1170572163828",
+   "source_number": "192",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-strategy",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given limits.</p><p>$\\lim_{x\\to 2}(x^{2}+2x)=8$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $\\varepsilon\\gt 0.$ Choose $\\delta=\\min\\{1,\\varepsilon/7\\}.$ Assume $0\\lt|x-2|\\lt\\delta.$ Since $|x-2|\\lt 1,$ we have $1\\lt x\\lt 3,$ so $5\\lt x+4\\lt 7$ and $|x+4|\\lt 7.$ Then $|(x^{2}+2x)-8|=|x-2|\\cdot|x+4|\\lt\\frac{\\varepsilon}{7}\\cdot 7=\\varepsilon.$ Therefore, $\\lim_{x\\to 2}(x^{2}+2x)=8.$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1170571599727",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "one-sided-definition",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given one-sided limits.</p><p>$\\lim_{x\\to 5^{-}}\\sqrt{5-x}=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\delta=\\varepsilon^{2}.$ If $5-\\varepsilon^{2}\\lt x\\lt 5,$ then $|\\sqrt{5-x}|=\\sqrt{5-x}\\lt\\varepsilon.$"
+   }
+  },
+  {
+   "id": "e194",
+   "source_id": "fs-id1170572217461",
+   "source_number": "194",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "one-sided-definition",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given one-sided limits.</p><p>$\\lim_{x\\to 0^{+}}f(x)=-2,\\;\\text{where}\\;f(x)=\\begin{cases}8x-3, & \\text{if}\\;x\\lt 0\\\\ 4x-2, & \\text{if}\\;x\\ge 0\\end{cases}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $\\varepsilon\\gt 0.$ Choose $\\delta=\\varepsilon/4.$ Assume $0\\lt x-0\\lt\\delta.$ Since $x\\gt 0,$ $f(x)=4x-2,$ so $|f(x)-(-2)|=|4x|=4x\\lt 4\\delta=\\varepsilon.$ Therefore, $\\lim_{x\\to 0^{+}}f(x)=-2.$ Only the values of $f$ to the right of 0 enter, so the piece $8x-3$ plays no part."
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1170571547600",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "one-sided-definition",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given one-sided limits.</p><p>$\\lim_{x\\to 1^{-}}f(x)=3,\\;\\text{where}\\;f(x)=\\begin{cases}5x-2, & \\text{if}\\;x\\lt 1\\\\ 7x-1, & \\text{if}\\;x\\ge 1\\end{cases}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\delta=\\varepsilon/5.$ If $1-\\varepsilon/5\\lt x\\lt 1,$ then $|f(x)-3|=5x-5\\lt\\varepsilon.$"
+   }
+  },
+  {
+   "id": "e196",
+   "source_id": "fs-id1170571733891",
+   "source_number": "196",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "infinite-definition",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given infinite limits.</p><p>$\\lim_{x\\to 0}\\frac{1}{x^{2}}=\\infty$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $M\\gt 0.$ Choose $\\delta=\\frac{1}{\\sqrt{M}}.$ Assume $0\\lt|x-0|\\lt\\delta.$ Then $0\\lt x^{2}\\lt\\delta^{2}=\\frac{1}{M},$ so $\\frac{1}{x^{2}}\\gt M.$ Therefore, $\\lim_{x\\to 0}\\frac{1}{x^{2}}=\\infty.$"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1170572233865",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "infinite-definition",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given infinite limits.</p><p>$\\lim_{x\\to -1}\\frac{3}{(x+1)^{2}}=\\infty$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\delta=\\sqrt{\\frac{3}{M}}.$ If $0\\lt|x+1|\\lt\\sqrt{\\frac{3}{M}},$ then $f(x)=\\frac{3}{(x+1)^{2}}\\gt M.$"
+   }
+  },
+  {
+   "id": "e198",
+   "source_id": "fs-id1170572331909",
+   "source_number": "198",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "infinite-definition",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the given infinite limits.</p><p>$\\lim_{x\\to 2}-\\frac{1}{(x-2)^{2}}=-\\infty$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $M\\gt 0.$ Choose $\\delta=\\frac{1}{\\sqrt{M}}.$ Assume $0\\lt|x-2|\\lt\\delta.$ Then $0\\lt(x-2)^{2}\\lt\\frac{1}{M},$ so $\\frac{1}{(x-2)^{2}}\\gt M$ and $-\\frac{1}{(x-2)^{2}}\\lt -M.$ Therefore, $\\lim_{x\\to 2}-\\frac{1}{(x-2)^{2}}=-\\infty.$"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1170571652896",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-definition",
+   "prompt": "<p>An engineer is using a machine to cut a flat square of Aerogel of area 144 cm<sup>2</sup>. If there is a maximum error tolerance in the area of 8 cm<sup>2</sup>, how accurately must the engineer cut on the side, assuming all sides have the same length? How do these numbers relate to $\\delta,$ $\\varepsilon$, <em>a</em>, and <em>L</em>?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The engineer must cut within 0.328 cm of 12 cm on each side; $\\varepsilon=8,\\delta=0.328,a=12,L=144$"
+   }
+  },
+  {
+   "id": "e200",
+   "source_id": "fs-id1170572551905",
+   "source_number": "200",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-does-not-exist",
+   "prompt": "<p>Use the precise definition of limit to prove that the following limit does not exist: $\\lim_{x\\to 1}\\frac{|x-1|}{x-1}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The function is $-1$ for $x\\lt 1$ and $1$ for $x\\gt 1.$ Suppose $L$ is a candidate for the limit. Choose $\\varepsilon=1/2,$ and let $\\delta\\gt 0.$ If $L\\ge 0,$ let $x=1-\\delta/2:$ then $0\\lt|x-1|=\\delta/2\\lt\\delta$ and $\\left|\\frac{|x-1|}{x-1}-L\\right|=|-1-L|=L+1\\ge 1\\gt\\frac{1}{2}=\\varepsilon.$ If $L\\lt 0,$ let $x=1+\\delta/2:$ then $0\\lt|x-1|\\lt\\delta$ and $|1-L|=|L|+1\\ge 1\\gt\\varepsilon.$ So for every $L$ there is an $\\varepsilon$ that no $\\delta$ meets, and $\\lim_{x\\to 1}\\frac{|x-1|}{x-1}$ does not exist."
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1170572626566",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-does-not-exist",
+   "prompt": "<p>Using precise definitions of limits, prove that $\\lim_{x\\to 0}f(x)$ does not exist, given that $f(x)$ is the ceiling function. (<em>Hint</em>: Try any $\\delta\\lt 1.$)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The ceiling function is $0$ for $-1\\lt x\\le 0$ and $1$ for $0\\lt x\\le 1.$ Suppose $L$ is a candidate for the limit. Choose $\\varepsilon=1/2,$ let $\\delta\\gt 0,$ and set $d=\\min\\{\\delta,1\\}.$ If $L\\ge 1/2,$ let $x=-d/2:$ then $0\\lt|x|\\lt\\delta$ and $|f(x)-L|=|0-L|=L\\ge\\frac{1}{2}=\\varepsilon.$ If $L\\lt 1/2,$ let $x=d/2:$ then $0\\lt|x|\\lt\\delta$ and $|f(x)-L|=1-L\\gt\\frac{1}{2}=\\varepsilon.$ Either way some $x$ within $\\delta$ of 0 has $|f(x)-L|\\ge\\varepsilon,$ so no $L$ is the limit and $\\lim_{x\\to 0}f(x)$ does not exist."
+   }
+  },
+  {
+   "id": "e202",
+   "source_id": "fs-id1170571699078",
+   "source_number": "202",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-does-not-exist",
+   "prompt": "<p>Using precise definitions of limits, prove that $\\lim_{x\\to 0}f(x)$ does not exist: $f(x)=\\begin{cases}1 & \\text{if}\\;x\\;\\text{is rational}\\\\ 0 & \\text{if}\\;x\\;\\text{is irrational}\\end{cases}.$ (<em>Hint</em>: Think about how you can always choose a rational number $0\\lt r\\lt d,$ but $|f(r)-0|=1.$)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Suppose $L$ is a candidate for the limit. Choose $\\varepsilon=1/2,$ and let $\\delta\\gt 0.$ Between 0 and $\\delta$ there are both a rational number $r$ and an irrational number $s,$ so $0\\lt|r|\\lt\\delta,$ $0\\lt|s|\\lt\\delta,$ $f(r)=1$ and $f(s)=0.$ If $L\\ge 1/2,$ then $|f(s)-L|=L\\ge\\varepsilon;$ if $L\\lt 1/2,$ then $|f(r)-L|=1-L\\gt\\varepsilon.$ Either way some $x$ within $\\delta$ of 0 has $|f(x)-L|\\ge\\varepsilon,$ so $\\lim_{x\\to 0}f(x)$ does not exist."
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1170572444404",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-definition",
+   "prompt": "<p>Using precise definitions of limits, determine $\\lim_{x\\to 0}f(x)$ for $f(x)=\\begin{cases}x & \\text{if}\\;x\\;\\text{is rational}\\\\ 0 & \\text{if}\\;x\\;\\text{is irrational}\\end{cases}.$ (<em>Hint</em>: Break into two cases, <em>x</em> rational and <em>x</em> irrational.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "tol": 1e-06,
+    "solution": "0"
+   }
+  },
+  {
+   "id": "e204",
+   "source_id": "fs-id1170571661071",
+   "source_number": "204",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-does-not-exist",
+   "prompt": "<p>Using the function from the previous exercise, use the precise definition of limits to show that $\\lim_{x\\to a}f(x)$ does not exist for $a\\ne 0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $f(x)=x$ for rational $x$ and $f(x)=0$ for irrational $x,$ and $a\\ne 0.$ Suppose $L$ is a candidate for the limit. Choose $\\varepsilon=|a|/4,$ and let $\\delta\\gt 0.$ If $|L|\\ge|a|/4,$ pick an irrational $x$ with $0\\lt|x-a|\\lt\\delta:$ then $|f(x)-L|=|L|\\ge\\varepsilon.$ If $|L|\\lt|a|/4,$ pick a rational $x$ with $0\\lt|x-a|\\lt\\min\\{\\delta,|a|/2\\}:$ then $|x|\\gt|a|/2,$ so $|f(x)-L|=|x-L|\\ge|x|-|L|\\gt\\frac{|a|}{2}-\\frac{|a|}{4}=\\varepsilon.$ Either way some $x$ within $\\delta$ of $a$ has $|f(x)-L|\\ge\\varepsilon,$ so $\\lim_{x\\to a}f(x)$ does not exist."
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1170571653079",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sum-law-proof",
+   "prompt": "<p>For the following exercises, suppose that $\\lim_{x\\to a}f(x)=L$ and $\\lim_{x\\to a}g(x)=M$ both exist. Use the precise definition of limits to prove the following limit laws:</p><p>$\\lim_{x\\to a}(f(x)+g(x))=L+M$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{l}\\lim_{x\\to a}(f(x))+\\lim_{x\\to a}(g(x))\\\\ =L+M\\end{array}$"
+   }
+  },
+  {
+   "id": "e206",
+   "source_id": "fs-id1170571613536",
+   "source_number": "206",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sum-law-proof",
+   "prompt": "<p>For the following exercises, suppose that $\\lim_{x\\to a}f(x)=L$ and $\\lim_{x\\to a}g(x)=M$ both exist. Use the precise definition of limits to prove the following limit laws:</p><p>$\\lim_{x\\to a}[cf(x)]=cL$ for any real constant <em>c</em> (<em>Hint</em>: Consider two cases: $c=0$ and $c\\ne 0.$)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "If $c=0,$ then $cf(x)=0=cL$ for every $x,$ so $|cf(x)-cL|=0\\lt\\varepsilon$ for any $\\varepsilon\\gt 0$ and any $\\delta.$ If $c\\ne 0,$ let $\\varepsilon\\gt 0.$ Since $\\lim_{x\\to a}f(x)=L,$ choose $\\delta\\gt 0$ so that if $0\\lt|x-a|\\lt\\delta,$ then $|f(x)-L|\\lt\\frac{\\varepsilon}{|c|}.$ Assume $0\\lt|x-a|\\lt\\delta.$ Then $|cf(x)-cL|=|c|\\,|f(x)-L|\\lt|c|\\cdot\\frac{\\varepsilon}{|c|}=\\varepsilon.$ Therefore, $\\lim_{x\\to a}[cf(x)]=cL.$"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1170571712568",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sum-law-proof",
+   "prompt": "<p>For the following exercises, suppose that $\\lim_{x\\to a}f(x)=L$ and $\\lim_{x\\to a}g(x)=M$ both exist. Use the precise definition of limits to prove the following limit laws:</p><p>$\\lim_{x\\to a}[f(x)g(x)]=LM.$ (<em>Hint</em>: $|f(x)g(x)-LM|=|f(x)g(x)-f(x)M+f(x)M-LM|\\le|f(x)||g(x)-M|+|M||f(x)-L|.$)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $\\varepsilon\\gt 0.$ Choose $\\delta_{1}\\gt 0$ so that $0\\lt|x-a|\\lt\\delta_{1}$ gives $|f(x)-L|\\lt 1,$ and so $|f(x)|\\lt|L|+1.$ Choose $\\delta_{2}\\gt 0$ so that $0\\lt|x-a|\\lt\\delta_{2}$ gives $|g(x)-M|\\lt\\frac{\\varepsilon}{2(|L|+1)},$ and $\\delta_{3}\\gt 0$ so that $0\\lt|x-a|\\lt\\delta_{3}$ gives $|f(x)-L|\\lt\\frac{\\varepsilon}{2(|M|+1)}.$ Choose $\\delta=\\min\\{\\delta_{1},\\delta_{2},\\delta_{3}\\}$ and assume $0\\lt|x-a|\\lt\\delta.$ By the hint, $|f(x)g(x)-LM|\\le|f(x)||g(x)-M|+|M||f(x)-L|\\lt(|L|+1)\\cdot\\frac{\\varepsilon}{2(|L|+1)}+|M|\\cdot\\frac{\\varepsilon}{2(|M|+1)}\\lt\\frac{\\varepsilon}{2}+\\frac{\\varepsilon}{2}=\\varepsilon.$ Therefore, $\\lim_{x\\to a}[f(x)g(x)]=LM.$"
+   }
+  },
+  {
+   "id": "r228",
+   "source_id": "fs-id1170572609501",
+   "source_number": "228",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-strategy",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the limit.</p><p>$\\lim_{x\\to 1}(8x+16)=24$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $\\varepsilon\\gt 0.$ Choose $\\delta=\\varepsilon/8.$ Assume $0\\lt|x-1|\\lt\\delta.$ Then $|(8x+16)-24|=|8x-8|=8|x-1|\\lt 8\\delta=\\varepsilon.$ Therefore, $\\lim_{x\\to 1}(8x+16)=24.$"
+   }
+  },
+  {
+   "id": "r229",
+   "source_id": "fs-id1170571710664",
+   "source_number": "229",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "epsilon-delta-strategy",
+   "prompt": "<p>In the following exercises, use the precise definition of limit to prove the limit.</p><p>$\\lim_{x\\to 0}x^{3}=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\delta=\\sqrt[3]{\\varepsilon}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "epsilon-delta-one-sided-limits"
+  },
+  {
+   "exercise": "e177",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e179",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e181",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e183",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e185",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e187",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e188",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e188",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e189",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e189",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e190",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e190",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e191",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e191",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e192",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e192",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e193",
+   "concept": "epsilon-delta-one-sided-limits"
+  },
+  {
+   "exercise": "e193",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e194",
+   "concept": "epsilon-delta-one-sided-limits"
+  },
+  {
+   "exercise": "e194",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e195",
+   "concept": "epsilon-delta-one-sided-limits"
+  },
+  {
+   "exercise": "e195",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e196",
+   "concept": "epsilon-delta-infinite-limits"
+  },
+  {
+   "exercise": "e196",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e197",
+   "concept": "epsilon-delta-infinite-limits"
+  },
+  {
+   "exercise": "e197",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e198",
+   "concept": "epsilon-delta-infinite-limits"
+  },
+  {
+   "exercise": "e198",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e199",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e199",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e200",
+   "concept": "limit-that-does-not-exist"
+  },
+  {
+   "exercise": "e201",
+   "concept": "limit-that-does-not-exist"
+  },
+  {
+   "exercise": "e202",
+   "concept": "limit-that-does-not-exist"
+  },
+  {
+   "exercise": "e203",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "e203",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "e204",
+   "concept": "limit-that-does-not-exist"
+  },
+  {
+   "exercise": "e205",
+   "concept": "sum-law-for-limits"
+  },
+  {
+   "exercise": "e205",
+   "concept": "triangle-inequality"
+  },
+  {
+   "exercise": "e206",
+   "concept": "constant-multiple-law-for-limits"
+  },
+  {
+   "exercise": "e207",
+   "concept": "product-law-for-limits"
+  },
+  {
+   "exercise": "e207",
+   "concept": "triangle-inequality"
+  },
+  {
+   "exercise": "r228",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "r228",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "exercise": "r229",
+   "concept": "proving-a-limit-with-epsilon-delta"
+  },
+  {
+   "exercise": "r229",
+   "concept": "epsilon-delta-definition-of-the-limit"
+  }
+ ],
+ "referents": []
+}
