@@ -1,0 +1,226 @@
+<p>Many <span data-concept="function">functions</span> have the property that their graphs can be traced with a pencil without lifting the pencil from the page. Such <span data-concept="function">functions</span> are called <em><span data-concept="continuity-at-a-point">continuous</span></em>. Other <span data-concept="function">functions</span> have points at which a break in the graph occurs, but satisfy this property over intervals contained in their <span data-concept="domain">domains</span>. They are <span data-concept="continuity-over-an-interval">continuous on these intervals</span> and are said to have a <em><span data-concept="discontinuity-at-a-point">discontinuity at a point</span></em> where a break occurs.</p>
+<p>We begin our investigation of continuity by exploring what it means for a <span data-concept="function">function</span> to have <em><span data-concept="continuity-at-a-point">continuity at a point</span></em>. Intuitively, a <span data-concept="function">function</span> is <span data-concept="continuity-at-a-point">continuous at a particular point</span> if there is no break in its graph at that point.</p>
+
+<section id="continuity-at-a-point">
+<h2>Continuity at a Point</h2>
+<p class="cite-target">Before we look at a formal definition of what it means for a <span data-concept="function">function</span> to be <span data-concept="continuity-at-a-point">continuous at a point</span>, let’s consider various <span data-concept="function">functions</span> that fail to meet our intuitive notion of what it means to be <span data-concept="continuity-at-a-point">continuous at a point</span>. We then create a list of conditions that prevent such failures.</p>
+<p>Our first <span data-concept="function">function</span> of interest is shown in Figure 2.32. We see that the graph of $\kf(x)$ has a hole at <em>a</em>. In fact, $\kf(a)$ is undefined. At the very least, for $\kf(x)$ to be <span data-concept="continuity-at-a-point">continuous at <em>a</em></span>, we need the following condition:</p>
+$$\text{i.}\;\kf(a)\;\text{is defined.}$$
+<figure class="sim" id="sim-three-conditions" data-figure="2.32 + 2.33 + 2.34" data-original="/media/ch02/CNX_Calc_Figure_02_04_001.jpg,/media/ch02/CNX_Calc_Figure_02_04_002.jpg,/media/ch02/CNX_Calc_Figure_02_04_003.jpg" data-original-caption="(Figure 2.32) The function f(x) is not continuous at a because f(a) is undefined. (Figure 2.33) The function f(x) is not continuous at a because lim(x→a) f(x) does not exist. (Figure 2.34) The function f(x) is not continuous at a because lim(x→a) f(x) ≠ f(a).">
+  <div class="sim-head"><span class="eyebrow">Figure 2.32 + 2.33 + 2.34</span><span>One <span data-concept="function">function</span> near $a=2$, broken in each of the three ways the conditions rule out. In (i) the graph has a hole and $\kf(2)$ is undefined; in (ii) the part to the right of $2$ is lifted, so the graph has a gap and the <span data-concept="limit">limit</span> does not exist; in (iii) the point $(2,\kf(2))$ is lifted off the line, so the <span data-concept="limit">limit</span> and $\kf(2)$ differ. Choose continuous and the point drops into the hole: all three conditions hold.</span></div>
+</figure>
+<p>However, as we see in Figure 2.33, this condition alone is insufficient to guarantee continuity at the point <em>a</em>. Although $\kf(a)$ is defined, the <span data-concept="function">function</span> has a gap at <em>a</em>. In this example, the gap exists because $\lim_{x\to a}\kf(x)$ does not exist. We must add another condition for continuity at <em>a</em>—namely,</p>
+$$\text{ii.}\;\lim_{x\to a}\kf(x)\;\text{exists.}$$
+<p>However, as we see in Figure 2.34, these two conditions by themselves do not guarantee continuity at a point. The <span data-concept="function">function</span> in this figure satisfies both of our first two conditions, but is still not <span data-concept="continuity-at-a-point">continuous at <em>a</em></span>. We must add a third condition to our list:</p>
+$$\text{iii.}\;\lim_{x\to a}\kf(x)=\kf(a).$$
+<p>Now we put our list of conditions together and form a definition of continuity at a point.</p>
+<div class="note" id="continuity-definition">
+<div class="eyebrow">Definition</div>
+<p>A <span data-concept="function">function</span> $\kf(x)$ is <strong><span data-concept="continuity-at-a-point">continuous at a point</span></strong> <em>a</em> if and only if the following three conditions are satisfied:</p>
+<ol>
+<li>$\kf(a)$ is defined</li>
+<li>$\lim_{x\to a}\kf(x)$ exists</li>
+<li>$\lim_{x\to a}\kf(x)=\kf(a)$</li>
+</ol>
+<p>A <span data-concept="function">function</span> is <strong><span data-concept="discontinuity-at-a-point">discontinuous at a point</span></strong> <em>a</em> if it fails to be <span data-concept="continuity-at-a-point">continuous at <em>a</em></span>.</p>
+</div>
+<p>The following procedure can be used to analyze the continuity of a <span data-concept="function">function</span> at a point using this definition.</p>
+<div class="note" id="determining-continuity">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3><span data-concept="determining-continuity-at-a-point">Determining Continuity at a Point</span></h3>
+<ol>
+<li>Check to see if $\kf(a)$ is defined. If $\kf(a)$ is undefined, we need go no further. The <span data-concept="function">function</span> is not <span data-concept="continuity-at-a-point">continuous at <em>a</em></span>. If $\kf(a)$ is defined, continue to step 2.</li>
+<li>Compute $\lim_{x\to a}\kf(x).$ In some cases, we may need to do this by first computing $\lim_{x\to a^{-}}\kf(x)$ and $\lim_{x\to a^{+}}\kf(x).$ If $\lim_{x\to a}\kf(x)$ does not exist (that is, it is not a real number), then the <span data-concept="function">function</span> is not <span data-concept="continuity-at-a-point">continuous at <em>a</em></span> and the problem is solved. If $\lim_{x\to a}\kf(x)$ exists, then continue to step 3.</li>
+<li>Compare $\kf(a)$ and $\lim_{x\to a}\kf(x).$ If $\lim_{x\to a}\kf(x)\ne\kf(a),$ then the <span data-concept="function">function</span> is not <span data-concept="continuity-at-a-point">continuous at <em>a</em></span>. If $\lim_{x\to a}\kf(x)=\kf(a),$ then the <span data-concept="function">function</span> is <span data-concept="continuity-at-a-point">continuous at <em>a</em></span>.</li>
+</ol>
+</div>
+<p>The next three examples demonstrate how to apply this definition to determine whether a <span data-concept="function">function</span> is <span data-concept="continuity-at-a-point">continuous at a given point</span>. These examples illustrate situations in which each of the conditions for continuity in the definition succeed or fail.</p>
+<div class="example" id="fs-id1170573442080">
+<h3>Example 2.26 · Determining Continuity at a Point, Condition 1</h3>
+<p>Using the definition, determine whether the <span data-concept="function">function</span> <span data-fn="(x^2-4)/(x-2)">$\kf(x)=(x^{2}-4)/(x-2)$</span> is <span data-concept="continuity-at-a-point">continuous at $x=2.$</span> Justify the conclusion.</p>
+<h4>Solution</h4>
+<p>Let’s begin by trying to calculate $\kf(2).$ We can see that $\kf(2)=0/0,$ which is undefined. Therefore, $\kf(x)=\dfrac{x^{2}-4}{x-2}$ is <span data-concept="discontinuity-at-a-point">discontinuous at 2</span> because $\kf(2)$ is undefined. The graph of $\kf(x)$ is shown in Figure 2.35.</p>
+<figure class="sim" id="fig-hole-at-two" data-figure="2.35" data-original="/media/ch02/CNX_Calc_Figure_02_04_004.jpg" data-original-caption="The function f(x) is discontinuous at 2 because f(2) is undefined.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.35</span><span>The <span data-concept="function">function</span> $\kf(x)$ is <span data-concept="discontinuity-at-a-point">discontinuous at 2</span> because $\kf(2)$ is undefined.</span></div>
+</figure>
+</div>
+<div class="example" id="fs-id1170573389760">
+<h3>Example 2.27 · Determining Continuity at a Point, Condition 2</h3>
+<p>Using the definition, determine whether the <span data-concept="function">function</span> <span data-fn="{x&lt;=3: -x^2+4, 4x-8}">$\kf(x)=\begin{cases}-x^{2}+4 & \text{if}\;x\le 3\\ 4x-8 & \text{if}\;x\gt 3\end{cases}$</span> is <span data-concept="continuity-at-a-point">continuous at $x=3.$</span> Justify the conclusion.</p>
+<h4>Solution</h4>
+<p>Let’s begin by trying to calculate $\kf(3).$</p>
+$$\kf(3)=-(3^{2})+4=-5.$$
+<p>Thus, $\kf(3)$ is defined. Next, we calculate $\lim_{x\to 3}\kf(x).$ To do this, we must compute $\lim_{x\to 3^{-}}\kf(x)$ and $\lim_{x\to 3^{+}}\kf(x)\text{:}$</p>
+$$\lim_{x\to 3^{-}}\kf(x)=-(3^{2})+4=-5$$
+<p>and</p>
+$$\lim_{x\to 3^{+}}\kf(x)=4(3)-8=4.$$
+<p>Therefore, $\lim_{x\to 3}\kf(x)$ does not exist. Thus, $\kf(x)$ is not <span data-concept="continuity-at-a-point">continuous at 3</span>. The graph of $\kf(x)$ is shown in Figure 2.36.</p>
+<figure class="sim" id="fig-jump-at-three" data-figure="2.36" data-original="/media/ch02/CNX_Calc_Figure_02_04_005.jpg" data-original-caption="The function f(x) is not continuous at 3 because lim(x→3) f(x) does not exist.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.36</span><span>The <span data-concept="function">function</span> $\kf(x)$ is not <span data-concept="continuity-at-a-point">continuous at 3</span> because $\lim_{x\to 3}\kf(x)$ does not exist.</span></div>
+</figure>
+</div>
+<div class="example" id="fs-id1170573429945">
+<h3>Example 2.28 · Determining Continuity at a Point, Condition 3</h3>
+<p>Using the definition, determine whether the <span data-concept="function">function</span> <span data-fn="{x=0: 1, sin(x)/x}">$\kf(x)=\begin{cases}\dfrac{\sin x}{x} & \text{if}\;x\ne 0\\ 1 & \text{if}\;x=0\end{cases}$</span> is <span data-concept="continuity-at-a-point">continuous at $x=0.$</span></p>
+<h4>Solution</h4>
+<p>First, observe that</p>
+$$\kf(0)=1.$$
+<p>Next,</p>
+$$\lim_{x\to 0}\kf(x)=\lim_{x\to 0}\frac{\sin x}{x}=1.$$
+<p>Last, compare $\kf(0)$ and $\lim_{x\to 0}\kf(x).$ We see that</p>
+$$\kf(0)=1=\lim_{x\to 0}\kf(x).$$
+<p>Since all three of the conditions in the definition of continuity are satisfied, $\kf(x)$ is <span data-concept="continuity-at-a-point">continuous at $x=0.$</span></p>
+</div>
+<div class="exercises" data-place="fs-id1170573429945"></div>
+<p>By applying the definition of continuity and previously established theorems concerning the evaluation of <span data-concept="limit">limits</span>, we can state the following theorem.</p>
+<div class="note" id="polynomial-rational-continuity">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="continuity-of-polynomials-and-rational-functions">Continuity of Polynomials and Rational Functions</span></h3>
+<p><span data-concept="polynomial-function">Polynomials</span> and <span data-concept="rational-function">rational functions</span> are <span data-concept="continuity-at-a-point">continuous at every point</span> in their <span data-concept="domain">domains</span>.</p>
+</div>
+<h3 id="polynomial-rational-proof">Proof</h3>
+<p>Previously, we showed that if $p(x)$ and $q(x)$ are <span data-concept="polynomial-function">polynomials</span>, $\lim_{x\to a}p(x)=p(a)$ for every <span data-concept="polynomial-function">polynomial</span> $p(x)$ and $\lim_{x\to a}\dfrac{p(x)}{q(x)}=\dfrac{p(a)}{q(a)}$ as long as $q(a)\ne 0.$ Therefore, <span data-concept="polynomial-function">polynomials</span> and <span data-concept="rational-function">rational functions</span> are <span data-concept="continuity-at-a-point">continuous</span> on their <span data-concept="domain">domains</span>.</p>
+<p>□</p>
+<p>We now apply <span data-concept="continuity-of-polynomials-and-rational-functions">Continuity of Polynomials and Rational Functions</span> to determine the points at which a given <span data-concept="rational-function">rational function</span> is <span data-concept="continuity-at-a-point">continuous</span>.</p>
+<div class="example" id="fs-id1170573381194">
+<h3>Example 2.29 · Continuity of a Rational Function</h3>
+<p>For what values of <em>x</em> is <span data-fn="(x+1)/(x-5)">$\kf(x)=\dfrac{x+1}{x-5}$</span> <span data-concept="continuity-at-a-point">continuous</span>?</p>
+<h4>Solution</h4>
+<p>The <span data-concept="rational-function">rational function</span> $\kf(x)=\dfrac{x+1}{x-5}$ is <span data-concept="continuity-at-a-point">continuous for every value of <em>x</em></span> except $x=5.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170573381194"></div>
+</section>
+
+<section id="types-of-discontinuities">
+<h2>Types of Discontinuities</h2>
+<p class="cite-target">As we have seen in Example 2.26 and Example 2.27, <span data-concept="discontinuity-at-a-point">discontinuities</span> take on several different appearances. We classify the types of <span data-concept="discontinuity-at-a-point">discontinuities</span> we have seen thus far as <span data-concept="removable-discontinuity">removable discontinuities</span>, <span data-concept="infinite-discontinuity">infinite discontinuities</span>, or <span data-concept="jump-discontinuity">jump discontinuities</span>. Intuitively, a <strong><span data-concept="removable-discontinuity">removable discontinuity</span></strong> is a <span data-concept="discontinuity-at-a-point">discontinuity</span> for which there is a hole in the graph, a <strong><span data-concept="jump-discontinuity">jump discontinuity</span></strong> is a noninfinite <span data-concept="discontinuity-at-a-point">discontinuity</span> for which the sections of the <span data-concept="function">function</span> do not meet up, and an <strong><span data-concept="infinite-discontinuity">infinite discontinuity</span></strong> is a <span data-concept="discontinuity-at-a-point">discontinuity</span> located at a <span data-concept="vertical-asymptote">vertical asymptote</span>. Figure 2.37 illustrates the differences in these types of <span data-concept="discontinuity-at-a-point">discontinuities</span>. Although these terms provide a handy way of describing three common types of <span data-concept="discontinuity-at-a-point">discontinuities</span>, keep in mind that not all <span data-concept="discontinuity-at-a-point">discontinuities</span> fit neatly into these categories.</p>
+<figure class="sim" id="fig-discontinuity-kinds" data-figure="2.37" data-original="/media/ch02/CNX_Calc_Figure_02_04_006.jpg" data-original-caption="Discontinuities are classified as (a) removable, (b) jump, or (c) infinite.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.37</span><span><span data-concept="discontinuity-at-a-point">Discontinuities</span> are classified as (a) <span data-concept="removable-discontinuity">removable</span>, (b) <span data-concept="jump-discontinuity">jump</span>, or (c) <span data-concept="infinite-discontinuity">infinite</span>.</span></div>
+</figure>
+<p>These three <span data-concept="discontinuity-at-a-point">discontinuities</span> are formally defined as follows:</p>
+<div class="note" id="discontinuity-types">
+<div class="eyebrow">Definition</div>
+<p>If $\kf(x)$ is <span data-concept="discontinuity-at-a-point">discontinuous at <em>a</em></span>, then</p>
+<ol>
+<li>$\kf$ has a <strong><span data-concept="removable-discontinuity">removable discontinuity</span></strong> at <em>a</em> if $\lim_{x\to a}\kf(x)$ exists. (Note: When we state that $\lim_{x\to a}\kf(x)$ exists, we mean that $\lim_{x\to a}\kf(x)=\kL,$ where $\kL$ is a real number.)</li>
+<li>$\kf$ has a <strong><span data-concept="jump-discontinuity">jump discontinuity</span></strong> at <em>a</em> if $\lim_{x\to a^{-}}\kf(x)$ and $\lim_{x\to a^{+}}\kf(x)$ both exist, but $\lim_{x\to a^{-}}\kf(x)\ne\lim_{x\to a^{+}}\kf(x).$ (Note: When we state that $\lim_{x\to a^{-}}\kf(x)$ and $\lim_{x\to a^{+}}\kf(x)$ both exist, we mean that both are real-valued and that neither take on the values $\pm\infty.$)</li>
+<li>$\kf$ has an <strong><span data-concept="infinite-discontinuity">infinite discontinuity</span></strong> at <em>a</em> if $\lim_{x\to a^{-}}\kf(x)=\pm\infty$ and/or $\lim_{x\to a^{+}}\kf(x)=\pm\infty.$</li>
+</ol>
+</div>
+<div class="example" id="fs-id1170570976348">
+<h3>Example 2.30 · Classifying a Discontinuity</h3>
+<p>In Example 2.26, we showed that <span data-fn="(x^2-4)/(x-2)">$\kf(x)=\dfrac{x^{2}-4}{x-2}$</span> is <span data-concept="discontinuity-at-a-point">discontinuous at $x=2.$</span> Classify this <span data-concept="discontinuity-at-a-point">discontinuity</span> as <span data-concept="removable-discontinuity">removable</span>, <span data-concept="jump-discontinuity">jump</span>, or <span data-concept="infinite-discontinuity">infinite</span>.</p>
+<h4>Solution</h4>
+<p>To classify the <span data-concept="discontinuity-at-a-point">discontinuity</span> at 2 we must evaluate $\lim_{x\to 2}\kf(x)\text{:}$</p>
+$$\begin{aligned}\lim_{x\to 2}\kf(x)&=\lim_{x\to 2}\frac{x^{2}-4}{x-2}\\&=\lim_{x\to 2}\frac{(x-2)(x+2)}{x-2}\\&=\lim_{x\to 2}(x+2)\\&=4.\end{aligned}$$
+<p>Since $\kf$ is <span data-concept="discontinuity-at-a-point">discontinuous at 2</span> and $\lim_{x\to 2}\kf(x)$ exists, $\kf$ has a <span data-concept="removable-discontinuity">removable discontinuity</span> at $x=2.$</p>
+</div>
+<div class="example" id="fs-id1170573426544">
+<h3>Example 2.31 · Classifying a Discontinuity</h3>
+<p>In Example 2.27, we showed that <span data-fn="{x&lt;=3: -x^2+4, 4x-8}">$\kf(x)=\begin{cases}-x^{2}+4 & \text{if}\;x\le 3\\ 4x-8 & \text{if}\;x\gt 3\end{cases}$</span> is <span data-concept="discontinuity-at-a-point">discontinuous at $x=3.$</span> Classify this <span data-concept="discontinuity-at-a-point">discontinuity</span> as <span data-concept="removable-discontinuity">removable</span>, <span data-concept="jump-discontinuity">jump</span>, or <span data-concept="infinite-discontinuity">infinite</span>.</p>
+<h4>Solution</h4>
+<p>Earlier, we showed that $\kf$ is <span data-concept="discontinuity-at-a-point">discontinuous at 3</span> because $\lim_{x\to 3}\kf(x)$ does not exist. However, since $\lim_{x\to 3^{-}}\kf(x)=-5$ and $\lim_{x\to 3^{+}}\kf(x)=4$ both exist, we conclude that the <span data-concept="function">function</span> has a <span data-concept="jump-discontinuity">jump discontinuity</span> at 3.</p>
+</div>
+<div class="example" id="fs-id1170573355402">
+<h3>Example 2.32 · Classifying a Discontinuity</h3>
+<p>Determine whether <span data-fn="(x+2)/(x+1)">$\kf(x)=\dfrac{x+2}{x+1}$</span> is <span data-concept="continuity-at-a-point">continuous at −1</span>. If the <span data-concept="function">function</span> is <span data-concept="discontinuity-at-a-point">discontinuous at −1</span>, classify the <span data-concept="discontinuity-at-a-point">discontinuity</span> as <span data-concept="removable-discontinuity">removable</span>, <span data-concept="jump-discontinuity">jump</span>, or <span data-concept="infinite-discontinuity">infinite</span>.</p>
+<h4>Solution</h4>
+<p>The <span data-concept="function">function</span> value $\kf(-1)$ is undefined. Therefore, the <span data-concept="function">function</span> is not <span data-concept="continuity-at-a-point">continuous at −1</span>. To determine the type of <span data-concept="discontinuity-at-a-point">discontinuity</span>, we must determine the <span data-concept="limit">limit</span> at −1. We see that $\lim_{x\to -1^{-}}\dfrac{x+2}{x+1}=-\infty$ and $\lim_{x\to -1^{+}}\dfrac{x+2}{x+1}=+\infty.$ Therefore, the <span data-concept="function">function</span> has an <span data-concept="infinite-discontinuity">infinite discontinuity</span> at −1.</p>
+</div>
+<div class="exercises" data-place="fs-id1170573355402"></div>
+</section>
+
+<section id="continuity-over-an-interval">
+<h2>Continuity over an Interval</h2>
+<p class="cite-target">Now that we have explored the concept of continuity at a point, we extend that idea to <strong><span data-concept="continuity-over-an-interval">continuity over an interval</span></strong>. As we develop this idea for different types of intervals, it may be useful to keep in mind the intuitive idea that a <span data-concept="function">function</span> is <span data-concept="continuity-over-an-interval">continuous over an interval</span> if we can use a pencil to trace the <span data-concept="function">function</span> between any two points in the interval without lifting the pencil from the paper. In preparation for defining continuity on an interval, we begin by looking at the definition of what it means for a <span data-concept="function">function</span> to be <span data-concept="continuity-from-the-right">continuous from the right at a point</span> and <span data-concept="continuity-from-the-left">continuous from the left at a point</span>.</p>
+<div class="note" id="one-sided-continuity">
+<h3>Continuity from the Right and from the Left</h3>
+<p>A <span data-concept="function">function</span> $\kf(x)$ is said to be <strong><span data-concept="continuity-from-the-right">continuous from the right</span></strong> at <em>a</em> if $\lim_{x\to a^{+}}\kf(x)=\kf(a).$</p>
+<p>A <span data-concept="function">function</span> $\kf(x)$ is said to be <strong><span data-concept="continuity-from-the-left">continuous from the left</span></strong> at <em>a</em> if $\lim_{x\to a^{-}}\kf(x)=\kf(a).$</p>
+</div>
+<p>A <span data-concept="function">function</span> is <span data-concept="continuity-over-an-interval">continuous over an open interval</span> if it is <span data-concept="continuity-at-a-point">continuous at every point</span> in the interval. A <span data-concept="function">function</span> $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous over a closed interval</span> of the form <span data-type="set">$[a,b]$</span> if it is <span data-concept="continuity-at-a-point">continuous at every point</span> in <span data-type="set">$(a,b)$</span> and is <span data-concept="continuity-from-the-right">continuous from the right at <em>a</em></span> and is <span data-concept="continuity-from-the-left">continuous from the left at <em>b</em></span>. Analogously, a <span data-concept="function">function</span> $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous over an interval</span> of the form <span data-type="set">$(a,b]$</span> if it is <span data-concept="continuity-over-an-interval">continuous over</span> <span data-type="set">$(a,b)$</span> and is <span data-concept="continuity-from-the-left">continuous from the left at <em>b</em></span>. Continuity over other types of intervals are defined in a similar fashion.</p>
+<p>Requiring that $\lim_{x\to a^{+}}\kf(x)=\kf(a)$ and $\lim_{x\to b^{-}}\kf(x)=\kf(b)$ ensures that we can trace the graph of the <span data-concept="function">function</span> from the point $(a,\kf(a))$ to the point $(b,\kf(b))$ without lifting the pencil. If, for example, $\lim_{x\to a^{+}}\kf(x)\ne\kf(a),$ we would need to lift our pencil to jump from $\kf(a)$ to the graph of the rest of the <span data-concept="function">function</span> over <span data-type="set">$(a,b]$</span>.</p>
+<figure class="sim" id="sim-one-sided">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The <span data-concept="function">function</span> of Example 2.27, $-x^{2}+4$ to the left of $3$ and $4x-8$ to the right, with the value $\kf(3)$ set by hand. At the book’s $\kf(3)=-5$ the point closes the left piece: $\kf$ is <span data-concept="continuity-from-the-left">continuous from the left at 3</span> but not from the right, and it is <span data-concept="continuity-over-an-interval">continuous over</span> <span data-type="set">$(-\infty,3]$</span> and <span data-type="set">$(3,+\infty)$</span>. Move it to $4$ and it closes the right piece instead; anywhere else it closes neither.</span></div>
+</figure>
+<div class="example" id="fs-id1170573395559">
+<h3>Example 2.33 · Continuity on an Interval</h3>
+<p>State the interval(s) over which the <span data-concept="function">function</span> <span data-fn="(x-1)/(x^2+2x)">$\kf(x)=\dfrac{x-1}{x^{2}+2x}$</span> is <span data-concept="continuity-over-an-interval">continuous</span>.</p>
+<h4>Solution</h4>
+<p>Since $\kf(x)=\dfrac{x-1}{x^{2}+2x}$ is a <span data-concept="rational-function">rational function</span>, it is <span data-concept="continuity-at-a-point">continuous at every point</span> in its <span data-concept="domain">domain</span>. The <span data-concept="domain">domain</span> of $\kf(x)$ is the set <span data-type="set">$(-\infty,-2)\cup(-2,0)\cup(0,+\infty)$</span>. Thus, $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous over each of the intervals</span> <span data-type="set">$(-\infty,-2),(-2,0),$</span> and <span data-type="set">$(0,+\infty)$</span>.</p>
+</div>
+<div class="example" id="fs-id1170573387892">
+<h3>Example 2.34 · Continuity over an Interval</h3>
+<p>State the interval(s) over which the <span data-concept="function">function</span> <span data-fn="sqrt(4-x^2)">$\kf(x)=\sqrt{4-x^{2}}$</span> is <span data-concept="continuity-over-an-interval">continuous</span>.</p>
+<h4>Solution</h4>
+<p>From the <span data-concept="limit-laws">limit laws</span>, we know that $\lim_{x\to a}\sqrt{4-x^{2}}=\sqrt{4-a^{2}}$ for all values of <em>a</em> in <span data-type="set">$(-2,2)$</span>. We also know that $\lim_{x\to -2^{+}}\sqrt{4-x^{2}}=0$ exists and $\lim_{x\to 2^{-}}\sqrt{4-x^{2}}=0$ exists. Therefore, $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous over the interval</span> <span data-type="set">$[-2,2]$</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1170573387892"></div>
+<p>The <span data-concept="composite-function-theorem">Composite Function Theorem</span> allows us to expand our ability to compute <span data-concept="limit">limits</span>. In particular, this theorem ultimately allows us to demonstrate that <span data-concept="trigonometric-functions">trigonometric functions</span> are <span data-concept="continuity-over-an-interval">continuous over their domains</span>.</p>
+<div class="note" id="composite-function-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="composite-function-theorem">Composite Function Theorem</span></h3>
+<p>If $\kf(x)$ is <span data-concept="continuity-at-a-point">continuous at $\kL$</span> and $\lim_{x\to a}\kg(x)=\kL,$ then</p>
+$$\lim_{x\to a}\kf(\kg(x))=\kf\left(\lim_{x\to a}\kg(x)\right)=\kf(\kL).$$
+</div>
+<p>Before we move on to Example 2.35, recall that earlier, in the section on limit laws, we showed $\lim_{x\to 0}\cos x=1=\cos(0).$ Consequently, we know that <span data-fn="cos(x)">$\kf(x)=\cos x$</span> is <span data-concept="continuity-at-a-point">continuous at 0</span>. In Example 2.35 we see how to combine this result with the <span data-concept="composite-function-theorem">composite function theorem</span>.</p>
+<div class="example" id="fs-id1170573718134">
+<h3>Example 2.35 · Limit of a Composite Cosine Function</h3>
+<p>Evaluate <span data-fn="cos(x-pi/2)">$\lim_{x\to\pi/2}\cos\left(x-\dfrac{\pi}{2}\right).$</span></p>
+<h4>Solution</h4>
+<p>The given <span data-concept="function">function</span> is a <span data-concept="composite-function">composite</span> of $\cos x$ and $x-\dfrac{\pi}{2}.$ Since $\lim_{x\to\pi/2}\left(x-\dfrac{\pi}{2}\right)=0$ and $\cos x$ is <span data-concept="continuity-at-a-point">continuous at 0</span>, we may apply the <span data-concept="composite-function-theorem">composite function theorem</span>. Thus,</p>
+$$\lim_{x\to\pi/2}\cos\left(x-\frac{\pi}{2}\right)=\cos\left(\lim_{x\to\pi/2}\left(x-\frac{\pi}{2}\right)\right)=\cos(0)=1.$$
+<figure class="sim" id="sim-composite-limit">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The composite $\cos\left(x-\dfrac{\pi}{2}\right)$ in two steps, each drawn as arrows between two number lines: first $\kg(x)=x-\dfrac{\pi}{2}$, then $\kf(u)=\cos u$. Drag $x$ toward $\dfrac{\pi}{2}$: the inner value $\kg(x)$ closes in on $\kL=0$, and because $\cos$ is <span data-concept="continuity-at-a-point">continuous at 0</span> the outer value closes in on $\cos 0=1$ with it.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170573718134"></div>
+<p>The proof of the next theorem uses the <span data-concept="composite-function-theorem">composite function theorem</span> as well as the continuity of <span data-fn="sin(x)">$\kf(x)=\sin x$</span> and <span data-fn="cos(x)">$\kg(x)=\cos x$</span> at the point 0 to show that <span data-concept="trigonometric-functions">trigonometric functions</span> are <span data-concept="continuity-over-an-interval">continuous over their entire domains</span>.</p>
+<div class="note" id="trig-continuity">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="continuity-of-trigonometric-functions">Continuity of Trigonometric Functions</span></h3>
+<p><span data-concept="trigonometric-functions">Trigonometric functions</span> are <span data-concept="continuity-over-an-interval">continuous over their entire domains</span>.</p>
+</div>
+<h3 id="trig-continuity-proof">Proof</h3>
+<p>We begin by demonstrating that $\cos x$ is <span data-concept="continuity-at-a-point">continuous at every real number</span>. To do this, we must show that $\lim_{x\to a}\cos x=\cos a$ for all values of <em>a</em>.</p>
+$$\begin{array}{lllll}\lim_{x\to a}\cos x&=\lim_{x\to a}\cos((x-a)+a)&&&\text{rewrite}\;x=x-a+a\\&=\lim_{x\to a}(\cos(x-a)\cos a-\sin(x-a)\sin a)&&&\text{apply the identity for the cosine of the sum of two angles}\\&=\cos\left(\lim_{x\to a}(x-a)\right)\cos a-\sin\left(\lim_{x\to a}(x-a)\right)\sin a&&&\lim_{x\to a}(x-a)=0,\;\text{and}\;\sin x\;\text{and}\;\cos x\;\text{are continuous at 0}\\&=\cos(0)\cos a-\sin(0)\sin a&&&\text{evaluate cos(0) and sin(0) and simplify}\\&=1\cdot\cos a-0\cdot\sin a=\cos a.\end{array}$$
+<p>The proof that $\sin x$ is <span data-concept="continuity-at-a-point">continuous at every real number</span> is analogous. Because the remaining <span data-concept="trigonometric-functions">trigonometric functions</span> may be expressed in terms of $\sin x$ and $\cos x,$ their continuity follows from the <span data-concept="quotient-law-for-limits">quotient limit law</span>.</p>
+<p>□</p>
+<p>As you can see, the <span data-concept="composite-function-theorem">composite function theorem</span> is invaluable in demonstrating the continuity of <span data-concept="trigonometric-functions">trigonometric functions</span>. As we continue our study of calculus, we revisit this theorem many times.</p>
+</section>
+
+<section id="ivt">
+<h2>The Intermediate Value Theorem</h2>
+<p class="cite-target"><span data-concept="function">Functions</span> that are <span data-concept="continuity-over-an-interval">continuous over intervals</span> of the form <span data-type="set">$[a,b],$</span> where <em>a</em> and <em>b</em> are real numbers, exhibit many useful properties. Throughout our study of calculus, we will encounter many powerful theorems concerning such <span data-concept="function">functions</span>. The first of these theorems is the <strong><span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span></strong>.</p>
+<div class="note" id="ivt-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="intermediate-value-theorem">The Intermediate Value Theorem</span></h3>
+<p>Let $\kf$ be <span data-concept="continuity-over-an-interval">continuous over a closed, bounded interval</span> <span data-type="set">$[a,b].$</span> If $z$ is any real number between $\kf(a)$ and $\kf(b),$ then there is a number $c$ in <span data-type="set">$[a,b]$</span> satisfying $\kf(c)=z$ in Figure 2.38.</p>
+<figure class="sim" id="sim-ivt" data-figure="2.38" data-original="/media/ch02/CNX_Calc_Figure_02_04_007.jpg" data-original-caption="There is a number c∈[a,b] that satisfies f(c)=z.">
+  <div class="sim-head"><span class="eyebrow">Figure 2.38</span><span>Move the level $z$ up and down: wherever it crosses the graph over <span data-type="set">$[a,b]$</span>, the crossing is dropped to a number $c$ with $\kf(c)=z$. For every $z$ between $\kf(a)$ and $\kf(b)$ there is at least one, and where the curve doubles back there are three. Choose a <span data-concept="function">function</span> of Examples 2.36 to 2.38 to see the theorem used: $x-\cos x$ crosses $z=0$ on <span data-type="set">$[0,\pi/2]$</span>; $(x-1)^{2}$ reaches $0$ though $0$ is not between $\kf(0)$ and $\kf(2)$; and $1/x$ never takes the value $0$, since it is not <span data-concept="continuity-over-an-interval">continuous over</span> <span data-type="set">$[-1,1]$</span>.</span></div>
+</figure>
+</div>
+<div class="example" id="fs-id1170571120881">
+<h3>Example 2.36 · Application of the Intermediate Value Theorem</h3>
+<p>Show that <span data-fn="x-cos(x)">$\kf(x)=x-\cos x$</span> has at least one <span data-concept="zeros-of-a-function">zero</span>.</p>
+<h4>Solution</h4>
+<p>Since $\kf(x)=x-\cos x$ is <span data-concept="continuity-over-an-interval">continuous over</span> <span data-type="set">$(-\infty,+\infty),$</span> it is <span data-concept="continuity-over-an-interval">continuous over any closed interval</span> of the form <span data-type="set">$[a,b].$</span> If you can find an interval <span data-type="set">$[a,b]$</span> such that $\kf(a)$ and $\kf(b)$ have opposite signs, you can use the <span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span> to conclude there must be a real number $c$ in <span data-type="set">$(a,b)$</span> that satisfies $\kf(c)=0.$ Note that</p>
+$$\kf(0)=0-\cos(0)=-1\lt 0$$
+<p>and</p>
+$$\kf\left(\frac{\pi}{2}\right)=\frac{\pi}{2}-\cos\frac{\pi}{2}=\frac{\pi}{2}\gt 0.$$
+<p>Using the <span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span>, we can see that there must be a real number $c$ in <span data-type="set">$[0,\pi/2]$</span> that satisfies $\kf(c)=0.$ Therefore, $\kf(x)=x-\cos x$ has at least one <span data-concept="zeros-of-a-function">zero</span>.</p>
+</div>
+<div class="example" id="fs-id1170573439386">
+<h3>Example 2.37 · When Can You Apply the Intermediate Value Theorem?</h3>
+<p>If $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous over</span> <span data-type="set">$[0,2],$</span> $\kf(0)\gt 0$ and $\kf(2)\gt 0,$ can we use the <span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span> to conclude that $\kf(x)$ has no <span data-concept="zeros-of-a-function">zeros</span> in the interval <span data-type="set">$[0,2]$</span>? Explain.</p>
+<h4>Solution</h4>
+<p>No. The <span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span> only allows us to conclude that we can find a value between $\kf(0)$ and $\kf(2);$ it doesn’t allow us to conclude that we can’t find other values. To see this more clearly, consider the <span data-concept="function">function</span> <span data-fn="(x-1)^2">$\kf(x)=(x-1)^{2}.$</span> It satisfies $\kf(0)=1\gt 0,\ \kf(2)=1\gt 0,$ and $\kf(1)=0.$</p>
+</div>
+<div class="example" id="fs-id1170570996536">
+<h3>Example 2.38 · When Can You Apply the Intermediate Value Theorem?</h3>
+<p>For <span data-fn="1/x">$\kf(x)=1/x,$</span> $\kf(-1)=-1\lt 0$ and $\kf(1)=1\gt 0.$ Can we conclude that $\kf(x)$ has a <span data-concept="zeros-of-a-function">zero</span> in the interval <span data-type="set">$[-1,1]$</span>?</p>
+<h4>Solution</h4>
+<p>No. The <span data-concept="function">function</span> is not <span data-concept="continuity-over-an-interval">continuous over</span> <span data-type="set">$[-1,1].$</span> The <span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span> does not apply here.</p>
+</div>
+<div class="exercises" data-place="fs-id1170570996536"></div>
+</section>

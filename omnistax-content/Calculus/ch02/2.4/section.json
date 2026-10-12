@@ -1,0 +1,1287 @@
+{
+ "id": "2.4",
+ "module": "m53489",
+ "chapter": "2",
+ "title": "Continuity",
+ "short": "Continuity",
+ "lead": "A <span data-concept=\"function\">function</span> is <span data-concept=\"continuity-at-a-point\">continuous</span> at a point when its graph has no break there. Here that idea is made exact by three conditions, the ways it can fail are sorted into <span data-concept=\"removable-discontinuity\">removable</span>, <span data-concept=\"jump-discontinuity\">jump</span> and <span data-concept=\"infinite-discontinuity\">infinite</span> <span data-concept=\"discontinuity-at-a-point\">discontinuities</span>, continuity is extended to intervals and to composite functions, and the <span data-concept=\"intermediate-value-theorem\">Intermediate Value Theorem</span> is stated for a function continuous over a closed interval.",
+ "objectives": [
+  "Explain the three conditions for continuity at a point.",
+  "Describe three kinds of discontinuities.",
+  "Define continuity on an interval.",
+  "State the theorem for limits of composite functions.",
+  "Provide an example of the intermediate value theorem."
+ ],
+ "summary_html": "<ul><li>For a <span data-concept=\"function\">function</span> to be <span data-concept=\"continuity-at-a-point\">continuous at a point</span>, it must be defined at that point, its <span data-concept=\"limit\">limit</span> must exist at the point, and the value of the <span data-concept=\"function\">function</span> at that point must equal the value of the <span data-concept=\"limit\">limit</span> at that point.</li><li><span data-concept=\"discontinuity-at-a-point\">Discontinuities</span> may be classified as <span data-concept=\"removable-discontinuity\">removable</span>, <span data-concept=\"jump-discontinuity\">jump</span>, or <span data-concept=\"infinite-discontinuity\">infinite</span>.</li><li>A <span data-concept=\"function\">function</span> is <span data-concept=\"continuity-over-an-interval\">continuous over an open interval</span> if it is <span data-concept=\"continuity-at-a-point\">continuous at every point</span> in the interval. It is <span data-concept=\"continuity-over-an-interval\">continuous over a closed interval</span> if it is <span data-concept=\"continuity-at-a-point\">continuous at every point</span> in its interior and is continuous at its endpoints.</li><li>The <span data-concept=\"composite-function-theorem\">composite function theorem</span> states: If $\\kf(x)$ is <span data-concept=\"continuity-at-a-point\">continuous at $\\kL$</span> and $\\lim_{x\\to a}\\kg(x)=\\kL,$ then $\\lim_{x\\to a}\\kf(\\kg(x))=\\kf\\left(\\lim_{x\\to a}\\kg(x)\\right)=\\kf(\\kL).$</li><li>The <span data-concept=\"intermediate-value-theorem\">Intermediate Value Theorem</span> guarantees that if a <span data-concept=\"function\">function</span> is <span data-concept=\"continuity-over-an-interval\">continuous over a closed interval</span>, then the <span data-concept=\"function\">function</span> takes on every value between the values at its endpoints.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 150, 152, 162, 164, 166, 168, 172 and 174, explanations and proofs the key leaves unanswered; 152 and 168 keep their reasoning parts and leave out a calculator part. The other 14 even-numbered section exercises have no answer in the key and are computational, so they are left out: exercises 132, 134, 136 and 138 (classifying discontinuities), 140, 142 and 144 (continuity at a point), 146 and 148 (values of k), 154 (discontinuities read from a graph), 156, 158 and 160 (sketches), and 170 (the rocket’s constant k). Review exercise 226, a value of c, has no answer in the key and is left out. A checkpoint answered in words keeps the book’s hint at the head of its answer.",
+ "figures": [
+  {
+   "id": "sim-three-conditions",
+   "kind": "sim",
+   "number": "2.32",
+   "folds": [
+    "2.33",
+    "2.34"
+   ],
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_04_001.jpg",
+    "/media/ch02/CNX_Calc_Figure_02_04_002.jpg",
+    "/media/ch02/CNX_Calc_Figure_02_04_003.jpg"
+   ],
+   "original_caption": "(Figure 2.32) The function f(x) is not continuous at a because f(a) is undefined. (Figure 2.33) The function f(x) is not continuous at a because lim(x→a) f(x) does not exist. (Figure 2.34) The function f(x) is not continuous at a because lim(x→a) f(x) ≠ f(a).",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-hole-at-two",
+   "kind": "figure",
+   "number": "2.35",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_04_004.jpg"
+   ],
+   "original_caption": "The function f(x) is discontinuous at 2 because f(2) is undefined.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-jump-at-three",
+   "kind": "figure",
+   "number": "2.36",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_04_005.jpg"
+   ],
+   "original_caption": "The function f(x) is not continuous at 3 because lim(x→3) f(x) does not exist.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-discontinuity-kinds",
+   "kind": "figure",
+   "number": "2.37",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_04_006.jpg"
+   ],
+   "original_caption": "Discontinuities are classified as (a) removable, (b) jump, or (c) infinite.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-one-sided",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "limit",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-composite-limit",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-ivt",
+   "kind": "sim",
+   "number": "2.38",
+   "originals": [
+    "/media/ch02/CNX_Calc_Figure_02_04_007.jpg"
+   ],
+   "original_caption": "There is a number c∈[a,b] that satisfies f(c)=z.",
+   "draws": [
+    "function",
+    "set",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "continuity-definition",
+   "concept": "continuity-at-a-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuity-definition",
+   "concept": "discontinuity-at-a-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "determining-continuity",
+   "concept": "determining-continuity-at-a-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "polynomial-rational-continuity",
+   "concept": "continuity-of-polynomials-and-rational-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "types-of-discontinuities",
+   "concept": "removable-discontinuity",
+   "verb": "introduces"
+  },
+  {
+   "span": "types-of-discontinuities",
+   "concept": "jump-discontinuity",
+   "verb": "introduces"
+  },
+  {
+   "span": "types-of-discontinuities",
+   "concept": "infinite-discontinuity",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-sided-continuity",
+   "concept": "continuity-from-the-right",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-sided-continuity",
+   "concept": "continuity-from-the-left",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuity-over-an-interval",
+   "concept": "continuity-over-an-interval",
+   "verb": "introduces"
+  },
+  {
+   "span": "composite-function-theorem",
+   "concept": "composite-function-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-continuity",
+   "concept": "continuity-of-trigonometric-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "ivt-theorem",
+   "concept": "intermediate-value-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuity-at-a-point",
+   "concept": "limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573389760",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573426544",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573426544",
+   "concept": "jump-discontinuity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170570976348",
+   "concept": "removable-discontinuity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573355402",
+   "concept": "infinite-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573355402",
+   "concept": "infinite-discontinuity",
+   "verb": "uses"
+  },
+  {
+   "span": "types-of-discontinuities",
+   "concept": "vertical-asymptote",
+   "verb": "uses"
+  },
+  {
+   "span": "polynomial-rational-proof",
+   "concept": "limits-of-polynomial-and-rational-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573381194",
+   "concept": "rational-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573395559",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573395559",
+   "concept": "continuity-of-polynomials-and-rational-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573387892",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573387892",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "continuity-over-an-interval",
+   "concept": "important-trigonometric-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573718134",
+   "concept": "composite-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573718134",
+   "concept": "composite-function-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "trig-continuity-proof",
+   "concept": "addition-and-subtraction-formulas",
+   "verb": "uses"
+  },
+  {
+   "span": "trig-continuity-proof",
+   "concept": "quotient-law-for-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "trig-continuity-proof",
+   "concept": "composite-function-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571120881",
+   "concept": "zeros-of-a-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571120881",
+   "concept": "intermediate-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573439386",
+   "concept": "intermediate-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170570996536",
+   "concept": "intermediate-value-theorem",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp21",
+   "source_id": "fs-id1170573288457",
+   "source_number": "Checkpoint 2.21",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573429945"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "Using the definition, determine whether the function $f(x)=\\begin{cases}2x+1 & \\text{if}\\;x\\lt 1\\\\ 2 & \\text{if}\\;x=1\\\\ -x+4 & \\text{if}\\;x\\gt 1\\end{cases}$ is continuous at $x=1.$ If the function is not continuous at 1, indicate the condition for continuity at a point that fails to hold.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Check each condition of the definition. <em>f</em> is not continuous at 1 because $f(1)=2\\ne 3=\\lim_{x\\to 1}f(x).$"
+   }
+  },
+  {
+   "id": "cp22",
+   "source_id": "fs-id1170573427664",
+   "source_number": "Checkpoint 2.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573381194"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "For what values of <em>x</em> is $f(x)=3x^{4}-4x^{2}$ continuous?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Use Continuity of Polynomials and Rational Functions. $f(x)$ is continuous at every real number."
+   }
+  },
+  {
+   "id": "cp23",
+   "source_id": "fs-id1170570998828",
+   "source_number": "Checkpoint 2.23",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573355402"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "For $f(x)=\\begin{cases}x^{2} & \\text{if}\\;x\\ne 1\\\\ 3 & \\text{if}\\;x=1\\end{cases},$ decide whether <em>f</em> is continuous at 1. If <em>f</em> is not continuous at 1, classify the discontinuity as removable, jump, or infinite.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Follow the steps in Determining Continuity at a Point. If the function is discontinuous at 1, look at $\\lim_{x\\to 1}f(x)$ and use the definition to determine the type of discontinuity. Discontinuous at 1; removable"
+   }
+  },
+  {
+   "id": "cp24",
+   "source_id": "fs-id1170573361460",
+   "source_number": "Checkpoint 2.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573387892"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "State the interval(s) over which the function $f(x)=\\sqrt{x+3}$ is continuous.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Use Example 2.34 as a guide for solving. $[-3,+\\infty)$"
+   }
+  },
+  {
+   "id": "cp25",
+   "source_id": "fs-id1170573732420",
+   "source_number": "Checkpoint 2.25",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573718134"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "Evaluate $\\lim_{x\\to\\pi}\\sin(x-\\pi).$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "hint": "$f(x)=\\sin x$ is continuous at 0. Use Example 2.35 as a guide.",
+    "solution": "0"
+   }
+  },
+  {
+   "id": "cp26",
+   "source_id": "fs-id1170571100303",
+   "source_number": "Checkpoint 2.26",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170570996536"
+   },
+   "cite": "ivt",
+   "prompt": "Show that $f(x)=x^{3}-x^{2}-3x+1$ has a zero over the interval $[0,1].$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Find $f(0)$ and $f(1).$ Apply the Intermediate Value Theorem. $f(0)=1\\gt 0,f(1)=-2\\lt 0;f(x)$ is continuous over $[0,1].$ It must have a zero on this interval."
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1170571246283",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>For the following exercises, determine the point(s), if any, at which each function is discontinuous. Classify any discontinuity as jump, removable, infinite, or other.</p><p>$f(x)=\\dfrac{1}{\\sqrt{x}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The function is defined for all <em>x</em> in the interval $(0,\\infty).$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1170573367933",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>For the following exercises, determine the point(s), if any, at which each function is discontinuous. Classify any discontinuity as jump, removable, infinite, or other.</p><p>$f(x)=\\dfrac{x}{x^{2}-x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Removable discontinuity at $x=0;$ infinite discontinuity at $x=1$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1170573581616",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>For the following exercises, determine the point(s), if any, at which each function is discontinuous. Classify any discontinuity as jump, removable, infinite, or other.</p><p>$f(x)=\\dfrac{5}{e^{x}-2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Infinite discontinuity at $x=\\ln 2$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1170573361738",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>For the following exercises, determine the point(s), if any, at which each function is discontinuous. Classify any discontinuity as jump, removable, infinite, or other.</p><p>$H(x)=\\tan 2x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Infinite discontinuities at $x=\\dfrac{(2k+1)\\pi}{4},$ for $k=0,\\pm 1,\\pm 2,\\pm 3,\\ldots$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1170573750411",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>For the following exercises, decide if the function continuous at the given point. If it is discontinuous, what type of discontinuity is it?</p><p>$f(x)=\\dfrac{2x^{2}-5x+3}{x-1}$ at $x=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No. It is a removable discontinuity."
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1170573580625",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>For the following exercises, decide if the function continuous at the given point. If it is discontinuous, what type of discontinuity is it?</p><p>$g(u)=\\begin{cases}\\dfrac{6u^{2}+u-2}{2u-1} & \\text{if}\\;u\\ne\\frac{1}{2}\\\\ \\frac{7}{2} & \\text{if}\\;u=\\frac{1}{2}\\end{cases},$ at $u=\\frac{1}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes. It is continuous."
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1170571120812",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>For the following exercises, decide if the function continuous at the given point. If it is discontinuous, what type of discontinuity is it?</p><p>$f(x)=\\begin{cases}x^{2}-e^{x} & \\text{if}\\;x\\lt 0\\\\ x-1 & \\text{if}\\;x\\ge 0\\end{cases},$ at $x=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes. It is continuous."
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1170573413991",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "<p>In the following exercises, find the value(s) of <em>k</em> that makes each function continuous over the given interval.</p><p>$f(x)=\\begin{cases}3x+2, & x\\lt k\\\\ 2x-3, & k\\le x\\le 8\\end{cases}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -5,
+    "solution": "$k=-5$"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1170573575226",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "<p>In the following exercises, find the value(s) of <em>k</em> that makes each function continuous over the given interval.</p><p>$f(x)=\\begin{cases}\\dfrac{x^{2}+3x+2}{x+2}, & x\\ne -2\\\\ k, & x=-2\\end{cases}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1,
+    "solution": "$k=-1$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1170573449551",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "<p>In the following exercises, find the value(s) of <em>k</em> that makes each function continuous over the given interval.</p><p>$f(x)=\\begin{cases}\\sqrt{kx}, & 0\\le x\\le 3\\\\ x+1, & 3\\lt x\\le 10\\end{cases}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.333333333333333,
+    "tol": 0.001,
+    "solution": "$k=\\dfrac{16}{3}$"
+   }
+  },
+  {
+   "id": "e150",
+   "source_id": "fs-id1170571121705",
+   "source_number": "150",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ivt",
+   "prompt": "<p>In the following exercises, use the Intermediate Value Theorem (IVT).</p><p>Let $h(x)=\\begin{cases}3x^{2}-4, & x\\le 2\\\\ 5+4x, & x\\gt 2\\end{cases}$ Over the interval $[0,4],$ there is no value of <em>x</em> such that $h(x)=10,$ although $h(0)\\lt 10$ and $h(4)\\gt 10.$ Explain why this does not contradict the IVT.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The IVT asks for a function continuous over the closed interval, and $h$ is not continuous over $[0,4].$ At $x=2$ the first piece gives $h(2)=3(2)^{2}-4=8=\\lim_{x\\to 2^{-}}h(x),$ while $\\lim_{x\\to 2^{+}}h(x)=5+4(2)=13,$ so $h$ has a jump discontinuity at 2. The first piece runs from $h(0)=-4$ up to $8$ on $[0,2],$ and the second takes only values above $13$ on $(2,4],$ so the values between $8$ and $13,$ among them $10,$ are jumped over. Since the hypothesis of the theorem fails, it promises no $c,$ and there is no contradiction."
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1170571087121",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ivt",
+   "prompt": "<p>In the following exercises, use the Intermediate Value Theorem (IVT).</p><p>A particle moving along a line has at each time <em>t</em> a position function $s(t),$ which is continuous. Assume $s(2)=5$ and $s(5)=2.$ Another particle moves such that its position is given by $h(t)=s(t)-t.$ Explain why there must be a value <em>c</em> for $2\\lt c\\lt 5$ such that $h(c)=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Since both <em>s</em> and $y=t$ are continuous everywhere, then $h(t)=s(t)-t$ is continuous everywhere and, in particular, it is continuous over the closed interval $[2,5].$ Also, $h(2)=3\\gt 0$ and $h(5)=-3\\lt 0.$ Therefore, by the IVT, there is a value $x=c$ such that $h(c)=0.$"
+   }
+  },
+  {
+   "id": "e152",
+   "source_id": "fs-id1170573590374",
+   "source_number": "152",
+   "changes": "Part c, which asks for a calculator search for an interval of length 0.01 that contains a solution, is left out.",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ivt",
+   "prompt": "<p>In the following exercises, use the Intermediate Value Theorem (IVT).</p><p><strong>[T]</strong> Use the statement “The cosine of <em>t</em> is equal to <em>t</em> cubed.”</p><p>a. Write a mathematical equation of the statement.</p><p>b. Prove that the equation in part a. has at least one real solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a. $\\cos t=t^{3}.$ b. Let $f(t)=\\cos t-t^{3}.$ It is the difference of a trigonometric function and a polynomial, both continuous everywhere, so $f$ is continuous over $[0,1].$ At the ends, $f(0)=\\cos 0-0=1\\gt 0$ and $f(1)=\\cos 1-1\\approx 0.540-1=-0.460\\lt 0.$ Since $0$ lies between $f(0)$ and $f(1),$ the IVT gives a number $c$ in $[0,1]$ with $f(c)=0,$ that is, $\\cos c=c^{3}:$ the equation has at least one real solution."
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1170570982565",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ivt",
+   "prompt": "<p>In the following exercises, use the Intermediate Value Theorem (IVT).</p><p>Apply the IVT to determine whether $2^{x}=x^{3}$ has a solution in one of the intervals $[1.25,1.375]$ or $[1.375,1.5].$ Briefly explain your response for each interval.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The function $f(x)=2^{x}-x^{3}$ is continuous over the interval $[1.25,1.375]$ and has opposite signs at the endpoints."
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1170571290233",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>Let $f(x)=\\begin{cases}3x, & x\\gt 1\\\\ x^{3}, & x\\lt 1\\end{cases}.$</p><p>a. Sketch the graph of <em>f</em>.</p><p>b. Is it possible to find a value <em>k</em> such that $f(1)=k,$ which makes $f(x)$ continuous for all real numbers? Briefly explain.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. <img src=\"/media/ch02/CNX_Calc_Figure_02_04_202.jpg\" alt=\"The graph of f: the curve x³ for x &lt; 1, ending in an open circle at (1, 1), and the line 3x for x &gt; 1, starting at an open circle at (1, 3).\"> b. It is not possible to redefine $f(1)$ since the discontinuity is a jump discontinuity."
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1170573512268",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>Sketch the graph of a function $y=f(x)$ with properties i. through vi.</p><ol type=\"i\"><li>The domain of <em>f</em> is $(-\\infty,+\\infty).$</li><li><em>f</em> has an infinite discontinuity at $x=-6.$</li><li>$f(-6)=3$</li><li>$\\lim_{x\\to -3^{-}}f(x)=\\lim_{x\\to -3^{+}}f(x)=2$</li><li>$f(-3)=3$</li><li><em>f</em> is left continuous but not right continuous at $x=3.$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Answers may vary; see the following example: <img src=\"/media/ch02/CNX_Calc_Figure_02_04_207.jpg\" alt=\"A piecewise graph: a line ending in an open circle at (−8, −8); a rising curve from a closed circle at (−8, 0) up to infinity as x approaches −6 from the left; a closed circle at (−6, 3); a line from an open circle at (−6, 2) to a closed circle at (3, 2); and a rising line from an open circle at (3, 3).\">"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1170571096173",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>In the following exercises, suppose $y=f(x)$ is defined for all <em>x</em>. For each description, sketch a graph with the indicated property.</p><p>Discontinuous at $x=1$ with $\\lim_{x\\to -1}f(x)=-1$ and $\\lim_{x\\to 2}f(x)=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Answers may vary; see the following example: <img src=\"/media/ch02/CNX_Calc_Figure_02_04_205.jpg\" alt=\"A piecewise graph: a rising curve for x &lt; 1 ending at (1, 1), and a rising line for x &gt; 1 starting at (1, 3).\">"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1170573422229",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "<p>Determine whether each of the given statements is true. Justify your response with an explanation or counterexample.</p><p>$f(t)=\\dfrac{2}{e^{t}-e^{-t}}$ is continuous everywhere.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. It is continuous over $(-\\infty,0)\\cup(0,\\infty).$"
+   }
+  },
+  {
+   "id": "e162",
+   "source_id": "fs-id1170573624587",
+   "source_number": "162",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p>Determine whether each of the given statements is true. Justify your response with an explanation or counterexample.</p><p>If the left- and right-hand limits of $f(x)$ as $x\\to a$ exist and are equal, then <em>f</em> cannot be discontinuous at $x=a.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "False. Equal one-sided limits mean only that $\\lim_{x\\to a}f(x)$ exists, the second of the three conditions; $f(a)$ may still be undefined or differ from the limit. For example, $f(x)=\\dfrac{x^{2}-4}{x-2}$ of Example 2.26 has $\\lim_{x\\to 2^{-}}f(x)=\\lim_{x\\to 2^{+}}f(x)=4,$ yet $f(2)$ is undefined, so $f$ is discontinuous at $2:$ it has a removable discontinuity there."
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1170571287009",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "<p>Determine whether each of the given statements is true. Justify your response with an explanation or counterexample.</p><p>If a function is not continuous at a point, then it is not defined at that point.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. Consider $f(x)=\\begin{cases}x & \\text{if}\\;x\\ne 0\\\\ 4 & \\text{if}\\;x=0\\end{cases}.$"
+   }
+  },
+  {
+   "id": "e164",
+   "source_id": "fs-id1170571131867",
+   "source_number": "164",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ivt",
+   "prompt": "<p>Determine whether each of the given statements is true. Justify your response with an explanation or counterexample.</p><p>According to the IVT, $\\cos x-\\sin x-x=2$ has a solution over the interval $[-1,1].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "True. Let $g(x)=\\cos x-\\sin x-x.$ It is built from trigonometric functions and a polynomial, so it is continuous over $[-1,1].$ At the ends, $g(-1)=\\cos 1+\\sin 1+1\\approx 2.382$ and $g(1)=\\cos 1-\\sin 1-1\\approx -1.301.$ Since $2$ lies between $g(1)$ and $g(-1),$ the IVT gives a number $c$ in $[-1,1]$ with $g(c)=2,$ a solution of the equation."
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1170571131236",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ivt",
+   "prompt": "<p>Determine whether each of the given statements is true. Justify your response with an explanation or counterexample.</p><p>If $f(x)$ is continuous such that $f(a)$ and $f(b)$ have opposite signs, then $f(x)=0$ has exactly one solution in $[a,b].$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. IVT only says that there is at least one solution; it does not guarantee that there is exactly one. Consider $f(x)=\\cos(x)$ on $[-\\pi,2\\pi].$"
+   }
+  },
+  {
+   "id": "e166",
+   "source_id": "fs-id1170571099130",
+   "source_number": "166",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "<p>Determine whether each of the given statements is true. Justify your response with an explanation or counterexample.</p><p>The function $f(x)=\\dfrac{x^{2}-4x+3}{x^{2}-1}$ is continuous over the interval $[0,3].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "False. The function is rational, so it is continuous at every point of its domain, but its denominator $x^{2}-1=(x-1)(x+1)$ is zero at $x=1,$ which lies in $[0,3].$ There $f(1)$ is undefined, so $f$ is not continuous at $1$ and therefore not continuous over $[0,3].$ (Since $\\dfrac{x^{2}-4x+3}{x^{2}-1}=\\dfrac{(x-1)(x-3)}{(x-1)(x+1)},$ the limit at $1$ is $\\dfrac{1-3}{1+1}=-1,$ so the discontinuity is removable.)"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1170570998957",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ivt",
+   "prompt": "<p>Determine whether each of the given statements is true. Justify your response with an explanation or counterexample.</p><p>If $f(x)$ is continuous everywhere and $f(a),f(b)\\gt 0,$ then there is no root of $f(x)$ in the interval $[a,b].$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. The IVT does <em>not</em> work in reverse! Consider $(x-1)^{2}$ over the interval $[-2,2].$"
+   }
+  },
+  {
+   "id": "e168",
+   "source_id": "fs-id1170573393357",
+   "source_number": "168",
+   "changes": "Part c, which asks for the force between two protons 1 m apart and the error of the approximation, is left out.",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "<p><strong>[T]</strong> The following problems consider the scalar form of Coulomb’s law, which describes the electrostatic force between two point charges, such as electrons. It is given by the equation $F(r)=k_{e}\\dfrac{|q_{1}q_{2}|}{r^{2}},$ where $k_{e}$ is Coulomb’s constant, $q_{i}$ are the magnitudes of the charges of the two particles, and <em>r</em> is the distance between the two particles.</p><p>To simplify the calculation of a model with many interacting particles, after some threshold value $r=R,$ we approximate <em>F</em> as zero.</p><p>a. Explain the physical reasoning behind this assumption.</p><p>b. What is the force equation?</p><p>d. Is there any finite value of <em>R</em> for which this system remains continuous at <em>R</em>?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a. The force falls off as $1/r^{2},$ so far from a particle it is tiny beside the forces of the particles near it; treating every pair farther apart than $R$ as exerting no force changes the model very little and spares the calculation of the many distant pairs. b. $F(r)=\\begin{cases}k_{e}\\dfrac{|q_{1}q_{2}|}{r^{2}} & \\text{if}\\;r\\lt R\\\\ 0 & \\text{if}\\;r\\ge R\\end{cases}$ d. No. At $r=R,$ $F(R)=0,$ while $\\lim_{r\\to R^{-}}F(r)=k_{e}\\dfrac{|q_{1}q_{2}|}{R^{2}},$ which is positive for any finite $R$ and nonzero charges. The limit from the left never equals $F(R),$ so the force has a jump discontinuity at $R,$ whatever finite value $R$ takes."
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1170573438919",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "<p><strong>[T]</strong> The following problems consider the scalar form of Coulomb’s law, which describes the electrostatic force between two point charges, such as electrons. It is given by the equation $F(r)=k_{e}\\dfrac{|q_{1}q_{2}|}{r^{2}},$ where $k_{e}$ is Coulomb’s constant, $q_{i}$ are the magnitudes of the charges of the two particles, and <em>r</em> is the distance between the two particles.</p><p>Instead of making the force 0 at <em>R</em>, instead we let the force be 10<sup>−20</sup> for $r\\ge R.$ Assume two protons, which have a magnitude of charge $1.6022\\times 10^{-19}\\;\\text{C},$ and the Coulomb constant $k_{e}=8.988\\times 10^{9}\\;\\text{Nm}^{2}/\\text{C}^{2}.$ Is there a value <em>R</em> that can make this system continuous? If so, find it.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0001519,
+    "unit": "m",
+    "tol": 0.005,
+    "solution": "$R=0.0001519\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1170573571185",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "<p>Recall the discussion on spacecraft from the chapter opener. The following problems consider a rocket launch from Earth’s surface. The force of gravity on the rocket is given by $F(d)=-mk/d^{2},$ where <em>m</em> is the mass of the rocket, <em>d</em> is the distance of the rocket from the center of Earth, and <em>k</em> is a constant.</p><p><strong>[T]</strong> After a certain distance <em>D</em> has passed, the gravitational effect of Earth becomes quite negligible, so we can approximate the force function by $F(d)=\\begin{cases}-\\dfrac{mk}{d^{2}} & \\text{if}\\;d\\lt D\\\\ 10{,}000 & \\text{if}\\;d\\ge D\\end{cases}.$ Using the value of k found in the previous exercise, find the necessary condition <em>D</em> such that the force function remains continuous.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 345826,
+    "unit": "km",
+    "tol": 0.005,
+    "solution": "$D=345{,}826\\;\\text{km}$"
+   }
+  },
+  {
+   "id": "e172",
+   "source_id": "fs-id1170571124644",
+   "source_number": "172",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "<p>Recall the discussion on spacecraft from the chapter opener. The following problems consider a rocket launch from Earth’s surface. The force of gravity on the rocket is given by $F(d)=-mk/d^{2},$ where <em>m</em> is the mass of the rocket, <em>d</em> is the distance of the rocket from the center of Earth, and <em>k</em> is a constant.</p><p>As the rocket travels away from Earth’s surface, there is a distance <em>D</em> where the rocket sheds some of its mass, since it no longer needs the excess fuel storage. We can write this function as $F(d)=\\begin{cases}-\\dfrac{m_{1}k}{d^{2}} & \\text{if}\\;d\\lt D\\\\ -\\dfrac{m_{2}k}{d^{2}} & \\text{if}\\;d\\ge D\\end{cases}.$ Is there a <em>D</em> value such that this function is continuous, assuming $m_{1}\\ne m_{2}?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. At $d=D,$ $F(D)=-\\dfrac{m_{2}k}{D^{2}},$ while $\\lim_{d\\to D^{-}}F(d)=-\\dfrac{m_{1}k}{D^{2}}.$ For $F$ to be continuous at $D$ these must be equal, and for a distance $D\\gt 0$ and $k\\ne 0$ that happens only if $m_{1}=m_{2}.$ Since $m_{1}\\ne m_{2},$ the two values differ for every $D,$ and $F$ has a jump discontinuity wherever the mass is shed."
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1170571136680",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "<p>Prove the following functions are continuous everywhere</p><p>$f(\\theta)=\\sin\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "For all values of $a,f(a)$ is defined, $\\lim_{\\theta\\to a}f(\\theta)$ exists, and $\\lim_{\\theta\\to a}f(\\theta)=f(a).$ Therefore, $f(\\theta)$ is continuous everywhere."
+   }
+  },
+  {
+   "id": "e174",
+   "source_id": "fs-id1170573413789",
+   "source_number": "174",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "<p>Prove the following functions are continuous everywhere</p><p>$g(x)=|x|$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take any real number $a;$ $g(a)=|a|$ is defined. If $a\\gt 0,$ then $g(x)=x$ for $x$ near $a,$ so $\\lim_{x\\to a}g(x)=a=|a|.$ If $a\\lt 0,$ then $g(x)=-x$ near $a,$ so $\\lim_{x\\to a}g(x)=-a=|a|.$ If $a=0,$ the one-sided limits are $\\lim_{x\\to 0^{-}}(-x)=0$ and $\\lim_{x\\to 0^{+}}x=0,$ so $\\lim_{x\\to 0}g(x)=0=g(0).$ All three conditions for continuity hold at every $a,$ so $g(x)=|x|$ is continuous everywhere."
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1170573414086",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "<p>Where is $f(x)=\\begin{cases}0 & \\text{if}\\;x\\;\\text{is irrational}\\\\ 1 & \\text{if}\\;x\\;\\text{is rational}\\end{cases}$ continuous?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Nowhere"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp21",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "cp21",
+   "concept": "determining-continuity-at-a-point"
+  },
+  {
+   "exercise": "cp22",
+   "concept": "continuity-of-polynomials-and-rational-functions"
+  },
+  {
+   "exercise": "cp23",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "cp23",
+   "concept": "determining-continuity-at-a-point"
+  },
+  {
+   "exercise": "cp24",
+   "concept": "continuity-over-an-interval"
+  },
+  {
+   "exercise": "cp25",
+   "concept": "composite-function-theorem"
+  },
+  {
+   "exercise": "cp26",
+   "concept": "intermediate-value-theorem"
+  },
+  {
+   "exercise": "e131",
+   "concept": "determining-continuity-at-a-point"
+  },
+  {
+   "exercise": "e131",
+   "concept": "continuity-over-an-interval"
+  },
+  {
+   "exercise": "e133",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "e133",
+   "concept": "infinite-discontinuity"
+  },
+  {
+   "exercise": "e133",
+   "concept": "determining-continuity-at-a-point"
+  },
+  {
+   "exercise": "e135",
+   "concept": "infinite-discontinuity"
+  },
+  {
+   "exercise": "e135",
+   "concept": "determining-continuity-at-a-point"
+  },
+  {
+   "exercise": "e137",
+   "concept": "infinite-discontinuity"
+  },
+  {
+   "exercise": "e137",
+   "concept": "continuity-of-trigonometric-functions"
+  },
+  {
+   "exercise": "e139",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "e139",
+   "concept": "determining-continuity-at-a-point"
+  },
+  {
+   "exercise": "e141",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e141",
+   "concept": "determining-continuity-at-a-point"
+  },
+  {
+   "exercise": "e143",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e143",
+   "concept": "determining-continuity-at-a-point"
+  },
+  {
+   "exercise": "e145",
+   "concept": "continuity-over-an-interval"
+  },
+  {
+   "exercise": "e145",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e147",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "e147",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e149",
+   "concept": "continuity-over-an-interval"
+  },
+  {
+   "exercise": "e149",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e150",
+   "concept": "intermediate-value-theorem"
+  },
+  {
+   "exercise": "e150",
+   "concept": "jump-discontinuity"
+  },
+  {
+   "exercise": "e151",
+   "concept": "intermediate-value-theorem"
+  },
+  {
+   "exercise": "e152",
+   "concept": "intermediate-value-theorem"
+  },
+  {
+   "exercise": "e152",
+   "concept": "continuity-of-trigonometric-functions"
+  },
+  {
+   "exercise": "e153",
+   "concept": "intermediate-value-theorem"
+  },
+  {
+   "exercise": "e155",
+   "concept": "jump-discontinuity"
+  },
+  {
+   "exercise": "e155",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e157",
+   "concept": "infinite-discontinuity"
+  },
+  {
+   "exercise": "e157",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "e157",
+   "concept": "continuity-from-the-left"
+  },
+  {
+   "exercise": "e157",
+   "concept": "continuity-from-the-right"
+  },
+  {
+   "exercise": "e159",
+   "concept": "discontinuity-at-a-point"
+  },
+  {
+   "exercise": "e161",
+   "concept": "continuity-over-an-interval"
+  },
+  {
+   "exercise": "e161",
+   "concept": "infinite-discontinuity"
+  },
+  {
+   "exercise": "e162",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e162",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "e163",
+   "concept": "discontinuity-at-a-point"
+  },
+  {
+   "exercise": "e163",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e164",
+   "concept": "intermediate-value-theorem"
+  },
+  {
+   "exercise": "e165",
+   "concept": "intermediate-value-theorem"
+  },
+  {
+   "exercise": "e166",
+   "concept": "continuity-over-an-interval"
+  },
+  {
+   "exercise": "e166",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "e167",
+   "concept": "intermediate-value-theorem"
+  },
+  {
+   "exercise": "e168",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e168",
+   "concept": "jump-discontinuity"
+  },
+  {
+   "exercise": "e169",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e171",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e172",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e172",
+   "concept": "jump-discontinuity"
+  },
+  {
+   "exercise": "e173",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e173",
+   "concept": "continuity-of-trigonometric-functions"
+  },
+  {
+   "exercise": "e174",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "e174",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e175",
+   "concept": "continuity-at-a-point"
+  }
+ ]
+}
