@@ -1,0 +1,348 @@
+<p>In this section we examine <span data-concept="exponential-function">exponential</span> and <span data-concept="logarithmic-function">logarithmic functions</span>. We use the properties of these <span data-concept="function">functions</span> to solve equations involving exponential or logarithmic terms, and we study the meaning and importance of the <span data-concept="number-e">number $e.$</span> We also define <span data-concept="hyperbolic-functions">hyperbolic</span> and <span data-concept="inverse-hyperbolic-functions">inverse hyperbolic functions</span>, which involve combinations of <span data-concept="exponential-function">exponential</span> and <span data-concept="logarithmic-function">logarithmic functions</span>. (Note that we present alternative definitions of <span data-concept="exponential-function">exponential</span> and <span data-concept="logarithmic-function">logarithmic functions</span> in the chapter Applications of Integrations, and prove that the <span data-concept="function">functions</span> have the same properties with either definition.)</p>
+
+<section id="exponential-functions">
+<h2>Exponential Functions</h2>
+<p class="cite-target"><span data-concept="exponential-function">Exponential functions</span> arise in many applications. One common example is population growth.</p>
+<p>For example, if a population starts with $P_{0}$ individuals and then grows at an annual rate of $2\%,$ its population after 1 year is</p>
+$$P(1)=P_{0}+0.02P_{0}=P_{0}(1+0.02)=P_{0}(1.02).$$
+<p>Its population after 2 years is</p>
+$$P(2)=P(1)+0.02P(1)=P(1)(1.02)=P_{0}(1.02)^{2}.$$
+<p>In general, its population after $t$ years is</p>
+$$P(t)=P_{0}(1.02)^{t},$$
+<p>which is an <span data-concept="exponential-function">exponential function</span>. More generally, any <span data-concept="function">function</span> of the form <span data-fn="b^x">$\kf(x)=b^{x},$</span> where $b\gt 0,b\ne 1,$ is an <span data-concept="exponential-function">exponential function</span> with <strong><span data-concept="base">base</span></strong> $b$ and <strong><span data-concept="exponent">exponent</span></strong> <em>x</em>. <span data-concept="exponential-function">Exponential functions</span> have constant <span data-concept="base">bases</span> and variable <span data-concept="exponent">exponents</span>. Note that a <span data-concept="function">function</span> of the form $\kf(x)=x^{b}$ for some constant $b$ is not an <span data-concept="exponential-function">exponential function</span> but a <span data-concept="power-function">power function</span>.</p>
+<p>To see the difference between an <span data-concept="exponential-function">exponential function</span> and a <span data-concept="power-function">power function</span>, we compare the <span data-concept="function">functions</span> <span data-ref="power-curve"><span data-fn="x^2">$y=x^{2}$</span></span> and <span data-ref="exp-curve"><span data-fn="2^x">$y=2^{x}.$</span></span> In Table 1.10, we see that both <span data-ref="exp-curve">$2^{x}$</span> and <span data-ref="power-curve">$x^{2}$</span> approach infinity as $x\to\infty.$ Eventually, however, <span data-ref="exp-curve">$2^{x}$</span> becomes larger than <span data-ref="power-curve">$x^{2}$</span> and grows more rapidly as $x\to\infty.$ In the opposite direction, as $x\to-\infty,$ <span data-ref="power-curve">$x^{2}\to\infty,$</span> whereas <span data-ref="exp-curve">$2^{x}\to 0.$</span> The line <span data-type="line">$y=0$</span> is a horizontal asymptote for <span data-ref="exp-curve">$y=2^{x}.$</span></p>
+<div class="book-table" id="fs-id1170572205233">
+  <div class="tcap"><span class="eyebrow">Table 1.10</span><span>Values of $x^{2}$ and $2^{x}$</span></div>
+  <table>
+    <tbody>
+      <tr><th>$x$</th><td class="num">$-3$</td><td class="num">$-2$</td><td class="num">$-1$</td><td class="num">$0$</td><td class="num">$1$</td><td class="num">$2$</td><td class="num">$3$</td><td class="num">$4$</td><td class="num">$5$</td><td class="num">$6$</td></tr>
+      <tr><th>$x^{2}$</th><td class="num">$9$</td><td class="num">$4$</td><td class="num">$1$</td><td class="num">$0$</td><td class="num">$1$</td><td class="num">$4$</td><td class="num">$9$</td><td class="num">$16$</td><td class="num">$25$</td><td class="num">$36$</td></tr>
+      <tr><th>$2^{x}$</th><td class="num">$1/8$</td><td class="num">$1/4$</td><td class="num">$1/2$</td><td class="num">$1$</td><td class="num">$2$</td><td class="num">$4$</td><td class="num">$8$</td><td class="num">$16$</td><td class="num">$32$</td><td class="num">$64$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>In Figure 1.43, we graph both <span data-ref="power-curve"><span data-fn="x^2">$y=x^{2}$</span></span> and <span data-ref="exp-curve"><span data-fn="2^x">$y=2^{x}$</span></span> to show how the graphs differ.</p>
+<figure class="sim" id="sim-power-exponential" data-figure="1.43" data-original="/media/ch01/CNX_Calc_Figure_01_05_001.jpg" data-original-caption="Both 2ˣ and x² approach infinity as x→∞, but 2ˣ grows more rapidly than x². As x→−∞, x²→∞, whereas 2ˣ→0.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.43</span><span>Both <span data-ref="exp-curve">$2^{x}$</span> and <span data-ref="power-curve">$x^{2}$</span> approach infinity as $x\to\infty,$ but <span data-ref="exp-curve">$2^{x}$</span> grows more rapidly than <span data-ref="power-curve">$x^{2}$</span>. Drag $x$ along the axis to compare their heights: the curves cross three times, and past the last crossing, at $x=4$, <span data-ref="exp-curve">$2^{x}$</span> stays above for good. Change $b$ and the <span data-concept="power-function">power function</span> <span data-ref="power-curve">$x^{b}$</span> and the <span data-concept="exponential-function">exponential function</span> <span data-ref="exp-curve">$b^{x}$</span> trade places the same way, the <span data-concept="exponential-function">exponential</span> always winning in the end; between the whole numbers $x^{b}$ is defined only for $x\ge 0$.</span></div>
+</figure>
+<h3 id="evaluating-exponential">Evaluating Exponential Functions</h3>
+<p>Recall the properties of <span data-concept="exponent">exponents</span>: If $x$ is a positive integer, then we define $b^{x}=b\cdot b\cdots b$ (with $x$ factors of $b).$ If $x$ is a negative integer, then $x=-y$ for some positive integer $y,$ and we define $b^{x}=b^{-y}=1/b^{y}.$ Also, $b^{0}$ is defined to be $1.$ If $x$ is a rational number, then $x=p/q,$ where $p$ and $q$ are integers and $b^{x}=b^{p/q}=\sqrt[q]{b^{p}}.$ For example, $9^{3/2}=\sqrt{9^{3}}=27.$ However, how is $b^{x}$ defined if $x$ is an irrational number? For example, what do we mean by $2^{\sqrt{2}}?$ This is too complex a question for us to answer fully right now; however, we can make an approximation. In Table 1.11, we list some rational numbers approaching $\sqrt{2},$ and the values of $2^{x}$ for each rational number $x$ are presented as well. We claim that if we choose rational numbers $x$ getting closer and closer to $\sqrt{2},$ the values of $2^{x}$ get closer and closer to some number $L.$ We define that number $L$ to be $2^{\sqrt{2}}.$</p>
+<div class="book-table" id="fs-id1170572480690">
+  <div class="tcap"><span class="eyebrow">Table 1.11</span><span>Values of $2^{x}$ for a List of Rational Numbers Approximating $\sqrt{2}$</span></div>
+  <table>
+    <tbody>
+      <tr><th>$x$</th><td class="num">$1.4$</td><td class="num">$1.41$</td><td class="num">$1.414$</td><td class="num">$1.4142$</td><td class="num">$1.41421$</td><td class="num">$1.414213$</td></tr>
+      <tr><th>$2^{x}$</th><td class="num">$2.639$</td><td class="num">$2.65737$</td><td class="num">$2.66475$</td><td class="num">$2.665119$</td><td class="num">$2.665138$</td><td class="num">$2.665143$</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="example" id="fs-id1170572169644">
+<h3>Example 1.33 · Bacterial Growth</h3>
+<p>Suppose a particular population of bacteria is known to double in size every $4$ hours. If a culture starts with $1000$ bacteria, the number of bacteria after $4$ hours is $n(4)=1000\cdot 2.$ The number of bacteria after $8$ hours is $n(8)=n(4)\cdot 2=1000\cdot 2^{2}.$ In general, the number of bacteria after $4m$ hours is $n(4m)=1000\cdot 2^{m}.$ Letting $t=4m,$ we see that the number of bacteria after $t$ hours is <span data-fn="1000*2^(x/4)">$n(t)=1000\cdot 2^{t/4}.$</span> Find the number of bacteria after $6$ hours, $10$ hours, and $24$ hours.</p>
+<h4>Solution</h4>
+<p>The number of bacteria after 6 hours is given by $n(6)=1000\cdot 2^{6/4}\approx 2828$ bacteria. The number of bacteria after $10$ hours is given by $n(10)=1000\cdot 2^{10/4}\approx 5657$ bacteria. The number of bacteria after $24$ hours is given by $n(24)=1000\cdot 2^{6}=64{,}000$ bacteria.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572169644"></div>
+<h3 id="graphing-exponential">Graphing Exponential Functions</h3>
+<p>For any <span data-concept="base">base</span> $b\gt 0,b\ne 1,$ the <span data-concept="exponential-function">exponential function</span> <span data-fn="b^x">$\kf(x)=b^{x}$</span> is defined for all real numbers $x$ and $b^{x}\gt 0.$ Therefore, the <span data-concept="domain">domain</span> of $\kf(x)=b^{x}$ is <span data-type="set">$(-\infty,\infty)$</span> and the <span data-concept="range">range</span> is <span data-type="set">$(0,\infty).$</span> To graph $b^{x},$ we note that for $b\gt 1,$ $b^{x}$ is <span data-concept="increasing-function">increasing on</span> <span data-type="set">$(-\infty,\infty)$</span> and $b^{x}\to\infty$ as $x\to\infty,$ whereas $b^{x}\to 0$ as $x\to-\infty.$ On the other hand, if $0\lt b\lt 1,$ $\kf(x)=b^{x}$ is <span data-concept="decreasing-function">decreasing on</span> <span data-type="set">$(-\infty,\infty)$</span> and $b^{x}\to 0$ as $x\to\infty$ whereas $b^{x}\to\infty$ as $x\to-\infty$ (Figure 1.44).</p>
+<figure class="sim" id="sim-exponential-base" data-figure="1.44" data-original="/media/ch01/CNX_Calc_Figure_01_05_002.jpg" data-original-caption="If b&gt;1, then bˣ is increasing on (−∞,∞). If 0&lt;b&lt;1, then bˣ is decreasing on (−∞,∞).">
+  <div class="sim-head"><span class="eyebrow">Figure 1.44</span><span>If $b\gt 1,$ then $b^{x}$ is <span data-concept="increasing-function">increasing</span> on <span data-type="set">$(-\infty,\infty)$</span>. If $0\lt b\lt 1,$ then $b^{x}$ is <span data-concept="decreasing-function">decreasing</span> on <span data-type="set">$(-\infty,\infty)$</span>. Slide the <span data-concept="base">base</span> $b$ through the book’s four values, $1/4,$ $1/2,$ $2$ and $4$, drawn faint: every curve passes through $(0,1)$ and stays above the $x$-axis, and at $b=1$ the curve flattens into the line $y=1$, which is why $1$ is not allowed as a <span data-concept="base">base</span>.</span></div>
+</figure>
+<p>Note that <span data-concept="exponential-function">exponential functions</span> satisfy the general laws of <span data-concept="exponent">exponents</span>. To remind you of these laws, we state them as rules.</p>
+<div class="note" id="laws-of-exponents">
+<div class="eyebrow">Rule</div>
+<h3>Laws of Exponents</h3>
+<p>For any constants $a\gt 0,b\gt 0,$ and for all <em>x</em> and <em>y</em>,</p>
+<ol>
+<li>$b^{x}\cdot b^{y}=b^{x+y}$</li>
+<li>$\dfrac{b^{x}}{b^{y}}=b^{x-y}$</li>
+<li>$(b^{x})^{y}=b^{xy}$</li>
+<li>$(ab)^{x}=a^{x}b^{x}$</li>
+<li>$\dfrac{a^{x}}{b^{x}}=\left(\dfrac{a}{b}\right)^{x}$</li>
+</ol>
+</div>
+<div class="example" id="fs-id1170572440093">
+<h3>Example 1.34 · Using the Laws of Exponents</h3>
+<p>Use the <span data-concept="laws-of-exponents">laws of exponents</span> to simplify each of the following expressions.</p>
+<ol type="a"><li>$\dfrac{(2x^{2/3})^{3}}{(4x^{-1/3})^{2}}$</li><li>$\dfrac{(x^{3}y^{-1})^{2}}{(xy^{2})^{-2}}$</li></ol>
+<h4>Solution</h4>
+<p>a. We can simplify as follows:</p>
+$$\frac{(2x^{2/3})^{3}}{(4x^{-1/3})^{2}}=\frac{2^{3}(x^{2/3})^{3}}{4^{2}(x^{-1/3})^{2}}=\frac{8x^{2}}{16x^{-2/3}}=\frac{x^{2}x^{2/3}}{2}=\frac{x^{8/3}}{2}.$$
+<p>b. We can simplify as follows:</p>
+$$\frac{(x^{3}y^{-1})^{2}}{(xy^{2})^{-2}}=\frac{(x^{3})^{2}(y^{-1})^{2}}{x^{-2}(y^{2})^{-2}}=\frac{x^{6}y^{-2}}{x^{-2}y^{-4}}=x^{6}x^{2}y^{-2}y^{4}=x^{8}y^{2}.$$
+</div>
+<div class="exercises" data-place="fs-id1170572440093"></div>
+</section>
+
+<section id="number-e">
+<h2>The Number <em>e</em></h2>
+<p class="cite-target">A special type of <span data-concept="exponential-function">exponential function</span> appears frequently in real-world applications. To describe it, consider the following example of exponential growth, which arises from <span data-concept="compound-interest">compounding interest</span> in a savings account. Suppose a person invests $P$ dollars in a savings account with an annual interest rate $r,$ compounded annually. The amount of money after 1 year is</p>
+$$A(1)=P+rP=P(1+r).$$
+<p>The amount of money after $2$ years is</p>
+$$A(2)=A(1)+rA(1)=P(1+r)+rP(1+r)=P(1+r)^{2}.$$
+<p>More generally, the amount after $t$ years is</p>
+$$A(t)=P(1+r)^{t}.$$
+<p>If the money is compounded 2 times per year, the amount of money after half a year is</p>
+$$A\left(\frac{1}{2}\right)=P+\left(\frac{r}{2}\right)P=P\left(1+\left(\frac{r}{2}\right)\right).$$
+<p>The amount of money after $1$ year is</p>
+$$A(1)=A\left(\frac{1}{2}\right)+\left(\frac{r}{2}\right)A\left(\frac{1}{2}\right)=P\left(1+\frac{r}{2}\right)+\frac{r}{2}\left(P\left(1+\frac{r}{2}\right)\right)=P\left(1+\frac{r}{2}\right)^{2}.$$
+<p>After $t$ years, the amount of money in the account is</p>
+$$A(t)=P\left(1+\frac{r}{2}\right)^{2t}.$$
+<p>More generally, if the money is compounded $n$ times per year, the amount of money in the account after $t$ years is given by the <span data-concept="function">function</span></p>
+$$A(t)=P\left(1+\frac{r}{n}\right)^{nt}.$$
+<p>What happens as $n\to\infty?$ To answer this question, we let $m=n/r$ and write</p>
+$$\left(1+\frac{r}{n}\right)^{nt}=\left(1+\frac{1}{m}\right)^{mrt},$$
+<p>and examine the behavior of $(1+1/m)^{m}$ as $m\to\infty,$ using a table of values (Table 1.12).</p>
+<div class="book-table" id="fs-id1170572451390">
+  <div class="tcap"><span class="eyebrow">Table 1.12</span><span>Values of $\left(1+\frac{1}{m}\right)^{m}$ as $m\to\infty$</span></div>
+  <table>
+    <tbody>
+      <tr><th>$m$</th><td class="num">$10$</td><td class="num">$100$</td><td class="num">$1000$</td><td class="num">$10{,}000$</td><td class="num">$100{,}000$</td><td class="num">$1{,}000{,}000$</td></tr>
+      <tr><th>$\left(1+\frac{1}{m}\right)^{m}$</th><td class="num">$2.5937$</td><td class="num">$2.7048$</td><td class="num">$2.71692$</td><td class="num">$2.71815$</td><td class="num">$2.718268$</td><td class="num">$2.718280$</td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="sim-compounding">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>One dollar is invested for a year at an annual interest rate of $100\%$, so that $r=1$ and $m=n$. Compounded $n$ times, the balance climbs a staircase of $n$ steps to $(1+1/n)^{n}$ dollars at the end of the year. Choose more frequent compounding and the staircase fills in toward the smooth curve $e^{t}$, while the year’s end value climbs toward the dashed level, the <span data-concept="number-e">number $e$</span>; compounded continuously, the balance is the curve itself.</span></div>
+</figure>
+<p>Looking at this table, it appears that $(1+1/m)^{m}$ is approaching a number between $2.7$ and $2.8$ as $m\to\infty.$ In fact, $(1+1/m)^{m}$ does approach some number as $m\to\infty.$ We call this <strong><span data-concept="number-e">number $e$</span></strong>. To six decimal places of accuracy,</p>
+$$e\approx 2.718282.$$
+<p>The letter $e$ was first used to represent this number by the Swiss mathematician Leonhard Euler during the 1720s. Although Euler did not discover the number, he showed many important connections between $e$ and <span data-concept="logarithmic-function">logarithmic functions</span>. We still use the notation $e$ today to honor Euler’s work because it appears in many areas of mathematics and because we can use it in many practical applications.</p>
+<p>Returning to our savings account example, we can conclude that if a person puts $P$ dollars in an account at an annual interest rate $r,$ compounded continuously, then $A(t)=Pe^{rt}.$ This <span data-concept="function">function</span> may be familiar. Since <span data-concept="function">functions</span> involving <span data-concept="base">base</span> $e$ arise often in applications, we call the <span data-concept="function">function</span> <span data-fn="e^x">$\kf(x)=e^{x}$</span> the <strong><span data-concept="natural-exponential-function">natural exponential function</span></strong>. Not only is this <span data-concept="function">function</span> interesting because of the definition of the <span data-concept="number-e">number $e,$</span> but also, as discussed next, its graph has an important property.</p>
+<p>Since $e\gt 1,$ we know $e^{x}$ is <span data-concept="increasing-function">increasing on</span> <span data-type="set">$(-\infty,\infty).$</span> In Figure 1.45, we show a graph of <span data-fn="e^x">$\kf(x)=e^{x}$</span> along with a <em><span data-type="line">tangent line</span></em> to the graph of at $x=0.$ We give a precise definition of tangent line in the next chapter; but, informally, we say a tangent line to a graph of $\kf$ at $x=a$ is a line that passes through the point $(a,\kf(a))$ and has the same “<span data-concept="slope">slope</span>” as $\kf$ at that point. The <span data-concept="function">function</span> <span data-fn="e^x">$\kf(x)=e^{x}$</span> is the only <span data-concept="exponential-function">exponential function</span> $b^{x}$ with <span data-type="line">tangent line at $x=0$</span> that has a <span data-concept="slope">slope of 1</span>. As we see later in the text, having this property makes the <span data-concept="natural-exponential-function">natural exponential function</span> the most simple <span data-concept="exponential-function">exponential function</span> to use in many instances.</p>
+<figure class="sim" id="sim-e-tangent" data-figure="1.45" data-original="/media/ch01/CNX_Calc_Figure_01_05_003.jpg" data-original-caption="The graph of f(x)=eˣ has a tangent line with slope 1 at x=0.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.45</span><span>The graph of $\kf(x)=e^{x}$ has a <span data-type="line">tangent line</span> with <span data-concept="slope">slope</span> $1$ at $x=0.$ Slide the <span data-concept="base">base</span> $b$ and the tangent to $b^{x}$ at $(0,1)$ tilts with it, its <span data-concept="slope">slope</span> read off the triangle of run $1$: below $e$ the <span data-concept="slope">slope</span> is less than $1$, above it more, and only at $b=e$ is it exactly $1$.</span></div>
+</figure>
+<div class="example" id="fs-id1170572547818">
+<h3>Example 1.35 · Compounding Interest</h3>
+<p>Suppose &#36;500 is invested in an account at an annual interest rate of $r=5.5\%,$ compounded continuously.</p>
+<ol type="a"><li>Let $t$ denote the number of years after the initial investment and $A(t)$ denote the amount of money in the account at time $t.$ Find a formula for $A(t).$</li><li>Find the amount of money in the account after $10$ years and after $20$ years.</li></ol>
+<h4>Solution</h4>
+<ol type="a">
+<li>If $P$ dollars are invested in an account at an annual interest rate $r,$ compounded continuously, then $A(t)=Pe^{rt}.$ Here $P=\text{＄}500$ and $r=0.055.$ Therefore, <span data-fn="500e^(0.055x)">$A(t)=500e^{0.055t}.$</span></li>
+<li>After $10$ years, the amount of money in the account is
+$$A(10)=500e^{0.055\cdot 10}=500e^{0.55}\approx\text{＄}866.63.$$
+After $20$ years, the amount of money in the account is
+$$A(20)=500e^{0.055\cdot 20}=500e^{1.1}\approx\text{＄}1{,}502.08.$$</li>
+</ol>
+</div>
+<div class="exercises" data-place="fs-id1170572547818"></div>
+</section>
+
+<section id="logarithmic-functions">
+<h2>Logarithmic Functions</h2>
+<p class="cite-target">Using our understanding of <span data-concept="exponential-function">exponential functions</span>, we can discuss their <span data-concept="inverse-function">inverses</span>, which are the <span data-concept="logarithmic-function">logarithmic functions</span>. These come in handy when we need to consider any phenomenon that varies over a wide range of values, such as pH in chemistry or decibels in sound levels.</p>
+<p>The <span data-concept="exponential-function">exponential function</span> <span data-fn="b^x">$\kf(x)=b^{x}$</span> is <span data-concept="one-to-one-function">one-to-one</span>, with <span data-concept="domain">domain</span> <span data-type="set">$(-\infty,\infty)$</span> and <span data-concept="range">range</span> <span data-type="set">$(0,\infty).$</span> Therefore, it has an <span data-concept="inverse-function">inverse function</span>, called the <em><span data-concept="logarithmic-function">logarithmic function with base</span></em> $b.$ For any $b\gt 0,b\ne 1,$ the <span data-concept="logarithmic-function">logarithmic function</span> with <span data-concept="base">base</span> <em>b</em>, denoted $\log_{b},$ has <span data-concept="domain">domain</span> <span data-type="set">$(0,\infty)$</span> and <span data-concept="range">range</span> <span data-type="set">$(-\infty,\infty),$</span> and satisfies</p>
+$$\log_{b}(x)=y\;\text{if and only if}\;b^{y}=x.$$
+<p>For example,</p>
+$$\begin{array}{llll}\log_{2}(8)=3 & & & \text{since}\hspace{3em}2^{3}=8, \\ \log_{10}\left(\dfrac{1}{100}\right)=-2 & & & \text{since}\hspace{3em}10^{-2}=\dfrac{1}{10^{2}}=\dfrac{1}{100}, \\ \log_{b}(1)=0 & & & \text{since}\hspace{3em}b^{0}=1\;\text{for any base}\;b\gt 0.\end{array}$$
+<p>Furthermore, since <span data-fn="log_b(x)">$y=\log_{b}(x)$</span> and <span data-fn="b^x">$y=b^{x}$</span> are <span data-concept="inverse-function">inverse functions</span>,</p>
+$$\log_{b}(b^{x})=x\;\text{and}\;b^{\log_{b}(x)}=x.$$
+<p>The most commonly used <span data-concept="logarithmic-function">logarithmic function</span> is the <span data-concept="function">function</span> $\log_{e}.$ Since this <span data-concept="function">function</span> uses natural $e$ as its <span data-concept="base">base</span>, it is called the <strong><span data-concept="natural-logarithm">natural logarithm</span></strong>. Here we use the notation $\ln(x)$ or $\ln x$ to mean $\log_{e}(x).$ For example,</p>
+$$\ln(e)=\log_{e}(e)=1,\ln(e^{3})=\log_{e}(e^{3})=3,\ln(1)=\log_{e}(1)=0.$$
+<p>Since <span data-ref="exp-e">the <span data-concept="function">functions</span> <span data-fn="e^x">$\kf(x)=e^{x}$</span></span> and <span data-ref="ln"><span data-fn="ln(x)">$\kg(x)=\ln(x)$</span></span> are <span data-concept="inverse-function">inverses</span> of each other,</p>
+$$\ln(e^{x})=x\;\text{and}\;e^{\ln x}=x,$$
+<p>and <span data-ref="exp-e ln">their graphs</span> are symmetric about the line <span data-type="line">$y=x$</span> (Figure 1.46).</p>
+<figure class="sim" id="sim-exp-ln-mirror" data-figure="1.46" data-original="/media/ch01/CNX_Calc_Figure_01_05_004.jpg" data-original-caption="The functions y=eˣ and y=ln(x) are inverses of each other, so their graphs are symmetric about the line y=x.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.46</span><span>The <span data-concept="function">functions</span> <span data-ref="exp-e">$y=e^{x}$</span> and <span data-ref="ln">$y=\ln(x)$</span> are <span data-concept="inverse-function">inverses</span> of each other, so <span data-ref="exp-e ln">their graphs</span> are symmetric about the line <span data-type="line">$y=x.$</span> Drag the point $(a,e^{a})$ along <span data-ref="exp-e">$y=e^{x}$</span>: its mirror image $(e^{a},a)$ rides along <span data-ref="ln">$y=\ln x$</span>, and the dashed segment joining the two always crosses the line <span data-type="line">$y=x$</span> at a right angle, halfway between them.</span></div>
+</figure>
+<p>In general, for any <span data-concept="base">base</span> $b\gt 0,b\ne 1,$ the <span data-concept="function">function</span> <span data-fn="log_b(x)">$\kg(x)=\log_{b}(x)$</span> is symmetric about the line <span data-type="line">$y=x$</span> with the <span data-concept="function">function</span> <span data-fn="b^x">$\kf(x)=b^{x}.$</span> Using this fact and the graphs of the <span data-concept="exponential-function">exponential functions</span>, we graph <span data-concept="function">functions</span> $\log_{b}$ for several values of $b\gt 1$ (Figure 1.47).</p>
+<figure class="sim" id="sim-log-bases" data-figure="1.47" data-original="/media/ch01/CNX_Calc_Figure_01_05_005.jpg" data-original-caption="Graphs of y=log_b(x) are depicted for b=2, e, 10.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.47</span><span>Graphs of $y=\log_{b}(x)$ are depicted for $b=2,e,10$: <span data-ref="log-2">$\log_{2}x$</span>, <span data-ref="ln">$\ln x$</span> and <span data-ref="log-10">$\log_{10}x$</span>. Drag $x$ along the axis and read all three at once. They meet at $x=1$, where every logarithm is $0$, and each reaches $1$ at its own <span data-concept="base">base</span>; at every $x$, <span data-ref="log-2">$\log_{2}x$</span> is <span data-ref="ln">$\ln x$</span> divided by $\ln 2$, so the three curves are one curve stretched by different amounts.</span></div>
+</figure>
+<p>Before solving some equations involving <span data-concept="exponential-function">exponential</span> and <span data-concept="logarithmic-function">logarithmic functions</span>, let’s review the basic properties of logarithms.</p>
+<div class="note" id="log-properties">
+<div class="eyebrow">Rule</div>
+<h3>Properties of Logarithms</h3>
+<p>If $a,b,c\gt 0,b\ne 1,$ and $r$ is any real number, then</p>
+$$\begin{array}{llll}1.\hspace{2em}\log_{b}(ac)=\log_{b}(a)+\log_{b}(c) & & & \text{(Product property)} \\ 2.\hspace{2em}\log_{b}\left(\dfrac{a}{c}\right)=\log_{b}(a)-\log_{b}(c) & & & \text{(Quotient property)} \\ 3.\hspace{2em}\log_{b}(a^{r})=r\log_{b}(a) & & & \text{(Power property)}\end{array}$$
+</div>
+<div class="example" id="fs-id1170572551970">
+<h3>Example 1.36 · Solving Equations Involving Exponential Functions</h3>
+<p>Solve each of the following equations for $x.$</p>
+<ol type="a"><li>$5^{x}=2$</li><li>$e^{x}+6e^{-x}=5$</li></ol>
+<h4>Solution</h4>
+<p>a. Applying the <span data-concept="natural-logarithm">natural logarithm function</span> to both sides of the equation, we have</p>
+$$\ln 5^{x}=\ln 2.$$
+<p>Using the power property of logarithms,</p>
+$$x\ln 5=\ln 2.$$
+<p>Therefore, $x=\ln 2/\ln 5.$</p>
+<p>b. Multiplying both sides of the equation by $e^{x},$ we arrive at the equation</p>
+$$e^{2x}+6=5e^{x}.$$
+<p>Rewriting this equation as</p>
+$$e^{2x}-5e^{x}+6=0,$$
+<p>we can then rewrite it as a quadratic equation in $e^{x}\text{:}$</p>
+$$(e^{x})^{2}-5(e^{x})+6=0.$$
+<p>Now we can solve the quadratic equation. Factoring this equation, we obtain</p>
+$$(e^{x}-3)(e^{x}-2)=0.$$
+<p>Therefore, the solutions satisfy $e^{x}=3$ and $e^{x}=2.$ Taking the <span data-concept="natural-logarithm">natural logarithm</span> of both sides gives us the solutions $x=\ln 3,\ln 2.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170572551970"></div>
+<div class="example" id="fs-id1170572174674">
+<h3>Example 1.37 · Solving Equations Involving Logarithmic Functions</h3>
+<p>Solve each of the following equations for $x.$</p>
+<ol type="a"><li>$\ln\left(\dfrac{1}{x}\right)=4$</li><li>$\log_{10}\sqrt{x}+\log_{10}x=2$</li><li>$\ln(2x)-3\ln(x^{2})=0$</li></ol>
+<h4>Solution</h4>
+<p>a. By the definition of the <span data-concept="natural-logarithm">natural logarithm function</span>,</p>
+$$\ln\left(\frac{1}{x}\right)=4\;\text{if and only if}\;e^{4}=\frac{1}{x}.$$
+<p>Therefore, the solution is $x=1/e^{4}.$</p>
+<p>b. Using the product and power properties of <span data-concept="logarithmic-function">logarithmic functions</span>, rewrite the left-hand side of the equation as</p>
+$$\log_{10}\sqrt{x}+\log_{10}x=\log_{10}x\sqrt{x}=\log_{10}x^{3/2}=\frac{3}{2}\log_{10}x.$$
+<p>Therefore, the equation can be rewritten as</p>
+$$\frac{3}{2}\log_{10}x=2\;\text{or}\;\log_{10}x=\frac{4}{3}.$$
+<p>The solution is $x=10^{4/3}=10\sqrt[3]{10}.$</p>
+<p>c. Using the power property of <span data-concept="logarithmic-function">logarithmic functions</span>, we can rewrite the equation as $\ln(2x)-\ln(x^{6})=0.$</p>
+<p>Using the quotient property, this becomes</p>
+$$\ln\left(\frac{2}{x^{5}}\right)=0.$$
+<p>Therefore, $2/x^{5}=1,$ which implies $x=\sqrt[5]{2}.$ We should then check for any extraneous solutions.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572174674"></div>
+<p id="common-logarithm">When evaluating a <span data-concept="logarithmic-function">logarithmic function</span> with a calculator, you may have noticed that the only options are $\log_{10}$ or log, called the <em><span data-concept="common-logarithm">common logarithm</span></em>, or <em>ln</em>, which is the <span data-concept="natural-logarithm">natural logarithm</span>. However, <span data-concept="exponential-function">exponential functions</span> and <span data-concept="logarithmic-function">logarithm functions</span> can be expressed in terms of any desired <span data-concept="base">base</span> $b.$ If you need to use a calculator to evaluate an expression with a different <span data-concept="base">base</span>, you can apply the <span data-concept="change-of-base-formulas">change-of-base formulas</span> first. Using this change of <span data-concept="base">base</span>, we typically write a given <span data-concept="exponential-function">exponential</span> or <span data-concept="logarithmic-function">logarithmic function</span> in terms of the <span data-concept="natural-exponential-function">natural exponential</span> and <span data-concept="natural-logarithm">natural logarithmic functions</span>.</p>
+<div class="note" id="change-of-base">
+<div class="eyebrow">Rule</div>
+<h3>Change-of-Base Formulas</h3>
+<p>Let $a\gt 0,b\gt 0,$ and $a\ne 1,b\ne 1.$</p>
+<ol>
+<li><p>$a^{x}=b^{x\log_{b}a}$ for any real number $x.$</p><p>If $b=e,$ this equation reduces to $a^{x}=e^{x\log_{e}a}=e^{x\ln a}.$</p></li>
+<li><p>$\log_{a}x=\dfrac{\log_{b}x}{\log_{b}a}$ for any real number $x\gt 0.$</p><p>If $b=e,$ this equation reduces to $\log_{a}x=\dfrac{\ln x}{\ln a}.$</p></li>
+</ol>
+</div>
+<h3 id="change-of-base-proof">Proof</h3>
+<p>For the first <span data-concept="change-of-base-formulas">change-of-base formula</span>, we begin by making use of the power property of <span data-concept="logarithmic-function">logarithmic functions</span>. We know that for any <span data-concept="base">base</span> $b\gt 0,b\ne 1,$ $\log_{b}(a^{x})=x\log_{b}a.$ Therefore,</p>
+$$b^{\log_{b}(a^{x})}=b^{x\log_{b}a}.$$
+<p>In addition, we know that $b^{x}$ and $\log_{b}(x)$ are <span data-concept="inverse-function">inverse functions</span>. Therefore,</p>
+$$b^{\log_{b}(a^{x})}=a^{x}.$$
+<p>Combining these last two equalities, we conclude that $a^{x}=b^{x\log_{b}a}.$</p>
+<p>To prove the second property, we show that</p>
+$$(\log_{b}a)\cdot(\log_{a}x)=\log_{b}x.$$
+<p>Let $u=\log_{b}a,v=\log_{a}x,$ and $w=\log_{b}x.$ We will show that $u\cdot v=w.$ By the definition of <span data-concept="logarithmic-function">logarithmic functions</span>, we know that $b^{u}=a,a^{v}=x,$ and $b^{w}=x.$ From the previous equations, we see that</p>
+$$b^{uv}=(b^{u})^{v}=a^{v}=x=b^{w}.$$
+<p>Therefore, $b^{uv}=b^{w}.$ Since <span data-concept="exponential-function">exponential functions</span> are <span data-concept="one-to-one-function">one-to-one</span>, we can conclude that $u\cdot v=w.$</p>
+<p>□</p>
+<div class="example" id="fs-id1170572434970">
+<h3>Example 1.38 · Changing Bases</h3>
+<p>Use a calculating utility to evaluate $\log_{3}7$ with the <span data-concept="change-of-base-formulas">change-of-base formula</span> presented earlier.</p>
+<h4>Solution</h4>
+<p>Use the second equation with $a=3$ and $e=3\text{:}$</p>
+$$\log_{3}7=\frac{\ln 7}{\ln 3}\approx 1.77124.$$
+</div>
+<div class="exercises" data-place="fs-id1170572434970"></div>
+<div class="example" id="ex-richter-scale">
+<h3>Example 1.39 · Chapter Opener: The Richter Scale for Earthquakes</h3>
+<figure class="photo" id="fig-fault" data-figure="1.48">
+  <img src="/media/ch01/CNX_Calc_Figure_01_05_013.jpg" alt="A photograph of an earthquake fault.">
+  <figcaption><span class="eyebrow">Figure 1.48</span><span>(credit: modification of work by Robb Hannawacker, NPS)</span></figcaption>
+</figure>
+<p id="richter-scale">In 1935, Charles Richter developed a scale (now known as the <em>Richter scale</em>) to measure the magnitude of an earthquake. The scale is a <span data-concept="common-logarithm">base-10 logarithmic scale</span>, and it can be described as follows: Consider <span data-ref="quake-1">one earthquake with magnitude $R_{1}$</span> on the Richter scale and <span data-ref="quake-2">a second earthquake with magnitude $R_{2}$</span> on the Richter scale. Suppose $R_{1}\gt R_{2},$ which means <span data-ref="quake-1">the earthquake of magnitude $R_{1}$</span> is stronger, but how much stronger is <span data-ref="quake-1">it</span> than <span data-ref="quake-2">the other earthquake</span>? A way of measuring the intensity of an earthquake is by using a seismograph to measure the amplitude of the earthquake waves. If $A_{1}$ is the amplitude measured for <span data-ref="quake-1">the first earthquake</span> and $A_{2}$ is the amplitude measured for <span data-ref="quake-2">the second earthquake</span>, then the amplitudes and magnitudes of <span data-ref="quake-1 quake-2">the two earthquakes</span> satisfy the following equation:</p>
+$$R_{1}-R_{2}=\log_{10}\left(\frac{A_{1}}{A_{2}}\right).$$
+<p>Consider <span data-ref="quake-1">an earthquake that measures 8</span> on the Richter scale and <span data-ref="quake-2">an earthquake that measures 7</span> on the Richter scale. Then,</p>
+$$8-7=\log_{10}\left(\frac{A_{1}}{A_{2}}\right).$$
+<p>Therefore,</p>
+$$\log_{10}\left(\frac{A_{1}}{A_{2}}\right)=1,$$
+<p>which implies $A_{1}/A_{2}=10$ or $A_{1}=10A_{2}.$ Since $A_{1}$ is 10 times the size of $A_{2},$ we say that <span data-ref="quake-1">the first earthquake</span> is 10 times as intense as <span data-ref="quake-2">the second earthquake</span>. On the other hand, if <span data-ref="quake-1">one earthquake measures 8</span> on the Richter scale and <span data-ref="quake-2">another measures 6</span>, then the relative intensity of <span data-ref="quake-1 quake-2">the two earthquakes</span> satisfies the equation</p>
+$$\log_{10}\left(\frac{A_{1}}{A_{2}}\right)=8-6=2.$$
+<p>Therefore, $A_{1}=100A_{2}.$ That is, <span data-ref="quake-1">the first earthquake</span> is 100 times more intense than <span data-ref="quake-2">the second earthquake</span>.</p>
+<p>How can we use <span data-concept="logarithmic-function">logarithmic functions</span> to compare the relative severity of <span data-ref="quake-1">the magnitude 9 earthquake in Japan in 2011</span> with <span data-ref="quake-2">the magnitude 7.3 earthquake in Haiti in 2010</span>?</p>
+<h4>Solution</h4>
+<p>To compare <span data-ref="quake-1 quake-2">the Japan and Haiti earthquakes</span>, we can use an equation presented earlier:</p>
+$$9-7.3=\log_{10}\left(\frac{A_{1}}{A_{2}}\right).$$
+<p>Therefore, $A_{1}/A_{2}=10^{1.7},$ and we conclude that <span data-ref="quake-1">the earthquake in Japan</span> was approximately $50$ times more intense than <span data-ref="quake-2">the earthquake in Haiti</span>.</p>
+<figure class="sim" id="sim-richter">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A seismograph trace of each earthquake, both drawn to one amplitude scale: <span data-ref="quake-1">the first, of magnitude $R_{1}$</span>, and <span data-ref="quake-2">the second, of magnitude $R_{2}$</span>, set at first to <span data-ref="quake-1">Japan’s 9</span> and <span data-ref="quake-2">Haiti’s 7.3</span>. Move either magnitude and the weaker trace shrinks or grows by the factor $10^{R_{1}-R_{2}}$: one step on the Richter scale is a tenfold amplitude, two steps a hundredfold, and the $1.7$ between Japan and Haiti about fiftyfold.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="ex-richter-scale"></div>
+</section>
+
+<section id="hyperbolic-functions">
+<h2>Hyperbolic Functions</h2>
+<p class="cite-target">The <span data-concept="hyperbolic-functions">hyperbolic functions</span> are defined in terms of certain combinations of $e^{x}$ and $e^{-x}.$ These <span data-concept="function">functions</span> arise naturally in various engineering and physics applications, including the study of water waves and vibrations of elastic membranes. Another common use for a <span data-concept="hyperbolic-functions">hyperbolic function</span> is the representation of a hanging chain or cable, also known as a catenary (Figure 1.49). If we introduce a coordinate system so that the low point of the chain lies along the $y$-axis, we can describe the height of the chain in terms of a <span data-concept="hyperbolic-functions">hyperbolic function</span>. First, we define the <strong><span data-concept="hyperbolic-functions">hyperbolic functions</span></strong>.</p>
+<figure class="photo" id="fig-spider-web" data-figure="1.49">
+  <img src="/media/ch01/CNX_Calc_Figure_01_05_009.jpg" alt="A photograph of a spider web collecting dew drops.">
+  <figcaption><span class="eyebrow">Figure 1.49</span><span>The shape of a strand of silk in a spider’s web can be described in terms of a <span data-concept="hyperbolic-functions">hyperbolic function</span>. The same shape applies to a chain or cable hanging from two supports with only its own weight. (credit: “Mtpaley”, Wikimedia Commons)</span></figcaption>
+</figure>
+<div class="note" id="hyperbolic-definition">
+<div class="eyebrow">Definition</div>
+<p><strong><span data-concept="hyperbolic-functions">Hyperbolic cosine</span></strong></p>
+$$\cosh x=\frac{e^{x}+e^{-x}}{2}$$
+<p><strong><span data-concept="hyperbolic-functions">Hyperbolic sine</span></strong></p>
+$$\sinh x=\frac{e^{x}-e^{-x}}{2}$$
+<p><strong><span data-concept="hyperbolic-functions">Hyperbolic tangent</span></strong></p>
+$$\tanh x=\frac{\sinh x}{\cosh x}=\frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}$$
+<p><strong><span data-concept="hyperbolic-functions">Hyperbolic cosecant</span></strong></p>
+$$\operatorname{csch}x=\frac{1}{\sinh x}=\frac{2}{e^{x}-e^{-x}}$$
+<p><strong><span data-concept="hyperbolic-functions">Hyperbolic secant</span></strong></p>
+$$\operatorname{sech}x=\frac{1}{\cosh x}=\frac{2}{e^{x}+e^{-x}}$$
+<p><strong><span data-concept="hyperbolic-functions">Hyperbolic cotangent</span></strong></p>
+$$\coth x=\frac{\cosh x}{\sinh x}=\frac{e^{x}+e^{-x}}{e^{x}-e^{-x}}$$
+</div>
+<p>The name <em>cosh</em> rhymes with “gosh,” whereas the name <em>sinh</em> is pronounced “cinch.” <em>Tanh</em>, <em>sech</em>, <em>csch</em>, and <em>coth</em> are pronounced “tanch,” “seech,” “coseech,” and “cotanch,” respectively.</p>
+<p>Using the definition of <span data-fn="cosh(x)">$\cosh(x)$</span> and principles of physics, it can be shown that the height of a hanging chain, such as the one in Figure 1.49, can be described by the <span data-concept="function">function</span> <span data-fn="a cosh(x/a)+c">$h(x)=a\cosh(x/a)+c$</span> for certain constants $a$ and $c.$</p>
+<figure class="sim" id="sim-catenary">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A chain hangs between two supports $8$ units apart and $5$ units high, its height the <span data-concept="function">function</span> $h(x)=a\cosh(x/a)+c$, with $c$ set so that both ends stay on the supports. Slide $a$: a small $a$ lets the chain sag deep, and as $a$ grows the chain pulls nearly straight, its low point always on the $y$-axis.</span></div>
+</figure>
+<p>But why are these <span data-concept="function">functions</span> called <em><span data-concept="hyperbolic-functions">hyperbolic functions</span></em>? To answer this question, consider the quantity $\cosh^{2}t-\sinh^{2}t.$ Using the definition of $\cosh$ and $\sinh,$ we see that</p>
+$$\cosh^{2}t-\sinh^{2}t=\frac{e^{2t}+2+e^{-2t}}{4}-\frac{e^{2t}-2+e^{-2t}}{4}=1.$$
+<p>This identity is the analog of the <span data-concept="trigonometric-identity">trigonometric identity</span> $\cos^{2}t+\sin^{2}t=1.$ Here, given a value $t,$ the point $(x,y)=(\cosh t,\sinh t)$ lies on the unit hyperbola $x^{2}-y^{2}=1$ (Figure 1.50).</p>
+<figure class="sim" id="sim-unit-hyperbola" data-figure="1.50" data-original="/media/ch01/CNX_Calc_Figure_01_05_007.jpg" data-original-caption="The unit hyperbola cosh²t − sinh²t = 1.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.50</span><span>The unit hyperbola $\cosh^{2}t-\sinh^{2}t=1.$ Slide $t$ and the point $(\cosh t,\sinh t)$ runs along the right branch of $x^{2}-y^{2}=1$, through $(1,0)$ at $t=0$ and up or down as $t$ grows or falls; its two coordinates change, but the difference of their squares is always $1$.</span></div>
+</figure>
+<h3 id="hyperbolic-graphs">Graphs of Hyperbolic Functions</h3>
+<p>To graph <span data-fn="cosh(x)">$\cosh x$</span> and <span data-fn="sinh(x)">$\sinh x,$</span> we make use of the fact that both <span data-concept="function">functions</span> approach $(1/2)e^{x}$ as $x\to\infty,$ since $e^{-x}\to 0$ as $x\to\infty.$ As $x\to-\infty,$ $\cosh x$ approaches $1/2e^{-x},$ whereas $\sinh x$ approaches $-1/2e^{-x}.$ Therefore, using the graphs of <span data-fn="e^x/2">$1/2e^{x},$</span> <span data-fn="e^(-x)/2">$1/2e^{-x},$</span> and <span data-fn="-e^(-x)/2">$-1/2e^{-x}$</span> as guides, we graph $\cosh x$ and $\sinh x.$ To graph <span data-fn="tanh(x)">$\tanh x,$</span> we use the fact that $\tanh(0)=0,$ $-1\lt\tanh(x)\lt 1$ for all $x,$ $\tanh x\to 1$ as $x\to\infty,$ and $\tanh x\to-1$ as $x\to-\infty.$ The graphs of the other three <span data-concept="hyperbolic-functions">hyperbolic functions</span> can be sketched using the graphs of $\cosh x,$ $\sinh x,$ and $\tanh x$ (Figure 1.51).</p>
+<figure class="sim" id="sim-hyperbolic-graphs" data-figure="1.51" data-original="/media/ch01/CNX_Calc_Figure_01_05_011.jpg" data-original-caption="The hyperbolic functions involve combinations of eˣ and e⁻ˣ.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.51</span><span>The <span data-concept="hyperbolic-functions">hyperbolic functions</span> involve combinations of $e^{x}$ and $e^{-x}.$ Choose one of the six and drag $x$ along its graph to read its value from the definition. Dashed beside $\cosh x$ and $\sinh x$ are the guides $\frac{1}{2}e^{x}$ and $\pm\frac{1}{2}e^{-x}$ that each approaches; $\tanh x$ and $\coth x$ approach the lines <span data-type="line">$y=\pm 1$</span>; $\operatorname{csch}x$ and $\coth x$ have no value at $x=0$, and $\operatorname{sech}x$, like $\cosh x$, is symmetric about the $y$-axis.</span></div>
+</figure>
+<h3 id="hyperbolic-identities-intro">Identities Involving Hyperbolic Functions</h3>
+<p>The identity $\cosh^{2}t-\sinh^{2}t,$ shown in Figure 1.50, is one of several identities involving the <span data-concept="hyperbolic-functions">hyperbolic functions</span>, some of which are listed next. The first four properties follow easily from the definitions of hyperbolic sine and hyperbolic cosine. Except for some differences in signs, most of these properties are analogous to identities for <span data-concept="trigonometric-functions">trigonometric functions</span>.</p>
+<div class="note" id="hyperbolic-identities">
+<div class="eyebrow">Rule</div>
+<h3>Identities Involving Hyperbolic Functions</h3>
+<ol>
+<li>$\cosh(-x)=\cosh x$</li>
+<li>$\sinh(-x)=-\sinh x$</li>
+<li>$\cosh x+\sinh x=e^{x}$</li>
+<li>$\cosh x-\sinh x=e^{-x}$</li>
+<li>$\cosh^{2}x-\sinh^{2}x=1$</li>
+<li>$1-\tanh^{2}x=\operatorname{sech}^{2}x$</li>
+<li>$\coth^{2}x-1=\operatorname{csch}^{2}x$</li>
+<li>$\sinh(x\pm y)=\sinh x\cosh y\pm\cosh x\sinh y$</li>
+<li>$\cosh(x\pm y)=\cosh x\cosh y\pm\sinh x\sinh y$</li>
+</ol>
+</div>
+<div class="example" id="fs-id1170572443393">
+<h3>Example 1.40 · Evaluating Hyperbolic Functions</h3>
+<ol type="a"><li>Simplify $\sinh(5\ln x).$</li><li>If $\sinh x=3/4,$ find the values of the remaining five <span data-concept="hyperbolic-functions">hyperbolic functions</span>.</li></ol>
+<h4>Solution</h4>
+<p>a. Using the definition of the $\sinh$ <span data-concept="function">function</span>, we write</p>
+$$\sinh(5\ln x)=\frac{e^{5\ln x}-e^{-5\ln x}}{2}=\frac{e^{\ln(x^{5})}-e^{\ln(x^{-5})}}{2}=\frac{x^{5}-x^{-5}}{2}.$$
+<p>b. Using the identity $\cosh^{2}x-\sinh^{2}x=1,$ we see that</p>
+$$\cosh^{2}x=1+\left(\frac{3}{4}\right)^{2}=\frac{25}{16}.$$
+<p>Since $\cosh x\ge 1$ for all $x,$ we must have $\cosh x=5/4.$ Then, using the definitions for the other <span data-concept="hyperbolic-functions">hyperbolic functions</span>, we conclude that $\tanh x=3/5,$ $\operatorname{csch}x=4/3,$ $\operatorname{sech}x=4/5,$ and $\coth x=5/3.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170572443393"></div>
+<h3 id="inverse-hyperbolic">Inverse Hyperbolic Functions</h3>
+<p>From the graphs of the <span data-concept="hyperbolic-functions">hyperbolic functions</span>, we see that all of them are <span data-concept="one-to-one-function">one-to-one</span> except $\cosh x$ and $\operatorname{sech}x.$ If we restrict the <span data-concept="domain">domains</span> of these two <span data-concept="function">functions</span> to the interval <span data-type="set">$[0,\infty),$</span> then all the <span data-concept="hyperbolic-functions">hyperbolic functions</span> are <span data-concept="one-to-one-function">one-to-one</span>, and we can define the <strong><span data-concept="inverse-hyperbolic-functions">inverse hyperbolic functions</span></strong>. Since the <span data-concept="hyperbolic-functions">hyperbolic functions</span> themselves involve <span data-concept="exponential-function">exponential functions</span>, the <span data-concept="inverse-hyperbolic-functions">inverse hyperbolic functions</span> involve <span data-concept="logarithmic-function">logarithmic functions</span>.</p>
+<div class="note" id="inverse-hyperbolic-definition">
+<div class="eyebrow">Definition</div>
+<p><strong><span data-concept="inverse-hyperbolic-functions">Inverse Hyperbolic Functions</span></strong></p>
+$$\begin{array}{llll}\sinh^{-1}x=\operatorname{arcsinh}x=\ln\left(x+\sqrt{x^{2}+1}\right) & & & \cosh^{-1}x=\operatorname{arccosh}x=\ln\left(x+\sqrt{x^{2}-1}\right) \\ \tanh^{-1}x=\operatorname{arctanh}x=\dfrac{1}{2}\ln\left(\dfrac{1+x}{1-x}\right) & & & \coth^{-1}x=\operatorname{arccoth}x=\dfrac{1}{2}\ln\left(\dfrac{x+1}{x-1}\right) \\ \operatorname{sech}^{-1}x=\operatorname{arcsech}x=\ln\left(\dfrac{1+\sqrt{1-x^{2}}}{x}\right) & & & \operatorname{csch}^{-1}x=\operatorname{arccsch}x=\ln\left(\dfrac{1}{x}+\dfrac{\sqrt{1+x^{2}}}{|x|}\right)\end{array}$$
+</div>
+<p>Let’s look at how to derive the first equation. The others follow similarly. Suppose <span data-fn="ln(x+sqrt(x^2+1))">$y=\sinh^{-1}x.$</span> Then, $x=\sinh y$ and, by the definition of the <span data-concept="hyperbolic-functions">hyperbolic sine function</span>, $x=\dfrac{e^{y}-e^{-y}}{2}.$ Therefore,</p>
+$$e^{y}-2x-e^{-y}=0.$$
+<p>Multiplying this equation by $e^{y},$ we obtain</p>
+$$e^{2y}-2xe^{y}-1=0.$$
+<p>This can be solved like a quadratic equation, with the solution</p>
+$$e^{y}=\frac{2x\pm\sqrt{4x^{2}+4}}{2}=x\pm\sqrt{x^{2}+1}.$$
+<p>Since $e^{y}\gt 0,$ the only solution is the one with the positive sign. Applying the <span data-concept="natural-logarithm">natural logarithm</span> to both sides of the equation, we conclude that</p>
+$$y=\ln\left(x+\sqrt{x^{2}+1}\right).$$
+<div class="example" id="fs-id1170572482234">
+<h3>Example 1.41 · Evaluating Inverse Hyperbolic Functions</h3>
+<p>Evaluate each of the following expressions.</p>
+$$\sinh^{-1}(2)$$
+$$\tanh^{-1}(1/4)$$
+<h4>Solution</h4>
+$$\sinh^{-1}(2)=\ln\left(2+\sqrt{2^{2}+1}\right)=\ln\left(2+\sqrt{5}\right)\approx 1.4436$$
+$$\tanh^{-1}(1/4)=\frac{1}{2}\ln\left(\frac{1+1/4}{1-1/4}\right)=\frac{1}{2}\ln\left(\frac{5/4}{3/4}\right)=\frac{1}{2}\ln\left(\frac{5}{3}\right)\approx 0.2554$$
+</div>
+<div class="exercises" data-place="fs-id1170572482234"></div>
+</section>

@@ -1,0 +1,1877 @@
+{
+  "id": "1.5",
+  "module": "m53481",
+  "chapter": "1",
+  "title": "Exponential and Logarithmic Functions",
+  "short": "Exponential and Logarithmic Functions",
+  "lead": "An <span data-concept=\"exponential-function\">exponential function</span> has a constant <span data-concept=\"base\">base</span> and a variable <span data-concept=\"exponent\">exponent</span>. Here such functions are evaluated, graphed and set against power functions; the <span data-concept=\"number-e\">number <em>e</em></span> comes out of compound interest; <span data-concept=\"logarithmic-function\">logarithms</span> are taken as their inverses and used to solve equations in any base; and the <span data-concept=\"hyperbolic-functions\">hyperbolic functions</span> are built from <em>e</em><sup><em>x</em></sup> and <em>e</em><sup>−<em>x</em></sup>.",
+  "objectives": [
+    "Identify the form of an exponential function.",
+    "Explain the difference between the graphs of $x^{b}$ and $b^{x}.$",
+    "Recognize the significance of the number $e.$",
+    "Identify the form of a logarithmic function.",
+    "Explain the relationship between exponential and logarithmic functions.",
+    "Describe how to calculate a logarithm to a different base.",
+    "Identify the hyperbolic functions, their graphs, and basic identities."
+  ],
+  "summary_html": "<ul><li>The <span data-concept=\"exponential-function\">exponential function</span> $y=b^{x}$ is <span data-concept=\"increasing-function\">increasing</span> if $b\\gt 1$ and <span data-concept=\"decreasing-function\">decreasing</span> if $0\\lt b\\lt 1.$ Its <span data-concept=\"domain\">domain</span> is <span data-type=\"set\">$(-\\infty,\\infty)$</span> and its <span data-concept=\"range\">range</span> is <span data-type=\"set\">$(0,\\infty).$</span></li><li>The <span data-concept=\"logarithmic-function\">logarithmic function</span> $y=\\log_{b}(x)$ is the <span data-concept=\"inverse-function\">inverse</span> of $y=b^{x}.$ Its <span data-concept=\"domain\">domain</span> is <span data-type=\"set\">$(0,\\infty)$</span> and its <span data-concept=\"range\">range</span> is <span data-type=\"set\">$(-\\infty,\\infty).$</span></li><li>The <span data-concept=\"natural-exponential-function\">natural exponential function</span> is $y=e^{x}$ and the <span data-concept=\"natural-logarithm\">natural logarithmic function</span> is $y=\\ln x=\\log_{e}x.$</li><li>Given an <span data-concept=\"exponential-function\">exponential function</span> or <span data-concept=\"logarithmic-function\">logarithmic function</span> in <span data-concept=\"base\">base</span> $a,$ we can make a <span data-concept=\"change-of-base-formulas\">change of base</span> to convert this <span data-concept=\"function\">function</span> to any <span data-concept=\"base\">base</span> $b\\gt 0,b\\ne 1.$ We typically convert to <span data-concept=\"base\">base</span> $e.$</li><li>The <span data-concept=\"hyperbolic-functions\">hyperbolic functions</span> involve combinations of the <span data-concept=\"exponential-function\">exponential functions</span> $e^{x}$ and $e^{-x}.$ As a result, the <span data-concept=\"inverse-hyperbolic-functions\">inverse hyperbolic functions</span> involve the <span data-concept=\"natural-logarithm\">natural logarithm</span>.</li></ul>",
+  "notes": "The book’s links to a population-growth example, an exploration of exponential graphs and a base-10 logarithmic scale are left out.",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-12",
+  "exercises_lead": "",
+  "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 40 even-numbered section exercises have no answer in the book’s key and are all computational, so they are left out: 230 and 232 (evaluation), 234, 236 and 238 (matching graphs), 240, 242 and 244 (sketches), 246 to 262 (equivalent forms), 264, 266 and 268 (logarithmic sketches), 270, 272 and 274 (expansions), 276, 278, 280 and 282 (exponential equations), 284, 286, 288 and 290 (logarithmic equations), 292, 294 and 296 (change of base), 298 (the hyperbolic rewriting) and 300 to 308 (the [T] applications). The Chapter Review Exercises are printed at the end of this section and each is set with the section that introduces what it tests: 315, 317, 325 and 335 here; 311 in 1.1; 319 and 331 in 1.2; 321, 323 and 333 in 1.3; 310, 312, 313, 327 and 329 in 1.4. Review exercises 314, 316, 318, 320, 322, 324, 326, 328, 330, 332, 334 and 336 have no answer in the key and are computational, so they are left out. A checkpoint answered in words keeps the book’s hint at the head of its answer.",
+  "figures": [
+    {
+      "id": "sim-power-exponential",
+      "kind": "sim",
+      "number": "1.43",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_05_001.jpg"
+      ],
+      "original_caption": "Both 2ˣ and x² approach infinity as x→∞, but 2ˣ grows more rapidly than x². As x→−∞, x²→∞, whereas 2ˣ→0.",
+      "draws": [
+        "function",
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-exponential-base",
+      "kind": "sim",
+      "number": "1.44",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_05_002.jpg"
+      ],
+      "original_caption": "If b>1, then bˣ is increasing on (−∞,∞). If 0<b<1, then bˣ is decreasing on (−∞,∞).",
+      "draws": [
+        "function",
+        "point",
+        "set"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-compounding",
+      "kind": "sim",
+      "draws": [
+        "function",
+        "limit",
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-e-tangent",
+      "kind": "sim",
+      "number": "1.45",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_05_003.jpg"
+      ],
+      "original_caption": "The graph of f(x)=eˣ has a tangent line with slope 1 at x=0.",
+      "draws": [
+        "function",
+        "line",
+        "derivative",
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-exp-ln-mirror",
+      "kind": "sim",
+      "number": "1.46",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_05_004.jpg"
+      ],
+      "original_caption": "The functions y=eˣ and y=ln(x) are inverses of each other, so their graphs are symmetric about the line y=x.",
+      "draws": [
+        "function",
+        "line",
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-log-bases",
+      "kind": "sim",
+      "number": "1.47",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_05_005.jpg"
+      ],
+      "original_caption": "Graphs of y=log_b(x) are depicted for b=2, e, 10.",
+      "draws": [],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "fig-fault",
+      "kind": "photo",
+      "number": "1.48",
+      "draws": []
+    },
+    {
+      "id": "sim-richter",
+      "kind": "sim",
+      "draws": [],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "fig-spider-web",
+      "kind": "photo",
+      "number": "1.49",
+      "draws": []
+    },
+    {
+      "id": "sim-catenary",
+      "kind": "sim",
+      "draws": [
+        "function",
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-unit-hyperbola",
+      "kind": "sim",
+      "number": "1.50",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_05_007.jpg"
+      ],
+      "original_caption": "The unit hyperbola cosh²t − sinh²t = 1.",
+      "draws": [
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-hyperbolic-graphs",
+      "kind": "sim",
+      "number": "1.51",
+      "originals": [
+        "/media/ch01/CNX_Calc_Figure_01_05_011.jpg"
+      ],
+      "original_caption": "The hyperbolic functions involve combinations of eˣ and e⁻ˣ.",
+      "draws": [
+        "function",
+        "line",
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "exponential-functions",
+      "concept": "base",
+      "verb": "introduces"
+    },
+    {
+      "span": "exponential-functions",
+      "concept": "exponent",
+      "verb": "introduces"
+    },
+    {
+      "span": "exponential-functions",
+      "concept": "exponential-function",
+      "verb": "reinforces"
+    },
+    {
+      "span": "exponential-functions",
+      "concept": "power-function",
+      "verb": "uses"
+    },
+    {
+      "span": "laws-of-exponents",
+      "concept": "laws-of-exponents",
+      "verb": "introduces"
+    },
+    {
+      "span": "number-e",
+      "concept": "compound-interest",
+      "verb": "introduces"
+    },
+    {
+      "span": "number-e",
+      "concept": "number-e",
+      "verb": "introduces"
+    },
+    {
+      "span": "number-e",
+      "concept": "natural-exponential-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "number-e",
+      "concept": "slope",
+      "verb": "uses"
+    },
+    {
+      "span": "logarithmic-functions",
+      "concept": "natural-logarithm",
+      "verb": "introduces"
+    },
+    {
+      "span": "logarithmic-functions",
+      "concept": "logarithmic-function",
+      "verb": "reinforces"
+    },
+    {
+      "span": "logarithmic-functions",
+      "concept": "inverse-function",
+      "verb": "uses"
+    },
+    {
+      "span": "logarithmic-functions",
+      "concept": "one-to-one-function",
+      "verb": "uses"
+    },
+    {
+      "span": "common-logarithm",
+      "concept": "common-logarithm",
+      "verb": "introduces"
+    },
+    {
+      "span": "log-properties",
+      "concept": "properties-of-logarithms",
+      "verb": "introduces"
+    },
+    {
+      "span": "change-of-base",
+      "concept": "change-of-base-formulas",
+      "verb": "introduces"
+    },
+    {
+      "span": "hyperbolic-definition",
+      "concept": "hyperbolic-functions",
+      "verb": "introduces"
+    },
+    {
+      "span": "hyperbolic-identities",
+      "concept": "hyperbolic-identities",
+      "verb": "introduces"
+    },
+    {
+      "span": "inverse-hyperbolic-definition",
+      "concept": "inverse-hyperbolic-functions",
+      "verb": "introduces"
+    },
+    {
+      "span": "graphing-exponential",
+      "concept": "domain",
+      "verb": "uses"
+    },
+    {
+      "span": "graphing-exponential",
+      "concept": "range",
+      "verb": "uses"
+    },
+    {
+      "span": "graphing-exponential",
+      "concept": "increasing-function",
+      "verb": "uses"
+    },
+    {
+      "span": "graphing-exponential",
+      "concept": "decreasing-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572169644",
+      "concept": "exponential-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572440093",
+      "concept": "laws-of-exponents",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572547818",
+      "concept": "compound-interest",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572547818",
+      "concept": "natural-exponential-function",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572551970",
+      "concept": "natural-logarithm",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572551970",
+      "concept": "properties-of-logarithms",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572174674",
+      "concept": "natural-logarithm",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572174674",
+      "concept": "properties-of-logarithms",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572174674",
+      "concept": "common-logarithm",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572434970",
+      "concept": "change-of-base-formulas",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-richter-scale",
+      "concept": "common-logarithm",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-richter-scale",
+      "concept": "logarithmic-function",
+      "verb": "uses"
+    },
+    {
+      "span": "hyperbolic-identities-intro",
+      "concept": "trigonometric-identity",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572443393",
+      "concept": "hyperbolic-identities",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572443393",
+      "concept": "hyperbolic-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-hyperbolic",
+      "concept": "one-to-one-function",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-hyperbolic",
+      "concept": "restricted-domain",
+      "verb": "uses"
+    },
+    {
+      "span": "fs-id1170572482234",
+      "concept": "inverse-hyperbolic-functions",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "cp27",
+      "source_id": "fs-id1170572173711",
+      "source_number": "Checkpoint 1.27",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572169644"
+      },
+      "cite": "evaluating-exponential",
+      "prompt": "Given the exponential function $f(x)=100\\cdot 3^{x/2},$ evaluate $f(4)$ and $f(10).$",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 900,
+        "part": "$f(4)$",
+        "solution": "$f(4)=900;\\ f(10)=24{,}300.$"
+      }
+    },
+    {
+      "id": "cp28",
+      "source_id": "fs-id1170572452229",
+      "source_number": "Checkpoint 1.28",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572440093"
+      },
+      "cite": "laws-of-exponents",
+      "prompt": "Use the laws of exponents to simplify $(6x^{-3}y^{2})/(12x^{-4}y^{5}).$",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Use $x^{a}/x^{b}=x^{a-b}.$ The expression simplifies to $x/(2y^{3}).$"
+      }
+    },
+    {
+      "id": "cp29",
+      "source_id": "fs-id1170572455122",
+      "source_number": "Checkpoint 1.29",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572547818"
+      },
+      "cite": "number-e",
+      "prompt": "If ＄750 is invested in an account at an annual interest rate of $4\\%,$ compounded continuously, find a formula for the amount of money in the account after $t$ years. Find the amount of money after $30$ years.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 2490.09,
+        "unit": "dollars",
+        "part": "the amount after $30$ years",
+        "hint": "$A(t)=Pe^{rt}.$",
+        "solution": "$A(t)=750e^{0.04t}.$ After $30$ years, there will be approximately ＄2,490.09."
+      }
+    },
+    {
+      "id": "cp30",
+      "source_id": "fs-id1170572232048",
+      "source_number": "Checkpoint 1.30",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572551970"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "Solve $e^{2x}/(3+e^{2x})=1/2.$",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.549306,
+        "hint": "First solve the equation for $e^{2x}.$",
+        "solution": "$x=\\dfrac{\\ln 3}{2}$"
+      }
+    },
+    {
+      "id": "cp31",
+      "source_id": "fs-id1170572552650",
+      "source_number": "Checkpoint 1.31",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572174674"
+      },
+      "cite": "log-properties",
+      "prompt": "Solve $\\ln(x^{3})-4\\ln(x)=1.$",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.367879,
+        "hint": "First use the power property, then use the product property of logarithms.",
+        "solution": "$x=\\dfrac{1}{e}$"
+      }
+    },
+    {
+      "id": "cp32",
+      "source_id": "fs-id1170572435063",
+      "source_number": "Checkpoint 1.32",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572434970"
+      },
+      "cite": "change-of-base",
+      "prompt": "Use the change-of-base formula and a calculating utility to evaluate $\\log_{4}6.$",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 1.29248,
+        "hint": "Use the change of base to rewrite this expression in terms of expressions involving the natural logarithm function.",
+        "solution": "$1.29248$"
+      }
+    },
+    {
+      "id": "cp33",
+      "source_id": "fs-id1170572478063",
+      "source_number": "Checkpoint 1.33",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "ex-richter-scale"
+      },
+      "cite": "richter-scale",
+      "prompt": "Compare the relative severity of a magnitude $8.4$ earthquake with a magnitude $7.4$ earthquake.",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 10,
+        "part": "how many times as severe",
+        "hint": "$R_{1}-R_{2}=\\log_{10}(A_{1}/A_{2}).$",
+        "solution": "The magnitude $8.4$ earthquake is roughly $10$ times as severe as the magnitude $7.4$ earthquake."
+      }
+    },
+    {
+      "id": "cp34",
+      "source_id": "fs-id1170572548318",
+      "source_number": "Checkpoint 1.34",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572443393"
+      },
+      "cite": "hyperbolic-definition",
+      "prompt": "Simplify $\\cosh(2\\ln x).$",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Use the definition of the cosh function and the power property of logarithm functions. $\\cosh(2\\ln x)=(x^{2}+x^{-2})/2$"
+      }
+    },
+    {
+      "id": "cp35",
+      "source_id": "fs-id1170572176161",
+      "source_number": "Checkpoint 1.35",
+      "kind": "checkpoint",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "fs-id1170572482234"
+      },
+      "cite": "inverse-hyperbolic-definition",
+      "prompt": "Evaluate $\\tanh^{-1}(1/2).$",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.5493,
+        "hint": "Use the definition of $\\tanh^{-1}x$ and simplify.",
+        "solution": "$\\frac{1}{2}\\ln(3)\\approx 0.5493.$"
+      }
+    },
+    {
+      "id": "e229",
+      "source_id": "fs-id1170572545893",
+      "source_number": "229",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "evaluating-exponential",
+      "prompt": "<p>For the following exercises, evaluate the given exponential functions as indicated, accurate to two significant digits after the decimal.</p><p>$f(x)=5^{x}$ a. $x=3$ b. $x=\\frac{1}{2}$ c. $x=\\sqrt{2}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. 125 b. 2.24 c. 9.74"
+      }
+    },
+    {
+      "id": "e231",
+      "source_id": "fs-id1170572546032",
+      "source_number": "231",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "evaluating-exponential",
+      "prompt": "<p>For the following exercises, evaluate the given exponential functions as indicated, accurate to two significant digits after the decimal.</p><p>$f(x)=10^{x}$ a. $x=-2$ b. $x=4$ c. $x=\\frac{5}{3}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. 0.01 b. 10,000 c. 46.42"
+      }
+    },
+    {
+      "id": "e233",
+      "source_id": "fs-id1170572358351",
+      "source_number": "233",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "graphing-exponential",
+      "figure": {
+        "src": "/media/ch01/CNX_Calc_Figure_01_05_201.jpg",
+        "alt": "A decreasing curve on a grid from −5 to 5 that levels off above the line y = 2, with y-intercept (0, 3) and no x-intercept."
+      },
+      "prompt": "<p>For the following exercises, match the exponential equation to the correct graph.</p><ol type=\"a\"><li>$y=4^{-x}$</li><li>$y=3^{x-1}$</li><li>$y=2^{x+1}$</li><li>$y={(\\frac{1}{2})}^{x}+2$</li><li>$y=-3^{-x}$</li><li>$y=1-5^{x}$</li></ol>",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "a. $y=4^{-x}$",
+          "b. $y=3^{x-1}$",
+          "c. $y=2^{x+1}$",
+          "d. $y={(\\frac{1}{2})}^{x}+2$",
+          "e. $y=-3^{-x}$",
+          "f. $y=1-5^{x}$"
+        ],
+        "correct": 3,
+        "solution": "d"
+      }
+    },
+    {
+      "id": "e235",
+      "source_id": "fs-id1170572553732",
+      "source_number": "235",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "graphing-exponential",
+      "figure": {
+        "src": "/media/ch01/CNX_Calc_Figure_01_05_203.jpg",
+        "alt": "An increasing curve on a grid from −5 to 5 that rises from just above the x-axis through (0, 1/3) and (1, 1), with no x-intercept."
+      },
+      "prompt": "<p>For the following exercises, match the exponential equation to the correct graph.</p><ol type=\"a\"><li>$y=4^{-x}$</li><li>$y=3^{x-1}$</li><li>$y=2^{x+1}$</li><li>$y={(\\frac{1}{2})}^{x}+2$</li><li>$y=-3^{-x}$</li><li>$y=1-5^{x}$</li></ol>",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "a. $y=4^{-x}$",
+          "b. $y=3^{x-1}$",
+          "c. $y=2^{x+1}$",
+          "d. $y={(\\frac{1}{2})}^{x}+2$",
+          "e. $y=-3^{-x}$",
+          "f. $y=1-5^{x}$"
+        ],
+        "correct": 1,
+        "solution": "b"
+      }
+    },
+    {
+      "id": "e237",
+      "source_id": "fs-id1170572553787",
+      "source_number": "237",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "graphing-exponential",
+      "figure": {
+        "src": "/media/ch01/CNX_Calc_Figure_01_05_205.jpg",
+        "alt": "An increasing curve on a grid from −5 to 5 through (−1, −3) and (0, −1) that levels off just below the x-axis, with no x-intercept."
+      },
+      "prompt": "<p>For the following exercises, match the exponential equation to the correct graph.</p><ol type=\"a\"><li>$y=4^{-x}$</li><li>$y=3^{x-1}$</li><li>$y=2^{x+1}$</li><li>$y={(\\frac{1}{2})}^{x}+2$</li><li>$y=-3^{-x}$</li><li>$y=1-5^{x}$</li></ol>",
+      "answer": {
+        "type": "choice",
+        "generated_by": "source",
+        "options": [
+          "a. $y=4^{-x}$",
+          "b. $y=3^{x-1}$",
+          "c. $y=2^{x+1}$",
+          "d. $y={(\\frac{1}{2})}^{x}+2$",
+          "e. $y=-3^{-x}$",
+          "f. $y=1-5^{x}$"
+        ],
+        "correct": 4,
+        "solution": "e"
+      }
+    },
+    {
+      "id": "e239",
+      "source_id": "fs-id1170572553846",
+      "source_number": "239",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "graphing-exponential",
+      "prompt": "<p>For the following exercises, sketch the graph of the exponential function. Determine the domain, range, and horizontal asymptote.</p><p>$f(x)=e^{x}+2$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: all real numbers, range: $(2,\\infty),y=2$ <img src=\"/media/ch01/CNX_Calc_Figure_01_05_207.jpg\" alt=\"The graph of f(x) = eˣ + 2, an increasing curve that rises from just above the line y = 2, with y-intercept (0, 3).\">"
+      }
+    },
+    {
+      "id": "e241",
+      "source_id": "fs-id1170572242973",
+      "source_number": "241",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "graphing-exponential",
+      "prompt": "<p>For the following exercises, sketch the graph of the exponential function. Determine the domain, range, and horizontal asymptote.</p><p>$f(x)=3^{x+1}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: all real numbers, range: $(0,\\infty),y=0$ <img src=\"/media/ch01/CNX_Calc_Figure_01_05_209.jpg\" alt=\"The graph of f(x) = 3ˣ⁺¹, an increasing curve that rises from just above the x-axis through (−1, 1) and the y-intercept (0, 3).\">"
+      }
+    },
+    {
+      "id": "e243",
+      "source_id": "fs-id1170572243129",
+      "source_number": "243",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "graphing-exponential",
+      "prompt": "<p>For the following exercises, sketch the graph of the exponential function. Determine the domain, range, and horizontal asymptote.</p><p>$f(x)=1-2^{-x}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: all real numbers, range: $(-\\infty,1),y=1$ <img src=\"/media/ch01/CNX_Calc_Figure_01_05_211.jpg\" alt=\"The graph of f(x) = 1 − 2⁻ˣ, an increasing curve through (−1, −1) and the origin that levels off below the line y = 1.\">"
+      }
+    },
+    {
+      "id": "e245",
+      "source_id": "fs-id1170572163842",
+      "source_number": "245",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "graphing-exponential",
+      "prompt": "<p>For the following exercises, sketch the graph of the exponential function. Determine the domain, range, and horizontal asymptote.</p><p>$f(x)=e^{-x}-1$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: all real numbers, range: $(-1,\\infty),y=-1$ <img src=\"/media/ch01/CNX_Calc_Figure_01_05_213.jpg\" alt=\"The graph of f(x) = e⁻ˣ − 1, a decreasing curve through about (−1, 1.7) and the origin that levels off above the line y = −1.\">"
+      }
+    },
+    {
+      "id": "e247",
+      "source_id": "fs-id1170572218452",
+      "source_number": "247",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent exponential form.</p><p>$\\log_{8}2=\\frac{1}{3}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$8^{1/3}=2$"
+      }
+    },
+    {
+      "id": "e249",
+      "source_id": "fs-id1170572218542",
+      "source_number": "249",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent exponential form.</p><p>$\\log_{5}25=2$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$5^{2}=25$"
+      }
+    },
+    {
+      "id": "e251",
+      "source_id": "fs-id1170572218621",
+      "source_number": "251",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent exponential form.</p><p>$\\ln(\\frac{1}{e^{3}})=-3$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$e^{-3}=\\frac{1}{e^{3}}$"
+      }
+    },
+    {
+      "id": "e253",
+      "source_id": "fs-id1170572168686",
+      "source_number": "253",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent exponential form.</p><p>$\\ln 1=0$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$e^{0}=1$"
+      }
+    },
+    {
+      "id": "e255",
+      "source_id": "fs-id1170572168766",
+      "source_number": "255",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent logarithmic form.</p><p>$4^{-2}=\\frac{1}{16}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\log_{4}(\\frac{1}{16})=-2$"
+      }
+    },
+    {
+      "id": "e257",
+      "source_id": "fs-id1170572168860",
+      "source_number": "257",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent logarithmic form.</p><p>$9^{0}=1$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\log_{9}1=0$"
+      }
+    },
+    {
+      "id": "e259",
+      "source_id": "fs-id1170572218251",
+      "source_number": "259",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent logarithmic form.</p><p>$\\sqrt[3]{64}=4$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\log_{64}4=\\frac{1}{3}$"
+      }
+    },
+    {
+      "id": "e261",
+      "source_id": "fs-id1170572218333",
+      "source_number": "261",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent logarithmic form.</p><p>$9^{y}=150$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\log_{9}150=y$"
+      }
+    },
+    {
+      "id": "e263",
+      "source_id": "fs-id1170572218414",
+      "source_number": "263",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, write the equation in equivalent logarithmic form.</p><p>$4^{-3/2}=0.125$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\log_{4}0.125=-\\frac{3}{2}$"
+      }
+    },
+    {
+      "id": "e265",
+      "source_id": "fs-id1170572217209",
+      "source_number": "265",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, sketch the graph of the logarithmic function. Determine the domain, range, and vertical asymptote.</p><p>$f(x)=\\ln(x-1)$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: $(1,\\infty),$ range: $(-\\infty,\\infty),x=1$ <img src=\"/media/ch01/CNX_Calc_Figure_01_05_215.jpg\" alt=\"The graph of f(x) = ln(x − 1), an increasing curve that rises from beside the line x = 1 and crosses the x-axis at (2, 0).\">"
+      }
+    },
+    {
+      "id": "e267",
+      "source_id": "fs-id1170572286731",
+      "source_number": "267",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, sketch the graph of the logarithmic function. Determine the domain, range, and vertical asymptote.</p><p>$f(x)=1-\\ln x$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: $(0,\\infty),$ range: $(-\\infty,\\infty),x=0$ <img src=\"/media/ch01/CNX_Calc_Figure_01_05_217.jpg\" alt=\"The graph of f(x) = 1 − ln x, a decreasing curve that falls from beside the y-axis and crosses the x-axis at (e, 0).\">"
+      }
+    },
+    {
+      "id": "e269",
+      "source_id": "fs-id1170572452755",
+      "source_number": "269",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, sketch the graph of the logarithmic function. Determine the domain, range, and vertical asymptote.</p><p>$f(x)=\\ln(x+1)$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: $(-1,\\infty),$ range: $(-\\infty,\\infty),x=-1$ <img src=\"/media/ch01/CNX_Calc_Figure_01_05_219.jpg\" alt=\"The graph of f(x) = ln(x + 1), an increasing curve that rises from beside the line x = −1 through the origin.\">"
+      }
+    },
+    {
+      "id": "e271",
+      "source_id": "fs-id1170572452904",
+      "source_number": "271",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, use properties of logarithms to write the expressions as a sum, difference, and/or product of logarithms.</p><p>$\\log_{3}\\frac{9a^{3}}{b}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$2+3\\log_{3}a-\\log_{3}b$"
+      }
+    },
+    {
+      "id": "e273",
+      "source_id": "fs-id1170572546157",
+      "source_number": "273",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, use properties of logarithms to write the expressions as a sum, difference, and/or product of logarithms.</p><p>$\\log_{5}\\sqrt{125xy^{3}}$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\frac{3}{2}+\\frac{1}{2}\\log_{5}x+\\frac{3}{2}\\log_{5}y$"
+      }
+    },
+    {
+      "id": "e275",
+      "source_id": "fs-id1170572546304",
+      "source_number": "275",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, use properties of logarithms to write the expressions as a sum, difference, and/or product of logarithms.</p><p>$\\ln(\\frac{6}{\\sqrt{e^{3}}})$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$-\\frac{3}{2}+\\ln 6$"
+      }
+    },
+    {
+      "id": "e277",
+      "source_id": "fs-id1170572479927",
+      "source_number": "277",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, solve the exponential equation exactly.</p><p>$e^{3x}-15=0$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.902683,
+        "solution": "$\\frac{\\ln 15}{3}$"
+      }
+    },
+    {
+      "id": "e279",
+      "source_id": "fs-id1170572480004",
+      "source_number": "279",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, solve the exponential equation exactly.</p><p>$4^{x+1}-32=0$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 1.5,
+        "solution": "$\\frac{3}{2}$"
+      }
+    },
+    {
+      "id": "e281",
+      "source_id": "fs-id1170572480100",
+      "source_number": "281",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, solve the exponential equation exactly.</p><p>$10^{x}=7.21$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.857935,
+        "solution": "$\\log 7.21$"
+      }
+    },
+    {
+      "id": "e283",
+      "source_id": "fs-id1170572480186",
+      "source_number": "283",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, solve the exponential equation exactly.</p><p>$7^{3x-2}=11$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 1.077454,
+        "solution": "$\\frac{2}{3}+\\frac{\\log 11}{3\\;\\log 7}$"
+      }
+    },
+    {
+      "id": "e285",
+      "source_id": "fs-id1170572543671",
+      "source_number": "285",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, solve the logarithmic equation exactly, if possible.</p><p>$\\log_{5}x=-2$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.04,
+        "solution": "$x=\\frac{1}{25}$"
+      }
+    },
+    {
+      "id": "e287",
+      "source_id": "fs-id1170572543761",
+      "source_number": "287",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following exercises, solve the logarithmic equation exactly, if possible.</p><p>$\\log(2x-7)=0$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 4,
+        "solution": "$x=4$"
+      }
+    },
+    {
+      "id": "e289",
+      "source_id": "fs-id1170572088346",
+      "source_number": "289",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, solve the logarithmic equation exactly, if possible.</p><p>$\\log_{6}(x+9)+\\log_{6}x=2$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 3,
+        "solution": "$x=3$"
+      }
+    },
+    {
+      "id": "e291",
+      "source_id": "fs-id1170572088466",
+      "source_number": "291",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "log-properties",
+      "prompt": "<p>For the following exercises, solve the logarithmic equation exactly, if possible.</p><p>$\\ln x+\\ln(x-2)=\\ln 4$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 3.2361,
+        "solution": "$1+\\sqrt{5}$"
+      }
+    },
+    {
+      "id": "e293",
+      "source_id": "fs-id1170572088562",
+      "source_number": "293",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "change-of-base",
+      "prompt": "<p>For the following exercises, use the change-of-base formula and either base 10 or base <em>e</em> to evaluate the given expressions. Answer in exact form and in approximate form, rounding to four decimal places.</p><p>$\\log_{7}82$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 2.2646,
+        "solution": "$(\\frac{\\log 82}{\\log 7}\\approx 2.2646)$"
+      }
+    },
+    {
+      "id": "e295",
+      "source_id": "fs-id1170572227306",
+      "source_number": "295",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "change-of-base",
+      "prompt": "<p>For the following exercises, use the change-of-base formula and either base 10 or base <em>e</em> to evaluate the given expressions. Answer in exact form and in approximate form, rounding to four decimal places.</p><p>$\\log_{0.5}211$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": -7.7211,
+        "solution": "$(\\frac{\\log 211}{\\log 0.5}\\approx -7.7211)$"
+      }
+    },
+    {
+      "id": "e297",
+      "source_id": "fs-id1170572227407",
+      "source_number": "297",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "change-of-base",
+      "prompt": "<p>For the following exercises, use the change-of-base formula and either base 10 or base <em>e</em> to evaluate the given expressions. Answer in exact form and in approximate form, rounding to four decimal places.</p><p>$\\log_{0.2}0.452$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 0.4934,
+        "solution": "$(\\frac{\\log 0.452}{\\log 0.2}\\approx 0.4934)$"
+      }
+    },
+    {
+      "id": "e299",
+      "source_id": "fs-id1170572230541",
+      "source_number": "299",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "evaluating-exponential",
+      "prompt": "<p><strong>[T]</strong> The number of bacteria <em>N</em> in a culture after <em>t</em> days can be modeled by the function $N(t)=1300\\cdot (2)^{t/4}.$ Find the number of bacteria present after 15 days.</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 17491,
+        "solution": "$\\sim 17,491$"
+      }
+    },
+    {
+      "id": "e301",
+      "source_id": "fs-id1170572230690",
+      "source_number": "301",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "number-e",
+      "prompt": "<p><strong>[T]</strong> The amount <em>A</em> of a ＄100,000 investment paying continuously and compounded for <em>t</em> years is given by $A(t)=100,000\\cdot e^{0.055t}.$ Find the amount <em>A</em> accumulated in 5 years.</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 131653,
+        "unit": "dollars",
+        "solution": "Approximately ＄131,653 is accumulated in 5 years."
+      }
+    },
+    {
+      "id": "e303",
+      "source_id": "fs-id1170572472938",
+      "source_number": "303",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "common-logarithm",
+      "prompt": "<p><strong>[T]</strong> The concentration of hydrogen ions in a substance is denoted by $[\\text{H}^{+}],$ measured in moles per liter. The pH of a substance is defined by the logarithmic function $\\text{pH}=-\\log[\\text{H}^{+}].$ This function is used to measure the acidity of a substance. The pH of water is 7. A substance with a pH less than 7 is an acid, whereas one that has a pH of more than 7 is a base.</p><p>a. Find the pH of the following substances. Round answers to one digit.</p><p>b. Determine whether the substance is an acid or a base.</p><ol type=\"i\"><li>Eggs: $[\\text{H}^{+}]=1.6\\times 10^{-8}$ mol/L</li><li>Beer: $[\\text{H}^{+}]=3.16\\times 10^{-3}$ mol/L</li><li>Tomato Juice: $[\\text{H}^{+}]=7.94\\times 10^{-5}$ mol/L</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "i. a. pH = 8 b. Base ii. a. pH = 3 b. Acid iii. a. pH = 4 b. Acid"
+      }
+    },
+    {
+      "id": "e305",
+      "source_id": "fs-id1170572296509",
+      "source_number": "305",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "number-e",
+      "prompt": "<p><strong>[T]</strong> According to the World Bank, at the end of 2013 ($t=0$ ) the U.S. population was 316 million and was increasing according to the following model: $P(t)=316e^{0.0074t},$ where <em>P</em> is measured in millions of people and <em>t</em> is measured in years after 2013. a. Based on this model, what will be the population of the United States in 2020? b. Determine when the U.S. population will be twice what it is in 2013.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $\\sim 333$ million b. 94 years from 2013, or in 2107"
+      }
+    },
+    {
+      "id": "e307",
+      "source_id": "fs-id1170572296689",
+      "source_number": "307",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "number-e",
+      "prompt": "<p><strong>[T]</strong> A bacterial colony grown in a lab is known to double in number in 12 hours. Suppose, initially, there are 1000 bacteria present. a. Use the exponential function $Q={Q}_{0}e^{kt}$ to determine the value $k,$ which is the growth rate of the bacteria. Round to four decimal places. b. Determine approximately how long it takes for 200,000 bacteria to grow.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a. $k\\approx 0.0578$ b. $\\approx 92$ hours"
+      }
+    },
+    {
+      "id": "e309",
+      "source_id": "fs-id1170572213021",
+      "source_number": "309",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "richter-scale",
+      "prompt": "<p><strong>[T]</strong> The 1906 earthquake in San Francisco had a magnitude of 8.3 on the Richter scale. At the same time, in Japan, an earthquake with magnitude 4.9 caused only minor damage. Approximately how much more intense was the San Francisco earthquake than the Japanese earthquake? See the definition of Richter Scale in Example 1.39 in this section.</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 2512,
+        "solution": "The San Francisco earthquake was $10^{3.4}$ or $\\approx 2512$ times more intense than the Japanese earthquake."
+      }
+    },
+    {
+      "id": "r315",
+      "source_id": "fs-id1170572237384",
+      "source_number": "315",
+      "kind": "review-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following problems, state the domain and range of the given functions:</p><p>$f=x^{2}+2x-3,\\hspace{3em}g=\\ln(x-5),\\hspace{3em}h=\\frac{1}{x+4}$</p><p><em>g</em></p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: $x>5,$ range: all real numbers"
+      }
+    },
+    {
+      "id": "r317",
+      "source_id": "fs-id1170572237460",
+      "source_number": "317",
+      "kind": "review-exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>For the following problems, state the domain and range of the given functions:</p><p>$f=x^{2}+2x-3,\\hspace{3em}g=\\ln(x-5),\\hspace{3em}h=\\frac{1}{x+4}$</p><p>$g\\circ f$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "Domain: $x>2$ and $x<-4,$ range: all real numbers"
+      }
+    },
+    {
+      "id": "r325",
+      "source_id": "fs-id1170572243371",
+      "source_number": "325",
+      "kind": "review-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "logarithmic-functions",
+      "prompt": "<p>Solve the following logarithmic equations.</p><p>$\\log_{2}(x+4)=3$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 4,
+        "solution": "4"
+      }
+    },
+    {
+      "id": "r335",
+      "source_id": "fs-id1170572544522",
+      "source_number": "335",
+      "kind": "review-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "number-e",
+      "prompt": "<p>For the following problems, consider radioactive dating. A human skeleton is found in an archeological dig. Carbon dating is implemented to determine how old the skeleton is by using the equation $y=e^{rt},$ where $y$ is the ratio of radiocarbon still present in the material, $t$ is the number of years passed, and $r=-0.0001210$ is the decay rate of radiocarbon.</p><p>If the skeleton is expected to be 2000 years old, what percentage of radiocarbon should be present?</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": 78.51,
+        "unit": "%",
+        "solution": "78.51%"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "cp27",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "cp28",
+      "concept": "laws-of-exponents"
+    },
+    {
+      "exercise": "cp29",
+      "concept": "compound-interest"
+    },
+    {
+      "exercise": "cp29",
+      "concept": "natural-exponential-function"
+    },
+    {
+      "exercise": "cp30",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "cp30",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "cp31",
+      "concept": "properties-of-logarithms"
+    },
+    {
+      "exercise": "cp31",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "cp32",
+      "concept": "change-of-base-formulas"
+    },
+    {
+      "exercise": "cp33",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "cp34",
+      "concept": "hyperbolic-functions"
+    },
+    {
+      "exercise": "cp34",
+      "concept": "properties-of-logarithms"
+    },
+    {
+      "exercise": "cp35",
+      "concept": "inverse-hyperbolic-functions"
+    },
+    {
+      "exercise": "e229",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e231",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e233",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e233",
+      "concept": "transformation-of-a-function"
+    },
+    {
+      "exercise": "e235",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e235",
+      "concept": "transformation-of-a-function"
+    },
+    {
+      "exercise": "e237",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e237",
+      "concept": "transformation-of-a-function"
+    },
+    {
+      "exercise": "e239",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e239",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e239",
+      "concept": "range"
+    },
+    {
+      "exercise": "e241",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e241",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e241",
+      "concept": "range"
+    },
+    {
+      "exercise": "e243",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e243",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e243",
+      "concept": "range"
+    },
+    {
+      "exercise": "e245",
+      "concept": "natural-exponential-function"
+    },
+    {
+      "exercise": "e245",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e245",
+      "concept": "range"
+    },
+    {
+      "exercise": "e247",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e249",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e251",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e253",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e255",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e257",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e259",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e261",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e263",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e265",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e265",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e265",
+      "concept": "range"
+    },
+    {
+      "exercise": "e267",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e267",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e267",
+      "concept": "range"
+    },
+    {
+      "exercise": "e269",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e269",
+      "concept": "domain"
+    },
+    {
+      "exercise": "e269",
+      "concept": "range"
+    },
+    {
+      "exercise": "e271",
+      "concept": "properties-of-logarithms"
+    },
+    {
+      "exercise": "e273",
+      "concept": "properties-of-logarithms"
+    },
+    {
+      "exercise": "e275",
+      "concept": "properties-of-logarithms"
+    },
+    {
+      "exercise": "e275",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e277",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e277",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e279",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e279",
+      "concept": "laws-of-exponents"
+    },
+    {
+      "exercise": "e281",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "e281",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e283",
+      "concept": "properties-of-logarithms"
+    },
+    {
+      "exercise": "e283",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "e285",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e287",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "e289",
+      "concept": "properties-of-logarithms"
+    },
+    {
+      "exercise": "e289",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "e291",
+      "concept": "properties-of-logarithms"
+    },
+    {
+      "exercise": "e291",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e293",
+      "concept": "change-of-base-formulas"
+    },
+    {
+      "exercise": "e293",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "e295",
+      "concept": "change-of-base-formulas"
+    },
+    {
+      "exercise": "e295",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "e297",
+      "concept": "change-of-base-formulas"
+    },
+    {
+      "exercise": "e297",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "e299",
+      "concept": "exponential-function"
+    },
+    {
+      "exercise": "e301",
+      "concept": "compound-interest"
+    },
+    {
+      "exercise": "e301",
+      "concept": "natural-exponential-function"
+    },
+    {
+      "exercise": "e303",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "e305",
+      "concept": "natural-exponential-function"
+    },
+    {
+      "exercise": "e305",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e307",
+      "concept": "natural-exponential-function"
+    },
+    {
+      "exercise": "e307",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "e309",
+      "concept": "common-logarithm"
+    },
+    {
+      "exercise": "r315",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "r315",
+      "concept": "domain"
+    },
+    {
+      "exercise": "r315",
+      "concept": "range"
+    },
+    {
+      "exercise": "r317",
+      "concept": "composite-function"
+    },
+    {
+      "exercise": "r317",
+      "concept": "natural-logarithm"
+    },
+    {
+      "exercise": "r317",
+      "concept": "domain"
+    },
+    {
+      "exercise": "r317",
+      "concept": "range"
+    },
+    {
+      "exercise": "r325",
+      "concept": "logarithmic-function"
+    },
+    {
+      "exercise": "r335",
+      "concept": "natural-exponential-function"
+    }
+  ],
+  "referents": [
+    {
+      "id": "power-curve",
+      "label": "the power function x²",
+      "figures": [
+        "sim-power-exponential"
+      ]
+    },
+    {
+      "id": "exp-curve",
+      "label": "the exponential function 2ˣ",
+      "figures": [
+        "sim-power-exponential"
+      ]
+    },
+    {
+      "id": "exp-e",
+      "label": "the natural exponential function eˣ",
+      "figures": [
+        "sim-exp-ln-mirror"
+      ]
+    },
+    {
+      "id": "ln",
+      "label": "the natural logarithm ln x",
+      "figures": [
+        "sim-exp-ln-mirror",
+        "sim-log-bases"
+      ]
+    },
+    {
+      "id": "log-2",
+      "label": "the logarithm log₂ x",
+      "figures": [
+        "sim-log-bases"
+      ]
+    },
+    {
+      "id": "log-10",
+      "label": "the logarithm log₁₀ x",
+      "figures": [
+        "sim-log-bases"
+      ]
+    },
+    {
+      "id": "quake-1",
+      "label": "the first earthquake",
+      "figures": [
+        "sim-richter"
+      ]
+    },
+    {
+      "id": "quake-2",
+      "label": "the second earthquake",
+      "figures": [
+        "sim-richter"
+      ]
+    }
+  ]
+}
