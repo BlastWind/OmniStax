@@ -27,7 +27,8 @@
   "openstax": "https://openstax.org/books/",
   "chapters": [
     "ch01",
-    "ch02"
+    "ch02",
+    "ch03"
   ],
   "intro": {
     "module": "m60027",
@@ -183,7 +184,8 @@
     },
     {
       "sym": "C",
-      "latex": "C"
+      "latex": "C",
+      "macro": "\\kC"
     },
     {
       "sym": "p",
@@ -236,7 +238,8 @@
     },
     {
       "sym": "a",
-      "latex": "a"
+      "latex": "a",
+      "macro": "\\ka"
     },
     {
       "sym": "c",
@@ -258,6 +261,177 @@
       "sym": "k",
       "latex": "k",
       "macro": "\\kk"
+    },
+    {
+      "sym": "f_prime",
+      "latex": "f'",
+      "macro": "\\kfprime"
+    },
+    {
+      "sym": "f_dprime",
+      "latex": "f''",
+      "macro": "\\kfdprime"
+    },
+    {
+      "sym": "f_tprime",
+      "latex": "f'''",
+      "macro": "\\kftprime"
+    },
+    {
+      "sym": "f_n",
+      "latex": "f^{(n)}",
+      "macro": "\\kfn"
+    },
+    {
+      "sym": "y_prime",
+      "latex": "y'",
+      "macro": "\\kyprime"
+    },
+    {
+      "sym": "dy/dx",
+      "latex": "\\frac{dy}{dx}",
+      "macro": "\\kdydx"
+    },
+    {
+      "sym": "d2y/dx2",
+      "latex": "\\frac{d^{2}y}{dx^{2}}",
+      "macro": "\\kdtwoydx"
+    },
+    {
+      "sym": "g_prime",
+      "latex": "g'",
+      "macro": "\\kgprime"
+    },
+    {
+      "sym": "h_prime",
+      "latex": "h'",
+      "macro": "\\khprime"
+    },
+    {
+      "sym": "j",
+      "latex": "j",
+      "macro": "\\kj"
+    },
+    {
+      "sym": "j_prime",
+      "latex": "j'",
+      "macro": "\\kjprime"
+    },
+    {
+      "sym": "s_prime",
+      "latex": "s'",
+      "macro": "\\ksprime"
+    },
+    {
+      "sym": "s_dprime",
+      "latex": "s''",
+      "macro": "\\ksdprime"
+    },
+    {
+      "sym": "v",
+      "latex": "v",
+      "macro": "\\kv"
+    },
+    {
+      "sym": "P",
+      "latex": "P",
+      "macro": "\\kP"
+    },
+    {
+      "sym": "P_prime",
+      "latex": "P'",
+      "macro": "\\kPprime"
+    },
+    {
+      "sym": "T",
+      "latex": "T",
+      "macro": "\\kT"
+    },
+    {
+      "sym": "T_prime",
+      "latex": "T'",
+      "macro": "\\kTprime"
+    },
+    {
+      "sym": "MC",
+      "latex": "MC",
+      "macro": "\\kMC"
+    },
+    {
+      "sym": "MR",
+      "latex": "MR",
+      "macro": "\\kMR"
+    },
+    {
+      "sym": "MP",
+      "latex": "MP",
+      "macro": "\\kMP"
+    },
+    {
+      "sym": "Q",
+      "latex": "Q",
+      "macro": "\\kQ"
+    },
+    {
+      "sym": "m_tan",
+      "latex": "m_{\\text{tan}}",
+      "macro": "\\kmtan"
+    },
+    {
+      "sym": "I",
+      "latex": "I",
+      "macro": "\\kI"
+    },
+    {
+      "sym": "S",
+      "latex": "S",
+      "macro": "\\kS"
+    },
+    {
+      "sym": "dy/du",
+      "latex": "\\frac{dy}{du}",
+      "macro": "\\kdydu"
+    },
+    {
+      "sym": "du/dx",
+      "latex": "\\frac{du}{dx}",
+      "macro": "\\kdudx"
+    },
+    {
+      "sym": "f_inv_prime",
+      "latex": "(f^{-1})'",
+      "macro": "\\kfinvprime"
+    },
+    {
+      "sym": "B_prime",
+      "latex": "B'",
+      "macro": "\\kBprime"
+    },
+    {
+      "sym": "A_prime",
+      "latex": "A'",
+      "macro": "\\kAprime"
+    },
+    {
+      "sym": "Δx",
+      "latex": "\\Delta x"
+    },
+    {
+      "sym": "Δy",
+      "latex": "\\Delta y"
+    },
+    {
+      "sym": "u",
+      "latex": "u"
+    },
+    {
+      "sym": "r",
+      "latex": "r"
+    },
+    {
+      "sym": "E_prime",
+      "latex": "E'",
+      "macro": "\\kEprime"
     }
   ],
   "exercise_kinds": [
@@ -1639,7 +1813,13 @@
         "instantaneous velocity"
       ],
       "type": "derivative",
-      "statement": "For a position function s(t), the instantaneous velocity at a time t = a is the value that the average velocities approach on intervals of the form [a, t] and [t, a] as the values of t become closer to a, provided such a value exists."
+      "statement": "For a position function s(t), the instantaneous velocity at a time t = a is the value that the average velocities approach on intervals of the form [a, t] and [t, a] as the values of t become closer to a, provided such a value exists.",
+      "forms": [
+        {
+          "id": "eq-instantaneous-velocity-derivative",
+          "latex": "v(a)=s'(a)=\\lim_{t\\to a}\\frac{s(t)-s(a)}{t-a}"
+        }
+      ]
     },
     {
       "id": "area-problem",
@@ -2318,6 +2498,899 @@
           "id": "eq-epsilon-delta-infinite-minus",
           "latex": "0<|x-a|<\\delta\\;\\Rightarrow\\;f(x)<-M",
           "anchor": "2.5-infinite-definition"
+        }
+      ]
+    },
+    {
+      "id": "difference-quotient",
+      "kind": "definition",
+      "section": "3.1",
+      "name": "Difference quotient",
+      "terms": [
+        "difference quotient",
+        "difference quotient with increment h"
+      ],
+      "symbol": "Q",
+      "type": "derivative",
+      "statement": "For a function f defined on an interval I containing a, the difference quotient (f(x) − f(a))/(x − a), for x ≠ a in I, is the slope of the secant line through (a, f(a)) and (x, f(x)); with increment h ≠ 0 it is (f(a + h) − f(a))/h.",
+      "forms": [
+        {
+          "id": "eq-difference-quotient",
+          "latex": "Q=\\frac{f(x)-f(a)}{x-a}"
+        },
+        {
+          "id": "eq-difference-quotient-increment",
+          "latex": "Q=\\frac{f(a+h)-f(a)}{h}"
+        }
+      ]
+    },
+    {
+      "id": "slope-of-the-tangent-line",
+      "kind": "definition",
+      "section": "3.1",
+      "name": "Slope of the tangent line",
+      "terms": [
+        "slope of the tangent line"
+      ],
+      "symbol": "m_tan",
+      "type": "derivative",
+      "statement": "For a function f defined in an open interval containing a, the tangent line to f at a is the line through (a, f(a)) whose slope m_tan is the limit of the difference quotient as x approaches a, or as h approaches 0, provided this limit exists.",
+      "forms": [
+        {
+          "id": "eq-tangent-slope",
+          "latex": "m_{\\text{tan}}=\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}"
+        },
+        {
+          "id": "eq-tangent-slope-increment",
+          "latex": "m_{\\text{tan}}=\\lim_{h\\to 0}\\frac{f(a+h)-f(a)}{h}"
+        }
+      ]
+    },
+    {
+      "id": "local-linearity",
+      "kind": "idea",
+      "section": "3.1",
+      "name": "Local linearity",
+      "terms": [
+        "locally linear"
+      ],
+      "statement": "In a series of tighter intervals about a, the graph of a function and its tangent line at a appear to coincide, so the values on the tangent line approximate the function near a: the graph is locally linear there."
+    },
+    {
+      "id": "equation-of-a-tangent-line",
+      "kind": "skill",
+      "section": "3.1",
+      "name": "Finding the equation of a tangent line",
+      "statement": "To find an equation of the line tangent to the graph of f at x = a, find its slope from the limit of the difference quotient, find the point (a, f(a)) it passes through, and write the line with the point-slope equation."
+    },
+    {
+      "id": "derivative",
+      "kind": "definition",
+      "section": "3.1",
+      "name": "Derivative",
+      "terms": [
+        "derivative"
+      ],
+      "symbol": "f_prime",
+      "type": "derivative",
+      "statement": "The derivative of a function f(x) at a, denoted f′(a), is the limit of the difference quotient as x approaches a, or of the difference quotient with increment h as h approaches 0, provided this limit exists: the slope of the tangent line to the function at a.",
+      "forms": [
+        {
+          "id": "eq-derivative-at-a",
+          "latex": "f'(a)=\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}"
+        },
+        {
+          "id": "eq-derivative-at-a-increment",
+          "latex": "f'(a)=\\lim_{h\\to 0}\\frac{f(a+h)-f(a)}{h}"
+        }
+      ]
+    },
+    {
+      "id": "differentiation",
+      "kind": "definition",
+      "section": "3.1",
+      "name": "Differentiation",
+      "terms": [
+        "differentiation"
+      ],
+      "statement": "Differentiation is the process of finding a derivative."
+    },
+    {
+      "id": "estimating-a-derivative-from-a-table",
+      "kind": "skill",
+      "section": "3.1",
+      "name": "Estimating a derivative from a table",
+      "statement": "To estimate f′(a), tabulate the difference quotient for values of x just below and just above a, or for small positive and negative h, and read off the value the quotients approach."
+    },
+    {
+      "id": "instantaneous-rate-of-change",
+      "kind": "definition",
+      "section": "3.1",
+      "name": "Instantaneous rate of change",
+      "terms": [
+        "instantaneous rate of change"
+      ],
+      "type": "derivative",
+      "statement": "The instantaneous rate of change of a function f(x) at a value a is its derivative f′(a)."
+    },
+    {
+      "id": "derivative-function",
+      "kind": "definition",
+      "section": "3.2",
+      "name": "Derivative function",
+      "terms": [
+        "derivative function"
+      ],
+      "symbol": "f_prime",
+      "type": "derivative",
+      "statement": "The derivative function of f, denoted f′, is the function whose domain consists of those values of x for which the limit of (f(x + h) − f(x))/h as h approaches 0 exists, and whose value there is that limit; it gives the derivative of f at each such point.",
+      "forms": [
+        {
+          "id": "eq-derivative-function",
+          "latex": "f'(x)=\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h}"
+        }
+      ]
+    },
+    {
+      "id": "differentiable-at-a-point",
+      "kind": "definition",
+      "section": "3.2",
+      "name": "Differentiable at a point",
+      "terms": [
+        "differentiable at a"
+      ],
+      "statement": "A function f(x) is differentiable at a if f′(a) exists."
+    },
+    {
+      "id": "differentiable-on-a-set",
+      "kind": "definition",
+      "section": "3.2",
+      "name": "Differentiable on a set",
+      "terms": [
+        "differentiable on S"
+      ],
+      "statement": "A function is differentiable on S if it is differentiable at every point in an open set S."
+    },
+    {
+      "id": "differentiable-function",
+      "kind": "definition",
+      "section": "3.2",
+      "name": "Differentiable function",
+      "terms": [
+        "differentiable function"
+      ],
+      "statement": "A differentiable function is one for which f′(x) exists on its domain."
+    },
+    {
+      "id": "leibniz-notation",
+      "kind": "definition",
+      "section": "3.2",
+      "name": "Leibniz notation",
+      "terms": [
+        "Leibniz notation"
+      ],
+      "symbol": "dy/dx",
+      "type": "derivative",
+      "statement": "For y = f(x) the derivative may be written f′(x), dy/dx, y′ or d/dx(f(x)); in Leibniz notation dy/dx is the limit of the secant slopes Δy/Δx as Δx approaches 0, the instantaneous rate of change of y with respect to x.",
+      "forms": [
+        {
+          "id": "eq-leibniz-notation",
+          "latex": "\\frac{dy}{dx}=\\lim_{\\Delta x\\to 0}\\frac{\\Delta y}{\\Delta x}"
+        }
+      ]
+    },
+    {
+      "id": "graph-of-the-derivative",
+      "kind": "idea",
+      "section": "3.2",
+      "name": "Graph of the derivative",
+      "statement": "The graph of f′ follows the graph of f: where f has a tangent line with positive slope, f′(x) > 0; where the slope is negative, f′(x) < 0; where f has a horizontal tangent line, f′(x) = 0."
+    },
+    {
+      "id": "sketching-a-derivative",
+      "kind": "skill",
+      "section": "3.2",
+      "name": "Sketching a derivative from a graph",
+      "statement": "To sketch f′ from the graph of f, mark where f has horizontal tangents (zeros of f′), where f increases (f′ above the axis) and decreases (below), and how steeply, and draw a curve through these."
+    },
+    {
+      "id": "differentiability-implies-continuity",
+      "kind": "result",
+      "section": "3.2",
+      "name": "Differentiability implies continuity",
+      "statement": "Let f(x) be a function and a be in its domain. If f(x) is differentiable at a, then f is continuous at a; a function that is continuous at a point need not be differentiable there."
+    },
+    {
+      "id": "failure-of-differentiability",
+      "kind": "idea",
+      "section": "3.2",
+      "name": "Where a function fails to be differentiable",
+      "statement": "A function is not differentiable at a point if it is not continuous there, if its graph has a sharp corner or cusp there, where the one-sided limits of the secant slopes differ, if it has a vertical tangent line there, or in more complicated ways, as when the secant slopes oscillate."
+    },
+    {
+      "id": "higher-order-derivative",
+      "kind": "definition",
+      "section": "3.2",
+      "name": "Higher-order derivative",
+      "terms": [
+        "higher-order derivative",
+        "second derivative",
+        "third derivative"
+      ],
+      "symbol": "f_dprime",
+      "type": "derivative",
+      "statement": "The derivative of a derivative is the second derivative, and continuing gives the third, fourth and nth derivatives; collectively these are the higher-order derivatives, written f″(x), f‴(x), f⁽⁴⁾(x), …, f⁽ⁿ⁾(x) or d²y/dx², d³y/dx³, …, dⁿy/dxⁿ.",
+      "forms": [
+        {
+          "id": "eq-second-derivative-leibniz",
+          "latex": "\\frac{d^{2}y}{dx^{2}}=\\frac{d}{dx}\\left(\\frac{dy}{dx}\\right)"
+        }
+      ]
+    },
+    {
+      "id": "constant-rule",
+      "kind": "result",
+      "section": "3.3",
+      "name": "Constant rule",
+      "terms": [
+        "constant rule"
+      ],
+      "statement": "The derivative of a constant function is zero: if f(x) = c for a constant c, then f′(x) = 0.",
+      "forms": [
+        {
+          "id": "eq-constant-rule",
+          "latex": "\\frac{d}{dx}(c)=0"
+        }
+      ]
+    },
+    {
+      "id": "power-rule",
+      "kind": "result",
+      "section": "3.3",
+      "name": "Power rule",
+      "terms": [
+        "power rule"
+      ],
+      "statement": "Let n be a positive integer. If f(x) = xⁿ, then f′(x) = nxⁿ⁻¹: the power on x becomes the coefficient and the power on x in the derivative decreases by 1.",
+      "forms": [
+        {
+          "id": "eq-power-rule",
+          "latex": "\\frac{d}{dx}x^{n}=nx^{n-1}"
+        }
+      ]
+    },
+    {
+      "id": "sum-rule",
+      "kind": "result",
+      "section": "3.3",
+      "name": "Sum rule",
+      "terms": [
+        "sum rule"
+      ],
+      "statement": "The derivative of the sum of a function f and a function g is the sum of the derivative of f and the derivative of g.",
+      "forms": [
+        {
+          "id": "eq-sum-rule",
+          "latex": "\\frac{d}{dx}(f(x)+g(x))=\\frac{d}{dx}(f(x))+\\frac{d}{dx}(g(x))"
+        }
+      ]
+    },
+    {
+      "id": "difference-rule",
+      "kind": "result",
+      "section": "3.3",
+      "name": "Difference rule",
+      "terms": [
+        "difference rule"
+      ],
+      "statement": "The derivative of the difference of a function f and a function g is the difference of the derivative of f and the derivative of g.",
+      "forms": [
+        {
+          "id": "eq-difference-rule",
+          "latex": "\\frac{d}{dx}(f(x)-g(x))=\\frac{d}{dx}(f(x))-\\frac{d}{dx}(g(x))"
+        }
+      ]
+    },
+    {
+      "id": "constant-multiple-rule",
+      "kind": "result",
+      "section": "3.3",
+      "name": "Constant multiple rule",
+      "terms": [
+        "constant multiple rule"
+      ],
+      "statement": "The derivative of a constant k multiplied by a function f is the constant multiplied by the derivative of f.",
+      "forms": [
+        {
+          "id": "eq-constant-multiple-rule",
+          "latex": "\\frac{d}{dx}(kf(x))=k\\frac{d}{dx}(f(x))"
+        }
+      ]
+    },
+    {
+      "id": "product-rule",
+      "kind": "result",
+      "section": "3.3",
+      "name": "Product rule",
+      "terms": [
+        "product rule"
+      ],
+      "statement": "For differentiable functions f(x) and g(x), the derivative of the product is the derivative of the first function times the second function plus the derivative of the second function times the first function.",
+      "forms": [
+        {
+          "id": "eq-product-rule",
+          "latex": "\\frac{d}{dx}(f(x)g(x))=\\frac{d}{dx}(f(x))\\cdot g(x)+\\frac{d}{dx}(g(x))\\cdot f(x)"
+        }
+      ]
+    },
+    {
+      "id": "quotient-rule",
+      "kind": "result",
+      "section": "3.3",
+      "name": "Quotient rule",
+      "terms": [
+        "quotient rule"
+      ],
+      "statement": "For differentiable functions f(x) and g(x), the derivative of the quotient f(x)/g(x) is the derivative of the numerator times the denominator minus the derivative of the denominator times the numerator, all divided by the square of the denominator.",
+      "forms": [
+        {
+          "id": "eq-quotient-rule",
+          "latex": "\\frac{d}{dx}\\left(\\frac{f(x)}{g(x)}\\right)=\\frac{\\frac{d}{dx}(f(x))\\cdot g(x)-\\frac{d}{dx}(g(x))\\cdot f(x)}{(g(x))^{2}}"
+        }
+      ]
+    },
+    {
+      "id": "extended-power-rule",
+      "kind": "result",
+      "section": "3.3",
+      "name": "Extended power rule",
+      "terms": [
+        "extended power rule"
+      ],
+      "statement": "If k is a negative integer, then the derivative of xᵏ is kxᵏ⁻¹, so the power rule holds for negative integer powers too.",
+      "forms": [
+        {
+          "id": "eq-extended-power-rule",
+          "latex": "\\frac{d}{dx}(x^{k})=kx^{k-1}"
+        }
+      ]
+    },
+    {
+      "id": "combining-differentiation-rules",
+      "kind": "skill",
+      "section": "3.3",
+      "name": "Combining differentiation rules",
+      "statement": "By combining the differentiation rules we may find the derivative of any polynomial or rational function; a good rule of thumb is to apply the rules in reverse of the order in which we would evaluate the function."
+    },
+    {
+      "id": "amount-of-change",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Amount of change",
+      "terms": [
+        "amount of change"
+      ],
+      "statement": "The amount of change of a function f(x) over an interval [a, a + h] is the change in its y-values over that interval, f(a + h) − f(a).",
+      "forms": [
+        {
+          "id": "eq-amount-of-change",
+          "latex": "f(a+h)-f(a)"
+        }
+      ]
+    },
+    {
+      "id": "average-rate-of-change",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Average rate of change",
+      "terms": [
+        "average rate of change"
+      ],
+      "type": "derivative",
+      "statement": "The average rate of change of a function f over an interval [a, a + h] is the ratio of the amount of change over the interval to the corresponding change in the x-values, (f(a + h) − f(a))/h.",
+      "forms": [
+        {
+          "id": "eq-average-rate-of-change",
+          "latex": "\\frac{f(a+h)-f(a)}{h}"
+        }
+      ]
+    },
+    {
+      "id": "amount-of-change-formula",
+      "kind": "result",
+      "section": "3.4",
+      "name": "Amount of change formula",
+      "terms": [
+        "amount of change formula"
+      ],
+      "statement": "For small enough h, f′(a) ≈ (f(a + h) − f(a))/h, so the new value of a changed quantity is about its original value plus the rate of change times the interval of change, f(a + h) ≈ f(a) + f′(a)h: the y-coordinate at a + h on the tangent line at a.",
+      "forms": [
+        {
+          "id": "eq-amount-of-change-formula",
+          "latex": "f(a+h)\\approx f(a)+f'(a)h"
+        }
+      ]
+    },
+    {
+      "id": "velocity",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Velocity",
+      "terms": [
+        "velocity"
+      ],
+      "symbol": "v",
+      "type": "derivative",
+      "statement": "For a function s(t) giving the position of an object at time t, the velocity of the object at time t is v(t) = s′(t), the rate of change of position.",
+      "forms": [
+        {
+          "id": "eq-velocity",
+          "latex": "v(t)=s'(t)"
+        }
+      ]
+    },
+    {
+      "id": "speed",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Speed",
+      "terms": [
+        "speed"
+      ],
+      "type": "derivative",
+      "statement": "The speed of an object at time t is the absolute value, or magnitude, of its velocity, |v(t)|.",
+      "forms": [
+        {
+          "id": "eq-speed",
+          "latex": "|v(t)|"
+        }
+      ]
+    },
+    {
+      "id": "acceleration",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Acceleration",
+      "terms": [
+        "acceleration"
+      ],
+      "symbol": "a",
+      "type": "derivative",
+      "statement": "The acceleration of an object at time t is the rate of change of its velocity, a(t) = v′(t) = s″(t).",
+      "forms": [
+        {
+          "id": "eq-acceleration",
+          "latex": "a(t)=v'(t)=s''(t)"
+        }
+      ]
+    },
+    {
+      "id": "speeding-up-and-slowing-down",
+      "kind": "idea",
+      "section": "3.4",
+      "name": "Direction and speeding up",
+      "statement": "A particle moves in the positive direction where v(t) > 0 and in the negative direction where v(t) < 0, is at rest where v(t) = 0, and is slowing down where velocity and acceleration act in opposite directions, speeding up where they act in the same direction."
+    },
+    {
+      "id": "population-growth-rate",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Population growth rate",
+      "terms": [
+        "population growth rate"
+      ],
+      "symbol": "P_prime",
+      "type": "derivative",
+      "statement": "If P(t) is the number of entities present in a population, the population growth rate of P(t) is its derivative P′(t), the rate of change of the population with respect to time.",
+      "forms": [
+        {
+          "id": "eq-population-growth-rate",
+          "latex": "P'(t)"
+        }
+      ]
+    },
+    {
+      "id": "marginal-cost",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Marginal cost",
+      "terms": [
+        "marginal cost"
+      ],
+      "symbol": "MC",
+      "type": "derivative",
+      "statement": "If C(x) is the cost of producing x items, the marginal cost is MC(x) = C′(x), approximately C(x + 1) − C(x), the cost of producing one more item.",
+      "forms": [
+        {
+          "id": "eq-marginal-cost",
+          "latex": "MC(x)=C'(x)"
+        },
+        {
+          "id": "eq-marginal-cost-estimate",
+          "latex": "MC(x)=C'(x)\\approx C(x+1)-C(x)"
+        }
+      ]
+    },
+    {
+      "id": "marginal-revenue",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Marginal revenue",
+      "terms": [
+        "marginal revenue"
+      ],
+      "symbol": "MR",
+      "type": "derivative",
+      "statement": "If R(x) is the revenue obtained from selling x items, the marginal revenue is MR(x) = R′(x), approximately the revenue obtained by selling one more item.",
+      "forms": [
+        {
+          "id": "eq-marginal-revenue",
+          "latex": "MR(x)=R'(x)"
+        }
+      ]
+    },
+    {
+      "id": "marginal-profit",
+      "kind": "definition",
+      "section": "3.4",
+      "name": "Marginal profit",
+      "terms": [
+        "marginal profit"
+      ],
+      "symbol": "MP",
+      "type": "derivative",
+      "statement": "If P(x) = R(x) − C(x) is the profit obtained from selling x items, the marginal profit is MP(x) = P′(x) = MR(x) − MC(x), approximately the profit obtained by producing and selling one more item.",
+      "forms": [
+        {
+          "id": "eq-marginal-profit",
+          "latex": "MP(x)=P'(x)=MR(x)-MC(x)=R'(x)-C'(x)"
+        }
+      ]
+    },
+    {
+      "id": "derivatives-of-sine-and-cosine",
+      "kind": "result",
+      "section": "3.5",
+      "name": "Derivatives of sine and cosine",
+      "statement": "The derivative of the sine function is the cosine and the derivative of the cosine function is the negative sine.",
+      "forms": [
+        {
+          "id": "eq-derivative-sine",
+          "latex": "\\frac{d}{dx}(\\sin x)=\\cos x"
+        },
+        {
+          "id": "eq-derivative-cosine",
+          "latex": "\\frac{d}{dx}(\\cos x)=-\\sin x"
+        }
+      ]
+    },
+    {
+      "id": "derivatives-of-the-other-trigonometric-functions",
+      "kind": "result",
+      "section": "3.5",
+      "name": "Derivatives of tangent, cotangent, secant and cosecant",
+      "statement": "The derivatives of the remaining trigonometric functions, found with the quotient rule from those of sine and cosine, are d/dx tan x = sec²x, d/dx cot x = −csc²x, d/dx sec x = sec x tan x and d/dx csc x = −csc x cot x.",
+      "forms": [
+        {
+          "id": "eq-derivative-tangent",
+          "latex": "\\frac{d}{dx}(\\tan x)=\\sec^{2}x"
+        },
+        {
+          "id": "eq-derivative-cotangent",
+          "latex": "\\frac{d}{dx}(\\cot x)=-\\csc^{2}x"
+        },
+        {
+          "id": "eq-derivative-secant",
+          "latex": "\\frac{d}{dx}(\\sec x)=\\sec x\\tan x"
+        },
+        {
+          "id": "eq-derivative-cosecant",
+          "latex": "\\frac{d}{dx}(\\csc x)=-\\csc x\\cot x"
+        }
+      ]
+    },
+    {
+      "id": "higher-order-derivatives-of-sine-and-cosine",
+      "kind": "result",
+      "section": "3.5",
+      "name": "Higher-order derivatives of sine and cosine",
+      "statement": "The higher-order derivatives of sin x and cos x follow a repeating pattern of four: sin x, cos x, −sin x, −cos x, sin x, so every fourth derivative of sin x equals sin x.",
+      "forms": [
+        {
+          "id": "eq-fourth-derivative-sine",
+          "latex": "\\frac{d^{4n}}{dx^{4n}}(\\sin x)=\\sin x"
+        }
+      ]
+    },
+    {
+      "id": "chain-rule",
+      "kind": "result",
+      "section": "3.6",
+      "name": "Chain rule",
+      "terms": [
+        "chain rule"
+      ],
+      "statement": "Let f and g be functions. For all x in the domain of g for which g is differentiable at x and f is differentiable at g(x), the derivative of the composite function h(x) = f(g(x)) is h′(x) = f′(g(x))g′(x), the derivative of the outer function evaluated at the inner function times the derivative of the inner function; if y is a function of u and u is a function of x, dy/dx = dy/du · du/dx.",
+      "forms": [
+        {
+          "id": "eq-chain-rule",
+          "latex": "h'(x)=f'(g(x))g'(x)"
+        },
+        {
+          "id": "eq-chain-rule-leibniz",
+          "latex": "\\frac{dy}{dx}=\\frac{dy}{du}\\cdot\\frac{du}{dx}"
+        }
+      ]
+    },
+    {
+      "id": "applying-the-chain-rule",
+      "kind": "skill",
+      "section": "3.6",
+      "name": "Applying the chain rule",
+      "statement": "To differentiate h(x) = f(g(x)), identify f(x) and g(x), find f′(x) and evaluate it at g(x), find g′(x), and write h′(x) = f′(g(x))·g′(x), working from the outside function in."
+    },
+    {
+      "id": "power-rule-for-composition-of-functions",
+      "kind": "result",
+      "section": "3.6",
+      "name": "Power rule for composition of functions",
+      "terms": [
+        "power rule for functions"
+      ],
+      "statement": "For all values of x for which the derivative is defined, if h(x) = (g(x))ⁿ, then h′(x) = n(g(x))ⁿ⁻¹g′(x).",
+      "forms": [
+        {
+          "id": "eq-power-rule-composition",
+          "latex": "h'(x)=n(g(x))^{n-1}g'(x)"
+        }
+      ]
+    },
+    {
+      "id": "chain-rule-with-trigonometric-functions",
+      "kind": "result",
+      "section": "3.6",
+      "name": "Chain rule with trigonometric functions",
+      "statement": "For all x for which the derivative is defined, the chain rule applied to the trigonometric derivatives gives d/dx sin(g(x)) = cos(g(x))g′(x), d/dx cos(g(x)) = −sin(g(x))g′(x), and likewise for the tangent, cotangent, secant and cosecant.",
+      "forms": [
+        {
+          "id": "eq-chain-rule-sine",
+          "latex": "\\frac{d}{dx}(\\sin(g(x)))=\\cos(g(x))g'(x)"
+        },
+        {
+          "id": "eq-chain-rule-cosine",
+          "latex": "\\frac{d}{dx}(\\cos(g(x)))=-\\sin(g(x))g'(x)"
+        },
+        {
+          "id": "eq-chain-rule-tangent",
+          "latex": "\\frac{d}{dx}(\\tan(g(x)))=\\sec^{2}(g(x))g'(x)"
+        },
+        {
+          "id": "eq-chain-rule-cotangent",
+          "latex": "\\frac{d}{dx}(\\cot(g(x)))=-\\csc^{2}(g(x))g'(x)"
+        },
+        {
+          "id": "eq-chain-rule-secant",
+          "latex": "\\frac{d}{dx}(\\sec(g(x)))=\\sec(g(x))\\tan(g(x))g'(x)"
+        },
+        {
+          "id": "eq-chain-rule-cosecant",
+          "latex": "\\frac{d}{dx}(\\csc(g(x)))=-\\csc(g(x))\\cot(g(x))g'(x)"
+        }
+      ]
+    },
+    {
+      "id": "chain-rule-for-three-functions",
+      "kind": "result",
+      "section": "3.6",
+      "name": "Chain rule for a composition of three functions",
+      "statement": "For all values of x for which the function is differentiable, if k(x) = h(f(g(x))), then k′(x) = h′(f(g(x)))f′(g(x))g′(x): the chain rule applied twice, a derivative with three parts.",
+      "forms": [
+        {
+          "id": "eq-chain-rule-three",
+          "latex": "k'(x)=h'(f(g(x)))f'(g(x))g'(x)"
+        }
+      ]
+    },
+    {
+      "id": "inverse-function-theorem",
+      "kind": "result",
+      "section": "3.7",
+      "name": "Inverse function theorem",
+      "terms": [
+        "inverse function theorem"
+      ],
+      "statement": "Let f(x) be a function that is both invertible and differentiable, and y = f⁻¹(x) its inverse. For all x satisfying f′(f⁻¹(x)) ≠ 0, the derivative of the inverse is (f⁻¹)′(x) = 1/f′(f⁻¹(x)); if y = g(x) is the inverse of f(x), then g′(x) = 1/f′(g(x)).",
+      "forms": [
+        {
+          "id": "eq-inverse-function-theorem",
+          "latex": "(f^{-1})'(x)=\\frac{1}{f'(f^{-1}(x))}"
+        },
+        {
+          "id": "eq-inverse-function-theorem-g",
+          "latex": "g'(x)=\\frac{1}{f'(g(x))}"
+        }
+      ]
+    },
+    {
+      "id": "power-rule-for-rational-exponents",
+      "kind": "result",
+      "section": "3.7",
+      "name": "Power rule with rational exponents",
+      "terms": [
+        "power rule with rational exponents"
+      ],
+      "statement": "The power rule may be extended to rational exponents: if n is a positive integer, d/dx x^{1/n} = (1/n)x^{(1/n)−1}, and if also m is an arbitrary integer, d/dx x^{m/n} = (m/n)x^{(m/n)−1}.",
+      "forms": [
+        {
+          "id": "eq-power-rule-rational",
+          "latex": "\\frac{d}{dx}(x^{m/n})=\\frac{m}{n}x^{(m/n)-1}"
+        },
+        {
+          "id": "eq-power-rule-root",
+          "latex": "\\frac{d}{dx}(x^{1/n})=\\frac{1}{n}x^{(1/n)-1}"
+        }
+      ]
+    },
+    {
+      "id": "derivatives-of-inverse-trigonometric-functions",
+      "kind": "result",
+      "section": "3.7",
+      "name": "Derivatives of inverse trigonometric functions",
+      "statement": "The derivatives of the inverse trigonometric functions are algebraic: d/dx sin⁻¹x = 1/√(1 − x²), d/dx cos⁻¹x = −1/√(1 − x²), d/dx tan⁻¹x = 1/(1 + x²), d/dx cot⁻¹x = −1/(1 + x²), d/dx sec⁻¹x = 1/(|x|√(x² − 1)) and d/dx csc⁻¹x = −1/(|x|√(x² − 1)).",
+      "forms": [
+        {
+          "id": "eq-derivative-arcsine",
+          "latex": "\\frac{d}{dx}\\sin^{-1}x=\\frac{1}{\\sqrt{1-x^{2}}}"
+        },
+        {
+          "id": "eq-derivative-arccosine",
+          "latex": "\\frac{d}{dx}\\cos^{-1}x=\\frac{-1}{\\sqrt{1-x^{2}}}"
+        },
+        {
+          "id": "eq-derivative-arctangent",
+          "latex": "\\frac{d}{dx}\\tan^{-1}x=\\frac{1}{1+x^{2}}"
+        },
+        {
+          "id": "eq-derivative-arccotangent",
+          "latex": "\\frac{d}{dx}\\cot^{-1}x=\\frac{-1}{1+x^{2}}"
+        },
+        {
+          "id": "eq-derivative-arcsecant",
+          "latex": "\\frac{d}{dx}\\sec^{-1}x=\\frac{1}{|x|\\sqrt{x^{2}-1}}"
+        },
+        {
+          "id": "eq-derivative-arccosecant",
+          "latex": "\\frac{d}{dx}\\csc^{-1}x=\\frac{-1}{|x|\\sqrt{x^{2}-1}}"
+        }
+      ]
+    },
+    {
+      "id": "implicitly-defined-function",
+      "kind": "definition",
+      "section": "3.8",
+      "name": "Implicitly defined function",
+      "terms": [
+        "explicit function",
+        "defines y implicitly"
+      ],
+      "type": "function",
+      "statement": "If y is expressed entirely in terms of x, y is an explicit function of x; if the relationship is expressed by an equation where y is not expressed entirely in terms of x, the equation defines y implicitly, and in general an equation defines a function implicitly if the function satisfies that equation."
+    },
+    {
+      "id": "implicit-differentiation",
+      "kind": "skill",
+      "section": "3.8",
+      "name": "Implicit differentiation",
+      "terms": [
+        "implicit differentiation"
+      ],
+      "statement": "Implicit differentiation computes dy/dx for a function defined by an equation: differentiate both sides, treating y as a function of x and using the chain rule, move the terms containing dy/dx to the left and the rest to the right, factor out dy/dx and solve for it."
+    },
+    {
+      "id": "derivative-of-an-exponential-function",
+      "kind": "result",
+      "section": "3.9",
+      "name": "Derivative of bˣ",
+      "statement": "On the assumption that B(x) = bˣ, b > 0, is continuous and differentiable at 0, B(x) is differentiable everywhere and its derivative is B′(x) = bˣB′(0).",
+      "forms": [
+        {
+          "id": "eq-derivative-b-to-the-x",
+          "latex": "B'(x)=b^{x}B'(0)"
+        }
+      ]
+    },
+    {
+      "id": "number-e-by-slope",
+      "kind": "definition",
+      "section": "3.9",
+      "name": "The number e by its tangent slope",
+      "statement": "The number e is the unique value of b > 0 for which B(x) = bˣ has B′(0) = 1: the tangent line to eˣ at x = 0 has slope 1, and 2.7182 < e < 2.7183.",
+      "forms": [
+        {
+          "id": "eq-e-slope-one",
+          "latex": "\\lim_{h\\to 0}\\frac{e^{h}-1}{h}=1"
+        }
+      ]
+    },
+    {
+      "id": "derivative-of-the-natural-exponential-function",
+      "kind": "result",
+      "section": "3.9",
+      "name": "Derivative of the natural exponential function",
+      "statement": "Let E(x) = eˣ be the natural exponential function. Then E′(x) = eˣ, and in general d/dx(e^{g(x)}) = e^{g(x)}g′(x).",
+      "forms": [
+        {
+          "id": "eq-derivative-exp",
+          "latex": "E'(x)=e^{x}"
+        },
+        {
+          "id": "eq-derivative-exp-chain",
+          "latex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g'(x)"
+        }
+      ]
+    },
+    {
+      "id": "derivative-of-the-natural-logarithm",
+      "kind": "result",
+      "section": "3.9",
+      "name": "Derivative of the natural logarithmic function",
+      "statement": "If x > 0 and y = ln x, then dy/dx = 1/x; more generally, for a differentiable g(x) and all x with g(x) > 0, the derivative of h(x) = ln(g(x)) is h′(x) = g′(x)/g(x).",
+      "forms": [
+        {
+          "id": "eq-derivative-ln",
+          "latex": "\\frac{dy}{dx}=\\frac{1}{x}"
+        },
+        {
+          "id": "eq-derivative-ln-chain",
+          "latex": "h'(x)=\\frac{1}{g(x)}g'(x)"
+        }
+      ]
+    },
+    {
+      "id": "derivatives-of-general-exponential-and-logarithmic-functions",
+      "kind": "result",
+      "section": "3.9",
+      "name": "Derivatives of general exponential and logarithmic functions",
+      "statement": "Let b > 0, b ≠ 1, and g(x) be differentiable. If y = log_b x, then dy/dx = 1/(x ln b), and h(x) = log_b(g(x)) has h′(x) = g′(x)/(g(x) ln b) where g(x) > 0; if y = bˣ, then dy/dx = bˣ ln b, and h(x) = b^{g(x)} has h′(x) = b^{g(x)}g′(x) ln b.",
+      "forms": [
+        {
+          "id": "eq-derivative-log-b",
+          "latex": "\\frac{dy}{dx}=\\frac{1}{x\\ln b}"
+        },
+        {
+          "id": "eq-derivative-log-b-chain",
+          "latex": "h'(x)=\\frac{g'(x)}{g(x)\\ln b}"
+        },
+        {
+          "id": "eq-derivative-b-to-the-x-ln",
+          "latex": "\\frac{dy}{dx}=b^{x}\\ln b"
+        },
+        {
+          "id": "eq-derivative-b-to-the-g",
+          "latex": "h'(x)=b^{g(x)}g'(x)\\ln b"
+        }
+      ]
+    },
+    {
+      "id": "logarithmic-differentiation",
+      "kind": "skill",
+      "section": "3.9",
+      "name": "Logarithmic differentiation",
+      "terms": [
+        "logarithmic differentiation"
+      ],
+      "statement": "To differentiate y = h(x) by logarithmic differentiation, take the natural logarithm of both sides, expand ln(h(x)) with the properties of logarithms, differentiate both sides implicitly, multiply by y to solve for dy/dx, and replace y by h(x); it differentiates any function g(x)^{f(x)} and simplifies complicated derivatives."
+    },
+    {
+      "id": "power-rule-for-real-exponents",
+      "kind": "result",
+      "section": "3.9",
+      "name": "Power rule for real exponents",
+      "statement": "For y = xʳ, where r is an arbitrary real number, logarithmic differentiation gives dy/dx = rxʳ⁻¹.",
+      "forms": [
+        {
+          "id": "eq-power-rule-real",
+          "latex": "\\frac{d}{dx}x^{r}=rx^{r-1}"
         }
       ]
     }
@@ -3038,6 +4111,450 @@
     {
       "concept": "root-law-for-limits",
       "prereq": "intuitive-definition-of-the-limit"
+    },
+    {
+      "concept": "difference-quotient",
+      "prereq": "secant"
+    },
+    {
+      "concept": "slope-of-the-tangent-line",
+      "prereq": "difference-quotient"
+    },
+    {
+      "concept": "slope-of-the-tangent-line",
+      "prereq": "tangent-line"
+    },
+    {
+      "concept": "local-linearity",
+      "prereq": "tangent-line"
+    },
+    {
+      "concept": "equation-of-a-tangent-line",
+      "prereq": "slope-of-the-tangent-line"
+    },
+    {
+      "concept": "equation-of-a-tangent-line",
+      "prereq": "point-slope-equation"
+    },
+    {
+      "concept": "derivative",
+      "prereq": "slope-of-the-tangent-line"
+    },
+    {
+      "concept": "differentiation",
+      "prereq": "derivative"
+    },
+    {
+      "concept": "estimating-a-derivative-from-a-table",
+      "prereq": "derivative"
+    },
+    {
+      "concept": "estimating-a-derivative-from-a-table",
+      "prereq": "evaluating-a-limit-with-a-table"
+    },
+    {
+      "concept": "instantaneous-rate-of-change",
+      "prereq": "derivative"
+    },
+    {
+      "concept": "instantaneous-rate-of-change",
+      "prereq": "rate-of-change"
+    },
+    {
+      "concept": "derivative-function",
+      "prereq": "derivative"
+    },
+    {
+      "concept": "differentiable-at-a-point",
+      "prereq": "derivative"
+    },
+    {
+      "concept": "differentiable-on-a-set",
+      "prereq": "differentiable-at-a-point"
+    },
+    {
+      "concept": "differentiable-function",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "leibniz-notation",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "graph-of-the-derivative",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "graph-of-the-derivative",
+      "prereq": "increasing-function"
+    },
+    {
+      "concept": "graph-of-the-derivative",
+      "prereq": "decreasing-function"
+    },
+    {
+      "concept": "sketching-a-derivative",
+      "prereq": "graph-of-the-derivative"
+    },
+    {
+      "concept": "differentiability-implies-continuity",
+      "prereq": "differentiable-at-a-point"
+    },
+    {
+      "concept": "differentiability-implies-continuity",
+      "prereq": "continuity-at-a-point"
+    },
+    {
+      "concept": "failure-of-differentiability",
+      "prereq": "differentiability-implies-continuity"
+    },
+    {
+      "concept": "failure-of-differentiability",
+      "prereq": "one-sided-limit"
+    },
+    {
+      "concept": "higher-order-derivative",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "constant-rule",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "constant-rule",
+      "prereq": "constant-function"
+    },
+    {
+      "concept": "power-rule",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "power-rule",
+      "prereq": "power-function"
+    },
+    {
+      "concept": "sum-rule",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "sum-rule",
+      "prereq": "sum-law-for-limits"
+    },
+    {
+      "concept": "difference-rule",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "difference-rule",
+      "prereq": "difference-law-for-limits"
+    },
+    {
+      "concept": "constant-multiple-rule",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "constant-multiple-rule",
+      "prereq": "constant-multiple-law-for-limits"
+    },
+    {
+      "concept": "product-rule",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "product-rule",
+      "prereq": "differentiability-implies-continuity"
+    },
+    {
+      "concept": "product-rule",
+      "prereq": "limit-laws"
+    },
+    {
+      "concept": "quotient-rule",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "quotient-rule",
+      "prereq": "differentiability-implies-continuity"
+    },
+    {
+      "concept": "quotient-rule",
+      "prereq": "limit-laws"
+    },
+    {
+      "concept": "extended-power-rule",
+      "prereq": "power-rule"
+    },
+    {
+      "concept": "extended-power-rule",
+      "prereq": "quotient-rule"
+    },
+    {
+      "concept": "combining-differentiation-rules",
+      "prereq": "constant-rule"
+    },
+    {
+      "concept": "combining-differentiation-rules",
+      "prereq": "sum-rule"
+    },
+    {
+      "concept": "combining-differentiation-rules",
+      "prereq": "difference-rule"
+    },
+    {
+      "concept": "combining-differentiation-rules",
+      "prereq": "constant-multiple-rule"
+    },
+    {
+      "concept": "combining-differentiation-rules",
+      "prereq": "product-rule"
+    },
+    {
+      "concept": "combining-differentiation-rules",
+      "prereq": "extended-power-rule"
+    },
+    {
+      "concept": "amount-of-change",
+      "prereq": "function"
+    },
+    {
+      "concept": "average-rate-of-change",
+      "prereq": "amount-of-change"
+    },
+    {
+      "concept": "average-rate-of-change",
+      "prereq": "difference-quotient"
+    },
+    {
+      "concept": "amount-of-change-formula",
+      "prereq": "average-rate-of-change"
+    },
+    {
+      "concept": "amount-of-change-formula",
+      "prereq": "derivative"
+    },
+    {
+      "concept": "velocity",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "velocity",
+      "prereq": "instantaneous-velocity"
+    },
+    {
+      "concept": "speed",
+      "prereq": "velocity"
+    },
+    {
+      "concept": "speed",
+      "prereq": "absolute-value-function"
+    },
+    {
+      "concept": "acceleration",
+      "prereq": "velocity"
+    },
+    {
+      "concept": "acceleration",
+      "prereq": "higher-order-derivative"
+    },
+    {
+      "concept": "speeding-up-and-slowing-down",
+      "prereq": "speed"
+    },
+    {
+      "concept": "speeding-up-and-slowing-down",
+      "prereq": "acceleration"
+    },
+    {
+      "concept": "population-growth-rate",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "marginal-cost",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "marginal-revenue",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "marginal-profit",
+      "prereq": "marginal-cost"
+    },
+    {
+      "concept": "marginal-profit",
+      "prereq": "marginal-revenue"
+    },
+    {
+      "concept": "derivatives-of-sine-and-cosine",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "derivatives-of-sine-and-cosine",
+      "prereq": "important-trigonometric-limits"
+    },
+    {
+      "concept": "derivatives-of-sine-and-cosine",
+      "prereq": "addition-and-subtraction-formulas"
+    },
+    {
+      "concept": "derivatives-of-the-other-trigonometric-functions",
+      "prereq": "derivatives-of-sine-and-cosine"
+    },
+    {
+      "concept": "derivatives-of-the-other-trigonometric-functions",
+      "prereq": "quotient-rule"
+    },
+    {
+      "concept": "derivatives-of-the-other-trigonometric-functions",
+      "prereq": "reciprocal-and-ratio-identities"
+    },
+    {
+      "concept": "derivatives-of-the-other-trigonometric-functions",
+      "prereq": "pythagorean-identities"
+    },
+    {
+      "concept": "higher-order-derivatives-of-sine-and-cosine",
+      "prereq": "derivatives-of-sine-and-cosine"
+    },
+    {
+      "concept": "higher-order-derivatives-of-sine-and-cosine",
+      "prereq": "higher-order-derivative"
+    },
+    {
+      "concept": "chain-rule",
+      "prereq": "composite-function"
+    },
+    {
+      "concept": "chain-rule",
+      "prereq": "differentiability-implies-continuity"
+    },
+    {
+      "concept": "chain-rule",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "applying-the-chain-rule",
+      "prereq": "chain-rule"
+    },
+    {
+      "concept": "power-rule-for-composition-of-functions",
+      "prereq": "chain-rule"
+    },
+    {
+      "concept": "power-rule-for-composition-of-functions",
+      "prereq": "extended-power-rule"
+    },
+    {
+      "concept": "chain-rule-with-trigonometric-functions",
+      "prereq": "chain-rule"
+    },
+    {
+      "concept": "chain-rule-with-trigonometric-functions",
+      "prereq": "derivatives-of-the-other-trigonometric-functions"
+    },
+    {
+      "concept": "chain-rule-for-three-functions",
+      "prereq": "chain-rule"
+    },
+    {
+      "concept": "inverse-function-theorem",
+      "prereq": "inverse-function"
+    },
+    {
+      "concept": "inverse-function-theorem",
+      "prereq": "chain-rule"
+    },
+    {
+      "concept": "power-rule-for-rational-exponents",
+      "prereq": "inverse-function-theorem"
+    },
+    {
+      "concept": "power-rule-for-rational-exponents",
+      "prereq": "power-rule-for-composition-of-functions"
+    },
+    {
+      "concept": "derivatives-of-inverse-trigonometric-functions",
+      "prereq": "inverse-function-theorem"
+    },
+    {
+      "concept": "derivatives-of-inverse-trigonometric-functions",
+      "prereq": "inverse-trigonometric-functions"
+    },
+    {
+      "concept": "derivatives-of-inverse-trigonometric-functions",
+      "prereq": "derivatives-of-the-other-trigonometric-functions"
+    },
+    {
+      "concept": "implicitly-defined-function",
+      "prereq": "function"
+    },
+    {
+      "concept": "implicit-differentiation",
+      "prereq": "implicitly-defined-function"
+    },
+    {
+      "concept": "implicit-differentiation",
+      "prereq": "chain-rule"
+    },
+    {
+      "concept": "derivative-of-an-exponential-function",
+      "prereq": "derivative-function"
+    },
+    {
+      "concept": "derivative-of-an-exponential-function",
+      "prereq": "laws-of-exponents"
+    },
+    {
+      "concept": "number-e-by-slope",
+      "prereq": "derivative-of-an-exponential-function"
+    },
+    {
+      "concept": "number-e-by-slope",
+      "prereq": "number-e"
+    },
+    {
+      "concept": "derivative-of-the-natural-exponential-function",
+      "prereq": "number-e-by-slope"
+    },
+    {
+      "concept": "derivative-of-the-natural-exponential-function",
+      "prereq": "natural-exponential-function"
+    },
+    {
+      "concept": "derivative-of-the-natural-exponential-function",
+      "prereq": "chain-rule"
+    },
+    {
+      "concept": "derivative-of-the-natural-logarithm",
+      "prereq": "derivative-of-the-natural-exponential-function"
+    },
+    {
+      "concept": "derivative-of-the-natural-logarithm",
+      "prereq": "implicit-differentiation"
+    },
+    {
+      "concept": "derivative-of-the-natural-logarithm",
+      "prereq": "natural-logarithm"
+    },
+    {
+      "concept": "derivatives-of-general-exponential-and-logarithmic-functions",
+      "prereq": "derivative-of-the-natural-logarithm"
+    },
+    {
+      "concept": "derivatives-of-general-exponential-and-logarithmic-functions",
+      "prereq": "change-of-base-formulas"
+    },
+    {
+      "concept": "logarithmic-differentiation",
+      "prereq": "derivative-of-the-natural-logarithm"
+    },
+    {
+      "concept": "logarithmic-differentiation",
+      "prereq": "properties-of-logarithms"
+    },
+    {
+      "concept": "power-rule-for-real-exponents",
+      "prereq": "logarithmic-differentiation"
     }
   ],
   "colours": {
