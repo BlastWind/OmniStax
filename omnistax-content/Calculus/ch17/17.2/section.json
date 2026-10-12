@@ -1,0 +1,838 @@
+{
+ "id": "17.2",
+ "module": "m54047",
+ "chapter": "17",
+ "title": "Nonhomogeneous Linear Equations",
+ "short": "Nonhomogeneous Linear Equations",
+ "lead": "A <span data-concept=\"nonhomogeneous-linear-equation\">nonhomogeneous equation</span> keeps a term with no y in it. This section writes its general solution from the solution of its <span data-concept=\"complementary-equation\">complementary equation</span> and one <span data-concept=\"particular-solution\">particular solution</span>, and finds that particular solution two ways: by the <span data-concept=\"method-of-undetermined-coefficients\">method of undetermined coefficients</span> and by the <span data-concept=\"method-of-variation-of-parameters\">method of variation of parameters</span>, with <span data-concept=\"cramers-rule\">Cramer’s rule</span> to solve its system.",
+ "objectives": [
+  "Write the general solution to a nonhomogeneous differential equation.",
+  "Solve a nonhomogeneous differential equation by the method of undetermined coefficients.",
+  "Solve a nonhomogeneous differential equation by the method of variation of parameters."
+ ],
+ "summary_html": "<ul><li>To solve a nonhomogeneous linear second-order <span data-concept=\"differential-equation\">differential equation</span>, first find the <span data-concept=\"general-solution\">general solution</span> to the <span data-concept=\"complementary-equation\">complementary equation</span>, then find a <span data-concept=\"particular-solution\">particular solution</span> to the <span data-concept=\"nonhomogeneous-linear-equation\">nonhomogeneous equation</span>.</li><li>Let $\\kyp(x)$ be any <span data-concept=\"particular-solution\">particular solution</span> to the <span data-concept=\"nonhomogeneous-linear-equation\">nonhomogeneous linear differential equation</span> $$a_{2}(x)\\kydprime+a_{1}(x)\\kyprime+a_{0}(x)\\kyfn=\\krfn(x),$$ and let $c_{1}\\kyone(x)+c_{2}\\kytwo(x)$ denote the <span data-concept=\"general-solution\">general solution</span> to the <span data-concept=\"complementary-equation\">complementary equation</span>. Then, the <span data-concept=\"general-solution-to-a-nonhomogeneous-equation\">general solution to the nonhomogeneous equation</span> is given by $$\\kyfn(x)=c_{1}\\kyone(x)+c_{2}\\kytwo(x)+\\kyp(x\\text{).}$$</li><li>When $\\krfn(x)$ is a combination of polynomials, <span data-concept=\"exponential-function\">exponential functions</span>, sines, and cosines, use the <span data-concept=\"method-of-undetermined-coefficients\">method of undetermined coefficients</span> to find the <span data-concept=\"particular-solution\">particular solution</span>. To use this method, assume a solution in the same form as $\\krfn(x),$ multiplying by <em>x</em> as necessary until the assumed solution is <span data-concept=\"linear-independence\">linearly independent</span> of the <span data-concept=\"general-solution\">general solution</span> to the <span data-concept=\"complementary-equation\">complementary equation</span>. Then, substitute the assumed solution into the <span data-concept=\"differential-equation\">differential equation</span> to find values for the coefficients.</li><li>When $\\krfn(x)$ is <em>not</em> a combination of polynomials, <span data-concept=\"exponential-function\">exponential functions</span>, or sines and cosines, use the <span data-concept=\"method-of-variation-of-parameters\">method of variation of parameters</span> to find the <span data-concept=\"particular-solution\">particular solution</span>. This method involves using <span data-concept=\"cramers-rule\">Cramer’s rule</span> or another suitable technique to find functions $\\kuprime(x)$ and $\\kvprime(x)$ satisfying $$\\begin{array}{rll}\\kuprime\\kyone+\\kvprime\\kytwo & = & 0 \\\\ \\kuprime\\kyoneprime+\\kvprime\\kytwoprime & = & \\krfn(x\\text{).}\\end{array}$$ Then, $\\kyp(x)=\\kufn(x)\\kyone(x)+\\kv(x)\\kytwo(x)$ is a particular <span data-concept=\"solution-to-a-differential-equation\">solution to the differential equation</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s, except review exercise 118, which the key leaves unanswered and whose approach is AI-marked. The even-numbered exercises have no answer in the key and are computational, so they are left out: 54–64 even (undetermined coefficients), 66, 68 and 70 (forms and particular solutions), 72 and 74 (either method), 76 and 78 (variation of parameters), 80 and 82 (initial-value problems with a given particular solution) and 84 (variation of parameters with given solutions). Review exercises 118, 127, 129 and 131, printed at the end of Section 17.4, are set here.",
+ "figures": [
+  {
+   "id": "sim-nonhomogeneous",
+   "kind": "sim",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-undetermined-guess",
+   "kind": "sim",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "nonhomogeneous-intro",
+   "concept": "nonhomogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "general-solution",
+   "concept": "nonhomogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "general-solution",
+   "concept": "homogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572140518",
+   "concept": "complementary-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572452607",
+   "concept": "particular-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571626655",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170571626655",
+   "concept": "general-solution-to-a-homogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571688159",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "undetermined-coefficients",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "introduces"
+  },
+  {
+   "span": "undetermined-coefficients",
+   "concept": "method-of-equating-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571680619",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571680619",
+   "concept": "solving-with-the-characteristic-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-nonhomogeneous",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572242937",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572294713",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pitfall",
+   "concept": "complementary-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-undetermined-guess",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572241377",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571829491",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "variation-of-parameters",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "introduces"
+  },
+  {
+   "span": "variation-of-parameters",
+   "concept": "linear-independence",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572548183",
+   "concept": "cramers-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572548183",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572504518",
+   "concept": "cramers-rule",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571789080",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571789080",
+   "concept": "indefinite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571823244",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170571613873",
+   "source_number": "Checkpoint 17.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571688159"
+   },
+   "cite": "general-solution",
+   "prompt": "Given that $\\kyp(x)=-2$ is a particular solution to $\\kydprime-3\\kyprime-4\\kyfn=8,$ write the general solution and verify that the general solution satisfies the equation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=c_{1}e^{-x}+c_{2}e^{4x}-2$",
+    "hint": "Find the general solution to the complementary equation."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170572624269",
+   "source_number": "Checkpoint 17.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572242937"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "Find the general solution to $\\kydprime-4\\kyprime+4\\kyfn=7\\;\\sin t-\\cos t\\text{.}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(t)=c_{1}e^{2t}+c_{2}te^{2t}+\\sin t+\\cos t$",
+    "hint": "Use $\\kyp(t)=A\\;\\sin t+B\\;\\cos t$ as a guess for the particular solution."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170571715420",
+   "source_number": "Checkpoint 17.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571829491"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "Find the general solution to the following differential equations. a. $\\kydprime-5\\kyprime+4\\kyfn=3e^{x}$ b. $\\kydprime+\\kyprime-6\\kyfn=52\\;\\cos 2t$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kyfn(x)=c_{1}e^{4x}+c_{2}e^{x}-xe^{x}$ b. $\\kyfn(t)=c_{1}e^{-3t}+c_{2}e^{2t}-5\\;\\cos 2t+\\sin 2t$",
+    "hint": "Use the problem-solving strategy."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170571553656",
+   "source_number": "Checkpoint 17.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572504518"
+   },
+   "cite": "variation-of-parameters",
+   "prompt": "<p>Use Cramer’s rule to solve the following system of equations.</p>\n$$\\begin{array}{rll}2xz_{1}-3z_{2} & = & 0 \\\\ x^{2}z_{1}+4xz_{2} & = & x+1\\end{array}$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z_{1}=\\frac{3x+3}{11x^{2}},$ $z_{2}=\\frac{2x+2}{11x}$",
+    "hint": "Use the process from the previous example."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170572554229",
+   "source_number": "Checkpoint 17.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571823244"
+   },
+   "cite": "variation-of-parameters",
+   "prompt": "Find the general solution to the following differential equations. a. $\\kydprime+\\kyfn=\\sec x$ b. $x^{\\prime\\prime}-2x^{\\prime}+x=\\frac{e^{t}}{t}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kyfn(x)=c_{1}\\cos x+c_{2}\\sin x+\\cos x\\;\\ln |\\cos x|+x\\;\\sin x$ b. $x(t)=c_{1}e^{t}+c_{2}te^{t}+te^{t}\\ln |t|$",
+    "hint": "Follow the problem-solving strategy."
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1170572516869",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>Solve the following equations using the method of undetermined coefficients.</p><p>$3\\kydprime+\\kyprime-4\\kyfn=8$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{-4x/3}+c_{2}e^{x}-2$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1170572373530",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>Solve the following equations using the method of undetermined coefficients.</p><p>$\\kydprime+16\\kyfn=e^{-2x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}\\cos 4x+c_{2}\\sin 4x+\\frac{1}{20}e^{-2x}$"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1170572332661",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>Solve the following equations using the method of undetermined coefficients.</p><p>$\\kydprime-4\\kyprime+4\\kyfn=8x^{2}+4x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{2x}+c_{2}xe^{2x}+2x^{2}+5x+4$"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1170572416737",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>Solve the following equations using the method of undetermined coefficients.</p><p>$\\kydprime+2\\kyprime+\\kyfn=\\sin x+\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{-x}+c_{2}xe^{-x}+\\frac{1}{2}\\;\\sin x-\\frac{1}{2}\\;\\cos x$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1170572443463",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>Solve the following equations using the method of undetermined coefficients.</p><p>$\\kydprime+\\kyfn=3\\;\\sin 2x+x\\;\\cos 2x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}\\cos x+c_{2}\\sin x-\\frac{1}{3}x\\;\\cos 2x-\\frac{5}{9}\\;\\sin 2x$"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1170571673637",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>Solve the following equations using the method of undetermined coefficients.</p><p>$\\kydprime+10\\kyprime+25\\kyfn=xe^{-5x}+4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{-5x}+c_{2}xe^{-5x}+\\frac{1}{6}x^{3}e^{-5x}+\\frac{4}{25}$"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1170571548589",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>In each of the following problems,</p><p>a. Write the form for the particular solution $\\kyp(x)$ for the method of undetermined coefficients.</p><p>b. <strong>[T]</strong> Use a computer algebra system to find a particular solution to the given equation.</p><p>$\\kydprime-3\\kyfn=x^{2}-4x+11$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kyp(x)=Ax^{2}+Bx+C$ b. $\\kyp(x)=-\\frac{1}{3}x^{2}+\\frac{4}{3}x-\\frac{35}{9}$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1170572290176",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>In each of the following problems,</p><p>a. Write the form for the particular solution $\\kyp(x)$ for the method of undetermined coefficients.</p><p>b. <strong>[T]</strong> Use a computer algebra system to find a particular solution to the given equation.</p><p>$2\\kydprime-\\kyprime+\\kyfn=(x^{2}-5x)e^{-x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kyp(x)=(Ax^{2}+Bx+C)e^{-x}$ b. $\\kyp(x)=(\\frac{1}{4}x^{2}-\\frac{5}{8}x-\\frac{33}{32})e^{-x}$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1170572309595",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>In each of the following problems,</p><p>a. Write the form for the particular solution $\\kyp(x)$ for the method of undetermined coefficients.</p><p>b. <strong>[T]</strong> Use a computer algebra system to find a particular solution to the given equation.</p><p>$\\kydprime-\\kyprime-2\\kyfn=x^{2}e^{x}\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kyp(x)=(Ax^{2}+Bx+C)e^{x}\\cos x$ $+(Dx^{2}+Ex+F)e^{x}\\sin x$ b. $\\kyp(x)=(-\\frac{1}{10}x^{2}-\\frac{11}{25}x-\\frac{27}{250})e^{x}\\cos x$ $+(-\\frac{3}{10}x^{2}+\\frac{2}{25}x+\\frac{39}{250})e^{x}\\sin x$"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1170572560214",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>Solve the differential equation using either the method of undetermined coefficients or the variation of parameters.</p><p>$\\kydprime+2\\kyprime=e^{3x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}+c_{2}e^{-2x}+\\frac{1}{15}e^{3x}$"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1170572306989",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>Solve the differential equation using either the method of undetermined coefficients or the variation of parameters.</p><p>$\\kydprime+2\\kyprime-8\\kyfn=6e^{2x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{2x}+c_{2}e^{-4x}+xe^{2x}$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1170572088761",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "variation-of-parameters",
+   "prompt": "<p>Solve the differential equation using the method of variation of parameters.</p><p>$\\kydprime-9\\kyfn=8x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{3x}+c_{2}e^{-3x}-\\frac{8x}{9}$"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1170571600159",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "variation-of-parameters",
+   "prompt": "<p>Solve the differential equation using the method of variation of parameters.</p><p>$\\kydprime+4\\kyfn=3\\;\\csc 2x,\\;0\\lt x\\lt \\pi /2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}\\cos 2x+c_{2}\\sin 2x-\\frac{3}{2}x\\;\\cos 2x+\\frac{3}{4}\\;\\sin 2x\\;\\ln (\\sin 2x)$"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1170572605368",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-solution",
+   "prompt": "<p>Find the unique solution satisfying the differential equation and the initial conditions given, where $\\kyp(x)$ is the particular solution.</p><p>$\\kydprime-7\\kyprime=4xe^{7x},$ $\\kyp(x)=\\frac{2}{7}x^{2}e^{7x}-\\frac{4}{49}xe^{7x},$ $\\kyfn(0)=-1,\\; \\;\\kyprime(0)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-\\frac{347}{343}+\\frac{4}{343}e^{7x}+\\frac{2}{7}x^{2}e^{7x}-\\frac{4}{49}xe^{7x}$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1170572512708",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-solution",
+   "prompt": "<p>Find the unique solution satisfying the differential equation and the initial conditions given, where $\\kyp(x)$ is the particular solution.</p><p>$\\kydprime-5\\kyprime=e^{5x}+8e^{-5x},$ $\\kyp(x)=\\frac{1}{5}xe^{5x}+\\frac{4}{25}e^{-5x},$ $\\kyfn(0)=-2,\\; \\;\\kyprime(0)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-\\frac{57}{25}+\\frac{3}{25}e^{5x}+\\frac{1}{5}xe^{5x}+\\frac{4}{25}e^{-5x}$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1170571640571",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "variation-of-parameters",
+   "prompt": "<p>In each of the following problems, two linearly independent solutions—$\\kyone$ and $\\kytwo$—are given that satisfy the corresponding homogeneous equation. Use the method of variation of parameters to find a particular solution to the given nonhomogeneous equation. Assume <em>x</em> > 0 in each exercise.</p><p>$x^{2}\\kydprime-2\\kyfn=10x^{2}-1,$ $\\kyone(x)=x^{2},\\;\\kytwo(x)=x^{-1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyp=\\frac{1}{2}+\\frac{10}{3}x^{2}\\ln x$"
+   }
+  },
+  {
+   "id": "r118",
+   "source_id": "fs-id1170571337322",
+   "source_section": "17.4",
+   "source_number": "118",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "variation-of-parameters",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>The following system of algebraic equations has a unique solution:</p><p>$\\begin{array}{l}6z_{1}+3z_{2}=8 \\\\ 4z_{1}+2z_{2}=4.\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>False. The determinant of the coefficients is $\\begin{vmatrix}6&3\\\\4&2\\end{vmatrix}=6\\cdot 2-3\\cdot 4=0,$ so by Cramer’s rule the system has no unique solution. In fact it has none: dividing the first equation by $3$ gives $2z_{1}+z_{2}=\\frac{8}{3},$ while dividing the second by $2$ gives $2z_{1}+z_{2}=2.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r127",
+   "source_id": "fs-id1170571145615",
+   "source_section": "17.4",
+   "source_number": "127",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>For the following problems, find the general solution.</p><p>$\\kydprime-2\\kyprime+10\\kyfn=4x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{x}\\cos (3x)+c_{2}e^{x}\\sin (3x)+\\frac{2}{5}x+\\frac{2}{25}$"
+   }
+  },
+  {
+   "id": "r129",
+   "source_id": "fs-id1170571461823",
+   "source_section": "17.4",
+   "source_number": "129",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>For the following problems, find the general solution.</p><p>$\\kydprime+5\\kyprime+4\\kyfn=x+e^{2x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{-x}+c_{2}e^{-4x}+\\frac{x}{4}+\\frac{e^{2x}}{18}-\\frac{5}{16}$"
+   }
+  },
+  {
+   "id": "r131",
+   "source_id": "fs-id1170573549277",
+   "source_section": "17.4",
+   "source_number": "131",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "undetermined-coefficients",
+   "prompt": "<p>For the following problems, find the general solution.</p><p>$\\kydprime-x^{2}=-3\\kyprime-\\frac{9}{4}\\kyfn+3x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{(-3/2)x}+c_{2}xe^{(-3/2)x}+\\frac{4}{9}x^{2}+\\frac{4}{27}x-\\frac{16}{27}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "complementary-equation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "cramers-rule"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "method-of-variation-of-parameters"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e55",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e55",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e57",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e57",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e59",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e59",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e61",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e61",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e63",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e63",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e65",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e65",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e67",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e67",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e69",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e69",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e71",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e71",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e73",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e73",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e75",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e75",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e77",
+   "concept": "method-of-variation-of-parameters"
+  },
+  {
+   "exercise": "e77",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e79",
+   "concept": "method-of-variation-of-parameters"
+  },
+  {
+   "exercise": "e79",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e81",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e81",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e83",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e83",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e85",
+   "concept": "method-of-variation-of-parameters"
+  },
+  {
+   "exercise": "e85",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "r118",
+   "concept": "cramers-rule"
+  },
+  {
+   "exercise": "r118",
+   "concept": "determinant"
+  },
+  {
+   "exercise": "r127",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "r127",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "r129",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "r129",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "r131",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "r131",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  }
+ ],
+ "referents": []
+}

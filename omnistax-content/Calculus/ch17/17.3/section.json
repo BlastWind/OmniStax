@@ -1,0 +1,906 @@
+{
+ "id": "17.3",
+ "module": "m54044",
+ "chapter": "17",
+ "title": "Applications",
+ "short": "Applications",
+ "lead": "Second-order equations with constant coefficients describe a mass on a spring and the charge in an electric circuit. This section models <span data-concept=\"simple-harmonic-motion\">simple harmonic motion</span>, motion slowed by <span data-concept=\"damped-spring-mass-system\">damping</span>, motion driven by an <span data-concept=\"forced-vibrations\">external force</span> with its transient and steady-state parts, and the charge on the capacitor of an <span data-concept=\"rlc-series-circuit\">RLC series circuit</span>.",
+ "objectives": [
+  "Solve a second-order differential equation representing simple harmonic motion.",
+  "Solve a second-order differential equation representing damped simple harmonic motion.",
+  "Solve a second-order differential equation representing forced simple harmonic motion.",
+  "Solve a second-order differential equation representing charge and current in an RLC series circuit."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"differential-equation\">Second-order constant-coefficient differential equations</span> can be used to model <span data-concept=\"simple-harmonic-motion\">spring-mass systems</span>.</li><li>An examination of the forces on a <span data-concept=\"simple-harmonic-motion\">spring-mass system</span> results in a <span data-concept=\"differential-equation\">differential equation</span> of the form $$m\\kxdprime+b\\kxprime+k\\kxfn=\\kf(t),$$ where $m$ represents the mass, $b$ is the coefficient of the <span data-concept=\"damped-spring-mass-system\">damping force</span>, $k$ is the spring constant, and $\\kf(t)$ represents any net external forces on the system.</li><li>If $b=0,$ there is no <span data-concept=\"damped-spring-mass-system\">damping force</span> acting on the system, and <span data-concept=\"simple-harmonic-motion\">simple harmonic motion</span> results. If $b\\ne 0,$ the behavior of the system depends on whether $b^{2}-4mk\\gt 0,$ $b^{2}-4mk=0,$ or $b^{2}-4mk\\lt 0.$</li><li>If $b^{2}-4mk\\gt 0,$ the system is <span data-concept=\"overdamped-system\">overdamped</span> and does not exhibit oscillatory behavior.</li><li>If $b^{2}-4mk=0,$ the system is <span data-concept=\"critically-damped-system\">critically damped</span>. It does not exhibit oscillatory behavior, but any slight reduction in the <span data-concept=\"damped-spring-mass-system\">damping</span> would result in oscillatory behavior.</li><li>If $b^{2}-4mk\\lt 0,$ the system is <span data-concept=\"underdamped-system\">underdamped</span>. It exhibits oscillatory behavior, but the <span data-concept=\"amplitude\">amplitude</span> of the oscillations decreases over time.</li><li>If $\\kf(t)\\ne 0,$ the solution to the <span data-concept=\"differential-equation\">differential equation</span> is the sum of a <span data-concept=\"transient-solution\">transient solution</span> and a <span data-concept=\"steady-state-solution\">steady-state solution</span>. The <span data-concept=\"steady-state-solution\">steady-state solution</span> governs the long-term behavior of the system.</li><li>The charge on the capacitor in an <span data-concept=\"rlc-series-circuit\"><em>RLC</em> series circuit</span> can also be modeled with a <span data-concept=\"differential-equation\">second-order constant-coefficient differential equation</span> of the form $$L\\frac{d^{2}q}{dt^{2}}+R\\frac{dq}{dt}+\\frac{1}{C}\\kq=\\kE(t),$$ where <em>L</em> is the inductance, <em>R</em> is the resistance, <em>C</em> is the capacitance, and $\\kE(t)$ is the voltage source.</li></ul>",
+ "notes": "Four media links are left out: a simulation of forced vibrations, two on the collapse of the Tacoma Narrows Bridge and a video on a singer shattering a glass.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s, except review exercise 139, which the key leaves unanswered and whose approach is AI-marked. The even-numbered exercises have no answer in the key and are computational, so they are left out: 86–92 even (equations of motion of undamped and damped systems), 94 and 96 (damped systems), 98 (a forced system) and 100 and 102 (circuits). Review exercises 137, 139 and 141, printed at the end of Section 17.4, are set here.",
+ "figures": [
+  {
+   "id": "sim-spring-mass",
+   "kind": "sim",
+   "number": "17.2",
+   "folds": [
+    "17.3",
+    "17.4"
+   ],
+   "originals": [
+    "/media/ch17/CNX_Calc_Figure_17_03_001.jpg",
+    "/media/ch17/CNX_Calc_Figure_17_03_002.jpg",
+    "/media/ch17/CNX_Calc_Figure_17_03_015.jpg"
+   ],
+   "original_caption": "(Figure 17.2) A spring in its natural position (a), at equilibrium with a mass m attached (b), and in oscillatory motion (c). (Figure 17.3) A graph of vertical displacement versus time for simple harmonic motion. (Figure 17.4) A graph of vertical displacement versus time for simple harmonic motion with a phase change.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-dashpot",
+   "kind": "photo",
+   "number": "17.5",
+   "draws": []
+  },
+  {
+   "id": "sim-damping",
+   "kind": "sim",
+   "number": "17.6",
+   "folds": [
+    "17.7",
+    "17.8"
+   ],
+   "originals": [
+    "/media/ch17/CNX_Calc_Figure_17_03_003.jpg",
+    "/media/ch17/CNX_Calc_Figure_17_03_004.jpg",
+    "/media/ch17/CNX_Calc_Figure_17_03_005.jpg"
+   ],
+   "original_caption": "(Figure 17.6) Behavior of an overdamped spring-mass system, with no change in direction (a) and only one change in direction (b). (Figure 17.7) Behavior of a critically damped spring-mass system. The system graphed in part (a) has more damping than the system graphed in part (b). (Figure 17.8) Behavior of an underdamped spring-mass system.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-shock-absorber",
+   "kind": "photo",
+   "number": "17.9",
+   "draws": []
+  },
+  {
+   "id": "sim-motorcycle",
+   "kind": "sim",
+   "number": "17.10",
+   "folds": [
+    "17.11"
+   ],
+   "originals": [
+    "/media/ch17/CNX_Calc_Figure_17_03_014.jpg",
+    "/media/ch17/CNX_Calc_Figure_17_03_012.jpg"
+   ],
+   "original_caption": "(Figure 17.10) We can use a spring-mass system to model a motorcycle suspension. (Figure 17.11) Graph of the equation of motion over a time of one second.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-lander",
+   "kind": "photo",
+   "number": "17.12",
+   "draws": []
+  },
+  {
+   "id": "sim-rlc",
+   "kind": "sim",
+   "number": "17.13",
+   "originals": [
+    "/media/ch17/CNX_Calc_Figure_17_03_010.jpg"
+   ],
+   "original_caption": "An RLC series circuit can be modeled by the same differential equation as a mass-spring system.",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-forced",
+   "kind": "sim",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "applications-intro",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "simple-harmonic-motion",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "shm-term",
+   "concept": "simple-harmonic-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "shm-term",
+   "concept": "period",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-spring-mass",
+   "concept": "simple-harmonic-motion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170573278589",
+   "concept": "simple-harmonic-motion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170573278589",
+   "concept": "solution-for-complex-conjugate-roots",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573570772",
+   "concept": "amplitude-and-phase-shift-form",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170573570772",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "simple-harmonic-motion",
+   "concept": "trigonometric-identity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573762487",
+   "concept": "amplitude-and-phase-shift-form",
+   "verb": "reinforces"
+  },
+  {
+   "span": "damping-term",
+   "concept": "damped-spring-mass-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "damped-vibrations",
+   "concept": "characteristic-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "damped-vibrations",
+   "concept": "quadratic-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "overdamped-term",
+   "concept": "overdamped-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "overdamped-term",
+   "concept": "solution-for-distinct-real-roots",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-damping",
+   "concept": "overdamped-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-damping",
+   "concept": "critically-damped-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-damping",
+   "concept": "underdamped-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170573412417",
+   "concept": "overdamped-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "critical-term",
+   "concept": "critically-damped-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-term",
+   "concept": "solution-for-a-repeated-real-root",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571412744",
+   "concept": "critically-damped-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "underdamped-term",
+   "concept": "underdamped-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "underdamped-term",
+   "concept": "solution-for-complex-conjugate-roots",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571078755",
+   "concept": "underdamped-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571139655",
+   "concept": "overdamped-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-motorcycle",
+   "concept": "damped-spring-mass-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571273678",
+   "concept": "damped-spring-mass-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "forced-vibrations",
+   "concept": "forced-vibrations",
+   "verb": "introduces"
+  },
+  {
+   "span": "forced-vibrations",
+   "concept": "nonhomogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "transient-term",
+   "concept": "transient-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "transient-term",
+   "concept": "steady-state-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "transient-term",
+   "concept": "complementary-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "transient-term",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571136987",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571136987",
+   "concept": "steady-state-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-forced",
+   "concept": "transient-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571048093",
+   "concept": "resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "rlc",
+   "concept": "rlc-series-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "rlc",
+   "concept": "kirchhoffs-loop-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rlc",
+   "concept": "rlc-series-circuit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170570974718",
+   "concept": "rlc-series-circuit",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170573236596",
+   "source_number": "Checkpoint 17.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573278589"
+   },
+   "cite": "simple-harmonic-motion",
+   "prompt": "A 200-g mass stretches a spring 5 cm. Find the equation of motion of the mass if it is released from rest from a position 10 cm below the equilibrium position. What is the frequency of this motion?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxfn(t)=0.1\\;\\cos (14t)$ (in meters); frequency is $\\frac{14}{2\\pi}$ Hz.",
+    "hint": "First find the spring constant."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170573581536",
+   "source_number": "Checkpoint 17.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573762487"
+   },
+   "cite": "simple-harmonic-motion",
+   "prompt": "Express the function $\\kxfn(t)=\\cos (4t)+4\\;\\sin (4t)$ in the form $A\\;\\sin (\\omega t+\\varphi ).$ What is the frequency of motion? The amplitude?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxfn(t)=\\sqrt{17}\\sin (4t+0.245),$ $\\text{frequency}=\\frac{4}{2\\pi}\\approx 0.637,$ $A=\\sqrt{17}$",
+    "hint": "Use the process from the previous example."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170573391017",
+   "source_number": "Checkpoint 17.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573412417"
+   },
+   "cite": "damped-vibrations",
+   "prompt": "A 2-kg mass is attached to a spring with spring constant 24 N/m. The system is then immersed in a medium imparting a damping force equal to 16 times the instantaneous velocity of the mass. Find the equation of motion if it is released from rest at a point 40 cm below equilibrium.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxfn(t)=0.6e^{-2t}-0.2e^{-6t}$",
+    "hint": "Follow the process from the previous example."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170573420229",
+   "source_number": "Checkpoint 17.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571412744"
+   },
+   "cite": "damped-vibrations",
+   "prompt": "A 1-lb weight stretches a spring 6 in., and the system is attached to a dashpot that imparts a damping force equal to half the instantaneous velocity of the mass. Find the equation of motion if the mass is released from rest at a point 6 in. below equilibrium.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxfn(t)=\\frac{1}{2}e^{-8t}+4te^{-8t}$",
+    "hint": "First find the spring constant."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170571483448",
+   "source_number": "Checkpoint 17.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571078755"
+   },
+   "cite": "damped-vibrations",
+   "prompt": "A 1-kg mass stretches a spring 49 cm. The system is immersed in a medium that imparts a damping force equal to four times the instantaneous velocity of the mass. Find the equation of motion if the mass is released from rest at a point 24 cm above equilibrium.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxfn(t)=-0.24e^{-2t}\\cos (4t)-0.12e^{-2t}\\sin (4t)$",
+    "hint": "First find the spring constant."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1170571509354",
+   "source_number": "Checkpoint 17.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571136987"
+   },
+   "cite": "forced-vibrations",
+   "prompt": "A mass of 2 kg is attached to a spring with constant 32 N/m and comes to rest in the equilibrium position. Beginning at time $t=0,$ an external force equal to$\\kf(t)=68e^{-2t}\\cos (4t)$ is applied to the system. Find the equation of motion if there is no damping. What is the transient solution? What is the steady-state solution?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxfn(t)=-\\frac{1}{2}\\;\\cos (4t)+\\frac{9}{4}\\;\\sin (4t)+\\frac{1}{2}e^{-2t}\\cos (4t)-2e^{-2t}\\sin (4t)$ $\\text{Transient solution:}\\;\\frac{1}{2}e^{-2t}\\cos (4t)-2e^{-2t}\\sin (4t)$ $\\text{Steady-state solution:}\\;-\\frac{1}{2}\\;\\cos (4t)+\\frac{9}{4}\\;\\sin (4t)$",
+    "hint": "Find the particular solution <em>before</em> applying the initial conditions."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1170570998340",
+   "source_number": "Checkpoint 17.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170570974718"
+   },
+   "cite": "rlc",
+   "prompt": "Find the charge on the capacitor in an <em>RLC</em> series circuit where $L=1/5$ H, $R=2/5\\text{Ω},$ $C=1/2$ F, and $\\kE(t)=50$ V. Assume the initial charge on the capacitor is 0 C and the initial current is 4 A.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kq(t)=-25e^{-t}\\cos (3t)-7e^{-t}\\sin (3t)+25$",
+    "hint": "Remember, $E_{L}=L((dI)/(dt)).$"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1170571412194",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "simple-harmonic-motion",
+   "prompt": "<p>A mass weighing 2 lb stretches a spring 2 ft. Find the equation of motion if the spring is released from 2 in. below the equilibrium position with an upward velocity of 8 ft/sec. What is the period and frequency of the motion?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxdprime+16\\kxfn=0,$ $\\kxfn(t)=\\frac{1}{6}\\;\\cos (4t)-2\\;\\sin (4t)\\text{,}$ period $=\\frac{\\pi}{2}\\;\\sec ,$ frequency $=\\frac{2}{\\pi}\\;\\text{Hz}$"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1170571098284",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "simple-harmonic-motion",
+   "prompt": "<p>A 400-g mass stretches a spring 5 cm. Find the equation of motion of the mass if it is released from rest from a position 15 cm below the equilibrium position. What is the frequency of this motion?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxdprime+196\\kxfn=0,$ $\\kxfn(t)=0.15\\;\\cos (14t)\\text{,}$ period $=\\frac{\\pi}{7}\\;\\sec ,$ frequency $=\\frac{7}{\\pi}\\;\\text{Hz}$"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1170571369053",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "simple-harmonic-motion",
+   "prompt": "<p>A block has a mass of 5 kg and is attached to a vertical spring with a spring constant of 20 N/m. The block is released from the equilibrium position with a downward velocity of 10 m/sec.</p><p>a. Find the position function $\\kxfn(t)$ of the block.</p><p>b. Find the period and frequency of the vibration.</p><p>c. Sketch a graph of $\\kxfn(t).$</p><p>d. At what time does the block first pass through the equilibrium position?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\kxfn(t)=5\\;\\sin (2t)$</p>\n<p>b. period $=\\pi \\;\\sec ,$ frequency $=\\frac{1}{\\pi}\\;\\text{Hz}$</p>\n<p>c.</p>\n<img src=\"/media/ch17/CNX_Calc_Figure_17_03_202.jpg\" alt=\"This figure is the graph of a function. It is a periodic function with consistent amplitude. The horizontal axis is labeled in increments of 1. The vertical axis is labeled in increments of 1.5.\">\n<p>d. $t=\\frac{\\pi}{2}\\;\\sec$</p>"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1170573739195",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "damped-vibrations",
+   "prompt": "<p>An 800-lb weight (25 slugs) is attached to a vertical spring with a spring constant of 226 lb/ft. The system is immersed in a medium that imparts a damping force equal to 10 times the instantaneous velocity of the mass.</p><p>a. Find the equation of motion if it is released from a position 20 ft below its equilibrium position with a downward velocity of 41 ft/sec.</p><p>b. Graph the solution and determine whether the motion is overdamped, critically damped, or underdamped.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kxfn(t)=e^{-t/5}(20\\;\\cos (3t)+15\\;\\sin (3t))$ b. underdamped"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1170571021686",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "damped-vibrations",
+   "prompt": "<p>A 1-kg mass stretches a spring 61.25 cm. The resistance in the spring-mass system is equal to eight times the instantaneous velocity of the mass.</p><p>a. Find the equation of motion if the mass is released from a position 5 m below its equilibrium position with an upward velocity of 10 m/sec.</p><p>b. Determine whether the motion is overdamped, critically damped, or underdamped.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kxfn(t)=e^{-4t}(-5\\cos11.866t-0.834\\sin11.866t)$<sup class=\"fn\" data-note=\"c-e95-key\"></sup> b. underdamped"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1170571227151",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "damped-vibrations",
+   "prompt": "<p>A 64-lb weight is attached to a vertical spring with a spring constant of 4.625 lb/ft. The resistance in the spring-mass system is equal to the instantaneous velocity. The weight is set in motion from a position 1 ft below its equilibrium position with an upward velocity of 2 ft/sec. Is the mass above or below the equilibrium position at the end of $\\pi$ sec? By what distance?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxfn(\\pi )=\\frac{7e^{-\\pi /4}}{6}$ ft below"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1170571027428",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forced-vibrations",
+   "prompt": "<p>A mass that weighs 6 lb stretches a spring 3 in. The system is acted on by an external force of $8\\;\\sin (4t)$ lb. If the mass is pulled down 1 inch and then released, determine the position of the mass at any time.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxfn(t)=\\frac{1}{2}\\;\\cos (8\\sqrt{2}t)-\\frac{4\\sqrt{2}}{21}\\sin (8\\sqrt{2}t)+\\frac{8}{21}\\sin (8\\sqrt{2}t)$<sup class=\"fn\" data-note=\"c-e99-key\"></sup>"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1170573535625",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rlc",
+   "prompt": "<p>Find the charge on the capacitor in an <em>RLC</em> series circuit where $L=2$ H, $R=24\\text{Ω},$ $C=0.005$ F, and $\\kE(t)=12\\;\\sin 10t$ V. Assume the initial charge on the capacitor is 0.001 C and the initial current is 0 A.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kq(t)=e^{-6t}(0.051\\;\\cos (8t)+0.03825\\;\\sin (8t))-\\frac{1}{20}\\;\\cos (10t)$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1170571146379",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rlc",
+   "prompt": "<p>A series circuit consists of a device where $L=\\frac{1}{2}$ H, $R=10\\text{Ω},$ $C=\\frac{1}{50}$ F, and $\\kE(t)=250$ V. If the initial charge on the capacitor is 0 C and the initial current is 18 A, find the charge and current at time <em>t</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kq(t)=e^{-10t}(-32t-5)+5,\\; \\;\\kI(t)=2e^{-10t}(160t+9)$"
+   }
+  },
+  {
+   "id": "r137",
+   "source_id": "fs-id1170571160625",
+   "source_section": "17.4",
+   "source_number": "137",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "simple-harmonic-motion",
+   "prompt": "<p>The motion of a swinging pendulum for small angles $\\theta$ can be approximated by $\\frac{d^{2}\\theta}{dt^{2}}+\\frac{g}{L}\\theta =0,$ where $\\theta$ is the angle the pendulum makes with respect to a vertical line, <em>g</em> is the acceleration resulting from gravity, and <em>L</em> is the length of the pendulum. Find the equation describing the angle of the pendulum at time $t,$ assuming an initial displacement of ${\\theta}_{0}$ and an initial velocity of zero.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\theta (t)={\\theta}_{0}\\cos (\\sqrt{\\frac{g}{l}}L)$<sup class=\"fn\" data-note=\"c-r137-key\"></sup>"
+   }
+  },
+  {
+   "id": "r139",
+   "source_id": "fs-id1170571287905",
+   "source_section": "17.4",
+   "source_number": "139",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forced-vibrations",
+   "prompt": "<p>The following problems consider the “beats” that occur when the forcing term of a differential equation causes “slow” and “fast” amplitudes. Consider the general differential equation$ay^{\\prime\\prime}+by=\\cos (\\omega t)$ that governs undamped motion. Assume that $\\sqrt{\\frac{b}{a}}\\ne \\omega \\text{.}$</p><p>Assuming the system starts from rest, show that the particular solution can be written as $y=\\frac{2}{a({\\omega}_{0}{}^{2}-{\\omega}^{2})}\\;\\sin (\\frac{{\\omega}_{0}-\\omega t}{2})\\;\\sin (\\frac{{\\omega}_{0}+\\omega t}{2}).$<sup class=\"fn\" data-note=\"c-r139-beats\"></sup></p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Write $\\omega_{0}^{2}=\\frac{b}{a},$ so the equation is $y^{\\prime\\prime}+\\omega_{0}^{2}y=\\frac{1}{a}\\cos (\\omega t).$ Since $\\omega\\ne\\omega_{0},$ the guess $y_{p}=A\\cos (\\omega t)$ gives $(\\omega_{0}^{2}-\\omega^{2})A=\\frac{1}{a},$ so $A=\\frac{1}{a(\\omega_{0}^{2}-\\omega^{2})}$ and $y=c_{1}\\cos (\\omega_{0}t)+c_{2}\\sin (\\omega_{0}t)+A\\cos (\\omega t).$ Starting from rest, $y(0)=0$ gives $c_{1}=-A$ and $y^{\\prime}(0)=\\omega_{0}c_{2}=0$ gives $c_{2}=0,$ so $y=A(\\cos (\\omega t)-\\cos (\\omega_{0}t)).$ The identity $\\cos \\alpha-\\cos \\beta=2\\sin (\\frac{\\beta-\\alpha}{2})\\sin (\\frac{\\beta+\\alpha}{2})$ with $\\alpha=\\omega t$ and $\\beta=\\omega_{0}t$ turns this into</p>$$y=\\frac{2}{a(\\omega_{0}^{2}-\\omega^{2})}\\sin (\\frac{(\\omega_{0}-\\omega)t}{2})\\sin (\\frac{(\\omega_{0}+\\omega)t}{2}),$$<p>a slow sine of frequency $\\frac{\\omega_{0}-\\omega}{2}$ times a fast one of frequency $\\frac{\\omega_{0}+\\omega}{2}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r141",
+   "source_id": "fs-id1170571080168",
+   "source_section": "17.4",
+   "source_number": "141",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "forced-vibrations",
+   "prompt": "<p>An opera singer is attempting to shatter a glass by singing a particular note. The vibrations of the glass can be modeled by $y^{\\prime\\prime}+ay=0,$ where $a\\gt 0$ represents the natural frequency of the glass and the singer is forcing the vibrations at $\\cos (bt\\text{).}$ For what value $b$ would the singer be able to break that glass? (<em>Note</em>: in order for the glass to break, the oscillations would need to get higher and higher.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$b=\\sqrt{a}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "amplitude-and-phase-shift-form"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "damped-spring-mass-system"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "overdamped-system"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "damped-spring-mass-system"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "critically-damped-system"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "damped-spring-mass-system"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "underdamped-system"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "forced-vibrations"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "transient-solution"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "steady-state-solution"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "rlc-series-circuit"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e87",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "e87",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "e89",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "e89",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "e91",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "e93",
+   "concept": "damped-spring-mass-system"
+  },
+  {
+   "exercise": "e93",
+   "concept": "underdamped-system"
+  },
+  {
+   "exercise": "e95",
+   "concept": "damped-spring-mass-system"
+  },
+  {
+   "exercise": "e95",
+   "concept": "critically-damped-system"
+  },
+  {
+   "exercise": "e95",
+   "concept": "underdamped-system"
+  },
+  {
+   "exercise": "e97",
+   "concept": "damped-spring-mass-system"
+  },
+  {
+   "exercise": "e97",
+   "concept": "underdamped-system"
+  },
+  {
+   "exercise": "e99",
+   "concept": "forced-vibrations"
+  },
+  {
+   "exercise": "e99",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e101",
+   "concept": "rlc-series-circuit"
+  },
+  {
+   "exercise": "e101",
+   "concept": "forced-vibrations"
+  },
+  {
+   "exercise": "e103",
+   "concept": "rlc-series-circuit"
+  },
+  {
+   "exercise": "e103",
+   "concept": "critically-damped-system"
+  },
+  {
+   "exercise": "r137",
+   "concept": "simple-harmonic-motion"
+  },
+  {
+   "exercise": "r139",
+   "concept": "forced-vibrations"
+  },
+  {
+   "exercise": "r139",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "r139",
+   "concept": "trigonometric-identity"
+  },
+  {
+   "exercise": "r141",
+   "concept": "resonance"
+  },
+  {
+   "exercise": "r141",
+   "concept": "forced-vibrations"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-phase-quadrant",
+   "kind": "correction",
+   "html": "With $c_{1}=A\\sin \\varphi=3\\gt 0$ and $c_{2}=A\\cos \\varphi=-2\\lt 0,$ the angle $\\varphi$ is in the second quadrant: $\\varphi=\\pi-0.983\\approx 2.159$ rad, and $\\kxfn(t)=\\sqrt{13}\\sin (2t+2.159).$ The printed $\\sqrt{13}\\sin (2t-0.983)=2\\sin (2t)-3\\cos (2t)$ is $-\\kxfn(t).$"
+  },
+  {
+   "id": "c-rlc-figure",
+   "kind": "correction",
+   "html": "Here and in the next paragraph the book cites Figure 17.10, the motorcycle suspension; the circuit is <a href=\"#sim-rlc\">Figure 17.13</a>."
+  },
+  {
+   "id": "c-e95-key",
+   "kind": "correction",
+   "html": "A stretch of $61.25$ cm gives $k=\\frac{1(9.8)}{0.6125}=16,$ so $\\kxdprime+8\\kxprime+16\\kxfn=0$ has the repeated root $\\lambda=-4$ and the system is critically damped, with $\\kxfn(t)=(5+10t)e^{-4t}$ for $\\kxfn(0)=5,$ $\\kxprime(0)=-10.$ The printed answer is that of a $6.25$-cm stretch $(k=156.8),$ and its $-5$ puts the mass above equilibrium at $t=0.$"
+  },
+  {
+   "id": "c-e99-key",
+   "kind": "correction",
+   "html": "With $k=24,$ $m=\\frac{3}{16}$ and the mass pulled down $1$ in. $=\\frac{1}{12}$ ft, the equation $\\kxdprime+128\\kxfn=\\frac{128}{3}\\sin (4t)$ gives $\\kxfn(t)=\\frac{1}{12}\\cos (8\\sqrt{2}t)-\\frac{2\\sqrt{2}}{21}\\sin (8\\sqrt{2}t)+\\frac{8}{21}\\sin (4t);$ the printed answer starts at $\\frac{1}{2}$ ft and gives the forced term the system’s own frequency $8\\sqrt{2}.$"
+  },
+  {
+   "id": "c-r137-key",
+   "kind": "correction",
+   "html": "The argument of the cosine is $\\sqrt{\\frac{g}{L}}\\,t:$ $\\theta (t)=\\theta_{0}\\cos (\\sqrt{\\frac{g}{L}}\\,t).$"
+  },
+  {
+   "id": "c-r139-beats",
+   "kind": "correction",
+   "html": "The arguments are $\\frac{(\\omega_{0}-\\omega)t}{2}$ and $\\frac{(\\omega_{0}+\\omega)t}{2}$: $y=\\frac{2}{a(\\omega_{0}^{2}-\\omega^{2})}\\sin (\\frac{(\\omega_{0}-\\omega)t}{2})\\sin (\\frac{(\\omega_{0}+\\omega)t}{2}).$"
+  }
+ ]
+}

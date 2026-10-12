@@ -1,0 +1,102 @@
+<p id="series-intro">In <a href="/calculus/ch10/intro/">Introduction to Power Series</a>, we studied how functions can be represented as <span data-concept="power-series">power series</span>, $\kyfn(x)=\sum_{n=0}^{\infty}a_{n}x^{n}.$ We also saw that we can find series representations of the derivatives of such functions by differentiating the <span data-concept="power-series">power series</span> <span data-concept="term-by-term-differentiation-and-integration">term by term</span>. This gives $\kyprime(x)=\sum_{n=1}^{\infty} n a_{n}x^{n-1}$ and $\kydprime(x)=\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}.$ In some cases, these <span data-concept="power-series">power series representations</span> can be used to find solutions to <span data-concept="differential-equation">differential equations</span>.</p>
+<p>Be aware that this subject is given only a very brief treatment in this text. Most introductory <span data-concept="differential-equation">differential equations</span> textbooks include an entire chapter on <span data-concept="power-series-solution-of-a-differential-equation">power series solutions</span>. This text has only a single section on the topic, so several important issues are not addressed here, particularly issues related to existence of solutions. The examples and exercises in this section were chosen for which <span data-concept="power-series-solution-of-a-differential-equation">power solutions</span> exist. However, it is not always the case that <span data-concept="power-series-solution-of-a-differential-equation">power solutions</span> exist. Those of you interested in a more rigorous treatment of this topic should consult a <span data-concept="differential-equation">differential equations</span> text.</p>
+
+<section id="power-series-solutions">
+<h2>Power Series Solutions</h2>
+<div class="note" id="fs-id1170571376919">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Finding Power Series Solutions to Differential Equations</h3>
+<ol><li>Assume the <span data-concept="differential-equation">differential equation</span> has a solution of the form $\kyfn(x)=\sum_{n=0}^{\infty}a_{n}x^{n}.$</li><li>Differentiate the <span data-concept="power-series">power series</span> <span data-concept="term-by-term-differentiation-and-integration">term by term</span> to get $\kyprime(x)=\sum_{n=1}^{\infty} n a_{n}x^{n-1}$ and $\kydprime(x)=\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}.$</li><li>Substitute the <span data-concept="power-series">power series</span> expressions into the <span data-concept="differential-equation">differential equation</span>.</li><li>Re-index sums as necessary to combine terms and simplify the expression.</li><li>Equate coefficients of like powers of $x$ to determine values for the coefficients $a_{n}$ in the <span data-concept="power-series">power series</span>.</li><li>Substitute the coefficients back into the <span data-concept="power-series">power series</span> and write the solution.</li></ol>
+</div>
+<div class="example" id="fs-id1170571157050">
+<h3>Example 17.25 · Series Solutions to Differential Equations</h3>
+<p>Find a <span data-concept="power-series-solution-of-a-differential-equation">power series solution</span> for the following <span data-concept="differential-equation">differential equations</span>.</p>
+<p>a. $\kydprime-\kyfn=0$</p>
+<p>b. $(x^{2}-1)\kydprime+6x\kyprime+4\kyfn=-4$</p>
+<h4>Solution</h4>
+<p>a. Assume $\kyfn(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$ (step 1). Then, $\kyprime(x)=\sum_{n=1}^{\infty} n a_{n}x^{n-1}$ and $\kydprime(x)=\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}$ (step 2). We want to find values for the coefficients $a_{n}$ such that</p>
+$$\begin{array}{rll}\kydprime-\kyfn & = & 0 \\ \sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}-\sum_{n=0}^{\infty}a_{n}x^{n} & = & 0\;\text{(step 3).}\end{array}$$
+<p>We want the indices on our sums to match so that we can express them using a single summation. That is, we want to rewrite the first summation so that it starts with $n=0.$</p>
+<p>To re-index the first term, replace <em>n</em> with $n+2$ inside the sum, and change the lower summation limit to $n=0.$ We get</p>
+$$\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}=\sum_{n=0}^{\infty} (n+2) (n+1)a_{n+2}x^{n}.$$
+<p>This gives</p>
+$$\begin{array}{rll}\sum_{n=0}^{\infty} (n+2) (n+1)a_{n+2}x^{n}-\sum_{n=0}^{\infty}a_{n}x^{n} & = & 0 \\ \sum_{n=0}^{\infty}[(n+2)(n+1)a_{n+2}-a_{n}]x^{n} & = & 0\;\text{(step 4).}\end{array}$$
+<p>Because <span data-concept="uniqueness-of-power-series">power series expansions</span> of functions are unique, this equation can be true only if the coefficients of each power of <em>x</em> are zero. So we have</p>
+$$(n+2)(n+1)a_{n+2}-a_{n}=0\;\text{for}\;n=0,1,2\text{,….}$$
+<p>This <span data-concept="recurrence-relation">recurrence relationship</span> allows us to express each coefficient $a_{n}$ in terms of the coefficient two terms earlier. This yields one expression for even values of <em>n</em> and another expression for odd values of <em>n</em>. Looking first at the equations involving even values of <em>n</em>, we see that</p>
+$$\begin{array}{rll}a_{2} & = & \frac{a_{0}}{2} \\ a_{4} & = & \frac{a_{2}}{4⋅3}=\frac{a_{0}}{4!} \\ a_{6} & = & \frac{a_{4}}{6⋅5}=\frac{a_{0}}{6!} \\ & \text{⋮.} & \end{array}$$
+<p>Thus, in general, when <em>n</em> is even, $a_{n}=\frac{a_{0}}{n!}$ (step 5).</p>
+<p>For the equations involving odd values of <em>n</em>, we see that</p>
+$$\begin{array}{rll}a_{3} & = & \frac{a_{1}}{3⋅2}=\frac{a_{1}}{3!} \\ a_{5} & = & \frac{a_{3}}{5⋅4}=\frac{a_{1}}{5!} \\ a_{7} & = & \frac{a_{5}}{7⋅6}=\frac{a_{1}}{7!} \\ & \text{⋮.} & \end{array}$$
+<p>Therefore, in general, when <em>n</em> is odd, $a_{n}=\frac{a_{1}}{n!}$ (step 5 continued).</p>
+<p>Putting this together, we have</p>
+$$\begin{array}{rl}\kyfn(x) & =\sum_{n=0}^{\infty} a_{n} x^{n} \\ & =a_{0}+a_{1}x+\frac{a_{0}}{2}x^{2}+\frac{a_{1}}{3!}x^{3}+\frac{a_{0}}{4!}x^{4}+\frac{a_{1}}{5!}x^{5}+\text{\cdots .}\end{array}$$
+<p>Re-indexing the sums to account for the even and odd values of <em>n</em> separately, we obtain</p>
+$$\kyfn(x)=a_{0}\sum_{k=0}^{\infty}\frac{1}{(2k)!}x^{2k}+a_{1}\sum_{k=0}^{\infty}\frac{1}{(2k+1)!}x^{2k+1}\;\text{(step 6).}$$
+<p><strong>Analysis for part a.</strong></p>
+<p>As expected for a second-order <span data-concept="differential-equation">differential equation</span>, this solution depends on two arbitrary constants. However, note that our <span data-concept="differential-equation">differential equation</span> is a <span data-concept="second-order-equation-with-constant-coefficients">constant-coefficient differential equation</span>, yet the <span data-concept="power-series-solution-of-a-differential-equation">power series solution</span> does not appear to have the familiar form (containing <span data-concept="exponential-function">exponential functions</span>) that we are used to seeing. Furthermore, since $\kyfn(x)=c_{1}e^{x}+c_{2}e^{-x}$ is the <span data-concept="general-solution">general solution</span> to this equation, we must be able to write any solution in this form, and it is not clear whether the <span data-concept="power-series-solution-of-a-differential-equation">power series solution</span> we just found can, in fact, be written in that form.</p>
+<p>Fortunately, after writing the <span data-concept="power-series">power series representations</span> of $e^{x}$ and $e^{-x},$ and doing some algebra, we find that if we choose</p>
+$$c_{0}=\frac{(a_{0}+a_{1})}{2}, c_{1}=\frac{(a_{0}-a_{1})}{2},$$
+<p>we then have $a_{0}=c_{0}+c_{1}$ and$a_{1}=c_{0}-c_{1},$ and</p>
+$$\begin{array}{rl}\kyfn(x) & =a_{0}+a_{1}x+\frac{a_{0}}{2}x^{2}+\frac{a_{1}}{3!}x^{3}+\frac{a_{0}}{4!}x^{4}+\frac{a_{1}}{5!}x^{5}+\cdots  \\ & =(c_{0}+c_{1})+(c_{0}-c_{1})x+\frac{(c_{0}+c_{1})}{2}x^{2}+\frac{(c_{0}-c_{1})}{3!}x^{3}+\frac{(c_{0}+c_{1})}{4!}x^{4}+\frac{(c_{0}-c_{1})}{5!}x^{5}+\cdots  \\ & =c_{0}\sum_{n=0}^{\infty} \frac{x^{n}}{n!} +c_{1}\sum_{n=0}^{\infty} \frac{{(-x)}^{n}}{n!} \\ & =c_{0}e^{x}+c_{1}e^{-x}.\end{array}$$
+<p>So we have, in fact, found the same <span data-concept="general-solution">general solution</span>. Note that this choice of $c_{1}$ and $c_{2}$ is not obvious.<sup class="fn" data-note="c-c0-c1"></sup> This is a case when we know what the answer should be, and have essentially “reverse-engineered” our choice of coefficients.</p>
+<p>b. Assume $\kyfn(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$ (step 1). Then, $\kyprime(x)=\sum_{n=1}^{\infty} n a_{n}x^{n-1}$ and $\kydprime(x)=\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}$ (step 2). We want to find values for the coefficients $a_{n}$ such that</p>
+$$\begin{array}{rll} \\ \\ (x^{2}-1)\kydprime+6x\kyprime+4\kyfn & = & -4 \\ (x^{2}-1)\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}+6x\sum_{n=1}^{\infty} n a_{n}x^{n-1}+4\sum_{n=0}^{\infty} a_{n} x^{n} & = & -4 \\ x^{2}\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}-\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}+6x\sum_{n=1}^{\infty} n a_{n}x^{n-1}+4\sum_{n=0}^{\infty} a_{n} x^{n} & = & -4.\end{array}$$
+<p>Taking the external factors inside the summations, we get</p>
+$$\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n}-\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}+\sum_{n=1}^{\infty} 6n a_{n}x^{n}+\sum_{n=0}^{\infty} 4a_{n} x^{n}=-4\;\text{(step 3).}$$
+<p>Now, in the first summation, we see that when $n=0$ or $n=1,$ the term evaluates to zero, so we can add these terms back into our sum to get</p>
+$$\sum_{n=2}^{\infty}n(n-1)a_{n}x^{n}=\sum_{n=0}^{\infty}n(n-1)a_{n}x^{n}.$$
+<p>Similarly, in the third term, we see that when $n=0,$ the expression evaluates to zero, so we can add that term back in as well. We have</p>
+$$\sum_{n=1}^{\infty} 6 na_{n}x^{n}=\sum_{n=0}^{\infty} 6 na_{n}x^{n}.$$
+<p>Then, we need only shift the indices in our second term. We get</p>
+$$\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}=\sum_{n=0}^{\infty} (n+2) (n+1)a_{n+2}x^{n}.$$
+<p>Thus, we have</p>
+$$\begin{array}{rll}\sum_{n=0}^{\infty} n (n-1)a_{n}x^{n}-\sum_{n=0}^{\infty} (n+2) (n+1)a_{n+2}x^{n}+\sum_{n=0}^{\infty} 6n a_{n}x^{n}+\sum_{n=0}^{\infty} 4a_{n} x^{n} & = & -4\;\text{(step 4).} \\ \sum_{n=0}^{\infty}[n(n-1)a_{n}-(n+2)(n+1)a_{n+2}+6na_{n}+4a_{n}]x^{n} & = & -4 \\ \sum_{n=0}^{\infty}[(n^{2}-n)a_{n}+6na_{n}+4a_{n}-(n+2)(n+1)a_{n+2}]x^{n} & = & -4 \\ \sum_{n=0}^{\infty}[n^{2}a_{n}+5na_{n}+4a_{n}-(n+2)(n+1)a_{n+2}]x^{n} & = & -4 \\ \sum_{n=0}^{\infty}[(n^{2}+5n+4)a_{n}-(n+2)(n+1)a_{n+2}]x^{n} & = & -4 \\ \sum_{n=0}^{\infty}[(n+4)(n+1)a_{n}-(n+2)(n+1)a_{n+2}]x^{n} & = & -4\end{array}$$
+<p>Looking at the coefficients of each power of <em>x</em>, we see that the constant term must be equal to $-4,$ and the coefficients of all other powers of <em>x</em> must be zero. Then, looking first at the constant term,</p>
+$$\begin{array}{rll}4a_{0}-2a_{2} & = & -4 \\ a_{2} & = & 2a_{0}+2\;\text{(step 3).}\end{array}$$<sup class="fn" data-note="c-step-5"></sup>
+<p>For $n\ge 1,$ we have</p>
+$$\begin{array}{rll}(n+4)(n+1)a_{n}-(n+2)(n+1)a_{n+2} & = & 0 \\ (n+1)[(n+4)a_{n}-(n+2)a_{n+2}] & = & 0.\end{array}$$
+<p>Since $n\ge 1,$ $n+1\ne 0,$ we see that</p>
+$$(n+4)a_{n}-(n+2)a_{n+2}=0$$
+<p>and thus</p>
+$$a_{n+2}=\frac{n+4}{n+2}\;a_{n}.$$
+<p>For even values of <em>n</em>, we have</p>
+$$\begin{array}{rll}a_{4} & = & \frac{6}{4}(2a_{0}+2)=3a_{0}+3 \\ a_{6} & = & \frac{8}{6}(3a_{0}+3)=4a_{0}+4 \\ & \text{⋮.} & \end{array}$$
+<p>In general, $a_{2k}=(k+1)(a_{0}+1)$ (step 5).</p>
+<p>For odd values of <em>n</em>, we have</p>
+$$\begin{array}{rll}a_{3} & = & \frac{5}{3}\;a_{1} \\ a_{5} & = & \frac{7}{5}\;a_{3}=\frac{7}{3}\;a_{1} \\ a_{7} & = & \frac{9}{7}\;a_{5}=\frac{9}{3}\;a_{1}=3a_{1} \\ & \text{⋮.} & \end{array}$$
+<p>In general, $a_{2k+1}=\frac{2k+3}{3}\;a_{1}$ (step 5 continued).</p>
+<p>Putting this together, we have</p>
+$$\kyfn(x)=\sum_{k=0}^{\infty} (k+1)(a_{0}+1) x^{2k}+\sum_{k=0}^{\infty} (\frac{2k+3}{3})a_{1} x^{2k+1}\;\text{(step 6).}$$
+</div>
+<div class="exercises" data-place="fs-id1170571157050"></div>
+</section>
+
+<section id="bessel">
+<h2>The Bessel Equation</h2>
+<p id="bessel-term">We close this section with a brief introduction to <span data-concept="bessel-equation">Bessel functions</span>. Complete treatment of <span data-concept="bessel-equation">Bessel functions</span> is well beyond the scope of this course, but we get a little taste of the topic here so we can see how series solutions to <span data-concept="differential-equation">differential equations</span> are used in real-world applications. The <span data-concept="bessel-equation">Bessel equation</span> of order <em>n</em> is given by</p>
+$$x^{2}\kydprime+x\kyprime+(x^{2}-n^{2})\kyfn=0.$$
+<p>This equation arises in many physical applications, particularly those involving cylindrical coordinates, such as the vibration of a circular drum head and transient heating or cooling of a cylinder. In the next example, we find a <span data-concept="power-series-solution-of-a-differential-equation">power series solution</span> to the <span data-concept="bessel-equation">Bessel equation of order 0</span>.</p>
+<div class="example" id="fs-id1170571370995">
+<h3>Example 17.26 · Power Series Solution to the Bessel Equation</h3>
+<p>Find a <span data-concept="power-series-solution-of-a-differential-equation">power series solution</span> to the <span data-concept="bessel-equation">Bessel equation of order 0</span> and graph the solution.</p>
+<h4>Solution</h4>
+<p>The <span data-concept="bessel-equation">Bessel equation of order 0</span> is given by</p>
+$$x^{2}\kydprime+x\kyprime+x^{2}\kyfn=0.$$
+<p>We assume a solution of the form $\kyfn=\sum_{n=0}^{\infty}a_{n}x^{n}.$ Then $\kyprime(x)=\sum_{n=1}^{\infty} n a_{n}x^{n-1}$ and $\kydprime(x)=\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}.$ Substituting this into the <span data-concept="differential-equation">differential equation</span>, we get</p>
+$$\begin{array}{lll} \\ \\ x^{2}\sum_{n=2}^{\infty} n (n-1)a_{n}x^{n-2}+x\sum_{n=1}^{\infty} n a_{n}x^{n-1}+x^{2}\sum_{n=0}^{\infty}a_{n}x^{n}=0 & & \text{Substitution.} \\ \sum_{n=2}^{\infty} n (n-1)a_{n}x^{n}+\sum_{n=1}^{\infty} n a_{n}x^{n}+\sum_{n=0}^{\infty}a_{n}x^{n+2}=0 & & \text{Bring external factors within sums.} \\ \sum_{n=2}^{\infty} n (n-1)a_{n}x^{n}+\sum_{n=1}^{\infty} n a_{n}x^{n}+\sum_{n=2}^{\infty}a_{n-2}x^{n}=0 & & \text{Re-index third sum.} \\ \sum_{n=2}^{\infty} n (n-1)a_{n}x^{n}+a_{1}x+\sum_{n=2}^{\infty} n a_{n}x^{n}+\sum_{n=2}^{\infty}a_{n-2}x^{n}=0 & & \text{Separate}\;n=1\;\text{term from second sum.} \\ a_{1}x+\sum_{n=2}^{\infty} [n(n-1)a_{n}+na_{n}+a_{n-2}] x^{n}=0 & & \text{Collect summation terms.} \\ a_{1}x+\sum_{n=2}^{\infty} [(n^{2}-n)a_{n}+na_{n}+a_{n-2}] x^{n}=0 & & \text{Multiply through in first term.} \\ a_{1}x+\sum_{n=2}^{\infty} [n^{2}a_{n}+a_{n-2}] x^{n}=0. & & \text{Simplify.}\end{array}$$
+<p>Then, $a_{1}=0,$ and for $n\ge 2,$</p>
+$$\begin{array}{l}n^{2}a_{n}+a_{n-2}=0 \\ \\ a_{n}=-\frac{1}{n^{2}}\;a_{n-2}.\end{array}$$
+<p>Because $a_{1}=0,$ all odd terms are zero. Then, for even values of <em>n</em>, we have</p>
+$$\begin{array}{rll}a_{2} & = & -\frac{1}{2^{2}}\;a_{0} \\ a_{4} & = & -\frac{1}{4^{2}}\;a_{2}=\frac{1}{4^{2}⋅2^{2}}\;a_{0}. \\ a_{6} & = & -\frac{1}{6^{2}}\;a_{4}=-\frac{1}{6^{2}⋅4^{2}⋅2^{2}}\;a_{0}\end{array}$$
+<p>In general,</p>
+$$a_{2k}=\frac{{(-1)}^{k}}{{(2)}^{2k}{(k!)}^{2}}\;a_{0}.$$
+<p>Thus, we have</p>
+<div class="equation" id="eip-id1171281740360">$$\kyfn(x)=a_{0}\sum_{k=0}^{\infty}\frac{{(-1)}^{k}}{{(2)}^{2k}{(k!)}^{2}}x^{2k}.\tag{17.10}$$</div>
+<p>The graph appears below for $a_{0}=1$.</p>
+<figure class="sim" id="sim-bessel" data-original="/media/ch17/CNX_Calc_Figure_17_04_001.jpg">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The <span data-concept="series-solution-of-the-bessel-equation-of-order-0">power series solution</span> of the <span data-concept="bessel-equation">Bessel equation of order 0</span> for $a_{0}=1$ (solid) and its partial sum through the term in $x^{2K}$ (in the colour of a series). Drag $K$: each new term carries the partial sum further along the solution before it breaks away, the oscillation that dies slowly away from the origin being the series’ limit.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571370995"></div>
+</section>

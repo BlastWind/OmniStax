@@ -1,0 +1,287 @@
+<p id="applications-intro">We saw in the chapter introduction that <span data-concept="differential-equation">second-order linear differential equations</span> are used to model many situations in physics and engineering. In this section, we look at how this works for systems of an object with mass attached to a vertical spring and an electric circuit containing a resistor, an inductor, and a capacitor connected in series. Models such as these can be used to approximate other more complicated situations; for example, bonds between atoms or molecules are often modeled as springs that vibrate, as described by these same <span data-concept="differential-equation">differential equations</span>.</p>
+
+<section id="simple-harmonic-motion">
+<h2>Simple Harmonic Motion</h2>
+<p class="cite-target">Consider a mass suspended from a spring attached to a rigid support. (This is commonly called a <span data-concept="simple-harmonic-motion">spring-mass system</span>.) Gravity is pulling the mass downward and the restoring force of the spring is pulling the mass upward. As shown in Figure 17.2, when these two forces are equal, the mass is said to be at the equilibrium position. If the mass is displaced from equilibrium, it oscillates up and down. This behavior can be modeled by a <span data-concept="differential-equation">second-order constant-coefficient differential equation</span>.</p>
+<figure class="sim" id="sim-spring-mass" data-figure="17.2 + 17.3 + 17.4" data-original="/media/ch17/CNX_Calc_Figure_17_03_001.jpg,/media/ch17/CNX_Calc_Figure_17_03_002.jpg,/media/ch17/CNX_Calc_Figure_17_03_015.jpg" data-original-caption="(Figure 17.2) A spring in its natural position (a), at equilibrium with a mass m attached (b), and in oscillatory motion (c). (Figure 17.3) A graph of vertical displacement versus time for simple harmonic motion. (Figure 17.4) A graph of vertical displacement versus time for simple harmonic motion with a phase change.">
+  <div class="sim-head"><span class="eyebrow">Figure 17.2 + 17.3 + 17.4</span><span>Figures 17.2, 17.3 and 17.4 as one moving picture. The spring hangs from its support; the dashed levels are its natural position and the equilibrium position $\kxfn=0,$ a stretch $s$ below it where $mg=ks,$ with down positive. Drag $c_{1},$ $c_{2}$ and $\omega$ and watch the mass oscillate as its displacement $\kxfn(t)=c_{1}\cos(\omega t)+c_{2}\sin(\omega t)$ is traced on the graph, where the <span data-concept="period">period</span> $T=\frac{2\pi}{\omega},$ the <span data-concept="amplitude">amplitude</span> $A=\sqrt{c_{1}^{2}+c_{2}^{2}}$ and the <span data-concept="amplitude-and-phase-shift-form">phase shift</span> $\varphi/\omega$ are marked. The opening values are Example 17.18(a)’s $2\cos(3t)+\sin(3t).$</span></div>
+</figure>
+<p>Let $\kxfn(t)$ denote the displacement of the mass from equilibrium. Note that for <span data-concept="simple-harmonic-motion">spring-mass systems</span> of this type, it is customary to adopt the convention that down is positive. Thus, a positive displacement indicates the mass is <em>below</em> the equilibrium point, whereas a negative displacement indicates the mass is <em>above</em> equilibrium. Displacement is usually given in feet in the English system or meters in the metric system.</p>
+<p>Consider the forces acting on the mass. The force of gravity is given by $mg\text{.}$ In the English system, mass is in slugs and the acceleration resulting from gravity is in feet per second squared. The acceleration resulting from gravity is constant, so in the English system, $g=32$ ft/sec<sup>2</sup>. Recall that 1 slug-foot/sec<sup>2</sup> is a pound, so the expression <em>mg</em> can be expressed in pounds. Metric system units are kilograms for mass and m/sec<sup>2</sup> for gravitational acceleration. In the metric system, we have $g=9.8$ m/sec<sup>2</sup>.</p>
+<p>According to <span data-concept="hookes-law">Hooke’s law</span>, the restoring force of the spring is proportional to the displacement and acts in the opposite direction from the displacement, so the restoring force is given by $-k(s+\kxfn).$ The spring constant is given in pounds per foot in the English system and in newtons per meter in the metric system.</p>
+<p>Now, by Newton’s second law, the sum of the forces on the system (gravity plus the restoring force) is equal to mass times acceleration, so we have</p>
+$$\begin{array}{rl}m\kxdprime & =-k(s+\kxfn)+mg \\ & =-ks-k\kxfn+mg\text{.}\end{array}$$
+<p>However, by the way we have defined our equilibrium position, $mg=ks,$ the <span data-concept="differential-equation">differential equation</span> becomes</p>
+$$m\kxdprime+k\kxfn=0.$$
+<p>It is convenient to rearrange this equation and introduce a new variable, called the <span data-concept="simple-harmonic-motion">angular frequency</span>, $\omega \text{.}$ Letting $\omega =\sqrt{k/m},$ we can write the equation as</p>
+<div class="equation" id="fs-id1170571069981">$$\kxdprime+{\omega}^{2}\kxfn=0.\tag{17.5}$$</div>
+<p>This <span data-concept="differential-equation">differential equation</span> has the <span data-concept="general-solution">general solution</span></p>
+<div class="equation" id="fs-id1170570991733">$$\kxfn(t)=c_{1}\cos \omega t+c_{2}\sin \omega t,\tag{17.6}$$</div>
+<p id="shm-term">which gives the position of the mass at any point in time. The motion of the mass is called <strong><span data-concept="simple-harmonic-motion">simple harmonic motion</span></strong>. The <span data-concept="period">period</span> of this motion (the time it takes to complete one oscillation) is $T=\frac{2\pi}{\omega}$ and the frequency is $f=\frac{1}{T}=\frac{\omega}{2\pi}$ (Figure 17.3).</p>
+
+<div class="example" id="fs-id1170573278589">
+<h3>Example 17.17 · Simple Harmonic Motion</h3>
+<p>Assume an object weighing 2 lb stretches a spring 6 in. Find the <span data-concept="solution-to-a-differential-equation">equation of motion</span> if the spring is released from the equilibrium position with an upward velocity of 16 ft/sec. What is the <span data-concept="period">period</span> of the motion?</p>
+<h4>Solution</h4>
+<p>We first need to find the spring constant. We have</p>
+$$\begin{array}{rll}mg & = & ks \\ 2 & = & k(\frac{1}{2}) \\ k & = & 4.\end{array}$$
+<p>We also know that weight <em>W</em> equals the product of mass <em>m</em> and the acceleration due to gravity <em>g</em>. In English units, the acceleration due to gravity is 32 ft/sec<sup>2</sup>.</p>
+$$\begin{array}{rll}W & = & mg \\ 2 & = & m(32) \\ m & = & \frac{1}{16}\end{array}$$
+<p>Thus, the <span data-concept="differential-equation">differential equation</span> representing this system is</p>
+$$\frac{1}{16}\kxdprime+4\kxfn=0.$$
+<p>Multiplying through by 16, we get $\kxdprime+64\kxfn=0,$ which can also be written in the form $\kxdprime+(8^{2})\kxfn=0.$ This equation has the <span data-concept="general-solution">general solution</span></p>
+$$\kxfn(t)=c_{1}\cos (8t)+c_{2}\sin (8t).$$
+<p>The mass was released from the equilibrium position, so $\kxfn(0)=0,$ and it had an initial upward velocity of 16 ft/sec, so $\kxprime(0)=-16.$ Applying these <span data-concept="initial-value-problem">initial conditions</span> to solve for $c_{1}$ and $c_{2}.$ gives</p>
+$$\kxfn(t)=-2\;\sin 8t\text{.}$$
+<p>The <span data-concept="period">period</span> of this motion is $\frac{2\pi}{8}=\frac{\pi}{4}$ sec.</p>
+</div>
+<div class="exercises" data-place="fs-id1170573278589"></div>
+<p>Writing the <span data-concept="general-solution">general solution</span> in the form $\kxfn(t)=c_{1}\cos (\omega t)+c_{2}\sin (\omega t)$ has some advantages. It is easy to see the link between the <span data-concept="differential-equation">differential equation</span> and the solution, and the <span data-concept="period">period</span> and frequency of motion are evident. This form of the function tells us very little about the <span data-concept="amplitude">amplitude</span> of the motion, however. In some situations, we may prefer to write the solution in the form</p>
+<div class="equation" id="fs-id1170573405218">$$\kxfn(t)=A\;\sin (\omega t+\varphi ).\tag{17.7}$$</div>
+<p>Although the link to the <span data-concept="differential-equation">differential equation</span> is not as explicit in this case, the <span data-concept="period">period</span> and frequency of motion are still evident. Furthermore, the <span data-concept="amplitude">amplitude</span> of the motion, <em>A</em>, is obvious in this form of the function. The constant $\varphi$ is called a <em><span data-concept="amplitude-and-phase-shift-form">phase shift</span></em> and has the effect of shifting the graph of the function to the left or right.</p>
+<p>To convert the solution to this form, we want to find the values of <em>A</em> and $\varphi$ such that</p>
+$$c_{1}\cos (\omega t)+c_{2}\sin (\omega t)=A\;\sin (\omega t+\varphi ).$$
+<p>We first apply the <span data-concept="trigonometric-identity">trigonometric identity</span></p>
+$$\sin (\alpha +\beta )=\sin \alpha \;\cos \beta +\cos \alpha \;\sin \beta$$
+<p>to get</p>
+$$\begin{array}{rl}c_{1}\cos (\omega t)+c_{2}\sin (\omega t) & =A(\sin (\omega t)\;\cos \varphi +\cos (\omega t)\;\sin \varphi ) \\ & =A\;\sin \varphi (\cos (\omega t))+A\;\cos \varphi (\sin (\omega t)).\end{array}$$
+<p>Thus,</p>
+$$c_{1}=A\;\sin \varphi \;\text{and}\;c_{2}=A\;\cos \varphi \text{.}$$
+<p>If we square both of these equations and add them together, we get</p>
+$$\begin{array}{rl}c_1^{2}+c_2^{2} & =A^{2}{\sin }^{2}\varphi +A^{2}{\cos }^{2}\varphi \\ & =A^{2}({\sin }^{2}\varphi +{\cos }^{2}\varphi ) \\ & =A^{2}.\end{array}$$
+<p>Thus,</p>
+$$A=\sqrt{c_1^{2}+c_2^{2}}.$$
+<p>Now, to find $\varphi ,$ go back to the equations for $c_{1}$ and $c_{2},$ but this time, divide the first equation by the second equation to get</p>
+$$\begin{array}{rl}\frac{c_{1}}{c_{2}} & =\frac{A\;\sin \varphi }{A\;\cos \varphi } \\ & =\tan \varphi \text{.}\end{array}$$
+<p>Then,</p>
+$$\tan \varphi =\frac{c_{1}}{c_{2}}.$$
+<p>We summarize this finding in the following theorem.</p>
+<div class="note" id="fs-id1170573570772">
+<div class="eyebrow">Theorem</div>
+<h3>Solution to the Equation for Simple Harmonic Motion</h3>
+<p>The function $\kxfn(t)=c_{1}\cos (\omega t)+c_{2}\sin (\omega t)$ can be written in the form $\kxfn(t)=A\;\sin (\omega t+\varphi ),$ where $A=\sqrt{c_1^{2}+c_2^{2}}$ and $\tan \varphi =\frac{c_{1}}{c_{2}}.$</p>
+</div>
+<p>Note that when using the formula $\tan \varphi =\frac{c_{1}}{c_{2}}$ to find $\varphi ,$ we must take care to ensure $\varphi$ is in the right quadrant (Figure 17.4).</p>
+
+<div class="example" id="fs-id1170573762487">
+<h3>Example 17.18 · Expressing the Solution with a Phase Shift</h3>
+<p>Express the following functions in the form $A\;\sin (\omega t+\varphi ).$ What is the frequency of motion? The <span data-concept="amplitude">amplitude</span>?</p>
+<p>a. $\kxfn(t)=2\;\cos (3t)+\sin (3t)$</p>
+<p>b. $\kxfn(t)=3\;\cos (2t)-2\;\sin (2t)$</p>
+<h4>Solution</h4>
+<p>a. We have</p>
+$$A=\sqrt{c_1^{2}+c_2^{2}}=\sqrt{2^{2}+1^{2}}=\sqrt{5}$$
+<p>and</p>
+$$\tan \varphi =\frac{c_{1}}{c_{2}}=\frac{2}{1}=2.$$
+<p>Note that both $c_{1}$ and $c_{2}$ are positive, so $\varphi$ is in the first quadrant. Thus,</p>
+$$\varphi \approx 1.107\;\text{rad,}$$
+<p>so we have</p>
+$$\kxfn(t)=2\;\cos (3t)+\sin (3t)=\sqrt{5}\sin (3t+1.107).$$
+<p>The frequency is $\frac{\omega}{2\pi}=\frac{3}{2\pi}\approx 0.477.$ The <span data-concept="amplitude">amplitude</span> is $\sqrt{5}.$</p>
+<p>b. We have</p>
+$$A=\sqrt{c_1^{2}+c_2^{2}}=\sqrt{3^{2}+2^{2}}=\sqrt{13}$$
+<p>and</p>
+$$\tan \varphi =\frac{c_{1}}{c_{2}}=\frac{3}{-2}=-\frac{3}{2}.$$
+<p>Note that $c_{1}$ is positive but $c_{2}$ is negative, so $\varphi$ is in the fourth quadrant.<sup class="fn" data-note="c-phase-quadrant"></sup> Thus,</p>
+$$\varphi \approx -0.983\;\text{rad,}$$
+<p>so we have</p>
+$$\begin{array}{rl}\kxfn(t) & =3\;\cos (2t)-2\;\sin (2t) \\ & =\sqrt{13}\sin (2t-0.983).\end{array}$$
+<p>The frequency is $\frac{\omega}{2\pi}=\frac{2}{2\pi}\approx 0.318.$ The <span data-concept="amplitude">amplitude</span> is $\sqrt{13}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170573762487"></div>
+</section>
+
+<section id="damped-vibrations">
+<h2>Damped Vibrations</h2>
+<p class="cite-target">With the model just described, the motion of the mass continues indefinitely. Clearly, this doesn’t happen in the real world. In the real world, there is almost always some friction in the system, which causes the oscillations to die off slowly—an effect called <em><span data-concept="damped-spring-mass-system">damping</span></em>. So now let’s look at how to incorporate that <span data-concept="damped-spring-mass-system">damping force</span> into our <span data-concept="differential-equation">differential equation</span>.</p>
+<p>Physical <span data-concept="simple-harmonic-motion">spring-mass systems</span> almost always have some <span data-concept="damped-spring-mass-system">damping</span> as a result of friction, air resistance, or a physical damper, called a <em><span data-concept="damped-spring-mass-system">dashpot</span></em> (a pneumatic cylinder; see Figure 17.5).</p>
+<figure class="photo" id="fig-dashpot" data-figure="17.5">
+  <img src="/media/ch17/CNX_Calc_Figure_17_03_013.jpg" alt="This figure is a pneumatic cylinder. The cylinder is clear, and the piston can be seen.">
+  <figcaption><span class="eyebrow">Figure 17.5</span><span>A <span data-concept="damped-spring-mass-system">dashpot</span> is a pneumatic cylinder that dampens the motion of an oscillating system.</span></figcaption>
+</figure>
+<p id="damping-term">Because <span data-concept="damped-spring-mass-system">damping</span> is primarily a friction force, we assume it is proportional to the velocity of the mass and acts in the opposite direction. So the <span data-concept="damped-spring-mass-system">damping force</span> is given by $-b\kxprime$ for some constant $b\gt 0.$ Again applying Newton’s second law, the <span data-concept="differential-equation">differential equation</span> becomes</p>
+$$m\kxdprime+b\kxprime+k\kxfn=0.$$
+<p>Then the associated <span data-concept="characteristic-equation">characteristic equation</span> is</p>
+$$m{\lambda }^{2}+b\lambda +k=0.$$
+<p>Applying the <span data-concept="quadratic-formula">quadratic formula</span>, we have</p>
+$$\lambda =\frac{-b\pm \sqrt{b^{2}-4mk}}{2m}.$$
+<p>Just as in <a href="/calculus/ch17/17.1/">Second-Order Linear Equations</a> we consider three cases, based on whether the <span data-concept="characteristic-equation">characteristic equation</span> has distinct real roots, a repeated real root, or complex conjugate roots.</p>
+<h3>Case 1: $b^{2}\gt 4mk$</h3>
+<p id="overdamped-term">In this case, we say the system is <em><span data-concept="overdamped-system">overdamped</span></em>. The <span data-concept="general-solution">general solution</span> has the form</p>
+$$\kxfn(t)=c_{1}e^{{\lambda }_{1}t}+c_{2}e^{{\lambda }_{2}t},$$
+<p>where both ${\lambda }_{1}$ and ${\lambda }_{2}$ are less than zero. Because the exponents are negative, the displacement decays to zero over time, usually quite quickly. <span data-concept="overdamped-system">Overdamped</span> systems do not oscillate (no more than one change of direction), but simply move back toward the equilibrium position. Figure 17.6 shows what typical <span data-concept="overdamped-system">overdamped</span> behavior looks like.</p>
+<figure class="sim" id="sim-damping" data-figure="17.6 + 17.7 + 17.8" data-original="/media/ch17/CNX_Calc_Figure_17_03_003.jpg,/media/ch17/CNX_Calc_Figure_17_03_004.jpg,/media/ch17/CNX_Calc_Figure_17_03_005.jpg" data-original-caption="(Figure 17.6) Behavior of an overdamped spring-mass system, with no change in direction (a) and only one change in direction (b). (Figure 17.7) Behavior of a critically damped spring-mass system. The system graphed in part (a) has more damping than the system graphed in part (b). (Figure 17.8) Behavior of an underdamped spring-mass system.">
+  <div class="sim-head"><span class="eyebrow">Figure 17.6 + 17.7 + 17.8</span><span>Figures 17.6, 17.7 and 17.8 as one moving picture: Example 17.19’s mass $m=\frac{1}{2}$ on a spring with $k=3$ and a dashpot whose damping $b$ you drag. Above $b=\sqrt{6},$ where $b^{2}=4mk,$ the system is <span data-concept="overdamped-system">overdamped</span> and returns to equilibrium without oscillating, changing direction at most once as the initial conditions decide; at $b=\sqrt{6}$ it is <span data-concept="critically-damped-system">critically damped</span>; below it the system is <span data-concept="underdamped-system">underdamped</span> and oscillates inside its dashed envelope. The opening values are the example’s $\kxfn(0)=0,$ $\kxprime(0)=-5.$</span></div>
+</figure>
+<div class="example" id="fs-id1170573412417">
+<h3>Example 17.19 · Overdamped Spring-Mass System</h3>
+<p>A 16-lb mass is attached to a 10-ft spring. When the mass comes to rest in the equilibrium position, the spring measures 15 ft 4 in. The system is immersed in a medium that imparts a <span data-concept="damped-spring-mass-system">damping force</span> equal to $\frac{5}{2}$ times the instantaneous velocity of the mass. Find the <span data-concept="solution-to-a-differential-equation">equation of motion</span> if the mass is pushed upward from the equilibrium position with an initial upward velocity of 5 ft/sec. What is the position of the mass after 10 sec? Its velocity?</p>
+<h4>Solution</h4>
+<p>The mass stretches the spring 5 ft 4 in., or $\frac{16}{3}$ ft. Thus, $16=(\frac{16}{3})k,$ so $k=3.$ We also have $m=\frac{16}{32}=\frac{1}{2},$ so the <span data-concept="differential-equation">differential equation</span> is</p>
+$$\frac{1}{2}\kxdprime+\frac{5}{2}\kxprime+3\kxfn=0.$$
+<p>Multiplying through by 2 gives $\kxdprime+5\kxprime+6\kxfn=0,$ which has the <span data-concept="general-solution">general solution</span></p>
+$$\kxfn(t)=c_{1}e^{-2t}+c_{2}e^{-3t}.$$
+<p>Applying the <span data-concept="initial-value-problem">initial conditions</span>, $\kxfn(0)=0$ and $\kxprime(0)=-5,$ we get</p>
+$$\kxfn(t)=-5e^{-2t}+5e^{-3t}.$$
+<p>After 10 sec the mass is at position</p>
+$$\kxfn(10)=-5e^{-20}+5e^{-30}\approx -1.0305\;\times \;{10}^{-8}\approx 0,$$
+<p>so it is, effectively, at the equilibrium position. We have $\kxprime(t)=10e^{-2t}-15e^{-3t},$ so after 10 sec the mass is moving at a velocity of</p>
+$$\kxprime(10)=10e^{-20}-15e^{-30}\approx 2.061\;\times \;{10}^{-8}\approx 0.$$
+<p>After only 10 sec, the mass is barely moving.</p>
+</div>
+<div class="exercises" data-place="fs-id1170573412417"></div>
+<h3>Case 2: $b^{2}=4mk$</h3>
+<p id="critical-term">In this case, we say the system is <em><span data-concept="critically-damped-system">critically damped</span></em>. The <span data-concept="general-solution">general solution</span> has the form</p>
+$$\kxfn(t)=c_{1}e^{{\lambda }_{1}t}+c_{2}te^{{\lambda }_{1}t},$$
+<p>where ${\lambda }_{1}$ is less than zero. The motion of a <span data-concept="critically-damped-system">critically damped</span> system is very similar to that of an <span data-concept="overdamped-system">overdamped</span> system. It does not oscillate. However, with a <span data-concept="critically-damped-system">critically damped</span> system, if the <span data-concept="damped-spring-mass-system">damping</span> is reduced even a little, oscillatory behavior results. From a practical perspective, physical systems are almost always either <span data-concept="overdamped-system">overdamped</span> or <span data-concept="underdamped-system">underdamped</span> (case 3, which we consider next). It is impossible to fine-tune the characteristics of a physical system so that $b^{2}$ and $4mk$ are exactly equal. Figure 17.7 shows what typical <span data-concept="critically-damped-system">critically damped</span> behavior looks like.</p>
+
+<div class="example" id="fs-id1170571412744">
+<h3>Example 17.20 · Critically Damped Spring-Mass System</h3>
+<p>A 1-kg mass stretches a spring 20 cm. The system is attached to a <span data-concept="damped-spring-mass-system">dashpot</span> that imparts a <span data-concept="damped-spring-mass-system">damping force</span> equal to 14 times the instantaneous velocity of the mass. Find the <span data-concept="solution-to-a-differential-equation">equation of motion</span> if the mass is released from equilibrium with an upward velocity of 3 m/sec.</p>
+<h4>Solution</h4>
+<p>We have $mg=1(9.8)=0.2k,$ so $k=49.$ Then, the <span data-concept="differential-equation">differential equation</span> is</p>
+$$\kxdprime+14\kxprime+49\kxfn=0,$$
+<p>which has <span data-concept="general-solution">general solution</span></p>
+$$\kxfn(t)=c_{1}e^{-7t}+c_{2}te^{-7t}.$$
+<p>Applying the <span data-concept="initial-value-problem">initial conditions</span> $\kxfn(0)=0$ and $\kxprime(0)=-3$ gives</p>
+$$\kxfn(t)=-3te^{-7t}.$$
+</div>
+<div class="exercises" data-place="fs-id1170571412744"></div>
+<h3>Case 3: $b^{2}\lt 4mk$</h3>
+<p id="underdamped-term">In this case, we say the system is <em><span data-concept="underdamped-system">underdamped</span></em>. The <span data-concept="general-solution">general solution</span> has the form</p>
+$$\kxfn(t)=e^{\alpha t}(c_{1}\cos (\beta t)+c_{2}\sin (\beta t)),$$
+<p>where $\alpha$ is less than zero. <span data-concept="underdamped-system">Underdamped</span> systems do oscillate because of the sine and cosine terms in the solution. However, the exponential term dominates eventually, so the <span data-concept="amplitude">amplitude</span> of the oscillations decreases over time. Figure 17.8 shows what typical <span data-concept="underdamped-system">underdamped</span> behavior looks like.</p>
+
+<p>Note that for all damped systems, $\lim_{t\to \infty}\kxfn(t)=0.$ The system always approaches the equilibrium position over time.</p>
+<div class="example" id="fs-id1170571078755">
+<h3>Example 17.21 · Underdamped Spring-Mass System</h3>
+<p>A 16-lb weight stretches a spring 3.2 ft. Assume the <span data-concept="damped-spring-mass-system">damping force</span> on the system is equal to the instantaneous velocity of the mass. Find the <span data-concept="solution-to-a-differential-equation">equation of motion</span> if the mass is released from rest at a point 9 in. below equilibrium.</p>
+<h4>Solution</h4>
+<p>We have $k=\frac{16}{3.2}=5$ and $m=\frac{16}{32}=\frac{1}{2},$ so the <span data-concept="differential-equation">differential equation</span> is</p>
+$$\frac{1}{2}\kxdprime+\kxprime+5\kxfn=0,\;\text{or}\;\kxdprime+2\kxprime+10\kxfn=0.$$
+<p>This equation has the <span data-concept="general-solution">general solution</span></p>
+$$\kxfn(t)=e^{-t}(c_{1}\cos (3t)+c_{2}\sin (3t)).$$
+<p>Applying the <span data-concept="initial-value-problem">initial conditions</span>, $\kxfn(0)=\frac{3}{4}$ and $\kxprime(0)=0,$ we get</p>
+$$\kxfn(t)=e^{-t}(\frac{3}{4}\;\cos (3t)+\frac{1}{4}\;\sin (3t)).$$
+</div>
+<div class="exercises" data-place="fs-id1170571078755"></div>
+<div class="example" id="fs-id1170571139655">
+<h3>Example 17.22 · Chapter Opener: Modeling a Motorcycle Suspension System</h3>
+<figure class="photo" id="fig-shock-absorber" data-figure="17.9">
+  <img src="/media/ch17/CNX_Calc_Figure_17_03_017.jpg" alt="This picture is a shock absorber on a motorcycle.">
+  <figcaption><span class="eyebrow">Figure 17.9</span><span>(credit: modification of work by nSeika, Flickr)</span></figcaption>
+</figure>
+<p>For motocross riders, the suspension systems on their motorcycles are very important. The off-road courses on which they ride often include jumps, and losing control of the motorcycle when they land could cost them the race.</p>
+<p>This suspension system can be modeled as a <span data-concept="damped-spring-mass-system">damped spring-mass system</span>. We define our frame of reference with respect to the frame of the motorcycle. Assume the end of the shock absorber attached to the motorcycle frame is fixed. Then, the “mass” in our <span data-concept="simple-harmonic-motion">spring-mass system</span> is the motorcycle wheel. We measure the position of the wheel with respect to the motorcycle frame. This may seem counterintuitive, since, in many cases, it is actually the motorcycle frame that moves, but this frame of reference preserves the development of the <span data-concept="differential-equation">differential equation</span> that was done earlier. As with earlier development, we define the downward direction to be positive.</p>
+<p>When the motorcycle is lifted by its frame, the wheel hangs freely and the spring is uncompressed. This is the spring’s natural position. When the motorcycle is placed on the ground and the rider mounts the motorcycle, the spring compresses and the system is in the equilibrium position (Figure 17.10).</p>
+<figure class="sim" id="sim-motorcycle" data-figure="17.10 + 17.11" data-original="/media/ch17/CNX_Calc_Figure_17_03_014.jpg,/media/ch17/CNX_Calc_Figure_17_03_012.jpg" data-original-caption="(Figure 17.10) We can use a spring-mass system to model a motorcycle suspension. (Figure 17.11) Graph of the equation of motion over a time of one second.">
+  <div class="sim-head"><span class="eyebrow">Figure 17.10 + 17.11</span><span>Figures 17.10 and 17.11 as one moving picture, slowed to a quarter of real speed. The frame is fixed; the wheel hangs at the spring’s natural position as the motorcycle touches down and settles at the equilibrium position $\frac{1}{3}$ ft above it, while its displacement $\kxfn(t)=\frac{7}{2}e^{-8t}-\frac{19}{6}e^{-12t}$ is traced over the first second. Drag the landing velocity $\kxprime(0)$ to land harder or softer.</span></div>
+</figure>
+<p>This system can be modeled using the same <span data-concept="differential-equation">differential equation</span> we used before:</p>
+$$m\kxdprime+b\kxprime+k\kxfn=0.$$
+<p>A motocross motorcycle weighs 204 lb, and we assume a rider weight of 180 lb. When the rider mounts the motorcycle, the suspension compresses 4 in., then comes to rest at equilibrium. The suspension system provides <span data-concept="damped-spring-mass-system">damping</span> equal to 240 times the instantaneous vertical velocity of the motorcycle (and rider).</p>
+<p>a. Set up the <span data-concept="differential-equation">differential equation</span> that models the behavior of the motorcycle suspension system.</p>
+<p>b. We are interested in what happens when the motorcycle lands after taking a jump. Let time $t=0$ denote the time when the motorcycle first contacts the ground. If the motorcycle hits the ground with a velocity of 10 ft/sec downward, find the <span data-concept="solution-to-a-differential-equation">equation of motion</span> of the motorcycle after the jump.</p>
+<p>c. Graph the <span data-concept="solution-to-a-differential-equation">equation of motion</span> over the first second after the motorcycle hits the ground.</p>
+<h4>Solution</h4>
+<p>a. We have defined equilibrium to be the point where $mg=ks,$ so we have</p>
+$$\begin{array}{rll}mg & = & ks \\ 384 & = & k(\frac{1}{3}) \\ k & = & 1152.\end{array}$$
+<p>We also have</p>
+$$\begin{array}{rll}W & = & mg \\ 384 & = & m(32) \\ m & = & 12.\end{array}$$
+<p>Therefore, the <span data-concept="differential-equation">differential equation</span> that models the behavior of the motorcycle suspension is</p>
+$$12\kxdprime+240\kxprime+1152\kxfn=0.$$
+<p>Dividing through by 12, we get</p>
+$$\kxdprime+20\kxprime+96\kxfn=0.$$
+<p>b. The <span data-concept="differential-equation">differential equation</span> found in part a. has the <span data-concept="general-solution">general solution</span></p>
+$$\kxfn(t)=c_{1}e^{-8t}+c_{2}e^{-12t}.$$
+<p>Now, to determine our <span data-concept="initial-value-problem">initial conditions</span>, we consider the position and velocity of the motorcycle wheel when the wheel first contacts the ground. Since the motorcycle was in the air prior to contacting the ground, the wheel was hanging freely and the spring was uncompressed. Therefore the wheel is 4 in. $(\frac{1}{3}\;\text{ft})$ below the equilibrium position (with respect to the motorcycle frame), and we have $\kxfn(0)=\frac{1}{3}.$ According to the problem statement, the motorcycle has a velocity of 10 ft/sec downward when the motorcycle contacts the ground, so $\kxprime(0)=10.$ Applying these <span data-concept="initial-value-problem">initial conditions</span>, we get $c_{1}=\frac{7}{2}$ and $c_{2}=-(\frac{19}{6}),$ so the <span data-concept="solution-to-a-differential-equation">equation of motion</span> is</p>
+$$\kxfn(t)=\frac{7}{2}e^{-8t}-\frac{19}{6}e^{-12t}.$$
+<p>c. The graph is shown in Figure 17.11.</p>
+
+</div>
+<div class="note" id="fs-id1170571273678">
+<div class="eyebrow">Student Project</div>
+<h3>Landing Vehicle</h3>
+<p>NASA is planning a mission to Mars. To save money, engineers have decided to adapt one of the moon landing vehicles for the new mission. However, they are concerned about how the different gravitational forces will affect the suspension system that cushions the craft when it touches down. The acceleration resulting from gravity on the moon is 1.6 m/sec<sup>2</sup>, whereas on Mars it is 3.7 m/sec<sup>2</sup>.</p>
+<p>The suspension system on the craft can be modeled as a <span data-concept="damped-spring-mass-system">damped spring-mass system</span>. In this case, the spring is below the moon lander, so the spring is slightly compressed at equilibrium, as shown in Figure 17.12.</p>
+<figure class="photo" id="fig-lander" data-figure="17.12">
+  <img src="/media/ch17/CNX_Calc_Figure_17_03_007.jpg" alt="This figure has three images. The first is a picture of the Mars Lander landing on a surface. The second picture is a diagram of the Mars Lander at touchdown, with an uncompressed spring with length L between the Lander and the landing surface. The third image is a diagram of the Lander in equilibrium position after the Lander has landed. The spring is compressed a distance of s.">
+  <figcaption><span class="eyebrow">Figure 17.12</span><span>The landing craft suspension can be represented as a <span data-concept="damped-spring-mass-system">damped spring-mass system</span>. (credit “lander”: NASA)</span></figcaption>
+</figure>
+<p>We retain the convention that down is positive. Despite the new orientation, an examination of the forces affecting the lander shows that the same <span data-concept="differential-equation">differential equation</span> can be used to model the position of the landing craft relative to equilibrium:</p>
+$$m\kxdprime+b\kxprime+k\kxfn=0,$$
+<p>where <em>m</em> is the mass of the lander, <em>b</em> is the <span data-concept="damped-spring-mass-system">damping</span> coefficient, and <em>k</em> is the spring constant.</p>
+<ol><li>The lander has a mass of 15,000 kg and the spring is 2 m long when uncompressed. The lander is designed to compress the spring 0.5 m to reach the equilibrium position under lunar gravity. The <span data-concept="damped-spring-mass-system">dashpot</span> imparts a <span data-concept="damped-spring-mass-system">damping force</span> equal to 48,000 times the instantaneous velocity of the lander. Set up the <span data-concept="differential-equation">differential equation</span> that models the motion of the lander when the craft lands on the moon.</li><li>Let time $t=0$ denote the instant the lander touches down. The rate of descent of the lander can be controlled by the crew, so that it is descending at a rate of 2 m/sec when it touches down. Find the <span data-concept="solution-to-a-differential-equation">equation of motion</span> of the lander on the moon.</li><li>If the lander is traveling too fast when it touches down, it could fully compress the spring and “bottom out.” Bottoming out could damage the landing craft and must be avoided at all costs. Graph the <span data-concept="solution-to-a-differential-equation">equation of motion</span> found in part 2. If the spring is 0.5 m long when fully compressed, will the lander be in danger of bottoming out?</li><li>Assuming NASA engineers make no adjustments to the spring or the damper, how far does the lander compress the spring to reach the equilibrium position under Martian gravity?</li><li>If the lander crew uses the same procedures on Mars as on the moon, and keeps the rate of descent to 2 m/sec, will the lander bottom out when it lands on Mars?</li><li>What adjustments, if any, should the NASA engineers make to use the lander safely on Mars?</li></ol>
+</div>
+</section>
+
+<section id="forced-vibrations">
+<h2>Forced Vibrations</h2>
+<p class="cite-target">The last case we consider is when an <span data-concept="forced-vibrations">external force</span> acts on the system. In the case of the motorcycle suspension system, for example, the bumps in the road act as an <span data-concept="forced-vibrations">external force</span> acting on the system. Another example is a spring hanging from a support; if the support is set in motion, that motion would be considered an <span data-concept="forced-vibrations">external force</span> on the system. We model these forced systems with the <span data-concept="nonhomogeneous-linear-equation">nonhomogeneous differential equation</span></p>
+<div class="equation" id="fs-id1170573399103">$$m\kxdprime+b\kxprime+k\kxfn=\kf(t),\tag{17.8}$$</div>
+<p>where the <span data-concept="forced-vibrations">external force</span> is represented by the $\kf(t)$ term. As we saw in <a href="/calculus/ch17/17.2/">Nonhomogeneous Linear Equations</a>, <span data-concept="differential-equation">differential equations</span> such as this have solutions of the form</p>
+$$\kxfn(t)=c_{1}x_{1}(t)+c_{2}x_{2}(t)+\kxp(t),$$
+<p id="transient-term">where $c_{1}x_{1}(t)+c_{2}x_{2}(t)$ is the <span data-concept="general-solution">general solution</span> to the <span data-concept="complementary-equation">complementary equation</span> and $\kxp(t)$ is a <span data-concept="particular-solution">particular solution</span> to the nonhomogeneous equation. If the system is damped, $\lim_{t\to \infty}c_{1}x_{1}(t)+c_{2}x_{2}(t)=0.$ Since these terms do not affect the long-term behavior of the system, we call this part of the solution the <em><span data-concept="transient-solution">transient solution</span></em><strong>.</strong> The long-term behavior of the system is determined by $\kxp(t),$ so we call this part of the solution the <strong><span data-concept="steady-state-solution">steady-state solution</span></strong>.</p>
+<div class="example" id="fs-id1170571136987">
+<h3>Example 17.23 · Forced Vibrations</h3>
+<p>A mass of 1 slug stretches a spring 2 ft and comes to rest at equilibrium. The system is attached to a <span data-concept="damped-spring-mass-system">dashpot</span> that imparts a <span data-concept="damped-spring-mass-system">damping force</span> equal to eight times the instantaneous velocity of the mass. Find the <span data-concept="solution-to-a-differential-equation">equation of motion</span> if an <span data-concept="forced-vibrations">external force</span> equal to $\kf(t)=8\;\sin (4t)$ is applied to the system beginning at time $t=0.$ What is the <span data-concept="transient-solution">transient solution</span>? What is the <span data-concept="steady-state-solution">steady-state solution</span>?</p>
+<h4>Solution</h4>
+<p>We have $mg=1(32)=2k,$ so $k=16$ and the <span data-concept="differential-equation">differential equation</span> is</p>
+$$\kxdprime+8\kxprime+16\kxfn=8\;\sin (4t).$$
+<p>The <span data-concept="general-solution">general solution</span> to the <span data-concept="complementary-equation">complementary equation</span> is</p>
+$$c_{1}e^{-4t}+c_{2}te^{-4t}.$$
+<p>Assuming a <span data-concept="particular-solution">particular solution</span> of the form $\kxp(t)=A\;\cos (4t)+B\;\sin (4t)$ and using the <span data-concept="method-of-undetermined-coefficients">method of undetermined coefficients</span>, we find $\kxp(t)=-\frac{1}{4}\;\cos (4t),$ so</p>
+$$\kxfn(t)=c_{1}e^{-4t}+c_{2}te^{-4t}-\frac{1}{4}\;\cos (4t).$$
+<p>At $t=0,$ the mass is at rest in the equilibrium position, so $\kxfn(0)=\kxprime(0)=0.$ Applying these <span data-concept="initial-value-problem">initial conditions</span> to solve for $c_{1}$ and $c_{2},$ we get</p>
+$$\kxfn(t)=\frac{1}{4}e^{-4t}+te^{-4t}-\frac{1}{4}\;\cos (4t).$$
+<p>The <span data-concept="transient-solution">transient solution</span> is $\frac{1}{4}e^{-4t}+te^{-4t}.$ The <span data-concept="steady-state-solution">steady-state solution</span> is $-\frac{1}{4}\;\cos (4t).$</p>
+</div>
+<figure class="sim" id="sim-forced">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Example 17.23’s mass of $1$ slug on a spring with $k=16,$ started at rest at equilibrium and driven by the <span data-concept="forced-vibrations">external force</span> $\kf(t)=8\sin(\omega_{f}t),$ its arrow on the mass. The displacement $\kxfn(t)$ is traced beside the <span data-concept="steady-state-solution">steady-state solution</span> $\kxp$ (dashed): the <span data-concept="transient-solution">transient solution</span> dies away and the motion keeps the beat of the force. Drag the damping $b$ down and the forcing frequency $\omega_{f}$ near $4$ and the steady state swells.</span></div>
+</figure>
+<div class="exercises" data-place="fs-id1170571136987"></div>
+<div class="note" id="fs-id1170571048093">
+<div class="eyebrow">Student Project</div>
+<h3>Resonance</h3>
+<p>Consider an undamped system exhibiting <span data-concept="simple-harmonic-motion">simple harmonic motion</span>. In the real world, we never truly have an undamped system; –some <span data-concept="damped-spring-mass-system">damping</span> always occurs. For theoretical purposes, however, we could imagine a <span data-concept="simple-harmonic-motion">spring-mass system</span> contained in a vacuum chamber. With no air resistance, the mass would continue to move up and down indefinitely.</p>
+<p>The frequency of the resulting motion, given by $f=\frac{1}{T}=\frac{\omega}{2\pi},$ is called the <em><span data-concept="resonance">natural frequency of the system</span></em>. If an <span data-concept="forced-vibrations">external force</span> acting on the system has a frequency close to the <span data-concept="resonance">natural frequency of the system</span>, a phenomenon called <em><span data-concept="resonance">resonance</span></em> results. The <span data-concept="forced-vibrations">external force</span> reinforces and amplifies the natural motion of the system.</p>
+<ol><li>Consider the <span data-concept="differential-equation">differential equation</span> $\kxdprime+\kxfn=0.$ Find the <span data-concept="general-solution">general solution</span>. What is the <span data-concept="resonance">natural frequency of the system</span>?</li><li>Now suppose this system is subjected to an <span data-concept="forced-vibrations">external force</span> given by $\kf(t)=5\;\cos t\text{.}$ Solve the initial-value problem $\kxdprime+\kxfn=5\;\cos t,$ $\kxfn(0)=0,$ $\kxprime(0)=1.$</li><li>Graph the solution. What happens to the behavior of the system over time?</li><li>In the real world, there is always some <span data-concept="damped-spring-mass-system">damping</span>. However, if the <span data-concept="damped-spring-mass-system">damping force</span> is weak, and the <span data-concept="forced-vibrations">external force</span> is strong enough, real-world systems can still exhibit <span data-concept="resonance">resonance</span>. One of the most famous examples of <span data-concept="resonance">resonance</span> is the collapse of the Tacoma Narrows Bridge on November 7, 1940. The bridge had exhibited strange behavior ever since it was built. The roadway had a strange “bounce” to it. On the day it collapsed, a strong windstorm caused the roadway to twist and ripple violently. The bridge was unable to withstand these forces and it ultimately collapsed. Experts believe the windstorm exerted forces on the bridge that were very close to its <span data-concept="resonance">natural frequency</span>, and the resulting <span data-concept="resonance">resonance</span> ultimately shook the bridge apart.</li></ol>
+<ol start="5"><li>Another real-world example of <span data-concept="resonance">resonance</span> is a singer shattering a crystal wineglass when she sings just the right note. When someone taps a crystal wineglass or wets a finger and runs it around the rim, a tone can be heard. That note is created by the wineglass vibrating at its <span data-concept="resonance">natural frequency</span>. If a singer then sings that same note at a high enough volume, the glass shatters as a result of <span data-concept="resonance">resonance</span>.</li></ol>
+</div>
+</section>
+
+<section id="rlc">
+<h2>The <em>RLC</em> Series Circuit</h2>
+<p class="cite-target">Consider an electrical circuit containing a resistor, an inductor, and a capacitor, as shown in Figure 17.10.<sup class="fn" data-note="c-rlc-figure"></sup> Such a circuit is called an <strong><span data-concept="rlc-series-circuit"><em>RLC</em> series circuit</span></strong>. <em>RLC</em> circuits are used in many electronic systems, most notably as tuners in AM/FM radios. The tuning knob varies the capacitance of the capacitor, which in turn tunes the radio. Such circuits can be modeled by second-order, <span data-concept="differential-equation">constant-coefficient differential equations</span>.</p>
+<p>Let $\kI(t)$ denote the current in the <em>RLC</em> circuit and $\kq(t)$ denote the charge on the capacitor. Furthermore, let <em>L</em> denote inductance in henrys (H), <em>R</em> denote resistance in ohms $(\text{Ω}),$ and <em>C</em> denote capacitance in farads (F). Last, let $\kE(t)$ denote electric potential in volts (V).</p>
+<p><span data-concept="kirchhoffs-loop-rule">Kirchhoff’s voltage rule</span> states that the sum of the voltage drops around any closed loop must be zero. So, we need to consider the voltage drops across the inductor (denoted $E_{L}$), the resistor (denoted $E_{R}$), and the capacitor (denoted $E_{C}$). Because the <em>RLC</em> circuit shown in Figure 17.10 includes a voltage source, $\kE(t),$ which adds voltage to the circuit, we have $E_{L}+E_{R}+E_{C}=\kE(t).$</p>
+<p id="voltage-drops">We present the formulas below without further development. Those of you interested in the derivation of these formulas should consult a physics text. Using Faraday’s law and Lenz’s law, the voltage drop across an inductor can be shown to be proportional to the instantaneous rate of change of current, with proportionality constant <em>L</em>. Thus,</p>
+$$E_{L}=L\frac{dI}{dt}.$$
+<p>Next, according to Ohm’s law, the voltage drop across a resistor is proportional to the current passing through the resistor, with proportionality constant <em>R</em>. Therefore,</p>
+$$E_{R}=R\kI\text{.}$$
+<p>Last, the voltage drop across a capacitor is proportional to the charge, <em>q</em>, on the capacitor, with proportionality constant $1/C.$ Thus,</p>
+$$E_{C}=\frac{1}{C}\kq\text{.}$$
+<p>Adding these terms together, we get</p>
+$$L\frac{dI}{dt}+R\kI+\frac{1}{C}\kq=\kE(t).$$
+<p>Noting that $\kI=(dq)/(dt),$ this becomes</p>
+<div class="equation" id="fs-id1170571096072">$$L\frac{d^{2}q}{dt^{2}}+R\frac{dq}{dt}+\frac{1}{C}\kq=\kE(t).\tag{17.9}$$</div>
+<p>Mathematically, this system is analogous to the <span data-concept="simple-harmonic-motion">spring-mass systems</span> we have been examining in this section.</p>
+<figure class="sim" id="sim-rlc" data-figure="17.13" data-original="/media/ch17/CNX_Calc_Figure_17_03_010.jpg" data-original-caption="An RLC series circuit can be modeled by the same differential equation as a mass-spring system.">
+  <div class="sim-head"><span class="eyebrow">Figure 17.13</span><span>Example 17.24’s <span data-concept="rlc-series-circuit">RLC series circuit</span> with $L=\frac{5}{3}$ H, $C=\frac{1}{30}$ F and $\kE(t)=300$ V, the capacitor uncharged and a current of $9$ A at $t=0.$ The charges in the wire move round the loop as the charge $\kq(t)$ flows onto the capacitor, and the graph below closes on the <span data-concept="steady-state-solution">steady-state charge</span> of $10$ C. Drag the resistance $R$: below $R=\sqrt{200}\approx 14.1\,\Omega,$ where $R^{2}=\frac{4L}{C},$ the charge overshoots and oscillates; above it, it does not.</span></div>
+</figure>
+<div class="example" id="fs-id1170570974718">
+<h3>Example 17.24 · The <em>RLC</em> Series Circuit</h3>
+<p>Find the charge on the capacitor in an <em>RLC</em> series circuit where $L=5/3$ H, $R=10\text{Ω},$ $C=1/30$ F, and $\kE(t)=300$ V. Assume the initial charge on the capacitor is 0 C and the initial current is 9 A. What happens to the charge on the capacitor over time?</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\begin{array}{rll} \\ \\ L\frac{d^{2}q}{dt^{2}}+R\frac{dq}{dt}+\frac{1}{C}q & = & \kE(t) \\ \frac{5}{3}\;\frac{d^{2}q}{dt^{2}}+10\frac{dq}{dt}+30q & = & 300 \\ \frac{d^{2}q}{dt^{2}}+6\frac{dq}{dt}+18q & = & 180.\end{array}$$
+<p>The <span data-concept="general-solution">general solution</span> to the <span data-concept="complementary-equation">complementary equation</span> is</p>
+$$e^{-3t}(c_{1}\cos (3t)+c_{2}\sin (3t)).$$
+<p>Assume a <span data-concept="particular-solution">particular solution</span> of the form $\kq_{p}=A,$ where $A$ is a constant. Using the <span data-concept="method-of-undetermined-coefficients">method of undetermined coefficients</span>, we find $A=10.$ So,</p>
+$$\kq(t)=e^{-3t}(c_{1}\cos (3t)+c_{2}\sin (3t))+10.$$
+<p>Applying the <span data-concept="initial-value-problem">initial conditions</span> $\kq(0)=0$ and $i(0)=((dq)/(dt))(0)=9,$ we find $c_{1}=-10$ and $c_{2}=-7.$ So the charge on the capacitor is</p>
+<span data-fn="-10e^(-3x)*cos(3x)-7e^(-3x)*sin(3x)+10">$$\kq(t)=-10e^{-3t}\cos (3t)-7e^{-3t}\sin (3t)+10.$$</span>
+<p>Looking closely at this function, we see the first two terms will decay over time (as a result of the negative exponent in the exponential function). Therefore, the capacitor eventually approaches a <span data-concept="steady-state-solution">steady-state charge</span> of 10 C.</p>
+</div>
+<div class="exercises" data-place="fs-id1170570974718"></div>
+</section>

@@ -1,0 +1,324 @@
+{
+ "id": "17.4",
+ "module": "m54046",
+ "chapter": "17",
+ "title": "Series Solutions of Differential Equations",
+ "short": "Series Solutions of Differential Equations",
+ "lead": "Some <span data-concept=\"differential-equation\">differential equations</span> are solved by assuming a <span data-concept=\"power-series\">power series</span> for the solution and finding its coefficients one after another. This section uses <span data-concept=\"power-series-solution-of-a-differential-equation\">power series solutions</span> on first- and second-order equations and finds the series that solves the <span data-concept=\"bessel-equation\">Bessel equation</span> of order 0.",
+ "objectives": [
+  "Use power series to solve first-order and second-order differential equations."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"power-series\">Power series representations</span> of functions can sometimes be used to find solutions to <span data-concept=\"differential-equation\">differential equations</span>.</li><li>Differentiate the <span data-concept=\"power-series\">power series</span> <span data-concept=\"term-by-term-differentiation-and-integration\">term by term</span> and substitute into the <span data-concept=\"differential-equation\">differential equation</span> to find relationships between the <span data-concept=\"power-series\">power series</span> coefficients.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s, except the verification of Checkpoint 17.23, which the book leaves unanswered and which is AI-marked. The even-numbered exercises have no answer in the key and are computational, so they are left out: 104–114 even (power series solutions) and 116 (the Bessel equation of order 1). The Chapter Review Exercises printed at the end of this section are set in the sections that introduce what they test: 117, 119, 120, 121, 123, 125, 133 and 135 in Section 17.1, 118, 127, 129 and 131 in Section 17.2, and 137, 139 and 141 in Section 17.3. The unkeyed computational ones are left out: 122 and 124 (classifications), 126, 128, 130 and 132 (general solutions), 134 (an initial-value problem), 136 (a boundary-value problem), 138 (the general solution of the beats equation) and 140 (a plot of beats).",
+ "figures": [
+  {
+   "id": "sim-bessel",
+   "kind": "sim",
+   "originals": [
+    "/media/ch17/CNX_Calc_Figure_17_04_001.jpg"
+   ],
+   "draws": [
+    "function",
+    "series"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "series-intro",
+   "concept": "power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "series-intro",
+   "concept": "term-by-term-differentiation-and-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571376919",
+   "concept": "power-series-solution-of-a-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571157050",
+   "concept": "power-series-solution-of-a-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571157050",
+   "concept": "reindexing-a-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571157050",
+   "concept": "uniqueness-of-power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571157050",
+   "concept": "recurrence-relation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571157050",
+   "concept": "maclaurin-series-of-common-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571157050",
+   "concept": "second-order-equation-with-constant-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "bessel-term",
+   "concept": "bessel-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "eip-id1171281740360",
+   "concept": "series-solution-of-the-bessel-equation-of-order-0",
+   "verb": "introduces"
+  },
+  {
+   "span": "sim-bessel",
+   "concept": "series-solution-of-the-bessel-equation-of-order-0",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170571291314",
+   "source_number": "Checkpoint 17.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571157050"
+   },
+   "cite": "power-series-solutions",
+   "prompt": "Find a power series solution for the following differential equations. a. $\\kyprime+2x\\kyfn=0$ b. $(x+1)\\kyprime=3\\kyfn$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kyfn(x)=a_{0}\\sum_{n=0}^{\\infty}\\frac{{(-1)}^{n}}{n!}x^{2n}=a_{0}e^{-x^{2}}$ b. $\\kyfn(x)=a_{0}{(x+1)}^{3}$",
+    "hint": "Follow the problem-solving strategy."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170571047646",
+   "source_number": "Checkpoint 17.23",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571370995"
+   },
+   "cite": "bessel",
+   "prompt": "Verify that the expression found in <a href=\"#fs-id1170571370995\">Example 17.26</a> is a solution to the Bessel equation of order 0.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "<p>Let $\\kyfn=a_{0}\\sum_{k=0}^{\\infty}\\frac{(-1)^{k}}{2^{2k}(k!)^{2}}x^{2k}=\\sum_{k=0}^{\\infty}a_{2k}x^{2k}.$ Differentiating term by term, $x\\kyprime=\\sum_{k=0}^{\\infty}2k\\,a_{2k}x^{2k}$ and $x^{2}\\kydprime=\\sum_{k=0}^{\\infty}2k(2k-1)a_{2k}x^{2k},$ so $x^{2}\\kydprime+x\\kyprime=\\sum_{k=0}^{\\infty}(2k)^{2}a_{2k}x^{2k},$ while $x^{2}\\kyfn=\\sum_{k=1}^{\\infty}a_{2k-2}x^{2k}.$ The constant term of $x^{2}\\kydprime+x\\kyprime+x^{2}\\kyfn$ is $0\\cdot a_{0}=0,$ and for $k\\ge 1$ the coefficient of $x^{2k}$ is</p>$$4k^{2}\\frac{(-1)^{k}a_{0}}{2^{2k}(k!)^{2}}+\\frac{(-1)^{k-1}a_{0}}{2^{2k-2}((k-1)!)^{2}}=\\frac{(-1)^{k}a_{0}}{2^{2k-2}((k-1)!)^{2}}\\Big(\\frac{k^{2}}{k^{2}}-1\\Big)=0.$$<p>Every coefficient is zero, so the series is a solution of the Bessel equation of order $0.$</p>",
+    "hint": "Differentiate the power series term by term and substitute it into the differential equation."
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1170571118620",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-series-solutions",
+   "prompt": "<p>Find a power series solution for the following differential equations.</p><p>$5\\kydprime+\\kyprime=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=a_{0}+5a_{1}\\sum_{n=1}^{\\infty} \\frac{{(-x/5)}^{n}}{n!}=c_{0}+5c_{1}e^{-x/5}$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1170571246765",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-series-solutions",
+   "prompt": "<p>Find a power series solution for the following differential equations.</p><p>$\\kydprime-\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=a_{0}\\sum_{n=0}^{\\infty} \\frac{{(x)}^{2n}}{(2n)!} +a_{1}\\sum_{n=0}^{\\infty} \\frac{{(x)}^{2n+1}}{(2n+1)!}$"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1170571214796",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-series-solutions",
+   "prompt": "<p>Find a power series solution for the following differential equations.</p><p>$\\kyprime-2x\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=a_{0}\\sum_{n=0}^{\\infty} \\frac{x^{2n}}{n!}=c_{0}e^{x^{2}}$"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1170571138039",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-series-solutions",
+   "prompt": "<p>Find a power series solution for the following differential equations.</p><p>$\\kydprime-x\\kyprime-\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=a_{0}\\sum_{n=0}^{\\infty} \\frac{x^{2n}}{2^{n}n!}+a_{1}\\sum_{n=0}^{\\infty} \\frac{x^{2n+1}}{1⋅3⋅5⋅7\\cdots (2n+1)}$"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1170571131595",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-series-solutions",
+   "prompt": "<p>Find a power series solution for the following differential equations.</p><p>$x^{2}\\kydprime-x\\kyprime-3\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{0}x^{3}+\\frac{c_{1}}{x}$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1170571203615",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-series-solutions",
+   "prompt": "<p>Find a power series solution for the following differential equations.</p><p>$\\kydprime-2x\\kyfn=0,\\hspace{2em}\\kyfn(0)=1,\\; \\;\\kyprime(0)=-3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=1-3x+\\frac{2x^{3}}{3!}-\\frac{12x^{4}}{4!}+\\frac{16x^{6}}{6!}-\\frac{120x^{7}}{7!}+\\cdots$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "series-solution-of-the-bessel-equation-of-order-0"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "bessel-equation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e105",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e107",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e107",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e109",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e109",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e111",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e111",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e113",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e115",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e115",
+   "concept": "initial-value-problem"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-c0-c1",
+   "kind": "correction",
+   "html": "The constants just chosen are $c_{0}$ and $c_{1},$ the coefficients of $e^{x}$ and $e^{-x}.$"
+  },
+  {
+   "id": "c-step-5",
+   "kind": "correction",
+   "html": "This is step 5 of the strategy, equating the coefficients of like powers of $x;$ step 3 is the substitution."
+  }
+ ]
+}

@@ -1,0 +1,1592 @@
+{
+ "id": "17.1",
+ "module": "m54040",
+ "chapter": "17",
+ "title": "Second-Order Linear Equations",
+ "short": "Second-Order Linear Equations",
+ "lead": "A second-order <span data-concept=\"differential-equation\">differential equation</span> carries the second derivative of its unknown function. This section sorts such equations into <span data-concept=\"second-order-linear-differential-equation\">linear</span> and nonlinear, <span data-concept=\"homogeneous-linear-equation\">homogeneous</span> and <span data-concept=\"nonhomogeneous-linear-equation\">nonhomogeneous</span>, builds general solutions from pairs of <span data-concept=\"linear-independence\">linearly independent</span> solutions, solves equations with constant coefficients through their <span data-concept=\"characteristic-equation\">characteristic equation</span>, and meets initial-value and <span data-concept=\"boundary-value-problem\">boundary-value problems</span>.",
+ "objectives": [
+  "Recognize homogeneous and nonhomogeneous linear differential equations.",
+  "Determine the characteristic equation of a homogeneous linear equation.",
+  "Use the roots of the characteristic equation to find the solution to a homogeneous linear equation.",
+  "Solve initial-value and boundary-value problems involving linear differential equations."
+ ],
+ "summary_html": "<ul><li>Second-order <span data-concept=\"differential-equation\">differential equations</span> can be classified as linear or nonlinear, <span data-concept=\"homogeneous-linear-equation\">homogeneous</span> or <span data-concept=\"nonhomogeneous-linear-equation\">nonhomogeneous</span>.</li><li>To find a <span data-concept=\"general-solution\">general solution</span> for a <span data-concept=\"homogeneous-linear-equation\">homogeneous</span> second-order <span data-concept=\"differential-equation\">differential equation</span>, we must find two <span data-concept=\"linear-independence\">linearly independent</span> solutions. If $\\kyone(x)$ and $\\kytwo(x)$ are <span data-concept=\"linear-independence\">linearly independent</span> solutions to a second-order, <span data-concept=\"homogeneous-linear-equation\">linear, homogeneous differential equation</span>, then the <span data-concept=\"general-solution\">general solution</span> is given by $$\\kyfn(x)=c_{1}\\kyone(x)+c_{2}\\kytwo(x).$$</li><li>To solve <span data-concept=\"homogeneous-linear-equation\">homogeneous</span> second-order <span data-concept=\"differential-equation\">differential equations</span> with constant coefficients, find the roots of the <span data-concept=\"characteristic-equation\">characteristic equation</span>. The form of the <span data-concept=\"general-solution\">general solution</span> varies depending on whether the <span data-concept=\"characteristic-equation\">characteristic equation</span> has distinct, real roots; a single, repeated real root; or complex conjugate roots.</li><li><span data-concept=\"initial-value-problem\">Initial conditions</span> or <span data-concept=\"boundary-conditions\">boundary conditions</span> can then be used to find the specific <span data-concept=\"solution-to-a-differential-equation\">solution to a differential equation</span> that satisfies those conditions, except when there is no solution or infinitely many solutions.</li></ul>",
+ "notes": "Two media links, to websites on second-order differential equations, are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the verifications of Checkpoints 17.2 and 17.3 and the approaches to exercises 7–10, 52 and 53 and review exercise 120, which the book leaves unanswered and which are AI-marked. The even-numbered exercises have no answer in the key; the computational ones are left out: 2, 4 and 6 (classifications), 12–30 even (general solutions), 32–46 even (initial-value and boundary-value problems), 48 (an equation from its general solution) and 50 (an initial-value problem and its graph). Review exercises 117, 119, 120, 121, 123, 125, 133 and 135, printed at the end of Section 17.4, are set here.",
+ "figures": [
+  {
+   "id": "sim-ivp",
+   "kind": "sim",
+   "originals": [
+    "/media/ch17/CNX_Calc_Figure_17_01_001.jpg"
+   ],
+   "draws": [
+    "function",
+    "derivative",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-spring-ivp",
+   "kind": "sim",
+   "originals": [
+    "/media/ch17/CNX_Calc_Figure_17_01_003.jpg"
+   ],
+   "draws": [
+    "function",
+    "derivative",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-characteristic-roots",
+   "kind": "sim",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-boundary-value",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "second-order-intro",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "second-order-intro",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-linear-equations",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-linear-equations",
+   "concept": "higher-order-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571696990",
+   "concept": "second-order-linear-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170571696990",
+   "concept": "homogeneous-linear-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170571696990",
+   "concept": "nonhomogeneous-linear-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170571650370",
+   "concept": "second-order-linear-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571650370",
+   "concept": "homogeneous-linear-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571650370",
+   "concept": "nonhomogeneous-linear-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572560326",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572430386",
+   "concept": "superposition-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572430386",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572167258",
+   "concept": "superposition-principle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571609153",
+   "concept": "linear-independence",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572448486",
+   "concept": "linear-dependence-of-two-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572630833",
+   "concept": "linear-dependence-of-two-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572507385",
+   "concept": "general-solution-to-a-homogeneous-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572520528",
+   "concept": "general-solution-to-a-homogeneous-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572185074",
+   "concept": "second-order-equation-with-constant-coefficients",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-coefficients",
+   "concept": "exponential-function",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-coefficients",
+   "concept": "derivative-of-the-natural-exponential-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572168702",
+   "concept": "characteristic-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "char-roots",
+   "concept": "quadratic-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "distinct-roots",
+   "concept": "solution-for-distinct-real-roots",
+   "verb": "introduces"
+  },
+  {
+   "span": "repeated-root",
+   "concept": "solution-for-a-repeated-real-root",
+   "verb": "introduces"
+  },
+  {
+   "span": "euler-formula",
+   "concept": "eulers-formula",
+   "verb": "introduces"
+  },
+  {
+   "span": "complex-roots",
+   "concept": "solution-for-complex-conjugate-roots",
+   "verb": "introduces"
+  },
+  {
+   "span": "sim-characteristic-roots",
+   "concept": "characteristic-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-characteristic-roots",
+   "concept": "solution-for-distinct-real-roots",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-characteristic-roots",
+   "concept": "solution-for-a-repeated-real-root",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-characteristic-roots",
+   "concept": "solution-for-complex-conjugate-roots",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572292207",
+   "concept": "solving-with-the-characteristic-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170571735178",
+   "concept": "solving-with-the-characteristic-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "initial-boundary",
+   "concept": "initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "boundary-term",
+   "concept": "boundary-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "boundary-term",
+   "concept": "boundary-value-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "uniqueness-term",
+   "concept": "uniqueness-of-solutions-to-second-order-problems",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572624728",
+   "concept": "initial-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-ivp",
+   "concept": "initial-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572306933",
+   "concept": "simple-harmonic-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-spring-ivp",
+   "concept": "solution-for-a-repeated-real-root",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572292379",
+   "concept": "boundary-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-boundary-value",
+   "concept": "uniqueness-of-solutions-to-second-order-problems",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572167953",
+   "source_number": "Checkpoint 17.1",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571650370"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "Classify each of the following equations as linear or nonlinear. If the equation is linear, determine further whether it is homogeneous or nonhomogeneous. a. ${(\\kydprime)}^{2}-\\kyprime+8x^{3}\\kyfn=0$ b. $(\\sin t)\\kydprime+\\cos t-3t\\kyprime=0$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. Nonlinear b. Linear, nonhomogeneous",
+    "hint": "Write the equation in standard form if necessary. Check for powers or functions of $\\kyfn$ and its derivatives."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170572107186",
+   "source_number": "Checkpoint 17.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572560326"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>Show that $\\kyfn=2x^{2}$ is a solution to the differential equation</p>\n$$\\frac{1}{2}x^{2}\\kydprime-x\\kyprime+\\kyfn=0.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "<p>With $\\kyfn=2x^{2},$ we have $\\kyprime=4x$ and $\\kydprime=4.$ Substituting into the left side, $\\frac{1}{2}x^{2}(4)-x(4x)+2x^{2}=2x^{2}-4x^{2}+2x^{2}=0,$ so $\\kyfn=2x^{2}$ is a solution.</p>",
+    "hint": "Calculate the derivatives and substitute them into the differential equation."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572167175",
+   "source_number": "Checkpoint 17.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572167258"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>Consider the differential equation</p>\n$$\\kydprime+5\\kyprime+6\\kyfn=0.$$\n<p>Given that $e^{-2x}$ and $e^{-3x}$ are solutions to this differential equation, show that $3e^{-2x}+6e^{-3x}$ is a solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "<p>With $\\kyfn=3e^{-2x}+6e^{-3x},$ we have $\\kyprime=-6e^{-2x}-18e^{-3x}$ and $\\kydprime=12e^{-2x}+54e^{-3x}.$ Then $\\kydprime+5\\kyprime+6\\kyfn=(12-30+18)e^{-2x}+(54-90+36)e^{-3x}=0,$ so $3e^{-2x}+6e^{-3x}$ is a solution, as the superposition principle predicts from the solutions $e^{-2x}$ and $e^{-3x}.$</p>",
+    "hint": "Differentiate the function and substitute into the differential equation."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170572337771",
+   "source_number": "Checkpoint 17.4",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572630833"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "Determine whether the following pairs of functions are linearly dependent or linearly independent: $\\kf_{1}(x)=e^{x},$ $\\kf_{2}(x)=3e^{3x}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Linearly independent",
+    "hint": "Are the functions constant multiples of one another?"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170572582067",
+   "source_number": "Checkpoint 17.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572520528"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "If $\\kyone(x)=e^{3x}$ and $\\kytwo(x)=xe^{3x}$ are solutions to $\\kydprime-6\\kyprime+9\\kyfn=0,$ what is the general solution?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=c_{1}e^{3x}+c_{2}xe^{3x}$",
+    "hint": "Check for linear independence first."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1170572332760",
+   "source_number": "Checkpoint 17.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571735178"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "Find the general solution to the following differential equations: a. $\\kydprime-2\\kyprime+10\\kyfn=0$ b. $\\kydprime+14\\kyprime+49\\kyfn=0$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\kyfn(x)=e^{x}(c_{1}\\cos 3x+c_{2}\\sin 3x)$ b. $\\kyfn(x)=c_{1}e^{-7x}+c_{2}xe^{-7x}$",
+    "hint": "Find the roots of the characteristic equation."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1170571700298",
+   "source_number": "Checkpoint 17.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572624728"
+   },
+   "cite": "initial-boundary",
+   "prompt": "Solve the initial-value problem $\\kydprime-3\\kyprime-10\\kyfn=0,$ $\\kyfn(0)=0,$ $\\kyprime(0)=7.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=-e^{-2x}+e^{5x}$",
+    "hint": "Use the initial conditions to determine values for $c_{1}$ and $c_{2}.$"
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1170572627068",
+   "source_number": "Checkpoint 17.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572307679"
+   },
+   "cite": "initial-boundary",
+   "prompt": "Solve the following initial-value problem and graph the solution: $\\kydprime-2\\kyprime+10\\kyfn=0,\\kyfn(0)=2,\\kyprime(0)=-1$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kyfn(x)=e^{x}(2\\;\\cos 3x-\\sin 3x)$</p>\n<img src=\"/media/ch17/CNX_Calc_Figure_17_01_002.jpg\" alt=\"This figure is the graph of y(x) = e^x(2 cos 3x − sin 3x) It has the positive x axis scaled in increments of even tenths. The y axis is scaled in increments of twenty. The graph itself starts at the origin. Its amplitude increases as x increases.\">",
+    "hint": "Use the initial conditions to determine values for $c_{1}$ and $c_{2}.$"
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1170572516870",
+   "source_number": "Checkpoint 17.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572306933"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Suppose the following initial-value problem models the position (in feet) of a mass in a spring-mass system at any given time. Solve the initial-value problem and graph the solution. What is the position of the mass at time $t=0.3$ sec? How fast is it moving at time $t=0.1$ sec? In what direction?</p>\n$$\\kydprime+14\\kyprime+49\\kyfn=0,\\kyfn(0)=0,\\kyprime(0)=1$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kyfn(t)=te^{-7t}$</p>\n<img src=\"/media/ch17/CNX_Calc_Figure_17_01_004.jpg\" alt=\"This figure is the graph of y(t) = te^−7t. The horizontal axis is labeled with t and is scaled in increments of tenths. The y axis is scaled in increments of 0.5. The graph passes through the origin and has a horizontal asymptote of the positive t axis.\">\n<p>At time $t=0.3,$ $\\kyfn(0.3)=0.3e^{(-7*0.3)}=0.3e^{-2.1}\\approx 0.0367.$ The mass is 0.0367 ft below equilibrium. At time $t=0.1,$ $\\kyprime(0.1)=0.3e^{-0.7}\\approx 0.1490.$ The mass is moving downward at a speed of 0.1490 ft/sec.</p>",
+    "hint": "Use the initial conditions to determine values for $c_{1}$ and $c_{2}.$"
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1170572604496",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>Classify each of the following equations as linear or nonlinear. If the equation is linear, determine whether it is homogeneous or nonhomogeneous.</p><p>$x^{3}\\kydprime+(x-1)\\kyprime-8\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "linear, homogenous"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1170571543371",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>Classify each of the following equations as linear or nonlinear. If the equation is linear, determine whether it is homogeneous or nonhomogeneous.</p><p>$x\\kydprime+e^{\\kyfn}\\kyprime=x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "nonlinear"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1170572642017",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>Classify each of the following equations as linear or nonlinear. If the equation is linear, determine whether it is homogeneous or nonhomogeneous.</p><p>$\\kydprime+(\\sin x)\\kyprime-x\\kyfn=4\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "linear, homogeneous"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1170571614582",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>For each of the following problems, verify that the given function is a solution to the differential equation. Use a graphing utility to graph the particular solutions for several values of <em>c</em><sub>1</sub> and <em>c</em><sub>2</sub>. What do the solutions have in common?</p><p><strong>[T]</strong>$\\kydprime+2\\kyprime-3\\kyfn=0;$ $\\kyfn(x)=c_{1}e^{x}+c_{2}e^{-3x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>With $\\kyfn=c_{1}e^{x}+c_{2}e^{-3x},$ we have $\\kyprime=c_{1}e^{x}-3c_{2}e^{-3x}$ and $\\kydprime=c_{1}e^{x}+9c_{2}e^{-3x}.$ Then $\\kydprime+2\\kyprime-3\\kyfn=c_{1}(1+2-3)e^{x}+c_{2}(9-6-3)e^{-3x}=0,$ so every member of the family is a solution. Graphed for several values of $c_{1}$ and $c_{2},$ the solutions all behave like $c_{2}e^{-3x}$ far to the left and like $c_{1}e^{x}$ far to the right: whenever $c_{1}\\ne 0,$ the $e^{-3x}$ term dies away and the solution grows like $c_{1}e^{x}$ as $x\\to\\infty.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "fs-id1170571614670",
+   "source_number": "8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>For each of the following problems, verify that the given function is a solution to the differential equation. Use a graphing utility to graph the particular solutions for several values of <em>c</em><sub>1</sub> and <em>c</em><sub>2</sub>. What do the solutions have in common?</p><p><strong>[T]</strong>$x^{2}\\kydprime-2\\kyfn-3x^{2}+1=0;$ $\\kyfn(x)=c_{1}x^{2}+c_{2}x^{-1}+x^{2}\\ln (x)+\\frac{1}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>With $\\kyfn=c_{1}x^{2}+c_{2}x^{-1}+x^{2}\\ln (x)+\\frac{1}{2},$ we have $\\kyprime=2c_{1}x-c_{2}x^{-2}+2x\\ln (x)+x$ and $\\kydprime=2c_{1}+2c_{2}x^{-3}+2\\ln (x)+3.$ Then $x^{2}\\kydprime=2c_{1}x^{2}+2c_{2}x^{-1}+2x^{2}\\ln (x)+3x^{2}$ and $2\\kyfn=2c_{1}x^{2}+2c_{2}x^{-1}+2x^{2}\\ln (x)+1,$ so $x^{2}\\kydprime-2\\kyfn-3x^{2}+1=3x^{2}-1-3x^{2}+1=0,$ and every member is a solution. The solutions are defined for $x\\gt 0;$ they all contain the part $x^{2}\\ln (x)+\\frac{1}{2},$ which has no arbitrary constant, so for large $x$ they all grow like $x^{2}\\ln x,$ while near $0$ the term $c_{2}x^{-1}$ takes over whenever $c_{2}\\ne 0.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1170572372098",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>For each of the following problems, verify that the given function is a solution to the differential equation. Use a graphing utility to graph the particular solutions for several values of <em>c</em><sub>1</sub> and <em>c</em><sub>2</sub>. What do the solutions have in common?</p><p><strong>[T]</strong>$\\kydprime+14\\kyprime+49\\kyfn=0;$ $\\kyfn(x)=c_{1}e^{-7x}+c_{2}xe^{-7x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>With $\\kyfn=c_{1}e^{-7x}+c_{2}xe^{-7x},$ we have $\\kyprime=-7c_{1}e^{-7x}+c_{2}(1-7x)e^{-7x}$ and $\\kydprime=49c_{1}e^{-7x}+c_{2}(49x-14)e^{-7x}.$ Then $\\kydprime+14\\kyprime+49\\kyfn=c_{1}(49-98+49)e^{-7x}+c_{2}\\big((49x-14)+14(1-7x)+49x\\big)e^{-7x}=0,$ so every member is a solution. Graphed for several values of $c_{1}$ and $c_{2},$ the solutions change direction at most once and all approach $0$ as $x\\to\\infty,$ since $e^{-7x}$ and $xe^{-7x}$ both tend to $0.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "fs-id1170572268377",
+   "source_number": "10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>For each of the following problems, verify that the given function is a solution to the differential equation. Use a graphing utility to graph the particular solutions for several values of <em>c</em><sub>1</sub> and <em>c</em><sub>2</sub>. What do the solutions have in common?</p><p><strong>[T]</strong>$6\\kydprime-49\\kyprime+8\\kyfn=0;$ $\\kyfn(x)=c_{1}e^{x/6}+c_{2}e^{8x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>With $\\kyfn=c_{1}e^{x/6}+c_{2}e^{8x},$ we have $\\kyprime=\\frac{c_{1}}{6}e^{x/6}+8c_{2}e^{8x}$ and $\\kydprime=\\frac{c_{1}}{36}e^{x/6}+64c_{2}e^{8x}.$ Then $6\\kydprime-49\\kyprime+8\\kyfn=c_{1}(\\frac{6}{36}-\\frac{49}{6}+8)e^{x/6}+c_{2}(384-392+8)e^{8x}=c_{1}(\\frac{1-49+48}{6})e^{x/6}+0=0,$ so every member is a solution. Graphed for several values of $c_{1}$ and $c_{2},$ the solutions all tend to $0$ as $x\\to-\\infty,$ and as $x\\to\\infty$ every solution with $c_{2}\\ne 0$ grows like $c_{2}e^{8x}$ (positive or negative with $c_{2}$).</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1170572088733",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$\\kydprime-3\\kyprime-10\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{5x}+c_{2}e^{-2x}$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1170572309635",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$\\kydprime+4\\kyprime+4\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{-2x}+c_{2}xe^{-2x}$"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1170572334866",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$2\\kydprime-3\\kyprime-5\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{5x/2}+c_{2}e^{-x}$"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1170572582391",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$\\kydprime+\\kyprime+\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=e^{-x/2}(c_{1}\\cos \\frac{\\sqrt{3}x}{2}+c_{2}\\sin \\frac{\\sqrt{3}x}{2})$"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1170572274637",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$\\kydprime-121\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{-11x}+c_{2}e^{11x}$"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1170571557043",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$\\kydprime+81\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}\\cos 9x+c_{2}\\sin 9x$"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1170572583472",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$2\\kydprime=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}+c_{2}x$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1170572512748",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$3\\kydprime-2\\kyprime-7\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{((1+\\sqrt{22})/3)x}+c_{2}e^{((1-\\sqrt{22})/3)x}$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1170572542773",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$36\\frac{d^{2}\\kyfn}{dx^{2}}+12\\frac{d\\kyfn}{dx}+\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}e^{-x/6}+c_{2}xe^{-x/6}$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1170572388329",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find the general solution to the linear differential equation.</p><p>$\\frac{d^{2}\\kyfn}{dx^{2}}-9\\frac{d\\kyfn}{dx}=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}+c_{2}e^{9x}$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1170571596269",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Solve the initial-value problem.</p><p>$\\kydprime+5\\kyprime+6\\kyfn=0,\\hspace{2em}\\kyfn(0)=0,\\; \\;\\kyprime(0)=-2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-2e^{-2x}+2e^{-3x}$"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1170572557927",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Solve the initial-value problem.</p><p>$\\kydprime+4\\kyfn=0,\\hspace{4em}\\kyfn(0)=3,\\; \\;\\kyprime(0)=10$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=3\\;\\cos (2x)+5\\;\\sin (2x)$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1170572304970",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Solve the initial-value problem.</p><p>$\\kydprime-\\kyprime-30\\kyfn=0,\\hspace{2em}\\kyfn(0)=1,\\; \\;\\kyprime(0)=-16$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-e^{6x}+2e^{-5x}$"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1170571817331",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Solve the initial-value problem.</p><p>$25\\kydprime+10\\kyprime+\\kyfn=0,\\hspace{2em}\\kyfn(0)=2,\\; \\;\\kyprime(0)=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=2e^{-x/5}+\\frac{7}{5}xe^{-x/5}$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1170571755418",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Solve the boundary-value problem, if possible.</p><p>$\\kydprime+\\kyprime-42\\kyfn=0,\\hspace{2em}\\kyfn(0)=0,\\; \\;\\kyfn(1)=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=(\\frac{2}{e^{6}-e^{-7}})e^{6x}-(\\frac{2}{e^{6}-e^{-7}})e^{-7x}$"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1170571733162",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Solve the boundary-value problem, if possible.</p><p>$\\kydprime+10\\kyprime+34\\kyfn=0,\\hspace{2em}\\kyfn(0)=6,\\; \\;\\kyfn(\\pi )=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No solutions exist."
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1170572311082",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Solve the boundary-value problem, if possible.</p><p>$\\kydprime-4\\kyprime+4\\kyfn=0,\\hspace{2em}\\kyfn(0)=2,\\; \\;\\kyfn(1)=-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=2e^{2x}-\\frac{2e^{2}+1}{e^{2}}xe^{2x}$"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1170572268031",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>Solve the boundary-value problem, if possible.</p><p>$\\kydprime+9\\kyfn=0,\\hspace{2em}\\kyfn(0)=4,\\; \\;\\kyfn(\\frac{\\pi}{3})=-4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=4\\;\\cos 3x+c_{2}\\sin 3x,\\;\\text{infinitely many solutions}$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1170571654026",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Find a differential equation with a general solution that is $\\kyfn=c_{1}e^{x/5}+c_{2}e^{-4x}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$5\\kydprime+19\\kyprime-4\\kyfn=0$"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1170572417838",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>For each of the following differential equations:</p><p>a. Solve the initial value problem.</p><p>b. <strong>[T]</strong> Use a graphing utility to graph the particular solution.</p><p>$\\kydprime+64\\kyfn=0;\\hspace{2em}\\kyfn(0)=3,\\;\\kyprime(0)=–24$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\kyfn=3\\;\\cos (8x)$<sup class=\"fn\" data-note=\"c-e49-key\"></sup></p>\n<p>b.</p>\n<img src=\"/media/ch17/CNX_Calc_Figure_17_01_201.jpg\" alt=\"This figure is a periodic graph. It has an amplitude of 3.5. Both the x and y axes are scaled in increments of 1.\">"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1170572388281",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>For each of the following differential equations:</p><p>a. Solve the initial value problem.</p><p>b. <strong>[T]</strong> Use a graphing utility to graph the particular solution.</p><p>$\\kydprime+5\\kyprime+15\\kyfn=0\\hspace{2em}\\kyfn(0)=-2,\\;\\kyprime(0)=7$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\kyfn=e^{(-5/2)x}[-2\\;\\cos (\\frac{\\sqrt{35}}{2}x)+\\frac{4\\sqrt{35}}{35}\\;\\sin (\\frac{\\sqrt{35}}{2}x)]$</p>\n<p>b.</p>\n<img src=\"/media/ch17/CNX_Calc_Figure_17_01_203.jpg\" alt=\"This figure is a graph of an oscillating function. The amplitude of the graph is decreasing as x increases.\">"
+   }
+  },
+  {
+   "id": "e52",
+   "source_id": "fs-id1170572567835",
+   "source_number": "52",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>(Principle of superposition) Prove that if $\\kyone(x)$ and $\\kytwo(x)$ are solutions to a linear homogeneous differential equation, $\\kydprime+p(x)\\kyprime+q(x)\\kyfn=0,$ then the function $\\kyfn(x)=c_{1}\\kyone(x)+c_{2}\\kytwo(x),$ where $c_{1}$ and $c_{2}$ are constants, is also a solution.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let $\\kyfn=c_{1}\\kyone+c_{2}\\kytwo.$ Differentiating term by term, $\\kyprime=c_{1}\\kyoneprime+c_{2}\\kytwoprime$ and $\\kydprime=c_{1}\\kyone^{\\prime\\prime}+c_{2}\\kytwo^{\\prime\\prime}.$ Substituting and collecting the terms of each solution,</p>$$\\kydprime+p(x)\\kyprime+q(x)\\kyfn=c_{1}\\big(\\kyone^{\\prime\\prime}+p(x)\\kyoneprime+q(x)\\kyone\\big)+c_{2}\\big(\\kytwo^{\\prime\\prime}+p(x)\\kytwoprime+q(x)\\kytwo\\big)=c_{1}\\cdot 0+c_{2}\\cdot 0=0,$$<p>since $\\kyone$ and $\\kytwo$ are solutions. So $\\kyfn=c_{1}\\kyone+c_{2}\\kytwo$ is also a solution.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1170572622303",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Prove that if <em>a, b,</em> and <em>c</em> are positive constants, then all solutions to the second-order linear differential equation $a\\kydprime+b\\kyprime+c\\kyfn=0$ approach zero as $x\\to \\infty \\text{.}$ (<em>Hint:</em> Consider three cases: two distinct roots, repeated real roots, and complex conjugate roots.)</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The roots of $a\\lambda^{2}+b\\lambda+c=0$ are $\\lambda=\\frac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}.$ If $b^{2}-4ac\\gt 0,$ the roots are distinct and real; their product $\\frac{c}{a}$ is positive, so they have the same sign, and their sum $-\\frac{b}{a}$ is negative, so both are negative and $c_{1}e^{\\lambda_{1}x}+c_{2}e^{\\lambda_{2}x}\\to 0$ as $x\\to\\infty.$ If $b^{2}-4ac=0,$ the repeated root $\\lambda=-\\frac{b}{2a}$ is negative, and both $e^{\\lambda x}$ and $xe^{\\lambda x}$ tend to $0,$ since the exponential decays faster than $x$ grows. If $b^{2}-4ac\\lt 0,$ the roots are $\\alpha\\pm\\beta i$ with $\\alpha=-\\frac{b}{2a}\\lt 0,$ and $|e^{\\alpha x}(c_{1}\\cos \\beta x+c_{2}\\sin \\beta x)|\\le e^{\\alpha x}(|c_{1}|+|c_{2}|)\\to 0.$ In every case all solutions approach zero as $x\\to\\infty.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r117",
+   "source_id": "fs-id1170573739219",
+   "source_section": "17.4",
+   "source_number": "117",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>If $\\kyfn$ and $z$ are both solutions to $\\kydprime+2\\kyprime+\\kyfn=0,$ then $\\kyfn+z$ is also a solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True"
+   }
+  },
+  {
+   "id": "r119",
+   "source_id": "fs-id1170571244243",
+   "source_section": "17.4",
+   "source_number": "119",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>$\\kyfn=e^{x}\\cos (3x)+e^{x}\\sin (2x)$ is a solution to the second-order differential equation $\\kydprime+2\\kyprime+10=0.$<sup class=\"fn\" data-note=\"c-r119-equation\"></sup></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "False"
+   }
+  },
+  {
+   "id": "r120",
+   "source_id": "fs-id1170571092923",
+   "source_section": "17.4",
+   "source_number": "120",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>To find the particular solution to a second-order differential equation, you need one initial condition.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>False. The general solution of a second-order equation has two arbitrary constants, $c_{1}$ and $c_{2},$ so two conditions are needed to fix them: two initial conditions $\\kyfn(t_{0})$ and $\\kyprime(t_{0}),$ or two boundary conditions. One initial condition leaves a whole family; for $\\kydprime+\\kyfn=0$ with $\\kyfn(0)=0,$ every $\\kyfn=c_{2}\\sin x$ satisfies it.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r121",
+   "source_id": "fs-id1170571454358",
+   "source_section": "17.4",
+   "source_number": "121",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>Classify the differential equation. Determine the order, whether it is linear and, if linear, whether the differential equation is homogeneous or nonhomogeneous. If the equation is second-order homogeneous and linear, find the characteristic equation.</p><p>$\\kydprime-2\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "second order, linear, homogeneous, ${\\lambda }^{2}-2=0$"
+   }
+  },
+  {
+   "id": "r123",
+   "source_id": "fs-id1170571021351",
+   "source_section": "17.4",
+   "source_number": "123",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homogeneous-linear-equations",
+   "prompt": "<p>Classify the differential equation. Determine the order, whether it is linear and, if linear, whether the differential equation is homogeneous or nonhomogeneous. If the equation is second-order homogeneous and linear, find the characteristic equation.</p><p>${(\\frac{d\\kyfn}{dt})}^{2}+\\kyfn\\kyprime=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "first order, nonlinear, nonhomogeneous"
+   }
+  },
+  {
+   "id": "r125",
+   "source_id": "fs-id1170571146398",
+   "source_section": "17.4",
+   "source_number": "125",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-coefficients",
+   "prompt": "<p>For the following problems, find the general solution.</p><p>$\\kydprime+9\\kyfn=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=c_{1}\\cos (3x)+c_{2}\\sin (3x)$"
+   }
+  },
+  {
+   "id": "r133",
+   "source_id": "fs-id1170571415759",
+   "source_section": "17.4",
+   "source_number": "133",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>For the following problems, find the solution to the initial-value problem, if possible.</p><p>$\\kydprime+4\\kyprime+6\\kyfn=0,$ $\\kyfn(0)=0,$ $\\kyprime(0)=\\sqrt{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=e^{-2x}\\sin (\\sqrt{2}x)$"
+   }
+  },
+  {
+   "id": "r135",
+   "source_id": "fs-id1170571105139",
+   "source_section": "17.4",
+   "source_number": "135",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-boundary",
+   "prompt": "<p>For the following problems, find the solution to the boundary-value problem, if possible.</p><p>$4\\kyprime=-6\\kyfn+2\\kydprime,$ $\\kyfn(0)=0,$ $\\kyfn(1)=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{e^{1-x}}{e^{4}-1}(e^{4x}-1)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "second-order-linear-differential-equation"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "homogeneous-linear-equation"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "nonhomogeneous-linear-equation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "homogeneous-linear-equation"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "superposition-principle"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "linear-independence"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "linear-dependence-of-two-functions"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "linear-independence"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "solution-for-a-repeated-real-root"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "solution-for-a-repeated-real-root"
+  },
+  {
+   "exercise": "e1",
+   "concept": "second-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e1",
+   "concept": "homogeneous-linear-equation"
+  },
+  {
+   "exercise": "e1",
+   "concept": "nonhomogeneous-linear-equation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "second-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "homogeneous-linear-equation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "nonhomogeneous-linear-equation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "second-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "homogeneous-linear-equation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "nonhomogeneous-linear-equation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "exercise": "e8",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e8",
+   "concept": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "exercise": "e9",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e9",
+   "concept": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "exercise": "e10",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e10",
+   "concept": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "exercise": "e11",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e11",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e13",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e13",
+   "concept": "solution-for-a-repeated-real-root"
+  },
+  {
+   "exercise": "e15",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e15",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e17",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e17",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "e19",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e19",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e21",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e21",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "e23",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e23",
+   "concept": "solution-for-a-repeated-real-root"
+  },
+  {
+   "exercise": "e25",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e25",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e27",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e27",
+   "concept": "solution-for-a-repeated-real-root"
+  },
+  {
+   "exercise": "e29",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "e29",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e31",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e31",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e33",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e33",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "e35",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e35",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e37",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e37",
+   "concept": "solution-for-a-repeated-real-root"
+  },
+  {
+   "exercise": "e39",
+   "concept": "boundary-value-problem"
+  },
+  {
+   "exercise": "e39",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e41",
+   "concept": "boundary-value-problem"
+  },
+  {
+   "exercise": "e41",
+   "concept": "uniqueness-of-solutions-to-second-order-problems"
+  },
+  {
+   "exercise": "e41",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "e43",
+   "concept": "boundary-value-problem"
+  },
+  {
+   "exercise": "e43",
+   "concept": "solution-for-a-repeated-real-root"
+  },
+  {
+   "exercise": "e45",
+   "concept": "boundary-value-problem"
+  },
+  {
+   "exercise": "e45",
+   "concept": "uniqueness-of-solutions-to-second-order-problems"
+  },
+  {
+   "exercise": "e45",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "e47",
+   "concept": "characteristic-equation"
+  },
+  {
+   "exercise": "e47",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e49",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e49",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "e51",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e51",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "e52",
+   "concept": "superposition-principle"
+  },
+  {
+   "exercise": "e53",
+   "concept": "solution-for-distinct-real-roots"
+  },
+  {
+   "exercise": "e53",
+   "concept": "solution-for-a-repeated-real-root"
+  },
+  {
+   "exercise": "e53",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "r117",
+   "concept": "superposition-principle"
+  },
+  {
+   "exercise": "r119",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "r119",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "r120",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "r120",
+   "concept": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "exercise": "r121",
+   "concept": "second-order-linear-differential-equation"
+  },
+  {
+   "exercise": "r121",
+   "concept": "homogeneous-linear-equation"
+  },
+  {
+   "exercise": "r121",
+   "concept": "characteristic-equation"
+  },
+  {
+   "exercise": "r123",
+   "concept": "second-order-linear-differential-equation"
+  },
+  {
+   "exercise": "r123",
+   "concept": "nonhomogeneous-linear-equation"
+  },
+  {
+   "exercise": "r125",
+   "concept": "solving-with-the-characteristic-equation"
+  },
+  {
+   "exercise": "r125",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "r133",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "r133",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "r135",
+   "concept": "boundary-value-problem"
+  },
+  {
+   "exercise": "r135",
+   "concept": "solution-for-distinct-real-roots"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-eq-17-1",
+   "kind": "correction",
+   "html": "Here and in the rest of this section the book cites Equation 17.1, the general second-order linear equation $a_{2}(x)\\kydprime+a_{1}(x)\\kyprime+a_{0}(x)\\kyfn=\\krfn(x)$; the equation substituted into and solved is $a\\kydprime+b\\kyprime+c\\kyfn=0,$ <a href=\"#fs-id1170572185074\">Equation 17.2</a>."
+  },
+  {
+   "id": "c-example-17-1",
+   "kind": "correction",
+   "html": "The book cites Example 17.1, the classification of equations; the equation meant is $a\\kydprime+b\\kyprime+c\\kyfn=0,$ <a href=\"#fs-id1170572185074\">Equation 17.2</a>."
+  },
+  {
+   "id": "c-dependent",
+   "kind": "correction",
+   "html": "The argument starts from functions that are linearly dependent, as the next sentence uses: there are constants $c_{1}$ and $c_{2},$ not both zero, with $c_{1}\\kf_{1}(x)+c_{2}\\kf_{2}(x)=0.$"
+  },
+  {
+   "id": "c-functions-of-x",
+   "kind": "correction",
+   "html": "Parts b, c and f give their answers as functions of $t;$ as functions of $x$ they are $\\kyfn(x)=e^{-3x}(c_{1}\\cos 2x+c_{2}\\sin 2x),$ $\\kyfn(x)=c_{1}e^{-x}+c_{2}xe^{-x}$ and $\\kyfn(x)=c_{1}\\cos 4x+c_{2}\\sin 4x.$"
+  },
+  {
+   "id": "c-e49-key",
+   "kind": "correction",
+   "html": "With $\\kyfn=c_{1}\\cos 8x+c_{2}\\sin 8x,$ the condition $\\kyprime(0)=8c_{2}=-24$ gives $c_{2}=-3,$ so the solution of the initial-value problem is $\\kyfn=3\\cos 8x-3\\sin 8x;$ the printed $\\kyfn=3\\cos(8x)$ meets $\\kyfn(0)=3$ but has $\\kyprime(0)=0.$"
+  },
+  {
+   "id": "c-r119-equation",
+   "kind": "correction",
+   "html": "The equation is printed with $10$ for $10\\kyfn;$ the answer is False for $\\kydprime+2\\kyprime+10\\kyfn=0$ too, whose solutions are $e^{-x}(c_{1}\\cos 3x+c_{2}\\sin 3x).$"
+  }
+ ]
+}

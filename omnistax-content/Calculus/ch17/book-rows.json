@@ -1,0 +1,911 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "y_1",
+   "latex": "y_{1}",
+   "macro": "\\kyone"
+  },
+  {
+   "sym": "y_2",
+   "latex": "y_{2}",
+   "macro": "\\kytwo"
+  },
+  {
+   "sym": "y_p",
+   "latex": "y_{p}",
+   "macro": "\\kyp"
+  },
+  {
+   "sym": "y_1_prime",
+   "latex": "y_{1}'",
+   "macro": "\\kyoneprime"
+  },
+  {
+   "sym": "y_2_prime",
+   "latex": "y_{2}'",
+   "macro": "\\kytwoprime"
+  },
+  {
+   "sym": "y_1_dprime",
+   "latex": "y_{1}''",
+   "macro": "\\kyonedprime"
+  },
+  {
+   "sym": "y_2_dprime",
+   "latex": "y_{2}''",
+   "macro": "\\kytwodprime"
+  },
+  {
+   "sym": "y_p_prime",
+   "latex": "y_{p}'",
+   "macro": "\\kypprime"
+  },
+  {
+   "sym": "y_p_dprime",
+   "latex": "y_{p}''",
+   "macro": "\\kypdprime"
+  },
+  {
+   "sym": "r_fn",
+   "latex": "r",
+   "macro": "\\krfn"
+  },
+  {
+   "sym": "u_prime",
+   "latex": "u'",
+   "macro": "\\kuprime"
+  },
+  {
+   "sym": "x_fn",
+   "latex": "x",
+   "macro": "\\kxfn"
+  },
+  {
+   "sym": "x_dprime",
+   "latex": "x''",
+   "macro": "\\kxdprime"
+  },
+  {
+   "sym": "x_p",
+   "latex": "x_{p}",
+   "macro": "\\kxp"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "second-order-linear-differential-equation",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "Second-order linear differential equation",
+   "terms": [
+    "linear second-order differential equation",
+    "second-order linear differential equation"
+   ],
+   "statement": "A second-order differential equation is linear if it can be written in the form a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x), where a₂(x), a₁(x), a₀(x) and r(x) are real-valued functions and a₂(x) is not identically zero; y and its derivatives are raised only to the first power and are not multiplied by one another.",
+   "forms": [
+    {
+     "id": "eq-second-order-linear",
+     "latex": "a_{2}(x)y''+a_{1}(x)y'+a_{0}(x)y=r(x)",
+     "anchor": "17.1-fs-id1170572251008"
+    }
+   ]
+  },
+  {
+   "id": "homogeneous-linear-equation",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "Homogeneous linear equation",
+   "terms": [
+    "homogeneous linear equation",
+    "homogeneous"
+   ],
+   "statement": "A second-order linear differential equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x) is a homogeneous linear equation if r(x) = 0 for every value of x: every term contains y or one of its derivatives."
+  },
+  {
+   "id": "nonhomogeneous-linear-equation",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "Nonhomogeneous linear equation",
+   "terms": [
+    "nonhomogeneous linear equation",
+    "nonhomogeneous"
+   ],
+   "statement": "A second-order linear differential equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x) is a nonhomogeneous linear equation if r(x) ≠ 0 for some value of x."
+  },
+  {
+   "id": "superposition-principle",
+   "kind": "result",
+   "section": "17.1",
+   "name": "Superposition principle",
+   "terms": [
+    "superposition principle",
+    "principle of superposition"
+   ],
+   "statement": "If y₁(x) and y₂(x) are solutions to a linear homogeneous differential equation, then the function y(x) = c₁y₁(x) + c₂y₂(x), where c₁ and c₂ are constants, is also a solution.",
+   "forms": [
+    {
+     "id": "eq-superposition",
+     "latex": "y(x)=c_{1}y_{1}(x)+c_{2}y_{2}(x)",
+     "anchor": "17.1-fs-id1170572430386"
+    }
+   ]
+  },
+  {
+   "id": "linear-independence",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "Linear independence",
+   "terms": [
+    "linearly dependent",
+    "linearly independent",
+    "linear independence"
+   ],
+   "statement": "A set of functions f₁(x), f₂(x), …, fₙ(x) is linearly dependent if there are constants c₁, c₂, …, cₙ, not all zero, such that c₁f₁(x) + c₂f₂(x) + ⋯ + cₙfₙ(x) = 0 for all x over the interval of interest; a set of functions that is not linearly dependent is linearly independent."
+  },
+  {
+   "id": "linear-dependence-of-two-functions",
+   "kind": "result",
+   "section": "17.1",
+   "name": "Linear dependence of two functions",
+   "statement": "Two functions f₁(x) and f₂(x) are linearly dependent if either one of them is identically zero or if f₁(x) = Cf₂(x) for some constant C and for all x over the interval of interest; functions that are not linearly dependent are linearly independent."
+  },
+  {
+   "id": "general-solution-to-a-homogeneous-equation",
+   "kind": "result",
+   "section": "17.1",
+   "name": "General solution to a homogeneous equation",
+   "type": "function",
+   "statement": "If y₁(x) and y₂(x) are linearly independent solutions to a second-order, linear, homogeneous differential equation, then the general solution is given by y(x) = c₁y₁(x) + c₂y₂(x), where c₁ and c₂ are constants: every expression of that form is a solution, and every solution can be written in that form.",
+   "forms": [
+    {
+     "id": "eq-general-solution-homogeneous",
+     "latex": "y(x)=c_{1}y_{1}(x)+c_{2}y_{2}(x)",
+     "anchor": "17.1-fs-id1170572507385"
+    }
+   ]
+  },
+  {
+   "id": "second-order-equation-with-constant-coefficients",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "Second-order equation with constant coefficients",
+   "terms": [
+    "second-order equation with constant coefficients",
+    "constant coefficients",
+    "constant-coefficient differential equation"
+   ],
+   "statement": "A second-order linear homogeneous differential equation with constant coefficients has the form ay″ + by′ + cy = 0, where a, b and c are constants.",
+   "forms": [
+    {
+     "id": "eq-constant-coefficients",
+     "latex": "ay''+by'+cy=0",
+     "anchor": "17.1-fs-id1170572185074"
+    }
+   ]
+  },
+  {
+   "id": "characteristic-equation",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "Characteristic equation",
+   "terms": [
+    "characteristic equation"
+   ],
+   "statement": "The characteristic equation of the differential equation ay″ + by′ + cy = 0 is aλ² + bλ + c = 0; y(x) = e^{λx} is a solution exactly when λ is a root of it, and the roots are found by factoring or by the quadratic formula λ = (−b ± √(b² − 4ac))/(2a).",
+   "forms": [
+    {
+     "id": "eq-characteristic-equation",
+     "latex": "a\\lambda^{2}+b\\lambda+c=0",
+     "anchor": "17.1-fs-id1170572168702"
+    },
+    {
+     "id": "eq-characteristic-roots",
+     "latex": "\\lambda=\\frac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}",
+     "anchor": "17.1-char-roots"
+    }
+   ]
+  },
+  {
+   "id": "solution-for-distinct-real-roots",
+   "kind": "result",
+   "section": "17.1",
+   "name": "Solution for distinct real roots",
+   "type": "function",
+   "statement": "If the characteristic equation has distinct real roots λ₁ and λ₂, then e^{λ₁x} and e^{λ₂x} are linearly independent solutions to ay″ + by′ + cy = 0, and the general solution is y(x) = c₁e^{λ₁x} + c₂e^{λ₂x}.",
+   "forms": [
+    {
+     "id": "eq-distinct-real-roots",
+     "latex": "y(x)=c_{1}e^{\\lambda_{1}x}+c_{2}e^{\\lambda_{2}x}",
+     "anchor": "17.1-distinct-roots"
+    }
+   ]
+  },
+  {
+   "id": "solution-for-a-repeated-real-root",
+   "kind": "result",
+   "section": "17.1",
+   "name": "Solution for a repeated real root",
+   "type": "function",
+   "statement": "If the characteristic equation has a repeated real root λ, then b² − 4ac = 0, e^{λx} and xe^{λx} are linearly independent solutions, and the general solution to ay″ + by′ + cy = 0 is y(x) = c₁e^{λx} + c₂xe^{λx}.",
+   "forms": [
+    {
+     "id": "eq-repeated-real-root",
+     "latex": "y(x)=c_{1}e^{\\lambda x}+c_{2}xe^{\\lambda x}",
+     "anchor": "17.1-repeated-root"
+    }
+   ]
+  },
+  {
+   "id": "eulers-formula",
+   "kind": "result",
+   "section": "17.1",
+   "name": "Euler’s formula",
+   "terms": [
+    "Euler’s formula"
+   ],
+   "statement": "Euler’s formula expresses an exponential function with an imaginary exponent through sines and cosines: e^{iθ} = cos θ + i sin θ for all real numbers θ.",
+   "forms": [
+    {
+     "id": "eq-eulers-formula",
+     "latex": "e^{i\\theta}=\\cos\\theta+i\\sin\\theta",
+     "anchor": "17.1-euler-formula"
+    }
+   ]
+  },
+  {
+   "id": "solution-for-complex-conjugate-roots",
+   "kind": "result",
+   "section": "17.1",
+   "name": "Solution for complex conjugate roots",
+   "type": "function",
+   "statement": "If b² − 4ac < 0, the characteristic equation has complex conjugate roots α ± βi, and the general solution to ay″ + by′ + cy = 0 is y(x) = e^{αx}(c₁ cos βx + c₂ sin βx), built from the two linearly independent real-value solutions e^{αx} cos βx and e^{αx} sin βx.",
+   "forms": [
+    {
+     "id": "eq-complex-conjugate-roots",
+     "latex": "y(x)=e^{\\alpha x}(c_{1}\\cos\\beta x+c_{2}\\sin\\beta x)",
+     "anchor": "17.1-complex-roots"
+    }
+   ]
+  },
+  {
+   "id": "solving-with-the-characteristic-equation",
+   "kind": "skill",
+   "section": "17.1",
+   "name": "Solving with the characteristic equation",
+   "statement": "To solve a second-order differential equation with constant coefficients: write it in the form ay″ + by′ + cy = 0; find the corresponding characteristic equation aλ² + bλ + c = 0; factor it or use the quadratic formula to find the roots; and write the general solution by whether the roots are distinct and real, a single repeated real root, or complex conjugates."
+  },
+  {
+   "id": "boundary-conditions",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "Boundary conditions",
+   "terms": [
+    "boundary conditions",
+    "boundary condition"
+   ],
+   "statement": "Boundary conditions give the state of a system at two different times, such as y(t₀) = y₀ and y(t₁) = y₁ for the position of a spring-mass system."
+  },
+  {
+   "id": "boundary-value-problem",
+   "kind": "definition",
+   "section": "17.1",
+   "name": "Boundary-value problem",
+   "terms": [
+    "boundary-value problem",
+    "boundary-value problems",
+    "boundary value problem"
+   ],
+   "statement": "A boundary-value problem is a differential equation with associated boundary conditions; solving it means finding the solution of the differential equation that satisfies the boundary conditions."
+  },
+  {
+   "id": "uniqueness-of-solutions-to-second-order-problems",
+   "kind": "result",
+   "section": "17.1",
+   "name": "Uniqueness of solutions to initial-value and boundary-value problems",
+   "statement": "For constant-coefficient, second-order equations, an initial-value problem with two initial conditions is guaranteed to have a unique solution, while a boundary-value problem with two boundary conditions may have a unique solution, many solutions, or no solution at all."
+  },
+  {
+   "id": "complementary-equation",
+   "kind": "definition",
+   "section": "17.2",
+   "name": "Complementary equation",
+   "terms": [
+    "complementary equation"
+   ],
+   "statement": "For the nonhomogeneous linear differential equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x), the associated homogeneous equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = 0 is called the complementary equation.",
+   "forms": [
+    {
+     "id": "eq-complementary-equation",
+     "latex": "a_{2}(x)y''+a_{1}(x)y'+a_{0}(x)y=0",
+     "anchor": "17.2-fs-id1170572140518"
+    }
+   ]
+  },
+  {
+   "id": "general-solution-to-a-nonhomogeneous-equation",
+   "kind": "result",
+   "section": "17.2",
+   "name": "General solution to a nonhomogeneous equation",
+   "type": "function",
+   "statement": "Let y_p(x) be any particular solution to the nonhomogeneous linear differential equation a₂(x)y″ + a₁(x)y′ + a₀(x)y = r(x), and let c₁y₁(x) + c₂y₂(x) denote the general solution to the complementary equation. Then the general solution to the nonhomogeneous equation is y(x) = c₁y₁(x) + c₂y₂(x) + y_p(x).",
+   "forms": [
+    {
+     "id": "eq-general-solution-nonhomogeneous",
+     "latex": "y(x)=c_{1}y_{1}(x)+c_{2}y_{2}(x)+y_{p}(x)",
+     "anchor": "17.2-fs-id1170571626655"
+    }
+   ]
+  },
+  {
+   "id": "method-of-undetermined-coefficients",
+   "kind": "skill",
+   "section": "17.2",
+   "name": "Method of undetermined coefficients",
+   "terms": [
+    "method of undetermined coefficients",
+    "undetermined coefficients"
+   ],
+   "statement": "The method of undetermined coefficients finds a particular solution of ay″ + by′ + cy = r(x) when r(x) is a combination of polynomials, exponentials, sines and cosines: solve the complementary equation; guess y_p(x) of the same form as r(x), with every lower-order term; multiply the guess by x until no term of it solves the complementary equation; substitute it into the equation and equate like terms to find its coefficients; and add it to the general solution of the complementary equation."
+  },
+  {
+   "id": "cramers-rule",
+   "kind": "result",
+   "section": "17.2",
+   "name": "Cramer’s rule",
+   "terms": [
+    "Cramer’s rule"
+   ],
+   "statement": "The system a₁z₁ + b₁z₂ = r₁, a₂z₁ + b₂z₂ = r₂ has a unique solution if and only if the determinant of the coefficients is not zero; then z₁ and z₂ are the quotients of the determinants with the r column in place of the z₁ or z₂ column by the determinant of the coefficients.",
+   "forms": [
+    {
+     "id": "eq-cramers-rule",
+     "latex": "z_{1}=\\frac{\\begin{vmatrix}r_{1}&b_{1}\\\\r_{2}&b_{2}\\end{vmatrix}}{\\begin{vmatrix}a_{1}&b_{1}\\\\a_{2}&b_{2}\\end{vmatrix}},\\quad z_{2}=\\frac{\\begin{vmatrix}a_{1}&r_{1}\\\\a_{2}&r_{2}\\end{vmatrix}}{\\begin{vmatrix}a_{1}&b_{1}\\\\a_{2}&b_{2}\\end{vmatrix}}",
+     "anchor": "17.2-fs-id1170572548183"
+    }
+   ]
+  },
+  {
+   "id": "method-of-variation-of-parameters",
+   "kind": "skill",
+   "section": "17.2",
+   "name": "Method of variation of parameters",
+   "terms": [
+    "method of variation of parameters",
+    "variation of parameters"
+   ],
+   "statement": "The method of variation of parameters finds a particular solution of y″ + py′ + qy = r(x) for any r(x): solve the complementary equation for c₁y₁(x) + c₂y₂(x); find u′(x) and v′(x) with u′y₁ + v′y₂ = 0 and u′y₁′ + v′y₂′ = r(x), by Cramer’s rule or another technique; integrate to find u(x) and v(x), so that y_p(x) = u(x)y₁(x) + v(x)y₂(x); and add y_p to the general solution of the complementary equation.",
+   "forms": [
+    {
+     "id": "eq-variation-of-parameters",
+     "latex": "\\begin{array}{rll}u'y_{1}+v'y_{2}&=&0\\\\u'y_{1}'+v'y_{2}'&=&r(x)\\end{array}",
+     "anchor": "17.2-fs-id1170571789080"
+    },
+    {
+     "id": "eq-variation-particular",
+     "latex": "y_{p}(x)=u(x)y_{1}(x)+v(x)y_{2}(x)",
+     "anchor": "17.2-fs-id1170571789080"
+    }
+   ]
+  },
+  {
+   "id": "simple-harmonic-motion",
+   "kind": "result",
+   "section": "17.3",
+   "name": "Simple harmonic motion",
+   "terms": [
+    "simple harmonic motion",
+    "spring-mass system",
+    "angular frequency"
+   ],
+   "statement": "A mass m on a spring with spring constant k, displaced x(t) from equilibrium with down positive, satisfies mx″ + kx = 0 by Hooke’s law and Newton’s second law, or x″ + ω²x = 0 with the angular frequency ω = √(k/m); its general solution x(t) = c₁ cos ωt + c₂ sin ωt is simple harmonic motion, with period T = 2π/ω and frequency f = 1/T = ω/2π.",
+   "forms": [
+    {
+     "id": "eq-simple-harmonic-motion",
+     "latex": "x''+\\omega^{2}x=0",
+     "anchor": "17.3-fs-id1170571069981"
+    },
+    {
+     "id": "eq-simple-harmonic-solution",
+     "latex": "x(t)=c_{1}\\cos(\\omega t)+c_{2}\\sin(\\omega t)",
+     "anchor": "17.3-fs-id1170570991733"
+    },
+    {
+     "id": "eq-simple-harmonic-period",
+     "latex": "T=\\frac{2\\pi}{\\omega},\\quad f=\\frac{1}{T}=\\frac{\\omega}{2\\pi}",
+     "anchor": "17.3-shm-term"
+    }
+   ]
+  },
+  {
+   "id": "amplitude-and-phase-shift-form",
+   "kind": "result",
+   "section": "17.3",
+   "name": "Solution to the equation for simple harmonic motion",
+   "terms": [
+    "phase shift"
+   ],
+   "statement": "The function x(t) = c₁ cos(ωt) + c₂ sin(ωt) can be written in the form x(t) = A sin(ωt + ϕ), where the amplitude is A = √(c₁² + c₂²) and the phase shift ϕ satisfies tan ϕ = c₁/c₂, with ϕ taken in the quadrant the signs of c₁ and c₂ give.",
+   "forms": [
+    {
+     "id": "eq-amplitude-phase-form",
+     "latex": "x(t)=A\\sin(\\omega t+\\phi)",
+     "anchor": "17.3-fs-id1170573405218"
+    },
+    {
+     "id": "eq-amplitude-phase-constants",
+     "latex": "A=\\sqrt{c_{1}^{2}+c_{2}^{2}},\\quad\\tan\\phi=\\frac{c_{1}}{c_{2}}",
+     "anchor": "17.3-fs-id1170573570772"
+    }
+   ]
+  },
+  {
+   "id": "damped-spring-mass-system",
+   "kind": "result",
+   "section": "17.3",
+   "name": "Damped spring-mass system",
+   "terms": [
+    "damping",
+    "damped",
+    "dashpot"
+   ],
+   "statement": "With a damping force −bx′ proportional to the velocity, for some constant b > 0, a spring-mass system satisfies mx″ + bx′ + kx = 0, whose characteristic equation mλ² + bλ + k = 0 has roots λ = (−b ± √(b² − 4mk))/(2m); for every damped system, lim_{t→∞} x(t) = 0.",
+   "forms": [
+    {
+     "id": "eq-damped-spring-mass",
+     "latex": "mx''+bx'+kx=0",
+     "anchor": "17.3-damping-term"
+    },
+    {
+     "id": "eq-damped-roots",
+     "latex": "\\lambda=\\frac{-b\\pm\\sqrt{b^{2}-4mk}}{2m}",
+     "anchor": "17.3-damping-term"
+    }
+   ]
+  },
+  {
+   "id": "overdamped-system",
+   "kind": "definition",
+   "section": "17.3",
+   "name": "Overdamped system",
+   "terms": [
+    "overdamped"
+   ],
+   "statement": "A damped spring-mass system is overdamped when b² > 4mk: the general solution x(t) = c₁e^{λ₁t} + c₂e^{λ₂t} has λ₁ and λ₂ both less than zero, and the mass moves back toward equilibrium with no more than one change of direction, without oscillating.",
+   "forms": [
+    {
+     "id": "eq-overdamped",
+     "latex": "x(t)=c_{1}e^{\\lambda_{1}t}+c_{2}e^{\\lambda_{2}t}",
+     "anchor": "17.3-overdamped-term"
+    }
+   ]
+  },
+  {
+   "id": "critically-damped-system",
+   "kind": "definition",
+   "section": "17.3",
+   "name": "Critically damped system",
+   "terms": [
+    "critically damped"
+   ],
+   "statement": "A damped spring-mass system is critically damped when b² = 4mk: the general solution x(t) = c₁e^{λ₁t} + c₂te^{λ₁t} has λ₁ less than zero; the mass does not oscillate, but any slight reduction in the damping would make it oscillate.",
+   "forms": [
+    {
+     "id": "eq-critically-damped",
+     "latex": "x(t)=c_{1}e^{\\lambda_{1}t}+c_{2}te^{\\lambda_{1}t}",
+     "anchor": "17.3-critical-term"
+    }
+   ]
+  },
+  {
+   "id": "underdamped-system",
+   "kind": "definition",
+   "section": "17.3",
+   "name": "Underdamped system",
+   "terms": [
+    "underdamped"
+   ],
+   "statement": "A damped spring-mass system is underdamped when b² < 4mk: the general solution x(t) = e^{αt}(c₁ cos(βt) + c₂ sin(βt)) has α less than zero, so the mass oscillates while the amplitude of its oscillations decreases over time.",
+   "forms": [
+    {
+     "id": "eq-underdamped",
+     "latex": "x(t)=e^{\\alpha t}(c_{1}\\cos(\\beta t)+c_{2}\\sin(\\beta t))",
+     "anchor": "17.3-underdamped-term"
+    }
+   ]
+  },
+  {
+   "id": "forced-vibrations",
+   "kind": "result",
+   "section": "17.3",
+   "name": "Forced vibrations",
+   "terms": [
+    "forced vibrations",
+    "external force"
+   ],
+   "statement": "A spring-mass system acted on by an external force f(t) satisfies the nonhomogeneous equation mx″ + bx′ + kx = f(t), whose solutions have the form x(t) = c₁x₁(t) + c₂x₂(t) + x_p(t): the general solution to the complementary equation plus a particular solution.",
+   "forms": [
+    {
+     "id": "eq-forced-vibrations",
+     "latex": "mx''+bx'+kx=f(t)",
+     "anchor": "17.3-fs-id1170573399103"
+    },
+    {
+     "id": "eq-forced-solution",
+     "latex": "x(t)=c_{1}x_{1}(t)+c_{2}x_{2}(t)+x_{p}(t)",
+     "anchor": "17.3-transient-term"
+    }
+   ]
+  },
+  {
+   "id": "transient-solution",
+   "kind": "definition",
+   "section": "17.3",
+   "name": "Transient solution",
+   "terms": [
+    "transient solution"
+   ],
+   "type": "function",
+   "statement": "In a damped forced system, the part c₁x₁(t) + c₂x₂(t) of the solution that solves the complementary equation tends to zero as t → ∞ and does not affect the long-term behavior of the system; it is called the transient solution."
+  },
+  {
+   "id": "steady-state-solution",
+   "kind": "definition",
+   "section": "17.3",
+   "name": "Steady-state solution",
+   "terms": [
+    "steady-state solution"
+   ],
+   "type": "function",
+   "statement": "The steady-state solution of a nonhomogeneous differential equation is the particular solution x_p(t), which determines the long-term behavior of the system once the transient solution has died away."
+  },
+  {
+   "id": "resonance",
+   "kind": "idea",
+   "section": "17.3",
+   "name": "Resonance",
+   "terms": [
+    "resonance",
+    "natural frequency of the system",
+    "natural frequency"
+   ],
+   "statement": "The frequency f = ω/2π of an undamped system is its natural frequency; if an external force acting on the system has a frequency close to the natural frequency, resonance results: the external force reinforces and amplifies the natural motion of the system."
+  },
+  {
+   "id": "rlc-series-circuit",
+   "kind": "result",
+   "section": "17.3",
+   "name": "RLC series circuit",
+   "terms": [
+    "RLC series circuit",
+    "RLC circuit",
+    "RLC circuits"
+   ],
+   "statement": "In an RLC series circuit with inductance L, resistance R, capacitance C and voltage source E(t), the voltage drops E_L = L dI/dt, E_R = RI and E_C = q/C sum to E(t) by Kirchhoff’s voltage rule; with I = dq/dt the charge q(t) on the capacitor satisfies L d²q/dt² + R dq/dt + q/C = E(t), an equation analogous to that of a spring-mass system.",
+   "forms": [
+    {
+     "id": "eq-rlc-circuit",
+     "latex": "L\\frac{d^{2}q}{dt^{2}}+R\\frac{dq}{dt}+\\frac{1}{C}q=E(t)",
+     "anchor": "17.3-fs-id1170571096072"
+    },
+    {
+     "id": "eq-rlc-voltage-drops",
+     "latex": "E_{L}=L\\frac{dI}{dt},\\quad E_{R}=RI,\\quad E_{C}=\\frac{1}{C}q",
+     "anchor": "17.3-voltage-drops"
+    }
+   ]
+  },
+  {
+   "id": "bessel-equation",
+   "kind": "definition",
+   "section": "17.4",
+   "name": "Bessel equation",
+   "terms": [
+    "Bessel equation",
+    "Bessel functions",
+    "Bessel equation of order n"
+   ],
+   "statement": "The Bessel equation of order n is x²y″ + xy′ + (x² − n²)y = 0; it arises in physical applications involving cylindrical coordinates, such as the vibration of a circular drum head and the transient heating or cooling of a cylinder, and its solutions are Bessel functions.",
+   "forms": [
+    {
+     "id": "eq-bessel-equation",
+     "latex": "x^{2}y''+xy'+(x^{2}-n^{2})y=0",
+     "anchor": "17.4-bessel-term"
+    }
+   ]
+  },
+  {
+   "id": "series-solution-of-the-bessel-equation-of-order-0",
+   "kind": "result",
+   "section": "17.4",
+   "name": "Series solution of the Bessel equation of order 0",
+   "type": "series",
+   "statement": "A power series solution to the Bessel equation of order 0, x²y″ + xy′ + x²y = 0, is y(x) = a₀ Σ_{k=0}^{∞} (−1)ᵏ x²ᵏ / (2²ᵏ (k!)²): its odd coefficients are zero and aₙ = −aₙ₋₂/n² for n ≥ 2.",
+   "forms": [
+    {
+     "id": "eq-bessel-order-zero",
+     "latex": "y(x)=a_{0}\\sum_{k=0}^{\\infty}\\frac{(-1)^{k}}{(2)^{2k}(k!)^{2}}x^{2k}",
+     "anchor": "17.4-eip-id1171281740360"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "second-order-linear-differential-equation",
+   "prereq": "first-order-linear-differential-equation"
+  },
+  {
+   "concept": "homogeneous-linear-equation",
+   "prereq": "second-order-linear-differential-equation"
+  },
+  {
+   "concept": "nonhomogeneous-linear-equation",
+   "prereq": "second-order-linear-differential-equation"
+  },
+  {
+   "concept": "superposition-principle",
+   "prereq": "homogeneous-linear-equation"
+  },
+  {
+   "concept": "superposition-principle",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "linear-independence",
+   "prereq": "function"
+  },
+  {
+   "concept": "linear-dependence-of-two-functions",
+   "prereq": "linear-independence"
+  },
+  {
+   "concept": "general-solution-to-a-homogeneous-equation",
+   "prereq": "superposition-principle"
+  },
+  {
+   "concept": "general-solution-to-a-homogeneous-equation",
+   "prereq": "linear-independence"
+  },
+  {
+   "concept": "general-solution-to-a-homogeneous-equation",
+   "prereq": "general-solution"
+  },
+  {
+   "concept": "second-order-equation-with-constant-coefficients",
+   "prereq": "homogeneous-linear-equation"
+  },
+  {
+   "concept": "characteristic-equation",
+   "prereq": "second-order-equation-with-constant-coefficients"
+  },
+  {
+   "concept": "characteristic-equation",
+   "prereq": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "concept": "solution-for-distinct-real-roots",
+   "prereq": "characteristic-equation"
+  },
+  {
+   "concept": "solution-for-distinct-real-roots",
+   "prereq": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "concept": "solution-for-distinct-real-roots",
+   "prereq": "quadratic-formula"
+  },
+  {
+   "concept": "solution-for-a-repeated-real-root",
+   "prereq": "characteristic-equation"
+  },
+  {
+   "concept": "solution-for-a-repeated-real-root",
+   "prereq": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "concept": "solution-for-a-repeated-real-root",
+   "prereq": "quadratic-formula"
+  },
+  {
+   "concept": "eulers-formula",
+   "prereq": "maclaurin-series-of-common-functions"
+  },
+  {
+   "concept": "solution-for-complex-conjugate-roots",
+   "prereq": "characteristic-equation"
+  },
+  {
+   "concept": "solution-for-complex-conjugate-roots",
+   "prereq": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "concept": "solution-for-complex-conjugate-roots",
+   "prereq": "quadratic-formula"
+  },
+  {
+   "concept": "solution-for-complex-conjugate-roots",
+   "prereq": "eulers-formula"
+  },
+  {
+   "concept": "solving-with-the-characteristic-equation",
+   "prereq": "solution-for-distinct-real-roots"
+  },
+  {
+   "concept": "solving-with-the-characteristic-equation",
+   "prereq": "solution-for-a-repeated-real-root"
+  },
+  {
+   "concept": "solving-with-the-characteristic-equation",
+   "prereq": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "concept": "boundary-conditions",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "boundary-value-problem",
+   "prereq": "boundary-conditions"
+  },
+  {
+   "concept": "uniqueness-of-solutions-to-second-order-problems",
+   "prereq": "boundary-value-problem"
+  },
+  {
+   "concept": "uniqueness-of-solutions-to-second-order-problems",
+   "prereq": "initial-value-problem"
+  },
+  {
+   "concept": "uniqueness-of-solutions-to-second-order-problems",
+   "prereq": "second-order-equation-with-constant-coefficients"
+  },
+  {
+   "concept": "complementary-equation",
+   "prereq": "nonhomogeneous-linear-equation"
+  },
+  {
+   "concept": "complementary-equation",
+   "prereq": "homogeneous-linear-equation"
+  },
+  {
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "prereq": "complementary-equation"
+  },
+  {
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "prereq": "particular-solution"
+  },
+  {
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "prereq": "general-solution-to-a-homogeneous-equation"
+  },
+  {
+   "concept": "method-of-undetermined-coefficients",
+   "prereq": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "concept": "method-of-undetermined-coefficients",
+   "prereq": "solving-with-the-characteristic-equation"
+  },
+  {
+   "concept": "method-of-undetermined-coefficients",
+   "prereq": "method-of-equating-coefficients"
+  },
+  {
+   "concept": "cramers-rule",
+   "prereq": "determinant"
+  },
+  {
+   "concept": "method-of-variation-of-parameters",
+   "prereq": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "concept": "method-of-variation-of-parameters",
+   "prereq": "cramers-rule"
+  },
+  {
+   "concept": "method-of-variation-of-parameters",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "simple-harmonic-motion",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "simple-harmonic-motion",
+   "prereq": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "concept": "simple-harmonic-motion",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "simple-harmonic-motion",
+   "prereq": "period"
+  },
+  {
+   "concept": "amplitude-and-phase-shift-form",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "amplitude-and-phase-shift-form",
+   "prereq": "trigonometric-identity"
+  },
+  {
+   "concept": "amplitude-and-phase-shift-form",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "damped-spring-mass-system",
+   "prereq": "simple-harmonic-motion"
+  },
+  {
+   "concept": "damped-spring-mass-system",
+   "prereq": "limit-at-infinity"
+  },
+  {
+   "concept": "overdamped-system",
+   "prereq": "damped-spring-mass-system"
+  },
+  {
+   "concept": "overdamped-system",
+   "prereq": "solution-for-distinct-real-roots"
+  },
+  {
+   "concept": "critically-damped-system",
+   "prereq": "damped-spring-mass-system"
+  },
+  {
+   "concept": "critically-damped-system",
+   "prereq": "solution-for-a-repeated-real-root"
+  },
+  {
+   "concept": "underdamped-system",
+   "prereq": "damped-spring-mass-system"
+  },
+  {
+   "concept": "forced-vibrations",
+   "prereq": "damped-spring-mass-system"
+  },
+  {
+   "concept": "forced-vibrations",
+   "prereq": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "concept": "transient-solution",
+   "prereq": "forced-vibrations"
+  },
+  {
+   "concept": "steady-state-solution",
+   "prereq": "forced-vibrations"
+  },
+  {
+   "concept": "resonance",
+   "prereq": "forced-vibrations"
+  },
+  {
+   "concept": "rlc-series-circuit",
+   "prereq": "kirchhoffs-loop-rule"
+  },
+  {
+   "concept": "rlc-series-circuit",
+   "prereq": "forced-vibrations"
+  },
+  {
+   "concept": "bessel-equation",
+   "prereq": "second-order-linear-differential-equation"
+  },
+  {
+   "concept": "series-solution-of-the-bessel-equation-of-order-0",
+   "prereq": "bessel-equation"
+  },
+  {
+   "concept": "series-solution-of-the-bessel-equation-of-order-0",
+   "prereq": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "concept": "series-solution-of-the-bessel-equation-of-order-0",
+   "prereq": "recurrence-relation"
+  }
+ ]
+}

@@ -1,0 +1,319 @@
+<p id="second-order-intro">When working with <span data-concept="differential-equation">differential equations</span>, usually the goal is to find a solution. In other words, we want to find a function (or functions) that satisfies the <span data-concept="differential-equation">differential equation</span>. The technique we use to find these solutions varies, depending on the form of the <span data-concept="differential-equation">differential equation</span> with which we are working. Second-order <span data-concept="differential-equation">differential equations</span> have several important characteristics that can help us determine which solution method to use. In this section, we examine some of these characteristics and the associated terminology.</p>
+
+<section id="homogeneous-linear-equations">
+<h2>Homogeneous Linear Equations</h2>
+<p class="cite-target">Consider the second-order <span data-concept="differential-equation">differential equation</span></p>
+$$x\kydprime+2x^{2}\kyprime+5x^{3}\kyfn=0.$$
+<p>Notice that <em>y</em> and its derivatives appear in a relatively simple form. They are multiplied by functions of <em>x</em>, but are not raised to any powers themselves, nor are they multiplied together. As discussed in <a href="/calculus/ch08/intro/">Introduction to Differential Equations</a>, <span data-concept="first-order-linear-differential-equation">first-order equations</span> with similar characteristics are said to be linear. The same is true of second-order equations. Also note that all the terms in this <span data-concept="differential-equation">differential equation</span> involve either <em>y</em> or one of its derivatives. There are no terms involving only functions of <em>x</em>. Equations like this, in which every term contains <em>y</em> or one of its derivatives, are called <span data-concept="homogeneous-linear-equation">homogeneous</span>.</p>
+<p>Not all <span data-concept="differential-equation">differential equations</span> are <span data-concept="homogeneous-linear-equation">homogeneous</span>. Consider the <span data-concept="differential-equation">differential equation</span></p>
+$$x\kydprime+2x^{2}\kyprime+5x^{3}\kyfn=x^{2}.$$
+<p>The $x^{2}$ term on the right side of the equal sign does not contain <em>y</em> or any of its derivatives. Therefore, this <span data-concept="differential-equation">differential equation</span> is <span data-concept="nonhomogeneous-linear-equation">nonhomogeneous</span>.</p>
+<div class="note" id="fs-id1170571696990">
+<div class="eyebrow">Definition</div>
+<p>A second-order <span data-concept="differential-equation">differential equation</span> is linear if it can be written in the form</p>
+<div class="equation" id="fs-id1170572251008">$$a_{2}(x)\kydprime+a_{1}(x)\kyprime+a_{0}(x)\kyfn=\krfn(x),\tag{17.1}$$</div>
+<p>where $a_{2}(x),$ $a_{1}(x),$ $a_{0}(x),$ and $\krfn(x)$ are real-valued functions and $a_{2}(x)$ is not identically zero. If $\krfn(x)\equiv 0$—in other words, if $\krfn(x)=0$ for every value of <em>x</em>—the equation is said to be a <strong><span data-concept="homogeneous-linear-equation">homogeneous linear equation</span></strong>. If $\krfn(x)\ne 0$ for some value of $x,$ the equation is said to be a <strong><span data-concept="nonhomogeneous-linear-equation">nonhomogeneous linear equation</span></strong>.</p>
+</div>
+<p>In <span data-concept="second-order-linear-differential-equation">linear differential equations</span>, $\kyfn$ and its derivatives can be raised only to the first power and they may not be multiplied by one another. Terms involving $\kyfn^{2}$ or $\sqrt{\kyprime}$ make the equation nonlinear. Functions of $\kyfn$ and its derivatives, such as $\sin \kyfn$ or $e^{\kyprime},$ are similarly prohibited in <span data-concept="second-order-linear-differential-equation">linear differential equations</span>.</p>
+<p>Note that equations may not always be given in standard form (the form shown in the definition). It can be helpful to rewrite them in that form to decide whether they are linear, or whether a linear equation is <span data-concept="homogeneous-linear-equation">homogeneous</span>.</p>
+<div class="example" id="fs-id1170571650370">
+<h3>Example 17.1 · Classifying Second-Order Equations</h3>
+<p>Classify each of the following equations as linear or nonlinear. If the equation is linear, determine further whether it is <span data-concept="homogeneous-linear-equation">homogeneous</span> or <span data-concept="nonhomogeneous-linear-equation">nonhomogeneous</span>.</p>
+<p>a. $\kydprime+3x^{4}\kyprime+x^{2}\kyfn^{2}=x^{3}$</p>
+<p>b. $(\sin x)\kydprime+(\cos x)\kyprime+3\kyfn=0$</p>
+<p>c. $4t^{2}x^{\prime\prime}+3txx^{\prime}+4x=0$</p>
+<p>d. $5\kydprime+\kyfn=4x^{5}$</p>
+<p>e. $(\cos x)\kydprime-\sin \kyprime+(\sin x)\kyfn-\cos x=0$</p>
+<p>f. $8t\kydprime-6t^{2}\kyprime+4t\kyfn-3t^{2}=0$</p>
+<p>g. $\sin (x^{2})\kydprime-(\cos x)\kyprime+x^{2}\kyfn=\kyprime-3$</p>
+<p>h. $\kydprime+5x\kyprime-3\kyfn=\cos \kyfn$</p>
+<h4>Solution</h4>
+<p>a. This equation is nonlinear because of the $\kyfn^{2}$ term.</p>
+<p>b. This equation is linear. There is no term involving a power or function of $\kyfn,$ and the coefficients are all functions of $x\text{.}$ The equation is already written in standard form, and $\krfn(x)$ is identically zero, so the equation is <span data-concept="homogeneous-linear-equation">homogeneous</span>.</p>
+<p>c. This equation is nonlinear. Note that, in this case, <em>x</em> is the dependent variable and <em>t</em> is the independent variable. The second term involves the product of $x$ and $x^{\prime},$ so the equation is nonlinear.</p>
+<p>d. This equation is linear. Since $\krfn(x)=4x^{5},$ the equation is <span data-concept="nonhomogeneous-linear-equation">nonhomogeneous</span>.</p>
+<p>e. This equation is nonlinear, because of the $\sin \kyprime$ term.</p>
+<p>f. This equation is linear. Rewriting it in standard form gives</p>
+$$8t^{2}\kydprime-6t^{2}\kyprime+4t\kyfn=3t^{2}.$$
+<p>With the equation in standard form, we can see that $\krfn(t)=3t^{2},$ so the equation is <span data-concept="nonhomogeneous-linear-equation">nonhomogeneous</span>.</p>
+<p>g. This equation looks like it’s linear, but we should rewrite it in standard form to be sure. We get</p>
+$$\sin (x^{2})\kydprime-(\cos x+1)\kyprime+x^{2}\kyfn=-3.$$
+<p>This equation is, indeed, linear. With $\krfn(x)=-3,$ it is <span data-concept="nonhomogeneous-linear-equation">nonhomogeneous</span>.</p>
+<p>h. This equation is nonlinear because of the $\cos \kyfn$ term.</p>
+</div>
+<div class="exercises" data-place="fs-id1170571650370"></div>
+<p>Later in this section, we will see some techniques for solving specific types of <span data-concept="differential-equation">differential equations</span>. Before we get to that, however, let’s get a feel for how solutions to <span data-concept="second-order-linear-differential-equation">linear differential equations</span> behave. In many cases, solving <span data-concept="differential-equation">differential equations</span> depends on making educated guesses about what the solution might look like. Knowing how various types of solutions behave will be helpful.</p>
+<div class="example" id="fs-id1170572560326">
+<h3>Example 17.2 · Verifying a Solution</h3>
+<p>Consider the <span data-concept="homogeneous-linear-equation">linear, homogeneous differential equation</span></p>
+$$x^{2}\kydprime-x\kyprime-3\kyfn=0.$$
+<p>Looking at this equation, notice that the coefficient functions are polynomials, with higher powers of $x$ associated with higher-order derivatives of $\kyfn\text{.}$ Show that <span data-fn="x^3">$\kyfn=x^{3}$</span> is a <span data-concept="solution-to-a-differential-equation">solution to this differential equation</span>.</p>
+<h4>Solution</h4>
+<p>Let $\kyfn=x^{3}.$ Then $\kyprime=3x^{2}$ and $\kydprime=6x\text{.}$ Substituting into the <span data-concept="differential-equation">differential equation</span>, we see that</p>
+$$\begin{array}{rl}x^{2}\kydprime-x\kyprime-3\kyfn & =x^{2}(6x)-x(3x^{2})-3(x^{3}) \\ & =6x^{3}-3x^{3}-3x^{3} \\ & =0.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1170572560326"></div>
+<p>Although simply finding any <span data-concept="solution-to-a-differential-equation">solution to a differential equation</span> is important, mathematicians and engineers often want to go beyond finding <em>one</em> <span data-concept="solution-to-a-differential-equation">solution to a differential equation</span> to finding <em>all</em> <span data-concept="solution-to-a-differential-equation">solutions to a differential equation</span>. In other words, we want to find a <span data-concept="general-solution">general solution</span><strong>.</strong> Just as with first-order <span data-concept="differential-equation">differential equations</span>, a <span data-concept="general-solution">general solution</span> (or family of solutions) gives the entire set of <span data-concept="solution-to-a-differential-equation">solutions to a differential equation</span>. An important difference between first-order and second-order equations is that, with second-order equations, we typically need to find two different solutions to the equation to find the <span data-concept="general-solution">general solution</span>. If we find two solutions, then any linear combination of these solutions is also a solution. We state this fact as the following theorem.</p>
+<div class="note" id="fs-id1170572430386">
+<div class="eyebrow">Theorem</div>
+<h3>Superposition Principle</h3>
+<p>If $\kyone(x)$ and $\kytwo(x)$ are solutions to a <span data-concept="homogeneous-linear-equation">linear homogeneous differential equation</span>, then the function</p>
+$$\kyfn(x)=c_{1}\kyone(x)+c_{2}\kytwo(x),$$
+<p>where $c_{1}$ and $c_{2}$ are constants, is also a solution.</p>
+</div>
+<p>The proof of this <span data-concept="superposition-principle">superposition principle</span> theorem is left as an exercise.</p>
+<div class="example" id="fs-id1170572167258">
+<h3>Example 17.3 · Verifying the Superposition Principle</h3>
+<p>Consider the <span data-concept="differential-equation">differential equation</span></p>
+$$\kydprime-4\kyprime-5\kyfn=0.$$
+<p>Given that $e^{-x}$ and $e^{5x}$ are <span data-concept="solution-to-a-differential-equation">solutions to this differential equation</span>, show that $4e^{-x}+e^{5x}$ is a solution.</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\kyfn(x)=4e^{-x}+e^{5x},\;\text{so}\;\kyprime(x)=-4e^{-x}+5e^{5x}\;\text{and}\;\kydprime(x)=4e^{-x}+25e^{5x}.$$
+<p>Then</p>
+$$\begin{array}{rl}\kydprime-4\kyprime-5\kyfn & =(4e^{-x}+25e^{5x})-4(-4e^{-x}+5e^{5x})-5(4e^{-x}+e^{5x}) \\ & =4e^{-x}+25e^{5x}+16e^{-x}-20e^{5x}-20e^{-x}-5e^{5x} \\ & =0.\end{array}$$
+<p>Thus, $\kyfn(x)=4e^{-x}+e^{5x}$ is a solution.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572167258"></div>
+<p>Unfortunately, to find the general <span data-concept="solution-to-a-differential-equation">solution to a second-order differential equation</span>, it is not enough to find any two solutions and then combine them. Consider the <span data-concept="differential-equation">differential equation</span></p>
+$$x^{\prime\prime}+7x^{\prime}+12x=0.$$
+<p>Both $e^{-3t}$ and $2e^{-3t}$ are solutions (check this). However, $x(t)=c_{1}e^{-3t}+c_{2}(2e^{-3t})$ is <em>not</em> the <span data-concept="general-solution">general solution</span>. This expression does not account for all <span data-concept="solution-to-a-differential-equation">solutions to the differential equation</span>. In particular, it fails to account for the function $e^{-4t},$ which is also a <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span>.</p>
+<p>It turns out that to find the general <span data-concept="solution-to-a-differential-equation">solution to a second-order differential equation</span>, we must find two <span data-concept="linear-independence">linearly independent</span> solutions. We define that terminology here.</p>
+<div class="note" id="fs-id1170571609153">
+<div class="eyebrow">Definition</div>
+<p>A set of functions $\kf_{1}(x),\kf_{2}(x\text{),…,}\kf_{n}(x)$ is said to be <strong><span data-concept="linear-independence">linearly dependent</span></strong> if there are constants $c_{1},c_{2}\text{,…}c_{n},$ not all zero, such that $c_{1}\kf_{1}(x)+c_{2}\kf_{2}(x)+\cdots +c_{n}\kf_{n}(x)=0$ for all <em>x</em> over the interval of interest. A set of functions that is not <span data-concept="linear-independence">linearly dependent</span> is said to be <strong><span data-concept="linear-independence">linearly independent</span></strong>.</p>
+</div>
+<p>In this chapter, we usually test sets of only two functions for <span data-concept="linear-independence">linear independence</span>, which allows us to simplify this definition. From a practical perspective, we see that two functions are <span data-concept="linear-independence">linearly dependent</span> if either one of them is identically zero or if they are constant multiples of each other.</p>
+<p>First we show that if the functions meet the conditions given previously, then they are <span data-concept="linear-independence">linearly dependent</span>. If one of the functions is identically zero—say, $\kf_{2}(x)\equiv 0$—then choose $c_{1}=0$ and $c_{2}=1,$ and the condition for <span data-concept="linear-independence">linear dependence</span> is satisfied. If, on the other hand, neither $\kf_{1}(x)$ nor $\kf_{2}(x)$ is identically zero, but $\kf_{1}(x)=C\kf_{2}(x)$ for some constant $C,$ then choose $c_{1}=\frac{1}{C}$ and $c_{2}=-1,$ and again, the condition is satisfied.</p>
+<p>Next, we show that if two functions are <span data-concept="linear-independence">linearly dependent</span>, then either one is identically zero or they are constant multiples of one another. Assume $\kf_{1}(x)$ and $\kf_{2}(x)$ are <span data-concept="linear-independence">linearly independent</span>.<sup class="fn" data-note="c-dependent"></sup> Then, there are constants, $c_{1}$ and $c_{2},$ not both zero, such that</p>
+$$c_{1}\kf_{1}(x)+c_{2}\kf_{2}(x)=0$$
+<p>for all <em>x</em> over the interval of interest. Then,</p>
+$$c_{1}\kf_{1}(x)=-c_{2}\kf_{2}(x).$$
+<p>Now, since we stated that $c_{1}$ and $c_{2}$ can’t both be zero, assume $c_{2}\ne 0.$ Then, there are two cases: either $c_{1}=0$ or $c_{1}\ne 0.$ If $c_{1}=0,$ then</p>
+$$\begin{array}{l}0=-c_{2}\kf_{2}(x) \\ 0=\kf_{2}(x),\end{array}$$
+<p>so one of the functions is identically zero. Now suppose $c_{1}\ne 0.$ Then,</p>
+$$\kf_{1}(x)=(-\frac{c_{2}}{c_{1}})\kf_{2}(x)$$
+<p>and we see that the functions are constant multiples of one another.</p>
+<div class="note" id="fs-id1170572448486">
+<div class="eyebrow">Theorem</div>
+<h3>Linear Dependence of Two Functions</h3>
+<p>Two functions, $\kf_{1}(x)$ and $\kf_{2}(x),$ are said to be <span data-concept="linear-independence">linearly dependent</span> if either one of them is identically zero or if $\kf_{1}(x)=C\kf_{2}(x)$ for some constant <em>C</em> and for all <em>x</em> over the interval of interest. Functions that are not <span data-concept="linear-independence">linearly dependent</span> are said to be <em><span data-concept="linear-independence">linearly independent</span></em>.</p>
+</div>
+<div class="example" id="fs-id1170572630833">
+<h3>Example 17.4 · Testing for Linear Dependence</h3>
+<p>Determine whether the following pairs of functions are <span data-concept="linear-independence">linearly dependent</span> or <span data-concept="linear-independence">linearly independent</span>.</p>
+<p>a. $\kf_{1}(x)=x^{2},$ $\kf_{2}(x)=5x^{2}$</p>
+<p>b. $\kf_{1}(x)=\sin x,$ $\kf_{2}(x)=\cos x$</p>
+<p>c. $\kf_{1}(x)=e^{3x},$ $\kf_{2}(x)=e^{-3x}$</p>
+<p>d. $\kf_{1}(x)=3x,$ $\kf_{2}(x)=3x+1$</p>
+<h4>Solution</h4>
+<p>a. $\kf_{2}(x)=5\kf_{1}(x),$ so the functions are <span data-concept="linear-independence">linearly dependent</span>.</p>
+<p>b. There is no constant <em>C</em> such that $\kf_{1}(x)=C\kf_{2}(x),$ so the functions are <span data-concept="linear-independence">linearly independent</span>.</p>
+<p>c. There is no constant <em>C</em> such that $\kf_{1}(x)=C\kf_{2}(x),$ so the functions are <span data-concept="linear-independence">linearly independent</span>. Don’t get confused by the fact that the exponents are constant multiples of each other. With two <span data-concept="exponential-function">exponential functions</span>, unless the exponents are equal, the functions are <span data-concept="linear-independence">linearly independent</span>.</p>
+<p>d. There is no constant <em>C</em> such that $\kf_{1}(x)=C\kf_{2}(x),$ so the functions are <span data-concept="linear-independence">linearly independent</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572630833"></div>
+<p>If we are able to find two <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions to a second-order differential equation</span>, then we can combine them to find the <span data-concept="general-solution">general solution</span>. This result is formally stated in the following theorem.</p>
+<div class="note" id="fs-id1170572507385">
+<div class="eyebrow">Theorem</div>
+<h3>General Solution to a Homogeneous Equation</h3>
+<p>If $\kyone(x)$ and $\kytwo(x)$ are <span data-concept="linear-independence">linearly independent</span> solutions to a second-order, <span data-concept="homogeneous-linear-equation">linear, homogeneous differential equation</span>, then the <span data-concept="general-solution">general solution</span> is given by</p>
+$$\kyfn(x)=c_{1}\kyone(x)+c_{2}\kytwo(x),$$
+<p>where $c_{1}$ and $c_{2}$ are constants.</p>
+</div>
+<p>When we say a family of functions is the general <span data-concept="solution-to-a-differential-equation">solution to a differential equation</span>, we mean that (1) every expression of that form is a solution and (2) every <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> can be written in that form, which makes this theorem extremely powerful. If we can find two <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions to a differential equation</span>, we have, effectively, found <em>all</em> <span data-concept="solution-to-a-differential-equation">solutions to the differential equation</span>—quite a remarkable statement. The proof of this theorem is beyond the scope of this text.</p>
+<div class="example" id="fs-id1170572520528">
+<h3>Example 17.5 · Writing the General Solution</h3>
+<p>If $\kyone(t)=e^{3t}$ and $\kytwo(t)=e^{-3t}$ are solutions to $\kydprime-9\kyfn=0,$ what is the <span data-concept="general-solution">general solution</span>?</p>
+<h4>Solution</h4>
+<p>Note that $\kyone$ and $\kytwo$ are not constant multiples of one another, so they are <span data-concept="linear-independence">linearly independent</span>. Then, the general <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> is $\kyfn(t)=c_{1}e^{3t}+c_{2}e^{-3t}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170572520528"></div>
+</section>
+
+<section id="constant-coefficients">
+<h2>Second-Order Equations with Constant Coefficients</h2>
+<p class="cite-target">Now that we have a better feel for <span data-concept="second-order-linear-differential-equation">linear differential equations</span>, we are going to concentrate on solving second-order equations of the form</p>
+<div class="equation" id="fs-id1170572185074">$$a\kydprime+b\kyprime+c\kyfn=0,\tag{17.2}$$</div>
+<p>where $a,$ $b,$ and $c$ are constants.</p>
+<p>Since all the coefficients are constants, the solutions are probably going to be functions with derivatives that are constant multiples of themselves. We need all the terms to cancel out, and if taking a derivative introduces a term that is not a constant multiple of the original function, it is difficult to see how that term cancels out. <span data-concept="exponential-function">Exponential functions</span> have derivatives that are constant multiples of the original function, so let’s see what happens when we try a solution of the form $\kyfn(x)=e^{\lambda x},$ where $\lambda$ (the lowercase Greek letter lambda) is some constant.</p>
+<p>If $\kyfn(x)=e^{\lambda x},$ then $\kyprime(x)=\lambda e^{\lambda x}$ and $\kydprime={\lambda }^{2}e^{\lambda x}.$ Substituting these expressions into <a href="#fs-id1170572251008">Equation 17.1</a><sup class="fn" data-note="c-eq-17-1"></sup>, we get</p>
+$$\begin{array}{rl}a\kydprime+b\kyprime+c\kyfn & =a({\lambda }^{2}e^{\lambda x})+b(\lambda e^{\lambda x})+ce^{\lambda x} \\ & =e^{\lambda x}(a{\lambda }^{2}+b\lambda +c).\end{array}$$
+<p>Since $e^{\lambda x}$ is never zero, this expression can be equal to zero for all <em>x</em> only if</p>
+$$a{\lambda }^{2}+b\lambda +c=0.$$
+<p>We call this the <span data-concept="characteristic-equation">characteristic equation</span> of the <span data-concept="differential-equation">differential equation</span>.</p>
+<div class="note" id="fs-id1170572168702">
+<div class="eyebrow">Definition</div>
+<p>The <strong><span data-concept="characteristic-equation">characteristic equation</span></strong> of the <span data-concept="differential-equation">differential equation</span> $a\kydprime+b\kyprime+c\kyfn=0$ is $a{\lambda }^{2}+b\lambda +c=0.$</p>
+</div>
+<p id="char-roots">The <span data-concept="characteristic-equation">characteristic equation</span> is very important in finding <span data-concept="solution-to-a-differential-equation">solutions to differential equations</span> of this form. We can solve the <span data-concept="characteristic-equation">characteristic equation</span> either by factoring or by using the <span data-concept="quadratic-formula">quadratic formula</span></p>
+$$\lambda =\frac{-b\pm \sqrt{b^{2}-4ac}}{2a}.$$
+<p>This gives three cases. The <span data-concept="characteristic-equation">characteristic equation</span> has (1) distinct real roots; (2) a single, repeated real root; or (3) complex conjugate roots. We consider each of these cases separately.</p>
+<h3>Distinct Real Roots</h3>
+<p id="distinct-roots">If the <span data-concept="characteristic-equation">characteristic equation</span> has distinct real roots ${\lambda }_{1}$ and ${\lambda }_{2},$ then $e^{{\lambda }_{1}x}$ and $e^{{\lambda }_{2}x}$ are <span data-concept="linear-independence">linearly independent</span> solutions to <a href="#fs-id1170571650370">Example 17.1</a><sup class="fn" data-note="c-example-17-1"></sup>, and the <span data-concept="general-solution">general solution</span> is given by</p>
+$$\kyfn(x)=c_{1}e^{{\lambda }_{1}x}+c_{2}e^{{\lambda }_{2}x},$$
+<p>where $c_{1}$ and $c_{2}$ are constants.</p>
+<p>For example, the <span data-concept="differential-equation">differential equation</span> $\kydprime+9\kyprime+14\kyfn=0$ has the associated <span data-concept="characteristic-equation">characteristic equation</span> ${\lambda }^{2}+9\lambda +14=0.$ This factors into $(\lambda +2)(\lambda +7)=0,$ which has roots ${\lambda }_{1}=-2$ and ${\lambda }_{2}=-7.$ Therefore, the general <span data-concept="solution-to-a-differential-equation">solution to this differential equation</span> is</p>
+$$\kyfn(x)=c_{1}e^{-2x}+c_{2}e^{-7x}.$$
+<h3>Single Repeated Real Root</h3>
+<p>Things are a little more complicated if the <span data-concept="characteristic-equation">characteristic equation</span> has a repeated real root, $\lambda \text{.}$ In this case, we know $e^{\lambda x}$ is a solution to <a href="#fs-id1170572251008">Equation 17.1</a>, but it is only one solution and we need two <span data-concept="linear-independence">linearly independent</span> solutions to determine the <span data-concept="general-solution">general solution</span>. We might be tempted to try a function of the form $ke^{\lambda x},$ where <em>k</em> is some constant, but it would not be <span data-concept="linear-independence">linearly independent</span> of $e^{\lambda x}.$ Therefore, let’s try $xe^{\lambda x}$ as the second solution. First, note that by the <span data-concept="quadratic-formula">quadratic formula</span>,</p>
+$$\lambda =\frac{-b\pm \sqrt{b^{2}-4ac}}{2a}.$$
+<p>But, $\lambda$ is a repeated root, so $b^{2}-4ac=0$ and $\lambda =\frac{-b}{2a}.$ Thus, if $\kyfn=xe^{\lambda x},$ we have</p>
+$$\kyprime=e^{\lambda x}+\lambda xe^{\lambda x}\;\text{and}\;\kydprime=2\lambda e^{\lambda x}+{\lambda }^{2}xe^{\lambda x}.$$
+<p>Substituting these expressions into <a href="#fs-id1170572251008">Equation 17.1</a>, we see that</p>
+$$\begin{array}{rl}a\kydprime+b\kyprime+c\kyfn & =a(2\lambda e^{\lambda x}+{\lambda }^{2}xe^{\lambda x})+b(e^{\lambda x}+\lambda xe^{\lambda x})+cxe^{\lambda x} \\ & =xe^{\lambda x}(a{\lambda }^{2}+b\lambda +c)+e^{\lambda x}(2a\lambda +b) \\ & =xe^{\lambda x}(0)+e^{\lambda x}(2a(\frac{-b}{2a})+b) \\ & =0+e^{\lambda x}(0) \\ & =0.\end{array}$$
+<p id="repeated-root">This shows that $xe^{\lambda x}$ is a solution to <a href="#fs-id1170572251008">Equation 17.1</a>. Since $e^{\lambda x}$ and $xe^{\lambda x}$ are <span data-concept="linear-independence">linearly independent</span>, when the <span data-concept="characteristic-equation">characteristic equation</span> has a repeated root $\lambda ,$ the <span data-concept="general-solution">general solution</span> to <a href="#fs-id1170572251008">Equation 17.1</a> is given by</p>
+$$\kyfn(x)=c_{1}e^{\lambda x}+c_{2}xe^{\lambda x},$$
+<p>where $c_{1}$ and $c_{2}$ are constants.</p>
+<p>For example, the <span data-concept="differential-equation">differential equation</span> $\kydprime+12\kyprime+36\kyfn=0$ has the associated <span data-concept="characteristic-equation">characteristic equation</span> ${\lambda }^{2}+12\lambda +36=0.$ This factors into ${(\lambda +6)}^{2}=0,$ which has a repeated root $\lambda =-6.$ Therefore, the general <span data-concept="solution-to-a-differential-equation">solution to this differential equation</span> is</p>
+$$\kyfn(x)=c_{1}e^{-6x}+c_{2}xe^{-6x}.$$
+<h3>Complex Conjugate Roots</h3>
+<p>The third case we must consider is when $b^{2}-4ac\lt 0.$ In this case, when we apply the <span data-concept="quadratic-formula">quadratic formula</span>, we are taking the square root of a negative number. We must use the imaginary number $i=\sqrt{-1}$ to find the roots, which take the form ${\lambda }_{1}=\alpha +\beta i$ and ${\lambda }_{2}=\alpha -\beta i\text{.}$ The complex number $\alpha +\beta i$ is called the <em>conjugate</em> of $\alpha -\beta i\text{.}$ Thus, we see that when $b^{2}-4ac\lt 0,$ the roots of our <span data-concept="characteristic-equation">characteristic equation</span> are always complex conjugates.</p>
+<p>This creates a little bit of a problem for us. If we follow the same process we used for distinct real roots—using the roots of the <span data-concept="characteristic-equation">characteristic equation</span> as the coefficients in the exponents of <span data-concept="exponential-function">exponential functions</span>—we get the functions $e^{(\alpha +\beta i)x}$ and $e^{(\alpha -\beta i)x}$ as our solutions. However, there are problems with this approach. First, these functions take on complex (imaginary) values, and a complete discussion of such functions is beyond the scope of this text. Second, even if we were comfortable with complex-value functions, in this course we do not address the idea of a derivative for such functions. So, if possible, we’d like to find two <span data-concept="linear-independence">linearly independent</span> <em>real-value</em> <span data-concept="solution-to-a-differential-equation">solutions to the differential equation</span>. For purposes of this development, we are going to manipulate and differentiate the functions $e^{(\alpha +\beta i)x}$ and $e^{(\alpha -\beta i)x}$ as if they were real-value functions. For these particular functions, this approach is valid mathematically, but be aware that there are other instances when complex-value functions do not follow the same rules as real-value functions. Those of you interested in a more in-depth discussion of complex-value functions should consult a complex analysis text.</p>
+<p>Based on the roots $\alpha \pm \beta i$ of the <span data-concept="characteristic-equation">characteristic equation</span>, the functions $e^{(\alpha +\beta i)x}$ and $e^{(\alpha -\beta i)x}$ are <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions to the differential equation</span>. and the <span data-concept="general-solution">general solution</span> is given by</p>
+$$\kyfn(x)=c_{1}e^{(\alpha +\beta i)x}+c_{2}e^{(\alpha -\beta i)x}.$$
+<p>Using some smart choices for $c_{1}$ and $c_{2},$ and a little bit of algebraic manipulation, we can find two <span data-concept="linear-independence">linearly independent</span>, real-value solutions to <a href="#fs-id1170572251008">Equation 17.1</a> and express our <span data-concept="general-solution">general solution</span> in those terms.</p>
+<p id="euler-formula">We encountered <span data-concept="exponential-function">exponential functions</span> with complex exponents earlier. One of the key tools we used to express these <span data-concept="exponential-function">exponential functions</span> in terms of sines and cosines was <span data-concept="eulers-formula">Euler’s formula</span>, which tells us that</p>
+$$e^{i\theta}=\cos \theta +i\;\sin \theta$$
+<p>for all real numbers $\theta \text{.}$</p>
+<p>Going back to the <span data-concept="general-solution">general solution</span>, we have</p>
+$$\begin{array}{rl}\kyfn(x) & =c_{1}e^{(\alpha +\beta i)x}+c_{2}e^{(\alpha -\beta i)x} \\ & =c_{1}e^{\alpha x}e^{\beta ix}+c_{2}e^{\alpha x}e^{-\beta ix} \\ & =e^{\alpha x}(c_{1}e^{\beta ix}+c_{2}e^{-\beta ix}).\end{array}$$
+<p>Applying <span data-concept="eulers-formula">Euler’s formula</span> together with the identities $\cos (-x)=\cos x$ and $\sin (-x)=-\sin x,$ we get</p>
+$$\begin{array}{rl}\kyfn(x) & =e^{\alpha x}[c_{1}(\cos \beta x+i\;\sin \beta x)+c_{2}(\cos (-\beta x)+i\;\sin (-\beta x))] \\ & =e^{\alpha x}[(c_{1}+c_{2})\cos \beta x+(c_{1}-c_{2})i\;\sin \beta x].\end{array}$$
+<p>Now, if we choose $c_{1}=c_{2}=\frac{1}{2},$ the second term is zero and we get</p>
+$$\kyfn(x)=e^{\alpha x}\cos \beta x$$
+<p>as a real-value solution to <a href="#fs-id1170572251008">Equation 17.1</a>. Similarly, if we choose $c_{1}=-\frac{i}{2}$ and $c_{2}=\frac{i}{2},$ the first term is zero and we get</p>
+$$\kyfn(x)=e^{\alpha x}\sin \beta x$$
+<p>as a second, <span data-concept="linear-independence">linearly independent</span>, real-value solution to <a href="#fs-id1170572251008">Equation 17.1</a>.</p>
+<p id="complex-roots">Based on this, we see that if the <span data-concept="characteristic-equation">characteristic equation</span> has complex conjugate roots $\alpha \pm \beta i,$ then the <span data-concept="general-solution">general solution</span> to <a href="#fs-id1170572251008">Equation 17.1</a> is given by</p>
+$$\begin{array}{rl}\kyfn(x) & =c_{1}e^{\alpha x}\cos \beta x+c_{2}e^{\alpha x}\sin \beta x \\ & =e^{\alpha x}(c_{1}\cos \beta x+c_{2}\sin \beta x),\end{array}$$
+<p>where $c_{1}$ and $c_{2}$ are constants.</p>
+<p>For example, the <span data-concept="differential-equation">differential equation</span> $\kydprime-2\kyprime+5\kyfn=0$ has the associated <span data-concept="characteristic-equation">characteristic equation</span> ${\lambda }^{2}-2\lambda +5=0.$ By the <span data-concept="quadratic-formula">quadratic formula</span>, the roots of the <span data-concept="characteristic-equation">characteristic equation</span> are $1\pm 2i\text{.}$ Therefore, the general <span data-concept="solution-to-a-differential-equation">solution to this differential equation</span> is</p>
+$$\kyfn(x)=e^{x}(c_{1}\cos 2x+c_{2}\sin 2x).$$
+<h3>Summary of Results</h3>
+<p>We can solve second-order, <span data-concept="homogeneous-linear-equation">linear, homogeneous differential equations</span> with constant coefficients by finding the roots of the associated <span data-concept="characteristic-equation">characteristic equation</span>. The form of the <span data-concept="general-solution">general solution</span> varies, depending on whether the <span data-concept="characteristic-equation">characteristic equation</span> has distinct, real roots; a single, repeated real root; or complex conjugate roots. The three cases are summarized in <a href="#fs-id1170571769749">Table 17.1</a>.</p>
+<div class="book-table" id="fs-id1170571769749">
+  <div class="tcap"><span class="eyebrow">Table 17.1</span><span>Summary of <span data-concept="characteristic-equation">Characteristic Equation</span> Cases</span></div>
+<figure class="sim" id="sim-characteristic-roots">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Drag $b$ and $c$ of $\kydprime+b\kyprime+c\kyfn=0$. On the left, the two roots of its <span data-concept="characteristic-equation">characteristic equation</span> $\lambda^{2}+b\lambda+c=0$ in the plane of $\lambda,$ real part across and imaginary part up; on the right, the solution with $\kyfn(0)=1$ and $\kyprime(0)=0.$ While $b^{2}>4c$ the roots are real and distinct and the solution is a sum of two exponentials; at $b^{2}=4c$ they meet in one repeated root; below it they part as complex conjugates $\alpha\pm\beta i$ and the solution oscillates inside $\pm e^{\alpha x}.$</span></div>
+</figure>
+  <table>
+    <thead><tr><th>Characteristic Equation Roots</th><th>General Solution to the Differential Equation</th></tr></thead>
+    <tbody>
+      <tr><td>Distinct real roots, ${\lambda }_{1}$ and ${\lambda }_{2}$</td><td>$\kyfn(x)=c_{1}e^{{\lambda }_{1}x}+c_{2}e^{{\lambda }_{2}x}$</td></tr>
+      <tr><td>A repeated real root, $\lambda$</td><td>$\kyfn(x)=c_{1}e^{\lambda x}+c_{2}xe^{\lambda x}$</td></tr>
+      <tr><td>Complex conjugate roots $\alpha \pm \beta i$</td><td>$\kyfn(x)=e^{\alpha x}(c_{1}\cos \beta x+c_{2}\sin \beta x)$</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="note" id="fs-id1170572292207">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Using the Characteristic Equation to Solve Second-Order Differential Equations with Constant Coefficients</h3>
+<ol><li>Write the <span data-concept="differential-equation">differential equation</span> in the form $a\kydprime+b\kyprime+c\kyfn=0.$</li><li>Find the corresponding <span data-concept="characteristic-equation">characteristic equation</span> $a{\lambda }^{2}+b\lambda +c=0.$</li><li>Either factor the <span data-concept="characteristic-equation">characteristic equation</span> or use the <span data-concept="quadratic-formula">quadratic formula</span> to find the roots.</li><li>Determine the form of the <span data-concept="general-solution">general solution</span> based on whether the <span data-concept="characteristic-equation">characteristic equation</span> has distinct, real roots; a single, repeated real root; or complex conjugate roots.</li></ol>
+</div>
+<div class="example" id="fs-id1170571735178">
+<h3>Example 17.6 · Solving Second-Order Equations with Constant Coefficients</h3>
+<p>Find the <span data-concept="general-solution">general solution</span> to the following <span data-concept="differential-equation">differential equations</span>. Give your answers as functions of <em>x</em>.<sup class="fn" data-note="c-functions-of-x"></sup></p>
+<p>a. $\kydprime+3\kyprime-4\kyfn=0$</p>
+<p>b. $\kydprime+6\kyprime+13\kyfn=0$</p>
+<p>c. $\kydprime+2\kyprime+\kyfn=0$</p>
+<p>d. $\kydprime-5\kyprime=0$</p>
+<p>e. $\kydprime-16\kyfn=0$</p>
+<p>f. $\kydprime+16\kyfn=0$</p>
+<h4>Solution</h4>
+<p>Note that all these equations are already given in standard form (step 1).</p>
+<p>a. The <span data-concept="characteristic-equation">characteristic equation</span> is ${\lambda }^{2}+3\lambda -4=0$ (step 2). This factors into $(\lambda +4)(\lambda -1)=0,$ so the roots of the <span data-concept="characteristic-equation">characteristic equation</span> are ${\lambda }_{1}=-4$ and ${\lambda }_{2}=1$ (step 3). Then the general <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> is</p>
+$$\kyfn(x)=c_{1}e^{-4x}+c_{2}e^{x}\;\text{(step 4)}\text{.}$$
+<p>b. The <span data-concept="characteristic-equation">characteristic equation</span> is ${\lambda }^{2}+6\lambda +13=0$ (step 2). Applying the <span data-concept="quadratic-formula">quadratic formula</span>, we see this equation has complex conjugate roots $-3\pm 2i$ (step 3). Then the general <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> is</p>
+$$\kyfn(t)=e^{-3t}(c_{1}\cos 2t+c_{2}\sin 2t)\;\text{(step 4)}\text{.}$$
+<p>c. The <span data-concept="characteristic-equation">characteristic equation</span> is ${\lambda }^{2}+2\lambda +1=0$ (step 2). This factors into ${(\lambda +1)}^{2}=0,$ so the <span data-concept="characteristic-equation">characteristic equation</span> has a repeated real root $\lambda =-1$ (step 3). Then the general <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> is</p>
+$$\kyfn(t)=c_{1}e^{-t}+c_{2}te^{-t}\;\text{(step 4).}$$
+<p>d. The <span data-concept="characteristic-equation">characteristic equation</span> is ${\lambda }^{2}-5\lambda$ (step 2). This factors into $\lambda (\lambda -5)=0,$ so the roots of the <span data-concept="characteristic-equation">characteristic equation</span> are ${\lambda }_{1}=0$ and ${\lambda }_{2}=5$ (step 3). Note that $e^{0x}=e^{0}=1,$ so our first solution is just a constant. Then the general <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> is</p>
+$$\kyfn(x)=c_{1}+c_{2}e^{5x}\;\text{(step 4)}\text{.}$$
+<p>e. The <span data-concept="characteristic-equation">characteristic equation</span> is ${\lambda }^{2}-16=0$ (step 2). This factors into $(\lambda +4)(\lambda -4)=0,$ so the roots of the <span data-concept="characteristic-equation">characteristic equation</span> are ${\lambda }_{1}=4$ and ${\lambda }_{2}=-4$ (step 3). Then the general <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> is</p>
+$$\kyfn(x)=c_{1}e^{4x}+c_{2}e^{-4x}\;\text{(step 4)}\text{.}$$
+<p>f. The <span data-concept="characteristic-equation">characteristic equation</span> is ${\lambda }^{2}+16=0$ (step 2). This has complex conjugate roots $\pm 4i$ (step 3). Note that $e^{0x}=e^{0}=1,$ so the exponential term in our solution is just a constant. Then the general <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> is</p>
+$$\kyfn(t)=c_{1}\cos 4t+c_{2}\sin 4t\;\text{(step 4)}\text{.}$$
+</div>
+<div class="exercises" data-place="fs-id1170571735178"></div>
+</section>
+
+<section id="initial-boundary">
+<h2>Initial-Value Problems and Boundary-Value Problems</h2>
+<p class="cite-target">So far, we have been finding general <span data-concept="solution-to-a-differential-equation">solutions to differential equations</span>. However, <span data-concept="differential-equation">differential equations</span> are often used to describe physical systems, and the person studying that physical system usually knows something about the state of that system at one or more points in time. For example, if a <span data-concept="second-order-equation-with-constant-coefficients">constant-coefficient differential equation</span> is representing how far a motorcycle shock absorber is compressed, we might know that the rider is sitting still on his motorcycle at the start of a race, time $t=t_{0}.$ This means the system is at equilibrium, so $\kyfn(t_{0})=0,$ and the compression of the shock absorber is not changing, so $\kyprime(t_{0})=0.$ With these two <span data-concept="initial-value-problem">initial conditions</span> and the general <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span>, we can find the <em>specific</em> <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> that satisfies both <span data-concept="initial-value-problem">initial conditions</span>. This process is known as <em>solving an <span data-concept="initial-value-problem">initial-value problem</span></em>. (Recall that we discussed <span data-concept="initial-value-problem">initial-value problems</span> in <a href="/calculus/ch08/intro/">Introduction to Differential Equations</a>.) Note that second-order equations have two arbitrary constants in the <span data-concept="general-solution">general solution</span>, and therefore we require two <span data-concept="initial-value-problem">initial conditions</span> to find the solution to the <span data-concept="initial-value-problem">initial-value problem</span>.</p>
+<p id="boundary-term">Sometimes we know the condition of the system at two different times. For example, we might know $\kyfn(t_{0})=y_{0}$ and $\kyfn(t_{1})=y_{1}.$ These conditions are called <strong><span data-concept="boundary-conditions">boundary conditions</span></strong>, and finding the <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> that satisfies the <span data-concept="boundary-conditions">boundary conditions</span> is called solving a <strong><span data-concept="boundary-value-problem">boundary-value problem</span></strong>.</p>
+<p id="uniqueness-term">Mathematicians, scientists, and engineers are interested in understanding the conditions under which an <span data-concept="initial-value-problem">initial-value problem</span> or a <span data-concept="boundary-value-problem">boundary-value problem</span> has a unique solution. Although a complete treatment of this topic is beyond the scope of this text, it is useful to know that, within the context of <span data-concept="second-order-equation-with-constant-coefficients">constant-coefficient, second-order equations</span>, <span data-concept="initial-value-problem">initial-value problems</span> are guaranteed to have a unique solution as long as two <span data-concept="initial-value-problem">initial conditions</span> are provided. <span data-concept="boundary-value-problem">Boundary-value problems</span>, however, are not as well behaved. Even when two <span data-concept="boundary-conditions">boundary conditions</span> are known, we may encounter <span data-concept="boundary-value-problem">boundary-value problems</span> with unique solutions, many solutions, or no solution at all.</p>
+<div class="example" id="fs-id1170572624728">
+<h3>Example 17.7 · Solving an Initial-Value Problem</h3>
+<p>Solve the following <span data-concept="initial-value-problem">initial-value problem</span>: $\kydprime+3\kyprime-4\kyfn=0,$ $\kyfn(0)=1,$ $\kyprime(0)=-9.$</p>
+<h4>Solution</h4>
+<p>We already solved this <span data-concept="differential-equation">differential equation</span> in <a href="#fs-id1170571735178">Example 17.6</a>a. and found the <span data-concept="general-solution">general solution</span> to be</p>
+$$\kyfn(x)=c_{1}e^{-4x}+c_{2}e^{x}.$$
+<p>Then</p>
+$$\kyprime(x)=-4c_{1}e^{-4x}+c_{2}e^{x}.$$
+<p>When $x=0,$ we have $\kyfn(0)=c_{1}+c_{2}$ and $\kyprime(0)=-4c_{1}+c_{2}.$ Applying the <span data-concept="initial-value-problem">initial conditions</span>, we have</p>
+$$\begin{array}{rll}c_{1}+c_{2} & = & 1 \\ -4c_{1}+c_{2} & = & -9.\end{array}$$
+<p>Then $c_{1}=1-c_{2}.$ Substituting this expression into the second equation, we see that</p>
+$$\begin{array}{rll}-4(1-c_{2})+c_{2} & = & -9 \\ -4+4c_{2}+c_{2} & = & -9 \\ 5c_{2} & = & -5 \\ c_{2} & = & -1.\end{array}$$
+<p>So, $c_{1}=2$ and the solution to the <span data-concept="initial-value-problem">initial-value problem</span> is</p>
+<span data-fn="2e^(-4x)-e^x">$$\kyfn(x)=2e^{-4x}-e^{x}.$$</span>
+</div>
+<div class="exercises" data-place="fs-id1170572624728"></div>
+<div class="example" id="fs-id1170572307679">
+<h3>Example 17.8 · Solving an Initial-Value Problem and Graphing the Solution</h3>
+<p>Solve the following <span data-concept="initial-value-problem">initial-value problem</span> and graph the solution:</p>
+$$\kydprime+6\kyprime+13\kyfn=0,\;\kyfn(0)=0,\;\kyprime(0)=2$$
+<h4>Solution</h4>
+<p>We already solved this <span data-concept="differential-equation">differential equation</span> in <a href="#fs-id1170571735178">Example 17.6</a>b. and found the <span data-concept="general-solution">general solution</span> to be</p>
+$$\kyfn(x)=e^{-3x}(c_{1}\cos 2x+c_{2}\sin 2x).$$
+<p>Then</p>
+$$\kyprime(x)=e^{-3x}(-2c_{1}\sin 2x+2c_{2}\cos 2x)-3e^{-3x}(c_{1}\cos 2x+c_{2}\sin 2x).$$
+<p>When $x=0,$ we have $\kyfn(0)=c_{1}$ and $\kyprime(0)=2c_{2}-3c_{1}.$ Applying the <span data-concept="initial-value-problem">initial conditions</span>, we obtain</p>
+$$\begin{array}{rll}c_{1} & = & 0 \\ -3c_{1}+2c_{2} & = & 2.\end{array}$$
+<p>Therefore, $c_{1}=0,$ $c_{2}=1,$ and the solution to the <span data-concept="initial-value-problem">initial value problem</span> is shown in the following graph.</p>
+<span data-fn="e^(-3x)*sin(2x)">$$\kyfn=e^{-3x}\sin 2x\text{.}$$</span>
+<figure class="sim" id="sim-ivp" data-original="/media/ch17/CNX_Calc_Figure_17_01_001.jpg">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The solution of $\kydprime+6\kyprime+13\kyfn=0$ that starts at $(0,\kyfn(0))$ with slope $\kyprime(0).$ Example 17.8’s <span data-concept="initial-value-problem">initial conditions</span> $\kyfn(0)=0,$ $\kyprime(0)=2$ give $c_{1}=0,$ $c_{2}=1$ and $\kyfn=e^{-3x}\sin 2x;$ change either condition and $c_{1}=\kyfn(0),$ $c_{2}=(\kyprime(0)+3\kyfn(0))/2$ pick out another member of the <span data-concept="general-solution">general solution</span>.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170572307679"></div>
+<div class="example" id="fs-id1170572306933">
+<h3>Example 17.9 · Initial-Value Problem Representing a Spring-Mass System</h3>
+<p>The following <span data-concept="initial-value-problem">initial-value problem</span> models the position of an object with mass attached to a spring. <span data-concept="simple-harmonic-motion">Spring-mass systems</span> are examined in detail in <a href="/calculus/ch17/17.3/">Applications</a>. The <span data-concept="solution-to-a-differential-equation">solution to the differential equation</span> gives the position of the mass with respect to a neutral (equilibrium) position (in meters) at any given time. (Note that for <span data-concept="simple-harmonic-motion">spring-mass systems</span> of this type, it is customary to define the downward direction as positive.)</p>
+$$\kydprime+2\kyprime+\kyfn=0,\kyfn(0)=1,\kyprime(0)=0$$
+<p>Solve the <span data-concept="initial-value-problem">initial-value problem</span> and graph the solution. What is the position of the mass at time $t=2$ sec? How fast is the mass moving at time $t=1$ sec? In what direction?</p>
+<h4>Solution</h4>
+<p>In <a href="#fs-id1170571735178">Example 17.6</a>c. we found the general <span data-concept="solution-to-a-differential-equation">solution to this differential equation</span> to be</p>
+$$\kyfn(t)=c_{1}e^{-t}+c_{2}te^{-t}.$$
+<p>Then</p>
+$$\kyprime(t)=-c_{1}e^{-t}+c_{2}(-te^{-t}+e^{-t}).$$
+<p>When $t=0,$ we have $\kyfn(0)=c_{1}$ and $\kyprime(0)=-c_{1}+c_{2}.$ Applying the <span data-concept="initial-value-problem">initial conditions</span>, we obtain</p>
+$$\begin{array}{rll}c_{1} & = & 1 \\ {-c}_{1}+c_{2} & = & 0.\end{array}$$
+<p>Thus, $c_{1}=1,$ $c_{2}=1,$ and the solution to the <span data-concept="initial-value-problem">initial value problem</span> is</p>
+<span data-fn="e^(-x)+x*e^(-x)">$$\kyfn(t)=e^{-t}+te^{-t}.$$</span>
+<p>This solution is represented in the following graph. At time $t=2,$ the mass is at position $\kyfn(2)=e^{-2}+2e^{-2}=3e^{-2}\approx 0.406$ m below equilibrium.</p>
+<figure class="sim" id="sim-spring-ivp" data-original="/media/ch17/CNX_Calc_Figure_17_01_003.jpg">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The mass of Example 17.9, released from rest $1$ m below equilibrium with down positive, settles back as $\kyfn(t)=e^{-t}+te^{-t}$ without passing the equilibrium position. At $t=1$ the slope of the tangent is the velocity $\kyprime(1)=-e^{-1}\approx -0.3679$: the mass is moving upward. At $t=2$ it is $3e^{-2}\approx 0.406$ m below equilibrium.</span></div>
+</figure>
+<p>To calculate the velocity at time $t=1,$ we need to find the derivative. We have $\kyfn(t)=e^{-t}+te^{-t},$ so</p>
+$$\kyprime(t)=-e^{-t}+e^{-t}-te^{-t}=-te^{-t}.$$
+<p>Then $\kyprime(1)=-e^{-1}\approx -0.3679.$ At time $t=1,$ the mass is moving upward at 0.3679 m/sec.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572306933"></div>
+<div class="example" id="fs-id1170572292379">
+<h3>Example 17.10 · Solving a Boundary-Value Problem</h3>
+<p>In <a href="#fs-id1170571735178">Example 17.6</a>f. we solved the <span data-concept="differential-equation">differential equation</span> $\kydprime+16\kyfn=0$ and found the <span data-concept="general-solution">general solution</span> to be $\kyfn(t)=c_{1}\cos 4t+c_{2}\sin 4t\text{.}$ If possible, solve the <span data-concept="boundary-value-problem">boundary-value problem</span> if the <span data-concept="boundary-conditions">boundary conditions</span> are the following:</p>
+<p>a. $\kyfn(0)=0,$ $\kyfn(\frac{\pi}{4})=0$</p>
+<p>b. $\kyfn(0)=1,$ $\kyfn(\frac{\pi}{8})=0$</p>
+<p>c. $\kyfn(\frac{\pi}{8})=0,$ $\kyfn(\frac{3\pi}{8})=2$</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\kyfn(t)=c_{1}\cos 4t+c_{2}\sin 4t\text{.}$$
+<p>a. Applying the first <span data-concept="boundary-conditions">boundary condition</span> given here, we get $\kyfn(0)=c_{1}=0.$ So the solution is of the form $\kyfn(t)=c_{2}\sin 4t\text{.}$ When we apply the second <span data-concept="boundary-conditions">boundary condition</span>, though, we get $\kyfn(\frac{\pi}{4})=c_{2}\sin (4(\frac{\pi}{4}))=c_{2}\sin \pi =0$ for all values of $c_{2}.$ The <span data-concept="boundary-conditions">boundary conditions</span> are not sufficient to determine a value for $c_{2},$ so this <span data-concept="boundary-value-problem">boundary-value problem</span> has infinitely many solutions. Thus, $\kyfn(t)=c_{2}\sin 4t$ is a solution for any value of $c_{2}.$</p>
+<p>b. Applying the first <span data-concept="boundary-conditions">boundary condition</span> given here, we get $\kyfn(0)=c_{1}=1.$ Applying the second <span data-concept="boundary-conditions">boundary condition</span> gives $\kyfn(\frac{\pi}{8})=c_{2}=0,$ so $c_{2}=0.$ In this case, we have a unique solution: $\kyfn(t)=\cos 4t\text{.}$</p>
+<p>c. Applying the first <span data-concept="boundary-conditions">boundary condition</span> given here, we get $\kyfn(\frac{\pi}{8})=c_{2}=0.$ However, applying the second <span data-concept="boundary-conditions">boundary condition</span> gives $\kyfn(\frac{3\pi}{8})=-c_{2}=2,$ so $c_{2}=-2.$ We cannot have $c_{2}=0=-2,$ so this <span data-concept="boundary-value-problem">boundary value problem</span> has no solution.</p>
+</div>
+<figure class="sim" id="sim-boundary-value">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The solutions of $\kydprime+16\kyfn=0$ that meet the first <span data-concept="boundary-conditions">boundary condition</span> of Example 17.10 form a family, drawn faint, one member bold; choose a, b or c and slide the member. In (a) every member also meets $\kyfn(\frac{\pi}{4})=0;$ in (b) only $c_{2}=0$ meets $\kyfn(\frac{\pi}{8})=0;$ in (c) every member passes through $(\frac{3\pi}{8},0),$ so none reaches $\kyfn(\frac{3\pi}{8})=2.$</span></div>
+</figure>
+</section>
