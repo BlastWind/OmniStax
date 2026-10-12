@@ -1,0 +1,236 @@
+<p id="moments-intro">In this section, we consider <span data-concept="center-of-mass">centers of mass</span> (also called <em><span data-concept="centroid">centroids</span></em>, under certain conditions) and <span data-concept="moment">moments</span>. The basic idea of the <span data-concept="center-of-mass">center of mass</span> is the notion of a balancing point. Many of us have seen performers who spin plates on the ends of sticks. The performers try to keep several of them spinning without allowing any of them to drop. If we look at a single plate (without spinning it), there is a sweet spot on the plate where it balances perfectly on the stick. If we put the stick anywhere other than that sweet spot, the plate does not balance and it falls to the ground. (That is why performers spin the plates; the spin helps keep the plates from falling even if the stick is not exactly in the right place.) Mathematically, that sweet spot is called the <em><span data-concept="center-of-mass">center of mass</span> of the plate</em>.</p>
+<p>In this section, we first examine these concepts in a one-dimensional context, then expand our development to consider <span data-concept="center-of-mass">centers of mass</span> of two-dimensional regions and symmetry. Last, we use <span data-concept="centroid">centroids</span> to find the volume of certain solids by applying the <span data-concept="theorem-of-pappus-for-volume">theorem of Pappus</span>.</p>
+<section id="moments">
+<h2>Center of Mass and Moments</h2>
+<p class="cite-target">Let’s begin by looking at the <span data-concept="center-of-mass">center of mass</span> in a one-dimensional context. Consider a long, thin wire or rod of negligible mass resting on a fulcrum, as shown in Figure 6.62(a). Now suppose we place objects having masses $\km_{1}$ and $\km_{2}$ at distances $d_{1}$ and $d_{2}$ from the fulcrum, respectively, as shown in Figure 6.62(b).</p>
+<figure class="sim" id="sim-seesaw" data-figure="6.62 + 6.63" data-original="/media/ch06/CNX_Calc_Figure_06_06_001.jpg,/media/ch06/CNX_Calc_Figure_06_06_002.jpg" data-original-caption="(Figure 6.62) (a) A thin rod rests on a fulcrum. (b) Masses are placed on the rod. (Figure 6.63) The center of mass x̄ is the balance point of the system.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.62 + 6.63</span><span>Slide the fulcrum along the rod, or change the mass $\km_{2}$: the rod tips toward the side with the larger moment and balances only with the fulcrum at the <span data-concept="center-of-mass">center of mass</span> $\kxbar,$ where $\km_{1}d_{1}=\km_{2}d_{2}.$</span></div>
+</figure>
+<p>The most common real-life example of a system like this is a playground seesaw, or teeter-totter, with children of different weights sitting at different distances from the center. On a seesaw, if one child sits at each end, the heavier child sinks down and the lighter child is lifted into the air. If the heavier child slides in toward the center, though, the seesaw balances. Applying this concept to the masses on the rod, we note that the masses balance each other if and only if $\km_{1}d_{1}=\km_{2}d_{2}.$</p>
+<p>In the seesaw example, we balanced the system by moving the masses (children) with respect to the fulcrum. However, we are really interested in systems in which the masses are not allowed to move, and instead we balance the system by moving the fulcrum. Suppose we have two point masses, $\km_{1}$ and $\km_{2},$ located on a number line at points $x_{1}$ and $x_{2},$ respectively (Figure 6.63). The <span data-concept="center-of-mass">center of mass</span>, $\kxbar,$ is the point where the fulcrum should be placed to make the system balance.</p>
+<p>Thus, we have</p>
+$$\begin{aligned}\km_{1}|\kxbar-x_{1}| &= \km_{2}|x_{2}-\kxbar| \\ \km_{1}(\kxbar-x_{1}) &= \km_{2}(x_{2}-\kxbar) \\ \km_{1}\kxbar-\km_{1}x_{1} &= \km_{2}x_{2}-\km_{2}\kxbar \\ \kxbar(\km_{1}+\km_{2}) &= \km_{1}x_{1}+\km_{2}x_{2} \\ \kxbar &= \frac{m_{1}x_{1}+\km_{2}x_{2}}{m_{1}+\km_{2}}.\end{aligned}$$
+<p>The expression in the numerator, $\km_{1}x_{1}+\km_{2}x_{2},$ is called the <em>first <span data-concept="moment">moment</span> of the system with respect to the origin.</em> If the context is clear, we often drop the word <em>first</em> and just refer to this expression as the <strong><span data-concept="moment">moment</span></strong> of the system. The expression in the denominator, $\km_{1}+\km_{2},$ is the total mass of the system. Thus, the <strong><span data-concept="center-of-mass">center of mass</span></strong> of the system is the point at which the total mass of the system could be concentrated without changing the <span data-concept="moment">moment</span>.</p>
+<p>This idea is not limited just to two point masses. In general, if <em>n</em> masses, $\km_{1},\km_{2}\text{,\ldots},\km_{n},$ are placed on a number line at points $x_{1},x_{2}\text{,\ldots},x_{n},$ respectively, then the <span data-concept="center-of-mass">center of mass</span> of the system is given by</p>
+$$\kxbar=\frac{\sum_{i=1}^{n} \km_{i}x_{i}}{\sum_{i=1}^{n} \km_{i}}.$$
+<div class="note" id="line-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="center-of-mass-on-a-line">Center of Mass of Objects on a Line</span></h3>
+<p>Let $\km_{1},\km_{2}\text{,\ldots},\km_{n}$ be point masses placed on a number line at points $x_{1},x_{2}\text{,\ldots},x_{n},$ respectively, and let $\km=\sum_{i=1}^{n} \km_{i}$ denote the total mass of the system. Then, the <span data-concept="moment">moment</span> of the system with respect to the origin is given by</p>
+$$\kM=\sum_{i=1}^{n}\km_{i}x_{i}\tag{6.14}$$
+<p>and the <span data-concept="center-of-mass">center of mass</span> of the system is given by</p>
+$$\kxbar=\frac{\kM}{\km}.\tag{6.15}$$
+</div>
+<p>We apply this theorem in the following example.</p>
+<div class="example" id="fs-id1167794028004">
+<h3>Example 6.29 · Finding the Center of Mass of Objects along a Line</h3>
+<p>Suppose four point masses are placed on a number line as follows:</p>
+$$\begin{array}{llll}\km_{1}=30\;\text{kg,}\;\text{placed at}\;x_{1}=-2\;\text{m} & & & \km_{2}=5\;\text{kg,}\;\text{placed at}\;x_{2}=3\;\text{m} \\ \km_{3}=10\;\text{kg,}\;\text{placed at}\;x_{3}=6\;\text{m} & & & \km_{4}=15\;\text{kg,}\;\text{placed at}\;x_{4}=-3\;\text{m}.\end{array}$$
+<p>Find the <span data-concept="moment">moment</span> of the system with respect to the origin and find the <span data-concept="center-of-mass">center of mass</span> of the system.</p>
+<h4>Solution</h4>
+<p>First, we need to calculate the <span data-concept="moment">moment</span> of the system:</p>
+$$\begin{aligned}\kM &=\sum_{i=1}^{4} \km_{i}x_{i} \\ &=-60+15+60-45=-30.\end{aligned}$$
+<p>Now, to find the <span data-concept="center-of-mass">center of mass</span>, we need the total mass of the system:</p>
+$$\begin{aligned}m &=\sum_{i=1}^{4} \km_{i} \\ &=30+5+10+15=60\;\text{kg}.\end{aligned}$$
+<p>Then we have</p>
+$$\kxbar=\frac{\kM}{\km}=\frac{-30}{60}=-\frac{1}{2}.$$
+<p>The <span data-concept="center-of-mass">center of mass</span> is located 1/2 m to the left of the origin.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794028004"></div>
+<p>We can generalize this concept to find the <span data-concept="center-of-mass">center of mass</span> of a system of point masses in a plane. Let $\km_{1}$ be a point mass located at point $(x_{1},y_{1})$ in the plane. Then the <span data-concept="moment">moment</span> $\kMx$ of the mass with respect to the <em>x</em>-axis is given by $\kMx=\km_{1}y_{1}.$ Similarly, the <span data-concept="moment">moment</span> $\kMy$ with respect to the <em>y</em>-axis is given by $\kMy=\km_{1}x_{1}.$ Notice that the <em>x</em>-coordinate of the point is used to calculate the <span data-concept="moment">moment</span> with respect to the <em>y</em>-axis, and vice versa. The reason is that the <em>x</em>-coordinate gives the distance from the point mass to the <em>y</em>-axis, and the <em>y</em>-coordinate gives the distance to the <em>x</em>-axis (see the following figure).</p>
+<figure class="sim" id="fig-point-mass-plane" data-figure="6.64" data-original="/media/ch06/CNX_Calc_Figure_06_06_003.jpg" data-original-caption="Point mass m₁ is located at point (x₁,y₁) in the plane.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.64</span><span>Point mass $\km_{1}$ is located at point $(x_{1},y_{1})$ in the plane.</span></div>
+</figure>
+<p>If we have several point masses in the <em>xy</em>-plane, we can use the <span data-concept="moment">moments</span> with respect to the <em>x</em>- and <em>y</em>-axes to calculate the <em>x</em>- and <em>y</em>-coordinates of the <span data-concept="center-of-mass">center of mass</span> of the system.</p>
+<div class="note" id="plane-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="center-of-mass-in-a-plane">Center of Mass of Objects in a Plane</span></h3>
+<p>Let $\km_{1},\km_{2}\text{,\ldots},\km_{n}$ be point masses located in the <em>xy</em>-plane at points $(x_{1},y_{1}),(x_{2},y_{2})\text{,\ldots},(x_{n},y_{n}),$ respectively, and let $\km=\sum_{i=1}^{n} \km_{i}$ denote the total mass of the system. Then the <span data-concept="moment">moments</span> $\kMx$ and $\kMy$ of the system with respect to the <em>x</em>- and <em>y</em>-axes, respectively, are given by</p>
+$$\kMx=\sum_{i=1}^{n}\km_{i}y_{i}\;\text{and}\;\kMy=\sum_{i=1}^{n}\km_{i}x_{i}.\tag{6.16}$$
+<p>Also, the coordinates of the <span data-concept="center-of-mass">center of mass</span> $(\kxbar,\kybar)$ of the system are</p>
+$$\kxbar=\frac{\kMy}{\km}\;\text{and}\;\kybar=\frac{\kMx}{\km}.\tag{6.17}$$
+</div>
+<p>The next example demonstrates how to apply this theorem.</p>
+<div class="example" id="fs-id1167794000228">
+<h3>Example 6.30 · Finding the Center of Mass of Objects in a Plane</h3>
+<p>Suppose three point masses are placed in the <em>xy</em>-plane as follows (assume coordinates are given in meters):</p>
+$$\begin{gathered}\km_{1}=2\;\text{kg, placed at}\;(-1,3), \\ \km_{2}=6\;\text{kg, placed at}\;(1,1), \\ \km_{3}=4\;\text{kg, placed at}\;(2,-2).\end{gathered}$$
+<p>Find the <span data-concept="center-of-mass">center of mass</span> of the system.</p>
+<h4>Solution</h4>
+<p>First we calculate the total mass of the system:</p>
+$$\km=\sum_{i=1}^{3} \km_{i}=2+6+4=12\;\text{kg}.$$
+<p>Next we find the <span data-concept="moment">moments</span> with respect to the <em>x</em>- and <em>y</em>-axes:</p>
+$$\begin{gathered}\kMy=\sum_{i=1}^{3} \km_{i}x_{i}=-2+6+8=12, \\ \kMx=\sum_{i=1}^{3} \km_{i}y_{i}=6+6-8=4.\end{gathered}$$
+<p>Then we have</p>
+$$\kxbar=\frac{\kMy}{\km}=\frac{12}{12}=1\;\text{and}\;\kybar=\frac{\kMx}{\km}=\frac{4}{12}=\frac{1}{3}.$$
+<p>The <span data-concept="center-of-mass">center of mass</span> of the system is $(1,1/3),$ in meters.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794000228"></div>
+</section>
+
+<section id="thin-plates">
+<h2>Center of Mass of Thin Plates</h2>
+<p class="cite-target">So far we have looked at systems of point masses on a line and in a plane. Now, instead of having the mass of a system concentrated at discrete points, we want to look at systems in which the mass of the system is distributed continuously across a thin sheet of material. For our purposes, we assume the sheet is thin enough that it can be treated as if it is two-dimensional. Such a sheet is called a <strong><span data-concept="lamina">lamina</span></strong>. Next we develop techniques to find the <span data-concept="center-of-mass">center of mass</span> of a <span data-concept="lamina">lamina</span>. In this section, we also assume the density of the <span data-concept="lamina">lamina</span> is constant.</p>
+<p>Laminas are often represented by a two-dimensional region in a plane. The geometric center of such a region is called its <strong><span data-concept="centroid">centroid</span></strong>. Since we have assumed the density of the <span data-concept="lamina">lamina</span> is constant, the <span data-concept="center-of-mass">center of mass</span> of the <span data-concept="lamina">lamina</span> depends only on the shape of the corresponding region in the plane; it does not depend on the density. In this case, the <span data-concept="center-of-mass">center of mass</span> of the <span data-concept="lamina">lamina</span> corresponds to the <span data-concept="centroid">centroid</span> of the delineated region in the plane. As with systems of point masses, we need to find the total mass of the <span data-concept="lamina">lamina</span>, as well as the <span data-concept="moment">moments</span> of the <span data-concept="lamina">lamina</span> with respect to the <em>x</em>- and <em>y</em>-axes.</p>
+<p>We first consider a <span data-concept="lamina">lamina</span> in the shape of a rectangle. Recall that the <span data-concept="center-of-mass">center of mass</span> of a <span data-concept="lamina">lamina</span> is the point where the <span data-concept="lamina">lamina</span> balances. For a rectangle, that point is both the horizontal and vertical center of the rectangle. Based on this understanding, it is clear that the <span data-concept="center-of-mass">center of mass</span> of a rectangular <span data-concept="lamina">lamina</span> is the point where the diagonals intersect, which is a result of the <strong><span data-concept="symmetry-principle">symmetry principle</span></strong>, and it is stated here without proof.</p>
+<div class="note" id="symmetry-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="symmetry-principle">The Symmetry Principle</span></h3>
+<p>If a region <em>R</em> is symmetric about a line <em>l</em>, then the <span data-concept="centroid">centroid</span> of <em>R</em> lies on <em>l</em>.</p>
+</div>
+<p>Let’s turn to more general <span data-concept="lamina">laminas</span>. Suppose we have a <span data-concept="lamina">lamina</span> bounded above by the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="continuity-over-an-interval">continuous</span> <span data-concept="function">function</span> $\kf(x),$ below by the <em>x</em>-axis, and on the left and right by the lines $x=a$ and $x=b,$ respectively, as shown in the following figure.</p>
+<figure class="sim" id="sim-lamina" data-figure="6.65 + 6.66" data-original="/media/ch06/CNX_Calc_Figure_06_06_004.jpg,/media/ch06/CNX_Calc_Figure_06_06_005.jpg" data-original-caption="(Figure 6.65) A region in the plane representing a lamina. (Figure 6.66) A representative rectangle of the lamina.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.65 + 6.66</span><span>Raise <em>n</em>: each rectangle of the <span data-concept="lamina">lamina</span> acts as a point mass at its own center, $(x_i^{*},\kf(x_i^{*})/2),$ and the center of mass of the rectangles closes in on the <span data-concept="centroid">centroid</span> of the region. Drag along the <em>x</em>-axis to pick a rectangle.</span></div>
+</figure>
+<p>As with systems of point masses, to find the <span data-concept="center-of-mass">center of mass</span> of the <span data-concept="lamina">lamina</span>, we need to find the total mass of the <span data-concept="lamina">lamina</span>, as well as the <span data-concept="moment">moments</span> of the <span data-concept="lamina">lamina</span> with respect to the <em>x</em>- and <em>y</em>-axes. As we have done many times before, we approximate these quantities by partitioning the interval $[a,b]$ and constructing rectangles.</p>
+<p>For $i=0,1,2\text{,\ldots},n,$ let $P=\{x_{i}\}$ be a <span data-concept="regular-partition">regular partition</span> of $[a,b].$ Recall that we can choose any point within the interval $[x_{i-1},x_{i}]$ as our $x_i^{*}.$ In this case, we want $x_i^{*}$ to be the <em>x</em>-coordinate of the <span data-concept="centroid">centroid</span> of our rectangles. Thus, for $i=1,2\text{,\ldots},n,$ we select $x_i^{*}\in [x_{i-1},x_{i}]$ such that $x_i^{*}$ is the midpoint of the interval. That is, $x_i^{*}=(x_{i-1}+x_{i})/2.$ Now, for $i=1,2\text{,\ldots},n,$ construct a rectangle of height $\kf(x_i^{*})$ on $[x_{i-1},x_{i}].$ The <span data-concept="center-of-mass">center of mass</span> of this rectangle is $(x_i^{*},(\kf(x_i^{*}))/2),$ as shown in the following figure.</p>
+<p>Next, we need to find the total mass of the rectangle. Let $\krho$ represent the density of the <span data-concept="lamina">lamina</span> (note that $\krho$ is a constant). In this case, $\krho$ is expressed in terms of mass per unit area. Thus, to find the total mass of the rectangle, we multiply the area of the rectangle by $\krho.$ Then, the mass of the rectangle is given by $\krho \kf(x_i^{*})\Delta x.$</p>
+<p>To get the approximate mass of the <span data-concept="lamina">lamina</span>, we add the masses of all the rectangles to get</p>
+$$\km\approx \sum_{i=1}^{n} \krho \kf(x_i^{*})\Delta x.$$
+<p>This is a <span data-concept="riemann-sum">Riemann sum</span>. Taking the <span data-concept="limit">limit</span> as $n\to \infty$ gives the exact mass of the <span data-concept="lamina">lamina</span>:</p>
+$$\km=\lim_{n\to \infty}\sum_{i=1}^{n} \krho \kf(x_i^{*})\Delta x=\krho\int _a^{b}\kf(x)dx.$$
+<p>Next, we calculate the <span data-concept="moment">moment</span> of the <span data-concept="lamina">lamina</span> with respect to the <em>x</em>-axis. Returning to the representative rectangle, recall its <span data-concept="center-of-mass">center of mass</span> is $(x_i^{*},(\kf(x_i^{*}))/2).$ Recall also that treating the rectangle as if it is a point mass located at the <span data-concept="center-of-mass">center of mass</span> does not change the <span data-concept="moment">moment</span>. Thus, the <span data-concept="moment">moment</span> of the rectangle with respect to the <em>x</em>-axis is given by the mass of the rectangle, $\krho \kf(x_i^{*})\Delta x,$ multiplied by the distance from the <span data-concept="center-of-mass">center of mass</span> to the <em>x</em>-axis: $(\kf(x_i^{*}))/2.$ Therefore, the <span data-concept="moment">moment</span> with respect to the <em>x</em>-axis of the rectangle is $\krho({[\kf(x_i^{*})]}^{2}/2)\Delta x.$ Adding the <span data-concept="moment">moments</span> of the rectangles and taking the <span data-concept="limit">limit</span> of the resulting <span data-concept="riemann-sum">Riemann sum</span>, we see that the <span data-concept="moment">moment</span> of the <span data-concept="lamina">lamina</span> with respect to the <em>x</em>-axis is</p>
+$$\kMx=\lim_{n\to \infty}\sum_{i=1}^{n} \krho\frac{{[\kf(x_i^{*})]}^{2}}{2}\Delta x=\krho\int_a^{b}\frac{{[\kf(x)]}^{2}}{2}dx.$$
+<p>We derive the <span data-concept="moment">moment</span> with respect to the <em>y</em>-axis similarly, noting that the distance from the <span data-concept="center-of-mass">center of mass</span> of the rectangle to the <em>y</em>-axis is $x_i^{*}.$ Then the <span data-concept="moment">moment</span> of the <span data-concept="lamina">lamina</span> with respect to the <em>y</em>-axis is given by</p>
+$$\kMy=\lim_{n\to \infty}\sum_{i=1}^{n}\krho x_i^{*}\kf(x_i^{*})\Delta x=\krho\int_a^{b}x\kf(x)dx.$$
+<p>We find the coordinates of the <span data-concept="center-of-mass">center of mass</span> by dividing the <span data-concept="moment">moments</span> by the total mass to give $\kxbar=\kMy/\km\;\text{and}\;\kybar=\kMx/\km.$ If we look closely at the expressions for $\kMx,\kMy,\;\text{and}\;\km,$ we notice that the constant $\krho$ cancels out when $\kxbar$ and $\kybar$ are calculated.</p>
+<p>We summarize these findings in the following theorem.</p>
+<div class="note" id="plate-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="center-of-mass-of-a-thin-plate">Center of Mass of a Thin Plate in the <em>xy</em>-Plane</span></h3>
+<p>Let <em>R</em> denote a region bounded above by the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="continuity-over-an-interval">continuous</span> <span data-concept="function">function</span> $\kf(x),$ below by the <em>x</em>-axis, and on the left and right by the lines $x=a$ and $x=b,$ respectively. Let $\krho$ denote the density of the associated <span data-concept="lamina">lamina</span>. Then we can make the following statements:</p>
+<ol><li>The mass of the <span data-concept="lamina">lamina</span> is $$\km=\krho\int _a^{b}\kf(x)dx.\tag{6.18}$$</li><li>The <span data-concept="moment">moments</span> $\kMx$ and $\kMy$ of the <span data-concept="lamina">lamina</span> with respect to the <em>x</em>- and <em>y</em>-axes, respectively, are $$\kMx=\krho\int_a^{b}\frac{{[\kf(x)]}^{2}}{2}dx\;\text{and}\;\kMy=\krho\int_a^{b}x\kf(x)dx.\tag{6.19}$$</li><li>The coordinates of the <span data-concept="center-of-mass">center of mass</span> $(\kxbar,\kybar)$ are $$\kxbar=\frac{\kMy}{\km}\;\text{and}\;\kybar=\frac{\kMx}{\km}.\tag{6.20}$$</li></ol>
+</div>
+<p>In the next example, we use this theorem to find the <span data-concept="center-of-mass">center of mass</span> of a <span data-concept="lamina">lamina</span>.</p>
+<div class="example" id="fs-id1167793479886">
+<h3>Example 6.31 · Finding the Center of Mass of a Lamina</h3>
+<p>Let <em>R</em> be the region bounded above by the <span data-concept="graph-of-a-function">graph of</span> the <span data-concept="function">function</span> <span data-fn="sqrt(x)">$\kf(x)=\sqrt{x}$</span> and below by the <em>x</em>-axis over the interval $[0,4].$ Find the <span data-concept="centroid">centroid</span> of the region.</p>
+<h4>Solution</h4>
+<p>The region is depicted in the following figure.</p>
+<figure class="sim" id="fig-sqrt-lamina" data-figure="6.67" data-original="/media/ch06/CNX_Calc_Figure_06_06_006.jpg" data-original-caption="Finding the center of mass of a lamina.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.67</span><span>Finding the center of mass of a lamina.</span></div>
+</figure>
+<p>Since we are only asked for the <span data-concept="centroid">centroid</span> of the region, rather than the mass or <span data-concept="moment">moments</span> of the associated <span data-concept="lamina">lamina</span>, we know the density constant $\krho$ cancels out of the calculations eventually. Therefore, for the sake of convenience, let’s assume $\krho=1.$</p>
+<p>First, we need to calculate the total mass:</p>
+$$\begin{aligned}m &=\krho\int _a^{b}\kf(x)dx=\int_0^{4}\sqrt{x}\;dx \\ &={\frac{2}{3}x^{3/2}|}_0^{4}=\frac{2}{3}[8-0]=\frac{16}{3}.\end{aligned}$$
+<p>Next, we compute the <span data-concept="moment">moments</span>:</p>
+$$\begin{aligned}\kMx &=\krho\int_a^{b}\frac{{[\kf(x)]}^{2}}{2}dx \\ &=\int_0^{4}\frac{x}{2}dx={\frac{1}{4}x^{2}|}_0^{4}=4\end{aligned}$$
+<p>and</p>
+$$\begin{aligned}\kMy &=\krho\int_a^{b}x\kf(x)dx \\ &=\int_0^{4}x\sqrt{x}dx=\int_0^{4}x^{3/2}dx \\ &={\frac{2}{5}x^{5/2}|}_0^{4}=\frac{2}{5}[32-0]=\frac{64}{5}.\end{aligned}$$
+<p>Thus, we have</p>
+$$\kxbar=\frac{\kMy}{\km}=\frac{64/5}{16/3}=\frac{64}{5}\cdot \frac{3}{16}=\frac{12}{5}\;\text{and}\;\kybar=\frac{\kMx}{\km}=\frac{4}{16/3}=4\cdot \frac{3}{16}=\frac{3}{4}.$$
+<p>The <span data-concept="centroid">centroid</span> of the region is $(12/5,3/4).$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793479886"></div>
+<p>We can adapt this approach to find <span data-concept="centroid">centroids</span> of more complex regions as well. Suppose our region is bounded above by the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="continuity-over-an-interval">continuous</span> <span data-concept="function">function</span> $\kf(x),$ as before, but now, instead of having the lower bound for the region be the <em>x</em>-axis, suppose the region is bounded below by the <span data-concept="graph-of-a-function">graph of</span> a second <span data-concept="continuity-over-an-interval">continuous</span> <span data-concept="function">function</span>, $\kg(x),$ as shown in the following figure.</p>
+<figure class="sim" id="sim-lamina-between" data-figure="6.68 + 6.69" data-original="/media/ch06/CNX_Calc_Figure_06_06_007.jpg,/media/ch06/CNX_Calc_Figure_06_06_008.jpg" data-original-caption="(Figure 6.68) A region between two functions. (Figure 6.69) A representative rectangle of the region between two functions.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.68 + 6.69</span><span>Drag the representative rectangle across the region between $\kf(x)$ and $\kg(x)$: its center sits at $(x_i^{*},(\kf(x_i^{*})+\kg(x_i^{*}))/2),$ halfway up the rectangle, and its moments are its mass times its distances from the axes.</span></div>
+</figure>
+<p>Again, we partition the interval $[a,b]$ and construct rectangles. A representative rectangle is shown in the following figure.</p>
+<p>Note that the <span data-concept="centroid">centroid</span> of this rectangle is $(x_i^{*},(\kf(x_i^{*})+\kg(x_i^{*}))/2).$ We won’t go through all the details of the <span data-concept="riemann-sum">Riemann sum</span> development, but let’s look at some of the key steps. In the development of the formulas for the mass of the <span data-concept="lamina">lamina</span> and the <span data-concept="moment">moment</span> with respect to the <em>y</em>-axis, the height of each rectangle is given by $\kf(x_i^{*})-\kg(x_i^{*}),$ which leads to the expression $\kf(x)-\kg(x)$ in the integrands.</p>
+<p>In the development of the formula for the <span data-concept="moment">moment</span> with respect to the <em>x</em>-axis, the <span data-concept="moment">moment</span> of each rectangle is found by multiplying the area of the rectangle, $\krho[\kf(x_i^{*})-\kg(x_i^{*})]\Delta x,$ by the distance of the <span data-concept="centroid">centroid</span> from the <em>x</em>-axis, $(\kf(x_i^{*})+\kg(x_i^{*}))/2,$ which gives $\krho(1/2)\{{[\kf(x_i^{*})]}^{2}-{[\kg(x_i^{*})]}^{2}\}\Delta x.$ Summarizing these findings, we arrive at the following theorem.</p>
+<div class="note" id="two-functions-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="center-of-mass-of-a-lamina-between-two-functions">Center of Mass of a Lamina Bounded by Two Functions</span></h3>
+<p>Let <em>R</em> denote a region bounded above by the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="continuity-over-an-interval">continuous</span> <span data-concept="function">function</span> $\kf(x),$ below by the <span data-concept="graph-of-a-function">graph of</span> the <span data-concept="continuity-over-an-interval">continuous</span> <span data-concept="function">function</span> $\kg(x),$ and on the left and right by the lines $x=a$ and $x=b,$ respectively. Let $\krho$ denote the density of the associated <span data-concept="lamina">lamina</span>. Then we can make the following statements:</p>
+<ol><li>The mass of the <span data-concept="lamina">lamina</span> is $$\km=\krho\int _a^{b}[\kf(x)-\kg(x)]dx.\tag{6.21}$$</li><li>The <span data-concept="moment">moments</span> $\kMx$ and $\kMy$ of the <span data-concept="lamina">lamina</span> with respect to the <em>x</em>- and <em>y</em>-axes, respectively, are $$\kMx=\krho\int_a^{b}\frac{1}{2}({[\kf(x)]}^{2}-{[\kg(x)]}^{2})dx\;\text{and}\;\kMy=\krho\int_a^{b}x[\kf(x)-\kg(x)]dx.\tag{6.22}$$</li><li>The coordinates of the <span data-concept="center-of-mass">center of mass</span> $(\kxbar,\kybar)$ are $$\kxbar=\frac{\kMy}{\km}\;\text{and}\;\kybar=\frac{\kMx}{\km}.\tag{6.23}$$</li></ol>
+</div>
+<p>We illustrate this theorem in the following example.</p>
+<div class="example" id="fs-id1167793632957">
+<h3>Example 6.32 · Finding the Centroid of a Region Bounded by Two Functions</h3>
+<p>Let <em>R</em> be the region bounded above by the <span data-concept="graph-of-a-function">graph of</span> the <span data-concept="function">function</span> <span data-ref="ex32-f"><span data-fn="1-x^2">$\kf(x)=1-x^{2}$</span></span> and below by the <span data-concept="graph-of-a-function">graph of</span> the <span data-concept="function">function</span> <span data-ref="ex32-g"><span data-fn="x-1">$\kg(x)=x-1.$</span></span> Find the <span data-concept="centroid">centroid</span> of the region.</p>
+<h4>Solution</h4>
+<p>The region is depicted in the following figure.</p>
+<figure class="sim" id="fig-centroid-two" data-figure="6.70" data-original="/media/ch06/CNX_Calc_Figure_06_06_009.jpg" data-original-caption="Finding the centroid of a region between two curves.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.70</span><span>Finding the centroid of a region between two curves.</span></div>
+</figure>
+<p>The <span data-concept="graph-of-a-function">graphs of</span> the <span data-concept="function">functions</span> intersect at $(-2,-3)$ and $(1,0),$ so we integrate from −2 to 1. Once again, for the sake of convenience, assume $\krho=1.$</p>
+<p>First, we need to calculate the total mass:</p>
+$$\begin{aligned}m &=\krho\int _a^{b}[\kf(x)-\kg(x)]dx \\ &=\int_{-2}^{1}[1-x^{2}-(x-1)]dx=\int _{-2}^{1}(2-x^{2}-x)dx \\ &={[2x-\frac{1}{3}x^{3}-\frac{1}{2}x^{2}]\;|}_{-2}^{1}=[2-\frac{1}{3}-\frac{1}{2}]-[-4+\frac{8}{3}-2]=\frac{9}{2}.\end{aligned}$$
+<p>Next, we compute the <span data-concept="moment">moments</span>:</p>
+$$\begin{aligned}\kMx &=\krho\int_a^{b}\frac{1}{2}({[\kf(x)]}^{2}-{[\kg(x)]}^{2})dx \\ &=\frac{1}{2}\int_{-2}^{1}({(1-x^{2})}^{2}-{(x-1)}^{2})dx=\frac{1}{2}\int _{-2}^{1}(x^{4}-3x^{2}+2x)dx \\ &=\frac{1}{2}{[\frac{x^{5}}{5}-x^{3}+x^{2}]\;|}_{-2}^{1}=-\frac{27}{10}\end{aligned}$$
+<p>and</p>
+$$\begin{aligned}\kMy &=\krho\int_a^{b}x[\kf(x)-\kg(x)]dx \\ &=\int_{-2}^{1}x[(1-x^{2})-(x-1)]dx=\int_{-2}^{1}x[2-x^{2}-x]dx \\ =\int_{-2}^{1}(2x-x^{3}-x^{2})dx &\; \\ &={[x^{2}-\frac{x^{4}}{4}-\frac{x^{3}}{3}]\;|}_{-2}^{1}=-\frac{9}{4}.\end{aligned}$$
+<p>Therefore, we have</p>
+$$\kxbar=\frac{\kMy}{\km}=-\frac{9}{4}\cdot \frac{2}{9}=-\frac{1}{2}\;\text{and}\;\kybar=\frac{\kMx}{\km}=-\frac{27}{10}\cdot \frac{2}{9}=-\frac{3}{5}.$$
+<p>The <span data-concept="centroid">centroid</span> of the region is $(-(1/2),-(3/5)).$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793632957"></div>
+</section>
+
+<section id="symmetry">
+<h2>The Symmetry Principle</h2>
+<p class="cite-target">We stated the <span data-concept="symmetry-principle">symmetry principle</span> earlier, when we were looking at the <span data-concept="centroid">centroid</span> of a rectangle. The <span data-concept="symmetry-principle">symmetry principle</span> can be a great help when finding <span data-concept="centroid">centroids</span> of regions that are symmetric. Consider the following example.</p>
+<div class="example" id="fs-id1167793274939">
+<h3>Example 6.33 · Finding the Centroid of a Symmetric Region</h3>
+<p>Let <em>R</em> be the region bounded above by the <span data-concept="graph-of-a-function">graph of</span> the <span data-concept="function">function</span> <span data-fn="4-x^2">$\kf(x)=4-x^{2}$</span> and below by the <em>x</em>-axis. Find the <span data-concept="centroid">centroid</span> of the region.</p>
+<h4>Solution</h4>
+<p>The region is depicted in the following figure.</p>
+<figure class="sim" id="fig-symmetric-centroid" data-figure="6.71" data-original="/media/ch06/CNX_Calc_Figure_06_06_010.jpg" data-original-caption="We can use the symmetry principle to help find the centroid of a symmetric region.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.71</span><span>We can use the symmetry principle to help find the centroid of a symmetric region.</span></div>
+</figure>
+<p>The region is symmetric with respect to the <em>y</em>-axis. Therefore, the <em>x</em>-coordinate of the <span data-concept="centroid">centroid</span> is zero. We need only calculate $\kybar.$ Once again, for the sake of convenience, assume $\krho=1.$</p>
+<p>First, we calculate the total mass:</p>
+$$\begin{aligned}m &=\krho\int _a^{b}\kf(x)dx \\ &=\int_{-2}^{2}(4-x^{2})dx \\ &={[4x-\frac{x^{3}}{3}]\;|}_{-2}^{2}=\frac{32}{3}.\end{aligned}$$
+<p>Next, we calculate the <span data-concept="moment">moments</span>. We only need $\kMx\text{:}$</p>
+$$\begin{aligned}\kMx &=\krho\int_a^{b}\frac{{[\kf(x)]}^{2}}{2}dx \\ &=\frac{1}{2}\int _{-2}^{2}{[4-x^{2}]}^{2}dx=\frac{1}{2}\int _{-2}^{2}(16-8x^{2}+x^{4})dx \\ &=\frac{1}{2}{[\frac{x^{5}}{5}-\frac{8x^{3}}{3}+16x]\;|}_{-2}^{2}=\frac{256}{15}.\end{aligned}$$
+<p>Then we have</p>
+$$\kybar=\frac{\kMx}{\km}=\frac{256}{15}\cdot \frac{3}{32}=\frac{8}{5}.$$
+<p>The <span data-concept="centroid">centroid</span> of the region is $(0,8/5).$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793274939"></div>
+<div class="note" id="pappus-theorem">
+<div class="eyebrow">Student Project</div>
+<h3>The Grand Canyon Skywalk</h3>
+<p>The Grand Canyon Skywalk opened to the public on March 28, 2007. This engineering marvel is a horseshoe-shaped observation platform suspended 4000 ft above the Colorado River on the West Rim of the Grand Canyon. Its crystal-clear glass floor allows stunning views of the canyon below (see the following figure).</p>
+<figure class="photo" id="fig-skywalk" data-figure="6.72">
+  <img src="/media/ch06/CNX_Calc_Figure_06_06_011.jpg" alt="This figure is a picture of the Grand Canyon skywalk. It is a building at the edge of the canyon with a walkway extending out over the canyon">
+  <figcaption><span class="eyebrow">Figure 6.72</span><span>The Grand Canyon Skywalk offers magnificent views of the canyon. (credit: 10da_ralta, Wikimedia Commons)</span></figcaption>
+</figure>
+<p>The Skywalk is a cantilever design, meaning that the observation platform extends over the rim of the canyon, with no visible means of support below it. Despite the lack of visible support posts or struts, cantilever structures are engineered to be very stable and the Skywalk is no exception. The observation platform is attached firmly to support posts that extend 46 ft down into bedrock. The structure was built to withstand 100-mph winds and an 8.0-magnitude earthquake within 50 mi, and is capable of supporting more than 70,000,000 lb.</p>
+<p>One factor affecting the stability of the Skywalk is the center of gravity of the structure. We are going to calculate the center of gravity of the Skywalk, and examine how the center of gravity changes when tourists walk out onto the observation platform.</p>
+<p>The observation platform is U-shaped. The legs of the U are 10 ft wide and begin on land, under the visitors’ center, 48 ft from the edge of the canyon. The platform extends 70 ft over the edge of the canyon.</p>
+<p>To calculate the <span data-concept="center-of-mass">center of mass</span> of the structure, we treat it as a <span data-concept="lamina">lamina</span> and use a two-dimensional region in the <em>xy</em>-plane to represent the platform. We begin by dividing the region into three subregions so we can consider each subregion separately. The first region, denoted $R_{1},$ consists of the curved part of the U. We model $R_{1}$ as a semicircular annulus, with inner radius 25 ft and outer radius 35 ft, centered at the origin (see the following figure).</p>
+<figure class="sim" id="fig-skywalk-model" data-figure="6.73" data-original="/media/ch06/CNX_Calc_Figure_06_06_012.jpg" data-original-caption="We model the Skywalk with three sub-regions.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.73</span><span>We model the Skywalk with three sub-regions.</span></div>
+</figure>
+<p>The legs of the platform, extending 35 ft between $R_{1}$ and the canyon wall, comprise the second sub-region, $R_{2}.$ Last, the ends of the legs, which extend 48 ft under the visitor center, comprise the third sub-region, $R_{3}.$ Assume the density of the <span data-concept="lamina">lamina</span> is constant and assume the total weight of the platform is 1,200,000 lb (not including the weight of the visitor center; we will consider that later). Use $g=32\;{\text{ft/sec}}^{2}.$</p>
+<ol><li>Compute the area of each of the three sub-regions. Note that the areas of regions $R_{2}$ and $R_{3}$ should include the areas of the legs only, not the open space between them. Round answers to the nearest square foot.</li><li>Determine the mass associated with each of the three sub-regions.</li><li>Calculate the <span data-concept="center-of-mass">center of mass</span> of each of the three sub-regions.</li><li>Now, treat each of the three sub-regions as a point mass located at the <span data-concept="center-of-mass">center of mass</span> of the corresponding sub-region. Using this representation, calculate the <span data-concept="center-of-mass">center of mass</span> of the entire platform.</li><li>Assume the visitor center weighs 2,200,000 lb, with a <span data-concept="center-of-mass">center of mass</span> corresponding to the <span data-concept="center-of-mass">center of mass</span> of $R_{3}.$ Treating the visitor center as a point mass, recalculate the <span data-concept="center-of-mass">center of mass</span> of the system. How does the <span data-concept="center-of-mass">center of mass</span> change?</li><li>Although the Skywalk was built to <span data-concept="limit">limit</span> the number of people on the observation platform to 120, the platform is capable of supporting up to 800 people weighing 200 lb each. If all 800 people were allowed on the platform, and all of them went to the farthest end of the platform, how would the center of gravity of the system be affected? (Include the visitor center in the calculations and represent the people by a point mass located at the farthest edge of the platform, 70 ft from the canyon wall.)</li></ol>
+</div>
+</section>
+
+<section id="pappus">
+<h2>Theorem of Pappus</h2>
+<p class="cite-target">This section ends with a discussion of the <strong><span data-concept="theorem-of-pappus-for-volume">theorem of Pappus for volume</span></strong>, which allows us to find the volume of particular kinds of solids by using the <span data-concept="centroid">centroid</span>. (There is also a <span data-concept="theorem-of-pappus-for-volume">theorem of Pappus</span> for surface area, but it is much less useful than the theorem for volume.)</p>
+<div class="note" id="theorem-of-pappus-for-volume">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="theorem-of-pappus-for-volume">Theorem of Pappus for Volume</span></h3>
+<p>Let <em>R</em> be a region in the plane and let <em>l</em> be a line in the plane that does not intersect <em>R</em>. Then the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> formed by revolving <em>R</em> around <em>l</em> is equal to the area of <em>R</em> multiplied by the distance <em>d</em> traveled by the <span data-concept="centroid">centroid</span> of <em>R.</em></p>
+</div>
+<h3>Proof</h3>
+<p>We can prove the case when the region is bounded above by the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="function">function</span> $\kf(x)$ and below by the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="function">function</span> $\kg(x)$ over an interval $[a,b],$ and for which the axis of revolution is the <em>y</em>-axis. In this case, the area of the region is $\kA=\int _a^{b}[\kf(x)-\kg(x)]dx.$ Since the axis of rotation is the <em>y</em>-axis, the distance traveled by the <span data-concept="centroid">centroid</span> of the region depends only on the <em>x</em>-coordinate of the <span data-concept="centroid">centroid</span>, $\kxbar,$ which is</p>
+$$\kxbar=\frac{\kMy}{\km},$$
+<p>where</p>
+$$\km=\krho\int _a^{b}[\kf(x)-\kg(x)]dx\;\text{and}\;\kMy=\krho\int_a^{b}x[\kf(x)-\kg(x)]dx.$$
+<p>Then,</p>
+$$d=2\pi\frac{\krho\int_a^{b}x[\kf(x)-\kg(x)]dx}{\krho\int _a^{b}[\kf(x)-\kg(x)]dx}$$
+<p>and thus</p>
+$$d\cdot \kA=2\pi\int_a^{b}x[\kf(x)-\kg(x)]dx.$$
+<p>However, using the <span data-concept="method-of-cylindrical-shells">method of cylindrical shells</span>, we have</p>
+$$\kV=2\pi\int_a^{b}x[\kf(x)-\kg(x)]dx.$$
+<p>So,</p>
+$$\kV=d\cdot A$$
+<p>and the proof is complete.</p>
+<p>□</p>
+<div class="example" id="fs-id1167793385038">
+<h3>Example 6.34 · Using the Theorem of Pappus for Volume</h3>
+<p>Let <em>R</em> be a circle of radius 2 centered at $(4,0).$ Use the <span data-concept="theorem-of-pappus-for-volume">theorem of Pappus for volume</span> to find the volume of the torus generated by revolving <em>R</em> around the <em>y</em>-axis.</p>
+<h4>Solution</h4>
+<p>The region and torus are depicted in the following figure.</p>
+<figure class="sim" id="sim-pappus" data-figure="6.74" data-original="/media/ch06/CNX_Calc_Figure_06_06_013.jpg" data-original-caption="Determining the volume of a torus by using the theorem of Pappus. (a) A circular region R in the plane; (b) the torus generated by revolving R about the y-axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.74</span><span>Turn the circular region <em>R</em> about the <em>y</em>-axis: its <span data-concept="centroid">centroid</span>, the center of the circle, travels a circle of radius 4, and by the <span data-concept="theorem-of-pappus-for-volume">theorem of Pappus</span> the volume swept is the area of <em>R</em> times the distance its centroid has gone.</span></div>
+</figure>
+<p>The region <em>R</em> is a circle of radius 2, so the area of <em>R</em> is $\kA=4\pi$ units<sup>2</sup>. By the <span data-concept="symmetry-principle">symmetry principle</span>, the <span data-concept="centroid">centroid</span> of <em>R</em> is the center of the circle. The <span data-concept="centroid">centroid</span> travels around the <em>y</em>-axis in a circular path of radius 4, so the <span data-concept="centroid">centroid</span> travels $d=8\pi$ units. Then, the volume of the torus is $A\cdot d=32\pi^{2}$ units<sup>3</sup>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793385038"></div>
+</section>

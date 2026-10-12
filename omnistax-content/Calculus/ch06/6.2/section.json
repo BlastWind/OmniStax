@@ -1,0 +1,1433 @@
+{
+ "id": "6.2",
+ "module": "m53642",
+ "chapter": "6",
+ "title": "Determining Volumes by Slicing",
+ "short": "Volumes by Slicing",
+ "lead": "A solid is cut into thin slices perpendicular to an axis, each slice’s volume estimated from its <span data-concept=\"cross-section\">cross-section</span>, and the estimates summed into a <span data-concept=\"riemann-sum\">Riemann sum</span> whose limit is an integral. For a <span data-concept=\"solid-of-revolution\">solid of revolution</span> the cross-sections are disks, or washers where the solid has a cavity, about either axis or another line.",
+ "objectives": [
+  "Determine the volume of a solid by integrating a cross-section (the slicing method).",
+  "Find the volume of a solid of revolution using the disk method.",
+  "Find the volume of a solid of revolution with a cavity using the washer method."
+ ],
+ "summary_html": "<ul><li>Definite integrals can be used to find the volumes of solids. Using the slicing method, we can find a volume by integrating the cross-sectional area.</li><li>For solids of revolution, the volume slices are often disks and the cross-sections are circles. The method of disks involves applying the method of slicing in the particular case in which the cross-sections are circles, and using the formula for the area of a circle.</li><li>If a solid of revolution has a cavity in the center, the volume slices are washers. With the method of washers, the area of the inner circle is subtracted from the area of the outer circle before integrating.</li></ul>",
+ "notes": "The book’s link to an online integral calculator is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but seven. The derivations 58 (a sphere), 59 (a cone), 60 (a tetrahedron) and 61 (a trapezoid turned about an axis), the explanation 62 and Checkpoint 6.6 have no answer in the book and are kept with AI-written approaches. The other 24 even-numbered section exercises have no answer in the key and are computational, so they are left out: 64 and 66 (pyramids), 68, 70 and 72 (bases with square or triangular slices), 74, 76, 78 and 80 (disks about the x-axis), 82, 84, 86 and 88 (about the y-axis), 90, 92, 94 and 96 (washers about the x-axis), 98, 100 and 102 (about the y-axis), 104 and 106 (footballs), and 108, 110 and 112 (a semicircular slice, a bored cone, a spherical cap). Review exercises 437, 439 and 441 are set here; 440, a washer volume with no answer in the key, is left out.",
+ "figures": [
+  {
+   "id": "sim-cylinder-slice",
+   "kind": "sim",
+   "number": "6.11",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_001.jpg"
+   ],
+   "original_caption": "Each cross-section of a particular cylinder is identical to the others.",
+   "draws": [
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-slices",
+   "kind": "sim",
+   "number": "6.12",
+   "folds": [
+    "6.13"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_002.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_02_003.jpg"
+   ],
+   "original_caption": "(Figure 6.12) A solid with a varying cross-section. (Figure 6.13) The solid S has been divided into three slices perpendicular to the x-axis.",
+   "draws": [
+    "region",
+    "integral",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pyramid",
+   "kind": "sim",
+   "number": "6.14",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_004.jpg"
+   ],
+   "original_caption": "(a) A pyramid with a square base is oriented along the x-axis. (b) A two-dimensional view of the pyramid is seen from the side.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-revolving",
+   "kind": "sim",
+   "number": "6.15",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_005.jpg"
+   ],
+   "original_caption": "(a) This is the region that is revolved around the x-axis. (b) As the region begins to revolve around the axis, it sweeps out a solid of revolution. (c) This is the solid that results when the revolution is complete.",
+   "draws": [
+    "region",
+    "function",
+    "angle",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-cross-section-disk",
+   "kind": "sim",
+   "number": "6.16",
+   "folds": [
+    "6.17"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_006.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_02_007.jpg"
+   ],
+   "original_caption": "(Figure 6.16) A region used to produce a solid of revolution. (Figure 6.17) Two views, (a) and (b), of the solid of revolution produced by revolving the region in Figure 6.16 about the x-axis.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-disk-method",
+   "kind": "sim",
+   "number": "6.18",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_009.jpg"
+   ],
+   "original_caption": "(a) A thin rectangle for approximating the area under a curve. (b) A representative disk formed by revolving the rectangle about the x-axis. (c) The region under the curve is revolved about the x-axis, resulting in (d) the solid of revolution.",
+   "draws": [
+    "region",
+    "integral",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sqrt-solid",
+   "kind": "figure",
+   "number": "6.19",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_010.jpg"
+   ],
+   "original_caption": "(a) The function f(x)=√x over the interval [1,4]. (b) The solid of revolution obtained by revolving the region under the graph of f(x) about the x-axis.",
+   "draws": [
+    "region",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-disk-y-axis",
+   "kind": "sim",
+   "number": "6.20",
+   "folds": [
+    "6.21"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_011.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_02_012.jpg"
+   ],
+   "original_caption": "(Figure 6.20) (a) Shown is a thin rectangle between the curve of the function g(y)=√(4−y) and the y-axis. (b) The rectangle forms a representative disk after revolution around the y-axis. (Figure 6.21) (a) The region to the left of the function g(y)=√(4−y) over the y-axis interval [0,4]. (b) The solid of revolution formed by revolving the region about the y-axis.",
+   "draws": [
+    "region",
+    "integral",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-washer-method",
+   "kind": "sim",
+   "number": "6.22",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_013.jpg"
+   ],
+   "original_caption": "(a) A thin rectangle in the region between two curves. (b) A representative washer formed by revolving the rectangle about the x-axis. (c) The region between the curves over the given interval. (d) The resulting solid of revolution.",
+   "draws": [
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-washer-example",
+   "kind": "figure",
+   "number": "6.23",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_014.jpg"
+   ],
+   "original_caption": "(a) The region between the graphs of the functions f(x)=x and g(x)=1/x over the interval [1,4]. (b) Revolving the region about the x-axis generates a solid of revolution with a cavity in the middle.",
+   "draws": [
+    "region",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-other-axis",
+   "kind": "sim",
+   "number": "6.24",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_02_015.jpg"
+   ],
+   "original_caption": "(a) The region between the graph of the function f(x)=4−x and the x-axis over the interval [0,4]. (b) Revolving the region about the line y=−2 generates a solid of revolution with a cylindrical hole through its middle.",
+   "draws": [
+    "region",
+    "function",
+    "line",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "volumes-intro",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "slicing",
+   "concept": "cross-section",
+   "verb": "introduces"
+  },
+  {
+   "span": "slicing",
+   "concept": "cylinder",
+   "verb": "introduces"
+  },
+  {
+   "span": "slicing",
+   "concept": "slicing-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "slicing",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "slicing",
+   "concept": "regular-partition",
+   "verb": "uses"
+  },
+  {
+   "span": "slicing",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "slicing",
+   "concept": "limit",
+   "verb": "uses"
+  },
+  {
+   "span": "slicing-strategy",
+   "concept": "finding-volumes-by-slicing",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793579586",
+   "concept": "finding-volumes-by-slicing",
+   "verb": "uses"
+  },
+  {
+   "span": "solids-of-revolution",
+   "concept": "solid-of-revolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794046315",
+   "concept": "slicing-method",
+   "verb": "uses"
+  },
+  {
+   "span": "disk-method-rule",
+   "concept": "disk-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "disk-method",
+   "concept": "slicing-method",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793956465",
+   "concept": "disk-method",
+   "verb": "uses"
+  },
+  {
+   "span": "disk-method-y-rule",
+   "concept": "disk-method-about-the-y-axis",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793271607",
+   "concept": "disk-method-about-the-y-axis",
+   "verb": "uses"
+  },
+  {
+   "span": "washer-method-rule",
+   "concept": "washer-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794209450",
+   "concept": "washer-method",
+   "verb": "uses"
+  },
+  {
+   "span": "washer-method-y-rule",
+   "concept": "washer-method-about-the-y-axis",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793912719",
+   "concept": "washer-method",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793299677",
+   "source_number": "Checkpoint 6.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793579586"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>Use the slicing method to derive the formula $V=\\frac{1}{3}\\pi r^{2}h$ for the volume of a circular cone.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Place the cone with its vertex at the origin and its axis along the $x$-axis, so that its base, a circle of radius $r$, stands at $x=h.$ The cross-sections perpendicular to the $x$-axis are circles, and by similar triangles the radius of the one at $x$ is $\\frac{r}{h}x,$ so $A(x)=\\pi\\left(\\frac{rx}{h}\\right)^{2}.$ Then $V=\\int_{0}^{h}\\pi\\frac{r^{2}}{h^{2}}x^{2}\\,dx=\\frac{\\pi r^{2}}{h^{2}}\\cdot\\frac{h^{3}}{3}=\\frac{1}{3}\\pi r^{2}h.$",
+    "hint": "Use similar triangles, as in Example 6.6."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794028814",
+   "source_number": "Checkpoint 6.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794046315"
+   },
+   "cite": "slicing-strategy",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_02_008.jpg",
+    "alt": "This figure has two graphs. The first graph is the curve f(x)=1/x. It is a decreasing curve, above the x-axis in the first quadrant. The graph has a shaded region under the curve between x=1 and x=2. The second graph is the curve f(x)=1/x in the first quadrant. Also, underneath this graph, there is a solid between x=1 and x=2 that has been formed by rotating the region from the first graph around the x-axis."
+   },
+   "prompt": "<p>Use the method of slicing to find the volume of the solid of revolution formed by revolving the region between the graph of the function $f(x)=1/x$ and the $x\\text{-axis}$ over the interval $[1,2]$ around the $x\\text{-axis}.$ See the following figure.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5707963267948966,
+    "tol": 0.001,
+    "solution": "$\\frac{\\pi}{2}$",
+    "hint": "Use the problem-solving strategy presented earlier and follow Example 6.7 to help with step 2."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793730425",
+   "source_number": "Checkpoint 6.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793956465"
+   },
+   "cite": "disk-method-rule",
+   "prompt": "<p>Use the disk method to find the volume of the solid of revolution generated by rotating the region between the graph of $f(x)=\\sqrt{4-x}$ and the $x\\text{-axis}$ over the interval $[0,\\;4]$ around the $x\\text{-axis}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 25.132741228718345,
+    "tol": 0.001,
+    "solution": "$8\\pi$ units<sup>3</sup>",
+    "hint": "Use the procedure from Example 6.8."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793455066",
+   "source_number": "Checkpoint 6.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793271607"
+   },
+   "cite": "disk-method-y-rule",
+   "prompt": "<p>Use the disk method to find the volume of the solid of revolution generated by rotating the region between the graph of $g(y)=y$ and the $y\\text{-axis}$ over the interval $[1,4]$ around the $y\\text{-axis}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 65.97344572538566,
+    "tol": 0.001,
+    "solution": "$21\\pi$ units<sup>3</sup>",
+    "hint": "Use the procedure from Example 6.9."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167794324566",
+   "source_number": "Checkpoint 6.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794209450"
+   },
+   "cite": "washer-method-rule",
+   "prompt": "<p>Find the volume of a solid of revolution formed by revolving the region bounded by the graphs of $f(x)=\\sqrt{x}$ and $g(x)=1/x$ over the interval $[1,3]$ around the $x\\text{-axis}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 10.471975511965978,
+    "tol": 0.001,
+    "solution": "$\\frac{10\\pi}{3}$ units<sup>3</sup>",
+    "hint": "Graph the functions to determine which graph forms the upper bound and which graph forms the lower bound, then use the procedure from Example 6.10."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793571152",
+   "source_number": "Checkpoint 6.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793912719"
+   },
+   "cite": "fs-id1167793912719",
+   "prompt": "<p>Find the volume of a solid of revolution formed by revolving the region bounded above by the graph of $f(x)=x+2$ and below by the $x\\text{-axis}$ over the interval $[0,3]$ around the line $y=-1.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 188.49555921538757,
+    "tol": 0.001,
+    "solution": "$60\\pi$ units<sup>3</sup>",
+    "hint": "Use the procedure from Example 6.11."
+   }
+  },
+  {
+   "id": "e58",
+   "source_id": "fs-id1167793419257",
+   "source_number": "58",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>Derive the formula for the volume of a sphere using the slicing method.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Center the sphere of radius $r$ at the origin and slice it perpendicular to the $x$-axis. The cross-section at $x$, for $-r\\le x\\le r,$ is a disk of radius $\\sqrt{r^{2}-x^{2}},$ so $A(x)=\\pi(r^{2}-x^{2}).$ Then $V=\\int_{-r}^{r}\\pi(r^{2}-x^{2})\\,dx=\\pi\\left[r^{2}x-\\frac{x^{3}}{3}\\right]_{-r}^{r}=\\pi\\left(2r^{3}-\\frac{2r^{3}}{3}\\right)=\\frac{4}{3}\\pi r^{3}.$"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1167793502850",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>Use the slicing method to derive the formula for the volume of a cone.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Place the cone with its vertex at the origin and its axis along the $x$-axis, so that its base, a circle of radius $r$, stands at $x=h.$ The cross-sections perpendicular to the $x$-axis are circles, and by similar triangles the radius of the one at $x$ is $\\frac{r}{h}x,$ so $A(x)=\\pi\\left(\\frac{rx}{h}\\right)^{2}.$ Then $V=\\int_{0}^{h}\\pi\\frac{r^{2}}{h^{2}}x^{2}\\,dx=\\frac{\\pi r^{2}}{h^{2}}\\cdot\\frac{h^{3}}{3}=\\frac{1}{3}\\pi r^{2}h.$"
+   }
+  },
+  {
+   "id": "e60",
+   "source_id": "fs-id1167794060263",
+   "source_number": "60",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>Use the slicing method to derive the formula for the volume of a tetrahedron with side length $a.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Stand the regular tetrahedron of side $a$ on one face and measure $x$ down from its top vertex along the altitude, whose length is $H=a\\sqrt{2/3}.$ The cross-section at $x$ is an equilateral triangle similar to the base, of side $s=\\frac{a}{H}x,$ so $A(x)=\\frac{\\sqrt{3}}{4}s^{2}=\\frac{\\sqrt{3}a^{2}}{4H^{2}}x^{2}.$ Then $V=\\int_{0}^{H}\\frac{\\sqrt{3}a^{2}}{4H^{2}}x^{2}\\,dx=\\frac{\\sqrt{3}a^{2}H}{12}=\\frac{\\sqrt{3}a^{2}}{12}\\cdot a\\sqrt{\\frac{2}{3}}=\\frac{\\sqrt{2}}{12}a^{3}=\\frac{a^{3}}{6\\sqrt{2}}.$ (With $a=4$ this is $\\frac{32}{3\\sqrt{2}},$ the answer to exercise 65.)"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1167794038093",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-rule",
+   "prompt": "<p>Use the disk method to derive the formula for the volume of a trapezoidal cylinder.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The solid a trapezoid sweeps when it is revolved about its long side is a frustum of a cone: take the trapezoid bounded by the $x$-axis, the lines $x=0$ and $x=h,$ and the line $y=r_{1}+\\frac{r_{2}-r_{1}}{h}x,$ and revolve it about the $x$-axis. Each slice is a disk of radius $y,$ so $V=\\int_{0}^{h}\\pi\\left[r_{1}+\\frac{r_{2}-r_{1}}{h}x\\right]^{2}dx.$ With $u=r_{1}+\\frac{r_{2}-r_{1}}{h}x,$ $du=\\frac{r_{2}-r_{1}}{h}dx,$ this is $\\frac{\\pi h}{r_{2}-r_{1}}\\int_{r_{1}}^{r_{2}}u^{2}\\,du=\\frac{\\pi h}{3}\\cdot\\frac{r_{2}^{3}-r_{1}^{3}}{r_{2}-r_{1}}=\\frac{\\pi h}{3}(r_{1}^{2}+r_{1}r_{2}+r_{2}^{2}).$ When $r_{1}=r_{2}=r$ it is $\\pi r^{2}h,$ the volume of a cylinder."
+   }
+  },
+  {
+   "id": "e62",
+   "source_id": "fs-id1167793960955",
+   "source_number": "62",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method",
+   "prompt": "<p>Explain when you would use the disk method versus the washer method. When are they interchangeable?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Use the disk method when the region being revolved reaches the axis of revolution along the whole interval, so every slice is a solid disk of radius $f(x)$ and area $\\pi[f(x)]^{2}.$ Use the washer method when the region is bounded away from the axis by a second curve $g(x)$ (or the axis is a line apart from the region), so every slice is a disk with a hole and its area is $\\pi[(f(x))^{2}-(g(x))^{2}].$ They are interchangeable when the inner radius is zero: with $g(x)=0$ the washer formula is the disk formula. And a washer volume can always be found as the difference of two disk volumes, the solid swept by the outer curve less the solid swept by the inner one."
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1167793950924",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_02_201.jpg",
+    "alt": "This figure is a pyramid with base width of 2 and height of 6 units."
+   },
+   "prompt": "<p>For the following exercises, draw a typical slice and find the volume using the slicing method for the given volume.</p><p>A pyramid with height 6 units and square base of side 2 units, as pictured here.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8,
+    "solution": "8 units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1167793948074",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_02_203.jpg",
+    "alt": "This figure is an equilateral triangle with side length of 4 units."
+   },
+   "prompt": "<p>For the following exercises, draw a typical slice and find the volume using the slicing method for the given volume.</p><p>A tetrahedron with a base side of 4 units, as seen here.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.542472332656506,
+    "tol": 0.001,
+    "solution": "$\\frac{32}{3\\sqrt{2}}$ units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1167793261382",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_02_205.jpg",
+    "alt": "This figure is a 3-dimensional graph of an upside down cone. The cone is inside of a rectangular prism that represents the xyz coordinate system. the radius of the bottom of the cone is “r” and the radius of the top of the cone is labeled “r/2”."
+   },
+   "prompt": "<p>For the following exercises, draw a typical slice and find the volume using the slicing method for the given volume.</p><p>A cone of radius $r$ and height $h$ has a smaller cone of radius $r/2$ and height $h/2$ removed from the top, as seen here. The resulting solid is called a <em>frustum</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{7}{24}\\pi r^{2}h$ units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1167793926080",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>For the following exercises, draw an outline of the solid and find the volume using the slicing method.</p><p>The base is a triangle with vertices $(0,0),(1,0),$ and $(0,1).$ Slices perpendicular to the <em>x</em>-axis are semicircles.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.1308996938995747,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{\\pi}{24}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_208.jpg\" alt=\"This figure shows the x-axis and the y-axis with a line starting on the x-axis at (1,0) and ending on the y-axis at (0,1). Perpendicular to the xy-plane are 4 shaded semi-circles with their diameters beginning on the x-axis and ending on the line, decreasing in size away from the origin.\">"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1167794171464",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>For the following exercises, draw an outline of the solid and find the volume using the slicing method.</p><p>The base is the region under the parabola $y=1-x^{2}$ and above the $x\\text{-axis}.$ Slices perpendicular to the $y\\text{-axis}$ are squares.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "<p>$2$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_210.jpg\" alt=\"This figure shows the x-axis and the y-axis in 3-dimensional perspective. On the graph above the x-axis is a parabola, which has its vertex at y=1 and x-intercepts at (-1,0) and (1,0). There are 3 square shaded regions perpendicular to the x y plane, which touch the parabola on either side, decreasing in size away from the origin.\">"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1167793950255",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>For the following exercises, draw an outline of the solid and find the volume using the slicing method.</p><p>The base is the area between $y=x$ and $y=x^{2}.$ Slices perpendicular to the <em>x</em>-axis are semicircles.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.01308996938995747,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{\\pi}{240}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_251.jpg\" alt=\"This figure is a graph with the x and y axes diagonal to show 3-dimensional perspective. On the first quadrant of the graph are the curves y=x, a line, and y=x^2, a parabola. They intersect at the origin and at (1,1). Several semicircular-shaped shaded regions are perpendicular to the x y plane, which go from the parabola to the line and perpendicular to the line.\">"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1167794122074",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, use the disk method to find the volume when the region is rotated around the <em>x</em>-axis.</p><p>$y=2x^{2},x=0,x=4,\\;\\text{and}\\;y=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2573.5927018207585,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{4096\\pi}{5}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_213.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded region bounded above by the curve y=2x^2, below by the x-axis, and to the right by the vertical line x=4.\">"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1167794069008",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, use the disk method to find the volume when the region is rotated around the <em>x</em>-axis.</p><p>$y=x^{4},x=0,\\;\\text{and}\\;y=1\\text{for}\\;x\\ge0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.792526803190927,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{8\\pi}{9}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_215.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded region bounded above by the line y=1, below by the curve y=x^4, and to the left by the y-axis.\">"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1167793705379",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, use the disk method to find the volume when the region is rotated around the <em>x</em>-axis.</p><p>$y=\\sin x,y=\\cos x,\\;\\text{and}\\;x=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5707963267948966,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{\\pi}{2}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_217.jpg\" alt=\"This figure is a shaded region bounded above by the curve y=cos(x), below to the left by the y-axis and below to the right by y=sin(x). The shaded region is in the first quadrant.\">"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1167794060772",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, use the disk method to find the volume when the region is rotated around the <em>x</em>-axis.</p><p>$x^{2}-y^{2}=9\\;\\text{and}\\;x+y=9,y=0\\;\\text{and}\\;x=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 650.3096792930871,
+    "tol": 0.001,
+    "solution": "<p>$207\\pi$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_219.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded region bounded above by the line x + y=9, below by the x-axis, to the left by the y-axis, and to the left by the curve x^2-y^2=9.\">"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1167794329497",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-y-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, find the volume when the region is rotated around the <em>y</em>-axis.</p><p>$y=2x^{3},x=0,x=1,\\;\\text{and}\\;y=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.5132741228718345,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{4\\pi}{5}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_221.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded region bounded above by the curve y=2x^3, below by the x-axis, and to the right by the line x=1.\">"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1167793959415",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-y-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, find the volume when the region is rotated around the <em>y</em>-axis.</p><p>$y=\\sqrt{4-x^{2}},y=0,\\;\\text{and}\\;x=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 16.755160819145562,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{16\\pi}{3}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_223.jpg\" alt=\"This figure is a graph in the first quadrant. It is a quarter of a circle with center at the origin and radius of 2. It is shaded on the inside.\">"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1167793372594",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-y-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, find the volume when the region is rotated around the <em>y</em>-axis.</p><p>$x=\\sec(y)\\;\\text{and}\\;y=\\frac{\\pi}{4},\\;y=0\\;\\text{and}\\;x=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.141592653589793,
+    "tol": 0.001,
+    "solution": "<p>$\\pi$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_225.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded region bounded above by the line y=pi/4, to the right by the curve x=sec(y), below by the x-axis, and to the left by the y-axis.\">"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1167793567013",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-y-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, find the volume when the region is rotated around the <em>y</em>-axis.</p><p>$y=4-x,y=x,\\;\\text{and}\\;x=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 16.755160819145562,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{16\\pi}{3}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_227.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded triangle bounded above by the line y=4-x, below by the line y=x, and to the left by the y-axis.\">"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1167793499099",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, find the volume when the region is rotated around the <em>x</em>-axis.</p><p>$y=x^{2}\\;\\text{and}\\;y=x+2$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 45.23893421169302,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{72\\pi}{5}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_229.jpg\" alt=\"This figure is a graph above the x-axis. It is a shaded region bounded above by the line y=x+2, and below by the parabola y=x^2.\">"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1167793959012",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, find the volume when the region is rotated around the <em>x</em>-axis.</p><p>$y=4-x^{2}\\;\\text{and}\\;y=2-x$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 67.85840131753953,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{108\\pi}{5}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_231.jpg\" alt=\"This figure is a shaded region bounded above by the curve y=4-x^2 and below by the line y=2-x.\">"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1167793636189",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, find the volume when the region is rotated around the <em>x</em>-axis.</p><p>$y=\\sqrt{x}\\;\\text{and}\\;y=x^{2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.9424777960769379,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{3\\pi}{10}$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_233.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded region bounded above by the curve y=squareroot(x), below by the curve y=x^2.\">"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1167793829846",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, find the volume when the region is rotated around the <em>x</em>-axis.</p><p>$y=\\sqrt{1+x^{2}}\\;\\text{and}\\;y=\\sqrt{4-x^{2}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 15.390597961942367,
+    "tol": 0.001,
+    "solution": "<p>$2\\sqrt{6}\\pi$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_235.jpg\" alt=\"This figure is a shaded region bounded above by the curve y=squareroot(4-x^2) and, below by the curve y=squareroot(1+x^2).\">"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1167794122093",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method-y-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, use the washer method to find the volume when the region is revolved around the <em>y</em>-axis.</p><p>$y=x+2,y=2x-1,\\;\\text{and}\\;x=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 28.274333882308138,
+    "tol": 0.001,
+    "solution": "<p>$9\\pi$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_237.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded region bounded above by the line y=x+2, below by the line y=2x-1, and to the left by the y-axis.\">"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1167793355014",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method-y-rule",
+   "prompt": "<p>For the following exercises, draw the region bounded by the curves. Then, use the washer method to find the volume when the region is revolved around the <em>y</em>-axis.</p><p>$x=e^{2y},x=y^{2},y=0,\\;\\text{and}\\;y=\\ln(2)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 11.680439790996049,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{\\pi}{20}(75-4\\;{\\ln}^{5}(2))$ units<sup>3</sup></p><img src=\"/media/ch06/CNX_Calc_Figure_06_02_240.jpg\" alt=\"This figure is a graph in the first quadrant. It is a shaded region bounded above by the curve y=ln(2), below by the x-axis, to the left by the curve x=y^2, and to the right by the curve x=e^(2y).\">"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1167794329293",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-y-rule",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_02_242.jpg",
+    "alt": "This figure has two parts. The first part is a solid cone. The base of the cone is wider than the top. It is shown in a 3-dimensional box. Underneath the cone is an image of a yogurt container with the same shape as the figure."
+   },
+   "prompt": "<p>Yogurt containers can be shaped like frustums. Rotate the line $y=\\frac{1}{m}x$ around the <em>y</em>-axis to find the volume between $y=a\\;\\text{and}\\;y=b.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{m^{2}\\pi}{3}(b^{3}-a^{3})$ units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1167793956506",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-y-rule",
+   "prompt": "<p>Rotate the ellipse $(x^{2}/a^{2})+(y^{2}/b^{2})=1$ around the <em>y</em>-axis to approximate the volume of a football.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{4a^{2}b\\pi}{3}$ units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1167793479896",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method-y-rule",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_02_245.jpg",
+    "alt": "This figure is a graph of a 3-dimensional solid. It is round, bigger towards the bottom. It has a hole in the center that progressively gets smaller towards the bottom. Next to the graph is an image of a bundt cake, resembling the solid."
+   },
+   "prompt": "<p>What is the volume of the Bundt cake that comes from rotating $y=\\sin x$ around the <em>y</em>-axis from $x=0$ to $x=\\pi?$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 19.739208802178716,
+    "tol": 0.001,
+    "solution": "$2\\pi^{2}$ units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1167794075571",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>For the following exercises, find the volume of the solid described.</p><p>The base is the region enclosed by the generic ellipse $(x^{2}/a^{2})+(y^{2}/b^{2})=1.$ Slices perpendicular to the <em>x</em>-axis are semicircles.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2ab^{2}\\pi}{3}$ units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1167794163652",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-rule",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_02_247.jpg",
+    "alt": "This figure has two circles that intersect. Both circles have radius “r”. There is a line segment from one center to the other. In the middle of the intersection of the circles is point “h”. It is on the line segment."
+   },
+   "prompt": "<p>For the following exercises, find the volume of the solid described.</p><p>Find the volume common to two spheres of radius $r$ with centers that are $2h$ apart, as shown here.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$V=\\frac{2\\pi}{3}(2r+h){(r-h)}^{2}$ units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1167793278422",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "disk-method-rule",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_02_249.jpg",
+    "alt": "This figure is a sphere with a top portion removed. The radius of the sphere is “R”. The distance from the center to where the top portion is removed is “R-h”."
+   },
+   "prompt": "<p>For the following exercises, find the volume of the solid described.</p><p>Find the volume of a sphere of radius $R$ with a cap of height $h$ removed from the top, as seen here.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{3}(h+R){(h-2R)}^{2}$ units<sup>3</sup>"
+   }
+  },
+  {
+   "id": "r437",
+   "source_id": "fs-id1167793299941",
+   "source_section": "6.9",
+   "source_number": "437",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>The disk method can be used in any situation in which the washer method is successful at finding the volume of a solid of revolution.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False"
+   }
+  },
+  {
+   "id": "r439",
+   "source_id": "fs-id1167793959462",
+   "source_section": "6.9",
+   "source_number": "439",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "slicing-strategy",
+   "prompt": "<p>For the following exercises, use the requested method to determine the volume of the solid.</p><p>The volume that has a base of the ellipse $x^{2}/4+y^{2}/9=1$ and cross-sections of an equilateral triangle perpendicular to the $y\\text{-axis}.$ Use the method of slicing.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 27.712812921102035,
+    "tol": 0.001,
+    "solution": "$16\\sqrt{3}{units}^{3}$"
+   }
+  },
+  {
+   "id": "r441",
+   "source_id": "fs-id1167793957410",
+   "source_section": "6.9",
+   "source_number": "441",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "washer-method-y-rule",
+   "prompt": "<p>For the following exercises, use the requested method to determine the volume of the solid.</p><p>$x=y^{2}$ and $x=3y$ rotated around the <em>y</em>-axis using the washer method</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 101.78760197630929,
+    "tol": 0.001,
+    "solution": "$\\frac{162\\pi}{5}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "finding-volumes-by-slicing"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "solid-of-revolution"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "disk-method-about-the-y-axis"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "e58",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e58",
+   "concept": "finding-volumes-by-slicing"
+  },
+  {
+   "exercise": "e59",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e59",
+   "concept": "finding-volumes-by-slicing"
+  },
+  {
+   "exercise": "e60",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e60",
+   "concept": "finding-volumes-by-slicing"
+  },
+  {
+   "exercise": "e61",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e62",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e62",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "e63",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e63",
+   "concept": "cross-section"
+  },
+  {
+   "exercise": "e65",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e65",
+   "concept": "cross-section"
+  },
+  {
+   "exercise": "e67",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e67",
+   "concept": "cross-section"
+  },
+  {
+   "exercise": "e69",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e69",
+   "concept": "cross-section"
+  },
+  {
+   "exercise": "e71",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e71",
+   "concept": "cross-section"
+  },
+  {
+   "exercise": "e73",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e73",
+   "concept": "cross-section"
+  },
+  {
+   "exercise": "e75",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e77",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e77",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "e79",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "e81",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e83",
+   "concept": "disk-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e85",
+   "concept": "disk-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e87",
+   "concept": "disk-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e89",
+   "concept": "disk-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e91",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "e93",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "e95",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "e97",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "e99",
+   "concept": "washer-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e101",
+   "concept": "washer-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e103",
+   "concept": "disk-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e105",
+   "concept": "disk-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e107",
+   "concept": "washer-method-about-the-y-axis"
+  },
+  {
+   "exercise": "e109",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e109",
+   "concept": "cross-section"
+  },
+  {
+   "exercise": "e111",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e111",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "e113",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e113",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "r437",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "r437",
+   "concept": "washer-method"
+  },
+  {
+   "exercise": "r439",
+   "concept": "slicing-method"
+  },
+  {
+   "exercise": "r439",
+   "concept": "cross-section"
+  },
+  {
+   "exercise": "r441",
+   "concept": "washer-method-about-the-y-axis"
+  }
+ ],
+ "referents": [
+  {
+   "id": "outer-sqrt",
+   "label": "f(x) = √x, the outer boundary",
+   "figures": [
+    "sim-washer-method"
+   ]
+  },
+  {
+   "id": "inner-one",
+   "label": "g(x) = 1, the inner boundary",
+   "figures": [
+    "sim-washer-method"
+   ]
+  },
+  {
+   "id": "ex10-f",
+   "label": "f(x) = x",
+   "figures": [
+    "fig-washer-example"
+   ]
+  },
+  {
+   "id": "ex10-g",
+   "label": "g(x) = 1/x",
+   "figures": [
+    "fig-washer-example"
+   ]
+  }
+ ],
+ "footnotes": []
+}

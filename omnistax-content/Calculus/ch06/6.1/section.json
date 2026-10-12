@@ -1,0 +1,1239 @@
+{
+ "id": "6.1",
+ "module": "m53640",
+ "chapter": "6",
+ "title": "Areas between Curves",
+ "short": "Areas between Curves",
+ "lead": "A <span data-concept=\"definite-integral\">definite integral</span> measures the area of a region bounded by the graphs of two <span data-concept=\"function\">functions</span>: first where one graph stays above the other, then where the graphs cross and the region falls into pieces, and last where the curves are treated as <span data-concept=\"function\">functions</span> of <em>y</em> and the region is integrated along the <em>y</em>-axis.",
+ "objectives": [
+  "Determine the area of a region between two curves by integrating with respect to the independent variable.",
+  "Find the area of a compound region.",
+  "Determine the area of a region between two curves by integrating with respect to the dependent variable."
+ ],
+ "summary_html": "<ul><li>Just as definite integrals can be used to find the area under a curve, they can also be used to find the area between two curves.</li><li>To find the area between two curves defined by functions, integrate the difference of the functions.</li><li>If the graphs of the functions cross, or if the region is complex, use the absolute value of the difference of the functions. In this case, it may be necessary to evaluate two or more integrals and add the results to find the area of the region.</li><li>Sometimes it can be easier to integrate with respect to <em>y</em> to find the area. The principles are the same regardless of which variable is used as the variable of integration.</li></ul>",
+ "notes": "The book’s link to an online calculator for areas between curves is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 28 even-numbered section exercises have no answer in the book’s key and are all computational, so they are left out: exercises 2, 4 and 6 (areas read from given graphs), 8, 10, 12, 14, 16 and 18 (areas integrated along x), 20, 22 and 24 (along y), 26, 28, 30, 32, 34 and 36 (either way), 38, 40, 42, 44 and 46 (approximate intersections), 48, 50 and 52 (the triangle in the semicircle, the amusement park and the race), 54 (both ways) and 56 (the square about the unit circle).",
+ "figures": [
+  {
+   "id": "sim-area-between",
+   "kind": "sim",
+   "number": "6.2",
+   "folds": [
+    "6.3"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_01_001.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_01_002.jpg"
+   ],
+   "original_caption": "(Figure 6.2) The area between the graphs of two functions, f(x) and g(x), on the interval [a,b]. (Figure 6.3) (a)We can approximate the area between the graphs of two functions, f(x) and g(x), with rectangles. (b) The area of a typical rectangle goes from one curve to the other.",
+   "draws": [
+    "function",
+    "integral",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-example-lines",
+   "kind": "figure",
+   "number": "6.4",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_01_003.jpg"
+   ],
+   "original_caption": "A region between two curves is shown where one curve is always greater than the other.",
+   "draws": [
+    "function",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-example-parabola",
+   "kind": "figure",
+   "number": "6.5",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_01_004.jpg"
+   ],
+   "original_caption": "This graph shows the region below the graph of f(x) and above the graph of g(x).",
+   "draws": [
+    "function",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-curves-cross",
+   "kind": "sim",
+   "number": "6.6",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_01_005.jpg"
+   ],
+   "original_caption": "The region between two curves can be broken into two sub-regions.",
+   "draws": [
+    "function",
+    "integral",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-compound-region",
+   "kind": "figure",
+   "number": "6.7",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_01_006.jpg"
+   ],
+   "original_caption": "Two integrals are required to calculate the area of this region.",
+   "draws": [
+    "function",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-area-along-y",
+   "kind": "sim",
+   "number": "6.8",
+   "folds": [
+    "6.9"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_01_008.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_01_009.jpg"
+   ],
+   "original_caption": "(Figure 6.8) We can find the area between the graphs of two functions, u(y) and v(y). (Figure 6.9) (a) Approximating the area between the graphs of two functions, u(y) and v(y), with rectangles. (b) The area of a typical rectangle.",
+   "draws": [
+    "function",
+    "integral",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-x-or-y",
+   "kind": "sim",
+   "number": "6.10",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_01_010.jpg"
+   ],
+   "original_caption": "The area of region R can be calculated using one integral only when the curves are treated as functions of y.",
+   "draws": [
+    "function",
+    "integral",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "areas-intro",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "areas-intro",
+   "concept": "area-under-the-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "area-between-curves-theorem",
+   "concept": "area-between-two-curves",
+   "verb": "introduces"
+  },
+  {
+   "span": "area-between-two-curves",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "area-between-two-curves",
+   "concept": "regular-partition",
+   "verb": "uses"
+  },
+  {
+   "span": "area-between-two-curves",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "area-between-two-curves",
+   "concept": "limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793900960",
+   "concept": "area-between-two-curves",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793852231",
+   "concept": "area-between-two-curves",
+   "verb": "uses"
+  },
+  {
+   "span": "curves-that-cross-theorem",
+   "concept": "area-between-curves-that-cross",
+   "verb": "introduces"
+  },
+  {
+   "span": "compound-regions",
+   "concept": "absolute-value-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793263971",
+   "concept": "area-between-curves-that-cross",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793455088",
+   "concept": "area-of-a-compound-region",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793455088",
+   "concept": "properties-of-the-definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "area-along-y-theorem",
+   "concept": "area-between-curves-along-the-y-axis",
+   "verb": "introduces"
+  },
+  {
+   "span": "regions-along-y",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "regions-along-y",
+   "concept": "regular-partition",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793930320",
+   "concept": "area-between-curves-along-the-y-axis",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793930320",
+   "concept": "limits-of-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "regions-along-y",
+   "concept": "area-between-two-curves",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793940237",
+   "source_number": "Checkpoint 6.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793900960"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>If $R$ is the region bounded by the graphs of the functions $f(x)=\\frac{x}{2}+5$ and $g(x)=x+\\frac{1}{2}$ over the interval $[1,5],$ find the area of region $R.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 12,
+    "solution": "$12$ units<sup>2</sup>",
+    "hint": "Graph the functions to determine which function’s graph forms the upper bound and which forms the lower bound, then follow the process used in Example 6.1."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794076151",
+   "source_number": "Checkpoint 6.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793852231"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>If $R$ is the region bounded above by the graph of the function $f(x)=x$ and below by the graph of the function $g(x)=x^{4},$ find the area of region $R.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.3,
+    "solution": "$\\frac{3}{10}$ unit<sup>2</sup>",
+    "hint": "Use the process from Example 6.2."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167794121633",
+   "source_number": "Checkpoint 6.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793263971"
+   },
+   "cite": "curves-that-cross-theorem",
+   "prompt": "<p>If $R$ is the region between the graphs of the functions $f(x)=\\sin x$ and $g(x)=\\cos x$ over the interval $[\\pi/2,2\\pi],$ find the area of region $R.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.82842712474619,
+    "tol": 0.001,
+    "solution": "$2+2\\sqrt{2}$ units<sup>2</sup>",
+    "hint": "The two curves intersect at $x=(5\\pi)/4.$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793581452",
+   "source_number": "Checkpoint 6.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793455088"
+   },
+   "cite": "fs-id1167793455088",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_01_007.jpg",
+    "alt": "This figure is has two graphs in the first quadrant. They are the functions f(x) = squareroot of x and g(x)= 3/2 – x/2. In between these graphs is a shaded region, bounded to the left by f(x) and to the right by g(x). All of which is above the x-axis. The shaded area is between x=0 and x=3."
+   },
+   "prompt": "<p>Consider the region depicted in the following figure. Find the area of $R.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.6666666666666667,
+    "tol": 0.001,
+    "solution": "$\\frac{5}{3}$ units<sup>2</sup>",
+    "hint": "The two curves intersect at $x=1.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793668617",
+   "source_number": "Checkpoint 6.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793930320"
+   },
+   "cite": "area-along-y-theorem",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_01_011.jpg",
+    "alt": "This figure is has two graphs in the first quadrant. They are the functions f(x) = squareroot of x and g(x)= 3/2 – x/2. In between these graphs is a shaded region, bounded to the left by f(x) and to the right by g(x). All of which is above the x-axis. The shaded area is between x=0 and x=3."
+   },
+   "prompt": "<p>Let’s revisit the checkpoint associated with Example 6.4, only this time, let’s integrate with respect to $y.$ Let $R$ be the region depicted in the following figure. Find the area of $R$ by integrating with respect to $y.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.6666666666666667,
+    "tol": 0.001,
+    "solution": "$\\frac{5}{3}$ units<sup>2</sup>",
+    "hint": "Follow the process from the previous example."
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1167793956497",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_01_201.jpg",
+    "alt": "This figure is has two graphs. They are the functions f(x) = x^2-3and g(x)=1. In between these graphs is a shaded region, bounded above by g(x) and below by f(x). The shaded area is between x=-2 and x=2."
+   },
+   "prompt": "<p>For the following exercises, determine the area of the region between the two curves in the given figure by integrating over the $x\\text{-axis}.$</p><p>$y=x^{2}-3\\;\\text{and}\\;y=1$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 10.666666666666666,
+    "tol": 0.001,
+    "solution": "$\\frac{32}{3}$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1167793499141",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-that-cross-theorem",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_01_203.jpg",
+    "alt": "This figure is has two graphs. They are the functions f(x) = x^3 and g(x)= x^2+x. These graphs intersect twice. The regions between the intersections are shaded. The first region is bounded above by f(x) and below by g(x). The second region is bounded above by g(x) and below by f(x)."
+   },
+   "prompt": "<p>For the following exercises, split the region between the two curves into two smaller regions, then determine the area by integrating over the $x\\text{-axis}.$ Note that you will have two integrals to solve.</p><p>$y=x^{3}$ and $y=x^{2}+x$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0833333333333333,
+    "tol": 0.001,
+    "solution": "$\\frac{13}{12}$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1167793463068",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-along-y-theorem",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_01_205.jpg",
+    "alt": "This figure is has two graphs. They are the equations x=y^2 and x=9. The region between the graphs is shaded. It is horizontal, between the y-axis and the line x=9."
+   },
+   "prompt": "<p>For the following exercises, determine the area of the region between the two curves by integrating over the $y\\text{-axis}.$</p><p>$x=y^{2}\\;\\text{and}\\;x=9$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 36,
+    "solution": "$36$"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1167793637355",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the $x\\text{-axis}.$</p><p>$y=x^{2}\\;\\text{and}\\;y=-x^{2}+18x$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 243,
+    "solution": "<p>243 square units</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_207.jpg\" alt=\"This figure is has two graphs. They are the functions f(x)=x^2 and g(x)=-x^2+18x. The region between the graphs is shaded, bounded above by g(x) and below by f(x). It is in the first quadrant.\">"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1167793637971",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the $x\\text{-axis}.$</p><p>$y=\\cos x$ and $y={\\cos}^{2}x$ on $x=[-\\pi,\\pi]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4,
+    "solution": "<p>4</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_209.jpg\" alt=\"This figure is has two graphs. They are the functions y=cos(x) and y=cos^2(x). The graphs are periodic and resemble waves. There are four regions created by intersections of the curves. The areas are shaded.\">"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1167793294684",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the $x\\text{-axis}.$</p><p>$y=e^{x},y=e^{-x},x=-1\\;\\text{and}\\;x=1$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.172322539260975,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{2{(e-1)}^{2}}{e}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_211.jpg\" alt=\"This figure is has two graphs. They are the functions f(x)=e^x and g(x)=e^-x. There are two shaded regions. In the second quadrant the region is bounded by x=-1, g(x) above and f(x) below. The second region is in the first quadrant and is bounded by f(x) above, g(x) below, and x=1.\">"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1167793455053",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the $x\\text{-axis}.$</p><p>$y=|x|\\;\\text{and}\\;y=x^{2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.3333333333333333,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{1}{3}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_213.jpg\" alt=\"This figure is has two graphs. They are the functions f(x)=x^2 and g(x)=absolute value of x. There are two shaded regions. The first region is in the second quadrant and is between g(x) above and f(x) below. The second region is in the first quadrant and is bounded above by g(x) and below by f(x).\">"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1167793318490",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793455088",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. If necessary, break the region into sub-regions to determine its entire area.</p><p>$y=12-x,y=\\sqrt{x},\\;\\text{and}\\;y=1$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 11.333333333333334,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{34}{3}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_215.jpg\" alt=\"This figure is has three graphs. They are the functions f(x)=squareroot of x, y=12-x, and y=1. The region between the graphs is shaded, bounded above and to the left by f(x), above and to the right by the line y=12-x, and below by the line y=1. It is in the first quadrant.\">"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1167793378470",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793455088",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. If necessary, break the region into sub-regions to determine its entire area.</p><p>$y=x^{3}\\;\\text{and}\\;y=x^{2}-2x$ over $x=[-1,1]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.5,
+    "solution": "<p>$\\frac{5}{2}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_217.jpg\" alt=\"This figure is has two graphs. They are the functions f(x)=x^3 and g(x)=x^2-2x. There are two shaded regions between the graphs. The first region is bounded to the left by the line x=-2, above by g(x) and below by f(x). The second region is bounded above by f(x), below by g(x) and to the right by the line x=2.\">"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1167793455122",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793455088",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. If necessary, break the region into sub-regions to determine its entire area.</p><p>$y=x^{3}+3x$ and $y=4x$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "solution": "<p>$\\frac{1}{2}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_219.jpg\" alt=\"This figure is has two graphs. They are the functions f(x)=x^3+3x and g(x)=4x. There are two shaded regions between the graphs. The first region is bounded above by f(x) and below by g(x). The second region is bounded above by g(x), below by f(x).\">"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1167793956299",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-along-y-theorem",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the $y\\text{-axis}.$</p><p>$x=2y\\;\\text{and}\\;x=y^{3}-y$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.5,
+    "solution": "<p>$\\frac{9}{2}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_221.jpg\" alt=\"This figure is has two graphs. They are the equations x=2y and x=y^3-y. The graphs intersect in the third quadrant and again in the first quadrant forming two closed regions in between them.\">"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1167793394824",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-along-y-theorem",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the $y\\text{-axis}.$</p><p>$y^{2}=x\\;\\text{and}\\;x=y+2$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.5,
+    "solution": "<p>$\\frac{9}{2}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_223.jpg\" alt=\"This figure is has two graphs. They are the equations x=y+2 and y^2=x. The graphs intersect, forming a region in between them\">"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1167793469835",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-along-y-theorem",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the $y\\text{-axis}.$</p><p>$x=\\sin y,x=\\cos(2y),y=\\pi/2,\\text{and}\\;y=-\\pi/2$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.598076211353316,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{3\\sqrt{3}}{2}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_225.jpg\" alt=\"This figure is has two graphs. They are the equations x=cos(y) and x=sin(y). The graphs intersect, forming two regions bounded above by the line y=pi/2 and below by the line y=-pi/2.\">"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1167793372408",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793930320",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the <em>x</em>-axis or <em>y</em>-axis, whichever seems more convenient.</p><p>$y=xe^{x},y=e^{x},x=0,\\;\\text{and}\\;x=1$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.7182818284590451,
+    "tol": 0.001,
+    "solution": "<p>$e-2$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_227.jpg\" alt=\"This figure is has two graphs. They are the equations y=xe^x and y=e^x. The graphs intersect, forming a region in between them in the first quadrant.\">"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1167794054213",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793930320",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the <em>x</em>-axis or <em>y</em>-axis, whichever seems more convenient.</p><p>$x=y^{3}+2y^{2}+1\\;\\text{and}\\;x=-y^{2}+1$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.75,
+    "solution": "<p>$\\frac{27}{4}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_229.jpg\" alt=\"This figure is has two graphs. They are the equations x=-y^2+1 and x=y^3+2y^2. The graphs intersect, forming two regions in between them.\">"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1167794291677",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793930320",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the <em>x</em>-axis or <em>y</em>-axis, whichever seems more convenient.</p><p>$y=4-3x\\;\\text{and}\\;y=\\frac{1}{x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.23472104466522348,
+    "tol": 0.001,
+    "solution": "<p>$\\frac{4}{3}-\\ln(3)$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_231.jpg\" alt=\"This figure is has two graphs. They are the equations y=4-3x and y=1/x. The graphs intersect, having region between them shaded. The region is in the first quadrant.\">"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1167793473545",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793930320",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the <em>x</em>-axis or <em>y</em>-axis, whichever seems more convenient.</p><p>$y=x^{2}-3x+2\\;\\text{and}\\;y=x^{3}-2x^{2}-x+2$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "solution": "<p>$\\frac{1}{2}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_233.jpg\" alt=\"This figure is has two graphs. They are the equations y=x^2-3x+2 and y=x^3-2x^2-x+2. The graphs intersect, having region between them shaded.\">"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1167793978418",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793930320",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the <em>x</em>-axis or <em>y</em>-axis, whichever seems more convenient.</p><p>$y+y^{3}=x\\;\\text{and}\\;2y=x$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "solution": "<p>$\\frac{1}{2}$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_235.jpg\" alt=\"This figure is has two graphs. They are the equations 2y=x and y+y^3=x. The graphs intersect, forming two regions. The regions are shaded.\">"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1167793545637",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793930320",
+   "prompt": "<p>For the following exercises, graph the equations and shade the area of the region between the curves. Determine its area by integrating over the <em>x</em>-axis or <em>y</em>-axis, whichever seems more convenient.</p><p>$y={\\cos}^{-1}x,y={\\sin}^{-1}x,x=-1,\\;\\text{and}\\;x=1$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.454758182433396,
+    "tol": 0.001,
+    "solution": "<p>$-2(\\sqrt{2}-\\pi)$</p><img src=\"/media/ch06/CNX_Calc_Figure_06_01_237.jpg\" alt=\"This figure is has two graphs. They are the equations y=arccos(x) and y=arcsin (x). The graphs intersect, forming two regions. The first region is bounded to the left by x=-1. The second region is bounded to the right by x=1. Both regions are shaded.\">"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1167793952121",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, find the exact area of the region bounded by the given equations if possible. If you are unable to determine the intersection points analytically, use a calculator to approximate the intersection points with three decimal places and determine the approximate area of the region.</p><p><strong>[T]</strong> $y=x^{2}\\;\\text{and}\\;y=\\sqrt{1-x^{2}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.067,
+    "tol": 0.001,
+    "solution": "$1.067$"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1167793395009",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, find the exact area of the region bounded by the given equations if possible. If you are unable to determine the intersection points analytically, use a calculator to approximate the intersection points with three decimal places and determine the approximate area of the region.</p><p><strong>[T]</strong> $x=\\sqrt{4-y^{2}}\\;\\text{and}\\;y^{2}=1+x^{2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.605,
+    "tol": 0.001,
+    "solution": "$1.605$"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1167793640024",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, find the exact area of the region bounded by the given equations if possible. If you are unable to determine the intersection points analytically, use a calculator to approximate the intersection points with three decimal places and determine the approximate area of the region.</p><p><strong>[T]</strong> $y={\\sin}^{3}x+2,y=\\tan x,x=-1.5,\\;\\text{and}\\;x=1.5$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.523,
+    "tol": 0.001,
+    "solution": "$7.523$"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1167793521340",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, find the exact area of the region bounded by the given equations if possible. If you are unable to determine the intersection points analytically, use a calculator to approximate the intersection points with three decimal places and determine the approximate area of the region.</p><p><strong>[T]</strong> $y=\\sqrt{1-x^{2}}\\;\\text{and}\\;y=x^{2}+2x+1$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.45206483006411496,
+    "tol": 0.001,
+    "solution": "$\\frac{3\\pi-4}{12}$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1167793595212",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, find the exact area of the region bounded by the given equations if possible. If you are unable to determine the intersection points analytically, use a calculator to approximate the intersection points with three decimal places and determine the approximate area of the region.</p><p><strong>[T]</strong> $y=\\cos x,y=e^{x},x=-\\pi,\\;\\text{and}\\;x=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.429,
+    "tol": 0.001,
+    "solution": "$1.429$"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1167793634260",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>A factory selling cell phones has a marginal cost function $C(x)=0.01x^{2}-3x+229,$ where $x$ represents the number of cell phones, $C$ is the marginal cost, in dollars, of selling $x$ phones, and a marginal revenue function given by $R(x)=429-2x$, where $R$ is the revenue, in dollars, earned by selling $x$ cell phonesFind the area between the graphs of these curves and $x=0.$ What does this area represent?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 33333.33,
+    "tol": 0.001,
+    "unit": "dollars",
+    "solution": "$\\text{＄}33,333.33$ total profit for $200$ cell phones sold"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1167794005221",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>The tortoise versus the hare: The speed of the hare is given by the sinusoidal function $H(t)=1-\\cos((\\pi t)/2)$ whereas the speed of the tortoise is $T(t)=0.1032t$ where $t$ is time measured in hours and the speed is measured in miles per hour. Find the area between the curves from time $t=0$ to the first time after one hour when the tortoise and hare are traveling at the same speed. What does it represent? Use a calculator to determine the intersection points, if necessary, accurate to three decimal places.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.32,
+    "tol": 0.005,
+    "unit": "mi",
+    "solution": "$3.32$ mi represents how far ahead the hare is from the tortoise"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1167794127463",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, find the area between the curves by integrating with respect to $x$ and then with respect to $y.$ Is one method easier than the other? Do you obtain the same answer?</p><p>$y=x^{2}+2x+1\\;\\text{and}\\;y=-x^{2}-3x+4$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 14.291666666666666,
+    "tol": 0.001,
+    "solution": "$\\frac{343}{24}$"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1167793455357",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "prompt": "<p>For the following exercises, find the area between the curves by integrating with respect to $x$ and then with respect to $y.$ Is one method easier than the other? Do you obtain the same answer?</p><p>$x=y^{2}-2\\;\\text{and}\\;x=2y$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.928203230275509,
+    "tol": 0.001,
+    "solution": "$4\\sqrt{3}$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1167793423271",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-between-curves-theorem",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_01_240.jpg",
+    "alt": "This figure is the graph of a circle centered at the origin with radius of 1. There are three lines intersecting the circle. The lines intersect the circle at three points to form a triangle within the circle."
+   },
+   "prompt": "<p>For the following exercises, solve using calculus, then check your answer with geometry.</p><p>Find the area between the perimeter of the unit circle and the triangle created from $y=2x+1,y=1-2x$ and $y=-\\frac{3}{5},$ as seen in the following figure. Is there a way to solve this without using calculus?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.861592653589793,
+    "tol": 0.001,
+    "solution": "$\\pi-\\frac{32}{25}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "area-of-a-compound-region"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "area-of-a-compound-region"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e1",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e3",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e3",
+   "concept": "area-of-a-compound-region"
+  },
+  {
+   "exercise": "e5",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e7",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e9",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e11",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e13",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e15",
+   "concept": "area-of-a-compound-region"
+  },
+  {
+   "exercise": "e17",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e17",
+   "concept": "area-of-a-compound-region"
+  },
+  {
+   "exercise": "e19",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e19",
+   "concept": "area-of-a-compound-region"
+  },
+  {
+   "exercise": "e21",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e21",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e23",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e25",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e25",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e27",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e29",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e29",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e31",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e33",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e35",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e35",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e37",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e39",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e41",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e41",
+   "concept": "area-of-a-compound-region"
+  },
+  {
+   "exercise": "e43",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e43",
+   "concept": "area-of-a-compound-region"
+  },
+  {
+   "exercise": "e45",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e47",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e49",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e51",
+   "concept": "area-between-curves-that-cross"
+  },
+  {
+   "exercise": "e53",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e53",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e55",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e55",
+   "concept": "area-between-curves-along-the-y-axis"
+  },
+  {
+   "exercise": "e57",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e57",
+   "concept": "area-of-a-compound-region"
+  }
+ ],
+ "referents": [
+  {
+   "id": "curve-f",
+   "label": "f(x), the upper curve",
+   "figures": [
+    "sim-area-between"
+   ]
+  },
+  {
+   "id": "curve-g",
+   "label": "g(x), the lower curve",
+   "figures": [
+    "sim-area-between"
+   ]
+  },
+  {
+   "id": "ex1-f",
+   "label": "f(x) = x + 4",
+   "figures": [
+    "fig-example-lines"
+   ]
+  },
+  {
+   "id": "ex1-g",
+   "label": "g(x) = 3 − x/2",
+   "figures": [
+    "fig-example-lines"
+   ]
+  },
+  {
+   "id": "ex2-f",
+   "label": "f(x) = 9 − (x/2)²",
+   "figures": [
+    "fig-example-parabola"
+   ]
+  },
+  {
+   "id": "ex2-g",
+   "label": "g(x) = 6 − x",
+   "figures": [
+    "fig-example-parabola"
+   ]
+  },
+  {
+   "id": "sine",
+   "label": "f(x) = sin x",
+   "figures": [
+    "sim-curves-cross"
+   ]
+  },
+  {
+   "id": "cosine",
+   "label": "g(x) = cos x",
+   "figures": [
+    "sim-curves-cross"
+   ]
+  },
+  {
+   "id": "left-curve",
+   "label": "the curve y = x², or x = √y",
+   "figures": [
+    "fig-compound-region",
+    "sim-x-or-y"
+   ]
+  },
+  {
+   "id": "right-curve",
+   "label": "the line y = 2 − x, or x = 2 − y",
+   "figures": [
+    "fig-compound-region",
+    "sim-x-or-y"
+   ]
+  },
+  {
+   "id": "curve-u",
+   "label": "u(y), the right boundary",
+   "figures": [
+    "sim-area-along-y"
+   ]
+  },
+  {
+   "id": "curve-v",
+   "label": "v(y), the left boundary",
+   "figures": [
+    "sim-area-along-y"
+   ]
+  }
+ ],
+ "footnotes": []
+}

@@ -1,0 +1,216 @@
+<p id="exp-log-intro">We already examined <span data-concept="exponential-function">exponential functions</span> and <span data-concept="logarithmic-function">logarithms</span> in earlier chapters. However, we glossed over some key details in the previous discussions. For example, we did not study how to treat <span data-concept="exponential-function">exponential functions</span> with exponents that are irrational. The definition of the number <em>e</em> is another area where the previous development was somewhat incomplete. We now have the tools to deal with these concepts in a more mathematically rigorous way, and we do so in this section.</p>
+<p>For purposes of this section, assume we have not yet defined the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span>, the number <em>e</em>, or any of the integration and differentiation formulas associated with these functions. By the end of the section, we will have studied these concepts in a mathematically rigorous way (and we will see they are consistent with the concepts we learned earlier).</p>
+<p>We begin the section by defining the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span> in terms of an integral. This definition forms the foundation for the section. From this definition, we derive differentiation formulas, define the number $e,$ and expand these concepts to <span data-concept="logarithmic-function">logarithms</span> and <span data-concept="exponential-function">exponential functions</span> of any base.</p>
+<section id="ln-integral">
+<h2>The Natural Logarithm as an Integral</h2>
+<p class="cite-target">Recall the <span data-concept="power-rule-for-integrals">power rule for integrals</span>:</p>
+$$\int x^{n}dx=\frac{x^{n+1}}{n+1}+C,\;n\ne-1.$$
+<p>Clearly, this does not work when $n=-1,$ as it would force us to divide by zero. So, what do we do with $\int \frac{1}{x}dx?$ Recall from the <span data-concept="fundamental-theorem-of-calculus-part-1">Fundamental Theorem of Calculus</span> that $\int_1^{x}\frac{1}{t}dt$ is an <span data-concept="antiderivative">antiderivative</span> of $1/x.$ Therefore, we can make the following definition.</p>
+<div class="note" id="ln-definition">
+<div class="eyebrow">Definition</div>
+<p>For $x>0,$ define the <span data-concept="natural-logarithm-as-an-integral">natural logarithm function</span> by</p>
+$$\ln x=\int_1^{x}\frac{1}{t}dt.\tag{6.24}$$
+</div>
+<p>For $x>1,$ this is just the area under the curve $y=1/t$ from $1$ to $x.$ For $x<1,$ we have $\int_1^{x}\frac{1}{t}dt=-\int_x^{1}\frac{1}{t}dt,$ so in this case it is the negative of the area under the curve from $x\;\text{to}\;1$ (see the following figure).</p>
+<figure class="sim" id="sim-ln-area" data-figure="6.75 + 6.76 + 6.77" data-original="/media/ch06/CNX_Calc_Figure_06_07_001.jpg,/media/ch06/CNX_Calc_Figure_06_07_002.jpg,/media/ch06/CNX_Calc_Figure_06_07_003.jpg" data-original-caption="(Figure 6.75) (a) When x&gt;1, the natural logarithm is the area under the curve y=1/t from 1 to x. (b) When x&lt;1, the natural logarithm is the negative of the area under the curve from x to 1. (Figure 6.76) The graph of f(x)=ln x shows that it is a continuous function. (Figure 6.77) The area under the curve from 1 to e is equal to one.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.75 + 6.76 + 6.77</span><span>Slide <em>x</em>: the signed area under $y=1/t$ from 1 to <em>x</em> is $\ln x,$ positive for $x>1$ and negative for $x<1,$ and the point $(x,\ln x)$ traces the <span data-concept="graph-of-a-function">graph of</span> the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span> beside it. At $x=e$ the area is exactly 1.</span></div>
+</figure>
+<p>Notice that $\ln1=0.$ Furthermore, the function $y=1/t>0$ for $x>0.$ Therefore, by the properties of integrals, it is clear that $\ln x$ is increasing for $x>0.$</p>
+</section>
+
+<section id="ln-properties">
+<h2>Properties of the Natural Logarithm</h2>
+<p class="cite-target">Because of the way we defined the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span>, the following differentiation formula falls out immediately as a result of to the <span data-concept="fundamental-theorem-of-calculus-part-1">Fundamental Theorem of Calculus</span>.</p>
+<div class="note" id="ln-derivative-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="derivative-of-the-natural-logarithm">Derivative of the Natural Logarithm</span></h3>
+<p>For $x>0,$ the derivative of the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span> is given by</p>
+$$\frac{d}{dx}\ln x=\frac{1}{x}.$$
+</div>
+<div class="note" id="ln-continuity-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="continuity-of-the-natural-logarithm">Corollary to the Derivative of the Natural Logarithm</span></h3>
+<p>The function $\ln x$ is <span data-concept="differentiable-function">differentiable</span>; therefore, it is <span data-concept="continuity-over-an-interval">continuous</span>.</p>
+</div>
+<p>A <span data-concept="graph-of-a-function">graph of</span> $\ln x$ is shown in Figure 6.76. Notice that it is <span data-concept="continuity-over-an-interval">continuous</span> throughout its domain of $(0,\infty).$</p>
+<div class="example" id="fs-id1167793967054">
+<h3>Example 6.35 · Calculating Derivatives of Natural Logarithms</h3>
+<p>Calculate the following derivatives:</p>
+<ol type="a"><li>$\frac{d}{dx}\ln(5x^{3}-2)$</li><li>$\frac{d}{dx}{(\ln(3x))}^{2}$</li></ol>
+<h4>Solution</h4>
+<p>We need to apply the <span data-concept="chain-rule">chain rule</span> in both cases.</p>
+<ol type="a"><li>$\frac{d}{dx}\ln(5x^{3}-2)=\frac{15x^{2}}{5x^{3}-2}$</li><li>$\frac{d}{dx}{(\ln(3x))}^{2}=\frac{2(\ln(3x))\cdot 3}{3x}=\frac{2(\ln(3x))}{x}$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1167793967054"></div>
+<p>Note that if we use the absolute value function and create a new function $\ln|x|,$ we can extend the domain of the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span> to include $x<0.$ Then $(d/(dx))\ln|x|=1/x.$ This gives rise to the familiar integration formula.</p>
+<div class="note" id="ln-integral-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Integral of (1/<em>u</em>) <em>du</em></h3>
+<p>The <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span> is the <span data-concept="antiderivative">antiderivative</span> of the function $\kf(u)=1/u\text{:}$</p>
+$$\int \frac{1}{u}du=\ln|u|+C.$$
+</div>
+<div class="example" id="fs-id1167793423035">
+<h3>Example 6.36 · Calculating Integrals Involving Natural Logarithms</h3>
+<p>Calculate the integral $\int \frac{x}{x^{2}+4}dx.$</p>
+<h4>Solution</h4>
+<p>Using $u$-substitution, let $u=x^{2}+4.$ Then $du=2x\;dx$ and we have</p>
+$$\int \frac{x}{x^{2}+4}dx=\frac{1}{2}\int \frac{1}{u}du=\frac{1}{2}\ln|u|+C=\frac{1}{2}\ln|x^{2}+4|+C=\frac{1}{2}\ln(x^{2}+4)+C.$$
+</div>
+<div class="exercises" data-place="fs-id1167793423035"></div>
+<p>Although we have called our function a “<span data-concept="logarithmic-function">logarithm</span>,” we have not actually proved that any of the properties of <span data-concept="logarithmic-function">logarithms</span> hold for this function. We do so here.</p>
+<div class="note" id="ln-properties-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="properties-of-logarithms">Properties of the Natural Logarithm</span></h3>
+<p>If $a,b>0$ and $r$ is a rational number, then</p>
+<ol><li>$\ln1=0$</li><li>$\ln(ab)=\ln a+\ln b$</li><li>$\ln(\frac{a}{b})=\ln a-\ln b$</li><li>$\ln(a^{r})=r\;\ln a$</li></ol>
+</div>
+<h3>Proof</h3>
+<ol type="a"><li>By definition, $\ln1=\int_1^{1}\frac{1}{t}dt=0.$ ii. We have $$\ln(ab)=\int_1^{ab}\frac{1}{t}dt=\int_1^{a}\frac{1}{t}dt+\int_a^{ab}\frac{1}{t}dt.$$</li></ol>
+<p>Use $u\text{-substitution}$ on the last integral in this expression. Let $u=t/a.$ Then $du=(1/a)dt.$ Furthermore, when $t=a,u=1,$ and when $t=ab,u=b.$ So we get</p>
+$$\ln(ab)=\int_1^{a}\frac{1}{t}dt+\int_a^{ab}\frac{1}{t}dt=\int_1^{a}\frac{1}{t}dt+\int_a^{ab}\frac{a}{t}\cdot \frac{1}{a}dt=\int_1^{a}\frac{1}{t}dt+\int_1^{b}\frac{1}{u}du=\ln a+\ln b.$$
+<p>iv. Note that</p>
+$$\frac{d}{dx}\ln(x^{r})=\frac{rx^{r-1}}{x^{r}}=\frac{r}{x}.$$
+<p>Furthermore,</p>
+$$\frac{d}{dx}(r\;\ln x)=\frac{r}{x}.$$
+<p>Since the derivatives of these two functions are the same, by the <span data-concept="fundamental-theorem-of-calculus-part-1">Fundamental Theorem of Calculus</span>, they must differ by a constant. So we have</p>
+$$\ln(x^{r})=r\;\ln x+C$$
+<p>for some constant $C.$ Taking $x=1,$ we get</p>
+$$\begin{aligned}\ln(1^{r}) &= r\;\ln(1)+C \\ 0 &= r(0)+C \\ C &= 0.\end{aligned}$$
+<p>Thus $\ln(x^{r})=r\;\ln x$ and the proof is complete. Note that we can extend this property to irrational values of $r$ later in this section.</p>
+<p>Part iii. follows from parts ii. and iv. and the proof is left to you.</p>
+<p>□</p>
+<div class="example" id="fs-id1167794077123">
+<h3>Example 6.37 · Using Properties of Logarithms</h3>
+<p>Use properties of <span data-concept="logarithmic-function">logarithms</span> to simplify the following expression into a single <span data-concept="logarithmic-function">logarithm</span>:</p>
+$$\ln9-2\;\ln3+\ln(\frac{1}{3}).$$
+<h4>Solution</h4>
+<p>We have</p>
+$$\ln9-2\;\ln3+\ln(\frac{1}{3})=\ln(3^{2})-2\;\ln3+\ln(3^{-1})=2\;\ln3-2\;\ln3-\ln3=-\ln3.$$
+</div>
+<div class="exercises" data-place="fs-id1167794077123"></div>
+</section>
+
+<section id="number-e">
+<h2>Defining the Number <em>e</em></h2>
+<p class="cite-target">Now that we have the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span> defined, we can use that function to define the number $e.$</p>
+<div class="note" id="e-definition">
+<div class="eyebrow">Definition</div>
+<p>The number $e$ is defined to be the real number such that</p>
+$$\ln e=1.$$
+</div>
+<p>To put it another way, the area under the curve $y=1/t$ between $t=1$ and $t=e$ is $1$ (Figure 6.77). The proof that such a number exists and is unique is left to you. (<em>Hint</em>: Use the <span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span> to prove existence and the fact that $\ln x$ is increasing to prove uniqueness.)</p>
+<p>The number $e$ can be shown to be irrational, although we won’t do so here (see the Student Project in <a href="/calculus/ch10/10.3/">Taylor and Maclaurin Series</a>). Its approximate value is given by</p>
+$$e\approx 2.71828182846.$$
+</section>
+
+<section id="exponential">
+<h2>The Exponential Function</h2>
+<p class="cite-target">We now turn our attention to the function $e^{x}.$ Note that the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span> is <span data-concept="one-to-one-function">one-to-one</span> and therefore has an <span data-concept="inverse-function">inverse function</span>. For now, we denote this <span data-concept="inverse-function">inverse function</span> by $\text{exp}\;x.$ Then,</p>
+$$\text{exp}(\ln x)=x\;\text{for}\;x>0\;\text{and}\;\ln(\text{exp}\;x)=x\;\text{for all}\;x.$$
+<p>The following figure shows the <span data-concept="graph-of-a-function">graphs of</span> <span data-ref="exp-curve">$\text{exp}\;x$</span> and <span data-ref="ln-curve">$\ln x.$</span></p>
+<figure class="sim" id="fig-ln-exp" data-figure="6.78" data-original="/media/ch06/CNX_Calc_Figure_06_07_004.jpg" data-original-caption="The graphs of ln x and exp x.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.78</span><span>The graphs of $\ln x$ and $\text{exp}\;x.$</span></div>
+</figure>
+<p>We hypothesize that $\text{exp}\;x=e^{x}.$ For rational values of $x,$ this is easy to show. If $x$ is rational, then we have $\ln(e^{x})=x\;\ln e=x.$ Thus, when $x$ is rational, $e^{x}=\text{exp}\;x.$ For irrational values of $x,$ we simply define $e^{x}$ as the <span data-concept="inverse-function">inverse function</span> of $\ln x.$</p>
+<div class="note" id="exp-definition">
+<div class="eyebrow">Definition</div>
+<p>For any real number $x,$ define $y=e^{x}$ to be the number for which</p>
+$$\ln y=\ln(e^{x})=x.\tag{6.25}$$
+</div>
+<p>Then we have $e^{x}=\text{exp}(x)$ for all $x,$ and thus</p>
+$$e^{\ln x}=x\;\text{for}\;x>0\;\text{and}\;\ln(e^{x})=x\tag{6.26}$$
+<p>for all $x.$</p>
+</section>
+
+<section id="exp-properties">
+<h2>Properties of the Exponential Function</h2>
+<p class="cite-target">Since the <span data-concept="exponential-function">exponential function</span> was defined in terms of an <span data-concept="inverse-function">inverse function</span>, and not in terms of a power of $e,$ we must verify that the usual laws of exponents hold for the function $e^{x}.$</p>
+<div class="note" id="exp-properties-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="laws-of-exponents">Properties of the Exponential Function</span></h3>
+<p>If $p$ and $q$ are any real numbers and $r$ is a rational number, then</p>
+<ol><li>$e^{p}e^{q}=e^{p+q}$</li><li>$\frac{e^{p}}{e^{q}}=e^{p-q}$</li><li>${(e^{p})}^{r}=e^{pr}$</li></ol>
+</div>
+<h3>Proof</h3>
+<p>Note that if $p$ and $q$ are rational, the properties hold. However, if $p$ or $q$ are irrational, we must apply the <span data-concept="inverse-function">inverse function</span> definition of $e^{x}$ and verify the properties. Only the first property is verified here; the other two are left to you. We have</p>
+$$\ln(e^{p}e^{q})=\ln(e^{p})+\ln(e^{q})=p+q=\ln(e^{p+q}).$$
+<p>Since $\ln x$ is <span data-concept="one-to-one-function">one-to-one</span>, then</p>
+$$e^{p}e^{q}=e^{p+q}.$$
+<p>□</p>
+<p>As with part iv. of the <span data-concept="logarithmic-function">logarithm</span> properties, we can extend property iii. to irrational values of $r,$ and we do so by the end of the section.</p>
+<p>We also want to verify the differentiation formula for the function $y=e^{x}.$ To do this, we need to use <span data-concept="implicit-differentiation">implicit differentiation</span>. Let $y=e^{x}.$ Then</p>
+$$\begin{aligned}\ln y &= x \\ \frac{d}{dx}\ln y &= \frac{d}{dx}x \\ \frac{1}{y}\;\frac{dy}{dx} &= 1 \\ \frac{dy}{dx} &= y.\end{aligned}$$
+<p>Thus, we see</p>
+$$\frac{d}{dx}e^{x}=e^{x}$$
+<p>as desired, which leads immediately to the integration formula</p>
+$$\int e^{x}dx=e^{x}+C.$$
+<p>We apply these formulas in the following examples.</p>
+<div class="example" id="fs-id1167793272158">
+<h3>Example 6.38 · Using Properties of Exponential Functions</h3>
+<p>Evaluate the following derivatives:</p>
+<ol type="a"><li>$\frac{d}{dt}e^{3t}e^{t^{2}}$</li><li>$\frac{d}{dx}e^{3x^{2}}$</li></ol>
+<h4>Solution</h4>
+<p>We apply the <span data-concept="chain-rule">chain rule</span> as necessary.</p>
+<ol type="a"><li>$\frac{d}{dt}e^{3t}e^{t^{2}}=\frac{d}{dt}e^{3t+t^{2}}=e^{3t+t^{2}}(3+2t)$</li><li>$\frac{d}{dx}e^{3x^{2}}=e^{3x^{2}}6x$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1167793272158"></div>
+<div class="example" id="fs-id1167793944672">
+<h3>Example 6.39 · Using Properties of Exponential Functions</h3>
+<p>Evaluate the following integral: $\int 2xe^{-x^{2}}dx.$</p>
+<h4>Solution</h4>
+<p>Using $u$-substitution, let $u=-x^{2}.$ Then $du=-2x\;dx,$ and we have</p>
+$$\int 2xe^{-x^{2}}dx=-\int e^{u}du=-e^{u}+C=-e^{-x^{2}}+C.$$
+</div>
+<div class="exercises" data-place="fs-id1167793944672"></div>
+</section>
+
+<section id="general">
+<h2>General Logarithmic and Exponential Functions</h2>
+<p class="cite-target">We close this section by looking at <span data-concept="exponential-function">exponential functions</span> and <span data-concept="logarithmic-function">logarithms</span> with bases other than $e.$ Exponential functions are functions of the form $\kf(x)=a^{x}.$ Note that unless $a=e,$ we still do not have a mathematically rigorous definition of these functions for irrational exponents. Let’s rectify that here by defining the function $\kf(x)=a^{x}$ in terms of the <span data-concept="exponential-function">exponential function</span> $e^{x}.$ We then examine <span data-concept="logarithmic-function">logarithms</span> with bases other than $e$ as <span data-concept="inverse-function">inverse functions</span> of <span data-concept="exponential-function">exponential functions</span>.</p>
+<div class="note" id="general-exponential-definition">
+<div class="eyebrow">Definition</div>
+<p>For any $a>0,$ and for any real number $x,$ define $y=a^{x}$ as follows:</p>
+$$y=a^{x}=e^{x\;\ln a}.$$
+</div>
+<p>Now $a^{x}$ is defined rigorously for all values of <em>x</em>. This definition also allows us to generalize property iv. of <span data-concept="logarithmic-function">logarithms</span> and property iii. of <span data-concept="exponential-function">exponential functions</span> to apply to both rational and irrational values of $r.$ It is straightforward to show that properties of exponents hold for general <span data-concept="exponential-function">exponential functions</span> defined in this way.</p>
+<p>Let’s now apply this definition to calculate a differentiation formula for $a^{x}.$ We have</p>
+$$\frac{d}{dx}a^{x}=\frac{d}{dx}e^{x\;\ln a}=e^{x\;\ln a}\ln a=a^{x}\ln a.$$
+<p>The corresponding integration formula follows immediately.</p>
+<div class="note" id="general-exponential-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="derivatives-of-general-exponential-and-logarithmic-functions">Derivatives and Integrals Involving General Exponential Functions</span></h3>
+<p>Let $a>0.$ Then,</p>
+$$\frac{d}{dx}a^{x}=a^{x}\ln a$$
+<p>and</p>
+$$\int a^{x}dx=\frac{1}{\ln a}a^{x}+C.$$
+</div>
+<p>If $a\ne1,$ then the function $a^{x}$ is <span data-concept="one-to-one-function">one-to-one</span> and has a well-defined inverse. Its inverse is denoted by ${\log}_{a}x.$ Then,</p>
+$$y={\log}_{a}x\;\text{if and only if}\;x=a^{y}.$$
+<p>Note that general <span data-concept="logarithmic-function">logarithm</span> functions can be written in terms of the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span>. Let $y={\log}_{a}x.$ Then, $x=a^{y}.$ Taking the <span data-concept="natural-logarithm-as-an-integral">natural logarithm</span> of both sides of this second equation, we get</p>
+$$\begin{aligned}\ln x &= \ln(a^{y}) \\ \ln x &= y\;\ln a \\ y &= \frac{\ln x}{\ln a} \\ {\log}_{a}x &= \frac{\ln x}{\ln a}.\end{aligned}$$
+<p>Thus, we see that all logarithmic functions are constant multiples of one another. Next, we use this formula to find a differentiation formula for a <span data-concept="logarithmic-function">logarithm</span> with base $a.$ Again, let $y={\log}_{a}x.$ Then,</p>
+$$\begin{aligned}\frac{dy}{dx} &=\frac{d}{dx}({\log}_{a}x) \\ &=\frac{d}{dx}(\frac{\ln x}{\ln a}) \\ &=(\frac{1}{\ln a})\frac{d}{dx}(\ln x) \\ &=\frac{1}{\ln a}\cdot \frac{1}{x} \\ &=\frac{1}{x\;\ln a}.\end{aligned}$$
+<div class="note" id="general-log-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="derivatives-of-general-exponential-and-logarithmic-functions">Derivatives of General Logarithm Functions</span></h3>
+<p>Let $a>0.$ Then,</p>
+$$\frac{d}{dx}{\log}_{a}x=\frac{1}{x\;\ln a}.$$
+</div>
+<div class="example" id="fs-id1167793948184">
+<h3>Example 6.40 · Calculating Derivatives of General Exponential and Logarithm Functions</h3>
+<p>Evaluate the following derivatives:</p>
+<ol type="a"><li>$\frac{d}{dt}(4^{t}\cdot 2^{t^{2}})$</li><li>$\frac{d}{dx}{\log}_{8}(7x^{2}+4)$</li></ol>
+<h4>Solution</h4>
+<p>We need to apply the <span data-concept="chain-rule">chain rule</span> as necessary.</p>
+<ol type="a"><li>$\frac{d}{dt}(4^{t}\cdot 2^{t^{2}})=\frac{d}{dt}(2^{2t}\cdot 2^{t^{2}})=\frac{d}{dt}(2^{2t+t^{2}})=2^{2t+t^{2}}\ln(2)(2+2t)$</li><li>$\frac{d}{dx}{\log}_{8}(7x^{2}+4)=\frac{1}{(7x^{2}+4)(\ln8)}(14x)$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1167793948184"></div>
+<div class="example" id="fs-id1167793499138">
+<h3>Example 6.41 · Integrating General Exponential Functions</h3>
+<p>Evaluate the following integral: $\int \frac{3}{2^{3x}}dx.$</p>
+<h4>Solution</h4>
+<p>Use $u\text{-substitution}$ and let $u=-3x.$ Then $du=-3dx$ and we have</p>
+$$\int \frac{3}{2^{3x}}dx=\int 3\cdot 2^{-3x}dx=-\int 2^{u}du=-\frac{1}{\ln2}2^{u}+C=-\frac{1}{\ln2}2^{-3x}+C.$$
+</div>
+<div class="exercises" data-place="fs-id1167793499138"></div>
+</section>

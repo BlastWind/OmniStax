@@ -1,0 +1,146 @@
+<p id="growth-decay-intro">One of the most prevalent applications of <span data-concept="exponential-function">exponential functions</span> involves growth and decay models. Exponential growth and decay show up in a host of natural applications. From population growth and continuously compounded interest to radioactive decay and <span data-concept="newtons-law-of-cooling">Newton’s law of cooling</span>, <span data-concept="exponential-function">exponential functions</span> are ubiquitous in nature. In this section, we examine <span data-concept="exponential-growth">exponential growth</span> and decay in the context of some of these applications.</p>
+<section id="growth">
+<h2>Exponential Growth Model</h2>
+<p class="cite-target">Many systems exhibit <span data-concept="exponential-growth">exponential growth</span>. These systems follow a model of the form $y=y_{0}e^{kt},$ where $y_{0}$ represents the initial state of the system and $k$ is a positive constant, called the <em>growth constant</em>. Notice that in an <span data-concept="exponential-growth">exponential growth</span> model, we have</p>
+$$\kyprime=ky_{0}e^{kt}=ky.\tag{6.27}$$
+<p>That is, the rate of growth is proportional to the current function value. This is a key feature of <span data-concept="exponential-growth">exponential growth</span>. Equation 6.27 involves derivatives and is called a <em><span data-concept="differential-equation">differential equation</span>.</em> We learn more about <span data-concept="differential-equation">differential equations</span> in <a href="/calculus/ch08/intro/">Introduction to Differential Equations</a>.</p>
+<div class="note" id="growth-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="exponential-growth">Exponential Growth Model</span></h3>
+<p>Systems that exhibit <strong><span data-concept="exponential-growth">exponential growth</span></strong> increase according to the mathematical model</p>
+$$y=y_{0}e^{kt},$$
+<p>where $y_{0}$ represents the initial state of the system and $k>0$ is a constant, called the <em>growth constant</em>.</p>
+</div>
+<p>Population growth is a common example of <span data-concept="exponential-growth">exponential growth</span>. Consider a population of bacteria, for instance. It seems plausible that the rate of population growth would be proportional to the size of the population. After all, the more bacteria there are to reproduce, the faster the population grows. Figure 6.79 and Table 6.1 represent the growth of a population of bacteria with an initial population of $200$ bacteria and a growth constant of $0.02.$ Notice that after only $2$ hours $(120$ minutes), the population is $10$ times its original size!</p>
+<figure class="sim" id="sim-growth" data-figure="6.79" data-original="/media/ch06/CNX_Calc_Figure_06_08_001.jpg" data-original-caption="An example of exponential growth for bacteria.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.79</span><span>Change the <span data-concept="exponential-growth">growth constant</span> <em>k</em> of the bacteria’s population $\kf(t)=200e^{kt}$ (the book’s is 0.02): the population doubles every $(\ln 2)/k$ minutes, the same <span data-concept="doubling-time">doubling time</span> from 200 to 400 as from 400 to 800. Drag along the curve to read the population.</span></div>
+</figure>
+<div class="book-table" id="fs-id1167793939650">
+  <div class="tcap"><span class="eyebrow">Table 6.1</span><span>Exponential Growth of a Bacterial Population</span></div>
+  <table><thead><tr><th><strong>Time (min)</strong></th><th><strong>Population Size (no. of bacteria)</strong></th></tr></thead><tbody><tr><td>$10$</td><td>$244$</td></tr><tr><td>$20$</td><td>$298$</td></tr><tr><td>$30$</td><td>$364$</td></tr><tr><td>$40$</td><td>$445$</td></tr><tr><td>$50$</td><td>$544$</td></tr><tr><td>$60$</td><td>$664$</td></tr><tr><td>$70$</td><td>$811$</td></tr><tr><td>$80$</td><td>$991$</td></tr><tr><td>$90$</td><td>$1210$</td></tr><tr><td>$100$</td><td>$1478$</td></tr><tr><td>$110$</td><td>$1805$</td></tr><tr><td>$120$</td><td>$2205$</td></tr></tbody></table>
+</div>
+<p>Note that we are using a continuous function to model what is inherently discrete behavior. At any given time, the real-world population contains a whole number of bacteria, although the model takes on noninteger values. When using <span data-concept="exponential-growth">exponential growth</span> models, we must always be careful to interpret the function values in the context of the phenomenon we are modeling.</p>
+<div class="example" id="fs-id1167794022966">
+<h3>Example 6.42 · Population Growth</h3>
+<p>Consider the population of bacteria described earlier. This population grows according to the function <span data-fn="200*exp(0.02*x)">$\kf(t)=200e^{0.02t},$</span> where <em>t</em> is measured in minutes. How many bacteria are present in the population after $5$ hours $(300$ minutes)? When does the population reach $100,000$ bacteria?</p>
+<h4>Solution</h4>
+<p>We have <span data-fn="200*exp(0.02*x)">$\kf(t)=200e^{0.02t}.$</span> Then</p>
+$$\kf(300)=200e^{0.02(300)}\approx 80,686.$$
+<p>There are $80,686$ bacteria in the population after $5$ hours.</p>
+<p>To find when the population reaches $100,000$ bacteria, we solve the equation</p>
+$$\begin{aligned}100,000 &= 200e^{0.02t} \\ 500 &= e^{0.02t} \\ \ln500 &= 0.02t \\ t &= \frac{\ln500}{0.02}\approx 310.73.\end{aligned}$$
+<p>The population reaches $100,000$ bacteria after $310.73$ minutes.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794022966"></div>
+<p>Let’s now turn our attention to a financial application: compound interest. Interest that is not compounded is called <em>simple interest</em>. Simple interest is paid once, at the end of the specified time period (usually $1$ year). So, if we put $\text{&#36;}1000$ in a savings account earning $2\text{\%}$ simple interest per year, then at the end of the year we have</p>
+$$1000(1+0.02)=\text{&#36;}1020.$$
+<p>Compound interest is paid multiple times per year, depending on the compounding period. Therefore, if the bank compounds the interest every $6$ months, it credits half of the year’s interest to the account after $6$ months. During the second half of the year, the account earns interest not only on the initial $\text{&#36;}1000,$ but also on the interest earned during the first half of the year. Mathematically speaking, at the end of the year, we have</p>
+$$1000{(1+\frac{0.02}{2})}^{2}=\text{&#36;}1020.10.$$
+<p>Similarly, if the interest is compounded every $4$ months, we have</p>
+$$1000{(1+\frac{0.02}{3})}^{3}=\text{&#36;}1020.13,$$
+<p>and if the interest is compounded daily $(365$ times per year), we have $\text{&#36;}1020.20.$ If we extend this concept, so that the interest is compounded continuously, after $t$ years we have</p>
+$$1000\lim_{n\to \infty}{(1+\frac{0.02}{n})}^{nt}.$$
+<p>Now let’s manipulate this expression so that we have an <span data-concept="exponential-growth">exponential growth</span> function. Recall that the number $e$ can be expressed as a <span data-concept="limit">limit</span>:</p>
+$$e=\lim_{m\to \infty}{(1+\frac{1}{m})}^{m}.$$
+<p>Based on this, we want the expression inside the parentheses to have the form $(1+1/m).$ Let $n=0.02m.$ Note that as $n\to \infty,$ $m\to \infty$ as well. Then we get</p>
+$$1000\lim_{n\to \infty}{(1+\frac{0.02}{n})}^{nt}=1000\lim_{m\to \infty}{(1+\frac{0.02}{0.02m})}^{0.02mt}=1000{[\lim_{m\to \infty}{(1+\frac{1}{m})}^{m}]}^{0.02t}.$$
+<p>We recognize the <span data-concept="limit">limit</span> inside the brackets as the number $e.$ So, the balance in our bank account after $t$ years is given by $1000e^{0.02t}.$ Generalizing this concept, we see that if a bank account with an initial balance of $\text{&#36;}P$ earns interest at a rate of $r\text{\%},$ compounded continuously, then the balance of the account after $t$ years is</p>
+$$\text{Balance}=Pe^{rt}.$$
+<div class="example" id="fs-id1167793879685">
+<h3>Example 6.43 · Compound Interest</h3>
+<p>A 25-year-old student is offered an opportunity to invest some money in a retirement account that pays $5\text{\%}$ annual interest compounded continuously. How much does the student need to invest today to have $\text{&#36;}1$ million when she retires at age $65?$ What if she could earn $6\text{\%}$ annual interest compounded continuously instead?</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\begin{aligned}1,000,000 &= Pe^{0.05(40)} \\ P &= 135,335.28.\end{aligned}$$
+<p>She must invest $\text{&#36;}135,335.28$ at $5\text{\%}$ interest.</p>
+<p>If, instead, she is able to earn $6\text{\%},$ then the equation becomes</p>
+$$\begin{aligned}1,000,000 &= Pe^{0.06(40)} \\ P &= 90,717.95.\end{aligned}$$
+<p>In this case, she needs to invest only $\text{&#36;}90,717.95.$ This is roughly two-thirds the amount she needs to invest at $5\text{\%}.$ The fact that the interest is compounded continuously greatly magnifies the effect of the $1\text{\%}$ increase in interest rate.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793879685"></div>
+<p>If a quantity grows exponentially, the time it takes for the quantity to double remains constant. In other words, it takes the same amount of time for a population of bacteria to grow from $100$ to $200$ bacteria as it does to grow from $10,000$ to $20,000$ bacteria. This time is called the <span data-concept="doubling-time">doubling time</span>. To calculate the <span data-concept="doubling-time">doubling time</span>, we want to know when the quantity reaches twice its original size. So we have</p>
+$$\begin{aligned}2y_{0} &= y_{0}e^{kt} \\ 2 &= e^{kt} \\ \ln2 &= kt \\ t &= \frac{\ln2}{k}.\end{aligned}$$
+<div class="note" id="doubling-definition">
+<div class="eyebrow">Definition</div>
+<p>If a quantity grows exponentially, the <strong><span data-concept="doubling-time">doubling time</span></strong> is the amount of time it takes the quantity to double. It is given by</p>
+$$\text{Doubling time}\;=\frac{\ln2}{k}.$$
+</div>
+<div class="example" id="fs-id1167793294341">
+<h3>Example 6.44 · Using the Doubling Time</h3>
+<p>Assume a population of fish grows exponentially. A pond is stocked initially with $500$ fish. After $6$ months, there are $1000$ fish in the pond. The owner will allow his friends and neighbors to fish on his pond after the fish population reaches $10,000.$ When will the owner’s friends be allowed to fish?</p>
+<h4>Solution</h4>
+<p>We know it takes the population of fish $6$ months to double in size. So, if <em>t</em> represents time in months, by the doubling-time formula, we have $6=(\ln2)/k.$ Then, $k=(\ln2)/6.$ Thus, the population is given by $y=500e^{((\ln2)/6)t}.$ To figure out when the population reaches $10,000$ fish, we must solve the following equation:</p>
+$$\begin{aligned}10,000 &= 500e^{(\ln2/6)t} \\ 20 &= e^{(\ln2/6)t} \\ \ln20 &= (\frac{\ln2}{6})t \\ t &= \frac{6(\ln20)}{\ln2}\approx 25.93.\end{aligned}$$
+<p>The owner’s friends have to wait $25.93$ months (a little more than $2$ years) to fish in the pond.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793294341"></div>
+</section>
+
+<section id="decay">
+<h2>Exponential Decay Model</h2>
+<p class="cite-target">Exponential functions can also be used to model populations that shrink (from disease, for example), or chemical compounds that break down over time. We say that such systems exhibit <span data-concept="exponential-decay">exponential decay</span>, rather than <span data-concept="exponential-growth">exponential growth</span>. The model is nearly the same, except there is a negative sign in the exponent. Thus, for some positive constant $k,$ we have $y=y_{0}e^{-kt}.$</p>
+<p>As with <span data-concept="exponential-growth">exponential growth</span>, there is a <span data-concept="differential-equation">differential equation</span> associated with <span data-concept="exponential-decay">exponential decay</span>. We have</p>
+$$\kyprime=-ky_{0}e^{-kt}=-ky.$$
+<div class="note" id="decay-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="exponential-decay">Exponential Decay Model</span></h3>
+<p>Systems that exhibit <strong><span data-concept="exponential-decay">exponential decay</span></strong> behave according to the model</p>
+$$y=y_{0}e^{-kt},$$
+<p>where $y_{0}$ represents the initial state of the system and $k>0$ is a constant, called the <em>decay constant</em>.</p>
+</div>
+<p>The following figure shows a graph of a representative <span data-concept="exponential-decay">exponential decay</span> function.</p>
+<figure class="sim" id="sim-decay" data-figure="6.80" data-original="/media/ch06/CNX_Calc_Figure_06_08_002.jpg" data-original-caption="An example of exponential decay.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.80</span><span>Change the decay constant <em>k</em> of $y=y_{0}e^{-kt}$: the quantity halves every $(\ln 2)/k,$ its <span data-concept="half-life">half-life</span>, whatever amount is left.</span></div>
+</figure>
+<p>Let’s look at a physical application of <span data-concept="exponential-decay">exponential decay</span>. <span data-concept="newtons-law-of-cooling">Newton’s law of cooling</span> says that an object cools at a rate proportional to the difference between the temperature of the object and the temperature of the surroundings. In other words, if $\kT$ represents the temperature of the object and $T_{a}$ represents the ambient temperature in a room, then</p>
+$$\kTprime=-k(\kT-T_{a}).$$
+<p>Note that this is not quite the right model for <span data-concept="exponential-decay">exponential decay</span>. We want the derivative to be proportional to the function, and this expression has the additional $T_{a}$ term. Fortunately, we can make a change of variables that resolves this issue. Let $y(t)=\kT(t)-T_{a}.$ Then $\kyprime(t)=\kTprime(t)-0=\kTprime(t),$ and our equation becomes</p>
+$$\kyprime=-ky.$$
+<p>From our previous work, we know this relationship between <em>y</em> and its derivative leads to <span data-concept="exponential-decay">exponential decay</span>. Thus,</p>
+$$y=y_{0}e^{-kt},$$
+<p>and we see that</p>
+$$\begin{aligned}\kT-T_{a} &= (T_{0}-T_{a})e^{-kt} \\ \kT &= (T_{0}-T_{a})e^{-kt}+T_{a}\end{aligned}$$
+<p>where $T_{0}$ represents the initial temperature. Let’s apply this formula in the following example.</p>
+<div class="example" id="fs-id1167793936902">
+<h3>Example 6.45 · Newton’s Law of Cooling</h3>
+<p>According to experienced baristas, the optimal temperature to serve coffee is between $155\text{°}\text{F}$ and $175\text{°}\text{F}.$ Suppose coffee is poured at a temperature of $200\text{°}\text{F},$ and after $2$ minutes in a $70\text{°}\text{F}$ room it has cooled to $180\text{°}\text{F}.$ When is the coffee first cool enough to serve? When is the coffee too cold to serve? Round answers to the nearest half minute.</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\begin{aligned}\kT &= (T_{0}-T_{a})e^{-kt}+T_{a} \\ 180 &= (200-70)e^{-k(2)}+70 \\ 110 &= 130e^{-2k} \\ \frac{11}{13} &= e^{-2k} \\ \ln\frac{11}{13} &= -2k \\ \ln11-\ln13 &= -2k \\ k &= \frac{\ln13-\ln11}{2}.\end{aligned}$$
+<p>Then, the model is</p>
+$$\kT=130e^{(\frac{\ln11-\ln13}{2})t}+70.$$
+<p>The coffee reaches $175\text{°}\text{F}$ when</p>
+$$\begin{aligned}175 &= 130e^{(\frac{\ln11-\ln13}{2})t}+70 \\ 105 &= 130e^{(\frac{\ln11-\ln13}{2})t} \\ \frac{21}{26} &= e^{(\frac{\ln11-\ln13}{2})t} \\ \ln\frac{21}{26} &= \frac{\ln11-\ln13}{2}t \\ \ln21-\ln26 &= \frac{\ln11-\ln13}{2}t \\ t &= \frac{2(\ln21-\ln26)}{\ln11-\ln13}\approx 2.56.\end{aligned}$$
+<p>The coffee can be served about $2.5$ minutes after it is poured. The coffee reaches $155\text{°}\text{F}$ at</p>
+$$\begin{aligned}155 &= 130e^{(\frac{\ln11-\ln13}{2})t}+70 \\ 85 &= 130e^{(\frac{\ln11-\ln13}{2})t} \\ \frac{17}{26} &= e^{(\frac{\ln11-\ln13}{2})t} \\ \ln17-\ln26 &= (\frac{\ln11-\ln13}{2})t \\ t &= \frac{2(\ln17-\ln26)}{\ln11-\ln13}\approx 5.09.\end{aligned}$$
+<p>The coffee is too cold to be served about $5$ minutes after it is poured.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793936902"></div>
+<figure class="sim" id="sim-cooling">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The coffee of Example 6.45, poured at 200°F into a 70°F room and at 180°F after 2 minutes: drag along the time to follow <span data-concept="newtons-law-of-cooling">Newton’s law of cooling</span>, $\kT(t)=130e^{-kt}+70,$ falling ever more slowly toward the room’s temperature. The band is the baristas’ serving range, 155°F to 175°F; the coffee is in it from about 2.5 to about 5 minutes.</span></div>
+</figure>
+<p>Just as systems exhibiting <span data-concept="exponential-growth">exponential growth</span> have a constant <span data-concept="doubling-time">doubling time</span>, systems exhibiting <span data-concept="exponential-decay">exponential decay</span> have a constant <span data-concept="half-life">half-life</span>. To calculate the <span data-concept="half-life">half-life</span>, we want to know when the quantity reaches half its original size. Therefore, we have</p>
+$$\begin{aligned}\frac{y_{0}}{2} &= y_{0}e^{-kt} \\ \frac{1}{2} &= e^{-kt} \\ -\ln2 &= -kt \\ t &= \frac{\ln2}{k}.\end{aligned}$$
+<p><em>Note</em>: This is the same expression we came up with for <span data-concept="doubling-time">doubling time</span>.</p>
+<div class="note" id="half-life-definition">
+<div class="eyebrow">Definition</div>
+<p>If a quantity decays exponentially, the <strong><span data-concept="half-life">half-life</span></strong> is the amount of time it takes the quantity to be reduced by half. It is given by</p>
+$$\text{Half-life}=\frac{\ln2}{k}.$$
+</div>
+<div class="example" id="fs-id1167793607668">
+<h3>Example 6.46 · Radiocarbon Dating</h3>
+<p>One of the most common applications of an <span data-concept="exponential-decay">exponential decay</span> model is carbon dating. $\text{Carbon-}14$ decays (emits a radioactive particle) at a regular and consistent exponential rate. Therefore, if we know how much carbon was originally present in an object and how much carbon remains, we can determine the age of the object. The <span data-concept="half-life">half-life</span> of $\text{carbon-}14$ is approximately $5730$ years—meaning, after that many years, half the material has converted from the original $\text{carbon-}14$ to the new nonradioactive $\text{nitrogen-}14.$ If we have $100$ g $\text{carbon-}14$ today, how much is left in $50$ years? If an artifact that originally contained $100$ g of carbon now contains $10$ g of carbon, how old is it? Round the answer to the nearest hundred years.</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\begin{aligned}5730 &= \frac{\ln2}{k} \\ k &= \frac{\ln2}{5730}.\end{aligned}$$
+<p>So, the model says</p>
+$$y=100e^{-(\ln2/5730)t}.$$
+<p>In $50$ years, we have</p>
+$$\begin{aligned}y &= 100e^{-(\ln2/5730)(50)} \\ &\approx 99.40.\end{aligned}$$
+<p>Therefore, in $50$ years, $99.40$ g of $\text{carbon-}14$ remains.</p>
+<p>To determine the age of the artifact, we must solve</p>
+$$\begin{aligned}10 &= 100e^{-(\ln2/5730)t} \\ \frac{1}{10} &= e^{-(\ln2/5730)t} \\ t &\approx 19035.\end{aligned}$$
+<p>The artifact is about $19,000$ years old.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793607668"></div>
+</section>

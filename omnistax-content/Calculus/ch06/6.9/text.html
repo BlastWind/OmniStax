@@ -1,0 +1,107 @@
+<p id="hyperbolic-intro">We were introduced to <span data-concept="hyperbolic-functions">hyperbolic functions</span> in <a href="/calculus/ch01/1.5/">Introduction to Functions and Graphs</a>, along with some of their basic properties. In this section, we look at differentiation and integration formulas for the <span data-concept="hyperbolic-functions">hyperbolic functions</span> and their inverses.</p>
+<section id="hyperbolic">
+<h2>Derivatives and Integrals of the Hyperbolic Functions</h2>
+<p class="cite-target">Recall that the hyperbolic sine and hyperbolic cosine are defined as</p>
+$$\text{sinh}\;x=\frac{e^{x}-e^{-x}}{2}\;\text{and}\;\text{cosh}\;x=\frac{e^{x}+e^{-x}}{2}.$$
+<p>The other <span data-concept="hyperbolic-functions">hyperbolic functions</span> are then defined in terms of $\text{sinh}\;x$ and $\text{cosh}\;x.$ The <span data-concept="graph-of-a-function">graphs of</span> the <span data-concept="hyperbolic-functions">hyperbolic functions</span> are shown in the following figure.</p>
+<figure class="sim" id="sim-hyperbolic" data-figure="6.81" data-original="/media/ch06/CNX_Calc_Figure_06_09_001.jpg" data-original-caption="Graphs of the hyperbolic functions.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.81</span><span>Choose a hyperbolic function and drag along its graph: the slope of the tangent line there is the value of its <span data-concept="derivatives-of-hyperbolic-functions">derivative</span>, drawn beneath it, as Table 6.2 lists.</span></div>
+</figure>
+<p>It is easy to develop differentiation formulas for the <span data-concept="hyperbolic-functions">hyperbolic functions</span>. For example, looking at $\text{sinh}\;x$ we have</p>
+$$\begin{aligned}\frac{d}{dx}(\text{sinh}\;x) &=\frac{d}{dx}(\frac{e^{x}-e^{-x}}{2}) \\ &=\frac{1}{2}[\frac{d}{dx}(e^{x})-\frac{d}{dx}(e^{-x})] \\ &=\frac{1}{2}[e^{x}+e^{-x}]=\text{cosh}\;x.\end{aligned}$$
+<p>Similarly, $(d/dx)\text{cosh}\;x=\text{sinh}\;x.$ We summarize the <span data-concept="derivatives-of-hyperbolic-functions">differentiation formulas</span> for the <span data-concept="hyperbolic-functions">hyperbolic functions</span> in the following table.</p>
+<div class="book-table" id="fs-id1167793363804">
+  <div class="tcap"><span class="eyebrow">Table 6.2</span><span>Derivatives of the Hyperbolic Functions</span></div>
+  <table><thead><tr><th>$\kf(x)$</th><th>$\frac{d}{dx}\kf(x)$</th></tr></thead><tbody><tr><td>$\text{sinh}\;x$</td><td>$\text{cosh}\;x$</td></tr><tr><td>$\text{cosh}\;x$</td><td>$\text{sinh}\;x$</td></tr><tr><td>$\text{tanh}\;x$</td><td>${\text{sech}}^{2}\;x$</td></tr><tr><td>$\text{coth}\;x$</td><td>$-{\text{csch}}^{2}\;x$</td></tr><tr><td>$\text{sech}\;x$</td><td>$-\text{sech}\;x\;\text{tanh}\;x$</td></tr><tr><td>$\text{csch}\;x$</td><td>$-\text{csch}\;x\;\text{coth}\;x$</td></tr></tbody></table>
+</div>
+<p>Let’s take a moment to compare the derivatives of the <span data-concept="hyperbolic-functions">hyperbolic functions</span> with the derivatives of the standard trigonometric functions. There are a lot of similarities, but differences as well. For example, the derivatives of the sine functions match: $(d/dx)\sin x=\cos x$ and $(d/dx)\text{sinh}\;x=\text{cosh}\;x.$ The derivatives of the cosine functions, however, differ in sign: $(d/dx)\cos x=-\sin x,$ but $(d/dx)\text{cosh}\;x=\text{sinh}\;x.$ As we continue our examination of the <span data-concept="hyperbolic-functions">hyperbolic functions</span>, we must be mindful of their similarities and differences to the standard trigonometric functions.</p>
+<p>These differentiation formulas for the <span data-concept="hyperbolic-functions">hyperbolic functions</span> lead directly to the following <span data-concept="integrals-of-hyperbolic-functions">integral formulas</span>.</p>
+$$\begin{array}{rllllrll}\int \text{sinh}\;u\;du & = & \text{cosh}\;u+C & & & \int {\text{csch}}^{2}\;u\;du & = & -\text{coth}\;u+C \\ \int \text{cosh}\;u\;du & = & \text{sinh}\;u+C & & & \int \text{sech}\;u\;\text{tanh}\;u\;du & = & -\text{sech}\;u+C \\ \int {\text{sech}}^{2}u\;du & = & \text{tanh}\;u+C & & & \int \text{csch}\;u\;\text{coth}\;u\;du & = & -\text{csch}\;u+C\end{array}$$
+<div class="example" id="fs-id1167793852238">
+<h3>Example 6.47 · Differentiating Hyperbolic Functions</h3>
+<p>Evaluate the following derivatives:</p>
+<ol type="a"><li>$\frac{d}{dx}(\text{sinh}(x^{2}))$</li><li>$\frac{d}{dx}{(\text{cosh}\;x)}^{2}$</li></ol>
+<h4>Solution</h4>
+<p>Using the formulas in Table 6.2 and the <span data-concept="chain-rule">chain rule</span>, we get</p>
+<ol type="a"><li>$\frac{d}{dx}(\text{sinh}(x^{2}))=\text{cosh}(x^{2})\cdot 2x$</li><li>$\frac{d}{dx}{(\text{cosh}\;x)}^{2}=2\;\text{cosh}\;x\;\text{sinh}\;x$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1167793852238"></div>
+<div class="example" id="fs-id1167793279424">
+<h3>Example 6.48 · Integrals Involving Hyperbolic Functions</h3>
+<p>Evaluate the following integrals:</p>
+<ol type="a"><li>$\int x\;\text{cosh}(x^{2})dx$</li><li>$\int \text{tanh}\;x\;dx$</li></ol>
+<h4>Solution</h4>
+<p>We can use <em>u</em>-substitution in both cases.</p>
+<ol type="a"><li>Let $u=x^{2}.$ Then, $du=2x\;dx$ and $$\int x\;\text{cosh}(x^{2})dx=\int \frac{1}{2}\text{cosh}\;u\;du=\frac{1}{2}\text{sinh}\;u+C=\frac{1}{2}\text{sinh}(x^{2})+C.$$</li><li>Let $u=\text{cosh}\;x.$ Then, $du=\text{sinh}\;x\;dx$ and $$\int \text{tanh}\;x\;dx=\int \frac{\text{sinh}\;x}{\text{cosh}\;x}dx=\int \frac{1}{u}du=\ln|u|+C=\ln|\text{cosh}\;x|+C.$$</li></ol>
+<p>Note that $\text{cosh}\;x>0$ for all $x,$ so we can eliminate the absolute value signs and obtain</p>
+$$\int \text{tanh}\;x\;dx=\ln(\text{cosh}\;x)+C.$$
+</div>
+<div class="exercises" data-place="fs-id1167793279424"></div>
+</section>
+
+<section id="inverse-hyperbolic">
+<h2>Calculus of Inverse Hyperbolic Functions</h2>
+<p class="cite-target">Looking at the <span data-concept="graph-of-a-function">graphs of</span> the <span data-concept="hyperbolic-functions">hyperbolic functions</span>, we see that with appropriate range restrictions, they all have inverses. Most of the necessary range restrictions can be discerned by close examination of the graphs. The domains and ranges of the <span data-concept="inverse-hyperbolic-functions">inverse hyperbolic functions</span> are summarized in the following table.</p>
+<div class="book-table" id="fs-id1167793362111">
+  <div class="tcap"><span class="eyebrow">Table 6.3</span><span>Domains and Ranges of the Inverse Hyperbolic Functions</span></div>
+  <table><thead><tr><th>Function</th><th>Domain</th><th>Range</th></tr></thead><tbody><tr><td>${\text{sinh}}^{-1}x$</td><td>$(-\infty,\infty)$</td><td>$(-\infty,\infty)$</td></tr><tr><td>${\text{cosh}}^{-1}x$</td><td>$[1,\infty)$</td><td>$[0,\infty)$</td></tr><tr><td>${\text{tanh}}^{-1}x$</td><td>$(-1,1)$</td><td>$(-\infty,\infty)$</td></tr><tr><td>${\text{coth}}^{-1}x$</td><td>$(-\infty,-1)\cup (1,\infty)$</td><td>$(-\infty,0)\cup (0,\infty)$</td></tr><tr><td>${\text{sech}}^{-1}x$</td><td>$(0\text{, 1}]$</td><td>$[0,\infty)$</td></tr><tr><td>${\text{csch}}^{-1}x$</td><td>$(-\infty,0)\cup (0,\infty)$</td><td>$(-\infty,0)\cup (0,\infty)$</td></tr></tbody></table>
+</div>
+<p>The <span data-concept="graph-of-a-function">graphs of</span> the <span data-concept="inverse-hyperbolic-functions">inverse hyperbolic functions</span> are shown in the following figure.</p>
+<figure class="sim" id="sim-inverse-hyperbolic" data-figure="6.82" data-original="/media/ch06/CNX_Calc_Figure_06_09_002.jpg" data-original-caption="Graphs of the inverse hyperbolic functions.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.82</span><span>Choose an inverse hyperbolic function: its graph is the reflection in the line $y=x$ of the hyperbolic function, faint, restricted where it has to be for an inverse to exist.</span></div>
+</figure>
+<p>To find the derivatives of the <span data-concept="inverse-function">inverse functions</span>, we use <span data-concept="implicit-differentiation">implicit differentiation</span>. We have</p>
+$$\begin{aligned}y &= {\text{sinh}}^{-1}\;x \\ \text{sinh}\;y &= x \\ \frac{d}{dx}\text{sinh}\;y &= \frac{d}{dx}x \\ \text{cosh}\;y\frac{dy}{dx} &= 1.\end{aligned}$$
+<p>Recall that ${\text{cosh}}^{2}y-{\text{sinh}}^{2}y=1,$ so $\text{cosh}\;y=\sqrt{1+{\text{sinh}}^{2}y}.$ Then,</p>
+$$\frac{dy}{dx}=\frac{1}{\text{cosh}\;y}=\frac{1}{\sqrt{1+{\text{sinh}}^{2}y}}=\frac{1}{\sqrt{1+x^{2}}}.$$
+<p>We can derive differentiation formulas for the other <span data-concept="inverse-hyperbolic-functions">inverse hyperbolic functions</span> in a similar fashion. These <span data-concept="derivatives-of-inverse-hyperbolic-functions">differentiation formulas</span> are summarized in the following table.</p>
+<div class="book-table" id="fs-id1167794020892">
+  <div class="tcap"><span class="eyebrow">Table 6.4</span><span>Derivatives of the Inverse Hyperbolic Functions</span></div>
+  <table><thead><tr><th>$\kf(x)$</th><th>$\frac{d}{dx}\kf(x)$</th></tr></thead><tbody><tr><td>${\text{sinh}}^{-1}x$</td><td>$\frac{1}{\sqrt{1+x^{2}}}$</td></tr><tr><td>${\text{cosh}}^{-1}x$</td><td>$\frac{1}{\sqrt{x^{2}-1}}$</td></tr><tr><td>${\text{tanh}}^{-1}x$</td><td>$\frac{1}{1-x^{2}}$</td></tr><tr><td>${\text{coth}}^{-1}x$</td><td>$\frac{1}{1-x^{2}}$</td></tr><tr><td>${\text{sech}}^{-1}x$</td><td>$\frac{-1}{x\sqrt{1-x^{2}}}$</td></tr><tr><td>${\text{csch}}^{-1}x$</td><td>&#36;\frac{−1}{</td><td>x</td><td>\sqrt{1+{x}^{2}}}&#36;</td></tr></tbody></table>
+</div>
+<p>Note that the derivatives of ${\text{tanh}}^{-1}\;x$ and ${\text{coth}}^{-1}\;x$ are the same. Thus, when we integrate $1/(1-x^{2}),$ we need to select the proper <span data-concept="antiderivative">antiderivative</span> based on the domain of the functions and the values of $x.$ <span data-concept="integrals-involving-inverse-hyperbolic-functions">Integration formulas</span> involving the <span data-concept="inverse-hyperbolic-functions">inverse hyperbolic functions</span> are summarized as follows.</p>
+$$\begin{array}{rllllrll}\int \frac{1}{\sqrt{1+u^{2}}}du & = & {\text{sinh}}^{-1}u+C & & & \int \frac{1}{u\sqrt{1-u^{2}}}du & = & -{\text{sech}}^{-1}|u|+C \\ \int \frac{1}{\sqrt{u^{2}-1}}du & = & {\text{cosh}}^{-1}u+C & & & \int \frac{1}{u\sqrt{1+u^{2}}}du & = & -{\text{csch}}^{-1}|u|+C \\ \int \frac{1}{1-u^{2}}du & = & \{\begin{gathered}{\text{tanh}}^{-1}u+C\;\text{if}\;|u|<1 \\ {\text{coth}}^{-1}u+C\;\text{if}\;|u|>1\end{gathered} & & & & &\end{array}$$
+<div class="example" id="fs-id1167793984979">
+<h3>Example 6.49 · Differentiating Inverse Hyperbolic Functions</h3>
+<p>Evaluate the following derivatives:</p>
+<ol type="a"><li>$\frac{d}{dx}({\text{sinh}}^{-1}(\frac{x}{3}))$</li><li>$\frac{d}{dx}{({\text{tanh}}^{-1}x)}^{2}$</li></ol>
+<h4>Solution</h4>
+<p>Using the formulas in Table 6.4 and the <span data-concept="chain-rule">chain rule</span>, we obtain the following results:</p>
+<ol type="a"><li>$\frac{d}{dx}({\text{sinh}}^{-1}(\frac{x}{3}))=\frac{1}{3\sqrt{1+\frac{x^{2}}{9}}}=\frac{1}{\sqrt{9+x^{2}}}$</li><li>$\frac{d}{dx}{({\text{tanh}}^{-1}x)}^{2}=\frac{2({\text{tanh}}^{-1}x)}{1-x^{2}}$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1167793984979"></div>
+<div class="example" id="fs-id1167793285224">
+<h3>Example 6.50 · Integrals Involving Inverse Hyperbolic Functions</h3>
+<p>Evaluate the following integrals:</p>
+<ol type="a"><li>$\int \frac{1}{\sqrt{4x^{2}-1}}dx$</li><li>$\int \frac{1}{2x\sqrt{1-9x^{2}}}dx$</li></ol>
+<h4>Solution</h4>
+<p>We can use $u\text{-substitution}$ in both cases.</p>
+<ol type="a"><li>Let $u=2x.$ Then, $du=2dx$ and we have $$\int \frac{1}{\sqrt{4x^{2}-1}}dx=\int \frac{1}{2\sqrt{u^{2}-1}}du=\frac{1}{2}{\text{cosh}}^{-1}u+C=\frac{1}{2}{\text{cosh}}^{-1}(2x)+C.$$</li><li>Let $u=3x.$ Then, $du=3dx$ and we obtain $$\int \frac{1}{2x\sqrt{1-9x^{2}}}dx=\frac{1}{2}{\displaystyle \int \frac{1}{u\sqrt{1-u^{2}}}du=-\frac{1}{2}{\text{sech}}^{-1}|u|+C=-\frac{1}{2}{\text{sech}}^{-1}|3x|+C}.$$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1167793285224"></div>
+</section>
+
+<section id="applications">
+<h2>Applications</h2>
+<p class="cite-target">One physical application of <span data-concept="hyperbolic-functions">hyperbolic functions</span> involves hanging cables. If a cable of uniform density is suspended between two supports without any load other than its own weight, the cable forms a curve called a <strong><span data-concept="catenary">catenary</span></strong>. High-voltage power lines, chains hanging between two posts, and strands of a spider’s web all form <span data-concept="catenary">catenaries</span>. The following figure shows chains hanging from a row of posts.</p>
+<figure class="photo" id="fig-chains" data-figure="6.83">
+  <img src="/media/ch06/CNX_Calc_Figure_06_09_003.jpg" alt="An image of chains hanging between posts that all take the shape of a catenary.">
+  <figcaption><span class="eyebrow">Figure 6.83</span><span>Chains between these posts take the shape of a catenary. (credit: modification of work by OKFoundryCompany, Flickr)</span></figcaption>
+</figure>
+<p>Hyperbolic functions can be used to model <span data-concept="catenary">catenaries</span>. Specifically, functions of the form $y=a\;\text{cosh}(x/a)$ are <span data-concept="catenary">catenaries</span>. Figure 6.84 shows the <span data-concept="graph-of-a-function">graph of</span> $y=2\;\text{cosh}(x/2).$</p>
+<figure class="sim" id="sim-catenary" data-figure="6.84" data-original="/media/ch06/CNX_Calc_Figure_06_09_004.jpg" data-original-caption="A hyperbolic cosine function forms the shape of a catenary.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.84</span><span>Change <em>a</em>: every <span data-concept="catenary">catenary</span> $y=a\cosh(x/a)$ hangs with its lowest point at height <em>a</em>, flatter as <em>a</em> grows, and its arc length from $-4$ to $4$ is $2a\sinh(4/a).$ The book’s Figure 6.84 is $a=2.$</span></div>
+</figure>
+<div class="example" id="fs-id1167793370895">
+<h3>Example 6.51 · Using a Catenary to Find the Length of a Cable</h3>
+<p>Assume a hanging cable has the shape $10\;\text{cosh}(x/10)$ for $-15\le x\le15,$ where $x$ is measured in feet. Determine the length of the cable (in feet).</p>
+<h4>Solution</h4>
+<p>Recall from <a href="/calculus/ch06/6.4/#6.4-arc-length-x-theorem">Section 6.4</a><sup class="fn" data-note="c-section-6-4"></sup> that the formula for arc length is</p>
+$$\text{Arc Length}=\int_a^{b}\sqrt{1+{[\kfprime(x)]}^{2}}\;dx.$$
+<p>We have $\kf(x)=10\;\text{cosh}(x/10),$ so $\kfprime(x)=\text{sinh}(x/10).$ Then</p>
+$$\begin{aligned}\text{Arc Length} &=\int_a^{b}\sqrt{1+{[\kfprime(x)]}^{2}}\;dx \\ &=\int_{-15}^{15}\sqrt{1+{\text{sinh}}^{2}(\frac{x}{10})}\;dx.\end{aligned}$$
+<p>Now recall that $1+{\text{sinh}}^{2}x={\text{cosh}}^{2}x,$ so we have</p>
+$$\begin{aligned}\text{Arc Length} &=\int_{-15}^{15}\sqrt{1+{\text{sinh}}^{2}(\frac{x}{10})}\;dx \\ &=\int _{-15}^{15}\text{cosh}(\frac{x}{10})dx \\ &=10\;\text{sinh}{(\frac{x}{10})|}_{-15}^{15}=10[\text{sinh}(\frac{3}{2})-\text{sinh}(-\frac{3}{2})]=20\;\text{sinh}(\frac{3}{2}) \\ &\approx 42.586\;\text{ft}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1167793370895"></div>
+</section>

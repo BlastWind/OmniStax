@@ -1,0 +1,1241 @@
+{
+ "id": "6.6",
+ "module": "m53649",
+ "chapter": "6",
+ "title": "Moments and Centers of Mass",
+ "short": "Moments and Centers of Mass",
+ "lead": "The <span data-concept=\"center-of-mass\">center of mass</span> of a system is its balance point, its <span data-concept=\"moment\">moment</span> divided by its total mass: first for point masses on a line and in the plane, then, cutting a <span data-concept=\"lamina\">lamina</span> into rectangles, as integrals for the <span data-concept=\"centroid\">centroid</span> of a region. Symmetry places some centroids without integrating, and the <span data-concept=\"theorem-of-pappus-for-volume\">theorem of Pappus</span> turns a centroid into the volume of a solid of revolution.",
+ "objectives": [
+  "Find the center of mass of objects distributed along a line.",
+  "Locate the center of mass of a thin plate.",
+  "Use symmetry to help locate the centroid of a thin plate.",
+  "Apply the theorem of Pappus for volume."
+ ],
+ "summary_html": "<ul><li>Mathematically, the center of mass of a system is the point at which the total mass of the system could be concentrated without changing the moment. Loosely speaking, the center of mass can be thought of as the balancing point of the system.</li><li>For point masses distributed along a number line, the moment of the system with respect to the origin is $\\kM=\\sum_{i=1}^{n}\\km_{i}x_{i}.$ For point masses distributed in a plane, the moments of the system with respect to the <em>x</em>- and <em>y</em>-axes, respectively, are $\\kMx=\\sum_{i=1}^{n}\\km_{i}y_{i}$ and $\\kMy=\\sum_{i=1}^{n}\\km_{i}x_{i},$ respectively.</li><li>For a lamina bounded above by a function $\\kf(x),$ the moments of the system with respect to the <em>x</em>- and <em>y</em>-axes, respectively, are $\\kMx=\\krho\\int_a^{b}\\frac{{[\\kf(x)]}^{2}}{2}dx$ and $\\kMy=\\krho\\int_a^{b}x\\kf(x)dx.$</li><li>The <em>x</em>- and <em>y</em>-coordinates of the center of mass can be found by dividing the moments around the <em>y</em>-axis and around the <em>x</em>-axis, respectively, by the total mass. The symmetry principle says that if a region is symmetric with respect to a line, then the centroid of the region lies on the line.</li><li>The theorem of Pappus for volume says that if a region is revolved around an external axis, the volume of the resulting solid is equal to the area of the region multiplied by the distance traveled by the centroid of the region.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but two: exercises 282 and 284 check Pappus against the cone and the sphere and have no answer in the key, so they carry AI-written ones. The book sets exercises 290 to 294 after the stem of exercises 285 to 289 (draw the region with a calculator); they stand on their own here. The other 19 even-numbered section exercises have no answer in the key and are computational, so they are left out: 254, 256 and 258 (point masses), 260 to 268 (rods), 270 and 272, 274 to 278 (centroids), 280 (Pappus), 286 and 288, 290 and 292 (generalized centroids) and 294 (the wire). Review exercise 451 is set here; 450, with no answer in the key, is left out.",
+ "figures": [
+  {
+   "id": "sim-seesaw",
+   "kind": "sim",
+   "number": "6.62",
+   "folds": [
+    "6.63"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_001.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_06_002.jpg"
+   ],
+   "original_caption": "(Figure 6.62) (a) A thin rod rests on a fulcrum. (b) Masses are placed on the rod. (Figure 6.63) The center of mass x̄ is the balance point of the system.",
+   "draws": [
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-point-mass-plane",
+   "kind": "figure",
+   "number": "6.64",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_003.jpg"
+   ],
+   "original_caption": "Point mass m₁ is located at point (x₁,y₁) in the plane.",
+   "draws": [
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-lamina",
+   "kind": "sim",
+   "number": "6.65",
+   "folds": [
+    "6.66"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_004.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_06_005.jpg"
+   ],
+   "original_caption": "(Figure 6.65) A region in the plane representing a lamina. (Figure 6.66) A representative rectangle of the lamina.",
+   "draws": [
+    "region",
+    "function",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sqrt-lamina",
+   "kind": "figure",
+   "number": "6.67",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_006.jpg"
+   ],
+   "original_caption": "Finding the center of mass of a lamina.",
+   "draws": [
+    "region",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-lamina-between",
+   "kind": "sim",
+   "number": "6.68",
+   "folds": [
+    "6.69"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_007.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_06_008.jpg"
+   ],
+   "original_caption": "(Figure 6.68) A region between two functions. (Figure 6.69) A representative rectangle of the region between two functions.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-centroid-two",
+   "kind": "figure",
+   "number": "6.70",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_009.jpg"
+   ],
+   "original_caption": "Finding the centroid of a region between two curves.",
+   "draws": [
+    "region",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-symmetric-centroid",
+   "kind": "figure",
+   "number": "6.71",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_010.jpg"
+   ],
+   "original_caption": "We can use the symmetry principle to help find the centroid of a symmetric region.",
+   "draws": [
+    "region",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-skywalk",
+   "kind": "photo",
+   "number": "6.72",
+   "draws": []
+  },
+  {
+   "id": "fig-skywalk-model",
+   "kind": "figure",
+   "number": "6.73",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_012.jpg"
+   ],
+   "original_caption": "We model the Skywalk with three sub-regions.",
+   "draws": [
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pappus",
+   "kind": "sim",
+   "number": "6.74",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_06_013.jpg"
+   ],
+   "original_caption": "Determining the volume of a torus by using the theorem of Pappus. (a) A circular region R in the plane; (b) the torus generated by revolving R about the y-axis.",
+   "draws": [
+    "region",
+    "point",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "moments-intro",
+   "concept": "center-of-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "moments",
+   "concept": "moment",
+   "verb": "introduces"
+  },
+  {
+   "span": "moments",
+   "concept": "center-of-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "line-theorem",
+   "concept": "center-of-mass-on-a-line",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794028004",
+   "concept": "center-of-mass-on-a-line",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-theorem",
+   "concept": "center-of-mass-in-a-plane",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794000228",
+   "concept": "center-of-mass-in-a-plane",
+   "verb": "uses"
+  },
+  {
+   "span": "thin-plates",
+   "concept": "lamina",
+   "verb": "introduces"
+  },
+  {
+   "span": "thin-plates",
+   "concept": "centroid",
+   "verb": "introduces"
+  },
+  {
+   "span": "thin-plates",
+   "concept": "regular-partition",
+   "verb": "uses"
+  },
+  {
+   "span": "thin-plates",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetry-theorem",
+   "concept": "symmetry-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "plate-theorem",
+   "concept": "center-of-mass-of-a-thin-plate",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793479886",
+   "concept": "center-of-mass-of-a-thin-plate",
+   "verb": "uses"
+  },
+  {
+   "span": "two-functions-theorem",
+   "concept": "center-of-mass-of-a-lamina-between-two-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793632957",
+   "concept": "center-of-mass-of-a-lamina-between-two-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetry",
+   "concept": "symmetry-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793274939",
+   "concept": "symmetry-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "pappus-theorem",
+   "concept": "theorem-of-pappus-for-volume",
+   "verb": "introduces"
+  },
+  {
+   "span": "pappus",
+   "concept": "method-of-cylindrical-shells",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793385038",
+   "concept": "theorem-of-pappus-for-volume",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794068169",
+   "source_number": "Checkpoint 6.29",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794028004"
+   },
+   "cite": "line-theorem",
+   "prompt": "<p>Suppose four point masses are placed on a number line as follows:</p>$$\\begin{array}{llll}m_{1}=12\\;\\text{kg,}\\;\\text{placed at}\\;x_{1}=-4\\;\\text{m} & & & m_{2}=12\\;\\text{kg,}\\;\\text{placed at}\\;x_{2}=4\\;\\text{m} \\\\ m_{3}=30\\;\\text{kg,}\\;\\text{placed at}\\;x_{3}=2\\;\\text{m} & & & m_{4}=6\\;\\text{kg,}\\;\\text{placed at}\\;x_{4}=-6\\;\\text{m}.\\end{array}$$<p>Find the moment of the system with respect to the origin and find the center of mass of the system.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "M",
+      "value": 24,
+      "hint": "Use the process from the previous example."
+     },
+     {
+      "part": "x̄",
+      "value": 0.4,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$M=24,\\bar{x}=\\frac{2}{5}\\;\\text{m}$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794147586",
+   "source_number": "Checkpoint 6.30",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794000228"
+   },
+   "cite": "plane-theorem",
+   "prompt": "<p>Suppose three point masses are placed on a number line<sup class=\"fn\" data-note=\"cp30-plane\"></sup> as follows (assume coordinates are given in meters):</p>$$\\begin{gathered}m_{1}=5\\;\\text{kg, placed at}\\;(-2,-3), \\\\ m_{2}=3\\;\\text{kg, placed at}\\;(2,3), \\\\ m_{3}=2\\;\\text{kg, placed at}\\;(-3,-2).\\end{gathered}$$<p>Find the center of mass of the system.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": -1,
+      "tol": 0.001,
+      "hint": "Use the process from the previous example."
+     },
+     {
+      "part": "ȳ",
+      "value": -1,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(-1,-1)$ m"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793617560",
+   "source_number": "Checkpoint 6.31",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793479886"
+   },
+   "cite": "plate-theorem",
+   "prompt": "<p>Let <em>R</em> be the region bounded above by the graph of the function $f(x)=x^{2}$ and below by the <em>x</em>-axis over the interval $[0,2].$ Find the centroid of the region.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 1.5,
+      "tol": 0.001,
+      "hint": "Use the process from the previous example."
+     },
+     {
+      "part": "ȳ",
+      "value": 1.2,
+      "tol": 0.001
+     }
+    ],
+    "solution": "The centroid of the region is $(3/2,6/5).$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793424272",
+   "source_number": "Checkpoint 6.32",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793632957"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>Let <em>R</em> be the region bounded above by the graph of the function $f(x)=6-x^{2}$ and below by the graph of the function $g(x)=3-2x.$ Find the centroid of the region.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 1,
+      "tol": 0.001,
+      "hint": "Use the process from the previous example."
+     },
+     {
+      "part": "ȳ",
+      "value": 2.6,
+      "tol": 0.001
+     }
+    ],
+    "solution": "The centroid of the region is $(1,13/5).$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793619904",
+   "source_number": "Checkpoint 6.33",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793274939"
+   },
+   "cite": "symmetry",
+   "prompt": "<p>Let <em>R</em> be the region bounded above by the graph of the function $f(x)=1-x^{2}$ and below by <em>x</em>-axis. Find the centroid of the region.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0,
+      "tol": 0.001,
+      "hint": "Use the process from the previous example."
+     },
+     {
+      "part": "ȳ",
+      "value": 0.4,
+      "tol": 0.001
+     }
+    ],
+    "solution": "The centroid of the region is $(0,2/5).$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793221565",
+   "source_number": "Checkpoint 6.34",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793385038"
+   },
+   "cite": "pappus-theorem",
+   "prompt": "<p>Let <em>R</em> be a circle of radius 1 centered at $(3,0).$ Use the theorem of Pappus for volume to find the volume of the torus generated by revolving <em>R</em> around the <em>y</em>-axis.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 59.21762640653615,
+    "tol": 0.001,
+    "solution": "$6\\pi^{2}$ units<sup>3</sup>",
+    "hint": "Use the process from the previous example."
+   }
+  },
+  {
+   "id": "e255",
+   "source_id": "fs-id1167793454741",
+   "source_number": "255",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-theorem",
+   "prompt": "<p>For the following exercises, calculate the center of mass for the collection of masses given.</p><p>$m_{1}=1$ at $x_{1}=-1$ and $m_{2}=3$ at $x_{2}=2$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.25,
+    "tol": 0.001,
+    "solution": "$\\frac{5}{4}$"
+   }
+  },
+  {
+   "id": "e257",
+   "source_id": "fs-id1167793630305",
+   "source_number": "257",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-theorem",
+   "prompt": "<p>For the following exercises, calculate the center of mass for the collection of masses given.</p><p>Unit masses at $(x,y)=(1,0),(0,1),(1,1)$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0.6666666666666666,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 0.6666666666666666,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(\\frac{2}{3},\\frac{2}{3})$"
+   }
+  },
+  {
+   "id": "e259",
+   "source_id": "fs-id1167793958530",
+   "source_number": "259",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plane-theorem",
+   "prompt": "<p>For the following exercises, calculate the center of mass for the collection of masses given.</p><p>$m_{1}=1$ at $(1,0)$ and $m_{2}=3$ at $(2,2)$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 1.75,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 1.5,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(\\frac{7}{4},\\frac{3}{2})$"
+   }
+  },
+  {
+   "id": "e261",
+   "source_id": "fs-id1167793441562",
+   "source_number": "261",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plate-theorem",
+   "prompt": "<p>For the following exercises, compute the center of mass $\\bar{x}.$</p><p>$\\rho=x^{2}$ for $x\\in (0,L)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3L}{4}$"
+   }
+  },
+  {
+   "id": "e263",
+   "source_id": "fs-id1167793582491",
+   "source_number": "263",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plate-theorem",
+   "prompt": "<p>For the following exercises, compute the center of mass $\\bar{x}.$</p><p>$\\rho=\\sin x$ for $x\\in (0,\\pi)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5707963267948966,
+    "tol": 0.001,
+    "solution": "$\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e265",
+   "source_id": "fs-id1167793543530",
+   "source_number": "265",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plate-theorem",
+   "prompt": "<p>For the following exercises, compute the center of mass $\\bar{x}.$</p><p>$\\rho=e^{x}$ for $x\\in (0,2)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.3130352854993312,
+    "tol": 0.001,
+    "solution": "$\\frac{e^{2}+1}{e^{2}-1}$"
+   }
+  },
+  {
+   "id": "e267",
+   "source_id": "fs-id1167793418227",
+   "source_number": "267",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plate-theorem",
+   "prompt": "<p>For the following exercises, compute the center of mass $\\bar{x}.$</p><p>$\\rho=x\\;\\sin x$ for $x\\in (0,\\pi)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.8683531088546304,
+    "tol": 0.001,
+    "solution": "$\\frac{\\pi^{2}-4}{\\pi}$"
+   }
+  },
+  {
+   "id": "e269",
+   "source_id": "fs-id1167793616388",
+   "source_number": "269",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "plate-theorem",
+   "prompt": "<p>For the following exercises, compute the center of mass $\\bar{x}.$</p><p>$\\rho=\\ln x$ for $x\\in (1,e)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.097264024732662,
+    "tol": 0.001,
+    "solution": "$\\frac{1}{4}(1+e^{2})$"
+   }
+  },
+  {
+   "id": "e271",
+   "source_id": "fs-id1167793514575",
+   "source_number": "271",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>For the following exercises, compute the center of mass $(\\bar{x},\\bar{y}).$ Use symmetry to help locate the center of mass whenever possible.</p><p>$\\rho=3$ in the triangle with vertices $(0,0),$ $(a,0),$ and $(0,b)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{a}{3},\\frac{b}{3})$"
+   }
+  },
+  {
+   "id": "e273",
+   "source_id": "fs-id1167793270517",
+   "source_number": "273",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>For the following exercises, use a calculator to draw the region, then compute the center of mass $(\\bar{x},\\bar{y}).$ Use symmetry to help locate the center of mass whenever possible.</p><p><strong>[T]</strong> The region bounded by $y=\\cos(2x),$ $x=-\\frac{\\pi}{4},$ and $x=\\frac{\\pi}{4}$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 0.39269908169872414,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(0,\\frac{\\pi}{8})$"
+   }
+  },
+  {
+   "id": "e275",
+   "source_id": "fs-id1167794291717",
+   "source_number": "275",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>For the following exercises, use a calculator to draw the region, then compute the center of mass $(\\bar{x},\\bar{y}).$ Use symmetry to help locate the center of mass whenever possible.</p><p><strong>[T]</strong> The region between $y=\\frac{5}{4}x^{2}$ and $y=5$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 3,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(0,3)$"
+   }
+  },
+  {
+   "id": "e277",
+   "source_id": "fs-id1167794005214",
+   "source_number": "277",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>For the following exercises, use a calculator to draw the region, then compute the center of mass $(\\bar{x},\\bar{y}).$ Use symmetry to help locate the center of mass whenever possible.</p><p><strong>[T]</strong> The region bounded by $y=0,$ $\\frac{x^{2}}{4}+\\frac{y^{2}}{9}=1$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 1.2732395447351628,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(0,\\frac{4}{\\pi})$"
+   }
+  },
+  {
+   "id": "e279",
+   "source_id": "fs-id1167793561595",
+   "source_number": "279",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>For the following exercises, use a calculator to draw the region, then compute the center of mass $(\\bar{x},\\bar{y}).$ Use symmetry to help locate the center of mass whenever possible.</p><p><strong>[T]</strong> The region bounded by $y=x^{2}$ and $y=x^{4}$ in the first quadrant</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0.625,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 0.3333333333333333,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(\\frac{5}{8},\\frac{1}{3})$"
+   }
+  },
+  {
+   "id": "e281",
+   "source_id": "fs-id1167793562366",
+   "source_number": "281",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pappus-theorem",
+   "prompt": "<p>For the following exercises, use the theorem of Pappus to determine the volume of the shape.</p><p>Rotating $y=mx$ around the $y$-axis between $x=0$ and $x=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2m\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e282",
+   "source_id": "fs-id1167793384860",
+   "source_number": "282",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pappus-theorem",
+   "prompt": "<p>For the following exercises, use the theorem of Pappus to determine the volume of the shape.</p><p>A general cone created by rotating a triangle with vertices $(0,0),$ $(a,0),$ and $(0,b)$ around the $y$-axis. Does your answer agree with the volume of a cone?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The triangle has area $A=\\frac{ab}{2}$ and, at the average of its vertices, its centroid at $\\left(\\frac{a}{3},\\frac{b}{3}\\right).$ Turned about the <em>y</em>-axis, the centroid travels $d=2\\pi\\cdot\\frac{a}{3},$ so $V=A d=\\frac{ab}{2}\\cdot\\frac{2\\pi a}{3}=\\frac{1}{3}\\pi a^{2}b,$ the volume of a cone of radius <em>a</em> and height <em>b</em>."
+   }
+  },
+  {
+   "id": "e283",
+   "source_id": "fs-id1167793543469",
+   "source_number": "283",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pappus-theorem",
+   "prompt": "<p>For the following exercises, use the theorem of Pappus to determine the volume of the shape.</p><p>A general cylinder created by rotating a rectangle with vertices $(0,0),$ $(a,0),(0,b),$ and $(a,b)$ around the $y$-axis. Does your answer agree with the volume of a cylinder?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\pi a^{2}b$"
+   }
+  },
+  {
+   "id": "e284",
+   "source_id": "fs-id1167793729519",
+   "source_number": "284",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pappus-theorem",
+   "prompt": "<p>For the following exercises, use the theorem of Pappus to determine the volume of the shape.</p><p>A sphere created by rotating a semicircle with radius $a$ around the $y$-axis. Does your answer agree with the volume of a sphere?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the half-disk of radius <em>a</em> to the right of the <em>y</em>-axis. Its area is $A=\\frac{\\pi a^{2}}{2},$ and it lies between $f(x)=\\sqrt{a^{2}-x^{2}}$ and $g(x)=-\\sqrt{a^{2}-x^{2}}$ on $[0,a],$ so with $\\rho=1$ its moment about the <em>y</em>-axis is $M_{y}=\\int_{0}^{a}2x\\sqrt{a^{2}-x^{2}}\\,dx=\\frac{2a^{3}}{3}$ and its centroid is at $\\bar{x}=\\frac{2a^{3}/3}{\\pi a^{2}/2}=\\frac{4a}{3\\pi}.$ The centroid travels $d=2\\pi\\cdot\\frac{4a}{3\\pi}=\\frac{8a}{3},$ so $V=\\frac{\\pi a^{2}}{2}\\cdot\\frac{8a}{3}=\\frac{4}{3}\\pi a^{3},$ the volume of a sphere."
+   }
+  },
+  {
+   "id": "e285",
+   "source_id": "fs-id1167794326056",
+   "source_number": "285",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>For the following exercises, use a calculator to draw the region enclosed by the curve. Find the area $M$ and the centroid $(\\bar{x},\\bar{y})$ for the given shapes. Use symmetry to help locate the center of mass whenever possible.</p><p><strong>[T]</strong> Quarter-circle: $y=\\sqrt{1-x^{2}},$ $y=0,$ and $x=0$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0.4244131815783876,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 0.4244131815783876,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(\\frac{4}{3\\pi},\\frac{4}{3\\pi})$"
+   }
+  },
+  {
+   "id": "e287",
+   "source_id": "fs-id1167794222378",
+   "source_number": "287",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>For the following exercises, use a calculator to draw the region enclosed by the curve. Find the area $M$ and the centroid $(\\bar{x},\\bar{y})$ for the given shapes. Use symmetry to help locate the center of mass whenever possible.</p><p><strong>[T]</strong> Lens: $y=x^{2}$ and $y=x$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0.5,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 0.4,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(\\frac{1}{2},\\frac{2}{5})$"
+   }
+  },
+  {
+   "id": "e289",
+   "source_id": "fs-id1167793776878",
+   "source_number": "289",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>For the following exercises, use a calculator to draw the region enclosed by the curve. Find the area $M$ and the centroid $(\\bar{x},\\bar{y})$ for the given shapes. Use symmetry to help locate the center of mass whenever possible.</p><p><strong>[T]</strong> Half-ring: $y^{2}+x^{2}=1,$ $y^{2}+x^{2}=4,$ and $y=0$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "x̄",
+      "value": 0,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 0.9902974236829043,
+      "tol": 0.001
+     }
+    ],
+    "solution": "$(0,\\frac{28}{9\\pi})$"
+   }
+  },
+  {
+   "id": "e291",
+   "source_id": "fs-id1167793604172",
+   "source_number": "291",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pappus-theorem",
+   "prompt": "<p>Find the generalized center of mass between $y=a^{2}-x^{2},$ $x=0,$ and $y=0.$ Then, use the Pappus theorem to find the volume of the solid generated when revolving around the <em>y</em>-axis.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Center of mass: $(\\frac{3a}{8},\\frac{2a^{2}}{5}),$ volume: $\\frac{\\pi a^{4}}{2}$"
+   }
+  },
+  {
+   "id": "e293",
+   "source_id": "fs-id1167793590340",
+   "source_number": "293",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pappus-theorem",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_06_201.jpg",
+    "alt": "This figure is a torus. It has inner radius of b. Inside of the torus is a cross section that is a circle. The circle has radius a."
+   },
+   "prompt": "<p>Use the theorem of Pappus to find the volume of a torus (pictured here). Assume that a disk of radius $a$ is positioned with the left end of the circle at $x=b,$ $b>0,$ and is rotated around the <em>y</em>-axis.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Volume: $2\\pi^{2}a^{2}(b+a)$"
+   }
+  },
+  {
+   "id": "r451",
+   "source_id": "fs-id1167794324586",
+   "source_section": "6.9",
+   "source_number": "451",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-functions-theorem",
+   "prompt": "<p>Find the mass and the center of mass of $\\rho=1$ on the region bounded by $y=x^{5}$ and $y=\\sqrt{x}.$</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "mass",
+      "value": 0.5,
+      "tol": 0.001
+     },
+     {
+      "part": "x̄",
+      "value": 0.5142857142857142,
+      "tol": 0.001
+     },
+     {
+      "part": "ȳ",
+      "value": 0.4090909090909091,
+      "tol": 0.001
+     }
+    ],
+    "solution": "Mass: $\\frac{1}{2},$ center of mass: $(\\frac{18}{35},\\frac{9}{22})$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "center-of-mass-on-a-line"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "center-of-mass-in-a-plane"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "center-of-mass-of-a-thin-plate"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "center-of-mass-of-a-lamina-between-two-functions"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "symmetry-principle"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "center-of-mass-of-a-thin-plate"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "theorem-of-pappus-for-volume"
+  },
+  {
+   "exercise": "e255",
+   "concept": "center-of-mass-on-a-line"
+  },
+  {
+   "exercise": "e257",
+   "concept": "center-of-mass-in-a-plane"
+  },
+  {
+   "exercise": "e259",
+   "concept": "center-of-mass-in-a-plane"
+  },
+  {
+   "exercise": "e261",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "e261",
+   "concept": "density-function"
+  },
+  {
+   "exercise": "e263",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "e263",
+   "concept": "density-function"
+  },
+  {
+   "exercise": "e265",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "e265",
+   "concept": "density-function"
+  },
+  {
+   "exercise": "e267",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "e267",
+   "concept": "density-function"
+  },
+  {
+   "exercise": "e269",
+   "concept": "center-of-mass"
+  },
+  {
+   "exercise": "e269",
+   "concept": "density-function"
+  },
+  {
+   "exercise": "e271",
+   "concept": "center-of-mass-of-a-thin-plate"
+  },
+  {
+   "exercise": "e271",
+   "concept": "symmetry-principle"
+  },
+  {
+   "exercise": "e273",
+   "concept": "center-of-mass-of-a-thin-plate"
+  },
+  {
+   "exercise": "e273",
+   "concept": "symmetry-principle"
+  },
+  {
+   "exercise": "e275",
+   "concept": "center-of-mass-of-a-lamina-between-two-functions"
+  },
+  {
+   "exercise": "e275",
+   "concept": "symmetry-principle"
+  },
+  {
+   "exercise": "e277",
+   "concept": "center-of-mass-of-a-thin-plate"
+  },
+  {
+   "exercise": "e277",
+   "concept": "symmetry-principle"
+  },
+  {
+   "exercise": "e279",
+   "concept": "center-of-mass-of-a-lamina-between-two-functions"
+  },
+  {
+   "exercise": "e281",
+   "concept": "theorem-of-pappus-for-volume"
+  },
+  {
+   "exercise": "e282",
+   "concept": "theorem-of-pappus-for-volume"
+  },
+  {
+   "exercise": "e283",
+   "concept": "theorem-of-pappus-for-volume"
+  },
+  {
+   "exercise": "e284",
+   "concept": "theorem-of-pappus-for-volume"
+  },
+  {
+   "exercise": "e285",
+   "concept": "center-of-mass-of-a-thin-plate"
+  },
+  {
+   "exercise": "e287",
+   "concept": "center-of-mass-of-a-lamina-between-two-functions"
+  },
+  {
+   "exercise": "e289",
+   "concept": "center-of-mass-of-a-lamina-between-two-functions"
+  },
+  {
+   "exercise": "e289",
+   "concept": "symmetry-principle"
+  },
+  {
+   "exercise": "e291",
+   "concept": "center-of-mass-of-a-thin-plate"
+  },
+  {
+   "exercise": "e291",
+   "concept": "theorem-of-pappus-for-volume"
+  },
+  {
+   "exercise": "e293",
+   "concept": "theorem-of-pappus-for-volume"
+  },
+  {
+   "exercise": "r451",
+   "concept": "center-of-mass-of-a-lamina-between-two-functions"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ex32-f",
+   "label": "f(x) = 1 − x²",
+   "figures": [
+    "fig-centroid-two"
+   ]
+  },
+  {
+   "id": "ex32-g",
+   "label": "g(x) = x − 1",
+   "figures": [
+    "fig-centroid-two"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "cp30-plane",
+   "kind": "correction",
+   "html": "The book prints “on a number line”; the three masses are placed at points of the <em>xy</em>-plane, as in Example 6.30."
+  }
+ ]
+}

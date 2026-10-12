@@ -1,0 +1,1088 @@
+{
+ "id": "6.7",
+ "module": "m53650",
+ "chapter": "6",
+ "title": "Integrals, Exponential Functions, and Logarithms",
+ "short": "Integrals, Exponentials, Logarithms",
+ "lead": "The <span data-concept=\"natural-logarithm-as-an-integral\">natural logarithm</span> is rebuilt as an integral, $\\ln x=\\int_{1}^{x}dt/t,$ the signed area under $1/t.$ From that definition come its derivative, its properties and its continuity, the number <em>e</em> as the point where the area reaches 1, the exponential function as the inverse of ln, and general exponentials and logarithms of any base.",
+ "objectives": [
+  "Write the definition of the natural logarithm as an integral.",
+  "Recognize the derivative of the natural logarithm.",
+  "Integrate functions involving the natural logarithmic function.",
+  "Define the number $e$ through an integral.",
+  "Recognize the derivative and integral of the exponential function.",
+  "Prove properties of logarithms and exponential functions using integrals.",
+  "Express general logarithmic and exponential functions in terms of natural logarithms and exponentials."
+ ],
+ "summary_html": "<ul><li>The earlier treatment of logarithms and exponential functions did not define the functions precisely and formally. This section develops the concepts in a mathematically rigorous way.</li><li>The cornerstone of the development is the definition of the natural logarithm in terms of an integral.</li><li>The function $e^{x}$ is then defined as the inverse of the natural logarithm.</li><li>General exponential functions are defined in terms of $e^{x},$ and the corresponding inverse functions are general logarithms.</li><li>Familiar properties of logarithms and exponents still hold in this more rigorous context.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but five. Exercises 343 to 347 ask to verify a derivative or an antiderivative and have no answer in the key, so they carry AI-written verifications. The other 24 even-numbered section exercises have no answer in the key and are computational, so they are left out: 296 (a derivative), 298 (an integral), 300 to 308 (derivatives), 310 to 318 (integrals), 320 to 328 (logarithmic differentiation), 330 to 334 (any method), 336 and 338 (arc length and volume of ln x), and 340 and 342 (areas under 1/x).",
+ "figures": [
+  {
+   "id": "sim-ln-area",
+   "kind": "sim",
+   "number": "6.75",
+   "folds": [
+    "6.76",
+    "6.77"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_07_001.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_07_002.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_07_003.jpg"
+   ],
+   "original_caption": "(Figure 6.75) (a) When x>1, the natural logarithm is the area under the curve y=1/t from 1 to x. (b) When x<1, the natural logarithm is the negative of the area under the curve from x to 1. (Figure 6.76) The graph of f(x)=ln x shows that it is a continuous function. (Figure 6.77) The area under the curve from 1 to e is equal to one.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-ln-exp",
+   "kind": "figure",
+   "number": "6.78",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_07_004.jpg"
+   ],
+   "original_caption": "The graphs of ln x and exp x.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "exp-log-intro",
+   "concept": "natural-logarithm",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exp-log-intro",
+   "concept": "number-e",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ln-integral",
+   "concept": "power-rule-for-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "ln-integral",
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "verb": "uses"
+  },
+  {
+   "span": "ln-definition",
+   "concept": "natural-logarithm-as-an-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "ln-derivative-theorem",
+   "concept": "derivative-of-the-natural-logarithm",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ln-continuity-theorem",
+   "concept": "continuity-of-the-natural-logarithm",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793967054",
+   "concept": "derivative-of-the-natural-logarithm",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793967054",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "ln-integral-theorem",
+   "concept": "integrals-involving-logarithmic-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793423035",
+   "concept": "integrals-involving-logarithmic-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ln-properties-theorem",
+   "concept": "properties-of-logarithms",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794077123",
+   "concept": "properties-of-logarithms",
+   "verb": "reinforces"
+  },
+  {
+   "span": "e-definition",
+   "concept": "number-e-as-an-area",
+   "verb": "introduces"
+  },
+  {
+   "span": "number-e",
+   "concept": "number-e",
+   "verb": "reinforces"
+  },
+  {
+   "span": "number-e",
+   "concept": "intermediate-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "exp-definition",
+   "concept": "exponential-function-as-inverse-of-ln",
+   "verb": "introduces"
+  },
+  {
+   "span": "exponential",
+   "concept": "inverse-function",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential",
+   "concept": "natural-exponential-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exp-properties-theorem",
+   "concept": "laws-of-exponents",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exp-properties",
+   "concept": "derivative-of-the-natural-exponential-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "exp-properties",
+   "concept": "implicit-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793272158",
+   "concept": "derivative-of-the-natural-exponential-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793944672",
+   "concept": "derivative-of-the-natural-exponential-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "general-exponential-definition",
+   "concept": "general-exponential-function-by-e",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-exponential-theorem",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "general-log-theorem",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793948184",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793499138",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793369601",
+   "source_number": "Checkpoint 6.35",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793967054"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>Calculate the following derivatives:</p><ol type=\"a\"><li>$\\frac{d}{dx}\\ln(2x^{2}+x)$</li><li>$\\frac{d}{dx}{(\\ln(x^{3}))}^{2}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\frac{d}{dx}\\ln(2x^{2}+x)=\\frac{4x+1}{2x^{2}+x}$</li><li>$\\frac{d}{dx}{(\\ln(x^{3}))}^{2}=\\frac{6\\;\\ln(x^{3})}{x}$</li></ol>",
+    "hint": "Apply the differentiation formula just provided and use the chain rule as necessary."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794000383",
+   "source_number": "Checkpoint 6.36",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793423035"
+   },
+   "cite": "ln-integral-theorem",
+   "prompt": "<p>Calculate the integral $\\int \\frac{x^{2}}{x^{3}+6}dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int \\frac{x^{2}}{x^{3}+6}dx=\\frac{1}{3}\\ln|x^{3}+6|+C$",
+    "hint": "Apply the integration formula provided earlier and use <em>u</em>-substitution as necessary."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793294688",
+   "source_number": "Checkpoint 6.37",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794077123"
+   },
+   "cite": "ln-properties-theorem",
+   "prompt": "<p>Use properties of logarithms to simplify the following expression into a single logarithm:</p>$$\\ln8-\\ln2-\\ln(\\frac{1}{4}).$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4\\;\\ln2$",
+    "hint": "Apply the properties of logarithms."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793442905",
+   "source_number": "Checkpoint 6.38",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793272158"
+   },
+   "cite": "exp-properties-theorem",
+   "prompt": "<p>Evaluate the following derivatives:</p><ol type=\"a\"><li>$\\frac{d}{dx}(\\frac{e^{x^{2}}}{e^{5x}})$</li><li>$\\frac{d}{dt}{(e^{2t})}^{3}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\frac{d}{dx}(\\frac{e^{x^{2}}}{e^{5x}})=e^{x^{2}-5x}(2x-5)$</li><li>$\\frac{d}{dt}{(e^{2t})}^{3}=6e^{6t}$</li></ol>",
+    "hint": "Use the properties of exponential functions and the chain rule as necessary."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167794060772",
+   "source_number": "Checkpoint 6.39",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793944672"
+   },
+   "cite": "exp-properties",
+   "prompt": "<p>Evaluate the following integral: $\\int \\frac{4}{e^{3x}}dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int \\frac{4}{e^{3x}}dx=-\\frac{4}{3}e^{-3x}+C$",
+    "hint": "Use the properties of exponential functions and $u\\text{-substitution}$ as necessary."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793455291",
+   "source_number": "Checkpoint 6.40",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793948184"
+   },
+   "cite": "general-log-theorem",
+   "prompt": "<p>Evaluate the following derivatives:</p><ol type=\"a\"><li>$\\frac{d}{dt}\\;4^{t^{4}}$</li><li>$\\frac{d}{dx}{\\log}_{3}(\\sqrt{x^{2}+1})$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\frac{d}{dt}4^{t^{4}}=4^{t^{4}}(\\ln4)(4t^{3})$</li><li>$\\frac{d}{dx}{\\log}_{3}(\\sqrt{x^{2}+1})=\\frac{x}{(\\ln3)(x^{2}+1)}$</li></ol>",
+    "hint": "Use the formulas and apply the chain rule as necessary."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167793789608",
+   "source_number": "Checkpoint 6.41",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793499138"
+   },
+   "cite": "general-exponential-theorem",
+   "prompt": "<p>Evaluate the following integral: $\\int x^{2}2^{x^{3}}dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int x^{2}2^{x^{3}}dx=\\frac{1}{3\\;\\ln2}2^{x^{3}}+C$",
+    "hint": "Use the properties of exponential functions and $u\\text{-substitution}$ as necessary."
+   }
+  },
+  {
+   "id": "e295",
+   "source_id": "fs-id1167793363071",
+   "source_number": "295",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, find the derivative $\\frac{dy}{dx}.$</p><p>$y=\\ln(2x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{x}$"
+   }
+  },
+  {
+   "id": "e297",
+   "source_id": "fs-id1167793831549",
+   "source_number": "297",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, find the derivative $\\frac{dy}{dx}.$</p><p>$y=\\frac{1}{\\ln x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{x{(\\ln x)}^{2}}$"
+   }
+  },
+  {
+   "id": "e299",
+   "source_id": "fs-id1167793367825",
+   "source_number": "299",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-integral-theorem",
+   "prompt": "<p>For the following exercises, find the indefinite integral.</p><p>$\\int \\frac{dx}{1+x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(x+1)+C$"
+   }
+  },
+  {
+   "id": "e301",
+   "source_id": "fs-id1167793510876",
+   "source_number": "301",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, find the derivative $dy/dx.$ (You can use a calculator to plot the function and the derivative to confirm that it is correct.)</p><p><strong>[T]</strong> $y=x\\;\\ln(x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(x)+1$"
+   }
+  },
+  {
+   "id": "e303",
+   "source_id": "fs-id1167793244348",
+   "source_number": "303",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, find the derivative $dy/dx.$ (You can use a calculator to plot the function and the derivative to confirm that it is correct.)</p><p><strong>[T]</strong> $y=\\ln(\\sin x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\cot(x)$"
+   }
+  },
+  {
+   "id": "e305",
+   "source_id": "fs-id1167793423443",
+   "source_number": "305",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, find the derivative $dy/dx.$ (You can use a calculator to plot the function and the derivative to confirm that it is correct.)</p><p><strong>[T]</strong> $y=7\\;\\ln(4x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{7}{x}$"
+   }
+  },
+  {
+   "id": "e307",
+   "source_id": "fs-id1167794073092",
+   "source_number": "307",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, find the derivative $dy/dx.$ (You can use a calculator to plot the function and the derivative to confirm that it is correct.)</p><p><strong>[T]</strong> $y=\\ln(\\tan x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\csc(x)\\sec x$"
+   }
+  },
+  {
+   "id": "e309",
+   "source_id": "fs-id1167793281522",
+   "source_number": "309",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, find the derivative $dy/dx.$ (You can use a calculator to plot the function and the derivative to confirm that it is correct.)</p><p><strong>[T]</strong> $y=\\ln({\\cos}^{2}x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-2\\;\\tan x$"
+   }
+  },
+  {
+   "id": "e311",
+   "source_id": "fs-id1167793372398",
+   "source_number": "311",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-integral-theorem",
+   "prompt": "<p>For the following exercises, find the definite or indefinite integral.</p><p>$\\int_0^{1}\\frac{dt}{3+2t}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.25541281188299536,
+    "tol": 0.001,
+    "solution": "$\\frac{1}{2}\\ln(\\frac{5}{3})$"
+   }
+  },
+  {
+   "id": "e313",
+   "source_id": "fs-id1167794122084",
+   "source_number": "313",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-integral-theorem",
+   "prompt": "<p>For the following exercises, find the definite or indefinite integral.</p><p>$\\int_0^{2}\\frac{x^{3}dx}{x^{2}+1}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.1952810437829497,
+    "tol": 0.001,
+    "solution": "$2-\\frac{1}{2}\\ln(5)$"
+   }
+  },
+  {
+   "id": "e315",
+   "source_id": "fs-id1167794054231",
+   "source_number": "315",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-integral-theorem",
+   "prompt": "<p>For the following exercises, find the definite or indefinite integral.</p><p>$\\int_2^{e}\\frac{dx}{{x\\;(\\ln x)}^{2}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.4426950408889634,
+    "tol": 0.001,
+    "solution": "$\\frac{1}{\\ln(2)}-1$"
+   }
+  },
+  {
+   "id": "e317",
+   "source_id": "fs-id1167793469786",
+   "source_number": "317",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-integral-theorem",
+   "prompt": "<p>For the following exercises, find the definite or indefinite integral.</p><p>$\\int_0^{\\pi/4}\\tan x\\;dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.34657359027997264,
+    "tol": 0.001,
+    "solution": "$\\frac{1}{2}\\ln(2)$"
+   }
+  },
+  {
+   "id": "e319",
+   "source_id": "fs-id1167794291581",
+   "source_number": "319",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-integral-theorem",
+   "prompt": "<p>For the following exercises, find the definite or indefinite integral.</p><p>$\\int \\frac{{(\\ln x)}^{2}dx}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}{(\\ln x)}^{3}$"
+   }
+  },
+  {
+   "id": "e321",
+   "source_id": "fs-id1167793394990",
+   "source_number": "321",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, compute $dy/dx$ by differentiating $\\ln y.$</p><p>$y=\\sqrt{x^{2}+1}\\sqrt{x^{2}-1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2x^{3}}{\\sqrt{x^{2}+1}\\sqrt{x^{2}-1}}$"
+   }
+  },
+  {
+   "id": "e323",
+   "source_id": "fs-id1167793634250",
+   "source_number": "323",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, compute $dy/dx$ by differentiating $\\ln y.$</p><p>$y=x^{-1/x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x^{-2-(1/x)}(\\ln x-1)$"
+   }
+  },
+  {
+   "id": "e325",
+   "source_id": "fs-id1167793627001",
+   "source_number": "325",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, compute $dy/dx$ by differentiating $\\ln y.$</p><p>$y=x^{e}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$ex^{e-1}$"
+   }
+  },
+  {
+   "id": "e327",
+   "source_id": "fs-id1167793543331",
+   "source_number": "327",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, compute $dy/dx$ by differentiating $\\ln y.$</p><p>$y=\\sqrt{x}\\;\\sqrt[3]{x}\\;\\sqrt[6]{x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e329",
+   "source_id": "fs-id1167793566062",
+   "source_number": "329",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, compute $dy/dx$ by differentiating $\\ln y.$</p><p>$y=e^{-\\ln x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{x^{2}}$"
+   }
+  },
+  {
+   "id": "e331",
+   "source_id": "fs-id1167793937978",
+   "source_number": "331",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-definition",
+   "prompt": "<p>For the following exercises, evaluate by any method.</p><p>$\\int_1^{e^{\\pi}}\\frac{dx}{x}+\\int_{-2}^{-1}\\frac{dx}{x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.4484454730298477,
+    "tol": 0.001,
+    "solution": "$\\pi-\\ln(2)$"
+   }
+  },
+  {
+   "id": "e333",
+   "source_id": "fs-id1167794127523",
+   "source_number": "333",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-definition",
+   "prompt": "<p>For the following exercises, evaluate by any method.</p><p>$\\frac{d}{dx}\\int_x^{x^{2}}\\frac{dt}{t}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{x}$"
+   }
+  },
+  {
+   "id": "e335",
+   "source_id": "fs-id1167793423297",
+   "source_number": "335",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-definition",
+   "prompt": "<p>For the following exercises, use the function $\\ln x.$ If you are unable to find intersection points analytically, use a calculator.</p><p>Find the area of the region enclosed by $x=1$ and $y=5$ above $y=\\ln x.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 142.41315910257657,
+    "tol": 0.001,
+    "solution": "$e^{5}-6\\;{\\text{units}}^{2}$"
+   }
+  },
+  {
+   "id": "e337",
+   "source_id": "fs-id1167793454016",
+   "source_number": "337",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-definition",
+   "prompt": "<p>For the following exercises, use the function $\\ln x.$ If you are unable to find intersection points analytically, use a calculator.</p><p>Find the area between $\\ln x$ and the <em>x</em>-axis from $x=1\\;\\text{to}\\;x=2.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.3862943611198906,
+    "tol": 0.001,
+    "solution": "$\\ln(4)-1\\;{\\text{units}}^{2}$"
+   }
+  },
+  {
+   "id": "e339",
+   "source_id": "fs-id1167793510646",
+   "source_number": "339",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-definition",
+   "prompt": "<p>For the following exercises, use the function $\\ln x.$ If you are unable to find intersection points analytically, use a calculator.</p><p><strong>[T]</strong> Find the surface area of the shape created when rotating the curve in the previous exercise from $x=1$ to $x=2$ around the <em>x</em>-axis.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.8656,
+    "tol": 0.001,
+    "solution": "$2.8656$"
+   }
+  },
+  {
+   "id": "e341",
+   "source_id": "fs-id1167794209645",
+   "source_number": "341",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-definition",
+   "prompt": "<p>If you are unable to find intersection points analytically in the following exercises, use a calculator.</p><p><strong>[T]</strong> Find the arc length of $y=1/x$ from $x=1\\;\\text{to}\\;x=4.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.1502,
+    "tol": 0.001,
+    "solution": "$3.1502$"
+   }
+  },
+  {
+   "id": "e343",
+   "source_id": "fs-id1167793593498",
+   "source_number": "343",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, verify the derivatives and antiderivatives.</p><p>$\\frac{d}{dx}\\ln(x+\\sqrt{x^{2}+1})=\\frac{1}{\\sqrt{1+x^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $u=x+\\sqrt{x^{2}+1}.$ Then $u'=1+\\frac{x}{\\sqrt{x^{2}+1}}=\\frac{\\sqrt{x^{2}+1}+x}{\\sqrt{x^{2}+1}},$ so by the chain rule $\\frac{d}{dx}\\ln u=\\frac{u'}{u}=\\frac{\\sqrt{x^{2}+1}+x}{\\sqrt{x^{2}+1}}\\cdot\\frac{1}{x+\\sqrt{x^{2}+1}}=\\frac{1}{\\sqrt{1+x^{2}}}.$ Since $u>0$ for every $x,$ the formula holds on the whole real line."
+   }
+  },
+  {
+   "id": "e344",
+   "source_id": "fs-id1167793377930",
+   "source_number": "344",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, verify the derivatives and antiderivatives.</p><p>$\\frac{d}{dx}\\ln(\\frac{x-a}{x+a})=\\frac{2a}{(x^{2}-a^{2})}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $|x|>a,$ $\\ln\\left(\\frac{x-a}{x+a}\\right)=\\ln|x-a|-\\ln|x+a|,$ so its derivative is $\\frac{1}{x-a}-\\frac{1}{x+a}=\\frac{(x+a)-(x-a)}{(x-a)(x+a)}=\\frac{2a}{x^{2}-a^{2}}.$"
+   }
+  },
+  {
+   "id": "e345",
+   "source_id": "fs-id1167793380054",
+   "source_number": "345",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, verify the derivatives and antiderivatives.</p><p>$\\frac{d}{dx}\\ln(\\frac{1+\\sqrt{1-x^{2}}}{x})=-\\frac{1}{x\\sqrt{1-x^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $0<x<1,$ write $\\ln\\left(\\frac{1+\\sqrt{1-x^{2}}}{x}\\right)=\\ln(1+\\sqrt{1-x^{2}})-\\ln x.$ The derivative of the first term is $\\frac{1}{1+\\sqrt{1-x^{2}}}\\cdot\\frac{-x}{\\sqrt{1-x^{2}}},$ and of the second $\\frac{1}{x}.$ Over the common denominator $x\\sqrt{1-x^{2}}\\,(1+\\sqrt{1-x^{2}}),$ the difference has numerator $-x^{2}-\\sqrt{1-x^{2}}(1+\\sqrt{1-x^{2}})=-x^{2}-\\sqrt{1-x^{2}}-(1-x^{2})=-(1+\\sqrt{1-x^{2}}),$ so the derivative is $-\\frac{1}{x\\sqrt{1-x^{2}}}.$"
+   }
+  },
+  {
+   "id": "e346",
+   "source_id": "fs-id1167793911914",
+   "source_number": "346",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, verify the derivatives and antiderivatives.</p><p>$\\frac{d}{dx}\\ln(x+\\sqrt{x^{2}-a^{2}})=\\frac{1}{\\sqrt{x^{2}-a^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $u=x+\\sqrt{x^{2}-a^{2}}.$ Then $u'=1+\\frac{x}{\\sqrt{x^{2}-a^{2}}}=\\frac{\\sqrt{x^{2}-a^{2}}+x}{\\sqrt{x^{2}-a^{2}}},$ so $\\frac{d}{dx}\\ln u=\\frac{u'}{u}=\\frac{1}{\\sqrt{x^{2}-a^{2}}}.$"
+   }
+  },
+  {
+   "id": "e347",
+   "source_id": "fs-id1167793373565",
+   "source_number": "347",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-derivative-theorem",
+   "prompt": "<p>For the following exercises, verify the derivatives and antiderivatives.</p><p>$\\int \\frac{dx}{x\\;\\ln(x)\\ln(\\ln x)}=\\ln(\\ln(\\ln x))+C$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate the right side. With $u=\\ln(\\ln x),$ $\\frac{d}{dx}\\ln u=\\frac{u'}{u},$ and $u'=\\frac{1}{\\ln x}\\cdot\\frac{1}{x}.$ So $\\frac{d}{dx}\\left[\\ln(\\ln(\\ln x))+C\\right]=\\frac{1}{\\ln(\\ln x)}\\cdot\\frac{1}{x\\ln x}=\\frac{1}{x\\ln(x)\\ln(\\ln x)},$ the integrand, for $x>e,$ where $\\ln(\\ln x)>0.$ Equivalently, the substitution $w=\\ln(\\ln x),$ $dw=\\frac{dx}{x\\ln x},$ turns the integral into $\\int\\frac{dw}{w}=\\ln|w|+C.$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "properties-of-logarithms"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "laws-of-exponents"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e295",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e297",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e299",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e301",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e303",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e305",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e305",
+   "concept": "properties-of-logarithms"
+  },
+  {
+   "exercise": "e307",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e309",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e309",
+   "concept": "properties-of-logarithms"
+  },
+  {
+   "exercise": "e311",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e313",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e315",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e317",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e319",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e321",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e323",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e325",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e327",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e329",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e329",
+   "concept": "exponential-function-as-inverse-of-ln"
+  },
+  {
+   "exercise": "e331",
+   "concept": "natural-logarithm-as-an-integral"
+  },
+  {
+   "exercise": "e333",
+   "concept": "natural-logarithm-as-an-integral"
+  },
+  {
+   "exercise": "e333",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e335",
+   "concept": "natural-logarithm-as-an-integral"
+  },
+  {
+   "exercise": "e335",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e337",
+   "concept": "natural-logarithm-as-an-integral"
+  },
+  {
+   "exercise": "e339",
+   "concept": "natural-logarithm-as-an-integral"
+  },
+  {
+   "exercise": "e339",
+   "concept": "surface-area-of-a-surface-of-revolution"
+  },
+  {
+   "exercise": "e341",
+   "concept": "arc-length-of-a-function-of-x"
+  },
+  {
+   "exercise": "e343",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e343",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e344",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e344",
+   "concept": "properties-of-logarithms"
+  },
+  {
+   "exercise": "e345",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e345",
+   "concept": "properties-of-logarithms"
+  },
+  {
+   "exercise": "e346",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e346",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e347",
+   "concept": "integrals-involving-logarithmic-functions"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ln-curve",
+   "label": "y = ln x",
+   "figures": [
+    "fig-ln-exp"
+   ]
+  },
+  {
+   "id": "exp-curve",
+   "label": "y = exp x",
+   "figures": [
+    "fig-ln-exp"
+   ]
+  }
+ ],
+ "footnotes": []
+}

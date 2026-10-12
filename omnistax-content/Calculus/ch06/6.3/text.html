@@ -1,0 +1,146 @@
+<p id="shells-intro">In this section, we examine the <span data-concept="method-of-cylindrical-shells">method of cylindrical shells</span>, the final method for finding the volume of a <span data-concept="solid-of-revolution">solid of revolution</span>. We can use this method on the same kinds of solids as the <span data-concept="disk-method">disk method</span> or the <span data-concept="washer-method">washer method</span>; however, with the disk and washer methods, we integrate along the coordinate axis parallel to the axis of revolution. With the <span data-concept="method-of-cylindrical-shells">method of cylindrical shells</span>, we integrate along the coordinate axis <em>perpendicular</em> to the axis of revolution. The ability to choose which variable of integration we want to use can be a significant advantage with more complicated <span data-concept="function">functions</span>. Also, the specific geometry of the solid sometimes makes the method of using cylindrical shells more appealing than using the <span data-concept="washer-method">washer method</span>. In the last part of this section, we review all the methods for finding volume that we have studied and lay out some guidelines to help you determine which method to use in a given situation.</p>
+<section id="shells">
+<h2>The Method of Cylindrical Shells</h2>
+<p class="cite-target">Again, we are working with a <span data-concept="solid-of-revolution">solid of revolution</span>. As before, we define a region $\kR,$ bounded above by the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="function">function</span> $y=\kf(x),$ below by the $x\text{-axis,}$ and on the left and right by the lines $x=a$ and $x=b,$ respectively, as shown in Figure 6.25(a). We then revolve this region around the <em>y</em>-axis, as shown in Figure 6.25(b). Note that this is different from what we have done before. Previously, regions defined in terms of <span data-concept="function">functions</span> of $x$ were revolved around the $x\text{-axis}$ or a line parallel to it.</p>
+<figure class="sim" id="sim-shells" data-figure="6.25 + 6.26" data-original="/media/ch06/CNX_Calc_Figure_06_03_001.jpg,/media/ch06/CNX_Calc_Figure_06_03_002.jpg" data-original-caption="(Figure 6.25) (a) A region bounded by the graph of a function of x. (b) The solid of revolution formed when the region is revolved around the y−axis. (Figure 6.26) (a) A representative rectangle. (b) When this rectangle is revolved around the y−axis, the result is a cylindrical shell. (c) When we put all the shells together, we get an approximation of the original solid.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.25 + 6.26</span><span>Raise <em>n</em>: each rectangle under $\kf(x)$ turns about the <em>y</em>-axis into a cylindrical shell, and the shells nest inside one another to fill the solid. A quarter is cut away to show them; turn the scene to look down the axis.</span></div>
+</figure>
+<p>As we have done many times before, partition the interval $[a,b]$ using a <span data-concept="regular-partition">regular partition</span>, $P=\{x_{0},x_{1}\text{,\ldots},x_{n}\}$ and, for $i=1,2\text{,\ldots},n,$ choose a point $x_i^{*}\in [x_{i-1},x_{i}].$ Then, construct a rectangle over the interval $[x_{i-1},x_{i}]$ of height $\kf(x_i^{*})$ and width $\Delta x.$ A representative rectangle is shown in Figure 6.26(a). When that rectangle is revolved around the <em>y</em>-axis, instead of a disk or a washer, we get a cylindrical shell, as shown in the following figure.</p>
+<p>To calculate the volume of this shell, consider Figure 6.27.</p>
+<figure class="sim" id="fig-shell-rectangle" data-figure="6.27" data-original="/media/ch06/CNX_Calc_Figure_06_03_003.jpg" data-original-caption="Calculating the volume of the shell.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.27</span><span>Calculating the volume of the shell.</span></div>
+</figure>
+<p>The shell is a <span data-concept="cylinder">cylinder</span>, so its volume is the cross-sectional area multiplied by the height of the <span data-concept="cylinder">cylinder</span>. The <span data-concept="cross-section">cross-sections</span> are annuli (ring-shaped regions—essentially, circles with a hole in the center), with outer radius $x_{i}$ and inner radius $x_{i-1}.$ Thus, the cross-sectional area is $\pi x_i^{2}-\pi x_{i-1}^{2}.$ The height of the <span data-concept="cylinder">cylinder</span> is $\kf(x_i^{*}).$ Then the volume of the shell is</p>
+$$\begin{aligned}\kVshell &=\kf(x_i^{*})(\pi x_i^{2}-\pi x_{i-1}^{2}) \\ &=\pi \kf(x_i^{*})(x_i^{2}-x_{i-1}^{2}) \\ &=\pi \kf(x_i^{*})(x_{i}+x_{i-1})(x_{i}-x_{i-1}) \\ &=2\pi \kf(x_i^{*})(\frac{x_{i}+x_{i-1}}{2})(x_{i}-x_{i-1}).\end{aligned}$$
+<p>Note that $x_{i}-x_{i-1}=\Delta x,$ so we have</p>
+$$\kVshell=2\pi \kf(x_i^{*})(\frac{x_{i}+x_{i-1}}{2})\Delta x.$$
+<p>Furthermore, $\frac{x_{i}+x_{i-1}}{2}$ is both the midpoint of the interval $[x_{i-1},x_{i}]$ and the average radius of the shell, and we can approximate this by $x_i^{*}.$ We then have</p>
+$$\kVshell\approx 2\pi \kf(x_i^{*})x_i^{*}\Delta x.$$
+<p>Another way to think of this is to think of making a vertical cut in the shell and then opening it up to form a flat plate (Figure 6.28).</p>
+<figure class="sim" id="sim-unroll-shell" data-figure="6.28" data-original="/media/ch06/CNX_Calc_Figure_06_03_012.jpg" data-original-caption="(a) Make a vertical cut in a representative shell. (b) Open the shell up to form a flat plate.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.28</span><span>Play it, or drag the slider: the shell is cut along a vertical line and opened out into a flat plate of height $\kf(x_i^{*}),$ width $2\pi x_i^{*}$ and thickness Δ<em>x</em>, whose volume is nearly the shell’s.</span></div>
+</figure>
+<p>In reality, the outer radius of the shell is greater than the inner radius, and hence the back edge of the plate would be slightly longer than the front edge of the plate. However, we can approximate the flattened shell by a flat plate of height $\kf(x_i^{*}),$ width $2\pi x_i^{*},$ and thickness $\Delta x$ (Figure 6.28). The volume of the shell, then, is approximately the volume of the flat plate. Multiplying the height, width, and depth of the plate, we get</p>
+$$\kVshell\approx \kf(x_i^{*})(2\pi x_i^{*})\Delta x,$$
+<p>which is the same formula we had before.</p>
+<p>To calculate the volume of the entire solid, we then add the volumes of all the shells and obtain</p>
+$$\kV\approx \sum_{i=1}^{n}(2\pi x_i^{*}\kf(x_i^{*})\Delta x).$$
+<p>Here we have another <span data-concept="riemann-sum">Riemann sum</span>, this time for the <span data-concept="function">function</span> $2\pi xf(x).$ Taking the <span data-concept="limit">limit</span> as $n\to \infty$ gives us</p>
+$$\kV=\lim_{n\to \infty}\sum_{i=1}^{n}(2\pi x_i^{*}\kf(x_i^{*})\Delta x)=\int_a^{b}(2\pi xf(x))dx.$$
+<p>This leads to the following rule for the <strong><span data-concept="method-of-cylindrical-shells">method of cylindrical shells</span></strong>.</p>
+<div class="note" id="shell-method-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="method-of-cylindrical-shells">The Method of Cylindrical Shells</span></h3>
+<p>Let $\kf(x)$ be <span data-concept="continuity-over-an-interval">continuous</span> and nonnegative. Define $\kR$ as the region bounded above by the <span data-concept="graph-of-a-function">graph of</span> $\kf(x),$ below by the $x\text{-axis},$ on the left by the line $x=a,$ and on the right by the line $x=b.$ Then the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> formed by revolving $\kR$ around the <em>y</em>-axis is given by</p>
+$$\kV=\int_a^{b}(2\pi xf(x))dx.\tag{6.6}$$
+</div>
+<p>Now let’s consider an example.</p>
+<div class="example" id="fs-id1167794163662">
+<h3>Example 6.12 · The Method of Cylindrical Shells 1</h3>
+<p>Define $\kR$ as the region bounded above by the <span data-concept="graph-of-a-function">graph of</span> <span data-fn="1/x">$\kf(x)=1/x$</span> and below by the $x\text{-axis}$ over the interval $[1,3].$ Find the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> formed by revolving $\kR$ around the $y\text{-axis}.$</p>
+<h4>Solution</h4>
+<p>First we must graph the region $\kR$ and the associated <span data-concept="solid-of-revolution">solid of revolution</span>, as shown in the following figure.</p>
+<figure class="sim" id="fig-shells-reciprocal" data-figure="6.29" data-original="/media/ch06/CNX_Calc_Figure_06_03_004.jpg" data-original-caption="(a) The region R under the graph of f(x)=1/x over the interval [1,3]. (b) The solid of revolution generated by revolving R about the y−axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.29</span><span>(a) The region $\kR$ under the graph of $\kf(x)=1/x$ over the interval $[1,3].$ (b) The solid of revolution generated by revolving $\kR$ about the $y\text{-axis}.$</span></div>
+</figure>
+<p>Then the volume of the solid is given by</p>
+$$\begin{aligned}\kV &=\int_a^{b}(2\pi xf(x))dx \\ &=\int_1^{3}(2\pi x(\frac{1}{x}))dx \\ &=\int_1^{3}2\pi\;dx={2\pi x|}_1^{3}=4\pi\;{\text{units}}^{3}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1167794163662"></div>
+<div class="example" id="fs-id1167793454737">
+<h3>Example 6.13 · The Method of Cylindrical Shells 2</h3>
+<p>Define $\kR$ as the region bounded above by the <span data-concept="graph-of-a-function">graph of</span> <span data-fn="2x-x^2">$\kf(x)=2x-x^{2}$</span> and below by the $x\text{-axis}$ over the interval $[0,2].$ Find the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> formed by revolving $\kR$ around the $y\text{-axis}.$</p>
+<h4>Solution</h4>
+<p>First graph the region $\kR$ and the associated <span data-concept="solid-of-revolution">solid of revolution</span>, as shown in the following figure.</p>
+<figure class="sim" id="fig-shells-parabola" data-figure="6.30" data-original="/media/ch06/CNX_Calc_Figure_06_03_005.jpg" data-original-caption="(a) The region R under the graph of f(x)=2x−x² over the interval [0,2]. (b) The volume of revolution obtained by revolving R about the y−axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.30</span><span>(a) The region $\kR$ under the graph of $\kf(x)=2x-x^{2}$ over the interval $[0,2].$ (b) The volume of revolution obtained by revolving $\kR$ about the $y\text{-axis}.$</span></div>
+</figure>
+<p>Then the volume of the solid is given by</p>
+$$\begin{aligned}\kV &=\int_a^{b}(2\pi xf(x))dx \\ &=\int_0^{2}(2\pi x(2x-x^{2}))dx=2\pi\int_0^{2}(2x^{2}-x^{3})dx \\ &={2\pi[\frac{2x^{3}}{3}-\frac{x^{4}}{4}]\;|}_0^{2}=\frac{8\pi}{3}\;{\text{units}}^{3}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1167793454737"></div>
+<p>As with the <span data-concept="disk-method">disk method</span> and the <span data-concept="washer-method">washer method</span>, we can use the <span data-concept="method-of-cylindrical-shells">method of cylindrical shells</span> with <span data-concept="solid-of-revolution">solids of revolution</span>, revolved around the $x\text{-axis},$ when we want to integrate with respect to $y.$ The analogous rule for this type of solid is given here.</p>
+<div class="note" id="shell-method-x-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="shell-method-about-the-x-axis">The Method of Cylindrical Shells for Solids of Revolution around the <em>x</em>-axis</span></h3>
+<p>Let $\kg(y)$ be <span data-concept="continuity-over-an-interval">continuous</span> and nonnegative. Define $\kQ$ as the region bounded on the right by the <span data-concept="graph-of-a-function">graph of</span> $\kg(y),$ on the left by the $y\text{-axis},$ below by the line $y=c,$ and above by the line $y=d.$ Then, the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> formed by revolving $\kQ$ around the $x\text{-axis}$ is given by</p>
+$$\kV=\int_c^{d}(2\pi yg(y))dy.$$
+</div>
+<div class="example" id="fs-id1167793625602">
+<h3>Example 6.14 · The Method of Cylindrical Shells for a Solid Revolved around the <em>x</em>-axis</h3>
+<p>Define $\kQ$ as the region bounded on the right by the <span data-concept="graph-of-a-function">graph of</span> $\kg(y)=2\sqrt{y}$ and on the left by the $y\text{-axis}$ for $y\in [0,4].$ Find the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> formed by revolving $\kQ$ around the <em>x</em>-axis.</p>
+<h4>Solution</h4>
+<p>First, we need to graph the region $\kQ$ and the associated <span data-concept="solid-of-revolution">solid of revolution</span>, as shown in the following figure.</p>
+<figure class="sim" id="fig-shells-x-axis" data-figure="6.31" data-original="/media/ch06/CNX_Calc_Figure_06_03_006.jpg" data-original-caption="(a) The region Q to the left of the function g(y) over the interval [0,4]. (b) The solid of revolution generated by revolving Q around the x−axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.31</span><span>(a) The region $\kQ$ to the left of the function $\kg(y)$ over the interval $[0,4].$ (b) The solid of revolution generated by revolving $\kQ$ around the $x\text{-axis}.$</span></div>
+</figure>
+<p>Label the shaded region $\kQ.$ Then the volume of the solid is given by</p>
+$$\begin{aligned}\kV &=\int_c^{d}(2\pi yg(y))dy \\ &=\int_0^{4}(2\pi y(2\sqrt{y}))dy=4\pi\int_0^{4}y^{3/2}dy \\ &={4\pi[\frac{2y^{5/2}}{5}]\;|}_0^{4}=\frac{256\pi}{5}\;{\text{units}}^{3}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1167793625602"></div>
+<p>For the next example, we look at a <span data-concept="solid-of-revolution">solid of revolution</span> for which the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="function">function</span> is revolved around a line other than one of the two coordinate axes. To set this up, we need to revisit the development of the <span data-concept="method-of-cylindrical-shells">method of cylindrical shells</span>. Recall that we found the volume of one of the shells to be given by</p>
+$$\begin{aligned}\kVshell &=\kf(x_i^{*})(\pi x_i^{2}-\pi x_{i-1}^{2}) \\ &=\pi \kf(x_i^{*})(x_i^{2}-x_{i-1}^{2}) \\ &=\pi \kf(x_i^{*})(x_{i}+x_{i-1})(x_{i}-x_{i-1}) \\ &=2\pi \kf(x_i^{*})(\frac{x_{i}+x_{i-1}}{2})(x_{i}-x_{i-1}).\end{aligned}$$
+<p>This was based on a shell with an outer radius of $x_{i}$ and an inner radius of $x_{i-1}.$ If, however, we rotate the region around a line other than the $y\text{-axis},$ we have a different outer and inner radius. Suppose, for example, that we rotate the region around the line $x=-k,$ where $k$ is some positive constant. Then, the outer radius of the shell is $x_{i}+k$ and the inner radius of the shell is $x_{i-1}+k.$ Substituting these terms into the expression for volume, we see that when a plane region is rotated around the line $x=-k,$ the volume of a shell is given by</p>
+$$\begin{aligned}\kVshell &=2\pi \kf(x_i^{*})(\frac{(x_{i}+k)+(x_{i-1}+k)}{2})((x_{i}+k)-(x_{i-1}+k)) \\ &=2\pi \kf(x_i^{*})((\frac{x_{i}+x_{i-1}}{2})+k)\Delta x.\end{aligned}$$
+<p>As before, we notice that $\frac{x_{i}+x_{i-1}}{2}$ is the midpoint of the interval $[x_{i-1},x_{i}]$ and can be approximated by $x_i^{*}.$ Then, the approximate volume of the shell is</p>
+$$\kVshell\approx 2\pi(x_i^{*}+k)\kf(x_i^{*})\Delta x.$$
+<p>The remainder of the development proceeds as before, and we see that</p>
+$$\kV=\int_a^{b}(2\pi(x+k)\kf(x))dx.$$
+<p>We could also rotate the region around other horizontal or vertical lines, such as a vertical line in the right half plane. In each case, the volume formula must be adjusted accordingly. Specifically, the $x\text{-term}$ in the integral must be replaced with an expression representing the radius of a shell. To see how this works, consider the following example.</p>
+<div class="example" id="fs-id1167794326041">
+<h3>Example 6.15 · A Region of Revolution Revolved around a Line</h3>
+<p>Define $\kR$ as the region bounded above by the <span data-concept="graph-of-a-function">graph of</span> <span data-fn="x">$\kf(x)=x$</span> and below by the $x\text{-axis}$ over the interval $[1,2].$ Find the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> formed by revolving $\kR$ around the line $x=-1.$</p>
+<h4>Solution</h4>
+<p>First, graph the region $\kR$ and the associated <span data-concept="solid-of-revolution">solid of revolution</span>, as shown in the following figure.</p>
+<figure class="sim" id="sim-shell-shifted-axis" data-figure="6.32" data-original="/media/ch06/CNX_Calc_Figure_06_03_007.jpg" data-original-caption="(a) The region R between the graph of f(x) and the x−axis over the interval [1,2]. (b) The solid of revolution generated by revolving R around the line x=−1.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.32</span><span>Drag <em>x</em> along [1, 2]: revolved about the line <em>x</em> = −1, the rectangle at <em>x</em> turns into a shell of radius <em>x</em> + 1 and height $\kf(x)=x.$</span></div>
+</figure>
+<p>Note that the radius of a shell is given by $x+1.$ Then the volume of the solid is given by</p>
+$$\begin{aligned}\kV &=\int_1^{2}(2\pi(x+1)\kf(x))dx \\ &=\int_1^{2}(2\pi(x+1)x)dx=2\pi\int_1^{2}(x^{2}+x)dx \\ &={2\pi[\frac{x^{3}}{3}+\frac{x^{2}}{2}]\;|}_1^{2}=\frac{23\pi}{3}\;{\text{units}}^{3}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1167794326041"></div>
+<p>For our final example in this section, let’s look at the volume of a <span data-concept="solid-of-revolution">solid of revolution</span> for which the region of revolution is bounded by the <span data-concept="graph-of-a-function">graphs of</span> two <span data-concept="function">functions</span>.</p>
+<div class="example" id="fs-id1167791543275">
+<h3>Example 6.16 · A Region of Revolution Bounded by the Graphs of Two Functions</h3>
+<p>Define $\kR$ as the region bounded above by the <span data-concept="graph-of-a-function">graph of</span> the <span data-concept="function">function</span> <span data-ref="ex16-f"><span data-fn="sqrt(x)">$\kf(x)=\sqrt{x}$</span></span> and below by the <span data-concept="graph-of-a-function">graph of</span> the <span data-concept="function">function</span> <span data-ref="ex16-g"><span data-fn="1/x">$\kg(x)=1/x$</span></span> over the interval $[1,4].$ Find the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> generated by revolving $\kR$ around the $y\text{-axis}.$</p>
+<h4>Solution</h4>
+<p>First, graph the region $\kR$ and the associated <span data-concept="solid-of-revolution">solid of revolution</span>, as shown in the following figure.</p>
+<figure class="sim" id="fig-shells-two-functions" data-figure="6.33" data-original="/media/ch06/CNX_Calc_Figure_06_03_008.jpg" data-original-caption="(a) The region R between the graph of f(x) and the graph of g(x) over the interval [1,4]. (b) The solid of revolution generated by revolving R around the y−axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.33</span><span>(a) The region $\kR$ between the graph of $\kf(x)$ and the graph of $\kg(x)$ over the interval $[1,4].$ (b) The solid of revolution generated by revolving $\kR$ around the $y\text{-axis}.$</span></div>
+</figure>
+<p>Note that the axis of revolution is the $y\text{-axis},$ so the radius of a shell is given simply by $x.$ We don’t need to make any adjustments to the <em>x</em>-term of our integrand. The height of a shell, though, is given by $\kf(x)-\kg(x),$ so in this case we need to adjust the $\kf(x)$ term of the integrand. Then the volume of the solid is given by</p>
+$$\begin{aligned}\kV &=\int_1^{4}(2\pi x(\kf(x)-\kg(x)))dx \\ &=\int_1^{4}(2\pi x(\sqrt{x}-\frac{1}{x}))dx=2\pi\int_1^{4}(x^{3/2}-1)dx \\ &={2\pi[\frac{2x^{5/2}}{5}-x]\;|}_1^{4}=\frac{94\pi}{5}\;{\text{units}}^{3}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1167791543275"></div>
+</section>
+
+<section id="which-method">
+<h2>Which Method Should We Use?</h2>
+<p class="cite-target">We have studied several methods for finding the volume of a <span data-concept="solid-of-revolution">solid of revolution</span>, but how do we know which method to use? It often comes down to a choice of which integral is easiest to evaluate. Figure 6.34 describes the different approaches for <span data-concept="solid-of-revolution">solids of revolution</span> around the $x\text{-axis}.$ It’s up to you to develop the analogous table for <span data-concept="solid-of-revolution">solids of revolution</span> around the $y\text{-axis}.$</p>
+<figure class="sim" id="fig-method-table" data-figure="6.34" data-original="/media/ch06/CNX_Calc_Figure_06_03_009.jpg" data-original-caption="Comparing the Methods for Finding the Volume of a Solid Revolution around the x-axis">
+  <div class="sim-head"><span class="eyebrow">Figure 6.34</span><span>Comparing the Methods for Finding the Volume of a Solid Revolution around the <em>x</em>-axis</span></div>
+</figure>
+<p>Let’s take a look at a couple of additional problems and decide on the best approach to take for solving them.</p>
+<div class="example" id="fs-id1167793941036">
+<h3>Example 6.17 · Selecting the Best Method</h3>
+<p>For each of the following problems, select the best method to find the volume of a <span data-concept="solid-of-revolution">solid of revolution</span> generated by revolving the given region around the $x\text{-axis},$ and set up the integral to find the volume (do not evaluate the integral).</p>
+<ol type="a"><li>The region bounded by the <span data-concept="graph-of-a-function">graphs of</span> <span data-ref="ex17-left">$y=x,$</span> <span data-ref="ex17-right">$y=2-x,$</span> and the $x\text{-axis}.$</li><li>The region bounded by the <span data-concept="graph-of-a-function">graphs of</span> $y=4x-x^{2}$ and the $x\text{-axis}.$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>First, sketch the region and the <span data-concept="solid-of-revolution">solid of revolution</span> as shown.</li></ol>
+<figure class="sim" id="sim-best-method" data-figure="6.35" data-original="/media/ch06/CNX_Calc_Figure_06_03_010.jpg" data-original-caption="(a) The region R bounded by two lines and the x−axis. (b) The solid of revolution generated by revolving R about the x−axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.35</span><span>Choose disks or shells for the triangle between <span data-ref="ex17-left">$y=x$</span>, <span data-ref="ex17-right">$y=2-x$</span> and the <em>x</em>-axis, revolved about the <em>x</em>-axis. Disks change their radius formula at <em>x</em> = 1 and need two integrals; shells all run from one line to the other, so one integral covers the solid.</span></div>
+</figure>
+<p>Looking at the region, if we want to integrate with respect to $x,$ we would have to break the integral into two pieces, because we have different <span data-concept="function">functions</span> bounding the region over $[0,1]$ and $[1,2].$ In this case, using the <span data-concept="disk-method">disk method</span>, we would have</p>
+$$\kV=\int_0^{1}(\pi x^{2})dx+\int_1^{2}(\pi{(2-x)}^{2})dx.$$
+<p>If we used the <span data-concept="method-of-cylindrical-shells">shell method</span> instead, we would use <span data-concept="function">functions</span> of $y$ to represent the curves, producing</p>
+$$\begin{aligned}\kV &=\int_0^{1}(2\pi y[(2-y)-y])dy \\ &=\int_0^{1}(2\pi y[2-2y])dy.\end{aligned}$$
+<p>Neither of these integrals is particularly onerous, but since the <span data-concept="method-of-cylindrical-shells">shell method</span> requires only one integral, and the integrand requires less simplification, we should probably go with the <span data-concept="method-of-cylindrical-shells">shell method</span> in this case.</p>
+<ol type="a"><li>First, sketch the region and the <span data-concept="solid-of-revolution">solid of revolution</span> as shown.</li></ol>
+<figure class="sim" id="fig-best-method-b" data-figure="6.36" data-original="/media/ch06/CNX_Calc_Figure_06_03_011.jpg" data-original-caption="(a) The region R between the curve and the x−axis. (b) The solid of revolution generated by revolving R about the x−axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.36</span><span>(a) The region $\kR$ between the curve and the $x\text{-axis}.$ (b) The solid of revolution generated by revolving $\kR$ about the $x\text{-axis}.$</span></div>
+</figure>
+<p>Looking at the region, it would be problematic to define a horizontal rectangle; the region is bounded on the left and right by the same <span data-concept="function">function</span>. Therefore, we can dismiss the <span data-concept="method-of-cylindrical-shells">method of shells</span>. The solid has no cavity in the middle, so we can use the <span data-concept="disk-method">method of disks</span>. Then</p>
+$$\kV=\int_0^{4}\pi{(4x-x^{2})}^{2}dx.$$
+</div>
+<div class="exercises" data-place="fs-id1167793941036"></div>
+</section>

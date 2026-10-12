@@ -1,0 +1,1039 @@
+{
+ "id": "6.5",
+ "module": "m53648",
+ "chapter": "6",
+ "title": "Physical Applications",
+ "short": "Physical Applications",
+ "lead": "Cutting an object into small pieces turns a physical quantity into a definite integral: the mass of a rod or a disk from its <span data-concept=\"density-function\">density function</span>, the <span data-concept=\"work\">work</span> done by a variable force such as a spring’s or in pumping a liquid out of a tank, and the <span data-concept=\"hydrostatic-force-on-a-plate\">hydrostatic force</span> of a liquid on a submerged plate, up to the face of the Hoover Dam.",
+ "objectives": [
+  "Determine the mass of a one-dimensional object from its linear density function.",
+  "Determine the mass of a two-dimensional circular object from its radial density function.",
+  "Calculate the work done by a variable force acting along a line.",
+  "Calculate the work done in pumping a liquid from one height to another.",
+  "Find the hydrostatic force against a submerged vertical plate."
+ ],
+ "summary_html": "<ul><li>Several physical applications of the definite integral are common in engineering and physics.</li><li>Definite integrals can be used to determine the mass of an object if its density function is known.</li><li>Work can also be calculated from integrating a force function, or when counteracting the force of gravity, as in a pumping problem.</li><li>Definite integrals can also be used to calculate the force exerted on an object submerged in a liquid.</li></ul>",
+ "notes": "The book’s link to a History Channel article on the Hoover Dam is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but one. Exercise 253’s key reads only “Answers may vary”, so it carries an AI-written approach. The book sets exercises 234 to 253 after the stem for exercises 229 to 233 (the mass of a two-dimensional object); they stand on their own here. The 18 even-numbered section exercises have no answer in the key and are computational, so they are left out: 218, 220 and 222 (work), 224, 226 and 228 (rods), 230 and 232 (disks), 234, 236 and 238 (springs), 240 and 242 (the cable), 244 (the pyramid’s builders), 246 (the rocket to infinity), 248 and 250 (pumping) and 252 (the half-full cylinder). Review exercises 435, 436 and 449 are set here; 436 has no answer in the key and carries an AI-written one, and 456 (the Karun-3 dam), with no answer, is left out.",
+ "figures": [
+  {
+   "id": "sim-rod-density",
+   "kind": "sim",
+   "number": "6.48",
+   "folds": [
+    "6.49"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_001.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_05_002.jpg"
+   ],
+   "original_caption": "(Figure 6.48) We can calculate the mass of a thin rod oriented along the x-axis by integrating its density function. (Figure 6.49) A representative segment of the rod.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-radial-density",
+   "kind": "sim",
+   "number": "6.50",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_003.jpg"
+   ],
+   "original_caption": "(a) A thin disk in the xy-plane. (b) A representative washer.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-spring",
+   "kind": "sim",
+   "number": "6.51",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_004.jpg"
+   ],
+   "original_caption": "A block attached to a horizontal spring at equilibrium, compressed, and elongated.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pump-cylinder",
+   "kind": "sim",
+   "number": "6.52",
+   "folds": [
+    "6.53"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_005.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_05_006.jpg"
+   ],
+   "original_caption": "(Figure 6.52) How much work is needed to empty a tank partially filled with water? (Figure 6.53) A representative layer of water.",
+   "draws": [
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pump-cone",
+   "kind": "sim",
+   "number": "6.54",
+   "folds": [
+    "6.55"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_007.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_05_008.jpg"
+   ],
+   "original_caption": "(Figure 6.54) A water tank in the shape of an inverted cone. (Figure 6.55) Using similar triangles to express the radius of a disk of water.",
+   "draws": [
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-horizontal-plate",
+   "kind": "figure",
+   "number": "6.56",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_009.jpg"
+   ],
+   "original_caption": "A plate submerged horizontally in water.",
+   "draws": [
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-vertical-plate",
+   "kind": "figure",
+   "number": "6.57",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_010.jpg"
+   ],
+   "original_caption": "A thin plate submerged vertically in water.",
+   "draws": [
+    "region",
+    "integral",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-trough",
+   "kind": "sim",
+   "number": "6.58",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_011.jpg"
+   ],
+   "original_caption": "(a) A water trough with a triangular cross-section. (b) Dimensions of one end of the water trough.",
+   "draws": [
+    "region",
+    "integral",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-dam-photo",
+   "kind": "figure",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-hoover-dam",
+   "kind": "sim",
+   "number": "6.59",
+   "folds": [
+    "6.60",
+    "6.61"
+   ],
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_05_013.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_05_014.jpg",
+    "/media/ch06/CNX_Calc_Figure_06_05_015.jpg"
+   ],
+   "original_caption": "(Figure 6.59) A simplified model of the Hoover Dam with assumed dimensions. (Figure 6.60) We first choose a frame of reference. (Figure 6.61) We use similar triangles to determine a function for the width of the dam. (a) Assumed dimensions of the dam; (b) highlighting the similar triangles.",
+   "draws": [
+    "region",
+    "integral",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "physical-intro",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-density",
+   "concept": "density-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "mass-density",
+   "concept": "regular-partition",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-density",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-density",
+   "concept": "limit",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-1d-theorem",
+   "concept": "mass-of-a-one-dimensional-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793924292",
+   "concept": "mass-of-a-one-dimensional-object",
+   "verb": "uses"
+  },
+  {
+   "span": "mass-circular-theorem",
+   "concept": "mass-of-a-circular-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793912188",
+   "concept": "mass-of-a-circular-object",
+   "verb": "uses"
+  },
+  {
+   "span": "work-force",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "work-force",
+   "concept": "hookes-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "work-definition",
+   "concept": "work",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793298896",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "pumping",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "pumping-strategy",
+   "concept": "work-done-in-pumping",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793505375",
+   "concept": "work-done-in-pumping",
+   "verb": "uses"
+  },
+  {
+   "span": "hydrostatic",
+   "concept": "hydrostatic-pressure",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydrostatic",
+   "concept": "pascals-principle",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydrostatic",
+   "concept": "hydrostatic-force-on-a-plate",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydrostatic-strategy",
+   "concept": "finding-hydrostatic-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793504251",
+   "concept": "finding-hydrostatic-force",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793421214",
+   "concept": "finding-hydrostatic-force",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794136385",
+   "source_number": "Checkpoint 6.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793924292"
+   },
+   "cite": "mass-1d-theorem",
+   "prompt": "<p>Consider a thin rod oriented on the <em>x</em>-axis over the interval $[1,3].$ If the density of the rod is given by $\\rho(x)=2x^{2}+3,$ what is the mass of the rod?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 23.333333333333332,
+    "tol": 0.001,
+    "solution": "$70/3$",
+    "hint": "Use the process from the previous example."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793563678",
+   "source_number": "Checkpoint 6.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793912188"
+   },
+   "cite": "mass-circular-theorem",
+   "prompt": "<p>Let $\\rho(x)=3x+2$ represent the radial density of a disk. Calculate the mass of a disk of radius 2.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 75.39822368615503,
+    "tol": 0.001,
+    "solution": "$24\\pi$",
+    "hint": "Use the process from the previous example."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793929416",
+   "source_number": "Checkpoint 6.25",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793298896"
+   },
+   "cite": "work-definition",
+   "prompt": "<p>Suppose it takes a force of $8$ lb to stretch a spring $6$ in. from the equilibrium position. How much work is done to stretch the spring $1$ ft from the equilibrium position?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8,
+    "unit": "ft-lb",
+    "solution": "$8$ ft-lb",
+    "hint": "Use the process from the previous example. Be careful with units."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793553742",
+   "source_number": "Checkpoint 6.26",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793505375"
+   },
+   "cite": "pumping-strategy",
+   "prompt": "<p>A tank is in the shape of an inverted cone, with height $10$ ft and base radius 6 ft. The tank is filled to a depth of 8 ft to start with, and water is pumped over the upper edge of the tank until 3 ft of water remain in the tank. How much work is required to pump out that amount of water?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 43255.2,
+    "tol": 1,
+    "unit": "ft-lb",
+    "solution": "Approximately $43,255.2$ ft-lb",
+    "hint": "Use the process from the previous example."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793445724",
+   "source_number": "Checkpoint 6.27",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793504251"
+   },
+   "cite": "hydrostatic-strategy",
+   "prompt": "<p>A water trough 12 m long has ends shaped like inverted isosceles triangles, with base 6 m and height 4 m. Find the force on one end of the trough if the trough is full of water.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 156800,
+    "unit": "N",
+    "solution": "$156,800$ N",
+    "hint": "Follow the problem-solving strategy and the process from the previous example."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167794138217",
+   "source_number": "Checkpoint 6.28",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793421214"
+   },
+   "cite": "hydrostatic-strategy",
+   "prompt": "<p>When the reservoir is at its average level, the surface of the water is about 50 ft below where it would be if the reservoir were full. What is the force on the face of the dam under these circumstances?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7164520000,
+    "tol": 500000.0,
+    "unit": "lb",
+    "solution": "Approximately 7,164,520,000 lb or 3,582,260 t",
+    "hint": "Change the depth function, $s(x),$ and the limits of integration."
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1167793718563",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-force",
+   "prompt": "<p>For the following exercises, find the work done.</p><p>How much work is done when a person lifts a $50$ lb box of comics onto a truck that is $3$ ft off the ground?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 150,
+    "unit": "ft-lb",
+    "solution": "$150$ ft-lb"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1167793590363",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-force",
+   "prompt": "<p>For the following exercises, find the work done.</p><p>Find the work done when you push a box along the floor $2$ m, when you apply a constant force of $F=100\\;\\text{N}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 200,
+    "unit": "J",
+    "solution": "$200\\;\\text{J}$"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1167793274848",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-definition",
+   "prompt": "<p>For the following exercises, find the work done.</p><p>What is the work done moving a particle from $x=0$ to $x=1$ m if the force acting on it is $F=3x^{2}$ N?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "unit": "J",
+    "solution": "$1$ J"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1167793280392",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-1d-theorem",
+   "prompt": "<p>For the following exercises, find the mass of the one-dimensional object.</p><p>A car antenna that is $3$ ft long (starting at $x=0)$ and has a density function of $\\rho(x)=3x+2$ lb/ft</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 19.5,
+    "tol": 0.001,
+    "solution": "$\\frac{39}{2}$"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1167793630100",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-1d-theorem",
+   "prompt": "<p>For the following exercises, find the mass of the one-dimensional object.</p><p>A pencil that is $4$ in. long (starting at $x=2)$ and has a density function of $\\rho(x)=5/x$ oz/in.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.493061443340548,
+    "tol": 0.001,
+    "solution": "$\\ln(243)$"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1167793691537",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-circular-theorem",
+   "prompt": "<p>For the following exercises, find the mass of the two-dimensional object that is centered at the origin.</p><p>An oversized hockey puck of radius $2$ in. with density function $\\rho(x)=x^{3}-2x+5$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 69.5339173994541,
+    "tol": 0.001,
+    "solution": "$\\frac{332\\pi}{15}$"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1167793524640",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-circular-theorem",
+   "prompt": "<p>For the following exercises, find the mass of the two-dimensional object that is centered at the origin.</p><p>A plate of radius $10$ in. with density function $\\rho(x)=1+\\cos(\\pi x)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 314.1592653589793,
+    "tol": 0.001,
+    "solution": "$100\\pi$"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1167793244589",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-circular-theorem",
+   "prompt": "<p>For the following exercises, find the mass of the two-dimensional object that is centered at the origin.</p><p>A disk of radius $5$ cm with density function $\\rho(x)=\\sqrt{3x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 243.3467205584167,
+    "tol": 0.001,
+    "solution": "$20\\pi\\sqrt{15}$"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1167793255017",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-definition",
+   "prompt": "<p>A spring has a natural length of $10$ cm. It takes $2$ J to stretch the spring to $15$ cm. How much work would it take to stretch the spring from $15$ cm to $20$ cm?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6,
+    "unit": "J",
+    "solution": "$6$ J"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1167793545921",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-definition",
+   "prompt": "<p>A spring requires $5$ J to stretch the spring from $8$ cm to $12$ cm, and an additional $4$ J to stretch the spring from $12$ cm to $14$ cm. What is the natural length of the spring?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5,
+    "unit": "cm",
+    "solution": "$5$ cm"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1167793630513",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-definition",
+   "prompt": "<p>A force of $F=20x-x^{3}$ N stretches a nonlinear spring by $x$ meters. What work is required to stretch the spring from $x=0$ to $x=2$ m?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 36,
+    "unit": "J",
+    "solution": "$36$ J"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1167793496018",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-definition",
+   "prompt": "<p>For the cable in the preceding exercise, how much work is done to lift the cable $50$ ft?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 18750,
+    "unit": "ft-lb",
+    "solution": "$18,750$ ft-lb"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1167793496078",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-definition",
+   "prompt": "<p><strong>[T]</strong> A pyramid of height $500$ ft has a square base $800$ ft by $800$ ft. Find the area $A$ at height $h.$ If the rock used to build the pyramid weighs approximately $w=100\\;{\\text{lb/ft}}^{3},$ how much work did it take to lift all the rock?</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "weight (lb)",
+      "value": 10666666666.666666,
+      "tol": 10000000.0
+     },
+     {
+      "part": "work (ft-lb)",
+      "value": 1333333333333.3333,
+      "tol": 10000000000.0
+     }
+    ],
+    "solution": "<p>Weight $=\\frac{32}{3}\\;\\times \\;{10}^{9}\\;\\text{lb}$</p><p>Work $=\\frac{4}{3}\\;\\times \\;{10}^{12}\\;\\text{ft-lb}$</p>"
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1167794011556",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-definition",
+   "prompt": "<p><strong>[T]</strong> The force of gravity on a mass $m$ is $F=-((GMm)/x^{2})$ newtons. For a rocket of mass $m=1000\\;\\text{kg},$ compute the work to lift the rocket from $x=6400$ to $x=6500$ km. State your answers with three significant figures. (<em>Note</em>: $G=6.67\\;\\times \\;{10}^{-11}\\;{\\text{N m}}^{2}/{\\text{kg}}^{2}$ and $M=6\\;\\times \\;{10}^{24}\\;\\text{kg}.)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 971000000.0,
+    "tol": 1000000.0,
+    "unit": "N m",
+    "solution": "$9.71\\;\\times \\;{10}^{8}\\;\\text{N m}$"
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1167793524815",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hydrostatic-strategy",
+   "prompt": "<p><strong>[T]</strong> A rectangular dam is $40$ ft high and $60$ ft wide. Assume the weight density of water is 62.5 lbs/ft<sup>3</sup>. Compute the total force $F$ on the dam when</p><ol type=\"a\"><li>the surface of the water is at the top of the dam and</li><li>the surface of the water is halfway down the dam.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3000000
+     },
+     {
+      "part": "b",
+      "value": 750000
+     }
+    ],
+    "solution": "a. $3{,}000{,}000$ lb, b. $750{,}000$ lb"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1167793957904",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pumping-strategy",
+   "prompt": "<p><strong>[T]</strong> Find the work required to pump all the water out of the cylinder in the preceding exercise if the cylinder is only half full.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 73042029.1959627,
+    "tol": 10000.0,
+    "unit": "ft-lb",
+    "solution": "$23.25\\pi$ million ft-lb"
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1167794043019",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pumping-strategy",
+   "prompt": "<p>A cylinder of depth $H$ and cross-sectional area $A$ stands full of water at density $\\rho.$ Compute the work to pump all the water to the top.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{A\\rho H^{2}}{2}$"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1167793975946",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pumping-strategy",
+   "prompt": "<p>A cone-shaped tank has a cross-sectional area that increases with its depth: $A=(\\pi r^{2}h^{2})/H^{3}.$<sup class=\"fn\" data-note=\"e253-area\"></sup> Show that the work to empty it is half the work for a cylinder with the same height and base.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Measure $x$ down from the top, so a layer at depth $x$ is lifted $x$ to the top and, with weight density $\\rho,$ weighs $\\rho A(x)\\,\\Delta x.$ For the cone, with radius $r$ at the bottom $x=H,$ the layer at depth $x$ has area $A(x)=\\pi r^{2}x^{2}/H^{2}$. Then $W_{\\text{cone}}=\\int_{0}^{H}\\rho\\frac{\\pi r^{2}x^{2}}{H^{2}}x\\,dx=\\frac{\\rho\\pi r^{2}}{H^{2}}\\cdot\\frac{H^{4}}{4}=\\frac{\\rho\\pi r^{2}H^{2}}{4}.$ For the cylinder of the same height and base, every layer has area $\\pi r^{2},$ so $W_{\\text{cyl}}=\\int_{0}^{H}\\rho\\pi r^{2}x\\,dx=\\frac{\\rho\\pi r^{2}H^{2}}{2}.$ The cone’s work is half the cylinder’s."
+   }
+  },
+  {
+   "id": "r435",
+   "source_id": "fs-id1167793582473",
+   "source_section": "6.9",
+   "source_number": "435",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pumping-strategy",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>The amount of work to pump the water out of a half-full cylinder is half the amount of work to pump the water out of the full cylinder.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False"
+   }
+  },
+  {
+   "id": "r436",
+   "source_id": "fs-id1167794011749",
+   "source_section": "6.9",
+   "source_number": "436",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-definition",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>If the force is constant, the amount of work to move an object from $x=a$ to $x=b$ is $F(b-a).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "True. A constant force $F$ is the constant function $F(x)=F,$ so $W=\\int_{a}^{b}F\\,dx=F(b-a).$"
+   }
+  },
+  {
+   "id": "r449",
+   "source_id": "fs-id1167794097582",
+   "source_section": "6.9",
+   "source_number": "449",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mass-circular-theorem",
+   "prompt": "<p>Find the mass of $\\rho=\\frac{1}{x^{2}+1}$ on a disk centered at the origin with radius $4.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.900802227739579,
+    "tol": 0.001,
+    "solution": "$\\pi\\ln17$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "mass-of-a-one-dimensional-object"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "mass-of-a-circular-object"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "work"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "work-done-in-pumping"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "finding-hydrostatic-force"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "finding-hydrostatic-force"
+  },
+  {
+   "exercise": "e219",
+   "concept": "work"
+  },
+  {
+   "exercise": "e221",
+   "concept": "work"
+  },
+  {
+   "exercise": "e223",
+   "concept": "work"
+  },
+  {
+   "exercise": "e225",
+   "concept": "mass-of-a-one-dimensional-object"
+  },
+  {
+   "exercise": "e227",
+   "concept": "mass-of-a-one-dimensional-object"
+  },
+  {
+   "exercise": "e229",
+   "concept": "mass-of-a-circular-object"
+  },
+  {
+   "exercise": "e231",
+   "concept": "mass-of-a-circular-object"
+  },
+  {
+   "exercise": "e233",
+   "concept": "mass-of-a-circular-object"
+  },
+  {
+   "exercise": "e235",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "e235",
+   "concept": "work"
+  },
+  {
+   "exercise": "e237",
+   "concept": "hookes-law"
+  },
+  {
+   "exercise": "e237",
+   "concept": "work"
+  },
+  {
+   "exercise": "e239",
+   "concept": "work"
+  },
+  {
+   "exercise": "e241",
+   "concept": "work"
+  },
+  {
+   "exercise": "e243",
+   "concept": "work"
+  },
+  {
+   "exercise": "e245",
+   "concept": "work"
+  },
+  {
+   "exercise": "e247",
+   "concept": "finding-hydrostatic-force"
+  },
+  {
+   "exercise": "e249",
+   "concept": "work-done-in-pumping"
+  },
+  {
+   "exercise": "e251",
+   "concept": "work-done-in-pumping"
+  },
+  {
+   "exercise": "e253",
+   "concept": "work-done-in-pumping"
+  },
+  {
+   "exercise": "r435",
+   "concept": "work-done-in-pumping"
+  },
+  {
+   "exercise": "r436",
+   "concept": "work"
+  },
+  {
+   "exercise": "r449",
+   "concept": "mass-of-a-circular-object"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "e253-area",
+   "kind": "correction",
+   "html": "The book prints $A=(\\pi r^{2}h^{2})/H^{3};$ at the bottom of the tank, $h=H,$ the area is the base’s, $\\pi r^{2},$ so the area at depth $h$ is $A=(\\pi r^{2}h^{2})/H^{2}.$"
+  }
+ ]
+}

@@ -1,0 +1,1184 @@
+{
+ "id": "6.9",
+ "module": "m53653",
+ "chapter": "6",
+ "title": "Calculus of the Hyperbolic Functions",
+ "short": "Hyperbolic Functions",
+ "lead": "The <span data-concept=\"hyperbolic-functions\">hyperbolic functions</span>, built from $e^{x}$ and $e^{-x},$ have derivatives and integrals that echo the trigonometric ones with some changes of sign; their inverses, written with logarithms, give antiderivatives of $1/\\sqrt{1+u^{2}},$ $1/\\sqrt{u^{2}-1}$ and $1/(1-u^{2}).$ A cable hanging under its own weight is a <span data-concept=\"catenary\">catenary</span>, $y=a\\cosh(x/a),$ whose length is an integral the identities make easy.",
+ "objectives": [
+  "Apply the formulas for derivatives and integrals of the hyperbolic functions.",
+  "Apply the formulas for the derivatives of the inverse hyperbolic functions and their associated integrals.",
+  "Describe the common applied conditions of a catenary curve."
+ ],
+ "summary_html": "<ul><li>Hyperbolic functions are defined in terms of exponential functions.</li><li>Term-by-term differentiation yields differentiation formulas for the hyperbolic functions. These differentiation formulas give rise, in turn, to integration formulas.</li><li>With appropriate range restrictions, the hyperbolic functions all have inverses.</li><li>Implicit differentiation yields differentiation formulas for the inverse hyperbolic functions, which in turn give rise to integration formulas.</li><li>The most common physical applications of hyperbolic functions are calculations involving catenaries.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s but seventeen. The key answers exercises 379, 381, 383 and 419 only with “Answers may vary”, and the proofs and derivations 380, 382, 384, 420, 422, 428 to 434 not at all, so they carry AI-written ones. The other 20 even-numbered section exercises have no answer in the key and are computational, so they are left out: 378 (antiderivatives from the definitions), 386 to 394 (derivatives), 396 to 404 (antiderivatives), 406 to 418 (inverse functions), 424 (the cable's sag) and 426 (a catenary's length). The chapter’s 26 review exercises are set in the sections they review, under their own numbers: 435, 436 and 449 in 6.5; 437, 439 and 441 in 6.2; 438, 457 and 458 in 6.8; 443, 445 and 447 in 6.3; 451 in 6.6; 453 and 455 in 6.4; 459 here. 440, 442, 444, 446, 448, 450, 452, 454, 456 and 460 have no answer in the key and are left out.",
+ "figures": [
+  {
+   "id": "sim-hyperbolic",
+   "kind": "sim",
+   "number": "6.81",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_09_001.jpg"
+   ],
+   "original_caption": "Graphs of the hyperbolic functions.",
+   "draws": [
+    "function",
+    "derivative",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-inverse-hyperbolic",
+   "kind": "sim",
+   "number": "6.82",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_09_002.jpg"
+   ],
+   "original_caption": "Graphs of the inverse hyperbolic functions.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-chains",
+   "kind": "photo",
+   "number": "6.83",
+   "draws": []
+  },
+  {
+   "id": "sim-catenary",
+   "kind": "sim",
+   "number": "6.84",
+   "originals": [
+    "/media/ch06/CNX_Calc_Figure_06_09_004.jpg"
+   ],
+   "original_caption": "A hyperbolic cosine function forms the shape of a catenary.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "hyperbolic-intro",
+   "concept": "hyperbolic-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hyperbolic",
+   "concept": "hyperbolic-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hyperbolic",
+   "concept": "derivatives-of-hyperbolic-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "hyperbolic",
+   "concept": "integrals-of-hyperbolic-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793852238",
+   "concept": "derivatives-of-hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793852238",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793279424",
+   "concept": "integrals-of-hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-hyperbolic",
+   "concept": "inverse-hyperbolic-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inverse-hyperbolic",
+   "concept": "derivatives-of-inverse-hyperbolic-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-hyperbolic",
+   "concept": "integrals-involving-inverse-hyperbolic-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-hyperbolic",
+   "concept": "implicit-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793984979",
+   "concept": "derivatives-of-inverse-hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793285224",
+   "concept": "integrals-involving-inverse-hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "catenary",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793370895",
+   "concept": "catenary",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793370895",
+   "concept": "arc-length-of-a-function-of-x",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794145876",
+   "source_number": "Checkpoint 6.47",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793852238"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>Evaluate the following derivatives:</p><ol type=\"a\"><li>$\\frac{d}{dx}(\\text{tanh}(x^{2}+3x))$</li><li>$\\frac{d}{dx}(\\frac{1}{{(\\text{sinh}\\;x)}^{2}})$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\frac{d}{dx}(\\text{tanh}(x^{2}+3x))=({\\text{sech}}^{2}(x^{2}+3x))(2x+3)$</li><li>$\\frac{d}{dx}(\\frac{1}{{(\\text{sinh}\\;x)}^{2}})=\\frac{d}{dx}{(\\text{sinh}\\;x)}^{-2}=-2{(\\text{sinh}\\;x)}^{-3}\\text{cosh}\\;x$</li></ol>",
+    "hint": "Use the formulas in Table 6.2 and apply the chain rule as necessary."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794146347",
+   "source_number": "Checkpoint 6.48",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793279424"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>Evaluate the following integrals:</p><ol type=\"a\"><li>$\\int {\\text{sinh}}^{3}x\\;\\text{cosh}\\;x\\;dx$</li><li>$\\int {\\text{sech}}^{2}(3x)dx$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\int {\\text{sinh}}^{3}x\\;\\text{cosh}\\;x\\;dx=\\frac{{\\text{sinh}}^{4}x}{4}+C$</li><li>$\\int {\\text{sech}}^{2}(3x)dx=\\frac{\\text{tanh}(3x)}{3}+C$</li></ol>",
+    "hint": "Use the formulas above and apply <em>u</em>-substitution as necessary."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793626580",
+   "source_number": "Checkpoint 6.49",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793984979"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>Evaluate the following derivatives:</p><ol type=\"a\"><li>$\\frac{d}{dx}({\\text{cosh}}^{-1}(3x))$</li><li>$\\frac{d}{dx}{({\\text{coth}}^{-1}x)}^{3}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\frac{d}{dx}({\\text{cosh}}^{-1}(3x))=\\frac{3}{\\sqrt{9x^{2}-1}}$</li><li>$\\frac{d}{dx}{({\\text{coth}}^{-1}x)}^{3}=\\frac{3{({\\text{coth}}^{-1}x)}^{2}}{1-x^{2}}$</li></ol>",
+    "hint": "Use the formulas in Table 6.4 and apply the chain rule as necessary."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793969727",
+   "source_number": "Checkpoint 6.50",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793285224"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>Evaluate the following integrals:</p><ol type=\"a\"><li>$\\int \\frac{1}{\\sqrt{x^{2}-4}}dx,\\; \\;x>2$</li><li>$\\int \\frac{1}{\\sqrt{1-e^{2x}}}dx$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\int \\frac{1}{\\sqrt{x^{2}-4}}dx={\\text{cosh}}^{-1}(\\frac{x}{2})+C$</li><li>$\\int \\frac{1}{\\sqrt{1-e^{2x}}}dx=-{\\text{sech}}^{-1}(e^{x})+C$</li></ol>",
+    "hint": "Use the formulas above and apply $u\\text{-substitution}$ as necessary."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793414872",
+   "source_number": "Checkpoint 6.51",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793370895"
+   },
+   "cite": "applications",
+   "prompt": "<p>Assume a hanging cable has the shape $15\\;\\text{cosh}(x/15)$ for $-20\\le x\\le20.$ Determine the length of the cable (in feet).</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 52.95,
+    "tol": 0.01,
+    "unit": "ft",
+    "solution": "$52.95\\;\\text{ft}$",
+    "hint": "Use the procedure from the previous example."
+   }
+  },
+  {
+   "id": "e377",
+   "source_id": "fs-id1167794126434",
+   "source_number": "377",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p><strong>[T]</strong> Find expressions for $\\text{cosh}\\;x+\\text{sinh}\\;x$ and $\\text{cosh}\\;x-\\text{sinh}\\;x.$ Use a calculator to graph these functions and ensure your expression is correct.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{x}\\;\\text{and}\\;e^{-x}$"
+   }
+  },
+  {
+   "id": "e379",
+   "source_id": "fs-id1167793956239",
+   "source_number": "379",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>Show that $\\text{cosh}(x)$ and $\\text{sinh}(x)$ satisfy $y^{''}=y.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "From the definitions, $(\\cosh x)'=\\frac{e^{x}-e^{-x}}{2}=\\sinh x$ and $(\\sinh x)'=\\frac{e^{x}+e^{-x}}{2}=\\cosh x.$ So $(\\cosh x)''=(\\sinh x)'=\\cosh x$ and $(\\sinh x)''=(\\cosh x)'=\\sinh x:$ each satisfies $y''=y.$"
+   }
+  },
+  {
+   "id": "e380",
+   "source_id": "fs-id1167793269055",
+   "source_number": "380",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>Use the quotient rule to verify that $\\text{tanh}(x)'={\\text{sech}}^{2}(x).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\tanh x=\\frac{\\sinh x}{\\cosh x},$ so by the quotient rule $(\\tanh x)'=\\frac{\\cosh x\\cdot\\cosh x-\\sinh x\\cdot\\sinh x}{\\cosh^{2}x}=\\frac{1}{\\cosh^{2}x}=\\text{sech}^{2}x,$ since $\\cosh^{2}x-\\sinh^{2}x=1.$"
+   }
+  },
+  {
+   "id": "e381",
+   "source_id": "fs-id1167793514512",
+   "source_number": "381",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>Derive ${\\text{cosh}}^{2}(x)+{\\text{sinh}}^{2}(x)=\\text{cosh}(2x)$ from the definition.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\cosh^{2}x+\\sinh^{2}x=\\frac{(e^{x}+e^{-x})^{2}+(e^{x}-e^{-x})^{2}}{4}=\\frac{(e^{2x}+2+e^{-2x})+(e^{2x}-2+e^{-2x})}{4}=\\frac{e^{2x}+e^{-2x}}{2}=\\cosh(2x).$"
+   }
+  },
+  {
+   "id": "e382",
+   "source_id": "fs-id1167794037737",
+   "source_number": "382",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>Take the derivative of the previous expression to find an expression for $\\text{sinh}(2x).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate both sides of $\\cosh^{2}x+\\sinh^{2}x=\\cosh(2x):$ the left gives $2\\cosh x\\sinh x+2\\sinh x\\cosh x=4\\sinh x\\cosh x,$ the right $2\\sinh(2x).$ So $\\sinh(2x)=2\\sinh x\\cosh x.$"
+   }
+  },
+  {
+   "id": "e383",
+   "source_id": "fs-id1167794141049",
+   "source_number": "383",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>Prove $\\text{sinh}(x+y)=\\text{sinh}(x)\\text{cosh}(y)+\\text{cosh}(x)\\text{sinh}(y)$ by changing the expression to exponentials.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\sinh x\\cosh y+\\cosh x\\sinh y=\\frac{(e^{x}-e^{-x})(e^{y}+e^{-y})+(e^{x}+e^{-x})(e^{y}-e^{-y})}{4}.$ Expanding, the numerator is $(e^{x+y}+e^{x-y}-e^{-x+y}-e^{-x-y})+(e^{x+y}-e^{x-y}+e^{-x+y}-e^{-x-y})=2e^{x+y}-2e^{-(x+y)},$ so the sum is $\\frac{e^{x+y}-e^{-(x+y)}}{2}=\\sinh(x+y).$"
+   }
+  },
+  {
+   "id": "e384",
+   "source_id": "fs-id1167794336126",
+   "source_number": "384",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>Take the derivative of the previous expression to find an expression for $\\text{cosh}(x+y).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate $\\sinh(x+y)=\\sinh x\\cosh y+\\cosh x\\sinh y$ with respect to <em>x</em>, holding <em>y</em> fixed: $\\cosh(x+y)=\\cosh x\\cosh y+\\sinh x\\sinh y.$"
+   }
+  },
+  {
+   "id": "e385",
+   "source_id": "fs-id1167793630189",
+   "source_number": "385",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives of the given functions and graph along with the function to ensure your answer is correct.</p><p><strong>[T]</strong> $\\text{cosh}(3x+1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$3\\;\\text{sinh}(3x+1)$"
+   }
+  },
+  {
+   "id": "e387",
+   "source_id": "fs-id1167793416764",
+   "source_number": "387",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives of the given functions and graph along with the function to ensure your answer is correct.</p><p><strong>[T]</strong> $\\frac{1}{\\text{cosh}(x)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\text{tanh}(x)\\text{sech}(x)$"
+   }
+  },
+  {
+   "id": "e389",
+   "source_id": "fs-id1167793384557",
+   "source_number": "389",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives of the given functions and graph along with the function to ensure your answer is correct.</p><p><strong>[T]</strong> ${\\text{cosh}}^{2}(x)+{\\text{sinh}}^{2}(x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4\\;\\text{cosh}(x)\\text{sinh}(x)$"
+   }
+  },
+  {
+   "id": "e391",
+   "source_id": "fs-id1167794284874",
+   "source_number": "391",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives of the given functions and graph along with the function to ensure your answer is correct.</p><p><strong>[T]</strong> $\\text{tanh}(\\sqrt{x^{2}+1})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x\\;{\\text{sech}}^{2}(\\sqrt{x^{2}+1})}{\\sqrt{x^{2}+1}}$"
+   }
+  },
+  {
+   "id": "e393",
+   "source_id": "fs-id1167794043454",
+   "source_number": "393",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives of the given functions and graph along with the function to ensure your answer is correct.</p><p><strong>[T]</strong> ${\\text{sinh}}^{6}(x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$6\\;{\\text{sinh}}^{5}(x)\\text{cosh}(x)$"
+   }
+  },
+  {
+   "id": "e395",
+   "source_id": "fs-id1167793281082",
+   "source_number": "395",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the antiderivatives for the given functions.</p><p>$\\text{cosh}(2x+1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\text{sinh}(2x+1)+C$"
+   }
+  },
+  {
+   "id": "e397",
+   "source_id": "fs-id1167794336738",
+   "source_number": "397",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the antiderivatives for the given functions.</p><p>$x\\;\\text{cosh}(x^{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\text{sinh}(x^{2})+C$"
+   }
+  },
+  {
+   "id": "e399",
+   "source_id": "fs-id1167793372582",
+   "source_number": "399",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the antiderivatives for the given functions.</p><p>${\\text{cosh}}^{2}(x)\\text{sinh}(x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}{\\text{cosh}}^{3}(x)+C$"
+   }
+  },
+  {
+   "id": "e401",
+   "source_id": "fs-id1167793450621",
+   "source_number": "401",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the antiderivatives for the given functions.</p><p>$\\frac{\\text{sinh}(x)}{1+\\text{cosh}(x)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(1+\\text{cosh}(x))+C$"
+   }
+  },
+  {
+   "id": "e403",
+   "source_id": "fs-id1167794181011",
+   "source_number": "403",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, find the antiderivatives for the given functions.</p><p>$\\text{cosh}(x)+\\text{sinh}(x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{cosh}(x)+\\text{sinh}(x)+C$"
+   }
+  },
+  {
+   "id": "e405",
+   "source_id": "fs-id1167793372386",
+   "source_number": "405",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives for the functions.</p><p>${\\text{tanh}}^{-1}(4x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{4}{1-16x^{2}}$"
+   }
+  },
+  {
+   "id": "e407",
+   "source_id": "fs-id1167793936665",
+   "source_number": "407",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives for the functions.</p><p>${\\text{sinh}}^{-1}(\\text{cosh}(x))$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\text{sinh}(x)}{\\sqrt{{\\text{cosh}}^{2}(x)+1}}$"
+   }
+  },
+  {
+   "id": "e409",
+   "source_id": "fs-id1167793940311",
+   "source_number": "409",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives for the functions.</p><p>${\\text{tanh}}^{-1}(\\cos(x))$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\csc(x)$"
+   }
+  },
+  {
+   "id": "e411",
+   "source_id": "fs-id1167793290963",
+   "source_number": "411",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, find the derivatives for the functions.</p><p>$\\ln({\\text{tanh}}^{-1}(x))$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{(x^{2}-1){\\text{tanh}}^{-1}(x)}$"
+   }
+  },
+  {
+   "id": "e413",
+   "source_id": "fs-id1167794058014",
+   "source_number": "413",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, find the antiderivatives for the functions.</p><p>$\\int \\frac{dx}{a^{2}-x^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{a}{\\text{tanh}}^{-1}(\\frac{x}{a})+C$"
+   }
+  },
+  {
+   "id": "e415",
+   "source_id": "fs-id1167793950155",
+   "source_number": "415",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, find the antiderivatives for the functions.</p><p>$\\int \\frac{x\\;dx}{\\sqrt{x^{2}+1}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{x^{2}+1}+C$"
+   }
+  },
+  {
+   "id": "e417",
+   "source_id": "fs-id1167793510599",
+   "source_number": "417",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, find the antiderivatives for the functions.</p><p>$\\int \\frac{e^{x}}{\\sqrt{e^{2x}-1}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${\\text{cosh}}^{-1}(e^{x})+C$"
+   }
+  },
+  {
+   "id": "e419",
+   "source_id": "fs-id1167793276964",
+   "source_number": "419",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, use the fact that a falling body with friction equal to velocity squared obeys the equation $dv/dt=g-v^{2}.$</p><p>Show that $v(t)=\\sqrt{g}\\;\\text{tanh}((\\sqrt{g})t)$ satisfies this equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $v(t)=\\sqrt{g}\\tanh(\\sqrt{g}\\,t),$ the chain rule gives $\\frac{dv}{dt}=\\sqrt{g}\\cdot\\sqrt{g}\\,\\text{sech}^{2}(\\sqrt{g}\\,t)=g\\,\\text{sech}^{2}(\\sqrt{g}\\,t).$ Since $\\text{sech}^{2}u=1-\\tanh^{2}u,$ this is $g-g\\tanh^{2}(\\sqrt{g}\\,t)=g-v^{2}.$"
+   }
+  },
+  {
+   "id": "e420",
+   "source_id": "fs-id1167793255888",
+   "source_number": "420",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, use the fact that a falling body with friction equal to velocity squared obeys the equation $dv/dt=g-v^{2}.$</p><p>Derive the previous expression for $v(t)$ by integrating $\\frac{dv}{g-v^{2}}=dt.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $|v|<\\sqrt{g},$ $\\int\\frac{dv}{g-v^{2}}=\\frac{1}{\\sqrt{g}}\\tanh^{-1}\\left(\\frac{v}{\\sqrt{g}}\\right)$ (substitute $v=\\sqrt{g}\\,u$ in $\\int\\frac{du}{1-u^{2}}=\\tanh^{-1}u$). So $\\frac{1}{\\sqrt{g}}\\tanh^{-1}\\left(\\frac{v}{\\sqrt{g}}\\right)=t+C,$ and a body starting from rest, $v(0)=0,$ has $C=0.$ Solving, $v(t)=\\sqrt{g}\\tanh(\\sqrt{g}\\,t).$"
+   }
+  },
+  {
+   "id": "e421",
+   "source_id": "fs-id1167793316091",
+   "source_number": "421",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, use the fact that a falling body with friction equal to velocity squared obeys the equation $dv/dt=g-v^{2}.$</p><p><strong>[T]</strong> Estimate how far a body has fallen in $12$ seconds by finding the area underneath the curve of $v(t).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$37.30$"
+   }
+  },
+  {
+   "id": "e422",
+   "source_id": "fs-id1167793518527",
+   "source_number": "422",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, use this scenario: A cable hanging under its own weight has a slope $S=dy/dx$ that satisfies $dS/dx=c\\sqrt{1+S^{2}}.$ The constant $c$ is the ratio of cable density to tension.</p><p>Show that $S=\\text{sinh}(cx)$ satisfies this equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $S=\\sinh(cx),$ $\\frac{dS}{dx}=c\\cosh(cx),$ and $c\\sqrt{1+S^{2}}=c\\sqrt{1+\\sinh^{2}(cx)}=c\\cosh(cx),$ since $\\cosh^{2}-\\sinh^{2}=1$ and $\\cosh>0.$ The two agree."
+   }
+  },
+  {
+   "id": "e423",
+   "source_id": "fs-id1167793619929",
+   "source_number": "423",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hyperbolic",
+   "prompt": "<p>For the following exercises, use this scenario: A cable hanging under its own weight has a slope $S=dy/dx$ that satisfies $dS/dx=c\\sqrt{1+S^{2}}.$ The constant $c$ is the ratio of cable density to tension.</p><p>Integrate $dy/dx=\\text{sinh}(cx)$ to find the cable height $y(x)$ if $y(0)=1/c.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=\\frac{1}{c}\\text{cosh}(cx)$"
+   }
+  },
+  {
+   "id": "e425",
+   "source_id": "fs-id1167793510621",
+   "source_number": "425",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p><strong>[T]</strong> A chain hangs from two posts $2$ m apart to form a catenary described by the equation $y=2\\;\\text{cosh}(x/2)-1.$ Find the slope of the catenary at the left fence post.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.521095,
+    "tol": 1e-06,
+    "solution": "$-0.521095$"
+   }
+  },
+  {
+   "id": "e427",
+   "source_id": "fs-id1167793641978",
+   "source_number": "427",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p><strong>[T]</strong> A high-voltage power line is a catenary described by $y=10\\;\\text{cosh}(x/10).$ Find the ratio of the area under the catenary to its arc length. What do you notice?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 10,
+    "solution": "$10$"
+   }
+  },
+  {
+   "id": "e428",
+   "source_id": "fs-id1167793499132",
+   "source_number": "428",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p>A telephone line is a catenary described by $y=a\\;\\text{cosh}(x/a).$ Find the ratio of the area under the catenary to its arc length. Does this confirm your answer for the previous question?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Over any interval $[x_{1},x_{2}],$ the area is $\\int a\\cosh(x/a)\\,dx=a^{2}\\sinh(x/a)\\Big|_{x_{1}}^{x_{2}}$ and the arc length is $\\int\\sqrt{1+\\sinh^{2}(x/a)}\\,dx=\\int\\cosh(x/a)\\,dx=a\\sinh(x/a)\\Big|_{x_{1}}^{x_{2}}.$ Their ratio is <em>a</em>, whatever the interval; for $a=10$ it is 10, as in the previous exercise."
+   }
+  },
+  {
+   "id": "e429",
+   "source_id": "fs-id1167793929410",
+   "source_number": "429",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p>Prove the formula for the derivative of $y={\\text{sinh}}^{-1}(x)$ by differentiating $x=\\text{sinh}(y).$ (<em>Hint:</em> Use hyperbolic trigonometric identities.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $y=\\sinh^{-1}x,$ so $x=\\sinh y.$ Differentiating implicitly, $1=\\cosh y\\,\\frac{dy}{dx},$ so $\\frac{dy}{dx}=\\frac{1}{\\cosh y}.$ From $\\cosh^{2}y-\\sinh^{2}y=1$ and $\\cosh y>0,$ $\\cosh y=\\sqrt{1+\\sinh^{2}y}=\\sqrt{1+x^{2}}.$ Hence $\\frac{d}{dx}\\sinh^{-1}x=\\frac{1}{\\sqrt{1+x^{2}}}.$"
+   }
+  },
+  {
+   "id": "e430",
+   "source_id": "fs-id1167793950965",
+   "source_number": "430",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p>Prove the formula for the derivative of $y={\\text{cosh}}^{-1}(x)$ by differentiating $x=\\text{cosh}(y).$</p><p>(<em>Hint:</em> Use hyperbolic trigonometric identities.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $y=\\cosh^{-1}x$ with $x\\ge 1$ and $y\\ge 0,$ so $x=\\cosh y.$ Then $1=\\sinh y\\,\\frac{dy}{dx},$ and for $y\\ge 0,$ $\\sinh y=\\sqrt{\\cosh^{2}y-1}=\\sqrt{x^{2}-1}.$ So $\\frac{d}{dx}\\cosh^{-1}x=\\frac{1}{\\sqrt{x^{2}-1}}$ for $x>1.$"
+   }
+  },
+  {
+   "id": "e431",
+   "source_id": "fs-id1167793395488",
+   "source_number": "431",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p>Prove the formula for the derivative of $y={\\text{sech}}^{-1}(x)$ by differentiating $x=\\text{sech}(y).$ (<em>Hint:</em> Use hyperbolic trigonometric identities.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $y=\\text{sech}^{-1}x$ with $0<x\\le 1$ and $y\\ge 0,$ so $x=\\text{sech}\\,y.$ Differentiating, $1=-\\text{sech}\\,y\\tanh y\\,\\frac{dy}{dx}.$ With $\\tanh^{2}y=1-\\text{sech}^{2}y$ and $\\tanh y\\ge 0$ for $y\\ge 0,$ $\\tanh y=\\sqrt{1-x^{2}}.$ So $\\frac{dy}{dx}=\\frac{-1}{x\\sqrt{1-x^{2}}}.$"
+   }
+  },
+  {
+   "id": "e432",
+   "source_id": "fs-id1167794210494",
+   "source_number": "432",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p>Prove that ${(\\text{cosh}(x)+\\text{sinh}(x))}^{n}=\\text{cosh}(nx)+\\text{sinh}(nx).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\cosh x+\\sinh x=\\frac{e^{x}+e^{-x}}{2}+\\frac{e^{x}-e^{-x}}{2}=e^{x},$ so $(\\cosh x+\\sinh x)^{n}=e^{nx}=\\cosh(nx)+\\sinh(nx),$ by the same identity with $nx$ in place of <em>x</em>."
+   }
+  },
+  {
+   "id": "e433",
+   "source_id": "fs-id1167793379933",
+   "source_number": "433",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p>Prove the expression for ${\\text{sinh}}^{-1}(x).$ Multiply $x=\\text{sinh}(y)=(1/2)(e^{y}-e^{-y})$ by $2e^{y}$ and solve for $y.$ Does your expression match the textbook?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Multiply $x=\\frac{1}{2}(e^{y}-e^{-y})$ by $2e^{y}:$ $2xe^{y}=e^{2y}-1,$ that is $(e^{y})^{2}-2x\\,e^{y}-1=0,$ a quadratic in $e^{y}.$ So $e^{y}=x\\pm\\sqrt{x^{2}+1},$ and since $e^{y}>0$ while $x-\\sqrt{x^{2}+1}<0,$ $e^{y}=x+\\sqrt{x^{2}+1}.$ Hence $\\sinh^{-1}x=\\ln\\left(x+\\sqrt{x^{2}+1}\\right),$ the expression of Section 1.5."
+   }
+  },
+  {
+   "id": "e434",
+   "source_id": "fs-id1167793372775",
+   "source_number": "434",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-hyperbolic",
+   "prompt": "<p>For the following exercises, solve each problem.</p><p>Prove the expression for ${\\text{cosh}}^{-1}(x).$ Multiply $x=\\text{cosh}(y)=(1/2)(e^{y}+e^{-y})$ by $2e^{y}$ and solve for $y.$ Does your expression match the textbook?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Multiply $x=\\frac{1}{2}(e^{y}+e^{-y})$ by $2e^{y}:$ $2xe^{y}=e^{2y}+1,$ that is $(e^{y})^{2}-2x\\,e^{y}+1=0.$ So $e^{y}=x\\pm\\sqrt{x^{2}-1}.$ The inverse takes $y\\ge 0,$ so $e^{y}\\ge 1,$ which is the plus sign (the two roots multiply to 1). Hence $\\cosh^{-1}x=\\ln\\left(x+\\sqrt{x^{2}-1}\\right)$ for $x\\ge 1.$"
+   }
+  },
+  {
+   "id": "r459",
+   "source_id": "fs-id1167794247619",
+   "source_number": "459",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "figure": {
+    "src": "/media/ch06/CNX_Calc_Figure_06_09_202.jpg",
+    "alt": "This figure is an image of a catenoid. It has been formed by rotating a catenary curve about a vertical axis."
+   },
+   "prompt": "<p>For the following exercises, consider the catenoid, the only solid of revolution that has a minimal surface, or zero mean curvature. A catenoid in nature can be found when stretching soap between two rings.</p><p>Find the volume of the catenoid $y=\\text{cosh}(x)$ from $x=-1\\;\\text{to}\\;x=1$ that is created by rotating this curve around the $x\\text{-axis},$ as shown here.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.838651660033731,
+    "tol": 0.001,
+    "solution": "$\\pi(1+\\text{sinh}(1)\\text{cosh}(1))$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "integrals-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "derivatives-of-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "integrals-involving-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "catenary"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "arc-length-of-a-function-of-x"
+  },
+  {
+   "exercise": "e377",
+   "concept": "hyperbolic-functions"
+  },
+  {
+   "exercise": "e379",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e380",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e381",
+   "concept": "hyperbolic-identities"
+  },
+  {
+   "exercise": "e382",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e382",
+   "concept": "hyperbolic-identities"
+  },
+  {
+   "exercise": "e383",
+   "concept": "hyperbolic-identities"
+  },
+  {
+   "exercise": "e384",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e384",
+   "concept": "hyperbolic-identities"
+  },
+  {
+   "exercise": "e385",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e387",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e389",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e391",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e393",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e395",
+   "concept": "integrals-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e397",
+   "concept": "integrals-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e399",
+   "concept": "integrals-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e401",
+   "concept": "integrals-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e403",
+   "concept": "integrals-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e405",
+   "concept": "derivatives-of-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e407",
+   "concept": "derivatives-of-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e409",
+   "concept": "derivatives-of-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e411",
+   "concept": "derivatives-of-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e413",
+   "concept": "integrals-involving-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e415",
+   "concept": "integrals-involving-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e417",
+   "concept": "integrals-involving-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e419",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e420",
+   "concept": "integrals-involving-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e421",
+   "concept": "integrals-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e422",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e422",
+   "concept": "catenary"
+  },
+  {
+   "exercise": "e423",
+   "concept": "integrals-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e423",
+   "concept": "catenary"
+  },
+  {
+   "exercise": "e425",
+   "concept": "catenary"
+  },
+  {
+   "exercise": "e425",
+   "concept": "derivatives-of-hyperbolic-functions"
+  },
+  {
+   "exercise": "e427",
+   "concept": "catenary"
+  },
+  {
+   "exercise": "e428",
+   "concept": "catenary"
+  },
+  {
+   "exercise": "e429",
+   "concept": "derivatives-of-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e429",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e430",
+   "concept": "derivatives-of-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e430",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e431",
+   "concept": "derivatives-of-inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e431",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e432",
+   "concept": "hyperbolic-identities"
+  },
+  {
+   "exercise": "e433",
+   "concept": "inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "e434",
+   "concept": "inverse-hyperbolic-functions"
+  },
+  {
+   "exercise": "r459",
+   "concept": "catenary"
+  },
+  {
+   "exercise": "r459",
+   "concept": "disk-method"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-section-6-4",
+   "kind": "correction",
+   "html": "The book prints “Recall from Section 2.4”; the formula for arc length is in Section 6.4, Arc Length of a Curve and Surface Area."
+  }
+ ]
+}
