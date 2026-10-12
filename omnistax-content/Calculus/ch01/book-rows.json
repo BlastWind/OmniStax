@@ -1,0 +1,1636 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "f",
+   "latex": "f",
+   "macro": "\\kf"
+  },
+  {
+   "sym": "g",
+   "latex": "g",
+   "macro": "\\kg"
+  },
+  {
+   "sym": "s",
+   "latex": "s",
+   "macro": "\\ks"
+  },
+  {
+   "sym": "m",
+   "latex": "m",
+   "macro": "\\km"
+  },
+  {
+   "sym": "f_inv",
+   "latex": "f^{-1}",
+   "macro": "\\kfinv"
+  },
+  {
+   "sym": "x",
+   "latex": "x"
+  },
+  {
+   "sym": "y",
+   "latex": "y"
+  },
+  {
+   "sym": "D",
+   "latex": "D"
+  },
+  {
+   "sym": "t",
+   "latex": "t"
+  },
+  {
+   "sym": "b",
+   "latex": "b"
+  },
+  {
+   "sym": "n",
+   "latex": "n"
+  },
+  {
+   "sym": "a_n",
+   "latex": "a_n"
+  },
+  {
+   "sym": "θ",
+   "latex": "\\theta"
+  },
+  {
+   "sym": "A",
+   "latex": "A"
+  },
+  {
+   "sym": "B",
+   "latex": "B"
+  },
+  {
+   "sym": "α",
+   "latex": "\\alpha"
+  },
+  {
+   "sym": "C",
+   "latex": "C"
+  },
+  {
+   "sym": "p",
+   "latex": "p"
+  },
+  {
+   "sym": "R",
+   "latex": "R"
+  },
+  {
+   "sym": "e",
+   "latex": "e"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Function",
+   "terms": [
+    "function"
+   ],
+   "symbol": "f",
+   "type": "function",
+   "statement": "A function f consists of a set of inputs, a set of outputs, and a rule for assigning each input to exactly one output. When we know the input, the output is determined, so we say that the output is a function of the input."
+  },
+  {
+   "id": "domain",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Domain",
+   "terms": [
+    "domain"
+   ],
+   "symbol": "D",
+   "statement": "The domain of a function is its set of inputs. Where a function is given by an equation and no domain is stated, the domain is taken to be the set of all real numbers x for which f(x) is a real number."
+  },
+  {
+   "id": "range",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Range",
+   "terms": [
+    "range"
+   ],
+   "symbol": "R",
+   "statement": "The range of a function is its set of outputs: every value f(x) takes as x runs over the domain."
+  },
+  {
+   "id": "independent-variable",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Independent variable",
+   "terms": [
+    "independent variable"
+   ],
+   "symbol": "x",
+   "statement": "For a function y = f(x), the input x is the independent variable."
+  },
+  {
+   "id": "dependent-variable",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Dependent variable",
+   "terms": [
+    "dependent variable"
+   ],
+   "symbol": "y",
+   "statement": "For a function y = f(x), the output y is the dependent variable, because it depends on the input x."
+  },
+  {
+   "id": "graph-of-a-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Graph of a function",
+   "terms": [
+    "graph of a function"
+   ],
+   "type": "function",
+   "statement": "The graph of a function f is the set of all points (x, y) in the coordinate plane such that x is in the domain of f and y = f(x)."
+  },
+  {
+   "id": "interval-notation",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Interval notation",
+   "terms": [
+    "interval notation",
+    "endpoints"
+   ],
+   "statement": "A set of real numbers can be described in set-builder notation, {x | x has some property}, or, when it holds every number between two endpoints, in interval notation: (a, b) leaves both endpoints out, [a, b] includes them, and ∞ and −∞, which are not real numbers, mark a side with no end.",
+   "forms": [
+    {
+     "id": "eq-open-interval",
+     "latex": "(a,b)=\\{x|a<x<b\\}"
+    },
+    {
+     "id": "eq-closed-interval",
+     "latex": "[a,b]=\\{x|a\\le x\\le b\\}"
+    }
+   ]
+  },
+  {
+   "id": "natural-domain",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Natural domain",
+   "terms": [
+    "natural domain"
+   ],
+   "statement": "The natural domain of a function given by a formula is the set of all real numbers for which the formula gives a real output; the natural domain of f(x) = √x is the set of nonnegative real numbers."
+  },
+  {
+   "id": "piecewise-defined-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Piecewise-defined function",
+   "terms": [
+    "piecewise-defined function",
+    "piecewise-defined functions"
+   ],
+   "type": "function",
+   "statement": "A piecewise-defined function is defined by different equations on different parts of its domain; which equation gives f(x) depends on the part of the domain in which x falls."
+  },
+  {
+   "id": "table-of-values",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Table of values",
+   "terms": [
+    "table of values"
+   ],
+   "statement": "A table of values lists inputs of a function and their corresponding outputs."
+  },
+  {
+   "id": "zeros-of-a-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Zeros of a function",
+   "terms": [
+    "zeros of a function"
+   ],
+   "statement": "The zeros of a function f are the values of x where f(x) = 0; they are where the graph of f intersects the x-axis. A function may have any number of zeros."
+  },
+  {
+   "id": "y-intercept",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "y-intercept",
+   "statement": "The y-intercept of a function f, if it exists, is the point (0, f(0)). A function has exactly one y-intercept if 0 is in its domain and none otherwise.",
+   "forms": [
+    {
+     "id": "eq-y-intercept",
+     "latex": "(0,f(0))"
+    }
+   ]
+  },
+  {
+   "id": "vertical-line-test",
+   "kind": "result",
+   "section": "1.1",
+   "name": "Vertical line test",
+   "terms": [
+    "vertical line test"
+   ],
+   "statement": "Given a function f, every vertical line that may be drawn intersects the graph of f no more than once. If any vertical line intersects a set of points more than once, the set of points does not represent a function."
+  },
+  {
+   "id": "increasing-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Increasing on an interval",
+   "terms": [
+    "increasing on the interval I"
+   ],
+   "statement": "A function f is increasing on the interval I if f(x₁) ≤ f(x₂) whenever x₁ < x₂ in I, and strictly increasing there if f(x₁) < f(x₂) whenever x₁ < x₂.",
+   "forms": [
+    {
+     "id": "eq-increasing",
+     "latex": "f(x_1)\\le f(x_2)\\;\\text{when}\\;x_1<x_2"
+    },
+    {
+     "id": "eq-strictly-increasing",
+     "latex": "f(x_1)<f(x_2)\\;\\text{when}\\;x_1<x_2"
+    }
+   ]
+  },
+  {
+   "id": "decreasing-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Decreasing on an interval",
+   "terms": [
+    "decreasing on the interval I"
+   ],
+   "statement": "A function f is decreasing on the interval I if f(x₁) ≥ f(x₂) whenever x₁ < x₂ in I, and strictly decreasing there if f(x₁) > f(x₂) whenever x₁ < x₂.",
+   "forms": [
+    {
+     "id": "eq-decreasing",
+     "latex": "f(x_1)\\ge f(x_2)\\;\\text{if}\\;x_1<x_2"
+    },
+    {
+     "id": "eq-strictly-decreasing",
+     "latex": "f(x_1)>f(x_2)\\;\\text{if}\\;x_1<x_2"
+    }
+   ]
+  },
+  {
+   "id": "combinations-of-functions",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Combinations of functions",
+   "type": "function",
+   "statement": "Given two functions f and g, we can define four new functions by writing them with an operator: their sum, difference, product and quotient, the quotient only where g(x) ≠ 0. Each is defined where both f and g are.",
+   "forms": [
+    {
+     "id": "eq-sum-of-functions",
+     "latex": "(f+g)(x)=f(x)+g(x)"
+    },
+    {
+     "id": "eq-difference-of-functions",
+     "latex": "(f-g)(x)=f(x)-g(x)"
+    },
+    {
+     "id": "eq-product-of-functions",
+     "latex": "(f\\cdot g)(x)=f(x)g(x)"
+    },
+    {
+     "id": "eq-quotient-of-functions",
+     "latex": "\\left(\\frac{f}{g}\\right)(x)=\\frac{f(x)}{g(x)}\\;\\text{for}\\;g(x)\\ne 0"
+    }
+   ]
+  },
+  {
+   "id": "composite-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Composite function",
+   "terms": [
+    "composite function"
+   ],
+   "type": "function",
+   "statement": "If f has domain A and range B, g has domain D, and B is a subset of D, the composite function g ∘ f is the function with domain A such that (g ∘ f)(x) = g(f(x)): f maps x to f(x), and g maps f(x) on to g(f(x)). The order in which we compose functions matters.",
+   "forms": [
+    {
+     "id": "eq-composition",
+     "latex": "(g\\circ f)(x)=g(f(x))"
+    }
+   ]
+  },
+  {
+   "id": "symmetry-about-the-y-axis",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Symmetry about the y-axis",
+   "terms": [
+    "symmetry about the y-axis"
+   ],
+   "statement": "The graph of a function f is symmetric about the y-axis if (−x, y) is on the graph whenever (x, y) is: the part of the curve to the right of the y-axis, flipped over it, lies exactly on the part to the left."
+  },
+  {
+   "id": "symmetry-about-the-origin",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Symmetry about the origin",
+   "terms": [
+    "symmetry about the origin"
+   ],
+   "statement": "The graph of a function f is symmetric about the origin if (−x, −y) is on the graph whenever (x, y) is: rotated 180° about the origin, the graph looks exactly the same."
+  },
+  {
+   "id": "even-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Even function",
+   "terms": [
+    "even function"
+   ],
+   "type": "function",
+   "statement": "A function f is even if f(−x) = f(x) for all x in its domain. An even function is symmetric about the y-axis.",
+   "forms": [
+    {
+     "id": "eq-even-function",
+     "latex": "f(-x)=f(x)"
+    }
+   ]
+  },
+  {
+   "id": "odd-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Odd function",
+   "terms": [
+    "odd function"
+   ],
+   "type": "function",
+   "statement": "A function f is odd if f(−x) = −f(x) for all x in its domain. An odd function is symmetric about the origin.",
+   "forms": [
+    {
+     "id": "eq-odd-function",
+     "latex": "f(-x)=-f(x)"
+    }
+   ]
+  },
+  {
+   "id": "absolute-value-function",
+   "kind": "definition",
+   "section": "1.1",
+   "name": "Absolute value function",
+   "terms": [
+    "absolute value function"
+   ],
+   "type": "function",
+   "statement": "The absolute value function |x| is −x for x < 0 and x for x ≥ 0. Its output is positive for every nonzero input and 0 at x = 0, so its range is {y | y ≥ 0}; it is symmetric about the y-axis and so even.",
+   "forms": [
+    {
+     "id": "eq-absolute-value",
+     "latex": "f(x)=\\begin{cases}-x, & x<0\\\\ x, & x\\ge 0\\end{cases}"
+    }
+   ]
+  },
+  {
+   "id": "slope",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Slope",
+   "terms": [
+    "slope"
+   ],
+   "symbol": "m",
+   "type": "derivative",
+   "statement": "The slope of a line through (x₁, y₁) and (x₂, y₂) is m = (y₂ − y₁)/(x₂ − x₁) = Δy/Δx, the change in y for each unit change in x. For a line it does not depend on which two points are chosen.",
+   "forms": [
+    {
+     "id": "eq-slope",
+     "latex": "m=\\frac{y_2-y_1}{x_2-x_1}=\\frac{\\Delta y}{\\Delta x}"
+    }
+   ]
+  },
+  {
+   "id": "linear-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Linear function",
+   "terms": [
+    "linear function"
+   ],
+   "type": "function",
+   "statement": "A linear function is one that can be written in the form f(x) = mx + b; its graph is a line with slope m."
+  },
+  {
+   "id": "point-slope-equation",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Point-slope equation",
+   "terms": [
+    "point-slope equation"
+   ],
+   "statement": "The point-slope equation of the line through (x₁, y₁) with slope m is y − y₁ = m(x − x₁).",
+   "forms": [
+    {
+     "id": "eq-point-slope",
+     "latex": "y-y_1=m(x-x_1)"
+    }
+   ]
+  },
+  {
+   "id": "slope-intercept-form",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Slope-intercept form",
+   "terms": [
+    "slope-intercept form"
+   ],
+   "statement": "The equation of the line with slope m and y-intercept (0, b) in slope-intercept form is y = mx + b.",
+   "forms": [
+    {
+     "id": "eq-slope-intercept",
+     "latex": "y=mx+b"
+    }
+   ]
+  },
+  {
+   "id": "standard-form-of-a-line",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Standard form of a line",
+   "terms": [
+    "standard form of a line"
+   ],
+   "statement": "The standard form of a line is ax + by = c, where a and b are not both zero; it is more general than the other forms because it allows a vertical line, x = k.",
+   "forms": [
+    {
+     "id": "eq-standard-form-line",
+     "latex": "ax+by=c"
+    }
+   ]
+  },
+  {
+   "id": "polynomial-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Polynomial function",
+   "terms": [
+    "polynomial function"
+   ],
+   "type": "function",
+   "statement": "A polynomial function is any function that can be written as f(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + … + a₁x + a₀ for some integer n ≥ 0 and constants aₙ, …, a₀ with aₙ ≠ 0; if every coefficient is 0 it is the zero function.",
+   "forms": [
+    {
+     "id": "eq-polynomial",
+     "latex": "f(x)=a_nx^n+a_{n-1}x^{n-1}+\\cdots+a_1x+a_0"
+    }
+   ]
+  },
+  {
+   "id": "degree",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Degree",
+   "terms": [
+    "degree"
+   ],
+   "symbol": "n",
+   "statement": "The degree of a polynomial function is the value n of the largest exponent of any of its terms."
+  },
+  {
+   "id": "leading-coefficient",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Leading coefficient",
+   "terms": [
+    "leading coefficient"
+   ],
+   "symbol": "a_n",
+   "statement": "The leading coefficient of a polynomial of degree n is the constant aₙ that multiplies xⁿ."
+  },
+  {
+   "id": "constant-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Constant function",
+   "terms": [
+    "constant function"
+   ],
+   "type": "function",
+   "statement": "A polynomial of degree 0, f(x) = a₀, is a constant function; its graph is a horizontal line."
+  },
+  {
+   "id": "quadratic-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Quadratic function",
+   "terms": [
+    "quadratic function"
+   ],
+   "type": "function",
+   "statement": "A quadratic function is a polynomial of degree 2, f(x) = ax² + bx + c with a ≠ 0; its graph is a parabola, opening upward if a > 0 and downward if a < 0."
+  },
+  {
+   "id": "cubic-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Cubic function",
+   "terms": [
+    "cubic function"
+   ],
+   "type": "function",
+   "statement": "A cubic function is a polynomial of degree 3, f(x) = ax³ + bx² + cx + d with a ≠ 0."
+  },
+  {
+   "id": "power-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Power function",
+   "terms": [
+    "power function"
+   ],
+   "type": "function",
+   "statement": "A power function is any function of the form f(x) = axᵇ, where a and b are real numbers. When the exponent is a positive integer n, axⁿ is a polynomial, even if n is even and odd if n is odd."
+  },
+  {
+   "id": "end-behavior",
+   "kind": "result",
+   "section": "1.2",
+   "name": "End behavior of a polynomial",
+   "terms": [
+    "end behavior"
+   ],
+   "statement": "The end behavior of a function is what happens to f(x) as x → ∞ and as x → −∞. A polynomial of degree n ≥ 1 satisfies f(x) → ±∞ as x → ±∞, and its leading term decides which: the sign of the leading coefficient and whether n is even or odd."
+  },
+  {
+   "id": "quadratic-formula",
+   "kind": "result",
+   "section": "1.2",
+   "name": "Quadratic formula",
+   "terms": [
+    "quadratic formula"
+   ],
+   "statement": "The solutions of ax² + bx + c = 0 with a ≠ 0 are x = (−b ± √(b² − 4ac))/(2a). If the discriminant b² − 4ac is positive there are two real solutions, if it is zero there is one, and if it is negative there is none.",
+   "forms": [
+    {
+     "id": "eq-quadratic-formula",
+     "latex": "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}"
+    }
+   ]
+  },
+  {
+   "id": "mathematical-model",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Mathematical model",
+   "terms": [
+    "mathematical model",
+    "mathematical models"
+   ],
+   "statement": "A mathematical model is a method of simulating a real-life situation with mathematical equations, such as a function fitted to collected data."
+  },
+  {
+   "id": "algebraic-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Algebraic function",
+   "terms": [
+    "algebraic function"
+   ],
+   "type": "function",
+   "statement": "An algebraic function is one that involves only addition, subtraction, multiplication, division, rational powers and roots applied to the input variable x."
+  },
+  {
+   "id": "rational-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Rational function",
+   "terms": [
+    "rational function"
+   ],
+   "type": "function",
+   "statement": "A rational function is a quotient of polynomials, f(x) = p(x)/q(x); its domain is the set of x with q(x) ≠ 0.",
+   "forms": [
+    {
+     "id": "eq-rational-function",
+     "latex": "f(x)=\\frac{p(x)}{q(x)}"
+    }
+   ]
+  },
+  {
+   "id": "root-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Root function",
+   "terms": [
+    "root function"
+   ],
+   "type": "function",
+   "statement": "A root function is a power function f(x) = x^{1/n} for an integer n ≥ 2. Its domain is [0, ∞) if n is even and (−∞, ∞) if n is odd, and for odd n it is an odd function.",
+   "forms": [
+    {
+     "id": "eq-root-function",
+     "latex": "f(x)=x^{1/n}"
+    }
+   ]
+  },
+  {
+   "id": "transcendental-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Transcendental function",
+   "terms": [
+    "transcendental function",
+    "transcendental functions"
+   ],
+   "type": "function",
+   "statement": "A transcendental function is one that cannot be described by basic algebraic operations; the most common are the trigonometric, exponential and logarithmic functions."
+  },
+  {
+   "id": "exponential-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Exponential function",
+   "type": "function",
+   "statement": "An exponential function is a function of the form f(x) = bˣ, where the base b > 0 and b ≠ 1. It is increasing if b > 1 and decreasing if 0 < b < 1, with domain (−∞, ∞) and range (0, ∞).",
+   "forms": [
+    {
+     "id": "eq-exponential-function",
+     "latex": "f(x)=b^x"
+    }
+   ]
+  },
+  {
+   "id": "logarithmic-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Logarithmic function",
+   "terms": [
+    "logarithmic function"
+   ],
+   "type": "function",
+   "statement": "A logarithmic function is a function f(x) = log_b(x) for some base b > 0, b ≠ 1, where log_b(x) = y if and only if bʸ = x. It is the inverse of y = bˣ, with domain (0, ∞) and range (−∞, ∞).",
+   "forms": [
+    {
+     "id": "eq-logarithm",
+     "latex": "\\log_b(x)=y\\;\\text{if and only if}\\;b^y=x"
+    }
+   ]
+  },
+  {
+   "id": "transformation-of-a-function",
+   "kind": "definition",
+   "section": "1.2",
+   "name": "Transformation of a function",
+   "terms": [
+    "transformation of a function"
+   ],
+   "statement": "A transformation of a function is a shift, scaling or reflection of its graph: f(x) + c shifts it up c units, f(x + c) left c units, cf(x) scales it vertically and f(cx) horizontally by a factor of c, and −f(x) and f(−x) reflect it about the x- and y-axes. The graph of y = cf(a(x + b)) + d comes from that of y = f(x) by the horizontal shift, the horizontal scaling, the vertical scaling and the vertical shift, in that order.",
+   "forms": [
+    {
+     "id": "eq-transformation",
+     "latex": "y=cf(a(x+b))+d"
+    }
+   ]
+  },
+  {
+   "id": "radian",
+   "kind": "definition",
+   "section": "1.3",
+   "name": "Radian",
+   "terms": [
+    "radians"
+   ],
+   "statement": "The radian measure of an angle θ is the length s of the arc it cuts off on the unit circle, so the angle of an arc of length 1 has radian measure 1. An angle of 180° has a radian measure of π rad.",
+   "forms": [
+    {
+     "id": "eq-degrees-radians",
+     "latex": "180^\\circ=\\pi\\ \\text{rad}"
+    }
+   ]
+  },
+  {
+   "id": "trigonometric-functions",
+   "kind": "definition",
+   "section": "1.3",
+   "name": "Trigonometric functions",
+   "terms": [
+    "trigonometric functions"
+   ],
+   "type": "function",
+   "statement": "For a point P = (x, y) on the unit circle and the angle θ from the positive x-axis to OP, sin θ = y, cos θ = x, tan θ = y/x, csc θ = 1/y, sec θ = 1/x and cot θ = x/y, wherever the quotient is defined. On a circle of radius r they are the same ratios with x/r and y/r, and for an acute angle they are ratios of two sides of a right triangle.",
+   "forms": [
+    {
+     "id": "eq-trig-functions",
+     "latex": "\\sin\\theta=y,\\quad\\cos\\theta=x,\\quad\\tan\\theta=\\frac{y}{x},\\quad\\csc\\theta=\\frac{1}{y},\\quad\\sec\\theta=\\frac{1}{x},\\quad\\cot\\theta=\\frac{x}{y}"
+    }
+   ]
+  },
+  {
+   "id": "trigonometric-identity",
+   "kind": "definition",
+   "section": "1.3",
+   "name": "Trigonometric identity",
+   "terms": [
+    "trigonometric identity"
+   ],
+   "statement": "A trigonometric identity is an equation involving trigonometric functions that is true for all angles θ for which the functions in it are defined."
+  },
+  {
+   "id": "reciprocal-and-ratio-identities",
+   "kind": "result",
+   "section": "1.3",
+   "name": "Reciprocal and ratio identities",
+   "statement": "The cotangent, cosecant and secant are the reciprocals of the tangent, sine and cosine, and the tangent and cotangent are the ratios of sine and cosine.",
+   "forms": [
+    {
+     "id": "eq-reciprocal-identities",
+     "latex": "\\cot\\theta=\\frac{1}{\\tan\\theta},\\quad\\csc\\theta=\\frac{1}{\\sin\\theta},\\quad\\sec\\theta=\\frac{1}{\\cos\\theta}"
+    },
+    {
+     "id": "eq-ratio-identities",
+     "latex": "\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta},\\quad\\cot\\theta=\\frac{\\cos\\theta}{\\sin\\theta}"
+    }
+   ]
+  },
+  {
+   "id": "pythagorean-identities",
+   "kind": "result",
+   "section": "1.3",
+   "name": "Pythagorean identities",
+   "statement": "For every angle θ where the functions are defined, sin²θ + cos²θ = 1, 1 + tan²θ = sec²θ and 1 + cot²θ = csc²θ.",
+   "forms": [
+    {
+     "id": "eq-pythagorean-identity",
+     "latex": "\\sin^2\\theta+\\cos^2\\theta=1"
+    },
+    {
+     "id": "eq-pythagorean-tan",
+     "latex": "1+\\tan^2\\theta=\\sec^2\\theta"
+    },
+    {
+     "id": "eq-pythagorean-cot",
+     "latex": "1+\\cot^2\\theta=\\csc^2\\theta"
+    }
+   ]
+  },
+  {
+   "id": "addition-and-subtraction-formulas",
+   "kind": "result",
+   "section": "1.3",
+   "name": "Addition and subtraction formulas",
+   "statement": "The sine and cosine of a sum or difference of two angles are given by the sines and cosines of the angles.",
+   "forms": [
+    {
+     "id": "eq-sine-addition",
+     "latex": "\\sin(\\alpha\\pm\\beta)=\\sin\\alpha\\cos\\beta\\pm\\cos\\alpha\\sin\\beta"
+    },
+    {
+     "id": "eq-cosine-addition",
+     "latex": "\\cos(\\alpha\\pm\\beta)=\\cos\\alpha\\cos\\beta\\mp\\sin\\alpha\\sin\\beta"
+    }
+   ]
+  },
+  {
+   "id": "double-angle-formulas",
+   "kind": "result",
+   "section": "1.3",
+   "name": "Double-angle formulas",
+   "statement": "The sine and cosine of twice an angle: sin(2θ) = 2 sin θ cos θ and cos(2θ) = 2cos²θ − 1 = 1 − 2sin²θ = cos²θ − sin²θ.",
+   "forms": [
+    {
+     "id": "eq-double-angle-sine",
+     "latex": "\\sin(2\\theta)=2\\sin\\theta\\cos\\theta"
+    },
+    {
+     "id": "eq-double-angle-cosine",
+     "latex": "\\cos(2\\theta)=2\\cos^2\\theta-1=1-2\\sin^2\\theta=\\cos^2\\theta-\\sin^2\\theta"
+    }
+   ]
+  },
+  {
+   "id": "periodic-function",
+   "kind": "definition",
+   "section": "1.3",
+   "name": "Periodic function",
+   "terms": [
+    "periodic function",
+    "periodic functions"
+   ],
+   "type": "function",
+   "statement": "A function is periodic if it has a repeating pattern as the values of x move from left to right. The trigonometric functions are periodic, since θ and θ + 2π correspond to the same point of the unit circle."
+  },
+  {
+   "id": "period",
+   "kind": "definition",
+   "section": "1.3",
+   "name": "Period",
+   "symbol": "p",
+   "statement": "The period of a function f is the smallest positive value p such that f(x + p) = f(x) for all x in its domain. Sine, cosine, secant and cosecant have period 2π; tangent and cotangent have period π.",
+   "forms": [
+    {
+     "id": "eq-period",
+     "latex": "f(x+p)=f(x)"
+    }
+   ]
+  },
+  {
+   "id": "amplitude",
+   "kind": "definition",
+   "section": "1.3",
+   "name": "Amplitude",
+   "symbol": "A",
+   "statement": "For a transformed sine or cosine f(x) = A sin(B(x − α)) + C, the factor A stretches the graph vertically by |A|, and |A| is called the amplitude of f."
+  },
+  {
+   "id": "generalized-sine-function",
+   "kind": "definition",
+   "section": "1.3",
+   "name": "Generalized sine function",
+   "type": "function",
+   "statement": "A transformed sine function f(x) = A sin(B(x − α)) + C has amplitude |A| and period 2π/|B|; α shifts its graph horizontally, a phase shift, and C shifts it vertically. A cosine is a sine shifted left π/2 units.",
+   "forms": [
+    {
+     "id": "eq-generalized-sine",
+     "latex": "f(x)=A\\sin(B(x-\\alpha))+C"
+    },
+    {
+     "id": "eq-generalized-cosine",
+     "latex": "f(x)=A\\cos(B(x-\\alpha))+C"
+    }
+   ]
+  },
+  {
+   "id": "one-to-one-function",
+   "kind": "definition",
+   "section": "1.4",
+   "name": "One-to-one function",
+   "terms": [
+    "one-to-one function"
+   ],
+   "type": "function",
+   "statement": "A function f is one-to-one if f(x₁) ≠ f(x₂) when x₁ ≠ x₂: no two inputs are sent to the same output.",
+   "forms": [
+    {
+     "id": "eq-one-to-one",
+     "latex": "f(x_1)\\ne f(x_2)\\;\\text{when}\\;x_1\\ne x_2"
+    }
+   ]
+  },
+  {
+   "id": "inverse-function",
+   "kind": "definition",
+   "section": "1.4",
+   "name": "Inverse function",
+   "terms": [
+    "inverse function"
+   ],
+   "symbol": "f_inv",
+   "type": "function",
+   "statement": "Given a function f with domain D and range R, its inverse function, if it exists, is the function f⁻¹ with domain R and range D such that f⁻¹(y) = x if f(x) = y. A function has an inverse only if it is one-to-one.",
+   "forms": [
+    {
+     "id": "eq-inverse-function",
+     "latex": "f^{-1}(f(x))=x\\;\\text{for all}\\;x\\;\\text{in}\\;D,\\;\\text{and}\\;f(f^{-1}(y))=y\\;\\text{for all}\\;y\\;\\text{in}\\;R"
+    }
+   ]
+  },
+  {
+   "id": "horizontal-line-test",
+   "kind": "result",
+   "section": "1.4",
+   "name": "Horizontal line test",
+   "terms": [
+    "horizontal line test"
+   ],
+   "statement": "A function f is one-to-one if and only if every horizontal line intersects the graph of f no more than once."
+  },
+  {
+   "id": "finding-an-inverse-function",
+   "kind": "skill",
+   "section": "1.4",
+   "name": "Finding an inverse function",
+   "statement": "To find the inverse of a one-to-one function, solve the equation y = f(x) for x, then interchange the variables x and y and write y = f⁻¹(x)."
+  },
+  {
+   "id": "graph-of-an-inverse-function",
+   "kind": "result",
+   "section": "1.4",
+   "name": "Graph of an inverse function",
+   "statement": "If (a, b) is on the graph of f, then (b, a) is on the graph of f⁻¹, so the graph of f⁻¹ is the reflection of the graph of f about the line y = x."
+  },
+  {
+   "id": "restricted-domain",
+   "kind": "definition",
+   "section": "1.4",
+   "name": "Restricted domain",
+   "terms": [
+    "restricted domain"
+   ],
+   "statement": "A restricted domain is a subset of the domain of a function. A function that is not one-to-one can be restricted to a smaller domain on which it is, and its inverse defined there."
+  },
+  {
+   "id": "inverse-trigonometric-functions",
+   "kind": "definition",
+   "section": "1.4",
+   "name": "Inverse trigonometric functions",
+   "terms": [
+    "inverse trigonometric functions"
+   ],
+   "type": "function",
+   "statement": "The inverse trigonometric functions are the inverses of the trigonometric functions on restricted domains where they are one-to-one: sin⁻¹ x = y if sin y = x and −π/2 ≤ y ≤ π/2, cos⁻¹ x = y if cos y = x and 0 ≤ y ≤ π, both for −1 ≤ x ≤ 1, and similarly for tan⁻¹, cot⁻¹, csc⁻¹ and sec⁻¹.",
+   "forms": [
+    {
+     "id": "eq-inverse-sine-cosine",
+     "latex": "\\sin^{-1}(x)=y\\;\\text{iff}\\;\\sin(y)=x,\\;-\\tfrac{\\pi}{2}\\le y\\le\\tfrac{\\pi}{2};\\quad\\cos^{-1}(x)=y\\;\\text{iff}\\;\\cos(y)=x,\\;0\\le y\\le\\pi"
+    },
+    {
+     "id": "eq-inverse-tangent-cotangent",
+     "latex": "\\tan^{-1}(x)=y\\;\\text{iff}\\;\\tan(y)=x,\\;-\\tfrac{\\pi}{2}<y<\\tfrac{\\pi}{2};\\quad\\cot^{-1}(x)=y\\;\\text{iff}\\;\\cot(y)=x,\\;0<y<\\pi"
+    },
+    {
+     "id": "eq-inverse-cosecant-secant",
+     "latex": "\\csc^{-1}(x)=y\\;\\text{iff}\\;\\csc(y)=x,\\;-\\tfrac{\\pi}{2}\\le y\\le\\tfrac{\\pi}{2},\\,y\\ne0;\\quad\\sec^{-1}(x)=y\\;\\text{iff}\\;\\sec(y)=x,\\;0\\le y\\le\\pi,\\,y\\ne\\tfrac{\\pi}{2}"
+    }
+   ]
+  },
+  {
+   "id": "base",
+   "kind": "definition",
+   "section": "1.5",
+   "name": "Base",
+   "terms": [
+    "base"
+   ],
+   "symbol": "b",
+   "statement": "The base is the number b in the exponential function f(x) = bˣ and the logarithmic function f(x) = log_b x."
+  },
+  {
+   "id": "exponent",
+   "kind": "definition",
+   "section": "1.5",
+   "name": "Exponent",
+   "terms": [
+    "exponent"
+   ],
+   "statement": "The exponent is the value x in the expression bˣ."
+  },
+  {
+   "id": "laws-of-exponents",
+   "kind": "result",
+   "section": "1.5",
+   "name": "Laws of exponents",
+   "statement": "For any constants a > 0, b > 0 and all x and y: bˣ·bʸ = bˣ⁺ʸ, bˣ/bʸ = bˣ⁻ʸ, (bˣ)ʸ = bˣʸ, (ab)ˣ = aˣbˣ and aˣ/bˣ = (a/b)ˣ.",
+   "forms": [
+    {
+     "id": "eq-exponent-product",
+     "latex": "b^x\\cdot b^y=b^{x+y}"
+    },
+    {
+     "id": "eq-exponent-quotient",
+     "latex": "\\frac{b^x}{b^y}=b^{x-y}"
+    },
+    {
+     "id": "eq-exponent-power",
+     "latex": "(b^x)^y=b^{xy}"
+    },
+    {
+     "id": "eq-exponent-product-bases",
+     "latex": "(ab)^x=a^xb^x"
+    },
+    {
+     "id": "eq-exponent-quotient-bases",
+     "latex": "\\frac{a^x}{b^x}=\\left(\\frac{a}{b}\\right)^x"
+    }
+   ]
+  },
+  {
+   "id": "compound-interest",
+   "kind": "result",
+   "section": "1.5",
+   "name": "Compound interest",
+   "terms": [
+    "compounding interest"
+   ],
+   "statement": "P dollars invested at an annual interest rate r, compounded n times per year, grow to A(t) = P(1 + r/n)ⁿᵗ after t years; compounded continuously, to A(t) = Pe^{rt}.",
+   "forms": [
+    {
+     "id": "eq-compound-interest",
+     "latex": "A(t)=P\\left(1+\\frac{r}{n}\\right)^{nt}"
+    },
+    {
+     "id": "eq-continuous-compounding",
+     "latex": "A(t)=Pe^{rt}"
+    }
+   ]
+  },
+  {
+   "id": "number-e",
+   "kind": "definition",
+   "section": "1.5",
+   "name": "The number e",
+   "terms": [
+    "number e"
+   ],
+   "symbol": "e",
+   "statement": "As m gets larger, the quantity (1 + 1/m)ᵐ gets closer to some real number, and we define that number to be e; to six decimal places, e ≈ 2.718282.",
+   "forms": [
+    {
+     "id": "eq-number-e",
+     "latex": "e\\approx 2.718282"
+    }
+   ]
+  },
+  {
+   "id": "natural-exponential-function",
+   "kind": "definition",
+   "section": "1.5",
+   "name": "Natural exponential function",
+   "terms": [
+    "natural exponential function"
+   ],
+   "type": "function",
+   "statement": "The natural exponential function is f(x) = eˣ, the exponential function with base e. It is the only exponential function whose tangent line at x = 0 has slope 1.",
+   "forms": [
+    {
+     "id": "eq-natural-exponential",
+     "latex": "f(x)=e^x"
+    }
+   ]
+  },
+  {
+   "id": "natural-logarithm",
+   "kind": "definition",
+   "section": "1.5",
+   "name": "Natural logarithm",
+   "terms": [
+    "natural logarithm"
+   ],
+   "type": "function",
+   "statement": "The natural logarithm is the logarithm with base e, ln x = log_e x, the inverse of the natural exponential function: ln(eˣ) = x for all x and e^{ln x} = x for x > 0.",
+   "forms": [
+    {
+     "id": "eq-natural-logarithm",
+     "latex": "\\ln x=\\log_e x"
+    }
+   ]
+  },
+  {
+   "id": "common-logarithm",
+   "kind": "definition",
+   "section": "1.5",
+   "name": "Common logarithm",
+   "terms": [
+    "common logarithm"
+   ],
+   "type": "function",
+   "statement": "The common logarithm is the logarithm with base 10, written log₁₀ or log."
+  },
+  {
+   "id": "properties-of-logarithms",
+   "kind": "result",
+   "section": "1.5",
+   "name": "Properties of logarithms",
+   "statement": "If a, b, c > 0, b ≠ 1, and r is any real number, then log_b(ac) = log_b(a) + log_b(c), log_b(a/c) = log_b(a) − log_b(c) and log_b(aʳ) = r log_b(a): the product, quotient and power properties.",
+   "forms": [
+    {
+     "id": "eq-log-product",
+     "latex": "\\log_b(ac)=\\log_b(a)+\\log_b(c)"
+    },
+    {
+     "id": "eq-log-quotient",
+     "latex": "\\log_b\\left(\\frac{a}{c}\\right)=\\log_b(a)-\\log_b(c)"
+    },
+    {
+     "id": "eq-log-power",
+     "latex": "\\log_b(a^r)=r\\log_b(a)"
+    }
+   ]
+  },
+  {
+   "id": "change-of-base-formulas",
+   "kind": "result",
+   "section": "1.5",
+   "name": "Change-of-base formulas",
+   "statement": "For a > 0, b > 0, a ≠ 1 and b ≠ 1, aˣ = b^{x log_b a} for any real x and log_a x = log_b x / log_b a for x > 0, so an exponential or logarithmic function in any base can be written in base e.",
+   "forms": [
+    {
+     "id": "eq-change-of-base-exponential",
+     "latex": "a^x=b^{x\\log_b a}"
+    },
+    {
+     "id": "eq-change-of-base-logarithm",
+     "latex": "\\log_a x=\\frac{\\log_b x}{\\log_b a}"
+    }
+   ]
+  },
+  {
+   "id": "hyperbolic-functions",
+   "kind": "definition",
+   "section": "1.5",
+   "name": "Hyperbolic functions",
+   "terms": [
+    "hyperbolic functions"
+   ],
+   "type": "function",
+   "statement": "The hyperbolic functions sinh, cosh, tanh, csch, sech and coth involve combinations of eˣ and e⁻ˣ: cosh x = (eˣ + e⁻ˣ)/2 and sinh x = (eˣ − e⁻ˣ)/2, and the other four are their quotients and reciprocals.",
+   "forms": [
+    {
+     "id": "eq-cosh",
+     "latex": "\\cosh x=\\frac{e^x+e^{-x}}{2}"
+    },
+    {
+     "id": "eq-sinh",
+     "latex": "\\sinh x=\\frac{e^x-e^{-x}}{2}"
+    },
+    {
+     "id": "eq-tanh",
+     "latex": "\\tanh x=\\frac{\\sinh x}{\\cosh x}=\\frac{e^x-e^{-x}}{e^x+e^{-x}}"
+    },
+    {
+     "id": "eq-csch",
+     "latex": "\\operatorname{csch}x=\\frac{1}{\\sinh x}=\\frac{2}{e^x-e^{-x}}"
+    },
+    {
+     "id": "eq-sech",
+     "latex": "\\operatorname{sech}x=\\frac{1}{\\cosh x}=\\frac{2}{e^x+e^{-x}}"
+    },
+    {
+     "id": "eq-coth",
+     "latex": "\\coth x=\\frac{\\cosh x}{\\sinh x}=\\frac{e^x+e^{-x}}{e^x-e^{-x}}"
+    }
+   ]
+  },
+  {
+   "id": "hyperbolic-identities",
+   "kind": "result",
+   "section": "1.5",
+   "name": "Identities involving hyperbolic functions",
+   "statement": "The hyperbolic functions satisfy identities like the trigonometric ones: cosh is even and sinh odd, cosh x ± sinh x = e^{±x}, cosh²x − sinh²x = 1, and sums of arguments expand as for sine and cosine.",
+   "forms": [
+    {
+     "id": "eq-cosh-even",
+     "latex": "\\cosh(-x)=\\cosh x"
+    },
+    {
+     "id": "eq-sinh-odd",
+     "latex": "\\sinh(-x)=-\\sinh x"
+    },
+    {
+     "id": "eq-cosh-plus-sinh",
+     "latex": "\\cosh x+\\sinh x=e^x"
+    },
+    {
+     "id": "eq-cosh-minus-sinh",
+     "latex": "\\cosh x-\\sinh x=e^{-x}"
+    },
+    {
+     "id": "eq-hyperbolic-pythagorean",
+     "latex": "\\cosh^2x-\\sinh^2x=1"
+    },
+    {
+     "id": "eq-tanh-sech",
+     "latex": "1-\\tanh^2x=\\operatorname{sech}^2x"
+    },
+    {
+     "id": "eq-coth-csch",
+     "latex": "\\coth^2x-1=\\operatorname{csch}^2x"
+    },
+    {
+     "id": "eq-sinh-addition",
+     "latex": "\\sinh(x\\pm y)=\\sinh x\\cosh y\\pm\\cosh x\\sinh y"
+    },
+    {
+     "id": "eq-cosh-addition",
+     "latex": "\\cosh(x\\pm y)=\\cosh x\\cosh y\\pm\\sinh x\\sinh y"
+    }
+   ]
+  },
+  {
+   "id": "inverse-hyperbolic-functions",
+   "kind": "definition",
+   "section": "1.5",
+   "name": "Inverse hyperbolic functions",
+   "terms": [
+    "inverse hyperbolic functions"
+   ],
+   "type": "function",
+   "statement": "The inverse hyperbolic functions are the inverses of the hyperbolic functions, cosh and sech restricted to [0, ∞); each can be written as a composition of the natural logarithm and an algebraic function.",
+   "forms": [
+    {
+     "id": "eq-arcsinh",
+     "latex": "\\sinh^{-1}x=\\ln\\left(x+\\sqrt{x^2+1}\\right)"
+    },
+    {
+     "id": "eq-arccosh",
+     "latex": "\\cosh^{-1}x=\\ln\\left(x+\\sqrt{x^2-1}\\right)"
+    },
+    {
+     "id": "eq-arctanh",
+     "latex": "\\tanh^{-1}x=\\frac{1}{2}\\ln\\left(\\frac{1+x}{1-x}\\right)"
+    },
+    {
+     "id": "eq-arccoth",
+     "latex": "\\coth^{-1}x=\\frac{1}{2}\\ln\\left(\\frac{x+1}{x-1}\\right)"
+    },
+    {
+     "id": "eq-arcsech",
+     "latex": "\\operatorname{sech}^{-1}x=\\ln\\left(\\frac{1+\\sqrt{1-x^2}}{x}\\right)"
+    },
+    {
+     "id": "eq-arccsch",
+     "latex": "\\operatorname{csch}^{-1}x=\\ln\\left(\\frac{1}{x}+\\frac{\\sqrt{1+x^2}}{|x|}\\right)"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "domain",
+   "prereq": "function"
+  },
+  {
+   "concept": "range",
+   "prereq": "function"
+  },
+  {
+   "concept": "independent-variable",
+   "prereq": "function"
+  },
+  {
+   "concept": "dependent-variable",
+   "prereq": "independent-variable"
+  },
+  {
+   "concept": "graph-of-a-function",
+   "prereq": "domain"
+  },
+  {
+   "concept": "natural-domain",
+   "prereq": "domain"
+  },
+  {
+   "concept": "piecewise-defined-function",
+   "prereq": "domain"
+  },
+  {
+   "concept": "table-of-values",
+   "prereq": "function"
+  },
+  {
+   "concept": "zeros-of-a-function",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "y-intercept",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "vertical-line-test",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "increasing-function",
+   "prereq": "function"
+  },
+  {
+   "concept": "increasing-function",
+   "prereq": "interval-notation"
+  },
+  {
+   "concept": "decreasing-function",
+   "prereq": "function"
+  },
+  {
+   "concept": "decreasing-function",
+   "prereq": "interval-notation"
+  },
+  {
+   "concept": "combinations-of-functions",
+   "prereq": "domain"
+  },
+  {
+   "concept": "composite-function",
+   "prereq": "domain"
+  },
+  {
+   "concept": "composite-function",
+   "prereq": "range"
+  },
+  {
+   "concept": "symmetry-about-the-y-axis",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "symmetry-about-the-origin",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "even-function",
+   "prereq": "symmetry-about-the-y-axis"
+  },
+  {
+   "concept": "odd-function",
+   "prereq": "symmetry-about-the-origin"
+  },
+  {
+   "concept": "absolute-value-function",
+   "prereq": "piecewise-defined-function"
+  },
+  {
+   "concept": "linear-function",
+   "prereq": "slope"
+  },
+  {
+   "concept": "linear-function",
+   "prereq": "function"
+  },
+  {
+   "concept": "point-slope-equation",
+   "prereq": "linear-function"
+  },
+  {
+   "concept": "slope-intercept-form",
+   "prereq": "linear-function"
+  },
+  {
+   "concept": "slope-intercept-form",
+   "prereq": "y-intercept"
+  },
+  {
+   "concept": "standard-form-of-a-line",
+   "prereq": "linear-function"
+  },
+  {
+   "concept": "polynomial-function",
+   "prereq": "function"
+  },
+  {
+   "concept": "degree",
+   "prereq": "polynomial-function"
+  },
+  {
+   "concept": "leading-coefficient",
+   "prereq": "polynomial-function"
+  },
+  {
+   "concept": "constant-function",
+   "prereq": "degree"
+  },
+  {
+   "concept": "quadratic-function",
+   "prereq": "degree"
+  },
+  {
+   "concept": "cubic-function",
+   "prereq": "degree"
+  },
+  {
+   "concept": "power-function",
+   "prereq": "even-function"
+  },
+  {
+   "concept": "power-function",
+   "prereq": "odd-function"
+  },
+  {
+   "concept": "end-behavior",
+   "prereq": "degree"
+  },
+  {
+   "concept": "end-behavior",
+   "prereq": "leading-coefficient"
+  },
+  {
+   "concept": "quadratic-formula",
+   "prereq": "quadratic-function"
+  },
+  {
+   "concept": "quadratic-formula",
+   "prereq": "zeros-of-a-function"
+  },
+  {
+   "concept": "mathematical-model",
+   "prereq": "function"
+  },
+  {
+   "concept": "algebraic-function",
+   "prereq": "polynomial-function"
+  },
+  {
+   "concept": "rational-function",
+   "prereq": "algebraic-function"
+  },
+  {
+   "concept": "root-function",
+   "prereq": "algebraic-function"
+  },
+  {
+   "concept": "root-function",
+   "prereq": "power-function"
+  },
+  {
+   "concept": "transcendental-function",
+   "prereq": "algebraic-function"
+  },
+  {
+   "concept": "exponential-function",
+   "prereq": "transcendental-function"
+  },
+  {
+   "concept": "logarithmic-function",
+   "prereq": "exponential-function"
+  },
+  {
+   "concept": "transformation-of-a-function",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "trigonometric-functions",
+   "prereq": "radian"
+  },
+  {
+   "concept": "trigonometric-functions",
+   "prereq": "function"
+  },
+  {
+   "concept": "trigonometric-identity",
+   "prereq": "trigonometric-functions"
+  },
+  {
+   "concept": "reciprocal-and-ratio-identities",
+   "prereq": "trigonometric-identity"
+  },
+  {
+   "concept": "pythagorean-identities",
+   "prereq": "trigonometric-identity"
+  },
+  {
+   "concept": "addition-and-subtraction-formulas",
+   "prereq": "trigonometric-identity"
+  },
+  {
+   "concept": "double-angle-formulas",
+   "prereq": "addition-and-subtraction-formulas"
+  },
+  {
+   "concept": "periodic-function",
+   "prereq": "function"
+  },
+  {
+   "concept": "period",
+   "prereq": "periodic-function"
+  },
+  {
+   "concept": "amplitude",
+   "prereq": "trigonometric-functions"
+  },
+  {
+   "concept": "generalized-sine-function",
+   "prereq": "amplitude"
+  },
+  {
+   "concept": "generalized-sine-function",
+   "prereq": "period"
+  },
+  {
+   "concept": "generalized-sine-function",
+   "prereq": "transformation-of-a-function"
+  },
+  {
+   "concept": "one-to-one-function",
+   "prereq": "function"
+  },
+  {
+   "concept": "inverse-function",
+   "prereq": "one-to-one-function"
+  },
+  {
+   "concept": "inverse-function",
+   "prereq": "domain"
+  },
+  {
+   "concept": "inverse-function",
+   "prereq": "range"
+  },
+  {
+   "concept": "horizontal-line-test",
+   "prereq": "one-to-one-function"
+  },
+  {
+   "concept": "horizontal-line-test",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "finding-an-inverse-function",
+   "prereq": "inverse-function"
+  },
+  {
+   "concept": "graph-of-an-inverse-function",
+   "prereq": "inverse-function"
+  },
+  {
+   "concept": "graph-of-an-inverse-function",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "restricted-domain",
+   "prereq": "domain"
+  },
+  {
+   "concept": "restricted-domain",
+   "prereq": "one-to-one-function"
+  },
+  {
+   "concept": "inverse-trigonometric-functions",
+   "prereq": "inverse-function"
+  },
+  {
+   "concept": "inverse-trigonometric-functions",
+   "prereq": "restricted-domain"
+  },
+  {
+   "concept": "inverse-trigonometric-functions",
+   "prereq": "trigonometric-functions"
+  },
+  {
+   "concept": "base",
+   "prereq": "exponential-function"
+  },
+  {
+   "concept": "exponent",
+   "prereq": "exponential-function"
+  },
+  {
+   "concept": "laws-of-exponents",
+   "prereq": "base"
+  },
+  {
+   "concept": "laws-of-exponents",
+   "prereq": "exponent"
+  },
+  {
+   "concept": "compound-interest",
+   "prereq": "exponential-function"
+  },
+  {
+   "concept": "number-e",
+   "prereq": "compound-interest"
+  },
+  {
+   "concept": "natural-exponential-function",
+   "prereq": "number-e"
+  },
+  {
+   "concept": "natural-logarithm",
+   "prereq": "natural-exponential-function"
+  },
+  {
+   "concept": "natural-logarithm",
+   "prereq": "logarithmic-function"
+  },
+  {
+   "concept": "common-logarithm",
+   "prereq": "logarithmic-function"
+  },
+  {
+   "concept": "properties-of-logarithms",
+   "prereq": "logarithmic-function"
+  },
+  {
+   "concept": "properties-of-logarithms",
+   "prereq": "laws-of-exponents"
+  },
+  {
+   "concept": "change-of-base-formulas",
+   "prereq": "properties-of-logarithms"
+  },
+  {
+   "concept": "change-of-base-formulas",
+   "prereq": "natural-logarithm"
+  },
+  {
+   "concept": "hyperbolic-functions",
+   "prereq": "natural-exponential-function"
+  },
+  {
+   "concept": "hyperbolic-identities",
+   "prereq": "hyperbolic-functions"
+  },
+  {
+   "concept": "inverse-hyperbolic-functions",
+   "prereq": "hyperbolic-functions"
+  },
+  {
+   "concept": "inverse-hyperbolic-functions",
+   "prereq": "inverse-function"
+  },
+  {
+   "concept": "inverse-hyperbolic-functions",
+   "prereq": "natural-logarithm"
+  }
+ ]
+}
