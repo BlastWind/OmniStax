@@ -1,0 +1,1392 @@
+{
+ "id": "15.1",
+ "module": "m53949",
+ "chapter": "15",
+ "title": "Double Integrals over Rectangular Regions",
+ "short": "Double Integrals over Rectangular Regions",
+ "lead": "A <span data-concept=\"double-integral\">double integral</span> adds up the volumes of thin boxes standing on the small rectangles of a region in the plane, the way a definite integral adds up rectangles under a curve. This section defines it over a rectangle, lists its properties, evaluates it as an <span data-concept=\"iterated-integral\">iterated integral</span>, and uses it for areas, volumes and average values.",
+ "objectives": [
+  "Recognize when a function of two variables is integrable over a rectangular region.",
+  "Recognize and use some of the properties of double integrals.",
+  "Evaluate a double integral over a rectangular region by writing it as an iterated integral.",
+  "Use a double integral to calculate the area of a region, volume under a surface, or average value of a function over a plane region."
+ ],
+ "summary_html": "<ul><li>We can use a <span data-concept=\"double-riemann-sum\">double Riemann sum</span> to approximate the volume of a solid bounded above by a <span data-concept=\"function-of-two-variables\">function of two variables</span> over a <span data-concept=\"region\">rectangular region</span>. By taking the limit, this becomes a <span data-concept=\"double-integral\">double integral</span> representing the volume of the solid.</li><li>Properties of <span data-concept=\"double-integral\">double integral</span> are useful to simplify computation and find bounds on their values.</li><li>We can use <span data-concept=\"fubinis-theorem\">Fubini’s theorem</span> to write and evaluate a <span data-concept=\"double-integral\">double integral</span> as an <span data-concept=\"iterated-integral\">iterated integral</span>.</li><li><span data-concept=\"double-integral\">Double integrals</span> are used to calculate the area of a <span data-concept=\"region\">region</span>, the volume under a <span data-concept=\"surface\">surface</span>, and the <span data-concept=\"average-value-of-a-function-of-two-variables\">average value of a function of two variables</span> over a <span data-concept=\"region\">rectangular region</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Checkpoints 15.2 and 15.6 are keyed only “Answers may vary” for the parts that ask for a bound or an estimate; their worked answers are AI-written. Of the unkeyed section exercises, 14 proofs and “show” exercises are kept with AI-written suggested approaches: 39–48 (bounds by property v), 51, 52, 57 and 58. The other 22 unkeyed ones are computational or call for a CAS and are left out: exercises 2–38 even, 50, 54 and 56. Review exercise 416 from the end of the chapter is held here with a suggested approach.",
+ "figures": [
+  {
+   "id": "sim-double-riemann",
+   "kind": "sim",
+   "number": "15.2",
+   "folds": [
+    "15.3",
+    "15.4"
+   ],
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_01_001.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_01_002.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_01_003.jpg"
+   ],
+   "original_caption": "(Figure 15.2) The graph of f(x,y) over the rectangle R in the xy-plane is a curved surface. (Figure 15.3) Rectangle R is divided into small rectangles Rᵢⱼ, each with area ΔA. (Figure 15.4) A thin rectangular box above Rᵢⱼ with height f(xᵢⱼ*,yᵢⱼ*).",
+   "draws": [
+    "surface",
+    "integral",
+    "region",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-example-riemann",
+   "kind": "sim",
+   "number": "15.5",
+   "folds": [
+    "15.6"
+   ],
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_01_004.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_01_005.jpg"
+   ],
+   "original_caption": "(Figure 15.5) The function z=f(x,y) graphed over the rectangular region R=[0,2] ×  [0,2]. (Figure 15.6) Subrectangles for the rectangular region R=[0,2] ×  [0,2].",
+   "draws": [
+    "surface",
+    "integral",
+    "region",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-fubini-slices",
+   "kind": "sim",
+   "number": "15.7",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_01_006.jpg"
+   ],
+   "original_caption": "(a) Integrating first with respect to y and then with respect to x to find the area A(x) and then the volume V; (b) integrating first with respect to x and then with respect to y to find the area A(y) and then the volume V.",
+   "draws": [
+    "surface",
+    "integral",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-x-sin-xy",
+   "kind": "figure",
+   "number": "15.8",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_01_007.jpg"
+   ],
+   "original_caption": "The function z=f(x,y)=x sin (xy) over the rectangular region R=[0,π ] ×  [1,2].",
+   "draws": [
+    "surface",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-paraboloid",
+   "kind": "figure",
+   "number": "15.9",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_01_008.jpg"
+   ],
+   "original_caption": "(a) The surface z=27−2x²−y² above the square region R₁=[−3,3] ×  [−3,3]. (b) The solid S lies under the surface z=27−2x²−y² above the square region R₂=[0,3] ×  [0,3].",
+   "draws": [
+    "surface",
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-storm",
+   "kind": "photo",
+   "number": "15.10",
+   "draws": []
+  },
+  {
+   "id": "fig-storm-grid",
+   "kind": "photo",
+   "number": "15.11",
+   "draws": []
+  },
+  {
+   "id": "sim-average-height",
+   "kind": "sim",
+   "draws": [
+    "region",
+    "integral",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "double-intro",
+   "concept": "double-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "volumes",
+   "concept": "function-of-two-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "volumes",
+   "concept": "graph-of-a-function-of-two-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "volumes",
+   "concept": "region",
+   "verb": "uses"
+  },
+  {
+   "span": "riemann-sum-term",
+   "concept": "double-riemann-sum",
+   "verb": "introduces"
+  },
+  {
+   "span": "riemann-sum-term",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793373755",
+   "concept": "double-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "signed-volume",
+   "concept": "net-signed-area",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794246571",
+   "concept": "double-riemann-sum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "integrable-term",
+   "concept": "integrable-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrable-term",
+   "concept": "integrable-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794188051",
+   "concept": "properties-of-double-integrals",
+   "verb": "introduces"
+  },
+  {
+   "span": "properties",
+   "concept": "properties-of-the-definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793636382",
+   "concept": "iterated-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "iterated",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793423558",
+   "concept": "fubinis-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793255662",
+   "concept": "properties-of-double-integrals",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793290970",
+   "concept": "fubinis-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793627885",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793627885",
+   "concept": "integration-by-parts",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793508032",
+   "concept": "area-of-a-region-by-double-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793925030",
+   "concept": "double-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "average-recall",
+   "concept": "average-value-of-a-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794076396",
+   "concept": "average-value-of-a-function-of-two-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793638502",
+   "concept": "double-riemann-sum",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794324425",
+   "source_number": "Checkpoint 15.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794246571"
+   },
+   "cite": "volumes",
+   "prompt": "Use the same function $z=f(x,y)=3x^{2}-y^{}$ over the rectangular region $R=[0,2]\\;\\times \\;[0,2].$ Divide <em>R</em> into the same four squares with $m=n=2,$ and choose the sample points as the upper left corner point of each square $(0,1),(1,1),(0,2),$ and $(1,2)$ (Figure 15.6) to approximate the signed volume of the solid <em>S</em> that lies above $R$ and “under” the graph of $f.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$V=\\sum_{i=1}^{2} \\sum_{j=1}^{2} f(x_{ij}^{*},y_{ij}^{*})\\Delta A =0$",
+    "hint": "Follow the steps of the previous example."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793570084",
+   "source_number": "Checkpoint 15.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793927722"
+   },
+   "cite": "iterated",
+   "prompt": "<p>a. Use the properties of the double integral and Fubini’s theorem to evaluate the integral</p>\n$$\\int_0^{1}\\int_{-1}^{3}(3-x+4y)dy\\;dx .$$\n<p>b. Show that $0\\le \\iint\\limits_{R}\\sin \\pi x\\;\\cos \\pi y\\;dA\\le \\frac{1}{32}$ where $R=[0,\\frac{1}{4}]\\times [\\frac{1}{4},\\frac{1}{2}].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "<p>a. By properties i and ii, split the integrand and integrate with respect to $y$ first, holding $x$ constant: $\\int_{-1}^{3}(3-x+4y)\\,dy=(3-x)(4)+2(3^{2}-1^{2})=28-4x.$ Then $\\int_{0}^{1}(28-4x)\\,dx=28-2=26.$</p><p>b. On $R=[0,\\frac{1}{4}]\\times[\\frac{1}{4},\\frac{1}{2}]$ we have $0\\le \\pi x\\le \\frac{\\pi}{4}$ and $\\frac{\\pi}{4}\\le \\pi y\\le \\frac{\\pi}{2},$ so $0\\le \\sin \\pi x\\le \\frac{\\sqrt{2}}{2}$ and $0\\le \\cos \\pi y\\le \\frac{\\sqrt{2}}{2}.$ Hence $0\\le \\sin \\pi x\\cos \\pi y\\le \\frac{1}{2}$ on $R,$ and the area of $R$ is $\\frac{1}{4}\\cdot\\frac{1}{4}=\\frac{1}{16}.$ By property v, $0\\cdot\\frac{1}{16}\\le \\iint_{R}\\sin \\pi x\\cos \\pi y\\,dA\\le \\frac{1}{2}\\cdot\\frac{1}{16}=\\frac{1}{32}.$</p>",
+    "hint": "Use properties i. and ii. and evaluate the iterated integral, and then use property v."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167794160224",
+   "source_number": "Checkpoint 15.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793290970"
+   },
+   "cite": "iterated",
+   "prompt": "Evaluate $\\int_{y=-3}^{y=2}\\int_{x=3}^{x=5}(2-3x^{2}+y^{2})dx\\;dy .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1340}{3}$",
+    "hint": "Use Fubini’s theorem."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793374983",
+   "source_number": "Checkpoint 15.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793627885"
+   },
+   "cite": "iterated",
+   "prompt": "Evaluate the integral $\\iint\\limits_{R}xe^{xy}dA$ where $R=[0,1]\\;\\times \\;[0,\\ln 5].$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{4-\\ln 5}{\\ln 5}$",
+    "hint": "Integrate with respect to $y$ first."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793421230",
+   "source_number": "Checkpoint 15.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793925030"
+   },
+   "cite": "applications",
+   "prompt": "Find the volume of the solid bounded above by the graph of $f(x,y)=xy\\;\\sin (x^{2}y)$ and below by the $xy$-plane on the rectangular region $R=[0,1]\\;\\times \\;[0,\\pi ].$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{2}$",
+    "hint": "Graph the function, set up the integral, and use an iterated integral."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793221656",
+   "source_number": "Checkpoint 15.6",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793638502"
+   },
+   "cite": "applications",
+   "prompt": "<p>A contour map is shown for a function $f(x,y)$ on the rectangle $R=[-3,6]\\;\\times \\;[-1,4].$</p>\n<img src=\"/media/ch15/CNX_Calc_Figure_15_01_010.jpg\" alt=\"A contour map is shown with the highest point being about 18 and centered near (4, negative 1). From this point, the values decrease to 16, 14, 12, 10, 8, and 6 roughly every 0.5 to 1 distance. The lowest point is negative four near (negative 3, 4). There is a local minimum of 2 near (negative 1, 0).\">\n<p>a. Use the midpoint rule with $m=3$ and $n=2$ to estimate the value of $\\iint\\limits_{R}f(x,y)dA .$</p>\n<p>b. Estimate the average value of the function $f(x,y).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "<p>With $m=3$ and $n=2,$ the rectangle $R=[-3,6]\\times[-1,4]$ is cut into six rectangles of area $\\Delta A=3\\times 2.5=7.5,$ with midpoints at $x=-1.5,1.5,4.5$ and $y=0.25,2.75.$ Reading the contour lines at the midpoints gives roughly $f(-1.5,0.25)\\approx 3,$ $f(1.5,0.25)\\approx 4,$ $f(4.5,0.25)\\approx 17,$ $f(-1.5,2.75)\\approx -1,$ $f(1.5,2.75)\\approx 4$ and $f(4.5,2.75)\\approx 10.$</p><p>a. $\\iint_{R}f(x,y)\\,dA\\approx (3+4+17-1+4+10)(7.5)=37(7.5)\\approx 278.$</p><p>b. The area of $R$ is $9\\times 5=45,$ so $f_{\\text{ave}}\\approx \\frac{278}{45}\\approx 6.2.$ Other readings of the contours give nearby values.</p>",
+    "hint": "Divide the region into six rectangles, and use the contour lines to estimate the values for $f(x,y).$"
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1167793952156",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes",
+   "prompt": "<p>In the following exercises, use the midpoint rule with $m=4$ and $n=2$ to estimate the volume of the solid bounded by the surface $z=f(x,y),$ the vertical planes $x=1,$ $x=2,$ $y=1,$ and $y=2,$ and the horizontal plane $z=0.$</p><p>$f(x,y)=4x+2y+8xy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "27."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1167793380060",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes",
+   "prompt": "<p>In the following exercises, estimate $\\iint_{R}f(x,y)dA$ by using a Riemann sum with $m=n=2$ and the sample points to be the lower left corners of the subrectangles of the partition.</p><p>$f(x,y)=\\sin x-\\cos y,$ $R=[0,\\pi ]\\;\\times \\;[0,\\pi ]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1167793293640",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes",
+   "prompt": "<p>Use the midpoint rule with $m=n=2$ to estimate $\\iint\\limits_{R}f(x,y)dA ,$ where the values of the function <em>f</em> on $R=[8,10]\\;\\times \\;[9,11]$ are given in the following table.</p><div class=\"book-table\" id=\"fs-id1167793553706\">  <table>    <thead><tr><th></th><th colspan=\"5\"><strong><em>y</em></strong></th></tr></thead>    <tbody>      <tr><td><strong><em>x</em></strong></td><td>9</td><td>9.5</td><td>10</td><td>10.5</td><td>11</td></tr>      <tr><td>8</td><td>9.8</td><td>5</td><td>6.7</td><td>5</td><td>5.6</td></tr>      <tr><td>8.5</td><td>9.4</td><td>4.5</td><td>8</td><td>5.4</td><td>3.4</td></tr>      <tr><td>9</td><td>8.7</td><td>4.6</td><td>6</td><td>5.5</td><td>3.4</td></tr>      <tr><td>9.5</td><td>6.7</td><td>6</td><td>4.5</td><td>5.4</td><td>6.7</td></tr>      <tr><td>10</td><td>6.8</td><td>6.4</td><td>5.5</td><td>5.7</td><td>6.8</td></tr>    </tbody>  </table></div>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "21.3."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1167793300250",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>The depth of a children’s 4-ft by 4-ft swimming pool, measured at 1-ft intervals, is given in the following table.</p><p>a. Estimate the volume of water in the swimming pool by using a Riemann sum with $m=n=2.$ Select the sample points using the midpoint rule on $R=[0,4]\\;\\times \\;[0,4].$</p><p>b. Approximate the average depth of the swimming pool.</p><div class=\"book-table\" id=\"fs-id1167793279352\">  <table>    <thead><tr><th></th><th colspan=\"5\"><strong><em>y</em></strong></th></tr></thead>    <tbody>      <tr><td><strong><em>x</em></strong></td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>      <tr><td>0</td><td>1</td><td>1.5</td><td>2</td><td>2.5</td><td>3</td></tr>      <tr><td>1</td><td>1</td><td>1.5</td><td>2</td><td>2.5</td><td>3</td></tr>      <tr><td>2</td><td>1</td><td>1.5</td><td>1.5</td><td>2.5</td><td>3</td></tr>      <tr><td>3</td><td>1</td><td>1</td><td>1.5</td><td>2</td><td>2.5</td></tr>      <tr><td>4</td><td>1</td><td>1</td><td>1</td><td>1.5</td><td>2</td></tr>    </tbody>  </table></div>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. 28 ${\\text{ft}}^{3}$ b. 1.75 ft."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1167793571245",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>The level curves $f(x,y)=k$ of the function <em>f</em> are given in the following graph, where <em>k</em> is a constant.</p><p>a. Apply the midpoint rule with $m=n=2$ to estimate the double integral $\\iint\\limits_{R}f(x,y)dA ,$ where $R=[0.2,1]\\;\\times \\;[0,0.8].$</p><p>b. Estimate the average value of the function <em>f</em> on <em>R</em>.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_01_201.jpg\" alt=\"A series of curves marked k = negative 1, negative ½, negative ¼, negative 1/8, 0, 1/8, ¼, ½, and 1. The line marked k = 0 serves as an asymptote along the line y = x. The lines originate at (along the y axis) 1, 0.7, 0.5, 0.38, 0, (along the x axis) 0.38, 0.5, 0.7, and 1, with the further out lines curving less dramatically toward the asymptote.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $0.112$ b. $f_{\\text{ave}}\\simeq 0.175;$ here $f(0.4,0.2)\\simeq 0.1,$ $f(0.2,0.6)\\simeq -0.2,$ $f(0.8,0.2)\\simeq 0.6,$ and $f(0.8,0.6)\\simeq 0.2.$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1167794324522",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes",
+   "prompt": "<p>The solid lying under the surface $z=\\sqrt{4-y^{2}}$ and above the rectangular region $R=[0,2]\\;\\times \\;[0,2]$ is illustrated in the following graph. Evaluate the double integral $\\iint\\limits_{R}f(x,y)dA ,$ where $f(x,y)=\\sqrt{4-y^{2}},$ by finding the volume of the corresponding solid.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_01_203.jpg\" alt=\"A quarter cylinder with center along the x axis and with radius 2. It has height 2 as shown.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\pi .$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1167793589825",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, calculate the integrals by interchanging the order of integration.</p><p>$\\int_{-1}^{1} (\\int_{-2}^{2} (2x+3y+5)dx ) dy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "40."
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1167793639969",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, calculate the integrals by interchanging the order of integration.</p><p>$\\int_1^{27} (\\int_1^{2} (\\sqrt[3]{x}+\\sqrt[3]{y}) dy)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{81}{2}+39\\sqrt[3]{2}.$"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1167793502300",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, calculate the integrals by interchanging the order of integration.</p><p>$\\int_{\\ln 2}^{\\ln 3} (\\int_0^{l} e^{x+y}dy ) dx$<sup class=\"fn\" data-note=\"c-e17-limit\"></sup></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e-1.$"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1167793467402",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, calculate the integrals by interchanging the order of integration.</p><p>$\\int_1^{6} (\\int_2^{9} \\frac{\\sqrt{y}}{x^{2}} dy) dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$15-\\frac{10\\sqrt{2}}{9}.$"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1167793244524",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, evaluate the iterated integrals by choosing the order of integration.</p><p>$\\int_0^{\\pi} \\;\\int_0^{\\pi /2} \\sin (2x)\\cos (3y) dx\\;dy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0."
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1167793938028",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, evaluate the iterated integrals by choosing the order of integration.</p><p>$\\int_1^{e} \\;\\int_1^{e} [\\frac{1}{x}\\sin (\\ln x)+\\frac{1}{y}\\cos (\\ln y)]dx\\;dy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(e-1)(1+\\sin 1-\\cos 1).$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1167793776355",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, evaluate the iterated integrals by choosing the order of integration.</p><p>$\\int_1^{2} \\;\\int_1^{2} (\\frac{\\ln y}{x}+\\frac{x}{2y+1}) dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3}{4}\\ln (\\frac{5}{3})+2\\;{\\ln }^{2}2-\\ln 2.$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1167793544829",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, evaluate the iterated integrals by choosing the order of integration.</p><p>$\\int_1^{\\sqrt{3}} \\;\\int_1^{2} y\\;\\operatorname{arctan}(\\frac{1}{x}) dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{8}[(2\\sqrt{3}-3)\\pi +6\\;\\ln 2].$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1167793409400",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, evaluate the iterated integrals by choosing the order of integration.</p><p>$\\int_0^{1} \\;\\int_1^{2} xe^{x+4y} dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{4}e^{4}(e^{4}-1).$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1167793228971",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, evaluate the iterated integrals by choosing the order of integration.</p><p>$\\int_1^{e} \\;\\int_1^{e} (\\frac{\\ln y}{\\sqrt{y}}+\\frac{\\ln x}{\\sqrt{x}}) dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4(e-1)(2-\\sqrt{e}).$"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1167793432334",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, evaluate the iterated integrals by choosing the order of integration.</p><p>$\\int_0^{1} \\;\\int_1^{2} (\\frac{x}{x^{2}+y^{2}}) dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{\\pi}{4}+\\ln (\\frac{5}{4})-\\frac{1}{2}\\ln 2+\\operatorname{arctan}\\;2.$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1167794122102",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>In the following exercises, find the average value of the function over the given rectangles.</p><p>$f(x,y)=-x+2y,$ $R=[0,1]\\;\\times \\;[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}.$"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1167793480081",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>In the following exercises, find the average value of the function over the given rectangles.</p><p>$f(x,y)=\\operatorname{sinh}\\;x+\\operatorname{sinh}\\;y,$ $R=[0,1]\\;\\times \\;[0,2]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}(2\\;\\operatorname{cosh}\\;1+\\operatorname{cosh}\\;2-3).$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1167793455226",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, find the average value of the function over the given rectangles.</p><p>Let <em>f</em> and <em>g</em> be two continuous functions such that $0\\le m_{1}\\le f(x)\\le M_{1}$ for any $x\\in [a,b]$ and $0\\le m_{2}\\le g(y)\\le M_{2}$ for any $y\\in [c,d].$ Show that the following inequality is true:</p><p>$m_{1}m_{2}(b-a)(d-c)\\le \\int_a^{b} \\;\\int_c^{d} f(x)g(y)dy\\;dx\\le M_{1}M_{2}(b-a)(d-c).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Because all the bounds are nonnegative, multiplying $m_{1}\\le f(x)\\le M_{1}$ by $m_{2}\\le g(y)\\le M_{2}$ term by term gives $m_{1}m_{2}\\le f(x)g(y)\\le M_{1}M_{2}$ for every $(x,y)$ in $R=[a,b]\\times[c,d].$ The area of $R$ is $(b-a)(d-c),$ so property v of double integrals gives $m_{1}m_{2}(b-a)(d-c)\\le \\iint_{R}f(x)g(y)\\,dA\\le M_{1}M_{2}(b-a)(d-c),$ and by Fubini’s theorem the double integral is the iterated integral $\\int_{a}^{b}\\int_{c}^{d}f(x)g(y)\\,dy\\,dx.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e40",
+   "source_id": "fs-id1167793626149",
+   "source_number": "40",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>$\\frac{1}{e^{2}}\\le \\iint\\limits_{R}e^{-x^{2}-y^{2}}dA \\le 1,$ where $R=[0,1]\\;\\times \\;[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>On $R=[0,1]\\times[0,1]$ we have $0\\le x^{2}+y^{2}\\le 2,$ so $e^{-2}\\le e^{-x^{2}-y^{2}}\\le 1.$ The area of $R$ is $1,$ so by property v the integral lies between $\\frac{1}{e^{2}}$ and $1.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1167793515800",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>$\\frac{{\\pi}^{2}}{144}\\le \\iint\\limits_{R}\\sin x\\;\\cos y\\;dA \\le \\frac{{\\pi}^{2}}{48},$ where $R=[\\frac{\\pi}{6},\\frac{\\pi}{3}]\\;\\times \\;[\\frac{\\pi}{6},\\frac{\\pi}{3}]$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>On $[\\frac{\\pi}{6},\\frac{\\pi}{3}],$ $\\frac{1}{2}\\le \\sin x\\le \\frac{\\sqrt{3}}{2}$ and $\\frac{1}{2}\\le \\cos y\\le \\frac{\\sqrt{3}}{2},$ and all of these are positive, so $\\frac{1}{4}\\le \\sin x\\cos y\\le \\frac{3}{4}$ on $R.$ The area of $R$ is ${(\\frac{\\pi}{6})}^{2}=\\frac{{\\pi}^{2}}{36},$ so by property v the integral lies between $\\frac{1}{4}\\cdot\\frac{{\\pi}^{2}}{36}=\\frac{{\\pi}^{2}}{144}$ and $\\frac{3}{4}\\cdot\\frac{{\\pi}^{2}}{36}=\\frac{{\\pi}^{2}}{48}.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e42",
+   "source_id": "fs-id1167793930085",
+   "source_number": "42",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>$0\\le \\iint\\limits_{R}e^{-y}\\cos x\\;dA\\le {(\\frac{\\pi}{2})}^{2},$ where $R=[0,\\frac{\\pi}{2}]\\;\\times \\;[0,\\frac{\\pi}{2}]$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>On $R=[0,\\frac{\\pi}{2}]\\times[0,\\frac{\\pi}{2}],$ $0\\le \\cos x\\le 1$ and $0\\lt e^{-y}\\le 1,$ so $0\\le e^{-y}\\cos x\\le 1.$ The area of $R$ is ${(\\frac{\\pi}{2})}^{2},$ so by property v the integral lies between $0$ and $1\\cdot{(\\frac{\\pi}{2})}^{2}={(\\frac{\\pi}{2})}^{2}.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1167793933574",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>$0\\le \\iint\\limits_{R}(\\ln x)(\\ln y)dA \\le {(e-1)}^{2},$ where $R=[1,e]\\;\\times \\;[1,e]$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>On $[1,e],$ $0\\le \\ln x\\le 1$ and $0\\le \\ln y\\le 1,$ so $0\\le (\\ln x)(\\ln y)\\le 1$ on $R=[1,e]\\times[1,e].$ The area of $R$ is ${(e-1)}^{2},$ so by property v the integral lies between $0$ and ${(e-1)}^{2}.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e44",
+   "source_id": "fs-id1167793298271",
+   "source_number": "44",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>Let <em>f</em> and <em>g</em> be two continuous functions such that $0\\le m_{1}\\le f(x)\\le M_{1}$ for any $x\\in [a,b]$ and $0\\le m_{2}\\le g(y)\\le M_{2}$ for any $y\\in [c,d].$ Show that the following inequality is true:</p><p>$(m_{1}+m_{2})(b-a)(d-c)\\le \\int_a^{b} \\;\\int_c^{d} [f(x)+g(y)]dy\\;dx \\le (M_{1}+M_{2})(b-a)(d-c).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Adding $m_{1}\\le f(x)\\le M_{1}$ and $m_{2}\\le g(y)\\le M_{2}$ gives $m_{1}+m_{2}\\le f(x)+g(y)\\le M_{1}+M_{2}$ for every $(x,y)$ in $R=[a,b]\\times[c,d],$ whose area is $(b-a)(d-c).$ Property v of double integrals then gives $(m_{1}+m_{2})(b-a)(d-c)\\le \\iint_{R}[f(x)+g(y)]\\,dA\\le (M_{1}+M_{2})(b-a)(d-c),$ and by Fubini’s theorem the double integral is $\\int_{a}^{b}\\int_{c}^{d}[f(x)+g(y)]\\,dy\\,dx.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1167793512126",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>$\\frac{2}{e}\\le \\iint\\limits_{R}(e^{-x^{2}}+e^{-y^{2}})dA \\le 2,$ where $R=[0,1]\\;\\times \\;[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>On $[0,1],$ $0\\le x^{2}\\le 1,$ so $e^{-1}\\le e^{-x^{2}}\\le 1,$ and likewise $e^{-1}\\le e^{-y^{2}}\\le 1;$ adding, $\\frac{2}{e}\\le e^{-x^{2}}+e^{-y^{2}}\\le 2$ on $R=[0,1]\\times[0,1].$ The area of $R$ is $1,$ so by property v the integral lies between $\\frac{2}{e}$ and $2.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e46",
+   "source_id": "fs-id1167793425931",
+   "source_number": "46",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>$\\frac{{\\pi}^{2}}{36}\\le \\iint\\limits_{R}(\\sin x+\\cos y) dA\\le \\frac{{\\pi}^{2}\\sqrt{3}}{36},$ where $R=[\\frac{\\pi}{6},\\frac{\\pi}{3}]\\;\\times \\;[\\frac{\\pi}{6},\\frac{\\pi}{3}]$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>On $[\\frac{\\pi}{6},\\frac{\\pi}{3}],$ $\\frac{1}{2}\\le \\sin x\\le \\frac{\\sqrt{3}}{2}$ and $\\frac{1}{2}\\le \\cos y\\le \\frac{\\sqrt{3}}{2},$ so $1\\le \\sin x+\\cos y\\le \\sqrt{3}$ on $R.$ The area of $R$ is ${(\\frac{\\pi}{6})}^{2}=\\frac{{\\pi}^{2}}{36},$ so by property v the integral lies between $1\\cdot\\frac{{\\pi}^{2}}{36}=\\frac{{\\pi}^{2}}{36}$ and $\\sqrt{3}\\cdot\\frac{{\\pi}^{2}}{36}=\\frac{{\\pi}^{2}\\sqrt{3}}{36}.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1167793479214",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>$\\frac{{\\pi}^{2}}{4}e^{\\frac{-\\pi}{2}}\\le \\iint\\limits_{R}(\\cos x+e^{-y})dA\\le \\frac{{\\pi}^{2}}{2},$ where $R=[0,\\frac{\\pi}{2}]\\;\\times \\;[0,\\frac{\\pi}{2}]$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>On $R=[0,\\frac{\\pi}{2}]\\times[0,\\frac{\\pi}{2}],$ $0\\le \\cos x\\le 1$ and $e^{-\\pi /2}\\le e^{-y}\\le 1,$ so $e^{-\\pi /2}\\le \\cos x+e^{-y}\\le 2.$ The area of $R$ is ${(\\frac{\\pi}{2})}^{2}=\\frac{{\\pi}^{2}}{4},$ so by property v the integral lies between $e^{-\\pi /2}\\cdot\\frac{{\\pi}^{2}}{4}$ and $2\\cdot\\frac{{\\pi}^{2}}{4}=\\frac{{\\pi}^{2}}{2}.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e48",
+   "source_id": "fs-id1167793711590",
+   "source_number": "48",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>In the following exercises, use property v. of double integrals and the answer from the preceding exercise to show that the following inequalities are true.</p><p>$0\\le \\iint\\limits_{R}(\\ln x+\\ln y)dA\\le 2{(e-1)}^{2},$ where $R=[1,e]\\;\\times \\;[1,e]$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>On $[1,e],$ $0\\le \\ln x\\le 1$ and $0\\le \\ln y\\le 1,$ so $0\\le \\ln x+\\ln y\\le 2$ on $R=[1,e]\\times[1,e].$ The area of $R$ is ${(e-1)}^{2},$ so by property v the integral lies between $0$ and $2{(e-1)}^{2}.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1167794163611",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>In the following exercises, the function <em>f</em> is given in terms of double integrals.</p><p>a. Determine the explicit form of the function <em>f</em>.</p><p>b. Find the volume of the solid under the surface $z=f(x,y)$ and above the region <em>R</em>.</p><p>c. Find the average value of the function <em>f</em> on <em>R</em>.</p><p>d. Use a computer algebra system (CAS) to plot $z=f(x,y)$ and $z=f_{\\text{ave}}$ in the same system of coordinates.</p><p><strong>[T]</strong> $f(x,y)=\\int_0^{y} \\;\\int_0^{x} (xs+yt)ds\\;dt ,$ where $(x,y)\\in R=[0,1]\\;\\times \\;[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $f(x,y)=\\frac{1}{2}xy(x^{2}+y^{2})$ b. $V=\\int_0^{1} \\;\\int_0^{1} f(x,y)dx\\;dy =\\frac{1}{8}$ c. $f_{\\text{ave}}=\\frac{1}{8};$</p>\n<p>d.</p>\n<img src=\"/media/ch15/CNX_Calc_Figure_15_01_205.jpg\" alt=\"In xyz space, a plane is formed at z = 1/8, and there is another shape that starts at the origin, increases through the plane in a line roughly running from (1, 0.25, 0.125) to (0.25, 1, 0.125), and then rapidly increases to (1, 1, 1).\">"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1167793569960",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Show that if <em>f</em> and <em>g</em> are continuous on $[a,b]$ and $[c,d],$ respectively, then</p><p>$\\int_a^{b} \\;\\int_c^{d} [f(x)+g(y)]dy\\;dx =(d-c)\\int_a^{b} f(x)dx$</p><p>$\\hspace{5em}+\\int_a^{b} \\;\\int_c^{d} g(y)dy \\;dx=(b-a)\\int_c^{d} g(y)dy+ \\int_c^{d} \\;\\int_a^{b} f(x)dx \\;dy.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>By the sum property, $\\int_{a}^{b}\\int_{c}^{d}[f(x)+g(y)]\\,dy\\,dx=\\int_{a}^{b}\\int_{c}^{d}f(x)\\,dy\\,dx+\\int_{a}^{b}\\int_{c}^{d}g(y)\\,dy\\,dx.$ In the first, $f(x)$ is constant in the inner integral, so $\\int_{c}^{d}f(x)\\,dy=(d-c)f(x)$ and the first term is $(d-c)\\int_{a}^{b}f(x)\\,dx;$ this is the first equality. In the second term the inner integral $\\int_{c}^{d}g(y)\\,dy$ does not depend on $x,$ so $\\int_{a}^{b}\\int_{c}^{d}g(y)\\,dy\\,dx=(b-a)\\int_{c}^{d}g(y)\\,dy,$ and in the same way $(d-c)\\int_{a}^{b}f(x)\\,dx=\\int_{c}^{d}\\int_{a}^{b}f(x)\\,dx\\,dy.$ Substituting both gives the second equality.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e52",
+   "source_id": "fs-id1167793581590",
+   "source_number": "52",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Show that $\\int_a^{b} \\;\\int_c^{d} yf(x)+xg(y)dy\\;dx =\\frac{1}{2}(d^{2}-c^{2})(\\int_a^{b} f(x)dx )+\\frac{1}{2}(b^{2}-a^{2})(\\int_c^{d} g(y)dy ).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Split the integrand by the sum property and integrate with respect to $y$ first. In $\\int_{c}^{d}yf(x)\\,dy,$ $f(x)$ is constant, so it equals $f(x)\\frac{d^{2}-c^{2}}{2},$ and $\\int_{a}^{b}\\int_{c}^{d}yf(x)\\,dy\\,dx=\\frac{1}{2}(d^{2}-c^{2})\\int_{a}^{b}f(x)\\,dx.$ The integrand $xg(y)$ is a product of a function of $x$ and a function of $y,$ so by property vi $\\int_{a}^{b}\\int_{c}^{d}xg(y)\\,dy\\,dx=(\\int_{a}^{b}x\\,dx)(\\int_{c}^{d}g(y)\\,dy)=\\frac{1}{2}(b^{2}-a^{2})\\int_{c}^{d}g(y)\\,dy.$ Adding the two gives the formula.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1167794145449",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>In the following exercises, the function <em>f</em> is given in terms of double integrals.</p><p>a. Determine the explicit form of the function <em>f</em>.</p><p>b. Find the volume of the solid under the surface $z=f(x,y)$ and above the region <em>R</em>.</p><p>c. Find the average value of the function <em>f</em> on <em>R</em>.</p><p>d. Use a computer algebra system (CAS) to plot $z=f(x,y)$ and $z=f_{\\text{ave}}$ in the same system of coordinates.</p><p><strong>[T]</strong> Consider the function $f(x,y)=e^{-x^{2}-y^{2}},$ where $(x,y)\\in R=[-1,1]\\;\\times \\;[-1,1].$</p><p>a. Use the midpoint rule with $m=n=2,4\\text{,…,}\\;10$ to estimate the double integral $I=\\iint\\limits_{R}e^{-x^{2}-y^{2}}dA .$ Round your answers to the nearest hundredths.</p><p>b. For $m=n=2,$ find the average value of <em>f</em> over the region <em>R</em>. Round your answer to the nearest hundredths.</p><p>c. Use a CAS to graph in the same coordinate system the solid whose volume is given by $\\iint\\limits_{R}e^{-x^{2}-y^{2}}dA$ and the plane $z=f_{\\text{ave}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. For $m=n=2,$ $I=4e^{-0.5}\\approx 2.43$ b. $f_{\\text{ave}}=e^{-0.5}\\simeq 0.61;$</p>\n<p>c.</p>\n<img src=\"/media/ch15/CNX_Calc_Figure_15_01_207.jpg\" alt=\"In xyz space, a plane is formed at z = 0.61, and there is another shape with maximum roughly at (0, 0, 0.92), which decreases along all the sides to the points (plus or minus 1, plus or minus 1, 0.12).\">"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1167793515241",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p>In the following exercises, the functions $f_{n}$ are given, where $n\\ge 1$ is a natural number.</p><p>a. Find the volume of the solids $S_{n}$ under the surfaces $z=f_{n}(x,y)$ and above the region <em>R</em>.</p><p>b. Determine the limit of the volumes of the solids $S_{n}$ as <em>n</em> increases without bound.</p><p>$f_{n}(x,y)=x^{n}+y^{n}+xy,(x,y)\\in R=[0,1]\\;\\times \\;[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\frac{2}{n+1}+\\frac{1}{4}$ b. $\\frac{1}{4}$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1167793928479",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>Show that the average value of a function <em>f</em> on a rectangular region $R=[a,b]\\;\\times \\;[c,d]$ is $f_{\\text{ave}}\\approx \\frac{1}{mn}\\sum_{i=1}^{m} \\sum_{j=1}^{n} f(x_{ij}^{*},y_{ij}^{*}) ,$ where $(x_{ij}^{*},y_{ij}^{*})$ are the sample points of the partition of <em>R</em>, where $1\\le i\\le m$ and $1\\le j\\le n.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>By definition $f_{\\text{ave}}=\\frac{1}{\\text{Area}\\;R}\\iint_{R}f(x,y)\\,dA,$ and the area of $R=[a,b]\\times[c,d]$ is $(b-a)(d-c).$ Approximating the double integral by its double Riemann sum with $m$ subintervals of $[a,b]$ and $n$ of $[c,d],$ each subrectangle has $\\Delta A=\\frac{b-a}{m}\\cdot\\frac{d-c}{n}=\\frac{(b-a)(d-c)}{mn},$ so $f_{\\text{ave}}\\approx \\frac{1}{(b-a)(d-c)}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(x_{ij}^{*},y_{ij}^{*})\\frac{(b-a)(d-c)}{mn}=\\frac{1}{mn}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(x_{ij}^{*},y_{ij}^{*}).$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e58",
+   "source_id": "fs-id1167794126862",
+   "source_number": "58",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>Use the midpoint rule with $m=n$ to show that the average value of a function <em>f</em> on a rectangular region $R=[a,b]\\;\\times \\;[c,d]$ is approximated by</p>$$f_{\\text{ave}}\\approx \\frac{1}{n^{2}}\\sum_{i,j=1}^{n} f(\\frac{1}{2}(x_{i-1}+x_{i}),\\frac{1}{2}(y_{j-1}+y_{j})) .$$",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Take $m=n$ in the preceding exercise and choose each sample point at the midpoint of its subrectangle, $x_{i}^{*}=\\frac{1}{2}(x_{i-1}+x_{i})$ and $y_{j}^{*}=\\frac{1}{2}(y_{j-1}+y_{j}).$ Each subrectangle then has area $\\Delta A=\\frac{(b-a)(d-c)}{n^{2}},$ which cancels the area $(b-a)(d-c)$ of $R$ in $f_{\\text{ave}}=\\frac{1}{(b-a)(d-c)}\\iint_{R}f\\,dA,$ leaving $f_{\\text{ave}}\\approx \\frac{1}{n^{2}}\\sum_{i,j=1}^{n}f(\\frac{1}{2}(x_{i-1}+x_{i}),\\frac{1}{2}(y_{j-1}+y_{j})).$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1167793590316",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applications",
+   "prompt": "<p>An isotherm map is a chart connecting points having the same temperature at a given time for a given period of time. Use the preceding exercise and apply the midpoint rule with $m=n=2$ to find the average temperature over the region given in the following figure.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_01_209.jpg\" alt=\"A contour map showing surface temperature in degrees Fahrenheit. Given the map, the midpoint rule would give rectangles with values 71, 72, 40, and 43.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$56.5^{\\circ}$ F; here $f(x_1^{*},y_1^{*})=71,$ $f(x_2^{*},y_1^{*})=72,$ $f(x_1^{*},y_2^{*})=40,$ $f(x_2^{*},y_2^{*})=43,$ where $x_i^{*}$ and $y_j^{*}$ are the midpoints of the subintervals of the partitions of $[a,b]$ and $[c,d],$ respectively."
+   }
+  },
+  {
+   "id": "r416",
+   "source_id": "fs-id1167794126897",
+   "source_section": "15.7",
+   "source_number": "416",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "iterated",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>$\\int_a^{b} \\;\\int_c^{d} f(x,y)dy\\;dx = \\int_c^{d} \\;\\int_a^{b} f(x,y)dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>False. On the left, $y$ runs over $[c,d]$ and $x$ over $[a,b];$ on the right, the inner integral is still taken in $y$ but now over $[a,b],$ and $x$ runs over $[c,d],$ so the right side integrates over a different rectangle. For $f(x,y)=x$ with $[a,b]=[0,1]$ and $[c,d]=[0,2],$ the left side is $\\int_{0}^{1}\\int_{0}^{2}x\\,dy\\,dx=\\int_{0}^{1}2x\\,dx=1,$ while the right side is $\\int_{0}^{2}\\int_{0}^{1}x\\,dy\\,dx=\\int_{0}^{2}x\\,dx=2.$ Fubini’s theorem lets the order change only with the limits: $\\int_{a}^{b}\\int_{c}^{d}f\\,dy\\,dx=\\int_{c}^{d}\\int_{a}^{b}f\\,dx\\,dy.$</p>",
+    "generated_by": "ai"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "double-integral"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "contour-map"
+  },
+  {
+   "exercise": "e1",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e3",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e5",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e7",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e7",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e9",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e9",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e9",
+   "concept": "level-curve"
+  },
+  {
+   "exercise": "e11",
+   "concept": "double-integral"
+  },
+  {
+   "exercise": "e13",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e13",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e15",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e15",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e17",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e17",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e19",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e19",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e21",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e21",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e23",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e23",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e23",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e25",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e25",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e25",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e27",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e27",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e27",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e29",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e29",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e29",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e31",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e31",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e31",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e33",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e33",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "e35",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e37",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e39",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e40",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e41",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e42",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e43",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e44",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e45",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e46",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e47",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e48",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e49",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e49",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e51",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e51",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e52",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e52",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e53",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e53",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e55",
+   "concept": "double-integral"
+  },
+  {
+   "exercise": "e55",
+   "concept": "iterated-integral"
+  },
+  {
+   "exercise": "e57",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e57",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e58",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e58",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e59",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e59",
+   "concept": "double-riemann-sum"
+  },
+  {
+   "exercise": "e59",
+   "concept": "contour-map"
+  },
+  {
+   "exercise": "r416",
+   "concept": "fubinis-theorem"
+  },
+  {
+   "exercise": "r416",
+   "concept": "iterated-integral"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-e17-limit",
+   "kind": "correction",
+   "html": "The inner integral’s upper limit is printed $l;$ the key’s value is the integral with upper limit $1:$ $\\int_{\\ln 2}^{\\ln 3}\\int_{0}^{1}e^{x+y}\\,dy\\,dx=(e^{\\ln 3}-e^{\\ln 2})(e-1)=e-1.$"
+  }
+ ]
+}

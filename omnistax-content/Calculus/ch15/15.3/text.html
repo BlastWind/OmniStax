@@ -1,0 +1,198 @@
+<p id="polar-intro"><span data-concept="double-integral">Double integrals</span> are sometimes much easier to evaluate if we change rectangular coordinates to <span data-concept="polar-coordinate-system">polar coordinates</span>. However, before we describe how to make this change, we need to establish the concept of a <span data-concept="double-integral">double integral</span> in a <span data-concept="polar-rectangle">polar rectangular region</span>.</p>
+
+<section id="polar-rectangles">
+<h2>Polar Rectangular Regions of Integration</h2>
+<p class="cite-target">When we defined the <span data-concept="double-integral">double integral</span> for a continuous function in rectangular coordinates—say, $g$ over a <span data-concept="region">region</span> $\kR$ in the $xy$-plane—we divided $\kR$ into subrectangles with sides parallel to the coordinate axes. These sides have either constant $x$-values and/or constant $y$-values. In <span data-concept="polar-coordinate-system">polar coordinates</span>, the shape we work with is a <strong><span data-concept="polar-rectangle">polar rectangle</span></strong>, whose sides have constant $r$-values and/or constant $\ktheta$-values. This means we can describe a <span data-concept="polar-rectangle">polar rectangle</span> as in Figure 15.28(a), with $\kR=\{(r,\ktheta )|a\le r\le b,\alpha \le \ktheta \le \beta \}.$</p>
+<p>In this section, we are looking to integrate over <span data-concept="polar-rectangle">polar rectangles</span>. Consider a function $\kf(r,\ktheta )$ over a <span data-concept="polar-rectangle">polar rectangle</span> $\kR.$ We divide the interval $[a,b]$ into $m$ subintervals $[r_{i-1},r_{i}]$ of length $\Delta r=(b-a)/m$ and divide the interval $[\alpha ,\beta ]$ into $n$ subintervals $[{\ktheta}_{j-1},{\ktheta}_{j}]$ of width $\Delta \ktheta =(\beta -\alpha )/n.$ This means that the circles $r=r_{i}$ and rays $\ktheta ={\ktheta}_{j}$ for $1\le i\le m$ and $1\le j\le n$ divide the <span data-concept="polar-rectangle">polar rectangle</span> $\kR$ into smaller <span data-concept="polar-rectangle">polar subrectangles</span> $\kR_{ij}$ (Figure 15.28(b)).</p>
+<figure class="sim" id="sim-polar-rectangle" data-figure="15.28" data-original="/media/ch15/CNX_Calc_Figure_15_03_001.jpg" data-original-caption="(a) A polar rectangle R (b) divided into subrectangles Rᵢⱼ. (c) Close-up of a subrectangle.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.28</span><span>(a) A polar rectangle $\kR$ (b) divided into subrectangles $\kR_{ij}.$ (c) Close-up of a subrectangle. Drag $m$ and $n$ to cut $1\le r\le 3,$ $\frac{\pi}{6}\le \ktheta\le \frac{2\pi}{3}$ into $m$ rings and $n$ wedges: the outlined subrectangle is nearly a trapezoid with parallel sides $r_{i-1}\Delta \ktheta$ and $r_{i}\Delta \ktheta$ and width $\Delta r,$ so its area is $r_{ij}^{*}\,\Delta r\,\Delta \ktheta.$</span></div>
+</figure>
+<p id="subrectangle-area">As before, we need to find the area $\Delta A$ of the <span data-concept="polar-rectangle">polar subrectangle</span> $\kR_{ij}$ and the “polar” volume of the thin box above $\kR_{ij}.$ Recall that, in a circle of radius $r,$ the length $s$ of an arc subtended by a central angle of $\ktheta$ radians is $s=r\theta .$ Notice that the <span data-concept="polar-rectangle">polar rectangle</span> $\kR_{ij}$ looks a lot like a trapezoid with parallel sides $r_{i-1}\Delta \ktheta$ and $r_{i}\Delta \ktheta$ and with a width $\Delta r.$ Hence the area of the <span data-concept="polar-rectangle">polar subrectangle</span> $\kR_{ij}$ is</p>
+$$\Delta \kA=\frac{1}{2}\Delta r(r_{i-1}\Delta \ktheta +r_{i}\Delta \ktheta ).$$
+<p>Simplifying and letting $r_{ij}^{*}=\frac{1}{2}(r_{i-1}+r_{i}),$ we have $\Delta \kA=r_{ij}^{*}\Delta r\Delta \ktheta .$ Therefore, the polar volume of the thin box above $\kR_{ij}$ (Figure 15.29) is</p>
+$$\kf(r_{ij}^{*},{\ktheta}_{ij}^{*})\Delta \kA=\kf(r_{ij}^{*},{\ktheta}_{ij}^{*})r_{ij}^{*}\Delta r\Delta \ktheta .$$
+<figure class="sim" id="sim-polar-boxes" data-figure="15.29 + 15.34" data-original="/media/ch15/CNX_Calc_Figure_15_03_002.jpg,/media/ch15/CNX_Calc_Figure_15_03_007.jpg" data-original-caption="(Figure 15.29) Finding the volume of the thin box above polar rectangle Rᵢⱼ. (Figure 15.34) The paraboloid z=1−x²−y².">
+  <div class="sim-head"><span class="eyebrow">Figure 15.29 + 15.34</span><span>The thin boxes above the polar subrectangles of the unit disk, each of volume $\kf(r_{ij}^{*},\ktheta_{ij}^{*})\,r_{ij}^{*}\,\Delta r\,\Delta \ktheta,$ under the paraboloid $z=1-x^{2}-y^{2}.$ Drag $m$ and $n$: the boxes near the origin are thin wedges, those near the rim wide, and their total closes on the volume $\frac{\pi}{2}$ under the paraboloid.</span></div>
+</figure>
+<p>Using the same idea for all the subrectangles and summing the volumes of the rectangular boxes, we obtain a <span data-concept="double-riemann-sum">double Riemann sum</span> as</p>
+$$\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(r_{ij}^{*},{\ktheta}_{ij}^{*})r_{ij}^{*}\Delta r\Delta \ktheta .$$
+<p>As we have seen before, we obtain a better approximation to the polar volume of the solid above the <span data-concept="region">region</span> $\kR$ when we let $m$ and $n$ become larger. Hence, we define the polar volume as the limit of the <span data-concept="double-riemann-sum">double Riemann sum</span>,</p>
+$$\kV=\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(r_{ij}^{*},{\ktheta}_{ij}^{*})r_{ij}^{*}\Delta r\Delta \ktheta .$$
+<p>This becomes the expression for the <span data-concept="double-integral">double integral</span>.</p>
+<div class="note" id="fs-id1167793270734">
+<div class="eyebrow">Definition</div>
+<p>The <span data-concept="double-integral">double integral</span> of the function $\kf(r,\ktheta )$ over the <span data-concept="polar-rectangle">polar rectangular region</span> $\kR$ in the $r\theta$-plane is defined as</p>
+<div class="equation" id="fs-id1167793944942">$$\iint\limits_{\kR}\kf(r,\ktheta ) dA=\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(r_{ij}^{*},{\ktheta}_{ij}^{*})\Delta \kA =\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(r_{ij}^{*},{\ktheta}_{ij}^{*})r_{ij}^{*}\Delta r\Delta \ktheta .\tag{15.8}$$</div>
+</div>
+<p id="polar-iterated">Again, just as in <a href="/calculus/ch15/15.1/">Double Integrals over Rectangular Regions</a>, the <span data-concept="double-integral">double integral</span> over a <span data-concept="polar-rectangle">polar rectangular region</span> can be expressed as an <span data-concept="iterated-integral">iterated integral</span> in <span data-concept="polar-coordinate-system">polar coordinates</span>. Hence,</p>
+$$\iint\limits_{\kR}\kf(r,\ktheta ) dA=\iint\limits_{\kR}\kf(r,\ktheta ) r\;dr\;d\theta =\int_{\ktheta =\alpha}^{\ktheta =\beta } \;\int_{r=a}^{r=b} \kf(r,\ktheta ) r\;dr\;d\theta .$$
+<p>Notice that the expression for $dA$ is replaced by $r\;dr\;d\theta$ when working in <span data-concept="polar-coordinate-system">polar coordinates</span>. Another way to look at the polar <span data-concept="double-integral">double integral</span> is to change the <span data-concept="double-integral">double integral</span> in rectangular coordinates by substitution. When the function $\kf$ is given in terms of $x$ and $y,$ using $x=r\;\cos \ktheta ,y=r\;\sin \ktheta ,\;\text{and}\;dA=r\;dr\;d\theta$ changes it to</p>
+$$\iint\limits_{\kR}\kf(x,y) dA=\iint\limits_{\kR}\kf(r\;\cos \ktheta ,r\;\sin \ktheta ) r\;dr\;d\theta .$$
+<p>Note that all the properties listed in <a href="/calculus/ch15/15.1/">Double Integrals over Rectangular Regions</a> for the <span data-concept="double-integral">double integral</span> in rectangular coordinates hold true for the <span data-concept="double-integral">double integral</span> in <span data-concept="polar-coordinate-system">polar coordinates</span> as well, so we can use them without hesitation.</p>
+<div class="example" id="fs-id1167793583313">
+<h3>Example 15.24 · Sketching a Polar Rectangular Region</h3>
+<p>Sketch the <span data-concept="polar-rectangle">polar rectangular region</span> $\kR=\{(r,\ktheta )|1\le r\le 3,0\le \ktheta \le \pi \}.$</p>
+<h4>Solution</h4>
+<p>As we can see from Figure 15.30, $r=1$ and $r=3$ are circles of radius $1\;\text{and}\;3$ and $0\le \ktheta \le \pi$ covers the entire top half of the plane. Hence the <span data-concept="region">region</span> $\kR$ looks like a semicircular band.</p>
+<figure class="sim" id="fig-semicircular-band" data-figure="15.30" data-original="/media/ch15/CNX_Calc_Figure_15_03_003.jpg" data-original-caption="The polar region R lies between two semicircles.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.30</span><span>The polar region $\kR$ lies between two semicircles. Drag $\ktheta$: every ray from the pole meets $\kR$ in the segment $1\le r\le 3.$</span></div>
+</figure>
+</div>
+<p>Now that we have sketched a <span data-concept="polar-rectangle">polar rectangular region</span>, let us demonstrate how to evaluate a <span data-concept="double-integral">double integral</span> over this <span data-concept="region">region</span> by using <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
+<div class="example" id="fs-id1167793298917">
+<h3>Example 15.25 · Evaluating a Double Integral over a Polar Rectangular Region</h3>
+<p>Evaluate the integral $\iint\limits_{\kR}3x\;dA$ over the <span data-concept="region">region</span> $\kR=\{(r,\ktheta )|1\le r\le 2,0\le \ktheta \le \pi \}.$</p>
+<h4>Solution</h4>
+<p>First we sketch a figure similar to Figure 15.30 but with outer radius $2.$ From the figure we can see that we have</p>
+$$\begin{array}{rllll}\iint\limits_{\kR}3x\;dA & =\int_{\ktheta =0}^{\ktheta =\pi} \;\int_{r=1}^{r=2} 3r\;\cos \ktheta r\;dr\;d\theta & & & \begin{array}{l}\text{Use an iterated integral with correct limits} \\ \text{of integration.}\end{array} \\ & =\int_{\ktheta =0}^{\ktheta =\pi} \cos \ktheta [{r^{3}|}_{r=1}^{r=2}]d\theta & & & \text{Integrate first with respect to}\;r. \\ & =\int_{\ktheta =0}^{\ktheta =\pi} 7\;\cos \ktheta \;d\theta ={7\;\sin \ktheta |}_{\ktheta =0}^{\ktheta =\pi}=0. & & & \end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793298917"></div>
+<div class="example" id="fs-id1167794159521">
+<h3>Example 15.26 · Evaluating a Double Integral by Converting from Rectangular Coordinates</h3>
+<p>Evaluate the integral $\iint\limits_{\kR}(1-x^{2}-y^{2}) dA$ where $\kR$ is the unit disk on the $xy$-plane.</p>
+<h4>Solution</h4>
+<p>The <span data-concept="region">region</span> $\kR$ is a unit disk, so we can describe it as $\kR=\{(r,\ktheta )|0\le r\le 1,0\le \ktheta \le 2\pi \}.$</p>
+<p>Using the conversion $x=r\;\cos \ktheta ,y=r\;\sin \ktheta ,$ and $dA=r\;dr\;d\theta ,$ we have</p>
+$$\begin{array}{rl}\iint\limits_{\kR}(1-x^{2}-y^{2}) dA & =\int_0^{2\pi} \;\int_0^{1} (1-r^{2})r\;dr\;d\theta =\int_0^{2\pi} \;\int_0^{1} (r-r^{3})dr\;d\theta \\ & =\int_0^{2\pi} {[\frac{r^{2}}{2}-\frac{r^{4}}{4}]}_0^{1} d\theta =\int_0^{2\pi} \frac{1}{4}d\theta =\frac{\pi}{2} .\end{array}$$
+</div>
+<div class="example" id="fs-id1167793220378">
+<h3>Example 15.27 · Evaluating a Double Integral by Converting from Rectangular Coordinates</h3>
+<p>Evaluate the integral $\iint\limits_{\kR}(x+y)dA$ where $\kR=\{(x,y)|1\le x^{2}+y^{2}\le 4,x\le 0\}.$</p>
+<h4>Solution</h4>
+<p>We can see that $\kR$ is an annular <span data-concept="region">region</span> that can be converted to <span data-concept="polar-coordinate-system">polar coordinates</span> and described as $\kR=\{(r,\ktheta )|1\le r\le 2,\frac{\pi}{2}\le \ktheta \le \frac{3\pi}{2}\}$ (see the following graph).</p>
+<figure class="sim" id="fig-annulus" data-figure="15.31" data-original="/media/ch15/CNX_Calc_Figure_15_03_004.jpg" data-original-caption="The annular region of integration R.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.31</span><span>The annular region of integration $\kR.$ Drag $\ktheta$ between $\frac{\pi}{2}$ and $\frac{3\pi}{2}$: each ray meets $\kR$ for $1\le r\le 2.$</span></div>
+</figure>
+<p>Hence, using the conversion $x=r\;\cos \ktheta ,y=r\;\sin \ktheta ,$ and $dA=r\;dr\;d\theta ,$ we have</p>
+$$\begin{array}{rl}\iint\limits_{\kR}(x+y)dA & =\int_{\ktheta =\pi /2}^{\ktheta =3\pi /2} \;\int_{r=1}^{r=2} (r\;\cos \ktheta +r\;\sin \ktheta ) r\;dr\;d\theta \\ & =(\int_{r=1}^{r=2} r^{2} dr)(\int_{\pi /2}^{3\pi /2} (\cos \ktheta +\sin \ktheta )d\theta ) \\ & ={[\frac{r^{3}}{3}]}_1^{2}{[\sin \ktheta -\cos \ktheta ]|}_{\pi /2}^{3\pi /2} \\ & =-\frac{14}{3}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793220378"></div>
+</section>
+
+<section id="general-polar">
+<h2>General Polar Regions of Integration</h2>
+<p class="cite-target">To evaluate the <span data-concept="double-integral">double integral</span> of a continuous function by <span data-concept="iterated-integral">iterated integrals</span> over <span data-concept="region">general polar regions</span>, we consider two types of <span data-concept="region">regions</span>, analogous to Type I and Type II as discussed for rectangular coordinates in <a href="/calculus/ch15/15.2/">Double Integrals over General Regions</a>. It is more common to write polar equations as $r=\kf(\ktheta )$ than $\ktheta =\kf(r),$ so we describe a <span data-concept="region">general polar region</span> as $\kD=\{(r,\ktheta )|\alpha \le \ktheta \le \beta ,\kh_{1}(\ktheta )\le r\le \kh_{2}(\ktheta )\}$ (see the following figure).</p>
+<figure class="sim" id="sim-general-polar" data-figure="15.32" data-original="/media/ch15/CNX_Calc_Figure_15_03_005.jpg" data-original-caption="A general polar region between α ≤ θ ≤ β and h₁(θ )≤ r≤ h₂(θ ).">
+  <div class="sim-head"><span class="eyebrow">Figure 15.32</span><span>A general polar region between $\alpha \le \ktheta\le \beta$ and $\kh_{1}(\ktheta)\le r\le \kh_{2}(\ktheta).$ Drag $\ktheta$: the ray’s segment inside $\kD,$ the range of the inner integral, starts on $r=\kh_{1}(\ktheta)$ and ends on $r=\kh_{2}(\ktheta).$</span></div>
+</figure>
+<div class="note" id="fs-id1167793367134">
+<div class="eyebrow">Theorem</div>
+<h3>Double Integrals over General Polar Regions</h3>
+<p>If $\kf(r,\ktheta )$ is continuous on a <span data-concept="region">general polar region</span> $\kD$ as described above, then</p>
+<div class="equation" id="fs-id1167793261457">$$\iint\limits_{\kD}\kf(r,\ktheta ) r\;dr\;d\theta =\int_{\ktheta =\alpha}^{\ktheta =\beta } \;\int_{r=\kh_{1}(\ktheta )}^{r=\kh_{2}(\ktheta )} \kf(r,\ktheta ) r\;dr\;d\theta\tag{15.9}$$</div>
+</div>
+<div class="example" id="fs-id1167794070176">
+<h3>Example 15.28 · Evaluating a Double Integral over a General Polar Region</h3>
+<p>Evaluate the integral $\iint\limits_{\kD}r^{2}\cdot \sin\theta \cdot r\;dr\;d\theta$ where $\kD$ is the <span data-concept="region">region</span> bounded by the polar axis and the upper half of the <span data-concept="cardioid">cardioid</span> $r=1+\cos \ktheta .$</p>
+<h4>Solution</h4>
+<p>We can describe the <span data-concept="region">region</span> $\kD$ as $\{(r,\ktheta )|0\le \ktheta \le \pi ,0\le r\le 1+\cos \ktheta \}$ as shown in the following figure.</p>
+<figure class="sim" id="fig-cardioid-half" data-figure="15.33" data-original="/media/ch15/CNX_Calc_Figure_15_03_006.jpg" data-original-caption="The region D is the top half of a cardioid.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.33</span><span>The region $\kD$ is the top half of a cardioid. Drag $\ktheta$: each ray meets it for $0\le r\le 1+\cos \ktheta.$</span></div>
+</figure>
+<p>Hence, we have</p>
+$$\begin{array}{ll}\iint\limits_{\kD}r^{2}\cdot \sin\theta \cdot r\;dr\;d\theta & =\int_{\ktheta =0}^{\ktheta =\pi} \;\int_{r=0}^{r=1+\cos \ktheta} r^{3}\cdot \sin\theta \;dr\;d\theta \\ & =\frac{1}{4}\int_{\ktheta =0}^{\ktheta =\pi} {[r^{4}]}_{r=0}^{r=1+\cos \ktheta}\sin \ktheta \;d\theta \\ & =\frac{1}{4}\int_{\ktheta =0}^{\ktheta =\pi} {(1+\cos \ktheta )}^{4}\sin \ktheta \;d\theta \\ & =-\frac{1}{4}{[\frac{{(1+\cos \ktheta )}^{5}}{5}]}_0^{\pi}=\frac{8}{5}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794070176"></div>
+</section>
+
+<section id="polar-areas-volumes">
+<h2>Polar Areas and Volumes</h2>
+<p class="cite-target">As in rectangular coordinates, if a solid $S$ is bounded by the surface $z=\kf(r,\ktheta ),$ as well as by the surfaces $r=a,r=b,\ktheta =\alpha ,$ and $\ktheta =\beta ,$ we can find the volume $\kV$ of $S$ by double integration, as</p>
+$$\kV=\iint\limits_{\kR}\kf(r,\ktheta ) r\;dr\;d\theta =\int_{\ktheta =\alpha}^{\ktheta =\beta } \;\int_{r=a}^{r=b} \kf(r,\ktheta ) r\;dr\;d\theta .$$
+<p>If the base of the solid can be described as $\kD=\{(r,\ktheta )|\alpha \le \ktheta \le \beta ,\kh_{1}(\ktheta )\le r\le \kh_{2}(\ktheta )\},$ then the <span data-concept="double-integral">double integral</span> for the volume becomes</p>
+$$\kV=\iint\limits_{\kD}\kf(r,\ktheta ) r\;dr\;d\theta =\int_{\ktheta =\alpha}^{\ktheta =\beta } \;\int_{r=\kh_{1}(\ktheta )}^{r=\kh_{2}(\ktheta )} \kf(r,\ktheta ) r\;dr\;d\theta .$$
+<p>We illustrate this idea with some examples.</p>
+<div class="example" id="fs-id1167793949568">
+<h3>Example 15.29 · Finding a Volume Using a Double Integral</h3>
+<p>Find the volume of the solid that lies under the paraboloid $z=1-x^{2}-y^{2}$ and above the unit circle on the $xy$-plane (see the following figure).</p>
+
+<h4>Solution</h4>
+<p>By the method of double integration, we can see that the volume is the <span data-concept="iterated-integral">iterated integral</span> of the form $\iint\limits_{\kR}(1-x^{2}-y^{2}) dA$ where $\kR=\{(r,\ktheta )|0\le r\le 1,0\le \ktheta \le 2\pi \}.$</p>
+<p>This integration was shown before in <a href="#fs-id1167794159521">Example 15.26</a>, so the volume is $\frac{\pi}{2}$ cubic units.</p>
+</div>
+<div class="example" id="fs-id1167794005621">
+<h3>Example 15.30 · Finding a Volume Using Double Integration</h3>
+<p>Find the volume of the solid that lies under the paraboloid $z=4-x^{2}-y^{2}$ and above the disk ${(x-1)}^{2}+y^{2}=1$ on the $xy$-plane. See the paraboloid in Figure 15.35 intersecting the cylinder ${(x-1)}^{2}+y^{2}=1$ above the $xy$-plane.</p>
+<figure class="sim" id="fig-paraboloid-cap" data-figure="15.35" data-original="/media/ch15/CNX_Calc_Figure_15_03_008.jpg" data-original-caption="Finding the volume of a solid with a paraboloid cap and a circular base.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.35</span><span>Finding the volume of a solid with a paraboloid cap and a circular base.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>First change the disk ${(x-1)}^{2}+y^{2}=1$ to <span data-concept="polar-coordinate-system">polar coordinates</span>. Expanding the square term, we have $x^{2}-2x+1+y^{2}=1.$ Then simplify to get $x^{2}+y^{2}=2x,$ which in <span data-concept="polar-coordinate-system">polar coordinates</span> becomes $r^{2}=2r\;\cos \ktheta$ and then either $r=0$ or $r=2\;\cos \ktheta .$ Similarly, the equation of the paraboloid changes to $z=4-r^{2}.$ Therefore we can describe the disk ${(x-1)}^{2}+y^{2}=1$ on the $xy$-plane as the <span data-concept="region">region</span><sup class="fn" data-note="c-ex30-region"></sup></p>
+$$\kD=\{(r,\ktheta )|0\le \ktheta \le \pi ,0\le r\le 2\;\cos \ktheta \}.$$
+<p>Hence the volume of the solid below the paraboloid $z=4-x^{2}-y^{2}$ and above $r=2\;\cos \ktheta$ is<sup class="fn" data-note="c-ex30-antiderivative"></sup></p>
+$$\begin{array}{ll}\kV & =\iint\limits_{\kD}\kf(r,\ktheta )r\;dr\;d\theta =\int_{\ktheta =-\frac{\pi}{2}}^{\ktheta =\frac{\pi}{2}} \;\int_{r=0}^{r=2\;\cos \ktheta} (4-r^{2})r\;dr\;d\theta \\ & =\int_{\ktheta =-\frac{\pi}{2}}^{\ktheta =\frac{\pi}{2}} [4\frac{r^{2}}{2}-{\frac{r^{4}}{4}|}_0^{2\;\cos \ktheta}]d\theta \\ & =\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} [8\;{\cos }^{2}\ktheta -4\;{\cos }^{4}\ktheta ]d\theta ={[\frac{5}{2}\ktheta +\frac{5}{2}\sin \text{2}\ktheta -\frac{1}{8}\sin \text{4}\ktheta ]}_{-\frac{\pi}{2}}^{\frac{\pi}{2}}=\frac{5}{2}\pi .\end{array}$$
+</div>
+<p>Notice in the next example that integration is not always easy with <span data-concept="polar-coordinate-system">polar coordinates</span>. Complexity of integration depends on the function and also on the <span data-concept="region">region</span> over which we need to perform the integration. If the <span data-concept="region">region</span> has a more natural expression in <span data-concept="polar-coordinate-system">polar coordinates</span> or if $\kf$ has a simpler antiderivative in <span data-concept="polar-coordinate-system">polar coordinates</span>, then the change in <span data-concept="polar-coordinate-system">polar coordinates</span> is appropriate; otherwise, use rectangular coordinates.</p>
+<div class="example" id="fs-id1167793630681">
+<h3>Example 15.31 · Finding a Volume Using a Double Integral</h3>
+<p>Find the volume of the <span data-concept="region">region</span> that lies under the paraboloid $z=x^{2}+y^{2}$ and above the triangle enclosed by the lines $y=x,x=0,$ and $x+y=2$ in the $xy$-plane (Figure 15.36).</p>
+<h4>Solution</h4>
+<p>First examine the <span data-concept="region">region</span> over which we need to set up the <span data-concept="double-integral">double integral</span> and the accompanying paraboloid.</p>
+<figure class="sim" id="fig-paraboloid-triangle" data-figure="15.36" data-original="/media/ch15/CNX_Calc_Figure_15_03_009.jpg" data-original-caption="Finding the volume of a solid under a paraboloid and above a given triangle.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.36</span><span>Finding the volume of a solid under a paraboloid and above a given triangle.</span></div>
+</figure>
+<p>The <span data-concept="region">region</span> $\kD$ is $\{(x,y)|0\le x\le 1,x\le y\le 2-x\}.$ Converting the lines $y=x,x=0,$ and $x+y=2$ in the $xy$-plane to functions of $r$ and $\ktheta ,$ we have $\ktheta =\pi /4,$ $\ktheta =\pi /2,$ and $r=2/(\cos \ktheta +\sin \ktheta ),$ respectively. Graphing the <span data-concept="region">region</span> on the $xy$-plane, we see that it looks like $\kD=\{(r,\ktheta )|\pi /4\le \ktheta \le \pi /2,0\le r\le 2/(\cos \ktheta +\sin \ktheta )\}.$ Now converting the equation of the surface gives $z=x^{2}+y^{2}=r^{2}.$ Therefore, the volume of the solid is given by the <span data-concept="double-integral">double integral</span></p>
+$$\begin{array}{rl}\kV & =\iint\limits_{\kD}\kf(r,\ktheta ) r\;dr\;d\theta =\int_{\ktheta =\pi /4}^{\ktheta =\pi /2} \;\int_{r=0}^{r=2/(\cos \ktheta +\sin \ktheta )} r^{2}r\;dr\;d\theta ={\int_{\pi /4}^{\pi /2} [\frac{r^{4}}{4}] }_0^{2/(\cos \ktheta +\sin \ktheta )}d\theta \\ & =\frac{1}{4}{\int_{\pi /4}^{\pi /2} (\frac{2}{\cos \ktheta +\sin \ktheta}) }^{4}d\theta =\frac{16}{4}{\int_{\pi /4}^{\pi /2} (\frac{1}{\cos \ktheta +\sin \ktheta}) }^{4}d\theta =4{\int_{\pi /4}^{\pi /2} (\frac{1}{\cos \ktheta +\sin \ktheta}) }^{4}d\theta .\end{array}$$
+<p>As you can see, this integral is very complicated. So, we can instead evaluate this <span data-concept="double-integral">double integral</span> in rectangular coordinates as</p>
+$$\kV=\int_0^{1} \;\int_x^{2-x} (x^{2}+y^{2}) dy\;dx.$$
+<p>Evaluating gives</p>
+$$\begin{array}{rl}\kV & =\int_0^{1} \;\int_x^{2-x} (x^{2}+y^{2}) dy\;dx={\int_0^{1} [x^{2}y+\frac{y^{3}}{3}]| }_x^{2-x}dx \\ & =\int_0^{1} \frac{8}{3}-4x+4x^{2}-\frac{8x^{3}}{3} dx \\ & ={[\frac{8x}{3}-2x^{2}+\frac{4x^{3}}{3}-\frac{2x^{4}}{3}]|}_0^{1}=\frac{4}{3}.\end{array}$$
+</div>
+<p>To answer the question of how the formulas for the volumes of different standard solids such as a sphere, a cone, or a cylinder are found, we want to demonstrate an example and find the volume of an arbitrary cone.</p>
+<div class="example" id="fs-id1167793268107">
+<h3>Example 15.32 · Finding a Volume Using a Double Integral</h3>
+<p>Use <span data-concept="polar-coordinate-system">polar coordinates</span> to find the volume inside the cone $z=2-\sqrt{x^{2}+y^{2}}$ and above the $xy\text{-plane}\text{.}$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="region">region</span> $\kD$ for the integration is the base of the cone, which appears to be a circle on the $xy\text{-plane}$ (see the following figure).</p>
+<figure class="sim" id="sim-cone-volume" data-figure="15.37" data-original="/media/ch15/CNX_Calc_Figure_15_03_010.jpg" data-original-caption="Finding the volume of a solid inside the cone and above the xy-plane.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.37</span><span>Finding the volume of a solid inside the cone and above the $xy$-plane. Drag the radius $a$ and the height $h$ of the cone $z=h-\frac{h}{a}\sqrt{x^{2}+y^{2}}$: the polar integral gives its volume $\frac{1}{3}\pi a^{2}h,$ $\frac{8\pi}{3}$ at $a=h=2.$</span></div>
+</figure>
+<p>We find an equation of the circle by setting $z=0\text{:}$</p>
+$$\begin{array}{rll}0 & = & 2-\sqrt{x^{2}+y^{2}} \\ 2 & = & \sqrt{x^{2}+y^{2}} \\ x^{2}+y^{2} & = & 4.\end{array}$$
+<p>This means the radius of the circle is $2,$ so for the integration we have $0\le \ktheta \le 2\pi$ and $0\le r\le 2.$ Substituting $x=r\;\cos \ktheta$ and $y=r\;\sin \ktheta$ in the equation $z=2-\sqrt{x^{2}+y^{2}}$ we have $z=2-r.$ Therefore, the volume of the cone is</p>
+<p>$\int_{\ktheta =0}^{\ktheta =2\pi} \;\int_{r=0}^{r=2} (2-r) r\;dr\;d\theta =2\pi \frac{4}{3}=\frac{8\pi}{3}$ cubic units.</p>
+<h4>Analysis</h4>
+<p>Note that if we were to find the volume of an arbitrary cone with radius $a$ units and height $h$ units, then the equation of the cone would be $z=h-\frac{h}{a}\sqrt{x^{2}+y^{2}}.$</p>
+<p>We can still use Figure 15.37 and set up the integral as $\int_{\ktheta =0}^{\ktheta =2\pi} \;\int_{r=0}^{r=a} (h-\frac{h}{a}r) r\;dr\;d\theta .$</p>
+<p>Evaluating the integral, we get $\frac{1}{3}\pi a^{2}h.$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793268107"></div>
+<p>As with rectangular coordinates, we can also use <span data-concept="polar-coordinate-system">polar coordinates</span> to find areas of certain <span data-concept="region">regions</span> using a <span data-concept="double-integral">double integral</span>. As before, we need to understand the <span data-concept="region">region</span> whose area we want to compute. Sketching a graph and identifying the <span data-concept="region">region</span> can be helpful to realize the limits of integration. Generally, the area formula in double integration will look like</p>
+$$\text{Area}\;\kA=\int_{\alpha}^{\beta } \;\int_{\kh_{1}(\ktheta )}^{\kh_{2}(\ktheta )} 1r\;dr\;d\theta .$$
+<div class="example" id="fs-id1167793279438">
+<h3>Example 15.33 · Finding an Area Using a Double Integral in Polar Coordinates</h3>
+<p>Evaluate the area bounded by the curve $r=\cos 4\ktheta .$</p>
+<h4>Solution</h4>
+<p>Sketching the graph of the function $r=\cos 4\ktheta$ reveals that it is a <span data-concept="rose">polar rose</span> with eight petals (see the following figure).</p>
+<figure class="sim" id="sim-rose-petal" data-figure="15.38" data-original="/media/ch15/CNX_Calc_Figure_15_03_011.jpg" data-original-caption="Finding the area of a polar rose with eight petals.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.38</span><span>Finding the area of a polar rose with eight petals. Drag $\ktheta$ across one petal, from one zero of $\cos 4\ktheta$ at $-\frac{\pi}{8}$ to the next at $\frac{\pi}{8}$: each ray meets the petal for $0\le r\le \cos 4\ktheta.$</span></div>
+</figure>
+<p>Using symmetry, we can see that we need to find the area of one petal and then multiply it by $8.$ Notice that the values of $\ktheta$ for which the graph passes through the origin are the zeros of the function $\cos 4\ktheta ,$ and these are odd multiples of $\pi /8.$ Thus, one of the petals corresponds to the values of $\ktheta$ in the interval $[-\pi /8,\pi /8].$ Therefore, the area bounded by the curve $r=\cos 4\ktheta$ is</p>
+$$\begin{array}{rl}A & =8\int_{\ktheta =-\pi /8}^{\ktheta =\pi /8} \;\int_{r=0}^{r=\cos 4\ktheta} 1r\;dr\;d\theta \\ & =8\int_{-\pi /8}^{\pi /8} [\frac{1}{2}{r^{2}|}_0^{\cos 4\ktheta}] d\theta =8\int_{-\pi /8}^{\pi /8} \frac{1}{2}{\cos }^{2}4\ktheta \;d\theta =8[\frac{1}{4}\ktheta +{\frac{1}{16}\sin 4\ktheta \;\cos 4\ktheta |}_{-\pi /8}^{\pi /8}]=8[\frac{\pi}{16}]=\frac{\pi}{2}.\end{array}$$
+</div>
+<div class="example" id="fs-id1167793421964">
+<h3>Example 15.34 · Finding Area Between Two Polar Curves</h3>
+<p>Find the area enclosed by <span data-ref="circle-3cos">the circle $r=3\;\cos \ktheta$</span> and <span data-ref="cardioid-1cos">the <span data-concept="cardioid">cardioid</span> $r=1+\cos \ktheta .$</span></p>
+<h4>Solution</h4>
+<p>First and foremost, sketch the graphs of the <span data-concept="region">region</span> (Figure 15.39).</p>
+<figure class="sim" id="sim-circle-cardioid" data-figure="15.39" data-original="/media/ch15/CNX_Calc_Figure_15_03_012.jpg" data-original-caption="Finding the area enclosed by both a circle and a cardioid.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.39</span><span>Finding the area enclosed by both <span data-ref="circle-3cos">a circle</span> and <span data-ref="cardioid-1cos">a cardioid</span>. Drag $\ktheta$: up to $\ktheta=\frac{\pi}{3},$ where the curves meet, the ray leaves the region through <span data-ref="cardioid-1cos">the cardioid</span>, and beyond it through <span data-ref="circle-3cos">the circle</span>.</span></div>
+</figure>
+<p>We can from see the symmetry of the graph that we need to find the points of intersection. Setting the two equations equal to each other gives</p>
+$$3\;\cos \ktheta =1+\cos \ktheta .$$
+<p>One of the points of intersection is $\ktheta =\pi /3.$ The area above the polar axis consists of two parts, with one part defined by <span data-ref="cardioid-1cos">the <span data-concept="cardioid">cardioid</span></span> from $\ktheta =0$ to $\ktheta =\pi /3$ and the other part defined by <span data-ref="circle-3cos">the circle</span> from $\ktheta =\pi /3$ to $\ktheta =\pi /2.$ By symmetry, the total area is twice the area above the polar axis. Thus, we have</p>
+$$\kA=2[\int_{\ktheta =0}^{\ktheta =\pi /3} \;\int_{r=0}^{r=1+\cos \ktheta} 1r\;dr\;d\theta +\int_{\ktheta =\pi /3}^{\ktheta =\pi /2} \;\int_{r=0}^{r=3\;\cos \ktheta} 1r\;dr\;d\theta ].$$
+<p>Evaluating each piece separately, we find that the area is</p>
+$$\kA=2(\frac{1}{4}\pi +\frac{9}{16}\sqrt{3}+\frac{3}{8}\pi -\frac{9}{16}\sqrt{3})=2(\frac{5}{8}\pi )=\frac{5}{4}\pi \;\text{square units}\text{.}$$
+</div>
+<div class="exercises" data-place="fs-id1167793421964"></div>
+<div class="example" id="fs-id1167794177116">
+<h3>Example 15.35 · Evaluating an Improper Double Integral in Polar Coordinates</h3>
+<p>Evaluate the integral $\iint\limits_{{\mathbb{R}}^{2}}e^{-10(x^{2}+y^{2})} dx\;dy.$</p>
+<h4>Solution</h4>
+<p>This is an <span data-concept="improper-double-integral">improper integral</span> because we are integrating over an unbounded <span data-concept="region">region</span> ${\mathbb{R}}^{2}.$ In <span data-concept="polar-coordinate-system">polar coordinates</span>, the entire plane ${\mathbb{R}}^{2}$ can be seen as $0\le \ktheta \le 2\pi ,$ $0\le r\lt \infty .$</p>
+<p>Using the changes of variables from rectangular coordinates to <span data-concept="polar-coordinate-system">polar coordinates</span>, we have</p>
+$$\begin{array}{rl}\iint\limits_{{\mathbb{R}}^{2}}e^{-10(x^{2}+y^{2})} dx\;dy & =\int_{\ktheta =0}^{\ktheta =2\pi} \;\int_{r=0}^{r=\infty} e^{-10r^{2}}r\;dr\;d\theta =\int_{\ktheta =0}^{\ktheta =2\pi} (\lim_{a\to \infty}\int_{r=0}^{r=a} e^{-10r^{2}}r\;dr ) d\theta \\ & =(\int_{\ktheta =0}^{\ktheta =2\pi} d\theta )(\lim_{a\to \infty}\int_{r=0}^{r=a} e^{-10r^{2}}r\;dr ) \\ & =2\pi (\lim_{a\to \infty}\int_{r=0}^{r=a} e^{-10r^{2}}r\;dr ) \\ & =2\pi \lim_{a\to \infty}(-\frac{1}{20})({e^{-10r^{2}}|}_0^{a}) \\ & =2\pi (-\frac{1}{20})\lim_{a\to \infty}(e^{-10a^{2}}-1) \\ & =\frac{\pi}{10}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794177116"></div>
+</section>

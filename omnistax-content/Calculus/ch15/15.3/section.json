@@ -1,0 +1,1359 @@
+{
+ "id": "15.3",
+ "module": "m53966",
+ "chapter": "15",
+ "title": "Double Integrals in Polar Coordinates",
+ "short": "Double Integrals in Polar Coordinates",
+ "lead": "A region with circular symmetry is cut more naturally by circles and rays than by a grid. This section integrates over <span data-concept=\"polar-rectangle\">polar rectangles</span> and general polar regions, where the small piece of area becomes $r\\,dr\\,d\\theta,$ and finds volumes under paraboloids and a cone and the areas of a rose and of the region between a circle and a cardioid.",
+ "objectives": [
+  "Recognize the format of a double integral over a polar rectangular region.",
+  "Evaluate a double integral in polar coordinates by using an iterated integral.",
+  "Recognize the format of a double integral over a general polar region.",
+  "Use double integrals in polar coordinates to calculate areas and volumes."
+ ],
+ "summary_html": "<ul><li>To apply a <span data-concept=\"double-integral\">double integral</span> to a situation with circular symmetry, it is often convenient to use a <span data-concept=\"double-integral\">double integral</span> in <span data-concept=\"polar-coordinate-system\">polar coordinates</span>. We can apply these <span data-concept=\"double-integral\">double integrals</span> over a <span data-concept=\"polar-rectangle\">polar rectangular region</span> or a <span data-concept=\"region\">general polar region</span>, using an <span data-concept=\"iterated-integral\">iterated integral</span> similar to those used with rectangular <span data-concept=\"double-integral\">double integrals</span>.</li><li>The area $dA$ in <span data-concept=\"polar-coordinate-system\">polar coordinates</span> becomes $r\\;dr\\;d\\theta .$</li><li>Use $x=r\\;\\cos \\ktheta ,$ $y=r\\;\\sin \\ktheta ,$ and $dA=r\\;dr\\;d\\theta$ to convert an integral in rectangular coordinates to an integral in <span data-concept=\"polar-coordinate-system\">polar coordinates</span>.</li><li>Use $r^{2}=x^{2}+y^{2}$ and $\\ktheta ={\\tan }^{-1}(\\frac{y}{x})$ to convert an integral in <span data-concept=\"polar-coordinate-system\">polar coordinates</span> to an integral in rectangular coordinates, if needed.</li><li>To find the volume in <span data-concept=\"polar-coordinate-system\">polar coordinates</span> bounded above by a surface $z=\\kf(r,\\ktheta )$ over a <span data-concept=\"region\">region</span> on the $xy$-plane, use a <span data-concept=\"double-integral\">double integral</span> in <span data-concept=\"polar-coordinate-system\">polar coordinates</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Of the unkeyed section exercises, seven “show” exercises are kept with AI-written suggested approaches: 170, 172, 174, 176, 178, 179 and 180. The other 24 unkeyed ones are computational and are left out: exercises 122–168 even (regions to describe, integrals, areas, averages and volumes in polar coordinates). Review exercises 429 and 431 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-polar-rectangle",
+   "kind": "sim",
+   "number": "15.28",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_001.jpg"
+   ],
+   "original_caption": "(a) A polar rectangle R (b) divided into subrectangles Rᵢⱼ. (c) Close-up of a subrectangle.",
+   "draws": [
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-polar-boxes",
+   "kind": "sim",
+   "number": "15.29",
+   "folds": [
+    "15.34"
+   ],
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_002.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_03_007.jpg"
+   ],
+   "original_caption": "(Figure 15.29) Finding the volume of the thin box above polar rectangle Rᵢⱼ. (Figure 15.34) The paraboloid z=1−x²−y².",
+   "draws": [
+    "region",
+    "surface",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-semicircular-band",
+   "kind": "sim",
+   "number": "15.30",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_003.jpg"
+   ],
+   "original_caption": "The polar region R lies between two semicircles.",
+   "draws": [
+    "region",
+    "curve",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-annulus",
+   "kind": "sim",
+   "number": "15.31",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_004.jpg"
+   ],
+   "original_caption": "The annular region of integration R.",
+   "draws": [
+    "region",
+    "curve",
+    "angle",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-general-polar",
+   "kind": "sim",
+   "number": "15.32",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_005.jpg"
+   ],
+   "original_caption": "A general polar region between α ≤ θ ≤ β and h₁(θ )≤ r≤ h₂(θ ).",
+   "draws": [
+    "region",
+    "function",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cardioid-half",
+   "kind": "sim",
+   "number": "15.33",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_006.jpg"
+   ],
+   "original_caption": "The region D is the top half of a cardioid.",
+   "draws": [
+    "region",
+    "curve",
+    "angle",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-paraboloid-cap",
+   "kind": "figure",
+   "number": "15.35",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_008.jpg"
+   ],
+   "original_caption": "Finding the volume of a solid with a paraboloid cap and a circular base.",
+   "draws": [
+    "region",
+    "surface",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-paraboloid-triangle",
+   "kind": "figure",
+   "number": "15.36",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_009.jpg"
+   ],
+   "original_caption": "Finding the volume of a solid under a paraboloid and above a given triangle.",
+   "draws": [
+    "region",
+    "surface",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-cone-volume",
+   "kind": "sim",
+   "number": "15.37",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_010.jpg"
+   ],
+   "original_caption": "Finding the volume of a solid inside the cone and above the xy-plane.",
+   "draws": [
+    "region",
+    "surface",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-rose-petal",
+   "kind": "sim",
+   "number": "15.38",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_011.jpg"
+   ],
+   "original_caption": "Finding the area of a polar rose with eight petals.",
+   "draws": [
+    "region",
+    "curve",
+    "angle",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-circle-cardioid",
+   "kind": "sim",
+   "number": "15.39",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_03_012.jpg"
+   ],
+   "original_caption": "Finding the area enclosed by both a circle and a cardioid.",
+   "draws": [
+    "region",
+    "angle",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "polar-intro",
+   "concept": "polar-coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "polar-rectangles",
+   "concept": "polar-rectangle",
+   "verb": "introduces"
+  },
+  {
+   "span": "subrectangle-area",
+   "concept": "polar-rectangle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polar-rectangles",
+   "concept": "double-riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793270734",
+   "concept": "double-integral-over-a-polar-rectangle",
+   "verb": "introduces"
+  },
+  {
+   "span": "polar-iterated",
+   "concept": "double-integral-in-polar-coordinates",
+   "verb": "introduces"
+  },
+  {
+   "span": "polar-iterated",
+   "concept": "converting-points-between-coordinate-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "polar-iterated",
+   "concept": "fubinis-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794159521",
+   "concept": "double-integral-in-polar-coordinates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793367134",
+   "concept": "double-integral-over-a-general-polar-region",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-polar",
+   "concept": "polar-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794070176",
+   "concept": "cardioid",
+   "verb": "uses"
+  },
+  {
+   "span": "polar-areas-volumes",
+   "concept": "polar-volume-and-area",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793279438",
+   "concept": "rose",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793421964",
+   "concept": "area-between-two-polar-curves",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794177116",
+   "concept": "improper-double-integral",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793950179",
+   "source_number": "Checkpoint 15.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793298917"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "Sketch the region $R=\\{(r,\\theta )|1\\le r\\le 2,-\\frac{\\pi}{2}\\le \\theta \\le \\frac{\\pi}{2}\\},$ and evaluate $\\iint\\limits_{R}x\\;dA .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{14}{3}$",
+    "hint": "Follow the steps in <a href=\"#fs-id1167793298917\">Example 15.25</a>."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793455522",
+   "source_number": "Checkpoint 15.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793220378"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "Evaluate the integral $\\iint\\limits_{R}(4-x^{2}-y^{2}) dA$ where $R$ is the circle of radius $2$ on the $xy$-plane.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$8\\pi$",
+    "hint": "Follow the steps in the previous example."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167794123110",
+   "source_number": "Checkpoint 15.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794070176"
+   },
+   "cite": "general-polar",
+   "prompt": "<p>Evaluate the integral</p>\n$$\\iint\\limits_{D}r^{2}{\\sin }^{2}(2\\theta )r\\;dr\\;d\\theta \\;\\text{where}\\;D=\\{(r,\\theta )|-\\frac{\\pi}{4}\\le \\theta \\le \\frac{\\pi}{4},0\\le r\\le 2\\sqrt{\\cos 2\\theta}\\}.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\pi /4$",
+    "hint": "Graph the region and follow the steps in the previous example."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793873034",
+   "source_number": "Checkpoint 15.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793268107"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "Use polar coordinates to find an iterated integral for finding the volume of the solid enclosed by the paraboloids $z=x^{2}+y^{2}$ and $z=16-x^{2}-y^{2}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$V=\\int_0^{2\\pi} \\;\\int_0^{2\\sqrt{2}} (16-2r^{2}) r\\;dr\\;d\\theta =64\\pi$ cubic units",
+    "hint": "Sketching the graphs can help."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793360845",
+   "source_number": "Checkpoint 15.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793421964"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "Find the area enclosed inside the cardioid $r=3-3\\;\\sin \\theta$ and outside the cardioid $r=1+\\sin \\theta .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$A=2\\int_{-\\pi /2}^{\\pi /6} \\;\\int_{1+\\sin \\theta}^{3-3\\;\\sin \\theta} r\\;dr\\;d\\theta =8\\pi +9\\sqrt{3}$",
+    "hint": "Sketch the graph, and solve for the points of intersection."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793298805",
+   "source_number": "Checkpoint 15.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794177116"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "Evaluate the integral $\\iint\\limits_{{\\mathbb{R}}^{2}}e^{-4(x^{2}+y^{2})}dx\\;dy .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{4}$",
+    "hint": "Convert to the polar coordinate system."
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1167793928275",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, express the region $D$ in polar coordinates.</p><p>$D$ is the region between the circles of radius $4$ and radius $5$ centered at the origin that lies in the second quadrant.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$D=\\{(r,\\theta )|4\\le r\\le 5,\\frac{\\pi}{2}\\le \\theta \\le \\pi \\}$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1167794326929",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, express the region $D$ in polar coordinates.</p><p>$D$ is the region bounded by the $x$-axis and $y=\\sqrt{2-x^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$D=\\{(r,\\theta )|0\\le r\\le \\sqrt{2},0\\le \\theta \\le \\pi \\}$"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1167793593015",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-polar",
+   "prompt": "<p>In the following exercises, express the region $D$ in polar coordinates.</p><p>$D=\\{(x,y)|x^{2}+y^{2}\\le 4y\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$D=\\{(r,\\theta )|0\\le r\\le 4\\;\\sin \\theta ,0\\le \\theta \\le \\pi \\}$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1167793500491",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, the graph of the polar rectangular region $D$ is given. Express $D$ in polar coordinates.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_202.jpg\" alt=\"A sector of an annulus D is drawn between theta = pi/4 and theta = pi/2 with inner radius 3 and outer radius 5.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$D=\\{(r,\\theta )|3\\le r\\le 5,\\frac{\\pi}{4}\\le \\theta \\le \\frac{\\pi}{2}\\}$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1167793941446",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, the graph of the polar rectangular region $D$ is given. Express $D$ in polar coordinates.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_204.jpg\" alt=\" A sector of an annulus D is drawn between theta = 3 pi/4 and theta = 5 pi/4 with inner radius 3 and outer radius 5.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$D=\\{(r,\\theta )|3\\le r\\le 5,\\frac{3\\pi}{4}\\le \\theta \\le \\frac{5\\pi}{4}\\}$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1167793219219",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-polar",
+   "prompt": "<p>In the following graph, the region $D$ is bounded by $y=x$ and $y=x^{2}.$</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_206.jpg\" alt=\"A region D is drawn between y = x and y = x squared, which looks like a deformed lens, with the bulbous part below the straight part.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$D=\\{(r,\\theta )|0\\le r\\le \\tan \\theta \\;\\sec \\theta ,0\\le \\theta \\le \\frac{\\pi}{4}\\}$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1167793957304",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, evaluate the double integral $\\iint\\limits_{R}f(x,y)dA$ over the polar rectangular region $D.$</p><p>$f(x,y)=x+y,\\; \\;D=\\{(r,\\theta )|3\\le r\\le 5,0\\le \\theta \\le 2\\pi \\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1167793237777",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, evaluate the double integral $\\iint\\limits_{R}f(x,y)dA$ over the polar rectangular region $D.$</p><p>$f(x,y)=x^{4}+y^{4},D=\\{(r,\\theta )|1\\le r\\le 2,\\frac{3\\pi}{2}\\le \\theta \\le 2\\pi \\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{63\\pi}{16}$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1167793452803",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, evaluate the double integral $\\iint\\limits_{R}f(x,y)dA$ over the polar rectangular region $D.$</p><p>$f(x,y)=x^{4}+2x^{2}y^{2}+y^{4},$ where $D=\\{(r,\\theta )|3\\le r\\le 4,\\frac{\\pi}{3}\\le \\theta \\le \\frac{2\\pi}{3}\\}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3367\\pi}{18}$"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1167793510332",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, evaluate the double integral $\\iint\\limits_{R}f(x,y)dA$ over the polar rectangular region $D.$</p><p>$f(x,y)=\\operatorname{arctan}(\\frac{y}{x}),$ where $D=\\{(r,\\theta )|2\\le r\\le 3,\\frac{\\pi}{4}\\le \\theta \\le \\frac{\\pi}{3}\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{35{\\pi}^{2}}{576}$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1167793927747",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, evaluate the double integral $\\iint\\limits_{R}f(x,y)dA$ over the polar rectangular region $D.$</p><p>$\\iint\\limits_{D}(e^{x^{2}+y^{2}}+x^{4}+2x^{2}y^{2}+y^{4}) \\operatorname{arctan}(\\frac{y}{x})dA\\text{,}\\;D=\\{(r,\\theta )|1\\le r\\le 2,\\frac{\\pi}{4}\\le \\theta \\le \\frac{\\pi}{3}\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{7{\\pi}^{2}}{576}(21-e^{2}+e^{4})$"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1167794291656",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-polar",
+   "prompt": "<p>In the following exercises, the integrals have been converted to polar coordinates. Verify that the identities are true and choose the easiest way to evaluate the integrals, in rectangular or polar coordinates.</p><p>$\\int_2^{3} \\;\\int_0^{x} \\frac{x}{\\sqrt{x^{2}+y^{2}}}dy\\;dx =\\int_0^{\\pi /4} \\;\\int_{2\\;\\sec \\theta}^{3\\sec \\theta} r\\;\\cos \\theta \\;dr\\;d\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{5}{2}\\ln (1+\\sqrt{2})$"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1167793485223",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-polar",
+   "prompt": "<p>In the following exercises, the integrals have been converted to polar coordinates. Verify that the identities are true and choose the easiest way to evaluate the integrals, in rectangular or polar coordinates.</p><p>$\\int_0^{1} \\;\\int_{x^{2}}^{x} \\frac{y}{\\sqrt{x^{2}+y^{2}}}dy\\;dx =\\int_0^{\\pi /4} \\;\\int_0^{\\tan \\theta \\;\\sec \\theta} r\\;\\sin \\theta \\;dr\\;d\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{6}(2-\\sqrt{2})$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1167793638832",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, convert the integrals to polar coordinates and evaluate them.</p><p>$\\int_0^{2} \\;\\int_{-\\sqrt{4-y^{2}}}^{\\sqrt{4-y^{2}}} {(x^{2}+y^{2})}^{2}dx\\;dy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{\\pi} \\;\\int_0^{2} r^{5}dr\\;d\\theta =\\frac{32\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1167793355704",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>In the following exercises, convert the integrals to polar coordinates and evaluate them.</p><p>$\\int_0^{4} \\;\\int_{-\\sqrt{16-x^{2}}}^{\\sqrt{16-x^{2}}} \\sin (x^{2}+y^{2})dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{-\\pi /2}^{\\pi /2} \\;\\int_0^{4} r\\;\\sin (r^{2})dr\\;d\\theta =\\pi \\;{\\sin }^{2}8$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1167793568606",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>Find the area of the region $D$ bounded by the polar axis and the upper half of the cardioid $r=1+\\cos \\theta .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1167793630659",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>Find the total area of the region enclosed by the four-leaved rose $r=\\sin 2\\theta$ (see the figure in the previous exercise).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1167793991244",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>Find the area of the region $D,$ which is the region inside the disk $x^{2}+y^{2}\\le 4$ and to the right of the line $x=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}(4\\pi -3\\sqrt{3})$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1167791545055",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>Determine the average value of the function $f(x,y)=\\sqrt{x^{2}+y^{2}}$ over the region $D$ bounded by the polar curve $r=3\\;\\sin 2\\theta ,$ where $0\\le \\theta \\le \\frac{\\pi}{2}$ (see the following graph).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_209.jpg\" alt=\"The first-quadrant petal of the four-petal rose given by r = 3sin (2 theta) is shown.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{16}{3\\pi}$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1167794058751",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>Find the volume of the solid bounded by the paraboloid $z=2-9x^{2}-9y^{2}$ and the plane $z=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{18}$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1167793941347",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>In the following exercises, convert the integrals to polar coordinates and evaluate them.</p><p>a. Find the volume of the solid $S_{1}$ inside the unit sphere $x^{2}+y^{2}+z^{2}=1$ and above the plane $z=0.$</p><p>b. Find the volume of the solid $S_{2}$ inside the double cone ${(z-1)}^{2}=x^{2}+y^{2}$ and above the plane $z=0.$</p><p>c. Find the volume of the solid outside the double cone ${(z-1)}^{2}=x^{2}+y^{2}$ and inside the sphere $x^{2}+y^{2}+z^{2}=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\frac{2\\pi}{3};$ b. $\\frac{\\pi}{3};$ c. $\\frac{\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1167794172453",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>A cylindrical hole of diameter $6$ cm is bored through a sphere of radius $5$ cm such that the axis of the cylinder passes through the center of the sphere. Find the volume of the resulting spherical ring.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{256\\pi}{3}\\;{\\text{cm}}^{3}$"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1167793566794",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Find the volume of the solid that lies under the paraboloid $z=x^{2}+y^{2},$ inside the cylinder $x^{2}+y^{2}=x,$ and above the plane $z=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3\\pi}{32}$"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1167793581654",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Find the volume of the solid that lies under the plane $2x+y+2z=8$ and above the unit disk $x^{2}+y^{2}=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4\\pi$"
+   }
+  },
+  {
+   "id": "e170",
+   "source_id": "fs-id1167793590463",
+   "source_number": "170",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>A radial function $f$ is a function whose value at each point depends only on the distance between that point and the origin of the system of coordinates; that is, $f(x,y)=g(r),$ where $r=\\sqrt{x^{2}+y^{2}}.$ Show that if $f$ is a continuous radial function, then $\\iint\\limits_{D}f(x,y) dA=({\\theta}_{2}-{\\theta}_{1})[G(R_{2})-G(R_{1})],$ where $G'(r)=rg(r)$ and $(x,y)\\in D=\\{(r,\\theta )|R_{1}\\le r\\le R_{2},{\\theta}_{1}\\le \\theta \\le {\\theta}_{2}\\},$ with $0\\le R_{1}\\lt R_{2}$ and $0\\le {\\theta}_{1}\\lt {\\theta}_{2}\\le 2\\pi .$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>In polar coordinates $f(r\\cos\\theta ,r\\sin\\theta )=g(r)$ and $dA=r\\,dr\\,d\\theta,$ so $\\iint_{D}f(x,y)\\,dA=\\int_{\\theta_{1}}^{\\theta_{2}}\\int_{R_{1}}^{R_{2}}g(r)\\,r\\,dr\\,d\\theta.$ The inner integral does not depend on $\\theta,$ and since $G^{\\prime}(r)=rg(r)$ it equals $G(R_{2})-G(R_{1})$ by the Fundamental Theorem of Calculus; integrating this constant over $\\theta_{1}\\le\\theta\\le\\theta_{2}$ gives $(\\theta_{2}-\\theta_{1})[G(R_{2})-G(R_{1})].$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1167793928558",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Use the information from the preceding exercise to calculate the integral $\\iint\\limits_{D}{(x^{2}+y^{2})}^{3} dA,$ where $D$ is the unit disk.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e172",
+   "source_id": "fs-id1167793927490",
+   "source_number": "172",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Let $f(x,y)=\\frac{F'(r)}{r}$ be a continuous radial function defined on the annular region $D=\\{(r,\\theta )|R_{1}\\le r\\le R_{2},0\\le \\theta \\le 2\\pi \\},$ where $r=\\sqrt{x^{2}+y^{2}},$ $0\\lt R_{1}\\lt R_{2},$ and $F$ is a differentiable function. Show that $\\iint\\limits_{D}f(x,y) dA=2\\pi [F(R_{2})-F(R_{1})].$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Here $f=\\frac{F^{\\prime}(r)}{r}$ and $dA=r\\,dr\\,d\\theta,$ so the factor $r$ cancels: $\\iint_{D}f\\,dA=\\int_{0}^{2\\pi}\\int_{R_{1}}^{R_{2}}\\frac{F^{\\prime}(r)}{r}\\,r\\,dr\\,d\\theta=\\int_{0}^{2\\pi}[F(R_{2})-F(R_{1})]\\,d\\theta=2\\pi [F(R_{2})-F(R_{1})].$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1167793375032",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Apply the preceding exercise to calculate the integral $\\iint\\limits_{D}\\frac{e^{\\sqrt{x^{2}+y^{2}}}}{\\sqrt{x^{2}+y^{2}}} dx\\;dy,$ where $D$ is the annular region between the circles of radii $1$ and $2$ situated in the third quadrant.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\pi e(e-1)$"
+   }
+  },
+  {
+   "id": "e174",
+   "source_id": "fs-id1167793618233",
+   "source_number": "174",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Let $f$ be a continuous function that can be expressed in polar coordinates as a product of a function of $r$ only and a function of $\\theta$ only; that is, $f(x,y)=h(\\theta ),$ where $(x,y)\\in D=\\{(r,\\theta )|R_{1}\\le r\\le R_{2},{\\theta}_{1}\\le \\theta \\le {\\theta}_{2}\\},$ with $0\\le R_{1}\\lt R_{2}$ and $0\\le {\\theta}_{1}\\lt {\\theta}_{2}\\le 2\\pi .$ Show that $\\iint\\limits_{D}f(x,y) dA=\\frac{1}{2}(R_2^{2}-R_1^{2})[H({\\theta}_{2})-H({\\theta}_{1})],$ where $H$ is an antiderivative of $h.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>With $f=h(\\theta)$ and $dA=r\\,dr\\,d\\theta$ over the polar rectangle, the integrand is a product of $r$ and a function of $\\theta,$ so $\\iint_{D}f\\,dA=\\int_{\\theta_{1}}^{\\theta_{2}}\\int_{R_{1}}^{R_{2}}h(\\theta)\\,r\\,dr\\,d\\theta=(\\int_{R_{1}}^{R_{2}}r\\,dr)(\\int_{\\theta_{1}}^{\\theta_{2}}h(\\theta)\\,d\\theta)=\\frac{1}{2}(R_{2}^{2}-R_{1}^{2})[H(\\theta_{2})-H(\\theta_{1})].$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1167793377858",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Apply the preceding exercise to calculate the integral $\\iint\\limits_{D}\\frac{y^{2}}{x^{2}} dA,$ where $D=\\{(r,\\theta )|1\\le r\\le 2,\\frac{\\pi}{6}\\le \\theta \\le \\frac{\\pi}{3}\\}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{3}-\\frac{\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e176",
+   "source_id": "fs-id1167793298498",
+   "source_number": "176",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Let $f$ be a continuous function that can be expressed in polar coordinates as a product of a function of $r$ only and function of $\\theta$ only; that is, $f(x,y)=g(r)h(\\theta ),$ where $(x,y)\\in D=\\{(r,\\theta )|R_{1}\\le r\\le R_{2},{\\theta}_{1}\\le \\theta \\le {\\theta}_{2}\\}$ with $0\\le R_{1}\\lt R_{2}$ and $0\\le {\\theta}_{1}\\lt {\\theta}_{2}\\le 2\\pi .$ Show that $\\iint\\limits_{D}f(x,y) dA=[G(R_{2})-G(R_{1})]\\;[H({\\theta}_{2})-H({\\theta}_{1})],$ where $G(r)$ and $H(\\theta )$ are antiderivatives of $rg(r)$ and $h(\\theta )$, respectively.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>With $f=g(r)h(\\theta)$ and $dA=r\\,dr\\,d\\theta,$ the integrand $rg(r)h(\\theta)$ over the polar rectangle is a product of a function of $r$ and a function of $\\theta,$ so the iterated integral splits: $\\iint_{D}f\\,dA=(\\int_{R_{1}}^{R_{2}}rg(r)\\,dr)(\\int_{\\theta_{1}}^{\\theta_{2}}h(\\theta)\\,d\\theta)=[G(R_{2})-G(R_{1})][H(\\theta_{2})-H(\\theta_{1})],$ since $G$ and $H$ are antiderivatives of $rg(r)$ and $h(\\theta).$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1167793294346",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-rectangles",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>Evaluate $\\iint\\limits_{D}\\operatorname{arctan}(\\frac{y}{x})\\sqrt{x^{2}+y^{2}} dA,$ where $D=\\{(r,\\theta )|2\\le r\\le 3,\\frac{\\pi}{4}\\le \\theta \\le \\frac{\\pi}{3}\\}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{133{\\pi}^{2}}{864}$"
+   }
+  },
+  {
+   "id": "e178",
+   "source_id": "fs-id1167793637676",
+   "source_number": "178",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>A spherical cap is the region of a sphere that lies above or below a given plane.</p><p>a. Show that the volume of the spherical cap in the figure below is $\\frac{1}{6}\\pi h(3a^{2}+h^{2}).$</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_211.jpg\" alt=\"A sphere of radius R has a circle inside of it h units from the top of the sphere. This circle has radius a, which is less than R.\"><p>b. A spherical segment is the solid defined by intersecting a sphere with two parallel planes. If the distance between the planes is $h,$ show that the volume of the spherical segment in the figure below is $\\frac{1}{6}\\pi h(3a^{2}+3b^{2}+h^{2}).$</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_212.jpg\" alt=\"A sphere has two parallel circles inside of it h units apart. The upper circle has radius b, and the lower circle has radius a. Note that a &gt; b.\">",
+   "answer": {
+    "type": "open",
+    "solution": "<p>a. Let the sphere have radius $R,$ centered at the origin, and let the cap lie above the plane $z=R-h,$ which cuts the sphere in a circle of radius $a,$ so $a^{2}=R^{2}-(R-h)^{2}=2Rh-h^{2}.$ Over the disk $r\\le a$ the cap lies between $z=R-h$ and $z=\\sqrt{R^{2}-r^{2}},$ so in polar coordinates $V=\\int_{0}^{2\\pi}\\int_{0}^{a}(\\sqrt{R^{2}-r^{2}}-(R-h))\\,r\\,dr\\,d\\theta=\\frac{2\\pi}{3}(R^{3}-(R-h)^{3})-\\pi (R-h)a^{2}.$ With $R^{3}-(R-h)^{3}=h(3R^{2}-3Rh+h^{2})$ and $a^{2}=h(2R-h),$ this is $\\pi h^{2}(R-\\frac{h}{3}),$ and putting $R=\\frac{a^{2}+h^{2}}{2h}$ gives $V=\\frac{1}{6}\\pi h(3a^{2}+h^{2}).$</p><p>b. Let the planes be $z=c$ and $z=c+h,$ cutting the sphere in circles of radii $a$ and $b,$ so $a^{2}=R^{2}-c^{2}$ and $b^{2}=R^{2}-(c+h)^{2}.$ The cross section at height $z$ is a disk of radius $\\sqrt{R^{2}-z^{2}},$ whose area by a polar double integral is $\\pi (R^{2}-z^{2}),$ so $V=\\int_{c}^{c+h}\\pi (R^{2}-z^{2})\\,dz=\\pi [R^{2}h-\\frac{(c+h)^{3}-c^{3}}{3}]=\\frac{\\pi h}{6}(6R^{2}-6c^{2}-6ch-2h^{2}).$ Since $3a^{2}+3b^{2}+h^{2}=6R^{2}-6c^{2}-6ch-2h^{2},$ this is $\\frac{1}{6}\\pi h(3a^{2}+3b^{2}+h^{2}).$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1167793495530",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>In statistics, the joint density for two independent, normally distributed events with a mean $\\mu =0$ and a standard distribution $\\sigma$ is defined by $p(x,y)=\\frac{1}{2\\pi {\\sigma }^{2}}e^{-\\frac{x^{2}+y^{2}}{2{\\sigma }^{2}}}.$ Consider $(X,Y),$ the Cartesian coordinates of a ball in the resting position after it was released from a position on the <em>z</em>-axis toward the $xy$-plane. Assume that the coordinates of the ball are independently normally distributed with a mean $\\mu =0$ and a standard deviation of $\\sigma$ (in feet). The probability that the ball will stop no more than $a$ feet from the origin is given by $P[X^{2}+Y^{2}\\le a^{2}]=\\iint\\limits_{D}p(x,y)dy\\;dx ,$ where $D$ is the disk of radius <em>a</em> centered at the origin. Show that $P[X^{2}+Y^{2}\\le a^{2}]=1-e^{-a^{2}/2{\\sigma }^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>In polar coordinates the disk is $0\\le r\\le a,$ $0\\le\\theta\\le 2\\pi,$ and $x^{2}+y^{2}=r^{2},$ so $P[X^{2}+Y^{2}\\le a^{2}]=\\frac{1}{2\\pi\\sigma^{2}}\\int_{0}^{2\\pi}\\int_{0}^{a}e^{-r^{2}/2\\sigma^{2}}r\\,dr\\,d\\theta=\\frac{1}{\\sigma^{2}}\\int_{0}^{a}e^{-r^{2}/2\\sigma^{2}}r\\,dr.$ With $u=\\frac{r^{2}}{2\\sigma^{2}},$ $du=\\frac{r}{\\sigma^{2}}dr,$ this is $\\int_{0}^{a^{2}/2\\sigma^{2}}e^{-u}\\,du=1-e^{-a^{2}/2\\sigma^{2}}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e180",
+   "source_id": "fs-id1167793499076",
+   "source_number": "180",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>For the following two exercises, consider a spherical ring, which is a sphere with a cylindrical hole cut so that the axis of the cylinder passes through the center of the sphere (see the following figure).</p><img src=\"/media/ch15/CNX_Calc_Figure_15_03_210.jpg\" alt=\"A spherical ring is shown, that is, a sphere with a cylindrical hole going all the way through it.\"><p>The double improper integral $\\int_{-\\infty}^{\\infty} \\;\\int_{-\\infty}^{\\infty} e^{-(x^{2}+y^{2})/2} dy\\;dx$ may be defined as the limit value of the double integrals $\\iint\\limits_{D_{a}}e^{-(x^{2}+y^{2})/2} dA$ over disks $D_{a}$ of radii <em>a</em> centered at the origin, as <em>a</em> increases without bound; that is, $\\int_{-\\infty}^{\\infty} \\;\\int_{-\\infty}^{\\infty} e^{-(x^{2}+y^{2})/2} dy\\;dx=\\lim_{a\\to \\infty}\\iint\\limits_{D_{a}}e^{-(x^{2}+y^{2})/2} dA.$</p><p>a. Use polar coordinates to show that $\\int_{-\\infty}^{\\infty} \\;\\int_{-\\infty}^{\\infty} e^{-(x^{2}+y^{2})/2} dy\\;dx=2\\pi .$</p><p>b. Show that $\\int_{-\\infty}^{\\infty} e^{-x^{2}/2} dx=\\sqrt{2\\pi},$ by using the relation $\\int_{-\\infty}^{\\infty} \\;\\int_{-\\infty}^{\\infty} e^{-(x^{2}+y^{2})/2} dy\\;dx=(\\int_{-\\infty}^{\\infty} e^{-x^{2}/2}dx )(\\int_{-\\infty}^{\\infty} e^{-y^{2}/2} dy).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>a. Over the disk $D_{a},$ $\\iint_{D_{a}}e^{-(x^{2}+y^{2})/2}\\,dA=\\int_{0}^{2\\pi}\\int_{0}^{a}e^{-r^{2}/2}r\\,dr\\,d\\theta=2\\pi [-e^{-r^{2}/2}]_{0}^{a}=2\\pi (1-e^{-a^{2}/2}),$ which tends to $2\\pi$ as $a\\to\\infty.$</p><p>b. The integrand is the product $e^{-x^{2}/2}e^{-y^{2}/2},$ so the double integral is $(\\int_{-\\infty}^{\\infty}e^{-x^{2}/2}dx)(\\int_{-\\infty}^{\\infty}e^{-y^{2}/2}dy)=(\\int_{-\\infty}^{\\infty}e^{-x^{2}/2}dx)^{2},$ the two factors being the same integral. By part a this square is $2\\pi,$ and the integral is positive, so $\\int_{-\\infty}^{\\infty}e^{-x^{2}/2}\\,dx=\\sqrt{2\\pi}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r429",
+   "source_id": "fs-id1167793586900",
+   "source_section": "15.7",
+   "source_number": "429",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>For the following problems, find the specified area or volume.</p><p>The area of region enclosed by one petal of $r=\\cos (4\\theta ).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{16}$"
+   }
+  },
+  {
+   "id": "r431",
+   "source_id": "fs-id1167793358443",
+   "source_section": "15.7",
+   "source_number": "431",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-areas-volumes",
+   "prompt": "<p>For the following problems, find the specified area or volume.</p><p>The volume of the solid bounded by the cylinder $x^{2}+y^{2}=16$ and from $z=1$ and $z+x=2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$16\\pi \\approx 50.265$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "polar-rectangle"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "improper-double-integral"
+  },
+  {
+   "exercise": "e123",
+   "concept": "polar-rectangle"
+  },
+  {
+   "exercise": "e125",
+   "concept": "polar-rectangle"
+  },
+  {
+   "exercise": "e127",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "e129",
+   "concept": "polar-rectangle"
+  },
+  {
+   "exercise": "e131",
+   "concept": "polar-rectangle"
+  },
+  {
+   "exercise": "e133",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "e135",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e137",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e139",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e141",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e143",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e145",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "e145",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e147",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "e147",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e149",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e151",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e153",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e153",
+   "concept": "cardioid"
+  },
+  {
+   "exercise": "e155",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e155",
+   "concept": "rose"
+  },
+  {
+   "exercise": "e157",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e157",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "e159",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e159",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "e161",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e163",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e165",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e167",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e167",
+   "concept": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "exercise": "e169",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e170",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e171",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e172",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e173",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e174",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e175",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e176",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e176",
+   "concept": "properties-of-double-integrals"
+  },
+  {
+   "exercise": "e177",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e178",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "e179",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e179",
+   "concept": "joint-density-function"
+  },
+  {
+   "exercise": "e180",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e180",
+   "concept": "improper-double-integral"
+  },
+  {
+   "exercise": "r429",
+   "concept": "polar-volume-and-area"
+  },
+  {
+   "exercise": "r429",
+   "concept": "rose"
+  },
+  {
+   "exercise": "r431",
+   "concept": "polar-volume-and-area"
+  }
+ ],
+ "referents": [
+  {
+   "id": "circle-3cos",
+   "label": "the circle r = 3 cos θ",
+   "figures": [
+    "sim-circle-cardioid"
+   ]
+  },
+  {
+   "id": "cardioid-1cos",
+   "label": "the cardioid r = 1 + cos θ",
+   "figures": [
+    "sim-circle-cardioid"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-ex30-region",
+   "kind": "correction",
+   "html": "The region is printed with $0\\le \\theta \\le \\pi;$ since $r=2\\cos\\theta$ must be nonnegative, the disk is swept for $-\\frac{\\pi}{2}\\le\\theta\\le\\frac{\\pi}{2},$ the limits the integral below uses."
+  },
+  {
+   "id": "c-ex30-antiderivative",
+   "kind": "correction",
+   "html": "In the last line $8\\cos^{2}\\theta-4\\cos^{4}\\theta=\\frac{5}{2}+2\\cos 2\\theta-\\frac{1}{2}\\cos 4\\theta,$ whose antiderivative is $\\frac{5}{2}\\theta+\\sin 2\\theta-\\frac{1}{8}\\sin 4\\theta$ (printed with $\\frac{5}{2}\\sin 2\\theta$); both sine terms vanish at $\\pm\\frac{\\pi}{2},$ so the volume $\\frac{5}{2}\\pi$ stands."
+  }
+ ]
+}

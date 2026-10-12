@@ -1,0 +1,199 @@
+<p id="triple-intro">In <a href="/calculus/ch15/15.1/">Double Integrals over Rectangular Regions</a>, we discussed the <span data-concept="double-integral">double integral</span> of a function $\kf(x,y)$ of two variables over a rectangular <span data-concept="region">region</span> in the plane. In this section we define the <span data-concept="triple-integral">triple integral</span> of a function $\kf(x,y,z)$ of three variables over a rectangular solid box in space, ${\mathbb{R}}^{3}.$ Later in this section we extend the definition to more general <span data-concept="region">regions</span> in ${\mathbb{R}}^{3}.$</p>
+
+<section id="integrable-three">
+<h2>Integrable Functions of Three Variables</h2>
+<p class="cite-target">We can define a rectangular box $\kB$ in ${\mathbb{R}}^{3}$ as $\kB=\{(x,y,z)|a\le x\le b,c\le y\le d,e\le z\le \kf\}.$ We follow a similar procedure to what we did in <a href="/calculus/ch15/15.1/">Double Integrals over Rectangular Regions</a>. We divide the interval $[a,b]$ into $l$ subintervals $[x_{i-1},x_{i}]$ of equal length $\Delta x=\frac{b-a}{l},$ divide the interval $[c,d]$ into $m$ subintervals $[y_{j-1},y_{j}]$ of equal length $\Delta y=\frac{d-c}{m},$ and divide the interval $[e,\kf]$ into $n$ subintervals $[z_{k-1},z_{k}]$ of equal length $\Delta z=\frac{\kf-e}{n}.$ Then the rectangular box $\kB$ is subdivided into $lmn$ subboxes $\kB_{ijk}=[x_{i-1},x_{i}]\;\times \;[y_{j-1},y_{j}]\;\times \;[z_{k-1},z_{k}],$ as shown in Figure 15.40.</p>
+<figure class="sim" id="sim-subboxes" data-figure="15.40" data-original="/media/ch15/CNX_Calc_Figure_15_04_001.jpg" data-original-caption="A rectangular box in ℝ³ divided into subboxes by planes parallel to the coordinate planes.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.40</span><span>A rectangular box $\kB$ in $\mathbb{R}^{3}$ divided into subboxes by planes parallel to the coordinate planes, here the box $[-1,5]\times[2,4]\times[0,1]$ of <a href="#fs-id1167793897440">Example 15.36</a>. Drag $l,$ $m$ and $n$: each subbox $\kB_{ijk}$ has volume $\Delta V=\Delta x\,\Delta y\,\Delta z,$ and the <span data-concept="triple-riemann-sum">triple Riemann sum</span> of $\kf(x,y,z)=x+yz^{2}$ at the centers of the subboxes closes on the triple integral, $36.$</span></div>
+</figure>
+<p id="riemann-sum-term">For each $i,j,\;\text{and}\;k,$ consider a sample point $(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})$ in each sub-box $\kB_{ijk}.$ We see that its volume is $\Delta \kV=\Delta x\Delta y\Delta z.$ Form the <span data-concept="triple-riemann-sum">triple Riemann sum</span></p>
+$$\sum_{i=1}^{l} \sum_{j=1}^{m} \sum_{k=1}^{n} \kf(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})\Delta x\Delta y\Delta z .$$
+<p>We define the <span data-concept="triple-integral">triple integral</span> in terms of the limit of a <span data-concept="triple-riemann-sum">triple Riemann sum</span>, as we did for the <span data-concept="double-integral">double integral</span> in terms of a <span data-concept="double-riemann-sum">double Riemann sum</span>.</p>
+<div class="note" id="fs-id1167793949956">
+<div class="eyebrow">Definition</div>
+<p>The <strong><span data-concept="triple-integral">triple integral</span></strong> of a function $\kf(x,y,z)$ over a rectangular box $\kB$ is defined as</p>
+<div class="equation" id="fs-id1167794023665">$$\lim_{l,m,n\to \infty}\sum_{i=1}^{l} \sum_{j=1}^{m} \sum_{k=1}^{n} \kf(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})\Delta x\Delta y\Delta z=\iiint\limits_{\kB}\kf(x,y,z)dV\tag{15.10}$$</div>
+<p>if this limit exists.</p>
+</div>
+<p>When the <span data-concept="triple-integral">triple integral</span> exists on $\kB,$ the function $\kf(x,y,z)$ is said to be integrable on $\kB.$ Also, the <span data-concept="triple-integral">triple integral</span> exists if $\kf(x,y,z)$ is continuous on $\kB.$ Therefore, we will use continuous functions for our examples. However, continuity is sufficient but not necessary; in other words, $\kf$ is bounded on $\kB$ and continuous except possibly on the boundary of $\kB.$ The sample point $(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})$ can be any point in the rectangular sub-box $\kB_{ijk}$ and all the properties of a <span data-concept="double-integral">double integral</span> apply to a <span data-concept="triple-integral">triple integral</span>. Just as the <span data-concept="double-integral">double integral</span> has many practical applications, the <span data-concept="triple-integral">triple integral</span> also has many applications, which we discuss in later sections.</p>
+<p>Now that we have developed the concept of the <span data-concept="triple-integral">triple integral</span>, we need to know how to compute it. Just as in the case of the <span data-concept="double-integral">double integral</span>, we can have an iterated <span data-concept="triple-integral">triple integral</span>, and consequently, a version of Fubini’s thereom for <span data-concept="triple-integral">triple integrals</span> exists.</p>
+<div class="note" id="fs-id1167794125564">
+<div class="eyebrow">Theorem</div>
+<h3>Fubini’s Theorem for Triple Integrals</h3>
+<p>If $\kf(x,y,z)$ is continuous on a rectangular box $\kB=[a,b]\;\times \;[c,d]\;\times \;[r,s],$ then</p>
+$$\iiint\limits_{\kB}\kf(x,y,z)dV =\int_r^{s} \;\int_c^{d} \;\int_a^{b} \kf(x,y,z)dx\;dy\;dz .$$
+<p>This integral is also equal to any of the other five possible orderings for the iterated <span data-concept="triple-integral">triple integral</span>.</p>
+</div>
+<p>For $a,b,c,d,e,$ and $\kf$ real numbers, the iterated <span data-concept="triple-integral">triple integral</span> can be expressed in six different orderings:<sup class="fn" data-note="c-six-orders"></sup></p>
+$$\begin{array}{rl}\int_r^{s} \;\int_c^{d} \;\int_a^{b} \kf(x,y,z)dx\;dy\;dz & =\int_r^{s} (\int_c^{d} (\int_a^{b} \kf(x,y,z)dx)dy)dz =\int_c^{d} (\int_r^{s} (\int_a^{b} \kf(x,y,z)dx)dz)dy \\ & =\int_a^{b} (\int_r^{s} (\int_c^{d} \kf(x,y,z)dy)dz)dx =\int_r^{s} (\int_a^{b} (\int_c^{d} \kf(x,y,z)dy)dx)dz \\ & =\int_c^{e} (\int_a^{b} (\int_r^{s} \kf(x,y,z)dz)dx)dy =\int_a^{b} (\int_c^{e} (\int_r^{s} \kf(x,y,z)dz)dy)dx .\end{array}$$
+<p>For a rectangular box, the <span data-concept="changing-the-order-of-integration">order of integration</span> does not make any significant difference in the level of difficulty in computation. We compute <span data-concept="triple-integral">triple integrals</span> using Fubini’s Theorem rather than using the Riemann sum definition. We follow the <span data-concept="changing-the-order-of-integration">order of integration</span> in the same way as we did for <span data-concept="double-integral">double integrals</span> (that is, from inside to outside).</p>
+<div class="example" id="fs-id1167793897440">
+<h3>Example 15.36 · Evaluating a Triple Integral</h3>
+<p>Evaluate the <span data-concept="triple-integral">triple integral</span> $\int_{z=0}^{z=1}\int_{y=2}^{y=4}\int_{x=-1}^{x=5}(x+yz^{2})dx\;dy\;dz .$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="changing-the-order-of-integration">order of integration</span> is specified in the problem, so integrate with respect to $x$ first, then $y$, and then $z.$</p>
+$$\begin{array}{llll} \\ \\ \\ \\ \;\int_{z=0}^{z=1}\int_{y=2}^{y=4}\int_{x=-1}^{x=5}(x+yz^{2})dx\;dy\;dz & & & \\ =\int_{z=0}^{z=1}\int_{y=2}^{y=4}[{\frac{x^{2}}{2}+xyz^{2}|}_{x=-1}^{x=5}]dy\;dz & & & \text{Integrate with respect to}\;x. \\ =\int_{z=0}^{z=1}\int_{y=2}^{y=4}[12+6yz^{2}]dy\;dz & & & \text{Evaluate.} \\ =\int_{z=0}^{z=1}[{12y+6\frac{y^{2}}{2}z^{2}|}_{y=2}^{y=4}]dz & & & \text{Integrate with respect to}\;y. \\ =\int_{z=0}^{z=1}[24+36z^{2}]dz & & & \text{Evaluate.} \\ ={[24z+36\frac{z^{3}}{3}]}_{z=0}^{z=1}=36. & & & \text{Integrate with respect to}\;z.\end{array}$$
+</div>
+<div class="example" id="fs-id1167794117648">
+<h3>Example 15.37 · Evaluating a Triple Integral</h3>
+<p>Evaluate the <span data-concept="triple-integral">triple integral</span> $\iiint\limits_{\kB}x^{2}yz \;dV$ where $\kB=\{(x,y,z)|-2\le x\le 1,0\le y\le 3,1\le z\le 5\}$ as shown in the following figure.</p>
+<figure class="sim" id="fig-example-box" data-figure="15.41" data-original="/media/ch15/CNX_Calc_Figure_15_04_002.jpg" data-original-caption="Evaluating a triple integral over a given rectangular box.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.41</span><span>Evaluating a triple integral over a given rectangular box.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>The order is not specified, but we can use the iterated integral in any order without changing the level of difficulty. Choose, say, to integrate $y$ first, then $x$, and then $z$.</p>
+<p>$\begin{array}{rl}\iiint\limits_{\kB}x^{2}yz \;dV & =\int_1^{5} \;\int_{-2}^{1} \;\int_0^{3} [x^{2}yz] dy\;dx\;dz=\int_1^{5} \;\int_{-2}^{1} [{x^{2}\frac{y^{2}}{2}z|}_0^{3}] dx\;dz \\ & =\int_1^{5} \;\int_{-2}^{1} \frac{9}{2} x^{2}z\;dx\;dz=\int_1^{5} [{\frac{9}{2}\frac{x^{3}}{3}z|}_{-2}^{1}] dz=\int_1^{5} \frac{27}{2}z\;dz ={\frac{27}{2}\frac{z^{2}}{2}|}_1^{5}=162.\end{array}$</p>
+<p>Now try to integrate in a different order just to see that we get the same answer. Choose to integrate with respect to $x$ first, then $z,$ and then $y.$</p>
+$$\begin{array}{rl}\iiint\limits_{\kB}x^{2}yz \;dV & =\int_0^{3} \;\int_1^{5} \;\int_{-2}^{1} [x^{2}yz] dx\;dz\;dy=\int_0^{3} \;\int_1^{5} [{\frac{x^{3}}{3}yz|}_{-2}^{1}] dz\;dy \\ & =\int_0^{3} \;\int_1^{5} 3yz \;dz\;dy=\int_0^{3} [{3y\frac{z^{2}}{2}|}_1^{5}] dy=\int_0^{3} 36y\;dy ={36\frac{y^{2}}{2}|}_0^{3}=18(9-0)=162.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794117648"></div>
+</section>
+
+<section id="general-bounded">
+<h2>Triple Integrals over a General Bounded Region</h2>
+<p class="cite-target">We now expand the definition of the <span data-concept="triple-integral">triple integral</span> to compute a <span data-concept="triple-integral">triple integral</span> over a more <span data-concept="region">general bounded region</span> $\kE$ in ${\mathbb{R}}^{3}.$ The <span data-concept="region">general bounded regions</span> we will consider are of three types. First, let $\kD$ be the bounded <span data-concept="region">region</span> that is a projection of $\kE$ onto the $xy$-plane. Suppose the <span data-concept="region">region</span> $\kE$ in ${\mathbb{R}}^{3}$ has the form</p>
+$$\kE=\{(x,y,z)|(x,y)\in \kD,\kufn_{1}(x,y)\le z\le \kufn_{2}(x,y)\}$$
+<p>for two functions $z=\kufn_{1}(x,y)$ and $z=\kufn_{2}(x,y),$ such that $\kufn_{1}(x,y)\le \kufn_{2}(x,y)$ for all $(x,y)$ in $\kD$ as shown in the following figure.</p>
+<figure class="sim" id="sim-solid-over-d" data-figure="15.42 + 15.43 + 15.44" data-original="/media/ch15/CNX_Calc_Figure_15_04_003.jpg,/media/ch15/CNX_Calc_Figure_15_04_004.jpg,/media/ch15/CNX_Calc_Figure_15_04_005.jpg" data-original-caption="(Figure 15.42) We can describe region E as the space between u₁(x,y) and u₂(x,y) above the projection D of E onto the xy-plane. (Figure 15.43) A box E where the projection D in the xy-plane is of Type I. (Figure 15.44) A box E where the projection D in the xy-plane is of Type II.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.42 + 15.43 + 15.44</span><span>We can describe region $\kE$ as the space between $\kufn_{1}(x,y)$ and $\kufn_{2}(x,y)$ above the projection $\kD$ of $\kE$ onto the $xy$-plane. Drag $x$ and $y$ to move the column from $z=\kufn_{1}(x,y)$ up to $z=\kufn_{2}(x,y),$ the inner integral; choose the type of $\kD$ to see the strip of $\kD$ through the column run between $\kg_{1}(x)$ and $\kg_{2}(x)$ (Type I) or between $\kh_{1}(y)$ and $\kh_{2}(y)$ (Type II).</span></div>
+</figure>
+<div class="note" id="fs-id1167794284188">
+<div class="eyebrow">Theorem</div>
+<h3>Triple Integral over a General Region</h3>
+<p>The <span data-concept="triple-integral">triple integral</span> of a continuous function $\kf(x,y,z)$ over a general three-dimensional <span data-concept="region">region</span></p>
+$$\kE=\{(x,y,z)|(x,y)\in \kD,\kufn_{1}(x,y)\le z\le \kufn_{2}(x,y)\}$$
+<p>in ${\mathbb{R}}^{3},$ where $\kD$ is the projection of $\kE$ onto the $xz$-plane, is<sup class="fn" data-note="c-thm-projection"></sup></p>
+$$\iiint\limits_{\kE}\kf(x,y,z)dV=\iint\limits_{\kD}[\int_{\kufn_{1}(x,y)}^{\kufn_{2}(x,y)} \kf(x,y,z)dz ] dA.$$
+</div>
+<p>Similarly, we can consider a <span data-concept="region">general bounded region</span> $\kD$ in the $xy$-plane<sup class="fn" data-note="c-xz-plane"></sup> and two functions $y=\kufn_{1}(x,z)$ and $y=\kufn_{2}(x,z)$ such that $\kufn_{1}(x,z)\le \kufn_{2}(x,z)$ for all $(x,z)$ in $\kD.$ Then we can describe the solid <span data-concept="region">region</span> $\kE$ in ${\mathbb{R}}^{3}$ as</p>
+$$\kE=\{(x,y,z)|(x,z)\in \kD,\kufn_{1}(x,z)\le y\le \kufn_{2}(x,z)\}$$
+<p>where $\kD$ is the projection of $\kE$ onto the $xz$-plane and the <span data-concept="triple-integral">triple integral</span> is</p>
+$$\iiint\limits_{\kE}\kf(x,y,z)dV=\iint\limits_{\kD}[\int_{\kufn_{1}(x,z)}^{\kufn_{2}(x,z)} \kf(x,y,z)dy ] dA.$$
+<p>Finally, if $\kD$ is a <span data-concept="region">general bounded region</span> in the $yz$-plane and we have two functions $x=\kufn_{1}(y,z)$ and $x=\kufn_{2}(y,z)$ such that $\kufn_{1}(y,z)\le \kufn_{2}(y,z)$ for all $(y,z)$ in $\kD,$ then the solid <span data-concept="region">region</span> $\kE$ in ${\mathbb{R}}^{3}$ can be described as</p>
+$$\kE=\{(x,y,z)|(y,z)\in \kD,\kufn_{1}(y,z)\le x\le \kufn_{2}(y,z)\}$$
+<p>where $\kD$ is the projection of $\kE$ onto the $yz$-plane and the <span data-concept="triple-integral">triple integral</span> is</p>
+$$\iiint\limits_{\kE}\kf(x,y,z)dV=\iint\limits_{\kD}[\int_{\kufn_{1}(y,z)}^{\kufn_{2}(y,z)} \kf(x,y,z)dx ] dA.$$
+<p>Note that the <span data-concept="region">region</span> $\kD$ in any of the planes may be of <span data-concept="type-i-region">Type I</span> or <span data-concept="type-ii-region">Type II</span> as described in <a href="/calculus/ch15/15.2/">Double Integrals over General Regions</a>. If $\kD$ in the $xy$-plane is of <span data-concept="type-i-region">Type I</span> (Figure 15.43), then</p>
+$$\kE=\{(x,y,z)|a\le x\le b,\kg_{1}(x)\le y\le \kg_{2}(x),\kufn_{1}(x,y)\le z\le \kufn_{2}(x,y)\}.$$
+
+<p>Then the <span data-concept="triple-integral">triple integral</span> becomes</p>
+$$\iiint\limits_{\kE}\kf(x,y,z)dV= \int_a^{b} \;\int_{\kg_{1}(x)}^{\kg_{2}(x)} \;\int_{\kufn_{1}(x,y)}^{\kufn_{2}(x,y)} \kf(x,y,z)dz\;dy\;dx .$$
+<p>If $\kD$ in the $xy$-plane is of <span data-concept="type-ii-region">Type II</span> (Figure 15.44), then</p>
+$$\kE=\{(x,y,z)|c\le y\le d,\kh_{1}(y)\le x\le \kh_{2}(y),\kufn_{1}(x,y)\le z\le \kufn_{2}(x,y)\}.$$
+
+<p>Then the <span data-concept="triple-integral">triple integral</span> becomes</p>
+$$\iiint\limits_{\kE}\kf(x,y,z)dV= \int_{y=c}^{y=d}\int_{x=\kh_{1}(y)}^{x=\kh_{2}(y)}\int_{z=\kufn_{1}(x,y)}^{z=\kufn_{2}(x,y)}\kf(x,y,z)dz\;dx\;dy .$$
+<div class="example" id="fs-id1167793377354">
+<h3>Example 15.38 · Evaluating a Triple Integral over a General Bounded Region</h3>
+<p>Evaluate the <span data-concept="triple-integral">triple integral</span> of the function $\kf(x,y,z)=5x-3y$ over the solid tetrahedron bounded by the planes $x=0,y=0,z=0,$ and $x+y+z=1.$</p>
+<h4>Solution</h4>
+<p>Figure 15.45 shows the solid tetrahedron $\kE$ and its projection $\kD$ on the $xy$-plane.</p>
+<figure class="sim" id="fig-tetrahedron-e" data-figure="15.45" data-original="/media/ch15/CNX_Calc_Figure_15_04_006.jpg" data-original-caption="The solid E has a projection D on the xy-plane of Type I.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.45</span><span>The solid $\kE$ has a projection $\kD$ on the $xy$-plane of Type I.</span></div>
+</figure>
+<p>We can describe the solid <span data-concept="region">region</span> tetrahedron as</p>
+$$\kE=\{(x,y,z)|0\le x\le 1,0\le y\le 1-x,0\le z\le 1-x-y\}.$$
+<p>Hence, the <span data-concept="triple-integral">triple integral</span> is</p>
+$$\iiint\limits_{\kE}\kf(x,y,z)dV= \int_{x=0}^{x=1}\int_{y=0}^{y=1-x}\int_{z=0}^{z=1-x-y}(5x-3y)dz\;dy\;dx .$$
+<p>To simplify the calculation, first evaluate the integral $\int_{z=0}^{z=1-x-y}(5x-3y)dz .$ We have</p>
+$$\int_{z=0}^{z=1-x-y}(5x-3y)dz =(5x-3y)(1-x-y).$$
+<p>Now evaluate the integral $\int_{y=0}^{y=1-x}(5x-3y)(1-x-y)dy ,$ obtaining</p>
+$$\int_{y=0}^{y=1-x}(5x-3y)(1-x-y)dy =\frac{1}{2}{(x-1)}^{2}(6x-1).$$
+<p>Finally, evaluate</p>
+$$\int_{x=0}^{x=1}\frac{1}{2}{(x-1)}^{2}(6x-1)dx =\frac{1}{12}.$$
+<p>Putting it all together, we have</p>
+$$\iiint\limits_{\kE}\kf(x,y,z)dV= \int_{x=0}^{x=1}\int_{y=0}^{y=1-x}\int_{z=0}^{z=1-x-y}(5x-3y)dz\;dy\;dx =\frac{1}{12}.$$
+</div>
+<p id="volume-term">Just as we used the <span data-concept="double-integral">double integral</span> $\iint\limits_{\kD}1dA$ to find the area of a <span data-concept="region">general bounded region</span> $\kD,$ we can use $\iiint\limits_{\kE}1dV$ to find the volume of a general solid bounded <span data-concept="region">region</span> $\kE.$ The next example illustrates the method.</p>
+<div class="example" id="fs-id1167793504407">
+<h3>Example 15.39 · Finding a Volume by Evaluating a Triple Integral</h3>
+<p>Find the volume of a right pyramid that has the square base in the $xy$-plane $[-1,1]\;\times \;[-1,1]$ and vertex at the point $(0,0,1)$ as shown in the following figure.</p>
+<figure class="sim" id="sim-pyramid" data-figure="15.46" data-original="/media/ch15/CNX_Calc_Figure_15_04_007.jpg" data-original-caption="Finding the volume of a pyramid with a square base.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.46</span><span>Finding the volume of a pyramid with a square base. Drag $z$: the cross section at height $z$ is the square $[-1+z,1-z]\times[-1+z,1-z],$ of area $(2-2z)^{2},$ and stacking these areas from $z=0$ to $z=1$ gives the volume $\frac{4}{3}.$</span></div>
+</figure>
+<h4>Solution</h4>
+<p>In this pyramid the value of $z$ changes from $0\;\text{to}\;1,$ and at each height $z,$ the cross section of the pyramid for any value of $z$ is the square $[-1+z,1-z]\;\times \;[-1+z,1-z].$ Hence, the volume of the pyramid is $\iiint\limits_{\kE}1dV$ where</p>
+$$\kE=\{(x,y,z)|0\le z\le 1,-1+z\le y\le 1-z,-1+z\le x\le 1-z\}.$$
+<p>Thus, we have</p>
+$$\iiint\limits_{\kE}1dV= \int_{z=0}^{z=1}\int_{y=-1+z}^{y=1-z}\int_{x=–1+z}^{x=1-z}1dx\;dy\;dz =\int_{z=0}^{z=1}\int_{y=-1+z}^{y=1-z}(2-2z) dy\;dz=\int_{z=0}^{z=1}{(2-2z)}^{2}dz=\frac{4}{3} .$$
+<p>Hence, the volume of the pyramid is $\frac{4}{3}$ cubic units.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793504407"></div>
+</section>
+
+<section id="order">
+<h2>Changing the Order of Integration</h2>
+<p class="cite-target">As we have already seen in <span data-concept="double-integral">double integrals</span> over <span data-concept="region">general bounded regions</span>, changing the <span data-concept="changing-the-order-of-integration">order of the integration</span> is done quite often to simplify the computation. With a <span data-concept="triple-integral">triple integral</span> over a rectangular box, the <span data-concept="changing-the-order-of-integration">order of integration</span> does not change the level of difficulty of the calculation. However, with a <span data-concept="triple-integral">triple integral</span> over a <span data-concept="region">general bounded region</span>, choosing an appropriate <span data-concept="changing-the-order-of-integration">order of integration</span> can simplify the computation quite a bit. Sometimes making the change to <span data-concept="polar-coordinate-system">polar coordinates</span> can also be very helpful. We demonstrate two examples here.</p>
+<div class="example" id="fs-id1167794296742">
+<h3>Example 15.40 · Changing the Order of Integration</h3>
+<p>Consider the iterated integral</p>
+$$\int_{x=0}^{x=1} \;\int_{y=0}^{y=x^{2}} \;\int_{z=0}^{z={y^{2}}^{}} \kf(x,y,z) dz\;dy\;dx.$$
+<p>The <span data-concept="changing-the-order-of-integration">order of integration</span> here is first with respect to $z$, then $y$, and then $x$. Express this integral by changing the <span data-concept="changing-the-order-of-integration">order of integration</span> to be first with respect to $x$, then $z$, and then $y.$ Verify that the value of the integral is the same if we let $\kf(x,y,z)=xyz.$</p>
+<h4>Solution</h4>
+<p>The best way to do this is to sketch the <span data-concept="region">region</span> $\kE$ and its projections onto each of the three coordinate planes. Thus, let</p>
+$$\kE=\{(x,y,z)|0\le x\le 1,0\le y\le x^{2},0\le z\le y^{2}\}.$$
+<p>and</p>
+$$\int_{x=0}^{x=1} \;\int_{y=0}^{y=x^{2}} \;\int_{z=0}^{z=y^{2}} \kf(x,y,z) dz\;dy\;dx=\iiint\limits_{\kE}\kf(x,y,z) dV.$$
+<p>We need to express this <span data-concept="triple-integral">triple integral</span> as</p>
+$$\int_{y=c}^{y=d} \;\int_{z=v_{1}(y)}^{z=v_{2}(y)} \;\int_{x=\kufn_{1}(y,z)}^{x=\kufn_{2}(y,z)} \kf(x,y,z) dx\;dz\;dy.$$
+<p>Knowing the <span data-concept="region">region</span> $\kE$ we can draw the following projections (Figure 15.47):</p>
+<p>on the $xy$-plane is $\kD_{1}=\{(x,y)|0\le x\le 1,0\le y\le x^{2}\}=\{(x,y)|0\le y\le 1,\sqrt{y}\le x\le 1\},$</p>
+<p>on the $yz$-plane is $\kD_{2}=\{(y,z)|0\le y\le 1,0\le z\le y^{2}\},$ and</p>
+<p>on the $xz$-plane is $\kD_{3}=\{(x,z)|0\le x\le 1,0\le z\le x^{4}\}.$</p>
+<figure class="sim" id="sim-three-projections" data-figure="15.47" data-original="/media/ch15/CNX_Calc_Figure_15_04_008.jpg" data-original-caption="The three cross sections of E on the three coordinate planes.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.47</span><span>The three cross sections of $\kE$ on the three coordinate planes, laid as the shadows of the solid: $\kD_{1}$ on the $xy$-plane, $\kD_{2}$ on the $yz$-plane and $\kD_{3}$ on the $xz$-plane. Turn the solid to see that each describes it from one side.</span></div>
+</figure>
+<p>Now we can describe the same <span data-concept="region">region</span> $\kE$ as $\{(x,y,z)|0\le y\le 1,0\le z\le y^{2},\sqrt{y}\le x\le 1\},$ and consequently, the <span data-concept="triple-integral">triple integral</span> becomes</p>
+$$\int_{y=c}^{y=d} \;\int_{z=v_{1}(y)}^{z=v_{2}(y)} \;\int_{x=\kufn_{1}(y,z)}^{x=\kufn_{2}(y,z)} \kf(x,y,z) dx\;dz\;dy=\int_{y=0}^{y=1} \;\int_{z=0}^{z=y^{2}} \;\int_{x=\sqrt{y}}^{x=1} \kf(x,y,z) dx\;dz\;dy.$$
+<p>Now assume that $\kf(x,y,z)=xyz$ in each of the integrals. Then we have</p>
+$$\begin{array}{l} \\ \\ \\ \\ \\ \;\int_{x=0}^{x=1} \;\int_{y=0}^{y=x^{2}} \;\int_{z=0}^{z=y^{2}} xyz \;dz\;dy\;dx \\ =\int_{x=0}^{x=1} \;\int_{y=0}^{y=x^{2}} [{xy\frac{z^{2}}{2}|}_{z=0}^{z=y^{2}}] dy\;dx=\int_{x=0}^{x=1} \;\int_{y=0}^{y=x^{2}} (x\frac{y^{5}}{2}) dy\;dx=\int_{x=0}^{x=1} [{x\frac{y^{6}}{12}|}_{y=0}^{y=x^{2}}] dx=\int_{x=0}^{x=1} \frac{x^{13}}{12} dx=\frac{1}{168}, \\ \;\int_{y=0}^{y=1} \;\int_{z=0}^{z=y^{2}} \;\int_{x=\sqrt{y}}^{x=1} xyz \;dx\;dz\;dy \\ =\int_{y=0}^{y=1} \;\int_{z=0}^{z=y^{2}} [{yz\frac{x^{2}}{2}|}_{\sqrt{y}}^{1}] dz\;dy \\ =\int_{y=0}^{y=1} \;\int_{z=0}^{z=y^{2}} (\frac{yz}{2}-\frac{y^{2}z}{2}) dz\;dy=\int_{y=0}^{y=1} [{\frac{yz^{2}}{4}-\frac{y^{2}z^{2}}{4}|}_{z=0}^{z=y^{2}}] dy=\int_{y=0}^{y=1} (\frac{y^{5}}{4}-\frac{y^{6}}{4}) dy=\frac{1}{168}.\end{array}$$
+<p>The answers match.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794296742"></div>
+<div class="example" id="fs-id1167793452797">
+<h3>Example 15.41 · Changing Integration Order and Coordinate Systems</h3>
+<p>Evaluate the <span data-concept="triple-integral">triple integral</span> $\iiint\limits_{\kE}\sqrt{x^{2}+z^{2}} dV,$ where $\kE$ is the <span data-concept="region">region</span> bounded by the paraboloid $y=x^{2}+z^{2}$ (Figure 15.48) and the plane $y=4.$</p>
+<figure class="sim" id="fig-paraboloid-y" data-figure="15.48" data-original="/media/ch15/CNX_Calc_Figure_15_04_009.jpg" data-original-caption="Integrating a triple integral over a paraboloid.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.48</span><span>Integrating a triple integral over a paraboloid.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>The projection of the solid <span data-concept="region">region</span> $\kE$ onto the $xy$-plane is the <span data-concept="region">region</span> bounded above by $y=4$ and below by the parabola $y=x^{2}$ as shown.</p>
+<figure class="sim" id="fig-cross-section" data-figure="15.49" data-original="/media/ch15/CNX_Calc_Figure_15_04_010.jpg" data-original-caption="Cross section in the xy-plane of the paraboloid in Figure 15.48.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.49</span><span>Cross section in the $xy$-plane of the paraboloid in Figure 15.48. Drag $x$: the vertical strip runs from $y=x^{2}$ to $y=4;$ drag $y$: the horizontal strip runs from $x=-\sqrt{y}$ to $x=\sqrt{y}.$</span></div>
+</figure>
+<p>Thus, we have</p>
+$$\kE=\{(x,y,z)|-2\le x\le 2,x^{2}\le y\le 4,-\sqrt{y-x^{2}}\le z\le \sqrt{y-x^{2}}\}.$$
+<p>The <span data-concept="triple-integral">triple integral</span> becomes</p>
+$$\iiint\limits_{\kE}\sqrt{x^{2}+z^{2}} dV=\int_{x=-2}^{x=2} \;\int_{y=x^{2}}^{y=4} \;\int_{z=-\sqrt{y-x^{2}}}^{z=\sqrt{y-x^{2}}} \sqrt{x^{2}+z^{2}} dz\;dy\;dx.$$
+<p>This expression is difficult to compute, so consider the projection of $\kE$ onto the $xz$-plane. This is a circular disc $x^{2}+z^{2}\le 4.$ So we obtain</p>
+$$\iiint\limits_{\kE}\sqrt{x^{2}+z^{2}} dV=\int_{x=-2}^{x=2} \;\int_{y=x^{2}}^{y=4} \;\int_{z=-\sqrt{y-x^{2}}}^{z=\sqrt{y-x^{2}}} \sqrt{x^{2}+z^{2}} dz\;dy\;dx=\int_{x=-2}^{x=2} \;\int_{z=-\sqrt{4-x^{2}}}^{z=\sqrt{4-x^{2}}} \;\int_{y=x^{2}+z^{2}}^{y=4} \sqrt{x^{2}+z^{2}} dy\;dz\;dx.$$
+<p>Here the <span data-concept="changing-the-order-of-integration">order of integration</span> changes from being first with respect to $z,$ then $y,$ and then $x$ to being first with respect to $y,$ then to $z,$ and then to $x.$ It will soon be clear how this change can be beneficial for computation. We have</p>
+$$\int_{x=-2}^{x=2} \;\int_{z=-\sqrt{4-x^{2}}}^{z=\sqrt{4-x^{2}}} \;\int_{y=x^{2}+z^{2}}^{y=4} \sqrt{x^{2}+z^{2}} dy\;dz\;dx=\int_{x=-2}^{x=2} \;\int_{z=-\sqrt{4-x^{2}}}^{z=\sqrt{4-x^{2}}} (4-x^{2}-z^{2})\sqrt{x^{2}+z^{2}} dz\;dx.$$
+<p>Now use the polar substitution $x=r\;\cos \theta ,z=r\;\sin \theta ,$ and $dz\;dx=r\;dr\;d\theta$ in the $xz$-plane. This is essentially the same thing as when we used <span data-concept="polar-coordinate-system">polar coordinates</span> in the $xy$-plane, except we are replacing $y$ by $z.$ Consequently the limits of integration change and we have, by using $r^{2}=x^{2}+z^{2},$</p>
+$$\begin{array}{rl}\int_{x=-2}^{x=2} \;\int_{z=-\sqrt{4-x^{2}}}^{z=\sqrt{4-x^{2}}} (4-x^{2}-z^{2})\sqrt{x^{2}+z^{2}} dz\;dx & =\int_{\theta =0}^{\theta =2\pi} \;\int_{r=0}^{r=2} (4-r^{2}) rr\;dr\;d\theta \\ & =\int_0^{2\pi} [{\frac{4r^{3}}{3}-\frac{r^{5}}{5}|}_0^{2}] d\theta =\int_0^{2\pi} \frac{64}{15} d\theta =\frac{128\pi}{15}.\end{array}$$
+</div>
+</section>
+
+<section id="average-three">
+<h2>Average Value of a Function of Three Variables</h2>
+<p class="cite-target">Recall that we found the <span data-concept="average-value-of-a-function-of-three-variables">average value</span> of a function of two variables by evaluating the <span data-concept="double-integral">double integral</span> over a <span data-concept="region">region</span> on the plane and then dividing by the area of the <span data-concept="region">region</span>. Similarly, we can find the <span data-concept="average-value-of-a-function-of-three-variables">average value</span> of a function in three variables by evaluating the <span data-concept="triple-integral">triple integral</span> over a solid <span data-concept="region">region</span> and then dividing by the volume of the solid.</p>
+<div class="note" id="fs-id1167793311695">
+<div class="eyebrow">Theorem</div>
+<h3>Average Value of a Function of Three Variables</h3>
+<p>If $\kf(x,y,z)$ is integrable over a solid bounded <span data-concept="region">region</span> $\kE$ with positive volume $\kV(\kE),$ then the <span data-concept="average-value-of-a-function-of-three-variables">average value</span> of the function is</p>
+$$\kfave=\frac{1}{\kV(\kE)}\iiint\limits_{\kE}\kf(x,y,z) dV.$$
+<p>Note that the volume is $\kV(\kE)=\iiint\limits_{\kE}1dV .$</p>
+</div>
+<div class="example" id="fs-id1167793367912">
+<h3>Example 15.42 · Finding an Average Temperature</h3>
+<p>The temperature at a point $(x,y,z)$ of a solid $\kE$ bounded by the coordinate planes and the plane $x+y+z=1$ is $\kT(x,y,z)=(xy+8z+20)^{\circ}\text{C}\text{.}$ Find the average temperature over the solid.</p>
+<h4>Solution</h4>
+<p>Use the theorem given above and the <span data-concept="triple-integral">triple integral</span> to find the numerator and the denominator. Then do the division. Notice that the plane $x+y+z=1$ has intercepts $(1,0,0),(0,1,0),$ and $(0,0,1).$ The <span data-concept="region">region</span> $\kE$ looks like</p>
+$$\kE=\{(x,y,z)|0\le x\le 1,0\le y\le 1-x,0\le z\le 1-x-y\}.$$
+<p>Hence the <span data-concept="triple-integral">triple integral</span> of the temperature is</p>
+$$\iiint\limits_{\kE}\kf(x,y,z) dV=\int_{x=0}^{x=1} \;\int_{y=0}^{y=1-x} \;\int_{z=0}^{z=1-x-y} (xy+8z+20)dz\;dy\;dx=\frac{147}{40} .$$
+<p>The volume evaluation is $\kV(\kE)=\iiint\limits_{\kE}1 dV=\int_{x=0}^{x=1} \;\int_{y=0}^{y=1-x} \;\int_{z=0}^{z=1-x-y} 1dz\;dy\;dx=\frac{1}{6} .$</p>
+<p>Hence the <span data-concept="average-value-of-a-function-of-three-variables">average value</span> is $\kT_{\text{ave}}=\frac{147/40}{1/6}=\frac{6(147)}{40}=\frac{441}{20}$ degrees Celsius.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793367912"></div>
+</section>

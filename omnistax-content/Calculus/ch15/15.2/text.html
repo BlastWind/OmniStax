@@ -1,0 +1,299 @@
+<p id="general-intro">In <a href="/calculus/ch15/15.1/">Double Integrals over Rectangular Regions</a>, we studied the concept of <span data-concept="double-integral">double integrals</span> and examined the tools needed to compute them. We learned techniques and properties to integrate functions of two variables over <span data-concept="region">rectangular regions</span>. We also discussed several applications, such as finding the volume bounded above by a function over a <span data-concept="region">rectangular region</span>, finding area by integration, and calculating the <span data-concept="average-value-of-a-function-of-two-variables">average value of a function</span> of two variables.</p>
+<p>In this section we consider <span data-concept="double-integral">double integrals</span> of functions defined over a general bounded <span data-concept="region">region</span> $\kD$ on the plane. Most of the previous results hold in this situation as well, but some techniques need to be extended to cover this more general case.</p>
+
+<section id="general-regions">
+<h2>General Regions of Integration</h2>
+<p class="cite-target">An example of a general bounded <span data-concept="region">region</span> $\kD$ on a plane is shown in Figure 15.12. Since $\kD$ is bounded on the plane, there must exist a <span data-concept="region">rectangular region</span> $\kR$ on the same plane that encloses the <span data-concept="region">region</span> $\kD,$ that is, a <span data-concept="region">rectangular region</span> $\kR$ exists such that $\kD$ is a subset of $\kR(\kD\subseteq \kR).$</p>
+<figure class="sim" id="sim-extension" data-figure="15.12" data-original="/media/ch15/CNX_Calc_Figure_15_02_001.jpg" data-original-caption="For a region D that is a subset of R, we can define a function g(x,y) to equal f(x,y) at every point in D and 0 at every point of R not in D.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.12</span><span>The region $\kD$ sits inside the rectangle $\kR,$ and $\kg$ equals $\kf$ on $\kD$ and $0$ on the rest of $\kR.$ Drag $n$ to refine the boxes of the Riemann sum of $\kg$ over $\kR$: every box outside $\kD$ has height $0,$ so the sum over $\kR$ is a sum over $\kD$ and closes on $\iint_{\kD}\kf\,dA.$</span></div>
+</figure>
+<p>Suppose $z=\kf(x,y)$ is defined on a general planar bounded <span data-concept="region">region</span> $\kD$ as in Figure 15.12. In order to develop <span data-concept="double-integral">double integrals</span> of $\kf$ over $\kD,$ we extend the definition of the function to include all points on the <span data-concept="region">rectangular region</span> $\kR$ and then use the concepts and tools from the preceding section. But how do we extend the definition of $\kf$ to include all the points on $\kR?$ We do this by defining a new function $\kg(x,y)$ on $\kR$ as follows:</p>
+$$\kg(x,y)=\{\begin{array}{ll}\kf(x,y) & \text{if}\;(x,y)\;\text{is in}\;\kD \\ 0 & \text{if}\;(x,y)\;\text{is in}\;\kR\;\text{but not in}\;\kD\end{array}$$
+<p>Note that we might have some technical difficulties if the boundary of $\kD$ is complicated. So we assume the boundary to be a piecewise smooth and continuous simple closed curve. Also, since all the results developed in <a href="/calculus/ch15/15.1/">Double Integrals over Rectangular Regions</a> used an integrable function $\kf(x,y),$ we must be careful about $\kg(x,y)$ and verify that $\kg(x,y)$ is an integrable function over the <span data-concept="region">rectangular region</span> $\kR.$ This happens as long as the <span data-concept="region">region</span> $\kD$ is bounded by simple closed curves. For now we will concentrate on the descriptions of the <span data-concept="region">regions</span> rather than the function and extend our theory appropriately for integration.</p>
+<p>We consider two types of planar bounded <span data-concept="region">regions</span>.</p>
+<div class="note" id="fs-id1167793857192">
+<div class="eyebrow">Definition</div>
+<p>A <span data-concept="region">region</span> $\kD$ in the $(x,y)$-plane is of <strong><span data-concept="type-i-region">Type I</span></strong> if it lies between two vertical lines and the graphs of two continuous functions $\kg_{1}(x)$ and $\kg_{2}(x).$ That is (Figure 15.13),</p>
+$$\kD=\{(x,y)|a\le x\le b,\kg_{1}(x)\le y\le \kg_{2}(x)\}.$$
+<p>A <span data-concept="region">region</span> $\kD$ in the $xy$ plane is of <strong><span data-concept="type-ii-region">Type II</span></strong> if it lies between two horizontal lines and the graphs of two continuous functions $\kh_{1}(y)\;\text{and}\;\kh_{2}(y).$ That is (Figure 15.14),</p>
+$$\kD=\{(x,y)|c\le y\le d,\kh_{1}(y)\le x\le \kh_{2}(y)\}.$$
+</div>
+<figure class="sim" id="sim-region-types" data-figure="15.13 + 15.14 + 15.15" data-original="/media/ch15/CNX_Calc_Figure_15_02_002.jpg,/media/ch15/CNX_Calc_Figure_15_02_003.jpg,/media/ch15/CNX_Calc_Figure_15_02_004.jpg" data-original-caption="(Figure 15.13) A Type I region lies between two vertical lines and the graphs of two functions of x. (Figure 15.14) A Type II region lies between two horizontal lines and the graphs of two functions of y. (Figure 15.15) Region D can be described as Type I or as Type II.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.13 + 15.14 + 15.15</span><span>The region between <span data-ref="curve-root">$y=\sqrt{x}$</span> and <span data-ref="curve-cube">$y=x^{3}$</span> read both ways. Drag $x$: the vertical strip runs from $\kg_{1}(x)=x^{3}$ up to $\kg_{2}(x)=\sqrt{x}$ between the lines $x=0$ and $x=1,$ so the region is <span data-concept="type-i-region">Type I</span>. Drag $y$: the horizontal strip runs from $\kh_{1}(y)=y^{2}$ to $\kh_{2}(y)=\sqrt[3]{y}$ between $y=0$ and $y=1,$ so it is also <span data-concept="type-ii-region">Type II</span>.</span></div>
+</figure>
+
+<div class="example" id="fs-id1167794332513">
+<h3>Example 15.11 · Describing a Region as Type I and Also as Type II</h3>
+<p>Consider the <span data-concept="region">region</span> in the first quadrant between the functions <span data-ref="curve-root">$y=\sqrt{x}$</span> and <span data-ref="curve-cube">$y=x^{3}$</span> (Figure 15.15). Describe the <span data-concept="region">region</span> first as <span data-concept="type-i-region">Type I</span> and then as <span data-concept="type-ii-region">Type II</span>.</p>
+
+<h4>Solution</h4>
+<p>When describing a <span data-concept="region">region</span> as <span data-concept="type-i-region">Type I</span>, we need to identify the function that lies above the <span data-concept="region">region</span> and the function that lies below the <span data-concept="region">region</span>. Here, <span data-concept="region">region</span> $\kD$ is bounded above by <span data-ref="curve-root">$y=\sqrt{x}$</span> and below by <span data-ref="curve-cube">$y=x^{3}$</span> in the interval for $x\;\text{in}\;[0,1].$ Hence, as <span data-concept="type-i-region">Type I</span>, $\kD$ is described as the set $\{(x,y)|0\le x\le 1,x^{3}\le y\le \sqrt{x}\}.$</p>
+<p>However, when describing a <span data-concept="region">region</span> as <span data-concept="type-ii-region">Type II</span>, we need to identify the function that lies on the left of the <span data-concept="region">region</span> and the function that lies on the right of the <span data-concept="region">region</span>. Here, the <span data-concept="region">region</span> $\kD$ is bounded on the left by <span data-ref="curve-root">$x=y^{2}$</span> and on the right by <span data-ref="curve-cube">$x=\sqrt[3]{y}$</span> in the interval for $y$ in $[0,1].$ Hence, as <span data-concept="type-ii-region">Type II</span>, $\kD$ is described as the set $\{(x,y)|0\le y\le 1,y^{2}\le x\le \sqrt[3]{y}\}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1167794332513"></div>
+</section>
+
+<section id="nonrectangular">
+<h2>Double Integrals over Nonrectangular Regions</h2>
+<p class="cite-target">To develop the concept and tools for evaluation of a <span data-concept="double-integral">double integral</span> over a general, nonrectangular <span data-concept="region">region</span>, we need to first understand the <span data-concept="region">region</span> and be able to express it as <span data-concept="type-i-region">Type I</span> or <span data-concept="type-ii-region">Type II</span> or a combination of both. Without understanding the <span data-concept="region">regions</span>, we will not be able to decide the limits of integrations in <span data-concept="double-integral">double integrals</span>. As a first step, let us look at the following theorem.</p>
+<div class="note" id="fs-id1167793952017">
+<div class="eyebrow">Theorem</div>
+<h3>Double Integrals over Nonrectangular Regions</h3>
+<p>Suppose $\kg(x,y)$ is the extension to the rectangle $\kR$ of the integrable function $\kf(x,y)$ defined on the <span data-concept="region">region</span> $\kD$, where $\kD$ is inside $\kR$. Sample <span data-concept="region">regions</span> are as shown in Figure 15.12. Then $\kg(x,y)$ is integrable and we define the <span data-concept="double-integral">double integral</span> of $\kf(x,y)$ over $\kD$ by</p>
+$$\iint\limits_{\kD}\kf(x,y) dA=\iint\limits_{\kR}\kg(x,y) dA.$$
+</div>
+<p>The right-hand side of this equation is what we have seen before, so this theorem is reasonable because $\kR$ is a rectangle and $\iint\limits_{\kR}\kg(x,y) dA$ has been discussed in the preceding section. Also, the equality works because the values of $\kg(x,y)$ are $0$ for any point $(x,y)$ that lies outside $\kD,$ and hence these points do not add anything to the integral. However, it is important that the rectangle $\kR$ contains the <span data-concept="region">region</span> $\kD.$</p>
+<p>As a matter of fact, if the <span data-concept="region">region</span> $\kD$ is bounded by smooth curves on a plane and we are able to describe it as <span data-concept="type-i-region">Type I</span> or <span data-concept="type-ii-region">Type II</span> or a mix of both, then we can use the following theorem and not have to find a rectangle $\kR$ containing the <span data-concept="region">region</span>.</p>
+<div class="note" id="fs-id1167793292250">
+<div class="eyebrow">Theorem</div>
+<h3>Fubini’s Theorem (Strong Form)</h3>
+<p>For a function $\kf(x,y)$ that is continuous on a <span data-concept="region">region</span> $\kD$ of <span data-concept="type-i-region">Type I</span>, we have</p>
+<div class="equation" id="fs-id1167793268925">$$\iint\limits_{\kD}\kf(x,y)dA =\iint\limits_{\kD}\kf(x,y)dy\;dx =\int_a^{b} [\int_{\kg_{1}(x)}^{\kg_{2}(x)} \kf(x,y)dy ]dx .\tag{15.5}$$</div>
+<p>Similarly, for a function $\kf(x,y)$ that is continuous on a <span data-concept="region">region</span> $\kD$ of <span data-concept="type-ii-region">Type II</span>, we have</p>
+<div class="equation" id="fs-id1167793944833">$$\iint\limits_{\kD}\kf(x,y)dA =\iint\limits_{\kD}\kf(x,y)dx\;dy =\int_c^{d} [\int_{\kh_{1}(y)}^{\kh_{2}(y)} \kf(x,y)dx ]dy .\tag{15.6}$$</div>
+</div>
+<p>The integral in each of these expressions is an <span data-concept="iterated-integral">iterated integral</span>, similar to those we have seen before. Notice that, in the inner integral in the first expression, we integrate $\kf(x,y)$ with $x$ being held constant and the limits of integration being $\kg_{1}(x)\;\text{and}\;\kg_{2}(x).$ In the inner integral in the second expression, we integrate $\kf(x,y)$ with $y$ being held constant and the limits of integration are $\kh_{1}(y)\;\text{and}\;\kh_{2}(y).$</p>
+<div class="example" id="fs-id1167793369248">
+<h3>Example 15.12 · Evaluating an Iterated Integral over a Type I Region</h3>
+<p>Evaluate the integral $\iint\limits_{\kD}x^{2}e^{xy}dA$ where $\kD$ is shown in Figure 15.16.</p>
+<h4>Solution</h4>
+<p>First construct the <span data-concept="region">region</span> $\kD$ as a <span data-concept="type-i-region">Type I</span> <span data-concept="region">region</span> (Figure 15.16). Here $\kD=\{(x,y)|0\le x\le 2,\frac{1}{2}x\le y\le 1\}.$ Then we have</p>
+$$\iint\limits_{\kD}x^{2}e^{xy}dA =\int_{x=0}^{x=2} \;\int_{y=1/2x}^{y=1} x^{2}e^{xy}dy\;dx .$$
+<figure class="sim" id="sim-example-type-i" data-figure="15.16 + 15.17" data-original="/media/ch15/CNX_Calc_Figure_15_02_005.jpg,/media/ch15/CNX_Calc_Figure_15_02_006.jpg" data-original-caption="(Figure 15.16) We can express region D as a Type I region and integrate from y=1/2x to y=1, between the lines x=0 and x=2. (Figure 15.17) ">
+  <div class="sim-head"><span class="eyebrow">Figure 15.16 + 15.17</span><span>The triangle $\kD$ of <a href="#fs-id1167793369248">Example 15.12</a>. The vertical strip at $x$ runs from $y=\frac{1}{2}x$ to $y=1$ for $0\le x\le 2,$ a Type I description; the horizontal strip at $y$ runs from $x=0$ to $x=2y$ for $0\le y\le 1,$ the same region as Type II.</span></div>
+</figure>
+<p>Therefore, we have</p>
+$$\begin{array}{rllll}\int_{x=0}^{x=2} \;\int_{y=\frac{1}{2}x}^{y=1} x^{2}e^{xy}dy\;dx & =\int_{x=0}^{x=2} [\int_{y=1/2x}^{y=1} x^{2}e^{xy}dy ] dx & & & \text{Iterated integral for a Type I region.} \\ & =\int_{x=0}^{x=2} {[x^{2}\frac{e^{xy}}{x}]|}_{y=1/2x}^{y=1} dx & & & \begin{array}{l}\text{Integrate with respect to}\;y\;\text{using} \\ u\text{-substitution with}\;u=xy\;\text{where}\;x\;\text{is held} \\ \text{constant.}\end{array} \\ & =\int_{x=0}^{x=2} [xe^{x}-xe^{x^{2}/2}] dx & & & \begin{array}{l}\text{Integrate with respect to}\;x\;\text{using} \\ u\text{-substitution with}\;u=\frac{1}{2}x^{2}.\end{array} \\ & ={[xe^{x}-e^{x}-e^{\frac{1}{2}x^{2}}]|}_{x=0}^{x=2}=2 & & & \end{array}$$
+</div>
+<p>In <a href="#fs-id1167793369248">Example 15.12</a>, we could have looked at the <span data-concept="region">region</span> in another way, such as $\kD=\{(x,y)|0\le y\le 1,0\le x\le 2y\}$ (Figure 15.17).</p>
+
+<p>This is a <span data-concept="type-ii-region">Type II</span> <span data-concept="region">region</span> and the integral would then look like</p>
+$$\iint\limits_{\kD}x^{2}e^{xy}dA =\int_{y=0}^{y=1} \;\int_{x=0}^{x=2y} x^{2}e^{xy}dx\;dy.$$
+<p>However, if we integrate first with respect to $x,$ this integral is lengthy to compute because we have to use <span data-concept="integration-by-parts">integration by parts</span> twice.</p>
+<div class="example" id="fs-id1167793337942">
+<h3>Example 15.13 · Evaluating an Iterated Integral over a Type II Region</h3>
+<p>Evaluate the integral $\iint\limits_{\kD}(3x^{2}+y^{2})dA$ where $=\{(x,y)|-2\le y\le 3,y^{2}-3\le x\le y+3\}.$<sup class="fn" data-note="c-ex13-region"></sup></p>
+<h4>Solution</h4>
+<p>Notice that $\kD$ can be seen as either a <span data-concept="type-i-region">Type I</span> or a <span data-concept="type-ii-region">Type II</span> <span data-concept="region">region</span>, as shown in Figure 15.18. However, in this case describing $\kD$ as Type $\text{I}$ is more complicated than describing it as <span data-concept="type-ii-region">Type II</span>. Therefore, we use $\kD$ as a <span data-concept="type-ii-region">Type II</span> <span data-concept="region">region</span> for the integration.</p>
+<figure class="sim" id="fig-example-type-ii" data-figure="15.18" data-original="/media/ch15/CNX_Calc_Figure_15_02_007.jpg" data-original-caption="The region D in this example can be either (a) Type I or (b) Type II.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.18</span><span>The region $\kD$ in this example can be either (a) Type I or (b) Type II. Drag $x$: left of $x=1$ the vertical strip runs between the two halves of the parabola, and right of it from the line up to the parabola, so a Type I description needs two pieces; drag $y$: every horizontal strip runs from $x=y^{2}-3$ to $x=y+3.$</span></div>
+</figure>
+<p>Choosing this order of integration, we have</p>
+$$\begin{array}{rllll}\iint\limits_{\kD}(3x^{2}+y^{2})dA & =\int_{y=-2}^{y=3} \;\int_{x=y^{2}-3}^{x=y+3} (3x^{2}+y^{2})dx\;dy & & & \text{Iterated integral, Type II region.} \\ & ={\int_{y=-2}^{y=3} (x^{3}+xy^{2}) |}_{y^{2}-3}^{y+3}dy & & & \text{Integrate with respect to}\;x. \\ & =\int_{y=-2}^{y=3} ({(y+3)}^{3}+(y+3)y^{2}-{(y^{2}-3)}^{3}-(y^{2}-3)y^{2}) dy & & & \\ & =\int_{-2}^{3} (54+27y-12y^{2}+2y^{3}+8y^{4}-y^{6}) dy & & & \text{Integrate with respect to}\;y. \\ & ={[54y+\frac{27y^{2}}{2}-4y^{3}+\frac{y^{4}}{2}+\frac{8y^{5}}{5}-\frac{y^{7}}{7}]|}_{-2}^{3} & & & \\ & =\frac{2375}{7}. & & & \end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793337942"></div>
+<p>Recall from <a href="/calculus/ch15/15.1/">Double Integrals over Rectangular Regions</a> the properties of <span data-concept="double-integral">double integrals</span>. As we have seen from the examples here, all these properties are also valid for a function defined on a nonrectangular bounded <span data-concept="region">region</span> on a plane. In particular, property $3$ states:</p>
+<p>If $\kR=S\cup T$ and $S\cap T=\emptyset$ except at their boundaries, then</p>
+$$\iint\limits_{\kR}\kf(x,y)dA =\iint\limits_{S}\kf(x,y)dA +\iint\limits_{T}\kf(x,y)dA .$$
+<p>Similarly, we have the following property of <span data-concept="double-integral">double integrals</span> over a nonrectangular bounded <span data-concept="region">region</span> on a plane.</p>
+<div class="note" id="fs-id1167793965311">
+<div class="eyebrow">Theorem</div>
+<h3>Decomposing Regions into Smaller Regions</h3>
+<p>Suppose the <span data-concept="region">region</span> $\kD$ can be expressed as $\kD=\kD_{1}\cup \kD_{2}$ where $\kD_{1}$ and $\kD_{2}$ do not overlap except at their boundaries. Then</p>
+<div class="equation" id="fs-id1167793373592">$$\iint\limits_{\kD}\kf(x,y)dA =\iint\limits_{\kD_{1}}\kf(x,y)dA +\iint\limits_{\kD_{2}}\kf(x,y)dA .\tag{15.7}$$</div>
+</div>
+<p>This theorem is particularly useful for nonrectangular <span data-concept="region">regions</span> because it allows us to split a <span data-concept="region">region</span> into a union of <span data-concept="region">regions</span> of <span data-concept="type-i-region">Type I</span> and <span data-concept="type-ii-region">Type II</span>. Then we can compute the <span data-concept="double-integral">double integral</span> on each piece in a convenient way, as in the next example.</p>
+<div class="example" id="fs-id1167793547434">
+<h3>Example 15.14 · Decomposing Regions</h3>
+<p>Express the <span data-concept="region">region</span> $\kD$ shown in Figure 15.19 as a union of <span data-concept="region">regions</span> of <span data-concept="type-i-region">Type I</span> or <span data-concept="type-ii-region">Type II</span>, and evaluate the integral</p>
+$$\iint\limits_{\kD}(2x+5y) dA.$$
+<figure class="sim" id="fig-decomposition" data-figure="15.19 + 15.20" data-original="/media/ch15/CNX_Calc_Figure_15_02_008.jpg,/media/ch15/CNX_Calc_Figure_15_02_009.jpg" data-original-caption="(Figure 15.19) This region can be decomposed into a union of three regions of Type I or Type II. (Figure 15.20) Breaking the region into three subregions makes it easier to set up the integration.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.19 + 15.20</span><span>The region $\kD$ and its three pieces: <span data-ref="piece-d1">$\kD_{1}$</span> is Type I, between $y=0$ and $y=(x+2)^{2},$ and <span data-ref="piece-d2">$\kD_{2}$</span> and <span data-ref="piece-d3">$\kD_{3}$</span> are Type II, to the left of $x=y-\frac{1}{16}y^{3}.$ The pieces overlap only on their edges, so the integral over $\kD$ is the sum of the three.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>The <span data-concept="region">region</span> $\kD$ is not easy to decompose into any one type; it is actually a combination of different types. So we can write it as a union of three <span data-concept="region">regions</span> <span data-ref="piece-d1 piece-d2 piece-d3">$\kD_{1},\kD_{2},\text{and}\;\kD_{3}$</span> where, <span data-ref="piece-d1">$\kD_{1}=\{(x,y)|-2\le x\le 0,0\le y\le {(x+2)}^{2}\},$</span> <span data-ref="piece-d2">$\kD_{2}=\{(x,y)|0\le y\le 4,0\le x\le (y-\frac{1}{16}y^{3})\},$</span> <span data-ref="piece-d3">$\kD_{3}={(x,y)-4\le y\le 0,-2\le x\le y-\frac{y^{3}}{16}}.$</span><sup class="fn" data-note="c-ex14-d3"></sup> These <span data-concept="region">regions</span> are illustrated more clearly in Figure 15.20.</p>
+
+<p>Here <span data-ref="piece-d1">$\kD_{1}$</span> is Type $\text{I}$ and <span data-ref="piece-d2">$\kD_{2}$</span> and <span data-ref="piece-d3">$\kD_{3}$</span> are both of <span data-concept="type-ii-region">Type II</span>. Hence,<sup class="fn" data-note="c-ex14-integrand"></sup></p>
+$$\begin{array}{rl}\iint\limits_{\kD}(2x+5y)dA & =\iint\limits_{\kD_{1}}(2x+5y)dA +\iint\limits_{\kD_{2}}(2x+5y)dA +\iint\limits_{\kD_{3}}(2x+5y)dA \\ & =\int_{x=-2}^{x=0} \;\int_{y=0}^{y={(x+2)}^{2}} (2x+5y)dy\;dx +\int_{y=0}^{y=4} \;\int_{x=0}^{x=y-(1/16)y^{3}} (2+5y)dx\;dy +\int_{y=-4}^{y=0} \;\int_{x=-2}^{x=y-(1/16)y^{3}} (2x+5y)dx\;dy \\ & =\int_{x=-2}^{x=0} [\frac{1}{2}{(2+x)}^{2}(20+24x+5x^{2})]dx +\int_{y=0}^{y=4} [\frac{1}{256}y^{6}-\frac{7}{16}y^{4}+6y^{2}]dy \\ & \;+\int_{y=-4}^{y=0} [\frac{1}{256}y^{6}-\frac{7}{16}y^{4}+6y^{2}+10y-4]dy \\ & =\frac{40}{3}+\frac{1664}{35}-\frac{1696}{35}=\frac{1304}{105}.\end{array}$$
+<p>Now we could redo this example using a union of two <span data-concept="type-ii-region">Type II</span> <span data-concept="region">regions</span> (see the Checkpoint).</p>
+</div>
+<div class="exercises" data-place="fs-id1167793547434"></div>
+<div class="exercises" data-place="fs-id1167793547434"></div>
+</section>
+
+<section id="order">
+<h2>Changing the Order of Integration</h2>
+<p class="cite-target">As we have already seen when we evaluate an <span data-concept="iterated-integral">iterated integral</span>, sometimes one order of integration leads to a computation that is significantly simpler than the other order of integration. Sometimes the order of integration does not matter, but it is important to learn to recognize when a change in order will simplify our work.</p>
+<div class="example" id="fs-id1167793384884">
+<h3>Example 15.15 · Changing the Order of Integration</h3>
+<p>Reverse the order of integration in the <span data-concept="iterated-integral">iterated integral</span> $\int_{x=0}^{x=\sqrt{2}} \;\int_{y=0}^{y=2-x^{2}} xe^{x^{2}}dy\;dx .$ Then evaluate the new <span data-concept="iterated-integral">iterated integral</span>.</p>
+<h4>Solution</h4>
+<p>The <span data-concept="region">region</span> as presented is of <span data-concept="type-i-region">Type I</span>. To reverse the order of integration, we must first express the <span data-concept="region">region</span> as <span data-concept="type-ii-region">Type II</span>. Refer to Figure 15.21.</p>
+<figure class="sim" id="fig-reverse-order" data-figure="15.21" data-original="/media/ch15/CNX_Calc_Figure_15_02_010.jpg" data-original-caption="Converting a region from Type I to Type II.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.21</span><span>Converting a region from Type I to Type II. Drag $x$: the vertical strip runs from $y=0$ to $y=2-x^{2};$ drag $y$: the horizontal strip runs from $x=0$ to $x=\sqrt{2-y},$ the parabola solved for $x.$</span></div>
+</figure>
+<p>We can see from the limits of integration that the <span data-concept="region">region</span> is bounded above by $y=2-x^{2}$ and below by $y=0,$ where $x$ is in the interval $[0,\sqrt{2}].$ By reversing the order, we have the <span data-concept="region">region</span> bounded on the left by $x=0$ and on the right by $x=\sqrt{2-y}$ where $y$ is in the interval $[0,2].$ We solved $y=2-x^{2}$ in terms of $x$ to obtain $x=\sqrt{2-y}.$</p>
+<p>Hence</p>
+$$\begin{array}{rllll}\int_0^{\sqrt{2}} \;\int_0^{2-x^{2}} xe^{x^{2}}dy\;dx & =\int_0^{2} \;\int_0^{\sqrt{2-y}} xe^{x^{2}}dx\;dy & & & \begin{array}{l}\text{Reverse the order of} \\ \text{integration then use} \\ \text{substitution.}\end{array} \\ & =\int_0^{2} [\frac{1}{2}{{e^{x}}^{2}|}_0^{\sqrt{2-y}}] dy=\int_0^{2} \frac{1}{2}(e^{2-y}-1) dy={-\frac{1}{2}(e^{2-y}+y)|}_0^{2} & & & \\ & =\frac{1}{2}(e^{2}-3). & & & \end{array}$$
+</div>
+<div class="example" id="fs-id1167794188050">
+<h3>Example 15.16 · Evaluating an Iterated Integral by Reversing the Order of Integration</h3>
+<p>Consider the <span data-concept="iterated-integral">iterated integral</span> $\iint\limits_{\kR}\kf(x,y) dx\;dy$ where $z=\kf(x,y)=x-2y$ over a triangular <span data-concept="region">region</span> $\kR$ that has sides on $x=0,y=0,$ and the line $x+y=1.$ Sketch the <span data-concept="region">region</span>, and then evaluate the <span data-concept="iterated-integral">iterated integral</span> by</p>
+<p>a. integrating first with respect to $y$ and then</p>
+<p>b. integrating first with respect to $x.$</p>
+<h4>Solution</h4>
+<p>A sketch of the <span data-concept="region">region</span> appears in Figure 15.22.</p>
+<figure class="sim" id="fig-triangle" data-figure="15.22" data-original="/media/ch15/CNX_Calc_Figure_15_02_011.jpg" data-original-caption="A triangular region R for integrating in two ways.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.22</span><span>A triangular region $\kR$ for integrating in two ways: vertically from $y=0$ to $y=1-x,$ then for $0\le x\le 1,$ or horizontally from $x=0$ to $x=1-y,$ then for $0\le y\le 1.$</span></div>
+</figure>
+<p>We can complete this integration in two different ways.</p>
+<p>a. One way to look at it is by first integrating $y$ from $y=0\;\text{to}\;y=1-x$ vertically and then integrating $x$ from $x=0\;\text{to}\;x=1\text{:}$</p>
+$$\begin{array}{rl}\iint\limits_{\kR}\kf(x,y) dx\;dy & =\int_{x=0}^{x=1} \;\int_{y=0}^{y=1-x} (x-2y)dy\;dx = \int_{x=0}^{x=1} {[xy-y^{2}]}_{y=0}^{y=1-x}dx \\ & =\int_{x=0}^{x=1} [x(1-x)-{(1-x)}^{2}]dx=\int_{x=0}^{x=1} [-1+3x-2x^{2}]dx= {[-x+\frac{3}{2}x^{2}-\frac{2}{3}x^{3}]}_{x=0}^{x=1}=-\frac{1}{6} .\end{array}$$
+<p>b. The other way to do this problem is by first integrating $x$ from $x=0\;\text{to}\;x=1-y$ horizontally and then integrating $y$ from $y=0\;\text{to}\;y=1\text{:}$</p>
+$$\begin{array}{rl}\iint\limits_{\kR}\kf(x,y) dx\;dy & =\int_{y=0}^{y=1} \;\int_{x=0}^{x=1-y} (x-2y)dx\;dy = \int_{y=0}^{y=1} {[\frac{1}{2}x^{2}-2xy]}_{x=0}^{x=1-y}dy \\ & =\int_{y=0}^{y=1} [\frac{1}{2}{(1-y)}^{2}-2y(1-y)]dy=\int_{y=0}^{y=1} [\frac{1}{2}-3y+\frac{5}{2}y^{2}]dy \\ & ={[\frac{1}{2}y-\frac{3}{2}y^{2}+\frac{5}{6}y^{3}]}_{y=0}^{y=1}=-\frac{1}{6}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794188050"></div>
+</section>
+
+<section id="volumes-areas">
+<h2>Calculating Volumes, Areas, and Average Values</h2>
+<p class="cite-target">We can use <span data-concept="double-integral">double integrals</span> over general <span data-concept="region">regions</span> to compute volumes, areas, and average values. The methods are the same as those in <a href="/calculus/ch15/15.1/">Double Integrals over Rectangular Regions</a>, but without the restriction to a <span data-concept="region">rectangular region</span>, we can now solve a wider variety of problems.</p>
+<div class="example" id="fs-id1167793776681">
+<h3>Example 15.17 · Finding the Volume of a Tetrahedron</h3>
+<p>Find the volume of the solid bounded by the planes $x=0,y=0,z=0,$ and $2x+3y+z=6.$</p>
+<h4>Solution</h4>
+<p>The solid is a tetrahedron with the base on the $xy$-plane and a height $z=6-2x-3y.$ The base is the <span data-concept="region">region</span> $\kD$ bounded by the lines, $x=0,y=0$ and $2x+3y=6$ where $z=0$ (Figure 15.23). Note that we can consider the <span data-concept="region">region</span> $\kD$ as <span data-concept="type-i-region">Type I</span> or as <span data-concept="type-ii-region">Type II</span>, and we can integrate in both ways.</p>
+<figure class="sim" id="fig-tetrahedron" data-figure="15.23" data-original="/media/ch15/CNX_Calc_Figure_15_02_012.jpg" data-original-caption="A tetrahedron consisting of the three coordinate planes and the plane z=6−2x−3y, with the base bound by x=0,y=0, and 2x+3y=6.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.23</span><span>A tetrahedron consisting of the three coordinate planes and the plane $z=6-2x-3y,$ with the base bound by $x=0,y=0,$ and $2x+3y=6.$</span></div>
+</figure>
+<p>First, consider $\kD$ as a <span data-concept="type-i-region">Type I</span> <span data-concept="region">region</span>, and hence $\kD=\{(x,y)|0\le x\le 3,0\le y\le 2-\frac{2}{3}x\}.$</p>
+<p>Therefore, the volume is</p>
+$$\begin{array}{rl}\kV & =\int_{x=0}^{x=3} \;\int_{y=0}^{y=2-(2x/3)} (6-2x-3y)dy\;dx =\int_{x=0}^{x=3} [{(6y-2xy-\frac{3}{2}y^{2})|}_{y=0}^{y=2-(2x/3)}] dx \\ & =\int_{x=0}^{x=3} [\frac{2}{3}{(x-3)}^{2}] dx=6.\end{array}$$
+<p>Now consider $\kD$ as a <span data-concept="type-ii-region">Type II</span> <span data-concept="region">region</span>, so $\kD=\{(x,y)|0\le y\le 2,0\le x\le 3-\frac{3}{2}y\}.$ In this calculation, the volume is</p>
+$$\begin{array}{rl}\kV & =\int_{y=0}^{y=2} \;\int_{x=0}^{x=3-(3y/2)} (6-2x-3y)dx\;dy =\int_{y=0}^{y=2} [{(6x-x^{2}-3xy)|}_{x=0}^{x=3-(3y/2)}] dy \\ & =\int_{y=0}^{y=2} [\frac{9}{4}{(y-2)}^{2}] dy=6.\end{array}$$
+<p>Therefore, the volume is $6$ cubic units.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793776681"></div>
+<p>Finding the area of a <span data-concept="region">rectangular region</span> is easy, but finding the area of a nonrectangular <span data-concept="region">region</span> is not so easy. As we have seen, we can use <span data-concept="double-integral">double integrals</span> to find a rectangular area. As a matter of fact, this comes in very handy for finding the <span data-concept="area-of-a-region-by-double-integral">area of a general nonrectangular region</span>, as stated in the next definition.</p>
+<div class="note" id="fs-id1167793287011">
+<div class="eyebrow">Definition</div>
+<p>The <span data-concept="area-of-a-region-by-double-integral">area of a plane-bounded region</span> $\kD$ is defined as the <span data-concept="double-integral">double integral</span> $\iint\limits_{\kD}1dA .$</p>
+</div>
+<p>We have already seen how to find areas in terms of single integration. Here we are seeing another way of finding areas by using <span data-concept="double-integral">double integrals</span>, which can be very useful, as we will see in the later sections of this chapter.</p>
+<div class="example" id="fs-id1167794076353">
+<h3>Example 15.18 · Finding the Area of a Region</h3>
+<p>Find the <span data-concept="area-of-a-region-by-double-integral">area of the region</span> bounded below by the curve $y=x^{2}$ and above by the line $y=2x$ in the first quadrant (Figure 15.24).</p>
+<figure class="sim" id="fig-parabola-line" data-figure="15.24" data-original="/media/ch15/CNX_Calc_Figure_15_02_013.jpg" data-original-caption="The region bounded by y=x² and y=2x.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.24</span><span>The region bounded by $y=x^{2}$ and $y=2x.$ Drag $x$ and $y$ to read it as Type I, $x^{2}\le y\le 2x,$ or as Type II, $\frac{y}{2}\le x\le \sqrt{y}.$</span></div>
+</figure>
+<h4>Solution</h4>
+<p>We just have to integrate the constant function $\kf(x,y)=1$ over the <span data-concept="region">region</span>. Thus, the area $A$ of the bounded <span data-concept="region">region</span> is $\int_{x=0}^{x=2} \;\int_{y=x^{2}}^{y=2x} dy\;dx$ or $\int_{y=0}^{x=4} \;\int_{x=y/2}^{x=\sqrt{y}} dx\;dy \text{:}$<sup class="fn" data-note="c-ex18-limit"></sup></p>
+$$A=\iint\limits_{\kD}1dx\;dy=\int_{x=0}^{x=2} \;\int_{y=x^{2}}^{y=2x} 1dy\;dx= \int_{x=0}^{x=2} [{y|}_{y=x^{2}}^{y=2x}] dx=\int_{x=0}^{x=2} (2x-x^{2}) dx={x^{2}-\frac{x^{3}}{3}|}_0^{2}=\frac{4}{3}.$$
+</div>
+<div class="exercises" data-place="fs-id1167794076353"></div>
+<p>We can also use a <span data-concept="double-integral">double integral</span> to find the <span data-concept="average-value-of-a-function-of-two-variables">average value of a function</span> over a general <span data-concept="region">region</span>. The definition is a direct extension of the earlier formula.</p>
+<div class="note" id="fs-id1167793540298">
+<div class="eyebrow">Definition</div>
+<p>If $\kf(x,y)$ is integrable over a plane-bounded <span data-concept="region">region</span> $\kD$ with positive area $\kA(\kD),$ then the <span data-concept="average-value-of-a-function-of-two-variables">average value of the function</span> is</p>
+$$\kfave=\frac{1}{\kA(\kD)}\iint\limits_{\kD}\kf(x,y)dA .$$
+<p>Note that the area is $\kA(\kD)=\iint\limits_{\kD}1dA .$</p>
+</div>
+<div class="example" id="fs-id1167793495009">
+<h3>Example 15.19 · Finding an Average Value</h3>
+<p>Find the <span data-concept="average-value-of-a-function-of-two-variables">average value of the function</span> $\kf(x,y)=7xy^{2}$ on the <span data-concept="region">region</span> bounded by the line $x=y$ and the curve $x=\sqrt{y}$ (Figure 15.25).</p>
+<figure class="sim" id="fig-average-region" data-figure="15.25" data-original="/media/ch15/CNX_Calc_Figure_15_02_014.jpg" data-original-caption="The region bounded by x=y and x=√y.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.25</span><span>The region bounded by $x=y$ and $x=\sqrt{y}.$ Drag $y$: each horizontal strip runs from $x=y$ to $x=\sqrt{y};$ drag $x$: each vertical strip from $y=x^{2}$ to $y=x.$</span></div>
+</figure>
+<h4>Solution</h4>
+<p>First find the area $\kA(\kD)$ where the <span data-concept="region">region</span> $\kD$ is given by the figure. We have</p>
+$$\kA(\kD)=\iint\limits_{\kD}1dA=\int_{y=0}^{y=1} \;\int_{x=y}^{x=\sqrt{y}} 1dx\;dy=\int_{y=0}^{y=1} [{x|}_{x=y}^{x=\sqrt{y}}] dy=\int_{y=0}^{y=1} (\sqrt{y}-y)dy=\frac{2}{3} y^{3/2}-{\frac{y^{2}}{2}|}_0^{1}=\frac{1}{6}.$$
+<p>Then the <span data-concept="average-value-of-a-function-of-two-variables">average value</span> of the given function over this <span data-concept="region">region</span> is</p>
+$$\begin{array}{rl}\kfave & =\frac{1}{\kA(\kD)}\iint\limits_{\kD}\kf(x,y)dA=\frac{1}{\kA(\kD)}\int_{y=0}^{y=1} \;\int_{x=y}^{x=\sqrt{y}} 7xy^{2}dx\;dy=\frac{1}{1/6}\int_{y=0}^{y=1} [{\frac{7}{2}x^{2}y^{2}|}_{x=y}^{x=\sqrt{y}}] dy \\ & =6\int_{y=0}^{y=1} [\frac{7}{2}y^{2}(y-y^{2})]dy=6\int_{y=0}^{y=1} [\frac{7}{2}(y^{3}-y^{4})]dy =\frac{42}{2} {(\frac{y^{4}}{4}-\frac{y^{5}}{5})|}_0^{1}=\frac{42}{40}=\frac{21}{20}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793495009"></div>
+</section>
+
+<section id="improper">
+<h2>Improper Double Integrals</h2>
+<p class="cite-target">An <strong><span data-concept="improper-double-integral">improper double integral</span></strong> is an integral $\iint\limits_{\kD}\kf\;dA$ where either $\kD$ is an unbounded <span data-concept="region">region</span> or $\kf$ is an unbounded function. For example, $\kD=\{(x,y)||x-y|\ge 2\}$ is an unbounded <span data-concept="region">region</span>, and the function $\kf(x,y)=1/(1-x^{2}-2y^{2})$ over the ellipse $x^{2}+2y^{2}\le 1$ is an unbounded function. Hence, both of the following integrals are <span data-concept="improper-double-integral">improper integrals</span>:</p>
+<ol><li>$\iint\limits_{\kD}xy\;dA$ where $\kD=\{(x,y)||x-y|\ge 2\};$</li><li>$\iint\limits_{\kD}\frac{1}{1-x^{2}-2y^{2}}dA$ where $\kD=\{(x,y)|x^{2}+2y^{2}\le 1\}.$</li></ol>
+<p>In this section we would like to deal with <span data-concept="improper-double-integral">improper integrals</span> of functions over rectangles or simple <span data-concept="region">regions</span> such that $\kf$ has only finitely many discontinuities. Not all such <span data-concept="improper-double-integral">improper integrals</span> can be evaluated; however, a form of <span data-concept="fubinis-theorem-strong-form">Fubini’s theorem</span> does apply for some types of <span data-concept="improper-double-integral">improper integrals</span>.</p>
+<div class="note" id="fs-id1167793450004">
+<div class="eyebrow">Theorem</div>
+<h3>Fubini’s Theorem for Improper Integrals</h3>
+<p>If $\kD$ is a bounded rectangle or simple <span data-concept="region">region</span> in the plane defined by $\{(x,y)\text{:}\;a\le x\le b,\kg(x)\le y\le \kh(x)\}$ and also by $\{(x,y)\text{:}\;c\le y\le d,j(y)\le x\le k(y)\}$ and $\kf$ is a nonnegative function on $\kD$ with finitely many discontinuities in the interior of $\kD,$ then</p>
+$$\iint\limits_{\kD}\kf\;dA=\int_{x=a}^{x=b} \;\int_{y=\kg(x)}^{y=\kh(x)} \kf(x,y)dy\;dx= \int_{y=c}^{y=d} \;\int_{x=j(y)}^{x=k(y)} \kf(x,y)dx\;dy .$$
+</div>
+<p>It is very important to note that we required that the function be nonnegative on $\kD$ for the theorem to work. We consider only the case where the function has finitely many discontinuities inside $\kD.$</p>
+<div class="example" id="fs-id1167793290983">
+<h3>Example 15.20 · Evaluating a Double Improper Integral</h3>
+<p>Consider the function $\kf(x,y)=\frac{e^{y}}{y}$ over the <span data-concept="region">region</span> $\kD=\{(x,y)\text{:}\;0\le x\le 1,x\le y\le \sqrt{x}\}.$</p>
+<p>Notice that the function is nonnegative and continuous at all points on $\kD$ except $(0,0).$ Use <span data-concept="fubinis-theorem-strong-form">Fubini’s theorem</span> to evaluate the <span data-concept="improper-double-integral">improper integral</span>.</p>
+<h4>Solution</h4>
+<p>First we plot the <span data-concept="region">region</span> $\kD$ (Figure 15.26); then we express it in another way.</p>
+<figure class="sim" id="fig-improper-region" data-figure="15.26" data-original="/media/ch15/CNX_Calc_Figure_15_02_015.jpg" data-original-caption="The function f is continuous at all points of the region D except (0,0).">
+  <div class="sim-head"><span class="eyebrow">Figure 15.26</span><span>The function $\kf$ is continuous at all points of the region $\kD$ except $(0,0).$ Drag $x$ and $y$ to read $\kD$ as $x\le y\le \sqrt{x}$ or as $y^{2}\le x\le y.$</span></div>
+</figure>
+<p>The other way to express the same <span data-concept="region">region</span> $\kD$ is</p>
+$$\kD=\{(x,y)\text{:}\;0\le y\le 1,y^{2}\le x\le y\}.$$
+<p>Thus we can use <span data-concept="fubinis-theorem-strong-form">Fubini’s theorem</span> for <span data-concept="improper-double-integral">improper integrals</span> and evaluate the integral as</p>
+$$\int_{y=0}^{y=1} \;\int_{x=y^{2}}^{x=y} \frac{e^{y}}{y} dx\;dy.$$
+<p>Therefore, we have</p>
+$$\int_{y=0}^{y=1} \;\int_{x=y^{2}}^{x=y} \frac{e^{y}}{y}dx\;dy=\int_{y=0}^{y=1} \frac{e^{y}}{y}{x|}_{x=y^{2}}^{x=y}dy=\int_{y=0}^{y=1} \frac{e^{y}}{y}(y-y^{2})dy=\int_0^{1} (e^{y}-ye^{y})dy=e-2.$$
+</div>
+<p>As mentioned before, we also have an <span data-concept="improper-double-integral">improper integral</span> if the <span data-concept="region">region</span> of integration is unbounded. Suppose now that the function $\kf$ is continuous in an unbounded rectangle $\kR.$</p>
+<div class="note" id="fs-id1167793473260">
+<div class="eyebrow">Theorem</div>
+<h3>Improper Integrals on an Unbounded Region</h3>
+<p>If $\kR$ is an unbounded rectangle such as $\kR=\{(x,y)\text{:}\;a\le x\lt \infty ,c\le y\lt \infty \},$ then when the limit exists, we have $\iint\limits_{\kR}\kf(x,y) dA=\lim_{(b,d)\to (\infty ,\infty )}\int_a^{b} (\int_c^{d} \kf(x,y)dy )dx= \lim_{(b,d)\to (\infty ,\infty )}\int_c^{d} (\int_a^{b} \kf(x,y)dx )dy.$</p>
+</div>
+<p>The following example shows how this theorem can be used in certain cases of <span data-concept="improper-double-integral">improper integrals</span>.</p>
+<div class="example" id="fs-id1167793991236">
+<h3>Example 15.21 · Evaluating a Double Improper Integral</h3>
+<p>Evaluate the integral $\iint\limits_{\kR}xye^{-x^{2}-y^{2}} dA$ where $\kR$ is the first quadrant of the plane.</p>
+<h4>Solution</h4>
+<p>The <span data-concept="region">region</span> $\kR$ is the first quadrant of the plane, which is unbounded. So</p>
+$$\begin{array}{rl}\iint\limits_{\kR}xye^{-x^{2}-y^{2}} dA & =\lim_{(b,d)\to (\infty ,\infty )}\int_{x=0}^{x=b} (\int_{y=0}^{y=d} xye^{-x^{2}-y^{2}}dy )dx= \lim_{(b,d)\to (\infty ,\infty )}\int_{y=0}^{y=d} (\int_{x=0}^{x=b} xye^{-x^{2}-y^{2}}dx )dy \\ & =\lim_{(b,d)\to (\infty ,\infty )}\frac{1}{4}(1-e^{-b^{2}})(1-e^{-d^{2}})=\frac{1}{4}\end{array}$$
+<p>Thus, $\iint\limits_{\kR}xye^{-x^{2}-y^{2}} dA$ is convergent and the value is $\frac{1}{4}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793991236"></div>
+<p>In some situations in probability theory, we can gain insight into a problem when we are able to use <span data-concept="double-integral">double integrals</span> over general <span data-concept="region">regions</span>. Before we go over an example with a <span data-concept="double-integral">double integral</span>, we need to set a few definitions and become familiar with some important properties.</p>
+<div class="note" id="fs-id1167793246020">
+<div class="eyebrow">Definition</div>
+<p>Consider a pair of continuous random variables $X$ and $Y,$ such as the birthdays of two people or the number of sunny and rainy days in a month. The <span data-concept="joint-density-function">joint density function</span> $\kf$ of $X$ and $Y$ satisfies the probability that $(X,Y)$ lies in a certain <span data-concept="region">region</span> $\kD\text{:}$</p>
+$$P((X,Y)\in \kD)=\iint\limits_{\kD}\kf(x,y) dA.$$
+<p>Since the probabilities can never be negative and must lie between $0$ and $1,$ the <span data-concept="joint-density-function">joint density function</span> satisfies the following inequality and equation:</p>
+$$\kf(x,y)\ge 0\;\text{and}\;\iint\limits_{\kR^{2}}\kf(x,y) dA=1.$$
+</div>
+<div class="note" id="fs-id1167793618923">
+<div class="eyebrow">Definition</div>
+<p>The variables $X$ and $Y$ are said to be <span data-concept="independent-random-variables">independent random variables</span> if their <span data-concept="joint-density-function">joint density function</span> is the product of their individual density functions:</p>
+$$\kf(x,y)=\kf_{1}(x)\kf_{2}(y).$$
+</div>
+<div class="example" id="fs-id1167793556451">
+<h3>Example 15.22 · Application to Probability</h3>
+<p>At Sydney’s Restaurant, customers must wait an average of $15$ minutes for a table. From the time they are seated until they have finished their meal requires an additional $40$ minutes, on average. What is the probability that a customer spends less than an hour and a half at the diner, assuming that waiting for a table and completing the meal are independent events?</p>
+<h4>Solution</h4>
+<p>Waiting times are mathematically modeled by exponential density functions, with $m$ being the average waiting time, as</p>
+$$\kf(t)=\{\begin{array}{ll}0 & \text{if}\;t\lt 0, \\ \frac{1}{m}e^{-t/m} & \text{if}\;t\ge 0.\end{array}$$
+<p>If $X$ and $Y$ are random variables for ‘waiting for a table’ and ‘completing the meal,’ then the probability density functions are, respectively,</p>
+$$\kf_{1}(x)=\{\begin{array}{ll}0 & \text{if}\;x\lt 0, \\ \frac{1}{15}e^{-x/15} & \text{if}\;x\ge 0.\end{array}\;\text{and}\;\kf_{2}(y)=\{\begin{array}{ll}0 & \text{if}\;y\lt 0, \\ \frac{1}{40}e^{-y/40} & \text{if}\;y\ge 0.\end{array}$$
+<p>Clearly, the events are independent and hence the <span data-concept="joint-density-function">joint density function</span> is the product of the individual functions<sup class="fn" data-note="c-ex22-density"></sup></p>
+$$\kf(x,y)=\kf_{1}(x)\kf_{2}(y)=\{\begin{array}{ll}0 & \text{if}\;x\lt 0\;\text{or}\;y\lt 0, \\ \frac{1}{600}e^{-x/15}e^{-y/60} & \text{if}\;x,y\ge 0.\end{array}$$
+<p>We want to find the probability that the combined time $X+Y$ is less than $90$ minutes. In terms of geometry, it means that the <span data-concept="region">region</span> $\kD$ is in the first quadrant bounded by the line $x+y=90$ (Figure 15.27).</p>
+<figure class="sim" id="sim-waiting-time" data-figure="15.27" data-original="/media/ch15/CNX_Calc_Figure_15_02_016.jpg" data-original-caption="The region of integration for a joint probability density function.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.27</span><span>The region $\kD$ of times with $x+y\le t$ for the wait $x$ and the meal $y,$ over the <span data-concept="joint-density-function">joint density</span> of the two <span data-concept="independent-random-variables">independent random variables</span>, shaded darker where it is larger. Drag $t$ to change the time allowed: the probability is the integral of the density over the triangle, $0.8328$ at $90$ minutes.</span></div>
+</figure>
+<p>Hence, the probability that $(X,Y)$ is in the <span data-concept="region">region</span> $\kD$ is</p>
+$$P(X+Y\le 90)=P((X,Y)\in \kD)=\iint\limits_{\kD}\kf(x,y)dA= \iint\limits_{\kD}\frac{1}{600}e^{-x/15}e^{-y/40}dA .$$
+<p>Since $x+y=90$ is the same as $y=90-x,$ we have a <span data-concept="region">region</span> of <span data-concept="type-i-region">Type I</span>, so</p>
+$$\begin{array}{lll}\kD & = & \{(x,y)|0\le x\le 90,0\le y\le 90-x\}, \\ P(X+Y\le 90) & = & \begin{array}{ll}\frac{1}{600} & \int_{x=0}^{x=90} \int_{y=0}^{y=90-x} e^{-x/15}e^{-y/40}dydx\end{array} \\ & = & \begin{array}{ll}\frac{1}{600} & \int_{x=0}^{x=90} \int_{y=0}^{y=90-x} e^{-(x/15+y/40)}dydx=0.8328.\end{array}\end{array}$$
+<p>Thus, there is an $83.28\%$ chance that a customer spends less than an hour and a half at the restaurant.</p>
+</div>
+<p>Another important application in probability that can involve <span data-concept="improper-double-integral">improper double integrals</span> is the calculation of <span data-concept="expected-value">expected values</span>. First we define this concept and then show an example of a calculation.</p>
+<div class="note" id="fs-id1167793377822">
+<div class="eyebrow">Definition</div>
+<p>In probability theory, we denote the <span data-concept="expected-value">expected values</span> $E(X)$ and $E(Y),$ respectively, as the most likely outcomes of the events. The <span data-concept="expected-value">expected values</span> $E(X)$ and $E(Y)$ are given by</p>
+$$E(X)=\iint\limits_{S}xf(x,y) dA\;\text{and}\;E(Y)=\iint\limits_{S}yf(x,y) dA,$$
+<p>where $S$ is the sample space of the random variables $X$ and $Y.$</p>
+</div>
+<div class="example" id="fs-id1167793298466">
+<h3>Example 15.23 · Finding Expected Value</h3>
+<p>Find the expected time for the events ‘waiting for a table’ and ‘completing the meal’ in <a href="#fs-id1167793556451">Example 15.22</a>.</p>
+<h4>Solution</h4>
+<p>Using the first quadrant of the rectangular coordinate plane as the sample space, we have <span data-concept="improper-double-integral">improper integrals</span> for $E(X)$ and $E(Y).$ The expected time for a table is<sup class="fn" data-note="c-ex23-limit"></sup></p>
+$$\begin{array}{rl}E(X) & =\iint\limits_{S}x\frac{1}{600} e^{-x/15}e^{-y/40}dA=\frac{1}{600}\int_{x=0}^{x=\infty} \;\int_{y=0}^{y=\infty} xe^{-x/15}e^{-y/40}dA \\ & =\frac{1}{600}\lim_{(a,b)\to (\infty ,\infty )}\int_{x=0}^{x=a} \;\int_{y=0}^{y=b} xe^{-x/15}e^{-y/40}dx\;dy \\ & =\frac{1}{600}(\lim_{a\to \infty}\int_{x=0}^{x=a} xe^{-x/15}dx )(\lim_{b\to \infty}\int_{y=0}^{y=b} e^{-y/40}dy ) \\ & =\frac{1}{600}({(\lim_{a\to \infty}(-15e^{-x/15}(x+15)))|}_{x=0}^{x=a})({(\lim_{b\to \infty}(-40e^{-y/40}))|}_{y=0}^{y=b}) \\ & =\frac{1}{600}(\lim_{a\to \infty}(-15e^{-a/15}(x+15)+225))(\lim_{b\to \infty}(-40e^{-b/40}+40)) \\ & =\frac{1}{600}(225)(40) \\ & =15.\end{array}$$
+<p>A similar calculation shows that $E(Y)=40.$ This means that the <span data-concept="expected-value">expected values</span> of the two random events are the average waiting time and the average dining time, respectively.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793298466"></div>
+</section>

@@ -1,0 +1,178 @@
+<p id="mass-intro">We have already discussed a few applications of multiple integrals, such as finding areas, volumes, and the average value of a function over a bounded <span data-concept="region">region</span>. In this section we develop computational techniques for finding the <span data-concept="center-of-mass">center of mass</span> and <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> of several types of physical objects, using <span data-concept="double-integral">double integrals</span> for a <span data-concept="lamina">lamina</span> (flat plate) and <span data-concept="triple-integral">triple integrals</span> for a three-dimensional object with variable density. The density is usually considered to be a constant number when the <span data-concept="lamina">lamina</span> or the object is homogeneous; that is, the object has uniform density.</p>
+
+<section id="center-of-mass-2d">
+<h2>Center of Mass in Two Dimensions</h2>
+<p class="cite-target">The <span data-concept="center-of-mass">center of mass</span> is also known as the center of gravity if the object is in a uniform gravitational field. If the object has uniform density, the <span data-concept="center-of-mass">center of mass</span> is the geometric center of the object, which is called the <span data-concept="centroid">centroid</span>. Figure 15.64 shows a point $P$ as the <span data-concept="center-of-mass">center of mass</span> of a <span data-concept="lamina">lamina</span>. The <span data-concept="lamina">lamina</span> is perfectly balanced about its <span data-concept="center-of-mass">center of mass</span>.</p>
+<figure class="sim" id="sim-lamina" data-figure="15.64 + 15.65 + 15.66 + 15.67" data-original="/media/ch15/CNX_Calc_Figure_15_06_001.jpg,/media/ch15/CNX_Calc_Figure_15_06_002.jpg,/media/ch15/CNX_Calc_Figure_15_06_003.jpg,/media/ch15/CNX_Calc_Figure_15_06_004.jpg" data-original-caption="(Figure 15.64) A lamina is perfectly balanced on a spindle if the lamina’s center of mass sits on the spindle. (Figure 15.65) The density of a lamina at a point is the limit of its mass per area in a small rectangle about the point as the area goes to zero. (Figure 15.66) Subdividing the lamina into tiny rectangles Rᵢⱼ, each containing a sample point (xᵢⱼ*,yᵢⱼ*). (Figure 15.67) A lamina in the xy-plane with density ρ(x,y)=xy.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.64 + 15.65 + 15.66 + 15.67</span><span>The triangular lamina with vertices $(0,0),$ $(0,3)$ and $(3,0)$ cut into small rectangles $\kR_{ij},$ each shaded by the density $\krho(x_{ij}^{*},y_{ij}^{*})$ at its sample point; the mass of each is about $\krho\,\Delta A,$ the density being the limit of $\frac{\Delta \km}{\Delta A}$ as the rectangles shrink. Drag $n$ to watch the sum close on the mass. With $\krho=1$ the lamina balances on its <span data-concept="centroid">centroid</span> $(1,1);$ with $\krho=xy$ the denser corner pulls its <span data-concept="center-of-mass">center of mass</span> out to $(\frac{6}{5},\frac{6}{5}).$</span></div>
+</figure>
+<p>To find the coordinates of the <span data-concept="center-of-mass">center of mass</span> $P(\kxbar,\kybar)$ of a <span data-concept="lamina">lamina</span>, we need to find the moment $\kMx$ of the <span data-concept="lamina">lamina</span> about the $x\text{-axis}$ and the moment $\kMy$ about the $y\text{-axis}\text{.}$ We also need to find the mass $\km$ of the <span data-concept="lamina">lamina</span>. Then</p>
+$$\kxbar=\frac{\kMy}{\km}\;\text{and}\;\kybar=\frac{\kMx}{\km}.$$
+<p>Refer to <a href="/calculus/ch06/6.6/">Moments and Centers of Mass</a> for the definitions and the methods of single integration to find the <span data-concept="center-of-mass">center of mass</span> of a one-dimensional object (for example, a thin rod). We are going to use a similar idea here except that the object is a two-dimensional <span data-concept="lamina">lamina</span> and we use a <span data-concept="double-integral">double integral</span>.</p>
+<p>If we allow a constant <span data-concept="density-function">density function</span>, then $\kxbar=\frac{\kMy}{\km}\;\text{and}\;\kybar=\frac{\kMx}{\km}$ give the <em><span data-concept="centroid">centroid</span></em> of the <span data-concept="lamina">lamina</span>.</p>
+<p id="density-term">Suppose that the <span data-concept="lamina">lamina</span> occupies a <span data-concept="region">region</span> $\kR$ in the $xy\text{-plane},$ and let $\krho (x,y)$ be its density (in units of mass per unit area) at any point $(x,y).$ Hence, $\krho (x,y)=\lim_{\Delta A\to 0}\frac{\Delta \km}{\Delta A},$ where $\Delta \km$ and $\Delta A$ are the mass and area of a small rectangle containing the point $(x,y)$ and the limit is taken as the dimensions of the rectangle go to $0$ (see the following figure).</p>
+
+<p>Just as before, we divide the <span data-concept="region">region</span> $\kR$ into tiny rectangles $R_{ij}$ with area $\Delta A$ and choose $(x_{ij}^{*},y_{ij}^{*})$ as sample points. Then the mass $\km_{ij}$ of each $R_{ij}$ is equal to $\krho (x_{ij}^{*},y_{ij}^{*})\Delta A$ (Figure 15.66). Let $k$ and $l$ be the number of subintervals in $x$ and $y,$ respectively. Also, note that the shape might not always be rectangular but the limit works anyway, as seen in previous sections.</p>
+
+<p>Hence, the mass of the <span data-concept="lamina">lamina</span> is</p>
+<div class="equation" id="fs-id1167793844477">$$\km=\lim_{k,l\to \infty}\sum_{i=1}^{k} \sum_{j=1}^{l} \km_{ij} =\lim_{k,l\to \infty}\sum_{i=1}^{k} \sum_{j=1}^{l} \krho (x_{ij}^{*},y_{ij}^{*})\Delta A=\iint\limits_{\kR}\krho (x,y)dA .\tag{15.13}$$</div>
+<p>Let’s see an example now of finding the total mass of a triangular <span data-concept="lamina">lamina</span>.</p>
+<div class="example" id="fs-id1167794038223">
+<h3>Example 15.55 · Finding the Total Mass of a Lamina</h3>
+<p>Consider a triangular <span data-concept="lamina">lamina</span> $\kR$ with vertices $(0,0),(0,3),$ $(3,0)$ and with density $\krho (x,y)=xy{\;\text{kg/m}}^{2}.$ Find the total mass.</p>
+<h4>Solution</h4>
+<p>A sketch of the <span data-concept="region">region</span> $\kR$ is always helpful, as shown in the following figure.</p>
+
+<p>Using the expression developed for mass, we see that</p>
+$$\begin{array}{rl}\km & =\iint\limits_{\kR}dm=\iint\limits_{\kR}\krho (x,y) dA=\int_{x=0}^{x=3} \;\int_{y=0}^{y=3-x} xy\;dy\;dx=\int_{x=0}^{x=3} [{x\frac{y^{2}}{2}|}_{y=0}^{y=3-x}] dx \\ & =\int_{x=0}^{x=3} \frac{1}{2} x{(3-x)}^{2}dx={[\frac{9x^{2}}{4}-x^{3}+\frac{x^{4}}{8}]|}_{x=0}^{x=3} \\ & =\frac{27}{8}.\end{array}$$
+<p>The computation is straightforward, giving the answer $\km=\frac{27}{8}\;\text{kg}\text{.}$</p>
+</div>
+<div class="exercises" data-place="fs-id1167794038223"></div>
+<p>Now that we have established the expression for mass, we have the tools we need for calculating moments and <span data-concept="center-of-mass">centers of mass</span>. The moment $\kMx$ about the $x\text{-axis}$ for $\kR$ is the limit of the sums of moments of the <span data-concept="region">regions</span> $R_{ij}$ about the $x\text{-axis}\text{.}$ Hence</p>
+<div class="equation" id="fs-id1167793972894">$$\kMx=\lim_{k,l\to \infty}\sum_{i=1}^{k} \sum_{j=1}^{l} (y_{{}_{ij}}^{*}) \km_{ij}=\lim_{k,l\to \infty}\sum_{i=1}^{k} \sum_{j=1}^{l} (y_{{}_{ij}}^{*}) \krho (x_{{}_{ij}}^{*},y_{{}_{ij}}^{*})\Delta A=\iint\limits_{\kR}y\rho (x,y)dA .\tag{15.14}$$</div>
+<p>Similarly, the moment $\kMy$ about the $y\text{-axis}$ for $\kR$ is the limit of the sums of moments of the <span data-concept="region">regions</span> $R_{ij}$ about the $y\text{-axis}\text{.}$ Hence<sup class="fn" data-note="c-my-sum"></sup></p>
+<div class="equation" id="fs-id1167793956495">$$\kMy=\lim_{k,l\to \infty}\sum_{i=1}^{k} \sum_{j=1}^{l} (x_{{}_{ij}}^{*}) \km_{ij}=\lim_{k,l\to \infty}\sum_{i=1}^{k} \sum_{j=1}^{l} (y_{{}_{ij}}^{*}) \krho (x_{{}_{ij}}^{*},y_{{}_{ij}}^{*})\Delta A=\iint\limits_{\kR}x\rho (x,y)dA .\tag{15.15}$$</div>
+<div class="example" id="fs-id1167794122810">
+<h3>Example 15.56 · Finding Moments</h3>
+<p>Consider the same triangular <span data-concept="lamina">lamina</span> $\kR$ with vertices $(0,0),(0,3),\;(3,0)$ and with density $\krho (x,y)=xy.$ Find the moments $\kMx$ and $\kMy.$</p>
+<h4>Solution</h4>
+<p>Use <span data-concept="double-integral">double integrals</span> for each moment and compute their values:</p>
+$$\kMx=\iint\limits_{\kR}y\rho (x,y)dA=\int_{x=0}^{x=3} \;\int_{y=0}^{y=3-x} xy^{2}\;dy\;dx =\frac{81}{20},$$
+$$\kMy=\iint\limits_{\kR}x\rho (x,y)dA=\int_{x=0}^{x=3} \;\int_{y=0}^{y=3-x} x^{2}\;yd\;y\;dx =\frac{81}{20}.$$
+<p>The computation is quite straightforward.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794122810"></div>
+<p>Finally we are ready to restate the expressions for the <span data-concept="center-of-mass">center of mass</span> in terms of integrals. We denote the $x$-coordinate of the <span data-concept="center-of-mass">center of mass</span> by $\kxbar$ and the $y$-coordinate by $\kybar.$ Specifically,</p>
+<div class="equation" id="fs-id1167793828955">$$\kxbar=\frac{\kMy}{\km}=\frac{\iint\limits_{\kR}x\rho (x,y)dA }{\iint\limits_{\kR}\krho (x,y)dA }\;\text{and}\;\kybar=\frac{\kMx}{\km}\;=\frac{\iint\limits_{\kR}y\rho (x,y)dA }{\iint\limits_{\kR}\krho (x,y)dA }.\tag{15.16}$$</div>
+<div class="example" id="fs-id1167793450658">
+<h3>Example 15.57 · Finding the Center of Mass</h3>
+<p>Again consider the same triangular <span data-concept="region">region</span> $\kR$ with vertices $(0,0),(0,3),$ $(3,0)$ and with <span data-concept="density-function">density function</span> $\krho (x,y)=xy.$ Find the <span data-concept="center-of-mass">center of mass</span>.</p>
+<h4>Solution</h4>
+<p>Using the formulas we developed, we have</p>
+$$\kxbar=\frac{\kMy}{\km}=\frac{\iint\limits_{\kR}x\rho (x,y)dA }{\iint\limits_{\kR}\krho (x,y)dA }=\frac{81/20}{27/8}=\frac{6}{5},$$
+$$\kybar=\frac{\kMx}{\km}=\frac{\iint\limits_{\kR}y\rho (x,y)dA }{\iint\limits_{\kR}\krho (x,y)dA }=\frac{81/20}{27/8}=\frac{6}{5}.$$
+<p>Therefore, the <span data-concept="center-of-mass">center of mass</span> is the point $(\frac{6}{5},\frac{6}{5}).$</p>
+<h4>Analysis</h4>
+<p>If we choose the density $\krho (x,y)$ instead to be uniform throughout the <span data-concept="region">region</span> (i.e., constant), such as the value 1 (any constant will do), then we can compute the <span data-concept="centroid">centroid</span>,</p>
+$$\begin{array}{l} \\ \\ \\ \\ \kxc=\frac{\kMy}{\km}=\frac{\iint\limits_{\kR}x\;dA }{\iint\limits_{\kR}dA }=\frac{9/2}{9/2}=1, \\ \kyc=\frac{\kMx}{\km}\;=\frac{\iint\limits_{\kR}y\;dA }{\iint\limits_{\kR}dA }=\frac{9/2}{9/2}=1.\end{array}$$
+<p>Notice that the <span data-concept="center-of-mass">center of mass</span> $(\frac{6}{5},\frac{6}{5})$ is not exactly the same as the <span data-concept="centroid">centroid</span> $(1,1)$ of the triangular <span data-concept="region">region</span>. This is due to the variable density of $\kR.$ If the density is constant, then we just use $\krho (x,y)=c$ (constant). This value cancels out from the formulas, so for a constant density, the <span data-concept="center-of-mass">center of mass</span> coincides with the <span data-concept="centroid">centroid</span> of the <span data-concept="lamina">lamina</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793450658"></div>
+<p id="centroid-term">Once again, based on the comments at the end of <a href="#fs-id1167793450658">Example 15.57</a>, we have expressions for the <span data-concept="centroid">centroid</span> of a <span data-concept="region">region</span> on the plane:<sup class="fn" data-note="c-centroid-equals"></sup></p>
+$$\kxc=\frac{\kMy}{\km}=\frac{\iint\limits_{\kR}x\;dA }{\iint\limits_{\kR}dA }\;\text{and}\;\kyc=\frac{\kMx}{\km}\;\frac{\iint\limits_{\kR}y\;dA }{\iint\limits_{\kR}dA }.$$
+<p>We should use these formulas and verify the <span data-concept="centroid">centroid</span> of the triangular <span data-concept="region">region</span> $\kR$ referred to in the last three examples.</p>
+<div class="example" id="fs-id1167794250129">
+<h3>Example 15.58 · Finding Mass, Moments, and Center of Mass</h3>
+<p>Find the mass, moments, and the <span data-concept="center-of-mass">center of mass</span> of the <span data-concept="lamina">lamina</span> of density $\krho (x,y)=x+y$ occupying the <span data-concept="region">region</span> $\kR$ under the curve $y=x^{2}$ in the interval $0\le x\le 2$ (see the following figure).</p>
+<figure class="sim" id="fig-lamina-parabola" data-figure="15.68" data-original="/media/ch15/CNX_Calc_Figure_15_06_005.jpg" data-original-caption="Locating the center of mass of a lamina R with density ρ(x,y)=x+y.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.68</span><span>Locating the <span data-concept="center-of-mass">center of mass</span> of a <span data-concept="lamina">lamina</span> $\kR$ with density $\krho (x,y)=x+y.$</span></div>
+</figure>
+<h4>Solution</h4>
+<p>First we compute the mass $\km.$ We need to describe the <span data-concept="region">region</span> between the graph of $y=x^{2}$ and the vertical lines $x=0$ and $x=2\text{:}$</p>
+$$\begin{array}{rl}\km & =\iint\limits_{\kR}dm =\iint\limits_{\kR}\krho (x,y)dA=\int_{x=0}^{x=2} \;\int_{y=0}^{y=x^{2}} (x+y)dy\;dx=\int_{x=0}^{x=2} [{xy+\frac{y^{2}}{2}|}_{y=0}^{y=x^{2}}] dx \\ & =\int_{x=0}^{x=2} [x^{3}+\frac{x^{4}}{2}] dx={[\frac{x^{4}}{4}+\frac{x^{5}}{10}]|}_{x=0}^{x=2}=\frac{36}{5}.\end{array}$$
+<p>Now compute the moments $\kMx$ and $\kMy\text{:}$</p>
+$$\kMx=\iint\limits_{\kR}y\rho (x,y) dA=\int_{x=0}^{x=2} \;\int_{y=0}^{y=x^{2}} y(x+y)dy\;dx=\frac{80}{7} ,$$
+$$\kMy=\iint\limits_{\kR}x\rho (x,y) dA=\int_{x=0}^{x=2} \;\int_{y=0}^{y=x^{2}} x(x+y)dy\;dx=\frac{176}{15} .$$
+<p>Finally, evaluate the <span data-concept="center-of-mass">center of mass</span>,</p>
+$$\begin{array}{l} \\ \\ \\ \kxbar=\frac{\kMy}{\km}=\frac{\iint\limits_{\kR}x\rho (x,y)dA }{\iint\limits_{\kR}\krho (x,y)dA }=\frac{176/15}{36/5}=\frac{44}{27}, \\ \kybar=\frac{\kMx}{\km}=\frac{\iint\limits_{\kR}y\rho (x,y)dA }{\iint\limits_{\kR}\krho (x,y)dA }=\frac{80/7}{36/5}=\frac{100}{63}.\end{array}$$
+<p>Hence the <span data-concept="center-of-mass">center of mass</span> is $(\kxbar,\kybar)=(\frac{44}{27},\frac{100}{63}).$</p>
+</div>
+<div class="exercises" data-place="fs-id1167794250129"></div>
+<div class="example" id="fs-id1167794094296">
+<h3>Example 15.59 · Finding a Centroid</h3>
+<p>Find the <span data-concept="centroid">centroid</span> of the <span data-concept="region">region</span> under the curve $y=e^{x}$ over the interval $1\le x\le 3$ (see the following figure).</p>
+<figure class="sim" id="fig-centroid-exp" data-figure="15.69" data-original="/media/ch15/CNX_Calc_Figure_15_06_006.jpg" data-original-caption="Finding a centroid of a region below the curve y=e^x.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.69</span><span>Finding a <span data-concept="centroid">centroid</span> of a <span data-concept="region">region</span> below the curve $y=e^{x}.$</span></div>
+</figure>
+<h4>Solution</h4>
+<p>To compute the <span data-concept="centroid">centroid</span>, we assume that the <span data-concept="density-function">density function</span> is constant and hence it cancels out:</p>
+$$\begin{array}{l} \\ \\ \\ \\ \kxc=\frac{\kMy}{\km}=\frac{\iint\limits_{\kR}x\;dA }{\iint\limits_{\kR}dA }\;\text{and}\;\kyc=\frac{\kMx}{\km}=\frac{\iint\limits_{\kR}y\;dA }{\iint\limits_{\kR}dA }, \\ \kxc=\frac{\kMy}{\km}=\frac{\iint\limits_{\kR}x\;dA }{\iint\limits_{\kR}dA }=\frac{\int_{x=1}^{x=3} \;\int_{y=0}^{y=e^{x}} x\;dy\;dx }{\int_{x=1}^{x=3} \;\int_{y=0}^{y=e^{x}} dy\;dx }=\frac{\int_{x=1}^{x=3} xe^{x}dx }{\int_{x=1}^{x=3} e^{x}dx }=\frac{2e^{3}}{e^{3}-e}=\frac{2e^{2}}{e^{2}-1}, \\ \kyc=\frac{\kMx}{\km}=\frac{\iint\limits_{\kR}y\;dA }{\iint\limits_{\kR}dA }=\frac{\int_{x=1}^{x=3} \;\int_{y=0}^{y=e^{x}} y\;dy\;dx }{\int_{x=1}^{x=3} \;\int_{y=0}^{y=e^{x}} dy\;dx }=\frac{\int_{x=1}^{x=3} \frac{e^{2x}}{2}dx }{\int_{x=1}^{x=3} e^{x}dx }=\frac{\frac{1}{4}e^{2}(e^{4}-1)}{e(e^{2}-1)}=\frac{1}{4}e(e^{2}+1).\end{array}$$
+<p>Thus the <span data-concept="centroid">centroid</span> of the <span data-concept="region">region</span> is</p>
+$$(\kxc,\kyc)=(\frac{2e^{2}}{e^{2}-1},\frac{1}{4}e(e^{2}+1)).$$
+</div>
+<div class="exercises" data-place="fs-id1167794094296"></div>
+</section>
+
+<section id="moments-of-inertia">
+<h2>Moments of Inertia</h2>
+<p class="cite-target">For a clear understanding of how to calculate <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> using <span data-concept="double-integral">double integrals</span>, we need to go back to the general definition of moments and <span data-concept="center-of-mass">centers of mass</span> in <a href="/calculus/ch06/6.6/">Section 6.6</a><sup class="fn" data-note="c-volume"></sup>. The <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span> of a particle of mass $\km$ about an axis is $mr^{2},$ where $r$ is the distance of the particle from the axis. We can see from Figure 15.66 that the <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span> of the subrectangle $R_{ij}$ about the $x\text{-axis}$ is ${(y_{ij}^{*})}^{2}\krho (x_{ij}^{*},y_{ij}^{*})\Delta A.$ Similarly, the <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span> of the subrectangle $R_{ij}$ about the $y\text{-axis}$ is ${(x_{ij}^{*})}^{2}\krho (x_{ij}^{*},y_{ij}^{*})\Delta A.$ The <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span> is related to the rotation of the mass; specifically, it measures the tendency of the mass to resist a change in rotational motion about an axis.</p>
+<p>The <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span> $\kIx$ about the $x\text{-axis}$ for the <span data-concept="region">region</span> $\kR$ is the limit of the sum of <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> of the <span data-concept="region">regions</span> $R_{ij}$ about the $x\text{-axis}\text{.}$ Hence</p>
+$$\kIx=\lim_{k,l\to \infty}{\sum_{i=1}^{k} \sum_{j=1}^{l} (y_{ij}^{*}) }^{2}\km_{ij}=\lim_{k,l\to \infty}{\sum_{i=1}^{k} \sum_{j=1}^{l} (y_{ij}^{*}) }^{2}\krho (x_{ij}^{*},y_{ij}^{*})\Delta A=\iint\limits_{\kR}y^{2}\krho (x,y) dA.$$
+<p>Similarly, the <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span> $\kIy$ about the $y\text{-axis}$ for $\kR$ is the limit of the sum of <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> of the <span data-concept="region">regions</span> $R_{ij}$ about the $y\text{-axis}\text{.}$ Hence</p>
+$$\kIy=\lim_{k,l\to \infty}{\sum_{i=1}^{k} \sum_{j=1}^{l} (x_{ij}^{*}) }^{2}\km_{ij}=\lim_{k,l\to \infty}{\sum_{i=1}^{k} \sum_{j=1}^{l} (x_{ij}^{*}) }^{2}\krho (x_{ij}^{*},y_{ij}^{*})\Delta A=\iint\limits_{\kR}x^{2}\krho (x,y) dA.$$
+<p id="polar-moment-term">Sometimes, we need to find the <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span> of an object about the origin, which is known as the polar <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span>. We denote this by $\kIzero$ and obtain it by adding the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> $\kIx$ and $\kIy.$ Hence</p>
+$$\kIzero=\kIx+\kIy=\iint\limits_{\kR}(x^{2}+y^{2}) \krho (x,y)dA.$$
+<p>All these expressions can be written in polar coordinates by substituting $x=r\;\cos \theta ,$ $y=r\;\sin \theta ,$ and $dA=r\;dr\;d\theta .$ For example, $\kIzero=\iint\limits_{\kR}r^{2}\krho (r\;\cos \theta ,r\;\sin \theta ) dA.$</p>
+<div class="example" id="fs-id1167793924276">
+<h3>Example 15.60 · Finding Moments of Inertia for a Triangular Lamina</h3>
+<p>Use the triangular <span data-concept="region">region</span> $\kR$ with vertices $(0,0),(2,2),$ and $(2,0)$ and with density $\krho (x,y)=xy$ as in previous examples. Find the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span>.</p>
+<h4>Solution</h4>
+<p>Using the expressions established above for the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span>, we have</p>
+$$\begin{array}{rll}\kIx & = & \iint\limits_{\kR}y^{2}\krho (x,y) dA=\int_{x=0}^{x=2} \;\int_{y=0}^{y=x} xy^{3}dy\;dx =\frac{8}{3}, \\ \kIy & = & \iint\limits_{\kR}x^{2}\krho (x,y) dA=\int_{x=0}^{x=2} \;\int_{y=0}^{y=x} x^{3}y\;dy\;dx =\frac{16}{3}, \\ \kIzero & = & \iint\limits_{\kR}(x^{2}+y^{2}) \krho (x,y)dA=\int_0^{2} \;\int_0^{x} (x^{2}+y^{2})xy\;dy\;dx \\ & = & \kIx+\kIy=8.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793924276"></div>
+<p id="gyration-term">As mentioned earlier, the <span data-concept="moments-of-inertia-of-a-lamina">moment of inertia</span> of a particle of mass $\km$ about an axis is $mr^{2}$ where $r$ is the distance of the particle from the axis, also known as the <strong><span data-concept="radius-of-gyration">radius of gyration</span></strong>.</p>
+<p>Hence the <span data-concept="radius-of-gyration">radii of gyration</span> with respect to the $x\text{-axis,}$ the $y\text{-axis,}$ and the origin are</p>
+$$R_{x}=\sqrt{\frac{\kIx}{\km}},R_{y}=\sqrt{\frac{\kIy}{\km}},\text{and}\;R_{0}=\sqrt{\frac{\kIzero}{\km}},$$
+<p>respectively. In each case, the <span data-concept="radius-of-gyration">radius of gyration</span> tells us how far (perpendicular distance) from the axis of rotation the entire mass of an object might be concentrated. The moments of an object are useful for finding information on the balance and torque of the object about an axis, but <span data-concept="radius-of-gyration">radii of gyration</span> are used to describe the distribution of mass around its centroidal axis. There are many applications in engineering and physics. Sometimes it is necessary to find the <span data-concept="radius-of-gyration">radius of gyration</span>, as in the next example.</p>
+<div class="example" id="fs-id1167794296453">
+<h3>Example 15.61 · Finding the Radius of Gyration for a Triangular Lamina</h3>
+<p>Consider the same triangular <span data-concept="lamina">lamina</span> $\kR$ with vertices $(0,0),(2,2),$ and $(2,0)$ and with density $\krho (x,y)=xy$ as in previous examples. Find the <span data-concept="radius-of-gyration">radii of gyration</span> with respect to the $x\text{-axis,}$ the $y\text{-axis,}$ and the origin.</p>
+<h4>Solution</h4>
+<p>If we compute the mass of this <span data-concept="region">region</span> we find that $\km=2.$ We found the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> of this <span data-concept="lamina">lamina</span> in <a href="#fs-id1167794250129">Example 15.58</a><sup class="fn" data-note="c-ex61-ref"></sup>. From these data, the <span data-concept="radius-of-gyration">radii of gyration</span> with respect to the $x\text{-axis,}$ $y\text{-axis,}$ and the origin are, respectively,</p>
+$$\begin{array}{rll}R_{x} & = & \sqrt{\frac{\kIx}{\km}}=\sqrt{\frac{8/3}{2}}=\sqrt{\frac{8}{6}}=\frac{2\sqrt{3}}{3}, \\ R_{y} & = & \sqrt{\frac{\kIy}{\km}}=\sqrt{\frac{16/3}{2}}=\sqrt{\frac{8}{3}}=\frac{2\sqrt{6}}{3}, \\ R_{0} & = & \sqrt{\frac{\kIzero}{\km}}=\sqrt{\frac{8}{2}}=\sqrt{4}=2.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167794296453"></div>
+</section>
+
+<section id="three-dimensions">
+<h2>Center of Mass and Moments of Inertia in Three Dimensions</h2>
+<p class="cite-target">All the expressions of <span data-concept="double-integral">double integrals</span> discussed so far can be modified to become <span data-concept="triple-integral">triple integrals</span>.</p>
+<div class="note" id="fs-id1167793294163">
+<div class="eyebrow">Definition</div>
+<p>If we have a solid object $\kQ$ with a <span data-concept="density-function">density function</span> $\krho (x,y,z)$ at any point $(x,y,z)$ in space, then its mass is</p>
+$$\km=\iiint\limits_{\kQ}\krho (x,y,z) dV.$$
+<p>Its moments about the $xy\text{-plane,}$ the $xz\text{-plane,}$ and the $yz\text{-plane}$ are</p>
+$$\begin{array}{l}\kMxy=\iiint\limits_{\kQ}z\rho (x,y,z) dV,\;\kMxz=\iiint\limits_{\kQ}y\rho (x,y,z) dV, \\ \kMyz=\iiint\limits_{\kQ}x\rho (x,y,z) dV.\end{array}$$
+<p>If the <span data-concept="center-of-mass">center of mass</span> of the object is the point $(\kxbar,\kybar,\kzbar),$ then</p>
+$$\kxbar=\frac{\kMyz}{\km}, \;\kybar=\frac{\kMxz}{\km},\kzbar=\frac{\kMxy}{\km}.$$
+<p>Also, if the solid object is homogeneous (with constant density), then the <span data-concept="center-of-mass">center of mass</span> becomes the <span data-concept="centroid">centroid</span> of the solid. Finally, the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> about the $yz\text{-plane,}$ the $xz\text{-plane,}$ and the $xy\text{-plane}$ are</p>
+$$\begin{array}{l} \\ \kIx=\iiint\limits_{\kQ}(y^{2}+z^{2}) \krho (x,y,z)dV, \\ \kIy=\iiint\limits_{\kQ}(x^{2}+z^{2}) \krho (x,y,z)dV, \\ \kIz=\iiint\limits_{\kQ}(x^{2}+y^{2}) \krho (x,y,z)dV.\end{array}$$
+</div>
+<div class="example" id="fs-id1167793313677">
+<h3>Example 15.62 · Finding the Mass of a Solid</h3>
+<p>Suppose that $\kQ$ is a solid <span data-concept="region">region</span> bounded by $x+2y+3z=6$ and the coordinate planes and has density $\krho (x,y,z)=x^{2}yz.$ Find the total mass.</p>
+<h4>Solution</h4>
+<p>The <span data-concept="region">region</span> $\kQ$ is a tetrahedron (Figure 15.70) meeting the axes at the points $(6,0,0),(0,3,0),$ and $(0,0,2).$ To find the limits of integration, let $z=0$ in the slanted plane $z=\frac{1}{3}(6-x-2y).$ Then for $x$ and $y$ find the projection of $\kQ$ onto the $xy\text{-plane,}$ which is bounded by the axes and the line $x+2y=6.$ Hence the mass is</p>
+$$\km=\iiint\limits_{\kQ}\krho (x,y,z)dV=\int_{x=0}^{x=6} \;\int_{y=0}^{y=1/2(6-x)} \;\int_{z=0}^{z=1/3(6-x-2y)} x^{2}yz\;dz\;dy\;dx=\frac{108}{35}\approx 3.086 .$$
+<figure class="sim" id="sim-tetrahedron-mass" data-figure="15.70" data-original="/media/ch15/CNX_Calc_Figure_15_06_007.jpg" data-original-caption="Finding the mass of a three-dimensional solid Q.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.70</span><span>Finding the mass of a three-dimensional solid $\kQ.$ With density $\krho=x^{2}yz,$ its <span data-concept="center-of-mass-of-a-solid">center of mass</span> $(2.25,0.75,0.5)$ lies inside, its drops to the coordinate planes dashed; turn the solid to see where.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1167793313677"></div>
+<div class="example" id="fs-id1167794155359">
+<h3>Example 15.63 · Finding the Center of Mass of a Solid</h3>
+<p>Suppose $\kQ$ is a solid <span data-concept="region">region</span> bounded by the plane $x+2y+3z=6$ and the coordinate planes with density $\krho (x,y,z)=x^{2}yz$ (see Figure 15.70). Find the <span data-concept="center-of-mass">center of mass</span> using decimal approximation. Use the mass found in <a href="#fs-id1167793313677">Example 15.62</a></p>
+<h4>Solution</h4>
+<p>We have used this tetrahedron before and know the limits of integration, so we can proceed to the computations right away. First, we need to find the moments about the $xy\text{-plane,}$ the $xz\text{-plane,}$ and the $yz\text{-plane:}$</p>
+$$\begin{array}{l} \\ \\ \\ \kMxy=\iiint\limits_{\kQ}z\rho (x,y,z) dV=\int_{x=0}^{x=6} \;\int_{y=0}^{y=1/2(6-x)} \;\int_{z=0}^{z=1/3(6-x-2y)} x^{2}yz^{2}dz\;dy\;dx=\frac{54}{35} \approx 1.543, \\ \kMxz=\iiint\limits_{\kQ}y\rho (x,y,z) dV=\int_{x=0}^{x=6} \;\int_{y=0}^{y=1/2(6-x)} \;\int_{z=0}^{z=1/3(6-x-2y)} x^{2}y^{2}z\;dz\;dy\;dx=\frac{81}{35} \approx 2.314, \\ \kMyz=\iiint\limits_{\kQ}x\rho (x,y,z) dV=\int_{x=0}^{x=6} \;\int_{y=0}^{y=1/2(6-x)} \;\int_{z=0}^{z=1/3(6-x-2y)} x^{3}yz\;dz\;dy\;dx=\frac{243}{35} \approx 6.943.\end{array}$$
+<p>Hence the <span data-concept="center-of-mass">center of mass</span> is</p>
+$$\begin{array}{l} \\ \\ \\ \kxbar=\frac{\kMyz}{\km},\kybar=\frac{\kMxz}{\km},\kzbar=\frac{\kMxy}{\km}, \\ \kxbar=\frac{\kMyz}{\km}=\frac{243/35}{108/35}=\frac{243}{108}=2.25, \\ \kybar=\frac{\kMxz}{\km}=\frac{81/35}{108/35}=\frac{81}{108}=0.75, \\ \kzbar=\frac{\kMxy}{\km}=\frac{54/35}{108/35}=\frac{54}{108}=0.5.\end{array}$$
+<p>The <span data-concept="center-of-mass">center of mass</span> for the tetrahedron $\kQ$ is the point $(2.25,0.75,0.5).$</p>
+</div>
+<div class="exercises" data-place="fs-id1167794155359"></div>
+<p>We conclude this section with an example of finding <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> $\kIx,\kIy,$ and $\kIz.$</p>
+<div class="example" id="fs-id1167793277667">
+<h3>Example 15.64 · Finding the Moments of Inertia of a Solid</h3>
+<p>Suppose that $\kQ$ is a solid <span data-concept="region">region</span> and is bounded by $x+2y+3z=6$ and the coordinate planes with density $\krho (x,y,z)=x^{2}yz$ (see Figure 15.70). Find the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> of the tetrahedron $\kQ$ about the $yz\text{-plane,}$ the $xz\text{-plane,}$ and the $xy\text{-plane}\text{.}$</p>
+<h4>Solution</h4>
+<p>Once again, we can almost immediately write the limits of integration and hence we can quickly proceed to evaluating the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span>. Using the formula stated before, the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> of the tetrahedron $\kQ$ about the $xy\text{-plane,}$ the $xz\text{-plane,}$ and the $yz\text{-plane}$ are</p>
+$$\begin{array}{r} \\ \kIx=\iiint\limits_{\kQ}(y^{2}+z^{2})\krho (x,y,z)dV , \\ \kIy=\iiint\limits_{\kQ}(x^{2}+z^{2})\krho (x,y,z)dV ,\end{array}$$
+<p>and</p>
+$$\kIz=\iiint\limits_{\kQ}(x^{2}+y^{2})\krho (x,y,z)dV \;\text{with}\;\krho (x,y,z)=x^{2}yz.$$
+<p>Proceeding with the computations, we have</p>
+$$\begin{array}{l} \\ \\ \\ \\ \\ \\ \kIx=\iiint\limits_{\kQ}(y^{2}+z^{2})x^{2}yz\;dV =\int_{x=0}^{x=6} \;\int_{y=0}^{y=\frac{1}{2}(6-x)} \;\int_{z=0}^{z=\frac{1}{3}(6-x-2y)} (y^{2}+z^{2}) x^{2}yz\;dz\;dy\;dx=\frac{117}{35}\approx 3.343, \\ \kIy=\iiint\limits_{\kQ}(x^{2}+z^{2})x^{2}yz\;dV =\int_{x=0}^{x=6} \;\int_{y=0}^{y=\frac{1}{2}(6-x)} \;\int_{z=0}^{z=\frac{1}{3}(6-x-2y)} (x^{2}+z^{2}) x^{2}yz\;dz\;dy\;dx=\frac{684}{35}\approx 19.543, \\ \kIz=\iiint\limits_{\kQ}(x^{2}+y^{2})x^{2}yz\;dV =\int_{x=0}^{x=6} \;\int_{y=0}^{y=\frac{1}{2}(6-x)} \;\int_{z=0}^{z=\frac{1}{3}(6-x-2y)} (x^{2}+y^{2}) x^{2}yz\;dz\;dy\;dx=\frac{729}{35}\approx 20.829.\end{array}$$
+<p>Thus, the <span data-concept="moments-of-inertia-of-a-lamina">moments of inertia</span> of the tetrahedron $\kQ$ about the $yz\text{-plane,}$ the $xz\text{-plane,}$ and the $xy\text{-plane}$ are $117/35,684/35,\text{and}\;729/35,$ respectively.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793277667"></div>
+</section>

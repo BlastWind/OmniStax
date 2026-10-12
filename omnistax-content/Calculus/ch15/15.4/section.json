@@ -1,0 +1,1156 @@
+{
+ "id": "15.4",
+ "module": "m53965",
+ "chapter": "15",
+ "title": "Triple Integrals",
+ "short": "Triple Integrals",
+ "lead": "A <span data-concept=\"triple-integral\">triple integral</span> adds up a function of three variables over a solid, the way a double integral does over a plane region. This section defines it over a box, evaluates it in any of six orders, extends it to solids lying between two surfaces above a region of the plane, and uses it for volumes and average values.",
+ "objectives": [
+  "Recognize when a function of three variables is integrable over a rectangular box.",
+  "Evaluate a triple integral by expressing it as an iterated integral.",
+  "Recognize when a function of three variables is integrable over a closed and bounded region.",
+  "Simplify a calculation by changing the order of integration of a triple integral.",
+  "Calculate the average value of a function of three variables."
+ ],
+ "summary_html": "<ul><li>To compute a <span data-concept=\"triple-integral\">triple integral</span> we use Fubini’s theorem, which states that if $\\kf(x,y,z)$ is continuous on a rectangular box $\\kB=[a,b]\\;\\times \\;[c,d]\\;\\times \\;[e,\\kf],$ then $$\\iiint\\limits_{\\kB}\\kf(x,y,z)dV=\\int_e^{\\kf} \\;\\int_c^{d} \\;\\int_a^{b} \\kf(x,y,z)dx\\;dy\\;dz$$ and is also equal to any of the other five possible orderings for the iterated <span data-concept=\"triple-integral\">triple integral</span>.</li><li>To compute the volume of a general solid bounded <span data-concept=\"region\">region</span> $\\kE$ we use the <span data-concept=\"triple-integral\">triple integral</span> $$\\kV(\\kE)=\\iiint\\limits_{\\kE}1dV .$$</li><li>Interchanging the order of the iterated integrals does not change the answer. As a matter of fact, interchanging the <span data-concept=\"changing-the-order-of-integration\">order of integration</span> can help simplify the computation.</li><li>To compute the <span data-concept=\"average-value-of-a-function-of-three-variables\">average value</span> of a function over a general three-dimensional <span data-concept=\"region\">region</span>, we use $$\\kfave=\\frac{1}{\\kV(\\kE)}\\iiint\\limits_{\\kE}\\kf(x,y,z) dV.$$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Exercise 225 is keyed only “Answers may vary” for part a (the planes of the faces, to show); its worked part a is AI-written. Of the unkeyed section exercises, five “show” exercises are kept with AI-written suggested approaches: 189, 190, 237, 238 and 239 (the last two read with height a, the case their formulas describe). The other 28 unkeyed ones are computational or call for a CAS and are left out: exercises 182–236 even except 190, and 240. Review exercises 417 and 425 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-subboxes",
+   "kind": "sim",
+   "number": "15.40",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_04_001.jpg"
+   ],
+   "original_caption": "A rectangular box in ℝ³ divided into subboxes by planes parallel to the coordinate planes.",
+   "draws": [
+    "region",
+    "integral",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-example-box",
+   "kind": "figure",
+   "number": "15.41",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_04_002.jpg"
+   ],
+   "original_caption": "Evaluating a triple integral over a given rectangular box.",
+   "draws": [
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-solid-over-d",
+   "kind": "sim",
+   "number": "15.42",
+   "folds": [
+    "15.43",
+    "15.44"
+   ],
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_04_003.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_04_004.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_04_005.jpg"
+   ],
+   "original_caption": "(Figure 15.42) We can describe region E as the space between u₁(x,y) and u₂(x,y) above the projection D of E onto the xy-plane. (Figure 15.43) A box E where the projection D in the xy-plane is of Type I. (Figure 15.44) A box E where the projection D in the xy-plane is of Type II.",
+   "draws": [
+    "region",
+    "surface",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tetrahedron-e",
+   "kind": "figure",
+   "number": "15.45",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_04_006.jpg"
+   ],
+   "original_caption": "The solid E has a projection D on the xy-plane of Type I.",
+   "draws": [
+    "region",
+    "surface",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pyramid",
+   "kind": "sim",
+   "number": "15.46",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_04_007.jpg"
+   ],
+   "original_caption": "Finding the volume of a pyramid with a square base.",
+   "draws": [
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-three-projections",
+   "kind": "sim",
+   "number": "15.47",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_04_008.jpg"
+   ],
+   "original_caption": "The three cross sections of E on the three coordinate planes.",
+   "draws": [
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-paraboloid-y",
+   "kind": "figure",
+   "number": "15.48",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_04_009.jpg"
+   ],
+   "original_caption": "Integrating a triple integral over a paraboloid.",
+   "draws": [
+    "region",
+    "surface",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cross-section",
+   "kind": "sim",
+   "number": "15.49",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_04_010.jpg"
+   ],
+   "original_caption": "Cross section in the xy-plane of the paraboloid in Figure 15.48.",
+   "draws": [
+    "region",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "triple-intro",
+   "concept": "function-of-more-than-two-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "riemann-sum-term",
+   "concept": "triple-riemann-sum",
+   "verb": "introduces"
+  },
+  {
+   "span": "riemann-sum-term",
+   "concept": "double-riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793949956",
+   "concept": "triple-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794125564",
+   "concept": "fubinis-theorem-for-triple-integrals",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrable-three",
+   "concept": "fubinis-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794284188",
+   "concept": "triple-integral-over-a-general-region",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-bounded",
+   "concept": "type-i-region",
+   "verb": "uses"
+  },
+  {
+   "span": "general-bounded",
+   "concept": "type-ii-region",
+   "verb": "uses"
+  },
+  {
+   "span": "volume-term",
+   "concept": "volume-by-triple-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793504407",
+   "concept": "volume-by-triple-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "order",
+   "concept": "changing-the-order-of-integration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793452797",
+   "concept": "double-integral-in-polar-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793311695",
+   "concept": "average-value-of-a-function-of-three-variables",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794064017",
+   "source_number": "Checkpoint 15.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794117648"
+   },
+   "cite": "integrable-three",
+   "prompt": "Evaluate the triple integral $\\iiint\\limits_{B}z\\;\\sin x\\;\\cos y \\;dV$ where $B=\\{(x,y,z)|0\\le x\\le \\pi ,\\frac{3\\pi}{2}\\le y\\le 2\\pi ,1\\le z\\le 3\\}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iiint\\limits_{B}z\\;\\sin x\\;\\cos y \\;dV=8$",
+    "hint": "Follow the steps in the previous example."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793522421",
+   "source_number": "Checkpoint 15.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793504407"
+   },
+   "cite": "general-bounded",
+   "prompt": "Consider the solid sphere $E=\\{(x,y,z)|x^{2}+y^{2}+z^{2}\\le 9\\}.$ Write the triple integral $\\iiint\\limits_{E}f(x,y,z)dV$ for an arbitrary function $f$ as an iterated integral. Then evaluate this triple integral with $f(x,y,z)=1.$ Notice that this gives the volume of a sphere using a triple integral.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iiint\\limits_{E}1 dV=\\int_{x=-3}^{x=3}\\int_{y=-\\sqrt{9-x^{2}}}^{y=\\sqrt{9-x^{2}}}\\int_{z=-\\sqrt{9-x^{2}-y^{2}}}^{z=\\sqrt{9-x^{2}-y^{2}}}1dz\\;dy\\;dx=36\\pi .$",
+    "hint": "Follow the steps in the previous example. Use symmetry."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793618000",
+   "source_number": "Checkpoint 15.25",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794296742"
+   },
+   "cite": "order",
+   "prompt": "<p>Write five different iterated integrals equal to the given integral</p>\n$$\\int_{z=0}^{z=4} \\;\\int_{y=0}^{y=4-z} \\;\\int_{x=0}^{x=\\sqrt{y}} f(x,y,z) dx\\;dy\\;dz.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "(i) $\\int_{z=0}^{z=4} \\;\\int_{x=0}^{x=\\sqrt{4-z}} \\;\\int_{y=x^{2}}^{y=4-z} f(x,y,z) dy\\;dx\\;dz,$ (ii) $\\int_{y=0}^{y=4} \\;\\int_{z=0}^{z=4-y} \\;\\int_{x=0}^{x=\\sqrt{y}} f(x,y,z) dx\\;dz\\;dy,$ (iii) $\\int_{y=0}^{y=4} \\;\\int_{x=0}^{x=\\sqrt{y}} \\;\\int_{z=0}^{z=4-y} f(x,y,z) dz\\;dx\\;dy,$ (iv) $\\int_{x=0}^{x=2} \\;\\int_{y=x^{2}}^{y=4} \\;\\int_{z=0}^{z=4-y} f(x,y,z) dz\\;dy\\;dx,$ (v) $\\int_{x=0}^{x=2} \\;\\int_{z=0}^{z=4-x^{2}} \\;\\int_{y=x^{2}}^{y=4-z} f(x,y,z) dy\\;dz\\;dx$",
+    "hint": "Follow the steps in the previous example, using the region $E$ as $\\{(x,y,z)|0\\le z\\le 4,0\\le y\\le 4-z,0\\le x\\le \\sqrt{y}\\},$ and describe and sketch the projections onto each of the three planes, five different times."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167794058733",
+   "source_number": "Checkpoint 15.26",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793367912"
+   },
+   "cite": "average-three",
+   "prompt": "Find the average value of the function $f(x,y,z)=xyz$ over the cube with sides of length $4$ units in the first octant with one vertex at the origin and edges parallel to the coordinate axes.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f_{\\text{ave}}=8$",
+    "hint": "Follow the steps in the previous example."
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1167793566828",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrable-three",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the rectangular solid box $B.$</p><p>$\\iiint\\limits_{B}(2x+3y^{2}+4z^{3}) dV,$ where $B=\\{(x,y,z)|0\\le x\\le 1,0\\le y\\le 2,0\\le z\\le 3\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$192$"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1167793590440",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrable-three",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the rectangular solid box $B.$</p><p>$\\iiint\\limits_{B}(x\\;\\cos y+z) dV,$ where $B=\\{(x,y,z)|0\\le x\\le 1,0\\le y\\le \\pi ,-1\\le z\\le 1\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1167793412171",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrable-three",
+   "prompt": "<p>In the following exercises, change the order of integration by integrating first with respect to $z,$ then $x,$ then $y.$</p><p>$\\int_0^{1} \\;\\int_1^{2} \\;\\int_2^{3} (x^{2}+\\ln y+z) dx\\;dy\\;dz$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_1^{2} \\;\\int_2^{3} \\;\\int_0^{1} (x^{2}+\\ln y+z) dz\\;dx\\;dy=\\frac{35}{6}+2\\;\\ln 2$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1167793374996",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrable-three",
+   "prompt": "<p>In the following exercises, change the order of integration by integrating first with respect to $z,$ then $x,$ then $y.$</p><p>$\\int_{-1}^{2} \\;\\int_1^{3} \\;\\int_0^{4} (x^{2}z+\\frac{1}{y}) dx\\;dy\\;dz$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_1^{3} \\;\\int_0^{4} \\;\\int_{-1}^{2} (x^{2}z+\\frac{1}{y}) dz\\;dx\\;dy=64+12\\;\\ln 3$"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1167793641968",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrable-three",
+   "prompt": "<p>In the following exercises, change the order of integration by integrating first with respect to $z,$ then $x,$ then $y.$</p><p>Let $F,G,\\;\\text{and}\\;H$ be continuous functions on $[a,b],[c,d],$ and $[e,f],$ respectively, where $a,b,c,d,e,\\;\\text{and}\\;f$ are real numbers such that $a\\lt b,c\\lt d,\\;\\text{and}\\;e\\lt f.$ Show that</p>$$\\int_a^{b} \\;\\int_c^{d} \\;\\int_e^{f} F(x) G(y)H(z)dz\\;dy\\;dx=(\\int_a^{b} F(x)dx )(\\int_c^{d} G(y)dy )(\\int_e^{f} H(z)dz ).$$",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Integrate from the inside out. In $\\int_{e}^{f}F(x)G(y)H(z)\\,dz$ the factors $F(x)G(y)$ are constant, so it equals $F(x)G(y)\\int_{e}^{f}H(z)\\,dz;$ the number $\\int_{e}^{f}H(z)\\,dz$ then comes out of the next integral, $\\int_{c}^{d}F(x)G(y)\\,dy=F(x)\\int_{c}^{d}G(y)\\,dy,$ and finally $\\int_{a}^{b}F(x)\\,dx$ is left, so the iterated integral is $(\\int_{a}^{b}F(x)\\,dx)(\\int_{c}^{d}G(y)\\,dy)(\\int_{e}^{f}H(z)\\,dz).$ Continuity makes each integral exist.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e190",
+   "source_id": "fs-id1167793719072",
+   "source_number": "190",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrable-three",
+   "prompt": "<p>In the following exercises, change the order of integration by integrating first with respect to $z,$ then $x,$ then $y.$</p><p>Let $F,G,\\;\\text{and}\\;H$ be differential functions on $[a,b],[c,d],$ and $[e,f],$ respectively, where $a,b,c,d,e,\\;\\text{and}\\;f$ are real numbers such that $a\\lt b,c\\lt d,\\;\\text{and}\\;e\\lt f.$ Show that</p>$$\\int_a^{b} \\;\\int_c^{d} \\;\\int_e^{f} F^{\\prime}(x) G^{\\prime}(y)H^{\\prime}(z)dz\\;dy\\;dx=[F(b)-F(a)]\\;[G(d)-G(c)]\\;[H(f)-H(e)].$$",
+   "answer": {
+    "type": "open",
+    "solution": "<p>By the preceding exercise applied to $F^{\\prime},$ $G^{\\prime}$ and $H^{\\prime},$ the iterated integral is $(\\int_{a}^{b}F^{\\prime}(x)\\,dx)(\\int_{c}^{d}G^{\\prime}(y)\\,dy)(\\int_{e}^{f}H^{\\prime}(z)\\,dz),$ and by the Fundamental Theorem of Calculus each factor is a difference of values of $F,$ $G$ or $H:$ $[F(b)-F(a)][G(d)-G(c)][H(f)-H(e)].$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1167793538322",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the bounded region $E=\\{(x,y,z)|a\\le x\\le b,h_{1}(x)\\le y\\le h_{2}(x),e\\le z\\le f\\}.$</p><p>$\\iiint\\limits_{E}(2x+5y+7z) dV,$ where $E=\\{(x,y,z)|0\\le x\\le 1,0\\le y\\le -x+1,1\\le z\\le 2\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{77}{12}$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1167793312478",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the bounded region $E=\\{(x,y,z)|a\\le x\\le b,h_{1}(x)\\le y\\le h_{2}(x),e\\le z\\le f\\}.$</p><p>$\\iiint\\limits_{E}(\\sin x+\\sin y) dV,$ where $E=\\{(x,y,z)|0\\le x\\le \\frac{\\pi}{2},-\\cos x\\le y\\le \\cos x,-1\\le z\\le 1\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2$"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1167793638532",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the indicated bounded region $E.$</p><p>$\\iiint\\limits_{E}(x+2yz)dV ,$ where $E=\\{(x,y,z)|0\\le x\\le 1,0\\le y\\le x,0\\le z\\le 5-x-y\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{439}{120}$"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1167793495332",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the indicated bounded region $E.$</p><p>$\\iiint\\limits_{E}y\\;dV ,$ where $E=\\{(x,y,z)|-1\\le x\\le 1,-\\sqrt{1-x^{2}}\\le y\\le \\sqrt{1-x^{2}},0\\le z\\le 1-x^{2}-y^{2}\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1167793515949",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the bounded region $E$ of the form $E=\\{(x,y,z)|g_{1}(y)\\le x\\le g_{2}(y),c\\le y\\le d,e\\le z\\le f\\}.$</p><p>$\\iiint\\limits_{E}x^{2}dV ,$ where $E=\\{(x,y,z)|1-y^{2}\\le x\\le y^{2}-1,-1\\le y\\le 1,1\\le z\\le 2\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{64}{105}$"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1167793720938",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the bounded region $E$ of the form $E=\\{(x,y,z)|g_{1}(y)\\le x\\le g_{2}(y),c\\le y\\le d,e\\le z\\le f\\}.$</p><p>$\\iiint\\limits_{E}(x-yz) dV,$ where $E=\\{(x,y,z)|-y^{6}\\le x\\le \\sqrt{y},0\\le y\\le 1,-1\\le z\\le 1\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{11}{26}$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1167793959357",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the bounded region</p>$$E=\\{(x,y,z)|g_{1}(y)\\le x\\le g_{2}(y),c\\le y\\le d,u_{1}(x,y)\\le z\\le u_{2}(x,y)\\}.$$<p>$\\iiint\\limits_{E}z dV,$ where $E=\\{(x,y,z)|-y\\le x\\le y,0\\le y\\le 1,0\\le z\\le 1-x^{4}-y^{4}\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{113}{450}$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1167793570746",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the bounded region</p>$$E=\\{(x,y,z)|g_{1}(y)\\le x\\le g_{2}(y),c\\le y\\le d,u_{1}(x,y)\\le z\\le u_{2}(x,y)\\}.$$<p>$\\iiint\\limits_{E}(x-z) dV,$ where $E=\\{(x,y,z)|-\\sqrt{1-y^{2}}\\le x\\le 0,0\\le y\\le \\frac{1}{2},0\\le z\\le 1-x^{2}-y^{2}\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{-609-216\\sqrt{3}-80\\pi}{5760}\\approx -0.21431$"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1167793293597",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the bounded region</p><p>$E=\\{(x,y,z)|(x,y)\\in D,u_{1}(x,y)\\le z\\le u_{2}(x,y)\\},$ where $D$ is the projection of $E$ onto the $xy$-plane.</p><p>$\\iint\\limits_{D}(\\int_1^{2} (x+z)dz ) dA,$ where $D=\\{(x,y)|x^{2}+y^{2}\\le 1\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1167793957798",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, evaluate the triple integrals over the bounded region</p><p>$E=\\{(x,y,z)|(x,y)\\in D,u_{1}(x,y)\\le z\\le u_{2}(x,y)\\},$ where $D$ is the projection of $E$ onto the $xy$-plane.</p><p>$\\iint\\limits_{D}(\\int_0^{10-x-y} (x+2z)dz ) dA,$ where $D=\\{(x,y)|y\\ge 0,x\\ge 0,x+y\\le 10\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1250$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1167793421295",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>The solid $E$ bounded by $y^{2}+z^{2}=9,z=0,x=0,$ and $x=5$ is shown in the following figure. Evaluate the integral $\\iiint\\limits_{E}z\\;dV$ by integrating first with respect to $z,$ then $y,\\;\\text{and then}\\;x.$</p><img src=\"/media/ch15/CNX_Calc_Figure_15_04_201.jpg\" alt=\"A solid arching shape that reaches its maximum along the y axis with z = 3. The shape reach zero at y = plus or minus 3, and the graph is truncated at x = 0 and 5.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{5} \\;\\int_{-3}^{3} \\;\\int_0^{\\sqrt{9-y^{2}}} z\\;dz\\;dy\\;dx =90$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1167794222532",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p><strong>[T]</strong> The volume of a solid $E$ is given by the integral $\\int_{-2}^{0} \\;\\int_x^{0} \\;\\int_0^{x^{2}+y^{2}} dz\\;dy\\;dx .$ Use a computer algebra system (CAS) to graph $E$ and find its volume. Round your answer to two decimal places.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$V=5.33$</p>\n<img src=\"/media/ch15/CNX_Calc_Figure_15_04_203.jpg\" alt=\"A complex shape that starts at the origin and reaches its maximum at (negative 2, negative 2, 8). The shape is truncated by the x = y plane, the x = 0 plane, the y = negative 2 plane, the z = 0 plane, and a complex triangular-like shape with curved edges and sides (negative 2, negative 2, 8), (0, 0, 0), and (0, negative 2, 4).\">"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1167793411195",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order",
+   "prompt": "<p>In the following exercises, use two circular permutations of the variables $x,y,\\;\\text{and}\\;z$ to write new integrals whose values equal the value of the original integral. A circular permutation of $x,y,\\;\\text{and}\\;z$ is the arrangement of the numbers in one of the following orders: $y,z,\\;\\text{and}\\;x\\;\\text{or}\\;z,x,\\;\\text{and}\\;y.$</p><p>$\\int_0^{1} \\;\\int_1^{3} \\;\\int_2^{4} (x^{2}z^{2}+1) dx\\;dy\\;dz$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{1} \\;\\int_1^{3} \\;\\int_2^{4} (y^{2}z^{2}+1) dz\\;dx\\;dy;$ $\\int_0^{1} \\;\\int_1^{3} \\;\\int_2^{4} (x^{2}y^{2}+1) dy\\;dz\\;dx$"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1167793571253",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order",
+   "prompt": "<p>In the following exercises, use two circular permutations of the variables $x,y,\\;\\text{and}\\;z$ to write new integrals whose values equal the value of the original integral. A circular permutation of $x,y,\\;\\text{and}\\;z$ is the arrangement of the numbers in one of the following orders: $y,z,\\;\\text{and}\\;x\\;\\text{or}\\;z,x,\\;\\text{and}\\;y.$</p><p>$\\int_0^{1} \\;\\int_{-y}^{y} \\;\\int_0^{1-x^{4}-y^{4}} e^{x} \\;dz\\;dx\\;dy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{1} \\;\\int_{\\text{-z}}^{z} \\;\\int_0^{1-y^{4}-z^{4}} e^{x}\\;dx\\;dy\\;dz;\\int_0^{1} \\;\\int_{\\text{-x}}^{x} \\;\\int_0^{1-z^{4}-x^{4}} lnz\\;dy\\;dz\\;dx$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1167793943748",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, use two circular permutations of the variables $x,y,\\;\\text{and}\\;z$ to write new integrals whose values equal the value of the original integral. A circular permutation of $x,y,\\;\\text{and}\\;z$ is the arrangement of the numbers in one of the following orders: $y,z,\\;\\text{and}\\;x\\;\\text{or}\\;z,x,\\;\\text{and}\\;y.$</p><p>Set up the integral that gives the volume of the solid $E$ bounded by $y^{2}=x^{2}+z^{2}$ and $y=a,$ where $a\\gt 0$ and $y\\ge 0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$V=\\int_{-a}^{a} \\;\\int_{-\\sqrt{a^{2}-z^{2}}}^{\\sqrt{a^{2}-z^{2}}} \\int_{\\sqrt{x^{2}+z^{2}}}^{a^{2}} dy\\;dx\\;dz$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1167793589816",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-three",
+   "prompt": "<p>Find the average value of the function $f(x,y,z)=x+y+z$ over the parallelepiped determined by $x=0,x=1,y=0,y=3,z=0,$ and $z=5.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{9}{2}$"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1167793639926",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>Find the volume of the solid $E$ that lies under the plane $x+y+z=9$ and whose projection onto the $xy$-plane is bounded by $x=\\sqrt{y-1},x=0,$ and $x+y=7.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{156}{5}$"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1167793393622",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>In the following exercises, use two circular permutations of the variables $x,y,\\;\\text{and}\\;z$ to write new integrals whose values equal the value of the original integral. A circular permutation of $x,y,\\;\\text{and}\\;z$ is the arrangement of the numbers in one of the following orders: $y,z,\\;\\text{and}\\;x\\;\\text{or}\\;z,x,\\;\\text{and}\\;y.$</p><p>Consider the pyramid with the base in the $xy$-plane of $[-2,2]\\;\\times \\;[-2,2]$ and the vertex at the point $(0,0,8).$</p><p>a. Show that the equations of the planes of the lateral faces of the pyramid are $4y+z=8,$ $4y-z=-8,$ $4x+z=8,$ and $-4x+z=8.$</p><p>b. Find the volume of the pyramid.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>a. The face over the edge $y=2$ of the base contains $(-2,2,0),$ $(2,2,0)$ and the vertex $(0,0,8).$ The plane $4y+z=8$ contains all three: $4(2)+0=8$ and $4(0)+8=8.$ In the same way $4y-z=-8$ contains $(\\pm 2,-2,0)$ and $(0,0,8),$ $4x+z=8$ contains $(2,\\pm 2,0)$ and the vertex, and $-4x+z=8$ contains $(-2,\\pm 2,0)$ and the vertex, so these are the planes of the four lateral faces.</p><p>b. $\\frac{128}{3}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1167793938005",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order",
+   "prompt": "<p>The solid $E$ bounded by the sphere of equation $x^{2}+y^{2}+z^{2}=r^{2}$ with $r\\gt 0$ and located in the first octant is represented in the following figure.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_04_205.jpg\" alt=\"The eighth of a sphere of radius 2 with center at the origin for positive x, y, and z.\"><p>a. Write the triple integral that gives the volume of $E$ by integrating first with respect to $z,$ then with $y,$ and then with $x.$</p><p>b. Rewrite the integral in part a. as an equivalent integral in five other orders.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\int_0^{r} \\;\\int_0^{\\sqrt{r^{2}-x^{2}}} \\;\\int_0^{\\sqrt{r^{2}-x^{2}-y^{2}}} dz\\;dy\\;dx ;$ b. $\\int_0^{r} \\;\\int_0^{\\sqrt{r^{2}-y^{2}}} \\;\\int_0^{\\sqrt{r^{2}-x^{2}-y^{2}}} dz\\;dx\\;dy ,$ $\\int_0^{r} \\;\\int_0^{\\sqrt{r^{2}-z^{2}}} \\;\\int_0^{\\sqrt{r^{2}-x^{2}-z^{2}}} dy\\;dx\\;dz ,$ $\\int_0^{r} \\;\\int_0^{\\sqrt{r^{2}-x^{2}}} \\;\\int_0^{\\sqrt{r^{2}-x^{2}-z^{2}}} dy\\;dz\\;dx ,$ $\\int_0^{r} \\;\\int_0^{\\sqrt{r^{2}-z^{2}}} \\;\\int_0^{\\sqrt{r^{2}-y^{2}-z^{2}}} dx\\;dy\\;dz ,$ $\\int_0^{r} \\;\\int_0^{\\sqrt{r^{2}-y^{2}}} \\;\\int_0^{\\sqrt{r^{2}-y^{2}-z^{2}}} dx\\;dz\\;dy$"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1167793603745",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>Find the volume of the prism with vertices $(0,0,0),(2,0,0),(2,3,0),$ $(0,3,0),(0,0,1),\\;\\text{and}\\;(2,0,1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$3$"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1167794067778",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>The solid $E$ bounded by $z=10-2x-y$ and situated in the first octant is given in the following figure. Find the volume of the solid.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_04_207.jpg\" alt=\"A tetrahedron bounded by the x y, y z, and x z planes and a triangle with vertices (0, 0, 10), (5, 0, 0), and (0, 10, 0).\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{250}{3}$"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1167793460707",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrable-three",
+   "prompt": "<p>The midpoint rule for the triple integral $\\iiint\\limits_{B}f(x,y,z)dV$ over the rectangular solid box $B$ is a generalization of the midpoint rule for double integrals. The region $B$ is divided into subboxes of equal sizes and the integral is approximated by the triple Riemann sum $\\sum_{i=1}^{l} \\sum_{j=1}^{m} \\sum_{k=1}^{n} f(\\bar{x_{i}},\\bar{y_{j}},\\bar{z_{k}}) \\Delta V,$ where $(\\bar{x_{i}},\\bar{y_{j}},\\bar{z_{k}})$ is the center of the box $B_{ijk}$ and $\\Delta V$ is the volume of each subbox. Apply the midpoint rule to approximate $\\iiint\\limits_{B}x^{2}dV$ over the solid $B=\\{(x,y,z)|0\\le x\\le 1,0\\le y\\le 1,0\\le z\\le 1\\}$ by using a partition of eight cubes of equal size. Round your answer to three decimal places.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{5}{16}\\approx 0.313$"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1167793515848",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-three",
+   "prompt": "<p>In the following exercises, use two circular permutations of the variables $x,y,\\;\\text{and}\\;z$ to write new integrals whose values equal the value of the original integral. A circular permutation of $x,y,\\;\\text{and}\\;z$ is the arrangement of the numbers in one of the following orders: $y,z,\\;\\text{and}\\;x\\;\\text{or}\\;z,x,\\;\\text{and}\\;y.$</p><p>Suppose that the temperature in degrees Celsius at a point $(x,y,z)$ of a solid $E$ bounded by the coordinate planes and $x+y+z=5$ is $T(x,y,z)=xz+5z+10.$ Find the average temperature over the solid.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{35}{2}$"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1167793886502",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>Show that the volume of a right square pyramid of height $h$ and side length $a$ is $v=\\frac{ha^{2}}{3}$ by using triple integrals.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Place the base, a square of side $a,$ in the $xy$-plane centered at the origin, and the vertex at $(0,0,h).$ At height $z$ the cross section is the square $|x|\\le \\frac{a}{2}(1-\\frac{z}{h}),$ $|y|\\le \\frac{a}{2}(1-\\frac{z}{h}),$ so $V=\\int_{0}^{h}\\int_{-\\frac{a}{2}(1-\\frac{z}{h})}^{\\frac{a}{2}(1-\\frac{z}{h})}\\int_{-\\frac{a}{2}(1-\\frac{z}{h})}^{\\frac{a}{2}(1-\\frac{z}{h})}dx\\,dy\\,dz=\\int_{0}^{h}a^{2}(1-\\frac{z}{h})^{2}\\,dz=a^{2}\\cdot\\frac{h}{3}=\\frac{ha^{2}}{3}.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e238",
+   "source_id": "fs-id1167793886539",
+   "source_number": "238",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>Show that the volume of a regular right hexagonal prism of edge length $a$ is $\\frac{3a^{3}\\sqrt{3}}{2}$ by using triple integrals.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>All edges of the prism have length $a,$ so its height is $a.$ Center the hexagonal base in the $xy$-plane with vertices $(\\pm a,0)$ and $(\\pm\\frac{a}{2},\\pm\\frac{\\sqrt{3}}{2}a).$ As a Type I region the base is $|y|\\le \\frac{\\sqrt{3}}{2}a$ for $|x|\\le \\frac{a}{2}$ and $|y|\\le \\sqrt{3}(a-|x|)$ for $\\frac{a}{2}\\le |x|\\le a,$ so its area is $2[\\int_{0}^{a/2}\\sqrt{3}a\\,dx+\\int_{a/2}^{a}2\\sqrt{3}(a-x)\\,dx]=2[\\frac{\\sqrt{3}}{2}a^{2}+\\frac{\\sqrt{3}}{4}a^{2}]=\\frac{3\\sqrt{3}}{2}a^{2}.$ Then $V=\\int_{0}^{a}\\iint_{\\text{base}}dA\\,dz=a\\cdot\\frac{3\\sqrt{3}}{2}a^{2}=\\frac{3a^{3}\\sqrt{3}}{2}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1167793298287",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>Show that the volume of a regular right hexagonal pyramid of edge length $a$ is $\\frac{a^{3}\\sqrt{3}}{2}$ by using triple integrals.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Take the base a regular hexagon of side $a$ in the $xy$-plane, centered at the origin, and the vertex at $(0,0,a),$ the height that the formula describes. The base has area $\\frac{3\\sqrt{3}}{2}a^{2}$ (as in the preceding exercise), and the cross section at height $z$ is the hexagon shrunk by the factor $1-\\frac{z}{a},$ of area $\\frac{3\\sqrt{3}}{2}a^{2}(1-\\frac{z}{a})^{2}.$ So $V=\\int_{0}^{a}\\frac{3\\sqrt{3}}{2}a^{2}(1-\\frac{z}{a})^{2}\\,dz=\\frac{3\\sqrt{3}}{2}a^{2}\\cdot\\frac{a}{3}=\\frac{a^{3}\\sqrt{3}}{2}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r417",
+   "source_id": "fs-id1167793480224",
+   "source_section": "15.7",
+   "source_number": "417",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrable-three",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>Fubini’s theorem can be extended to three dimensions, as long as $f$ is continuous in all variables.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True."
+   }
+  },
+  {
+   "id": "r425",
+   "source_id": "fs-id1167793479942",
+   "source_section": "15.7",
+   "source_number": "425",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-bounded",
+   "prompt": "<p>Evaluate the following integrals.</p><p>$\\iiint\\limits_{R}3y\\;dV ,$ where $R=\\{(x,y,z)|0\\le x\\le 1,0\\le y\\le x,0\\le z\\le \\sqrt{9-y^{2}}\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "1.475"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "average-value-of-a-function-of-three-variables"
+  },
+  {
+   "exercise": "e181",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "e183",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "e185",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "e185",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "e187",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "e187",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "e189",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "e190",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "e191",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e193",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e195",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e197",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e199",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e199",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e201",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e201",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e203",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e205",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e207",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e207",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e209",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e211",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e213",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e215",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "e215",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "e217",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "e217",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e219",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e219",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e221",
+   "concept": "average-value-of-a-function-of-three-variables"
+  },
+  {
+   "exercise": "e223",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e223",
+   "concept": "triple-integral-over-a-general-region"
+  },
+  {
+   "exercise": "e225",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e227",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e227",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "e229",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e231",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e233",
+   "concept": "triple-riemann-sum"
+  },
+  {
+   "exercise": "e235",
+   "concept": "average-value-of-a-function-of-three-variables"
+  },
+  {
+   "exercise": "e237",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e238",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "e239",
+   "concept": "volume-by-triple-integral"
+  },
+  {
+   "exercise": "r417",
+   "concept": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "exercise": "r425",
+   "concept": "triple-integral-over-a-general-region"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-thm-projection",
+   "kind": "correction",
+   "html": "Here $D$ is the projection of $E$ onto the $xy$-plane, the plane of the variables of $u_{1}(x,y)$ and $u_{2}(x,y),$ as the next paragraph and Figure 15.42 have it."
+  },
+  {
+   "id": "c-xz-plane",
+   "kind": "correction",
+   "html": "For the functions $y=u_{1}(x,z)$ and $y=u_{2}(x,z)$ the region $D$ lies in the $xz$-plane, as the sentences that follow say."
+  },
+  {
+   "id": "c-six-orders",
+   "kind": "correction",
+   "html": "In the last line the limits $\\int_{c}^{e}$ are $\\int_{c}^{d},$ and the box is $[a,b]\\times[c,d]\\times[r,s]$ as in Fubini’s theorem above, its $z$-limits written $r$ and $s$ rather than $e$ and $f.$"
+  }
+ ]
+}

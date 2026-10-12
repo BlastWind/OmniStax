@@ -1,0 +1,1600 @@
+{
+ "id": "15.2",
+ "module": "m53963",
+ "chapter": "15",
+ "title": "Double Integrals over General Regions",
+ "short": "Double Integrals over General Regions",
+ "lead": "Most regions in the plane are not rectangles. This section integrates over a <span data-concept=\"region\">region</span> lying between two graphs, read with vertical strips as <span data-concept=\"type-i-region\">Type I</span> or horizontal ones as <span data-concept=\"type-ii-region\">Type II</span>, splits harder regions into pieces, changes the order of integration, finds volumes, areas and average values, and meets <span data-concept=\"improper-double-integral\">improper double integrals</span> and the probabilities of two random variables.",
+ "objectives": [
+  "Recognize when a function of two variables is integrable over a general region.",
+  "Evaluate a double integral by computing an iterated integral over a region bounded by two vertical lines and two functions of $x,$ or two horizontal lines and two functions of $y.$",
+  "Simplify the calculation of an iterated integral by changing the order of integration.",
+  "Use double integrals to calculate the volume of a region between two surfaces or the area of a plane region.",
+  "Solve problems involving double improper integrals."
+ ],
+ "summary_html": "<ul><li>A general bounded <span data-concept=\"region\">region</span> $\\kD$ on the plane is a <span data-concept=\"region\">region</span> that can be enclosed inside a <span data-concept=\"region\">rectangular region</span>. We can use this idea to define a <span data-concept=\"double-integral\">double integral</span> over a general bounded <span data-concept=\"region\">region</span>.</li><li>To evaluate an <span data-concept=\"iterated-integral\">iterated integral</span> of a function over a general nonrectangular <span data-concept=\"region\">region</span>, we sketch the <span data-concept=\"region\">region</span> and express it as a <span data-concept=\"type-i-region\">Type I</span> or as a <span data-concept=\"type-ii-region\">Type II</span> <span data-concept=\"region\">region</span> or as a union of several <span data-concept=\"type-i-region\">Type I</span> or <span data-concept=\"type-ii-region\">Type II</span> <span data-concept=\"region\">regions</span> that overlap only on their boundaries.</li><li>We can use <span data-concept=\"double-integral\">double integrals</span> to find volumes, areas, and average values of a function over general <span data-concept=\"region\">regions</span>, similarly to calculations over <span data-concept=\"region\">rectangular regions</span>.</li><li>We can use <span data-concept=\"fubinis-theorem-strong-form\">Fubini’s theorem</span> for <span data-concept=\"improper-double-integral\">improper integrals</span> to evaluate some types of <span data-concept=\"improper-double-integral\">improper integrals</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Exercises 87 and 89 are keyed only “Answers may vary” for part a (a decomposition to show); their worked part a is AI-written. Of the unkeyed section exercises, four “show” exercises are kept with AI-written suggested approaches: 106, 107, 120 and 121. Exercises 61, 65, 67 and 69 carry the region of the exercise before them, which they refer to. The other 29 unkeyed exercises are left out: 60–104 even and 108–118 even (types of regions, integrals, areas, volumes, averages and probabilities to compute), among them 72, whose region is in fact of both types, and 86 and 88, whose decompositions come with integrals to evaluate. Review exercises 421 and 423 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-extension",
+   "kind": "sim",
+   "number": "15.12",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_001.jpg"
+   ],
+   "original_caption": "For a region D that is a subset of R, we can define a function g(x,y) to equal f(x,y) at every point in D and 0 at every point of R not in D.",
+   "draws": [
+    "region",
+    "surface",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-region-types",
+   "kind": "sim",
+   "number": "15.13",
+   "folds": [
+    "15.14",
+    "15.15"
+   ],
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_002.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_02_003.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_02_004.jpg"
+   ],
+   "original_caption": "(Figure 15.13) A Type I region lies between two vertical lines and the graphs of two functions of x. (Figure 15.14) A Type II region lies between two horizontal lines and the graphs of two functions of y. (Figure 15.15) Region D can be described as Type I or as Type II.",
+   "draws": [
+    "region",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-example-type-i",
+   "kind": "sim",
+   "number": "15.16",
+   "folds": [
+    "15.17"
+   ],
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_005.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_02_006.jpg"
+   ],
+   "original_caption": "(Figure 15.16) We can express region D as a Type I region and integrate from y=1/2x to y=1, between the lines x=0 and x=2. (Figure 15.17) ",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-example-type-ii",
+   "kind": "sim",
+   "number": "15.18",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_007.jpg"
+   ],
+   "original_caption": "The region D in this example can be either (a) Type I or (b) Type II.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-decomposition",
+   "kind": "sim",
+   "number": "15.19",
+   "folds": [
+    "15.20"
+   ],
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_008.jpg",
+    "/media/ch15/CNX_Calc_Figure_15_02_009.jpg"
+   ],
+   "original_caption": "(Figure 15.19) This region can be decomposed into a union of three regions of Type I or Type II. (Figure 15.20) Breaking the region into three subregions makes it easier to set up the integration.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-reverse-order",
+   "kind": "sim",
+   "number": "15.21",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_010.jpg"
+   ],
+   "original_caption": "Converting a region from Type I to Type II.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-triangle",
+   "kind": "sim",
+   "number": "15.22",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_011.jpg"
+   ],
+   "original_caption": "A triangular region R for integrating in two ways.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tetrahedron",
+   "kind": "figure",
+   "number": "15.23",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_012.jpg"
+   ],
+   "original_caption": "A tetrahedron consisting of the three coordinate planes and the plane z=6−2x−3y, with the base bound by x=0,y=0, and 2x+3y=6.",
+   "draws": [
+    "region",
+    "surface",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-parabola-line",
+   "kind": "sim",
+   "number": "15.24",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_013.jpg"
+   ],
+   "original_caption": "The region bounded by y=x² and y=2x.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-average-region",
+   "kind": "sim",
+   "number": "15.25",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_014.jpg"
+   ],
+   "original_caption": "The region bounded by x=y and x=√y.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-improper-region",
+   "kind": "sim",
+   "number": "15.26",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_015.jpg"
+   ],
+   "original_caption": "The function f is continuous at all points of the region D except (0,0).",
+   "draws": [
+    "region",
+    "function",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-waiting-time",
+   "kind": "sim",
+   "number": "15.27",
+   "originals": [
+    "/media/ch15/CNX_Calc_Figure_15_02_016.jpg"
+   ],
+   "original_caption": "The region of integration for a joint probability density function.",
+   "draws": [
+    "region",
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "general-intro",
+   "concept": "double-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "general-regions",
+   "concept": "region",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793857192",
+   "concept": "type-i-region",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793857192",
+   "concept": "type-ii-region",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794332513",
+   "concept": "type-i-region",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793952017",
+   "concept": "double-integral-over-a-nonrectangular-region",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793292250",
+   "concept": "fubinis-theorem-strong-form",
+   "verb": "introduces"
+  },
+  {
+   "span": "nonrectangular",
+   "concept": "fubinis-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793369248",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793337942",
+   "concept": "fubinis-theorem-strong-form",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793965311",
+   "concept": "decomposing-regions",
+   "verb": "introduces"
+  },
+  {
+   "span": "nonrectangular",
+   "concept": "properties-of-double-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "order",
+   "concept": "changing-the-order-of-integration",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794188050",
+   "concept": "changing-the-order-of-integration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793776681",
+   "concept": "double-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793287011",
+   "concept": "area-of-a-region-by-double-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793540298",
+   "concept": "average-value-of-a-function-of-two-variables",
+   "verb": "reinforces"
+  },
+  {
+   "span": "improper",
+   "concept": "improper-double-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "improper",
+   "concept": "improper-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793450004",
+   "concept": "fubinis-theorem-for-improper-integrals",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793473260",
+   "concept": "improper-integral-on-an-unbounded-region",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793246020",
+   "concept": "joint-density-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793618923",
+   "concept": "independent-random-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793377822",
+   "concept": "expected-value",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167794188764",
+   "source_number": "Checkpoint 15.7",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794332513"
+   },
+   "cite": "general-regions",
+   "prompt": "Consider the region in the first quadrant between the functions $y=2x$ and $y=x^{2}.$ Describe the region first as Type I and then as Type II.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Type I and Type II are expressed as $\\{(x,y)|0\\le x\\le 2,x^{2}\\le y\\le 2x\\}$ and $\\{(x,y)|0\\le y\\le 4,\\frac{1}{2}y\\le x\\le \\sqrt{y}\\},$ respectively.",
+    "hint": "Graph the functions, and draw vertical and horizontal lines."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793516187",
+   "source_number": "Checkpoint 15.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793337942"
+   },
+   "cite": "nonrectangular",
+   "prompt": "Sketch the region $D$ and evaluate the iterated integral $\\iint\\limits_{D}xy\\;dy\\;dx$ where $D$ is the region bounded by the curves $y=\\cos x$ and $y=\\sin x$ in the interval $[-3\\pi /4,\\pi /4].$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\pi /4$",
+    "hint": "Express $D$ as a Type I region, and integrate with respect to $y$ first."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793442488",
+   "source_number": "Checkpoint 15.9",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793547434"
+   },
+   "cite": "nonrectangular",
+   "prompt": "Consider the region bounded by the curves $y=\\ln x$ and $y=e^{x}$ in the interval $[1,2].$ Decompose the region into smaller regions of Type II.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\{(x,y)|0\\le y\\le \\ln2,1\\le x\\le e^{y}\\}\\cup \\{(x,y)|\\ln2\\le y\\le e,1\\le x\\le 2\\}\\cup \\{(x,y)|e\\le y\\le e^{2},\\ln y\\le x\\le 2\\}$",
+    "hint": "Sketch the region, and split it into three regions to set it up."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167793268104",
+   "source_number": "Checkpoint 15.10",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793547434"
+   },
+   "cite": "nonrectangular",
+   "prompt": "Redo <a href=\"#fs-id1167793547434\">Example 15.14</a> using a union of two Type II regions.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Same as in the example shown.",
+    "hint": "$\\{(x,y)|0\\le y\\le 4,2+\\sqrt{y}\\le x\\le (y-\\frac{1}{16}y^{3})\\}\\cup \\{(x,y)|-4\\le y\\le 0,-2\\le x\\le (y-\\frac{1}{16}y^{3})\\}$<sup class=\"fn\" data-note=\"c-cp10-hint\"></sup>"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167793957148",
+   "source_number": "Checkpoint 15.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794188050"
+   },
+   "cite": "order",
+   "prompt": "Evaluate the iterated integral $\\iint\\limits_{D}(x^{2}+y^{2}) dA$ over the region $D$ in the first quadrant between the functions $y=2x$ and $y=x^{2}.$ Evaluate the iterated integral by integrating first with respect to $y$ and then integrating first with resect to $x.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{216}{35}$",
+    "hint": "Sketch the region and follow <a href=\"#fs-id1167794188050\">Example 15.16</a>."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167793570170",
+   "source_number": "Checkpoint 15.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793776681"
+   },
+   "cite": "volumes-areas",
+   "prompt": "Find the volume of the solid bounded above by $f(x,y)=10-2x+y$ over the region enclosed by the curves $y=0$ and $y=e^{x},$ where $x$ is in the interval $[0,1].$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{e^{2}}{4}+10e-\\frac{49}{4}$ cubic units",
+    "hint": "Sketch the region, and describe it as Type I."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167793219215",
+   "source_number": "Checkpoint 15.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794076353"
+   },
+   "cite": "volumes-areas",
+   "prompt": "Find the area of a region bounded above by the curve $y=x^{3}$ and below by $y=0$ over the interval $[0,3].$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{81}{4}$ square units",
+    "hint": "Sketch the region."
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1167793371345",
+   "source_number": "Checkpoint 15.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793495009"
+   },
+   "cite": "volumes-areas",
+   "prompt": "Find the average value of the function $f(x,y)=xy$ over the triangle with vertices $(0,0),(1,0)\\;\\text{and}\\;(1,3).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3}{4}$",
+    "hint": "Express the line joining $(0,0)$ and $(1,3)$ as a function $y=g(x).$"
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1167793941275",
+   "source_number": "Checkpoint 15.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793991236"
+   },
+   "cite": "improper",
+   "prompt": "Evaluate the improper integral $\\iint\\limits_{D}\\frac{y}{\\sqrt{1-x^{2}-y^{2}}}dA$ where $D=\\{(x,y)|x\\ge 0,y\\ge 0,x^{2}+y^{2}\\le 1\\}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{4}$",
+    "hint": "Notice that the integral is nonnegative and discontinuous on $x^{2}+y^{2}=1.$ Express the region $D$ as $D=\\{(x,y)\\text{:}\\;0\\le x\\le 1,0\\le y\\le \\sqrt{1-x^{2}}\\}$ and integrate using the method of substitution."
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1167793499072",
+   "source_number": "Checkpoint 15.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793298466"
+   },
+   "cite": "improper",
+   "prompt": "<p>The joint density function for two random variables $X$ and $Y$ is given by</p>\n$$f(x,y)=\\begin{array}{ll}\\frac{1}{16250}(x^{2}+y^{2}) & \\text{if}\\;0\\le x\\le 15,0\\le y\\le 10 \\\\ 0 & \\text{otherwise}\\end{array}$$\n<p>Find the probability that $X$ is at most $10$ and $Y$ is at least $5.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{11}{39}\\approx 0.282$",
+    "hint": "Compute the probability $P(X\\le 10,Y\\ge 5)=\\int_{x=-\\infty}^{10} \\;\\int_{y=5}^{y=10} \\frac{1}{6000} (x^{2}+y^{2})dy\\;dx.$<sup class=\"fn\" data-note=\"c-cp16-hint\"></sup>"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1167793254923",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>The region $D$ bounded by $y=x^{3},$ $y=x^{3}+1,$ $x=0,$ and $x=1$ as given in the following figure.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_201.jpg\" alt=\"A region is bounded by y = 1 + x cubed, y = x cubed, x = 0, and x = 1.\"><p>Find the average value of the function $f(x,y)=3xy$ on the region graphed in the previous exercise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{27}{20}$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1167793275090",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-regions",
+   "prompt": "<p>In the following exercises, specify whether the region is of Type I or Type II.</p><p>The region $D$ bounded by $y=\\sin x,y=1+\\sin x,x=0,\\;\\text{and}\\;x=\\frac{\\pi}{2}$ as given in the following figure.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_202.jpg\" alt=\"A region is bounded by y = 1 + sin x, y = sin x, x = 0, and x = pi/2.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Type I but not Type II"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1167793286947",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>The region $D$ bounded by $y=\\sin x,y=1+\\sin x,x=0,\\;\\text{and}\\;x=\\frac{\\pi}{2}$ as given in the following figure.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_202.jpg\" alt=\"A region is bounded by y = 1 + sin x, y = sin x, x = 0, and x = pi/2.\"><p>Find the area of the region $D$ given in the previous exercise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1167793495450",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>The region $D$ bounded by $x=y^{2}-1$ and $x=\\sqrt{1-y^{2}}$ as given in the following figure.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_203.jpg\" alt=\"A region is bounded by x = negative 1 + y squared and x = the square root of the quantity (1 minus y squared).\"><p>Find the volume of the solid under the graph of the function $f(x,y)=xy+1$ and above the region in the figure in the previous exercise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{6}(8+3\\pi )$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1167793720930",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>The region $D$ bounded by $y=0,x=-10+y,\\;\\text{and}\\;x=10-y$ as given in the following figure.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_204.jpg\" alt=\"A region is bounded by x = negative 10 + y, x = 10 minus y, and y = 0.\"><p>Find the signed volume of the solid under the graph of the function $f(x,y)=x+y$ and above the region in the figure from the previous exercise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1000}{3}$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1167793378480",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-regions",
+   "prompt": "<p>In the following exercises, specify whether the region is of Type I or Type II.</p><p>The region $D$ bounded by $y=0$ and $y=x^{2}-1$ as given in the following figure.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_206.jpg\" alt=\"A region is bounded by y = 0 and y = negative 1 + x squared.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Type I and Type II"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1167793959356",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-regions",
+   "prompt": "<p>Let $D$ be the region bounded above by the curve of the equation $y=4-x^{2}$ and below by $y=\\cos x$ and the $x$-axis. Explain why $D$ is neither of Type I nor II.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The region $D$ is not of Type I: it does not lie between two vertical lines and the graphs of two continuous functions $g_{1}(x)$ and $g_{2}(x).$ The region $D$ is not of Type II: it does not lie between two horizontal lines and the graphs of two continuous functions $h_{1}(y)$ and $h_{2}(y).$<sup class=\"fn\" data-note=\"c-e73-type-i\"></sup>"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1167793570697",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>In the following exercises, evaluate the double integral $\\iint\\limits_{D}f(x,y) dA$ over the region $D.$</p><p>$f(x,y)=1$ and $D=\\{(x,y)|0\\le x\\le \\frac{\\pi}{2},\\sin x\\le y\\le 1+\\sin x\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1167793377948",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>In the following exercises, evaluate the double integral $\\iint\\limits_{D}f(x,y) dA$ over the region $D.$</p><p>$f(x,y)=xy$ and $D=\\{(x,y)|-1\\le y\\le 1,y^{2}-1\\le x\\le \\sqrt{1-y^{2}}\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1167793373520",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>In the following exercises, evaluate the double integral $\\iint\\limits_{D}f(x,y) dA$ over the region $D.$</p><p>$f(x,y)=-x+1$ and $D$ is the triangular region with vertices $(0,0),(0,2),\\;\\text{and}\\;(2,2)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2}{3}$"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1167793293644",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>Evaluate the iterated integrals.</p><p>$\\int_0^{1} \\;\\int_{2\\sqrt{x}}^{2\\sqrt{x}+1} (xy+1) dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{41}{20}$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1167793957760",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>Evaluate the iterated integrals.</p><p>$\\int_1^{2} \\;\\int_{-u^{2}-1}^{-u} (8uv) dv\\;du$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-63$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1167793547396",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>Evaluate the iterated integrals.</p><p>$\\int_0^{1/2} \\;\\int_{-\\sqrt{1-4y^{2}}}^{\\sqrt{1-4y^{2}}} 4 dx\\;dy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\pi$"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1167794222465",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>Evaluate the iterated integrals.</p><p>Let $D$ be the region bounded by $y=1,$ $y=x,$ $y=\\ln x,$ and the $x$-axis.</p><p>a. Show that $\\iint\\limits_{D} y\\;dA=\\int_0^{1} \\;\\int_0^{x} y\\;dy\\;dx +\\int_1^{e} \\;\\int_{\\ln x}^{1} y\\;dy\\;dx$ by dividing $D$ into two regions of Type I.</p><p>b. Evaluate the integral $\\iint\\limits_{D}y\\;dA .$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>a. The curves $y=x$ and $y=\\ln x$ meet the line $y=1$ at $x=1$ and $x=e;$ for $0\\le x\\le 1$ the region lies between $y=0$ and $y=x,$ and for $1\\le x\\le e$ between $y=\\ln x$ and $y=1.$ Each piece lies between two vertical lines and the graphs of two continuous functions, so it is of Type I, and the two pieces meet only along $x=1;$ by the decomposition theorem $\\iint_{D}y\\,dA=\\int_{0}^{1}\\int_{0}^{x}y\\,dy\\,dx+\\int_{1}^{e}\\int_{\\ln x}^{1}y\\,dy\\,dx.$</p><p>b. $\\frac{2}{3}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1167793569301",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>Evaluate the iterated integrals.</p><p>Let $D$ be the region bounded by $y=x^{2},y=x+2,$ and $y=-x.$</p><p>a. Show that $\\iint\\limits_{D} x\\;dA=\\int_0^{1} \\;\\int_{-y}^{\\sqrt{y}} x\\;dx\\;dy +\\int_1^{4} \\;\\int_{y-2}^{\\sqrt{y}} x\\;dx\\;dy$ by dividing the region $D$ into two regions of Type II, where $D=\\{(x,y)|y\\ge x^{2},y\\ge -x,y\\le x+2\\}.$</p><p>b. Evaluate the integral $\\iint\\limits_{D}x \\;dA.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>a. The parabola $y=x^{2}$ meets $y=-x$ at $(-1,1)$ and $y=x+2$ at $(2,4),$ and the two lines meet at $(-1,1).$ Solving for $x,$ the left boundary of the region is $x=-y$ for $0\\le y\\le 1$ and $x=y-2$ for $1\\le y\\le 4,$ and the right boundary is $x=\\sqrt{y}$ throughout. Each of the two pieces lies between two horizontal lines and the graphs of two continuous functions of $y,$ so it is of Type II, and they meet only along $y=1;$ hence $\\iint_{D}x\\,dA=\\int_{0}^{1}\\int_{-y}^{\\sqrt{y}}x\\,dx\\,dy+\\int_{1}^{4}\\int_{y-2}^{\\sqrt{y}}x\\,dx\\,dy.$</p><p>b. $\\frac{7}{3}.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1167793375458",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>The region $D$ bounded by $y=\\cos x,y=4+\\cos x,$ and $x=\\pm \\frac{\\pi}{3}$ is shown in the following figure. Find the area $A(D)$ of the region $D.$</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_208.jpg\" alt=\"A region is bounded by y = cos x, y = 4 + cos x, x = negative 1, and x = 1.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{8\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1167794042898",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>Evaluate the iterated integrals.</p><p>Let $D$ be the region bounded by $y=1,y=x,y=\\ln x,$ and the $x$-axis. Find the area $A(D)$ of the region $D.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e-\\frac{3}{2}$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1167794210554",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>Find the average value of the function $f(x,y)=-x+1$ on the triangular region with vertices $(0,0),(0,2),$ and $(2,2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}$"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1167794324551",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order",
+   "prompt": "<p>In the following exercises, change the order of integration and evaluate the integral.</p><p>$\\int_0^{1} \\;\\int_{x-1}^{1-x} x\\;dy\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{1} \\;\\int_{x-1}^{1-x} x\\;dy\\;dx =\\int_{-1}^{0} \\;\\int_0^{y+1} x\\;dx\\;dy +\\int_0^{1} \\;\\int_0^{1-y} x\\;dxd y=\\frac{1}{3}$"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1167793639905",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order",
+   "prompt": "<p>In the following exercises, change the order of integration and evaluate the integral.</p><p>$\\int_{\\text{-1}}^{1} \\;\\int_{-\\sqrt{1-y^{2}}}^{\\sqrt{1-y^{2}}} y\\;dx\\;dy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{\\text{-1}}^{1} \\;\\int_{-\\sqrt{1-y^{2}}}^{\\sqrt{1-y^{2}}} y\\;dx\\;dy=\\int_{\\text{-1}}^{1} \\;\\int_{-\\sqrt{1-x^{2}}}^{\\sqrt{1-x^{2}}} y\\;dy\\;dx=0$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1167793467381",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order",
+   "prompt": "<p>The region $D$ is given in the following figure. Evaluate the double integral $\\iint\\limits_{D}(x^{2}-y^{2})dA$ by using the easier order of integration.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_210.jpg\" alt=\"A region is bounded by y to the fourth power = 1 minus x and y to the fourth power = 1 + x.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\iint\\limits_{D}(x^{2}-y^{2})dA =\\int_{-1}^{1} \\;\\int_{y^{4}-1}^{1-y^{4}} (x^{2}-y^{2})dx\\;dy =\\frac{464}{4095}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1167793372893",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>Find the volume in the first octant of the solid under the plane $z=3x+y$ and above the region determined by $y=x^{7}$ and $y=x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{4}{5}$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1167793938026",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>Find the volume of the solid under the surface $z=x^{3}$ and above the plane region bounded by $x=\\sin y,x=-\\sin y,$ and $x=1$  for values of $y$ between $y=\\frac{-\\pi}{2}\\;\\text{and}\\;y=\\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{5\\pi}{32}$"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "fs-id1167793379950",
+   "source_number": "106",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>In the following exercises, change the order of integration and evaluate the integral.</p><p>Let $g$ be a positive, increasing, and differentiable function on the interval $[a,b].$ Show that the volume of the solid under the surface $z=g'(x)$ and above the region bounded by $y=0,$ $y=g(x),$ $x=a,$ and $x=b$ is given by $\\frac{1}{2}(g^{2}(b)-g^{2}(a)).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The region is of Type I, $\\{(x,y)\\mid a\\le x\\le b,\\;0\\le y\\le g(x)\\},$ and $g^{\\prime}(x)\\ge 0$ there because $g$ is increasing, so the volume is $V=\\int_{a}^{b}\\int_{0}^{g(x)}g^{\\prime}(x)\\,dy\\,dx=\\int_{a}^{b}g(x)g^{\\prime}(x)\\,dx.$ With the substitution $u=g(x),$ $du=g^{\\prime}(x)\\,dx,$ this is $\\int_{g(a)}^{g(b)}u\\,du=\\frac{1}{2}(g^{2}(b)-g^{2}(a)).$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1167794041846",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>In the following exercises, change the order of integration and evaluate the integral.</p><p>Let $g$ be a positive, increasing, and differentiable function on the interval $[a,b],$ and let $k$ be a positive real number. Show that the volume of the solid under the surface $z=g'(x)$ and above the region bounded by $y=g(x),y=g(x)+k,x=a,$ and $x=b$ is given by $k(g(b)-g(a)).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The region is of Type I, $\\{(x,y)\\mid a\\le x\\le b,\\;g(x)\\le y\\le g(x)+k\\},$ and $g^{\\prime}(x)\\ge 0$ because $g$ is increasing, so $V=\\int_{a}^{b}\\int_{g(x)}^{g(x)+k}g^{\\prime}(x)\\,dy\\,dx=\\int_{a}^{b}k\\,g^{\\prime}(x)\\,dx=k(g(b)-g(a))$ by the Fundamental Theorem of Calculus.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1167793544886",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>Find the volume of the solid situated in the first octant and bounded by the planes $x+2y=1,$ $x=0,y=0,z=4,\\;\\text{and}\\;z=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1167793409397",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>Find the volume of the solid bounded by the planes $x+y=1,x-y=1,x+y=-1,$ $x-y=-1,z=1\\;\\text{and}\\;z=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2$"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1167794296849",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>In the following exercises, change the order of integration and evaluate the integral.</p><p>Let $S_{1}\\;\\text{and}\\;S_{2}$ be the solids situated in the first octant under the planes $2x+2y+z=2$ and $x+y+z=1,$ respectively, and let $S$ be the solid situated between $S_{1},S_{2},x=0,\\;\\text{and}\\;y=0.$</p><p>a. Find the volume of the solid $S_{1}.$</p><p>b. Find the volume of the solid $S_{2}.$</p><p>c. Find the volume of the solid $S$ by subtracting the volumes of the solids $S_{1}\\;\\text{and}\\;S_{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\frac{1}{3};$ b. $\\frac{1}{6};$ c. $\\frac{1}{6}$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1167793378197",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p>In the following exercises, change the order of integration and evaluate the integral.</p><p>Consider the plane $x+y+z=2$ and the cylinder $x^{2}+y^{2}=4$in the first octant.  </p><p>a. Find the volume under the plane.</p><p>b. Find the volume inside the cylinder under the plane $z=2$.</p><p>c. Find the volume above the plane, inside the cylinder, and below the plane $z=2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\frac{4}{3};$ b. $2\\pi ;$ c. $\\frac{6\\pi -4}{3}$"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1167793417063",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p><strong>[T]</strong> The region $D$ bounded by the curves $y=\\cos x,x=0,\\;\\text{and}\\;y=x^{3}$ is shown in the following figure. Use a graphing calculator or CAS to find the <em>x</em>-coordinates of the intersection points of the curves and to determine the area of the region $D.$ Round your answers to six decimal places.</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_212.jpg\" alt=\"A region is bounded by y = cos x, y = x cubed, and x = 0.\">",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0\\;\\text{and}\\;0.865474;$ $A(D)=0.621135$"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1167793930116",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "improper",
+   "prompt": "<p>In the following exercises, change the order of integration and evaluate the integral.</p><p>Consider $X\\;\\text{and}\\;Y$ two random variables of probability densities $p_{1}(x)$ and $p_{2}(y),$ respectively. The random variables $X\\;\\text{and}\\;Y$ are said to be independent if their joint density function is given by $p(x,y)=p_{1}(x)p_{2}(y).$ At a drive-thru restaurant, customers spend, on average, $3$ minutes placing their orders and an additional $5$ minutes paying for and picking up their meals. Assume that placing the order and paying for/picking up the meal are two independent events $X$ and $Y.$ If the waiting times are modeled by the exponential probability densities</p><p>$\\begin{array}{lllllll}p_{1}(x)=\\{\\begin{array}{ll}\\frac{1}{3}e^{-x/3} & x\\ge 0, \\\\ 0 & \\text{otherwise,}\\end{array} & & & \\text{and} & & & p_{2}(y)=\\{\\begin{array}{ll}\\frac{1}{5}e^{-y/5} & y\\ge 0, \\\\ 0 & \\text{otherwise,}\\end{array}\\end{array}$</p><p>respectively, the probability that a customer will spend less than 6 minutes in the drive-thru line is given by $P[X+Y\\le 6]=\\iint\\limits_{D}p(x,y)dx\\;dy ,$ where $D=\\{(x,y)\\}|x\\ge 0,y\\ge 0,x+y\\le 6\\}.$ Find $P[X+Y\\le 6]$ and interpret the result.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$P[X+Y\\le 6]=1+\\frac{3}{2e^{2}}-\\frac{5}{e^{6/5}}\\approx 0.45;$ there is a $45\\%$ chance that a customer will spend $6$ minutes in the drive-thru line."
+   }
+  },
+  {
+   "id": "e120",
+   "source_id": "fs-id1167793425886",
+   "source_number": "120",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p><strong>[T]</strong> The Reuleaux triangle consists of an equilateral triangle and three regions, each of them bounded by a side of the triangle and an arc of a circle of radius <em>s</em> centered at the opposite vertex of the triangle. Show that the area of the Reuleaux triangle in the following figure of side length $s$ is $\\frac{s^{2}}{2}(\\pi -\\sqrt{3}).$</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_213.jpg\" alt=\"An equilateral triangle with additional regions consisting of three arcs of a circle with radius equal to the length of the side of the triangle. These arcs connect two adjacent vertices, and the radius is taken from the opposite vertex.\">",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The Reuleaux triangle is the equilateral triangle of side $s$ together with three congruent circular segments. Each segment is a sector of radius $s$ and central angle $\\frac{\\pi}{3}$ centered at a vertex, less the triangle itself. In polar coordinates about that vertex the sector’s area is $\\int_{0}^{\\pi /3}\\int_{0}^{s}r\\,dr\\,d\\theta =\\frac{\\pi s^{2}}{6},$ and the triangle’s area is $\\frac{\\sqrt{3}}{4}s^{2},$ so each segment has area $\\frac{\\pi s^{2}}{6}-\\frac{\\sqrt{3}}{4}s^{2}.$ The total area is $\\frac{\\sqrt{3}}{4}s^{2}+3(\\frac{\\pi s^{2}}{6}-\\frac{\\sqrt{3}}{4}s^{2})=\\frac{\\pi s^{2}}{2}-\\frac{\\sqrt{3}}{2}s^{2}=\\frac{s^{2}}{2}(\\pi -\\sqrt{3}).$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1167793479206",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volumes-areas",
+   "prompt": "<p><strong>[T]</strong> Show that the area of the lunes of Alhazen, the two blue lunes in the following figure, is the same as the area of the right triangle <em>ABC</em>. The outer boundaries of the lunes are semicircles of diameters $AB\\;\\text{and}\\;BC,$ respectively, and the inner boundaries are formed by the circumcircle of the triangle $ABC.$</p><img src=\"/media/ch15/CNX_Calc_Figure_15_02_214.jpg\" alt=\"A right triangle with points A, B, and C. Point B has the right angle. There are two lunes drawn from A to B and from B to C with outer diameters AB and AC, respectively, and with the inner boundaries formed by the circumcircle of the triangle ABC.\">",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Let the right angle be at $B,$ with legs $AB=c,$ $BC=a$ and hypotenuse $AC=b,$ so $a^{2}+c^{2}=b^{2},$ and let $T$ be the triangle’s area. A half disk of radius $\\rho$ has area $\\int_{0}^{\\pi}\\int_{0}^{\\rho}r\\,dr\\,d\\theta =\\frac{\\pi \\rho^{2}}{2}.$ The circumcircle has diameter $AC,$ so the half of it beyond $AB$ and $BC$ is a half disk of area $\\frac{\\pi b^{2}}{8},$ made of the triangle and the two pieces of the circumcircle cut off by $AB$ and $BC.$ Each lune is a half disk on $AB$ or $BC$ less one of those pieces, so the two lunes together have area $\\frac{\\pi c^{2}}{8}+\\frac{\\pi a^{2}}{8}-(\\frac{\\pi b^{2}}{8}-T)=\\frac{\\pi}{8}(a^{2}+c^{2}-b^{2})+T=T,$ the area of the triangle $ABC.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r421",
+   "source_id": "fs-id1167793354965",
+   "source_section": "15.7",
+   "source_number": "421",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrectangular",
+   "prompt": "<p>Evaluate the following integrals.</p><p>$\\iint\\limits_{D}\\frac{y}{3x^{2}+1} dA,D=\\{(x,y)|0\\le x\\le 1,-x\\le y\\le x\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "0"
+   }
+  },
+  {
+   "id": "r423",
+   "source_id": "fs-id1167793940982",
+   "source_section": "15.7",
+   "source_number": "423",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order",
+   "prompt": "<p>Evaluate the following integrals.</p><p>$\\int_0^{1} \\;\\int_y^{1} xye^{x^{2}}dx\\;dy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{4}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "decomposing-regions"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "decomposing-regions"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "area-of-a-region-by-double-integral"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "fubinis-theorem-for-improper-integrals"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "joint-density-function"
+  },
+  {
+   "exercise": "e61",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e61",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "e63",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "e63",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e65",
+   "concept": "area-of-a-region-by-double-integral"
+  },
+  {
+   "exercise": "e67",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e67",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e69",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e71",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "e71",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e73",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "e73",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e75",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e75",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "e77",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e77",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e79",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e81",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e83",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e85",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e85",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e87",
+   "concept": "decomposing-regions"
+  },
+  {
+   "exercise": "e87",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "e89",
+   "concept": "decomposing-regions"
+  },
+  {
+   "exercise": "e89",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e91",
+   "concept": "area-of-a-region-by-double-integral"
+  },
+  {
+   "exercise": "e91",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "e93",
+   "concept": "area-of-a-region-by-double-integral"
+  },
+  {
+   "exercise": "e93",
+   "concept": "decomposing-regions"
+  },
+  {
+   "exercise": "e95",
+   "concept": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "exercise": "e97",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "e97",
+   "concept": "decomposing-regions"
+  },
+  {
+   "exercise": "e99",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "e101",
+   "concept": "changing-the-order-of-integration"
+  },
+  {
+   "exercise": "e101",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e103",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e105",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e105",
+   "concept": "type-ii-region"
+  },
+  {
+   "exercise": "e106",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e106",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e107",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e109",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e109",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "e111",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e111",
+   "concept": "decomposing-regions"
+  },
+  {
+   "exercise": "e113",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e115",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "e117",
+   "concept": "area-of-a-region-by-double-integral"
+  },
+  {
+   "exercise": "e119",
+   "concept": "joint-density-function"
+  },
+  {
+   "exercise": "e119",
+   "concept": "independent-random-variables"
+  },
+  {
+   "exercise": "e119",
+   "concept": "improper-integral-on-an-unbounded-region"
+  },
+  {
+   "exercise": "e120",
+   "concept": "area-of-a-region-by-double-integral"
+  },
+  {
+   "exercise": "e120",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "e121",
+   "concept": "area-of-a-region-by-double-integral"
+  },
+  {
+   "exercise": "e121",
+   "concept": "double-integral-in-polar-coordinates"
+  },
+  {
+   "exercise": "r421",
+   "concept": "fubinis-theorem-strong-form"
+  },
+  {
+   "exercise": "r421",
+   "concept": "type-i-region"
+  },
+  {
+   "exercise": "r423",
+   "concept": "changing-the-order-of-integration"
+  }
+ ],
+ "referents": [
+  {
+   "id": "curve-root",
+   "label": "the curve y = √x, or x = y²",
+   "figures": [
+    "sim-region-types"
+   ]
+  },
+  {
+   "id": "curve-cube",
+   "label": "the curve y = x³, or x = ∛y",
+   "figures": [
+    "sim-region-types"
+   ]
+  },
+  {
+   "id": "piece-d1",
+   "label": "the piece D₁, of Type I",
+   "figures": [
+    "fig-decomposition"
+   ]
+  },
+  {
+   "id": "piece-d2",
+   "label": "the piece D₂, of Type II",
+   "figures": [
+    "fig-decomposition"
+   ]
+  },
+  {
+   "id": "piece-d3",
+   "label": "the piece D₃, of Type II",
+   "figures": [
+    "fig-decomposition"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-ex13-region",
+   "kind": "correction",
+   "html": "The region is printed without its name; it is $D=\\{(x,y)\\mid -2\\le y\\le 3,\\;y^{2}-3\\le x\\le y+3\\}.$"
+  },
+  {
+   "id": "c-ex14-d3",
+   "kind": "correction",
+   "html": "$D_{3}$ is printed without its braces and bar; it is $D_{3}=\\{(x,y)\\mid -4\\le y\\le 0,\\;-2\\le x\\le y-\\frac{y^{3}}{16}\\}.$"
+  },
+  {
+   "id": "c-ex14-integrand",
+   "kind": "correction",
+   "html": "In the second line the middle integral’s integrand is printed $(2+5y);$ it is $(2x+5y),$ as in the line above, and the values $\\frac{40}{3},$ $\\frac{1664}{35}$ and $-\\frac{1696}{35}$ are those of $(2x+5y).$"
+  },
+  {
+   "id": "c-ex18-limit",
+   "kind": "correction",
+   "html": "The second integral’s outer upper limit is printed $x=4;$ it is $y=4:$ $\\int_{y=0}^{y=4}\\int_{x=y/2}^{x=\\sqrt{y}}dx\\,dy.$"
+  },
+  {
+   "id": "c-ex22-density",
+   "kind": "correction",
+   "html": "The joint density is printed with $e^{-y/60};$ the product of $f_{1}$ and $f_{2}$ is $\\frac{1}{600}e^{-x/15}e^{-y/40},$ which the integrals that follow use."
+  },
+  {
+   "id": "c-ex23-limit",
+   "kind": "correction",
+   "html": "In the fifth line, after the limits of integration are put in, the factor printed $(x+15)$ is $(a+15):$ $-15e^{-a/15}(a+15)+225,$ which tends to $225.$"
+  },
+  {
+   "id": "c-cp10-hint",
+   "kind": "correction",
+   "html": "The first region’s left boundary is printed $2+\\sqrt{y};$ solving $y=(x+2)^{2}$ for the left edge gives $x=-2+\\sqrt{y},$ so the region is $\\{(x,y)\\mid 0\\le y\\le 4,\\;-2+\\sqrt{y}\\le x\\le y-\\frac{1}{16}y^{3}\\}.$"
+  },
+  {
+   "id": "c-cp16-hint",
+   "kind": "correction",
+   "html": "The hint’s constant is printed $\\frac{1}{6000};$ the density is $\\frac{1}{16250}(x^{2}+y^{2}),$ which gives the key’s $\\frac{11}{39},$ and since it is $0$ for $x\\lt 0$ the outer integral may start at $x=0.$"
+  },
+  {
+   "id": "c-e73-type-i",
+   "kind": "correction",
+   "html": "The key’s first sentence does not hold for the book’s definition of Type I: the region’s lower edge is $y=\\cos x$ where $\\cos x\\ge 0$ and the $x$-axis elsewhere, the single continuous function $g_{1}(x)=\\max(\\cos x,0)$ for $-2\\le x\\le 2,$ so $D$ is of Type I. It is not of Type II, since a horizontal line $y=c$ with $0\\lt c\\lt 1$ meets $D$ in two separate segments."
+  }
+ ]
+}

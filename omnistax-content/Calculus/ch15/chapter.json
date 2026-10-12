@@ -1,0 +1,589 @@
+{
+ "id": "15",
+ "dir": "ch15",
+ "title": "Multiple Integration",
+ "intro": {
+  "module": "m53961",
+  "slug": "calculus-volume-3/pages/5-introduction"
+ },
+ "sections": [
+  {
+   "id": "15.1",
+   "module": "m53949",
+   "title": "Double Integrals over Rectangular Regions",
+   "slug": "calculus-volume-3/pages/5-1-double-integrals-over-rectangular-regions"
+  },
+  {
+   "id": "15.2",
+   "module": "m53963",
+   "title": "Double Integrals over General Regions",
+   "slug": "calculus-volume-3/pages/5-2-double-integrals-over-general-regions"
+  },
+  {
+   "id": "15.3",
+   "module": "m53966",
+   "title": "Double Integrals in Polar Coordinates",
+   "slug": "calculus-volume-3/pages/5-3-double-integrals-in-polar-coordinates"
+  },
+  {
+   "id": "15.4",
+   "module": "m53965",
+   "title": "Triple Integrals",
+   "slug": "calculus-volume-3/pages/5-4-triple-integrals"
+  },
+  {
+   "id": "15.5",
+   "module": "m53967",
+   "title": "Triple Integrals in Cylindrical and Spherical Coordinates",
+   "slug": "calculus-volume-3/pages/5-5-triple-integrals-in-cylindrical-and-spherical-coordinates"
+  },
+  {
+   "id": "15.6",
+   "module": "m53971",
+   "title": "Calculating Centers of Mass and Moments of Inertia",
+   "slug": "calculus-volume-3/pages/5-6-calculating-centers-of-mass-and-moments-of-inertia"
+  },
+  {
+   "id": "15.7",
+   "module": "m53970",
+   "title": "Change of Variables in Multiple Integrals",
+   "slug": "calculus-volume-3/pages/5-7-change-of-variables-in-multiple-integrals"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "f",
+   "section": "15.1",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, the integrand of a double integral over a region of the xy-plane",
+   "anchor": "15.1-volumes"
+  },
+  {
+   "sym": "R",
+   "section": "15.1",
+   "concept": "region",
+   "meaning": "a region of integration in the xy-plane, the rectangle R = [a, b] × [c, d] or a rectangle containing a region D",
+   "redefines": true,
+   "anchor": "15.1-volumes"
+  },
+  {
+   "sym": "S",
+   "section": "15.1",
+   "type": "region",
+   "meaning": "the solid S above a region R of the xy-plane and under the graph of z = f(x, y)",
+   "redefines": true,
+   "anchor": "15.1-volumes"
+  },
+  {
+   "sym": "V",
+   "section": "15.1",
+   "type": "integral",
+   "meaning": "the volume V of a solid under a surface z = f(x, y) ≥ 0 above a region R, a double integral",
+   "redefines": true,
+   "anchor": "15.1-riemann-sum-term"
+  },
+  {
+   "sym": "A",
+   "section": "15.1",
+   "concept": "area-of-a-region-by-double-integral",
+   "meaning": "the area A(R) of a plane region R, the double integral of 1 over R; with an argument, A(x) or A(y), the area of a slice of the solid in Fubini's theorem",
+   "redefines": true,
+   "anchor": "15.1-fs-id1167793508032"
+  },
+  {
+   "sym": "f_ave",
+   "section": "15.1",
+   "concept": "average-value-of-a-function-of-two-variables",
+   "meaning": "the average value of a function f(x, y) over a plane region R, its double integral divided by the area of R",
+   "redefines": true,
+   "anchor": "15.1-fs-id1167794076396"
+  },
+  {
+   "sym": "g",
+   "section": "15.1",
+   "type": "function",
+   "meaning": "a function g(x) of x only, a factor of f(x, y) = g(x)h(y) in the sixth property of double integrals",
+   "redefines": true,
+   "anchor": "15.1-fs-id1167794188051"
+  },
+  {
+   "sym": "h",
+   "section": "15.1",
+   "type": "function",
+   "meaning": "a function h(y) of y only, a factor of f(x, y) = g(x)h(y) in the sixth property of double integrals",
+   "redefines": true,
+   "anchor": "15.1-fs-id1167794188051"
+  },
+  {
+   "sym": "f",
+   "section": "15.2",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, the integrand of a double integral over a region of the xy-plane",
+   "anchor": "15.2-general-regions"
+  },
+  {
+   "sym": "D",
+   "section": "15.2",
+   "concept": "region",
+   "meaning": "a general bounded region D of the xy-plane over which a double integral is taken, of Type I, Type II or a union of both",
+   "redefines": true,
+   "anchor": "15.2-general-regions"
+  },
+  {
+   "sym": "R",
+   "section": "15.2",
+   "concept": "region",
+   "meaning": "a region of integration in the xy-plane, the rectangle R = [a, b] × [c, d] or a rectangle containing a region D",
+   "anchor": "15.2-general-regions"
+  },
+  {
+   "sym": "g",
+   "section": "15.2",
+   "type": "function",
+   "meaning": "the extension g(x, y) of f to a rectangle R containing D, equal to f on D and 0 elsewhere; with a subscript, the lower and upper boundary functions g₁(x) and g₂(x) of a Type I region",
+   "redefines": true,
+   "anchor": "15.2-general-regions"
+  },
+  {
+   "sym": "h",
+   "section": "15.2",
+   "type": "function",
+   "meaning": "with a subscript, the left and right boundary functions h₁(y) and h₂(y) of a Type II region",
+   "redefines": true,
+   "anchor": "15.2-fs-id1167793857192"
+  },
+  {
+   "sym": "V",
+   "section": "15.2",
+   "type": "integral",
+   "meaning": "the volume V of a solid under a surface z = f(x, y) ≥ 0 above a region D, a double integral",
+   "anchor": "15.2-fs-id1167793776681"
+  },
+  {
+   "sym": "A",
+   "section": "15.2",
+   "concept": "area-of-a-region-by-double-integral",
+   "meaning": "the area A(D) of a plane region D, the double integral of 1 over D",
+   "anchor": "15.2-fs-id1167793287011"
+  },
+  {
+   "sym": "f_ave",
+   "section": "15.2",
+   "concept": "average-value-of-a-function-of-two-variables",
+   "meaning": "the average value of a function f(x, y) over a plane region D, its double integral divided by the area of D",
+   "anchor": "15.2-fs-id1167793540298"
+  },
+  {
+   "sym": "f",
+   "section": "15.3",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, or f(r, θ) in polar coordinates, the integrand of a double integral",
+   "anchor": "15.3-polar-rectangles"
+  },
+  {
+   "sym": "R",
+   "section": "15.3",
+   "concept": "polar-rectangle",
+   "meaning": "a polar rectangle R = {(r, θ) | a ≤ r ≤ b, α ≤ θ ≤ β}, or a region of the xy-plane described by one",
+   "redefines": true,
+   "anchor": "15.3-polar-rectangles"
+  },
+  {
+   "sym": "D",
+   "section": "15.3",
+   "concept": "region",
+   "meaning": "a general polar region D = {(r, θ) | α ≤ θ ≤ β, h₁(θ) ≤ r ≤ h₂(θ)}, or a region of the plane described in polar coordinates",
+   "anchor": "15.3-general-polar"
+  },
+  {
+   "sym": "h",
+   "section": "15.3",
+   "type": "function",
+   "meaning": "with a subscript, the inner and outer boundary functions h₁(θ) and h₂(θ) of a general polar region",
+   "redefines": true,
+   "anchor": "15.3-general-polar"
+  },
+  {
+   "sym": "θ",
+   "section": "15.3",
+   "concept": "angular-coordinate",
+   "meaning": "the angular coordinate θ of polar and cylindrical coordinates, the angle from the polar axis, positive counterclockwise",
+   "anchor": "15.3-polar-rectangles"
+  },
+  {
+   "sym": "V",
+   "section": "15.3",
+   "type": "integral",
+   "meaning": "the volume V of a solid under a surface z = f(r, θ) above a polar region, a double integral in polar coordinates",
+   "anchor": "15.3-polar-areas-volumes"
+  },
+  {
+   "sym": "A",
+   "section": "15.3",
+   "concept": "area-of-a-region-by-double-integral",
+   "meaning": "the area A of a polar region, the double integral of 1 in polar coordinates",
+   "anchor": "15.3-polar-areas-volumes"
+  },
+  {
+   "sym": "f",
+   "section": "15.4",
+   "concept": "function-of-more-than-two-variables",
+   "meaning": "a function f(x, y, z) of three variables, the integrand of a triple integral over a solid region",
+   "redefines": true,
+   "anchor": "15.4-integrable-three"
+  },
+  {
+   "sym": "B",
+   "section": "15.4",
+   "concept": "region",
+   "meaning": "a rectangular box B = [a, b] × [c, d] × [e, f] in ℝ³ over which a triple integral is taken",
+   "redefines": true,
+   "anchor": "15.4-integrable-three"
+  },
+  {
+   "sym": "E",
+   "section": "15.4",
+   "concept": "region",
+   "meaning": "a general bounded solid region E of ℝ³ over which a triple integral is taken",
+   "redefines": true,
+   "anchor": "15.4-general-bounded"
+  },
+  {
+   "sym": "D",
+   "section": "15.4",
+   "concept": "region",
+   "meaning": "the projection D of a solid region E onto a coordinate plane, a region of Type I or Type II",
+   "anchor": "15.4-general-bounded"
+  },
+  {
+   "sym": "u_fn",
+   "section": "15.4",
+   "type": "function",
+   "meaning": "with a subscript, the lower and upper boundary functions u₁ and u₂ of a solid region E, the surfaces z = u₁(x, y) and z = u₂(x, y) between which it lies",
+   "redefines": true,
+   "anchor": "15.4-general-bounded"
+  },
+  {
+   "sym": "g",
+   "section": "15.4",
+   "type": "function",
+   "meaning": "with a subscript, the boundary functions g₁(x) and g₂(x) of a projection D of Type I",
+   "redefines": true,
+   "anchor": "15.4-general-bounded"
+  },
+  {
+   "sym": "h",
+   "section": "15.4",
+   "type": "function",
+   "meaning": "with a subscript, the boundary functions h₁(y) and h₂(y) of a projection D of Type II",
+   "redefines": true,
+   "anchor": "15.4-general-bounded"
+  },
+  {
+   "sym": "V",
+   "section": "15.4",
+   "concept": "volume-by-triple-integral",
+   "meaning": "the volume V(E) of a solid region E, the triple integral of 1 over E",
+   "redefines": true,
+   "anchor": "15.4-volume-term"
+  },
+  {
+   "sym": "f_ave",
+   "section": "15.4",
+   "concept": "average-value-of-a-function-of-three-variables",
+   "meaning": "the average value of a function f(x, y, z) over a solid region E, its triple integral divided by the volume of E",
+   "redefines": true,
+   "anchor": "15.4-fs-id1167793311695"
+  },
+  {
+   "sym": "T",
+   "section": "15.4",
+   "type": "function",
+   "meaning": "the temperature T(x, y, z) at a point of a solid, a function of three variables",
+   "redefines": true,
+   "anchor": "15.4-fs-id1167793367912"
+  },
+  {
+   "sym": "f",
+   "section": "15.5",
+   "concept": "function-of-more-than-two-variables",
+   "meaning": "a function f(x, y, z) of three variables, or f(r, θ, z) in cylindrical and f(ρ, θ, φ) in spherical coordinates, the integrand of a triple integral",
+   "anchor": "15.5-integration-cylindrical"
+  },
+  {
+   "sym": "g",
+   "section": "15.5",
+   "type": "function",
+   "meaning": "a function g(x, y, z) of three variables in rectangular coordinates, equal to f(r, θ, z) in cylindrical coordinates",
+   "redefines": true,
+   "anchor": "15.5-integration-cylindrical"
+  },
+  {
+   "sym": "B",
+   "section": "15.5",
+   "concept": "region",
+   "meaning": "a cylindrical box {(r, θ, z) | a ≤ r ≤ b, α ≤ θ ≤ β, c ≤ z ≤ d} or a spherical box {(ρ, θ, φ) | a ≤ ρ ≤ b, α ≤ θ ≤ β, γ ≤ φ ≤ ψ}",
+   "redefines": true,
+   "anchor": "15.5-integration-cylindrical"
+  },
+  {
+   "sym": "E",
+   "section": "15.5",
+   "concept": "region",
+   "meaning": "a general bounded solid region E of ℝ³, described in cylindrical or spherical coordinates",
+   "anchor": "15.5-cylindrical-general"
+  },
+  {
+   "sym": "D",
+   "section": "15.5",
+   "concept": "region",
+   "meaning": "the projection D of a solid region E onto the rθ-plane or the ρθ-plane",
+   "anchor": "15.5-cylindrical-general"
+  },
+  {
+   "sym": "u_fn",
+   "section": "15.5",
+   "type": "function",
+   "meaning": "with a subscript, the boundary functions u₁ and u₂ of a solid region E in cylindrical or spherical coordinates",
+   "anchor": "15.5-cylindrical-general"
+  },
+  {
+   "sym": "θ",
+   "section": "15.5",
+   "concept": "angular-coordinate",
+   "meaning": "the angle θ of cylindrical and spherical coordinates, the polar angle of the point's projection in the xy-plane",
+   "anchor": "15.5-review-cylindrical"
+  },
+  {
+   "sym": "φ",
+   "section": "15.5",
+   "type": "angle",
+   "meaning": "the angle φ of spherical coordinates, between the positive z-axis and the segment from the origin to the point, 0 ≤ φ ≤ π",
+   "redefines": true,
+   "anchor": "15.5-review-spherical"
+  },
+  {
+   "sym": "V",
+   "section": "15.5",
+   "concept": "volume-by-triple-integral",
+   "meaning": "the volume V(E) of a solid region E, the triple integral of 1 over E",
+   "anchor": "15.5-fs-id1167793268992"
+  },
+  {
+   "sym": "ρ",
+   "section": "15.6",
+   "concept": "density-of-a-lamina",
+   "meaning": "the density ρ(x, y) of a lamina, its mass per unit area, or ρ(x, y, z) of a solid, its mass per unit volume",
+   "redefines": true,
+   "anchor": "15.6-density-term"
+  },
+  {
+   "sym": "R",
+   "section": "15.6",
+   "concept": "region",
+   "meaning": "the region R of the xy-plane that a lamina occupies",
+   "anchor": "15.6-density-term"
+  },
+  {
+   "sym": "Q",
+   "section": "15.6",
+   "concept": "region",
+   "meaning": "a solid object Q in space with a density ρ(x, y, z)",
+   "redefines": true,
+   "anchor": "15.6-fs-id1167793294163"
+  },
+  {
+   "sym": "m",
+   "section": "15.6",
+   "concept": "mass-of-a-lamina",
+   "meaning": "the mass m of a lamina, the double integral of its density, or of a solid, the triple integral of its density",
+   "redefines": true,
+   "anchor": "15.6-fs-id1167793844477"
+  },
+  {
+   "sym": "M_x",
+   "section": "15.6",
+   "concept": "moments-of-a-lamina",
+   "meaning": "the moment M_x of a lamina about the x-axis, the double integral of yρ(x, y)",
+   "redefines": true,
+   "anchor": "15.6-fs-id1167793972894"
+  },
+  {
+   "sym": "M_y",
+   "section": "15.6",
+   "concept": "moments-of-a-lamina",
+   "meaning": "the moment M_y of a lamina about the y-axis, the double integral of xρ(x, y)",
+   "redefines": true,
+   "anchor": "15.6-fs-id1167793956495"
+  },
+  {
+   "sym": "x_bar",
+   "section": "15.6",
+   "concept": "center-of-mass-of-a-lamina",
+   "meaning": "the x-coordinate x̄ = M_y/m of the center of mass of a lamina or a solid",
+   "redefines": true,
+   "anchor": "15.6-fs-id1167793828955"
+  },
+  {
+   "sym": "y_bar",
+   "section": "15.6",
+   "concept": "center-of-mass-of-a-lamina",
+   "meaning": "the y-coordinate ȳ = M_x/m of the center of mass of a lamina or a solid",
+   "redefines": true,
+   "anchor": "15.6-fs-id1167793828955"
+  },
+  {
+   "sym": "z_bar",
+   "section": "15.6",
+   "concept": "center-of-mass-of-a-solid",
+   "meaning": "the z-coordinate z̄ = M_xy/m of the center of mass of a solid",
+   "anchor": "15.6-fs-id1167793294163"
+  },
+  {
+   "sym": "x_c",
+   "section": "15.6",
+   "concept": "centroid-of-a-plane-region",
+   "meaning": "the x-coordinate x_c of the centroid of a plane region, its center of mass at constant density",
+   "anchor": "15.6-centroid-term"
+  },
+  {
+   "sym": "y_c",
+   "section": "15.6",
+   "concept": "centroid-of-a-plane-region",
+   "meaning": "the y-coordinate y_c of the centroid of a plane region, its center of mass at constant density",
+   "anchor": "15.6-centroid-term"
+  },
+  {
+   "sym": "I_x",
+   "section": "15.6",
+   "concept": "moments-of-inertia-of-a-lamina",
+   "meaning": "the moment of inertia I_x of a lamina about the x-axis, or of a solid, the integral of (y² + z²)ρ",
+   "anchor": "15.6-moments-of-inertia"
+  },
+  {
+   "sym": "I_y",
+   "section": "15.6",
+   "concept": "moments-of-inertia-of-a-lamina",
+   "meaning": "the moment of inertia I_y of a lamina about the y-axis, or of a solid, the integral of (x² + z²)ρ",
+   "anchor": "15.6-moments-of-inertia"
+  },
+  {
+   "sym": "I_z",
+   "section": "15.6",
+   "concept": "moments-of-inertia-of-a-solid",
+   "meaning": "the moment of inertia I_z of a solid, the triple integral of (x² + y²)ρ",
+   "anchor": "15.6-fs-id1167793294163"
+  },
+  {
+   "sym": "I_0",
+   "section": "15.6",
+   "concept": "polar-moment-of-inertia",
+   "meaning": "the polar moment of inertia I₀ = I_x + I_y of a lamina, its moment of inertia about the origin",
+   "anchor": "15.6-polar-moment-term"
+  },
+  {
+   "sym": "M_xy",
+   "section": "15.6",
+   "concept": "mass-and-moments-of-a-solid",
+   "meaning": "the moment M_xy of a solid about the xy-plane, the triple integral of zρ(x, y, z)",
+   "anchor": "15.6-fs-id1167793294163"
+  },
+  {
+   "sym": "M_xz",
+   "section": "15.6",
+   "concept": "mass-and-moments-of-a-solid",
+   "meaning": "the moment M_xz of a solid about the xz-plane, the triple integral of yρ(x, y, z)",
+   "anchor": "15.6-fs-id1167793294163"
+  },
+  {
+   "sym": "M_yz",
+   "section": "15.6",
+   "concept": "mass-and-moments-of-a-solid",
+   "meaning": "the moment M_yz of a solid about the yz-plane, the triple integral of xρ(x, y, z)",
+   "anchor": "15.6-fs-id1167793294163"
+  },
+  {
+   "sym": "T",
+   "section": "15.7",
+   "concept": "transformation",
+   "meaning": "a transformation T, a change of variables T(u, v) = (x, y) carrying a region G of the uv-plane to a region R of the xy-plane, or T(u, v, w) = (x, y, z) in space",
+   "redefines": true,
+   "anchor": "15.7-cov-intro"
+  },
+  {
+   "sym": "G",
+   "section": "15.7",
+   "concept": "region",
+   "meaning": "the region G in the uv-plane (or uvw-space) that a transformation T carries onto R (or D)",
+   "redefines": true,
+   "anchor": "15.7-planar"
+  },
+  {
+   "sym": "R",
+   "section": "15.7",
+   "concept": "region",
+   "meaning": "the image R = T(G) in the xy-plane of a region under a transformation, or the region of a double integral",
+   "anchor": "15.7-planar"
+  },
+  {
+   "sym": "S",
+   "section": "15.7",
+   "concept": "region",
+   "meaning": "a region S of the uv-plane, a small rectangle Δu by Δv or the domain whose image under T is R",
+   "redefines": true,
+   "anchor": "15.7-jacobians"
+  },
+  {
+   "sym": "D",
+   "section": "15.7",
+   "concept": "region",
+   "meaning": "a region D of xyz-space, the image of a region G of uvw-space under a transformation",
+   "anchor": "15.7-cov-triple"
+  },
+  {
+   "sym": "g",
+   "section": "15.7",
+   "type": "function",
+   "meaning": "the first component g(u, v) of a transformation, x = g(u, v), or g(u, v, w) in space",
+   "redefines": true,
+   "anchor": "15.7-planar"
+  },
+  {
+   "sym": "h",
+   "section": "15.7",
+   "type": "function",
+   "meaning": "the second component h(u, v) of a transformation, y = h(u, v), or h(u, v, w) in space",
+   "redefines": true,
+   "anchor": "15.7-planar"
+  },
+  {
+   "sym": "J",
+   "section": "15.7",
+   "concept": "jacobian",
+   "meaning": "the Jacobian J(u, v) = ∂(x, y)/∂(u, v) of a transformation, the determinant of its first partial derivatives, or J(u, v, w) in three variables",
+   "anchor": "15.7-fs-id1167793642159"
+  },
+  {
+   "sym": "f",
+   "section": "15.7",
+   "concept": "function-of-two-variables",
+   "meaning": "a function f(x, y) of two variables, the integrand of a double integral changed to the variables u and v",
+   "anchor": "15.7-cov-double"
+  },
+  {
+   "sym": "F",
+   "section": "15.7",
+   "concept": "function-of-more-than-two-variables",
+   "meaning": "a function F(x, y, z) defined on a region D of xyz-space, the integrand of a triple integral",
+   "redefines": true,
+   "anchor": "15.7-cov-triple"
+  },
+  {
+   "sym": "H",
+   "section": "15.7",
+   "type": "function",
+   "meaning": "the function H(u, v, w) = F(g(u, v, w), h(u, v, w), k(u, v, w)), the integrand of a triple integral written in the variables u, v and w",
+   "anchor": "15.7-cov-triple"
+  }
+ ]
+}

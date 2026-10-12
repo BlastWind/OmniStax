@@ -1,0 +1,1457 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "J",
+   "latex": "J",
+   "macro": "\\kJ"
+  },
+  {
+   "sym": "H",
+   "latex": "H",
+   "macro": "\\kH"
+  },
+  {
+   "sym": "M_xy",
+   "latex": "M_{xy}",
+   "macro": "\\kMxy"
+  },
+  {
+   "sym": "M_xz",
+   "latex": "M_{xz}",
+   "macro": "\\kMxz"
+  },
+  {
+   "sym": "M_yz",
+   "latex": "M_{yz}",
+   "macro": "\\kMyz"
+  },
+  {
+   "sym": "z_bar",
+   "latex": "\\bar{z}",
+   "macro": "\\kzbar"
+  },
+  {
+   "sym": "I_x",
+   "latex": "I_{x}",
+   "macro": "\\kIx"
+  },
+  {
+   "sym": "I_y",
+   "latex": "I_{y}",
+   "macro": "\\kIy"
+  },
+  {
+   "sym": "I_z",
+   "latex": "I_{z}",
+   "macro": "\\kIz"
+  },
+  {
+   "sym": "I_0",
+   "latex": "I_{0}",
+   "macro": "\\kIzero"
+  },
+  {
+   "sym": "x_c",
+   "latex": "x_{c}",
+   "macro": "\\kxc"
+  },
+  {
+   "sym": "y_c",
+   "latex": "y_{c}",
+   "macro": "\\kyc"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "double-riemann-sum",
+   "kind": "definition",
+   "section": "15.1",
+   "name": "Double Riemann sum",
+   "terms": [
+    "double Riemann sum"
+   ],
+   "type": "integral",
+   "statement": "Divide the rectangle R = [a, b] × [c, d] into m by n subrectangles R_ij of area ΔA = Δx Δy and choose a sample point (x*_ij, y*_ij) in each; the double Riemann sum ΣΣ f(x*_ij, y*_ij) ΔA adds the volumes of the thin boxes above the R_ij and approximates the volume of the solid above R and under the graph of f.",
+   "forms": [
+    {
+     "id": "eq-double-riemann-sum",
+     "latex": "V\\approx\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A",
+     "anchor": "15.1-riemann-sum-term"
+    }
+   ]
+  },
+  {
+   "id": "double-integral",
+   "kind": "definition",
+   "section": "15.1",
+   "name": "Double integral",
+   "terms": [
+    "double integral",
+    "double integrals"
+   ],
+   "type": "integral",
+   "statement": "The double integral of the function f(x, y) over the rectangular region R in the xy-plane is the limit of its double Riemann sums as m and n increase without bound. If f(x, y) ≥ 0, it is the volume V of the solid that lies above R and under the graph of f; if f is ever negative, it is a signed volume.",
+   "forms": [
+    {
+     "id": "eq-double-integral",
+     "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\lim_{m,n\\to\\infty}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A",
+     "anchor": "15.1-fs-id1167793950178"
+    }
+   ]
+  },
+  {
+   "id": "integrable-function-of-two-variables",
+   "kind": "result",
+   "section": "15.1",
+   "name": "Integrable function of two variables",
+   "terms": [
+    "integrable"
+   ],
+   "statement": "The double integral of f over R exists provided f is not too discontinuous: if f is bounded and continuous over R except on a finite number of smooth curves, the double integral exists and f is integrable over R."
+  },
+  {
+   "id": "properties-of-double-integrals",
+   "kind": "result",
+   "section": "15.1",
+   "name": "Properties of double integrals",
+   "type": "integral",
+   "statement": "For f and g integrable over the rectangle R, subregions S and T of R, a constant c and real numbers m and M: the integral of a sum is the sum of the integrals; a constant comes out of the integral; if R = S ∪ T overlapping only on their boundaries, the integral over R is the sum of the integrals over S and T; if f ≥ g on R, the integral of f is at least the integral of g; if m ≤ f ≤ M, then m × A(R) ≤ ∬_R f dA ≤ M × A(R); and if f(x, y) = g(x)h(y), the double integral is the product of the single integrals of g and h.",
+   "forms": [
+    {
+     "id": "eq-double-integral-sum",
+     "latex": "\\iint\\limits_{R}[f(x,y)+g(x,y)]\\,dA=\\iint\\limits_{R}f(x,y)\\,dA+\\iint\\limits_{R}g(x,y)\\,dA",
+     "anchor": "15.1-fs-id1167794188051"
+    },
+    {
+     "id": "eq-double-integral-constant",
+     "latex": "\\iint\\limits_{R}cf(x,y)\\,dA=c\\iint\\limits_{R}f(x,y)\\,dA",
+     "anchor": "15.1-fs-id1167794188051"
+    },
+    {
+     "id": "eq-double-integral-additivity",
+     "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{S}f(x,y)\\,dA+\\iint\\limits_{T}f(x,y)\\,dA",
+     "anchor": "15.1-fs-id1167794188051"
+    },
+    {
+     "id": "eq-double-integral-monotonicity",
+     "latex": "\\iint\\limits_{R}f(x,y)\\,dA\\ge\\iint\\limits_{R}g(x,y)\\,dA",
+     "anchor": "15.1-fs-id1167794188051"
+    },
+    {
+     "id": "eq-double-integral-bounds",
+     "latex": "m\\times A(R)\\le\\iint\\limits_{R}f(x,y)\\,dA\\le M\\times A(R)",
+     "anchor": "15.1-fs-id1167794188051"
+    },
+    {
+     "id": "eq-double-integral-product",
+     "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\left(\\int_{a}^{b}g(x)\\,dx\\right)\\left(\\int_{c}^{d}h(y)\\,dy\\right)",
+     "anchor": "15.1-fs-id1167794188051"
+    }
+   ]
+  },
+  {
+   "id": "iterated-integral",
+   "kind": "definition",
+   "section": "15.1",
+   "name": "Iterated integral",
+   "terms": [
+    "iterated integral",
+    "iterated integrals"
+   ],
+   "type": "integral",
+   "statement": "An iterated integral of f(x, y) over the rectangle R = [a, b] × [c, d] integrates with respect to one variable while holding the other constant, then integrates the result with respect to the other: ∫ₐᵇ [∫꜀ᵈ f(x, y) dy] dx or ∫꜀ᵈ [∫ₐᵇ f(x, y) dx] dy.",
+   "forms": [
+    {
+     "id": "eq-iterated-integral-dy-dx",
+     "latex": "\\int_{a}^{b}\\int_{c}^{d}f(x,y)\\,dy\\,dx=\\int_{a}^{b}\\left[\\int_{c}^{d}f(x,y)\\,dy\\right]dx",
+     "anchor": "15.1-fs-id1167793432466"
+    },
+    {
+     "id": "eq-iterated-integral-dx-dy",
+     "latex": "\\int_{c}^{d}\\int_{a}^{b}f(x,y)\\,dx\\,dy=\\int_{c}^{d}\\left[\\int_{a}^{b}f(x,y)\\,dx\\right]dy",
+     "anchor": "15.1-fs-id1167793424345"
+    }
+   ]
+  },
+  {
+   "id": "fubinis-theorem",
+   "kind": "result",
+   "section": "15.1",
+   "name": "Fubini's theorem",
+   "terms": [
+    "Fubini’s theorem",
+    "Fubini's theorem"
+   ],
+   "type": "integral",
+   "statement": "If f(x, y) is continuous over a rectangular region R = [a, b] × [c, d], the double integral of f over R equals the iterated integral in either order; more generally this is true if f is bounded on R and discontinuous only on a finite number of continuous curves.",
+   "forms": [
+    {
+     "id": "eq-fubini-rectangle",
+     "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\int_{a}^{b}\\int_{c}^{d}f(x,y)\\,dy\\,dx=\\int_{c}^{d}\\int_{a}^{b}f(x,y)\\,dx\\,dy",
+     "anchor": "15.1-fs-id1167793423558"
+    }
+   ]
+  },
+  {
+   "id": "area-of-a-region-by-double-integral",
+   "kind": "definition",
+   "section": "15.1",
+   "name": "Area of a region by a double integral",
+   "type": "integral",
+   "symbol": "A",
+   "statement": "The area of a plane region is the double integral of the constant function 1 over it: A(R) = ∬_R 1 dA for a rectangle R, and A(D) = ∬_D 1 dA for a plane-bounded region D.",
+   "forms": [
+    {
+     "id": "eq-area-double-integral",
+     "latex": "A(R)=\\iint\\limits_{R}1\\,dA",
+     "anchor": "15.1-fs-id1167793508032"
+    },
+    {
+     "id": "eq-area-double-integral-general",
+     "latex": "A(D)=\\iint\\limits_{D}1\\,dA",
+     "section": "15.2",
+     "anchor": "15.2-fs-id1167793287011"
+    }
+   ]
+  },
+  {
+   "id": "average-value-of-a-function-of-two-variables",
+   "kind": "definition",
+   "section": "15.1",
+   "name": "Average value of a function of two variables",
+   "type": "function",
+   "symbol": "f_ave",
+   "statement": "The average value of a function of two variables over a region R is its double integral over R divided by the area of R; over a plane-bounded region D of positive area A(D), f_ave = (1/A(D)) ∬_D f(x, y) dA.",
+   "forms": [
+    {
+     "id": "eq-average-value-two-variables",
+     "latex": "f_{\\text{ave}}=\\frac{1}{\\text{Area}\\;R}\\iint\\limits_{R}f(x,y)\\,dA",
+     "anchor": "15.1-fs-id1167794076409"
+    },
+    {
+     "id": "eq-average-value-general-region",
+     "latex": "f_{\\text{ave}}=\\frac{1}{A(D)}\\iint\\limits_{D}f(x,y)\\,dA",
+     "section": "15.2",
+     "anchor": "15.2-fs-id1167793540298"
+    }
+   ]
+  },
+  {
+   "id": "type-i-region",
+   "kind": "definition",
+   "section": "15.2",
+   "name": "Type I region",
+   "terms": [
+    "Type I"
+   ],
+   "type": "region",
+   "statement": "A region D in the xy-plane is of Type I if it lies between two vertical lines and the graphs of two continuous functions g₁(x) and g₂(x): D = {(x, y) | a ≤ x ≤ b, g₁(x) ≤ y ≤ g₂(x)}.",
+   "forms": [
+    {
+     "id": "eq-type-i-region",
+     "latex": "D=\\{(x,y)\\mid a\\le x\\le b,\\;g_{1}(x)\\le y\\le g_{2}(x)\\}",
+     "anchor": "15.2-fs-id1167793857192"
+    }
+   ]
+  },
+  {
+   "id": "type-ii-region",
+   "kind": "definition",
+   "section": "15.2",
+   "name": "Type II region",
+   "terms": [
+    "Type II"
+   ],
+   "type": "region",
+   "statement": "A region D in the xy-plane is of Type II if it lies between two horizontal lines and the graphs of two continuous functions h₁(y) and h₂(y): D = {(x, y) | c ≤ y ≤ d, h₁(y) ≤ x ≤ h₂(y)}.",
+   "forms": [
+    {
+     "id": "eq-type-ii-region",
+     "latex": "D=\\{(x,y)\\mid c\\le y\\le d,\\;h_{1}(y)\\le x\\le h_{2}(y)\\}",
+     "anchor": "15.2-fs-id1167793857192"
+    }
+   ]
+  },
+  {
+   "id": "double-integral-over-a-nonrectangular-region",
+   "kind": "result",
+   "section": "15.2",
+   "name": "Double integral over a nonrectangular region",
+   "type": "integral",
+   "statement": "If g(x, y) is the extension to a rectangle R of the integrable function f(x, y) defined on a region D inside R, equal to f on D and 0 at every point of R not in D, then g is integrable and the double integral of f over D is the double integral of g over R.",
+   "forms": [
+    {
+     "id": "eq-double-integral-over-d",
+     "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\iint\\limits_{R}g(x,y)\\,dA",
+     "anchor": "15.2-fs-id1167793952017"
+    }
+   ]
+  },
+  {
+   "id": "fubinis-theorem-strong-form",
+   "kind": "result",
+   "section": "15.2",
+   "name": "Fubini's theorem (strong form)",
+   "type": "integral",
+   "statement": "For a function f(x, y) continuous on a region D of Type I, the double integral over D is the iterated integral ∫ₐᵇ [∫_{g₁(x)}^{g₂(x)} f(x, y) dy] dx; on a region of Type II it is ∫꜀ᵈ [∫_{h₁(y)}^{h₂(y)} f(x, y) dx] dy.",
+   "forms": [
+    {
+     "id": "eq-fubini-type-i",
+     "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\int_{a}^{b}\\left[\\int_{g_{1}(x)}^{g_{2}(x)}f(x,y)\\,dy\\right]dx",
+     "anchor": "15.2-fs-id1167793268925"
+    },
+    {
+     "id": "eq-fubini-type-ii",
+     "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\int_{c}^{d}\\left[\\int_{h_{1}(y)}^{h_{2}(y)}f(x,y)\\,dx\\right]dy",
+     "anchor": "15.2-fs-id1167793944833"
+    }
+   ]
+  },
+  {
+   "id": "decomposing-regions",
+   "kind": "result",
+   "section": "15.2",
+   "name": "Decomposing regions into smaller regions",
+   "type": "integral",
+   "statement": "If a region D is the union D₁ ∪ D₂ of two regions that do not overlap except at their boundaries, the double integral over D is the sum of the double integrals over D₁ and D₂; a region is often split this way into regions of Type I and Type II.",
+   "forms": [
+    {
+     "id": "eq-decomposing-regions",
+     "latex": "\\iint\\limits_{D}f(x,y)\\,dA=\\iint\\limits_{D_{1}}f(x,y)\\,dA+\\iint\\limits_{D_{2}}f(x,y)\\,dA",
+     "anchor": "15.2-fs-id1167793373592"
+    }
+   ]
+  },
+  {
+   "id": "changing-the-order-of-integration",
+   "kind": "skill",
+   "section": "15.2",
+   "name": "Changing the order of integration",
+   "statement": "To reverse the order of an iterated integral, describe its region the other way, as Type II instead of Type I or the reverse, solving the boundary curves for the other variable and splitting the region where one description needs several pieces; one order may lead to a computation significantly simpler than the other."
+  },
+  {
+   "id": "improper-double-integral",
+   "kind": "definition",
+   "section": "15.2",
+   "name": "Improper double integral",
+   "terms": [
+    "improper double integral"
+   ],
+   "type": "integral",
+   "statement": "An improper double integral is an integral ∬_D f dA where either D is an unbounded region or f is an unbounded function."
+  },
+  {
+   "id": "fubinis-theorem-for-improper-integrals",
+   "kind": "result",
+   "section": "15.2",
+   "name": "Fubini's theorem for improper integrals",
+   "type": "integral",
+   "statement": "If D is a bounded rectangle or simple region described both as {a ≤ x ≤ b, g(x) ≤ y ≤ h(x)} and as {c ≤ y ≤ d, j(y) ≤ x ≤ k(y)}, and f is a nonnegative function on D with finitely many discontinuities in the interior of D, then the improper double integral of f over D equals either iterated integral.",
+   "forms": [
+    {
+     "id": "eq-fubini-improper",
+     "latex": "\\iint\\limits_{D}f\\,dA=\\int_{x=a}^{x=b}\\int_{y=g(x)}^{y=h(x)}f(x,y)\\,dy\\,dx=\\int_{y=c}^{y=d}\\int_{x=j(y)}^{x=k(y)}f(x,y)\\,dx\\,dy",
+     "anchor": "15.2-fs-id1167793450004"
+    }
+   ]
+  },
+  {
+   "id": "improper-integral-on-an-unbounded-region",
+   "kind": "result",
+   "section": "15.2",
+   "name": "Improper integrals on an unbounded region",
+   "type": "integral",
+   "statement": "If R is an unbounded rectangle such as {a ≤ x < ∞, c ≤ y < ∞}, then when the limit exists the double integral of f over R is the limit as (b, d) → (∞, ∞) of the iterated integral over [a, b] × [c, d], in either order.",
+   "forms": [
+    {
+     "id": "eq-improper-unbounded-region",
+     "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\lim_{(b,d)\\to(\\infty,\\infty)}\\int_{a}^{b}\\left(\\int_{c}^{d}f(x,y)\\,dy\\right)dx",
+     "anchor": "15.2-fs-id1167793473260"
+    }
+   ]
+  },
+  {
+   "id": "joint-density-function",
+   "kind": "definition",
+   "section": "15.2",
+   "name": "Joint density function",
+   "terms": [
+    "joint density function"
+   ],
+   "type": "function",
+   "statement": "The joint density function f of a pair of continuous random variables X and Y gives the probability that (X, Y) lies in a region D as the double integral of f over D; since probabilities lie between 0 and 1, f(x, y) ≥ 0 and its integral over the whole plane is 1.",
+   "forms": [
+    {
+     "id": "eq-joint-density-probability",
+     "latex": "P((X,Y)\\in D)=\\iint\\limits_{D}f(x,y)\\,dA",
+     "anchor": "15.2-fs-id1167793246020"
+    },
+    {
+     "id": "eq-joint-density-total",
+     "latex": "f(x,y)\\ge 0\\;\\text{and}\\;\\iint\\limits_{\\mathbb{R}^{2}}f(x,y)\\,dA=1",
+     "anchor": "15.2-fs-id1167793246020"
+    }
+   ]
+  },
+  {
+   "id": "independent-random-variables",
+   "kind": "definition",
+   "section": "15.2",
+   "name": "Independent random variables",
+   "terms": [
+    "independent random variables"
+   ],
+   "statement": "The random variables X and Y are independent if their joint density function is the product of their individual density functions, f(x, y) = f₁(x)f₂(y).",
+   "forms": [
+    {
+     "id": "eq-independent-random-variables",
+     "latex": "f(x,y)=f_{1}(x)f_{2}(y)",
+     "anchor": "15.2-fs-id1167793618923"
+    }
+   ]
+  },
+  {
+   "id": "expected-value",
+   "kind": "definition",
+   "section": "15.2",
+   "name": "Expected value",
+   "terms": [
+    "expected values",
+    "expected value"
+   ],
+   "statement": "The expected values of the random variables X and Y with joint density f over the sample space S are E(X) = ∬_S x f(x, y) dA and E(Y) = ∬_S y f(x, y) dA.",
+   "forms": [
+    {
+     "id": "eq-expected-values",
+     "latex": "E(X)=\\iint\\limits_{S}xf(x,y)\\,dA\\;\\text{and}\\;E(Y)=\\iint\\limits_{S}yf(x,y)\\,dA",
+     "anchor": "15.2-fs-id1167793377822"
+    }
+   ]
+  },
+  {
+   "id": "polar-rectangle",
+   "kind": "definition",
+   "section": "15.3",
+   "name": "Polar rectangle",
+   "terms": [
+    "polar rectangle",
+    "polar rectangles"
+   ],
+   "type": "region",
+   "statement": "A polar rectangle is the region enclosed between the circles r = a and r = b and the angles θ = α and θ = β, R = {(r, θ) | a ≤ r ≤ b, α ≤ θ ≤ β}; its sides have constant r-values and constant θ-values. A polar subrectangle of sides Δr and Δθ has area ΔA = r* Δr Δθ, r* the average of its radii.",
+   "forms": [
+    {
+     "id": "eq-polar-subrectangle-area",
+     "latex": "\\Delta A=r_{ij}^{*}\\,\\Delta r\\,\\Delta\\theta",
+     "anchor": "15.3-subrectangle-area"
+    }
+   ]
+  },
+  {
+   "id": "double-integral-over-a-polar-rectangle",
+   "kind": "definition",
+   "section": "15.3",
+   "name": "Double integral over a polar rectangular region",
+   "type": "integral",
+   "statement": "The double integral of f(r, θ) over a polar rectangular region R is the limit of the double Riemann sums ΣΣ f(r*_ij, θ*_ij) r*_ij Δr Δθ of the polar boxes above the polar subrectangles, as m and n increase without bound.",
+   "forms": [
+    {
+     "id": "eq-double-integral-polar-rectangle",
+     "latex": "\\iint\\limits_{R}f(r,\\theta)\\,dA=\\lim_{m,n\\to\\infty}\\sum_{i=1}^{m}\\sum_{j=1}^{n}f(r_{ij}^{*},\\theta_{ij}^{*})\\,r_{ij}^{*}\\,\\Delta r\\,\\Delta\\theta",
+     "anchor": "15.3-fs-id1167793944942"
+    }
+   ]
+  },
+  {
+   "id": "double-integral-in-polar-coordinates",
+   "kind": "result",
+   "section": "15.3",
+   "name": "Double integral in polar coordinates",
+   "type": "integral",
+   "statement": "A double integral over a polar rectangle is the iterated integral ∫_α^β ∫ₐᵇ f(r, θ) r dr dθ: in polar coordinates dA is replaced by r dr dθ, and a function given in x and y changes by x = r cos θ and y = r sin θ.",
+   "forms": [
+    {
+     "id": "eq-polar-iterated-integral",
+     "latex": "\\iint\\limits_{R}f(r,\\theta)\\,dA=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=a}^{r=b}f(r,\\theta)\\,r\\,dr\\,d\\theta",
+     "anchor": "15.3-polar-iterated"
+    },
+    {
+     "id": "eq-polar-double-integral-conversion",
+     "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{R}f(r\\cos\\theta,r\\sin\\theta)\\,r\\,dr\\,d\\theta",
+     "anchor": "15.3-polar-iterated"
+    }
+   ]
+  },
+  {
+   "id": "double-integral-over-a-general-polar-region",
+   "kind": "result",
+   "section": "15.3",
+   "name": "Double integral over a general polar region",
+   "type": "integral",
+   "statement": "If f(r, θ) is continuous on a general polar region D = {(r, θ) | α ≤ θ ≤ β, h₁(θ) ≤ r ≤ h₂(θ)}, its double integral over D is ∫_α^β ∫_{h₁(θ)}^{h₂(θ)} f(r, θ) r dr dθ.",
+   "forms": [
+    {
+     "id": "eq-general-polar-region",
+     "latex": "\\iint\\limits_{D}f(r,\\theta)\\,r\\,dr\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=h_{1}(\\theta)}^{r=h_{2}(\\theta)}f(r,\\theta)\\,r\\,dr\\,d\\theta",
+     "anchor": "15.3-fs-id1167793261457"
+    }
+   ]
+  },
+  {
+   "id": "polar-volume-and-area",
+   "kind": "result",
+   "section": "15.3",
+   "name": "Volumes and areas in polar coordinates",
+   "type": "integral",
+   "statement": "The volume of the solid under z = f(r, θ) above a polar region is ∬ f(r, θ) r dr dθ over that region, and the area of a polar region is the integral of 1 r dr dθ over it.",
+   "forms": [
+    {
+     "id": "eq-polar-volume",
+     "latex": "V=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=h_{1}(\\theta)}^{r=h_{2}(\\theta)}f(r,\\theta)\\,r\\,dr\\,d\\theta",
+     "anchor": "15.3-polar-areas-volumes"
+    },
+    {
+     "id": "eq-polar-area-double",
+     "latex": "A=\\int_{\\alpha}^{\\beta}\\int_{h_{1}(\\theta)}^{h_{2}(\\theta)}1\\,r\\,dr\\,d\\theta",
+     "anchor": "15.3-polar-areas-volumes"
+    }
+   ]
+  },
+  {
+   "id": "triple-riemann-sum",
+   "kind": "definition",
+   "section": "15.4",
+   "name": "Triple Riemann sum",
+   "type": "integral",
+   "statement": "Divide a rectangular box B into l m n subboxes B_ijk of volume ΔV = Δx Δy Δz and choose a sample point in each; the triple Riemann sum is ΣΣΣ f(x*_ijk, y*_ijk, z*_ijk) Δx Δy Δz.",
+   "forms": [
+    {
+     "id": "eq-triple-riemann-sum",
+     "latex": "\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})\\,\\Delta x\\,\\Delta y\\,\\Delta z",
+     "anchor": "15.4-riemann-sum-term"
+    }
+   ]
+  },
+  {
+   "id": "triple-integral",
+   "kind": "definition",
+   "section": "15.4",
+   "name": "Triple integral",
+   "terms": [
+    "triple integral",
+    "triple integrals"
+   ],
+   "type": "integral",
+   "statement": "The triple integral of a function f(x, y, z) over a rectangular box B is the limit of its triple Riemann sums as l, m and n increase without bound, if the limit exists; it exists when f is continuous on B, and f is then integrable on B.",
+   "forms": [
+    {
+     "id": "eq-triple-integral",
+     "latex": "\\iiint\\limits_{B}f(x,y,z)\\,dV=\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(x_{ijk}^{*},y_{ijk}^{*},z_{ijk}^{*})\\,\\Delta x\\,\\Delta y\\,\\Delta z",
+     "anchor": "15.4-fs-id1167794023665"
+    }
+   ]
+  },
+  {
+   "id": "fubinis-theorem-for-triple-integrals",
+   "kind": "result",
+   "section": "15.4",
+   "name": "Fubini's theorem for triple integrals",
+   "type": "integral",
+   "statement": "If f(x, y, z) is continuous on a rectangular box B = [a, b] × [c, d] × [r, s], its triple integral over B equals the iterated integral ∫ᵣˢ ∫꜀ᵈ ∫ₐᵇ f dx dy dz and any of the other five orderings.",
+   "forms": [
+    {
+     "id": "eq-fubini-triple",
+     "latex": "\\iiint\\limits_{B}f(x,y,z)\\,dV=\\int_{r}^{s}\\int_{c}^{d}\\int_{a}^{b}f(x,y,z)\\,dx\\,dy\\,dz",
+     "anchor": "15.4-fs-id1167794125564"
+    }
+   ]
+  },
+  {
+   "id": "triple-integral-over-a-general-region",
+   "kind": "result",
+   "section": "15.4",
+   "name": "Triple integral over a general region",
+   "type": "integral",
+   "statement": "The triple integral of a continuous function over a general region E = {(x, y, z) | (x, y) ∈ D, u₁(x, y) ≤ z ≤ u₂(x, y)}, where D is the projection of E onto the xy-plane, is the double integral over D of ∫_{u₁}^{u₂} f dz; projections onto the xz- and yz-planes work the same way, and with D of Type I or Type II the integral becomes a threefold iterated integral.",
+   "forms": [
+    {
+     "id": "eq-triple-general-region",
+     "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\iint\\limits_{D}\\left[\\int_{u_{1}(x,y)}^{u_{2}(x,y)}f(x,y,z)\\,dz\\right]dA",
+     "anchor": "15.4-fs-id1167794284188"
+    },
+    {
+     "id": "eq-triple-type-i",
+     "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\int_{a}^{b}\\int_{g_{1}(x)}^{g_{2}(x)}\\int_{u_{1}(x,y)}^{u_{2}(x,y)}f(x,y,z)\\,dz\\,dy\\,dx",
+     "anchor": "15.4-general-bounded"
+    },
+    {
+     "id": "eq-triple-type-ii",
+     "latex": "\\iiint\\limits_{E}f(x,y,z)\\,dV=\\int_{y=c}^{y=d}\\int_{x=h_{1}(y)}^{x=h_{2}(y)}\\int_{z=u_{1}(x,y)}^{z=u_{2}(x,y)}f(x,y,z)\\,dz\\,dx\\,dy",
+     "anchor": "15.4-general-bounded"
+    }
+   ]
+  },
+  {
+   "id": "volume-by-triple-integral",
+   "kind": "definition",
+   "section": "15.4",
+   "name": "Volume by a triple integral",
+   "type": "integral",
+   "symbol": "V",
+   "statement": "The volume of a general solid bounded region E is the triple integral of 1 over E, V(E) = ∭_E 1 dV.",
+   "forms": [
+    {
+     "id": "eq-volume-triple-integral",
+     "latex": "V(E)=\\iiint\\limits_{E}1\\,dV",
+     "anchor": "15.4-volume-term"
+    }
+   ]
+  },
+  {
+   "id": "average-value-of-a-function-of-three-variables",
+   "kind": "result",
+   "section": "15.4",
+   "name": "Average value of a function of three variables",
+   "type": "function",
+   "symbol": "f_ave",
+   "statement": "If f(x, y, z) is integrable over a solid bounded region E with positive volume V(E), its average value is its triple integral over E divided by V(E).",
+   "forms": [
+    {
+     "id": "eq-average-value-three-variables",
+     "latex": "f_{\\text{ave}}=\\frac{1}{V(E)}\\iiint\\limits_{E}f(x,y,z)\\,dV",
+     "anchor": "15.4-fs-id1167793311695"
+    }
+   ]
+  },
+  {
+   "id": "triple-integral-in-cylindrical-coordinates",
+   "kind": "definition",
+   "section": "15.5",
+   "name": "Triple integral in cylindrical coordinates",
+   "terms": [
+    "triple integral in cylindrical coordinates"
+   ],
+   "type": "integral",
+   "statement": "Over a cylindrical box B = {(r, θ, z) | a ≤ r ≤ b, α ≤ θ ≤ β, c ≤ z ≤ d}, the triple integral in cylindrical coordinates is the limit of the triple Riemann sums ΣΣΣ f(r*, θ*, z*) r* Δr Δθ Δz; a function g(x, y, z) given in rectangular coordinates is integrated as g(r cos θ, r sin θ, z) r dr dθ dz.",
+   "forms": [
+    {
+     "id": "eq-cylindrical-riemann",
+     "latex": "\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(r_{ijk}^{*},\\theta_{ijk}^{*},z_{ijk}^{*})\\,r_{ijk}^{*}\\,\\Delta r\\,\\Delta\\theta\\,\\Delta z",
+     "anchor": "15.5-fs-id1167793784735"
+    },
+    {
+     "id": "eq-cylindrical-conversion",
+     "latex": "\\iiint\\limits_{B}g(x,y,z)\\,dV=\\iiint\\limits_{B}g(r\\cos\\theta,r\\sin\\theta,z)\\,r\\,dr\\,d\\theta\\,dz",
+     "anchor": "15.5-fs-id1167793951843"
+    }
+   ]
+  },
+  {
+   "id": "fubinis-theorem-in-cylindrical-coordinates",
+   "kind": "result",
+   "section": "15.5",
+   "name": "Fubini's theorem in cylindrical coordinates",
+   "type": "integral",
+   "statement": "If g(x, y, z) is continuous on a portion of a circular cylinder B = {(r, θ, z) | a ≤ r ≤ b, α ≤ θ ≤ β, c ≤ z ≤ d}, its triple integral is ∫꜀ᵈ ∫_α^β ∫ₐᵇ f(r, θ, z) r dr dθ dz with f(r, θ, z) = g(r cos θ, r sin θ, z), or any of the other five orders. Over a general region E between z = u₁(r, θ) and z = u₂(r, θ) above its projection D, the inner integral runs from u₁ to u₂.",
+   "forms": [
+    {
+     "id": "eq-fubini-cylindrical",
+     "latex": "\\iiint\\limits_{B}g(x,y,z)\\,dV=\\int_{c}^{d}\\int_{\\alpha}^{\\beta}\\int_{a}^{b}f(r,\\theta,z)\\,r\\,dr\\,d\\theta\\,dz",
+     "anchor": "15.5-fs-id1167794226649"
+    },
+    {
+     "id": "eq-cylindrical-general-region",
+     "latex": "\\iiint\\limits_{E}f(r,\\theta,z)\\,r\\,dr\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{r=g_{1}(\\theta)}^{r=g_{2}(\\theta)}\\int_{z=u_{1}(r,\\theta)}^{z=u_{2}(r,\\theta)}f(r,\\theta,z)\\,r\\,dz\\,dr\\,d\\theta",
+     "anchor": "15.5-cylindrical-general"
+    }
+   ]
+  },
+  {
+   "id": "volume-element-in-spherical-coordinates",
+   "kind": "result",
+   "section": "15.5",
+   "name": "Volume element in spherical coordinates",
+   "statement": "A spherical subbox with sides Δρ, ρΔφ and ρ sin φ Δθ has volume ΔV = (Δρ)(ρ Δφ)(ρ sin φ Δθ) = ρ² sin φ Δρ Δφ Δθ.",
+   "forms": [
+    {
+     "id": "eq-spherical-volume-element",
+     "latex": "\\Delta V=(\\Delta\\rho)(\\rho\\,\\Delta\\varphi)(\\rho\\sin\\varphi\\,\\Delta\\theta)",
+     "anchor": "15.5-integration-spherical"
+    }
+   ]
+  },
+  {
+   "id": "triple-integral-in-spherical-coordinates",
+   "kind": "definition",
+   "section": "15.5",
+   "name": "Triple integral in spherical coordinates",
+   "terms": [
+    "triple integral in spherical coordinates"
+   ],
+   "type": "integral",
+   "statement": "The triple integral in spherical coordinates over a spherical box B = {(ρ, θ, φ) | a ≤ ρ ≤ b, α ≤ θ ≤ β, γ ≤ φ ≤ ψ} is the limit of the triple Riemann sums ΣΣΣ f(ρ*, θ*, φ*)(ρ*)² sin φ* Δρ Δθ Δφ, provided the limit exists.",
+   "forms": [
+    {
+     "id": "eq-spherical-riemann",
+     "latex": "\\lim_{l,m,n\\to\\infty}\\sum_{i=1}^{l}\\sum_{j=1}^{m}\\sum_{k=1}^{n}f(\\rho_{ijk}^{*},\\theta_{ijk}^{*},\\varphi_{ijk}^{*})(\\rho_{ijk}^{*})^{2}\\sin\\varphi_{ijk}^{*}\\,\\Delta\\rho\\,\\Delta\\theta\\,\\Delta\\varphi",
+     "anchor": "15.5-fs-id1167793456296"
+    }
+   ]
+  },
+  {
+   "id": "fubinis-theorem-for-spherical-coordinates",
+   "kind": "result",
+   "section": "15.5",
+   "name": "Fubini's theorem for spherical coordinates",
+   "type": "integral",
+   "statement": "If f(ρ, θ, φ) is continuous on a spherical solid box B = [a, b] × [α, β] × [γ, ψ], its triple integral is the iterated integral ∫_α^β ∫_γ^ψ ∫ₐᵇ f ρ² sin φ dρ dφ dθ, or any other order; over a general region with φ between u₁(ρ, θ) and u₂(ρ, θ) the inner integral runs between them.",
+   "forms": [
+    {
+     "id": "eq-fubini-spherical",
+     "latex": "\\iiint\\limits_{B}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta=\\int_{\\theta=\\alpha}^{\\theta=\\beta}\\int_{\\varphi=\\gamma}^{\\varphi=\\psi}\\int_{\\rho=a}^{\\rho=b}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta",
+     "anchor": "15.5-fs-id1167793280690"
+    },
+    {
+     "id": "eq-spherical-general-region",
+     "latex": "\\iiint\\limits_{E}f(\\rho,\\theta,\\varphi)\\,dV=\\int_{\\alpha}^{\\beta}\\int_{g_{1}(\\theta)}^{g_{2}(\\theta)}\\int_{u_{1}(\\rho,\\theta)}^{u_{2}(\\rho,\\theta)}f(\\rho,\\theta,\\varphi)\\rho^{2}\\sin\\varphi\\,d\\varphi\\,d\\rho\\,d\\theta",
+     "anchor": "15.5-spherical-general"
+    }
+   ]
+  },
+  {
+   "id": "density-of-a-lamina",
+   "kind": "definition",
+   "section": "15.6",
+   "name": "Density of a lamina",
+   "type": "function",
+   "symbol": "ρ",
+   "statement": "The density ρ(x, y) of a lamina at a point is the limit of Δm/ΔA, the mass per area of a small rectangle containing the point, as the dimensions of the rectangle go to 0; it is measured in units of mass per unit area.",
+   "forms": [
+    {
+     "id": "eq-lamina-density",
+     "latex": "\\rho(x,y)=\\lim_{\\Delta A\\to 0}\\frac{\\Delta m}{\\Delta A}",
+     "anchor": "15.6-density-term"
+    }
+   ]
+  },
+  {
+   "id": "mass-of-a-lamina",
+   "kind": "result",
+   "section": "15.6",
+   "name": "Mass of a lamina",
+   "type": "integral",
+   "symbol": "m",
+   "statement": "The mass of a lamina occupying a region R with density ρ(x, y) is the limit of the sums of the masses ρ(x*_ij, y*_ij) ΔA of its subrectangles, the double integral of ρ over R.",
+   "forms": [
+    {
+     "id": "eq-lamina-mass",
+     "latex": "m=\\lim_{k,l\\to\\infty}\\sum_{i=1}^{k}\\sum_{j=1}^{l}\\rho(x_{ij}^{*},y_{ij}^{*})\\,\\Delta A=\\iint\\limits_{R}\\rho(x,y)\\,dA",
+     "anchor": "15.6-fs-id1167793844477"
+    }
+   ]
+  },
+  {
+   "id": "moments-of-a-lamina",
+   "kind": "definition",
+   "section": "15.6",
+   "name": "Moments of a lamina",
+   "type": "integral",
+   "symbol": "M_x",
+   "statement": "The moment M_x of a lamina about the x-axis is the double integral of yρ(x, y) over its region, and its moment M_y about the y-axis is the double integral of xρ(x, y).",
+   "forms": [
+    {
+     "id": "eq-lamina-moment-x",
+     "latex": "M_{x}=\\iint\\limits_{R}y\\rho(x,y)\\,dA",
+     "anchor": "15.6-fs-id1167793972894"
+    },
+    {
+     "id": "eq-lamina-moment-y",
+     "latex": "M_{y}=\\iint\\limits_{R}x\\rho(x,y)\\,dA",
+     "anchor": "15.6-fs-id1167793956495"
+    }
+   ]
+  },
+  {
+   "id": "center-of-mass-of-a-lamina",
+   "kind": "result",
+   "section": "15.6",
+   "name": "Center of mass of a lamina",
+   "type": "point",
+   "symbol": "x_bar",
+   "statement": "The center of mass of a lamina is the point (x̄, ȳ) with x̄ = M_y/m and ȳ = M_x/m, each a quotient of double integrals; the lamina balances on it.",
+   "forms": [
+    {
+     "id": "eq-lamina-center-of-mass",
+     "latex": "\\bar{x}=\\frac{M_{y}}{m}=\\frac{\\iint\\limits_{R}x\\rho(x,y)\\,dA}{\\iint\\limits_{R}\\rho(x,y)\\,dA},\\;\\bar{y}=\\frac{M_{x}}{m}=\\frac{\\iint\\limits_{R}y\\rho(x,y)\\,dA}{\\iint\\limits_{R}\\rho(x,y)\\,dA}",
+     "anchor": "15.6-fs-id1167793828955"
+    }
+   ]
+  },
+  {
+   "id": "centroid-of-a-plane-region",
+   "kind": "result",
+   "section": "15.6",
+   "name": "Centroid of a plane region",
+   "type": "point",
+   "symbol": "x_c",
+   "statement": "For a constant density the density cancels and the center of mass coincides with the centroid of the region: x_c = ∬_R x dA / ∬_R dA and y_c = ∬_R y dA / ∬_R dA.",
+   "forms": [
+    {
+     "id": "eq-centroid-plane-region",
+     "latex": "x_{c}=\\frac{\\iint\\limits_{R}x\\,dA}{\\iint\\limits_{R}dA},\\;y_{c}=\\frac{\\iint\\limits_{R}y\\,dA}{\\iint\\limits_{R}dA}",
+     "anchor": "15.6-centroid-term"
+    }
+   ]
+  },
+  {
+   "id": "moments-of-inertia-of-a-lamina",
+   "kind": "definition",
+   "section": "15.6",
+   "name": "Moments of inertia of a lamina",
+   "type": "integral",
+   "symbol": "I_x",
+   "statement": "The moment of inertia of a particle of mass m about an axis is mr², r its distance from the axis; the moments of inertia of a lamina about the x-axis and the y-axis are I_x = ∬_R y²ρ(x, y) dA and I_y = ∬_R x²ρ(x, y) dA. A moment of inertia measures the tendency of the mass to resist a change in rotational motion about an axis.",
+   "forms": [
+    {
+     "id": "eq-lamina-inertia-x",
+     "latex": "I_{x}=\\iint\\limits_{R}y^{2}\\rho(x,y)\\,dA",
+     "anchor": "15.6-moments-of-inertia"
+    },
+    {
+     "id": "eq-lamina-inertia-y",
+     "latex": "I_{y}=\\iint\\limits_{R}x^{2}\\rho(x,y)\\,dA",
+     "anchor": "15.6-moments-of-inertia"
+    }
+   ]
+  },
+  {
+   "id": "polar-moment-of-inertia",
+   "kind": "definition",
+   "section": "15.6",
+   "name": "Polar moment of inertia",
+   "type": "integral",
+   "symbol": "I_0",
+   "statement": "The polar moment of inertia I₀ of a lamina, its moment of inertia about the origin, is I_x + I_y, the double integral of (x² + y²)ρ(x, y).",
+   "forms": [
+    {
+     "id": "eq-polar-moment-of-inertia",
+     "latex": "I_{0}=I_{x}+I_{y}=\\iint\\limits_{R}(x^{2}+y^{2})\\rho(x,y)\\,dA",
+     "anchor": "15.6-polar-moment-term"
+    }
+   ]
+  },
+  {
+   "id": "radius-of-gyration",
+   "kind": "definition",
+   "section": "15.6",
+   "name": "Radius of gyration",
+   "terms": [
+    "radius of gyration",
+    "radii of gyration"
+   ],
+   "statement": "The radius of gyration of an object about an axis is the distance from the axis at which its whole mass might be concentrated to give the same moment of inertia: R_x = √(I_x/m), R_y = √(I_y/m) and R₀ = √(I₀/m).",
+   "forms": [
+    {
+     "id": "eq-radius-of-gyration",
+     "latex": "R_{x}=\\sqrt{\\frac{I_{x}}{m}},\\;R_{y}=\\sqrt{\\frac{I_{y}}{m}},\\;R_{0}=\\sqrt{\\frac{I_{0}}{m}}",
+     "anchor": "15.6-gyration-term"
+    }
+   ]
+  },
+  {
+   "id": "mass-and-moments-of-a-solid",
+   "kind": "definition",
+   "section": "15.6",
+   "name": "Mass and moments of a solid",
+   "type": "integral",
+   "symbol": "M_xy",
+   "statement": "A solid object Q with density ρ(x, y, z) has mass m = ∭_Q ρ dV and moments M_xy, M_xz and M_yz about the xy-, xz- and yz-planes, the triple integrals of zρ, yρ and xρ.",
+   "forms": [
+    {
+     "id": "eq-solid-mass",
+     "latex": "m=\\iiint\\limits_{Q}\\rho(x,y,z)\\,dV",
+     "anchor": "15.6-fs-id1167793294163"
+    },
+    {
+     "id": "eq-solid-moments",
+     "latex": "M_{xy}=\\iiint\\limits_{Q}z\\rho\\,dV,\\;M_{xz}=\\iiint\\limits_{Q}y\\rho\\,dV,\\;M_{yz}=\\iiint\\limits_{Q}x\\rho\\,dV",
+     "anchor": "15.6-fs-id1167793294163"
+    }
+   ]
+  },
+  {
+   "id": "center-of-mass-of-a-solid",
+   "kind": "result",
+   "section": "15.6",
+   "name": "Center of mass of a solid",
+   "type": "point",
+   "symbol": "z_bar",
+   "statement": "The center of mass of a solid is the point (x̄, ȳ, z̄) with x̄ = M_yz/m, ȳ = M_xz/m and z̄ = M_xy/m; for a homogeneous solid, of constant density, it is the centroid of the solid.",
+   "forms": [
+    {
+     "id": "eq-solid-center-of-mass",
+     "latex": "\\bar{x}=\\frac{M_{yz}}{m},\\;\\bar{y}=\\frac{M_{xz}}{m},\\;\\bar{z}=\\frac{M_{xy}}{m}",
+     "anchor": "15.6-fs-id1167793294163"
+    }
+   ]
+  },
+  {
+   "id": "moments-of-inertia-of-a-solid",
+   "kind": "definition",
+   "section": "15.6",
+   "name": "Moments of inertia of a solid",
+   "type": "integral",
+   "symbol": "I_z",
+   "statement": "The moments of inertia of a solid Q of density ρ are I_x = ∭_Q (y² + z²)ρ dV, I_y = ∭_Q (x² + z²)ρ dV and I_z = ∭_Q (x² + y²)ρ dV.",
+   "forms": [
+    {
+     "id": "eq-solid-moments-of-inertia",
+     "latex": "I_{x}=\\iiint\\limits_{Q}(y^{2}+z^{2})\\rho\\,dV,\\;I_{y}=\\iiint\\limits_{Q}(x^{2}+z^{2})\\rho\\,dV,\\;I_{z}=\\iiint\\limits_{Q}(x^{2}+y^{2})\\rho\\,dV",
+     "anchor": "15.6-fs-id1167793294163"
+    }
+   ]
+  },
+  {
+   "id": "transformation",
+   "kind": "definition",
+   "section": "15.7",
+   "name": "Transformation",
+   "terms": [
+    "transformation",
+    "transformations",
+    "mapping"
+   ],
+   "type": "function",
+   "symbol": "T",
+   "statement": "A transformation, or mapping, is the function used to change the variables of an integral to make the integration simpler, as x = r cos θ, y = r sin θ changes a double integral to polar coordinates."
+  },
+  {
+   "id": "planar-transformation",
+   "kind": "definition",
+   "section": "15.7",
+   "name": "Planar transformation",
+   "terms": [
+    "planar transformation",
+    "image"
+   ],
+   "type": "function",
+   "statement": "A planar transformation T is a function that transforms a region G in one plane into a region R in another plane by a change of variables x = g(u, v), y = h(u, v); G is the domain of T and R, its range, is the image of G under T."
+  },
+  {
+   "id": "one-to-one-transformation",
+   "kind": "definition",
+   "section": "15.7",
+   "name": "One-to-one transformation",
+   "terms": [
+    "one-to-one transformation"
+   ],
+   "statement": "A transformation T: G → R, T(u, v) = (x, y), is one-to-one if no two points map to the same image point; then its inverse T⁻¹ exists with domain R."
+  },
+  {
+   "id": "c1-transformation",
+   "kind": "definition",
+   "section": "15.7",
+   "name": "C¹ transformation",
+   "terms": [
+    "C^{1} transformation"
+   ],
+   "statement": "A transformation T(u, v) = (g(u, v), h(u, v)) is a C¹ transformation if its component functions have continuous first partial derivatives g_u, g_v, h_u and h_v."
+  },
+  {
+   "id": "jacobian",
+   "kind": "definition",
+   "section": "15.7",
+   "name": "Jacobian",
+   "terms": [
+    "Jacobian"
+   ],
+   "type": "matrix",
+   "symbol": "J",
+   "statement": "The Jacobian of the C¹ transformation T(u, v) = (g(u, v), h(u, v)) is the 2 × 2 determinant J(u, v) = ∂(x, y)/∂(u, v) = x_u y_v − x_v y_u; a small rectangle Δu by Δv is carried to a region of area ΔA ≈ J(u, v) Δu Δv, the area of the parallelogram of Δu r_u and Δv r_v.",
+   "forms": [
+    {
+     "id": "eq-jacobian-two-variables",
+     "latex": "J(u,v)=\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|=\\begin{vmatrix}\\frac{\\partial x}{\\partial u}&\\frac{\\partial y}{\\partial u}\\\\\\frac{\\partial x}{\\partial v}&\\frac{\\partial y}{\\partial v}\\end{vmatrix}=\\frac{\\partial x}{\\partial u}\\frac{\\partial y}{\\partial v}-\\frac{\\partial x}{\\partial v}\\frac{\\partial y}{\\partial u}",
+     "anchor": "15.7-fs-id1167793642159"
+    },
+    {
+     "id": "eq-jacobian-area",
+     "latex": "\\Delta A\\approx J(u,v)\\,\\Delta u\\,\\Delta v",
+     "anchor": "15.7-jacobians"
+    }
+   ]
+  },
+  {
+   "id": "change-of-variables-for-double-integrals",
+   "kind": "result",
+   "section": "15.7",
+   "name": "Change of variables for double integrals",
+   "type": "integral",
+   "statement": "If T(u, v) = (x, y), x = g(u, v), y = h(u, v), is a one-to-one C¹ transformation with a nonzero Jacobian on the interior of a region S of the uv-plane, mapping S onto R, and f is continuous on R, then ∬_R f(x, y) dA = ∬_S f(g(u, v), h(u, v)) |∂(x, y)/∂(u, v)| du dv: dA is replaced by |J| du dv.",
+   "forms": [
+    {
+     "id": "eq-change-of-variables-double",
+     "latex": "\\iint\\limits_{R}f(x,y)\\,dA=\\iint\\limits_{S}f(g(u,v),h(u,v))\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|du\\,dv",
+     "anchor": "15.7-fs-id1167793925892"
+    },
+    {
+     "id": "eq-change-of-variables-da",
+     "latex": "dA=dx\\,dy=\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|du\\,dv",
+     "anchor": "15.7-cov-double"
+    }
+   ]
+  },
+  {
+   "id": "strategy-for-change-of-variables",
+   "kind": "skill",
+   "section": "15.7",
+   "name": "Changing variables in a multiple integral",
+   "statement": "To change variables: sketch the region in the xy-plane and write the equations of its boundary curves; choose the transformation x = g(u, v), y = h(u, v) from the region or the integrand; determine the new limits of integration in the uv-plane; find the Jacobian J(u, v); replace the variables in the integrand; and replace dy dx or dx dy by J(u, v) du dv."
+  },
+  {
+   "id": "jacobian-of-three-variables",
+   "kind": "definition",
+   "section": "15.7",
+   "name": "Jacobian in three variables",
+   "type": "matrix",
+   "statement": "The Jacobian J(u, v, w) = ∂(x, y, z)/∂(u, v, w) of a transformation x = g(u, v, w), y = h(u, v, w), z = k(u, v, w) is the 3 × 3 determinant of its first partial derivatives.",
+   "forms": [
+    {
+     "id": "eq-jacobian-three-variables",
+     "latex": "J(u,v,w)=\\begin{vmatrix}\\frac{\\partial x}{\\partial u}&\\frac{\\partial x}{\\partial v}&\\frac{\\partial x}{\\partial w}\\\\\\frac{\\partial y}{\\partial u}&\\frac{\\partial y}{\\partial v}&\\frac{\\partial y}{\\partial w}\\\\\\frac{\\partial z}{\\partial u}&\\frac{\\partial z}{\\partial v}&\\frac{\\partial z}{\\partial w}\\end{vmatrix}",
+     "anchor": "15.7-fs-id1167793957157"
+    }
+   ]
+  },
+  {
+   "id": "change-of-variables-for-triple-integrals",
+   "kind": "result",
+   "section": "15.7",
+   "name": "Change of variables for triple integrals",
+   "type": "integral",
+   "statement": "If T(u, v, w) = (x, y, z) is a one-to-one C¹ transformation with a nonzero Jacobian mapping a region G of uvw-space onto R in xyz-space, and F is continuous on R, then ∭_R F dV = ∭_G F(g, h, k) |∂(x, y, z)/∂(u, v, w)| du dv dw; cylindrical and spherical coordinates are the cases |J| = r and |J| = ρ² sin φ.",
+   "forms": [
+    {
+     "id": "eq-change-of-variables-triple",
+     "latex": "\\iiint\\limits_{R}F(x,y,z)\\,dV=\\iiint\\limits_{G}F(g(u,v,w),h(u,v,w),k(u,v,w))\\left|\\frac{\\partial(x,y,z)}{\\partial(u,v,w)}\\right|du\\,dv\\,dw",
+     "anchor": "15.7-fs-id1167793285192"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "double-riemann-sum",
+   "prereq": "riemann-sum"
+  },
+  {
+   "concept": "double-riemann-sum",
+   "prereq": "function-of-two-variables"
+  },
+  {
+   "concept": "double-integral",
+   "prereq": "double-riemann-sum"
+  },
+  {
+   "concept": "integrable-function-of-two-variables",
+   "prereq": "double-integral"
+  },
+  {
+   "concept": "integrable-function-of-two-variables",
+   "prereq": "integrable-function"
+  },
+  {
+   "concept": "properties-of-double-integrals",
+   "prereq": "double-integral"
+  },
+  {
+   "concept": "properties-of-double-integrals",
+   "prereq": "properties-of-the-definite-integral"
+  },
+  {
+   "concept": "iterated-integral",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "iterated-integral",
+   "prereq": "function-of-two-variables"
+  },
+  {
+   "concept": "fubinis-theorem",
+   "prereq": "double-integral"
+  },
+  {
+   "concept": "fubinis-theorem",
+   "prereq": "iterated-integral"
+  },
+  {
+   "concept": "area-of-a-region-by-double-integral",
+   "prereq": "double-integral"
+  },
+  {
+   "concept": "average-value-of-a-function-of-two-variables",
+   "prereq": "area-of-a-region-by-double-integral"
+  },
+  {
+   "concept": "average-value-of-a-function-of-two-variables",
+   "prereq": "average-value-of-a-function"
+  },
+  {
+   "concept": "type-i-region",
+   "prereq": "region"
+  },
+  {
+   "concept": "type-ii-region",
+   "prereq": "region"
+  },
+  {
+   "concept": "double-integral-over-a-nonrectangular-region",
+   "prereq": "double-integral"
+  },
+  {
+   "concept": "double-integral-over-a-nonrectangular-region",
+   "prereq": "region"
+  },
+  {
+   "concept": "fubinis-theorem-strong-form",
+   "prereq": "fubinis-theorem"
+  },
+  {
+   "concept": "fubinis-theorem-strong-form",
+   "prereq": "type-i-region"
+  },
+  {
+   "concept": "fubinis-theorem-strong-form",
+   "prereq": "type-ii-region"
+  },
+  {
+   "concept": "fubinis-theorem-strong-form",
+   "prereq": "double-integral-over-a-nonrectangular-region"
+  },
+  {
+   "concept": "decomposing-regions",
+   "prereq": "double-integral-over-a-nonrectangular-region"
+  },
+  {
+   "concept": "decomposing-regions",
+   "prereq": "properties-of-double-integrals"
+  },
+  {
+   "concept": "changing-the-order-of-integration",
+   "prereq": "fubinis-theorem-strong-form"
+  },
+  {
+   "concept": "improper-double-integral",
+   "prereq": "double-integral-over-a-nonrectangular-region"
+  },
+  {
+   "concept": "improper-double-integral",
+   "prereq": "improper-integral"
+  },
+  {
+   "concept": "fubinis-theorem-for-improper-integrals",
+   "prereq": "improper-double-integral"
+  },
+  {
+   "concept": "fubinis-theorem-for-improper-integrals",
+   "prereq": "fubinis-theorem-strong-form"
+  },
+  {
+   "concept": "improper-integral-on-an-unbounded-region",
+   "prereq": "improper-double-integral"
+  },
+  {
+   "concept": "improper-integral-on-an-unbounded-region",
+   "prereq": "fubinis-theorem"
+  },
+  {
+   "concept": "joint-density-function",
+   "prereq": "improper-double-integral"
+  },
+  {
+   "concept": "independent-random-variables",
+   "prereq": "joint-density-function"
+  },
+  {
+   "concept": "expected-value",
+   "prereq": "joint-density-function"
+  },
+  {
+   "concept": "polar-rectangle",
+   "prereq": "polar-coordinate-system"
+  },
+  {
+   "concept": "polar-rectangle",
+   "prereq": "region"
+  },
+  {
+   "concept": "double-integral-over-a-polar-rectangle",
+   "prereq": "polar-rectangle"
+  },
+  {
+   "concept": "double-integral-over-a-polar-rectangle",
+   "prereq": "double-integral"
+  },
+  {
+   "concept": "double-integral-in-polar-coordinates",
+   "prereq": "double-integral-over-a-polar-rectangle"
+  },
+  {
+   "concept": "double-integral-in-polar-coordinates",
+   "prereq": "fubinis-theorem"
+  },
+  {
+   "concept": "double-integral-in-polar-coordinates",
+   "prereq": "converting-points-between-coordinate-systems"
+  },
+  {
+   "concept": "double-integral-over-a-general-polar-region",
+   "prereq": "double-integral-in-polar-coordinates"
+  },
+  {
+   "concept": "double-integral-over-a-general-polar-region",
+   "prereq": "polar-equation"
+  },
+  {
+   "concept": "polar-volume-and-area",
+   "prereq": "double-integral-over-a-general-polar-region"
+  },
+  {
+   "concept": "polar-volume-and-area",
+   "prereq": "area-of-a-region-by-double-integral"
+  },
+  {
+   "concept": "triple-riemann-sum",
+   "prereq": "double-riemann-sum"
+  },
+  {
+   "concept": "triple-riemann-sum",
+   "prereq": "function-of-more-than-two-variables"
+  },
+  {
+   "concept": "triple-integral",
+   "prereq": "triple-riemann-sum"
+  },
+  {
+   "concept": "fubinis-theorem-for-triple-integrals",
+   "prereq": "triple-integral"
+  },
+  {
+   "concept": "fubinis-theorem-for-triple-integrals",
+   "prereq": "fubinis-theorem"
+  },
+  {
+   "concept": "triple-integral-over-a-general-region",
+   "prereq": "fubinis-theorem-for-triple-integrals"
+  },
+  {
+   "concept": "triple-integral-over-a-general-region",
+   "prereq": "fubinis-theorem-strong-form"
+  },
+  {
+   "concept": "volume-by-triple-integral",
+   "prereq": "triple-integral"
+  },
+  {
+   "concept": "average-value-of-a-function-of-three-variables",
+   "prereq": "volume-by-triple-integral"
+  },
+  {
+   "concept": "average-value-of-a-function-of-three-variables",
+   "prereq": "average-value-of-a-function-of-two-variables"
+  },
+  {
+   "concept": "triple-integral-in-cylindrical-coordinates",
+   "prereq": "triple-integral"
+  },
+  {
+   "concept": "triple-integral-in-cylindrical-coordinates",
+   "prereq": "conversion-between-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "concept": "triple-integral-in-cylindrical-coordinates",
+   "prereq": "double-integral-in-polar-coordinates"
+  },
+  {
+   "concept": "fubinis-theorem-in-cylindrical-coordinates",
+   "prereq": "triple-integral-in-cylindrical-coordinates"
+  },
+  {
+   "concept": "fubinis-theorem-in-cylindrical-coordinates",
+   "prereq": "triple-integral-over-a-general-region"
+  },
+  {
+   "concept": "volume-element-in-spherical-coordinates",
+   "prereq": "conversion-among-spherical-cylindrical-and-rectangular-coordinates"
+  },
+  {
+   "concept": "triple-integral-in-spherical-coordinates",
+   "prereq": "volume-element-in-spherical-coordinates"
+  },
+  {
+   "concept": "triple-integral-in-spherical-coordinates",
+   "prereq": "triple-integral"
+  },
+  {
+   "concept": "fubinis-theorem-for-spherical-coordinates",
+   "prereq": "triple-integral-in-spherical-coordinates"
+  },
+  {
+   "concept": "fubinis-theorem-for-spherical-coordinates",
+   "prereq": "triple-integral-over-a-general-region"
+  },
+  {
+   "concept": "density-of-a-lamina",
+   "prereq": "density-function"
+  },
+  {
+   "concept": "density-of-a-lamina",
+   "prereq": "lamina"
+  },
+  {
+   "concept": "mass-of-a-lamina",
+   "prereq": "density-of-a-lamina"
+  },
+  {
+   "concept": "mass-of-a-lamina",
+   "prereq": "double-integral"
+  },
+  {
+   "concept": "moments-of-a-lamina",
+   "prereq": "mass-of-a-lamina"
+  },
+  {
+   "concept": "moments-of-a-lamina",
+   "prereq": "moment"
+  },
+  {
+   "concept": "center-of-mass-of-a-lamina",
+   "prereq": "moments-of-a-lamina"
+  },
+  {
+   "concept": "center-of-mass-of-a-lamina",
+   "prereq": "center-of-mass"
+  },
+  {
+   "concept": "centroid-of-a-plane-region",
+   "prereq": "center-of-mass-of-a-lamina"
+  },
+  {
+   "concept": "centroid-of-a-plane-region",
+   "prereq": "centroid"
+  },
+  {
+   "concept": "moments-of-inertia-of-a-lamina",
+   "prereq": "mass-of-a-lamina"
+  },
+  {
+   "concept": "polar-moment-of-inertia",
+   "prereq": "moments-of-inertia-of-a-lamina"
+  },
+  {
+   "concept": "radius-of-gyration",
+   "prereq": "polar-moment-of-inertia"
+  },
+  {
+   "concept": "mass-and-moments-of-a-solid",
+   "prereq": "triple-integral"
+  },
+  {
+   "concept": "mass-and-moments-of-a-solid",
+   "prereq": "moments-of-a-lamina"
+  },
+  {
+   "concept": "center-of-mass-of-a-solid",
+   "prereq": "mass-and-moments-of-a-solid"
+  },
+  {
+   "concept": "center-of-mass-of-a-solid",
+   "prereq": "center-of-mass-of-a-lamina"
+  },
+  {
+   "concept": "moments-of-inertia-of-a-solid",
+   "prereq": "mass-and-moments-of-a-solid"
+  },
+  {
+   "concept": "moments-of-inertia-of-a-solid",
+   "prereq": "moments-of-inertia-of-a-lamina"
+  },
+  {
+   "concept": "transformation",
+   "prereq": "function-of-two-variables"
+  },
+  {
+   "concept": "transformation",
+   "prereq": "change-of-variables"
+  },
+  {
+   "concept": "planar-transformation",
+   "prereq": "transformation"
+  },
+  {
+   "concept": "planar-transformation",
+   "prereq": "region"
+  },
+  {
+   "concept": "one-to-one-transformation",
+   "prereq": "planar-transformation"
+  },
+  {
+   "concept": "one-to-one-transformation",
+   "prereq": "one-to-one-function"
+  },
+  {
+   "concept": "c1-transformation",
+   "prereq": "planar-transformation"
+  },
+  {
+   "concept": "c1-transformation",
+   "prereq": "partial-derivative"
+  },
+  {
+   "concept": "jacobian",
+   "prereq": "c1-transformation"
+  },
+  {
+   "concept": "jacobian",
+   "prereq": "determinant"
+  },
+  {
+   "concept": "jacobian",
+   "prereq": "area-of-a-parallelogram"
+  },
+  {
+   "concept": "change-of-variables-for-double-integrals",
+   "prereq": "jacobian"
+  },
+  {
+   "concept": "change-of-variables-for-double-integrals",
+   "prereq": "one-to-one-transformation"
+  },
+  {
+   "concept": "change-of-variables-for-double-integrals",
+   "prereq": "double-integral-over-a-nonrectangular-region"
+  },
+  {
+   "concept": "strategy-for-change-of-variables",
+   "prereq": "change-of-variables-for-double-integrals"
+  },
+  {
+   "concept": "jacobian-of-three-variables",
+   "prereq": "jacobian"
+  },
+  {
+   "concept": "change-of-variables-for-triple-integrals",
+   "prereq": "jacobian-of-three-variables"
+  },
+  {
+   "concept": "change-of-variables-for-triple-integrals",
+   "prereq": "change-of-variables-for-double-integrals"
+  },
+  {
+   "concept": "change-of-variables-for-triple-integrals",
+   "prereq": "triple-integral-over-a-general-region"
+  }
+ ]
+}

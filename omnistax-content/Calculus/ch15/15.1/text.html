@@ -1,0 +1,238 @@
+<p id="double-intro">In this section we investigate <span data-concept="double-integral">double integrals</span> and show how we can use them to find the volume of a solid over a <span data-concept="region">rectangular region</span> in the $xy$-plane. Many of the properties of <span data-concept="double-integral">double integrals</span> are similar to those we have already discussed for single integrals.</p>
+
+<section id="volumes">
+<h2>Volumes and Double Integrals</h2>
+<p class="cite-target">We begin by considering the space above a <span data-concept="region">rectangular region</span> $\kR$. Consider a continuous function $\kf(x,y)\ge 0$ of two variables defined on the closed rectangle $\kR$:</p>
+$$\kR=[a,b]\;\times \;[c,d]=\{(x,y)\in {\mathbb{R}}^{2}|a\le x\le b,c\le y\le d\}$$
+<p>Here $[a,b]\;\times \;[c,d]$ denotes the Cartesian product of the two closed intervals $[a,b]$ and $[c,d].$ It consists of rectangular pairs $(x,y)$ such that $a\le x\le b$ and $c\le y\le d.$ The graph of $\kf$ represents a <span data-concept="surface">surface</span> above the $xy$-plane with equation $z=\kf(x,y)$ where $z$ is the height of the <span data-concept="surface">surface</span> at the point $(x,y).$ Let $\kS$ be the solid that lies above $\kR$ and under the graph of $\kf$ (Figure 15.2). The base of the solid is the rectangle $\kR$ in the $xy$-plane. We want to find the volume $\kV$ of the solid $\kS.$</p>
+<figure class="sim" id="sim-double-riemann" data-figure="15.2 + 15.3 + 15.4" data-original="/media/ch15/CNX_Calc_Figure_15_01_001.jpg,/media/ch15/CNX_Calc_Figure_15_01_002.jpg,/media/ch15/CNX_Calc_Figure_15_01_003.jpg" data-original-caption="(Figure 15.2) The graph of f(x,y) over the rectangle R in the xy-plane is a curved surface. (Figure 15.3) Rectangle R is divided into small rectangles Rᵢⱼ, each with area ΔA. (Figure 15.4) A thin rectangular box above Rᵢⱼ with height f(xᵢⱼ*,yᵢⱼ*).">
+  <div class="sim-head"><span class="eyebrow">Figure 15.2 + 15.3 + 15.4</span><span>Drag $m$ and $n$ to cut the rectangle $\kR$ into subrectangles $\kR_{ij}$ of area $\Delta A=\Delta x\,\Delta y.$ Each box stands on one $\kR_{ij}$ and rises to the surface $z=\kf(x,y)$ at its sample point, so its volume is $\kf(x_{ij}^{*},y_{ij}^{*})\,\Delta A;$ the boxes together make the <span data-concept="double-riemann-sum">double Riemann sum</span>, and as $m$ and $n$ grow it closes on the volume of the solid under the surface, whichever sample point is chosen.</span></div>
+</figure>
+<p>We divide the <span data-concept="region">region</span> $\kR$ into small rectangles $\kR_{ij},$ each with area $\Delta A$ and with sides $\Delta x$ and $\Delta y$ (Figure 15.3). We do this by dividing the interval $[a,b]$ into $m$ subintervals and dividing the interval $[c,d]$ into $n$ subintervals. Hence $\Delta x=\frac{b-a}{m},$ $\Delta y=\frac{d-c}{n},$ and $\Delta A=\Delta x\Delta y.$</p>
+
+<p>The volume of a thin rectangular box above $\kR_{ij}$ is $\kf(x_{ij}^{*},y_{ij}^{*})\Delta A,$ where $(x_{ij}^{*},y_{ij}^{*})$ is an arbitrary sample point in each $\kR_{ij}$ as shown in the following figure.</p>
+
+<p id="riemann-sum-term">Using the same idea for all the subrectangles, we obtain an approximate volume of the solid $\kS$ as $\kV\approx \sum_{i=1}^{m} \sum_{j=1}^{n} \kf(x_{ij}^{*},y_{ij}^{*})\Delta A .$ This sum is known as a <strong><span data-concept="double-riemann-sum">double Riemann sum</span></strong> and can be used to approximate the value of the volume of the solid. Here the double sum means that for each subrectangle we evaluate the function at the chosen point, multiply by the area of each rectangle, and then add all the results.</p>
+<p>As we have seen in the single-variable case, we obtain a better approximation to the actual volume if $m$ and $n$ become larger.</p>
+$$\kV=\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(x_{ij}^{*},y_{ij}^{*})\Delta A\;\text{or}\;\kV=\lim_{\Delta x,\Delta y\to 0}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(x_{ij}^{*},y_{ij}^{*})\Delta A.$$
+<p>Note that the sum approaches a limit in either case and the limit is the volume of the solid with the base $\kR$. Now we are ready to define the <span data-concept="double-integral">double integral</span>.</p>
+<div class="note" id="fs-id1167793373755">
+<div class="eyebrow">Definition</div>
+<p>The <strong><span data-concept="double-integral">double integral</span></strong> of the function $\kf(x,y)$ over the <span data-concept="region">rectangular region</span> $\kR$ in the $xy$-plane is defined as</p>
+<div class="equation" id="fs-id1167793950178">$$\iint\limits_{\kR}\kf(x,y)dA =\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(x_i^{*},y_j^{*})\Delta A .\tag{15.1}$$</div>
+</div>
+<p id="signed-volume">If $\kf(x,y)\ge 0,$ then the volume $\kV$ of the solid $\kS$, which lies above $\kR$ in the $xy$-plane and under the graph of $\kf$, is the <span data-concept="double-integral">double integral</span> of the function $\kf(x,y)$ over the rectangle $\kR.$ If the function is ever negative, then the <span data-concept="double-integral">double integral</span> can be considered a “signed” volume in a manner similar to the way we defined <span data-concept="net-signed-area">net signed area</span> in <a href="/calculus/ch05/5.2/">The Definite Integral</a>.</p>
+<div class="example" id="fs-id1167794246571">
+<h3>Example 15.1 · Setting up a Double Integral and Approximating It by Double Sums</h3>
+<p>Consider the function $z=\kf(x,y)=3x^{2}-y$ over the <span data-concept="region">rectangular region</span> $\kR=[0,2]\;\times \;[0,2]$ (Figure 15.5).</p>
+<p>a. Set up a <span data-concept="double-integral">double integral</span> for finding the value of the signed volume of the solid $\kS$ that lies above $\kR$ and “under” the graph of $\kf.$</p>
+<p>b. Divide $\kR$ into four squares with $m=n=2,$ and choose the sample point as the upper right corner point of each square $(1,1),(2,1),(1,2),$ and $(2,2)$ (Figure 15.6) to approximate the signed volume of the solid $\kS$ that lies above $\kR$ and “under” the graph of $\kf.$</p>
+<p>c. Divide $\kR$ into four squares with $m=n=2,$ and choose the sample point as the midpoint of each square: $(1/2,1/2),(3/2,1/2),(1/2,3/2),\text{and}\;(3/2,3/2)$ to approximate the signed volume.</p>
+<figure class="sim" id="sim-example-riemann" data-figure="15.5 + 15.6" data-original="/media/ch15/CNX_Calc_Figure_15_01_004.jpg,/media/ch15/CNX_Calc_Figure_15_01_005.jpg" data-original-caption="(Figure 15.5) The function z=f(x,y) graphed over the rectangular region R=[0,2] ×  [0,2]. (Figure 15.6) Subrectangles for the rectangular region R=[0,2] ×  [0,2].">
+  <div class="sim-head"><span class="eyebrow">Figure 15.5 + 15.6</span><span>The surface $z=3x^{2}-y$ dips below the $xy$-plane where $y&gt;3x^{2},$ so the boxes there hang below the plane and count negatively in the signed volume. With $m=n=2$ the upper right corners give $24$ and the midpoints give $11;$ raise $m=n$ to watch both sums close on the same <span data-concept="double-integral">double integral</span>.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>a. As we can see, the function $z=\kf(x,y)=3x^{2}-y^{}$ is both above and below the plane. To find the signed volume of $\kS$, we need to divide the <span data-concept="region">region</span> $\kR$ into small rectangles $\kR_{ij},$ each with area $\Delta A$ and with sides $\Delta x$ and $\Delta y,$ and choose $(x_{ij}^{*},y_{ij}^{*})$ as sample points in each $\kR_{ij}.$ Hence, a <span data-concept="double-integral">double integral</span> is set up as</p>
+$$\kV=\iint\limits_{\kR}(3x^{2}-y)dA =\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} [3{(x_{ij}^{*})}^{2}-y_{ij}^{*}]\Delta A .$$
+<p>b. Approximating the signed volume using a <span data-concept="riemann-sum">Riemann sum</span> with $m=n=2$ we have $\Delta A=\Delta x\Delta y=1\;\times \;1=1.$ Also, the sample points are (1, 1), (2, 1), (1, 2), and (2, 2) as shown in the following figure.</p>
+
+<p>Hence,</p>
+$$\begin{array}{ll}\kV & =\sum_{i=1}^{2} \sum_{j=1}^{2} \kf(x_{ij}^{*},y_{ij}^{*})\Delta A \\ & =\sum_{i=1}^{2} (\kf(x_{i1}^{*},y_{i1}^{*})+\kf(x_{i2}^{*},y_{i2}^{*}))\Delta A \\ & =\kf(x_{11}^{*},y_{11}^{*})\Delta A+\kf(x_{21}^{*},y_{21}^{*})\Delta A+\kf(x_{12}^{*},y_{12}^{*})\Delta A+\kf(x_{22}^{*},y_{22}^{*})\Delta A \\ & =\kf(1,1)(1)+\kf(2,1)(1)+\kf(1,2)(1)+\kf(2,2)(1) \\ & =(3-1)(1)+(12-1)(1)+(3-2)(1)+(12-2)(1) \\ & =2+11+1+10=24\end{array}$$
+<p>c. Approximating the signed volume using a <span data-concept="riemann-sum">Riemann sum</span> with $m=n=2,$ we have $\Delta A=\Delta x\Delta y=1\;\times \;1=1.$ In this case the sample points are (1/2, 1/2), (3/2, 1/2), (1/2, 3/2),</p>
+<p>and (3/2, 3/2).</p>
+<p>Hence</p>
+$$\begin{array}{ll}\kV & =\sum_{i=1}^{2} \sum_{j=1}^{2} \kf(x_{ij}^{*},y_{ij}^{*})\Delta A \\ & =\kf(x_{11}^{*},y_{11}^{*})\Delta A+\kf(x_{21}^{*},y_{21}^{*})\Delta A+\kf(x_{12}^{*},y_{12}^{*})\Delta A+\kf(x_{22}^{*},y_{22}^{*})\Delta A \\ & =\kf(\frac{1}{2},\frac{1}{2})(1)+\kf(\frac{3}{2},\frac{1}{2})(1)+\kf(\frac{1}{2},\frac{3}{2})(1)+\kf(\frac{3}{2},\frac{3}{2})(1) \\ & =(\frac{3}{4}-\frac{1}{2})(1)+(\frac{27}{4}-\frac{1}{2})(1)+(\frac{3}{4}-\frac{3}{2})(1)+(\frac{27}{4}-\frac{3}{2})(1) \\ & =\frac{1}{4}+\frac{25}{4}+(-\frac{3}{4})+\frac{21}{4}=\frac{44}{4}=11\end{array}$$
+<h4>Analysis</h4>
+<p>Notice that the approximate answers differ due to the choices of the sample points. In either case, we are introducing some error because we are using only a few sample points. Thus, we need to investigate how we can achieve an accurate answer.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794246571"></div>
+<p id="integrable-term">Note that we developed the concept of <span data-concept="double-integral">double integral</span> using a <span data-concept="region">rectangular region</span> $\kR$. This concept can be extended to any general <span data-concept="region">region</span>. However, when a <span data-concept="region">region</span> is not rectangular, the subrectangles may not all fit perfectly into $\kR$, particularly if the base area is curved. We examine this situation in more detail in the next section, where we study <span data-concept="region">regions</span> that are not always rectangular and subrectangles may not fit perfectly in the <span data-concept="region">region</span> $\kR$. Also, the heights may not be exact if the <span data-concept="surface">surface</span> $z=\kf(x,y)$ is curved. However, the errors on the sides and the height where the pieces may not fit perfectly within the solid $\kS$ approach 0 as $m$ and $n$ approach infinity. Also, the <span data-concept="double-integral">double integral</span> of the function $z=\kf(x,y)$ exists provided that the function $\kf$ is not too discontinuous. If the function is bounded and continuous over $\kR$ except on a finite number of smooth curves, then the <span data-concept="double-integral">double integral</span> exists and we say that $\kf$ is <span data-concept="integrable-function-of-two-variables">integrable</span> over $\kR$.</p>
+<p>Since $\Delta A=\Delta x\Delta y=\Delta y\Delta x,$ we can express $dA$ as $dx\;dy$ or $dy\;dx.$ This means that, when we are using rectangular coordinates, the <span data-concept="double-integral">double integral</span> over a <span data-concept="region">region</span> $\kR$ denoted by $\iint\limits_{\kR}\kf(x,y)d A$ can be written as $\iint\limits_{\kR}\kf(x,y)d x\;dy$ or $\iint\limits_{\kR}\kf(x,y)d y\;dx.$</p>
+<p>Now let’s list some of the properties that can be helpful to compute <span data-concept="double-integral">double integrals</span>.</p>
+</section>
+
+<section id="properties">
+<h2>Properties of Double Integrals</h2>
+<p class="cite-target">The properties of <span data-concept="double-integral">double integrals</span> are very helpful when computing them or otherwise working with them. We list here six properties of <span data-concept="double-integral">double integrals</span>. Properties 1 and 2 are referred to as the linearity of the integral, property 3 is the additivity of the integral, property 4 is the monotonicity of the integral, and property 5 is used to find the bounds of the integral. Property 6 is used if $\kf(x,y)$ is a product of two functions $\kg(x)$ and $\kh(y).$</p>
+<div class="note" id="fs-id1167794188051">
+<div class="eyebrow">Theorem</div>
+<h3>Properties of Double Integrals</h3>
+<p>Assume that the functions $\kf(x,y)$ and $g(x,y)$ are integrable over the <span data-concept="region">rectangular region</span> $\kR$; $\kS$ and <em>T</em> are subregions of $\kR$; and assume that $m$ and <em>M</em> are real numbers.</p>
+<ol><li>The sum $\kf(x,y)+g(x,y)$ is integrable and</li></ol>
+$$\iint\limits_{\kR}[\kf(x,y)+g(x,y)]dA= \iint\limits_{\kR}\kf(x,y)dA+ \iint\limits_{\kR}g(x,y)dA.$$
+<ol start="2"><li>If <em>c</em> is a constant, then $cf(x,y)$ is integrable and</li></ol>
+$$\iint\limits_{\kR}cf(x,y)dA=c \iint\limits_{\kR}\kf(x,y)dA.$$
+<ol start="3"><li>If $\kR=\kS\cup T$ and $\kS\cap T=\emptyset$ except an overlap on the boundaries, then</li></ol>
+$$\iint\limits_{\kR}\kf(x,y)dA= \iint\limits_{S}\kf(x,y)dA+\iint\limits_{T}\kf(x,y)dA .$$
+<ol start="4"><li>If $\kf(x,y)\ge g(x,y)$ for $(x,y)$ in $\kR,$ then</li></ol>
+$$\iint\limits_{\kR}\kf(x,y)dA\ge \iint\limits_{\kR}g(x,y)dA.$$
+<ol start="5"><li>If $m\le \kf(x,y)\le M,$ then</li></ol>
+$$m\;\times \;\kA(\kR)\le \iint\limits_{\kR}\kf(x,y)dA\le M\;\times \;\kA(\kR) .$$
+<ol start="6"><li>In the case where $\kf(x,y)$ can be factored as a product of a function $\kg(x)$ of $x$ only and a function $\kh(y)$ of $y$ only, then over the <span data-concept="region">region</span> $\kR=\{(x,y)|a\le x\le b,c\le y\le d\},$ the <span data-concept="double-integral">double integral</span> can be written as</li></ol>
+$$\iint\limits_{\kR}\kf(x,y)dA =(\int_a^{b}\kg(x)dx )(\int_c^{d}\kh(y)dy ).$$
+</div>
+<p>These properties are used in the evaluation of <span data-concept="double-integral">double integrals</span>, as we will see later. We will become skilled in using these properties once we become familiar with the computational tools of <span data-concept="double-integral">double integrals</span>. So let’s get to that now.</p>
+</section>
+
+<section id="iterated">
+<h2>Iterated Integrals</h2>
+<p class="cite-target">So far, we have seen how to set up a <span data-concept="double-integral">double integral</span> and how to obtain an approximate value for it. We can also imagine that evaluating <span data-concept="double-integral">double integrals</span> by using the definition can be a very lengthy process if we choose larger values for $m$ and $n.$ Therefore, we need a practical and convenient technique for computing <span data-concept="double-integral">double integrals</span>. In other words, we need to learn how to compute <span data-concept="double-integral">double integrals</span> without employing the definition that uses limits and double sums.</p>
+<p>The basic idea is that the evaluation becomes easier if we can break a <span data-concept="double-integral">double integral</span> into single integrals by integrating first with respect to one variable and then with respect to the other. The key tool we need is called an <span data-concept="iterated-integral">iterated integral</span>.</p>
+<div class="note" id="fs-id1167793636382">
+<div class="eyebrow">Definition</div>
+<p>Assume $a,b,c,$ and $d$ are real numbers. We define an <strong><span data-concept="iterated-integral">iterated integral</span></strong> for a function $\kf(x,y)$ over the <span data-concept="region">rectangular region</span> $\kR$ $=[a,b]\;\times \;[c,d]$ as</p>
+<p>a. </p>
+<div class="equation" id="fs-id1167793432466">$$\int_a^{b} \;\int_c^{d} \kf(x,y)dy\;dx =\int_a^{b} [\int_c^{d} \kf(x,y)dy ] dx\tag{15.2}$$</div>
+<p>b. </p>
+<div class="equation" id="fs-id1167793424345">$$\int_c^{d} \;\int_a^{b} \kf(x,y)dx\;dy =\int_c^{d} [\int_a^{b} \kf(x,y)dx ] dy.\tag{15.3}$$</div>
+</div>
+<p>The notation $\int_a^{b} [\int_c^{d} \kf(x,y)dy ] dx$ means that we integrate $\kf(x,y)$ with respect to $y$ while holding $x$ constant. Similarly, the notation $\int_c^{d} [\int_a^{b} \kf(x,y)dx ] dy$ means that we integrate $\kf(x,y)$ with respect to $x$ while holding $y$ constant. The fact that <span data-concept="double-integral">double integrals</span> can be split into <span data-concept="iterated-integral">iterated integrals</span> is expressed in <span data-concept="fubinis-theorem">Fubini’s theorem</span>. Think of this theorem as an essential tool for evaluating <span data-concept="double-integral">double integrals</span>.</p>
+<div class="note" id="fs-id1167793423558">
+<div class="eyebrow">Theorem</div>
+<h3>Fubini’s Theorem</h3>
+<p>Suppose that $\kf(x,y)$ is a <span data-concept="function-of-two-variables">function of two variables</span> that is continuous over a <span data-concept="region">rectangular region</span> $\kR=\{(x,y)\in {\mathbb{R}}^{2}|a\le x\le b,\text{c}\le \text{y}\le \text{d}\}.$ Then we see from Figure 15.7 that the <span data-concept="double-integral">double integral</span> of $\kf$ over the <span data-concept="region">region</span> equals an <span data-concept="iterated-integral">iterated integral</span>,</p>
+$$\iint\limits_{\kR}\kf(x,y)dA= \iint\limits_{\kR}\kf(x,y)dx\;dy =\int_a^{b} \;\int_c^{d} \kf(x,y)dy\;dx =\int_c^{d} \;\int_a^{b} \kf(x,y)dx\;dy .$$
+<p>More generally, <strong><span data-concept="fubinis-theorem">Fubini’s theorem</span></strong> is true if $\kf$ is bounded on $\kR$ and $\kf$ is discontinuous only on a finite number of continuous curves. In other words, $\kf$ has to be integrable over $\kR.$</p>
+</div>
+<figure class="sim" id="sim-fubini-slices" data-figure="15.7" data-original="/media/ch15/CNX_Calc_Figure_15_01_006.jpg" data-original-caption="(a) Integrating first with respect to y and then with respect to x to find the area A(x) and then the volume V; (b) integrating first with respect to x and then with respect to y to find the area A(y) and then the volume V.">
+  <div class="sim-head"><span class="eyebrow">Figure 15.7</span><span>Drag $x$ to move the slice of the solid in the plane at $x,$ whose area is $\kA(x)=\int_{0}^{3}\kf(x,y)\,dy,$ and drag $y$ to move the slice at $y,$ of area $\kA(y)=\int_{0}^{2}\kf(x,y)\,dx.$ Sweeping either slice across the base adds up the same volume, $15,$ as <span data-concept="fubinis-theorem">Fubini’s theorem</span> says; where the surface is below the plane the slice’s area counts negatively.</span></div>
+</figure>
+<div class="example" id="fs-id1167793593005">
+<h3>Example 15.2 · Using Fubini’s Theorem</h3>
+<p>Use <span data-concept="fubinis-theorem">Fubini’s theorem</span> to compute the <span data-concept="double-integral">double integral</span> $\iint\limits_{\kR}\kf(x,y)dA$ where $\kf(x,y)=x$ and $\kR=[0,2]\;\times \;[0,1].$</p>
+<h4>Solution</h4>
+<p><span data-concept="fubinis-theorem">Fubini’s theorem</span> offers an easier way to evaluate the <span data-concept="double-integral">double integral</span> by the use of an <span data-concept="iterated-integral">iterated integral</span>. Note how the boundary values of the <span data-concept="region">region</span> $\kR$ become the upper and lower limits of integration.</p>
+$$\begin{array}{rl}\iint\limits_{\kR}\kf(x,y)dA & =\iint\limits_{\kR}\kf(x,y)dx\;dy \\ & =\int_{y=0}^{y=1}\int_{x=0}^{x=2}x\;dx\;dy \\ & =\int_{y=0}^{y=1}[{\frac{x^{2}}{2}|}_{x=0}^{x=2}] dy \\ & =\int_{y=0}^{y=1}2dy={2y|}_{y=0}^{y=1}=2 .\end{array}$$
+</div>
+<p>The double integration in this example is simple enough to use <span data-concept="fubinis-theorem">Fubini’s theorem</span> directly, allowing us to convert a <span data-concept="double-integral">double integral</span> into an <span data-concept="iterated-integral">iterated integral</span>. Consequently, we are now ready to convert all <span data-concept="double-integral">double integrals</span> to <span data-concept="iterated-integral">iterated integrals</span> and demonstrate how the properties listed earlier can help us evaluate <span data-concept="double-integral">double integrals</span> when the function $\kf(x,y)$ is more complex. Note that the order of integration can be changed (see <a href="#fs-id1167793627885">Example 15.7</a>).</p>
+<div class="example" id="fs-id1167793255662">
+<h3>Example 15.3 · Illustrating Properties i and ii</h3>
+<p>Evaluate the <span data-concept="double-integral">double integral</span> $\iint\limits_{\kR}(xy-3xy^{2}) dA$ where $\kR=\{(x,y)|0\le x\le 2,1\le y\le 2\}.$</p>
+<h4>Solution</h4>
+<p>This function has two pieces: one piece is $xy$ and the other is $3xy^{2}.$ Also, the second piece has a constant $3.$ Notice how we use properties i and ii to help evaluate the <span data-concept="double-integral">double integral</span>.</p>
+$$\begin{array}{llll} \\ \\ \\ \\ \;\iint\limits_{\kR}(xy-3xy^{2}) dA & & & \\ =\iint\limits_{\kR}xy \;dA+\iint\limits_{\kR}(-3xy^{2}) dA & & & \text{Property i: Integral of a sum is the sum of the integrals.} \\ =\int_{y=1}^{y=2}\int_{x=0}^{x=2}xy\;dx\;dy -\int_{y=1}^{y=2}\int_{x=0}^{x=2}3xy^{2}dx\;dy & & & \text{Convert double integrals to iterated integrals.} \\ =\int_{y=1}^{y=2}{(\frac{x^{2}}{2}y)|}_{x=0}^{x=2}dy -3\int_{y=1}^{y=2}{(\frac{x^{2}}{2}y^{2})|}_{x=0}^{x=2}dy & & & \text{Integrate with respect to}\;x,\text{holding}\;y\;\text{constant.} \\ =\int_{y=1}^{y=2}2y\;dy -\int_{y=1}^{y=2}6y^{2}dy & & & \text{Property ii: Placing the constant before the integral.} \\ =2\int_1^{2}y\;dy -6\int_1^{2}y^{2}dy & & & \text{Integrate with respect to}\;y. \\ ={2\frac{y^{2}}{2}|}_1^{2}-{6\frac{y^{3}}{3}|}_1^{2} & & & \\ ={y^{2}|}_1^{2}-{2y^{3}|}_1^{2} & & & \\ =(4-1)-2(8-1) & & & \\ =3-2(7)=3-14=-11.\end{array}$$
+</div>
+<div class="example" id="fs-id1167793294171">
+<h3>Example 15.4 · Illustrating Property v.</h3>
+<p>Over the <span data-concept="region">region</span> $\kR=\{(x,y)|1\le x\le 3,1\le y\le 2\},$ we have $2\le x^{2}+y^{2}\le 13.$ Find a lower and an upper bound for the integral $\iint\limits_{\kR}(x^{2}+y^{2}) dA.$</p>
+<h4>Solution</h4>
+<p>For a lower bound, integrate the constant function 2 over the <span data-concept="region">region</span> $\kR.$ For an upper bound, integrate the constant function 13 over the <span data-concept="region">region</span> $\kR.$</p>
+$$\begin{array}{rll}\int_1^{2}\int_1^{3}2dx\;dy & = & \int_1^{2}[{2x|}_1^{3}] dy=\int_1^{2}2(2)dy ={4y|}_1^{2}=4(2-1)=4 \\ \int_1^{2}\int_1^{3}13dx\;dy & = & \int_1^{2}[{13x|}_1^{3}] dy=\int_1^{2}13(2)dy ={26y|}_1^{2}=26(2-1)=26.\end{array}$$
+<p>Hence, we obtain $4\le \iint\limits_{\kR}(x^{2}+y^{2}) dA\le 26.$</p>
+</div>
+<div class="example" id="fs-id1167793927722">
+<h3>Example 15.5 · Illustrating Property vi</h3>
+<p>Evaluate the integral $\iint\limits_{\kR}e^{y}\cos x\;dA$ over the <span data-concept="region">region</span> $\kR=\{(x,y)|0\le x\le \frac{\pi}{2},0\le y\le 1\}.$</p>
+<h4>Solution</h4>
+<p>This is a great example for property vi because the function $\kf(x,y)$ is clearly the product of two single-variable functions $e^{y}$ and $\cos x.$ Thus we can split the integral into two parts and then integrate each one as a single-variable integration problem.</p>
+$$\begin{array}{rl}\iint\limits_{\kR}e^{y}\cos x\;dA & =\int_0^{1}\int_0^{\pi /2}e^{y}\cos x\;dx\;dy \\ & =(\int_0^{1}e^{y}dy )(\int_0^{\pi /2}\cos x\;dx ) \\ & =({e^{y}|}_0^{1})({\sin x|}_0^{\pi /2}) \\ & =e-1.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793927722"></div>
+<p>As we mentioned before, when we are using rectangular coordinates, the <span data-concept="double-integral">double integral</span> over a <span data-concept="region">region</span> $\kR$ denoted by $\iint\limits_{\kR}\kf(x,y)dA$ can be written as $\iint\limits_{\kR}\kf(x,y)d x\;dy$ or $\iint\limits_{\kR}\kf(x,y)d y\;dx.$ The next example shows that the results are the same regardless of which order of integration we choose.</p>
+<div class="example" id="fs-id1167793290970">
+<h3>Example 15.6 · Evaluating an Iterated Integral in Two Ways</h3>
+<p>Let’s return to the function $\kf(x,y)=3x^{2}-y$ from <a href="#fs-id1167794246571">Example 15.1</a>, this time over the <span data-concept="region">rectangular region</span> $\kR=[0,2]\;\times \;[0,3].$ Use <span data-concept="fubinis-theorem">Fubini’s theorem</span> to evaluate $\iint\limits_{\kR}\kf(x,y)dA$ in two different ways:</p>
+<p>a. First integrate with respect to $y$ and then with respect to $x$;</p>
+<p>b. First integrate with respect to $x$ and then with respect to $y$.</p>
+<h4>Solution</h4>
+<p>Figure 15.7 shows how the calculation works in two different ways.</p>
+<p>a. First integrate with respect to $y$ and then integrate with respect to $x$:</p>
+$$\begin{array}{rl}\iint\limits_{\kR}\kf(x,y)dA & =\int_{x=0}^{x=2}\int_{y=0}^{y=3}(3x^{2}-y)dy\;dx \\ & =\int_{x=0}^{x=2}(\int_{y=0}^{y=3} (3x^{2}-y)dy ) dx=\int_{x=0}^{x=2}[{3x^{2}y-\frac{y^{2}}{2}|}_{y=0}^{y=3}]dx \\ & =\int_{x=0}^{x=2}(9x^{2}-\frac{9}{2}) dx={3x^{3}-\frac{9}{2}x|}_{x=0}^{x=2}=15.\end{array}$$
+<p>b. First integrate with respect to $x$ and then integrate with respect to $y$:</p>
+$$\begin{array}{rl}\iint\limits_{\kR}\kf(x,y)dA & =\int_{y=0}^{y=3}\int_{x=0}^{x=2}(3x^{2}-y)dx\;dy \\ & =\int_{y=0}^{y=3}(\int_{x=0}^{x=2}(3x^{2}-y)dx ) dy=\int_{y=0}^{y=3}[{x^{3}-xy|}_{x=0}^{x=2}]dy \\ & =\int_{y=0}^{y=3}(8-2y)dy ={8y-y^{2}|}_{y=0}^{y=3}=15.\end{array}$$
+<h4>Analysis</h4>
+<p>With either order of integration, the <span data-concept="double-integral">double integral</span> gives us an answer of 15. We might wish to interpret this answer as a volume in cubic units of the solid $\kS$ below the function $\kf(x,y)=3x^{2}-y$ over the <span data-concept="region">region</span> $\kR=[0,2]\;\times \;[0,3].$ However, remember that the interpretation of a <span data-concept="double-integral">double integral</span> as a (non-signed) volume works only when the integrand $\kf$ is a nonnegative function over the base <span data-concept="region">region</span> $\kR.$</p>
+</div>
+<div class="exercises" data-place="fs-id1167793290970"></div>
+<p>In the next example we see that it can actually be beneficial to switch the order of integration to make the computation easier. We will come back to this idea several times in this chapter.</p>
+<div class="example" id="fs-id1167793627885">
+<h3>Example 15.7 · Switching the Order of Integration</h3>
+<p>Consider the <span data-concept="double-integral">double integral</span> $\iint\limits_{\kR}x\;\sin (xy)dA$ over the <span data-concept="region">region</span> $\kR=\{(x,y)|0\le x\le \pi ,1\le y\le 2\}$ (Figure 15.8).</p>
+<p>a. Express the <span data-concept="double-integral">double integral</span> in two different ways.</p>
+<p>b. Analyze whether evaluating the <span data-concept="double-integral">double integral</span> in one way is easier than the other and why.</p>
+<p>c. Evaluate the integral.</p>
+<figure class="sim" id="fig-x-sin-xy" data-figure="15.8" data-original="/media/ch15/CNX_Calc_Figure_15_01_007.jpg" data-original-caption="The function z=f(x,y)=x sin (xy) over the rectangular region R=[0,π ] ×  [1,2].">
+  <div class="sim-head"><span class="eyebrow">Figure 15.8</span><span>The function $z=\kf(x,y)=x\;\sin (xy)$ over the rectangular region $\kR=[0,\pi ]\;\times \;[1,2].$</span></div>
+</figure>
+<h4>Solution</h4>
+<p>a. We can express $\iint\limits_{\kR}x\;\sin (xy)dA$ in the following two ways: first by integrating with respect to $y$ and then with respect to $x;$ second by integrating with respect to $x$ and then with respect to $y.$</p>
+$$\begin{array}{llll} \\ \\ \\ \\ \;\iint\limits_{\kR}x\;\sin (xy)dA & & & \\ =\int_{x=0}^{x=\pi} \;\int_{y=1}^{y=2} x\;\sin (xy)dy\;dx & & & \text{Integrate first with respect to}\;y. \\ =\int_{y=1}^{y=2} \;\int_{x=0}^{x=\pi} x\;\sin (xy)dx\;dy & & & \text{Integrate first with respect to}\;x.\end{array}$$
+<p>b. If we want to integrate with respect to $y$ first and then integrate with respect to $x,$ we see that we can use the substitution $u=xy,$ which gives $du=x\;dy.$ Hence the inner integral is simply $\int \sin u \;du$ and we can change the limits to be functions of $x$,</p>
+$$\iint\limits_{\kR}x\;\sin (xy)dA =\int_{x=0}^{x=\pi} \;\int_{y=1}^{y=2} x\;\sin (xy)dy\;dx =\int_{x=0}^{x=\pi} [\int_{u=x}^{u=2x} \sin (u)du ] dx.$$
+<p>However, integrating with respect to $x$ first and then integrating with respect to $y$ requires <span data-concept="integration-by-parts">integration by parts</span> for the inner integral, with $u=x$ and $dv=\sin (xy)dx.$</p>
+<p>Then $du=dx$ and $v=-\frac{\cos (xy)}{y},$ so</p>
+$$\iint\limits_{\kR}x\;\sin (xy)dA =\int_{y=1}^{y=2} \;\int_{x=0}^{x=\pi} x\;\sin (xy)dx\;dy =\int_{y=1}^{y=2} [-{\frac{x\;\cos (xy)}{y}|}_{x=0}^{x=\pi}+\frac{1}{y}\int_{x=0}^{x=\pi} \cos (xy)dx ] dy.$$
+<p>Since the evaluation is getting complicated, we will only do the computation that is easier to do, which is clearly the first method.</p>
+<p>c. Evaluate the <span data-concept="double-integral">double integral</span> using the easier way.</p>
+$$\begin{array}{rl}\iint\limits_{\kR}x\;\sin (xy)dA & =\int_{x=0}^{x=\pi} \;\int_{y=1}^{y=2} x\;\sin (xy)dy\;dx \\ & =\int_{x=0}^{x=\pi} [\int_{u=x}^{u=2x} \sin (u)du ] dx=\int_{x=0}^{x=\pi} [{-\cos u|}_{u=x}^{u=2x}] dx=\int_{x=0}^{x=\pi} (-\cos 2x+\cos x)dx \\ & ={-\frac{1}{2}\sin 2x+\sin x|}_{x=0}^{x=\pi}=0.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793627885"></div>
+</section>
+
+<section id="applications">
+<h2>Applications of Double Integrals</h2>
+<p class="cite-target"><span data-concept="double-integral">Double integrals</span> are very useful for finding the area of a <span data-concept="region">region</span> bounded by curves of functions. We describe this situation in more detail in the next section. However, if the <span data-concept="region">region</span> is a rectangular shape, we can find its area by integrating the constant function $\kf(x,y)=1$ over the <span data-concept="region">region</span> $\kR.$</p>
+<div class="note" id="fs-id1167793508032">
+<div class="eyebrow">Definition</div>
+<p>The <span data-concept="area-of-a-region-by-double-integral">area of the region</span> $\kR$ is given by $\kA(\kR)=\iint\limits_{\kR}1dA .$</p>
+</div>
+<p>This definition makes sense because using $\kf(x,y)=1$ and evaluating the integral make it a product of length and width. Let’s check this formula with an example and see how this works.</p>
+<div class="example" id="fs-id1167793454022">
+<h3>Example 15.8 · Finding Area Using a Double Integral</h3>
+<p>Find the <span data-concept="area-of-a-region-by-double-integral">area of the region</span> $\kR=\{(x,y)|0\le x\le 3,0\le y\le 2\}$ by using a <span data-concept="double-integral">double integral</span>, that is, by integrating 1 over the <span data-concept="region">region</span> $\kR.$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="region">region</span> is rectangular with length 3 and width 2, so we know that the area is 6. We get the same answer when we use a <span data-concept="double-integral">double integral</span>:</p>
+$$\kA(\kR)=\int_0^{2} \;\int_0^{3} 1dx\;dy =\int_0^{2} [{x|}_0^{3}] dy=\int_0^{2} 3dy=3\int_0^{2} dy=3{y|}_0^{2} =3(2)=6.$$
+</div>
+<p>We have already seen how <span data-concept="double-integral">double integrals</span> can be used to find the volume of a solid bounded above by a function $\kf(x,y)$ over a <span data-concept="region">region</span> $\kR$ provided $\kf(x,y)\ge 0$ for all $(x,y)$ in $\kR.$ Here is another example to illustrate this concept.</p>
+<div class="example" id="fs-id1167793925030">
+<h3>Example 15.9 · Volume of an Elliptic Paraboloid</h3>
+<p>Find the volume $\kV$ of the solid $\kS$ that is bounded by the elliptic paraboloid $2x^{2}+y^{2}+z=27,$ the planes $x=3$ and $y=3,$ and the three coordinate planes.</p>
+<h4>Solution</h4>
+<p>First notice the graph of the <span data-concept="surface">surface</span> $z=27-2x^{2}-y^{2}$ in Figure 15.9(a) and above the square <span data-concept="region">region</span> $\kR_{1}=[-3,3]\;\times \;[-3,3].$ However, we need the volume of the solid bounded by the elliptic paraboloid $2x^{2}+y^{2}+z=27,$ the planes $x=3$ and $y=3,$ and the three coordinate planes.</p>
+<figure class="sim" id="fig-paraboloid" data-figure="15.9" data-original="/media/ch15/CNX_Calc_Figure_15_01_008.jpg" data-original-caption="(a) The surface z=27−2x²−y² above the square region R₁=[−3,3] ×  [−3,3]. (b) The solid S lies under the surface z=27−2x²−y² above the square region R₂=[0,3] ×  [0,3].">
+  <div class="sim-head"><span class="eyebrow">Figure 15.9</span><span>(a) The surface $z=27-2x^{2}-y^{2}$ above the square region $\kR_{1}=[-3,3]\;\times \;[-3,3].$ (b) The solid $\kS$ lies under the surface $z=27-2x^{2}-y^{2}$ above the square region $\kR_{2}=[0,3]\;\times \;[0,3].$</span></div>
+</figure>
+<p>Now let’s look at the graph of the <span data-concept="surface">surface</span> in Figure 15.9(b). We determine the volume $\kV$ by evaluating the <span data-concept="double-integral">double integral</span> over $\kR_{2}\text{:}$</p>
+$$\begin{array}{rllll}\kV & =\iint\limits_{\kR}z\;dA= \iint\limits_{\kR}(27-2x^{2}-y^{2})dA & & & \\ & =\int_{y=0}^{y=3} \;\int_{x=0}^{x=3} (27-2x^{2}-y^{2})dx\;dy & & & \text{Convert to iterated integral.} \\ & =\int_{y=0}^{y=3} {[27x-\frac{2}{3}x^{3}-y^{2}x]|}_{x=0}^{x=3} dy & & & \text{Integrate with respect to}\;x. \\ & =\int_{y=0}^{y=3} (63-3y^{2})dy =63y-{y^{3}|}_{y=0}^{y=3}=162. & & & \end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793925030"></div>
+<p id="average-recall">Recall that we defined the <span data-concept="average-value-of-a-function">average value of a function of one variable</span> on an interval $[a,b]$ as</p>
+$$\kfave=\frac{1}{b-a}\int_a^{b} \kf(x)dx .$$
+<p>Similarly, we can define the <span data-concept="average-value-of-a-function-of-two-variables">average value of a function of two variables</span> over a <span data-concept="region">region</span> $\kR$. The main difference is that we divide by an area instead of the width of an interval.</p>
+<div class="note" id="fs-id1167794076396">
+<div class="eyebrow">Definition</div>
+<p>The <span data-concept="average-value-of-a-function-of-two-variables">average value of a function of two variables</span> over a <span data-concept="region">region</span> $\kR$ is</p>
+<div class="equation" id="fs-id1167794076409">$$\kfave=\frac{1}{\text{Area}\;\kR}\iint\limits_{\kR}\kf(x,y)dA.\tag{15.4}$$</div>
+</div>
+<figure class="sim" id="sim-average-height">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A box of height $h$ over the square $\kR_{2}=[0,3]\times[0,3]$ beside the solid $\kS$ of <a href="#fs-id1167793925030">Example 15.9</a>, whose volume is $162.$ Drag $h$ until the box holds exactly the solid’s volume: that height is the <span data-concept="average-value-of-a-function-of-two-variables">average value</span> of $\kf(x,y)=27-2x^{2}-y^{2}$ over $\kR_{2},$ $\kfave=\frac{162}{9}=18.$</span></div>
+</figure>
+<p>In the next example we find the average value of a function over a <span data-concept="region">rectangular region</span>. This is a good example of obtaining useful information for an integration by making individual measurements over a grid, instead of trying to find an algebraic expression for a function.</p>
+<div class="example" id="fs-id1167793638502">
+<h3>Example 15.10 · Calculating Average Storm Rainfall</h3>
+<p>The weather map in Figure 15.10 shows an unusually moist storm system associated with the remnants of Hurricane Karl, which dumped 4–8 inches (100–200 mm) of rain in some parts of the Midwest on September 22–23, 2010. The area of rainfall measured 300 miles east to west and 250 miles north to south. Estimate the average rainfall over the entire area in those two days.</p>
+<figure class="photo" id="fig-storm" data-figure="15.10">
+  <img src="/media/ch15/CNX_Calc_Figure_15_01_009.jpg" alt="A map of Wisconsin and Minnesota that shows many cities with numbers affixed to them. The highest numbers come in a narrow band, and the map is colored accordingly. The map effectively looks like a contour map, but instead of elevations, it uses these numbers.">
+  <figcaption><span class="eyebrow">Figure 15.10</span><span>Effects of Hurricane Karl, which dumped 4–8 inches (100–200 mm) of rain in some parts of southwest Wisconsin, southern Minnesota, and southeast South Dakota over a span of 300 miles east to west and 250 miles north to south.</span></figcaption>
+</figure>
+<h4>Solution</h4>
+<p>Place the origin at the southwest corner of the map so that all the values can be considered as being in the first quadrant and hence all are positive. Now divide the entire map into six rectangles $(m=3\;\text{and}\;n=2),$ as shown in Figure 15.11. Assume $\kf(x,y)$ denotes the storm rainfall in inches at a point approximately $x$ miles to the east of the origin and $y$ miles to the north of the origin. Let $\kR$ represent the entire area of $250\;\times \;300=75000$ square miles. Then the area of each subrectangle is</p>
+$$\Delta A=\frac{1}{6}(75,000)=12,500.$$
+<p>Assume $(x_{ij}^{*},y_{ij}^{*})$ are approximately the midpoints of each subrectangle $\kR_{ij}.$ Note the color-coded <span data-concept="region">region</span> at each of these points, and estimate the rainfall. The rainfall at each of these points can be estimated as:</p>
+<p>At $(x{*}_{11},y{*}_{11})$ the rainfall is 0.08.</p>
+<p>At $(x{*}_{21},y{*}_{21})$ the rainfall is 0.08.</p>
+<p>At $(x{*}_{31},y{*}_{31})$ the rainfall is 0.01.</p>
+<p>At $(x{*}_{12},y{*}_{12})$ the rainfall is 1.70.</p>
+<p>At $(x{*}_{22},y{*}_{22})$ the rainfall is 1.74.</p>
+<p>At $(x{*}_{32},y{*}_{32})$ the rainfall is 3.00.</p>
+<figure class="photo" id="fig-storm-grid" data-figure="15.11">
+  <img src="/media/ch15/CNX_Calc_Figure_15_01_011.jpg" alt="Another version of the previous storm map, but this time with lines drawn for x = 100, 200, and 300 and for y = 125 and 250. There is a dot in the center of each of the resulting rectangles.">
+  <figcaption><span class="eyebrow">Figure 15.11</span><span>Storm rainfall with rectangular axes and showing the midpoints of each subrectangle.</span></figcaption>
+</figure>
+<p>According to our definition, the average storm rainfall in the entire area during those two days was</p>
+$$\begin{array}{ll}\kfave & =\frac{1}{\text{Area}\;\kR}\iint\limits_{\kR}\kf(x,y)dx\;dy=\frac{1}{75000}\iint\limits_{\kR}\kf(x,y)dx\;dy \\ & \approx \frac{1}{75,000}\sum_{i=1}^{3} \sum_{j=1}^{2} \kf(x_{ij}^{*},y_{ij}^{*})\Delta A \\ & \approx \frac{1}{75,000}[\kf(x_{11}^{*},y_{11}^{*})\Delta A+\kf(x_{21}^{*},y_{21}^{*})\Delta A \\ & \;+\kf(x_{31}^{*},y_{31}^{*})\Delta A+\kf(x_{12}^{*},y_{12}^{*})\Delta A+\kf(x_{22}^{*},y_{22}^{*})\Delta A+\kf(x_{32}^{*},y_{32}^{*})\Delta A] \\ & \approx \frac{1}{75,000}[0.08+0.08+0.01+1.70+1.74+3.00]\Delta A \\ & \approx \frac{1}{75,000}[0.08+0.08+0.01+1.70+1.74+3.00]12500 \\ & \approx \frac{5}{30}[0.08+0.08+0.01+1.70+1.74+3.00] \\ & \approx 1.10.\end{array}$$
+<p>During September 22–23, 2010 this area had an average storm rainfall of approximately 1.10 inches.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793638502"></div>
+</section>
