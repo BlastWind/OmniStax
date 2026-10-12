@@ -126,3 +126,20 @@ and 335 stay in 1.5. Three corrections were added as notes: Example
 write y where x is meant. The chapter opener's link to Example 1.39 names
 the qualified id. `npm run colours:default -- calculus` was rerun with the
 chapter built.
+
+
+## Pass 4 (2026-10-12): Chapter 2 pass
+
+Every section's "Wanted at chapter level" was applied: the anchors of all
+the chapter's forms and variables rows, and new variables rows for g, h
+and k in 2.1 (k with its macro, `\kk`) and m in 2.2, Einstein's moving
+mass (`\km`); g and h in 2.1 and h in 2.2 redefine Chapter 1's meanings.
+The chapter review exercises held in 2.5 landed with the section that
+introduces what each tests: 231 in 2.1; 210 (AI-marked) in 2.2; 209, 213,
+215, 217, 219, 221, 223 and 224 (AI-marked) in 2.3; 208 and 230
+(AI-marked), 211, 225 and 227 in 2.4; 228 and 229 stay in 2.5. Two
+corrections were added as notes: the key's [2, ∞] for 225, meant
+[2, ∞), and the key's reason for 211, where a removable discontinuity is
+no counterexample. `tangent-line` wears `line`, its slope `derivative`,
+and 2.1's figures draw the tangent in `line`. The chapter opener's link
+to Example 2.12 names the qualified id.

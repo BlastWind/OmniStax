@@ -22,7 +22,7 @@ Status: agreed 2026-10-12 (Chen: build Chapters 1 and 2 through, report plans an
 18. Graphs: every function graph drawn live from the book's function and numbers; graphs an exercise reads from are faithful still copies.
 19. figlib: plot/shade/riemann/tangent/secant/drag exist; a section may add a part where its idea needs one (an ε–δ band pair is likely), flagged in its report.
 20. Photographs: chapter opener and photos an example points at kept; decoration dropped.
-21. Types: the 18 of book.json; limit, point, set, line, function and error are the ones this chapter uses; applied quantities wear their maths type.
+21. Types: the 18 of book.json; limit, point, set, line, function, derivative and error are the ones this chapter uses; applied quantities wear their maths type. A tangent line wears `line` and its slope `derivative` (chapter pass).
 22. Sims (rule 15): the plan decides and builds its picks, reported afterwards.
 23. 3D: none.
 24. Reference sheets: no new ones.

@@ -83,3 +83,5 @@ Ids confirmed with `ost ids calculus 2.4` after the build.
 {"id": "c-r225-interval", "kind": "correction", "html": "The key prints $[2,\\infty];$ since $\\infty$ is not a real number, the interval is $[2,\\infty).$"}
 {"id": "c-r211-reason", "kind": "correction", "html": "At a removable discontinuity the limit exists, so it is no counterexample here. A jump discontinuity is: in Example 2.27, $f(3)=-5$ is defined, but $\\lim_{x\\to 3}f(x)$ does not exist."}
 ```
+
+- Chapter pass (2026-10-12): all applied, both corrections as notes under their cards.

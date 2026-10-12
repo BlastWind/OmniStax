@@ -29,7 +29,7 @@
  },
  "built": "2026-10-12",
  "exercises_lead": "",
- "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 150, 152, 162, 164, 166, 168, 172 and 174, explanations and proofs the key leaves unanswered; 152 and 168 keep their reasoning parts and leave out a calculator part. The other 14 even-numbered section exercises have no answer in the key and are computational, so they are left out: exercises 132, 134, 136 and 138 (classifying discontinuities), 140, 142 and 144 (continuity at a point), 146 and 148 (values of k), 154 (discontinuities read from a graph), 156, 158 and 160 (sketches), and 170 (the rocket’s constant k). Review exercise 226, a value of c, has no answer in the key and is left out. A checkpoint answered in words keeps the book’s hint at the head of its answer.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 150, 152, 162, 164, 166, 168, 172 and 174, explanations and proofs the key leaves unanswered; 152 and 168 keep their reasoning parts and leave out a calculator part. The other 14 even-numbered section exercises have no answer in the key and are computational, so they are left out: exercises 132, 134, 136 and 138 (classifying discontinuities), 140, 142 and 144 (continuity at a point), 146 and 148 (values of k), 154 (discontinuities read from a graph), 156, 158 and 160 (sketches), and 170 (the rocket’s constant k). Review exercise 226, a value of c, has no answer in the key and is left out. A checkpoint answered in words keeps the book’s hint at the head of its answer. Review exercises 208, 211, 225, 227 and 230 are set here; 208 and 230 carry AI-suggested approaches, and the key’s answers to 211 and 225 stand as printed with a correction under each.",
  "figures": [
   {
    "id": "sim-three-conditions",
@@ -1024,6 +1024,102 @@
     "generated_by": "source",
     "solution": "Nowhere"
    }
+  },
+  {
+   "id": "r208",
+   "source_id": "fs-id1170572565358",
+   "source_section": "2.5",
+   "source_number": "208",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-at-a-point",
+   "prompt": "<p><em>True or False</em>. In the following exercises, justify your answer with a proof or a counterexample.</p><p>A function has to be continuous at $x=a$ if the $\\lim_{x\\to a}f(x)$ exists.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "False. The limit existing is only the second of the three conditions for continuity at $a$; $f(a)$ must also be defined and equal to the limit. For a counterexample take $f(x)=\\dfrac{x^{2}-4}{x-2}$ of Example 2.26: $\\lim_{x\\to 2}f(x)=4$ exists, but $f(2)$ is undefined, so $f$ is not continuous at $2$ (it has a removable discontinuity there)."
+   }
+  },
+  {
+   "id": "r211",
+   "source_id": "fs-id1170572184348",
+   "source_section": "2.5",
+   "source_number": "211",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types-of-discontinuities",
+   "prompt": "<p><em>True or False</em>. In the following exercises, justify your answer with a proof or a counterexample.</p><p>If $\\lim_{x\\to a}f(x)$ does not exist, then <em>f</em> is undefined at the point $x=a.$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. A removable discontinuity is possible.<sup class=\"fn\" data-note=\"c-r211-reason\"></sup>"
+   }
+  },
+  {
+   "id": "r225",
+   "source_id": "fs-id1170571638260",
+   "source_section": "2.5",
+   "source_number": "225",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "<p>Determine the domain such that the function $f(x)=\\sqrt{x-2}+xe^{x}$ is continuous over its domain.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$[2,\\infty]$<sup class=\"fn\" data-note=\"c-r225-interval\"></sup>"
+   }
+  },
+  {
+   "id": "r227",
+   "source_id": "fs-id1170571539172",
+   "source_section": "2.5",
+   "source_number": "227",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "continuity-over-an-interval",
+   "prompt": "<p>In the following exercises, determine the value of <em>c</em> such that the function remains continuous. Draw your resulting function to ensure it is continuous.</p><p>$f(x)=\\begin{cases}\\sqrt{x+1}, & x\\gt -1\\\\ x^{2}+c, & x\\le -1\\end{cases}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1,
+    "solution": "$c=-1$"
+   }
+  },
+  {
+   "id": "r230",
+   "source_id": "fs-id1170571710715",
+   "source_section": "2.5",
+   "source_number": "230",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ivt",
+   "prompt": "<p>A ball is thrown into the air and the vertical position is given by $x(t)=-4.9t^{2}+25t+5.$ Use the Intermediate Value Theorem to show that the ball must land on the ground sometime between 5 sec and 6 sec after the throw.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The position $x(t)=-4.9t^{2}+25t+5$ is a polynomial, so it is continuous over $[5,6].$ At the ends, $x(5)=-4.9(25)+125+5=7.5\\gt 0$ and $x(6)=-4.9(36)+150+5=-21.4\\lt 0.$ Since $0$ lies between $x(5)$ and $x(6),$ the Intermediate Value Theorem gives a time $c$ in $[5,6]$ with $x(c)=0$: the ball is at ground level at some time between 5 sec and 6 sec after the throw."
+   }
   }
  ],
  "exercise_concepts": [
@@ -1282,6 +1378,50 @@
   {
    "exercise": "e175",
    "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "r208",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "r208",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "r211",
+   "concept": "removable-discontinuity"
+  },
+  {
+   "exercise": "r211",
+   "concept": "discontinuity-at-a-point"
+  },
+  {
+   "exercise": "r225",
+   "concept": "continuity-over-an-interval"
+  },
+  {
+   "exercise": "r227",
+   "concept": "continuity-over-an-interval"
+  },
+  {
+   "exercise": "r227",
+   "concept": "continuity-at-a-point"
+  },
+  {
+   "exercise": "r230",
+   "concept": "intermediate-value-theorem"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-r225-interval",
+   "kind": "correction",
+   "html": "The key prints $[2,\\infty];$ since $\\infty$ is not a real number, the interval is $[2,\\infty).$"
+  },
+  {
+   "id": "c-r211-reason",
+   "kind": "correction",
+   "html": "At a removable discontinuity the limit exists, so it is no counterexample here. A jump discontinuity is: in Example 2.27, $f(3)=-5$ is defined, but $\\lim_{x\\to 3}f(x)$ does not exist."
   }
  ]
 }

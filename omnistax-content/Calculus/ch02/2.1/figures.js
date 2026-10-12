@@ -1,7 +1,7 @@
 /* Figures for section 2.1 A Preview of Calculus. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.1'] = function (root, F) {
-const { C, PAL, alpha, ctl, begin, axes, plot, shade, riemann, tangent, secant, drag, dot, line, arrow, text, label, headline, register, readout, tex, fmt, hover, presence, mixColor, hbracket } = F;
+const { C, PAL, alpha, ctl, begin, axes, plot, shade, riemann, tangent, secant, drag, dot, line, arrow, text, label, headline, register, readout, tex, fmt, hover, presence, hbracket } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const drop = (ctx, x1, y1, x2, y2) => line(ctx, x1, y1, x2, y2, alpha(PAL.ink, 0.4), 2.5, [4, 8]);
 const still = (d, draw) => register(d.fig, { update: () => {}, draw });
@@ -42,7 +42,7 @@ const through = (ctx, ax, x0, y0, m, color, w = 4) => tangent(ctx, ax, () => y0,
     const fc = C('function');
     const ax = axes(ctx, { l: 500, r: 900, t: 40, b: 410 }, [-5, 5], [-5, 6], { xl: 'x', yl: 'y', nx: 10, ny: 11, fx: blank, fy: blank });
     plot(ctx, ax, (x) => x * x, fc);
-    text(ctx, '$k(x) = x^2$', ax.X(2.6), ax.Y(5.2), fc, { size: 24, weight: 600, align: 'left', tex: true });
+    text(ctx, '$\\kk(x) = x^2$', ax.X(2.6), ax.Y(5.2), fc, { size: 24, weight: 600, align: 'left', tex: true });
   }
   still(d, draw);
 })();
@@ -61,14 +61,14 @@ const through = (ctx, ax, x0, y0, m, color, w = 4) => tangent(ctx, ax, () => y0,
   hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('function'), lc = C('line'), dc = C('derivative'), pc = C('point');
+    const fc = C('function'), lc = C('line'), pc = C('point');
     const x = xs.v, fx = f(x), at = Math.abs(x - A) < 1e-9;
     if (!at) lastM = (fx - FA) / (x - A);
     pr.show('tan', at, { ms: 700 });
-    const k = pr.a('tan'), m = lerp(lastM, DFA, k), lineC = mixColor(lc, dc, k);
+    const k = pr.a('tan'), m = lerp(lastM, DFA, k);
     const ax = axes(ctx, BOX, [-3, 6], [-3, 4], { xl: 'x', yl: 'y', nx: 9, ny: 7 });
     plot(ctx, ax, f, fc);
-    through(ctx, ax, A, FA, m, lineC);
+    through(ctx, ax, A, FA, m, lc);
     if (!at) { drop(ctx, ax.X(x), ax.Y(fx), ax.X(x), ax.Y(0)); }
     drop(ctx, ax.X(A), ax.Y(FA), ax.X(A), ax.Y(0));
     dot(ctx, ax.X(A), ax.Y(FA), pc, true, 10);
@@ -126,15 +126,15 @@ const through = (ctx, ax, x0, y0, m, color, w = 4) => tangent(ctx, ax, () => y0,
   hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('function'), lc = C('line'), dc = C('derivative'), pc = C('point');
+    const fc = C('function'), lc = C('line'), pc = C('point');
     const t = ts.v, st = s(t), at = Math.abs(t - A) < 1e-9, lo = Math.min(t, A), hi = Math.max(t, A);
     if (!at) lastM = (st - SA) / (t - A);
     pr.show('tan', at, { ms: 700 });
-    const k = pr.a('tan'), m = lerp(lastM, DSA, k), lineC = mixColor(lc, dc, k);
+    const k = pr.a('tan'), m = lerp(lastM, DSA, k);
     const ax = axes(ctx, BOX, [0, 2], [0, 70], { xl: 't, time in seconds', yl: 's(t), height in feet', yc: fc, nx: 4, ny: 7, fx: (v) => fmt(v, 1) });
     line(ctx, BX - 90, ax.Y(0), BX + 90, ax.Y(0), PAL.ink, 3);
     plot(ctx, ax, s, fc);
-    through(ctx, ax, A, SA, m, lineC);
+    through(ctx, ax, A, SA, m, lc);
     if (!at) hbracket(ctx, ax.X(lo), ax.X(hi), ax.Y(0) - 18, lc, `[${fmt(lo, 2)}, ${fmt(hi, 2)}]`);
     drop(ctx, BX + R + 6, ax.Y(SA), ax.X(A), ax.Y(SA));
     if (!at) drop(ctx, BX + R + 6, ax.Y(st), ax.X(t), ax.Y(st));
