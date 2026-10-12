@@ -299,3 +299,41 @@ decreasing condition and exercise 193's key (the car proof moved to 191);
 interval, Checkpoints 4.22, 4.25 and 4.26; 4.7 Checkpoint 4.35's square; 4.8
 Example 4.43's "x ≥ ∞" and Figure 4.71's caption; 4.9 Checkpoint 4.48's
 index; 4.10 the constant-multiple line and Example 4.53's condition.
+
+
+## Pass 10 (2026-10-13): Chapter 8, Introduction to Differential Equations, was built by one agent in one run: the
+
+prep (exploration, config agreed by carry-over, colour plan, chapter.json with 44 variables,
+34 concepts, 58 prerequisite edges and 14 symbols merged after Chapter 7's concepts were in),
+the introduction and 8.1–8.5, and this pass. A scratch converter turned each source.md into
+the page's draft and exercise rows, so the prose, examples, notes, tables and keys are the
+book's; concept spans, macros, function tokens, figures and captions were set per section.
+Every CNXML equation without the class unnumbered is tagged 8.1–8.26 as openstax.org numbers
+it, and each cited "Equation 8.N" matches a visible number.
+
+The unknown function y is the new symbol y_fn (macro \kyfn, typed function, as u_fn is);
+y′ and the higher derivatives wear derivative. The carrying capacity K wears limit, an
+initial value point, a direction field's segments derivative and Euler's steps line.
+
+The figure library gained one part, F.slopefield (field, curve, euler; pure geometry in
+src/lib/fig/slope.ts with tests/slope.test.ts): a direction field of y′ = f(x, y), the
+solution through a point traced both ways by Runge–Kutta steps that stop where it blows up,
+and Euler's polyline for a step size h, the draggable point coming from F.drag. Folds:
+8.4 + 8.5 (the baseball, moving), 8.7 + 8.8, 8.9 + 8.10 + 8.11, 8.13 + 8.14 (Euler, h on a
+slider), 8.21 + 8.22 (the deer's logistic field). Moving Sims: the baseball, the brine tank,
+the cooling pizza, the racquetball against air resistance. Still copies: 8.6 (its two
+starts T(0) = 100 and 50 are stand-ins), 8.12, 8.15, 8.18, 8.19, 8.23, 8.25, 8.26. Photos
+kept: 8.1, 8.20. No Sim of OmniStax's own beyond the required figures.
+
+The Chapter Review Exercises printed at the end of 8.5 landed with the section that
+introduces what each tests: 267, 273, 283 in 8.1; 265, 281 in 8.2; 263, 269, 271, 275, 287
+in 8.3; 289 in 8.4; 262, 264, 277, 279, 285 in 8.5; 262 and 264 with AI-marked answers;
+the 12 other unkeyed ones left out. Unkeyed even section exercises were left out except
+verifications, "show that", derivations and explanations, kept with AI-marked answers
+(8.1's 8–17 odd and even, Checkpoints 8.1 and 8.4, 104, 114, 164, 200, 208, 210, 212).
+
+Corrections added as notes: Example 8.7's missing initial-value problem; Table 8.2's
+y₇–y₁₀; Example 8.13's and Checkpoint 8.13's "Equation 8.4" (8.7 meant); Checkpoint 8.14's
+missing P; Example 8.19's v(0) = 2; the "Equation 8.23" cited for the RC equation;
+Checkpoints 8.18's and 8.19's hints; exercise keys 59, 65, 95, 103, 107, 111, 113, 117,
+187, 193, 221 and review 281.

@@ -1,0 +1,136 @@
+<p id="separable-intro">We now examine a solution technique for finding exact solutions to a class of <span data-concept="differential-equation">differential equations</span> known as <span data-concept="separable-differential-equation">separable differential equations</span>. These equations are common in a wide variety of disciplines, including physics, chemistry, and engineering. We illustrate a few applications at the end of the section.</p>
+<section id="separation-of-variables">
+<h2>Separation of Variables</h2>
+<p>We start with a definition and some examples.</p>
+<div class="note" id="separable-definition">
+<div class="eyebrow">Definition</div>
+<p>A <strong><span data-concept="separable-differential-equation">separable differential equation</span></strong> is any equation that can be written in the form</p>
+$$\kyprime=\kf(x)\kg(\kyfn).\tag{8.3}$$
+</div>
+<p>The term ‘separable’ refers to the fact that the right-hand side of the equation can be separated into a <span data-concept="function">function</span> of $x$ times a <span data-concept="function">function</span> of $\kyfn.$ Examples of <span data-concept="separable-differential-equation">separable differential equations</span> include</p>
+$$\begin{gathered}\kyprime=(x^{2}-4)(3\kyfn+2) \\ \kyprime=6x^{2}+4x \\ \kyprime=\sec \kyfn+\tan \kyfn \\ \kyprime=x\kyfn+3x-2\kyfn-6.\end{gathered}$$
+<p>The second equation is separable with $\kf(x)=6x^{2}+4x$ and $\kg(\kyfn)=1,$ the third equation is separable with $\kf(x)=1$ and $\kg(\kyfn)=\sec \kyfn+\tan \kyfn,$ and the right-hand side of the fourth equation can be factored as $(x-2)(\kyfn+3),$ so it is separable as well. The third equation is also called an <strong><span data-concept="autonomous-differential-equation">autonomous differential equation</span></strong> because the right-hand side of the equation is a <span data-concept="function">function</span> of $\kyfn$ alone. If a <span data-concept="differential-equation">differential equation</span> is separable, then it is possible to solve the equation using the method of <strong><span data-concept="separation-of-variables">separation of variables</span></strong>.</p>
+<div class="note" id="separation-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Separation of Variables</h3>
+<ol><li>Check for any values of $\kyfn$ that make $\kg(\kyfn)=0.$ These correspond to <span data-concept="equilibrium-solution">constant solutions</span>.</li><li>Rewrite the <span data-concept="differential-equation">differential equation</span> in the form $\frac{dy}{\kg(\kyfn)}=\kf(x)dx.$</li><li>Integrate both sides of the equation.</li><li>Solve the resulting equation for $\kyfn$ if possible.</li><li>If an <span data-concept="initial-value">initial condition</span> exists, substitute the appropriate values for $x$ and $\kyfn$ into the equation and solve for the constant. Note that Step 4. states “Solve the resulting equation for $\kyfn$ if possible.” It is not always possible to obtain $\kyfn$ as an explicit <span data-concept="function">function</span> of $x.$ Quite often we have to be satisfied with finding $\kyfn$ as an <span data-concept="implicitly-defined-function">implicit function</span> of $x.$</li></ol>
+</div>
+<div class="example" id="fs-id1170571302542">
+<h3>Example 8.10 · Using Separation of Variables</h3>
+<p>Find a <span data-concept="general-solution">general solution</span> to the <span data-concept="differential-equation">differential equation</span> $\kyprime=(x^{2}-4)(3\kyfn+2)$ using the method of <span data-concept="separation-of-variables">separation of variables</span>.</p>
+<h4>Solution</h4>
+<p>Follow the five-step method of <span data-concept="separation-of-variables">separation of variables</span>.</p>
+<ol><li>In this example, $\kf(x)=x^{2}-4$ and $\kg(\kyfn)=3\kyfn+2.$ Setting $\kg(\kyfn)=0$ gives $\kyfn=-\frac{2}{3}$ as a <span data-concept="equilibrium-solution">constant solution</span>.</li><li>Rewrite the <span data-concept="differential-equation">differential equation</span> in the form $$\frac{dy}{3\kyfn+2}=(x^{2}-4)dx.$$</li><li>Integrate both sides of the equation: $$\int \frac{dy}{3\kyfn+2}=\int (x^{2}-4)\;dx.$$</li></ol>
+<p>Let $u=3\kyfn+2.$ Then $du=3\kdydx dx,$ so the equation becomes</p>
+$$\begin{aligned}\frac{1}{3}\int \frac{1}{u}du &= \frac{1}{3}x^{3}-4x+C \\ \frac{1}{3}\;\ln|u| &= \frac{1}{3}x^{3}-4x+C \\ \frac{1}{3}\;\ln|3\kyfn+2| &= \frac{1}{3}x^{3}-4x+C.\end{aligned}$$
+<ol><li>To solve this equation for $\kyfn,$ first multiply both sides of the equation by $3.$ $$\ln|3\kyfn+2|=x^{3}-12x+3C$$</li></ol>
+<p>Now we use some logic in dealing with the constant $C.$ Since $C$ represents an arbitrary constant, $3C$ also represents an arbitrary constant. If we call the second arbitrary constant $C_{1},$ the equation becomes</p>
+$$\ln|3\kyfn+2|=x^{3}-12x+C_{1}.$$
+<p>Now exponentiate both sides of the equation (i.e., make each side of the equation the exponent for the base $e).$</p>
+$$\begin{aligned}e^{\ln|3\kyfn+2|} &= e^{x^{3}-12x+C_{1}} \\ |3\kyfn+2| &= e^{C_{1}}e^{x^{3}-12x}\end{aligned}$$
+<p>Again define a new constant $C_{2}=e^{c_{1}}$ (note that $C_{2}\gt 0)\text{:}$</p>
+$$|3\kyfn+2|=C_{2}e^{x^{3}-12x}.$$
+<p>This corresponds to two separate equations: $3\kyfn+2=C_{2}e^{x^{3}-12x}$ and $3\kyfn+2=-C_{2}e^{x^{3}-12x}.$</p>
+<p>The solution to either equation can be written in the form $\kyfn=\frac{-2\pm C_{2}e^{x^{3}-12x}}{3}.$</p>
+<p>Since $C_{2}\gt 0,$ it does not matter whether we use plus or minus, so the constant can actually have either sign. Furthermore, the subscript on the constant $C$ is entirely arbitrary, and can be dropped. Therefore the solution can be written as</p>
+$$\kyfn=\frac{-2+Ce^{x^{3}-12x}}{3}.$$
+<ol><li>No <span data-concept="initial-value">initial condition</span> is imposed, so we are finished.</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1170571302542"></div>
+<div class="example" id="fs-id1170573262524">
+<h3>Example 8.11 · Solving an Initial-Value Problem</h3>
+<p>Using the method of <span data-concept="separation-of-variables">separation of variables</span>, solve the <span data-concept="initial-value-problem">initial-value problem</span></p>
+$$\kyprime=(2x+3)(\kyfn^{2}-4),\;\kyfn(0)=-1.$$
+<h4>Solution</h4>
+<p>Follow the five-step method of <span data-concept="separation-of-variables">separation of variables</span>.</p>
+<ol><li>In this example, $\kf(x)=2x+3$ and $\kg(\kyfn)=\kyfn^{2}-4.$ Setting $\kg(\kyfn)=0$ gives $\kyfn=\pm2$ as <span data-concept="equilibrium-solution">constant solutions</span>.</li><li>Divide both sides of the equation by $\kyfn^{2}-4$ and multiply by $dx.$ This gives the equation $$\frac{dy}{\kyfn^{2}-4}=(2x+3)\;dx.$$</li><li>Next integrate both sides: $$\int \frac{1}{\kyfn^{2}-4}\;dy=\int (2x+3)\;dx.$$</li></ol>
+<p>To evaluate the left-hand side, use the method of <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span>. This leads to the identity</p>
+$$\frac{1}{\kyfn^{2}-4}=\frac{1}{4}(\frac{1}{\kyfn-2}-\frac{1}{\kyfn+2}).$$
+<p>Then Equation 8.4 becomes</p>
+$$\begin{aligned}\frac{1}{4}\int (\frac{1}{\kyfn-2}-\frac{1}{\kyfn+2})\;dy &= \int (2x+3)\;dx \\ \frac{1}{4}(\ln|\kyfn-2|-\ln|\kyfn+2|) &= x^{2}+3x+C.\end{aligned}$$
+<p>Multiplying both sides of this equation by $4$ and replacing $4C$ with $C_{1}$ gives</p>
+$$\begin{aligned}\ln|\kyfn-2|-\ln|\kyfn+2| &= 4x^{2}+12x+C_{1} \\ \ln|\frac{\kyfn-2}{\kyfn+2}| &= 4x^{2}+12x+C_{1}.\end{aligned}$$
+<ol><li>It is possible to solve this equation for <em>y</em>. First exponentiate both sides of the equation and define $C_{2}=e^{C_{1}}\text{:}$ $$|\frac{\kyfn-2}{\kyfn+2}|=C_{2}e^{4x^{2}+12x}.$$</li></ol>
+<p>Next we can remove the absolute value and let $C_{2}$ be either positive or negative. Then multiply both sides by $\kyfn+2.$</p>
+$$\begin{gathered}\kyfn-2=C_{2}(\kyfn+2)e^{4x^{2}+12x} \\ \kyfn-2=C_{2}ye^{{}^{4x^{2}+12x}}+2C_{2}e^{{}^{4x^{2}+12x}}.\end{gathered}$$
+<p>Now collect all terms involving <em>y</em> on one side of the equation, and solve for $\kyfn\text{:}$</p>
+$$\begin{aligned}\kyfn-C_{2}ye^{4x^{2}+12x} &= 2+2C_{2}e^{4x^{2}+12x} \\ \kyfn(1-C_{2}e^{4x^{2}+12x}) &= 2+2C_{2}e^{4x^{2}+12x} \\ \kyfn &= \frac{2+2C_{2}e^{4x^{2}+12x}}{1-C_{2}e^{4x^{2}+12x}}.\end{aligned}$$
+<ol><li>To determine the value of $C_{2},$ substitute $x=0$ and $\kyfn=-1$ into the <span data-concept="general-solution">general solution</span>. Alternatively, we can put the same values into an earlier equation, namely the equation $\frac{\kyfn-2}{\kyfn+2}=C_{2}e^{4x^{2}+12}.$ This is much easier to solve for $C_{2}\text{:}$ $$\begin{aligned}\frac{\kyfn-2}{\kyfn+2} &= C_{2}e^{4x^{2}+12x} \\ \frac{-1-2}{-1+2} &= C_{2}e^{4{(0)}^{2}+12(0)} \\ C_{2} &= -3.\end{aligned}$$</li></ol>
+<p>Therefore the solution to the <span data-concept="initial-value-problem">initial-value problem</span> is</p>
+$$\kyfn=\frac{2-6e^{4x^{2}+12x}}{1+3e^{4x^{2}+12x}}.$$
+<p>A graph of this solution appears in Figure 8.15.</p>
+<figure class="sim" id="fig-separable-ivp" data-figure="8.15" data-original="/media/ch08/CNX_Calc_Figure_08_03_001.jpg" data-original-caption="Graph of the solution to the initial-value problem y'=(2x+3)(y²−4), y(0)=−1.">
+  <div class="sim-head"><span class="eyebrow">Figure 8.15</span><span>Graph of the solution to the initial-value problem $\kyprime=(2x+3)(\kyfn^{2}-4),$ $\kyfn(0)=-1,$ over the equation’s direction field, with the constant solutions $\kyfn=\pm 2$ dashed.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170573262524"></div>
+</section>
+
+<section id="applications">
+<h2>Applications of Separation of Variables</h2>
+<p>Many interesting problems can be described by <span data-concept="separable-differential-equation">separable equations</span>. We illustrate two types of problems: <span data-concept="solution-concentration">solution concentrations</span> and <span data-concept="newtons-law-of-cooling">Newton’s law of cooling</span>.</p>
+<h3 id="solution-concentrations">Solution concentrations</h3>
+<p>Consider a tank being filled with a salt solution. We would like to determine the amount of salt present in the tank as a <span data-concept="function">function</span> of time. We can apply the process of <span data-concept="separation-of-variables">separation of variables</span> to solve this problem and similar problems involving <span data-concept="solution-concentration">solution concentrations</span>.</p>
+<div class="example" id="fs-id1170573587324">
+<h3>Example 8.12 · Determining Salt Concentration over Time</h3>
+<p>A tank containing $100\;\text{L}$ of a brine solution initially has $4\;\text{kg}$ of salt dissolved in the solution. At time $t=0,$ another brine solution flows into the tank at a rate of $2\;\text{L/min}.$ This brine solution contains a concentration of $0.5\;\text{kg/L}$ of salt. At the same time, a stopcock is opened at the bottom of the tank, allowing the combined solution to flow out at a rate of $2\;\text{L/min},$ so that the level of liquid in the tank remains constant (Figure 8.16). Find the amount of salt in the tank as a <span data-concept="function">function</span> of time (measured in minutes), and find the limiting amount of salt in the tank, assuming that the solution in the tank is well mixed at all times.</p>
+<figure class="sim" id="sim-brine-tank" data-figure="8.16" data-original="/media/ch08/CNX_Calc_Figure_08_03_002.jpg" data-original-caption="A brine tank with an initial amount of salt solution accepts an input flow and delivers an output flow. How does the amount of salt change with time?">
+  <div class="sim-head"><span class="eyebrow">Figure 8.16</span><span>A brine tank with an initial amount of salt solution accepts an input flow and delivers an output flow. Beside it, the amount of salt $\kufn(t)$ approaches the constant solution $\kufn=50$ from any starting amount.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>First we define a <span data-concept="function">function</span> $\kufn(t)$ that represents the amount of salt in kilograms in the tank as a <span data-concept="function">function</span> of time. Then $\kdudt$ represents the rate at which the amount of salt in the tank changes as a <span data-concept="function">function</span> of time. Also, $\kufn(0)$ represents the amount of salt in the tank at time $t=0,$ which is $4$ kilograms.</p>
+<p>The general setup for the <span data-concept="differential-equation">differential equation</span> we will solve is of the form</p>
+$$\kdudt=\text{INFLOW RATE}-\text{OUTFLOW RATE}.\tag{8.5}$$
+<p>INFLOW RATE represents the rate at which salt enters the tank, and OUTFLOW RATE represents the rate at which salt leaves the tank. Because solution enters the tank at a rate of $2$ L/min, and each liter of solution contains $0.5$ kilogram of salt, every minute $2(0.5)=1\;\text{kilogram}$ of salt enters the tank. Therefore INFLOW RATE = $1.$</p>
+<p>To calculate the rate at which salt leaves the tank, we need the concentration of salt in the tank at any point in time. Since the actual amount of salt varies over time, so does the concentration of salt. However, the volume of the solution remains fixed at 100 liters. The number of kilograms of salt in the tank at time $t$ is equal to $\kufn(t).$ Thus, the concentration of salt is $\frac{\kufn(t)}{100}$ kg/L, and the solution leaves the tank at a rate of $2$ L/min. Therefore salt leaves the tank at a rate of $\frac{\kufn(t)}{100}\cdot 2=\frac{\kufn(t)}{50}$ kg/min, and OUTFLOW RATE is equal to $\frac{\kufn(t)}{50}.$ Therefore the <span data-concept="differential-equation">differential equation</span> becomes $\kdudt=1-\frac{u}{50},$ and the <span data-concept="initial-value">initial condition</span> is $\kufn(0)=4.$ The <span data-concept="initial-value-problem">initial-value problem</span> to be solved is</p>
+$$\kdudt=1-\frac{u}{50},\;\kufn(0)=4.$$
+<p>The <span data-concept="differential-equation">differential equation</span> is a <span data-concept="separable-differential-equation">separable equation</span>, so we can apply the five-step strategy for solution.</p>
+<p>Step 1. Setting $1-\frac{u}{50}=0$ gives $u=50$ as a <span data-concept="equilibrium-solution">constant solution</span>. Since the initial amount of salt in the tank is $4$ kilograms, this solution does not apply.</p>
+<p>Step 2. Rewrite the equation as</p>
+$$\kdudt=\frac{50-u}{50}.$$
+<p>Then multiply both sides by $dt$ and divide both sides by $50-u\text{:}$</p>
+$$\frac{du}{50-u}=\frac{dt}{50}.$$
+<p>Step 3. Integrate both sides:</p>
+$$\begin{aligned}\int \frac{du}{50-u} &= \int \frac{dt}{50} \\ -\ln|50-u| &= \frac{t}{50}+C.\end{aligned}$$
+<p>Step 4. Solve for $\kufn(t)\text{:}$</p>
+$$\begin{aligned}\ln|50-u| &= -\frac{t}{50}-C \\ e^{\ln|50-u|} &= e^{-(t/50)-C} \\ |50-u| &= C_{1}e^{-t/50}.\end{aligned}$$
+<p>Eliminate the absolute value by allowing the constant to be either positive or negative:</p>
+$$50-u=C_{1}e^{-t/50}.$$
+<p>Finally, solve for $\kufn(t)\text{:}$</p>
+$$\kufn(t)=50-C_{1}e^{-t/50}.$$
+<p>Step 5. Solve for $C_{1}\text{:}$</p>
+$$\begin{aligned}\kufn(0) &= 50-C_{1}e^{-0/50} \\ 4 &= 50-C_{1} \\ C_{1} &= 46.\end{aligned}$$
+<p>The solution to the <span data-concept="initial-value-problem">initial value problem</span> is <span data-fn="50-46e^(-x/50)">$\kufn(t)=50-46e^{-t/50}.$</span> To find the limiting amount of salt in the tank, take the limit as $t$ approaches infinity:</p>
+$$\begin{aligned}\lim_{t\to \infty}\kufn(t) &=50-46e^{-t/50} \\ &=50-46(0) \\ &=50.\end{aligned}$$
+<p>Note that this was the <span data-concept="equilibrium-solution">constant solution</span> to the <span data-concept="differential-equation">differential equation</span>. If the initial amount of salt in the tank is $50$ kilograms, then it remains constant. If it starts at less than 50 kilograms, then it approaches 50 kilograms over time.</p>
+</div>
+<div class="exercises" data-place="fs-id1170573587324"></div>
+<h3 id="newtons-law">Newton’s law of cooling</h3>
+<p><span data-concept="newtons-law-of-cooling">Newton’s law of cooling</span> states that the rate of change of an object’s temperature is proportional to the difference between its own temperature and the ambient temperature (i.e., the temperature of its surroundings). If we let $\kT(t)$ represent the temperature of an object as a <span data-concept="function">function</span> of time, then $\kdTdt$ represents the rate at which that temperature changes. The temperature of the object’s surroundings can be represented by $T_{s}.$ Then <span data-concept="newtons-law-of-cooling">Newton’s law of cooling</span> can be written in the form</p>
+$$\kdTdt=k(\kT(t)-T_{s})$$
+<p>or simply</p>
+$$\kdTdt=k(\kT-T_{s}).\tag{8.6}$$
+<p>The temperature of the object at the beginning of any experiment is the <span data-concept="initial-value">initial value</span> for the <span data-concept="initial-value-problem">initial-value problem</span>. We call this temperature $T_{0}.$ Therefore the <span data-concept="initial-value-problem">initial-value problem</span> that needs to be solved takes the form</p>
+$$\kdTdt=k(\kT-T_{s}),\;\kT(0)=T_{0},\tag{8.7}$$
+<p>where $k$ is a constant that needs to be either given or determined in the context of the problem. We use these equations in Example 8.13.</p>
+<div class="example" id="fs-id1170571198014">
+<h3>Example 8.13 · Waiting for a Pizza to Cool</h3>
+<p>A pizza is removed from the oven after baking thoroughly, and the temperature of the pizza when it comes out of the oven is $200\text{°}\text{F}.$ The temperature of the kitchen is $75\text{°}\text{F},$ and after $1$ minute the temperature of the pizza is $190\text{°}\text{F}.$ We would like to wait until the temperature of the pizza reaches $150\text{°}\text{F}$ before cutting and serving it (Figure 8.17). How much longer will we have to wait?</p>
+<figure class="sim" id="sim-pizza" data-figure="8.17" data-original="/media/ch08/CNX_Calc_Figure_08_03_003.jpg" data-original-caption="From Newton’s law of cooling, if the pizza cools 10text°textF in 1 minute, how long before it cools to 150text°textF?">
+  <div class="sim-head"><span class="eyebrow">Figure 8.17</span><span>From <span data-concept="newtons-law-of-cooling">Newton’s law of cooling</span>, if the pizza cools $10\text{°F}$ in $1$ minute, how long before it cools to $150\text{°F}?$ Its temperature falls from $200\text{°F}$ toward the kitchen’s $75\text{°F}.$</span></div>
+</figure>
+<h4>Solution</h4>
+<p>The ambient temperature (surrounding temperature) is $75\text{°}\text{F},$ so $T_{s}=75.$ The temperature of the pizza when it comes out of the oven is $200\text{°}\text{F},$ which is the initial temperature (i.e., <span data-concept="initial-value">initial value</span>), so $T_{0}=200.$ Therefore Equation 8.4<sup class="fn" data-note="pizza-equation"></sup> becomes</p>
+$$\kdTdt=k(\kT-75),\;\kT(0)=200.$$
+<p>To solve the <span data-concept="differential-equation">differential equation</span>, we use the five-step technique for solving <span data-concept="separable-differential-equation">separable equations</span>.</p>
+<ol><li>Setting the right-hand side equal to zero gives $\kT=75$ as a <span data-concept="equilibrium-solution">constant solution</span>. Since the pizza starts at $200\text{°}\text{F},$ this is not the solution we are seeking.</li><li>Rewrite the <span data-concept="differential-equation">differential equation</span> by multiplying both sides by $dt$ and dividing both sides by $\kT-75\text{:}$ $$\frac{dT}{\kT-75}=kdt.$$</li><li>Integrate both sides: $$\begin{aligned}\int \frac{dT}{\kT-75} &= \int kdt \\ \ln|\kT-75| &= kt+C.\end{aligned}$$</li><li>Solve for $\kT$ by first exponentiating both sides: $$\begin{aligned}e^{\ln|\kT-75|} &= e^{kt+C} \\ |\kT-75| &= C_{1}e^{kt} \\ \kT-75 &= C_{1}e^{kt} \\ \kT(t) &= 75+C_{1}e^{kt}.\end{aligned}$$</li><li>Solve for $C_{1}$ by using the <span data-concept="initial-value">initial condition</span> $\kT(0)=200\text{:}$ $$\begin{aligned}\kT(t) &= 75+C_{1}e^{kt} \\ \kT(0) &= 75+C_{1}e^{k(0)} \\ 200 &= 75+C_{1} \\ C_{1} &= 125.\end{aligned}$$</li></ol>
+<p>Therefore the solution to the <span data-concept="initial-value-problem">initial-value problem</span> is</p>
+$$\kT(t)=75+125e^{kt}.$$
+<p>To determine the value of $k,$ we need to use the fact that after $1$ minute the temperature of the pizza is $190\text{°}\text{F}.$ Therefore $\kT(1)=190.$ Substituting this information into the solution to the <span data-concept="initial-value-problem">initial-value problem</span>, we have</p>
+$$\begin{aligned}\kT(t) &= 75+125e^{kt} \\ \kT(1) &= 190=75+125e^{k} \\ 115 &= 125e^{k} \\ \frac{115}{125} &= \frac{23}{25}=e^{k} \\ \ln e^{k} &= \ln(\frac{23}{25}) \\ k &= \;\ln(\frac{23}{25})\approx -.08338\end{aligned}$$
+<p>So now we have <span data-fn="75+125e^(-0.08338x)">$\kT(t)=75+125e^{-.08338t}.$</span> When is the temperature $150\text{°}\text{F?}$ Solving for $t,$ we find</p>
+$$\begin{aligned}\kT(t) &= 75+125e^{-.08338t} \\ 150 &= 75+125e^{-.08338t} \\ 75 &= 125e^{-.08338t} \\ \frac{75}{125} &= \frac{3}{5}=e^{-.08338t} \\ -.08338t &= \ln\frac{3}{5} \\ t &= \frac{\ln(\frac{3}{5})}{-.08338}\approx 6.12.\end{aligned}$$
+<p>Therefore we need to wait an additional $6.12$ minutes (after the temperature of the pizza reached $200\text{°}\text{F}).$ That should be just enough time to finish this calculation.</p>
+</div>
+<div class="exercises" data-place="fs-id1170571198014"></div>
+</section>

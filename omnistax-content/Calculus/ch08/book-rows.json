@@ -1,0 +1,822 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "y_fn",
+   "latex": "y",
+   "macro": "\\kyfn"
+  },
+  {
+   "sym": "y_dprime",
+   "latex": "y''",
+   "macro": "\\kydprime"
+  },
+  {
+   "sym": "y_tprime",
+   "latex": "y'''",
+   "macro": "\\kytprime"
+  },
+  {
+   "sym": "y_4",
+   "latex": "y^{(4)}",
+   "macro": "\\kyfour"
+  },
+  {
+   "sym": "y_5",
+   "latex": "y^{(5)}",
+   "macro": "\\kyfive"
+  },
+  {
+   "sym": "dy/dt",
+   "latex": "\\frac{dy}{dt}",
+   "macro": "\\kdydt"
+  },
+  {
+   "sym": "dT/dt",
+   "latex": "\\frac{dT}{dt}",
+   "macro": "\\kdTdt"
+  },
+  {
+   "sym": "du/dt",
+   "latex": "\\frac{du}{dt}",
+   "macro": "\\kdudt"
+  },
+  {
+   "sym": "dP/dt",
+   "latex": "\\frac{dP}{dt}",
+   "macro": "\\kdPdt"
+  },
+  {
+   "sym": "dv/dt",
+   "latex": "\\frac{dv}{dt}",
+   "macro": "\\kdvdt"
+  },
+  {
+   "sym": "P_0",
+   "latex": "P_{0}",
+   "macro": "\\kPzero"
+  },
+  {
+   "sym": "K",
+   "latex": "K",
+   "macro": "\\kK"
+  },
+  {
+   "sym": "μ",
+   "latex": "\\mu",
+   "macro": "\\kmu"
+  },
+  {
+   "sym": "μ_prime",
+   "latex": "\\mu'",
+   "macro": "\\kmuprime"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "solution-to-a-differential-equation",
+   "kind": "definition",
+   "section": "8.1",
+   "name": "Solution to a differential equation",
+   "terms": [
+    "solution to a differential equation",
+    "solution of the differential equation",
+    "solution to the differential equation"
+   ],
+   "symbol": "y_fn",
+   "type": "function",
+   "statement": "A solution to a differential equation is a function y = f(x) that satisfies the differential equation when f and its derivatives are substituted into the equation. A solution is not necessarily unique, since the derivative of a constant is zero."
+  },
+  {
+   "id": "order-of-a-differential-equation",
+   "kind": "definition",
+   "section": "8.1",
+   "name": "Order of a differential equation",
+   "terms": [
+    "order of a differential equation",
+    "order"
+   ],
+   "statement": "The order of a differential equation is the highest order of any derivative of the unknown function that appears in the equation."
+  },
+  {
+   "id": "general-solution",
+   "kind": "definition",
+   "section": "8.1",
+   "name": "General solution",
+   "terms": [
+    "general solution",
+    "family of solutions"
+   ],
+   "type": "function",
+   "statement": "The general solution, or family of solutions, of a differential equation is the entire set of its solutions; for y′ = 2x it is every function y = x² + C, where C is any constant."
+  },
+  {
+   "id": "particular-solution",
+   "kind": "definition",
+   "section": "8.1",
+   "name": "Particular solution",
+   "terms": [
+    "particular solution"
+   ],
+   "type": "function",
+   "statement": "A particular solution is a member of a family of solutions to a differential equation that satisfies a particular initial condition; additional information, such as a point the solution passes through, can often identify it uniquely."
+  },
+  {
+   "id": "initial-value",
+   "kind": "definition",
+   "section": "8.1",
+   "name": "Initial value",
+   "terms": [
+    "initial value",
+    "initial values"
+   ],
+   "type": "point",
+   "statement": "An initial value is a value or set of values that a solution of a differential equation satisfies for a fixed value of the independent variable, an ordered pair used to find a particular solution. The number of initial values an initial-value problem needs equals the order of the differential equation, all given at the same value of the independent variable.",
+   "forms": [
+    {
+     "id": "eq-initial-value",
+     "latex": "y(x_0)=y_0",
+     "anchor": "8.1-initial-value-problems"
+    }
+   ]
+  },
+  {
+   "id": "solving-an-initial-value-problem",
+   "kind": "skill",
+   "section": "8.1",
+   "name": "Solving an initial-value problem",
+   "statement": "To solve an initial-value problem, first find the general solution to the differential equation, then substitute the initial value or values to determine the value of the constant, which picks out the particular solution."
+  },
+  {
+   "id": "initial-velocity",
+   "kind": "definition",
+   "section": "8.1",
+   "name": "Initial velocity",
+   "terms": [
+    "initial velocity"
+   ],
+   "statement": "The initial velocity of an object is its velocity at time t = 0, denoted v(0) = v₀."
+  },
+  {
+   "id": "velocity-under-gravity",
+   "kind": "result",
+   "section": "8.1",
+   "name": "Velocity of an object under gravity",
+   "statement": "If the only force acting on an object near Earth's surface is gravity, Newton's second law gives m v′(t) = −mg, so v′(t) = −g, whatever the mass, where g ≈ 9.8 m/s²; with the initial velocity v(0) = v₀ the velocity is v(t) = −gt + v₀, and the height s(t) solves the initial-value problem s′(t) = v(t), s(0) = s₀.",
+   "forms": [
+    {
+     "id": "eq-velocity-under-gravity",
+     "latex": "v'(t)=-g",
+     "anchor": "8.1-initial-value-problems"
+    },
+    {
+     "id": "eq-height-initial-value-problem",
+     "latex": "s'(t)=v(t),\\;s(0)=s_0",
+     "anchor": "8.1-initial-value-problems"
+    }
+   ]
+  },
+  {
+   "id": "direction-field",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "Direction field",
+   "terms": [
+    "direction field",
+    "slope field",
+    "directional field"
+   ],
+   "type": "derivative",
+   "statement": "A direction field, or slope field, is a mathematical object used to graphically represent solutions to a first-order differential equation y′ = f(x, y): at each point (x, y) a short line segment appears whose slope f(x, y) is equal to the slope of a solution to the differential equation passing through that point.",
+   "forms": [
+    {
+     "id": "eq-first-order-equation",
+     "latex": "y'=f(x,y)",
+     "anchor": "8.2-creating"
+    }
+   ]
+  },
+  {
+   "id": "solution-curve",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "Solution curve",
+   "terms": [
+    "solution curve"
+   ],
+   "type": "function",
+   "statement": "A solution curve is a curve graphed in a direction field that corresponds to the solution to the initial-value problem passing through a given point in the field; at each of its points it follows the segment of the field."
+  },
+  {
+   "id": "equilibrium-solution",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "Equilibrium solution",
+   "terms": [
+    "equilibrium solution",
+    "equilibrium solutions",
+    "constant solution",
+    "constant solutions",
+    "constant-valued solutions"
+   ],
+   "type": "function",
+   "statement": "An equilibrium solution of y′ = f(x, y) is any solution of the form y = k, where k is a constant; it is found by setting the right-hand side equal to zero, as any function y = k with f(x, k) = 0 for all x in the domain of f, and in a direction field it shows as horizontal segments all the way across."
+  },
+  {
+   "id": "asymptotically-stable-solution",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "Asymptotically stable solution",
+   "terms": [
+    "asymptotically stable solution",
+    "asymptotically stable",
+    "stable equilibrium",
+    "stable"
+   ],
+   "statement": "An equilibrium solution y = k of y′ = f(x, y) is asymptotically stable if there exists ε > 0 such that for any value c in (k − ε, k + ε) the solution to the initial-value problem y′ = f(x, y), y(x₀) = c approaches k as x approaches infinity."
+  },
+  {
+   "id": "asymptotically-unstable-solution",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "Asymptotically unstable solution",
+   "terms": [
+    "asymptotically unstable solution",
+    "asymptotically unstable",
+    "unstable equilibrium",
+    "unstable"
+   ],
+   "statement": "An equilibrium solution y = k of y′ = f(x, y) is asymptotically unstable if there exists ε > 0 such that for any value c in (k − ε, k + ε) the solution to the initial-value problem y′ = f(x, y), y(x₀) = c never approaches k as x approaches infinity."
+  },
+  {
+   "id": "asymptotically-semi-stable-solution",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "Asymptotically semi-stable solution",
+   "terms": [
+    "asymptotically semi-stable solution",
+    "semi-stable"
+   ],
+   "statement": "An equilibrium solution y = k is asymptotically semi-stable if it is neither asymptotically stable nor asymptotically unstable: solutions starting on one side of it approach it, and solutions on the other side move away."
+  },
+  {
+   "id": "step-size",
+   "kind": "definition",
+   "section": "8.2",
+   "name": "Step size",
+   "terms": [
+    "step size"
+   ],
+   "symbol": "h",
+   "statement": "The step size h is the increment added to the x value at each step in Euler's Method, a small value, typically 0.1 or less; the smaller h, the more calculations and the greater the accuracy."
+  },
+  {
+   "id": "eulers-method",
+   "kind": "result",
+   "section": "8.2",
+   "name": "Euler’s Method",
+   "terms": [
+    "Euler’s Method",
+    "Euler’s method"
+   ],
+   "statement": "Euler's Method is a numerical technique that approximates the solution to an initial-value problem y′ = f(x, y), y(x₀) = y₀: from each point it follows the linear approximation with the slope the differential equation gives there for one step h, so xₙ = x₀ + nh and yₙ = yₙ₋₁ + h f(xₙ₋₁, yₙ₋₁).",
+   "forms": [
+    {
+     "id": "eq-euler-x",
+     "latex": "x_n=x_0+nh",
+     "anchor": "8.2-euler-theorem"
+    },
+    {
+     "id": "eq-euler-y",
+     "latex": "y_n=y_{n-1}+hf(x_{n-1},y_{n-1})",
+     "anchor": "8.2-euler-theorem"
+    }
+   ]
+  },
+  {
+   "id": "separable-differential-equation",
+   "kind": "definition",
+   "section": "8.3",
+   "name": "Separable differential equation",
+   "terms": [
+    "separable differential equation",
+    "separable differential equations",
+    "separable equation",
+    "separable equations",
+    "separable"
+   ],
+   "statement": "A separable differential equation is any equation that can be written in the form y′ = f(x)g(y): its right-hand side separates into a function of x times a function of y.",
+   "forms": [
+    {
+     "id": "eq-separable",
+     "latex": "y'=f(x)g(y)",
+     "anchor": "8.3-separable-definition"
+    }
+   ]
+  },
+  {
+   "id": "autonomous-differential-equation",
+   "kind": "definition",
+   "section": "8.3",
+   "name": "Autonomous differential equation",
+   "terms": [
+    "autonomous differential equation",
+    "autonomous"
+   ],
+   "statement": "An autonomous differential equation is an equation in which the right-hand side is a function of y alone, such as y′ = sec y + tan y."
+  },
+  {
+   "id": "separation-of-variables",
+   "kind": "skill",
+   "section": "8.3",
+   "name": "Separation of variables",
+   "terms": [
+    "separation of variables"
+   ],
+   "statement": "To solve a separable equation y′ = f(x)g(y) by separation of variables: find the values of y that make g(y) = 0, which give constant solutions; rewrite the equation as dy/g(y) = f(x) dx; integrate both sides; solve the resulting equation for y if possible, since often y is found only as an implicit function of x; and, if an initial condition exists, substitute it to find the constant."
+  },
+  {
+   "id": "solution-concentration",
+   "kind": "idea",
+   "section": "8.3",
+   "name": "Solution concentrations",
+   "terms": [
+    "solution concentrations",
+    "solution concentration"
+   ],
+   "statement": "The amount u(t) of a substance dissolved in a well-mixed tank changes at the rate it flows in minus the rate it flows out: du/dt = INFLOW RATE − OUTFLOW RATE, where the outflow rate is the concentration u(t)/V of the tank's volume V times the rate the solution drains.",
+   "forms": [
+    {
+     "id": "eq-solution-concentration",
+     "latex": "\\frac{du}{dt}=\\text{INFLOW RATE}-\\text{OUTFLOW RATE}",
+     "anchor": "8.3-fs-id1170573587324"
+    }
+   ]
+  },
+  {
+   "id": "initial-population",
+   "kind": "definition",
+   "section": "8.4",
+   "name": "Initial population",
+   "terms": [
+    "initial population"
+   ],
+   "symbol": "P_0",
+   "type": "function",
+   "statement": "The initial population P₀ is the population at time t = 0."
+  },
+  {
+   "id": "growth-rate",
+   "kind": "definition",
+   "section": "8.4",
+   "name": "Growth rate",
+   "terms": [
+    "growth rate"
+   ],
+   "statement": "The growth rate is the constant r > 0 in the exponential growth function P(t) = P₀e^{rt}, a net (birth minus death) percent growth rate per unit time; in dP/dt = rP the rate at which the population increases is proportional to the population, with r the constant of proportionality.",
+   "forms": [
+    {
+     "id": "eq-exponential-growth-ivp",
+     "latex": "\\frac{dP}{dt}=rP,\\;P(0)=P_0",
+     "anchor": "8.4-carrying-capacity"
+    }
+   ]
+  },
+  {
+   "id": "carrying-capacity",
+   "kind": "definition",
+   "section": "8.4",
+   "name": "Carrying capacity",
+   "terms": [
+    "carrying capacity"
+   ],
+   "symbol": "K",
+   "type": "limit",
+   "statement": "The carrying capacity K of an organism in a given environment is the maximum population of that organism that the environment can sustain indefinitely; a logistic population approaches it as t approaches infinity."
+  },
+  {
+   "id": "logistic-differential-equation",
+   "kind": "definition",
+   "section": "8.4",
+   "name": "Logistic differential equation",
+   "terms": [
+    "logistic differential equation",
+    "logistic equation",
+    "logistic model",
+    "logistic growth"
+   ],
+   "statement": "The logistic differential equation dP/dt = rP(1 − P/K) is a differential equation that incorporates the carrying capacity K and growth rate r into a population model: while P is small it resembles exponential growth, the growth rate falls as P nears K, the population decreases while P > K, and P = 0 and P = K are its constant solutions.",
+   "forms": [
+    {
+     "id": "eq-logistic",
+     "latex": "\\frac{dP}{dt}=rP\\left(1-\\frac{P}{K}\\right)",
+     "anchor": "8.4-logistic-definition"
+    }
+   ]
+  },
+  {
+   "id": "phase-line",
+   "kind": "definition",
+   "section": "8.4",
+   "name": "Phase line",
+   "terms": [
+    "phase line"
+   ],
+   "statement": "A phase line is a visual representation of the behavior of solutions to an autonomous differential equation subject to various initial conditions: a line of values of the unknown, marked at the constant solutions, with arrows showing where solutions increase and where they decrease."
+  },
+  {
+   "id": "solution-of-the-logistic-equation",
+   "kind": "result",
+   "section": "8.4",
+   "name": "Solution of the logistic differential equation",
+   "type": "function",
+   "statement": "The solution of the logistic differential equation with initial population P₀, carrying capacity K and growth rate r is P(t) = P₀Ke^{rt}/((K − P₀) + P₀e^{rt}), found by separation of variables and partial fractions; K is a horizontal asymptote of its graph.",
+   "forms": [
+    {
+     "id": "eq-logistic-solution",
+     "latex": "P(t)=\\frac{P_0Ke^{rt}}{(K-P_0)+P_0e^{rt}}",
+     "anchor": "8.4-logistic-solution"
+    }
+   ]
+  },
+  {
+   "id": "inflection-point-of-the-logistic-curve",
+   "kind": "result",
+   "section": "8.4",
+   "name": "Inflection point of the logistic curve",
+   "type": "point",
+   "statement": "As long as P₀ < K, the solution of the logistic equation has a point of inflection at t = (1/r) ln((K − P₀)/P₀), where its graph changes from concave up to concave down and the leveling off starts; if P₀ > K the graph has none.",
+   "forms": [
+    {
+     "id": "eq-logistic-inflection",
+     "latex": "t=\\frac{1}{r}\\ln\\frac{K-P_0}{P_0}",
+     "anchor": "8.4-solving-logistic"
+    }
+   ]
+  },
+  {
+   "id": "threshold-population",
+   "kind": "definition",
+   "section": "8.4",
+   "name": "Threshold population",
+   "terms": [
+    "threshold population"
+   ],
+   "statement": "The threshold population T is the minimum population that is necessary for a species to survive; the threshold population model dP/dt = −rP(1 − P/K)(1 − P/T) incorporates it beside the carrying capacity K.",
+   "forms": [
+    {
+     "id": "eq-threshold-model",
+     "latex": "\\frac{dP}{dt}=-rP\\left(1-\\frac{P}{K}\\right)\\left(1-\\frac{P}{T}\\right)",
+     "anchor": "8.4-threshold-project"
+    }
+   ]
+  },
+  {
+   "id": "first-order-linear-differential-equation",
+   "kind": "definition",
+   "section": "8.5",
+   "name": "First-order linear differential equation",
+   "terms": [
+    "linear",
+    "first-order linear differential equation",
+    "first-order linear differential equations",
+    "first-order linear equation",
+    "first-order linear equations"
+   ],
+   "statement": "A first-order differential equation is linear if it can be written in the form a(x)y′ + b(x)y = c(x), where a(x), b(x) and c(x) are arbitrary functions of x; terms such as (y′)⁴ or y³ make an equation nonlinear.",
+   "forms": [
+    {
+     "id": "eq-first-order-linear",
+     "latex": "a(x)y'+b(x)y=c(x)",
+     "anchor": "8.5-linear-definition"
+    }
+   ]
+  },
+  {
+   "id": "standard-form-of-a-linear-equation",
+   "kind": "definition",
+   "section": "8.5",
+   "name": "Standard form",
+   "terms": [
+    "standard form"
+   ],
+   "statement": "The standard form of a first-order linear differential equation is y′ + p(x)y = q(x), obtained by dividing a(x)y′ + b(x)y = c(x) by a(x), so that p(x) = b(x)/a(x) and q(x) = c(x)/a(x).",
+   "forms": [
+    {
+     "id": "eq-standard-form",
+     "latex": "y'+p(x)y=q(x)",
+     "anchor": "8.5-standard-form"
+    }
+   ]
+  },
+  {
+   "id": "integrating-factor",
+   "kind": "definition",
+   "section": "8.5",
+   "name": "Integrating factor",
+   "terms": [
+    "integrating factor",
+    "integrating factors"
+   ],
+   "symbol": "μ",
+   "type": "function",
+   "statement": "An integrating factor is any function μ(x) that is multiplied on both sides of a differential equation to make the side involving the unknown function equal to the derivative of a product of two functions; for y′ + p(x)y = q(x) it is μ(x) = e^{∫p(x)dx}, which solves the separable equation μ′(x) = μ(x)p(x), so that μ(x)y′ + μ(x)p(x)y = (μ(x)y)′.",
+   "forms": [
+    {
+     "id": "eq-integrating-factor",
+     "latex": "\\mu(x)=e^{\\int p(x)\\,dx}",
+     "anchor": "8.5-linear-strategy"
+    }
+   ]
+  },
+  {
+   "id": "solving-a-first-order-linear-equation",
+   "kind": "skill",
+   "section": "8.5",
+   "name": "Solving a first-order linear differential equation",
+   "statement": "To solve a first-order linear differential equation: put it into standard form and identify p(x) and q(x); calculate the integrating factor μ(x) = e^{∫p(x)dx}; multiply both sides of the equation by μ(x); integrate both sides and divide by μ(x), giving y = (1/μ(x))[∫μ(x)q(x)dx + C]; and, if there is an initial condition, determine the value of C.",
+   "forms": [
+    {
+     "id": "eq-linear-solution",
+     "latex": "y=\\frac{1}{\\mu(x)}\\left[\\int\\mu(x)q(x)\\,dx+C\\right]",
+     "anchor": "8.5-linear-strategy"
+    }
+   ]
+  },
+  {
+   "id": "free-fall-with-air-resistance",
+   "kind": "result",
+   "section": "8.5",
+   "name": "Free fall with air resistance",
+   "statement": "With air resistance proportional to velocity, F_A = −kv for some k > 0, Newton's second law gives the first-order linear initial-value problem m dv/dt = −kv − mg, v(0) = v₀, for the velocity of a rising or falling object.",
+   "forms": [
+    {
+     "id": "eq-air-resistance",
+     "latex": "m\\frac{dv}{dt}=-kv-mg,\\;v(0)=v_0",
+     "anchor": "8.5-linear-intro"
+    }
+   ]
+  },
+  {
+   "id": "kirchhoffs-loop-rule",
+   "kind": "result",
+   "section": "8.5",
+   "name": "Kirchhoff’s Loop Rule for a circuit",
+   "terms": [
+    "Kirchhoff’s Loop Rule"
+   ],
+   "statement": "Kirchhoff's Loop Rule states that the sum of the voltage drops across the resistors, inductors and capacitors of a closed circuit equals its total electromotive force E: with the drops E_R = Ri, E_L = Li′ and E_C = q/C, Li′ + Ri + q/C = E. With no capacitor it is the first-order linear equation Li′ + Ri = E of an LR circuit; with no inductor, Rq′ + q/C = E of an RC circuit, where i = q′.",
+   "forms": [
+    {
+     "id": "eq-kirchhoff-loop",
+     "latex": "Li'+Ri+\\frac{1}{C}q=E",
+     "anchor": "8.5-electrical-circuits"
+    },
+    {
+     "id": "eq-lr-circuit",
+     "latex": "Li'+Ri=E",
+     "anchor": "8.5-electrical-circuits"
+    },
+    {
+     "id": "eq-rc-circuit",
+     "latex": "Rq'+\\frac{1}{C}q=E",
+     "anchor": "8.5-electrical-circuits"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "solution-to-a-differential-equation",
+   "prereq": "differential-equation"
+  },
+  {
+   "concept": "order-of-a-differential-equation",
+   "prereq": "differential-equation"
+  },
+  {
+   "concept": "order-of-a-differential-equation",
+   "prereq": "higher-order-derivative"
+  },
+  {
+   "concept": "general-solution",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "particular-solution",
+   "prereq": "general-solution"
+  },
+  {
+   "concept": "initial-value",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "solving-an-initial-value-problem",
+   "prereq": "particular-solution"
+  },
+  {
+   "concept": "solving-an-initial-value-problem",
+   "prereq": "initial-value"
+  },
+  {
+   "concept": "solving-an-initial-value-problem",
+   "prereq": "initial-value-problem"
+  },
+  {
+   "concept": "initial-velocity",
+   "prereq": "velocity"
+  },
+  {
+   "concept": "velocity-under-gravity",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "velocity-under-gravity",
+   "prereq": "initial-velocity"
+  },
+  {
+   "concept": "velocity-under-gravity",
+   "prereq": "initial-value-problem"
+  },
+  {
+   "concept": "direction-field",
+   "prereq": "slope-of-the-tangent-line"
+  },
+  {
+   "concept": "direction-field",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "solution-curve",
+   "prereq": "direction-field"
+  },
+  {
+   "concept": "solution-curve",
+   "prereq": "initial-value-problem"
+  },
+  {
+   "concept": "equilibrium-solution",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "equilibrium-solution",
+   "prereq": "constant-function"
+  },
+  {
+   "concept": "asymptotically-stable-solution",
+   "prereq": "equilibrium-solution"
+  },
+  {
+   "concept": "asymptotically-stable-solution",
+   "prereq": "limit-at-infinity"
+  },
+  {
+   "concept": "asymptotically-unstable-solution",
+   "prereq": "equilibrium-solution"
+  },
+  {
+   "concept": "asymptotically-unstable-solution",
+   "prereq": "limit-at-infinity"
+  },
+  {
+   "concept": "asymptotically-semi-stable-solution",
+   "prereq": "asymptotically-stable-solution"
+  },
+  {
+   "concept": "asymptotically-semi-stable-solution",
+   "prereq": "asymptotically-unstable-solution"
+  },
+  {
+   "concept": "eulers-method",
+   "prereq": "linear-approximation"
+  },
+  {
+   "concept": "eulers-method",
+   "prereq": "step-size"
+  },
+  {
+   "concept": "eulers-method",
+   "prereq": "direction-field"
+  },
+  {
+   "concept": "eulers-method",
+   "prereq": "initial-value-problem"
+  },
+  {
+   "concept": "separable-differential-equation",
+   "prereq": "differential-equation"
+  },
+  {
+   "concept": "autonomous-differential-equation",
+   "prereq": "differential-equation"
+  },
+  {
+   "concept": "separation-of-variables",
+   "prereq": "separable-differential-equation"
+  },
+  {
+   "concept": "separation-of-variables",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "separation-of-variables",
+   "prereq": "equilibrium-solution"
+  },
+  {
+   "concept": "solution-concentration",
+   "prereq": "instantaneous-rate-of-change"
+  },
+  {
+   "concept": "initial-population",
+   "prereq": "exponential-growth"
+  },
+  {
+   "concept": "growth-rate",
+   "prereq": "exponential-growth"
+  },
+  {
+   "concept": "logistic-differential-equation",
+   "prereq": "carrying-capacity"
+  },
+  {
+   "concept": "logistic-differential-equation",
+   "prereq": "growth-rate"
+  },
+  {
+   "concept": "logistic-differential-equation",
+   "prereq": "autonomous-differential-equation"
+  },
+  {
+   "concept": "phase-line",
+   "prereq": "autonomous-differential-equation"
+  },
+  {
+   "concept": "phase-line",
+   "prereq": "equilibrium-solution"
+  },
+  {
+   "concept": "solution-of-the-logistic-equation",
+   "prereq": "logistic-differential-equation"
+  },
+  {
+   "concept": "solution-of-the-logistic-equation",
+   "prereq": "separation-of-variables"
+  },
+  {
+   "concept": "solution-of-the-logistic-equation",
+   "prereq": "initial-population"
+  },
+  {
+   "concept": "solution-of-the-logistic-equation",
+   "prereq": "partial-fraction-decomposition"
+  },
+  {
+   "concept": "inflection-point-of-the-logistic-curve",
+   "prereq": "solution-of-the-logistic-equation"
+  },
+  {
+   "concept": "inflection-point-of-the-logistic-curve",
+   "prereq": "inflection-point"
+  },
+  {
+   "concept": "threshold-population",
+   "prereq": "logistic-differential-equation"
+  },
+  {
+   "concept": "first-order-linear-differential-equation",
+   "prereq": "order-of-a-differential-equation"
+  },
+  {
+   "concept": "standard-form-of-a-linear-equation",
+   "prereq": "first-order-linear-differential-equation"
+  },
+  {
+   "concept": "integrating-factor",
+   "prereq": "standard-form-of-a-linear-equation"
+  },
+  {
+   "concept": "integrating-factor",
+   "prereq": "product-rule"
+  },
+  {
+   "concept": "integrating-factor",
+   "prereq": "separation-of-variables"
+  },
+  {
+   "concept": "solving-a-first-order-linear-equation",
+   "prereq": "integrating-factor"
+  },
+  {
+   "concept": "free-fall-with-air-resistance",
+   "prereq": "velocity-under-gravity"
+  },
+  {
+   "concept": "free-fall-with-air-resistance",
+   "prereq": "first-order-linear-differential-equation"
+  },
+  {
+   "concept": "kirchhoffs-loop-rule",
+   "prereq": "first-order-linear-differential-equation"
+  }
+ ]
+}

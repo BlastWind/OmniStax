@@ -1,0 +1,1312 @@
+{
+ "id": "8.1",
+ "module": "m53697",
+ "chapter": "8",
+ "title": "Basics of Differential Equations",
+ "short": "Basics of Differential Equations",
+ "lead": "A <span data-concept=\"differential-equation\">differential equation</span> relates an unknown function to its derivatives. This section says what a <span data-concept=\"solution-to-a-differential-equation\">solution</span> of one is and what its <span data-concept=\"order-of-a-differential-equation\">order</span> is, tells the <span data-concept=\"general-solution\">general solution</span>, a family of functions, from the <span data-concept=\"particular-solution\">particular solution</span> that an <span data-concept=\"initial-value\">initial value</span> picks out, and sets up the first <span data-concept=\"initial-value-problem\">initial-value problems</span>, for a baseball thrown upward.",
+ "objectives": [
+  "Identify the order of a differential equation.",
+  "Explain what is meant by a solution to a differential equation.",
+  "Distinguish between the general solution and a particular solution of a differential equation.",
+  "Identify an initial-value problem.",
+  "Identify whether a given function is a solution to a differential equation or an initial-value problem."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"differential-equation\">differential equation</span> is an equation involving a <span data-concept=\"function\">function</span> $\\kyfn=\\kf(x)$ and one or more of its <span data-concept=\"derivative\">derivatives</span>. A solution is a <span data-concept=\"function\">function</span> $\\kyfn=\\kf(x)$ that satisfies the <span data-concept=\"differential-equation\">differential equation</span> when $\\kf$ and its <span data-concept=\"derivative\">derivatives</span> are substituted into the equation.</li><li>The order of a <span data-concept=\"differential-equation\">differential equation</span> is the highest order of any <span data-concept=\"derivative\">derivative</span> of the unknown <span data-concept=\"function\">function</span> that appears in the equation.</li><li>A <span data-concept=\"differential-equation\">differential equation</span> coupled with an <span data-concept=\"initial-value\">initial value</span> is called an <span data-concept=\"initial-value-problem\">initial-value problem</span>. To solve an <span data-concept=\"initial-value-problem\">initial-value problem</span>, first find the <span data-concept=\"general-solution\">general solution</span> to the <span data-concept=\"differential-equation\">differential equation</span>, then determine the value of the constant. Initial-value problems have many applications in science and engineering.</li></ul>",
+ "notes": "The book’s link to a website on differential equations is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s, except the verifications of Checkpoints 8.1 and 8.4 and of exercises 8–17, which the book leaves unanswered and which are AI-marked. The even-numbered exercises have no answer in the key; the computational ones are left out: 2, 4 and 6 (orders), 18, 20, 22, 24 and 26 (particular solutions), 28, 30, 32, 34 and 36 (general solutions), 38, 40, 42, 44 and 46 (initial-value problems), 48, 50 and 52 (families by calculator), and 54, 56, 58, 60, 62 and 64 (applications and substitutions). Review exercises 267, 273 and 283, printed at the end of Section 8.5, are set here.",
+ "figures": [
+  {
+   "id": "sim-family-parabolas",
+   "kind": "sim",
+   "number": "8.2",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_01_001.jpg"
+   ],
+   "original_caption": "Family of solutions to the differential equation y'=2x.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-family-exponential",
+   "kind": "sim",
+   "number": "8.3",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_01_002.jpg"
+   ],
+   "original_caption": "A family of solutions to the differential equation y'+2y=3e^t. The particular solution y=2e^−2t+e^t is labeled.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-baseball",
+   "kind": "sim",
+   "number": "8.4",
+   "folds": [
+    "8.5"
+   ],
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_01_003.jpg",
+    "/media/ch08/CNX_Calc_Figure_08_01_004.jpg"
+   ],
+   "original_caption": "(Figure 8.4) For a baseball falling in air, the only force acting on it is gravity (neglecting air resistance). (Figure 8.5) Possible velocities for the rising/falling baseball.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "general-de",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "order-definition",
+   "concept": "order-of-a-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-particular",
+   "concept": "general-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-particular",
+   "concept": "particular-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "initial-value",
+   "verb": "introduces"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "solving-an-initial-value-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "initial-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "velocity-under-gravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "de-intro",
+   "concept": "differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "de-definition",
+   "concept": "differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "initial-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "de-intro",
+   "concept": "derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "general-de",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "order-definition",
+   "concept": "higher-order-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573540760",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "general-particular",
+   "concept": "general-form-of-an-antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571123767",
+   "concept": "indefinite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571123767",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573439706",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573712028",
+   "concept": "initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571084135",
+   "concept": "velocity-under-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571046594",
+   "concept": "velocity-under-gravity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170571153281",
+   "source_number": "Checkpoint 8.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573540760"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that $\\kyfn=2e^{3x}-2x-2$ is a solution to the differential equation $\\kyprime-3\\kyfn=6x+4.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=6e^{3x}-2.$ Substitute $\\kyfn$ and $\\kyprime$ into the left-hand side: $\\kyprime-3\\kyfn=(6e^{3x}-2)-3(2e^{3x}-2x-2)=6e^{3x}-2-6e^{3x}+6x+6=6x+4,$ which is the right-hand side, so $\\kyfn=2e^{3x}-2x-2$ is a solution.",
+    "hint": "First calculate $\\kyprime$ then substitute both $\\kyprime$ and $\\kyfn$ into the left-hand side."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170573290714",
+   "source_number": "Checkpoint 8.2",
+   "kind": "checkpoint",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571085382"
+   },
+   "cite": "order-definition",
+   "prompt": "<p>What is the order of the following differential equation?</p>$$(x^{4}-3x)\\kyfive-(3x^{2}+1)\\kyprime+3\\kyfn=\\sin x\\;\\cos x$$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5,
+    "solution": "$5$",
+    "hint": "What is the highest derivative in the equation?"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170573243576",
+   "source_number": "Checkpoint 8.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573439706"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>Find the particular solution to the differential equation</p>$$\\kyprime=4x+3$$<p>passing through the point $(1,7),$ given that $\\kyfn=2x^{2}+3x+C$ is a general solution to the differential equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=2x^{2}+3x+2$",
+    "hint": "First substitute $x=1$ and $\\kyfn=7$ into the equation, then solve for $C.$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170570975800",
+   "source_number": "Checkpoint 8.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573712028"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Verify that $\\kyfn=3e^{2t}+4\\;\\sin t$ is a solution to the initial-value problem</p>$$\\kyprime-2\\kyfn=4\\;\\cos t-8\\;\\sin t,\\;\\kyfn(0)=3.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=6e^{2t}+4\\cos t.$ Then $\\kyprime-2\\kyfn=(6e^{2t}+4\\cos t)-2(3e^{2t}+4\\sin t)=4\\cos t-8\\sin t,$ the right-hand side, so $\\kyfn$ solves the differential equation. At $t=0,$ $\\kyfn(0)=3e^{0}+4\\sin 0=3,$ the initial value, so $\\kyfn$ solves the initial-value problem.",
+    "hint": "First verify that $\\kyfn$ solves the differential equation. Then check the initial value."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170571329490",
+   "source_number": "Checkpoint 8.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571123767"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Solve the initial-value problem</p>$$\\kyprime=x^{2}-4x+3-6e^{x},\\;\\kyfn(0)=8.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{1}{3}x^{3}-2x^{2}+3x-6e^{x}+14$",
+    "hint": "First take the antiderivative of both sides of the differential equation. Then substitute $x=0$ and $\\kyfn=8$ into the resulting equation and solve for $C.$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1170573419498",
+   "source_number": "Checkpoint 8.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571084135"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Suppose a rock falls from rest from a height of $100$ meters and the only force acting on it is gravity. Find an equation for the velocity $\\kv(t)$ as a function of time, measured in meters per second.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kv(t)=-9.8t$",
+    "hint": "What is the initial velocity of the rock? Use this with the differential equation in Example 8.6 to form an initial-value problem, then solve for $\\kv(t).$"
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1170573512394",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-definition",
+   "prompt": "<p>Determine the order of the following differential equations.</p><p>$\\kyprime+\\kyfn=3\\kyfn^{2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1170571429907",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-definition",
+   "prompt": "<p>Determine the order of the following differential equations.</p><p>$\\kytprime +\\kydprime \\kyprime=3x^{2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3,
+    "solution": "$3$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1170571169530",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-definition",
+   "prompt": "<p>Determine the order of the following differential equations.</p><p>$\\kdydt=t$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1170571027308",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "order-definition",
+   "prompt": "<p>Determine the order of the following differential equations.</p><p>${(\\kdydt)}^{2}+8\\kdydt+3\\kyfn=4t$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "fs-id1170573591938",
+   "source_number": "8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=\\frac{x^{3}}{3}$ solves $\\kyprime=x^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=\\frac{3x^{2}}{3}=x^{2},$ which is the right-hand side, so $\\kyfn=\\frac{x^{3}}{3}$ solves $\\kyprime=x^{2}.$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1170573608042",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=2e^{-x}+x-1$ solves $\\kyprime=x-\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=-2e^{-x}+1.$ The right-hand side is $x-\\kyfn=x-(2e^{-x}+x-1)=1-2e^{-x},$ the same, so $\\kyfn$ is a solution."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "fs-id1170571095386",
+   "source_number": "10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=e^{3x}-\\frac{e^{x}}{2}$ solves $\\kyprime=3\\kyfn+e^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=3e^{3x}-\\frac{e^{x}}{2}.$ The right-hand side is $3\\kyfn+e^{x}=3e^{3x}-\\frac{3e^{x}}{2}+e^{x}=3e^{3x}-\\frac{e^{x}}{2},$ the same, so $\\kyfn$ is a solution."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1170571431595",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=\\frac{1}{1-x}$ solves $\\kyprime=\\kyfn^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate by the chain rule: $\\kyprime=-(1-x)^{-2}\\cdot(-1)=\\frac{1}{(1-x)^{2}}=\\left(\\frac{1}{1-x}\\right)^{2}=\\kyfn^{2},$ so $\\kyfn$ is a solution wherever $x\\ne 1.$"
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "fs-id1170573726216",
+   "source_number": "12",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=e^{x^{2}/2}$ solves $\\kyprime=x\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate by the chain rule: $\\kyprime=e^{x^{2}/2}\\cdot x=x\\kyfn,$ so $\\kyfn$ is a solution."
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1170573514703",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=4+\\ln x$ solves $x\\kyprime=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=\\frac{1}{x},$ so $x\\kyprime=x\\cdot\\frac{1}{x}=1$ for every $x\\gt 0,$ the domain of $\\kyfn.$"
+   }
+  },
+  {
+   "id": "e14",
+   "source_id": "fs-id1170571298240",
+   "source_number": "14",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=3-x+x\\;\\ln x$ solves $\\kyprime=\\ln x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate, the last term by the product rule: $\\kyprime=-1+\\ln x+x\\cdot\\frac{1}{x}=\\ln x,$ so $\\kyfn$ is a solution."
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1170571080766",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=2e^{x}-x-1$ solves $\\kyprime=\\kyfn+x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=2e^{x}-1.$ The right-hand side is $\\kyfn+x=2e^{x}-x-1+x=2e^{x}-1,$ the same, so $\\kyfn$ is a solution."
+   }
+  },
+  {
+   "id": "e16",
+   "source_id": "fs-id1170573520552",
+   "source_number": "16",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=e^{x}+\\frac{\\sin x}{2}-\\frac{\\cos x}{2}$ solves $\\kyprime=\\cos x+\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=e^{x}+\\frac{\\cos x}{2}+\\frac{\\sin x}{2}.$ The right-hand side is $\\cos x+\\kyfn=\\cos x+e^{x}+\\frac{\\sin x}{2}-\\frac{\\cos x}{2}=e^{x}+\\frac{\\cos x}{2}+\\frac{\\sin x}{2},$ the same, so $\\kyfn$ is a solution."
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1170571235292",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-de",
+   "prompt": "<p>Verify that the following functions are solutions to the given differential equation.</p><p>$\\kyfn=\\pi e^{-\\cos x}$ solves $\\kyprime=\\kyfn\\;\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate by the chain rule: $\\kyprime=\\pi e^{-\\cos x}\\cdot\\sin x=\\kyfn\\sin x,$ so $\\kyfn$ is a solution."
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1170573756900",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>Verify the following general solutions and find the particular solution.</p><p>Find the particular solution to the differential equation $\\kyprime=3x^{3}$ that passes through $(1,4.75),$ given that $\\kyfn=C+\\frac{3x^{4}}{4}$ is a general solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=4+\\frac{3x^{4}}{4}$"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1170571346530",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>Verify the following general solutions and find the particular solution.</p><p>Find the particular solution to the differential equation $\\kyprime=2x\\kyfn$ that passes through $(0,\\frac{1}{2}),$ given that $\\kyfn=Ce^{x^{2}}$ is a general solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{1}{2}e^{x^{2}}$"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1170573604115",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>Verify the following general solutions and find the particular solution.</p><p>Find the particular solution to the differential equation $\\kyprime x^{2}=\\kyfn$ that passes through $(1,\\frac{2}{e}),$ given that $\\kyfn=Ce^{-1/x}$ is a general solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=2e^{-1/x}$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1170571041493",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>Verify the following general solutions and find the particular solution.</p><p>Find the particular solution to the differential equation $\\frac{du}{dt}=\\tan u$ that passes through $(1,\\frac{\\pi}{2}),$ given that $u=\\sin^{-1}(e^{C+t})$ is a general solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$u=\\sin^{-1}(e^{-1+t})$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1170571105977",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>Verify the following general solutions and find the particular solution.</p><p>Find the particular solution to the differential equation $\\kyprime(1-x^{2})=1+\\kyfn$ that passes through $(0,-2),$ given that $\\kyfn=C\\frac{\\sqrt{x+1}}{\\sqrt{1-x}}-1$ is a general solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-\\frac{\\sqrt{x+1}}{\\sqrt{1-x}}-1$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1170571080687",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>For the following problems, find the general solution to the differential equation.</p><p>$\\kyprime=\\ln x+\\tan x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=C-x+x\\;\\ln x-\\ln(\\cos x)$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1170573622381",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>For the following problems, find the general solution to the differential equation.</p><p>$\\kyprime=4^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=C+\\frac{4^{x}}{\\ln(4)}$"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1170571167972",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>For the following problems, find the general solution to the differential equation.</p><p>$\\kyprime=2t\\sqrt{t^{2}+16}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{2}{3}\\sqrt{t^{2}+16}(t^{2}+16)+C$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1170571096316",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>For the following problems, find the general solution to the differential equation.</p><p>$x'=t\\sqrt{4+t}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=\\frac{2}{15}\\sqrt{4+t}(3t^{2}+4t-32)+C$"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1170573529236",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>For the following problems, find the general solution to the differential equation.</p><p>$\\kyprime=\\frac{\\kyfn}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Cx$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1170573727022",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Solve the following initial-value problems starting from $\\kyfn(0)=1$ and $\\kyfn(0)=-1.$ Draw both solutions on the same graph.</p><p>$\\kdydt=-t$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=1-\\frac{t^{2}}{2},\\kyfn=-\\frac{t^{2}}{2}-1$"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1170571332689",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Solve the following initial-value problems starting from $\\kyfn(0)=1$ and $\\kyfn(0)=-1.$ Draw both solutions on the same graph.</p><p>$\\kdydt=-\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=e^{-t},\\kyfn=-e^{-t}$"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1170573628757",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Solve the following initial-value problems starting from $y_{0}=10.$ At what time does $\\kyfn$ increase to $100$ or drop to $1?$</p><p>$\\kdydt=4t$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=2(t^{2}+5),t=3\\sqrt{5}$"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1170571332630",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Solve the following initial-value problems starting from $y_{0}=10.$ At what time does $\\kyfn$ increase to $100$ or drop to $1?$</p><p>$\\kdydt=-2\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=10e^{-2t},t=-\\frac{1}{2}\\;\\ln(\\frac{1}{10})$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1170573519515",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Solve the following initial-value problems starting from $y_{0}=10.$ At what time does $\\kyfn$ increase to $100$ or drop to $1?$</p><p>$\\kdydt=e^{-4t}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{1}{4}(41-e^{-4t}),$ never"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1170573491900",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p><strong>[T]</strong> $x\\kyprime=\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Solution changes from increasing to decreasing at $\\kyfn(0)=0$"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1170571143237",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p><strong>[T]</strong> $\\kyprime=x+\\kyfn$ (<em>Hint:</em> $\\kyfn=Ce^{x}-x-1$ is the general solution)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Solution changes from increasing to decreasing at $\\kyfn(0)=0$"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1170571260273",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p>Find the general solution to describe the velocity of a ball of mass $1\\;\\text{lb}$ that is thrown upward at a rate $a$ ft/sec.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kv(t)=-32t+a$"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1170571097477",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p>You throw two objects with differing masses $m_{1}$ and $m_{2}$ upward into the air with the same initial velocity $a$ ft/s. What is the difference in their velocity after $1$ second?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "unit": "ft/s",
+    "solution": "$0$ ft/s"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1170571041164",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p><strong>[T]</strong> You throw a ball of mass $1$ kilogram upward with a velocity of $a=25$ m/s on Mars, where the acceleration of gravity is $g=-3.711$ m/s<sup>2</sup>. Use your calculator to approximate how much longer the ball is in the air on Mars than on Earth, where $g=-9.8m/s^{2}$.</p><p><strong>[T]</strong> For the previous problem, use your calculator to approximate how much higher the ball went on Mars, where $g=-9.8m/s^{2}$.</p>",
+   "changes": "The prompt opens with exercise 56’s statement, the problem this one continues.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 52.354,
+    "unit": "m",
+    "tol": 0.05,
+    "solution": "$52.354$ meters"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1170571335736",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p><strong>[T]</strong> A car on the freeway accelerates according to $a=15\\;\\cos(\\pi t),$ where $t$ is measured in hours. Set up and solve the differential equation to determine the velocity of the car if it has an initial speed of $50$ mph. After $40$ minutes of driving, what is the driver’s velocity?</p><p><strong>[T]</strong> For the car in the preceding problem, find the expression for the distance the car has traveled in time $t,$ assuming an initial distance of $0.$ How long does it take the car to travel $100$ miles? Round your answer to hours and minutes.</p>",
+   "changes": "The prompt opens with exercise 58’s statement, the problem this one continues.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=50t-\\frac{15}{\\pi^{2}}\\cos(\\pi t)+\\frac{3}{\\pi^{2}}<sup class=\"fn\" data-note=\"e59-constant\"></sup>,2$ hours $1$ minute"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1170571027411",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p>Substitute $\\kyfn=Be^{3t}$ into $\\kyprime-\\kyfn=8e^{3t}$ to find a particular solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=4e^{3t}$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1170573715282",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p>Substitute $\\kyfn=a+bt+ct^{2}$ into $\\kyprime+\\kyfn=1+t^{2}$ to find a particular solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=3-2t+t^{2}$"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1170571277917",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>Recall that a family of solutions includes solutions to a differential equation that differ by a constant. For the following problems, use your calculator to graph a family of solutions to the given differential equation. Use initial conditions from $\\kyfn(t=0)=-10$ to $\\kyfn(t=0)=10$ increasing by $2.$ Is there some critical point where the behavior of the solution begins to change?</p><p>Solve $\\kyprime=e^{kt}$ with the initial condition $\\kyfn(0)=0$ and solve $\\kyprime=1$ with the same initial condition. As $k$ approaches $0,$ what do you notice?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{1}{k}(e^{kt}-1)$ and $\\kyfn=x$<sup class=\"fn\" data-note=\"e65-variable\"></sup>"
+   }
+  },
+  {
+   "id": "r267",
+   "source_id": "fs-id1170571776648",
+   "source_section": "8.5",
+   "source_number": "267",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-particular",
+   "prompt": "<p>For the following problems, find the general solution to the differential equations.</p><p>$\\kyprime=2^{x}+\\cos^{-1}x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=\\frac{2^{x}}{\\ln(2)}+x\\;\\cos^{-1}x-\\sqrt{1-x^{2}}+C$"
+   }
+  },
+  {
+   "id": "r273",
+   "source_id": "fs-id1170572404963",
+   "source_section": "8.5",
+   "source_number": "273",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following problems, find the solution to the initial value problem.</p><p>$\\kyprime=3x-\\cos x+2,\\kyfn(0)=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=4+\\frac{3}{2}x^{2}+2x-\\sin x$"
+   }
+  },
+  {
+   "id": "r283",
+   "source_id": "fs-id1170572230461",
+   "source_section": "8.5",
+   "source_number": "283",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following problems, set up and solve the differential equations.</p><p>You throw a ball of mass $2$ kilograms into the air with an upward velocity of $8$ m/s. Find exactly the time the ball will remain in the air, assuming that gravity is given by $g=9.8{\\;\\text{m/s}}^{2}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.816327,
+    "unit": "s",
+    "tol": 0.001,
+    "solution": "$\\frac{40}{49}$ second"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "order-of-a-differential-equation"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "velocity-under-gravity"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e1",
+   "concept": "order-of-a-differential-equation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "order-of-a-differential-equation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "order-of-a-differential-equation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "order-of-a-differential-equation"
+  },
+  {
+   "exercise": "e8",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e9",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e10",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e11",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e12",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e13",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e14",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e15",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e16",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e17",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e19",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e21",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e23",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e25",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e27",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e29",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e29",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e31",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e31",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e33",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e33",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e35",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e35",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e37",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e39",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e41",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e43",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e45",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e47",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e49",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e51",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e53",
+   "concept": "velocity-under-gravity"
+  },
+  {
+   "exercise": "e53",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e55",
+   "concept": "velocity-under-gravity"
+  },
+  {
+   "exercise": "e57",
+   "concept": "velocity-under-gravity"
+  },
+  {
+   "exercise": "e57",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e59",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e59",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e61",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e61",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e63",
+   "concept": "particular-solution"
+  },
+  {
+   "exercise": "e63",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e65",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "r267",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "r267",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "r273",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "r283",
+   "concept": "velocity-under-gravity"
+  },
+  {
+   "exercise": "r283",
+   "concept": "solving-an-initial-value-problem"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "ex87-ivp",
+   "kind": "correction",
+   "html": "The book prints no equation after these words. The steps that follow solve $\\ksprime(t)=-9.8t+10,$ $\\ks(0)=3.$"
+  },
+  {
+   "id": "e59-constant",
+   "kind": "correction",
+   "html": "The condition $x(0)=0$ gives the constant $\\frac{15}{\\pi^{2}},$ not $\\frac{3}{\\pi^{2}}:$ $x=50t-\\frac{15}{\\pi^{2}}\\cos(\\pi t)+\\frac{15}{\\pi^{2}},$ and with it $x(2)=100$ exactly."
+  },
+  {
+   "id": "e65-variable",
+   "kind": "correction",
+   "html": "The independent variable is $t,$ so the solution of $\\kyprime=1,$ $\\kyfn(0)=0$ is $\\kyfn=t.$"
+  }
+ ]
+}

@@ -1,0 +1,829 @@
+{
+ "id": "8.4",
+ "module": "m53710",
+ "chapter": "8",
+ "title": "The Logistic Equation",
+ "short": "The Logistic Equation",
+ "lead": "Exponential growth lets a population grow without bound; the <span data-concept=\"logistic-differential-equation\">logistic differential equation</span> adds a <span data-concept=\"carrying-capacity\">carrying capacity</span>, the largest population an environment can sustain. This section reads the equation’s behavior from a <span data-concept=\"phase-line\">phase line</span> and a direction field, solves it by separation of variables, finds the <span data-concept=\"inflection-point-of-the-logistic-curve\">point of inflection</span> of its solution, and applies it to the deer of Kentucky.",
+ "objectives": [
+  "Describe the concept of environmental carrying capacity in the logistic model of population growth.",
+  "Draw a direction field for a logistic equation and interpret the solution curves.",
+  "Solve a logistic equation and interpret the results."
+ ],
+ "summary_html": "<ul><li>When studying population <span data-concept=\"function\">functions</span>, different assumptions—such as <span data-concept=\"exponential-growth\">exponential growth</span>, logistic growth, or <span data-concept=\"threshold-population\">threshold population</span>—lead to different rates of growth.</li><li>The <span data-concept=\"logistic-differential-equation\">logistic differential equation</span> incorporates the concept of a <span data-concept=\"carrying-capacity\">carrying capacity</span>. This value is a limiting value on the population for any given environment.</li><li>The <span data-concept=\"logistic-differential-equation\">logistic differential equation</span> can be solved for any positive <span data-concept=\"growth-rate\">growth rate</span>, <span data-concept=\"initial-population\">initial population</span>, and <span data-concept=\"carrying-capacity\">carrying capacity</span>.</li></ul>",
+ "notes": "The book’s link to a website on the logistic equation is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s, except 200, which the key leaves unanswered and whose approach is AI-marked. The even-numbered exercises have no answer in the key and are computational, so they are left out: 168 and 170 (fields of P′ = CP − P²), 172 to 178 even (logistic solutions), 180 to 188 even (the trout pond), 190 and 192 (threshold models), 194 and 196 (the Gompertz equation), 198 (world population), 202 (the Gompertz equation’s fastest growth) and 204 and 206 (the whooping cranes). Review exercise 289, printed at the end of Section 8.5, is set here.",
+ "figures": [
+  {
+   "id": "fig-exponential-growth",
+   "kind": "figure",
+   "number": "8.18",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_04_001.jpg"
+   ],
+   "original_caption": "An exponential growth model of population.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-phase-line",
+   "kind": "figure",
+   "number": "8.19",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_04_006.jpg"
+   ],
+   "original_caption": "A phase line for the differential equation dP/dt=rP(1−P/K).",
+   "draws": [
+    "limit",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-deer-herd",
+   "kind": "photo",
+   "number": "8.20",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-deer-logistic",
+   "kind": "sim",
+   "number": "8.21",
+   "folds": [
+    "8.22"
+   ],
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_04_002.jpg",
+    "/media/ch08/CNX_Calc_Figure_08_04_003.jpg"
+   ],
+   "original_caption": "(Figure 8.21) Logistic curve for the deer population with an initial population of 900,000 deer. (Figure 8.22) Logistic curve for the deer population with an initial population of 1,200,000 deer.",
+   "draws": [
+    "derivative",
+    "function",
+    "limit",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-logistic-vs-exponential",
+   "kind": "figure",
+   "number": "8.23",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_04_004.jpg"
+   ],
+   "original_caption": "A comparison of exponential versus logistic growth for the same initial population of 900,000 organisms and growth rate of 23.11text%.",
+   "draws": [
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "carrying-capacity",
+   "concept": "initial-population",
+   "verb": "introduces"
+  },
+  {
+   "span": "carrying-capacity",
+   "concept": "growth-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "carrying-capacity-definition",
+   "concept": "carrying-capacity",
+   "verb": "introduces"
+  },
+  {
+   "span": "logistic-definition",
+   "concept": "logistic-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "carrying-capacity",
+   "concept": "phase-line",
+   "verb": "introduces"
+  },
+  {
+   "span": "logistic-solution",
+   "concept": "solution-of-the-logistic-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "solving-logistic",
+   "concept": "inflection-point-of-the-logistic-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "threshold-project",
+   "concept": "threshold-population",
+   "verb": "introduces"
+  },
+  {
+   "span": "logistic-intro",
+   "concept": "exponential-growth",
+   "verb": "uses"
+  },
+  {
+   "span": "carrying-capacity",
+   "concept": "exponential-growth",
+   "verb": "reinforces"
+  },
+  {
+   "span": "carrying-capacity",
+   "concept": "autonomous-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572203846",
+   "concept": "separation-of-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572203846",
+   "concept": "partial-fraction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572203846",
+   "concept": "logistic-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "solving-logistic",
+   "concept": "separation-of-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "solving-logistic",
+   "concept": "inflection-point",
+   "verb": "uses"
+  },
+  {
+   "span": "solving-logistic",
+   "concept": "concavity",
+   "verb": "uses"
+  },
+  {
+   "span": "solving-logistic",
+   "concept": "horizontal-asymptote",
+   "verb": "uses"
+  },
+  {
+   "span": "threshold-project",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "threshold-project",
+   "concept": "equilibrium-solution",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572604603",
+   "source_number": "Checkpoint 8.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572203846"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>A population of rabbits in a meadow is observed to be $200$ rabbits at time $t=0.$ After a month, the rabbit population is observed to have increased by $4\\text{\\%}.$ Using an initial population of $200$ and a growth rate of $0.04,$ with a carrying capacity of $750$ rabbits,</p><ol type=\"a\"><li>Write the logistic differential equation and initial condition for this model.</li><li>Draw a slope field for this logistic differential equation, and sketch the solution corresponding to an initial population of $200$ rabbits.</li><li>Solve the initial-value problem for $\\kP(t).$</li><li>Use the solution to predict the population after $1$ year.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\kdPdt=0.04(1-\\frac{\\kP}{750})<sup class=\"fn\" data-note=\"cp814-key\"></sup>,\\;\\kP(0)=200$ b.</li></ol> <ol type=\"a\" start=\"2\"><li>$\\kP(t)=\\frac{3000e^{.04t}}{11+4e^{.04t}}$</li><li>After $12$ months, the population will be $\\kP(12)\\approx 278$ rabbits.</li></ol><img src=\"/media/ch08/CNX_Calc_Figure_08_04_005.jpg\" alt=\"A direction field with horizontal lines on the x axis and y = 15. The other lines are vertical, except for those curving into the x axis and y = 15. A solution is drawn that crosses the y axis at about (0, 4) and asymptotically approaches y = 15.\">",
+    "hint": "First determine the values of $r,\\;\\kK,$ and $\\kPzero.$ Then create the initial-value problem, draw the direction field, and solve the problem."
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1170572547893",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>For the following problems, consider the logistic equation in the form $\\kPprime=CP-P^{2}.$ Draw the directional field and find the stability of the equilibria.</p><p>$C=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kP=0$ semi-stable</p><img src=\"/media/ch08/CNX_Calc_Figure_08_04_202.jpg\" alt=\"A direction field with arrows pointing to the right. The arrows are horizontal along the x axis. The arrows point down above the x axis and below the x axis. The further away the arrows are from the x axis, the more vertical the lines become.\">"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1170572480690",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>For the following problems, consider the logistic equation in the form $\\kPprime=CP-P^{2}.$ Draw the directional field and find the stability of the equilibria.</p><p>Solve the logistic equation for $C=10$ and an initial condition of $\\kP(0)=2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kP=\\frac{10e^{10x}}{e^{10x}+4}$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1170571775807",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>For the following problems, consider the logistic equation in the form $\\kPprime=CP-P^{2}.$ Draw the directional field and find the stability of the equilibria.</p><p>A population of deer inside a park has a carrying capacity of $200$ and a growth rate of $2\\text{\\%}.$ If the initial population is $50$ deer, what is the population of deer at any given time?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kP(t)=\\frac{10000e^{0.02t}}{150+50e^{0.02t}}$"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1170571558918",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>For the following problems, consider the logistic equation in the form $\\kPprime=CP-P^{2}.$ Draw the directional field and find the stability of the equilibria.</p><p><strong>[T]</strong> Bacteria grow at a rate of $20\\text{\\%}$ per hour in a petri dish. If there is initially one bacterium and a carrying capacity of $1$ million cells, how long does it take to reach $500,000$ cells?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$69$ hours $5$ minutes"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1170572420405",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>For the following problems, consider the logistic equation in the form $\\kPprime=CP-P^{2}.$ Draw the directional field and find the stability of the equilibria.</p><p><strong>[T]</strong> Two monkeys are placed on an island. After $5$ years, there are $8$ monkeys, and the estimated carrying capacity is $25$ monkeys. When does the population of monkeys reach $16$ monkeys?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$8$ years $11$ months"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1170571698875",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following problems consider the logistic equation with an added term for depletion, either through death or emigration.</p><p><strong>[T]</strong> The population of trout in a pond is given by $\\kPprime=0.4\\kP(1-\\frac{\\kP}{10000})-400,$ where $400$ trout are caught per year. Use your calculator or computer software to draw a directional field and draw a few sample solutions. What do you expect for the behavior?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_04_204.jpg\" alt=\"A direction field with arrows down for P &lt; 1,000, pointing up for 1,000 &lt; P &lt; 8,500, and pointing down for P &gt; 8,500. Right above P = 8,500, the arrows point down and to the right.\">"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1170572601342",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following problems consider the logistic equation with an added term for depletion, either through death or emigration.</p><p>The population of trout in a pond is given by $\\kPprime=0.4\\kP(1-\\frac{\\kP}{10000})-400,$ where $400$ trout are caught per year. Use your calculator or computer software to draw a directional field and draw a few sample solutions. What do you expect for the behavior?</p><p><strong>[T]</strong> For the preceding problem, use software to generate a directional field for the value $f=400.$ What are the stabilities of the equilibria?</p>",
+   "changes": "The prompt opens with the first sentence of exercise 179, the trout model these exercises continue.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$P_{1}$ semi-stable</p><img src=\"/media/ch08/CNX_Calc_Figure_08_04_205.jpg\" alt=\"A direction field with arrows pointing down and to the right. Around y = 4,000, the arrows are more horizontal. The further the arrows are from this line, the more vertical the arrows become.\">"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1170571599486",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following problems consider the logistic equation with an added term for depletion, either through death or emigration.</p><p>The population of trout in a pond is given by $\\kPprime=0.4\\kP(1-\\frac{\\kP}{10000})-400,$ where $400$ trout are caught per year. Use your calculator or computer software to draw a directional field and draw a few sample solutions. What do you expect for the behavior?</p><p><strong>[T]</strong> For the preceding problems, consider the case where a certain number of fish are added to the pond, or $f=-200.$ What are the nonnegative equilibria and their stabilities?</p>",
+   "changes": "The prompt opens with the first sentence of exercise 179, the trout model these exercises continue.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$P_{2}\\gt 0$ stable</p><img src=\"/media/ch08/CNX_Calc_Figure_08_04_207.jpg\" alt=\"A direction field with arrows pointing up for P &lt; 10,000 and arrows pointing down for P &gt; 10,000.\">"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1170572554552",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>It is more likely that the amount of fishing is governed by the current number of fish present, so instead of a constant number of fish being caught, the rate is proportional to the current number of fish present, with proportionality constant $k,$ as</p><p>$\\kPprime=0.4\\kP(1-\\frac{\\kP}{10000})-k\\kP.$</p><p><strong>[T]</strong> Use software or a calculator to draw directional fields for $k=0.4.$ What are the nonnegative equilibria and their stabilities?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$P_{1}=0$ is semi-stable</p><img src=\"/media/ch08/CNX_Calc_Figure_08_04_208.jpg\" alt=\"A direction field with arrows pointing to the right at P = 0. Below 0, the arrows point down and to the right. Above 0, the arrows point down and to the right. The further away from 0, the more vertical the arrows become.\">"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1170571592872",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>It is more likely that the amount of fishing is governed by the current number of fish present, so instead of a constant number of fish being caught, the rate is proportional to the current number of fish present, with proportionality constant $k,$ as</p><p>$\\kPprime=0.4\\kP(1-\\frac{\\kP}{10000})-k\\kP.$</p><p>Solve this equation, assuming a value of $k=0.05$ and an initial condition of $2000$ fish.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kP(t)=\\frac{3500}{(4+3e^{-035t})}$<sup class=\"fn\" data-note=\"e187-key\"></sup>"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1170572455069",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following problems add in a minimal threshold value for the species to survive, $T,$ which changes the differential equation to $\\kPprime(t)=r\\kP(1-\\frac{\\kP}{\\kK})(1-\\frac{T}{\\kP}).$</p><p>Draw the directional field of the threshold logistic equation, assuming $\\kK=10,r=0.1,T=2.$ When does the population survive? When does it go extinct?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_04_210.jpg\" alt=\"A direction field with arrows pointing horizontally to the right along y = 2 and y = 10. For P &lt; 2, the arrows point down and to the right. For 2 &lt; P &lt; 10, the arrows point up and to the right. For P &gt; 10, the arrows point down and to the right. The further the arrows are from 2 and 10, the steeper they become, and the closer they are from 2 and 10, the more horizontal the arrows become.\">"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1170571609179",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following problems add in a minimal threshold value for the species to survive, $T,$ which changes the differential equation to $\\kPprime(t)=r\\kP(1-\\frac{\\kP}{\\kK})(1-\\frac{T}{\\kP}).$</p><p>Bengal tigers in a conservation park have a carrying capacity of $100$ and need a minimum of $10$ to survive. If they grow in population at a rate of $1\\text{\\%}$ per year, with an initial population of $15$ tigers, solve for the number of tigers present.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kP(t)=\\frac{850+500e^{0.009t}}{85+5e^{0.009t}}$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1170571532520",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following problems add in a minimal threshold value for the species to survive, $T,$ which changes the differential equation to $\\kPprime(t)=r\\kP(1-\\frac{\\kP}{\\kK})(1-\\frac{T}{\\kP}).$</p><p>The population of Florida panthers in the southwestern tip of Florida has an estimated carrying capacity of $250$ and grows at a rate of $0.25\\text{\\%}$ per year and there must be $25$ for the population to survive. With an initial population of $30$ Florida panthers, how many years will it take to get the Florida panthers off the endangered species list (at least $100)?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$13$ years months<sup class=\"fn\" data-note=\"e193-key\"></sup>"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1170572089817",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following questions consider the Gompertz equation, a modification for logistic growth, which is often used for modeling cancer growth, specifically the number of tumor cells.</p><p>Assume that for a population, $\\kK=1000$ and $\\alpha =0.05.$ Draw the directional field associated with this differential equation and draw a few solutions. What is the behavior of the population?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_04_212.jpg\" alt=\"A direction field with arrows pointing down and to the right for P &lt; 0, up for 0 &lt; P &lt; 1,000, and down for P &gt; 1,000. The further the arrows are from P = 0 and P = 1,000, the more vertical they become, and the closer they are, the more horizontal they are.\">"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1170572505424",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following questions consider the Gompertz equation, a modification for logistic growth, which is often used for modeling cancer growth, specifically the number of tumor cells.</p><p><strong>[T]</strong> The Gompertz equation has been used to model tumor growth in the human body. Starting from one tumor cell on day $1$ and assuming $\\alpha =0.1$ and a carrying capacity of $10$ million cells, how long does it take to reach “detection” stage at $5$ million cells?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 31.465,
+    "unit": "days",
+    "tol": 0.01,
+    "solution": "$31.465$ days"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1170571704355",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following questions consider the Gompertz equation, a modification for logistic growth, which is often used for modeling cancer growth, specifically the number of tumor cells.</p><p><strong>[T]</strong> It is estimated that the world human population reached $3$ billion people in $1959$ and $6$ billion in $1999.$ Assuming a carrying capacity of $16$ billion humans, write and solve the differential equation for Gompertz growth, and determine what year the population reached $7$ billion. Was logistic growth or Gompertz growth more accurate, considering world population reached $7$ billion on October $31,2011?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "September $2008$"
+   }
+  },
+  {
+   "id": "e200",
+   "source_id": "fs-id1170572455751",
+   "source_number": "200",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following questions consider the Gompertz equation, a modification for logistic growth, which is often used for modeling cancer growth, specifically the number of tumor cells.</p><p>Show that the population grows fastest when it reaches half the carrying capacity for the logistic equation $\\kPprime=r\\kP(1-\\frac{\\kP}{\\kK}).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The growth rate is $\\kPprime=r\\kP\\left(1-\\frac{\\kP}{\\kK}\\right)=r\\kP-\\frac{r}{\\kK}\\kP^{2},$ a quadratic in $\\kP$ that opens downward, with zeros at $\\kP=0$ and $\\kP=\\kK.$ Its derivative with respect to $\\kP$ is $r-\\frac{2r}{\\kK}\\kP,$ which is zero at $\\kP=\\frac{\\kK}{2},$ halfway between the zeros, so the population grows fastest when it reaches half the carrying capacity. This is the point of inflection: at $t=\\frac{1}{r}\\ln\\frac{\\kK-\\kPzero}{\\kPzero},$ $e^{rt}=\\frac{\\kK-\\kPzero}{\\kPzero},$ and the solution gives $\\kP=\\frac{\\kPzero\\kK e^{rt}}{(\\kK-\\kPzero)+\\kPzero e^{rt}}=\\frac{\\kK(\\kK-\\kPzero)}{2(\\kK-\\kPzero)}=\\frac{\\kK}{2}.$"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1170571557226",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>The following questions consider the Gompertz equation, a modification for logistic growth, which is often used for modeling cancer growth, specifically the number of tumor cells.</p><p>When does population increase the fastest in the threshold logistic equation $\\kPprime(t)=r\\kP(1-\\frac{\\kP}{\\kK})(1-\\frac{T}{\\kP})?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kK+T}{2}$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1170572468867",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>Below is a table of the populations of whooping cranes in the wild from $1940\\;\\text{to}\\;2000.$ The population rebounded from near extinction after conservation efforts began. The following problems consider applying population models to fit the data. Assume a carrying capacity of $10,000$ cranes. Fit the data assuming years since $1940$ (so your initial population at time $0$ would be $22$ cranes).</p><div class=\"book-table\" id=\"fs-id1170571715330\">\n  <table><thead><tr><th>Year (years since conservation began)</th><th>Whooping Crane Population</th></tr></thead><tbody><tr><td>$1940(0)$</td><td>$22$</td></tr><tr><td>$1950(10)$</td><td>$31$</td></tr><tr><td>$1960(20)$</td><td>$36$</td></tr><tr><td>$1970(30)$</td><td>$57$</td></tr><tr><td>$1980(40)$</td><td>$91$</td></tr><tr><td>$1990(50)$</td><td>$159$</td></tr><tr><td>$2000(60)$</td><td>$256$</td></tr></tbody></table>\n</div><p>Find the equation and parameter $r$ that best fit the data for the logistic equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$r=0.0405$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1170571769920",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>Below is a table of the populations of whooping cranes in the wild from $1940\\;\\text{to}\\;2000.$ The population rebounded from near extinction after conservation efforts began. The following problems consider applying population models to fit the data. Assume a carrying capacity of $10,000$ cranes. Fit the data assuming years since $1940$ (so your initial population at time $0$ would be $22$ cranes).</p><div class=\"book-table\" id=\"fs-id1170571715330\">\n  <table><thead><tr><th>Year (years since conservation began)</th><th>Whooping Crane Population</th></tr></thead><tbody><tr><td>$1940(0)$</td><td>$22$</td></tr><tr><td>$1950(10)$</td><td>$31$</td></tr><tr><td>$1960(20)$</td><td>$36$</td></tr><tr><td>$1970(30)$</td><td>$57$</td></tr><tr><td>$1980(40)$</td><td>$91$</td></tr><tr><td>$1990(50)$</td><td>$159$</td></tr><tr><td>$2000(60)$</td><td>$256$</td></tr></tbody></table>\n</div><p>Find the equation and parameter $\\alpha$ that best fit the data for the Gompertz equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\alpha =0.0081$"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1170572242197",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>Below is a table of the populations of whooping cranes in the wild from $1940\\;\\text{to}\\;2000.$ The population rebounded from near extinction after conservation efforts began. The following problems consider applying population models to fit the data. Assume a carrying capacity of $10,000$ cranes. Fit the data assuming years since $1940$ (so your initial population at time $0$ would be $22$ cranes).</p><div class=\"book-table\" id=\"fs-id1170571715330\">\n  <table><thead><tr><th>Year (years since conservation began)</th><th>Whooping Crane Population</th></tr></thead><tbody><tr><td>$1940(0)$</td><td>$22$</td></tr><tr><td>$1950(10)$</td><td>$31$</td></tr><tr><td>$1960(20)$</td><td>$36$</td></tr><tr><td>$1970(30)$</td><td>$57$</td></tr><tr><td>$1980(40)$</td><td>$91$</td></tr><tr><td>$1990(50)$</td><td>$159$</td></tr><tr><td>$2000(60)$</td><td>$256$</td></tr></tbody></table>\n</div><p>Using the three equations found in the previous problems, estimate the population in $2010$ (year $70$ after conservation). The real population measured at that time was $437.$ Which model is most accurate?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Logistic: $361,$ Threshold: $436,$ Gompertz: $309.$"
+   }
+  },
+  {
+   "id": "r289",
+   "source_id": "fs-id1170571642098",
+   "source_section": "8.5",
+   "source_number": "289",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solving-logistic",
+   "prompt": "<p>For the following problems, set up and solve the differential equations.</p><p>The human population (in thousands) of Nevada in $1950$ was roughly $160.$ If the carrying capacity is estimated at $10$ million individuals, and assuming a growth rate of $2\\text{\\%}$ per year, develop a logistic growth model and solve for the population in Nevada at any time (use $1950$ as time = 0). What population does your model predict for $2000?$ How close is your prediction to the true value of $1,998,257?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kP(t)=\\frac{1600000e^{0.02t}}{9840+160e^{0.02t}}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e169",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "e169",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e169",
+   "concept": "asymptotically-semi-stable-solution"
+  },
+  {
+   "exercise": "e171",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "e173",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "e175",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "e177",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "e179",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "e179",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e181",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "e181",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e181",
+   "concept": "asymptotically-semi-stable-solution"
+  },
+  {
+   "exercise": "e183",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "e183",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e183",
+   "concept": "asymptotically-stable-solution"
+  },
+  {
+   "exercise": "e185",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "e185",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e187",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "e187",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e189",
+   "concept": "threshold-population"
+  },
+  {
+   "exercise": "e189",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e191",
+   "concept": "threshold-population"
+  },
+  {
+   "exercise": "e191",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e193",
+   "concept": "threshold-population"
+  },
+  {
+   "exercise": "e193",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e195",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e197",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e199",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "e200",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "e200",
+   "concept": "inflection-point-of-the-logistic-curve"
+  },
+  {
+   "exercise": "e201",
+   "concept": "threshold-population"
+  },
+  {
+   "exercise": "e203",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "e205",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e207",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "e207",
+   "concept": "threshold-population"
+  },
+  {
+   "exercise": "r289",
+   "concept": "solution-of-the-logistic-equation"
+  },
+  {
+   "exercise": "r289",
+   "concept": "logistic-differential-equation"
+  }
+ ],
+ "referents": [
+  {
+   "id": "logistic-curve",
+   "label": "the logistic curve of the deer population from 900,000 deer",
+   "figures": [
+    "fig-logistic-vs-exponential"
+   ]
+  },
+  {
+   "id": "exponential-curve",
+   "label": "the exponential growth curve from 900,000 deer at 23.11 %",
+   "figures": [
+    "fig-logistic-vs-exponential"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "cp814-key",
+   "kind": "correction",
+   "html": "The factor $\\kP$ is missing: the logistic equation of the checkpoint is $\\kdPdt=0.04\\kP\\left(1-\\frac{\\kP}{750}\\right).$"
+  },
+  {
+   "id": "e187-key",
+   "kind": "correction",
+   "html": "The exponent has lost its decimal point, $-0.35t,$ and the key’s function takes the value $500$ at $t=0,$ not the $2000$ fish of the exercise."
+  },
+  {
+   "id": "e193-key",
+   "kind": "correction",
+   "html": "The key prints no number of months."
+  }
+ ]
+}

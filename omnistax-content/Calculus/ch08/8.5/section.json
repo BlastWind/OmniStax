@@ -1,0 +1,1134 @@
+{
+ "id": "8.5",
+ "module": "m53713",
+ "chapter": "8",
+ "title": "First-Order Linear Equations",
+ "short": "First-Order Linear Equations",
+ "lead": "A <span data-concept=\"first-order-linear-differential-equation\">first-order linear differential equation</span> can be put in the <span data-concept=\"standard-form-of-a-linear-equation\">standard form</span> y′ + p(x)y = q(x). Multiplying it by an <span data-concept=\"integrating-factor\">integrating factor</span> μ(x) turns its left-hand side into the derivative of a product, so both sides can be integrated; the method models a ball falling against air resistance and the current in an electric circuit.",
+ "objectives": [
+  "Write a first-order linear differential equation in standard form.",
+  "Find an integrating factor and use it to solve a first-order linear differential equation.",
+  "Solve applied problems involving first-order linear differential equations."
+ ],
+ "summary_html": "<ul><li>Any <span data-concept=\"first-order-linear-differential-equation\">first-order linear differential equation</span> can be written in the form $\\kyprime+\\kp(x)\\kyfn=\\kq(x).$</li><li>We can use a five-step problem-solving strategy for solving a <span data-concept=\"first-order-linear-differential-equation\">first-order linear differential equation</span> that may or may not include an <span data-concept=\"initial-value\">initial value</span>.</li><li>Applications of <span data-concept=\"first-order-linear-differential-equation\">first-order linear differential equations</span> include determining motion of a rising or falling object with air resistance and finding current in an electrical circuit.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s, except 208, 210 and 212 and review exercises 262 and 264, which the key leaves unanswered and whose approaches are AI-marked. The other even-numbered exercises have no answer in the key and are computational, so they are left out: 214 and 216 (standard forms), 218, 220 and 222 (integrating factors), 224 to 232 even (general solutions), 234 to 240 even (families by calculator), 242 to 250 even (initial-value problems), 252, 254 and 256 (terminal velocity) and 258 and 260 (generic equations). The Chapter Review Exercises 262–290 are printed here and set with the sections that introduce what they test; here are 262, 264, 277, 279 and 285, and 270, 276 and 278 are left out, unkeyed.",
+ "figures": [
+  {
+   "id": "sim-air-resistance",
+   "kind": "sim",
+   "number": "8.24",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_05_001.jpg"
+   ],
+   "original_caption": "Forces acting on a moving baseball: gravity acts in a downward direction and air resistance acts in a direction opposite to the direction of motion.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-circuit",
+   "kind": "figure",
+   "number": "8.25",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_05_003.jpg"
+   ],
+   "original_caption": "A typical electric circuit, containing a voltage generator (V_S), capacitor (C), inductor (L), and resistor (R).",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-rl-current",
+   "kind": "figure",
+   "number": "8.26",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_05_004.jpg"
+   ],
+   "original_caption": "",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "linear-definition",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "standard-form",
+   "concept": "standard-form-of-a-linear-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrating-factors",
+   "concept": "integrating-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-strategy",
+   "concept": "solving-a-first-order-linear-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-intro",
+   "concept": "free-fall-with-air-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "electrical-circuits",
+   "concept": "kirchhoffs-loop-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-intro",
+   "concept": "velocity-under-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating-factors",
+   "concept": "product-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating-factors",
+   "concept": "separation-of-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating-factors",
+   "concept": "indefinite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572611128",
+   "concept": "integration-by-parts",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572611128",
+   "concept": "initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "free-fall",
+   "concept": "free-fall-with-air-resistance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571829525",
+   "concept": "solving-a-first-order-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571553391",
+   "concept": "solving-a-first-order-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571553391",
+   "concept": "integration-by-parts",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572331245",
+   "source_number": "Checkpoint 8.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572447597"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Put the equation $\\frac{(x+3)\\kyprime}{2x-3\\kyfn-4}=5$ into standard form and identify $\\kp(x)$ and $\\kq(x).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyprime+\\frac{15}{x+3}\\kyfn=\\frac{10x-20}{x+3};\\kp(x)=\\frac{15}{x+3}$ and $\\kq(x)=\\frac{10x-20}{x+3}$",
+    "hint": "Multiply both sides by the common denominator, then collect all terms involving $\\kyfn$ on one side."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170572332858",
+   "source_number": "Checkpoint 8.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572539811"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Find the general solution to the differential equation $(x-2)\\kyprime+\\kyfn=3x^{2}+2x.$ Assume $x\\gt 2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{x^{3}+x^{2}+C}{x-2}$",
+    "hint": "Use the method outlined in the problem-solving strategy for first-order linear differential equations."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572505498",
+   "source_number": "Checkpoint 8.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572611128"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the initial-value problem $\\kyprime-2\\kyfn=4x+3\\;\\kyfn(0)=-2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-2x-\\frac{5}{2}+\\frac{1}{2}e^{2x}$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170572481767",
+   "source_number": "Checkpoint 8.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571829525"
+   },
+   "cite": "free-fall",
+   "prompt": "<p>The weight of a penny is $2.5$ grams (United States Mint, “Coin Specifications,” accessed April 9, 2015, http://www.usmint.gov/about_the_mint/?action=coin_specifications), and the upper observation deck of the Empire State Building is $369$ meters above the street. Since the penny is a small and relatively smooth object, air resistance acting on the penny is actually quite small. We assume the air resistance is numerically equal to $0.0025\\kv.$ Furthermore, the penny is dropped with no initial velocity imparted to it.</p><ol type=\"a\"><li>Set up an initial-value problem that represents the falling penny.</li><li>Solve the problem for $\\kv(t).$</li><li>What is the terminal velocity of the penny (i.e., calculate the limit of the velocity as $t$ approaches infinity)?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\begin{aligned}\\kdvdt &= -\\kv-9.8 \\\\ \\kv(0) &= 0\\end{aligned}$</li><li>$\\kv(t)=9.8(e^{-t}-1)$</li><li>$\\lim_{t\\to \\infty}\\kv(t)=\\lim_{t\\to \\infty}(9.8(e^{-t}-1))=-9.8\\;\\text{m/s}\\approx -21.922\\;\\text{mph}$</li></ol>",
+    "hint": "Set up the differential equation the same way as Example 8.15<sup class=\"fn\" data-note=\"cp818-hint\"></sup>. Remember to convert from grams to kilograms."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170572375811",
+   "source_number": "Checkpoint 8.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571553391"
+   },
+   "cite": "electrical-circuits",
+   "prompt": "<p>A circuit has in series an electromotive force given by $E=20\\;\\sin5t$ V, a capacitor with capacitance $0.02\\;\\text{F},$ and a resistor of $8\\;\\text{Ω}.$ If the initial charge is $4\\;\\text{C},$ find the charge at time $t\\gt 0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Initial-value problem: $8q'+\\frac{1}{0.02}q=20\\;\\sin5t,\\;q(0)=4$ $q(t)=\\frac{10\\;\\sin5t-8\\;\\cos5t+172e^{-6.25t}}{41}$",
+    "hint": "Use Equation 8.25<sup class=\"fn\" data-note=\"cp819-hint\"></sup> for an $RC$ circuit to set up an initial-value problem."
+   }
+  },
+  {
+   "id": "e208",
+   "source_id": "fs-id1170572591375",
+   "source_number": "208",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Are the following differential equations linear? Explain your reasoning.</p><p>$\\kdydx=x^{2}\\kyfn+\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. Subtracting $x^{2}\\kyfn$ from both sides gives $\\kyprime-x^{2}\\kyfn=\\sin x,$ the form $a(x)\\kyprime+b(x)\\kyfn=c(x)$ with $a(x)=1,$ $b(x)=-x^{2}$ and $c(x)=\\sin x.$"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1170572447491",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Are the following differential equations linear? Explain your reasoning.</p><p>$\\kdydt=t\\kyfn$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Yes",
+     "No"
+    ],
+    "correct": 0,
+    "solution": "Yes"
+   }
+  },
+  {
+   "id": "e210",
+   "source_id": "fs-id1170572447527",
+   "source_number": "210",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Are the following differential equations linear? Explain your reasoning.</p><p>$\\kdydt+\\kyfn^{2}=x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The term $\\kyfn^{2}$ is not a function of the independent variable times $\\kyfn,$ so the equation cannot be put in the form $a(x)\\kyprime+b(x)\\kyfn=c(x).$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1170572587618",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Are the following differential equations linear? Explain your reasoning.</p><p>$\\kyprime=x^{3}+e^{x}$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Yes",
+     "No"
+    ],
+    "correct": 0,
+    "solution": "Yes"
+   }
+  },
+  {
+   "id": "e212",
+   "source_id": "fs-id1170572449686",
+   "source_number": "212",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Are the following differential equations linear? Explain your reasoning.</p><p>$\\kyprime=\\kyfn+e^{\\kyfn}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The term $e^{\\kyfn}$ is not a function of $x$ times $\\kyfn,$ so the equation cannot be put in the form $a(x)\\kyprime+b(x)\\kyfn=c(x).$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1170572449722",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Write the following first-order differential equations in standard form.</p><p>$\\kyprime=x^{3}\\kyfn+\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyprime-x^{3}\\kyfn=\\sin x$"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1170572573687",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Write the following first-order differential equations in standard form.</p><p>$-x\\kyprime=(3x+2)\\kyfn+xe^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyprime+\\frac{(3x+2)}{x}\\kyfn=-e^{x}$"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1170572567913",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "standard-form",
+   "prompt": "<p>Write the following first-order differential equations in standard form.</p><p>$\\kdydt=yx(x+1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kdydt-yx(x+1)=0$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1170571758322",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating-factors",
+   "prompt": "<p>What are the integrating factors for the following differential equations?</p><p>$\\kyprime+e^{x}\\kyfn=\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{(e^{x})}$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1170572290309",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating-factors",
+   "prompt": "<p>What are the integrating factors for the following differential equations?</p><p>$\\kdydx=\\text{tanh}(x)\\kyfn+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\ln(\\text{cosh}\\;x)$<sup class=\"fn\" data-note=\"e221-key\"></sup>"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1170572410628",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations by using integrating factors.</p><p>$\\kyprime=3\\kyfn+2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Ce^{3x}-\\frac{2}{3}$"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1170571780010",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations by using integrating factors.</p><p>$x\\kyprime=3\\kyfn-6x^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Cx^{3}+6x^{2}$"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1170571613598",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations by using integrating factors.</p><p>$\\kyprime=3x+x\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Ce^{x^{2}/2}-3$"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1170571639298",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations by using integrating factors.</p><p>$\\sin(x)\\kyprime=\\kyfn+2x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=C\\;\\tan(\\frac{x}{2})-2x+4\\;\\tan(\\frac{x}{2})\\ln(\\sin(\\frac{x}{2}))$"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1170572480155",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations by using integrating factors.</p><p>$x\\kyprime=3\\kyfn+x^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Cx^{3}-x^{2}$"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1170571548292",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations. Use your calculator to draw a family of solutions. Are there certain initial conditions that change the behavior of the solution?</p><p><strong>[T]</strong> $(x+2)\\kyprime=2\\kyfn-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=C{(x+2)}^{2}+\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1170571809463",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations. Use your calculator to draw a family of solutions. Are there certain initial conditions that change the behavior of the solution?</p><p><strong>[T]</strong> $x\\kyprime+\\frac{\\kyfn}{2}=\\sin(3t)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{C}{\\sqrt{x}}+2\\;\\sin(3t)$"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1170572469686",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations. Use your calculator to draw a family of solutions. Are there certain initial conditions that change the behavior of the solution?</p><p><strong>[T]</strong> $(x+1)\\kyprime=3\\kyfn+x^{2}+2x+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=C{(x+1)}^{3}-x^{2}-2x-1$"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1170571776599",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following differential equations. Use your calculator to draw a family of solutions. Are there certain initial conditions that change the behavior of the solution?</p><p><strong>[T]</strong> $\\sqrt{x^{2}+1}\\kyprime=\\kyfn+2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Ce^{{\\text{sinh}}^{-1}x}-2$"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1170572610838",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following initial-value problems by using integrating factors.</p><p>$\\kyprime+\\kyfn=x,\\kyfn(0)=3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=x+4e^{–x}-1$"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1170572172985",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following initial-value problems by using integrating factors.</p><p>$x\\kyprime=\\kyfn-3x^{3},\\kyfn(1)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-\\frac{3x}{2}(x^{2}-1)$"
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1170571768630",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following initial-value problems by using integrating factors.</p><p>$(1+x^{2})\\kyprime=\\kyfn-1,\\kyfn(0)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=1-e^{\\tan^{-1}x}$"
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1170571539148",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following initial-value problems by using integrating factors.</p><p>$(2+x)\\kyprime=\\kyfn+2+x,\\kyfn(0)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=(x+2)\\ln(\\frac{x+2}{2})$"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1170571565951",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>Solve the following initial-value problems by using integrating factors.</p><p>$\\sqrt{x}\\kyprime=\\kyfn+2x,\\kyfn(0)=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=2e^{2\\sqrt{x}}-2x-2\\sqrt{x}-1$"
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1170572605479",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "free-fall",
+   "prompt": "<p>Solve the following initial-value problems by using integrating factors.</p><p>A falling object of mass $m$ can reach terminal velocity when the drag force is proportional to its velocity, with proportionality constant $k.$ Set up the differential equation and solve for the velocity given an initial velocity of $0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kv(t)=\\frac{gm}{k}(1-e^{-kt/m})$"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1170571814983",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "free-fall",
+   "prompt": "<p>Solve the following initial-value problems by using integrating factors.</p><p><strong>[T]</strong> Using your equation for terminal velocity, solve for the distance fallen. How long does it take to fall $5000$ meters if the mass is $100$ kilograms, the acceleration due to gravity is $9.8$ m/s<sup>2</sup> and the proportionality constant is $4?$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 40.451,
+    "unit": "s",
+    "tol": 0.01,
+    "solution": "$40.451$ seconds"
+   }
+  },
+  {
+   "id": "e255",
+   "source_id": "fs-id1170572504560",
+   "source_number": "255",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "free-fall",
+   "prompt": "<p>Solve the following initial-value problems by using integrating factors.</p><p>A more accurate way to describe terminal velocity is that the drag force is proportional to the square of velocity, with a proportionality constant $k.$ Set up the differential equation and solve for the velocity.</p><p>Using your expression from the preceding problem, what is the terminal velocity? (<em>Hint:</em> Examine the limiting behavior: Does the velocity approach a value?)</p>",
+   "changes": "The prompt opens with exercise 254’s statement, the problem this one continues.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{\\frac{gm}{k}}$"
+   }
+  },
+  {
+   "id": "e257",
+   "source_id": "fs-id1170572468399",
+   "source_number": "257",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>For the following problems, determine how parameter $a$ affects the solution.</p><p>Solve the generic equation $\\kyprime=ax+\\kyfn.$ How does varying $a$ change the behavior?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Ce^{x}-a(x+1)$"
+   }
+  },
+  {
+   "id": "e259",
+   "source_id": "fs-id1170572176201",
+   "source_number": "259",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>For the following problems, determine how parameter $a$ affects the solution.</p><p>Solve the generic equation $\\kyprime=ax+x\\kyfn.$ How does varying $a$ change the behavior?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Ce^{x^{2}/2}-a$"
+   }
+  },
+  {
+   "id": "e261",
+   "source_id": "fs-id1170571783178",
+   "source_number": "261",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>For the following problems, determine how parameter $a$ affects the solution.</p><p>Solve $\\kyprime-\\kyfn=e^{kt}$ with the initial condition $\\kyfn(0)=0.$ As $k$ approaches $1,$ what happens to your formula?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{e^{kt}-e^{t}}{k-1}$"
+   }
+  },
+  {
+   "id": "r262",
+   "source_id": "fs-id1170572115965",
+   "source_section": "8.5",
+   "source_number": "262",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-definition",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>The differential equation $\\kyprime=3x^{2}\\kyfn-\\cos(x)\\kydprime$ is linear.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "True. Rearranged, $\\cos(x)\\kydprime+\\kyprime-3x^{2}\\kyfn=0:$ every term is a function of $x$ times $\\kyfn$ or one of its derivatives, so the equation is linear. It is of second order, though, so it is not one of the first-order linear equations $a(x)\\kyprime+b(x)\\kyfn=c(x)$ of this section."
+   }
+  },
+  {
+   "id": "r264",
+   "source_id": "fs-id1170572439993",
+   "source_section": "8.5",
+   "source_number": "264",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>You can explicitly solve all first-order differential equations by separation or by the method of integrating factors.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "False. A counterexample is $\\kyprime=\\kyfn^{2}+x:$ its right-hand side is not $f(x)g(\\kyfn),$ so it is not separable, and since $\\kyfn^{2}$ appears it is not linear, so neither separation of variables nor an integrating factor applies. Even a separable equation such as $\\kyprime=e^{\\kyfn^{2}}$ leads to an integral, $\\int e^{-\\kyfn^{2}}d\\kyfn,$ with no elementary antiderivative, so $\\kyfn$ cannot be found explicitly."
+   }
+  },
+  {
+   "id": "r277",
+   "source_id": "fs-id1170572593776",
+   "source_section": "8.5",
+   "source_number": "277",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>For the following problems, find the solution to the initial value problem.</p><p>$\\kyprime=3\\kyfn-x+6x^{2},\\kyfn(0)=-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=-2x^{2}-2x-\\frac{1}{3}-\\frac{2}{3}e^{3x}$"
+   }
+  },
+  {
+   "id": "r279",
+   "source_id": "fs-id1170571601346",
+   "source_section": "8.5",
+   "source_number": "279",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-strategy",
+   "prompt": "<p>For the following problems, draw the directional field associated with the differential equation, then solve the differential equation. Draw a sample solution on the directional field.</p><p>$\\kyprime=\\frac{1}{x}+\\ln x-\\kyfn,$ for $x\\gt 0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kyfn(x)=Ce^{-x}+\\ln x$</p><img src=\"/media/ch08/CNX_Calc_Figure_08_05_202.jpg\" alt=\"A direction field with arrows pointing up and to the right along a logarithmic curve that approaches negative infinity as x goes to zero and increases as x goes to infinity.\">"
+   }
+  },
+  {
+   "id": "r285",
+   "source_id": "fs-id1170572179974",
+   "source_section": "8.5",
+   "source_number": "285",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "free-fall",
+   "prompt": "<p>For the following problems, set up and solve the differential equations.</p><p>You drop the same ball of mass $5$ kilograms out of the same airplane window at the same height, except this time you assume a drag force proportional to the ball’s velocity, using a proportionality constant of $3$ and the ball reaches terminal velocity. Solve for the distance fallen as a function of time. How long does it take the ball to reach the ground?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x(t)=5000+\\frac{245}{9}-\\frac{49}{3}t-\\frac{245}{9}e^{-5/3t},t=307.8$ seconds"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "standard-form-of-a-linear-equation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "free-fall-with-air-resistance"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "kirchhoffs-loop-rule"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e208",
+   "concept": "first-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e209",
+   "concept": "first-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e210",
+   "concept": "first-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e211",
+   "concept": "first-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e212",
+   "concept": "first-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e213",
+   "concept": "standard-form-of-a-linear-equation"
+  },
+  {
+   "exercise": "e215",
+   "concept": "standard-form-of-a-linear-equation"
+  },
+  {
+   "exercise": "e217",
+   "concept": "standard-form-of-a-linear-equation"
+  },
+  {
+   "exercise": "e219",
+   "concept": "integrating-factor"
+  },
+  {
+   "exercise": "e221",
+   "concept": "integrating-factor"
+  },
+  {
+   "exercise": "e223",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e225",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e227",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e229",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e231",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e233",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e235",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e237",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e239",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e241",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e241",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e243",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e243",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e245",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e245",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e247",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e247",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e249",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e249",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e251",
+   "concept": "free-fall-with-air-resistance"
+  },
+  {
+   "exercise": "e251",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e253",
+   "concept": "free-fall-with-air-resistance"
+  },
+  {
+   "exercise": "e255",
+   "concept": "free-fall-with-air-resistance"
+  },
+  {
+   "exercise": "e255",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e257",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e259",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e261",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "e261",
+   "concept": "limit"
+  },
+  {
+   "exercise": "r262",
+   "concept": "first-order-linear-differential-equation"
+  },
+  {
+   "exercise": "r264",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "r264",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "r277",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "r277",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "r279",
+   "concept": "solving-a-first-order-linear-equation"
+  },
+  {
+   "exercise": "r279",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "r285",
+   "concept": "free-fall-with-air-resistance"
+  },
+  {
+   "exercise": "r285",
+   "concept": "solving-a-first-order-linear-equation"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "rl-initial",
+   "kind": "correction",
+   "html": "The circuit’s initial condition is $i(0)=0,$ which the step uses; $v(0)=2$ is the racquetball’s, from Example 8.18."
+  },
+  {
+   "id": "rc-equation",
+   "kind": "correction",
+   "html": "The equation rewritten is Equation 8.24, $L i'+Ri+\\frac{1}{C}q=E,$ with $L=0;$ Equation 8.23 is the general solution of a linear equation."
+  },
+  {
+   "id": "cp818-hint",
+   "kind": "correction",
+   "html": "The example to follow is Example 8.18, the ball with air resistance; Example 8.15 puts equations in standard form."
+  },
+  {
+   "id": "cp819-hint",
+   "kind": "correction",
+   "html": "The equation for an $RC$ circuit is Equation 8.26, $Rq'+\\frac{1}{C}q=E;$ Equation 8.25 is the $LR$ circuit’s."
+  },
+  {
+   "id": "e221-key",
+   "kind": "correction",
+   "html": "The key gives $\\int p(x)\\,dx=-\\ln(\\cosh x);$ the integrating factor is $\\kmu(x)=e^{-\\ln(\\cosh x)}=\\frac{1}{\\cosh x}.$"
+  }
+ ]
+}

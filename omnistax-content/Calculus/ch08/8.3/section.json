@@ -1,0 +1,1000 @@
+{
+ "id": "8.3",
+ "module": "m53704",
+ "chapter": "8",
+ "title": "Separable Equations",
+ "short": "Separable Equations",
+ "lead": "A <span data-concept=\"separable-differential-equation\">separable differential equation</span> has a right-hand side that splits into a function of x times a function of y. The method of <span data-concept=\"separation-of-variables\">separation of variables</span> solves it by integrating each side in its own variable, and it applies to the amount of salt in a tank and to <span data-concept=\"newtons-law-of-cooling\">Newton’s law of cooling</span>.",
+ "objectives": [
+  "Use separation of variables to solve a differential equation.",
+  "Solve applications using separation of variables."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"separable-differential-equation\">separable differential equation</span> is any equation that can be written in the form $\\kyprime=\\kf(x)\\kg(\\kyfn).$</li><li>The method of <span data-concept=\"separation-of-variables\">separation of variables</span> is used to find the <span data-concept=\"general-solution\">general solution</span> to a <span data-concept=\"separable-differential-equation\">separable differential equation</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s, except 164, which the key leaves unanswered and whose derivation is AI-marked. The even-numbered exercises have no answer in the key and are computational, so they are left out: 120 and 122 (initial-value problems), 124 to 142 even (general and particular solutions), 144 and 146 (fields by software), 148 and 150 (drugs), 152 and 154 (two tanks), 156 and 158 (ice cream), 160 and 162 (coffee) and 166 (leaf litter). Review exercises 263, 269, 271, 275 and 287, printed at the end of Section 8.5, are set here.",
+ "figures": [
+  {
+   "id": "fig-separable-ivp",
+   "kind": "figure",
+   "number": "8.15",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_03_001.jpg"
+   ],
+   "original_caption": "Graph of the solution to the initial-value problem y'=(2x+3)(y²−4), y(0)=−1.",
+   "draws": [
+    "derivative",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-brine-tank",
+   "kind": "sim",
+   "number": "8.16",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_03_002.jpg"
+   ],
+   "original_caption": "A brine tank with an initial amount of salt solution accepts an input flow and delivers an output flow. How does the amount of salt change with time?",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pizza",
+   "kind": "sim",
+   "number": "8.17",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_03_003.jpg"
+   ],
+   "original_caption": "From Newton’s law of cooling, if the pizza cools 10text°textF in 1 minute, how long before it cools to 150text°textF?",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "separable-definition",
+   "concept": "separable-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "separation-of-variables",
+   "concept": "autonomous-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "separation-strategy",
+   "concept": "separation-of-variables",
+   "verb": "introduces"
+  },
+  {
+   "span": "solution-concentrations",
+   "concept": "solution-concentration",
+   "verb": "introduces"
+  },
+  {
+   "span": "separation-strategy",
+   "concept": "equilibrium-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "separation-strategy",
+   "concept": "indefinite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "separation-strategy",
+   "concept": "implicitly-defined-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573262524",
+   "concept": "partial-fraction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573262524",
+   "concept": "initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573587324",
+   "concept": "separation-of-variables",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573587324",
+   "concept": "limit-at-infinity",
+   "verb": "uses"
+  },
+  {
+   "span": "newtons-law",
+   "concept": "newtons-law-of-cooling",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170571198014",
+   "concept": "separation-of-variables",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170571244783",
+   "source_number": "Checkpoint 8.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571302542"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Use the method of separation of variables to find a general solution to the differential equation $\\kyprime=2x\\kyfn+3\\kyfn-4x-6.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=2+Ce^{x^{2}+3x}$",
+    "hint": "First factor the right-hand side of the equation by grouping, then use the five-step strategy of separation of variables."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170573436521",
+   "source_number": "Checkpoint 8.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573262524"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the solution to the initial-value problem</p>$$6\\kyprime=(2x+1)(\\kyfn^{2}-2\\kyfn-8),\\;\\kyfn(0)=-3$$<p>using the method of separation of variables.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{4+14e^{x^{2}+x}}{1-7e^{x^{2}+x}}$",
+    "hint": "Follow the steps for separation of variables to solve the initial-value problem."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170571290127",
+   "source_number": "Checkpoint 8.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573587324"
+   },
+   "cite": "solution-concentrations",
+   "prompt": "<p>A tank contains $3$ kilograms of salt dissolved in $75$ liters of water. A salt solution of $0.4\\;\\text{kg salt/L}$ is pumped into the tank at a rate of $6\\;\\text{L/min}$ and is drained at the same rate. Solve for the salt concentration at time $t.$ Assume the tank is well mixed at all times.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Initial value problem: $\\kdudt=2.4-\\frac{2u}{25},\\;\\kufn(0)=3$ $\\text{Solution:}\\;\\kufn(t)=30-27e^{-2t/25}$ $\\text{Concentration:}30-27e^{\\frac{-2t}{25}}$",
+    "hint": "Follow the steps in Example 8.12 and determine an expression for INFLOW and OUTFLOW. Formulate an initial-value problem, and then solve it."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170571110824",
+   "source_number": "Checkpoint 8.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571198014"
+   },
+   "cite": "newtons-law",
+   "prompt": "<p>A cake is removed from the oven after baking thoroughly, and the temperature of the cake when it comes out of the oven is $450\\text{°}\\text{F}.$ The temperature of the kitchen is $70\\text{°}\\text{F},$ and after $10$ minutes the temperature of the cake is $330\\text{°}\\text{F}.$</p><ol type=\"a\"><li>Write the appropriate initial-value problem to describe this situation.</li><li>Solve the initial-value problem for $\\kT(t).$</li><li>How long will it take until the temperature of the cake is within $5\\text{°}\\text{F}$ of room temperature?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>Initial value problem $\\kdTdt=k(\\kT-70),\\;\\kT(0)=450$</li><li>$\\kT(t)=70+380e^{kt}$</li><li>Approximately $114$ minutes.</li></ol>",
+    "hint": "Determine the values of $T_{s}$ and $T_{0}$ then use Equation 8.4<sup class=\"fn\" data-note=\"cp813-hint\"></sup>."
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1170571298232",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Solve the following initial-value problems with the initial condition $y_{0}=0$ and graph the solution.</p><p>$\\kdydt=\\kyfn+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=e^{t}-1$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1170571227046",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Solve the following initial-value problems with the initial condition $y_{0}=0$ and graph the solution.</p><p>$\\kdydt=–\\kyfn+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=1+Ce^{-t}$"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1170571086082",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the general solution to the differential equation.</p><p>$x^{2}\\kyprime=(x+1)\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Cxe^{-1/x}$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1170571086134",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the general solution to the differential equation.</p><p>$\\kyprime=2x\\kyfn^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{1}{C-x^{2}}$"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1170573742502",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the general solution to the differential equation.</p><p>$2x\\kdydx=\\kyfn^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-\\frac{2}{C+\\ln x}$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1170570991601",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the general solution to the differential equation.</p><p>$(1+x)\\kyprime=(x+2)(\\kyfn-1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=Ce^{x}(x+1)+1$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1170571503173",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the general solution to the differential equation.</p><p>$t\\kdydt=\\sqrt{1-\\kyfn^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\sin(\\ln t+C)$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1170571074905",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the solution to the initial-value problem.</p><p>$\\kyprime=e^{\\kyfn-x},\\kyfn(0)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=-\\ln(e^{-x})$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1170571023995",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the solution to the initial-value problem.</p><p>$\\kdydx=\\kyfn^{3}xe^{x^{2}},\\kyfn(0)=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{1}{\\sqrt{2-e^{x^{2}}}}$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1170571346512",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the solution to the initial-value problem.</p><p>$\\kyprime=\\frac{x}{{\\text{sech}}^{2}\\kyfn},\\kyfn(0)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn={\\text{tanh}}^{-1}(\\frac{x^{2}}{2})$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1170571375659",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the solution to the initial-value problem.</p><p>$\\frac{dx}{dt}=\\ln(t)\\sqrt{1-x^{2}},x(1)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=\\sin(1-t+t\\;\\ln t)$"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1170573735242",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>Find the solution to the initial-value problem.</p><p>$\\kyprime=e^{\\kyfn}5^{x},\\kyfn(0)=\\ln(\\ln(5))$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\ln(\\ln(5))-\\ln(2-5^{x})$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1170571503203",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>For the following problems, use a software program or your calculator to generate the directional fields. Solve explicitly and draw solution curves for several initial conditions. Are there some critical initial conditions that change the behavior of the solution?</p><p><strong>[T]</strong> $\\kyprime=1-2\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kyfn=Ce^{-2x}+\\frac{1}{2}$</p><img src=\"/media/ch08/CNX_Calc_Figure_08_03_201.jpg\" alt=\"A direction field with horizontal arrows pointing to the right at y = 0.5. Above 0.5, the arrows slope down and to the right and are increasingly vertical the further they are from y = 0.5 Below0.5, the arrows slope up and to the right and are increasingly vertical the further they are from y = 0.5.\">"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1170571169446",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>For the following problems, use a software program or your calculator to generate the directional fields. Solve explicitly and draw solution curves for several initial conditions. Are there some critical initial conditions that change the behavior of the solution?</p><p><strong>[T]</strong> $\\kyprime=\\kyfn^{3}e^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kyfn=\\frac{1}{\\sqrt{2}\\sqrt{C-e^{x}}}$</p><img src=\"/media/ch08/CNX_Calc_Figure_08_03_203.jpg\" alt=\"A direction field with arrows pointing to the right. They are horizontal at the y axis. The further the arrows are from the axis, the more vertical they become. They point up above the x axis and down below the x axis.\">"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1170571348378",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>For the following problems, use a software program or your calculator to generate the directional fields. Solve explicitly and draw solution curves for several initial conditions. Are there some critical initial conditions that change the behavior of the solution?</p><p><strong>[T]</strong> $\\kyprime=\\kyfn\\;\\ln(x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kyfn=Ce^{-x}x^{x}$</p><img src=\"/media/ch08/CNX_Calc_Figure_08_03_205.jpg\" alt=\"A direction field with arrows pointing to the right. The arrows are flat on y = 1. The further the arrows are from that, the steeper they become. They point up above that line and down below that line.\">"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1170571334905",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solution-concentrations",
+   "prompt": "<p>For the following problems, use a software program or your calculator to generate the directional fields. Solve explicitly and draw solution curves for several initial conditions. Are there some critical initial conditions that change the behavior of the solution?</p><p>A drug is administered intravenously to a patient at a rate $r$ mg/h and is cleared from the body at a rate proportional to the amount of drug still present in the body, $d$. Set up and solve the differential equation, assuming there is no drug initially present in the body.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=\\frac{r}{d}(1-e^{-dt})$"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1170571503132",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solution-concentrations",
+   "prompt": "<p>For the following problems, use a software program or your calculator to generate the directional fields. Solve explicitly and draw solution curves for several initial conditions. Are there some critical initial conditions that change the behavior of the solution?</p><p>A tank contains $1$ kilogram of salt dissolved in $100$ liters of water. A salt solution of $0.1$ kg salt/L is pumped into the tank at a rate of $2$ L/min and is drained at the same rate. Solve for the salt concentration at time $t.$ Assume the tank is well mixed.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(t)=10-9e^{-x/50}$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1170573756832",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solution-concentrations",
+   "prompt": "<p>For the following problems, use a software program or your calculator to generate the directional fields. Solve explicitly and draw solution curves for several initial conditions. Are there some critical initial conditions that change the behavior of the solution?</p><p>A tank containing $10$ kilograms of salt dissolved in $1000$ liters of water has two salt solutions pumped in. The first solution of $0.2$ kg salt/L is pumped in at a rate of $20$ L/min and the second solution of $0.05$ kg salt/L is pumped in at a rate of $5$ L/min. The tank drains at $25$ L/min. Assume the tank is well mixed. Solve for the salt concentration at time $t.$</p><p><strong>[T]</strong> For the preceding problem, find how much salt is in the tank $1$ hour after the process begins.</p>",
+   "changes": "The prompt opens with exercise 152’s statement, the problem this one continues.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 134.3,
+    "unit": "kg",
+    "tol": 0.1,
+    "solution": "$134.3$ kilograms"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1170571209325",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solution-concentrations",
+   "prompt": "<p>For the following problems, use a software program or your calculator to generate the directional fields. Solve explicitly and draw solution curves for several initial conditions. Are there some critical initial conditions that change the behavior of the solution?</p><p>Torricelli’s law states that for a water tank with a hole in the bottom that has a cross-sectional area of $A_{H}$ with a height of water $h$ above the bottom of the tank, the rate of change of volume of water flowing from the tank is proportional to the square root of the height of water, according to $\\frac{dV}{dt}=-A_{H}\\sqrt{2gh},$ where $g$ is the acceleration due to gravity. Note that $\\frac{dV}{dt}=A_{\\kT}\\frac{dh}{dt},$ where $A_{\\kT}$ is the cross-sectional area of the tank. Solve the resulting initial-value problem for the height of water, assuming a tank of radius $24\\sqrt{2}$ with a circular hole of radius $2$ ft. The initial height of water is $100$ ft.</p><p>For the preceding problem, determine how long it takes the tank to drain.</p>",
+   "changes": "The prompt opens with exercise 154’s statement, the problem this one continues.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 720,
+    "unit": "s",
+    "solution": "$720$ seconds"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1170571146758",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "newtons-law",
+   "prompt": "<p>For the following problems, use Newton’s law of cooling.</p><p><strong>[T]</strong> The liquid base of an ice cream has an initial temperature of $210\\text{°}\\text{F}$ before it is placed in a freezer with a constant temperature of $20\\text{°}\\text{F}.$ After $2$ hours, the temperature of the ice-cream base has decreased to $170\\text{°}\\text{F}.$ At what time will the ice cream be ready to eat? (Assume $30\\text{°}\\text{F}$ is the optimal eating temperature.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$24$ hours $57$ minutes"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1170571074882",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "newtons-law",
+   "prompt": "<p>For Exercises 159—162, assume a cooling constant of $k=-0.125$ and assume time $t$ is in minutes.</p><p>You have a cup of coffee at temperature $70\\text{°}\\text{C}$ and the ambient temperature in the room is $20\\text{°}\\text{C}.$ Assuming a cooling rate $k\\;\\text{of}\\;0.125,$ write and solve the differential equation to describe the temperature of the coffee with respect to time.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kT(t)=20+50e^{-0.125t}$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1170570991542",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "newtons-law",
+   "prompt": "<p>For Exercises 159—162, assume a cooling constant of $k=-0.125$ and assume time $t$ is in minutes.</p><p>You have a cup of coffee at temperature $70\\text{°}\\text{C}$ and you immediately pour in $1$ part milk to $5$ parts coffee. The milk is initially at temperature $1\\text{°}\\text{C}.$ Write and solve the differential equation that governs the temperature of this coffee.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kT(t)=20+38.5e^{-0.125t}$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1170571110518",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "newtons-law",
+   "prompt": "<p>For Exercises 159—162, assume a cooling constant of $k=-0.125$ and assume time $t$ is in minutes.</p><p>Solve the generic problem $\\kyprime=a\\kyfn+b$ with initial condition $\\kyfn(0)=c.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=(c+\\frac{b}{a})e^{ax}-\\frac{b}{a}$"
+   }
+  },
+  {
+   "id": "e164",
+   "source_id": "fs-id1170571042943",
+   "source_number": "164",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "newtons-law",
+   "prompt": "<p>For Exercises 159—162, assume a cooling constant of $k=-0.125$ and assume time $t$ is in minutes.</p><p>Prove the basic continual compounded interest equation. Assuming an initial deposit of $P_{0}$ and an interest rate of $r,$ set up and solve an equation for continually compounded interest.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Money compounded continuously at the rate $r$ grows at a rate proportional to the amount present: $\\frac{dP}{dt}=rP,$ $P(0)=P_{0}.$ The equation is separable: $\\frac{dP}{P}=r\\,dt,$ so $\\ln|P|=rt+C$ and $P=C_{1}e^{rt}.$ The initial deposit gives $C_{1}=P_{0},$ so $P(t)=P_{0}e^{rt},$ the continuous compounded interest equation."
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1170573735511",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "newtons-law",
+   "prompt": "<p>For Exercises 159—162, assume a cooling constant of $k=-0.125$ and assume time $t$ is in minutes.</p><p>Assume an initial nutrient amount of $I$ kilograms in a tank with $L$ liters. Assume a concentration of $c$ kg/L being pumped in at a rate of $r$ L/min. The tank is well mixed and is drained at a rate of $r$ L/min. Find the equation describing the amount of nutrient in the tank.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(t)=cL+(I-cL)e^{-rt/L}$"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1170573742107",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "newtons-law",
+   "prompt": "<p>For Exercises 159—162, assume a cooling constant of $k=-0.125$ and assume time $t$ is in minutes.</p><p>Leaves accumulate on the forest floor at a rate of $4$ g/cm<sup>2</sup>/yr. These leaves decompose at a rate of $10\\text{\\%}$ per year. Write a differential equation governing the number of grams of leaf litter per square centimeter of forest floor. Does this amount approach a steady value? What is that value?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=40(1-e^{-0.1t}),40$ g/cm<sup>2</sup>"
+   }
+  },
+  {
+   "id": "r263",
+   "source_id": "fs-id1170572439961",
+   "source_section": "8.5",
+   "source_number": "263",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separable-definition",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>The differential equation $\\kyprime=x-\\kyfn$ is separable.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "F"
+   }
+  },
+  {
+   "id": "r269",
+   "source_id": "fs-id1170572476629",
+   "source_section": "8.5",
+   "source_number": "269",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>For the following problems, find the general solution to the differential equations.</p><p>$\\kyprime=e^{-\\kyfn}\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=\\ln(C-\\cos x)$"
+   }
+  },
+  {
+   "id": "r271",
+   "source_id": "fs-id1170572408332",
+   "source_section": "8.5",
+   "source_number": "271",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>For the following problems, find the general solution to the differential equations.</p><p>$\\kyprime=\\kyfn\\;\\ln \\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=e^{e^{C+x}}$"
+   }
+  },
+  {
+   "id": "r275",
+   "source_id": "fs-id1170571731266",
+   "source_section": "8.5",
+   "source_number": "275",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "separation-strategy",
+   "prompt": "<p>For the following problems, find the solution to the initial value problem.</p><p>$\\kyprime=3\\kyfn^{2}(x+\\cos x),\\kyfn(0)=-2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn(x)=-\\frac{2}{1+3(x^{2}+2\\;\\sin x)}$"
+   }
+  },
+  {
+   "id": "r287",
+   "source_id": "fs-id1170571586096",
+   "source_section": "8.5",
+   "source_number": "287",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "solution-concentrations",
+   "prompt": "<p>For the following problems, set up and solve the differential equations.</p><p>A $1000$-liter tank contains pure water and a solution of $0.2$ kg salt/L is pumped into the tank at a rate of $1$ L/min and is drained at the same rate. Solve for total amount of salt in the tank at time $t.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$T(t)=200(1-e^{-t/1000})$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "solution-concentration"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "newtons-law-of-cooling"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e119",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e121",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e123",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e125",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e127",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e129",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e131",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e133",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e135",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e137",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e139",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e141",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e143",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e143",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e145",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e145",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e147",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e147",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e149",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e149",
+   "concept": "solution-concentration"
+  },
+  {
+   "exercise": "e151",
+   "concept": "solution-concentration"
+  },
+  {
+   "exercise": "e151",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e153",
+   "concept": "solution-concentration"
+  },
+  {
+   "exercise": "e153",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e155",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e157",
+   "concept": "newtons-law-of-cooling"
+  },
+  {
+   "exercise": "e157",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e159",
+   "concept": "newtons-law-of-cooling"
+  },
+  {
+   "exercise": "e159",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e161",
+   "concept": "newtons-law-of-cooling"
+  },
+  {
+   "exercise": "e161",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e163",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e164",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e164",
+   "concept": "exponential-growth"
+  },
+  {
+   "exercise": "e165",
+   "concept": "solution-concentration"
+  },
+  {
+   "exercise": "e165",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e167",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "r263",
+   "concept": "separable-differential-equation"
+  },
+  {
+   "exercise": "r269",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "r271",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "r275",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "r275",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "r287",
+   "concept": "solution-concentration"
+  },
+  {
+   "exercise": "r287",
+   "concept": "separation-of-variables"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "pizza-equation",
+   "kind": "correction",
+   "html": "Equation 8.4 is an integral of Example 8.11; the initial-value problem for Newton’s law of cooling that the solution fills in is Equation 8.7, $\\frac{dT}{dt}=k(T-T_{s}),$ $T(0)=T_{0}.$"
+  },
+  {
+   "id": "cp813-hint",
+   "kind": "correction",
+   "html": "The equation meant is Equation 8.7, the initial-value problem for Newton’s law of cooling."
+  }
+ ]
+}

@@ -1,0 +1,1160 @@
+{
+ "id": "8.2",
+ "module": "m53701",
+ "chapter": "8",
+ "title": "Direction Fields and Numerical Methods",
+ "short": "Direction Fields and Euler’s Method",
+ "lead": "A <span data-concept=\"direction-field\">direction field</span> draws at each point the slope a first-order differential equation gives the solution through it, so <span data-concept=\"solution-curve\">solution curves</span> can be sketched without solving the equation. Its level runs show the <span data-concept=\"equilibrium-solution\">equilibrium solutions</span> and whether nearby solutions approach them, and <span data-concept=\"eulers-method\">Euler’s Method</span> follows its slopes in straight steps of a <span data-concept=\"step-size\">step size</span> h.",
+ "objectives": [
+  "Draw the direction field for a given first-order differential equation.",
+  "Use a direction field to draw a solution curve of a first-order differential equation.",
+  "Use Euler’s Method to approximate the solution to a first-order differential equation."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"direction-field\">direction field</span> is a mathematical object used to graphically represent solutions to a <span data-concept=\"differential-equation\">first-order differential equation</span>.</li><li><span data-concept=\"eulers-method\">Euler’s Method</span> is a numerical technique that can be used to approximate solutions to a <span data-concept=\"differential-equation\">differential equation</span>.</li></ul>",
+ "notes": "The book’s links to a website on slope fields, an Euler’s method applet and a practical application of the section are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s, except 104 and 114, which the key leaves unanswered and whose approaches are AI-marked. The even-numbered exercises have no answer in the key; the others are left out: 66, 68, 70 and 72 (sketches), 74, 76 and 78 (fields and general solutions), 80 and 82 (fields), 84, 86, 88, 90 and 92 (matching), 94, 96, 98, 100 and 102 (Euler’s Method), and 106, 108, 110, 112, 116 and 118 (computations by software). Review exercises 265 and 281, printed at the end of Section 8.5, are set here.",
+ "figures": [
+  {
+   "id": "fig-cooling-field",
+   "kind": "figure",
+   "number": "8.6",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_02_009.jpg"
+   ],
+   "original_caption": "Direction field for the differential equation T'(t)=−0.4(T−72). Two solutions are plotted: one with initial temperature less than 72text°textF and the other with initial temperature greater than 72text°textF.",
+   "draws": [
+    "derivative",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-direction-field",
+   "kind": "sim",
+   "number": "8.7",
+   "folds": [
+    "8.8"
+   ],
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_02_001.jpg",
+    "/media/ch08/CNX_Calc_Figure_08_02_002.jpg"
+   ],
+   "original_caption": "(Figure 8.7) Direction field for the differential equation y'=3x+2y−4. (Figure 8.8) Direction field for the differential equation y'=3x+2y−4 with the solution passing through the point (0,1).",
+   "draws": [
+    "derivative",
+    "function",
+    "line",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-equilibria",
+   "kind": "sim",
+   "number": "8.9",
+   "folds": [
+    "8.10",
+    "8.11"
+   ],
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_02_004.jpg",
+    "/media/ch08/CNX_Calc_Figure_08_02_005.jpg",
+    "/media/ch08/CNX_Calc_Figure_08_02_006.jpg"
+   ],
+   "original_caption": "(Figure 8.9) Direction field for the differential equation y'=(x−3)(y²−4) showing two solutions. These solutions are very close together, but one is barely above the equilibrium solution y=−2 and the other is barely below the same equilibrium solution. (Figure 8.10) Direction field for the initial-value problem y'=(x−3)(y²−4),y(0)=0.5. (Figure 8.11) Direction field for the initial-value problem y'=(x−3)(y²−4), y(0)=−3.",
+   "draws": [
+    "derivative",
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-stability",
+   "kind": "figure",
+   "number": "8.12",
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_02_007.jpg"
+   ],
+   "original_caption": "Direction field for the differential equation y'=(y−3)²(y²+y−2).",
+   "draws": [
+    "derivative",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-euler",
+   "kind": "sim",
+   "number": "8.13",
+   "folds": [
+    "8.14"
+   ],
+   "originals": [
+    "/media/ch08/CNX_Calc_Figure_08_02_010.jpg",
+    "/media/ch08/CNX_Calc_Figure_08_02_011.jpg"
+   ],
+   "original_caption": "(Figure 8.13) Euler’s Method for the initial-value problem y'=2x−3, y(0)=3. (Figure 8.14) Euler’s method for the initial-value problem y'=2x−3,y(0)=3 with (a) a step size of h=0.5; and (b) a step size of h=0.25.",
+   "draws": [
+    "derivative",
+    "function",
+    "line",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "direction-field-definition",
+   "concept": "direction-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "using",
+   "concept": "solution-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "equilibrium-definition",
+   "concept": "equilibrium-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "stability-definition",
+   "concept": "asymptotically-stable-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "stability-definition",
+   "concept": "asymptotically-unstable-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "stability-definition",
+   "concept": "asymptotically-semi-stable-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "eulers-method",
+   "concept": "step-size",
+   "verb": "introduces"
+  },
+  {
+   "span": "euler-theorem",
+   "concept": "eulers-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "creating",
+   "concept": "newtons-law-of-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "creating",
+   "concept": "slope-of-the-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "creating",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "using",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "using",
+   "concept": "initial-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "using",
+   "concept": "limit-at-infinity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573709023",
+   "concept": "asymptotically-stable-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573709023",
+   "concept": "asymptotically-unstable-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573709023",
+   "concept": "asymptotically-semi-stable-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "eulers-method",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170573756803",
+   "concept": "eulers-method",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170573262990",
+   "source_number": "Checkpoint 8.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "solution-curve-exact"
+   },
+   "cite": "using",
+   "prompt": "<p>Create a direction field for the differential equation $\\kyprime=x^{2}-\\kyfn^{2}$ and sketch a solution curve passing through the point $(-1,2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_02_003.jpg\" alt=\"A graph of the direction field for the differential equation y’ = x ^ 2 – y ^ 2. Along y = x and y = -x, the lines are horizontal. On either side of y = x and y = -x, the lines slant and direct solutions along those two functions. The rest of the lines are vertical. The solution going through (-1, 2) is shown. It curves down from about (-2.75, 10), through (-1, 2) and about (0, 1.5), and then up along the diagonal to (10, 10).\">",
+    "hint": "Use $x$ and $\\kyfn$ values ranging from $-5$ to $5.$ For each coordinate pair, calculate $\\kyprime$ using the right-hand side of the differential equation."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170571349921",
+   "source_number": "Checkpoint 8.8",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573709023"
+   },
+   "cite": "fs-id1170573709023",
+   "prompt": "<p>Create a direction field for the differential equation $\\kyprime=(x+5)(\\kyfn+2)(\\kyfn^{2}-4\\kyfn+4)$ and identify any equilibrium solutions. Classify each of the equilibrium solutions as stable, unstable, or semi-stable.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The equilibrium solutions are $\\kyfn=-2$ and $\\kyfn=2.$ For this equation, $\\kyfn=-2$ is an unstable equilibrium solution, and $\\kyfn=2$ is a semi-stable equilibrium solution.<img src=\"/media/ch08/CNX_Calc_Figure_08_02_008.jpg\" alt=\"A direction field with arrows pointing to the right at y = -4 and y = 4. The arrows point up for y &gt; -4 and down for y &lt; -4. Close to y = 4, the arrows are more horizontal, but the further away, the more vertical they become.\">",
+    "hint": "First create the direction field and look for horizontal dashes that go all the way across. Then examine the slope lines directly above and below the equilibrium solutions."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170571260263",
+   "source_number": "Checkpoint 8.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170573756803"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Consider the initial-value problem</p>$$\\kyprime=x^{3}+\\kyfn^{2},\\;\\kyfn(1)=-2.$$<p>Using a step size of $0.1,$ generate a table with approximate values for the solution to the initial-value problem for values of $x$ between $1$ and $2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<div class=\"book-table\" id=\"fs-id1170573720273\">\n  <table><thead><tr><th>$n$</th><th>$x_{n}$</th><th>$y_{n}=y_{n-1}+hf(x_{n-1},y_{n-1})$</th></tr></thead><tbody><tr><td>$0$</td><td>$1$</td><td>$-2$</td></tr><tr><td>$1$</td><td>$1.1$</td><td>$y_{1}=y_{0}+hf(x_{0},y_{0})=-1.5$</td></tr><tr><td>$2$</td><td>$1.2$</td><td>$y_{2}=y_{1}+hf(x_{1},y_{1})=-1.1419$</td></tr><tr><td>$3$</td><td>$1.3$</td><td>$y_{3}=y_{2}+hf(x_{2},y_{2})=-0.8387$</td></tr><tr><td>$4$</td><td>$1.4$</td><td>$y_{4}=y_{3}+hf(x_{3},y_{3})=-0.5487$</td></tr><tr><td>$5$</td><td>$1.5$</td><td>$y_{5}=y_{4}+hf(x_{4},y_{4})=-0.2442$</td></tr><tr><td>$6$</td><td>$1.6$</td><td>$y_{6}=y_{5}+hf(x_{5},y_{5})=0.0993$</td></tr><tr><td>$7$</td><td>$1.7$</td><td>$y_{7}=y_{6}+hf(x_{6},y_{6})=0.5099$</td></tr><tr><td>$8$</td><td>$1.8$</td><td>$y_{8}=y_{7}+hf(x_{7},y_{7})=1.0272$</td></tr><tr><td>$9$</td><td>$1.9$</td><td>$y_{9}=y_{8}+hf(x_{8},y_{8})=1.7159$</td></tr><tr><td>$10$</td><td>$2$</td><td>$y_{10}=y_{9}+hf(x_{9},y_{9})=2.6962$</td></tr></tbody></table>\n</div>",
+    "hint": "Start by identifying the value of $h,$ then figure out what $\\kf(x,\\kyfn)$ is. Then use the formula for Euler’s Method to calculate $y_{1},y_{2},$ and so on."
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1170571153204",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "figure": {
+    "src": "/media/ch08/CNX_Calc_Figure_08_02_201.jpg",
+    "alt": "A direction field with horizontal arrows pointing to the right at 0. The arrows above the x axis point down and to the right. The further away from the x axis, the steeper the arrows are, and the closer to the x axis, the flatter the arrows are. Likewise, the arrows below the x axis point up and to the right. The further away from the x axis, the steeper the arrows are, and the closer to the x axis, the flatter the arrows are."
+   },
+   "prompt": "<p>For the following problems, use the direction field below from the differential equation $\\kyprime=-2\\kyfn.$ Sketch the graph of the solution for the given initial conditions.</p><p>$\\kyfn(0)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_02_203-935c.jpg\" alt=\"A graph of the given direction field with a flat line drawn on the axis. The arrows point up for y &lt; 0 and down for y &gt; 0. The closer they are to the x axis, the more horizontal the arrows are, and the further away they are, the more vertical they become.\">"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1170573742050",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "figure": {
+    "src": "/media/ch08/CNX_Calc_Figure_08_02_201.jpg",
+    "alt": "A direction field with horizontal arrows pointing to the right at 0. The arrows above the x axis point down and to the right. The further away from the x axis, the steeper the arrows are, and the closer to the x axis, the flatter the arrows are. Likewise, the arrows below the x axis point up and to the right. The further away from the x axis, the steeper the arrows are, and the closer to the x axis, the flatter the arrows are."
+   },
+   "prompt": "<p>For the following problems, use the direction field below from the differential equation $\\kyprime=-2\\kyfn.$ Sketch the graph of the solution for the given initial conditions.</p><p>Are there any equilibria? What are their stabilities?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=0$ is a stable equilibrium"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1170571240323",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "figure": {
+    "src": "/media/ch08/CNX_Calc_Figure_08_02_205.jpg",
+    "alt": "A direction field with horizontal arrows at y = 0 and y = 2. The arrows point up for y &gt; 2 and for y &lt; 0. The arrows point down for 0 &lt; y &lt; 2. The closer the arrows are to these lines, the more horizontal they are, and the further away, the more vertical the arrows are."
+   },
+   "prompt": "<p>For the following problems, use the direction field below from the differential equation $\\kyprime=\\kyfn^{2}-2\\kyfn.$ Sketch the graph of the solution for the given initial conditions.</p><p>$\\kyfn(0)=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_02_207.jpg\" alt=\"A direction field with horizontal arrows at y = 0 and y = 2. The arrows point up for y &gt; 2 and for y &lt; 0. The arrows point down for 0 &lt; y &lt; 2. The closer the arrows are to these lines, the more horizontal they are, and the further away, the more vertical the arrows are. A solution is sketched that follows y = 2 in quadrant two, goes through (0, 1), and then follows the x axis.\">"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1170571246086",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "figure": {
+    "src": "/media/ch08/CNX_Calc_Figure_08_02_205.jpg",
+    "alt": "A direction field with horizontal arrows at y = 0 and y = 2. The arrows point up for y &gt; 2 and for y &lt; 0. The arrows point down for 0 &lt; y &lt; 2. The closer the arrows are to these lines, the more horizontal they are, and the further away, the more vertical the arrows are."
+   },
+   "prompt": "<p>For the following problems, use the direction field below from the differential equation $\\kyprime=\\kyfn^{2}-2\\kyfn.$ Sketch the graph of the solution for the given initial conditions.</p><p>Are there any equilibria? What are their stabilities?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyfn=0$ is a stable equilibrium and $\\kyfn=2$ is unstable"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1170573626140",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Draw the direction field for the following differential equations, then solve the differential equation.</p><p>$\\kyprime=e^{t}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>General solution is $\\kyfn=e^{t}+C$.</p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_210.jpg\" alt=\"A direction field over the four quadrants. As t goes from 0 to infinity, the arrows become more and more vertical after being horizontal closer to x = 0.\">"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1170571423425",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Draw the direction field for the following differential equations, then solve the differential equation.</p><p>$\\kdydt=te^{t}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>General solution is $\\kyfn=e^{t}(t-1)+C$.</p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_212.jpg\" alt=\"A direction field over [-2, 2] in the x and y axes. The arrows point slightly down and to the right over [-2, 0] and gradually become vertical over [0, 2].\">"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1170571100796",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Draw the directional field for the following differential equations. What can you say about the behavior of the solution? Are there equilibria? What stability do these equilibria have?</p><p>$\\kyprime=\\kyfn^{2}-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_02_214.jpg\" alt=\"A direction field with horizontal arrows pointing to the right at y = 1 and y = -1. The arrows point up for y &lt; -1 and y &gt; 1. The arrows point down for -1 &lt; y &lt; 1. The closer the arrows are to these lines, the more horizontal they are, and the further away they are, the more vertical they are.\">"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1170571043082",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Draw the directional field for the following differential equations. What can you say about the behavior of the solution? Are there equilibria? What stability do these equilibria have?</p><p>$\\kyprime=1-\\kyfn^{2}-x^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_02_216.jpg\" alt=\"A direction field with arrows pointing down and to the right for nearly all points in [-2, 2] on the x and y axes. Close to the origin, the arrows become more horizontal, point to the upper right, become more horizontal, and then point down to the right again.\">"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1170571119680",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Draw the directional field for the following differential equations. What can you say about the behavior of the solution? Are there equilibria? What stability do these equilibria have?</p><p>$\\kyprime=3\\kyfn+x\\kyfn$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_02_218.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x axis and x = -3. Above the x axis and for x &lt; -3, the arrows point down. For x &gt; -3, the arrows point up. Below the x axis and for x &lt; -3, the arrows point up. For x &gt; -3, the arrows point down. The further away from the x axis and x = -3, the arrows become more vertical, and the closer they become, the more horizontal they become.\">"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1170571306965",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Match the direction field with the given differential equations. Explain your selections.</p><p><strong>A</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219a.jpg\" alt=\"A direction field with arrows pointing down and to the right in quadrants two and three. After crossing the y axis, the arrows change direction and point up to the right.\"><p><strong>B</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219b.jpg\" alt=\"A direction field with horizontal arrows pointing to the left in quadrants two and three. In crossing the y axis, the arrows switch and point upward in quadrants one and four.\"><p><strong>C</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219c.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x axis. Above, the arrows point down and to the right, and below, the arrows point up and to the right. The further from the x axis, the more vertical the arrows become.\"><p><strong>D</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219d.jpg\" alt=\"A direction field with horizontal arrows on the x and y axes. The arrows point down and to the right in quadrants one and three. They point up and to the right in quadrants two and four.\"><p><strong>E</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219e.jpg\" alt=\"A direction field with arrows pointing up in quadrants two and three, to the right on the y axis, and down in quadrants one and four.\"><p>$\\kyprime=-3t$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ],
+    "correct": 4,
+    "solution": "E"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1170571469115",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Match the direction field with the given differential equations. Explain your selections.</p><p><strong>A</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219a.jpg\" alt=\"A direction field with arrows pointing down and to the right in quadrants two and three. After crossing the y axis, the arrows change direction and point up to the right.\"><p><strong>B</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219b.jpg\" alt=\"A direction field with horizontal arrows pointing to the left in quadrants two and three. In crossing the y axis, the arrows switch and point upward in quadrants one and four.\"><p><strong>C</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219c.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x axis. Above, the arrows point down and to the right, and below, the arrows point up and to the right. The further from the x axis, the more vertical the arrows become.\"><p><strong>D</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219d.jpg\" alt=\"A direction field with horizontal arrows on the x and y axes. The arrows point down and to the right in quadrants one and three. They point up and to the right in quadrants two and four.\"><p><strong>E</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_219e.jpg\" alt=\"A direction field with arrows pointing up in quadrants two and three, to the right on the y axis, and down in quadrants one and four.\"><p>$\\kyprime=\\frac{1}{2}\\kyfn+t$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ],
+    "correct": 0,
+    "solution": "A"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1170571118948",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Match the direction field with the given differential equations. Explain your selections.</p><p><strong>A</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220a.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants one and three, the arrows point up, and in quadrants two and four, they point down.\"><p><strong>B</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220b.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants one and three, the arrows point up and to the right, and in quadrants two and four, the arrows point down and to the right.\"><p><strong>C</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220c.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants two and three, the arrows point down, and in quadrants one and four, the arrows point up.\"><p><strong>D</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220d.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x axis. The arrows point up and to the right in all quadrants. The closer the arrows are to the x axis, the more horizontal the arrows are, and the further away they are, the more vertical they are.\"><p><strong>E</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220e.jpg\" alt=\"A direction field with horizontal arrows on the y axis. The arrows are also more horizontal closer to y = 1.5, y = -1.5, and the y axis. For y &gt; 1.5 and x &lt; 0, for y &lt; -1.5 and x &lt; 0, and for -1.5 &lt; y &lt; 1.5 and x &gt; 0-, the arrows point down. For y&gt; 1.5 and x &gt; 0, for y &lt; -1.5, for y &lt; -1.5 and x &gt; 0, and for -1.5 &lt; y &lt; 1.5 and x &lt; 0, the arrows point up.\"><p>$\\kyprime=t\\;\\sin \\kyfn$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ],
+    "correct": 1,
+    "solution": "B"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1170571442800",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Match the direction field with the given differential equations. Explain your selections.</p><p><strong>A</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220a.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants one and three, the arrows point up, and in quadrants two and four, they point down.\"><p><strong>B</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220b.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants one and three, the arrows point up and to the right, and in quadrants two and four, the arrows point down and to the right.\"><p><strong>C</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220c.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants two and three, the arrows point down, and in quadrants one and four, the arrows point up.\"><p><strong>D</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220d.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x axis. The arrows point up and to the right in all quadrants. The closer the arrows are to the x axis, the more horizontal the arrows are, and the further away they are, the more vertical they are.\"><p><strong>E</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220e.jpg\" alt=\"A direction field with horizontal arrows on the y axis. The arrows are also more horizontal closer to y = 1.5, y = -1.5, and the y axis. For y &gt; 1.5 and x &lt; 0, for y &lt; -1.5 and x &lt; 0, and for -1.5 &lt; y &lt; 1.5 and x &gt; 0-, the arrows point down. For y&gt; 1.5 and x &gt; 0, for y &lt; -1.5, for y &lt; -1.5 and x &gt; 0, and for -1.5 &lt; y &lt; 1.5 and x &lt; 0, the arrows point up.\"><p>$\\kyprime=t\\;\\tan \\kyfn$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ],
+    "correct": 0,
+    "solution": "A"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1170571503006",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "direction-field-definition",
+   "prompt": "<p>Match the direction field with the given differential equations. Explain your selections.</p><p><strong>A</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220a.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants one and three, the arrows point up, and in quadrants two and four, they point down.\"><p><strong>B</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220b.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants one and three, the arrows point up and to the right, and in quadrants two and four, the arrows point down and to the right.\"><p><strong>C</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220c.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x and y axes. In quadrants two and three, the arrows point down, and in quadrants one and four, the arrows point up.\"><p><strong>D</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220d.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x axis. The arrows point up and to the right in all quadrants. The closer the arrows are to the x axis, the more horizontal the arrows are, and the further away they are, the more vertical they are.\"><p><strong>E</strong></p><img src=\"/media/ch08/CNX_Calc_Figure_08_02_220e.jpg\" alt=\"A direction field with horizontal arrows on the y axis. The arrows are also more horizontal closer to y = 1.5, y = -1.5, and the y axis. For y &gt; 1.5 and x &lt; 0, for y &lt; -1.5 and x &lt; 0, and for -1.5 &lt; y &lt; 1.5 and x &gt; 0-, the arrows point down. For y&gt; 1.5 and x &gt; 0, for y &lt; -1.5, for y &lt; -1.5 and x &gt; 0, and for -1.5 &lt; y &lt; 1.5 and x &lt; 0, the arrows point up.\"><p>$\\kyprime=\\kyfn^{2}t^{3}$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ],
+    "correct": 2,
+    "solution": "C"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1170573721407",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Estimate the following solutions using Euler’s method with $n=5$ steps over the interval $t=[0,1].$ If you are able to solve the initial-value problem exactly, compare your solution with the exact solution. If you are unable to solve the initial-value problem, the exact solution will be provided for you to compare with Euler’s method. How accurate is Euler’s method?</p><p>$\\kyprime=t^{2},\\kyfn(0)=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2.24,$ exact: $2$<sup class=\"fn\" data-note=\"e95-exact\"></sup>"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1170571233748",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Estimate the following solutions using Euler’s method with $n=5$ steps over the interval $t=[0,1].$ If you are able to solve the initial-value problem exactly, compare your solution with the exact solution. If you are unable to solve the initial-value problem, the exact solution will be provided for you to compare with Euler’s method. How accurate is Euler’s method?</p><p>$\\kyprime=\\kyfn+t^{2},\\kyfn(0)=3.$ Exact solution is $\\kyfn=5e^{t}-2-t^{2}-2t$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$7.739264,$ exact: $5(e-1)$"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1170571057294",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Estimate the following solutions using Euler’s method with $n=5$ steps over the interval $t=[0,1].$ If you are able to solve the initial-value problem exactly, compare your solution with the exact solution. If you are unable to solve the initial-value problem, the exact solution will be provided for you to compare with Euler’s method. How accurate is Euler’s method?</p><p><strong>[T]</strong> $\\kyprime=e^{(x+\\kyfn)},\\kyfn(0)=-1.$ Exact solution is $\\kyfn=-\\ln(e+1-e^{x})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-0.2535$ exact: $0$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1170571218252",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Estimate the following solutions using Euler’s method with $n=5$ steps over the interval $t=[0,1].$ If you are able to solve the initial-value problem exactly, compare your solution with the exact solution. If you are unable to solve the initial-value problem, the exact solution will be provided for you to compare with Euler’s method. How accurate is Euler’s method?</p><p>$\\kyprime=2^{x},\\kyfn(0)=0,$ Exact solution is $\\kyfn=\\frac{2^{x}-1}{\\ln(2)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1.345,$ exact: $\\frac{1}{\\ln(2)}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1170573736135",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Estimate the following solutions using Euler’s method with $n=5$ steps over the interval $t=[0,1].$ If you are able to solve the initial-value problem exactly, compare your solution with the exact solution. If you are unable to solve the initial-value problem, the exact solution will be provided for you to compare with Euler’s method. How accurate is Euler’s method?</p><p>$\\kyprime=-5t,\\kyfn(0)=-2.$ Exact solution is $\\kyfn=-\\frac{5}{2}t^{2}-2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-4,$ exact: $-1/2$<sup class=\"fn\" data-note=\"e103-exact\"></sup>"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "fs-id1170571510334",
+   "source_number": "104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Differential equations can be used to model disease epidemics. In the next set of problems, we examine the change of size of two sub-populations of people living in a city: individuals who are infected and individuals who are susceptible to infection. $S$ represents the size of the susceptible population, and $I$ represents the size of the infected population. We assume that if a susceptible person interacts with an infected person, there is a probability $c$ that the susceptible person will become infected. Each infected person recovers from the infection at a rate $r$ and becomes susceptible again. We consider the case of influenza, where we assume that no one dies from the disease, so we assume that the total population size of the two sub-populations is a constant number, $N.$ The differential equations that model these population sizes are</p>$$\\begin{gathered}S'=rI-cSI\\;\\text{and} \\\\ I'=cSI-rI.\\end{gathered}$$<p>Here $c$ represents the contact rate and $r$ is the recovery rate.</p><p>Show that, by our assumption that the total population size is constant $(S+I=N),$ you can reduce the system to a single differential equation in $I\\text{:}\\;I'=c(N-I)I-rI.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $S+I=N,$ $S=N-I.$ Substitute it into $I'=cSI-rI:$ $I'=c(N-I)I-rI,$ a single differential equation in $I.$ The equation for $S$ adds nothing new: $S'=rI-cSI=-I',$ which is what $S+I=N$ requires."
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1170571510412",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Differential equations can be used to model disease epidemics. In the next set of problems, we examine the change of size of two sub-populations of people living in a city: individuals who are infected and individuals who are susceptible to infection. $S$ represents the size of the susceptible population, and $I$ represents the size of the infected population. We assume that if a susceptible person interacts with an infected person, there is a probability $c$ that the susceptible person will become infected. Each infected person recovers from the infection at a rate $r$ and becomes susceptible again. We consider the case of influenza, where we assume that no one dies from the disease, so we assume that the total population size of the two sub-populations is a constant number, $N.$ The differential equations that model these population sizes are</p>$$\\begin{gathered}S'=rI-cSI\\;\\text{and} \\\\ I'=cSI-rI.\\end{gathered}$$<p>Here $c$ represents the contact rate and $r$ is the recovery rate.</p><p>Assuming the parameters are $c=0.5,N=5,$ and $r=0.5,$ draw the resulting directional field.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_02_221.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x axis and at y = 4. The arrows below the x axis and above y = 4 point down and to the right. The arrows between the x axis and y = 4 point up and to the right.\">"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1170571433817",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p><strong>[T]</strong> Use computational software or a calculator to compute an approximate solution to the initial-value problem $\\kyprime=t\\kyfn,\\;\\kyfn(0)=2$ using Euler's Method with a given step size $h.$ Find the solution at $t=1$ in terms of $h.$ <em>Hint</em>: Here is \"pseudo-code\" for how to write a computer program to perform Euler's Method for $\\kyprime=\\kf(t,\\kyfn),\\kyfn(0)=y_{0}\\text{:}$</p><ul><li>Create function $\\kf(t,\\kyfn).$</li><li>Define parameters $\\kyfn(0)=y_{0},\\;t(0)=0,$ step size $h,$ and total number of steps, $N$</li><li>Write a <em>for</em> loop:</li></ul><p><em>for</em></p><p>$\\text{k}=0\\;\\text{to}\\;N$</p><p>$\\hspace{2em}\\text{fn}=\\text{\\kf}(\\text{t}(\\text{k}),\\text{\\kyfn}(\\text{k}))$</p><p>$\\hspace{2em}\\text{\\kyfn}(\\text{k+1})=\\text{\\kyfn}(\\text{k})+\\text{h*fn}$</p><p>$\\hspace{2em}\\text{t}(\\text{k+1})=\\text{t}(\\text{k})+\\text{h}$</p><p>Refer to your answer for Exercise 106 to solve the following exercises.</p><p>Solve the initial-value problem for the exact solution.</p>",
+   "changes": "The prompt opens with exercise 106’s statement, the problem these exercises refer to.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyprime=2e^{t^{2}/2}$<sup class=\"fn\" data-note=\"e107-key\"></sup>"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1170571099338",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p><strong>[T]</strong> Use computational software or a calculator to compute an approximate solution to the initial-value problem $\\kyprime=t\\kyfn,\\;\\kyfn(0)=2$ using Euler's Method with a given step size $h.$ Find the solution at $t=1$ in terms of $h.$ <em>Hint</em>: Here is \"pseudo-code\" for how to write a computer program to perform Euler's Method for $\\kyprime=\\kf(t,\\kyfn),\\kyfn(0)=y_{0}\\text{:}$</p><ul><li>Create function $\\kf(t,\\kyfn).$</li><li>Define parameters $\\kyfn(0)=y_{0},\\;t(0)=0,$ step size $h,$ and total number of steps, $N$</li><li>Write a <em>for</em> loop:</li></ul><p><em>for</em></p><p>$\\text{k}=0\\;\\text{to}\\;N$</p><p>$\\hspace{2em}\\text{fn}=\\text{\\kf}(\\text{t}(\\text{k}),\\text{\\kyfn}(\\text{k}))$</p><p>$\\hspace{2em}\\text{\\kyfn}(\\text{k+1})=\\text{\\kyfn}(\\text{k})+\\text{h*fn}$</p><p>$\\hspace{2em}\\text{t}(\\text{k+1})=\\text{t}(\\text{k})+\\text{h}$</p><p>Refer to your answer for Exercise 106 to solve the following exercises.</p><p>Compute using $h=1$</p>",
+   "changes": "The prompt opens with exercise 106’s statement, the problem these exercises refer to.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "$2$"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1170571099396",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p><strong>[T]</strong> Use computational software or a calculator to compute an approximate solution to the initial-value problem $\\kyprime=t\\kyfn,\\;\\kyfn(0)=2$ using Euler's Method with a given step size $h.$ Find the solution at $t=1$ in terms of $h.$ <em>Hint</em>: Here is \"pseudo-code\" for how to write a computer program to perform Euler's Method for $\\kyprime=\\kf(t,\\kyfn),\\kyfn(0)=y_{0}\\text{:}$</p><ul><li>Create function $\\kf(t,\\kyfn).$</li><li>Define parameters $\\kyfn(0)=y_{0},\\;t(0)=0,$ step size $h,$ and total number of steps, $N$</li><li>Write a <em>for</em> loop:</li></ul><p><em>for</em></p><p>$\\text{k}=0\\;\\text{to}\\;N$</p><p>$\\hspace{2em}\\text{fn}=\\text{\\kf}(\\text{t}(\\text{k}),\\text{\\kyfn}(\\text{k}))$</p><p>$\\hspace{2em}\\text{\\kyfn}(\\text{k+1})=\\text{\\kyfn}(\\text{k})+\\text{h*fn}$</p><p>$\\hspace{2em}\\text{t}(\\text{k+1})=\\text{t}(\\text{k})+\\text{h}$</p><p>Refer to your answer for Exercise 106 to solve the following exercises.</p><p>Compute using <strong>[T]</strong> $h=0.001$</p>",
+   "changes": "The prompt opens with exercise 106’s statement, the problem these exercises refer to.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.2756,
+    "tol": 0.0001,
+    "solution": "$3.2756$<sup class=\"fn\" data-note=\"e111-key\"></sup>"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1170571450464",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p><strong>[T]</strong> Use computational software or a calculator to compute an approximate solution to the initial-value problem $\\kyprime=t\\kyfn,\\;\\kyfn(0)=2$ using Euler's Method with a given step size $h.$ Find the solution at $t=1$ in terms of $h.$ <em>Hint</em>: Here is \"pseudo-code\" for how to write a computer program to perform Euler's Method for $\\kyprime=\\kf(t,\\kyfn),\\kyfn(0)=y_{0}\\text{:}$</p><ul><li>Create function $\\kf(t,\\kyfn).$</li><li>Define parameters $\\kyfn(0)=y_{0},\\;t(0)=0,$ step size $h,$ and total number of steps, $N$</li><li>Write a <em>for</em> loop:</li></ul><p><em>for</em></p><p>$\\text{k}=0\\;\\text{to}\\;N$</p><p>$\\hspace{2em}\\text{fn}=\\text{\\kf}(\\text{t}(\\text{k}),\\text{\\kyfn}(\\text{k}))$</p><p>$\\hspace{2em}\\text{\\kyfn}(\\text{k+1})=\\text{\\kyfn}(\\text{k})+\\text{h*fn}$</p><p>$\\hspace{2em}\\text{t}(\\text{k+1})=\\text{t}(\\text{k})+\\text{h}$</p><p>Refer to your answer for Exercise 106 to solve the following exercises.</p><p><strong>[T]</strong> Evaluate the exact solution at $t=1.$ Make a table of errors for the relative error between the Euler’s method solution and the exact solution. How much does the error change? Can you explain?</p>",
+   "changes": "The prompt opens with exercise 106’s statement, the problem these exercises refer to.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$2\\sqrt{e}$</p><div class=\"book-table\" id=\"fs-id1170571450509\">\n  <table><thead><tr><th>Step Size</th><th>Relative Error</th><sup class=\"fn\" data-note=\"e113-table\"></sup></tr></thead><tbody><tr><td>$h=0.1$</td><td>$0.3935$</td></tr><tr><td>$h=0.01$</td><td>$0.06163$</td></tr><tr><td>$h=0.001$</td><td>$0.006612$</td></tr><tr><td>$h=0.0001$</td><td>$0.0006661$</td></tr></tbody></table>\n</div>"
+   }
+  },
+  {
+   "id": "e114",
+   "source_id": "fs-id1170571051865",
+   "source_number": "114",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Consider the initial-value problem $\\kyprime=-2\\kyfn,\\;\\kyfn(0)=2.$</p><p>Show that $\\kyfn=2e^{-2x}$ solves this initial-value problem.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate: $\\kyprime=-4e^{-2x}=-2(2e^{-2x})=-2\\kyfn,$ so $\\kyfn$ solves the differential equation, and $\\kyfn(0)=2e^{0}=2,$ the initial value."
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1170571051893",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Consider the initial-value problem $\\kyprime=-2\\kyfn,\\;\\kyfn(0)=2.$</p><p>Draw the directional field of this differential equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch08/CNX_Calc_Figure_08_02_223.jpg\" alt=\"A direction field with horizontal arrows pointing to the right on the x axis. Above the x axis, the arrows point down and to the right. Below the x axis, the arrows point up and to the right. The closer the arrows are to the x axis, the more horizontal the arrows are, and the further away they are from the x axis, the more vertical the arrows are.\">"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1170571021757",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>Consider the initial-value problem $\\kyprime=-2\\kyfn,\\;\\kyfn(0)=2.$</p><p><strong>[T]</strong> By calculator or computer, approximate the solution using Euler’s Method at $t=10$ using $h=100.$<sup class=\"fn\" data-note=\"e117-steps\"></sup></p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.0741e-10,
+    "tol": 1e-13,
+    "solution": "$4.0741e^{-10}$"
+   }
+  },
+  {
+   "id": "r265",
+   "source_id": "fs-id1170571526558",
+   "source_section": "8.5",
+   "source_number": "265",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "using",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>You can determine the behavior of all first-order differential equations using directional fields or Euler’s method.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "T"
+   }
+  },
+  {
+   "id": "r281",
+   "source_id": "fs-id1170572116146",
+   "source_section": "8.5",
+   "source_number": "281",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "euler-theorem",
+   "prompt": "<p>For the following problems, use Euler’s Method with $n=5$ steps over the interval $t=[0,1].$ Then solve the initial-value problem exactly. How close is your Euler’s Method estimate?</p><p>$\\kyprime=3^{x}-2\\kyfn,\\kyfn(0)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Euler: $0.6939,$<sup class=\"fn\" data-note=\"r281-euler\"></sup> exact solution: $\\kyfn(x)=\\frac{3^{x}-e^{-2x}}{2+\\ln(3)}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "solution-curve"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "equilibrium-solution"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "asymptotically-stable-solution"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "asymptotically-unstable-solution"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "asymptotically-semi-stable-solution"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e67",
+   "concept": "solution-curve"
+  },
+  {
+   "exercise": "e67",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e69",
+   "concept": "equilibrium-solution"
+  },
+  {
+   "exercise": "e69",
+   "concept": "asymptotically-stable-solution"
+  },
+  {
+   "exercise": "e71",
+   "concept": "solution-curve"
+  },
+  {
+   "exercise": "e71",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e73",
+   "concept": "equilibrium-solution"
+  },
+  {
+   "exercise": "e73",
+   "concept": "asymptotically-stable-solution"
+  },
+  {
+   "exercise": "e73",
+   "concept": "asymptotically-unstable-solution"
+  },
+  {
+   "exercise": "e75",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e75",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e77",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e77",
+   "concept": "general-solution"
+  },
+  {
+   "exercise": "e79",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e79",
+   "concept": "equilibrium-solution"
+  },
+  {
+   "exercise": "e79",
+   "concept": "asymptotically-stable-solution"
+  },
+  {
+   "exercise": "e79",
+   "concept": "asymptotically-unstable-solution"
+  },
+  {
+   "exercise": "e81",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e81",
+   "concept": "equilibrium-solution"
+  },
+  {
+   "exercise": "e83",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e83",
+   "concept": "equilibrium-solution"
+  },
+  {
+   "exercise": "e85",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e87",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e89",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e91",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e93",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e95",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e97",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e99",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e101",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e103",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e104",
+   "concept": "differential-equation"
+  },
+  {
+   "exercise": "e105",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e107",
+   "concept": "separation-of-variables"
+  },
+  {
+   "exercise": "e107",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e109",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e109",
+   "concept": "step-size"
+  },
+  {
+   "exercise": "e111",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e111",
+   "concept": "step-size"
+  },
+  {
+   "exercise": "e113",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e113",
+   "concept": "step-size"
+  },
+  {
+   "exercise": "e114",
+   "concept": "solution-to-a-differential-equation"
+  },
+  {
+   "exercise": "e114",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e115",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "e117",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e117",
+   "concept": "step-size"
+  },
+  {
+   "exercise": "r265",
+   "concept": "direction-field"
+  },
+  {
+   "exercise": "r265",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "r281",
+   "concept": "eulers-method"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "table-euler",
+   "kind": "correction",
+   "html": "The book prints $1.9164,$ $1.8414,$ $1.7746$ and $1.7156$ for $y_{7}$ to $y_{10};$ Euler’s Method gives $0.9164,$ $0.8414,$ $0.7746$ and $0.7156,$ continuing the decrease of the values before them."
+  },
+  {
+   "id": "e95-exact",
+   "kind": "correction",
+   "html": "The exact solution $\\kyfn=\\frac{t^{3}}{3}+2$ has the value $\\frac{7}{3}$ at $t=1,$ not $2.$"
+  },
+  {
+   "id": "e103-exact",
+   "kind": "correction",
+   "html": "The exact solution $\\kyfn=-\\frac{5}{2}t^{2}-2$ has the value $-\\frac{9}{2}$ at $t=1,$ not $-\\frac{1}{2}.$"
+  },
+  {
+   "id": "e107-key",
+   "kind": "correction",
+   "html": "The key writes $\\kyprime$ for $\\kyfn:$ the exact solution is $\\kyfn=2e^{t^{2}/2}.$"
+  },
+  {
+   "id": "e111-key",
+   "kind": "correction",
+   "html": "$3.2756$ is the value Euler’s Method gives with $h=0.01;$ with $h=0.001$ it gives $3.2952.$"
+  },
+  {
+   "id": "e113-table",
+   "kind": "correction",
+   "html": "The errors are those of the step sizes $h=1,$ $0.1,$ $0.01$ and $0.001,$ one decade larger than the table prints."
+  },
+  {
+   "id": "e117-steps",
+   "kind": "correction",
+   "html": "The key’s value is Euler’s Method after $100$ steps, with $h=0.1.$"
+  },
+  {
+   "id": "r281-euler",
+   "kind": "correction",
+   "html": "Five steps of $h=0.2$ from $\\kyfn(0)=0$ give $0.9051$ at $x=1,$ beside the exact $\\frac{3-e^{-2}}{2+\\ln 3}\\approx 0.9245.$"
+  }
+ ]
+}

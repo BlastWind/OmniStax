@@ -35,7 +35,8 @@
     "ch07",
     "ch08",
     "ch09",
-    "ch10"
+    "ch10",
+    "ch11"
   ],
   "intro": {
     "module": "m60027",
@@ -689,6 +690,11 @@
       "sym": "f_n1",
       "latex": "f^{(n+1)}",
       "macro": "\\kfnplusone"
+    },
+    {
+      "sym": "x_prime",
+      "latex": "x'",
+      "macro": "\\kxprime"
     }
   ],
   "exercise_kinds": [
@@ -5094,11 +5100,13 @@
       "forms": [
         {
           "id": "eq-area-between-curves",
-          "latex": "A=\\int_{a}^{b}[f(x)-g(x)]\\,dx"
+          "latex": "A=\\int_{a}^{b}[f(x)-g(x)]\\,dx",
+          "anchor": "6.1-area-between-curves-theorem"
         },
         {
           "id": "eq-area-between-curves-sum",
-          "latex": "A=\\lim_{n\\to\\infty}\\sum_{i=1}^{n}[f(x_i^{*})-g(x_i^{*})]\\Delta x"
+          "latex": "A=\\lim_{n\\to\\infty}\\sum_{i=1}^{n}[f(x_i^{*})-g(x_i^{*})]\\Delta x",
+          "anchor": "6.1-area-between-curves-theorem"
         }
       ]
     },
@@ -5112,7 +5120,8 @@
       "forms": [
         {
           "id": "eq-area-between-crossing-curves",
-          "latex": "A=\\int_{a}^{b}|f(x)-g(x)|\\,dx"
+          "latex": "A=\\int_{a}^{b}|f(x)-g(x)|\\,dx",
+          "anchor": "6.1-curves-that-cross-theorem"
         }
       ]
     },
@@ -5133,7 +5142,8 @@
       "forms": [
         {
           "id": "eq-area-between-curves-y",
-          "latex": "A=\\int_{c}^{d}[u(y)-v(y)]\\,dy"
+          "latex": "A=\\int_{c}^{d}[u(y)-v(y)]\\,dy",
+          "anchor": "6.1-area-along-y-theorem"
         }
       ]
     },
@@ -5158,11 +5168,13 @@
       "forms": [
         {
           "id": "eq-volume-of-a-cylinder",
-          "latex": "V=A\\cdot h"
+          "latex": "V=A\\cdot h",
+          "anchor": "6.2-slicing"
         },
         {
           "id": "eq-volume-of-a-right-circular-cylinder",
-          "latex": "V=\\pi r^{2}h"
+          "latex": "V=\\pi r^{2}h",
+          "anchor": "6.2-slicing"
         }
       ]
     },
@@ -5180,11 +5192,13 @@
       "forms": [
         {
           "id": "eq-slicing-method",
-          "latex": "V(S)=\\int_{a}^{b}A(x)\\,dx"
+          "latex": "V(S)=\\int_{a}^{b}A(x)\\,dx",
+          "anchor": "6.2-slicing"
         },
         {
           "id": "eq-slicing-sum",
-          "latex": "V(S)\\approx\\sum_{i=1}^{n}A(x_i^{*})\\Delta x"
+          "latex": "V(S)\\approx\\sum_{i=1}^{n}A(x_i^{*})\\Delta x",
+          "anchor": "6.2-slicing"
         }
       ]
     },
@@ -5219,7 +5233,8 @@
       "forms": [
         {
           "id": "eq-disk-method",
-          "latex": "V=\\int_{a}^{b}\\pi[f(x)]^{2}\\,dx"
+          "latex": "V=\\int_{a}^{b}\\pi[f(x)]^{2}\\,dx",
+          "anchor": "6.2-disk-method-rule"
         }
       ]
     },
@@ -5233,7 +5248,8 @@
       "forms": [
         {
           "id": "eq-disk-method-y",
-          "latex": "V=\\int_{c}^{d}\\pi[g(y)]^{2}\\,dy"
+          "latex": "V=\\int_{c}^{d}\\pi[g(y)]^{2}\\,dy",
+          "anchor": "6.2-disk-method-y-rule"
         }
       ]
     },
@@ -5250,7 +5266,8 @@
       "forms": [
         {
           "id": "eq-washer-method",
-          "latex": "V=\\int_{a}^{b}\\pi[(f(x))^{2}-(g(x))^{2}]\\,dx"
+          "latex": "V=\\int_{a}^{b}\\pi[(f(x))^{2}-(g(x))^{2}]\\,dx",
+          "anchor": "6.2-washer-method-rule"
         }
       ]
     },
@@ -5264,7 +5281,8 @@
       "forms": [
         {
           "id": "eq-washer-method-y",
-          "latex": "V=\\int_{c}^{d}\\pi[(u(y))^{2}-(v(y))^{2}]\\,dy"
+          "latex": "V=\\int_{c}^{d}\\pi[(u(y))^{2}-(v(y))^{2}]\\,dy",
+          "anchor": "6.2-washer-method-y-rule"
         }
       ]
     },
@@ -5281,16 +5299,19 @@
       "forms": [
         {
           "id": "eq-shell-method",
-          "latex": "V=\\int_{a}^{b}(2\\pi xf(x))\\,dx"
+          "latex": "V=\\int_{a}^{b}(2\\pi xf(x))\\,dx",
+          "anchor": "6.3-shell-method-rule"
         },
         {
           "id": "eq-shell-volume",
-          "latex": "V_{\\text{shell}}\\approx 2\\pi f(x_i^{*})x_i^{*}\\Delta x"
+          "latex": "V_{\\text{shell}}\\approx 2\\pi f(x_i^{*})x_i^{*}\\Delta x",
+          "anchor": "6.3-shells"
         },
         {
           "id": "eq-shell-method-shifted-axis",
           "latex": "V=\\int_{a}^{b}(2\\pi(x+k)f(x))\\,dx",
-          "condition": "revolved around the line x = −k"
+          "condition": "revolved around the line x = −k",
+          "anchor": "6.3-shells"
         }
       ]
     },
@@ -5304,7 +5325,8 @@
       "forms": [
         {
           "id": "eq-shell-method-x-axis",
-          "latex": "V=\\int_{c}^{d}(2\\pi yg(y))\\,dy"
+          "latex": "V=\\int_{c}^{d}(2\\pi yg(y))\\,dy",
+          "anchor": "6.3-shell-method-x-rule"
         }
       ]
     },
@@ -5344,11 +5366,13 @@
       "forms": [
         {
           "id": "eq-arc-length-x",
-          "latex": "\\text{Arc Length}=\\int_{a}^{b}\\sqrt{1+[f'(x)]^{2}}\\,dx"
+          "latex": "\\text{Arc Length}=\\int_{a}^{b}\\sqrt{1+[f'(x)]^{2}}\\,dx",
+          "anchor": "6.4-arc-length-x-theorem"
         },
         {
           "id": "eq-arc-length-x-sum",
-          "latex": "\\text{Arc Length}\\approx\\sum_{i=1}^{n}\\sqrt{1+[f'(x_i^{*})]^{2}}\\,\\Delta x"
+          "latex": "\\text{Arc Length}\\approx\\sum_{i=1}^{n}\\sqrt{1+[f'(x_i^{*})]^{2}}\\,\\Delta x",
+          "anchor": "6.4-arc-length-x"
         }
       ]
     },
@@ -5362,7 +5386,8 @@
       "forms": [
         {
           "id": "eq-arc-length-y",
-          "latex": "\\text{Arc Length}=\\int_{c}^{d}\\sqrt{1+[g'(y)]^{2}}\\,dy"
+          "latex": "\\text{Arc Length}=\\int_{c}^{d}\\sqrt{1+[g'(y)]^{2}}\\,dy",
+          "anchor": "6.4-arc-length-y-theorem"
         }
       ]
     },
@@ -5407,11 +5432,13 @@
       "forms": [
         {
           "id": "eq-lateral-surface-area-frustum",
-          "latex": "S=\\pi(r_1+r_2)l"
+          "latex": "S=\\pi(r_1+r_2)l",
+          "anchor": "6.4-surface-area"
         },
         {
           "id": "eq-lateral-surface-area-cone",
-          "latex": "\\text{Lateral Surface Area}=\\pi rs"
+          "latex": "\\text{Lateral Surface Area}=\\pi rs",
+          "anchor": "6.4-surface-area"
         }
       ]
     },
@@ -5425,11 +5452,13 @@
       "forms": [
         {
           "id": "eq-surface-area-x",
-          "latex": "\\text{Surface Area}=\\int_{a}^{b}(2\\pi f(x)\\sqrt{1+(f'(x))^{2}})\\,dx"
+          "latex": "\\text{Surface Area}=\\int_{a}^{b}(2\\pi f(x)\\sqrt{1+(f'(x))^{2}})\\,dx",
+          "anchor": "6.4-surface-area-theorem"
         },
         {
           "id": "eq-surface-area-y",
-          "latex": "\\text{Surface Area}=\\int_{c}^{d}(2\\pi g(y)\\sqrt{1+(g'(y))^{2}})\\,dy"
+          "latex": "\\text{Surface Area}=\\int_{c}^{d}(2\\pi g(y)\\sqrt{1+(g'(y))^{2}})\\,dy",
+          "anchor": "6.4-surface-area-theorem"
         }
       ]
     },
@@ -5455,7 +5484,8 @@
       "forms": [
         {
           "id": "eq-mass-one-dimensional",
-          "latex": "m=\\int_{a}^{b}\\rho(x)\\,dx"
+          "latex": "m=\\int_{a}^{b}\\rho(x)\\,dx",
+          "anchor": "6.5-mass-1d-theorem"
         }
       ]
     },
@@ -5469,7 +5499,8 @@
       "forms": [
         {
           "id": "eq-mass-circular",
-          "latex": "m=\\int_{0}^{r}2\\pi x\\rho(x)\\,dx"
+          "latex": "m=\\int_{0}^{r}2\\pi x\\rho(x)\\,dx",
+          "anchor": "6.5-mass-circular-theorem"
         }
       ]
     },
@@ -5487,7 +5518,8 @@
       "forms": [
         {
           "id": "eq-work",
-          "latex": "W=\\int_{a}^{b}F(x)\\,dx"
+          "latex": "W=\\int_{a}^{b}F(x)\\,dx",
+          "anchor": "6.5-work-definition"
         }
       ]
     },
@@ -5503,7 +5535,8 @@
       "forms": [
         {
           "id": "eq-hookes-law",
-          "latex": "F(x)=kx"
+          "latex": "F(x)=kx",
+          "anchor": "6.5-work-force"
         }
       ]
     },
@@ -5526,11 +5559,13 @@
       "forms": [
         {
           "id": "eq-hydrostatic-pressure",
-          "latex": "p=\\frac{F}{A}=\\rho s"
+          "latex": "p=\\frac{F}{A}=\\rho s",
+          "anchor": "6.5-hydrostatic"
         },
         {
           "id": "eq-force-horizontal-plate",
-          "latex": "F=\\rho As"
+          "latex": "F=\\rho As",
+          "anchor": "6.5-hydrostatic"
         }
       ]
     },
@@ -5552,7 +5587,8 @@
       "forms": [
         {
           "id": "eq-hydrostatic-force",
-          "latex": "F=\\int_{a}^{b}\\rho w(x)s(x)\\,dx"
+          "latex": "F=\\int_{a}^{b}\\rho w(x)s(x)\\,dx",
+          "anchor": "6.5-hydrostatic"
         }
       ]
     },
@@ -5577,7 +5613,8 @@
       "forms": [
         {
           "id": "eq-moment",
-          "latex": "M=\\sum_{i=1}^{n}m_ix_i"
+          "latex": "M=\\sum_{i=1}^{n}m_ix_i",
+          "anchor": "6.6-moments"
         }
       ]
     },
@@ -5595,7 +5632,8 @@
       "forms": [
         {
           "id": "eq-center-of-mass-two-masses",
-          "latex": "\\bar{x}=\\frac{m_1x_1+m_2x_2}{m_1+m_2}"
+          "latex": "\\bar{x}=\\frac{m_1x_1+m_2x_2}{m_1+m_2}",
+          "anchor": "6.6-moments"
         }
       ]
     },
@@ -5609,11 +5647,13 @@
       "forms": [
         {
           "id": "eq-center-of-mass-on-a-line",
-          "latex": "\\bar{x}=\\frac{M}{m}"
+          "latex": "\\bar{x}=\\frac{M}{m}",
+          "anchor": "6.6-line-theorem"
         },
         {
           "id": "eq-center-of-mass-sum",
-          "latex": "\\bar{x}=\\frac{\\sum_{i=1}^{n}m_ix_i}{\\sum_{i=1}^{n}m_i}"
+          "latex": "\\bar{x}=\\frac{\\sum_{i=1}^{n}m_ix_i}{\\sum_{i=1}^{n}m_i}",
+          "anchor": "6.6-moments"
         }
       ]
     },
@@ -5627,11 +5667,13 @@
       "forms": [
         {
           "id": "eq-moments-in-a-plane",
-          "latex": "M_x=\\sum_{i=1}^{n}m_iy_i\\;\\text{and}\\;M_y=\\sum_{i=1}^{n}m_ix_i"
+          "latex": "M_x=\\sum_{i=1}^{n}m_iy_i\\;\\text{and}\\;M_y=\\sum_{i=1}^{n}m_ix_i",
+          "anchor": "6.6-plane-theorem"
         },
         {
           "id": "eq-center-of-mass-in-a-plane",
-          "latex": "\\bar{x}=\\frac{M_y}{m}\\;\\text{and}\\;\\bar{y}=\\frac{M_x}{m}"
+          "latex": "\\bar{x}=\\frac{M_y}{m}\\;\\text{and}\\;\\bar{y}=\\frac{M_x}{m}",
+          "anchor": "6.6-plane-theorem"
         }
       ]
     },
@@ -5677,15 +5719,18 @@
       "forms": [
         {
           "id": "eq-center-of-mass-plate",
-          "latex": "\\bar{x}=\\frac{M_y}{m}\\;\\text{and}\\;\\bar{y}=\\frac{M_x}{m}"
+          "latex": "\\bar{x}=\\frac{M_y}{m}\\;\\text{and}\\;\\bar{y}=\\frac{M_x}{m}",
+          "anchor": "6.6-plate-theorem"
         },
         {
           "id": "eq-mass-of-a-lamina",
-          "latex": "m=\\rho\\int_{a}^{b}f(x)\\,dx"
+          "latex": "m=\\rho\\int_{a}^{b}f(x)\\,dx",
+          "anchor": "6.6-plate-theorem"
         },
         {
           "id": "eq-moments-of-a-lamina",
-          "latex": "M_x=\\rho\\int_{a}^{b}\\frac{[f(x)]^{2}}{2}\\,dx\\;\\text{and}\\;M_y=\\rho\\int_{a}^{b}xf(x)\\,dx"
+          "latex": "M_x=\\rho\\int_{a}^{b}\\frac{[f(x)]^{2}}{2}\\,dx\\;\\text{and}\\;M_y=\\rho\\int_{a}^{b}xf(x)\\,dx",
+          "anchor": "6.6-plate-theorem"
         }
       ]
     },
@@ -5699,15 +5744,18 @@
       "forms": [
         {
           "id": "eq-center-of-mass-two-functions",
-          "latex": "\\bar{x}=\\frac{M_y}{m}\\;\\text{and}\\;\\bar{y}=\\frac{M_x}{m}"
+          "latex": "\\bar{x}=\\frac{M_y}{m}\\;\\text{and}\\;\\bar{y}=\\frac{M_x}{m}",
+          "anchor": "6.6-two-functions-theorem"
         },
         {
           "id": "eq-mass-of-a-lamina-two-functions",
-          "latex": "m=\\rho\\int_{a}^{b}[f(x)-g(x)]\\,dx"
+          "latex": "m=\\rho\\int_{a}^{b}[f(x)-g(x)]\\,dx",
+          "anchor": "6.6-two-functions-theorem"
         },
         {
           "id": "eq-moments-of-a-lamina-two-functions",
-          "latex": "M_x=\\rho\\int_{a}^{b}\\frac{1}{2}([f(x)]^{2}-[g(x)]^{2})\\,dx\\;\\text{and}\\;M_y=\\rho\\int_{a}^{b}x[f(x)-g(x)]\\,dx"
+          "latex": "M_x=\\rho\\int_{a}^{b}\\frac{1}{2}([f(x)]^{2}-[g(x)]^{2})\\,dx\\;\\text{and}\\;M_y=\\rho\\int_{a}^{b}x[f(x)-g(x)]\\,dx",
+          "anchor": "6.6-two-functions-theorem"
         }
       ]
     },
@@ -5724,7 +5772,8 @@
       "forms": [
         {
           "id": "eq-pappus",
-          "latex": "V=d\\cdot A"
+          "latex": "V=d\\cdot A",
+          "anchor": "6.6-pappus-theorem"
         }
       ]
     },
@@ -5738,7 +5787,8 @@
       "forms": [
         {
           "id": "eq-ln-as-integral",
-          "latex": "\\ln x=\\int_{1}^{x}\\frac{1}{t}\\,dt"
+          "latex": "\\ln x=\\int_{1}^{x}\\frac{1}{t}\\,dt",
+          "anchor": "6.7-ln-definition"
         }
       ]
     },
@@ -5758,7 +5808,8 @@
       "forms": [
         {
           "id": "eq-e-by-area",
-          "latex": "\\ln e=1"
+          "latex": "\\ln e=1",
+          "anchor": "6.7-e-definition"
         }
       ]
     },
@@ -5772,11 +5823,13 @@
       "forms": [
         {
           "id": "eq-exp-as-inverse",
-          "latex": "\\ln y=\\ln(e^{x})=x"
+          "latex": "\\ln y=\\ln(e^{x})=x",
+          "anchor": "6.7-exponential"
         },
         {
           "id": "eq-exp-ln-inverse",
-          "latex": "e^{\\ln x}=x\\;\\text{for}\\;x>0\\;\\text{and}\\;\\ln(e^{x})=x"
+          "latex": "e^{\\ln x}=x\\;\\text{for}\\;x>0\\;\\text{and}\\;\\ln(e^{x})=x",
+          "anchor": "6.7-exp-definition"
         }
       ]
     },
@@ -5790,7 +5843,8 @@
       "forms": [
         {
           "id": "eq-general-exponential",
-          "latex": "a^{x}=e^{x\\ln a}"
+          "latex": "a^{x}=e^{x\\ln a}",
+          "anchor": "6.7-general-exponential-definition"
         }
       ]
     },
@@ -5807,11 +5861,13 @@
       "forms": [
         {
           "id": "eq-exponential-growth",
-          "latex": "y=y_{0}e^{kt}"
+          "latex": "y=y_{0}e^{kt}",
+          "anchor": "6.8-growth-rule"
         },
         {
           "id": "eq-exponential-growth-rate",
-          "latex": "y'=ky_{0}e^{kt}=ky"
+          "latex": "y'=ky_{0}e^{kt}=ky",
+          "anchor": "6.8-growth"
         }
       ]
     },
@@ -5827,7 +5883,8 @@
       "forms": [
         {
           "id": "eq-doubling-time",
-          "latex": "\\text{Doubling time}=\\frac{\\ln 2}{k}"
+          "latex": "\\text{Doubling time}=\\frac{\\ln 2}{k}",
+          "anchor": "6.8-doubling-definition"
         }
       ]
     },
@@ -5844,11 +5901,13 @@
       "forms": [
         {
           "id": "eq-exponential-decay",
-          "latex": "y=y_{0}e^{-kt}"
+          "latex": "y=y_{0}e^{-kt}",
+          "anchor": "6.8-decay-rule"
         },
         {
           "id": "eq-exponential-decay-rate",
-          "latex": "y'=-ky_{0}e^{-kt}=-ky"
+          "latex": "y'=-ky_{0}e^{-kt}=-ky",
+          "anchor": "6.8-decay"
         }
       ]
     },
@@ -5861,11 +5920,13 @@
       "forms": [
         {
           "id": "eq-newtons-law-of-cooling",
-          "latex": "T=(T_{0}-T_{a})e^{-kt}+T_{a}"
+          "latex": "T=(T_{0}-T_{a})e^{-kt}+T_{a}",
+          "anchor": "6.8-decay"
         },
         {
           "id": "eq-newtons-law-of-cooling-rate",
-          "latex": "T'=-k(T-T_{a})"
+          "latex": "T'=-k(T-T_{a})",
+          "anchor": "6.8-decay"
         }
       ]
     },
@@ -5881,7 +5942,8 @@
       "forms": [
         {
           "id": "eq-half-life",
-          "latex": "\\text{Half-life}=\\frac{\\ln 2}{k}"
+          "latex": "\\text{Half-life}=\\frac{\\ln 2}{k}",
+          "anchor": "6.8-half-life-definition"
         }
       ]
     },
@@ -5895,15 +5957,18 @@
       "forms": [
         {
           "id": "eq-derivative-sinh",
-          "latex": "\\frac{d}{dx}(\\sinh x)=\\cosh x"
+          "latex": "\\frac{d}{dx}(\\sinh x)=\\cosh x",
+          "anchor": "6.9-fs-id1167793363804"
         },
         {
           "id": "eq-derivative-cosh",
-          "latex": "\\frac{d}{dx}(\\cosh x)=\\sinh x"
+          "latex": "\\frac{d}{dx}(\\cosh x)=\\sinh x",
+          "anchor": "6.9-fs-id1167793363804"
         },
         {
           "id": "eq-derivative-tanh",
-          "latex": "\\frac{d}{dx}(\\tanh x)=\\operatorname{sech}^{2}x"
+          "latex": "\\frac{d}{dx}(\\tanh x)=\\operatorname{sech}^{2}x",
+          "anchor": "6.9-fs-id1167793363804"
         },
         {
           "id": "eq-derivative-coth",
@@ -6668,7 +6733,8 @@
       "forms": [
         {
           "id": "eq-initial-value",
-          "latex": "y(x_0)=y_0"
+          "latex": "y(x_0)=y_0",
+          "anchor": "8.1-initial-value-problems"
         }
       ]
     },
@@ -6698,11 +6764,13 @@
       "forms": [
         {
           "id": "eq-velocity-under-gravity",
-          "latex": "v'(t)=-g"
+          "latex": "v'(t)=-g",
+          "anchor": "8.1-initial-value-problems"
         },
         {
           "id": "eq-height-initial-value-problem",
-          "latex": "s'(t)=v(t),\\;s(0)=s_0"
+          "latex": "s'(t)=v(t),\\;s(0)=s_0",
+          "anchor": "8.1-initial-value-problems"
         }
       ]
     },
@@ -6721,7 +6789,8 @@
       "forms": [
         {
           "id": "eq-first-order-equation",
-          "latex": "y'=f(x,y)"
+          "latex": "y'=f(x,y)",
+          "anchor": "8.2-creating"
         }
       ]
     },
@@ -6812,11 +6881,13 @@
       "forms": [
         {
           "id": "eq-euler-x",
-          "latex": "x_n=x_0+nh"
+          "latex": "x_n=x_0+nh",
+          "anchor": "8.2-euler-theorem"
         },
         {
           "id": "eq-euler-y",
-          "latex": "y_n=y_{n-1}+hf(x_{n-1},y_{n-1})"
+          "latex": "y_n=y_{n-1}+hf(x_{n-1},y_{n-1})",
+          "anchor": "8.2-euler-theorem"
         }
       ]
     },
@@ -6836,7 +6907,8 @@
       "forms": [
         {
           "id": "eq-separable",
-          "latex": "y'=f(x)g(y)"
+          "latex": "y'=f(x)g(y)",
+          "anchor": "8.3-separable-definition"
         }
       ]
     },
@@ -6874,7 +6946,8 @@
       "forms": [
         {
           "id": "eq-solution-concentration",
-          "latex": "\\frac{du}{dt}=\\text{INFLOW RATE}-\\text{OUTFLOW RATE}"
+          "latex": "\\frac{du}{dt}=\\text{INFLOW RATE}-\\text{OUTFLOW RATE}",
+          "anchor": "8.3-fs-id1170573587324"
         }
       ]
     },
@@ -6902,7 +6975,8 @@
       "forms": [
         {
           "id": "eq-exponential-growth-ivp",
-          "latex": "\\frac{dP}{dt}=rP,\\;P(0)=P_0"
+          "latex": "\\frac{dP}{dt}=rP,\\;P(0)=P_0",
+          "anchor": "8.4-carrying-capacity"
         }
       ]
     },
@@ -6933,7 +7007,8 @@
       "forms": [
         {
           "id": "eq-logistic",
-          "latex": "\\frac{dP}{dt}=rP\\left(1-\\frac{P}{K}\\right)"
+          "latex": "\\frac{dP}{dt}=rP\\left(1-\\frac{P}{K}\\right)",
+          "anchor": "8.4-logistic-definition"
         }
       ]
     },
@@ -6957,7 +7032,8 @@
       "forms": [
         {
           "id": "eq-logistic-solution",
-          "latex": "P(t)=\\frac{P_0Ke^{rt}}{(K-P_0)+P_0e^{rt}}"
+          "latex": "P(t)=\\frac{P_0Ke^{rt}}{(K-P_0)+P_0e^{rt}}",
+          "anchor": "8.4-logistic-solution"
         }
       ]
     },
@@ -6971,7 +7047,8 @@
       "forms": [
         {
           "id": "eq-logistic-inflection",
-          "latex": "t=\\frac{1}{r}\\ln\\frac{K-P_0}{P_0}"
+          "latex": "t=\\frac{1}{r}\\ln\\frac{K-P_0}{P_0}",
+          "anchor": "8.4-solving-logistic"
         }
       ]
     },
@@ -6987,7 +7064,8 @@
       "forms": [
         {
           "id": "eq-threshold-model",
-          "latex": "\\frac{dP}{dt}=-rP\\left(1-\\frac{P}{K}\\right)\\left(1-\\frac{P}{T}\\right)"
+          "latex": "\\frac{dP}{dt}=-rP\\left(1-\\frac{P}{K}\\right)\\left(1-\\frac{P}{T}\\right)",
+          "anchor": "8.4-threshold-project"
         }
       ]
     },
@@ -7007,7 +7085,8 @@
       "forms": [
         {
           "id": "eq-first-order-linear",
-          "latex": "a(x)y'+b(x)y=c(x)"
+          "latex": "a(x)y'+b(x)y=c(x)",
+          "anchor": "8.5-linear-definition"
         }
       ]
     },
@@ -7023,7 +7102,8 @@
       "forms": [
         {
           "id": "eq-standard-form",
-          "latex": "y'+p(x)y=q(x)"
+          "latex": "y'+p(x)y=q(x)",
+          "anchor": "8.5-standard-form"
         }
       ]
     },
@@ -7042,7 +7122,8 @@
       "forms": [
         {
           "id": "eq-integrating-factor",
-          "latex": "\\mu(x)=e^{\\int p(x)\\,dx}"
+          "latex": "\\mu(x)=e^{\\int p(x)\\,dx}",
+          "anchor": "8.5-linear-strategy"
         }
       ]
     },
@@ -7055,7 +7136,8 @@
       "forms": [
         {
           "id": "eq-linear-solution",
-          "latex": "y=\\frac{1}{\\mu(x)}\\left[\\int\\mu(x)q(x)\\,dx+C\\right]"
+          "latex": "y=\\frac{1}{\\mu(x)}\\left[\\int\\mu(x)q(x)\\,dx+C\\right]",
+          "anchor": "8.5-linear-strategy"
         }
       ]
     },
@@ -7068,7 +7150,8 @@
       "forms": [
         {
           "id": "eq-air-resistance",
-          "latex": "m\\frac{dv}{dt}=-kv-mg,\\;v(0)=v_0"
+          "latex": "m\\frac{dv}{dt}=-kv-mg,\\;v(0)=v_0",
+          "anchor": "8.5-linear-intro"
         }
       ]
     },
@@ -7084,15 +7167,18 @@
       "forms": [
         {
           "id": "eq-kirchhoff-loop",
-          "latex": "Li'+Ri+\\frac{1}{C}q=E"
+          "latex": "Li'+Ri+\\frac{1}{C}q=E",
+          "anchor": "8.5-electrical-circuits"
         },
         {
           "id": "eq-lr-circuit",
-          "latex": "Li'+Ri=E"
+          "latex": "Li'+Ri=E",
+          "anchor": "8.5-electrical-circuits"
         },
         {
           "id": "eq-rc-circuit",
-          "latex": "Rq'+\\frac{1}{C}q=E"
+          "latex": "Rq'+\\frac{1}{C}q=E",
+          "anchor": "8.5-electrical-circuits"
         }
       ]
     },
@@ -8444,6 +8530,797 @@
           "latex": "T\\approx 2\\pi\\sqrt{\\frac{L}{g}}\\Big(1+\\frac{k^{2}}{4}\\Big)"
         }
       ]
+    },
+    {
+      "id": "parametric-equations",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Parametric equations",
+      "terms": [
+        "parametric equations"
+      ],
+      "statement": "If x and y are continuous functions of t on an interval I, then the equations x = x(t) and y = y(t) are called parametric equations, the equations that define a parametric curve.",
+      "forms": [
+        {
+          "id": "eq-parametric-equations",
+          "latex": "x=x(t)\\;\\text{and}\\;y=y(t)"
+        }
+      ]
+    },
+    {
+      "id": "parameter",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Parameter",
+      "terms": [
+        "parameter"
+      ],
+      "symbol": "t",
+      "statement": "The parameter is an independent variable that both x and y depend on in a parametric curve, usually represented by the variable t; it might represent time, or some other meaningful quantity."
+    },
+    {
+      "id": "parametric-curve",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Parametric curve",
+      "terms": [
+        "parametric curve",
+        "plane curve"
+      ],
+      "type": "curve",
+      "symbol": "C",
+      "statement": "The set of points (x, y) obtained as t varies over the interval I is called the graph of the parametric equations; the graph is called a parametric curve or plane curve, and is denoted by C."
+    },
+    {
+      "id": "orientation",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Orientation",
+      "terms": [
+        "orientation"
+      ],
+      "statement": "The orientation of a parametric curve is the direction that a point moves on the graph as the parameter increases."
+    },
+    {
+      "id": "eliminating-the-parameter",
+      "kind": "skill",
+      "section": "11.1",
+      "name": "Eliminating the parameter",
+      "terms": [
+        "eliminating the parameter"
+      ],
+      "statement": "To eliminate the parameter, rewrite the two parametric equations as a single equation relating x and y: solve one equation for t and substitute it into the other, or, where sine and cosine are not one-to-one, combine the equations through an identity such as cos²t + sin²t = 1; the restriction on t restricts the graph."
+    },
+    {
+      "id": "parameterization-of-a-curve",
+      "kind": "skill",
+      "section": "11.1",
+      "name": "Parameterization of a curve",
+      "terms": [
+        "parameterization of a curve"
+      ],
+      "statement": "To parameterize the graph of y = f(x), choose x(t), such as x(t) = t or any x(t) whose range is the set of x the graph covers, and substitute it for x in the equation to obtain y(t); a curve can be parameterized in many different ways."
+    },
+    {
+      "id": "cycloid",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Cycloid",
+      "terms": [
+        "cycloid"
+      ],
+      "type": "curve",
+      "statement": "A cycloid is the curve traced by a point on the rim of a circular wheel as the wheel rolls along a straight line without slippage; a cycloid generated by a wheel of radius a is given by x(t) = a(t − sin t), y(t) = a(1 − cos t).",
+      "forms": [
+        {
+          "id": "eq-cycloid",
+          "latex": "x(t)=a(t-\\sin t),\\;y(t)=a(1-\\cos t)"
+        }
+      ]
+    },
+    {
+      "id": "hypocycloid",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Hypocycloid",
+      "terms": [
+        "hypocycloid"
+      ],
+      "type": "curve",
+      "statement": "A hypocycloid is the curve traced by a point on the edge of a circle of radius b rolling around the inside of a larger circle of radius a; the ratio a/b is related to its number of cusps.",
+      "forms": [
+        {
+          "id": "eq-hypocycloid",
+          "latex": "x(t)=(a-b)\\cos t+b\\cos\\left(\\frac{a-b}{b}\\right)t,\\;y(t)=(a-b)\\sin t-b\\sin\\left(\\frac{a-b}{b}\\right)t"
+        }
+      ]
+    },
+    {
+      "id": "cusp",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Cusp",
+      "terms": [
+        "cusps",
+        "cusp"
+      ],
+      "type": "point",
+      "statement": "A cusp is a pointed end or part where two curves meet, a corner or pointed end of a graph."
+    },
+    {
+      "id": "space-filling-curve",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Space-filling curve",
+      "terms": [
+        "space-filling curves",
+        "space-filling curve"
+      ],
+      "type": "curve",
+      "statement": "A space-filling curve is a curve that completely occupies a two-dimensional subset of the real plane; hypocycloids with an irrational ratio a/b have an infinite number of cusps and never return to their starting point."
+    },
+    {
+      "id": "witch-of-agnesi",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Witch of Agnesi",
+      "terms": [
+        "witch of Agnesi"
+      ],
+      "type": "curve",
+      "statement": "The witch of Agnesi of a circle of radius a through (0, 0) and (0, 2a) is the path of the point P where the vertical line through B, the point at which the line OA meets the horizontal line through (0, 2a), meets the horizontal line through A, as A moves around the circle; it is parameterized by x = 2a cot θ, y = 2a sin²θ.",
+      "forms": [
+        {
+          "id": "eq-witch-of-agnesi",
+          "latex": "x=2a\\cot\\theta,\\;y=2a\\sin^{2}\\theta"
+        }
+      ]
+    },
+    {
+      "id": "curtate-cycloid",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Curtate cycloid",
+      "terms": [
+        "curtate cycloid"
+      ],
+      "type": "curve",
+      "statement": "A curtate cycloid is the path of a point on a spoke of a rolling wheel, at a distance b from the center of the wheel that is less than its radius; it has less up-and-down motion than a cycloid."
+    },
+    {
+      "id": "prolate-cycloid",
+      "kind": "definition",
+      "section": "11.1",
+      "name": "Prolate cycloid",
+      "terms": [
+        "prolate cycloid"
+      ],
+      "type": "curve",
+      "statement": "A prolate cycloid is the path of a point whose distance b from the center of a rolling wheel is greater than the radius of the wheel, as on the flange of a train wheel; it has loops, where the point travels backward."
+    },
+    {
+      "id": "derivative-of-parametric-equations",
+      "kind": "result",
+      "section": "11.2",
+      "name": "Derivative of parametric equations",
+      "type": "derivative",
+      "symbol": "dy/dx",
+      "statement": "For the plane curve defined by x = x(t) and y = y(t), if x′(t) and y′(t) exist and x′(t) ≠ 0, then dy/dx = (dy/dt)/(dx/dt) = y′(t)/x′(t), the slope of the line tangent to the curve, whether or not the curve is the graph of a function y = f(x).",
+      "forms": [
+        {
+          "id": "eq-parametric-derivative",
+          "latex": "\\frac{dy}{dx}=\\frac{dy/dt}{dx/dt}=\\frac{y'(t)}{x'(t)}"
+        }
+      ]
+    },
+    {
+      "id": "second-derivative-of-parametric-equations",
+      "kind": "result",
+      "section": "11.2",
+      "name": "Second derivative of parametric equations",
+      "type": "derivative",
+      "symbol": "d2y/dx2",
+      "statement": "The second derivative of a parametric curve is the derivative of dy/dx with respect to x: d²y/dx² = ((d/dt)(dy/dx))/(dx/dt).",
+      "forms": [
+        {
+          "id": "eq-parametric-second-derivative",
+          "latex": "\\frac{d^{2}y}{dx^{2}}=\\frac{d}{dx}\\left(\\frac{dy}{dx}\\right)=\\frac{(d/dt)(dy/dx)}{dx/dt}"
+        }
+      ]
+    },
+    {
+      "id": "area-under-a-parametric-curve",
+      "kind": "result",
+      "section": "11.2",
+      "name": "Area under a parametric curve",
+      "type": "integral",
+      "symbol": "A",
+      "statement": "For the non-self-intersecting plane curve x = x(t), y = y(t), a ≤ t ≤ b, with x(t) differentiable, the area under the curve is A = ∫ₐᵇ y(t)x′(t) dt.",
+      "forms": [
+        {
+          "id": "eq-parametric-area",
+          "latex": "A=\\int_{a}^{b}y(t)x'(t)\\,dt"
+        }
+      ]
+    },
+    {
+      "id": "arc-length-of-a-parametric-curve",
+      "kind": "result",
+      "section": "11.2",
+      "name": "Arc length of a parametric curve",
+      "type": "integral",
+      "symbol": "s",
+      "statement": "For the plane curve x = x(t), y = y(t), t₁ ≤ t ≤ t₂, with x(t) and y(t) differentiable, the arc length is s = ∫ √((dx/dt)² + (dy/dt)²) dt from t₁ to t₂, the limit of the lengths of the line segments joining points of a partition of the curve.",
+      "forms": [
+        {
+          "id": "eq-parametric-arc-length",
+          "latex": "s=\\int_{t_{1}}^{t_{2}}\\sqrt{\\left(\\frac{dx}{dt}\\right)^{2}+\\left(\\frac{dy}{dt}\\right)^{2}}\\,dt"
+        },
+        {
+          "id": "eq-parametric-arc-length-sum",
+          "latex": "s\\approx\\sum_{k=1}^{n}\\sqrt{(x(t_{k})-x(t_{k-1}))^{2}+(y(t_{k})-y(t_{k-1}))^{2}}"
+        }
+      ]
+    },
+    {
+      "id": "surface-area-generated-by-a-parametric-curve",
+      "kind": "result",
+      "section": "11.2",
+      "name": "Surface area generated by a parametric curve",
+      "type": "integral",
+      "symbol": "S",
+      "statement": "The surface area of the volume of revolution generated by revolving the curve x = x(t), y = y(t), a ≤ t ≤ b, around the x-axis is S = 2π∫ₐᵇ y(t)√((x′(t))² + (y′(t))²) dt, provided y(t) is not negative on [a, b]; around the y-axis x(t) takes the place of y(t).",
+      "forms": [
+        {
+          "id": "eq-parametric-surface-area",
+          "latex": "S=2\\pi\\int_{a}^{b}y(t)\\sqrt{(x'(t))^{2}+(y'(t))^{2}}\\,dt"
+        }
+      ]
+    },
+    {
+      "id": "polar-coordinate-system",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Polar coordinate system",
+      "terms": [
+        "polar coordinate system",
+        "polar coordinates"
+      ],
+      "statement": "The polar coordinate system locates each point of the plane by an ordered pair (r, θ): r is the directed distance from the origin to the point, and θ the angle the line segment from the origin to the point makes with the positive x-axis, positive counterclockwise; every point has an infinite number of representations in polar coordinates."
+    },
+    {
+      "id": "radial-coordinate",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Radial coordinate",
+      "terms": [
+        "radial coordinate"
+      ],
+      "symbol": "r",
+      "statement": "The radial coordinate r is the coordinate in the polar coordinate system that measures the distance from a point in the plane to the pole; a negative r moves along the ray opposite the terminal ray of θ."
+    },
+    {
+      "id": "angular-coordinate",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Angular coordinate",
+      "terms": [
+        "angular coordinate"
+      ],
+      "type": "angle",
+      "symbol": "θ",
+      "statement": "The angular coordinate θ is the angle formed by a line segment connecting the origin to a point in the polar coordinate system with the positive radial (x) axis, measured counterclockwise."
+    },
+    {
+      "id": "converting-points-between-coordinate-systems",
+      "kind": "result",
+      "section": "11.3",
+      "name": "Converting points between coordinate systems",
+      "statement": "A point with Cartesian coordinates (x, y) and polar coordinates (r, θ) satisfies x = r cos θ and y = r sin θ, and r² = x² + y² and tan θ = y/x; θ is chosen in the quadrant of the point.",
+      "forms": [
+        {
+          "id": "eq-polar-to-rectangular",
+          "latex": "x=r\\cos\\theta\\;\\text{and}\\;y=r\\sin\\theta"
+        },
+        {
+          "id": "eq-rectangular-to-polar",
+          "latex": "r^{2}=x^{2}+y^{2}\\;\\text{and}\\;\\tan\\theta=\\frac{y}{x}"
+        }
+      ]
+    },
+    {
+      "id": "pole",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Pole",
+      "terms": [
+        "pole"
+      ],
+      "type": "point",
+      "statement": "The pole is the central point of the polar coordinate system, equivalent to the origin of a Cartesian system, where r = 0."
+    },
+    {
+      "id": "polar-axis",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Polar axis",
+      "terms": [
+        "polar axis"
+      ],
+      "type": "line",
+      "statement": "The polar axis is the horizontal axis of the polar coordinate system corresponding to r ≥ 0, the line segment from the pole going to the right, from which θ is measured."
+    },
+    {
+      "id": "polar-equation",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Polar equation",
+      "terms": [
+        "polar equations",
+        "polar equation"
+      ],
+      "type": "curve",
+      "statement": "A polar equation is an equation or function relating the radial coordinate to the angular coordinate in the polar coordinate system; the graph of a function r = f(θ) is a curve in the polar plane."
+    },
+    {
+      "id": "plotting-a-curve-in-polar-coordinates",
+      "kind": "skill",
+      "section": "11.3",
+      "name": "Plotting a curve in polar coordinates",
+      "statement": "To plot r = f(θ), make a table with a column for θ and one for r, list values of θ, calculate the corresponding r, plot each ordered pair (r, θ), connect the points and look for a pattern, such as periodicity."
+    },
+    {
+      "id": "parameterization-of-a-polar-curve",
+      "kind": "result",
+      "section": "11.3",
+      "name": "Polar curve as a parametric curve",
+      "statement": "A curve r = f(θ) is parameterized in rectangular coordinates by x = f(θ) cos θ, y = f(θ) sin θ, with θ as the parameter.",
+      "forms": [
+        {
+          "id": "eq-polar-parameterization",
+          "latex": "x=f(\\theta)\\cos\\theta,\\;y=f(\\theta)\\sin\\theta"
+        }
+      ]
+    },
+    {
+      "id": "limacon",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Limaçon",
+      "terms": [
+        "limaçon"
+      ],
+      "type": "curve",
+      "statement": "A limaçon is the graph of the equation r = a + b sin θ or r = a + b cos θ; if a = b the graph is a cardioid.",
+      "forms": [
+        {
+          "id": "eq-limacon",
+          "latex": "r=a\\cos\\theta+b,\\;r=a\\sin\\theta+b"
+        }
+      ]
+    },
+    {
+      "id": "cardioid",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Cardioid",
+      "terms": [
+        "cardioid"
+      ],
+      "type": "curve",
+      "statement": "A cardioid is a plane curve traced by a point on the perimeter of a circle rolling around a fixed circle of the same radius; its equation is r = a(1 ± cos θ) or r = a(1 ± sin θ), a limaçon in which a = b or a = −b.",
+      "forms": [
+        {
+          "id": "eq-cardioid",
+          "latex": "r=a(1+\\cos\\theta)"
+        }
+      ]
+    },
+    {
+      "id": "rose",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Rose",
+      "terms": [
+        "rose"
+      ],
+      "type": "curve",
+      "statement": "A rose is the graph of the polar equation r = a cos(bθ) or r = a sin(bθ); if the coefficient of θ is even the graph has twice as many petals as the coefficient, if it is odd the number of petals equals the coefficient, and if it is not an integer the curve closes when it is rational and never closes when it is irrational.",
+      "forms": [
+        {
+          "id": "eq-rose",
+          "latex": "r=a\\cos(b\\theta),\\;r=a\\sin(b\\theta)"
+        }
+      ]
+    },
+    {
+      "id": "archimedean-spiral",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Archimedean spiral",
+      "terms": [
+        "Archimedean spiral",
+        "spiral"
+      ],
+      "type": "curve",
+      "statement": "An Archimedean spiral is the curve r = a + kθ, whose distance from the origin is a constant multiple of the angle plus a constant.",
+      "forms": [
+        {
+          "id": "eq-archimedean-spiral",
+          "latex": "r=a+k\\theta"
+        }
+      ]
+    },
+    {
+      "id": "logarithmic-spiral",
+      "kind": "definition",
+      "section": "11.3",
+      "name": "Logarithmic spiral",
+      "terms": [
+        "logarithmic spiral"
+      ],
+      "type": "curve",
+      "statement": "A logarithmic spiral is the curve r = a·b^θ; r = 1.2(1.25^θ) describes the shell shape of the chambered nautilus.",
+      "forms": [
+        {
+          "id": "eq-logarithmic-spiral",
+          "latex": "r=a\\cdot b^{\\theta}"
+        }
+      ]
+    },
+    {
+      "id": "symmetry-in-polar-curves",
+      "kind": "result",
+      "section": "11.3",
+      "name": "Symmetry in polar curves and equations",
+      "statement": "A curve r = f(θ) is symmetric about the polar axis if (r, −θ) is on the graph whenever (r, θ) is, about the pole if (r, π + θ) is, and about the vertical line θ = π/2 if (r, π − θ) is; equivalently the equation is unchanged on replacing θ by −θ, r by −r or θ by π + θ, and θ by π − θ."
+    },
+    {
+      "id": "area-of-a-sector",
+      "kind": "result",
+      "section": "11.4",
+      "name": "Area of a sector of a circle",
+      "statement": "A sector of a circle of radius r with central angle θ, in radians, is the fraction θ/(2π) of the circle, so its area is A = ½θr².",
+      "forms": [
+        {
+          "id": "eq-sector-area",
+          "latex": "A=\\frac{1}{2}\\theta r^{2}"
+        }
+      ]
+    },
+    {
+      "id": "area-of-a-region-bounded-by-a-polar-curve",
+      "kind": "result",
+      "section": "11.4",
+      "name": "Area of a region bounded by a polar curve",
+      "type": "integral",
+      "symbol": "A",
+      "statement": "If f is continuous and nonnegative on α ≤ θ ≤ β with 0 < β − α ≤ 2π, the area of the region bounded by the graph of r = f(θ) between the radial lines θ = α and θ = β is A = ½∫ [f(θ)]² dθ = ½∫ r² dθ from α to β, the limit of the sums of the areas of sectors.",
+      "forms": [
+        {
+          "id": "eq-polar-area",
+          "latex": "A=\\frac{1}{2}\\int_{\\alpha}^{\\beta}[f(\\theta)]^{2}\\,d\\theta=\\frac{1}{2}\\int_{\\alpha}^{\\beta}r^{2}\\,d\\theta"
+        },
+        {
+          "id": "eq-polar-area-sum",
+          "latex": "A_{n}=\\sum_{i=1}^{n}A_{i}\\approx\\sum_{i=1}^{n}\\frac{1}{2}(\\Delta\\theta)(f(\\theta_{i}))^{2}"
+        }
+      ]
+    },
+    {
+      "id": "area-between-two-polar-curves",
+      "kind": "skill",
+      "section": "11.4",
+      "name": "Area between two polar curves",
+      "statement": "To find the area between two polar curves, first find the points of intersection, remembering that the curves may meet at the pole for different values of θ, then subtract the area inside the inner curve from the area inside the outer curve between them."
+    },
+    {
+      "id": "arc-length-of-a-polar-curve",
+      "kind": "result",
+      "section": "11.4",
+      "name": "Arc length of a polar curve",
+      "type": "integral",
+      "symbol": "L",
+      "statement": "If f has a continuous derivative on α ≤ θ ≤ β, the length of the graph of r = f(θ) from θ = α to θ = β is L = ∫ √([f(θ)]² + [f′(θ)]²) dθ = ∫ √(r² + (dr/dθ)²) dθ.",
+      "forms": [
+        {
+          "id": "eq-polar-arc-length",
+          "latex": "L=\\int_{\\alpha}^{\\beta}\\sqrt{[f(\\theta)]^{2}+[f'(\\theta)]^{2}}\\,d\\theta=\\int_{\\alpha}^{\\beta}\\sqrt{r^{2}+\\left(\\frac{dr}{d\\theta}\\right)^{2}}\\,d\\theta"
+        }
+      ]
+    },
+    {
+      "id": "nappe",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Nappe",
+      "terms": [
+        "nappes",
+        "nappe"
+      ],
+      "type": "surface",
+      "statement": "A nappe is one half of a double cone; a right circular cone, generated by revolving a line through the origin around the y-axis, has two identically shaped nappes."
+    },
+    {
+      "id": "conic-section",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Conic section",
+      "terms": [
+        "conic section",
+        "conic sections",
+        "conic"
+      ],
+      "type": "curve",
+      "statement": "A conic section is any curve formed by the intersection of a plane with a cone of two nappes: a hyperbola if the plane intersects both nappes, a parabola if it is parallel to the generating line, a circle if it is perpendicular to the axis of revolution, and an ellipse if it intersects one nappe at an angle to the axis other than 90°."
+    },
+    {
+      "id": "focus",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Focus",
+      "terms": [
+        "focus",
+        "foci"
+      ],
+      "type": "point",
+      "statement": "A focus (plural: foci) is a point used to construct and define a conic section; a parabola has one focus; an ellipse and a hyperbola have two."
+    },
+    {
+      "id": "directrix",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Directrix",
+      "terms": [
+        "directrix",
+        "directrices"
+      ],
+      "type": "line",
+      "statement": "A directrix (plural: directrices) is a line used to construct and define a conic section; a parabola has one directrix; ellipses and hyperbolas have two."
+    },
+    {
+      "id": "vertex-of-a-conic-section",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Vertex of a conic section",
+      "terms": [
+        "vertex",
+        "vertices"
+      ],
+      "type": "point",
+      "statement": "A vertex is an extreme point on a conic section; a parabola has one vertex at its turning point, halfway between the focus and the directrix; an ellipse has two vertices, one at each end of the major axis; a hyperbola has two vertices, one at the turning point of each branch."
+    },
+    {
+      "id": "parabola",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Parabola",
+      "terms": [
+        "parabola"
+      ],
+      "type": "curve",
+      "statement": "A parabola is the set of all points whose distance from a fixed point, called the focus, is equal to the distance from a fixed line, called the directrix; the point halfway between the focus and the directrix is its vertex.",
+      "forms": [
+        {
+          "id": "eq-parabola-at-origin",
+          "latex": "x^{2}=4py"
+        }
+      ]
+    },
+    {
+      "id": "standard-form-of-a-parabola",
+      "kind": "result",
+      "section": "11.5",
+      "name": "Equation of a parabola in standard form",
+      "terms": [
+        "standard form"
+      ],
+      "statement": "A parabola opening upward with vertex (h, k) and focus (h, k + p) has the equation y = (1/(4p))(x − h)² + k, its standard form; its directrix is y = k − p, and the parabolas opening down, right and left have the analogous standard forms.",
+      "forms": [
+        {
+          "id": "eq-parabola-standard-form",
+          "latex": "y=\\frac{1}{4p}(x-h)^{2}+k"
+        }
+      ]
+    },
+    {
+      "id": "general-form-of-a-conic",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "General form of a conic",
+      "terms": [
+        "general form"
+      ],
+      "statement": "The general form of a conic section is its equation written as a general second-degree equation: ax² + bx + cy + d = 0 or ay² + bx + cy + d = 0 for a parabola, and Ax² + By² + Cx + Dy + E = 0 for an ellipse (A and B of one sign) or a hyperbola (A and B of opposite signs).",
+      "forms": [
+        {
+          "id": "eq-parabola-general-form",
+          "latex": "ax^{2}+bx+cy+d=0\\;\\text{or}\\;ay^{2}+bx+cy+d=0"
+        }
+      ]
+    },
+    {
+      "id": "converting-a-conic-to-standard-form",
+      "kind": "skill",
+      "section": "11.5",
+      "name": "Converting a conic to standard form",
+      "statement": "To put the general form of a conic into standard form, group the x terms and the y terms, factor out their coefficients, and complete the square in each group, adding the same amount to both sides."
+    },
+    {
+      "id": "ellipse",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Ellipse",
+      "terms": [
+        "ellipse"
+      ],
+      "type": "curve",
+      "statement": "An ellipse is the set of all points for which the sum of their distances from two fixed points, the foci, is constant, equal to the length 2a of its major axis."
+    },
+    {
+      "id": "major-axis",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Major axis",
+      "terms": [
+        "major axis",
+        "transverse axis"
+      ],
+      "type": "line",
+      "statement": "The major axis of a conic section passes through the vertex in the case of a parabola or through the two vertices in the case of an ellipse or hyperbola; it is also an axis of symmetry of the conic; also called the transverse axis."
+    },
+    {
+      "id": "minor-axis",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Minor axis",
+      "terms": [
+        "minor axis",
+        "conjugate axis"
+      ],
+      "type": "line",
+      "statement": "The minor axis is perpendicular to the major axis and intersects the major axis at the center of the conic, or at the vertex in the case of the parabola; also called the conjugate axis."
+    },
+    {
+      "id": "standard-form-of-an-ellipse",
+      "kind": "result",
+      "section": "11.5",
+      "name": "Equation of an ellipse in standard form",
+      "statement": "The ellipse with center (h, k), a horizontal major axis of length 2a and a vertical minor axis of length 2b has the equation (x − h)²/a² + (y − k)²/b² = 1, foci (h ± c, k) with c² = a² − b², and directrices x = h ± a²/c; with a vertical major axis, a and b exchange places under (x − h)² and (y − k)².",
+      "forms": [
+        {
+          "id": "eq-ellipse-standard-form",
+          "latex": "\\frac{(x-h)^{2}}{a^{2}}+\\frac{(y-k)^{2}}{b^{2}}=1"
+        },
+        {
+          "id": "eq-ellipse-vertical-standard-form",
+          "latex": "\\frac{(x-h)^{2}}{b^{2}}+\\frac{(y-k)^{2}}{a^{2}}=1"
+        }
+      ]
+    },
+    {
+      "id": "hyperbola",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Hyperbola",
+      "terms": [
+        "hyperbola"
+      ],
+      "type": "curve",
+      "statement": "A hyperbola is the set of all points where the difference between their distances from two fixed points, the foci, is constant, equal to 2a; it has two branches, two directrices and two asymptotes."
+    },
+    {
+      "id": "standard-form-of-a-hyperbola",
+      "kind": "result",
+      "section": "11.5",
+      "name": "Equation of a hyperbola in standard form",
+      "statement": "The hyperbola with center (h, k) and a horizontal major axis has the equation (x − h)²/a² − (y − k)²/b² = 1, foci (h ± c, k) with c² = a² + b², asymptotes y = k ± (b/a)(x − h) and directrices x = h ± a²/c; with a vertical major axis it is (y − k)²/a² − (x − h)²/b² = 1.",
+      "forms": [
+        {
+          "id": "eq-hyperbola-standard-form",
+          "latex": "\\frac{(x-h)^{2}}{a^{2}}-\\frac{(y-k)^{2}}{b^{2}}=1"
+        },
+        {
+          "id": "eq-hyperbola-vertical-standard-form",
+          "latex": "\\frac{(y-k)^{2}}{a^{2}}-\\frac{(x-h)^{2}}{b^{2}}=1"
+        }
+      ]
+    },
+    {
+      "id": "reflective-properties-of-conics",
+      "kind": "idea",
+      "section": "11.5",
+      "name": "Reflective properties of the conic sections",
+      "statement": "Waves coming into a parabolic dish parallel to its axis of symmetry reflect to the focus, and a source at the focus is reflected straight ahead; a ray from one focus of an ellipse passes through the other focus after reflection; a ray directed toward one focus of a hyperbola is reflected by a hyperbolic mirror toward the other focus."
+    },
+    {
+      "id": "eccentricity",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Eccentricity",
+      "terms": [
+        "eccentricity"
+      ],
+      "symbol": "e",
+      "statement": "The eccentricity e of a conic section is the distance from any point on it to its focus divided by the perpendicular distance from that point to the nearest directrix; it is constant on the conic: e = 1 for a parabola, e < 1 for an ellipse and e > 1 for a hyperbola, with e = c/a for an ellipse or hyperbola, and the eccentricity of a circle is zero.",
+      "forms": [
+        {
+          "id": "eq-eccentricity",
+          "latex": "e=\\frac{c}{a}"
+        }
+      ]
+    },
+    {
+      "id": "focal-parameter",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Focal parameter",
+      "terms": [
+        "focal parameter"
+      ],
+      "statement": "The focal parameter p of a conic section is the distance from a focus to the nearest directrix: a(1 − e²)/e for an ellipse, 2a for a parabola and a(e² − 1)/e for a hyperbola."
+    },
+    {
+      "id": "polar-equation-of-a-conic",
+      "kind": "result",
+      "section": "11.5",
+      "name": "Polar equation of a conic section",
+      "statement": "With a focus at the pole, a conic section with eccentricity e and focal parameter p has the polar equation r = ep/(1 ± e cos θ), whose major axis is horizontal, or r = ep/(1 ± e sin θ), whose major axis is vertical.",
+      "forms": [
+        {
+          "id": "eq-polar-conic",
+          "latex": "r=\\frac{ep}{1\\pm e\\cos\\theta}\\;\\text{or}\\;r=\\frac{ep}{1\\pm e\\sin\\theta}"
+        }
+      ]
+    },
+    {
+      "id": "general-equation-of-degree-two",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "General equation of degree two",
+      "statement": "A general equation of degree two has the form Ax² + Bxy + Cy² + Dx + Ey + F = 0; its graph is a conic section, with its axes rotated if B ≠ 0.",
+      "forms": [
+        {
+          "id": "eq-general-degree-two",
+          "latex": "Ax^{2}+Bxy+Cy^{2}+Dx+Ey+F=0"
+        }
+      ]
+    },
+    {
+      "id": "discriminant-of-a-conic",
+      "kind": "definition",
+      "section": "11.5",
+      "name": "Discriminant of a conic section",
+      "terms": [
+        "discriminant"
+      ],
+      "statement": "The value 4AC − B² of a general equation of degree two, used to identify its conic: an ellipse if 4AC − B² > 0, a parabola if it is 0 and a hyperbola if it is negative.",
+      "forms": [
+        {
+          "id": "eq-conic-discriminant",
+          "latex": "4AC-B^{2}"
+        }
+      ]
+    },
+    {
+      "id": "rotation-of-axes",
+      "kind": "result",
+      "section": "11.5",
+      "name": "Rotation of axes",
+      "statement": "The axes of a conic Ax² + Bxy + Cy² + Dx + Ey + F = 0 are rotated by the angle θ with cot 2θ = (A − C)/B; in the rotated coordinates the coefficients are A′ = A cos²θ + B cos θ sin θ + C sin²θ, B′ = 0, C′ = A sin²θ − B sin θ cos θ + C cos²θ, D′ = D cos θ + E sin θ, E′ = −D sin θ + E cos θ and F′ = F.",
+      "forms": [
+        {
+          "id": "eq-rotation-angle",
+          "latex": "\\cot 2\\theta=\\frac{A-C}{B}"
+        }
+      ]
+    },
+    {
+      "id": "graphing-a-rotated-conic",
+      "kind": "skill",
+      "section": "11.5",
+      "name": "Graphing a rotated conic",
+      "statement": "To graph a rotated conic, identify it by the discriminant 4AC − B², determine θ from cot 2θ = (A − C)/B, calculate A′, B′, C′, D′, E′ and F′, rewrite the equation with them, and draw the graph using the rotated equation."
     }
   ],
   "concept_prereqs": [
@@ -11822,6 +12699,382 @@
     {
       "concept": "period-of-a-pendulum",
       "prereq": "binomial-series"
+    },
+    {
+      "concept": "parametric-equations",
+      "prereq": "continuity-over-an-interval"
+    },
+    {
+      "concept": "parameter",
+      "prereq": "parametric-equations"
+    },
+    {
+      "concept": "parametric-curve",
+      "prereq": "parametric-equations"
+    },
+    {
+      "concept": "orientation",
+      "prereq": "parametric-curve"
+    },
+    {
+      "concept": "eliminating-the-parameter",
+      "prereq": "parametric-equations"
+    },
+    {
+      "concept": "eliminating-the-parameter",
+      "prereq": "pythagorean-identities"
+    },
+    {
+      "concept": "parameterization-of-a-curve",
+      "prereq": "parametric-equations"
+    },
+    {
+      "concept": "cycloid",
+      "prereq": "parametric-curve"
+    },
+    {
+      "concept": "cycloid",
+      "prereq": "trigonometric-functions"
+    },
+    {
+      "concept": "hypocycloid",
+      "prereq": "cycloid"
+    },
+    {
+      "concept": "cusp",
+      "prereq": "parametric-curve"
+    },
+    {
+      "concept": "space-filling-curve",
+      "prereq": "hypocycloid"
+    },
+    {
+      "concept": "witch-of-agnesi",
+      "prereq": "parametric-curve"
+    },
+    {
+      "concept": "witch-of-agnesi",
+      "prereq": "trigonometric-functions"
+    },
+    {
+      "concept": "curtate-cycloid",
+      "prereq": "cycloid"
+    },
+    {
+      "concept": "prolate-cycloid",
+      "prereq": "cycloid"
+    },
+    {
+      "concept": "derivative-of-parametric-equations",
+      "prereq": "parametric-equations"
+    },
+    {
+      "concept": "derivative-of-parametric-equations",
+      "prereq": "chain-rule"
+    },
+    {
+      "concept": "second-derivative-of-parametric-equations",
+      "prereq": "derivative-of-parametric-equations"
+    },
+    {
+      "concept": "second-derivative-of-parametric-equations",
+      "prereq": "higher-order-derivative"
+    },
+    {
+      "concept": "area-under-a-parametric-curve",
+      "prereq": "parametric-curve"
+    },
+    {
+      "concept": "area-under-a-parametric-curve",
+      "prereq": "area-under-the-curve"
+    },
+    {
+      "concept": "arc-length-of-a-parametric-curve",
+      "prereq": "parametric-curve"
+    },
+    {
+      "concept": "arc-length-of-a-parametric-curve",
+      "prereq": "arc-length"
+    },
+    {
+      "concept": "arc-length-of-a-parametric-curve",
+      "prereq": "mean-value-theorem"
+    },
+    {
+      "concept": "surface-area-generated-by-a-parametric-curve",
+      "prereq": "arc-length-of-a-parametric-curve"
+    },
+    {
+      "concept": "surface-area-generated-by-a-parametric-curve",
+      "prereq": "surface-area-of-a-surface-of-revolution"
+    },
+    {
+      "concept": "polar-coordinate-system",
+      "prereq": "trigonometric-functions"
+    },
+    {
+      "concept": "radial-coordinate",
+      "prereq": "polar-coordinate-system"
+    },
+    {
+      "concept": "angular-coordinate",
+      "prereq": "polar-coordinate-system"
+    },
+    {
+      "concept": "converting-points-between-coordinate-systems",
+      "prereq": "radial-coordinate"
+    },
+    {
+      "concept": "converting-points-between-coordinate-systems",
+      "prereq": "angular-coordinate"
+    },
+    {
+      "concept": "pole",
+      "prereq": "polar-coordinate-system"
+    },
+    {
+      "concept": "polar-axis",
+      "prereq": "polar-coordinate-system"
+    },
+    {
+      "concept": "polar-equation",
+      "prereq": "radial-coordinate"
+    },
+    {
+      "concept": "polar-equation",
+      "prereq": "angular-coordinate"
+    },
+    {
+      "concept": "plotting-a-curve-in-polar-coordinates",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "parameterization-of-a-polar-curve",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "parameterization-of-a-polar-curve",
+      "prereq": "converting-points-between-coordinate-systems"
+    },
+    {
+      "concept": "parameterization-of-a-polar-curve",
+      "prereq": "parametric-equations"
+    },
+    {
+      "concept": "limacon",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "cardioid",
+      "prereq": "limacon"
+    },
+    {
+      "concept": "rose",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "archimedean-spiral",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "logarithmic-spiral",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "symmetry-in-polar-curves",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "symmetry-in-polar-curves",
+      "prereq": "even-function"
+    },
+    {
+      "concept": "area-of-a-sector",
+      "prereq": "radian"
+    },
+    {
+      "concept": "area-of-a-region-bounded-by-a-polar-curve",
+      "prereq": "area-of-a-sector"
+    },
+    {
+      "concept": "area-of-a-region-bounded-by-a-polar-curve",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "area-of-a-region-bounded-by-a-polar-curve",
+      "prereq": "riemann-sum"
+    },
+    {
+      "concept": "area-between-two-polar-curves",
+      "prereq": "area-of-a-region-bounded-by-a-polar-curve"
+    },
+    {
+      "concept": "arc-length-of-a-polar-curve",
+      "prereq": "arc-length-of-a-parametric-curve"
+    },
+    {
+      "concept": "arc-length-of-a-polar-curve",
+      "prereq": "parameterization-of-a-polar-curve"
+    },
+    {
+      "concept": "conic-section",
+      "prereq": "nappe"
+    },
+    {
+      "concept": "focus",
+      "prereq": "conic-section"
+    },
+    {
+      "concept": "directrix",
+      "prereq": "conic-section"
+    },
+    {
+      "concept": "vertex-of-a-conic-section",
+      "prereq": "conic-section"
+    },
+    {
+      "concept": "parabola",
+      "prereq": "focus"
+    },
+    {
+      "concept": "parabola",
+      "prereq": "directrix"
+    },
+    {
+      "concept": "parabola",
+      "prereq": "vertex-of-a-conic-section"
+    },
+    {
+      "concept": "standard-form-of-a-parabola",
+      "prereq": "parabola"
+    },
+    {
+      "concept": "general-form-of-a-conic",
+      "prereq": "conic-section"
+    },
+    {
+      "concept": "ellipse",
+      "prereq": "focus"
+    },
+    {
+      "concept": "major-axis",
+      "prereq": "vertex-of-a-conic-section"
+    },
+    {
+      "concept": "minor-axis",
+      "prereq": "major-axis"
+    },
+    {
+      "concept": "standard-form-of-an-ellipse",
+      "prereq": "ellipse"
+    },
+    {
+      "concept": "standard-form-of-an-ellipse",
+      "prereq": "minor-axis"
+    },
+    {
+      "concept": "hyperbola",
+      "prereq": "focus"
+    },
+    {
+      "concept": "standard-form-of-a-hyperbola",
+      "prereq": "hyperbola"
+    },
+    {
+      "concept": "standard-form-of-a-hyperbola",
+      "prereq": "minor-axis"
+    },
+    {
+      "concept": "standard-form-of-a-hyperbola",
+      "prereq": "oblique-asymptote"
+    },
+    {
+      "concept": "converting-a-conic-to-standard-form",
+      "prereq": "general-form-of-a-conic"
+    },
+    {
+      "concept": "converting-a-conic-to-standard-form",
+      "prereq": "standard-form-of-a-parabola"
+    },
+    {
+      "concept": "converting-a-conic-to-standard-form",
+      "prereq": "standard-form-of-an-ellipse"
+    },
+    {
+      "concept": "converting-a-conic-to-standard-form",
+      "prereq": "standard-form-of-a-hyperbola"
+    },
+    {
+      "concept": "reflective-properties-of-conics",
+      "prereq": "parabola"
+    },
+    {
+      "concept": "reflective-properties-of-conics",
+      "prereq": "ellipse"
+    },
+    {
+      "concept": "reflective-properties-of-conics",
+      "prereq": "hyperbola"
+    },
+    {
+      "concept": "eccentricity",
+      "prereq": "parabola"
+    },
+    {
+      "concept": "eccentricity",
+      "prereq": "ellipse"
+    },
+    {
+      "concept": "eccentricity",
+      "prereq": "hyperbola"
+    },
+    {
+      "concept": "focal-parameter",
+      "prereq": "eccentricity"
+    },
+    {
+      "concept": "polar-equation-of-a-conic",
+      "prereq": "focal-parameter"
+    },
+    {
+      "concept": "polar-equation-of-a-conic",
+      "prereq": "polar-equation"
+    },
+    {
+      "concept": "general-equation-of-degree-two",
+      "prereq": "conic-section"
+    },
+    {
+      "concept": "discriminant-of-a-conic",
+      "prereq": "general-equation-of-degree-two"
+    },
+    {
+      "concept": "discriminant-of-a-conic",
+      "prereq": "parabola"
+    },
+    {
+      "concept": "discriminant-of-a-conic",
+      "prereq": "ellipse"
+    },
+    {
+      "concept": "discriminant-of-a-conic",
+      "prereq": "hyperbola"
+    },
+    {
+      "concept": "rotation-of-axes",
+      "prereq": "general-equation-of-degree-two"
+    },
+    {
+      "concept": "rotation-of-axes",
+      "prereq": "double-angle-formulas"
+    },
+    {
+      "concept": "graphing-a-rotated-conic",
+      "prereq": "rotation-of-axes"
+    },
+    {
+      "concept": "graphing-a-rotated-conic",
+      "prereq": "discriminant-of-a-conic"
     }
   ],
   "colours": {

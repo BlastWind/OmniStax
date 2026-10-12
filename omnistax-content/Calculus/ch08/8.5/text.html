@@ -1,0 +1,196 @@
+<p id="linear-intro">Earlier, we studied an application of a first-order <span data-concept="differential-equation">differential equation</span> that involved solving for the velocity of an object. In particular, if a ball is thrown upward with an initial velocity of $v_{0}$ ft/s, then an <span data-concept="initial-value-problem">initial-value problem</span> that describes the velocity of the ball after $t$ seconds is given by</p>
+$$\kdvdt=-32,\;\kv(0)=v_{0}.$$
+<p>This model assumes that the only force acting on the ball is gravity. Now we add to the problem by allowing for the possibility of air resistance acting on the ball.</p>
+<p>Air resistance always acts in the direction opposite to motion. Therefore if an object is rising, air resistance acts in a downward direction. If the object is falling, air resistance acts in an upward direction (Figure 8.24). There is no exact relationship between the velocity of an object and the air resistance acting on it. For very small objects, air resistance is proportional to velocity; that is, the force due to air resistance is numerically equal to some constant $k$ times $\kv.$ For larger (e.g., baseball-sized) objects, depending on the shape, air resistance can be approximately proportional to the square of the velocity. In fact, air resistance may be proportional to $\kv^{1.5},$ or $\kv^{0.9},$ or some other power of $\kv.$</p>
+<figure class="sim" id="sim-air-resistance" data-figure="8.24" data-original="/media/ch08/CNX_Calc_Figure_08_05_001.jpg" data-original-caption="Forces acting on a moving baseball: gravity acts in a downward direction and air resistance acts in a direction opposite to the direction of motion.">
+  <div class="sim-head"><span class="eyebrow">Figure 8.24</span><span>Forces acting on a moving baseball: gravity acts in a downward direction and air resistance acts in a direction opposite to the direction of motion. Here the racquetball of Example 8.18, hit upward at $2$ m/s from $1$ m, whose velocity approaches the terminal velocity $-\frac{mg}{k}.$</span></div>
+</figure>
+<p>We will work with the linear approximation for air resistance. If we assume $k\gt 0,$ then the expression for the force $F_{A}$ due to air resistance is given by $F_{A}=-k\kv.$ Therefore the sum of the forces acting on the object is equal to the sum of the gravitational force and the force due to air resistance. This, in turn, is equal to the mass of the object multiplied by its acceleration at time $t$ (Newton’s second law). This gives us the <span data-concept="differential-equation">differential equation</span></p>
+$$m\kdvdt=-k\kv-mg.$$
+<p>Finally, we impose an <span data-concept="initial-value">initial condition</span> $\kv(0)=v_{0},$ where $v_{0}$ is the initial velocity measured in meters per second. This makes $g=9.8{\;\text{m/s}}^{2}.$ The <span data-concept="initial-value-problem">initial-value problem</span> becomes</p>
+$$m\kdvdt=-k\kv-mg,\;\kv(0)=v_{0}.\tag{8.13}$$
+<section id="linear-equations">
+<h2>Linear Equations</h2>
+<p>The <span data-concept="differential-equation">differential equation</span> in this <span data-concept="initial-value-problem">initial-value problem</span> is an example of a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. (Recall that a <span data-concept="differential-equation">differential equation</span> is first-order if the highest-order <span data-concept="derivative">derivative</span> that appears in the equation is $1.)$ In this section, we study <span data-concept="first-order-linear-differential-equation">first-order linear equations</span> and examine a method for finding a <span data-concept="general-solution">general solution</span> to these types of equations, as well as solving <span data-concept="initial-value-problem">initial-value problems</span> involving them.</p>
+<div class="note" id="linear-definition">
+<div class="eyebrow">Definition</div>
+<p>A first-order <span data-concept="differential-equation">differential equation</span> is <strong><span data-concept="first-order-linear-differential-equation">linear</span></strong> if it can be written in the form</p>
+$$a(x)\kyprime+b(x)\kyfn=c(x),\tag{8.14}$$
+<p>where $a(x),b(x),$ and $c(x)$ are arbitrary <span data-concept="function">functions</span> of $x.$</p>
+</div>
+<p>Remember that the unknown <span data-concept="function">function</span> $\kyfn$ depends on the variable $x;$ that is, $x$ is the independent variable and $\kyfn$ is the dependent variable. Some examples of <span data-concept="first-order-linear-differential-equation">first-order linear differential equations</span> are</p>
+$$\begin{aligned}(3x^{2}-4)\kyprime+(x-3)\kyfn &= \sin x \\ (\sin x)\kyprime-(\cos x)\kyfn &= \cot x \\ 4x\kyprime+(3\;\ln x)\kyfn &= x^{3}-4x.\end{aligned}$$
+<p>Examples of first-order nonlinear <span data-concept="differential-equation">differential equations</span> include</p>
+$$\begin{aligned}{(\kyprime)}^{4}-{(\kyprime)}^{3} &= (3x-2)(\kyfn+4) \\ 4\kyprime+3\kyfn^{3} &= 4x-5 \\ {(\kyprime)}^{2} &= \sin \kyfn+\cos x.\end{aligned}$$
+<p>These equations are nonlinear because of terms like ${(\kyprime)}^{4},\kyfn^{3},$ etc. Due to these terms, it is impossible to put these equations into the same form as Equation 8.14.</p>
+</section>
+
+<section id="standard-form">
+<h2>Standard Form</h2>
+<p>Consider the <span data-concept="differential-equation">differential equation</span></p>
+$$(3x^{2}-4)\kyprime+(x-3)\kyfn=\sin x.$$
+<p>Our main goal in this section is to derive a solution method for equations of this form. It is useful to have the coefficient of $\kyprime$ be equal to $1.$ To make this happen, we divide both sides by $3x^{2}-4.$</p>
+$$\kyprime+(\frac{x-3}{3x^{2}-4})\;\kyfn=\frac{\sin x}{3x^{2}-4}$$
+<p>This is called the <strong><span data-concept="standard-form-of-a-linear-equation">standard form</span></strong> of the <span data-concept="differential-equation">differential equation</span>. We will use it later when finding the solution to a general <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. Returning to Equation 8.14, we can divide both sides of the equation by $a(x).$ This leads to the equation</p>
+$$\kyprime+\frac{b(x)}{a(x)}\kyfn=\frac{c(x)}{a(x)}.\tag{8.15}$$
+<p>Now define $\kp(x)=\frac{b(x)}{a(x)}$ and $\kq(x)=\frac{c(x)}{a(x)}.$ Then Equation 8.14 becomes</p>
+$$\kyprime+\kp(x)\kyfn=\kq(x).\tag{8.16}$$
+<p>We can write any <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span> in this form, and this is referred to as the <span data-concept="standard-form-of-a-linear-equation">standard form</span> for a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>.</p>
+<div class="example" id="fs-id1170572447597">
+<h3>Example 8.15 · Writing First-Order Linear Equations in Standard Form</h3>
+<p>Put each of the following <span data-concept="first-order-linear-differential-equation">first-order linear differential equations</span> into <span data-concept="standard-form-of-a-linear-equation">standard form</span>. Identify $\kp(x)$ and $\kq(x)$ for each equation.</p>
+<ol type="a"><li>$\kyprime=3x-4\kyfn$</li><li>$\frac{3x\kyprime}{4\kyfn-3}=2$ (here $x\ne0)$</li><li>$\kyfn=3\kyprime-4x^{2}+5$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Add $4\kyfn$ to both sides: $$\kyprime+4\kyfn=3x.$$</li></ol>
+<p>In this equation, $\kp(x)=4$ and $\kq(x)=3x.$</p>
+<ol type="a" start="2"><li>Multiply both sides by $4\kyfn-3,$ then subtract $8\kyfn$ from each side: $$\begin{aligned}\frac{3x\kyprime}{4\kyfn-3} &= 2 \\ 3x\kyprime &= 2(4\kyfn-3) \\ 3x\kyprime &= 8\kyfn-6 \\ 3x\kyprime-8\kyfn &= -6.\end{aligned}$$</li></ol>
+<p>Finally, divide both sides by $3x$ to make the coefficient of $\kyprime$ equal to $1\text{:}$</p>
+$$\kyprime-\frac{8}{3x}\kyfn=-\frac{2}{x}.\tag{8.17}$$
+<p>This is allowable because in the original statement of this problem we assumed that $x\ne0.$ (If $x=0$ then the original equation becomes $0=2,$ which is clearly a false statement.)</p>
+<p>In this equation, $\kp(x)=-\frac{8}{3x}$ and $\kq(x)=-\frac{2}{x}.$</p>
+<ol type="a" start="3"><li>Subtract $\kyfn$ from each side and add $4x^{2}-5\text{:}$ $$3\kyprime-\kyfn=4x^{2}-5.$$</li></ol>
+<p>Next divide both sides by $3\text{:}$</p>
+$$\kyprime-\frac{1}{3}\kyfn=\frac{4}{3}x^{2}-\frac{5}{3}.$$
+<p>In this equation, $\kp(x)=-\frac{1}{3}$ and $\kq(x)=\frac{4}{3}x^{2}-\frac{5}{3}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170572447597"></div>
+</section>
+
+<section id="integrating-factors">
+<h2>Integrating Factors</h2>
+<p>We now develop a solution technique for any <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. We start with the <span data-concept="standard-form-of-a-linear-equation">standard form</span> of a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>:</p>
+$$\kyprime+\kp(x)\kyfn=\kq(x).\tag{8.18}$$
+<p>The first term on the left-hand side of Equation 8.15 is the <span data-concept="derivative">derivative</span> of the unknown <span data-concept="function">function</span>, and the second term is the product of a known <span data-concept="function">function</span> with the unknown <span data-concept="function">function</span>. This is somewhat reminiscent of the <span data-concept="product-rule">product rule</span> from the <a href="/calculus/ch03/3.3/">Differentiation Rules</a> section. If we multiply Equation 8.16 by a yet-to-be-determined <span data-concept="function">function</span> $\kmu(x),$ then the equation becomes</p>
+$$\kmu(x)\kyprime+\kmu(x)\kp(x)\kyfn=\kmu(x)\kq(x).\tag{8.19}$$
+<p>The left-hand side Equation 8.18 can be matched perfectly to the <span data-concept="product-rule">product rule</span>:</p>
+$$\frac{d}{dx}[\kf(x)\kg(x)]=\kfprime(x)\kg(x)+\kf(x)\kgprime(x).$$
+<p>Matching term by term gives $\kyfn=\kf(x),\kg(x)=\kmu(x),$ and $\kgprime(x)=\kmu(x)\kp(x).$ Taking the <span data-concept="derivative">derivative</span> of $\kg(x)=\kmu(x)$ and setting it equal to the right-hand side of $\kgprime(x)=\kmu(x)\kp(x)$ leads to</p>
+$$\kmuprime(x)=\kmu(x)\kp(x).$$
+<p>This is a first-order, <span data-concept="separable-differential-equation">separable</span> <span data-concept="differential-equation">differential equation</span> for $\kmu(x).$ We know $\kp(x)$ because it appears in the <span data-concept="differential-equation">differential equation</span> we are solving. Separating variables and integrating yields</p>
+$$\begin{aligned}\frac{\kmuprime(x)}{\kmu(x)} &= \kp(x) \\ \int \frac{\kmuprime(x)}{\kmu(x)}dx &= \int \kp(x)\;dx \\ \ln|\kmu(x)| &= \int \kp(x)\;dx+C \\ e^{\ln|\kmu(x)|} &= e^{\int \kp(x)\;dx+C} \\ |\kmu(x)| &= C_{1}e^{\int \kp(x)\;dx} \\ \kmu(x) &= C_{2}e^{\int \kp(x)\;dx}.\end{aligned}$$
+<p>Here $C_{2}$ can be an arbitrary (positive or negative) constant. This leads to a general method for solving a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. We first multiply both sides of Equation 8.16 by the <strong><span data-concept="integrating-factor">integrating factor</span></strong> $\kmu(x).$ This gives</p>
+$$\kmu(x)\kyprime+\kmu(x)\kp(x)\kyfn=\kmu(x)\kq(x).\tag{8.20}$$
+<p>The left-hand side of Equation 8.20 can be rewritten as $\frac{d}{dx}(\kmu(x)\kyfn).$</p>
+$$\frac{d}{dx}(\kmu(x)\kyfn)=\kmu(x)\kq(x).\tag{8.21}$$
+<p>Next integrate both sides of Equation 8.21 with respect to $x.$</p>
+$$\begin{aligned}\int \frac{d}{dx}(\kmu(x)\kyfn)\;dx &= \int \kmu(x)\kq(x)\;dx \\ \kmu(x)\kyfn &= \int \kmu(x)\kq(x)\;dx.\end{aligned}\tag{8.22}$$
+<p>Divide both sides of Equation 8.22 by $\kmu(x)\text{:}$</p>
+$$\kyfn=\frac{1}{\kmu(x)}[\int \kmu(x)\kq(x)\;dx+C].\tag{8.23}$$
+<p>Since $\kmu(x)$ was previously calculated, we are now finished. An important note about the integrating constant $C\text{:}$ It may seem that we are inconsistent in the usage of the integrating constant. However, the integral involving $\kp(x)$ is necessary in order to find an <span data-concept="integrating-factor">integrating factor</span> for Equation 8.15. Only one <span data-concept="integrating-factor">integrating factor</span> is needed in order to solve the equation; therefore, it is safe to assign a value for $C$ for this integral. We chose $C=0.$ When calculating the integral inside the brackets in Equation 8.21, it is necessary to keep our options open for the value of the integrating constant, because our goal is to find a general <span data-concept="general-solution">family of solutions</span> to Equation 8.15. This <span data-concept="integrating-factor">integrating factor</span> guarantees just that.</p>
+<div class="note" id="linear-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Solving a First-order Linear Differential Equation</h3>
+<ol><li>Put the equation into <span data-concept="standard-form-of-a-linear-equation">standard form</span> and identify $\kp(x)$ and $\kq(x).$</li><li>Calculate the <span data-concept="integrating-factor">integrating factor</span> $\kmu(x)=e^{\int \kp(x)\;dx}.$</li><li>Multiply both sides of the <span data-concept="differential-equation">differential equation</span> by $\kmu(x).$</li><li>Integrate both sides of the equation obtained in step $3,$ and divide both sides by $\kmu(x).$</li><li>If there is an <span data-concept="initial-value">initial condition</span>, determine the value of $C.$</li></ol>
+</div>
+<div class="example" id="fs-id1170572539811">
+<h3>Example 8.16 · Solving a First-order Linear Equation</h3>
+<p>Find a <span data-concept="general-solution">general solution</span> for the <span data-concept="differential-equation">differential equation</span> $x\kyprime+3\kyfn=4x^{2}-3x.$ Assume $x\gt 0.$</p>
+<h4>Solution</h4>
+<ol><li>To put this <span data-concept="differential-equation">differential equation</span> into <span data-concept="standard-form-of-a-linear-equation">standard form</span>, divide both sides by $x\text{:}$ $$\kyprime+\frac{3}{x}\kyfn=4x-3.$$ Therefore $\kp(x)=\frac{3}{x}$ and $\kq(x)=4x-3.$</li><li>The <span data-concept="integrating-factor">integrating factor</span> is $\kmu(x)=e^{\int (3/x)\;dx}=e^{3\;\ln x}=x^{3}.$</li><li>Multiplying both sides of the <span data-concept="differential-equation">differential equation</span> by $\kmu(x)$ gives us $$\begin{aligned}x^{3}\kyprime+x^{3}(\frac{3}{x})\kyfn &= x^{3}(4x-3) \\ x^{3}\kyprime+3x^{2}\kyfn &= 4x^{4}-3x^{3} \\ \frac{d}{dx}(x^{3}\kyfn) &= 4x^{4}-3x^{3}.\end{aligned}$$</li><li>Integrate both sides of the equation. $$\begin{aligned}\int \frac{d}{dx}(x^{3}\kyfn)dx &= \int 4x^{4}-3x^{3}dx \\ x^{3}\kyfn &= \frac{4x^{5}}{5}-\frac{3x^{4}}{4}+C \\ \kyfn &= \frac{4x^{2}}{5}-\frac{3x}{4}+Cx^{-3}.\end{aligned}$$</li><li>There is no <span data-concept="initial-value">initial value</span>, so the problem is complete.</li></ol>
+<h4>Analysis</h4>
+<p>You may have noticed the condition that was imposed on the <span data-concept="differential-equation">differential equation</span>; namely, $x\gt 0.$ For any nonzero value of $C,$ the <span data-concept="general-solution">general solution</span> is not defined at $x=0.$ Furthermore, when $x\lt 0,$ the <span data-concept="integrating-factor">integrating factor</span> changes. The <span data-concept="integrating-factor">integrating factor</span> is given by Equation 8.19 as $\kmu(x)=e^{\int \kp(x)dx}.$ For this $\kp(x)$ we get</p>
+$$e^{\int \kp(x)\;dx=}e^{\int (3/x)dx}=e^{3\;\ln|x|}={|x|}^{3},$$
+<p>since $x\lt 0.$ The behavior of the <span data-concept="general-solution">general solution</span> changes at $x=0$ largely due to the fact that $\kp(x)$ is not defined there.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572539811"></div>
+<p>Now we use the same strategy to find the solution to an <span data-concept="initial-value-problem">initial-value problem</span>.</p>
+<div class="example" id="fs-id1170572611128">
+<h3>Example 8.17 · A First-order Linear Initial-Value Problem</h3>
+<p>Solve the <span data-concept="initial-value-problem">initial-value problem</span></p>
+$$\kyprime+3\kyfn=2x-1,\;\kyfn(0)=3.$$
+<h4>Solution</h4>
+<ol><li>This <span data-concept="differential-equation">differential equation</span> is already in <span data-concept="standard-form-of-a-linear-equation">standard form</span> with $\kp(x)=3$ and $\kq(x)=2x-1.$</li><li>The <span data-concept="integrating-factor">integrating factor</span> is $\kmu(x)=e^{\int 3dx}=e^{3x}.$</li><li>Multiplying both sides of the <span data-concept="differential-equation">differential equation</span> by $\kmu(x)$ gives $$\begin{aligned}e^{3x}\kyprime+3e^{3x}\kyfn &= (2x-1)e^{3x} \\ \frac{d}{dx}[ye^{3x}] &= (2x-1)e^{3x}.\end{aligned}$$</li></ol>
+<p>Integrate both sides of the equation:</p>
+$$\begin{aligned}\int \frac{d}{dx}[ye^{3x}]dx &= \int (2x-1)e^{3x}dx \\ ye^{3x} &= \frac{e^{3x}}{3}(2x-1)-\int \frac{2}{3}e^{3x}dx \\ ye^{3x} &= \frac{e^{3x}(2x-1)}{3}-\frac{2e^{3x}}{9}+C \\ \kyfn &= \frac{2x-1}{3}-\frac{2}{9}+Ce^{-3x} \\ \kyfn &= \frac{2x}{3}-\frac{5}{9}+Ce^{-3x}.\end{aligned}$$
+<ol><li>Now substitute $x=0$ and $\kyfn=3$ into the <span data-concept="general-solution">general solution</span> and solve for $C\text{:}$ $$\begin{aligned}\kyfn &= \frac{2}{3}x-\frac{5}{9}+Ce^{-3x} \\ 3 &= \frac{2}{3}(0)-\frac{5}{9}+Ce^{-3(0)} \\ 3 &= -\frac{5}{9}+C \\ C &= \frac{32}{9}.\end{aligned}$$</li></ol>
+<p>Therefore the solution to the <span data-concept="initial-value-problem">initial-value problem</span> is</p>
+$$\kyfn=\frac{2}{3}x-\frac{5}{9}+\frac{32}{9}e^{-3x}.$$
+</div>
+<div class="exercises" data-place="fs-id1170572611128"></div>
+</section>
+
+<section id="applications">
+<h2>Applications of First-order Linear Differential Equations</h2>
+<p>We look at two different applications of <span data-concept="first-order-linear-differential-equation">first-order linear differential equations</span>. The first involves air resistance as it relates to objects that are rising or falling; the second involves an electrical circuit. Other applications are numerous, but most are solved in a similar fashion.</p>
+<h3 id="free-fall">Free fall with air resistance</h3>
+<p>We discussed air resistance at the beginning of this section. The next example shows how to apply this concept for a ball in vertical motion. Other factors can affect the force of air resistance, such as the size and shape of the object, but we ignore them here.</p>
+<div class="example" id="fs-id1170571829525">
+<h3>Example 8.18 · A Ball with Air Resistance</h3>
+<p>A racquetball is hit straight upward with an initial velocity of $2$ m/s. The mass of a racquetball is approximately $0.0427$ kg. Air resistance acts on the ball with a force numerically equal to $0.5\kv,$ where $\kv$ represents the velocity of the ball at time $t.$</p>
+<ol type="a"><li>Find the velocity of the ball as a <span data-concept="function">function</span> of time.</li><li>How long does it take for the ball to reach its maximum height?</li><li>If the ball is hit from an initial height of $1$ meter, how high will it reach?</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>The mass $m=0.0427\;\text{kg},k=0.5,$ and $g=9.8{\;\text{m/s}}^{2}.$ The initial velocity is $v_{0}=2$ m/s. Therefore the <span data-concept="initial-value-problem">initial-value problem</span> is $$0.0427\kdvdt=-0.5\kv-0.0427(9.8),\;v_{0}=2.$$</li></ol>
+<p>Dividing the <span data-concept="differential-equation">differential equation</span> by $0.0427$ gives</p>
+$$\kdvdt=-11.7096\kv-9.8,\;v_{0}=2.$$
+<p>The <span data-concept="differential-equation">differential equation</span> is linear. Using the problem-solving strategy for linear <span data-concept="differential-equation">differential equations</span>:</p>
+<p>Step 1. Rewrite the <span data-concept="differential-equation">differential equation</span> as $\kdvdt+11.7096\kv=-9.8.$ This gives $\kp(t)=11.7096$ and $q(t)=-9.8$</p>
+<p>Step 2. The <span data-concept="integrating-factor">integrating factor</span> is $\kmu(t)=e^{\int 11.7096dt}=e^{11.7096t}.$</p>
+<p>Step 3. Multiply the <span data-concept="differential-equation">differential equation</span> by $\kmu(t)\text{:}$</p>
+$$\begin{aligned}e^{11.7096t}\kdvdt+11.7096ve^{11.7096t} &= -9.8e^{11.7096t} \\ \frac{d}{dt}[ve^{11.7096t}] &= -9.8e^{11.7096t}.\end{aligned}$$
+<p>Step 4. Integrate both sides:</p>
+$$\begin{aligned}\int \frac{d}{dt}[ve^{11.7096t}]\;dt &= \int -9.8e^{11.7096t}dt \\ ve^{11.7096t} &= \frac{-9.8}{11.7096}e^{11.7096t}+C \\ \kv(t) &= -0.8369+Ce^{-11.7096t}.\end{aligned}$$
+<p>Step 5. Solve for $C$ using the <span data-concept="initial-value">initial condition</span> $v_{0}=\kv(0)=2\text{:}$</p>
+$$\begin{aligned}\kv(t) &= -0.8369+Ce^{-11.7096t} \\ \kv(0) &= -0.8369+Ce^{-11.7096(0)} \\ 2 &= -0.8369+C \\ C &= 2.8369.\end{aligned}$$
+<p>Therefore the solution to the <span data-concept="initial-value-problem">initial-value problem</span> is $\kv(t)=2.8369e^{-11.7096t}-0.8369.$</p>
+<ol type="a" start="2"><li>The ball reaches its maximum height when the velocity is equal to zero. The reason is that when the velocity is positive, it is rising, and when it is negative, it is falling. Therefore when it is zero, it is neither rising nor falling, and is at its maximum height: $$\begin{aligned}2.8369e^{-11.7096t}-0.8369 &= 0 \\ 2.8369e^{-11.7096t} &= 0.8369 \\ e^{-11.7096t} &= \frac{0.8369}{2.8369}\approx 0.295 \\ \ln e^{-11.7096t} &= \ln0.295\approx -1.221 \\ -11.7096t &= -1.221 \\ t &\approx 0.104.\end{aligned}$$</li></ol>
+<p>Therefore it takes approximately $0.104$ second to reach maximum height.</p>
+<ol type="a" start="3"><li>To find the height of the ball as a <span data-concept="function">function</span> of time, use the fact that the <span data-concept="derivative">derivative</span> of position is velocity, i.e., if $h(t)$ represents the height at time $t,$ then $h'(t)=\kv(t).$ Because we know $\kv(t)$ and the initial height, we can form an <span data-concept="initial-value-problem">initial-value problem</span>: $$h'(t)=2.8369e^{-11.7096t}-0.8369,\;h(0)=1.$$</li></ol>
+<p>Integrating both sides of the <span data-concept="differential-equation">differential equation</span> with respect to $t$ gives</p>
+$$\begin{aligned}\int h'(t)\;dt &= \int 2.8369e^{-11.7096t}-0.8369dt \\ h(t) &= -\frac{2.8369}{11.7096}e^{-11.7096t}-0.8369t+C \\ h(t) &= -0.2423e^{-11.7096t}-0.8369t+C.\end{aligned}$$
+<p>Solve for $C$ by using the <span data-concept="initial-value">initial condition</span>:</p>
+$$\begin{aligned}h(t) &= -0.2423e^{-11.7096t}-0.8369t+C \\ h(0) &= -0.2423e^{-11.7096(0)}-0.8369(0)+C \\ 1 &= -0.2423+C \\ C &= 1.2423.\end{aligned}$$
+<p>Therefore</p>
+$$h(t)=-0.2423e^{-11.7096t}-0.8369t+1.2423.$$
+<p>After $0.104$ second, the height is given by</p>
+<p>$h(0.104)=-0.2423e^{-11.7096t}-0.8369t+1.2423\approx 1.0836$ meter.</p>
+</div>
+<div class="exercises" data-place="fs-id1170571829525"></div>
+<h3 id="electrical-circuits">Electrical Circuits</h3>
+<p>A source of electromotive force (e.g., a battery or generator) produces a flow of current in a closed circuit, and this current produces a voltage drop across each resistor, inductor, and capacitor in the circuit. <span data-concept="kirchhoffs-loop-rule">Kirchhoff’s Loop Rule</span> states that the sum of the voltage drops across resistors, inductors, and capacitors is equal to the total electromotive force in a closed circuit. We have the following three results:</p>
+<ol><li>The voltage drop across a resistor is given by $$E_{R}=Ri,$$ where $R$ is a constant of proportionality called the <em>resistance,</em> and $i$ is the current.</li><li>The voltage drop across an inductor is given by $$E_{L}=Li',$$ where $L$ is a constant of proportionality called the <em>inductance</em>, and $i$ again denotes the current.</li><li>The voltage drop across a capacitor is given by $$E_{C}=\frac{1}{C}q,$$</li></ol>
+<p>where $C$ is a constant of proportionality called the <em>capacitance</em>, and $q$ is the instantaneous charge on the capacitor. The relationship between $i$ and $q$ is $i=q'.$</p>
+<p>We use units of volts $(\text{V})$ to measure voltage $E,$ amperes $(\text{A})$ to measure current $i,$ coulombs $(\text{C})$ to measure charge $q,$ ohms $(\text{Ω})$ to measure resistance $R,$ henrys $(\text{H})$ to measure inductance $L,$ and farads $(\text{F})$ to measure capacitance $C.$ Consider the circuit in Figure 8.25.</p>
+<figure class="sim" id="fig-circuit" data-figure="8.25" data-original="/media/ch08/CNX_Calc_Figure_08_05_003.jpg" data-original-caption="A typical electric circuit, containing a voltage generator (V_S), capacitor (C), inductor (L), and resistor (R).">
+  <div class="sim-head"><span class="eyebrow">Figure 8.25</span><span>A typical electric circuit, containing a voltage generator $(V_{S}),$ capacitor $(C),$ inductor $(L),$ and resistor $(R).$</span></div>
+</figure>
+<p>Applying <span data-concept="kirchhoffs-loop-rule">Kirchhoff’s Loop Rule</span> to this circuit, we let $E$ denote the electromotive force supplied by the voltage generator. Then</p>
+$$E_{L}+E_{R}+E_{C}=E.$$
+<p>Substituting the expressions for $E_{L},E_{R},$ and $E_{C}$ into this equation, we obtain</p>
+$$Li'+Ri+\frac{1}{C}q=E.\tag{8.24}$$
+<p>If there is no capacitor in the circuit, then the equation becomes</p>
+$$Li'+Ri=E.\tag{8.25}$$
+<p>This is a first-order <span data-concept="differential-equation">differential equation</span> in $i.$ The circuit is referred to as an $LR$ circuit.</p>
+<p>Next, suppose there is no inductor in the circuit, but there is a capacitor and a resistor, so $L=0,R\ne0,$ and $C\ne0.$ Then Equation 8.23<sup class="fn" data-note="rc-equation"></sup> can be rewritten as</p>
+$$Rq'+\frac{1}{C}q=E,\tag{8.26}$$
+<p>which is a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. This is referred to as an <em>RC</em> circuit. In either case, we can set up and solve an <span data-concept="initial-value-problem">initial-value problem</span>.</p>
+<div class="example" id="fs-id1170571553391">
+<h3>Example 8.19 · Finding Current in an <em>RL</em> Electric Circuit</h3>
+<p>A circuit has in series an electromotive force given by $E=50\;\sin20t\;\text{V},$ a resistor of $5\text{Ω},$ and an inductor of $0.4\;\text{H}.$ If the initial current is $0,$ find the current at time $t\gt 0.$</p>
+<h4>Solution</h4>
+<p>We have a resistor and an inductor in the circuit, so we use Equation 8.24. The voltage drop across the resistor is given by $E_{R}=Ri=5i.$ The voltage drop across the inductor is given by $E_{L}=Li'=0.4i'.$ The electromotive force becomes the right-hand side of Equation 8.24. Therefore Equation 8.24 becomes</p>
+$$0.4i'+5i=50\;\sin20t.$$
+<p>Dividing both sides by $0.4$ gives the equation</p>
+$$i'+12.5i=125\;\sin20t.$$
+<p>Since the initial current is 0, this result gives an <span data-concept="initial-value">initial condition</span> of $i(0)=0.$ We can solve this <span data-concept="initial-value-problem">initial-value problem</span> using the five-step strategy for solving first-order <span data-concept="differential-equation">differential equations</span>.</p>
+<p>Step 1. Rewrite the <span data-concept="differential-equation">differential equation</span> as $i'+12.5i=125\;\sin20t.$ This gives $\kp(t)=12.5$ and $q(t)=125\;\sin20t.$</p>
+<p>Step 2. The <span data-concept="integrating-factor">integrating factor</span> is $\kmu(t)=e^{\int 12.5dt}=e^{12.5t}.$</p>
+<p>Step 3. Multiply the <span data-concept="differential-equation">differential equation</span> by $\kmu(t)\text{:}$</p>
+$$\begin{aligned}e^{12.5t}i'+12.5e^{12.5t}i &= 125e^{12.5t}\sin20t \\ \frac{d}{dt}\;[ie^{12.5t}] &= 125e^{12.5t}\sin20t.\end{aligned}$$
+<p>Step 4. Integrate both sides:</p>
+$$\begin{aligned}\int \frac{d}{dt}\;[ie^{12.5t}]\;dt &= \int 125e^{12.5t}\sin20t\;dt \\ ie^{12.5t} &= (\frac{250\;\sin20t-400\;\cos20t}{89})\;e^{12.5t}+C \\ i(t) &= \frac{250\;\sin20t-400\;\cos20t}{89}+Ce^{-12.5t}.\end{aligned}$$
+<p>Step 5. Solve for $C$ using the <span data-concept="initial-value">initial condition</span> $\kv(0)=2\text{:}$<sup class="fn" data-note="rl-initial"></sup></p>
+$$\begin{aligned}i(t) &= \frac{250\;\sin20t-400\;\cos20t}{89}+Ce^{-12.5t} \\ i(0) &= \frac{250\;\sin20(0)-400\;\cos20(0)}{89}+Ce^{-12.5(0)} \\ 0 &= -\frac{400}{89}+C \\ C &= \frac{400}{89}.\end{aligned}$$
+<p>Therefore the solution to the <span data-concept="initial-value-problem">initial-value problem</span> is $i(t)=\frac{250\;\sin20t-400\;\cos20t+400e^{-12.5t}}{89}=\frac{250\;\sin20t-400\;\cos20t}{89}+\frac{400e^{-12.5t}}{89}.$</p>
+<p>The first term can be rewritten as a single cosine <span data-concept="function">function</span>. First, multiply and divide by $\sqrt{{250}^{2}+{400}^{2}}=50\sqrt{89}\text{:}$</p>
+$$\begin{aligned}\frac{250\;\sin20t-400\;\cos20t}{89} &=\frac{50\sqrt{89}}{89}(\frac{250\;\sin20t-400\;\cos20t}{50\sqrt{89}}) \\ &=-\frac{50\sqrt{89}}{89}(\frac{8\;\cos20t}{\sqrt{89}}-\frac{5\;\sin20t}{\sqrt{89}}).\end{aligned}$$
+<p>Next, define $\varphi$ to be an acute angle such that $\cos\varphi =\frac{8}{\sqrt{89}}.$ Then $\sin\varphi =\frac{5}{\sqrt{89}}$ and</p>
+$$\begin{aligned}-\frac{50\sqrt{89}}{89}(\frac{8\;\cos20t}{\sqrt{89}}-\frac{5\;\sin20t}{\sqrt{89}}) &=-\frac{50\sqrt{89}}{89}\;(\cos\varphi \;\cos20t-\sin\varphi \;\sin20t) \\ &=-\frac{50\sqrt{89}}{89}\cos(20t+\varphi ).\end{aligned}$$
+<p>Therefore the solution can be written as</p>
+$$i(t)=-\frac{50\sqrt{89}}{89}\;\cos(20t+\varphi )+\frac{400e^{-12.5t}}{89}.$$
+<p>The second term is called the <em>attenuation</em> term, because it disappears rapidly as <em>t</em> grows larger. The phase shift is given by $\varphi ,$ and the amplitude of the steady-state current is given by $\frac{50\sqrt{89}}{89}.$ The graph of this solution appears in Figure 8.26:</p>
+<figure class="sim" id="fig-rl-current" data-figure="8.26" data-original="/media/ch08/CNX_Calc_Figure_08_05_004.jpg" data-original-caption="">
+  <div class="sim-head"><span class="eyebrow">Figure 8.26</span><span>The current $i(t)$ of Example 8.19: the attenuation term dies out within a fraction of a second, and the current settles into the steady-state oscillation of amplitude $\frac{50\sqrt{89}}{89}.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571553391"></div>
+</section>
