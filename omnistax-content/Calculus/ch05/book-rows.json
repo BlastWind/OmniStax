@@ -1,0 +1,986 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "f_ave",
+   "latex": "f_{\\text{ave}}",
+   "macro": "\\kfave"
+  },
+  {
+   "sym": "p_prime",
+   "latex": "p'",
+   "macro": "\\kpprime"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "method-of-exhaustion",
+   "kind": "idea",
+   "section": "5.1",
+   "name": "Method of exhaustion",
+   "terms": [
+    "method of exhaustion"
+   ],
+   "statement": "Archimedes' method of exhaustion fills an irregular region with smaller and smaller shapes whose areas can be calculated exactly, such as rectangles and triangles, and sums their areas to obtain closer and closer approximations to the total area."
+  },
+  {
+   "id": "sigma-notation",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "Sigma notation",
+   "terms": [
+    "sigma notation",
+    "summation notation"
+   ],
+   "statement": "Sigma notation, also called summation notation, writes a long sum compactly: the Greek capital letter Σ indicates addition of the terms aᵢ, and the values of the index i below and above the sigma indicate where to begin the summation and where to end it. The index is a dummy variable, used only to keep track of the terms.",
+   "forms": [
+    {
+     "id": "eq-sigma-notation",
+     "latex": "\\sum_{i=1}^{n}a_i",
+     "anchor": "5.1-sigma"
+    }
+   ]
+  },
+  {
+   "id": "properties-of-sigma-notation",
+   "kind": "result",
+   "section": "5.1",
+   "name": "Properties of sigma notation",
+   "statement": "For sequences of terms aᵢ and bᵢ, a constant c, every positive integer n and every integer m with 1 ≤ m ≤ n: a sum of n copies of c is nc; a constant factor comes out of a sum; the sum of a sum or a difference is the sum or difference of the sums; and a sum splits into the sum of its first m terms and the sum of the rest.",
+   "forms": [
+    {
+     "id": "eq-sigma-constant",
+     "latex": "\\sum_{i=1}^{n}c=nc",
+     "anchor": "5.1-sigma-properties"
+    },
+    {
+     "id": "eq-sigma-constant-multiple",
+     "latex": "\\sum_{i=1}^{n}ca_i=c\\sum_{i=1}^{n}a_i",
+     "anchor": "5.1-sigma-properties"
+    },
+    {
+     "id": "eq-sigma-sum",
+     "latex": "\\sum_{i=1}^{n}(a_i+b_i)=\\sum_{i=1}^{n}a_i+\\sum_{i=1}^{n}b_i",
+     "anchor": "5.1-sigma-properties"
+    },
+    {
+     "id": "eq-sigma-difference",
+     "latex": "\\sum_{i=1}^{n}(a_i-b_i)=\\sum_{i=1}^{n}a_i-\\sum_{i=1}^{n}b_i",
+     "anchor": "5.1-sigma-properties"
+    },
+    {
+     "id": "eq-sigma-split",
+     "latex": "\\sum_{i=1}^{n}a_i=\\sum_{i=1}^{m}a_i+\\sum_{i=m+1}^{n}a_i",
+     "anchor": "5.1-sigma-properties"
+    }
+   ]
+  },
+  {
+   "id": "sums-and-powers-of-integers",
+   "kind": "result",
+   "section": "5.1",
+   "name": "Sums and powers of integers",
+   "terms": [
+    "sums and powers of integers"
+   ],
+   "statement": "The sum of the first n integers is n(n + 1)/2, the sum of their squares is n(n + 1)(2n + 1)/6, and the sum of their cubes is n²(n + 1)²/4.",
+   "forms": [
+    {
+     "id": "eq-sum-of-integers",
+     "latex": "\\sum_{i=1}^{n}i=1+2+\\cdots+n=\\frac{n(n+1)}{2}",
+     "anchor": "5.1-sums-of-powers"
+    },
+    {
+     "id": "eq-sum-of-squares",
+     "latex": "\\sum_{i=1}^{n}i^{2}=1^{2}+2^{2}+\\cdots+n^{2}=\\frac{n(n+1)(2n+1)}{6}",
+     "anchor": "5.1-sums-of-powers"
+    },
+    {
+     "id": "eq-sum-of-cubes",
+     "latex": "\\sum_{i=1}^{n}i^{3}=1^{3}+2^{3}+\\cdots+n^{3}=\\frac{n^{2}(n+1)^{2}}{4}",
+     "anchor": "5.1-sums-of-powers"
+    }
+   ]
+  },
+  {
+   "id": "partition",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "Partition",
+   "terms": [
+    "partition"
+   ],
+   "symbol": "P",
+   "type": "set",
+   "statement": "A partition of [a, b] is a set of points P = {xᵢ}, a = x₀ < x₁ < ⋯ < xₙ = b, that divides the interval into the subintervals [x₀, x₁], [x₁, x₂], …, [xₙ₋₁, xₙ]."
+  },
+  {
+   "id": "regular-partition",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "Regular partition",
+   "terms": [
+    "regular partition"
+   ],
+   "type": "set",
+   "statement": "A regular partition of [a, b] is a partition whose subintervals all have the same width, Δx = (b − a)/n, so that xᵢ = x₀ + iΔx.",
+   "forms": [
+    {
+     "id": "eq-subinterval-width",
+     "latex": "\\Delta x=\\frac{b-a}{n}",
+     "anchor": "5.1-approximating-area"
+    },
+    {
+     "id": "eq-regular-partition-points",
+     "latex": "x_i=x_0+i\\Delta x",
+     "anchor": "5.1-approximating-area"
+    }
+   ]
+  },
+  {
+   "id": "left-endpoint-approximation",
+   "kind": "result",
+   "section": "5.1",
+   "name": "Left-endpoint approximation",
+   "terms": [
+    "left-endpoint approximation"
+   ],
+   "symbol": "L",
+   "type": "integral",
+   "statement": "On each subinterval [xᵢ₋₁, xᵢ] of a regular partition of [a, b], build a rectangle of width Δx whose height is the function value f(xᵢ₋₁) at the left endpoint; the sum Lₙ of the areas of these n rectangles approximates the area A under the curve.",
+   "forms": [
+    {
+     "id": "eq-left-endpoint",
+     "latex": "A\\approx L_n=f(x_0)\\Delta x+f(x_1)\\Delta x+\\cdots+f(x_{n-1})\\Delta x=\\sum_{i=1}^{n}f(x_{i-1})\\Delta x",
+     "anchor": "5.1-left-endpoint-rule"
+    }
+   ]
+  },
+  {
+   "id": "right-endpoint-approximation",
+   "kind": "result",
+   "section": "5.1",
+   "name": "Right-endpoint approximation",
+   "terms": [
+    "right-endpoint approximation"
+   ],
+   "symbol": "R",
+   "type": "integral",
+   "statement": "On each subinterval [xᵢ₋₁, xᵢ] of a regular partition of [a, b], build a rectangle of width Δx whose height is the function value f(xᵢ) at the right endpoint; the sum Rₙ of the areas of these n rectangles approximates the area A under the curve.",
+   "forms": [
+    {
+     "id": "eq-right-endpoint",
+     "latex": "A\\approx R_n=f(x_1)\\Delta x+f(x_2)\\Delta x+\\cdots+f(x_n)\\Delta x=\\sum_{i=1}^{n}f(x_i)\\Delta x",
+     "anchor": "5.1-right-endpoint-rule"
+    }
+   ]
+  },
+  {
+   "id": "riemann-sum",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "Riemann sum",
+   "terms": [
+    "Riemann sum",
+    "Riemann sums"
+   ],
+   "type": "integral",
+   "statement": "Let f(x) be defined on a closed interval [a, b] and let P be a regular partition of [a, b] with subintervals of width Δx; for each i let xᵢ* be any point in [xᵢ₋₁, xᵢ]. The Riemann sum for f(x) is the sum of the f(xᵢ*)Δx, an estimate of the area under the curve; left- and right-endpoint approximations are Riemann sums.",
+   "forms": [
+    {
+     "id": "eq-riemann-sum",
+     "latex": "\\sum_{i=1}^{n}f(x_i^{*})\\Delta x",
+     "anchor": "5.1-riemann-sum-definition"
+    }
+   ]
+  },
+  {
+   "id": "upper-sum",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "Upper sum",
+   "terms": [
+    "upper sum"
+   ],
+   "type": "integral",
+   "statement": "An upper sum is a Riemann sum whose sample points xᵢ* are chosen so that f(xᵢ*) is the maximum value of f on each subinterval; it overestimates the area under the curve."
+  },
+  {
+   "id": "lower-sum",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "Lower sum",
+   "terms": [
+    "lower sum"
+   ],
+   "type": "integral",
+   "statement": "A lower sum is a Riemann sum whose sample points xᵢ* are chosen so that f(xᵢ*) is the minimum value of f on each subinterval; it underestimates the area under the curve."
+  },
+  {
+   "id": "area-under-the-curve",
+   "kind": "definition",
+   "section": "5.1",
+   "name": "Area under the curve",
+   "terms": [
+    "area under the curve"
+   ],
+   "symbol": "A",
+   "type": "integral",
+   "statement": "Let f(x) be a continuous, nonnegative function on [a, b]. The area under the curve y = f(x) on [a, b] is the limit of its Riemann sums as the number n of subintervals goes to infinity; for continuous f the limit exists and does not depend on the choice of the points xᵢ*.",
+   "forms": [
+    {
+     "id": "eq-area-under-curve",
+     "latex": "A=\\lim_{n\\to\\infty}\\sum_{i=1}^{n}f(x_i^{*})\\Delta x",
+     "anchor": "5.1-area-definition"
+    }
+   ]
+  },
+  {
+   "id": "definite-integral",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "Definite integral",
+   "terms": [
+    "definite integral",
+    "definite integrals"
+   ],
+   "type": "integral",
+   "statement": "If f(x) is a function defined on [a, b], the definite integral of f from a to b is the limit of its Riemann sums as n goes to infinity, provided the limit exists. It generalizes the area under a curve to functions that need be neither continuous nor nonnegative; a definite integral is a number, where an indefinite integral is a family of functions.",
+   "forms": [
+    {
+     "id": "eq-definite-integral",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=\\lim_{n\\to\\infty}\\sum_{i=1}^{n}f(x_i^{*})\\Delta x",
+     "anchor": "5.2-definite-integral-definition"
+    }
+   ]
+  },
+  {
+   "id": "integrable-function",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "Integrable function",
+   "terms": [
+    "integrable function",
+    "integrable"
+   ],
+   "type": "function",
+   "statement": "A function f(x) is integrable on [a, b], an integrable function, if the limit of its Riemann sums that defines the definite integral exists."
+  },
+  {
+   "id": "limits-of-integration",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "Limits of integration",
+   "terms": [
+    "limits of integration",
+    "lower limit",
+    "upper limit"
+   ],
+   "statement": "The limits of integration are the numbers a and b written below and above the integral sign, the x-values bounding the interval [a, b] over which the function is integrated: a is the lower limit and b the upper limit."
+  },
+  {
+   "id": "integrand",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "Integrand",
+   "terms": [
+    "integrand"
+   ],
+   "type": "function",
+   "statement": "The integrand is the function f(x) written to the right of the integral sign, the function being integrated."
+  },
+  {
+   "id": "variable-of-integration",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "Variable of integration",
+   "terms": [
+    "variable of integration"
+   ],
+   "statement": "The variable of integration is the variable that dx (or dt, du) names after the integrand, the variable the function is integrated with respect to; like the index of a sum it is a dummy variable and any letter may be used.",
+   "forms": [
+    {
+     "id": "eq-dummy-variable",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=\\int_{a}^{b}f(t)\\,dt=\\int_{a}^{b}f(u)\\,du",
+     "anchor": "5.2-definition-notation"
+    }
+   ]
+  },
+  {
+   "id": "continuous-functions-are-integrable",
+   "kind": "result",
+   "section": "5.2",
+   "name": "Continuous functions are integrable",
+   "statement": "If f(x) is continuous on [a, b], then f is integrable on [a, b]. Functions continuous on a closed interval apart from a finite number of jump discontinuities are integrable too."
+  },
+  {
+   "id": "net-signed-area",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "Net signed area",
+   "terms": [
+    "net signed area",
+    "net area"
+   ],
+   "type": "integral",
+   "statement": "For an integrable function f on [a, b], with A₁ the area between f and the x-axis above the axis and A₂ the area below it, the net signed area A₁ − A₂ is the definite integral of f; it can be positive, negative or zero.",
+   "forms": [
+    {
+     "id": "eq-net-signed-area",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=A_1-A_2",
+     "anchor": "5.2-net-total-definition"
+    }
+   ]
+  },
+  {
+   "id": "total-area",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "Total area",
+   "terms": [
+    "total area"
+   ],
+   "type": "integral",
+   "statement": "The total area between an integrable function f and the x-axis on [a, b] adds the area A₁ above the axis and the area A₂ below it; it is the definite integral of |f(x)|.",
+   "forms": [
+    {
+     "id": "eq-total-area",
+     "latex": "\\int_{a}^{b}|f(x)|\\,dx=A_1+A_2",
+     "anchor": "5.2-net-total-definition"
+    }
+   ]
+  },
+  {
+   "id": "displacement-from-velocity",
+   "kind": "idea",
+   "section": "5.2",
+   "name": "Displacement from velocity",
+   "terms": [
+    "displacement",
+    "net displacement",
+    "total distance traveled"
+   ],
+   "type": "integral",
+   "statement": "If v(t) is the velocity of an object, the net signed area under its graph over a time interval, the definite integral of v(t), is the object's net displacement, taking direction into account; the integral of |v(t)| is the total distance traveled regardless of direction.",
+   "forms": [
+    {
+     "id": "eq-net-displacement",
+     "latex": "\\int_{a}^{b}v(t)\\,dt",
+     "section": "5.4",
+     "anchor": "5.4-net-change-theorem"
+    },
+    {
+     "id": "eq-total-distance",
+     "latex": "\\int_{a}^{b}|v(t)|\\,dt",
+     "section": "5.4",
+     "anchor": "5.4-net-change-theorem"
+    }
+   ]
+  },
+  {
+   "id": "properties-of-the-definite-integral",
+   "kind": "result",
+   "section": "5.2",
+   "name": "Properties of the definite integral",
+   "statement": "An integral with equal limits is 0; reversing the limits changes the integral's sign; the integral of a sum or a difference is the sum or difference of the integrals; a constant factor comes out of the integral; and the integral over [a, b] is the integral over [a, c] plus the integral over [c, b], for all a, b and c, provided f is integrable on the largest interval.",
+   "forms": [
+    {
+     "id": "eq-integral-equal-limits",
+     "latex": "\\int_{a}^{a}f(x)\\,dx=0",
+     "anchor": "5.2-integral-properties"
+    },
+    {
+     "id": "eq-integral-reversed-limits",
+     "latex": "\\int_{b}^{a}f(x)\\,dx=-\\int_{a}^{b}f(x)\\,dx",
+     "anchor": "5.2-integral-properties"
+    },
+    {
+     "id": "eq-integral-of-sum",
+     "latex": "\\int_{a}^{b}[f(x)+g(x)]\\,dx=\\int_{a}^{b}f(x)\\,dx+\\int_{a}^{b}g(x)\\,dx",
+     "anchor": "5.2-integral-properties"
+    },
+    {
+     "id": "eq-integral-of-difference",
+     "latex": "\\int_{a}^{b}[f(x)-g(x)]\\,dx=\\int_{a}^{b}f(x)\\,dx-\\int_{a}^{b}g(x)\\,dx",
+     "anchor": "5.2-integral-properties"
+    },
+    {
+     "id": "eq-integral-constant-multiple",
+     "latex": "\\int_{a}^{b}cf(x)\\,dx=c\\int_{a}^{b}f(x)\\,dx",
+     "anchor": "5.2-integral-properties"
+    },
+    {
+     "id": "eq-integral-additivity",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=\\int_{a}^{c}f(x)\\,dx+\\int_{c}^{b}f(x)\\,dx",
+     "anchor": "5.2-integral-properties"
+    }
+   ]
+  },
+  {
+   "id": "integral-comparison-theorem",
+   "kind": "result",
+   "section": "5.2",
+   "name": "Comparison theorem for integrals",
+   "statement": "For a ≤ b: if f(x) ≥ 0 on [a, b] its integral is at least 0; if f(x) ≥ g(x) on [a, b] the integral of f is at least the integral of g; and if m ≤ f(x) ≤ M on [a, b] for constants m and M, the integral lies between m(b − a) and M(b − a).",
+   "forms": [
+    {
+     "id": "eq-comparison-nonnegative",
+     "latex": "\\int_{a}^{b}f(x)\\,dx\\ge 0",
+     "anchor": "5.2-comparison-theorem"
+    },
+    {
+     "id": "eq-comparison-two-functions",
+     "latex": "\\int_{a}^{b}f(x)\\,dx\\ge\\int_{a}^{b}g(x)\\,dx",
+     "anchor": "5.2-comparison-theorem"
+    },
+    {
+     "id": "eq-comparison-bounds",
+     "latex": "m(b-a)\\le\\int_{a}^{b}f(x)\\,dx\\le M(b-a)",
+     "anchor": "5.2-comparison-theorem"
+    }
+   ]
+  },
+  {
+   "id": "average-value-of-a-function",
+   "kind": "definition",
+   "section": "5.2",
+   "name": "Average value of a function",
+   "terms": [
+    "average value of a function",
+    "average value"
+   ],
+   "symbol": "f_ave",
+   "type": "function",
+   "statement": "For f(x) continuous on [a, b], the average value of the function, f_ave, is the definite integral of f over [a, b] divided by the length b − a of the interval: the limit of the averages of n sampled values of f.",
+   "forms": [
+    {
+     "id": "eq-average-value",
+     "latex": "f_{\\text{ave}}=\\frac{1}{b-a}\\int_{a}^{b}f(x)\\,dx",
+     "anchor": "5.2-average-value-definition"
+    }
+   ]
+  },
+  {
+   "id": "mean-value-theorem-for-integrals",
+   "kind": "result",
+   "section": "5.3",
+   "name": "Mean Value Theorem for Integrals",
+   "terms": [
+    "Mean Value Theorem for Integrals"
+   ],
+   "statement": "If f(x) is continuous over [a, b], then there is at least one point c in [a, b] at which f takes its average value over [a, b]: f(c) times b − a is the integral of f over [a, b].",
+   "forms": [
+    {
+     "id": "eq-mean-value-integrals",
+     "latex": "f(c)=\\frac{1}{b-a}\\int_{a}^{b}f(x)\\,dx",
+     "anchor": "5.3-mvt-integrals"
+    },
+    {
+     "id": "eq-mean-value-integrals-product",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=f(c)(b-a)",
+     "anchor": "5.3-mvt-integrals"
+    }
+   ]
+  },
+  {
+   "id": "fundamental-theorem-of-calculus-part-1",
+   "kind": "result",
+   "section": "5.3",
+   "name": "Fundamental Theorem of Calculus, Part 1",
+   "terms": [
+    "Fundamental Theorem of Calculus, Part 1"
+   ],
+   "statement": "If f(x) is continuous over [a, b] and F(x) is the integral of f(t) from a to x, then F′(x) = f(x) over (a, b): the definite integral with a variable upper limit is an antiderivative of its integrand, so every continuous function has an antiderivative.",
+   "forms": [
+    {
+     "id": "eq-ftc-part-1-definition",
+     "latex": "F(x)=\\int_{a}^{x}f(t)\\,dt",
+     "anchor": "5.3-ftc-part-1"
+    },
+    {
+     "id": "eq-ftc-part-1",
+     "latex": "F'(x)=f(x)",
+     "anchor": "5.3-ftc-part-1"
+    }
+   ]
+  },
+  {
+   "id": "fundamental-theorem-of-calculus-part-2",
+   "kind": "result",
+   "section": "5.3",
+   "name": "Fundamental Theorem of Calculus, Part 2",
+   "terms": [
+    "Fundamental Theorem of Calculus, Part 2",
+    "evaluation theorem"
+   ],
+   "statement": "If f is continuous over [a, b] and F(x) is any antiderivative of f(x), then the integral of f over [a, b] is F(b) − F(a): a definite integral is evaluated by evaluating an antiderivative of the integrand at the endpoints of the interval and subtracting, written F(x) evaluated from a to b.",
+   "forms": [
+    {
+     "id": "eq-ftc-part-2",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=F(b)-F(a)",
+     "anchor": "5.3-ftc-part-2"
+    },
+    {
+     "id": "eq-evaluation-notation",
+     "latex": "F(x)\\Big|_{a}^{b}=F(b)-F(a)",
+     "anchor": "5.3-ftc2"
+    }
+   ]
+  },
+  {
+   "id": "fundamental-theorem-of-calculus",
+   "kind": "idea",
+   "section": "5.3",
+   "name": "Fundamental Theorem of Calculus",
+   "terms": [
+    "Fundamental Theorem of Calculus"
+   ],
+   "statement": "The Fundamental Theorem of Calculus, central to the entire development of calculus, establishes the relationship between differentiation and integration in two parts: the first makes a definite integral with a variable limit an antiderivative, and the second evaluates definite integrals with antiderivatives."
+  },
+  {
+   "id": "net-change-theorem",
+   "kind": "result",
+   "section": "5.4",
+   "name": "Net change theorem",
+   "terms": [
+    "net change theorem",
+    "net change"
+   ],
+   "statement": "The new value of a changing quantity F equals its initial value plus the integral of its rate of change F′; equivalently, the integral of F′ over [a, b] is the net change F(b) − F(a), which can be positive, negative or zero.",
+   "forms": [
+    {
+     "id": "eq-net-change",
+     "latex": "F(b)=F(a)+\\int_{a}^{b}F'(x)\\,dx",
+     "anchor": "5.4-net-change"
+    },
+    {
+     "id": "eq-net-change-difference",
+     "latex": "\\int_{a}^{b}F'(x)\\,dx=F(b)-F(a)",
+     "anchor": "5.4-net-change"
+    }
+   ]
+  },
+  {
+   "id": "integrals-of-even-and-odd-functions",
+   "kind": "result",
+   "section": "5.4",
+   "name": "Integrals of even and odd functions",
+   "statement": "For a continuous even function, f(−x) = f(x), the integral over [−a, a] is twice the integral over [0, a]; for a continuous odd function, f(−x) = −f(x), the integral over [−a, a] is 0, since the areas above and below the x-axis are equal.",
+   "forms": [
+    {
+     "id": "eq-integral-even-function",
+     "latex": "\\int_{-a}^{a}f(x)\\,dx=2\\int_{0}^{a}f(x)\\,dx",
+     "anchor": "5.4-even-odd-rule"
+    },
+    {
+     "id": "eq-integral-odd-function",
+     "latex": "\\int_{-a}^{a}f(x)\\,dx=0",
+     "anchor": "5.4-even-odd-rule"
+    }
+   ]
+  },
+  {
+   "id": "substitution-with-indefinite-integrals",
+   "kind": "result",
+   "section": "5.5",
+   "name": "Substitution with indefinite integrals",
+   "statement": "Let u = g(x), where g′(x) is continuous over an interval, let f(x) be continuous over the corresponding range of g, and let F(x) be an antiderivative of f(x). Then the integral of f(g(x))g′(x) dx is the integral of f(u) du, which is F(u) + C = F(g(x)) + C.",
+   "forms": [
+    {
+     "id": "eq-substitution-indefinite",
+     "latex": "\\int f[g(x)]g'(x)\\,dx=\\int f(u)\\,du=F(u)+C=F(g(x))+C",
+     "anchor": "5.5-substitution-indefinite"
+    }
+   ]
+  },
+  {
+   "id": "change-of-variables",
+   "kind": "definition",
+   "section": "5.5",
+   "name": "Change of variables",
+   "terms": [
+    "change of variables"
+   ],
+   "statement": "A change of variables is the substitution of a variable, such as u, for an expression in the integrand, and of du for the matching differential, to obtain an expression that is easier to integrate."
+  },
+  {
+   "id": "integration-by-substitution",
+   "kind": "skill",
+   "section": "5.5",
+   "name": "Integration by substitution",
+   "terms": [
+    "integration by substitution",
+    "u-substitution"
+   ],
+   "statement": "To integrate by substitution: select an expression g(x) of the integrand whose derivative g′(x) is also part of it; substitute u = g(x) and du = g′(x) dx, adjusting constants as needed; evaluate the integral in u, or go back and choose another u if it cannot be evaluated; and write the result in terms of x. It finds antiderivatives of integrands that are the result of a chain-rule derivative."
+  },
+  {
+   "id": "substitution-with-definite-integrals",
+   "kind": "result",
+   "section": "5.5",
+   "name": "Substitution with definite integrals",
+   "statement": "Let u = g(x), let g′ be continuous over [a, b], and let f be continuous over the range of u = g(x). Then the integral of f(g(x))g′(x) from a to b is the integral of f(u) from g(a) to g(b): changing variables changes the limits of integration too.",
+   "forms": [
+    {
+     "id": "eq-substitution-definite",
+     "latex": "\\int_{a}^{b}f(g(x))g'(x)\\,dx=\\int_{g(a)}^{g(b)}f(u)\\,du",
+     "anchor": "5.5-substitution-definite"
+    }
+   ]
+  },
+  {
+   "id": "integrals-of-exponential-functions",
+   "kind": "result",
+   "section": "5.6",
+   "name": "Integrals of exponential functions",
+   "statement": "The exponential function eˣ is its own integral, ∫eˣ dx = eˣ + C, and for a base a > 0, a ≠ 1, ∫aˣ dx = aˣ/ln a + C.",
+   "forms": [
+    {
+     "id": "eq-integral-of-exp",
+     "latex": "\\int e^{x}\\,dx=e^{x}+C",
+     "anchor": "5.6-exp-rule"
+    },
+    {
+     "id": "eq-integral-of-a-to-x",
+     "latex": "\\int a^{x}\\,dx=\\frac{a^{x}}{\\ln a}+C",
+     "anchor": "5.6-exp-rule"
+    }
+   ]
+  },
+  {
+   "id": "integrals-involving-logarithmic-functions",
+   "kind": "result",
+   "section": "5.6",
+   "name": "Integration formulas involving logarithmic functions",
+   "statement": "The integral of x⁻¹ is the natural logarithm of the absolute value, ∫x⁻¹ dx = ln|x| + C; ∫ln x dx = x ln x − x + C; and ∫log_a x dx = (x/ln a)(ln x − 1) + C.",
+   "forms": [
+    {
+     "id": "eq-integral-of-reciprocal",
+     "latex": "\\int x^{-1}\\,dx=\\ln|x|+C",
+     "anchor": "5.6-log-rule"
+    },
+    {
+     "id": "eq-integral-of-ln",
+     "latex": "\\int\\ln x\\,dx=x\\ln x-x+C=x(\\ln x-1)+C",
+     "anchor": "5.6-log-rule"
+    },
+    {
+     "id": "eq-integral-of-log-a",
+     "latex": "\\int\\log_{a}x\\,dx=\\frac{x}{\\ln a}(\\ln x-1)+C",
+     "anchor": "5.6-log-rule"
+    }
+   ]
+  },
+  {
+   "id": "price-demand-function",
+   "kind": "definition",
+   "section": "5.6",
+   "name": "Price–demand function",
+   "terms": [
+    "price–demand function",
+    "price–demand equation"
+   ],
+   "symbol": "p",
+   "type": "function",
+   "statement": "A price–demand function p(x) gives the price of a product at which a quantity x of it is demanded; in general, price decreases as quantity demanded increases."
+  },
+  {
+   "id": "marginal-price-demand-function",
+   "kind": "definition",
+   "section": "5.6",
+   "name": "Marginal price–demand function",
+   "terms": [
+    "marginal price–demand function"
+   ],
+   "symbol": "p_prime",
+   "type": "derivative",
+   "statement": "The marginal price–demand function p′(x) is the derivative of the price–demand function; it tells how fast the price changes at a given level of production, and integrating it recovers the price–demand function."
+  },
+  {
+   "id": "integrals-resulting-in-inverse-trigonometric-functions",
+   "kind": "result",
+   "section": "5.7",
+   "name": "Integrals resulting in inverse trigonometric functions",
+   "statement": "For a > 0: ∫du/√(a² − u²) = sin⁻¹(u/a) + C, ∫du/(a² + u²) = (1/a) tan⁻¹(u/a) + C, and ∫du/(u√(u² − a²)) = (1/a) sec⁻¹(|u|/a) + C; the other three inverse trigonometric functions give the same integrals with a minus sign.",
+   "forms": [
+    {
+     "id": "eq-integral-inverse-sine",
+     "latex": "\\int\\frac{du}{\\sqrt{a^{2}-u^{2}}}=\\sin^{-1}\\left(\\frac{u}{a}\\right)+C",
+     "anchor": "5.7-inverse-trig-rule"
+    },
+    {
+     "id": "eq-integral-inverse-tangent",
+     "latex": "\\int\\frac{du}{a^{2}+u^{2}}=\\frac{1}{a}\\tan^{-1}\\frac{u}{a}+C",
+     "anchor": "5.7-inverse-trig-rule"
+    },
+    {
+     "id": "eq-integral-inverse-secant",
+     "latex": "\\int\\frac{du}{u\\sqrt{u^{2}-a^{2}}}=\\frac{1}{a}\\sec^{-1}\\frac{|u|}{a}+C",
+     "anchor": "5.7-inverse-trig-rule"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "properties-of-sigma-notation",
+   "prereq": "sigma-notation"
+  },
+  {
+   "concept": "sums-and-powers-of-integers",
+   "prereq": "sigma-notation"
+  },
+  {
+   "concept": "partition",
+   "prereq": "interval-notation"
+  },
+  {
+   "concept": "regular-partition",
+   "prereq": "partition"
+  },
+  {
+   "concept": "left-endpoint-approximation",
+   "prereq": "regular-partition"
+  },
+  {
+   "concept": "left-endpoint-approximation",
+   "prereq": "sigma-notation"
+  },
+  {
+   "concept": "left-endpoint-approximation",
+   "prereq": "area-problem"
+  },
+  {
+   "concept": "right-endpoint-approximation",
+   "prereq": "regular-partition"
+  },
+  {
+   "concept": "right-endpoint-approximation",
+   "prereq": "sigma-notation"
+  },
+  {
+   "concept": "right-endpoint-approximation",
+   "prereq": "area-problem"
+  },
+  {
+   "concept": "riemann-sum",
+   "prereq": "left-endpoint-approximation"
+  },
+  {
+   "concept": "riemann-sum",
+   "prereq": "right-endpoint-approximation"
+  },
+  {
+   "concept": "upper-sum",
+   "prereq": "riemann-sum"
+  },
+  {
+   "concept": "lower-sum",
+   "prereq": "riemann-sum"
+  },
+  {
+   "concept": "area-under-the-curve",
+   "prereq": "riemann-sum"
+  },
+  {
+   "concept": "area-under-the-curve",
+   "prereq": "limit"
+  },
+  {
+   "concept": "area-under-the-curve",
+   "prereq": "continuity-over-an-interval"
+  },
+  {
+   "concept": "definite-integral",
+   "prereq": "area-under-the-curve"
+  },
+  {
+   "concept": "integrable-function",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "limits-of-integration",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "integrand",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "variable-of-integration",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "continuous-functions-are-integrable",
+   "prereq": "integrable-function"
+  },
+  {
+   "concept": "continuous-functions-are-integrable",
+   "prereq": "continuity-over-an-interval"
+  },
+  {
+   "concept": "net-signed-area",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "total-area",
+   "prereq": "net-signed-area"
+  },
+  {
+   "concept": "total-area",
+   "prereq": "absolute-value-function"
+  },
+  {
+   "concept": "displacement-from-velocity",
+   "prereq": "total-area"
+  },
+  {
+   "concept": "displacement-from-velocity",
+   "prereq": "velocity"
+  },
+  {
+   "concept": "properties-of-the-definite-integral",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "integral-comparison-theorem",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "average-value-of-a-function",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "mean-value-theorem-for-integrals",
+   "prereq": "average-value-of-a-function"
+  },
+  {
+   "concept": "mean-value-theorem-for-integrals",
+   "prereq": "integral-comparison-theorem"
+  },
+  {
+   "concept": "mean-value-theorem-for-integrals",
+   "prereq": "extreme-value-theorem"
+  },
+  {
+   "concept": "mean-value-theorem-for-integrals",
+   "prereq": "intermediate-value-theorem"
+  },
+  {
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "prereq": "mean-value-theorem-for-integrals"
+  },
+  {
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "prereq": "antiderivative"
+  },
+  {
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "prereq": "properties-of-the-definite-integral"
+  },
+  {
+   "concept": "fundamental-theorem-of-calculus-part-2",
+   "prereq": "antiderivative"
+  },
+  {
+   "concept": "fundamental-theorem-of-calculus-part-2",
+   "prereq": "mean-value-theorem"
+  },
+  {
+   "concept": "fundamental-theorem-of-calculus-part-2",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "fundamental-theorem-of-calculus",
+   "prereq": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "concept": "fundamental-theorem-of-calculus",
+   "prereq": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "concept": "net-change-theorem",
+   "prereq": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "concept": "integrals-of-even-and-odd-functions",
+   "prereq": "even-function"
+  },
+  {
+   "concept": "integrals-of-even-and-odd-functions",
+   "prereq": "odd-function"
+  },
+  {
+   "concept": "integrals-of-even-and-odd-functions",
+   "prereq": "properties-of-the-definite-integral"
+  },
+  {
+   "concept": "substitution-with-indefinite-integrals",
+   "prereq": "chain-rule"
+  },
+  {
+   "concept": "substitution-with-indefinite-integrals",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "change-of-variables",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "integration-by-substitution",
+   "prereq": "substitution-with-indefinite-integrals"
+  },
+  {
+   "concept": "integration-by-substitution",
+   "prereq": "change-of-variables"
+  },
+  {
+   "concept": "substitution-with-definite-integrals",
+   "prereq": "substitution-with-indefinite-integrals"
+  },
+  {
+   "concept": "substitution-with-definite-integrals",
+   "prereq": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "concept": "integrals-of-exponential-functions",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "integrals-of-exponential-functions",
+   "prereq": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "concept": "integrals-of-exponential-functions",
+   "prereq": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "concept": "integrals-involving-logarithmic-functions",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "integrals-involving-logarithmic-functions",
+   "prereq": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "concept": "price-demand-function",
+   "prereq": "function"
+  },
+  {
+   "concept": "marginal-price-demand-function",
+   "prereq": "price-demand-function"
+  },
+  {
+   "concept": "marginal-price-demand-function",
+   "prereq": "derivative-function"
+  },
+  {
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "prereq": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "prereq": "integration-by-substitution"
+  }
+ ]
+}

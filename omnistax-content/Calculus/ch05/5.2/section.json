@@ -1,0 +1,1846 @@
+{
+ "id": "5.2",
+ "module": "m53631",
+ "chapter": "5",
+ "title": "The Definite Integral",
+ "short": "The Definite Integral",
+ "lead": "The <span data-concept=\"definite-integral\">definite integral</span> extends the limit of <span data-concept=\"riemann-sum\">Riemann sums</span> to <span data-concept=\"function\">functions</span> that need be neither <span data-concept=\"continuity-over-an-interval\">continuous</span> nor nonnegative. Its parts are named, it is read as a <span data-concept=\"net-signed-area\">net signed area</span> where the curve falls below the axis and as a <span data-concept=\"total-area\">total area</span> through the absolute value, its properties and comparisons are stated, and it gives the <span data-concept=\"average-value-of-a-function\">average value of a function</span>.",
+ "objectives": [
+  "State the definition of the definite integral.",
+  "Explain the terms integrand, limits of integration, and variable of integration.",
+  "Explain when a function is integrable.",
+  "Describe the relationship between the definite integral and net area.",
+  "Use geometry and the properties of definite integrals to evaluate them.",
+  "Calculate the average value of a function."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"definite-integral\">definite integral</span> can be used to calculate <span data-concept=\"net-signed-area\">net signed area</span>, which is the area above the <em>x</em>-axis less the area below the <em>x</em>-axis. Net signed area can be positive, negative, or zero.</li><li>The component parts of the <span data-concept=\"definite-integral\">definite integral</span> are the <span data-concept=\"integrand\">integrand</span>, the <span data-concept=\"variable-of-integration\">variable of integration</span>, and the <span data-concept=\"limits-of-integration\">limits of integration</span>.</li><li>Continuous <span data-concept=\"function\">functions</span> on a closed interval are <span data-concept=\"integrable-function\">integrable</span>. <span data-concept=\"function\">Functions</span> that are not <span data-concept=\"continuity-over-an-interval\">continuous</span> may still be <span data-concept=\"integrable-function\">integrable</span>, depending on the nature of the discontinuities.</li><li>The <span data-concept=\"properties-of-the-definite-integral\">properties of definite integrals</span> can be used to evaluate integrals.</li><li>The <span data-concept=\"area-under-the-curve\">area under the curve</span> of many <span data-concept=\"function\">functions</span> can be calculated using geometric formulas.</li><li>The <span data-concept=\"average-value-of-a-function\">average value of a function</span> can be calculated using <span data-concept=\"definite-integral\">definite integrals</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The comparisons 104, 106 and 108, the demonstrations 124, 126, 128, 130, 132 and 134 and the question 142 are kept with AI-written answers, marked as such; the computational ones are left out: 60, 62, 64, 66 and 68 (limits written as integrals), 70, 72 and 74 (integrals read from graphs), 76, 78, 80 and 82 (integrals by area formulas), 84 and 86 (piecewise linear integrals), 88, 90 and 92 (integrals by their properties), 94, 96, 98, 100 and 102 (integrals by symmetry and by given values), 110, 112 and 114 (average values), 116, 118, 120 and 122 (average values by Riemann sums), 136 (left and right sums of t²), 138 (a renamed variable of integration) and 140 (a midpoint estimate). Review exercises 440 and 441, printed at the end of Section 5.7, are set here, 440 with an AI-written answer.",
+ "figures": [
+  {
+   "id": "fig-quarter-circle",
+   "kind": "figure",
+   "number": "5.16",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_02_009.jpg"
+   ],
+   "original_caption": "The value of the integral of the function f(x) over the interval [3,6] is the area of the shaded region.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-net-signed-area",
+   "kind": "sim",
+   "number": "5.17",
+   "folds": [
+    "5.18"
+   ],
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_02_003.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_02_002.jpg"
+   ],
+   "original_caption": "(Figure 5.17) For a function that is partly negative, the Riemann sum is the area of the rectangles above the x-axis less the area of the rectangles below the x-axis. (Figure 5.18) In the limit, the definite integral equals area A₁ less area A₂, or the net signed area.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-odd-triangles",
+   "kind": "figure",
+   "number": "5.19",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_02_005.jpg"
+   ],
+   "original_caption": "The area above the curve and below the x-axis equals the area below the curve and above the x-axis.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-car-trips",
+   "kind": "sim",
+   "number": "5.20",
+   "folds": [
+    "5.21"
+   ],
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_02_015.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_02_016.jpg"
+   ],
+   "original_caption": "(Figure 5.20) The area under the curve v(t)=70 tells us how far the car is from its starting point at a given time. (Figure 5.21) The area above the axis and the area below the axis are equal, so the net signed area is zero.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-total-area",
+   "kind": "figure",
+   "number": "5.22",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_02_008.jpg"
+   ],
+   "original_caption": "The total area between the line and the x-axis over [0,6] is A₂ plus A₁.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-compare-roots",
+   "kind": "figure",
+   "number": "5.23",
+   "folds": [
+    "5.24"
+   ],
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_02_011.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_02_012.jpg"
+   ],
+   "original_caption": "(Figure 5.23) (a) The function f(x) appears above the function g(x) except over the interval [0,1] (b) Viewing the same graph with a greater zoom shows this more clearly. (Figure 5.24) (a) The graph shows that over the interval [0,1],g(x)≥ f(x), where equality holds only at the endpoints of the interval. (b) Viewing the same graph with a greater zoom shows this more clearly.",
+   "draws": [
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-trapezoid",
+   "kind": "figure",
+   "number": "5.25",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_02_017.jpg"
+   ],
+   "original_caption": "The graph shows the area under the function f(x)=x+1 over [0,5].",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "definite-integral-definition",
+   "concept": "definite-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "definite-integral-definition",
+   "concept": "integrable-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "definition-notation",
+   "concept": "limits-of-integration",
+   "verb": "introduces"
+  },
+  {
+   "span": "definition-notation",
+   "concept": "integrand",
+   "verb": "introduces"
+  },
+  {
+   "span": "definition-notation",
+   "concept": "variable-of-integration",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuous-integrable",
+   "concept": "continuous-functions-are-integrable",
+   "verb": "introduces"
+  },
+  {
+   "span": "area-integral",
+   "concept": "net-signed-area",
+   "verb": "introduces"
+  },
+  {
+   "span": "area-integral",
+   "concept": "total-area",
+   "verb": "introduces"
+  },
+  {
+   "span": "area-integral",
+   "concept": "displacement-from-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "integral-properties",
+   "concept": "properties-of-the-definite-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "comparison-theorem",
+   "concept": "integral-comparison-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "average-value-definition",
+   "concept": "average-value-of-a-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "definite-intro",
+   "concept": "area-under-the-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "definite-intro",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "definition-notation",
+   "concept": "indefinite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "definition-notation",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "definition-notation",
+   "concept": "jump-discontinuity",
+   "verb": "uses"
+  },
+  {
+   "span": "definition-notation",
+   "concept": "regular-partition",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571648750",
+   "concept": "right-endpoint-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571648750",
+   "concept": "sums-and-powers-of-integers",
+   "verb": "uses"
+  },
+  {
+   "span": "area-integral",
+   "concept": "absolute-value-function",
+   "verb": "uses"
+  },
+  {
+   "span": "properties",
+   "concept": "properties-of-indefinite-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572449111",
+   "concept": "net-signed-area",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572163843",
+   "concept": "total-area",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571769594",
+   "concept": "integral-comparison-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571712593",
+   "concept": "average-value-of-a-function",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572230274",
+   "source_number": "Checkpoint 5.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571648750"
+   },
+   "cite": "definite-integral-definition",
+   "prompt": "<p>Use the definition of the definite integral to evaluate $\\int_{0}^{3}(2x-1)dx.$ Use a right-endpoint approximation to generate the Riemann sum.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6,
+    "solution": "6",
+    "hint": "Use the solving strategy from Example 5.7."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170572551859",
+   "source_number": "Checkpoint 5.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571775733"
+   },
+   "cite": "evaluating",
+   "prompt": "<p>Use the formula for the area of a trapezoid to evaluate $\\int_{2}^{4}(2x+3)dx.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 18,
+    "unit": "unit²",
+    "solution": "18 square units",
+    "hint": "Graph the function $\\kf(x)$ and calculate the area under the function on the interval $[2,4].$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572338457",
+   "source_number": "Checkpoint 5.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572449111"
+   },
+   "cite": "net-total-definition",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_02_006.jpg",
+    "alt": "A graph of an increasing line going through (-2,-4), (0,-2), (2,0), (4,2) and (6,4). The area above the curve in quadrant four is shaded blue and labeled A2, and the area under the curve and to the left of x=6 in quadrant one is shaded and labeled A1."
+   },
+   "prompt": "<p>Find the net signed area of $\\kf(x)=x-2$ over the interval $[0,6],$ illustrated in the following image.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6,
+    "solution": "6",
+    "hint": "Use the solving method described in Example 5.9."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170572621670",
+   "source_number": "Checkpoint 5.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572163843"
+   },
+   "cite": "net-total-definition",
+   "prompt": "<p>Find the total area between the function $\\kf(x)=2x$ and the <em>x</em>-axis over the interval $[-3,3].$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 18,
+    "solution": "18",
+    "hint": "Review the solving strategy in Example 5.10."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170572307262",
+   "source_number": "Checkpoint 5.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572274820"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>Use the properties of the definite integral to express the definite integral of $\\kf(x)=6x^{3}-4x^{2}+2x-3$ over the interval $[1,3]$ as the sum of four definite integrals.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$6\\int_{1}^{3}x^{3}dx-4\\int_{1}^{3}x^{2}dx+2\\int_{1}^{3}xdx-\\int _{1}^{3}3dx$",
+    "hint": "Use the solving strategy from Example 5.11 and the properties of definite integrals."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1170572500598",
+   "source_number": "Checkpoint 5.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572098842"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>If it is known that $\\int_{1}^{5}\\kf(x)dx=-3$ and $\\int_{2}^{5}\\kf(x)dx=4,$ find the value of $\\int_{1}^{2}\\kf(x)dx.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -7,
+    "solution": "−7",
+    "hint": "Use the solving strategy from Example 5.12 and the rule on properties of definite integrals."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1170571678849",
+   "source_number": "Checkpoint 5.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571712593"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>Find the average value of $\\kf(x)=6-2x$ over the interval $[0,3].$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3,
+    "solution": "3",
+    "hint": "Use the average value formula, and use geometry to evaluate the integral."
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1170571543213",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite-integral-definition",
+   "prompt": "<p>In the following exercises, express the limits as integrals.</p><p>$\\lim_{n\\to \\infty}\\sum_{i=1}^{n} (5{(x_{i}^{*})}^{2}-3{(x_{i}^{*})}^{3})\\Delta x$ over $[0,2]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{0}^{2}(5x^{2}-3x^{3})dx$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1170571580956",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite-integral-definition",
+   "prompt": "<p>In the following exercises, express the limits as integrals.</p><p>$\\lim_{n\\to \\infty}\\sum_{i=1}^{n} \\cos^{2}(2\\pi x_{i}^{*})\\Delta x$ over $[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{0}^{1}\\cos^{2}(2\\pi x)dx$"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1170572386182",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite-integral-definition",
+   "prompt": "<p>In the following exercises, given <em>L<sub>n</sub></em> or <em>R<sub>n</sub></em> as indicated, express their limits as $n\\to \\infty$ as definite integrals, identifying the correct intervals.</p><p>$R_{n}=\\frac{1}{n}\\sum_{i=1}^{n} \\frac{i}{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{0}^{1}xdx$"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1170572373702",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite-integral-definition",
+   "prompt": "<p>In the following exercises, given <em>L<sub>n</sub></em> or <em>R<sub>n</sub></em> as indicated, express their limits as $n\\to \\infty$ as definite integrals, identifying the correct intervals.</p><p>$R_{n}=\\frac{3}{n}\\sum_{i=1}^{n} (3+3\\frac{i}{n})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{3}^{6}xdx$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1170572399034",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite-integral-definition",
+   "prompt": "<p>In the following exercises, given <em>L<sub>n</sub></em> or <em>R<sub>n</sub></em> as indicated, express their limits as $n\\to \\infty$ as definite integrals, identifying the correct intervals.</p><p>$R_{n}=\\frac{1}{n}\\sum_{i=1}^{n} (1+\\frac{i}{n})\\log({(1+\\frac{i}{n})}^{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{1}^{2}x\\;\\log(x^{2})dx$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1170572629207",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_02_202.jpg",
+    "alt": "A graph of three isosceles triangles corresponding to the functions 1 - |x-1| over [0,2], 2 - |x-4| over [2,4], and 3 - |x-9| over [6,12]. The first triangle has endpoints at (0,0), (2,0), and (1,1). The second triangle has endpoints at (2,0), (6,0), and (4,2). The last has endpoints at (6,0), (12,0), and (9,3). All three are shaded."
+   },
+   "prompt": "<p>In the following exercises, evaluate the integrals of the functions graphed using the formulas for areas of triangles and circles, and subtracting the areas below the <em>x</em>-axis.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 14,
+    "solution": "$1+2\\cdot 2+3\\cdot 3=14$"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1170571689784",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_02_204.jpg",
+    "alt": "A graph of three shaded triangles. The first has endpoints at (0, 0), (2, 0), and (1, 1) and corresponds to the function 1 - |x-1| over [0, 2]. The second has endpoints at (2, 0), (6, 0), and (4, -2) and corresponds to the function |x-4| - 2 over [2, 6]. The third has endpoints at (6, 0), (12, 0), and (9, 3) and corresponds to the function 3 - |x-9| over [6, 12]."
+   },
+   "prompt": "<p>In the following exercises, evaluate the integrals of the functions graphed using the formulas for areas of triangles and circles, and subtracting the areas below the <em>x</em>-axis.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6,
+    "solution": "$1-4+9=6$"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1170572379047",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_02_206.jpg",
+    "alt": "A graph with three shaded parts. The first is a triangle with endpoints at (0, 0), (2, 0), and (1, 1), which corresponds to the function 1 - |x-1| over [0, 2] in quadrant 1. The second is the lower half of a circle with center at (4, 0) and radius two, which corresponds to the function –sqrt(-12 + 8x – x^2) over [2, 6]. The last is a triangle with endpoints at (6, 0), (12, 0), and (9, 3), which corresponds to the function 3 - |x-9| over [6, 12]."
+   },
+   "prompt": "<p>In the following exercises, evaluate the integrals of the functions graphed using the formulas for areas of triangles and circles, and subtracting the areas below the <em>x</em>-axis.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.71681,
+    "solution": "$1-2\\pi+9=10-2\\pi$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1170571572008",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "prompt": "<p>In the following exercises, evaluate the integral using area formulas.</p><p>$\\int_{2}^{3}(3-x)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "solution": "The integral is the area of the triangle, $\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1170571777935",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "prompt": "<p>In the following exercises, evaluate the integral using area formulas.</p><p>$\\int_{0}^{6}(3-|x-3|)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 9,
+    "solution": "The integral is the area of the triangle, 9."
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1170572309994",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "prompt": "<p>In the following exercises, evaluate the integral using area formulas.</p><p>$\\int_{1}^{5}\\sqrt{4-{(x-3)}^{2}}dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.28319,
+    "solution": "The integral is the area $\\frac{1}{2}\\pi r^{2}=2\\pi.$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1170571613789",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "prompt": "<p>In the following exercises, evaluate the integral using area formulas.</p><p>$\\int_{-2}^{3}(3-|x|)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.5,
+    "solution": "The integral is the area of the “big” triangle less the “missing” triangle, $9-\\frac{1}{2}.$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1170572329986",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "prompt": "<p>In the following exercises, use averages of values at the left (<em>L</em>) and right (<em>R</em>) endpoints to compute the integrals of the piecewise linear functions with graphs that pass through the given list of points over the indicated intervals.</p><p>$\\{(0,2),(1,0),(3,5),(5,5),(6,2),(8,0)\\}$ over $[0,8]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 21.5,
+    "solution": "$L=2+0+10+5+4=21,R=0+10+10+2+0=22,\\frac{L+R}{2}=21.5$"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1170572627110",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "evaluating",
+   "prompt": "<p>In the following exercises, use averages of values at the left (<em>L</em>) and right (<em>R</em>) endpoints to compute the integrals of the piecewise linear functions with graphs that pass through the given list of points over the indicated intervals.</p><p>$\\{(-4,0),(-2,2),(0,0),(1,2),(3,2),(4,0)\\}$ over $[-4,4]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 10,
+    "solution": "$L=0+4+0+4+2=10,R=4+0+2+4+0=10,\\frac{L+R}{2}=10$"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1170572129829",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>Suppose that $\\int_{0}^{4}\\kf(x)dx=5$ and $\\int_{0}^{2}\\kf(x)dx=-3,$ and $\\int_{0}^{4}\\kg(x)dx=-1$ and $\\int_{0}^{2}\\kg(x)dx=2.$ In the following exercises, compute the integrals.</p><p>$\\int_{2}^{4}(\\kf(x)+\\kg(x))dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5,
+    "solution": "$\\int_{2}^{4}\\kf(x)dx+\\int_{2}^{4}\\kg(x)dx=8-3=5$"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1170572129076",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>Suppose that $\\int_{0}^{4}\\kf(x)dx=5$ and $\\int_{0}^{2}\\kf(x)dx=-3,$ and $\\int_{0}^{4}\\kg(x)dx=-1$ and $\\int_{0}^{2}\\kg(x)dx=2.$ In the following exercises, compute the integrals.</p><p>$\\int_{2}^{4}(\\kf(x)-\\kg(x))dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 11,
+    "solution": "$\\int_{2}^{4}\\kf(x)dx-\\int_{2}^{4}\\kg(x)dx=8+3=11$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1170572309789",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>Suppose that $\\int_{0}^{4}\\kf(x)dx=5$ and $\\int_{0}^{2}\\kf(x)dx=-3,$ and $\\int_{0}^{4}\\kg(x)dx=-1$ and $\\int_{0}^{2}\\kg(x)dx=2.$ In the following exercises, compute the integrals.</p><p>$\\int_{2}^{4}(4\\kf(x)-3\\kg(x))dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 41,
+    "solution": "$4\\int_{2}^{4}\\kf(x)dx-3\\int_{2}^{4}\\kg(x)dx=32+9=41$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1170572582635",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>In the following exercises, use the identity $\\int_{-A}^{A}\\kf(x)dx=\\int_{-A}^{0}\\kf(x)dx+\\int_{0}^{A}\\kf(x)dx$ to compute the integrals.</p><p>$\\int_{-\\sqrt{\\pi}}^{\\sqrt{\\pi}}\\frac{t}{1+\\cos t}dt$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "tol": 1e-06,
+    "solution": "The integrand is odd; the integral is zero."
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1170572351582",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>In the following exercises, find the net signed area between $\\kf(x)$ and the x-axis.</p><p>$\\int_{2}^{4}{(x-3)}^{3}dx$ (<em>Hint:</em> Look at the graph of $\\kf$.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "tol": 1e-06,
+    "solution": "The integrand is antisymmetric with respect to $x=3.$ The integral is zero."
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1170572448446",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>In the following exercises, given that $\\int_{0}^{1}xdx=\\frac{1}{2},\\int_{0}^{1}x^{2}dx=\\frac{1}{3},$ and $\\int_{0}^{1}x^{3}dx=\\frac{1}{4},$ compute the integrals.</p><p>$\\int_{0}^{1}(1-x+x^{2}-x^{3})dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.583333,
+    "solution": "$1-\\frac{1}{2}+\\frac{1}{3}-\\frac{1}{4}=\\frac{7}{12}$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1170572306379",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>In the following exercises, given that $\\int_{0}^{1}xdx=\\frac{1}{2},\\int_{0}^{1}x^{2}dx=\\frac{1}{3},$ and $\\int_{0}^{1}x^{3}dx=\\frac{1}{4},$ compute the integrals.</p><p>$\\int_{0}^{1}{(1-2x)}^{3}dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "tol": 1e-06,
+    "solution": "$\\int_{0}^{1}(1-6x+12x^{2}-8x^{3})dx=(x-3x^{2}+4x^{3}-2x^{4})=(1-3+4-2)(0-0+0-0)=0$<sup class=\"fn\" data-note=\"e101-key\"></sup>"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1170572558040",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p>In the following exercises, given that $\\int_{0}^{1}xdx=\\frac{1}{2},\\int_{0}^{1}x^{2}dx=\\frac{1}{3},$ and $\\int_{0}^{1}x^{3}dx=\\frac{1}{4},$ compute the integrals.</p><p>$\\int_{0}^{1}(7-5x^{3})dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.75,
+    "solution": "$7-\\frac{5}{4}=\\frac{23}{4}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "fs-id1170572558115",
+   "source_number": "104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-theorem",
+   "prompt": "<p>In the following exercises, use the comparison theorem.</p><p>Show that $\\int_{0}^{3}(x^{2}-6x+9)dx\\ge0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $x^{2}-6x+9=(x-3)^{2}\\ge 0$ for every $x,$ the integrand is nonnegative on $[0,3],$ and by the comparison theorem $\\int_{0}^{3}(x^{2}-6x+9)dx\\ge 0.$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1170571813996",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-theorem",
+   "prompt": "<p>In the following exercises, use the comparison theorem.</p><p>Show that $\\int_{-2}^{3}(x-3)(x+2)dx\\le0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The integrand is negative over $[-2,3].$"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "fs-id1170572307650",
+   "source_number": "106",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-theorem",
+   "prompt": "<p>In the following exercises, use the comparison theorem.</p><p>Show that $\\int_{0}^{1}\\sqrt{1+x^{3}}dx\\le\\int_{0}^{1}\\sqrt{1+x^{2}}dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "On $[0,1],$ $0\\le x\\le 1$ gives $x^{3}\\le x^{2},$ so $1+x^{3}\\le 1+x^{2}$ and, since the square root is increasing, $\\sqrt{1+x^{3}}\\le\\sqrt{1+x^{2}}$ there. By the comparison theorem, $\\int_{0}^{1}\\sqrt{1+x^{3}}dx\\le\\int_{0}^{1}\\sqrt{1+x^{2}}dx.$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1170572480470",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-theorem",
+   "prompt": "<p>In the following exercises, use the comparison theorem.</p><p>Show that $\\int_{1}^{2}\\sqrt{1+x}dx\\le\\int_{1}^{2}\\sqrt{1+x^{2}}dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x\\le x^{2}$ over $[1,2],$ so $\\sqrt{1+x}\\le\\sqrt{1+x^{2}}$ over $[1,2].$"
+   }
+  },
+  {
+   "id": "e108",
+   "source_id": "fs-id1170572218470",
+   "source_number": "108",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-theorem",
+   "prompt": "<p>In the following exercises, use the comparison theorem.</p><p>Show that $\\int_{0}^{\\pi/2}\\sin tdt\\ge\\frac{\\pi}{4}.$ $(Hint\\text{:}\\;\\sin t\\ge\\frac{2t}{\\pi}$ over $[0,\\frac{\\pi}{2}])$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the hint, $\\sin t\\ge\\frac{2t}{\\pi}$ over $[0,\\frac{\\pi}{2}],$ so by the comparison theorem $\\int_{0}^{\\pi/2}\\sin t\\,dt\\ge\\int_{0}^{\\pi/2}\\frac{2t}{\\pi}dt.$ The right side is the area of a triangle with base $\\frac{\\pi}{2}$ and height $\\frac{2}{\\pi}\\cdot\\frac{\\pi}{2}=1,$ which is $\\frac{1}{2}\\cdot\\frac{\\pi}{2}\\cdot 1=\\frac{\\pi}{4}.$"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1170571712388",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-theorem",
+   "prompt": "<p>In the following exercises, use the comparison theorem.</p><p>Show that $\\int_{-\\pi/4}^{\\pi/4}\\cos tdt\\ge\\pi\\sqrt{2}/4.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\cos(t)\\ge\\frac{\\sqrt{2}}{2}.$ Multiply by the length of the interval to get the inequality."
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1170571542810",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>In the following exercises, find the average value $\\kfave$ of $\\kf$ between <em>a</em> and <em>b</em>, and find a point <em>c</em>, where $\\kf(c)=\\kfave.$</p><p>$\\kf(x)=x^{5},a=-1,b=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kfave=0;c=0$"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1170571624145",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>In the following exercises, find the average value $\\kfave$ of $\\kf$ between <em>a</em> and <em>b</em>, and find a point <em>c</em>, where $\\kf(c)=\\kfave.$</p><p>$\\kf(x)=(3-|x|),a=-3,b=3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3}{2}$ when $c=\\pm\\frac{3}{2}$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1170572309560",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>In the following exercises, find the average value $\\kfave$ of $\\kf$ between <em>a</em> and <em>b</em>, and find a point <em>c</em>, where $\\kf(c)=\\kfave.$</p><p>$\\kf(x)=\\cos x,a=0,b=2\\pi$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kfave=0;c=\\frac{\\pi}{2},\\frac{3\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1170572618038",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>In the following exercises, approximate the average value using Riemann sums <em>L</em><sub>100</sub> and <em>R</em><sub>100</sub>. How does your answer compare with the exact given answer?</p><p><strong>[T]</strong> $y=e^{x/2}$ over the interval $[0,1];$ the exact solution is $2(\\sqrt{e}-1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L_{100}=1.294,R_{100}=1.301;$ the exact average is between these values."
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1170571612043",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>In the following exercises, approximate the average value using Riemann sums <em>L</em><sub>100</sub> and <em>R</em><sub>100</sub>. How does your answer compare with the exact given answer?</p><p><strong>[T]</strong> $y=\\frac{x+1}{\\sqrt{4-x^{2}}}$ over the interval $[-1,1];$ the exact solution is $\\frac{\\pi}{6}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L_{100}\\;\\times \\;(\\frac{1}{2})=0.5178,R_{100}\\;\\times \\;(\\frac{1}{2})=0.5294$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1170572292381",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>In the following exercises, compute the average value using the left Riemann sums <em>L<sub>N</sub></em> for $N=1,10,100.$ How does the accuracy compare with the given exact value?</p><p><strong>[T]</strong> $y=xe^{x^{2}}$ over the interval $[0,2];$ the exact solution is $\\frac{1}{4}(e^{4}-1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L_{1}=0,L_{10}\\;\\times \\;(\\frac{1}{2})=8.743493,L_{100}\\;\\times \\;(\\frac{1}{2})=12.861728.$ The exact answer $\\approx 26.799,$ so <em>L</em><sub>100</sub> is not accurate."
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1170572380129",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>In the following exercises, compute the average value using the left Riemann sums <em>L<sub>N</sub></em> for $N=1,10,100.$ How does the accuracy compare with the given exact value?</p><p><strong>[T]</strong> $y=x\\;\\sin(x^{2})$ over the interval $[-\\pi,0];$ the exact solution is $\\frac{\\cos(\\pi^{2})-1}{2\\pi}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L_{1}\\;\\times \\;(\\frac{1}{\\pi})=1.352,L_{10}\\;\\times \\;(\\frac{1}{\\pi})=-0.1837,L_{100}\\;\\times \\;(\\frac{1}{\\pi})=-0.2956.$ The exact answer $\\approx -0.303,$ so <em>L</em><sub>100</sub> is not accurate to first decimal."
+   }
+  },
+  {
+   "id": "e124",
+   "source_id": "fs-id1170572173066",
+   "source_number": "124",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>Suppose that $A=\\int_{0}^{2\\pi}\\sin^{2}tdt$ and $B=\\int_{0}^{2\\pi}\\cos^{2}tdt.$ Show that $A+B=2\\pi$ and $A=B.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the property for sums, $A+B=\\int_{0}^{2\\pi}(\\sin^{2}t+\\cos^{2}t)dt=\\int_{0}^{2\\pi}1\\,dt=2\\pi.$ Since $\\cos t=\\sin(t+\\frac{\\pi}{2}),$ the graph of $\\cos^{2}t$ is the graph of $\\sin^{2}t$ shifted left by $\\frac{\\pi}{2};$ both have period $\\pi,$ and $[0,2\\pi]$ holds exactly two periods of each, so the two graphs enclose the same area over it and $A=B$ (each is $\\pi$)."
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1170572572942",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>Suppose that $A=\\int_{-\\pi/4}^{\\pi/4}\\sec^{2}tdt=\\pi$<sup class=\"fn\" data-note=\"e125-value\"></sup> and $B=\\int_{-\\pi/4}^{\\pi/4}\\tan^{2}tdt.$ Show that $A-B=\\frac{\\pi}{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Use $\\tan^{2}\\theta +1=\\sec^{2}\\theta .$ Then, $B-A=\\int_{-\\pi/4}^{\\pi/4}1dx=\\frac{\\pi}{2}.$"
+   }
+  },
+  {
+   "id": "e126",
+   "source_id": "fs-id1170571614677",
+   "source_number": "126",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>Show that the average value of $\\sin^{2}t$ over $[0,2\\pi]$ is equal to 1/2 Without further calculation, determine whether the average value of $\\sin^{2}t$ over $[0,\\pi]$ is also equal to 1/2.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the preceding exercise, $\\int_{0}^{2\\pi}\\sin^{2}t\\,dt=\\pi,$ so the average value over $[0,2\\pi]$ is $\\frac{1}{2\\pi}\\cdot\\pi=\\frac{1}{2}.$ Yes, it is also $\\frac{1}{2}$ over $[0,\\pi]:$ $\\sin^{2}t$ has period $\\pi,$ so its graph over $[0,2\\pi]$ is two copies of its graph over $[0,\\pi],$ the integral over $[0,\\pi]$ is half of $\\pi,$ and the interval is half as long."
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1170572371990",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-value-definition",
+   "prompt": "<p>Show that the average value of $\\cos^{2}t$ over $[0,2\\pi]$ is equal to $1/2.$ Without further calculation, determine whether the average value of $\\cos^{2}(t)$ over $[0,\\pi]$ is also equal to $1/2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{0}^{2\\pi}\\cos^{2}tdt=\\pi,$ so divide by the length 2<em>π</em> of the interval. $\\cos^{2}t$ has period <em>π</em>, so yes, it is true."
+   }
+  },
+  {
+   "id": "e128",
+   "source_id": "fs-id1170572560194",
+   "source_number": "128",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Explain why the graphs of a quadratic function (parabola) $p(x)$ and a linear function $\\ell (x)$ can intersect in at most two points. Suppose that $p(a)=\\ell (a)$ and $p(b)=\\ell (b),$ and that $\\int_{a}^{b}p(t)dt\\gt \\int_{a}^{b}\\ell (t)dt.$ Explain why $\\int_{c}^{d}p(t)\\gt \\int_{c}^{d}\\ell (t)dt$ whenever $a\\le c\\lt d\\le b.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The graphs meet where $p(x)-\\ell(x)=0,$ and $p-\\ell$ is a quadratic polynomial (its $x^{2}$ coefficient is that of $p,$ which is not zero), so it has at most two real zeros. If $p(a)=\\ell(a)$ and $p(b)=\\ell(b),$ these are the only two, and $p-\\ell$ keeps one sign on $(a,b).$ Since $\\int_{a}^{b}p(t)dt\\gt\\int_{a}^{b}\\ell(t)dt,$ the integral of $p-\\ell$ over $[a,b]$ is positive, so that sign is positive. Then for $a\\le c\\lt d\\le b,$ $p-\\ell\\gt 0$ on $(c,d),$ and $\\int_{c}^{d}(p(t)-\\ell(t))dt\\gt 0,$ which is the claim."
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1170572332686",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Suppose that parabola $p(x)=ax^{2}+bx+c$ opens downward $(a\\lt 0)$ and has a vertex of $y=\\frac{-b}{2a}\\gt 0.$ For which interval $[A,B]$ is $\\int_{A}^{B}(ax^{2}+bx+c)dx$ as large as possible?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The integral is maximized when one uses the largest interval on which <em>p</em> is nonnegative. Thus, $A=\\frac{-b-\\sqrt{b^{2}-4ac}}{2a}$ and $B=\\frac{-b+\\sqrt{b^{2}-4ac}}{2a}.$"
+   }
+  },
+  {
+   "id": "e130",
+   "source_id": "fs-id1170572274741",
+   "source_number": "130",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Suppose $[a,b]$ can be subdivided into subintervals $a=a_{0}\\lt a_{1}\\lt a_{2}\\lt \\cdots\\lt a_{N}=b$ such that either $\\kf\\ge0$ over $[a_{i-1},a_{i}]$ or $\\kf\\le0$ over $[a_{i-1},a_{i}].$ Set $\\kA_{i}=\\int_{a_{i-1}}^{a_{i}}\\kf(t)dt.$</p><ol type=\"a\"><li>Explain why $\\int_{a}^{b}\\kf(t)dt=\\kA_{1}+\\kA_{2}+\\cdots+\\kA_{N}.$</li><li>Then, explain why $|\\int_{a}^{b}\\kf(t)dt|\\le\\int_{a}^{b}|\\kf(t)|dt.$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a. By the property $\\int_{a}^{b}f=\\int_{a}^{c}f+\\int_{c}^{b}f,$ applied once at each interior point $a_{i},$ the integral over $[a,b]$ is the sum of the integrals over the subintervals $[a_{i-1},a_{i}],$ which are $\\kA_{1},\\ldots,\\kA_{N}.$ b. On each subinterval $\\kf$ keeps one sign, so $|\\kA_{i}|=\\int_{a_{i-1}}^{a_{i}}|\\kf(t)|dt.$ Then $|\\int_{a}^{b}\\kf(t)dt|=|\\kA_{1}+\\cdots+\\kA_{N}|\\le|\\kA_{1}|+\\cdots+|\\kA_{N}|=\\int_{a}^{b}|\\kf(t)|dt.$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1170572330164",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Suppose $\\kf$ and <em>g</em> are continuous functions such that $\\int_{c}^{d}\\kf(t)dt\\le\\int_{c}^{d}\\kg(t)dt$ for every subinterval $[c,d]$ of $[a,b].$ Explain why $\\kf(x)\\le \\kg(x)$ for all values of <em>x</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "If $\\kf(t_{0})\\gt \\kg(t_{0})$ for some $t_{0}\\in [a,b],$ then since $\\kf-g$ is continuous, there is an interval containing <em>t</em><sub>0</sub> such that $\\kf(t)\\gt \\kg(t)$ over the interval $[c,d],$ and then $\\int_{d}^{d}\\kf(t)dt\\gt \\int_{c}^{d}\\kg(t)dt$ over this interval."
+   }
+  },
+  {
+   "id": "e132",
+   "source_id": "fs-id1170572557927",
+   "source_number": "132",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Suppose the average value of $\\kf$ over $[a,b]$ is 1 and the average value of $\\kf$ over $[b,c]$ is 1 where $a\\lt c\\lt b.$<sup class=\"fn\" data-note=\"e132-order\"></sup> Show that the average value of $\\kf$ over $[a,c]$ is also 1.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The statement holds for $a\\lt b\\lt c.$ The two average values give $\\int_{a}^{b}\\kf(t)dt=1\\cdot(b-a)$ and $\\int_{b}^{c}\\kf(t)dt=1\\cdot(c-b).$ Adding them, $\\int_{a}^{c}\\kf(t)dt=(b-a)+(c-b)=c-a,$ so the average value of $\\kf$ over $[a,c]$ is $\\frac{c-a}{c-a}=1.$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1170572370993",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Suppose that $[a,b]$ can be partitioned. taking $a=a_{0}\\lt a_{1}\\lt \\cdots\\lt a_{N}=b$ such that the average value of $\\kf$ over each subinterval $[a_{i-1},a_{i}]=1$ is equal to 1 for each $i=1,\\ldots,N.$ Explain why the average value of $\\kf$ over $[a,b]$ is also equal to 1.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The integral of $\\kf$ over an interval is the same as the integral of the average of $\\kf$ over that interval. Thus, $\\begin{gathered}\\int_{a}^{b}\\kf(t)dt=\\int_{a_{0}}^{a_{1}}\\kf(t)dt+\\int_{a_{1}}^{a_{2}}\\kf(t)dt+\\cdots+\\int_{a_{N+1}}^{a_{N}}\\kf(t)dt=\\int_{a_{0}}^{a_{1}}1dt+\\int_{a_{1}}^{a_{2}}1dt+\\cdots+\\int_{a_{N+1}}^{a_{N}}1dt \\\\ =(a_{1}-a_{0})+(a_{2}-a_{1})+\\cdots+(a_{N}-a_{N-1})=a_{N}-a_{0}=b-a.\\end{gathered}$ Dividing through by $b-a$ gives the desired identity."
+   }
+  },
+  {
+   "id": "e134",
+   "source_id": "fs-id1170572353398",
+   "source_number": "134",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Suppose that for each <em>i</em> such that $1\\le i\\le N$ one has $\\int_{i-1}^{i}\\kf(t)dt=i.$ Show that $\\int_{0}^{N}\\kf(t)dt=\\frac{N(N+1)}{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the property $\\int_{a}^{b}f=\\int_{a}^{c}f+\\int_{c}^{b}f,$ $\\int_{0}^{N}\\kf(t)dt=\\sum_{i=1}^{N}\\int_{i-1}^{i}\\kf(t)dt=\\sum_{i=1}^{N}i=\\frac{N(N+1)}{2},$ by the formula for the sum of the first $N$ integers."
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1170572390661",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Suppose that for each <em>i</em> such that $1\\le i\\le N$ one has $\\int_{i-1}^{i}\\kf(t)dt=i^{2}.$ Show that $\\int_{0}^{N}\\kf(t)dt=\\frac{N(N+1)(2N+1)}{6}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{0}^{N}\\kf(t)dt=\\sum_{i=1}^{N} \\int_{i-1}^{i}\\kf(t)dt=\\sum_{i=1}^{N} i^{2}=\\frac{N(N+1)(2N+1)}{6}$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1170572370440",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p><strong>[T]</strong> Compute the left and right Riemann sums, <em>L</em><sub>10</sub> and <em>R</em><sub>10</sub>, and their average $\\frac{L_{10}+R_{10}}{2}$ for $\\kf(t)=(4-t^{2})$ over $[1,2].$ Given that $\\int_{1}^{2}(4-t^{2})dt=1.\\bar{66},$ to how many decimal places is $\\frac{L_{10}+R_{10}}{2}$ accurate?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L_{10}=1.815,R_{10}=1.515,\\frac{L_{10}+R_{10}}{2}=1.665,$ so the estimate is accurate to two decimal places."
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1170572367459",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>Estimate $\\int_{0}^{1}tdt$ using the left and right endpoint sums, each with a single rectangle. How does the average of these left and right endpoint sums compare with the actual value $\\int_{0}^{1}tdt?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The average is $1/2,$ which is equal to the integral in this case."
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1170571838156",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_02_207.jpg",
+    "alt": "A graph of the function f(x) = sin(2pi*x) over [0, 2]. The function is shaded over [.7, 1] above the curve and below to x axis, over [1,1.5] under the curve and above the x axis, and over [1.5, 1.7] above the curve and under the x axis. The graph is antisymmetric with respect o t = ½ over [0,1]."
+   },
+   "prompt": "<p>From the graph of $\\sin(2\\pi x)$ shown:</p><ol type=\"a\"><li>Explain why $\\int_{0}^{1}\\sin(2\\pi t)dt=0.$</li><li>Explain why, in general, $\\int_{a}^{a+1}\\sin(2\\pi t)dt=0$ for any value of <em>a</em>.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>The graph is antisymmetric with respect to $t=\\frac{1}{2}$ over $[0,1],$ so the average value is zero. b. For any value of <em>a</em>, the graph between $[a,a+1]$ is a shift of the graph over $[0,1],$ so the net areas above and below the axis do not change and the average remains zero.</li></ol>"
+   }
+  },
+  {
+   "id": "e142",
+   "source_id": "fs-id1170572643334",
+   "source_number": "142",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>If $\\kf$ is 1-periodic $(\\kf(t+1)=\\kf(t)),$ odd, and integrable over $[0,1],$ is it always true that $\\int_{0}^{1}\\kf(t)dt=0?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. Being odd, $\\kf(-t)=-\\kf(t);$ being 1-periodic, $\\kf(1-t)=\\kf(-t)=-\\kf(t).$ So the value of $\\kf$ at $1-t$ is the negative of its value at $t:$ the graph over $[\\frac{1}{2},1]$ is the graph over $[0,\\frac{1}{2}]$ turned about the point $(\\frac{1}{2},0),$ the areas above and below the axis over $[0,1]$ are equal, and $\\int_{0}^{1}\\kf(t)dt=0.$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1170572350688",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "properties",
+   "prompt": "<p>If $\\kf$ is 1-periodic and $\\int_{0}^{1}\\kf(t)dt=A,$ is it necessarily true that $\\int_{a}^{1+a}\\kf(t)dt=A$ for all <em>A</em>?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes, the integral over any interval of length 1 is the same."
+   }
+  },
+  {
+   "id": "r440",
+   "source_id": "fs-id1170572451355",
+   "source_section": "5.7",
+   "source_number": "440",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-properties",
+   "prompt": "<p><em>True or False.</em> Justify your answer with a proof or a counterexample. Assume all functions $\\kf$ and $\\kg$ are continuous over their domains.</p><p>$\\int_{a}^{b}\\kf(x)^{2}dx=\\int_{a}^{b}\\kf(x)dx\\int_{a}^{b}\\kf(x)dx$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. Take $\\kf(x)=x$ on $[0,1]:$ the area under $x^{2}$ is $\\int_{0}^{1}x^{2}dx=\\frac{1}{3},$ while $\\left(\\int_{0}^{1}x\\,dx\\right)^{2}=\\left(\\frac{1}{2}\\right)^{2}=\\frac{1}{4}.$ No property of the definite integral turns the integral of a product into the product of the integrals."
+   }
+  },
+  {
+   "id": "r441",
+   "source_id": "fs-id1170572329953",
+   "source_section": "5.7",
+   "source_number": "441",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-theorem",
+   "prompt": "<p><em>True or False.</em> Justify your answer with a proof or a counterexample. Assume all functions $\\kf$ and $\\kg$ are continuous over their domains.</p><p>If $\\kf(x)\\le\\kg(x)$ for all $x\\in[a,b],$ then $\\int_{a}^{b}\\kf(x)\\le\\int_{a}^{b}\\kg(x).$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "riemann-sum"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "net-signed-area"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "total-area"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e61",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e61",
+   "concept": "riemann-sum"
+  },
+  {
+   "exercise": "e63",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e63",
+   "concept": "riemann-sum"
+  },
+  {
+   "exercise": "e65",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e65",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e67",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e67",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e69",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e69",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e71",
+   "concept": "net-signed-area"
+  },
+  {
+   "exercise": "e73",
+   "concept": "net-signed-area"
+  },
+  {
+   "exercise": "e75",
+   "concept": "net-signed-area"
+  },
+  {
+   "exercise": "e77",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e77",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e79",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e79",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e81",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e81",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e83",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e83",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e85",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e85",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e85",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e87",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e87",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e87",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e89",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e91",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e93",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e95",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e95",
+   "concept": "odd-function"
+  },
+  {
+   "exercise": "e97",
+   "concept": "net-signed-area"
+  },
+  {
+   "exercise": "e99",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e101",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e103",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e104",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e105",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e106",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e107",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e108",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e109",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e111",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e113",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e115",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e117",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e117",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e117",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e119",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e119",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e119",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e121",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e121",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e123",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e123",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e124",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e125",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e126",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e127",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e128",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e128",
+   "concept": "quadratic-function"
+  },
+  {
+   "exercise": "e129",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e129",
+   "concept": "quadratic-function"
+  },
+  {
+   "exercise": "e130",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e130",
+   "concept": "total-area"
+  },
+  {
+   "exercise": "e131",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e132",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e132",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e133",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e133",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e134",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e134",
+   "concept": "sums-and-powers-of-integers"
+  },
+  {
+   "exercise": "e135",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e135",
+   "concept": "sums-and-powers-of-integers"
+  },
+  {
+   "exercise": "e137",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e137",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e137",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e139",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e139",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e139",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e141",
+   "concept": "net-signed-area"
+  },
+  {
+   "exercise": "e142",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e142",
+   "concept": "odd-function"
+  },
+  {
+   "exercise": "e143",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "r440",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "r441",
+   "concept": "integral-comparison-theorem"
+  }
+ ],
+ "referents": [
+  {
+   "id": "curve-f",
+   "label": "f(x) = √(1 + x²)",
+   "figures": [
+    "fig-compare-roots"
+   ]
+  },
+  {
+   "id": "curve-g",
+   "label": "g(x) = √(1 + x)",
+   "figures": [
+    "fig-compare-roots"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "e101-key",
+   "kind": "correction",
+   "html": "The key’s working leaves out the minus sign between the two evaluations: $(1-3+4-2)-(0-0+0-0)=0.$"
+  },
+  {
+   "id": "e125-value",
+   "kind": "correction",
+   "html": "The prompt prints $A=\\pi;$ the integral is $\\tan\\frac{\\pi}{4}-\\tan(-\\frac{\\pi}{4})=2.$ The key also writes $B-A$ where $A-B$ is meant: since $\\sec^{2}t=\\tan^{2}t+1,$ $A-B=\\int_{-\\pi/4}^{\\pi/4}1\\,dt=\\frac{\\pi}{2}.$"
+  },
+  {
+   "id": "e132-order",
+   "kind": "correction",
+   "html": "The book prints $a\\lt c\\lt b;$ for $[a,b]$ and $[b,c]$ to be adjacent intervals and $[a,c]$ their union, the order is $a\\lt b\\lt c.$"
+  }
+ ]
+}

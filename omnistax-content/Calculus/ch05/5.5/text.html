@@ -1,0 +1,137 @@
+<p id="substitution-intro">The <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span> gave us a method to evaluate integrals without using <span data-concept="riemann-sum">Riemann sums</span>. The drawback of this method, though, is that we must be able to find an <span data-concept="antiderivative">antiderivative</span>, and this is not always easy. In this section we examine a technique, called <strong><span data-concept="integration-by-substitution">integration by substitution</span></strong>, to help us find <span data-concept="antiderivative">antiderivatives</span>. Specifically, this method helps us find <span data-concept="antiderivative">antiderivatives</span> when the <span data-concept="integrand">integrand</span> is the result of a <span data-concept="chain-rule">chain-rule derivative</span>.</p>
+<p>At first, the approach to the <span data-concept="integration-by-substitution">substitution</span> procedure may not appear very obvious. However, it is primarily a visual task—that is, the <span data-concept="integrand">integrand</span> shows you what to do; it is a matter of recognizing the form of the <span data-concept="function">function</span>. So, what are we supposed to see? We are looking for an <span data-concept="integrand">integrand</span> of the form $\kf[\kg(x)]\kgprime(x)dx.$ For example, in the integral $\int {(x^{2}-3)}^{3}2xdx,$ we have $\kf(x)=x^{3},\kg(x)=x^{2}-3,$ and $\kgprime(x)=2x.$ Then,</p>
+$$\kf[\kg(x)]\kgprime(x)={(x^{2}-3)}^{3}(2x),$$
+<p>and we see that our <span data-concept="integrand">integrand</span> is in the correct form.</p>
+<p>The method is called <em><span data-concept="integration-by-substitution">substitution</span></em> because we substitute part of the <span data-concept="integrand">integrand</span> with the variable <em>u</em> and part of the <span data-concept="integrand">integrand</span> with <em>du</em>. It is also referred to as <strong><span data-concept="change-of-variables">change of variables</span></strong> because we are changing variables to obtain an expression that is easier to work with for applying the integration rules.</p>
+<section id="indefinite">
+<h2>Substitution with Indefinite Integrals</h2>
+<div class="note" id="substitution-indefinite">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="substitution-with-indefinite-integrals">Substitution with Indefinite Integrals</span></h3>
+<p>Let $u=\kg(x),$ where $\kgprime(x)$ is <span data-concept="continuity-over-an-interval">continuous</span> over an interval, let $\kf(x)$ be <span data-concept="continuity-over-an-interval">continuous</span> over the corresponding range of $\kg$, and let $\kF(x)$ be an <span data-concept="antiderivative">antiderivative</span> of $\kf(x).$ Then,</p>
+$$\begin{aligned}\int \kf[\kg(x)]\kgprime(x)dx &=\int \kf(u)du \\ &=\kF(u)+C \\ &=\kF(\kg(x))+C.\end{aligned}$$
+</div>
+<h3>Proof</h3>
+<p>Let $\kf$, $\kg$, <em>u</em>, and $\kF$ be as specified in the theorem. Then</p>
+$$\begin{aligned}\frac{d}{dx}\kF(\kg(x)) &=\kFprime(\kg(x))\kgprime(x) \\ &=\kf[\kg(x)]\kgprime(x).\end{aligned}$$
+<p>Integrating both sides with respect to <em>x</em>, we see that</p>
+$$\int \kf[\kg(x)]\kgprime(x)dx=\kF(\kg(x))+C.$$
+<p>If we now substitute $u=\kg(x),$ and $du=\kgprime(x)dx,$ we get</p>
+$$\begin{aligned}\int \kf[\kg(x)]\kgprime(x)dx &=\int \kf(u)du \\ &=\kF(u)+C \\ &=\kF(\kg(x))+C.\end{aligned}$$
+<p>□</p>
+<p>Returning to the problem we looked at originally, we let $u=x^{2}-3$ and then $du=2xdx.$ Rewrite the integral in terms of <em>u</em>:</p>
+$$\int {\underset{u}{\underbrace{(x^{2}-3)}}}^{3}\underset{du}{\underbrace{(2xdx)}}=\int u^{3}du.$$
+<p>Using the <span data-concept="power-rule-for-integrals">power rule for integrals</span>, we have</p>
+$$\int u^{3}du=\frac{u^{4}}{4}+C.$$
+<p>Substitute the original expression for <em>x</em> back into the solution:</p>
+$$\frac{u^{4}}{4}+C=\frac{{(x^{2}-3)}^{4}}{4}+C.$$
+<p>We can generalize the procedure in the following Problem-Solving Strategy.</p>
+<div class="note" id="substitution-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3><span data-concept="integration-by-substitution">Integration by Substitution</span></h3>
+<ol><li>Look carefully at the <span data-concept="integrand">integrand</span> and select an expression $\kg(x)$ within the <span data-concept="integrand">integrand</span> to set equal to <em>u</em>. Let’s select $\kg(x)$ such that $\kgprime(x)$ is also part of the <span data-concept="integrand">integrand</span>.</li><li>Substitute $u=\kg(x)$ and $du=\kgprime(x)dx$ into the integral.</li><li>We should now be able to evaluate the integral with respect to <em>u</em>. If the integral can’t be evaluated we need to go back and select a different expression to use as <em>u</em>.</li><li>Evaluate the integral in terms of <em>u</em>.</li><li>Write the result in terms of <em>x</em> and the expression $\kg(x).$</li></ol>
+</div>
+<div class="example" id="fs-id1170573385785">
+<h3>Example 5.30 · Using Substitution to Find an Antiderivative</h3>
+<p><a href="/calculus/sheets/integral-calculator/?expr=6x(3x%5E2%2B4)%5E4">Use <span data-concept="integration-by-substitution">substitution</span> to find the <span data-concept="antiderivative">antiderivative</span></a>  $\int 6x{(3x^{2}+4)}^{4}dx.$</p>
+<h4>Solution</h4>
+<p>The first step is to choose an expression for <em>u</em>. We choose $u=3x^{2}+4$ because then $du=6xdx,$ and we already have <em>du</em> in the <span data-concept="integrand">integrand</span>. Write the integral in terms of <em>u</em>:</p>
+$$\int 6x{(3x^{2}+4)}^{4}dx=\int u^{4}du.$$
+<p>Remember that <em>du</em> is the <span data-concept="derivative">derivative</span> of the expression chosen for <em>u</em>, regardless of what is inside the <span data-concept="integrand">integrand</span>. Now we can evaluate the integral with respect to <em>u</em>:</p>
+$$\begin{aligned}\int u^{4}du &=\frac{u^{5}}{5}+C \\ &=\frac{{(3x^{2}+4)}^{5}}{5}+C.\end{aligned}$$
+<h4>Analysis</h4>
+<p>We can check our answer by taking the <span data-concept="derivative">derivative</span> of the result of integration. We should obtain the <span data-concept="integrand">integrand</span>. Picking a value for <em>C</em> of 1, we let $y=\frac{1}{5}{(3x^{2}+4)}^{5}+1.$ We have</p>
+$$y=\frac{1}{5}{(3x^{2}+4)}^{5}+1,$$
+<p>so</p>
+$$\begin{aligned}y' &=(\frac{1}{5})5{(3x^{2}+4)}^{4}6x \\ &=6x{(3x^{2}+4)}^{4}.\end{aligned}$$
+<p>This is exactly the expression we started with inside the <span data-concept="integrand">integrand</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1170573385785"></div>
+<p>Sometimes we need to adjust the constants in our integral if they don’t match up exactly with the expressions we are substituting.</p>
+<div class="example" id="fs-id1170571334083">
+<h3>Example 5.31 · Using Substitution with Alteration</h3>
+<p>Use <span data-concept="integration-by-substitution">substitution</span> to find  $\int z\sqrt{z^{2}-5}dz.$</p>
+<h4>Solution</h4>
+<p>Rewrite the integral as $\int z{(z^{2}-5)}^{1/2}dz.$ Let $u=z^{2}-5$ and $du=2z\;dz.$ Now we have a problem because $du=2z\;dz$ and the original expression has only $z\;dz.$ We have to alter our expression for <em>du</em> or the integral in <em>u</em> will be twice as large as it should be. If we multiply both sides of the <em>du</em> equation by $\frac{1}{2}.$ we can solve this problem. Thus,</p>
+$$\begin{aligned}u &=z^{2}-5 \\ du &=2z\;dz \\ \frac{1}{2}du &=\frac{1}{2}(2z)dz=z\;dz.\end{aligned}$$
+<p>Write the integral in terms of <em>u</em>, but pull the $\frac{1}{2}$ outside the integration symbol:</p>
+$$\int z{(z^{2}-5)}^{1/2}dz=\frac{1}{2}\int u^{1/2}du.$$
+<p>Integrate the expression in <em>u</em>:</p>
+$$\begin{aligned}\frac{1}{2}\int u^{1/2}du &=(\frac{1}{2})\frac{u^{3/2}}{\frac{3}{2}}+C \\ &=(\frac{1}{2})(\frac{2}{3})u^{3/2}+C \\ &=\frac{1}{3}u^{3/2}+C \\ &=\frac{1}{3}{(z^{2}-5)}^{3/2}+C.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170571334083"></div>
+<div class="example" id="fs-id1170573573975">
+<h3>Example 5.32 · Using Substitution with Integrals of Trigonometric Functions</h3>
+<p>Use <span data-concept="integration-by-substitution">substitution</span> to evaluate the integral $\int \frac{\sin t}{\cos^{3}t}dt.$</p>
+<h4>Solution</h4>
+<p>We know the <span data-concept="derivative">derivative</span> of $\cos t$ is $-\sin t,$ so we set $u=\cos t.$ Then $du=-\sin tdt.$ Substituting into the integral, we have</p>
+$$\int \frac{\sin t}{\cos^{3}t}dt=-\int \frac{du}{u^{3}}.$$
+<p>Evaluating the integral, we get</p>
+$$\begin{aligned}-\int \frac{du}{u^{3}} &=-\int u^{-3}du \\ &=-(-\frac{1}{2})u^{-2}+C.\end{aligned}$$
+<p>Putting the answer back in terms of <em>t</em>, we get</p>
+$$\begin{aligned}\int \frac{\sin t}{\cos^{3}t}dt &=\frac{1}{2u^{2}}+C \\ &=\frac{1}{2\cos^{2}t}+C.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170573573975"></div>
+<p>Sometimes we need to manipulate an integral in ways that are more complicated than just multiplying or dividing by a constant. We need to eliminate all the expressions within the <span data-concept="integrand">integrand</span> that are in terms of the original variable. When we are done, <em>u</em> should be the only variable in the <span data-concept="integrand">integrand</span>. In some cases, this means solving for the original variable in terms of <em>u</em>. This technique should become clear in the next example.</p>
+<div class="example" id="fs-id1170573426799">
+<h3>Example 5.33 · Finding an Antiderivative Using <em>u</em>-Substitution</h3>
+<p>Use <span data-concept="integration-by-substitution">substitution</span> to find the <span data-concept="antiderivative">antiderivative</span>  $\int \frac{x}{\sqrt{x-1}}dx.$</p>
+<h4>Solution</h4>
+<p>If we let $u=x-1,$ then $du=dx.$ But this does not account for the <em>x</em> in the numerator of the <span data-concept="integrand">integrand</span>. We need to express <em>x</em> in terms of <em>u</em>. If $u=x-1,$ then $x=u+1.$ Now we can rewrite the integral in terms of <em>u</em>:</p>
+$$\begin{aligned}\int \frac{x}{\sqrt{x-1}}dx &=\int \frac{u+1}{\sqrt{u}}du \\ &=\int \sqrt{u}+\frac{1}{\sqrt{u}}du \\ &=\int (u^{1/2}+u^{-1/2})du.\end{aligned}$$
+<p>Then we integrate in the usual way, replace <em>u</em> with the original expression, and factor and simplify the result. Thus,</p>
+$$\begin{aligned}\int (u^{1/2}+u^{-1/2})du &=\frac{2}{3}u^{3/2}+2u^{1/2}+C \\ &=\frac{2}{3}{(x-1)}^{3/2}+2{(x-1)}^{1/2}+C \\ &={(x-1)}^{1/2}[\frac{2}{3}(x-1)+2]+C \\ &={(x-1)}^{1/2}(\frac{2}{3}x-\frac{2}{3}+\frac{6}{3})+C \\ &={(x-1)}^{1/2}(\frac{2}{3}x+\frac{4}{3})+C \\ &=\frac{2}{3}{(x-1)}^{1/2}(x+2)+C.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170573426799"></div>
+</section>
+
+<section id="definite">
+<h2>Substitution for Definite Integrals</h2>
+<p><span data-concept="integration-by-substitution">Substitution</span> can be used with <span data-concept="definite-integral">definite integrals</span>, too. However, using <span data-concept="integration-by-substitution">substitution</span> to evaluate a <span data-concept="definite-integral">definite integral</span> requires a change to the <span data-concept="limits-of-integration">limits of integration</span>. If we change variables in the <span data-concept="integrand">integrand</span>, the <span data-concept="limits-of-integration">limits of integration</span> change as well.</p>
+<div class="note" id="substitution-definite">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="substitution-with-definite-integrals">Substitution with Definite Integrals</span></h3>
+<p>Let $u=\kg(x)$ and let $\kgprime$ be <span data-concept="continuity-over-an-interval">continuous</span> over an interval $[a,b],$ and let $\kf$ be <span data-concept="continuity-over-an-interval">continuous</span> over the range of $u=\kg(x).$ Then,</p>
+$$\int_{a}^{b}\kf(\kg(x))\kgprime(x)dx=\int_{\kg(a)}^{\kg(b)}\kf(u)du.$$
+</div>
+<p>Although we will not formally prove this theorem, we justify it with some calculations here. From the <span data-concept="substitution-with-indefinite-integrals">substitution rule for indefinite integrals</span>, if $\kF(x)$ is an <span data-concept="antiderivative">antiderivative</span> of $\kf(x),$ we have</p>
+$$\int \kf(\kg(x))\kgprime(x)dx=\kF(\kg(x))+C.$$
+<p>Then</p>
+$$\begin{aligned}\int_{a}^{b}\kf[\kg(x)]\kgprime(x)dx &={\kF(\kg(x))|}_{x=a}^{x=b} \\ &=\kF(\kg(b))-\kF(\kg(a)) \\ &={\kF(u)|}_{u=\kg(a)}^{u=\kg(b)} \\ &=\int_{\kg(a)}^{\kg(b)}\kf(u)du,\end{aligned}$$
+<p>and we have the desired result.</p>
+<figure class="sim" id="sim-substitution">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Example 5.34’s <span data-concept="integrand">integrand</span> $x^{2}(1+2x^{3})^{5}$ over $[0,b]$ (left) and, after the <span data-concept="integration-by-substitution">substitution</span> $u=1+2x^{3},$ $\frac{1}{6}u^{5}$ over $[1,1+2b^{3}]$ (right): one region tall and narrow, the other low and wide, with the same area for every $b.$ The darker strip at the top of $[0,b]$ and the strip it becomes in $u$ share an area too, since $x^{2}(1+2x^{3})^{5}\,dx=\frac{1}{6}u^{5}\,du$ strip by strip. At $b=1$ the area is $\frac{182}{9}.$</span></div>
+</figure>
+<div class="example" id="fs-id1170571215481">
+<h3>Example 5.34 · Using Substitution to Evaluate a Definite Integral</h3>
+<p>Use <span data-concept="integration-by-substitution">substitution</span> to evaluate $\int_{0}^{1}x^{2}{(1+2x^{3})}^{5}dx.$</p>
+<h4>Solution</h4>
+<p>Let $u=1+2x^{3},$ so $du=6x^{2}dx.$ Since the original <span data-concept="function">function</span> includes one factor of <em>x</em><sup>2</sup> and $du=6x^{2}dx,$ multiply both sides of the <em>du</em> equation by $1/6.$ Then,</p>
+$$\begin{aligned}du &= 6x^{2}dx \\ \frac{1}{6}du &= x^{2}dx.\end{aligned}$$
+<p>To adjust the <span data-concept="limits-of-integration">limits of integration</span>, note that when $x=0,u=1+2(0)=1,$ and when $x=1,u=1+2(1)=3.$ Then</p>
+$$\int_{0}^{1}x^{2}{(1+2x^{3})}^{5}dx=\frac{1}{6}\int_{1}^{3}u^{5}du.$$
+<p>Evaluating this expression, we get</p>
+$$\begin{aligned}\frac{1}{6}\int_{1}^{3}u^{5}du &=(\frac{1}{6})(\frac{u^{6}}{6}){|}_{1}^{3} \\ &=\frac{1}{36}[{(3)}^{6}-{(1)}^{6}] \\ &=\frac{182}{9}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170571215481"></div>
+<div class="example" id="fs-id1170573593895">
+<h3>Example 5.35 · Using Substitution with an Exponential Function</h3>
+<p>Use <span data-concept="integration-by-substitution">substitution</span> to evaluate $\int_{0}^{1}xe^{4x^{2}+3}dx.$</p>
+<h4>Solution</h4>
+<p>Let $u=4x^{2}+3.$ Then, $du=8xdx.$ To adjust the <span data-concept="limits-of-integration">limits of integration</span>, we note that when $x=0,u=3,$ and when $x=1,u=7.$ So our <span data-concept="integration-by-substitution">substitution</span> gives</p>
+$$\begin{aligned}\int_{0}^{1}xe^{4x^{2}+3}dx &=\frac{1}{8}\int_{3}^{7}e^{u}du \\ &=\frac{1}{8}e^{u}{|}_{3}^{7} \\ &=\frac{e^{7}-e^{3}}{8} \\ &\approx 134.568.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170573593895"></div>
+<p><span data-concept="integration-by-substitution">Substitution</span> may be only one of the techniques needed to evaluate a <span data-concept="definite-integral">definite integral</span>. All of the properties and rules of integration apply independently, and trigonometric <span data-concept="function">functions</span> may need to be rewritten using a <span data-concept="trigonometric-identity">trigonometric identity</span> before we can apply <span data-concept="integration-by-substitution">substitution</span>. Also, we have the option of replacing the original expression for <em>u</em> after we find the <span data-concept="antiderivative">antiderivative</span>, which means that we do not have to change the <span data-concept="limits-of-integration">limits of integration</span>. These two approaches are shown in Example 5.36.</p>
+<div class="example" id="fs-id1170570994085">
+<h3>Example 5.36 · Using Substitution to Evaluate a Trigonometric Integral</h3>
+<p>Use <span data-concept="integration-by-substitution">substitution</span> to evaluate $\int_{0}^{\pi/2}\cos^{2}\theta \;d\theta.$</p>
+<h4>Solution</h4>
+<p>Let us first use a <span data-concept="trigonometric-identity">trigonometric identity</span> to rewrite the integral. The <span data-concept="trigonometric-identity">trig identity</span> $\cos^{2}\theta =\frac{1+\cos2\theta}{2}$ allows us to rewrite the integral as</p>
+$$\int_{0}^{\pi/2}\cos^{2}\theta d\theta=\int_{0}^{\pi/2}\frac{1+\cos2\theta}{2}d\theta .$$
+<p>Then,</p>
+$$\begin{aligned}\int_{0}^{\pi/2}(\frac{1+\cos2\theta}{2})d\theta &=\int_{0}^{\pi/2}(\frac{1}{2}+\frac{1}{2}\cos2\theta )d\theta \\ &=\frac{1}{2}\int_{0}^{\pi/2}d\theta+\frac{1}{2}\int_{0}^{\pi/2}\cos2\theta d\theta .\end{aligned}$$
+<p>We can evaluate the first integral as it is, but we need to make a <span data-concept="integration-by-substitution">substitution</span> to evaluate the second integral. Let $u=2\theta .$ Then, $du=2d\theta ,$ or $\frac{1}{2}du=d\theta .$ Also, when $\theta =0,u=0,$ and when $\theta =\pi/2,u=\pi.$ Expressing the second integral in terms of <em>u</em>, we have</p>
+$$\begin{aligned}\frac{1}{2}\int_{0}^{\pi/2}d\theta +\frac{1}{2}\int_{0}^{\pi/2}\cos2\theta d\theta &=\frac{1}{2}\int_{0}^{\pi/2}d\theta +\frac{1}{2}(\frac{1}{2})\int_{0}^{\pi}\cos udu \\ &=\frac{\theta}{2}{|}_{\theta =0}^{\theta =\pi/2}+\frac{1}{4}\sin u{|}_{u=0}^{u=\pi} \\ &=(\frac{\pi}{4}-0)+(0-0)=\frac{\pi}{4}.\end{aligned}$$
+</div>
+</section>

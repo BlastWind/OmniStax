@@ -1,0 +1,457 @@
+{
+  "id": "5",
+  "dir": "ch05",
+  "title": "Integration",
+  "intro": {
+    "module": "m53623",
+    "slug": "calculus-volume-1/pages/5-introduction"
+  },
+  "sections": [
+    {
+      "id": "5.1",
+      "module": "m53624",
+      "title": "Approximating Areas",
+      "slug": "calculus-volume-1/pages/5-1-approximating-areas"
+    },
+    {
+      "id": "5.2",
+      "module": "m53631",
+      "title": "The Definite Integral",
+      "slug": "calculus-volume-1/pages/5-2-the-definite-integral"
+    },
+    {
+      "id": "5.3",
+      "module": "m53632",
+      "title": "The Fundamental Theorem of Calculus",
+      "slug": "calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus"
+    },
+    {
+      "id": "5.4",
+      "module": "m53633",
+      "title": "Integration Formulas and the Net Change Theorem",
+      "slug": "calculus-volume-1/pages/5-4-integration-formulas-and-the-net-change-theorem"
+    },
+    {
+      "id": "5.5",
+      "module": "m53634",
+      "title": "Substitution",
+      "slug": "calculus-volume-1/pages/5-5-substitution"
+    },
+    {
+      "id": "5.6",
+      "module": "m53635",
+      "title": "Integrals Involving Exponential and Logarithmic Functions",
+      "slug": "calculus-volume-1/pages/5-6-integrals-involving-exponential-and-logarithmic-functions"
+    },
+    {
+      "id": "5.7",
+      "module": "m53636",
+      "title": "Integrals Resulting in Inverse Trigonometric Functions",
+      "slug": "calculus-volume-1/pages/5-7-integrals-resulting-in-inverse-trigonometric-functions"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "f",
+      "meaning": "a function, the rule that assigns to each input x in its domain exactly one output f(x)",
+      "section": "5.1",
+      "concept": "function",
+      "anchor": "5.1-approximating-area"
+    },
+    {
+      "sym": "A",
+      "meaning": "the area of the region bounded by the curve y = f(x) above, the x-axis below and the lines x = a and x = b",
+      "section": "5.1",
+      "concept": "area-under-the-curve",
+      "redefines": true,
+      "anchor": "5.1-approximating-area"
+    },
+    {
+      "sym": "a",
+      "meaning": "the left endpoint of the closed interval [a, b] over which an area or an integral is taken",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-approximating-area"
+    },
+    {
+      "sym": "b",
+      "meaning": "the right endpoint of the closed interval [a, b] over which an area or an integral is taken",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-approximating-area"
+    },
+    {
+      "sym": "n",
+      "meaning": "the number of subintervals of a partition of [a, b], and of the rectangles built on them",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-approximating-area"
+    },
+    {
+      "sym": "c",
+      "meaning": "a constant",
+      "section": "5.1",
+      "anchor": "5.1-sigma-properties"
+    },
+    {
+      "sym": "P",
+      "meaning": "a partition of [a, b], the set of points a = x₀ < x₁ < ⋯ < xₙ = b that divides it into subintervals",
+      "section": "5.1",
+      "concept": "partition",
+      "redefines": true,
+      "anchor": "5.1-partition-definition"
+    },
+    {
+      "sym": "Δx",
+      "meaning": "the width (b − a)/n of each subinterval of a regular partition of [a, b]",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-approximating-area"
+    },
+    {
+      "sym": "L",
+      "meaning": "the left-endpoint approximation Lₙ of the area A, the sum of the areas of n rectangles whose heights are the values of f at the left endpoints",
+      "section": "5.1",
+      "concept": "left-endpoint-approximation",
+      "redefines": true,
+      "anchor": "5.1-left-endpoint-rule"
+    },
+    {
+      "sym": "R",
+      "meaning": "the right-endpoint approximation Rₙ of the area A, the sum of the areas of n rectangles whose heights are the values of f at the right endpoints",
+      "section": "5.1",
+      "concept": "right-endpoint-approximation",
+      "redefines": true,
+      "anchor": "5.1-right-endpoint-rule"
+    },
+    {
+      "sym": "f",
+      "meaning": "a function, the rule that assigns to each input x in its domain exactly one output f(x)",
+      "section": "5.2",
+      "concept": "function",
+      "anchor": "5.2-definite-integral-definition"
+    },
+    {
+      "sym": "g",
+      "meaning": "a second function, examined beside f",
+      "section": "5.2",
+      "concept": "function",
+      "anchor": "5.2-integral-properties"
+    },
+    {
+      "sym": "a",
+      "meaning": "the left endpoint of the closed interval [a, b] over which an area or an integral is taken",
+      "section": "5.2",
+      "anchor": "5.2-definite-integral-definition"
+    },
+    {
+      "sym": "b",
+      "meaning": "the right endpoint of the closed interval [a, b] over which an area or an integral is taken",
+      "section": "5.2",
+      "anchor": "5.2-definite-integral-definition"
+    },
+    {
+      "sym": "A",
+      "meaning": "an area between the graph of f and the x-axis, A₁ the area above the axis and A₂ the area below it",
+      "section": "5.2",
+      "concept": "area-under-the-curve",
+      "redefines": true,
+      "anchor": "5.2-area-integral"
+    },
+    {
+      "sym": "c",
+      "meaning": "a constant",
+      "section": "5.2",
+      "anchor": "5.2-integral-properties"
+    },
+    {
+      "sym": "m",
+      "meaning": "a constant that f(x) is never below on [a, b], so that m(b − a) bounds the integral from below",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-comparison-theorem"
+    },
+    {
+      "sym": "M",
+      "meaning": "a constant that f(x) is never above on [a, b], so that M(b − a) bounds the integral from above",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-comparison-theorem"
+    },
+    {
+      "sym": "v",
+      "meaning": "the velocity of an object at time t, a function of t whose integral over an interval is the object's displacement",
+      "section": "5.2",
+      "concept": "velocity",
+      "type": "function",
+      "redefines": true,
+      "anchor": "5.2-area-integral"
+    },
+    {
+      "sym": "f_ave",
+      "meaning": "the average value of f on [a, b], the integral of f over [a, b] divided by the length b − a",
+      "section": "5.2",
+      "concept": "average-value-of-a-function",
+      "anchor": "5.2-average-value-definition"
+    },
+    {
+      "sym": "f",
+      "meaning": "a function, the rule that assigns to each input x in its domain exactly one output f(x)",
+      "section": "5.3",
+      "concept": "function",
+      "anchor": "5.3-mvt-integrals"
+    },
+    {
+      "sym": "a",
+      "meaning": "the left endpoint of the closed interval [a, b] over which an area or an integral is taken",
+      "section": "5.3",
+      "anchor": "5.3-mvt-integrals"
+    },
+    {
+      "sym": "b",
+      "meaning": "the right endpoint of the closed interval [a, b] over which an area or an integral is taken",
+      "section": "5.3",
+      "anchor": "5.3-mvt-integrals"
+    },
+    {
+      "sym": "c",
+      "meaning": "a number in [a, b] at which f takes its average value, f(c) = f_ave",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-mvt-integrals"
+    },
+    {
+      "sym": "m",
+      "meaning": "the minimum value of the continuous function f on [a, b]",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-mvt"
+    },
+    {
+      "sym": "M",
+      "meaning": "the maximum value of the continuous function f on [a, b]",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-mvt"
+    },
+    {
+      "sym": "f_ave",
+      "meaning": "the average value of f on [a, b], the integral of f over [a, b] divided by the length b − a",
+      "section": "5.3",
+      "concept": "average-value-of-a-function",
+      "anchor": "5.3-mvt-integrals"
+    },
+    {
+      "sym": "F",
+      "meaning": "the function F(x) = ∫ₐˣ f(t) dt, the area accumulated under f from a to x, an antiderivative of f",
+      "section": "5.3",
+      "concept": "antiderivative",
+      "redefines": true,
+      "anchor": "5.3-ftc-part-1"
+    },
+    {
+      "sym": "F_prime",
+      "meaning": "the derivative of F, which the Fundamental Theorem of Calculus shows is the integrand f",
+      "section": "5.3",
+      "concept": "derivative-function",
+      "redefines": true,
+      "anchor": "5.3-ftc-part-1"
+    },
+    {
+      "sym": "g",
+      "meaning": "a function defined by an integral whose upper limit is the variable, an antiderivative of its integrand",
+      "section": "5.3",
+      "concept": "antiderivative",
+      "redefines": true,
+      "anchor": "5.3-fs-id1170572601345"
+    },
+    {
+      "sym": "g_prime",
+      "meaning": "the derivative of the function g",
+      "section": "5.3",
+      "concept": "derivative-function",
+      "anchor": "5.3-fs-id1170572601345"
+    },
+    {
+      "sym": "u",
+      "meaning": "the inner variable of a composite, u = g(x), of which y is a function",
+      "section": "5.3",
+      "anchor": "5.3-fs-id1170572134770"
+    },
+    {
+      "sym": "f",
+      "meaning": "a function, the rule that assigns to each input x in its domain exactly one output f(x)",
+      "section": "5.4",
+      "concept": "function",
+      "anchor": "5.4-basic-formulas"
+    },
+    {
+      "sym": "F",
+      "meaning": "a changing quantity, an antiderivative of its rate of change F′",
+      "section": "5.4",
+      "concept": "antiderivative",
+      "redefines": true,
+      "anchor": "5.4-net-change"
+    },
+    {
+      "sym": "F_prime",
+      "meaning": "the rate of change of the quantity F, which the net change theorem integrates",
+      "section": "5.4",
+      "concept": "instantaneous-rate-of-change",
+      "redefines": true,
+      "anchor": "5.4-net-change"
+    },
+    {
+      "sym": "v",
+      "meaning": "a velocity v(t) at time t, or a wind speed, a function of t whose integral over an interval gives a displacement or a distance",
+      "section": "5.4",
+      "concept": "velocity",
+      "type": "function",
+      "anchor": "5.4-net-change-theorem",
+      "redefines": true
+    },
+    {
+      "sym": "f",
+      "meaning": "a function, the rule that assigns to each input x in its domain exactly one output f(x)",
+      "section": "5.5",
+      "concept": "function",
+      "anchor": "5.5-substitution-indefinite"
+    },
+    {
+      "sym": "g",
+      "meaning": "the inner function of a composite f(g(x)), the expression set equal to u in a substitution",
+      "section": "5.5",
+      "concept": "function",
+      "redefines": true,
+      "anchor": "5.5-substitution-indefinite"
+    },
+    {
+      "sym": "g_prime",
+      "meaning": "the derivative of the function g",
+      "section": "5.5",
+      "concept": "derivative-function",
+      "anchor": "5.5-substitution-indefinite"
+    },
+    {
+      "sym": "u",
+      "meaning": "the inner variable of a composite, u = g(x), of which y is a function",
+      "section": "5.5",
+      "anchor": "5.5-substitution-indefinite"
+    },
+    {
+      "sym": "F",
+      "meaning": "an antiderivative of f, a function whose derivative F′(x) is f(x) for all x in the domain of f",
+      "section": "5.5",
+      "concept": "antiderivative",
+      "redefines": true,
+      "anchor": "5.5-substitution-indefinite"
+    },
+    {
+      "sym": "C",
+      "meaning": "the constant of integration, an arbitrary constant added to an antiderivative",
+      "section": "5.5",
+      "redefines": true,
+      "anchor": "5.5-substitution-indefinite"
+    },
+    {
+      "sym": "f",
+      "meaning": "a function, the rule that assigns to each input x in its domain exactly one output f(x)",
+      "section": "5.6",
+      "concept": "function",
+      "anchor": "5.6-exp-rule"
+    },
+    {
+      "sym": "a",
+      "meaning": "the base of an exponential function aˣ or a logarithm log_a x, a positive number other than 1",
+      "section": "5.6",
+      "redefines": true,
+      "anchor": "5.6-exp-rule"
+    },
+    {
+      "sym": "C",
+      "meaning": "the constant of integration, an arbitrary constant added to an antiderivative",
+      "section": "5.6",
+      "anchor": "5.6-exp-rule"
+    },
+    {
+      "sym": "u",
+      "meaning": "the inner variable of a composite, u = g(x), of which y is a function",
+      "section": "5.6",
+      "anchor": "5.6-fs-id11705722115180"
+    },
+    {
+      "sym": "p",
+      "meaning": "the price of a product as a function of the quantity x demanded, its price–demand function",
+      "section": "5.6",
+      "concept": "price-demand-function",
+      "redefines": true,
+      "anchor": "5.6-exponential"
+    },
+    {
+      "sym": "p_prime",
+      "meaning": "the marginal price–demand function, the derivative of p, how fast the price changes at a level of demand x",
+      "section": "5.6",
+      "concept": "marginal-price-demand-function",
+      "anchor": "5.6-exponential"
+    },
+    {
+      "sym": "q",
+      "meaning": "the rate of growth of the bacteria in a culture, q(t) thousand bacteria per hour, a function of the time t",
+      "section": "5.6",
+      "concept": "function",
+      "redefines": true,
+      "anchor": "5.6-fs-id1170572624841"
+    },
+    {
+      "sym": "Q",
+      "meaning": "the number of bacteria in the culture at time t, in thousands, an antiderivative of q",
+      "section": "5.6",
+      "concept": "antiderivative",
+      "redefines": true,
+      "anchor": "5.6-fs-id1170572624841"
+    },
+    {
+      "sym": "g",
+      "meaning": "the rate at which a population of fruit flies grows, g(t) flies per day",
+      "section": "5.6",
+      "concept": "function",
+      "redefines": true,
+      "anchor": "5.6-fs-id1170571807209"
+    },
+    {
+      "sym": "G",
+      "meaning": "the number of flies in the population at time t, an antiderivative of g",
+      "section": "5.6",
+      "concept": "antiderivative",
+      "redefines": true,
+      "anchor": "5.6-fs-id1170571807209"
+    },
+    {
+      "sym": "a",
+      "meaning": "a positive constant of the integrands 1/√(a² − u²), 1/(a² + u²) and 1/(u√(u² − a²))",
+      "section": "5.7",
+      "redefines": true,
+      "anchor": "5.7-inverse-trig-rule"
+    },
+    {
+      "sym": "u",
+      "meaning": "the inner variable of a composite, u = g(x), of which y is a function",
+      "section": "5.7",
+      "anchor": "5.7-inverse-trig-rule"
+    },
+    {
+      "sym": "C",
+      "meaning": "the constant of integration, an arbitrary constant added to an antiderivative",
+      "section": "5.7",
+      "anchor": "5.7-inverse-trig-rule"
+    },
+    {
+      "sym": "F_prime",
+      "meaning": "the derivative of the antiderivative F, which is the function f",
+      "section": "5.5",
+      "concept": "derivative-function",
+      "redefines": true,
+      "anchor": "5.5-indefinite"
+    }
+  ]
+}

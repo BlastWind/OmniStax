@@ -1,0 +1,1346 @@
+{
+ "id": "5.1",
+ "module": "m53624",
+ "chapter": "5",
+ "title": "Approximating Areas",
+ "short": "Approximating Areas",
+ "lead": "The area under a curve is approached through the areas of rectangles standing on a <span data-concept=\"partition\">partition</span> of the interval, each as tall as the <span data-concept=\"function\">function</span> at one point of its subinterval. <span data-concept=\"sigma-notation\">Sigma notation</span> writes such sums compactly; the choice of point gives the <span data-concept=\"left-endpoint-approximation\">left-endpoint</span> and <span data-concept=\"right-endpoint-approximation\">right-endpoint approximations</span>, the <span data-concept=\"upper-sum\">upper</span> and <span data-concept=\"lower-sum\">lower sums</span> and the <span data-concept=\"riemann-sum\">Riemann sums</span>, whose <span data-concept=\"limit\">limit</span> defines the <span data-concept=\"area-under-the-curve\">area under the curve</span>.",
+ "objectives": [
+  "Use sigma (summation) notation to calculate sums and powers of integers.",
+  "Use the sum of rectangular areas to approximate the area under a curve.",
+  "Use Riemann sums to approximate area."
+ ],
+ "summary_html": "<ul><li>The use of <span data-concept=\"sigma-notation\">sigma (summation) notation</span> of the form $\\sum_{i=1}^{n} a_{i}$ is useful for expressing long sums of values in compact form.</li><li>For a <span data-concept=\"continuity-over-an-interval\">continuous</span> <span data-concept=\"function\">function</span> defined over an interval $[a,b],$ the process of dividing the interval into <em>n</em> equal parts, extending a rectangle to the graph of the <span data-concept=\"function\">function</span>, calculating the areas of the series of rectangles, and then summing the areas yields an approximation of the area of that region.</li><li>The width of each rectangle is $\\Delta x=\\frac{b-a}{n}.$</li><li><span data-concept=\"riemann-sum\">Riemann sums</span> are expressions of the form $\\sum_{i=1}^{n} \\kf(x_{i}^{*})\\Delta x,$ and can be used to estimate the <span data-concept=\"area-under-the-curve\">area under the curve</span> $y=\\kf(x).$ Left- and <span data-concept=\"right-endpoint-approximation\">right-endpoint approximations</span> are special kinds of <span data-concept=\"riemann-sum\">Riemann sums</span> where the values of $\\{x_{i}^{*}\\}$ are chosen to be the left or right endpoints of the subintervals, respectively.</li><li><span data-concept=\"riemann-sum\">Riemann sums</span> allow for much flexibility in choosing the set of points $\\{x_{i}^{*}\\}$ at which the <span data-concept=\"function\">function</span> is evaluated, often with an eye to obtaining a <span data-concept=\"lower-sum\">lower sum</span> or an <span data-concept=\"upper-sum\">upper sum</span>.</li></ul>",
+ "notes": "The book’s link to a graphical demonstration of the construction of a Riemann sum is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The interpretations 34 and 36 and the explanations 54, 56 and 58 are kept with AI-written answers, marked as such; the computational ones are left out: 2, 4, 6, 8 and 10 (sums by the rules), 12, 14, 16 and 18 (endpoint sums), 20 and 22 (left and right sums compared with the area), 24 and 26 (endpoint sums in sigma notation), 28, 30 and 32 (endpoint sums by calculator), 38 and 40 (sums of table values), 42 and 44 (left sums read from graphs), 46 and 48 (Riemann sums by computer algebra), and 50 and 52 (endpoint sums against exact areas). Review exercise 439, printed at the end of Section 5.7, is set here.",
+ "figures": [
+  {
+   "id": "fig-area-region",
+   "kind": "figure",
+   "number": "5.2",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_01_017.jpg"
+   ],
+   "original_caption": "An area (shaded region) bounded by the curve f(x) at top, the x-axis at bottom, the line x=a to the left, and the line x=b at right.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-endpoint-rules",
+   "kind": "sim",
+   "number": "5.3",
+   "folds": [
+    "5.4",
+    "5.5"
+   ],
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_01_001.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_01_002.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_01_003.jpg"
+   ],
+   "original_caption": "(Figure 5.3) In the left-endpoint approximation of area under a curve, the height of each rectangle is determined by the function value at the left of each subinterval. (Figure 5.4) In the right-endpoint approximation of area under a curve, the height of each rectangle is determined by the function value at the right of each subinterval. Note that the right-endpoint approximation differs from the left-endpoint approximation in Figure 5.3. (Figure 5.5) Methods of approximating the area under a curve by using (a) the left endpoints and (b) the right endpoints.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-example-endpoints",
+   "kind": "sim",
+   "number": "5.6",
+   "folds": [
+    "5.7"
+   ],
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_01_010.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_01_011.jpg"
+   ],
+   "original_caption": "(Figure 5.6) The graph shows the left-endpoint approximation of the area under f(x)=x² from 0 to 2. (Figure 5.7) The graph shows the right-endpoint approximation of the area under f(x)=x² from 0 to 2.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-converging-sums",
+   "kind": "sim",
+   "number": "5.8",
+   "folds": [
+    "5.9",
+    "5.10",
+    "5.11",
+    "5.12",
+    "5.13"
+   ],
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_01_004.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_01_005.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_01_006.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_01_007.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_01_008.jpg",
+    "/media/ch05/CNX_Calc_Figure_05_01_009.jpg"
+   ],
+   "original_caption": "(Figure 5.8) With a left-endpoint approximation and dividing the region from a to b into four equal intervals, the area under the curve is approximately equal to the sum of the areas of the rectangles. (Figure 5.9) The region under the curve is divided into n=8 rectangular areas of equal width for a left-endpoint approximation. (Figure 5.10) Here, 32 rectangles are inscribed under the curve for a left-endpoint approximation. (Figure 5.11) Now we divide the area under the curve into four equal subintervals for a right-endpoint approximation. (Figure 5.12) Here we use right-endpoint approximation for a region divided into eight equal subintervals. (Figure 5.13) The region is divided into 32 equal subintervals for a right-endpoint approximation.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-riemann-sum",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-lower-sum",
+   "kind": "figure",
+   "number": "5.14",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_01_014.jpg"
+   ],
+   "original_caption": "The graph of f(x)=10−x² is set up for a right-endpoint approximation of the area bounded by the curve and the x-axis on [1,2], and it shows a lower sum.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sine-lower-sum",
+   "kind": "figure",
+   "number": "5.15",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_01_016.jpg"
+   ],
+   "original_caption": "The graph of y=sin x is divided into six regions: Δx=(π/2)/6=π/12.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "exhaustion",
+   "concept": "method-of-exhaustion",
+   "verb": "introduces"
+  },
+  {
+   "span": "sigma",
+   "concept": "sigma-notation",
+   "verb": "introduces"
+  },
+  {
+   "span": "sigma-properties",
+   "concept": "properties-of-sigma-notation",
+   "verb": "introduces"
+  },
+  {
+   "span": "sums-of-powers",
+   "concept": "sums-and-powers-of-integers",
+   "verb": "introduces"
+  },
+  {
+   "span": "partition-definition",
+   "concept": "partition",
+   "verb": "introduces"
+  },
+  {
+   "span": "partition-definition",
+   "concept": "regular-partition",
+   "verb": "introduces"
+  },
+  {
+   "span": "left-endpoint-rule",
+   "concept": "left-endpoint-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "right-endpoint-rule",
+   "concept": "right-endpoint-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "riemann-sum-definition",
+   "concept": "riemann-sum",
+   "verb": "introduces"
+  },
+  {
+   "span": "area-definition",
+   "concept": "area-under-the-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "riemann-sums",
+   "concept": "upper-sum",
+   "verb": "introduces"
+  },
+  {
+   "span": "riemann-sums",
+   "concept": "lower-sum",
+   "verb": "introduces"
+  },
+  {
+   "span": "exhaustion",
+   "concept": "area-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "approximating-area",
+   "concept": "function",
+   "verb": "uses"
+  },
+  {
+   "span": "area-definition",
+   "concept": "limit",
+   "verb": "uses"
+  },
+  {
+   "span": "area-definition",
+   "concept": "continuity-over-an-interval",
+   "verb": "uses"
+  },
+  {
+   "span": "riemann-sums",
+   "concept": "absolute-extremum",
+   "verb": "uses"
+  },
+  {
+   "span": "riemann-sums",
+   "concept": "increasing-function",
+   "verb": "uses"
+  },
+  {
+   "span": "riemann-sums",
+   "concept": "decreasing-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572218770",
+   "concept": "sums-and-powers-of-integers",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572218770",
+   "concept": "properties-of-sigma-notation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571758983",
+   "concept": "left-endpoint-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571758983",
+   "concept": "right-endpoint-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572274802",
+   "concept": "lower-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572551906",
+   "concept": "lower-sum",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572107370",
+   "source_number": "Checkpoint 5.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572294328"
+   },
+   "cite": "sigma",
+   "prompt": "<p>Write in sigma notation and evaluate the sum of terms 2<em><sup>i</sup></em> for $i=3,4,5,6.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 120,
+    "solution": "$\\sum_{i=3}^{6} 2^{i}=2^{3}+2^{4}+2^{5}+2^{6}=120$",
+    "hint": "Use the solving steps in Example 5.1 as a guide."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170572455429",
+   "source_number": "Checkpoint 5.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572218770"
+   },
+   "cite": "sigma-properties",
+   "prompt": "<p>Find the sum of the values of $4+3i$ for $i=1,2,\\ldots,100.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 15550,
+    "solution": "15,550",
+    "hint": "Use the properties of sigma notation to solve the problem."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572178190",
+   "source_number": "Checkpoint 5.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572337091"
+   },
+   "cite": "sums-of-powers",
+   "prompt": "<p>Evaluate the sum indicated by the notation $\\sum_{k=1}^{20} (2k+1).$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 440,
+    "solution": "440",
+    "hint": "Use the rule on sum and powers of integers."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170572448365",
+   "source_number": "Checkpoint 5.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571758983"
+   },
+   "cite": "left-endpoint-rule",
+   "prompt": "<p>Sketch left-endpoint and right-endpoint approximations for $\\kf(x)=\\frac{1}{x}$ on $[1,2];$ use $n=4.$ Approximate the area using both methods.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The left-endpoint approximation is 0.7595. The right-endpoint approximation is 0.6345.<img src=\"/media/ch05/CNX_Calc_Figure_05_01_012.jpg\" alt=\"Two graphs side by side showing the left-endpoint approximation ad right-endpoint approximation of the area under the curve f(x) = 1/x from 1 to 2 with endpoints spaced evenly at .25 units. The heights of the left-endpoint approximation one are determined by the values of the function at the left endpoints, and the height of the right-endpoint approximation one are determined by the values of the function at the right endpoints.\">",
+    "hint": "Follow the solving strategy in Example 5.4 step-by-step."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170572376182",
+   "source_number": "Checkpoint 5.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572274802"
+   },
+   "cite": "riemann-sums",
+   "prompt": "<ol type=\"a\"><li>Find an upper sum for $\\kf(x)=10-x^{2}$ on $[1,2];$ let $n=4.$</li><li>Sketch the approximation.</li></ol>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.0313,
+    "part": "a",
+    "solution": "<ol type=\"a\"><li>$\\text{Upper sum}=8.0313.$ b.</li></ol><img src=\"/media/ch05/CNX_Calc_Figure_05_01_015.jpg\" alt=\"A graph of the function f(x) = 10 − x^2 from 0 to 2. It is set up for a right endpoint approximation over the area [1,2], which is labeled a=x0 to x4. It is an upper sum.\">",
+    "hint": "$\\kf(x)$ is decreasing on $[1,2],$ so the maximum function values occur at the left endpoints of the subintervals."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1170572554393",
+   "source_number": "Checkpoint 5.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572551906"
+   },
+   "cite": "riemann-sums",
+   "prompt": "<p>Using the function $\\kf(x)=\\sin x$ over the interval $[0,\\frac{\\pi}{2}],$ find an upper sum; let $n=6.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.125,
+    "solution": "$\\kA\\approx 1.125$",
+    "hint": "Follow the steps from Example 5.6."
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1170572373451",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>State whether the given sums are equal or unequal.</p><ol type=\"a\"><li>$\\sum_{i=1}^{10} i$ and $\\sum_{k=1}^{10} k$</li><li>$\\sum_{i=1}^{10} i$ and $\\sum_{i=6}^{15} (i-5)$</li><li>$\\sum_{i=1}^{10} i(i-1)$ and $\\sum_{j=0}^{9} (j+1)j$</li><li>$\\sum_{i=1}^{10} i(i-1)$ and $\\sum_{k=1}^{10} (k^{2}-k)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>They are equal; both represent the sum of the first 10 whole numbers. b. They are equal; both represent the sum of the first 10 whole numbers. c. They are equal by substituting $j=i-1.$ d. They are equal; the first sum factors the terms of the second.</li></ol>"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1170571636199",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>In the following exercises, use the rules for sums of powers of integers to compute the sums.</p><p>$\\sum_{i=5}^{10} i^{2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 355,
+    "solution": "$385-30=355$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1170571712597",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>Suppose that $\\sum_{i=1}^{100} a_{i}=15$ and $\\sum_{i=1}^{100} b_{i}=-12.$ In the following exercises, compute the sums.</p><p>$\\sum_{i=1}^{100} (a_{i}-b_{i})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 27,
+    "solution": "$15-(-12)=27$"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1170571699457",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>Suppose that $\\sum_{i=1}^{100} a_{i}=15$ and $\\sum_{i=1}^{100} b_{i}=-12.$ In the following exercises, compute the sums.</p><p>$\\sum_{i=1}^{100} (5a_{i}+4b_{i})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 27,
+    "solution": "$5(15)+4(-12)=27$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1170571638189",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>In the following exercises, use summation properties and formulas to rewrite and evaluate the sums.</p><p>$\\sum_{j=1}^{50} (j^{2}-2j)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 40375,
+    "solution": "$\\sum_{j=1}^{50} j^{2}-2\\sum_{j=1}^{50} j=\\frac{(50)(51)(101)}{6}-\\frac{2(50)(51)}{2}=40,375$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1170571539153",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>In the following exercises, use summation properties and formulas to rewrite and evaluate the sums.</p><p>$\\sum_{k=1}^{25} [{(2k)}^{2}-100k]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -10400,
+    "solution": "$4\\sum_{k=1}^{25} k^{2}-100\\sum_{k=1}^{25} k=\\frac{4(25)(26)(51)}{6}-50(25)(26)=-10,400$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1170572396513",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Let $\\kL_{n}$ denote the left-endpoint sum using <em>n</em> subintervals and let $\\kR_{n}$ denote the corresponding right-endpoint sum. In the following exercises, compute the indicated left and right sums for the given functions on the indicated interval.</p><p>$\\kR_{4}$ for $g(x)=\\cos(\\pi x)$ on $[0,1]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.25,
+    "solution": "$\\kR_{4}=-0.25$"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1170572218579",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Let $\\kL_{n}$ denote the left-endpoint sum using <em>n</em> subintervals and let $\\kR_{n}$ denote the corresponding right-endpoint sum. In the following exercises, compute the indicated left and right sums for the given functions on the indicated interval.</p><p>$\\kR_{6}$ for $\\kf(x)=\\frac{1}{x(x-1)}$ on $[2,5]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.372,
+    "solution": "$\\kR_{6}=0.372$"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1170572386157",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Let $\\kL_{n}$ denote the left-endpoint sum using <em>n</em> subintervals and let $\\kR_{n}$ denote the corresponding right-endpoint sum. In the following exercises, compute the indicated left and right sums for the given functions on the indicated interval.</p><p>$\\kL_{4}$ for $\\frac{1}{x^{2}+1}$ on $[-2,2]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.2,
+    "solution": "$\\kL_{4}=2.20$"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1170572643270",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Let $\\kL_{n}$ denote the left-endpoint sum using <em>n</em> subintervals and let $\\kR_{n}$ denote the corresponding right-endpoint sum. In the following exercises, compute the indicated left and right sums for the given functions on the indicated interval.</p><p>$\\kL_{8}$ for $x^{2}-2x+1$ on $[0,2]$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.6875,
+    "solution": "$\\kL_{8}=0.6875$"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1170571710707",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Let $\\kL_{n}$ denote the left-endpoint sum using <em>n</em> subintervals and let $\\kR_{n}$ denote the corresponding right-endpoint sum. In the following exercises, compute the indicated left and right sums for the given functions on the indicated interval.</p><p>Compute the left and right Riemann sums—$\\kL_{6}$ and $\\kR_{6}$, respectively—for $\\kf(x)=(3-|3-x|)$ on $[0,6].$ Compute their average value and compare it with the area under the graph of $\\kf$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kL_{6}=9.000=\\kR_{6}.$ The graph of $\\kf$ is a triangle with area 9."
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1170572629157",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Let $\\kL_{n}$ denote the left-endpoint sum using <em>n</em> subintervals and let $\\kR_{n}$ denote the corresponding right-endpoint sum. In the following exercises, compute the indicated left and right sums for the given functions on the indicated interval.</p><p>Compute the left and right Riemann sums—$\\kL_{6}$ and $\\kR_{6}$, respectively—for $\\kf(x)=\\sqrt{9-{(x-3)}^{2}}$ on $[0,6]$ and compare their values.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kL_{6}=13.12899=\\kR_{6}.$ They are equal."
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1170571614611",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Express the following endpoint sums in sigma notation but do not evaluate them.</p><p>$\\kL_{10}$ for $\\kf(x)=\\sqrt{4-x^{2}}$ on $[-2,2]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kL_{10}=\\frac{4}{10}\\sum_{i=1}^{10} \\sqrt{4-(-2+4\\frac{(i-1)}{10}{)}^{2}}$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1170571572000",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Express the following endpoint sums in sigma notation but do not evaluate them.</p><p>$\\kR_{100}$ for $\\ln x$ on $[1,e]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{100}=\\frac{e-1}{100}\\sum_{i=1}^{100} \\ln(1+(e-1)\\frac{i}{100})$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1170572309991",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>In the following exercises, graph the function then use a calculator or a computer program to evaluate the following left and right endpoint sums. If the two agree, say \"neither.\"</p><p><strong>[T]</strong> $\\kL_{100}$ and $\\kR_{100}$ for $y=x^{2}$ on the interval $[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kR_{100}=0.33835,\\kL_{100}=0.32835.$ The plot shows that the left Riemann sum is an underestimate because the function is increasing. Similarly, the right Riemann sum is an overestimate. The area lies between the left and right Riemann sums. Ten rectangles are shown for visual clarity. This behavior persists for more rectangles.</p><img src=\"/media/ch05/CNX_Calc_Figure_05_01_207.jpg\" alt=\"A graph of the given function on the interval [0, 1]. It is set up for a left endpoint approximation and is an underestimate because the function is increasing. Ten rectangles are shown for visual clarity, but this behavior persists for more rectangles.\">"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1170572451375",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>In the following exercises, graph the function then use a calculator or a computer program to evaluate the following left and right endpoint sums. If the two agree, say \"neither.\"</p><p><strong>[T]</strong> $\\kL_{100}$ and $\\kR_{100}$ for $y=x^{3}+2$ on the interval $[-1,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kL_{100}=3.980,\\kR_{100}=4.020,\\kR_{100}\\gt \\kL_{100}.$ The left endpoint sum is an underestimate because the function is increasing. Similarly, a right endpoint approximation is an overestimate. The area lies between the left and right endpoint estimates.</p><img src=\"/media/ch05/CNX_Calc_Figure_05_01_209.jpg\" alt=\"A graph of the given function over [-1,1] set up for a left endpoint approximation. It is an underestimate since the function is increasing. Ten rectangles are shown for visual clarity, but this behavior persists for more rectangles.\">"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1170572379131",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>In the following exercises, graph the function then use a calculator or a computer program to evaluate the following left and right endpoint sums. If the two agree, say \"neither.\"</p><p><strong>[T]</strong> $\\kL_{100}$ and $\\kR_{100}$ for $y=e^{2x}$ on the interval $[-1,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kL_{100}=3.555,\\kR_{100}=3.670$ The plot shows that the left Riemann sum is an underestimate because the function is increasing. Ten rectangles are shown for visual clarity. This behavior persists for more rectangles.</p><img src=\"/media/ch05/CNX_Calc_Figure_05_01_211.jpg\" alt=\"A graph of the given function over the interval -1 to 1 set up for a left endpoint approximation. It is an underestimate since the function is increasing. Ten rectangles are shown for isual clarity, but this behavior persists for more rectangles.\">"
+   }
+  },
+  {
+   "id": "e34",
+   "source_id": "fs-id1170572589240",
+   "source_number": "34",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>Let <em>t<sub>j</sub></em> denote the time that it took Tejay van Garteren to ride the <em>j</em>th stage of the Tour de France in 2014. If there were a total of 21 stages, interpret $\\sum_{j=1}^{21} t_{j}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The sum adds the times of all 21 stages, so $\\sum_{j=1}^{21}t_{j}$ is the total time Tejay van Garteren took to ride the 2014 Tour de France."
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1170571613611",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>Let $r_{j}$ denote the total rainfall in Portland on the <em>j</em>th day of the year in 2009. Interpret $\\sum_{j=1}^{31} r_{j}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The sum represents the cumulative rainfall in January 2009."
+   }
+  },
+  {
+   "id": "e36",
+   "source_id": "fs-id1170571613669",
+   "source_number": "36",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>Let $d_{j}$ denote the hours of daylight and $\\delta_{j}$ denote the increase in the hours of daylight from day $j-1$ to day <em>j</em> in Fargo, North Dakota, on the <em>j</em>th day of the year. Interpret $d_{1}+\\sum_{j=2}^{365} \\delta_{j}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each $\\delta_{j}$ is $d_{j}-d_{j-1},$ so the sum telescopes: $d_{1}+\\sum_{j=2}^{365}\\delta_{j}=d_{1}+(d_{2}-d_{1})+(d_{3}-d_{2})+\\cdots+(d_{365}-d_{364})=d_{365}.$ It is the number of hours of daylight in Fargo on day 365, the last day of the year."
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1170572434951",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>To help get in shape, Joe gets a new pair of running shoes. If Joe runs 1 mi each day in week 1 and adds $\\frac{1}{10}$ mi to his daily routine each week, what is the total mileage on Joe’s shoes after 25 weeks?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The total mileage is $7\\;\\times \\;\\sum_{i=1}^{25} (1+\\frac{(i-1)}{10})=7\\;\\times \\;25+\\frac{7}{10}\\;\\times \\;12\\;\\times \\;25=385\\;\\text{mi}.$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1170572627096",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>The following table gives the approximate increase in sea level in inches over 20 years starting in the given year. Estimate the net change in mean sea level from 1870 to 2010.</p><div class=\"book-table\" id=\"fs-id1170572627108\">\n  <div class=\"tcap\"><span class=\"eyebrow\">Table 5.3</span><span>Approximate 20-Year Sea Level Increases, 1870–1990</span></div>\n  <table><thead><tr><th>Starting Year</th><th>20-Year Change</th></tr></thead><tbody><tr><td>1870</td><td>0.3</td></tr><tr><td>1890</td><td>1.5</td></tr><tr><td>1910</td><td>0.2</td></tr><tr><td>1930</td><td>2.8</td></tr><tr><td>1950</td><td>0.7</td></tr><tr><td>1970</td><td>1.1</td></tr><tr><td>1990</td><td>1.5</td></tr></tbody></table>\n</div>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Add the numbers to get 8.1-in. net increase."
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1170572129802",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sigma",
+   "prompt": "<p>The following table gives the percent growth of the U.S. population beginning in July of the year indicated. If the U.S. population was 281,421,906 in July 2000, estimate the U.S. population in July 2010.</p><div class=\"book-table\" id=\"fs-id1170572129815\">\n  <div class=\"tcap\"><span class=\"eyebrow\">Table 5.5</span><span>Annual Percentage Growth of U.S. Population, 2000–2009</span></div>\n  <table><thead><tr><th>Year</th><th>% Change/Year</th></tr></thead><tbody><tr><td>2000</td><td>1.12</td></tr><tr><td>2001</td><td>0.99</td></tr><tr><td>2002</td><td>0.93</td></tr><tr><td>2003</td><td>0.86</td></tr><tr><td>2004</td><td>0.93</td></tr><tr><td>2005</td><td>0.93</td></tr><tr><td>2006</td><td>0.97</td></tr><tr><td>2007</td><td>0.96</td></tr><tr><td>2008</td><td>0.95</td></tr><tr><td>2009</td><td>0.88</td></tr></tbody></table>\n</div><p>(<em>Hint:</em> To obtain the population in July 2001, multiply the population in July 2000 by 1.0112 to get 284,573,831.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 309389957,
+    "solution": "309,389,957"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1170572129112",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_01_202.jpg",
+    "alt": "The graph of a smooth curve going through the points (0,3), (1,2), (2,1), (3,2), (4,3), (5,4), (6,5), (7,4), and (8,3)."
+   },
+   "prompt": "<p>In the following exercises, estimate the areas under the curves by computing the left Riemann sums, $\\kL_{8}$.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 24,
+    "solution": "$\\kL_{8}=3+2+1+2+3+4+5+4=24$"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1170572223572",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_01_204.jpg",
+    "alt": "The graph of a smooth curve going through the points (0, 3), (1, 5), (2, 7), (3, 6), (4, 8), (5, 6), (6, 5), (7, 4), and (8, 6)."
+   },
+   "prompt": "<p>In the following exercises, estimate the areas under the curves by computing the left Riemann sums, $\\kL_{8}$.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 44,
+    "solution": "$\\kL_{8}=3+5+7+6+8+6+5+4=44$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1170571547450",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p><strong>[T]</strong> Use a computer algebra system to compute the Riemann sum, $\\kL_{N}$, for $N=10,30,50$ for $\\kf(x)=\\frac{1}{\\sqrt{1+x^{2}}}$ on $[-1,1].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kL_{10}\\approx 1.7604,\\kL_{30}\\approx 1.7625,\\kL_{50}\\approx 1.76265$"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1170572351539",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>In the following exercises, use a calculator or a computer program to evaluate the endpoint sums $\\kR_{N}$ and $\\kL_{N}$ for $N=1,10,100.$ How do these estimates compare with the exact answers, which you can find via geometry?</p><p><strong>[T]</strong> $y=\\cos(\\pi x)$ on the interval $[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{1}=-1,\\kL_{1}=1,\\kR_{10}=-0.1,\\kL_{10}=0.1,\\kL_{100}=0.01,$ and $\\kR_{100}=-0.01.$ By symmetry of the graph, the exact area is zero."
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1170572448426",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>In the following exercises, use a calculator or a computer program to evaluate the endpoint sums $\\kR_{N}$ and $\\kL_{N}$ for $N=1,10,100.$</p><p><strong>[T]</strong> $y=x^{4}-5x^{2}+4$ on the interval $[-2,2],$ which has an exact area of $\\frac{32}{15}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{1}=0,\\kL_{1}=0,\\kR_{10}=2.4499,\\kL_{10}=2.4499,\\kR_{100}=2.1365,\\kL_{100}=2.1365$"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1170572306443",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Explain why, if $\\kf(a)\\ge0$ and $\\kf$ is increasing on $[a,b],$ that the left endpoint estimate is a lower bound for the area below the graph of $\\kf$ on $[a,b].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "If $[c,d]$ is a subinterval of $[a,b]$ under one of the left-endpoint sum rectangles, then the area of the rectangle contributing to the left-endpoint estimate is $\\kf(c)(d-c).$ But, $\\kf(c)\\le \\kf(x)$ for $c\\le x\\le d,$ so the area under the graph of $\\kf$ between <em>c</em> and <em>d</em> is $\\kf(c)(d-c)$ plus the area below the graph of $\\kf$ but above the horizontal line segment at height $\\kf(c),$ which is positive. As this is true for each left-endpoint sum interval, it follows that the left Riemann sum is less than or equal to the area below the graph of $\\kf$ on $[a,b].$"
+   }
+  },
+  {
+   "id": "e54",
+   "source_id": "fs-id1170571813935",
+   "source_number": "54",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Explain why, if $\\kf(b)\\ge0$ and $\\kf$ is decreasing on $[a,b],$ that the left endpoint estimate is an upper bound for the area below the graph of $\\kf$ on $[a,b].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $\\kf$ is decreasing and $\\kf(b)\\ge 0,$ $\\kf(x)\\ge 0$ on all of $[a,b].$ On each subinterval $[x_{i-1},x_{i}]$ the largest value of $\\kf$ is $\\kf(x_{i-1}),$ at the left endpoint, so the rectangle of height $\\kf(x_{i-1})$ contains the region below the graph over that subinterval. Adding over the subintervals, the left-endpoint estimate is at least the area below the graph on $[a,b]:$ it is an upper bound."
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1170572480433",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Show that, in general, $\\kR_{N}-\\kL_{N}=(b-a)\\;\\times \\;\\frac{\\kf(b)-\\kf(a)}{N}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kL_{N}=\\frac{b-a}{N}\\sum_{i=1}^{N} \\kf(a+(b-a)\\frac{i-1}{N})=\\frac{b-a}{N}\\sum_{i=0}^{N-1} \\kf(a+(b-a)\\frac{i}{N})$ and $\\kR_{N}=\\frac{b-a}{N}\\sum_{i=1}^{N} \\kf(a+(b-a)\\frac{i}{N}).$ The left sum has a term corresponding to $i=0$ and the right sum has a term corresponding to $i=N.$ In $\\kR_{N}-\\kL_{N},$ any term corresponding to $i=1,2,\\ldots,N-1$ occurs once with a plus sign and once with a minus sign, so each such term cancels and one is left with $\\kR_{N}-\\kL_{N}=\\frac{b-a}{N}(\\kf(a+(b-a))\\frac{N}{N})-(\\kf(a)+(b-a)\\frac{0}{N})=\\frac{b-a}{N}(\\kf(b)-\\kf(a)).$"
+   }
+  },
+  {
+   "id": "e56",
+   "source_id": "fs-id1170571629736",
+   "source_number": "56",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "approximating-area",
+   "prompt": "<p>Explain why, if $\\kf$ is increasing on $[a,b],$ the error between either $\\kL_{N}$ or $\\kR_{N}$ and the area $\\kA$ below the graph of $\\kf$ is at most $(b-a)\\frac{\\kf(b)-\\kf(a)}{N}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For an increasing $\\kf,$ the left-endpoint rectangles lie under the graph and the right-endpoint rectangles cover it, so $\\kL_{N}\\le\\kA\\le\\kR_{N}.$ The area therefore differs from either sum by at most $\\kR_{N}-\\kL_{N}.$ The two sums share every term but one at each end: $\\kR_{N}$ has $\\kf(b)\\frac{b-a}{N}$ where $\\kL_{N}$ has $\\kf(a)\\frac{b-a}{N},$ so $\\kR_{N}-\\kL_{N}=(b-a)\\frac{\\kf(b)-\\kf(a)}{N},$ the bound claimed."
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1170571624169",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exhaustion",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_01_212.jpg",
+    "alt": "Three graphs, stacked vertically, drawn on graph paper. Each shows the same image. However, the axes become progressively more exact in units. The first is marked in units, from negative 3 units to positive 3 units on each axis. The second has the half-units marked, and the third has the quarter units marked. As such, the graph paper boxes become smaller and smaller. The image is symmetrical across each axis and is a curved cross shape. It meets the axes at (0,3), (3,0), (0,-3), and (-3,0) and has corners roughly at (.7,.7), (.7,-.7), (-.7,-7.), and (-.7,.7). In graph 1, no square unit boxes are completely contained inside the shape. Twenty boxes are enclosed partially by the shape. In graph 2, nine boxes are completely contained inside the shape, and eleven boxes are enclosed partially by the shape. In graph 3, 11 boxes are completely contained inside the shape, and 4.5 are enclosed partially by the shape."
+   },
+   "prompt": "<p>For each of the three graphs:</p><ol type=\"a\"><li>Obtain a lower bound $L(\\kA)$ for the area enclosed by the curve by adding the areas of the squares <em>enclosed completely</em> by the curve.</li><li>Obtain an upper bound $U(\\kA)$ for the area by adding to $L(\\kA)$ the areas $B(\\kA)$ of the squares <em>enclosed partially</em> by the curve.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Graph 1: a. $L(\\kA)=0,B(\\kA)=20;$ b. $U(\\kA)=20.$ Graph 2: a. $L(\\kA)=9;$ b. $B(\\kA)=11,U(\\kA)=20.$ Graph 3: a. $L(\\kA)=11.0;$ b. $B(\\kA)=4.5,U(\\kA)=15.5.$"
+   }
+  },
+  {
+   "id": "e58",
+   "source_id": "fs-id1170572617948",
+   "source_number": "58",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exhaustion",
+   "prompt": "<p>In the previous exercise, explain why $L(\\kA)$ gets no smaller while $U(\\kA)$ gets no larger as the squares are subdivided into four boxes of equal area.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "When each square is cut into four boxes of equal area, a square that was enclosed completely gives four boxes that are all enclosed completely, so every area counted in $L(\\kA)$ is still counted, and boxes cut from partially enclosed squares may be added: $L(\\kA)$ gets no smaller. Every box counted in $U(\\kA)$ after the cut lies in a square that was counted before, since a box that touches the region lies in a square that touched it, so $U(\\kA)$ gets no larger."
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1170572617993",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exhaustion",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_01_213.jpg",
+    "alt": "A wedge of a circle cut at an acute angle theta = 2pi / n. Several extra lines are drawn. The first is a line A connecting the ends of the two radii, creating a triangle. The second is another line B parallel to the A, connecting the radii a few units in from each endpoint. A concentric curve C connects the endpoints of B and is tangent to A near its midpoint. The area between this curve C and the edge of the circle is shaded in pink, and the rest of the wedge is purple. A final concentric curve is drawn very close to angle theta."
+   },
+   "prompt": "<p>A unit circle is made up of <em>n</em> wedges equivalent to the inner wedge in the figure. The base of the inner triangle is 1 unit and its height is $\\sin(\\frac{2\\pi}{n}).$ The base of the outer triangle is $B=\\cos(\\frac{\\pi}{n})+\\sin(\\frac{\\pi}{n})\\tan(\\frac{\\pi}{n})$ and the height is $H=B\\;\\sin(\\frac{2\\pi}{n}).$ Use this information to argue that the area of a unit circle is equal to <em>π</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\kA$ be the area of the unit circle. The circle encloses <em>n</em> congruent triangles each of area $\\frac{\\sin(\\frac{2\\pi}{n})}{2},$ so $\\frac{n}{2}\\sin(\\frac{2\\pi}{n})\\le \\kA.$ Similarly, the circle is contained inside <em>n</em> congruent triangles each of area $\\frac{BH}{2}=\\frac{1}{2}{(cos(\\frac{\\pi}{n})+sin(\\frac{\\pi}{n})tan(\\frac{\\pi}{n}))}^{2}sin(\\frac{2\\pi}{n}),$ so $\\kA\\le\\frac{n}{2}\\sin(\\frac{2\\pi}{n})(\\cos(\\frac{\\pi}{n})+\\sin(\\frac{\\pi}{n})\\tan{(\\frac{\\pi}{n}))}^{2}.$ As $n\\to \\infty,\\frac{n}{2}\\sin(\\frac{2\\pi}{n})=\\frac{\\;\\sin(\\frac{2\\pi}{n})}{(\\frac{2}{n})}Α\\to \\pi,$ so we conclude $\\pi\\le \\kA.$ Also, as $n\\to \\infty,\\cos(\\frac{\\pi}{n})+\\sin(\\frac{\\pi}{n})\\tan(\\frac{\\pi}{n})\\to 1,$ so we also have $\\kA\\le\\pi.$ By the squeeze theorem for limits, we conclude that $\\kA=\\pi.$"
+   }
+  },
+  {
+   "id": "r439",
+   "source_id": "fs-id1170572347001",
+   "source_section": "5.7",
+   "source_number": "439",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "right-endpoint-rule",
+   "prompt": "<p><em>True or False.</em> Justify your answer with a proof or a counterexample. Assume all functions $\\kf$ and $g$ are continuous over their domains.</p><p>If $\\kf(x)\\gt 0,\\kfprime(x)\\gt 0$ for all $x,$ then the right-hand rule underestimates the integral $\\int_{a}^{b}\\kf(x).$ Use a graph to justify your answer.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "properties-of-sigma-notation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "sums-and-powers-of-integers"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "sums-and-powers-of-integers"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "upper-sum"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "upper-sum"
+  },
+  {
+   "exercise": "e1",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "sums-and-powers-of-integers"
+  },
+  {
+   "exercise": "e5",
+   "concept": "properties-of-sigma-notation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "properties-of-sigma-notation"
+  },
+  {
+   "exercise": "e9",
+   "concept": "properties-of-sigma-notation"
+  },
+  {
+   "exercise": "e9",
+   "concept": "sums-and-powers-of-integers"
+  },
+  {
+   "exercise": "e11",
+   "concept": "properties-of-sigma-notation"
+  },
+  {
+   "exercise": "e11",
+   "concept": "sums-and-powers-of-integers"
+  },
+  {
+   "exercise": "e13",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e15",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e17",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e19",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e21",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e21",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e21",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e23",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e23",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e25",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e25",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e27",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e27",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e29",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e29",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e31",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e31",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e33",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e33",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e34",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e35",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e36",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e37",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e37",
+   "concept": "sums-and-powers-of-integers"
+  },
+  {
+   "exercise": "e39",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e41",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e43",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e45",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e47",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e49",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e49",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e51",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e51",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e53",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e53",
+   "concept": "increasing-function"
+  },
+  {
+   "exercise": "e54",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e54",
+   "concept": "decreasing-function"
+  },
+  {
+   "exercise": "e55",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e55",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e56",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e56",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e56",
+   "concept": "increasing-function"
+  },
+  {
+   "exercise": "e57",
+   "concept": "method-of-exhaustion"
+  },
+  {
+   "exercise": "e58",
+   "concept": "method-of-exhaustion"
+  },
+  {
+   "exercise": "e59",
+   "concept": "method-of-exhaustion"
+  },
+  {
+   "exercise": "e59",
+   "concept": "limit"
+  },
+  {
+   "exercise": "r439",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "r439",
+   "concept": "increasing-function"
+  }
+ ],
+ "referents": [],
+ "footnotes": []
+}

@@ -1,0 +1,76 @@
+<p id="inverse-intro">In this section we focus on integrals that result in <span data-concept="inverse-trigonometric-functions">inverse trigonometric functions</span>. We have worked with these <span data-concept="function">functions</span> before. Recall from <a href="/calculus/ch01/intro/">Functions and Graphs</a> that <span data-concept="trigonometric-functions">trigonometric functions</span> are not <span data-concept="one-to-one-function">one-to-one</span> unless the <span data-concept="domain">domains</span> are restricted. When working with <span data-concept="inverse-trigonometric-functions">inverses of trigonometric functions</span>, we always need to be careful to take these restrictions into account. Also in <a href="/calculus/ch03/intro/">Derivatives</a>, we developed formulas for <span data-concept="derivatives-of-inverse-trigonometric-functions">derivatives of inverse trigonometric functions</span>. The formulas developed there give rise directly to integration formulas involving <span data-concept="inverse-trigonometric-functions">inverse trigonometric functions</span>.</p>
+<section id="inverse-sine">
+<h2>Integrals that Result in Inverse Sine Functions</h2>
+<p>Let us begin this last section of the chapter with the three formulas. Along with these formulas, we use <span data-concept="integration-by-substitution">substitution</span> to evaluate the integrals. We prove the formula for the <span data-concept="inverse-trigonometric-functions">inverse sine</span> integral.</p>
+<div class="note" id="inverse-trig-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="integrals-resulting-in-inverse-trigonometric-functions">Integration Formulas Resulting in Inverse Trigonometric Functions</span></h3>
+<p>The following integration formulas yield <span data-concept="inverse-trigonometric-functions">inverse trigonometric functions</span>. Assume $a\gt 0$:</p>
+<ol><li> $$\int \frac{du}{\sqrt{a^{2}-u^{2}}}=\sin^{-1}(\frac{u}{a})+C$$</li><li> $$\int \frac{du}{a^{2}+u^{2}}=\frac{1}{a}\;\tan^{-1}\frac{u}{a}+C$$</li><li> $$\int \frac{du}{u\sqrt{u^{2}-a^{2}}}=\frac{1}{a}\;\sec^{-1}\frac{|u|}{a}+C$$</li></ol>
+</div>
+<h3>Proof</h3>
+<p>Let $y=\sin^{-1}\frac{x}{a}.$ Then $a\;\sin y=x.$ Now let’s use <span data-concept="implicit-differentiation">implicit differentiation</span>. We obtain</p>
+$$\begin{aligned}\frac{d}{dx}\;(a\;\sin y) &= \frac{d}{dx}\;(x) \\ a\;\cos y\;\frac{dy}{dx} &= 1 \\ \frac{dy}{dx} &= \frac{1}{a\;\cos y}.\end{aligned}$$
+<p>For $-\frac{\pi}{2}\le y\le\frac{\pi}{2},\cos y\ge0.$ Thus, applying the <span data-concept="pythagorean-identities">Pythagorean identity</span> $\sin^{2}y+\cos^{2}y=1,$ we have $\cos y=\sqrt{1-\sin^{2}y}.$ This gives</p>
+$$\begin{aligned}\frac{1}{a\;\cos y} &=\frac{1}{a\sqrt{1-\sin^{2}y}} \\ &=\frac{1}{\sqrt{a^{2}-a^{2}\sin^{2}y}} \\ &=\frac{1}{\sqrt{a^{2}-x^{2}}}.\end{aligned}$$
+<p>Then for $-a\le x\le a,$ and generalizing to <em>u</em>, we have</p>
+$$\int \frac{1}{\sqrt{a^{2}-u^{2}}}du=\sin^{-1}(\frac{u}{a})+C.$$
+<p>□</p>
+<figure class="sim" id="sim-inverse-trig">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The area under $\frac{1}{\sqrt{1-t^{2}}}$ or $\frac{1}{1+t^{2}}$ from 0 to $x$ (left) is an angle $\ktheta$ of the unit circle (right): the angle whose sine is $x,$ or whose tangent is $x,$ drawn as the segment of length $x.$ The area under $\frac{1}{1+t^{2}}$ never passes $\frac{\pi}{2}$ however far $x$ goes, and the area under $\frac{1}{\sqrt{1-t^{2}}}$ reaches $\frac{\pi}{2}$ as $x$ approaches 1.</span></div>
+</figure>
+<div class="example" id="fs-id1170571696734">
+<h3>Example 5.49 · Evaluating a Definite Integral Using Inverse Trigonometric Functions</h3>
+<p>Evaluate the <span data-concept="definite-integral">definite integral</span> $\int_{0}^{\frac{1}{2}}\frac{dx}{\sqrt{1-x^{2}}}.$</p>
+<h4>Solution</h4>
+<p>We can go directly to the formula for the <span data-concept="antiderivative">antiderivative</span> in the rule on <span data-concept="integrals-resulting-in-inverse-trigonometric-functions">integration formulas resulting in inverse trigonometric functions</span>, and then evaluate the <span data-concept="definite-integral">definite integral</span>. We have</p>
+$$\begin{aligned}\int_{0}^{\frac{1}{2}}\frac{dx}{\sqrt{1-x^{2}}} &=\sin^{-1}x{|}_{0}^{\frac{1}{2}} \\ &=\sin^{-1}\frac{1}{2}-\sin^{-1}0 \\ &=\frac{\pi}{6}-0 \\ &=\frac{\pi}{6}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170571696734"></div>
+<div class="example" id="fs-id1170572167984">
+<h3>Example 5.50 · Finding an Antiderivative Involving an Inverse Trigonometric Function</h3>
+<p>Evaluate the integral $\int \frac{dx}{\sqrt{4-9x^{2}}}.$</p>
+<h4>Solution</h4>
+<p>Substitute $u=3x.$ Then $du=3dx$ and we have</p>
+$$\int \frac{dx}{\sqrt{4-9x^{2}}}=\frac{1}{3}\int \frac{du}{\sqrt{4-u^{2}}}.$$
+<p>Applying the formula with $a=2,$ we obtain</p>
+$$\begin{aligned}\int \frac{dx}{\sqrt{4-9x^{2}}} &=\frac{1}{3}\int \frac{du}{\sqrt{4-u^{2}}} \\ &=\frac{1}{3}\sin^{-1}(\frac{u}{2})+C \\ &=\frac{1}{3}\sin^{-1}(\frac{3x}{2})+C.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170572167984"></div>
+<div class="example" id="fs-id1170572546542">
+<h3>Example 5.51 · Evaluating a Definite Integral</h3>
+<p>Evaluate the <span data-concept="definite-integral">definite integral</span> $\int_{0}^{\sqrt{3}/2}\frac{du}{\sqrt{1-u^{2}}}.$</p>
+<h4>Solution</h4>
+<p>The format of the problem matches the <span data-concept="inverse-trigonometric-functions">inverse sine</span> formula. Thus,</p>
+$$\begin{aligned}\int_{0}^{\sqrt{3}/2}\frac{du}{\sqrt{1-u^{2}}} &=\sin^{-1}u{|}_{0}^{\sqrt{3}/2} \\ &=[\sin^{-1}(\frac{\sqrt{3}}{2})]-[\sin^{-1}(0)] \\ &=\frac{\pi}{3}.\end{aligned}$$
+</div>
+</section>
+
+<section id="other-inverse">
+<h2>Integrals Resulting in Other Inverse Trigonometric Functions</h2>
+<p>There are six <span data-concept="inverse-trigonometric-functions">inverse trigonometric functions</span>. However, only three integration formulas are noted in the rule on <span data-concept="integrals-resulting-in-inverse-trigonometric-functions">integration formulas resulting in inverse trigonometric functions</span> because the remaining three are negative versions of the ones we use. The only difference is whether the <span data-concept="integrand">integrand</span> is positive or negative. Rather than memorizing three more formulas, if the <span data-concept="integrand">integrand</span> is negative, simply factor out −1 and evaluate the integral using one of the formulas already provided. To close this section, we examine one more formula: the integral resulting in the <span data-concept="inverse-trigonometric-functions">inverse tangent function</span>.</p>
+<div class="example" id="fs-id1170572206423">
+<h3>Example 5.52 · Finding an Antiderivative Involving the Inverse Tangent Function</h3>
+<p>Evaluate the integral $\int \frac{1}{1+4x^{2}}dx.$</p>
+<h4>Solution</h4>
+<p>Comparing this problem with the formulas stated in the rule on <span data-concept="integrals-resulting-in-inverse-trigonometric-functions">integration formulas resulting in inverse trigonometric functions</span>, the <span data-concept="integrand">integrand</span> looks similar to the formula for $\tan^{-1}u+C.$ So we use <span data-concept="integration-by-substitution">substitution</span>, letting $u=2x,$ then $du=2dx$ and $1/2du=dx.$ Then, we have</p>
+$$\frac{1}{2}\int \frac{1}{1+u^{2}}du=\frac{1}{2}\;\tan^{-1}u+C=\frac{1}{2}\;\tan^{-1}(2x)+C.$$
+</div>
+<div class="exercises" data-place="fs-id1170572206423"></div>
+<div class="example" id="fs-id1170572350769">
+<h3>Example 5.53 · Applying the Integration Formulas</h3>
+<p>Evaluate the integral $\int \frac{1}{9+x^{2}}dx.$</p>
+<h4>Solution</h4>
+<p>Apply the formula with $a=3.$ Then,</p>
+$$\int \frac{dx}{9+x^{2}}=\frac{1}{3}\;\tan^{-1}(\frac{x}{3})+C.$$
+</div>
+<div class="exercises" data-place="fs-id1170572350769"></div>
+<div class="example" id="fs-id1170571714255">
+<h3>Example 5.54 · Evaluating a Definite Integral</h3>
+<p>Evaluate the <span data-concept="definite-integral">definite integral</span> $\int_{\sqrt{3}/3}^{\sqrt{3}}\frac{dx}{1+x^{2}}.$</p>
+<h4>Solution</h4>
+<p>Use the formula for the <span data-concept="inverse-trigonometric-functions">inverse tangent</span>. We have</p>
+$$\begin{aligned}\int_{\sqrt{3}/3}^{\sqrt{3}}\frac{dx}{1+x^{2}} &=\tan^{-1}x{|}_{\sqrt{3}/3}^{\sqrt{3}} \\ &=[\tan^{-1}(\sqrt{3})]-[\tan^{-1}(\frac{\sqrt{3}}{3})] \\ &=\frac{\pi}{6}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170571714255"></div>
+</section>

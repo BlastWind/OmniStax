@@ -1,0 +1,129 @@
+<p id="formulas-intro">In this section, we use some basic integration formulas studied previously to solve some key applied problems. It is important to note that these formulas are presented in terms of <em>indefinite</em> integrals. Although definite and <span data-concept="indefinite-integral">indefinite integrals</span> are closely related, there are some key differences to keep in mind. A <span data-concept="definite-integral">definite integral</span> is either a number (when the <span data-concept="limits-of-integration">limits of integration</span> are constants) or a single <span data-concept="function">function</span> (when one or both of the <span data-concept="limits-of-integration">limits of integration</span> are variables). An <span data-concept="indefinite-integral">indefinite integral</span> represents a family of <span data-concept="function">functions</span>, all of which differ by a constant. As you become more familiar with integration, you will get a feel for when to use <span data-concept="definite-integral">definite integrals</span> and when to use <span data-concept="indefinite-integral">indefinite integrals</span>. You will naturally select the correct approach for a given problem without thinking too much about it. However, until these concepts are cemented in your mind, think carefully about whether you need a <span data-concept="definite-integral">definite integral</span> or an <span data-concept="indefinite-integral">indefinite integral</span> and make sure you are using the proper notation based on your choice.</p>
+<section id="basic-formulas">
+<h2>Basic Integration Formulas</h2>
+<p>Recall the <a href="/calculus/sheets/integrals/">integration formulas</a> given in the table in <a href="/calculus/ch04/4.10/">Antiderivatives</a> and the rule on <span data-concept="properties-of-the-definite-integral">properties of definite integrals</span>. Let’s look at a few examples of how to apply these rules.</p>
+<div class="example" id="fs-id1170571609338">
+<h3>Example 5.23 · Integrating a Function Using the Power Rule</h3>
+<p>Use the <span data-concept="power-rule-for-integrals">power rule</span> to integrate the <span data-concept="function">function</span> $\int_{1}^{4}\sqrt{t}(1+t)dt.$</p>
+<h4>Solution</h4>
+<p>The first step is to rewrite the <span data-concept="function">function</span> and simplify it so we can apply the <span data-concept="power-rule-for-integrals">power rule</span>:</p>
+$$\begin{aligned}\int_{1}^{4}\sqrt{t}(1+t)dt &=\int_{1}^{4}t^{1/2}(1+t)dt \\ &=\int_{1}^{4}(t^{1/2}+t^{3/2})dt.\end{aligned}$$
+<p>Now apply the <span data-concept="power-rule-for-integrals">power rule</span>:</p>
+$$\begin{aligned}\int_{1}^{4}(t^{1/2}+t^{3/2})dt &={(\frac{2}{3}t^{3/2}+\frac{2}{5}t^{5/2})|}_{1}^{4} \\ &=[\frac{2}{3}{(4)}^{3/2}+\frac{2}{5}{(4)}^{5/2}]-[\frac{2}{3}{(1)}^{3/2}+\frac{2}{5}{(1)}^{5/2}] \\ &=\frac{256}{15}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170571609338"></div>
+</section>
+
+<section id="net-change-theorem">
+<h2>The Net Change Theorem</h2>
+<p>The <strong><span data-concept="net-change-theorem">net change theorem</span></strong> considers the integral of a <em><span data-concept="instantaneous-rate-of-change">rate of change</span></em>. It says that when a quantity changes, the new value equals the initial value plus the integral of the <span data-concept="instantaneous-rate-of-change">rate of change</span> of that quantity. The formula can be expressed in two ways. The second is more familiar; it is simply the <span data-concept="definite-integral">definite integral</span>.</p>
+<div class="note" id="net-change">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="net-change-theorem">Net Change Theorem</span></h3>
+<p>The new value of a changing quantity equals the initial value plus the integral of the <span data-concept="instantaneous-rate-of-change">rate of change</span>:</p>
+$$\begin{gathered}\kF(b)=\kF(a)+\int_{a}^{b}\kFprime(x)dx \\ \text{or} \\ \int_{a}^{b}\kFprime(x)dx=\kF(b)-\kF(a).\end{gathered}$$
+</div>
+<p>Subtracting $\kF(a)$ from both sides of the first equation yields the second equation. Since they are equivalent formulas, which one we use depends on the application.</p>
+<p>The significance of the <span data-concept="net-change-theorem">net change theorem</span> lies in the results. <span data-concept="net-change-theorem">Net change</span> can be applied to area, distance, and volume, to name only a few applications. <span data-concept="net-change-theorem">Net change</span> accounts for negative quantities automatically without having to write more than one integral. To illustrate, let’s apply the <span data-concept="net-change-theorem">net change theorem</span> to a velocity <span data-concept="function">function</span> in which the result is <span data-concept="displacement-from-velocity">displacement</span>.</p>
+<p>We looked at a simple example of this in <a href="/calculus/ch05/5.2/">The Definite Integral</a>. Suppose a car is moving due north (the positive direction) at 40 mph between 2 p.m. and 4 p.m., then the car moves south at 30 mph between 4 p.m. and 5 p.m. We can graph this motion as shown in Figure 5.32.</p>
+<figure class="sim" id="fig-car-velocity" data-figure="5.32" data-original="/media/ch05/CNX_Calc_Figure_05_04_002.jpg" data-original-caption="The graph shows speed versus time for the given motion of a car.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.32</span><span>The graph shows speed versus time for the given motion of a car.</span></div>
+</figure>
+<p>Just as we did before, we can use <span data-concept="definite-integral">definite integrals</span> to calculate the <span data-concept="displacement-from-velocity">net displacement</span> as well as the <span data-concept="displacement-from-velocity">total distance traveled</span>. The <span data-concept="displacement-from-velocity">net displacement</span> is given by</p>
+$$\begin{aligned}\int_{2}^{5}\kv(t)dt &=\int_{2}^{4}40dt+\int_{4}^{5}-30dt \\ &=80-30 \\ &=50.\end{aligned}$$
+<p>Thus, at 5 p.m. the car is 50 mi north of its starting position. The <span data-concept="displacement-from-velocity">total distance traveled</span> is given by</p>
+$$\begin{aligned}\int _{2}^{5}|\kv(t)|dt &=\int_{2}^{4}40dt+\int _{4}^{5}30dt \\ &=80+30 \\ &=110.\end{aligned}$$
+<p>Therefore, between 2 p.m. and 5 p.m., the car traveled a total of 110 mi.</p>
+<p>To summarize, <span data-concept="displacement-from-velocity">net displacement</span> may include both positive and negative values. In other words, the velocity <span data-concept="function">function</span> accounts for both forward distance and backward distance. To find <span data-concept="displacement-from-velocity">net displacement</span>, integrate the velocity <span data-concept="function">function</span> over the interval. Total distance traveled, on the other hand, is always positive. To find the <span data-concept="displacement-from-velocity">total distance traveled</span> by an object, regardless of direction, we need to integrate the absolute value of the velocity <span data-concept="function">function</span>.</p>
+<div class="example" id="fs-id1170572229863">
+<h3>Example 5.24 · Finding Net Displacement</h3>
+<p>Given a velocity <span data-concept="function">function</span> <span data-fn="3x-5">$\kv(t)=3t-5$</span> (in meters per second) for a particle in motion from time $t=0$ to time $t=3,$ find the <span data-concept="displacement-from-velocity">net displacement</span> of the particle.</p>
+<h4>Solution</h4>
+<p>Applying the <span data-concept="net-change-theorem">net change theorem</span>, we have</p>
+$$\begin{aligned}\int_{0}^{3}(3t-5)dt &=\frac{3t^{2}}{2}-5t{|}_{0}^{3} \\ &=[\frac{3{(3)}^{2}}{2}-5(3)]-0 \\ &=\frac{27}{2}-15 \\ &=\frac{27}{2}-\frac{30}{2} \\ &=-\frac{3}{2}.\end{aligned}$$
+<p>The <span data-concept="displacement-from-velocity">net displacement</span> is $-\frac{3}{2}$ m (Figure 5.33).</p>
+<figure class="sim" id="sim-particle" data-figure="5.33" data-original="/media/ch05/CNX_Calc_Figure_05_04_003.jpg" data-original-caption="The graph shows velocity versus time for a particle moving with a linear velocity function.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.33</span><span>A particle moving along a line with velocity <span data-fn="3x-5">$\kv(t)=3t-5$</span> m/sec from $t=0$ to $t=3,$ above the graph of its velocity. It moves left while $\kv(t)\lt 0,$ turns at $t=\frac{5}{3}$ and comes back part of the way. The <span data-concept="net-signed-area">net signed area</span> between the graph and the axis is its <span data-concept="displacement-from-velocity">net displacement</span>, $-\frac{3}{2}$ m at $t=3,$ and the <span data-concept="total-area">total area</span> is the <span data-concept="displacement-from-velocity">total distance traveled</span>, $\frac{41}{6}$ m.</span></div>
+</figure>
+</div>
+<div class="example" id="fs-id1170572247866">
+<h3>Example 5.25 · Finding the Total Distance Traveled</h3>
+<p>Use Example 5.24 to find the <span data-concept="displacement-from-velocity">total distance traveled</span> by a particle according to the velocity <span data-concept="function">function</span> <span data-fn="3x-5">$\kv(t)=3t-5$</span> m/sec over a time interval $[0,3].$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="displacement-from-velocity">total distance traveled</span> includes both the positive and the negative values. Therefore, we must integrate the absolute value of the velocity <span data-concept="function">function</span> to find the <span data-concept="displacement-from-velocity">total distance traveled</span>.</p>
+<p>To continue with the example, use two integrals to find the <span data-concept="displacement-from-velocity">total distance</span>. First, find the <em>t</em>-intercept of the <span data-concept="function">function</span>, since that is where the division of the interval occurs. Set the equation equal to zero and solve for <em>t</em>. Thus,</p>
+$$\begin{aligned}3t-5 &= 0 \\ 3t &= 5 \\ t &= \frac{5}{3}.\end{aligned}$$
+<p>The two subintervals are $[0,\frac{5}{3}]$ and $[\frac{5}{3},3].$ To find the <span data-concept="displacement-from-velocity">total distance traveled</span>, integrate the absolute value of the <span data-concept="function">function</span>. Since the <span data-concept="function">function</span> is negative over the interval $[0,\frac{5}{3}],$ we have $|\kv(t)|=-\kv(t)$ over that interval. Over $[\frac{5}{3},3],$ the <span data-concept="function">function</span> is positive, so $|\kv(t)|=\kv(t).$ Thus, we have</p>
+$$\begin{aligned}\int_{0}^{3}|\kv(t)|dt &=\int_{0}^{5/3}-\kv(t)dt+\int_{5/3}^{3}\kv(t)dt \\ &=\int_{0}^{5/3}5-3tdt+\int_{5/3}^{3}3t-5dt \\ &={(5t-\frac{3t^{2}}{2})|}_{0}^{5/3}+{(\frac{3t^{2}}{2}-5t)|}_{5/3}^{3} \\ &=[5(\frac{5}{3})-\frac{3{(5/3)}^{2}}{2}]-0+[\frac{27}{2}-15]-[\frac{3{(5/3)}^{2}}{2}-\frac{25}{3}] \\ &=\frac{25}{3}-\frac{25}{6}+\frac{27}{2}-15-\frac{25}{6}+\frac{25}{3} \\ &=\frac{41}{6}.\end{aligned}$$
+<p>So, the <span data-concept="displacement-from-velocity">total distance traveled</span> is $\frac{41}{6}$ m.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572247866"></div>
+</section>
+
+<section id="applying">
+<h2>Applying the Net Change Theorem</h2>
+<p>The <span data-concept="net-change-theorem">net change theorem</span> can be applied to the flow and consumption of fluids, as shown in Example 5.26.</p>
+<div class="example" id="fs-id1170571542385">
+<h3>Example 5.26 · How Many Gallons of Gasoline Are Consumed?</h3>
+<p>If the motor on a motorboat is started at $t=0$ and the boat consumes gasoline at the rate of $5-0.1t^{3}$ gal/hr, how much gasoline is used in the first 2 hours?</p>
+<h4>Solution</h4>
+<p>Express the problem as a <span data-concept="definite-integral">definite integral</span>, integrate, and evaluate using the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span>. The <span data-concept="limits-of-integration">limits of integration</span> are the endpoints of the interval $[0,2].$ We have</p>
+$$\int_{0}^{2}(5-0.1t^{3})dt=(5t-0.1\frac{t^{4}}{4}){{|}^{2}}_{0}\;=[5(2)-0.1\frac{{(2)}^{4}}{4}]-0\;=10-0.4\;=9.6$$
+<p>Thus, the motorboat uses 9.6 gal of gas in 2 hours.</p>
+</div>
+<div class="example" id="fs-id1170572420100">
+<h3>Example 5.27 · Chapter Opener: Iceboats</h3>
+<figure class="photo" id="fig-iceboat-race" data-figure="5.34">
+  <img src="/media/ch05/CNX_Calc_Figure_05_01_018.jpg" alt="An image of an iceboat in action.">
+  <figcaption><span class="eyebrow">Figure 5.34</span><span>(credit: modification of work by Carter Brown, Flickr)</span></figcaption>
+</figure>
+<p>As we saw at the beginning of the chapter, top iceboat racers (<a href="/calculus/ch05/intro/">Figure 5.1</a>) can attain speeds of up to five times the wind speed. Andrew is an intermediate iceboater, though, so he attains speeds equal to only twice the wind speed. Suppose Andrew takes his iceboat out one morning when a light 5-mph breeze has been blowing all morning. As Andrew gets his iceboat set up, though, the wind begins to pick up. During his first half hour of iceboating, the wind speed increases according to the <span data-concept="function">function</span> <span data-fn="20x+5">$\kv(t)=20t+5.$</span> For the second half hour of Andrew’s outing, the wind remains steady at 15 mph. In other words, the wind speed is given by</p>
+$$\kv(t)=\begin{cases}20t+5 & \text{for } 0\le t\le\frac{1}{2} \\ 15 & \text{for } \frac{1}{2}\le t\le1.\end{cases}$$
+<p>Recalling that Andrew’s iceboat travels at twice the wind speed, and assuming he moves in a straight line away from his starting point, how far is Andrew from his starting point after 1 hour?</p>
+<h4>Solution</h4>
+<p>To figure out how far Andrew has traveled, we need to integrate his velocity, which is twice the wind speed. Then</p>
+<p>Distance $=\int_{0}^{1}2\kv(t)dt.$</p>
+<p>Substituting the expressions we were given for $\kv(t),$ we get</p>
+$$\begin{aligned}\int_{0}^{1}2\kv(t)dt &=\int_{0}^{1/2}2\kv(t)dt+\int_{1/2}^{1}2\kv(t)dt \\ &=\int_{0}^{1/2}2(20t+5)dt+\int_{1/2}^{1}2(15)dt \\ &=\int_{0}^{1/2}(40t+10)dt+\int_{1/2}^{1}30dt \\ &=[20t^{2}+10t]{|}_{0}^{1/2}+[30t]{|}_{1/2}^{1} \\ &=(\frac{20}{4}+5)-0+(30-15) \\ &=25.\end{aligned}$$
+<p>Andrew is 25 mi from his starting point after 1 hour.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572420100"></div>
+</section>
+
+<section id="even-odd">
+<h2>Integrating Even and Odd Functions</h2>
+<p>We saw in <a href="/calculus/ch01/intro/">Functions and Graphs</a> that an <span data-concept="even-function">even function</span> is a <span data-concept="function">function</span> in which $\kf(-x)=\kf(x)$ for all <em>x</em> in the domain—that is, the graph of the curve is unchanged when <em>x</em> is replaced with −<em>x</em>. The graphs of <span data-concept="even-function">even functions</span> are symmetric about the <em>y</em>-axis. An <span data-concept="odd-function">odd function</span> is one in which $\kf(-x)=-\kf(x)$ for all <em>x</em> in the domain, and the graph of the <span data-concept="function">function</span> is <span data-concept="symmetry-about-the-origin">symmetric about the origin</span>.</p>
+<p>Integrals of <span data-concept="even-function">even functions</span>, when the <span data-concept="limits-of-integration">limits of integration</span> are from −<em>a</em> to <em>a</em>, involve two equal areas, because they are symmetric about the <em>y</em>-axis. Integrals of <span data-concept="odd-function">odd functions</span>, when the <span data-concept="limits-of-integration">limits of integration</span> are similarly $[-a,a],$ evaluate to zero because the areas above and below the <em>x</em>-axis are equal.</p>
+<div class="note" id="even-odd-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="integrals-of-even-and-odd-functions">Integrals of Even and Odd Functions</span></h3>
+<p>For <span data-concept="continuity-over-an-interval">continuous</span> <span data-concept="even-function">even functions</span> such that $\kf(-x)=\kf(x),$</p>
+$$\int_{-a}^{a}\kf(x)dx=2\int_{0}^{a}\kf(x)dx.$$
+<p>For <span data-concept="continuity-over-an-interval">continuous</span> <span data-concept="odd-function">odd functions</span> such that $\kf(-x)=-\kf(x),$</p>
+$$\int_{-a}^{a}\kf(x)dx=0.$$
+</div>
+<div class="example" id="fs-id1170572624845">
+<h3>Example 5.28 · Integrating an Even Function</h3>
+<p>Integrate the <span data-concept="even-function">even function</span> $\int_{-2}^{2}(3x^{8}-2)dx$ and verify that the integration formula for <span data-concept="even-function">even functions</span> holds.</p>
+<h4>Solution</h4>
+<p>The symmetry appears in the graphs in Figure 5.35. Graph (a) shows the region below the curve and above the <em>x</em>-axis. We have to zoom in to this graph by a huge amount to see the region. Graph (b) shows the region above the curve and below the <em>x</em>-axis. The signed area of this region is negative. Both views illustrate the symmetry about the <em>y</em>-axis of an <span data-concept="even-function">even function</span>. We have</p>
+$$\begin{aligned}\int_{-2}^{2}(3x^{8}-2)dx &=(\frac{x^{9}}{3}-2x){|}_{-2}^{2} \\ &=[\frac{{(2)}^{9}}{3}-2(2)]-[\frac{{(-2)}^{9}}{3}-2(-2)] \\ &=(\frac{512}{3}-4)-(-\frac{512}{3}+4) \\ &=\frac{1000}{3}.\end{aligned}$$
+<p>To verify the integration formula for <span data-concept="even-function">even functions</span>, we can calculate the integral from 0 to 2 and double it, then check to make sure we get the same answer.</p>
+$$\begin{aligned}\int_{0}^{2}(3x^{8}-2)dx &=(\frac{x^{9}}{3}-2x){|}_{0}^{2} \\ &=\frac{512}{3}-4 \\ &=\frac{500}{3}\end{aligned}$$
+<p>Since $2\cdot \frac{500}{3}=\frac{1000}{3},$ we have verified the formula for <span data-concept="even-function">even functions</span> in this particular example.</p>
+<figure class="sim" id="fig-even-function" data-figure="5.35" data-original="/media/ch05/CNX_Calc_Figure_05_04_005.jpg" data-original-caption="Graph (a) shows the positive area between the curve and the x-axis, whereas graph (b) shows the negative area between the curve and the x-axis. Both views show the symmetry about the y-axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.35</span><span>Graph (a) shows the positive area between the curve and the <em>x</em>-axis, whereas graph (b) shows the negative area between the curve and the <em>x</em>-axis. Both views show the symmetry about the <em>y</em>-axis.</span></div>
+</figure>
+</div>
+<div class="example" id="fs-id1170571599733">
+<h3>Example 5.29 · Integrating an Odd Function</h3>
+<p>Evaluate the <span data-concept="definite-integral">definite integral</span> of the <span data-concept="odd-function">odd function</span> $-5\;\sin x$ over the interval $[-\pi,\pi].$</p>
+<h4>Solution</h4>
+<p>The graph is shown in Figure 5.36. We can see the <span data-concept="symmetry-about-the-origin">symmetry about the origin</span> by the positive area above the <em>x</em>-axis over $[-\pi,0],$ and the negative area below the <em>x</em>-axis over $[0,\pi].$ We have</p>
+$$\begin{aligned}\int_{-\pi}^{\pi}-5\;\sin xdx &=-5(-\cos x){|}_{-\pi}^{\pi} \\ &=5\;\cos x{|}_{-\pi}^{\pi} \\ &=[5\;\cos\pi]-[5\;\cos(-\pi)] \\ &=-5-(-5) \\ &=0.\end{aligned}$$
+<figure class="sim" id="fig-odd-function" data-figure="5.36" data-original="/media/ch05/CNX_Calc_Figure_05_04_006.jpg" data-original-caption="The graph shows areas between a curve and the x-axis for an odd function.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.36</span><span>The graph shows areas between a curve and the <em>x</em>-axis for an odd function.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571599733"></div>
+</section>

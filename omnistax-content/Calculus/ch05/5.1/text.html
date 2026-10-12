@@ -1,0 +1,184 @@
+<p id="exhaustion">Archimedes was fascinated with calculating the areas of various shapes—in other words, the amount of space enclosed by the shape. He used a process that has come to be known as the <em><span data-concept="method-of-exhaustion">method of exhaustion</span></em>, which used smaller and smaller shapes, the areas of which could be calculated exactly, to fill an irregular region and thereby obtain closer and closer approximations to the total area. In this process, an area bounded by curves is filled with rectangles, triangles, and shapes with exact area formulas. These areas are then summed to approximate the area of the curved region.</p>
+<p>In this section, we develop techniques to approximate the area between a curve, defined by a <span data-concept="function">function</span> $\kf(x),$ and the <em>x</em>-axis on a closed interval $[a,b].$ Like Archimedes, we first approximate the <span data-concept="area-under-the-curve">area under the curve</span> using shapes of known area (namely, rectangles). By using smaller and smaller rectangles, we get closer and closer approximations to the area. Taking a <span data-concept="limit">limit</span> allows us to calculate the exact <span data-concept="area-under-the-curve">area under the curve</span>.</p>
+<p>Let’s start by introducing some notation to make the calculations easier. We then consider the case when $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span> and nonnegative. Later in the chapter, we relax some of these restrictions and develop techniques that apply in more general cases.</p>
+<section id="sigma">
+<h2>Sigma (Summation) Notation</h2>
+<p>As mentioned, we will use shapes of known area to approximate the area of an irregular region bounded by curves. This process often requires adding up long strings of numbers. To make it easier to write down these lengthy sums, we look at some new notation here, called <strong><span data-concept="sigma-notation">sigma notation</span></strong> (also known as <strong><span data-concept="sigma-notation">summation notation</span></strong>). The Greek capital letter $Σ,$ sigma, is used to express long sums of values in a compact form. For example, if we want to add all the integers from 1 to 20 without <span data-concept="sigma-notation">sigma notation</span>, we have to write</p>
+$$1+2+3+4+5+6+7+8+9+10+11+12+13+14+15+16+17+18+19+20.$$
+<p>We could probably skip writing a couple of terms and write</p>
+$$1+2+3+4+\cdots+19+20,$$
+<p>which is better, but still cumbersome. With <span data-concept="sigma-notation">sigma notation</span>, we write this sum as</p>
+$$\sum_{i=1}^{20} i,$$
+<p>which is much more compact.</p>
+<p>Typically, <span data-concept="sigma-notation">sigma notation</span> is presented in the form</p>
+$$\sum_{i=1}^{n} a_{i}$$
+<p>where $a_{i}$ describes the terms to be added, and the <em>i</em> is called the <em>index</em>. Each term is evaluated, then we sum all the values, beginning with the value when $i=1$ and ending with the value when $i=n.$ For example, an expression like $\sum_{i=2}^{7} s_{i}$ is interpreted as $s_{2}+s_{3}+s_{4}+s_{5}+s_{6}+s_{7}.$ Note that the index is used only to keep track of the terms to be added; it does not factor into the calculation of the sum itself. The index is therefore called a <em>dummy variable</em>. We can use any letter we like for the index. Typically, mathematicians use <em>i</em>, <em>j</em>, <em>k</em>, <em>m</em>, and <em>n</em> for indices.</p>
+<p>Let’s try a couple of examples of using <span data-concept="sigma-notation">sigma notation</span>.</p>
+<div class="example" id="fs-id1170572294328">
+<h3>Example 5.1 · Using Sigma Notation</h3>
+<ol type="a"><li>Write in <span data-concept="sigma-notation">sigma notation</span> and evaluate the sum of terms $3^{i}$ for $i=1,2,3,4,5.$</li><li>Write the sum in <span data-concept="sigma-notation">sigma notation</span>: $$1+\frac{1}{4}+\frac{1}{9}+\frac{1}{16}+\frac{1}{25}.$$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Write $$\begin{aligned}\sum_{i=1}^{5} 3^{i} &=3+3^{2}+3^{3}+3^{4}+3^{5} \\ &=363.\end{aligned}$$</li><li>The denominator of each term is a perfect square. Using <span data-concept="sigma-notation">sigma notation</span>, this sum can be written as $\sum_{i=1}^{5} \frac{1}{i^{2}}.$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1170572294328"></div>
+<p>The properties associated with the summation process are given in the following rule.</p>
+<div class="note" id="sigma-properties">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="properties-of-sigma-notation">Properties of Sigma Notation</span></h3>
+<p>Let $a_{1},a_{2},\ldots,a_{n}$ and $b_{1},b_{2},\ldots,b_{n}$ represent two sequences of terms and let <em>c</em> be a constant. The following properties hold for all positive integers <em>n</em> and for integers <em>m</em>, with $1\le m\le n.$</p>
+<ol><li> $$\sum_{i=1}^{n} c=nc$$</li><li> $$\sum_{i=1}^{n} ca_{i}=c\sum_{i=1}^{n} a_{i}$$</li><li> $$\sum_{i=1}^{n} (a_{i}+b_{i})=\sum_{i=1}^{n} a_{i}+\sum_{i=1}^{n} b_{i}$$</li><li> $$\sum_{i=1}^{n} (a_{i}-b_{i})=\sum_{i=1}^{n} a_{i}-\sum_{i=1}^{n} b_{i}$$</li><li> $$\sum_{i=1}^{n} a_{i}=\sum_{i=1}^{m} a_{i}+\sum_{i=m+1}^{n} a_{i}$$</li></ol>
+</div>
+<h3>Proof</h3>
+<p>We prove properties 2. and 3. here, and leave proof of the other properties to the Exercises.</p>
+<ol><li>We have $$\begin{aligned}\sum_{i=1}^{n} ca_{i} &=ca_{1}+ca_{2}+ca_{3}+\cdots+ca_{n} \\ &=c(a_{1}+a_{2}+a_{3}+\cdots+a_{n}) \\ &=c\sum_{i=1}^{n} a_{i}.\end{aligned}$$</li><li>We have $$\begin{aligned}\sum_{i=1}^{n} (a_{i}+b_{i}) &=(a_{1}+b_{1})+(a_{2}+b_{2})+(a_{3}+b_{3})+\cdots+(a_{n}+b_{n}) \\ &=(a_{1}+a_{2}+a_{3}+\cdots+a_{n})+(b_{1}+b_{2}+b_{3}+\cdots+b_{n}) \\ &=\sum_{i=1}^{n} a_{i}+\sum_{i=1}^{n} b_{i}.\end{aligned}$$</li></ol>
+<p>□</p>
+<p>A few more formulas for frequently found <span data-concept="function">functions</span> simplify the summation process further. These are shown in the next rule, for <strong><span data-concept="sums-and-powers-of-integers">sums and powers of integers</span></strong>, and we use them in the next set of examples.</p>
+<div class="note" id="sums-of-powers">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="sums-and-powers-of-integers">Sums and Powers of Integers</span></h3>
+<ol><li>The sum of <em>n</em> integers is given by $$\sum_{i=1}^{n} i=1+2+\cdots+n=\frac{n(n+1)}{2}.$$</li><li>The sum of consecutive integers squared is given by $$\sum_{i=1}^{n} i^{2}=1^{2}+2^{2}+\cdots+n^{2}=\frac{n(n+1)(2n+1)}{6}.$$</li><li>The sum of consecutive integers cubed is given by $$\sum_{i=1}^{n} i^{3}=1^{3}+2^{3}+\cdots+n^{3}=\frac{n^{2}{(n+1)}^{2}}{4}.$$</li></ol>
+</div>
+<div class="example" id="fs-id1170572218770">
+<h3>Example 5.2 · Evaluation Using Sigma Notation</h3>
+<p>Write using <span data-concept="sigma-notation">sigma notation</span> and evaluate:</p>
+<ol type="a"><li>The sum of the terms ${(i-3)}^{2}$ for $i=1,2,\ldots,200.$</li><li>The sum of the terms $(i^{3}-i^{2})$ for $i=1,2,3,4,5,6.$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Multiplying out ${(i-3)}^{2},$ we can break the expression into three terms. $$\begin{aligned}\sum_{i=1}^{200} {(i-3)}^{2} &=\sum_{i=1}^{200} (i^{2}-6i+9) \\ &=\sum_{i=1}^{200} i^{2}-\sum_{i=1}^{200} 6i+\sum_{i=1}^{200} 9 \\ &=\sum_{i=1}^{200} i^{2}-6\sum_{i=1}^{200} i+\sum_{i=1}^{200} 9 \\ &=\frac{200(200+1)(400+1)}{6}-6[\frac{200(200+1)}{2}]+9(200) \\ &=2,686,700-120,600+1800 \\ &=2,567,900\end{aligned}$$</li><li>Use <span data-concept="sigma-notation">sigma notation</span> property iv. and the rules for the sum of squared terms and the sum of cubed terms. $$\begin{aligned}\sum_{i=1}^{6} (i^{3}-i^{2}) &=\sum_{i=1}^{6} i^{3}-\sum_{i=1}^{6} i^{2} \\ &=\frac{6^{2}{(6+1)}^{2}}{4}-\frac{6(6+1)(2(6)+1)}{6} \\ &=\frac{1764}{4}-\frac{546}{6} \\ &=350\end{aligned}$$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1170572218770"></div>
+<div class="example" id="fs-id1170572337091">
+<h3>Example 5.3 · Finding the Sum of the Function Values</h3>
+<p>Find the sum of the values of $\kf(x)=x^{3}$ over the integers $1,2,3,\ldots,10.$</p>
+<h4>Solution</h4>
+<p>Using the formula, we have</p>
+$$\begin{aligned}\sum_{i=1}^{10} i^{3} &=\frac{{(10)}^{2}{(10+1)}^{2}}{4} \\ &=\frac{100(121)}{4} \\ &=3025.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170572337091"></div>
+</section>
+
+<section id="approximating-area">
+<h2>Approximating Area</h2>
+<p>Now that we have the necessary notation, we return to the problem at hand: approximating the <span data-concept="area-under-the-curve">area under a curve</span>. Let $\kf(x)$ be a <span data-concept="continuity-over-an-interval">continuous</span>, nonnegative <span data-concept="function">function</span> defined on the closed interval $[a,b].$ We want to approximate the area $\kA$ bounded by $\kf(x)$ above, the <em>x</em>-axis below, the line $x=a$ on the left, and the line $x=b$ on the right (Figure 5.2).</p>
+<figure class="sim" id="fig-area-region" data-figure="5.2" data-original="/media/ch05/CNX_Calc_Figure_05_01_017.jpg" data-original-caption="An area (shaded region) bounded by the curve f(x) at top, the x-axis at bottom, the line x=a to the left, and the line x=b at right.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.2</span><span>An area (shaded region) bounded by the curve $\kf(x)$ at top, the <em>x</em>-axis at bottom, the line $x=a$ to the left, and the line $x=b$ at right.</span></div>
+</figure>
+<p>How do we approximate the <span data-concept="area-under-the-curve">area under this curve</span>? The approach is a geometric one. By dividing a region into many small shapes that have known area formulas, we can sum these areas and obtain a reasonable estimate of the true area. We begin by dividing the interval $[a,b]$ into <em>n</em> subintervals of equal width, $\frac{b-a}{n}.$ We do this by selecting equally spaced points $x_{0},x_{1},x_{2},\ldots,x_{n}$ with $x_{0}=a,x_{n}=b,$ and</p>
+$$x_{i}-x_{i-1}=\frac{b-a}{n}$$
+<p>for $i=1,2,3,\ldots,n.$</p>
+<p>We denote the width of each subinterval with the notation $\Delta x$, so $\Delta x=\frac{b-a}{n}$ and</p>
+$$x_{i}=x_{0}+i\Delta x$$
+<p>for $i=1,2,3,\ldots,n.$ This notion of dividing an interval $[a,b]$ into subintervals by selecting points from within the interval is used quite often in approximating the <span data-concept="area-under-the-curve">area under a curve</span>, so let’s define some relevant terminology.</p>
+<div class="note" id="partition-definition">
+<div class="eyebrow">Definition</div>
+<p>A set of points $\kP=\{x_{i}\}$ for $i=0,1,2,\ldots,n$ with $a=x_{0}\lt x_{1}\lt x_{2}\lt \cdots\lt x_{n}=b,$ which divides the interval $[a,b]$ into subintervals of the form $[x_{0},x_{1}],[x_{1},x_{2}],\ldots,[x_{n-1},x_{n}]$ is called a <strong><span data-concept="partition">partition</span></strong> of $[a,b].$ If the subintervals all have the same width, the set of points forms a <strong><span data-concept="regular-partition">regular partition</span></strong> of the interval $[a,b].$</p>
+</div>
+<p>We can use this <span data-concept="regular-partition">regular partition</span> as the basis of a method for estimating the <span data-concept="area-under-the-curve">area under the curve</span>. We next examine two methods: the <span data-concept="left-endpoint-approximation">left-endpoint approximation</span> and the <span data-concept="right-endpoint-approximation">right-endpoint approximation</span>.</p>
+<div class="note" id="left-endpoint-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="left-endpoint-approximation">Left-Endpoint Approximation</span></h3>
+<p>On each subinterval $[x_{i-1},x_{i}]$ (for $i=1,2,3,\ldots,n),$ construct a rectangle with width $\Delta x$ and height equal to $\kf(x_{i-1}),$ which is the <span data-concept="function">function</span> value at the left endpoint of the subinterval. Then the area of this rectangle is $\kf(x_{i-1})\Delta x.$ Adding the areas of all these rectangles, we get an approximate value for $\kA$ (Figure 5.3). We use the notation $\kL_{n}$ to denote that this is a <strong><span data-concept="left-endpoint-approximation">left-endpoint approximation</span></strong> of $\kA$ using <em>n</em> subintervals.</p>
+$$\begin{aligned}\kA\approx \kL_{n} &=\kf(x_{0})\Delta x+\kf(x_{1})\Delta x+\cdots+\kf(x_{n-1})\Delta x \\ &=\sum_{i=1}^{n} \kf(x_{i-1})\Delta x\end{aligned}$$
+</div>
+<figure class="sim" id="sim-endpoint-rules" data-figure="5.3 + 5.4 + 5.5" data-original="/media/ch05/CNX_Calc_Figure_05_01_001.jpg,/media/ch05/CNX_Calc_Figure_05_01_002.jpg,/media/ch05/CNX_Calc_Figure_05_01_003.jpg" data-original-caption="(Figure 5.3) In the left-endpoint approximation of area under a curve, the height of each rectangle is determined by the function value at the left of each subinterval. (Figure 5.4) In the right-endpoint approximation of area under a curve, the height of each rectangle is determined by the function value at the right of each subinterval. Note that the right-endpoint approximation differs from the left-endpoint approximation in Figure 5.3. (Figure 5.5) Methods of approximating the area under a curve by using (a) the left endpoints and (b) the right endpoints.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.3 + 5.4 + 5.5</span><span>The region under <span data-fn="x^2/2">$\kf(x)=\frac{x^{2}}{2}$</span> on $[0,3],$ divided into $n$ subintervals of equal width $\Delta x.$ Each rectangle is as tall as the curve at the left or the right endpoint of its subinterval: on this rising curve the <span data-concept="left-endpoint-approximation">left-endpoint approximation</span> $\kL_{n}$ stays below the area and the <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> $\kR_{n}$ above it, and both close on it as $n$ grows. At $n=6,$ $\kL_{6}=3.4375$ and $\kR_{6}=5.6875.$</span></div>
+</figure>
+<p>The second method for approximating <span data-concept="area-under-the-curve">area under a curve</span> is the <span data-concept="right-endpoint-approximation">right-endpoint approximation</span>. It is almost the same as the <span data-concept="left-endpoint-approximation">left-endpoint approximation</span>, but now the heights of the rectangles are determined by the <span data-concept="function">function</span> values at the right of each subinterval.</p>
+<div class="note" id="right-endpoint-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="right-endpoint-approximation">Right-Endpoint Approximation</span></h3>
+<p>Construct a rectangle on each subinterval $[x_{i-1},x_{i}],$ only this time the height of the rectangle is determined by the <span data-concept="function">function</span> value $\kf(x_{i})$ at the right endpoint of the subinterval. Then, the area of each rectangle is $\kf(x_{i})\Delta x$ and the approximation for $\kA$ is given by</p>
+$$\begin{aligned}\kA\approx \kR_{n} &=\kf(x_{1})\Delta x+\kf(x_{2})\Delta x+\cdots+\kf(x_{n})\Delta x \\ &=\sum_{i=1}^{n} \kf(x_{i})\Delta x.\end{aligned}$$
+<p>The notation $\kR_{n}$ indicates this is a <strong><span data-concept="right-endpoint-approximation">right-endpoint approximation</span></strong> for $\kA$ (Figure 5.4).</p>
+</div>
+<p>The graphs in Figure 5.5 represent the curve <span data-fn="x^2/2">$\kf(x)=\frac{x^{2}}{2}.$</span> In graph (a) we divide the region represented by the interval $[0,3]$ into six subintervals, each of width 0.5. Thus, $\Delta x=0.5.$ We then form six rectangles by drawing vertical lines perpendicular to $x_{i-1},$ the left endpoint of each subinterval. We determine the height of each rectangle by calculating $\kf(x_{i-1})$ for $i=1,2,3,4,5,6.$ The intervals are $[0,0.5],[0.5,1],[1,1.5],[1.5,2],[2,2.5],[2.5,3].$ We find the area of each rectangle by multiplying the height by the width. Then, the sum of the rectangular areas approximates the area between $\kf(x)$ and the <em>x</em>-axis. When the left endpoints are used to calculate height, we have a <span data-concept="left-endpoint-approximation">left-endpoint approximation</span>. Thus,</p>
+$$\begin{aligned}\kA\approx \kL_{6} &=\sum_{i=1}^{6} \kf(x_{i-1})\Delta x=\kf(x_{0})\Delta x+\kf(x_{1})\Delta x+\kf(x_{2})\Delta x+\kf(x_{3})\Delta x+\kf(x_{4})\Delta x+\kf(x_{5})\Delta x \\ &=\kf(0)0.5+\kf(0.5)0.5+\kf(1)0.5+\kf(1.5)0.5+\kf(2)0.5+\kf(2.5)0.5 \\ &=(0)0.5+(0.125)0.5+(0.5)0.5+(1.125)0.5+(2)0.5+(3.125)0.5 \\ &=0+0.0625+0.25+0.5625+1+1.5625 \\ &=3.4375.\end{aligned}$$
+<p>In Figure 5.5(b), we draw vertical lines perpendicular to $x_{i}$ such that $x_{i}$ is the right endpoint of each subinterval, and calculate $\kf(x_{i})$ for $i=1,2,3,4,5,6.$ We multiply each $\kf(x_{i})$ by $\Delta x$ to find the rectangular areas, and then add them. This is a <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> of the area under $\kf(x).$ Thus,</p>
+$$\begin{aligned}\kA\approx \kR_{6} &=\sum_{i=1}^{6} \kf(x_{i})\Delta x=\kf(x_{1})\Delta x+\kf(x_{2})\Delta x+\kf(x_{3})\Delta x+\kf(x_{4})\Delta x+\kf(x_{5})\Delta x+\kf(x_{6})\Delta x \\ &=\kf(0.5)0.5+\kf(1)0.5+\kf(1.5)0.5+\kf(2)0.5+\kf(2.5)0.5+\kf(3)0.5 \\ &=(0.125)0.5+(0.5)0.5+(1.125)0.5+(2)0.5+(3.125)0.5+(4.5)0.5 \\ &=0.0625+0.25+0.5625+1+1.5625+2.25 \\ &=5.6875.\end{aligned}$$
+<div class="example" id="fs-id1170571758983">
+<h3>Example 5.4 · Approximating the Area Under a Curve</h3>
+<p>Use both <span data-concept="left-endpoint-approximation">left-endpoint</span> and <span data-concept="right-endpoint-approximation">right-endpoint approximations</span> to approximate the <span data-concept="area-under-the-curve">area under the curve</span> of <span data-fn="x^2">$\kf(x)=x^{2}$</span> on the interval $[0,2];$ use $n=4.$</p>
+<h4>Solution</h4>
+<p>First, divide the interval $[0,2]$ into <em>n</em> equal subintervals. Using $n=4,\Delta x=\frac{(2-0)}{4}=0.5.$ This is the width of each rectangle. The intervals $[0,0.5],[0.5,1],[1,1.5],[1.5,2]$ are shown in Figure 5.6. Using a <span data-concept="left-endpoint-approximation">left-endpoint approximation</span>, the heights are $\kf(0)=0,\kf(0.5)=0.25,\kf(1)=1,\kf(1.5)=2.25.$ Then,</p>
+$$\begin{aligned}\kL_{4} &=\kf(x_{0})\Delta x+\kf(x_{1})\Delta x+\kf(x_{2})\Delta x+\kf(x_{3})\Delta x \\ &=0(0.5)+0.25(0.5)+1(0.5)+2.25(0.5) \\ &=1.75.\end{aligned}$$
+<figure class="sim" id="fig-example-endpoints" data-figure="5.6 + 5.7" data-original="/media/ch05/CNX_Calc_Figure_05_01_010.jpg,/media/ch05/CNX_Calc_Figure_05_01_011.jpg" data-original-caption="(Figure 5.6) The graph shows the left-endpoint approximation of the area under f(x)=x² from 0 to 2. (Figure 5.7) The graph shows the right-endpoint approximation of the area under f(x)=x² from 0 to 2.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.6 + 5.7</span><span>The four rectangles of Example 5.4 under <span data-fn="x^2">$\kf(x)=x^{2}$</span> on $[0,2],$ as tall as the curve at the left endpoints, $\kL_{4}=1.75,$ or at the right endpoints, $\kR_{4}=3.75.$</span></div>
+</figure>
+<p>The <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> is shown in Figure 5.7. The intervals are the same, $\Delta x=0.5,$ but now use the right endpoint to calculate the height of the rectangles. We have</p>
+$$\begin{aligned}\kR_{4} &=\kf(x_{1})\Delta x+\kf(x_{2})\Delta x+\kf(x_{3})\Delta x+\kf(x_{4})\Delta x \\ &=0.25(0.5)+1(0.5)+2.25(0.5)+4(0.5) \\ &=3.75.\end{aligned}$$
+<p>The <span data-concept="left-endpoint-approximation">left-endpoint approximation</span> is 1.75; the <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> is 3.75.</p>
+</div>
+<div class="exercises" data-place="fs-id1170571758983"></div>
+<p>Looking at Figure 5.5 and the graphs in Example 5.4, we can see that when we use a small number of intervals, neither the <span data-concept="left-endpoint-approximation">left-endpoint approximation</span> nor the <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> is a particularly accurate estimate of the <span data-concept="area-under-the-curve">area under the curve</span>. However, it seems logical that if we increase the number of points in our <span data-concept="partition">partition</span>, our estimate of $\kA$ will improve. We will have more rectangles, but each rectangle will be thinner, so we will be able to fit the rectangles to the curve more precisely.</p>
+<p>We can demonstrate the improved approximation obtained through smaller intervals with an example. Let’s explore the idea of increasing <em>n</em>, first in a <span data-concept="left-endpoint-approximation">left-endpoint approximation</span> with four rectangles, then eight rectangles, and finally 32 rectangles. Then, let’s do the same thing in a <span data-concept="right-endpoint-approximation">right-endpoint approximation</span>, using the same sets of intervals, of the same curved region. Figure 5.8 shows the area of the region under the curve <span data-fn="(x-1)^3+4">$\kf(x)={(x-1)}^{3}+4$</span> on the interval $[0,2]$ using a <span data-concept="left-endpoint-approximation">left-endpoint approximation</span> where $n=4.$ The width of each rectangle is</p>
+$$\Delta x=\frac{2-0}{4}=\frac{1}{2}.$$
+<p>The area is approximated by the summed areas of the rectangles, or</p>
+$$\begin{aligned}\kL_{4} &=\kf(0)(0.5)+\kf(0.5)(0.5)+\kf(1)(0.5)+\kf(1.5)0.5 \\ &=7.5.\end{aligned}$$
+<figure class="sim" id="sim-converging-sums" data-figure="5.8 + 5.9 + 5.10 + 5.11 + 5.12 + 5.13" data-original="/media/ch05/CNX_Calc_Figure_05_01_004.jpg,/media/ch05/CNX_Calc_Figure_05_01_005.jpg,/media/ch05/CNX_Calc_Figure_05_01_006.jpg,/media/ch05/CNX_Calc_Figure_05_01_007.jpg,/media/ch05/CNX_Calc_Figure_05_01_008.jpg,/media/ch05/CNX_Calc_Figure_05_01_009.jpg" data-original-caption="(Figure 5.8) With a left-endpoint approximation and dividing the region from a to b into four equal intervals, the area under the curve is approximately equal to the sum of the areas of the rectangles. (Figure 5.9) The region under the curve is divided into n=8 rectangular areas of equal width for a left-endpoint approximation. (Figure 5.10) Here, 32 rectangles are inscribed under the curve for a left-endpoint approximation. (Figure 5.11) Now we divide the area under the curve into four equal subintervals for a right-endpoint approximation. (Figure 5.12) Here we use right-endpoint approximation for a region divided into eight equal subintervals. (Figure 5.13) The region is divided into 32 equal subintervals for a right-endpoint approximation.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.8 + 5.9 + 5.10 + 5.11 + 5.12 + 5.13</span><span>The region under <span data-fn="(x-1)^3+4">$\kf(x)={(x-1)}^{3}+4$</span> on $[0,2]$ with $n$ rectangles as tall as the curve at the left or the right endpoints, the ticks on the slider at $n=4,$ 8 and 32. As $n$ grows the white space between the rectangles and the curve shrinks, and both sums close on 8.</span></div>
+</figure>
+<p>Figure 5.9 shows the same curve divided into eight subintervals. Comparing the graph with four rectangles in Figure 5.8 with this graph with eight rectangles, we can see there appears to be less white space under the curve when $n=8.$ This white space is <span data-concept="area-under-the-curve">area under the curve</span> we are unable to include using our approximation. The area of the rectangles is</p>
+$$\begin{aligned}\kL_{8} &=\kf(0)(0.25)+\kf(0.25)(0.25)+\kf(0.5)(0.25)+\kf(0.75)(0.25) \\ &\;+\kf(1)(0.25)+\kf(1.25)(0.25)+\kf(1.5)(0.25)+\kf(1.75)(0.25) \\ &=7.75.\end{aligned}$$
+<p>The graph in Figure 5.10 shows the same <span data-concept="function">function</span> with 32 rectangles inscribed under the curve. There appears to be little white space left. The area occupied by the rectangles is</p>
+$$\begin{aligned}\kL_{32} &=\kf(0)(0.0625)+\kf(0.0625)(0.0625)+\kf(0.125)(0.0625)+\cdots+\kf(1.9375)(0.0625) \\ &=7.9375.\end{aligned}$$
+<p>We can carry out a similar process for the <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> method. A <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> of the same curve, using four rectangles (Figure 5.11), yields an area</p>
+$$\begin{aligned}\kR_{4} &=\kf(0.5)(0.5)+\kf(1)(0.5)+\kf(1.5)(0.5)+\kf(2)(0.5) \\ &=8.5.\end{aligned}$$
+<p>Dividing the region over the interval $[0,2]$ into eight rectangles results in $\Delta x=\frac{2-0}{8}=0.25.$ The graph is shown in Figure 5.12. The area is</p>
+$$\begin{aligned}\kR_{8} &=\kf(0.25)(0.25)+\kf(0.5)(0.25)+\kf(0.75)(0.25)+\kf(1)(0.25) \\ &\;+\kf(1.25)(0.25)+\kf(1.5)(0.25)+\kf(1.75)(0.25)+\kf(2)(0.25) \\ &=8.25.\end{aligned}$$
+<p>Last, the <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> with $n=32$ is close to the actual area (Figure 5.13). The area is approximately</p>
+$$\begin{aligned}\kR_{32} &=\kf(0.0625)(0.0625)+\kf(0.125)(0.0625)+\kf(0.1875)(0.0625)+\cdots+\kf(2)(0.0625) \\ &=8.0625.\end{aligned}$$
+<p>Based on these figures and calculations, it appears we are on the right track; the rectangles appear to approximate the <span data-concept="area-under-the-curve">area under the curve</span> better as <em>n</em> gets larger. Furthermore, as <em>n</em> increases, both the <span data-concept="left-endpoint-approximation">left-endpoint</span> and <span data-concept="right-endpoint-approximation">right-endpoint approximations</span> appear to approach an area of 8 square units. Table 5.1 shows a numerical comparison of the left- and right-endpoint methods. The idea that the approximations of the <span data-concept="area-under-the-curve">area under the curve</span> get better and better as <em>n</em> gets larger and larger is very important, and we now explore this idea in more detail.</p>
+<div class="book-table" id="fs-id1170572305783">
+  <div class="tcap"><span class="eyebrow">Table 5.1</span><span>Converging Values of Left- and Right-Endpoint Approximations as <em>n</em> Increases</span></div>
+  <table><thead><tr><th>Values of <em>n</em></th><th>Approximate Area $\kL_{n}$</th><th>Approximate Area $\kR_{n}$</th></tr></thead><tbody><tr><td>$n=4$</td><td>7.5</td><td>8.5</td></tr><tr><td>$n=8$</td><td>7.75</td><td>8.25</td></tr><tr><td>$n=32$</td><td>7.94</td><td>8.06</td></tr></tbody></table>
+</div>
+</section>
+
+<section id="riemann-sums">
+<h2>Forming Riemann Sums</h2>
+<p>So far we have been using rectangles to approximate the <span data-concept="area-under-the-curve">area under a curve</span>. The heights of these rectangles have been determined by evaluating the <span data-concept="function">function</span> at either the right or left endpoints of the subinterval $[x_{i-1},x_{i}].$ In reality, there is no reason to restrict evaluation of the <span data-concept="function">function</span> to one of these two points only. We could evaluate the <span data-concept="function">function</span> at any point $x_{i}^{*}$ in the subinterval $[x_{i-1},x_{i}],$ and use $\kf(x_{i}^{*})$ as the height of our rectangle. This gives us an estimate for the area of the form</p>
+$$\kA\approx \sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x.$$
+<p>A sum of this form is called a <span data-concept="riemann-sum">Riemann sum</span>, named for the 19th-century mathematician Bernhard Riemann, who developed the idea.</p>
+<div class="note" id="riemann-sum-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf(x)$ be defined on a closed interval $[a,b]$ and let $\kP$ be a <span data-concept="regular-partition">regular partition</span> of $[a,b].$ Let $\Delta x$ be the width of each subinterval $[x_{i-1},x_{i}]$ and for each <em>i</em>, let $x_{i}^{*}$ be any point in $[x_{i-1},x_{i}].$ A <strong><span data-concept="riemann-sum">Riemann sum</span></strong> is defined for $\kf(x)$ as</p>
+$$\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x.$$
+</div>
+<p>Recall that with the <span data-concept="left-endpoint-approximation">left-</span> and <span data-concept="right-endpoint-approximation">right-endpoint approximations</span>, the estimates seem to get better and better as <em>n</em> get larger and larger. The same thing happens with <span data-concept="riemann-sum">Riemann sums</span>. <span data-concept="riemann-sum">Riemann sums</span> give better approximations for larger values of <em>n</em>. We are now ready to define the <span data-concept="area-under-the-curve">area under a curve</span> in terms of <span data-concept="riemann-sum">Riemann sums</span>.</p>
+<div class="note" id="area-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf(x)$ be a <span data-concept="continuity-over-an-interval">continuous</span>, nonnegative <span data-concept="function">function</span> on an interval $[a,b],$ and let $\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x$ be a <span data-concept="riemann-sum">Riemann sum</span> for $\kf(x).$ Then, the <strong><span data-concept="area-under-the-curve">area under the curve</span></strong> $y=\kf(x)$ on $[a,b]$ is given by</p>
+$$\kA=\lim_{n\to \infty}\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x.$$
+</div>
+<p>Some subtleties here are worth discussing. First, note that taking the <span data-concept="limit">limit</span> of a sum is a little different from taking the <span data-concept="limit">limit</span> of a <span data-concept="function">function</span> $\kf(x)$ as <em>x</em> goes to infinity. <span data-concept="limit">Limits</span> of sums are discussed in detail in the chapter on <a href="/calculus/ch09/intro/">Sequences and Series</a>; however, for now we can assume that the computational techniques we used to compute <span data-concept="limit">limits</span> of <span data-concept="function">functions</span> can also be used to calculate <span data-concept="limit">limits</span> of sums.</p>
+<p>Second, we must consider what to do if the expression converges to different <span data-concept="limit">limits</span> for different choices of $\{x_{i}^{*}\}.$ Fortunately, this does not happen. Although the proof is beyond the scope of this text, it can be shown that if $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span> on the closed interval $[a,b],$ then $\lim_{n\to \infty}\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x$ exists and is unique (in other words, it does not depend on the choice of $\{x_{i}^{*}\}).$</p>
+<p>We look at some examples shortly. But, before we do, let’s take a moment and talk about some specific choices for $\{x_{i}^{*}\}.$ Although any choice for $\{x_{i}^{*}\}$ gives us an estimate of the <span data-concept="area-under-the-curve">area under the curve</span>, we don’t necessarily know whether that estimate is too high (overestimate) or too low (underestimate). If it is important to know whether our estimate is high or low, we can select our value for $\{x_{i}^{*}\}$ to guarantee one result or the other.</p>
+<p>If we want an overestimate, for example, we can choose $\{x_{i}^{*}\}$ such that for $i=1,2,3,\ldots,n,\kf(x_{i}^{*})\ge \kf(x)$ for all $x\in [x_{i-1},x_{i}].$ In other words, we choose $\{x_{i}^{*}\}$ so that for $i=1,2,3,\ldots,n,\kf(x_{i}^{*})$ is the <span data-concept="absolute-extremum">maximum function value</span> on the interval $[x_{i-1},x_{i}].$ If we select $\{x_{i}^{*}\}$ in this way, then the <span data-concept="riemann-sum">Riemann sum</span> $\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x$ is called an <strong><span data-concept="upper-sum">upper sum</span></strong>. Similarly, if we want an underestimate, we can choose $\{x_{i}^{*}\}$ so that for $i=1,2,3,\ldots,n,\kf(x_{i}^{*})$ is the <span data-concept="absolute-extremum">minimum function value</span> on the interval $[x_{i-1},x_{i}].$ In this case, the associated <span data-concept="riemann-sum">Riemann sum</span> is called a <strong><span data-concept="lower-sum">lower sum</span></strong>. Note that if $\kf(x)$ is either <span data-concept="increasing-function">increasing</span> or <span data-concept="decreasing-function">decreasing</span> throughout the interval $[a,b],$ then the <span data-concept="absolute-extremum">maximum and minimum values</span> of the <span data-concept="function">function</span> occur at the endpoints of the subintervals, so the <span data-concept="upper-sum">upper</span> and <span data-concept="lower-sum">lower sums</span> are just the same as the <span data-concept="left-endpoint-approximation">left-</span> and <span data-concept="right-endpoint-approximation">right-endpoint approximations</span>.</p>
+<figure class="sim" id="sim-riemann-sum">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A <span data-concept="riemann-sum">Riemann sum</span> of the curve of Figure 5.2, $\kf(x)=0.15(x-3)^{3}-0.9(x-3)+3,$ on $[1,5]$: each rectangle stands on its subinterval as tall as $\kf(x_i^{*})$ at its sample point, the left or right endpoint, the middle, or the point where $\kf$ is highest or lowest on the subinterval, which give the <span data-concept="upper-sum">upper sum</span> and the <span data-concept="lower-sum">lower sum</span>. For every $n$ the upper sum is the largest and the lower sum the smallest, and as $n$ grows every choice closes on the same number, the <span data-concept="area-under-the-curve">area under the curve</span>, 12.</span></div>
+</figure>
+<div class="example" id="fs-id1170572274802">
+<h3>Example 5.5 · Finding Lower and Upper Sums</h3>
+<p>Find a <span data-concept="lower-sum">lower sum</span> for <span data-fn="10-x^2">$\kf(x)=10-x^{2}$</span> on $[1,2];$ let $n=4$ subintervals.</p>
+<h4>Solution</h4>
+<p>With $n=4$ over the interval $[1,2],\Delta x=\frac{1}{4}.$ We can list the intervals as $[1,1.25],[1.25,1.5],[1.5,1.75],[1.75,2].$ Because the <span data-concept="function">function</span> is <span data-concept="decreasing-function">decreasing</span> over the interval $[1,2],$ Figure 5.14 shows that a <span data-concept="lower-sum">lower sum</span> is obtained by using the right endpoints.</p>
+<figure class="sim" id="fig-lower-sum" data-figure="5.14" data-original="/media/ch05/CNX_Calc_Figure_05_01_014.jpg" data-original-caption="The graph of f(x)=10−x² is set up for a right-endpoint approximation of the area bounded by the curve and the x-axis on [1,2], and it shows a lower sum.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.14</span><span>The graph of $\kf(x)=10-x^{2}$ is set up for a right-endpoint approximation of the area bounded by the curve and the <em>x</em>-axis on $[1,2],$ and it shows a lower sum.</span></div>
+</figure>
+<p>The <span data-concept="riemann-sum">Riemann sum</span> is</p>
+$$\begin{aligned}\sum_{k=1}^{4} (10-x_{k}^{2})(0.25) &=0.25[10-{(1.25)}^{2}+10-{(1.5)}^{2}+10-{(1.75)}^{2}+10-{(2)}^{2}] \\ &=0.25[8.4375+7.75+6.9375+6] \\ &=7.28.\end{aligned}$$
+<p>The area of 7.28 is a <span data-concept="lower-sum">lower sum</span> and an underestimate.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572274802"></div>
+<div class="example" id="fs-id1170572551906">
+<h3>Example 5.6 · Finding Lower and Upper Sums for $\kf(x)=\sin x$</h3>
+<p>Find a <span data-concept="lower-sum">lower sum</span> for <span data-fn="sin(x)">$\kf(x)=\sin x$</span> over the interval $[a,b]=[0,\frac{\pi}{2}];$ let $n=6.$</p>
+<h4>Solution</h4>
+<p>Let’s first look at the graph in Figure 5.15 to get a better idea of the area of interest.</p>
+<figure class="sim" id="fig-sine-lower-sum" data-figure="5.15" data-original="/media/ch05/CNX_Calc_Figure_05_01_016.jpg" data-original-caption="The graph of y=sin x is divided into six regions: Δx=(π/2)/6=π/12.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.15</span><span>The graph of $y=\sin x$ is divided into six regions: $\Delta x=\frac{\pi/2}{6}=\frac{\pi}{12}.$</span></div>
+</figure>
+<p>The intervals are $[0,\frac{\pi}{12}],[\frac{\pi}{12},\frac{\pi}{6}],[\frac{\pi}{6},\frac{\pi}{4}],[\frac{\pi}{4},\frac{\pi}{3}],[\frac{\pi}{3},\frac{5\pi}{12}],$ and $[\frac{5\pi}{12},\frac{\pi}{2}].$ Note that <span data-fn="sin(x)">$\kf(x)=\sin x$</span> is <span data-concept="increasing-function">increasing</span> on the interval $[0,\frac{\pi}{2}],$ so a <span data-concept="left-endpoint-approximation">left-endpoint approximation</span> gives us the <span data-concept="lower-sum">lower sum</span>. A <span data-concept="left-endpoint-approximation">left-endpoint approximation</span> is the <span data-concept="riemann-sum">Riemann sum</span> $\sum_{i=0}^{5} \sin x_{i}(\frac{\pi}{12}).$ We have</p>
+$$\begin{aligned}\kA &\approx \sin(0)(\frac{\pi}{12})+\sin(\frac{\pi}{12})(\frac{\pi}{12})+\sin(\frac{\pi}{6})(\frac{\pi}{12})+\sin(\frac{\pi}{4})(\frac{\pi}{12})+\sin(\frac{\pi}{3})(\frac{\pi}{12})+\sin(\frac{5\pi}{12})(\frac{\pi}{12}) \\ &=0.863.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170572551906"></div>
+</section>

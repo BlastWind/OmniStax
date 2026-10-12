@@ -1,0 +1,175 @@
+<p id="explog-intro">Exponential and <span data-concept="logarithmic-function">logarithmic functions</span> are used to model population growth, cell growth, and financial growth, as well as depreciation, radioactive decay, and resource consumption, to name only a few applications. In this section, we explore integration involving exponential and <span data-concept="logarithmic-function">logarithmic functions</span>.</p>
+<section id="exponential">
+<h2>Integrals of Exponential Functions</h2>
+<p>The <span data-concept="exponential-function">exponential function</span> is perhaps the most efficient <span data-concept="function">function</span> in terms of the operations of calculus. The <span data-concept="exponential-function">exponential function</span>, $y=e^{x},$ is its own <span data-concept="derivative">derivative</span> and its own integral.</p>
+<div class="note" id="exp-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="integrals-of-exponential-functions">Integrals of Exponential Functions</span></h3>
+<p>Exponential <span data-concept="function">functions</span> can be integrated using the following formulas.</p>
+$$\begin{aligned}\int e^{x}dx &= e^{x}+C \\ \int a^{x}dx &= \frac{a^{x}}{\ln a}+C\end{aligned}$$
+</div>
+<div class="example" id="fs-id11705722115180">
+<h3>Example 5.37 · Finding an Antiderivative of an Exponential Function</h3>
+<p>Find the <span data-concept="antiderivative">antiderivative</span> of the <span data-concept="exponential-function">exponential function</span> <em>e</em><sup>−<em>x</em></sup>.</p>
+<h4>Solution</h4>
+<p>Use <span data-concept="integration-by-substitution">substitution</span>, setting $u=-x,$ and then $du=-1dx.$ Multiply the <em>du</em> equation by −1, so you now have $-du=dx.$ Then,</p>
+$$\begin{aligned}\int e^{-x}dx &=-\int e^{u}du \\ &=-e^{u}+C \\ &=-e^{-x}+C.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id11705722115180"></div>
+<p>A common mistake when dealing with exponential expressions is treating the exponent on <em>e</em> the same way we treat exponents in polynomial expressions. We cannot use the <span data-concept="power-rule-for-integrals">power rule</span> for the exponent on <em>e</em>. This can be especially confusing when we have both exponentials and polynomials in the same expression, as in the previous checkpoint. In these cases, we should always double-check to make sure we’re using the right rules for the <span data-concept="function">functions</span> we’re integrating.</p>
+<div class="example" id="fs-id1170572209244">
+<h3>Example 5.38 · Square Root of an Exponential Function</h3>
+<p>Find the <span data-concept="antiderivative">antiderivative</span> of the <span data-concept="exponential-function">exponential function</span> $e^{x}\sqrt{1+e^{x}}.$</p>
+<h4>Solution</h4>
+<p>First rewrite the problem using a rational exponent:</p>
+$$\int e^{x}\sqrt{1+e^{x}}dx=\int e^{x}{(1+e^{x})}^{1/2}dx.$$
+<p>Using <span data-concept="integration-by-substitution">substitution</span>, choose $u=1+e^{x}.$ Then, $du=e^{x}dx.$ We have (Figure 5.37)</p>
+$$\int e^{x}{(1+e^{x})}^{1/2}dx=\int u^{1/2}du.$$
+<p>Then</p>
+$$\int u^{1/2}du=\frac{u^{3/2}}{3/2}+C=\frac{2}{3}u^{3/2}+C=\frac{2}{3}{(1+e^{x})}^{3/2}+C.$$
+<figure class="sim" id="fig-exp-root" data-figure="5.37" data-original="/media/ch05/CNX_Calc_Figure_05_06_001.jpg" data-original-caption="The graph shows an exponential function times the square root of an exponential function.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.37</span><span>The graph shows an exponential function times the square root of an exponential function.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170572209244"></div>
+<div class="example" id="fs-id1170572168487">
+<h3>Example 5.39 · Using Substitution with an Exponential Function</h3>
+<p>Use <span data-concept="integration-by-substitution">substitution</span> to evaluate the <span data-concept="indefinite-integral">indefinite integral</span> $\int 3x^{2}e^{2x^{3}}dx.$</p>
+<h4>Solution</h4>
+<p>Here we choose to let <em>u</em> equal the expression in the exponent on <em>e</em>. Let $u=2x^{3}$ and $du=6x^{2}dx..$ Again, <em>du</em> is off by a constant multiplier; the original <span data-concept="function">function</span> contains a factor of 3<em>x</em><sup>2</sup>, not 6<em>x</em><sup>2</sup>. Multiply both sides of the equation by $\frac{1}{2}$ so that the <span data-concept="integrand">integrand</span> in <em>u</em> equals the <span data-concept="integrand">integrand</span> in <em>x</em>. Thus,</p>
+$$\int 3x^{2}e^{2x^{3}}dx=\frac{1}{2}\int e^{u}du.$$
+<p>Integrate the expression in <em>u</em> and then substitute the original expression in <em>x</em> back into the <em>u</em> integral:</p>
+$$\frac{1}{2}\int e^{u}du=\frac{1}{2}e^{u}+C=\frac{1}{2}e^{2x^{3}}+C.$$
+</div>
+<div class="exercises" data-place="fs-id1170572168487"></div>
+<p>As mentioned at the beginning of this section, <span data-concept="exponential-function">exponential functions</span> are used in many real-life applications. The number <em>e</em> is often associated with compounded or accelerating growth, as we have seen in earlier sections about the <span data-concept="derivative">derivative</span>. Although the <span data-concept="derivative">derivative</span> represents a <span data-concept="instantaneous-rate-of-change">rate of change</span> or a growth rate, the integral represents the total change or the total growth. Let’s look at an example in which integration of an <span data-concept="exponential-function">exponential function</span> solves a common business application.</p>
+<p>A <span data-concept="price-demand-function">price–demand function</span> tells us the relationship between the quantity of a product demanded and the price of the product. In general, price decreases as quantity demanded increases. The <span data-concept="marginal-price-demand-function">marginal price–demand function</span> is the <span data-concept="derivative">derivative</span> of the <span data-concept="price-demand-function">price–demand function</span> and it tells us how fast the price changes at a given level of production. These <span data-concept="function">functions</span> are used in business to determine the price–elasticity of demand, and to help companies determine whether changing production levels would be profitable.</p>
+<div class="example" id="fs-id1170572100406">
+<h3>Example 5.40 · Finding a Price–Demand Equation</h3>
+<p>Find the <span data-concept="price-demand-function">price–demand equation</span> for a particular brand of toothpaste at a supermarket chain when the demand is 50 tubes per week at &#36;2.35 per tube, given that the marginal price—demand <span data-concept="function">function</span>, $\kpprime(x),$ for <em>x</em> number of tubes per week, is given as</p>
+$$\kpprime(x)=-0.015e^{-0.01x}.$$
+<p>If the supermarket chain sells 100 tubes per week, what price should it set?</p>
+<h4>Solution</h4>
+<p>To find the <span data-concept="price-demand-function">price–demand equation</span>, integrate the <span data-concept="marginal-price-demand-function">marginal price–demand function</span>. First find the <span data-concept="antiderivative">antiderivative</span>, then look at the particulars. Thus,</p>
+$$\begin{aligned}\kp(x) &=\int -0.015e^{-0.01x}dx \\ &=-0.015\int e^{-0.01x}dx.\end{aligned}$$
+<p>Using <span data-concept="integration-by-substitution">substitution</span>, let $u=-0.01x$ and $du=-0.01dx.$ Then, divide both sides of the <em>du</em> equation by −0.01. This gives</p>
+$$\begin{aligned}\frac{-0.015}{-0.01}\int e^{u}du &=1.5\int e^{u}du \\ &=1.5e^{u}+C \\ &=1.5e^{-0.01x}+C.\end{aligned}$$
+<p>The next step is to solve for <em>C</em>. We know that when the price is &#36;2.35 per tube, the demand is 50 tubes per week. This means</p>
+$$\begin{aligned}\kp(50) &=1.5e^{-0.01(50)}+C \\ &=2.35.\end{aligned}$$
+<p>Now, just solve for <em>C</em>:</p>
+$$\begin{aligned}C &=2.35-1.5e^{-0.5} \\ &=2.35-0.91 \\ &=1.44.\end{aligned}$$
+<p>Thus,</p>
+$$\kp(x)=1.5e^{-0.01x}+1.44.$$
+<p>If the supermarket sells 100 tubes of toothpaste per week, the price would be</p>
+$$\kp(100)=1.5e^{-0.01(100)}+1.44=1.5e^{-1}+1.44\approx 1.99.$$
+<p>The supermarket should charge &#36;1.99 per tube if it is selling 100 tubes per week.</p>
+</div>
+<div class="example" id="fs-id1170571637964">
+<h3>Example 5.41 · Evaluating a Definite Integral Involving an Exponential Function</h3>
+<p>Evaluate the <span data-concept="definite-integral">definite integral</span> $\int_{1}^{2}e^{1-x}dx.$</p>
+<h4>Solution</h4>
+<p>Again, <span data-concept="integration-by-substitution">substitution</span> is the method to use. Let $u=1-x,$ so $du=-1dx$ or $-du=dx.$ Then $\int e^{1-x}dx=-\int e^{u}du.$ Next, change the <span data-concept="limits-of-integration">limits of integration</span>. Using the equation $u=1-x,$ we have</p>
+$$\begin{gathered}u=1-(1)=0 \\ u=1-(2)=-1.\end{gathered}$$
+<p>The integral then becomes</p>
+$$\begin{aligned}\int_{1}^{2}e^{1-x}dx &=-\int_{0}^{-1}e^{u}du \\ &=\int_{-1}^{0}e^{u}du \\ &={e^{u}|}_{-1}^{0} \\ &=e^{0}-(e^{-1}) \\ &=-e^{-1}+1.\end{aligned}$$
+<p>See Figure 5.38.</p>
+<figure class="sim" id="fig-exp-area" data-figure="5.38" data-original="/media/ch05/CNX_Calc_Figure_05_06_002.jpg" data-original-caption="The indicated area can be calculated by evaluating a definite integral using substitution.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.38</span><span>The indicated area can be calculated by evaluating a definite integral using substitution.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571637964"></div>
+<div class="example" id="fs-id1170572624841">
+<h3>Example 5.42 · Growth of Bacteria in a Culture</h3>
+<p>Suppose the rate of growth of bacteria in a Petri dish is given by $\kq(t)=3^{t},$ where <em>t</em> is given in hours and $\kq(t)$ is given in thousands of bacteria per hour. If a culture starts with 10,000 bacteria, find a <span data-concept="function">function</span> $\kQ(t)$ that gives the number of bacteria in the Petri dish at any time <em>t</em>. How many bacteria are in the dish after 2 hours?</p>
+<h4>Solution</h4>
+<p>We have</p>
+$$\kQ(t)=\int 3^{t}dt=\frac{3^{t}}{\ln3}+C.$$
+<p>Then, at $t=0$ we have $\kQ(0)=10=\frac{1}{\ln3}+C,$ so $C\approx 9.090$ and we get</p>
+$$\kQ(t)=\frac{3^{t}}{\ln3}+9.090.$$
+<p>At time $t=2,$ we have</p>
+$$\kQ(2)=\frac{3^{2}}{\ln3}+9.090$$
+$$=17.282.$$
+<p>After 2 hours, there are 17,282 bacteria in the dish.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572624841"></div>
+<div class="example" id="fs-id1170571807209">
+<h3>Example 5.43 · Fruit Fly Population Growth</h3>
+<p>Suppose a population of fruit flies increases at a rate of $\kg(t)=2e^{0.02t},$ in flies per day. If the initial population of fruit flies is 100 flies, how many flies are in the population after 10 days?</p>
+<h4>Solution</h4>
+<p>Let $\kG(t)$ represent the number of flies in the population at time <em>t</em>. Applying the <span data-concept="net-change-theorem">net change theorem</span>, we have</p>
+$$\begin{aligned}\kG(10) &=\kG(0)+\int _{0}^{10}2e^{0.02t}dt \\ &=100+{[\frac{2}{0.02}e^{0.02t}]|}_{0}^{10} \\ &=100+{[100e^{0.02t}]|}_{0}^{10} \\ &=100+100e^{0.2}-100 \\ &\approx 122.\end{aligned}$$
+<p>There are 122 flies in the population after 10 days.</p>
+</div>
+<div class="exercises" data-place="fs-id1170571807209"></div>
+<div class="example" id="fs-id1170571653089">
+<h3>Example 5.44 · Evaluating a Definite Integral Using Substitution</h3>
+<p>Evaluate the <span data-concept="definite-integral">definite integral</span> using <span data-concept="integration-by-substitution">substitution</span>: $\int_{1}^{2}\frac{e^{1/x}}{x^{2}}dx.$</p>
+<h4>Solution</h4>
+<p>This problem requires some rewriting to simplify applying the properties. First, rewrite the exponent on <em>e</em> as a power of <em>x</em>, then bring the <em>x</em><sup>2</sup> in the denominator up to the numerator using a negative exponent. We have</p>
+$$\int_{1}^{2}\frac{e^{1/x}}{x^{2}}dx=\int_{1}^{2}e^{x^{-1}}x^{-2}dx.$$
+<p>Let $u=x^{-1},$ the exponent on <em>e</em>. Then</p>
+$$\begin{aligned}du &=-x^{-2}dx \\ -du &=x^{-2}dx.\end{aligned}$$
+<p>Bringing the negative sign outside the integral sign, the problem now reads</p>
+$$-\int e^{u}du.$$
+<p>Next, change the <span data-concept="limits-of-integration">limits of integration</span>:</p>
+$$\begin{gathered}u={(1)}^{-1}=1 \\ u={(2)}^{-1}=\frac{1}{2}.\end{gathered}$$
+<p>Notice that now the limits begin with the larger number, meaning we must multiply by −1 and interchange the limits. Thus,</p>
+$$\begin{aligned}-\int_{1}^{1/2}e^{u}du &=\int_{1/2}^{1}e^{u}du \\ &=e^{u}{|}_{1/2}^{1} \\ &=e-e^{1/2} \\ &=e-\sqrt{e}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170571653089"></div>
+</section>
+
+<section id="logarithmic">
+<h2>Integrals Involving Logarithmic Functions</h2>
+<p>Integrating <span data-concept="function">functions</span> of the form <span data-fn="1/x">$\kf(x)=x^{-1}$</span> result in the <span data-concept="absolute-value-function">absolute value</span> of the <span data-concept="natural-logarithm">natural log function</span>, as shown in the following rule. Integral formulas for other <span data-concept="logarithmic-function">logarithmic functions</span>, such as <span data-fn="ln(x)">$\kf(x)=\ln x$</span> and $\kf(x)=\log_{a}x,$ are also included in the rule.</p>
+<div class="note" id="log-rule">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="integrals-involving-logarithmic-functions">Integration Formulas Involving Logarithmic Functions</span></h3>
+<p>The following formulas can be used to evaluate integrals involving <span data-concept="logarithmic-function">logarithmic functions</span>.</p>
+$$\begin{aligned}\int x^{-1}dx &= \ln|x|+C \\ \int \ln x\;dx &= x\;\ln x-x+C=x(\ln x-1)+C \\ \int \log_{a}x\;dx &= \frac{x}{\ln a}(\ln x-1)+C\end{aligned}$$
+</div>
+<figure class="sim" id="sim-reciprocal-log">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The signed area under $y=\frac{1}{t}$ from 1 to $x,$ for $x\gt 0,$ or from $-1$ to $x,$ for $x\lt 0,$ is the height $\ln|x|$ of the lighter curve at $x.$ The two branches of $\frac{1}{t}$ are symmetric about the origin, so the area out to $-x$ matches the area out to $x$: the <span data-concept="antiderivative">antiderivative</span> of $x^{-1}$ is the natural logarithm of the <span data-concept="absolute-value-function">absolute value</span>, $\ln|x|+C,$ on either side of 0.</span></div>
+</figure>
+<div class="example" id="fs-id1170571653392">
+<h3>Example 5.45 · Finding an Antiderivative Involving $\ln x$</h3>
+<p>Find the <span data-concept="antiderivative">antiderivative</span> of the <span data-concept="function">function</span> $\frac{3}{x-10}.$</p>
+<h4>Solution</h4>
+<p>First factor the 3 outside the integral symbol. Then use the <em>u</em><sup>−1</sup> rule. Thus,</p>
+$$\begin{aligned}\int \frac{3}{x-10}dx &=3\int \frac{1}{x-10}dx \\ &=3\int \frac{du}{u} \\ &=3\;\ln|u|+C \\ &=3\;\ln|x-10|+C,x\ne10.\end{aligned}$$
+<p>See Figure 5.39.</p>
+<figure class="sim" id="fig-reciprocal-shift" data-figure="5.39" data-original="/media/ch05/CNX_Calc_Figure_05_06_003.jpg" data-original-caption="The domain of this function is xne10.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.39</span><span>The domain of this function is $x\ne10.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571653392"></div>
+<div class="example" id="fs-id1170572480542">
+<h3>Example 5.46 · Finding an Antiderivative of a Rational Function</h3>
+<p>Find the <span data-concept="antiderivative">antiderivative</span> of $\frac{2x^{3}+3x}{x^{4}+3x^{2}}.$</p>
+<h4>Solution</h4>
+<p>This can be rewritten as $\int (2x^{3}+3x){(x^{4}+3x^{2})}^{-1}dx.$ Use <span data-concept="integration-by-substitution">substitution</span>. Let $u=x^{4}+3x^{2},$ then $du=4x^{3}+6x.$ Alter <em>du</em> by factoring out the 2. Thus,</p>
+$$\begin{aligned}du &= (4x^{3}+6x)dx \\ &= 2(2x^{3}+3x)dx \\ \frac{1}{2}\;du &= (2x^{3}+3x)dx.\end{aligned}$$
+<p>Rewrite the <span data-concept="integrand">integrand</span> in <em>u</em>:</p>
+$$\int (2x^{3}+3x){(x^{4}+3x^{2})}^{-1}dx=\frac{1}{2}\int u^{-1}du.$$
+<p>Then we have</p>
+$$\begin{aligned}\frac{1}{2}\int u^{-1}du &=\frac{1}{2}\ln|u|+C \\ &=\frac{1}{2}\ln|x^{4}+3x^{2}|+C.\end{aligned}$$
+</div>
+<div class="example" id="fs-id1170571649922">
+<h3>Example 5.47 · Finding an Antiderivative of a Logarithmic Function</h3>
+<p>Find the <span data-concept="antiderivative">antiderivative</span> of the log <span data-concept="function">function</span> $\log_{2}x.$</p>
+<h4>Solution</h4>
+<p>Follow the format in the formula listed in the rule on integration formulas involving <span data-concept="logarithmic-function">logarithmic functions</span>. Based on this format, we have</p>
+$$\int \log_{2}xdx=\frac{x}{\ln2}(\ln x-1)+C.$$
+</div>
+<div class="exercises" data-place="fs-id1170571649922"></div>
+<p>Example 5.48 is a <span data-concept="definite-integral">definite integral</span> of a trigonometric <span data-concept="function">function</span>. With trigonometric <span data-concept="function">functions</span>, we often have to apply a trigonometric property or an identity before we can move forward. Finding the right form of the <span data-concept="integrand">integrand</span> is usually the key to a smooth integration.</p>
+<div class="example" id="fs-id1170572274908">
+<h3>Example 5.48 · Evaluating a Definite Integral</h3>
+<p>Find the <span data-concept="definite-integral">definite integral</span> of $\int_{0}^{\pi/2}\frac{\sin x}{1+\cos x}dx.$</p>
+<h4>Solution</h4>
+<p>We need <span data-concept="integration-by-substitution">substitution</span> to evaluate this problem. Let $u=1+\cos x,,$ so $du=-\sin x\;dx.$ Rewrite the integral in terms of <em>u</em>, changing the <span data-concept="limits-of-integration">limits of integration</span> as well. Thus,</p>
+$$\begin{gathered}u=1+\cos(0)=2 \\ u=1+\cos(\frac{\pi}{2})=1.\end{gathered}$$
+<p>Then</p>
+$$\begin{aligned}\int_{0}^{\pi/2}\frac{\sin x}{1+\cos x} &=-\int_{2}^{1}u^{-1}du \\ &=\int_{1}^{2}u^{-1}du \\ &={\ln|u||}_{1}^{2} \\ &=[\ln2-\ln1] \\ &=\ln2.\end{aligned}$$
+</div>
+</section>

@@ -1,0 +1,984 @@
+{
+ "id": "5.4",
+ "module": "m53633",
+ "chapter": "5",
+ "title": "Integration Formulas and the Net Change Theorem",
+ "short": "Integration Formulas and Net Change",
+ "lead": "The basic integration formulas evaluate <span data-concept=\"definite-integral\">definite integrals</span> of applied rates. The <span data-concept=\"net-change-theorem\">net change theorem</span> says that a quantity's new value is its initial value plus the integral of its <span data-concept=\"instantaneous-rate-of-change\">rate of change</span>, which turns a velocity into <span data-concept=\"displacement-from-velocity\">net displacement</span> and <span data-concept=\"displacement-from-velocity\">total distance traveled</span>, and a rate of fuel use into fuel used; symmetry shortens the integrals of <span data-concept=\"even-function\">even</span> and <span data-concept=\"odd-function\">odd functions</span>.",
+ "objectives": [
+  "Apply the basic integration formulas.",
+  "Explain the significance of the net change theorem.",
+  "Use the net change theorem to solve applied problems.",
+  "Apply the integrals of odd and even functions."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"net-change-theorem\">net change theorem</span> states that when a quantity changes, the final value equals the initial value plus the integral of the <span data-concept=\"instantaneous-rate-of-change\">rate of change</span>. <span data-concept=\"net-change-theorem\">Net change</span> can be a positive number, a negative number, or zero.</li><li>The area under an <span data-concept=\"even-function\">even function</span> over a symmetric interval can be calculated by doubling the area over the positive <em>x</em>-axis. For an <span data-concept=\"odd-function\">odd function</span>, the integral over a symmetric interval equals zero, because half the area is negative.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The even-numbered exercises have no answer in the key and are all computational, so they are left out: 208, 210 and 212 (integrals by the basic formulas), 214, 216, 218, 220 and 222 (changes of area and volume), 224, 226 and 228 (motion along a line), 230 and 232 (a balloon and a tank), 234 and 236 (sums of tabulated rates), 238, 240 and 242 (gravity, calories and fuel efficiency), and 244, 246, 248, 250 and 252 (tables and fitted curves by calculator). Review exercises 447, 459 and 463, printed at the end of Section 5.7, are set here.",
+ "figures": [
+  {
+   "id": "fig-car-velocity",
+   "kind": "figure",
+   "number": "5.32",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_04_002.jpg"
+   ],
+   "original_caption": "The graph shows speed versus time for the given motion of a car.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-particle",
+   "kind": "sim",
+   "number": "5.33",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_04_003.jpg"
+   ],
+   "original_caption": "The graph shows velocity versus time for a particle moving with a linear velocity function.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-iceboat-race",
+   "kind": "photo",
+   "number": "5.34",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-even-function",
+   "kind": "figure",
+   "number": "5.35",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_04_005.jpg"
+   ],
+   "original_caption": "Graph (a) shows the positive area between the curve and the x-axis, whereas graph (b) shows the negative area between the curve and the x-axis. Both views show the symmetry about the y-axis.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-odd-function",
+   "kind": "figure",
+   "number": "5.36",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_04_006.jpg"
+   ],
+   "original_caption": "The graph shows areas between a curve and the x-axis for an odd function.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "net-change",
+   "concept": "net-change-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "even-odd-rule",
+   "concept": "integrals-of-even-and-odd-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "formulas-intro",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "formulas-intro",
+   "concept": "indefinite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "basic-formulas",
+   "concept": "power-rule-for-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "basic-formulas",
+   "concept": "properties-of-the-definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "net-change-theorem",
+   "concept": "displacement-from-velocity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "net-change-theorem",
+   "concept": "instantaneous-rate-of-change",
+   "verb": "uses"
+  },
+  {
+   "span": "applying",
+   "concept": "net-change-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "applying",
+   "concept": "fundamental-theorem-of-calculus",
+   "verb": "uses"
+  },
+  {
+   "span": "even-odd",
+   "concept": "even-function",
+   "verb": "uses"
+  },
+  {
+   "span": "even-odd",
+   "concept": "odd-function",
+   "verb": "uses"
+  },
+  {
+   "span": "even-odd",
+   "concept": "symmetry-about-the-y-axis",
+   "verb": "uses"
+  },
+  {
+   "span": "even-odd",
+   "concept": "symmetry-about-the-origin",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571609338",
+   "concept": "power-rule-for-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572229863",
+   "concept": "displacement-from-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572247866",
+   "concept": "displacement-from-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572420100",
+   "concept": "net-change-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572624845",
+   "concept": "integrals-of-even-and-odd-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571599733",
+   "concept": "integrals-of-even-and-odd-functions",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572512346",
+   "source_number": "Checkpoint 5.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571609338"
+   },
+   "cite": "basic-formulas",
+   "prompt": "<p>Find the definite integral of $\\kf(x)=x^{2}-3x$ over the interval $[1,3].$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -3.333333,
+    "tol": 0.0001,
+    "solution": "$-\\frac{10}{3}$",
+    "hint": "Follow the process from Example 5.23 to solve the problem."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170571734079",
+   "source_number": "Checkpoint 5.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572247866"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Find the net displacement and total distance traveled in meters given the velocity function $\\kf(t)=\\frac{1}{2}e^{t}-2$ over the interval $[0,2].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Net displacement: $\\frac{e^{2}-9}{2}\\approx -0.8055\\;\\text{m;}$ total distance traveled: $4\\;\\ln4-7.5+\\frac{e^{2}}{2}\\approx 1.740$ m",
+    "hint": "Follow the procedures from Example 5.24 and Example 5.25. Note that $\\kf(t)\\le0$ for $t\\le\\ln4,$ and $\\kf(t)\\ge0$ for $t\\ge\\ln4.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170571609271",
+   "source_number": "Checkpoint 5.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572420100"
+   },
+   "cite": "applying",
+   "prompt": "<p>Suppose that, instead of remaining steady during the second half hour of Andrew’s outing, the wind starts to die down according to the function $\\kv(t)=-10t+20.$ In other words, the wind speed is given by</p>$$\\kv(t)=\\begin{cases}20t+5 & \\text{for } 0\\le t\\le\\frac{1}{2} \\\\ -10t+15 & \\text{for } \\frac{1}{2}\\le t\\le1.\\end{cases}$$<p>Under these conditions, how far from his starting point is Andrew after 1 hour?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 17.5,
+    "unit": "mi",
+    "solution": "17.5 mi",
+    "hint": "Don’t forget that Andrew’s iceboat moves twice as fast as the wind."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170572337809",
+   "source_number": "Checkpoint 5.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571599733"
+   },
+   "cite": "even-odd-rule",
+   "prompt": "<p>Integrate the function $\\int_{-2}^{2}x^{4}dx.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 12.8,
+    "solution": "$\\frac{64}{5}$",
+    "hint": "Integrate an even function."
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1170571733932",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "basic-formulas",
+   "prompt": "<p>Use basic integration formulas to compute the following antiderivatives or definite integrals.</p><p>$\\int (\\sqrt{x}-\\frac{1}{\\sqrt{x}})dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int (\\sqrt{x}-\\frac{1}{\\sqrt{x}})dx=\\int x^{1/2}dx-\\int x^{-1/2}dx=\\frac{2}{3}x^{3/2}+C_{1}-2x^{1/2}+C_{2}=\\frac{2}{3}x^{3/2}-2x^{1/2}+C$"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1170572622517",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "basic-formulas",
+   "prompt": "<p>Use basic integration formulas to compute the following antiderivatives or definite integrals.</p><p>$\\int \\frac{dx}{2x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int \\frac{dx}{2x}=\\frac{1}{2}\\ln|x|+C$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1170572344266",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "basic-formulas",
+   "prompt": "<p>Use basic integration formulas to compute the following antiderivatives or definite integrals.</p><p>$\\int_{0}^{\\pi}(\\sin x-\\cos x)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "$\\int_{0}^{\\pi}\\sin xdx-\\int_{0}^{\\pi}\\cos xdx=-\\cos x{|}_{0}^{\\pi}-(\\sin x){|}_{0}^{\\pi}=(-(-1)+1)-(0-0)=2$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1170572293468",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Write an integral that expresses the increase in the perimeter $P(s)$ of a square when its side length <em>s</em> increases from 2 units to 4 units and evaluate the integral.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8,
+    "solution": "$P(s)=4s,$ so $\\frac{dP}{ds}=4$ and $\\int_{2}^{4}4ds=8.$"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1170572554393",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>A regular <em>N</em>-gon (an <em>N</em>-sided polygon with sides that have equal length <em>s</em>, such as a pentagon or hexagon) has perimeter <em>Ns</em>. Write an integral that expresses the increase in perimeter of a regular <em>N</em>-gon when the length of each side increases from 1 unit to 2 units and evaluate the integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{1}^{2}Nds=N$"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1170572543692",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>A dodecahedron is a Platonic solid with a surface that consists of 12 pentagons, each of equal area. By how much does the surface area of a dodecahedron increase as the side length of each pentagon doubles from 1 unit to 2 units?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "With <em>p</em> as in the previous exercise, each of the 12 pentagons increases in area from 2<em>p</em> to 4<em>p</em> units so the net increase in the area of the dodecahedron is 36<em>p</em> units."
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1170572184318",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Write an integral that quantifies the change in the area of the surface of a cube when its side length doubles from <em>s</em> unit to 2<em>s</em> units and evaluate the integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$18s^{2}=6\\int_{s}^{2s}2xdx$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1170571653450",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Write an integral that quantifies the increase in the surface area of a sphere as its radius doubles from <em>R</em> unit to 2<em>R</em> units and evaluate the integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$12\\pi R^{2}=8\\pi\\int_{R}^{2R}rdr$"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1170572480525",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Suppose that a particle moves along a straight line with velocity $\\kv(t)=4-2t,$ where $0\\le t\\le2$ (in meters per second). Find the displacement at time <em>t</em> and the total distance traveled up to $t=2.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4,
+    "unit": "m",
+    "solution": "$d(t)=\\int_{0}^{t}\\kv(s)ds=4t-t^{2}.$ The total distance is $d(2)=4\\;\\text{m}.$"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1170572373389",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Suppose that a particle moves along a straight line with velocity defined by $\\kv(t)=|2t-6|,$ where $0\\le t\\le6$ (in meters per second). Find the displacement at time <em>t</em> and the total distance traveled up to $t=6.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$d(t)=\\int_{0}^{t}\\kv(s)ds.$ For $t\\lt 3,d(t)=\\int_{0}^{t}(6-2t)dt=6t-t^{2}.$ For $t\\gt 3,d(t)=d(3)+\\int_{3}^{t}(2t-6)dt=9+(t^{2}-6t){|}_{3}^{6}.$   The total distance is $d(6)=18\\;\\text{m}.$"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1170572235269",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>A ball is thrown upward from a height of 1.5 m at an initial speed of 40 m/sec. Acceleration resulting from gravity is −9.8 m/sec<sup>2</sup>. Neglecting air resistance, solve for the velocity $\\kv(t)$ and the height $h(t)$ of the ball <em>t</em> seconds after it is thrown and before it returns to the ground.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kv(t)=40-9.8t\\text{m/sec};h(t)=1.5+40t-4.9t^{2}$ m/s"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1170572443658",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>The area $A(t)$ of a circular shape is growing at a constant rate. If the area increases from 4<em>π</em> units to 9<em>π</em> units between times $t=2$ and $t=3,$ find the net change in the radius during that time.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "The net increase is 1 unit."
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1170571699444",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Water flows into a conical tank with cross-sectional area <em>πx</em><sup>2</sup> at height <em>x</em> and volume $\\frac{\\pi x^{3}}{3}$ up to height <em>x</em>. If water flows into the tank at a rate of 1 m<sup>3</sup>/min, find the height of water in the tank after 5 min. Find the change in height between 5 min and 10 min.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "At $t=5,$ the height of water is $x={(\\frac{15}{\\pi})}^{1/3}\\;\\text{m}..$ The net change in height from $t=5$ to $t=10$ is ${(\\frac{30}{\\pi})}^{1/3}-{(\\frac{15}{\\pi})}^{1/3}$ m."
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1170571638194",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>The following table lists the electrical power in gigawatts—the rate at which energy is consumed—used in a certain city for different hours of the day, in a typical 24-hour period, with hour 1 corresponding to midnight to 1 a.m.</p><div class=\"book-table\" id=\"fs-id1170571638210\">\n  <table><thead><tr><th>Hour</th><th>Power</th><th>Hour</th><th>Power</th></tr></thead><tbody><tr><td>1</td><td>28</td><td>13</td><td>48</td></tr><tr><td>2</td><td>25</td><td>14</td><td>49</td></tr><tr><td>3</td><td>24</td><td>15</td><td>49</td></tr><tr><td>4</td><td>23</td><td>16</td><td>50</td></tr><tr><td>5</td><td>24</td><td>17</td><td>50</td></tr><tr><td>6</td><td>27</td><td>18</td><td>50</td></tr><tr><td>7</td><td>29</td><td>19</td><td>46</td></tr><tr><td>8</td><td>32</td><td>20</td><td>43</td></tr><tr><td>9</td><td>34</td><td>21</td><td>42</td></tr><tr><td>10</td><td>39</td><td>22</td><td>40</td></tr><tr><td>11</td><td>42</td><td>23</td><td>37</td></tr><tr><td>12</td><td>46</td><td>24</td><td>34</td></tr></tbody></table>\n</div><p>Find the total amount of energy in gigawatt-hours (gW-h) consumed by the city in a typical 24-hour period.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The total daily power consumption is estimated as the sum of the hourly power rates, or 911 gW-h."
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1170572643190",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>The data in the following table are used to estimate the average power output produced by Peter Sagan for each of the last 18 sec of Stage 1 of the 2012 Tour de France.</p><div class=\"book-table\" id=\"fs-id1170572643212\">\n  <div class=\"tcap\"><span class=\"eyebrow\">Table 5.6</span><span>Average Power Output</span></div>\n  <table><thead><tr><th>Second</th><th>Watts</th><th>Second</th><th>Watts</th></tr></thead><tbody><tr><td>1</td><td>600</td><td>10</td><td>1200</td></tr><tr><td>2</td><td>500</td><td>11</td><td>1170</td></tr><tr><td>3</td><td>575</td><td>12</td><td>1125</td></tr><tr><td>4</td><td>1050</td><td>13</td><td>1100</td></tr><tr><td>5</td><td>925</td><td>14</td><td>1075</td></tr><tr><td>6</td><td>950</td><td>15</td><td>1000</td></tr><tr><td>7</td><td>1050</td><td>16</td><td>950</td></tr><tr><td>8</td><td>950</td><td>17</td><td>900</td></tr><tr><td>9</td><td>1100</td><td>18</td><td>780</td></tr></tbody></table>\n</div><p>Estimate the net energy used in kilojoules (kJ), noting that 1W = 1 J/s, and the average power output by Sagan during this time interval.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 17,
+    "unit": "kJ",
+    "solution": "17 kJ"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1170571689730",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>The distribution of incomes as of 2012 in the United States in $5000 increments is given in the following table. The *k*th row denotes the percentage of households with incomes between$$5000xk$ and $5000xk+4999.$ The row $k=40$ contains all households with income between $200,000 and$250,000.</p><div class=\"book-table\" id=\"fs-id1170571689791\">\n  <div class=\"tcap\"><span class=\"eyebrow\">Table 5.8</span><span>Income Distributions</span></div>\n  <table><tbody><tr><td>0</td><td>3.5</td><td>11</td><td>3.5</td><td>21</td><td>1.5</td><td>31</td><td>0.6</td></tr><tr><td>1</td><td>4.1</td><td>12</td><td>3.7</td><td>22</td><td>1.4</td><td>32</td><td>0.5</td></tr><tr><td>2</td><td>5.9</td><td>13</td><td>3.2</td><td>23</td><td>1.3</td><td>33</td><td>0.5</td></tr><tr><td>3</td><td>5.7</td><td>14</td><td>3.0</td><td>24</td><td>1.3</td><td>34</td><td>0.4</td></tr><tr><td>4</td><td>5.9</td><td>15</td><td>2.8</td><td>25</td><td>1.1</td><td>35</td><td>0.3</td></tr><tr><td>5</td><td>5.4</td><td>16</td><td>2.5</td><td>26</td><td>1.0</td><td>36</td><td>0.3</td></tr><tr><td>6</td><td>5.5</td><td>17</td><td>2.2</td><td>27</td><td>0.75</td><td>37</td><td>0.3</td></tr><tr><td>7</td><td>5.1</td><td>18</td><td>2.2</td><td>28</td><td>0.8</td><td>38</td><td>0.2</td></tr><tr><td>8</td><td>4.8</td><td>19</td><td>1.8</td><td>29</td><td>1.0</td><td>39</td><td>1.8</td></tr><tr><td>9</td><td>4.1</td><td>20</td><td>2.1</td><td>30</td><td>0.6</td><td>40</td><td>2.3</td></tr><tr><td>10</td><td>4.3</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>\n</div><ol type=\"a\"><li>Estimate the percentage of U.S. households in 2012 with incomes less than &#36;55,000.</li><li>What percentage of households had incomes exceeding &#36;85,000?</li><li>Plot the data and try to fit its shape to that of a graph of the form $a(x+c)e^{-b(x+e)}$ for suitable $a,b,c.$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>54.3%; b. 27.00%; c. The curve in the following plot is $2.35(t+3)e^{-0.15(t+3)}.$</li></ol><img src=\"/media/ch05/CNX_Calc_Figure_05_04_202.jpg\" alt=\"A graph of the data and a function approximating the data. The function is a very close approximation.\">"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1170572379119",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>For a given motor vehicle, the maximum achievable deceleration from braking is approximately 7 m/sec<sup>2</sup> on dry concrete. On wet asphalt, it is approximately 2.5 m/sec<sup>2</sup>. Given that 1 mph corresponds to 0.447 m/sec, find the total distance that a car travels in meters on dry concrete after the brakes are applied until it comes to a complete stop if the initial velocity is 67 mph (30 m/sec) or if the initial braking velocity is 56 mph (25 m/sec). Find the corresponding distances if the surface is slippery wet asphalt.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "In dry conditions, with initial velocity $v_{0}=30$ m/s, $D=64.3$ and, if $v_{0}=25,D=44.64.$ In wet conditions, if $v_{0}=30,$ and $D=180$ and if $v_{0}=25,D=125.$"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1170571613601",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Sandra is a 25-year old woman who weighs 120 lb. She burns $300-50t$ cal/hr while walking on her treadmill. Her caloric intake from drinking Gatorade is 100<em>t</em> calories/hour during the <em>t</em>th hour. What is her net decrease in calories after walking for 3 hours?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 225,
+    "unit": "cal",
+    "solution": "225 cal"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1170572434960",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>Although some engines are more efficient at given a horsepower than others, on average, fuel efficiency decreases with horsepower at a rate of $1/25$ mpg/horsepower. If a typical 50-horsepower engine has an average fuel efficiency of 32 mpg, what is the average fuel efficiency of an engine with the following horsepower: 150, 300, 450?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$E(150)=28,E(300)=22,E(450)=16$"
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1170572627149",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p><strong>[T]</strong> The following table provides hypothetical data regarding the level of service for a certain highway.</p><div class=\"book-table\" id=\"fs-id1170572627169\">\n  <div class=\"tcap\"><span class=\"eyebrow\">Table 5.10</span><span></span></div>\n  <table><thead><tr><th>Highway Speed Range (mph)</th><th>Vehicles per Hour per Lane</th><th>Density Range (vehicles/mi)</th></tr></thead><tbody><tr><td>> 60</td><td>< 600</td><td>< 10</td></tr><tr><td>60–57</td><td>600–1000</td><td>10–20</td></tr><tr><td>57–54</td><td>1000–1500</td><td>20–30</td></tr><tr><td>54–46</td><td>1500–1900</td><td>30–45</td></tr><tr><td>46–30</td><td>1900<strong>–</strong>2100</td><td>45–70</td></tr><tr><td><30</td><td>Unstable</td><td>70–200</td></tr></tbody></table>\n</div><ol type=\"a\"><li>Plot vehicles per hour per lane on the <em>x</em>-axis and highway speed on the <em>y</em>-axis.</li><li>Compute the average decrease in speed (in miles per hour) per unit increase in congestion (vehicles per hour per lane) as the latter increases from 600 to 1000, from 1000 to 1500, and from 1500 to 2100. Does the decrease in miles per hour depend linearly on the increase in vehicles per hour per lane?</li><li>Plot minutes per mile (60 times the reciprocal of miles per hour) as a function of vehicles per hour per lane. Is this function linear?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a.</p><ol type=\"a\"><li>Between 600 and 1000 the average decrease in vehicles per hour per lane is −0.0075. Between 1000 and 1500 it is −0.006 per vehicles per hour per lane, and between 1500 and 2100 it is −0.04 vehicles per hour per lane. c.</li></ol><p>The graph is nonlinear, with minutes per mile increasing dramatically as vehicles per hour per lane reach 2000.</p><img src=\"/media/ch05/CNX_Calc_Figure_05_04_203.jpg\" alt=\"A plot of the given data, which decreases in a roughly concave down manner from 600 to 2200.\"><img src=\"/media/ch05/CNX_Calc_Figure_05_04_204.jpg\" alt=\"A graph of given data, showing that minutes per mile increases dramatically as wehicles per hour reaches 2000.\">"
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1170572129132",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_04_206.jpg",
+    "alt": "A graph of the data and a cubic function that closely approximates it."
+   },
+   "prompt": "<p>For the next two exercises use the data in the following table, which displays bald eagle populations from 1963 to 2000 in the continental United States.</p><div class=\"book-table\" id=\"fs-id1170572129791\">\n  <div class=\"tcap\"><span class=\"eyebrow\">Table 5.11</span><span>Population of Breeding Bald Eagle Pairs</span></div>\n  <table><thead><tr><th>Year</th><th>Population of Breeding Pairs of Bald Eagles</th></tr></thead><tbody><tr><td>1963</td><td>487</td></tr><tr><td>1974</td><td>791</td></tr><tr><td>1981</td><td>1188</td></tr><tr><td>1986</td><td>1875</td></tr><tr><td>1992</td><td>3749</td></tr><tr><td>1996</td><td>5094</td></tr><tr><td>2000</td><td>6471</td></tr></tbody></table>\n</div><p><strong>[T]</strong> The graph below plots the cubic $p(t)=0.07t^{3}+2.42t^{2}-25.63t+521.23$ against the data in the preceding table, normalized so that $t=0$ corresponds to 1963. Estimate the average number of bald eagles per year present for the 37 years by computing the average value of <em>p</em> over $[0,37].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{37}\\int_{0}^{37}p(t)dt=\\frac{0.07{(37)}^{3}}{4}+\\frac{2.42{(37)}^{2}}{3}-\\frac{25.63(37)}{2}+521.23\\approx 2037$"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1170572582602",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_04_208.jpg",
+    "alt": "A graph of the data and a curve that closely approximates the data."
+   },
+   "prompt": "<p>As a car accelerates, it does not accelerate at a constant rate; rather, the acceleration is variable. For the following exercises, use the following table, which contains the acceleration measured at every second as a driver merges onto a freeway.</p><div class=\"book-table\" id=\"fs-id1170571628938\">\n  <table><thead><tr><th>Time (sec)</th><th>Acceleration (mph/sec)</th></tr></thead><tbody><tr><td>1</td><td>11.2</td></tr><tr><td>2</td><td>10.6</td></tr><tr><td>3</td><td>8.1</td></tr><tr><td>4</td><td>5.4</td></tr><tr><td>5</td><td>0</td></tr></tbody></table>\n</div><p>As a car accelerates, it does not accelerate at a constant rate; rather, the acceleration is variable. For the next three exercises use the following table, which contains the acceleration measured at every second as a driver merges onto a freeway.</p><div class=\"book-table\" id=\"table-00001\">\n  <div class=\"tcap\"><span class=\"eyebrow\">Table 5.12</span><span></span></div>\n  <table><thead><tr><th>Time (sec)</th><th>Acceleration (mph/sec)</th></tr></thead><tbody><tr><td>1</td><td>11.2</td></tr><tr><td>2</td><td>10.6</td></tr><tr><td>3</td><td>8.1</td></tr><tr><td>4</td><td>5.4</td></tr><tr><td>5</td><td>0</td></tr></tbody></table>\n</div><p><strong>[T]</strong> The accompanying graph plots the best quadratic fit, $a(t)=-0.70t^{2}+1.44t+10.44,$ to the data from the preceding table. Compute the average value of $a(t)$ to estimate the average acceleration between $t=0$ and $t=5.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Average acceleration is $-\\frac{0.7}{3}t^{3}+\\frac{1.44}{2}t^{2}+10.44t{|}_{0}^{5}=-\\frac{0.7}{3}(5^{3})+10.44(5)\\approx 41$ mph/s"
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1170571610292",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>As a car accelerates, it does not accelerate at a constant rate; rather, the acceleration is variable. For the following exercises, use the following table, which contains the acceleration measured at every second as a driver merges onto a freeway.</p><div class=\"book-table\" id=\"fs-id1170571628938\">\n  <table><thead><tr><th>Time (sec)</th><th>Acceleration (mph/sec)</th></tr></thead><tbody><tr><td>1</td><td>11.2</td></tr><tr><td>2</td><td>10.6</td></tr><tr><td>3</td><td>8.1</td></tr><tr><td>4</td><td>5.4</td></tr><tr><td>5</td><td>0</td></tr></tbody></table>\n</div><p>As a car accelerates, it does not accelerate at a constant rate; rather, the acceleration is variable. For the next three exercises use the following table, which contains the acceleration measured at every second as a driver merges onto a freeway.</p><div class=\"book-table\" id=\"table-00001\">\n  <div class=\"tcap\"><span class=\"eyebrow\">Table 5.12</span><span></span></div>\n  <table><thead><tr><th>Time (sec)</th><th>Acceleration (mph/sec)</th></tr></thead><tbody><tr><td>1</td><td>11.2</td></tr><tr><td>2</td><td>10.6</td></tr><tr><td>3</td><td>8.1</td></tr><tr><td>4</td><td>5.4</td></tr><tr><td>5</td><td>0</td></tr></tbody></table>\n</div><p><strong>[T]</strong> Using your velocity equation from the previous exercise, find the corresponding distance equation, assuming your initial distance is 0 mi. How far did you travel while you accelerated your car? (<em>Hint:</em> You will need to convert time units.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$s(t)=\\kv(t)dt=\\int (-\\frac{7}{30}t^{3}+0.72t^{2}+10.44t+23.967)dt=-\\frac{7}{120}t^{4}+\\frac{0.72}{3}t^{3}+\\frac{10.44}{2}t^{2}+23.967t+C=174.24\\;\\text{feet}$"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1170572558028",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_04_210.jpg",
+    "alt": "A graph of the data and a line to approximate the data."
+   },
+   "prompt": "<p><strong>[T]</strong> An athlete runs by a motion detector, which records her speed, as displayed in the following table. The best linear fit to this data, $\\ell (t)=-0.068t+5.14,$ is shown in the accompanying graph. Use the average value of $\\ell (t)$ between $t=0$ and $t=40$ to estimate the runner’s average speed.</p><div class=\"book-table\" id=\"fs-id1170572558105\">\n  <table><thead><tr><th>Minutes</th><th>Speed (m/sec)</th></tr></thead><tbody><tr><td>0</td><td>5</td></tr><tr><td>10</td><td>4.8</td></tr><tr><td>20</td><td>3.6</td></tr><tr><td>30</td><td>3.0</td></tr><tr><td>40</td><td>2.5</td></tr></tbody></table>\n</div>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.78,
+    "unit": "m/sec",
+    "solution": "$\\frac{1}{40}\\int_{0}^{40}(-0.068t+5.14)dt=-\\frac{0.068(40)}{2}+5.14=3.78\\text{m/sec}$"
+   }
+  },
+  {
+   "id": "r447",
+   "source_id": "fs-id1170572627080",
+   "source_section": "5.7",
+   "source_number": "447",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "basic-formulas",
+   "prompt": "<p>Evaluate the following integrals.</p><p>$\\int_{-1}^{1}(x^{3}-2x^{2}+4x)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1.333333,
+    "tol": 0.0001,
+    "solution": "$-\\frac{4}{3}$"
+   }
+  },
+  {
+   "id": "r459",
+   "source_id": "fs-id1170571638140",
+   "source_section": "5.7",
+   "source_number": "459",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>The following problems consider the historic average cost per gigabyte of RAM on a computer.</p><div class=\"book-table\"><table><thead><tr><th>Year</th><th>5-Year Change (＄)</th></tr></thead><tbody><tr><td>1980</td><td>0</td></tr><tr><td>1985</td><td>−5,468,750</td></tr><tr><td>1990</td><td><strong>−</strong>755,495</td></tr><tr><td>1995</td><td>−73,005</td></tr><tr><td>2000</td><td>−29,768</td></tr><tr><td>2005</td><td>−918</td></tr><tr><td>2010</td><td>−177</td></tr></tbody></table></div><p>If the average cost per gigabyte of RAM in 2010 is ＄12, find the average cost per gigabyte of RAM in 1980.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6328113,
+    "solution": "＄6,328,113"
+   }
+  },
+  {
+   "id": "r463",
+   "source_id": "fs-id1170572504538",
+   "source_section": "5.7",
+   "source_number": "463",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "net-change-theorem",
+   "prompt": "<p>The velocity of a bullet from a rifle can be approximated by $\\kv(t)=6400t^{2}-6505t+2686,$ where $t$ is seconds after the shot and $\\kv$ is the velocity measured in feet per second. This equation only models the velocity for the first half-second after the shot: $0\\le t\\le 0.5.$</p><p>What is the average velocity of the bullet for the first half-second?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1593.083,
+    "unit": "ft/sec",
+    "tol": 0.001,
+    "solution": "$\\frac{19117}{12}\\text{ft/sec},\\text{or}\\;1593\\;\\text{ft/sec}$"
+   },
+   "changes": "The prompt is review exercise 462’s statement of the bullet’s velocity followed by the question of 463, which the book asks of it."
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "displacement-from-velocity"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "displacement-from-velocity"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "integrals-of-even-and-odd-functions"
+  },
+  {
+   "exercise": "e207",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e207",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e209",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e211",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e213",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e215",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e217",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e219",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e221",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e223",
+   "concept": "displacement-from-velocity"
+  },
+  {
+   "exercise": "e223",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e225",
+   "concept": "displacement-from-velocity"
+  },
+  {
+   "exercise": "e225",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e227",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e229",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e231",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e233",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e235",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e237",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e239",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e239",
+   "concept": "displacement-from-velocity"
+  },
+  {
+   "exercise": "e241",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e243",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e245",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e247",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e247",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e249",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e249",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e251",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "e251",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e253",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e253",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "r447",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "r447",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "r459",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "r463",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "r463",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  }
+ ],
+ "referents": [],
+ "footnotes": []
+}

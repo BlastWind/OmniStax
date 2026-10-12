@@ -1,0 +1,1477 @@
+{
+ "id": "5.3",
+ "module": "m53632",
+ "chapter": "5",
+ "title": "The Fundamental Theorem of Calculus",
+ "short": "The Fundamental Theorem",
+ "lead": "The <span data-concept=\"mean-value-theorem-for-integrals\">Mean Value Theorem for Integrals</span> finds a point where a <span data-concept=\"continuity-over-an-interval\">continuous</span> <span data-concept=\"function\">function</span> takes its <span data-concept=\"average-value-of-a-function\">average value</span>, and it opens the way to the <span data-concept=\"fundamental-theorem-of-calculus\">Fundamental Theorem of Calculus</span>: its first part differentiates an integral with a variable upper limit, and its second evaluates a <span data-concept=\"definite-integral\">definite integral</span> with any <span data-concept=\"antiderivative\">antiderivative</span> of the <span data-concept=\"integrand\">integrand</span>, tying differentiation and integration together.",
+ "objectives": [
+  "Describe the meaning of the Mean Value Theorem for Integrals.",
+  "State the meaning of the Fundamental Theorem of Calculus, Part 1.",
+  "Use the Fundamental Theorem of Calculus, Part 1, to evaluate derivatives of integrals.",
+  "State the meaning of the Fundamental Theorem of Calculus, Part 2.",
+  "Use the Fundamental Theorem of Calculus, Part 2, to evaluate definite integrals.",
+  "Explain the relationship between differentiation and integration."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"mean-value-theorem-for-integrals\">Mean Value Theorem for Integrals</span> states that for a <span data-concept=\"continuity-over-an-interval\">continuous</span> <span data-concept=\"function\">function</span> over a closed interval, there is a value <em>c</em> such that $\\kf(c)$ equals the <span data-concept=\"average-value-of-a-function\">average value of the function</span>. See the <span data-concept=\"mean-value-theorem-for-integrals\">Mean Value Theorem for Integrals</span>.</li><li>The <span data-concept=\"fundamental-theorem-of-calculus-part-1\">Fundamental Theorem of Calculus, Part 1</span> shows the relationship between the <span data-concept=\"derivative\">derivative</span> and the integral. See <span data-concept=\"fundamental-theorem-of-calculus-part-1\">Fundamental Theorem of Calculus, Part 1</span>.</li><li>The <span data-concept=\"fundamental-theorem-of-calculus-part-2\">Fundamental Theorem of Calculus, Part 2</span> is a formula for evaluating a <span data-concept=\"definite-integral\">definite integral</span> in terms of an <span data-concept=\"antiderivative\">antiderivative</span> of its <span data-concept=\"integrand\">integrand</span>. The total <span data-concept=\"area-under-the-curve\">area under a curve</span> can be found using this formula. See the <span data-concept=\"fundamental-theorem-of-calculus-part-2\">Fundamental Theorem of Calculus, Part 2</span>.</li></ul>",
+ "notes": "The book’s link to a biography of Isaac Newton is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The explanations 144, 146, 200 and 202 are kept with AI-written answers, marked as such; the computational ones are left out: 148, 150, 152, 154, 156 and 158 (derivatives of integrals), 160 and 162 (intervals read from the graph of an integral), 164, 166 and 168 (trapezoid estimates by calculator), 170 to 188 (definite integrals), 190 and 192 (integrals as functions of x), 194 and 196 (integrals of absolute values), 198 (hours of daylight), 204 (the average distance from Earth to the Sun) and 206 (averages of simple harmonic motion). Review exercises 442, 443, 445, 455 and 457, printed at the end of Section 5.7, are set here, 442 with an AI-written answer; 444, 446, 456 and 458 have no answer in the key and are left out.",
+ "figures": [
+  {
+   "id": "sim-mean-value",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-average-line",
+   "kind": "figure",
+   "number": "5.26",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_03_002.jpg"
+   ],
+   "original_caption": "By the Mean Value Theorem, the continuous function f(x) takes on its average value at c at least once over a closed interval.",
+   "draws": [
+    "function",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-average-parabola",
+   "kind": "figure",
+   "number": "5.27",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_03_003.jpg"
+   ],
+   "original_caption": "Over the interval [0,3], the function f(x)=x² takes on its average value at c=√(3).",
+   "draws": [
+    "function",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-ftc",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral",
+    "line",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-negative-integral",
+   "kind": "figure",
+   "number": "5.28",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_03_004.jpg"
+   ],
+   "original_caption": "The evaluation of a definite integral can produce a negative value, even though area is always positive.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-root-quotient",
+   "kind": "figure",
+   "number": "5.29",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_03_005.jpg"
+   ],
+   "original_caption": "The area under the curve from x=1 to x=9 can be calculated by evaluating a definite integral.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-skydivers",
+   "kind": "photo",
+   "number": "5.30",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-wingsuit",
+   "kind": "photo",
+   "number": "5.31",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "ftc-intro",
+   "concept": "fundamental-theorem-of-calculus",
+   "verb": "introduces"
+  },
+  {
+   "span": "mvt",
+   "concept": "mean-value-theorem-for-integrals",
+   "verb": "introduces"
+  },
+  {
+   "span": "ftc1",
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "verb": "introduces"
+  },
+  {
+   "span": "ftc2",
+   "concept": "fundamental-theorem-of-calculus-part-2",
+   "verb": "introduces"
+  },
+  {
+   "span": "mvt",
+   "concept": "average-value-of-a-function",
+   "verb": "uses"
+  },
+  {
+   "span": "mvt",
+   "concept": "extreme-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "mvt",
+   "concept": "integral-comparison-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "mvt",
+   "concept": "intermediate-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "mvt",
+   "concept": "absolute-extremum",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc1",
+   "concept": "derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc1",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc1",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc1",
+   "concept": "limits-of-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc2",
+   "concept": "mean-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc2",
+   "concept": "regular-partition",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc2",
+   "concept": "power-rule-for-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc2",
+   "concept": "net-signed-area",
+   "verb": "uses"
+  },
+  {
+   "span": "ftc2",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572141909",
+   "concept": "mean-value-theorem-for-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572451873",
+   "concept": "mean-value-theorem-for-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572601345",
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572134770",
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572228878",
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571678911",
+   "concept": "fundamental-theorem-of-calculus-part-2",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571561288",
+   "concept": "fundamental-theorem-of-calculus-part-2",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571597325",
+   "concept": "fundamental-theorem-of-calculus-part-2",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572481629",
+   "source_number": "Checkpoint 5.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572141909"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>Find the average value of the function $\\kf(x)=\\frac{x}{2}$ over the interval $[0,6]$ and find <em>c</em> such that $\\kf(c)$ equals the average value of the function over $[0,6].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{Average value}=1.5;c=3$",
+    "hint": "Use the procedures from Example 5.15 to solve the problem"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170572176911",
+   "source_number": "Checkpoint 5.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572451873"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>Given $\\int_{0}^{3}(2x^{2}-1)dx=15,$ find <em>c</em> such that $\\kf(c)$ equals the average value of $\\kf(x)=2x^{2}-1$ over $[0,3].$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.73205,
+    "tol": 0.001,
+    "solution": "$c=\\sqrt{3}$",
+    "hint": "Use the procedures from Example 5.16 to solve the problem."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572099780",
+   "source_number": "Checkpoint 5.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572601345"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>Use the Fundamental Theorem of Calculus, Part 1 to find the derivative of $\\kg(r)=\\int_{0}^{r}\\sqrt{x^{2}+4}dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kgprime(r)=\\sqrt{r^{2}+4}$",
+    "hint": "Follow the procedures from Example 5.17 to solve the problem."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170571710609",
+   "source_number": "Checkpoint 5.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572134770"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>Let $\\kF(x)=\\int_{1}^{x^{3}}\\cos tdt.$ Find $\\kFprime(x).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kFprime(x)=3x^{2}\\cos x^{3}$",
+    "hint": "Use the chain rule to solve the problem."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170572168834",
+   "source_number": "Checkpoint 5.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572228878"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>Let $\\kF(x)=\\int_{x}^{x^{2}}\\cos tdt.$ Find $\\kFprime(x).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kFprime(x)=2x\\;\\cos x^{2}-\\cos x$",
+    "hint": "Use the procedures from Example 5.19 to solve the problem."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1170571609445",
+   "source_number": "Checkpoint 5.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571561288"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>Use the Fundamental Theorem of Calculus, Part 2 to evaluate $\\int_{1}^{2}x^{-4}dx.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.291667,
+    "tol": 0.0001,
+    "solution": "$\\frac{7}{24}$",
+    "hint": "Use the power rule."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1170572368415",
+   "source_number": "Checkpoint 5.20",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571597325"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>Suppose James and Kathy have a rematch, but this time the official stops the contest after only 3 sec. Does this change the outcome?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Kathy still wins, but by a much larger margin: James skates 24 ft in 3 sec, but Kathy skates 29.3634 ft in 3 sec.",
+    "hint": "Change the limits of integration from those in Example 5.22."
+   }
+  },
+  {
+   "id": "e144",
+   "source_id": "fs-id1170572338456",
+   "source_number": "144",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>Consider two athletes running at variable speeds $v_{1}(t)$ and $v_{2}(t).$ The runners start and finish a race at exactly the same time. Explain why the two runners must be going the same speed at some point.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let the race last from $t=0$ to $t=T.$ Both runners cover the same distance, so $\\int_{0}^{T}v_{1}(t)dt=\\int_{0}^{T}v_{2}(t)dt$ and $\\int_{0}^{T}(v_{1}(t)-v_{2}(t))dt=0.$ The average value of the continuous function $v_{1}-v_{2}$ over $[0,T]$ is therefore 0, and by the Mean Value Theorem for Integrals there is a time $c$ in $[0,T]$ with $v_{1}(c)-v_{2}(c)=0:$ at that moment the two runners are going the same speed."
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1170572420068",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>Two mountain climbers start their climb at base camp, taking two different routes, one steeper than the other, and arrive at the peak at exactly the same time. Is it necessarily true that, at some point, both climbers increased in altitude at the same rate?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes. It is implied by the Mean Value Theorem for Integrals."
+   }
+  },
+  {
+   "id": "e146",
+   "source_id": "fs-id1170572420086",
+   "source_number": "146",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>To get on a certain toll road a driver has to take a card that lists the mile entrance point. The card also has a timestamp. When going to pay the toll at the exit, the driver is surprised to receive a speeding ticket along with the toll. Explain how this can happen.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The card gives where and when the driver entered and the exit gives where and when they left, so the distance driven and the time it took are known, and with them the driver’s average speed. By the Mean Value Theorem for Integrals, the driver’s speed, a continuous function of time, equals that average speed at some moment of the trip. If the average speed is above the speed limit, the driver was going faster than the limit at least at that moment."
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1170572420106",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>Set $\\kF(x)=\\int_{1}^{x}(1-t)dt.$ Find $\\kFprime(2)$ and the average value of $\\kF^{\\text{′}}$ over $[1,2].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kFprime(2)=-1;$ average value of $\\kF^{\\text{′}}$ over $[1,2]$ is $-1/2.$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1170572368653",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>In the following exercises, use the Fundamental Theorem of Calculus, Part 1, to find each derivative.</p><p>$\\frac{d}{dx}\\int_{1}^{x}e^{\\cos t}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{\\cos x}$"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1170572551781",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>In the following exercises, use the Fundamental Theorem of Calculus, Part 1, to find each derivative.</p><p>$\\frac{d}{dx}\\int_{3}^{x}\\frac{ds}{\\sqrt{16-s^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{\\sqrt{16-x^{2}}}$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1170572376509",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>In the following exercises, use the Fundamental Theorem of Calculus, Part 1, to find each derivative.</p><p>$\\frac{d}{dx}\\int_{0}^{\\sqrt{x}}tdt$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "solution": "$\\sqrt{x}\\frac{d}{dx}\\sqrt{x}=\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1170571599727",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>In the following exercises, use the Fundamental Theorem of Calculus, Part 1, to find each derivative.</p><p>$\\frac{d}{dx}\\int_{\\cos x}^{1}\\sqrt{1-t^{2}}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\sqrt{1-\\cos^{2}x}\\frac{d}{dx}\\cos x=|\\sin x|\\sin x$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1170572621645",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>In the following exercises, use the Fundamental Theorem of Calculus, Part 1, to find each derivative.</p><p>$\\frac{d}{dx}\\int_{1}^{x^{2}}\\frac{\\sqrt{t}}{1+t}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2x\\frac{|x|}{1+x^{2}}$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1170571547591",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>In the following exercises, use the Fundamental Theorem of Calculus, Part 1, to find each derivative.</p><p>$\\frac{d}{dx}\\int_{1}^{e^{x}}\\ln u^{2}du$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(e^{2x})\\frac{d}{dx}e^{x}=2xe^{x}$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1170572622509",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_03_203.jpg",
+    "alt": "A graph of a function with linear segments that goes through the points (0, 0), (1, -1), (2, 1), (3, 1), (4, -2), (5, -2), and (6, 0). The area over the function but under the x axis over the interval [0, 1.5] and [3.25, 6] is shaded. The area under the function but over the x axis over the interval [1.5, 3.25] is shaded."
+   },
+   "prompt": "<p>The graph of $y=\\int_{0}^{x}\\kf(t)dt,$ where $\\kf$ is a piecewise constant function, is shown here.</p><ol type=\"a\"><li>Over which intervals is $\\kf$ positive? Over which intervals is it negative? Over which intervals, if any, is it equal to zero?</li><li>What are the maximum and minimum values of $\\kf$?</li><li>What is the average value of $\\kf$?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$\\kf$ is positive over $(1,2)$ and $(5,6),$ negative over $(0,1)$ and $(3,4),$ and zero over $(2,3)$ and $(4,5).$ b. The maximum value is 2 and the minimum is −3. c. The average value is 0.</li></ol>"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1170572233935",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_03_205.jpg",
+    "alt": "A graph of a function that goes through the points (0, 0), (1, 1), (2, 0), (3, -1), (4.5, 0), (5, 1), and (6, 2). The area under the function and over the x axis over the intervals [0, 2] and [4.5, 6] is shaded. The area over the function and under the x axis over the interval [2, 2.5] is shaded."
+   },
+   "prompt": "<p>The graph of $y=\\int_{0}^{x}\\ell (t)dt,$ where <em>ℓ</em> is a piecewise linear function, is shown here.</p><ol type=\"a\"><li>Over which intervals is <em>ℓ</em> positive? Over which intervals is it negative? Over which, if any, is it zero?</li><li>Over which intervals is <em>ℓ</em> increasing? Over which is it decreasing? Over which intervals, if any, is it constant?</li><li>What is the average value of <em>ℓ</em>?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li><em>ℓ</em> is positive over $(0,1)$ and $(3,6),$ and negative over $(1,3).$ b. It is increasing over $(0,1)$ and $(3,5),$ and it is constant over $(1,3)$ and $(5,6).$ c. Its average value is $\\frac{1}{3}.$</li></ol>"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1170572344231",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, use a calculator to estimate the area under the curve by computing <em>T</em><sub>10</sub>, the average of the left- and right-endpoint Riemann sums using $N=10$ rectangles. Then, using the Fundamental Theorem of Calculus, Part 2, determine the exact area.</p><p><strong>[T]</strong> $y=x^{3}+6x^{2}+x-5$ over $[-4,2]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$T_{10}=49.08,\\int_{-4}^{3}(x^{3}+6x^{2}+x-5)dx=48$<sup class=\"fn\" data-note=\"e165-limit\"></sup>"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1170571699110",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, use a calculator to estimate the area under the curve by computing <em>T</em><sub>10</sub>, the average of the left- and right-endpoint Riemann sums using $N=10$ rectangles. Then, using the Fundamental Theorem of Calculus, Part 2, determine the exact area.</p><p><strong>[T]</strong> $y=\\sqrt{x}+x^{2}$ over $[1,9]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$T_{10}=260.836,\\int_{1}^{9}(\\sqrt{x}+x^{2})dx=260$"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1170572293458",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, use a calculator to estimate the area under the curve by computing <em>T</em><sub>10</sub>, the average of the left- and right-endpoint Riemann sums using $N=10$ rectangles. Then, using the Fundamental Theorem of Calculus, Part 2, determine the exact area.</p><p><strong>[T]</strong> $\\int \\frac{4}{x^{2}}dx$ over $[1,4]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$T_{10}=3.058,\\int_{1}^{4}\\frac{4}{x^{2}}dx=3$"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1170571769554",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{-2}^{3}(x^{2}+3x-5)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -5.833333,
+    "tol": 0.0001,
+    "solution": "$\\kF(x)=\\frac{x^{3}}{3}+\\frac{3x^{2}}{2}-5x,\\kF(3)-\\kF(-2)=-\\frac{35}{6}$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1170572543704",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{2}^{3}(t^{2}-9)(4-t^{2})dt$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.133333,
+    "tol": 0.0001,
+    "solution": "$\\kF(x)=-\\frac{t^{5}}{5}+\\frac{13t^{3}}{3}-36t,\\kF(3)-\\kF(2)=\\frac{62}{15}$"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1170571653421",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{0}^{1}x^{99}dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.01,
+    "solution": "$\\kF(x)=\\frac{x^{100}}{100},\\kF(1)-\\kF(0)=\\frac{1}{100}$"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1170571597447",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{1/4}^{4}(x^{2}-\\frac{1}{x^{2}})dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 17.578125,
+    "solution": "$\\kF(x)=\\frac{x^{3}}{3}+\\frac{1}{x},\\kF(4)-\\kF(\\frac{1}{4})=\\frac{1125}{64}$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1170571733976",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{1}^{4}\\frac{1}{2\\sqrt{x}}dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$\\kF(x)=\\sqrt{x},\\kF(4)-\\kF(1)=1$"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1170571660199",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{1}^{16}\\frac{dt}{t^{1/4}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 9.333333,
+    "tol": 0.0001,
+    "solution": "$\\kF(x)=\\frac{4}{3}t^{3/4},\\kF(16)-\\kF(1)=\\frac{28}{3}$"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1170572510072",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{0}^{\\pi/2}\\sin\\theta d\\theta$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$\\kF(x)=-\\cos x,\\kF(\\frac{\\pi}{2})-\\kF(0)=1$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1170572419248",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{0}^{\\pi/4}\\sec\\theta \\;\\tan\\theta d\\theta$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.414214,
+    "tol": 0.0001,
+    "solution": "$\\kF(x)=\\sec x,\\kF(\\frac{\\pi}{4})-\\kF(0)=\\sqrt{2}-1$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1170571678801",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{\\pi/4}^{\\pi/2}\\csc^{2}\\theta d\\theta$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$\\kF(x)=-\\cot(x),\\kF(\\frac{\\pi}{2})-\\kF(\\frac{\\pi}{4})=1$"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1170571679844",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, evaluate each definite integral using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{-2}^{-1}(\\frac{1}{t^{2}}-\\frac{1}{t^{3}})dt$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.875,
+    "solution": "$\\kF(t)=-\\frac{1}{t}+\\frac{1}{2t^{2}},\\kF(-1)-\\kF(-2)=\\frac{7}{8}$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1170571638193",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, use the evaluation theorem to express the integral as a function $\\kF(x).$</p><p>$\\int_{1}^{x}e^{t}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kF(x)=e^{x}-e$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1170571810891",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, use the evaluation theorem to express the integral as a function $\\kF(x).$</p><p>$\\int_{-x}^{x}\\sin tdt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kF(x)=0$"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1170571539146",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, identify the roots of the integrand to remove absolute values, then evaluate using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{-2}^{4}|t^{2}-2t-3|dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{-2}^{-1}(t^{2}-2t-3)dt-\\int_{-1}^{3}(t^{2}-2t-3)dt+\\int_{3}^{4}(t^{2}-2t-3)dt=\\frac{46}{3}$"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1170571580976",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>In the following exercises, identify the roots of the integrand to remove absolute values, then evaluate using the Fundamental Theorem of Calculus, Part 2.</p><p>$\\int_{-\\pi/2}^{\\pi/2}|\\sin t|dt$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "$-\\int_{-\\pi/2}^{0}\\sin tdt+\\int_{0}^{\\pi/2}\\sin tdt=2$"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1170572373685",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>Suppose the rate of gasoline consumption over the course of a year in the United States can be modeled by a sinusoidal function of the form $(11.21-\\cos(\\frac{\\pi t}{6}))\\;\\times \\;{10}^{9}$ gal/mo.</p><ol type=\"a\"><li>What is the average monthly consumption, and for which values of <em>t</em> is the rate at time <em>t</em> equal to the average rate?</li><li>What is the number of gallons of gasoline consumed in the United States in a year?</li><li>Write an integral that expresses the average monthly U.S. gas consumption during the part of the year between the beginning of April $(t=3)$ and the end of September $(t=9).$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>The average is $11.21\\;\\times \\;{10}^{9}$ since $\\cos(\\frac{\\pi t}{6})$ has period 12 and integral 0 over any period. Consumption is equal to the average when $\\cos(\\frac{\\pi t}{6})=0,$ when $t=3,$ and when $t=9.$ b. Total consumption is the average rate times duration: $11.21\\;\\times \\;12\\;\\times \\;{10}^{9}=1.35\\;\\times \\;{10}^{11}$ c. ${10}^{9}(11.21-\\frac{1}{6}\\int_{3}^{9}\\cos(\\frac{\\pi t}{6})dt)={10}^{9}(11.21+\\frac{2}{\\pi})=11.84x{10}^{9}$</li></ol>"
+   }
+  },
+  {
+   "id": "e200",
+   "source_id": "fs-id1170572168742",
+   "source_number": "200",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>Explain why, if $\\kf$ is continuous over $[a,b],$ there is at least one point $c\\in [a,b]$ such that $\\kf(c)=\\frac{1}{b-a}\\int_{a}^{b}\\kf(t)dt.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $\\kf$ is continuous over $[a,b],$ by the extreme value theorem it takes a minimum value $m$ and a maximum value $M$ on $[a,b],$ so $m\\le\\kf(t)\\le M$ there. By the comparison theorem, $m(b-a)\\le\\int_{a}^{b}\\kf(t)dt\\le M(b-a),$ so the number $\\frac{1}{b-a}\\int_{a}^{b}\\kf(t)dt$ lies between $m$ and $M.$ Since $\\kf$ is continuous and takes the values $m$ and $M,$ the Intermediate Value Theorem gives a point $c$ in $[a,b]$ at which $\\kf(c)$ equals that number. This is the Mean Value Theorem for Integrals."
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1170572629224",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>Explain why, if $\\kf$ is continuous over $[a,b]$ and is not equal to a constant, there is at least one point $M\\in [a,b]$ such that $\\kf(M)\\gt \\frac{1}{b-a}\\int_{a}^{b}\\kf(t)dt$ and at least one point $m\\in [a,b]$ such that $\\kf(m)\\lt \\frac{1}{b-a}\\int_{a}^{b}\\kf(t)dt.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "If $\\kf$ is not constant, then its average is strictly smaller than the maximum and larger than the minimum, which are attained over $[a,b]$ by the extreme value theorem."
+   }
+  },
+  {
+   "id": "e202",
+   "source_id": "fs-id1170572379048",
+   "source_number": "202",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_03_201.jpg",
+    "alt": "A horizontal ellipse with one focus marked. Two equal arcs are marked to the direct left of the focus and on the other side of the ellipse. The wedges formed by the focus and the endpoints of both arcs are shaded in blue."
+   },
+   "prompt": "<p>Kepler’s first law states that the planets move in elliptical orbits with the Sun at one focus. The closest point of a planetary orbit to the Sun is called the <em>perihelion</em> (for Earth, it currently occurs around January 3) and the farthest point is called the <em>aphelion</em> (for Earth, it currently occurs around July 4). Kepler’s second law states that planets sweep out equal areas of their elliptical orbits in equal times. Thus, the two arcs indicated in the following figure are swept out in equal times. At what time of year is Earth moving fastest in its orbit? When is it moving slowest?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Equal areas are swept out in equal times. Near the perihelion the Sun is close, so a sector of a given area is short and wide and Earth covers a long arc of its orbit in the time it sweeps it; near the aphelion the Sun is far, the sector is long and thin, and the arc is short. So Earth moves fastest at the perihelion, around January 3, and slowest at the aphelion, around July 4."
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1170571571954",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>A point on an ellipse with major axis length 2<em>a</em> and minor axis length 2<em>b</em> has the coordinates $(a\\;\\cos\\theta ,b\\;\\sin\\theta ),0\\le\\theta \\le2\\pi.$</p><ol type=\"a\"><li>Show that the distance from this point to the focus at $(-c,0)$ is $d(\\theta )=a+c\\;\\cos\\theta ,$ where $c=\\sqrt{a^{2}-b^{2}}.$</li><li>Use these coordinates to show that the average distance $\\bar{d}$ from a point on the ellipse to the focus at $(-c,0),$ with respect to angle <em>θ</em>, is <em>a</em>.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>$d^{2}\\theta ={(a\\;\\cos\\theta +c)}^{2}+b^{2}\\sin^{2}\\theta =a^{2}+c^{2}\\cos^{2}\\theta +2ac\\;\\cos\\theta ={(a+c\\;\\cos\\theta )}^{2};$ b. $\\bar{d}=\\frac{1}{2\\pi}\\int_{0}^{2\\pi}(a+c\\;\\cos\\theta )d\\theta =a$</li></ol>"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1170572346991",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-integrals",
+   "prompt": "<p>The force of gravitational attraction between the Sun and a planet is $F(\\theta )=\\frac{GmM}{r^{2}(\\theta )},$ where <em>m</em> is the mass of the planet, <em>M</em> is the mass of the Sun, <em>G</em> is a universal constant, and $r(\\theta )$ is the distance between the Sun and the planet when the planet is at an angle <em>θ</em> with the major axis of its orbit. Assuming that <em>M</em>, <em>m</em>, and the ellipse parameters <em>a</em> and <em>b</em> (half-lengths of the major and minor axes) are given, set up—but do not evaluate—an integral that expresses in terms of $G,m,M,a,b$ the average gravitational force between the Sun and the planet.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Mean gravitational force = $\\frac{GmM}{2\\pi}\\int_{0}^{2\\pi}\\frac{1}{{(a+2\\sqrt{a^{2}-b^{2}}\\cos\\theta )}^{2}}d\\theta.$"
+   }
+  },
+  {
+   "id": "r442",
+   "source_id": "fs-id1170572379120",
+   "source_section": "5.7",
+   "source_number": "442",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p><em>True or False.</em> Justify your answer with a proof or a counterexample. Assume all functions $\\kf$ and $g$ are continuous over their domains.</p><p>All continuous functions have an antiderivative.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True. If $\\kf$ is continuous over an interval containing $a,$ the Fundamental Theorem of Calculus, Part 1, shows that $\\kF(x)=\\int_{a}^{x}\\kf(t)dt$ satisfies $\\kFprime(x)=\\kf(x):$ it is an antiderivative of $\\kf.$"
+   }
+  },
+  {
+   "id": "r443",
+   "source_id": "fs-id1170572379162",
+   "source_section": "5.7",
+   "source_number": "443",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>Evaluate the Riemann sums $L_{4}\\;\\text{and}\\;R_{4}$ for the following functions over the specified interval. Compare your answer with the exact answer, when possible, or use a calculator to determine the answer.</p><p>$y=3x^{2}-2x+1$ over $[-1,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L_{4}=5.25,R_{4}=3.25,$ exact answer: 4"
+   }
+  },
+  {
+   "id": "r445",
+   "source_id": "fs-id1170572434937",
+   "source_section": "5.7",
+   "source_number": "445",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-2",
+   "prompt": "<p>Evaluate the Riemann sums $L_{4}\\;\\text{and}\\;R_{4}$ for the following functions over the specified interval. Compare your answer with the exact answer, when possible, or use a calculator to determine the answer.</p><p>$y=x^{2}\\sin x$ over $[0,\\pi]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L_{4}=5.364,R_{4}=5.364,$ exact answer: 5.870"
+   }
+  },
+  {
+   "id": "r455",
+   "source_id": "fs-id1170571568944",
+   "source_section": "5.7",
+   "source_number": "455",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>Find the derivative.</p><p>$\\frac{d}{dt}\\int_{0}^{t}\\frac{\\sin x}{\\sqrt{1+x^{2}}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\sin t}{\\sqrt{1+t^{2}}}$"
+   }
+  },
+  {
+   "id": "r457",
+   "source_id": "fs-id1170572309794",
+   "source_section": "5.7",
+   "source_number": "457",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ftc-part-1",
+   "prompt": "<p>Find the derivative.</p><p>$\\frac{d}{dx}\\int_{1}^{\\ln(x)}(4t+e^{t})dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4\\frac{\\ln x}{x}+1$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "mean-value-theorem-for-integrals"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "mean-value-theorem-for-integrals"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "displacement-from-velocity"
+  },
+  {
+   "exercise": "e144",
+   "concept": "mean-value-theorem-for-integrals"
+  },
+  {
+   "exercise": "e145",
+   "concept": "mean-value-theorem-for-integrals"
+  },
+  {
+   "exercise": "e146",
+   "concept": "mean-value-theorem-for-integrals"
+  },
+  {
+   "exercise": "e147",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e147",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e149",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e151",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e153",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e153",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e155",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e155",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e157",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e157",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e159",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e159",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e161",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e163",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e165",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e165",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e165",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e167",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e167",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e167",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e169",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e169",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e169",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e171",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e173",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e175",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e177",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e179",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e181",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e183",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e185",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e187",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e189",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e191",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e193",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e195",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e195",
+   "concept": "total-area"
+  },
+  {
+   "exercise": "e197",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e197",
+   "concept": "total-area"
+  },
+  {
+   "exercise": "e199",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e199",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e200",
+   "concept": "mean-value-theorem-for-integrals"
+  },
+  {
+   "exercise": "e201",
+   "concept": "mean-value-theorem-for-integrals"
+  },
+  {
+   "exercise": "e201",
+   "concept": "extreme-value-theorem"
+  },
+  {
+   "exercise": "e202",
+   "concept": "mean-value-theorem-for-integrals"
+  },
+  {
+   "exercise": "e203",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e203",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e205",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "r442",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "r442",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "r443",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "r443",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "r443",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "r445",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "r445",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "r445",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "r455",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "r457",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "r457",
+   "concept": "chain-rule"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "e165-limit",
+   "kind": "correction",
+   "html": "The key writes the upper limit as 3; the interval is $[-4,2],$ and $48$ is the integral over it."
+  }
+ ]
+}

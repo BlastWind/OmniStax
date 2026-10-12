@@ -1,0 +1,213 @@
+<p id="definite-intro">In the preceding section we defined the <span data-concept="area-under-the-curve">area under a curve</span> in terms of <span data-concept="riemann-sum">Riemann sums</span>:</p>
+$$A=\lim_{n\to \infty}\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x.$$
+<p>However, this definition came with restrictions. We required $\kf(x)$ to be <span data-concept="continuity-over-an-interval">continuous</span> and nonnegative. Unfortunately, real-world problems don’t always meet these restrictions. In this section, we look at how to apply the concept of the <span data-concept="area-under-the-curve">area under the curve</span> to a broader set of <span data-concept="function">functions</span> through the use of the <span data-concept="definite-integral">definite integral</span>.</p>
+<section id="definition-notation">
+<h2>Definition and Notation</h2>
+<p>The <span data-concept="definite-integral">definite integral</span> generalizes the concept of the <span data-concept="area-under-the-curve">area under a curve</span>. We lift the requirements that $\kf(x)$ be <span data-concept="continuity-over-an-interval">continuous</span> and nonnegative, and define the <span data-concept="definite-integral">definite integral</span> as follows.</p>
+<div class="note" id="definite-integral-definition">
+<div class="eyebrow">Definition</div>
+<p>If $\kf(x)$ is a <span data-concept="function">function</span> defined on an interval $[a,b],$ the <strong><span data-concept="definite-integral">definite integral</span></strong> of $\kf$ from <em>a</em> to <em>b</em> is given by</p>
+$$\int_{a}^{b}\kf(x)dx=\lim_{n\to \infty}\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x,$$
+<p>provided the <span data-concept="limit">limit</span> exists. If this <span data-concept="limit">limit</span> exists, the <span data-concept="function">function</span> $\kf(x)$ is said to be <span data-concept="integrable-function">integrable</span> on $[a,b],$ or is an <strong><span data-concept="integrable-function">integrable function</span></strong>.</p>
+</div>
+<p>The integral symbol in the previous definition should look familiar. We have seen similar notation in the chapter on <a href="/calculus/ch04/intro/">Applications of Derivatives</a>, where we used the <span data-concept="indefinite-integral">indefinite integral</span> symbol (without the <em>a</em> and <em>b</em> above and below) to represent an <span data-concept="antiderivative">antiderivative</span>. Although the notation for <span data-concept="indefinite-integral">indefinite integrals</span> may look similar to the notation for a <span data-concept="definite-integral">definite integral</span>, they are not the same. A <span data-concept="definite-integral">definite integral</span> is a number. An <span data-concept="indefinite-integral">indefinite integral</span> is a family of <span data-concept="function">functions</span>. Later in this chapter we examine how these concepts are related. However, close attention should always be paid to notation so we know whether we’re working with a <span data-concept="definite-integral">definite integral</span> or an <span data-concept="indefinite-integral">indefinite integral</span>.</p>
+<p>Integral notation goes back to the late seventeenth century and is one of the contributions of Gottfried Wilhelm Leibniz, who is often considered to be the codiscoverer of calculus, along with Isaac Newton. The integration symbol ∫ is an elongated S, suggesting sigma or summation. On a <span data-concept="definite-integral">definite integral</span>, above and below the summation symbol are the boundaries of the interval, $[a,b].$ The numbers <em>a</em> and <em>b</em> are <em>x</em>-values and are called the <strong><span data-concept="limits-of-integration">limits of integration</span></strong>; specifically, <em>a</em> is the <span data-concept="limits-of-integration">lower limit</span> and <em>b</em> is the <span data-concept="limits-of-integration">upper limit</span>. To clarify, we are using the word <em>limit</em> in two different ways in the context of the <span data-concept="definite-integral">definite integral</span>. First, we talk about the <span data-concept="limit">limit</span> of a sum as $n\to \infty.$ Second, the boundaries of the region are called the <em><span data-concept="limits-of-integration">limits of integration</span></em>.</p>
+<p>We call the <span data-concept="function">function</span> $\kf(x)$ the <strong><span data-concept="integrand">integrand</span></strong>, and the <em>dx</em> indicates that $\kf(x)$ is a <span data-concept="function">function</span> with respect to <em>x</em>, called the <strong><span data-concept="variable-of-integration">variable of integration</span></strong>. Note that, like the index in a sum, the <span data-concept="variable-of-integration">variable of integration</span> is a dummy variable, and has no impact on the computation of the integral. We could use any variable we like as the <span data-concept="variable-of-integration">variable of integration</span>:</p>
+$$\int_{a}^{b}\kf(x)dx=\int_{a}^{b}\kf(t)dt=\int_{a}^{b}\kf(u)du$$
+<p>Previously, we discussed the fact that if $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span> on $[a,b],$ then the <span data-concept="limit">limit</span> $\lim_{n\to \infty}\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x$ exists and is unique. This leads to the following theorem, which we state without proof.</p>
+<div class="note" id="continuous-integrable">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="continuous-functions-are-integrable">Continuous Functions Are Integrable</span></h3>
+<p>If $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span> on $[a,b],$ then $\kf$ is <span data-concept="integrable-function">integrable</span> on $[a,b].$</p>
+</div>
+<p><span data-concept="function">Functions</span> that are not <span data-concept="continuity-over-an-interval">continuous</span> on $[a,b]$ may still be <span data-concept="integrable-function">integrable</span>, depending on the nature of the discontinuities. For example, <span data-concept="function">functions</span> <span data-concept="continuity-over-an-interval">continuous</span> on a closed interval, apart from a finite number of <span data-concept="jump-discontinuity">jump discontinuities</span>, are <span data-concept="integrable-function">integrable</span>.</p>
+<p>It is also worth noting here that we have retained the use of a <span data-concept="regular-partition">regular partition</span> in the <span data-concept="riemann-sum">Riemann sums</span>. This restriction is not strictly necessary. Any <span data-concept="partition">partition</span> can be used to form a <span data-concept="riemann-sum">Riemann sum</span>. However, if a <span data-concept="partition">nonregular partition</span> is used to define the <span data-concept="definite-integral">definite integral</span>, it is not sufficient to take the <span data-concept="limit">limit</span> as the number of subintervals goes to infinity. Instead, we must take the <span data-concept="limit">limit</span> as the width of the largest subinterval goes to zero. This introduces a little more complex notation in our <span data-concept="limit">limits</span> and makes the calculations more difficult without really gaining much additional insight, so we stick with <span data-concept="regular-partition">regular partitions</span> for the <span data-concept="riemann-sum">Riemann sums</span>.</p>
+<div class="example" id="fs-id1170571648750">
+<h3>Example 5.7 · Evaluating an Integral Using the Definition</h3>
+<p>Use the definition of the <span data-concept="definite-integral">definite integral</span> to evaluate $\int_{0}^{2}x^{2}dx.$ Use a <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> to generate the <span data-concept="riemann-sum">Riemann sum</span>.</p>
+<h4>Solution</h4>
+<p>We first want to set up a <span data-concept="riemann-sum">Riemann sum</span>. Based on the <span data-concept="limits-of-integration">limits of integration</span>, we have $a=0$ and $b=2.$ For $i=0,1,2,\ldots,n,$ let $\kP=\{x_{i}\}$ be a <span data-concept="regular-partition">regular partition</span> of $[0,2].$ Then</p>
+$$\Delta x=\frac{b-a}{n}=\frac{2}{n}.$$
+<p>Since we are using a <span data-concept="right-endpoint-approximation">right-endpoint approximation</span> to generate <span data-concept="riemann-sum">Riemann sums</span>, for each <em>i</em>, we need to calculate the <span data-concept="function">function</span> value at the right endpoint of the interval $[x_{i-1},x_{i}].$ The right endpoint of the interval is $x_{i},$ and since $\kP$ is a <span data-concept="regular-partition">regular partition</span>,</p>
+$$x_{i}=x_{0}+i\Delta x=0+i[\frac{2}{n}]=\frac{2i}{n}.$$
+<p>Thus, the <span data-concept="function">function</span> value at the right endpoint of the interval is</p>
+$$\kf(x_{i})=x_{i}^{2}={(\frac{2i}{n})}^{2}=\frac{4i^{2}}{n^{2}}.$$
+<p>Then the <span data-concept="riemann-sum">Riemann sum</span> takes the form</p>
+$$\sum_{i=1}^{n} \kf(x_{i})\Delta x=\sum_{i=1}^{n} (\frac{4i^{2}}{n^{2}})\frac{2}{n}=\sum_{i=1}^{n} \frac{8i^{2}}{n^{3}}=\frac{8}{n^{3}}\sum_{i=1}^{n} i^{2}.$$
+<p>Using the summation formula for $\sum_{i=1}^{n} i^{2},$ we have</p>
+$$\begin{aligned}\sum_{i=1}^{n} \kf(x_{i})\Delta x &=\frac{8}{n^{3}}\sum_{i=1}^{n} i^{2} \\ &=\frac{8}{n^{3}}[\frac{n(n+1)(2n+1)}{6}] \\ &=\frac{8}{n^{3}}[\frac{2n^{3}+3n^{2}+n}{6}] \\ &=\frac{16n^{3}+24n^{2}+8n}{6n^{3}} \\ &=\frac{8}{3}+\frac{4}{n}+\frac{8}{6n^{2}}.\end{aligned}$$
+<p>Now, to calculate the <span data-concept="definite-integral">definite integral</span>, we need to take the <span data-concept="limit">limit</span> as $n\to \infty.$ We get</p>
+$$\begin{aligned}\int_{0}^{2}x^{2}dx &=\lim_{n\to \infty}\sum_{i=1}^{n} \kf(x_{i})\Delta x \\ &=\lim_{n\to \infty}(\frac{8}{3}+\frac{4}{n}+\frac{8}{6n^{2}}) \\ &=\lim_{n\to \infty}(\frac{8}{3})+\lim_{n\to \infty}(\frac{4}{n})+\lim_{n\to \infty}(\frac{8}{6n^{2}}) \\ &=\frac{8}{3}+0+0=\frac{8}{3}.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170571648750"></div>
+</section>
+
+<section id="evaluating">
+<h2>Evaluating Definite Integrals</h2>
+<p>Evaluating <span data-concept="definite-integral">definite integrals</span> this way can be quite tedious because of the complexity of the calculations. Later in this chapter we develop techniques for evaluating <span data-concept="definite-integral">definite integrals</span> <em>without</em> taking <span data-concept="limit">limits</span> of <span data-concept="riemann-sum">Riemann sums</span>. However, for now, we can rely on the fact that <span data-concept="definite-integral">definite integrals</span> represent the <span data-concept="area-under-the-curve">area under the curve</span>, and we can evaluate <span data-concept="definite-integral">definite integrals</span> by using geometric formulas to calculate that area. We do this to confirm that <span data-concept="definite-integral">definite integrals</span> do, indeed, represent areas, so we can then discuss what to do in the case of a curve of a <span data-concept="function">function</span> dropping below the <em>x</em>-axis.</p>
+<div class="example" id="fs-id1170571775733">
+<h3>Example 5.8 · Using Geometric Formulas to Calculate Definite Integrals</h3>
+<p>Use the formula for the area of a circle to evaluate $\int_{3}^{6}\sqrt{9-{(x-3)}^{2}}dx.$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="function">function</span> describes a semicircle with radius 3. To find</p>
+$$\int_{3}^{6}\sqrt{9-{(x-3)}^{2}}dx,$$
+<p>we want to find the <span data-concept="area-under-the-curve">area under the curve</span> over the interval $[3,6].$ The formula for the area of a circle is $A=\pi r^{2}.$ The area of a semicircle is just one-half the area of a circle, or $A=(\frac{1}{2})\pi r^{2}.$ The shaded area in Figure 5.16 covers one-half of the semicircle, or $A=(\frac{1}{4})\pi r^{2}.$ Thus,</p>
+$$\begin{aligned}\int _{3}^{6}\sqrt{9-{(x-3)}^{2}} &=\frac{1}{4}\pi{(3)}^{2} \\ &=\frac{9}{4}\pi\\ &\approx 7.069.\end{aligned}$$
+<figure class="sim" id="fig-quarter-circle" data-figure="5.16" data-original="/media/ch05/CNX_Calc_Figure_05_02_009.jpg" data-original-caption="The value of the integral of the function f(x) over the interval [3,6] is the area of the shaded region.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.16</span><span>The value of the integral of the function $\kf(x)$ over the interval $[3,6]$ is the area of the shaded region.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170571775733"></div>
+</section>
+
+<section id="area-integral">
+<h2>Area and the Definite Integral</h2>
+<p>When we defined the <span data-concept="definite-integral">definite integral</span>, we lifted the requirement that $\kf(x)$ be nonnegative. But how do we interpret “the <span data-concept="area-under-the-curve">area under the curve</span>” when $\kf(x)$ is negative?</p>
+<h3>Net Signed Area</h3>
+<p>Let us return to the <span data-concept="riemann-sum">Riemann sum</span>. Consider, for example, the <span data-concept="function">function</span> <span data-fn="2-2x^2">$\kf(x)=2-2x^{2}$</span> (shown in Figure 5.17) on the interval $[0,2].$ Use $n=8$ and choose $\{x_{i}^{*}\}$ as the left endpoint of each interval. Construct a rectangle on each subinterval of height $\kf(x_{i}^{*})$ and width $\Delta x$. When $\kf(x_{i}^{*})$ is positive, the product $\kf(x_{i}^{*})\Delta x$ represents the area of the rectangle, as before. When $\kf(x_{i}^{*})$ is negative, however, the product $\kf(x_{i}^{*})\Delta x$ represents the <em>negative</em> of the area of the rectangle. The <span data-concept="riemann-sum">Riemann sum</span> then becomes</p>
+$$\sum_{i=1}^{8} \kf(x_{i}^{*})\Delta x=(\text{Area of rectangles above the}\;x\text{-axis})-(\text{Area of rectangles below the}\;x\text{-axis})$$
+<figure class="sim" id="sim-net-signed-area" data-figure="5.17 + 5.18" data-original="/media/ch05/CNX_Calc_Figure_05_02_003.jpg,/media/ch05/CNX_Calc_Figure_05_02_002.jpg" data-original-caption="(Figure 5.17) For a function that is partly negative, the Riemann sum is the area of the rectangles above the x-axis less the area of the rectangles below the x-axis. (Figure 5.18) In the limit, the definite integral equals area A₁ less area A₂, or the net signed area.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.17 + 5.18</span><span>The <span data-concept="riemann-sum">Riemann sum</span> of <span data-fn="2-2x^2">$\kf(x)=2-2x^{2}$</span> on $[0,2]$ with heights from the left endpoints. A rectangle under the axis has a negative height, and its area counts against the sum. As $n$ grows the sum closes on the <span data-concept="net-signed-area">net signed area</span> $\kA_{1}-\kA_{2}=\frac{4}{3}-\frac{8}{3}=-\frac{4}{3},$ the area above the axis less the area below it.</span></div>
+</figure>
+<p>Taking the <span data-concept="limit">limit</span> as $n\to \infty,$ the <span data-concept="riemann-sum">Riemann sum</span> approaches the area between the curve above the <em>x</em>-axis and the <em>x</em>-axis, less the area between the curve below the <em>x</em>-axis and the <em>x</em>-axis, as shown in Figure 5.18. Then,</p>
+$$\begin{aligned}\int_{0}^{2}\kf(x)dx &=\lim_{n\to \infty}\sum_{i=1}^{n} \kf(c_{i})\Delta x \\ &=\kA_{1}-\kA_{2}.\end{aligned}$$
+<p>The quantity $\kA_{1}-\kA_{2}$ is called the <strong><span data-concept="net-signed-area">net signed area</span></strong>.</p>
+<p>Notice that <span data-concept="net-signed-area">net signed area</span> can be positive, negative, or zero. If the area above the <em>x</em>-axis is larger, the <span data-concept="net-signed-area">net signed area</span> is positive. If the area below the <em>x</em>-axis is larger, the <span data-concept="net-signed-area">net signed area</span> is negative. If the areas above and below the <em>x</em>-axis are equal, the <span data-concept="net-signed-area">net signed area</span> is zero.</p>
+<div class="example" id="fs-id1170572449111">
+<h3>Example 5.9 · Finding the Net Signed Area</h3>
+<p>Find the <span data-concept="net-signed-area">net signed area</span> between the curve of the <span data-concept="function">function</span> <span data-fn="2x">$\kf(x)=2x$</span> and the <em>x</em>-axis over the interval $[-3,3].$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="function">function</span> produces a straight line that forms two triangles: one from $x=-3$ to $x=0$ and the other from $x=0$ to $x=3$ (Figure 5.19). Using the geometric formula for the area of a triangle, $A=\frac{1}{2}bh,$ the area of triangle $\kA_{1}$, above the axis, is</p>
+$$\kA_{1}=\frac{1}{2}3(6)=9,$$
+<p>where 3 is the base and $2(3)=6$ is the height. The area of triangle $\kA_{2}$, below the axis, is</p>
+$$\kA_{2}=\frac{1}{2}(3)(6)=9,$$
+<p>where 3 is the base and 6 is the height. Thus, the <span data-concept="net-signed-area">net area</span> is</p>
+$$\int_{-3}^{3}2xdx=\kA_{1}-\kA_{2}=9-9=0.$$
+<figure class="sim" id="fig-odd-triangles" data-figure="5.19" data-original="/media/ch05/CNX_Calc_Figure_05_02_005.jpg" data-original-caption="The area above the curve and below the x-axis equals the area below the curve and above the x-axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.19</span><span>The area above the curve and below the <em>x</em>-axis equals the area below the curve and above the <em>x</em>-axis.</span></div>
+</figure>
+<h4>Analysis</h4>
+<p>If $\kA_{1}$ is the area above the <em>x</em>-axis and $\kA_{2}$ is the area below the <em>x</em>-axis, then the <span data-concept="net-signed-area">net area</span> is $\kA_{1}-\kA_{2}.$ Since the areas of the two triangles are equal, the <span data-concept="net-signed-area">net area</span> is zero.</p>
+</div>
+<div class="exercises" data-place="fs-id1170572449111"></div>
+<h3>Total Area</h3>
+<p>One application of the <span data-concept="definite-integral">definite integral</span> is finding <span data-concept="displacement-from-velocity">displacement</span> when given a velocity <span data-concept="function">function</span>. If $\kv(t)$ represents the velocity of an object as a <span data-concept="function">function</span> of time, then the <span data-concept="area-under-the-curve">area under the curve</span> tells us how far the object is from its original position. This is a very important application of the <span data-concept="definite-integral">definite integral</span>, and we examine it in more detail later in the chapter. For now, we’re just going to look at some basics to get a feel for how this works by studying constant velocities.</p>
+<p>When velocity is a constant, the <span data-concept="area-under-the-curve">area under the curve</span> is just velocity times time. This idea is already very familiar. If a car travels away from its starting position in a straight line at a speed of 70 mph for 2 hours, then it is 140 mi away from its original position (Figure 5.20). Using integral notation, we have</p>
+$$\int_{0}^{2}70dt=140.$$
+<figure class="sim" id="sim-car-trips" data-figure="5.20 + 5.21" data-original="/media/ch05/CNX_Calc_Figure_05_02_015.jpg,/media/ch05/CNX_Calc_Figure_05_02_016.jpg" data-original-caption="(Figure 5.20) The area under the curve v(t)=70 tells us how far the car is from its starting point at a given time. (Figure 5.21) The area above the axis and the area below the axis are equal, so the net signed area is zero.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.20 + 5.21</span><span>A car on a straight road, north to the right, above the graph of its velocity $\kv(t)$ in miles per hour: 70 mph for 2 hours, or 60 mph north for 2 hours and then 40 mph south for 3 hours. As time runs, the area under the velocity graph fills in, above the axis while the car drives north and below it on the way back. The <span data-concept="net-signed-area">net signed area</span> is the car’s <span data-concept="displacement-from-velocity">displacement</span> from its start, and the <span data-concept="total-area">total area</span> is the <span data-concept="displacement-from-velocity">total distance</span> it has traveled.</span></div>
+</figure>
+<p>In the context of <span data-concept="displacement-from-velocity">displacement</span>, <span data-concept="net-signed-area">net signed area</span> allows us to take direction into account. If a car travels straight north at a speed of 60 mph for 2 hours, it is 120 mi north of its starting position. If the car then turns around and travels south at a speed of 40 mph for 3 hours, it will be back at it starting position (Figure 5.21). Again, using integral notation, we have</p>
+$$\begin{aligned}\int_{0}^{2}60dt+\int_{2}^{5}-40dt &=120-120 \\ &=0.\end{aligned}$$
+<p>In this case the <span data-concept="displacement-from-velocity">displacement</span> is zero.</p>
+<p>Suppose we want to know how far the car travels overall, regardless of direction. In this case, we want to know the area between the curve and the <em>x</em>-axis, regardless of whether that area is above or below the axis. This is called the <strong><span data-concept="total-area">total area</span></strong>.</p>
+<p>Graphically, it is easiest to think of calculating <span data-concept="total-area">total area</span> by adding the areas above the axis and the areas below the axis (rather than subtracting the areas below the axis, as we did with <span data-concept="net-signed-area">net signed area</span>). To accomplish this mathematically, we use the <span data-concept="absolute-value-function">absolute value function</span>. Thus, the <span data-concept="displacement-from-velocity">total distance</span> traveled by the car is</p>
+$$\begin{aligned}\int_{0}^{2}|60|dt+\int_{2}^{5}|-40|dt &=\int_{0}^{2}60dt+\int_{2}^{5}40dt \\ &=120+120 \\ &=240.\end{aligned}$$
+<p>Bringing these ideas together formally, we state the following definitions.</p>
+<div class="note" id="net-total-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf(x)$ be an <span data-concept="integrable-function">integrable function</span> defined on an interval $[a,b].$ Let $\kA_{1}$ represent the area between $\kf(x)$ and the <em>x</em>-axis that lies <em>above</em> the axis and let $\kA_{2}$ represent the area between $\kf(x)$ and the <em>x</em>-axis that lies <em>below</em> the axis. Then, the <strong><span data-concept="net-signed-area">net signed area</span></strong> between $\kf(x)$ and the <em>x</em>-axis is given by</p>
+$$\int_{a}^{b}\kf(x)dx=\kA_{1}-\kA_{2}.$$
+<p>The <strong><span data-concept="total-area">total area</span></strong> between $\kf(x)$ and the <em>x</em>-axis is given by</p>
+$$\int _{a}^{b}|\kf(x)|dx=\kA_{1}+\kA_{2}.$$
+</div>
+<div class="example" id="fs-id1170572163843">
+<h3>Example 5.10 · Finding the Total Area</h3>
+<p>Find the <span data-concept="total-area">total area</span> between <span data-fn="x-2">$\kf(x)=x-2$</span> and the <em>x</em>-axis over the interval $[0,6].$</p>
+<h4>Solution</h4>
+<p>Calculate the <em>x</em>-intercept as $(2,0)$ (set $y=0,$ solve for <em>x</em>). To find the <span data-concept="total-area">total area</span>, take the area below the <em>x</em>-axis over the subinterval $[0,2]$ and add it to the area above the <em>x</em>-axis on the subinterval $[2,6]$ (Figure 5.22).</p>
+<figure class="sim" id="fig-total-area" data-figure="5.22" data-original="/media/ch05/CNX_Calc_Figure_05_02_008.jpg" data-original-caption="The total area between the line and the x-axis over [0,6] is A₂ plus A₁.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.22</span><span>The total area between the line and the x-axis over $[0,6]$ is $\kA_{2}$ plus $\kA_{1}$.</span></div>
+</figure>
+<p>We have</p>
+$$\int_{0}^{6}|(x-2)|dx=\kA_{2}+\kA_{1}.$$
+<p>Then, using the formula for the area of a triangle, we obtain</p>
+$$\kA_{2}=\frac{1}{2}bh=\frac{1}{2}\cdot 2\cdot 2=2$$
+$$\kA_{1}=\frac{1}{2}bh=\frac{1}{2}\cdot 4\cdot 4=8.$$
+<p>The <span data-concept="total-area">total area</span>, then, is</p>
+$$\kA_{1}+\kA_{2}=8+2=10.$$
+</div>
+<div class="exercises" data-place="fs-id1170572163843"></div>
+</section>
+
+<section id="properties">
+<h2>Properties of the Definite Integral</h2>
+<p>The <span data-concept="properties-of-indefinite-integrals">properties of indefinite integrals</span> apply to <span data-concept="definite-integral">definite integrals</span> as well. Definite integrals also have properties that relate to the <span data-concept="limits-of-integration">limits of integration</span>. These properties, along with the rules of integration that we examine later in this chapter, help us manipulate expressions to evaluate <span data-concept="definite-integral">definite integrals</span>.</p>
+<div class="note" id="integral-properties">
+<div class="eyebrow">Rule</div>
+<h3><span data-concept="properties-of-the-definite-integral">Properties of the Definite Integral</span></h3>
+<ol><li> $$\int_{a}^{a}\kf(x)dx=0$$ If the <span data-concept="limits-of-integration">limits of integration</span> are the same, the integral is just a line and contains no area.</li><li> $$\int_{b}^{a}\kf(x)dx=-\int_{a}^{b}\kf(x)dx$$ If the <span data-concept="limits-of-integration">limits</span> are reversed, then place a negative sign in front of the integral.</li><li> $$\int_{a}^{b}[\kf(x)+\kg(x)]dx=\int_{a}^{b}\kf(x)dx+\int_{a}^{b}\kg(x)dx$$ The integral of a sum is the sum of the integrals.</li><li> $$\int_{a}^{b}[\kf(x)-\kg(x)]dx=\int_{a}^{b}\kf(x)dx-\int_{a}^{b}\kg(x)dx$$ The integral of a difference is the difference of the integrals.</li><li> $$\int_{a}^{b}c\kf(x)dx=c\int_{a}^{b}\kf(x)dx$$ for constant <em>c</em>. The integral of the product of a constant and a <span data-concept="function">function</span> is equal to the constant multiplied by the integral of the <span data-concept="function">function</span>.</li><li> $$\int_{a}^{b}\kf(x)dx=\int_{a}^{c}\kf(x)dx+\int_{c}^{b}\kf(x)dx$$</li></ol>
+<p>Although this formula normally applies when <em>c</em> is between <em>a</em> and <em>b</em>, the formula holds for all values of <em>a</em>, <em>b</em>, and <em>c</em>, provided $\kf(x)$ is <span data-concept="integrable-function">integrable</span> on the largest interval.</p>
+</div>
+<div class="example" id="fs-id1170572274820">
+<h3>Example 5.11 · Using the Properties of the Definite Integral</h3>
+<p>Use the <span data-concept="properties-of-the-definite-integral">properties of the definite integral</span> to express the <span data-concept="definite-integral">definite integral</span> of <span data-fn="-3x^3+2x+2">$\kf(x)=-3x^{3}+2x+2$</span> over the interval $[-2,1]$ as the sum of three <span data-concept="definite-integral">definite integrals</span>.</p>
+<h4>Solution</h4>
+<p>Using integral notation, we have $\int_{-2}^{1}(-3x^{3}+2x+2)dx.$ We apply properties 3. and 5. to get</p>
+$$\begin{aligned}\int_{-2}^{1}(-3x^{3}+2x+2)dx &=\int_{-2}^{1}-3x^{3}dx+\int_{-2}^{1}2xdx+\int_{-2}^{1}2dx \\ &=-3\int_{-2}^{1}x^{3}dx+2\int_{-2}^{1}xdx+\int_{-2}^{1}2dx.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170572274820"></div>
+<div class="example" id="fs-id1170572098842">
+<h3>Example 5.12 · Using the Properties of the Definite Integral</h3>
+<p>If it is known that $\int_{0}^{8}\kf(x)dx=10$ and $\int_{0}^{5}\kf(x)dx=5,$ find the value of $\int_{5}^{8}\kf(x)dx.$</p>
+<h4>Solution</h4>
+<p>By property 6.,</p>
+$$\int_{a}^{b}\kf(x)dx=\int_{a}^{c}\kf(x)dx+\int_{c}^{b}\kf(x)dx.$$
+<p>Thus,</p>
+$$\begin{aligned}\int_{0}^{8}\kf(x)dx &= \int_{0}^{5}\kf(x)dx+\int_{5}^{8}\kf(x)dx \\ 10 &= 5+\int_{5}^{8}\kf(x)dx \\ 5 &= \int_{5}^{8}\kf(x)dx.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1170572098842"></div>
+<h3>Comparison Properties of Integrals</h3>
+<p>A picture can sometimes tell us more about a <span data-concept="function">function</span> than the results of computations. Comparing <span data-concept="function">functions</span> by their graphs as well as by their algebraic expressions can often give new insight into the process of integration. Intuitively, we might say that if a <span data-concept="function">function</span> $\kf(x)$ is above another <span data-concept="function">function</span> $\kg(x),$ then the area between $\kf(x)$ and the <em>x</em>-axis is greater than the area between $\kg(x)$ and the <em>x</em>-axis. This is true depending on the interval over which the comparison is made. The <span data-concept="properties-of-the-definite-integral">properties of definite integrals</span> are valid whether $a\lt b,a=b,$ or $a\gt b.$ The following properties, however, concern only the case $a\le b,$ and are used when we want to compare the sizes of integrals.</p>
+<div class="note" id="comparison-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="integral-comparison-theorem">Comparison Theorem</span></h3>
+<ol><li>If $\kf(x)\ge0$ for $a\le x\le b,$ then $$\int_{a}^{b}\kf(x)dx\ge0.$$</li><li>If $\kf(x)\ge \kg(x)$ for $a\le x\le b,$ then $$\int_{a}^{b}\kf(x)dx\ge\int_{a}^{b}\kg(x)dx.$$</li><li>If <em>m</em> and <em>M</em> are constants such that $m\le \kf(x)\le M$ for $a\le x\le b,$ then $$\begin{aligned}m(b-a) &\le\int_{a}^{b}\kf(x)dx \\ &\le M(b-a).\end{aligned}$$</li></ol>
+</div>
+<div class="example" id="fs-id1170571769594">
+<h3>Example 5.13 · Comparing Two Functions over a Given Interval</h3>
+<p>Compare <span data-ref="curve-f"><span data-fn="sqrt(1+x^2)">$\kf(x)=\sqrt{1+x^{2}}$</span></span> and <span data-ref="curve-g"><span data-fn="sqrt(1+x)">$\kg(x)=\sqrt{1+x}$</span></span> over the interval $[0,1].$</p>
+<h4>Solution</h4>
+<p>Graphing <span data-ref="curve-f curve-g">these <span data-concept="function">functions</span></span> is necessary to understand how they compare over the interval $[0,1].$ Initially, when graphed on a graphing calculator, <span data-ref="curve-f">$\kf(x)$</span> appears to be above <span data-ref="curve-g">$\kg(x)$</span> everywhere. However, on the interval $[0,1],$ the graphs appear to be on top of each other. We need to zoom in to see that, on the interval $[0,1],$ <span data-ref="curve-g">$\kg(x)$</span> is above <span data-ref="curve-f">$\kf(x).$</span> <span data-ref="curve-f curve-g">The two <span data-concept="function">functions</span></span> intersect at $x=0$ and $x=1$ (Figure 5.23).</p>
+<figure class="sim" id="fig-compare-roots" data-figure="5.23 + 5.24" data-original="/media/ch05/CNX_Calc_Figure_05_02_011.jpg,/media/ch05/CNX_Calc_Figure_05_02_012.jpg" data-original-caption="(Figure 5.23) (a) The function f(x) appears above the function g(x) except over the interval [0,1] (b) Viewing the same graph with a greater zoom shows this more clearly. (Figure 5.24) (a) The graph shows that over the interval [0,1],g(x)≥ f(x), where equality holds only at the endpoints of the interval. (b) Viewing the same graph with a greater zoom shows this more clearly.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.23 + 5.24</span><span><span data-ref="curve-f">$\kf(x)=\sqrt{1+x^{2}}$</span> and <span data-ref="curve-g">$\kg(x)=\sqrt{1+x}$</span>: (a) on $[-2,3],$ where <span data-ref="curve-f">$\kf$</span> appears to be above <span data-ref="curve-g">$\kg$</span> except over $[0,1],$ the area under <span data-ref="curve-g">$\kg$</span> over $[0,1]$ shaded; (b) on $[0,1]$ under a greater zoom, where <span data-ref="curve-g">$\kg(x)$</span> $\ge$ <span data-ref="curve-f">$\kf(x)$</span> with equality only at the endpoints. The thin shaded strip between them is the difference of the two integrals over $[0,1].$</span></div>
+</figure>
+<p>We can see from the graph that over the interval $[0,1],$ <span data-ref="curve-g curve-f">$\kg(x)\ge \kf(x).$</span> Comparing the integrals over the specified interval $[0,1],$ we also see that <span data-ref="curve-g curve-f">$\int_{0}^{1}\kg(x)dx\ge\int_{0}^{1}\kf(x)dx$</span> (Figure 5.24). The thin, red-shaded area shows just how much difference there is between these two integrals over the interval $[0,1].$</p>
+</div>
+</section>
+
+<section id="average-value">
+<h2>Average Value of a Function</h2>
+<p>We often need to find the average of a set of numbers, such as an average test grade. Suppose you received the following test scores in your algebra class: 89, 90, 56, 78, 100, and 69. Your semester grade is your average of test scores and you want to know what grade to expect. We can find the average by adding all the scores and dividing by the number of scores. In this case, there are six test scores. Thus,</p>
+$$\frac{89+90+56+78+100+69}{6}=\frac{482}{6}\approx 80.33.$$
+<p>Therefore, your average test grade is approximately 80.33, which translates to a B− at most schools.</p>
+<p>Suppose, however, that we have a <span data-concept="function">function</span> $\kv(t)$ that gives us the speed of an object at any time <em>t</em>, and we want to find the object’s average speed. The <span data-concept="function">function</span> $\kv(t)$ takes on an infinite number of values, so we can’t use the process just described. Fortunately, we can use a <span data-concept="definite-integral">definite integral</span> to find the <span data-concept="average-value-of-a-function">average value of a function</span> such as this.</p>
+<p>Let $\kf(x)$ be <span data-concept="continuity-over-an-interval">continuous</span> over the interval $[a,b]$ and let $[a,b]$ be divided into <em>n</em> subintervals of width $\Delta x=(b-a)/n.$ Choose a representative $x_{i}^{*}$ in each subinterval and calculate $\kf(x_{i}^{*})$ for $i=1,2,\ldots,n.$ In other words, consider each $\kf(x_{i}^{*})$ as a sampling of the <span data-concept="function">function</span> over each subinterval. The <span data-concept="average-value-of-a-function">average value of the function</span> may then be approximated as</p>
+$$\frac{\kf(x_{1}^{*})+\kf(x_{2}^{*})+\cdots+\kf(x_{n}^{*})}{n},$$
+<p>which is basically the same expression used to calculate the average of discrete values.</p>
+<p>But we know $\Delta x=\frac{b-a}{n},$ so $n=\frac{b-a}{\Delta x},$ and we get</p>
+$$\frac{\kf(x_{1}^{*})+\kf(x_{2}^{*})+\cdots+\kf(x_{n}^{*})}{n}=\frac{\kf(x_{1}^{*})+\kf(x_{2}^{*})+\cdots+\kf(x_{n}^{*})}{\frac{(b-a)}{\Delta x}}.$$
+<p>Following through with the algebra, the numerator is a sum that is represented as $\sum_{i=1}^{n} \kf(x_{i}^{*}),$ and we are dividing by a fraction. To divide by a fraction, invert the denominator and multiply. Thus, an approximate value for the <span data-concept="average-value-of-a-function">average value of the function</span> is given by</p>
+$$\begin{aligned}\frac{\sum_{i=1}^{n} \kf(x_{i}^{*})}{\frac{(b-a)}{\Delta x}} &=(\frac{\Delta x}{b-a})\sum_{i=1}^{n} \kf(x_{i}^{*}) \\ &=(\frac{1}{b-a})\sum_{i=1}^{n} \kf(x_{i}^{*})\Delta x.\end{aligned}$$
+<p>This is a <span data-concept="riemann-sum">Riemann sum</span>. Then, to get the <em>exact</em> <span data-concept="average-value-of-a-function">average value</span>, take the <span data-concept="limit">limit</span> as <em>n</em> goes to infinity. Thus, the <span data-concept="average-value-of-a-function">average value of a function</span> is given by</p>
+$$\frac{1}{b-a}\lim_{n\to \infty}\sum_{i=1}^{n} \kf(x_{i})\Delta x=\frac{1}{b-a}\int_{a}^{b}\kf(x)dx.$$
+<div class="note" id="average-value-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf(x)$ be <span data-concept="continuity-over-an-interval">continuous</span> over the interval $[a,b].$ Then, the <strong><span data-concept="average-value-of-a-function">average value of the function</span></strong> $\kf(x)$ (or <strong><span data-concept="average-value-of-a-function">$\kfave$</span></strong>) on $[a,b]$ is given by</p>
+$$\kfave=\frac{1}{b-a}\int_{a}^{b}\kf(x)dx.$$
+</div>
+<div class="example" id="fs-id1170571712593">
+<h3>Example 5.14 · Finding the Average Value of a Linear Function</h3>
+<p>Find the <span data-concept="average-value-of-a-function">average value</span> of <span data-fn="x+1">$\kf(x)=x+1$</span> over the interval $[0,5].$</p>
+<h4>Solution</h4>
+<p>First, graph the <span data-concept="function">function</span> on the stated interval, as shown in Figure 5.25.</p>
+<figure class="sim" id="fig-trapezoid" data-figure="5.25" data-original="/media/ch05/CNX_Calc_Figure_05_02_017.jpg" data-original-caption="The graph shows the area under the function f(x)=x+1 over [0,5].">
+  <div class="sim-head"><span class="eyebrow">Figure 5.25</span><span>The graph shows the area under the function $\kf(x)=x+1$ over $[0,5].$</span></div>
+</figure>
+<p>The region is a trapezoid lying on its side, so we can use the area formula for a trapezoid $A=\frac{1}{2}h(a+b),$ where <em>h</em> represents height, and <em>a</em> and <em>b</em> represent the two parallel sides. Then,</p>
+$$\begin{aligned}\int_{0}^{5}x+1dx &=\frac{1}{2}h(a+b) \\ &=\frac{1}{2}\cdot 5\cdot (1+6) \\ &=\frac{35}{2}.\end{aligned}$$
+<p>Thus the <span data-concept="average-value-of-a-function">average value of the function</span> is</p>
+$$\frac{1}{5-0}\int_{0}^{5}x+1dx=\frac{1}{5}\cdot \frac{35}{2}=\frac{7}{2}.$$
+</div>
+<div class="exercises" data-place="fs-id1170571712593"></div>
+</section>

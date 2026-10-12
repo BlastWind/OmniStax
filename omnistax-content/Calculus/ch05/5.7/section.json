@@ -1,0 +1,970 @@
+{
+ "id": "5.7",
+ "module": "m53636",
+ "chapter": "5",
+ "title": "Integrals Resulting in Inverse Trigonometric Functions",
+ "short": "Inverse Trigonometric Integrals",
+ "lead": "The <span data-concept=\"derivatives-of-inverse-trigonometric-functions\">derivatives of the inverse trigonometric functions</span> turn into three integration formulas, for integrands built from a² − u², a² + u² and u² − a². With <span data-concept=\"integration-by-substitution\">substitution</span> to bring an integrand into one of these forms, they give <span data-concept=\"antiderivative\">antiderivatives</span> that are <span data-concept=\"inverse-trigonometric-functions\">inverse sines</span>, tangents and secants.",
+ "objectives": [
+  "Integrate functions resulting in inverse trigonometric functions"
+ ],
+ "summary_html": "<ul><li>Formulas for <span data-concept=\"derivatives-of-inverse-trigonometric-functions\">derivatives of inverse trigonometric functions</span> developed in <a href=\"/calculus/ch03/3.7/\">Derivatives of Exponential and Logarithmic Functions</a><sup class=\"fn\" data-note=\"summary-link\"></sup> lead directly to integration formulas involving <span data-concept=\"inverse-trigonometric-functions\">inverse trigonometric functions</span>.</li><li>Use the formulas listed in the rule on <span data-concept=\"integrals-resulting-in-inverse-trigonometric-functions\">integration formulas resulting in inverse trigonometric functions</span> to match up the correct format and make alterations as necessary to solve the problem.</li><li><span data-concept=\"integration-by-substitution\">Substitution</span> is often required to put the <span data-concept=\"integrand\">integrand</span> in the correct form.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The explanations 404 and 406 and the proof 438 are kept with AI-written answers, marked as such; the computational ones are left out: 392, 394 and 396 (definite integrals), 398, 400 and 402 (indefinite integrals), 408 and 410 (antiderivatives graphed by calculator), 412, 414 and 416 (antiderivatives by substitution), 418, 420 and 422 (constants of integration by calculator), 424, 426 and 428 (integrals by substitution), 430 and 432 (definite integrals), 434 (an improper limit) and 436 (an area between two graphs by calculator). Of the Chapter Review Exercises printed at the end of this section, 453 is set here; the rest are set with the sections that introduce what they test: 439 in 5.1, 440 and 441 in 5.2, 442, 443, 445, 455 and 457 in 5.3, 447, 459 and 463 in 5.4, 449 and 451 in 5.5, and 461 in 5.6. Review exercises 444, 446, 448, 450, 452, 454, 456, 458, 460 and 462 have no answer in the key and are left out.",
+ "figures": [
+  {
+   "id": "sim-inverse-trig",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "inverse-trig-rule",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-intro",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-intro",
+   "concept": "derivatives-of-inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-intro",
+   "concept": "one-to-one-function",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-sine",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-sine",
+   "concept": "implicit-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-sine",
+   "concept": "pythagorean-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "other-inverse",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571696734",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572167984",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572546542",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572206423",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572350769",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571714255",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572373474",
+   "source_number": "Checkpoint 5.40",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571696734"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Evaluate the integral $\\int \\frac{dx}{\\sqrt{1-16x^{2}}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{4}\\;\\sin^{-1}(4x)+C$",
+    "hint": "Substitute $u=4x$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170571698177",
+   "source_number": "Checkpoint 5.41",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572167984"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Find the indefinite integral using an inverse trigonometric function and substitution for $\\int \\frac{dx}{\\sqrt{9-x^{2}}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin^{-1}(\\frac{x}{3})+C$",
+    "hint": "Use the formula in the rule on integration formulas resulting in inverse trigonometric functions."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572308096",
+   "source_number": "Checkpoint 5.42",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572206423"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Use substitution to find the antiderivative  $\\int \\frac{dx}{25+4x^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{10}\\;\\tan^{-1}(\\frac{2x}{5})+C$",
+    "hint": "Use the solving strategy from Example 5.52 and the rule on integration formulas resulting in inverse trigonometric functions."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170572243063",
+   "source_number": "Checkpoint 5.43",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572350769"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Evaluate the integral $\\int \\frac{dx}{16+x^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{4}\\;\\tan^{-1}(\\frac{x}{4})+C$",
+    "hint": "Follow the steps in Example 5.53."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170572480548",
+   "source_number": "Checkpoint 5.44",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571714255"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Evaluate the definite integral $\\int_{0}^{2}\\frac{dx}{4+x^{2}}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.392699,
+    "tol": 0.0001,
+    "solution": "$\\frac{\\pi}{8}$",
+    "hint": "Follow the procedures from Example 5.54 to solve the problem."
+   }
+  },
+  {
+   "id": "e391",
+   "source_id": "fs-id1170572180188",
+   "source_number": "391",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, evaluate each integral in terms of an inverse trigonometric function.</p><p>$\\int_{0}^{\\sqrt{3}/2}\\frac{dx}{\\sqrt{1-x^{2}}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.047198,
+    "tol": 0.0001,
+    "solution": "$\\sin^{-1}x{|}_{0}^{\\sqrt{3}/2}=\\frac{\\pi}{3}$"
+   }
+  },
+  {
+   "id": "e393",
+   "source_id": "fs-id1170571609291",
+   "source_number": "393",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, evaluate each integral in terms of an inverse trigonometric function.</p><p>$\\int_{\\sqrt{3}}^{1}\\frac{dx}{1+x^{2}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.261799,
+    "tol": 0.0001,
+    "solution": "$\\tan^{-1}x{|}_{\\sqrt{3}}^{1}=-\\frac{\\pi}{12}$"
+   }
+  },
+  {
+   "id": "e395",
+   "source_id": "fs-id1170572625745",
+   "source_number": "395",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, evaluate each integral in terms of an inverse trigonometric function.</p><p>$\\int_{\\frac{2}{\\sqrt{3}}}^{\\sqrt{2}}\\frac{dx}{|x|\\sqrt{x^{2}-1}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.261799,
+    "tol": 0.0001,
+    "solution": "$\\sec^{-1}{|}_{\\frac{2}{\\sqrt{3}}}^{\\sqrt{2}}=\\frac{\\pi}{4}-\\frac{\\pi}{6}=\\frac{\\pi}{12}$"
+   }
+  },
+  {
+   "id": "e397",
+   "source_id": "fs-id1170572333184",
+   "source_number": "397",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, find each indefinite integral, using appropriate substitutions.</p><p>$\\int \\frac{dx}{\\sqrt{9-x^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin^{-1}(\\frac{x}{3})+C$"
+   }
+  },
+  {
+   "id": "e399",
+   "source_id": "fs-id1170571630356",
+   "source_number": "399",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, find each indefinite integral, using appropriate substitutions.</p><p>$\\int \\frac{dx}{9+x^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}\\;\\tan^{-1}(\\frac{x}{3})+C$"
+   }
+  },
+  {
+   "id": "e401",
+   "source_id": "fs-id1170571712540",
+   "source_number": "401",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, find each indefinite integral, using appropriate substitutions.</p><p>$\\int \\frac{dx}{|x|\\sqrt{x^{2}-9}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}\\;\\sec^{-1}(\\frac{x}{3})+C$"
+   }
+  },
+  {
+   "id": "e403",
+   "source_id": "fs-id1170572274931",
+   "source_number": "403",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Explain the relationship $-\\cos^{-1}t+C=\\int \\frac{dt}{\\sqrt{1-t^{2}}}=\\sin^{-1}t+C.$ Is it true, in general, that $\\cos^{-1}t=-\\sin^{-1}t?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\cos(\\frac{\\pi}{2}-\\theta )=\\sin\\theta .$ So, $\\sin^{-1}t=\\frac{\\pi}{2}-\\cos^{-1}t.$ They differ by a constant."
+   }
+  },
+  {
+   "id": "e404",
+   "source_id": "fs-id1170572563040",
+   "source_number": "404",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Explain the relationship $\\sec^{-1}t+C=\\int \\frac{dt}{|t|\\sqrt{t^{2}-1}}=-\\csc^{-1}t+C.$ Is it true, in general, that $\\sec^{-1}t=-\\csc^{-1}t?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $\\csc(\\frac{\\pi}{2}-\\theta)=\\sec\\theta,$ $\\sec^{-1}t=\\frac{\\pi}{2}-\\csc^{-1}t$ for $|t|\\ge 1:$ $\\sec^{-1}t$ and $-\\csc^{-1}t$ are two antiderivatives of $\\frac{1}{|t|\\sqrt{t^{2}-1}}$ that differ by the constant $\\frac{\\pi}{2},$ which the constants of integration absorb. So it is not true in general that $\\sec^{-1}t=-\\csc^{-1}t;$ the two differ by $\\frac{\\pi}{2}.$"
+   }
+  },
+  {
+   "id": "e405",
+   "source_id": "fs-id1170571609258",
+   "source_number": "405",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Explain what is wrong with the following integral: $\\int_{1}^{2}\\frac{dt}{\\sqrt{1-t^{2}}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{1-t^{2}}$ is not defined as a real number when $t\\gt 1.$"
+   }
+  },
+  {
+   "id": "e406",
+   "source_id": "fs-id1170572163878",
+   "source_number": "406",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Explain what is wrong with the following integral: $\\int_{-1}^{1}\\frac{dt}{|t|\\sqrt{t^{2}-1}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The integrand $\\frac{1}{|t|\\sqrt{t^{2}-1}}$ is not a real number for $|t|\\lt 1,$ and at $t=\\pm 1$ its denominator is zero, so it is defined at no point of $[-1,1]$ and the integral has no meaning, as in Exercise 405."
+   }
+  },
+  {
+   "id": "e407",
+   "source_id": "fs-id1170571699012",
+   "source_number": "407",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, solve for the antiderivative $\\int f$ of $\\kf$ with $C=0,$ then use a calculator to graph $\\kf$ and the antiderivative over the given interval $[a,b].$ Identify a value of <em>C</em> such that adding <em>C</em> to the antiderivative recovers the definite integral $F(x)=\\int_{a}^{x}\\kf(t)dt.$</p><p><strong>[T]</strong> $\\int \\frac{1}{\\sqrt{9-x^{2}}}dx$ over $[-3,3]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The antiderivative is $\\sin^{-1}(\\frac{x}{3})+C.$ Taking $C=\\frac{\\pi}{2}$ recovers the definite integral.</p><img src=\"/media/ch05/CNX_Calc_Figure_05_07_201.jpg\" alt=\"Two graphs. The first shows the function f(x) = 1 / sqrt(9 – x^2). It is an upward opening curve symmetric about the y axis, crossing at (0, 1/3). The second shows the function F(x) = arcsin(1/3 x). It is an increasing curve going through the origin.\">"
+   }
+  },
+  {
+   "id": "e409",
+   "source_id": "fs-id1170572565396",
+   "source_number": "409",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, solve for the antiderivative $\\int f$ of $\\kf$ with $C=0,$ then use a calculator to graph $\\kf$ and the antiderivative over the given interval $[a,b].$ Identify a value of <em>C</em> such that adding <em>C</em> to the antiderivative recovers the definite integral $F(x)=\\int_{a}^{x}\\kf(t)dt.$</p><p><strong>[T]</strong> $\\int \\frac{\\cos x}{4+\\sin^{2}x}dx$ over $[-6,6]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The antiderivative is $\\frac{1}{2}\\;\\tan^{-1}(\\frac{\\sin x}{2})+C.$ Taking $C=\\frac{1}{2}\\;\\tan^{-1}(\\frac{\\sin(6)}{2})$ recovers the definite integral.</p><img src=\"/media/ch05/CNX_Calc_Figure_05_07_203.jpg\" alt=\"Two graphs. The first shows the function f(x) = cos(x) / (4 + sin(x)^2). It is an oscillating function over [-6, 6] with turning points at roughly (-3, -2.5), (0, .25), and (3, -2.5), where (0,.25) is a local max and the others are local mins. The second shows the function F(x) = .5 * arctan(.5*sin(x)), which also oscillates over [-6,6]. It has turning points at roughly (-4.5, .25), (-1.5, -.25), (1.5, .25), and (4.5, -.25).\">"
+   }
+  },
+  {
+   "id": "e411",
+   "source_id": "fs-id1170571769593",
+   "source_number": "411",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, compute the antiderivative using appropriate substitutions.</p><p>$\\int \\frac{\\sin^{-1}tdt}{\\sqrt{1-t^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}{(\\sin^{-1}t)}^{2}+C$"
+   }
+  },
+  {
+   "id": "e413",
+   "source_id": "fs-id1170572628413",
+   "source_number": "413",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, compute the antiderivative using appropriate substitutions.</p><p>$\\int \\frac{\\tan^{-1}(2t)}{1+4t^{2}}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{4}{(\\tan^{-1}(2t))}^{2}+C$"
+   }
+  },
+  {
+   "id": "e415",
+   "source_id": "fs-id1170572558294",
+   "source_number": "415",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, compute the antiderivative using appropriate substitutions.</p><p>$\\int \\frac{\\sec^{-1}(\\frac{t}{2})}{|t|\\sqrt{t^{2}-4}}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{4}(\\sec^{-1}{(\\frac{t}{2})}^{2})+C$"
+   }
+  },
+  {
+   "id": "e417",
+   "source_id": "fs-id1170572601262",
+   "source_number": "417",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, use a calculator to graph the antiderivative $\\int f$ with $C=0$ over the given interval $[a,b].$ Approximate a value of <em>C</em>, if possible, such that adding <em>C</em> to the antiderivative gives the same value as the definite integral $F(x)=\\int_{a}^{x}\\kf(t)dt.$</p><p><strong>[T]</strong> $\\int \\frac{1}{x\\sqrt{x^{2}-4}}dx$ over $[2,6]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The antiderivative is $\\frac{1}{2}\\;\\sec^{-1}(\\frac{x}{2})+C.$ Taking $C=0$ recovers the definite integral over $[2,6].$</p><img src=\"/media/ch05/CNX_Calc_Figure_05_07_205.jpg\" alt=\"A graph of the function f(x) = -.5 * arctan(2 / ( sqrt(x^2 – 4) ) ) in quadrant four. It is an increasing concave down curve with a vertical asymptote at x=2.\">"
+   }
+  },
+  {
+   "id": "e419",
+   "source_id": "fs-id1170572249934",
+   "source_number": "419",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, use a calculator to graph the antiderivative $\\int f$ with $C=0$ over the given interval $[a,b].$ Approximate a value of <em>C</em>, if possible, such that adding <em>C</em> to the antiderivative gives the same value as the definite integral $F(x)=\\int_{a}^{x}\\kf(t)dt.$</p><p><strong>[T]</strong> $\\int \\frac{(\\sin x+x\\;\\cos x)}{1+x^{2}\\sin^{2}x}dx$ over $[-6,6]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The general antiderivative is $\\tan^{-1}(x\\;\\sin x)+C.$ Taking $C=-\\tan^{-1}(6\\;\\sin(6))$ recovers the definite integral.</p><img src=\"/media/ch05/CNX_Calc_Figure_05_07_207.jpg\" alt=\"The graph of f(x) = arctan(x sin(x)) over [-6,6]. It has five turning points at roughly (-5, -1.5), (-2,1), (0,0), (2,1), and (5,-1.5).\">"
+   }
+  },
+  {
+   "id": "e421",
+   "source_id": "fs-id1170571697193",
+   "source_number": "421",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, use a calculator to graph the antiderivative $\\int f$ with $C=0$ over the given interval $[a,b].$ Approximate a value of <em>C</em>, if possible, such that adding <em>C</em> to the antiderivative gives the same value as the definite integral $F(x)=\\int_{a}^{x}\\kf(t)dt.$</p><p><strong>[T]</strong> $\\int \\frac{1}{x+x\\ln^{2}x}dx$ over $[0,2]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The general antiderivative is $\\tan^{-1}(\\ln x)+C.$ Taking $C=\\frac{\\pi}{2}=\\tan^{-1}\\infty$ recovers the definite integral.</p><img src=\"/media/ch05/CNX_Calc_Figure_05_07_209.jpg\" alt=\"A graph of the function f(x) = arctan(ln(x)) over (0, 2]. It is an increasing curve with x-intercept at (1,0).\">"
+   }
+  },
+  {
+   "id": "e423",
+   "source_id": "fs-id1170572456364",
+   "source_number": "423",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, compute each integral using appropriate substitutions.</p><p>$\\int \\frac{e^{t}}{\\sqrt{1-e^{2t}}}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin^{-1}(e^{t})+C$"
+   }
+  },
+  {
+   "id": "e425",
+   "source_id": "fs-id1170572396478",
+   "source_number": "425",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, compute each integral using appropriate substitutions.</p><p>$\\int \\frac{dt}{t\\sqrt{1-\\ln^{2}t}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin^{-1}(\\ln t)+C$"
+   }
+  },
+  {
+   "id": "e427",
+   "source_id": "fs-id1170572218636",
+   "source_number": "427",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, compute each integral using appropriate substitutions.</p><p>$\\int \\frac{\\cos^{-1}(2t)}{\\sqrt{1-4t^{2}}}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{4}{(\\cos^{-1}(2t))}^{2}+C$"
+   }
+  },
+  {
+   "id": "e429",
+   "source_id": "fs-id1170572643272",
+   "source_number": "429",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, compute each definite integral.</p><p>$\\int_{0}^{1/2}\\frac{\\tan(\\sin^{-1}t)}{\\sqrt{1-t^{2}}}dt$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.143841,
+    "tol": 0.0001,
+    "solution": "$\\frac{1}{2}\\ln(\\frac{4}{3})$"
+   }
+  },
+  {
+   "id": "e431",
+   "source_id": "fs-id1170571710706",
+   "source_number": "431",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>In the following exercises, compute each definite integral.</p><p>$\\int_{0}^{1/2}\\frac{\\sin(\\tan^{-1}t)}{1+t^{2}}dt$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.105573,
+    "tol": 0.0001,
+    "solution": "$1-\\frac{2}{\\sqrt{5}}$"
+   }
+  },
+  {
+   "id": "e433",
+   "source_id": "fs-id1170572415152",
+   "source_number": "433",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>For $A\\gt 0,$ compute $I(A)=\\int_{-A}^{A}\\frac{dt}{1+t^{2}}$ and evaluate $\\lim_{A\\to \\infty}I(A),$ the area under the graph of $\\frac{1}{1+t^{2}}$ on $[-\\infty,\\infty].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\tan^{-1}(A)\\to \\pi$ as $A\\to \\infty$"
+   }
+  },
+  {
+   "id": "e435",
+   "source_id": "fs-id1170572569940",
+   "source_number": "435",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Use the substitution $u=\\sqrt{2}\\;\\cot x$ and the identity $1+\\cot^{2}x=\\csc^{2}x$ to evaluate $\\int \\frac{dx}{1+\\cos^{2}x}.$ (<em>Hint:</em> Multiply the top and bottom of the integrand by $\\csc^{2}x.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Using the hint, one has $\\int \\frac{\\csc^{2}x}{\\csc^{2}x+\\cot^{2}x}dx=\\int \\frac{\\csc^{2}x}{1+2\\cot^{2}x}dx.$ Set $u=\\sqrt{2}\\cot x.$ Then, $du=-\\sqrt{2}\\csc^{2}x$ and the integral is $-\\frac{1}{\\sqrt{2}}\\int \\frac{du}{1+u^{2}}=-\\frac{1}{\\sqrt{2}}\\tan^{-1}u+C=\\frac{1}{\\sqrt{2}}\\;\\tan^{-1}(\\sqrt{2}\\cot x)+C.$ If one uses the identity $\\tan^{-1}s+\\tan^{-1}(\\frac{1}{s})=\\frac{\\pi}{2},$ then this can also be written $\\frac{1}{\\sqrt{2}}\\;\\tan^{-1}(\\frac{\\tan x}{\\sqrt{2}})+C.$"
+   }
+  },
+  {
+   "id": "e437",
+   "source_id": "fs-id1170571613771",
+   "source_number": "437",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p><strong>[T]</strong> Approximate the points at which the graphs of $\\kf(x)=x^{2}-1$ and ${\\kg(x)=(x^{2}+1)}^{\\frac{1}{2}}$ intersect to four decimal places, and approximate the area between their graphs to three decimal places.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x\\approx \\pm1.7321.$ The left endpoint estimate with $N=100$ is 4.781 and these decimals persist for $N=500.$"
+   }
+  },
+  {
+   "id": "e438",
+   "source_id": "fs-id1170571661806",
+   "source_number": "438",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "figure": {
+    "src": "/media/ch05/CNX_Calc_Figure_05_07_211.jpg",
+    "alt": "A diagram containing two shapes, a wedge from a circle shaded in blue on top of a triangle shaded in brown. The triangle’s hypotenuse is one of the radii edges of the wedge of the circle and is 1 unit long. There is a dotted red line forming a rectangle out of part of the wedge and the triangle, with the hypotenuse of the triangle as the diagonal of the rectangle. The curve of the circle is described by the equation sqrt(1-x^2)."
+   },
+   "prompt": "<p>Use the following graph to prove that $\\int_{0}^{x}\\sqrt{1-t^{2}}dt=\\frac{1}{2}x\\sqrt{1-x^{2}}+\\frac{1}{2}\\;\\sin^{-1}x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $0\\le x\\le 1,$ the region under $y=\\sqrt{1-t^{2}}$ from $0$ to $x$ is the triangle with vertices $(0,0),$ $(x,0)$ and $(x,\\sqrt{1-x^{2}})$ together with the sector of the unit disk between the $y$-axis and the radius to $(x,\\sqrt{1-x^{2}}).$ The triangle has area $\\frac{1}{2}x\\sqrt{1-x^{2}}.$ The sector’s angle $\\theta,$ measured from the $y$-axis, has $\\sin\\theta=x,$ so $\\theta=\\sin^{-1}x,$ and a sector of the unit circle has area $\\frac{1}{2}\\theta.$ Adding, $\\int_{0}^{x}\\sqrt{1-t^{2}}dt=\\frac{1}{2}x\\sqrt{1-x^{2}}+\\frac{1}{2}\\sin^{-1}x.$"
+   }
+  },
+  {
+   "id": "r453",
+   "source_id": "fs-id1170572330260",
+   "source_number": "453",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-rule",
+   "prompt": "<p>Find the antiderivative.</p><p>$\\int\\frac{4x^{2}}{\\sqrt{1-x^{6}}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{4}{3}\\sin^{-1}(x^{3})+C$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e391",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e391",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e393",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e393",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e395",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e395",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e397",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e397",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e399",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e399",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e401",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e401",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e403",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e403",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e404",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e404",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e405",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e405",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e406",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e406",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e407",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e407",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e409",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e409",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e411",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e411",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e413",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e413",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e415",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e415",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e417",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e419",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e419",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e421",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e421",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e423",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e423",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e425",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e425",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e427",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e427",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e429",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e429",
+   "concept": "substitution-with-definite-integrals"
+  },
+  {
+   "exercise": "e431",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e431",
+   "concept": "substitution-with-definite-integrals"
+  },
+  {
+   "exercise": "e433",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e433",
+   "concept": "limit"
+  },
+  {
+   "exercise": "e435",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e435",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e437",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e437",
+   "concept": "left-endpoint-approximation"
+  },
+  {
+   "exercise": "e438",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e438",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "r453",
+   "concept": "integrals-resulting-in-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "r453",
+   "concept": "integration-by-substitution"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "summary-link",
+   "kind": "correction",
+   "html": "The book names the section “Derivatives of Exponential and Logarithmic Functions”; the formulas for the derivatives of the inverse trigonometric functions are in Section 3.7, Derivatives of Inverse Functions, which the link opens."
+  }
+ ]
+}

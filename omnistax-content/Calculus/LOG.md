@@ -148,3 +148,27 @@ to Example 2.12 names the qualified id.
 ## Pass 5 (2026-10-12): No volumes
 
 Chen's ruling: the merged book drops the volumes for the reader. The Preface's words that assume three volumes are changed to the one book, its three coverage lists made one list of Chapters 1–17 in the merged numbers, and each change carries a correction note giving what the book printed (v-welcome, v-licence, v-about (heading and paragraph), v-coverage, v-chapters, v-pedagogy, v-transcendentals). "Over 60 Proofs" stays, still true of the whole book. RULES and the chapter configs now say that 15.6's "Section 6.6 of Volume 1" becomes "Section 6.6" with a note. Chapters 1 and 2 print no volume.
+
+
+## Pass 6 (2026-10-12): Chapter 5 pass
+
+Chapter 5, Integration, was built whole by one agent: prep, the introduction
+and 5.1–5.7, and this pass. Every section's "Wanted at chapter level" was
+applied as the sections were built: the anchors of all the chapter's forms
+and variables rows, a 5.5 row for F′ on `derivative-function`, and a reworded
+5.4 meaning for v that covers Example 5.27's wind speed. Two symbols were
+added, f_ave (`\kfave`) and p′ (`\kpprime`); Lₙ, Rₙ and A₁, A₂ are written
+`\kL_{n}`, `\kA_{1}` on the rows L, R and A, which carry the endpoint and
+area concepts. The chapter review exercises printed at the end of 5.7 landed
+with the section that introduces what each tests: 439 in 5.1; 440
+(AI-marked) and 441 in 5.2; 442 (AI-marked), 443, 445, 455 and 457 in 5.3;
+447, 459 and 463 in 5.4; 449 and 451 in 5.5; 461 in 5.6; 453 stays in 5.7.
+463 and 461 carry the statements of 462 and 460, which the book asks them
+of. Corrections added as notes: 5.2's exercise 101 (the key drops a minus
+sign), 125 (A is 2, not π, and the key writes B − A) and 132 (a < b < c);
+5.3's exercise 165 (the key's upper limit); 5.7's Key Concepts link, whose
+words name 3.9 and open 3.7. A group's "For the following exercises" stem
+is carried only by the exercises the book sets under it. Figures 5.1–5.39
+are numbered without gaps; six Sims of OmniStax’s own were added, two
+figure pairs became moving figures (the car of 5.20 + 5.21, the particle of
+5.33).

@@ -1,0 +1,1458 @@
+{
+ "id": "5.6",
+ "module": "m53635",
+ "chapter": "5",
+ "title": "Integrals Involving Exponential and Logarithmic Functions",
+ "short": "Exponential and Logarithmic Integrals",
+ "lead": "The <span data-concept=\"exponential-function\">exponential function</span> eˣ is its own integral, and x⁻¹ integrates to the natural logarithm of an absolute value. With <span data-concept=\"integration-by-substitution\">substitution</span>, these formulas integrate the models of growth and decay: a <span data-concept=\"price-demand-function\">price–demand function</span> recovered from its marginal rate, a bacteria culture, a population of fruit flies.",
+ "objectives": [
+  "Integrate functions involving exponential functions.",
+  "Integrate functions involving logarithmic functions."
+ ],
+ "summary_html": "<ul><li>Exponential and <span data-concept=\"logarithmic-function\">logarithmic functions</span> arise in many real-world applications, especially those involving growth and decay.</li><li><span data-concept=\"integration-by-substitution\">Substitution</span> is often used to evaluate integrals involving <span data-concept=\"exponential-function\">exponential functions</span> or logarithms.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The key answers 385 only with “Answers will vary,” and an AI-written proof stands instead, marked as such. The even-numbered exercises have no answer in the key. The demonstrations 382, 384, 386 and 388 are kept with AI-written proofs, marked as such; the computational ones are left out: 320 to 326 (indefinite integrals), 328 to 340 (integrals by substitution), 342 and 344 (integrals of logarithms), 346 (an area under 1/t), 348 to 354 (trigonometric integrals as logarithms), 356 and 358 (definite integrals), 360, 362 and 364 (integrals by a given substitution), 366, 368 and 370 (right-endpoint estimates), 372 to 378 (areas), 380 (antiderivatives of fᵍ) and 390 (right-endpoint estimates of a normal distribution). Review exercise 461, printed at the end of Section 5.7, is set here; 460 has no answer in the key and is left out.",
+ "figures": [
+  {
+   "id": "fig-exp-root",
+   "kind": "figure",
+   "number": "5.37",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_06_001.jpg"
+   ],
+   "original_caption": "The graph shows an exponential function times the square root of an exponential function.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-exp-area",
+   "kind": "figure",
+   "number": "5.38",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_06_002.jpg"
+   ],
+   "original_caption": "The indicated area can be calculated by evaluating a definite integral using substitution.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-reciprocal-shift",
+   "kind": "figure",
+   "number": "5.39",
+   "originals": [
+    "/media/ch05/CNX_Calc_Figure_05_06_003.jpg"
+   ],
+   "original_caption": "The domain of this function is xne10.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-reciprocal-log",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "exp-rule",
+   "concept": "integrals-of-exponential-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "log-rule",
+   "concept": "integrals-involving-logarithmic-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "exponential",
+   "concept": "price-demand-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "exponential",
+   "concept": "marginal-price-demand-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "explog-intro",
+   "concept": "exponential-function",
+   "verb": "uses"
+  },
+  {
+   "span": "explog-intro",
+   "concept": "logarithmic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential",
+   "concept": "net-change-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "logarithmic",
+   "concept": "natural-logarithm",
+   "verb": "uses"
+  },
+  {
+   "span": "logarithmic",
+   "concept": "absolute-value-function",
+   "verb": "uses"
+  },
+  {
+   "span": "logarithmic",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id11705722115180",
+   "concept": "integrals-of-exponential-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572209244",
+   "concept": "integrals-of-exponential-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572168487",
+   "concept": "integrals-of-exponential-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572100406",
+   "concept": "marginal-price-demand-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571637964",
+   "concept": "integrals-of-exponential-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572624841",
+   "concept": "integrals-of-exponential-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571807209",
+   "concept": "net-change-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571653089",
+   "concept": "integrals-of-exponential-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571653392",
+   "concept": "integrals-involving-logarithmic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572480542",
+   "concept": "integrals-involving-logarithmic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170571649922",
+   "concept": "integrals-involving-logarithmic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572274908",
+   "concept": "integrals-involving-logarithmic-functions",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170571655362",
+   "source_number": "Checkpoint 5.31",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id11705722115180"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>Find the antiderivative of the function using substitution: $x^{2}e^{-2x^{3}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int x^{2}e^{-2x^{3}}dx=-\\frac{1}{6}e^{-2x^{3}}+C$",
+    "hint": "Let <em>u</em> equal the exponent on <em>e</em>."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170572451630",
+   "source_number": "Checkpoint 5.32",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572209244"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>Find the antiderivative of $e^{x}{(3e^{x}-2)}^{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int e^{x}{(3e^{x}-2)}^{2}dx=\\frac{1}{9}{(3e^{x}-2)}^{3}$",
+    "hint": "Let $u=3e^{x}-2\\;u=3e^{x}-2.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572294922",
+   "source_number": "Checkpoint 5.33",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572168487"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>Evaluate the indefinite integral $\\int 2x^{3}e^{x^{4}}dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int 2x^{3}e^{x^{4}}dx=\\frac{1}{2}e^{x^{4}}$",
+    "hint": "Let $u=x^{4}.$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1170571599290",
+   "source_number": "Checkpoint 5.34",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571637964"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>Evaluate $\\int_{0}^{2}e^{2x}dx.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 26.799075,
+    "tol": 0.0001,
+    "solution": "$\\frac{1}{2}\\int_{0}^{4}e^{u}du=\\frac{1}{2}(e^{4}-1)$",
+    "hint": "Let $u=2x.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1170571637518",
+   "source_number": "Checkpoint 5.35",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572624841"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>From Example 5.42, suppose the bacteria grow at a rate of $\\kq(t)=2^{t}.$ Assume the culture still starts with 10,000 bacteria. Find $\\kQ(t).$ How many bacteria are in the dish after 3 hours?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kQ(t)=\\frac{2^{t}}{\\ln2}+8.557.$ There are 20,099 bacteria in the dish after 3 hours.",
+    "hint": "Use the procedure from Example 5.42 to solve the problem."
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1170572338477",
+   "source_number": "Checkpoint 5.36",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571807209"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>Suppose the rate of growth of the fly population is given by $\\kg(t)=e^{0.01t},$ and the initial fly population is 100 flies. How many flies are in the population after 15 days?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 116,
+    "unit": "flies",
+    "solution": "There are 116 flies.",
+    "hint": "Use the process from Example 5.43 to solve the problem."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1170572554378",
+   "source_number": "Checkpoint 5.37",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571653089"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>Evaluate the definite integral using substitution: $\\int_{1}^{2}\\frac{1}{x^{3}}e^{4x^{-2}}dx.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.484868,
+    "tol": 0.0001,
+    "solution": "$\\int_{1}^{2}\\frac{1}{x^{3}}e^{4x^{-2}}dx=\\frac{1}{8}[e^{4}-e]$",
+    "hint": "Let $u=4x^{-2}.$"
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1170571597476",
+   "source_number": "Checkpoint 5.38",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571653392"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>Find the antiderivative of $\\frac{1}{x+2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln|x+2|+C$",
+    "hint": "Follow the pattern from Example 5.45 to solve the problem."
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1170571660184",
+   "source_number": "Checkpoint 5.39",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170571649922"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>Find the antiderivative of $\\log_{3}x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x}{\\ln3}(\\ln x-1)+C$",
+    "hint": "Follow Example 5.47 and refer to the rule on integration formulas involving logarithmic functions."
+   }
+  },
+  {
+   "id": "e321",
+   "source_id": "fs-id1170571678838",
+   "source_number": "321",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>In the following exercises, compute each indefinite integral.</p><p>$\\int e^{-3x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{-1}{3}e^{-3x}+C$"
+   }
+  },
+  {
+   "id": "e323",
+   "source_id": "fs-id1170572601296",
+   "source_number": "323",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>In the following exercises, compute each indefinite integral.</p><p>$\\int 3^{-x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{3^{-x}}{\\ln3}+C$"
+   }
+  },
+  {
+   "id": "e325",
+   "source_id": "fs-id1170572611839",
+   "source_number": "325",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>In the following exercises, compute each indefinite integral.</p><p>$\\int \\frac{2}{x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2ln|x|+C\\text{or}ln(x^{2})\\text{+C}$"
+   }
+  },
+  {
+   "id": "e327",
+   "source_id": "fs-id1170572333073",
+   "source_number": "327",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>In the following exercises, compute each indefinite integral.</p><p>$\\int \\frac{1}{\\sqrt{x}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\sqrt{x}+C$"
+   }
+  },
+  {
+   "id": "e329",
+   "source_id": "fs-id1170571638228",
+   "source_number": "329",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>In the following exercises, find each indefinite integral by using appropriate substitutions.</p><p>$\\int \\frac{dx}{x{(\\ln x)}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{\\ln x}+C$"
+   }
+  },
+  {
+   "id": "e331",
+   "source_id": "fs-id1170571697166",
+   "source_number": "331",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>In the following exercises, find each indefinite integral by using appropriate substitutions.</p><p>$\\int \\frac{dx}{x\\;\\ln x\\;\\ln(\\ln x)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(\\ln(\\ln x))+C$"
+   }
+  },
+  {
+   "id": "e333",
+   "source_id": "fs-id1170571539202",
+   "source_number": "333",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>In the following exercises, find each indefinite integral by using appropriate substitutions.</p><p>$\\int \\frac{\\cos x-x\\;\\sin x}{x\\;\\cos x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(x\\;\\cos x)+C$"
+   }
+  },
+  {
+   "id": "e335",
+   "source_id": "fs-id1170572456410",
+   "source_number": "335",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>In the following exercises, find each indefinite integral by using appropriate substitutions.</p><p>$\\int \\ln(\\cos x)\\tan xdx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}{(\\ln(\\cos(x)))}^{2}+C$"
+   }
+  },
+  {
+   "id": "e337",
+   "source_id": "fs-id1170571580978",
+   "source_number": "337",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>In the following exercises, find each indefinite integral by using appropriate substitutions.</p><p>$\\int x^{2}e^{-x^{3}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{-e^{-x^{3}}}{3}+C$"
+   }
+  },
+  {
+   "id": "e339",
+   "source_id": "fs-id1170572218671",
+   "source_number": "339",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>In the following exercises, find each indefinite integral by using appropriate substitutions.</p><p>$\\int e^{\\tan x}\\sec^{2}xdx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{\\tan x}+C$"
+   }
+  },
+  {
+   "id": "e341",
+   "source_id": "fs-id1170572643203",
+   "source_number": "341",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>In the following exercises, find each indefinite integral by using appropriate substitutions.</p><p>$\\int \\frac{e^{\\ln(1-t)}}{1-t}dt$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$t+C$"
+   }
+  },
+  {
+   "id": "e343",
+   "source_id": "fs-id1170571710720",
+   "source_number": "343",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, verify by differentiation that $\\int \\ln x\\;dx=x(\\ln x-1)+C,$ then use appropriate changes of variables to compute the integral.</p><p>$\\int x^{2}\\text{ln(}x^{2})\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2}{9}x^{3}(\\ln(x^{3})-1)+C$"
+   }
+  },
+  {
+   "id": "e345",
+   "source_id": "fs-id1170572415189",
+   "source_number": "345",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, verify by differentiation that $\\int \\ln x\\;dx=x(\\ln x-1)+C,$ then use appropriate changes of variables to compute the integral.</p><p>$\\int \\frac{\\ln x}{\\sqrt{x}}dx$ $(Hint\\text{:}\\;\\text{Set}\\;u=\\sqrt{x}.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\sqrt{x}(\\ln x-2)+C$"
+   }
+  },
+  {
+   "id": "e347",
+   "source_id": "fs-id1170572629242",
+   "source_number": "347",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>Write an integral to express the area under the graph of $y=e^{t}$ between $t=0$ and $t=\\ln x,$ and evaluate the integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{0}^{\\ln x}e^{t}dt=e^{t}{|}_{0}^{\\ln x}=e^{\\ln x}-e^{0}=x-1$"
+   }
+  },
+  {
+   "id": "e349",
+   "source_id": "fs-id1170571571932",
+   "source_number": "349",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, use appropriate substitutions to express the trigonometric integrals in terms of compositions with logarithms.</p><p>$\\int \\frac{\\sin(3x)-\\cos(3x)}{\\sin(3x)+\\cos(3x)}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{3}\\ln|\\sin(3x)+\\cos(3x)|\\text{+C}$"
+   }
+  },
+  {
+   "id": "e351",
+   "source_id": "fs-id1170571777887",
+   "source_number": "351",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, use appropriate substitutions to express the trigonometric integrals in terms of compositions with logarithms.</p><p>$\\int x\\;\\csc(x^{2})dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}\\ln|\\csc(x^{2})+\\cot(x^{2})|+C$"
+   }
+  },
+  {
+   "id": "e353",
+   "source_id": "fs-id1170571613744",
+   "source_number": "353",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, use appropriate substitutions to express the trigonometric integrals in terms of compositions with logarithms.</p><p>$\\int \\ln(\\csc x)\\cot xdx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}{(\\ln(\\csc x))}^{2}+C$"
+   }
+  },
+  {
+   "id": "e355",
+   "source_id": "fs-id1170572347000",
+   "source_number": "355",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, evaluate the definite integral.</p><p>$\\int_{1}^{2}\\frac{1+2x+x^{2}}{3x+3x^{2}+x^{3}}dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.437394,
+    "tol": 0.0001,
+    "solution": "$\\frac{1}{3}\\ln(\\frac{26}{7})$"
+   }
+  },
+  {
+   "id": "e357",
+   "source_id": "fs-id1170572330008",
+   "source_number": "357",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, evaluate the definite integral.</p><p>$\\int_{0}^{\\pi/3}\\frac{\\sin x-\\cos x}{\\sin x+\\cos x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(\\sqrt{3}-1)$"
+   }
+  },
+  {
+   "id": "e359",
+   "source_id": "fs-id1170572434951",
+   "source_number": "359",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, evaluate the definite integral.</p><p>$\\int_{\\pi/4}^{\\pi/3}\\cot xdx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.202733,
+    "tol": 0.0001,
+    "solution": "$\\frac{1}{2}\\ln\\frac{3}{2}$"
+   }
+  },
+  {
+   "id": "e361",
+   "source_id": "fs-id1170572627084",
+   "source_number": "361",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, integrate using the indicated substitution.</p><p>$\\int \\frac{y-1}{y+1}dy;u=y+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y-2\\;\\ln|y+1|+C$"
+   }
+  },
+  {
+   "id": "e363",
+   "source_id": "fs-id1170572572338",
+   "source_number": "363",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, integrate using the indicated substitution.</p><p>$\\int \\frac{\\sin x+\\cos x}{\\sin x-\\cos x}dx;u=\\sin x-\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln|\\sin x-\\cos x|+C$"
+   }
+  },
+  {
+   "id": "e365",
+   "source_id": "fs-id1170572379189",
+   "source_number": "365",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, integrate using the indicated substitution.</p><p>$\\int \\ln(x)\\frac{\\sqrt{1-{(\\ln x)}^{2}}}{x}dx;u=\\ln x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{3}{(1-(\\ln{x)}^{2})}^{3/2}+C$"
+   }
+  },
+  {
+   "id": "e367",
+   "source_id": "fs-id1170572129062",
+   "source_number": "367",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>In the following exercises, does the right-endpoint approximation overestimate or underestimate the exact area? Calculate the right endpoint estimate <em>R</em><sub>50</sub> and solve for the exact area.</p><p><strong>[T]</strong> $y=e^{-x}$ over $[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Exact solution: $\\frac{e-1}{e},R_{50}=0.6258.$ Since $\\kf$ is decreasing, the right endpoint estimate underestimates the area."
+   }
+  },
+  {
+   "id": "e369",
+   "source_id": "fs-id1170572223556",
+   "source_number": "369",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>In the following exercises, does the right-endpoint approximation overestimate or underestimate the exact area? Calculate the right endpoint estimate <em>R</em><sub>50</sub> and solve for the exact area.</p><p><strong>[T]</strong> $y=\\frac{x+1}{x^{2}+2x+6}$ over $[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Exact solution: $\\frac{2\\;\\ln(3)-\\ln(6)}{2},R_{50}=0.2033.$ Since $\\kf$ is increasing, the right endpoint estimate overestimates the area."
+   }
+  },
+  {
+   "id": "e371",
+   "source_id": "fs-id1170572309777",
+   "source_number": "371",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>In the following exercises, does the right-endpoint approximation overestimate or underestimate the exact area? Calculate the right endpoint estimate <em>R</em><sub>50</sub> and solve for the exact area.</p><p><strong>[T]</strong> $y=-2^{-x}$ over $[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Exact solution: $-\\frac{1}{\\ln(4)},R_{50}=-0.7164.$ Since $\\kf$ is negative and increasing on the interval, the right-endpoint estimate overestimates the value of the integral, but it underestimates the area of the region (absolute value of the integral)."
+   }
+  },
+  {
+   "id": "e373",
+   "source_id": "fs-id1170572582636",
+   "source_number": "373",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, $\\kf(x)\\ge0$ for $a\\le x\\le b.$ Find the area under the graph of $\\kf(x)$ between the given values <em>a</em> and <em>b</em> by integrating.</p><p>$\\kf(x)=\\frac{\\log_{2}(x)}{x};a=32,b=64$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.812325,
+    "tol": 0.0001,
+    "solution": "$\\frac{11}{2}\\ln2$"
+   }
+  },
+  {
+   "id": "e375",
+   "source_id": "fs-id1170571638055",
+   "source_number": "375",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>In the following exercises, $\\kf(x)\\ge0$ for $a\\le x\\le b.$ Find the area under the graph of $\\kf(x)$ between the given values <em>a</em> and <em>b</em> by integrating.</p><p>$\\kf(x)=2^{-x};a=3,b=4$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.090168,
+    "tol": 0.0001,
+    "solution": "$\\frac{1}{\\ln(65,536)}$"
+   }
+  },
+  {
+   "id": "e377",
+   "source_id": "fs-id1170571610335",
+   "source_number": "377",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>Compute the integral of $\\kf(x)=xe^{-x^{2}}$ and find the smallest value of <em>N</em> such that the area under the graph $\\kf(x)=xe^{-x^{2}}$ between $x=N$ and $x=N+1$ is, at most, 0.01.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{N}^{N+1}xe^{-x^{2}}dx=\\frac{1}{2}(e^{-N^{2}}-e^{-{(N+1)}^{2}}).$ The quantity is less than 0.01 when $N=2.$"
+   }
+  },
+  {
+   "id": "e379",
+   "source_id": "fs-id1170572448465",
+   "source_number": "379",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>Show that $\\int_{a}^{b}\\frac{dt}{t}=\\int_{1/b}^{1/a}\\frac{dt}{t}$ when $0\\lt a\\le b.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{a}^{b}\\frac{dx}{x}=\\ln(b)-\\ln(a)=\\ln(\\frac{1}{a})-\\ln(\\frac{1}{b})=\\int_{1/b}^{1/a}\\frac{dx}{x}$"
+   }
+  },
+  {
+   "id": "e381",
+   "source_id": "fs-id1170572558119",
+   "source_number": "381",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>Use the previous exercise to find the antiderivative of $h(x)=x^{x}(1+\\ln x)$ and evaluate $\\int_{2}^{3}x^{x}(1+\\ln x)dx.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 23,
+    "solution": "23"
+   }
+  },
+  {
+   "id": "e382",
+   "source_id": "fs-id1170571814009",
+   "source_number": "382",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>Show that if $c\\gt 0,$ then the integral of $1/x$ from <em>ac</em> to <em>bc</em> $(0\\lt a\\lt b)$ is the same as the integral of $1/x$ from <em>a</em> to <em>b</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $u=\\frac{t}{c},$ so $du=\\frac{dt}{c}$ and $\\frac{dt}{t}=\\frac{du}{u}.$ When $t=ac,$ $u=a,$ and when $t=bc,$ $u=b.$ Then $\\int_{ac}^{bc}\\frac{dt}{t}=\\int_{a}^{b}\\frac{du}{u}.$"
+   }
+  },
+  {
+   "id": "e383",
+   "source_id": "fs-id1170572307674",
+   "source_number": "383",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>The following exercises are intended to derive the fundamental properties of the natural log starting from the <em>definition</em> $\\ln(x)=\\int_{1}^{x}\\frac{dt}{t},$ using properties of the definite integral and making no further assumptions.</p><p>Use the identity $\\ln(x)=\\int_{1}^{x}\\frac{dt}{t}$ to derive the identity $\\ln(\\frac{1}{x})=-\\ln x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "We may assume that $x\\gt 1,\\text{so}\\;\\frac{1}{x}\\lt 1.$ Then, $\\int_{1}^{1/x}\\frac{dt}{t}.$ Now make the substitution $u=\\frac{1}{t},$ so $du=-\\frac{dt}{t^{2}}$ and $\\frac{du}{u}=-\\frac{dt}{t},$ and change endpoints: $\\int_{1}^{1/x}\\frac{dt}{t}=-\\int_{1}^{x}\\frac{du}{u}=-\\ln x.$"
+   }
+  },
+  {
+   "id": "e384",
+   "source_id": "fs-id1170572218470",
+   "source_number": "384",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>The following exercises are intended to derive the fundamental properties of the natural log starting from the <em>definition</em> $\\ln(x)=\\int_{1}^{x}\\frac{dt}{t},$ using properties of the definite integral and making no further assumptions.</p><p>Use a change of variable in the integral $\\int_{1}^{xy}\\frac{1}{t}dt$ to show that $\\ln xy=\\ln x+\\ln y\\;\\text{for}\\;x,y\\gt 0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Split the interval at $x:$ $\\int_{1}^{xy}\\frac{dt}{t}=\\int_{1}^{x}\\frac{dt}{t}+\\int_{x}^{xy}\\frac{dt}{t}.$ In the second integral let $u=\\frac{t}{x},$ so $du=\\frac{dt}{x}$ and $\\frac{dt}{t}=\\frac{du}{u};$ when $t=x,$ $u=1,$ and when $t=xy,$ $u=y.$ It becomes $\\int_{1}^{y}\\frac{du}{u}=\\ln y,$ so $\\ln xy=\\ln x+\\ln y.$"
+   }
+  },
+  {
+   "id": "e385",
+   "source_id": "fs-id1170571629695",
+   "source_number": "385",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>The following exercises are intended to derive the fundamental properties of the natural log starting from the <em>definition</em> $\\ln(x)=\\int_{1}^{x}\\frac{dt}{t},$ using properties of the definite integral and making no further assumptions.</p><p>Use the identity $\\ln x=\\int_{1}^{x}\\frac{dt}{t}$ to show that $\\ln(x)$ is an increasing function of <em>x</em> on $[0,\\infty),$ and use the previous exercises to show that the range of $\\ln(x)$ is $(-\\infty,\\infty).$ Without any further assumptions, conclude that $\\ln(x)$ has an inverse function defined on $(-\\infty,\\infty).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $x\\gt 0,$ the Fundamental Theorem of Calculus, Part 1, gives $\\frac{d}{dx}\\ln x=\\frac{1}{x}\\gt 0,$ so $\\ln x$ is increasing where it is defined, on $(0,\\infty).$ By the preceding exercise, $\\ln(2^{n})=n\\ln 2,$ which grows without bound as $n$ grows, since $\\ln 2=\\int_{1}^{2}\\frac{dt}{t}\\gt 0;$ by Exercise 383, $\\ln(2^{-n})=-n\\ln 2,$ which decreases without bound. Since $\\ln x$ is continuous and takes values that large and that small, the Intermediate Value Theorem makes its range $(-\\infty,\\infty).$ An increasing function is one-to-one, so $\\ln x$ has an inverse function, defined on its range, $(-\\infty,\\infty).$"
+   }
+  },
+  {
+   "id": "e386",
+   "source_id": "fs-id1170571624156",
+   "source_number": "386",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>The following exercises are intended to derive the fundamental properties of the natural log starting from the <em>definition</em> $\\ln(x)=\\int_{1}^{x}\\frac{dt}{t},$ using properties of the definite integral and making no further assumptions.</p><p>Pretend, for the moment, that we do not know that $e^{x}$ is the inverse function of $\\ln(x),$ but keep in mind that $\\ln(x)$ has an inverse function defined on $(-\\infty,\\infty).$ Call it <em>E</em>. Use the identity $\\ln xy=\\ln x+\\ln y$ to deduce that $E(a+b)=E(a)E(b)$ for any real numbers <em>a</em>, <em>b</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $x=E(a)$ and $y=E(b),$ so that $\\ln x=a$ and $\\ln y=b.$ Then $\\ln(xy)=\\ln x+\\ln y=a+b,$ and applying $E,$ the inverse of $\\ln,$ to both sides gives $xy=E(a+b),$ that is, $E(a+b)=E(a)E(b).$"
+   }
+  },
+  {
+   "id": "e387",
+   "source_id": "fs-id1170572554258",
+   "source_number": "387",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>The following exercises are intended to derive the fundamental properties of the natural log starting from the <em>definition</em> $\\ln(x)=\\int_{1}^{x}\\frac{dt}{t},$ using properties of the definite integral and making no further assumptions.</p><p>Pretend, for the moment, that we do not know that $e^{x}$ is the inverse function of $\\ln x,$ but keep in mind that $\\ln x$ has an inverse function defined on $(-\\infty,\\infty).$ Call it <em>E</em>. Show that $E'(t)=E(t).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=E(\\ln(x)).$ Then, $1=\\frac{E'(\\ln x)}{x}\\;\\text{or}\\;x=E'(\\ln x).$ Since any number <em>t</em> can be written $t=\\ln x$ for some <em>x</em>, and for such <em>t</em> we have $x=E(t),$ it follows that for any $t,E'(t)=E(t).$"
+   }
+  },
+  {
+   "id": "e388",
+   "source_id": "fs-id1170571612023",
+   "source_number": "388",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p>The sine integral, defined as $S(x)=\\int_{0}^{x}\\frac{\\sin t}{t}dt$ is an important quantity in engineering. Although it does not have a simple closed formula, it is possible to estimate its behavior for large <em>x</em>. Show that for $k\\ge1,|S(2\\pi k)-S(2\\pi(k+1))|\\le\\frac{1}{k(2k+1)\\pi}.$ $(Hint\\text{:}\\;\\sin(t+\\pi)=-\\sin t)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$S(2\\pi(k+1))-S(2\\pi k)=\\int_{2\\pi k}^{2\\pi k+\\pi}\\frac{\\sin t}{t}dt+\\int_{2\\pi k+\\pi}^{2\\pi k+2\\pi}\\frac{\\sin t}{t}dt.$ In the second integral let $t=s+\\pi;$ by the hint $\\sin t=-\\sin s,$ and it becomes $-\\int_{2\\pi k}^{2\\pi k+\\pi}\\frac{\\sin s}{s+\\pi}ds.$ So the difference is $\\int_{2\\pi k}^{2\\pi k+\\pi}\\sin t\\left(\\frac{1}{t}-\\frac{1}{t+\\pi}\\right)dt=\\int_{2\\pi k}^{2\\pi k+\\pi}\\frac{\\pi\\sin t}{t(t+\\pi)}dt.$ On this interval $\\sin t\\ge 0$ and $t(t+\\pi)\\ge 2\\pi k(2\\pi k+\\pi)=2\\pi^{2}k(2k+1),$ so the difference is nonnegative and, by the comparison theorem, at most $\\frac{\\pi}{2\\pi^{2}k(2k+1)}\\int_{2\\pi k}^{2\\pi k+\\pi}\\sin t\\,dt=\\frac{\\pi\\cdot 2}{2\\pi^{2}k(2k+1)}=\\frac{1}{k(2k+1)\\pi}.$"
+   }
+  },
+  {
+   "id": "e389",
+   "source_id": "fs-id1170572373482",
+   "source_number": "389",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-rule",
+   "prompt": "<p><strong>[T]</strong> The normal distribution in probability is given by $p(x)=\\frac{1}{\\sigma \\sqrt{2\\pi}}e^{-{(x-\\mu )}^{2}/2\\sigma^{2}},$ where <em>σ</em> is the standard deviation and <em>μ</em> is the average. The <em>standard normal distribution</em> in probability, $p_{s},$ corresponds to $\\mu =0\\;\\text{and}\\;\\sigma =1.$ Compute the right endpoint estimates $R_{10}\\;\\text{and}\\;R_{100}$ of $\\int_{-1}^{1}\\frac{1}{\\sqrt{2\\pi}}e^{-\\frac{x^{2}}{2}}dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$R_{10}=0.6811,R_{100}=0.6827$</p><img src=\"/media/ch05/CNX_Calc_Figure_05_06_202.jpg\" alt=\"A graph of the function f(x) = .5 * ( sqrt(2)*e^(-.5x^2)) / sqrt(pi). It is a downward opening curve that is symmetric across the y axis, crossing at about (0, .4). It approaches 0 as x goes to positive and negative infinity. Between 1 and -1, ten rectangles are drawn for a right endpoint estimate of the area under the curve.\">"
+   }
+  },
+  {
+   "id": "r461",
+   "source_id": "fs-id1170571610339",
+   "source_section": "5.7",
+   "source_number": "461",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-rule",
+   "prompt": "<p>The following problems consider the historic average cost per gigabyte of RAM on a computer. The average cost per gigabyte of RAM can be approximated by the function $C(t)=8,500,000{(0.65)}^{t},$ where $t$ is measured in years since 1980, and $C$ is cost in US＄.</p><p>Find the average cost of 1GB RAM for 2005 to 2010.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 73.36,
+    "unit": "＄",
+    "solution": "＄73.36"
+   },
+   "changes": "The prompt carries review exercise 460’s statement of the cost function C(t), which 461 asks about."
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "substitution-with-definite-integrals"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "net-change-theorem"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "substitution-with-definite-integrals"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e321",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e323",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e325",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e327",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e329",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e329",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e331",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e331",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e333",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e333",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e335",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e335",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e337",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e337",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e339",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e339",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e341",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e341",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e343",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e343",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e345",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e345",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e347",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e347",
+   "concept": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "exercise": "e349",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e349",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e351",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e351",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e353",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e353",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e355",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e355",
+   "concept": "substitution-with-definite-integrals"
+  },
+  {
+   "exercise": "e357",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e357",
+   "concept": "substitution-with-definite-integrals"
+  },
+  {
+   "exercise": "e359",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e361",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e361",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e363",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e363",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e365",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e367",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e367",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e369",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e369",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e371",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e371",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "e373",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e373",
+   "concept": "substitution-with-definite-integrals"
+  },
+  {
+   "exercise": "e375",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e377",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e377",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e379",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e381",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e381",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e382",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e382",
+   "concept": "change-of-variables"
+  },
+  {
+   "exercise": "e383",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e383",
+   "concept": "properties-of-the-definite-integral"
+  },
+  {
+   "exercise": "e384",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e384",
+   "concept": "change-of-variables"
+  },
+  {
+   "exercise": "e385",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e385",
+   "concept": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "exercise": "e386",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e386",
+   "concept": "integrals-involving-logarithmic-functions"
+  },
+  {
+   "exercise": "e387",
+   "concept": "inverse-function"
+  },
+  {
+   "exercise": "e387",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e388",
+   "concept": "integral-comparison-theorem"
+  },
+  {
+   "exercise": "e388",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e389",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "e389",
+   "concept": "right-endpoint-approximation"
+  },
+  {
+   "exercise": "r461",
+   "concept": "integrals-of-exponential-functions"
+  },
+  {
+   "exercise": "r461",
+   "concept": "average-value-of-a-function"
+  }
+ ],
+ "referents": [],
+ "footnotes": []
+}
