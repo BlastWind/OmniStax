@@ -1,0 +1,1527 @@
+{
+ "id": "9.1",
+ "module": "m53758",
+ "chapter": "9",
+ "title": "Sequences",
+ "short": "Sequences",
+ "lead": "A <span data-concept=\"sequence\">sequence</span> is an ordered list of numbers, given by an <span data-concept=\"explicit-formula\">explicit formula</span> or a <span data-concept=\"recurrence-relation\">recurrence relation</span>, and its <span data-concept=\"limit-of-a-sequence\">limit</span> is the number its <span data-concept=\"term-of-a-sequence\">terms</span> approach as the index grows. The limits of functions, the <span data-concept=\"algebraic-limit-laws-for-sequences\">limit laws</span>, continuity and the <span data-concept=\"squeeze-theorem-for-sequences\">Squeeze Theorem</span> carry over to sequences, and the <span data-concept=\"monotone-convergence-theorem\">Monotone Convergence Theorem</span> proves that some converge without finding their limits.",
+ "objectives": [
+  "Find the formula for the general term of a sequence.",
+  "Calculate the limit of a sequence if it exists.",
+  "Determine the convergence or divergence of a given sequence."
+ ],
+ "summary_html": "<ul><li>To determine the convergence of a <span data-concept=\"sequence\">sequence</span> given by an <span data-concept=\"explicit-formula\">explicit formula</span> $\\kaseq_{n}=\\kf(n),$ we use the <span data-concept=\"limit-laws\">properties of limits for functions</span>.</li><li>If $\\{\\kaseq_{n}\\}$ and $\\{\\kbseq_{n}\\}$ are <span data-concept=\"convergent-sequence\">convergent sequences</span> that <span data-concept=\"convergent-sequence\">converge</span> to $\\kA$ and $\\kB,$ respectively, and $c$ is any real number, then the <span data-concept=\"sequence\">sequence</span> $\\{c\\kaseq_{n}\\}$ <span data-concept=\"convergent-sequence\">converges</span> to $c\\cdot \\kA,$ the <span data-concept=\"sequence\">sequences</span> $\\{\\kaseq_{n}\\pm \\kbseq_{n}\\}$ <span data-concept=\"convergent-sequence\">converge</span> to $\\kA\\pm \\kB,$ the <span data-concept=\"sequence\">sequence</span> $\\{\\kaseq_{n}\\cdot \\kbseq_{n}\\}$ <span data-concept=\"convergent-sequence\">converges</span> to $\\kA\\cdot \\kB,$ and the <span data-concept=\"sequence\">sequence</span> $\\{\\kaseq_{n}/\\kbseq_{n}\\}$ <span data-concept=\"convergent-sequence\">converges</span> to $\\kA/\\kB,$ provided $\\kB\\ne0.$</li><li>If a <span data-concept=\"sequence\">sequence</span> is <span data-concept=\"bounded-sequence\">bounded</span> and <span data-concept=\"monotone-sequence\">monotone</span>, then it <span data-concept=\"convergent-sequence\">converges</span>, but not all <span data-concept=\"convergent-sequence\">convergent sequences</span> are <span data-concept=\"monotone-sequence\">monotone</span>.</li><li>If a <span data-concept=\"sequence\">sequence</span> is <span data-concept=\"unbounded-sequence\">unbounded</span>, it <span data-concept=\"divergent-sequence\">diverges</span>, but not all <span data-concept=\"divergent-sequence\">divergent sequences</span> are <span data-concept=\"unbounded-sequence\">unbounded</span>.</li><li>The <span data-concept=\"geometric-sequence\">geometric sequence</span> $\\{r^{n}\\}$ <span data-concept=\"convergent-sequence\">converges</span> if and only if $|r|\\lt 1$ or $r=1.$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The even-numbered exercises have no answer in the key and are computational, so they are left out: 2 and 4 (first terms), 6, 8 and 10 (formulas for the nth term), 12 (a general term), 14, 16 and 18 (functions for recursions), 20 and 22 (plots), 24 and 26 (limits from given limits), 28 and 30 (limits), 32, 34 and 36 (boundedness and monotonicity), 38 (a limit), 40 and 42 (the Squeeze Theorem), 44 (a plot), 46, 48, 50 and 52 (limits), 54 and 56 (Newton’s method), and 58, 60, 62, 64 and 66 (applications by computer). Of the Chapter Review Exercises printed at the end of Section 9.6, 383, 385, 387 and 401 are set here.",
+ "figures": [
+  {
+   "id": "sim-sequence-graph",
+   "kind": "sim",
+   "number": "9.2",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_01_001.jpg"
+   ],
+   "original_caption": "The plotted points are a graph of the sequence {2ⁿ}.",
+   "draws": [
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-four-sequences",
+   "kind": "sim",
+   "number": "9.3",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_01_002.jpg"
+   ],
+   "original_caption": "(a) The terms in the sequence become arbitrarily large as n→ ∞. (b) The terms in the sequence approach 1 as n→ ∞. (c) The terms in the sequence alternate between 1 and −1 as n→ ∞. (d) The terms in the sequence alternate between positive and negative values but approach 0 as n→ ∞.",
+   "draws": [
+    "sequence",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-epsilon-n",
+   "kind": "sim",
+   "number": "9.4",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_01_003.jpg"
+   ],
+   "original_caption": "As n increases, the terms aₙ become closer to L. For values of n≥ N, the distance between each point (n,aₙ) and the line y=L is less than ε .",
+   "draws": [
+    "sequence",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-continuous-on-sequence",
+   "kind": "sim",
+   "number": "9.5",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_01_006.jpg"
+   ],
+   "original_caption": "Because f is a continuous function as the inputs a₁,a₂,a₃,… approach L, the outputs f(a₁),f(a₂),f(a₃),… approach f(L).",
+   "draws": [
+    "sequence",
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-squeeze-sequences",
+   "kind": "sim",
+   "number": "9.6",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_01_007.jpg"
+   ],
+   "original_caption": "Each term bₙ satisfies aₙ≤ bₙ≤ cₙ and the sequences {aₙ} and {cₙ} converge to the same limit, so the sequence {bₙ} must converge to the same limit as well.",
+   "draws": [
+    "sequence",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-monotone-convergence",
+   "kind": "sim",
+   "number": "9.7",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_01_008.jpg"
+   ],
+   "original_caption": "Since the sequence {aₙ} is increasing and bounded above, it must converge.",
+   "draws": [
+    "sequence",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sunflower",
+   "kind": "photo",
+   "number": "9.8",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-parthenon",
+   "kind": "photo",
+   "number": "9.9",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "sequence-definition",
+   "concept": "sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "sequence-definition",
+   "concept": "index-variable",
+   "verb": "introduces"
+  },
+  {
+   "span": "sequence-definition",
+   "concept": "term-of-a-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "sequence-definition",
+   "concept": "explicit-formula",
+   "verb": "introduces"
+  },
+  {
+   "span": "sequence-definition",
+   "concept": "recurrence-relation",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminology",
+   "concept": "graph-of-a-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminology",
+   "concept": "arithmetic-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminology",
+   "concept": "geometric-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-informal",
+   "concept": "limit-of-a-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-informal",
+   "concept": "convergent-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-informal",
+   "concept": "divergent-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-formal",
+   "concept": "formal-definition-of-the-limit-of-a-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-of-a-sequence",
+   "concept": "divergence-to-infinity",
+   "verb": "introduces"
+  },
+  {
+   "span": "sequence-by-function",
+   "concept": "limit-of-a-sequence-defined-by-a-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-of-a-sequence",
+   "concept": "limit-of-a-geometric-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-laws",
+   "concept": "algebraic-limit-laws-for-sequences",
+   "verb": "introduces"
+  },
+  {
+   "span": "continuous-on-sequences",
+   "concept": "continuous-functions-on-convergent-sequences",
+   "verb": "introduces"
+  },
+  {
+   "span": "squeeze-sequences",
+   "concept": "squeeze-theorem-for-sequences",
+   "verb": "introduces"
+  },
+  {
+   "span": "bounded-definition",
+   "concept": "bounded-above",
+   "verb": "introduces"
+  },
+  {
+   "span": "bounded-definition",
+   "concept": "bounded-below",
+   "verb": "introduces"
+  },
+  {
+   "span": "bounded-definition",
+   "concept": "bounded-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "bounded-definition",
+   "concept": "unbounded-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "bounded-theorem",
+   "concept": "convergent-sequences-are-bounded",
+   "verb": "introduces"
+  },
+  {
+   "span": "monotone-definition",
+   "concept": "monotone-sequence",
+   "verb": "introduces"
+  },
+  {
+   "span": "monotone-convergence",
+   "concept": "monotone-convergence-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "fibonacci",
+   "concept": "fibonacci-numbers",
+   "verb": "introduces"
+  },
+  {
+   "span": "terminology",
+   "concept": "function",
+   "verb": "uses"
+  },
+  {
+   "span": "terminology",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "sequence-by-function",
+   "concept": "limit-at-infinity",
+   "verb": "uses"
+  },
+  {
+   "span": "limit-laws",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "continuous-on-sequences",
+   "concept": "continuity-at-a-point",
+   "verb": "uses"
+  },
+  {
+   "span": "squeeze-sequences",
+   "concept": "squeeze-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739198462",
+   "concept": "lhopitals-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739198462",
+   "concept": "indeterminate-forms",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739198462",
+   "concept": "natural-logarithm",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739198462",
+   "concept": "algebraic-limit-laws-for-sequences",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739062262",
+   "concept": "continuous-functions-on-convergent-sequences",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736700627",
+   "concept": "squeeze-theorem-for-sequences",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739335796",
+   "concept": "monotone-convergence-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736659986",
+   "concept": "explicit-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739010866",
+   "concept": "recurrence-relation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169739223015",
+   "source_number": "Checkpoint 9.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736659986"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find an explicit formula for the $n\\text{th}$ term of the sequence $\\{\\frac{1}{5},-\\frac{1}{7},\\frac{1}{9},-\\frac{1}{11}\\text{,\\ldots}\\}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=\\frac{{(-1)}^{n+1}}{3+2n}$",
+    "hint": "The denominators form an arithmetic sequence."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169738936238",
+   "source_number": "Checkpoint 9.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739010866"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find an explicit formula for the sequence defined recursively such that $\\kaseq_{1}=-4$ and $\\kaseq_{n}=\\kaseq_{n-1}+6.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=6n-10$",
+    "hint": "This is an arithmetic sequence."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169739012242",
+   "source_number": "Checkpoint 9.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739198462"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>Consider the sequence $\\{(5n^{2}+1)/e^{n}\\}.$ Determine whether or not the sequence converges. If it converges, find its limit.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "The sequence converges, and its limit is $0.$",
+    "hint": "Use L’Hôpital’s rule."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1169739300565",
+   "source_number": "Checkpoint 9.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739062262"
+   },
+   "cite": "continuous-on-sequences",
+   "prompt": "<p>Determine if the sequence $\\{\\sqrt{\\frac{2n+1}{3n+5}}\\}$ converges. If it converges, find its limit.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.816497,
+    "tol": 0.0001,
+    "solution": "The sequence converges, and its limit is $\\sqrt{2/3}.$",
+    "hint": "Consider the sequence $\\{\\frac{2n+1}{3n+5}\\}.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1169738920753",
+   "source_number": "Checkpoint 9.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736700627"
+   },
+   "cite": "squeeze-sequences",
+   "prompt": "<p>Find $\\lim_{n\\to \\infty}\\frac{2n-\\sin n}{n}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "$2$",
+    "hint": "Use the fact that $-1\\le\\sin n\\le1.$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1169739202292",
+   "source_number": "Checkpoint 9.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739335796"
+   },
+   "cite": "monotone-convergence",
+   "prompt": "<p>Consider the sequence $\\{\\kaseq_{n}\\}$ defined recursively such that $\\kaseq_{1}=1,$ $\\kaseq_{n}=\\kaseq_{n-1}/2.$ Use the Monotone Convergence Theorem to show that this sequence converges and find its limit.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "$0.$",
+    "hint": "Show the sequence is decreasing and bounded below."
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1169739236365",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find the first six terms of each of the following sequences, starting with $n=1.$</p><p>$\\kaseq_{n}=1+{(-1)}^{n}$ for $n\\ge1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=0$ if $n$ is odd and $\\kaseq_{n}=2$ if $n$ is even"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1169736592333",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find the first six terms of each of the following sequences, starting with $n=1.$</p><p>$\\kaseq_{1}=1$ and $\\kaseq_{n}=\\kaseq_{n-1}+n$ for $n\\ge2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\{\\kaseq_{n}\\}=\\{1,3,6,10,15,21\\text{,\\ldots}\\}$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1169736728906",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find an explicit formula for $\\kaseq_{n}$ where $\\kaseq_{1}=1$ and $\\kaseq_{n}=\\kaseq_{n-1}+n$ for $n\\ge2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=\\frac{n(n+1)}{2}$"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1169736659351",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find a formula $\\kaseq_{n}$ for the $n\\text{th}$ term of the arithmetic sequence whose first term is $\\kaseq_{1}=-3$ such that $\\kaseq_{n+1}-\\kaseq_{n}=4$ for $n\\ge1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=4n-7$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1169736725473",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find a formula $\\kaseq_{n}$ for the $n\\text{th}$ term of the geometric sequence whose first term is $\\kaseq_{1}=3$ such that $\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}=1/10$ for $n\\ge1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}={3.10}^{1-n}={30.10}^{-n}$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1169736791974",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find an explicit formula for the $n\\text{th}$ term of the sequence satisfying $\\kaseq_{1}=0$ and $\\kaseq_{n}=2\\kaseq_{n-1}+1$ for $n\\ge2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=2^{n-1}-1$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1169739095131",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find a formula for the general term $\\kaseq_{n}$ of each of the following sequences.</p><p>$\\{1,-1/3,1/5,-1/7\\text{,\\ldots}\\}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=\\frac{{(-1)}^{n-1}}{2n-1}$"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1169736851825",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find a function $\\kf(n)$ that identifies the $n\\text{th}$ term $\\kaseq_{n}$ of the following recursively defined sequences, as $\\kaseq_{n}=\\kf(n).$</p><p>$\\kaseq_{1}=2$ and $\\kaseq_{n+1}=2\\kaseq_{n}$ for $n\\ge1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kf(n)=2^{n}$"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1169736736783",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Find a function $\\kf(n)$ that identifies the $n\\text{th}$ term $\\kaseq_{n}$ of the following recursively defined sequences, as $\\kaseq_{n}=\\kf(n).$</p><p>$\\kaseq_{1}=2$ and $\\kaseq_{n+1}=(n+1)\\kaseq_{n}/2$ for $n\\ge1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kf(n)=n\\text{!}/2^{n-2}$"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1169736605032",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Plot the first $N$ terms of each sequence. State whether the graphical evidence suggests that the sequence converges or diverges.</p><p><strong>[T]</strong> $\\kaseq_{1}=1,$ $\\kaseq_{2}=2,$ and for $n\\ge2,$ $\\kaseq_{n}=\\frac{1}{2}(\\kaseq_{n-1}+\\kaseq_{n-2});$ $N=30$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Terms oscillate above and below $5/3$ and appear to converge to $5/3.$</p><img src=\"/media/ch09/CNX_Calc_Figure_09_01_203.jpg\" alt=\"This is a graph of an oscillating sequence. Terms oscillate above and below 5/3 and seem to converge to 5/3.\">"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1169736644109",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Plot the first $N$ terms of each sequence. State whether the graphical evidence suggests that the sequence converges or diverges.</p><p><strong>[T]</strong> $\\kaseq_{1}=1,$ $\\kaseq_{2}=2,$ and for $n\\ge3,$ $\\kaseq_{n}=\\sqrt{\\kaseq_{n-1}\\kaseq_{n-2}};$ $N=30$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Terms oscillate above and below $y\\approx 1.57...$ and appear to converge to a limit.</p><img src=\"/media/ch09/CNX_Calc_Figure_09_01_205.jpg\" alt=\"This is a graph of the oscillating sequence. Terms oscillate above and below y = 1.57 and seem to converse to 1.57.\">"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1169739279051",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>Suppose that $\\lim_{n\\to \\infty}\\kaseq_{n}=1,$ $\\lim_{n\\to \\infty}\\kbseq_{n}=-1,$ and $0\\lt -\\kbseq_{n}\\lt \\kaseq_{n}$ for all $n.$ Evaluate each of the following limits, or state that the limit does not exist, or state that there is not enough information to determine whether the limit exists.</p><p>$\\lim_{n\\to \\infty}(3\\kaseq_{n}-4\\kbseq_{n})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7,
+    "solution": "$7$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1169739279160",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>Suppose that $\\lim_{n\\to \\infty}\\kaseq_{n}=1,$ $\\lim_{n\\to \\infty}\\kbseq_{n}=-1,$ and $0\\lt -\\kbseq_{n}\\lt \\kaseq_{n}$ for all $n.$ Evaluate each of the following limits, or state that the limit does not exist, or state that there is not enough information to determine whether the limit exists.</p><p>$\\lim_{n\\to \\infty}\\frac{\\kaseq_{n}+\\kbseq_{n}}{\\kaseq_{n}-\\kbseq_{n}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1169736770485",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>Find the limit of each of the following sequences, using L’Hôpital’s rule when appropriate.</p><p>$\\frac{n^{2}}{2^{n}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1169736770575",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-laws",
+   "prompt": "<p>Find the limit of each of the following sequences, using L’Hôpital’s rule when appropriate.</p><p>$\\frac{\\sqrt{n}}{\\sqrt{n+1}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1169738894848",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bounded-sequences",
+   "prompt": "<p>For each of the following sequences, whose $n\\text{th}$ terms are indicated, state whether the sequence is bounded and whether it is eventually monotone, increasing, or decreasing.</p><p>$n/2^{n},$ $n\\ge2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "bounded, decreasing for $n\\ge2$"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1169738894931",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bounded-sequences",
+   "prompt": "<p>For each of the following sequences, whose $n\\text{th}$ terms are indicated, state whether the sequence is bounded and whether it is eventually monotone, increasing, or decreasing.</p><p>$\\sin n$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "bounded, not monotone"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1169736851032",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bounded-sequences",
+   "prompt": "<p>For each of the following sequences, whose $n\\text{th}$ terms are indicated, state whether the sequence is bounded and whether it is eventually monotone, increasing, or decreasing.</p><p>$n^{1/n},$ $n\\ge3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "bounded, decreasing"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1169736851111",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bounded-sequences",
+   "prompt": "<p>For each of the following sequences, whose $n\\text{th}$ terms are indicated, state whether the sequence is bounded and whether it is eventually monotone, increasing, or decreasing.</p><p>$\\tan n$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "not monotone, not bounded"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1169739255502",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bounded-sequences",
+   "prompt": "<p>Determine whether the sequence defined as follows has a limit. If it does, find the limit.</p><p>$\\kaseq_{1}=3,$ $\\kaseq_{n}=\\sqrt{2\\kaseq_{n-1}},$ $n=2,3\\text{,\\ldots}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}$ is decreasing and bounded below by $2.$ The limit $a$ must satisfy $a=\\sqrt{2a}$ so $a=2,$ independent of the initial value."
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1169739351869",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeeze-sequences",
+   "prompt": "<p>Use the Squeeze Theorem to find the limit of each of the following sequences.</p><p>$\\frac{\\cos(1/n)-1}{1/n}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1169739352001",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeeze-sequences",
+   "prompt": "<p>Use the Squeeze Theorem to find the limit of each of the following sequences.</p><p>$\\kaseq_{n}=\\sin n\\;\\sin(1/n)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0:|\\sin x|\\le|x|$ and $|\\sin x|\\le1$ so $-\\frac{1}{n}\\le \\kaseq_{n}\\le\\frac{1}{n}).$"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1169736692476",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-of-a-sequence",
+   "prompt": "<p>For the following sequences, plot the first $25$ terms of the sequence and state whether the graphical evidence suggests that the sequence converges or diverges.</p><p><strong>[T]</strong> $\\kaseq_{n}=\\cos n$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Graph oscillates and suggests no limit.</p><img src=\"/media/ch09/CNX_Calc_Figure_09_01_202.jpg\" alt=\"This is a graph that oscillates between 1 and -1 from 0 to 25 on the x axis. There appears to be no limit.\">"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1169736776324",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-of-a-sequence",
+   "prompt": "<p>Determine the limit of the sequence or show that the sequence diverges. If it converges, find its limit.</p><p>$\\kaseq_{n}={(2n)}^{1/n}-n^{1/n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$n^{1/n}\\to 1$ and $2^{1/n}\\to 1,$ so $\\kaseq_{n}\\to 0$"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1169736647158",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-of-a-sequence",
+   "prompt": "<p>Determine the limit of the sequence or show that the sequence diverges. If it converges, find its limit.</p><p>$\\kaseq_{n}={(1-\\frac{2}{n})}^{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Since ${(1+1/n)}^{n}\\to e,$ one has ${(1-2/n)}^{n}\\approx {(1+k)}^{-2k}\\to e^{-2}$ as $k\\to \\infty.$"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1169736768917",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-of-a-sequence",
+   "prompt": "<p>Determine the limit of the sequence or show that the sequence diverges. If it converges, find its limit.</p><p>$\\kaseq_{n}=\\frac{2^{n}+3^{n}}{4^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2^{n}+3^{n}\\le2\\cdot 3^{n}$ and $3^{n}/4^{n}\\to 0$ as $n\\to \\infty,$ so $\\kaseq_{n}\\to 0$ as $n\\to \\infty.$"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1169739235544",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-of-a-sequence",
+   "prompt": "<p>Determine the limit of the sequence or show that the sequence diverges. If it converges, find its limit.</p><p>$\\kaseq_{n}=\\frac{{(n\\text{!})}^{2}}{(2n)\\text{!}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}=n\\text{!}/(n+1)(n+2)\\cdots\\;(2n)$ $=\\frac{1\\cdot 2\\cdot 3\\cdots n}{(n+1)(n+2)\\cdots\\;(2n)}\\lt 1/2^{n}.$ In particular, $\\kaseq_{n+1}/\\kaseq_{n}\\le1/2,$ so $\\kaseq_{n}\\to 0$ as $n\\to \\infty.$"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1169739260524",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Newton’s method seeks to approximate a solution $\\kf(x)=0$ that starts with an initial approximation $x_{0}$ and successively defines a sequence $x_{n+1}=x_{n}-\\frac{\\kf(x_{n})}{\\kf'(x_{n})}.$ For the given choice of $\\kf$ and $x_{0},$ write out the formula for $x_{n+1}.$ If the sequence appears to converge, give an exact formula for the solution $x,$ then identify the limit $x$ accurate to four decimal places and the smallest $n$ such that $x_{n}$ agrees with $x$ up to four decimal places.</p><p><strong>[T]</strong> $\\kf(x)={(x-1)}^{2}-2,$ $x_{0}=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x_{n+1}=x_{n}-({(x_{n}-1)}^{2}-2)/2(x_{n}-1);$ $x=1+\\sqrt{2},$ $x\\approx 2.4142,$ $n=5$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1169736590163",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>Newton’s method seeks to approximate a solution $\\kf(x)=0$ that starts with an initial approximation $x_{0}$ and successively defines a sequence $x_{n+1}=x_{n}-\\frac{\\kf(x_{n})}{\\kf'(x_{n})}.$ For the given choice of $\\kf$ and $x_{0},$ write out the formula for $x_{n+1}.$ If the sequence appears to converge, give an exact formula for the solution $x,$ then identify the limit $x$ accurate to four decimal places and the smallest $n$ such that $x_{n}$ agrees with $x$ up to four decimal places.</p><p><strong>[T]</strong> $\\kf(x)=\\ln x-1,$ $x_{0}=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x_{n+1}=x_{n}-x_{n}(\\ln(x_{n})-1);$ $x=e,$ $x\\approx 2.7183,$ $n=5$"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1169736791494",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p><strong>[T]</strong> A lake initially contains $2000$ fish. Suppose that in the absence of predators or other causes of removal, the fish population increases by $6\\text{\\%}$ each month. However, factoring in all causes, $150$ fish are lost each month.</p><ol type=\"a\"><li>Explain why the fish population after $n$ months is modeled by $P_{n}=1.06P_{n-1}-150$ with $P_{0}=2000.$</li><li>How many fish will be in the pond after one year?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>Without losses, the population would obey $P_{n}=1.06P_{n-1}.$ The subtraction of $150$ accounts for fish losses. b. After $12$ months, we have $P_{12}\\approx 1494.$</li></ol>"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1169736854831",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p><strong>[T]</strong> A student takes out a college loan of $\\text{＄}10,000$ at an annual percentage rate of $6\\text{\\%},$ compounded monthly.</p><ol type=\"a\"><li>If the student makes payments of $\\text{＄}100$ per month, how much does the student owe after $12$ months?</li><li>After how many months will the loan be paid off?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>The student owes $\\text{＄}9383$ after $12$ months. b. The loan will be paid in full after $139$ months or eleven and a half years.</li></ol>"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1169736790431",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p><strong>[T]</strong> The binary representation $x=0.\\kbseq_{1}\\kbseq_{2}\\kbseq_{3}...$ of a number $x$ between $0$ and $1$ can be defined as follows. Let $\\kbseq_{1}=0$ if $x\\lt 1/2$ and $\\kbseq_{1}=1$ if $1/2\\le x\\lt 1.$ Let $x_{1}=2x-\\kbseq_{1}.$ Let $\\kbseq_{2}=0$ if $x_{1}\\lt 1/2$ and $\\kbseq_{2}=1$ if $1/2\\le x\\lt 1.$ Let $x_{2}=2x_{1}-\\kbseq_{2}$ and in general, $x_{n}=2x_{n-1}-\\kbseq_{n}$ and $\\kbseq_{n-1}=0$ if $x_{n}\\lt 1/2$ and $\\kbseq_{n-1}=1$ if $1/2\\le x_{n}\\lt 1.$ Find the binary expansion of $1/3.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kbseq_{1}=0,$ $x_{1}=2/3,$ $\\kbseq_{2}=1,$ $x_{2}=4/3-1=1/3,$ so the pattern repeats, and $1/3=0.010101\\ldots.$"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1169739191446",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "terminology",
+   "prompt": "<p>For the following two exercises, assume that you have access to a computer program or Internet source that can generate a list of zeros and ones of any desired length. Pseudorandom number generators (PRNGs) play an important role in simulating random noise in physical systems by creating sequences of zeros and ones that appear like the result of flipping a coin repeatedly. One of the simplest types of PRNGs recursively defines a random-looking sequence of $N$ integers $\\kaseq_{1},\\kaseq_{2}\\text{,\\ldots},\\kaseq_{N}$ by fixing two special integers $K$ and $M$ and letting $\\kaseq_{n+1}$ be the remainder after dividing $K.\\kaseq_{n}$ into $M,$ then creates a bit sequence of zeros and ones whose $n\\text{th}$ term $\\kbseq_{n}$ is equal to one if $\\kaseq_{n}$ is odd and equal to zero if $\\kaseq_{n}$ is even. If the bits $\\kbseq_{n}$ are pseudorandom, then the behavior of their average $(\\kbseq_{1}+\\kbseq_{2}+\\cdots+\\kbseq_{N})/N$ should be similar to behavior of averages of truly randomly generated bits.</p><p><strong>[T]</strong> Starting with $K=16,807$ and $M=2,147,483,647,$ using ten different starting values of $\\kaseq_{1},$ compute sequences of bits $\\kbseq_{n}$ up to $n=1000,$ and compare their averages to ten such sequences generated by a random bit generator.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "For the starting values $\\kaseq_{1}=1,$ $\\kaseq_{2}=2\\text{,\\ldots},$ $\\kaseq_{1}=10,$ the corresponding bit averages calculated by the method indicated are $0.5220,$ $0.5000,$ $0.4960,$ $0.4870,$ $0.4860,$ $0.4680,$ $0.5130,$ $0.5210,$ $0.5040,$ and $0.4840.$ Here is an example of ten corresponding averages of strings of $1000$ bits generated by a random number generator: $0.4880,$ $0.4870,$ $0.5150,$ $0.5490,$ $0.5130,$ $0.5180,$ $0.4860,$ $0.5030,$ $0.5050,$ $0.4980.$ There is no real pattern in either type of average. The random-number-generated averages range between $0.4860$ and $0.5490,$ a range of $0.0630,$ whereas the calculated PRNG bit averages range between $0.4680$ and $0.5220,$ a range of $0.0540.$"
+   }
+  },
+  {
+   "id": "r383",
+   "source_id": "fs-id1169739265235",
+   "source_section": "9.6",
+   "source_number": "383",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bounded-sequences",
+   "prompt": "<p>Is the sequence bounded, monotone, and convergent or divergent? If it is convergent, find the limit.</p><p>$\\kaseq_{n}=\\frac{3+n^{2}}{1-n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "unbounded, not monotone, divergent"
+   }
+  },
+  {
+   "id": "r385",
+   "source_id": "fs-id1169739265320",
+   "source_section": "9.6",
+   "source_number": "385",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bounded-sequences",
+   "prompt": "<p>Is the sequence bounded, monotone, and convergent or divergent? If it is convergent, find the limit.</p><p>$\\kaseq_{n}=\\frac{\\ln(n+1)}{\\sqrt{n+1}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "bounded, monotone, convergent, $0$"
+   }
+  },
+  {
+   "id": "r387",
+   "source_id": "fs-id1169736590143",
+   "source_section": "9.6",
+   "source_number": "387",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bounded-sequences",
+   "prompt": "<p>Is the sequence bounded, monotone, and convergent or divergent? If it is convergent, find the limit.</p><p>$\\kaseq_{n}=\\frac{\\ln(\\cos n)}{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "unbounded, not monotone, divergent"
+   }
+  },
+  {
+   "id": "r401",
+   "source_id": "fs-id1169736840855",
+   "source_section": "9.6",
+   "source_number": "401",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-of-a-sequence",
+   "prompt": "<p>The following problems consider a simple population model of the housefly, which can be exhibited by the recursive formula $x_{n+1}=bx_{n},$ where $x_{n}$ is the population of houseflies at generation $n,$ and $b$ is the average number of offspring per housefly who survive to the next generation. Assume a starting population $x_{0}.$</p><p>Find $\\lim_{n\\to \\infty}x_{n}$ if $b\\gt 1,$ $b\\lt 1,$ and $b=1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\infty,$ $0,$ $x_{0}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "arithmetic-sequence"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "arithmetic-sequence"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "limit-of-a-sequence-defined-by-a-function"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "continuous-functions-on-convergent-sequences"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "algebraic-limit-laws-for-sequences"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "squeeze-theorem-for-sequences"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "monotone-convergence-theorem"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e1",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "e1",
+   "concept": "term-of-a-sequence"
+  },
+  {
+   "exercise": "e3",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "term-of-a-sequence"
+  },
+  {
+   "exercise": "e5",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "e7",
+   "concept": "arithmetic-sequence"
+  },
+  {
+   "exercise": "e7",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "e9",
+   "concept": "geometric-sequence"
+  },
+  {
+   "exercise": "e9",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "e11",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e11",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "e13",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "e15",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e15",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "e17",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e17",
+   "concept": "explicit-formula"
+  },
+  {
+   "exercise": "e19",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e19",
+   "concept": "convergent-sequence"
+  },
+  {
+   "exercise": "e19",
+   "concept": "graph-of-a-sequence"
+  },
+  {
+   "exercise": "e21",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e21",
+   "concept": "convergent-sequence"
+  },
+  {
+   "exercise": "e21",
+   "concept": "graph-of-a-sequence"
+  },
+  {
+   "exercise": "e23",
+   "concept": "algebraic-limit-laws-for-sequences"
+  },
+  {
+   "exercise": "e25",
+   "concept": "algebraic-limit-laws-for-sequences"
+  },
+  {
+   "exercise": "e27",
+   "concept": "limit-of-a-sequence-defined-by-a-function"
+  },
+  {
+   "exercise": "e27",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e29",
+   "concept": "continuous-functions-on-convergent-sequences"
+  },
+  {
+   "exercise": "e29",
+   "concept": "algebraic-limit-laws-for-sequences"
+  },
+  {
+   "exercise": "e31",
+   "concept": "bounded-sequence"
+  },
+  {
+   "exercise": "e31",
+   "concept": "monotone-sequence"
+  },
+  {
+   "exercise": "e33",
+   "concept": "bounded-sequence"
+  },
+  {
+   "exercise": "e33",
+   "concept": "monotone-sequence"
+  },
+  {
+   "exercise": "e35",
+   "concept": "bounded-sequence"
+  },
+  {
+   "exercise": "e35",
+   "concept": "monotone-sequence"
+  },
+  {
+   "exercise": "e37",
+   "concept": "bounded-sequence"
+  },
+  {
+   "exercise": "e37",
+   "concept": "monotone-sequence"
+  },
+  {
+   "exercise": "e37",
+   "concept": "unbounded-sequence"
+  },
+  {
+   "exercise": "e39",
+   "concept": "monotone-convergence-theorem"
+  },
+  {
+   "exercise": "e39",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e41",
+   "concept": "squeeze-theorem-for-sequences"
+  },
+  {
+   "exercise": "e43",
+   "concept": "squeeze-theorem-for-sequences"
+  },
+  {
+   "exercise": "e45",
+   "concept": "divergent-sequence"
+  },
+  {
+   "exercise": "e45",
+   "concept": "graph-of-a-sequence"
+  },
+  {
+   "exercise": "e47",
+   "concept": "algebraic-limit-laws-for-sequences"
+  },
+  {
+   "exercise": "e47",
+   "concept": "limit-of-a-sequence-defined-by-a-function"
+  },
+  {
+   "exercise": "e49",
+   "concept": "limit-of-a-sequence-defined-by-a-function"
+  },
+  {
+   "exercise": "e49",
+   "concept": "number-e"
+  },
+  {
+   "exercise": "e51",
+   "concept": "squeeze-theorem-for-sequences"
+  },
+  {
+   "exercise": "e51",
+   "concept": "limit-of-a-geometric-sequence"
+  },
+  {
+   "exercise": "e53",
+   "concept": "limit-of-a-geometric-sequence"
+  },
+  {
+   "exercise": "e53",
+   "concept": "squeeze-theorem-for-sequences"
+  },
+  {
+   "exercise": "e55",
+   "concept": "newtons-method"
+  },
+  {
+   "exercise": "e55",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e55",
+   "concept": "convergent-sequence"
+  },
+  {
+   "exercise": "e57",
+   "concept": "newtons-method"
+  },
+  {
+   "exercise": "e57",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e57",
+   "concept": "convergent-sequence"
+  },
+  {
+   "exercise": "e59",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e61",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e63",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e65",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e65",
+   "concept": "sequence"
+  },
+  {
+   "exercise": "r383",
+   "concept": "bounded-sequence"
+  },
+  {
+   "exercise": "r383",
+   "concept": "monotone-sequence"
+  },
+  {
+   "exercise": "r383",
+   "concept": "divergent-sequence"
+  },
+  {
+   "exercise": "r385",
+   "concept": "bounded-sequence"
+  },
+  {
+   "exercise": "r385",
+   "concept": "monotone-sequence"
+  },
+  {
+   "exercise": "r385",
+   "concept": "convergent-sequence"
+  },
+  {
+   "exercise": "r387",
+   "concept": "bounded-sequence"
+  },
+  {
+   "exercise": "r387",
+   "concept": "monotone-sequence"
+  },
+  {
+   "exercise": "r387",
+   "concept": "divergent-sequence"
+  },
+  {
+   "exercise": "r401",
+   "concept": "limit-of-a-geometric-sequence"
+  },
+  {
+   "exercise": "r401",
+   "concept": "recurrence-relation"
+  }
+ ],
+ "referents": [
+  {
+   "id": "squeeze-lower",
+   "label": "the lower sequence {aₙ}",
+   "figures": [
+    "sim-squeeze-sequences"
+   ]
+  },
+  {
+   "id": "squeeze-middle",
+   "label": "the squeezed sequence {bₙ}",
+   "figures": [
+    "sim-squeeze-sequences"
+   ]
+  },
+  {
+   "id": "squeeze-upper",
+   "label": "the upper sequence {cₙ}",
+   "figures": [
+    "sim-squeeze-sequences"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fig-ref-diverge",
+   "kind": "correction",
+   "html": "The sequences {1 + 3n} and {(−1)ⁿ} are drawn in Figure 9.3, panels (a) and (c); Figure 9.4 draws a convergent sequence."
+  },
+  {
+   "id": "neg-infinity",
+   "kind": "correction",
+   "html": "The book prints “= →” before −∞; the limit is written $\\lim_{n\\to\\infty}(-5n+2)=-\\infty.$"
+  },
+  {
+   "id": "recursion-index",
+   "kind": "correction",
+   "html": "The recursion is used from n = 1 on, since a₂ = a₁/2 + 1/(2a₁) = 5/4: it holds for all n ≥ 1, not only n ≥ 2."
+  }
+ ]
+}

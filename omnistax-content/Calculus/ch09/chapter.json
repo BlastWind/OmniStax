@@ -1,0 +1,389 @@
+{
+  "id": "9",
+  "dir": "ch09",
+  "title": "Sequences and Series",
+  "intro": {
+    "module": "m53756",
+    "slug": "calculus-volume-2/pages/5-introduction"
+  },
+  "sections": [
+    {
+      "id": "9.1",
+      "module": "m53758",
+      "title": "Sequences",
+      "slug": "calculus-volume-2/pages/5-1-sequences"
+    },
+    {
+      "id": "9.2",
+      "module": "m53739",
+      "title": "Infinite Series",
+      "slug": "calculus-volume-2/pages/5-2-infinite-series"
+    },
+    {
+      "id": "9.3",
+      "module": "m53754",
+      "title": "The Divergence and Integral Tests",
+      "slug": "calculus-volume-2/pages/5-3-the-divergence-and-integral-tests"
+    },
+    {
+      "id": "9.4",
+      "module": "m53751",
+      "title": "Comparison Tests",
+      "slug": "calculus-volume-2/pages/5-4-comparison-tests"
+    },
+    {
+      "id": "9.5",
+      "module": "m53743",
+      "title": "Alternating Series",
+      "slug": "calculus-volume-2/pages/5-5-alternating-series"
+    },
+    {
+      "id": "9.6",
+      "module": "m53747",
+      "title": "Ratio and Root Tests",
+      "slug": "calculus-volume-2/pages/5-6-ratio-and-root-tests"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "a_seq",
+      "meaning": "the nth term aₙ of a sequence {aₙ}, the number the sequence takes at the index n",
+      "section": "9.1",
+      "concept": "sequence",
+      "anchor": "9.1-sequence-definition"
+    },
+    {
+      "sym": "n",
+      "meaning": "the index variable of a sequence or series, a positive integer",
+      "section": "9.1",
+      "concept": "index-variable",
+      "redefines": true,
+      "anchor": "9.1-sequence-definition"
+    },
+    {
+      "sym": "f",
+      "meaning": "a function defined on the positive real numbers with f(n) = aₙ, whose values at the positive integers are the terms of a sequence",
+      "section": "9.1",
+      "concept": "function",
+      "redefines": true,
+      "anchor": "9.1-sequence-definition"
+    },
+    {
+      "sym": "L",
+      "meaning": "the limit of a sequence {aₙ}, the real number its terms approach as n becomes large",
+      "section": "9.1",
+      "concept": "limit-of-a-sequence",
+      "redefines": true,
+      "anchor": "9.1-limit-informal"
+    },
+    {
+      "sym": "b_seq",
+      "meaning": "the nth term bₙ of a second sequence {bₙ}",
+      "section": "9.1",
+      "concept": "sequence",
+      "anchor": "9.1-squeeze-sequences"
+    },
+    {
+      "sym": "c_seq",
+      "meaning": "the nth term cₙ of a third sequence {cₙ}",
+      "section": "9.1",
+      "concept": "sequence",
+      "anchor": "9.1-squeeze-sequences"
+    },
+    {
+      "sym": "A",
+      "meaning": "the limit A of a convergent sequence {aₙ} in the algebraic limit laws",
+      "section": "9.1",
+      "concept": "limit-of-a-sequence",
+      "redefines": true,
+      "anchor": "9.1-limit-laws"
+    },
+    {
+      "sym": "B",
+      "meaning": "the limit B of a convergent sequence {bₙ} in the algebraic limit laws",
+      "section": "9.1",
+      "concept": "limit-of-a-sequence",
+      "redefines": true,
+      "anchor": "9.1-limit-laws"
+    },
+    {
+      "sym": "r",
+      "meaning": "the common ratio r of a geometric sequence crⁿ, the number each term is multiplied by to give the next",
+      "section": "9.1",
+      "redefines": true,
+      "anchor": "9.1-terminology"
+    },
+    {
+      "sym": "c",
+      "meaning": "a constant",
+      "section": "9.1",
+      "anchor": "9.1-limit-laws"
+    },
+    {
+      "sym": "ε",
+      "meaning": "a positive distance from the limit L, the tolerance |aₙ − L| < ε",
+      "section": "9.1",
+      "anchor": "9.1-limit-formal"
+    },
+    {
+      "sym": "M",
+      "meaning": "a real number bounding a sequence, above where aₙ ≤ M and below where M ≤ aₙ",
+      "section": "9.1",
+      "redefines": true,
+      "anchor": "9.1-bounded-definition"
+    },
+    {
+      "sym": "F",
+      "meaning": "the nth Fibonacci number Fₙ, defined by F₀ = 0, F₁ = 1 and Fₙ = Fₙ₋₁ + Fₙ₋₂",
+      "section": "9.1",
+      "concept": "fibonacci-numbers",
+      "redefines": true,
+      "anchor": "9.1-fibonacci"
+    },
+    {
+      "sym": "a_seq",
+      "meaning": "the nth term aₙ of a series Σaₙ, the number added at the index n",
+      "section": "9.2",
+      "concept": "sequence",
+      "redefines": true,
+      "anchor": "9.2-series-definition"
+    },
+    {
+      "sym": "n",
+      "meaning": "the index variable of a sequence or series, a positive integer",
+      "section": "9.2",
+      "concept": "index-variable",
+      "anchor": "9.2-series-definition"
+    },
+    {
+      "sym": "S",
+      "meaning": "the kth partial sum Sₖ = a₁ + a₂ + ⋯ + aₖ of an infinite series",
+      "section": "9.2",
+      "concept": "partial-sum",
+      "redefines": true,
+      "anchor": "9.2-series-definition"
+    },
+    {
+      "sym": "S_sum",
+      "meaning": "the sum S of a convergent series, the limit of its partial sums",
+      "section": "9.2",
+      "concept": "convergence-of-a-series",
+      "type": "limit",
+      "anchor": "9.2-series-definition"
+    },
+    {
+      "sym": "a",
+      "meaning": "the initial term a of a geometric series a + ar + ar² + ⋯",
+      "section": "9.2",
+      "redefines": true,
+      "anchor": "9.2-geometric-series"
+    },
+    {
+      "sym": "r",
+      "meaning": "the ratio r of a geometric series, the ratio of each term to the term before",
+      "section": "9.2",
+      "redefines": true,
+      "anchor": "9.2-geometric-series"
+    },
+    {
+      "sym": "b_seq",
+      "meaning": "the nth term bₙ of a sequence whose consecutive differences bₙ − bₙ₊₁ are the terms of a telescoping series",
+      "section": "9.2",
+      "concept": "sequence",
+      "redefines": true,
+      "anchor": "9.2-telescoping"
+    },
+    {
+      "sym": "c",
+      "meaning": "a constant",
+      "section": "9.2",
+      "anchor": "9.2-series-properties"
+    },
+    {
+      "sym": "a_seq",
+      "meaning": "the nth term aₙ of a series Σaₙ, the number added at the index n",
+      "section": "9.3",
+      "concept": "sequence",
+      "anchor": "9.3-divergence-test"
+    },
+    {
+      "sym": "n",
+      "meaning": "the index variable of a sequence or series, a positive integer",
+      "section": "9.3",
+      "concept": "index-variable",
+      "anchor": "9.3-divergence-test"
+    },
+    {
+      "sym": "S",
+      "meaning": "the kth partial sum Sₖ = a₁ + a₂ + ⋯ + aₖ of an infinite series",
+      "section": "9.3",
+      "concept": "partial-sum",
+      "anchor": "9.3-divergence-test"
+    },
+    {
+      "sym": "S_sum",
+      "meaning": "the sum S of a convergent series, the limit of its partial sums",
+      "section": "9.3",
+      "concept": "convergence-of-a-series",
+      "type": "limit",
+      "anchor": "9.3-divergence-test"
+    },
+    {
+      "sym": "f",
+      "meaning": "a continuous, positive, decreasing function with f(n) = aₙ for all positive integers n, the function of the integral test",
+      "section": "9.3",
+      "concept": "function",
+      "redefines": true,
+      "anchor": "9.3-integral-test"
+    },
+    {
+      "sym": "p",
+      "meaning": "the power p of a p-series Σ1/nᵖ, a real number",
+      "section": "9.3",
+      "redefines": true,
+      "anchor": "9.3-p-series-definition"
+    },
+    {
+      "sym": "R",
+      "meaning": "the remainder R_N = S − S_N, the error when the sum of a series is approximated by its Nth partial sum",
+      "section": "9.3",
+      "concept": "remainder-of-a-series",
+      "redefines": true,
+      "anchor": "9.3-estimating"
+    },
+    {
+      "sym": "a_seq",
+      "meaning": "the nth term aₙ of a series Σaₙ, the number added at the index n",
+      "section": "9.4",
+      "concept": "sequence",
+      "anchor": "9.4-comparison-test"
+    },
+    {
+      "sym": "b_seq",
+      "meaning": "the nth term bₙ of a series Σbₙ whose convergence or divergence is known, compared with Σaₙ",
+      "section": "9.4",
+      "concept": "sequence",
+      "redefines": true,
+      "anchor": "9.4-comparison-test"
+    },
+    {
+      "sym": "n",
+      "meaning": "the index variable of a sequence or series, a positive integer",
+      "section": "9.4",
+      "concept": "index-variable",
+      "anchor": "9.4-comparison-test"
+    },
+    {
+      "sym": "S",
+      "meaning": "the kth partial sum Sₖ = a₁ + a₂ + ⋯ + aₖ of an infinite series",
+      "section": "9.4",
+      "concept": "partial-sum",
+      "anchor": "9.4-comparison-test"
+    },
+    {
+      "sym": "L",
+      "meaning": "the limit L of the ratio aₙ/bₙ in the limit comparison test",
+      "section": "9.4",
+      "concept": "limit-of-a-sequence",
+      "redefines": true,
+      "anchor": "9.4-limit-comparison-test"
+    },
+    {
+      "sym": "M",
+      "meaning": "a constant with aₙ ≤ Mbₙ or aₙ ≥ Mbₙ",
+      "section": "9.4",
+      "redefines": true,
+      "anchor": "9.4-limit-comparison-test"
+    },
+    {
+      "sym": "a_seq",
+      "meaning": "the nth term aₙ of a series Σaₙ, the number added at the index n",
+      "section": "9.5",
+      "concept": "sequence",
+      "anchor": "9.5-alternating-series-test"
+    },
+    {
+      "sym": "b_seq",
+      "meaning": "the magnitude bₙ > 0 of the nth term of an alternating series Σ(−1)ⁿ⁺¹bₙ",
+      "section": "9.5",
+      "concept": "sequence",
+      "redefines": true,
+      "anchor": "9.5-alternating-definition"
+    },
+    {
+      "sym": "n",
+      "meaning": "the index variable of a sequence or series, a positive integer",
+      "section": "9.5",
+      "concept": "index-variable",
+      "anchor": "9.5-alternating-series-test"
+    },
+    {
+      "sym": "S",
+      "meaning": "the kth partial sum Sₖ = a₁ + a₂ + ⋯ + aₖ of an infinite series",
+      "section": "9.5",
+      "concept": "partial-sum",
+      "anchor": "9.5-alternating-series-test"
+    },
+    {
+      "sym": "S_sum",
+      "meaning": "the sum S of a convergent series, the limit of its partial sums",
+      "section": "9.5",
+      "concept": "convergence-of-a-series",
+      "type": "limit",
+      "anchor": "9.5-alternating-series-test"
+    },
+    {
+      "sym": "R",
+      "meaning": "the remainder R_N = S − S_N, the error when the sum of a series is approximated by its Nth partial sum",
+      "section": "9.5",
+      "concept": "remainder-of-a-series",
+      "anchor": "9.5-remainder"
+    },
+    {
+      "sym": "a_seq",
+      "meaning": "the nth term aₙ of a series Σaₙ, the number added at the index n",
+      "section": "9.6",
+      "concept": "sequence",
+      "anchor": "9.6-ratio-test"
+    },
+    {
+      "sym": "b_seq",
+      "meaning": "a sequence bₙ with |aₙ| = bₙⁿ, so that ⁿ√|aₙ| = bₙ in the root test",
+      "section": "9.6",
+      "concept": "sequence",
+      "redefines": true,
+      "anchor": "9.6-root-test"
+    },
+    {
+      "sym": "n",
+      "meaning": "the index variable of a sequence or series, a positive integer",
+      "section": "9.6",
+      "concept": "index-variable",
+      "anchor": "9.6-ratio-test"
+    },
+    {
+      "sym": "S",
+      "meaning": "the kth partial sum Sₖ = a₁ + a₂ + ⋯ + aₖ of an infinite series",
+      "section": "9.6",
+      "concept": "partial-sum",
+      "anchor": "9.6-ratio-test"
+    },
+    {
+      "sym": "ρ",
+      "meaning": "the limit ρ of |aₙ₊₁/aₙ| in the ratio test, or of ⁿ√|aₙ| in the root test",
+      "section": "9.6",
+      "concept": "ratio-test",
+      "type": "limit",
+      "redefines": true,
+      "anchor": "9.6-ratio-theorem"
+    },
+    {
+      "sym": "b_seq",
+      "meaning": "the nth term bₙ of a second sequence, here the terms aₙ₊N of a series shifted by N",
+      "section": "9.3",
+      "concept": "sequence",
+      "redefines": true,
+      "anchor": "9.3-estimating"
+    }
+  ]
+}

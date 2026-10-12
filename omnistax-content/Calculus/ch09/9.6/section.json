@@ -1,0 +1,1053 @@
+{
+ "id": "9.6",
+ "module": "m53747",
+ "chapter": "9",
+ "title": "Ratio and Root Tests",
+ "short": "Ratio and Root Tests",
+ "lead": "The <span data-concept=\"ratio-test\">ratio test</span> and the <span data-concept=\"root-test\">root test</span> judge a series by how fast its terms shrink, comparing it with a geometric series without having to find one. With them the list of tests is complete, and a <span data-concept=\"choosing-a-convergence-test\">strategy for choosing a test</span> and a summary table close the chapter.",
+ "objectives": [
+  "Use the ratio test to determine absolute convergence of a series.",
+  "Use the root test to determine absolute convergence of a series.",
+  "Describe a strategy for testing the convergence of a given series."
+ ],
+ "summary_html": "<ul><li>For the <span data-concept=\"ratio-test\">ratio test</span>, we consider $$\\krho =\\lim_{n\\to \\infty}|\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}|.$$ If $\\krho \\lt 1,$ the <span data-concept=\"infinite-series\">series</span> $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ <span data-concept=\"absolute-convergence\">converges absolutely</span>. If $\\krho \\gt 1,$ the <span data-concept=\"infinite-series\">series</span> <span data-concept=\"divergence-of-a-series\">diverges</span>. If $\\krho =1,$ the test does not provide any information. This test is useful for <span data-concept=\"infinite-series\">series</span> whose <span data-concept=\"term-of-a-sequence\">terms</span> involve factorials.</li><li>For the <span data-concept=\"root-test\">root test</span>, we consider $$\\krho =\\lim_{n\\to \\infty}\\sqrt[n]{|\\kaseq_{n}|}.$$ If $\\krho \\lt 1,$ the <span data-concept=\"infinite-series\">series</span> $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ <span data-concept=\"absolute-convergence\">converges absolutely</span>. If $\\krho \\gt 1,$ the <span data-concept=\"infinite-series\">series</span> <span data-concept=\"divergence-of-a-series\">diverges</span>. If $\\krho =1,$ the test does not provide any information. The <span data-concept=\"root-test\">root test</span> is useful for <span data-concept=\"infinite-series\">series</span> whose <span data-concept=\"term-of-a-sequence\">terms</span> involve powers.</li><li>For a <span data-concept=\"infinite-series\">series</span> that is similar to a <span data-concept=\"geometric-series\">geometric series</span> or $p-\\text{series,}$ consider one of the <span data-concept=\"comparison-test\">comparison tests</span>.</li></ul>",
+ "notes": "The book’s link to a website on testing series for convergence is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The explanations and proofs 368, 374, 376 and 378 are kept with AI-written answers, marked as such; the computational ones are left out: 318 to 326 (the ratio test), 328 to 336 (the root test), 338 to 344 (the ratio or root test), 346 (the ratio test), 348 to 358 (an appropriate test), 360 and 362 (summation by parts), 364 and 366 (ranges of x) and 370 and 372 (the values for which a series must converge). The Chapter Review Exercises 379–404 are printed after this section: 391 and 395 are set here, 379 and 380 in Section 9.3, 381, 382, 393 and 397 in Section 9.5, 383, 385, 387 and 401 in Section 9.1, and 389, 399 and 403 in Section 9.2. Review exercises 384, 386, 388, 390, 392, 394, 396, 398, 400, 402 and 404 have no answer in the key and are left out.",
+ "figures": [
+  {
+   "id": "sim-ratio-root",
+   "kind": "sim",
+   "draws": [
+    "sequence",
+    "series",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "ratio-theorem",
+   "concept": "ratio-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "root-theorem",
+   "concept": "root-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "choosing-strategy",
+   "concept": "choosing-a-convergence-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-for-pi",
+   "concept": "series-for-pi",
+   "verb": "introduces"
+  },
+  {
+   "span": "ratio-test",
+   "concept": "absolute-convergence",
+   "verb": "uses"
+  },
+  {
+   "span": "ratio-test",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "ratio-test",
+   "concept": "comparison-test",
+   "verb": "uses"
+  },
+  {
+   "span": "ratio-test",
+   "concept": "divergence-test",
+   "verb": "uses"
+  },
+  {
+   "span": "ratio-test",
+   "concept": "p-series",
+   "verb": "uses"
+  },
+  {
+   "span": "root-test",
+   "concept": "lhopitals-rule-infinity-over-infinity",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing",
+   "concept": "limit-comparison-test",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing",
+   "concept": "integral-test",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing",
+   "concept": "alternating-series-test",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing",
+   "concept": "harmonic-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736845320",
+   "concept": "number-e",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736845320",
+   "concept": "ratio-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736615350",
+   "concept": "root-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736685651",
+   "concept": "choosing-a-convergence-test",
+   "verb": "uses"
+  },
+  {
+   "span": "series-for-pi",
+   "concept": "remainder-of-an-alternating-series",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169736850672",
+   "source_number": "Checkpoint 9.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736845320"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Use the ratio test to determine whether the series $\\sum_{n=1}^{\\infty}\\frac{n^{3}}{3^{n}}$ converges or diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series converges.",
+    "hint": "Evaluate $\\lim_{n\\to \\infty}\\frac{{(n+1)}^{3}}{3^{n+1}}\\cdot \\frac{3^{n}}{n^{3}}.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169736852679",
+   "source_number": "Checkpoint 9.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736615350"
+   },
+   "cite": "root-theorem",
+   "prompt": "<p>Use the root test to determine whether the series $\\sum_{n=1}^{\\infty}1/n^{n}$ converges or diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series converges.",
+    "hint": "Evaluate $\\lim_{n\\to \\infty}\\sqrt[n]{1/n^{n}}$ using L’Hôpital’s rule."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169739077452",
+   "source_number": "Checkpoint 9.23",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736685651"
+   },
+   "cite": "choosing-strategy",
+   "prompt": "<p>For the series $\\sum_{n=1}^{\\infty}\\frac{2^{n}}{3^{n}+n},$ determine which convergence test is the best to use and explain why.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The comparison test because $2^{n}/(3^{n}+n)\\lt 2^{n}/3^{n}$ for all positive integers $n.$ The limit comparison test could also be used.",
+    "hint": "The series is similar to the geometric series $\\sum_{n=1}^{\\infty}{(\\frac{2}{3})}^{n}.$"
+   }
+  },
+  {
+   "id": "e317",
+   "source_id": "fs-id1169736790226",
+   "source_number": "317",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Use the ratio test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is given in the following problems. State if the ratio test is inconclusive.</p><p>$\\kaseq_{n}=1/n\\text{!}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n+1}/\\kaseq_{n}\\to 0.$ Converges."
+   }
+  },
+  {
+   "id": "e319",
+   "source_id": "fs-id1169736694683",
+   "source_number": "319",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Use the ratio test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is given in the following problems. State if the ratio test is inconclusive.</p><p>$\\kaseq_{n}=n^{2}/2^{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}=\\frac{1}{2}{(\\frac{n+1}{n})}^{2}\\to 1/2\\lt 1.$ Converges."
+   }
+  },
+  {
+   "id": "e321",
+   "source_id": "fs-id1169736635046",
+   "source_number": "321",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Use the ratio test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is given in the following problems. State if the ratio test is inconclusive.</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(n\\text{!})}^{3}}{(3n)\\text{!}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}\\to 1/27\\lt 1.$ Converges."
+   }
+  },
+  {
+   "id": "e323",
+   "source_id": "fs-id1169736726552",
+   "source_number": "323",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Use the ratio test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is given in the following problems. State if the ratio test is inconclusive.</p><p>$\\sum_{n=1}^{\\infty} \\frac{(2n)\\text{!}}{n^{2n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}\\to 4/e^{2}\\lt 1.$ Converges."
+   }
+  },
+  {
+   "id": "e325",
+   "source_id": "fs-id1169736767170",
+   "source_number": "325",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Use the ratio test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is given in the following problems. State if the ratio test is inconclusive.</p><p>$\\sum_{n=1}^{\\infty} \\frac{n\\text{!}}{{(n/e)}^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}\\to 1.$ Ratio test is inconclusive."
+   }
+  },
+  {
+   "id": "e327",
+   "source_id": "fs-id1169739335773",
+   "source_number": "327",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Use the ratio test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is given in the following problems. State if the ratio test is inconclusive.</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(2^{n}n\\text{!})}^{2}}{{(2n)}^{2n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kaseq_{n}}{\\kaseq_{n+1}}\\to 1/e^{2}.$<sup class=\"fn\" data-note=\"ex327-key\"></sup> Converges."
+   }
+  },
+  {
+   "id": "e329",
+   "source_id": "fs-id1169739213893",
+   "source_number": "329",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "root-theorem",
+   "prompt": "<p>Use the root test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is as follows.</p><p>$\\kaseq_{k}={(\\frac{2k^{2}-1}{k^{2}+3})}^{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(\\kaseq_{k})}^{1/k}\\to 2\\gt 1.$ Diverges."
+   }
+  },
+  {
+   "id": "e331",
+   "source_id": "fs-id1169736790041",
+   "source_number": "331",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "root-theorem",
+   "prompt": "<p>Use the root test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is as follows.</p><p>$\\kaseq_{n}=n/2^{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(\\kaseq_{n})}^{1/n}\\to 1/2\\lt 1.$ Converges."
+   }
+  },
+  {
+   "id": "e333",
+   "source_id": "fs-id1169739110741",
+   "source_number": "333",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "root-theorem",
+   "prompt": "<p>Use the root test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is as follows.</p><p>$\\kaseq_{k}=\\frac{k^{e}}{e^{k}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(\\kaseq_{k})}^{1/k}\\to 1/e\\lt 1.$ Converges."
+   }
+  },
+  {
+   "id": "e335",
+   "source_id": "fs-id1169739195739",
+   "source_number": "335",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "root-theorem",
+   "prompt": "<p>Use the root test to determine whether $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges, where $\\kaseq_{n}$ is as follows.</p><p>$\\kaseq_{n}={(\\frac{1}{e}+\\frac{1}{n})}^{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}^{1/n}=\\frac{1}{e}+\\frac{1}{n}\\to \\frac{1}{e}\\lt 1.$ Converges."
+   }
+  },
+  {
+   "id": "e337",
+   "source_id": "fs-id1169739341419",
+   "source_number": "337",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "root-theorem",
+   "prompt": "<p>For this exercise, let n start at 2.</p><p>$\\kaseq_{n}=\\frac{{(\\ln(1+\\ln n))}^{n}}{{(\\ln n)}^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}^{1/n}=\\frac{(\\ln(1+\\ln n))}{(\\ln n)}\\to 0$ by L’Hôpital’s rule. Converges."
+   }
+  },
+  {
+   "id": "e339",
+   "source_id": "fs-id1169736842898",
+   "source_number": "339",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>In the following exercises, use either the ratio test or the root test as appropriate to determine whether the series $\\sum_{k=1}^{\\infty} \\kaseq_{k}$ with given terms $\\kaseq_{k}$ converges, or state if the test is inconclusive.</p><p>$\\kaseq_{k}=\\frac{2\\cdot 4\\cdot 6\\cdots2k}{(2k)\\text{!}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kaseq_{k+1}}{\\kaseq_{k}}=\\frac{1}{2k+1}\\to 0.$ Converges by ratio test."
+   }
+  },
+  {
+   "id": "e341",
+   "source_id": "fs-id1169736705902",
+   "source_number": "341",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>In the following exercises, use either the ratio test or the root test as appropriate to determine whether the series $\\sum_{k=1}^{\\infty} \\kaseq_{k}$ with given terms $\\kaseq_{k}$ converges, or state if the test is inconclusive.</p><p>$\\kaseq_{n}={(1-\\frac{1}{n})}^{n^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(\\kaseq_{n})}^{1/n}\\to 1/e.$ Converges by root test."
+   }
+  },
+  {
+   "id": "e343",
+   "source_id": "fs-id1169736703046",
+   "source_number": "343",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>In the following exercises, use either the ratio test or the root test as appropriate to determine whether the series $\\sum_{k=1}^{\\infty} \\kaseq_{k}$ with given terms $\\kaseq_{k}$ converges, or state if the test is inconclusive.</p><p>$\\kaseq_{k}={(\\frac{1}{k+1}+\\frac{1}{k+2}+\\cdots+\\frac{1}{3k})}^{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{k}^{1/k}\\to \\ln(3)\\gt 1.$ Diverges by root test."
+   }
+  },
+  {
+   "id": "e345",
+   "source_id": "fs-id1169739344170",
+   "source_number": "345",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>Use the ratio test to determine whether $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges, or state if the ratio test is inconclusive.</p><p>$\\sum_{n=1}^{\\infty} \\frac{3^{n^{2}}}{2^{n^{3}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}=$ $\\frac{3^{2n+1}}{2^{3n^{2}+3n+1}}\\to 0.$ Converge."
+   }
+  },
+  {
+   "id": "e347",
+   "source_id": "fs-id1169736857058",
+   "source_number": "347",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>Use the root and limit comparison tests to determine whether $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges.</p><p>$\\kaseq_{n}=1/x_{n}^{n}$ where $x_{n+1}=\\frac{1}{2}x_{n}+\\frac{1}{x_{n}},$ $x_{1}=1$ (<em>Hint:</em> Find limit of $\\{x_{n}\\}.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by root test and limit comparison test since $x_{n}\\to \\sqrt{2}.$"
+   }
+  },
+  {
+   "id": "e349",
+   "source_id": "fs-id1169739236292",
+   "source_number": "349",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>In the following exercises, use an appropriate test to determine whether the series converges.</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n+1}(n+1)}{n^{3}+3n^{2}+3n+1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges absolutely by limit comparison with $p-\\text{series,}$ $p=2.$"
+   }
+  },
+  {
+   "id": "e351",
+   "source_id": "fs-id1169736627530",
+   "source_number": "351",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>In the following exercises, use an appropriate test to determine whether the series converges.</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(n-1)}^{n}}{{(n+1)}^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\kaseq_{n}=1/e^{2}\\ne0.$ Series diverges."
+   }
+  },
+  {
+   "id": "e353",
+   "source_id": "fs-id1169736592374",
+   "source_number": "353",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>In the following exercises, use an appropriate test to determine whether the series converges.</p><p>$\\kaseq_{k}=1/2^{\\sin^{2}k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Terms do not tend to zero: $\\kaseq_{k}\\ge1/2,$ since $\\sin^{2}x\\le1.$"
+   }
+  },
+  {
+   "id": "e355",
+   "source_id": "fs-id1169736728883",
+   "source_number": "355",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>In the following exercises, use an appropriate test to determine whether the series converges.</p><p>$\\kaseq_{n}=1/(\\begin{gathered}n+2 \\\\ n\\end{gathered})$ where $(\\begin{gathered}n \\\\ k\\end{gathered})=\\frac{n\\text{!}}{k\\text{!}(n-k)\\text{!}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=\\frac{2}{(n+1)(n+2)},$ which converges by comparison with $p-\\text{series}$ for $p=2.$"
+   }
+  },
+  {
+   "id": "e357",
+   "source_id": "fs-id1169736659407",
+   "source_number": "357",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>In the following exercises, use an appropriate test to determine whether the series converges.</p><p>$\\kaseq_{k}=2^{k}/(\\begin{gathered}3k \\\\ k\\end{gathered})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{k}=\\frac{2^{k}1\\cdot 2\\cdots k}{(2k+1)(2k+2)\\cdots3k}\\le{(2/3)}^{k}$ converges by comparison with geometric series."
+   }
+  },
+  {
+   "id": "e359",
+   "source_id": "fs-id1169736791905",
+   "source_number": "359",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing",
+   "prompt": "<p>In the following exercises, use an appropriate test to determine whether the series converges.</p><p>$\\kaseq_{k}={(\\frac{k}{k+\\ln k})}^{2k}$ (<em>Hint:</em> $\\kaseq_{k}={(1+\\frac{\\ln k}{k})}^{-(k/\\ln k)\\;\\ln k^{2}}.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{k}\\approx e^{-\\ln k^{2}}=1/k^{2}.$ Series converges by limit comparison with $p-\\text{series,}$ $p=2.$"
+   }
+  },
+  {
+   "id": "e361",
+   "source_id": "fs-id1169736736662",
+   "source_number": "361",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>The following series converge by the ratio test. Use summation by parts, $\\sum_{k=1}^{n} \\kaseq_{k}(\\kbseq_{k+1}-\\kbseq_{k})=[\\kaseq_{n+1}\\kbseq_{n+1}-\\kaseq_{1}\\kbseq_{1}]-\\sum_{k=1}^{n} \\kbseq_{k+1}(\\kaseq_{k+1}-\\kaseq_{k}),$ to find the sum of the given series.</p><p>$\\sum_{k=1}^{\\infty} \\frac{k}{c^{k}},$ where $c\\gt 1$ (<em>Hint:</em> Take $\\kaseq_{k}=k$ and $\\kbseq_{k}=c^{1-k}/(c-1).)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "If $\\kbseq_{k}=c^{1-k}/(c-1)$ and $\\kaseq_{k}=k,$ then $\\kbseq_{k+1}-\\kbseq_{k}=-c^{-k}$ and $\\sum_{n=1}^{\\infty} \\frac{k}{c^{k}}=\\kaseq_{1}\\kbseq_{1}+\\frac{1}{c-1}\\sum_{k=1}^{\\infty} c^{-k}=\\frac{c}{{(c-1)}^{2}}.$"
+   }
+  },
+  {
+   "id": "e363",
+   "source_id": "fs-id1169736604959",
+   "source_number": "363",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>The following series converge by the ratio test. Use summation by parts, $\\sum_{k=1}^{n} \\kaseq_{k}(\\kbseq_{k+1}-\\kbseq_{k})=[\\kaseq_{n+1}\\kbseq_{n+1}-\\kaseq_{1}\\kbseq_{1}]-\\sum_{k=1}^{n} \\kbseq_{k+1}(\\kaseq_{k+1}-\\kaseq_{k}),$ to find the sum of the given series.</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(n+1)}^{2}}{2^{n}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 11,
+    "solution": "$6+4+1=11$"
+   }
+  },
+  {
+   "id": "e365",
+   "source_id": "fs-id1169736605120",
+   "source_number": "365",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>The <em>k</em>th term of each of the following series has a factor $x^{k}.$ Find the range of $x$ for which the ratio test implies that the series converges.</p><p>$\\sum_{k=1}^{\\infty} \\frac{x^{2k}}{k^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$|x|\\le1$"
+   }
+  },
+  {
+   "id": "e367",
+   "source_id": "fs-id1169739094808",
+   "source_number": "367",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>The <em>k</em>th term of each of the following series has a factor $x^{k}.$ Find the range of $x$ for which the ratio test implies that the series converges.</p><p>$\\sum_{k=1}^{\\infty} \\frac{x^{k}}{k\\text{!}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$|x|\\lt \\infty$"
+   }
+  },
+  {
+   "id": "e368",
+   "source_id": "fs-id1169739094867",
+   "source_number": "368",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>Does there exist a number $p$ such that $\\sum_{n=1}^{\\infty} \\frac{2^{n}}{n^{p}}$ converges?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. For $a_{n}=\\frac{2^{n}}{n^{p}},$ $\\frac{a_{n+1}}{a_{n}}=2\\left(\\frac{n}{n+1}\\right)^{p}\\to 2$ for every real $p.$ Since $\\rho=2\\gt 1,$ the series diverges by the ratio test, whatever $p$ is."
+   }
+  },
+  {
+   "id": "e369",
+   "source_id": "fs-id1169736644108",
+   "source_number": "369",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>Let $0\\lt r\\lt 1.$ For which real numbers $p$ does $\\sum_{n=1}^{\\infty} n^{p}r^{n}$ converge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "All real numbers $p$ by the ratio test."
+   }
+  },
+  {
+   "id": "e371",
+   "source_id": "fs-id1169736662279",
+   "source_number": "371",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>Suppose that $\\lim_{n\\to \\infty}|\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}|=p.$ For which values of $r\\gt 0$ is $\\sum_{n=1}^{\\infty} r^{n}\\kaseq_{n}$ guaranteed to converge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$r\\lt 1/p$"
+   }
+  },
+  {
+   "id": "e373",
+   "source_id": "fs-id1169739279096",
+   "source_number": "373",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>For which values of $r\\gt 0,$ if any, does $\\sum_{n=1}^{\\infty} r^{\\sqrt{n}}$ converge? (<em>Hint:</em> $\\sum_{n=1}^{\\infty} \\kaseq_{n}=\\sum_{k=1}^{\\infty} \\sum_{n=k^{2}}^{{(k+1)}^{2}-1} \\kaseq_{n}.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0\\lt r\\lt 1.$ Note that the ratio and root tests are inconclusive. Using the hint, there are $2k$ terms $r^{\\sqrt{n}}$ for $k^{2}\\le n\\lt {(k+1)}^{2},$ and for $r\\lt 1$ each term is at least $r^{k}.$ Thus, $\\sum_{n=1}^{\\infty} r^{\\sqrt{n}}=\\sum_{k=1}^{\\infty} \\sum_{n=k^{2}}^{{(k+1)}^{2}-1} r^{\\sqrt{n}}$ $\\ge\\sum_{k=1}^{\\infty} 2kr^{k},$ which converges by the ratio test for $r\\lt 1.$ For $r\\ge1$ the series diverges by the divergence test."
+   }
+  },
+  {
+   "id": "e374",
+   "source_id": "fs-id1169738894848",
+   "source_number": "374",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>Suppose that $|\\frac{\\kaseq_{n+2}}{\\kaseq_{n}}|\\le r\\lt 1$ for all $n.$ Can you conclude that $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. From $|a_{n+2}|\\le r|a_{n}|,$ $|a_{2k+1}|\\le r^{k}|a_{1}|$ and $|a_{2k+2}|\\le r^{k}|a_{2}|$ for all $k\\ge 0.$ So $\\sum_{n=1}^{\\infty}|a_{n}|\\le(|a_{1}|+|a_{2}|)\\sum_{k=0}^{\\infty}r^{k},$ a geometric series that converges since $0\\le r\\lt 1.$ By the comparison test $\\sum|a_{n}|$ converges, so $\\sum a_{n}$ converges absolutely."
+   }
+  },
+  {
+   "id": "e375",
+   "source_id": "fs-id1169736851103",
+   "source_number": "375",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>Let $\\kaseq_{n}=2^{-[n/2]}$ where $[x]$ is the greatest integer less than or equal to $x.$ Determine whether $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges and justify your answer.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "One has $\\kaseq_{1}=1,$ $\\kaseq_{2}=\\kaseq_{3}=1/2\\text{,\\ldots}\\;\\kaseq_{2n}=\\kaseq_{2n+1}=1/2^{n}.$ The ratio test does not apply because $\\kaseq_{n+1}/\\kaseq_{n}=1$ if $n$ is even. However, $\\kaseq_{n+2}/\\kaseq_{n}=1/2,$ so the series converges according to the previous exercise. Of course, the series is just a duplicated geometric series."
+   }
+  },
+  {
+   "id": "e376",
+   "source_id": "fs-id1169739255529",
+   "source_number": "376",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>The following <em>advanced</em> exercises use a generalized ratio test to determine convergence of some series that arise in particular applications when tests in this chapter, including the ratio and root test, are not powerful enough to determine their convergence. The test states that if $\\lim_{n\\to \\infty}\\frac{\\kaseq_{2n}}{\\kaseq_{n}}\\lt 1/2,$ then $\\sum \\kaseq_{n}$ converges, while if $\\lim_{n\\to \\infty}\\frac{\\kaseq_{2n+1}}{\\kaseq_{n}}\\gt 1/2,$ then $\\sum \\kaseq_{n}$ diverges.</p><p>Let $\\kaseq_{n}=\\frac{1}{4}\\;\\frac{3}{6}\\;\\frac{5}{8}\\cdots\\frac{2n-1}{2n+2}=\\frac{1\\cdot 3\\cdot 5\\cdots(2n-1)}{2^{n}(n+1)\\text{!}}.$ Explain why the ratio test cannot determine convergence of $\\sum_{n=1}^{\\infty} \\kaseq_{n}.$ Use the fact that $1-1/(4k)$ is increasing $k$ to estimate $\\lim_{n\\to \\infty}\\frac{\\kaseq_{2n}}{\\kaseq_{n}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\frac{a_{n+1}}{a_{n}}=\\frac{2n+1}{2(n+2)}\\to 1,$ so $\\rho=1$ and the ratio test gives no information. For the generalized test, $\\frac{a_{2n}}{a_{n}}=\\prod_{k=n+1}^{2n}\\frac{2k-1}{2k+2}=\\prod_{k=n+1}^{2n}\\left(1-\\frac{3}{2k+2}\\right).$ Since $\\ln(1-t)\\le -t,$ $\\ln\\frac{a_{2n}}{a_{n}}\\le-\\frac{3}{2}\\sum_{k=n+1}^{2n}\\frac{1}{k+1},$ and the sum approaches $\\ln 2$ as $n\\to\\infty.$ So $\\lim_{n\\to\\infty}\\frac{a_{2n}}{a_{n}}\\le 2^{-3/2}\\approx 0.354\\lt\\frac{1}{2},$ and the generalized ratio test shows that $\\sum a_{n}$ converges."
+   }
+  },
+  {
+   "id": "e377",
+   "source_id": "fs-id1169736776280",
+   "source_number": "377",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>The following <em>advanced</em> exercises use a generalized ratio test to determine convergence of some series that arise in particular applications when tests in this chapter, including the ratio and root test, are not powerful enough to determine their convergence. The test states that if $\\lim_{n\\to \\infty}\\frac{\\kaseq_{2n}}{\\kaseq_{n}}\\lt 1/2,$ then $\\sum \\kaseq_{n}$ converges, while if $\\lim_{n\\to \\infty}\\frac{\\kaseq_{2n+1}}{\\kaseq_{n}}\\gt 1/2,$ then $\\sum \\kaseq_{n}$ diverges.</p><p>Let $\\kaseq_{n}=\\frac{1}{1+x}\\;\\frac{2}{2+x}\\cdots\\frac{n}{n+x}\\;\\frac{1}{n}=\\frac{(n-1)\\text{!}}{(1+x)(2+x)\\cdots(n+x)}.$ Show that $\\kaseq_{2n}/\\kaseq_{n}\\le e^{-x/2}/2.$ For which $x\\gt 0$ does the generalized ratio test imply convergence of $\\sum_{n=1}^{\\infty} \\kaseq_{n}\\text{?}$ (<em>Hint:</em> Write $2\\kaseq_{2n}/\\kaseq_{n}$ as a product of $n$ factors each smaller than $1/(1+x/(2n)).)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{2n}/\\kaseq_{n}=\\frac{1}{2}\\cdot \\frac{n+1}{n+1+x}\\;\\frac{n+2}{n+2+x}\\cdots\\frac{2n}{2n+x}.$ The inverse of the $k\\text{th}$ factor is $(n+k+x)/(n+k)\\gt 1+x/(2n)$ so the product is less than ${(1+x/(2n))}^{-n}\\approx e^{-x/2}.$ Thus for $x\\gt 0,$ $\\frac{\\kaseq_{2n}}{\\kaseq_{n}}\\le\\frac{1}{2}e^{-x/2}.$ The series converges for $x\\gt 0.$"
+   }
+  },
+  {
+   "id": "e378",
+   "source_id": "fs-id1169736768824",
+   "source_number": "378",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-test",
+   "prompt": "<p>The following <em>advanced</em> exercises use a generalized ratio test to determine convergence of some series that arise in particular applications when tests in this chapter, including the ratio and root test, are not powerful enough to determine their convergence. The test states that if $\\lim_{n\\to \\infty}\\frac{\\kaseq_{2n}}{\\kaseq_{n}}\\lt 1/2,$ then $\\sum \\kaseq_{n}$ converges, while if $\\lim_{n\\to \\infty}\\frac{\\kaseq_{2n+1}}{\\kaseq_{n}}\\gt 1/2,$ then $\\sum \\kaseq_{n}$ diverges.</p><p>Let $\\kaseq_{n}=\\frac{n^{\\ln n}}{{(\\ln n)}^{n}}.$ Show that $\\frac{\\kaseq_{2n}}{\\kaseq_{n}}\\to 0$ as $n\\to \\infty.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ln\\frac{a_{2n}}{a_{n}}=(\\ln 2n)^{2}-(\\ln n)^{2}-2n\\ln\\ln(2n)+n\\ln\\ln n=\\ln 2\\,(\\ln 2+2\\ln n)-n\\left[2\\ln\\ln(2n)-\\ln\\ln n\\right].$ Since $\\ln\\ln(2n)\\gt\\ln\\ln n,$ the bracket is greater than $\\ln\\ln(2n),$ so $\\ln\\frac{a_{2n}}{a_{n}}\\lt(\\ln 2)^{2}+2\\ln 2\\ln n-n\\ln\\ln(2n).$ The last term grows faster than $\\ln n,$ so the right side tends to $-\\infty$ and $\\frac{a_{2n}}{a_{n}}\\to 0.$"
+   }
+  },
+  {
+   "id": "r391",
+   "source_id": "fs-id1169739249720",
+   "source_section": "9.6",
+   "source_number": "391",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Is the series convergent or divergent?</p><p>$\\sum_{n=1}^{\\infty} \\frac{e^{n}}{n\\text{!}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "converges"
+   }
+  },
+  {
+   "id": "r395",
+   "source_id": "fs-id1169736841745",
+   "source_section": "9.6",
+   "source_number": "395",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratio-theorem",
+   "prompt": "<p>Is the series convergent or divergent? If convergent, is it absolutely convergent?</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n}n\\text{!}}{n^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "converges absolutely"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "lhopitals-rule-infinity-over-infinity"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "choosing-a-convergence-test"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e317",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e319",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e321",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e323",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e325",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e327",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e329",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e331",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e333",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e335",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e337",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e339",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e341",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e343",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e345",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e347",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e347",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e349",
+   "concept": "choosing-a-convergence-test"
+  },
+  {
+   "exercise": "e351",
+   "concept": "choosing-a-convergence-test"
+  },
+  {
+   "exercise": "e353",
+   "concept": "choosing-a-convergence-test"
+  },
+  {
+   "exercise": "e355",
+   "concept": "choosing-a-convergence-test"
+  },
+  {
+   "exercise": "e357",
+   "concept": "choosing-a-convergence-test"
+  },
+  {
+   "exercise": "e359",
+   "concept": "choosing-a-convergence-test"
+  },
+  {
+   "exercise": "e361",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e361",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e363",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e363",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e365",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e367",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e368",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e369",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e371",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e373",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e373",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e374",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e374",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e375",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e375",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e376",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e377",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e378",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "r391",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "r391",
+   "concept": "number-e"
+  },
+  {
+   "exercise": "r395",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "r395",
+   "concept": "absolute-convergence"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "ratio-proof",
+   "kind": "correction",
+   "html": "The book prints $|a_{n-}|\\gt|a_{n}|$ twice and “It follows that $|a_{n}|\\ne 0$”; meant are $|a_{n+1}|\\gt|a_{n}|$ for all $n\\ge N$ and, since the terms then grow in size, $\\lim_{n\\to\\infty}a_{n}\\ne 0.$"
+  },
+  {
+   "id": "ex327-key",
+   "kind": "correction",
+   "html": "The key writes $\\frac{a_{n}}{a_{n+1}}\\to\\frac{1}{e^{2}};$ the ratio that tends to $\\frac{1}{e^{2}}$ is $\\frac{a_{n+1}}{a_{n}}.$"
+  }
+ ]
+}

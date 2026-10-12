@@ -1,0 +1,161 @@
+<p id="tests-intro">In the previous section, we determined the <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> of several <span data-concept="infinite-series">series</span> by explicitly calculating the limit of the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}.$ In practice, explicitly calculating this limit can be difficult or impossible. Luckily, several tests exist that allow us to determine <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> for many types of <span data-concept="infinite-series">series</span>. In this section, we discuss two of these tests: the <span data-concept="divergence-test">divergence test</span> and the <span data-concept="integral-test">integral test</span>. We will examine several other tests in the rest of this chapter and then summarize how and when to use them.</p>
+<section id="divergence-test">
+<h2>Divergence Test</h2>
+<p>A <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n}$ being <span data-concept="convergence-of-a-series">convergent</span> is equivalent to the <span data-concept="convergence-of-a-series">convergence</span> of the <span data-concept="partial-sum">sequence of partial sums</span> ($\kS_{k}$) as $k\to \infty.$</p>
+<p>To verify this, notice that from the algebraic properties,</p>
+$$\lim_{k\to \infty}\kaseq_{k}=\lim_{k\to \infty}(\kS_{k}-\kS_{k-1})=\lim_{k\to \infty}\kS_{k}-\lim_{k\to \infty}\kS_{k-1}=\kSsum-\kSsum=0.$$
+<p>Therefore, if $\sum_{n=1}^{\infty} \kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>, the $n\text{th}$ <span data-concept="term-of-a-sequence">term</span> $\kaseq_{n}\to 0$ as $n\to \infty.$ An important consequence of this fact is the following statement:</p>
+$$\text{If}\;\kaseq_{n}\nrightarrow 0\;\text{as}\;n\to \infty,\sum_{n=1}^{\infty} \kaseq_{n}\;\text{diverges}.\tag{9.8}$$
+<p>This test is known as the <strong><span data-concept="divergence-test">divergence test</span></strong> because it provides a way of proving that a <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<div class="note" id="divergence-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="divergence-test">Divergence Test</span></h3>
+<p>If $\lim_{n\to \infty}\kaseq_{n}=c\ne0$ or $\lim_{n\to \infty}\kaseq_{n}$ does not exist, then the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \kaseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>.</p>
+</div>
+<p>It is important to note that the converse of this theorem is not true. That is, if $\lim_{n\to \infty}\kaseq_{n}=0,$ we cannot make any conclusion about the <span data-concept="convergence-of-a-series">convergence</span> of $\sum_{n=1}^{\infty} \kaseq_{n}.$ For example, $\lim_{n\to \infty}(1/n)=0,$ but the <span data-concept="harmonic-series">harmonic series</span> $\sum_{n=1}^{\infty}1/n$ <span data-concept="divergence-of-a-series">diverges</span>. In this section and the remaining sections of this chapter, we show many more examples of such <span data-concept="infinite-series">series</span>. Consequently, although we can use the <span data-concept="divergence-test">divergence test</span> to show that a <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>, we cannot use it to prove that a <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>. Specifically, if $\kaseq_{n}\to 0,$ the <span data-concept="divergence-test">divergence test</span> is inconclusive.</p>
+<div class="example" id="fs-id1169738054624">
+<h3>Example 9.13 · Using the divergence test</h3>
+<p>For each of the following <span data-concept="infinite-series">series</span>, apply the <span data-concept="divergence-test">divergence test</span>. If the <span data-concept="divergence-test">divergence test</span> proves that the <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>, state so. Otherwise, indicate that the <span data-concept="divergence-test">divergence test</span> is inconclusive.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty}\frac{n}{3n-1}$</li><li>$\sum_{n=1}^{\infty}\frac{1}{n^{3}}$</li><li>$\sum_{n=1}^{\infty}e^{1/n^{2}}$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Since $n/(3n-1)\to 1/3\ne0,$ by the <span data-concept="divergence-test">divergence test</span>, we can conclude that $$\sum_{n=1}^{\infty}\frac{n}{3n-1}$$</li></ol>
+<p><span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a" start="2"><li>Since $1/n^{3}\to 0,$ the <span data-concept="divergence-test">divergence test</span> is inconclusive.</li><li>Since $e^{1/n^{2}}\to 1\ne0,$ by the <span data-concept="divergence-test">divergence test</span>, the <span data-concept="infinite-series">series</span> $$\sum_{n=1}^{\infty}e^{1/n^{2}}$$</li></ol>
+<p><span data-concept="divergence-of-a-series">diverges</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1169738054624"></div>
+</section>
+
+<section id="integral-test">
+<h2>Integral Test</h2>
+<p>In the previous section, we proved that the <span data-concept="harmonic-series">harmonic series</span> <span data-concept="divergence-of-a-series">diverges</span> by looking at the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ and showing that $\kS_{2^{k}}\gt 1+k/2$ for all positive integers $k.$ In this section we use a different technique to prove the <span data-concept="divergence-of-a-series">divergence</span> of the <span data-concept="harmonic-series">harmonic series</span>. This technique is important because it is used to prove the <span data-concept="divergence-of-a-series">divergence</span> or <span data-concept="convergence-of-a-series">convergence</span> of many other <span data-concept="infinite-series">series</span>. This test, called the <strong><span data-concept="integral-test">integral test</span></strong>, compares an infinite sum to an <span data-concept="improper-integral">improper integral</span>. It is important to note that this test can only be applied when we are considering a <span data-concept="infinite-series">series</span> whose <span data-concept="term-of-a-sequence">terms</span> are all positive.</p>
+<p>To illustrate how the <span data-concept="integral-test">integral test</span> works, use the <span data-concept="harmonic-series">harmonic series</span> as an example. In Figure 9.12, we depict the <span data-concept="harmonic-series">harmonic series</span> by sketching a <span data-concept="sequence">sequence</span> of rectangles with areas $1,1/2,1/3,1/4\text{,\ldots}$ along with the <span data-concept="function">function</span> <span data-fn="1/x">$\kf(x)=1/x.$</span> From the graph, we see that</p>
+$$\sum_{n=1}^{k} \frac{1}{n}=1+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{k}\gt \int_{1}^{k+1}\frac{1}{x}dx.$$
+<p>Therefore, for each $k,$ the $k\text{th}$ <span data-concept="partial-sum">partial sum</span> $\kS_{k}$ satisfies</p>
+$$\kS_{k}=\sum_{n=1}^{k} \frac{1}{n}\gt \int_{1}^{k+1}\frac{1}{x}dx=\ln x\;{|}_{1}^{k+1}=\ln(k+1)-\ln(1)=\ln(k+1).$$
+<p>Since $\lim_{k\to \infty}\ln(k+1)=\infty,$ we see that the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ is unbounded. Therefore, $\{\kS_{k}\}$ <span data-concept="divergence-of-a-series">diverges</span>, and, consequently, the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \frac{1}{n}$ also <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<figure class="sim" id="sim-integral-test" data-figure="9.12 + 9.13 + 9.14" data-original="/media/ch09/CNX_Calc_Figure_09_03_001.jpg,/media/ch09/CNX_Calc_Figure_09_03_004.jpg,/media/ch09/CNX_Calc_Figure_09_03_002.jpg" data-original-caption="(Figure 9.12) The sum of the areas of the rectangles is greater than the area between the curve f(x)=1/x and the x-axis for x≥1. Since the area bounded by the curve is infinite (as calculated by an improper integral), the sum of the areas of the rectangles is also infinite. (Figure 9.13) The sum of the areas of the rectangles is less than the sum of the area of the first rectangle and the area between the curve f(x)=1/x² and the x-axis for x≥1. Since the area bounded by the curve is finite, the sum of the areas of the rectangles is also finite. (Figure 9.14) (a) If we can inscribe rectangles inside a region bounded by a curve y=f(x) and the x-axis, and the area bounded by those curves for x≥1 is finite, then the sum of the areas of the rectangles is also finite. (b) If a set of rectangles circumscribes the region bounded by y=f(x) and the x axis for x≥1 and the region has infinite area, then the sum of the areas of the rectangles is also infinite.">
+  <div class="sim-head"><span class="eyebrow">Figure 9.12 + 9.13 + 9.14</span><span>The terms of $\sum 1/n^{p}$ as rectangles of width $1$ beside the curve $\kf(x)=1/x^{p}.$ Placed over the curve (Figure 9.12, Figure 9.14(b)), the rectangles have more area than the region under it, so $\kS_{k}\gt\int_{1}^{k+1}\kf(x)\,dx;$ placed under it (Figure 9.13, Figure 9.14(a)), $\kS_{k}\lt\kaseq_{1}+\int_{1}^{k}\kf(x)\,dx.$ Drag $p$ through $1$: the area under the curve, and with it the sum of the series, turns from infinite to finite.</span></div>
+</figure>
+<p>Now consider the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} 1/n^{2}.$ We show how an integral can be used to prove that this <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>. In Figure 9.13, we sketch a <span data-concept="sequence">sequence</span> of rectangles with areas $1,1/2^{2},1/3^{2}\text{,\ldots}$ along with the <span data-concept="function">function</span> <span data-fn="1/x^2">$\kf(x)=1/x^{2}.$</span> From the graph we see that</p>
+$$\sum_{n=1}^{k} \frac{1}{n^{2}}=1+\frac{1}{2^{2}}+\frac{1}{3^{2}}+\cdots+\frac{1}{k^{2}}\lt 1+\int_{1}^{k}\frac{1}{x^{2}}dx.$$
+<p>Therefore, for each $k,$ the $k\text{th}$ <span data-concept="partial-sum">partial sum</span> $\kS_{k}$ satisfies</p>
+$$\kS_{k}=\sum_{n=1}^{k} \frac{1}{n^{2}}\lt 1+\int_{1}^{k}\frac{1}{x^{2}}dx=1-{\frac{1}{x}|}_{1}^{k}=1-\frac{1}{k}+1=2-\frac{1}{k}\lt 2.$$
+<p>We conclude that the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ is <span data-concept="bounded-sequence">bounded</span>. We also see that $\{\kS_{k}\}$ is an <span data-concept="monotone-sequence">increasing sequence</span>:</p>
+$$\kS_{k}=\kS_{k-1}+\frac{1}{k^{2}}\;\text{for}\;k\ge2.$$
+<p>Since $\{\kS_{k}\}$ is increasing and <span data-concept="bounded-sequence">bounded</span>, by the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span>, it <span data-concept="convergence-of-a-series">converges</span>. Therefore, the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} 1/n^{2}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
+<p>We can extend this idea to prove <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> for many different <span data-concept="infinite-series">series</span>. Suppose $\sum_{n=1}^{\infty}\kaseq_{n}$ is a <span data-concept="infinite-series">series</span> with positive <span data-concept="term-of-a-sequence">terms</span> $\kaseq_{n}$ such that there exists a continuous, positive, <span data-concept="decreasing-function">decreasing function</span> $\kf$ where $\kf(n)=\kaseq_{n}$ for all positive integers. Then, as in Figure 9.14(a), for any integer $k,$ the $k\text{th}$ <span data-concept="partial-sum">partial sum</span> $\kS_{k}$ satisfies</p>
+$$\kS_{k}=\kaseq_{1}+\kaseq_{2}+\kaseq_{3}+\cdots+\kaseq_{k}\lt \kaseq_{1}+\int_{1}^{k}\kf(x)dx\lt \kaseq_{1}+\int_{1}^{\infty}\kf(x)dx.$$
+<p>Therefore, if $\int_{1}^{\infty}\kf(x)dx$ converges, then the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ is <span data-concept="bounded-sequence">bounded</span>. Since $\{\kS_{k}\}$ is an <span data-concept="monotone-sequence">increasing sequence</span>, if it is also a <span data-concept="bounded-sequence">bounded sequence</span>, then by the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span>, it <span data-concept="convergence-of-a-series">converges</span>. We conclude that if $\int_{1}^{\infty}\kf(x)dx$ converges, then the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n}$ also <span data-concept="convergence-of-a-series">converges</span>. On the other hand, from Figure 9.14(b), for any integer $k,$ the $k\text{th}$ <span data-concept="partial-sum">partial sum</span> $\kS_{k}$ satisfies</p>
+$$\kS_{k}=\kaseq_{1}+\kaseq_{2}+\kaseq_{3}+\cdots+\kaseq_{k}\gt \int_{1}^{k+1}\kf(x)dx.$$
+<p>If $\lim_{k\to \infty}\int_{1}^{k+1}\kf(x)dx=\infty,$ then $\{\kS_{k}\}$ is an <span data-concept="unbounded-sequence">unbounded sequence</span> and therefore <span data-concept="divergence-of-a-series">diverges</span>. As a result, the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \kaseq_{n}$ also <span data-concept="divergence-of-a-series">diverges</span>. We conclude that if $\int_{1}^{\infty}\kf(x)dx$ diverges, then $\sum_{n=1}^{\infty} \kaseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<div class="note" id="integral-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="integral-test">Integral Test</span></h3>
+<p>Suppose $\sum_{n=1}^{\infty} \kaseq_{n}$ is a <span data-concept="infinite-series">series</span> with positive <span data-concept="term-of-a-sequence">terms</span> $\kaseq_{n}.$ Suppose there exists a <span data-concept="function">function</span> $\kf$ and a positive integer $N$ such that the following three conditions are satisfied:</p>
+<ol><li>$\kf$ is continuous,</li><li>$\kf$ is decreasing, and</li><li>$\kf(n)=\kaseq_{n}$ for all integers $n\ge N.$</li></ol>
+<p>Then</p>
+$$\sum_{n=1}^{\infty}\kaseq_{n}\text{and}\int_{N}^{\infty}\kf(x)dx$$
+<p>both <span data-concept="convergence-of-a-series">converge</span> or both <span data-concept="divergence-of-a-series">diverge</span> (see Figure 9.14).</p>
+</div>
+<p>Although <span data-concept="convergence-of-a-series">convergence</span> of $\int_{N}^{\infty}\kf(x)dx$ implies <span data-concept="convergence-of-a-series">convergence</span> of the related <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \kaseq_{n},$ it does not imply that the value of the integral and the <span data-concept="infinite-series">series</span> are the same. They may be different, and often are. For example,</p>
+$$\sum_{n=1}^{\infty} {(\frac{1}{e})}^{n}=\frac{1}{e}+{(\frac{1}{e})}^{2}+{(\frac{1}{e})}^{3}+\cdots$$
+<p>is a <span data-concept="geometric-series">geometric series</span> with initial <span data-concept="term-of-a-sequence">term</span> $a=1/e$ and ratio $r=1/e,$ which <span data-concept="convergence-of-a-series">converges</span> to</p>
+$$\frac{1/e}{1-(1/e)}=\frac{1/e}{(e-1)/e}=\frac{1}{e-1}.$$
+<p>However, the related integral $\int_{1}^{\infty}{(1/e)}^{x}dx$ satisfies</p>
+$$\int_{1}^{\infty}{(\frac{1}{e})}^{x}dx=\int_{1}^{\infty}e^{-x}dx=\lim_{b\to \infty}\int_{1}^{b}e^{-x}dx=\lim_{b\to \infty}-e^{-x}{|}_{1}^{b}=\lim_{b\to \infty}[-e^{-b}+e^{-1}]=\frac{1}{e}.$$
+<div class="example" id="fs-id1169737903729">
+<h3>Example 9.14 · Using the Integral Test</h3>
+<p>For each of the following <span data-concept="infinite-series">series</span>, use the <span data-concept="integral-test">integral test</span> to determine whether the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>. Assume that all conditions for the <span data-concept="integral-test">integral test</span> are met.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty} 1/n^{3}$</li><li>$\sum_{n=1}^{\infty}1/\sqrt{2n-1}$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Compare $$\sum_{n=1}^{\infty} \frac{1}{n^{3}}\;\text{and}\;\int_{1}^{\infty}\frac{1}{x^{3}}dx.$$</li></ol>
+<p>We have</p>
+$$\int_{1}^{\infty}\frac{1}{x^{3}}dx=\lim_{b\to \infty}\int_{1}^{b}\frac{1}{x^{3}}dx=\lim_{b\to \infty}[-\frac{1}{2x^{2}}{|}_{1}^{b}]=\lim_{b\to \infty}[-\frac{1}{2b^{2}}+\frac{1}{2}]=\frac{1}{2}.$$
+<p>Thus the integral $\int_{1}^{\infty}1/x^{3}dx$ converges, and therefore so does the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty} \frac{1}{n^{3}}.$$
+<ol type="a" start="2"><li>Compare $$\sum_{n=1}^{\infty}\frac{1}{\sqrt{2n-1}}\;\text{and}\;\int_{1}^{\infty}\frac{1}{\sqrt{2x-1}}dx.$$</li></ol>
+<p>Since</p>
+$$\begin{aligned}\int_{1}^{\infty}\frac{1}{\sqrt{2x-1}}dx &=\lim_{b\to \infty}\int_{1}^{b}\frac{1}{\sqrt{2x-1}}dx=\lim_{b\to \infty}\sqrt{2x-1}{|}_{1}^{b} \\ &=\lim_{b\to \infty}[\sqrt{2b-1}-1]=\infty,\end{aligned}$$
+<p>the integral $\int_{1}^{\infty}1/\sqrt{2x-1}\;dx$ diverges, and therefore</p>
+$$\sum_{n=1}^{\infty}\frac{1}{\sqrt{2n-1}}$$
+<p><span data-concept="divergence-of-a-series">diverges</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1169737903729"></div>
+</section>
+
+<section id="p-series">
+<h2>The <em>p</em>-Series</h2>
+<p>The <span data-concept="harmonic-series">harmonic series</span> $\sum_{n=1}^{\infty}1/n$ and the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}1/n^{2}$ are both examples of a type of <span data-concept="infinite-series">series</span> called a <span data-concept="p-series"><em>p</em>-series</span>.</p>
+<div class="note" id="p-series-definition">
+<div class="eyebrow">Definition</div>
+<p>For any real number $p,$ the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty}\frac{1}{n^{p}}$$
+<p>is called a <strong><span data-concept="p-series"><em>p</em>-series</span></strong>.</p>
+</div>
+<p>We know the <span data-concept="p-series"><em>p</em>-series</span> <span data-concept="convergence-of-a-series">converges</span> if $p=2$ and <span data-concept="divergence-of-a-series">diverges</span> if $p=1.$ What about other values of $p\text{?}$ In general, it is difficult, if not impossible, to compute the exact value of most <span data-concept="p-series">$p$-series</span>. However, we can use the tests presented thus far to prove whether a <span data-concept="p-series">$p$-series</span> <span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<p>If $p\lt 0,$ then $1/n^{p}\to \infty,$ and if $p=0,$ then $1/n^{p}\to 1.$ Therefore, by the <span data-concept="divergence-test">divergence test</span>,</p>
+$$\sum_{n=1}^{\infty}1/n^{p}\;\text{diverges if}\;p\le0.$$
+<p>If $p\gt 0,$ then $\kf(x)=1/x^{p}$ is a positive, continuous, <span data-concept="decreasing-function">decreasing function</span>. Therefore, for $p\gt 0,$ we use the <span data-concept="integral-test">integral test</span>, comparing</p>
+$$\sum_{n=1}^{\infty}\frac{1}{n^{p}}\;\text{and}\;\int_{1}^{\infty}\frac{1}{x^{p}}dx.$$
+<p>We have already considered the case when $p=1.$ Here we consider the case when $p\gt 0,p\ne1.$ For this case,</p>
+$$\int_{1}^{\infty}\frac{1}{x^{p}}dx=\lim_{b\to \infty}\int_{1}^{b}\frac{1}{x^{p}}dx=\lim_{b\to \infty}\frac{1}{1-p}x^{1-p}{|}_{1}^{b}=\lim_{b\to \infty}\frac{1}{1-p}[b^{1-p}-1].$$
+<p>Because</p>
+$$b^{1-p}\to 0\;\text{if}\;p\gt 1\;\text{and}\;b^{1-p}\to \infty\;\text{if}\;p\lt 1,$$
+<p>we conclude that</p>
+$$\int_{1}^{\infty}\frac{1}{x^{p}}dx=\begin{cases}\frac{1}{p-1}\;\text{if}\;p\gt 1 \\ \infty\;\text{if}\;p\le1\end{cases}.$$
+<p>Therefore, $\sum_{n=1}^{\infty}1/n^{p}$ <span data-concept="convergence-of-a-series">converges</span> if $p\gt 1$ and <span data-concept="divergence-of-a-series">diverges</span> if $0\lt p\lt 1.$</p>
+<p>In summary,</p>
+$$\sum_{n=1}^{\infty} \frac{1}{n^{p}}\;\begin{cases}\text{converges if}\;p\gt 1 \\ \text{diverges if}\;p\le1\end{cases}.\tag{9.9}$$
+<div class="example" id="fs-id1169737151882">
+<h3>Example 9.15 · Testing for Convergence of <span data-concept="p-series"><em>p</em>-series</span></h3>
+<p>For each of the following <span data-concept="infinite-series">series</span>, determine whether it <span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty}\frac{1}{n^{4}}$</li><li>$\sum_{n=1}^{\infty}\frac{1}{n^{2/3}}$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>This is a <span data-concept="p-series"><em>p</em>-series</span> with $p=4\gt 1,$ so the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>.</li><li>Since $p=2/3\lt 1,$ the <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>.</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1169737151882"></div>
+</section>
+
+<section id="estimating">
+<h2>Estimating the Value of a Series</h2>
+<p>Suppose we know that a <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span> and we want to estimate the sum of that <span data-concept="infinite-series">series</span>. Certainly we can approximate that sum using any finite sum $\sum_{n=1}^{N} \kaseq_{n}$ where $N$ is any positive integer. The question we address here is, for a <span data-concept="convergence-of-a-series">convergent</span> <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n},$ how good is the approximation $\sum_{n=1}^{N}\kaseq_{n}\text{?}$ More specifically, if we let</p>
+$$\kR_{N}=\sum_{n=1}^{\infty} \kaseq_{n}-\sum_{n=1}^{N} \kaseq_{n}$$
+<p>be the <span data-concept="remainder-of-a-series">remainder</span> when the sum of an <span data-concept="infinite-series">infinite series</span> is approximated by the $N\text{th}$ <span data-concept="partial-sum">partial sum</span>, how large is $\kR_{N}\text{?}$ For some types of <span data-concept="infinite-series">series</span>, we are able to use the ideas from the <span data-concept="integral-test">integral test</span> to estimate $\kR_{N}.$</p>
+<div class="note" id="remainder-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="remainder-estimate-for-the-integral-test">Remainder Estimate from the Integral Test</span></h3>
+<p>Suppose $\sum_{n=1}^{\infty}\kaseq_{n}$ is a <span data-concept="convergence-of-a-series">convergent</span> <span data-concept="infinite-series">series</span> with positive <span data-concept="term-of-a-sequence">terms</span>. Suppose there exists a <span data-concept="function">function</span> $\kf$ satisfying the following three conditions:</p>
+<ol><li>$\kf$ is continuous,</li><li>$\kf$ is decreasing, and</li><li>$\kf(n)=\kaseq_{n}$ for all integers $n\ge1.$ Let $\kS_{N}$ be the $N$th <span data-concept="partial-sum">partial sum</span> of $\sum_{n=1}^{\infty}\kaseq_{n}.$ For all positive integers $N,$ $$\kS_{N}+\int_{N+1}^{\infty}\kf(x)dx\lt \sum_{n=1}^{\infty}\kaseq_{n}\lt \kS_{N}+\int_{N}^{\infty}\kf(x)dx.$$</li></ol>
+<p>In other words, the <span data-concept="remainder-of-a-series">remainder</span> $\kR_{N}=\sum_{n=1}^{\infty}\kaseq_{n}-\kS_{N}=\sum_{n=N+1}^{\infty}\kaseq_{n}$ satisfies the following estimate:</p>
+$$\int_{N+1}^{\infty}\kf(x)dx\lt \kR_{N}\lt \int_{N}^{\infty}\kf(x)dx.\tag{9.10}$$
+<p>This is known as the <strong><span data-concept="remainder-estimate-for-the-integral-test">remainder estimate</span></strong>.</p>
+</div>
+<p>We illustrate Remainder Estimate from the Integral Test in Figure 9.15. In particular, by representing the <span data-concept="remainder-of-a-series">remainder</span> $\kR_{N}=\kaseq_{N+1}+\kaseq_{N+2}+\kaseq_{N+3}+\cdots$ as the sum of areas of rectangles, we see that the area of those rectangles is bounded above by $\int_{N}^{\infty}\kf(x)dx$ and bounded below by $\int_{N+1}^{\infty}\kf(x)dx.$ In other words,</p>
+$$\kR_{N}=\kaseq_{N+1}+\kaseq_{N+2}+\kaseq_{N+3}+\cdots\gt \int_{N+1}^{\infty}\kf(x)dx$$
+<p>and</p>
+$$\kR_{N}=\kaseq_{N+1}+\kaseq_{N+2}+\kaseq_{N+3}+\cdots\lt \int_{N}^{\infty}\kf(x)dx.$$
+<p>We conclude that</p>
+$$\int_{N+1}^{\infty}\kf(x)dx\lt \kR_{N}\lt \int_{N}^{\infty}\kf(x)dx.$$
+<p>Since</p>
+$$\sum_{n=1}^{\infty}\kaseq_{n}=\kS_{N}+\kR_{N},$$
+<p>where $\kS_{N}$ is the $N\text{th}$ <span data-concept="partial-sum">partial sum</span>, we conclude that</p>
+$$\kS_{N}+\int_{N+1}^{\infty}\kf(x)dx\lt \sum_{n=1}^{\infty}\kaseq_{n}\lt \kS_{N}+\int_{N}^{\infty}\kf(x)dx.$$
+<figure class="sim" id="sim-remainder-estimate" data-figure="9.15" data-original="/media/ch09/CNX_Calc_Figure_09_03_003_5_15.jpg" data-original-caption="Given a continuous, positive, decreasing function f and a sequence of positive terms aₙ such that aₙ=f(n) for all positive integers n, (a) the areas a_(N+1)+a_(N+2)+a_(N+3)+⋯&lt; ∫_N^(∞)f(x)dx, or (b) the areas a_(N+1)+a_(N+2)+a_(N+3)+⋯&gt; ∫_(N+1)^(∞)f(x)dx. Therefore, the integral is either an overestimate or an underestimate of the error.">
+  <div class="sim-head"><span class="eyebrow">Figure 9.15</span><span>Given a continuous, positive, decreasing function $\kf$ and terms $\kaseq_{n}=\kf(n),$ (a) the areas $\kaseq_{N+1}+\kaseq_{N+2}+\cdots$ are less than $\int_{N}^{\infty}\kf(x)\,dx,$ or (b) they are more than $\int_{N+1}^{\infty}\kf(x)\,dx.$ Here $\kf(x)=1/x^{3},$ the function of Example 9.16: drag $N$, and the remainder $\kR_{N}$ stays caught between the two integrals.</span></div>
+</figure>
+<div class="example" id="fs-id1169737360049">
+<h3>Example 9.16 · Estimating the Value of a Series</h3>
+<p>Consider the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}1/n^{3}.$</p>
+<ol type="a"><li>Calculate $\kS_{10}=\sum_{n=1}^{10}1/n^{3}$ and estimate the error.</li><li>Determine the least value of $N$ necessary such that $\kS_{N}$ will estimate $\sum_{n=1}^{\infty}1/n^{3}$ to within $0.001.$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Using a calculating utility, we have $$\kS_{10}=1+\frac{1}{2^{3}}+\frac{1}{3^{3}}+\frac{1}{4^{3}}+\cdots+\frac{1}{{10}^{3}}\approx 1.19753.$$</li></ol>
+<p>By the <span data-concept="remainder-estimate-for-the-integral-test">remainder estimate</span>, we know</p>
+$$\kR_{N}\lt \int_{N}^{\infty}\frac{1}{x^{3}}dx.$$
+<p>We have</p>
+$$\int_{10}^{\infty}\frac{1}{x^{3}}dx=\lim_{b\to \infty}\int_{10}^{b}\frac{1}{x^{3}}dx=\lim_{b\to \infty}[-\frac{1}{2x^{2}}{]}_{N}^{b}=\lim_{b\to \infty}[-\frac{1}{2b^{2}}+\frac{1}{2N^{2}}]=\frac{1}{2N^{2}}.$$
+<p>Therefore, the error is $\kR_{10}\lt 1/2{(10)}^{2}=0.005.$</p>
+<ol type="a" start="2"><li>Find $N$ such that $\kR_{N}\lt 0.001.$ In part a. we showed that $\kR_{N}\lt 1/(2N^{2}).$ Therefore, the <span data-concept="remainder-of-a-series">remainder</span> $\kR_{N}\lt 0.001$ as long as $1/(2N^{2})\lt 0.001.$ That is, we need $2N^{2}\gt 1000.$ Solving this inequality for $N,$ we see that we need $N\gt 22.36.$ To ensure that the <span data-concept="remainder-of-a-series">remainder</span> is within the desired amount, we need to round up to the nearest integer. Therefore, the minimum necessary value is $N=23.$</li></ol>
+</div>
+<div class="exercises" data-place="fs-id1169737360049"></div>
+</section>

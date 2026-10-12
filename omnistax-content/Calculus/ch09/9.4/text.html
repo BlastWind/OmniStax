@@ -1,0 +1,133 @@
+<p id="comparison-intro">We have seen that the <span data-concept="integral-test">integral test</span> allows us to determine the <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> of a <span data-concept="infinite-series">series</span> by comparing it to a related improper integral. In this section, we show how to use <span data-concept="comparison-test">comparison tests</span> to determine the <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> of a <span data-concept="infinite-series">series</span> by comparing it to a <span data-concept="infinite-series">series</span> whose <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> is known. Typically these tests are used to determine <span data-concept="convergence-of-a-series">convergence</span> of <span data-concept="infinite-series">series</span> that are similar to <span data-concept="geometric-series">geometric series</span> or <span data-concept="p-series"><em>p</em>-series</span>.</p>
+<section id="comparison-test">
+<h2>Comparison Test</h2>
+<p>In the preceding two sections, we discussed two large classes of <span data-concept="infinite-series">series</span>: <span data-concept="geometric-series">geometric series</span> and <span data-concept="p-series"><em>p</em>-series</span>. We know exactly when these <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converge</span> and when they <span data-concept="divergence-of-a-series">diverge</span>. Here we show how to use the <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> of these <span data-concept="infinite-series">series</span> to prove <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> for other <span data-concept="infinite-series">series</span>, using a method called the <strong><span data-concept="comparison-test">comparison test</span></strong>.</p>
+<p>For example, consider the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty}\frac{1}{n^{2}+1}.$$
+<p>This <span data-concept="infinite-series">series</span> looks similar to the <span data-concept="convergence-of-a-series">convergent</span> <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty}\frac{1}{n^{2}}.$$
+<p>Since the <span data-concept="term-of-a-sequence">terms</span> in each of the <span data-concept="infinite-series">series</span> are positive, the <span data-concept="partial-sum">sequence of partial sums</span> for each <span data-concept="infinite-series">series</span> is <span data-concept="monotone-sequence">monotone increasing</span>. Furthermore, since</p>
+$$0\lt \frac{1}{n^{2}+1}\lt \frac{1}{n^{2}}$$
+<p>for all positive integers $n,$ the $k\text{th}$ <span data-concept="partial-sum">partial sum</span> $\kS_{k}$ of $\sum_{n=1}^{\infty}\frac{1}{n^{2}+1}$ satisfies</p>
+$$\kS_{k}=\sum_{n=1}^{k}\frac{1}{n^{2}+1}\lt \sum_{n=1}^{k}\frac{1}{n^{2}}\lt \sum_{n=1}^{\infty}\frac{1}{n^{2}}.$$
+<p>(See Figure 9.16(a) and Table 9.1.) Since the <span data-concept="infinite-series">series</span> on the right <span data-concept="convergence-of-a-series">converges</span>, the <span data-concept="sequence">sequence</span> $\{\kS_{k}\}$ is <span data-concept="bounded-above">bounded above</span>. We conclude that $\{\kS_{k}\}$ is a <span data-concept="monotone-sequence">monotone increasing sequence</span> that is <span data-concept="bounded-above">bounded above</span>. Therefore, by the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span>, $\{\kS_{k}\}$ <span data-concept="convergence-of-a-series">converges</span>, and thus</p>
+$$\sum_{n=1}^{\infty}\frac{1}{n^{2}+1}$$
+<p><span data-concept="convergence-of-a-series">converges</span>.</p>
+<p>Similarly, consider the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty}\frac{1}{n-1/2}.$$
+<p>This <span data-concept="infinite-series">series</span> looks similar to the <span data-concept="divergence-of-a-series">divergent</span> <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty}\frac{1}{n}.$$
+<p>The <span data-concept="partial-sum">sequence of partial sums</span> for each <span data-concept="infinite-series">series</span> is <span data-concept="monotone-sequence">monotone increasing</span> and</p>
+$$\frac{1}{n-1/2}\gt \frac{1}{n}\gt 0$$
+<p>for every positive integer $n.$ Therefore, the $k\text{th}$ <span data-concept="partial-sum">partial sum</span> $\kS_{k}$ of $\sum_{n=1}^{\infty}\frac{1}{n-1/2}$ satisfies</p>
+$$\kS_{k}=\sum_{n=1}^{k}\frac{1}{n-1/2}\gt \sum_{n=1}^{k}\frac{1}{n}.$$
+<p>(See Figure 9.16(b) and Table 9.2.) Since the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}1/n\;$ <span data-concept="divergence-of-a-series">diverges</span> to infinity, the <span data-concept="partial-sum">sequence of partial sums</span> $\sum_{n=1}^{k}1/n$ is <span data-concept="unbounded-sequence">unbounded</span>. Consequently, $\{\kS_{k}\}$ is an <span data-concept="unbounded-sequence">unbounded sequence</span>, and therefore <span data-concept="divergence-of-a-series">diverges</span>. We conclude that</p>
+$$\sum_{n=1}^{\infty}\frac{1}{n-1/2}\;$$
+<p><span data-concept="divergence-of-a-series">diverges</span>.</p>
+<figure class="sim" id="sim-comparison" data-figure="9.16" data-original="/media/ch09/CNX_Calc_Figure_09_04_001.jpg" data-original-caption="(a) Each of the partial sums for the given series is less than the corresponding partial sum for the converging p−series. (b) Each of the partial sums for the given series is greater than the corresponding partial sum for the diverging harmonic series.">
+  <div class="sim-head"><span class="eyebrow">Figure 9.16</span><span>(a) Each of the partial sums for <span data-ref="cmp-given">the given series</span> is less than the corresponding partial sum for <span data-ref="cmp-known">the converging $p$-series</span>. (b) Each of the partial sums for <span data-ref="cmp-given">the given series</span> is greater than the corresponding partial sum for <span data-ref="cmp-known">the diverging harmonic series</span>. The terms of both series are drawn below their partial sums; drag $k$ to follow them past Tables 9.1 and 9.2.</span></div>
+</figure>
+<div class="book-table" id="fs-id1169738963340">
+  <div class="tcap"><span class="eyebrow">Table 9.1</span><span>Comparing a <span data-concept="infinite-series">series</span> with a <span data-concept="p-series"><em>p</em>-series</span> (<em>p</em> = 2)</span></div>
+  <table><thead><tr><th>$k$</th><th>$1$</th><th>$2$</th><th>$3$</th><th>$4$</th><th>$5$</th><th>$6$</th><th>$7$</th><th>$8$</th></tr></thead><tbody><tr><td>$\sum_{n=1}^{k} \frac{1}{n^{2}+1}$</td><td>$0.5$</td><td>$0.7$</td><td>$0.8$</td><td>$0.8588$</td><td>$0.8973$</td><td>$0.9243$</td><td>$0.9443$</td><td>$0.9597$</td></tr><tr><td>$\sum_{n=1}^{k} \frac{1}{n^{2}}$</td><td>$1$</td><td>$\begin{gathered}1.25\end{gathered}$</td><td>$1.3611$</td><td>$1.4236$</td><td>$1.4636$</td><td>$1.4914$</td><td>$1.5118$</td><td>$1.5274$</td></tr></tbody></table>
+</div>
+<div class="book-table" id="fs-id1169739044243">
+  <div class="tcap"><span class="eyebrow">Table 9.2</span><span>Comparing a <span data-concept="infinite-series">series</span> with the <span data-concept="harmonic-series">harmonic series</span></span></div>
+  <table><thead><tr><th>$k$</th><th>$1$</th><th>$2$</th><th>$3$</th><th>$4$</th><th>$5$</th><th>$6$</th><th>$7$</th><th>$8$</th></tr></thead><tbody><tr><td>$\sum_{n=1}^{k} \frac{1}{n-1/2}$</td><td>$2$</td><td>$2.6667$</td><td>$3.0667$</td><td>$3.3524$</td><td>$3.5746$</td><td>$3.7564$</td><td>$3.9103$</td><td>$4.0436$</td></tr><tr><td>$\sum_{n=1}^{k} \frac{1}{n}$</td><td>$1$</td><td>$1.5$</td><td>$\begin{gathered}1.8333\end{gathered}$</td><td>$2.0933$</td><td>$2.2833$</td><td>$2.45$</td><td>$2.5929$</td><td>$2.7179$</td></tr></tbody></table>
+</div>
+<div class="note" id="comparison-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="comparison-test">Comparison Test</span></h3>
+<ol><li>Suppose there exists an integer $N$ such that $0\le \kaseq_{n}\le \kbseq_{n}$ for all $n\ge N.$ If $\sum_{n=1}^{\infty}\kbseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>.</li><li>Suppose there exists an integer $N$ such that $\kaseq_{n}\ge \kbseq_{n}\ge0$ for all $n\ge N.$ If $\sum_{n=1}^{\infty}\kbseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>.</li></ol>
+</div>
+<h3>Proof</h3>
+<p>We prove part i. The proof of part ii. is the contrapositive of part i. Let $\{\kS_{k}\}$ be the <span data-concept="partial-sum">sequence of partial sums</span> associated with $\sum_{n=1}^{\infty}\kaseq_{n},$ and let $\kL=\sum_{n=1}^{\infty}\kbseq_{n}.$ Since the <span data-concept="term-of-a-sequence">terms</span> $\kaseq_{n}\ge0,$</p>
+$$\kS_{k}=\kaseq_{1}+\kaseq_{2}+\cdots+\kaseq_{k}\le \kaseq_{1}+\kaseq_{2}+\cdots+\kaseq_{k}+\kaseq_{k+1}=\kS_{k+1}.$$
+<p>Therefore, the <span data-concept="partial-sum">sequence of partial sums</span> is increasing. Further, since $\kaseq_{n}\le \kbseq_{n}$ for all $n\ge N,$ then</p>
+$$\sum_{n=N}^{k} \kaseq_{n}\le\sum_{n=N}^{k} \kbseq_{n}\le\sum_{n=1}^{\infty} \kbseq_{n}=\kL.$$
+<p>Therefore, for all $k\ge1,$</p>
+$$\kS_{k}=(\kaseq_{1}+\kaseq_{2}+\cdots+\kaseq_{N-1})+\sum_{n=N}^{k} \kaseq_{n}\le(\kaseq_{1}+\kaseq_{2}+\cdots+\kaseq_{N-1})+\kL.$$
+<p>Since $\kaseq_{1}+\kaseq_{2}+\cdots+\kaseq_{N-1}$ is a finite number, we conclude that the <span data-concept="sequence">sequence</span> $\{\kS_{k}\}$ is <span data-concept="bounded-above">bounded above</span>. Therefore, $\{\kS_{k}\}$ is an <span data-concept="monotone-sequence">increasing sequence</span> that is <span data-concept="bounded-above">bounded above</span>. By the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span>, we conclude that $\{\kS_{k}\}$ <span data-concept="convergence-of-a-series">converges</span>, and therefore the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
+<p>□</p>
+<p>To use the <span data-concept="comparison-test">comparison test</span> to determine the <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> of a <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \kaseq_{n},$ it is necessary to find a suitable <span data-concept="infinite-series">series</span> with which to compare it. Since we know the <span data-concept="convergence-of-a-series">convergence</span> properties of <span data-concept="geometric-series">geometric series</span> and <span data-concept="p-series"><em>p</em>-series</span>, these <span data-concept="infinite-series">series</span> are often used. If there exists an integer $N$ such that for all $n\ge N,$ each <span data-concept="term-of-a-sequence">term</span> $\kaseq_{n}$ is less than each corresponding <span data-concept="term-of-a-sequence">term</span> of a known <span data-concept="convergence-of-a-series">convergent</span> <span data-concept="infinite-series">series</span>, then $\sum_{n=1}^{\infty} \kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>. Similarly, if there exists an integer $N$ such that for all $n\ge N,$ each <span data-concept="term-of-a-sequence">term</span> $\kaseq_{n}$ is greater than each corresponding <span data-concept="term-of-a-sequence">term</span> of a known <span data-concept="divergence-of-a-series">divergent</span> <span data-concept="infinite-series">series</span>, then $\sum_{n=1}^{\infty} \kaseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<div class="example" id="fs-id1169738880258">
+<h3>Example 9.17 · Using the Comparison Test</h3>
+<p>For each of the following <span data-concept="infinite-series">series</span>, use the <span data-concept="comparison-test">comparison test</span> to determine whether the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty}\frac{1}{n^{3}+3n+1}$</li><li>$\sum_{n=1}^{\infty}\frac{1}{2^{n}+1}$</li><li>$\sum_{n=2}^{\infty}\frac{1}{\ln(n)}$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Compare to $\sum_{n=1}^{\infty} \frac{1}{n^{3}}$ Since $\sum_{n=1}^{\infty} \frac{1}{n^{3}}$ is a <span data-concept="p-series"><em>p</em>-series</span> with $p=3,$ it <span data-concept="convergence-of-a-series">converges</span>. Further, $$\frac{1}{n^{3}+3n+1}\lt \frac{1}{n^{3}}$$</li></ol>
+<p>for every positive integer $n.$ Therefore, we can conclude that $\sum_{n=1}^{\infty}\frac{1}{n^{3}+3n+1}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
+<ol type="a" start="2"><li>Compare to $\sum_{n=1}^{\infty}{(\frac{1}{2})}^{n}.$ Since $\sum_{n=1}^{\infty} {(\frac{1}{2})}^{n}$ is a <span data-concept="geometric-series">geometric series</span> with $r=1/2$ and $|1/2|\lt 1,$ it <span data-concept="convergence-of-a-series">converges</span>. Also, $$\frac{1}{2^{n}+1}\lt \frac{1}{2^{n}}$$</li></ol>
+<p>for every positive integer $n.$ Therefore, we see that $\sum_{n=1}^{\infty}\frac{1}{2^{n}+1}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
+<ol type="a" start="3"><li>Compare to $\sum_{n=2}^{\infty}\frac{1}{n}.$ Since $$\frac{1}{\ln(n)}\gt \frac{1}{n}$$</li></ol>
+<p>for every integer $n\ge2$ and $\sum_{n=2}^{\infty}1/n$ <span data-concept="divergence-of-a-series">diverges</span>, we have that $\sum_{n=2}^{\infty}\frac{1}{\ln(n)}$ <span data-concept="divergence-of-a-series">diverges</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1169738880258"></div>
+</section>
+
+<section id="limit-comparison-test">
+<h2>Limit Comparison Test</h2>
+<p>The <span data-concept="comparison-test">comparison test</span> works nicely if we can find a comparable <span data-concept="infinite-series">series</span> satisfying the hypothesis of the test. However, sometimes finding an appropriate <span data-concept="infinite-series">series</span> can be difficult. Consider the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=2}^{\infty}\frac{1}{n^{2}-1}.$$
+<p>It is natural to compare this <span data-concept="infinite-series">series</span> with the <span data-concept="convergence-of-a-series">convergent</span> <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=2}^{\infty}\frac{1}{n^{2}}.$$
+<p>However, this <span data-concept="infinite-series">series</span> does not satisfy the hypothesis necessary to use the <span data-concept="comparison-test">comparison test</span> because</p>
+$$\frac{1}{n^{2}-1}\gt \frac{1}{n^{2}}$$
+<p>for all integers $n\ge2.$ Although we could look for a different <span data-concept="infinite-series">series</span> with which to compare $\sum_{n=2}^{\infty}1/(n^{2}-1),$ instead we show how we can use the <strong><span data-concept="limit-comparison-test">limit comparison test</span></strong> to compare</p>
+$$\sum_{n=2}^{\infty}\frac{1}{n^{2}-1}\;\text{and}\;\sum_{n=2}^{\infty}\frac{1}{n^{2}}.$$
+<p>Let us examine the idea behind the <span data-concept="limit-comparison-test">limit comparison test</span>. Consider two <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n}$ and $\sum_{n=1}^{\infty}\kbseq_{n}.$ with positive <span data-concept="term-of-a-sequence">terms</span> $\kaseq_{n}\;\text{and}\;\kbseq_{n}$ and evaluate</p>
+$$\lim_{n\to \infty}\frac{\kaseq_{n}}{\kbseq_{n}}.$$
+<p>If</p>
+$$\lim_{n\to \infty}\frac{\kaseq_{n}}{\kbseq_{n}}=\kL\ne0,$$
+<p>then, for $n$ sufficiently large, $\kaseq_{n}\approx Lb_{n}.$ Therefore, either both <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converge</span> or both <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverge</span>. For the <span data-concept="infinite-series">series</span> $\sum_{n=2}^{\infty}1/(n^{2}-1)$ and $\sum_{n=2}^{\infty}1/n^{2},$ we see that</p>
+$$\lim_{n\to \infty}\frac{1/(n^{2}-1)}{1/n^{2}}=\lim_{n\to \infty}\;\frac{n^{2}}{n^{2}-1}=1.$$
+<p>Since $\sum_{n=2}^{\infty}1/n^{2}$ <span data-concept="convergence-of-a-series">converges</span>, we conclude that</p>
+$$\sum_{n=2}^{\infty}\frac{1}{n^{2}-1}\;$$
+<p><span data-concept="convergence-of-a-series">converges</span>.</p>
+<p>The <span data-concept="limit-comparison-test">limit comparison test</span> can be used in two other cases. Suppose</p>
+$$\lim_{n\to \infty}\frac{\kaseq_{n}}{\kbseq_{n}}=0.$$
+<p>In this case, $\{\kaseq_{n}/\kbseq_{n}\}$ is a <span data-concept="bounded-sequence">bounded sequence</span>. As a result, there exists a constant $M$ such that $\kaseq_{n}\le Mb_{n}.$ Therefore, if $\sum_{n=1}^{\infty}\kbseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>. On the other hand, suppose</p>
+$$\lim_{n\to \infty}\frac{\kaseq_{n}}{\kbseq_{n}}=\infty.$$
+<p>In this case, $\{\kaseq_{n}/\kbseq_{n}\}$ is an <span data-concept="unbounded-sequence">unbounded sequence</span>. Therefore, for every constant $M$ there exists an integer $N$ such that $\kaseq_{n}\ge Mb_{n}$ for all $n\ge N.$ Therefore, if $\sum_{n=1}^{\infty}\kbseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span> as well.</p>
+<div class="note" id="limit-comparison-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="limit-comparison-test">Limit Comparison Test</span></h3>
+<p>Let $\kaseq_{n},\;\kbseq_{n}\ge0$ for all $n\ge1.$</p>
+<ol><li>If $\lim_{n\to \infty}\kaseq_{n}/\kbseq_{n}=\kL\ne0,$ then $\sum_{n=1}^{\infty}\kaseq_{n}$ and $\sum_{n=1}^{\infty}\kbseq_{n}$ both <span data-concept="convergence-of-a-series">converge</span> or both <span data-concept="divergence-of-a-series">diverge</span>.</li><li>If $\lim_{n\to \infty}\kaseq_{n}/\kbseq_{n}=0$ and $\sum_{n=1}^{\infty}\kbseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>.</li><li>If $\lim_{n\to \infty}\kaseq_{n}/\kbseq_{n}=\infty$ and $\sum_{n=1}^{\infty}\kbseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>.</li></ol>
+</div>
+<p>Note that if $\kaseq_{n}/\kbseq_{n}\to 0$ and $\sum_{n=1}^{\infty}\kbseq_{n}$ <span data-concept="divergence-of-a-series">diverges</span>, the <span data-concept="limit-comparison-test">limit comparison test</span> gives no information. Similarly, if $\kaseq_{n}/\kbseq_{n}\to \infty$ and $\sum_{n=1}^{\infty}\kbseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>, the test also provides no information. For example, consider the two <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} 1/\sqrt{n}$ and $\sum_{n=1}^{\infty} 1/n^{2}.$ These <span data-concept="infinite-series">series</span> are both <span data-concept="p-series"><em>p</em>-series</span> with $p=1/2$ and $p=2,$ respectively. Since $p=1/2\lt 1,$ the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} 1/\sqrt{n}$ <span data-concept="divergence-of-a-series">diverges</span>. On the other hand, since $p=2\gt 1,$ the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} 1/n^{2}$ <span data-concept="convergence-of-a-series">converges</span>. However, suppose we attempted to apply the <span data-concept="limit-comparison-test">limit comparison test</span>, using the <span data-concept="convergence-of-a-series">convergent</span> $p-\text{series}$ $\sum_{n=1}^{\infty} 1/n^{3}$ as our comparison <span data-concept="infinite-series">series</span>. First, we see that</p>
+$$\frac{1/\sqrt{n}}{1/n^{3}}=\frac{n^{3}}{\sqrt{n}}=n^{5/2}\to \infty\;\text{as}\;n\to \infty.$$
+<p>Similarly, we see that</p>
+$$\frac{1/n^{2}}{1/n^{3}}=n\to \infty\;\text{as}\;n\to \infty.$$
+<p>Therefore, if $\kaseq_{n}/\kbseq_{n}\to \infty$ when $\sum_{n=1}^{\infty} \kbseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>, we do not gain any information on the <span data-concept="convergence-of-a-series">convergence</span> or <span data-concept="divergence-of-a-series">divergence</span> of $\sum_{n=1}^{\infty} \kaseq_{n}.$</p>
+<figure class="sim" id="sim-limit-comparison">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The ratios $\kaseq_{n}/\kbseq_{n}$ of the section’s pairs of series settling on their limit $\kL.$ When $\kL\ne 0$ is finite, the two series converge or diverge together; Example 9.18(c) tries three series before one of them gives an answer. Choose a pair and step $n$ along the ratios.</span></div>
+</figure>
+<div class="example" id="fs-id1169738980859">
+<h3>Example 9.18 · Using the Limit Comparison Test</h3>
+<p>For each of the following <span data-concept="infinite-series">series</span>, use the <span data-concept="limit-comparison-test">limit comparison test</span> to determine whether the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>. If the test does not apply, say so.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty}\frac{1}{\sqrt{n}+1}$</li><li>$\sum_{n=1}^{\infty}\frac{2^{n}+1}{3^{n}}$</li><li>$\sum_{n=1}^{\infty}\frac{\ln(n)}{n^{2}}$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Compare this <span data-concept="infinite-series">series</span> to $\sum_{n=1}^{\infty}\frac{1}{\sqrt{n}}.$ Calculate $$\lim_{n\to \infty}\;\frac{1/(\sqrt{n}+1)}{1/\sqrt{n}}=\lim_{n\to \infty}\begin{gathered}\frac{\sqrt{n}}{\sqrt{n}+1} \\ \;\end{gathered}=\lim_{n\to \infty}\;\frac{1}{1+1/\sqrt{n}}=1.$$</li></ol>
+<p>By the <span data-concept="limit-comparison-test">limit comparison test</span>, since $\sum_{n=1}^{\infty}\frac{1}{\sqrt{n}}$ <span data-concept="divergence-of-a-series">diverges</span>, then $\sum_{n=1}^{\infty}\frac{1}{\sqrt{n}+1}$ <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a" start="2"><li>Compare this <span data-concept="infinite-series">series</span> to $\sum_{n=1}^{\infty}{(\frac{2}{3})}^{n}.$ We see that $$\lim_{n\to \infty}\frac{(2^{n}+1)/3^{n}}{2^{n}/3^{n}}=\lim_{n\to \infty}\frac{2^{n}+1}{3^{n}}\cdot \frac{3^{n}}{2^{n}}=\lim_{n\to \infty}\frac{2^{n}+1}{2^{n}}=\lim_{n\to \infty}[1+{(\frac{1}{2})}^{n}]=1.$$</li></ol>
+<p>Therefore,</p>
+$$\lim_{n\to \infty}\frac{(2^{n}+1)/3^{n}}{2^{n}/3^{n}}=1.$$
+<p>Since $\sum_{n=1}^{\infty}{(\frac{2}{3})}^{n}$ <span data-concept="convergence-of-a-series">converges</span>, we conclude that $\sum_{n=1}^{\infty}\frac{2^{n}+1}{3^{n}}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
+<ol type="a" start="3"><li>Since $\ln n\lt n,$ compare with $\sum_{n=1}^{\infty}\frac{1}{n}.$ We see that $$\lim_{n\to \infty}\frac{\ln n/n^{2}}{1/n}=\lim_{n\to \infty}\frac{\ln n}{n^{2}}\cdot \frac{n}{1}=\lim_{n\to \infty}\frac{\ln n}{n}.$$</li></ol>
+<p>In order to evaluate $\lim_{n\to \infty}\ln n/n,$ evaluate the limit as $x\to \infty$ of the real-valued <span data-concept="function">function</span> $\ln(x)/x.$ These two limits are equal, and making this change allows us to use <span data-concept="lhopitals-rule-infinity-over-infinity">L’Hôpital’s rule</span>. We obtain</p>
+$$\lim_{x\to \infty}\frac{\ln x}{x}=\lim_{x\to \infty}\frac{1}{x}=0.$$
+<p>Therefore, $\lim_{n\to \infty}\ln n/n=0,$ and, consequently,</p>
+$$\lim_{n\to \infty}\frac{\ln n/n^{2}}{1/n}=0.$$
+<p>Since the limit is $0$ but $\sum_{n=1}^{\infty}\frac{1}{n}$ <span data-concept="divergence-of-a-series">diverges</span>, the <span data-concept="limit-comparison-test">limit comparison test</span> does not provide any information.</p>
+<p>Compare with $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ instead. In this case,</p>
+$$\lim_{n\to \infty}\frac{\ln n/n^{2}}{1/n^{2}}=\lim_{n\to \infty}\frac{\ln n}{n^{2}}\cdot \frac{n^{2}}{1}=\lim_{n\to \infty}\ln n=\infty.$$
+<p>Since the limit is $\infty$ but $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ <span data-concept="convergence-of-a-series">converges</span>, the test still does not provide any information.</p>
+<p>So now we try a <span data-concept="infinite-series">series</span> between the two we already tried. Choosing the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\frac{1}{n^{3/2}},$ we see that</p>
+$$\lim_{n\to \infty}\frac{\ln n/n^{2}}{1/n^{3/2}}=\lim_{n\to \infty}\frac{\ln n}{n^{2}}\cdot \frac{n^{3/2}}{1}=\lim_{n\to \infty}\frac{\ln n}{\sqrt{n}}.$$
+<p>As above, in order to evaluate $\lim_{n\to \infty}\ln n/\sqrt{n},$ evaluate the limit as $x\to \infty$ of the real-valued <span data-concept="function">function</span> $\ln x/\sqrt{x}.$ Using <span data-concept="lhopitals-rule-infinity-over-infinity">L’Hôpital’s rule</span>,</p>
+$$\lim_{x\to \infty}\frac{\ln x}{\sqrt{x}}=\lim_{x\to \infty}\frac{2\sqrt{x}}{x}=\lim_{x\to \infty}\frac{2}{\sqrt{x}}=0.$$
+<p>Since the limit is $0$ and $\sum_{n=1}^{\infty}\frac{1}{n^{3/2}}$ <span data-concept="convergence-of-a-series">converges</span>, we can conclude that $\sum_{n=1}^{\infty}\frac{\ln n}{n^{2}}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1169738980859"></div>
+</section>

@@ -1,0 +1,1050 @@
+{
+ "id": "9.3",
+ "module": "m53754",
+ "chapter": "9",
+ "title": "The Divergence and Integral Tests",
+ "short": "Divergence and Integral Tests",
+ "lead": "Two tests decide many series without summing them. The <span data-concept=\"divergence-test\">divergence test</span> rules out any series whose terms do not approach zero; the <span data-concept=\"integral-test\">integral test</span> compares a series of positive, decreasing terms with an improper integral, which settles the <span data-concept=\"p-series\">p-series</span> and, through the <span data-concept=\"remainder-estimate-for-the-integral-test\">remainder estimate</span>, bounds the error of a partial sum.",
+ "objectives": [
+  "Use the divergence test to demonstrate that a series diverges.",
+  "Use the integral test to determine the convergence of a series.",
+  "Estimate the value of a series by finding bounds on its remainder term."
+ ],
+ "summary_html": "<ul><li>If $\\lim_{n\\to \\infty}\\kaseq_{n}\\ne0,$ then the <span data-concept=\"infinite-series\">series</span> $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ <span data-concept=\"divergence-of-a-series\">diverges</span>.</li><li>If $\\lim_{n\\to \\infty}\\kaseq_{n}=0,$ the <span data-concept=\"infinite-series\">series</span> $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ may <span data-concept=\"convergence-of-a-series\">converge</span> or <span data-concept=\"divergence-of-a-series\">diverge</span>.</li><li>If $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ is a <span data-concept=\"infinite-series\">series</span> with positive <span data-concept=\"term-of-a-sequence\">terms</span> $\\kaseq_{n}$ and $\\kf$ is a continuous, <span data-concept=\"decreasing-function\">decreasing function</span> such that $\\kf(n)=\\kaseq_{n}$ for all positive integers $n,$ then $$\\sum_{n=1}^{\\infty}\\kaseq_{n}\\text{and}\\int_{1}^{\\infty}\\kf(x)dx$$ either both <span data-concept=\"convergence-of-a-series\">converge</span> or both <span data-concept=\"divergence-of-a-series\">diverge</span>. Furthermore, if $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ <span data-concept=\"convergence-of-a-series\">converges</span>, then the $N\\text{th}$ <span data-concept=\"partial-sum\">partial sum</span> approximation $\\kS_{N}$ is accurate up to an error $\\kR_{N}$ where $\\int_{N+1}^{\\infty}\\kf(x)dx\\lt \\kR_{N}\\lt \\int_{N}^{\\infty}\\kf(x)dx.$</li><li>The <span data-concept=\"p-series\"><em>p</em>-series</span> $\\sum_{n=1}^{\\infty}1/n^{p}$ <span data-concept=\"convergence-of-a-series\">converges</span> if $p\\gt 1$ and <span data-concept=\"divergence-of-a-series\">diverges</span> if $p\\le1.$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The procedure asked for in 188 is kept with an AI-written answer, marked as such; the computational ones are left out: 138 to 150 (the divergence test), 152, 154 and 156 (p-series), 158 to 164 (the integral test), 166 and 168 (sums as p-series), 170 and 172 (remainder bounds), 174 and 176 (the least N), 178, 180 and 182 (N and the partial sum), 184 (a limit), 186 (the coupon collector), 190 (an estimate) and 192 (the time to pass 100). Of the Chapter Review Exercises printed at the end of Section 9.6, 379 and 380 are set here.",
+ "figures": [
+  {
+   "id": "sim-integral-test",
+   "kind": "sim",
+   "number": "9.12",
+   "folds": [
+    "9.13",
+    "9.14"
+   ],
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_03_001.jpg",
+    "/media/ch09/CNX_Calc_Figure_09_03_004.jpg",
+    "/media/ch09/CNX_Calc_Figure_09_03_002.jpg"
+   ],
+   "original_caption": "(Figure 9.12) The sum of the areas of the rectangles is greater than the area between the curve f(x)=1/x and the x-axis for x≥1. Since the area bounded by the curve is infinite (as calculated by an improper integral), the sum of the areas of the rectangles is also infinite. (Figure 9.13) The sum of the areas of the rectangles is less than the sum of the area of the first rectangle and the area between the curve f(x)=1/x² and the x-axis for x≥1. Since the area bounded by the curve is finite, the sum of the areas of the rectangles is also finite. (Figure 9.14) (a) If we can inscribe rectangles inside a region bounded by a curve y=f(x) and the x-axis, and the area bounded by those curves for x≥1 is finite, then the sum of the areas of the rectangles is also finite. (b) If a set of rectangles circumscribes the region bounded by y=f(x) and the x axis for x≥1 and the region has infinite area, then the sum of the areas of the rectangles is also infinite.",
+   "draws": [
+    "function",
+    "integral",
+    "sequence",
+    "series"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-remainder-estimate",
+   "kind": "sim",
+   "number": "9.15",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_03_003_5_15.jpg"
+   ],
+   "original_caption": "Given a continuous, positive, decreasing function f and a sequence of positive terms aₙ such that aₙ=f(n) for all positive integers n, (a) the areas a_(N+1)+a_(N+2)+a_(N+3)+⋯< ∫_N^(∞)f(x)dx, or (b) the areas a_(N+1)+a_(N+2)+a_(N+3)+⋯> ∫_(N+1)^(∞)f(x)dx. Therefore, the integral is either an overestimate or an underestimate of the error.",
+   "draws": [
+    "function",
+    "integral",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "divergence-theorem",
+   "concept": "divergence-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "integral-theorem",
+   "concept": "integral-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "p-series-definition",
+   "concept": "p-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "p-series",
+   "concept": "convergence-of-p-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "estimating",
+   "concept": "remainder-of-a-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "remainder-theorem",
+   "concept": "remainder-estimate-for-the-integral-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "divergence-test",
+   "concept": "partial-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "divergence-test",
+   "concept": "convergence-of-a-series",
+   "verb": "uses"
+  },
+  {
+   "span": "divergence-test",
+   "concept": "harmonic-series",
+   "verb": "uses"
+  },
+  {
+   "span": "integral-test",
+   "concept": "divergence-of-the-harmonic-series",
+   "verb": "uses"
+  },
+  {
+   "span": "integral-test",
+   "concept": "improper-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "integral-test",
+   "concept": "monotone-convergence-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "integral-test",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "integral-test",
+   "concept": "natural-logarithm",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738054624",
+   "concept": "divergence-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737903729",
+   "concept": "integral-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737151882",
+   "concept": "convergence-of-p-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737360049",
+   "concept": "remainder-estimate-for-the-integral-test",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169738044696",
+   "source_number": "Checkpoint 9.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738054624"
+   },
+   "cite": "divergence-theorem",
+   "prompt": "<p>What does the divergence test tell us about the series $\\sum_{n=1}^{\\infty} \\cos(1/n^{2})\\text{?}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series diverges.",
+    "hint": "Look at $\\lim_{n\\to \\infty}\\cos(1/n^{2}).$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169737284932",
+   "source_number": "Checkpoint 9.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737903729"
+   },
+   "cite": "integral-theorem",
+   "prompt": "<p>Use the integral test to determine whether the series $\\sum_{n=1}^{\\infty}\\frac{n}{3n^{2}+1}$ converges or diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series diverges.",
+    "hint": "Compare to the integral $\\int_{1}^{\\infty}\\frac{x}{3x^{2}+1}dx.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169738055554",
+   "source_number": "Checkpoint 9.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737151882"
+   },
+   "cite": "p-series",
+   "prompt": "<p>Does the series $\\sum_{n=1}^{\\infty}\\frac{1}{n^{5/4}}$ converge or diverge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series converges.",
+    "hint": "$p=5/4$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1169738249584",
+   "source_number": "Checkpoint 9.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737360049"
+   },
+   "cite": "remainder-theorem",
+   "prompt": "<p>For $\\sum_{n=1}^{\\infty}\\frac{1}{n^{4}},$ calculate $\\kS_{5}$ and estimate the error $\\kR_{5}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kS_{5}\\approx 1.09035,$ $\\kR_{5}\\lt 0.00267$",
+    "hint": "Use the remainder estimate $\\kR_{N}\\lt \\int_{N}^{\\infty}1/x^{4}dx.$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1169737168536",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-test",
+   "prompt": "<p>For each of the following series, if the divergence test applies, either state that $\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist or find $\\lim_{n\\to \\infty}\\kaseq_{n}.$ If the divergence test does not apply, state why.</p><p>$\\kaseq_{n}=\\frac{n}{5n^{2}-3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\kaseq_{n}=0.$ Divergence test does not apply."
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1169737254368",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-test",
+   "prompt": "<p>For each of the following series, if the divergence test applies, either state that $\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist or find $\\lim_{n\\to \\infty}\\kaseq_{n}.$ If the divergence test does not apply, state why.</p><p>$\\kaseq_{n}=\\frac{(2n+1)(n-1)}{{(n+1)}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\kaseq_{n}=2.$ Series diverges."
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1169737429525",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-test",
+   "prompt": "<p>For each of the following series, if the divergence test applies, either state that $\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist or find $\\lim_{n\\to \\infty}\\kaseq_{n}.$ If the divergence test does not apply, state why.</p><p>$\\kaseq_{n}=\\frac{2^{n}}{3^{n/2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\kaseq_{n}=\\infty$ (does not exist). Series diverges."
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1169738082449",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-test",
+   "prompt": "<p>For each of the following series, if the divergence test applies, either state that $\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist or find $\\lim_{n\\to \\infty}\\kaseq_{n}.$ If the divergence test does not apply, state why.</p><p>$\\kaseq_{n}=e^{-2/n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\kaseq_{n}=1.$ Series diverges."
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1169737160756",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-test",
+   "prompt": "<p>For each of the following series, if the divergence test applies, either state that $\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist or find $\\lim_{n\\to \\infty}\\kaseq_{n}.$ If the divergence test does not apply, state why.</p><p>$\\kaseq_{n}=\\tan n$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist. Series diverges."
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1169737162782",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-test",
+   "prompt": "<p>For each of the following series, if the divergence test applies, either state that $\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist or find $\\lim_{n\\to \\infty}\\kaseq_{n}.$ If the divergence test does not apply, state why.</p><p>$\\kaseq_{n}={(1-\\frac{1}{n})}^{2n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\kaseq_{n}=1/e^{2}.$ Series diverges."
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1169738166405",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-test",
+   "prompt": "<p>For each of the following series, if the divergence test applies, either state that $\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist or find $\\lim_{n\\to \\infty}\\kaseq_{n}.$ If the divergence test does not apply, state why.</p><p>$\\kaseq_{n}=\\frac{{(\\ln n)}^{2}}{\\sqrt{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\kaseq_{n}=0.$ Divergence test does not apply."
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1169738228514",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "p-series",
+   "prompt": "<p>State whether the given $p$-series converges.</p><p>$\\sum_{n=1}^{\\infty} \\frac{1}{n\\sqrt{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Series converges, $p\\gt 1.$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1169737930830",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "p-series",
+   "prompt": "<p>State whether the given $p$-series converges.</p><p>$\\sum_{n=1}^{\\infty} \\frac{1}{\\sqrt[3]{n^{4}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Series converges, $p=4/3\\gt 1.$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1169737433513",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "p-series",
+   "prompt": "<p>State whether the given $p$-series converges.</p><p>$\\sum_{n=1}^{\\infty} \\frac{n^{\\pi}}{n^{2e}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Series converges, $p=2e-\\pi\\gt 1.$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1169737436180",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-test",
+   "prompt": "<p>Use the integral test to determine whether the following sums converge.</p><p>$\\sum_{n=1}^{\\infty} \\frac{1}{\\sqrt[3]{n+5}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Series diverges by comparison with $\\int_{1}^{\\infty}\\frac{dx}{{(x+5)}^{1/3}}.$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1169737261994",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-test",
+   "prompt": "<p>Use the integral test to determine whether the following sums converge.</p><p>$\\sum_{n=1}^{\\infty} \\frac{n}{1+n^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Series diverges by comparison with $\\int_{1}^{\\infty}\\frac{x}{1+x^{2}}dx.$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1169738080307",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-test",
+   "prompt": "<p>Use the integral test to determine whether the following sums converge.</p><p>$\\sum_{n=1}^{\\infty} \\frac{2n}{1+n^{4}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Series converges by comparison with $\\int_{1}^{\\infty}\\frac{2x}{1+x^{4}}dx.$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1169737144959",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "p-series",
+   "prompt": "<p>Express the following sums as $p$-series and determine whether each converges.</p><p>$\\sum_{n=1}^{\\infty} 2^{-\\ln n}$ (<em>Hint:</em> $2^{-\\ln n}=1/n^{\\ln2}$.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2^{-\\ln n}=1/n^{\\ln2}.$ Since $\\ln2\\lt 1,$ diverges by $p$-series."
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1169738168162",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "p-series",
+   "prompt": "<p>Express the following sums as $p$-series and determine whether each converges.</p><p>$\\sum_{n=1}^{\\infty} n2^{-2\\;\\ln n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2^{-2\\;\\ln n}=1/n^{2\\;\\ln2}.$ Since $2\\;\\ln2-1\\lt 1,$ diverges by $p$-series."
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1169737438131",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p>Use the estimate $\\kR_{N}\\le\\int_{N}^{\\infty}\\kf(t)dt$ to find a bound for the remainder $\\kR_{N}=\\sum_{n=1}^{\\infty} \\kaseq_{n}-\\sum_{n=1}^{N} \\kaseq_{n}$ where $\\kaseq_{n}=\\kf(n).$</p><p>$\\sum_{n=1}^{1000} \\frac{1}{n^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{1000}\\le\\int_{1000}^{\\infty}\\frac{dt}{t^{2}}=-\\frac{1}{t}{|}_{1000}^{\\infty}=0.001$"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1169737432841",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p>Use the estimate $\\kR_{N}\\le\\int_{N}^{\\infty}\\kf(t)dt$ to find a bound for the remainder $\\kR_{N}=\\sum_{n=1}^{\\infty} \\kaseq_{n}-\\sum_{n=1}^{N} \\kaseq_{n}$ where $\\kaseq_{n}=\\kf(n).$</p><p>$\\sum_{n=1}^{1000} \\frac{1}{1+n^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{1000}\\le\\int_{1000}^{\\infty}\\frac{dt}{1+t^{2}}=\\tan^{-1}\\infty-\\tan^{-1}(1000)=\\pi/2-\\tan^{-1}(1000)\\approx 0.000999$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1169737201441",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p><strong>[T]</strong> Find the minimum value of $N$ such that the remainder estimate $\\int_{N+1}^{\\infty}\\kf\\lt \\kR_{N}\\lt \\int_{N}^{\\infty}\\kf$ guarantees that $\\sum_{n=1}^{N} \\kaseq_{n}$ estimates $\\sum_{n=1}^{\\infty} \\kaseq_{n},$ accurate to within the given error.</p><p>$\\kaseq_{n}=\\frac{1}{n^{2}},$ error $\\lt {10}^{-4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{N}\\lt \\int_{N}^{\\infty}\\frac{dx}{x^{2}}=1/N,N\\gt {10}^{4}$"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1169738168100",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p><strong>[T]</strong> Find the minimum value of $N$ such that the remainder estimate $\\int_{N+1}^{\\infty}\\kf\\lt \\kR_{N}\\lt \\int_{N}^{\\infty}\\kf$ guarantees that $\\sum_{n=1}^{N} \\kaseq_{n}$ estimates $\\sum_{n=1}^{\\infty} \\kaseq_{n},$ accurate to within the given error.</p><p>$\\kaseq_{n}=\\frac{1}{n^{1.01}},$ error $\\lt {10}^{-4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{N}\\lt \\int_{N}^{\\infty}\\frac{dx}{x^{1.01}}=100N^{-0.01},N\\gt {10}^{600}$"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1169738244386",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p><strong>[T]</strong> Find the minimum value of $N$ such that the remainder estimate $\\int_{N+1}^{\\infty}\\kf\\lt \\kR_{N}\\lt \\int_{N}^{\\infty}\\kf$ guarantees that $\\sum_{n=1}^{N} \\kaseq_{n}$ estimates $\\sum_{n=1}^{\\infty} \\kaseq_{n},$ accurate to within the given error.</p><p>$\\kaseq_{n}=\\frac{1}{1+n^{2}},$ error $\\lt {10}^{-3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{N}\\lt \\int_{N}^{\\infty}\\frac{dx}{1+x^{2}}=\\pi/2-\\tan^{-1}(N),N\\gt \\tan(\\pi/2-{10}^{-3})\\approx 1000$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1169737430087",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p>In the following exercises, find a value of $N$ such that $\\kR_{N}$ is smaller than the desired error. Compute the corresponding sum $\\sum_{n=1}^{N} \\kaseq_{n}$ and compare it to the given estimate of the infinite series.</p><p>$\\kaseq_{n}=\\frac{1}{e^{n}},$ error $\\lt {10}^{-5},$ $\\sum_{n=1}^{\\infty} \\frac{1}{e^{n}}=\\frac{1}{e-1}=0.581976\\ldots$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kR_{N}\\lt \\int_{N}^{\\infty}\\frac{dx}{e^{x}}=e^{-N},N\\gt 5\\;\\ln(10),$ okay if $N=12;\\sum_{n=1}^{12} e^{-n}=0.581973....$ Estimate agrees with $1/(e-1)$ to five decimal places."
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1169738180622",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p>In the following exercises, find a value of $N$ such that $\\kR_{N}$ is smaller than the desired error. Compute the corresponding sum $\\sum_{n=1}^{N} \\kaseq_{n}$ and compare it to the given estimate of the infinite series.</p><p>$\\kaseq_{n}=1/n^{4},$ error $\\lt {10}^{-4},$ $\\sum_{n=1}^{\\infty} 1/n^{4}=\\pi^{4}/90=1.08232...$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kR_{N}\\lt \\int_{N}^{\\infty}dx/x^{4}=1/3N^{3},N\\gt {({10}^{4}/3)}^{1/3},$ okay if $N=15;$</p><p>$\\sum_{n=1}^{15} 1/n^{4}=1.08226\\ldots.$ Estimate agrees with the sum to three decimal places.</p>"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1169738078924",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-test",
+   "prompt": "<p>Find the limit as $n\\to \\infty$ of $\\frac{1}{n}+\\frac{1}{n+1}+\\cdots+\\frac{1}{2n}.$ (<em>Hint:</em> Compare to $\\int_{n}^{2n}\\frac{1}{t}dt.)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.693147,
+    "tol": 0.0001,
+    "solution": "$\\ln(2)$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1169737168073",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integral-test",
+   "prompt": "<p>The next few exercises are intended to give a sense of applications in which partial sums of the harmonic series arise.</p><p>In certain applications of probability, such as the so-called Watterson estimator for predicting mutation rates in population genetics, it is important to have an accurate estimate of the number $H_{k}=(1+\\frac{1}{2}+\\frac{1}{3}+\\cdots+\\frac{1}{k}).$ Recall that $T_{k}=H_{k}-\\ln k$ is decreasing. Compute $T=\\lim_{k\\to \\infty}T_{k}$ to four decimal places. (<em>Hint:</em> $\\frac{1}{k+1}\\lt \\int_{k}^{k+1}\\frac{1}{x}dx$.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5772,
+    "tol": 0.0001,
+    "solution": "$T=0.5772...$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1169738185026",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p>The next few exercises are intended to give a sense of applications in which partial sums of the harmonic series arise.</p><p><strong>[T]</strong> The simplest way to shuffle cards is to take the top card and insert it at a random place in the deck, called top random insertion, and then repeat. We will consider a deck to be randomly shuffled once enough top random insertions have been made that the card originally at the bottom has reached the top and then been randomly inserted. If the deck has $n$ cards, then the probability that the insertion will be below the card initially at the bottom (call this card $B)$ is $1/n.$ Thus the expected number of top random insertions before $B$ is no longer at the bottom is <em>n</em>. Once one card is below $B,$ there are two places below $B$ and the probability that a randomly inserted card will fall below $B$ is $2/n.$ The expected number of top random insertions before this happens is $n/2.$ The two cards below $B$ are now in random order. Continuing this way, find a formula for the expected number of top random insertions needed to consider the deck to be randomly shuffled.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The expected number of random insertions to get $B$ to the top is $n+n/2+n/3+\\cdots+n/(n-1).$ Then one more insertion puts $B$ back in at random. Thus, the expected number of shuffles to randomize the deck is $n(1+1/2+\\cdots+1/n).$"
+   }
+  },
+  {
+   "id": "e188",
+   "source_id": "fs-id1169737160562",
+   "source_number": "188",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p>The next few exercises are intended to give a sense of applications in which partial sums of the harmonic series arise.</p><p>Suppose a scooter can travel $100$ km on a full tank of fuel. Assuming that fuel can be transferred from one scooter to another but can only be carried in the tank, present a procedure that will enable one of the scooters to travel $100H_{N}$ km, where $H_{N}=1+1/2+\\cdots+1/N.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Start $N$ full scooters together. When they have gone $100/N$ km, each has used $1/N$ of a tank, and one of them pours the $1-\\frac{1}{N}$ of a tank it has left into the other $N-1,$ giving each the $\\frac{1}{N}$ it has used, so they are all full again; it stays behind. The $N-1$ full scooters drive $100/(N-1)$ km, and one of them refills the other $N-2$ the same way. Continuing, the last scooter drives a full $100$ km alone. The distance it travels is $100(\\frac{1}{N}+\\frac{1}{N-1}+\\cdots+\\frac{1}{2}+1)=100H_{N}$ km."
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1169737430223",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p>Show that for the remainder estimate to apply on $[N,\\infty)$ it is sufficient that $\\kf(x)$ be decreasing on $[N,\\infty),$ but $\\kf$ need not be decreasing on $[1,\\infty).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Set $\\kbseq_{n}=\\kaseq_{n+N}$ and $g(t)=\\kf(t+N)$ such that $\\kf$ is decreasing on $[t,\\infty).$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1169738056360",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p>Does $\\sum_{n=2}^{\\infty} \\frac{1}{n{(\\ln n)}^{p}}$ converge if $p$ is large enough? If so, for which $p\\text{?}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series converges for $p\\gt 1$ by integral test using change of variable."
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1169737214923",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "estimating",
+   "prompt": "<p><strong>[T]</strong> A fast computer can sum one million terms per second of the divergent series $\\sum_{n=2}^{N} \\frac{1}{n\\;\\ln n}.$ Use the integral test to approximate how many seconds it will take to add up enough terms for the partial sum to exceed $100.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$N=e^{e^{100}}\\approx e^{{10}^{43}}$ terms are needed."
+   }
+  },
+  {
+   "id": "r379",
+   "source_id": "fs-id1169739352667",
+   "source_section": "9.6",
+   "source_number": "379",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-theorem",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>If $\\lim_{n\\to \\infty}\\kaseq_{n}=0,$ then $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "false"
+   }
+  },
+  {
+   "id": "r380",
+   "source_id": "fs-id1169739260400",
+   "source_section": "9.6",
+   "source_number": "380",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "divergence-theorem",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>If $\\lim_{n\\to \\infty}\\kaseq_{n}\\ne0,$ then $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "True. If $\\sum_{n=1}^{\\infty}a_{n}$ converged to $S,$ then $a_{n}=S_{n}-S_{n-1}\\to S-S=0.$ So if $\\lim_{n\\to\\infty}a_{n}\\ne 0$ (or the limit does not exist), the series cannot converge: it diverges. This is the divergence test."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "integral-test"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "improper-integral"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e139",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e139",
+   "concept": "limit-of-a-sequence"
+  },
+  {
+   "exercise": "e141",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e141",
+   "concept": "limit-of-a-sequence"
+  },
+  {
+   "exercise": "e143",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e143",
+   "concept": "limit-of-a-sequence"
+  },
+  {
+   "exercise": "e145",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e145",
+   "concept": "limit-of-a-sequence"
+  },
+  {
+   "exercise": "e147",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e147",
+   "concept": "limit-of-a-sequence"
+  },
+  {
+   "exercise": "e149",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e149",
+   "concept": "limit-of-a-sequence"
+  },
+  {
+   "exercise": "e151",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e151",
+   "concept": "limit-of-a-sequence"
+  },
+  {
+   "exercise": "e153",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e155",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e157",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e159",
+   "concept": "integral-test"
+  },
+  {
+   "exercise": "e159",
+   "concept": "improper-integral"
+  },
+  {
+   "exercise": "e161",
+   "concept": "integral-test"
+  },
+  {
+   "exercise": "e161",
+   "concept": "improper-integral"
+  },
+  {
+   "exercise": "e163",
+   "concept": "integral-test"
+  },
+  {
+   "exercise": "e163",
+   "concept": "improper-integral"
+  },
+  {
+   "exercise": "e165",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e165",
+   "concept": "natural-logarithm"
+  },
+  {
+   "exercise": "e167",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e167",
+   "concept": "natural-logarithm"
+  },
+  {
+   "exercise": "e169",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "e169",
+   "concept": "remainder-of-a-series"
+  },
+  {
+   "exercise": "e171",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "e171",
+   "concept": "remainder-of-a-series"
+  },
+  {
+   "exercise": "e173",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "e173",
+   "concept": "remainder-of-a-series"
+  },
+  {
+   "exercise": "e175",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "e175",
+   "concept": "remainder-of-a-series"
+  },
+  {
+   "exercise": "e177",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "e177",
+   "concept": "remainder-of-a-series"
+  },
+  {
+   "exercise": "e179",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "e179",
+   "concept": "remainder-of-a-series"
+  },
+  {
+   "exercise": "e181",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "e181",
+   "concept": "remainder-of-a-series"
+  },
+  {
+   "exercise": "e183",
+   "concept": "integral-test"
+  },
+  {
+   "exercise": "e183",
+   "concept": "riemann-sum"
+  },
+  {
+   "exercise": "e185",
+   "concept": "eulers-constant"
+  },
+  {
+   "exercise": "e185",
+   "concept": "monotone-convergence-theorem"
+  },
+  {
+   "exercise": "e187",
+   "concept": "harmonic-series"
+  },
+  {
+   "exercise": "e187",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e188",
+   "concept": "harmonic-series"
+  },
+  {
+   "exercise": "e188",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e189",
+   "concept": "remainder-estimate-for-the-integral-test"
+  },
+  {
+   "exercise": "e189",
+   "concept": "integral-test"
+  },
+  {
+   "exercise": "e191",
+   "concept": "integral-test"
+  },
+  {
+   "exercise": "e191",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e193",
+   "concept": "integral-test"
+  },
+  {
+   "exercise": "e193",
+   "concept": "divergence-of-the-harmonic-series"
+  },
+  {
+   "exercise": "r379",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "r379",
+   "concept": "divergence-of-the-harmonic-series"
+  },
+  {
+   "exercise": "r380",
+   "concept": "divergence-test"
+  }
+ ],
+ "referents": [],
+ "footnotes": []
+}

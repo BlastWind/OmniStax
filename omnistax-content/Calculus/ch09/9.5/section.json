@@ -1,0 +1,1495 @@
+{
+ "id": "9.5",
+ "module": "m53743",
+ "chapter": "9",
+ "title": "Alternating Series",
+ "short": "Alternating Series",
+ "lead": "An <span data-concept=\"alternating-series\">alternating series</span> has terms of alternating sign. The <span data-concept=\"alternating-series-test\">alternating series test</span> shows it converges when the sizes of its terms decrease to zero, and the next term bounds the error of a partial sum. Whether the series of absolute values converges too separates <span data-concept=\"absolute-convergence\">absolute</span> from <span data-concept=\"conditional-convergence\">conditional convergence</span>, and only an absolutely convergent series keeps its sum under every rearrangement.",
+ "objectives": [
+  "Use the alternating series test to test an alternating series for convergence.",
+  "Estimate the sum of an alternating series.",
+  "Explain the meaning of absolute convergence and conditional convergence."
+ ],
+ "summary_html": "<ul><li>For an <span data-concept=\"alternating-series\">alternating series</span> $\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\kbseq_{n},$ if $\\kbseq_{k+1}\\le \\kbseq_{k}$ for all $k$ and $\\kbseq_{k}\\to 0$ as $k\\to \\infty,$ the <span data-concept=\"alternating-series\">alternating series</span> <span data-concept=\"convergence-of-a-series\">converges</span>.</li><li>If $\\sum_{n=1}^{\\infty}|\\kaseq_{n}|$ <span data-concept=\"convergence-of-a-series\">converges</span>, then $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ <span data-concept=\"convergence-of-a-series\">converges</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The true-or-false statements 286, 288 and 290 and the explanations and proofs 292, 294, 296, 298, 300, 308 and 316 are kept with AI-written answers, marked as such; the computational ones are left out: 250 to 278 (absolute, conditional or no convergence), 280, 282 and 284 (N for a given error), 302 and 304 (error bounds for the sine and cosine series), 306 (N for π/4) and 310, 312 and 314 (plots and estimates by computer). Of the Chapter Review Exercises printed at the end of Section 9.6, 381, 382, 393 and 397 are set here.",
+ "figures": [
+  {
+   "id": "sim-alternating",
+   "kind": "sim",
+   "number": "9.17",
+   "folds": [
+    "9.18"
+   ],
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_05_001.jpg",
+    "/media/ch09/CNX_Calc_Figure_09_05_002.jpg"
+   ],
+   "original_caption": "(Figure 9.17) For the alternating harmonic series, the odd terms S_(2k+1) in the sequence of partial sums are decreasing and bounded below. The even terms S_(2k) are increasing and bounded above. (Figure 9.18) For an alternating series b₁−b₂+b₃−⋯ in which b₁> b₂> b₃> ⋯, the odd terms S_(2k+1) in the sequence of partial sums are decreasing and bounded below. The even terms S_(2k) are increasing and bounded above.",
+   "draws": [
+    "series",
+    "sequence",
+    "limit",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-rearrangement",
+   "kind": "sim",
+   "draws": [
+    "series",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "alternating-definition",
+   "concept": "alternating-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "alternating-series-test",
+   "concept": "alternating-harmonic-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "alternating-test-theorem",
+   "concept": "alternating-series-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "alternating-remainder-theorem",
+   "concept": "remainder-of-an-alternating-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "absolute-definition",
+   "concept": "absolute-convergence",
+   "verb": "introduces"
+  },
+  {
+   "span": "absolute-definition",
+   "concept": "conditional-convergence",
+   "verb": "introduces"
+  },
+  {
+   "span": "absolute-implies",
+   "concept": "absolute-convergence-implies-convergence",
+   "verb": "introduces"
+  },
+  {
+   "span": "absolute-conditional",
+   "concept": "riemann-rearrangement-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "alternating-series-test",
+   "concept": "geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "alternating-series-test",
+   "concept": "harmonic-series",
+   "verb": "uses"
+  },
+  {
+   "span": "alternating-series-test",
+   "concept": "monotone-convergence-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "remainder",
+   "concept": "remainder-of-a-series",
+   "verb": "uses"
+  },
+  {
+   "span": "absolute-implies",
+   "concept": "comparison-test",
+   "verb": "uses"
+  },
+  {
+   "span": "absolute-implies",
+   "concept": "algebraic-properties-of-convergent-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738153895",
+   "concept": "limit-comparison-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737819249",
+   "concept": "divergence-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737819249",
+   "concept": "alternating-series-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737939430",
+   "concept": "remainder-of-an-alternating-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738153895",
+   "concept": "conditional-convergence",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738079721",
+   "concept": "riemann-rearrangement-theorem",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169737814736",
+   "source_number": "Checkpoint 9.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737819249"
+   },
+   "cite": "alternating-test-theorem",
+   "prompt": "<p>Determine whether the series $\\sum_{n=1}^{\\infty}{(-1)}^{n+1}n/2^{n}$ converges or diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series converges.",
+    "hint": "Is $\\{n/2^{n}\\}$ decreasing? What is $\\lim_{n\\to \\infty}n/2^{n}\\text{?}$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169738057296",
+   "source_number": "Checkpoint 9.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737939430"
+   },
+   "cite": "alternating-remainder-theorem",
+   "prompt": "<p>Find a bound for $\\kR_{20}$ when approximating $\\sum_{n=1}^{\\infty}{(-1)}^{n+1}/n$ by $\\kS_{20}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.04762,
+    "tol": 1e-05,
+    "solution": "$0.04762$",
+    "hint": "$|\\kR_{20}|\\le \\kbseq_{21}$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169737262016",
+   "source_number": "Checkpoint 9.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738153895"
+   },
+   "cite": "absolute-definition",
+   "prompt": "<p>Determine whether the series $\\sum_{n=1}^{\\infty}{(-1)}^{n+1}n/(2n^{3}+1)$ converges absolutely, converges conditionally, or diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series converges absolutely.",
+    "hint": "Check for absolute convergence first."
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1169738082378",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\frac{\\sqrt{n}+1}{\\sqrt{n}+3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Does not converge by divergence test. Terms do not tend to zero."
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1169737162038",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\frac{\\sqrt{n+3}}{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges conditionally by alternating series test, since $\\sqrt{n+3}/n$ is decreasing. Does not converge absolutely by comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=1/2.$"
+   }
+  },
+  {
+   "id": "e255",
+   "source_id": "fs-id1169737930882",
+   "source_number": "255",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\frac{3^{n}}{n\\text{!}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges absolutely by limit comparison to $3^{n}/4^{n},$ for example."
+   }
+  },
+  {
+   "id": "e257",
+   "source_id": "fs-id1169738244409",
+   "source_number": "257",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}{(\\frac{n+1}{n})}^{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Diverges by divergence test since $\\lim_{n\\to \\infty}|\\kaseq_{n}|=e.$"
+   }
+  },
+  {
+   "id": "e259",
+   "source_id": "fs-id1169737285077",
+   "source_number": "259",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\cos^{2}n$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Does not converge. Terms do not tend to zero."
+   }
+  },
+  {
+   "id": "e261",
+   "source_id": "fs-id1169737933512",
+   "source_number": "261",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\cos^{2}(1/n)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{n\\to \\infty}\\cos^{2}(1/n)=1.$ Diverges by divergence test."
+   }
+  },
+  {
+   "id": "e263",
+   "source_id": "fs-id1169738234461",
+   "source_number": "263",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\ln(1+\\frac{1}{n})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by alternating series test."
+   }
+  },
+  {
+   "id": "e265",
+   "source_id": "fs-id1169737214974",
+   "source_number": "265",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\frac{n^{e}}{1+n^{\\pi}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges conditionally by alternating series test. Does not converge absolutely by limit comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=\\pi-e$"
+   }
+  },
+  {
+   "id": "e267",
+   "source_id": "fs-id1169737160747",
+   "source_number": "267",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}n^{1/n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Diverges; terms do not tend to zero."
+   }
+  },
+  {
+   "id": "e269",
+   "source_id": "fs-id1169738226127",
+   "source_number": "269",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}n(1-\\cos(\\frac{1}{n}))$ (<em>Hint:</em> $\\cos(1/n)\\approx 1-1/n^{2}$ for large $n.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by alternating series test. Does not converge absolutely by limit comparison with harmonic series."
+   }
+  },
+  {
+   "id": "e271",
+   "source_id": "fs-id1169737227792",
+   "source_number": "271",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}(\\frac{1}{\\sqrt{n}}-\\frac{1}{\\sqrt{n+1}})$ (<em>Hint:</em> Find common denominator then rationalize numerator.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges absolutely by limit comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=3/2,$ after applying the hint."
+   }
+  },
+  {
+   "id": "e273",
+   "source_id": "fs-id1169737298487",
+   "source_number": "273",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}n(\\tan^{-1}(n+1)-\\tan^{-1}n)$ (<em>Hint:</em> Use Mean Value Theorem.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by alternating series test since $n(\\tan^{-1}(n+1)-\\tan^{-1}n)$ is decreasing to zero for large $n.$ Does not converge absolutely by limit comparison with harmonic series after applying hint."
+   }
+  },
+  {
+   "id": "e275",
+   "source_id": "fs-id1169737234379",
+   "source_number": "275",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}{(-1)}^{n+1}(\\frac{1}{n}-\\frac{1}{n+1})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges absolutely, since $\\kaseq_{n}=\\frac{1}{n}-\\frac{1}{n+1}$ are terms of a telescoping series."
+   }
+  },
+  {
+   "id": "e277",
+   "source_id": "fs-id1169738153132",
+   "source_number": "277",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}\\frac{\\cos(n\\pi)}{n^{1/n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Terms do not tend to zero. Series diverges by divergence test."
+   }
+  },
+  {
+   "id": "e279",
+   "source_id": "fs-id1169737201422",
+   "source_number": "279",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>State whether each of the following series converges absolutely, conditionally, or not at all.</p><p>$\\sum_{n=1}^{\\infty}\\sin(n\\pi/2)\\sin(1/n)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by alternating series test. Does not converge absolutely by limit comparison with harmonic series."
+   }
+  },
+  {
+   "id": "e281",
+   "source_id": "fs-id1169737160514",
+   "source_number": "281",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In each of the following problems, use the estimate $|\\kR_{N}|\\le \\kbseq_{N+1}$ to find a value of $N$ that guarantees that the sum of the first $N$ terms of the alternating series $\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\kbseq_{n}$ differs from the infinite sum by at most the given error. Calculate the partial sum $\\kS_{N}$ for this $N.$</p><p><strong>[T]</strong> $\\kbseq_{n}=1/\\ln(n),$ $n\\ge2,$ error $\\lt {10}^{-1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(N+1)\\gt 10,$ $N+1\\gt e^{10},$ $N\\ge22026;$ $\\kS_{22026}=–0.9743\\ldots$"
+   }
+  },
+  {
+   "id": "e283",
+   "source_id": "fs-id1169737248635",
+   "source_number": "283",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In each of the following problems, use the estimate $|\\kR_{N}|\\le \\kbseq_{N+1}$ to find a value of $N$ that guarantees that the sum of the first $N$ terms of the alternating series $\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\kbseq_{n}$ differs from the infinite sum by at most the given error. Calculate the partial sum $\\kS_{N}$ for this $N.$</p><p><strong>[T]</strong> $\\kbseq_{n}=1/2^{n},$ error $\\lt {10}^{-6}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2^{N+1}\\gt {10}^{6}$ or $N+1\\gt 6\\;\\ln(10)/\\ln(2)=19.93.$ or $N\\ge19;$ $\\kS_{19}=0.333333969\\ldots$"
+   }
+  },
+  {
+   "id": "e285",
+   "source_id": "fs-id1169737286637",
+   "source_number": "285",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In each of the following problems, use the estimate $|\\kR_{N}|\\le \\kbseq_{N+1}$ to find a value of $N$ that guarantees that the sum of the first $N$ terms of the alternating series $\\sum_{n=1}^{\\infty}{(-1)}^{n+1}\\kbseq_{n}$ differs from the infinite sum by at most the given error. Calculate the partial sum $\\kS_{N}$ for this $N.$</p><p><strong>[T]</strong> $\\kbseq_{n}=1/n^{2},$ error $\\lt {10}^{-6}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(N+1)}^{2}\\gt {10}^{6}$ or $N\\gt 999;$ $\\kS_{1000}\\approx 0.822466.$"
+   }
+  },
+  {
+   "id": "e286",
+   "source_id": "fs-id1169738056344",
+   "source_number": "286",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>For the following exercises, indicate whether each of the following statements is true or false. If the statement is false, provide an example in which it is false.</p><p>If $\\kbseq_{n}\\ge0$ is decreasing and $\\lim_{n\\to \\infty}\\kbseq_{n}=0,$ then $\\sum_{n=1}^{\\infty} (\\kbseq_{2n-1}-\\kbseq_{2n})$ converges absolutely.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "True. Each term $b_{2n-1}-b_{2n}\\ge 0$ because $\\{b_{n}\\}$ is decreasing, and the $N$th partial sum of this series is the $2N$th partial sum of $\\sum_{n=1}^{\\infty}(-1)^{n+1}b_{n},$ which converges by the alternating series test. So the series converges, and since its terms are nonnegative it converges absolutely."
+   }
+  },
+  {
+   "id": "e287",
+   "source_id": "fs-id1169737895447",
+   "source_number": "287",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>For the following exercises, indicate whether each of the following statements is true or false. If the statement is false, provide an example in which it is false.</p><p>If $\\kbseq_{n}\\ge0$ is decreasing, then $\\sum_{n=1}^{\\infty} (\\kbseq_{2n-1}-\\kbseq_{2n})$ converges absolutely.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True. $\\kbseq_{n}$ need not tend to zero since if $c_{n}=\\kbseq_{n}-\\lim \\kbseq_{n},$ then $c_{2n-1}-c_{2n}=\\kbseq_{2n-1}-\\kbseq_{2n}.$"
+   }
+  },
+  {
+   "id": "e288",
+   "source_id": "fs-id1169738193743",
+   "source_number": "288",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>For the following exercises, indicate whether each of the following statements is true or false. If the statement is false, provide an example in which it is false.</p><p>If $\\kbseq_{n}\\ge0$ and $\\lim_{n\\to \\infty}\\kbseq_{n}=0$ then $\\sum_{n=1}^{\\infty} (\\frac{1}{2}(\\kbseq_{3n-2}+\\kbseq_{3n-1})-\\kbseq_{3n})$ converges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "False. Let $b_{n}=\\frac{1}{n}$ when $n$ is not a multiple of $3$ and $b_{3n}=0;$ then $b_{n}\\ge 0$ and $b_{n}\\to 0.$ The terms are $\\frac{1}{2}(\\frac{1}{3n-2}+\\frac{1}{3n-1})\\ge\\frac{1}{3n},$ and $\\sum\\frac{1}{3n}$ is a third of the harmonic series, so by the comparison test the series diverges."
+   }
+  },
+  {
+   "id": "e289",
+   "source_id": "fs-id1169737169445",
+   "source_number": "289",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>For the following exercises, indicate whether each of the following statements is true or false. If the statement is false, provide an example in which it is false.</p><p>If $\\kbseq_{n}\\ge0$ is decreasing and $\\sum_{n=1}^{\\infty} (\\kbseq_{3n-2}+\\kbseq_{3n-1}-\\kbseq_{3n})$ converges then $\\sum_{n=1}^{\\infty} \\kbseq_{3n-2}$ converges.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True. $\\kbseq_{3n-1}-\\kbseq_{3n}\\ge0,$ so convergence of $\\sum \\kbseq_{3n-2}$ follows from the comparison test."
+   }
+  },
+  {
+   "id": "e290",
+   "source_id": "fs-id1169738115247",
+   "source_number": "290",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>For the following exercises, indicate whether each of the following statements is true or false. If the statement is false, provide an example in which it is false.</p><p>If $\\kbseq_{n}\\ge0$ is decreasing and $\\sum_{n=1}^{\\infty} {(-1)}^{n-1}\\kbseq_{n}$ converges conditionally but not absolutely, then $\\kbseq_{n}$ does not tend to zero.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "False. The alternating harmonic series has $b_{n}=\\frac{1}{n},$ which is decreasing and tends to zero, and it converges conditionally but not absolutely. In fact, if $\\sum(-1)^{n-1}b_{n}$ converges at all, its terms must tend to zero, so $b_{n}\\to 0.$"
+   }
+  },
+  {
+   "id": "e291",
+   "source_id": "fs-id1169737300742",
+   "source_number": "291",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>For the following exercises, indicate whether each of the following statements is true or false. If the statement is false, provide an example in which it is false.</p><p>Let $\\kaseq_{n}^{+}=\\kaseq_{n}$ if $\\kaseq_{n}\\ge0$ and $\\kaseq_{n}^{-}=-\\kaseq_{n}$ if $\\kaseq_{n}\\lt 0.$ (Also, $\\kaseq_{n}^{+}=0\\;\\text{if}\\;\\kaseq_{n}\\lt 0$ and $\\kaseq_{n}^{-}=0\\;\\text{if}\\;\\kaseq_{n}\\ge0.)$ If $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges conditionally but not absolutely, then neither $\\sum_{n=1}^{\\infty} \\kaseq_{n}^{+}$ nor $\\sum_{n=1}^{\\infty} \\kaseq_{n}^{-}$ converge.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True. If one converges, then so must the other, implying absolute convergence."
+   }
+  },
+  {
+   "id": "e292",
+   "source_id": "fs-id1169738164811",
+   "source_number": "292",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>Suppose that $\\kaseq_{n}$ is a sequence of positive real numbers and that $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges.</p><p>Suppose that $\\kbseq_{n}$ is an arbitrary sequence of ones and minus ones. Does $\\sum_{n=1}^{\\infty} \\kaseq_{n}\\kbseq_{n}$ necessarily converge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. Since $|a_{n}b_{n}|=a_{n}$ for every $n,$ the series $\\sum_{n=1}^{\\infty}|a_{n}b_{n}|=\\sum_{n=1}^{\\infty}a_{n}$ converges. So $\\sum_{n=1}^{\\infty}a_{n}b_{n}$ converges absolutely, and absolute convergence implies convergence."
+   }
+  },
+  {
+   "id": "e293",
+   "source_id": "fs-id1169738164901",
+   "source_number": "293",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>Suppose that $\\kaseq_{n}$ is a sequence such that $\\sum_{n=1}^{\\infty} \\kaseq_{n}\\kbseq_{n}$ converges for every possible sequence $\\kbseq_{n}$ of zeros and ones. Does $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converge absolutely?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes. Take $\\kbseq_{n}=1$ if $\\kaseq_{n}\\ge0$ and $\\kbseq_{n}=0$ if $\\kaseq_{n}\\lt 0.$ Then $\\sum_{n=1}^{\\infty} \\kaseq_{n}\\kbseq_{n}=\\underset{n:\\kaseq_{n}\\ge0}{\\sum}\\kaseq_{n}$ converges. Similarly, one can show $\\underset{n:\\kaseq_{n}\\lt 0}{\\sum}\\kaseq_{n}$ converges. Since both series converge, the series must converge absolutely."
+   }
+  },
+  {
+   "id": "e294",
+   "source_id": "fs-id1169737255493",
+   "source_number": "294",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-series-test",
+   "prompt": "<p>The following series do not satisfy the hypotheses of the alternating series test as stated.</p><p>In each case, state which hypothesis is not satisfied. State whether the series converges absolutely.</p><p>$\\sum_{n=1}^{\\infty} {(-1)}^{n+1}\\frac{\\sin^{2}n}{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The sizes $b_{n}=\\frac{\\sin^{2}n}{n}$ are positive but not decreasing: $b_{2}=\\frac{\\sin^{2}2}{2}\\approx 0.413$ is less than $b_{1}\\approx 0.708,$ but $b_{3}\\approx 0.007$ is followed by $b_{4}\\approx 0.143.$ The series does not converge absolutely: $\\sin^{2}x+\\sin^{2}(x+1)=1-\\cos 1\\cos(2x+1)\\ge 1-\\cos 1\\approx 0.46,$ so each pair of terms satisfies $\\frac{\\sin^{2}n}{n}+\\frac{\\sin^{2}(n+1)}{n+1}\\ge\\frac{0.46}{n+1},$ and $\\sum|a_{n}|$ diverges by comparison with the harmonic series."
+   }
+  },
+  {
+   "id": "e295",
+   "source_id": "fs-id1169737255554",
+   "source_number": "295",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-series-test",
+   "prompt": "<p>The following series do not satisfy the hypotheses of the alternating series test as stated.</p><p>In each case, state which hypothesis is not satisfied. State whether the series converges absolutely.</p><p>$\\sum_{n=1}^{\\infty} {(-1)}^{n+1}\\frac{\\cos^{2}n}{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Not decreasing. Does not converge absolutely."
+   }
+  },
+  {
+   "id": "e296",
+   "source_id": "fs-id1169737987462",
+   "source_number": "296",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-series-test",
+   "prompt": "<p>The following series do not satisfy the hypotheses of the alternating series test as stated.</p><p>In each case, state which hypothesis is not satisfied. State whether the series converges absolutely.</p><p>$1+\\frac{1}{2}-\\frac{1}{3}-\\frac{1}{4}+\\frac{1}{5}+\\frac{1}{6}-\\frac{1}{7}-\\frac{1}{8}+\\cdots$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The series is not alternating: its signs come in pairs, $+,+,-,-,\\ldots,$ so the hypothesis that the terms alternate in sign fails. It does not converge absolutely, since the series of absolute values $1+\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{4}+\\cdots$ is the harmonic series, which diverges."
+   }
+  },
+  {
+   "id": "e297",
+   "source_id": "fs-id1169737155716",
+   "source_number": "297",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-series-test",
+   "prompt": "<p>The following series do not satisfy the hypotheses of the alternating series test as stated.</p><p>In each case, state which hypothesis is not satisfied. State whether the series converges absolutely.</p><p>$1+\\frac{1}{2}-\\frac{1}{3}+\\frac{1}{4}+\\frac{1}{5}-\\frac{1}{6}+\\frac{1}{7}+\\frac{1}{8}-\\frac{1}{9}+\\cdots$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Not alternating. Can be expressed as $\\sum_{n=1}^{\\infty} (\\frac{1}{3n-2}+\\frac{1}{3n-1}-\\frac{1}{3n}),$ which diverges by comparison with $\\sum \\frac{1}{3n-2}.$"
+   }
+  },
+  {
+   "id": "e298",
+   "source_id": "fs-id1169737202968",
+   "source_number": "298",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-series-test",
+   "prompt": "<p>Show that the alternating series $1-\\frac{1}{2}+\\frac{1}{2}-\\frac{1}{4}+\\frac{1}{3}-\\frac{1}{6}+\\frac{1}{4}-\\frac{1}{8}+\\cdots$ does</p><p>not converge. What hypothesis of the alternating series test is not met?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The sizes $1,\\frac{1}{2},\\frac{1}{2},\\frac{1}{4},\\frac{1}{3},\\frac{1}{6},\\ldots$ are not decreasing ($\\frac{1}{4}\\lt\\frac{1}{3}$), so the hypothesis $b_{n+1}\\le b_{n}$ is not met. Grouping the terms in pairs, $\\frac{1}{k}-\\frac{1}{2k}=\\frac{1}{2k},$ so $S_{2N}=\\sum_{k=1}^{N}\\frac{1}{2k}=\\frac{1}{2}(1+\\frac{1}{2}+\\cdots+\\frac{1}{N}),$ half a partial sum of the harmonic series. These even partial sums are unbounded, so the series does not converge."
+   }
+  },
+  {
+   "id": "e299",
+   "source_id": "fs-id1169737207550",
+   "source_number": "299",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-series-test",
+   "prompt": "<p>Suppose that $\\sum \\kaseq_{n}$ converges absolutely. Show that the series consisting of the positive terms $\\kaseq_{n}$ also converges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\kaseq^{+}{}_{n}=\\kaseq_{n}$ if $\\kaseq_{n}\\ge0$ and $\\kaseq^{+}{}_{n}=0$ if $\\kaseq_{n}\\lt 0.$ Then $\\kaseq^{+}{}_{n}\\le|\\kaseq_{n}|$ for all $n$ so the sequence of partial sums of $\\kaseq^{+}{}_{n}$ is increasing and bounded above by the sequence of partial sums of $|\\kaseq_{n}|,$ which converges; hence, $\\sum_{n=1}^{\\infty} \\kaseq^{+}{}_{n}$ converges."
+   }
+  },
+  {
+   "id": "e300",
+   "source_id": "fs-id1169737228006",
+   "source_number": "300",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "alternating-series-test",
+   "prompt": "<p>Show that the alternating series $\\frac{2}{3}-\\frac{3}{5}+\\frac{4}{7}-\\frac{5}{9}+\\cdots$ does not converge. What hypothesis of the alternating series test is not met?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $b_{n}=\\frac{n+1}{2n+1}\\to\\frac{1}{2}\\ne 0,$ so the hypothesis $\\lim_{n\\to\\infty}b_{n}=0$ is not met. The terms $(-1)^{n+1}\\frac{n+1}{2n+1}$ do not tend to zero, so by the divergence test the series does not converge."
+   }
+  },
+  {
+   "id": "e301",
+   "source_id": "fs-id1169737228064",
+   "source_number": "301",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>The formula $\\cos\\theta =1-\\frac{\\theta^{2}}{2\\text{!}}+\\frac{\\theta^{4}}{4\\text{!}}-\\frac{\\theta^{6}}{6\\text{!}}+\\cdots$ will be derived in the next chapter. Use the remainder $|\\kR_{N}|\\le \\kbseq_{N+1}$ to find a bound for the error in estimating $\\cos\\theta$ by the fifth partial sum $1-\\theta^{2}/2\\text{!}+\\theta^{4}/4\\text{!}-\\theta^{6}/6\\text{!}+\\theta^{8}/8\\text{!}$ for $\\theta =1,$ $\\theta =\\pi/6,$ and $\\theta =\\pi.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "For $N=5$ one has $|\\kR_{N}|\\kbseq_{6}=\\theta^{10}/10\\text{!}.$ When $\\theta =1,$ $\\kR_{5}\\le1/10\\text{!}\\approx 2.75\\;\\times \\;{10}^{-7}.$ When $\\theta =\\pi/6,$ $\\kR_{5}\\le{(\\pi/6)}^{10}/10\\text{!}\\approx 4.26\\;\\times \\;{10}^{-10}.$ When $\\theta =\\pi,$ $\\kR_{5}\\le\\pi^{10}/10\\text{!}=0.0258.$"
+   }
+  },
+  {
+   "id": "e303",
+   "source_id": "fs-id1169737167800",
+   "source_number": "303",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>How many terms in $\\cos\\theta =1-\\frac{\\theta^{2}}{2\\text{!}}+\\frac{\\theta^{4}}{4\\text{!}}-\\frac{\\theta^{6}}{6\\text{!}}+\\cdots$ are needed to approximate $\\cos1$ accurate to an error of at most $0.00001\\text{?}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\kbseq_{n}=1/(2n-2)\\text{!}.$ Then $\\kR_{N}\\le1/(2N)\\text{!}\\lt 0.00001$ when $(2N)\\text{!}\\gt {10}^{5}$ or $N=5$ and $1-\\frac{1}{2\\text{!}}+\\frac{1}{4\\text{!}}-\\frac{1}{6\\text{!}}+\\frac{1}{8\\text{!}}=0.540325\\ldots,$ whereas $\\cos1=0.5403023\\ldots$"
+   }
+  },
+  {
+   "id": "e305",
+   "source_id": "fs-id1169737195168",
+   "source_number": "305",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>Sometimes the alternating series $\\sum_{n=1}^{\\infty} {(-1)}^{n-1}\\kbseq_{n}$ converges to a certain fraction of an absolutely convergent series $\\sum_{n=1}^{\\infty} \\kbseq_{n}$ at a faster rate. Given that $\\sum_{n=1}^{\\infty} \\frac{1}{n^{2}}=\\frac{\\pi^{2}}{6},$ find $12=1-\\frac{1}{2^{2}}+\\frac{1}{3^{2}}-\\frac{1}{4^{2}}+\\cdots.$<sup class=\"fn\" data-note=\"ex305-prompt\"></sup> Which of the series $6\\sum_{n=1}^{\\infty} \\frac{1}{n^{2}}$ and $\\kSsum\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n-1}}{n^{2}}$ gives a better estimation of $\\pi^{2}$ using $1000$ terms?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Let $T=\\sum \\frac{1}{n^{2}}.$ Then $T-\\kSsum=\\frac{1}{2}T,$ so $\\kSsum=T/2.$ $\\sqrt{6\\;\\times \\;\\sum_{n=1}^{1000} 1/n^{2}}=3.140638\\ldots;$ $\\sqrt{12\\;\\times \\;\\sum_{n=1}^{1000} {(-1)}^{n-1}/n^{2}}=3.141591\\ldots;$</p><p>$\\pi=3.141592\\ldots.$ The alternating series is more accurate for $1000$ terms.</p>"
+   }
+  },
+  {
+   "id": "e307",
+   "source_id": "fs-id1169737236587",
+   "source_number": "307",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>The following alternating series converge to given multiples of $\\pi.$ Find the value of $N$ predicted by the remainder estimate such that the $N\\text{th}$ partial sum of the series accurately approximates the left-hand side to within the given error. Find the minimum $N$ for which the error bound holds, and give the desired approximate value in each case. Up to $15$ decimals places, $\\pi=3.141592653589793\\ldots.$</p><p><strong>[T]</strong> $\\frac{\\pi}{\\sqrt{12}}=\\sum_{k=0}^{\\infty} \\frac{{(-3)}^{-k}}{2k+1},$ error $\\lt 0.0001$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$N=6,$ $\\kS_{N}=0.9068$"
+   }
+  },
+  {
+   "id": "e308",
+   "source_id": "fs-id1169738216132",
+   "source_number": "308",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p><strong>[T]</strong> The series $\\sum_{n=0}^{\\infty} \\frac{\\sin(x+\\pi n)}{x+\\pi n}$ plays an important role in signal processing. Show that $\\sum_{n=0}^{\\infty} \\frac{\\sin(x+\\pi n)}{x+\\pi n}$ converges whenever $0\\lt x\\lt \\pi.$ (<em>Hint:</em> Use the formula for the sine of a sum of angles.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the formula for the sine of a sum, $\\sin(x+\\pi n)=\\sin x\\cos(\\pi n)+\\cos x\\sin(\\pi n)=(-1)^{n}\\sin x.$ So the series is $\\sin x\\sum_{n=0}^{\\infty}\\frac{(-1)^{n}}{x+\\pi n}.$ For $0\\lt x\\lt\\pi,$ $\\sin x$ is a positive constant and $b_{n}=\\frac{1}{x+\\pi n}$ is positive, decreasing and tends to $0,$ so the series converges by the alternating series test."
+   }
+  },
+  {
+   "id": "e309",
+   "source_id": "fs-id1169737785730",
+   "source_number": "309",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p><strong>[T]</strong> If $\\sum_{n=1}^{N} {(-1)}^{n-1}\\frac{1}{n}\\to \\ln2,$ what is $1+\\frac{1}{3}+\\frac{1}{5}-\\frac{1}{2}-\\frac{1}{4}-\\frac{1}{6}+\\frac{1}{7}+\\frac{1}{9}+\\frac{1}{11}-\\frac{1}{8}-\\frac{1}{10}-\\frac{1}{12}+\\cdots\\text{?}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln(2).$ The $3n\\text{th}$ partial sum is the same as that for the alternating harmonic series."
+   }
+  },
+  {
+   "id": "e311",
+   "source_id": "fs-id1169738236406",
+   "source_number": "311",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p><strong>[T]</strong> Plot the series $\\sum_{n=1}^{100} \\frac{\\sin(2\\pi nx)}{n}$ for $0\\le x\\lt 1$ and comment on its behavior</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The series jumps rapidly near the endpoints. For $x$ away from the endpoints, the graph looks like $\\pi(1/2-x).$</p><img src=\"/media/ch09/CNX_Calc_Figure_09_05_202.jpg\" alt=\"This shows a function in quadrants 1 and 4 that begins at (0, 0), sharply increases to just below 1.5 close to the y axis, decreases linearly, crosses the x axis at 0.5, continues to decrease linearly, and sharply increases just before 1 to 0.\">"
+   }
+  },
+  {
+   "id": "e313",
+   "source_id": "fs-id1169737923754",
+   "source_number": "313",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p><strong>[T]</strong> The alternating harmonic series converges because of cancellation among its terms. Its sum is known because the cancellation can be described explicitly. A random harmonic series is one of the form $\\sum_{n=1}^{\\infty} \\frac{\\kS_{n}}{n},$ where $s_{n}$ is a randomly generated sequence of $\\pm1\\text{'s}$ in which the values $\\pm1$ are equally likely to occur. Use a random number generator to produce $1000$ random $\\pm1\\text{s}$ and plot the partial sums $\\kS_{N}=\\sum_{n=1}^{N} \\frac{s_{n}}{n}$ of your random harmonic sequence for $N=1$ to $1000.$ Compare to a plot of the first $1000$ partial sums of the harmonic series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Here is a typical result. The top curve consists of partial sums of the harmonic series. The bottom curve plots partial sums of a random harmonic series.</p><img src=\"/media/ch09/CNX_Calc_Figure_09_05_204.jpg\" alt=\"This shows two curves. The top is an increasing concave down curve. The bottom is a jagged, random harmonic series plot that stays close to 0.\">"
+   }
+  },
+  {
+   "id": "e315",
+   "source_id": "fs-id1169737152003",
+   "source_number": "315",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p><strong>[T]</strong> The <em>Euler transform</em> rewrites $\\kSsum=\\sum_{n=0}^{\\infty} {(-1)}^{n}\\kbseq_{n}$ as $\\kSsum=\\sum_{n=0}^{\\infty} {(-1)}^{n}2^{-n-1}\\sum_{m=0}^{n} (\\begin{gathered}n \\\\ m\\end{gathered})\\kbseq_{n-m}.$ For the alternating harmonic series, it takes the form $\\ln(2)=\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n-1}}{n}=\\sum_{n=1}^{\\infty} \\frac{1}{n2^{n}}.$ Compute partial sums of $\\sum_{n=1}^{\\infty} \\frac{1}{n2^{n}}$ until they approximate $\\ln(2)$ accurate to within $0.0001.$ How many terms are needed? Compare this answer to the number of terms of the alternating harmonic series are needed to estimate $\\ln(2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "By the alternating series test, $|\\kS_{n}-\\kSsum|\\le \\kbseq_{n+1},$ so one needs ${10}^{4}$ terms of the alternating harmonic series to estimate $\\ln(2)$ to within $0.0001.$ The first $10$ partial sums of the series $\\sum_{n=1}^{\\infty} \\frac{1}{n2^{n}}$ are (up to four decimals) $0.5000,0.6250,0.6667,0.6823,0.6885,0.6911,0.6923,0.6928,0.6930,0.6931$ and the tenth partial sum is within $0.0001$ of $\\ln(2)=0.6931\\ldots.$"
+   }
+  },
+  {
+   "id": "e316",
+   "source_id": "fs-id1169738071328",
+   "source_number": "316",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p><strong>[T]</strong> In the text it was stated that a conditionally convergent series can be rearranged to converge to any number. Here is a slightly simpler, but similar, fact. If $\\kaseq_{n}\\ge0$ is such that $\\kaseq_{n}\\to 0$ as $n\\to \\infty$ but $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ diverges, then, given any number $A$ there is a sequence $s_{n}$ of $\\pm1\\text{'s}$ such that $\\sum_{n=1}^{\\infty} \\kaseq_{n}s_{n}\\to A.$ Show this for $A\\gt 0$ as follows.</p><ol type=\"a\"><li>Recursively define $s_{n}$ by $s_{n}=1$ if $\\kS_{n-1}=\\sum_{k=1}^{n-1} \\kaseq_{k}s_{k}\\lt A$ and $s_{n}=-1$ otherwise.</li><li>Explain why eventually $\\kS_{n}\\ge A,$ and for any $m$ larger than this $n,$ $A-\\kaseq_{m}\\le \\kS_{m}\\le A+\\kaseq_{m}.$</li><li>Explain why this implies that $\\kS_{n}\\to A$ as $n\\to \\infty.$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a. Each $s_{n}$ is $1$ while the partial sum $S_{n-1}$ is below $A$ and $-1$ otherwise, so the sum is pushed toward $A$ at every step. b. If $S_{n}$ stayed below $A$ for all $n,$ every $s_{n}$ would be $1$ and $S_{n}=\\sum_{k=1}^{n}a_{k}$ would grow without bound, since $\\sum a_{n}$ diverges; so eventually $S_{n}\\ge A.$ After that, each step moves $S$ toward $A$ by $a_{m},$ and a step that carries it across $A$ overshoots by less than $a_{m}.$ Between crossings $S$ moves steadily toward $A$ without passing it, so its distance from $A$ is at most the term $a_{j}$ of the last crossing $j\\le m;$ and crossings keep coming, since otherwise $S$ would move toward $A$ by the divergent total $\\sum a_{k}$ without reaching it. c. As $m\\to\\infty$ the last crossing $j\\to\\infty,$ so $|S_{m}-A|\\le a_{j}\\to 0,$ because $a_{n}\\to 0.$ Therefore $S_{n}\\to A.$"
+   }
+  },
+  {
+   "id": "r381",
+   "source_id": "fs-id1169739260470",
+   "source_section": "9.6",
+   "source_number": "381",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-implies",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>If $\\sum_{n=1}^{\\infty} |\\kaseq_{n}|$ converges, then $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "true"
+   }
+  },
+  {
+   "id": "r382",
+   "source_id": "fs-id1169739260544",
+   "source_section": "9.6",
+   "source_number": "382",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>If $\\sum_{n=1}^{\\infty} 2^{n}\\kaseq_{n}$ converges, then $\\sum_{n=1}^{\\infty} {(-2)}^{n}\\kaseq_{n}$ converges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "False. Let $a_{n}=\\frac{(-1)^{n}}{n2^{n}}.$ Then $\\sum_{n=1}^{\\infty}2^{n}a_{n}=\\sum_{n=1}^{\\infty}\\frac{(-1)^{n}}{n},$ the negative of the alternating harmonic series, which converges. But $(-2)^{n}a_{n}=\\frac{(-1)^{n}2^{n}(-1)^{n}}{n2^{n}}=\\frac{1}{n},$ so $\\sum_{n=1}^{\\infty}(-2)^{n}a_{n}$ is the harmonic series, which diverges."
+   }
+  },
+  {
+   "id": "r393",
+   "source_id": "fs-id1169739249827",
+   "source_section": "9.6",
+   "source_number": "393",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>Is the series convergent or divergent? If convergent, is it absolutely convergent?</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n}}{\\sqrt{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "converges, but not absolutely"
+   }
+  },
+  {
+   "id": "r397",
+   "source_id": "fs-id1169736841855",
+   "source_section": "9.6",
+   "source_number": "397",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-conditional",
+   "prompt": "<p>Is the series convergent or divergent? If convergent, is it absolutely convergent?</p><p>$\\sum_{n=1}^{\\infty} \\cos(\\pi n)e^{-n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "converges absolutely"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e251",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e251",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e251",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e253",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e253",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e253",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e255",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e255",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e255",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e257",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e257",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e257",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e259",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e259",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e259",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e261",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e261",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e261",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e263",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e263",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e263",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e265",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e265",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e265",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e267",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e267",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e267",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e269",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e269",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e269",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e271",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e271",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e271",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e273",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e273",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e273",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e275",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e275",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e275",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e277",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e277",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e277",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e279",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e279",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e279",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e281",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "e281",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e283",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "e283",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e285",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "e285",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e286",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e286",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e287",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e287",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e288",
+   "concept": "divergence-of-the-harmonic-series"
+  },
+  {
+   "exercise": "e288",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e289",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e290",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e290",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e291",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e291",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e292",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e292",
+   "concept": "absolute-convergence-implies-convergence"
+  },
+  {
+   "exercise": "e293",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e294",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e294",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e295",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e295",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e296",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e296",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e297",
+   "concept": "alternating-series"
+  },
+  {
+   "exercise": "e297",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e298",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e298",
+   "concept": "divergence-of-the-harmonic-series"
+  },
+  {
+   "exercise": "e299",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "e299",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e300",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e300",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e301",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "e303",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "e305",
+   "concept": "alternating-harmonic-series"
+  },
+  {
+   "exercise": "e305",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "e307",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "e308",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e309",
+   "concept": "alternating-harmonic-series"
+  },
+  {
+   "exercise": "e309",
+   "concept": "riemann-rearrangement-theorem"
+  },
+  {
+   "exercise": "e311",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e313",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "e313",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e315",
+   "concept": "remainder-of-an-alternating-series"
+  },
+  {
+   "exercise": "e315",
+   "concept": "alternating-harmonic-series"
+  },
+  {
+   "exercise": "e316",
+   "concept": "riemann-rearrangement-theorem"
+  },
+  {
+   "exercise": "e316",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "r381",
+   "concept": "absolute-convergence-implies-convergence"
+  },
+  {
+   "exercise": "r382",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "r382",
+   "concept": "alternating-harmonic-series"
+  },
+  {
+   "exercise": "r393",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "r393",
+   "concept": "conditional-convergence"
+  },
+  {
+   "exercise": "r397",
+   "concept": "absolute-convergence"
+  },
+  {
+   "exercise": "r397",
+   "concept": "sum-of-a-geometric-series"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "theorem-number",
+   "kind": "correction",
+   "html": "The book, published in three volumes, prints: “Thus, applying Theorem 5.13, the series cannot converge absolutely.” Theorem 5.13 is Volume 2’s number for the Alternating Series Test, Theorem 9.13 here. The step that rules out absolute convergence is the limit comparison test with the harmonic series just above it, Theorem 9.12."
+  },
+  {
+   "id": "ex305-prompt",
+   "kind": "correction",
+   "html": "The book prints “find $12=1-\\frac{1}{2^{2}}+\\cdots$” and “$S\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n^{2}}$”; it means find $S=1-\\frac{1}{2^{2}}+\\frac{1}{3^{2}}-\\cdots$ and compare $6\\sum\\frac{1}{n^{2}}$ with $12\\sum\\frac{(-1)^{n-1}}{n^{2}},$ as the key does."
+  }
+ ]
+}

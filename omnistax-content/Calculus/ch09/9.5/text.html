@@ -1,0 +1,156 @@
+<p id="alternating-intro">So far in this chapter, we have primarily discussed <span data-concept="infinite-series">series</span> with positive <span data-concept="term-of-a-sequence">terms</span>. In this section we introduce <span data-concept="alternating-series">alternating series</span>—those <span data-concept="infinite-series">series</span> whose <span data-concept="term-of-a-sequence">terms</span> alternate in sign. We will show in a later chapter that these <span data-concept="infinite-series">series</span> often arise when studying <span data-concept="infinite-series">power series</span>. After defining <span data-concept="alternating-series">alternating series</span>, we introduce the <span data-concept="alternating-series-test">alternating series test</span> to determine whether such a <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>.</p>
+<section id="alternating-series-test">
+<h2>The Alternating Series Test</h2>
+<p>A <span data-concept="infinite-series">series</span> whose <span data-concept="term-of-a-sequence">terms</span> alternate between positive and negative values is an <strong><span data-concept="alternating-series">alternating series</span></strong>. For example, the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty}{(-\frac{1}{2})}^{n}=-\frac{1}{2}+\frac{1}{4}-\frac{1}{8}+\frac{1}{16}-\cdots\tag{9.11}$$
+<p>and</p>
+$$\sum_{n=1}^{\infty}\frac{{(-1)}^{n+1}}{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots\tag{9.12}$$
+<p>are both <span data-concept="alternating-series">alternating series</span>.</p>
+<div class="note" id="alternating-definition">
+<div class="eyebrow">Definition</div>
+<p>Any <span data-concept="infinite-series">series</span> whose <span data-concept="term-of-a-sequence">terms</span> alternate between positive and negative values is called an <span data-concept="alternating-series">alternating series</span>. An <span data-concept="alternating-series">alternating series</span> can be written in the form</p>
+$$\sum_{n=1}^{\infty} {(-1)}^{n+1}\kbseq_{n}=\kbseq_{1}-\kbseq_{2}+\kbseq_{3}-\kbseq_{4}+\cdots\tag{9.13}$$
+<p>or</p>
+$$\sum_{n=1}^{\infty} {(-1)}^{n}\kbseq_{n}=-\kbseq_{1}+\kbseq_{2}-\kbseq_{3}+\kbseq_{4}-\cdots\tag{9.14}$$
+<p>Where $\kbseq_{n}\gt 0$ for all positive integers <em>n</em>.</p>
+</div>
+<p>Series (1), shown in Equation 9.11, is a <span data-concept="geometric-series">geometric series</span>. Since $|r|=|-1/2|\lt 1,$ the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>. Series (2), shown in Equation 9.12, is called the <span data-concept="alternating-harmonic-series">alternating harmonic series</span>. We will show that whereas the <span data-concept="harmonic-series">harmonic series</span> <span data-concept="divergence-of-a-series">diverges</span>, the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> <span data-concept="convergence-of-a-series">converges</span>.</p>
+<p>To prove this, we look at the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ (Figure 9.17).</p>
+<h3>Proof</h3>
+<p>Consider the odd <span data-concept="term-of-a-sequence">terms</span> $\kS_{2k+1}$ for $k\ge0.$ Since $1/(2k+1)\lt 1/2k,$</p>
+$$\kS_{2k+1}=\kS_{2k-1}-\frac{1}{2k}+\frac{1}{2k+1}\lt \kS_{2k-1}.$$
+<p>Therefore, $\{\kS_{2k+1}\}$ is a <span data-concept="monotone-sequence">decreasing sequence</span>. Also,</p>
+$$\kS_{2k+1}=(1-\frac{1}{2})+(\frac{1}{3}-\frac{1}{4})+\cdots+(\frac{1}{2k-1}-\frac{1}{2k})+\frac{1}{2k+1}\gt 0.$$
+<p>Therefore, $\{\kS_{2k+1}\}$ is <span data-concept="bounded-sequence">bounded below</span>. Since $\{\kS_{2k+1}\}$ is a <span data-concept="monotone-sequence">decreasing sequence</span> that is <span data-concept="bounded-sequence">bounded below</span>, by the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span>, $\{\kS_{2k+1}\}$ <span data-concept="convergence-of-a-series">converges</span>. Similarly, the even <span data-concept="term-of-a-sequence">terms</span> $\{\kS_{2k}\}$ form an <span data-concept="monotone-sequence">increasing sequence</span> that is <span data-concept="bounded-sequence">bounded above</span> because</p>
+$$\kS_{2k}=\kS_{2k-2}+\frac{1}{2k-1}-\frac{1}{2k}\gt \kS_{2k-2}$$
+<p>and</p>
+$$\kS_{2k}=1+(-\frac{1}{2}+\frac{1}{3})+\cdots+(-\frac{1}{2k-2}+\frac{1}{2k-1})-\frac{1}{2k}\lt 1.$$
+<p>Therefore, by the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span>, the <span data-concept="sequence">sequence</span> $\{\kS_{2k}\}$ also <span data-concept="convergence-of-a-series">converges</span>. Since</p>
+$$\kS_{2k+1}=\kS_{2k}+\frac{1}{2k+1},$$
+<p>we know that</p>
+$$\lim_{k\to \infty}\kS_{2k+1}=\lim_{k\to \infty}\kS_{2k}+\lim_{k\to \infty}\frac{1}{2k+1}.$$
+<p>Letting $\kSsum=\lim_{k\to \infty}\kS_{2k+1}$ and using the fact that $1/(2k+1)\to 0,$ we conclude that $\lim_{k\to \infty}\kS_{2k}=\kSsum.$ Since the odd <span data-concept="term-of-a-sequence">terms</span> and the even <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converge</span> to the same limit $\kSsum,$ it can be shown that the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converges</span> to $\kSsum,$ and therefore the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> <span data-concept="convergence-of-a-series">converges</span> to $\kSsum.$</p>
+<p>It can also be shown that $\kSsum=\ln2,$ and we can write</p>
+$$\sum_{n=1}^{\infty}\frac{{(-1)}^{n+1}}{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots=\ln(2).$$
+<figure class="sim" id="sim-alternating" data-figure="9.17 + 9.18" data-original="/media/ch09/CNX_Calc_Figure_09_05_001.jpg,/media/ch09/CNX_Calc_Figure_09_05_002.jpg" data-original-caption="(Figure 9.17) For the alternating harmonic series, the odd terms S_(2k+1) in the sequence of partial sums are decreasing and bounded below. The even terms S_(2k) are increasing and bounded above. (Figure 9.18) For an alternating series b₁−b₂+b₃−⋯ in which b₁&gt; b₂&gt; b₃&gt; ⋯, the odd terms S_(2k+1) in the sequence of partial sums are decreasing and bounded below. The even terms S_(2k) are increasing and bounded above.">
+  <div class="sim-head"><span class="eyebrow">Figure 9.17 + 9.18</span><span>For the alternating harmonic series, the odd terms $\kS_{2k+1}$ in the sequence of partial sums are decreasing and bounded below, and the even terms $\kS_{2k}$ are increasing and bounded above; the same holds for any alternating series $\kbseq_{1}-\kbseq_{2}+\kbseq_{3}-\cdots$ in which $\kbseq_{1}\gt\kbseq_{2}\gt\kbseq_{3}\gt\cdots.$ Each row adds one term. Drag $N$: the sum $\kSsum$ always lies within $\kbseq_{N+1}$ of $\kS_{N}.$</span></div>
+</figure>
+<p>□</p>
+<p>More generally, any <span data-concept="alternating-series">alternating series</span> of form (3) (Equation 9.13) or (4) (Equation 9.14) <span data-concept="convergence-of-a-series">converges</span> as long as $\kbseq_{1}\ge \kbseq_{2}\ge \kbseq_{3}\ge\cdots$ and $\kbseq_{n}\to 0$ (Figure 9.18). The proof is similar to the proof for the <span data-concept="alternating-harmonic-series">alternating harmonic series</span>.</p>
+<div class="note" id="alternating-test-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="alternating-series-test">Alternating Series Test</span></h3>
+<p>An <span data-concept="alternating-series">alternating series</span> of the form</p>
+$$\sum_{n=1}^{\infty}{(-1)}^{n+1}\kbseq_{n}\;\text{or}\;\sum_{n=1}^{\infty}{(-1)}^{n}\kbseq_{n}$$
+<p><span data-concept="convergence-of-a-series">converges</span> if</p>
+<ol><li>$0\lt \kbseq_{n+1}\le \kbseq_{n}$ for all $n\ge1$ and</li><li>$\lim_{n\to \infty}\kbseq_{n}=0.$ This is known as the <strong><span data-concept="alternating-series-test">alternating series test</span></strong>.</li></ol>
+</div>
+<p>We remark that this theorem is true more generally as long as there exists some integer $N$ such that $0\lt \kbseq_{n+1}\le \kbseq_{n}$ for all $n\ge N.$</p>
+<div class="example" id="fs-id1169737819249">
+<h3>Example 9.19 · Convergence of Alternating Series</h3>
+<p>For each of the following <span data-concept="alternating-series">alternating series</span>, determine whether the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty}{(-1)}^{n+1}/n^{2}$</li><li>$\sum_{n=1}^{\infty}{(-1)}^{n+1}n/(n+1)$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Since $\frac{1}{{(n+1)}^{2}}\lt \frac{1}{n^{2}}\;\text{and}\;\frac{1}{n^{2}}\to 0,$</li></ol>
+<p>the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>.</p>
+<ol type="a" start="2"><li>Since $n/(n+1)\nrightarrow 0$ as $n\to \infty,$ we cannot apply the <span data-concept="alternating-series-test">alternating series test</span>. Instead, we use the <em>n</em>th <span data-concept="term-of-a-sequence">term</span> test for <span data-concept="divergence-of-a-series">divergence</span>. Since $\lim_{n\to \infty}\frac{{(-1)}^{n+1}n}{n+1}\ne0,$</li></ol>
+<p>the <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1169737819249"></div>
+</section>
+
+<section id="remainder">
+<h2>Remainder of an Alternating Series</h2>
+<p>It is difficult to explicitly calculate the sum of most <span data-concept="alternating-series">alternating series</span>, so typically the sum is approximated by using a <span data-concept="partial-sum">partial sum</span>. When doing so, we are interested in the amount of error in our approximation. Consider an <span data-concept="alternating-series">alternating series</span></p>
+$$\sum_{n=1}^{\infty}{(-1)}^{n+1}\kbseq_{n}$$
+<p>satisfying the hypotheses of the <span data-concept="alternating-series-test">alternating series test</span>. Let $\kSsum$ denote the sum of this <span data-concept="infinite-series">series</span> and $\{\kS_{k}\}$ be the corresponding <span data-concept="partial-sum">sequence of partial sums</span>. From Figure 9.18, we see that for any integer $N\ge1,$ the <span data-concept="remainder-of-a-series">remainder</span> $\kR_{N}$ satisfies</p>
+$$|\kR_{N}|=|\kSsum-\kS_{N}|\le|\kS_{N+1}-\kS_{N}|=\kbseq_{n+1}.$$
+<div class="note" id="alternating-remainder-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="remainder-of-an-alternating-series">Remainders in Alternating Series</span></h3>
+<p>Consider an <span data-concept="alternating-series">alternating series</span> of the form</p>
+$$\sum_{n=1}^{\infty}{(-1)}^{n+1}\kbseq_{n}\text{or}\sum_{n=1}^{\infty}{(-1)}^{n}\kbseq_{n}$$
+<p>that satisfies the hypotheses of the <span data-concept="alternating-series-test">alternating series test</span>. Let $\kSsum$ denote the sum of the <span data-concept="infinite-series">series</span> and $\kS_{N}$ denote the $N\text{th}$ <span data-concept="partial-sum">partial sum</span>. For any integer $N\ge1,$ the <span data-concept="remainder-of-a-series">remainder</span> $\kR_{N}=\kSsum-\kS_{N}$ satisfies</p>
+$$|\kR_{N}|\le \kbseq_{N+1}.$$
+</div>
+<p>In other words, if the conditions of the <span data-concept="alternating-series-test">alternating series test</span> apply, then the error in approximating the <span data-concept="infinite-series">infinite series</span> by the $N\text{th}$ <span data-concept="partial-sum">partial sum</span> $\kS_{N}$ is in magnitude at most the size of the next <span data-concept="term-of-a-sequence">term</span> $\kbseq_{N+1}.$</p>
+<div class="example" id="fs-id1169737939430">
+<h3>Example 9.20 · Estimating the Remainder of an Alternating Series</h3>
+<p>Consider the <span data-concept="alternating-series">alternating series</span></p>
+$$\sum_{n=1}^{\infty} \frac{{(-1)}^{n+1}}{n^{2}}.$$
+<p>Use the <span data-concept="remainder-of-an-alternating-series">remainder estimate</span> to determine a bound on the error $\kR_{10}$ if we approximate the sum of the <span data-concept="infinite-series">series</span> by the <span data-concept="partial-sum">partial sum</span> $\kS_{10}.$</p>
+<h4>Solution</h4>
+<p>From the theorem stated above,</p>
+<p>$|\kR_{10}|\le \kbseq_{11}=\frac{1}{{11}^{2}}\approx 0.008265.$</p>
+</div>
+<div class="exercises" data-place="fs-id1169737939430"></div>
+</section>
+
+<section id="absolute-conditional">
+<h2>Absolute and Conditional Convergence</h2>
+<p>Consider a <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \kaseq_{n}$ and the related <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} |\kaseq_{n}|.$ Here we discuss possibilities for the relationship between the <span data-concept="convergence-of-a-series">convergence</span> of these two <span data-concept="infinite-series">series</span>. For example, consider the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> $\sum_{n=1}^{\infty} {(-1)}^{n+1}/n.$ The <span data-concept="infinite-series">series</span> whose <span data-concept="term-of-a-sequence">terms</span> are the absolute value of these <span data-concept="term-of-a-sequence">terms</span> is the <span data-concept="harmonic-series">harmonic series</span>, since $\sum_{n=1}^{\infty} |{(-1)}^{n+1}/n|=\sum_{n=1}^{\infty} 1/n.$ Since the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> <span data-concept="convergence-of-a-series">converges</span>, but the <span data-concept="harmonic-series">harmonic series</span> <span data-concept="divergence-of-a-series">diverges</span>, we say the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> exhibits <span data-concept="conditional-convergence">conditional convergence</span>.</p>
+<p>By comparison, consider the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} {(-1)}^{n+1}/n^{2}.$ The <span data-concept="infinite-series">series</span> whose <span data-concept="term-of-a-sequence">terms</span> are the absolute values of the <span data-concept="term-of-a-sequence">terms</span> of this <span data-concept="infinite-series">series</span> is the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} 1/n^{2}.$ Since both of these <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converge</span>, we say the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} {(-1)}^{n+1}/n^{2}$ exhibits <span data-concept="absolute-convergence">absolute convergence</span>.</p>
+<div class="note" id="absolute-definition">
+<div class="eyebrow">Definition</div>
+<p>A <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n}$ exhibits <strong><span data-concept="absolute-convergence">absolute convergence</span></strong> if $\sum_{n=1}^{\infty}|\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>. A <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n}$ exhibits <strong><span data-concept="conditional-convergence">conditional convergence</span></strong> if $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span> but $\sum_{n=1}^{\infty}|\kaseq_{n}|$ <span data-concept="divergence-of-a-series">diverges</span>.</p>
+</div>
+<p>As shown by the <span data-concept="alternating-harmonic-series">alternating harmonic series</span>, a <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n}$ may <span data-concept="convergence-of-a-series">converge</span>, but $\sum_{n=1}^{\infty}|\kaseq_{n}|$ may <span data-concept="divergence-of-a-series">diverge</span>. In the following theorem, however, we show that if $\sum_{n=1}^{\infty}|\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
+<div class="note" id="absolute-implies">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="absolute-convergence-implies-convergence">Absolute Convergence Implies Convergence</span></h3>
+<p>If $\sum_{n=1}^{\infty}|\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
+</div>
+<h3>Proof</h3>
+<p>Suppose that $\sum_{n=1}^{\infty} |\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>. We show this by using the fact that $\kaseq_{n}=|\kaseq_{n}|$ or $\kaseq_{n}=-|\kaseq_{n}|$ and therefore $|\kaseq_{n}|+\kaseq_{n}=2|\kaseq_{n}|$ or $|\kaseq_{n}|+\kaseq_{n}=0.$ Therefore, $0\le|\kaseq_{n}|+\kaseq_{n}\le2|\kaseq_{n}|.$ Consequently, by the <span data-concept="comparison-test">comparison test</span>, since $2\sum_{n=1}^{\infty}|\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>, the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty}(|\kaseq_{n}|+\kaseq_{n})$$
+<p><span data-concept="convergence-of-a-series">converges</span>. By using the <span data-concept="algebraic-properties-of-convergent-series">algebraic properties for convergent series</span>, we conclude that</p>
+$$\sum_{n=1}^{\infty}\kaseq_{n}=\sum_{n=1}^{\infty}(|\kaseq_{n}|+\kaseq_{n})-\sum_{n=1}^{\infty}|\kaseq_{n}|$$
+<p><span data-concept="convergence-of-a-series">converges</span>.</p>
+<p>□</p>
+<div class="example" id="fs-id1169738153895">
+<h3>Example 9.21 · Absolute versus Conditional Convergence</h3>
+<p>For each of the following <span data-concept="infinite-series">series</span>, determine whether the <span data-concept="infinite-series">series</span> <span data-concept="absolute-convergence">converges absolutely</span>, <span data-concept="conditional-convergence">converges conditionally</span>, or <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty}{(-1)}^{n+1}/(3n+1)$</li><li>$\sum_{n=1}^{\infty}\cos(n)/n^{2}$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>We can see that $$\sum_{n=1}^{\infty}|\frac{{(-1)}^{n+1}}{3n+1}|=\sum_{n=1}^{\infty}\frac{1}{3n+1}$$</li></ol>
+<p><span data-concept="divergence-of-a-series">diverges</span> by using the <span data-concept="limit-comparison-test">limit comparison test</span> with the <span data-concept="harmonic-series">harmonic series</span>.</p>
+$$\lim_{n\to \infty}\frac{1/(3n+1)}{1/n}=\frac{1}{3}$$
+<p>Thus, applying <a href="/calculus/ch09/9.5/#9.5-alternating-test-theorem">Theorem 9.13</a><sup class="fn" data-note="theorem-number"></sup>, the <span data-concept="infinite-series">series</span> cannot <span data-concept="absolute-convergence">converge absolutely</span>. Moreover, because of the <span data-concept="alternating-series-test">alternating series test</span>, we can see that the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>.</p>
+$$\frac{1}{3(n+1)+1}\lt \frac{1}{3n+1}\;\text{and}\;\frac{1}{3n+1}\to 0,$$
+<p>We can conclude that $\sum_{n=1}^{\infty}{(-1)}^{n+1}/(3n+1)$ <span data-concept="conditional-convergence">converges conditionally</span>.</p>
+<ol type="a" start="2"><li>Noting that $|\cos n|\le1,$ to determine whether the <span data-concept="infinite-series">series</span> <span data-concept="absolute-convergence">converges absolutely</span>, compare $$\sum_{n=1}^{\infty}|\frac{\cos n}{n^{2}}|$$</li></ol>
+<p>with the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}1/n^{2}.$ Since $\sum_{n=1}^{\infty}1/n^{2}$ <span data-concept="convergence-of-a-series">converges</span>, by the <span data-concept="comparison-test">comparison test</span>, $\sum_{n=1}^{\infty}|\cos n/n^{2}|$ <span data-concept="convergence-of-a-series">converges</span>, and therefore $\sum_{n=1}^{\infty}\cos n/n^{2}$ <span data-concept="absolute-convergence">converges absolutely</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1169738153895"></div>
+<p>To see the difference between absolute and <span data-concept="conditional-convergence">conditional convergence</span>, look at what happens when we <em><span data-concept="riemann-rearrangement-theorem">rearrange</span></em> the <span data-concept="term-of-a-sequence">terms</span> of the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> $\sum_{n=1}^{\infty}{(-1)}^{n+1}/n.$ We show that we can <span data-concept="riemann-rearrangement-theorem">rearrange</span> the <span data-concept="term-of-a-sequence">terms</span> so that the new <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>. Certainly if we <span data-concept="riemann-rearrangement-theorem">rearrange</span> the <span data-concept="term-of-a-sequence">terms</span> of a finite sum, the sum does not change. When we work with an infinite sum, however, interesting things can happen.</p>
+<p>Begin by adding enough of the positive <span data-concept="term-of-a-sequence">terms</span> to produce a sum that is larger than some real number $M\gt 0.$ For example, let $M=10,$ and find an integer $k$ such that</p>
+$$1+\frac{1}{3}+\frac{1}{5}+\cdots+\frac{1}{2k-1}\gt 10.$$
+<p>(We can do this because the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}1/(2n-1)$ <span data-concept="divergence-of-a-series">diverges</span> to infinity.) Then subtract $1/2.$ Then add more positive <span data-concept="term-of-a-sequence">terms</span> until the sum reaches 100. That is, find another integer $j\gt k$ such that</p>
+$$1+\frac{1}{3}+\cdots+\frac{1}{2k-1}-\frac{1}{2}+\frac{1}{2k+1}+\cdots+\frac{1}{2j+1}\gt 100.$$
+<p>Then subtract $1/4.$ Continuing in this way, we have found a way of <span data-concept="riemann-rearrangement-theorem">rearranging</span> the <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> so that the <span data-concept="partial-sum">sequence of partial sums</span> for the <span data-concept="riemann-rearrangement-theorem">rearranged</span> <span data-concept="infinite-series">series</span> is unbounded and therefore <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<p>The <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> can also be <span data-concept="riemann-rearrangement-theorem">rearranged</span> so that the new <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> to a different value. In Example 9.22, we show how to <span data-concept="riemann-rearrangement-theorem">rearrange</span> the <span data-concept="term-of-a-sequence">terms</span> to create a new <span data-concept="infinite-series">series</span> that <span data-concept="convergence-of-a-series">converges</span> to $3\;\ln(2)/2.$ We point out that the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> can be <span data-concept="riemann-rearrangement-theorem">rearranged</span> to create a <span data-concept="infinite-series">series</span> that <span data-concept="convergence-of-a-series">converges</span> to any real number $r;$ however, the proof of that fact is beyond the scope of this text.</p>
+<p>In general, any <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n}$ that <span data-concept="conditional-convergence">converges conditionally</span> can be <span data-concept="riemann-rearrangement-theorem">rearranged</span> so that the new <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span> or <span data-concept="convergence-of-a-series">converges</span> to a different real number. A <span data-concept="infinite-series">series</span> that <span data-concept="absolute-convergence">converges absolutely</span> does not have this property. For any <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty}\kaseq_{n}$ that <span data-concept="absolute-convergence">converges absolutely</span>, the value of $\sum_{n=1}^{\infty}\kaseq_{n}$ is the same for any <span data-concept="riemann-rearrangement-theorem">rearrangement</span> of the <span data-concept="term-of-a-sequence">terms</span>. This result is known as the <span data-concept="riemann-rearrangement-theorem">Riemann Rearrangement Theorem</span>, which is beyond the scope of this book.</p>
+<figure class="sim" id="sim-rearrangement">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The terms of the alternating harmonic series, rearranged: positive terms $1,\frac{1}{3},\frac{1}{5},\ldots$ are added until the sum passes a target, then negative terms $-\frac{1}{2},-\frac{1}{4},\ldots$ until it falls below, and so on. Drag the target: the rearranged series converges to it, while the series in its own order converges to $\ln 2.$</span></div>
+</figure>
+<div class="example" id="fs-id1169738079721">
+<h3>Example 9.22 · Rearranging Series</h3>
+<p>Use the fact that</p>
+$$1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\cdots=\ln2$$
+<p>to <span data-concept="riemann-rearrangement-theorem">rearrange</span> the <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> so the sum of the <span data-concept="riemann-rearrangement-theorem">rearranged</span> <span data-concept="infinite-series">series</span> is $3\;\ln(2)/2.$</p>
+<h4>Solution</h4>
+<p>Let</p>
+$$\sum_{n=1}^{\infty} \kaseq_{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+\frac{1}{7}-\frac{1}{8}+\cdots.$$
+<p>Since $\sum_{n=1}^{\infty} \kaseq_{n}=\ln(2),$ by the <span data-concept="algebraic-properties-of-convergent-series">algebraic properties of convergent series</span>,</p>
+$$\sum_{n=1}^{\infty} \frac{1}{2}\kaseq_{n}=\frac{1}{2}-\frac{1}{4}+\frac{1}{6}-\frac{1}{8}+\cdots=\frac{1}{2}\sum_{n=1}^{\infty} \kaseq_{n}=\frac{\ln2}{2}.$$
+<p>Now introduce the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \kbseq_{n}$ such that for all $n\ge1,$ $\kbseq_{2n-1}=0$ and $\kbseq_{2n}=\kaseq_{n}/2.$ Then</p>
+$$\sum_{n=1}^{\infty} \kbseq_{n}=0+\frac{1}{2}+0-\frac{1}{4}+0+\frac{1}{6}+0-\frac{1}{8}+\cdots=\frac{\ln2}{2}.$$
+<p>Then using the <span data-concept="algebraic-properties-of-convergent-series">algebraic limit properties of convergent series</span>, since $\sum_{n=1}^{\infty} \kaseq_{n}$ and $\sum_{n=1}^{\infty} \kbseq_{n}$ <span data-concept="convergence-of-a-series">converge</span>, the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} (\kaseq_{n}+\kbseq_{n})$ <span data-concept="convergence-of-a-series">converges</span> and</p>
+$$\sum_{n=1}^{\infty} (\kaseq_{n}+\kbseq_{n})=\sum_{n=1}^{\infty} \kaseq_{n}+\sum_{n=1}^{\infty} \kbseq_{n}=\ln2+\frac{\ln2}{2}=\frac{3\;\ln2}{2}.$$
+<p>Now adding the corresponding <span data-concept="term-of-a-sequence">terms</span>, $\kaseq_{n}$ and $\kbseq_{n},$ we see that</p>
+$$\begin{aligned}\sum_{n=1}^{\infty} (\kaseq_{n}+\kbseq_{n}) &=(1+0)+(-\frac{1}{2}+\frac{1}{2})+(\frac{1}{3}+0)+(-\frac{1}{4}-\frac{1}{4})+(\frac{1}{5}+0)+(-\frac{1}{6}+\frac{1}{6}) \\ \; &\; \\ &\hspace{1.5em}+(\frac{1}{7}+0)+(-\frac{1}{8}-\frac{1}{8})+\cdots\\ &=1+\frac{1}{3}-\frac{1}{2}+\frac{1}{5}+\frac{1}{7}-\frac{1}{4}+\cdots.\end{aligned}$$
+<p>We notice that the <span data-concept="infinite-series">series</span> on the right side of the equal sign is a <span data-concept="riemann-rearrangement-theorem">rearrangement</span> of the <span data-concept="alternating-harmonic-series">alternating harmonic series</span>. Since $\sum_{n=1}^{\infty} (\kaseq_{n}+\kbseq_{n})=3\;\ln(2)/2,$ we conclude that</p>
+$$1+\frac{1}{3}-\frac{1}{2}+\frac{1}{5}+\frac{1}{7}-\frac{1}{4}+\cdots=\frac{3\;\ln(2)}{2}.$$
+<p>Therefore, we have found a <span data-concept="riemann-rearrangement-theorem">rearrangement</span> of the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> having the desired property.</p>
+</div>
+</section>

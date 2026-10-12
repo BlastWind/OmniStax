@@ -1,0 +1,1083 @@
+{
+ "id": "9.4",
+ "module": "m53751",
+ "chapter": "9",
+ "title": "Comparison Tests",
+ "short": "Comparison Tests",
+ "lead": "A series of positive terms can be judged by a series whose behavior is known, usually a geometric series or a p-series. The <span data-concept=\"comparison-test\">comparison test</span> sets the terms side by side; the <span data-concept=\"limit-comparison-test\">limit comparison test</span> looks only at the limit of their ratio, which is often easier to find.",
+ "objectives": [
+  "Use the comparison test to test a series for convergence.",
+  "Use the limit comparison test to determine convergence of a series."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"comparison-test\">comparison tests</span> are used to determine <span data-concept=\"convergence-of-a-series\">convergence</span> or <span data-concept=\"divergence-of-a-series\">divergence</span> of <span data-concept=\"infinite-series\">series</span> with positive <span data-concept=\"term-of-a-sequence\">terms</span>.</li><li>When using the <span data-concept=\"comparison-test\">comparison tests</span>, a <span data-concept=\"infinite-series\">series</span> $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ is often compared to a geometric or <span data-concept=\"p-series\"><em>p</em>-series</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The explanations and proofs 230, 236, 238, 240, 244, 246 and 248 are kept with AI-written answers, marked as such; the computational ones are left out: 194 to 206 (the comparison test), 208 to 220 (the limit comparison test), 222, 224, 226 and 228 (the values for which a series converges), 232 and 234 (whether a series converges) and 242 (a largest value).",
+ "figures": [
+  {
+   "id": "sim-comparison",
+   "kind": "sim",
+   "number": "9.16",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_04_001.jpg"
+   ],
+   "original_caption": "(a) Each of the partial sums for the given series is less than the corresponding partial sum for the converging p−series. (b) Each of the partial sums for the given series is greater than the corresponding partial sum for the diverging harmonic series.",
+   "draws": [
+    "series",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-limit-comparison",
+   "kind": "sim",
+   "draws": [
+    "sequence",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "comparison-theorem",
+   "concept": "comparison-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-comparison-theorem",
+   "concept": "limit-comparison-test",
+   "verb": "introduces"
+  },
+  {
+   "span": "comparison-intro",
+   "concept": "p-series",
+   "verb": "uses"
+  },
+  {
+   "span": "comparison-intro",
+   "concept": "geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "comparison-test",
+   "concept": "convergence-of-p-series",
+   "verb": "uses"
+  },
+  {
+   "span": "comparison-test",
+   "concept": "harmonic-series",
+   "verb": "uses"
+  },
+  {
+   "span": "comparison-test",
+   "concept": "monotone-convergence-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "comparison-test",
+   "concept": "partial-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "limit-comparison-test",
+   "concept": "limit-of-a-sequence",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738880258",
+   "concept": "comparison-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738880258",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738980859",
+   "concept": "limit-comparison-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738980859",
+   "concept": "lhopitals-rule-infinity-over-infinity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169739096544",
+   "source_number": "Checkpoint 9.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738880258"
+   },
+   "cite": "comparison-theorem",
+   "prompt": "<p>Use the comparison test to determine if the series $\\sum_{n=1}^{\\infty}\\frac{n}{n^{3}+n+1}$ converges or diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series converges.",
+    "hint": "Find a value $p$ such that $\\frac{n}{n^{3}+n+1}\\le\\frac{1}{n^{p}}.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169736587954",
+   "source_number": "Checkpoint 9.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738980859"
+   },
+   "cite": "limit-comparison-theorem",
+   "prompt": "<p>Use the limit comparison test to determine whether the series $\\sum_{n=1}^{\\infty}\\frac{5^{n}}{3^{n}+2}$ converges or diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series diverges.",
+    "hint": "Compare with a geometric series."
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1169739169541",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Use the comparison test to determine whether the following series converge.</p><p>$\\sum_{n=1}^{\\infty}\\kaseq_{n}$ where $\\kaseq_{n}=\\frac{1}{n(n+1/2)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by comparison with $1/n^{2}.$"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1169738901956",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Use the comparison test to determine whether the following series converge.</p><p>$\\sum_{n=2}^{\\infty} \\frac{1}{2(n-1)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The sum is one half times a harmonic series, which diverges."
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1169736769705",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Use the comparison test to determine whether the following series converge.</p><p>$\\sum_{n=1}^{\\infty}\\frac{n\\text{!}}{(n+2)\\text{!}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=1/(n+1)(n+2)\\lt 1/n^{2}.$ Converges by comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=2.$"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1169739186610",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Use the comparison test to determine whether the following series converge.</p><p>$\\sum_{n=1}^{\\infty} \\frac{\\sin(1/n)}{n^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin(1/n)\\le1/n,$ so converges by comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=2.$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1169739179317",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Use the comparison test to determine whether the following series converge.</p><p>$\\sum_{n=1}^{\\infty} \\frac{\\sin(1/n)}{(\\sqrt{n}{)}^{3}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin(1/n)\\le1,$ so converges by comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=3/2.$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1169736603429",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Use the comparison test to determine whether the following series converge.</p><p>$\\sum_{n=1}^{\\infty}\\frac{\\sqrt{n+1}-\\sqrt{n}}{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Since $\\sqrt{n+1}-\\sqrt{n}=1/(\\sqrt{n+1/2}+\\sqrt{n})\\le2/\\sqrt{n},$<sup class=\"fn\" data-note=\"ex205-key\"></sup> series converges by comparison with <span data-concept=\"p-series\"><em>p</em>-series</span> for $p=1.5.$"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1169738920032",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-comparison-test",
+   "prompt": "<p>Use the limit comparison test to determine whether each of the following series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty}{(\\frac{\\ln n}{n})}^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by limit comparison with <span data-concept=\"p-series\"><em>p</em>-series</span> for $p\\gt 1.$"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1169739274309",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-comparison-test",
+   "prompt": "<p>Use the limit comparison test to determine whether each of the following series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty}\\frac{\\ln(1+\\frac{1}{n})}{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by limit comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=2.$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1169736726602",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-comparison-test",
+   "prompt": "<p>Use the limit comparison test to determine whether each of the following series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty}\\frac{1}{4^{n}-3^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by limit comparison with $4^{-n}.$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1169739097308",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-comparison-test",
+   "prompt": "<p>Use the limit comparison test to determine whether each of the following series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty}\\frac{1}{e^{(1.1)n}-3^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by limit comparison with $1/e^{1.1n}.$"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1169739110958",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-comparison-test",
+   "prompt": "<p>Use the limit comparison test to determine whether each of the following series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty}\\frac{1}{n^{1+1/n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Diverges by limit comparison with harmonic series."
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1169739204262",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-comparison-test",
+   "prompt": "<p>Use the limit comparison test to determine whether each of the following series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty}(\\frac{1}{n}-\\sin(\\frac{1}{n}))$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by limit comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=3.$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1169736779609",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-comparison-test",
+   "prompt": "<p>Use the limit comparison test to determine whether each of the following series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty}\\frac{1}{n}(\\frac{\\pi}{2}-\\tan^{-1}n)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges by limit comparison with <span data-concept=\"p-series\"><em>p</em>-series</span>, $p=2.$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1169739273685",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-comparison-test",
+   "prompt": "<p>Use the limit comparison test to determine whether each of the following series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty}(1-e^{-1/n})$ (<em>Hint:</em>$1/e\\approx {(1-1/n)}^{n},$ so $1-e^{-1/n}\\approx 1/n.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Diverges by limit comparison with $1/n.$"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1169738998746",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Does $\\sum_{n=1}^{\\infty}{(\\frac{(\\ln n)}{n})}^{p}$ converge if $p$ is large enough? If so, for which $p\\text{?}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges for $p\\gt 1$ by comparison with a $p$ series for slightly smaller $p.$"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1169736708973",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>For which $p\\gt 0$ does the series $\\sum_{n=1}^{\\infty}\\frac{n^{p}}{2^{n}}$ converge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges for all $p\\gt 0.$"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1169736654488",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>For which $r\\gt 0$ does the series $\\sum_{n=1}^{\\infty}\\frac{2^{n}}{r^{n^{2}}}$ converge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges for all $r\\gt 1.$ If $r\\gt 1$ then $r^{n}\\gt 4,$ say, once $n\\gt \\ln(2)/\\ln(r)$ and then the series converges by limit comparison with a geometric series with ratio $1/2.$"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1169739186700",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Does $\\overset{\\infty}{\\underset{n=1}{}}(\\frac{n\\pi}{2})$<sup class=\"fn\" data-note=\"ex229-prompt\"></sup> converge or diverge? Explain.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The numerator is equal to $1$ when $n$ is odd and $0$ when $n$ is even, so the series can be rewritten $\\sum_{n=1}^{\\infty}\\frac{1}{2n+1},$ which diverges by limit comparison with the harmonic series."
+   }
+  },
+  {
+   "id": "e230",
+   "source_id": "fs-id1169736727516",
+   "source_number": "230",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Explain why, for each $n,$ at least one of $\\{|\\sin n|,|\\sin(n+1)|\\text{,...},|\\sin n+6|\\}$ is larger than $1/2.$ Use this relation to test convergence of $\\sum_{n=1}^{\\infty}\\frac{|\\sin n|}{\\sqrt{n}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$|\\sin x|\\le\\frac{1}{2}$ only on the intervals $[k\\pi-\\frac{\\pi}{6},k\\pi+\\frac{\\pi}{6}],$ each of length $\\frac{\\pi}{3}\\approx 1.05,$ and between two of them lies a gap of length $\\frac{2\\pi}{3}\\approx 2.09$ where $|\\sin x|\\gt\\frac{1}{2}.$ Three consecutive integers span a length of $2,$ too long for one short interval, and integers $1$ apart cannot step across a gap longer than $2;$ so among any three consecutive integers, and so among $n,\\ldots,n+6,$ at least one has $|\\sin|\\gt\\frac{1}{2}.$ Grouping the series in blocks of seven terms, the block from $n=7m+1$ to $7m+7$ is at least $\\frac{1/2}{\\sqrt{7m+7}}.$ The series $\\sum_{m=0}^{\\infty}\\frac{1}{2\\sqrt{7}\\sqrt{m+1}}$ diverges, a multiple of a $p$-series with $p=\\frac{1}{2},$ so by the comparison test $\\sum_{n=1}^{\\infty}\\frac{|\\sin n|}{\\sqrt{n}}$ diverges."
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1169739186520",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Suppose that $\\kaseq_{n}\\ge0$ and $\\kbseq_{n}\\ge0$ and that $\\sum_{n=1}^{\\infty} \\kaseq^{2}{}_{n}$ and $\\sum_{n=1}^{\\infty} \\kbseq^{2}{}_{n}$ converge. Prove that $\\sum_{n=1}^{\\infty} \\kaseq_{n}\\kbseq_{n}$ converges and $\\sum_{n=1}^{\\infty} \\kaseq_{n}\\;\\kbseq_{n}\\le\\frac{1}{2}(\\sum_{n=1}^{\\infty} \\kaseq_{n}^{2}+\\sum_{n=1}^{\\infty} \\kbseq_{n}^{2}).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(a-b)}^{2}=a^{2}-2ab+b^{2}$ or $a^{2}+b^{2}\\ge2ab,$ so convergence follows from comparison of $2\\kaseq_{n}\\kbseq_{n}$ with $\\kaseq^{2}{}_{n}+\\kbseq^{2}{}_{n}.$ Since the partial sums on the left are bounded by those on the right, the inequality holds for the infinite series."
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1169739210323",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Does $\\sum_{n=1}^{\\infty} {(\\ln n)}^{-\\ln n}$ converge? (<em>Hint:</em> Use $n=e^{\\ln(n)}$ to compare to a $p-\\text{series}.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(\\ln n)}^{-\\ln n}=e^{-\\ln(n)\\ln\\ln(n)}.$ If $n$ is sufficiently large, then $\\ln\\ln n\\gt 2,$ so ${(\\ln n)}^{-\\ln n}\\lt 1/n^{2},$ and the series converges by comparison to a $p-\\text{series}.$"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1169739080340",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Show that if $\\kaseq_{n}\\ge0$ and $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges, then $\\sum_{n=1}^{\\infty} \\kaseq^{2}{}_{n}$ converges. If $\\sum_{n=1}^{\\infty} \\kaseq^{2}{}_{n}$ converges, does $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ necessarily converge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}\\to 0,$ so $\\kaseq^{2}{}_{n}\\le|\\kaseq_{n}|$ for large $n.$ Convergence follows from limit comparison. $\\sum 1/n^{2}$ converges, but $\\sum 1/n$ does not, so the fact that $\\sum_{n=1}^{\\infty} \\kaseq^{2}{}_{n}$ converges does not imply that $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges."
+   }
+  },
+  {
+   "id": "e236",
+   "source_id": "fs-id1169736776946",
+   "source_number": "236",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Suppose that $\\kaseq_{n}\\gt 0$ for all $n$ and that $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges. Suppose that $\\kbseq_{n}$ is an arbitrary sequence of zeros and ones. Does $\\sum_{n=1}^{\\infty} \\kaseq_{n}\\kbseq_{n}$ necessarily converge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. Each $b_{n}$ is $0$ or $1,$ so $0\\le a_{n}b_{n}\\le a_{n}$ for all $n.$ Since $\\sum_{n=1}^{\\infty}a_{n}$ converges, the comparison test shows that $\\sum_{n=1}^{\\infty}a_{n}b_{n}$ converges."
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1169739186586",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Suppose that $\\kaseq_{n}\\gt 0$ for all $n$ and that $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ diverges. Suppose that $\\kbseq_{n}$ is an arbitrary sequence of zeros and ones with infinitely many terms equal to one. Does $\\sum_{n=1}^{\\infty} \\kaseq_{n}\\kbseq_{n}$ necessarily diverge?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No. $\\sum_{n=1}^{\\infty} 1/n$ diverges. Let $\\kbseq_{k}=0$ unless $k=n^{2}$ for some $n.$ Then $\\underset{k}{\\sum}\\kbseq_{k}/k=\\sum 1/k^{2}$ converges."
+   }
+  },
+  {
+   "id": "e238",
+   "source_id": "fs-id1169739097544",
+   "source_number": "238",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Complete the details of the following argument: If $\\sum_{n=1}^{\\infty} \\frac{1}{n}$ converges to a finite sum $s,$ then $\\frac{1}{2}s=\\frac{1}{2}+\\frac{1}{4}+\\frac{1}{6}+\\cdots$ and $s-\\frac{1}{2}s=1+\\frac{1}{3}+\\frac{1}{5}+\\cdots.$ Why does this lead to a contradiction?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "If $\\sum_{n=1}^{\\infty}\\frac{1}{n}=s,$ then by the constant multiple rule $\\frac{1}{2}s=\\frac{1}{2}+\\frac{1}{4}+\\frac{1}{6}+\\cdots,$ the sum of the even terms, and by the difference rule $s-\\frac{1}{2}s=1+\\frac{1}{3}+\\frac{1}{5}+\\cdots,$ the sum of the odd terms. So the odd terms and the even terms would both sum to $\\frac{1}{2}s.$ But term by term $1\\gt\\frac{1}{2},$ $\\frac{1}{3}\\gt\\frac{1}{4},$ $\\frac{1}{5}\\gt\\frac{1}{6},\\ldots,$ so $1+\\frac{1}{3}+\\frac{1}{5}+\\cdots$ exceeds $\\frac{1}{2}+\\frac{1}{4}+\\frac{1}{6}+\\cdots$ by at least $1-\\frac{1}{2}=\\frac{1}{2}.$ The two sums cannot be equal, a contradiction, so the harmonic series cannot converge to a finite sum."
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1169736777508",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Show that if $\\kaseq_{n}\\ge0$ and $\\sum_{n=1}^{\\infty} \\kaseq^{2}{}_{n}$ converges, then $\\sum_{n=1}^{\\infty} \\sin^{2}(\\kaseq_{n})$ converges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$|\\sin t|\\le|t|,$ so the result follows from the comparison test."
+   }
+  },
+  {
+   "id": "e240",
+   "source_id": "fs-id1169739255935",
+   "source_number": "240",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Suppose that $\\kaseq_{n}/\\kbseq_{n}\\to 0$ in the comparison test, where $\\kaseq_{n}\\ge0$ and $\\kbseq_{n}\\ge0.$ Prove that if $\\sum \\kbseq_{n}$ converges, then $\\sum \\kaseq_{n}$ converges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $a_{n}/b_{n}\\to 0,$ there is an integer $N$ such that $a_{n}/b_{n}\\le 1$ for all $n\\ge N,$ that is, $0\\le a_{n}\\le b_{n}$ for all $n\\ge N.$ Since $\\sum b_{n}$ converges, the comparison test shows that $\\sum a_{n}$ converges."
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1169736777832",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Let $\\kbseq_{n}$ be an infinite sequence of zeros and ones. What is the largest possible value of $x=\\sum_{n=1}^{\\infty} \\kbseq_{n}/2^{n}\\text{?}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "By the comparison test, $x=\\sum_{n=1}^{\\infty} \\kbseq_{n}/2^{n}\\le\\sum_{n=1}^{\\infty} 1/2^{n}=1.$"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1169739255148",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Explain why, if $x\\gt 1/2,$ then $x$ cannot be written $x=\\sum_{n=2}^{\\infty} \\frac{\\kbseq_{n}}{2^{n}}(\\kbseq_{n}=0\\;\\text{or}\\;1,\\;\\kbseq_{1}=0).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "If $\\kbseq_{1}=0,$ then, by comparison, $x\\le\\sum_{n=2}^{\\infty} 1/2^{n}=1/2.$"
+   }
+  },
+  {
+   "id": "e244",
+   "source_id": "fs-id1169739195846",
+   "source_number": "244",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p><strong>[T]</strong> Evelyn has a perfect balancing scale, an unlimited number of $1\\;\\text{-kg}$ weights, and one each of $1/2\\;\\text{-kg},\\;1/4\\;\\text{-kg},\\;1/8\\;\\text{-kg},$ and so on weights. She wishes to weigh a meteorite of unspecified origin to arbitrary precision. Assuming the scale is big enough, can she do it? What does this have to do with infinite series?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. With the meteorite on one pan, she adds $1$-kg weights until they outweigh it and removes the last one; then she adds the $\\frac{1}{2}$-kg weight and keeps it only if the meteorite still outweighs the pan, then the $\\frac{1}{4}$-kg weight, and so on. After the $\\frac{1}{2^{N}}$-kg step the weights on the pan total $A+\\sum_{n=1}^{N}\\frac{b_{n}}{2^{n}},$ with $A$ whole kilograms and each $b_{n}$ equal to $0$ or $1,$ and they fall short of the meteorite’s mass by at most $\\frac{1}{2^{N}}.$ So the mass is the sum of the infinite series $A+\\sum_{n=1}^{\\infty}\\frac{b_{n}}{2^{n}},$ which converges by comparison with the geometric series $\\sum_{n=1}^{\\infty}\\frac{1}{2^{n}},$ and its partial sums reach the mass to any precision."
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1169739255813",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p><strong>[T]</strong> Robert wants to know his body mass to arbitrary precision. He has a big balancing scale that works perfectly, an unlimited collection of $1\\;\\text{-kg}$ weights, and nine each of $0.1\\;\\text{-kg,}$ $0.01\\;\\text{-kg},\\;0.001\\;\\text{-kg,}$ and so on weights. Assuming the scale is big enough, can he do this? What does this have to do with infinite series?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes. Keep adding $1\\;\\text{-kg}$ weights until the balance tips to the side with the weights. If it balances perfectly, with Robert standing on the other side, stop. Otherwise, remove one of the $1\\;\\text{-kg}$ weights, and add $0.1\\;\\text{-kg}$ weights one at a time. If it balances after adding some of these, stop. Otherwise if it tips to the weights, remove the last $0.1\\;\\text{-kg}$ weight. Start adding $0.01\\;\\text{-kg}$ weights. If it balances, stop. If it tips to the side with the weights, remove the last $0.01\\;\\text{-kg}$ weight that was added. Continue in this way for the $0.001\\;\\text{-kg}$ weights, and so on. After a finite number of steps, one has a finite series of the form $A+\\sum_{n=1}^{N} s_{n}/{10}^{n}$ where $A$ is the number of full kg weights and $d_{n}$ is the number of $1/{10}^{n}\\;\\text{-kg}$ weights that were added. If at some state this series is Robert’s exact weight, the process will stop. Otherwise it represents the $N\\text{th}$ partial sum of an infinite series that gives Robert’s exact weight, and the error of this sum is at most $1/{10}^{N}.$"
+   }
+  },
+  {
+   "id": "e246",
+   "source_id": "fs-id1169736635743",
+   "source_number": "246",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>The series $\\sum_{n=1}^{\\infty} \\frac{1}{2n}$ is half the harmonic series and hence diverges. It is obtained from the harmonic series by deleting all terms in which $n$ is odd. Let $m\\gt 1$ be fixed. Show, more generally, that deleting all terms $1/n$ where $n=mk$ for some integer $k$ also results in a divergent series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Every block of $m$ consecutive integers $km+1,km+2,\\ldots,km+m$ keeps the term with $n=km+1,$ since $km+1$ is not a multiple of $m.$ So the series that is left has sum at least $\\sum_{k=0}^{\\infty}\\frac{1}{km+1}\\ge\\sum_{k=0}^{\\infty}\\frac{1}{m(k+1)}=\\frac{1}{m}\\sum_{j=1}^{\\infty}\\frac{1}{j}.$ This is $\\frac{1}{m}$ times the harmonic series, which diverges, so by the comparison test the series with the multiples of $m$ deleted diverges too."
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1169736627072",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>In view of the previous exercise, it may be surprising that a subseries of the harmonic series in which about one in every five terms is deleted might converge. A <em>depleted harmonic series</em> is a series obtained from $\\sum_{n=1}^{\\infty} \\frac{1}{n}$ by removing any term $1/n$ if a given digit, say $9,$ appears in the decimal expansion of $n.$ Argue that this depleted harmonic series converges by answering the following questions.</p><ol type=\"a\"><li>How many whole numbers $n$ have $d$ digits?</li><li>How many $d\\text{-digit}$ whole numbers $h(d).$ do not contain $9$ as one or more of their digits?</li><li>What is the smallest $d\\text{-digit}$ number $m(d)\\text{?}$</li><li>Explain why the deleted harmonic series is bounded by $\\sum_{d=1}^{\\infty} \\frac{h(d)}{m(d)}.$</li><li>Show that $\\sum_{d=1}^{\\infty} \\frac{h(d)}{m(d)}$ converges.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>${10}^{d}-{10}^{d-1}\\lt {10}^{d}$ b. $h(d)\\lt 9^{d}$ c. $m(d)={10}^{d-1}+1$ d. Group the terms in the deleted harmonic series together by number of digits. $h(d)$ bounds the number of terms, and each term is at most $1/m(d).$ $\\sum_{d=1}^{\\infty} h(d)/m(d)\\le\\sum_{d=1}^{\\infty} 9^{d}/{(10)}^{d-1}\\le90.$ One can actually use comparison to estimate the value to smaller than $80.$ The actual value is smaller than $23.$</li></ol>"
+   }
+  },
+  {
+   "id": "e248",
+   "source_id": "fs-id1169736744022",
+   "source_number": "248",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Suppose that a sequence of numbers $\\kaseq_{n}\\gt 0$ has the property that $\\kaseq_{1}=1$ and $\\kaseq_{n+1}=\\frac{1}{n+1}\\kS_{n},$ where $\\kS_{n}=\\kaseq_{1}+\\cdots+\\kaseq_{n}.$ Can you determine whether $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges? (<em>Hint:</em> $\\kS_{n}$ is monotone.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. Since $a_{n+1}=\\frac{1}{n+1}S_{n},$ $S_{n+1}=S_{n}+a_{n+1}=\\frac{n+2}{n+1}S_{n}.$ With $S_{1}=1,$ the product telescopes: $S_{n}=\\frac{3}{2}\\cdot\\frac{4}{3}\\cdots\\frac{n+1}{n}=\\frac{n+1}{2}.$ The partial sums grow without bound, so $\\sum_{n=1}^{\\infty}a_{n}$ diverges; indeed $a_{n+1}=\\frac{1}{n+1}\\cdot\\frac{n+1}{2}=\\frac{1}{2}$ for every $n,$ so the terms do not tend to $0.$"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1169739186621",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "comparison-test",
+   "prompt": "<p>Suppose that a sequence of numbers $\\kaseq_{n}\\gt 0$ has the property that $\\kaseq_{1}=1$ and $\\kaseq_{n+1}=\\frac{1}{{(n+1)}^{2}}\\kS_{n},$ where $\\kS_{n}=\\kaseq_{1}+\\cdots+\\kaseq_{n}.$ Can you determine whether $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges? (<em>Hint:</em> $\\kS_{2}=\\kaseq_{2}+\\kaseq_{1}=\\kaseq_{2}+\\kS_{1}=\\kaseq_{2}+1=1+1/4=(1+1/4)\\kS_{1},$ $\\kS_{3}=\\frac{1}{3^{2}}\\kS_{2}+\\kS_{2}=(1+1/9)\\kS_{2}=(1+1/9)(1+1/4)\\kS_{1},$ etc. Look at $\\ln(\\kS_{n}),$ and use $\\ln(1+t)\\le t,$ $t\\gt 0.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Continuing the hint gives $\\kS_{N}=(1+1/N^{2})(1+1/{(N-1)}^{2}\\ldots(1+1/4)).$ Then $\\ln(\\kS_{N})=\\ln(1+1/N^{2})+\\ln(1+1/{(N-1)}^{2})+\\cdots+\\ln(1+1/4).$ Since $\\ln(1+t)$ is bounded by a constant times $t,$ when $0\\lt t\\lt 1$ one has $\\ln(\\kS_{N})\\le C\\sum_{n=1}^{N} \\frac{1}{n^{2}},$ which converges by comparison to the <span data-concept=\"p-series\"><em>p</em>-series</span> for $p=2.$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e195",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e195",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e197",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e197",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e199",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e199",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e201",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e201",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e203",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e203",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e205",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e205",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e207",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e207",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e209",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e209",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e211",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e211",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e213",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e213",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e215",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e215",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e217",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e217",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e219",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e219",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e221",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e221",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e223",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e223",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e225",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e225",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e227",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e227",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e229",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e229",
+   "concept": "harmonic-series"
+  },
+  {
+   "exercise": "e230",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e230",
+   "concept": "divergence-of-a-series"
+  },
+  {
+   "exercise": "e231",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e233",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e233",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e235",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e235",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e236",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e237",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e237",
+   "concept": "harmonic-series"
+  },
+  {
+   "exercise": "e238",
+   "concept": "divergence-of-the-harmonic-series"
+  },
+  {
+   "exercise": "e238",
+   "concept": "algebraic-properties-of-convergent-series"
+  },
+  {
+   "exercise": "e239",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e240",
+   "concept": "limit-comparison-test"
+  },
+  {
+   "exercise": "e240",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e241",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e241",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e243",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e243",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e244",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e244",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e245",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e245",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e246",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e246",
+   "concept": "divergence-of-the-harmonic-series"
+  },
+  {
+   "exercise": "e247",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e247",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e248",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e248",
+   "concept": "divergence-of-a-series"
+  },
+  {
+   "exercise": "e249",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e249",
+   "concept": "convergence-of-p-series"
+  }
+ ],
+ "referents": [
+  {
+   "id": "cmp-given",
+   "label": "the given series",
+   "figures": [
+    "sim-comparison"
+   ]
+  },
+  {
+   "id": "cmp-known",
+   "label": "the series it is compared with",
+   "figures": [
+    "sim-comparison"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "ex229-prompt",
+   "kind": "correction",
+   "html": "The book prints the sum with no summand; the key reads it as $\\sum_{n=1}^{\\infty}\\frac{\\sin^{2}(n\\pi/2)}{n},$ whose numerator is $1$ for odd $n$ and $0$ for even $n.$"
+  },
+  {
+   "id": "ex205-key",
+   "kind": "correction",
+   "html": "The key writes $\\sqrt{n+1/2}$ for $\\sqrt{n+1}:$ $\\sqrt{n+1}-\\sqrt{n}=\\frac{1}{\\sqrt{n+1}+\\sqrt{n}}.$"
+  }
+ ]
+}

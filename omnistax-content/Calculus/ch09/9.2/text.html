@@ -1,0 +1,274 @@
+<p id="series-intro">We have seen that a <span data-concept="sequence">sequence</span> is an ordered set of <span data-concept="term-of-a-sequence">terms</span>. If you add these <span data-concept="term-of-a-sequence">terms</span> together, you get a <span data-concept="infinite-series">series</span>. In this section we define an <span data-concept="infinite-series">infinite series</span> and show how <span data-concept="infinite-series">series</span> are related to <span data-concept="sequence">sequences</span>. We also define what it means for a <span data-concept="infinite-series">series</span> to <span data-concept="convergence-of-a-series">converge</span> or <span data-concept="divergence-of-a-series">diverge</span>. We introduce one of the most important types of <span data-concept="infinite-series">series</span>: the <span data-concept="geometric-series">geometric series</span>. We will use <span data-concept="geometric-series">geometric series</span> in the next chapter to write certain <span data-concept="function">functions</span> as polynomials with an infinite number of <span data-concept="term-of-a-sequence">terms</span>. This process is important because it allows us to evaluate, differentiate, and integrate complicated <span data-concept="function">functions</span> by using polynomials that are easier to handle. We also discuss the <span data-concept="harmonic-series">harmonic series</span>, arguably the most interesting <span data-concept="divergence-of-a-series">divergent</span> <span data-concept="infinite-series">series</span> because it just fails to <span data-concept="convergence-of-a-series">converge</span>.</p>
+<section id="sums-and-series">
+<h2>Sums and Series</h2>
+<p>An <span data-concept="infinite-series">infinite series</span> is a sum of infinitely many <span data-concept="term-of-a-sequence">terms</span> and is written in the form</p>
+$$\sum_{n=1}^{\infty}\kaseq_{n}=\kaseq_{1}+\kaseq_{2}+\kaseq_{3}+\cdots.$$
+<p>But what does this mean? We cannot add an infinite number of <span data-concept="term-of-a-sequence">terms</span> in the same way we can add a finite number of <span data-concept="term-of-a-sequence">terms</span>. Instead, the value of an <span data-concept="infinite-series">infinite series</span> is defined in terms of the <em><span data-concept="limit-of-a-sequence">limit</span></em> of <span data-concept="partial-sum">partial sums</span>. A <span data-concept="partial-sum">partial sum</span> of an <span data-concept="infinite-series">infinite series</span> is a finite sum of the form</p>
+$$\sum_{n=1}^{k} \kaseq_{n}=\kaseq_{1}+\kaseq_{2}+\kaseq_{3}+\cdots+\kaseq_{k}.$$
+<p>To see how we use <span data-concept="partial-sum">partial sums</span> to evaluate <span data-concept="infinite-series">infinite series</span>, consider the following example. Suppose oil is seeping into a lake such that $1000$ gallons enters the lake the first week. During the second week, an additional $500$ gallons of oil enters the lake. The third week, $250$ more gallons enters the lake. Assume this pattern continues such that each week half as much oil enters the lake as did the previous week. If this continues forever, what can we say about the amount of oil in the lake? Will the amount of oil continue to get arbitrarily large, or is it possible that it approaches some finite amount? To answer this question, we look at the amount of oil in the lake after $k$ weeks. Letting $\kS_{k}$ denote the amount of oil in the lake (measured in thousands of gallons) after $k$ weeks, we see that</p>
+$$\begin{gathered}\kS_{1}=1 \\ \kS_{2}=1+0.5=1+\frac{1}{2} \\ \kS_{3}=1+0.5+0.25=1+\frac{1}{2}+\frac{1}{4} \\ \kS_{4}=1+0.5+0.25+0.125=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8} \\ \kS_{5}=1+0.5+0.25+0.125+0.0625=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}.\end{gathered}$$
+<p>Looking at this pattern, we see that the amount of oil in the lake (in thousands of gallons) after $k$ weeks is</p>
+$$\kS_{k}=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots+\frac{1}{2^{k-1}}=\sum_{n=1}^{k} {(\frac{1}{2})}^{n-1}.$$
+<p>We are interested in what happens as $k\to \infty.$ Symbolically, the amount of oil in the lake as $k\to \infty$ is given by the <span data-concept="infinite-series">infinite series</span></p>
+$$\sum_{n=1}^{\infty} {(\frac{1}{2})}^{n-1}=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots.$$
+<p>At the same time, as $k\to \infty,$ the amount of oil in the lake can be calculated by evaluating $\lim_{k\to \infty}\kS_{k}.$ Therefore, the behavior of the <span data-concept="infinite-series">infinite series</span> can be determined by looking at the behavior of the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}.$ If the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ <span data-concept="convergence-of-a-series">converges</span>, we say that the <span data-concept="infinite-series">infinite series</span> <span data-concept="convergence-of-a-series">converges</span>, and its sum is given by $\lim_{k\to \infty}\kS_{k}.$ If the <span data-concept="sequence">sequence</span> $\{\kS_{k}\}$ <span data-concept="divergence-of-a-series">diverges</span>, we say the <span data-concept="infinite-series">infinite series</span> <span data-concept="divergence-of-a-series">diverges</span>. We now turn our attention to determining the <span data-concept="limit-of-a-sequence">limit</span> of this <span data-concept="sequence">sequence</span> $\{\kS_{k}\}.$</p>
+<p>First, simplifying some of these <span data-concept="partial-sum">partial sums</span>, we see that</p>
+$$\begin{gathered}\kS_{1}=1 \\ \kS_{2}=1+\frac{1}{2}=\frac{3}{2} \\ \kS_{3}=1+\frac{1}{2}+\frac{1}{4}=\frac{7}{4} \\ \kS_{4}=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}=\frac{15}{8} \\ \kS_{5}=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}=\frac{31}{16}.\end{gathered}$$
+<p>Plotting some of these values in Figure 9.10, it appears that the <span data-concept="sequence">sequence</span> $\{\kS_{k}\}$ could be approaching 2.</p>
+<figure class="sim" id="sim-partial-sums" data-figure="9.10" data-original="/media/ch09/CNX_Calc_Figure_09_02_001.jpg" data-original-caption="The graph shows the sequence of partial sums {Sₖ}. It appears that the sequence is approaching the value 2.">
+  <div class="sim-head"><span class="eyebrow">Figure 9.10</span><span>The graph shows the sequence of partial sums $\{\kS_{k}\}$ above the terms $\kaseq_{n}$ added to make them. For the oil in the lake it appears that the sequence is approaching the value $2.$ Choose another series and drag $k$: terms that shrink to $0$ do not make the partial sums settle, as the harmonic series shows.</span></div>
+</figure>
+<p>Let’s look for more convincing evidence. In the following table, we list the values of $\kS_{k}$ for several values of $k.$</p>
+<div class="book-table" id="fs-id1169737896803">
+  <table><tbody><tr><td>$k$</td><td>$5$</td><td>$10$</td><td>$15$</td><td>$20$</td></tr><tr><td>$\kS_{k}$</td><td>$1.9375$</td><td>$1.998$</td><td>$1.999939$</td><td>$1.999998$</td></tr></tbody></table>
+</div>
+<p>These data supply more evidence suggesting that the <span data-concept="sequence">sequence</span> $\{\kS_{k}\}$ <span data-concept="convergence-of-a-series">converges</span> to $2.$ Later we will provide an analytic argument that can be used to prove that $\lim_{k\to \infty}\kS_{k}=2.$ For now, we rely on the numerical and graphical data to convince ourselves that the <span data-concept="partial-sum">sequence of partial sums</span> does actually <span data-concept="convergence-of-a-series">converge</span> to $2.$ Since this <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converges</span> to $2,$ we say the <span data-concept="infinite-series">infinite series</span> <span data-concept="convergence-of-a-series">converges</span> to $2$ and write</p>
+$$\sum_{n=1}^{\infty}{(\frac{1}{2})}^{n-1}=2.$$
+<p>Returning to the question about the oil in the lake, since this <span data-concept="infinite-series">infinite series</span> <span data-concept="convergence-of-a-series">converges</span> to $2,$ we conclude that the amount of oil in the lake will get arbitrarily close to $2000$ gallons as the amount of time gets sufficiently large.</p>
+<p>This <span data-concept="infinite-series">series</span> is an example of a <span data-concept="geometric-series">geometric series</span>. We discuss <span data-concept="geometric-series">geometric series</span> in more detail later in this section. First, we summarize what it means for an <span data-concept="infinite-series">infinite series</span> to <span data-concept="convergence-of-a-series">converge</span>.</p>
+<div class="note" id="series-definition">
+<div class="eyebrow">Definition</div>
+<p>An <strong><span data-concept="infinite-series">infinite series</span></strong> is an expression of the form</p>
+$$\sum_{n=1}^{\infty}\kaseq_{n}=\kaseq_{1}+\kaseq_{2}+\kaseq_{3}+\cdots.$$
+<p>For each positive integer $k,$ the sum</p>
+$$\kS_{k}=\sum_{n=1}^{k}\kaseq_{n}=\kaseq_{1}+\kaseq_{2}+\kaseq_{3}+\cdots+\kaseq_{k}$$
+<p>is called the $k\text{th}$ <strong><span data-concept="partial-sum">partial sum</span></strong> of the <span data-concept="infinite-series">infinite series</span>. The <span data-concept="partial-sum">partial sums</span> form a <span data-concept="sequence">sequence</span> $\{\kS_{k}\}.$ If the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converges</span> to a real number $\kSsum,$ the <span data-concept="infinite-series">infinite series</span> <span data-concept="convergence-of-a-series">converges</span>. If we can describe the <strong><span data-concept="convergence-of-a-series">convergence of a series</span></strong> to $\kSsum,$ we call $\kSsum$ the sum of the <span data-concept="infinite-series">series</span>, and we write</p>
+$$\sum_{n=1}^{\infty}\kaseq_{n}=\kSsum.$$
+<p>If the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="divergence-of-a-series">diverges</span>, we have the <strong><span data-concept="divergence-of-a-series">divergence of a series</span></strong>.</p>
+</div>
+<p>Note that the index for a <span data-concept="infinite-series">series</span> need not begin with $n=1$ but can begin with any value. For example, the <span data-concept="infinite-series">series</span></p>
+$${\sum_{n=1}^{\infty} (\frac{1}{2})}^{n-1}$$
+<p>can also be written as</p>
+$${\sum_{n=0}^{\infty} (\frac{1}{2})}^{n}\;\text{or}\;{\sum_{n=5}^{\infty} (\frac{1}{2})}^{n-5}.$$
+<p>Often it is convenient for the index to begin at $1,$ so if for some reason it begins at a different value, we can <span data-concept="reindexing-a-series">reindex</span> by making a change of variables. For example, consider the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=2}^{\infty} \frac{1}{n^{2}}.$$
+<p>By introducing the variable $m=n-1,$ so that $n=m+1,$ we can rewrite the <span data-concept="infinite-series">series</span> as</p>
+$$\sum_{m=1}^{\infty} \frac{1}{{(m+1)}^{2}}.$$
+<div class="example" id="fs-id1169738068351">
+<h3>Example 9.7 · Evaluating Limits of Sequences of Partial Sums</h3>
+<p>For each of the following <span data-concept="infinite-series">series</span>, use the <span data-concept="partial-sum">sequence of partial sums</span> to determine whether the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty} \frac{n}{n+1}$</li><li>$\sum_{n=1}^{\infty} {(-1)}^{n}$</li><li>$\sum_{n=1}^{\infty} \frac{1}{n(n+1)}$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>The <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ satisfies $$\begin{gathered}\kS_{1}=\frac{1}{2} \\ \kS_{2}=\frac{1}{2}+\frac{2}{3} \\ \kS_{3}=\frac{1}{2}+\frac{2}{3}+\frac{3}{4} \\ \kS_{4}=\frac{1}{2}+\frac{2}{3}+\frac{3}{4}+\frac{4}{5}.\end{gathered}$$</li></ol>
+<p>Notice that each <span data-concept="term-of-a-sequence">term</span> added is greater than $1/2.$ As a result, we see that</p>
+$$\begin{gathered}\kS_{1}=\frac{1}{2} \\ \kS_{2}=\frac{1}{2}+\frac{2}{3}\gt \frac{1}{2}+\frac{1}{2}=2(\frac{1}{2}) \\ \kS_{3}=\frac{1}{2}+\frac{2}{3}+\frac{3}{4}\gt \frac{1}{2}+\frac{1}{2}+\frac{1}{2}=3(\frac{1}{2}) \\ \kS_{4}=\frac{1}{2}+\frac{2}{3}+\frac{3}{4}+\frac{4}{5}\gt \frac{1}{2}+\frac{1}{2}+\frac{1}{2}+\frac{1}{2}=4(\frac{1}{2}).\end{gathered}$$
+<p>From this pattern we can see that $\kS_{k}\gt k(\frac{1}{2})$ for every integer $k.$ Therefore, $\{\kS_{k}\}$ is <span data-concept="unbounded-sequence">unbounded</span> and consequently, <span data-concept="divergence-of-a-series">diverges</span>. Therefore, the <span data-concept="infinite-series">infinite series</span> $\sum_{n=1}^{\infty}n/(n+1)$ <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a" start="2"><li>The <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ satisfies $$\begin{gathered}\kS_{1}=-1 \\ \kS_{2}=-1+1=0 \\ \kS_{3}=-1+1-1=-1 \\ \kS_{4}=-1+1-1+1=0.\end{gathered}$$</li></ol>
+<p>From this pattern we can see the <span data-concept="partial-sum">sequence of partial sums</span> is</p>
+$$\{\kS_{k}\}=\{-1,0,-1,0\text{,\ldots}\}.$$
+<p>Since this <span data-concept="sequence">sequence</span> <span data-concept="divergence-of-a-series">diverges</span>, the <span data-concept="infinite-series">infinite series</span> $\sum_{n=1}^{\infty}{(-1)}^{n}$ <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<ol type="a" start="3"><li>The <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ satisfies $$\begin{gathered}\kS_{1}=\frac{1}{1\cdot 2}=\frac{1}{2} \\ \kS_{2}=\frac{1}{1\cdot 2}+\frac{1}{2\cdot 3}=\frac{1}{2}+\frac{1}{6}=\frac{2}{3} \\ \kS_{3}=\frac{1}{1\cdot 2}+\frac{1}{2\cdot 3}+\frac{1}{3\cdot 4}=\frac{1}{2}+\frac{1}{6}+\frac{1}{12}=\frac{3}{4} \\ \kS_{4}=\frac{1}{1\cdot 2}+\frac{1}{2\cdot 3}+\frac{1}{3\cdot 4}+\frac{1}{4\cdot 5}=\frac{4}{5} \\ \kS_{5}=\frac{1}{1\cdot 2}+\frac{1}{2\cdot 3}+\frac{1}{3\cdot 4}+\frac{1}{4\cdot 5}+\frac{1}{5\cdot 6}=\frac{5}{6}.\end{gathered}$$</li></ol>
+<p>From this pattern, we can see that the $k\text{th}$ <span data-concept="partial-sum">partial sum</span> is given by the explicit formula</p>
+$$\kS_{k}=\frac{k}{k+1}.$$
+<p>Since $k/(k+1)\to 1,$ we conclude that the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converges</span>, and therefore the <span data-concept="infinite-series">infinite series</span> <span data-concept="convergence-of-a-series">converges</span> to $1.$ We have</p>
+$$\sum_{n=1}^{\infty}\frac{1}{n(n+1)}=1.$$
+</div>
+<div class="exercises" data-place="fs-id1169738068351"></div>
+<h3 id="harmonic-series">The Harmonic Series</h3>
+<p>A useful <span data-concept="infinite-series">series</span> to know about is the <strong><span data-concept="harmonic-series">harmonic series</span></strong>. The <span data-concept="harmonic-series">harmonic series</span> is defined as</p>
+$$\sum_{n=1}^{\infty} \frac{1}{n}=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots.\tag{9.5}$$
+<p>This <span data-concept="infinite-series">series</span> is interesting because it <span data-concept="divergence-of-a-series">diverges</span>, but it <span data-concept="divergence-of-a-series">diverges</span> very slowly. By this we mean that the <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ approach infinity, but do so very slowly. We will show that the <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>, but first we illustrate the slow growth of the <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="sequence">sequence</span> $\{\kS_{k}\}$ in the following table.</p>
+<div class="book-table" id="fs-id1169738150006">
+  <table><tbody><tr><td>$k$</td><td>$10$</td><td>$100$</td><td>$1000$</td><td>$10,000$</td><td>$100,000$</td><td>$1,000,000$</td></tr><tr><td>$\kS_{k}$</td><td>$2.92897$</td><td>$5.18738$</td><td>$7.48547$</td><td>$9.78761$</td><td>$12.09015$</td><td>$14.39273$</td></tr></tbody></table>
+</div>
+<p>Even after $1,000,000$ <span data-concept="term-of-a-sequence">terms</span>, the <span data-concept="partial-sum">partial sum</span> is still relatively small. From this table, it is not clear that this <span data-concept="infinite-series">series</span> actually <span data-concept="divergence-of-a-series">diverges</span>. However, we can show analytically that the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="divergence-of-a-series">diverges</span>, and therefore the <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<p>To show that the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="divergence-of-a-series">diverges</span>, we show that the <span data-concept="partial-sum">sequence of partial sums</span> is <span data-concept="unbounded-sequence">unbounded</span>. We begin by writing the first several <span data-concept="partial-sum">partial sums</span>:</p>
+$$\begin{gathered}\kS_{1}=1 \\ \kS_{2}=1+\frac{1}{2} \\ \kS_{3}=1+\frac{1}{2}+\frac{1}{3} \\ \kS_{4}=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}.\end{gathered}$$
+<p>Notice that for the last two <span data-concept="term-of-a-sequence">terms</span> in $\kS_{4},$</p>
+$$\frac{1}{3}+\frac{1}{4}\gt \frac{1}{4}+\frac{1}{4}.$$
+<p>Therefore, we conclude that</p>
+$$\kS_{4}\gt 1+\frac{1}{2}+(\frac{1}{4}+\frac{1}{4})=1+\frac{1}{2}+\frac{1}{2}=1+2(\frac{1}{2}).$$
+<p>Using the same idea for $\kS_{8},$ we see that</p>
+$$\begin{aligned}\kS_{8} &=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\frac{1}{6}+\frac{1}{7}+\frac{1}{8}\gt 1+\frac{1}{2}+(\frac{1}{4}+\frac{1}{4})+(\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8}) \\ &=1+\frac{1}{2}+\frac{1}{2}+\frac{1}{2}=1+3(\frac{1}{2}).\end{aligned}$$
+<p>From this pattern, we see that $\kS_{1}=1,$ $\kS_{2}=1+1/2,$ $\kS_{4}\gt 1+2(1/2),$ and $\kS_{8}\gt 1+3(1/2).$ More generally, it can be shown that $\kS_{2^{j}}\gt 1+j(1/2)$ for all $j\gt 1.$ Since $1+j(1/2)\to \infty,$ we conclude that the <span data-concept="sequence">sequence</span> $\{\kS_{k}\}$ is <span data-concept="unbounded-sequence">unbounded</span> and therefore <span data-concept="divergence-of-a-series">diverges</span>. In the previous section, we stated that <span data-concept="convergent-sequence">convergent sequences</span> are <span data-concept="bounded-sequence">bounded</span>. Consequently, since $\{\kS_{k}\}$ is <span data-concept="unbounded-sequence">unbounded</span>, it <span data-concept="divergence-of-a-series">diverges</span>. Thus, the <span data-concept="harmonic-series">harmonic series</span> <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<h3 id="algebraic-properties">Algebraic Properties of Convergent Series</h3>
+<p>Since the sum of a <span data-concept="convergence-of-a-series">convergent</span> <span data-concept="infinite-series">infinite series</span> is defined as a <span data-concept="limit-of-a-sequence">limit</span> of a <span data-concept="sequence">sequence</span>, the algebraic properties for <span data-concept="infinite-series">series</span> listed below follow directly from the <span data-concept="algebraic-limit-laws-for-sequences">algebraic properties for sequences</span>.</p>
+<div class="note" id="series-properties">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="algebraic-properties-of-convergent-series">Algebraic Properties of Convergent Series</span></h3>
+<p>Let $\sum_{n=1}^{\infty}\kaseq_{n}$ and $\sum_{n=1}^{\infty}\kbseq_{n}$ be <span data-concept="convergence-of-a-series">convergent</span> <span data-concept="infinite-series">series</span>. Then the following algebraic properties hold.</p>
+<ol><li>The <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} (\kaseq_{n}+\kbseq_{n})$ <span data-concept="convergence-of-a-series">converges</span> and $\sum_{n=1}^{\infty}(\kaseq_{n}+\kbseq_{n})=\sum_{n=1}^{\infty}\kaseq_{n}+\sum_{n=1}^{\infty}\kbseq_{n}.$ (Sum Rule)</li><li>The <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} (\kaseq_{n}-\kbseq_{n})$ <span data-concept="convergence-of-a-series">converges</span> and $\sum_{n=1}^{\infty}(\kaseq_{n}-\kbseq_{n})=\sum_{n=1}^{\infty}\kaseq_{n}-\sum_{n=1}^{\infty}\kbseq_{n}.$ (Difference Rule)</li><li>For any real number $c,$ the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} c\kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span> and $\sum_{n=1}^{\infty}c\kaseq_{n}=c\sum_{n=1}^{\infty}\kaseq_{n}.$ (Constant Multiple Rule)</li></ol>
+</div>
+<div class="example" id="fs-id1169738055547">
+<h3>Example 9.8 · Using Algebraic Properties of Convergent Series</h3>
+<p>Evaluate</p>
+$$\sum_{n=1}^{\infty}[\frac{3}{n(n+1)}+{(\frac{1}{2})}^{n-2}].$$
+<h4>Solution</h4>
+<p>We showed earlier that</p>
+$$\sum_{n=1}^{\infty}\frac{1}{n(n+1)}=1$$
+<p>and</p>
+$$\sum_{n=1}^{\infty}{(\frac{1}{2})}^{n-1}=2.$$
+<p>Since both of those <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converge</span>, we can apply the properties of Algebraic Properties of Convergent Series to evaluate</p>
+$$\sum_{n=1}^{\infty}[\frac{3}{n(n+1)}+{(\frac{1}{2})}^{n-2}].$$
+<p>Using the <span data-concept="algebraic-properties-of-convergent-series">sum rule</span>, write</p>
+$$\sum_{n=1}^{\infty}[\frac{3}{n(n+1)}+{(\frac{1}{2})}^{n-2}]=\sum_{n=1}^{\infty}\frac{3}{n(n+1)}\overset{\infty}{\underset{n=1}{+\sum}}{(\frac{1}{2})}^{n-2}.$$
+<p>Then, using the <span data-concept="algebraic-properties-of-convergent-series">constant multiple rule</span> and the sums above, we can conclude that</p>
+$$\begin{aligned}\sum_{n=1}^{\infty}\frac{3}{n(n+1)}+\sum_{n=1}^{\infty}{(\frac{1}{2})}^{n-2} &=3\sum_{n=1}^{\infty}\frac{1}{n(n+1)}+{(\frac{1}{2})}^{-1}\sum_{n=1}^{\infty}{(\frac{1}{2})}^{n-1} \\ &=3(1)+{(\frac{1}{2})}^{-1}(2)=3+2(2)=7.\end{aligned}$$
+</div>
+<div class="exercises" data-place="fs-id1169738055547"></div>
+<h3 id="geometric-series">Geometric Series</h3>
+<p>A <strong><span data-concept="geometric-series">geometric series</span></strong> is any <span data-concept="infinite-series">series</span> that we can write in the form</p>
+$$a+ar+ar^{2}+ar^{3}+\cdots=\sum_{n=1}^{\infty}ar^{n-1}.\tag{9.6}$$
+<p>Because the ratio of each <span data-concept="term-of-a-sequence">term</span> in this <span data-concept="infinite-series">series</span> to the previous <span data-concept="term-of-a-sequence">term</span> is <em>r</em>, the number <em>r</em> is called the ratio. We refer to <em>a</em> as the initial <span data-concept="term-of-a-sequence">term</span> because it is the first <span data-concept="term-of-a-sequence">term</span> in the <span data-concept="infinite-series">series</span>. For example, the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=1}^{\infty}{(\frac{1}{2})}^{n-1}=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\cdots$$
+<p>is a <span data-concept="geometric-series">geometric series</span> with initial <span data-concept="term-of-a-sequence">term</span> $a=1$ and ratio $r=1/2.$</p>
+<p>In general, when does a <span data-concept="geometric-series">geometric series</span> <span data-concept="convergence-of-a-series">converge</span>? Consider the <span data-concept="geometric-series">geometric series</span></p>
+$$\sum_{n=1}^{\infty}ar^{n-1}$$
+<p>when $a\gt 0.$ Its <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ is given by</p>
+$$\kS_{k}=\sum_{n=1}^{k}ar^{n-1}=a+ar+ar^{2}+\cdots+ar^{k-1}.$$
+<p>Consider the case when $r=1.$ In that case,</p>
+$$\kS_{k}=a+a(1)+a{(1)}^{2}+\cdots+a{(1)}^{k-1}=ak.$$
+<p>Since $a\gt 0,$ we know $ak\to \infty$ as $k\to \infty.$ Therefore, the <span data-concept="partial-sum">sequence of partial sums</span> is <span data-concept="unbounded-sequence">unbounded</span> and thus <span data-concept="divergence-of-a-series">diverges</span>. Consequently, the <span data-concept="infinite-series">infinite series</span> <span data-concept="divergence-of-a-series">diverges</span> for $r=1.$ For $r\ne1,$ to find the <span data-concept="limit-of-a-sequence">limit</span> of $\{\kS_{k}\},$ multiply Equation 9.6 by $1-r.$ Doing so, we see that</p>
+$$\begin{aligned}(1-r)\kS_{k} &=a(1-r)(1+r+r^{2}+r^{3}+\cdots+r^{k-1}) \\ &=a[(1+r+r^{2}+r^{3}+\cdots+r^{k-1})-(r+r^{2}+r^{3}+\cdots+r^{k})] \\ &=a(1-r^{k}).\end{aligned}$$
+<p>All the other <span data-concept="term-of-a-sequence">terms</span> cancel out.</p>
+<p>Therefore,</p>
+$$\kS_{k}=\frac{a(1-r^{k})}{1-r}\;\text{for}\;r\ne1.$$
+<p>From our discussion in the previous section, we know that the <span data-concept="geometric-sequence">geometric sequence</span> $r^{k}\to 0$ if $|r|\lt 1$ and that $r^{k}$ <span data-concept="divergent-sequence">diverges</span> if $|r|\gt 1$ or $r=\pm1.$ Therefore, for $|r|\lt 1,$ $\kS_{k}\to a/(1-r)$ and we have</p>
+$$\sum_{n=1}^{\infty}ar^{n-1}=\frac{a}{1-r}\;\text{if}\;|r|\lt 1.$$
+<p>If $|r|\ge1,$ $\kS_{k}$ <span data-concept="divergence-of-a-series">diverges</span>, and therefore</p>
+$$\sum_{n=1}^{\infty}ar^{n-1}\text{diverges if}\;|r|\ge1.$$
+<div class="note" id="geometric-definition">
+<div class="eyebrow">Definition</div>
+<p>A <span data-concept="geometric-series">geometric series</span> is a <span data-concept="infinite-series">series</span> of the form</p>
+$$\sum_{n=1}^{\infty}ar^{n-1}=a+ar+ar^{2}+ar^{3}+\cdots.$$
+<p>If $|r|\lt 1,$ the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>, and</p>
+$$\sum_{n=1}^{\infty}ar^{n-1}=\frac{a}{1-r}\;\text{for}\;|r|\lt 1.\tag{9.7}$$
+<p>If $|r|\ge1,$ the <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>.</p>
+</div>
+<figure class="sim" id="sim-geometric-series">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The partial sums $\kS_{k}=a+ar+\cdots+ar^{k-1}$ of a geometric series above its terms $ar^{n-1}.$ Drag $r$: inside $-1\lt r\lt 1$ the partial sums close on $\frac{a}{1-r},$ and at $|r|\ge 1$ they run off or swing without settling.</span></div>
+</figure>
+<p><span data-concept="geometric-series">Geometric series</span> sometimes appear in slightly different forms. For example, sometimes the index begins at a value other than $n=1$ or the exponent involves a linear expression for $n$ other than $n-1.$ As long as we can rewrite the <span data-concept="infinite-series">series</span> in the form given by Equation 9.5<sup class="fn" data-note="eq-geometric-form"></sup>, it is a <span data-concept="geometric-series">geometric series</span>. For example, consider the <span data-concept="infinite-series">series</span></p>
+$$\sum_{n=0}^{\infty} {(\frac{2}{3})}^{n+2}.$$
+<p>To see that this is a <span data-concept="geometric-series">geometric series</span>, we write out the first several <span data-concept="term-of-a-sequence">terms</span>:</p>
+$$\begin{aligned}\sum_{n=0}^{\infty} {(\frac{2}{3})}^{n+2} &={(\frac{2}{3})}^{2}+{(\frac{2}{3})}^{3}+{(\frac{2}{3})}^{4}+\cdots\\ &=\frac{4}{9}+\frac{4}{9}\cdot (\frac{2}{3})+\frac{4}{9}\cdot {(\frac{2}{3})}^{2}+\cdots.\end{aligned}$$
+<p>We see that the initial <span data-concept="term-of-a-sequence">term</span> is $a=4/9$ and the ratio is $r=2/3.$ Therefore, the <span data-concept="infinite-series">series</span> can be written as</p>
+$$\sum_{n=1}^{\infty} \frac{4}{9}\cdot {(\frac{2}{3})}^{n-1}.$$
+<p>Since $r=2/3\lt 1,$ this <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>, and its sum is given by</p>
+$$\sum_{n=1}^{\infty} \frac{4}{9}\cdot {(\frac{2}{3})}^{n-1}=\frac{4/9}{1-2/3}=\frac{4}{3}.$$
+<div class="example" id="fs-id1169738194429">
+<h3>Example 9.9 · Determining Convergence or Divergence of a Geometric Series</h3>
+<p>Determine whether each of the following <span data-concept="geometric-series">geometric series</span> <span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>, and if it <span data-concept="convergence-of-a-series">converges</span>, find its sum.</p>
+<ol type="a"><li>$\sum_{n=1}^{\infty}\frac{{(-3)}^{n+1}}{4^{n-1}}$</li><li>$\sum_{n=1}^{\infty}e^{2n}$</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Writing out the first several <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="infinite-series">series</span>, we have $$\begin{aligned}\sum_{n=1}^{\infty} \frac{{(-3)}^{n+1}}{4^{n-1}} &=\frac{{(-3)}^{2}}{4^{0}}+\frac{{(-3)}^{3}}{4}+\frac{{(-3)}^{4}}{4^{2}}+\cdots\\ &={(-3)}^{2}+{(-3)}^{2}\cdot (\frac{-3}{4})+{(-3)}^{2}\cdot {(\frac{-3}{4})}^{2}+\cdots\\ &=9+9\cdot (\frac{-3}{4})+9\cdot {(\frac{-3}{4})}^{2}+\cdots.\end{aligned}$$</li></ol>
+<p>The initial <span data-concept="term-of-a-sequence">term</span> $a=9$ and the ratio $r=-3/4.$ Since $|r|=3/4\lt 1,$ the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> to</p>
+$$\frac{9}{1-(-3/4)}=\frac{9}{7/4}=\frac{36}{7}.$$
+<ol type="a" start="2"><li>Writing this <span data-concept="infinite-series">series</span> as $$e^{2}\sum_{n=1}^{\infty}{(e^{2})}^{n-1}$$</li></ol>
+<p>we can see that this is a <span data-concept="geometric-series">geometric series</span> where $r=e^{2}\gt 1.$ Therefore, the <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1169738194429"></div>
+<p>We now turn our attention to a nice application of <span data-concept="geometric-series">geometric series</span>. We show how they can be used to write repeating decimals as fractions of integers.</p>
+<div class="example" id="fs-id1169737363861">
+<h3>Example 9.10 · Writing Repeating Decimals as Fractions of Integers</h3>
+<p>Use a <span data-concept="geometric-series">geometric series</span> to write $3.\overset{\text{—}}{26}$ as a fraction of integers.</p>
+<h4>Solution</h4>
+<p>Since $3.\overset{\text{—}}{26}=3.262626\ldots,$ first we write</p>
+$$\begin{aligned}3.262626\ldots&=3+\frac{26}{100}+\frac{26}{10,000}+\frac{26}{1,000,000}+\cdots\\ &=3+\frac{26}{{10}^{2}}+\frac{26}{{10}^{4}}+\frac{26}{{10}^{6}}+\cdots.\end{aligned}$$
+<p>Ignoring the <span data-concept="term-of-a-sequence">term</span> 3, the rest of this expression is a <span data-concept="geometric-series">geometric series</span> with initial <span data-concept="term-of-a-sequence">term</span> $a=26/{10}^{2}$ and ratio $r=1/{10}^{2}.$ Therefore, the sum of this <span data-concept="infinite-series">series</span> is</p>
+$$\frac{26/{10}^{2}}{1-(1/{10}^{2})}=\frac{26/{10}^{2}}{99/{10}^{2}}=\frac{26}{99}.$$
+<p>Thus,</p>
+$$3.262626\ldots=3+\frac{26}{99}=\frac{323}{99}.$$
+</div>
+<div class="exercises" data-place="fs-id1169737363861"></div>
+<div class="example" id="fs-id1169738082462">
+<h3>Example 9.11 · Chapter Opener: Finding the Area of the Koch Snowflake</h3>
+<p>Define a <span data-concept="sequence">sequence</span> of figures $\{F_{n}\}$ recursively as follows (Figure 9.11). Let $F_{0}$ be an equilateral triangle with sides of length $1.$ For $n\ge1,$ let $F_{n}$ be the curve created by removing the middle third of each side of $F_{n-1}$ and replacing it with an equilateral triangle pointing outward. The limiting figure as $n\to \infty$ is known as <span data-concept="koch-snowflake">Koch’s snowflake</span>.</p>
+<figure class="sim" id="sim-koch-snowflake" data-figure="9.11" data-original="/media/ch09/CNX_Calc_Figure_08_00_003.jpg" data-original-caption="The first four figures, F₀,F₁,F₂,and F₃, in the construction of the Koch snowflake.">
+  <div class="sim-head"><span class="eyebrow">Figure 9.11</span><span>The first four figures, $F_{0},F_{1},F_{2},$ and $F_{3},$ in the construction of the Koch snowflake. Step $n$ on: each step multiplies the perimeter by $\frac{4}{3},$ while the triangles it adds to the area shrink so fast that the area settles on $\frac{2\sqrt{3}}{5}.$</span></div>
+</figure>
+<ol type="a"><li>Find the length $L_{n}$ of the perimeter of $F_{n}.$ Evaluate $\lim_{n\to \infty}L_{n}$ to find the length of the perimeter of <span data-concept="koch-snowflake">Koch’s snowflake</span>.</li><li>Find the area $A_{n}$ of figure $F_{n}.$ Evaluate $\lim_{n\to \infty}A_{n}$ to find the area of <span data-concept="koch-snowflake">Koch’s snowflake</span>.</li></ol>
+<h4>Solution</h4>
+<ol type="a"><li>Let $N_{n}$ denote the number of sides of figure $F_{n}.$ Since $F_{0}$ is a triangle, $N_{0}=3.$ Let $l_{n}$ denote the length of each side of $F_{n}.$ Since $F_{0}$ is an equilateral triangle with sides of length $l_{0}=1,$ we now need to determine $N_{1}$ and $l_{1}.$ Since $F_{1}$ is created by removing the middle third of each side and replacing that line segment with two line segments, for each side of $F_{0},$ we get four sides in $F_{1}.$ Therefore, the number of sides for $F_{1}$ is $$N_{1}=4\cdot 3.$$</li></ol>
+<p>Since the length of each of these new line segments is $1/3$ the length of the line segments in $F_{0},$ the length of the line segments for $F_{1}$ is given by</p>
+$$l_{1}=\frac{1}{3}\cdot 1=\frac{1}{3}.$$
+<p>Similarly, for $F_{2},$ since the middle third of each side of $F_{1}$ is removed and replaced with two line segments, the number of sides in $F_{2}$ is given by</p>
+$$N_{2}=4N_{1}=4(4\cdot 3)=4^{2}\cdot 3.$$
+<p>Since the length of each of these sides is $1/3$ the length of the sides of $F_{1},$ the length of each side of figure $F_{2}$ is given by</p>
+$$l_{2}=\frac{1}{3}\cdot l_{1}=\frac{1}{3}\cdot \frac{1}{3}={(\frac{1}{3})}^{2}.$$
+<p>More generally, since $F_{n}$ is created by removing the middle third of each side of $F_{n-1}$ and replacing that line segment with two line segments of length $\frac{1}{3}l_{n-1}$ in the shape of an equilateral triangle, we know that $N_{n}=4N_{n-1}$ and $l_{n}=\frac{l_{n-1}}{3}.$ Therefore, the number of sides of figure $F_{n}$ is</p>
+$$N_{n}=4^{n}\cdot 3$$
+<p>and the length of each side is</p>
+$$l_{n}={(\frac{1}{3})}^{n}.$$
+<p>Therefore, to calculate the perimeter of $F_{n},$ we multiply the number of sides $N_{n}$ and the length of each side $l_{n}.$ We conclude that the perimeter of $F_{n}$ is given by</p>
+$$L_{n}=N_{n}\cdot l_{n}=3\cdot {(\frac{4}{3})}^{n}.$$
+<p>Therefore, the length of the perimeter of <span data-concept="koch-snowflake">Koch’s snowflake</span> is</p>
+$$L=\lim_{n\to \infty}L_{n}=\infty.$$
+<ol type="a" start="2"><li>Let $T_{n}$ denote the area of each new triangle created when forming $F_{n}.$ For $n=0,$ $T_{0}$ is the area of the original equilateral triangle. Therefore, $T_{0}=A_{0}=\sqrt{3}/4.$ For $n\ge1,$ since the lengths of the sides of the new triangle are $1/3$ the length of the sides of $F_{n-1},$ we have $$T_{n}={(\frac{1}{3})}^{2}T_{n-1}=\frac{1}{9}\cdot T_{n-1}.$$</li></ol>
+<p>Therefore, $T_{n}={(\frac{1}{9})}^{n}\cdot \frac{\sqrt{3}}{4}.$ Since a new triangle is formed on each side of $F_{n-1},$</p>
+$$\begin{aligned}A_{n} &=A_{n-1}+N_{n-1}\cdot T_{n} \\ &=A_{n-1}+(3\cdot 4^{n-1})\cdot {(\frac{1}{9})}^{n}\cdot \frac{\sqrt{3}}{4} \\ &=A_{n-1}+\frac{3}{4}\cdot {(\frac{4}{9})}^{n}\cdot \frac{\sqrt{3}}{4}.\end{aligned}$$
+<p>Writing out the first few <span data-concept="term-of-a-sequence">terms</span> $A_{0},A_{1},A_{2},$ we see that</p>
+$$\begin{gathered}A_{0}=\frac{\sqrt{3}}{4} \\ A_{1}=A_{0}+\frac{3}{4}\cdot (\frac{4}{9})\cdot \frac{\sqrt{3}}{4}=\frac{\sqrt{3}}{4}+\frac{3}{4}\cdot (\frac{4}{9})\cdot \frac{\sqrt{3}}{4}=\frac{\sqrt{3}}{4}[1+\frac{3}{4}\cdot (\frac{4}{9})] \\ A_{2}=A_{1}+\frac{3}{4}\cdot {(\frac{4}{9})}^{2}\cdot \frac{\sqrt{3}}{4}=\frac{\sqrt{3}}{4}[1+\frac{3}{4}\cdot (\frac{4}{9})]+\frac{3}{4}\cdot {(\frac{4}{9})}^{2}\cdot \frac{\sqrt{3}}{4}=\frac{\sqrt{3}}{4}[1+\frac{3}{4}\cdot (\frac{4}{9})+\frac{3}{4}\cdot {(\frac{4}{9})}^{2}].\end{gathered}$$
+<p>More generally,</p>
+$$A_{n}=\frac{\sqrt{3}}{4}[1+\frac{3}{4}(\frac{4}{9}+{(\frac{4}{9})}^{2}+\cdots+{(\frac{4}{9})}^{n})].$$
+<p>Factoring $4/9$ out of each <span data-concept="term-of-a-sequence">term</span> inside the inner parentheses, we rewrite our expression as</p>
+$$A_{n}=\frac{\sqrt{3}}{4}[1+\frac{1}{3}(1+\frac{4}{9}+{(\frac{4}{9})}^{2}+\cdots+{(\frac{4}{9})}^{n-1})].$$
+<p>The expression $1+(\frac{4}{9})+{(\frac{4}{9})}^{2}+\cdots+{(\frac{4}{9})}^{n-1}$ is a <span data-concept="sum-of-a-geometric-series">geometric sum</span>. As shown earlier, this sum satisfies</p>
+$$1+\frac{4}{9}+{(\frac{4}{9})}^{2}+\cdots+{(\frac{4}{9})}^{n-1}=\frac{1-{(4/9)}^{n}}{1-(4/9)}.$$
+<p>Substituting this expression into the expression above and simplifying, we conclude that</p>
+$$\begin{aligned}A_{n} &=\frac{\sqrt{3}}{4}[1+\frac{1}{3}(\frac{1-{(4/9)}^{n}}{1-(4/9)})] \\ &=\frac{\sqrt{3}}{4}[\frac{8}{5}-\frac{3}{5}{(\frac{4}{9})}^{n}].\end{aligned}$$
+<p>Therefore, the area of <span data-concept="koch-snowflake">Koch’s snowflake</span> is</p>
+$$A=\lim_{n\to \infty}A_{n}=\frac{2\sqrt{3}}{5}.$$
+<h4>Analysis</h4>
+<p>The <span data-concept="koch-snowflake">Koch snowflake</span> is interesting because it has finite area, yet infinite perimeter. Although at first this may seem impossible, recall that you have seen similar examples earlier in the text. For example, consider the region <span data-concept="bounded-sequence">bounded</span> by the curve <span data-fn="1/x^2">$y=1/x^{2}$</span> and the $x$-axis on the interval $[1,\infty).$ Since the <span data-concept="improper-integral">improper integral</span></p>
+$$\int_{1}^{\infty}\frac{1}{x^{2}}dx$$
+<p><span data-concept="convergence-of-a-series">converges</span>, the area of this region is finite, even though the perimeter is infinite.</p>
+</div>
+</section>
+
+<section id="telescoping">
+<h2>Telescoping Series</h2>
+<p>Consider the <span data-concept="infinite-series">series</span> $\sum_{n=1}^{\infty} \frac{1}{n(n+1)}.$ We discussed this <span data-concept="infinite-series">series</span> in Example 9.7, showing that the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> by writing out the first several <span data-concept="partial-sum">partial sums</span> $\kS_{1},\kS_{2}\text{,\ldots},\kS_{6}$ and noticing that they are all of the form $\kS_{k}=\frac{k}{k+1}.$ Here we use a different technique to show that this <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>. By using <span data-concept="partial-fraction-decomposition">partial fractions</span>, we can write</p>
+$$\frac{1}{n(n+1)}=\frac{1}{n}-\frac{1}{n+1}.$$
+<p>Therefore, the <span data-concept="infinite-series">series</span> can be written as</p>
+$$\sum_{n=1}^{\infty} [\frac{1}{n}-\frac{1}{n+1}]=(1-\frac{1}{2})+(\frac{1}{2}-\frac{1}{3})+(\frac{1}{3}-\frac{1}{4})+\cdots.$$
+<p>Writing out the first several <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\},$ we see that</p>
+$$\begin{gathered}\kS_{1}=1-\frac{1}{2} \\ \kS_{2}=(1-\frac{1}{2})+(\frac{1}{2}-\frac{1}{3})=1-\frac{1}{3} \\ \kS_{3}=(1-\frac{1}{2})+(\frac{1}{2}-\frac{1}{3})+(\frac{1}{3}-\frac{1}{4})=1-\frac{1}{4}.\end{gathered}$$
+<p>In general,</p>
+$$\kS_{k}=(1-\frac{1}{2})+(\frac{1}{2}-\frac{1}{3})+(\frac{1}{3}-\frac{1}{4})+\cdots+(\frac{1}{k}-\frac{1}{k+1})=1-\frac{1}{k+1}.$$
+<p>We notice that the middle <span data-concept="term-of-a-sequence">terms</span> cancel each other out, leaving only the first and last <span data-concept="term-of-a-sequence">terms</span>. In a sense, the <span data-concept="infinite-series">series</span> collapses like a spyglass with tubes that disappear into each other to shorten the telescope. For this reason, we call a <span data-concept="infinite-series">series</span> that has this property a <span data-concept="telescoping-series">telescoping series</span>. For this <span data-concept="infinite-series">series</span>, since $\kS_{k}=1-1/(k+1)$ and $1/(k+1)\to 0$ as $k\to \infty,$ the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converges</span> to $1,$ and therefore the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span> to $1.$</p>
+<div class="note" id="telescoping-definition">
+<div class="eyebrow">Definition</div>
+<p>A <strong><span data-concept="telescoping-series">telescoping series</span></strong> is a <span data-concept="infinite-series">series</span> in which most of the <span data-concept="term-of-a-sequence">terms</span> cancel in each of the <span data-concept="partial-sum">partial sums</span>, leaving only some of the first <span data-concept="term-of-a-sequence">terms</span> and some of the last <span data-concept="term-of-a-sequence">terms</span>.</p>
+</div>
+<figure class="sim" id="sim-telescoping">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The term $\kbseq_{n}-\kbseq_{n+1}$ is the stretch of the number line from $\kbseq_{n+1}$ to $\kbseq_{n}.$ Laid end to end, the stretches of $\kS_{k}$ cover the line from $\kbseq_{k+1}$ to $\kbseq_{1},$ so the middle terms cancel and $\kS_{k}=\kbseq_{1}-\kbseq_{k+1}.$ Drag $k$ and watch the sum collapse to its first and last terms.</span></div>
+</figure>
+<p>For example, any <span data-concept="infinite-series">series</span> of the form</p>
+$$\sum_{n=1}^{\infty}[\kbseq_{n}-\kbseq_{n+1}]=(\kbseq_{1}-\kbseq_{2})+(\kbseq_{2}-\kbseq_{3})+(\kbseq_{3}-\kbseq_{4})+\cdots$$
+<p>is a <span data-concept="telescoping-series">telescoping series</span>. We can see this by writing out some of the <span data-concept="partial-sum">partial sums</span>. In particular, we see that</p>
+$$\begin{gathered}\kS_{1}=\kbseq_{1}-\kbseq_{2} \\ \kS_{2}=(\kbseq_{1}-\kbseq_{2})+(\kbseq_{2}-\kbseq_{3})=\kbseq_{1}-\kbseq_{3} \\ \kS_{3}=(\kbseq_{1}-\kbseq_{2})+(\kbseq_{2}-\kbseq_{3})+(\kbseq_{3}-\kbseq_{4})=\kbseq_{1}-\kbseq_{4}.\end{gathered}$$
+<p>In general, the $k$th <span data-concept="partial-sum">partial sum</span> of this <span data-concept="infinite-series">series</span> is</p>
+$$\kS_{k}=\kbseq_{1}-\kbseq_{k+1}.$$
+<p>Since the $k$th <span data-concept="partial-sum">partial sum</span> can be simplified to the difference of these two <span data-concept="term-of-a-sequence">terms</span>, the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ will <span data-concept="convergence-of-a-series">converge</span> if and only if the <span data-concept="sequence">sequence</span> $\{\kbseq_{k+1}\}$ <span data-concept="convergence-of-a-series">converges</span>. Moreover, if the <span data-concept="sequence">sequence</span> $\kbseq_{k+1}$ <span data-concept="convergence-of-a-series">converges</span> to some finite number $B,$ then the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converges</span> to $\kbseq_{1}-B,$ and therefore</p>
+$$\sum_{n=1}^{\infty}[\kbseq_{n}-\kbseq_{n+1}]=\kbseq_{1}-B.$$
+<p>In the next example, we show how to use these ideas to analyze a <span data-concept="telescoping-series">telescoping series</span> of this form.</p>
+<div class="example" id="fs-id1169737264640">
+<h3>Example 9.12 · Evaluating a Telescoping Series</h3>
+<p>Determine whether the <span data-concept="telescoping-series">telescoping series</span></p>
+$$\sum_{n=1}^{\infty}[\cos(\frac{1}{n})-\cos(\frac{1}{n+1})]$$
+<p><span data-concept="convergence-of-a-series">converges</span> or <span data-concept="divergence-of-a-series">diverges</span>. If it <span data-concept="convergence-of-a-series">converges</span>, find its sum.</p>
+<h4>Solution</h4>
+<p>By writing out <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="partial-sum">sequence of partial sums</span>, we can see that</p>
+$$\begin{aligned}\kS_{1} &= \cos(1)-\cos(\frac{1}{2}) \\ \kS_{2} &= (\cos(1)-\cos(\frac{1}{2}))+(\cos(\frac{1}{2})-\cos(\frac{1}{3}))=\cos(1)-\cos(\frac{1}{3}) \\ \kS_{3} &= (\cos(1)-\cos(\frac{1}{2}))+(\cos(\frac{1}{2})-\cos(\frac{1}{3}))+(\cos(\frac{1}{3})-\cos(\frac{1}{4})) \\ &= \cos(1)-\cos(\frac{1}{4}).\end{aligned}$$
+<p>In general,</p>
+$$\kS_{k}=\cos(1)-\cos(\frac{1}{k+1}).$$
+<p>Since $1/(k+1)\to 0$ as $k\to \infty$ and $\cos x$ is a <span data-concept="continuity-at-a-point">continuous function</span>, $\cos(1/(k+1))\to \cos(0)=1.$ Therefore, we conclude that $\kS_{k}\to \cos(1)-1.$ The <span data-concept="telescoping-series">telescoping series</span> <span data-concept="convergence-of-a-series">converges</span> and the sum is given by</p>
+$$\sum_{n=1}^{\infty}[\cos(\frac{1}{n})-\cos(\frac{1}{n+1})]=\cos(1)-1.$$
+</div>
+<div class="exercises" data-place="fs-id1169737264640"></div>
+<div class="note" id="eulers-constant">
+<div class="eyebrow">Student Project</div>
+<h3><span data-concept="eulers-constant">Euler’s Constant</span></h3>
+<p>We have shown that the <span data-concept="harmonic-series">harmonic series</span> $\sum_{n=1}^{\infty}\frac{1}{n}$ <span data-concept="divergence-of-a-series">diverges</span>. Here we investigate the behavior of the <span data-concept="partial-sum">partial sums</span> $\kS_{k}$ as $k\to \infty.$ In particular, we show that they behave like the <span data-concept="natural-logarithm">natural logarithm function</span> by showing that there exists a constant $γ$ such that</p>
+$$\sum_{n=1}^{k}\frac{1}{n}-\ln k\to γ\;\text{as}\;k\to \infty.$$
+<p>This constant $γ$ is known as <span data-concept="eulers-constant">Euler’s constant</span>.</p>
+<ol><li>Let $T_{k}=\sum_{n=1}^{k} \frac{1}{n}-\ln k.$ Evaluate $T_{k}$ for various values of $k.$</li><li>For $T_{k}$ as defined in part 1. show that the <span data-concept="sequence">sequence</span> $\{T_{k}\}$ <span data-concept="convergence-of-a-series">converges</span> by using the following steps.</li></ol>
+<ol type="a"><li>Show that the <span data-concept="sequence">sequence</span> $\{T_{k}\}$ is monotone decreasing. (<em>Hint:</em> Show that $\ln(1+1/k\gt 1/(k+1)))$</li><li>Show that the <span data-concept="sequence">sequence</span> $\{T_{k}\}$ is <span data-concept="bounded-sequence">bounded</span> below by zero. (<em>Hint:</em> Express $\ln k$ as a definite integral.)</li><li>Use the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span> to conclude that the <span data-concept="sequence">sequence</span> $\{T_{k}\}$ <span data-concept="convergence-of-a-series">converges</span>. The <span data-concept="limit-of-a-sequence">limit</span> $γ$ is <span data-concept="eulers-constant">Euler’s constant</span>.</li></ol>
+<ol><li>Now estimate how far $T_{k}$ is from $γ$ for a given integer $k.$ Prove that for $k\ge1,$ $0\lt T_{k}-γ\le1/k$ by using the following steps.</li></ol>
+<ol type="a" start="4"><li>Show that $\ln(k+1)-\ln k\lt 1/k.$</li><li>Use the result from part a. to show that for any integer $k,$ $$T_{k}-T_{k+1}\lt \frac{1}{k}-\frac{1}{k+1}.$$</li><li>For any integers $k$ and $j$ such that $j\gt k,$ express $T_{k}-T_{j}$ as a telescoping sum by writing $$T_{k}-T_{j}=(T_{k}-T_{k+1})+(T_{k+1}-T_{k+2})+(T_{k+2}-T_{k+3})+\cdots+(T_{j-1}-T_{j}).$$</li></ol>
+<p>Use the result from part b. combined with this telescoping sum to conclude that</p>
+$$T_{k}-T_{j}\lt \frac{1}{k}-\frac{1}{j}.$$
+<ol type="a" start="7"><li>Apply the <span data-concept="limit-of-a-sequence">limit</span> to both sides of the inequality in part c. to conclude that $$T_{k}-γ\le\frac{1}{k}.$$</li><li>Estimate $γ$ to an accuracy of within $0.001.$</li></ol>
+</div>
+</section>

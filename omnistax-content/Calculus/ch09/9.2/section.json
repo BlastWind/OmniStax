@@ -1,0 +1,1444 @@
+{
+ "id": "9.2",
+ "module": "m53739",
+ "chapter": "9",
+ "title": "Infinite Series",
+ "short": "Infinite Series",
+ "lead": "An <span data-concept=\"infinite-series\">infinite series</span> adds infinitely many terms, and its value is the limit of its <span data-concept=\"partial-sum\">partial sums</span>, a sequence of finite sums. The <span data-concept=\"harmonic-series\">harmonic series</span> and the <span data-concept=\"geometric-series\">geometric series</span> are the first series met, and <span data-concept=\"telescoping-series\">telescoping series</span> are those whose partial sums collapse to a first and a last term.",
+ "objectives": [
+  "Explain the meaning of the sum of an infinite series.",
+  "Calculate the sum of a geometric series.",
+  "Evaluate a telescoping series."
+ ],
+ "summary_html": "<ul><li>Given the <span data-concept=\"infinite-series\">infinite series</span> $$\\sum_{n=1}^{\\infty}\\kaseq_{n}=\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots$$ and the corresponding <span data-concept=\"partial-sum\">sequence of partial sums</span> $\\{\\kS_{k}\\}$ where $$\\kS_{k}=\\sum_{n=1}^{k}\\kaseq_{n}=\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots+\\kaseq_{k},$$ the <span data-concept=\"infinite-series\">series</span> <span data-concept=\"convergence-of-a-series\">converges</span> if and only if the <span data-concept=\"sequence\">sequence</span> $\\{\\kS_{k}\\}$ <span data-concept=\"convergence-of-a-series\">converges</span>.</li><li>The <span data-concept=\"geometric-series\">geometric series</span> $\\sum_{n=1}^{\\infty}ar^{n-1}$ <span data-concept=\"convergence-of-a-series\">converges</span> if $|r|\\lt 1$ and <span data-concept=\"divergence-of-a-series\">diverges</span> if $|r|\\ge1.$ For $|r|\\lt 1,$ $$\\sum_{n=1}^{\\infty}ar^{n-1}=\\frac{a}{1-r}.$$</li><li>The <span data-concept=\"harmonic-series\">harmonic series</span> $$\\sum_{n=1}^{\\infty}\\frac{1}{n}=1+\\frac{1}{2}+\\frac{1}{3}+\\cdots$$ <span data-concept=\"divergence-of-a-series\">diverges</span>.</li><li>A <span data-concept=\"infinite-series\">series</span> of the form $\\sum_{n=1}^{\\infty} [\\kbseq_{n}-\\kbseq_{n+1}]=[\\kbseq_{1}-\\kbseq_{2}]+[\\kbseq_{2}-\\kbseq_{3}]+[\\kbseq_{3}-\\kbseq_{4}]+\\cdots+[\\kbseq_{n}-\\kbseq_{n+1}]+\\cdots$ is a <span data-concept=\"telescoping-series\">telescoping series</span>. The $k\\text{th}$ <span data-concept=\"partial-sum\">partial sum</span> of this <span data-concept=\"infinite-series\">series</span> is given by $\\kS_{k}=\\kbseq_{1}-\\kbseq_{k+1}.$ The <span data-concept=\"infinite-series\">series</span> will <span data-concept=\"convergence-of-a-series\">converge</span> if and only if $\\lim_{k\\to \\infty}\\kbseq_{k+1}$ exists. In that case, $$\\sum_{n=1}^{\\infty} [\\kbseq_{n}-\\kbseq_{n+1}]=\\kbseq_{1}-\\lim_{k\\to \\infty}(\\kbseq_{k+1}).$$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except where marked as an AI suggestion. The even-numbered exercises have no answer in the key. The explanations 88, 90, 92 and 130 are kept with AI-written answers, marked as such; the computational ones are left out: 68 and 70 (sigma notation), 72 and 74 (partial sums), 76 and 78 (general terms), 80 and 82 (partial sums), 84 and 86 (sums), 94 and 96 (geometric series), 98 and 100 (geometric series of functions), 102 and 104 (telescoping series), 106 and 108 (telescoping sums), 110, 112 and 114 (general telescoping series), 116 (the blocks’ overhang), 118 and 120 (π by series), 122 and 124 (coin probabilities), 126 and 128 (deposits and doses), 132 (von Bertalanffy growth), and 134 and 136 (the zig-zag path and the Sierpinski triangle). Of the Chapter Review Exercises printed at the end of Section 9.6, 389, 399 and 403 are set here.",
+ "figures": [
+  {
+   "id": "sim-partial-sums",
+   "kind": "sim",
+   "number": "9.10",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_09_02_001.jpg"
+   ],
+   "original_caption": "The graph shows the sequence of partial sums {Sₖ}. It appears that the sequence is approaching the value 2.",
+   "draws": [
+    "series",
+    "sequence",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-geometric-series",
+   "kind": "sim",
+   "draws": [
+    "series",
+    "sequence",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-koch-snowflake",
+   "kind": "sim",
+   "number": "9.11",
+   "originals": [
+    "/media/ch09/CNX_Calc_Figure_08_00_003.jpg"
+   ],
+   "original_caption": "The first four figures, F₀,F₁,F₂,and F₃, in the construction of the Koch snowflake.",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-telescoping",
+   "kind": "sim",
+   "draws": [
+    "series",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "series-definition",
+   "concept": "infinite-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-definition",
+   "concept": "partial-sum",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-definition",
+   "concept": "convergence-of-a-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-definition",
+   "concept": "divergence-of-a-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "sums-and-series",
+   "concept": "reindexing-a-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "harmonic-series",
+   "concept": "harmonic-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "harmonic-series",
+   "concept": "divergence-of-the-harmonic-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-properties",
+   "concept": "algebraic-properties-of-convergent-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "geometric-series",
+   "concept": "geometric-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "geometric-definition",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737363861",
+   "concept": "repeating-decimals-as-fractions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738082462",
+   "concept": "koch-snowflake",
+   "verb": "introduces"
+  },
+  {
+   "span": "telescoping-definition",
+   "concept": "telescoping-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "eulers-constant",
+   "concept": "eulers-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-intro",
+   "concept": "sequence",
+   "verb": "uses"
+  },
+  {
+   "span": "sums-and-series",
+   "concept": "convergent-sequence",
+   "verb": "uses"
+  },
+  {
+   "span": "harmonic-series",
+   "concept": "convergent-sequences-are-bounded",
+   "verb": "uses"
+  },
+  {
+   "span": "harmonic-series",
+   "concept": "unbounded-sequence",
+   "verb": "uses"
+  },
+  {
+   "span": "geometric-series",
+   "concept": "limit-of-a-geometric-sequence",
+   "verb": "uses"
+  },
+  {
+   "span": "algebraic-properties",
+   "concept": "algebraic-limit-laws-for-sequences",
+   "verb": "uses"
+  },
+  {
+   "span": "telescoping",
+   "concept": "partial-fraction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738082462",
+   "concept": "improper-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737264640",
+   "concept": "continuity-at-a-point",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738068351",
+   "concept": "partial-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738055547",
+   "concept": "algebraic-properties-of-convergent-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738194429",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737264640",
+   "concept": "telescoping-series",
+   "verb": "uses"
+  },
+  {
+   "span": "eulers-constant",
+   "concept": "monotone-convergence-theorem",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169737822602",
+   "source_number": "Checkpoint 9.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738068351"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>Determine whether the series $\\sum_{n=1}^{\\infty}(n+1)/n$ converges or diverges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The series diverges because the $k\\text{th}$ partial sum $\\kS_{k}\\gt k.$",
+    "hint": "Look at the sequence of partial sums."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169738201809",
+   "source_number": "Checkpoint 9.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738055547"
+   },
+   "cite": "series-properties",
+   "prompt": "<p>Evaluate $\\sum_{n=1}^{\\infty}\\frac{5}{2^{n-1}}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 10,
+    "solution": "$10.$",
+    "hint": "Rewrite as $\\sum_{n=1}^{\\infty}5{(\\frac{1}{2})}^{n-1}.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169737168532",
+   "source_number": "Checkpoint 9.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738194429"
+   },
+   "cite": "geometric-definition",
+   "prompt": "<p>Determine whether the series $\\sum_{n=1}^{\\infty} {(\\frac{-2}{5})}^{n-1}$ converges or diverges. If it converges, find its sum.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.714286,
+    "tol": 0.0001,
+    "solution": "$5/7$",
+    "hint": "$r=-2/5$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1169738115128",
+   "source_number": "Checkpoint 9.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737363861"
+   },
+   "cite": "geometric-definition",
+   "prompt": "<p>Write $5.2\\overset{\\text{–}}{7}$ as a fraction of integers.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.277778,
+    "tol": 0.0001,
+    "solution": "$475/90$",
+    "hint": "By expressing this number as a series, find a geometric series with initial term $a=7/100$ and ratio $r=1/10.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1169738185124",
+   "source_number": "Checkpoint 9.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737264640"
+   },
+   "cite": "telescoping-definition",
+   "prompt": "<p>Determine whether $\\sum_{n=1}^{\\infty}[e^{1/n}-e^{1/(n+1)}]$ converges or diverges. If it converges, find its sum.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.718282,
+    "tol": 0.0001,
+    "solution": "$e-1$",
+    "hint": "Write out the sequence of partial sums to see which terms cancel."
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1169737300772",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>Using sigma notation, write the following expressions as infinite series.</p><p>$1+\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{4}+\\cdots$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=1}^{\\infty} \\frac{1}{n}$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1169737954211",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>Using sigma notation, write the following expressions as infinite series.</p><p>$1-\\frac{1}{2}+\\frac{1}{3}-\\frac{1}{4}+...$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n-1}}{n}$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1169737168379",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>Compute the first four partial sums $\\kS_{1}\\text{,\\ldots},\\kS_{4}$ for the series having $n\\text{th}$ term $\\kaseq_{n}$ starting with $n=1$ as follows.</p><p>$\\kaseq_{n}=n$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1,3,6,10$"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1169737255445",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>Compute the first four partial sums $\\kS_{1}\\text{,\\ldots},\\kS_{4}$ for the series having $n\\text{th}$ term $\\kaseq_{n}$ starting with $n=1$ as follows.</p><p>$\\kaseq_{n}=\\sin(n\\pi/2)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1,1,0,0$"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1169737383334",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>In the following exercises, compute the general term $\\kaseq_{n}$ of the series with the given partial sum $\\kS_{n}.$ If the sequence of partial sums converges, find its limit $\\kSsum.$</p><p>$\\kS_{n}=1-\\frac{1}{n},$ $n\\ge2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=\\kS_{n}-\\kS_{n-1}=\\frac{1}{n-1}-\\frac{1}{n}.$ Series converges to $\\kSsum=1.$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1169737987528",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>In the following exercises, compute the general term $\\kaseq_{n}$ of the series with the given partial sum $\\kS_{n}.$ If the sequence of partial sums converges, find its limit $\\kSsum.$</p><p>$\\kS_{n}=\\sqrt{n},n\\ge2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=\\kS_{n}-\\kS_{n-1}=\\sqrt{n}-\\sqrt{n-1}=\\frac{1}{\\sqrt{n-1}+\\sqrt{n}}.$ Series diverges because partial sums are unbounded."
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1169737202979",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>For each of the following series, use the sequence of partial sums to determine whether the series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty} \\frac{n}{n+2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kS_{1}=1/3,$ $\\kS_{2}=1/3+2/4\\gt 1/3+1/3=2/3,$ $\\kS_{3}=1/3+2/4+3/5\\gt 3\\cdot (1/3)=1.$ In general $\\kS_{k}\\gt k/3.$ Series diverges."
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1169738031113",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-definition",
+   "prompt": "<p>For each of the following series, use the sequence of partial sums to determine whether the series converges or diverges.</p><p>$\\sum_{n=1}^{\\infty} \\frac{1}{(n+1)(n+2)}$ (<em>Hint:</em> Use a partial fraction decomposition like that for $\\sum_{n=1}^{\\infty} \\frac{1}{n(n+1)}.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\begin{gathered}\\kS_{1}=1/(2.3)=1/6=2/3-1/2, \\\\ \\kS_{2}=1/(2.3)+1/(3.4)=2/12+1/12=1/4=3/4-1/2, \\\\ \\kS_{3}=1/(2.3)+1/(3.4)+1/(4.5)=10/60+5/60+3/60=3/10=4/5-1/2, \\\\ \\kS_{4}=1/(2.3)+1/(3.4)+1/(4.5)+1/(5.6)=10/60+5/60+3/60+2/60=1/3=5/6-1/2.\\end{gathered}$</p><p>The pattern is $\\kS_{k}=(k+1)/(k+2)-1/2$ and the series converges to $1/2.$</p>"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1169737167890",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-properties",
+   "prompt": "<p>Suppose that $\\sum_{n=1}^{\\infty} \\kaseq_{n}=1,$ that $\\sum_{n=1}^{\\infty} \\kbseq_{n}=-1,$ that $\\kaseq_{1}=2,$ and $\\kbseq_{1}=-3.$ Find the sum of the indicated series.</p><p>$\\sum_{n=1}^{\\infty} (\\kaseq_{n}+\\kbseq_{n})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1169737231364",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-properties",
+   "prompt": "<p>Suppose that $\\sum_{n=1}^{\\infty} \\kaseq_{n}=1,$ that $\\sum_{n=1}^{\\infty} \\kbseq_{n}=-1,$ that $\\kaseq_{1}=2,$ and $\\kbseq_{1}=-3.$ Find the sum of the indicated series.</p><p>$\\sum_{n=2}^{\\infty} (\\kaseq_{n}-\\kbseq_{n})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -3,
+    "solution": "$-3$"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1169738235166",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-series",
+   "prompt": "<p>State whether the given series converges and explain why.</p><p>$\\sum_{n=1}^{\\infty} \\frac{1}{n+1000}$ (<em>Hint:</em> Rewrite using a change of index.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "diverges, $\\sum_{n=1001}^{\\infty} \\frac{1}{n}$"
+   }
+  },
+  {
+   "id": "e88",
+   "source_id": "fs-id1169738235242",
+   "source_number": "88",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-series",
+   "prompt": "<p>State whether the given series converges and explain why.</p><p>$\\sum_{n=1}^{\\infty} \\frac{1}{n+{10}^{80}}$ (<em>Hint:</em> Rewrite using a change of index.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Diverges. With the change of index $m=n+10^{80},$ the series is $\\sum_{m=10^{80}+1}^{\\infty}\\frac{1}{m},$ the harmonic series with its first $10^{80}$ terms left out. Leaving out finitely many terms does not change whether a series converges, and the harmonic series diverges, so this series diverges too."
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1169737195149",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-series",
+   "prompt": "<p>State whether the given series converges and explain why.</p><p>$1+\\frac{1}{10}+\\frac{1}{100}+\\frac{1}{1000}+\\cdots$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "convergent geometric series, $r=1/10\\lt 1$"
+   }
+  },
+  {
+   "id": "e90",
+   "source_id": "fs-id1169737195215",
+   "source_number": "90",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-series",
+   "prompt": "<p>State whether the given series converges and explain why.</p><p>$1+\\frac{e}{\\pi}+\\frac{e^{2}}{\\pi^{2}}+\\frac{e^{3}}{\\pi^{3}}+\\cdots$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Converges. This is a geometric series with initial term $a=1$ and ratio $r=\\frac{e}{\\pi}\\approx 0.865.$ Since $|r|\\lt 1,$ it converges, to $\\frac{1}{1-e/\\pi}=\\frac{\\pi}{\\pi-e}.$"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1169737985373",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-series",
+   "prompt": "<p>State whether the given series converges and explain why.</p><p>$1+\\frac{\\pi}{e^{2}}+\\frac{\\pi^{2}}{e^{4}}+\\frac{\\pi^{3}}{e^{6}}+\\frac{\\pi^{4}}{e^{8}}+\\cdots$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "convergent geometric series, $r=\\pi/e^{2}\\lt 1$"
+   }
+  },
+  {
+   "id": "e92",
+   "source_id": "fs-id1169737221029",
+   "source_number": "92",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-series",
+   "prompt": "<p>State whether the given series converges and explain why.</p><p>$1-\\sqrt{\\frac{\\pi}{3}}+\\sqrt{\\frac{\\pi^{2}}{9}}-\\sqrt{\\frac{\\pi^{3}}{27}}+\\cdots$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Diverges. Since $\\sqrt{\\frac{\\pi^{k}}{3^{k}}}=(\\sqrt{\\frac{\\pi}{3}})^{k},$ this is the geometric series $\\sum_{n=1}^{\\infty}(-\\sqrt{\\frac{\\pi}{3}})^{n-1}$ with ratio $r=-\\sqrt{\\pi/3}.$ Since $\\pi\\gt 3,$ $|r|=\\sqrt{\\pi/3}\\approx 1.023\\gt 1,$ so the series diverges."
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1169737221173",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-definition",
+   "prompt": "<p>For $\\kaseq_{n}$ as follows, write the sum as a geometric series of the form $\\sum_{n=1}^{\\infty} ar^{n}.$ State whether the series converges and if it does, find the value of $\\sum \\kaseq_{n}.$</p><p>$\\kaseq_{1}=-1$ and $\\kaseq_{n}/\\kaseq_{n+1}=-5$ for $n\\ge1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=1}^{\\infty} 5\\cdot {(-1/5)}^{n},$ converges to $-5/6$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1169737292402",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-definition",
+   "prompt": "<p>For $\\kaseq_{n}$ as follows, write the sum as a geometric series of the form $\\sum_{n=1}^{\\infty} ar^{n}.$ State whether the series converges and if it does, find the value of $\\sum \\kaseq_{n}.$</p><p>$\\kaseq_{1}=10$ and $\\kaseq_{n}/\\kaseq_{n+1}=10$ for $n\\ge1.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=1}^{\\infty} 100\\cdot {(1/10)}^{n},$ converges to $100/9$"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1169737236515",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-definition",
+   "prompt": "<p>Use the identity $\\frac{1}{1-y}=\\sum_{n=0}^{\\infty} y^{n}$ to express the function as a geometric series in the indicated term.</p><p>$\\frac{x}{1+x}$ in $x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x\\sum_{n=0}^{\\infty} {(-x)}^{n}=\\sum_{n=1}^{\\infty} {(-1)}^{n-1}x^{n}$"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1169737909954",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-definition",
+   "prompt": "<p>Use the identity $\\frac{1}{1-y}=\\sum_{n=0}^{\\infty} y^{n}$ to express the function as a geometric series in the indicated term.</p><p>$\\frac{1}{1+\\sin^{2}x}$ in $\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} {(-1)}^{n}\\sin^{2n}(x)$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1169737785711",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>Evaluate the following telescoping series or state whether the series diverges.</p><p>$\\sum_{n=1}^{\\infty} 2^{1/n}-2^{1/(n+1)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kS_{k}=2-2^{1/(k+1)}\\to 1$ as $k\\to \\infty.$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1169738077474",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>Evaluate the following telescoping series or state whether the series diverges.</p><p>$\\sum_{n=1}^{\\infty} (\\sqrt{n}-\\sqrt{n+1})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kS_{k}=1-\\sqrt{k+1}$ diverges"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1169738236316",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>Express the following series as a telescoping sum and evaluate its <em>n</em>th partial sum.</p><p>$\\sum_{n=1}^{\\infty} \\ln(\\frac{n}{n+1})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=1}^{\\infty} \\ln n-\\ln(n+1),\\kS_{k}=-\\ln(k+1)$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1169738155023",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>Express the following series as a telescoping sum and evaluate its <em>n</em>th partial sum.</p><p>$\\sum_{n=2}^{\\infty} \\frac{\\ln(1{+}_{n}^{1})}{\\ln n\\;\\ln(n+1)}$<sup class=\"fn\" data-note=\"ex107-prompt\"></sup></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kaseq_{n}=\\frac{1}{\\ln n}-\\frac{1}{\\ln(n+1)}$ and $\\kS_{k}=\\frac{1}{\\ln(2)}-\\frac{1}{\\ln(k+1)}\\to \\frac{1}{\\ln(2)}$"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1169737229492",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>A general telescoping series is one in which all but the first few terms cancel out after summing a given number of successive terms.</p><p>Let $\\kaseq_{n}=f(n)-2f(n+1)+f(n+2),$ in which $f(n)\\to 0$ as $n\\to \\infty.$ Find $\\sum_{n=1}^{\\infty} \\kaseq_{n}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=1}^{\\infty} \\kaseq_{n}=f(1)-f(2)$"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1169738240458",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>A general telescoping series is one in which all but the first few terms cancel out after summing a given number of successive terms.</p><p>Suppose that $\\kaseq_{n}=c_{0}f(n)+c_{1}f(n+1)+c_{2}f(n+2)+c_{3}f(n+3)+c_{4}f(n+4),$ where $f(n)\\to 0$ as $n\\to \\infty.$ Find a condition on the coefficients $c_{0}\\text{,\\ldots},c_{4}$ that make this a general telescoping series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$c_{0}+c_{1}+c_{2}+c_{3}+c_{4}=0$"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1169737303097",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>A general telescoping series is one in which all but the first few terms cancel out after summing a given number of successive terms.</p><p>Evaluate $\\sum_{n=2}^{\\infty} \\frac{2}{n^{3}-n}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2}{n^{3}-1}=\\frac{1}{n-1}-\\frac{2}{n}+\\frac{1}{n+1},$<sup class=\"fn\" data-note=\"ex113-key\"></sup> $\\kS_{n}=(1-1+1/3)+(1/2-2/3+1/4)$ $+(1/3-2/4+1/5)+(1/4-2/5+1/6)+\\cdots=1/2$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1169738071313",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eulers-constant",
+   "prompt": "<p><strong>[T]</strong> Define a sequence $t_{k}=\\sum_{n=1}^{k-1} (1/n)-\\ln k.$ Use the graph of $1/x$ to verify that $t_{k}$ is increasing. Plot $t_{k}$ for $k=1\\ldots100$ and state whether it appears that the sequence converges.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$t_{k}$ converges to $0.57721\\ldots t_{k}$ is a sum of rectangles of height $1/k$ over the interval $[k,k+1]$ which lie above the graph of $1/x.$</p><img src=\"/media/ch09/CNX_Calc_Figure_09_02_206.jpg\" alt=\"This is a graph of a sequence in quadrant one that begins close to 0 and appears to converge to 0.57721.\">"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1169737918602",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p>Each of the following infinite series converges to the given multiple of $\\pi$ or $1/\\pi.$</p><p>In each case, find the minimum value of $N$ such that the $N\\text{th}$ partial sum of the series accurately approximates the left-hand side to the given number of decimal places, and give the desired approximate value. Up to $15$ decimals place, $\\pi=3.141592653589793....$</p><p><strong>[T]</strong> $\\pi=-3+\\sum_{n=1}^{\\infty} \\frac{n2^{n}n{\\text{!}}^{2}}{(2n)\\text{!}},$ error $\\lt 0.0001$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$N=22,$ $\\kS_{N}=6.1415$"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1169738193854",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p>Each of the following infinite series converges to the given multiple of $\\pi$ or $1/\\pi.$</p><p>In each case, find the minimum value of $N$ such that the $N\\text{th}$ partial sum of the series accurately approximates the left-hand side to the given number of decimal places, and give the desired approximate value. Up to $15$ decimals place, $\\pi=3.141592653589793....$</p><p><strong>[T]</strong> $\\frac{9801}{2\\pi}=\\frac{\\sqrt{2}}{9801}\\sum_{k=0}^{\\infty} \\frac{(4k)\\text{!}(1103+26390k)}{{(k\\text{!})}^{4}{396}^{4k}},$ error $\\lt {10}^{-12}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$N=3,$ $\\kS_{N}=1.559877597243667...$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1169738040798",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p><strong>[T]</strong> A fair coin is one that has probability $1/2$ of coming up heads when flipped.</p><ol type=\"a\"><li>What is the probability that a fair coin will come up tails $n$ times in a row?</li><li>Find the probability that a coin comes up heads for the first time on the last of an even number of coin flips.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol type=\"a\"><li>The probability of any given ordered sequence of outcomes for $n$ coin flips is $1/2^{n}.$ b. The probability of coming up heads for the first time on the $n$ th flip is the probability of the sequence $TT\\ldots TH$ which is $1/2^{n}.$ The probability of coming up heads for the first time on an even flip is $\\sum_{n=1}^{\\infty} 1/2^{2n}$ or $1/3.$</li></ol>"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1169737162602",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p><strong>[T]</strong> Find the probability that a fair coin will come up heads for the second time after an even number of flips.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.555556,
+    "tol": 0.0001,
+    "solution": "$5/9$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1169737162731",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p><strong>[T]</strong> The expected number of times that a fair coin will come up heads is defined as the sum over $n=1,2\\text{,\\ldots}$ of $n$ times the probability that the coin will come up heads exactly $n$ times in a row, or $n/2^{n+1}.$ Compute the expected number of consecutive times that a fair coin will come up heads.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$E=\\sum_{n=1}^{\\infty} n/2^{n+1}=1,$ as can be shown using summation by parts"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1169737232404",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p><strong>[T]</strong> Suppose that the amount of a drug in a patient’s system diminishes by a multiplicative factor $r\\lt 1$ each hour. Suppose that a new dose is administered every $N$ hours. Find an expression that gives the amount $A(n)$ in the patient’s system after $n$ hours for each $n$ in terms of the dosage $d$ and the ratio $r.$ (<em>Hint:</em> Write $n=mN+k,$ where $0\\le k\\lt N,$ and sum over values from the different doses administered.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The part of the first dose after $n$ hours is $dr^{n},$ the part of the second dose is $dr^{n-N},$ and, in general, the part remaining of the $m\\text{th}$ dose is $dr^{n-mN},$ so</p><p>$A(n)=\\sum_{l=0}^{m} dr^{n-lN}=\\sum_{l=0}^{m} dr^{k+(m-l)N}=\\sum_{q=0}^{m} dr^{k+qN}=dr^{k}\\sum_{q=0}^{m} r^{Nq}=dr^{k}\\frac{1-r^{(m+1)N}}{1-r^{N}},n=k+mN.$</p>"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1169738169302",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p>Suppose that $\\kaseq_{n}\\ge0$ is a sequence of numbers. Explain why the sequence of partial sums of $\\kaseq_{n}$ is increasing.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kS_{N+1}=\\kaseq_{N+1}+\\kS_{N}\\ge \\kS_{N}$"
+   }
+  },
+  {
+   "id": "e130",
+   "source_id": "fs-id1169738169379",
+   "source_number": "130",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p><strong>[T]</strong> Suppose that $\\kaseq_{n}$ is a sequence of positive numbers and the sequence $\\kS_{n}$ of partial sums of $\\kaseq_{n}$ is bounded above. Explain why $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ converges. Does the conclusion remain true if we remove the hypothesis $\\kaseq_{n}\\ge0\\text{?}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since every $a_{n}\\gt 0,$ $S_{n+1}=S_{n}+a_{n+1}\\gt S_{n},$ so the sequence of partial sums is increasing. It is bounded above by hypothesis, so by the Monotone Convergence Theorem it converges, and therefore the series $\\sum_{n=1}^{\\infty}a_{n}$ converges. The conclusion fails without $a_{n}\\ge 0:$ for $a_{n}={(-1)}^{n},$ the partial sums $-1,0,-1,0,\\ldots$ are bounded above by $0,$ but they do not converge, and the series diverges."
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1169738254653",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p><strong>[T]</strong> Suppose that $\\kaseq_{1}=\\kS_{1}=1$ and that, for given numbers $\\kSsum\\gt 1$ and $0\\lt k\\lt 1,$ one defines $\\kaseq_{n+1}=k(\\kSsum-\\kS_{n})$ and $\\kS_{n+1}=\\kaseq_{n+1}+\\kS_{n}.$ Does $\\kS_{n}$ converge? If so, to what? (<em>Hint:</em> First argue that $\\kS_{n}\\lt \\kSsum$ for all $n$ and $\\kS_{n}$ is increasing.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Since $\\kSsum\\gt 1,$ $\\kaseq_{2}\\gt 0,$ and since $k\\lt 1,$ $\\kS_{2}=1+\\kaseq_{2}\\lt 1+(\\kSsum-1)=\\kSsum.$ If $\\kS_{n}\\gt \\kSsum$ for some <em>n</em>, then there is a smallest <em>n</em>. For this <em>n</em>, $\\kSsum\\gt \\kS_{n-1},$ so $\\kS_{n}=\\kS_{n-1}+k(\\kSsum-\\kS_{n-1})$ $=kS+(1-k)\\kS_{n-1}\\lt \\kSsum,$ a contradiction. Thus $\\kS_{n}\\lt \\kSsum$ and $\\kaseq_{n+1}\\gt 0$ for all <em>n</em>, so $\\kS_{n}$ is increasing and bounded by $\\kSsum.$ Let $\\kS_{\\text{∗}}=\\lim \\kS_{n}.$ If $\\kS_{\\text{∗}}\\lt \\kSsum,$ then $\\delta =k(\\kSsum-\\kS_{\\text{∗}})\\gt 0,$ but we can find <em>n</em> such that $\\kS_{*}-\\kS_{n}\\lt \\delta /2,$ which implies that $\\kS_{n+1}=\\kS_{n}+k(\\kSsum-\\kS_{n})$ $\\gt \\kS_{*}+\\delta /2,$ contradicting that $\\kS_{n}$ is increasing to $\\kS_{\\text{∗}}.$ Thus $\\kS_{n}\\to \\kSsum.$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1169737395546",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "prompt": "<p><strong>[T]</strong> Suppose that $\\sum_{n=1}^{\\infty} \\kaseq_{n}$ is a convergent series of positive terms. Explain why $\\lim_{N\\to \\infty}\\sum_{n=N+1}^{\\infty} \\kaseq_{n}=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Let $\\kS_{k}=\\sum_{n=1}^{k} \\kaseq_{n}$ and $\\kS_{k}\\to L.$ Then $\\kS_{k}$ eventually becomes arbitrarily close to $L,$ which means that $L-\\kS_{N}=\\sum_{n=N+1}^{\\infty} \\kaseq_{n}$ becomes arbitrarily small as $N\\to \\infty.$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1169737985941",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "figure": {
+    "src": "/media/ch09/CNX_Calc_Figure_09_02_203.jpg",
+    "alt": "This is a triangle drawn in quadrant 1 with vertices at (1, 1), (0, 0), and (1, 0). The zigzag line is drawn starting at (0.5, 0) and goes to the middle of the hypotenuse, the midpoint between that point and the vertical leg, the midpoint of the upper half of the hypotenuse, the midpoint between that point and the vertical leg, and so on until it converges on the top vertex."
+   },
+   "prompt": "<p><strong>[T]</strong> Find the total length of the dashed path in the following figure.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L=(1+\\frac{1}{2})\\sum_{n=1}^{\\infty} 1/2^{n}=\\frac{3}{2}.$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1169737904556",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sums-and-series",
+   "figure": {
+    "src": "/media/ch09/CNX_Calc_Figure_09_02_205.jpg",
+    "alt": "This is a black square with many smaller squares removed from it, leaving behind blank spaces in a pattern of squares. There are four iterations of the removal process. At the first, the central 1/9 square area is removed. Each side is 1/3 of that of the next larger square. Next, eight smaller squares are removed around this one. Eight smaller squares are removed from around each of those – 64 in total. Eight even smaller ones are removed from around each of those 64."
+   },
+   "prompt": "<p><strong>[T]</strong> The Sierpinski gasket is obtained by dividing the unit square into nine equal sub-squares, removing the middle square, then doing the same at each stage to the remaining sub-squares. The figure shows the remaining set after four iterations. Compute the total area removed after $N$ stages, and compute the length the total perimeter of the remaining set after $N$ stages.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>At stage one a square of area $1/9$ is removed, at stage $2$ one removes $8$ squares of area $1/9^{2},$ at stage three one removes $8^{2}$ squares of area $1/9^{3},$ and so on. The total removed area after $N$ stages is $\\sum_{n=0}^{N-1} 8^{N}/9^{N+1}=\\frac{1}{8}(1-{(8/9)}^{N})/(1-8/9)\\to 1$</p><p>as $N\\to \\infty.$ The total perimeter is $4+4\\underset{n=0}{\\sum}8^{N}/3^{N+1}\\to \\infty.$</p>"
+   }
+  },
+  {
+   "id": "r389",
+   "source_id": "fs-id1169736590242",
+   "source_section": "9.6",
+   "source_number": "389",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>Is the series convergent or divergent?</p><p>$\\sum_{n=1}^{\\infty} \\ln(\\frac{n+1}{n})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "diverges"
+   }
+  },
+  {
+   "id": "r399",
+   "source_id": "fs-id1169736854740",
+   "source_section": "9.6",
+   "source_number": "399",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "telescoping",
+   "prompt": "<p>Evaluate</p><p>$\\sum_{n=1}^{\\infty} \\frac{1}{(n+1)(n+2)}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "solution": "$\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "r403",
+   "source_id": "fs-id1169736790422",
+   "source_section": "9.6",
+   "source_number": "403",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "geometric-definition",
+   "prompt": "<p>The following problems consider a simple population model of the housefly, which can be exhibited by the recursive formula $x_{n+1}=bx_{n},$ where $x_{n}$ is the population of houseflies at generation $n,$ and $b$ is the average number of offspring per housefly who survive to the next generation. Assume a starting population $x_{0}.$</p><p>If $b=\\frac{3}{4}$ and $x_{0}=100,$ find $\\kS_{10}$ and $\\lim_{n\\to \\infty}\\kS_{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kS_{10}\\approx 383,$ $\\lim_{n\\to \\infty}\\kS_{n}=400$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "divergence-of-a-series"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "algebraic-properties-of-convergent-series"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "repeating-decimals-as-fractions"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "e67",
+   "concept": "infinite-series"
+  },
+  {
+   "exercise": "e67",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e69",
+   "concept": "infinite-series"
+  },
+  {
+   "exercise": "e69",
+   "concept": "sigma-notation"
+  },
+  {
+   "exercise": "e71",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e73",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e75",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e75",
+   "concept": "convergence-of-a-series"
+  },
+  {
+   "exercise": "e77",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e77",
+   "concept": "divergence-of-a-series"
+  },
+  {
+   "exercise": "e79",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e79",
+   "concept": "divergence-of-a-series"
+  },
+  {
+   "exercise": "e81",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e81",
+   "concept": "convergence-of-a-series"
+  },
+  {
+   "exercise": "e83",
+   "concept": "algebraic-properties-of-convergent-series"
+  },
+  {
+   "exercise": "e85",
+   "concept": "algebraic-properties-of-convergent-series"
+  },
+  {
+   "exercise": "e85",
+   "concept": "reindexing-a-series"
+  },
+  {
+   "exercise": "e87",
+   "concept": "reindexing-a-series"
+  },
+  {
+   "exercise": "e87",
+   "concept": "divergence-of-the-harmonic-series"
+  },
+  {
+   "exercise": "e88",
+   "concept": "reindexing-a-series"
+  },
+  {
+   "exercise": "e88",
+   "concept": "divergence-of-the-harmonic-series"
+  },
+  {
+   "exercise": "e89",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e89",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e90",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e90",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e91",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e91",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e92",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e92",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e93",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e93",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e95",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e95",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e97",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e97",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e99",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e99",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e101",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "e103",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "e105",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "e107",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "e109",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "e111",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "e113",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "e113",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e115",
+   "concept": "eulers-constant"
+  },
+  {
+   "exercise": "e115",
+   "concept": "monotone-convergence-theorem"
+  },
+  {
+   "exercise": "e117",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e117",
+   "concept": "convergence-of-a-series"
+  },
+  {
+   "exercise": "e119",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e119",
+   "concept": "convergence-of-a-series"
+  },
+  {
+   "exercise": "e121",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e121",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e123",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e123",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e125",
+   "concept": "convergence-of-a-series"
+  },
+  {
+   "exercise": "e125",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e127",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e129",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e129",
+   "concept": "monotone-sequence"
+  },
+  {
+   "exercise": "e130",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e130",
+   "concept": "monotone-convergence-theorem"
+  },
+  {
+   "exercise": "e131",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e131",
+   "concept": "monotone-convergence-theorem"
+  },
+  {
+   "exercise": "e133",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e133",
+   "concept": "convergence-of-a-series"
+  },
+  {
+   "exercise": "e135",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "e137",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "r389",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "r389",
+   "concept": "divergence-of-a-series"
+  },
+  {
+   "exercise": "r399",
+   "concept": "telescoping-series"
+  },
+  {
+   "exercise": "r399",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "r403",
+   "concept": "sum-of-a-geometric-series"
+  },
+  {
+   "exercise": "r403",
+   "concept": "partial-sum"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "eq-geometric-form",
+   "kind": "correction",
+   "html": "Equation 9.5 is the harmonic series; the form meant is Equation 9.6, the geometric series $a+ar+ar^{2}+\\cdots=\\sum_{n=1}^{\\infty}ar^{n-1}.$"
+  },
+  {
+   "id": "ex107-prompt",
+   "kind": "correction",
+   "html": "The book prints $\\ln(1{+}_{n}^{1})$ in the numerator; the series meant is $\\sum_{n=2}^{\\infty}\\frac{\\ln(1+\\frac{1}{n})}{\\ln n\\;\\ln(n+1)},$ as the key’s $a_{n}=\\frac{1}{\\ln n}-\\frac{1}{\\ln(n+1)}$ shows."
+  },
+  {
+   "id": "ex113-key",
+   "kind": "correction",
+   "html": "The key writes $\\frac{2}{n^{3}-1};$ the term is $\\frac{2}{n^{3}-n},$ whose partial fractions are the ones given."
+  }
+ ]
+}
