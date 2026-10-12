@@ -1,0 +1,154 @@
+<p>The <strong><span data-concept="mean-value-theorem">Mean Value Theorem</span></strong> is one of the most important theorems in calculus. We look at some of its implications at the end of this section. First, let’s start with a special case of the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, called <span data-concept="rolles-theorem">Rolle’s theorem</span>.</p>
+<section id="rolle">
+<h2><span data-concept="rolles-theorem">Rolle’s Theorem</span></h2>
+<p class="cite-target">Informally, <strong><span data-concept="rolles-theorem">Rolle’s theorem</span></strong> states that if the outputs of a <span data-concept="differentiable-function">differentiable function</span> $\kf$ are equal at the endpoints of an interval, then there must be an interior point $c$ where $\kfprime(c)=0.$ Figure 4.21 illustrates this theorem.</p>
+<figure class="sim" id="fig-rolle-cases" data-figure="4.21" data-original="/media/ch04/CNX_Calc_Figure_04_04_009.jpg" data-original-caption="If a differentiable function f satisfies f(a)=f(b), then its derivative must be zero at some point(s) between a and b.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.21</span><span>If a <span data-concept="differentiable-function">differentiable function</span> <em>f</em> satisfies $\kf(a)=\kf(b),$ then its <span data-concept="derivative">derivative</span> must be zero at some point(s) between $a$ and $b.$</span></div>
+</figure>
+<div class="note" id="rolles-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="rolles-theorem">Rolle’s Theorem</span></h3>
+<p>Let $\kf$ be a continuous <span data-concept="function">function</span> over the closed interval $[a,b]$ and differentiable over the open interval $(a,b)$ such that $\kf(a)=\kf(b).$ There then exists at least one $c\in (a,b)$ such that $\kfprime(c)=0.$</p>
+</div>
+<h3 id="rolle-proof">Proof</h3>
+<p>Let $k=\kf(a)=\kf(b).$ We consider three cases:</p>
+<ol>
+<li>$\kf(x)=k$ for all $x\in (a,b).$</li>
+<li>There exists $x\in (a,b)$ such that $\kf(x)\gt k.$</li>
+<li>There exists $x\in (a,b)$ such that $\kf(x)\lt k.$</li>
+</ol>
+<p>Case 1: If $\kf(x)=k$ for all $x\in (a,b),$ then $\kfprime(x)=0$ for all $x\in (a,b).$</p>
+<p>Case 2: Since $\kf$ is a continuous <span data-concept="function">function</span> over the closed, bounded interval $[a,b],$ by the <span data-concept="extreme-value-theorem">extreme value theorem</span>, it has an <span data-concept="absolute-extremum">absolute maximum</span>. Also, since there is a point $x\in (a,b)$ such that $\kf(x)\gt k,$ the <span data-concept="absolute-extremum">absolute maximum</span> is greater than $k.$ Therefore, the <span data-concept="absolute-extremum">absolute maximum</span> does not occur at either endpoint. As a result, the <span data-concept="absolute-extremum">absolute maximum</span> must occur at an interior point $c\in (a,b).$ Because $\kf$ has a maximum at an interior point $c,$ and $\kf$ is differentiable at $c,$ by <span data-concept="fermats-theorem">Fermat’s theorem</span>, $\kfprime(c)=0.$</p>
+<p>Case 3: The case when there exists a point $x\in (a,b)$ such that $\kf(x)\lt k$ is analogous to case 2, with maximum replaced by minimum.</p>
+<p>□</p>
+<p>An important point about <span data-concept="rolles-theorem">Rolle’s theorem</span> is that the differentiability of the <span data-concept="function">function</span> $\kf$ is critical. If $\kf$ is not differentiable, even at a single point, the result may not hold. For example, the <span data-concept="function">function</span> <span data-fn="|x|-1">$\kf(x)=|x|-1$</span> is continuous over $[-1,1]$ and $\kf(-1)=0=\kf(1),$ but $\kfprime(c)\ne 0$ for any $c\in (-1,1)$ as shown in the following figure.</p>
+<figure class="sim" id="fig-rolle-fails" data-figure="4.22" data-original="/media/ch04/CNX_Calc_Figure_04_04_002.jpg" data-original-caption="Since f(x)=|x|−1 is not differentiable at x=0, the conditions of Rolle’s theorem are not satisfied. In fact, the conclusion does not hold here; there is no c∈ (−1,1) such that f′(c)=0.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.22</span><span>Since $\kf(x)=|x|-1$ is not differentiable at $x=0,$ the conditions of <span data-concept="rolles-theorem">Rolle’s theorem</span> are not satisfied. In fact, the conclusion does not hold here; there is no $c\in (-1,1)$ such that $\kfprime(c)=0.$</span></div>
+</figure>
+<p>Let’s now consider <span data-concept="function">functions</span> that satisfy the conditions of <span data-concept="rolles-theorem">Rolle’s theorem</span> and calculate explicitly the points $c$ where $\kfprime(c)=0.$</p>
+<div class="example" id="fs-id1165043010693">
+<h3>Example 4.14 · Using Rolle’s Theorem</h3>
+<p>For each of the following <span data-concept="function">functions</span>, verify that the <span data-concept="function">function</span> satisfies the criteria stated in <span data-concept="rolles-theorem">Rolle’s theorem</span> and find all values $c$ in the given interval where $\kfprime(c)=0.$</p>
+<p>a. <span data-fn="x^2+2x">$\kf(x)={x}^{2}+2x$</span> over $[-2,0]$</p>
+<p>b. <span data-fn="x^3-4x">$\kf(x)={x}^{3}-4x$</span> over $[-2,2]$</p>
+<h4>Solution</h4>
+<p>a. Since $\kf$ is a <span data-concept="polynomial-function">polynomial</span>, it is continuous and differentiable everywhere. In addition, $\kf(-2)=0=\kf(0).$ Therefore, $\kf$ satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. We conclude that there exists at least one value $c\in (-2,0)$ such that $\kfprime(c)=0.$ Since $\kfprime(x)=2x+2=2(x+1),$ we see that $\kfprime(c)=2(c+1)=0$ implies $c=-1$ as shown in the following graph.</p>
+<figure class="sim" id="fig-rolle-parabola" data-figure="4.23" data-original="/media/ch04/CNX_Calc_Figure_04_04_003.jpg" data-original-caption="This function is continuous and differentiable over [−2,0], f′(c)=0 when c=−1.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.23</span><span>This <span data-concept="function">function</span> is continuous and differentiable over $[-2,0],$ $\kfprime(c)=0$ when $c=-1.$</span></div>
+</figure>
+<p>b. As in part a. $\kf$ is a <span data-concept="polynomial-function">polynomial</span> and therefore is continuous and differentiable everywhere. Also, $\kf(-2)=0=\kf(2).$ That said, $\kf$ satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. Differentiating, we find that <span data-fn="3x^2-4">$\kfprime(x)=3{x}^{2}-4.$</span> Therefore, $\kfprime(c)=0$ when $x=\pm \frac{2}{\sqrt{3}}.$ Both points are in the interval $[-2,2],$ and, therefore, both points satisfy the conclusion of <span data-concept="rolles-theorem">Rolle’s theorem</span> as shown in the following graph.</p>
+<figure class="sim" id="fig-rolle-cubic" data-figure="4.24" data-original="/media/ch04/CNX_Calc_Figure_04_04_004.jpg" data-original-caption="For this polynomial over [−2,2], f′(c)=0 at x=±2/√(3).">
+  <div class="sim-head"><span class="eyebrow">Figure 4.24</span><span>For this <span data-concept="polynomial-function">polynomial</span> over $[-2,2],$ $\kfprime(c)=0$ at $x=\pm 2/\sqrt{3}.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165043010693"></div>
+</section>
+
+<section id="mvt-meaning">
+<h2>The <span data-concept="mean-value-theorem">Mean Value Theorem</span> and Its Meaning</h2>
+<p class="cite-target"><span data-concept="rolles-theorem">Rolle’s theorem</span> is a special case of the <span data-concept="mean-value-theorem">Mean Value Theorem</span>. In <span data-concept="rolles-theorem">Rolle’s theorem</span>, we consider <span data-concept="differentiable-function">differentiable functions</span> $\kf$ defined on a closed interval $[a,b]$ with $\kf(a)=\kf(b)$. The <span data-concept="mean-value-theorem">Mean Value Theorem</span> generalizes <span data-concept="rolles-theorem">Rolle’s theorem</span> by considering <span data-concept="function">functions</span> that do not necessarily have equal value at the endpoints. Consequently, we can view the <span data-concept="mean-value-theorem">Mean Value Theorem</span> as a slanted version of <span data-concept="rolles-theorem">Rolle’s theorem</span> (Figure 4.25). The <span data-concept="mean-value-theorem">Mean Value Theorem</span> states that if $\kf$ is continuous over the closed interval $[a,b]$ and differentiable over the open interval $(a,b),$ then there exists a point $c\in (a,b)$ such that the <span data-concept="tangent-line">tangent line</span> to the graph of $\kf$ at $c$ is parallel to the <span data-concept="secant">secant line</span> connecting $(a,\kf(a))$ and $(b,\kf(b)).$</p>
+<figure class="sim" id="sim-mean-value" data-figure="4.25 + 4.26" data-original="/media/ch04/CNX_Calc_Figure_04_04_010.jpg,/media/ch04/CNX_Calc_Figure_04_04_011.jpg" data-original-caption="(Figure 4.25) The Mean Value Theorem says that for a function that meets its conditions, at some point the tangent line has the same slope as the secant line between the ends. For this function, there are two values c₁ and c₂ such that the tangent line to f at c₁ and c₂ has the same slope as the secant line. (Figure 4.26) The value g(x) is the vertical difference between the point (x, f(x)) and the point (x, y) on the secant line connecting (a, f(a)) and (b, f(b)).">
+  <div class="sim-head"><span class="eyebrow">Figure 4.25 + 4.26</span><span>The <span data-concept="mean-value-theorem">Mean Value Theorem</span> as a slanted <span data-concept="rolles-theorem">Rolle’s theorem</span>. Above, the <span data-concept="secant">secant line</span> joins $(a,\kf(a))$ and $(b,\kf(b))$, and the <span data-concept="tangent-line">tangent line</span> is drawn where it is parallel to the secant; for this <span data-concept="function">function</span> and the whole interval there are two such points, $c_1$ and $c_2$. Below, $\kg(x)$ is the vertical difference between the curve and the secant: it is $0$ at $a$ and $b$, and its horizontal tangents fall at the same points $c$. Move $a$ or $b$; at the dashed circle on $b$, $\kf(a)=\kf(b)$ and the theorem is Rolle’s.</span></div>
+</figure>
+<div class="note" id="mean-value-theorem">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="mean-value-theorem">Mean Value Theorem</span></h3>
+<p>Let $\kf$ be continuous over the closed interval $[a,b]$ and differentiable over the open interval $(a,b).$ Then, there exists at least one point $c\in (a,b)$ such that</p>
+$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
+</div>
+<h3 id="mvt-proof">Proof</h3>
+<p>The proof follows from <span data-concept="rolles-theorem">Rolle’s theorem</span> by introducing an appropriate <span data-concept="function">function</span> that satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. Consider the line connecting $(a,\kf(a))$ and $(b,\kf(b)).$ Since the slope of that line is</p>
+$$\frac{f(b)-\kf(a)}{b-a}$$
+<p>and the line passes through the point $(a,\kf(a)),$ the equation of that line can be written as</p>
+$$y=\frac{f(b)-\kf(a)}{b-a}(x-a)+\kf(a).$$
+<p>Let $\kg(x)$ denote the vertical difference between the point $(x,\kf(x))$ and the point $(x,y)$ on that line. Therefore,</p>
+$$\kg(x)=\kf(x)-[\frac{f(b)-\kf(a)}{b-a}(x-a)+\kf(a)]\text{.}$$
+<p>Since the graph of $\kf$ intersects the <span data-concept="secant">secant line</span> when $x=a$ and $x=b,$ we see that $\kg(a)=0=\kg(b).$ Since $\kf$ is a <span data-concept="differentiable-function">differentiable function</span> over $(a,b),$ $\kg$ is also a <span data-concept="differentiable-function">differentiable function</span> over $(a,b).$ Furthermore, since $\kf$ is continuous over $[a,b],$ $\kg$ is also continuous over $[a,b].$ Therefore, $\kg$ satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. Consequently, there exists a point $c\in (a,b)$ such that $\kgprime(c)=0.$ Since</p>
+$$\kgprime(x)=\kfprime(x)-\frac{f(b)-\kf(a)}{b-a},$$
+<p>we see that</p>
+$$\kgprime(c)=\kfprime(c)-\frac{f(b)-\kf(a)}{b-a}.$$
+<p>Since $\kgprime(c)=0,$ we conclude that</p>
+$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
+<p>□</p>
+<div class="example" id="fs-id1165042979713">
+<h3>Example 4.15 · Verifying that the Mean Value Theorem Applies</h3>
+<p>For <span data-fn="sqrt(x)">$\kf(x)=\sqrt{x}$</span> over the interval $[0,9],$ show that $\kf$ satisfies the hypothesis of the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, and therefore there exists at least one value $c\in (0,9)$ such that $\kfprime(c)$ is equal to the slope of the line connecting $(0,\kf(0))$ and $(9,\kf(9)).$ Find these values $c$ guaranteed by the <span data-concept="mean-value-theorem">Mean Value Theorem</span>.</p>
+<h4>Solution</h4>
+<p>We know that <span data-fn="sqrt(x)">$\kf(x)=\sqrt{x}$</span> is continuous over $[0,9]$ and differentiable over $(0,9).$ Therefore, $\kf$ satisfies the hypotheses of the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, and there must exist at least one value $c\in (0,9)$ such that $\kfprime(c)$ is equal to the slope of the line connecting $(0,\kf(0))$ and $(9,\kf(9))$ (Figure 4.27). To determine which value(s) of $c$ are guaranteed, first calculate the <span data-concept="derivative">derivative</span> of $\kf.$ The <span data-concept="derivative">derivative</span> <span data-fn="1/((2sqrt(x)))">$\kfprime(x)=\frac{1}{(2\sqrt{x})}.$</span> The slope of the line connecting $(0,\kf(0))$ and $(9,\kf(9))$ is given by</p>
+$$\frac{f(9)-\kf(0)}{9-0}=\frac{\sqrt{9}-\sqrt{0}}{9-0}=\frac{3}{9}=\frac{1}{3}.$$
+<p>We want to find $c$ such that $\kfprime(c)=\frac{1}{3}.$ That is, we want to find $c$ such that</p>
+$$\frac{1}{2\sqrt{c}}=\frac{1}{3}.$$
+<p>Solving this equation for $c,$ we obtain $c=\frac{9}{4}.$ At this point, the slope of the <span data-concept="tangent-line">tangent line</span> equals the slope of the line joining the endpoints.</p>
+<figure class="sim" id="fig-mvt-root" data-figure="4.27" data-original="/media/ch04/CNX_Calc_Figure_04_04_006.jpg" data-original-caption="The slope of the tangent line at c=9/4 is the same as the slope of the line segment connecting (0,0) and (9,3).">
+  <div class="sim-head"><span class="eyebrow">Figure 4.27</span><span>The slope of the <span data-concept="tangent-line">tangent line</span> at $c=9/4$ is the same as the slope of the line segment connecting $(0,0)$ and $(9,3).$</span></div>
+</figure>
+</div>
+<p>One application that helps illustrate the <span data-concept="mean-value-theorem">Mean Value Theorem</span> involves <span data-concept="velocity">velocity</span>. For example, suppose we drive a car for 1 h down a straight road with an <span data-concept="average-velocity">average velocity</span> of 45 mph. Let $\ks(t)$ and $\kv(t)$ denote the position and <span data-concept="velocity">velocity</span> of the car, respectively, for $0\le t\le 1$ h. Assuming that the <span data-concept="function">position function</span> $\ks(t)$ is differentiable, we can apply the <span data-concept="mean-value-theorem">Mean Value Theorem</span> to conclude that, at some time $c\in (0,1),$ the speed of the car was exactly</p>
+$$\kv(c)=\ksprime(c)=\frac{s(1)-\ks(0)}{1-0}=45\;\text{mph}.$$
+<div class="example" id="fs-id1165042332061">
+<h3>Example 4.16 · Mean Value Theorem and Velocity</h3>
+<p>If a rock is dropped from a height of 100 ft, its position $t$ seconds after it is dropped until it hits the ground is given by the <span data-concept="function">function</span> $\ks(t)=-16{t}^{2}+100.$</p>
+<p>a. Determine how long it takes before the rock hits the ground.</p>
+<p>b. Find the <span data-concept="average-velocity">average velocity</span> ${v}_{\text{avg}}$ of the rock for when the rock is released and the rock hits the ground.</p>
+<p>c. Find the time $t$ guaranteed by the <span data-concept="mean-value-theorem">Mean Value Theorem</span> when the <span data-concept="instantaneous-velocity">instantaneous velocity</span> of the rock is ${v}_{\text{avg}}.$</p>
+<h4>Solution</h4>
+<p>a. When the rock hits the ground, its position is $\ks(t)=0.$ Solving the equation $-16{t}^{2}+100=0$ for $t,$ we find that $t=\pm \frac{5}{2}\;\text{sec}.$ Since we are only considering $t\ge 0,$ the ball will hit the ground $\frac{5}{2}$ sec after it is dropped.</p>
+<p>b. The <span data-concept="average-velocity">average velocity</span> is given by</p>
+$${v}_{\text{avg}}=\frac{s(5/2)-\ks(0)}{5/2-0}=\frac{0-100}{5/2}=-40\;\text{ft/sec}.$$
+<p>c. The <span data-concept="instantaneous-velocity">instantaneous velocity</span> is given by the <span data-concept="derivative">derivative</span> of the <span data-concept="function">position function</span>. Therefore, we need to find a time $t$ such that $\kv(t)=\ksprime(t)={v}_{\text{avg}}=-40\;\text{ft/sec}.$ Since $\ks(t)$ is continuous over the interval $[0,5/2]$ and differentiable over the interval $(0,5/2),$ by the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, there is guaranteed to be a point $c\in (0,5/2)$ such that</p>
+$$\ksprime(c)=\frac{s(5/2)-\ks(0)}{5/2-0}=-40.$$
+<p>Taking the <span data-concept="derivative">derivative</span> of the <span data-concept="function">position function</span> $\ks(t),$ we find that $\ksprime(t)=-32t.$ Therefore, the equation reduces to $\ksprime(c)=-32c=-40.$ Solving this equation for $c,$ we have $c=\frac{5}{4}.$ Therefore, $\frac{5}{4}$ sec after the rock is dropped, the <span data-concept="instantaneous-velocity">instantaneous velocity</span> equals the <span data-concept="average-velocity">average velocity</span> of the rock during its free fall: $-40$ ft/sec.</p>
+<figure class="sim" id="fig-mvt-rock" data-figure="4.28" data-original="/media/ch04/CNX_Calc_Figure_04_04_007.jpg" data-original-caption="At time t=5/4 sec, the velocity of the rock is equal to its average velocity from the time it is dropped until it hits the ground.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.28</span><span>At time $t=5/4$ sec, the <span data-concept="velocity">velocity</span> of the rock is equal to its <span data-concept="average-velocity">average velocity</span> from the time it is dropped until it hits the ground.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042332061"></div>
+</section>
+
+<section id="corollaries">
+<h2>Corollaries of the <span data-concept="mean-value-theorem">Mean Value Theorem</span></h2>
+<p class="cite-target">Let’s now look at three corollaries of the <span data-concept="mean-value-theorem">Mean Value Theorem</span>. These results have important consequences, which we use in upcoming sections.</p>
+<p>At this point, we know the <span data-concept="derivative">derivative</span> of any <span data-concept="constant-function">constant function</span> is zero. The <span data-concept="mean-value-theorem">Mean Value Theorem</span> allows us to conclude that the converse is also true. In particular, if $\kfprime(x)=0$ for all $x$ in some interval $\kI,$ then $\kf(x)$ is constant over that interval. This result may seem intuitively obvious, but it has important implications that are not obvious, and we discuss them shortly.</p>
+<div class="note" id="corollary-1">
+<div class="eyebrow">Corollary</div>
+<h3>Corollary 1: <span data-concept="functions-with-a-derivative-of-zero">Functions with a Derivative of Zero</span></h3>
+<p>Let $\kf$ be differentiable over an interval $\kI.$ If $\kfprime(x)=0$ for all $x\in \kI,$ then $\kf(x)=$ constant for all $x\in \kI.$</p>
+</div>
+<h3 id="corollary-1-proof">Proof</h3>
+<p>Since $\kf$ is differentiable over $\kI,$ $\kf$ must be continuous over $\kI.$ Suppose $\kf(x)$ is not constant for all $x$ in $\kI.$ Then there exist $a,b\in \kI,$ where $a\ne b$ and $\kf(a)\ne \kf(b).$ Choose the notation so that $a\lt b.$ Therefore,</p>
+$$\frac{f(b)-\kf(a)}{b-a}\ne 0.$$
+<p>Since $\kf$ is a <span data-concept="differentiable-function">differentiable function</span>, by the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, there exists $c\in (a,b)$ such that</p>
+$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
+<p>Therefore, there exists $c\in \kI$ such that $\kfprime(c)\ne 0,$ which contradicts the assumption that $\kfprime(x)=0$ for all $x\in \kI.$</p>
+<p>□</p>
+<p>From Corollary 1: <span data-concept="functions-with-a-derivative-of-zero">Functions with a Derivative of Zero</span>, it follows that if two <span data-concept="function">functions</span> have the same <span data-concept="derivative">derivative</span>, they differ by, at most, a constant.</p>
+<div class="note" id="corollary-2">
+<div class="eyebrow">Corollary</div>
+<h3>Corollary 2: <span data-concept="constant-difference-theorem">Constant Difference Theorem</span></h3>
+<p>If $\kf$ and $\kg$ are differentiable over an interval $\kI$ and $\kfprime(x)=\kgprime(x)$ for all $x\in \kI,$ then $\kf(x)=\kg(x)+C$ for some constant $C.$</p>
+</div>
+<h3 id="corollary-2-proof">Proof</h3>
+<p>Let $h(x)=\kf(x)-\kg(x).$ Then, ${h}^{'}(x)=\kfprime(x)-\kgprime(x)=0$ for all $x\in \kI.$ By Corollary 1, there is a constant $C$ such that $h(x)=C$ for all $x\in \kI.$ Therefore, $\kf(x)=\kg(x)+C$ for all $x\in \kI.$</p>
+<p>□</p>
+<p>This fact is important because it means that for a given <span data-concept="function">function</span> $\kf,$ if there exists a <span data-concept="function">function</span> $F$ such that ${F}^{'}(x)=\kf(x);$ then, the only other <span data-concept="function">functions</span> that have a <span data-concept="derivative">derivative</span> equal to $\kf$ are $F(x)+C$ for some constant $C.$ We discuss this result in more detail later in the chapter.</p>
+<p>The third corollary of the <span data-concept="mean-value-theorem">Mean Value Theorem</span> discusses when a <span data-concept="function">function</span> is increasing and when it is decreasing. Recall that a <span data-concept="function">function</span> $\kf$ is increasing over $\kI$ if $\kf({x}_{1})\lt \kf({x}_{2})$ whenever ${x}_{1}\lt {x}_{2},$ whereas $\kf$ is decreasing over $\kI$ if $\kf{(x)}_{1}\gt \kf({x}_{2})$<sup class="fn" data-note="c-decreasing"></sup> whenever ${x}_{1}\lt {x}_{2}.$ Using the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, we can show that if the <span data-concept="derivative">derivative</span> of a <span data-concept="function">function</span> is positive, then the <span data-concept="function">function</span> is increasing; if the <span data-concept="derivative">derivative</span> is negative, then the <span data-concept="function">function</span> is decreasing (Figure 4.29). We make use of this fact in the next section, where we show how to use the <span data-concept="derivative">derivative</span> of a <span data-concept="function">function</span> to locate local maximum and minimum values of the <span data-concept="function">function</span>, and how to determine the shape of the graph.</p>
+<figure class="sim" id="fig-sign-of-derivative" data-figure="4.29" data-original="/media/ch04/CNX_Calc_Figure_04_04_008.jpg" data-original-caption="If a function has a positive derivative over some interval I, then the function increases over that interval I; if the derivative is negative over some interval I, then the function decreases over that interval I.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.29</span><span>If a <span data-concept="function">function</span> has a positive <span data-concept="derivative">derivative</span> over some interval $\kI,$ then the <span data-concept="function">function</span> increases over that interval $\kI;$ if the <span data-concept="derivative">derivative</span> is negative over some interval $\kI,$ then the <span data-concept="function">function</span> decreases over that interval $\kI.$</span></div>
+</figure>
+<div class="note" id="corollary-3">
+<div class="eyebrow">Corollary</div>
+<h3>Corollary 3: <span data-concept="increasing-decreasing-corollary">Increasing and Decreasing Functions</span></h3>
+<p>Let $\kf$ be continuous over the closed interval $[a,b]$ and differentiable over the open interval $(a,b).$</p>
+<ol>
+<li>If $\kfprime(x)\gt 0$ for all $x\in (a,b),$ then $\kf$ is an <span data-concept="increasing-function">increasing function</span> over $[a,b].$</li>
+<li>If $\kfprime(x)\lt 0$ for all $x\in (a,b),$ then $\kf$ is a <span data-concept="decreasing-function">decreasing function</span> over $[a,b].$</li>
+</ol>
+</div>
+<h3 id="corollary-3-proof">Proof</h3>
+<p>We will prove i.; the proof of ii. is similar. Suppose $\kf$ is continuous and differentiable over an interval $\kI$ and $\kfprime(x)\gt 0$ for all $x\in \kI$. By way of contradiction, suppose that $\kf$ is not an <span data-concept="increasing-function">increasing function</span> on $\kI$. Then there exist $a$ and $b$ in $\kI$ such that $a\lt b$, but $\kf(a)\gt \kf(b)$. Since $\kf$ is a <span data-concept="differentiable-function">differentiable function</span> over $\kI$, the <span data-concept="mean-value-theorem">Mean Value Theorem</span> guarantees that there is some value $c\in (a,b)$ such that</p>
+$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
+<p>Now $a\lt b$, so $b-a\gt 0$. Because $\kf(a)\gt \kf(b)$, it follows that $\kf(b)-\kf(a)\lt 0$. It follows that the quotient of $\kf(b)-\kf(a)$ and $b-a$ is negative. So, for c,</p>
+$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}\lt 0.$$
+<p>However, $\kfprime(x)\gt 0$ for all $x\in \kI$ including $c$. This is a contradiction. The assumption that $\kf$ is not an <span data-concept="increasing-function">increasing function</span> on $\kI$ is false. Therefore, $\kf$ must be increasing throughout $\kI$.</p>
+<p>□</p>
+</section>

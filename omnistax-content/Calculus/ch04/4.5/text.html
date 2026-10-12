@@ -1,0 +1,204 @@
+<p>Earlier in this chapter we stated that if a <span data-concept="function">function</span> $\kf$ has a <span data-concept="local-extremum">local extremum</span> at a point $c,$ then $c$ must be a <span data-concept="critical-point">critical point</span> of $\kf.$ However, a <span data-concept="function">function</span> is not guaranteed to have a <span data-concept="local-extremum">local extremum</span> at a <span data-concept="critical-point">critical point</span>. For example, <span data-fn="x^3">$\kf(x)={x}^{3}$</span> has a <span data-concept="critical-point">critical point</span> at $x=0$ since <span data-fn="3x^2">$\kfprime(x)=3{x}^{2}$</span> is zero at $x=0,$ but $\kf$ does not have a <span data-concept="local-extremum">local extremum</span> at $x=0.$ Using the results from the previous section, we are now able to determine whether a <span data-concept="critical-point">critical point</span> of a <span data-concept="function">function</span> actually corresponds to a local extreme value. In this section, we also see how the <span data-concept="higher-order-derivative">second derivative</span> provides information about the shape of a graph by describing whether the graph of a <span data-concept="function">function</span> curves upward or curves downward.</p>
+<section id="first-derivative-test-section">
+<h2>The <span data-concept="first-derivative-test">First Derivative Test</span></h2>
+<p class="cite-target">Corollary $3$ of the <span data-concept="mean-value-theorem">Mean Value Theorem</span> showed that if the <span data-concept="derivative">derivative</span> of a <span data-concept="function">function</span> is positive over an interval $\kI$ then the <span data-concept="function">function</span> is increasing over $\kI.$ On the other hand, if the <span data-concept="derivative">derivative</span> of the <span data-concept="function">function</span> is negative over an interval $\kI,$ then the <span data-concept="function">function</span> is decreasing over $\kI$ as shown in the following figure.</p>
+<figure class="sim" id="fig-increasing-decreasing" data-figure="4.30" data-original="/media/ch04/CNX_Calc_Figure_04_05_001.jpg" data-original-caption="Both functions are increasing over the interval (a,b). At each point x, the derivative f′(x)&gt;0. Both functions are decreasing over the interval (a,b). At each point x, the derivative f′(x)&lt;0.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.30</span><span>Both <span data-concept="function">functions</span> are increasing over the interval $(a,b).$ At each point $x,$ the <span data-concept="derivative">derivative</span> $\kfprime(x)\gt 0.$ Both <span data-concept="function">functions</span> are decreasing over the interval $(a,b).$ At each point $x,$ the <span data-concept="derivative">derivative</span> $\kfprime(x)\lt 0.$</span></div>
+</figure>
+<p>A continuous <span data-concept="function">function</span> $\kf$ has a <span data-concept="local-extremum">local maximum</span> at point $c$ if and only if $\kf$ switches from increasing to decreasing at point $c.$ Similarly, $\kf$ has a <span data-concept="local-extremum">local minimum</span> at $c$ if and only if $\kf$ switches from decreasing to increasing at $c.$ If $\kf$ is a continuous <span data-concept="function">function</span> over an interval $\kI$ containing $c$ and differentiable over $\kI,$ except possibly at $c,$ the only way $\kf$ can switch from increasing to decreasing (or vice versa) at point $c$ is if $\kfprime$ changes sign as $x$ increases through $c.$ If $\kf$ is differentiable at $c,$ the only way that $\kfprime$ can change sign as $x$ increases through $c$ is if $\kfprime(c)=0.$ Therefore, for a <span data-concept="function">function</span> $\kf$ that is continuous over an interval $\kI$ containing $c$ and differentiable over $\kI,$ except possibly at $c,$ the only way $\kf$ can switch from increasing to decreasing (or vice versa) is if $\kfprime(c)=0$ or $\kfprime(c)$ is undefined. Consequently, to locate <span data-concept="local-extremum">local extrema</span> for a <span data-concept="function">function</span> $\kf,$ we look for points $c$ in the domain of $\kf$ such that $\kfprime(c)=0$ or $\kfprime(c)$ is undefined. Recall that such points are called <span data-concept="critical-point">critical points</span> of $\kf.$</p>
+<p>Note that $\kf$ need not have <span data-concept="local-extremum">local extrema</span> at a <span data-concept="critical-point">critical point</span>. The <span data-concept="critical-point">critical points</span> are candidates for <span data-concept="local-extremum">local extrema</span> only. In Figure 4.31, we show that if a continuous <span data-concept="function">function</span> $\kf$ has a <span data-concept="local-extremum">local extremum</span>, it must occur at a <span data-concept="critical-point">critical point</span>, but a <span data-concept="function">function</span> may not have a <span data-concept="local-extremum">local extremum</span> at a <span data-concept="critical-point">critical point</span>. We show that if $\kf$ has a <span data-concept="local-extremum">local extremum</span> at a <span data-concept="critical-point">critical point</span>, then the sign of $\kfprime$ switches as $x$ increases through that point.</p>
+<figure class="sim" id="fig-four-critical-points" data-figure="4.31" data-original="/media/ch04/CNX_Calc_Figure_04_05_002.jpg" data-original-caption="The function f has four critical points: a,b,c, and d. The function f has local maxima at a and d, and a local minimum at b. The function f does not have a local extremum at c. The sign of f′ changes at all local extrema.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.31</span><span>The <span data-concept="function">function</span> $\kf$ has four <span data-concept="critical-point">critical points</span>: $a,b,c,\;\text{and}\;d.$ The <span data-concept="function">function</span> $\kf$ has <span data-concept="local-extremum">local maxima</span> at $a$ and $d,$ and a <span data-concept="local-extremum">local minimum</span> at $b.$ The <span data-concept="function">function</span> $\kf$ does not have a <span data-concept="local-extremum">local extremum</span> at $c.$ The sign of $\kfprime$ changes at all <span data-concept="local-extremum">local extrema</span>.</span></div>
+</figure>
+<p>Using Figure 4.31, we summarize the main results regarding <span data-concept="local-extremum">local extrema</span>.</p>
+<ul>
+<li>If a continuous <span data-concept="function">function</span> $\kf$ has a <span data-concept="local-extremum">local extremum</span>, it must occur at a <span data-concept="critical-point">critical point</span> $c.$</li>
+<li>The <span data-concept="function">function</span> has a <span data-concept="local-extremum">local extremum</span> at the <span data-concept="critical-point">critical point</span> $c$ if and only if the <span data-concept="derivative">derivative</span> $\kfprime$ switches sign as $x$ increases through $c.$</li>
+<li>Therefore, to test whether a <span data-concept="function">function</span> has a <span data-concept="local-extremum">local extremum</span> at a <span data-concept="critical-point">critical point</span> $c,$ we must determine the sign of $\kfprime(x)$ to the left and right of $c.$</li>
+</ul>
+<p>This result is known as the <strong><span data-concept="first-derivative-test">first derivative test</span></strong>.</p>
+<div class="note" id="first-derivative-test">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="first-derivative-test">First Derivative Test</span></h3>
+<p>Suppose that $\kf$ is a continuous <span data-concept="function">function</span> over an interval $\kI$ containing a <span data-concept="critical-point">critical point</span> $c.$ If $\kf$ is differentiable over $\kI,$ except possibly at point $c,$ then $\kf(c)$ satisfies one of the following descriptions:</p>
+<ol>
+<li>If $\kfprime$ changes sign from positive when $x\lt c$ to negative when $x\gt c,$ then $\kf(c)$ is a <span data-concept="local-extremum">local maximum</span> of $\kf.$</li>
+<li>If $\kfprime$ changes sign from negative when $x\lt c$ to positive when $x\gt c,$ then $\kf(c)$ is a <span data-concept="local-extremum">local minimum</span> of $\kf.$</li>
+<li>If $\kfprime$ has the same sign for $x\lt c$ and $x\gt c,$ then $\kf(c)$ is neither a <span data-concept="local-extremum">local maximum</span> nor a <span data-concept="local-extremum">local minimum</span> of $\kf.$</li>
+</ol>
+</div>
+<p>We can summarize the <span data-concept="first-derivative-test">first derivative test</span> as a strategy for locating <span data-concept="local-extremum">local extrema</span>.</p>
+<div class="note" id="first-test-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Using the <span data-concept="first-derivative-test">First Derivative Test</span></h3>
+<p>Consider a <span data-concept="function">function</span> $\kf$ that is continuous over an interval $\kI.$</p>
+<ol>
+<li>Find all <span data-concept="critical-point">critical points</span> of $\kf$ and divide the interval $\kI$ into smaller intervals using the <span data-concept="critical-point">critical points</span> as endpoints.</li>
+<li><p>Analyze the sign of $\kfprime$ in each of the subintervals. If $\kfprime$ is continuous over a given subinterval (which is typically the case), then the sign of $\kfprime$ in that subinterval does not change and, therefore, can be determined by choosing an arbitrary test point $x$ in that subinterval and by evaluating the sign of $\kfprime$ at that test point. Use the sign analysis to determine whether $\kf$ is increasing or decreasing over that interval.</p><p><em>Note:</em> If $\kfprime$ is not continuous throughout $\kI$, then include points of discontinuity along with <span data-concept="critical-point">critical points</span> as endpoints when dividing $\kI$ into subintervals.</p></li>
+<li>Use <span data-concept="first-derivative-test">First Derivative Test</span> and the results of step $2$ to determine whether $\kf$ has a <span data-concept="local-extremum">local maximum</span>, a <span data-concept="local-extremum">local minimum</span>, or neither at each of the <span data-concept="critical-point">critical points</span>.</li>
+</ol>
+</div>
+<p>Now let’s look at how to use this strategy to locate all <span data-concept="local-extremum">local extrema</span> for particular <span data-concept="function">functions</span>.</p>
+<div class="example" id="fs-id1165043423022">
+<h3>Example 4.17 · Using the First Derivative Test to Find Local Extrema</h3>
+<p>Use the <span data-concept="first-derivative-test">first derivative test</span> to find the location of all <span data-concept="local-extremum">local extrema</span> for <span data-fn="x^3-3x^2-9x-1">$\kf(x)={x}^{3}-3{x}^{2}-9x-1.$</span> Use a graphing utility to confirm your results.</p>
+<h4>Solution</h4>
+<p>Step 1. The <span data-concept="derivative">derivative</span> is <span data-fn="3x^2-6x-9">$\kfprime(x)=3{x}^{2}-6x-9.$</span> To find the <span data-concept="critical-point">critical points</span>, we need to find where $\kfprime(x)=0.$ Factoring the <span data-concept="polynomial-function">polynomial</span>, we conclude that the <span data-concept="critical-point">critical points</span> must satisfy</p>
+$$3({x}^{2}-2x-3)=3(x-3)(x+1)=0.$$
+<p>Therefore, the <span data-concept="critical-point">critical points</span> are $x=3,-1.$ Now divide the interval $(-\infty,\infty)$ into the smaller intervals $(-\infty,-1),(-1,3)\;\text{and}\;(3,\infty).$</p>
+<p>Step 2. Since $\kfprime$ is a continuous <span data-concept="function">function</span>, to determine the sign of $\kfprime(x)$ over each subinterval, it suffices to choose a point over each of the intervals $(-\infty,-1),(-1,3)\;\text{and}\;(3,\infty)$ and determine the sign of $\kfprime$ at each of these points. For example, let’s choose $x=-2,x=0,\;\text{and}\;x=4$ as test points.</p>
+<div class="book-table" id="fs-id1165042978447">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfprime(x)=3(x-3)(x+1)$ at Test Point</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,-1)$</td><td>$x=-2$</td><td>$(+)(-)(-)=+$</td><td>$\kf$ is increasing.</td></tr>
+      <tr><td>$(-1,3)$</td><td>$x=0$</td><td>$(+)(-)(+)=-$</td><td>$\kf$ is decreasing.</td></tr>
+      <tr><td>$(3,\infty)$</td><td>$x=4$</td><td>$(+)(+)(+)=+$</td><td>$\kf$ is increasing.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Step 3. Since $\kfprime$ switches sign from positive to negative as $x$ increases through $-1,\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=-1.$ Since $\kfprime$ switches sign from negative to positive as $x$ increases through $3,\kf$ has a <span data-concept="local-extremum">local minimum</span> at $x=3.$ These analytical results agree with the following graph.</p>
+<figure class="sim" id="fig-first-test-cubic" data-figure="4.32" data-original="/media/ch04/CNX_Calc_Figure_04_05_008.jpg" data-original-caption="The function f has a maximum at x=−1 and a minimum at x=3">
+  <div class="sim-head"><span class="eyebrow">Figure 4.32</span><span>The <span data-concept="function">function</span> $\kf$ has a maximum at $x=-1$ and a minimum at $x=3$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165043423022"></div>
+<div class="example" id="fs-id1165043312782">
+<h3>Example 4.18 · Using the First Derivative Test</h3>
+<p>Use the <span data-concept="first-derivative-test">first derivative test</span> to find the location of all <span data-concept="local-extremum">local extrema</span> for <span data-fn="5x^(1/3)-x^(5/3)">$\kf(x)=5{x}^{1/3}-{x}^{5/3}.$</span> Use a graphing utility to confirm your results.</p>
+<h4>Solution</h4>
+<p>Step 1. The <span data-concept="derivative">derivative</span> is</p>
+$$\kfprime(x)=\frac{5}{3}{x}^{-2/3}-\frac{5}{3}{x}^{2/3}=\frac{5}{3{x}^{2/3}}-\frac{5{x}^{2/3}}{3}=\frac{5-5{x}^{4/3}}{3{x}^{2/3}}=\frac{5(1-{x}^{4/3})}{3{x}^{2/3}}.$$
+<p>The <span data-concept="derivative">derivative</span> $\kfprime(x)=0$ when $1-{x}^{4/3}=0.$ Therefore, $\kfprime(x)=0$ at $x=\pm 1.$ The <span data-concept="derivative">derivative</span> $\kfprime(x)$ is undefined at $x=0.$ Therefore, we have three <span data-concept="critical-point">critical points</span>: $x=0,$ $x=1,$ and $x=-1.$ Consequently, divide the interval $(-\infty,\infty)$ into the smaller intervals $(-\infty,-1),(-1,0),(0,1),$ and $(1,\infty).$</p>
+<p>Step 2: Since $\kfprime$ is continuous over each subinterval, it suffices to choose a test point $x$ in each of the intervals from step $1$ and determine the sign of $\kfprime$ at each of these points. The points $x=-2,x=-\frac{1}{2},x=\frac{1}{2},\;\text{and}\;x=2$ are test points for these intervals.</p>
+<div class="book-table" id="fs-id1165043032734">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfprime(x)=\frac{5(1-{x}^{4/3})}{3{x}^{2/3}}$ at Test Point</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,-1)$</td><td>$x=-2$</td><td>$\frac{(+)(-)}{+}=-$</td><td>$\kf$ is decreasing.</td></tr>
+      <tr><td>$(-1,0)$</td><td>$x=-\frac{1}{2}$</td><td>$\frac{(+)(+)}{+}=+$</td><td>$\kf$ is increasing.</td></tr>
+      <tr><td>$(0,1)$</td><td>$x=\frac{1}{2}$</td><td>$\frac{(+)(+)}{+}=+$</td><td>$\kf$ is increasing.</td></tr>
+      <tr><td>$(1,\infty)$</td><td>$x=2$</td><td>$\frac{(+)(-)}{+}=-$</td><td>$\kf$ is decreasing.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Step 3: Since $\kf$ is decreasing over the interval $(-\infty,-1)$ and increasing over the interval $(-1,0),$ $\kf$ has a <span data-concept="local-extremum">local minimum</span> at $x=-1.$ Since $\kf$ is increasing over the interval $(-1,0)$ and the interval $(0,1),$ $\kf$ does not have a <span data-concept="local-extremum">local extremum</span> at $x=0.$ Since $\kf$ is increasing over the interval $(0,1)$ and decreasing over the interval $(1,\infty),\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=1.$ The analytical results agree with the following graph.</p>
+<figure class="sim" id="fig-first-test-root" data-figure="4.33" data-original="/media/ch04/CNX_Calc_Figure_04_05_009.jpg" data-original-caption="The function f has a local minimum at x=−1 and a local maximum at x=1.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.33</span><span>The <span data-concept="function">function</span> <em>f</em> has a <span data-concept="local-extremum">local minimum</span> at $x=-1$ and a <span data-concept="local-extremum">local maximum</span> at $x=1.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165043312782"></div>
+</section>
+
+<section id="concavity-section">
+<h2><span data-concept="concavity">Concavity</span> and Points of Inflection</h2>
+<p class="cite-target">We now know how to determine where a <span data-concept="function">function</span> is increasing or decreasing. However, there is another issue to consider regarding the shape of the graph of a <span data-concept="function">function</span>. If the graph curves, does it curve upward or curve downward? This notion is called the <strong><span data-concept="concavity">concavity</span></strong> of the <span data-concept="function">function</span>.</p>
+<p>Figure 4.34(a) shows a <span data-concept="function">function</span> $\kf$ with a graph that curves upward. As $x$ increases, the slope of the tangent line increases. Thus, since the <span data-concept="derivative">derivative</span> increases as $x$ increases, $\kfprime$ is an <span data-concept="increasing-function">increasing function</span>. We say this <span data-concept="function">function</span> $\kf$ is <span data-concept="concavity">concave up</span>. Figure 4.34(b) shows a <span data-concept="function">function</span> $\kf$ that curves downward. As $x$ increases, the slope of the tangent line decreases. Since the <span data-concept="derivative">derivative</span> decreases as $x$ increases, $\kfprime$ is a <span data-concept="decreasing-function">decreasing function</span>. We say this <span data-concept="function">function</span> $\kf$ is <span data-concept="concavity">concave down</span>.</p>
+<div class="note" id="concavity-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf$ be a <span data-concept="function">function</span> that is differentiable over an open interval $\kI.$ If $\kfprime$ is increasing over $\kI,$ we say $\kf$ is <strong><span data-concept="concavity">concave up</span></strong> over $\kI.$ If $\kfprime$ is decreasing over $\kI,$ we say $\kf$ is <strong><span data-concept="concavity">concave down</span></strong> over $\kI.$</p>
+</div>
+<figure class="sim" id="fig-concavity-cases" data-figure="4.34" data-original="/media/ch04/CNX_Calc_Figure_04_05_010.jpg" data-original-caption="(a), (c) Since f′ is increasing over the interval (a,b), we say f is concave up over (a,b). (b), (d) Since f′ is decreasing over the interval (a,b), we say f is concave down over (a,b).">
+  <div class="sim-head"><span class="eyebrow">Figure 4.34</span><span>(a), (c) Since $\kfprime$ is increasing over the interval $(a,b),$ we say $\kf$ is <span data-concept="concavity">concave up</span> over $(a,b).$ (b), (d) Since $\kfprime$ is decreasing over the interval $(a,b),$ we say $\kf$ is <span data-concept="concavity">concave down</span> over $(a,b).$</span></div>
+</figure>
+<p>In general, without having the graph of a <span data-concept="function">function</span> $\kf,$ how can we determine its <span data-concept="concavity">concavity</span>? By definition, a <span data-concept="function">function</span> $\kf$ is <span data-concept="concavity">concave up</span> if $\kfprime$ is increasing. From Corollary $3,$ we know that if $\kfprime$ is a differentiable <span data-concept="function">function</span>, then $\kfprime$ is increasing if its <span data-concept="derivative">derivative</span> $\kfdprime(x)\gt 0.$ Therefore, a <span data-concept="function">function</span> $\kf$ that is twice differentiable is <span data-concept="concavity">concave up</span> when $\kfdprime(x)\gt 0.$ Similarly, a <span data-concept="function">function</span> $\kf$ is <span data-concept="concavity">concave down</span> if $\kfprime$ is decreasing. We know that a differentiable <span data-concept="function">function</span> $\kfprime$ is decreasing if its <span data-concept="derivative">derivative</span> $\kfdprime(x)\lt 0.$ Therefore, a twice-differentiable <span data-concept="function">function</span> $\kf$ is <span data-concept="concavity">concave down</span> when $\kfdprime(x)\lt 0.$ Applying this logic is known as the <strong><span data-concept="concavity-test">concavity test</span></strong>.</p>
+<div class="note" id="concavity-test">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="concavity-test">Test for Concavity</span></h3>
+<p>Let $\kf$ be a <span data-concept="function">function</span> that is twice differentiable over an interval $\kI.$</p>
+<ol>
+<li>If $\kfdprime(x)\gt 0$ for all $x\in \kI,$ then $\kf$ is <span data-concept="concavity">concave up</span> over $\kI.$</li>
+<li>If $\kfdprime(x)\lt 0$ for all $x\in \kI,$ then $\kf$ is <span data-concept="concavity">concave down</span> over $\kI.$</li>
+</ol>
+</div>
+<p>We conclude that we can determine the <span data-concept="concavity">concavity</span> of a <span data-concept="function">function</span> $\kf$ by looking at the <span data-concept="higher-order-derivative">second derivative</span> of $\kf.$ In addition, we observe that a <span data-concept="function">function</span> $\kf$ can switch <span data-concept="concavity">concavity</span> (Figure 4.35). However, a continuous <span data-concept="function">function</span> can switch <span data-concept="concavity">concavity</span> only at a point $x$ if $\kfdprime(x)=0$ or $\kfdprime(x)$ is undefined. Consequently, to determine the intervals where a <span data-concept="function">function</span> $\kf$ is <span data-concept="concavity">concave up</span> and <span data-concept="concavity">concave down</span>, we look for those values of $x$ where $\kfdprime(x)=0$ or $\kfdprime(x)$ is undefined. When we have determined these points, we divide the domain of $\kf$ into smaller intervals and determine the sign of $\kfdprime$ over each of these smaller intervals. If $\kfdprime$ changes sign as we pass through a point $x,$ then $\kf$ changes <span data-concept="concavity">concavity</span>. It is important to remember that a <span data-concept="function">function</span> $\kf$ may not change <span data-concept="concavity">concavity</span> at a point $x$ even if $\kfdprime(x)=0$ or $\kfdprime(x)$ is undefined. If, however, $\kf$ does change <span data-concept="concavity">concavity</span> at a point $a$ and $\kf$ is continuous at $a,$ we say the point $(a,\kf(a))$ is an <span data-concept="inflection-point">inflection point</span> of $\kf.$</p>
+<div class="note" id="inflection-point-definition">
+<div class="eyebrow">Definition</div>
+<p>If $\kf$ is continuous at $a$ and $\kf$ changes <span data-concept="concavity">concavity</span> at $a,$ the point $(a,\kf(a))$ is an <strong><span data-concept="inflection-point">inflection point</span></strong> of $\kf.$</p>
+</div>
+<figure class="sim" id="fig-inflection-point" data-figure="4.35" data-original="/media/ch04/CNX_Calc_Figure_04_05_004.jpg" data-original-caption="Since f^(″)(x)&gt;0 for xa, the function f is concave down over the interval (a,∞ ). The point (a,f(a)) is an inflection point of f.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.35</span><span>Since $\kfdprime(x)\gt 0$ for $x\lt a,$ the <span data-concept="function">function</span> $\kf$ is <span data-concept="concavity">concave up</span> over the interval $(-\infty,a).$ Since $\kfdprime(x)\lt 0$ for $x\gt a,$ the <span data-concept="function">function</span> $\kf$ is <span data-concept="concavity">concave down</span> over the interval $(a,\infty).$ The point $(a,\kf(a))$ is an <span data-concept="inflection-point">inflection point</span> of $\kf.$</span></div>
+</figure>
+<div class="example" id="fs-id1165042558993">
+<h3>Example 4.19 · Testing for Concavity</h3>
+<p>For the <span data-concept="function">function</span> <span data-fn="x^3-6x^2+9x+30">$\kf(x)={x}^{3}-6{x}^{2}+9x+30,$</span> determine all intervals where $\kf$ is <span data-concept="concavity">concave up</span> and all intervals where $\kf$ is <span data-concept="concavity">concave down</span>. List all <span data-concept="inflection-point">inflection points</span> for $\kf.$ Use a graphing utility to confirm your results.</p>
+<h4>Solution</h4>
+<p>To determine <span data-concept="concavity">concavity</span>, we need to find the <span data-concept="higher-order-derivative">second derivative</span> $\kfdprime(x).$ The first <span data-concept="derivative">derivative</span> is <span data-fn="3x^2-12x+9">$\kfprime(x)=3{x}^{2}-12x+9,$</span> so the <span data-concept="higher-order-derivative">second derivative</span> is <span data-fn="6x-12">$\kfdprime(x)=6x-12.$</span> If the <span data-concept="function">function</span> changes <span data-concept="concavity">concavity</span>, it occurs either when $\kfdprime(x)=0$ or $\kfdprime(x)$ is undefined. Since $\kfdprime$ is defined for all real numbers $x,$ we need only find where $\kfdprime(x)=0.$ Solving the equation $6x-12=0,$ we see that $x=2$ is the only place where $\kf$ could change <span data-concept="concavity">concavity</span>. We now test points over the intervals $(-\infty,2)$ and $(2,\infty)$ to determine the <span data-concept="concavity">concavity</span> of $\kf.$ The points $x=0$ and $x=3$ are test points for these intervals.</p>
+<div class="book-table" id="fs-id1165042960171">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfdprime(x)=6x-12$ at Test Point</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,2)$</td><td>$x=0$</td><td>$-$</td><td>$\kf$ is <span data-concept="concavity">concave down</span></td></tr>
+      <tr><td>$(2,\infty)$</td><td>$x=3$</td><td>$+$</td><td>$\kf$ is <span data-concept="concavity">concave up</span>.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>We conclude that $\kf$ is <span data-concept="concavity">concave down</span> over the interval $(-\infty,2)$ and <span data-concept="concavity">concave up</span> over the interval $(2,\infty).$ Since $\kf$ changes <span data-concept="concavity">concavity</span> at $x=2,$ the point $(2,\kf(2))=(2,32)$ is an <span data-concept="inflection-point">inflection point</span>. Figure 4.36 confirms the analytical results.</p>
+<figure class="sim" id="fig-concavity-cubic" data-figure="4.36" data-original="/media/ch04/CNX_Calc_Figure_04_05_011.jpg" data-original-caption="The given function has a point of inflection at (2,32) where the graph changes concavity.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.36</span><span>The given <span data-concept="function">function</span> has a <span data-concept="inflection-point">point of inflection</span> at $(2,32)$ where the graph changes <span data-concept="concavity">concavity</span>.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042558993"></div>
+<p>We now summarize, in Table 4.1, the information that the first and second <span data-concept="derivative">derivatives</span> of a <span data-concept="function">function</span> $\kf$ provide about the graph of $\kf,$ and illustrate this information in Figure 4.37.</p>
+<div class="book-table" id="fs-id1165043353366">
+  <div class="tcap"><span class="eyebrow">Table 4.1</span><span>What <span data-concept="derivative">Derivatives</span> Tell Us about Graphs</span></div>
+  <table>
+    <thead><tr><th>Sign of $\kfprime$</th><th>Sign of $\kfdprime$</th><th>Is $\kf$ increasing or decreasing?</th><th><span data-concept="concavity">Concavity</span></th></tr></thead>
+    <tbody>
+      <tr><td>Positive</td><td>Positive</td><td>Increasing</td><td><span data-concept="concavity">Concave up</span></td></tr>
+      <tr><td>Positive</td><td>Negative</td><td>Increasing</td><td><span data-concept="concavity">Concave down</span></td></tr>
+      <tr><td>Negative</td><td>Positive</td><td>Decreasing</td><td><span data-concept="concavity">Concave up</span></td></tr>
+      <tr><td>Negative</td><td>Negative</td><td>Decreasing</td><td><span data-concept="concavity">Concave down</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="sim-shape-signs" data-figure="4.37" data-original="/media/ch04/CNX_Calc_Figure_04_05_005.jpg" data-original-caption="Consider a twice-differentiable function f over an open interval I. If f′(x)&gt;0 for all x∈ I, the function is increasing over I. If f′(x)0 for all x∈ I, the function is concave up. If f^(″)(x)&lt;0 for all x∈ I, the function is concave down on I.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.37</span><span>Three graphs on one $x$-axis: $\kf$, its <span data-concept="derivative">derivative</span> $\kfprime$ and its <span data-concept="higher-order-derivative">second derivative</span> $\kfdprime$, each shaded where it is positive. Drag $x$ along $\kf$: where $\kfprime\gt 0$ the <span data-concept="function">function</span> increases, where $\kfdprime\gt 0$ it is <span data-concept="concavity">concave up</span>, and the four combinations are the four rows of Table 4.1. The curve of Figure 4.37 decreases <span data-concept="concavity">concave up</span>, increases <span data-concept="concavity">concave up</span>, increases <span data-concept="concavity">concave down</span> and decreases <span data-concept="concavity">concave down</span>; the examples’ <span data-concept="function">functions</span> are there to try too.</span></div>
+</figure>
+</section>
+
+<section id="second-derivative-test-section">
+<h2>The <span data-concept="second-derivative-test">Second Derivative Test</span></h2>
+<p class="cite-target">The <span data-concept="first-derivative-test">first derivative test</span> provides an analytical tool for finding <span data-concept="local-extremum">local extrema</span>, but the <span data-concept="higher-order-derivative">second derivative</span> can also be used to locate extreme values. Using the <span data-concept="higher-order-derivative">second derivative</span> can sometimes be a simpler method than using the first <span data-concept="derivative">derivative</span>.</p>
+<p>We know that if a continuous <span data-concept="function">function</span> has <span data-concept="local-extremum">local extrema</span>, it must occur at a <span data-concept="critical-point">critical point</span>. However, a <span data-concept="function">function</span> need not have <span data-concept="local-extremum">local extrema</span> at a <span data-concept="critical-point">critical point</span>. Here we examine how the <strong><span data-concept="second-derivative-test">second derivative test</span></strong> can be used to determine whether a <span data-concept="function">function</span> has a <span data-concept="local-extremum">local extremum</span> at a <span data-concept="critical-point">critical point</span>. Let $\kf$ be a twice-differentiable <span data-concept="function">function</span> such that $\kfprime(a)=0$ and $\kfdprime$ is continuous over an open interval $\kI$ containing $a.$ Suppose $\kfdprime(a)\lt 0.$ Since $\kfdprime$ is continuous over $\kI,$ $\kfdprime(x)\lt 0$ for all $x\in \kI$ (Figure 4.38). Then, by Corollary $3,$ $\kfprime$ is a <span data-concept="decreasing-function">decreasing function</span> over $\kI.$ Since $\kfprime(a)=0,$ we conclude that for all $x\in \kI,\kfprime(x)\gt 0$ if $x\lt a$ and $\kfprime(x)\lt 0$ if $x\gt a.$ Therefore, by the <span data-concept="first-derivative-test">first derivative test</span>, $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=a.$ On the other hand, suppose there exists a point $b$ such that $\kfprime(b)=0$ but $\kfdprime(b)\gt 0.$ Since $\kfdprime$ is continuous over an open interval $\kI$ containing $b,$ then $\kfdprime(x)\gt 0$ for all $x\in \kI$ (Figure 4.38). Then, by Corollary $3,\kfprime$ is an <span data-concept="increasing-function">increasing function</span> over $\kI.$ Since $\kfprime(b)=0,$ we conclude that for all $x\in \kI,$ $\kfprime(x)\lt 0$ if $x\lt b$ and $\kfprime(x)\gt 0$ if $x\gt b.$ Therefore, by the <span data-concept="first-derivative-test">first derivative test</span>, $\kf$ has a <span data-concept="local-extremum">local minimum</span> at $x=b.$</p>
+<figure class="sim" id="fig-second-test" data-figure="4.38" data-original="/media/ch04/CNX_Calc_Figure_04_05_006.jpg" data-original-caption="Consider a twice-differentiable function f such that f^(″) is continuous. Since f′(a)=0 and f^(″)(a)a. As a result, f has a local maximum at x=a. Since f′(b)=0 and f^(″)(b)&gt;0, there is an interval I containing b such that for all x in I, f is decreasing if xb. As a result, f has a local minimum at x=b.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.38</span><span>Consider a twice-differentiable <span data-concept="function">function</span> $\kf$ such that $\kfdprime$ is continuous. Since $\kfprime(a)=0$ and $\kfdprime(a)\lt 0,$ there is an interval $\kI$ containing $a$ such that for all $x$ in $\kI,$ $\kf$ is increasing if $x\lt a$ and $\kf$ is decreasing if $x\gt a.$ As a result, $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=a.$ Since $\kfprime(b)=0$ and $\kfdprime(b)\gt 0,$ there is an interval $\kI$ containing $b$ such that for all $x$ in $\kI,$ $\kf$ is decreasing if $x\lt b$ and $\kf$ is increasing if $x\gt b.$ As a result, $\kf$ has a <span data-concept="local-extremum">local minimum</span> at $x=b.$</span></div>
+</figure>
+<div class="note" id="second-derivative-test">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="second-derivative-test">Second Derivative Test</span></h3>
+<p>Suppose $\kfprime(c)=0,\kfdprime$ is continuous over an interval containing $c.$</p>
+<ol>
+<li>If $\kfdprime(c)\gt 0,$ then $\kf$ has a <span data-concept="local-extremum">local minimum</span> at $c.$</li>
+<li>If $\kfdprime(c)\lt 0,$ then $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $c.$</li>
+<li>If $\kfdprime(c)=0,$ then the test is inconclusive.</li>
+</ol>
+</div>
+<p>Note that for case iii. when $\kfdprime(c)=0,$ then $\kf$ may have a <span data-concept="local-extremum">local maximum</span>, <span data-concept="local-extremum">local minimum</span>, or neither at $c.$ For example, the <span data-concept="function">functions</span> <span data-fn="x^3">$\kf(x)={x}^{3},$</span> <span data-fn="x^4">$\kf(x)={x}^{4},$</span> and <span data-fn="-x^4">$\kf(x)=-{x}^{4}$</span> all have <span data-concept="critical-point">critical points</span> at $x=0.$ In each case, the <span data-concept="higher-order-derivative">second derivative</span> is zero at $x=0.$ However, the <span data-concept="function">function</span> <span data-fn="x^4">$\kf(x)={x}^{4}$</span> has a <span data-concept="local-extremum">local minimum</span> at $x=0$ whereas the <span data-concept="function">function</span> <span data-fn="-x^4">$\kf(x)=-{x}^{4}$</span> has a <span data-concept="local-extremum">local maximum</span> at $x,$<sup class="fn" data-note="c-local-maximum-at-0"></sup> and the <span data-concept="function">function</span> <span data-fn="x^3">$\kf(x)={x}^{3}$</span> does not have a <span data-concept="local-extremum">local extremum</span> at $x=0.$</p>
+<p>Let’s now look at how to use the <span data-concept="second-derivative-test">second derivative test</span> to determine whether $\kf$ has a <span data-concept="local-extremum">local maximum</span> or <span data-concept="local-extremum">local minimum</span> at a <span data-concept="critical-point">critical point</span> $c$ where $\kfprime(c)=0.$</p>
+<div class="example" id="fs-id1165042710827">
+<h3>Example 4.20 · Using the Second Derivative Test</h3>
+<p>Use the <span data-concept="higher-order-derivative">second derivative</span> to find the location of all <span data-concept="local-extremum">local extrema</span> for <span data-fn="x^5-5x^3">$\kf(x)={x}^{5}-5{x}^{3}.$</span></p>
+<h4>Solution</h4>
+<p>To apply the <span data-concept="second-derivative-test">second derivative test</span>, we first need to find <span data-concept="critical-point">critical points</span> $c$ where $\kfprime(c)=0.$ The <span data-concept="derivative">derivative</span> is <span data-fn="5x^4-15x^2">$\kfprime(x)=5{x}^{4}-15{x}^{2}.$</span> Therefore, $\kfprime(x)=5{x}^{4}-15{x}^{2}=5{x}^{2}({x}^{2}-3)=0$ when $x=0,\pm \sqrt{3}.$</p>
+<p>To determine whether $\kf$ has <span data-concept="local-extremum">local extrema</span> at any of these points, we need to evaluate the sign of $\kfdprime$ at these points. The <span data-concept="higher-order-derivative">second derivative</span> is</p>
+$$\kfdprime(x)=20{x}^{3}-30x=10x(2{x}^{2}-3).$$
+<p>In the following table, we evaluate the <span data-concept="higher-order-derivative">second derivative</span> at each of the <span data-concept="critical-point">critical points</span> and use the <span data-concept="second-derivative-test">second derivative test</span> to determine whether $\kf$ has a <span data-concept="local-extremum">local maximum</span> or <span data-concept="local-extremum">local minimum</span> at any of these points.</p>
+<div class="book-table" id="fs-id1165042705774">
+  <table>
+    <thead><tr><th>$x$</th><th>$\kfdprime(x)$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$-\sqrt{3}$</td><td>$-30\sqrt{3}$</td><td><span data-concept="local-extremum">Local maximum</span></td></tr>
+      <tr><td class="num">$0$</td><td class="num">$0$</td><td><span data-concept="second-derivative-test">Second derivative test</span> is inconclusive</td></tr>
+      <tr><td>$\sqrt{3}$</td><td>$30\sqrt{3}$</td><td><span data-concept="local-extremum">Local minimum</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<p>By the <span data-concept="second-derivative-test">second derivative test</span>, we conclude that $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=-\sqrt{3}$ and $\kf$ has a <span data-concept="local-extremum">local minimum</span> at $x=\sqrt{3}.$ The <span data-concept="second-derivative-test">second derivative test</span> is inconclusive at $x=0.$ To determine whether $\kf$ has <span data-concept="local-extremum">local extrema</span> at $x=0,$ we apply the <span data-concept="first-derivative-test">first derivative test</span>. To evaluate the sign of <span data-fn="5x^2(x^2-3)">$\kfprime(x)=5{x}^{2}({x}^{2}-3)$</span> for $x\in (-\sqrt{3},0)$ and $x\in (0,\sqrt{3}),$ let $x=-1$ and $x=1$ be the two test points. Since $\kfprime(-1)\lt 0$ and $\kfprime(1)\lt 0,$ we conclude that $\kf$ is decreasing on both intervals and, therefore, $\kf$ does not have <span data-concept="local-extremum">local extrema</span> at $x=0$ as shown in the following graph.</p>
+<figure class="sim" id="fig-second-test-quintic" data-figure="4.39" data-original="/media/ch04/CNX_Calc_Figure_04_05_007.jpg" data-original-caption="The function f has a local maximum at x=−√(3) and a local minimum at x=√(3)">
+  <div class="sim-head"><span class="eyebrow">Figure 4.39</span><span>The <span data-concept="function">function</span> $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=-\sqrt{3}$ and a <span data-concept="local-extremum">local minimum</span> at $x=\sqrt{3}$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042710827"></div>
+<p>We have now developed the tools we need to determine where a <span data-concept="function">function</span> is increasing and decreasing, as well as acquired an understanding of the basic shape of the graph. In the next section we discuss what happens to a <span data-concept="function">function</span> as $x\to \pm \infty.$ At that point, we have enough tools to provide accurate graphs of a large variety of <span data-concept="function">functions</span>.</p>
+</section>

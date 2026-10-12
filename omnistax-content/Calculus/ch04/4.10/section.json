@@ -1,0 +1,1156 @@
+{
+ "id": "4.10",
+ "module": "m53621",
+ "chapter": "4",
+ "title": "Antiderivatives",
+ "short": "Antiderivatives",
+ "lead": "Differentiation can be run backward: given a function, find a function whose derivative it is. This section defines antiderivatives and the indefinite integral, gives the first integration formulas, and uses antiderivatives to solve initial-value problems, such as finding how far a braking car travels.",
+ "objectives": [
+  "Find the general antiderivative of a given function.",
+  "Explain the terms and notation used for an indefinite integral.",
+  "State the power rule for integrals.",
+  "Use antidifferentiation to solve simple initial-value problems."
+ ],
+ "summary_html": "<ul><li>If $\\kF$ is an <span data-concept=\"antiderivative\">antiderivative</span> of $\\kf,$ then every <span data-concept=\"antiderivative\">antiderivative</span> of $\\kf$ is of the form $\\kF(x)+C$ for some constant $C.$</li><li>Solving the <span data-concept=\"initial-value-problem\">initial-value problem</span></li></ul>$$\\kdydx=\\kf(x),y({x}_{0})={y}_{0}$$<p>requires us first to find the set of <span data-concept=\"antiderivative\">antiderivatives</span> of $\\kf$ and then to look for the particular <span data-concept=\"antiderivative\">antiderivative</span> that also satisfies the <span data-concept=\"initial-value-problem\">initial condition</span>.</p><section id=\"\"><h2></h2>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 466 and 468 (showing an antiderivative) and 522 and 524 (true or false, with a counterexample), which the key leaves unanswered. The other 26 even-numbered section exercises have no answer in the key and are computational, so they are left out: 470, 472, 474, 476, 478, 480, 482, 484, 486, 488, 490, 492, 494, 496, 498, 500, 502, 504, 506, 508, 510, 512, 514, 516, 518, 520. The Chapter Review Exercises are printed here and set with the sections they test; review exercise 545 is set here, and the unkeyed computational review exercises 530, 532, 534, 536, 538, 540, 542, 544, 546, 548, 550 and 552 are left out.",
+ "figures": [
+  {
+   "id": "sim-antiderivative-family",
+   "kind": "sim",
+   "number": "4.85",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_10_001.jpg"
+   ],
+   "original_caption": "The family of antiderivatives of 2x consists of all functions of the form x²+C, where C is any real number.",
+   "draws": [
+    "integral",
+    "line",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-initial-value",
+   "kind": "sim",
+   "number": "4.86",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_10_002.jpg"
+   ],
+   "original_caption": "Some of the solution curves of the differential equation (dy)/dx=6x² are displayed. The function y=2x³+3 satisfies the differential equation and the initial condition y(1)=5.",
+   "draws": [
+    "integral",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "antiderivative-definition",
+   "concept": "antiderivative",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-antiderivative",
+   "concept": "general-form-of-an-antiderivative",
+   "verb": "introduces"
+  },
+  {
+   "span": "reverse-of-differentiation",
+   "concept": "constant-difference-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042616955",
+   "concept": "general-form-of-an-antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "indefinite-integral-definition",
+   "concept": "indefinite-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-rule-for-integrals",
+   "concept": "power-rule-for-integrals",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043393824",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "integral-properties",
+   "concept": "properties-of-indefinite-integrals",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043248811",
+   "concept": "properties-of-indefinite-integrals",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "initial-value-problems",
+   "concept": "initial-value-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043327648",
+   "concept": "initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042640762",
+   "concept": "initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042640762",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042640762",
+   "concept": "velocity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp49",
+   "source_id": "fs-id1165042966615",
+   "source_number": "Checkpoint 4.49",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042616955"
+   },
+   "cite": "reverse-of-differentiation",
+   "prompt": "Find all antiderivatives of $f(x)=\\sin x.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "What function has a derivative of $\\sin x?$",
+    "solution": "$-\\cos x+C$"
+   }
+  },
+  {
+   "id": "cp50",
+   "source_id": "fs-id1165043078181",
+   "source_number": "Checkpoint 4.50",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043393824"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "Verify that ${\\displaystyle \\int x\\;\\cos x\\;dx=x\\;\\sin x+\\cos x+C.}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Calculate $\\frac{d}{dx}(x\\;\\sin x+\\cos x+C).$",
+    "solution": "$\\frac{d}{dx}(x\\;\\sin x+\\cos x+C)=\\sin x+x\\;\\cos x-\\sin x=x\\;\\cos x$"
+   }
+  },
+  {
+   "id": "cp51",
+   "source_id": "fs-id1165043426269",
+   "source_number": "Checkpoint 4.51",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043248811"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "Evaluate ${\\displaystyle \\int (4{x}^{3}-5{x}^{2}+x-7)dx}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Integrate each term in the integrand separately, making use of the power rule.",
+    "solution": "${x}^{4}-\\frac{5}{3}{x}^{3}+\\frac{1}{2}{x}^{2}-7x+C$"
+   }
+  },
+  {
+   "id": "cp52",
+   "source_id": "fs-id1165042327337",
+   "source_number": "Checkpoint 4.52",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043327648"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "Solve the initial value problem $\\frac{dy}{dx}=3{x}^{-2},y(1)=2.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Find all antiderivatives of $f(x)=3{x}^{-2}.$",
+    "solution": "$y=-\\frac{3}{x}+5$"
+   }
+  },
+  {
+   "id": "cp53",
+   "source_id": "fs-id1165042708226",
+   "source_number": "Checkpoint 4.53",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042640762"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "Suppose the car is traveling at the rate of $44$ ft/sec. How long does it take for the car to stop? How far will the car travel?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$v(t)=-15t+44.$",
+    "solution": "$2.93\\;\\text{sec},\\;64.5\\;\\text{ft}$"
+   }
+  },
+  {
+   "id": "e465",
+   "source_id": "fs-id1165042709633",
+   "source_number": "465",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reverse-of-differentiation",
+   "prompt": "<p>For the following exercises, show that $F(x)$ are antiderivatives of $f(x).$</p><p>$F(x)=5{x}^{3}+2{x}^{2}+3x+1,f(x)=15{x}^{2}+4x+3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${F}^{'}(x)=15{x}^{2}+4x+3$"
+   }
+  },
+  {
+   "id": "e466",
+   "source_id": "fs-id1165042364150",
+   "source_number": "466",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reverse-of-differentiation",
+   "prompt": "<p>For the following exercises, show that $F(x)$ are antiderivatives of $f(x).$</p><p>$F(x)={x}^{2}+4x+1,f(x)=2x+4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "${F}^{'}(x)=2x+4=f(x),$ so $F$ is an antiderivative of $f.$"
+   }
+  },
+  {
+   "id": "e467",
+   "source_id": "fs-id1165043317346",
+   "source_number": "467",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reverse-of-differentiation",
+   "prompt": "<p>For the following exercises, show that $F(x)$ are antiderivatives of $f(x).$</p><p>$F(x)={x}^{2}{e}^{x},f(x)={e}^{x}({x}^{2}+2x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${F}^{'}(x)=2x{e}^{x}+{x}^{2}{e}^{x}$"
+   }
+  },
+  {
+   "id": "e468",
+   "source_id": "fs-id1165042659411",
+   "source_number": "468",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reverse-of-differentiation",
+   "prompt": "<p>For the following exercises, show that $F(x)$ are antiderivatives of $f(x).$</p><p>$F(x)=\\cos x,f(x)=-\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "${F}^{'}(x)=-\\sin x=f(x),$ so $F$ is an antiderivative of $f.$"
+   }
+  },
+  {
+   "id": "e469",
+   "source_id": "fs-id1165042640878",
+   "source_number": "469",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reverse-of-differentiation",
+   "prompt": "<p>For the following exercises, show that $F(x)$ are antiderivatives of $f(x).$</p><p>$F(x)={e}^{x},f(x)={e}^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${F}^{'}(x)={e}^{x}$"
+   }
+  },
+  {
+   "id": "e471",
+   "source_id": "fs-id1165043390814",
+   "source_number": "471",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reverse-of-differentiation",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative of the function.</p><p>$f(x)={e}^{x}-3{x}^{2}+\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)={e}^{x}-{x}^{3}-\\cos (x)+C$"
+   }
+  },
+  {
+   "id": "e473",
+   "source_id": "fs-id1165042659507",
+   "source_number": "473",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reverse-of-differentiation",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative of the function.</p><p>$f(x)=x-1+4\\;\\sin (2x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\frac{{x}^{2}}{2}-x-2\\;\\cos (2x)+C$"
+   }
+  },
+  {
+   "id": "e475",
+   "source_id": "fs-id1165043427405",
+   "source_number": "475",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative $F(x)$ of each function $f(x).$</p><p>$f(x)=x+12{x}^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\frac{1}{2}{x}^{2}+4{x}^{3}+C$"
+   }
+  },
+  {
+   "id": "e477",
+   "source_id": "fs-id1165042657750",
+   "source_number": "477",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative $F(x)$ of each function $f(x).$</p><p>$f(x)={(\\sqrt{x})}^{3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\frac{2}{5}{(\\sqrt{x})}^{5}+C$"
+   }
+  },
+  {
+   "id": "e479",
+   "source_id": "fs-id1165042707199",
+   "source_number": "479",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative $F(x)$ of each function $f(x).$</p><p>$f(x)=\\frac{{x}^{1/3}}{{x}^{2/3}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\frac{3}{2}{x}^{2/3}+C$"
+   }
+  },
+  {
+   "id": "e481",
+   "source_id": "fs-id1165042364505",
+   "source_number": "481",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative $F(x)$ of each function $f(x).$</p><p>$f(x)={\\sec}^{2}(x)+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=x+\\tan (x)+C$"
+   }
+  },
+  {
+   "id": "e483",
+   "source_id": "fs-id1165043281655",
+   "source_number": "483",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative $F(x)$ of each function $f(x).$</p><p>$f(x)={\\sin}^{2}(x)\\cos (x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\frac{1}{3}{\\sin}^{3}(x)+C$"
+   }
+  },
+  {
+   "id": "e485",
+   "source_id": "fs-id1165042660274",
+   "source_number": "485",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative $F(x)$ of each function $f(x).$</p><p>$f(x)=\\frac{1}{2}{\\csc}^{2}(x)+\\frac{1}{{x}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=-\\frac{1}{2}\\;\\cot (x)-\\frac{1}{x}+C$"
+   }
+  },
+  {
+   "id": "e487",
+   "source_id": "fs-id1165043173769",
+   "source_number": "487",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative $F(x)$ of each function $f(x).$</p><p>$f(x)=4\\;\\csc x\\;\\cot x-\\sec x\\;\\tan x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=-\\sec x-4\\;\\csc x+C$"
+   }
+  },
+  {
+   "id": "e489",
+   "source_id": "fs-id1165042676267",
+   "source_number": "489",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, find the general form for the antiderivative $F(x)$ of each function $f(x).$</p><p>$f(x)=\\frac{1}{2}{e}^{-4x}+\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=-\\frac{1}{8}{e}^{-4x}-\\cos x+C$"
+   }
+  },
+  {
+   "id": "e491",
+   "source_id": "fs-id1165042681137",
+   "source_number": "491",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, evaluate the integral.</p><p>${\\displaystyle \\int \\sin x\\;dx}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\cos x+C$"
+   }
+  },
+  {
+   "id": "e493",
+   "source_id": "fs-id1165042461202",
+   "source_number": "493",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, evaluate the integral.</p><p>${\\displaystyle \\int \\frac{3{x}^{2}+2}{{x}^{2}}dx}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$3x-\\frac{2}{x}+C$"
+   }
+  },
+  {
+   "id": "e495",
+   "source_id": "fs-id1165042374915",
+   "source_number": "495",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, evaluate the integral.</p><p>${\\displaystyle \\int (4\\sqrt{x}+\\sqrt[4]{x})dx}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{8}{3}{x}^{3/2}+\\frac{4}{5}{x}^{5/4}+C$"
+   }
+  },
+  {
+   "id": "e497",
+   "source_id": "fs-id1165042700339",
+   "source_number": "497",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, evaluate the integral.</p><p>${\\displaystyle \\int \\frac{14{x}^{3}+2x+1}{{x}^{3}}dx}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$14x-\\frac{2}{x}-\\frac{1}{2{x}^{2}}+C$"
+   }
+  },
+  {
+   "id": "e499",
+   "source_id": "fs-id1165042668731",
+   "source_number": "499",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following exercises, solve the initial value problem.</p><p>${f}^{'}(x)={x}^{-3},f(1)=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(x)=-\\frac{1}{2{x}^{2}}+\\frac{3}{2}$"
+   }
+  },
+  {
+   "id": "e501",
+   "source_id": "fs-id1165042315622",
+   "source_number": "501",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following exercises, solve the initial value problem.</p><p>${f}^{'}(x)=\\cos x+{\\sec}^{2}(x),f(\\frac{\\pi}{4})=2+\\frac{\\sqrt{2}}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(x)=\\sin x+\\tan x+1$"
+   }
+  },
+  {
+   "id": "e503",
+   "source_id": "fs-id1165042684316",
+   "source_number": "503",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following exercises, solve the initial value problem.</p><p>${f}^{'}(x)=\\frac{2}{{x}^{2}}-\\frac{{x}^{2}}{2},f(1)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(x)=-\\frac{1}{6}{x}^{3}-\\frac{2}{x}+\\frac{13}{6}$"
+   }
+  },
+  {
+   "id": "e505",
+   "source_id": "fs-id1165042326003",
+   "source_number": "505",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following exercises, find two possible functions $f$ given the second- or third-order derivatives.</p><p>${f}^{''}(x)={e}^{-x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Answers may vary; one possible answer is $f(x)={e}^{-x}$"
+   }
+  },
+  {
+   "id": "e507",
+   "source_id": "fs-id1165042326139",
+   "source_number": "507",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following exercises, find two possible functions $f$ given the second- or third-order derivatives.</p><p>$f''' (x)=\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Answers may vary; one possible answer is $f(x)=-\\sin x$"
+   }
+  },
+  {
+   "id": "e509",
+   "source_id": "fs-id1165042667092",
+   "source_number": "509",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>A car is being driven at a rate of $40$ mph when the brakes are applied. The car decelerates at a constant rate of $10$ ft/sec<sup>2</sup>. How long before the car stops?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5.867,
+    "unit": "sec",
+    "solution": "$5.867$ sec"
+   }
+  },
+  {
+   "id": "e511",
+   "source_id": "fs-id1165042667147",
+   "source_number": "511",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>You are merging onto the freeway, accelerating from rest at a constant rate of $12$ ft/sec<sup>2</sup>. How long does it take you to reach merging speed at $60$ mph?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.333,
+    "unit": "sec",
+    "solution": "$7.333$ sec"
+   }
+  },
+  {
+   "id": "e513",
+   "source_id": "fs-id1165042498534",
+   "source_number": "513",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>A car company wants to ensure its newest model can stop in $8$ sec when traveling at $75$ mph. If we assume constant deceleration, find the value of deceleration that accomplishes this.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$13.75$ ft/sec<sup>2</sup>"
+   }
+  },
+  {
+   "id": "e515",
+   "source_id": "fs-id1165042498620",
+   "source_number": "515",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following exercises, find the antiderivative of the function, assuming $F(0)=0.$</p><p><strong>[T]</strong> $f(x)={x}^{2}+2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\frac{1}{3}{x}^{3}+2x$"
+   }
+  },
+  {
+   "id": "e517",
+   "source_id": "fs-id1165042631784",
+   "source_number": "517",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following exercises, find the antiderivative of the function, assuming $F(0)=0.$</p><p><strong>[T]</strong> $f(x)=\\sin x+2x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)={x}^{2}-\\cos x+1$"
+   }
+  },
+  {
+   "id": "e519",
+   "source_id": "fs-id1165042631917",
+   "source_number": "519",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "initial-value-problems",
+   "prompt": "<p>For the following exercises, find the antiderivative of the function, assuming $F(0)=0.$</p><p><strong>[T]</strong> $f(x)=\\frac{1}{{(x+1)}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=-\\frac{1}{(x+1)}+1$"
+   }
+  },
+  {
+   "id": "e521",
+   "source_id": "fs-id1165042418225",
+   "source_number": "521",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, determine whether the statement is true or false. Either prove it is true or find a counterexample if it is false.</p><p>If $f(x)$ is the antiderivative of $v(x),$ then $2f(x)$ is the antiderivative of $2v(x).$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True"
+   }
+  },
+  {
+   "id": "e522",
+   "source_id": "fs-id1165042518934",
+   "source_number": "522",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, determine whether the statement is true or false. Either prove it is true or find a counterexample if it is false.</p><p>If $f(x)$ is the antiderivative of $v(x),$ then $f(2x)$ is the antiderivative of $v(2x).$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. By the chain rule, $\\frac{d}{dx}f(2x)=2f'(2x)=2v(2x),$ not $v(2x).$ For example, $f(x)=x$ is an antiderivative of $v(x)=1,$ but $f(2x)=2x$ has derivative $2,$ while $v(2x)=1.$"
+   }
+  },
+  {
+   "id": "e523",
+   "source_id": "fs-id1165042519011",
+   "source_number": "523",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, determine whether the statement is true or false. Either prove it is true or find a counterexample if it is false.</p><p>If $f(x)$ is the antiderivative of $v(x),$ then $f(x)+1$ is the antiderivative of $v(x)+1.$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False"
+   }
+  },
+  {
+   "id": "e524",
+   "source_id": "fs-id1165042519090",
+   "source_number": "524",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>For the following exercises, determine whether the statement is true or false. Either prove it is true or find a counterexample if it is false.</p><p>If $f(x)$ is the antiderivative of $v(x),$ then ${(f(x))}^{2}$ is the antiderivative of ${(v(x))}^{2}.$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. By the chain rule, $\\frac{d}{dx}(f(x))^{2}=2f(x)f'(x)=2f(x)v(x),$ which is in general not $(v(x))^{2}.$ For example, $f(x)=x$ is an antiderivative of $v(x)=1,$ but $(f(x))^{2}=x^{2}$ has derivative $2x,$ while $(v(x))^{2}=1.$"
+   }
+  },
+  {
+   "id": "r545",
+   "source_id": "fs-id1165042499557",
+   "source_number": "545",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "indefinite-integrals",
+   "prompt": "<p>Find the antiderivatives $F(x)$ of the following functions.</p><p>$g(x)=\\sqrt{x}-\\frac{1}{{x}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\frac{2{x}^{3/2}}{3}+\\frac{1}{x}+C$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp49",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "cp50",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "cp50",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "cp51",
+   "concept": "properties-of-indefinite-integrals"
+  },
+  {
+   "exercise": "cp51",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "cp52",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "cp53",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "cp53",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cp53",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e465",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e466",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e467",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e468",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e469",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e471",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e473",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e475",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e475",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e477",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e477",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e479",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e479",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e481",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e481",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e483",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e483",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e485",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e485",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e487",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e487",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e489",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "e489",
+   "concept": "power-rule-for-integrals"
+  },
+  {
+   "exercise": "e491",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e491",
+   "concept": "properties-of-indefinite-integrals"
+  },
+  {
+   "exercise": "e493",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e493",
+   "concept": "properties-of-indefinite-integrals"
+  },
+  {
+   "exercise": "e495",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e495",
+   "concept": "properties-of-indefinite-integrals"
+  },
+  {
+   "exercise": "e497",
+   "concept": "indefinite-integral"
+  },
+  {
+   "exercise": "e497",
+   "concept": "properties-of-indefinite-integrals"
+  },
+  {
+   "exercise": "e499",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e501",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e503",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e505",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e505",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e507",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e507",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e509",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e509",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e509",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e511",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e511",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e511",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e513",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e513",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e513",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e515",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e515",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e517",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e517",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e519",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e519",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e521",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e522",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e523",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "e524",
+   "concept": "antiderivative"
+  },
+  {
+   "exercise": "r545",
+   "concept": "general-form-of-an-antiderivative"
+  },
+  {
+   "exercise": "r545",
+   "concept": "power-rule-for-integrals"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-constant-multiple",
+   "kind": "correction",
+   "html": "The book prints $\\frac{d}{dx}(kf(x))=k\\frac{d}{dx}F(x)=kf'(x);$ meant is $\\frac{d}{dx}(kF(x))=k\\frac{d}{dx}F(x)=kf(x),$ since $F'=f.$"
+  },
+  {
+   "id": "c-initial-at-zero",
+   "kind": "correction",
+   "html": "The condition is taken at $x=0:$ $-\\cos 0+C=5,$ as the next line computes."
+  }
+ ]
+}

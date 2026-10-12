@@ -1,0 +1,1000 @@
+{
+ "id": "4.2",
+ "module": "m53605",
+ "chapter": "4",
+ "title": "Linear Approximations and Differentials",
+ "short": "Linear Approximations",
+ "lead": "A function near a point can be replaced by its tangent line. This section uses the tangent line to estimate values of a function, defines the differentials dx and dy and uses them to estimate how much a function changes, and measures how a small error in a measurement carries into a quantity computed from it.",
+ "objectives": [
+  "Describe the linear approximation to a function at a point.",
+  "Write the linearization of a given function.",
+  "Draw a graph that illustrates the use of differentials to approximate the change in a quantity.",
+  "Calculate the relative error and percentage error in using a differential approximation."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"differentiable-function\">differentiable function</span> $y=\\kf(x)$ can be approximated at $a$ by the <span data-concept=\"linear-function\">linear function</span></li></ul>$$\\kL(x)=\\kf(a)+\\kfprime(a)(x-a).$$<ul><li>For a <span data-concept=\"function\">function</span> $y=\\kf(x),$ if $x$ changes from $a$ to $a+dx,$ then</li></ul>$$dy=\\kfprime(x)dx$$<p>is an approximation for the change in $y.$ The actual change in $y$ is</p>$$\\Delta y=\\kf(a+dx)-\\kf(a).$$<ul><li>A measurement error $dx$ can lead to an error in a calculated quantity $\\kf(x).$ The error in the calculated quantity is known as the <em><span data-concept=\"propagated-error\">propagated error</span></em>. The <span data-concept=\"propagated-error\">propagated error</span> can be estimated by</li></ul>$$dy\\approx \\kfprime(x)dx.$$<ul><li>To estimate the <span data-concept=\"relative-error\">relative error</span> of a particular quantity $q,$ we estimate $\\frac{\\Delta q}{q}.$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 46 and 48 (explanations) and 87, 88 and 89 (confirming approximations), which the key leaves unanswered. The other 19 even-numbered section exercises have no answer in the key and are computational, so they are left out: 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86. Review exercise 531 is set here from the chapter review.",
+ "figures": [
+  {
+   "id": "sim-tangent-reciprocal",
+   "kind": "sim",
+   "number": "4.7",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_02_006.jpg"
+   ],
+   "original_caption": "(a) The tangent line to f(x)=1/x at x=2 provides a good approximation to f for x near 2. (b) At x=2.1, the value of y on the tangent line to f(x)=1/x is 0.475. The actual value of f(2.1) is 1/2.1, which is approximately 0.47619.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-tangent-root",
+   "kind": "sim",
+   "number": "4.8",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_02_002.jpg"
+   ],
+   "original_caption": "The local linear approximation to f(x)=√x at x=9 provides an approximation to f for x near 9.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-tangent-sine",
+   "kind": "sim",
+   "number": "4.9",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_02_003.jpg"
+   ],
+   "original_caption": "The linear approximation to f(x)=sin x at x=π/3 provides an approximation to sin x for x near π/3.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-tangent-power",
+   "kind": "sim",
+   "number": "4.10",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_02_007.jpg"
+   ],
+   "original_caption": "(a) The linear approximation of f(x) at x=0 is L(x). (b) The actual value of 1.01³ is 1.030301. The linear approximation of f(x) at x=0 estimates 1.01³ to be 1.03.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-differential",
+   "kind": "sim",
+   "number": "4.11",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_02_005.jpg"
+   ],
+   "original_caption": "The differential dy=f′(a)dx is used to approximate the actual change in y if x increases from a to a+dx.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "error",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "linear-approximation",
+   "concept": "linear-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-approximation",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-approximation",
+   "concept": "local-linearity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043051419",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043100241",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043161464",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "differentials",
+   "concept": "differential",
+   "verb": "introduces"
+  },
+  {
+   "span": "differentials",
+   "concept": "approximating-change-with-differentials",
+   "verb": "introduces"
+  },
+  {
+   "span": "differentials",
+   "concept": "leibniz-notation",
+   "verb": "uses"
+  },
+  {
+   "span": "differentials",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043166548",
+   "concept": "differential",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043349128",
+   "concept": "approximating-change-with-differentials",
+   "verb": "uses"
+  },
+  {
+   "span": "amount-of-error",
+   "concept": "propagated-error",
+   "verb": "introduces"
+  },
+  {
+   "span": "amount-of-error",
+   "concept": "relative-error",
+   "verb": "introduces"
+  },
+  {
+   "span": "amount-of-error",
+   "concept": "percentage-error",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043397423",
+   "concept": "propagated-error",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043087612",
+   "concept": "relative-error",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043087612",
+   "concept": "percentage-error",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp5",
+   "source_id": "fs-id1165043051505",
+   "source_number": "Checkpoint 4.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043051419"
+   },
+   "cite": "linear-approximation",
+   "prompt": "Find the local linear approximation to $f(x)=\\sqrt[3]{x}$ at $x=8.$ Use it to approximate $\\sqrt[3]{8.1}$ to five decimal places.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$L(x)=f(a)+f'(a)(x-a)$",
+    "solution": "$L(x)=2+\\frac{1}{12}(x-8);$ 2.00833"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1165043039141",
+   "source_number": "Checkpoint 4.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043100241"
+   },
+   "cite": "linear-approximation",
+   "prompt": "Find the linear approximation for $f(x)=\\cos x$ at $x=\\frac{\\pi}{2}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$L(x)=f(a)+f'(a)(x-a)$",
+    "solution": "$L(x)=-x+\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1165043192672",
+   "source_number": "Checkpoint 4.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043161464"
+   },
+   "cite": "linear-approximation",
+   "prompt": "Find the linear approximation of $f(x)={(1+x)}^{4}$ at $x=0$ without using the result from the preceding example.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$f'(x)=4{(1+x)}^{3}$",
+    "solution": "$L(x)=1+4x$"
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1165043395024",
+   "source_number": "Checkpoint 4.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043166548"
+   },
+   "cite": "differentials",
+   "prompt": "For $y={e}^{{x}^{2}},$ find $dy.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$dy=f'(x)dx$",
+    "solution": "$dy=2x{e}^{{x}^{2}}dx$"
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1165042637203",
+   "source_number": "Checkpoint 4.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043349128"
+   },
+   "cite": "differentials",
+   "prompt": "For $y={x}^{2}+2x,$ find $\\Delta y$ and $dy$ at $x=3$ if $dx=0.2.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$dy=f'(3)dx,$ $\\Delta y=f(3.2)-f(3)$",
+    "solution": "$dy=1.6,$ $\\Delta y=1.64$"
+   }
+  },
+  {
+   "id": "cp10",
+   "source_id": "fs-id1165042708698",
+   "source_number": "Checkpoint 4.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043397423"
+   },
+   "cite": "amount-of-error",
+   "prompt": "Estimate the error in the computed volume of a cube if the side length is measured to be 6 cm with an accuracy of 0.2 cm.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 21.6,
+    "unit": "cm³",
+    "hint": "$dV=3{x}^{2}dx$",
+    "solution": "The volume measurement is accurate to within $21.6{\\;\\text{cm}}^{3}.$"
+   }
+  },
+  {
+   "id": "cp11",
+   "source_id": "fs-id1165043315343",
+   "source_number": "Checkpoint 4.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043087612"
+   },
+   "cite": "amount-of-error",
+   "prompt": "Determine the percentage error if the radius of Earth is measured to be 3950 mi with an error of $\\pm 100$ mi.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.6,
+    "unit": "%",
+    "hint": "Use the fact that $dV=4\\pi {r}^{2}dr$ to find $dV/V.$",
+    "solution": "7.6%"
+   }
+  },
+  {
+   "id": "e46",
+   "source_id": "fs-id1165043427582",
+   "source_number": "46",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>What is the linear approximation for any generic linear function $y=mx+b?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For a linear function $f(x)=mx+b,$ the derivative is $f'(x)=m$ at every $a,$ so the linear approximation at $x=a$ is $L(x)=f(a)+f'(a)(x-a)=(ma+b)+m(x-a)=mx+b.$ The linear approximation of a linear function is the function itself, at every point $a,$ and it has no error."
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1165043337881",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>Determine the necessary conditions such that the linear approximation function is constant. Use a graph to prove your result.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${f}^{'}(a)=0$"
+   }
+  },
+  {
+   "id": "e48",
+   "source_id": "fs-id1165042956294",
+   "source_number": "48",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>Explain why the linear approximation becomes less accurate as you increase the distance between $x$ and $a.$ Use a graph to prove your argument.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The linear approximation $L(x)=f(a)+f'(a)(x-a)$ follows the tangent line, whose slope is fixed at $f'(a),$ while the slope of the graph of $f$ changes as $x$ moves away from $a.$ Near $a$ the two slopes are nearly the same, so the curve and the line nearly coincide; farther away the curve bends away from the line and the gap $f(x)-L(x)$ grows. For $f(x)=\\frac{1}{x}$ at $a=2$ (Figure 4.7), the error is about $0.001$ at $x=2.1$ but $1.6$ at $x=10,$ where the line gives $-1.5$ and the function $0.1.$ A graph of $f$ with its tangent line at $a$ shows the gap between them widening with the distance between $x$ and $a.$"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1165042517836",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>When is the linear approximation exact?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The linear approximation exact when $y=f(x)$ is linear or constant."
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1165043187591",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, find the linear approximation $L(x)$ to $y=f(x)$ near $x=a$ for the function.</p><p>$f(x)=\\frac{1}{x},a=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L(x)=\\frac{1}{2}-\\frac{1}{4}(x-2)$"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1165043354593",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, find the linear approximation $L(x)$ to $y=f(x)$ near $x=a$ for the function.</p><p>$f(x)=\\sin x,a=\\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L(x)=1$"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1165042479002",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, find the linear approximation $L(x)$ to $y=f(x)$ near $x=a$ for the function.</p><p>$f(x)={\\sin}^{2}x,a=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L(x)=0$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1165042555827",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, compute the values given within 0.01 by deciding on the appropriate $f(x)$ and $a,$ and evaluating $L(x)=f(a)+{f}^{'}(a)(x-a).$ Check your answer using a calculator.</p><p><strong>[T]</strong> $\\sin (0.02)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.02,
+    "solution": "0.02"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1165042562934",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, compute the values given within 0.01 by deciding on the appropriate $f(x)$ and $a,$ and evaluating $L(x)=f(a)+{f}^{'}(a)(x-a).$ Check your answer using a calculator.</p><p><strong>[T]</strong> ${(15.99)}^{1/4}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.9996875,
+    "solution": "$1.9996875$"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1165042516429",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, compute the values given within 0.01 by deciding on the appropriate $f(x)$ and $a,$ and evaluating $L(x)=f(a)+{f}^{'}(a)(x-a).$ Check your answer using a calculator.</p><p><strong>[T]</strong> $\\sin (3.14)$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.001593,
+    "solution": "$0.001593$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1165042563786",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, determine the appropriate $f(x)$ and $a,$ and evaluate $L(x)=f(a)+{f}^{'}(a)(x-a).$ Calculate the numerical error in the linear approximations that follow.</p><p><strong>[T]</strong> $\\cos (0.01)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1;$ error, $~0.00005$"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1165042621397",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, determine the appropriate $f(x)$ and $a,$ and evaluate $L(x)=f(a)+{f}^{'}(a)(x-a).$ Calculate the numerical error in the linear approximations that follow.</p><p><strong>[T]</strong> ${(1.01)}^{-3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0.97;$ error, $~0.0006$"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1165043309945",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, determine the appropriate $f(x)$ and $a,$ and evaluate $L(x)=f(a)+{f}^{'}(a)(x-a).$ Calculate the numerical error in the linear approximations that follow.</p><p><strong>[T]</strong> $\\sqrt{8.99}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$3-\\frac{1}{600};$ error, $~4.632\\;\\times \\;{10}^{-7}$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1165043423603",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the differential of the function.</p><p>$y=x\\;\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$dy=(\\cos x-x\\;\\sin x)dx$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1165042476060",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the differential of the function.</p><p>$y=\\frac{{x}^{2}+2}{x-1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$dy=(\\frac{{x}^{2}-2x-2}{{(x-1)}^{2}})dx$"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1165043373007",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the differential and evaluate for the given $x$ and $dx.$</p><p>$y=\\frac{1}{x+1},$ $x=1,$ $dx=0.25$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$dy=-\\frac{1}{{(x+1)}^{2}}dx,$ $-\\frac{1}{16}$"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1165043423569",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the differential and evaluate for the given $x$ and $dx.$</p><p>$y=\\frac{3{x}^{2}+2}{\\sqrt{x+1}},$ $x=0,$ $dx=0.1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$dy=\\frac{9{x}^{2}+12x-2}{2{(x+1)}^{3/2}}dx,$ $-0.1$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1165043197192",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the differential and evaluate for the given $x$ and $dx.$</p><p>$y={x}^{3}+2x+\\frac{1}{x},$ $x=1,$ $dx=0.05$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$dy=(3{x}^{2}+2-\\frac{1}{{x}^{2}})dx,$ $0.2$"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1165043308223",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the change in volume $dV$ or in surface area $dA.$</p><p>$dA$ if the sides of a cube change from $x$ to $x+dx.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$12x\\;dx$"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1165043353383",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the change in volume $dV$ or in surface area $dA.$</p><p>$dV$ if the radius of a sphere changes from $r$ by $dr.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4\\pi {r}^{2}dr$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1165042550550",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the change in volume $dV$ or in surface area $dA.$</p><p>$dV$ if a circular cylinder of height 3 changes from $r=2$ to $r=1.9\\;\\text{cm}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-1.2\\pi {\\;\\text{cm}}^{3}$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1165042514755",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differentials",
+   "prompt": "<p>For the following exercises, find the change in volume $dV$ or in surface area $dA.$</p><p>A pool has a rectangular base of 10 ft by 20 ft and a depth of 6 ft. What is the change in volume if you only fill it up to 5.5 ft?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-100$ ft<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1165042514174",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, confirm the approximations by using the linear approximation at $x=0.$</p><p>$\\sqrt{1-x}\\approx 1-\\frac{1}{2}x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $f(x)=\\sqrt{1-x}.$ Then $f(0)=1$ and $f'(x)=-\\frac{1}{2\\sqrt{1-x}},$ so $f'(0)=-\\frac{1}{2}.$ The linear approximation at $x=0$ is $L(x)=f(0)+f'(0)(x-0)=1-\\frac{1}{2}x,$ so $\\sqrt{1-x}\\approx 1-\\frac{1}{2}x$ for $x$ near $0.$"
+   }
+  },
+  {
+   "id": "e88",
+   "source_id": "fs-id1165043430031",
+   "source_number": "88",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, confirm the approximations by using the linear approximation at $x=0.$</p><p>$\\frac{1}{\\sqrt{1-{x}^{2}}}\\approx 1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $f(x)=\\frac{1}{\\sqrt{1-x^{2}}}=(1-x^{2})^{-1/2}.$ Then $f(0)=1$ and, by the chain rule, $f'(x)=-\\frac{1}{2}(1-x^{2})^{-3/2}(-2x)=\\frac{x}{(1-x^{2})^{3/2}},$ so $f'(0)=0.$ The linear approximation at $x=0$ is $L(x)=1+0\\cdot x=1,$ so $\\frac{1}{\\sqrt{1-x^{2}}}\\approx 1$ for $x$ near $0.$"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1165043180116",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>For the following exercises, confirm the approximations by using the linear approximation at $x=0.$</p><p>$\\sqrt{{c}^{2}+{x}^{2}}\\approx c$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $f(x)=\\sqrt{c^{2}+x^{2}}$ with $c\\gt 0.$ Then $f(0)=\\sqrt{c^{2}}=c$ and $f'(x)=\\frac{x}{\\sqrt{c^{2}+x^{2}}},$ so $f'(0)=0.$ The linear approximation at $x=0$ is $L(x)=c+0\\cdot x=c,$ so $\\sqrt{c^{2}+x^{2}}\\approx c$ for $x$ near $0.$"
+   }
+  },
+  {
+   "id": "r531",
+   "source_id": "fs-id1165042463828",
+   "source_section": "4.10",
+   "source_number": "531",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-approximation",
+   "prompt": "<p>Find the linear approximation $L(x)$ to $y={x}^{2}+\\tan (\\pi x)$ near $x=\\frac{1}{4}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$L(x)=\\frac{17}{16}+\\frac{1}{2}(1+4\\pi)(x-\\frac{1}{4})$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp5",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "differential"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "differential"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "approximating-change-with-differentials"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "propagated-error"
+  },
+  {
+   "exercise": "cp10",
+   "concept": "differential"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "percentage-error"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "relative-error"
+  },
+  {
+   "exercise": "cp11",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e46",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e47",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e48",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e49",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e51",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e53",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e55",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e57",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e59",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e61",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e63",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e63",
+   "concept": "relative-error"
+  },
+  {
+   "exercise": "e65",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e65",
+   "concept": "relative-error"
+  },
+  {
+   "exercise": "e67",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e67",
+   "concept": "relative-error"
+  },
+  {
+   "exercise": "e69",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e71",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e73",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e75",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e77",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e79",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e79",
+   "concept": "approximating-change-with-differentials"
+  },
+  {
+   "exercise": "e81",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e81",
+   "concept": "approximating-change-with-differentials"
+  },
+  {
+   "exercise": "e83",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e83",
+   "concept": "approximating-change-with-differentials"
+  },
+  {
+   "exercise": "e85",
+   "concept": "differential"
+  },
+  {
+   "exercise": "e85",
+   "concept": "approximating-change-with-differentials"
+  },
+  {
+   "exercise": "e87",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e88",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e89",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "r531",
+   "concept": "linear-approximation"
+  }
+ ]
+}

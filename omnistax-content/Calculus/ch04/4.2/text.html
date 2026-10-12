@@ -1,0 +1,185 @@
+<p>We have just seen how <span data-concept="derivative">derivatives</span> allow us to compare related quantities that are changing over time. In this section, we examine another application of <span data-concept="derivative">derivatives</span>: the ability to approximate <span data-concept="function">functions</span> locally by linear <span data-concept="function">functions</span>. Linear <span data-concept="function">functions</span> are the easiest <span data-concept="function">functions</span> with which to work, so they provide a useful tool for approximating <span data-concept="function">function</span> values. In addition, the ideas presented in this section are generalized later in the text when we study how to approximate <span data-concept="function">functions</span> by higher-degree polynomials <a href="/calculus/ch10/intro/">Introduction to Power Series and <span data-concept="function">Functions</span></a>.</p>
+<section id="linear-approximation">
+<h2>Linear Approximation of a <span data-concept="function">Function</span> at a Point</h2>
+<p class="cite-target">Consider a <span data-concept="function">function</span> $\kf$ that is differentiable at a point $x=a.$ Recall that the <span data-concept="tangent-line">tangent line</span> to the graph of $\kf$ at $a$ is given by the equation</p>
+$$y=\kf(a)+\kfprime(a)(x-a).$$
+<p>For example, consider the <span data-concept="function">function</span> <span data-fn="1/x">$\kf(x)=\frac{1}{x}$</span> at $a=2.$ Since $\kf$ is differentiable at $x=2$ and <span data-fn="-1/(x^2)">$\kfprime(x)=-\frac{1}{{x}^{2}},$</span> we see that $\kfprime(2)=-\frac{1}{4}.$ Therefore, the <span data-concept="tangent-line">tangent line</span> to the graph of $\kf$ at $a=2$ is given by the equation</p>
+$$y=\frac{1}{2}-\frac{1}{4}(x-2).$$
+<p>Figure 4.7(a) shows a graph of <span data-fn="1/x">$\kf(x)=\frac{1}{x}$</span> along with the <span data-concept="tangent-line">tangent line</span> to $\kf$ at $x=2.$ Note that for $x$ near 2, the graph of the <span data-concept="tangent-line">tangent line</span> is close to the graph of $\kf.$ As a result, we can use the equation of the <span data-concept="tangent-line">tangent line</span> to approximate $\kf(x)$ for $x$ near 2. For example, if $x=2.1,$ the $y$ value of the corresponding point on the <span data-concept="tangent-line">tangent line</span> is</p>
+$$y=\frac{1}{2}-\frac{1}{4}(2.1-2)=0.475.$$
+<p>The actual value of $\kf(2.1)$ is given by</p>
+$$\kf(2.1)=\frac{1}{2.1}\approx 0.47619.$$
+<p>Therefore, the <span data-concept="tangent-line">tangent line</span> gives us a fairly good approximation of $\kf(2.1)$ (Figure 4.7(b)). However, note that for values of $x$ far from 2, the equation of the <span data-concept="tangent-line">tangent line</span> does not give us a good approximation. For example, if $x=10,$ the $y$-value of the corresponding point on the <span data-concept="tangent-line">tangent line</span> is</p>
+$$y=\frac{1}{2}-\frac{1}{4}(10-2)=\frac{1}{2}-2=-1.5,$$
+<p>whereas the value of the <span data-concept="function">function</span> at $x=10$ is $\kf(10)=0.1.$</p>
+<figure class="sim" id="sim-tangent-reciprocal" data-figure="4.7" data-original="/media/ch04/CNX_Calc_Figure_04_02_006.jpg" data-original-caption="(a) The tangent line to f(x)=1/x at x=2 provides a good approximation to f for x near 2. (b) At x=2.1, the value of y on the tangent line to f(x)=1/x is 0.475. The actual value of f(2.1) is 1/2.1, which is approximately 0.47619.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.7</span><span>The <span data-concept="tangent-line">tangent line</span> $\kL$ to $\kf(x)=\frac{1}{x}$ at $x=2$, with a point $x$ to drag along the curve: (a) the whole graph, where at $x=10$ the line gives $-1.5$ and the <span data-concept="function">function</span> $0.1$; (b) the window about $x=2.1$, where the two differ by about $0.001$. The bracket between the curve and the line is the error of the approximation.</span></div>
+</figure>
+<p>In general, for a <span data-concept="differentiable-function">differentiable function</span> $\kf,$ the equation of the <span data-concept="tangent-line">tangent line</span> to $\kf$ at $x=a$ can be used to approximate $\kf(x)$ for $x$ near $a.$ Therefore, we can write</p>
+$$\kf(x)\approx \kf(a)+\kfprime(a)(x-a)\;\text{for}\;x\;\text{near}\;a.$$
+<p>We call the <span data-concept="linear-function">linear function</span></p>
+$$\kL(x)=\kf(a)+\kfprime(a)(x-a)\tag{4.1}$$
+<p>the <strong><span data-concept="linear-approximation">linear approximation</span></strong>, or <strong><span data-concept="linear-approximation">tangent line approximation</span></strong>, of $\kf$ at $x=a.$ This <span data-concept="function">function</span> $\kL$ is also known as the <strong><span data-concept="linear-approximation">linearization</span></strong> of $\kf$ at $x=a.$</p>
+<p>To show how useful the <span data-concept="linear-approximation">linear approximation</span> can be, we look at how to find the <span data-concept="linear-approximation">linear approximation</span> for <span data-fn="sqrt(x)">$\kf(x)=\sqrt{x}$</span> at $x=9.$</p>
+<div class="example" id="fs-id1165043051419">
+<h3>Example 4.5 · Linear Approximation of $\sqrt{x}$</h3>
+<p>Find the <span data-concept="linear-approximation">linear approximation</span> of <span data-fn="sqrt(x)">$\kf(x)=\sqrt{x}$</span> at $x=9$ and use the approximation to estimate $\sqrt{9.1}.$</p>
+<h4>Solution</h4>
+<p>Since we are looking for the <span data-concept="linear-approximation">linear approximation</span> at $x=9,$ using Equation 4.1 we know the <span data-concept="linear-approximation">linear approximation</span> is given by</p>
+$$\kL(x)=\kf(9)+\kfprime(9)(x-9).$$
+<p>We need to find $\kf(9)$ and $\kfprime(9).$</p>
+$$\begin{array}{rll}\kf(x)=\sqrt{x} & \Rightarrow & \kf(9)=\sqrt{9}=3 \\ \kfprime(x)=\frac{1}{2\sqrt{x}} & \Rightarrow & \kfprime(9)=\frac{1}{2\sqrt{9}}=\frac{1}{6}\end{array}$$
+<p>Therefore, the <span data-concept="linear-approximation">linear approximation</span> is given by Figure 4.8.</p>
+$$\kL(x)=3+\frac{1}{6}(x-9)$$
+<p>Using the <span data-concept="linear-approximation">linear approximation</span>, we can estimate $\sqrt{9.1}$ by writing</p>
+$$\sqrt{9.1}=\kf(9.1)\approx \kL(9.1)=3+\frac{1}{6}(9.1-9)\approx 3.0167.$$
+<figure class="sim" id="sim-tangent-root" data-figure="4.8" data-original="/media/ch04/CNX_Calc_Figure_04_02_002.jpg" data-original-caption="The local linear approximation to f(x)=√(x) at x=9 provides an approximation to f for x near 9.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.8</span><span>The <span data-concept="linear-approximation">linear approximation</span> $\kL(x)=3+\frac{1}{6}(x-9)$ to $\kf(x)=\sqrt{x}$ at $x=9$. Drag $x$: near 9 the line and the curve are almost one, and the error, the bracket between them, grows as $x$ moves away.</span></div>
+</figure>
+<h4>Analysis</h4>
+<p>Using a calculator, the value of $\sqrt{9.1}$ to four decimal places is 3.0166. The value given by the <span data-concept="linear-approximation">linear approximation</span>, 3.0167, is very close to the value obtained with a calculator, so it appears that using this <span data-concept="linear-approximation">linear approximation</span> is a good way to estimate $\sqrt{x},$ at least for $x$ near $9.$ At the same time, it may seem odd to use a <span data-concept="linear-approximation">linear approximation</span> when we can just push a few buttons on a calculator to evaluate $\sqrt{9.1}.$ However, how does the calculator evaluate $\sqrt{9.1}?$ The calculator uses an approximation! In fact, calculators and computers use approximations all the time to evaluate mathematical expressions; they just use higher-degree approximations.</p>
+</div>
+<div class="exercises" data-place="fs-id1165043051419"></div>
+<div class="example" id="fs-id1165043100241">
+<h3>Example 4.6 · Linear Approximation of $\sin x$</h3>
+<p>Find the <span data-concept="linear-approximation">linear approximation</span> of <span data-fn="sin x">$\kf(x)=\sin x$</span> at $x=\frac{\pi}{3}$ and use it to approximate $\sin (62^{\circ}).$</p>
+<h4>Solution</h4>
+<p>First we note that since $\frac{\pi}{3}$ rad is equivalent to $60^{\circ},$ using the <span data-concept="linear-approximation">linear approximation</span> at $x=\pi /3$ seems reasonable. The <span data-concept="linear-approximation">linear approximation</span> is given by</p>
+$$\kL(x)=\kf(\frac{\pi}{3})+\kfprime(\frac{\pi}{3})(x-\frac{\pi}{3}).$$
+<p>We see that</p>
+$$\begin{array}{rll}\kf(x)=\sin x & \Rightarrow & \kf(\frac{\pi}{3})=\sin (\frac{\pi}{3})=\frac{\sqrt{3}}{2} \\ \kfprime(x)=\cos x & \Rightarrow & \kfprime(\frac{\pi}{3})=\cos (\frac{\pi}{3})=\frac{1}{2}\end{array}$$
+<p>Therefore, the <span data-concept="linear-approximation">linear approximation</span> of $\kf$ at $x=\pi /3$ is given by Figure 4.9.</p>
+$$\kL(x)=\frac{\sqrt{3}}{2}+\frac{1}{2}(x-\frac{\pi}{3})$$
+<p>To estimate $\sin (62^{\circ})$ using $\kL,$ we must first convert $62^{\circ}$ to radians. We have $62^{\circ}=\frac{62\pi}{180}$ radians, so the estimate for $\sin (62^{\circ})$ is given by</p>
+$$\sin (62^{\circ})=\kf(\frac{62\pi}{180})\approx \kL(\frac{62\pi}{180})=\frac{\sqrt{3}}{2}+\frac{1}{2}(\frac{62\pi}{180}-\frac{\pi}{3})=\frac{\sqrt{3}}{2}+\frac{1}{2}(\frac{2\pi}{180})=\frac{\sqrt{3}}{2}+\frac{\pi}{180}\approx 0.88348.$$
+<figure class="sim" id="sim-tangent-sine" data-figure="4.9" data-original="/media/ch04/CNX_Calc_Figure_04_02_003.jpg" data-original-caption="The linear approximation to f(x)=sin x at x=π /3 provides an approximation to sin x for x near π /3.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.9</span><span>The <span data-concept="linear-approximation">linear approximation</span> to $\kf(x)=\sin x$ at $x=\frac{\pi}{3}$, with $x$ read in degrees: at $62°$ the line gives $0.88348$, close to $\sin(62°)$, and the error grows as $x$ moves away from $60°$.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165043100241"></div>
+<p>Linear approximations may be used in estimating roots and powers. In the next example, we find the <span data-concept="linear-approximation">linear approximation</span> for $\kf(x)={(1+x)}^{n}$ at $x=0,$ which can be used to estimate roots and powers for real numbers near 1. The same idea can be extended to a <span data-concept="function">function</span> of the form $\kf(x)={(m+x)}^{n}$ to estimate roots and powers near a different number $m.$</p>
+<div class="example" id="fs-id1165043161464">
+<h3>Example 4.7 · Approximating Roots and Powers</h3>
+<p>Find the <span data-concept="linear-approximation">linear approximation</span> of $\kf(x)={(1+x)}^{n}$ at $x=0.$ Use this approximation to estimate ${(1.01)}^{3}.$</p>
+<h4>Solution</h4>
+<p>The <span data-concept="linear-approximation">linear approximation</span> at $x=0$ is given by</p>
+$$\kL(x)=\kf(0)+\kfprime(0)(x-0).$$
+<p>Because</p>
+$$\begin{array}{rll}\kf(x)={(1+x)}^{n} & \Rightarrow & \kf(0)=1 \\ \kfprime(x)=n{(1+x)}^{n-1} & \Rightarrow & \kfprime(0)=n,\end{array}$$
+<p>the <span data-concept="linear-approximation">linear approximation</span> is given by Figure 4.10(a).</p>
+$$\kL(x)=1+n(x-0)=1+nx$$
+<p>We can approximate ${(1.01)}^{3}$ by evaluating $\kL(0.01)$ when $n=3.$ We conclude that</p>
+$${(1.01)}^{3}=\kf(1.01)\approx \kL(0.01)=1+3(0.01)=1.03.$$
+<figure class="sim" id="sim-tangent-power" data-figure="4.10" data-original="/media/ch04/CNX_Calc_Figure_04_02_007.jpg" data-original-caption="(a) The linear approximation of f(x) at x=0 is L(x). (b) The actual value of 1.01³ is 1.030301. The linear approximation of f(x) at x=0 estimates 1.01³ to be 1.03.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.10</span><span>The <span data-concept="linear-approximation">linear approximation</span> $\kL(x)=1+3x$ to $\kf(x)=(1+x)^{3}$ at $x=0$: (a) the whole graph; (b) the window about $x=0.01$, where $\kL(0.01)=1.03$ and the actual value of $1.01^{3}$ is $1.030301$.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165043161464"></div>
+</section>
+
+<section id="differentials">
+<h2><span data-concept="differential">Differentials</span></h2>
+<p class="cite-target">We have seen that <span data-concept="linear-approximation">linear approximations</span> can be used to estimate <span data-concept="function">function</span> values. They can also be used to estimate the amount a <span data-concept="function">function</span> value changes as a result of a small change in the input. To discuss this more formally, we define a related concept: <strong><span data-concept="differential">differentials</span></strong>. <span data-concept="differential">Differentials</span> provide us with a way of estimating the amount a <span data-concept="function">function</span> changes as a result of a small change in input values.</p>
+<p>When we first looked at <span data-concept="derivative">derivatives</span>, we used the <span data-concept="leibniz-notation">Leibniz notation</span> $\kdydx$ to represent the <span data-concept="derivative">derivative</span> of $y$ with respect to $x.$ Although we used the expressions <em>dy</em> and <em>dx</em> in this notation, they did not have meaning on their own. Here we see a meaning to the expressions <em>dy</em> and <em>dx</em>. Suppose $y=\kf(x)$ is a <span data-concept="differentiable-function">differentiable function</span>. Let <em>dx</em> be an independent variable that can be assigned any nonzero real number, and define the dependent variable $dy$ by</p>
+$$dy=\kfprime(x)dx.\tag{4.2}$$
+<p>It is important to notice that $dy$ is a <span data-concept="function">function</span> of both $x$ and $dx.$ The expressions <em>dy</em> and <em>dx</em> are called <em><span data-concept="differential">differentials</span></em>. We can divide both sides of Equation 4.2 by $dx,$ which yields</p>
+$$\kdydx=\kfprime(x).\tag{4.3}$$
+<p>This is the familiar expression we have used to denote a <span data-concept="derivative">derivative</span>. Equation 4.2 is known as the <strong><span data-concept="differential">differential form</span></strong> of Equation 4.3.</p>
+<div class="example" id="fs-id1165043166548">
+<h3>Example 4.8 · Computing differentials</h3>
+<p>For each of the following <span data-concept="function">functions</span>, find <em>dy</em> and evaluate when $x=3$ and $dx=0.1.$</p>
+<p>a. <span data-fn="x^2+2x">$y={x}^{2}+2x$</span></p>
+<p>b. <span data-fn="cos x">$y=\cos x$</span></p>
+<h4>Solution</h4>
+<p>The key step is calculating the <span data-concept="derivative">derivative</span>. When we have that, we can obtain <em>dy</em> directly.</p>
+<p>a. Since <span data-fn="x^2+2x">$\kf(x)={x}^{2}+2x,$</span> we know <span data-fn="2x+2">$\kfprime(x)=2x+2,$</span> and therefore</p>
+$$dy=(2x+2)dx.$$
+<p>When $x=3$ and $dx=0.1,$</p>
+$$dy=(2\cdot 3+2)(0.1)=0.8.$$
+<p>b. Since <span data-fn="cos x">$\kf(x)=\cos x,$</span> <span data-fn="-sin (x)">$\kfprime(x)=-\sin (x).$</span> This gives us</p>
+$$dy=-\sin x\;dx.$$
+<p>When $x=3$ and $dx=0.1,$</p>
+$$dy=-\sin (3)(0.1)=-0.1\;\sin (3).$$
+</div>
+<div class="exercises" data-place="fs-id1165043166548"></div>
+<p>We now connect <span data-concept="differential">differentials</span> to <span data-concept="linear-approximation">linear approximations</span>. <span data-concept="differential">Differentials</span> can be used to estimate the change in the value of a <span data-concept="function">function</span> resulting from a small change in input values. Consider a <span data-concept="function">function</span> $\kf$ that is differentiable at point $a.$ Suppose the input $x$ changes by a small amount. We are interested in how much the output $y$ changes. If $x$ changes from $a$ to $a+dx,$ then the change in $x$ is $dx$ (also denoted $\Delta x),$ and the change in $y$ is given by</p>
+$$\Delta y=\kf(a+dx)-\kf(a).$$
+<p>Instead of calculating the exact change in $y,$ however, it is often easier to approximate the change in $y$ by using a <span data-concept="linear-approximation">linear approximation</span>. For $x$ near $a,$ $\kf(x)$ can be approximated by the <span data-concept="linear-approximation">linear approximation</span></p>
+$$\kL(x)=\kf(a)+\kfprime(a)(x-a).$$
+<p>Therefore, if $dx$ is small,</p>
+$$\kf(a+dx)\approx \kL(a+dx)=\kf(a)+\kfprime(a)(a+dx-a).$$
+<p>That is,</p>
+$$\kf(a+dx)-\kf(a)\approx \kL(a+dx)-\kf(a)=\kfprime(a)dx.$$
+<p>In other words, the actual change in the <span data-concept="function">function</span> $\kf$ if $x$ increases from $a$ to $a+dx$ is approximately the difference between $\kL(a+dx)$ and $\kf(a),$ where $\kL(x)$ is the <span data-concept="linear-approximation">linear approximation</span> of $\kf$ at $a.$ By definition of $\kL(x),$ this difference is equal to $\kfprime(a)dx.$ In summary,</p>
+$$\Delta y=\kf(a+dx)-\kf(a)\approx \kL(a+dx)-\kf(a)=\kfprime(a)dx=dy.$$
+<p>Therefore, we can use the <span data-concept="differential">differential</span> $dy=\kfprime(a)dx$ to approximate the change in $y$ if $x$ increases from $x=a$ to $x=a+dx.$ We can see this in the following graph.</p>
+<figure class="sim" id="sim-differential" data-figure="4.11" data-original="/media/ch04/CNX_Calc_Figure_04_02_005.jpg" data-original-caption="The differential dy=f′(a)dx is used to approximate the actual change in y if x increases from a to a+dx.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.11</span><span>The <span data-concept="differential">differential</span> $dy=\kfprime(a)dx$ is the rise of the <span data-concept="tangent-line">tangent line</span> over $dx$; the actual change $\Delta y=\kf(a+dx)-\kf(a)$ is the rise of the curve. Shrink $dx$ and the two close in on each other, the error between them vanishing faster than $dx$.</span></div>
+</figure>
+<p>We now take a look at how to use <span data-concept="differential">differentials</span> to approximate the change in the value of the <span data-concept="function">function</span> that results from a small change in the value of the input. Note the calculation with <span data-concept="differential">differentials</span> is much simpler than calculating actual values of <span data-concept="function">functions</span> and the result is very close to what we would obtain with the more exact calculation.</p>
+<div class="example" id="fs-id1165043349128">
+<h3>Example 4.9 · Approximating Change with Differentials</h3>
+<p>Let <span data-fn="x^2+2x">$y={x}^{2}+2x.$</span> Compute $\Delta y$ and <em>dy</em> at $x=3$ if $dx=0.1.$</p>
+<h4>Solution</h4>
+<p>The actual change in $y$ if $x$ changes from $x=3$ to $x=3.1$ is given by</p>
+$$\Delta y=\kf(3.1)-\kf(3)=[{(3.1)}^{2}+2(3.1)]-[{3}^{2}+2(3)]=0.81.$$
+<p>The approximate change in $y$ is given by $dy=\kfprime(3)dx.$ Since <span data-fn="2x+2">$\kfprime(x)=2x+2,$</span> we have</p>
+$$dy=\kfprime(3)dx=(2(3)+2)(0.1)=0.8.$$
+</div>
+<div class="exercises" data-place="fs-id1165043349128"></div>
+</section>
+
+<section id="amount-of-error">
+<h2>Calculating the Amount of Error</h2>
+<p class="cite-target">Any type of measurement is prone to a certain amount of error. In many applications, certain quantities are calculated based on measurements. For example, the area of a circle is calculated by measuring the radius of the circle. An error in the measurement of the radius leads to an error in the computed value of the area. Here we examine this type of error and study how <span data-concept="differential">differentials</span> can be used to estimate the error.</p>
+<p>Consider a <span data-concept="function">function</span> $\kf$ with an input that is a measured quantity. Suppose the exact value of the measured quantity is $a,$ but the measured value is $a+dx.$ We say the measurement error is <em>dx</em> (or $\Delta x).$ As a result, an error occurs in the calculated quantity $\kf(x).$ This type of error is known as a <strong><span data-concept="propagated-error">propagated error</span></strong> and is given by</p>
+$$\Delta y=\kf(a+dx)-\kf(a).$$
+<p>Since all measurements are prone to some degree of error, we do not know the exact value of a measured quantity, so we cannot calculate the <span data-concept="propagated-error">propagated error</span> exactly. However, given an estimate of the accuracy of a measurement, we can use <span data-concept="differential">differentials</span> to approximate the <span data-concept="propagated-error">propagated error</span> $\Delta y.$ Specifically, if $\kf$ is a <span data-concept="differentiable-function">differentiable function</span> at $a,$ the <span data-concept="propagated-error">propagated error</span> is</p>
+$$\Delta y\approx dy=\kfprime(a)dx.$$
+<p>Unfortunately, we do not know the exact value $a.$ However, we can use the measured value $a+dx,$ and estimate</p>
+$$\Delta y\approx dy\approx \kfprime(a+dx)dx.$$
+<p>In the next example, we look at how <span data-concept="differential">differentials</span> can be used to estimate the error in calculating the volume of a box if we assume the measurement of the side length is made with a certain amount of accuracy.</p>
+<div class="example" id="fs-id1165043397423">
+<h3>Example 4.10 · Volume of a Cube</h3>
+<p>Suppose the side length of a cube is measured to be 5 cm with an accuracy of 0.1 cm.</p>
+<p>a. Use <span data-concept="differential">differentials</span> to estimate the error in the computed volume of the cube.</p>
+<p>b. Compute the volume of the cube if the side length is (i) 4.9 cm and (ii) 5.1 cm to compare the estimated error with the actual potential error.</p>
+<h4>Solution</h4>
+<p>a. The measurement of the side length is accurate to within $\pm 0.1$ cm. Therefore,</p>
+$$-0.1\le dx\le 0.1.$$
+<p>The volume of a cube is given by $V={x}^{3},$ which leads to</p>
+$$dV=3{x}^{2}dx.$$
+<p>Using the measured side length of 5 cm, we can estimate that</p>
+$$-3{(5)}^{2}(0.1)\le dV\le 3{(5)}^{2}(0.1).$$
+<p>Therefore,</p>
+$$-7.5\le dV\le 7.5.$$
+<p>b. If the side length is actually 4.9 cm, then the volume of the cube is</p>
+$$V(4.9)={(4.9)}^{3}=117.649{\;\text{cm}}^{3}.$$
+<p>If the side length is actually 5.1 cm, then the volume of the cube is</p>
+$$V(5.1)={(5.1)}^{3}=132.651{\;\text{cm}}^{3}.$$
+<p>Therefore, the actual volume of the cube is between 117.649 and 132.651. Since the side length is measured to be 5 cm, the computed volume is $V(5)={5}^{3}=125.$ Therefore, the error in the computed volume is</p>
+$$117.649-125\le \Delta V\le 132.651-125.$$
+<p>That is,</p>
+$$-7.351\le \Delta V\le 7.651.$$
+<p>We see the estimated error $dV$ is relatively close to the actual potential error in the computed volume.</p>
+</div>
+<div class="exercises" data-place="fs-id1165043397423"></div>
+<p>The measurement error <em>dx</em> $(=\Delta x)$ and the <span data-concept="propagated-error">propagated error</span> $\Delta y$ are absolute errors. We are typically interested in the size of an error relative to the size of the quantity being measured or calculated. Given an absolute error $\Delta q$ for a particular quantity, we define the <strong><span data-concept="relative-error">relative error</span></strong> as $\frac{\Delta q}{q},$ where $q$ is the actual value of the quantity. The <strong><span data-concept="percentage-error">percentage error</span></strong> is the <span data-concept="relative-error">relative error</span> expressed as a percentage. For example, if we measure the height of a ladder to be 63 in. when the actual height is 62 in., the absolute error is 1 in. but the <span data-concept="relative-error">relative error</span> is $\frac{1}{62}=0.016,$ or $1.6\%.$ By comparison, if we measure the width of a piece of cardboard to be 8.25 in. when the actual width is 8 in., our absolute error is $\frac{1}{4}$ in., whereas the <span data-concept="relative-error">relative error</span> is $\frac{0.25}{8}=\frac{1}{32},$ or $3.1\%.$ Therefore, the <span data-concept="percentage-error">percentage error</span> in the measurement of the cardboard is larger, even though 0.25 in. is less than 1 in.</p>
+<div class="example" id="fs-id1165043087612">
+<h3>Example 4.11 · Relative and Percentage Error</h3>
+<p>An astronaut using a camera measures the radius of Earth as 4000 mi with an error of $\pm 80$ mi. Let’s use <span data-concept="differential">differentials</span> to estimate the relative and <span data-concept="percentage-error">percentage error</span> of using this radius measurement to calculate the volume of Earth, assuming the planet is a perfect sphere.</p>
+<h4>Solution</h4>
+<p>If the measurement of the radius is accurate to within $\pm 80,$ we have</p>
+$$-80\le dr\le 80.$$
+<p>Since the volume of a sphere is given by $V=(\frac{4}{3})\pi {r}^{3},$ we have</p>
+$$dV=4\pi {r}^{2}dr.$$
+<p>Using the measured radius of 4000 mi, we can estimate</p>
+$$-4\pi {(4000)}^{2}(80)\le dV\le 4\pi {(4000)}^{2}(80).$$
+<p>To estimate the <span data-concept="relative-error">relative error</span>, consider $\frac{dV}{V}.$ Since we do not know the exact value of the volume $V,$ use the measured radius $r=4000\;\text{mi}$ to estimate $V.$ We obtain $V\approx (\frac{4}{3})\pi {(4000)}^{3}.$ Therefore the <span data-concept="relative-error">relative error</span> satisfies</p>
+$$\frac{-4\pi {(4000)}^{2}(80)}{4\pi {(4000)}^{3}/3}\le \frac{dV}{V}\le \frac{4\pi {(4000)}^{2}(80)}{4\pi {(4000)}^{3}/3},$$
+<p>which simplifies to</p>
+$$-0.06\le \frac{dV}{V}\le 0.06.$$
+<p>The <span data-concept="relative-error">relative error</span> is 0.06 and the <span data-concept="percentage-error">percentage error</span> is $6\%.$</p>
+</div>
+<div class="exercises" data-place="fs-id1165043087612"></div>
+</section>

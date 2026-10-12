@@ -1,0 +1,1066 @@
+{
+ "id": "4.4",
+ "module": "m53612",
+ "chapter": "4",
+ "title": "The Mean Value Theorem",
+ "short": "Mean Value Theorem",
+ "lead": "If a smooth function takes equal values at the ends of an interval, its graph has a horizontal tangent in between. This section states that fact, Rolle’s theorem, and its slanted form, the Mean Value Theorem, and draws three consequences used for the rest of the chapter.",
+ "objectives": [
+  "Explain the meaning of Rolle’s theorem.",
+  "Describe the significance of the Mean Value Theorem.",
+  "State three important consequences of the Mean Value Theorem."
+ ],
+ "summary_html": "<ul><li>If $\\kf$ is continuous over $[a,b]$ and differentiable over $(a,b)$ and $\\kf(a)=\\kf(b),$ then there exists a point $c\\in (a,b)$ such that $\\kfprime(c)=0.$ This is <span data-concept=\"rolles-theorem\">Rolle’s theorem</span>.</li><li>If $\\kf$ is continuous over $[a,b]$ and differentiable over $(a,b),$ then there exists a point $c\\in (a,b)$ such that</li></ul>$$\\kfprime(c)=\\frac{f(b)-\\kf(a)}{b-a}.$$<p>This is the <span data-concept=\"mean-value-theorem\">Mean Value Theorem</span>.</p><ul><li>If $\\kfprime(x)=0$ over an interval $\\kI,$ then $\\kf$ is constant over $\\kI.$</li><li>If two <span data-concept=\"differentiable-function\">differentiable functions</span> $\\kf$ and $\\kg$ satisfy $\\kfprime(x)=\\kgprime(x)$ over $\\kI,$ then $\\kf(x)=\\kg(x)+C$ for some constant $C.$</li><li>If $\\kfprime(x)\\gt 0$ over an interval $\\kI,$ then $\\kf$ is increasing over $\\kI.$ If $\\kfprime(x)\\lt 0$ over $\\kI,$ then $\\kf$ is decreasing over $\\kI.$</li></ul><section id=\"\"><h2></h2>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 148, 150, 168, 170, 182, 184, 190 and 192 (explanations and proofs the key leaves unanswered) and to 193, under which the key prints the proof of 191, now set with 191. The other 15 even-numbered section exercises have no answer in the key and are computational, so they are left out: 152, 154, 156, 158, 160, 162, 164, 166, 172, 174, 176, 178, 180, 186, 188. Review exercise 525 is set here from the chapter review.",
+ "figures": [
+  {
+   "id": "fig-rolle-cases",
+   "kind": "figure",
+   "number": "4.21",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_04_009.jpg"
+   ],
+   "original_caption": "If a differentiable function f satisfies f(a)=f(b), then its derivative must be zero at some point(s) between a and b.",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-rolle-fails",
+   "kind": "figure",
+   "number": "4.22",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_04_002.jpg"
+   ],
+   "original_caption": "Since f(x)=|x|−1 is not differentiable at x=0, the conditions of Rolle’s theorem are not satisfied. In fact, the conclusion does not hold here; there is no c∈(−1,1) such that f′(c)=0.",
+   "draws": [
+    "function",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-rolle-parabola",
+   "kind": "figure",
+   "number": "4.23",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_04_003.jpg"
+   ],
+   "original_caption": "This function is continuous and differentiable over [−2,0], f′(c)=0 when c=−1.",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-rolle-cubic",
+   "kind": "figure",
+   "number": "4.24",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_04_004.jpg"
+   ],
+   "original_caption": "For this polynomial over [−2,2], f′(c)=0 at x=±2/√3.",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-mean-value",
+   "kind": "sim",
+   "number": "4.25",
+   "folds": [
+    "4.26"
+   ],
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_04_010.jpg",
+    "/media/ch04/CNX_Calc_Figure_04_04_011.jpg"
+   ],
+   "original_caption": "(Figure 4.25) The Mean Value Theorem says that for a function that meets its conditions, at some point the tangent line has the same slope as the secant line between the ends. For this function, there are two values c₁ and c₂ such that the tangent line to f at c₁ and c₂ has the same slope as the secant line. (Figure 4.26) The value g(x) is the vertical difference between the point (x, f(x)) and the point (x, y) on the secant line connecting (a, f(a)) and (b, f(b)).",
+   "draws": [
+    "function",
+    "point",
+    "line",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-mvt-root",
+   "kind": "figure",
+   "number": "4.27",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_04_006.jpg"
+   ],
+   "original_caption": "The slope of the tangent line at c=9/4 is the same as the slope of the line segment connecting (0,0) and (9,3).",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-mvt-rock",
+   "kind": "figure",
+   "number": "4.28",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_04_007.jpg"
+   ],
+   "original_caption": "At time t=5/4 sec, the velocity of the rock is equal to its average velocity from the time it is dropped until it hits the ground.",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sign-of-derivative",
+   "kind": "figure",
+   "number": "4.29",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_04_008.jpg"
+   ],
+   "original_caption": "If a function has a positive derivative over some interval I, then the function increases over that interval I; if the derivative is negative over some interval I, then the function decreases over that interval I.",
+   "draws": [
+    "function",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "rolles-theorem",
+   "concept": "rolles-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "rolle-proof",
+   "concept": "extreme-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "rolle-proof",
+   "concept": "fermats-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043010693",
+   "concept": "rolles-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "mean-value-theorem",
+   "concept": "mean-value-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "mvt-proof",
+   "concept": "rolles-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "mvt-proof",
+   "concept": "secant",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042979713",
+   "concept": "mean-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042332061",
+   "concept": "mean-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042332061",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042332061",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "corollary-1",
+   "concept": "functions-with-a-derivative-of-zero",
+   "verb": "introduces"
+  },
+  {
+   "span": "corollary-2",
+   "concept": "constant-difference-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "corollary-3",
+   "concept": "increasing-decreasing-corollary",
+   "verb": "introduces"
+  },
+  {
+   "span": "corollaries",
+   "concept": "mean-value-theorem",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp14",
+   "source_id": "fs-id1165042367594",
+   "source_number": "Checkpoint 4.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043010693"
+   },
+   "cite": "rolle",
+   "prompt": "Verify that the function $f(x)=2{x}^{2}-8x+6$ defined over the interval $[1,3]$ satisfies the conditions of Rolle’s theorem. Find all points $c$ guaranteed by Rolle’s theorem.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Find all values $c,$ where $f'(c)=0.$",
+    "solution": "$c=2$"
+   }
+  },
+  {
+   "id": "cp15",
+   "source_id": "fs-id1165042707212",
+   "source_number": "Checkpoint 4.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042332061"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "Suppose a ball is dropped from a height of 200 ft. Its position at time $t$ is $s(t)=-16{t}^{2}+200.$ Find the time $t$ when the instantaneous velocity of the ball equals its average velocity.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.7677669529663687,
+    "unit": "sec",
+    "hint": "First, determine how long it takes for the ball to hit the ground. Then, find the average velocity of the ball from the time it is dropped until it hits the ground.",
+    "solution": "$\\frac{5}{2\\sqrt{2}}$ sec"
+   }
+  },
+  {
+   "id": "e148",
+   "source_id": "fs-id1165042711455",
+   "source_number": "148",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>Why do you need continuity to apply the Mean Value Theorem? Construct a counterexample.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Without continuity over $[a,b]$ the graph may jump, and the secant’s slope need not be the slope of any tangent. For example, let $f(x)=x$ for $0\\le x\\lt 1$ and $f(1)=0.$ Then $f$ is differentiable over $(0,1),$ with $f'(x)=1$ there, but $\\frac{f(1)-f(0)}{1-0}=0,$ and no $c\\in(0,1)$ has $f'(c)=0.$ The theorem fails because $f$ is not continuous at the endpoint $x=1.$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1165042617572",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>Why do you need differentiability to apply the Mean Value Theorem? Find a counterexample.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "One example is $f(x)=|x|+3,\\;-2\\le x\\le 2$"
+   }
+  },
+  {
+   "id": "e150",
+   "source_id": "fs-id1165042617629",
+   "source_number": "150",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>When are Rolle’s theorem and the Mean Value Theorem equivalent?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "They are equivalent when $f(a)=f(b):$ then the secant line joining $(a,f(a))$ and $(b,f(b))$ is horizontal, its slope $\\frac{f(b)-f(a)}{b-a}$ is $0,$ and the Mean Value Theorem’s conclusion $f'(c)=\\frac{f(b)-f(a)}{b-a}$ becomes Rolle’s conclusion $f'(c)=0.$ Conversely, the Mean Value Theorem is proved from Rolle’s theorem applied to $g(x),$ the vertical difference between $f$ and the secant line."
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1165042617672",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>If you have a function with a discontinuity, is it still possible to have ${f}^{'}(c)(b-a)=f(b)-f(a)?$ Draw such an example or prove why not.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes, but the Mean Value Theorem still does not apply"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1165043382934",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, determine over what intervals (if any) the Mean Value Theorem applies. Justify your answer.</p><p>$y=\\frac{1}{{x}^{3}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Any closed interval in $(-\\infty,0)\\text{or}(0,\\infty)$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1165043383043",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, determine over what intervals (if any) the Mean Value Theorem applies. Justify your answer.</p><p>$y=\\sqrt{{x}^{2}-4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Any closed interval in $(-\\infty,-2)\\text{or}(2,\\infty)$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1165042525361",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, graph the functions on a calculator and draw the secant line that connects the endpoints. Estimate the number of points $c$ such that ${f}^{'}(c)(b-a)=f(b)-f(a).$</p><p><strong>[T]</strong> $y=3{x}^{3}+2x+1$ over $[-1,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "2 points"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1165042525487",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, graph the functions on a calculator and draw the secant line that connects the endpoints. Estimate the number of points $c$ such that ${f}^{'}(c)(b-a)=f(b)-f(a).$</p><p><strong>[T]</strong> $y={x}^{2}\\cos (\\pi x)$ over $[-2,2]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "5 points"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1165042710334",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, find all points $0\\lt c\\lt 2$ predicted by the Mean Value Theorem satisfying $f(2)-f(0)={f}^{'}(c)(2-0).$</p><p>$f(x)={x}^{3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$c=\\frac{2\\sqrt{3}}{3}$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1165042471092",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, find all points $0\\lt c\\lt 2$ predicted by the Mean Value Theorem satisfying $f(2)-f(0)={f}^{'}(c)(2-0).$</p><p>$f(x)=\\cos (2\\pi x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$c=\\frac{1}{2},1,\\frac{3}{2}$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1165042471210",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, find all points $0\\lt c\\lt 2$ predicted by the Mean Value Theorem satisfying $f(2)-f(0)={f}^{'}(c)(2-0).$</p><p>$f(x)={(x-1)}^{10}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$c=1$"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1165042709925",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, show there is no $c$ such that $f(1)-f(-1)={f}^{'}(c)(2).$ Explain why the Mean Value Theorem does not apply over the interval $[-1,1].$</p><p>$f(x)=|x-\\frac{1}{2}|$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Not differentiable"
+   }
+  },
+  {
+   "id": "e168",
+   "source_id": "fs-id1165042709970",
+   "source_number": "168",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, show there is no $c$ such that $f(1)-f(-1)={f}^{'}(c)(2).$ Explain why the Mean Value Theorem does not apply over the interval $[-1,1].$</p><p>$f(x)=\\frac{1}{{x}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $f(1)-f(-1)=1-1=0,$ so we would need $f'(c)(2)=0,$ that is, $f'(c)=0.$ But $f'(x)=-\\frac{2}{x^{3}}$ is never $0,$ so there is no such $c.$ The Mean Value Theorem does not apply because $f(x)=\\frac{1}{x^{2}}$ is not defined at $x=0,$ so it is not continuous over $[-1,1].$"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1165042710010",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, show there is no $c$ such that $f(1)-f(-1)={f}^{'}(c)(2).$ Explain why the Mean Value Theorem does not apply over the interval $[-1,1].$</p><p>$f(x)=\\sqrt{|x|}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Not differentiable"
+   }
+  },
+  {
+   "id": "e170",
+   "source_id": "fs-id1165042710049",
+   "source_number": "170",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, show there is no $c$ such that $f(1)-f(-1)={f}^{'}(c)(2).$ Explain why the Mean Value Theorem does not apply over the interval $[-1,1].$</p><p>$f(x)=\\lfloor x\\rfloor$ (<em>Hint</em>: This is called the <em>floor function</em> and it is defined so that $f(x)$ is the largest integer less than or equal to $x.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $f(1)-f(-1)=1-(-1)=2,$ so we would need $f'(c)(2)=2,$ that is, $f'(c)=1.$ But the floor function is constant between consecutive integers, so wherever it is differentiable $f'(x)=0;$ there is no such $c.$ The Mean Value Theorem does not apply because $\\lfloor x\\rfloor$ jumps at $x=0$ (and at $x=1$), so it is not continuous over $[-1,1].$"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1165042710141",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, determine whether the Mean Value Theorem applies for the functions over the given interval $[a,b].$ Justify your answer.</p><p>$y={e}^{x}$ over $[0,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1165042407476",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, determine whether the Mean Value Theorem applies for the functions over the given interval $[a,b].$ Justify your answer.</p><p>$f(x)=\\tan (2\\pi x)$ over $[0,2]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The Mean Value Theorem does not apply since the function is discontinuous at $x=\\frac{1}{4},\\frac{3}{4},\\frac{5}{4},\\frac{7}{4}.$"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1165042407622",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, determine whether the Mean Value Theorem applies for the functions over the given interval $[a,b].$ Justify your answer.</p><p>$y=\\frac{1}{|x+1|}$ over $[0,3]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1165042491035",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, determine whether the Mean Value Theorem applies for the functions over the given interval $[a,b].$ Justify your answer.</p><p>$y=\\frac{{x}^{2}+3x+2}{x}$ over $[-1,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The Mean Value Theorem does not apply; discontinuous at $x=0.$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1165042491162",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, determine whether the Mean Value Theorem applies for the functions over the given interval $[a,b].$ Justify your answer.</p><p>$y=\\ln (x+1)$ over $[0,e-1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1165043262194",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, determine whether the Mean Value Theorem applies for the functions over the given interval $[a,b].$ Justify your answer.</p><p>$y=5+|x|$ over $[-1,1]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The Mean Value Theorem does not apply; not differentiable at $x=0.$"
+   }
+  },
+  {
+   "id": "e182",
+   "source_id": "fs-id1165043262256",
+   "source_number": "182",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "corollaries",
+   "prompt": "<p>For the following exercises, consider the roots of the equation.</p><p>Show that the equation $y={x}^{3}+4x+16$ has exactly one real root. What is it?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $f(x)=x^{3}+4x+16.$ Since $f(-2)=-8-8+16=0,$ $x=-2$ is a root. Since $f'(x)=3x^{2}+4\\gt 0$ for all $x,$ $f$ is increasing over $(-\\infty,\\infty)$ by Corollary 3, so it takes the value $0$ only once. (If it had two roots $a\\lt b,$ Rolle’s theorem would give $c$ with $f'(c)=0.$) The equation has exactly one real root, $x=-2.$"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1165043262306",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "corollaries",
+   "prompt": "<p>For the following exercises, consider the roots of the equation.</p><p>Find the conditions for exactly one root (double root) for the equation $y={x}^{2}+bx+c$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$b=\\pm 2\\sqrt{c}$"
+   }
+  },
+  {
+   "id": "e184",
+   "source_id": "fs-id1165043262357",
+   "source_number": "184",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "corollaries",
+   "prompt": "<p>For the following exercises, consider the roots of the equation.</p><p>Find the conditions for $y={e}^{x}-b$ to have one root. Is it possible to have more than one root?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $e^{x}\\gt 0$ for all $x,$ the equation $e^{x}-b=0$ has a root only when $b\\gt 0,$ and then the root is $x=\\ln b.$ It cannot have more than one root: $y'=e^{x}\\gt 0,$ so $y=e^{x}-b$ is increasing over $(-\\infty,\\infty)$ by Corollary 3, and an increasing function takes the value $0$ at most once."
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1165043262444",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function over the interval $[a,b]$ and graph the secant line from $a$ to $b.$ Use the calculator to estimate all values of $c$ as guaranteed by the Mean Value Theorem. Then, find the exact value of $c,$ if possible, or write the final equation and use a calculator to estimate to four digits.</p><p><strong>[T]</strong> $y=\\tan (\\pi x)$ over $[-\\frac{1}{4},\\frac{1}{4}]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$c=\\pm \\frac{1}{\\pi}{\\cos}^{-1}(\\frac{\\sqrt{\\pi}}{2}),$ $c=\\pm 0.1533$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1165043341566",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function over the interval $[a,b]$ and graph the secant line from $a$ to $b.$ Use the calculator to estimate all values of $c$ as guaranteed by the Mean Value Theorem. Then, find the exact value of $c,$ if possible, or write the final equation and use a calculator to estimate to four digits.</p><p><strong>[T]</strong> $y=|{x}^{2}+2x-4|$ over $[-4,0]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The Mean Value Theorem does not apply."
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1165043341693",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function over the interval $[a,b]$ and graph the secant line from $a$ to $b.$ Use the calculator to estimate all values of $c$ as guaranteed by the Mean Value Theorem. Then, find the exact value of $c,$ if possible, or write the final equation and use a calculator to estimate to four digits.</p><p><strong>[T]</strong> $y=\\sqrt{x+1}+\\frac{1}{{x}^{2}}$ over $[3,8]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2\\sqrt{c+1}}-\\frac{2}{{c}^{3}}=\\frac{521}{2880};$ $c=3.133,5.867$"
+   }
+  },
+  {
+   "id": "e190",
+   "source_id": "fs-id1165042595266",
+   "source_number": "190",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function over the interval $[a,b]$ and graph the secant line from $a$ to $b.$ Use the calculator to estimate all values of $c$ as guaranteed by the Mean Value Theorem. Then, find the exact value of $c,$ if possible, or write the final equation and use a calculator to estimate to four digits.</p><p>At 10:17 a.m., you pass a police car at 55 mph that is stopped on the freeway. You pass a second police car at 55 mph at 10:53 a.m., which is located 39 mi from the first police car. If the speed limit is 60 mph, can the police cite you for speeding?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. You drove $39$ mi between 10:17 a.m. and 10:53 a.m., in $36$ min $=0.6$ h, so your average speed was $\\frac{39}{0.6}=65$ mph. Your position is a differentiable function of time, so by the Mean Value Theorem there was a moment in that time when your velocity equaled the average velocity, $65$ mph, which is over the speed limit of $60$ mph."
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1165042595286",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function over the interval $[a,b]$ and graph the secant line from $a$ to $b.$ Use the calculator to estimate all values of $c$ as guaranteed by the Mean Value Theorem. Then, find the exact value of $c,$ if possible, or write the final equation and use a calculator to estimate to four digits.</p><p>Two cars drive from one stoplight to the next, leaving at the same time and arriving at the same time. Is there ever a time when they are going the same speed? Prove or disprove.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Yes</p><p>Let ${s}_{1}(t)$ represent the distance of Car 1 from Stoplight 1 at time $t$. Let ${s}_{2}(t)$ represent the distance of Car 2 from Stoplight 1 at time $t$. Then ${s}_{1}(0)=0={s}_{2}(0)$. Let $t=m$ represent the time that the cars arrive at Stoplight 2. Then ${s}_{1}(m)=d={s}_{2}(m)$ where $d$ is the distance between the stoplights.</p><p>Define a new function $f(t)={s}_{1}(t)-{s}_{2}(t)$. Then $f(0)=0=f(m)$. By the Mean Value Theorem, there is a time $0\\lt c\\lt m$ such that</p><p>${f}^{'}(c)=\\frac{f(m)-f(0)}{m-0}=\\frac{0}{m}=0.$</p><p>At time c,</p><p>${f}^{'}(c)=0$</p><p>${s}_{1}^{'}(c)-{s}_{2}^{'}(c)=0$</p><p>${s}_{1}^{'}(c)={s}_{2}^{'}(c)$</p><p>So, at time c, Car 1 and Car 2 are traveling at the same speed.<sup class=\"fn\" data-note=\"c-key-191\"></sup></p>"
+   }
+  },
+  {
+   "id": "e192",
+   "source_id": "fs-id1165042595303",
+   "source_number": "192",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "corollaries",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function over the interval $[a,b]$ and graph the secant line from $a$ to $b.$ Use the calculator to estimate all values of $c$ as guaranteed by the Mean Value Theorem. Then, find the exact value of $c,$ if possible, or write the final equation and use a calculator to estimate to four digits.</p><p>Show that $y={\\sec}^{2}x$ and $y={\\tan}^{2}x$ have the same derivative. What can you say about $y={\\sec}^{2}x-{\\tan}^{2}x?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the chain rule, $\\frac{d}{dx}\\sec^{2}x=2\\sec x(\\sec x\\tan x)=2\\sec^{2}x\\tan x$ and $\\frac{d}{dx}\\tan^{2}x=2\\tan x\\sec^{2}x,$ the same derivative. By Corollary 2, $\\sec^{2}x-\\tan^{2}x$ is a constant over any interval on which both are defined; indeed $\\sec^{2}x-\\tan^{2}x=1,$ the Pythagorean identity."
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1165042595379",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "corollaries",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function over the interval $[a,b]$ and graph the secant line from $a$ to $b.$ Use the calculator to estimate all values of $c$ as guaranteed by the Mean Value Theorem. Then, find the exact value of $c,$ if possible, or write the final equation and use a calculator to estimate to four digits.</p><p>Show that $y={\\csc}^{2}x$ and $y={\\cot}^{2}x$ have the same derivative. What can you say about $y={\\csc}^{2}x-{\\cot}^{2}x?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the chain rule, $\\frac{d}{dx}\\csc^{2}x=2\\csc x(-\\csc x\\cot x)=-2\\csc^{2}x\\cot x$ and $\\frac{d}{dx}\\cot^{2}x=2\\cot x(-\\csc^{2}x)=-2\\csc^{2}x\\cot x,$ the same derivative. By Corollary 2, $\\csc^{2}x-\\cot^{2}x$ is a constant over any interval on which both are defined; indeed $\\csc^{2}x-\\cot^{2}x=1,$ the Pythagorean identity.<sup class=\"fn\" data-note=\"c-key-193\"></sup>"
+   }
+  },
+  {
+   "id": "r525",
+   "source_id": "fs-id1165042471237",
+   "source_section": "4.10",
+   "source_number": "525",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mvt-meaning",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample. Assume that $f(x)$ is continuous and differentiable unless stated otherwise.</p><p>If $f(-1)=-6$ and $f(1)=2,$ then there exists at least one point $x\\in [-1,1]$ such that ${f}^{'}(x)=4.$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True, by Mean Value Theorem"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp14",
+   "concept": "rolles-theorem"
+  },
+  {
+   "exercise": "cp15",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "cp15",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "cp15",
+   "concept": "instantaneous-velocity"
+  },
+  {
+   "exercise": "e148",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e149",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e149",
+   "concept": "differentiable-function"
+  },
+  {
+   "exercise": "e150",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e150",
+   "concept": "rolles-theorem"
+  },
+  {
+   "exercise": "e151",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e153",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e155",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e157",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e159",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e161",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e163",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e165",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e167",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e168",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e169",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e170",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e171",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e173",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e175",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e177",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e179",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e181",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e182",
+   "concept": "increasing-decreasing-corollary"
+  },
+  {
+   "exercise": "e182",
+   "concept": "rolles-theorem"
+  },
+  {
+   "exercise": "e183",
+   "concept": "increasing-decreasing-corollary"
+  },
+  {
+   "exercise": "e183",
+   "concept": "rolles-theorem"
+  },
+  {
+   "exercise": "e184",
+   "concept": "increasing-decreasing-corollary"
+  },
+  {
+   "exercise": "e184",
+   "concept": "rolles-theorem"
+  },
+  {
+   "exercise": "e185",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e187",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e189",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e190",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e190",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e191",
+   "concept": "mean-value-theorem"
+  },
+  {
+   "exercise": "e191",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e192",
+   "concept": "constant-difference-theorem"
+  },
+  {
+   "exercise": "e193",
+   "concept": "constant-difference-theorem"
+  },
+  {
+   "exercise": "r525",
+   "concept": "mean-value-theorem"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-decreasing",
+   "kind": "correction",
+   "html": "The book prints $f{(x)}_{1}\\gt f(x_{2});$ the condition is $f(x_{1})\\gt f(x_{2})$ whenever $x_{1}\\lt x_{2}.$"
+  },
+  {
+   "id": "c-key-191",
+   "kind": "correction",
+   "html": "The key prints this proof under exercise 193; it answers this exercise, the two cars."
+  },
+  {
+   "id": "c-key-193",
+   "kind": "correction",
+   "html": "In place of an answer to this exercise, the key prints the proof about the two cars, which belongs to exercise 191 and is set there."
+  }
+ ]
+}

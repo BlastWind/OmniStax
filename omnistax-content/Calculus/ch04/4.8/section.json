@@ -1,0 +1,1155 @@
+{
+ "id": "4.8",
+ "module": "m53619",
+ "chapter": "4",
+ "title": "L’Hôpital’s Rule",
+ "short": "L’Hôpital’s Rule",
+ "lead": "A limit of a quotient whose numerator and denominator both go to 0, or both to infinity, can often be found from the quotient of their derivatives. This section states that rule, L’Hôpital’s rule, rewrites the other indeterminate forms so that it applies, and uses it to compare how fast functions grow.",
+ "objectives": [
+  "Recognize when to apply L’Hôpital’s rule.",
+  "Identify indeterminate forms produced by quotients, products, subtractions, and powers, and apply L’Hôpital’s rule in each case.",
+  "Describe the relative growth rates of functions."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"lhopitals-rule\">L’Hôpital’s rule</span> can be used to evaluate the limit of a quotient when the <span data-concept=\"indeterminate-forms\">indeterminate form</span> $\\frac{0}{0}$ or $\\infty /\\infty$ arises.</li><li><span data-concept=\"lhopitals-rule\">L’Hôpital’s rule</span> can also be applied to other <span data-concept=\"indeterminate-forms\">indeterminate forms</span> if they can be rewritten in terms of a limit involving a quotient that has the <span data-concept=\"indeterminate-forms\">indeterminate form</span> $\\frac{0}{0}$ or $\\infty /\\infty.$</li><li>The <span data-concept=\"exponential-function\">exponential function</span> ${e}^{x}$ <span data-concept=\"growth-rates-of-functions\">grows faster</span> than any <span data-concept=\"power-function\">power function</span> ${x}^{p},$ $p\\gt 0.$</li><li>The <span data-concept=\"logarithmic-function\">logarithmic function</span> $\\ln x$ <span data-concept=\"growth-rates-of-functions\">grows more slowly</span> than any <span data-concept=\"power-function\">power function</span> ${x}^{p},$ $p\\gt 0.$</li></ul><section id=\"\"><h2></h2>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 362, 364 and 366, explanations the key leaves unanswered. The other 22 even-numbered section exercises have no answer in the key and are computational, so they are left out: 356, 358, 360, 368, 370, 372, 374, 376, 378, 380, 382, 384, 386, 388, 390, 392, 394, 396, 398, 400, 402, 404. Review exercise 541 is set here from the chapter review.",
+ "figures": [
+  {
+   "id": "sim-lhopital-zoom",
+   "kind": "sim",
+   "number": "4.71",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_08_003.jpg"
+   ],
+   "original_caption": "If limx→ af(x)=limx→ ag(x), then the ratio f(x)/g(x) is approximately equal to the ratio of their linear approximations near a.",
+   "draws": [
+    "line",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-x-ln-x",
+   "kind": "figure",
+   "number": "4.72",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_08_004.jpg"
+   ],
+   "original_caption": "Finding the limit at x=0 of the function f(x)=x ln x.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-exp-vs-square",
+   "kind": "figure",
+   "number": "4.73",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_08_005.jpg"
+   ],
+   "original_caption": "An exponential function grows at a faster rate than a power function.",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-square-vs-log",
+   "kind": "figure",
+   "number": "4.74",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_08_006.jpg"
+   ],
+   "original_caption": "A power function grows at a faster rate than a logarithmic function.",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-exp-vs-power",
+   "kind": "sim",
+   "number": "4.75",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_08_001.jpg"
+   ],
+   "original_caption": "The exponential function e^(x) grows faster than x^(p) for any p>0. (a) A comparison of e^(x) with x³. (b) A comparison of e^(x) with x⁴.",
+   "draws": [
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-log-vs-roots",
+   "kind": "figure",
+   "number": "4.76",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_08_007.jpg"
+   ],
+   "original_caption": "The function y=ln (x) grows more slowly than x^(p) for any p>0 as x→ ∞ .",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "applying-lhopitals-rule",
+   "concept": "indeterminate-form",
+   "verb": "reinforces"
+  },
+  {
+   "span": "applying-lhopitals-rule",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "lhopitals-rule",
+   "concept": "lhopitals-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "lhopital-proof",
+   "concept": "derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043397578",
+   "concept": "lhopitals-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "lhopitals-rule-infinity",
+   "concept": "lhopitals-rule-infinity-over-infinity",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043427623",
+   "concept": "lhopitals-rule-infinity-over-infinity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042350228",
+   "concept": "lhopitals-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "other-indeterminate-forms",
+   "concept": "indeterminate-forms",
+   "verb": "introduces"
+  },
+  {
+   "span": "zero-times-infinity",
+   "concept": "indeterminate-products-and-differences",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165042368495",
+   "concept": "indeterminate-products-and-differences",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043323875",
+   "concept": "indeterminate-products-and-differences",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043390815",
+   "concept": "indeterminate-powers",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043390815",
+   "concept": "properties-of-logarithms",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043108292",
+   "concept": "indeterminate-powers",
+   "verb": "uses"
+  },
+  {
+   "span": "growth-rates",
+   "concept": "growth-rates-of-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "growth-rates",
+   "concept": "growth-of-exponential-and-logarithmic-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043422462",
+   "concept": "lhopitals-rule-infinity-over-infinity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp37",
+   "source_id": "fs-id1165043395209",
+   "source_number": "Checkpoint 4.37",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043397578"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "Evaluate $\\lim_{x\\to 0}\\frac{x}{\\tan x}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "hint": "$\\frac{d}{dx}\\;\\tan x={\\sec}^{2}x$",
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "cp38",
+   "source_id": "fs-id1165042708180",
+   "source_number": "Checkpoint 4.38",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043427623"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "Evaluate $\\lim_{x\\to \\infty}\\frac{\\ln x}{5x}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "hint": "$\\frac{d}{dx}\\;\\ln x=\\frac{1}{x}$",
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "cp39",
+   "source_id": "fs-id1165043174649",
+   "source_number": "Checkpoint 4.39",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042350228"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "Explain why we cannot apply L’Hôpital’s rule to evaluate $\\lim_{x\\to {0}^{+}}\\frac{\\cos x}{x}.$ Evaluate $\\lim_{x\\to {0}^{+}}\\frac{\\cos x}{x}$ by other means.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Determine the limits of the numerator and denominator separately.",
+    "solution": "$\\lim_{x\\to {0}^{+}}\\cos x=1.$ Therefore, we cannot apply L’Hôpital’s rule. The limit of the quotient is $\\infty$"
+   }
+  },
+  {
+   "id": "cp40",
+   "source_id": "fs-id1165043430908",
+   "source_number": "Checkpoint 4.40",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042368495"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "Evaluate $\\lim_{x\\to 0}x\\;\\cot x.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "hint": "Write $x\\;\\cot x=\\frac{x\\;\\cos x}{\\sin x}$",
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "cp41",
+   "source_id": "fs-id1165043348552",
+   "source_number": "Checkpoint 4.41",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043323875"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "Evaluate $\\lim_{x\\to {0}^{+}}(\\frac{1}{x}-\\frac{1}{\\sin x}).$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "hint": "Rewrite the difference of fractions as a single fraction.",
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "cp42",
+   "source_id": "fs-id1165042407365",
+   "source_number": "Checkpoint 4.42",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043390815"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "Evaluate $\\lim_{x\\to \\infty}{x}^{1/\\ln (x)}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.718281828459045,
+    "hint": "Let $y={x}^{1/\\ln (x)}$ and apply the natural logarithm to both sides of the equation.",
+    "solution": "$e$"
+   }
+  },
+  {
+   "id": "cp43",
+   "source_id": "fs-id1165042660257",
+   "source_number": "Checkpoint 4.43",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043108292"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "Evaluate $\\lim_{x\\to {0}^{+}}{x}^{x}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "hint": "Let $y={x}^{x}$ and take the natural logarithm of both sides of the equation.",
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "cp44",
+   "source_id": "fs-id1165042463719",
+   "source_number": "Checkpoint 4.44",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043422462"
+   },
+   "cite": "growth-rates",
+   "prompt": "Compare the growth rates of ${x}^{100}$ and ${2}^{x}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Apply L’Hôpital’s rule to ${x}^{100}/{2}^{x}$",
+    "solution": "The function ${2}^{x}$ grows faster than ${x}^{100}.$"
+   }
+  },
+  {
+   "id": "e357",
+   "source_id": "fs-id1165043217966",
+   "source_number": "357",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>For the following exercises, evaluate the limit.</p><p>Evaluate the limit $\\lim_{x\\to \\infty}\\frac{{e}^{x}}{{x}^{k}}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\infty$"
+   }
+  },
+  {
+   "id": "e359",
+   "source_id": "fs-id1165043218066",
+   "source_number": "359",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>For the following exercises, evaluate the limit.</p><p>Evaluate the limit $\\lim_{x\\to a}\\frac{x-a}{{x}^{2}-{a}^{2}},\\;a\\ne 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2a}$"
+   }
+  },
+  {
+   "id": "e361",
+   "source_id": "fs-id1165042469654",
+   "source_number": "361",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>For the following exercises, evaluate the limit.</p><p>Evaluate the limit $\\lim_{x\\to a}\\frac{x-a}{{x}^{n}-{a}^{n}},\\;a\\ne 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{n{a}^{n-1}}$"
+   }
+  },
+  {
+   "id": "e362",
+   "source_id": "fs-id1165042469737",
+   "source_number": "362",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, determine whether you can apply L’Hôpital’s rule directly. Explain why or why not. Then, indicate if there is some way you can alter the limit so you can apply L’Hôpital’s rule.</p><p>$\\lim_{x\\to {0}^{+}}{x}^{2}\\ln x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Not directly: $x^{2}\\ln x$ is a product, of the form $0\\cdot(-\\infty)$ as $x\\to 0^{+},$ not a quotient. Rewrite it as $\\frac{\\ln x}{1/x^{2}},$ of the form $-\\infty/\\infty;$ then L’Hôpital’s rule gives $\\lim_{x\\to 0^{+}}\\frac{1/x}{-2/x^{3}}=\\lim_{x\\to 0^{+}}\\left(-\\frac{x^{2}}{2}\\right)=0.$"
+   }
+  },
+  {
+   "id": "e363",
+   "source_id": "fs-id1165042469817",
+   "source_number": "363",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, determine whether you can apply L’Hôpital’s rule directly. Explain why or why not. Then, indicate if there is some way you can alter the limit so you can apply L’Hôpital’s rule.</p><p>$\\lim_{x\\to \\infty}{x}^{1/x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Cannot apply directly; use logarithms"
+   }
+  },
+  {
+   "id": "e364",
+   "source_id": "fs-id1165042711562",
+   "source_number": "364",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, determine whether you can apply L’Hôpital’s rule directly. Explain why or why not. Then, indicate if there is some way you can alter the limit so you can apply L’Hôpital’s rule.</p><p>$\\lim_{x\\to 0}{x}^{2/x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Not directly: $x^{2/x}$ is a power, not a quotient. Taking logarithms, $\\ln y=\\frac{2}{x}\\ln x=\\frac{2\\ln x}{x}.$ As $x\\to 0^{+},$ $\\ln x\\to-\\infty$ and $\\frac{2}{x}\\to\\infty,$ so $\\ln y\\to-\\infty$ and $y\\to 0:$ the form is $0^{\\infty},$ which is not indeterminate, and the limit from the right is $0$ without L’Hôpital’s rule. (For $x\\lt 0$ the power $x^{2/x}$ is not defined for most $x,$ so the limit is taken from the right.)"
+   }
+  },
+  {
+   "id": "e365",
+   "source_id": "fs-id1165042711603",
+   "source_number": "365",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, determine whether you can apply L’Hôpital’s rule directly. Explain why or why not. Then, indicate if there is some way you can alter the limit so you can apply L’Hôpital’s rule.</p><p>$\\lim_{x\\to 0}\\frac{{x}^{2}}{1/x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Cannot apply directly; rewrite as $\\lim_{x\\to 0}{x}^{3}$"
+   }
+  },
+  {
+   "id": "e366",
+   "source_id": "fs-id1165042711670",
+   "source_number": "366",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, determine whether you can apply L’Hôpital’s rule directly. Explain why or why not. Then, indicate if there is some way you can alter the limit so you can apply L’Hôpital’s rule.</p><p>$\\lim_{x\\to \\infty}\\frac{{e}^{x}}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. As $x\\to\\infty,$ $e^{x}\\to\\infty$ and $x\\to\\infty,$ so $\\frac{e^{x}}{x}$ has the form $\\infty/\\infty$ and L’Hôpital’s rule applies directly: $\\lim_{x\\to\\infty}\\frac{e^{x}}{x}=\\lim_{x\\to\\infty}\\frac{e^{x}}{1}=\\infty.$"
+   }
+  },
+  {
+   "id": "e367",
+   "source_id": "fs-id1165042711715",
+   "source_number": "367",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to 3}\\frac{{x}^{2}-9}{x-3}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.0,
+    "solution": "$6$"
+   }
+  },
+  {
+   "id": "e369",
+   "source_id": "fs-id1165042499499",
+   "source_number": "369",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to 0}\\frac{{(1+x)}^{-2}-1}{x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -2.0,
+    "solution": "$-2$"
+   }
+  },
+  {
+   "id": "e371",
+   "source_id": "fs-id1165042499616",
+   "source_number": "371",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to \\pi}\\frac{x-\\pi}{\\sin x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1.0,
+    "solution": "$-1$"
+   }
+  },
+  {
+   "id": "e373",
+   "source_id": "fs-id1165042711252",
+   "source_number": "373",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to 0}\\frac{{(1+x)}^{n}-1}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$n$"
+   }
+  },
+  {
+   "id": "e375",
+   "source_id": "fs-id1165042711396",
+   "source_number": "375",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to 0}\\frac{\\sin x-\\tan x}{{x}^{3}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.5,
+    "solution": "$-\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e377",
+   "source_id": "fs-id1165042602902",
+   "source_number": "377",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to 0}\\frac{{e}^{x}-x-1}{{x}^{2}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "solution": "$\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e379",
+   "source_id": "fs-id1165042603005",
+   "source_number": "379",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to 1}\\frac{x-1}{\\ln x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e381",
+   "source_id": "fs-id1165042603107",
+   "source_number": "381",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to 1}\\frac{\\sqrt{x}-\\sqrt[3]{x}}{x-1}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.1666666667,
+    "solution": "$\\frac{1}{6}$"
+   }
+  },
+  {
+   "id": "e383",
+   "source_id": "fs-id1165042617597",
+   "source_number": "383",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to \\infty}x\\;\\sin (\\frac{1}{x})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e385",
+   "source_id": "fs-id1165042617696",
+   "source_number": "385",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to {0}^{+}}x\\;\\ln ({x}^{4})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e387",
+   "source_id": "fs-id1165042707732",
+   "source_number": "387",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to \\infty}{x}^{2}{e}^{-x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e389",
+   "source_id": "fs-id1165042707843",
+   "source_number": "389",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to 0}\\frac{1+1/x}{1-1/x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1.0,
+    "solution": "$-1$"
+   }
+  },
+  {
+   "id": "e391",
+   "source_id": "fs-id1165042707959",
+   "source_number": "391",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to \\infty}x{e}^{1/x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\infty$"
+   }
+  },
+  {
+   "id": "e393",
+   "source_id": "fs-id1165042525384",
+   "source_number": "393",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to {0}^{+}}{x}^{1/x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e395",
+   "source_id": "fs-id1165042525481",
+   "source_number": "395",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-indeterminate-forms",
+   "prompt": "<p>For the following exercises, evaluate the limits with either L’Hôpital’s rule or previously learned methods.</p><p>$\\lim_{x\\to \\infty}{(1-\\frac{1}{x})}^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{e}$"
+   }
+  },
+  {
+   "id": "e397",
+   "source_id": "fs-id1165043382933",
+   "source_number": "397",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function and estimate the value of the limit, then use L’Hôpital’s rule to find the limit directly.</p><p><strong>[T]</strong> $\\lim_{x\\to 0}x\\;\\sin (\\frac{1}{x})$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e399",
+   "source_id": "fs-id1165043383052",
+   "source_number": "399",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function and estimate the value of the limit, then use L’Hôpital’s rule to find the limit directly.</p><p><strong>[T]</strong> $\\lim_{x\\to 1}\\frac{{e}^{(x-1)}-1}{x-1}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e401",
+   "source_id": "fs-id1165042710174",
+   "source_number": "401",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function and estimate the value of the limit, then use L’Hôpital’s rule to find the limit directly.</p><p><strong>[T]</strong> $\\lim_{x\\to \\pi}\\frac{1+\\cos x}{\\sin x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e403",
+   "source_id": "fs-id1165042710284",
+   "source_number": "403",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function and estimate the value of the limit, then use L’Hôpital’s rule to find the limit directly.</p><p><strong>[T]</strong> $\\lim_{x\\to {0}^{+}}\\tan ({x}^{x})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\tan (1)$"
+   }
+  },
+  {
+   "id": "e405",
+   "source_id": "fs-id1165042710404",
+   "source_number": "405",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>For the following exercises, use a calculator to graph the function and estimate the value of the limit, then use L’Hôpital’s rule to find the limit directly.</p><p><strong>[T]</strong> $\\lim_{x\\to 0}\\frac{{e}^{x}-{e}^{-x}}{x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.0,
+    "solution": "$2$"
+   }
+  },
+  {
+   "id": "r541",
+   "source_id": "fs-id1165042711602",
+   "source_section": "4.10",
+   "source_number": "541",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "applying-lhopitals-rule",
+   "prompt": "<p>Evaluate the following limits.</p><p>$\\lim_{x\\to 1}\\frac{x-1}{\\sin (\\pi x)}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.3183098862,
+    "solution": "$-\\frac{1}{\\pi}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp37",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "cp38",
+   "concept": "lhopitals-rule-infinity-over-infinity"
+  },
+  {
+   "exercise": "cp39",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "cp39",
+   "concept": "limits-of-polynomial-and-rational-functions"
+  },
+  {
+   "exercise": "cp40",
+   "concept": "indeterminate-products-and-differences"
+  },
+  {
+   "exercise": "cp41",
+   "concept": "indeterminate-products-and-differences"
+  },
+  {
+   "exercise": "cp42",
+   "concept": "indeterminate-powers"
+  },
+  {
+   "exercise": "cp43",
+   "concept": "indeterminate-powers"
+  },
+  {
+   "exercise": "cp44",
+   "concept": "growth-rates-of-functions"
+  },
+  {
+   "exercise": "cp44",
+   "concept": "lhopitals-rule-infinity-over-infinity"
+  },
+  {
+   "exercise": "e357",
+   "concept": "growth-of-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e357",
+   "concept": "lhopitals-rule-infinity-over-infinity"
+  },
+  {
+   "exercise": "e359",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e359",
+   "concept": "lhopitals-rule-infinity-over-infinity"
+  },
+  {
+   "exercise": "e361",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e361",
+   "concept": "lhopitals-rule-infinity-over-infinity"
+  },
+  {
+   "exercise": "e362",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e362",
+   "concept": "indeterminate-products-and-differences"
+  },
+  {
+   "exercise": "e363",
+   "concept": "indeterminate-powers"
+  },
+  {
+   "exercise": "e364",
+   "concept": "indeterminate-powers"
+  },
+  {
+   "exercise": "e365",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e365",
+   "concept": "indeterminate-products-and-differences"
+  },
+  {
+   "exercise": "e366",
+   "concept": "lhopitals-rule-infinity-over-infinity"
+  },
+  {
+   "exercise": "e367",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e367",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e369",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e369",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e371",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e371",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e373",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e373",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e375",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e375",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e377",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e377",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e379",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e379",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e381",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e381",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e383",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e383",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e385",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e385",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e387",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e387",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e389",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e389",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e391",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e391",
+   "concept": "indeterminate-forms"
+  },
+  {
+   "exercise": "e393",
+   "concept": "indeterminate-powers"
+  },
+  {
+   "exercise": "e395",
+   "concept": "indeterminate-powers"
+  },
+  {
+   "exercise": "e397",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e399",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e401",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "e403",
+   "concept": "indeterminate-powers"
+  },
+  {
+   "exercise": "e403",
+   "concept": "composite-function-theorem"
+  },
+  {
+   "exercise": "e405",
+   "concept": "lhopitals-rule"
+  },
+  {
+   "exercise": "r541",
+   "concept": "lhopitals-rule"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-all-limits",
+   "kind": "correction",
+   "html": "The book prints “(All limits $x\\ge\\infty$.)”; meant is that every limit here is taken as $x\\to\\infty.$"
+  },
+  {
+   "id": "c-fig-4-71",
+   "kind": "correction",
+   "figure": "sim-lhopital-zoom",
+   "html": "The caption prints $\\lim_{x\\to a}f(x)=\\lim_{x\\to a}g(x);$ the case shown is $\\lim_{x\\to a}f(x)=\\lim_{x\\to a}g(x)=0.$"
+  }
+ ]
+}

@@ -1,0 +1,136 @@
+<p>We have seen that for quantities that are changing over time, the rates at which these quantities change are given by <span data-concept="derivative">derivatives</span>. If two related quantities are changing over time, the rates at which the quantities change are related. For example, if a balloon is being filled with air, both the radius of the balloon and the volume of the balloon are increasing. In this section, we consider several problems in which two or more related quantities are changing and we study how to determine the relationship between the <span data-concept="instantaneous-rate-of-change">rates of change</span> of these quantities.</p>
+<section id="setting-up">
+<h2>Setting up <span data-concept="solving-related-rates-problems">Related-Rates Problems</span></h2>
+<p class="cite-target">In many real-world applications, related quantities are changing with respect to time. For example, if we consider the balloon example again, we can say that the <span data-concept="instantaneous-rate-of-change">rate of change</span> in the volume, $V,$ is related to the <span data-concept="instantaneous-rate-of-change">rate of change</span> in the radius, $r.$ In this case, we say that $\kdVdt$ and $\kdrdt$ are <strong><span data-concept="related-rates">related rates</span></strong> because <em>V</em> is related to <em>r</em>. Here we study several examples of related quantities that are changing with respect to time and we look at how to calculate one <span data-concept="instantaneous-rate-of-change">rate of change</span> given another <span data-concept="instantaneous-rate-of-change">rate of change</span>.</p>
+<div class="example" id="fs-id1165042990634">
+<h3>Example 4.1 · Inflating a Balloon</h3>
+<p>A spherical balloon is being filled with air at the constant rate of $2{\;\text{cm}}^{3}/\text{sec}$ (Figure 4.2). How fast is the radius increasing when the radius is $3\;\text{cm}?$</p>
+<figure class="sim" id="sim-balloon" data-figure="4.2" data-original="/media/ch04/CNX_Calc_Figure_04_01_001.jpg" data-original-caption="As the balloon is being filled with air, both the radius and the volume are increasing with respect to time.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.2</span><span>Air flows into the balloon at the constant rate of $2\;\text{cm}^3/\text{sec}$, so its volume grows steadily while its radius grows ever more slowly. Beside it, the radius is graphed against time; the slope of its tangent is the rate $\kdrdt$ the example asks for, and the run holds when the radius reaches $3\;\text{cm}$.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>The volume of a sphere of radius $r$ centimeters is</p>
+$$V=\frac{4}{3}\pi {r}^{3}{\text{cm}}^{3}.$$
+<p>Since the balloon is being filled with air, both the volume and the radius are <span data-concept="function">functions</span> of time. Therefore, $t$ seconds after beginning to fill the balloon with air, the volume of air in the balloon is</p>
+$$V(t)=\frac{4}{3}\pi {[r(t)]}^{3}{\text{cm}}^{3}.$$
+<p>Differentiating both sides of this equation with respect to time and applying the <span data-concept="chain-rule">chain rule</span>, we see that the <span data-concept="instantaneous-rate-of-change">rate of change</span> in the volume is related to the <span data-concept="instantaneous-rate-of-change">rate of change</span> in the radius by the equation</p>
+$$\kVprime(t)=4\pi {[r(t)]}^{2}\krprime(t).$$
+<p>The balloon is being filled with air at the constant rate of 2 cm<sup>3</sup>/sec, so $\kVprime(t)=2{\;\text{cm}}^{3}/\text{sec}.$ Therefore,</p>
+$$2{\text{cm}}^{3}/\text{sec}=(4\pi {[r(t)]}^{2}{\text{cm}}^{2})\cdot (\krprime(t)\text{cm/s}),$$
+<p>which implies</p>
+$$\krprime(t)=\frac{1}{2\pi {[r(t)]}^{2}}\;\text{cm/sec}.$$
+<p>When the radius $r=3\;\text{cm,}$</p>
+$$\krprime(t)=\frac{1}{18\pi}\;\text{cm/sec}.$$
+</div>
+<div class="exercises" data-place="fs-id1165042990634"></div>
+<p>Before looking at other examples, let’s outline the problem-solving strategy we will be using to solve <span data-concept="solving-related-rates-problems">related-rates problems</span>.</p>
+<div class="note" id="related-rates-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3><span data-concept="solving-related-rates-problems">Solving a Related-Rates Problem</span></h3>
+<ol>
+<li>Assign symbols to all variables involved in the problem. Draw a figure if applicable.</li>
+<li>State, in terms of the variables, the information that is given and the rate to be determined.</li>
+<li>Find an equation relating the variables introduced in step 1.</li>
+<li>Using the <span data-concept="chain-rule">chain rule</span>, differentiate both sides of the equation found in step 3 with respect to the independent variable. This new equation will relate the <span data-concept="derivative">derivatives</span>.</li>
+<li>Substitute all known values into the equation from step 4, then solve for the unknown <span data-concept="instantaneous-rate-of-change">rate of change</span>.</li>
+</ol>
+</div>
+<p>Note that when <span data-concept="solving-related-rates-problems">solving a related-rates problem</span>, it is crucial not to substitute known values too soon. For example, if the value for a changing quantity is substituted into an equation before both sides of the equation are differentiated, then that quantity will behave as a constant and its <span data-concept="derivative">derivative</span> will not appear in the new equation found in step 4. We examine this potential error in the following example.</p>
+</section>
+
+<section id="examples-of-the-process">
+<h2>Examples of the Process</h2>
+<p class="cite-target">Let’s now implement the strategy just described to solve several <span data-concept="solving-related-rates-problems">related-rates problems</span>. The first example involves a plane flying overhead. The relationship we are studying is between the <span data-concept="speed">speed</span> of the plane and the rate at which the distance between the plane and a person on the ground is changing.</p>
+<div class="example" id="fs-id1165043105132">
+<h3>Example 4.2 · An Airplane Flying at a Constant Elevation</h3>
+<p>An airplane is flying overhead at a constant elevation of $4000\;\text{ft}.$ A man is viewing the plane from a position $3000\;\text{ft}$ from the base of a radio tower. The airplane is flying horizontally away from the man. If the plane is flying at the rate of $600\;\text{ft/sec},$ at what rate is the distance between the man and the plane increasing when the plane passes over the radio tower?</p>
+<h4>Solution</h4>
+<p>Step 1. Draw a picture, introducing variables to represent the different quantities involved.</p>
+<figure class="sim" id="sim-plane" data-figure="4.3" data-original="/media/ch04/CNX_Calc_Figure_04_01_002.jpg" data-original-caption="An airplane is flying at a constant height of 4000 ft. The distance between the person and the airplane and the person and the place on the ground directly below the airplane are changing. We denote those quantities with the variables s and x, respectively.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.3</span><span>The plane flies at $600\;\text{ft/sec}$ from straight above the man toward the tower and holds when it is over the tower, $3000\;\text{ft}$ from him. Beside it, the distance $s$ between the man and the plane is graphed against time: its tangent is flat at first, and its slope $\kdsdt$ climbs to $360\;\text{ft/sec}$ over the tower.</span></div>
+</figure>
+<p>As shown, $x$ denotes the distance between the man and the position on the ground directly below the airplane. The variable $s$ denotes the distance between the man and the plane. Note that both $x$ and $s$ are <span data-concept="function">functions</span> of time. We do not introduce a variable for the height of the plane because it remains at a constant elevation of $4000\;\text{ft}.$ Since an object’s height above the ground is measured as the shortest distance between the object and the ground, the line segment of length 4000 ft is perpendicular to the line segment of length $x$ feet, creating a right triangle.</p>
+<p>Step 2. Since $x$ denotes the horizontal distance between the man and the point on the ground below the plane, $\kdxdt$ represents the <span data-concept="speed">speed</span> of the plane. We are told the <span data-concept="speed">speed</span> of the plane is 600 ft/sec. Therefore, $\kdxdt=600$ ft/sec. Since we are asked to find the <span data-concept="instantaneous-rate-of-change">rate of change</span> in the distance between the man and the plane when the plane is directly above the radio tower, we need to find $\kdsdt$ when $x=3000\;\text{ft}.$</p>
+<p>Step 3. From the figure, we can use the Pythagorean theorem to write an equation relating $x$ and $s:$</p>
+$${[x(t)]}^{2}+{4000}^{2}={[s(t)]}^{2}.$$
+<p>Step 4. Differentiating this equation with respect to time and using the fact that the <span data-concept="derivative">derivative</span> of a constant is zero, we arrive at the equation</p>
+$$x\kdxdt=s\kdsdt.$$
+<p>Step 5. Find the rate at which the distance between the man and the plane is increasing when the plane is directly over the radio tower. That is, find $\kdsdt$ when $x=3000\;\text{ft}.$ Since the <span data-concept="speed">speed</span> of the plane is $600\;\text{ft/sec},$ we know that $\kdxdt=600\;\text{ft/sec}.$ We are not given an explicit value for $s;$ however, since we are trying to find $\kdsdt$ when $x=3000\;\text{ft},$ we can use the Pythagorean theorem to determine the distance $s$ when $x=3000$ and the height is $4000\;\text{ft}.$ Solving the equation</p>
+$${3000}^{2}+{4000}^{2}={s}^{2}$$
+<p>for $s,$ we have $s=5000\;\text{ft}$ at the time of interest. Using these values, we conclude that $\kdsdt$ is a solution of the equation</p>
+$$(3000)(600)=(5000)\cdot \kdsdt.$$
+<p>Therefore,</p>
+$$\kdsdt=\frac{3000\cdot 600}{5000}=360\;\text{ft/sec}.$$
+<p><em>Note</em>: When solving <span data-concept="solving-related-rates-problems">related-rates problems</span>, it is important not to substitute values for the variables too soon. For example, in step 3, we related the variable quantities $x(t)$ and $s(t)$ by the equation</p>
+$${[x(t)]}^{2}+{4000}^{2}={[s(t)]}^{2}.$$
+<p>Since the plane remains at a constant height, it is not necessary to introduce a variable for the height, and we are allowed to use the constant 4000 to denote that quantity. However, the other two quantities are changing. If we mistakenly substituted $x(t)=3000$ into the equation before differentiating, our equation would have been</p>
+$${3000}^{2}+{4000}^{2}={[s(t)]}^{2}.$$
+<p>After differentiating, our equation would become</p>
+$$0=s(t)\kdsdt.$$
+<p>As a result, we would incorrectly conclude that $\kdsdt=0.$</p>
+</div>
+<div class="exercises" data-place="fs-id1165043105132"></div>
+<p>We now return to the problem involving the rocket launch from the beginning of the chapter.</p>
+<div class="example" id="fs-id1165043116552">
+<h3>Example 4.3 · Chapter Opener: A Rocket Launch</h3>
+<figure class="photo" id="fig-rocket-photo" data-figure="4.4">
+  <img src="/media/ch04/CNX_Calc_Figure_04_01_007.jpg" alt="A photo of a rocket lifting off.">
+  <figcaption><span class="eyebrow">Figure 4.4</span><span>(credit: modification of work by Steve Jurvetson, Wikimedia Commons)</span></figcaption>
+</figure>
+<p>A rocket is launched so that it rises vertically. A camera is positioned $5000\;\text{ft}$ from the launch pad. When the rocket is $1000\;\text{ft}$ above the launch pad, its <span data-concept="velocity">velocity</span> is $600\;\text{ft/sec}.$ Find the necessary <span data-concept="instantaneous-rate-of-change">rate of change</span> of the camera’s angle as a <span data-concept="function">function</span> of time so that it stays focused on the rocket.</p>
+<h4>Solution</h4>
+<p>Step 1. Draw a picture introducing the variables.</p>
+<figure class="sim" id="sim-rocket-camera" data-figure="4.5" data-original="/media/ch04/CNX_Calc_Figure_04_01_003.jpg" data-original-caption="A camera is positioned 5000 ft from the launch pad of the rocket. The height of the rocket and the angle of the camera are changing with respect to time. We denote those quantities with the variables h and θ , respectively.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.5</span><span>The rocket rises at $600\;\text{ft/sec}$ past a camera $5000\;\text{ft}$ from the launch pad, and the camera tilts to follow it. Beside the scene, the camera’s angle $\ktheta$ is graphed against time; the slope of its tangent is $\kdthetadt$, which reaches $\frac{3}{26}\;\text{rad/sec}$ when the rocket is $1000\;\text{ft}$ up.</span></div>
+</figure>
+<p>Let $h$ denote the height of the rocket above the launch pad and $\ktheta$ be the angle between the camera lens and the ground.</p>
+<p>Step 2. We are trying to find the <span data-concept="instantaneous-rate-of-change">rate of change</span> in the angle of the camera with respect to time when the rocket is 1000 ft off the ground. That is, we need to find $\kdthetadt$ when $h=1000\;\text{ft}.$ At that time, we know the <span data-concept="velocity">velocity</span> of the rocket is $\kdhdt=600\;\text{ft/sec}.$</p>
+<p>Step 3. Now we need to find an equation relating the two quantities that are changing with respect to time: $h$ and $\ktheta.$ How can we create such an equation? Using the fact that we have drawn a right triangle, it is natural to think about <span data-concept="trigonometric-functions">trigonometric functions</span>. Recall that $\tan \ktheta$ is the ratio of the length of the opposite side of the triangle to the length of the adjacent side. Thus, we have</p>
+$$\tan \ktheta=\frac{h}{5000}.$$
+<p>This gives us the equation</p>
+$$h=5000\;\tan \ktheta.$$
+<p>Step 4. Differentiating this equation with respect to time $t,$ we obtain</p>
+$$\kdhdt=5000\;{\sec}^{2}\ktheta \;\kdthetadt.$$
+<p>Step 5. We want to find $\kdthetadt$ when $h=1000\;\text{ft}.$ At this time, we know that $\kdhdt=600\;\text{ft/sec}.$ We need to determine ${\sec}^{2}\ktheta.$ Recall that $\sec \ktheta$ is the ratio of the length of the hypotenuse to the length of the adjacent side. We know the length of the adjacent side is $5000\;\text{ft}.$ To determine the length of the hypotenuse, we use the Pythagorean theorem, where the length of one leg is $5000\;\text{ft},$ the length of the other leg is $h=1000\;\text{ft},$ and the length of the hypotenuse is $c$ feet as shown in the following figure.</p>
+<figure class="sim" id="fig-camera-triangle" data-figure="" data-original="/media/ch04/CNX_Calc_Figure_04_01_005.jpg" data-original-caption="A right triangle has one angle with measure θ. The hypotenuse is c, the side length opposite the angle with measure θ is 1000, and the side adjacent to the angle with measure θ is 5000.">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span>The right triangle of step 5 at the moment the rocket is $1000\;\text{ft}$ up: the legs are $5000\;\text{ft}$ and $1000\;\text{ft}$, and the hypotenuse is $c$ feet.</span></div>
+</figure>
+<p>We see that</p>
+$${1000}^{2}+{5000}^{2}={c}^{2}$$
+<p>and we conclude that the hypotenuse is</p>
+$$c=1000\sqrt{26}\;\text{ft}.$$
+<p>Therefore, when $h=1000,$ we have</p>
+$${\sec}^{2}\ktheta={(\frac{1000\sqrt{26}}{5000})}^{2}=\frac{26}{25}.$$
+<p>Recall from step 4 that the equation relating $\kdthetadt$ to our known values is</p>
+$$\kdhdt=5000\;{\sec}^{2}\ktheta \;\kdthetadt.$$
+<p>When $h=1000\;\text{ft},$ we know that $\kdhdt=600\;\text{ft/sec}$ and ${\sec}^{2}\ktheta=\frac{26}{25}.$ Substituting these values into the previous equation, we arrive at the equation</p>
+$$600=5000(\frac{26}{25})\kdthetadt\text{.}$$
+<p>Therefore, $\kdthetadt=\frac{3}{26}\;\text{rad/sec}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1165043116552"></div>
+<p>In the next example, we consider water draining from a cone-shaped funnel. We compare the rate at which the level of water in the cone is decreasing with the rate at which the volume of water is decreasing.</p>
+<div class="example" id="fs-id1165043112989">
+<h3>Example 4.4 · Water Draining from a Funnel</h3>
+<p>Water is draining from the bottom of a cone-shaped funnel at the rate of $0.0{3\;\text{ft}}^{3}\text{/sec}.$ The height of the funnel is 2 ft and the radius at the top of the funnel is $1\;\text{ft}.$ At what rate is the height of the water in the funnel changing when the height of the water is $\frac{1}{2}\;\text{ft}?$</p>
+<h4>Solution</h4>
+<p>Step 1: Draw a picture introducing the variables.</p>
+<figure class="sim" id="sim-funnel" data-figure="4.6" data-original="/media/ch04/CNX_Calc_Figure_04_01_004.jpg" data-original-caption="Water is draining from a funnel of height 2 ft and radius 1 ft. The height of the water and the radius of water are changing over time. We denote these quantities with the variables h and r, respectively.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.6</span><span>Water drains from the funnel at $0.03\;\text{ft}^3/\text{sec}$. The cross section shows the similar triangles that give $r=\frac{h}{2}$; beside it, the height of the water is graphed against time, and the slope of its tangent, $\kdhdt$, grows steeper as the level falls, reaching $-0.153\;\text{ft/sec}$ at $h=\frac{1}{2}\;\text{ft}$.</span></div>
+</figure>
+<p>Let $h$ denote the height of the water in the funnel, $r$ denote the radius of the water at its surface, and $V$ denote the volume of the water.</p>
+<p>Step 2: We need to determine $\kdhdt$ when $h=\frac{1}{2}\;\text{ft}.$ We know that $\kdVdt=-0.03\;{\text{ft}}^{3}\text{/sec}.$</p>
+<p>Step 3: The volume of water in the cone is</p>
+$$V=\frac{1}{3}\pi {r}^{2}h.$$
+<p>From the figure, we see that we have similar triangles. Therefore, the ratio of the sides in the two triangles is the same. Therefore, $\frac{r}{h}=\frac{1}{2}$ or $r=\frac{h}{2}.$ Using this fact, the equation for volume can be simplified to</p>
+$$V=\frac{1}{3}\pi {(\frac{h}{2})}^{2}h=\frac{\pi}{12}\;{h}^{3}.$$
+<p>Step 4: Applying the <span data-concept="chain-rule">chain rule</span> while differentiating both sides of this equation with respect to time $t,$ we obtain</p>
+$$\kdVdt=\frac{\pi}{4}\;{h}^{2}\kdhdt.$$
+<p>Step 5: We want to find $\kdhdt$ when $h=\frac{1}{2}\;\text{ft}.$ Since water is leaving at the rate of $0.0{3\;\text{ft}}^{3}\text{/sec},$ we know that $\kdVdt=-0.03{\;\text{ft}}^{3}\text{/sec}.$ Therefore,</p>
+$$-0.03=\frac{\pi}{4}{(\frac{1}{2})}^{2}\kdhdt,$$
+<p>which implies</p>
+$$-0.03=\frac{\pi}{16}\;\kdhdt.$$
+<p>It follows that</p>
+$$\kdhdt=-\frac{0.48}{\pi}=-0.153\;\text{ft/sec}.$$
+</div>
+<div class="exercises" data-place="fs-id1165043112989"></div>
+</section>

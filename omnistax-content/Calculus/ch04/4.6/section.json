@@ -1,0 +1,1840 @@
+{
+ "id": "4.6",
+ "module": "m53596",
+ "chapter": "4",
+ "title": "Limits at Infinity and Asymptotes",
+ "short": "Limits at Infinity",
+ "lead": "This section asks what a function does as x grows without bound in either direction. It defines limits at infinity, informally and formally, with the horizontal and oblique asymptotes they give, works out the end behavior of polynomial, rational, radical and transcendental functions, and gathers every tool so far into a strategy for drawing the graph of a function.",
+ "objectives": [
+  "Calculate the limit of a function as $x$ increases or decreases without bound.",
+  "Recognize a horizontal asymptote on the graph of a function.",
+  "Estimate the end behavior of a function as $x$ increases or decreases without bound.",
+  "Recognize an oblique asymptote on the graph of a function.",
+  "Analyze a function and its derivatives to draw its graph."
+ ],
+ "summary_html": "<ul><li>The limit of $\\kf(x)$ is $\\kL$ as $x\\to \\infty$ (or as $x\\to-\\infty)$ if the values $\\kf(x)$ become arbitrarily close to $\\kL$ as $x$ becomes sufficiently large.</li><li>The limit of $\\kf(x)$ is $\\infty$ as $x\\to \\infty$ if $\\kf(x)$ becomes arbitrarily large as $x$ becomes sufficiently large. The limit of $\\kf(x)$ is $-\\infty$ as $x\\to \\infty$ if $\\kf(x)\\lt 0$ and $|\\kf(x)|$ becomes arbitrarily large as $x$ becomes sufficiently large. We can define the limit of $\\kf(x)$ as $x$ approaches $-\\infty$ similarly.</li><li>For a <span data-concept=\"polynomial-function\">polynomial function</span> $p(x)={a}_{n}{x}^{n}+{a}_{n-1}{x}^{n-1}+\\ldots+{a}_{1}x+{a}_{0},$ where ${a}_{n}\\ne 0,$ the <span data-concept=\"end-behavior\">end behavior</span> is determined by the leading term ${a}_{n}{x}^{n}.$ If $n\\ne 0,$ $p(x)$ approaches $\\infty$ or $-\\infty$ at each end.</li><li>For a <span data-concept=\"rational-function\">rational function</span> $\\kf(x)=\\frac{p(x)}{q(x)},$ the <span data-concept=\"end-behavior\">end behavior</span> is determined by the relationship between the degree of $p$ and the degree of $q.$ If the degree of $p$ is less than the degree of $q,$ the line $y=0$ is a <span data-concept=\"horizontal-asymptote\">horizontal asymptote</span> for $\\kf.$ If the degree of $p$ is equal to the degree of $q,$ then the line $y=\\frac{{a}_{n}}{{b}_{n}}$ is a <span data-concept=\"horizontal-asymptote\">horizontal asymptote</span>, where ${a}_{n}$ and ${b}_{n}$ are the leading coefficients of $p$ and $q,$ respectively. If the degree of $p$ is greater than the degree of $q,$ then $\\kf$ approaches $\\infty$ or $-\\infty$ at each end.</li></ul><section id=\"\"><h2></h2>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 306, 308 and 310, explanations the key leaves unanswered. The other 27 even-numbered section exercises have no answer in the key and are computational, so they are left out: 252, 254, 256, 258, 260, 262, 264, 266, 268, 270, 272, 274, 276, 278, 280, 282, 284, 286, 288, 290, 292, 294, 296, 298, 300, 302, 304. Review exercises 539 and 547 are set here from the chapter review.",
+ "figures": [
+  {
+   "id": "fig-two-plus-reciprocal",
+   "kind": "figure",
+   "number": "4.40",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_019.jpg"
+   ],
+   "original_caption": "The function approaches the asymptote y=2 as x approaches ±∞ .",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-limits-at-infinity",
+   "kind": "figure",
+   "number": "4.41",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_020.jpg"
+   ],
+   "original_caption": "(a) As x→ ∞ , the values of f are getting arbitrarily close to L. The line y=L is a horizontal asymptote of f. (b) As x→ −∞ , the values of f are getting arbitrarily close to M. The line y=M is a horizontal asymptote of f.",
+   "draws": [
+    "function",
+    "line",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-crossing-asymptote",
+   "kind": "figure",
+   "number": "4.42",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_002.jpg"
+   ],
+   "original_caption": "The graph of f(x)=(cos x)/x+1 crosses its horizontal asymptote y=1 an infinite number of times.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-five-minus",
+   "kind": "figure",
+   "number": "4.43",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_003.jpg"
+   ],
+   "original_caption": "This function approaches a horizontal asymptote as x→ ±∞ .",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sinc",
+   "kind": "figure",
+   "number": "4.44",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_004.jpg"
+   ],
+   "original_caption": "This function crosses its horizontal asymptote multiple times.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tangent-branch",
+   "kind": "figure",
+   "number": "4.45",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_021.jpg"
+   ],
+   "original_caption": "The graph of tan x has vertical asymptotes at x=±(π)/2",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-arctangent",
+   "kind": "figure",
+   "number": "4.46",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_005.jpg"
+   ],
+   "original_caption": "This function has two horizontal asymptotes.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cube",
+   "kind": "figure",
+   "number": "4.47",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_022.jpg"
+   ],
+   "original_caption": "For this function, the functional values approach infinity as x→ ±∞ .",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-epsilon-n",
+   "kind": "sim",
+   "number": "4.48",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_023.jpg"
+   ],
+   "original_caption": "For a function with a limit at infinity, for all x>N, |f(x)−L|<ε.",
+   "draws": [
+    "function",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-m-n",
+   "kind": "sim",
+   "number": "4.49",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_024.jpg"
+   ],
+   "original_caption": "For a function with an infinite limit at infinity, for all x>N, f(x)>M.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-even-powers",
+   "kind": "figure",
+   "number": "4.50",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_025.jpg"
+   ],
+   "original_caption": "For power functions with an even exponent of n, limx→ ∞xⁿ=∞ =lim_x→ −∞xⁿ.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-odd-powers",
+   "kind": "figure",
+   "number": "4.51",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_026.jpg"
+   ],
+   "original_caption": "For power functions with an odd exponent of n, limx→ ∞xⁿ=∞ and lim_x→ −∞xⁿ=−∞ .",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-leading-term",
+   "kind": "sim",
+   "number": "4.52",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_006.jpg"
+   ],
+   "original_caption": "The end behavior of a polynomial is determined by the behavior of the term with the largest exponent.",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-rational-equal",
+   "kind": "figure",
+   "number": "4.53",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_007.jpg"
+   ],
+   "original_caption": "The graph of this rational function approaches a horizontal asymptote as x→ ±∞ .",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-rational-lower",
+   "kind": "figure",
+   "number": "4.54",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_008.jpg"
+   ],
+   "original_caption": "The graph of this rational function approaches the horizontal asymptote y=0 as x→ ±∞ .",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-rational-higher",
+   "kind": "figure",
+   "number": "4.55",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_027.jpg"
+   ],
+   "original_caption": "As x→ ∞ , the values f(x)→ ∞ . As x→ −∞ , the values f(x)→ −∞ .",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-oblique-asymptote",
+   "kind": "sim",
+   "number": "4.56",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_009.jpg"
+   ],
+   "original_caption": "The graph of the rational function f(x)=(3x²+4x)/(x+2) approaches the oblique asymptote y=3x−2 as x→ ±∞ .",
+   "draws": [
+    "function",
+    "line",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-radical",
+   "kind": "figure",
+   "number": "4.57",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_010.jpg"
+   ],
+   "original_caption": "This function has two horizontal asymptotes and it crosses one of the asymptotes.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sine-ends",
+   "kind": "figure",
+   "number": "4.58",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_011.jpg"
+   ],
+   "original_caption": "The function f(x)=sin x oscillates between 1 and −1 as x→ ±∞",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tangent-ends",
+   "kind": "figure",
+   "number": "4.59",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_012.jpg"
+   ],
+   "original_caption": "The function f(x)=tan x does not approach a limit and does not approach ±∞ as x→ ±∞",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-exponential-ends",
+   "kind": "figure",
+   "number": "4.60",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_013.jpg"
+   ],
+   "original_caption": "The exponential function approaches zero as x→ −∞ and approaches ∞ as x→ ∞ .",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-logarithm-ends",
+   "kind": "figure",
+   "number": "4.61",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_014.jpg"
+   ],
+   "original_caption": "The natural logarithm function approaches ∞ as x→ ∞ .",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sketch-polynomial",
+   "kind": "figure",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_015.jpg"
+   ],
+   "original_caption": "The function f(x) = (x −1)2 (x + 2) is graphed. It crosses the x axis at x = −2 and touches the x axis at x = 1.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sketch-rational",
+   "kind": "figure",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_016.jpg"
+   ],
+   "original_caption": "The function f(x) = x2/(1 − x2) is graphed. It has asymptotes y = −1, x = −1, and x = 1.",
+   "draws": [
+    "function",
+    "line",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sketch-oblique",
+   "kind": "figure",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_017.jpg"
+   ],
+   "original_caption": "The function f(x) = x2/(x − 1) is graphed. It has asymptotes y = x + 1 and x = 1.",
+   "draws": [
+    "function",
+    "line",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sketch-cusp",
+   "kind": "figure",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_06_018.jpg"
+   ],
+   "original_caption": "The function f(x) = (x − 1)2/3 is graphed. It touches the x axis at x = 1, where it comes to something of a sharp point and then flairs out on either side.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "poly-f",
+   "label": "f(x) = 5x³ − 3x² + 4",
+   "figures": [
+    "sim-leading-term"
+   ]
+  },
+  {
+   "id": "lead-g",
+   "label": "g(x) = 5x³",
+   "figures": [
+    "sim-leading-term"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "limit-at-infinity-definition",
+   "concept": "limit-at-infinity",
+   "verb": "introduces"
+  },
+  {
+   "span": "horizontal-asymptote-definition",
+   "concept": "horizontal-asymptote",
+   "verb": "introduces"
+  },
+  {
+   "span": "horizontal-asymptotes",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042962649",
+   "concept": "horizontal-asymptote",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042962649",
+   "concept": "squeeze-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "infinite-limit-definition",
+   "concept": "infinite-limit-at-infinity",
+   "verb": "introduces"
+  },
+  {
+   "span": "formal-limit-definition",
+   "concept": "formal-definition-of-a-limit-at-infinity",
+   "verb": "introduces"
+  },
+  {
+   "span": "formal-infinite-limit-definition",
+   "concept": "formal-definition-of-an-infinite-limit-at-infinity",
+   "verb": "introduces"
+  },
+  {
+   "span": "end-behavior",
+   "concept": "end-behavior",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polynomial-end-behavior",
+   "concept": "end-behavior",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polynomial-end-behavior",
+   "concept": "power-function",
+   "verb": "uses"
+  },
+  {
+   "span": "algebraic-end-behavior",
+   "concept": "end-behavior-of-rational-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "algebraic-end-behavior",
+   "concept": "oblique-asymptote",
+   "verb": "introduces"
+  },
+  {
+   "span": "transcendental-end-behavior",
+   "concept": "end-behavior-of-transcendental-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "graphing-strategy",
+   "concept": "drawing-the-graph-of-a-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165042617768",
+   "concept": "drawing-the-graph-of-a-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042710140",
+   "concept": "drawing-the-graph-of-a-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042592955",
+   "concept": "oblique-asymptote",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042607090",
+   "concept": "drawing-the-graph-of-a-function",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp20",
+   "source_id": "fs-id1165042320884",
+   "source_number": "Checkpoint 4.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042962649"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "Evaluate $\\lim_{x\\to-\\infty}(3+\\frac{4}{x})$ and $\\lim_{x\\to \\infty}(3+\\frac{4}{x}).$ Determine the horizontal asymptotes of $f(x)=3+\\frac{4}{x},$ if any.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$\\lim_{x\\to \\pm \\infty}1/x=0$",
+    "solution": "Both limits are $3.$ The line $y=3$ is a horizontal asymptote."
+   }
+  },
+  {
+   "id": "cp21",
+   "source_id": "fs-id1165042480095",
+   "source_number": "Checkpoint 4.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042970473"
+   },
+   "cite": "formal-definitions",
+   "prompt": "Use the formal definition of limit at infinity to prove that $\\lim_{x\\to \\infty}(3-\\frac{1}{{x}^{2}})=3.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Let $N=\\frac{1}{\\sqrt{\\varepsilon}}.$",
+    "solution": "<p>Let $\\varepsilon \\gt 0.$ Let $N=\\frac{1}{\\sqrt{\\varepsilon}}.$ Therefore, for all $x\\gt N,$ we have</p><p>$|3-\\frac{1}{{x}^{2}}-3|=\\frac{1}{{x}^{2}}\\lt \\frac{1}{{N}^{2}}=\\varepsilon$</p><p>Therefore, $\\lim_{x\\to \\infty}(3-1/{x}^{2})=3.$</p>"
+   }
+  },
+  {
+   "id": "cp22",
+   "source_id": "fs-id1165042320222",
+   "source_number": "Checkpoint 4.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042323534"
+   },
+   "cite": "formal-definitions",
+   "prompt": "Use the formal definition of infinite limit at infinity to prove that $\\lim_{x\\to \\infty}3{x}^{2}=\\infty.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Let $N=\\sqrt{\\frac{M}{3}}.$",
+    "solution": "Let $M\\gt 0.$ Let $N=\\sqrt{\\frac{M}{3}}.$ Then, for all $x\\gt N,$ we have $3{x}^{2}\\gt 3{N}^{2}=3{(\\sqrt{\\frac{M}{3}})}^{2}{}^{2}=\\frac{3M}{3}=M$<sup class=\"fn\" data-note=\"c-cp22-exponent\"></sup>"
+   }
+  },
+  {
+   "id": "cp23",
+   "source_id": "fs-id1165042401060",
+   "source_number": "Checkpoint 4.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043219126"
+   },
+   "cite": "polynomial-end-behavior",
+   "prompt": "Let $f(x)=-3{x}^{4}.$ Find $\\lim_{x\\to \\infty}f(x).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "The coefficient $-3$ is negative.",
+    "solution": "$-\\infty$"
+   }
+  },
+  {
+   "id": "cp24",
+   "source_id": "fs-id1165042660292",
+   "source_number": "Checkpoint 4.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042638553"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "Evaluate $\\lim_{x\\to \\pm \\infty}\\frac{3{x}^{2}+2x-1}{5{x}^{2}-4x+7}$ and use these limits to determine the end behavior of $f(x)=\\frac{3{x}^{2}+2x-1}{5{x}^{2}-4x+7}.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.6,
+    "hint": "Divide the numerator and denominator by ${x}^{2}.$",
+    "solution": "$\\frac{3}{5}$"
+   }
+  },
+  {
+   "id": "cp25",
+   "source_id": "fs-id1165042463919",
+   "source_number": "Checkpoint 4.25",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042631816"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "Evaluate $\\lim_{x\\to \\infty}\\frac{\\sqrt{3{x}^{2}+4}}{x+6}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Divide the numerator and denominator by $|x|.$",
+    "solution": "$\\pm\\sqrt{3}$<sup class=\"fn\" data-note=\"c-cp25-sign\"></sup>"
+   }
+  },
+  {
+   "id": "cp26",
+   "source_id": "fs-id1165042711310",
+   "source_number": "Checkpoint 4.26",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042469818"
+   },
+   "cite": "transcendental-end-behavior",
+   "prompt": "Find the limits as $x\\to \\infty$ and $x\\to-\\infty$ for $f(x)=\\frac{(3{e}^{x}-4)}{(5{e}^{x}+2)}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$\\lim_{x\\to \\infty}{e}^{x}=\\infty$ and $\\lim_{x\\to \\infty}{e}^{x}=0.$<sup class=\"fn\" data-note=\"c-cp26-hint\"></sup>",
+    "solution": "$\\lim_{x\\to \\infty}f(x)=\\frac{3}{5},$ $\\lim_{x\\to-\\infty}f(x)=-2$"
+   }
+  },
+  {
+   "id": "cp27",
+   "source_id": "fs-id1165042710050",
+   "source_number": "Checkpoint 4.27",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042617768"
+   },
+   "cite": "guidelines",
+   "prompt": "Sketch a graph of $f(x)={(x-1)}^{3}(x+2).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "$f$ is a fourth-degree polynomial.",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_06_028.jpg\" alt=\"The function f(x) = (x −1)3(x + 2) is graphed.\">"
+   }
+  },
+  {
+   "id": "cp28",
+   "source_id": "fs-id1165042592768",
+   "source_number": "Checkpoint 4.28",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042710140"
+   },
+   "cite": "guidelines",
+   "prompt": "Sketch a graph of $f(x)=\\frac{(3x+5)}{(8+4x)}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "A line $y=L$ is a horizontal asymptote of $f$ if the limit as $x\\to \\infty$ or the limit as $x\\to-\\infty$ of $f(x)$ is $L.$ A line $x=a$ is a vertical asymptote if at least one of the one-sided limits of $f$ as $x\\to a$ is $\\infty$ or $-\\infty.$",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_06_029.jpg\" alt=\"The function f(x) = (3x + 5)/(8 + 4x) is graphed. It appears to have asymptotes at x = −2 and y = 1.\">"
+   }
+  },
+  {
+   "id": "cp29",
+   "source_id": "fs-id1165042606986",
+   "source_number": "Checkpoint 4.29",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042592955"
+   },
+   "cite": "guidelines",
+   "prompt": "Find the oblique asymptote for $f(x)=\\frac{(3{x}^{3}-2x+1)}{(2{x}^{2}-4)}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Use long division of polynomials.",
+    "solution": "$y=\\frac{3}{2}x$"
+   }
+  },
+  {
+   "id": "cp30",
+   "source_id": "fs-id1165042644011",
+   "source_number": "Checkpoint 4.30",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042607090"
+   },
+   "cite": "guidelines",
+   "prompt": "Consider the function $f(x)=5-{x}^{2/3}.$ Determine the point on the graph where a cusp is located. Determine the end behavior of $f.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "A function $f$ has a cusp at a point $a$ if $f(a)$ exists, $f'(a)$ is undefined, one of the one-sided limits as $x\\to a$ of $f'(x)$ is $+\\infty,$ and the other one-sided limit is $-\\infty.$",
+    "solution": "The function $f$ has a cusp at $(0,5)$ $\\lim_{x\\to {0}^{-}}{f}^{'}(x)=\\infty,$ $\\lim_{x\\to {0}^{+}}{f}^{'}(x)=-\\infty.$ For end behavior, $\\lim_{x\\to \\pm \\infty}f(x)=-\\infty.$"
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1165042640632",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_06_201.jpg",
+    "alt": "The function graphed decreases very rapidly as it approaches x = 1 from the left, and on the other side of x = 1, it seems to start near infinity and then decrease rapidly."
+   },
+   "prompt": "<p>For the following exercises, examine the graphs. Identify where the vertical asymptotes are located.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=1$"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1165043197220",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_06_203.jpg",
+    "alt": "The function graphed decreases very rapidly as it approaches x = −1 from the left, and on the other side of x = −1, it seems to start near negative infinity and then increase rapidly to form a sort of U shape that is pointing down, with the other side of the U being at x = 2. On the other side of x = 2, the graph seems to start near infinity and then decrease rapidly."
+   },
+   "prompt": "<p>For the following exercises, examine the graphs. Identify where the vertical asymptotes are located.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=-1,x=2$"
+   }
+  },
+  {
+   "id": "e255",
+   "source_id": "fs-id1165043197318",
+   "source_number": "255",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_06_205.jpg",
+    "alt": "The function graphed decreases very rapidly as it approaches x = 0 from the left, and on the other side of x = 0, it seems to start near infinity and then decrease rapidly to form a sort of U shape that is pointing up, with the other side being a normal function that appears as if it will take the entirety of the values of the x-axis."
+   },
+   "prompt": "<p>For the following exercises, examine the graphs. Identify where the vertical asymptotes are located.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=0$"
+   }
+  },
+  {
+   "id": "e257",
+   "source_id": "fs-id1165043197447",
+   "source_number": "257",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following functions $f(x),$ determine whether there is an asymptote at $x=a.$ Justify your answer without graphing on a calculator.</p><p>$f(x)=\\frac{x}{x-2},a=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes, there is a vertical asymptote"
+   }
+  },
+  {
+   "id": "e259",
+   "source_id": "fs-id1165043197555",
+   "source_number": "259",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following functions $f(x),$ determine whether there is an asymptote at $x=a.$ Justify your answer without graphing on a calculator.</p><p>$f(x)={(x-1)}^{-1/3},a=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Yes, there is vertical asymptote"
+   }
+  },
+  {
+   "id": "e261",
+   "source_id": "fs-id1165043377734",
+   "source_number": "261",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following exercises, evaluate the limit.</p><p>$\\lim_{x\\to \\infty}\\frac{1}{3x+6}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e263",
+   "source_id": "fs-id1165043377833",
+   "source_number": "263",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following exercises, evaluate the limit.</p><p>$\\lim_{x\\to \\infty}\\frac{{x}^{2}-2x+5}{x+2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\infty$"
+   }
+  },
+  {
+   "id": "e265",
+   "source_id": "fs-id1165043377963",
+   "source_number": "265",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following exercises, evaluate the limit.</p><p>$\\lim_{x\\to-\\infty}\\frac{{x}^{4}-4{x}^{3}+1}{2-2{x}^{2}-7{x}^{4}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.1428571429,
+    "solution": "$-\\frac{1}{7}$"
+   }
+  },
+  {
+   "id": "e267",
+   "source_id": "fs-id1165043378100",
+   "source_number": "267",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following exercises, evaluate the limit.</p><p>$\\lim_{x\\to-\\infty}\\frac{\\sqrt{4{x}^{2}-1}}{x+2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -2.0,
+    "solution": "$-2$"
+   }
+  },
+  {
+   "id": "e269",
+   "source_id": "fs-id1165043216454",
+   "source_number": "269",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following exercises, evaluate the limit.</p><p>$\\lim_{x\\to-\\infty}\\frac{4x}{\\sqrt{{x}^{2}-1}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -4.0,
+    "solution": "$-4$"
+   }
+  },
+  {
+   "id": "e271",
+   "source_id": "fs-id1165043216566",
+   "source_number": "271",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, find the horizontal and vertical asymptotes.</p><p>$f(x)=x-\\frac{9}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal: none, vertical: $x=0$"
+   }
+  },
+  {
+   "id": "e273",
+   "source_id": "fs-id1165043216679",
+   "source_number": "273",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, find the horizontal and vertical asymptotes.</p><p>$f(x)=\\frac{{x}^{3}}{4-{x}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal: none, vertical: $x=\\pm 2$"
+   }
+  },
+  {
+   "id": "e275",
+   "source_id": "fs-id1165043210294",
+   "source_number": "275",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, find the horizontal and vertical asymptotes.</p><p>$f(x)=\\sin (x)\\;\\sin (2x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal: none, vertical: none"
+   }
+  },
+  {
+   "id": "e277",
+   "source_id": "fs-id1165043210409",
+   "source_number": "277",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, find the horizontal and vertical asymptotes.</p><p>$f(x)=\\frac{x\\;\\sin (x)}{{x}^{2}-1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal: $y=0,$ vertical: $x=\\pm 1$"
+   }
+  },
+  {
+   "id": "e279",
+   "source_id": "fs-id1165043210550",
+   "source_number": "279",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, find the horizontal and vertical asymptotes.</p><p>$f(x)=\\frac{1}{{x}^{3}+{x}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal: $y=0,$ vertical: $x=0$ and $x=-1$"
+   }
+  },
+  {
+   "id": "e281",
+   "source_id": "fs-id1165043349198",
+   "source_number": "281",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, find the horizontal and vertical asymptotes.</p><p>$f(x)=\\frac{{x}^{3}+1}{{x}^{3}-1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal: $y=1,$ vertical: $x=1$"
+   }
+  },
+  {
+   "id": "e283",
+   "source_id": "fs-id1165043349346",
+   "source_number": "283",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, find the horizontal and vertical asymptotes.</p><p>$f(x)=x-\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal: none, vertical: none"
+   }
+  },
+  {
+   "id": "e285",
+   "source_id": "fs-id1165043349448",
+   "source_number": "285",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following exercises, construct a function $f(x)$ that has the given asymptotes.</p><p>$x=1$ and $y=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Answers will vary, for example: $y=\\frac{2x}{x-1}$"
+   }
+  },
+  {
+   "id": "e287",
+   "source_id": "fs-id1165043349559",
+   "source_number": "287",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For the following exercises, construct a function $f(x)$ that has the given asymptotes.</p><p>$y=4,$ $x=-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Answers will vary, for example: $y=\\frac{4x}{x+1}$"
+   }
+  },
+  {
+   "id": "e289",
+   "source_id": "fs-id1165042709138",
+   "source_number": "289",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, graph the function on a graphing calculator on the window $x=[-5,5]$ and estimate the horizontal asymptote or limit. Then, calculate the actual horizontal asymptote or limit.</p><p><strong>[T]</strong> $f(x)=\\frac{1}{x+10}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=0$"
+   }
+  },
+  {
+   "id": "e291",
+   "source_id": "fs-id1165042709257",
+   "source_number": "291",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, graph the function on a graphing calculator on the window $x=[-5,5]$ and estimate the horizontal asymptote or limit. Then, calculate the actual horizontal asymptote or limit.</p><p><strong>[T]</strong> $\\lim_{x\\to-\\infty}{x}^{2}+10x+25$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\infty$"
+   }
+  },
+  {
+   "id": "e293",
+   "source_id": "fs-id1165042709385",
+   "source_number": "293",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "horizontal-asymptotes",
+   "prompt": "<p>For the following exercises, graph the function on a graphing calculator on the window $x=[-5,5]$ and estimate the horizontal asymptote or limit. Then, calculate the actual horizontal asymptote or limit.</p><p><strong>[T]</strong> $\\lim_{x\\to \\infty}\\frac{3x+2}{x+5}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=3$"
+   }
+  },
+  {
+   "id": "e295",
+   "source_id": "fs-id1165042709501",
+   "source_number": "295",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "guidelines",
+   "prompt": "<p>For the following exercises, draw a graph of the functions without using a calculator. Be sure to notice all important features of the graph: local maxima and minima, inflection points, and asymptotic behavior.</p><p>$y={x}^{3}-3{x}^{2}+4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_06_207.jpg\" alt=\"The function starts in the third quadrant, increases to pass through (−1, 0), increases to a maximum and y intercept at 4, decreases to touch (2, 0), and then increases to (4, 20).\">"
+   }
+  },
+  {
+   "id": "e297",
+   "source_id": "fs-id1165042558205",
+   "source_number": "297",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "guidelines",
+   "prompt": "<p>For the following exercises, draw a graph of the functions without using a calculator. Be sure to notice all important features of the graph: local maxima and minima, inflection points, and asymptotic behavior.</p><p>$y=\\frac{{x}^{3}+4{x}^{2}+3x}{3x+9}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_06_209.jpg\" alt=\"An upward-facing parabola with minimum between x = 0 and x = −1 with y intercept between 0 and 1.\">"
+   }
+  },
+  {
+   "id": "e299",
+   "source_id": "fs-id1165042558343",
+   "source_number": "299",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "guidelines",
+   "prompt": "<p>For the following exercises, draw a graph of the functions without using a calculator. Be sure to notice all important features of the graph: local maxima and minima, inflection points, and asymptotic behavior.</p><p>$y=\\sqrt{{x}^{2}-5x+4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_06_211.jpg\" alt=\"This graph starts at (−2, 4) and decreases in a convex way to (1, 0). Then the graph starts again at (4, 0) and increases in a convex way to (6, 3).\">"
+   }
+  },
+  {
+   "id": "e301",
+   "source_id": "fs-id1165042558446",
+   "source_number": "301",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "guidelines",
+   "prompt": "<p>For the following exercises, draw a graph of the functions without using a calculator. Be sure to notice all important features of the graph: local maxima and minima, inflection points, and asymptotic behavior.</p><p>$y=\\frac{\\cos x}{x},$ on $x=[-2\\pi,2\\pi]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_06_213.jpg\" alt=\"This graph has vertical asymptote at x = 0. The first part of the function occurs in the second and third quadrants and starts in the third quadrant just below (−2π, 0), increases and passes through the x axis at −3π/2, reaches a maximum and then decreases through the x axis at −π/2 before approaching the asymptote. On the other side of the asymptote, the function starts in the first quadrant, decreases quickly to pass through π/2, decreases to a local minimum and then increases through (3π/2, 0) before staying just above (2π, 0).\">"
+   }
+  },
+  {
+   "id": "e303",
+   "source_id": "fs-id1165043404024",
+   "source_number": "303",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "guidelines",
+   "prompt": "<p>For the following exercises, draw a graph of the functions without using a calculator. Be sure to notice all important features of the graph: local maxima and minima, inflection points, and asymptotic behavior.</p><p>$y=x\\;\\tan x,x=[-\\pi,\\pi]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_06_215.jpg\" alt=\"This graph has vertical asymptotes at x = ±π/2. The graph is symmetric about the y axis, so describing the left hand side will be sufficient. The function starts at (−π, 0) and decreases quickly to the asymptote. Then it starts on the other side of the asymptote in the second quadrant and decreases to the the origin.\">"
+   }
+  },
+  {
+   "id": "e305",
+   "source_id": "fs-id1165043404141",
+   "source_number": "305",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "guidelines",
+   "prompt": "<p>For the following exercises, draw a graph of the functions without using a calculator. Be sure to notice all important features of the graph: local maxima and minima, inflection points, and asymptotic behavior.</p><p>$y={x}^{2}\\sin (x),x=[-2\\pi,2\\pi]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_06_217.jpg\" alt=\"This function starts at (−2π, 0), increases to near (−3π/2, 25), decreases through (−π, 0), achieves a local minimum and then increases through the origin. On the other side of the origin, the graph is the same but flipped, that is, it is congruent to the other half by a rotation of 180 degrees.\">"
+   }
+  },
+  {
+   "id": "e306",
+   "source_id": "fs-id1165043404215",
+   "source_number": "306",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For $f(x)=\\frac{P(x)}{Q(x)}$ to have an asymptote at $y=2$ then the polynomials $P(x)$ and $Q(x)$ must have what relation?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $f$ is a ratio of polynomials, its end behavior is decided by their degrees. It has the horizontal asymptote $y=2$ exactly when $P(x)$ and $Q(x)$ have the same degree and the ratio of their leading coefficients is $2:$ if $P(x)=a_{n}x^{n}+\\cdots$ and $Q(x)=b_{n}x^{n}+\\cdots,$ then $\\frac{a_{n}}{b_{n}}=2.$ If the degree of $P$ were less, the asymptote would be $y=0;$ if greater, there would be no horizontal asymptote."
+   }
+  },
+  {
+   "id": "e307",
+   "source_id": "fs-id1165043404361",
+   "source_number": "307",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>For $f(x)=\\frac{P(x)}{Q(x)}$ to have an asymptote at $x=0,$ then the polynomials $P(x)$ and $Q(x).$ must have what relation?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$P(0)\\ne 0\\;\\text{and}\\;Q(0)=0$"
+   }
+  },
+  {
+   "id": "e308",
+   "source_id": "fs-id1165043208598",
+   "source_number": "308",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>If ${f}^{'}(x)$ has asymptotes at $y=3$ and $x=1,$ then $f(x)$ has what asymptotes?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "None is guaranteed. $\\lim_{x\\to\\pm\\infty}f'(x)=3$ means $f$ grows like $3x,$ so $f$ has no horizontal asymptote, and it has an oblique asymptote $y=3x+b$ only if $f(x)-3x$ approaches a limit $b.$ And $f'(x)\\to\\pm\\infty$ as $x\\to 1$ does not make $f$ itself unbounded there. For example, $f(x)=3x+3\\sqrt[3]{x-1}$ has $f'(x)=3+\\frac{1}{(x-1)^{2/3}},$ whose graph has the asymptotes $y=3$ and $x=1,$ yet $f$ is continuous at $1$ and $f(x)-3x=3\\sqrt[3]{x-1}\\to\\pm\\infty,$ so $f$ has no asymptote at all."
+   }
+  },
+  {
+   "id": "e309",
+   "source_id": "fs-id1165043208676",
+   "source_number": "309",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>Both $f(x)=\\frac{1}{(x-1)}$ and $g(x)=\\frac{1}{{(x-1)}^{2}}$ have asymptotes at $x=1$ and $y=0.$ What is the most obvious difference between these two functions?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{x\\to {1}^{-}}f(x)=-\\infty \\;\\text{and}\\;\\lim_{x\\to {1}^{-}}g(x)=\\infty$"
+   }
+  },
+  {
+   "id": "e310",
+   "source_id": "fs-id1165043208845",
+   "source_number": "310",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>True or false: Every ratio of polynomials has vertical asymptotes.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. A ratio of polynomials has a vertical asymptote only where the denominator is zero and the numerator is not. $f(x)=\\frac{1}{x^{2}+1}$ has a denominator that is never zero, so it has no vertical asymptote; neither has $\\frac{x^{2}-1}{x-1},$ which equals $x+1$ except at $x=1,$ where it has a hole."
+   }
+  },
+  {
+   "id": "r539",
+   "source_id": "fs-id1165042469790",
+   "source_section": "4.10",
+   "source_number": "539",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "algebraic-end-behavior",
+   "prompt": "<p>Evaluate the following limits.</p><p>$\\lim_{x\\to \\infty}\\frac{3x\\sqrt{{x}^{2}+1}}{\\sqrt{{x}^{4}-1}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.0,
+    "solution": "$3$"
+   }
+  },
+  {
+   "id": "r547",
+   "source_id": "fs-id1165042711284",
+   "source_section": "4.10",
+   "source_number": "547",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "guidelines",
+   "prompt": "<p>Graph the following functions by hand. Make sure to label the inflection points, critical points, zeros, and asymptotes.</p><p>$y=\\frac{1}{x{(x+1)}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch04/CNX_Calc_Figure_04_10_204.jpg\" alt=\"This graph has vertical asymptotes at x = 0 and x = −1. The first part of the function occurs in the third quadrant with a horizontal asymptote at y = 0. The function decreases quickly from near (−5, 0) to near the vertical asymptote (−1, ∞). On the other side of the asymptote, the function is roughly U-shaped and pointed down in the third quadrant between x = −1 and x = 0 with maximum near (−0.4, −6). On the other side of the x = 0 asympotote, the function decreases from its vertical asymptote near (0, ∞) and to approach the horizontal asymptote y = 0.\"><p>Inflection points: none; critical points: $x=-\\frac{1}{3};$ zeros: none; vertical asymptotes: $x=-1,$ $x=0;$ horizontal asymptote: $y=0$</p>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp20",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "cp20",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "cp21",
+   "concept": "formal-definition-of-a-limit-at-infinity"
+  },
+  {
+   "exercise": "cp22",
+   "concept": "formal-definition-of-an-infinite-limit-at-infinity"
+  },
+  {
+   "exercise": "cp23",
+   "concept": "infinite-limit-at-infinity"
+  },
+  {
+   "exercise": "cp23",
+   "concept": "end-behavior"
+  },
+  {
+   "exercise": "cp24",
+   "concept": "end-behavior-of-rational-functions"
+  },
+  {
+   "exercise": "cp24",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "cp25",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "cp26",
+   "concept": "end-behavior-of-transcendental-functions"
+  },
+  {
+   "exercise": "cp26",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "cp27",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "cp28",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "cp28",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "cp28",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "cp29",
+   "concept": "oblique-asymptote"
+  },
+  {
+   "exercise": "cp30",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "cp30",
+   "concept": "end-behavior"
+  },
+  {
+   "exercise": "e251",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e253",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e255",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e257",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e259",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e261",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e261",
+   "concept": "end-behavior-of-rational-functions"
+  },
+  {
+   "exercise": "e263",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e263",
+   "concept": "end-behavior-of-rational-functions"
+  },
+  {
+   "exercise": "e265",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e265",
+   "concept": "end-behavior-of-rational-functions"
+  },
+  {
+   "exercise": "e267",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e267",
+   "concept": "end-behavior-of-rational-functions"
+  },
+  {
+   "exercise": "e269",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e269",
+   "concept": "end-behavior-of-rational-functions"
+  },
+  {
+   "exercise": "e271",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e271",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e273",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e273",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e275",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e275",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e277",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e277",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e279",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e279",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e281",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e281",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e283",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e283",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e285",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e285",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e285",
+   "concept": "rational-function"
+  },
+  {
+   "exercise": "e287",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e287",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e287",
+   "concept": "rational-function"
+  },
+  {
+   "exercise": "e289",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e289",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e291",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e291",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e293",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "e293",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e295",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "e297",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "e299",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "e301",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "e303",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "e305",
+   "concept": "drawing-the-graph-of-a-function"
+  },
+  {
+   "exercise": "e306",
+   "concept": "end-behavior-of-rational-functions"
+  },
+  {
+   "exercise": "e306",
+   "concept": "horizontal-asymptote"
+  },
+  {
+   "exercise": "e307",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e307",
+   "concept": "rational-function"
+  },
+  {
+   "exercise": "e308",
+   "concept": "oblique-asymptote"
+  },
+  {
+   "exercise": "e308",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e308",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e309",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e309",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e309",
+   "concept": "infinite-limit"
+  },
+  {
+   "exercise": "e310",
+   "concept": "vertical-asymptote"
+  },
+  {
+   "exercise": "e310",
+   "concept": "rational-function"
+  },
+  {
+   "exercise": "r539",
+   "concept": "limit-at-infinity"
+  },
+  {
+   "exercise": "r539",
+   "concept": "end-behavior-of-rational-functions"
+  },
+  {
+   "exercise": "r547",
+   "concept": "drawing-the-graph-of-a-function"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-interval",
+   "kind": "correction",
+   "html": "The book prints $(-1,-1)$ here and in the table below; the interval between the two vertical asymptotes is $(-1,1).$"
+  },
+  {
+   "id": "c-limit-minus-infinity",
+   "kind": "correction",
+   "html": "The limit found here is the one as $x\\to-\\infty:$ $\\lim_{x\\to-\\infty}f(x)=\\frac{2}{7};$ the book prints $x\\to\\infty,$ and “the graph of approaches” drops the $f.$"
+  },
+  {
+   "id": "c-cp22-exponent",
+   "kind": "correction",
+   "html": "The key prints a stray second exponent; the line is $3x^{2}\\gt 3N^{2}=3\\left(\\sqrt{\\frac{M}{3}}\\right)^{2}=\\frac{3M}{3}=M.$"
+  },
+  {
+   "id": "c-cp25-sign",
+   "kind": "correction",
+   "html": "The question asks for the limit as $x\\to\\infty,$ which is $\\sqrt{3};$ the limit as $x\\to-\\infty$ is $-\\sqrt{3}.$"
+  },
+  {
+   "id": "c-cp26-hint",
+   "kind": "correction",
+   "html": "The second limit is as $x\\to-\\infty:$ $\\lim_{x\\to-\\infty}e^{x}=0.$"
+  }
+ ]
+}

@@ -1,0 +1,318 @@
+<p>In this section, we examine a powerful tool for evaluating limits. This tool, known as <strong><span data-concept="lhopitals-rule">L’Hôpital’s rule</span></strong>, uses <span data-concept="derivative">derivatives</span> to calculate limits. With this rule, we will be able to evaluate many limits we have not yet been able to determine. Instead of relying on numerical evidence to conjecture that a limit exists, we will be able to show definitively that a limit exists and to determine its exact value.</p>
+<section id="applying-lhopitals-rule">
+<h2>Applying <span data-concept="lhopitals-rule">L’Hôpital’s Rule</span></h2>
+<p class="cite-target"><span data-concept="lhopitals-rule">L’Hôpital’s rule</span> can be used to evaluate limits involving the quotient of two <span data-concept="function">functions</span>. Consider</p>
+$$\lim_{x\to a}\frac{f(x)}{g(x)}.$$
+<p>If $\lim_{x\to a}\kf(x)={L}_{1}\;\text{and}\;\lim_{x\to a}\kg(x)={L}_{2}\ne 0,$ then</p>
+$$\lim_{x\to a}\frac{f(x)}{g(x)}=\frac{{L}_{1}}{{L}_{2}}.$$
+<p>However, what happens if $\lim_{x\to a}\kf(x)=0$ and $\lim_{x\to a}\kg(x)=0?$ We call this one of the <strong><span data-concept="indeterminate-forms">indeterminate forms</span></strong>, of type $\frac{0}{0}.$ This is considered an <span data-concept="indeterminate-forms">indeterminate form</span> because we cannot determine the exact behavior of $\frac{f(x)}{g(x)}$ as $x\to a$ without further analysis. We have seen examples of this earlier in the text. For example, consider</p>
+$$\lim_{x\to 2}\frac{{x}^{2}-4}{x-2}\;\text{and}\;\lim_{x\to 0}\frac{\sin x}{x}.$$
+<p>For the first of these examples, we can evaluate the limit by factoring the numerator and writing</p>
+$$\lim_{x\to 2}\frac{{x}^{2}-4}{x-2}=\lim_{x\to 2}\frac{(x+2)(x-2)}{x-2}=\lim_{x\to 2}(x+2)=2+2=4.$$
+<p>For $\lim_{x\to 0}\frac{\sin x}{x}$ we were able to show, using a geometric argument, that</p>
+$$\lim_{x\to 0}\frac{\sin x}{x}=1.$$
+<p>Here we use a different technique for evaluating limits such as these. Not only does this technique provide an easier way to evaluate these limits, but also, and more important, it provides us with a way to evaluate many other limits that we could not calculate previously.</p>
+<p>The idea behind <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> can be explained using <span data-concept="linear-approximation">local linear approximations</span>. Consider two <span data-concept="differentiable-function">differentiable functions</span> $\kf$ and $\kg$ such that $\lim_{x\to a}\kf(x)=0=\lim_{x\to a}\kg(x)$ and such that $\kgprime(a)\ne 0$ For $x$ near $a,$ we can write</p>
+$$\kf(x)\approx \kf(a)+\kfprime(a)(x-a)$$
+<p>and</p>
+$$\kg(x)\approx \kg(a)+\kgprime(a)(x-a).$$
+<p>Therefore,</p>
+$$\frac{f(x)}{g(x)}\approx \frac{f(a)+\kfprime(a)(x-a)}{g(a)+\kgprime(a)(x-a)}.$$
+<figure class="sim" id="sim-lhopital-zoom" data-figure="4.71" data-original="/media/ch04/CNX_Calc_Figure_04_08_003.jpg" data-original-caption="If limx→ af(x)=limx→ ag(x), then the ratio f(x)/g(x) is approximately equal to the ratio of their linear approximations near a.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.71</span><span>Near $a=1$, both $\kf(x)=\sin(\pi x)$ and $\kg(x)=\ln x$ approach $0$ (Example 4.38b), and each is close to its tangent line there, its <span data-concept="linear-approximation">linear approximation</span>. Narrow the window about $a$: the curves straighten into their tangents, and the ratio $\kf(x)/\kg(x)$ at a point of the window becomes the ratio of the slopes, $\kfprime(1)/\kgprime(1)=-\pi$.</span></div>
+</figure>
+<p>Since $\kf$ is differentiable at $a,$ then $\kf$ is continuous at $a,$ and therefore $\kf(a)=\lim_{x\to a}\kf(x)=0.$ Similarly, $\kg(a)=\lim_{x\to a}\kg(x)=0.$ If we also assume that $\kfprime$ and $\kgprime$ are continuous at $x=a,$ then $\kfprime(a)=\lim_{x\to a}\kfprime(x)$ and $\kgprime(a)=\lim_{x\to a}\kgprime(x).$ Using these ideas, we conclude that</p>
+$$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{\kfprime(x)(x-a)}{\kgprime(x)(x-a)}=\lim_{x\to a}\frac{\kfprime(x)}{\kgprime(x)}.$$
+<p>Note that the assumption that $\kfprime$ and $\kgprime$ are continuous at $a$ and $\kgprime(a)\ne 0$ can be loosened. We state <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> formally for the <span data-concept="indeterminate-forms">indeterminate form</span> $\frac{0}{0}.$ Also note that the notation $\frac{0}{0}$ does not mean we are actually dividing zero by zero. Rather, we are using the notation $\frac{0}{0}$ to represent a quotient of limits, each of which is zero.</p>
+<div class="note" id="lhopitals-rule">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="lhopitals-rule">L’Hôpital’s Rule</span> (0/0 Case)</h3>
+<p>Suppose $\kf$ and $\kg$ are <span data-concept="differentiable-function">differentiable functions</span> over an open interval containing $a,$ except possibly at $a.$ If $\lim_{x\to a}\kf(x)=0$ and $\lim_{x\to a}\kg(x)=0,$ then</p>
+$$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{\kfprime(x)}{\kgprime(x)},$$
+<p>assuming the limit on the right exists or is $\infty$ or $-\infty.$ This result also holds if we are considering one-sided limits, or if $a=\infty \;\text{and}\;-\infty.$</p>
+</div>
+<h3 id="lhopital-proof">Proof</h3>
+<p>We provide a proof of this theorem in the special case when $\kf,\kg,\kfprime,$ and $\kgprime$ are all continuous over an open interval containing $a.$ In that case, since $\lim_{x\to a}\kf(x)=0=\lim_{x\to a}\kg(x)$ and $\kf$ and $\kg$ are continuous at $a,$ it follows that $\kf(a)=0=\kg(a).$ Therefore,</p>
+$$\begin{array}{rllll}\lim_{x\to a}\frac{f(x)}{g(x)} &=\lim_{x\to a}\frac{f(x)-\kf(a)}{g(x)-\kg(a)} & & & \text{since}\;\kf(a)=0=\kg(a) \\ &=\lim_{x\to a}\frac{\frac{f(x)-\kf(a)}{x-a}}{\frac{g(x)-\kg(a)}{x-a}} & & & \text{algebra} \\ &=\frac{\lim_{x\to a}\frac{f(x)-\kf(a)}{x-a}}{\lim_{x\to a}\frac{g(x)-\kg(a)}{x-a}} & & & \text{limit of a quotient} \\ &=\frac{\kfprime(a)}{\kgprime(a)} & & & \text{definition of the derivative} \\ &=\frac{\lim_{x\to a}\kfprime(x)}{\lim_{x\to a}\kgprime(x)} & & & \text{continuity of}\;\kfprime\;\text{and}\;\kgprime \\ &=\lim_{x\to a}\frac{\kfprime(x)}{\kgprime(x)}. & & & \text{limit of a quotient}\end{array}$$
+<p>Note that <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> states we can calculate the limit of a quotient $\frac{f}{g}$ by considering the limit of the quotient of the <span data-concept="derivative">derivatives</span> $\frac{\kfprime}{\kgprime}.$ It is important to realize that we are not calculating the <span data-concept="derivative">derivative</span> of the quotient $\frac{f}{g}.$</p>
+<p>□</p>
+<div class="example" id="fs-id1165043397578">
+<h3>Example 4.38 · Applying L’Hôpital’s Rule (0/0 Case)</h3>
+<p>Evaluate each of the following limits by applying <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>.</p>
+<p>a. $\lim_{x\to 0}\frac{1-\cos x}{x}$</p>
+<p>b. $\lim_{x\to 1}\frac{\sin (\pi x)}{\ln x}$</p>
+<p>c. $\lim_{x\to \infty}\frac{{e}^{1/x}-1}{1/x}$</p>
+<p>d. $\lim_{x\to 0}\frac{\sin x-x}{{x}^{2}}$</p>
+<h4>Solution</h4>
+<p>a. Since the numerator $1-\cos x\to 0$ and the denominator $x\to 0,$ we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> to evaluate this limit. We have</p>
+$$\begin{array}{rl}\lim_{x\to 0}\frac{1-\cos x}{x} &=\lim_{x\to 0}\frac{\frac{d}{dx}(1-\cos x)}{\frac{d}{dx}(x)} \\ &=\lim_{x\to 0}\frac{\sin x}{1} \\ &=\frac{\lim_{x\to 0}(\sin x)}{\lim_{x\to 0}(1)} \\ &=\frac{0}{1}=0.\end{array}$$
+<p>b. As $x\to 1,$ the numerator $\sin (\pi x)\to 0$ and the denominator $\ln (x)\to 0.$ Therefore, we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. We obtain</p>
+$$\begin{array}{rl}\lim_{x\to 1}\frac{\sin (\pi x)}{\ln x} &=\lim_{x\to 1}\frac{\pi \;\cos (\pi x)}{1/x} \\ &=\lim_{x\to 1}(\pi x)\cos (\pi x) \\ &=(\pi \cdot 1)(-1)=-\pi.\end{array}$$
+<p>c. As $x\to \infty,$ the numerator ${e}^{1/x}-1\to 0$ and the denominator $(\frac{1}{x})\to 0.$ Therefore, we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. We obtain</p>
+$$\lim_{x\to \infty}\frac{{e}^{1/x}-1}{\frac{1}{x}}=\lim_{x\to \infty}\frac{{e}^{1/x}(\frac{-1}{{x}^{2}})}{(\frac{-1}{{x}^{2}})}=\lim_{x\to \infty}{e}^{1/x}={e}^{0}=1.$$
+<p>d. As $x\to 0,$ both the numerator and denominator approach zero. Therefore, we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. We obtain</p>
+$$\lim_{x\to 0}\frac{\sin x-x}{{x}^{2}}=\lim_{x\to 0}\frac{\cos x-1}{2x}.$$
+<p>Since the numerator and denominator of this new quotient both approach zero as $x\to 0,$ we apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> again. In doing so, we see that</p>
+$$\lim_{x\to 0}\frac{\cos x-1}{2x}=\lim_{x\to 0}\frac{-\sin x}{2}=0.$$
+<p>Therefore, we conclude that</p>
+$$\lim_{x\to 0}\frac{\sin x-x}{{x}^{2}}=0.$$
+</div>
+<div class="exercises" data-place="fs-id1165043397578"></div>
+<p>We can also use <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> to evaluate limits of quotients $\frac{f(x)}{g(x)}$ in which $\kf(x)\to \pm \infty$ and $\kg(x)\to \pm \infty.$ Limits of this form are classified as <em><span data-concept="indeterminate-forms">indeterminate forms</span> of type</em> $\infty /\infty.$ Again, note that we are not actually dividing $\infty$ by $\infty.$ Since $\infty$ is not a real number, that is impossible; rather, $\infty /\infty.$ is used to represent a quotient of limits, each of which is $\infty$ or $-\infty.$</p>
+<div class="note" id="lhopitals-rule-infinity">
+<div class="eyebrow">Theorem</div>
+<h3><span data-concept="lhopitals-rule">L’Hôpital’s Rule</span> $(\infty /\infty$ Case)</h3>
+<p>Suppose $\kf$ and $\kg$ are <span data-concept="differentiable-function">differentiable functions</span> over an open interval containing $a,$ except possibly at $a.$ Suppose $\lim_{x\to a}\kf(x)=\infty$ (or $-\infty)$ and $\lim_{x\to a}\kg(x)=\infty$ (or $-\infty).$ Then,</p>
+$$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{\kfprime(x)}{\kgprime(x)},$$
+<p>assuming the limit on the right exists or is $\infty$ or $-\infty.$ This result also holds if the limit is infinite, if $a=\infty$ or $-\infty,$ or the limit is one-sided.</p>
+</div>
+<div class="example" id="fs-id1165043427623">
+<h3>Example 4.39 · Applying L’Hôpital’s Rule $(\infty /\infty$ Case)</h3>
+<p>Evaluate each of the following limits by applying <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>.</p>
+<p>a. $\lim_{x\to \infty}\frac{3x+5}{2x+1}$</p>
+<p>b. $\lim_{x\to {0}^{+}}\frac{\ln x}{\cot x}$</p>
+<h4>Solution</h4>
+<p>a. Since $3x+5$ and $2x+1$ are <span data-concept="polynomial-function">first-degree polynomials</span> with positive leading coefficients, $\lim_{x\to \infty}(3x+5)=\infty$ and $\lim_{x\to \infty}(2x+1)=\infty.$ Therefore, we apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> and obtain</p>
+$$\lim_{x\to \infty}\frac{3x+5}{2x+1}=\lim_{x\to \infty}\frac{3}{2}=\frac{3}{2}.$$
+<p>Note that this limit can also be calculated without invoking <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. Earlier in the chapter we showed how to evaluate such a limit by dividing the numerator and denominator by the highest power of $x$ in the denominator. In doing so, we saw that</p>
+$$\lim_{x\to \infty}\frac{3x+5}{2x+1}=\lim_{x\to \infty}\frac{3+5/x}{2+1/x}=\frac{3}{2}.$$
+<p><span data-concept="lhopitals-rule">L’Hôpital’s rule</span> provides us with an alternative means of evaluating this type of limit.</p>
+<p>b. Here, $\lim_{x\to {0}^{+}}\ln x=-\infty$ and $\lim_{x\to {0}^{+}}\cot x=\infty.$ Therefore, we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> and obtain</p>
+$$\lim_{x\to {0}^{+}}\frac{\ln x}{\cot x}=\lim_{x\to {0}^{+}}\frac{1/x}{-{\csc}^{2}x}=\lim_{x\to {0}^{+}}\frac{1}{-x\;{\csc}^{2}x}.$$
+<p>Now as $x\to {0}^{+},$ ${\csc}^{2}x\to \infty.$ Therefore, the first term in the denominator is approaching zero and the second term is getting really large. In such a case, anything can happen with the product. Therefore, we cannot make any conclusion yet. To evaluate the limit, we use the definition of $\csc x$ to write</p>
+$$\lim_{x\to {0}^{+}}\frac{1}{-x\;{\csc}^{2}x}=\lim_{x\to {0}^{+}}\frac{{\sin}^{2}x}{-x}.$$
+<p>Now $\lim_{x\to {0}^{+}}{\sin}^{2}x=0$ and $\lim_{x\to {0}^{+}}x=0,$ so we apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> again. We find</p>
+$$\lim_{x\to {0}^{+}}\frac{{\sin}^{2}x}{-x}=\lim_{x\to {0}^{+}}\frac{2\;\sin x\;\cos x}{-1}=\frac{0}{-1}=0.$$
+<p>We conclude that</p>
+$$\lim_{x\to {0}^{+}}\frac{\ln x}{\cot x}=0.$$
+</div>
+<div class="exercises" data-place="fs-id1165043427623"></div>
+<p>As mentioned, <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> is an extremely useful tool for evaluating limits. It is important to remember, however, that to apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> to a quotient $\frac{f(x)}{g(x)},$ it is essential that the limit of $\frac{f(x)}{g(x)}$ be of the form $\frac{0}{0}$ or $\infty /\infty.$ Consider the following example.</p>
+<div class="example" id="fs-id1165042350228">
+<h3>Example 4.40 · When L’Hôpital’s Rule Does Not Apply</h3>
+<p>Consider $\lim_{x\to 1}\frac{{x}^{2}+5}{3x+4}.$ Show that the limit cannot be evaluated by applying <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>.</p>
+<h4>Solution</h4>
+<p>Because the limits of the numerator and denominator are not both zero and are not both infinite, we cannot apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. If we try to do so, we get</p>
+$$\frac{d}{dx}({x}^{2}+5)=2x$$
+<p>and</p>
+$$\frac{d}{dx}(3x+4)=3.$$
+<p>At which point we would conclude erroneously that</p>
+$$\lim_{x\to 1}\frac{{x}^{2}+5}{3x+4}=\lim_{x\to 1}\frac{2x}{3}=\frac{2}{3}.$$
+<p>However, since $\lim_{x\to 1}({x}^{2}+5)=6$ and $\lim_{x\to 1}(3x+4)=7,$ we actually have</p>
+$$\lim_{x\to 1}\frac{{x}^{2}+5}{3x+4}=\frac{6}{7}.$$
+<p>We can conclude that</p>
+$$\lim_{x\to 1}\frac{{x}^{2}+5}{3x+4}\ne \lim_{x\to 1}\frac{\frac{d}{dx}({x}^{2}+5)}{\frac{d}{dx}(3x+4)}.$$
+</div>
+<div class="exercises" data-place="fs-id1165042350228"></div>
+</section>
+
+<section id="other-indeterminate-forms">
+<h2>Other <span data-concept="indeterminate-forms">Indeterminate Forms</span></h2>
+<p class="cite-target"><span data-concept="lhopitals-rule">L’Hôpital’s rule</span> is very useful for evaluating limits involving the <span data-concept="indeterminate-forms">indeterminate forms</span> $\frac{0}{0}$ and $\infty /\infty.$ However, we can also use <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> to help evaluate limits involving other <span data-concept="indeterminate-forms">indeterminate forms</span> that arise when evaluating limits. The expressions $0\cdot \infty,$ $\infty-\infty,$ ${1}^{\infty},$ ${\infty}^{0},$ and ${0}^{0}$ are all considered <span data-concept="indeterminate-forms">indeterminate forms</span>. These expressions are not real numbers. Rather, they represent forms that arise when trying to evaluate certain limits. Next we realize why these are <span data-concept="indeterminate-forms">indeterminate forms</span> and then understand how to use <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> in these cases. The key idea is that we must rewrite the <span data-concept="indeterminate-forms">indeterminate forms</span> in such a way that we arrive at the <span data-concept="indeterminate-forms">indeterminate form</span> $\frac{0}{0}$ or $\infty /\infty.$</p>
+<h3 id="zero-times-infinity"><span data-concept="indeterminate-forms">Indeterminate Form</span> of Type $0\cdot \infty$</h3>
+<p>Suppose we want to evaluate $\lim_{x\to a}(\kf(x)\cdot \kg(x)),$ where $\kf(x)\to 0$ and $\kg(x)\to \infty$ (or $-\infty)$ as $x\to a.$ Since one term in the product is approaching zero but the other term is becoming arbitrarily large (in magnitude), anything can happen to the product. We use the notation $0\cdot \infty$ to denote the form that arises in this situation. The expression $0\cdot \infty$ is considered indeterminate because we cannot determine without further analysis the exact behavior of the product $\kf(x)\kg(x)$ as $x\to a.$ For example, let $n$ be a positive integer and consider</p>
+$$\kf(x)=\frac{1}{({x}^{n}+1)}\;\text{and}\;\kg(x)=3{x}^{2}.$$
+<p>As $x\to \infty,$ $\kf(x)\to 0$ and $\kg(x)\to \infty.$ However, the limit as $x\to \infty$ of $\kf(x)\kg(x)=\frac{3{x}^{2}}{({x}^{n}+1)}$ varies, depending on $n.$ If $n=2,$ then $\lim_{x\to \infty}\kf(x)\kg(x)=3.$ If $n=1,$ then $\lim_{x\to \infty}\kf(x)\kg(x)=\infty.$ If $n=3,$ then $\lim_{x\to \infty}\kf(x)\kg(x)=0.$ Here we consider another limit involving the <span data-concept="indeterminate-forms">indeterminate form</span> $0\cdot \infty$ and show how to rewrite the <span data-concept="function">function</span> as a quotient to use <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>.</p>
+<div class="example" id="fs-id1165042368495">
+<h3>Example 4.41 · Indeterminate Form of Type $0\cdot \infty$</h3>
+<p>Evaluate $\lim_{x\to {0}^{+}}x\;\ln x.$</p>
+<h4>Solution</h4>
+<p>First, rewrite the <span data-concept="function">function</span> $x\;\ln x$ as a quotient to apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. If we write</p>
+$$x\;\ln x=\frac{\ln x}{1/x},$$
+<p>we see that $\ln x\to-\infty$ as $x\to {0}^{+}$ and $\frac{1}{x}\to \infty$ as $x\to {0}^{+}.$ Therefore, we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> and obtain</p>
+$$\lim_{x\to {0}^{+}}\frac{\ln x}{1/x}=\lim_{x\to {0}^{+}}\frac{\frac{d}{dx}(\ln x)}{\frac{d}{dx}(1/x)}=\lim_{x\to {0}^{+}}\frac{1/x}{-1/{x}^{2}}=\lim_{x\to {0}^{+}}(-x)=0.$$
+<p>We conclude that</p>
+$$\lim_{x\to {0}^{+}}x\;\ln x=0.$$
+<figure class="sim" id="fig-x-ln-x" data-figure="4.72" data-original="/media/ch04/CNX_Calc_Figure_04_08_004.jpg" data-original-caption="Finding the limit at x=0 of the function f(x)=x ln x.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.72</span><span>Finding the limit at $x=0$ of the <span data-concept="function">function</span> $\kf(x)=x\;\ln x.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042368495"></div>
+<h3 id="infinity-minus-infinity"><span data-concept="indeterminate-forms">Indeterminate Form</span> of Type $\infty-\infty$</h3>
+<p>Another type of <span data-concept="indeterminate-forms">indeterminate form</span> is $\infty-\infty.$ Consider the following example. Let $n$ be a positive integer and let <span data-fn="3x^(n)">$\kf(x)=3{x}^{n}$</span> and <span data-fn="3x^2+5">$\kg(x)=3{x}^{2}+5.$</span> As $x\to \infty,$ $\kf(x)\to \infty$ and $\kg(x)\to \infty.$ We are interested in $\lim_{x\to \infty}(\kf(x)-\kg(x)).$ Depending on whether $\kf(x)$ <span data-concept="growth-rates-of-functions">grows faster</span>, $\kg(x)$ <span data-concept="growth-rates-of-functions">grows faster</span>, or they <span data-concept="growth-rates-of-functions">grow at the same rate</span>, as we see next, anything can happen in this limit. Since $\kf(x)\to \infty$ and $\kg(x)\to \infty,$ we write $\infty-\infty$ to denote the form of this limit. As with our other <span data-concept="indeterminate-forms">indeterminate forms</span>, $\infty-\infty$ has no meaning on its own and we must do more analysis to determine the value of the limit. For example, suppose the exponent $n$ in the <span data-concept="function">function</span> <span data-fn="3x^(n)">$\kf(x)=3{x}^{n}$</span> is $n=3,$ then</p>
+$$\lim_{x\to \infty}(\kf(x)-\kg(x))=\lim_{x\to \infty}(3{x}^{3}-3{x}^{2}-5)=\infty.$$
+<p>On the other hand, if $n=2,$ then</p>
+$$\lim_{x\to \infty}(\kf(x)-\kg(x))=\lim_{x\to \infty}(3{x}^{2}-3{x}^{2}-5)=-5.$$
+<p>However, if $n=1,$ then</p>
+$$\lim_{x\to \infty}(\kf(x)-\kg(x))=\lim_{x\to \infty}(3x-3{x}^{2}-5)=-\infty.$$
+<p>Therefore, the limit cannot be determined by considering only $\infty-\infty.$ Next we see how to rewrite an expression involving the <span data-concept="indeterminate-forms">indeterminate form</span> $\infty-\infty$ as a fraction to apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>.</p>
+<div class="example" id="fs-id1165043323875">
+<h3>Example 4.42 · Indeterminate Form of Type $\infty-\infty$</h3>
+<p>Evaluate $\lim_{x\to {0}^{+}}(\frac{1}{{x}^{2}}-\frac{1}{\tan x}).$</p>
+<h4>Solution</h4>
+<p>By combining the fractions, we can write the <span data-concept="function">function</span> as a quotient. Since the least common denominator is ${x}^{2}\tan x,$ we have</p>
+$$\frac{1}{{x}^{2}}-\frac{1}{\tan x}=\frac{(\tan x)-{x}^{2}}{{x}^{2}\tan x}.$$
+<p>As $x\to {0}^{+},$ the numerator $\tan x-{x}^{2}\to 0$ and the denominator ${x}^{2}\tan x\to 0.$ Therefore, we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. Taking the <span data-concept="derivative">derivatives</span> of the numerator and the denominator, we have</p>
+$$\lim_{x\to {0}^{+}}\frac{(\tan x)-{x}^{2}}{{x}^{2}\tan x}=\lim_{x\to {0}^{+}}\frac{({\sec}^{2}x)-2x}{{x}^{2}{\sec}^{2}x+2x\;\tan x}.$$
+<p>As $x\to {0}^{+},$ $({\sec}^{2}x)-2x\to 1$ and ${x}^{2}{\sec}^{2}x+2x\;\tan x\to 0.$ Since the denominator is positive as $x$ approaches zero from the right, we conclude that</p>
+$$\lim_{x\to {0}^{+}}\frac{({\sec}^{2}x)-2x}{{x}^{2}{\sec}^{2}x+2x\;\tan x}=\infty.$$
+<p>Therefore,</p>
+$$\lim_{x\to {0}^{+}}(\frac{1}{{x}^{2}}-\frac{1}{\tan x})=\infty.$$
+</div>
+<div class="exercises" data-place="fs-id1165043323875"></div>
+<p>Another type of <span data-concept="indeterminate-forms">indeterminate form</span> that arises when evaluating limits involves exponents. The expressions ${0}^{0},$ ${\infty}^{0},$ and ${1}^{\infty}$ are all <span data-concept="indeterminate-forms">indeterminate forms</span>. On their own, these expressions are meaningless because we cannot actually evaluate these expressions as we would evaluate an expression involving real numbers. Rather, these expressions represent forms that arise when finding limits. Now we examine how <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> can be used to evaluate limits involving these <span data-concept="indeterminate-forms">indeterminate forms</span>.</p>
+<p>Since <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> applies to quotients, we use the <span data-concept="natural-logarithm">natural logarithm function</span> and its properties to reduce a problem evaluating a limit involving exponents to a related problem involving a limit of a quotient. For example, suppose we want to evaluate $\lim_{x\to a}\kf{(x)}^{g(x)}$ and we arrive at the <span data-concept="indeterminate-forms">indeterminate form</span> ${\infty}^{0}.$ (The <span data-concept="indeterminate-forms">indeterminate forms</span> ${0}^{0}$ and ${1}^{\infty}$ can be handled similarly.) We proceed as follows. Let</p>
+$$y=\kf{(x)}^{g(x)}.$$
+<p>Then,</p>
+$$\ln y=\ln (\kf{(x)}^{g(x)})=\kg(x)\ln (\kf(x)).$$
+<p>Therefore,</p>
+$$\lim_{x\to a}[\ln (y)]=\lim_{x\to a}[\kg(x)\ln (\kf(x))].$$
+<p>Since $\lim_{x\to a}\kf(x)=\infty,$ we know that $\lim_{x\to a}\ln (\kf(x))=\infty.$ Therefore, $\lim_{x\to a}\kg(x)\ln (\kf(x))$ is of the <span data-concept="indeterminate-forms">indeterminate form</span> $0\cdot \infty,$ and we can use the techniques discussed earlier to rewrite the expression $\kg(x)\ln (\kf(x))$ in a form so that we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. Suppose $\lim_{x\to a}\kg(x)\ln (\kf(x))=L,$ where $L$ may be $\infty$ or $-\infty.$ Then</p>
+$$\lim_{x\to a}[\ln (y)]=L.$$
+<p>Since the <span data-concept="natural-logarithm">natural logarithm function</span> is continuous, we conclude that</p>
+$$\ln (\lim_{x\to a}y)=L,$$
+<p>which gives us</p>
+$$\lim_{x\to a}y=\lim_{x\to a}\kf{(x)}^{g(x)}={e}^{L}.$$
+<div class="example" id="fs-id1165043390815">
+<h3>Example 4.43 · Indeterminate Form of Type ${\infty}^{0}$</h3>
+<p>Evaluate $\lim_{x\to \infty}{x}^{1/x}.$</p>
+<h4>Solution</h4>
+<p>Let <span data-fn="x^(1/x)">$y={x}^{1/x}.$</span> Then,</p>
+$$\ln y=\ln ({x}^{1/x})=\frac{1}{x}\;\ln x=\frac{\ln x}{x}.$$
+<p>We need to evaluate $\lim_{x\to \infty}\frac{\ln x}{x}.$ Applying <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>, we obtain</p>
+$$\lim_{x\to \infty}\ln y=\lim_{x\to \infty}\frac{\ln x}{x}=\lim_{x\to \infty}\frac{1/x}{1}=0.$$
+<p>Therefore, $\lim_{x\to \infty}\ln y=0.$ Since the <span data-concept="natural-logarithm">natural logarithm function</span> is continuous, we conclude that</p>
+$$\ln (\lim_{x\to \infty}y)=0,$$
+<p>which leads to</p>
+$$\lim_{x\to \infty}y={e}^{ln(y)}=\text{lim}{e}^{0}=1.\text{(All limits}x\ge \infty \text{.)}$$<sup class="fn" data-note="c-all-limits"></sup>
+<p>Hence,</p>
+$$\lim_{x\to \infty}{x}^{1/x}=1.$$
+</div>
+<div class="exercises" data-place="fs-id1165043390815"></div>
+<div class="example" id="fs-id1165043108292">
+<h3>Example 4.44 · Indeterminate Form of Type ${0}^{0}$</h3>
+<p>Evaluate $\lim_{x\to {0}^{+}}{x}^{\sin x}.$</p>
+<h4>Solution</h4>
+<p>Let</p>
+$$y={x}^{\sin x}.$$
+<p>Therefore,</p>
+$$\ln y=\ln ({x}^{\sin x})=\sin x\;\ln x.$$
+<p>We now evaluate $\lim_{x\to {0}^{+}}\sin x\;\ln x.$ Since $\lim_{x\to {0}^{+}}\sin x=0$ and $\lim_{x\to {0}^{+}}\ln x=-\infty,$ we have the <span data-concept="indeterminate-forms">indeterminate form</span> $0\cdot \infty.$ To apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>, we need to rewrite $\sin x\;\ln x$ as a fraction. We could write</p>
+$$\sin x\;\ln x=\frac{\sin x}{1/\ln x}$$
+<p>or</p>
+$$\sin x\;\ln x=\frac{\ln x}{1/\sin x}=\frac{\ln x}{\csc x}.$$
+<p>Let’s consider the first option. In this case, applying <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>, we would obtain</p>
+$$\lim_{x\to {0}^{+}}\sin x\;\ln x=\lim_{x\to {0}^{+}}\frac{\sin x}{1/\ln x}=\lim_{x\to {0}^{+}}\frac{\cos x}{-1/(x{(\ln x)}^{2})}=\lim_{x\to {0}^{+}}(-x{(\ln x)}^{2}\cos x).$$
+<p>Unfortunately, we not only have another expression involving the <span data-concept="indeterminate-forms">indeterminate form</span> $0\cdot \infty,$ but the new limit is even more complicated to evaluate than the one with which we started. Instead, we try the second option. By writing</p>
+$$\sin x\;\ln x=\frac{\ln x}{1/\sin x}=\frac{\ln x}{\csc x},$$
+<p>and applying <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>, we obtain</p>
+$$\lim_{x\to {0}^{+}}\sin x\;\ln x=\lim_{x\to {0}^{+}}\frac{\ln x}{\csc x}=\lim_{x\to {0}^{+}}\frac{1/x}{-\csc x\;\cot x}=\lim_{x\to {0}^{+}}\frac{-1}{x\;\csc x\;\cot x}.$$
+<p>Using the fact that $\csc x=\frac{1}{\sin x}$ and $\cot x=\frac{\cos x}{\sin x},$ we can rewrite the expression on the right-hand side as</p>
+$$\lim_{x\to {0}^{+}}\frac{-{\sin}^{2}x}{x\;\cos x}=\lim_{x\to {0}^{+}}[\frac{\sin x}{x}\cdot (-\tan x)]=(\lim_{x\to {0}^{+}}\frac{\sin x}{x})\cdot (\lim_{x\to {0}^{+}}(-\tan x))=1\cdot 0=0.$$
+<p>We conclude that $\lim_{x\to {0}^{+}}\ln y=0.$ Therefore, $\ln (\lim_{x\to {0}^{+}}y)=0$ and we have</p>
+$$\lim_{x\to {0}^{+}}y=\lim_{x\to {0}^{+}}{x}^{\sin x}={e}^{0}=1.$$
+<p>Hence,</p>
+$$\lim_{x\to {0}^{+}}{x}^{\sin x}=1.$$
+</div>
+<div class="exercises" data-place="fs-id1165043108292"></div>
+</section>
+
+<section id="growth-rates">
+<h2>Growth Rates of <span data-concept="function">Functions</span></h2>
+<p class="cite-target">Suppose the <span data-concept="function">functions</span> $\kf$ and $\kg$ both approach infinity as $x\to \infty.$ Although the values of both <span data-concept="function">functions</span> become arbitrarily large as the values of $x$ become sufficiently large, sometimes one <span data-concept="function">function</span> is <span data-concept="growth-rates-of-functions">growing more quickly</span> than the other. For example, <span data-fn="x^2">$\kf(x)={x}^{2}$</span> and <span data-fn="x^3">$\kg(x)={x}^{3}$</span> both approach infinity as $x\to \infty.$ However, as shown in the following table, the values of ${x}^{3}$ are growing much faster than the values of ${x}^{2}.$</p>
+<div class="book-table" id="fs-id1165042700402">
+  <div class="tcap"><span class="eyebrow">Table 4.7</span><span>Comparing the Growth Rates of ${x}^{2}$ and ${x}^{3}$</span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$10$</td><td class="num">$100$</td><td class="num">$1000$</td><td class="num">$10,000$</td></tr>
+      <tr><th><strong>$\kf(x)={x}^{2}$</strong></th><td class="num">$100$</td><td class="num">$10,000$</td><td class="num">$1,000,000$</td><td class="num">$100,000,000$</td></tr>
+      <tr><th><strong>$\kg(x)={x}^{3}$</strong></th><td class="num">$1000$</td><td class="num">$1,000,000$</td><td class="num">$1,000,000,000$</td><td class="num">$1,000,000,000,000$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>In fact,</p>
+$$\lim_{x\to \infty}\frac{{x}^{3}}{{x}^{2}}=\lim_{x\to \infty}x=\infty.\;\text{or, equivalently,}\;\lim_{x\to \infty}\frac{{x}^{2}}{{x}^{3}}=\lim_{x\to \infty}\frac{1}{x}=0.$$
+<p>As a result, we say ${x}^{3}$ is <span data-concept="growth-rates-of-functions">growing more rapidly</span> than ${x}^{2}$ as $x\to \infty.$ On the other hand, for <span data-fn="x^2">$\kf(x)={x}^{2}$</span> and <span data-fn="3x^2+4x+1">$\kg(x)=3{x}^{2}+4x+1,$</span> although the values of $\kg(x)$ are always greater than the values of $\kf(x)$ for $x\gt 0,$ each value of $\kg(x)$ is roughly three times the corresponding value of $\kf(x)$ as $x\to \infty,$ as shown in the following table. In fact,</p>
+$$\lim_{x\to \infty}\frac{{x}^{2}}{3{x}^{2}+4x+1}=\frac{1}{3}.$$
+<div class="book-table" id="fs-id1165042461176">
+  <div class="tcap"><span class="eyebrow">Table 4.8</span><span>Comparing the Growth Rates of ${x}^{2}$ and $3{x}^{2}+4x+1$</span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$10$</td><td class="num">$100$</td><td class="num">$1000$</td><td class="num">$10,000$</td></tr>
+      <tr><th><strong>$\kf(x)={x}^{2}$</strong></th><td class="num">$100$</td><td class="num">$10,000$</td><td class="num">$1,000,000$</td><td class="num">$100,000,000$</td></tr>
+      <tr><th><strong>$\kg(x)=3{x}^{2}+4x+1$</strong></th><td class="num">$341$</td><td class="num">$30,401$</td><td class="num">$3,004,001$</td><td class="num">$300,040,001$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>In this case, we say that ${x}^{2}$ and $3{x}^{2}+4x+1$ are growing at the same rate as $x\to \infty.$</p>
+<p>More generally, suppose $\kf$ and $\kg$ are two <span data-concept="function">functions</span> that approach infinity as $x\to \infty.$ We say $\kg$ <span data-concept="growth-rates-of-functions">grows more rapidly</span> than $\kf$ as $x\to \infty$ if</p>
+$$\lim_{x\to \infty}\frac{g(x)}{f(x)}=\infty;\;\text{or, equivalently,}\;\lim_{x\to \infty}\frac{f(x)}{g(x)}=0.$$
+<p>On the other hand, if there exists a constant $M\ne 0$ such that</p>
+$$\lim_{x\to \infty}\frac{f(x)}{g(x)}=M,$$
+<p>we say $\kf$ and $\kg$ <span data-concept="growth-rates-of-functions">grow at the same rate</span> as $x\to \infty.$</p>
+<p>Next we see how to use <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> to compare the growth rates of power, exponential, and <span data-concept="logarithmic-function">logarithmic functions</span>.</p>
+<div class="example" id="fs-id1165043422462">
+<h3>Example 4.45 · Comparing the Growth Rates of $\ln (x),$ ${x}^{2},$ and ${e}^{x}$</h3>
+<p>For each of the following pairs of <span data-concept="function">functions</span>, use <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> to evaluate $\lim_{x\to \infty}(\frac{f(x)}{g(x)}).$</p>
+<p>a. $\kf(x)={x}^{2}\;\text{and}\;\kg(x)={e}^{x}$</p>
+<p>b. $\kf(x)=\ln (x)\;\text{and}\;\kg(x)={x}^{2}$</p>
+<h4>Solution</h4>
+<p>a. Since $\lim_{x\to \infty}{x}^{2}=\infty$ and $\lim_{x\to \infty}{e}^{x}=\infty,$ we can use <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> to evaluate $\lim_{x\to \infty}[\frac{{x}^{2}}{{e}^{x}}].$ We obtain</p>
+$$\lim_{x\to \infty}\frac{{x}^{2}}{{e}^{x}}=\lim_{x\to \infty}\frac{2x}{{e}^{x}}.$$
+<p>Since $\lim_{x\to \infty}2x=\infty$ and $\lim_{x\to \infty}{e}^{x}=\infty,$ we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> again. Since</p>
+$$\lim_{x\to \infty}\frac{2x}{{e}^{x}}=\lim_{x\to \infty}\frac{2}{{e}^{x}}=0,$$
+<p>we conclude that</p>
+$$\lim_{x\to \infty}\frac{{x}^{2}}{{e}^{x}}=0.$$
+<p>Therefore, ${e}^{x}$ <span data-concept="growth-rates-of-functions">grows more rapidly</span> than ${x}^{2}$ as $x\to \infty$ (See Figure 4.73 and Table 4.9).</p>
+<figure class="sim" id="fig-exp-vs-square" data-figure="4.73" data-original="/media/ch04/CNX_Calc_Figure_04_08_005.jpg" data-original-caption="An exponential function grows at a faster rate than a power function.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.73</span><span>An <span data-concept="exponential-function">exponential function</span> <span data-concept="growth-rates-of-functions">grows at a faster rate</span> than a <span data-concept="power-function">power function</span>.</span></div>
+</figure>
+<div class="book-table" id="fs-id1165042418200">
+  <div class="tcap"><span class="eyebrow">Table 4.9</span><span>Growth rates of a <span data-concept="power-function">power function</span> and an <span data-concept="exponential-function">exponential function</span>.</span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$5$</td><td class="num">$10$</td><td class="num">$15$</td><td class="num">$20$</td></tr>
+      <tr><th><strong>${x}^{2}$</strong></th><td class="num">$25$</td><td class="num">$100$</td><td class="num">$225$</td><td class="num">$400$</td></tr>
+      <tr><th><strong>${e}^{x}$</strong></th><td class="num">$148$</td><td class="num">$22,026$</td><td class="num">$3,269,017$</td><td class="num">$485,165,195$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>b. Since $\lim_{x\to \infty}\ln x=\infty$ and $\lim_{x\to \infty}{x}^{2}=\infty,$ we can use <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> to evaluate $\lim_{x\to \infty}\frac{\ln x}{{x}^{2}}.$ We obtain</p>
+$$\lim_{x\to \infty}\frac{\ln x}{{x}^{2}}=\lim_{x\to \infty}\frac{1/x}{2x}=\lim_{x\to \infty}\frac{1}{2{x}^{2}}=0.$$
+<p>Thus, ${x}^{2}$ <span data-concept="growth-rates-of-functions">grows more rapidly</span> than $\ln x$ as $x\to \infty$ (see Figure 4.74 and Table 4.10).</p>
+<figure class="sim" id="fig-square-vs-log" data-figure="4.74" data-original="/media/ch04/CNX_Calc_Figure_04_08_006.jpg" data-original-caption="A power function grows at a faster rate than a logarithmic function.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.74</span><span>A <span data-concept="power-function">power function</span> <span data-concept="growth-rates-of-functions">grows at a faster rate</span> than a <span data-concept="logarithmic-function">logarithmic function</span>.</span></div>
+</figure>
+<div class="book-table" id="fs-id1165042471354">
+  <div class="tcap"><span class="eyebrow">Table 4.10</span><span>Growth rates of a <span data-concept="power-function">power function</span> and a <span data-concept="logarithmic-function">logarithmic function</span></span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$10$</td><td class="num">$100$</td><td class="num">$1000$</td><td class="num">$10,000$</td></tr>
+      <tr><th><strong>$\ln (x)$</strong></th><td class="num">$2.303$</td><td class="num">$4.605$</td><td class="num">$6.908$</td><td class="num">$9.210$</td></tr>
+      <tr><th><strong>${x}^{2}$</strong></th><td class="num">$100$</td><td class="num">$10,000$</td><td class="num">$1,000,000$</td><td class="num">$100,000,000$</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+<div class="exercises" data-place="fs-id1165043422462"></div>
+<p>Using the same ideas as in Example 4.45a. it is not difficult to show that ${e}^{x}$ <span data-concept="growth-rates-of-functions">grows more rapidly</span> than ${x}^{p}$ for any $p\gt 0.$ In Figure 4.75 and Table 4.11, we compare ${e}^{x}$ with ${x}^{3}$ and ${x}^{4}$ as $x\to \infty.$</p>
+<figure class="sim" id="sim-exp-vs-power" data-figure="4.75" data-original="/media/ch04/CNX_Calc_Figure_04_08_001.jpg" data-original-caption="The exponential function e^(x) grows faster than x^(p) for any p&gt;0. (a) A comparison of e^(x) with x³. (b) A comparison of e^(x) with x⁴.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.75</span><span>The <span data-concept="exponential-function">exponential function</span> $e^x$ against a <span data-concept="power-function">power function</span> $x^p$. Choose $p$: for every $p\gt 0$ the power may lead for a while, but after the last crossing, marked, $e^x$ stays above it and the ratio $x^p/e^x$ goes to $0$. The book’s two comparisons are $p=3$ and $p=4$.</span></div>
+</figure>
+<div class="book-table" id="fs-id1165043327297">
+  <div class="tcap"><span class="eyebrow">Table 4.11</span><span>An <span data-concept="exponential-function">exponential function</span> <span data-concept="growth-rates-of-functions">grows at a faster rate</span> than any <span data-concept="power-function">power function</span></span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$5$</td><td class="num">$10$</td><td class="num">$15$</td><td class="num">$20$</td></tr>
+      <tr><th><strong>${x}^{3}$</strong></th><td class="num">$125$</td><td class="num">$1000$</td><td class="num">$3375$</td><td class="num">$8000$</td></tr>
+      <tr><th><strong>${x}^{4}$</strong></th><td class="num">$625$</td><td class="num">$10,000$</td><td class="num">$50,625$</td><td class="num">$160,000$</td></tr>
+      <tr><th><strong>${e}^{x}$</strong></th><td class="num">$148$</td><td class="num">$22,026$</td><td class="num">$3,269,017$</td><td class="num">$485,165,195$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Similarly, it is not difficult to show that ${x}^{p}$ <span data-concept="growth-rates-of-functions">grows more rapidly</span> than $\ln x$ for any $p\gt 0.$ In Figure 4.76 and Table 4.12, we compare $\ln x$ with $\sqrt[3]{x}$ and $\sqrt{x}.$</p>
+<figure class="sim" id="fig-log-vs-roots" data-figure="4.76" data-original="/media/ch04/CNX_Calc_Figure_04_08_007.jpg" data-original-caption="The function y=ln (x) grows more slowly than x^(p) for any p&gt;0 as x→ ∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.76</span><span>The <span data-concept="function">function</span> $y=\ln (x)$ <span data-concept="growth-rates-of-functions">grows more slowly</span> than ${x}^{p}$ for any $p\gt 0$ as $x\to \infty.$</span></div>
+</figure>
+<div class="book-table" id="fs-id1165042460279">
+  <div class="tcap"><span class="eyebrow">Table 4.12</span><span>A <span data-concept="logarithmic-function">logarithmic function</span> <span data-concept="growth-rates-of-functions">grows at a slower rate</span> than any <span data-concept="root-function">root function</span></span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$10$</td><td class="num">$100$</td><td class="num">$1000$</td><td class="num">$10,000$</td></tr>
+      <tr><th><strong>$\ln (x)$</strong></th><td class="num">$2.303$</td><td class="num">$4.605$</td><td class="num">$6.908$</td><td class="num">$9.210$</td></tr>
+      <tr><th><strong>$\sqrt[3]{x}$</strong></th><td class="num">$2.154$</td><td class="num">$4.642$</td><td class="num">$10$</td><td class="num">$21.544$</td></tr>
+      <tr><th><strong>$\sqrt{x}$</strong></th><td class="num">$3.162$</td><td class="num">$10$</td><td class="num">$31.623$</td><td class="num">$100$</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>

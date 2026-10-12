@@ -33,7 +33,9 @@
     "ch05",
     "ch06",
     "ch07",
-    "ch08"
+    "ch08",
+    "ch09",
+    "ch10"
   ],
   "intro": {
     "module": "m60027",
@@ -662,6 +664,31 @@
       "sym": "μ_prime",
       "latex": "\\mu'",
       "macro": "\\kmuprime"
+    },
+    {
+      "sym": "a_seq",
+      "latex": "a",
+      "macro": "\\kaseq"
+    },
+    {
+      "sym": "b_seq",
+      "latex": "b",
+      "macro": "\\kbseq"
+    },
+    {
+      "sym": "c_seq",
+      "latex": "c",
+      "macro": "\\kcseq"
+    },
+    {
+      "sym": "S_sum",
+      "latex": "S",
+      "macro": "\\kSsum"
+    },
+    {
+      "sym": "f_n1",
+      "latex": "f^{(n+1)}",
+      "macro": "\\kfnplusone"
     }
   ],
   "exercise_kinds": [
@@ -7068,6 +7095,1355 @@
           "latex": "Rq'+\\frac{1}{C}q=E"
         }
       ]
+    },
+    {
+      "id": "sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Sequence",
+      "terms": [
+        "sequence",
+        "infinite sequence",
+        "sequences",
+        "infinite sequences"
+      ],
+      "symbol": "a_seq",
+      "type": "sequence",
+      "statement": "An infinite sequence {aₙ} is an ordered list of numbers of the form a₁, a₂, …, aₙ, …. Since a sequence has exactly one value for each positive integer n, it can be described as a function whose domain is the set of positive integers.",
+      "forms": [
+        {
+          "id": "eq-sequence-list",
+          "latex": "a_1,a_2,a_3,\\ldots,a_n,\\ldots"
+        }
+      ]
+    },
+    {
+      "id": "index-variable",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Index variable",
+      "terms": [
+        "index variable",
+        "index"
+      ],
+      "symbol": "n",
+      "statement": "The subscript n used to define the terms of a sequence is called the index variable, or index, of the sequence; it need not start at n = 1."
+    },
+    {
+      "id": "term-of-a-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Term of a sequence",
+      "terms": [
+        "term",
+        "terms",
+        "nth term"
+      ],
+      "type": "sequence",
+      "statement": "Each number aₙ of the sequence {aₙ} is a term of the sequence, its nth term."
+    },
+    {
+      "id": "explicit-formula",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Explicit formula",
+      "terms": [
+        "explicit formula",
+        "explicit formulas"
+      ],
+      "statement": "A sequence may be defined by an explicit formula aₙ = f(n) for some function f(n) defined over the positive integers.",
+      "forms": [
+        {
+          "id": "eq-explicit-formula",
+          "latex": "a_n=f(n)"
+        }
+      ]
+    },
+    {
+      "id": "recurrence-relation",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Recurrence relation",
+      "terms": [
+        "recurrence relation",
+        "recursively",
+        "defined recursively"
+      ],
+      "statement": "A recurrence relation is a relationship in which a term aₙ in a sequence is defined in terms of earlier terms in the sequence; one term (or more) is given explicitly, and subsequent terms are defined from the earlier ones."
+    },
+    {
+      "id": "graph-of-a-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Graph of a sequence",
+      "terms": [
+        "graph of a sequence"
+      ],
+      "statement": "The graph of a sequence {aₙ} consists of all points (n, aₙ) for all positive integers n."
+    },
+    {
+      "id": "arithmetic-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Arithmetic sequence",
+      "terms": [
+        "arithmetic sequence",
+        "arithmetic sequences"
+      ],
+      "type": "sequence",
+      "statement": "In an arithmetic sequence the difference between every pair of consecutive terms is the same; in general, an arithmetic sequence is any sequence of the form aₙ = cn + b.",
+      "forms": [
+        {
+          "id": "eq-arithmetic-sequence",
+          "latex": "a_n=cn+b"
+        }
+      ]
+    },
+    {
+      "id": "geometric-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Geometric sequence",
+      "terms": [
+        "geometric sequence",
+        "geometric sequences"
+      ],
+      "type": "sequence",
+      "statement": "In a geometric sequence the ratio aₙ₊₁/aₙ of every pair of consecutive terms is the same; in general, a geometric sequence is any sequence of the form aₙ = crⁿ.",
+      "forms": [
+        {
+          "id": "eq-geometric-sequence",
+          "latex": "a_n=cr^n"
+        }
+      ]
+    },
+    {
+      "id": "limit-of-a-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Limit of a sequence",
+      "terms": [
+        "limit of the sequence",
+        "limit of a sequence"
+      ],
+      "symbol": "L",
+      "type": "limit",
+      "statement": "Given a sequence {aₙ}, if the terms aₙ become arbitrarily close to a finite number L as n becomes sufficiently large, L is the limit of the sequence, and we write lim_{n→∞} aₙ = L.",
+      "forms": [
+        {
+          "id": "eq-limit-of-a-sequence",
+          "latex": "\\lim_{n\\to\\infty}a_n=L"
+        }
+      ]
+    },
+    {
+      "id": "convergent-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Convergent sequence",
+      "terms": [
+        "convergent sequence",
+        "converges",
+        "converge"
+      ],
+      "statement": "A sequence {aₙ} is a convergent sequence if there exists a real number L such that aₙ is arbitrarily close to L as long as n is sufficiently large; it converges to its limit L."
+    },
+    {
+      "id": "divergent-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Divergent sequence",
+      "terms": [
+        "divergent sequence",
+        "diverges",
+        "diverge"
+      ],
+      "statement": "A sequence that is not convergent is divergent, and we say its limit does not exist."
+    },
+    {
+      "id": "formal-definition-of-the-limit-of-a-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Formal definition of the limit of a sequence",
+      "type": "limit",
+      "statement": "A sequence {aₙ} converges to a real number L if for all ε > 0 there exists an integer N such that |aₙ − L| < ε if n ≥ N. The convergence or divergence of a sequence depends only on what happens to its terms as n → ∞, so placing finitely many terms before a₁ changes neither it nor the limit.",
+      "forms": [
+        {
+          "id": "eq-formal-limit-of-a-sequence",
+          "latex": "|a_n-L|<\\varepsilon\\ \\text{if}\\ n\\ge N"
+        }
+      ]
+    },
+    {
+      "id": "divergence-to-infinity",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Divergence to infinity",
+      "terms": [
+        "diverges to infinity",
+        "diverges to negative infinity"
+      ],
+      "statement": "A sequence {aₙ} diverges to infinity, written lim_{n→∞} aₙ = ∞, if its terms become arbitrarily large as n → ∞, and to negative infinity if aₙ → −∞; the notation does not mean the limit exists, only why the sequence diverges."
+    },
+    {
+      "id": "limit-of-a-sequence-defined-by-a-function",
+      "kind": "result",
+      "section": "9.1",
+      "name": "Limit of a sequence defined by a function",
+      "statement": "Consider a sequence {aₙ} such that aₙ = f(n) for all n ≥ 1. If there exists a real number L such that lim_{x→∞} f(x) = L, then {aₙ} converges and lim_{n→∞} aₙ = L.",
+      "forms": [
+        {
+          "id": "eq-sequence-by-function",
+          "latex": "\\lim_{x\\to\\infty}f(x)=L\\ \\Rightarrow\\ \\lim_{n\\to\\infty}a_n=L"
+        }
+      ]
+    },
+    {
+      "id": "limit-of-a-geometric-sequence",
+      "kind": "result",
+      "section": "9.1",
+      "name": "Limit of a geometric sequence",
+      "statement": "The geometric sequence {rⁿ} converges to 0 if |r| < 1 and to 1 if r = 1; rⁿ → ∞ if r > 1, and {rⁿ} diverges if r ≤ −1. So {rⁿ} converges if and only if |r| < 1 or r = 1.",
+      "forms": [
+        {
+          "id": "eq-geometric-sequence-to-zero",
+          "latex": "r^n\\to 0\\ \\text{if}\\ |r|<1"
+        },
+        {
+          "id": "eq-geometric-sequence-to-one",
+          "latex": "r^n\\to 1\\ \\text{if}\\ r=1"
+        },
+        {
+          "id": "eq-geometric-sequence-to-infinity",
+          "latex": "r^n\\to\\infty\\ \\text{if}\\ r>1"
+        },
+        {
+          "id": "eq-geometric-sequence-diverges",
+          "latex": "\\{r^n\\}\\ \\text{diverges if}\\ r\\le -1"
+        }
+      ]
+    },
+    {
+      "id": "algebraic-limit-laws-for-sequences",
+      "kind": "result",
+      "section": "9.1",
+      "name": "Algebraic limit laws for sequences",
+      "terms": [
+        "algebraic limit laws"
+      ],
+      "statement": "Given sequences {aₙ} and {bₙ} and any real number c, if lim aₙ = A and lim bₙ = B, then lim c = c, lim caₙ = cA, lim (aₙ ± bₙ) = A ± B, lim (aₙ · bₙ) = A · B, and lim (aₙ/bₙ) = A/B, provided B ≠ 0 and each bₙ ≠ 0.",
+      "forms": [
+        {
+          "id": "eq-sequence-sum-law",
+          "latex": "\\lim_{n\\to\\infty}(a_n\\pm b_n)=A\\pm B"
+        },
+        {
+          "id": "eq-sequence-constant-multiple-law",
+          "latex": "\\lim_{n\\to\\infty}ca_n=cA"
+        },
+        {
+          "id": "eq-sequence-product-law",
+          "latex": "\\lim_{n\\to\\infty}(a_n\\cdot b_n)=A\\cdot B"
+        },
+        {
+          "id": "eq-sequence-quotient-law",
+          "latex": "\\lim_{n\\to\\infty}\\frac{a_n}{b_n}=\\frac{A}{B}"
+        }
+      ]
+    },
+    {
+      "id": "continuous-functions-on-convergent-sequences",
+      "kind": "result",
+      "section": "9.1",
+      "name": "Continuous functions defined on convergent sequences",
+      "statement": "Consider a sequence {aₙ} that converges to L and a function f continuous at L. Then there exists an integer N such that f is defined at all values aₙ for n ≥ N, and the sequence {f(aₙ)} converges to f(L).",
+      "forms": [
+        {
+          "id": "eq-continuous-on-sequence",
+          "latex": "\\lim_{n\\to\\infty}f(a_n)=f(L)"
+        }
+      ]
+    },
+    {
+      "id": "squeeze-theorem-for-sequences",
+      "kind": "result",
+      "section": "9.1",
+      "name": "Squeeze Theorem for sequences",
+      "terms": [
+        "Squeeze Theorem"
+      ],
+      "statement": "Consider sequences {aₙ}, {bₙ} and {cₙ}, and suppose there exists an integer N such that aₙ ≤ bₙ ≤ cₙ for all n ≥ N. If there exists a real number L such that lim aₙ = L = lim cₙ, then {bₙ} converges and lim bₙ = L.",
+      "forms": [
+        {
+          "id": "eq-sequence-squeeze",
+          "latex": "a_n\\le b_n\\le c_n,\\ \\lim_{n\\to\\infty}a_n=L=\\lim_{n\\to\\infty}c_n\\ \\Rightarrow\\ \\lim_{n\\to\\infty}b_n=L"
+        }
+      ]
+    },
+    {
+      "id": "bounded-above",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Bounded above",
+      "terms": [
+        "bounded above"
+      ],
+      "statement": "A sequence {aₙ} is bounded above if there exists a real number M such that aₙ ≤ M for all positive integers n."
+    },
+    {
+      "id": "bounded-below",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Bounded below",
+      "terms": [
+        "bounded below"
+      ],
+      "statement": "A sequence {aₙ} is bounded below if there exists a real number M such that M ≤ aₙ for all positive integers n."
+    },
+    {
+      "id": "bounded-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Bounded sequence",
+      "terms": [
+        "bounded sequence",
+        "bounded"
+      ],
+      "statement": "A sequence {aₙ} is a bounded sequence if it is bounded above and bounded below, that is, if there exists a constant M such that |aₙ| ≤ M for all positive integers n."
+    },
+    {
+      "id": "unbounded-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Unbounded sequence",
+      "terms": [
+        "unbounded sequence",
+        "unbounded"
+      ],
+      "statement": "A sequence that is not bounded is an unbounded sequence."
+    },
+    {
+      "id": "convergent-sequences-are-bounded",
+      "kind": "result",
+      "section": "9.1",
+      "name": "Convergent sequences are bounded",
+      "statement": "If a sequence {aₙ} converges, then it is bounded. Being bounded is a necessary condition for a sequence to converge but not a sufficient one: {(−1)ⁿ} is bounded and diverges."
+    },
+    {
+      "id": "monotone-sequence",
+      "kind": "definition",
+      "section": "9.1",
+      "name": "Monotone sequence",
+      "terms": [
+        "monotone sequence",
+        "monotone",
+        "increasing sequence",
+        "decreasing sequence",
+        "eventually increasing"
+      ],
+      "statement": "A sequence {aₙ} is increasing for all n ≥ n₀ if aₙ ≤ aₙ₊₁ for all n ≥ n₀ and decreasing for all n ≥ n₀ if aₙ ≥ aₙ₊₁ for all n ≥ n₀; it is a monotone sequence for all n ≥ n₀ if it is increasing for all n ≥ n₀ or decreasing for all n ≥ n₀. A sequence monotone from some term on is eventually increasing or decreasing.",
+      "forms": [
+        {
+          "id": "eq-increasing-sequence",
+          "latex": "a_n\\le a_{n+1}\\ \\text{for all}\\ n\\ge n_0"
+        },
+        {
+          "id": "eq-decreasing-sequence",
+          "latex": "a_n\\ge a_{n+1}\\ \\text{for all}\\ n\\ge n_0"
+        }
+      ]
+    },
+    {
+      "id": "monotone-convergence-theorem",
+      "kind": "result",
+      "section": "9.1",
+      "name": "Monotone Convergence Theorem",
+      "terms": [
+        "Monotone Convergence Theorem"
+      ],
+      "statement": "If {aₙ} is a bounded sequence and there exists a positive integer n₀ such that {aₙ} is monotone for all n ≥ n₀, then {aₙ} converges. The condition is sufficient but not necessary."
+    },
+    {
+      "id": "fibonacci-numbers",
+      "kind": "idea",
+      "section": "9.1",
+      "name": "Fibonacci numbers",
+      "terms": [
+        "Fibonacci numbers",
+        "golden ratio"
+      ],
+      "symbol": "F",
+      "type": "sequence",
+      "statement": "The Fibonacci numbers are defined recursively by F₀ = 0, F₁ = 1 and Fₙ = Fₙ₋₁ + Fₙ₋₂ for n ≥ 2; the ratio Fₙ₊₁/Fₙ of consecutive Fibonacci numbers approaches the golden ratio φ = (1 + √5)/2.",
+      "forms": [
+        {
+          "id": "eq-fibonacci",
+          "latex": "F_n=F_{n-1}+F_{n-2}"
+        }
+      ]
+    },
+    {
+      "id": "infinite-series",
+      "kind": "definition",
+      "section": "9.2",
+      "name": "Infinite series",
+      "terms": [
+        "infinite series",
+        "series"
+      ],
+      "type": "series",
+      "statement": "An infinite series is an expression of the form a₁ + a₂ + a₃ + ⋯ = Σ_{n=1}^∞ aₙ, a sum of infinitely many terms whose value is defined as the limit of its partial sums; its index need not begin at n = 1.",
+      "forms": [
+        {
+          "id": "eq-infinite-series",
+          "latex": "\\sum_{n=1}^{\\infty}a_n=a_1+a_2+a_3+\\cdots"
+        }
+      ]
+    },
+    {
+      "id": "partial-sum",
+      "kind": "definition",
+      "section": "9.2",
+      "name": "Partial sum",
+      "terms": [
+        "partial sum",
+        "partial sums",
+        "sequence of partial sums"
+      ],
+      "symbol": "S",
+      "type": "series",
+      "statement": "The kth partial sum of the infinite series Σ aₙ is the finite sum Sₖ = a₁ + a₂ + ⋯ + aₖ; the partial sums form a sequence {Sₖ}.",
+      "forms": [
+        {
+          "id": "eq-partial-sum",
+          "latex": "S_k=\\sum_{n=1}^{k}a_n=a_1+a_2+a_3+\\cdots+a_k"
+        }
+      ]
+    },
+    {
+      "id": "convergence-of-a-series",
+      "kind": "definition",
+      "section": "9.2",
+      "name": "Convergence of a series",
+      "terms": [
+        "convergence of a series",
+        "converges",
+        "convergent series",
+        "sum of the series"
+      ],
+      "symbol": "S_sum",
+      "type": "series",
+      "statement": "A series converges if the sequence of its partial sums {Sₖ} converges to a real number S; S is the sum of the series, and we write Σ aₙ = S.",
+      "forms": [
+        {
+          "id": "eq-sum-of-a-series",
+          "latex": "\\sum_{n=1}^{\\infty}a_n=S"
+        }
+      ]
+    },
+    {
+      "id": "divergence-of-a-series",
+      "kind": "definition",
+      "section": "9.2",
+      "name": "Divergence of a series",
+      "terms": [
+        "divergence of a series",
+        "diverges",
+        "divergent series"
+      ],
+      "statement": "A series diverges if the sequence of its partial sums diverges."
+    },
+    {
+      "id": "reindexing-a-series",
+      "kind": "skill",
+      "section": "9.2",
+      "name": "Reindexing a series",
+      "terms": [
+        "reindex"
+      ],
+      "statement": "A series whose index begins at a value other than 1 can be reindexed by a change of variables, as m = n − 1 turns Σ_{n=2}^∞ 1/n² into Σ_{m=1}^∞ 1/(m + 1)²."
+    },
+    {
+      "id": "harmonic-series",
+      "kind": "definition",
+      "section": "9.2",
+      "name": "Harmonic series",
+      "terms": [
+        "harmonic series"
+      ],
+      "type": "series",
+      "statement": "The harmonic series is Σ_{n=1}^∞ 1/n = 1 + 1/2 + 1/3 + 1/4 + ⋯.",
+      "forms": [
+        {
+          "id": "eq-harmonic-series",
+          "latex": "\\sum_{n=1}^{\\infty}\\frac{1}{n}=1+\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{4}+\\cdots"
+        }
+      ]
+    },
+    {
+      "id": "divergence-of-the-harmonic-series",
+      "kind": "result",
+      "section": "9.2",
+      "name": "Divergence of the harmonic series",
+      "statement": "The harmonic series diverges, though very slowly: its partial sums satisfy S_{2ʲ} > 1 + j/2, so they are unbounded, and after 1,000,000 terms the partial sum is still about 14.4.",
+      "forms": [
+        {
+          "id": "eq-harmonic-partial-sum-bound",
+          "latex": "S_{2^j}>1+\\frac{j}{2}"
+        }
+      ]
+    },
+    {
+      "id": "algebraic-properties-of-convergent-series",
+      "kind": "result",
+      "section": "9.2",
+      "name": "Algebraic properties of convergent series",
+      "terms": [
+        "Sum Rule",
+        "Difference Rule",
+        "Constant Multiple Rule"
+      ],
+      "statement": "If Σ aₙ and Σ bₙ are convergent series, then Σ(aₙ + bₙ) converges to Σ aₙ + Σ bₙ (Sum Rule), Σ(aₙ − bₙ) converges to Σ aₙ − Σ bₙ (Difference Rule), and for any real number c, Σ caₙ converges to c Σ aₙ (Constant Multiple Rule).",
+      "forms": [
+        {
+          "id": "eq-series-sum-rule",
+          "latex": "\\sum_{n=1}^{\\infty}(a_n+b_n)=\\sum_{n=1}^{\\infty}a_n+\\sum_{n=1}^{\\infty}b_n"
+        },
+        {
+          "id": "eq-series-difference-rule",
+          "latex": "\\sum_{n=1}^{\\infty}(a_n-b_n)=\\sum_{n=1}^{\\infty}a_n-\\sum_{n=1}^{\\infty}b_n"
+        },
+        {
+          "id": "eq-series-constant-multiple-rule",
+          "latex": "\\sum_{n=1}^{\\infty}ca_n=c\\sum_{n=1}^{\\infty}a_n"
+        }
+      ]
+    },
+    {
+      "id": "geometric-series",
+      "kind": "definition",
+      "section": "9.2",
+      "name": "Geometric series",
+      "terms": [
+        "geometric series",
+        "ratio",
+        "initial term"
+      ],
+      "type": "series",
+      "statement": "A geometric series is a series that can be written in the form a + ar + ar² + ar³ + ⋯ = Σ_{n=1}^∞ arⁿ⁻¹, with initial term a and ratio r.",
+      "forms": [
+        {
+          "id": "eq-geometric-series",
+          "latex": "a+ar+ar^2+ar^3+\\cdots=\\sum_{n=1}^{\\infty}ar^{n-1}"
+        }
+      ]
+    },
+    {
+      "id": "sum-of-a-geometric-series",
+      "kind": "result",
+      "section": "9.2",
+      "name": "Sum of a geometric series",
+      "statement": "For r ≠ 1 the kth partial sum of a geometric series is Sₖ = a(1 − rᵏ)/(1 − r). If |r| < 1 the series converges and Σ arⁿ⁻¹ = a/(1 − r); if |r| ≥ 1 it diverges.",
+      "forms": [
+        {
+          "id": "eq-geometric-series-sum",
+          "latex": "\\sum_{n=1}^{\\infty}ar^{n-1}=\\frac{a}{1-r}\\ \\text{for}\\ |r|<1"
+        },
+        {
+          "id": "eq-geometric-partial-sum",
+          "latex": "S_k=\\frac{a(1-r^k)}{1-r}\\ \\text{for}\\ r\\ne 1"
+        }
+      ]
+    },
+    {
+      "id": "repeating-decimals-as-fractions",
+      "kind": "skill",
+      "section": "9.2",
+      "name": "Writing a repeating decimal as a fraction",
+      "statement": "A repeating decimal is a geometric series in disguise: 3.262626… = 3 + 26/10² + 26/10⁴ + ⋯, a geometric series with initial term 26/10² and ratio 1/10² after the 3, whose sum 26/99 gives 3.262626… = 323/99."
+    },
+    {
+      "id": "koch-snowflake",
+      "kind": "idea",
+      "section": "9.2",
+      "name": "Koch snowflake",
+      "terms": [
+        "Koch’s snowflake",
+        "Koch snowflake"
+      ],
+      "statement": "Koch’s snowflake is the limit of the figures Fₙ, each made from the last by replacing the middle third of every side with an equilateral triangle pointing outward. Its perimeter 3(4/3)ⁿ grows without bound, while its area, a geometric series, converges to 2√3/5: finite area, infinite perimeter."
+    },
+    {
+      "id": "telescoping-series",
+      "kind": "definition",
+      "section": "9.2",
+      "name": "Telescoping series",
+      "terms": [
+        "telescoping series",
+        "telescoping sum"
+      ],
+      "type": "series",
+      "statement": "A telescoping series is a series in which most of the terms cancel in each of the partial sums, leaving only some of the first terms and some of the last terms. For Σ[bₙ − bₙ₊₁], Sₖ = b₁ − bₖ₊₁, so the series converges if and only if {bₖ₊₁} converges, and then its sum is b₁ − lim bₖ₊₁.",
+      "forms": [
+        {
+          "id": "eq-telescoping-partial-sum",
+          "latex": "S_k=b_1-b_{k+1}"
+        },
+        {
+          "id": "eq-telescoping-sum",
+          "latex": "\\sum_{n=1}^{\\infty}[b_n-b_{n+1}]=b_1-\\lim_{k\\to\\infty}b_{k+1}"
+        }
+      ]
+    },
+    {
+      "id": "eulers-constant",
+      "kind": "idea",
+      "section": "9.2",
+      "name": "Euler’s constant",
+      "terms": [
+        "Euler’s constant"
+      ],
+      "statement": "The partial sums of the harmonic series behave like the natural logarithm: Σ_{n=1}^{k} 1/n − ln k decreases to a positive limit γ ≈ 0.5772, Euler’s constant.",
+      "forms": [
+        {
+          "id": "eq-eulers-constant",
+          "latex": "\\sum_{n=1}^{k}\\frac{1}{n}-\\ln k\\to\\gamma"
+        }
+      ]
+    },
+    {
+      "id": "divergence-test",
+      "kind": "result",
+      "section": "9.3",
+      "name": "Divergence test",
+      "terms": [
+        "divergence test",
+        "nth term test for divergence"
+      ],
+      "statement": "If lim_{n→∞} aₙ = c ≠ 0 or the limit does not exist, then the series Σ aₙ diverges. The converse is not true: if aₙ → 0 the test is inconclusive, as the harmonic series shows.",
+      "forms": [
+        {
+          "id": "eq-divergence-test",
+          "latex": "\\text{If}\\ a_n\\nrightarrow 0\\ \\text{as}\\ n\\to\\infty,\\ \\sum_{n=1}^{\\infty}a_n\\ \\text{diverges}"
+        }
+      ]
+    },
+    {
+      "id": "integral-test",
+      "kind": "result",
+      "section": "9.3",
+      "name": "Integral test",
+      "terms": [
+        "integral test"
+      ],
+      "statement": "Suppose Σ aₙ is a series with positive terms and there exist a function f and a positive integer N such that f is continuous and decreasing and f(n) = aₙ for all integers n ≥ N. Then Σ aₙ and ∫_N^∞ f(x) dx both converge or both diverge, though their values generally differ.",
+      "forms": [
+        {
+          "id": "eq-integral-test",
+          "latex": "\\sum_{n=1}^{\\infty}a_n\\ \\text{and}\\ \\int_N^{\\infty}f(x)\\,dx\\ \\text{both converge or both diverge}"
+        }
+      ]
+    },
+    {
+      "id": "p-series",
+      "kind": "definition",
+      "section": "9.3",
+      "name": "p-series",
+      "terms": [
+        "p-series"
+      ],
+      "type": "series",
+      "statement": "For any real number p, the series Σ_{n=1}^∞ 1/nᵖ is called a p-series; the harmonic series is the p-series with p = 1.",
+      "forms": [
+        {
+          "id": "eq-p-series",
+          "latex": "\\sum_{n=1}^{\\infty}\\frac{1}{n^p}"
+        }
+      ]
+    },
+    {
+      "id": "convergence-of-p-series",
+      "kind": "result",
+      "section": "9.3",
+      "name": "Convergence of p-series",
+      "statement": "The p-series Σ 1/nᵖ converges if p > 1 and diverges if p ≤ 1: by the divergence test for p ≤ 0, and by the integral test for p > 0, since ∫_1^∞ 1/xᵖ dx is 1/(p − 1) if p > 1 and ∞ if p ≤ 1.",
+      "forms": [
+        {
+          "id": "eq-p-series-test",
+          "latex": "\\sum_{n=1}^{\\infty}\\frac{1}{n^p}\\ \\begin{cases}\\text{converges if}\\ p>1\\\\ \\text{diverges if}\\ p\\le 1\\end{cases}"
+        }
+      ]
+    },
+    {
+      "id": "remainder-of-a-series",
+      "kind": "definition",
+      "section": "9.3",
+      "name": "Remainder of a series",
+      "terms": [
+        "remainder"
+      ],
+      "symbol": "R",
+      "type": "error",
+      "statement": "The remainder R_N = Σ_{n=1}^∞ aₙ − Σ_{n=1}^N aₙ = Σ_{n=N+1}^∞ aₙ is the error made when the sum of a convergent series is approximated by its Nth partial sum.",
+      "forms": [
+        {
+          "id": "eq-remainder",
+          "latex": "R_N=\\sum_{n=1}^{\\infty}a_n-\\sum_{n=1}^{N}a_n"
+        }
+      ]
+    },
+    {
+      "id": "remainder-estimate-for-the-integral-test",
+      "kind": "result",
+      "section": "9.3",
+      "name": "Remainder estimate from the integral test",
+      "terms": [
+        "remainder estimate"
+      ],
+      "statement": "Suppose Σ aₙ is a convergent series with positive terms and f is continuous and decreasing with f(n) = aₙ for all integers n ≥ 1. For all positive integers N, ∫_{N+1}^∞ f(x) dx < R_N < ∫_N^∞ f(x) dx, so S_N + ∫_{N+1}^∞ f(x) dx < Σ aₙ < S_N + ∫_N^∞ f(x) dx.",
+      "forms": [
+        {
+          "id": "eq-integral-remainder-estimate",
+          "latex": "\\int_{N+1}^{\\infty}f(x)\\,dx<R_N<\\int_N^{\\infty}f(x)\\,dx"
+        }
+      ]
+    },
+    {
+      "id": "comparison-test",
+      "kind": "result",
+      "section": "9.4",
+      "name": "Comparison test",
+      "terms": [
+        "comparison test"
+      ],
+      "statement": "Suppose there exists an integer N such that 0 ≤ aₙ ≤ bₙ for all n ≥ N: if Σ bₙ converges, then Σ aₙ converges. Suppose aₙ ≥ bₙ ≥ 0 for all n ≥ N: if Σ bₙ diverges, then Σ aₙ diverges. Geometric series and p-series are the usual series to compare with."
+    },
+    {
+      "id": "limit-comparison-test",
+      "kind": "result",
+      "section": "9.4",
+      "name": "Limit comparison test",
+      "terms": [
+        "limit comparison test"
+      ],
+      "statement": "Let aₙ, bₙ ≥ 0 for all n ≥ 1. If lim aₙ/bₙ = L ≠ 0, then Σ aₙ and Σ bₙ both converge or both diverge. If lim aₙ/bₙ = 0 and Σ bₙ converges, then Σ aₙ converges. If lim aₙ/bₙ = ∞ and Σ bₙ diverges, then Σ aₙ diverges. In the other cases the test gives no information.",
+      "forms": [
+        {
+          "id": "eq-limit-comparison",
+          "latex": "\\lim_{n\\to\\infty}\\frac{a_n}{b_n}=L\\ne 0"
+        }
+      ]
+    },
+    {
+      "id": "alternating-series",
+      "kind": "definition",
+      "section": "9.5",
+      "name": "Alternating series",
+      "terms": [
+        "alternating series"
+      ],
+      "type": "series",
+      "statement": "Any series whose terms alternate between positive and negative values is an alternating series; it can be written in the form Σ(−1)ⁿ⁺¹bₙ = b₁ − b₂ + b₃ − ⋯ or Σ(−1)ⁿbₙ = −b₁ + b₂ − b₃ + ⋯, where bₙ > 0 for all positive integers n.",
+      "forms": [
+        {
+          "id": "eq-alternating-series-plus",
+          "latex": "\\sum_{n=1}^{\\infty}(-1)^{n+1}b_n=b_1-b_2+b_3-b_4+\\cdots"
+        },
+        {
+          "id": "eq-alternating-series-minus",
+          "latex": "\\sum_{n=1}^{\\infty}(-1)^{n}b_n=-b_1+b_2-b_3+b_4-\\cdots"
+        }
+      ]
+    },
+    {
+      "id": "alternating-harmonic-series",
+      "kind": "definition",
+      "section": "9.5",
+      "name": "Alternating harmonic series",
+      "terms": [
+        "alternating harmonic series"
+      ],
+      "type": "series",
+      "statement": "The alternating harmonic series is Σ(−1)ⁿ⁺¹/n = 1 − 1/2 + 1/3 − 1/4 + ⋯. Whereas the harmonic series diverges, it converges, to ln 2: its odd partial sums decrease and are bounded below, its even ones increase and are bounded above, and both approach one limit.",
+      "forms": [
+        {
+          "id": "eq-alternating-harmonic-series",
+          "latex": "\\sum_{n=1}^{\\infty}\\frac{(-1)^{n+1}}{n}=1-\\frac{1}{2}+\\frac{1}{3}-\\frac{1}{4}+\\cdots=\\ln 2"
+        }
+      ]
+    },
+    {
+      "id": "alternating-series-test",
+      "kind": "result",
+      "section": "9.5",
+      "name": "Alternating series test",
+      "terms": [
+        "alternating series test"
+      ],
+      "statement": "An alternating series Σ(−1)ⁿ⁺¹bₙ or Σ(−1)ⁿbₙ converges if 0 < bₙ₊₁ ≤ bₙ for all n ≥ 1 and lim bₙ = 0; it remains true if 0 < bₙ₊₁ ≤ bₙ only for all n ≥ N."
+    },
+    {
+      "id": "remainder-of-an-alternating-series",
+      "kind": "result",
+      "section": "9.5",
+      "name": "Remainders in alternating series",
+      "statement": "For an alternating series that satisfies the hypotheses of the alternating series test, with sum S and Nth partial sum S_N, the remainder R_N = S − S_N satisfies |R_N| ≤ b_{N+1}: the error is in magnitude at most the size of the next term.",
+      "forms": [
+        {
+          "id": "eq-alternating-remainder",
+          "latex": "|R_N|\\le b_{N+1}"
+        }
+      ]
+    },
+    {
+      "id": "absolute-convergence",
+      "kind": "definition",
+      "section": "9.5",
+      "name": "Absolute convergence",
+      "terms": [
+        "absolute convergence",
+        "converges absolutely",
+        "absolutely convergent"
+      ],
+      "statement": "A series Σ aₙ exhibits absolute convergence, or converges absolutely, if Σ |aₙ| converges."
+    },
+    {
+      "id": "conditional-convergence",
+      "kind": "definition",
+      "section": "9.5",
+      "name": "Conditional convergence",
+      "terms": [
+        "conditional convergence",
+        "converges conditionally"
+      ],
+      "statement": "A series Σ aₙ exhibits conditional convergence, or converges conditionally, if Σ aₙ converges but Σ |aₙ| diverges, as the alternating harmonic series does."
+    },
+    {
+      "id": "absolute-convergence-implies-convergence",
+      "kind": "result",
+      "section": "9.5",
+      "name": "Absolute convergence implies convergence",
+      "statement": "If Σ |aₙ| converges, then Σ aₙ converges, since 0 ≤ |aₙ| + aₙ ≤ 2|aₙ|."
+    },
+    {
+      "id": "riemann-rearrangement-theorem",
+      "kind": "result",
+      "section": "9.5",
+      "name": "Riemann Rearrangement Theorem",
+      "terms": [
+        "Riemann Rearrangement Theorem",
+        "rearrange"
+      ],
+      "statement": "Any conditionally convergent series can be rearranged so that the new series diverges or converges to a different real number, as the alternating harmonic series rearranges to 3 ln 2/2; for a series that converges absolutely, every rearrangement has the same sum."
+    },
+    {
+      "id": "ratio-test",
+      "kind": "result",
+      "section": "9.6",
+      "name": "Ratio test",
+      "terms": [
+        "ratio test"
+      ],
+      "symbol": "ρ",
+      "statement": "Let Σ aₙ be a series with nonzero terms and ρ = lim |aₙ₊₁/aₙ|. If 0 ≤ ρ < 1, the series converges absolutely; if ρ > 1 or ρ = ∞, it diverges; if ρ = 1, the test does not provide any information. It suits series whose terms contain factorials or exponentials.",
+      "forms": [
+        {
+          "id": "eq-ratio-test",
+          "latex": "\\rho=\\lim_{n\\to\\infty}\\left|\\frac{a_{n+1}}{a_n}\\right|"
+        }
+      ]
+    },
+    {
+      "id": "root-test",
+      "kind": "result",
+      "section": "9.6",
+      "name": "Root test",
+      "terms": [
+        "root test"
+      ],
+      "statement": "Consider the series Σ aₙ and let ρ = lim ⁿ√|aₙ|. If 0 ≤ ρ < 1, the series converges absolutely; if ρ > 1 or ρ = ∞, it diverges; if ρ = 1, the test does not provide any information. It suits series whose terms satisfy |aₙ| = bₙⁿ.",
+      "forms": [
+        {
+          "id": "eq-root-test",
+          "latex": "\\rho=\\lim_{n\\to\\infty}\\sqrt[n]{|a_n|}"
+        }
+      ]
+    },
+    {
+      "id": "choosing-a-convergence-test",
+      "kind": "skill",
+      "section": "9.6",
+      "name": "Choosing a convergence test",
+      "statement": "To decide whether Σ aₙ converges: ask whether it is a familiar series (harmonic, alternating harmonic, p-series, geometric); whether it is alternating, and whether absolute convergence is wanted; whether it is similar to a p-series or geometric series (comparison or limit comparison test); whether its terms contain a factorial or power (root test for aₙ = bₙⁿ, else ratio test); and last apply the divergence test, then the integral test."
+    },
+    {
+      "id": "series-for-pi",
+      "kind": "idea",
+      "section": "9.6",
+      "name": "Series converging to π",
+      "terms": [
+        "Ramanujan"
+      ],
+      "statement": "Dozens of series converge to π or to an expression in π, at very different rates: the Gregory–Leibniz series π = 4(1 − 1/3 + 1/5 − ⋯), Newton’s series from the arcsine, and Ramanujan’s series for 1/π, which gives many correct digits from its first terms."
+    },
+    {
+      "id": "power-series",
+      "kind": "definition",
+      "section": "10.1",
+      "name": "Power series",
+      "terms": [
+        "power series",
+        "power series centered at"
+      ],
+      "type": "series",
+      "statement": "A series of the form Σₙ₌₀^∞ cₙxⁿ = c₀ + c₁x + c₂x² + ⋯, where x is a variable and the coefficients cₙ are constants, is a power series centered at x = 0; a series of the form Σₙ₌₀^∞ cₙ(x − a)ⁿ is a power series centered at x = a. By convention x⁰ = 1 and (x − a)⁰ = 1 even when x = 0 and x = a.",
+      "forms": [
+        {
+          "id": "eq-power-series-at-zero",
+          "latex": "\\sum_{n=0}^{\\infty}c_{n}x^{n}=c_{0}+c_{1}x+c_{2}x^{2}+\\cdots"
+        },
+        {
+          "id": "eq-power-series-at-a",
+          "latex": "\\sum_{n=0}^{\\infty}c_{n}(x-a)^{n}=c_{0}+c_{1}(x-a)+c_{2}(x-a)^{2}+\\cdots"
+        }
+      ]
+    },
+    {
+      "id": "convergence-of-a-power-series",
+      "kind": "result",
+      "section": "10.1",
+      "name": "Convergence of a power series",
+      "statement": "A power series Σcₙ(x − a)ⁿ satisfies exactly one of three properties: it converges at x = a and diverges for all x ≠ a; it converges for all real numbers x; or there is a real number R > 0 such that it converges if |x − a| < R and diverges if |x − a| > R, and at the values where |x − a| = R it may converge or diverge."
+    },
+    {
+      "id": "interval-of-convergence",
+      "kind": "definition",
+      "section": "10.1",
+      "name": "Interval of convergence",
+      "terms": [
+        "interval of convergence"
+      ],
+      "type": "set",
+      "statement": "The interval of convergence of a power series Σcₙ(x − a)ⁿ is the set of real numbers x for which the series converges."
+    },
+    {
+      "id": "radius-of-convergence",
+      "kind": "definition",
+      "section": "10.1",
+      "name": "Radius of convergence",
+      "terms": [
+        "radius of convergence"
+      ],
+      "symbol": "R",
+      "statement": "If there is a real number R > 0 such that a power series centered at x = a converges for |x − a| < R and diverges for |x − a| > R, then R is the radius of convergence; if the series converges only at x = a, the radius of convergence is R = 0, and if it converges for all real numbers x, R = ∞."
+    },
+    {
+      "id": "finding-the-interval-of-convergence",
+      "kind": "skill",
+      "section": "10.1",
+      "name": "Finding the interval of convergence",
+      "statement": "To find the interval and radius of convergence of a power series, apply the ratio test to the absolute values of its terms: the series converges where the limit ρ < 1 and diverges where ρ > 1; then test each endpoint, where ρ = 1, separately."
+    },
+    {
+      "id": "representing-a-function-by-a-geometric-series",
+      "kind": "result",
+      "section": "10.1",
+      "name": "Representing functions by geometric series",
+      "statement": "Since the geometric series converges to 1/(1 − x) when |x| < 1, the function f(x) = 1/(1 − x) is represented by the power series 1 + x + x² + ⋯ on (−1, 1), and a function of the form g(x)/(1 − h(x)) is represented by substituting into it for the x where |h(x)| < 1.",
+      "forms": [
+        {
+          "id": "eq-geometric-power-series",
+          "latex": "\\frac{1}{1-x}=\\sum_{n=0}^{\\infty}x^{n}=1+x+x^{2}+x^{3}+\\cdots\\quad\\text{for}\\;|x|<1"
+        }
+      ]
+    },
+    {
+      "id": "combining-power-series",
+      "kind": "result",
+      "section": "10.2",
+      "name": "Combining power series",
+      "statement": "If Σcₙxⁿ and Σdₙxⁿ converge to f and g on a common interval I, then Σ(cₙxⁿ ± dₙxⁿ) converges to f ± g on I; for any integer m ≥ 0 and real number b, Σbxᵐcₙxⁿ converges to bxᵐf(x) on I, and Σcₙ(bxᵐ)ⁿ converges to f(bxᵐ) for all x such that bxᵐ is in I.",
+      "forms": [
+        {
+          "id": "eq-combining-sum",
+          "latex": "\\sum_{n=0}^{\\infty}(c_{n}x^{n}\\pm d_{n}x^{n})=f(x)\\pm g(x)"
+        },
+        {
+          "id": "eq-combining-substitution",
+          "latex": "\\sum_{n=0}^{\\infty}c_{n}(bx^{m})^{n}=f(bx^{m})"
+        }
+      ]
+    },
+    {
+      "id": "multiplying-power-series",
+      "kind": "result",
+      "section": "10.2",
+      "name": "Multiplying power series",
+      "terms": [
+        "Cauchy product"
+      ],
+      "statement": "If Σcₙxⁿ and Σdₙxⁿ converge to f and g on a common interval I and eₙ = c₀dₙ + c₁dₙ₋₁ + ⋯ + cₙd₀ = Σₖ₌₀ⁿ cₖdₙ₋ₖ, then (Σcₙxⁿ)(Σdₙxⁿ) = Σeₙxⁿ, and Σeₙxⁿ, the Cauchy product of the two series, converges to f(x)·g(x) on I.",
+      "forms": [
+        {
+          "id": "eq-cauchy-product",
+          "latex": "\\Big(\\sum_{n=0}^{\\infty}c_{n}x^{n}\\Big)\\Big(\\sum_{n=0}^{\\infty}d_{n}x^{n}\\Big)=\\sum_{n=0}^{\\infty}e_{n}x^{n},\\quad e_{n}=\\sum_{k=0}^{n}c_{k}d_{n-k}"
+        }
+      ]
+    },
+    {
+      "id": "term-by-term-differentiation-and-integration",
+      "kind": "result",
+      "section": "10.2",
+      "name": "Term-by-term differentiation and integration",
+      "terms": [
+        "term-by-term differentiation of a power series",
+        "term-by-term integration of a power series"
+      ],
+      "statement": "If Σcₙ(x − a)ⁿ converges to f on (a − R, a + R) for some R > 0, then f is differentiable there, f′(x) = Σₙ₌₁^∞ ncₙ(x − a)ⁿ⁻¹, and ∫f(x) dx = C + Σcₙ(x − a)ⁿ⁺¹/(n + 1), both series converging on (a − R, a + R); the behavior at the endpoints must be checked separately.",
+      "forms": [
+        {
+          "id": "eq-term-by-term-derivative",
+          "latex": "f'(x)=\\sum_{n=1}^{\\infty}nc_{n}(x-a)^{n-1}=c_{1}+2c_{2}(x-a)+3c_{3}(x-a)^{2}+\\cdots"
+        },
+        {
+          "id": "eq-term-by-term-integral",
+          "latex": "\\int f(x)\\,dx=C+\\sum_{n=0}^{\\infty}c_{n}\\frac{(x-a)^{n+1}}{n+1}"
+        }
+      ]
+    },
+    {
+      "id": "uniqueness-of-power-series",
+      "kind": "result",
+      "section": "10.2",
+      "name": "Uniqueness of power series",
+      "statement": "If two convergent power series Σcₙ(x − a)ⁿ and Σdₙ(x − a)ⁿ are equal for all x in an open interval containing a, then cₙ = dₙ for all n ≥ 0."
+    },
+    {
+      "id": "present-value",
+      "kind": "definition",
+      "section": "10.2",
+      "name": "Present value",
+      "terms": [
+        "present value"
+      ],
+      "type": "series",
+      "symbol": "P",
+      "statement": "The present value of future payments is their value in terms of today’s dollars, assuming the money can be invested at an interest rate r; payments of C dollars a year for n years are worth C/(1 + r) + C/(1 + r)² + ⋯ + C/(1 + r)ⁿ, and payments that continue indefinitely are worth the sum of a geometric series, C/r.",
+      "forms": [
+        {
+          "id": "eq-present-value-n-years",
+          "latex": "P=\\frac{C}{1+r}+\\frac{C}{(1+r)^{2}}+\\cdots+\\frac{C}{(1+r)^{n}}"
+        },
+        {
+          "id": "eq-present-value-perpetual",
+          "latex": "P=\\sum_{n=0}^{\\infty}\\frac{C}{(1+r)^{n+1}}=\\frac{C}{r}"
+        }
+      ]
+    },
+    {
+      "id": "taylor-series",
+      "kind": "definition",
+      "section": "10.3",
+      "name": "Taylor series",
+      "terms": [
+        "Taylor series",
+        "Taylor series for f at a"
+      ],
+      "type": "series",
+      "statement": "If f has derivatives of all orders at x = a, the Taylor series for f at a is Σₙ₌₀^∞ f⁽ⁿ⁾(a)/n! (x − a)ⁿ = f(a) + f′(a)(x − a) + f″(a)/2! (x − a)² + ⋯; its coefficients are the ones a power series for f at a must have.",
+      "forms": [
+        {
+          "id": "eq-taylor-series",
+          "latex": "\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(a)}{n!}(x-a)^{n}=f(a)+f'(a)(x-a)+\\frac{f''(a)}{2!}(x-a)^{2}+\\cdots+\\frac{f^{(n)}(a)}{n!}(x-a)^{n}+\\cdots"
+        }
+      ]
+    },
+    {
+      "id": "maclaurin-series",
+      "kind": "definition",
+      "section": "10.3",
+      "name": "Maclaurin series",
+      "terms": [
+        "Maclaurin series"
+      ],
+      "type": "series",
+      "statement": "The Taylor series for f at 0, Σₙ₌₀^∞ f⁽ⁿ⁾(0)/n! xⁿ, is the Maclaurin series for f."
+    },
+    {
+      "id": "uniqueness-of-taylor-series",
+      "kind": "result",
+      "section": "10.3",
+      "name": "Uniqueness of Taylor series",
+      "statement": "If a function f has a power series at a that converges to f on some open interval containing a, then that power series is the Taylor series for f at a."
+    },
+    {
+      "id": "taylor-polynomial",
+      "kind": "definition",
+      "section": "10.3",
+      "name": "Taylor polynomial",
+      "terms": [
+        "Taylor polynomials",
+        "Taylor polynomial",
+        "nth Taylor polynomial"
+      ],
+      "type": "series",
+      "symbol": "p",
+      "statement": "If f has n derivatives at x = a, the nth Taylor polynomial for f at a is pₙ(x) = f(a) + f′(a)(x − a) + f″(a)/2! (x − a)² + ⋯ + f⁽ⁿ⁾(a)/n! (x − a)ⁿ, the nth partial sum of the Taylor series for f at a.",
+      "forms": [
+        {
+          "id": "eq-taylor-polynomial",
+          "latex": "p_{n}(x)=f(a)+f'(a)(x-a)+\\frac{f''(a)}{2!}(x-a)^{2}+\\frac{f'''(a)}{3!}(x-a)^{3}+\\cdots+\\frac{f^{(n)}(a)}{n!}(x-a)^{n}"
+        }
+      ]
+    },
+    {
+      "id": "maclaurin-polynomial",
+      "kind": "definition",
+      "section": "10.3",
+      "name": "Maclaurin polynomial",
+      "terms": [
+        "Maclaurin polynomials",
+        "Maclaurin polynomial",
+        "nth Maclaurin polynomial"
+      ],
+      "type": "series",
+      "statement": "The nth Taylor polynomial for f at 0 is the nth Maclaurin polynomial for f."
+    },
+    {
+      "id": "taylor-remainder",
+      "kind": "definition",
+      "section": "10.3",
+      "name": "Remainder of a Taylor polynomial",
+      "terms": [
+        "remainder",
+        "nth remainder"
+      ],
+      "type": "error",
+      "symbol": "R",
+      "statement": "The nth remainder Rₙ(x) = f(x) − pₙ(x) is the error when f(x) is approximated by its nth Taylor polynomial at a; the sequence of Taylor polynomials converges to f exactly where Rₙ converges to zero.",
+      "forms": [
+        {
+          "id": "eq-taylor-remainder",
+          "latex": "R_{n}(x)=f(x)-p_{n}(x)"
+        }
+      ]
+    },
+    {
+      "id": "taylors-theorem-with-remainder",
+      "kind": "result",
+      "section": "10.3",
+      "name": "Taylor’s theorem with remainder",
+      "terms": [
+        "Taylor’s theorem with remainder",
+        "Taylor’s theorem"
+      ],
+      "statement": "If f can be differentiated n + 1 times on an interval I containing a, then for each x in I there is a real number c between a and x such that Rₙ(x) = f⁽ⁿ⁺¹⁾(c)/(n + 1)! (x − a)ⁿ⁺¹; if |f⁽ⁿ⁺¹⁾(x)| ≤ M for all x in I, then |Rₙ(x)| ≤ M/(n + 1)! |x − a|ⁿ⁺¹ for all x in I.",
+      "forms": [
+        {
+          "id": "eq-lagrange-remainder",
+          "latex": "R_{n}(x)=\\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}"
+        },
+        {
+          "id": "eq-remainder-bound",
+          "latex": "|R_{n}(x)|\\le\\frac{M}{(n+1)!}|x-a|^{n+1}"
+        }
+      ]
+    },
+    {
+      "id": "convergence-of-taylor-series",
+      "kind": "result",
+      "section": "10.3",
+      "name": "Convergence of Taylor series",
+      "statement": "If f has derivatives of all orders on an interval I containing a, the Taylor series Σf⁽ⁿ⁾(a)/n! (x − a)ⁿ converges to f(x) for all x in I if and only if lim Rₙ(x) = 0 as n → ∞ for all x in I; the Taylor series for eˣ, sin x and cos x converge to them for all real x.",
+      "forms": [
+        {
+          "id": "eq-taylor-series-converges",
+          "latex": "\\lim_{n\\to\\infty}R_{n}(x)=0"
+        }
+      ]
+    },
+    {
+      "id": "e-is-irrational",
+      "kind": "idea",
+      "section": "10.3",
+      "name": "The irrationality of e",
+      "statement": "Supposing e = r/s for integers r and s, the remainder of the nth Maclaurin polynomial of eˣ at 1 makes s n! Rₙ(1) a nonzero integer of magnitude less than 1 for n large, a contradiction, so e is irrational."
+    },
+    {
+      "id": "binomial-coefficient",
+      "kind": "definition",
+      "section": "10.4",
+      "name": "Binomial coefficient",
+      "terms": [
+        "binomial coefficients",
+        "binomial coefficient",
+        "binomial expansions"
+      ],
+      "statement": "For any real number r, the binomial coefficient is (r choose n) = r(r − 1)(r − 2)⋯(r − n + 1)/n!; for a nonnegative integer r it equals r!/(n!(r − n)!), the coefficient of xⁿ in the binomial expansion of (1 + x)ʳ.",
+      "forms": [
+        {
+          "id": "eq-binomial-coefficient-integer",
+          "latex": "\\binom{r}{n}=\\frac{r!}{n!(r-n)!}"
+        },
+        {
+          "id": "eq-binomial-expansion",
+          "latex": "(1+x)^{r}=\\sum_{n=0}^{r}\\binom{r}{n}x^{n}"
+        },
+        {
+          "id": "eq-binomial-coefficient",
+          "latex": "\\binom{r}{n}=\\frac{r(r-1)(r-2)\\cdots(r-n+1)}{n!}"
+        }
+      ]
+    },
+    {
+      "id": "binomial-series",
+      "kind": "definition",
+      "section": "10.4",
+      "name": "Binomial series",
+      "terms": [
+        "binomial series"
+      ],
+      "type": "series",
+      "statement": "For any real number r, the Maclaurin series for f(x) = (1 + x)ʳ is the binomial series Σ(r choose n)xⁿ = 1 + rx + r(r − 1)/2! x² + ⋯; it converges to f for |x| < 1, and it terminates when r is a nonnegative integer.",
+      "forms": [
+        {
+          "id": "eq-binomial-series",
+          "latex": "(1+x)^{r}=\\sum_{n=0}^{\\infty}\\binom{r}{n}x^{n}=1+rx+\\frac{r(r-1)}{2!}x^{2}+\\cdots+\\frac{r(r-1)\\cdots(r-n+1)}{n!}x^{n}+\\cdots"
+        },
+        {
+          "id": "eq-binomial-series-coefficients",
+          "latex": "\\frac{f^{(n)}(0)}{n!}=\\frac{r(r-1)(r-2)\\cdots(r-n+1)}{n!}"
+        }
+      ]
+    },
+    {
+      "id": "maclaurin-series-of-common-functions",
+      "kind": "result",
+      "section": "10.4",
+      "name": "Maclaurin series of common functions",
+      "statement": "1/(1 − x) = Σxⁿ for −1 < x < 1; eˣ = Σxⁿ/n!, sin x = Σ(−1)ⁿx²ⁿ⁺¹/(2n + 1)! and cos x = Σ(−1)ⁿx²ⁿ/(2n)! for all x; ln(1 + x) = Σ(−1)ⁿ⁺¹xⁿ/n for −1 < x ≤ 1; tan⁻¹x = Σ(−1)ⁿx²ⁿ⁺¹/(2n + 1) for −1 ≤ x ≤ 1; (1 + x)ʳ = Σ(r choose n)xⁿ for −1 < x < 1. New Maclaurin series are derived from these by substitution, algebra, differentiation and integration.",
+      "forms": [
+        {
+          "id": "eq-maclaurin-exp",
+          "latex": "e^{x}=\\sum_{n=0}^{\\infty}\\frac{x^{n}}{n!}"
+        },
+        {
+          "id": "eq-maclaurin-sin",
+          "latex": "\\sin x=\\sum_{n=0}^{\\infty}(-1)^{n}\\frac{x^{2n+1}}{(2n+1)!}"
+        },
+        {
+          "id": "eq-maclaurin-cos",
+          "latex": "\\cos x=\\sum_{n=0}^{\\infty}(-1)^{n}\\frac{x^{2n}}{(2n)!}"
+        },
+        {
+          "id": "eq-maclaurin-ln",
+          "latex": "\\ln(1+x)=\\sum_{n=1}^{\\infty}(-1)^{n+1}\\frac{x^{n}}{n}"
+        },
+        {
+          "id": "eq-maclaurin-arctan",
+          "latex": "\\tan^{-1}x=\\sum_{n=0}^{\\infty}(-1)^{n}\\frac{x^{2n+1}}{2n+1}"
+        }
+      ]
+    },
+    {
+      "id": "power-series-solution-of-a-differential-equation",
+      "kind": "skill",
+      "section": "10.4",
+      "name": "Solving a differential equation with power series",
+      "statement": "To solve a differential equation by power series, suppose a solution y = Σcₙxⁿ, differentiate it term by term, substitute into the equation, equate the coefficients of like powers of x by the uniqueness of power series, and use the initial conditions to find c₀, c₁ and the rest."
+    },
+    {
+      "id": "airys-equation",
+      "kind": "definition",
+      "section": "10.4",
+      "name": "Airy’s equation",
+      "terms": [
+        "Airy’s equation"
+      ],
+      "statement": "The differential equation y″ − xy = 0 is Airy’s equation; it has no solution in elementary functions, and its power series solutions have coefficients with n(n − 1)cₙ = cₙ₋₃ for n ≥ 3 and c₂ = 0.",
+      "forms": [
+        {
+          "id": "eq-airy",
+          "latex": "y''-xy=0"
+        }
+      ]
+    },
+    {
+      "id": "elementary-function",
+      "kind": "definition",
+      "section": "10.4",
+      "name": "Elementary function",
+      "terms": [
+        "elementary function"
+      ],
+      "type": "function",
+      "statement": "An elementary function is a function that can be written using a finite number of algebraic combinations or compositions of exponential, logarithmic, trigonometric, or power functions."
+    },
+    {
+      "id": "nonelementary-integral",
+      "kind": "definition",
+      "section": "10.4",
+      "name": "Nonelementary integral",
+      "terms": [
+        "nonelementary integral"
+      ],
+      "type": "integral",
+      "statement": "An integral ∫f(x) dx whose integrand has no antiderivative that can be written as an elementary function is a nonelementary integral; it can be evaluated by expressing the integrand as a power series and integrating term by term."
+    },
+    {
+      "id": "normal-distribution",
+      "kind": "definition",
+      "section": "10.4",
+      "name": "Normal distribution",
+      "terms": [
+        "normally distributed",
+        "z score"
+      ],
+      "statement": "Data values are normally distributed with mean μ and standard deviation σ when the probability that a randomly chosen value lies between a and b is (1/(σ√(2π)))∫ₐᵇ e^(−(x − μ)²/(2σ²)) dx, the area under a bell-shaped curve; with the z score z = (x − μ)/σ it becomes (1/√(2π))∫ e^(−z²/2) dz from (a − μ)/σ to (b − μ)/σ.",
+      "forms": [
+        {
+          "id": "eq-normal-probability",
+          "latex": "\\frac{1}{\\sigma\\sqrt{2\\pi}}\\int_{a}^{b}e^{-(x-\\mu)^{2}/(2\\sigma^{2})}dx"
+        },
+        {
+          "id": "eq-normal-standardized",
+          "latex": "\\frac{1}{\\sqrt{2\\pi}}\\int_{(a-\\mu)/\\sigma}^{(b-\\mu)/\\sigma}e^{-z^{2}/2}dz"
+        }
+      ]
+    },
+    {
+      "id": "elliptic-integral",
+      "kind": "definition",
+      "section": "10.4",
+      "name": "Elliptic integral",
+      "terms": [
+        "elliptic integral"
+      ],
+      "type": "integral",
+      "statement": "An integral of the form ∫₀^(π/2) dθ/√(1 − k² sin²θ) is an elliptic integral of the first kind; elliptic integrals arose in calculating the arc length of an ellipse and are nonelementary.",
+      "forms": [
+        {
+          "id": "eq-elliptic-integral",
+          "latex": "\\int_{0}^{\\pi/2}\\frac{d\\theta}{\\sqrt{1-k^{2}\\sin^{2}\\theta}}"
+        }
+      ]
+    },
+    {
+      "id": "period-of-a-pendulum",
+      "kind": "result",
+      "section": "10.4",
+      "name": "Period of a pendulum",
+      "statement": "A pendulum of length L making a maximum angle θmax with the vertical has period T = 4√(L/g)∫₀^(π/2) dθ/√(1 − k² sin²θ) with k = sin(θmax/2); expanding the integrand in the binomial series gives T ≈ 2π√(L/g) for small k and T ≈ 2π√(L/g)(1 + k²/4) with two terms.",
+      "forms": [
+        {
+          "id": "eq-pendulum-period",
+          "latex": "T=4\\sqrt{\\frac{L}{g}}\\int_{0}^{\\pi/2}\\frac{d\\theta}{\\sqrt{1-k^{2}\\sin^{2}\\theta}}"
+        },
+        {
+          "id": "eq-pendulum-two-terms",
+          "latex": "T\\approx 2\\pi\\sqrt{\\frac{L}{g}}\\Big(1+\\frac{k^{2}}{4}\\Big)"
+        }
+      ]
     }
   ],
   "concept_prereqs": [
@@ -9822,6 +11198,630 @@
     {
       "concept": "kirchhoffs-loop-rule",
       "prereq": "first-order-linear-differential-equation"
+    },
+    {
+      "concept": "sequence",
+      "prereq": "domain"
+    },
+    {
+      "concept": "index-variable",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "term-of-a-sequence",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "explicit-formula",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "recurrence-relation",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "graph-of-a-sequence",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "graph-of-a-sequence",
+      "prereq": "graph-of-a-function"
+    },
+    {
+      "concept": "arithmetic-sequence",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "geometric-sequence",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "limit-of-a-sequence",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "limit-of-a-sequence",
+      "prereq": "limit"
+    },
+    {
+      "concept": "convergent-sequence",
+      "prereq": "limit-of-a-sequence"
+    },
+    {
+      "concept": "divergent-sequence",
+      "prereq": "convergent-sequence"
+    },
+    {
+      "concept": "formal-definition-of-the-limit-of-a-sequence",
+      "prereq": "convergent-sequence"
+    },
+    {
+      "concept": "formal-definition-of-the-limit-of-a-sequence",
+      "prereq": "formal-definition-of-a-limit-at-infinity"
+    },
+    {
+      "concept": "divergence-to-infinity",
+      "prereq": "divergent-sequence"
+    },
+    {
+      "concept": "divergence-to-infinity",
+      "prereq": "infinite-limit-at-infinity"
+    },
+    {
+      "concept": "limit-of-a-sequence-defined-by-a-function",
+      "prereq": "explicit-formula"
+    },
+    {
+      "concept": "limit-of-a-sequence-defined-by-a-function",
+      "prereq": "limit-of-a-sequence"
+    },
+    {
+      "concept": "limit-of-a-sequence-defined-by-a-function",
+      "prereq": "limit-at-infinity"
+    },
+    {
+      "concept": "limit-of-a-geometric-sequence",
+      "prereq": "geometric-sequence"
+    },
+    {
+      "concept": "limit-of-a-geometric-sequence",
+      "prereq": "limit-of-a-sequence-defined-by-a-function"
+    },
+    {
+      "concept": "limit-of-a-geometric-sequence",
+      "prereq": "squeeze-theorem-for-sequences"
+    },
+    {
+      "concept": "algebraic-limit-laws-for-sequences",
+      "prereq": "limit-of-a-sequence"
+    },
+    {
+      "concept": "algebraic-limit-laws-for-sequences",
+      "prereq": "limit-laws"
+    },
+    {
+      "concept": "continuous-functions-on-convergent-sequences",
+      "prereq": "limit-of-a-sequence"
+    },
+    {
+      "concept": "continuous-functions-on-convergent-sequences",
+      "prereq": "continuity-at-a-point"
+    },
+    {
+      "concept": "squeeze-theorem-for-sequences",
+      "prereq": "formal-definition-of-the-limit-of-a-sequence"
+    },
+    {
+      "concept": "squeeze-theorem-for-sequences",
+      "prereq": "squeeze-theorem"
+    },
+    {
+      "concept": "bounded-above",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "bounded-below",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "bounded-sequence",
+      "prereq": "bounded-above"
+    },
+    {
+      "concept": "bounded-sequence",
+      "prereq": "bounded-below"
+    },
+    {
+      "concept": "unbounded-sequence",
+      "prereq": "bounded-sequence"
+    },
+    {
+      "concept": "convergent-sequences-are-bounded",
+      "prereq": "convergent-sequence"
+    },
+    {
+      "concept": "convergent-sequences-are-bounded",
+      "prereq": "bounded-sequence"
+    },
+    {
+      "concept": "monotone-sequence",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "monotone-convergence-theorem",
+      "prereq": "monotone-sequence"
+    },
+    {
+      "concept": "monotone-convergence-theorem",
+      "prereq": "convergent-sequences-are-bounded"
+    },
+    {
+      "concept": "fibonacci-numbers",
+      "prereq": "recurrence-relation"
+    },
+    {
+      "concept": "fibonacci-numbers",
+      "prereq": "limit-of-a-sequence"
+    },
+    {
+      "concept": "infinite-series",
+      "prereq": "sequence"
+    },
+    {
+      "concept": "infinite-series",
+      "prereq": "sigma-notation"
+    },
+    {
+      "concept": "partial-sum",
+      "prereq": "infinite-series"
+    },
+    {
+      "concept": "convergence-of-a-series",
+      "prereq": "partial-sum"
+    },
+    {
+      "concept": "convergence-of-a-series",
+      "prereq": "convergent-sequence"
+    },
+    {
+      "concept": "divergence-of-a-series",
+      "prereq": "convergence-of-a-series"
+    },
+    {
+      "concept": "divergence-of-a-series",
+      "prereq": "divergent-sequence"
+    },
+    {
+      "concept": "reindexing-a-series",
+      "prereq": "infinite-series"
+    },
+    {
+      "concept": "harmonic-series",
+      "prereq": "infinite-series"
+    },
+    {
+      "concept": "divergence-of-the-harmonic-series",
+      "prereq": "harmonic-series"
+    },
+    {
+      "concept": "divergence-of-the-harmonic-series",
+      "prereq": "divergence-of-a-series"
+    },
+    {
+      "concept": "divergence-of-the-harmonic-series",
+      "prereq": "convergent-sequences-are-bounded"
+    },
+    {
+      "concept": "algebraic-properties-of-convergent-series",
+      "prereq": "convergence-of-a-series"
+    },
+    {
+      "concept": "algebraic-properties-of-convergent-series",
+      "prereq": "algebraic-limit-laws-for-sequences"
+    },
+    {
+      "concept": "geometric-series",
+      "prereq": "infinite-series"
+    },
+    {
+      "concept": "geometric-series",
+      "prereq": "geometric-sequence"
+    },
+    {
+      "concept": "sum-of-a-geometric-series",
+      "prereq": "geometric-series"
+    },
+    {
+      "concept": "sum-of-a-geometric-series",
+      "prereq": "limit-of-a-geometric-sequence"
+    },
+    {
+      "concept": "sum-of-a-geometric-series",
+      "prereq": "convergence-of-a-series"
+    },
+    {
+      "concept": "repeating-decimals-as-fractions",
+      "prereq": "sum-of-a-geometric-series"
+    },
+    {
+      "concept": "koch-snowflake",
+      "prereq": "sum-of-a-geometric-series"
+    },
+    {
+      "concept": "telescoping-series",
+      "prereq": "convergence-of-a-series"
+    },
+    {
+      "concept": "eulers-constant",
+      "prereq": "divergence-of-the-harmonic-series"
+    },
+    {
+      "concept": "eulers-constant",
+      "prereq": "monotone-convergence-theorem"
+    },
+    {
+      "concept": "eulers-constant",
+      "prereq": "natural-logarithm-as-an-integral"
+    },
+    {
+      "concept": "divergence-test",
+      "prereq": "divergence-of-a-series"
+    },
+    {
+      "concept": "integral-test",
+      "prereq": "improper-integral"
+    },
+    {
+      "concept": "integral-test",
+      "prereq": "monotone-convergence-theorem"
+    },
+    {
+      "concept": "integral-test",
+      "prereq": "partial-sum"
+    },
+    {
+      "concept": "p-series",
+      "prereq": "harmonic-series"
+    },
+    {
+      "concept": "convergence-of-p-series",
+      "prereq": "p-series"
+    },
+    {
+      "concept": "convergence-of-p-series",
+      "prereq": "integral-test"
+    },
+    {
+      "concept": "convergence-of-p-series",
+      "prereq": "divergence-test"
+    },
+    {
+      "concept": "remainder-of-a-series",
+      "prereq": "convergence-of-a-series"
+    },
+    {
+      "concept": "remainder-estimate-for-the-integral-test",
+      "prereq": "remainder-of-a-series"
+    },
+    {
+      "concept": "remainder-estimate-for-the-integral-test",
+      "prereq": "integral-test"
+    },
+    {
+      "concept": "comparison-test",
+      "prereq": "convergence-of-a-series"
+    },
+    {
+      "concept": "comparison-test",
+      "prereq": "monotone-convergence-theorem"
+    },
+    {
+      "concept": "limit-comparison-test",
+      "prereq": "comparison-test"
+    },
+    {
+      "concept": "alternating-series",
+      "prereq": "infinite-series"
+    },
+    {
+      "concept": "alternating-harmonic-series",
+      "prereq": "alternating-series"
+    },
+    {
+      "concept": "alternating-harmonic-series",
+      "prereq": "harmonic-series"
+    },
+    {
+      "concept": "alternating-harmonic-series",
+      "prereq": "monotone-convergence-theorem"
+    },
+    {
+      "concept": "alternating-series-test",
+      "prereq": "alternating-series"
+    },
+    {
+      "concept": "alternating-series-test",
+      "prereq": "monotone-convergence-theorem"
+    },
+    {
+      "concept": "remainder-of-an-alternating-series",
+      "prereq": "alternating-series-test"
+    },
+    {
+      "concept": "remainder-of-an-alternating-series",
+      "prereq": "remainder-of-a-series"
+    },
+    {
+      "concept": "absolute-convergence",
+      "prereq": "convergence-of-a-series"
+    },
+    {
+      "concept": "conditional-convergence",
+      "prereq": "absolute-convergence"
+    },
+    {
+      "concept": "conditional-convergence",
+      "prereq": "divergence-of-a-series"
+    },
+    {
+      "concept": "absolute-convergence-implies-convergence",
+      "prereq": "absolute-convergence"
+    },
+    {
+      "concept": "absolute-convergence-implies-convergence",
+      "prereq": "comparison-test"
+    },
+    {
+      "concept": "absolute-convergence-implies-convergence",
+      "prereq": "algebraic-properties-of-convergent-series"
+    },
+    {
+      "concept": "riemann-rearrangement-theorem",
+      "prereq": "conditional-convergence"
+    },
+    {
+      "concept": "ratio-test",
+      "prereq": "absolute-convergence"
+    },
+    {
+      "concept": "ratio-test",
+      "prereq": "sum-of-a-geometric-series"
+    },
+    {
+      "concept": "ratio-test",
+      "prereq": "comparison-test"
+    },
+    {
+      "concept": "root-test",
+      "prereq": "absolute-convergence"
+    },
+    {
+      "concept": "root-test",
+      "prereq": "sum-of-a-geometric-series"
+    },
+    {
+      "concept": "choosing-a-convergence-test",
+      "prereq": "ratio-test"
+    },
+    {
+      "concept": "choosing-a-convergence-test",
+      "prereq": "root-test"
+    },
+    {
+      "concept": "choosing-a-convergence-test",
+      "prereq": "limit-comparison-test"
+    },
+    {
+      "concept": "choosing-a-convergence-test",
+      "prereq": "alternating-series-test"
+    },
+    {
+      "concept": "choosing-a-convergence-test",
+      "prereq": "convergence-of-p-series"
+    },
+    {
+      "concept": "series-for-pi",
+      "prereq": "remainder-of-an-alternating-series"
+    },
+    {
+      "concept": "power-series",
+      "prereq": "infinite-series"
+    },
+    {
+      "concept": "convergence-of-a-power-series",
+      "prereq": "power-series"
+    },
+    {
+      "concept": "convergence-of-a-power-series",
+      "prereq": "comparison-test"
+    },
+    {
+      "concept": "convergence-of-a-power-series",
+      "prereq": "geometric-series"
+    },
+    {
+      "concept": "interval-of-convergence",
+      "prereq": "convergence-of-a-power-series"
+    },
+    {
+      "concept": "interval-of-convergence",
+      "prereq": "interval-notation"
+    },
+    {
+      "concept": "radius-of-convergence",
+      "prereq": "interval-of-convergence"
+    },
+    {
+      "concept": "finding-the-interval-of-convergence",
+      "prereq": "radius-of-convergence"
+    },
+    {
+      "concept": "finding-the-interval-of-convergence",
+      "prereq": "ratio-test"
+    },
+    {
+      "concept": "representing-a-function-by-a-geometric-series",
+      "prereq": "power-series"
+    },
+    {
+      "concept": "representing-a-function-by-a-geometric-series",
+      "prereq": "sum-of-a-geometric-series"
+    },
+    {
+      "concept": "combining-power-series",
+      "prereq": "interval-of-convergence"
+    },
+    {
+      "concept": "combining-power-series",
+      "prereq": "algebraic-properties-of-convergent-series"
+    },
+    {
+      "concept": "multiplying-power-series",
+      "prereq": "interval-of-convergence"
+    },
+    {
+      "concept": "term-by-term-differentiation-and-integration",
+      "prereq": "radius-of-convergence"
+    },
+    {
+      "concept": "term-by-term-differentiation-and-integration",
+      "prereq": "indefinite-integral"
+    },
+    {
+      "concept": "uniqueness-of-power-series",
+      "prereq": "term-by-term-differentiation-and-integration"
+    },
+    {
+      "concept": "uniqueness-of-power-series",
+      "prereq": "higher-order-derivative"
+    },
+    {
+      "concept": "present-value",
+      "prereq": "sum-of-a-geometric-series"
+    },
+    {
+      "concept": "present-value",
+      "prereq": "compound-interest"
+    },
+    {
+      "concept": "taylor-series",
+      "prereq": "power-series"
+    },
+    {
+      "concept": "taylor-series",
+      "prereq": "higher-order-derivative"
+    },
+    {
+      "concept": "maclaurin-series",
+      "prereq": "taylor-series"
+    },
+    {
+      "concept": "uniqueness-of-taylor-series",
+      "prereq": "taylor-series"
+    },
+    {
+      "concept": "uniqueness-of-taylor-series",
+      "prereq": "uniqueness-of-power-series"
+    },
+    {
+      "concept": "taylor-polynomial",
+      "prereq": "taylor-series"
+    },
+    {
+      "concept": "taylor-polynomial",
+      "prereq": "partial-sum"
+    },
+    {
+      "concept": "maclaurin-polynomial",
+      "prereq": "taylor-polynomial"
+    },
+    {
+      "concept": "taylor-remainder",
+      "prereq": "taylor-polynomial"
+    },
+    {
+      "concept": "taylors-theorem-with-remainder",
+      "prereq": "taylor-remainder"
+    },
+    {
+      "concept": "taylors-theorem-with-remainder",
+      "prereq": "rolles-theorem"
+    },
+    {
+      "concept": "convergence-of-taylor-series",
+      "prereq": "taylor-remainder"
+    },
+    {
+      "concept": "convergence-of-taylor-series",
+      "prereq": "convergence-of-a-series"
+    },
+    {
+      "concept": "e-is-irrational",
+      "prereq": "taylors-theorem-with-remainder"
+    },
+    {
+      "concept": "e-is-irrational",
+      "prereq": "maclaurin-polynomial"
+    },
+    {
+      "concept": "binomial-series",
+      "prereq": "maclaurin-series"
+    },
+    {
+      "concept": "binomial-series",
+      "prereq": "binomial-coefficient"
+    },
+    {
+      "concept": "maclaurin-series-of-common-functions",
+      "prereq": "binomial-series"
+    },
+    {
+      "concept": "maclaurin-series-of-common-functions",
+      "prereq": "term-by-term-differentiation-and-integration"
+    },
+    {
+      "concept": "maclaurin-series-of-common-functions",
+      "prereq": "convergence-of-taylor-series"
+    },
+    {
+      "concept": "power-series-solution-of-a-differential-equation",
+      "prereq": "uniqueness-of-power-series"
+    },
+    {
+      "concept": "power-series-solution-of-a-differential-equation",
+      "prereq": "initial-value-problem"
+    },
+    {
+      "concept": "airys-equation",
+      "prereq": "differential-equation"
+    },
+    {
+      "concept": "elementary-function",
+      "prereq": "transcendental-function"
+    },
+    {
+      "concept": "nonelementary-integral",
+      "prereq": "elementary-function"
+    },
+    {
+      "concept": "nonelementary-integral",
+      "prereq": "antiderivative"
+    },
+    {
+      "concept": "normal-distribution",
+      "prereq": "definite-integral"
+    },
+    {
+      "concept": "elliptic-integral",
+      "prereq": "nonelementary-integral"
+    },
+    {
+      "concept": "period-of-a-pendulum",
+      "prereq": "elliptic-integral"
+    },
+    {
+      "concept": "period-of-a-pendulum",
+      "prereq": "binomial-series"
     }
   ],
   "colours": {

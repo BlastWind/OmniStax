@@ -1,0 +1,1280 @@
+{
+ "id": "4.3",
+ "module": "m53611",
+ "chapter": "4",
+ "title": "Maxima and Minima",
+ "short": "Maxima and Minima",
+ "lead": "The largest and smallest values of a function are its extrema. This section defines absolute and local extrema and critical points, states when a function must have an absolute maximum and minimum, and gives a procedure for finding them over a closed interval.",
+ "objectives": [
+  "Define absolute extrema.",
+  "Define local extrema.",
+  "Explain how to find the critical points of a function over a closed interval.",
+  "Describe how to use critical points to locate absolute extrema over a closed interval."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"function\">function</span> may have both an <span data-concept=\"absolute-extremum\">absolute maximum</span> and an <span data-concept=\"absolute-extremum\">absolute minimum</span>, have just one <span data-concept=\"absolute-extremum\">absolute extremum</span>, or have no <span data-concept=\"absolute-extremum\">absolute maximum</span> or <span data-concept=\"absolute-extremum\">absolute minimum</span>.</li><li>If a <span data-concept=\"function\">function</span> has a <span data-concept=\"local-extremum\">local extremum</span>, the point at which it occurs must be a <span data-concept=\"critical-point\">critical point</span>. However, a <span data-concept=\"function\">function</span> need not have a <span data-concept=\"local-extremum\">local extremum</span> at a <span data-concept=\"critical-point\">critical point</span>.</li><li>A continuous <span data-concept=\"function\">function</span> over a closed, bounded interval has an <span data-concept=\"absolute-extremum\">absolute maximum</span> and an <span data-concept=\"absolute-extremum\">absolute minimum</span>. Each extremum occurs at a <span data-concept=\"critical-point\">critical point</span> or an endpoint.</li></ul><section id=\"\"><h2></h2>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 90, 92, 94, 96 and 98 (explanations the key leaves unanswered) and to 91, 93, 105 and 107, whose key says only that answers vary. The other 24 even-numbered section exercises have no answer in the key and are computational, so they are left out: 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146. Review exercises 526 and 533 are set here from the chapter review.",
+ "figures": [
+  {
+   "id": "fig-parabola-minimum",
+   "kind": "figure",
+   "number": "4.12",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_001.jpg"
+   ],
+   "original_caption": "The given function has an absolute minimum of 1 at x=0. The function does not have an absolute maximum.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-extrema-cases",
+   "kind": "figure",
+   "number": "4.13",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_010.jpg"
+   ],
+   "original_caption": "Graphs (a), (b), and (c) show several possibilities for absolute extrema for functions with a domain of (−∞, ∞). Graphs (d), (e), and (f) show several possibilities for absolute extrema for functions with a domain that is a bounded interval.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-local-extremum",
+   "kind": "sim",
+   "number": "4.14",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_003.jpg"
+   ],
+   "original_caption": "This function f has two local maxima and one local minimum. The local maximum at x=2 is also the absolute maximum.",
+   "draws": [
+    "function",
+    "point",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-critical-cases",
+   "kind": "figure",
+   "number": "4.15",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_004.jpg"
+   ],
+   "original_caption": "(a–e) A function f has a critical number at c if f′(c)=0 or f′(c) is undefined. A function may or may not have a local extremum at a critical point.",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-critical-cubic",
+   "kind": "figure",
+   "number": "4.16",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_005.jpg"
+   ],
+   "original_caption": "This function has a local maximum and a local minimum.",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-critical-sixth",
+   "kind": "figure",
+   "number": "4.17",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_006.jpg"
+   ],
+   "original_caption": "This function has three critical numbers: x=0, x=1, and x=−1. The function has a local (and absolute) minimum at x=0, but does not have extrema at the other two critical points.",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-critical-rational",
+   "kind": "figure",
+   "number": "4.18",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_007.jpg"
+   ],
+   "original_caption": "This function has an absolute maximum and an absolute minimum.",
+   "draws": [
+    "function",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-closed-interval",
+   "kind": "sim",
+   "number": "4.19",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_008.jpg"
+   ],
+   "original_caption": "This function has both an absolute maximum and an absolute minimum.",
+   "draws": [
+    "function",
+    "point",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-endpoint-maximum",
+   "kind": "figure",
+   "number": "4.20",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_03_009.jpg"
+   ],
+   "original_caption": "This function has an absolute maximum at an endpoint of the interval.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "absolute-extremum-definition",
+   "concept": "absolute-extremum",
+   "verb": "introduces"
+  },
+  {
+   "span": "extreme-value-theorem",
+   "concept": "extreme-value-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "absolute-extrema",
+   "concept": "continuity-over-an-interval",
+   "verb": "uses"
+  },
+  {
+   "span": "local-extremum-definition",
+   "concept": "local-extremum",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-point-definition",
+   "concept": "critical-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "fermats-theorem",
+   "concept": "fermats-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "fermat-proof",
+   "concept": "derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fermat-proof",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165041979119",
+   "concept": "critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165041979119",
+   "concept": "local-extremum",
+   "verb": "uses"
+  },
+  {
+   "span": "location-of-absolute-extrema",
+   "concept": "location-of-absolute-extrema",
+   "verb": "introduces"
+  },
+  {
+   "span": "closed-interval-strategy",
+   "concept": "locating-absolute-extrema",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165042035517",
+   "concept": "locating-absolute-extrema",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042035517",
+   "concept": "absolute-extremum",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp12",
+   "source_id": "fs-id1165040757544",
+   "source_number": "Checkpoint 4.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165041979119"
+   },
+   "cite": "local-extrema",
+   "prompt": "Find all critical points for $f(x)={x}^{3}-\\frac{1}{2}{x}^{2}-2x+1.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Calculate $f'(x).$",
+    "solution": "$x=-\\frac{2}{3},$ $x=1$"
+   }
+  },
+  {
+   "id": "cp13",
+   "source_id": "fs-id1165042108871",
+   "source_number": "Checkpoint 4.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042035517"
+   },
+   "cite": "locating-absolute-extrema",
+   "prompt": "Find the absolute maximum and absolute minimum of $f(x)={x}^{2}-4x+3$ over the interval $[1,4].$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "Look for critical points. Evaluate $f$ at all critical points and at the endpoints.",
+    "solution": "The absolute maximum is $3$ and it occurs at $x=4.$ The absolute minimum is $-1$ and it occurs at $x=2.$"
+   }
+  },
+  {
+   "id": "e90",
+   "source_id": "fs-id1165042199381",
+   "source_number": "90",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>In precalculus, you learned a formula for the position of the maximum or minimum of a quadratic equation $y=a{x}^{2}+bx+c,$ which was $h=-\\frac{b}{(2a)}.$ Prove this formula using calculus.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $y=ax^{2}+bx+c$ with $a\\ne 0,$ the derivative $y'=2ax+b$ is defined for every $x,$ so the only critical number is where $2ax+b=0,$ that is, $x=-\\frac{b}{2a}.$ The graph is a parabola, which has exactly one turning point, an absolute minimum if $a\\gt 0$ (it opens upward) and an absolute maximum if $a\\lt 0.$ That extremum is also a local extremum, so by Fermat’s theorem it must occur at a critical number: $h=-\\frac{b}{2a}.$"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1165042199447",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>If you are finding an absolute minimum over an interval $[a,b],$ why do you need to check the endpoints? Draw a graph that supports your hypothesis.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Answers may vary. By the Location of Absolute Extrema theorem, the absolute minimum over $[a,b]$ occurs at a critical point or at an endpoint, and nothing forces it to be at a critical point. For example, $f(x)=x$ over $[0,1]$ has no critical points at all, since $f'(x)=1;$ its graph rises from left to right, so its absolute minimum $0$ is at the endpoint $x=0.$ Checking only the critical points would find nothing."
+   }
+  },
+  {
+   "id": "e92",
+   "source_id": "fs-id1165042199483",
+   "source_number": "92",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>If you are examining a function over an interval $(a,b),$ for $a$ and $b$ finite, is it possible not to have an absolute maximum or absolute minimum?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. The Extreme Value Theorem promises both absolute extrema only over a closed, bounded interval. Over an open interval the function may come arbitrarily close to a value without reaching it: $f(x)=x$ over $(0,1)$ takes values arbitrarily close to $0$ and to $1$ but never $0$ or $1,$ so it has neither an absolute maximum nor an absolute minimum over $(0,1).$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1165042278260",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>When you are checking for critical points, explain why you also need to determine points where $f'(x)$ is undefined. Draw a graph to support your explanation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Answers will vary. A local extremum can occur where the derivative does not exist, at a corner or a cusp, and Fermat’s theorem only says that at a local extremum $f'(c)=0$ or $f'(c)$ is undefined. For example, $f(x)=|x|$ has its absolute (and local) minimum at $x=0,$ where its V-shaped graph has a corner and $f'(0)$ is undefined, while $f'(x)=\\pm 1$ is never $0.$ Looking only for $f'(x)=0$ would miss it."
+   }
+  },
+  {
+   "id": "e94",
+   "source_id": "fs-id1165042278290",
+   "source_number": "94",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>Can you have a finite absolute maximum for $y=a{x}^{2}+bx+c$ over $(-\\infty,\\infty)?$ Explain why or why not using graphical arguments.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes, when $a\\lt 0.$ The graph of $y=ax^{2}+bx+c$ is a parabola. If $a\\lt 0$ it opens downward, so its vertex at $x=-\\frac{b}{2a}$ is its highest point and the absolute maximum is the finite value $c-\\frac{b^{2}}{4a}.$ If $a\\gt 0$ it opens upward and $y\\to\\infty$ as $x\\to\\pm\\infty,$ so there is no absolute maximum."
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1165042278366",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>Can you have a finite absolute maximum for $y=a{x}^{3}+b{x}^{2}+cx+d$ over $(-\\infty,\\infty)$ assuming <em>a</em> is non-zero? Explain why or why not using graphical arguments.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No; answers will vary"
+   }
+  },
+  {
+   "id": "e96",
+   "source_id": "fs-id1165042278442",
+   "source_number": "96",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>Let $m$ be the number of local minima and $M$ be the number of local maxima. Can you create a function where $M\\gt m+2?$ Draw a graph to support your explanation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Not for a function continuous over an interval: between two local maxima at $c_1\\lt c_2$ the function takes a smallest value over $[c_1,c_2]$ (the Extreme Value Theorem), and that value lies strictly between them, so it is a local minimum; hence $M\\le m+1.$ With breaks in the graph it is possible. For example, let $f(x)=1-(x-k)^{2}$ for $k-\\frac{1}{2}\\le x\\lt k+\\frac{1}{2},$ $k=1,2,3,4:$ four arches side by side, each starting again at height $\\frac{3}{4}.$ Each arch has a local maximum at its top $x=k,$ so $M=4,$ and the function has no local minimum, since just left of each jump the values are smaller than at the jump. Then $M=4\\gt m+2=2.$"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1165042065906",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>Is it possible to have more than one absolute maximum? Use a graphical argument to prove your hypothesis.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Since the absolute maximum is the function (output) value rather than the <em>x</em> value, the answer is no; answers will vary"
+   }
+  },
+  {
+   "id": "e98",
+   "source_id": "fs-id1165042065928",
+   "source_number": "98",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p>Is it possible to have no absolute minimum or maximum for a function? If so, construct such a function. If not, explain why this is not possible.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. For example, $f(x)=x^{3}$ over $(-\\infty,\\infty)$ (Figure 4.13(a)) takes every real number as a value: $f(x)\\to\\infty$ as $x\\to\\infty$ and $f(x)\\to-\\infty$ as $x\\to-\\infty,$ so it has no largest and no smallest value, that is, no absolute maximum and no absolute minimum."
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1165042065945",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "absolute-extrema",
+   "prompt": "<p><strong>[T]</strong> Graph the function $y={e}^{ax}.$ For which values of $a,$ on any infinite domain, will you have an absolute minimum and absolute maximum?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "When $a=0$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1165042066031",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_03_202.jpg",
+    "alt": "The function graphed starts at (−2.2, 10), decreases rapidly to (−2, −11), increases to (−1, 5) before decreasing slowly to (1, 3), at which point it increases to (2, 7), and then decreases to (3, −20)."
+   },
+   "prompt": "<p>For the following exercises, determine where the local and absolute maxima and minima occur on the graph given. Assume the graph represents the entirety of each function. For any extrema located at an endpoint, approximate the x-value.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute minimum at 3; Absolute maximum at −2.2; local minima at −2, 1; local maxima at −1, 2"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1165042066089",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_03_204.jpg",
+    "alt": "The function graphed starts at (−2.5, 1), decreases rapidly to (−2, −1.25), increases to (−1, 0.25) before decreasing slowly to (0, 0.2), at which point it increases slowly to (1, 0.25), then decreases rapidly to (2, −1.25), and finally increases to (2.5, 1)."
+   },
+   "prompt": "<p>For the following exercises, determine where the local and absolute maxima and minima occur on the graph given. Assume the graph represents the entirety of each function. For any extrema located at an endpoint, approximate the x-value.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute minima at −2, 2; absolute maxima at −2.5, 2.5; minima at –2, 0, and 2 (Note: –2 and 2 are both local and absolute minima); local maxima at −1, 1"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1165040665577",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following problems, draw graphs of $f(x),$ which is continuous, over the interval $[-4,4]$ with the following properties:</p><p>Absolute minimum at $x=1$ and absolute maximum at $x=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Answers may vary. One such graph is the broken line through $(-4,1),$ $(1,0),$ $(2,3)$ and $(4,1.5):$ it falls from $1$ to its smallest value $0$ at $x=1,$ rises to its largest value $3$ at $x=2,$ and falls to $1.5$ at $x=4.$ It is continuous over $[-4,4],$ with its absolute minimum at $x=1$ and its absolute maximum at $x=2.$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1165040665671",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following problems, draw graphs of $f(x),$ which is continuous, over the interval $[-4,4]$ with the following properties:</p><p>Absolute maxima at $x=2$ and $x=-3,$ local minimum at $x=1,$ and absolute minimum at $x=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Answers may vary. One such graph is the broken line through $(-4,0),$ $(-3,3),$ $(1,1),$ $(2,3)$ and $(4,-1):$ it rises to $3$ at $x=-3,$ falls to $1$ at $x=1,$ rises again to $3$ at $x=2$ and falls to $-1$ at $x=4.$ Its largest value $3$ is taken at $x=-3$ and $x=2,$ $f(1)=1$ is smaller than the values nearby, and its smallest value $-1$ is at $x=4.$"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1165042110060",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the critical numbers in the domains of the following functions.</p><p>$y=4\\sqrt{x}-{x}^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=1$"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1165042110134",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the critical numbers in the domains of the following functions.</p><p>$y=\\ln (x-2)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "None"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1165042110206",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the critical numbers in the domains of the following functions.</p><p>$y=\\sqrt{4-{x}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=0\\text{;}x=\\pm 2$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1165040750656",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the critical numbers in the domains of the following functions.</p><p>$y=\\frac{{x}^{2}-1}{{x}^{2}+2x-3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "None"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1165040750767",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the critical numbers in the domains of the following functions.</p><p>$y=x+\\frac{1}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=-1,1$"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1165041865041",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "locating-absolute-extrema",
+   "prompt": "<p>For the following exercises, find the local and/or absolute extrema for the functions over the specified domain.</p><p>$y={x}^{2}+\\frac{2}{x}$ over $[1,4]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute maximum: $x=4,$ $y=\\frac{33}{2};$ absolute minimum: $x=1,$ $y=3$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1165042132672",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "locating-absolute-extrema",
+   "prompt": "<p>For the following exercises, find the local and/or absolute extrema for the functions over the specified domain.</p><p>$y=\\frac{1}{(x-{x}^{2})}$ over $(0,1)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute minimum: $x=\\frac{1}{2},$ $y=4$"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1165042051306",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "locating-absolute-extrema",
+   "prompt": "<p>For the following exercises, find the local and/or absolute extrema for the functions over the specified domain.</p><p>$y=x+\\sin (x)$ over $[0,2\\pi]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute maximum: $x=2\\pi,$ $y=2\\pi;$ absolute minimum: $x=0,$ $y=0$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1165042062070",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "locating-absolute-extrema",
+   "prompt": "<p>For the following exercises, find the local and/or absolute extrema for the functions over the specified domain.</p><p>$y=|x+1|+|x-1|$ over $[-3,2]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute maximum: $x=-3$ and $y=6;;$ absolute minimum: $-1\\le x\\le 1,$ $y=2$"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1165042288667",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "locating-absolute-extrema",
+   "prompt": "<p>For the following exercises, find the local and/or absolute extrema for the functions over the specified domain.</p><p>$y=\\sin x+\\cos x$ over $[0,2\\pi]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute maximum: $x=\\frac{\\pi}{4},$ $y=\\sqrt{2};$ absolute minimum: $x=\\frac{5\\pi}{4},$ $y=-\\sqrt{2}$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1165040756181",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the local and absolute minima and maxima for the functions over $(-\\infty,\\infty).$</p><p>$y={x}^{2}+4x+5$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute minimum: $x=-2,$ $y=1$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1165042266576",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the local and absolute minima and maxima for the functions over $(-\\infty,\\infty).$</p><p>$y=3{x}^{4}+8{x}^{3}-18{x}^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute minimum: $x=-3,$ $y=-135;$ local maximum: $x=0,$ $y=0;$ local minimum: $x=1,$ $y=-7$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1165040675916",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the local and absolute minima and maxima for the functions over $(-\\infty,\\infty).$</p><p>$y=\\frac{{x}^{2}+x+6}{x-1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Local maximum: $x=1-2\\sqrt{2},$ $y=3-4\\sqrt{2};$ local minimum: $x=1+2\\sqrt{2},$ $y=3+4\\sqrt{2}$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1165040676080",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following functions, use a calculator to graph the function and to estimate the absolute and local maxima and minima. Then, solve for them explicitly.</p><p><strong>[T]</strong> $y=3x\\sqrt{1-{x}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute maximum: $x=\\frac{\\sqrt{2}}{2},$ $y=\\frac{3}{2};$ absolute minimum: $x=-\\frac{\\sqrt{2}}{2},$ $y=-\\frac{3}{2}$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1165042295877",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following functions, use a calculator to graph the function and to estimate the absolute and local maxima and minima. Then, solve for them explicitly.</p><p><strong>[T]</strong> $y=12{x}^{5}+45{x}^{4}+20{x}^{3}-90{x}^{2}-120x+3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Local maximum: $x=-2,$ $y=59;$ local minimum: $x=1,$ $y=-130$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1165042231048",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following functions, use a calculator to graph the function and to estimate the absolute and local maxima and minima. Then, solve for them explicitly.</p><p><strong>[T]</strong> $y=\\frac{\\sqrt{4-{x}^{2}}}{\\sqrt{4+{x}^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute maximum: $x=0,$ $y=1;$ absolute minimum: $x=-2,2,$ $y=0$"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1165042237864",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "locating-absolute-extrema",
+   "prompt": "<p>A ball is thrown into the air and its position is given by $h(t)=-4.9{t}^{2}+60t+5\\;\\text{m}.$ Find the height at which the ball stops ascending. How long after it is thrown does this happen?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$h=\\frac{9245}{49}\\;\\text{m,}$ $t=\\frac{300}{49}\\;\\text{s}$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1165042238074",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "locating-absolute-extrema",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_03_205.jpg",
+    "alt": "The bar graph shows gold (in millions of troy ounces) per year, starting in 1848 and ending in 1888. In 1848, the bar graph shows 0.05; in 1849, 0.5; in 1850, 2; in 1851, 3.6; in 1852, 3.9; in 1853, 3.3; in 1854, 3.4; in 1855, 2.6; in 1856, 2.75; in 1857, 2.1; in 1858, 2.2; in 1859, 2.15; in 1860, 2.1; in 1861, 2; in 1862, 1.8; in 1863, 1.1; in 1864, 1.15; in 1865, 0.9; in 1866, 0.85; in 1867, 0.9; in 1868, 0.85; in 1869, 0.9; in 1870, 0.85; in 1871, 0.85; in 1872, 0.75; in 1873, 0.7; in 1874, 0.8; in 1875, 0.75; in 1876, 0.7; in 1877, 0.73; in 1878, 0.9; in 1879, 0.95; in 1880, 1; in 1881, 0.95; in 1882, 0.85; in 1883, 1.1; in 1884, 0.6; in 1885, 0.55; in 1886, 0.65; in 1887, 0.6; and in 1888, 0.55."
+   },
+   "prompt": "<p>For the following exercises, consider the production of gold during the California gold rush (1848–1888). The production of gold can be modeled by $G(t)=\\frac{(25t)}{({t}^{2}+16)},$ where $t$ is the number of years since the rush began $(0\\le t\\le 40)$ and $G$ is ounces of gold produced (in millions). A summary of the data is shown in the following figure.</p><p>Find when the minimum (local and absolute) gold production occurred. What was the amount of gold produced during this minimum?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The absolute minimum was in 1848, when no gold was produced."
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1165042304403",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>Find the critical points, maxima, and minima for the following piecewise functions.</p><p>$y=\\{\\begin{array}{ll}{x}^{2}+1 & x\\le 1 \\\\ {x}^{2}-4x+5 & x\\gt 1\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Absolute minima: $x=0,$ $x=2,$ $y=1;$ local maximum at $x=1,$ $y=2$"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1165042058977",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p>For the following exercises, find the critical points of the following generic functions. Are they maxima, minima, or neither? State the necessary conditions.</p><p>$y={(x-1)}^{a},$ given that $a\\gt 1$ and <em>a</em> is an integer.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "No maxima/minima if $a$ is odd, minimum at $x=1$ if $a$ is even"
+   }
+  },
+  {
+   "id": "r526",
+   "source_id": "fs-id1165042471332",
+   "source_section": "4.10",
+   "source_number": "526",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "local-extrema",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample. Assume that $f(x)$ is continuous and differentiable unless stated otherwise.</p><p>If ${f}^{'}(c)=0,$ there is a maximum or minimum at $x=c.$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. A number $c$ with $f'(c)=0$ is a critical point, which is only a candidate for an extremum. For example, $f(x)=x^{3}$ has $f'(0)=0,$ but $f$ is increasing over $(-\\infty,\\infty),$ so it has no maximum or minimum at $x=0.$"
+   }
+  },
+  {
+   "id": "r533",
+   "source_id": "fs-id1165042542905",
+   "source_section": "4.10",
+   "source_number": "533",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "locating-absolute-extrema",
+   "prompt": "<p>Find the critical points and the local and absolute extrema of the following functions on the given interval.</p><p>$f(x)=x+{\\sin}^{2}(x)$ over $[0,\\pi]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Critical point: $x=\\frac{3\\pi}{4},$ absolute minimum: $x=0,$ absolute maximum: $x=\\pi$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp12",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "cp13",
+   "concept": "locating-absolute-extrema"
+  },
+  {
+   "exercise": "cp13",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e90",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e90",
+   "concept": "fermats-theorem"
+  },
+  {
+   "exercise": "e90",
+   "concept": "quadratic-function"
+  },
+  {
+   "exercise": "e91",
+   "concept": "location-of-absolute-extrema"
+  },
+  {
+   "exercise": "e92",
+   "concept": "extreme-value-theorem"
+  },
+  {
+   "exercise": "e92",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e93",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e93",
+   "concept": "fermats-theorem"
+  },
+  {
+   "exercise": "e94",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e94",
+   "concept": "quadratic-function"
+  },
+  {
+   "exercise": "e95",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e95",
+   "concept": "cubic-function"
+  },
+  {
+   "exercise": "e96",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e96",
+   "concept": "extreme-value-theorem"
+  },
+  {
+   "exercise": "e97",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e98",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e99",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e101",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e101",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e103",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e103",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e105",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e105",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e105",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e107",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e107",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e107",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e109",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e111",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e113",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e115",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e117",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e119",
+   "concept": "locating-absolute-extrema"
+  },
+  {
+   "exercise": "e119",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e121",
+   "concept": "locating-absolute-extrema"
+  },
+  {
+   "exercise": "e121",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e123",
+   "concept": "locating-absolute-extrema"
+  },
+  {
+   "exercise": "e123",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e125",
+   "concept": "locating-absolute-extrema"
+  },
+  {
+   "exercise": "e125",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e127",
+   "concept": "locating-absolute-extrema"
+  },
+  {
+   "exercise": "e127",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e129",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e129",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e129",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e131",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e131",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e131",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e133",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e133",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e133",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e135",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e135",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e135",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e137",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e137",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e137",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e139",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e139",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e139",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e141",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e141",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e143",
+   "concept": "locating-absolute-extrema"
+  },
+  {
+   "exercise": "e143",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e145",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e145",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "e145",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e147",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e147",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "r526",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "r526",
+   "concept": "local-extremum"
+  },
+  {
+   "exercise": "r526",
+   "concept": "fermats-theorem"
+  },
+  {
+   "exercise": "r533",
+   "concept": "locating-absolute-extrema"
+  },
+  {
+   "exercise": "r533",
+   "concept": "critical-point"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-critical-point",
+   "kind": "correction",
+   "html": "The point $(c,f(c))$ is a <em>critical point</em> of $f,$ as the glossary has it; the book prints “critical number” for both words here."
+  }
+ ]
+}

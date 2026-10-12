@@ -1,0 +1,979 @@
+{
+ "id": "4.1",
+ "module": "m53604",
+ "chapter": "4",
+ "title": "Related Rates",
+ "short": "Related Rates",
+ "lead": "Two quantities tied by one equation change together, and so do their rates. This section shows how to find the rate at which one quantity changes from the rate of another: a balloon filling with air, a plane passing overhead, a camera following the chapter opener’s rocket and water draining from a funnel.",
+ "objectives": [
+  "Express changing quantities in terms of derivatives.",
+  "Find relationships among the derivatives in a given problem.",
+  "Use the chain rule to find the rate of change of one quantity that depends on the rate of change of other quantities."
+ ],
+ "summary_html": "<ul><li>To solve a <span data-concept=\"related-rates\">related rates</span> problem, first draw a picture that illustrates the relationship between the two or more related quantities that are changing with respect to time.</li><li>In terms of the quantities, state the information given and the rate to be found.</li><li>Find an equation relating the quantities.</li><li>Use differentiation, applying the <span data-concept=\"chain-rule\">chain rule</span> as necessary, to find an equation that relates the rates.</li><li>Be sure not to substitute a variable quantity for one of the variables until after finding an equation relating the rates.</li></ul><section id=\"\"><h2></h2>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 22 even-numbered section exercises have no answer in the key and are computational, so they are left out: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44. Review exercise 549 is set here from the chapter review.",
+ "figures": [
+  {
+   "id": "sim-balloon",
+   "kind": "sim",
+   "number": "4.2",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_01_001.jpg"
+   ],
+   "original_caption": "As the balloon is being filled with air, both the radius and the volume are increasing with respect to time.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-plane",
+   "kind": "sim",
+   "number": "4.3",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_01_002.jpg"
+   ],
+   "original_caption": "An airplane is flying at a constant height of 4000 ft. The distance between the person and the airplane and the person and the place on the ground directly below the airplane are changing. We denote those quantities with the variables s and x, respectively.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-rocket-photo",
+   "kind": "photo",
+   "number": "4.4",
+   "draws": []
+  },
+  {
+   "id": "sim-rocket-camera",
+   "kind": "sim",
+   "number": "4.5",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_01_003.jpg"
+   ],
+   "original_caption": "A camera is positioned 5000 ft from the launch pad of the rocket. The height of the rocket and the angle of the camera are changing with respect to time. We denote those quantities with the variables h and θ, respectively.",
+   "draws": [
+    "line",
+    "point",
+    "derivative",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-camera-triangle",
+   "kind": "figure",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_01_005.jpg"
+   ],
+   "original_caption": "A right triangle has one angle with measure θ. The hypotenuse is c, the side length opposite the angle with measure θ is 1000, and the side adjacent to the angle with measure θ is 5000.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-funnel",
+   "kind": "sim",
+   "number": "4.6",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_01_004.jpg"
+   ],
+   "original_caption": "Water is draining from a funnel of height 2 ft and radius 1 ft. The height of the water and the radius of water are changing over time. We denote these quantities with the variables h and r, respectively.",
+   "draws": [
+    "function",
+    "line",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "setting-up",
+   "concept": "related-rates",
+   "verb": "introduces"
+  },
+  {
+   "span": "related-rates-strategy",
+   "concept": "solving-related-rates-problems",
+   "verb": "introduces"
+  },
+  {
+   "span": "related-rates-strategy",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042990634",
+   "concept": "related-rates",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042990634",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043105132",
+   "concept": "solving-related-rates-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043116552",
+   "concept": "solving-related-rates-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043116552",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043112989",
+   "concept": "solving-related-rates-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "examples-of-the-process",
+   "concept": "implicit-differentiation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1165042966918",
+   "source_number": "Checkpoint 4.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042990634"
+   },
+   "cite": "setting-up",
+   "prompt": "What is the instantaneous rate of change of the radius when $r=6\\;\\text{cm}?$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.004420970641441538,
+    "unit": "cm/sec",
+    "hint": "$\\frac{dr}{dt}=\\frac{1}{2\\pi {r}^{2}}$",
+    "solution": "$\\frac{1}{72\\pi}\\;\\text{cm/sec},$ or approximately 0.0044 cm/sec"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1165043116480",
+   "source_number": "Checkpoint 4.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043105132"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "What is the speed of the plane if the distance between the person and the plane is increasing at the rate of $300\\;\\text{ft/sec}?$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 500.0,
+    "unit": "ft/sec",
+    "hint": "$\\frac{ds}{dt}=300\\;\\text{ft/sec}$",
+    "solution": "$500\\;\\text{ft/sec}$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1165043122291",
+   "source_number": "Checkpoint 4.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043116552"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "What rate of change is necessary for the elevation angle of the camera if the camera is placed on the ground at a distance of $4000\\;\\text{ft}$ from the launch pad and the velocity of the rocket is 500 ft/sec when the rocket is $2000\\;\\text{ft}$ off the ground?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.1,
+    "unit": "rad/sec",
+    "hint": "Find $\\frac{d\\theta}{dt}$ when $h=2000\\;\\text{ft}.$ At that time, $\\frac{dh}{dt}=500\\;\\text{ft/sec}.$",
+    "solution": "$\\frac{1}{10}\\;\\text{rad/sec}$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1165043098512",
+   "source_number": "Checkpoint 4.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043112989"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "At what rate is the height of the water changing when the height of the water is $\\frac{1}{4}\\;\\text{ft}?$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.61,
+    "unit": "ft/sec",
+    "hint": "We need to find $\\frac{dh}{dt}$ when $h=\\frac{1}{4}.$",
+    "solution": "$-0.61\\;\\text{ft/sec}$"
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1165043098631",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "setting-up",
+   "prompt": "<p>For the following exercises, find the quantities for the given equation.</p><p>Find $\\frac{dy}{dt}$ at $x=1$ and $y={x}^{2}+3$ if $\\frac{dx}{dt}=4.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8,
+    "solution": "$8$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1165043123744",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "setting-up",
+   "prompt": "<p>For the following exercises, find the quantities for the given equation.</p><p>Find $\\frac{dz}{dt}$ at $(x,y)=(1,3)$ and ${z}^{2}={x}^{2}+{y}^{2}$ if $\\frac{dx}{dt}=4$ and $\\frac{dy}{dt}=3.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\pm \\frac{13}{\\sqrt{10}}$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1165043109828",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_01_201.jpg",
+    "alt": "A right triangle is formed by a ladder leaning up against a brick wall. The ladder forms the hypotenuse and is 10 ft long. "
+   },
+   "prompt": "<p>For the following exercises, sketch the situation if necessary and used related rates to solve for the quantities.</p><p>A 10-ft ladder is leaning against a wall. If the top of the ladder slides down the wall at a rate of 2 ft/sec, how fast is the bottom moving along the ground when the bottom of the ladder is 5 ft from the wall?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.4641016151,
+    "unit": "ft/sec",
+    "solution": "$2\\sqrt{3}$ ft/sec"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1165043109911",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_01_202.jpg",
+    "alt": "A right triangle is formed by two airplanes A and B moving perpendicularly to each other. The hypotenuse is the distance between planes A and B. The other sides are extensions of each plane’s path until they meet."
+   },
+   "prompt": "<p>For the following exercises, sketch the situation if necessary and used related rates to solve for the quantities.</p><p>Two airplanes are flying in the air at the same height: airplane <em>A</em> is flying east at 250 mi/h and airplane <em>B</em> is flying north at $300\\;\\text{mi/h}.$ If they are both heading to the same airport, located 30 miles east of airplane <em>A</em> and 40 miles north of airplane <em>B</em>, at what rate is the distance between the airplanes changing?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The distance is decreasing at $390\\;\\text{mi/h}.$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1165043110023",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, sketch the situation if necessary and used related rates to solve for the quantities.</p><p>Two buses are driving along parallel freeways that are $5\\;\\text{mi}$ apart, one heading east and the other heading west. Assuming that each bus drives a constant $55\\;\\text{mph,}$ find the rate at which the distance between the buses is changing when they are $13\\;\\text{mi}$ apart, heading toward each other.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The distance between them shrinks at a rate of $\\frac{1320}{13}\\approx 101.5\\;\\text{mph}.$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1165043116140",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, sketch the situation if necessary and used related rates to solve for the quantities.</p><p>Using the previous problem, what is the rate at which the tip of the shadow moves away from the person when the person is 10 ft from the pole?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.5,
+    "unit": "ft/sec",
+    "solution": "$\\frac{9}{2}$ ft/sec"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1165043116192",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, sketch the situation if necessary and used related rates to solve for the quantities.</p><p>Using the previous problem, what is the rate at which the shadow changes when the person is 10 ft from the wall, if the person is walking away from the wall at a rate of 2 ft/sec?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "It grows at a rate $\\frac{4}{9}$ ft/sec"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1165043116258",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, sketch the situation if necessary and used related rates to solve for the quantities.</p><p>Using the previous problem, what is the rate at which the distance between you and the helicopter is changing when the helicopter has risen to a height of 60 ft in the air, assuming that, initially, it was 30 ft above you?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The distance is increasing at $\\frac{(135\\sqrt{26})}{26}$ ft/sec"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1165043116333",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, draw and label diagrams to help solve the related-rates problems.</p><p>The volume of a cube decreases at a rate of 10 m<sup>3</sup>/s. Find the rate at which the side of the cube changes when the side of the cube is 2 m.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.8333333333,
+    "unit": "m/sec",
+    "solution": "$-\\frac{5}{6}$ m/sec"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1165043114873",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, draw and label diagrams to help solve the related-rates problems.</p><p>The radius of a sphere decreases at a rate of $3$ m/sec. Find the rate at which the surface area decreases when the radius is 10 m.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$240\\pi$ m<sup>2</sup>/sec"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1165043114938",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, draw and label diagrams to help solve the related-rates problems.</p><p>The radius of a sphere is increasing at a rate of 9 cm/sec. Find the radius of the sphere when the volume and the radius of the sphere are increasing at the same numerical rate.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.2820947918,
+    "unit": "cm",
+    "solution": "$\\frac{1}{2\\sqrt{\\pi}}$ cm"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1165043114989",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, draw and label diagrams to help solve the related-rates problems.</p><p>A triangle has two constant sides of length 3 ft and 5 ft. The angle between these two sides is increasing at a rate of 0.1 rad/sec. Find the rate at which the area of the triangle is changing when the angle between the two sides is $\\pi /6.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The area is increasing at a rate $\\frac{(3\\sqrt{3})}{8}\\;{\\text{ft}}^{2}\\text{/sec.}$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1165043115079",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, consider a right cone that is leaking water. The dimensions of the conical tank are a height of 16 ft and a radius of 5 ft.</p><p>How fast does the depth of the water change when the water is 10 ft high if the cone leaks water at a rate of 10 ft<sup>3</sup>/min?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The depth of the water decreases at $\\frac{128}{125\\pi}$ ft/min."
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1165043092123",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, consider a right cone that is leaking water. The dimensions of the conical tank are a height of 16 ft and a radius of 5 ft.</p><p>If the water level is decreasing at a rate of 3 in/min when the depth of the water is 8 ft, determine the rate at which water is leaking out of the cone.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The volume is decreasing at a rate of $\\frac{(25\\pi)}{16}{\\text{ft}}^{3}\\text{/min}.$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1165043092199",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>A vertical cylinder is leaking water but you are unable to determine at what rate. The cylinder has a height of 2 m and a radius of 2 m. Find the rate at which the water is leaking out of the cylinder if the rate at which the height is decreasing is 10 cm/min when the height is 1 m.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The water flows out at rate $\\frac{(2\\pi)}{5}\\;{\\text{m}}^{3}\\text{/min.}$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1165043092297",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_01_205.jpg",
+    "alt": "An upside-down square pyramid is shown with square side lengths 4 and height 12. There is an unspecified amount of water inside the shape."
+   },
+   "prompt": "<p>A tank is shaped like an upside-down square pyramid, with base of 4 m by 4 m and a height of 12 m (see the following figure). How fast does the height increase when the water is 2 m deep if water is being pumped in at a rate of $\\frac{2}{3}$ m<sup>3</sup>/sec?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5,
+    "unit": "m/sec",
+    "solution": "$\\frac{3}{2}$ m/sec"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1165043092375",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following problems, consider a pool shaped like the bottom half of a sphere, that is being filled at a rate of 25 ft<sup>3</sup>/min. The radius of the pool is 10 ft. The formula for the volume of a partial hemisphere is $V=\\frac{\\pi h}{6}(3{r}^{2}+{h}^{2})$ where $h$ is the height of the water and $r$ is the radius of the water.</p><p>Find the rate at which the depth of the water is changing when the water has a depth of 1 ft.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.4188287976,
+    "unit": "ft/min",
+    "solution": "$\\frac{25}{19\\pi}$ ft/min"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1165043117974",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>Gravel is being unloaded from a truck and falls into a pile shaped like a cone at a rate of 10 ft<sup>3</sup>/min. The radius of the cone base is three times the height of the cone. Find the rate at which the height of the gravel changes when the pile has a height of 5 ft.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0141471061,
+    "unit": "ft/min",
+    "solution": "$\\frac{2}{45\\pi}$ ft/min"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1165043118036",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, solve the related-rates problems. Consider making a sketch that represents the situation to help you understand each problem.</p><p>You are stationary on the ground and are watching a bird fly horizontally at a rate of $10$ m/sec. The bird is located 40 m above your head. How fast does the angle of elevation change when the horizontal distance between you and the bird is 9 m?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The angle decreases at $\\frac{400}{1681}\\;\\text{rad/sec}.$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1165043118102",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_01_208.jpg",
+    "alt": "A right triangle is formed by a lighthouse L, a point P on the shore that is perpendicular to the line from the lighthouse to the shore, and a point 2 miles to the right of the point P. The distance from P to L is 4 miles."
+   },
+   "prompt": "<p>For the following exercises, solve the related-rates problems. Consider making a sketch that represents the situation to help you understand each problem.</p><p>A lighthouse, <em>L</em>, is on an island 4 mi away from the closest point, <em>P</em>, on the beach (see the following image). If the lighthouse light rotates clockwise at a constant rate of 10 revolutions/min, how fast does the beam of light move across the beach 2 mi away from the closest point on the beach?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 314.159265359,
+    "unit": "mi/min",
+    "solution": "$100\\pi \\text{mi/min}$"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1165043118176",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>For the following exercises, solve the related-rates problems. Consider making a sketch that represents the situation to help you understand each problem.</p><p>You are walking to a bus stop at a right-angle corner. You move north at a rate of 2 m/sec and are 20 m south of the intersection. The bus travels west at a rate of 10 m/sec away from the intersection – you have missed the bus! What is the rate at which the angle between you and the bus is changing when you are 20 m south of the intersection and the bus is 10 m west of the intersection?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The angle is changing at a rate of $\\frac{11}{25}\\;\\text{rad/sec}.$"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1165043118251",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_01_207.jpg",
+    "alt": "A baseball field is shown, with the bases labeled Home, 1st, 2nd, and 3rd making a square with side lengths 90 ft."
+   },
+   "prompt": "<p>For the following exercises, refer to the figure of baseball diamond, which has sides of 90 ft.</p><p><strong>[T]</strong> A batter hits a ball toward second base at 80 ft/sec and runs toward first base at a rate of 30 ft/sec. At what rate does the distance between the ball and the batter change when the runner has covered one-third of the distance to first base? (<em>Hint</em>: Recall the law of cosines.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The distance is increasing at a rate of $62.50$ ft/sec."
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1165043120487",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_01_207.jpg",
+    "alt": "A baseball field is shown, with the bases labeled Home, 1st, 2nd, and 3rd making a square with side lengths 90 ft."
+   },
+   "prompt": "<p>For the following exercises, refer to the figure of baseball diamond, which has sides of 90 ft.</p><p><strong>[T]</strong> Runners start at first and second base. When the baseball is hit, the runner at first base runs at a speed of 18 ft/sec toward second base and the runner at second base runs at a speed of 20 ft/sec toward third base. How fast is the distance between runners changing 1 sec after the ball is hit?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The distance is decreasing at a rate of $11.99$ ft/sec."
+   }
+  },
+  {
+   "id": "r549",
+   "source_id": "fs-id1165042711470",
+   "source_section": "4.10",
+   "source_number": "549",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "examples-of-the-process",
+   "prompt": "<p>A car is being compacted into a rectangular solid. The volume is decreasing at a rate of $2$ m<sup>3</sup>/sec. The length and width of the compactor are square, but the height is not the same length as the length and width. If the length and width walls move toward each other at a rate of $0.25$ m/sec, find the rate at which the height is changing when the length and width are $2$ m and the height is $1.5$ m.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The height is decreasing at a rate of $0.125$ m/sec"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e1",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e1",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e3",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e3",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e5",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e5",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e7",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e7",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e9",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e9",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e11",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e11",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e13",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e13",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e15",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e15",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e17",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e17",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e19",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e19",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e21",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e21",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e23",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e23",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e23",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e25",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e25",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e27",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e27",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e29",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e29",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e31",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e31",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e33",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e33",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e35",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e35",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e37",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e37",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e37",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e39",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e39",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e39",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e41",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e41",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e41",
+   "concept": "trigonometric-functions"
+  },
+  {
+   "exercise": "e43",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e43",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "e45",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "e45",
+   "concept": "related-rates"
+  },
+  {
+   "exercise": "r549",
+   "concept": "solving-related-rates-problems"
+  },
+  {
+   "exercise": "r549",
+   "concept": "related-rates"
+  }
+ ]
+}

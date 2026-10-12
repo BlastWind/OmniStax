@@ -1,0 +1,530 @@
+<p>We have shown how to use the first and second <span data-concept="derivative">derivatives</span> of a <span data-concept="function">function</span> to describe the shape of a graph. To graph a <span data-concept="function">function</span> $\kf$ defined on an unbounded <span data-concept="domain">domain</span>, we also need to know the behavior of $\kf$ as $x\to \pm \infty.$ In this section, we define <span data-concept="limit-at-infinity">limits at infinity</span> and show how these limits affect the graph of a <span data-concept="function">function</span>. At the end of this section, we outline a strategy for graphing an arbitrary <span data-concept="function">function</span> $\kf.$</p>
+<section id="limits-at-infinity">
+<h2><span data-concept="limit-at-infinity">Limits at Infinity</span></h2>
+<p class="cite-target">We begin by examining what it means for a <span data-concept="function">function</span> to have a finite <span data-concept="limit-at-infinity">limit at infinity</span>. Then we study the idea of a <span data-concept="function">function</span> with an <span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span>. Back in <a href="/calculus/ch01/intro/">Introduction to <span data-concept="function">Functions</span> and Graphs</a>, we looked at <span data-concept="vertical-asymptote">vertical asymptotes</span>; in this section we deal with horizontal and <span data-concept="oblique-asymptote">oblique asymptotes</span>.</p>
+<h3 id="horizontal-asymptotes"><span data-concept="limit-at-infinity">Limits at Infinity</span> and <span data-concept="horizontal-asymptote">Horizontal Asymptotes</span></h3>
+<p>Recall that $\lim_{x\to a}\kf(x)=\kL$ means $\kf(x)$ becomes arbitrarily close to $\kL$ as long as $x$ is sufficiently close to $a.$ We can extend this idea to <span data-concept="limit-at-infinity">limits at infinity</span>. For example, consider the <span data-concept="function">function</span> <span data-fn="2+1/x">$\kf(x)=2+\frac{1}{x}.$</span> As can be seen graphically in Figure 4.40 and numerically in Table 4.2, as the values of $x$ get larger, the values of $\kf(x)$ approach $2.$ We say the limit as $x$ approaches $\infty$ of $\kf(x)$ is $2$ and write $\lim_{x\to \infty}\kf(x)=2.$ Similarly, for $x\lt 0,$ as the values $|x|$ get larger, the values of $\kf(x)$ approaches $2.$ We say the limit as $x$ approaches $-\infty$ of $\kf(x)$ is $2$ and write $\lim_{x\to-\infty}\kf(x)=2.$</p>
+<figure class="sim" id="fig-two-plus-reciprocal" data-figure="4.40" data-original="/media/ch04/CNX_Calc_Figure_04_06_019.jpg" data-original-caption="The function approaches the asymptote y=2 as x approaches ±∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.40</span><span>The <span data-concept="function">function</span> approaches the asymptote $y=2$ as $x$ approaches $\pm \infty.$</span></div>
+</figure>
+<div class="book-table" id="fs-id1165043428402">
+  <div class="tcap"><span class="eyebrow">Table 4.2</span><span>Values of a <span data-concept="function">function</span> $\kf$ as $x\to \pm \infty$</span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$10$</td><td class="num">$100$</td><td class="num">$1,000$</td><td class="num">$10,000$</td></tr>
+      <tr><th><strong>$2+\frac{1}{x}$</strong></th><td class="num">$2.1$</td><td class="num">$2.01$</td><td class="num">$2.001$</td><td class="num">$2.0001$</td></tr>
+      <tr><th><strong>$x$</strong></th><td class="num">$-10$</td><td class="num">$-100$</td><td class="num">$-1000$</td><td class="num">$-10,000$</td></tr>
+      <tr><th><strong>$2+\frac{1}{x}$</strong></th><td class="num">$1.9$</td><td class="num">$1.99$</td><td class="num">$1.999$</td><td class="num">$1.9999$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>More generally, for any <span data-concept="function">function</span> $\kf,$ we say the limit as $x\to \infty$ of $\kf(x)$ is $\kL$ if $\kf(x)$ becomes arbitrarily close to $\kL$ as long as $x$ is sufficiently large. In that case, we write $\lim_{x\to \infty}\kf(x)=\kL.$ Similarly, we say the limit as $x\to-\infty$ of $\kf(x)$ is $\kL$ if $\kf(x)$ becomes arbitrarily close to $\kL$ as long as $x\lt 0$ and $|x|$ is sufficiently large. In that case, we write $\lim_{x\to-\infty}\kf(x)=\kL.$ We now look at the definition of a <span data-concept="function">function</span> having a <span data-concept="limit-at-infinity">limit at infinity</span>.</p>
+<div class="note" id="limit-at-infinity-definition">
+<div class="eyebrow">Definition</div>
+<p>(Informal) If the values of $\kf(x)$ become arbitrarily close to $\kL$ as $x$ becomes sufficiently large, we say the <span data-concept="function">function</span> $\kf$ has a <strong><span data-concept="limit-at-infinity">limit at infinity</span></strong> and write</p>
+$$\lim_{x\to \infty}\kf(x)=\kL.$$
+<p>If the values of $\kf(x)$ becomes arbitrarily close to $\kL$ for $x\lt 0$ as $|x|$ becomes sufficiently large, we say that the <span data-concept="function">function</span> $\kf$ has a <span data-concept="limit-at-infinity">limit at negative infinity</span> and write</p>
+$$\lim_{x\to-\infty}\kf(x)=\kL.$$
+</div>
+<p>If the values $\kf(x)$ are getting arbitrarily close to some finite value $\kL$ as $x\to \infty$ or $x\to-\infty,$ the graph of $\kf$ approaches the line $y=\kL.$ In that case, the line $y=\kL$ is a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $\kf$ (Figure 4.41). For example, for the <span data-concept="function">function</span> <span data-fn="1/x">$\kf(x)=\frac{1}{x},$</span> since $\lim_{x\to \infty}\kf(x)=0,$ the line $y=0$ is a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of <span data-fn="1/x">$\kf(x)=\frac{1}{x}.$</span></p>
+<div class="note" id="horizontal-asymptote-definition">
+<div class="eyebrow">Definition</div>
+<p>If $\lim_{x\to \infty}\kf(x)=\kL$ or $\lim_{x\to-\infty}\kf(x)=\kL,$ we say the line $y=\kL$ is a <strong><span data-concept="horizontal-asymptote">horizontal asymptote</span></strong> of $\kf.$</p>
+</div>
+<figure class="sim" id="fig-limits-at-infinity" data-figure="4.41" data-original="/media/ch04/CNX_Calc_Figure_04_06_020.jpg" data-original-caption="(a) As x→ ∞ , the values of f are getting arbitrarily close to L. The line y=L is a horizontal asymptote of f. (b) As x→ −∞ , the values of f are getting arbitrarily close to M. The line y=M is a horizontal asymptote of f.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.41</span><span>(a) As $x\to \infty,$ the values of $\kf$ are getting arbitrarily close to $\kL.$ The line $y=\kL$ is a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $\kf.$ (b) As $x\to-\infty,$ the values of $\kf$ are getting arbitrarily close to $M.$ The line $y=M$ is a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $\kf.$</span></div>
+</figure>
+<p>A <span data-concept="function">function</span> cannot cross a <span data-concept="vertical-asymptote">vertical asymptote</span> because the graph must approach infinity (or $-\infty)$ from at least one direction as $x$ approaches the <span data-concept="vertical-asymptote">vertical asymptote</span>. However, a <span data-concept="function">function</span> may cross a <span data-concept="horizontal-asymptote">horizontal asymptote</span>. In fact, a <span data-concept="function">function</span> may cross a <span data-concept="horizontal-asymptote">horizontal asymptote</span> an unlimited number of times. For example, the <span data-concept="function">function</span> <span data-fn="((cos x))/x+1">$\kf(x)=\frac{(\cos x)}{x}+1$</span> shown in Figure 4.42 intersects the <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=1$ an infinite number of times as it oscillates around the asymptote with ever-decreasing amplitude.</p>
+<figure class="sim" id="fig-crossing-asymptote" data-figure="4.42" data-original="/media/ch04/CNX_Calc_Figure_04_06_002.jpg" data-original-caption="The graph of f(x)=(cos x)/x+1 crosses its horizontal asymptote y=1 an infinite number of times.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.42</span><span>The graph of $\kf(x)=(\cos x)/x+1$ crosses its <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=1$ an infinite number of times.</span></div>
+</figure>
+<p>The <span data-concept="limit-laws">algebraic limit laws</span> and <span data-concept="squeeze-theorem">squeeze theorem</span> we introduced in <a href="/calculus/ch02/intro/">Introduction to Limits</a> also apply to <span data-concept="limit-at-infinity">limits at infinity</span>. We illustrate how to use these laws to compute several <span data-concept="limit-at-infinity">limits at infinity</span>.</p>
+<div class="example" id="fs-id1165042962649">
+<h3>Example 4.21 · Computing Limits at Infinity</h3>
+<p>For each of the following <span data-concept="function">functions</span> $\kf,$ evaluate $\lim_{x\to \infty}\kf(x)$ and $\lim_{x\to-\infty}\kf(x).$ Determine the <span data-concept="horizontal-asymptote">horizontal asymptote</span>(s) for $\kf.$</p>
+<p>a. <span data-fn="5-2/(x^2)">$\kf(x)=5-\frac{2}{{x}^{2}}$</span></p>
+<p>b. <span data-fn="(sin x)/x">$\kf(x)=\frac{\sin x}{x}$</span></p>
+<p>c. <span data-fn="arctan(x)">$\kf(x)={\tan}^{-1}(x)$</span></p>
+<h4>Solution</h4>
+<p>a. Using the <span data-concept="limit-laws">algebraic limit laws</span>, we have $\lim_{x\to \infty}(5-\frac{2}{{x}^{2}})=\lim_{x\to \infty}5-2(\lim_{x\to \infty}\frac{1}{x}).(\lim_{x\to \infty}\frac{1}{x})=5-2\cdot 0=5.$</p>
+<p>Similarly, $\lim_{x\to-\infty}\kf(x)=5.$</p>
+<p>Therefore, <span data-fn="5-2/(x^2)">$\kf(x)=5-\frac{2}{{x}^{2}}$</span> has a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $y=5$ and $\kf$ approaches this <span data-concept="horizontal-asymptote">horizontal asymptote</span> as $x\to \pm \infty$ as shown in the following graph.</p>
+<figure class="sim" id="fig-five-minus" data-figure="4.43" data-original="/media/ch04/CNX_Calc_Figure_04_06_003.jpg" data-original-caption="This function approaches a horizontal asymptote as x→ ±∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.43</span><span>This <span data-concept="function">function</span> approaches a <span data-concept="horizontal-asymptote">horizontal asymptote</span> as $x\to \pm \infty.$</span></div>
+</figure>
+<p>b. Since $-1\le \sin x\le 1$ for all $x,$ we have</p>
+$$\frac{-1}{x}\le \frac{\sin x}{x}\le \frac{1}{x}$$
+<p>for all $x\ne 0.$ Also, since</p>
+$$\lim_{x\to \infty}\frac{-1}{x}=0=\lim_{x\to \infty}\frac{1}{x},$$
+<p>we can apply the <span data-concept="squeeze-theorem">squeeze theorem</span> to conclude that</p>
+$$\lim_{x\to \infty}\frac{\sin x}{x}=0.$$
+<p>Similarly,</p>
+$$\lim_{x\to-\infty}\frac{\sin x}{x}=0.$$
+<p>Thus, <span data-fn="(sin x)/x">$\kf(x)=\frac{\sin x}{x}$</span> has a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $y=0$ and $\kf(x)$ approaches this <span data-concept="horizontal-asymptote">horizontal asymptote</span> as $x\to \pm \infty$ as shown in the following graph.</p>
+<figure class="sim" id="fig-sinc" data-figure="4.44" data-original="/media/ch04/CNX_Calc_Figure_04_06_004.jpg" data-original-caption="This function crosses its horizontal asymptote multiple times.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.44</span><span>This <span data-concept="function">function</span> crosses its <span data-concept="horizontal-asymptote">horizontal asymptote</span> multiple times.</span></div>
+</figure>
+<p>c. To evaluate $\lim_{x\to \infty}{\tan}^{-1}(x)$ and $\lim_{x\to-\infty}{\tan}^{-1}(x),$ we first consider the graph of <span data-fn="tan (x)">$y=\tan (x)$</span> over the interval $(-\pi /2,\pi /2)$ as shown in the following graph.</p>
+<figure class="sim" id="fig-tangent-branch" data-figure="4.45" data-original="/media/ch04/CNX_Calc_Figure_04_06_021.jpg" data-original-caption="The graph of tan x has vertical asymptotes at x=±(π)/2">
+  <div class="sim-head"><span class="eyebrow">Figure 4.45</span><span>The graph of $\tan x$ has <span data-concept="vertical-asymptote">vertical asymptotes</span> at $x=\pm \frac{\pi}{2}$</span></div>
+</figure>
+<p>Since</p>
+$$\lim_{x\to {(\pi /2)}^{-}}\tan x=\infty,$$
+<p>it follows that</p>
+$$\lim_{x\to \infty}{\tan}^{-1}(x)=\frac{\pi}{2}.$$
+<p>Similarly, since</p>
+$$\lim_{x\to {(-\pi /2)}^{+}}\tan x=-\infty,$$
+<p>it follows that</p>
+$$\lim_{x\to-\infty}{\tan}^{-1}(x)=-\frac{\pi}{2}.$$
+<p>As a result, $y=\frac{\pi}{2}$ and $y=-\frac{\pi}{2}$ are <span data-concept="horizontal-asymptote">horizontal asymptotes</span> of <span data-fn="arctan(x)">$\kf(x)={\tan}^{-1}(x)$</span> as shown in the following graph.</p>
+<figure class="sim" id="fig-arctangent" data-figure="4.46" data-original="/media/ch04/CNX_Calc_Figure_04_06_005.jpg" data-original-caption="This function has two horizontal asymptotes.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.46</span><span>This <span data-concept="function">function</span> has two <span data-concept="horizontal-asymptote">horizontal asymptotes</span>.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042962649"></div>
+<h3 id="infinite-limits-at-infinity"><span data-concept="infinite-limit-at-infinity">Infinite Limits at Infinity</span></h3>
+<p>Sometimes the values of a <span data-concept="function">function</span> $\kf$ become arbitrarily large as $x\to \infty$ (or as $x\to-\infty).$ In this case, we write $\lim_{x\to \infty}\kf(x)=\infty$ (or $\lim_{x\to-\infty}\kf(x)=\infty).$ On the other hand, if the values of $\kf$ are negative but become arbitrarily large in magnitude as $x\to \infty$ (or as $x\to-\infty),$ we write $\lim_{x\to \infty}\kf(x)=-\infty$ (or $\lim_{x\to-\infty}\kf(x)=-\infty).$</p>
+<p>For example, consider the <span data-concept="function">function</span> <span data-fn="x^3">$\kf(x)={x}^{3}.$</span> As seen in Table 4.3 and Figure 4.47, as $x\to \infty$ the values $\kf(x)$ become arbitrarily large. Therefore, $\lim_{x\to \infty}{x}^{3}=\infty.$ On the other hand, as $x\to-\infty,$ the values of <span data-fn="x^3">$\kf(x)={x}^{3}$</span> are negative but become arbitrarily large in magnitude. Consequently, $\lim_{x\to-\infty}{x}^{3}=-\infty.$</p>
+<div class="book-table" id="fs-id1165042406634">
+  <div class="tcap"><span class="eyebrow">Table 4.3</span><span>Values of a <span data-concept="power-function">power function</span> as $x\to \pm \infty$</span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$10$</td><td class="num">$20$</td><td class="num">$50$</td><td class="num">$100$</td><td class="num">$1000$</td></tr>
+      <tr><th><strong>${x}^{3}$</strong></th><td class="num">$1000$</td><td class="num">$8000$</td><td class="num">$125,000$</td><td class="num">$1,000,000$</td><td class="num">$1,000,000,000$</td></tr>
+      <tr><th><strong>$x$</strong></th><td class="num">$-10$</td><td class="num">$-20$</td><td class="num">$-50$</td><td class="num">$-100$</td><td class="num">$-1000$</td></tr>
+      <tr><th><strong>${x}^{3}$</strong></th><td class="num">$-1000$</td><td class="num">$-8000$</td><td class="num">$-125,000$</td><td class="num">$-1,000,000$</td><td class="num">$-1,000,000,000$</td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="fig-cube" data-figure="4.47" data-original="/media/ch04/CNX_Calc_Figure_04_06_022.jpg" data-original-caption="For this function, the functional values approach infinity as x→ ±∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.47</span><span>For this <span data-concept="function">function</span>, the functional values approach infinity as $x\to \pm \infty.$</span></div>
+</figure>
+<div class="note" id="infinite-limit-definition">
+<div class="eyebrow">Definition</div>
+<p>(Informal) We say a <span data-concept="function">function</span> $\kf$ has an <span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span> and write</p>
+$$\lim_{x\to \infty}\kf(x)=\infty.$$
+<p>if $\kf(x)$ becomes arbitrarily large for $x$ sufficiently large. We say a <span data-concept="function">function</span> has a negative <span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span> and write</p>
+$$\lim_{x\to \infty}\kf(x)=-\infty.$$
+<p>if $\kf(x)\lt 0$ and $|\kf(x)|$ becomes arbitrarily large for $x$ sufficiently large. Similarly, we can define infinite limits as $x\to-\infty.$</p>
+</div>
+<h3 id="formal-definitions">Formal Definitions</h3>
+<p>Earlier, we used the terms <em>arbitrarily close</em>, <em>arbitrarily large</em>, and <em>sufficiently large</em> to define <span data-concept="limit-at-infinity">limits at infinity</span> informally. Although these terms provide accurate descriptions of <span data-concept="limit-at-infinity">limits at infinity</span>, they are not precise mathematically. Here are more formal definitions of <span data-concept="limit-at-infinity">limits at infinity</span>. We then look at how to use these definitions to prove results involving <span data-concept="limit-at-infinity">limits at infinity</span>.</p>
+<div class="note" id="formal-limit-definition">
+<div class="eyebrow">Definition</div>
+<p>(Formal) We say a <span data-concept="function">function</span> $\kf$ has a <strong><span data-concept="limit-at-infinity">limit at infinity</span></strong>, if there exists a real number $\kL$ such that for all $\varepsilon \gt 0,$ there exists $N\gt 0$ such that</p>
+$$|\kf(x)-\kL|\lt \varepsilon$$
+<p>for all $x\gt N.$ In that case, we write</p>
+$$\lim_{x\to \infty}\kf(x)=\kL$$
+<p>(see Figure 4.48).</p>
+<p>We say a <span data-concept="function">function</span> $\kf$ has a <span data-concept="limit-at-infinity">limit at negative infinity</span> if there exists a real number $\kL$ such that for all $\varepsilon \gt 0,$ there exists $N\lt 0$ such that</p>
+$$|\kf(x)-\kL|\lt \varepsilon$$
+<p>for all $x\lt N.$ In that case, we write</p>
+$$\lim_{x\to-\infty}\kf(x)=\kL.$$
+</div>
+<figure class="sim" id="sim-epsilon-n" data-figure="4.48" data-original="/media/ch04/CNX_Calc_Figure_04_06_023.jpg" data-original-caption="For a function with a limit at infinity, for all x&gt;N, |f(x)−L|&lt;ε.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.48</span><span>The formal definition of a <span data-concept="limit-at-infinity">limit at infinity</span> on $\kf(x)=2+\frac{1}{x}$ of Example 4.22: choose $\varepsilon$, and the band $\kL\pm\varepsilon$ about $\kL=2$ is shaded; choose $N$, and every $x\gt N$ must give $|\kf(x)-\kL|\lt\varepsilon$. Past $N$, the graph is drawn heavy wherever it leaves the band. The dashed circle on $N$ is the example’s $N=\frac{1}{\varepsilon}$, and any larger $N$ works too.</span></div>
+</figure>
+<p>Earlier in this section, we used graphical evidence in Figure 4.40 and numerical evidence in Table 4.2 to conclude that $\lim_{x\to \infty}(2+\frac{1}{x})=2.$ Here we use the formal definition of <span data-concept="limit-at-infinity">limit at infinity</span> to prove this result rigorously.</p>
+<div class="example" id="fs-id1165042970473">
+<h3>Example 4.22 · A Finite Limit at Infinity Example</h3>
+<p>Use the formal definition of <span data-concept="limit-at-infinity">limit at infinity</span> to prove that $\lim_{x\to \infty}(2+\frac{1}{x})=2.$</p>
+<h4>Solution</h4>
+<p>Let $\varepsilon \gt 0.$ Let $N=\frac{1}{\varepsilon}.$ Therefore, for all $x\gt N,$ we have</p>
+$$|2+\frac{1}{x}-2|=|\frac{1}{x}|=\frac{1}{x}\lt \frac{1}{N}=\varepsilon \text{.}$$
+</div>
+<div class="exercises" data-place="fs-id1165042970473"></div>
+<p>We now turn our attention to a more precise definition for an <span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span>.</p>
+<div class="note" id="formal-infinite-limit-definition">
+<div class="eyebrow">Definition</div>
+<p>(Formal) We say a <span data-concept="function">function</span> $\kf$ has an <strong><span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span></strong> and write</p>
+$$\lim_{x\to \infty}\kf(x)=\infty$$
+<p>if for all $M\gt 0,$ there exists an $N\gt 0$ such that</p>
+$$\kf(x)\gt M$$
+<p>for all $x\gt N$ (see Figure 4.49).</p>
+<p>We say a <span data-concept="function">function</span> has a negative <span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span> and write</p>
+$$\lim_{x\to \infty}\kf(x)=-\infty$$
+<p>if for all $M\lt 0,$ there exists an $N\gt 0$ such that</p>
+$$\kf(x)\lt M$$
+<p>for all $x\gt N.$</p>
+<p>Similarly we can define limits as $x\to-\infty.$</p>
+</div>
+<figure class="sim" id="sim-m-n" data-figure="4.49" data-original="/media/ch04/CNX_Calc_Figure_04_06_024.jpg" data-original-caption="For a function with an infinite limit at infinity, for all x&gt;N, f(x)&gt;M.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.49</span><span>The formal definition of an <span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span> on $\kf(x)=x^3$ of Example 4.23: choose a height $M$, then $N$; every $x\gt N$ must give $\kf(x)\gt M$, and the graph is drawn heavy where it does not. The dashed circle on $N$ is the example’s $N=\sqrt[3]{M}$.</span></div>
+</figure>
+<p>Earlier, we used graphical evidence (Figure 4.47) and numerical evidence (Table 4.3) to conclude that $\lim_{x\to \infty}{x}^{3}=\infty.$ Here we use the formal definition of <span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span> to prove that result.</p>
+<div class="example" id="fs-id1165042323534">
+<h3>Example 4.23 · An Infinite Limit at Infinity</h3>
+<p>Use the formal definition of <span data-concept="infinite-limit-at-infinity">infinite limit at infinity</span> to prove that $\lim_{x\to \infty}{x}^{3}=\infty.$</p>
+<h4>Solution</h4>
+<p>Let $M\gt 0.$ Let $N=\sqrt[3]{M}.$ Then, for all $x\gt N,$ we have</p>
+$${x}^{3}\gt {N}^{3}={(\sqrt[3]{M})}^{3}=M.$$
+<p>Therefore, $\lim_{x\to \infty}{x}^{3}=\infty.$</p>
+</div>
+<div class="exercises" data-place="fs-id1165042323534"></div>
+</section>
+
+<section id="end-behavior">
+<h2><span data-concept="end-behavior">End Behavior</span></h2>
+<p class="cite-target">The behavior of a <span data-concept="function">function</span> as $x\to \pm \infty$ is called the <span data-concept="function">function</span>’s <strong><span data-concept="end-behavior">end behavior</span></strong>. At each of the <span data-concept="function">function</span>’s ends, the <span data-concept="function">function</span> could exhibit one of the following types of behavior:</p>
+<ol>
+<li>The <span data-concept="function">function</span> $\kf(x)$ approaches a <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=\kL.$</li>
+<li>The <span data-concept="function">function</span> $\kf(x)\to \infty$ or $\kf(x)\to-\infty.$</li>
+<li>The <span data-concept="function">function</span> does not approach a finite limit, nor does it approach $\infty$ or $-\infty.$ In this case, the <span data-concept="function">function</span> may have some oscillatory behavior.</li>
+</ol>
+<p>Let’s consider several classes of <span data-concept="function">functions</span> here and look at the different types of end behaviors for these <span data-concept="function">functions</span>.</p>
+<h3 id="polynomial-end-behavior"><span data-concept="end-behavior">End Behavior</span> for <span data-concept="polynomial-function">Polynomial Functions</span></h3>
+<p>Consider the <span data-concept="power-function">power function</span> <span data-fn="x^(n)">$\kf(x)={x}^{n}$</span> where $n$ is a positive integer. From Figure 4.50 and Figure 4.51, we see that</p>
+$$\lim_{x\to \infty}{x}^{n}=\infty;n=1,2,3\text{,\ldots}$$
+<p>and</p>
+$$\lim_{x\to-\infty}{x}^{n}=\{\begin{array}{l}\infty;n=2,4,6\text{,\ldots} \\-\infty;n=1,3,5\text{,\ldots}\end{array}.$$
+<figure class="sim" id="fig-even-powers" data-figure="4.50" data-original="/media/ch04/CNX_Calc_Figure_04_06_025.jpg" data-original-caption="For power functions with an even exponent of n, limx→ ∞xⁿ=∞ =lim_x→ −∞xⁿ.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.50</span><span>For <span data-concept="power-function">power functions</span> with an even exponent of $n,$ $\lim_{x\to \infty}{x}^{n}=\infty=\lim_{x\to-\infty}{x}^{n}.$</span></div>
+</figure>
+<figure class="sim" id="fig-odd-powers" data-figure="4.51" data-original="/media/ch04/CNX_Calc_Figure_04_06_026.jpg" data-original-caption="For power functions with an odd exponent of n, limx→ ∞xⁿ=∞ and lim_x→ −∞xⁿ=−∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.51</span><span>For <span data-concept="power-function">power functions</span> with an odd exponent of $n,$ $\lim_{x\to \infty}{x}^{n}=\infty$ and $\lim_{x\to-\infty}{x}^{n}=-\infty.$</span></div>
+</figure>
+<p>Using these facts, it is not difficult to evaluate $\lim_{x\to \infty}c{x}^{n}$ and $\lim_{x\to-\infty}c{x}^{n},$ where $c$ is any constant and $n$ is a positive integer. If $c\gt 0,$ the graph of <span data-fn="cx^(n)">$y=c{x}^{n}$</span> is a vertical stretch or compression of <span data-fn="x^(n)">$y={x}^{n},$</span> and therefore</p>
+$$\lim_{x\to \infty}c{x}^{n}=\lim_{x\to \infty}{x}^{n}\;\text{and}\;\lim_{x\to-\infty}c{x}^{n}=\lim_{x\to-\infty}{x}^{n}\;\text{if}\;c\gt 0.$$
+<p>If $c\lt 0,$ the graph of <span data-fn="cx^(n)">$y=c{x}^{n}$</span> is a vertical stretch or compression combined with a reflection about the $x$-axis, and therefore</p>
+$$\lim_{x\to \infty}c{x}^{n}=-\lim_{x\to \infty}{x}^{n}\;\text{and}\;\lim_{x\to-\infty}c{x}^{n}=-\lim_{x\to-\infty}{x}^{n}\;\text{if}\;c\lt 0.$$
+<p>If $c=0,y=c{x}^{n}=0,$ in which case $\lim_{x\to \infty}c{x}^{n}=0=\lim_{x\to-\infty}c{x}^{n}.$</p>
+<div class="example" id="fs-id1165043219126">
+<h3>Example 4.24 · Limits at Infinity for Power Functions</h3>
+<p>For each <span data-concept="function">function</span> $\kf,$ evaluate $\lim_{x\to \infty}\kf(x)$ and $\lim_{x\to-\infty}\kf(x).$</p>
+<p>a. <span data-fn="-5x^3">$\kf(x)=-5{x}^{3}$</span></p>
+<p>b. <span data-fn="2x^4">$\kf(x)=2{x}^{4}$</span></p>
+<h4>Solution</h4>
+<p>a. Since the coefficient of ${x}^{3}$ is $-5,$ the graph of <span data-fn="-5x^3">$\kf(x)=-5{x}^{3}$</span> involves a vertical stretch and reflection of the graph of <span data-fn="x^3">$y={x}^{3}$</span> about the $x$-axis. Therefore, $\lim_{x\to \infty}(-5{x}^{3})=-\infty$ and $\lim_{x\to-\infty}(-5{x}^{3})=\infty.$</p>
+<p>b. Since the coefficient of ${x}^{4}$ is $2,$ the graph of <span data-fn="2x^4">$\kf(x)=2{x}^{4}$</span> is a vertical stretch of the graph of <span data-fn="x^4">$y={x}^{4}.$</span> Therefore, $\lim_{x\to \infty}2{x}^{4}=\infty$ and $\lim_{x\to-\infty}2{x}^{4}=\infty.$</p>
+</div>
+<div class="exercises" data-place="fs-id1165043219126"></div>
+<p>We now look at how the <span data-concept="limit-at-infinity">limits at infinity</span> for <span data-concept="power-function">power functions</span> can be used to determine $\lim_{x\to \pm \infty}\kf(x)$ for any <span data-concept="polynomial-function">polynomial function</span> $\kf.$ Consider a <span data-concept="polynomial-function">polynomial function</span></p>
+$$\kf(x)={a}_{n}{x}^{n}+{a}_{n-1}{x}^{n-1}+\ldots+{a}_{1}x+{a}_{0}$$
+<p>of degree $n\ge 1$ so that ${a}_{n}\ne 0.$ Factoring, we see that</p>
+$$\kf(x)={a}_{n}{x}^{n}(1+\frac{{a}_{n-1}}{{a}_{n}}\;\frac{1}{x}+\ldots+\frac{{a}_{1}}{{a}_{n}}\;\frac{1}{{x}^{n-1}}+\frac{{a}_{0}}{{a}_{n}}\frac{1}{{x}^{n}}).$$
+<p>As $x\to \pm \infty,$ all the terms inside the parentheses approach zero except the first term. We conclude that</p>
+$$\lim_{x\to \pm \infty}\kf(x)=\lim_{x\to \pm \infty}{a}_{n}{x}^{n}.$$
+<p>For example, the <span data-concept="function">function</span> <span data-ref="poly-f"><span data-fn="5x^3-3x^2+4">$\kf(x)=5{x}^{3}-3{x}^{2}+4$</span></span> behaves like <span data-ref="lead-g"><span data-fn="5x^3">$\kg(x)=5{x}^{3}$</span></span> as $x\to \pm \infty$ as shown in Figure 4.52 and Table 4.4.</p>
+<figure class="sim" id="sim-leading-term" data-figure="4.52" data-original="/media/ch04/CNX_Calc_Figure_04_06_006.jpg" data-original-caption="The end behavior of a polynomial is determined by the behavior of the term with the largest exponent.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.52</span><span>The <span data-concept="polynomial-function">polynomial</span> $\kf(x)=5x^3-3x^2+4$ beside its leading term $\kg(x)=5x^3$, in windows ever wider about the origin. Near the origin the two graphs differ; as the window widens they become one curve, and the ratio $\kf(x)/\kg(x)$ at the window’s edge goes to $1$.</span></div>
+</figure>
+<div class="book-table" id="fs-id1165043250976">
+  <div class="tcap"><span class="eyebrow">Table 4.4</span><span>A <span data-concept="polynomial-function">polynomial</span>’s <span data-concept="end-behavior">end behavior</span> is determined by the term with the largest exponent.</span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$10$</td><td class="num">$100$</td><td class="num">$1000$</td></tr>
+      <tr><th><strong><span data-ref="poly-f">$\kf(x)=5{x}^{3}-3{x}^{2}+4$</span></strong></th><td class="num">$4704$</td><td class="num">$4,970,004$</td><td class="num">$4,997,000,004$</td></tr>
+      <tr><th><strong><span data-ref="lead-g">$\kg(x)=5{x}^{3}$</span></strong></th><td class="num">$5000$</td><td class="num">$5,000,000$</td><td class="num">$5,000,000,000$</td></tr>
+      <tr><th><strong>$x$</strong></th><td class="num">$-10$</td><td class="num">$-100$</td><td class="num">$-1000$</td></tr>
+      <tr><th><strong><span data-ref="poly-f">$\kf(x)=5{x}^{3}-3{x}^{2}+4$</span></strong></th><td class="num">$-5296$</td><td class="num">$-5,029,996$</td><td class="num">$-5,002,999,996$</td></tr>
+      <tr><th><strong><span data-ref="lead-g">$\kg(x)=5{x}^{3}$</span></strong></th><td class="num">$-5000$</td><td class="num">$-5,000,000$</td><td class="num">$-5,000,000,000$</td></tr>
+    </tbody>
+  </table>
+</div>
+<h3 id="algebraic-end-behavior"><span data-concept="end-behavior">End Behavior</span> for Algebraic <span data-concept="function">Functions</span></h3>
+<p>The <span data-concept="end-behavior">end behavior</span> for <span data-concept="rational-function">rational functions</span> and <span data-concept="function">functions</span> involving radicals is a little more complicated than for <span data-concept="polynomial-function">polynomials</span>. In Example 4.25, we show that the <span data-concept="limit-at-infinity">limits at infinity</span> of a <span data-concept="rational-function">rational function</span> <span data-fn="(p(x))/(q(x))">$\kf(x)=\frac{p(x)}{q(x)}$</span> depend on the relationship between the degree of the numerator and the degree of the denominator. To evaluate the <span data-concept="limit-at-infinity">limits at infinity</span> for a <span data-concept="rational-function">rational function</span>, we divide the numerator and denominator by the highest power of $x$ appearing in the denominator. This determines which term in the overall expression dominates the behavior of the <span data-concept="function">function</span> at large values of $x.$</p>
+<div class="example" id="fs-id1165042638553">
+<h3>Example 4.25 · Determining End Behavior for Rational Functions</h3>
+<p>For each of the following <span data-concept="function">functions</span>, determine the limits as $x\to \infty$ and $x\to-\infty.$ Then, use this information to describe the <span data-concept="end-behavior">end behavior</span> of the <span data-concept="function">function</span>.</p>
+<p>a. <span data-fn="(3x-1)/(2x+5)">$\kf(x)=\frac{3x-1}{2x+5}$</span> (<em>Note:</em> The degree of the numerator and the denominator are the same.)</p>
+<p>b. <span data-fn="(3x^2+2x)/(4x^3-5x+7)">$\kf(x)=\frac{3{x}^{2}+2x}{4{x}^{3}-5x+7}$</span> (<em>Note:</em> The degree of numerator is less than the degree of the denominator.)</p>
+<p>c. <span data-fn="(3x^2+4x)/(x+2)">$\kf(x)=\frac{3{x}^{2}+4x}{x+2}$</span> (<em>Note:</em> The degree of numerator is greater than the degree of the denominator.)</p>
+<h4>Solution</h4>
+<p>a. The highest power of $x$ in the denominator is $x.$ Therefore, dividing the numerator and denominator by $x$ and applying the <span data-concept="limit-laws">algebraic limit laws</span>, we see that</p>
+$$\begin{array}{rl}\lim_{x\to \pm \infty}\frac{3x-1}{2x+5} &=\lim_{x\to \pm \infty}\frac{3-1/x}{2+5/x} \\ &=\frac{\lim_{x\to \pm \infty}(3-1/x)}{\lim_{x\to \pm \infty}(2+5/x)} \\ &=\frac{\lim_{x\to \pm \infty}3-\lim_{x\to \pm \infty}1/x}{\lim_{x\to \pm \infty}2+\lim_{x\to \pm \infty}5/x} \\ &=\frac{3-0}{2+0}=\frac{3}{2}.\end{array}$$
+<p>Since $\lim_{x\to \pm \infty}\kf(x)=\frac{3}{2},$ we know that $y=\frac{3}{2}$ is a <span data-concept="horizontal-asymptote">horizontal asymptote</span> for this <span data-concept="function">function</span> as shown in the following graph.</p>
+<figure class="sim" id="fig-rational-equal" data-figure="4.53" data-original="/media/ch04/CNX_Calc_Figure_04_06_007.jpg" data-original-caption="The graph of this rational function approaches a horizontal asymptote as x→ ±∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.53</span><span>The graph of this <span data-concept="rational-function">rational function</span> approaches a <span data-concept="horizontal-asymptote">horizontal asymptote</span> as $x\to \pm \infty.$</span></div>
+</figure>
+<p>b. Since the largest power of $x$ appearing in the denominator is ${x}^{3},$ divide the numerator and denominator by ${x}^{3}.$ After doing so and applying <span data-concept="limit-laws">algebraic limit laws</span>, we obtain</p>
+$$\lim_{x\to \pm \infty}\frac{3{x}^{2}+2x}{4{x}^{3}-5x+7}=\lim_{x\to \pm \infty}\frac{3/x+2/{x}^{2}}{4-5/{x}^{2}+7/{x}^{3}}=\frac{3(0)+2(0)}{4-5(0)+7(0)}=0.$$
+<p>Therefore $\kf$ has a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $y=0$ as shown in the following graph.</p>
+<figure class="sim" id="fig-rational-lower" data-figure="4.54" data-original="/media/ch04/CNX_Calc_Figure_04_06_008.jpg" data-original-caption="The graph of this rational function approaches the horizontal asymptote y=0 as x→ ±∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.54</span><span>The graph of this <span data-concept="rational-function">rational function</span> approaches the <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=0$ as $x\to \pm \infty.$</span></div>
+</figure>
+<p>c. Dividing the numerator and denominator by $x,$ we have</p>
+$$\lim_{x\to \pm \infty}\frac{3{x}^{2}+4x}{x+2}=\lim_{x\to \pm \infty}\frac{3x+4}{1+2/x}.$$
+<p>As $x\to \pm \infty,$ the denominator approaches $1.$ As $x\to \infty,$ the numerator approaches $+\infty.$ As $x\to-\infty,$ the numerator approaches $-\infty.$ Therefore $\lim_{x\to \infty}\kf(x)=\infty,$ whereas $\lim_{x\to-\infty}\kf(x)=-\infty$ as shown in the following figure.</p>
+<figure class="sim" id="fig-rational-higher" data-figure="4.55" data-original="/media/ch04/CNX_Calc_Figure_04_06_027.jpg" data-original-caption="As x→ ∞ , the values f(x)→ ∞ . As x→ −∞ , the values f(x)→ −∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.55</span><span>As $x\to \infty,$ the values $\kf(x)\to \infty.$ As $x\to-\infty,$ the values $\kf(x)\to-\infty.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042638553"></div>
+<p>Before proceeding, consider the graph of <span data-fn="((3x^2+4x))/((x+2))">$\kf(x)=\frac{(3{x}^{2}+4x)}{(x+2)}$</span> shown in Figure 4.56. As $x\to \infty$ and $x\to-\infty,$ the graph of $\kf$ appears almost linear. Although $\kf$ is certainly not a <span data-concept="linear-function">linear function</span>, we now investigate why the graph of $\kf$ seems to be approaching a <span data-concept="linear-function">linear function</span>. First, using long division of <span data-concept="polynomial-function">polynomials</span>, we can write</p>
+$$\kf(x)=\frac{3{x}^{2}+4x}{x+2}=3x-2+\frac{4}{x+2}.$$
+<p>Since $\frac{4}{(x+2)}\to 0$ as $x\to \pm \infty,$ we conclude that</p>
+$$\lim_{x\to \pm \infty}(\kf(x)-(3x-2))=\lim_{x\to \pm \infty}\frac{4}{x+2}=0.$$
+<p>Therefore, the graph of $\kf$ approaches the line <span data-fn="3x-2">$y=3x-2$</span> as $x\to \pm \infty.$ This line is known as an <strong><span data-concept="oblique-asymptote">oblique asymptote</span></strong> for $\kf$ (Figure 4.56).</p>
+<figure class="sim" id="sim-oblique-asymptote" data-figure="4.56" data-original="/media/ch04/CNX_Calc_Figure_04_06_009.jpg" data-original-caption="The graph of the rational function f(x)=(3x²+4x)/(x+2) approaches the oblique asymptote y=3x−2 as x→ ±∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.56</span><span>The graph of $\kf(x)=\frac{3x^2+4x}{x+2}$ and the line $y=3x-2$ in ever wider windows. The bar at the right is the gap $\kf(x)-(3x-2)=\frac{4}{x+2}$, which goes to $0$: the line is an <span data-concept="oblique-asymptote">oblique asymptote</span>.</span></div>
+</figure>
+<p>We can summarize the results of Example 4.25 to make the following conclusion regarding <span data-concept="end-behavior">end behavior</span> for <span data-concept="rational-function">rational functions</span>. Consider a <span data-concept="rational-function">rational function</span></p>
+$$\kf(x)=\frac{p(x)}{q(x)}=\frac{{a}_{n}{x}^{n}+{a}_{n-1}{x}^{n-1}+\ldots+{a}_{1}x+{a}_{0}}{{b}_{m}{x}^{m}+{b}_{m-1}{x}^{m-1}+\ldots+{b}_{1}x+{b}_{0}},$$
+<p>where ${a}_{n}\ne 0\;\text{and}\;{b}_{m}\ne 0.$</p>
+<ol>
+<li>If the degree of the numerator is the same as the degree of the denominator $(n=m),$ then $\kf$ has a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $y={a}_{n}/{b}_{m}$ as $x\to \pm \infty.$</li>
+<li>If the degree of the numerator is less than the degree of the denominator $(n\lt m),$ then $\kf$ has a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $y=0$ as $x\to \pm \infty.$</li>
+<li>If the degree of the numerator is greater than the degree of the denominator $(n\gt m),$ then $\kf$ does not have a <span data-concept="horizontal-asymptote">horizontal asymptote</span>. The <span data-concept="limit-at-infinity">limits at infinity</span> are either positive or negative infinity, depending on the signs of the leading terms. In addition, using long division, the <span data-concept="function">function</span> can be rewritten as</li>
+</ol>
+$$\kf(x)=\frac{p(x)}{q(x)}=\kg(x)+\frac{r(x)}{q(x)},$$
+<p>where the degree of $r(x)$ is less than the degree of $q(x).$ As a result, $\lim_{x\to \pm \infty}r(x)/q(x)=0.$ Therefore, the values of $[\kf(x)-\kg(x)]$ approach zero as $x\to \pm \infty.$ If the degree of $p(x)$ is exactly one more than the degree of $q(x)$ $(n=m+1),$ the <span data-concept="function">function</span> $\kg(x)$ is a <span data-concept="linear-function">linear function</span>. In this case, we call $\kg(x)$ an <span data-concept="oblique-asymptote">oblique asymptote</span>.</p>
+<p>Now let’s consider the <span data-concept="end-behavior">end behavior</span> for <span data-concept="function">functions</span> involving a radical.</p>
+<div class="example" id="fs-id1165042631816">
+<h3>Example 4.26 · Determining End Behavior for a Function Involving a Radical</h3>
+<p>Find the limits as $x\to \infty$ and $x\to-\infty$ for <span data-fn="(3x-2)/(sqrt(4x^2+5))">$\kf(x)=\frac{3x-2}{\sqrt{4{x}^{2}+5}}$</span> and describe the <span data-concept="end-behavior">end behavior</span> of $\kf.$</p>
+<h4>Solution</h4>
+<p>Let’s use the same strategy as we did for <span data-concept="rational-function">rational functions</span>: divide the numerator and denominator by a power of $x.$ To determine the appropriate power of $x,$ consider the expression $\sqrt{4{x}^{2}+5}$ in the denominator. Since</p>
+$$\sqrt{4{x}^{2}+5}\approx \sqrt{4{x}^{2}}=2|x|$$
+<p>for large values of $x$ in effect $x$ appears just to the first power in the denominator. Therefore, we divide the numerator and denominator by $|x|.$ Then, using the fact that $|x|=x$ for $x\gt 0,$ $|x|=-x$ for $x\lt 0,$ and $|x|=\sqrt{{x}^{2}}$ for all $x,$ we calculate the limits as follows:</p>
+$$\begin{array}{rll}\lim_{x\to \infty}\frac{3x-2}{\sqrt{4{x}^{2}+5}} &= & \lim_{x\to \infty}\frac{(1/|x|)(3x-2)}{(1/|x|)\sqrt{4{x}^{2}+5}} \\ &= & \lim_{x\to \infty}\frac{(1/x)(3x-2)}{\sqrt{(1/{x}^{2})(4{x}^{2}+5)}} \\ &= & \lim_{x\to \infty}\frac{3-2/x}{\sqrt{4+5/{x}^{2}}}=\frac{3}{\sqrt{4}}=\frac{3}{2} \\ \lim_{x\to-\infty}\frac{3x-2}{\sqrt{4{x}^{2}+5}} &= & \lim_{x\to-\infty}\frac{(1/|x|)(3x-2)}{(1/|x|)\sqrt{4{x}^{2}+5}} \\ &= & \lim_{x\to-\infty}\frac{(-1/x)(3x-2)}{\sqrt{(1/{x}^{2})(4{x}^{2}+5)}} \\ &= & \lim_{x\to-\infty}\frac{-3+2/x}{\sqrt{4+5/{x}^{2}}}=\frac{-3}{\sqrt{4}}=\frac{-3}{2}.\end{array}$$
+<p>Therefore, $\kf(x)$ approaches the <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=\frac{3}{2}$ as $x\to \infty$ and the <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=-\frac{3}{2}$ as $x\to-\infty$ as shown in the following graph.</p>
+<figure class="sim" id="fig-radical" data-figure="4.57" data-original="/media/ch04/CNX_Calc_Figure_04_06_010.jpg" data-original-caption="This function has two horizontal asymptotes and it crosses one of the asymptotes.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.57</span><span>This <span data-concept="function">function</span> has two <span data-concept="horizontal-asymptote">horizontal asymptotes</span> and it crosses one of the asymptotes.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042631816"></div>
+<h3 id="transcendental-end-behavior">Determining <span data-concept="end-behavior">End Behavior</span> for Transcendental <span data-concept="function">Functions</span></h3>
+<p>The six basic <span data-concept="trigonometric-functions">trigonometric functions</span> are periodic and do not approach a finite limit as $x\to \pm \infty.$ For example, $\sin x$ oscillates between $1\;\text{and}\;-1$ (Figure 4.58). The tangent <span data-concept="function">function</span>, $\tan (x)$, has an infinite number of <span data-concept="vertical-asymptote">vertical asymptotes</span> as $x\to \pm \infty;$ therefore, it does not approach a finite limit nor does it approach $\pm \infty$ as $x\to \pm \infty$ as shown in Figure 4.59.</p>
+<figure class="sim" id="fig-sine-ends" data-figure="4.58" data-original="/media/ch04/CNX_Calc_Figure_04_06_011.jpg" data-original-caption="The function f(x)=sin x oscillates between 1 and −1 as x→ ±∞">
+  <div class="sim-head"><span class="eyebrow">Figure 4.58</span><span>The <span data-concept="function">function</span> $\kf(x)=\sin x$ oscillates between $1\;\text{and}\;-1$ as $x\to \pm \infty$</span></div>
+</figure>
+<figure class="sim" id="fig-tangent-ends" data-figure="4.59" data-original="/media/ch04/CNX_Calc_Figure_04_06_012.jpg" data-original-caption="The function f(x)=tan x does not approach a limit and does not approach ±∞ as x→ ±∞">
+  <div class="sim-head"><span class="eyebrow">Figure 4.59</span><span>The <span data-concept="function">function</span> $\kf(x)=\tan x$ does not approach a limit and does not approach $\pm \infty$ as $x\to \pm \infty$</span></div>
+</figure>
+<p>Recall that for any base $b\gt 0,b\ne 1,$ the <span data-concept="function">function</span> <span data-fn="b^x">$y={b}^{x}$</span> is an <span data-concept="exponential-function">exponential function</span> with <span data-concept="domain">domain</span> $(-\infty,\infty)$ and range $(0,\infty).$ If $b\gt 1,y={b}^{x}$ is increasing over $(-\infty,\infty).$ If $0\lt b\lt 1,$ <span data-fn="b^x">$y={b}^{x}$</span> is decreasing over $(-\infty,\infty).$ For the <span data-concept="natural-exponential-function">natural exponential function</span> <span data-fn="e^x">$\kf(x)={e}^{x},$</span> $e\approx 2.718\gt 1.$ Therefore, <span data-fn="e^x">$\kf(x)={e}^{x}$</span> is increasing on $(-\infty,\infty)$ and the range is $(0,\infty).$ The <span data-concept="exponential-function">exponential function</span> <span data-fn="e^x">$\kf(x)={e}^{x}$</span> approaches $\infty$ as $x\to \infty$ and approaches $0$ as $x\to-\infty$ as shown in Table 4.5 and Figure 4.60.</p>
+<div class="book-table" id="fs-id1165042542966">
+  <div class="tcap"><span class="eyebrow">Table 4.5</span><span><span data-concept="end-behavior">End behavior</span> of the <span data-concept="natural-exponential-function">natural exponential function</span></span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$-5$</td><td class="num">$-2$</td><td class="num">$0$</td><td class="num">$2$</td><td class="num">$5$</td></tr>
+      <tr><th><strong>${e}^{x}$</strong></th><td class="num">$0.00674$</td><td class="num">$0.135$</td><td class="num">$1$</td><td class="num">$7.389$</td><td class="num">$148.413$</td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="fig-exponential-ends" data-figure="4.60" data-original="/media/ch04/CNX_Calc_Figure_04_06_013.jpg" data-original-caption="The exponential function approaches zero as x→ −∞ and approaches ∞ as x→ ∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.60</span><span>The <span data-concept="exponential-function">exponential function</span> approaches zero as $x\to-\infty$ and approaches $\infty$ as $x\to \infty.$</span></div>
+</figure>
+<p>Recall that the <span data-concept="natural-logarithm">natural logarithm function</span> <span data-fn="ln (x)">$\kf(x)=\ln (x)$</span> is the inverse of the <span data-concept="natural-exponential-function">natural exponential function</span> <span data-fn="e^x">$y={e}^{x}.$</span> Therefore, the <span data-concept="domain">domain</span> of <span data-fn="ln (x)">$\kf(x)=\ln (x)$</span> is $(0,\infty)$ and the range is $(-\infty,\infty).$ The graph of <span data-fn="ln (x)">$\kf(x)=\ln (x)$</span> is the reflection of the graph of <span data-fn="e^x">$y={e}^{x}$</span> about the line <span data-fn="x">$y=x.$</span> Therefore, $\ln (x)\to-\infty$ as $x\to {0}^{+}$ and $\ln (x)\to \infty$ as $x\to \infty$ as shown in Figure 4.61 and Table 4.6.</p>
+<div class="book-table" id="fs-id1165042460463">
+  <div class="tcap"><span class="eyebrow">Table 4.6</span><span><span data-concept="end-behavior">End behavior</span> of the <span data-concept="natural-logarithm">natural logarithm function</span></span></div>
+  <table>
+    <tbody>
+      <tr><th><strong>$x$</strong></th><td class="num">$0.01$</td><td class="num">$0.1$</td><td class="num">$1$</td><td class="num">$10$</td><td class="num">$100$</td></tr>
+      <tr><th><strong>$\ln (x)$</strong></th><td class="num">$-4.605$</td><td class="num">$-2.303$</td><td class="num">$0$</td><td class="num">$2.303$</td><td class="num">$4.605$</td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="fig-logarithm-ends" data-figure="4.61" data-original="/media/ch04/CNX_Calc_Figure_04_06_014.jpg" data-original-caption="The natural logarithm function approaches ∞ as x→ ∞ .">
+  <div class="sim-head"><span class="eyebrow">Figure 4.61</span><span>The <span data-concept="natural-logarithm">natural logarithm function</span> approaches $\infty$ as $x\to \infty.$</span></div>
+</figure>
+<div class="example" id="fs-id1165042469818">
+<h3>Example 4.27 · Determining End Behavior for a Transcendental Function</h3>
+<p>Find the limits as $x\to \infty$ and $x\to-\infty$ for <span data-fn="((2+3e^x))/((7-5e^x))">$\kf(x)=\frac{(2+3{e}^{x})}{(7-5{e}^{x})}$</span> and describe the <span data-concept="end-behavior">end behavior</span> of $\kf.$</p>
+<h4>Solution</h4>
+<p>To find the limit as $x\to \infty,$ divide the numerator and denominator by ${e}^{x}:$</p>
+$$\begin{array}{rl}\lim_{x\to \infty}\kf(x) &=\lim_{x\to \infty}\frac{2+3{e}^{x}}{7-5{e}^{x}} \\ &=\lim_{x\to \infty}\frac{(2/{e}^{x})+3}{(7/{e}^{x})-5}.\end{array}$$
+<p>As shown in Figure 4.60, ${e}^{x}\to \infty$ as $x\to \infty.$ Therefore,</p>
+$$\lim_{x\to \infty}\frac{2}{{e}^{x}}=0=\lim_{x\to \infty}\frac{7}{{e}^{x}}.$$
+<p>We conclude that $\lim_{x\to \infty}\kf(x)=-\frac{3}{5},$ and the graph of $\kf$ approaches the <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=-\frac{3}{5}$ as $x\to \infty.$ To find the limit as $x\to-\infty,$ use the fact that ${e}^{x}\to 0$ as $x\to-\infty$ to conclude that $\lim_{x\to \infty}\kf(x)=\frac{2}{7},$<sup class="fn" data-note="c-limit-minus-infinity"></sup> and therefore the graph of approaches the <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=\frac{2}{7}$ as $x\to-\infty.$</p>
+</div>
+<div class="exercises" data-place="fs-id1165042469818"></div>
+</section>
+
+<section id="guidelines">
+<h2>Guidelines for Drawing the Graph of a <span data-concept="function">Function</span></h2>
+<p class="cite-target">We now have enough analytical tools to draw graphs of a wide variety of algebraic and transcendental <span data-concept="function">functions</span>. Before showing how to graph specific <span data-concept="function">functions</span>, let’s look at a general strategy to use when graphing any <span data-concept="function">function</span>.</p>
+<div class="note" id="graphing-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Drawing the Graph of a <span data-concept="function">Function</span></h3>
+<p>Given a <span data-concept="function">function</span> $\kf,$ use the following steps to sketch a graph of $\kf:$</p>
+<ol>
+<li>Determine the <span data-concept="domain">domain</span> of the <span data-concept="function">function</span>.</li>
+<li>Locate the $x$- and $y$-intercepts.</li>
+<li>Evaluate $\lim_{x\to \infty}\kf(x)$ and $\lim_{x\to-\infty}\kf(x)$ to determine the <span data-concept="end-behavior">end behavior</span>. If either of these limits is a finite number $\kL,$ then $y=\kL$ is a <span data-concept="horizontal-asymptote">horizontal asymptote</span>. If either of these limits is $\infty$ or $-\infty,$ determine whether $\kf$ has an <span data-concept="oblique-asymptote">oblique asymptote</span>. If $\kf$ is a <span data-concept="rational-function">rational function</span> such that <span data-fn="(p(x))/(q(x))">$\kf(x)=\frac{p(x)}{q(x)},$</span> where the degree of the numerator is greater than the degree of the denominator, then $\kf$ can be written as</li>
+</ol>
+$$\kf(x)=\frac{p(x)}{q(x)}=\kg(x)+\frac{r(x)}{q(x)},$$
+<p>where the degree of $r(x)$ is less than the degree of $q(x).$ The values of $\kf(x)$ approach the values of $\kg(x)$ as $x\to \pm \infty.$ If $\kg(x)$ is a <span data-concept="linear-function">linear function</span>, it is known as an <em><span data-concept="oblique-asymptote">oblique asymptote</span></em>.</p>
+<ol>
+<li>Determine whether $\kf$ has any <span data-concept="vertical-asymptote">vertical asymptotes</span>.</li>
+<li>Calculate $\kfprime.$ Find all <span data-concept="critical-point">critical points</span> and determine the intervals where $\kf$ is increasing and where $\kf$ is decreasing. Determine whether $\kf$ has any <span data-concept="local-extremum">local extrema</span>.</li>
+<li>Calculate $\kfdprime.$ Determine the intervals where $\kf$ is <span data-concept="concavity">concave up</span> and where $\kf$ is <span data-concept="concavity">concave down</span>. Use this information to determine whether $\kf$ has any <span data-concept="inflection-point">inflection points</span>. The <span data-concept="higher-order-derivative">second derivative</span> can also be used as an alternate means to determine or verify that $\kf$ has a <span data-concept="local-extremum">local extremum</span> at a <span data-concept="critical-point">critical point</span>.</li>
+</ol>
+</div>
+<p>Now let’s use this strategy to graph several different <span data-concept="function">functions</span>. We start by graphing a <span data-concept="polynomial-function">polynomial function</span>.</p>
+<div class="example" id="fs-id1165042617768">
+<h3>Example 4.28 · Sketching a Graph of a Polynomial</h3>
+<p>Sketch a graph of <span data-fn="((x-1))^2(x+2)">$\kf(x)={(x-1)}^{2}(x+2).$</span></p>
+<h4>Solution</h4>
+<p>Step 1. Since $\kf$ is a <span data-concept="polynomial-function">polynomial</span>, the <span data-concept="domain">domain</span> is the set of all real numbers.</p>
+<p>Step 2. When $x=0,\kf(x)=2.$ Therefore, the $y$-intercept is $(0,2).$ To find the $x$-intercepts, we need to solve the equation ${(x-1)}^{2}(x+2)=0,$ gives us the $x$-intercepts $(1,0)$ and $(-2,0)$</p>
+<p>Step 3. We need to evaluate the <span data-concept="end-behavior">end behavior</span> of $\kf.$ As $x\to \infty,$ ${(x-1)}^{2}\to \infty$ and $(x+2)\to \infty.$ Therefore, $\lim_{x\to \infty}\kf(x)=\infty.$ As $x\to-\infty,$ ${(x-1)}^{2}\to \infty$ and $(x+2)\to-\infty.$ Therefore, $\lim_{x\to-\infty}\kf(x)=-\infty.$ To get even more information about the <span data-concept="end-behavior">end behavior</span> of $\kf,$ we can multiply the factors of $\kf.$ When doing so, we see that</p>
+$$\kf(x)={(x-1)}^{2}(x+2)={x}^{3}-3x+2.$$
+<p>Since the leading term of $\kf$ is ${x}^{3},$ we conclude that $\kf$ behaves like <span data-fn="x^3">$y={x}^{3}$</span> as $x\to \pm \infty.$</p>
+<p>Step 4. Since $\kf$ is a <span data-concept="polynomial-function">polynomial function</span>, it does not have any <span data-concept="vertical-asymptote">vertical asymptotes</span>.</p>
+<p>Step 5. The <span data-concept="derivative">first derivative</span> of $\kf$ is</p>
+$$\kfprime(x)=3{x}^{2}-3.$$
+<p>Therefore, $\kf$ has two <span data-concept="critical-point">critical points</span>: $x=1,-1.$ Divide the interval $(-\infty,\infty)$ into the three smaller intervals: $(-\infty,-1),$ $(-1,1),$ and $(1,\infty).$ Then, choose test points $x=-2,$ $x=0,$ and $x=2$ from these intervals and evaluate the sign of $\kfprime(x)$ at each of these test points, as shown in the following table.</p>
+<div class="book-table" id="fs-id1165043383127">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of <span data-concept="derivative">Derivative</span> $\kfprime(x)=3{x}^{2}-3=3(x-1)(x+1)$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,-1)$</td><td>$x=-2$</td><td>$(+)(-)(-)=+$</td><td>$\kf$ is increasing.</td></tr>
+      <tr><td>$(-1,1)$</td><td>$x=0$</td><td>$(+)(-)(+)=-$</td><td>$\kf$ is decreasing.</td></tr>
+      <tr><td>$(1,\infty)$</td><td>$x=2$</td><td>$(+)(+)(+)=+$</td><td>$\kf$ is increasing.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>From the table, we see that $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=-1$ and a <span data-concept="local-extremum">local minimum</span> at $x=1.$ Evaluating $\kf(x)$ at those two points, we find that the <span data-concept="local-extremum">local maximum</span> value is $\kf(-1)=4$ and the <span data-concept="local-extremum">local minimum</span> value is $\kf(1)=0.$</p>
+<p>Step 6. The <span data-concept="higher-order-derivative">second derivative</span> of $\kf$ is</p>
+$$\kfdprime(x)=6x.$$
+<p>The <span data-concept="higher-order-derivative">second derivative</span> is zero at $x=0.$ Therefore, to determine the concavity of $\kf,$ divide the interval $(-\infty,\infty)$ into the smaller intervals $(-\infty,0)$ and $(0,\infty),$ and choose test points $x=-1$ and $x=1$ to determine the concavity of $\kf$ on each of these smaller intervals as shown in the following table.</p>
+<div class="book-table" id="fs-id1165042381927">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfdprime(x)=6x$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,0)$</td><td>$x=-1$</td><td>$-$</td><td>$\kf$ is <span data-concept="concavity">concave down</span>.</td></tr>
+      <tr><td>$(0,\infty)$</td><td>$x=1$</td><td>$+$</td><td>$\kf$ is <span data-concept="concavity">concave up</span>.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>We note that the information in the preceding table confirms the fact, found in step $5,$ that $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=-1$ and a <span data-concept="local-extremum">local minimum</span> at $x=1.$ In addition, the information found in step $5$—namely, $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=-1$ and a <span data-concept="local-extremum">local minimum</span> at $x=1,$ and $\kfprime(x)=0$ at those points—combined with the fact that $\kfdprime$ changes sign only at $x=0$ confirms the results found in step $6$ on the concavity of $\kf.$</p>
+<p>Combining this information, we arrive at the graph of <span data-fn="((x-1))^2(x+2)">$\kf(x)={(x-1)}^{2}(x+2)$</span> shown in the following graph.</p>
+<figure class="sim" id="fig-sketch-polynomial" data-figure="" data-original="/media/ch04/CNX_Calc_Figure_04_06_015.jpg" data-original-caption="The function f(x) = (x −1)2 (x + 2) is graphed. It crosses the x axis at x = −2 and touches the x axis at x = 1.">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span>The graph of $\kf(x)=(x-1)^2(x+2)$, with its <span data-concept="local-extremum">local maximum</span> at $(-1,4)$, its <span data-concept="local-extremum">local minimum</span> at $(1,0)$ and its <span data-concept="inflection-point">inflection point</span> at $(0,2)$.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042617768"></div>
+<div class="example" id="fs-id1165042710140">
+<h3>Example 4.29 · Sketching a Rational Function</h3>
+<p>Sketch the graph of $\kf(x)=\frac{{x}^{2}}{(1-{x}^{2})}\text{.}$</p>
+<h4>Solution</h4>
+<p>Step 1. The <span data-concept="function">function</span> $\kf$ is defined as long as the denominator is not zero. Therefore, the <span data-concept="domain">domain</span> is the set of all real numbers $x$ except $x=\pm 1.$</p>
+<p>Step 2. Find the intercepts. If $x=0,$ then $\kf(x)=0,$ so $0$ is an intercept. If $y=0,$ then $\frac{{x}^{2}}{(1-{x}^{2})}=0,$ which implies $x=0.$ Therefore, $(0,0)$ is the only intercept.</p>
+<p>Step 3. Evaluate the <span data-concept="limit-at-infinity">limits at infinity</span>. Since $\kf$ is a <span data-concept="rational-function">rational function</span>, divide the numerator and denominator by the highest power in the denominator: ${x}^{2}.$ We obtain</p>
+$$\lim_{x\to \pm \infty}\frac{{x}^{2}}{1-{x}^{2}}=\lim_{x\to \pm \infty}\frac{1}{\frac{1}{{x}^{2}}-1}=-1.$$
+<p>Therefore, $\kf$ has a <span data-concept="horizontal-asymptote">horizontal asymptote</span> of $y=-1$ as $x\to \infty$ and $x\to-\infty.$</p>
+<p>Step 4. To determine whether $\kf$ has any <span data-concept="vertical-asymptote">vertical asymptotes</span>, first check to see whether the denominator has any zeroes. We find the denominator is zero when $x=\pm 1.$ To determine whether the lines $x=1$ or $x=-1$ are <span data-concept="vertical-asymptote">vertical asymptotes</span> of $\kf,$ evaluate $\lim_{x\to 1}\kf(x)$ and $\lim_{x\to-1}\kf(x).$ By looking at each one-sided limit as $x\to 1,$ we see that</p>
+$$\lim_{x\to {1}^{+}}\frac{{x}^{2}}{1-{x}^{2}}=-\infty \;\text{and}\;\lim_{x\to {1}^{-}}\frac{{x}^{2}}{1-{x}^{2}}=\infty.$$
+<p>In addition, by looking at each one-sided limit as $x\to-1,$ we find that</p>
+$$\lim_{x\to-{1}^{+}}\frac{{x}^{2}}{1-{x}^{2}}=\infty \;\text{and}\;\lim_{x\to-{1}^{-}}\frac{{x}^{2}}{1-{x}^{2}}=-\infty.$$
+<p>Step 5. Calculate the <span data-concept="derivative">first derivative</span>:</p>
+$$\kfprime(x)=\frac{(1-{x}^{2})(2x)-{x}^{2}(-2x)}{{(1-{x}^{2})}^{2}}=\frac{2x}{{(1-{x}^{2})}^{2}}.$$
+<p><span data-concept="critical-point">Critical points</span> occur at points $x$ where $\kfprime(x)=0$ or $\kfprime(x)$ is undefined. We see that $\kfprime(x)=0$ when $x=0.$ The <span data-concept="derivative">derivative</span> $\kfprime$ is not undefined at any point in the <span data-concept="domain">domain</span> of $\kf.$ However, $x=\pm 1$ are not in the <span data-concept="domain">domain</span> of $\kf.$ Therefore, to determine where $\kf$ is increasing and where $\kf$ is decreasing, divide the interval $(-\infty,\infty)$ into four smaller intervals: $(-\infty,-1),$ $(-1,0),$ $(0,1),$ and $(1,\infty),$ and choose a test point in each interval to determine the sign of $\kfprime(x)$ in each of these intervals. The values $x=-2,$ $x=-\frac{1}{2},$ $x=\frac{1}{2},$ and $x=2$ are good choices for test points as shown in the following table.</p>
+<div class="book-table" id="fs-id1165043341618">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfprime(x)=\frac{2x}{{(1-{x}^{2})}^{2}}$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,-1)$</td><td>$x=-2$</td><td>$-/+=-$</td><td>$\kf$ is decreasing.</td></tr>
+      <tr><td>$(-1,0)$</td><td>$x=-1/2$</td><td>$-/+=-$</td><td>$\kf$ is decreasing.</td></tr>
+      <tr><td>$(0,1)$</td><td>$x=1/2$</td><td>$+/+=+$</td><td>$\kf$ is increasing.</td></tr>
+      <tr><td>$(1,\infty)$</td><td>$x=2$</td><td>$+/+=+$</td><td>$\kf$ is increasing.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>From this analysis, we conclude that $\kf$ has a <span data-concept="local-extremum">local minimum</span> at $x=0$ but no <span data-concept="local-extremum">local maximum</span>.</p>
+<p>Step 6. Calculate the <span data-concept="higher-order-derivative">second derivative</span>:</p>
+$$\begin{array}{rr}\kfdprime(x) &=\frac{{(1-{x}^{2})}^{2}(2)-2x(2(1-{x}^{2})(-2x))}{{(1-{x}^{2})}^{4}} \\ &=\frac{(1-{x}^{2})[2(1-{x}^{2})+8{x}^{2}]}{{(1-{x}^{2})}^{4}} \\ &=\frac{2(1-{x}^{2})+8{x}^{2}}{{(1-{x}^{2})}^{3}} \\ &=\frac{6{x}^{2}+2}{{(1-{x}^{2})}^{3}}.\end{array}$$
+<p>To determine the intervals where $\kf$ is <span data-concept="concavity">concave up</span> and where $\kf$ is <span data-concept="concavity">concave down</span>, we first need to find all points $x$ where $\kfdprime(x)=0$ or $\kfdprime(x)$ is undefined. Since the numerator $6{x}^{2}+2\ne 0$ for any $x,$ $\kfdprime(x)$ is never zero. Furthermore, $\kfdprime$ is not undefined for any $x$ in the <span data-concept="domain">domain</span> of $\kf.$ However, as discussed earlier, $x=\pm 1$ are not in the <span data-concept="domain">domain</span> of $\kf.$ Therefore, to determine the concavity of $\kf,$ we divide the interval $(-\infty,\infty)$ into the three smaller intervals $(-\infty,-1),$ $(-1,-1),$<sup class="fn" data-note="c-interval"></sup> and $(1,\infty),$ and choose a test point in each of these intervals to evaluate the sign of $\kfdprime(x).$ in each of these intervals. The values $x=-2,$ $x=0,$ and $x=2$ are possible test points as shown in the following table.</p>
+<div class="book-table" id="fs-id1165043384406">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfdprime(x)=\frac{6{x}^{2}+2}{{(1-{x}^{2})}^{3}}$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,-1)$</td><td>$x=-2$</td><td>$+/-=-$</td><td>$\kf$ is <span data-concept="concavity">concave down</span>.</td></tr>
+      <tr><td>$(-1,-1)$</td><td>$x=0$</td><td>$+/+=+$</td><td>$\kf$ is <span data-concept="concavity">concave up</span>.</td></tr>
+      <tr><td>$(1,\infty)$</td><td>$x=2$</td><td>$+/-=-$</td><td>$\kf$ is <span data-concept="concavity">concave down</span>.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Combining all this information, we arrive at the graph of $\kf$ shown below. Note that, although $\kf$ changes concavity at $x=-1$ and $x=1,$ there are no <span data-concept="inflection-point">inflection points</span> at either of these places because $\kf$ is not continuous at $x=-1$ or $x=1.$</p>
+<figure class="sim" id="fig-sketch-rational" data-figure="" data-original="/media/ch04/CNX_Calc_Figure_04_06_016.jpg" data-original-caption="The function f(x) = x2/(1 − x2) is graphed. It has asymptotes y = −1, x = −1, and x = 1.">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span>The graph of $\kf(x)=\frac{x^2}{1-x^2}$, with its <span data-concept="vertical-asymptote">vertical asymptotes</span> $x=\pm 1$, its <span data-concept="horizontal-asymptote">horizontal asymptote</span> $y=-1$ and its <span data-concept="local-extremum">local minimum</span> at $(0,0)$.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042710140"></div>
+<div class="example" id="fs-id1165042592955">
+<h3>Example 4.30 · Sketching a Rational Function with an Oblique Asymptote</h3>
+<p>Sketch the graph of <span data-fn="(x^2)/((x-1))">$\kf(x)=\frac{{x}^{2}}{(x-1)}$</span></p>
+<h4>Solution</h4>
+<p>Step 1. The <span data-concept="domain">domain</span> of $\kf$ is the set of all real numbers $x$ except $x=1.$</p>
+<p>Step 2. Find the intercepts. We can see that when $x=0,$ $\kf(x)=0,$ so $(0,0)$ is the only intercept.</p>
+<p>Step 3. Evaluate the <span data-concept="limit-at-infinity">limits at infinity</span>. Since the degree of the numerator is one more than the degree of the denominator, $\kf$ must have an <span data-concept="oblique-asymptote">oblique asymptote</span>. To find the <span data-concept="oblique-asymptote">oblique asymptote</span>, use long division of <span data-concept="polynomial-function">polynomials</span> to write</p>
+$$\kf(x)=\frac{{x}^{2}}{x-1}=x+1+\frac{1}{x-1}.$$
+<p>Since $1/(x-1)\to 0$ as $x\to \pm \infty,$ $\kf(x)$ approaches the line <span data-fn="x+1">$y=x+1$</span> as $x\to \pm \infty.$ The line <span data-fn="x+1">$y=x+1$</span> is an <span data-concept="oblique-asymptote">oblique asymptote</span> for $\kf.$</p>
+<p>Step 4. To check for <span data-concept="vertical-asymptote">vertical asymptotes</span>, look at where the denominator is zero. Here the denominator is zero at $x=1.$ Looking at both one-sided limits as $x\to 1,$ we find</p>
+$$\lim_{x\to {1}^{+}}\frac{{x}^{2}}{x-1}=\infty \;\text{and}\;\lim_{x\to {1}^{-}}\frac{{x}^{2}}{x-1}=-\infty.$$
+<p>Therefore, $x=1$ is a <span data-concept="vertical-asymptote">vertical asymptote</span>, and we have determined the behavior of $\kf$ as $x$ approaches $1$ from the right and the left.</p>
+<p>Step 5. Calculate the <span data-concept="derivative">first derivative</span>:</p>
+$$\kfprime(x)=\frac{(x-1)(2x)-{x}^{2}(1)}{{(x-1)}^{2}}=\frac{{x}^{2}-2x}{{(x-1)}^{2}}.$$
+<p>We have $\kfprime(x)=0$ when ${x}^{2}-2x=x(x-2)=0.$ Therefore, $x=0$ and $x=2$ are <span data-concept="critical-point">critical points</span>. Since $\kf$ is undefined at $x=1,$ we need to divide the interval $(-\infty,\infty)$ into the smaller intervals $(-\infty,0),$ $(0,1),$ $(1,2),$ and $(2,\infty),$ and choose a test point from each interval to evaluate the sign of $\kfprime(x)$ in each of these smaller intervals. For example, let $x=-1,$ $x=\frac{1}{2},$ $x=\frac{3}{2},$ and $x=3$ be the test points as shown in the following table.</p>
+<div class="book-table" id="fs-id1165042710566">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfprime(x)=\frac{{x}^{2}-2x}{{(x-1)}^{2}}=\frac{x(x-2)}{{(x-1)}^{2}}$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,0)$</td><td>$x=-1$</td><td>$(-)(-)/+=+$</td><td>$\kf$ is increasing.</td></tr>
+      <tr><td>$(0,1)$</td><td>$x=1/2$</td><td>$(+)(-)/+=-$</td><td>$\kf$ is decreasing.</td></tr>
+      <tr><td>$(1,2)$</td><td>$x=3/2$</td><td>$(+)(-)/+=-$</td><td>$\kf$ is decreasing.</td></tr>
+      <tr><td>$(2,\infty)$</td><td>$x=3$</td><td>$(+)(+)/+=+$</td><td>$\kf$ is increasing.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>From this table, we see that $\kf$ has a <span data-concept="local-extremum">local maximum</span> at $x=0$ and a <span data-concept="local-extremum">local minimum</span> at $x=2.$ The value of $\kf$ at the <span data-concept="local-extremum">local maximum</span> is $\kf(0)=0$ and the value of $\kf$ at the <span data-concept="local-extremum">local minimum</span> is $\kf(2)=4.$ Therefore, $(0,0)$ and $(2,4)$ are important points on the graph.</p>
+<p>Step 6. Calculate the <span data-concept="higher-order-derivative">second derivative</span>:</p>
+$$\begin{array}{rl}\kfdprime(x) &=\frac{{(x-1)}^{2}(2x-2)-({x}^{2}-2x)(2(x-1))}{{(x-1)}^{4}} \\ &=\frac{(x-1)[(x-1)(2x-2)-2({x}^{2}-2x)]}{{(x-1)}^{4}} \\ &=\frac{(x-1)(2x-2)-2({x}^{2}-2x)}{{(x-1)}^{3}} \\ &=\frac{2{x}^{2}-4x+2-(2{x}^{2}-4x)}{{(x-1)}^{3}} \\ &=\frac{2}{{(x-1)}^{3}}.\end{array}$$
+<p>We see that $\kfdprime(x)$ is never zero or undefined for $x$ in the <span data-concept="domain">domain</span> of $\kf.$ Since $\kf$ is undefined at $x=1,$ to check concavity we just divide the interval $(-\infty,\infty)$ into the two smaller intervals $(-\infty,1)$ and $(1,\infty),$ and choose a test point from each interval to evaluate the sign of $\kfdprime(x)$ in each of these intervals. The values $x=0$ and $x=2$ are possible test points as shown in the following table.</p>
+<div class="book-table" id="fs-id1165042652542">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfdprime(x)=\frac{2}{{(x-1)}^{3}}$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,1)$</td><td>$x=0$</td><td>$+/-=-$</td><td>$\kf$ is <span data-concept="concavity">concave down</span>.</td></tr>
+      <tr><td>$(1,\infty)$</td><td>$x=2$</td><td>$+/+=+$</td><td>$\kf$ is <span data-concept="concavity">concave up</span>.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>From the information gathered, we arrive at the following graph for $\kf.$</p>
+<figure class="sim" id="fig-sketch-oblique" data-figure="" data-original="/media/ch04/CNX_Calc_Figure_04_06_017.jpg" data-original-caption="The function f(x) = x2/(x − 1) is graphed. It has asymptotes y = x + 1 and x = 1.">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span>The graph of $\kf(x)=\frac{x^2}{x-1}$, with its <span data-concept="vertical-asymptote">vertical asymptote</span> $x=1$, its <span data-concept="oblique-asymptote">oblique asymptote</span> $y=x+1$, its <span data-concept="local-extremum">local maximum</span> $(0,0)$ and <span data-concept="local-extremum">local minimum</span> $(2,4)$.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042592955"></div>
+<div class="example" id="fs-id1165042607090">
+<h3>Example 4.31 · Sketching the Graph of a Function with a Cusp</h3>
+<p>Sketch a graph of <span data-fn="((x-1))^(2/3)">$\kf(x)={(x-1)}^{2/3}.$</span></p>
+<h4>Solution</h4>
+<p>Step 1. Since the cube-root <span data-concept="function">function</span> is defined for all real numbers $x$ and ${(x-1)}^{2/3}={(\sqrt[3]{x-1})}^{2},$ the <span data-concept="domain">domain</span> of $\kf$ is all real numbers.</p>
+<p>Step 2: To find the $y$-intercept, evaluate $\kf(0).$ Since $\kf(0)=1,$ the $y$-intercept is $(0,1).$ To find the $x$-intercept, solve ${(x-1)}^{2/3}=0.$ The solution of this equation is $x=1,$ so the $x$-intercept is $(1,0).$</p>
+<p>Step 3: Since $\lim_{x\to \pm \infty}{(x-1)}^{2/3}=\infty,$ the <span data-concept="function">function</span> continues to grow without bound as $x\to \infty$ and $x\to-\infty.$</p>
+<p>Step 4: The <span data-concept="function">function</span> has no <span data-concept="vertical-asymptote">vertical asymptotes</span>.</p>
+<p>Step 5: To determine where $\kf$ is increasing or decreasing, calculate $\kfprime.$ We find</p>
+$$\kfprime(x)=\frac{2}{3}{(x-1)}^{-1/3}=\frac{2}{3{(x-1)}^{1/3}}.$$
+<p>This <span data-concept="function">function</span> is not zero anywhere, but it is undefined when $x=1.$ Therefore, the only <span data-concept="critical-point">critical point</span> is $x=1.$ Divide the interval $(-\infty,\infty)$ into the smaller intervals $(-\infty,1)$ and $(1,\infty),$ and choose test points in each of these intervals to determine the sign of $\kfprime(x)$ in each of these smaller intervals. Let $x=0$ and $x=2$ be the test points as shown in the following table.</p>
+<div class="book-table" id="fs-id1165042504467">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfprime(x)=\frac{2}{3{(x-1)}^{1/3}}$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,1)$</td><td>$x=0$</td><td>$+/-=-$</td><td>$\kf$ is decreasing.</td></tr>
+      <tr><td>$(1,\infty)$</td><td>$x=2$</td><td>$+/+=+$</td><td>$\kf$ is increasing.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>We conclude that $\kf$ has a <span data-concept="local-extremum">local minimum</span> at $x=1.$ Evaluating $\kf$ at $x=1,$ we find that the value of $\kf$ at the <span data-concept="local-extremum">local minimum</span> is zero. Note that $\kfprime(1)$ is undefined, so to determine the behavior of the <span data-concept="function">function</span> at this <span data-concept="critical-point">critical point</span>, we need to examine $\lim_{x\to 1}\kfprime(x).$ Looking at the one-sided limits, we have</p>
+$$\lim_{x\to {1}^{+}}\frac{2}{3{(x-1)}^{1/3}}=\infty \;\text{and}\;\lim_{x\to {1}^{-}}\frac{2}{3{(x-1)}^{1/3}}=-\infty.$$
+<p>Therefore, $\kf$ has a cusp at $x=1.$</p>
+<p>Step 6: To determine concavity, we calculate the <span data-concept="higher-order-derivative">second derivative</span> of $\kf:$</p>
+$$\kfdprime(x)=-\frac{2}{9}{(x-1)}^{-4/3}=\frac{-2}{9{(x-1)}^{4/3}}.$$
+<p>We find that $\kfdprime(x)$ is defined for all $x,$ but is undefined when $x=1.$ Therefore, divide the interval $(-\infty,\infty)$ into the smaller intervals $(-\infty,1)$ and $(1,\infty),$ and choose test points to evaluate the sign of $\kfdprime(x)$ in each of these intervals. As we did earlier, let $x=0$ and $x=2$ be test points as shown in the following table.</p>
+<div class="book-table" id="fs-id1165042510530">
+  <table>
+    <thead><tr><th>Interval</th><th>Test Point</th><th>Sign of $\kfdprime(x)=\frac{-2}{9{(x-1)}^{4/3}}$</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>$(-\infty,1)$</td><td>$x=0$</td><td>$-/+=-$</td><td>$\kf$ is <span data-concept="concavity">concave down</span>.</td></tr>
+      <tr><td>$(1,\infty)$</td><td>$x=2$</td><td>$-/+=-$</td><td>$\kf$ is <span data-concept="concavity">concave down</span>.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>From this table, we conclude that $\kf$ is <span data-concept="concavity">concave down</span> everywhere. Combining all of this information, we arrive at the following graph for $\kf.$</p>
+<figure class="sim" id="fig-sketch-cusp" data-figure="" data-original="/media/ch04/CNX_Calc_Figure_04_06_018.jpg" data-original-caption="The function f(x) = (x − 1)2/3 is graphed. It touches the x axis at x = 1, where it comes to something of a sharp point and then flairs out on either side.">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span>The graph of $\kf(x)=(x-1)^{2/3}$, <span data-concept="concavity">concave down</span> everywhere, with a cusp at its <span data-concept="local-extremum">local minimum</span> $(1,0)$.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042607090"></div>
+</section>

@@ -1,0 +1,128 @@
+<p>In many areas of pure and applied mathematics, we are interested in finding solutions to an equation of the form $\kf(x)=0.$ For most <span data-concept="function">functions</span>, however, it is difficult—if not impossible—to calculate their zeroes explicitly. In this section, we take a look at a technique that provides a very efficient way of approximating the <span data-concept="zeros-of-a-function">zeroes of functions</span>. This technique makes use of <span data-concept="linear-approximation">tangent line approximations</span> and is behind the method used often by calculators and computers to find zeroes.</p>
+<section id="describing-newtons-method">
+<h2>Describing <span data-concept="newtons-method">Newton’s Method</span></h2>
+<p class="cite-target">Consider the task of finding the solutions of $\kf(x)=0.$ If $\kf$ is the <span data-concept="polynomial-function">first-degree polynomial</span> <span data-fn="ax+b">$\kf(x)=ax+b,$</span> then the solution of $\kf(x)=0$ is given by the formula $x=-\frac{b}{a}.$ If $\kf$ is the <span data-concept="polynomial-function">second-degree polynomial</span> <span data-fn="ax^2+bx+c">$\kf(x)=a{x}^{2}+bx+c,$</span> the solutions of $\kf(x)=0$ can be found by using the <span data-concept="quadratic-formula">quadratic formula</span>. However, for <span data-concept="polynomial-function">polynomials</span> of degree $3$ or more, finding roots of $\kf$ becomes more complicated. Although formulas exist for third- and fourth-degree <span data-concept="polynomial-function">polynomials</span>, they are quite complicated. Also, if $\kf$ is a <span data-concept="polynomial-function">polynomial</span> of degree $5$ or greater, it is known that no such formulas exist. For example, consider the <span data-concept="function">function</span></p>
+$$\kf(x)={x}^{5}+8{x}^{4}+4{x}^{3}-2x-7.$$
+<p>No formula exists that allows us to find the solutions of $\kf(x)=0.$ Similar difficulties exist for nonpolynomial <span data-concept="function">functions</span>. For example, consider the task of finding solutions of $\tan (x)-x=0.$ No simple formula exists for the solutions of this equation. In cases such as these, we can use <span data-concept="newtons-method">Newton’s method</span> to approximate the roots.</p>
+<p><strong><span data-concept="newtons-method">Newton’s method</span></strong> makes use of the following idea to approximate the solutions of $\kf(x)=0.$ By sketching a graph of $\kf,$ we can estimate a root of $\kf(x)=0.$ Let’s call this estimate ${x}_{0}.$ We then draw the <span data-concept="tangent-line">tangent line</span> to $\kf$ at ${x}_{0}.$ If $\kfprime({x}_{0})\ne 0,$ this <span data-concept="tangent-line">tangent line</span> intersects the $x$-axis at some point $({x}_{1},0).$ Now let ${x}_{1}$ be the next approximation to the actual root. Typically, ${x}_{1}$ is closer than ${x}_{0}$ to an actual root. Next we draw the <span data-concept="tangent-line">tangent line</span> to $\kf$ at ${x}_{1}.$ If $\kfprime({x}_{1})\ne 0,$ this <span data-concept="tangent-line">tangent line</span> also intersects the $x$-axis, producing another approximation, ${x}_{2}.$ We continue in this way, deriving a list of approximations: ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots}.$ Typically, the numbers ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots}$ quickly approach an actual root $x*,$ as shown in the following figure.</p>
+<figure class="sim" id="sim-newton" data-figure="4.77" data-original="/media/ch04/CNX_Calc_Figure_04_09_001.jpg" data-original-caption="The approximations x₀,x₁,x₂,… approach the actual root x*. The approximations are derived by looking at tangent lines to the graph of f.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.77</span><span><span data-concept="newtons-method">Newton’s method</span> on $\kf(x)=x^3-3x+1$ (Example 4.46). From $x_0$, go up to the graph and down its <span data-concept="tangent-line">tangent line</span> to the $x$-axis: that crossing is $x_1$, and the next tangent gives $x_2$. Play the steps, or move $x_0$: the approximations close on the root $x^*\approx 1.532088886$ within a few steps.</span></div>
+</figure>
+<p>Now let’s look at how to calculate the approximations ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots}.$ If ${x}_{0}$ is our first approximation, the approximation ${x}_{1}$ is defined by letting $({x}_{1},0)$ be the $x$-intercept of the <span data-concept="tangent-line">tangent line</span> to $\kf$ at ${x}_{0}.$ The equation of this <span data-concept="tangent-line">tangent line</span> is given by</p>
+$$y=\kf({x}_{0})+\kfprime({x}_{0})(x-{x}_{0}).$$
+<p>Therefore, ${x}_{1}$ must satisfy</p>
+$$\kf({x}_{0})+\kfprime({x}_{0})({x}_{1}-{x}_{0})=0.$$
+<p>Solving this equation for ${x}_{1},$ we conclude that</p>
+$${x}_{1}={x}_{0}-\frac{f({x}_{0})}{f'({x}_{0})}.$$
+<p>Similarly, the point $({x}_{2},0)$ is the $x$-intercept of the <span data-concept="tangent-line">tangent line</span> to $\kf$ at ${x}_{1}.$ Therefore, ${x}_{2}$ satisfies the equation</p>
+$${x}_{2}={x}_{1}-\frac{f({x}_{1})}{f'({x}_{1})}.$$
+<p>In general, for $n\gt 0,{x}_{n}$ satisfies</p>
+$${x}_{n}={x}_{n-1}-\frac{f({x}_{n-1})}{f'({x}_{n-1})}.\tag{4.8}$$
+<p>Next we see how to make use of this technique to approximate the root of the <span data-concept="polynomial-function">polynomial</span> <span data-fn="x^3-3x+1">$\kf(x)={x}^{3}-3x+1.$</span></p>
+<div class="example" id="fs-id1165043423917">
+<h3>Example 4.46 · Finding a Root of a Polynomial</h3>
+<p>Use <span data-concept="newtons-method">Newton’s method</span> to approximate a root of <span data-fn="x^3-3x+1">$\kf(x)={x}^{3}-3x+1$</span> in the interval $[1,2].$ Let ${x}_{0}=2$ and find ${x}_{1},{x}_{2},{x}_{3},{x}_{4},$ and ${x}_{5}.$</p>
+<h4>Solution</h4>
+<p>From Figure 4.78, we see that $\kf$ has one root over the interval $(1,2).$ Therefore ${x}_{0}=2$ seems like a reasonable first approximation. To find the next approximation, we use Equation 4.8. Since <span data-fn="x^3-3x+1">$\kf(x)={x}^{3}-3x+1,$</span> the <span data-concept="derivative">derivative</span> is <span data-fn="3x^2-3">$\kfprime(x)=3{x}^{2}-3.$</span> Using Equation 4.8 with $n=1$ (and a calculator that displays $10$ digits), we obtain</p>
+$${x}_{1}={x}_{0}-\frac{f({x}_{0})}{f'({x}_{0})}=2-\frac{f(2)}{f'(2)}=2-\frac{3}{9}\approx 1.666666667.$$
+<p>To find the next approximation, ${x}_{2},$ we use Equation 4.8 with $n=2$ and the value of ${x}_{1}$ stored on the calculator. We find that</p>
+$${x}_{2}={x}_{1}-\frac{f({x}_{1})}{f'({x}_{1})}\approx 1.548611111.$$
+<p>Continuing in this way, we obtain the following results:</p>
+$$\begin{array}{l}{x}_{1}\approx 1.666666667 \\ {x}_{2}\approx 1.548611111 \\ {x}_{3}\approx 1.532390162 \\ {x}_{4}\approx 1.532088989 \\ {x}_{5}\approx 1.532088886 \\ {x}_{6}\approx 1.532088886.\end{array}$$
+<p>We note that we obtained the same value for ${x}_{5}$ and ${x}_{6}.$ Therefore, any subsequent application of <span data-concept="newtons-method">Newton’s method</span> will most likely give the same value for ${x}_{n}.$</p>
+<figure class="sim" id="fig-cubic-root" data-figure="4.78" data-original="/media/ch04/CNX_Calc_Figure_04_09_002.jpg" data-original-caption="The function f(x)=x³−3x+1 has one root over the interval [1,2].">
+  <div class="sim-head"><span class="eyebrow">Figure 4.78</span><span>The <span data-concept="function">function</span> $\kf(x)={x}^{3}-3x+1$ has one root over the interval $[1,2].$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165043423917"></div>
+<p><span data-concept="newtons-method">Newton’s method</span> can also be used to approximate square roots. Here we show how to approximate $\sqrt{2}.$ This method can be modified to approximate the square root of any positive number.</p>
+<div class="example" id="fs-id1165042936506">
+<h3>Example 4.47 · Finding a Square Root</h3>
+<p>Use <span data-concept="newtons-method">Newton’s method</span> to approximate $\sqrt{2}$ (Figure 4.79). Let <span data-fn="x^2-2">$\kf(x)={x}^{2}-2,$</span> let ${x}_{0}=2,$ and calculate ${x}_{1},{x}_{2},{x}_{3},{x}_{4},{x}_{5}.$ (We note that since <span data-fn="x^2-2">$\kf(x)={x}^{2}-2$</span> has a zero at $\sqrt{2},$ the initial value ${x}_{0}=2$ is a reasonable choice to approximate $\sqrt{2}.)$</p>
+<h4>Solution</h4>
+<p>For $\kf(x)={x}^{2}-2,\kfprime(x)=2x.$ From Equation 4.8, we know that</p>
+$$\begin{array}{rl}{x}_{n} &={x}_{n-1}-\frac{f({x}_{n-1})}{f'({x}_{n-1})} \\ &={x}_{n-1}-\frac{{x}^{2}{}_{n-1}-2}{2{x}_{n-1}} \\ &=\frac{1}{2}{x}_{n-1}+\frac{1}{{x}_{n-1}} \\ &=\frac{1}{2}({x}_{n-1}+\frac{2}{{x}_{n-1}}).\end{array}$$
+<p>Therefore,</p>
+$$\begin{array}{l} \\ \\ {x}_{1}=\frac{1}{2}({x}_{0}+\frac{2}{{x}_{0}})=\frac{1}{2}(2+\frac{2}{2})=1.5 \\ {x}_{2}=\frac{1}{2}({x}_{1}+\frac{2}{{x}_{1}})=\frac{1}{2}(1.5+\frac{2}{1.5})\approx 1.416666667.\end{array}$$
+<p>Continuing in this way, we find that</p>
+$$\begin{array}{l}{x}_{1}=1.5 \\ {x}_{2}\approx 1.416666667 \\ {x}_{3}\approx 1.414215686 \\ {x}_{4}\approx 1.414213562 \\ {x}_{5}\approx 1.414213562.\end{array}$$
+<p>Since we obtained the same value for ${x}_{4}$ and ${x}_{5},$ it is unlikely that the value ${x}_{n}$ will change on any subsequent application of <span data-concept="newtons-method">Newton’s method</span>. We conclude that $\sqrt{2}\approx 1.414213562.$</p>
+<figure class="sim" id="fig-square-root-two" data-figure="4.79" data-original="/media/ch04/CNX_Calc_Figure_04_09_003.jpg" data-original-caption="We can use Newton’s method to find √(2).">
+  <div class="sim-head"><span class="eyebrow">Figure 4.79</span><span>We can use <span data-concept="newtons-method">Newton’s method</span> to find $\sqrt{2}.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042936506"></div>
+<p>When using <span data-concept="newtons-method">Newton’s method</span>, each approximation after the initial guess is defined in terms of the previous approximation by using the same formula. In particular, by defining the <span data-concept="function">function</span> $\kF(x)=x-[\frac{f(x)}{\kfprime(x)}],$ we can rewrite Equation 4.8 as ${x}_{n}=\kF({x}_{n-1}).$ This type of process, where each ${x}_{n}$ is defined in terms of ${x}_{n-1}$ by repeating the same <span data-concept="function">function</span>, is an example of an <strong><span data-concept="iterative-process">iterative process</span></strong>. Shortly, we examine other <span data-concept="iterative-process">iterative processes</span>. First, let’s look at the reasons why <span data-concept="newtons-method">Newton’s method</span> could fail to find a root.</p>
+</section>
+
+<section id="failures-of-newtons-method">
+<h2>Failures of <span data-concept="newtons-method">Newton’s Method</span></h2>
+<p class="cite-target">Typically, <span data-concept="newtons-method">Newton’s method</span> is used to find roots fairly quickly. However, things can go wrong. Some reasons why <span data-concept="newtons-method">Newton’s method</span> might fail include the following:</p>
+<ol>
+<li>At one of the approximations ${x}_{n},$ the <span data-concept="derivative">derivative</span> $\kfprime$ is zero at ${x}_{n},$ but $\kf({x}_{n})\ne 0.$ As a result, the <span data-concept="tangent-line">tangent line</span> of $\kf$ at ${x}_{n}$ does not intersect the $x$-axis. Therefore, we cannot continue the <span data-concept="iterative-process">iterative process</span>.</li>
+<li>The approximations ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots}$ may approach a different root. If the <span data-concept="function">function</span> $\kf$ has more than one root, it is possible that our approximations do not approach the one for which we are looking, but approach a different root (see Figure 4.80). This event most often occurs when we do not choose the approximation ${x}_{0}$ close enough to the desired root.</li>
+<li>The approximations may fail to approach a root entirely. In Example 4.48, we provide an example of a <span data-concept="function">function</span> and an initial guess ${x}_{0}$ such that the successive approximations never approach a root because the successive approximations continue to alternate back and forth between two values.</li>
+</ol>
+<figure class="sim" id="fig-wrong-root" data-figure="4.80" data-original="/media/ch04/CNX_Calc_Figure_04_09_004.jpg" data-original-caption="If the initial guess x₀ is too far from the root sought, it may lead to approximations that approach a different root.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.80</span><span>If the initial guess ${x}_{0}$ is too far from the root sought, it may lead to approximations that approach a different root.</span></div>
+</figure>
+<div class="example" id="fs-id1165043091063">
+<h3>Example 4.48 · When Newton’s Method Fails</h3>
+<p>Consider the <span data-concept="function">function</span> <span data-fn="x^3-2x+2">$\kf(x)={x}^{3}-2x+2.$</span> Let ${x}_{0}=0.$ Show that the sequence ${x}_{1},{x}_{2}\text{,\ldots}$ fails to approach a root of $\kf.$</p>
+<h4>Solution</h4>
+<p>For <span data-fn="x^3-2x+2">$\kf(x)={x}^{3}-2x+2,$</span> the <span data-concept="derivative">derivative</span> is <span data-fn="3x^2-2">$\kfprime(x)=3{x}^{2}-2.$</span> Therefore,</p>
+$${x}_{1}={x}_{0}-\frac{f({x}_{0})}{\kfprime({x}_{0})}=0-\frac{f(0)}{\kfprime(0)}=-\frac{2}{-2}=1.$$
+<p>In the next step,</p>
+$${x}_{2}={x}_{1}-\frac{f({x}_{1})}{f'({x}_{1})}=1-\frac{f(1)}{\kfprime(1)}=1-\frac{1}{1}=0.$$
+<p>Consequently, the numbers ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots}$ continue to bounce back and forth between $0$ and $1$ and never get closer to the root of $\kf$ which is over the interval $[-2,-1]$ (see Figure 4.81). Fortunately, if we choose an initial approximation ${x}_{0}$ closer to the actual root, we can avoid this situation.</p>
+<figure class="sim" id="fig-two-cycle" data-figure="4.81" data-original="/media/ch04/CNX_Calc_Figure_04_09_005.jpg" data-original-caption="The approximations continue to alternate between 0 and 1 and never approach the root of f.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.81</span><span>The approximations continue to alternate between $0\;\text{and}\;1$ and never approach the root of $\kf.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165043091063"></div>
+<p>From Example 4.48, we see that <span data-concept="newtons-method">Newton’s method</span> does not always work. However, when it does work, the sequence of approximations approaches the root very quickly. Discussions of how quickly the sequence of approximations approach a root found using <span data-concept="newtons-method">Newton’s method</span> are included in texts on numerical analysis.</p>
+</section>
+
+<section id="other-iterative-processes">
+<h2>Other <span data-concept="iterative-process">Iterative Processes</span></h2>
+<p class="cite-target">As mentioned earlier, <span data-concept="newtons-method">Newton’s method</span> is a type of <span data-concept="iterative-process">iterative process</span>. We now look at an example of a different type of <span data-concept="iterative-process">iterative process</span>.</p>
+<p>Consider a <span data-concept="function">function</span> $\kF$ and an initial number ${x}_{0}.$ Define the subsequent numbers ${x}_{n}$ by the formula ${x}_{n}=\kF({x}_{n-1}).$ This process is an <span data-concept="iterative-process">iterative process</span> that creates a list of numbers ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots},{x}_{n}\text{,\ldots}.$ This list of numbers may approach a finite number $x*$ as $n$ gets larger, or it may not. In Example 4.49, we see an example of a <span data-concept="function">function</span> $\kF$ and an initial guess ${x}_{0}$ such that the resulting list of numbers approaches a finite value.</p>
+<div class="example" id="fs-id1165043210088">
+<h3>Example 4.49 · Finding a Limit for an Iterative Process</h3>
+<p>Let <span data-fn="1/2x+4">$\kF(x)=\frac{1}{2}x+4$</span> and let ${x}_{0}=0.$ For all $n\ge 1,$ let ${x}_{n}=\kF({x}_{n-1}).$ Find the values ${x}_{1},{x}_{2},{x}_{3},{x}_{4},{x}_{5}.$ Make a conjecture about what happens to this list of numbers ${x}_{1},{x}_{2},{x}_{3}\ldots,{x}_{n}\text{,\ldots}$ as $n\to \infty.$ If the list of numbers ${x}_{1},{x}_{2},{x}_{3}\text{,\ldots}$ approaches a finite number $x*,$ then $x*$ satisfies $x*=\kF(x*),$ and $x*$ is called a <span data-concept="cycles-and-chaos">fixed point</span> of $\kF.$</p>
+<h4>Solution</h4>
+<p>If ${x}_{0}=0,$ then</p>
+$$\begin{array}{l} \\ \\ {x}_{1}=\frac{1}{2}(0)+4=4 \\ {x}_{2}=\frac{1}{2}(4)+4=6 \\ {x}_{3}=\frac{1}{2}(6)+4=7 \\ {x}_{4}=\frac{1}{2}(7)+4=7.5 \\ {x}_{5}=\frac{1}{2}(7.5)+4=7.75 \\ {x}_{6}=\frac{1}{2}(7.75)+4=7.875 \\ {x}_{7}=\frac{1}{2}(7.875)+4=7.9375 \\ {x}_{8}=\frac{1}{2}(7.9375)+4=7.96875 \\ {x}_{9}=\frac{1}{2}(7.96875)+4=7.984375.\end{array}$$
+<p>From this list, we conjecture that the values ${x}_{n}$ approach $8.$</p>
+<p>Figure 4.82 provides a graphical argument that the values approach $8$ as $n\to \infty.$ Starting at the point $({x}_{0},{x}_{0}),$ we draw a vertical line to the point $({x}_{0},\kF({x}_{0})).$ The next number in our list is ${x}_{1}=\kF({x}_{0}).$ We use ${x}_{1}$ to calculate ${x}_{2}.$ Therefore, we draw a horizontal line connecting $({x}_{0},{x}_{1})$ to the point $({x}_{1},{x}_{1})$ on the line <span data-fn="x">$y=x,$</span> and then draw a vertical line connecting $({x}_{1},{x}_{1})$ to the point $({x}_{1},\kF({x}_{1})).$ The output $\kF({x}_{1})$ becomes ${x}_{2}.$ Continuing in this way, we could create an infinite number of line segments. These line segments are trapped between the lines <span data-fn="x/2+4">$\kF(x)=\frac{x}{2}+4$</span> and <span data-fn="x">$y=x.$</span> The line segments get closer to the intersection point of these two lines, which occurs when $x=\kF(x).$ Solving the equation $x=\frac{x}{2}+4,$ we conclude they intersect at $x=8.$ Therefore, our graphical evidence agrees with our numerical evidence that the list of numbers ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots}$ approaches $x*=8$ as $n\to \infty.$</p>
+<figure class="sim" id="sim-cobweb" data-figure="4.82" data-original="/media/ch04/CNX_Calc_Figure_04_09_006.jpg" data-original-caption="This iterative process approaches the value x*=8.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.82</span><span>The <span data-concept="iterative-process">iterative process</span> $x_n=\kF(x_{n-1})$ for $\kF(x)=\frac{x}{2}+4$ (Example 4.49), drawn as a cobweb: up from $(x_0,x_0)$ to the graph of $\kF$, across to the line $y=x$, up again. Wherever $x_0$ starts, the segments are trapped between the two lines and close on their crossing, the <span data-concept="cycles-and-chaos">fixed point</span> $x^*=8$.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165043210088"></div>
+<div class="note" id="chaos-project">
+<div class="eyebrow">Student Project</div>
+<h3><span data-concept="iterative-process">Iterative Processes</span> and <span data-concept="cycles-and-chaos">Chaos</span></h3>
+<p><span data-concept="iterative-process">Iterative processes</span> can yield some very interesting behavior. In this section, we have seen several examples of <span data-concept="iterative-process">iterative processes</span> that converge to a <span data-concept="cycles-and-chaos">fixed point</span>. We also saw in Example 4.48 that the <span data-concept="iterative-process">iterative process</span> bounced back and forth between two values. We call this kind of behavior a $2$-<em>cycle</em>. <span data-concept="iterative-process">Iterative processes</span> can converge to cycles with various periodicities, such as $2-\text{cycles},\;4-\text{cycles}$ (where the <span data-concept="iterative-process">iterative process</span> repeats a sequence of four values), 8-cycles, and so on.</p>
+<p>Some <span data-concept="iterative-process">iterative processes</span> yield what mathematicians call <em><span data-concept="cycles-and-chaos">chaos</span></em>. In this case, the <span data-concept="iterative-process">iterative process</span> jumps from value to value in a seemingly random fashion and never converges or settles into a cycle. Although a complete exploration of <span data-concept="cycles-and-chaos">chaos</span> is beyond the scope of this text, in this project we look at one of the key properties of a chaotic <span data-concept="iterative-process">iterative process</span>: sensitive dependence on initial conditions. This property refers to the concept that small changes in initial conditions can generate drastically different behavior in the <span data-concept="iterative-process">iterative process</span>.</p>
+<p>Probably the best-known example of <span data-concept="cycles-and-chaos">chaos</span> is the Mandelbrot set (see Figure 4.83), named after Benoit Mandelbrot (1924–2010), who investigated its properties and helped popularize the field of <span data-concept="cycles-and-chaos">chaos</span> theory. The Mandelbrot set is usually generated by computer and shows fascinating details on enlargement, including self-replication of the set. Several colorized versions of the set have been shown in museums and can be found online and in popular books on the subject.</p>
+<figure class="photo" id="fig-mandelbrot" data-figure="4.83">
+  <img src="/media/ch04/CNX_Calc_Figure_04_09_007.jpg" alt="A very complicated and organic looking fractal.">
+  <figcaption><span class="eyebrow">Figure 4.83</span><span>The Mandelbrot set is a well-known example of a set of points generated by the iterative chaotic behavior of a relatively simple <span data-concept="function">function</span>.</span></figcaption>
+</figure>
+<p>In this project we use the logistic map</p>
+$$\kf(x)=rx(1-x),\;\text{where}\;x\in [0,1]\;\text{and}\;r\gt 0$$
+<p>as the <span data-concept="function">function</span> in our <span data-concept="iterative-process">iterative process</span>. The logistic map is a deceptively simple <span data-concept="function">function</span>; but, depending on the value of $r,$ the resulting <span data-concept="iterative-process">iterative process</span> displays some very interesting behavior. It can lead to <span data-concept="cycles-and-chaos">fixed points</span>, cycles, and even <span data-concept="cycles-and-chaos">chaos</span>.</p>
+<p>To visualize the long-term behavior of the <span data-concept="iterative-process">iterative process</span> associated with the logistic map, we will use a tool called a <em><span data-concept="cycles-and-chaos">cobweb diagram</span></em>. As we did with the <span data-concept="iterative-process">iterative process</span> we examined earlier in this section, we first draw a vertical line from the point $({x}_{0},0)$ to the point $({x}_{0},\kf({x}_{0}))=({x}_{0},{x}_{1}).$ We then draw a horizontal line from that point to the point $({x}_{1},{x}_{1}),$ then draw a vertical line to $({x}_{1},\kf({x}_{1}))=({x}_{1},{x}_{2}),$ and continue the process until the long-term behavior of the system becomes apparent. Figure 4.84 shows the long-term behavior of the logistic map when $r=3.55$ and ${x}_{0}=0.2.$ (The first $100$ iterations are not plotted.) The long-term behavior of this <span data-concept="iterative-process">iterative process</span> is an $8$-cycle.</p>
+<figure class="sim" id="sim-logistic-cobweb" data-figure="4.84" data-original="/media/ch04/CNX_Calc_Figure_04_09_008.jpg" data-original-caption="A cobweb diagram for f(x)=3.55x(1−x) is presented here. The sequence of values results in an 8-cycle.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.84</span><span>The <span data-concept="cycles-and-chaos">cobweb diagram</span> of the logistic map $f(x)=rx(1-x)$ from $x_0=0.2,$ the first $100$ iterations not drawn, so only the long-term behavior shows. At $r=3.55$ it is the book’s $8$-cycle; other values of $r$ give a <span data-concept="cycles-and-chaos">fixed point</span>, cycles of other lengths, or values that never settle.</span></div>
+</figure>
+<ol>
+<li>Let $r=0.5$ and choose ${x}_{0}=0.2.$ Either by hand or by using a computer, calculate the first $10$ values in the sequence. Does the sequence appear to converge? If so, to what value? Does it result in a cycle? If so, what kind of cycle (for example, $2-\text{cycle},\;4-\text{cycle}.)?$</li>
+<li>What happens when $r=2?$</li>
+<li>For $r=3.2$ and $r=3.5,$ calculate the first $100$ sequence values. Generate a <span data-concept="cycles-and-chaos">cobweb diagram</span> for each <span data-concept="iterative-process">iterative process</span>. (Several free applets are available online that generate <span data-concept="cycles-and-chaos">cobweb diagrams</span> for the logistic map.) What is the long-term behavior in each of these cases?</li>
+<li>Now let $r=4.$ Calculate the first $100$ sequence values and generate a <span data-concept="cycles-and-chaos">cobweb diagram</span>. What is the long-term behavior in this case?</li>
+<li>Repeat the process for $r=4,$ but let ${x}_{0}=0.201.$ How does this behavior compare with the behavior for ${x}_{0}=0.2?$</li>
+</ol>
+</div>
+</section>

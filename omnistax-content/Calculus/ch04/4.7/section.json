@@ -1,0 +1,979 @@
+{
+ "id": "4.7",
+ "module": "m53614",
+ "chapter": "4",
+ "title": "Applied Optimization Problems",
+ "short": "Optimization",
+ "lead": "Many problems ask for the largest or smallest value of some quantity under a constraint: the area of a garden from a given length of fence, the volume of a box from a sheet of cardboard, the time of a trip, a revenue, a surface area. This section sets such problems up as functions of one variable and solves them with the extrema of Section 4.3.",
+ "objectives": [
+  "Set up and solve optimization problems in several applied fields."
+ ],
+ "summary_html": "<ul><li>To solve an <span data-concept=\"optimization-problem\">optimization problem</span>, begin by drawing a picture and introducing variables.</li><li>Find an equation relating the variables.</li><li>Find a <span data-concept=\"function\">function</span> of one variable to describe the quantity that is to be minimized or maximized.</li><li>Look for <span data-concept=\"critical-point\">critical points</span> to locate <span data-concept=\"local-extremum\">local extrema</span>.</li></ul><section id=\"\"><h2></h2>",
+ "notes": "The video on optimizing the volume of a box is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the AI-suggested approaches to exercises 312 (an explanation) and 314 (true or false), which the key leaves unanswered. The other 20 even-numbered section exercises have no answer in the key and are computational, so they are left out: 316, 318, 320, 322, 324, 326, 328, 330, 332, 334, 336, 338, 340, 342, 344, 346, 348, 350, 352, 354. Review exercise 551 is set here from the chapter review.",
+ "figures": [
+  {
+   "id": "sim-garden",
+   "kind": "sim",
+   "number": "4.62",
+   "folds": [
+    "4.63"
+   ],
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_07_001.jpg",
+    "/media/ch04/CNX_Calc_Figure_04_07_002.jpg"
+   ],
+   "original_caption": "(Figure 4.62) We want to determine the measurements x and y that will create a garden with a maximum area using 100 ft of fencing. (Figure 4.63) To maximize the area of the garden, we need to find the maximum value of the function A(x)=100x−2x².",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-box",
+   "kind": "sim",
+   "number": "4.64",
+   "folds": [
+    "4.65"
+   ],
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_07_003.jpg",
+    "/media/ch04/CNX_Calc_Figure_04_07_004.jpg"
+   ],
+   "original_caption": "(Figure 4.64) A square with side length x inches is removed from each corner of the piece of cardboard. The remaining flaps are folded to form an open-top box. (Figure 4.65) Maximizing the volume of the box leads to finding the maximum value of a cubic polynomial.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-travel-time",
+   "kind": "sim",
+   "number": "4.66",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_07_011.jpg"
+   ],
+   "original_caption": "How can we choose x and y to minimize the travel time from the cabin to the island?",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-revenue",
+   "kind": "sim",
+   "number": "4.67",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_07_010.jpg"
+   ],
+   "original_caption": "To maximize revenue, a car rental company has to balance the price of a rental against the number of cars people will rent at that price.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-inscribed-rectangle",
+   "kind": "sim",
+   "number": "4.68",
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_07_007.jpg"
+   ],
+   "original_caption": "We want to maximize the area of a rectangle inscribed in an ellipse.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-square-box",
+   "kind": "sim",
+   "number": "4.69",
+   "folds": [
+    "4.70"
+   ],
+   "originals": [
+    "/media/ch04/CNX_Calc_Figure_04_07_008.jpg",
+    "/media/ch04/CNX_Calc_Figure_04_07_009.jpg"
+   ],
+   "original_caption": "(Figure 4.69) We want to minimize the surface area of a square-based box with a given volume. (Figure 4.70) We can use a graph to determine the dimensions of a box of given the volume and the minimum surface area.",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "closed-interval",
+   "concept": "optimization-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "optimization-strategy",
+   "concept": "solving-optimization-problems",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043431956",
+   "concept": "extreme-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043431956",
+   "concept": "locating-absolute-extrema",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043024669",
+   "concept": "solving-optimization-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042350080",
+   "concept": "solving-optimization-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043353574",
+   "concept": "solving-optimization-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165043350161",
+   "concept": "solving-optimization-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "open-interval",
+   "concept": "solving-optimization-problems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1165042327673",
+   "concept": "solving-optimization-problems",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042327673",
+   "concept": "infinite-limit",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp31",
+   "source_id": "fs-id1165042334091",
+   "source_number": "Checkpoint 4.31",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043431956"
+   },
+   "cite": "closed-interval",
+   "prompt": "Determine the maximum area if we want to make the same rectangular garden as in Figure 4.63, but we have $200$ ft of fencing.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 5000,
+    "unit": "ft²",
+    "hint": "We need to maximize the function $A(x)=200x-2{x}^{2}$ over the interval $[0,100].$",
+    "solution": "The maximum area is $5000{\\;\\text{ft}}^{2}.$"
+   }
+  },
+  {
+   "id": "cp32",
+   "source_id": "fs-id1165042556203",
+   "source_number": "Checkpoint 4.32",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043024669"
+   },
+   "cite": "closed-interval",
+   "prompt": "Suppose the dimensions of the cardboard in Example 4.33 are 20 in. by 30 in. Let $x$ be the side length of each square and write the volume of the open-top box as a function of $x.$ Determine the domain of consideration for $x.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "The volume of the box is $L\\cdot W\\cdot H.$",
+    "solution": "$V(x)=x(20-2x)(30-2x).$ The domain is $[0,10].$"
+   }
+  },
+  {
+   "id": "cp33",
+   "source_id": "fs-id1165043107418",
+   "source_number": "Checkpoint 4.33",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042350080"
+   },
+   "cite": "closed-interval",
+   "prompt": "Suppose the island is $1$ mi from shore, and the distance from the cabin to the point on the shore closest to the island is $15\\;\\text{mi}.$ Suppose a visitor swims at the rate of $2.5\\;\\text{mph}$ and runs at a rate of $6\\;\\text{mph}.$ Let $x$ denote the distance the visitor will run before swimming, and find a function for the time it takes the visitor to get from the cabin to the island.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "The time $T={T}_{\\text{running}}+{T}_{\\text{swimming}}.$",
+    "solution": "$T(x)=\\frac{x}{6}+\\frac{\\sqrt{{(15-x)}^{2}+1}}{2.5}$"
+   }
+  },
+  {
+   "id": "cp34",
+   "source_id": "fs-id1165042946145",
+   "source_number": "Checkpoint 4.34",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043353574"
+   },
+   "cite": "closed-interval",
+   "prompt": "A car rental company charges its customers $p$ dollars per day, where $60\\le p\\le 150.$ It has found that the number of cars rented per day can be modeled by the linear function $n(p)=750-5p.$ How much should the company charge each customer to maximize revenue?",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 75,
+    "unit": "dollars",
+    "hint": "$R(p)=n\\;\\times \\;p,$ where $n$ is the number of cars rented and $p$ is the price charged per car.",
+    "solution": "The company should charge $\\text{＄}75$ per car per day."
+   }
+  },
+  {
+   "id": "cp35",
+   "source_id": "fs-id1165043390989",
+   "source_number": "Checkpoint 4.35",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043350161"
+   },
+   "cite": "closed-interval",
+   "prompt": "Modify the area function $A$ if the rectangle is to be inscribed in the unit circle ${x}^{2}+{y}^{2}=1.$ What is the domain of consideration?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "If $(x,y)$ is the vertex of the square that lies in the first quadrant, then the area of the square is $A=(2x)(2y)=4xy.$<sup class=\"fn\" data-note=\"c-cp35-rectangle\"></sup>",
+    "solution": "$A(x)=4x\\sqrt{1-{x}^{2}}.$ The domain of consideration is $[0,1].$"
+   }
+  },
+  {
+   "id": "cp36",
+   "source_id": "fs-id1165042713670",
+   "source_number": "Checkpoint 4.36",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042327673"
+   },
+   "cite": "open-interval",
+   "prompt": "Consider the same open-top box, which is to have volume $216\\;\\text{in}{.}^{3}.$ Suppose the cost of the material for the base is 20¢/in.<sup>2</sup> and the cost of the material for the sides is 30¢/in.<sup>2</sup> and we are trying to minimize the cost of this box. Write the cost as a function of the side lengths of the base. (Let $x$ be the side length of the base and $y$ be the height of the box.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "hint": "If the cost of one of the sides is 30¢/in.<sup>2</sup>, the cost of that side is $0.30xy.$",
+    "solution": "$c(x)=\\frac{259.2}{x}+0.2{x}^{2}$ dollars"
+   }
+  },
+  {
+   "id": "e311",
+   "source_id": "fs-id1165043396236",
+   "source_number": "311",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, answer by proof, counterexample, or explanation.</p><p>When you find the maximum for an optimization problem, why do you need to check the sign of the derivative around the critical points?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The critical points can be the minima, maxima, or neither."
+   }
+  },
+  {
+   "id": "e312",
+   "source_id": "fs-id1165042476074",
+   "source_number": "312",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, answer by proof, counterexample, or explanation.</p><p>Why do you need to check the endpoints for optimization problems?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An optimization problem looks for the absolute maximum or minimum of a function over the domain of consideration, and over a closed interval the absolute extrema occur at critical points or at endpoints (the Location of Absolute Extrema). The best value may be at an end: in Example 4.35 the revenue $R(p)=-5p^{2}+1000p$ over $[50,200]$ is largest at the critical point $p=100,$ but over $[150,200]$ it would be largest at the endpoint $p=150.$ Checking only critical points would miss it."
+   }
+  },
+  {
+   "id": "e313",
+   "source_id": "fs-id1165042706088",
+   "source_number": "313",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, answer by proof, counterexample, or explanation.</p><p><em>True or False</em>. For every continuous nonlinear function, you can find the value $x$ that maximizes the function.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False; $y={x}^{2}$ has a minimum only"
+   }
+  },
+  {
+   "id": "e314",
+   "source_id": "fs-id1165042707536",
+   "source_number": "314",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, answer by proof, counterexample, or explanation.</p><p><em>True or False</em>. For every continuous nonconstant function on a closed, finite domain, there exists at least one $x$ that minimizes or maximizes the function.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "True. A continuous function on a closed, bounded interval has an absolute maximum and an absolute minimum there, by the Extreme Value Theorem, so there is at least one $x$ that maximizes the function and at least one that minimizes it."
+   }
+  },
+  {
+   "id": "e315",
+   "source_id": "fs-id1165043372672",
+   "source_number": "315",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, set up and evaluate each optimization problem.</p><p>To carry a suitcase on an airplane, the length $+\\text{width}+$ height of the box must be less than or equal to $62\\;\\text{in}.$ Assuming the base of the suitcase is square, show that the volume is $V=h{(31-(\\frac{1}{2})\\;h)}^{2}.$ What height allows you to have the largest volume?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$h=\\frac{62}{3}$ in."
+   }
+  },
+  {
+   "id": "e317",
+   "source_id": "fs-id1165043384497",
+   "source_number": "317",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, set up and evaluate each optimization problem.</p><p>Find the positive integer that minimizes the sum of the number and its reciprocal.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "solution": "$1$"
+   }
+  },
+  {
+   "id": "e319",
+   "source_id": "fs-id1165042970430",
+   "source_number": "319",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, consider the construction of a pen to enclose an area.</p><p>You have $400\\;\\text{ft}$ of fencing to construct a rectangular pen for cattle. What are the dimensions of the pen that maximize the area?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$100\\;\\text{ft by}\\;100\\;\\text{ft}$"
+   }
+  },
+  {
+   "id": "e321",
+   "source_id": "fs-id1165042315729",
+   "source_number": "321",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, consider the construction of a pen to enclose an area.</p><p>You need to construct a fence around an area of $1600\\;{\\text{ft}}^{2}.$ What are the dimensions of the rectangular pen to minimize the amount of material needed?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$40\\;\\text{ft by}\\;40\\;\\text{ft}$"
+   }
+  },
+  {
+   "id": "e323",
+   "source_id": "fs-id1165043395264",
+   "source_number": "323",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_07_203.jpg",
+    "alt": "An upside L-shaped figure is drawn with the _ part being 6 wide and the | part being 8 wide. There is a line drawn from the _ part to the | part that touches the near corner of the shape to form a hypotenuse for a right triangle the other sides being the the rest of the _ and | parts. This line is marked L."
+   },
+   "prompt": "<p><strong>[T]</strong> You are moving into a new apartment and notice there is a corner where the hallway narrows from $\\text{8 ft to 6 ft}.$ What is the length of the longest item that can be carried horizontally around the corner?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 19.73,
+    "unit": "ft",
+    "solution": "$19.73\\;\\text{ft}.$"
+   }
+  },
+  {
+   "id": "e325",
+   "source_id": "fs-id1165042647088",
+   "source_number": "325",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>In the previous problem, assume the patient was nervous during the third measurement, so we only weight that value half as much as the others. What is the value that minimizes ${(x-70)}^{2}+{(x-80)}^{2}+\\frac{1}{2}{(x-120)}^{2}?$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 84.0,
+    "unit": "bpm",
+    "solution": "$84\\;\\text{bpm}$"
+   }
+  },
+  {
+   "id": "e327",
+   "source_id": "fs-id1165042331767",
+   "source_number": "327",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_07_205.jpg",
+    "alt": "A circle is drawn with points A and C on a diameter. There is a point B drawn on the circle such that angle BAC form an acute angle θ."
+   },
+   "prompt": "<p>For the following problems, consider a lifeguard at a circular pool with diameter $40\\;\\text{m}.$ He must reach someone who is drowning on the exact opposite side of the pool, at position $C.$ The lifeguard swims with a speed $v$ and runs around the pool at speed $w=3v.$</p><p>Find a function that measures the total amount of time it takes to reach the drowning person as a function of the swim angle, $\\theta.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$T(\\theta)=\\frac{40\\theta}{3v}+\\frac{40\\;\\cos \\theta}{v}$"
+   }
+  },
+  {
+   "id": "e329",
+   "source_id": "fs-id1165042369580",
+   "source_number": "329",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_07_205.jpg",
+    "alt": "A circle is drawn with points A and C on a diameter. There is a point B drawn on the circle such that angle BAC form an acute angle θ."
+   },
+   "prompt": "<p>A truck uses gas as $g(v)=av+\\frac{b}{v},$ where $v$ represents the speed of the truck and $g$ represents the gallons of fuel per mile. Assuming $a$ and $b$ are positive, at what speed is fuel consumption minimized?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$v=\\sqrt{\\frac{b}{a}}$"
+   }
+  },
+  {
+   "id": "e331",
+   "source_id": "fs-id1165042642766",
+   "source_number": "331",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "open-interval",
+   "prompt": "<p>For the following exercises, consider a limousine that gets $m(v)=\\frac{(120-2v)}{5}\\;\\text{mi/gal}$ at speed $v,$ the chauffeur costs $\\text{＄15/h},$ and gas is $\\text{＄}3.5/\\text{gal}.$</p><p>Find the cheapest driving speed.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "approximately $34\\;\\text{mph}$"
+   }
+  },
+  {
+   "id": "e333",
+   "source_id": "fs-id1165042552153",
+   "source_number": "333",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, consider a pizzeria that sell pizzas for a revenue of $R(x)=ax$ and costs $C(x)=b+cx+d{x}^{2},$ where $x$ represents the number of pizzas $;a\\gt c$.</p><p>Assume that $R(x)=10x$ and $C(x)=2x+{x}^{2}.$ How many pizzas sold maximizes the profit?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.0,
+    "solution": "$4$"
+   }
+  },
+  {
+   "id": "e335",
+   "source_id": "fs-id1165043251103",
+   "source_number": "335",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, consider a wire $4\\;\\text{ft}$ long cut into two pieces. One piece forms a circle with radius $r$ and the other forms a square of side $x.$</p><p>Choose $x$ to maximize the sum of their areas.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.0,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e337",
+   "source_id": "fs-id1165042647584",
+   "source_number": "337",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, consider two nonnegative numbers $x$ and $y$ such that $x+y=10.$ Maximize and minimize the quantities.</p><p>$xy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Maximal: $x=5,y=5;$ minimal: $x=0,y=10$ and $y=0,x=10$"
+   }
+  },
+  {
+   "id": "e339",
+   "source_id": "fs-id1165043108768",
+   "source_number": "339",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, consider two nonnegative numbers $x$ and $y$ such that $x+y=10.$ Maximize and minimize the quantities.</p><p>$y-\\frac{1}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Maximal: $x=1,y=9;$ minimal: none"
+   }
+  },
+  {
+   "id": "e341",
+   "source_id": "fs-id1165042320296",
+   "source_number": "341",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, draw the given optimization problem and solve.</p><p>Find the volume of the largest right circular cylinder that fits in a sphere of radius $1.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.4183991523,
+    "solution": "$\\frac{4\\pi}{3\\sqrt{3}}$"
+   }
+  },
+  {
+   "id": "e343",
+   "source_id": "fs-id1165042374736",
+   "source_number": "343",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, draw the given optimization problem and solve.</p><p>Find the area of the largest rectangle that fits into the triangle with sides $x=0,y=0$ and $\\frac{x}{4}+\\frac{y}{6}=1.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.0,
+    "solution": "$6$"
+   }
+  },
+  {
+   "id": "e345",
+   "source_id": "fs-id1165043426264",
+   "source_number": "345",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, draw the given optimization problem and solve.</p><p>Find the dimensions of the closed cylinder volume $V=16\\pi$ that has the least amount of surface area.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$r=2,h=4$"
+   }
+  },
+  {
+   "id": "e347",
+   "source_id": "fs-id1165042468209",
+   "source_number": "347",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "open-interval",
+   "prompt": "<p>For the following exercises, consider the points on the given graphs. Use a calculator to graph the functions.</p><p><strong>[T]</strong> Where is the line $y=5-2x$ closest to the origin?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(2,1)$"
+   }
+  },
+  {
+   "id": "e349",
+   "source_id": "fs-id1165043174103",
+   "source_number": "349",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "open-interval",
+   "prompt": "<p>For the following exercises, consider the points on the given graphs. Use a calculator to graph the functions.</p><p><strong>[T]</strong> Where is the parabola $y={x}^{2}$ closest to point $(2,0)?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(0.8351,0.6974)$"
+   }
+  },
+  {
+   "id": "e351",
+   "source_id": "fs-id1165042708277",
+   "source_number": "351",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_07_206.jpg",
+    "alt": "A semicircular window is drawn with radius r."
+   },
+   "prompt": "<p>For the following exercises, write an equation that models each related-rates situation. Do not solve.</p><p>A window is composed of a semicircle placed on top of a rectangle. If you have $20\\;\\text{ft}$ of window-framing materials for the outer frame, what is the maximum size of the window you can create? Use $r$ to represent the radius of the semicircle.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{lll}A &= & 20(\\frac{20}{\\pi+4})-2{(\\frac{20}{\\pi+4})}^{2}-\\frac{1}{2}\\pi {(\\frac{20}{\\pi+4})}^{2}\\end{array}$"
+   }
+  },
+  {
+   "id": "e353",
+   "source_id": "fs-id1165042349953",
+   "source_number": "353",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, write an equation that models each related-rates situation. Do not solve.</p><p>You are constructing a box for your cat to sleep in. The plush material for the square bottom of the box costs $\\text{＄}5/{\\text{ft}}^{2}$ and the material for the sides costs $\\text{＄}2/{\\text{ft}}^{2}.$ You need a box with volume $4{\\;\\text{ft}}^{3}.$ Find the dimensions of the box that minimize cost. Use $x$ to represent the length of the side of the box.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$C(x)=5{x}^{2}+\\frac{32}{x}$"
+   }
+  },
+  {
+   "id": "e355",
+   "source_id": "fs-id1165042383908",
+   "source_number": "355",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "prompt": "<p>For the following exercises, write an equation that models each related-rates situation. Do not solve.</p><p>You are the manager of an apartment complex with $50$ units. When you set rent at $\\text{＄}800/\\text{month,}$ all apartments are rented. As you increase rent by $\\text{＄}25/\\text{month,}$ one fewer apartment is rented. Maintenance costs run $\\text{＄}50/\\text{month}$ for each occupied unit. What is the rent that maximizes the total amount of profit?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$P(x)=(50-x)(800+25x-50)$"
+   }
+  },
+  {
+   "id": "r551",
+   "source_id": "fs-id1165042603028",
+   "source_section": "4.10",
+   "source_number": "551",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "closed-interval",
+   "figure": {
+    "src": "/media/ch04/CNX_Calc_Figure_04_10_206.jpg",
+    "alt": "A point is marked eye level, and from this point a right triangle is made with adjacent side length x and opposite side length a, which is the length from the bottom of the picture to the level of the eye. A second right triangle is made from the point marked eye level, with the adjacent side being x and the other side being length b, which is the height of the picture. The angle between the two hypotenuses is marked θ."
+   },
+   "prompt": "<p>The famous Regiomontanus’ problem for angle maximization was proposed during the 15th century. A painting hangs on a wall with the bottom of the painting a distance $a$ feet above eye level, and the top $b$ feet above eye level. What distance $x$ (in feet) from the wall should the viewer stand to maximize the angle subtended by the painting, $\\theta ?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=\\sqrt{ab}$ feet"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp31",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "cp32",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "cp32",
+   "concept": "domain"
+  },
+  {
+   "exercise": "cp33",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "cp34",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "cp35",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "cp35",
+   "concept": "domain"
+  },
+  {
+   "exercise": "cp36",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e311",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e311",
+   "concept": "critical-point"
+  },
+  {
+   "exercise": "e311",
+   "concept": "first-derivative-test"
+  },
+  {
+   "exercise": "e312",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e312",
+   "concept": "location-of-absolute-extrema"
+  },
+  {
+   "exercise": "e313",
+   "concept": "absolute-extremum"
+  },
+  {
+   "exercise": "e314",
+   "concept": "extreme-value-theorem"
+  },
+  {
+   "exercise": "e315",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e317",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e319",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e321",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e323",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e325",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e327",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e329",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e331",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e333",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e333",
+   "concept": "marginal-profit"
+  },
+  {
+   "exercise": "e335",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e337",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e339",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e341",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e343",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e345",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e347",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e349",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e351",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e353",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "e355",
+   "concept": "solving-optimization-problems"
+  },
+  {
+   "exercise": "r551",
+   "concept": "solving-optimization-problems"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-cp35-rectangle",
+   "kind": "correction",
+   "html": "The figure here is a rectangle, not necessarily a square: if $(x,y)$ is its corner in the first quadrant, its area is $A=(2x)(2y)=4xy.$"
+  }
+ ]
+}
