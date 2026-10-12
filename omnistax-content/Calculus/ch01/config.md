@@ -3,7 +3,7 @@
 Status: agreed 2026-10-12 (Chen accepted the proposed list as a whole).
 
 1. Start: `ch01/intro/`, then 1.1–1.5, then the book `intro/` (Preface) page.
-2. Loop: stop for review after 1.1 and after 1.2; then the rest of the chapter at once (prep / sections / chapter pass).
+2. Loop: 1.1 reviewed alone; then (Chen, 2026-10-12) 1.2–1.5, the Preface and the chapter pass at once with no stops, plans reported afterwards.
 3. Preface: one book `intro/` page from Volume 1's m60027, verbatim; Volumes 2 and 3's prefaces are not built.
 4. Cross-volume references: printed words kept; "Section 6.6 of Volume 1" (15.6) links to 6.6 with no note.
 5. Numbering: openstax.org's chapter-wide numbers with the merged chapter prefix; slugs keep the volume's own.
@@ -22,8 +22,8 @@ Status: agreed 2026-10-12 (Chen accepted the proposed list as a whole).
 18. Graphs: every function graph drawn live from the book's function and numbers; graphs an exercise reads from are faithful still copies.
 19. figlib: draggable point on a graph, honest holes/jumps/asymptotes, shading and tangents, built before 1.1.
 20. Photographs: chapter opener and photos an example points at kept; decoration dropped.
-21. Types: function is the main one in ch1; variables and constants ink; f and g on one graph are referents.
-22. Sims (rule 15): offered per plan as one-liners, built when picked. Seeds: line tests, a·f(b(x−c))+d, inverse as reflection, unit circle unrolling into sine, exponential base slider.
+21. Types: 18 since 2026-10-12 (set, point, angle, line, curve, surface, plane, error, matrix added); applied quantities wear their maths type; variables and constants ink; f and g on one graph are referents.
+22. Sims (rule 15): from 1.2 on the plan decides and builds its picks (Chen, 2026-10-12), all reported afterwards. Seeds: line tests, a·f(b(x−c))+d, inverse as reflection, unit circle unrolling into sine, exponential base slider.
 23. 3D: none.
 24. Reference sheets: Grapher, Unit Circle, Integral Calculator (CAS with steps), Appendices A, B, C and Common Maclaurin Series built now; convergence-test chooser and coordinate converter wait for their chapters.
 25. Recolour: rerun `colours:default -- calculus` after Chapter 1's pages exist.

@@ -1,0 +1,1132 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "L",
+   "latex": "L",
+   "macro": "\\kL"
+  },
+  {
+   "sym": "M",
+   "latex": "M",
+   "macro": "\\kM"
+  },
+  {
+   "sym": "h",
+   "latex": "h",
+   "macro": "\\kh"
+  },
+  {
+   "sym": "q",
+   "latex": "q",
+   "macro": "\\kq"
+  },
+  {
+   "sym": "m_sec",
+   "latex": "m_{\\text{sec}}",
+   "macro": "\\kmsec"
+  },
+  {
+   "sym": "v_ave",
+   "latex": "v_{\\text{ave}}",
+   "macro": "\\kvave"
+  },
+  {
+   "sym": "a",
+   "latex": "a"
+  },
+  {
+   "sym": "c",
+   "latex": "c"
+  },
+  {
+   "sym": "z",
+   "latex": "z"
+  },
+  {
+   "sym": "ε",
+   "latex": "\\varepsilon"
+  },
+  {
+   "sym": "δ",
+   "latex": "\\delta"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "rate-of-change",
+   "kind": "idea",
+   "section": "2.1",
+   "name": "Rate of change",
+   "terms": [
+    "rate of change"
+   ],
+   "type": "derivative",
+   "statement": "The rate of change of a function measures how fast its values change as its input changes; for a linear function it is constant and given by the slope, but no single number gives it for a nonlinear function."
+  },
+  {
+   "id": "secant",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Secant",
+   "terms": [
+    "secant",
+    "secant line"
+   ],
+   "type": "line",
+   "statement": "The secant to the function f(x) through the points (a, f(a)) and (x, f(x)) is the line passing through these points; its slope estimates the rate of change of f at a, and the estimate improves as x gets closer to a.",
+   "forms": [
+    {
+     "id": "eq-secant-slope",
+     "latex": "m_{\\text{sec}}=\\frac{f(x)-f(a)}{x-a}"
+    }
+   ]
+  },
+  {
+   "id": "tangent-line",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Tangent",
+   "terms": [
+    "tangent",
+    "tangent line"
+   ],
+   "type": "derivative",
+   "statement": "A tangent line to the graph of a function at a point (a, f(a)) is the line that secant lines through (a, f(a)) approach as they are taken through points on the function with x-values that approach a; its slope measures the rate of change of the function at a, the derivative f′(a)."
+  },
+  {
+   "id": "tangent-problem",
+   "kind": "idea",
+   "section": "2.1",
+   "name": "Tangent problem",
+   "terms": [
+    "tangent problem"
+   ],
+   "type": "derivative",
+   "statement": "The tangent problem asks how to determine the slope of a line tangent to a curve at a point; it is solved by letting x approach a in the slope of the secant line, and it led to differential calculus."
+  },
+  {
+   "id": "differential-calculus",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Differential calculus",
+   "terms": [
+    "differential calculus"
+   ],
+   "statement": "Differential calculus is the field of calculus concerned with the study of derivatives and their applications."
+  },
+  {
+   "id": "average-velocity",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Average velocity",
+   "terms": [
+    "average velocity"
+   ],
+   "symbol": "v_ave",
+   "type": "derivative",
+   "statement": "The average velocity of an object over a time period is the change in its position divided by the length of the time period: for a position s(t), over [a, t] it is (s(t) − s(a))/(t − a), the slope of a secant line to s.",
+   "forms": [
+    {
+     "id": "eq-average-velocity",
+     "latex": "v_{\\text{ave}}=\\frac{s(t)-s(a)}{t-a}"
+    }
+   ]
+  },
+  {
+   "id": "limit",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Limit",
+   "terms": [
+    "limit"
+   ],
+   "symbol": "L",
+   "type": "limit",
+   "statement": "Letting x or t approach a in an expression is called taking a limit; the limit of a function f(x) as x approaches a is the value that f(x) approaches as x approaches a."
+  },
+  {
+   "id": "instantaneous-velocity",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Instantaneous velocity",
+   "terms": [
+    "instantaneous velocity"
+   ],
+   "type": "derivative",
+   "statement": "For a position function s(t), the instantaneous velocity at a time t = a is the value that the average velocities approach on intervals of the form [a, t] and [t, a] as the values of t become closer to a, provided such a value exists."
+  },
+  {
+   "id": "area-problem",
+   "kind": "idea",
+   "section": "2.1",
+   "name": "Area problem",
+   "terms": [
+    "area problem"
+   ],
+   "type": "integral",
+   "statement": "The area problem asks how to find the area between the graph of a function and the x-axis over an interval [a, b]; the area is approximated by the sum of the areas of thin rectangles, and as their widths approach zero the sums approach the area, a limit that underlies the definite integral."
+  },
+  {
+   "id": "integral-calculus",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Integral calculus",
+   "terms": [
+    "integral calculus"
+   ],
+   "statement": "Integral calculus is the study of integrals and their applications."
+  },
+  {
+   "id": "multivariable-calculus",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Multivariable calculus",
+   "terms": [
+    "multivariable calculus"
+   ],
+   "statement": "Multivariable calculus is the study of the calculus of functions of two or more variables, such as motion in space and the volumes of solids under surfaces."
+  },
+  {
+   "id": "intuitive-definition-of-the-limit",
+   "kind": "definition",
+   "section": "2.2",
+   "name": "Intuitive definition of the limit",
+   "terms": [
+    "intuitive definition of the limit"
+   ],
+   "type": "limit",
+   "statement": "Let f(x) be defined at all values in an open interval containing a, with the possible exception of a itself, and let L be a real number. If all values of f(x) approach L as the values of x (≠ a) approach a, then the limit of f(x) as x approaches a is L: as x gets closer to a, f(x) gets closer and stays close to L.",
+   "forms": [
+    {
+     "id": "eq-limit",
+     "latex": "\\lim_{x\\to a}f(x)=L"
+    }
+   ]
+  },
+  {
+   "id": "evaluating-a-limit-with-a-table",
+   "kind": "skill",
+   "section": "2.2",
+   "name": "Evaluating a limit with a table",
+   "statement": "To estimate the limit of f(x) as x approaches a, make a table of functional values for x approaching a from below and from above (a ± 0.1, a ± 0.01, …); if both columns approach a common value L, the limit is L, which a graph traced near a can confirm."
+  },
+  {
+   "id": "two-important-limits",
+   "kind": "result",
+   "section": "2.2",
+   "name": "Two important limits",
+   "statement": "For a real number a and a constant c, the limit of x as x approaches a is a, and the limit of the constant c is c.",
+   "forms": [
+    {
+     "id": "eq-limit-of-x",
+     "latex": "\\lim_{x\\to a}x=a"
+    },
+    {
+     "id": "eq-limit-of-constant",
+     "latex": "\\lim_{x\\to a}c=c"
+    }
+   ]
+  },
+  {
+   "id": "existence-of-a-limit",
+   "kind": "idea",
+   "section": "2.2",
+   "name": "Existence of a limit",
+   "terms": [
+    "does not exist",
+    "DNE"
+   ],
+   "type": "limit",
+   "statement": "For the limit of a function to exist at a point, the functional values must approach a single real number there; if they do not, the limit does not exist (DNE), as for sin(1/x) as x approaches 0."
+  },
+  {
+   "id": "one-sided-limit",
+   "kind": "definition",
+   "section": "2.2",
+   "name": "One-sided limit",
+   "terms": [
+    "one-sided limit",
+    "one-sided limits",
+    "limit from the left",
+    "limit from the right"
+   ],
+   "type": "limit",
+   "statement": "A one-sided limit is a limit taken from either the left or the right: L is the limit of f(x) as x approaches a from the left if the values f(x) approach L as x < a approaches a, and from the right if they approach L as x > a approaches a.",
+   "forms": [
+    {
+     "id": "eq-limit-from-left",
+     "latex": "\\lim_{x\\to a^-}f(x)=L"
+    },
+    {
+     "id": "eq-limit-from-right",
+     "latex": "\\lim_{x\\to a^+}f(x)=L"
+    }
+   ]
+  },
+  {
+   "id": "one-sided-and-two-sided-limits",
+   "kind": "result",
+   "section": "2.2",
+   "name": "Relating one-sided and two-sided limits",
+   "statement": "Let f(x) be defined at all values in an open interval containing a, with the possible exception of a, and let L be a real number. Then the limit of f(x) as x approaches a is L if and only if the limits from the left and from the right are both L.",
+   "forms": [
+    {
+     "id": "eq-one-and-two-sided-limits",
+     "latex": "\\lim_{x\\to a}f(x)=L\\;\\text{if and only if}\\;\\lim_{x\\to a^-}f(x)=L\\;\\text{and}\\;\\lim_{x\\to a^+}f(x)=L"
+    }
+   ]
+  },
+  {
+   "id": "infinite-limit",
+   "kind": "definition",
+   "section": "2.2",
+   "name": "Infinite limit",
+   "terms": [
+    "infinite limit",
+    "infinite limits"
+   ],
+   "type": "limit",
+   "statement": "A function has an infinite limit at a point a if its values increase or decrease without bound as x approaches a, from the left, from the right or from both sides; writing that the limit is +∞ or −∞ describes this behavior and does not assert that a limit exists.",
+   "forms": [
+    {
+     "id": "eq-infinite-limit-left-plus",
+     "latex": "\\lim_{x\\to a^-}f(x)=+\\infty"
+    },
+    {
+     "id": "eq-infinite-limit-left-minus",
+     "latex": "\\lim_{x\\to a^-}f(x)=-\\infty"
+    },
+    {
+     "id": "eq-infinite-limit-right-plus",
+     "latex": "\\lim_{x\\to a^+}f(x)=+\\infty"
+    },
+    {
+     "id": "eq-infinite-limit-right-minus",
+     "latex": "\\lim_{x\\to a^+}f(x)=-\\infty"
+    },
+    {
+     "id": "eq-infinite-limit-plus",
+     "latex": "\\lim_{x\\to a}f(x)=+\\infty"
+    },
+    {
+     "id": "eq-infinite-limit-minus",
+     "latex": "\\lim_{x\\to a}f(x)=-\\infty"
+    }
+   ]
+  },
+  {
+   "id": "infinite-limits-from-positive-integers",
+   "kind": "result",
+   "section": "2.2",
+   "name": "Infinite limits from positive integers",
+   "statement": "For a positive integer n, 1/(x − a)ⁿ has an infinite limit at a: +∞ from both sides if n is even; +∞ from the right and −∞ from the left if n is odd.",
+   "forms": [
+    {
+     "id": "eq-infinite-limit-even-power",
+     "latex": "\\lim_{x\\to a}\\frac{1}{(x-a)^n}=+\\infty"
+    },
+    {
+     "id": "eq-infinite-limit-odd-power-right",
+     "latex": "\\lim_{x\\to a^+}\\frac{1}{(x-a)^n}=+\\infty"
+    },
+    {
+     "id": "eq-infinite-limit-odd-power-left",
+     "latex": "\\lim_{x\\to a^-}\\frac{1}{(x-a)^n}=-\\infty"
+    }
+   ]
+  },
+  {
+   "id": "vertical-asymptote",
+   "kind": "definition",
+   "section": "2.2",
+   "name": "Vertical asymptote",
+   "terms": [
+    "vertical asymptote"
+   ],
+   "type": "line",
+   "statement": "The line x = a is a vertical asymptote of f(x) if the limit of f(x) as x approaches a from the left, from the right or from both sides is +∞ or −∞."
+  },
+  {
+   "id": "sum-law-for-limits",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Sum law for limits",
+   "terms": [
+    "sum law for limits"
+   ],
+   "statement": "Where the limits of f(x) and g(x) as x approaches a are L and M. The limit of a sum is the sum of the limits: L + M.",
+   "forms": [
+    {
+     "id": "eq-sum-law",
+     "latex": "\\lim_{x\\to a}(f(x)+g(x))=\\lim_{x\\to a}f(x)+\\lim_{x\\to a}g(x)=L+M"
+    }
+   ]
+  },
+  {
+   "id": "difference-law-for-limits",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Difference law for limits",
+   "terms": [
+    "difference law for limits"
+   ],
+   "statement": "Where the limits of f(x) and g(x) as x approaches a are L and M. The limit of a difference is the difference of the limits: L − M.",
+   "forms": [
+    {
+     "id": "eq-difference-law",
+     "latex": "\\lim_{x\\to a}(f(x)-g(x))=\\lim_{x\\to a}f(x)-\\lim_{x\\to a}g(x)=L-M"
+    }
+   ]
+  },
+  {
+   "id": "constant-multiple-law-for-limits",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Constant multiple law for limits",
+   "terms": [
+    "constant multiple law for limits"
+   ],
+   "statement": "Where the limits of f(x) and g(x) as x approaches a are L and M. The limit of a constant c times a function is c times its limit: cL.",
+   "forms": [
+    {
+     "id": "eq-constant-multiple-law",
+     "latex": "\\lim_{x\\to a}cf(x)=c\\cdot\\lim_{x\\to a}f(x)=cL"
+    }
+   ]
+  },
+  {
+   "id": "product-law-for-limits",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Product law for limits",
+   "terms": [
+    "product law for limits"
+   ],
+   "statement": "Where the limits of f(x) and g(x) as x approaches a are L and M. The limit of a product is the product of the limits: L · M.",
+   "forms": [
+    {
+     "id": "eq-product-law",
+     "latex": "\\lim_{x\\to a}(f(x)\\cdot g(x))=\\lim_{x\\to a}f(x)\\cdot\\lim_{x\\to a}g(x)=L\\cdot M"
+    }
+   ]
+  },
+  {
+   "id": "quotient-law-for-limits",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Quotient law for limits",
+   "terms": [
+    "quotient law for limits"
+   ],
+   "statement": "Where the limits of f(x) and g(x) as x approaches a are L and M. The limit of a quotient is the quotient of the limits, L/M, provided M ≠ 0.",
+   "forms": [
+    {
+     "id": "eq-quotient-law",
+     "latex": "\\lim_{x\\to a}\\frac{f(x)}{g(x)}=\\frac{\\lim_{x\\to a}f(x)}{\\lim_{x\\to a}g(x)}=\\frac{L}{M}"
+    }
+   ]
+  },
+  {
+   "id": "power-law-for-limits",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Power law for limits",
+   "terms": [
+    "power law for limits"
+   ],
+   "statement": "Where the limits of f(x) and g(x) as x approaches a are L and M. The limit of the nth power of a function is the nth power of its limit, Lⁿ, for every positive integer n.",
+   "forms": [
+    {
+     "id": "eq-power-law",
+     "latex": "\\lim_{x\\to a}(f(x))^n=\\left(\\lim_{x\\to a}f(x)\\right)^n=L^n"
+    }
+   ]
+  },
+  {
+   "id": "root-law-for-limits",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Root law for limits",
+   "terms": [
+    "root law for limits"
+   ],
+   "statement": "Where the limits of f(x) and g(x) as x approaches a are L and M. The limit of the nth root of a function is the nth root of its limit, for all L if n is odd and for L ≥ 0 if n is even and f(x) ≥ 0.",
+   "forms": [
+    {
+     "id": "eq-root-law",
+     "latex": "\\lim_{x\\to a}\\sqrt[n]{f(x)}=\\sqrt[n]{\\lim_{x\\to a}f(x)}=\\sqrt[n]{L}"
+    }
+   ]
+  },
+  {
+   "id": "limit-laws",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Limit laws",
+   "terms": [
+    "limit laws"
+   ],
+   "statement": "The limit laws are the individual properties of limits: for f(x) and g(x) defined for all x ≠ a over some open interval containing a, with limits L and M at a, and a constant c, the limit of a sum, difference, constant multiple, product, quotient (M ≠ 0), power or root is that combination of L and M."
+  },
+  {
+   "id": "limits-of-polynomial-and-rational-functions",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Limits of polynomial and rational functions",
+   "statement": "For polynomials p(x) and q(x) and a real number a, the limit of p(x) as x approaches a is p(a), and the limit of p(x)/q(x) is p(a)/q(a) when q(a) ≠ 0: such limits are found by direct substitution.",
+   "forms": [
+    {
+     "id": "eq-limit-of-polynomial",
+     "latex": "\\lim_{x\\to a}p(x)=p(a)"
+    },
+    {
+     "id": "eq-limit-of-rational-function",
+     "latex": "\\lim_{x\\to a}\\frac{p(x)}{q(x)}=\\frac{p(a)}{q(a)}"
+    }
+   ]
+  },
+  {
+   "id": "limits-of-equal-functions",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Limits of functions equal near a",
+   "statement": "If f(x) = g(x) for all x ≠ a over some open interval containing a, then the limits of f(x) and g(x) as x approaches a are equal."
+  },
+  {
+   "id": "indeterminate-form",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "Indeterminate form 0/0",
+   "terms": [
+    "indeterminate form"
+   ],
+   "statement": "A limit of f(x)/g(x) as x approaches a where the limits of f(x) and g(x) are both 0 has the indeterminate form 0/0: substitution gives no value, and the limit may still exist."
+  },
+  {
+   "id": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "kind": "skill",
+   "section": "2.3",
+   "name": "Evaluating a 0/0 limit",
+   "statement": "To evaluate a limit of f(x)/g(x) with the indeterminate form 0/0, find a function equal to it for all x ≠ a near a, by factoring and canceling, multiplying by a conjugate where a square root is involved, or simplifying a complex fraction, then apply the limit laws."
+  },
+  {
+   "id": "squeeze-theorem",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Squeeze theorem",
+   "terms": [
+    "squeeze theorem"
+   ],
+   "statement": "Let f(x), g(x) and h(x) be defined for all x ≠ a over an open interval containing a. If f(x) ≤ g(x) ≤ h(x) for all x ≠ a in that interval and the limits of f(x) and h(x) as x approaches a are both the real number L, then the limit of g(x) is L.",
+   "forms": [
+    {
+     "id": "eq-squeeze-bounds",
+     "latex": "f(x)\\le g(x)\\le h(x)"
+    },
+    {
+     "id": "eq-squeeze-limits",
+     "latex": "\\lim_{x\\to a}f(x)=L=\\lim_{x\\to a}h(x)"
+    }
+   ]
+  },
+  {
+   "id": "important-trigonometric-limits",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Important trigonometric limits",
+   "statement": "As θ approaches 0, sin θ approaches 0, cos θ approaches 1, sin θ/θ approaches 1 and (1 − cos θ)/θ approaches 0; the squeeze theorem on the unit circle, where sin θ < θ < tan θ for 0 < θ < π/2, establishes them.",
+   "forms": [
+    {
+     "id": "eq-limit-sin",
+     "latex": "\\lim_{\\theta\\to 0}\\sin\\theta=0"
+    },
+    {
+     "id": "eq-limit-cos",
+     "latex": "\\lim_{\\theta\\to 0}\\cos\\theta=1"
+    },
+    {
+     "id": "eq-limit-sin-over-theta",
+     "latex": "\\lim_{\\theta\\to 0}\\frac{\\sin\\theta}{\\theta}=1"
+    },
+    {
+     "id": "eq-limit-one-minus-cos-over-theta",
+     "latex": "\\lim_{\\theta\\to 0}\\frac{1-\\cos\\theta}{\\theta}=0"
+    }
+   ]
+  },
+  {
+   "id": "continuity-at-a-point",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "Continuity at a point",
+   "terms": [
+    "continuity at a point",
+    "continuous at a point"
+   ],
+   "statement": "A function f(x) is continuous at a point a if and only if f(a) is defined, the limit of f(x) as x approaches a exists, and that limit equals f(a); intuitively, its graph has no break at a.",
+   "forms": [
+    {
+     "id": "eq-continuity",
+     "latex": "\\lim_{x\\to a}f(x)=f(a)"
+    }
+   ]
+  },
+  {
+   "id": "discontinuity-at-a-point",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "Discontinuity at a point",
+   "terms": [
+    "discontinuity at a point",
+    "discontinuous at a point"
+   ],
+   "statement": "A function is discontinuous at a point, or has a discontinuity at the point, if it is not continuous there."
+  },
+  {
+   "id": "determining-continuity-at-a-point",
+   "kind": "skill",
+   "section": "2.4",
+   "name": "Determining continuity at a point",
+   "statement": "To decide whether f is continuous at a: check that f(a) is defined; compute the limit of f(x) as x approaches a, through the one-sided limits if needed, and check that it exists; compare it with f(a). A failure at any step means f is not continuous at a."
+  },
+  {
+   "id": "continuity-of-polynomials-and-rational-functions",
+   "kind": "result",
+   "section": "2.4",
+   "name": "Continuity of polynomials and rational functions",
+   "statement": "Polynomials and rational functions are continuous at every point in their domains."
+  },
+  {
+   "id": "removable-discontinuity",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "Removable discontinuity",
+   "terms": [
+    "removable discontinuity"
+   ],
+   "statement": "A function f discontinuous at a has a removable discontinuity at a if the limit of f(x) as x approaches a exists; its graph has a hole there."
+  },
+  {
+   "id": "jump-discontinuity",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "Jump discontinuity",
+   "terms": [
+    "jump discontinuity"
+   ],
+   "statement": "A function f discontinuous at a has a jump discontinuity at a if the limits of f(x) from the left and from the right both exist as real numbers but are not equal."
+  },
+  {
+   "id": "infinite-discontinuity",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "Infinite discontinuity",
+   "terms": [
+    "infinite discontinuity"
+   ],
+   "statement": "A function f discontinuous at a has an infinite discontinuity at a if its limit from the left or from the right is +∞ or −∞; it lies at a vertical asymptote."
+  },
+  {
+   "id": "continuity-from-the-right",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "Continuity from the right",
+   "terms": [
+    "continuous from the right",
+    "continuity from the right"
+   ],
+   "statement": "A function f(x) is continuous from the right at a if the limit of f(x) as x approaches a from the right is f(a).",
+   "forms": [
+    {
+     "id": "eq-continuity-from-right",
+     "latex": "\\lim_{x\\to a^+}f(x)=f(a)"
+    }
+   ]
+  },
+  {
+   "id": "continuity-from-the-left",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "Continuity from the left",
+   "terms": [
+    "continuous from the left",
+    "continuity from the left"
+   ],
+   "statement": "A function f(x) is continuous from the left at a if the limit of f(x) as x approaches a from the left is f(a).",
+   "forms": [
+    {
+     "id": "eq-continuity-from-left",
+     "latex": "\\lim_{x\\to a^-}f(x)=f(a)"
+    }
+   ]
+  },
+  {
+   "id": "continuity-over-an-interval",
+   "kind": "definition",
+   "section": "2.4",
+   "name": "Continuity over an interval",
+   "terms": [
+    "continuity over an interval",
+    "continuous over an interval"
+   ],
+   "statement": "A function is continuous over an open interval if it is continuous at every point in it, and over a closed interval [a, b] if it is continuous at every point of (a, b), continuous from the right at a and from the left at b; its graph can then be traced without lifting the pencil."
+  },
+  {
+   "id": "composite-function-theorem",
+   "kind": "result",
+   "section": "2.4",
+   "name": "Composite function theorem",
+   "statement": "If f(x) is continuous at L and the limit of g(x) as x approaches a is L, then the limit of f(g(x)) as x approaches a is f(L).",
+   "forms": [
+    {
+     "id": "eq-composite-function-theorem",
+     "latex": "\\lim_{x\\to a}f(g(x))=f\\left(\\lim_{x\\to a}g(x)\\right)=f(L)"
+    }
+   ]
+  },
+  {
+   "id": "continuity-of-trigonometric-functions",
+   "kind": "result",
+   "section": "2.4",
+   "name": "Continuity of trigonometric functions",
+   "statement": "Trigonometric functions are continuous over their entire domains."
+  },
+  {
+   "id": "intermediate-value-theorem",
+   "kind": "result",
+   "section": "2.4",
+   "name": "Intermediate Value Theorem",
+   "terms": [
+    "Intermediate Value Theorem",
+    "IVT"
+   ],
+   "statement": "Let f be continuous over a closed, bounded interval [a, b]. If z is any real number between f(a) and f(b), then there is a number c in [a, b] satisfying f(c) = z."
+  },
+  {
+   "id": "epsilon-delta-definition-of-the-limit",
+   "kind": "definition",
+   "section": "2.5",
+   "name": "Epsilon-delta definition of the limit",
+   "terms": [
+    "epsilon-delta definition of the limit"
+   ],
+   "type": "limit",
+   "statement": "Let f(x) be defined for all x ≠ a over an open interval containing a, and let L be a real number. Then the limit of f(x) as x approaches a is L if, for every ε > 0, there exists a δ > 0 such that if 0 < |x − a| < δ, then |f(x) − L| < ε.",
+   "forms": [
+    {
+     "id": "eq-epsilon-delta",
+     "latex": "0<|x-a|<\\delta\\;\\Rightarrow\\;|f(x)-L|<\\varepsilon"
+    },
+    {
+     "id": "eq-epsilon-band",
+     "latex": "|f(x)-L|<\\varepsilon\\iff L-\\varepsilon<f(x)<L+\\varepsilon"
+    },
+    {
+     "id": "eq-delta-band",
+     "latex": "0<|x-a|<\\delta\\iff a-\\delta<x<a+\\delta,\\;x\\ne a"
+    }
+   ]
+  },
+  {
+   "id": "proving-a-limit-with-epsilon-delta",
+   "kind": "skill",
+   "section": "2.5",
+   "name": "Proving a limit with epsilon and delta",
+   "statement": "To prove that the limit of a specific f(x) as x approaches a is L: let ε > 0; choose δ, found algebraically or geometrically from |f(x) − L| < ε; assume 0 < |x − a| < δ; use it to show |f(x) − L| < ε; conclude that the limit is L."
+  },
+  {
+   "id": "triangle-inequality",
+   "kind": "definition",
+   "section": "2.5",
+   "name": "Triangle inequality",
+   "terms": [
+    "triangle inequality"
+   ],
+   "statement": "The triangle inequality states that if a and b are any real numbers, then |a + b| ≤ |a| + |b|.",
+   "forms": [
+    {
+     "id": "eq-triangle-inequality",
+     "latex": "|a+b|\\le|a|+|b|"
+    }
+   ]
+  },
+  {
+   "id": "limit-that-does-not-exist",
+   "kind": "definition",
+   "section": "2.5",
+   "name": "A limit that does not exist",
+   "statement": "The limit of f(x) as x approaches a does not exist if for every real number L there exists ε > 0 so that for all δ > 0 there is an x satisfying 0 < |x − a| < δ with |f(x) − L| ≥ ε."
+  },
+  {
+   "id": "epsilon-delta-one-sided-limits",
+   "kind": "definition",
+   "section": "2.5",
+   "name": "Epsilon-delta one-sided limits",
+   "type": "limit",
+   "statement": "The limit of f(x) as x approaches a from the right is L if for every ε > 0 there exists δ > 0 such that 0 < x − a < δ implies |f(x) − L| < ε; from the left, −δ < x − a < 0 replaces 0 < x − a < δ.",
+   "forms": [
+    {
+     "id": "eq-epsilon-delta-right",
+     "latex": "0<x-a<\\delta\\;\\Rightarrow\\;|f(x)-L|<\\varepsilon"
+    },
+    {
+     "id": "eq-epsilon-delta-left",
+     "latex": "-\\delta<x-a<0\\;\\Rightarrow\\;|f(x)-L|<\\varepsilon"
+    }
+   ]
+  },
+  {
+   "id": "epsilon-delta-infinite-limits",
+   "kind": "definition",
+   "section": "2.5",
+   "name": "Epsilon-delta infinite limits",
+   "type": "limit",
+   "statement": "The limit of f(x) as x approaches a is +∞ if for every M > 0 there exists δ > 0 such that 0 < |x − a| < δ implies f(x) > M, and −∞ if it implies f(x) < −M.",
+   "forms": [
+    {
+     "id": "eq-epsilon-delta-infinite-plus",
+     "latex": "0<|x-a|<\\delta\\;\\Rightarrow\\;f(x)>M"
+    },
+    {
+     "id": "eq-epsilon-delta-infinite-minus",
+     "latex": "0<|x-a|<\\delta\\;\\Rightarrow\\;f(x)<-M"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "rate-of-change",
+   "prereq": "slope"
+  },
+  {
+   "concept": "secant",
+   "prereq": "slope"
+  },
+  {
+   "concept": "secant",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "tangent-line",
+   "prereq": "secant"
+  },
+  {
+   "concept": "tangent-line",
+   "prereq": "limit"
+  },
+  {
+   "concept": "tangent-problem",
+   "prereq": "tangent-line"
+  },
+  {
+   "concept": "differential-calculus",
+   "prereq": "tangent-problem"
+  },
+  {
+   "concept": "average-velocity",
+   "prereq": "function"
+  },
+  {
+   "concept": "limit",
+   "prereq": "function"
+  },
+  {
+   "concept": "instantaneous-velocity",
+   "prereq": "average-velocity"
+  },
+  {
+   "concept": "instantaneous-velocity",
+   "prereq": "limit"
+  },
+  {
+   "concept": "area-problem",
+   "prereq": "graph-of-a-function"
+  },
+  {
+   "concept": "area-problem",
+   "prereq": "limit"
+  },
+  {
+   "concept": "integral-calculus",
+   "prereq": "area-problem"
+  },
+  {
+   "concept": "multivariable-calculus",
+   "prereq": "function"
+  },
+  {
+   "concept": "intuitive-definition-of-the-limit",
+   "prereq": "limit"
+  },
+  {
+   "concept": "intuitive-definition-of-the-limit",
+   "prereq": "interval-notation"
+  },
+  {
+   "concept": "evaluating-a-limit-with-a-table",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "evaluating-a-limit-with-a-table",
+   "prereq": "table-of-values"
+  },
+  {
+   "concept": "two-important-limits",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "existence-of-a-limit",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "one-sided-limit",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "one-sided-and-two-sided-limits",
+   "prereq": "one-sided-limit"
+  },
+  {
+   "concept": "infinite-limit",
+   "prereq": "one-sided-limit"
+  },
+  {
+   "concept": "infinite-limits-from-positive-integers",
+   "prereq": "infinite-limit"
+  },
+  {
+   "concept": "vertical-asymptote",
+   "prereq": "infinite-limit"
+  },
+  {
+   "concept": "limit-laws",
+   "prereq": "sum-law-for-limits"
+  },
+  {
+   "concept": "limit-laws",
+   "prereq": "difference-law-for-limits"
+  },
+  {
+   "concept": "limit-laws",
+   "prereq": "constant-multiple-law-for-limits"
+  },
+  {
+   "concept": "limit-laws",
+   "prereq": "product-law-for-limits"
+  },
+  {
+   "concept": "limit-laws",
+   "prereq": "quotient-law-for-limits"
+  },
+  {
+   "concept": "limit-laws",
+   "prereq": "power-law-for-limits"
+  },
+  {
+   "concept": "limit-laws",
+   "prereq": "root-law-for-limits"
+  },
+  {
+   "concept": "limits-of-polynomial-and-rational-functions",
+   "prereq": "limit-laws"
+  },
+  {
+   "concept": "limits-of-polynomial-and-rational-functions",
+   "prereq": "two-important-limits"
+  },
+  {
+   "concept": "limits-of-polynomial-and-rational-functions",
+   "prereq": "rational-function"
+  },
+  {
+   "concept": "limits-of-equal-functions",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "indeterminate-form",
+   "prereq": "quotient-law-for-limits"
+  },
+  {
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "prereq": "indeterminate-form"
+  },
+  {
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "prereq": "limits-of-equal-functions"
+  },
+  {
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "prereq": "limit-laws"
+  },
+  {
+   "concept": "squeeze-theorem",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "important-trigonometric-limits",
+   "prereq": "squeeze-theorem"
+  },
+  {
+   "concept": "important-trigonometric-limits",
+   "prereq": "trigonometric-functions"
+  },
+  {
+   "concept": "continuity-at-a-point",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "discontinuity-at-a-point",
+   "prereq": "continuity-at-a-point"
+  },
+  {
+   "concept": "determining-continuity-at-a-point",
+   "prereq": "continuity-at-a-point"
+  },
+  {
+   "concept": "determining-continuity-at-a-point",
+   "prereq": "one-sided-and-two-sided-limits"
+  },
+  {
+   "concept": "continuity-of-polynomials-and-rational-functions",
+   "prereq": "continuity-at-a-point"
+  },
+  {
+   "concept": "continuity-of-polynomials-and-rational-functions",
+   "prereq": "limits-of-polynomial-and-rational-functions"
+  },
+  {
+   "concept": "removable-discontinuity",
+   "prereq": "discontinuity-at-a-point"
+  },
+  {
+   "concept": "jump-discontinuity",
+   "prereq": "discontinuity-at-a-point"
+  },
+  {
+   "concept": "jump-discontinuity",
+   "prereq": "one-sided-limit"
+  },
+  {
+   "concept": "infinite-discontinuity",
+   "prereq": "discontinuity-at-a-point"
+  },
+  {
+   "concept": "infinite-discontinuity",
+   "prereq": "infinite-limit"
+  },
+  {
+   "concept": "continuity-from-the-right",
+   "prereq": "continuity-at-a-point"
+  },
+  {
+   "concept": "continuity-from-the-right",
+   "prereq": "one-sided-limit"
+  },
+  {
+   "concept": "continuity-from-the-left",
+   "prereq": "continuity-at-a-point"
+  },
+  {
+   "concept": "continuity-from-the-left",
+   "prereq": "one-sided-limit"
+  },
+  {
+   "concept": "continuity-over-an-interval",
+   "prereq": "continuity-from-the-right"
+  },
+  {
+   "concept": "continuity-over-an-interval",
+   "prereq": "continuity-from-the-left"
+  },
+  {
+   "concept": "composite-function-theorem",
+   "prereq": "continuity-at-a-point"
+  },
+  {
+   "concept": "composite-function-theorem",
+   "prereq": "composite-function"
+  },
+  {
+   "concept": "continuity-of-trigonometric-functions",
+   "prereq": "composite-function-theorem"
+  },
+  {
+   "concept": "continuity-of-trigonometric-functions",
+   "prereq": "important-trigonometric-limits"
+  },
+  {
+   "concept": "continuity-of-trigonometric-functions",
+   "prereq": "addition-and-subtraction-formulas"
+  },
+  {
+   "concept": "intermediate-value-theorem",
+   "prereq": "continuity-over-an-interval"
+  },
+  {
+   "concept": "epsilon-delta-definition-of-the-limit",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "proving-a-limit-with-epsilon-delta",
+   "prereq": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "concept": "triangle-inequality",
+   "prereq": "absolute-value-function"
+  },
+  {
+   "concept": "limit-that-does-not-exist",
+   "prereq": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "concept": "limit-that-does-not-exist",
+   "prereq": "existence-of-a-limit"
+  },
+  {
+   "concept": "epsilon-delta-one-sided-limits",
+   "prereq": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "concept": "epsilon-delta-one-sided-limits",
+   "prereq": "one-sided-limit"
+  },
+  {
+   "concept": "epsilon-delta-infinite-limits",
+   "prereq": "epsilon-delta-definition-of-the-limit"
+  },
+  {
+   "concept": "epsilon-delta-infinite-limits",
+   "prereq": "infinite-limit"
+  },
+  {
+   "concept": "sum-law-for-limits",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "difference-law-for-limits",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "constant-multiple-law-for-limits",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "product-law-for-limits",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "quotient-law-for-limits",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "power-law-for-limits",
+   "prereq": "intuitive-definition-of-the-limit"
+  },
+  {
+   "concept": "root-law-for-limits",
+   "prereq": "intuitive-definition-of-the-limit"
+  }
+ ]
+}
