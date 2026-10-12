@@ -1,0 +1,96 @@
+<p id="polar-area-intro">In the rectangular coordinate system, the <span data-concept="definite-integral">definite integral</span> provides a way to calculate the area under a curve. In particular, if we have a function $y=\kf(x)$ defined from $x=a$ to $x=b$ where $\kf(x)\gt 0$ on this interval, the area between the curve and the <em>x</em>-axis is given by $\kA=\int_a^{b}\kf(x)\;dx .$ This fact, along with the formula for evaluating this integral, is summarized in the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span>. Similarly, the <span data-concept="arc-length">arc length</span> of this curve is given by $\kL=\int_a^{b}\sqrt{1+{(\kfprime(x))}^{2}}dx .$ In this section, we study analogous formulas for area and <span data-concept="arc-length">arc length</span> in the <span data-concept="polar-coordinate-system">polar coordinate system</span>.</p>
+<section id="areas">
+<h2>Areas of Regions Bounded by Polar Curves</h2>
+<p class="cite-target">We have studied the formulas for area under a curve defined in rectangular coordinates and parametrically defined curves. Now we turn our attention to deriving a formula for the area of a region bounded by a <span data-concept="polar-equation">polar curve</span>. Recall that the proof of the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span> used the concept of a <span data-concept="riemann-sum">Riemann sum</span> to approximate the area under a curve by using rectangles. For <span data-concept="polar-equation">polar curves</span> we use the <span data-concept="riemann-sum">Riemann sum</span> again, but the rectangles are replaced by <span data-concept="area-of-a-sector">sectors</span> of a circle.</p>
+<p id="partition">Consider a curve defined by the function $r=\kf(\ktheta ),$ where $\alpha \le \ktheta \le \beta .$ Our first step is to partition the interval $[\alpha ,\beta ]$ into <em>n</em> equal-width subintervals. The width of each subinterval is given by the formula $\Delta \ktheta =(\beta -\alpha )/n,$ and the <em>i</em>th partition point ${\ktheta}_{i}$ is given by the formula ${\ktheta}_{i}=\alpha +i\Delta \ktheta .$ Each partition point $\ktheta ={\ktheta}_{i}$ defines a line with slope $\tan {\ktheta}_{i}$ passing through the <span data-concept="pole">pole</span> as shown in the following graph.</p>
+<figure class="sim" id="sim-polar-sectors" data-figure="11.39" data-original="/media/ch11/CNX_Calc_Figure_11_04_001.jpg" data-original-caption="A partition of a typical curve in polar coordinates.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.39</span><span>A partition of a curve $r=\kf(\ktheta)$ in polar coordinates into $n$ equal angles between the radial lines $\ktheta=\alpha$ and $\ktheta=\beta,$ each arc replaced by a <span data-concept="area-of-a-sector">sector</span> of radius $r_{i}=\kf(\ktheta_{i}).$ Raise $n$ and the sum of the sectors’ areas closes on the area under the curve; the curve here stands in for the book’s typical one.</span></div>
+</figure>
+<p>The line segments are connected by arcs of constant radius. This defines <span data-concept="area-of-a-sector">sectors</span> whose areas can be calculated by using a geometric formula. The area of each <span data-concept="area-of-a-sector">sector</span> is then used to approximate the area between successive line segments. We then sum the areas of the <span data-concept="area-of-a-sector">sectors</span> to approximate the total area. This approach gives a <span data-concept="riemann-sum">Riemann sum</span> approximation for the total area. The formula for the area of a <span data-concept="area-of-a-sector">sector</span> of a circle is illustrated in the following figure.</p>
+<figure class="sim" id="sim-sector" data-figure="11.40" data-original="/media/ch11/CNX_Calc_Figure_11_04_002.jpg" data-original-caption="The area of a sector of a circle is given by A=1/2θ r².">
+  <div class="sim-head"><span class="eyebrow">Figure 11.40</span><span>The area of a <span data-concept="area-of-a-sector">sector</span> of a circle is given by $\kA=\frac{1}{2}\ktheta r^{2}$: the sector is the fraction $\frac{\ktheta}{2\pi}$ of the circle’s area $\pi r^{2}.$ Change the angle and the radius.</span></div>
+</figure>
+<p id="sector-term">Recall that the area of a circle is $\kA=\pi r^{2}.$ When measuring angles in radians, 360 degrees is equal to $2\pi$ radians. Therefore a fraction of a circle can be measured by the central angle $\ktheta .$ The fraction of the circle is given by $\frac{\ktheta}{2\pi},$ so the area of the <span data-concept="area-of-a-sector">sector</span> is this fraction multiplied by the total area:</p>
+$$\kA=(\frac{\ktheta}{2\pi})\;\pi r^{2}=\frac{1}{2}\ktheta r^{2}.$$
+<p>Since the radius of a typical <span data-concept="area-of-a-sector">sector</span> in Figure 11.39 is given by $r_{i}=\kf({\ktheta}_{i}),$ the area of the <em>i</em>th <span data-concept="area-of-a-sector">sector</span> is given by</p>
+$$\kA_{i}=\frac{1}{2}(\Delta \ktheta ){(\kf({\ktheta}_{i}))}^{2}.$$
+<p>Therefore a <span data-concept="riemann-sum">Riemann sum</span> that approximates the area is given by</p>
+$$\kA_{n}=\sum_{i=1}^{n} \kA_{i} \approx \sum_{i=1}^{n} \frac{1}{2}(\Delta \ktheta ){(\kf({\ktheta}_{i}))}^{2} .$$
+<p id="polar-area-limit">We take the limit as $n\to \infty$ to get the exact area:</p>
+$$\kA=\lim_{n\to \infty}\kA_{n}=\frac{1}{2}\int_{\alpha}^{\beta }{(\kf(\ktheta ))}^{2}d\theta .$$
+<p>This gives the following theorem.</p>
+<div class="note" id="fs-id1167794048381">
+<div class="eyebrow">Theorem</div>
+<h3>Area of a Region Bounded by a Polar Curve</h3>
+<p>Suppose $f$ is continuous and nonnegative on the interval $\alpha \le \ktheta \le β$ with $0\lt β-\alpha \le 2\pi .$ The area of the region bounded by the graph of $r=\kf(\ktheta )$ between the radial lines $\ktheta =\alpha$ and $\ktheta =β$ is</p>
+<div class="equation" id="fs-id1167793300455">$$\kA=\frac{1}{2}\int_{\alpha}^{\beta }{[\kf(\ktheta )]}^{2}d\theta =\frac{1}{2}\int_{\alpha}^{\beta }r^{2}d\theta .\tag{11.9}$$</div>
+</div>
+<div class="example" id="fs-id1167793900982">
+<h3>Example 11.16 · Finding an Area of a Polar Region</h3>
+<p>Find the area of one petal of the <span data-concept="rose">rose</span> defined by the equation $r=3\;\sin (2\ktheta ).$</p>
+<h4>Solution</h4>
+<p>The graph of $r=3\;\sin (2\ktheta )$ follows.</p>
+<figure class="sim" id="sim-petal-area" data-figure="11.41" data-original="/media/ch11/CNX_Calc_Figure_11_04_003.jpg" data-original-caption="The graph of r=3 sin (2θ ).">
+  <div class="sim-head"><span class="eyebrow">Figure 11.41</span><span>The graph of $r=3\sin(2\ktheta),$ with the area swept by the ray from $\ktheta=0$: at $\ktheta=\frac{\pi}{2}$ the ray has swept the first petal, of area $\frac{9\pi}{8}.$</span></div>
+</figure>
+<p>When $\ktheta =0$ we have $r=3\;\sin (2(0))=0.$ The next value for which $r=0$ is $\ktheta =\pi /2.$ This can be seen by solving the equation $3\;\sin (2\ktheta )=0$ for $\ktheta .$ Therefore the values $\ktheta =0$ to $\ktheta =\pi /2$ trace out the first petal of the <span data-concept="rose">rose</span>. To find the area inside this petal, use <a href="#fs-id1167793300455">Equation 11.9</a> with $\kf(\ktheta )=3\;\sin (2\ktheta ),$ $\alpha =0,$ and $β=\pi /2\text{:}$</p>
+$$\begin{array}{rl}A & =\frac{1}{2}\int_{\alpha}^{\beta }{[\kf(\ktheta )]}^{2}d\theta \\ & =\frac{1}{2}\int_0^{\pi /2}{[3\;\sin (2\ktheta )]}^{2}d\theta \\ & =\frac{1}{2}\int_0^{\pi /2}9\;{\sin }^{2}(2\ktheta )\;d\theta .\end{array}$$
+<p>To evaluate this integral, use the formula ${\sin }^{2}\alpha =(1-\cos (2\alpha ))/2$ with $\alpha =2\ktheta \text{:}$</p>
+$$\begin{array}{rl}A & =\frac{1}{2}\int_0^{\pi /2}9\;{\sin }^{2}(2\ktheta )\;d\theta \\ & =\frac{9}{2}\int_0^{\pi /2}\frac{(1-\cos (4\ktheta ))}{2}d\theta \\ & =\frac{9}{4}(\int_0^{\pi /2}1-\cos (4\ktheta )\;d\theta ) \\ & =\frac{9}{4}{(\ktheta -\frac{\sin (4\ktheta )}{4})}_0^{\pi /2} \\ & =\frac{9}{4}(\frac{\pi}{2}-\frac{\sin 2\pi}{4})-\frac{9}{4}(0-\frac{\sin 4(0)}{4}) \\ & =\frac{9\pi}{8}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793900982"></div>
+<p><a href="#fs-id1167793900982">Example 11.16</a> involved finding the area inside one curve. We can also use <a href="#fs-id1167794048381">Area of a Region Bounded by a Polar Curve</a> to find the area between two <span data-concept="polar-equation">polar curves</span>. However, we often need to find the points of intersection of the curves and determine which function defines the outer curve or the inner curve between these two points.</p>
+<div class="example" id="fs-id1167793240668">
+<h3>Example 11.17 · Finding the Area between Two Polar Curves</h3>
+<p>Find the area outside <span data-ref="cardioid-2">the <span data-concept="cardioid">cardioid</span> $r=2+2\;\sin \ktheta$</span> and inside <span data-ref="circle-6">the circle $r=6\;\sin \ktheta$</span>.</p>
+<h4>Solution</h4>
+<p>First draw a graph containing both curves as shown.</p>
+<figure class="sim" id="sim-between-curves" data-figure="11.42" data-original="/media/ch11/CNX_Calc_Figure_11_04_004.jpg" data-original-caption="The region between the curves r=2+2 sin θ and r=6 sin θ .">
+  <div class="sim-head"><span class="eyebrow">Figure 11.42</span><span>The region between the curves <span data-ref="cardioid-2">$r=2+2\sin \ktheta$</span> and <span data-ref="circle-6">$r=6\sin \ktheta$</span>, swept from $\ktheta=\frac{\pi}{6},$ where they meet, to $\ktheta=\frac{5\pi}{6},$ where they meet again. They also meet at the <span data-concept="pole">pole</span>, for different values of $\ktheta.$</span></div>
+</figure>
+<p>To determine the limits of integration, first find the points of intersection by setting the two functions equal to each other and solving for $\ktheta \text{:}$</p>
+$$\begin{array}{rll}6\;\sin \ktheta & = & 2+2\;\sin \ktheta \\ 4\;\sin \ktheta & = & 2 \\ \sin \ktheta & = & \frac{1}{2}.\end{array}$$
+<p>This gives the solutions $\ktheta =\frac{\pi}{6}$ and $\ktheta =\frac{5\pi}{6},$ which are the limits of integration. <span data-ref="circle-6">The circle $r=3\;\sin \ktheta$</span><sup class="fn" data-note="c-circle-3"></sup> is <span data-ref="circle-6">the red graph</span>, which is <span data-ref="circle-6">the outer function</span>, and <span data-ref="cardioid-2">the <span data-concept="cardioid">cardioid</span> $r=2+2\;\sin \ktheta$</span> is <span data-ref="cardioid-2">the blue graph</span>, which is <span data-ref="cardioid-2">the inner function</span>. To calculate the area between the curves, start with the area inside <span data-ref="circle-6">the circle</span> between $\ktheta =\frac{\pi}{6}$ and $\ktheta =\frac{5\pi}{6},$ then subtract the area inside <span data-ref="cardioid-2">the <span data-concept="cardioid">cardioid</span></span> between $\ktheta =\frac{\pi}{6}$ and $\ktheta =\frac{5\pi}{6}\text{:}$</p>
+$$\begin{array}{rl}A & =\text{circle}-\text{cardioid} \\ & =\frac{1}{2}\int_{\pi /6}^{5\pi /6}{[6\;\sin \ktheta ]}^{2}d\theta -\frac{1}{2}\int_{\pi /6}^{5\pi /6}{[2+2\;\sin \ktheta ]}^{2}d\theta \\ & =\frac{1}{2}\int_{\pi /6}^{5\pi /6}36\;{\sin }^{2}\ktheta \;d\theta -\frac{1}{2}\int_{\pi /6}^{5\pi /6}[4+8\;\sin \ktheta +4\;{\sin }^{2}\ktheta ]\;d\theta \\ & =18\int_{\pi /6}^{5\pi /6}\frac{1-\cos (2\ktheta )}{2}d\theta -2\int_{\pi /6}^{5\pi /6}[1+2\;\sin \ktheta +\frac{1-\cos (2\ktheta )}{2}]d\theta \\ & =9{[\ktheta -\frac{\sin (2\ktheta )}{2}]}_{\pi /6}^{5\pi /6}-2{[\frac{3\ktheta}{2}-2\;\cos \ktheta -\frac{\sin (2\ktheta )}{4}]}_{\pi /6}^{5\pi /6} \\ & =9(\frac{5\pi}{6}-\frac{\sin 2(5\pi /6)}{2})-9(\frac{\pi}{6}-\frac{\sin 2(\pi /6)}{2}) \\ & \;-(3(\frac{5\pi}{6})-4\;\cos \frac{5\pi}{6}-\frac{\sin 2(5\pi /6)}{2})+(3(\frac{\pi}{6})-4\;\cos \frac{\pi}{6}-\frac{\sin 2(\pi /6)}{2}) \\ & =4\pi .\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793240668"></div>
+<p>In <a href="#fs-id1167793240668">Example 11.17</a> we found the area inside <span data-ref="circle-6">the circle</span> and outside <span data-ref="cardioid-2">the <span data-concept="cardioid">cardioid</span></span> by first finding their intersection points. Notice that solving the equation directly for $\ktheta$ yielded two solutions: $\ktheta =\frac{\pi}{6}$ and $\ktheta =\frac{5\pi}{6}.$ However, in the graph there are three intersection points. The third intersection point is the origin. The reason why this point did not show up as a solution is because the origin is on both graphs but for different values of $\ktheta .$ For example, for <span data-ref="cardioid-2">the <span data-concept="cardioid">cardioid</span></span> we get</p>
+$$\begin{array}{rll}2+2\;\sin \ktheta & = & 0 \\ \sin \ktheta & = & -1,\end{array}$$
+<p>so the values for $\ktheta$ that solve this equation are $\ktheta =\frac{3\pi}{2}+2n\pi ,$ where <em>n</em> is any integer. For <span data-ref="circle-6">the circle</span> we get</p>
+$$6\;\sin \ktheta =0.$$
+<p>The solutions to this equation are of the form $\ktheta =n\pi$ for any integer value of <em>n.</em> These two solution sets have no points in common. Regardless of this fact, the curves intersect at the origin. This case must always be taken into consideration.</p>
+</section>
+<section id="arc-length">
+<h2>Arc Length in Polar Curves</h2>
+<p class="cite-target" id="arc-length-intro">Here we derive a formula for the <span data-concept="arc-length">arc length</span> of a curve defined in <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
+<p>In rectangular coordinates, the <span data-concept="arc-length">arc length</span> of a <span data-concept="parametric-curve">parameterized curve</span> $(x(t),y(t))$ for $a\le t\le b$ is given by</p>
+$$\kL=\int_a^{b}\sqrt{{(\frac{dx}{dt})}^{2}+{(\frac{dy}{dt})}^{2}}dt .$$
+<p>In <span data-concept="polar-coordinate-system">polar coordinates</span> we define the curve by the equation $r=\kf(\ktheta ),$ where $\alpha \le \ktheta \le β.$ In order to adapt the <span data-concept="arc-length">arc length</span> formula for a <span data-concept="polar-equation">polar curve</span>, we use the equations</p>
+$$x=r\;\cos \ktheta =\kf(\ktheta )\;\cos \ktheta \;\text{and}\;y=r\;\sin \ktheta =\kf(\ktheta )\;\sin \ktheta ,$$
+<p>and we replace the parameter <em>t</em> by $\ktheta .$ Then</p>
+$$\begin{array}{l}\frac{dx}{d\theta}=\kfprime(\ktheta )\;\cos \ktheta -\kf(\ktheta )\;\sin \ktheta \\ \frac{dy}{d\theta}=\kfprime(\ktheta )\;\sin \ktheta +\kf(\ktheta )\;\cos \ktheta .\end{array}$$
+<p>We replace $dt$ by $d\theta ,$ and the lower and upper limits of integration are $\alpha$ and $β,$ respectively. Then the <span data-concept="arc-length">arc length</span> formula becomes</p>
+$$\begin{array}{rl}L & =\int_a^{b}\sqrt{{(\frac{dx}{dt})}^{2}+{(\frac{dy}{dt})}^{2}}dt \\ & =\int_{\alpha}^{\beta }\sqrt{{(\frac{dx}{d\theta})}^{2}+{(\frac{dy}{d\theta})}^{2}}d\theta \\ & =\int_{\alpha}^{\beta }\sqrt{{(\kfprime(\ktheta )\;\cos \ktheta -\kf(\ktheta )\;\sin \ktheta )}^{2}+{(\kfprime(\ktheta )\;\sin \ktheta +\kf(\ktheta )\;\cos \ktheta )}^{2}}d\theta \\ & =\int_{\alpha}^{\beta }\sqrt{{(\kfprime(\ktheta ))}^{2}({\cos }^{2}\ktheta +{\sin }^{2}\ktheta )+{(\kf(\ktheta ))}^{2}({\cos }^{2}\ktheta +{\sin }^{2}\ktheta )}d\theta \\ & =\int_{\alpha}^{\beta }\sqrt{{(\kfprime(\ktheta ))}^{2}+{(\kf(\ktheta ))}^{2}}d\theta \\ & =\int_{\alpha}^{\beta }\sqrt{r^{2}+{(\frac{dr}{d\theta})}^{2}}d\theta .\end{array}$$
+<p>This gives us the following theorem.</p>
+<div class="note" id="fs-id1167793367213">
+<div class="eyebrow">Theorem</div>
+<h3>Arc Length of a Curve Defined by a Polar Function</h3>
+<p>Let $f$ be a function whose derivative is continuous on an interval $\alpha \le \ktheta \le β.$ The length of the graph of $r=\kf(\ktheta )$ from $\ktheta =\alpha$ to $\ktheta =β$ is</p>
+<div class="equation" id="fs-id1167793300660">$$\kL=\int_{\alpha}^{\beta }\sqrt{{[\kf(\ktheta )]}^{2}+{[\kfprime(\ktheta )]}^{2}}d\theta =\int_{\alpha}^{\beta }\sqrt{r^{2}+{(\frac{dr}{d\theta})}^{2}}d\theta .\tag{11.10}$$</div>
+</div>
+<figure class="sim" id="sim-polar-arc-length">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The <span data-concept="cardioid">cardioid</span> $r=2+2\cos \ktheta$ of Example 11.18 traced from $\ktheta=0,$ with its <span data-concept="arc-length">arc length</span> so far, $\int_0^{\ktheta}\sqrt{r^{2}+(\frac{dr}{d\ktheta})^{2}}\,d\ktheta.$ Drag the point: half the curve, at $\ktheta=\pi,$ is 8 long, and the whole is 16.</span></div>
+</figure>
+<div class="example" id="fs-id1167793301176">
+<h3>Example 11.18 · Finding the Arc Length of a Polar Curve</h3>
+<p>Find the <span data-concept="arc-length">arc length</span> of the <span data-concept="cardioid">cardioid</span> $r=2+2\;\cos \ktheta .$</p>
+<h4>Solution</h4>
+<p>When $\ktheta =0,r=2+2\;\cos 0=4.$ Furthermore, as $\ktheta$ goes from  $0$ to $2\pi \text{,}$ the <span data-concept="cardioid">cardioid</span> is traced out exactly once. Therefore these are the limits of integration. Using $\kf(\ktheta )=2+2\;\cos \ktheta ,$ $\alpha =0,$ and $β=2\pi \text{,}$ <a href="#fs-id1167793300660">Equation 11.10</a> becomes</p>
+$$\begin{array}{rl}L & =\int_{\alpha}^{\beta }\sqrt{{[\kf(\ktheta )]}^{2}+{[\kfprime(\ktheta )]}^{2}} \;d\theta \\ & =\int_0^{2\pi}\sqrt{{[2+2\;\cos \ktheta ]}^{2}+{[-2\;\sin \ktheta ]}^{2}} \;d\theta \\ & =\int_0^{2\pi}\sqrt{4+8\;\cos \ktheta +4\;{\cos }^{2}\;\ktheta +4\;{\sin }^{2}\;\ktheta} \;d\theta \\ & =\int_0^{2\pi}\sqrt{4+8\;\cos \ktheta +4({\cos }^{2}\;\ktheta +{\sin }^{2}\;\ktheta )} \;d\theta \\ & =\int_0^{2\pi}\sqrt{8+8\;\cos \ktheta} \;d\theta \\ & =2\int_0^{2\pi}\sqrt{2+2\;\cos \ktheta} \;d\theta .\end{array}$$
+<p>Next, using the identity $\cos (2\alpha )=2\;{\cos }^{2}\alpha -1,$ add 1 to both sides and multiply by 2. This gives  $2+2\;\cos (2\alpha )=4\;{\cos }^{2}\alpha .$ Substituting $\alpha =\ktheta /2$ gives $2+2\;\cos \ktheta =4\;{\cos }^{2}(\ktheta /2),$ so the integral becomes</p>
+$$\begin{array}{rl}L & =2\int_0^{2\pi}\sqrt{2+2\;\cos \ktheta} d\theta \\ & =2\int_0^{2\pi}\sqrt{4\;{\cos }^{2}(\frac{\ktheta}{2})}d\theta \\ & =2\int_0^{2\pi}2|\cos (\frac{\ktheta}{2})|d\theta .\end{array}$$
+<p>The absolute value is necessary because the cosine is negative for some values in its domain. To resolve this issue, change the limits from $0$ to $\pi$ and double the answer. This strategy works because cosine is positive between $0$ and $\frac{\pi}{2}.$ Thus,</p>
+$$\begin{array}{rl}L & =4\int_0^{2\pi}|\cos (\frac{\ktheta}{2})|d\theta \\ & =8\int_0^{\pi}\cos (\frac{\ktheta}{2})\;d\theta \\ & =8{(2\;\sin (\frac{\ktheta}{2}))}_0^{\pi} \\ & =16.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167793301176"></div>
+</section>

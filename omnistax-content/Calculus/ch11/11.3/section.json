@@ -1,0 +1,1374 @@
+{
+ "id": "11.3",
+ "module": "m53852",
+ "chapter": "11",
+ "title": "Polar Coordinates",
+ "short": "Polar Coordinates",
+ "lead": "The <span data-concept=\"polar-coordinate-system\">polar coordinate system</span> locates a point by its distance $r$ from the origin and the angle $\\ktheta$ it makes with the positive $x$-axis. This section converts points between rectangular and polar coordinates, plots curves given by <span data-concept=\"polar-equation\">polar equations</span>, names the common ones, describes the nautilus’s spiral, and tests polar curves for symmetry.",
+ "objectives": [
+  "Locate points in a plane by using polar coordinates.",
+  "Convert points between rectangular and polar coordinates.",
+  "Sketch polar curves from given equations.",
+  "Convert equations between rectangular and polar coordinates.",
+  "Identify symmetry in polar curves and equations."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"polar-coordinate-system\">polar coordinate system</span> provides an alternative way to locate points in the plane.</li><li>Convert points between rectangular and <span data-concept=\"polar-coordinate-system\">polar coordinates</span> using the formulas $$x=r\\;\\cos \\ktheta \\;\\text{and}\\;y=r\\;\\sin \\ktheta$$ and $$r=\\sqrt{x^{2}+y^{2}}\\;\\text{and}\\;\\tan \\ktheta =\\frac{y}{x}.$$</li><li>To sketch a <span data-concept=\"polar-equation\">polar curve</span> from a given polar function, make a table of values and take advantage of <span data-concept=\"periodic-function\">periodic</span> properties.</li><li>Use the conversion formulas to convert equations between rectangular and <span data-concept=\"polar-coordinate-system\">polar coordinates</span>.</li><li>Identify symmetry in <span data-concept=\"polar-equation\">polar curves</span>, which can occur through the <span data-concept=\"pole\">pole</span>, the horizontal axis, or the vertical axis.</li></ul>",
+ "notes": "The book’s link to a video on sketching polar curves is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approach marked as such. The 31 even-numbered exercises have no answer in the book’s key and are left out: 126, 128 and 130 (plot a point), 132 and 134 (name points of the graph), 136–140 even (polar coordinates of a point), 142–148 even (rectangular coordinates), 150–154 even (symmetry), 156 and 158 (describe a graph), 160 and 162 (polar forms), 164 and 166 (rectangular forms), 168–176 even (sketches and symmetry) and 178–186 even (graphs with technology). Review exercises 331 and 333 from the end of the chapter are held here, and 322, a true-or-false question the key leaves unanswered, with an AI-written suggested approach; 330 and 332, unkeyed, are left out.",
+ "figures": [
+  {
+   "id": "sim-polar-point",
+   "kind": "sim",
+   "number": "11.27",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_001.jpg"
+   ],
+   "original_caption": "An arbitrary point in the Cartesian plane.",
+   "draws": [
+    "point",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-polar-plot",
+   "kind": "sim",
+   "number": "11.28",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_002.jpg"
+   ],
+   "original_caption": "The polar coordinate system.",
+   "draws": [
+    "point",
+    "angle",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-three-points",
+   "kind": "figure",
+   "number": "11.29",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_003.jpg"
+   ],
+   "original_caption": "Three points plotted in the polar coordinate system.",
+   "draws": [
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-polar-circle",
+   "kind": "sim",
+   "number": "11.30",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_005.jpg"
+   ],
+   "original_caption": "The graph of the function r = 4 sin θ is a circle.",
+   "draws": [
+    "curve",
+    "point",
+    "angle",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-common-curves",
+   "kind": "sim",
+   "number": "11.31",
+   "folds": [
+    "11.32"
+   ],
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_016.jpg",
+    "/media/ch11/CNX_Calc_Figure_11_03_017.jpg"
+   ],
+   "draws": [
+    "curve",
+    "point",
+    "angle",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-rose",
+   "kind": "sim",
+   "number": "11.33",
+   "folds": [
+    "11.34"
+   ],
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_008.jpg",
+    "/media/ch11/CNX_Calc_Figure_11_03_009.jpg"
+   ],
+   "original_caption": "(Figure 11.33) Graph of r = 3 sin 3θ. (Figure 11.34) Polar rose graphs of functions with (a) rational coefficient and (b) irrational coefficient. Note that the rose in part (b) does not fill the disk of radius 3 centered at the origin, even though it appears to. To see this, just note that for any fixed ray from the origin, there are only a countable number of values of theta for which we get a point on the graph along that ray. What we can say, though, is that for any point in the disk, there are points as close as you please to that point on the given graph.",
+   "draws": [
+    "curve",
+    "point",
+    "angle",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-spiral",
+   "kind": "sim",
+   "number": "11.35",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_010.jpg"
+   ],
+   "original_caption": "How can we describe a spiral graph mathematically?",
+   "draws": [
+    "curve",
+    "point",
+    "angle",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-log-spiral",
+   "kind": "sim",
+   "number": "11.36",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_011.jpg"
+   ],
+   "original_caption": "A logarithmic spiral is similar to the shape of the chambered nautilus shell. (credit: modification of work by Jitze Couperus, Flickr)",
+   "draws": [
+    "curve",
+    "point",
+    "angle",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-symmetry",
+   "kind": "sim",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_018.jpg"
+   ],
+   "draws": [
+    "curve",
+    "point",
+    "angle",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-rose-symmetry",
+   "kind": "sim",
+   "number": "11.37",
+   "folds": [
+    "11.38"
+   ],
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_03_013.jpg",
+    "/media/ch11/CNX_Calc_Figure_11_03_014.jpg"
+   ],
+   "original_caption": "(Figure 11.37) The graph of the equation between θ = 0 and θ = π/2. (Figure 11.38) The entire graph of the equation is called a four-petaled rose.",
+   "draws": [
+    "curve",
+    "point",
+    "angle",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "polar-intro",
+   "concept": "polar-coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "polar-term",
+   "concept": "polar-coordinate-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "polar-term",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "coordinates-term",
+   "concept": "radial-coordinate",
+   "verb": "introduces"
+  },
+  {
+   "span": "coordinates-term",
+   "concept": "angular-coordinate",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793948751",
+   "concept": "converting-points-between-coordinate-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794030722",
+   "concept": "converting-points-between-coordinate-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794030722",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "not-unique",
+   "concept": "radial-coordinate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "axis-term",
+   "concept": "polar-axis",
+   "verb": "introduces"
+  },
+  {
+   "span": "axis-term",
+   "concept": "pole",
+   "verb": "introduces"
+  },
+  {
+   "span": "polar-curves-intro",
+   "concept": "function",
+   "verb": "uses"
+  },
+  {
+   "span": "polar-curves",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794333153",
+   "concept": "plotting-a-curve-in-polar-coordinates",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794046199",
+   "concept": "plotting-a-curve-in-polar-coordinates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167793249073",
+   "concept": "converting-points-between-coordinate-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "common-curves",
+   "concept": "polar-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "cardioid-term",
+   "concept": "cardioid",
+   "verb": "introduces"
+  },
+  {
+   "span": "cardioid-term",
+   "concept": "limacon",
+   "verb": "introduces"
+  },
+  {
+   "span": "cardioid-term",
+   "concept": "rose",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794047292",
+   "concept": "archimedean-spiral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794047292",
+   "concept": "logarithmic-spiral",
+   "verb": "introduces"
+  },
+  {
+   "span": "polar-parameterization",
+   "concept": "parameterization-of-a-polar-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "polar-parameterization",
+   "concept": "parametric-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetry",
+   "concept": "symmetry-about-the-y-axis",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetry",
+   "concept": "even-function",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetry",
+   "concept": "odd-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794226648",
+   "concept": "symmetry-in-polar-curves",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167794099362",
+   "concept": "symmetry-in-polar-curves",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167794099362",
+   "concept": "rose",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793901807",
+   "source_number": "Checkpoint 11.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794030722"
+   },
+   "cite": "fs-id1167793948751",
+   "prompt": "Convert $(-8,-8)$ into polar coordinates and $(4,\\frac{2\\pi}{3})$ into rectangular coordinates.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(8\\sqrt{2},\\frac{5\\pi}{4})$ and $(-2,2\\sqrt{3})$",
+    "hint": "Use <a href=\"#fs-id1167794066096\">Equation 11.7</a> and <a href=\"#fs-id1167793834620\">Equation 11.8</a>. Make sure to check the quadrant when calculating $\\theta .$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167794292522",
+   "source_number": "Checkpoint 11.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794066465"
+   },
+   "cite": "axis-term",
+   "prompt": "Plot $(4,\\frac{5\\pi}{3})$ and $(-3,-\\frac{7\\pi}{2})$ on the polar plane.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_004.jpg\" alt=\"Two points are marked on a polar coordinate plane, specifically (−3, −7π/2) on the y axis and (4, 5π/3) in the fourth quadrant.\">",
+    "hint": "Start with $\\theta ,$ then use $r.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793248900",
+   "source_number": "Checkpoint 11.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794046199"
+   },
+   "cite": "fs-id1167794333153",
+   "prompt": "Create a graph of the curve defined by the function $r=4+4\\;\\cos \\theta .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_006.jpg\" alt=\"The graph of r = 4 + 4 cosθ is given. It vaguely looks look a heart tipped on its side with a rounded bottom instead of a pointed one. Specifically, the graph starts at the origin, moves into the second quadrant and increases to a rounded circle-like figure. The graph is symmetric about the x axis, so it continues its rounded circle-like figure, goes into the third quadrant, and comes to a point at the origin.\">\n<p>The name of this shape is a cardioid, which we will study further later in this section.</p>",
+    "hint": "Follow the problem-solving strategy for creating a graph in polar coordinates."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167794072955",
+   "source_number": "Checkpoint 11.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793249073"
+   },
+   "cite": "fs-id1167793249073",
+   "prompt": "Rewrite the equation $r=\\sec \\theta \\;\\tan \\theta$ in rectangular coordinates and identify its graph.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=x^{2},$ which is the equation of a parabola opening upward.",
+    "hint": "Convert to sine and cosine, then multiply both sides by cosine."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167794202048",
+   "source_number": "Checkpoint 11.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167794099362"
+   },
+   "cite": "fs-id1167794226648",
+   "prompt": "Determine the symmetry of the graph determined by the equation $r=2\\;\\cos (3\\theta )$ and create a graph.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Symmetric with respect to the polar axis.</p>\n<img src=\"/media/ch11/CNX_Calc_Figure_11_03_015.jpg\" alt=\"A three-petaled rose is graphed with equation r = 2 cos(3θ). Each petal starts at the origin and reaches a maximum distance from the origin of 2.\">",
+    "hint": "Use <a href=\"#fs-id1167794226648\">Symmetry in Polar Curves and Equations</a>."
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1167793219227",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axis-term",
+   "prompt": "<p>In the following exercises, plot the point whose polar coordinates are given by first constructing the angle $\\theta$ and then marking off the distance <em>r</em> along the ray.</p><p>$(3,\\frac{\\pi}{6})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_201.jpg\" alt=\"On the polar coordinate plane, a ray is drawn from the origin marking π/6 and a point is drawn when this line crosses the circle with radius 3.\">"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1167793219322",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axis-term",
+   "prompt": "<p>In the following exercises, plot the point whose polar coordinates are given by first constructing the angle $\\theta$ and then marking off the distance <em>r</em> along the ray.</p><p>$(0,\\frac{7\\pi}{6})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_203.jpg\" alt=\"On the polar coordinate plane, a ray is drawn from the origin marking 7π/6 and a point is drawn when this line crosses the circle with radius 0, that is, it marks the origin.\">"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1167793251311",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axis-term",
+   "prompt": "<p>In the following exercises, plot the point whose polar coordinates are given by first constructing the angle $\\theta$ and then marking off the distance <em>r</em> along the ray.</p><p>$(1,\\frac{\\pi}{4})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_205.jpg\" alt=\"On the polar coordinate plane, a ray is drawn from the origin marking π/4 and a point is drawn when this line crosses the circle with radius 1.\">"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1167793237871",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axis-term",
+   "prompt": "<p>In the following exercises, plot the point whose polar coordinates are given by first constructing the angle $\\theta$ and then marking off the distance <em>r</em> along the ray.</p><p>$(1,\\frac{\\pi}{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_207.jpg\" alt=\"On the polar coordinate plane, a ray is drawn from the origin marking π/2 and a point is drawn when this line crosses the circle with radius 1.\">"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1167794327485",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "not-unique",
+   "prompt": "<p>For the following exercises, consider the polar graph below. Give two sets of polar coordinates for each point.</p><img src=\"/media/ch11/CNX_Calc_Figure_11_03_208.jpg\" alt=\"The polar coordinate plane is divided into 12 pies. Point A is drawn on the first circle on the first spoke above the θ = 0 line in the first quadrant. Point B is drawn in the fourth quadrant on the third circle and the second spoke below the θ = 0 line. Point C is drawn on the θ = π line on the third circle. Point D is drawn on the fourth circle on the first spoke below the θ = π line.\"><p>Coordinates of point <em>B</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$B\\begin{array}{ll}(3,\\frac{-\\pi}{3}) & B(-3,\\frac{2\\pi}{3})\\end{array}$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1167794327626",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "not-unique",
+   "prompt": "<p>For the following exercises, consider the polar graph below. Give two sets of polar coordinates for each point.</p><img src=\"/media/ch11/CNX_Calc_Figure_11_03_208.jpg\" alt=\"The polar coordinate plane is divided into 12 pies. Point A is drawn on the first circle on the first spoke above the θ = 0 line in the first quadrant. Point B is drawn in the fourth quadrant on the third circle and the second spoke below the θ = 0 line. Point C is drawn on the θ = π line on the third circle. Point D is drawn on the fourth circle on the first spoke below the θ = π line.\"><p>Coordinates of point <em>D</em>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$D(5,\\frac{7\\pi}{6})D(-5,\\frac{\\pi}{6})$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1167794200191",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793948751",
+   "prompt": "<p>For the following exercises, the rectangular coordinates of a point are given. Find two sets of polar coordinates for the point in $(0,2\\pi ].$ Round to three decimal places.</p><p>$(3,-4)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(5,5.356)(-5,2.214)$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1167794283037",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793948751",
+   "prompt": "<p>For the following exercises, the rectangular coordinates of a point are given. Find two sets of polar coordinates for the point in $(0,2\\pi ].$ Round to three decimal places.</p><p>$(-6,\\;8)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(10,2.214)(-10,5.356)$"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1167794283165",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793948751",
+   "prompt": "<p>For the following exercises, the rectangular coordinates of a point are given. Find two sets of polar coordinates for the point in $(0,2\\pi ].$ Round to three decimal places.</p><p>$(3,-\\sqrt{3})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(2\\sqrt{3},\\frac{11\\pi}{6})(-2\\sqrt{3},\\frac{5\\pi}{6})$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1167793244494",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793948751",
+   "prompt": "<p>For the following exercises, find rectangular coordinates for the given point in polar coordinates.</p><p>$(-2,\\frac{\\pi}{6})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\begin{array}{ll}-\\sqrt{3}, & -1\\end{array})$"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1167793244623",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793948751",
+   "prompt": "<p>For the following exercises, find rectangular coordinates for the given point in polar coordinates.</p><p>$(1,\\frac{7\\pi}{6})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\begin{array}{ll}-\\frac{\\sqrt{3}}{2}, & \\frac{-1}{2}\\end{array})$"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1167794172732",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793948751",
+   "prompt": "<p>For the following exercises, find rectangular coordinates for the given point in polar coordinates.</p><p>$(0,\\frac{\\pi}{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\begin{array}{ll}0, & 0\\end{array})$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1167793293219",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794226648",
+   "prompt": "<p>For the following exercises, determine whether the graphs of the polar equation are symmetric with respect to the $x$-axis, the $y$-axis, or the origin.</p><p>$r=3\\;\\sin (2\\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Symmetry with respect to the <em>x</em>-axis, <em>y</em>-axis, and origin."
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1167793293309",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794226648",
+   "prompt": "<p>For the following exercises, determine whether the graphs of the polar equation are symmetric with respect to the $x$-axis, the $y$-axis, or the origin.</p><p>$r=\\cos (\\frac{\\theta}{5})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Symmetric with respect to <em>x</em>-axis only."
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1167793293383",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794226648",
+   "prompt": "<p>For the following exercises, determine whether the graphs of the polar equation are symmetric with respect to the $x$-axis, the $y$-axis, or the origin.</p><p>$r=1+\\cos \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Symmetry with respect to <em>x</em>-axis only."
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1167793293447",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793249073",
+   "prompt": "<p>For the following exercises, describe the graph of each polar equation. Confirm each description by converting into a rectangular equation.</p><p>$\\theta =\\frac{\\pi}{4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Line $y=x$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1167793234457",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793249073",
+   "prompt": "<p>For the following exercises, describe the graph of each polar equation. Confirm each description by converting into a rectangular equation.</p><p>$r=\\csc \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=1$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1167793234555",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793249073",
+   "prompt": "<p>For the following exercises, convert the rectangular equation to polar form and sketch its graph.</p><p>$x^{2}-y^{2}=16$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>Hyperbola; polar form $r^{2}\\cos (2\\theta )=16$ or $r^{2}=16\\;\\sec (2\\theta ).$</p>\n<img src=\"/media/ch11/CNX_Calc_Figure_11_03_210.jpg\" alt=\"A hyperbola with vertices at (−4, 0) and (4, 0), the first pointing out into quadrants II and III and the second pointing out into quadrants I and IV.\">"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1167793287522",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793249073",
+   "prompt": "<p>For the following exercises, convert the rectangular equation to polar form and sketch its graph.</p><p>$3x-y=2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$r=\\frac{2}{3\\;\\cos \\theta -\\sin \\theta}$</p>\n<img src=\"/media/ch11/CNX_Calc_Figure_11_03_212.jpg\" alt=\"A straight line with slope 3 and y intercept −2.\">"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1167793287663",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793249073",
+   "prompt": "<p>For the following exercises, convert the polar equation to rectangular form and sketch its graph.</p><p>$r=4\\;\\sin \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$x^{2}+y^{2}=4y$</p>\n<img src=\"/media/ch11/CNX_Calc_Figure_11_03_214.jpg\" alt=\"A circle of radius 2 with center at (2, π/2).\">"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1167794200385",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793249073",
+   "prompt": "<p>For the following exercises, convert the polar equation to rectangular form and sketch its graph.</p><p>$r=\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$x\\;\\tan \\sqrt{x^{2}+y^{2}}=y$</p>\n<img src=\"/media/ch11/CNX_Calc_Figure_11_03_216.jpg\" alt=\"A spiral starting at the origin and crossing θ = π/2 between 1 and 2, θ = π between 3 and 4, θ = 3π/2 between 4 and 5, θ = 0 between 6 and 7, θ = π/2 between 7 and 8, and θ = π between 9 and 10.\">"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1167794200506",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794333153",
+   "prompt": "<p>For the following exercises, sketch a graph of the polar equation and identify any symmetry.</p><p>$r=1+\\sin \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_218.jpg\" alt=\"A cardioid with the upper heart part at the origin and the rest of the cardioid oriented up.\">\n<p><em>y</em>-axis symmetry</p>"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1167794200606",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794333153",
+   "prompt": "<p>For the following exercises, sketch a graph of the polar equation and identify any symmetry.</p><p>$r=2-2\\;\\sin \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_220.jpg\" alt=\"A cardioid with the upper heart part at the origin and the rest of the cardioid oriented down.\">\n<p><em>y</em>-axis symmetry</p>"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1167793245637",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794333153",
+   "prompt": "<p>For the following exercises, sketch a graph of the polar equation and identify any symmetry.</p><p>$r=3\\;\\cos (2\\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_222.jpg\" alt=\"A rose with four petals that reach their furthest extent from the origin at θ = 0, π/2, π, and 3π/2.\">\n<p><em>x</em>- and <em>y</em>-axis symmetry and symmetry about the pole</p>"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1167793245760",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794333153",
+   "prompt": "<p>For the following exercises, sketch a graph of the polar equation and identify any symmetry.</p><p>$r=2\\;\\cos (3\\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_224.jpg\" alt=\"A rose with three petals that reach their furthest extent from the origin at θ = 0, 2π/3, and 4π/3.\">\n<p><em>x</em>-axis symmetry</p>"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1167793299532",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794333153",
+   "prompt": "<p>For the following exercises, sketch a graph of the polar equation and identify any symmetry.</p><p>$r^{2}=4\\;\\cos (2\\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_226.jpg\" alt=\"The infinity symbol with the crossing point at the origin and with the furthest extent of the two petals being at θ = 0 and π.\">\n<p><em>x</em>- and <em>y</em>-axis symmetry and symmetry about the pole</p>"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1167793299653",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794333153",
+   "prompt": "<p>For the following exercises, sketch a graph of the polar equation and identify any symmetry.</p><p>$r=2\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_228.jpg\" alt=\"A spiral that starts at the origin crossing the line θ = π/2 between 3 and 4, θ = π between 6 and 7, θ = 3π/2 between 9 and 10, θ = 0 between 12 and 13, θ = π/2 between 15 and 16, and θ = π between 18 and 19.\">\n<p>no symmetry</p>"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1167793299784",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-curves",
+   "prompt": "<p><strong>[T]</strong> Use a graphing utility and sketch the graph of $r=\\frac{6}{2\\;\\sin \\theta -3\\;\\cos \\theta}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_230.jpg\" alt=\"A line that crosses the y axis at roughly 3 and has slope roughly 3/2.\">\n<p>a line</p>"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1167793279401",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-curves",
+   "prompt": "<p><strong>[T]</strong> Use technology to graph $r=e^{\\sin (\\theta )}-2\\;\\cos (4\\theta ).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_232.jpg\" alt=\"A geometric shape that resembles a butterfly with larger wings in the first and second quadrants, smaller wings in the third and fourth quadrants, a body along the θ = π/2 line and legs along the θ = 0 and π lines.\">"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1167793279556",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-curves",
+   "prompt": "<p>Without using technology, sketch the polar curve $\\theta =\\frac{2\\pi}{3}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_234.jpg\" alt=\"A line with θ = 120°.\">"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1167793279662",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-curves",
+   "prompt": "<p><strong>[T]</strong> Use technology to plot $r=e^{-0.1\\theta}$ for $-10\\le \\theta \\le 10.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_03_236.jpg\" alt=\"A spiral that starts in the third quadrant.\">"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1167794188292",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polar-curves",
+   "prompt": "<p><strong>[T]</strong> Use the results of the preceding two problems to explore the graphs of $r=e^{-0.001\\theta}$ and $r=e^{-0.0001\\theta}$ for $|\\theta |\\gt 100.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Answers vary. One possibility is the spiral lines become closer together and the total number of spirals increases."
+   }
+  },
+  {
+   "id": "r322",
+   "source_id": "fs-id1167794052624",
+   "source_section": "11.5",
+   "source_number": "322",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793948751",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>The rectangular coordinates of the point $(4,\\frac{5\\pi}{6})$ are $(2\\sqrt{3},-2).$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. By Equation 11.7, $x=4\\cos \\frac{5\\pi}{6}=4(-\\frac{\\sqrt{3}}{2})=-2\\sqrt{3}$ and $y=4\\sin \\frac{5\\pi}{6}=4(\\frac{1}{2})=2,$ so the rectangular coordinates are $(-2\\sqrt{3},2).$ The point $(2\\sqrt{3},-2)$ has polar coordinates $(4,-\\frac{\\pi}{6}),$ in the fourth quadrant, not the second.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r331",
+   "source_id": "fs-id1167794173062",
+   "source_section": "11.5",
+   "source_number": "331",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794226648",
+   "prompt": "<p>For the following exercises, sketch the polar curve and determine what type of symmetry exists, if any.</p><p>$r=5\\;\\cos (5\\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_05_223.jpg\" alt=\"Graph of a five-petaled rose with initial petal at θ = 0.\">\n<p>Symmetric about polar axis</p>"
+   }
+  },
+  {
+   "id": "r333",
+   "source_id": "fs-id1167794173174",
+   "source_section": "11.5",
+   "source_number": "333",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793249073",
+   "prompt": "<p>For the following exercises, find the polar equation for the curve given as a Cartesian equation.</p><p>$y^{2}=4+x^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$r^{2}=\\frac{4}{{\\sin }^{2}\\theta -{\\cos }^{2}\\theta}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "plotting-a-curve-in-polar-coordinates"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "cardioid"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "rose"
+  },
+  {
+   "exercise": "e125",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e127",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e129",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e131",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e133",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e135",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e137",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e139",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e141",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e143",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e145",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e147",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e149",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "e151",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "e153",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "e155",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e155",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e157",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e157",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e159",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e159",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e161",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e161",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e163",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e163",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e165",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "e165",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e167",
+   "concept": "plotting-a-curve-in-polar-coordinates"
+  },
+  {
+   "exercise": "e167",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "e167",
+   "concept": "cardioid"
+  },
+  {
+   "exercise": "e169",
+   "concept": "plotting-a-curve-in-polar-coordinates"
+  },
+  {
+   "exercise": "e169",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "e169",
+   "concept": "cardioid"
+  },
+  {
+   "exercise": "e171",
+   "concept": "plotting-a-curve-in-polar-coordinates"
+  },
+  {
+   "exercise": "e171",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "e171",
+   "concept": "rose"
+  },
+  {
+   "exercise": "e173",
+   "concept": "plotting-a-curve-in-polar-coordinates"
+  },
+  {
+   "exercise": "e173",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "e173",
+   "concept": "rose"
+  },
+  {
+   "exercise": "e175",
+   "concept": "plotting-a-curve-in-polar-coordinates"
+  },
+  {
+   "exercise": "e175",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "e177",
+   "concept": "plotting-a-curve-in-polar-coordinates"
+  },
+  {
+   "exercise": "e177",
+   "concept": "archimedean-spiral"
+  },
+  {
+   "exercise": "e179",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e181",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e183",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e185",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e187",
+   "concept": "polar-equation"
+  },
+  {
+   "exercise": "e187",
+   "concept": "logarithmic-spiral"
+  },
+  {
+   "exercise": "r322",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "r331",
+   "concept": "plotting-a-curve-in-polar-coordinates"
+  },
+  {
+   "exercise": "r331",
+   "concept": "symmetry-in-polar-curves"
+  },
+  {
+   "exercise": "r331",
+   "concept": "rose"
+  },
+  {
+   "exercise": "r333",
+   "concept": "converting-points-between-coordinate-systems"
+  },
+  {
+   "exercise": "r333",
+   "concept": "polar-equation"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-example-ref",
+   "kind": "correction",
+   "html": "The book links this to Example 11.14, the spiral of the chapter opener; the examples of polar equations transformed to rectangular coordinates are Example 11.13’s."
+  }
+ ]
+}

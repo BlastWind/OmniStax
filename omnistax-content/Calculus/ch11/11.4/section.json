@@ -1,0 +1,1195 @@
+{
+ "id": "11.4",
+ "module": "m53840",
+ "chapter": "11",
+ "title": "Area and Arc Length in Polar Coordinates",
+ "short": "Area and Arc Length in Polar Coordinates",
+ "lead": "The <span data-concept=\"definite-integral\">definite integral</span> gives areas and arc lengths in polar coordinates too. This section adds up <span data-concept=\"area-of-a-sector\">sectors</span> of circles to find the area of a region bounded by a <span data-concept=\"polar-equation\">polar curve</span>, finds the area between two polar curves, and measures the <span data-concept=\"arc-length\">arc length</span> of a polar curve.",
+ "objectives": [
+  "Apply the formula for area of a region in polar coordinates.",
+  "Determine the arc length of a polar curve."
+ ],
+ "summary_html": "<ul><li>The area of a region in <span data-concept=\"polar-coordinate-system\">polar coordinates</span> defined by the equation $r=\\kf(\\ktheta )$ with $\\alpha \\le \\ktheta \\le β$ is given by the integral $\\kA=\\frac{1}{2}{\\int_{\\alpha}^{β}[\\kf(\\ktheta )] }^{2}d\\theta .$</li><li>To find the area between two curves in the <span data-concept=\"polar-coordinate-system\">polar coordinate system</span>, first find the points of intersection, then subtract the corresponding areas.</li><li>The <span data-concept=\"arc-length\">arc length</span> of a <span data-concept=\"polar-equation\">polar curve</span> defined by the equation $r=\\kf(\\ktheta )$ with $\\alpha \\le \\ktheta \\le β$ is given by the integral $\\kL=\\int_{\\alpha}^{β}\\sqrt{{[\\kf(\\ktheta )]}^{2}+{[\\kfprime(\\ktheta )]}^{2}}d\\theta =\\int_{\\alpha}^{β}\\sqrt{r^{2}+{(\\frac{dr}{d\\theta})}^{2}}d\\theta .$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Exercises 234 (verify the derivative of y = f(θ) sin θ) and 254 (the cissoid’s vertical asymptote) have no answer in the book’s key and are kept with AI-written suggested approaches. The 32 other even-numbered exercises have no answer in the key and are left out: 188–198 even (integrals for areas), 200–212 even (areas), 214–218 even (integrals for lengths), 220 and 222 (lengths), 224–228 even (lengths with a calculator), 230 and 232 (areas and lengths by geometry), 236–242 even and 246 and 248 (slopes of tangents), 244, 250 and 252 (horizontal and vertical tangents). Review exercise 335 from the end of the chapter is held here, and 324, a true-or-false question the key leaves unanswered, with an AI-written suggested approach; 338 and 340, unkeyed, are left out.",
+ "figures": [
+  {
+   "id": "sim-polar-sectors",
+   "kind": "sim",
+   "number": "11.39",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_04_001.jpg"
+   ],
+   "original_caption": "A partition of a typical curve in polar coordinates.",
+   "draws": [
+    "curve",
+    "integral",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-sector",
+   "kind": "sim",
+   "number": "11.40",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_04_002.jpg"
+   ],
+   "original_caption": "The area of a sector of a circle is given by A = ½θr².",
+   "draws": [
+    "integral",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-petal-area",
+   "kind": "sim",
+   "number": "11.41",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_04_003.jpg"
+   ],
+   "original_caption": "The graph of r = 3 sin(2θ).",
+   "draws": [
+    "curve",
+    "integral",
+    "angle",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-between-curves",
+   "kind": "sim",
+   "number": "11.42",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_04_004.jpg"
+   ],
+   "original_caption": "The region between the curves r = 2 + 2 sin θ and r = 6 sin θ.",
+   "draws": [
+    "integral",
+    "angle",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-polar-arc-length",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "integral",
+    "angle",
+    "point",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "polar-area-intro",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "polar-area-intro",
+   "concept": "fundamental-theorem-of-calculus",
+   "verb": "uses"
+  },
+  {
+   "span": "polar-area-intro",
+   "concept": "arc-length-of-a-function-of-x",
+   "verb": "uses"
+  },
+  {
+   "span": "areas",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "partition",
+   "concept": "polar-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sector-term",
+   "concept": "area-of-a-sector",
+   "verb": "introduces"
+  },
+  {
+   "span": "sector-term",
+   "concept": "radian",
+   "verb": "uses"
+  },
+  {
+   "span": "polar-area-limit",
+   "concept": "riemann-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167794048381",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793900982",
+   "concept": "rose",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793900982",
+   "concept": "power-reducing-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793240668",
+   "concept": "area-between-two-polar-curves",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793240668",
+   "concept": "cardioid",
+   "verb": "uses"
+  },
+  {
+   "span": "arc-length-intro",
+   "concept": "arc-length-of-a-parametric-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "arc-length",
+   "concept": "parameterization-of-a-polar-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "arc-length",
+   "concept": "pythagorean-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167793367213",
+   "concept": "arc-length-of-a-polar-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167793301176",
+   "concept": "double-angle-formulas",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167793268934",
+   "source_number": "Checkpoint 11.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793900982"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "Find the area inside the cardioid defined by the equation $r=1-\\cos \\theta .$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.71238898038469,
+    "tol": 0.001,
+    "solution": "$A=3\\pi /2$",
+    "hint": "Use <a href=\"#fs-id1167793300455\">Equation 11.9</a>. Be sure to determine the correct limits of integration before evaluating."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167793361540",
+   "source_number": "Checkpoint 11.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793240668"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "Find the area inside the circle $r=4\\;\\cos \\theta$ and outside the circle $r=2.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.652891819924145,
+    "tol": 0.001,
+    "solution": "$A=\\frac{4\\pi}{3}+2\\sqrt{3}$",
+    "hint": "Use <a href=\"#fs-id1167793300455\">Equation 11.9</a> and take advantage of symmetry."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167793241096",
+   "source_number": "Checkpoint 11.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167793301176"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "Find the total arc length of $r=3\\;\\sin \\theta .$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 9.42477796076938,
+    "tol": 0.001,
+    "solution": "$s=3\\pi$",
+    "hint": "Use <a href=\"#fs-id1167793300660\">Equation 11.10</a>. To determine the correct limits, make a table of values."
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1167793361414",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, determine a definite integral that represents the area.</p><p>Region enclosed by $r=3\\;\\sin \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{9}{2}\\int_0^{\\pi}{\\sin }^{2}\\theta \\;d\\theta$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1167793363740",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, determine a definite integral that represents the area.</p><p>Region enclosed by one petal of $r=8\\;\\sin (2\\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$32\\int_0^{\\pi /2}{\\sin }^{2}(2\\theta )d\\theta$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1167793366455",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, determine a definite integral that represents the area.</p><p>Region below the polar axis and enclosed by $r=1-\\sin \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\int_{\\pi}^{2\\pi}{(1-\\sin \\theta )}^{2}d\\theta$"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1167793361687",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, determine a definite integral that represents the area.</p><p>Region enclosed by the inner loop of $r=2-3\\;\\sin \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{{\\sin }^{-1}(2/3)}^{\\pi /2}{(2-3\\;\\sin \\theta )}^{2} d\\theta$"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1167793362198",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, determine a definite integral that represents the area.</p><p>Region enclosed by $r=1-2\\;\\cos \\theta$ and outside the inner loop</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{\\pi /3}^{\\pi}{(1-2\\;\\cos \\theta )}^{2}d\\theta -\\int_0^{\\pi /3}{(1-2\\;\\cos \\theta )}^{2} d\\theta$"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1167793292298",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, determine a definite integral that represents the area.</p><p>Region common to $r=2\\;\\text{and}\\;r=4\\;\\cos \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4\\int_0^{\\pi /3}d\\theta +16\\int_{\\pi /3}^{\\pi /2}({\\cos }^{2}\\theta ) d\\theta$"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1167793366618",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, find the area of the described region.</p><p>Enclosed by $r=6\\;\\sin \\theta$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 28.274333882308138,
+    "tol": 0.001,
+    "solution": "$9\\pi$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1167793366697",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, find the area of the described region.</p><p>Below the polar axis and enclosed by $r=2-\\cos \\theta$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.0685834705770345,
+    "tol": 0.001,
+    "solution": "$\\frac{9\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1167793369866",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, find the area of the described region.</p><p>Enclosed by one petal of $r=3\\;\\cos (2\\theta )$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.5342917352885173,
+    "tol": 0.001,
+    "solution": "$\\frac{9\\pi}{8}$"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1167793277945",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, find the area of the described region.</p><p>Enclosed by the inner loop of $r=3+6\\;\\cos \\theta$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.8916479801282975,
+    "tol": 0.001,
+    "solution": "$\\frac{18\\pi -27\\sqrt{3}}{2}$"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1167793278043",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, find the area of the described region.</p><p>Common interior of $r=4\\;\\sin (2\\theta )\\;\\text{and}\\;r=2$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 9.826957588870053,
+    "tol": 0.001,
+    "solution": "$\\frac{4}{3}(4\\pi -3\\sqrt{3})$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1167793363296",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, find the area of the described region.</p><p>Common interior of $r=6\\;\\sin \\theta \\;\\text{and}\\;r=3$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 11.05532728747881,
+    "tol": 0.001,
+    "solution": "$\\frac{3}{2}(4\\pi -3\\sqrt{3})$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1167793369082",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, find the area of the described region.</p><p>Common interior of $r=2+2\\;\\cos \\theta \\;\\text{and}\\;r=2\\;\\sin \\theta$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.2831853071795862,
+    "tol": 0.001,
+    "solution": "$2\\pi -4$"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1167793369218",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, find a definite integral that represents the arc length.</p><p>$r=1+\\sin \\theta$ on the interval $0\\le \\theta \\le 2\\pi$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{2\\pi}\\sqrt{{(1+\\sin \\theta )}^{2}+{\\cos }^{2}\\theta} d\\theta$"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1167793376422",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, find a definite integral that represents the arc length.</p><p>$r=e^{\\theta}\\text{on the interval}\\;0\\le \\theta \\le 1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{2}\\int_0^{1}e^{\\theta}d\\theta$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1167793376532",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, find the length of the curve over the given interval.</p><p>$r=e^{3\\theta}\\text{on the interval}\\;0\\le \\theta \\le 2$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 424.1971944901968,
+    "tol": 0.01,
+    "solution": "$\\frac{\\sqrt{10}}{3}(e^{6}-1)$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1167793371779",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, find the length of the curve over the given interval.</p><p>$r=8+8\\;\\cos \\theta \\;\\text{on the interval}\\;0\\le \\theta \\le \\pi$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 32,
+    "solution": "32"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1167793371871",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, use the integration capabilities of a calculator to approximate the length of the curve.</p><p><strong>[T]</strong> $r=3\\theta \\;\\text{on the interval}\\;0\\le \\theta \\le \\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.238,
+    "tol": 0.001,
+    "solution": "6.238"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1167793366017",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, use the integration capabilities of a calculator to approximate the length of the curve.</p><p><strong>[T]</strong> $r={\\sin }^{2}(\\frac{\\theta}{2})\\;\\text{on the interval}\\;0\\le \\theta \\le \\pi$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "2"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1167793366120",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, use the integration capabilities of a calculator to approximate the length of the curve.</p><p><strong>[T]</strong> $r=\\sin (3\\;\\cos \\theta )\\;\\text{on the interval}\\;0\\le \\theta \\le \\pi$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.39,
+    "tol": 0.005,
+    "solution": "4.39"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1167793370322",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167794048381",
+   "prompt": "<p>For the following exercises, use the familiar formula from geometry to find the area of the region described and then confirm by using the definite integral.</p><p>$r=\\sin \\theta +\\cos \\theta \\;\\text{on the interval}\\;0\\le \\theta \\le \\pi$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$A=\\pi {(\\frac{\\sqrt{2}}{2})}^{2}=\\frac{\\pi}{2}\\;\\text{and}\\;\\frac{1}{2}\\int_0^{\\pi}(1+2\\;\\sin \\theta \\;\\cos \\theta ) d\\theta =\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1167793370600",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, use the familiar formula from geometry to find the length of the curve and then confirm using the definite integral.</p><p>$r=3\\;\\sin \\theta \\;\\text{on the interval}\\;0\\le \\theta \\le \\pi$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$C=2\\pi (\\frac{3}{2})=3\\pi \\;\\text{and}\\;\\int_0^{\\pi}3 d\\theta =3\\pi$"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1167793372015",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p>For the following exercises, use the familiar formula from geometry to find the length of the curve and then confirm using the definite integral.</p><p>$r=6\\;\\sin \\theta +8\\;\\cos \\theta \\;\\text{on the interval}\\;0\\le \\theta \\le \\pi$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$C=2\\pi (5)=10\\pi \\;\\text{and}\\;\\int_0^{\\pi}10 \\;d\\theta =10\\pi$"
+   }
+  },
+  {
+   "id": "e234",
+   "source_id": "fs-id1167793372117",
+   "source_number": "234",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, use the familiar formula from geometry to find the length of the curve and then confirm using the definite integral.</p><p>Verify that if $y=r\\;\\sin \\theta =f(\\theta )\\sin \\theta$ then $\\frac{dy}{d\\theta}=f'(\\theta )\\sin \\theta +f(\\theta )\\cos \\theta .$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "By the product rule, with $y=f(\\theta )\\sin \\theta ,$ $\\frac{dy}{d\\theta}=f\\'(\\theta )\\sin \\theta +f(\\theta )\\frac{d}{d\\theta}(\\sin \\theta )=f\\'(\\theta )\\sin \\theta +f(\\theta )\\cos \\theta .$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1167793372320",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the slope of a tangent line to a polar curve $r=f(\\theta ).$ Let $x=r\\;\\cos \\theta =f(\\theta )\\cos \\theta$ and $y=r\\;\\sin \\theta =f(\\theta )\\sin \\theta ,$ so the polar equation $r=f(\\theta )$ is now written in parametric form.</p><p>Use the definition of the derivative $\\frac{dy}{dx}=\\frac{dy/d\\theta}{dx/d\\theta}$ and the product rule to derive the derivative of a polar equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{dy}{dx}=\\frac{f^{\\prime}(\\theta )\\sin \\theta +f(\\theta )\\;\\cos \\theta}{f^{\\prime}(\\theta )\\;\\cos \\theta -f(\\theta )\\sin \\theta}$"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1167793370884",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the slope of a tangent line to a polar curve $r=f(\\theta ).$ Let $x=r\\;\\cos \\theta =f(\\theta )\\cos \\theta$ and $y=r\\;\\sin \\theta =f(\\theta )\\sin \\theta ,$ so the polar equation $r=f(\\theta )$ is now written in parametric form.</p><p>$r=4\\;\\cos \\theta ;$ $(2,\\frac{\\pi}{3})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The slope is $\\frac{1}{\\sqrt{3}}.$"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1167793371005",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the slope of a tangent line to a polar curve $r=f(\\theta ).$ Let $x=r\\;\\cos \\theta =f(\\theta )\\cos \\theta$ and $y=r\\;\\sin \\theta =f(\\theta )\\sin \\theta ,$ so the polar equation $r=f(\\theta )$ is now written in parametric form.</p><p>$r=4+\\sin \\theta ;$ $(3,\\frac{3\\pi}{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The slope is 0."
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1167793371107",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the slope of a tangent line to a polar curve $r=f(\\theta ).$ Let $x=r\\;\\cos \\theta =f(\\theta )\\cos \\theta$ and $y=r\\;\\sin \\theta =f(\\theta )\\sin \\theta ,$ so the polar equation $r=f(\\theta )$ is now written in parametric form.</p><p>$r=4\\;\\cos (2\\theta );$ tips of the leaves</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "At $(4,0),$ the slope is undefined. At $(-4,\\frac{\\pi}{2}),$ the slope is 0."
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1167793371294",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the slope of a tangent line to a polar curve $r=f(\\theta ).$ Let $x=r\\;\\cos \\theta =f(\\theta )\\cos \\theta$ and $y=r\\;\\sin \\theta =f(\\theta )\\sin \\theta ,$ so the polar equation $r=f(\\theta )$ is now written in parametric form.</p><p>$r=2\\theta ;$ $(\\frac{\\pi}{2},\\frac{\\pi}{4})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The slope is undefined at<sup class=\"fn\" data-note=\"c-e243-slope\"></sup> $\\frac{4+\\pi}{4-\\pi}$"
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1167793371455",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the slope of a tangent line to a polar curve $r=f(\\theta ).$ Let $x=r\\;\\cos \\theta =f(\\theta )\\cos \\theta$ and $y=r\\;\\sin \\theta =f(\\theta )\\sin \\theta ,$ so the polar equation $r=f(\\theta )$ is now written in parametric form.</p><p>For the cardioid $r=1+\\sin \\theta ,$ find the slope of the tangent line when $\\theta =\\frac{\\pi}{3}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Slope = −1."
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1167793371563",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the slope of the tangent line to the given polar curve at the point given by the value of $\\theta .$</p><p>$r=\\theta ,$ $\\theta =\\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Slope is $\\frac{-2}{\\pi}.$"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1167793373919",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the slope of the tangent line to the given polar curve at the point given by the value of $\\theta .$</p><p><strong>[T]</strong> Use technology: $r=2+4\\;\\cos \\theta$ at $\\theta =\\frac{\\pi}{6}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.836,
+    "tol": 0.001,
+    "solution": "Calculator answer: −0.836."
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1167793374087",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the points at which the following polar curves have a horizontal or vertical tangent line.</p><p>$r^{2}=4\\;\\cos (2\\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal tangent at $(\\text{±}\\sqrt{2},\\frac{\\pi}{6}),$ $(\\text{±}\\sqrt{2},-\\frac{\\pi}{6}).$"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1167793374258",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find the points at which the following polar curves have a horizontal or vertical tangent line.</p><p>The cardioid $r=1+\\sin \\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Horizontal tangents at $\\frac{\\pi}{2},\\frac{7\\pi}{6},\\frac{11\\pi}{6}.$ Vertical tangents at $\\frac{\\pi}{6},\\frac{5\\pi}{6}$ and also at the pole $(0,0).$"
+   }
+  },
+  {
+   "id": "e254",
+   "source_id": "fs-id1167793374357",
+   "source_number": "254",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>Show that the curve $r=\\sin \\theta \\;\\tan \\theta$ (called a <em>cissoid of Diocles</em>) has the line $x=1$ as a vertical asymptote.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Write the curve parametrically: $x=r\\cos \\theta =\\sin \\theta \\tan \\theta \\cos \\theta ={\\sin }^{2}\\theta$ and $y=r\\sin \\theta ={\\sin }^{2}\\theta \\tan \\theta .$ As $\\theta \\to \\frac{\\pi}{2}$ from either side, $x={\\sin }^{2}\\theta \\to 1$ while $\\tan \\theta$ becomes unbounded, so $|y|\\to \\infty .$ The points of the curve therefore approach the vertical line $x=1,$ going up as $\\theta \\to \\frac{\\pi}{2}^{-}$ and down as $\\theta \\to \\frac{\\pi}{2}^{+};$ and since $x={\\sin }^{2}\\theta \\lt 1$ wherever $y$ is defined, the curve never reaches it. So $x=1$ is a vertical asymptote.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r324",
+   "source_id": "fs-id1167794052767",
+   "source_section": "11.5",
+   "source_number": "324",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1167793367213",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>The arc length of the spiral given by $r=\\frac{\\theta}{2}$ for $0\\le \\theta \\le 3\\pi$ is $\\frac{9}{4}{\\pi}^{3}.$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. By Equation 11.10 with $r=\\frac{\\theta}{2}$ and $\\frac{dr}{d\\theta}=\\frac{1}{2},$ $L=\\int_0^{3\\pi}\\sqrt{\\frac{{\\theta}^{2}}{4}+\\frac{1}{4}}\\;d\\theta =\\frac{1}{2}\\int_0^{3\\pi}\\sqrt{{\\theta}^{2}+1}\\;d\\theta \\approx 23.0.$ The value $\\frac{9}{4}{\\pi}^{3}\\approx 69.8$ is $\\frac{1}{2}\\int_0^{3\\pi}{\\theta}^{2}\\,d\\theta ,$ which is neither the length nor the area swept, $\\frac{1}{2}\\int_0^{3\\pi}\\frac{{\\theta}^{2}}{4}d\\theta =\\frac{9}{8}{\\pi}^{3}.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r335",
+   "source_id": "fs-id1167794173331",
+   "source_section": "11.5",
+   "source_number": "335",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "arc-length",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line to the given curve. Graph both the function and its tangent line.</p><p>$r=3+\\cos (2\\theta ),$ $\\theta =\\frac{3\\pi}{4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_05_225.jpg\" alt=\"Graph of a peanut-shaped figure, with y intercepts at ±2 and x intercepts at ±4. The tangent line occurs in the second quadrant.\">\n<p>$y=\\frac{3\\sqrt{2}}{2}+\\frac{1}{5}(x+\\frac{3\\sqrt{2}}{2})$</p>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "area-between-two-polar-curves"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e189",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e191",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e193",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e195",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e197",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e197",
+   "concept": "area-between-two-polar-curves"
+  },
+  {
+   "exercise": "e199",
+   "concept": "area-between-two-polar-curves"
+  },
+  {
+   "exercise": "e201",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e203",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e205",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e207",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e209",
+   "concept": "area-between-two-polar-curves"
+  },
+  {
+   "exercise": "e211",
+   "concept": "area-between-two-polar-curves"
+  },
+  {
+   "exercise": "e213",
+   "concept": "area-between-two-polar-curves"
+  },
+  {
+   "exercise": "e215",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e217",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e219",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e221",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e223",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e225",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e227",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e229",
+   "concept": "area-of-a-region-bounded-by-a-polar-curve"
+  },
+  {
+   "exercise": "e229",
+   "concept": "area-of-a-sector"
+  },
+  {
+   "exercise": "e231",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e233",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "e234",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e235",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e235",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e237",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e237",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e239",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e239",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e241",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e241",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e243",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e243",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e245",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e245",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e247",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e247",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e249",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e249",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e251",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e251",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e253",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "e253",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "e254",
+   "concept": "parameterization-of-a-polar-curve"
+  },
+  {
+   "exercise": "r324",
+   "concept": "arc-length-of-a-polar-curve"
+  },
+  {
+   "exercise": "r335",
+   "concept": "derivative-of-parametric-equations"
+  },
+  {
+   "exercise": "r335",
+   "concept": "parameterization-of-a-polar-curve"
+  }
+ ],
+ "referents": [
+  {
+   "id": "circle-6",
+   "label": "the circle r = 6 sin θ, the outer curve",
+   "figures": [
+    "sim-between-curves"
+   ]
+  },
+  {
+   "id": "cardioid-2",
+   "label": "the cardioid r = 2 + 2 sin θ, the inner curve",
+   "figures": [
+    "sim-between-curves"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-circle-3",
+   "kind": "correction",
+   "html": "The circle of the example is $r=6\\sin \\theta ,$ not $r=3\\sin \\theta .$"
+  },
+  {
+   "id": "c-e243-slope",
+   "kind": "correction",
+   "html": "The slope is defined there: $\\frac{dy}{dx}=\\frac{2\\sin \\theta +2\\theta \\cos \\theta}{2\\cos \\theta -2\\theta \\sin \\theta}$ at $\\theta =\\frac{\\pi}{4}$ is $\\frac{4+\\pi}{4-\\pi}\\approx 8.32.$"
+  }
+ ]
+}

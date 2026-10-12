@@ -1,0 +1,217 @@
+<p id="polar-intro">The rectangular coordinate system (or Cartesian plane) provides a means of mapping points to ordered pairs and ordered pairs to points. This is called a <em>one-to-one mapping</em> from points in the plane to ordered pairs. The <span data-concept="polar-coordinate-system">polar coordinate system</span> provides an alternative method of mapping points to ordered pairs. In this section we see that in some circumstances, <span data-concept="polar-coordinate-system">polar coordinates</span> can be more useful than rectangular coordinates.</p>
+<section id="defining">
+<h2>Defining Polar Coordinates</h2>
+<p class="cite-target" id="polar-term">To find the coordinates of a point in the <span data-concept="polar-coordinate-system">polar coordinate system</span>, consider Figure 11.27. The point $P$ has Cartesian coordinates $(x,y).$ The line segment connecting the origin to the point $P$ measures the distance from the origin to $P$ and has length $r.$ The angle between the positive $x$-axis and the line segment has measure $\ktheta .$ This observation suggests a natural correspondence between the coordinate pair $(x,y)$ and the values $r$ and $\ktheta .$ This correspondence is the basis of the <strong><span data-concept="polar-coordinate-system">polar coordinate system</span></strong>. Note that every point in the Cartesian plane has two values (hence the term <em>ordered pair</em>) associated with it. In the <span data-concept="polar-coordinate-system">polar coordinate system</span>, each point also has two values associated with it: $r$ and $\ktheta .$</p>
+<figure class="sim" id="sim-polar-point" data-figure="11.27" data-original="/media/ch11/CNX_Calc_Figure_11_03_001.jpg" data-original-caption="An arbitrary point in the Cartesian plane.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.27</span><span>An arbitrary point $P$ in the Cartesian plane, with Cartesian coordinates $(x,y)$ and the distance $r$ and angle $\ktheta$ that give its polar coordinates. Drag $P$: $\ktheta$ is measured counterclockwise from the positive $x$-axis and chosen in $P$’s own quadrant.</span></div>
+</figure>
+<p>Using right-triangle trigonometry, the following equations are true for the point $P\text{:}$</p>
+$$\cos \ktheta =\frac{x}{r}\;\text{so}\;x=r\;\cos \ktheta$$
+$$\sin \ktheta =\frac{y}{r}\;\text{so}\;y=r\;\sin \ktheta .$$
+<p>Furthermore,</p>
+$$r^{2}=x^{2}+y^{2}\;\text{and}\;\tan \ktheta =\frac{y}{x}.$$
+<p id="coordinates-term">Each point $(x,y)$ in the Cartesian coordinate system can therefore be represented as an ordered pair $(r,\ktheta )$ in the <span data-concept="polar-coordinate-system">polar coordinate system</span>. The first coordinate is called the <strong><span data-concept="radial-coordinate">radial coordinate</span></strong> and the second coordinate is called the <strong><span data-concept="angular-coordinate">angular coordinate</span></strong>. Every point in the plane can be represented in this form.</p>
+<p>Note that the equation $\tan \ktheta =y/x$ has an infinite number of solutions for any ordered pair $(x,y).$ However, if we restrict the solutions to values between $0$ and $2\pi$ then we can assign a unique solution to the quadrant in which the original point $(x,y)$ is located. Then the corresponding value of <em>r</em> is positive, so $r^{2}=x^{2}+y^{2}.$</p>
+<div class="note" id="fs-id1167793948751">
+<div class="eyebrow">Theorem</div>
+<h3>Converting Points between Coordinate Systems</h3>
+<p>Given a point $P$ in the plane with Cartesian coordinates $(x,y)$ and <span data-concept="polar-coordinate-system">polar coordinates</span> $(r,\ktheta ),$ the following conversion formulas hold true:</p>
+<div class="equation" id="fs-id1167794066096">$$x=r\;\cos \ktheta \;\text{and}\;y=r\;\sin \ktheta ,\tag{11.7}$$</div>
+<div class="equation" id="fs-id1167793834620">$$r^{2}=x^{2}+y^{2}\;\text{and}\;\tan \ktheta =\frac{y}{x}.\tag{11.8}$$</div>
+<p>These formulas can be used to convert from rectangular to polar or from polar to rectangular coordinates.</p>
+</div>
+<div class="example" id="fs-id1167794030722">
+<h3>Example 11.10 · Converting between Rectangular and Polar Coordinates</h3>
+<p>Convert each of the following points into <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
+<p>a. $(1,1)$</p>
+<p>b. $(-3,4)$</p>
+<p>c. $(0,3)$</p>
+<p>d. $(5\sqrt{3},-5)$</p>
+<p>Convert each of the following points into rectangular coordinates.</p>
+<p>e. $(3,\pi /3)$</p>
+<p>f. $(2,3\pi /2)$</p>
+<p>g. $(6,-5\pi /6)$</p>
+<h4>Solution</h4>
+<p>a. Use $x=1$ and $y=1$ in <a href="#fs-id1167793834620">Equation 11.8</a>:</p>
+$$\begin{array}{lllllll}\begin{array}{rll}r^{2} & = & x^{2}+y^{2} \\ & = & 1^{2}+1^{2} \\ r & = & \sqrt{2}\end{array} & & & \text{and} & & & \begin{array}{rll}\tan \ktheta & = & \frac{y}{x} \\ & = & \frac{1}{1}=1 \\ \ktheta & = & \frac{\pi}{4}.\end{array}\end{array}$$
+<p>Therefore this point can be represented as $(\sqrt{2},\frac{\pi}{4})$ in <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
+<p>b. Use $x=-3$ and $y=4$ in <a href="#fs-id1167793834620">Equation 11.8</a>:</p>
+$$\begin{array}{lllllll}\begin{array}{lll}r^{2} & = & x^{2}+y^{2} \\ & = & {(-3)}^{2}+{(4)}^{2} \\ r & = & 5\end{array} & & & \text{and} & & & \begin{array}{lll}\tan \ktheta & = & \frac{y}{x} \\ & = & -\frac{4}{3} \\ \ktheta & = & \pi -\operatorname{arctan}(\frac{4}{3}) \\ & \approx & 2.21.\end{array}\end{array}$$
+<p>The point $(-3,4)$ lies in Quadrant $\text{II}$. Subtract the value of the reference angle, $\operatorname{arctan}(\frac{4}{3})$, from $\pi$ to find the radian measure of $\ktheta$.</p>
+<p>Therefore this point can be represented as $(5,2.21)$ in <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
+<p>c. Use $x=0$ and $y=3$ in <a href="#fs-id1167793834620">Equation 11.8</a>:</p>
+$$\begin{array}{lllllll}\begin{array}{rll}r^{2} & = & x^{2}+y^{2} \\ & = & {(3)}^{2}+{(0)}^{2} \\ & = & 9+0 \\ r & = & 3\end{array} & & & \text{and} & & & \begin{array}{rll}\tan \ktheta & = & \frac{y}{x} \\ & = & \frac{3}{0}.\end{array}\end{array}$$
+<p>Direct application of the second equation leads to division by zero. Graphing the point $(0,3)$ on the rectangular coordinate system reveals that the point is located on the positive <em>y</em>-axis. The angle between the positive <em>x</em>-axis and the positive <em>y</em>-axis is $\frac{\pi}{2}.$ Therefore this point can be represented as $(3,\frac{\pi}{2})$ in <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
+<p>d. Use $x=5\sqrt{3}$ and $y=-5$ in <a href="#fs-id1167793834620">Equation 11.8</a>:</p>
+$$\begin{array}{lllllll}\begin{array}{rll}r^{2} & = & x^{2}+y^{2} \\ & = & {(5\sqrt{3})}^{2}+{(-5)}^{2} \\ & = & 75+25 \\ r & = & 10\end{array} & & & \text{and} & & & \begin{array}{rll}\tan \ktheta & = & \frac{y}{x} \\ & = & \frac{-5}{5\sqrt{3}}=-\frac{\sqrt{3}}{3} \\ \ktheta & = & -\frac{\pi}{6}.\end{array}\end{array}$$
+<p>Therefore this point can be represented as $(10,-\frac{\pi}{6})$ in <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
+<p>e. Use $r=3$ and $\ktheta =\frac{\pi}{3}$ in <a href="#fs-id1167794066096">Equation 11.7</a>:</p>
+$$\begin{array}{lllllll}\begin{array}{rll}x & = & r\;\cos \ktheta \\ & = & 3\;\cos (\frac{\pi}{3}) \\ & = & 3(\frac{1}{2})=\frac{3}{2}\end{array} & & & \text{and} & & & \begin{array}{rll}y & = & r\;\sin \ktheta \\ & = & 3\;\sin (\frac{\pi}{3}) \\ & = & 3(\frac{\sqrt{3}}{2})=\frac{3\sqrt{3}}{2}.\end{array}\end{array}$$
+<p>Therefore this point can be represented as $(\frac{3}{2},\;\frac{3\sqrt{3}}{2})$ in rectangular coordinates.</p>
+<p>f. Use $r=2$ and $\ktheta =\frac{3\pi}{2}$ in <a href="#fs-id1167794066096">Equation 11.7</a>:</p>
+$$\begin{array}{lllllll}\begin{array}{rll}x & = & r\;\cos \ktheta \\ & = & 2\;\cos (\frac{3\pi}{2}) \\ & = & 2(0)=0\end{array} & & & \text{and} & & & \begin{array}{rll}y & = & r\;\sin \ktheta \\ & = & 2\;\sin (\frac{3\pi}{2}) \\ & = & 2(-1)=-2.\end{array}\end{array}$$
+<p>Therefore this point can be represented as $(0,-2)$ in rectangular coordinates.</p>
+<p>g. Use $r=6$ and $\ktheta =-\frac{5\pi}{6}$ in <a href="#fs-id1167794066096">Equation 11.7</a>:</p>
+$$\begin{array}{lllllll}\begin{array}{rll}x & = & r\;\cos \ktheta \\ & = & 6\;\cos (-\frac{5\pi}{6}) \\ & = & 6(-\frac{\sqrt{3}}{2}) \\ & = & -3\sqrt{3}\end{array} & & & \text{and} & & & \begin{array}{rll}y & = & r\;\sin \ktheta \\ & = & 6\;\sin (-\frac{5\pi}{6}) \\ & = & 6(-\frac{1}{2}) \\ & = & -3.\end{array}\end{array}$$
+<p>Therefore this point can be represented as $(-3\sqrt{3},-3)$ in rectangular coordinates.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794030722"></div>
+<p id="not-unique">The polar representation of a point is not unique. For example, the <span data-concept="polar-coordinate-system">polar coordinates</span> $(2,\frac{\pi}{3})$ and $(2,\frac{7\pi}{3})$ both represent the point $(1,\sqrt{3})$ in the rectangular system. Also, the value of $r$ can be negative. Therefore, the point with <span data-concept="polar-coordinate-system">polar coordinates</span> $(-2,\frac{4\pi}{3})$ also represents the point $(1,\sqrt{3})$ in the rectangular system, as we can see by using <a href="#fs-id1167793834620">Equation 11.8</a>:</p>
+$$\begin{array}{lllllll}\begin{array}{rll}x & = & r\;\cos \ktheta \\ & = & -2\;\cos (\frac{4\pi}{3}) \\ & = & -2(-\frac{1}{2})=1\end{array} & & & \text{and} & & & \begin{array}{rll}y & = & r\;\sin \ktheta \\ & = & -2\;\sin (\frac{4\pi}{3}) \\ & = & -2(-\frac{\sqrt{3}}{2})=\sqrt{3}.\end{array}\end{array}$$
+<p>Every point in the plane has an infinite number of representations in <span data-concept="polar-coordinate-system">polar coordinates</span>. However, each point in the plane has only one representation in the rectangular coordinate system.</p>
+<p>Note that the polar representation of a point in the plane also has a visual interpretation. In particular, $r$ is the directed distance that the point lies from the origin, and $\ktheta$ measures the angle that the line segment from the origin to the point makes with the positive $x$-axis. Positive angles are measured in a counterclockwise direction and negative angles are measured in a clockwise direction. The <span data-concept="polar-coordinate-system">polar coordinate system</span> appears in the following figure.</p>
+<figure class="sim" id="sim-polar-plot" data-figure="11.28" data-original="/media/ch11/CNX_Calc_Figure_11_03_002.jpg" data-original-caption="The polar coordinate system.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.28</span><span>The <span data-concept="polar-coordinate-system">polar coordinate system</span>: circles $r=1,$ $r=2,\ldots$ about the <span data-concept="pole">pole</span> and spokes every $\frac{\pi}{12}$ from the <span data-concept="polar-axis">polar axis</span>. To plot $(r,\ktheta),$ start with the angle; for $r\gt 0$ move $r$ along its ray, for $r\lt 0$ along the opposite ray. It opens on $(-2,\frac{4\pi}{3}),$ the point $(1,\sqrt{3}).$</span></div>
+</figure>
+<p id="axis-term">The line segment starting from the center of the graph going to the right (called the positive <em>x</em>-axis in the Cartesian system) is the <strong><span data-concept="polar-axis">polar axis</span></strong>. The center point is the <strong><span data-concept="pole">pole</span></strong>, or origin, of the coordinate system, and corresponds to $r=0.$ The innermost circle shown in Figure 11.28 contains all points a distance of 1 unit from the <span data-concept="pole">pole</span>, and is represented by the equation $r=1.$ Then $r=2$ is the set of points 2 units from the <span data-concept="pole">pole</span>, and so on. The line segments emanating from the <span data-concept="pole">pole</span> correspond to fixed angles. To plot a point in the <span data-concept="polar-coordinate-system">polar coordinate system</span>, start with the angle. If the angle is positive, then measure the angle from the <span data-concept="polar-axis">polar axis</span> in a counterclockwise direction. If it is negative, then measure it clockwise. If the value of $r$ is positive, move that distance along the terminal ray of the angle. If it is negative, move along the ray that is opposite the terminal ray of the given angle.</p>
+<div class="example" id="fs-id1167794066465">
+<h3>Example 11.11 · Plotting Points in the Polar Plane</h3>
+<p>Plot each of the following points on the polar plane.</p>
+<p>a. $(2,\frac{\pi}{4})$</p>
+<p>b. $(-3,\frac{2\pi}{3})$</p>
+<p>c. $(4,\frac{5\pi}{4})$</p>
+<h4>Solution</h4>
+<p>The three points are plotted in the following figure.</p>
+<figure class="figure" id="fig-three-points" data-figure="11.29" data-original="/media/ch11/CNX_Calc_Figure_11_03_003.jpg" data-original-caption="Three points plotted in the polar coordinate system.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.29</span><span>Three points plotted in the <span data-concept="polar-coordinate-system">polar coordinate system</span>.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1167794066465"></div>
+</section>
+<section id="polar-curves">
+<h2>Polar Curves</h2>
+<p class="cite-target" id="polar-curves-intro">Now that we know how to plot points in the <span data-concept="polar-coordinate-system">polar coordinate system</span>, we can discuss how to plot curves. In the rectangular coordinate system, we can graph a function $y=\kf(x)$ and create a curve in the Cartesian plane. In a similar fashion, we can graph a curve that is generated by a function $r=\kf(\ktheta ).$</p>
+<p>The general idea behind graphing a function in <span data-concept="polar-coordinate-system">polar coordinates</span> is the same as graphing a function in rectangular coordinates. Start with a list of values for the independent variable $(\ktheta$ in this case) and calculate the corresponding values of the dependent variable $r.$ This process generates a list of ordered pairs, which can be plotted in the <span data-concept="polar-coordinate-system">polar coordinate system</span>. Finally, connect the points, and take advantage of any patterns that may appear. The function may be <span data-concept="periodic-function">periodic</span>, for example, which indicates that only a limited number of values for the independent variable are needed.</p>
+<div class="note" id="fs-id1167794333153">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Plotting a Curve in Polar Coordinates</h3>
+<ol><li>Create a table with two columns. The first column is for $\ktheta ,$ and the second column is for $r.$</li><li>Create a list of values for $\ktheta .$</li><li>Calculate the corresponding $r$ values for each $\ktheta .$</li><li>Plot each ordered pair $(r,\ktheta )$ on the coordinate axes.</li><li>Connect the points and look for a pattern.</li></ol>
+</div>
+<div class="example" id="fs-id1167794046199">
+<h3>Example 11.12 · Graphing a Function in Polar Coordinates</h3>
+<p>Graph the curve defined by the function $r=4\;\sin \ktheta .$ Identify the curve and rewrite the equation in rectangular coordinates.</p>
+<h4>Solution</h4>
+<p>Because the function is a multiple of a sine function, it is <span data-concept="periodic-function">periodic</span> with period $2\pi ,$ so use values for $\ktheta$ between 0 and $2\pi .$ The result of steps 1–3 appear in the following table. Figure 11.30 shows the graph based on this table.</p>
+<div class="book-table" id="fs-id1167794052334">
+  <table>
+    <thead><tr><th>$\ktheta$</th><th>$r=4\;\sin \ktheta$</th><th></th><th>$\ktheta$</th><th>$r=4\;\sin \ktheta$</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>0</td><td>{rows=9}</td><td>$\pi$</td><td>0</td></tr>
+      <tr><td>$\frac{\pi}{6}$</td><td>$2$</td><td>$\frac{7\pi}{6}$</td><td>$-2$</td></tr>
+      <tr><td>$\frac{\pi}{4}$</td><td>$2\sqrt{2}\approx 2.8$</td><td>$\frac{5\pi}{4}$</td><td>$-2\sqrt{2}\approx -2.8$</td></tr>
+      <tr><td>$\frac{\pi}{3}$</td><td>$2\sqrt{3}\approx 3.4$</td><td>$\frac{4\pi}{3}$</td><td>$-2\sqrt{3}\approx -3.4$</td></tr>
+      <tr><td>$\frac{\pi}{2}$</td><td>$4$</td><td>$\frac{3\pi}{2}$</td><td>$-4$</td></tr>
+      <tr><td>$\frac{2\pi}{3}$</td><td>$2\sqrt{3}\approx 3.4$</td><td>$\frac{5\pi}{3}$</td><td>$-2\sqrt{3}\approx -3.4$</td></tr>
+      <tr><td>$\frac{3\pi}{4}$</td><td>$2\sqrt{2}\approx 2.8$</td><td>$\frac{7\pi}{4}$</td><td>$-2\sqrt{2}\approx -2.8$</td></tr>
+      <tr><td>$\frac{5\pi}{6}$</td><td>$2$</td><td>$\frac{11\pi}{6}$</td><td>$-2$</td></tr>
+      <tr><td></td><td></td><td>$2\pi$</td><td>0</td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="sim-polar-circle" data-figure="11.30" data-original="/media/ch11/CNX_Calc_Figure_11_03_005.jpg" data-original-caption="The graph of the function r=4 sin θ is a circle.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.30</span><span>The graph of the function $r=4\sin \ktheta$ is a circle. Drag the point or slide $\ktheta$: from $0$ to $\pi$ the point goes once around the circle, and from $\pi$ to $2\pi,$ where $r\lt 0,$ it goes around again from behind the <span data-concept="pole">pole</span>.</span></div>
+</figure>
+<p>This is the graph of a circle. The equation $r=4\;\sin \ktheta$ can be converted into rectangular coordinates by first multiplying both sides by $r.$ This gives the equation $r^{2}=4r\;\sin \ktheta .$ Next use the facts that $r^{2}=x^{2}+y^{2}$ and $y=r\;\sin \ktheta .$ This gives $x^{2}+y^{2}=4y.$ To put this equation into standard form, subtract $4y$ from both sides of the equation and complete the square:</p>
+$$\begin{array}{rll}x^{2}+y^{2}-4y & = & 0 \\ x^{2}+(y^{2}-4y) & = & 0 \\ x^{2}+(y^{2}-4y+4) & = & 0+4 \\ x^{2}+{(y-2)}^{2} & = & 4.\end{array}$$
+<p>This is the equation of a circle with radius 2 and center $(0,2)$ in the rectangular coordinate system.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794046199"></div>
+<p>The graph in <a href="#fs-id1167794046199">Example 11.12</a> was that of a circle. The equation of the circle can be transformed into rectangular coordinates using the coordinate transformation formulas in <a href="#fs-id1167793834620">Equation 11.8</a>. <a href="#fs-id1167794047292">Example 11.14</a><sup class="fn" data-note="c-example-ref"></sup> gives some more examples of functions for transforming from polar to rectangular coordinates.</p>
+<div class="example" id="fs-id1167793249073">
+<h3>Example 11.13 · Transforming Polar Equations to Rectangular Coordinates</h3>
+<p>Rewrite each of the following equations in rectangular coordinates and identify the graph.</p>
+<p>a. $\ktheta =\frac{\pi}{3}$</p>
+<p>b. $r=3$</p>
+<p>c. $r=6\;\cos \ktheta -8\;\sin \ktheta$</p>
+<h4>Solution</h4>
+<p>a. Take the tangent of both sides. This gives $\tan \ktheta =\tan (\pi /3)=\sqrt{3}.$ Since $\tan \ktheta =y/x$ we can replace the left-hand side of this equation by $y/x.$ This gives $y/x=\sqrt{3},$ which can be rewritten as $y=x\sqrt{3}.$ This is the equation of a straight line passing through the origin with slope $\sqrt{3}.$ In general, any <span data-concept="polar-equation">polar equation</span> of the form $\ktheta =K$ represents a straight line through the <span data-concept="pole">pole</span> with slope equal to $\tan K.$</p>
+<p>b. First, square both sides of the equation. This gives $r^{2}=9.$ Next replace $r^{2}$ with $x^{2}+y^{2}.$ This gives the equation $x^{2}+y^{2}=9,$ which is the equation of a circle centered at the origin with radius 3. In general, any <span data-concept="polar-equation">polar equation</span> of the form $r=k$ where <em>k</em> is a positive constant represents a circle of radius <em>k</em> centered at the origin. (<em>Note</em>: when squaring both sides of an equation it is possible to introduce new points unintentionally. This should always be taken into consideration. However, in this case we do not introduce new points. For example, $(-3,\frac{\pi}{3})$ is the same point as $(3,\frac{4\pi}{3}).)$</p>
+<p>c. Multiply both sides of the equation by $r.$ This leads to $r^{2}=6r\;\cos \ktheta -8r\;\sin \ktheta .$ Next use the formulas</p>
+$$r^{2}=x^{2}+y^{2},\;x=r\;\cos \ktheta ,\;y=r\;\sin \ktheta .$$
+<p>This gives</p>
+$$\begin{array}{rll}r^{2} & = & 6(r\;\cos \ktheta )-8(r\;\sin \ktheta ) \\ x^{2}+y^{2} & = & 6x-8y.\end{array}$$
+<p>To put this equation into standard form, first move the variables from the right-hand side of the equation to the left-hand side, then complete the square.</p>
+$$\begin{array}{rll}x^{2}+y^{2} & = & 6x-8y \\ x^{2}-6x+y^{2}+8y & = & 0 \\ (x^{2}-6x)+(y^{2}+8y) & = & 0 \\ (x^{2}-6x+9)+(y^{2}+8y+16) & = & 9+16 \\ {(x-3)}^{2}+{(y+4)}^{2} & = & 25.\end{array}$$
+<p>This is the equation of a circle with center at $(3,-4)$ and radius 5. Notice that the circle passes through the origin since the center is 5 units away.</p>
+</div>
+<div class="exercises" data-place="fs-id1167793249073"></div>
+<p id="common-curves">We have now seen several examples of drawing graphs of curves defined by <strong><span data-concept="polar-equation">polar equations</span></strong>. A summary of some common curves is given in the tables below. In each equation, <em>a</em> and <em>b</em> are arbitrary constants.</p>
+<figure class="sim" id="sim-common-curves" data-figure="11.31 + 11.32" data-original="/media/ch11/CNX_Calc_Figure_11_03_016.jpg,/media/ch11/CNX_Calc_Figure_11_03_017.jpg">
+  <div class="sim-head"><span class="eyebrow">Figure 11.31 + 11.32</span><span>Common polar curves, each opening on the book’s example: a line through the <span data-concept="pole">pole</span>, a circle, a <span data-concept="archimedean-spiral">spiral</span>, a <span data-concept="cardioid">cardioid</span>, a <span data-concept="limacon">limaçon</span> and a <span data-concept="rose">rose</span>. Choose a curve, then change its constants $a$ and $b$ and drag $\ktheta$ along it.</span></div>
+</figure>
+<p id="cardioid-term">A <strong><span data-concept="cardioid">cardioid</span></strong> is a special case of a <strong><span data-concept="limacon">limaçon</span></strong> (pronounced “lee-mah-son”), in which $a=b$ or $a=-b.$ The <strong><span data-concept="rose">rose</span></strong> is a very interesting curve. Notice that the graph of $r=3\;\sin 2\ktheta$ has four petals. However, the graph of $r=3\;\sin 3\ktheta$ has three petals as shown.</p>
+<figure class="sim" id="sim-rose" data-figure="11.33 + 11.34" data-original="/media/ch11/CNX_Calc_Figure_11_03_008.jpg,/media/ch11/CNX_Calc_Figure_11_03_009.jpg" data-original-caption="(Figure 11.33) Graph of r = 3 sin 3θ. (Figure 11.34) Polar rose graphs of functions with (a) rational coefficient and (b) irrational coefficient. Note that the rose in part (b) does not fill the disk of radius 3 centered at the origin, even though it appears to. To see this, just note that for any fixed ray from the origin, there are only a countable number of values of theta for which we get a point on the graph along that ray. What we can say, though, is that for any point in the disk, there are points as close as you please to that point on the given graph.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.33 + 11.34</span><span>The <span data-concept="rose">rose</span> $r=3\sin k\ktheta$ for a choice of the coefficient $k$ of $\ktheta$: three petals for $k=3,$ four for $k=2,$ and for a coefficient that is not an integer, a curve that closes when it is rational ($\frac{6}{5},$ at $\ktheta=10\pi$) and never closes when it is irrational ($\sqrt{2}$). Drag $\ktheta$ to trace it.</span></div>
+</figure>
+<p>If the coefficient of $\ktheta$ is even, the graph has twice as many petals as the coefficient. If the coefficient of $\ktheta$ is odd, then the number of petals equals the coefficient. You are encouraged to explore why this happens. Even more interesting graphs emerge when the coefficient of $\ktheta$ is not an integer. For example, if it is rational, then the curve is closed; that is, it eventually ends where it started (Figure 11.34(a)). However, if the coefficient is irrational, then the curve never closes (Figure 11.34(b)). Although it may appear that the curve is closed, a closer examination reveals that the petals just above the positive <em>r</em> axis are slightly thicker. This is because the petal does not quite match up with the starting point.</p>
+<div class="example" id="fs-id1167794047292">
+<h3>Example 11.14 · Chapter Opener: Describing a Spiral</h3>
+<p>Recall the chambered nautilus introduced in the chapter opener. This creature displays a <span data-concept="archimedean-spiral">spiral</span> when half the outer shell is cut away. It is possible to describe a <span data-concept="archimedean-spiral">spiral</span> using rectangular coordinates. Figure 11.35 shows a <span data-concept="archimedean-spiral">spiral</span> in rectangular coordinates. How can we describe this curve mathematically?</p>
+<figure class="sim" id="sim-spiral" data-figure="11.35" data-original="/media/ch11/CNX_Calc_Figure_11_03_010.jpg" data-original-caption="How can we describe a spiral graph mathematically?">
+  <div class="sim-head"><span class="eyebrow">Figure 11.35</span><span>A spiral traced by a point $P$ whose distance from the origin is a constant multiple $k$ of the angle $\ktheta,$ plus a constant $a$: in polar coordinates, $r=a+k\ktheta.$ Drag $P$ along it.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>As the point <em>P</em> travels around the <span data-concept="archimedean-spiral">spiral</span> in a counterclockwise direction, its distance <em>d</em> from the origin increases. Assume that the distance <em>d</em> is a constant multiple <em>k</em> of the angle $\ktheta$ that the line segment <em>OP</em> makes with the positive <em>r</em>-axis. Therefore $d(P,O)=k\theta ,$ where $O$ is the origin. Now use the distance formula and some trigonometry:</p>
+$$\begin{array}{rll}d(P,O) & = & k\theta \\ \sqrt{{(x-0)}^{2}+{(y-0)}^{2}} & = & k\;\operatorname{arctan}(\frac{y}{x}) \\ \sqrt{x^{2}+y^{2}} & = & k\;\operatorname{arctan}(\frac{y}{x}) \\ \operatorname{arctan}(\frac{y}{x}) & = & \frac{\sqrt{x^{2}+y^{2}}}{k} \\ y & = & x\;\tan (\frac{\sqrt{x^{2}+y^{2}}}{k}).\end{array}$$
+<p>Although this equation describes the <span data-concept="archimedean-spiral">spiral</span>, it is not possible to solve it directly for either <em>x</em> or <em>y</em>. However, if we use <span data-concept="polar-coordinate-system">polar coordinates</span>, the equation becomes much simpler. In particular, $d(P,O)=r,$ and $\ktheta$ is the second coordinate. Therefore the equation for the <span data-concept="archimedean-spiral">spiral</span> becomes $r=k\theta .$ Note that when $\ktheta =0$ we also have $r=0,$ so the <span data-concept="archimedean-spiral">spiral</span> emanates from the origin. We can remove this restriction by adding a constant to the equation. Then the equation for the <span data-concept="archimedean-spiral">spiral</span> becomes $r=a+k\theta$ for arbitrary constants $a$ and $k.$ This is referred to as an <span data-concept="archimedean-spiral">Archimedean spiral</span>, after the Greek mathematician Archimedes.</p>
+<p>Another type of <span data-concept="archimedean-spiral">spiral</span> is the <span data-concept="logarithmic-spiral">logarithmic spiral</span>, described by the function $r=a\cdot b^{\ktheta}.$ A graph of the function $r=1.2({1.25}^{\ktheta})$ is given in Figure 11.36. This <span data-concept="archimedean-spiral">spiral</span> describes the shell shape of the chambered nautilus.</p>
+<figure class="sim" id="sim-log-spiral" data-figure="11.36" data-original="/media/ch11/CNX_Calc_Figure_11_03_011.jpg" data-original-caption="A logarithmic spiral is similar to the shape of the chambered nautilus shell. (credit: modification of work by Jitze Couperus, Flickr)">
+  <div class="sim-head"><span class="eyebrow">Figure 11.36</span><span>The <span data-concept="logarithmic-spiral">logarithmic spiral</span> $r=a\cdot b^{\ktheta}$ with the book’s $a=1.2$ and $b=1.25,$ the shape of the chambered nautilus shell beside it in the book’s figure. Each turn multiplies $r$ by $b^{2\pi}.$</span></div>
+</figure>
+</div>
+<p id="polar-parameterization">Suppose a curve is described in the <span data-concept="polar-coordinate-system">polar coordinate system</span> via the function $r=\kf(\ktheta ).$ Since we have conversion formulas from polar to rectangular coordinates given by</p>
+$$\begin{array}{l}x=r\;\cos \ktheta \\ y=r\;\sin \ktheta ,\end{array}$$
+<p>it is possible to rewrite these formulas using the function</p>
+$$\begin{array}{l}x=\kf(\ktheta )\;\cos \ktheta \\ y=\kf(\ktheta )\;\sin \ktheta .\end{array}$$
+<p>This step gives a <span data-concept="parameterization-of-a-polar-curve">parameterization</span> of the curve in rectangular coordinates using $\ktheta$ as the parameter. For example, the <span data-concept="archimedean-spiral">spiral</span> formula $r=a+b\theta$ from Figure 11.31 becomes</p>
+$$\begin{array}{l}x=(a+b\theta )\;\cos \ktheta \\ y=(a+b\theta )\;\sin \ktheta .\end{array}$$
+<p>Letting $\ktheta$ range from $-\infty$ to $\infty$ generates the entire <span data-concept="archimedean-spiral">spiral</span>.</p>
+</section>
+<section id="symmetry">
+<h2>Symmetry in Polar Coordinates</h2>
+<p class="cite-target">When studying symmetry of functions in rectangular coordinates (i.e., in the form $y=\kf(x)),$ we talk about symmetry with respect to the <em>y</em>-axis and symmetry with respect to the origin. In particular, if $\kf(-x)=\kf(x)$ for all $x$ in the domain of $f,$ then $f$ is an <span data-concept="even-function">even function</span> and its graph is symmetric with respect to the <em>y</em>-axis. If $\kf(-x)=-\kf(x)$ for all $x$ in the domain of $f,$ then $f$ is an <span data-concept="odd-function">odd function</span> and its graph is symmetric with respect to the origin. By determining which types of symmetry a graph exhibits, we can learn more about the shape and appearance of the graph. Symmetry can also reveal other properties of the function that generates the graph. Symmetry in <span data-concept="polar-equation">polar curves</span> works in a similar fashion.</p>
+<div class="note" id="fs-id1167794226648">
+<div class="eyebrow">Theorem</div>
+<h3>Symmetry in Polar Curves and Equations</h3>
+<p>Consider a curve generated by the function $r=\kf(\ktheta )$ in <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
+<ol><li>The curve is symmetric about the <span data-concept="polar-axis">polar axis</span> if for every point $(r,\ktheta )$ on the graph, the point $(r,-\ktheta )$ is also on the graph. Similarly, the equation $r=\kf(\ktheta )$ is unchanged by replacing $\ktheta$ with $-\ktheta .$</li><li>The curve is symmetric about the <span data-concept="pole">pole</span> if for every point $(r,\ktheta )$ on the graph, the point $(r,\pi +\ktheta )$ is also on the graph. Similarly, the equation $r=\kf(\ktheta )$ is unchanged when replacing $r$ with $-r,$ or $\ktheta$ with $\pi +\ktheta .$</li><li>The curve is symmetric about the vertical line $\ktheta =\frac{\pi}{2}$ if for every point $(r,\ktheta )$ on the graph, the point $(r,\pi -\ktheta )$ is also on the graph. Similarly, the equation $r=\kf(\ktheta )$ is unchanged when $\ktheta$ is replaced by $\pi -\ktheta .$</li></ol>
+</div>
+<p>The following table shows examples of each type of symmetry.</p>
+<figure class="sim" id="sim-symmetry" data-original="/media/ch11/CNX_Calc_Figure_11_03_018.jpg">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The three symmetries of the theorem, each on the book’s curve: $r=2-2\cos \ktheta$ is symmetric about the <span data-concept="polar-axis">polar axis</span>, $r^{2}=9\cos (2\ktheta-\frac{\pi}{2})$ about the <span data-concept="pole">pole</span>, and $r=2-2\sin \ktheta$ about the vertical line $\ktheta=\frac{\pi}{2}.$ Drag the point $(r,\ktheta)$: its reflection stays on the curve.</span></div>
+</figure>
+<div class="example" id="fs-id1167794099362">
+<h3>Example 11.15 · Using Symmetry to Graph a Polar Equation</h3>
+<p>Find the symmetry of the <span data-concept="rose">rose</span> defined by the equation $r=3\;\sin (2\ktheta )$ and create a graph.</p>
+<h4>Solution</h4>
+<p>Suppose the point $(r,\ktheta )$ is on the graph of $r=3\;\sin (2\ktheta ).$</p>
+<ol><li>To test for symmetry about the <span data-concept="polar-axis">polar axis</span>, first try replacing $\ktheta$ with $-\ktheta .$ This gives $r=3\;\sin (2(-\ktheta ))=-3\;\sin (2\ktheta ).$ Since this changes the original equation, this test is not satisfied. However, returning to the original equation and replacing $r$ with $-r$ and $\ktheta$ with $\pi -\ktheta$ yields</li></ol>
+$$\begin{array}{l} \\ -r=3\;\sin (2(\pi -\ktheta )) \\ -r=3\;\sin (2\pi -2\ktheta ) \\ -r=3\;\sin (-2\ktheta ) \\ -r=-3\;\sin 2\ktheta .\end{array}$$
+<p>Multiplying both sides of this equation by $-1$ gives $r=3\;\sin 2\ktheta ,$ which is the original equation. This demonstrates that the graph is symmetric with respect to the <span data-concept="polar-axis">polar axis</span>.</p>
+<ol start="2"><li>To test for symmetry with respect to the <span data-concept="pole">pole</span>, first replace $r$ with $-r,$ which yields $-r=3\;\sin (2\ktheta ).$ Multiplying both sides by −1 gives $r=-3\;\sin (2\ktheta ),$ which does not agree with the original equation. Therefore the equation does not pass the test for this symmetry. However, returning to the original equation and replacing $\ktheta$ with $\ktheta +\pi$ gives</li></ol>
+$$\begin{array}{rl}r & =3\;\sin (2(\ktheta +\pi )) \\ & =3\;\sin (2\ktheta +2\pi ) \\ & =3(\sin 2\ktheta \;\cos 2\pi +\cos 2\ktheta \;\sin 2\pi ) \\ & =3\;\sin 2\ktheta .\end{array}$$
+<p>Since this agrees with the original equation, the graph is symmetric about the <span data-concept="pole">pole</span>.</p>
+<ol start="3"><li>To test for symmetry with respect to the vertical line $\ktheta =\frac{\pi}{2},$ first replace both $r$ with $-r$ and $\ktheta$ with $-\ktheta .$</li></ol>
+$$\begin{array}{l} \\ -r=3\;\sin (2(-\ktheta )) \\ -r=3\;\sin (-2\ktheta ) \\ -r=-3\;\sin 2\ktheta .\end{array}$$
+<p>Multiplying both sides of this equation by $-1$ gives $r=3\;\sin 2\ktheta ,$ which is the original equation. Therefore the graph is symmetric about the vertical line $\ktheta =\frac{\pi}{2}.$</p>
+<p>This graph has symmetry with respect to the <span data-concept="polar-axis">polar axis</span>, the origin, and the vertical line going through the <span data-concept="pole">pole</span>. To graph the function, tabulate values of $\ktheta$ between 0 and $\pi /2$ and then reflect the resulting graph.</p>
+<div class="book-table" id="fs-id1167793260210">
+  <table>
+    <thead><tr><th>$\ktheta$</th><th>$r$</th></tr></thead>
+    <tbody>
+      <tr><td>$0$</td><td>$0$</td></tr>
+      <tr><td>$\frac{\pi}{6}$</td><td>$\frac{3\sqrt{3}}{2}\approx 2.6$</td></tr>
+      <tr><td>$\frac{\pi}{4}$</td><td>$3$</td></tr>
+      <tr><td>$\frac{\pi}{3}$</td><td>$\frac{3\sqrt{3}}{2}\approx 2.6$</td></tr>
+      <tr><td>$\frac{\pi}{2}$</td><td>$0$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>This gives one petal of the <span data-concept="rose">rose</span>, as shown in the following graph.</p>
+<figure class="sim" id="sim-rose-symmetry" data-figure="11.37 + 11.38" data-original="/media/ch11/CNX_Calc_Figure_11_03_013.jpg,/media/ch11/CNX_Calc_Figure_11_03_014.jpg" data-original-caption="(Figure 11.37) The graph of the equation between θ = 0 and θ = π/2. (Figure 11.38) The entire graph of the equation is called a four-petaled rose.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.37 + 11.38</span><span>The graph of $r=3\sin 2\ktheta$ traced from $\ktheta=0$: by $\ktheta=\frac{\pi}{2}$ it has drawn one petal, and that petal reflected about the <span data-concept="polar-axis">polar axis</span>, the <span data-concept="pole">pole</span> and the line $\ktheta=\frac{\pi}{2}$ gives the entire graph, a <span data-concept="rose">four-petaled rose</span>.</span></div>
+</figure>
+<p>Reflecting this image into the other three quadrants gives the entire graph as shown.</p>
+</div>
+<div class="exercises" data-place="fs-id1167794099362"></div>
+</section>

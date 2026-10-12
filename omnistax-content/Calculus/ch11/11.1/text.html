@@ -1,0 +1,194 @@
+<p id="parametric-intro">In this section we examine <span data-concept="parametric-equations">parametric equations</span> and their graphs. In the two-dimensional coordinate system, <span data-concept="parametric-equations">parametric equations</span> are useful for describing curves that are not necessarily functions. The <span data-concept="parameter">parameter</span> is an independent variable that both <em>x</em> and <em>y</em> depend on, and as the <span data-concept="parameter">parameter</span> increases, the values of <em>x</em> and <em>y</em> trace out a path along a <span data-concept="parametric-curve">plane curve</span>. For example, if the <span data-concept="parameter">parameter</span> is <em>t</em> (a common choice), then <em>t</em> might represent time. Then <em>x</em> and <em>y</em> are defined as functions of time, and $(x(t),y(t))$ can describe the position in the plane of a given object as it moves along a curved path.</p>
+<section id="graphs">
+<h2>Parametric Equations and Their Graphs</h2>
+<p class="cite-target">Consider the orbit of Earth around the Sun. Our year lasts approximately 365.25 days, but for this discussion we will use 365 days. On January 1 of each year, the physical location of Earth with respect to the Sun is nearly the same, except for leap years, when the lag introduced by the extra $\frac{1}{4}$ day of orbiting time is built into the calendar. We call January 1 “day 1” of the year. Then, for example, day 31 is January 31, day 59 is February 28, and so on.</p>
+<p>The number of the day in a year can be considered a variable that determines Earth’s position in its orbit. As Earth revolves around the Sun, its physical location changes relative to the Sun. After one full year, we are back where we started, and a new year begins. According to Kepler’s laws of planetary motion, the shape of the orbit is elliptical, with the Sun at <span data-concept="focus">one focus</span> of the <span data-concept="ellipse">ellipse</span>. We study this idea in more detail in <a href="/calculus/ch11/11.5/">Conic Sections</a>.</p>
+<figure class="sim" id="sim-earth-orbit" data-figure="11.2 + 11.3" data-original="/media/ch11/CNX_Calc_Figure_11_01_001.jpg,/media/ch11/CNX_Calc_Figure_11_01_002.jpg" data-original-caption="(Figure 11.2) Earth’s orbit around the Sun in one year. (Figure 11.3) Coordinate axes superimposed on the orbit of Earth.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.2 + 11.3</span><span>Earth’s orbit around the Sun in one year, with coordinate axes superimposed. As the days of the year pass, Earth’s position $(x(t),y(t))$ runs once around the ellipse, the Sun at one focus and $F_{2}$ at the other; the readout writes its coordinates on day $t.$</span></div>
+</figure>
+<p>Figure 11.2 depicts Earth’s orbit around the Sun during one year. The point labeled $F_{2}$ is one of the <span data-concept="focus">foci</span> of the <span data-concept="ellipse">ellipse</span>; the other focus is occupied by the Sun. If we superimpose coordinate axes over this graph, then we can assign ordered pairs to each point on the <span data-concept="ellipse">ellipse</span> (Figure 11.3). Then each <em>x</em> value on the graph is a value of position as a function of time, and each <em>y</em> value is also a value of position as a function of time. Therefore, each point on the graph corresponds to a value of Earth’s position as a function of time.</p>
+<p>We can determine the functions for $x(t)$ and $y(t),$ thereby parameterizing the orbit of Earth around the Sun. The variable $t$ is called an independent <span data-concept="parameter">parameter</span> and, in this context, represents time relative to the beginning of each year.</p>
+<p id="parametric-term">A curve in the $(x,y)$ plane can be represented parametrically. The equations that are used to define the curve are called <strong><span data-concept="parametric-equations">parametric equations</span></strong>.</p>
+<div class="note" id="fs-id1169295820852">
+<div class="eyebrow">Definition</div>
+<p>If <em>x</em> and <em>y</em> are <span data-concept="function">continuous functions</span> of <em>t</em> on an interval <em>I</em>, then the equations</p>
+$$x=x(t)\;\text{and}\;y=y(t)$$
+<p>are called <span data-concept="parametric-equations">parametric equations</span> and <em>t</em> is called the <strong><span data-concept="parameter">parameter</span></strong>. The set of points $(x,y)$ obtained as <em>t</em> varies over the interval <em>I</em> is called the graph of the <span data-concept="parametric-equations">parametric equations</span>. The graph of <span data-concept="parametric-equations">parametric equations</span> is called a <strong><span data-concept="parametric-curve">parametric curve</span></strong> or <em><span data-concept="parametric-curve">plane curve</span></em>, and is denoted by $\kC$.</p>
+</div>
+<p>Notice in this definition that <em>x</em> and <em>y</em> are used in two ways. The first is as functions of the independent variable <em>t.</em> As <em>t</em> varies over the interval <em>I</em>, the functions $x(t)$ and $y(t)$ generate a set of ordered pairs $(x,y).$ This set of ordered pairs generates the graph of the <span data-concept="parametric-equations">parametric equations</span>. In this second usage, to designate the ordered pairs, <em>x</em> and <em>y</em> are variables. It is important to distinguish the variables <em>x</em> and <em>y</em> from the functions $x(t)$ and $y(t).$</p>
+<div class="example" id="fs-id1169295362672">
+<h3>Example 11.1 · Graphing a Parametrically Defined Curve</h3>
+<p>Sketch the curves described by the following <span data-concept="parametric-equations">parametric equations</span>:</p>
+<p>a. $x(t)=t-1,\;y(t)=2t+4,\;-3\le t\le 2$</p>
+<p>b. $x(t)=t^{2}-3,\;y(t)=2t+1,\;-2\le t\le 3$</p>
+<p>c. $x(t)=4\;\cos t,\;y(t)=4\;\sin t,\;0\le t\le 2\pi$</p>
+<h4>Solution</h4>
+<p>a. To create a graph of this curve, first set up a table of values. Since the independent variable in both $x(t)$ and $y(t)$ is <em>t</em>, let <em>t</em> appear in the first column. Then $x(t)$ and $y(t)$ will appear in the second and third columns of the table.</p>
+<div class="book-table" id="fs-id1169295361650">
+  <table>
+    <thead><tr><th><em>t</em></th><th>$x(t)$</th><th>$y(t)$</th></tr></thead>
+    <tbody>
+      <tr><td>−3</td><td>−4</td><td>−2</td></tr>
+      <tr><td>−2</td><td>−3</td><td>0</td></tr>
+      <tr><td>−1</td><td>−2</td><td>2</td></tr>
+      <tr><td>0</td><td>−1</td><td>4</td></tr>
+      <tr><td>1</td><td>0</td><td>6</td></tr>
+      <tr><td>2</td><td>1</td><td>8</td></tr>
+    </tbody>
+  </table>
+</div>
+<p id="orientation-term">The second and third columns in this table provide a set of points to be plotted. The graph of these points appears in Figure 11.4. The arrows on the graph indicate the <strong><span data-concept="orientation">orientation</span></strong> of the graph, that is, the direction that a point moves on the graph as <em>t</em> varies from −3 to 2.</p>
+<figure class="sim" id="sim-trace-line" data-figure="11.4" data-original="/media/ch11/CNX_Calc_Figure_11_01_003.jpg" data-original-caption="Graph of the plane curve described by the parametric equations in part a.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.4</span><span>The <span data-concept="parametric-curve">plane curve</span> $x(t)=t-1,$ $y(t)=2t+4$ of part a, traced as $t$ runs from $-3$ to $2.$ The arrows on the curve show its <span data-concept="orientation">orientation</span>, the direction the point moves as $t$ increases.</span></div>
+</figure>
+<p>b. To create a graph of this curve, again set up a table of values.</p>
+<div class="book-table" id="fs-id1169295730684">
+  <table>
+    <thead><tr><th><em>t</em></th><th>$x(t)$</th><th>$y(t)$</th></tr></thead>
+    <tbody>
+      <tr><td>−2</td><td>1</td><td>−3</td></tr>
+      <tr><td>−1</td><td>−2</td><td>−1</td></tr>
+      <tr><td>0</td><td>−3</td><td>1</td></tr>
+      <tr><td>1</td><td>−2</td><td>3</td></tr>
+      <tr><td>2</td><td>1</td><td>5</td></tr>
+      <tr><td>3</td><td>6</td><td>7</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>The second and third columns in this table give a set of points to be plotted (Figure 11.5). The first point on the graph (corresponding to $t=-2)$ has coordinates $(1,-3),$ and the last point (corresponding to $t=3)$ has coordinates $(6,7).$ As <em>t</em> progresses from −2 to 3, the point on the curve travels along a <span data-concept="parabola">parabola</span>. The direction the point moves is again called the <span data-concept="orientation">orientation</span> and is indicated on the graph.</p>
+<figure class="sim" id="sim-trace-parabola" data-figure="11.5" data-original="/media/ch11/CNX_Calc_Figure_11_01_004.jpg" data-original-caption="Graph of the plane curve described by the parametric equations in part b.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.5</span><span>The <span data-concept="parametric-curve">plane curve</span> $x(t)=t^{2}-3,$ $y(t)=2t+1$ of part b, traced as $t$ runs from $-2$ to $3$: the point travels along a <span data-concept="parabola">parabola</span>, down and left to $(-3,1)$ at $t=0,$ then up and right to $(6,7).$</span></div>
+</figure>
+<p>c. In this case, use multiples of $\pi /6$ for <em>t</em> and create another table of values:</p>
+<div class="book-table" id="fs-id1169295591562">
+  <table>
+    <thead><tr><th><em>t</em></th><th>$x(t)$</th><th>$y(t)$</th><th></th><th><em>t</em></th><th>$x(t)$</th><th>$y(t)$</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>4</td><td>0</td><td rowspan="7"></td><td>$\frac{7\pi}{6}$</td><td>$-2\sqrt{3}\approx -3.5$</td><td>2<sup class="fn" data-note="c-circle-table"></sup></td></tr>
+      <tr><td>$\frac{\pi}{6}$</td><td>$2\sqrt{3}\approx 3.5$</td><td>$2$</td><td>$\frac{4\pi}{3}$</td><td>−2</td><td>$-2\sqrt{3}\approx -3.5$</td></tr>
+      <tr><td>$\frac{\pi}{3}$</td><td>$2$</td><td>$2\sqrt{3}\approx 3.5$</td><td>$\frac{3\pi}{2}$</td><td>0</td><td>−4</td></tr>
+      <tr><td>$\frac{\pi}{2}$</td><td>0</td><td>4</td><td>$\frac{5\pi}{3}$</td><td>2</td><td>$-2\sqrt{3}\approx -3.5$</td></tr>
+      <tr><td>$\frac{2\pi}{3}$</td><td>−2</td><td>$2\sqrt{3}\approx 3.5$</td><td>$\frac{11\pi}{6}$</td><td>$2\sqrt{3}\approx 3.5$</td><td>2</td></tr>
+      <tr><td>$\frac{5\pi}{6}$</td><td>$-2\sqrt{3}\approx -3.5$</td><td>2</td><td>$2\pi$</td><td>4</td><td>0</td></tr>
+      <tr><td>$\pi$</td><td>−4</td><td>0</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+<p>The graph of this <span data-concept="parametric-curve">plane curve</span> appears in the following graph.</p>
+<figure class="sim" id="sim-trace-circle" data-figure="11.6" data-original="/media/ch11/CNX_Calc_Figure_11_01_005.jpg" data-original-caption="Graph of the plane curve described by the parametric equations in part c.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.6</span><span>The <span data-concept="parametric-curve">plane curve</span> $x(t)=4\cos t,$ $y(t)=4\sin t$ of part c, traced as $t$ runs from $0$ to $2\pi$: once around the circle of radius 4, counterclockwise, starting and ending at $(4,0).$</span></div>
+</figure>
+<p>This is the graph of a circle with radius 4 centered at the origin, with a counterclockwise <span data-concept="orientation">orientation</span>. The starting point and ending points of the curve both have coordinates $(4,0).$</p>
+</div>
+<div class="exercises" data-place="fs-id1169295362672"></div>
+</section>
+<section id="eliminating">
+<h2>Eliminating the Parameter</h2>
+<p class="cite-target">To better understand the graph of a curve represented parametrically, it is useful to rewrite the two equations as a single equation relating the variables <em>x</em> and <em>y.</em> Then we can apply any previous knowledge of equations of curves in the plane to identify the curve. For example, the equations describing the <span data-concept="parametric-curve">plane curve</span> in <a href="#fs-id1169295362672">Example 11.1</a>b. are</p>
+$$x(t)=t^{2}-3,\;y(t)=2t+1,\;-2\le t\le 3.$$
+<p>Solving the second equation for <em>t</em> gives</p>
+$$t=\frac{y-1}{2}.$$
+<p>This can be substituted into the first equation:</p>
+$$x={(\frac{y-1}{2})}^{2}-3=\frac{y^{2}-2y+1}{4}-3=\frac{y^{2}-2y-11}{4}.$$
+<p id="eliminating-term">This equation describes <em>x</em> as a function of <em>y.</em> These steps give an example of <em><span data-concept="eliminating-the-parameter">eliminating the parameter</span></em>. The graph of this function is a <span data-concept="parabola">parabola</span> opening to the right. Recall that the <span data-concept="parametric-curve">plane curve</span> started at $(1,-3)$ and ended at $(6,7).$ These terminations were due to the restriction on the <span data-concept="parameter">parameter</span> <em>t.</em></p>
+<div class="example" id="fs-id1169295694719">
+<h3>Example 11.2 · Eliminating the Parameter</h3>
+<p><span data-concept="eliminating-the-parameter">Eliminate the parameter</span> for each of the <span data-concept="parametric-curve">plane curves</span> described by the following <span data-concept="parametric-equations">parametric equations</span> and describe the resulting graph.</p>
+<p>a. $x(t)=\sqrt{2t+4},\;y(t)=2t+1,\;-2\le t\le 6$</p>
+<p>b. $x(t)=4\;\cos t,\;y(t)=3\;\sin t,\;0\le t\le 2\pi$</p>
+<h4>Solution</h4>
+<p>a. To <span data-concept="eliminating-the-parameter">eliminate the parameter</span>, we can solve either of the equations for <em>t.</em> For example, solving the first equation for <em>t</em> gives</p>
+$$\begin{array}{rll}x & = & \sqrt{2t+4} \\ x^{2} & = & 2t+4 \\ x^{2}-4 & = & 2t \\ t & = & \frac{x^{2}-4}{2}.\end{array}$$
+<p>Note that when we square both sides it is important to observe that $x\ge 0.$ Substituting $t=\frac{x^{2}-4}{2}$ this into $y(t)$ yields</p>
+$$\begin{array}{rll}y(t) & = & 2t+1 \\ y & = & 2(\frac{x^{2}-4}{2})+1 \\ y & = & x^{2}-4+1 \\ y & = & x^{2}-3.\end{array}$$
+<p>This is the equation of a <span data-concept="parabola">parabola</span> opening upward. There is, however, a domain restriction because of the limits on the <span data-concept="parameter">parameter</span> <em>t</em>. When $t=-2,$ $x=\sqrt{2(-2)+4}=0,$ and when $t=6,$ $x=\sqrt{2(6)+4}=4.$ The graph of this <span data-concept="parametric-curve">plane curve</span> follows.</p>
+<figure class="sim" id="sim-trace-half-parabola" data-figure="11.7" data-original="/media/ch11/CNX_Calc_Figure_11_01_007.jpg" data-original-caption="Graph of the plane curve described by the parametric equations in part a.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.7</span><span>The <span data-concept="parametric-curve">plane curve</span> $x(t)=\sqrt{2t+4},$ $y(t)=2t+1$ of part a, traced as $t$ runs from $-2$ to $6,$ over the dashed parabola $y=x^{2}-3$ that <span data-concept="eliminating-the-parameter">eliminating the parameter</span> gives. The point covers only the part with $0\le x\le 4,$ the domain restriction the limits on $t$ make.</span></div>
+</figure>
+<p>b. Sometimes it is necessary to be a bit creative in <span data-concept="eliminating-the-parameter">eliminating the parameter</span>. The <span data-concept="parametric-equations">parametric equations</span> for this example are</p>
+$$x(t)=4\;\cos t\;\text{and}\;y(t)=3\;\sin t.$$
+<p>Solving either equation for <em>t</em> directly is not advisable because sine and cosine are not one-to-one functions. However, dividing the first equation by 4 and the second equation by 3 (and suppressing the <em>t</em>) gives us</p>
+$$\cos t=\frac{x}{4}\;\text{and}\;\sin t=\frac{y}{3}.$$
+<p>Now use the <span data-concept="pythagorean-identities">Pythagorean identity</span> ${\cos }^{2}t+{\sin }^{2}t=1$ and replace the expressions for $\sin t$ and $\cos t$ with the equivalent expressions in terms of <em>x</em> and <em>y</em>. This gives</p>
+$$\begin{array}{rll}{(\frac{x}{4})}^{2}+{(\frac{y}{3})}^{2} & = & 1 \\ \frac{x^{2}}{16}+\frac{y^{2}}{9} & = & 1.\end{array}$$
+<p>This is the equation of a horizontal <span data-concept="ellipse">ellipse</span> centered at the origin, with semimajor axis 4 and semiminor axis 3 as shown in the following graph.</p>
+<figure class="sim" id="sim-trace-ellipse" data-figure="11.8" data-original="/media/ch11/CNX_Calc_Figure_11_01_008.jpg" data-original-caption="Graph of the plane curve described by the parametric equations in part b.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.8</span><span>The <span data-concept="parametric-curve">plane curve</span> $x(t)=4\cos t,$ $y(t)=3\sin t$ of part b, traced as $t$ runs from $0$ to $2\pi$: once around the <span data-concept="ellipse">ellipse</span> $\frac{x^{2}}{16}+\frac{y^{2}}{9}=1,$ counterclockwise; the readout checks the equation at every point.</span></div>
+</figure>
+<p>As <em>t</em> progresses from $0$ to $2\pi ,$ a point on the curve traverses the <span data-concept="ellipse">ellipse</span> once, in a counterclockwise direction. Recall from the section opener that the orbit of Earth around the Sun is also elliptical. This is a perfect example of using <span data-concept="parametric-curve">parameterized curves</span> to model a real-world phenomenon.</p>
+</div>
+<div class="exercises" data-place="fs-id1169295694719"></div>
+<p id="parameterization-term">So far we have seen the method of <span data-concept="eliminating-the-parameter">eliminating the parameter</span>, assuming we know a set of <span data-concept="parametric-equations">parametric equations</span> that describe a <span data-concept="parametric-curve">plane curve</span>. What if we would like to start with the equation of a curve and determine a pair of <span data-concept="parametric-equations">parametric equations</span> for that curve? This is certainly possible, and in fact it is possible to do so in many different ways for a given curve. The process is known as <strong><span data-concept="parameterization-of-a-curve">parameterization of a curve</span></strong>.</p>
+<div class="example" id="fs-id1169295460500">
+<h3>Example 11.3 · Parameterizing a Curve</h3>
+<p>Find two different pairs of <span data-concept="parametric-equations">parametric equations</span> to represent the graph of <span data-fn="2x^2-3">$y=2x^{2}-3.$</span></p>
+<h4>Solution</h4>
+<p>First, it is always possible to parameterize a curve by defining $x(t)=t,$ then replacing <em>x</em> with <em>t</em> in the equation for $y(t).$ This gives the parameterization</p>
+$$x(t)=t,\;y(t)=2t^{2}-3.$$
+<p>Since there is no restriction on the domain in the original graph, there is no restriction on the values of <em>t.</em></p>
+<p>We have complete freedom in the choice for the second parameterization. For example, we can choose $x(t)=3t-2.$ The only thing we need to check is that there are no restrictions imposed on <em>x</em>; that is, the range of $x(t)$ is all real numbers. This is the case for $x(t)=3t-2.$ Now since $y=2x^{2}-3,$ we can substitute $x(t)=3t-2$ for <em>x.</em> This gives</p>
+$$\begin{array}{rl}y(t) & =2{(3t-2)}^{2}-3 \\ & =2(9t^{2}-12t+4)-3 \\ & =18t^{2}-24t+8-3 \\ & =18t^{2}-24t+5.\end{array}$$
+<p>Therefore, a second parameterization of the curve can be written as</p>
+$$x(t)=3t-2\;\text{and}\;y(t)=18t^{2}-24t+5.$$
+</div>
+<div class="exercises" data-place="fs-id1169295460500"></div>
+</section>
+<section id="cycloids">
+<h2>Cycloids and Other Parametric Curves</h2>
+<p class="cite-target" id="cycloid-intro">Imagine going on a bicycle ride through the country. The tires stay in contact with the road and rotate in a predictable pattern. Now suppose <span data-ref="ant">a very determined ant</span> is tired after a long day and wants to get home. So <span data-ref="ant">he</span> hangs onto the side of the tire and gets a free ride. The path that <span data-ref="ant">this ant</span> travels down a straight road is called a <strong><span data-concept="cycloid">cycloid</span></strong> (Figure 11.9). A <span data-concept="cycloid">cycloid</span> generated by a circle (or bicycle wheel) of radius <em>a</em> is given by the <span data-concept="parametric-equations">parametric equations</span></p>
+$$x(t)=a(t-\sin t),\;y(t)=a(1-\cos t).$$
+<p>To see why this is true, consider the path that the center of the wheel takes. The center moves along the <em>x</em>-axis at a constant height equal to the radius of the wheel. If the radius is <em>a</em>, then the coordinates of the center can be given by the equations</p>
+$$x(t)=at,\;y(t)=a$$
+<p>for any value of $t.$ Next, consider <span data-ref="ant">the ant</span>, which rotates around the center along a circular path. If the bicycle is moving from left to right then the wheels are rotating in a clockwise direction. A possible parameterization of the circular motion of <span data-ref="ant">the ant</span> (relative to the center of the wheel) is given by</p>
+$$x(t)=-a\;\sin t,\;y(t)=-a\;\cos t.$$
+<p>(The negative sign is needed to reverse the <span data-concept="orientation">orientation</span> of the curve. If the negative sign were not there, we would have to imagine the wheel rotating counterclockwise.) Adding these equations together gives the equations for the <span data-concept="cycloid">cycloid</span>.</p>
+$$x(t)=a(t-\sin t),\;y(t)=a(1-\cos t).$$
+<figure class="sim" id="sim-cycloid" data-figure="11.9 + 11.13 + 11.14 + 11.15" data-original="/media/ch11/CNX_Calc_Figure_11_01_010.jpg,/media/ch11/CNX_Calc_Figure_11_01_014.jpg,/media/ch11/CNX_Calc_Figure_11_01_015.jpg,/media/ch11/CNX_Calc_Figure_11_01_016.jpg" data-original-caption="(Figure 11.9) A wheel traveling along a road without slipping; the point on the edge of the wheel traces out a cycloid. (Figure 11.13) (a) The ant clings to the edge of the bicycle tire as the tire rolls along the ground. (b) Using geometry to determine the position of the ant after the tire has rotated through an angle of t. (Figure 11.14) (a) The ant climbs up one of the spokes toward the center of the wheel. (b) The ant’s path of motion after he climbs closer to the center of the wheel. This is called a curtate cycloid. (c) The new setup, now that the ant has moved closer to the center of the wheel. (Figure 11.15) (a) The ant is hanging onto the flange of the train wheel. (b) The new setup, now that the ant has jumped onto the train wheel. (c) The ant travels along a prolate cycloid.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.9 + 11.13 + 11.14 + 11.15</span><span>A wheel of radius $a$ traveling along a road without slipping, with <span data-ref="ant">the ant</span> riding it at a distance $b$ from the center $C.$ After the wheel has turned through the angle $t,$ its center is at $(at,a),$ and the right triangle at $C$ gives <span data-ref="ant">the ant</span>’s offsets from it. On the rim, $b=a,$ the path is a <span data-concept="cycloid">cycloid</span>, with a <span data-concept="cusp">cusp</span> each time <span data-ref="ant">the ant</span> touches the road; slide $b$ below $a$ to climb a spoke and the path flattens into a <span data-concept="curtate-cycloid">curtate cycloid</span>, or above $a$, onto a train wheel’s flange, and it loops backward into a <span data-concept="prolate-cycloid">prolate cycloid</span>.</span></div>
+</figure>
+<p id="hypocycloid-term">Now suppose that the bicycle wheel doesn’t travel along a straight road but instead moves along the inside of a larger wheel, as in Figure 11.10. In this graph, the green circle is traveling around the blue circle in a counterclockwise direction. A point on the edge of the green circle traces out the red graph, which is called a <span data-concept="hypocycloid">hypocycloid</span>.</p>
+<figure class="sim" id="sim-hypocycloid" data-figure="11.10 + 11.11" data-original="/media/ch11/CNX_Calc_Figure_11_01_011.jpg,/media/ch11/CNX_Calc_Figure_11_01_013.jpg" data-original-caption="(Figure 11.10) Graph of the hypocycloid described by the parametric equations shown. (Figure 11.11) Graph of various hypocycloids corresponding to different values of a/b.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.10 + 11.11</span><span>A circle of radius $b$ rolls counterclockwise around the inside of a circle of radius $a,$ and a point on its edge traces a <span data-concept="hypocycloid">hypocycloid</span>. Choose the ratio $\frac{a}{b}$: at $4$ the curve has four <span data-concept="cusp">cusps</span>, at $\frac{5}{3}$ it closes after three turns into a five-pointed star, and at $\pi$ or $\sqrt{2}$ it never returns to its starting point.</span></div>
+</figure>
+<p id="hypocycloid-equations">The general <span data-concept="parametric-equations">parametric equations</span> for a <span data-concept="hypocycloid">hypocycloid</span> are</p>
+$$\begin{array}{l}x(t)=(a-b)\;\cos t+b\;\cos (\frac{a-b}{b})\;t \\ y(t)=(a-b)\;\sin t-b\;\sin (\frac{a-b}{b})\;t.\end{array}$$
+<p>These equations are a bit more complicated, but the derivation is somewhat similar to the equations for the <span data-concept="cycloid">cycloid</span>. In this case we assume the radius of the larger circle is <em>a</em> and the radius of the smaller circle is <em>b.</em> Then the center of the wheel travels along a circle of radius $a-b.$ This fact explains the first term in each equation above. The period of the second trigonometric function in both $x(t)$ and $y(t)$ is equal to $\frac{2\pi b}{a-b}.$</p>
+<p id="cusps-term">The ratio $\frac{a}{b}$ is related to the number of <strong><span data-concept="cusp">cusps</span></strong> on the graph (<span data-concept="cusp">cusps</span> are the corners or pointed ends of the graph), as illustrated in Figure 11.11. This ratio can lead to some very interesting graphs, depending on whether or not the ratio is rational. Figure 11.10 corresponds to $a=4$ and $b=1.$ The result is a <span data-concept="hypocycloid">hypocycloid</span> with four <span data-concept="cusp">cusps</span>. Figure 11.11 shows some other possibilities. The last two <span data-concept="hypocycloid">hypocycloids</span> have irrational values for $\frac{a}{b}.$ In these cases the <span data-concept="hypocycloid">hypocycloids</span> have an infinite number of <span data-concept="cusp">cusps</span>, so they never return to their starting point. These are examples of what are known as <strong><span data-concept="space-filling-curve">space-filling curves</span></strong>.</p>
+<div class="note" id="fs-id1169295607690">
+<div class="eyebrow">Student Project</div>
+<h3>The Witch of Agnesi</h3>
+<p>Many <span data-concept="parametric-curve">plane curves</span> in mathematics are named after the people who first investigated them, like the folium of Descartes or the spiral of Archimedes. However, perhaps the strangest name for a curve is the <span data-concept="witch-of-agnesi">witch of Agnesi</span>. Why a witch?</p>
+<p>Maria Gaetana Agnesi (1718–1799) was one of the few recognized women mathematicians of eighteenth-century Italy. She wrote a popular book on analytic geometry, published in 1748, which included an interesting curve that had been studied by Fermat in 1630. The mathematician Guido Grandi showed in 1703 how to construct this curve, which he later called the “versoria,” a Latin term for a rope used in sailing. Agnesi used the Italian term for this rope, “versiera,” but in Latin, this same word means a “female goblin.” When Agnesi’s book was translated into English in 1801, the translator used the term “witch” for the curve, instead of rope. The name “<span data-concept="witch-of-agnesi">witch of Agnesi</span>” has stuck ever since.</p>
+<p>The <span data-concept="witch-of-agnesi">witch of Agnesi</span> is a curve defined as follows: Start with a circle of radius <em>a</em> so that the points $(0,0)$ and $(0,2a)$ are points on the circle (Figure 11.12). Let <em>O</em> denote the origin. Choose any other point <em>A</em> on the circle, and draw the secant line <em>OA</em>. Let <em>B</em> denote the point at which the line <em>OA</em> intersects the horizontal line through $(0,2a).$ The vertical line through <em>B</em> intersects the horizontal line through <em>A</em> at the point <em>P</em>. As the point <em>A</em> varies, the path that the point <em>P</em> travels is the <span data-concept="witch-of-agnesi">witch of Agnesi</span> curve for the given circle.</p>
+<p><span data-concept="witch-of-agnesi">Witch of Agnesi</span> curves have applications in physics, including modeling water waves and distributions of spectral lines. In probability theory, the curve describes the probability density function of the Cauchy distribution. In this project you will parameterize these curves.</p>
+<figure class="sim" id="sim-witch" data-figure="11.12" data-original="/media/ch11/CNX_Calc_Figure_11_01_012.jpg" data-original-caption="As the point A moves around the circle, the point P traces out the witch of Agnesi curve for the given circle.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.12</span><span>As the point $A$ moves around the circle, the point $P$ traces out the <span data-concept="witch-of-agnesi">witch of Agnesi</span> curve for the given circle: $B$ is where the line $OA$ meets the horizontal line through $(0,2a),$ and $P$ is where the vertical line through $B$ meets the horizontal line through $A.$</span></div>
+</figure>
+<ol><li>On the figure, label the following points, lengths, and angle:<ol type="a"><li><em>C</em> is the point on the <em>x</em>-axis with the same <em>x</em>-coordinate as <em>A</em>.</li><li><em>x</em> is the <em>x</em>-coordinate of <em>P</em>, and <em>y</em> is the <em>y</em>-coordinate of <em>P</em>.</li><li><em>E</em> is the point $(0,a).$</li><li><em>F</em> is the point on the line segment <em>OA</em> such that the line segment <em>EF</em> is perpendicular to the line segment <em>OA</em>.</li><li><em>b</em> is the distance from <em>O</em> to <em>F</em>.</li><li><em>c</em> is the distance from <em>F</em> to <em>A</em>.</li><li><em>d</em> is the distance from <em>O</em> to <em>B</em>.</li><li>$\ktheta$ is the measure of angle $\text{∠}COA.$</li></ol></li></ol>
+<p>The goal of this project is to parameterize the witch using $\ktheta$ as a <span data-concept="parameter">parameter</span>. To do this, write equations for <em>x</em> and <em>y</em> in terms of only $\ktheta .$</p>
+<ol start="2"><li>Show that $d=\frac{2a}{\sin \ktheta}.$</li><li>Note that $x=d\;\cos \ktheta .$ Show that $x=2a\;\cot \ktheta .$ When you do this, you will have parameterized the <em>x</em>-coordinate of the curve with respect to $\ktheta .$ If you can get a similar equation for <em>y</em>, you will have parameterized the curve.</li><li>In terms of $\ktheta ,$ what is the angle $\text{∠}EOA?$</li><li>Show that $b+c=2a\;\cos (\frac{\pi}{2}-\ktheta ).$</li><li>Show that $y=2a\;\cos (\frac{\pi}{2}-\ktheta )\;\sin \ktheta .$</li><li>Show that $y=2a\;{\sin }^{2}\ktheta .$ You have now parameterized the <em>y</em>-coordinate of the curve with respect to $\ktheta .$</li><li>Conclude that a parameterization of the given witch curve is</li></ol>
+$$x=2a\;\cot \ktheta ,y=2a\;{\sin }^{2}\ktheta ,-\infty \lt \ktheta \lt \infty .$$
+<ol start="9"><li>Use your parameterization to show that the given witch curve is the graph of the function $f(x)=\frac{8a^{3}}{x^{2}+4a^{2}}.$</li></ol>
+</div>
+<div class="note" id="fs-id1169293391049">
+<div class="eyebrow">Student Project</div>
+<h3>Travels with My Ant: The Curtate and Prolate Cycloids</h3>
+<p>Earlier in this section, we looked at the <span data-concept="parametric-equations">parametric equations</span> for a <span data-concept="cycloid">cycloid</span>, which is the path a point on the edge of a wheel traces as the wheel rolls along a straight path. In this project we look at two different variations of the <span data-concept="cycloid">cycloid</span>, called the curtate and <span data-concept="prolate-cycloid">prolate cycloids</span>.</p>
+<p>First, let’s revisit the derivation of the <span data-concept="parametric-equations">parametric equations</span> for a <span data-concept="cycloid">cycloid</span>. Recall that we considered <span data-ref="ant">a tenacious ant</span> trying to get home by hanging onto the edge of a bicycle tire. We have assumed <span data-ref="ant">the ant</span> climbed onto the tire at the very edge, where the tire touches the ground. As the wheel rolls, <span data-ref="ant">the ant</span> moves with the edge of the tire (Figure 11.13).</p>
+<p>As we have discussed, we have a lot of flexibility when parameterizing a curve. In this case we let our <span data-concept="parameter">parameter</span> <em>t</em> represent the angle the tire has rotated through. Looking at Figure 11.13, we see that after the tire has rotated through an angle of <em>t</em>, the position of the center of the wheel, $C=(x_{C},y_{C}),$ is given by</p>
+$$x_{C}=at\;\text{and}\;y_{C}=a.$$
+<p>Furthermore, letting $A=(x_{A},y_{A})$ denote the position of <span data-ref="ant">the ant</span>, we note that</p>
+$$x_{C}-x_{A}=a\;\sin t\;\text{and}\;y_{C}-y_{A}=a\;\cos t.$$
+<p>Then</p>
+$$\begin{array}{l}x_{A}=x_{C}-a\;\sin t=at-a\;\sin t=a(t-\sin t) \\ y_{A}=y_{C}-a\;\cos t=a-a\;\cos t=a(1-\cos t).\end{array}$$
+<p>Note that these are the same parametric representations we had before, but we have now assigned a physical meaning to the parametric variable <em>t</em>.</p>
+<p>After a while <span data-ref="ant">the ant</span> is getting dizzy from going round and round on the edge of the tire. So <span data-ref="ant">he</span> climbs up one of the spokes toward the center of the wheel. By climbing toward the center of the wheel, <span data-ref="ant">the ant</span> has changed <span data-ref="ant">his</span> path of motion. The new path has less up-and-down motion and is called a <span data-concept="curtate-cycloid">curtate cycloid</span> (Figure 11.14). As shown in the figure, we let <em>b</em> denote the distance along the spoke from the center of the wheel to <span data-ref="ant">the ant</span>. As before, we let <em>t</em> represent the angle the tire has rotated through. Additionally, we let $C=(x_{C},y_{C})$ represent the position of the center of the wheel and $A=(x_{A},y_{A})$ represent the position of <span data-ref="ant">the ant</span>.</p>
+<ol><li>What is the position of the center of the wheel after the tire has rotated through an angle of <em>t</em>?</li><li>Use geometry to find expressions for $x_{C}-x_{A}$ and for $y_{C}-y_{A}.$</li><li>On the basis of your answers to parts 1 and 2, what are the <span data-concept="parametric-equations">parametric equations</span> representing the <span data-concept="curtate-cycloid">curtate cycloid</span>?</li></ol>
+<p>Once <span data-ref="ant">the ant’s</span> head clears, <span data-ref="ant">he</span> realizes that the bicyclist has made a turn, and is now traveling away from <span data-ref="ant">his</span> home. So <span data-ref="ant">he</span> drops off the bicycle tire and looks around. Fortunately, there is a set of train tracks nearby, headed back in the right direction. So <span data-ref="ant">the ant</span> heads over to the train tracks to wait. After a while, a train goes by, heading in the right direction, and <span data-ref="ant">he</span> manages to jump up and just catch the edge of the train wheel (without getting squished!).</p>
+<p><span data-ref="ant">The ant</span> is still worried about getting dizzy, but the train wheel is slippery and has no spokes to climb, so <span data-ref="ant">he</span> decides to just hang on to the edge of the wheel and hope for the best. Now, train wheels have a flange to keep the wheel running on the tracks. So, in this case, since <span data-ref="ant">the ant</span> is hanging on to the very edge of the flange, the distance from the center of the wheel to <span data-ref="ant">the ant</span> is actually greater than the radius of the wheel (Figure 11.15).</p>
+<p>The setup here is essentially the same as when <span data-ref="ant">the ant</span> climbed up the spoke on the bicycle wheel. We let <em>b</em> denote the distance from the center of the wheel to <span data-ref="ant">the ant</span>, and we let <em>t</em> represent the angle the tire has rotated through. Additionally, we let $C=(x_{C},y_{C})$ represent the position of the center of the wheel and $A=(x_{A},y_{A})$ represent the position of <span data-ref="ant">the ant</span> (Figure 11.15).</p>
+<p>When the distance from the center of the wheel to <span data-ref="ant">the ant</span> is greater than the radius of the wheel, <span data-ref="ant">his</span> path of motion is called a <span data-concept="prolate-cycloid">prolate cycloid</span>. A graph of a <span data-concept="prolate-cycloid">prolate cycloid</span> is shown in the figure.</p>
+<ol start="4"><li>Using the same approach you used in parts 1– 3, find the <span data-concept="parametric-equations">parametric equations</span> for the path of motion of <span data-ref="ant">the ant</span>.</li><li>What do you notice about your answer to part 3 and your answer to part 4?</li></ol>
+<p>Notice that <span data-ref="ant">the ant</span> is actually traveling backward at times (the “loops” in the graph), even though the train continues to move forward. <span data-ref="ant">He</span> is probably going to be <em>really</em> dizzy by the time <span data-ref="ant">he</span> gets home!</p>
+</div>
+</section>

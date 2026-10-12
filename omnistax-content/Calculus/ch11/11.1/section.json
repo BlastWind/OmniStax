@@ -1,0 +1,1211 @@
+{
+ "id": "11.1",
+ "module": "m53834",
+ "chapter": "11",
+ "title": "Parametric Equations",
+ "short": "Parametric Equations",
+ "lead": "A <span data-concept=\"parametric-curve\">parametric curve</span> is traced by a point whose coordinates $x$ and $y$ both depend on a third variable, the <span data-concept=\"parameter\">parameter</span> $t.$ This section graphs such curves with their <span data-concept=\"orientation\">orientation</span>, eliminates the parameter to find an equation in $x$ and $y,$ parameterizes a curve in more than one way and follows a rolling wheel’s <span data-concept=\"cycloid\">cycloid</span>.",
+ "objectives": [
+  "Plot a curve described by parametric equations.",
+  "Convert the parametric equations of a curve into the form $y=f(x).$",
+  "Recognize the parametric equations of basic curves, such as a line and a circle.",
+  "Recognize the parametric equations of a cycloid."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"parametric-equations\">Parametric equations</span> provide a convenient way to describe a curve. A <span data-concept=\"parameter\">parameter</span> can represent time or some other meaningful quantity.</li><li>It is often possible to <span data-concept=\"eliminating-the-parameter\">eliminate the parameter</span> in a parameterized curve to obtain a function or relation describing that curve.</li><li>There is always more than one way to parameterize a curve.</li><li><span data-concept=\"parametric-equations\">Parametric equations</span> can describe complicated curves that are difficult or perhaps impossible to describe using rectangular coordinates.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approach marked as such. Exercise 49 (show that x = h + r cos θ, y = k + r sin θ is a circle) has no answer in the book’s key and is kept with an AI-written suggested approach. The 30 even-numbered exercises have no answer in the key and are left out: 2 and 4 (sketch with the orientation), 6, 8, 56 and 60 (sketch with technology), 10–20 even (sketch, with asymptotes), 22–38 even (rectangular forms and domains), 40–48 even (name the curve), 50 (a circle’s parametric equations), 52 (identify a curve), 54 (the dropped package) and 58 (the epitrochoid). Review exercises 323, 327 and 329 from the end of the chapter are held here; 326 and 328, unkeyed sketches, are left out.",
+ "figures": [
+  {
+   "id": "sim-earth-orbit",
+   "kind": "sim",
+   "number": "11.2",
+   "folds": [
+    "11.3"
+   ],
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_001.jpg",
+    "/media/ch11/CNX_Calc_Figure_11_01_002.jpg"
+   ],
+   "original_caption": "(Figure 11.2) Earth’s orbit around the Sun in one year. (Figure 11.3) Coordinate axes superimposed on the orbit of Earth.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-trace-line",
+   "kind": "sim",
+   "number": "11.4",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_003.jpg"
+   ],
+   "original_caption": "Graph of the plane curve described by the parametric equations in part a.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-trace-parabola",
+   "kind": "sim",
+   "number": "11.5",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_004.jpg"
+   ],
+   "original_caption": "Graph of the plane curve described by the parametric equations in part b.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-trace-circle",
+   "kind": "sim",
+   "number": "11.6",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_005.jpg"
+   ],
+   "original_caption": "Graph of the plane curve described by the parametric equations in part c.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-trace-half-parabola",
+   "kind": "sim",
+   "number": "11.7",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_007.jpg"
+   ],
+   "original_caption": "Graph of the plane curve described by the parametric equations in part a.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-trace-ellipse",
+   "kind": "sim",
+   "number": "11.8",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_008.jpg"
+   ],
+   "original_caption": "Graph of the plane curve described by the parametric equations in part b.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-cycloid",
+   "kind": "sim",
+   "number": "11.9",
+   "folds": [
+    "11.13",
+    "11.14",
+    "11.15"
+   ],
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_010.jpg",
+    "/media/ch11/CNX_Calc_Figure_11_01_014.jpg",
+    "/media/ch11/CNX_Calc_Figure_11_01_015.jpg",
+    "/media/ch11/CNX_Calc_Figure_11_01_016.jpg"
+   ],
+   "original_caption": "(Figure 11.9) A wheel traveling along a road without slipping; the point on the edge of the wheel traces out a cycloid. (Figure 11.13) (a) The ant clings to the edge of the bicycle tire as the tire rolls along the ground. (b) Using geometry to determine the position of the ant after the tire has rotated through an angle of t. (Figure 11.14) (a) The ant climbs up one of the spokes toward the center of the wheel. (b) The ant’s path of motion after he climbs closer to the center of the wheel. This is called a curtate cycloid. (c) The new setup, now that the ant has moved closer to the center of the wheel. (Figure 11.15) (a) The ant is hanging onto the flange of the train wheel. (b) The new setup, now that the ant has jumped onto the train wheel. (c) The ant travels along a prolate cycloid.",
+   "draws": [
+    "curve",
+    "point",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-hypocycloid",
+   "kind": "sim",
+   "number": "11.10",
+   "folds": [
+    "11.11"
+   ],
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_011.jpg",
+    "/media/ch11/CNX_Calc_Figure_11_01_013.jpg"
+   ],
+   "original_caption": "(Figure 11.10) Graph of the hypocycloid described by the parametric equations shown. (Figure 11.11) Graph of various hypocycloids corresponding to different values of a/b.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-witch",
+   "kind": "sim",
+   "number": "11.12",
+   "originals": [
+    "/media/ch11/CNX_Calc_Figure_11_01_012.jpg"
+   ],
+   "original_caption": "As the point A moves around the circle, the point P traces out the witch of Agnesi curve for the given circle.",
+   "draws": [
+    "curve",
+    "point",
+    "line",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "parametric-intro",
+   "concept": "parameter",
+   "verb": "uses"
+  },
+  {
+   "span": "parametric-term",
+   "concept": "parametric-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169295820852",
+   "concept": "parametric-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169295820852",
+   "concept": "parameter",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169295820852",
+   "concept": "parametric-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169295820852",
+   "concept": "function",
+   "verb": "uses"
+  },
+  {
+   "span": "orientation-term",
+   "concept": "orientation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169295362672",
+   "concept": "parametric-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eliminating",
+   "concept": "graph-of-a-function",
+   "verb": "uses"
+  },
+  {
+   "span": "eliminating-term",
+   "concept": "eliminating-the-parameter",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169295694719",
+   "concept": "eliminating-the-parameter",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169295694719",
+   "concept": "pythagorean-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "parameterization-term",
+   "concept": "parameterization-of-a-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169295460500",
+   "concept": "parameterization-of-a-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "cycloid-intro",
+   "concept": "cycloid",
+   "verb": "introduces"
+  },
+  {
+   "span": "cycloid-intro",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "hypocycloid-term",
+   "concept": "hypocycloid",
+   "verb": "introduces"
+  },
+  {
+   "span": "cusps-term",
+   "concept": "cusp",
+   "verb": "introduces"
+  },
+  {
+   "span": "cusps-term",
+   "concept": "space-filling-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169295607690",
+   "concept": "witch-of-agnesi",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169293391049",
+   "concept": "curtate-cycloid",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169293391049",
+   "concept": "prolate-cycloid",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169293391049",
+   "concept": "cycloid",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169293200600",
+   "source_number": "Checkpoint 11.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169295362672"
+   },
+   "cite": "orientation-term",
+   "prompt": "<p>Sketch the curve described by the parametric equations</p>\n$$x(t)=3t+2,\\;y(t)=t^{2}-1,\\;-3\\le t\\le 2.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_006.jpg\" alt=\"A curved line going from (−7, 8) through (−1, 0) and (2, −1) to (8, 3) with arrow going in that order. The point (−7, 8) is marked t = −3, the point (2, −1) is marked t = 0, and the point (8, 3) is marked t = 2. On the graph there are also written three equations: x(t) = 3t + 2, y(t) = t2 − 1, and −3 ≤ t ≤ 2.\">",
+    "hint": "Make a table of values for $x(t)$ and $y(t)$ using <em>t</em> values from −3 to 2."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169295362512",
+   "source_number": "Checkpoint 11.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169295694719"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>Eliminate the parameter for the plane curve defined by the following parametric equations and describe the resulting graph.</p>\n$$x(t)=2+\\frac{3}{t},\\;y(t)=t-1,\\;2\\le t\\le 6$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$x=2+\\frac{3}{y+1},$ or $y=-1+\\frac{3}{x-2}.$ This equation describes a portion of a rectangular hyperbola centered at $(2,-1).$</p>\n<img src=\"/media/ch11/CNX_Calc_Figure_11_01_009.jpg\" alt=\"A curved line going from (3.5, 1) to (2.5, 5) with arrow going in that order. The point (3.5, 1) is marked t = 2 and the point (2.5, 5) is marked t = 6. On the graph there are also written three equations: x(t) = 2 + 3/t, y(t) = t − 1, and 2 ≤ t ≤ 6.\">",
+    "hint": "Solve one of the equations for <em>t</em> and substitute into the other equation."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169295461542",
+   "source_number": "Checkpoint 11.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169295460500"
+   },
+   "cite": "parameterization-term",
+   "prompt": "Find two different sets of parametric equations to represent the graph of $y=x^{2}+2x.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "One possibility is $x(t)=t,\\;y(t)=t^{2}+2t.$ Another possibility is $x(t)=2t-3,\\;y(t)={(2t-3)}^{2}+2(2t-3)=4t^{2}-8t+3.$ There are, in fact, an infinite number of possibilities.",
+    "hint": "Follow the steps in <a href=\"#fs-id1169295460500\">Example 11.3</a>. Remember we have freedom in choosing the parameterization for $x(t).$"
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1169293216381",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the curves below by eliminating the parameter <em>t</em>. Give the orientation of the curve.</p><p>$x=t^{2}+2t,$ $y=t+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_201.jpg\" alt=\"A parabola open to the right with (−1, 0) being the point furthest the left with arrow going from the bottom through (−1, 0) and up.\">\n<p>orientation: bottom to top</p>"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1169293348680",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the curves below by eliminating the parameter <em>t</em>. Give the orientation of the curve.</p><p>$x=2t+4,y=t-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_203.jpg\" alt=\"A straight line passing through (0, −3) and (6, 0) with arrow pointing up and to the right.\">\n<p>orientation: left to right</p>"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1169293394162",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, eliminate the parameter and sketch the graphs.</p><p>$x=2t^{2},\\;y=t^{4}+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$y=\\frac{x^{2}}{4}+1$</p>\n<img src=\"/media/ch11/CNX_Calc_Figure_11_01_205.jpg\" alt=\"Half a parabola starting at the origin and passing through (2, 2) with arrow pointed up and to the right.\">"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1169293320748",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs",
+   "prompt": "<p>For the following exercises, use technology (CAS or calculator) to sketch the parametric equations.</p><p><strong>[T]</strong> $\\begin{array}{ll}x=e^{-t}, & y=e^{2t}-1\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_208.jpg\" alt=\"A curve going through (1, 0) and (0, 3) with arrow pointing up and to the left.\">"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1169295856403",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs",
+   "prompt": "<p>For the following exercises, use technology (CAS or calculator) to sketch the parametric equations.</p><p><strong>[T]</strong> $\\begin{array}{ll}x=\\sec t, & y=\\cos t\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_210.jpg\" alt=\"A graph with asymptotes at the x and y axes. There is a portion of the graph in the third quadrant with arrow pointing down and to the right. There is a portion of the graph in the first quadrant with arrow pointing down and to the right.\">"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1169293398622",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the parametric equations by eliminating the parameter. Indicate any asymptotes of the graph.</p><p>$x=6\\;\\sin (2\\theta ),y=4\\;\\cos (2\\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_212.jpg\" alt=\"An ellipse with minor axis vertical and of length 8 and major axis horizontal and of length 12 that is centered at the origin. The arrows go clockwise.\">"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1169293397059",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the parametric equations by eliminating the parameter. Indicate any asymptotes of the graph.</p><p>$\\begin{array}{ll}x=3-2\\;\\cos \\theta , & y=-5+3\\;\\sin \\theta \\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_214.jpg\" alt=\"An ellipse in the fourth quadrant with minor axis horizontal and of length 4 and major axis vertical and of length 6. The arrows go clockwise.\">"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1169293393259",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the parametric equations by eliminating the parameter. Indicate any asymptotes of the graph.</p><p>$\\begin{array}{ll}x=\\sec t, & y=\\tan t\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_216.jpg\" alt=\"A graph with asymptotes at y = x and y = −x. The first part of the graph occurs in the second and third quadrants with vertex at (−1, 0). The second part of the graph occurs in the first and fourth quadrants with vertex as (1, 0).\">\n<p>Asymptotes are $y=x$ and $y=-x$</p>"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1169293282643",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the parametric equations by eliminating the parameter. Indicate any asymptotes of the graph.</p><p>$\\begin{array}{ll}x=e^{t}, & y=e^{2t}\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_218.jpg\" alt=\"A curve starting slightly above the origin and increasing to the right with arrow pointing up and to the right.\">"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1169293395004",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the parametric equations by eliminating the parameter. Indicate any asymptotes of the graph.</p><p>$\\begin{array}{ll}x=t^{3}, & y=3\\;\\ln t\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_220.jpg\" alt=\"A curve with asymptote being the y axis. The curve starts in the fourth quadrant and increases rapidly through (1, 0) at which point is increases much more slowly.\">"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1169293394133",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$\\begin{array}{ll}x=t^{2}-1, & y=\\frac{t}{2}\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=\\frac{\\sqrt{x+1}}{2}$<sup class=\"fn\" data-note=\"c-e21-half\"></sup>; domain: $x\\in [–1,\\infty ).$"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1169293315628",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$x=4\\;\\cos \\theta ,y=3\\;\\sin \\theta ,\\theta \\in (0,2\\pi ]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x^{2}}{16}+\\frac{y^{2}}{9}=1;$ domain $x\\in [-4,4].$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1169293390489",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$\\begin{array}{ll}x=2t-3, & y=6t-7\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=3x+2;$ domain: all real numbers."
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1169293395820",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$\\begin{array}{ll}x=1+\\cos t, & y=3-\\sin t\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(x-1)}^{2}+{(y-3)}^{2}=1;$ domain: $x\\in [0,2].$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1169293199778",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$\\begin{array}{ll}x=\\sec t, & y=\\tan t,\\pi \\le t\\lt \\frac{3\\pi}{2}\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=\\sqrt{x^{2}-1};$ domain: $x\\in (-\\infty ,-1].$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1169293339179",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$\\begin{array}{ll}x=\\cos (2t), & y=\\sin t\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y^{2}=\\frac{1-x}{2};$ domain: $x\\in [-1,1].$"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1169295839311",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$\\begin{array}{ll}x=t^{2}, & y=2\\;\\ln t,t\\ge 1\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=\\ln x;$ domain: $x\\in [1,\\infty ).$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1169293200728",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$\\begin{array}{ll}x=t^{n}, & y=n\\;\\ln t,t\\ge 1,\\end{array}$ where <em>n</em> is a natural number</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=\\ln x;$ domain: $x\\in (0,\\infty ).$<sup class=\"fn\" data-note=\"c-e35-domain\"></sup>"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1169295558437",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, convert the parametric equations of a curve into rectangular form. No sketch is necessary. State the domain of the rectangular form.</p><p>$\\begin{array}{l}x=2\\;\\sin (8t) \\\\ y=2\\;\\cos (8t)\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x^{2}+y^{2}=4;$ domain: $x\\in [-2,2].$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1169293387409",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, the pairs of parametric equations represent lines, parabolas, circles, ellipses, or hyperbolas. Name the type of basic curve that each pair of equations represents.</p><p>$\\begin{array}{l}x=3t+4 \\\\ y=5t-2\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "line"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1169293339266",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, the pairs of parametric equations represent lines, parabolas, circles, ellipses, or hyperbolas. Name the type of basic curve that each pair of equations represents.</p><p>$\\begin{array}{l}x=2t+1 \\\\ y=t^{2}-3\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "parabola"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1169293345112",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, the pairs of parametric equations represent lines, parabolas, circles, ellipses, or hyperbolas. Name the type of basic curve that each pair of equations represents.</p><p>$\\begin{array}{l}x=2\\;\\cos (3t) \\\\ y=2\\;\\sin (3t)\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "circle"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1169295558322",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, the pairs of parametric equations represent lines, parabolas, circles, ellipses, or hyperbolas. Name the type of basic curve that each pair of equations represents.</p><p>$\\begin{array}{l}x=3\\;\\cos t \\\\ y=4\\;\\sin t\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "ellipse"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1169293261119",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, the pairs of parametric equations represent lines, parabolas, circles, ellipses, or hyperbolas. Name the type of basic curve that each pair of equations represents.</p><p>$\\begin{array}{l}x=3\\;\\operatorname{cosh}(4t) \\\\ y=4\\;\\operatorname{sinh}(4t)\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "hyperbola"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1169293223957",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>Show that $\\begin{array}{l}x=h+r\\;\\cos \\theta \\\\ y=k+r\\;\\sin \\theta \\end{array}$ represents the equation of a circle.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Subtract $h$ and $k$: $x-h=r\\cos \\theta$ and $y-k=r\\sin \\theta .$ Square both equations and add them; the Pythagorean identity ${\\cos }^{2}\\theta +{\\sin }^{2}\\theta =1$ eliminates the parameter: ${(x-h)}^{2}+{(y-k)}^{2}=r^{2}({\\cos }^{2}\\theta +{\\sin }^{2}\\theta )=r^{2}.$ This is the equation of a circle of radius $r$ centered at $(h,k),$ and as $\\theta$ runs from $0$ to $2\\pi$ the point $(x,y)$ goes once around it, counterclockwise.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1169293343538",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cycloid-intro",
+   "prompt": "<p>For the following exercises, use a graphing utility to graph the curve represented by the parametric equations and identify the curve from its equation.</p><p><strong>[T]</strong> $\\begin{array}{l}x=\\theta +\\sin \\theta \\\\ y=1-\\cos \\theta \\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>The equations represent a cycloid.</p>\n<img src=\"/media/ch11/CNX_Calc_Figure_11_01_222.jpg\" alt=\"A graph starting at (−6, 0) increasing rapidly to a sharp point at (−3, 2) and then decreasing rapidly to the origin. The graph is symmetric about the y axis, so the graph increases rapidly to (3, 2) before decreasing rapidly to (6, 0).\">"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1169293401770",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs",
+   "prompt": "<p>For the following exercises, use a graphing utility to graph the curve represented by the parametric equations and identify the curve from its equation.</p><p><strong>[T]</strong> $\\begin{array}{l}x=t-0.5\\;\\sin t \\\\ y=1-1.5\\;\\cos t\\end{array}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_231.jpg\" alt=\"A graph starting at roughly (−6, 0) increasing to a rounded point and then decreasing to roughly (0, −0.5). The graph is symmetric about the y axis, so the graph increases to a rounded point before decreasing to roughly (6, 0).\">"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1169293314055",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs",
+   "prompt": "<p>The trajectory of a bullet is given by $x=v_{0}(\\cos \\alpha )\\;t,y=v_{0}(\\sin \\alpha )\\;t-\\frac{1}{2}gt^{2}$ where $v_{0}=500\\;\\text{m/s,}$ $g=9.8=9.8{\\;\\text{m/s}}^{2},$ and $\\alpha =30\\;\\text{degrees}.$ When will the bullet hit the ground? How far from the gun will the bullet hit the ground?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "22,092 meters at approximately 51 seconds."
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1169293251573",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs",
+   "prompt": "<p><strong>[T]</strong> Use technology to sketch $x=2\\;\\tan (t),y=3\\;\\sec (t),-\\pi \\lt t\\lt \\pi .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_226.jpg\" alt=\"A graph with asymptotes roughly near y = x and y = −x. The first part of the graph is in the first and second quadrants with vertex near (0, 3). The second part of the graph is in the third and fourth quadrants with vertex near (0, −3).\">"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1169293343404",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs",
+   "prompt": "<p><strong>[T]</strong> Use technology to sketch the spiral curve given by $x=t\\;\\cos (t),y=t\\;\\sin (t)$ from $-2\\pi \\le t\\le 2\\pi .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_228.jpg\" alt=\"A graph starting at roughly (−6, −1) decreasing to a minimum in the third quadrant near (−1, −4.8) increasing through roughly (0, −4.7) and (3, 0) to a maximum near (1, 1.9) before decreasing through (0, 1.5) to the origin. The graph is symmetric about the y axis, so the graph increases through (0, 1.5) to a maximum in the second quadrant, decreases again through (0, −4.7), and then increases to (6, −1).\">"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1169293312229",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "graphs",
+   "prompt": "<p><strong>[T]</strong> Sketch the curve given by parametric equations $\\begin{array}{l}x=\\operatorname{cosh}(t) \\\\ y=\\operatorname{sinh}(t),\\end{array}$ where $-2\\le t\\le 2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_01_230.jpg\" alt=\"A vaguely parabolic graph with vertex at the origin that is open to the right.\">"
+   }
+  },
+  {
+   "id": "r323",
+   "source_id": "fs-id1167794052704",
+   "source_section": "11.5",
+   "source_number": "323",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p><em>True or False?</em> Justify your answer with a proof or a counterexample.</p><p>The equations $x=\\operatorname{cosh}(3t),$ $y=2\\;\\operatorname{sinh}(3t)$ represent a hyperbola.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 0,
+    "solution": "True."
+   }
+  },
+  {
+   "id": "r327",
+   "source_id": "fs-id1167794067770",
+   "source_section": "11.5",
+   "source_number": "327",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the parametric curve and eliminate the parameter to find the Cartesian equation of the curve.</p><p>$x=e^{t},$ $y=1-e^{3t},$ $0\\le t\\le 1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_05_219.jpg\" alt=\"Graph of a curve starting at (1, 0) and decreasing into the fourth quadrant.\">\n<p>$y=1-x^{3}$</p>"
+   }
+  },
+  {
+   "id": "r329",
+   "source_id": "fs-id1167794067952",
+   "source_section": "11.5",
+   "source_number": "329",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eliminating-term",
+   "prompt": "<p>For the following exercises, sketch the parametric curve and eliminate the parameter to find the Cartesian equation of the curve.</p><p>$x=4\\;\\cos ϕ,$ $y=1-\\sin ϕ,$ $0\\le ϕ\\le 2\\pi$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch11/CNX_Calc_Figure_11_05_221.jpg\" alt=\"Graph of an ellipse with center (0, 1), major axis horizontal and of length 8, and minor axis of length 2.\">\n<p>$\\frac{x^{2}}{16}+{(y-1)}^{2}=1$</p>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "orientation"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "parameterization-of-a-curve"
+  },
+  {
+   "exercise": "e1",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e1",
+   "concept": "orientation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e3",
+   "concept": "orientation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e7",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e9",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e11",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e13",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e15",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e17",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e19",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e21",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e23",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e25",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e27",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e29",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e31",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e33",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e35",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e37",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e39",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e39",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e41",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e41",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e43",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e43",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e45",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e45",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e47",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e47",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e49",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e51",
+   "concept": "cycloid"
+  },
+  {
+   "exercise": "e53",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e55",
+   "concept": "parametric-equations"
+  },
+  {
+   "exercise": "e57",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e59",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e61",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "r323",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "r327",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "r327",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "r329",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "r329",
+   "concept": "parametric-curve"
+  }
+ ],
+ "referents": [
+  {
+   "id": "ant",
+   "label": "the ant riding the wheel, whose path is the cycloid",
+   "figures": [
+    "sim-cycloid"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-circle-table",
+   "kind": "correction",
+   "html": "The table prints $y(t)=2$ at $t=\\frac{7\\pi}{6}$ and at $t=\\frac{11\\pi}{6};$ there $y(t)=4\\sin t=-2,$ and the points $(-2\\sqrt{3},-2)$ and $(2\\sqrt{3},-2)$ lie on the lower half of the circle."
+  },
+  {
+   "id": "c-e21-half",
+   "kind": "correction",
+   "html": "Since $t$ takes negative values as well, $y=\\frac{t}{2}$ does too: the curve is the whole parabola $x=4y^{2}-1,$ that is $y=\\pm \\frac{\\sqrt{x+1}}{2}$; the key’s equation is its upper half. The domain $[-1,\\infty )$ stands."
+  },
+  {
+   "id": "c-e35-domain",
+   "kind": "correction",
+   "html": "With $t\\ge 1,$ $x=t^{n}\\ge 1,$ so the domain is $x\\in [1,\\infty ),$ as in exercise 33."
+  }
+ ]
+}
