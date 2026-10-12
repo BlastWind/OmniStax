@@ -34,9 +34,9 @@ book → chapters (17) → sections (N.M, 110) → titled headers, two levels in
 
 A chapter folder is `ch` plus the two-digit number. A chapter's book-level rows (types, symbols, concepts, prerequisite edges) are staged in its `book-rows.json` and merged with `ost merge calculus N`, never written into `book.json` by hand.
 
-The Preface is Volume 1's (m60027), kept verbatim; the other two Prefaces are near copies and are not built. Appendices A (Table of Integrals, m54049) and B (Table of Derivatives, m54050) are sheets, `sheets/<id>.json`, marked `"generated_by": "tool"`; Appendix C (Review of Pre-Calculus, m54053) is prose and becomes a page after the chapters when the app has a place for it.
+The Preface is Volume 1's (m60027); the other two Prefaces are near copies and are not built. Appendices A (Table of Integrals, m54049) and B (Table of Derivatives, m54050) are sheets, `sheets/<id>.json`, marked `"generated_by": "tool"`; Appendix C (Review of Pre-Calculus, m54053) is prose and becomes a page after the chapters when the app has a place for it.
 
-The book's numbers follow the merged chapter: Volume 3's Figure 2.4 is Figure 12.4 here, and a cross-reference, being a link with no number of its own, takes the merged number. The one prose mention of another volume ("Section 6.6 of Volume 1", in 15.6) stays as printed and links to 6.6.
+The book's numbers follow the merged chapter: Volume 3's Figure 2.4 is Figure 12.4 here, and a cross-reference, being a link with no number of its own, takes the merged number. No volume reaches the reader (Chen, 2026-10-12): where the words assume three volumes they are changed, the one exception to "words as printed", each change marked by a correction note at the spot that gives what the book printed ("The book, published in three volumes, prints: '…'"). The Preface is one book of Chapters 1–17; "Section 6.6 of Volume 1" (15.6) becomes "Section 6.6", linked, with its note. The openstax.org slugs keep their volumes.
 
 ## Apparatus
 

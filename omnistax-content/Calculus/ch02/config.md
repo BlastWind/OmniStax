@@ -5,7 +5,7 @@ Status: agreed 2026-10-12 (Chen: build Chapters 1 and 2 through, report plans an
 1. Start: `ch02/intro/`, then 2.1–2.5.
 2. Loop: prep / sections / chapter pass with no stops; plans and decisions reported to Chen afterwards (rule 5 review waived by Chen for this run).
 3. Preface: built with Chapter 1.
-4. Cross-volume references: printed words kept; "Section 6.6 of Volume 1" (15.6) links to 6.6 with no note.
+4. Cross-volume references: no volume in the reader's text; "Section 6.6 of Volume 1" (15.6) becomes "Section 6.6", linked, with a note giving the printed words.
 5. Numbering: openstax.org's chapter-wide numbers with the merged chapter prefix; slugs keep the volume's own.
 6. Checkpoints: inline Try Its after their example, hint and answer behind reveals, kind `checkpoint`; no attainment.
 7. Examples: kept whole in the text, Analysis included.

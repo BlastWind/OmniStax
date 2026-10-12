@@ -4,8 +4,8 @@ Status: agreed 2026-10-12 (Chen accepted the proposed list as a whole).
 
 1. Start: `ch01/intro/`, then 1.1–1.5, then the book `intro/` (Preface) page.
 2. Loop: 1.1 reviewed alone; then (Chen, 2026-10-12) 1.2–1.5, the Preface and the chapter pass at once with no stops, plans reported afterwards.
-3. Preface: one book `intro/` page from Volume 1's m60027, verbatim; Volumes 2 and 3's prefaces are not built.
-4. Cross-volume references: printed words kept; "Section 6.6 of Volume 1" (15.6) links to 6.6 with no note.
+3. Preface: one book `intro/` page from Volume 1's m60027, its volume words changed to one book of Chapters 1–17, each change with a note giving the printed words; Volumes 2 and 3's prefaces are not built.
+4. Cross-volume references: no volume in the reader's text; "Section 6.6 of Volume 1" (15.6) becomes "Section 6.6", linked, with a note giving the printed words.
 5. Numbering: openstax.org's chapter-wide numbers with the merged chapter prefix; slugs keep the volume's own.
 6. Checkpoints: inline Try Its after their example, hint and answer behind reveals, kind `checkpoint`; no attainment.
 7. Examples: kept whole in the text, Analysis included.

@@ -143,3 +143,8 @@ corrections were added as notes: the key's [2, ∞] for 225, meant
 no counterexample. `tangent-line` wears `line`, its slope `derivative`,
 and 2.1's figures draw the tangent in `line`. The chapter opener's link
 to Example 2.12 names the qualified id.
+
+
+## Pass 5 (2026-10-12): No volumes
+
+Chen's ruling: the merged book drops the volumes for the reader. The Preface's words that assume three volumes are changed to the one book, its three coverage lists made one list of Chapters 1–17 in the merged numbers, and each change carries a correction note giving what the book printed (v-welcome, v-licence, v-about (heading and paragraph), v-coverage, v-chapters, v-pedagogy, v-transcendentals). "Over 60 Proofs" stays, still true of the whole book. RULES and the chapter configs now say that 15.6's "Section 6.6 of Volume 1" becomes "Section 6.6" with a note. Chapters 1 and 2 print no volume.
